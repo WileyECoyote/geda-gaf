@@ -1021,7 +1021,6 @@ geda_menu_shell_update_mnemonics (GedaMenuShell *menu_shell)
 static int
 geda_menu_shell_menu_key_press (GedaMenuShell *menu_shell, GdkEventKey *event)
 {
-  bool enable_mnemonics;
   bool handled;
 
   menu_shell->keyboard_mode = TRUE;
@@ -1049,6 +1048,7 @@ geda_menu_shell_menu_key_press (GedaMenuShell *menu_shell, GdkEventKey *event)
 
     if (!handled) {
 
+      bool enable_mnemonics;
       widget_shell = GTK_WIDGET(menu_shell);
 
       g_object_get (gtk_widget_get_settings (widget_shell),

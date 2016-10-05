@@ -1,3 +1,8 @@
+2016-10-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_shell.c: Reduce scope of enable_mnemonics in
+      geda_menu_shell_menu_key_press.
+
 2016-10-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_bar.c: Simplify geda_menu_bar_move_current;
