@@ -18,7 +18,8 @@
       geda_menu_shell_menu_key_press and rename menu_item->active_item.
       Revert argument to geda_menu_shell_menu_key_press back to GtkWidget
       and set pointer as key_press_event over-ride, eliminate menu_key_press
-      revise function accordingly.
+      revise function accordingly. Rename geda_menu_shell_menu_key_press->
+      geda_menu_shell_key_press.
 
 2016-10-04 Wiley E. Hill <wileyhill@gmail.com>
 

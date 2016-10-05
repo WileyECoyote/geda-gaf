@@ -195,7 +195,7 @@ static int  geda_menu_shell_is_item                (GedaMenuShell     *menu_shel
 static GtkWidget *geda_menu_shell_get_item         (GedaMenuShell     *menu_shell,
                                                     GdkEvent          *event);
 static GType geda_menu_shell_child_type            (GtkContainer      *container);
-static int  geda_menu_shell_menu_key_press         (GtkWidget         *widget,
+static int  geda_menu_shell_key_press              (GtkWidget         *widget,
                                                     GdkEventKey       *event);
 static void geda_menu_shell_real_select_item       (GedaMenuShell     *menu_shell,
                                                     GtkWidget         *menu_item);
@@ -326,7 +326,7 @@ geda_menu_shell_class_init(void *class, void *class_data)
   widget_class->button_release_event  = geda_menu_shell_button_release;
   widget_class->grab_broken_event     = geda_menu_shell_grab_broken;
   widget_class->enter_notify_event    = geda_menu_shell_enter_notify;
-  widget_class->key_press_event       = geda_menu_shell_menu_key_press;
+  widget_class->key_press_event       = geda_menu_shell_key_press;
   widget_class->leave_notify_event    = geda_menu_shell_leave_notify;
   widget_class->screen_changed        = geda_menu_shell_screen_changed;
 
@@ -987,7 +987,7 @@ geda_menu_shell_update_mnemonics (GedaMenuShell *menu_shell)
 
     /* While navigating menus, the first parent menu with an active
      * item is the one where mnemonics are effective, as can be seen
-     * in geda_menu_shell_menu_key_press below.
+     * in geda_menu_shell_key_press below.
      * We also show mnemonics in context menus. The grab condition is
      * necessary to ensure we remove underlines from menu bars when
      * dismissing menus.
@@ -1019,7 +1019,7 @@ geda_menu_shell_update_mnemonics (GedaMenuShell *menu_shell)
 }
 
 static int
-geda_menu_shell_menu_key_press (GtkWidget *widget, GdkEventKey *event)
+geda_menu_shell_key_press (GtkWidget *widget, GdkEventKey *event)
 {
   GedaMenuShell *menu_shell;
   GedaMenuShell *parent_shell;
@@ -1426,6 +1426,11 @@ geda_menu_shell_deselect (GedaMenuShell *menu_shell)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_menu_shell_activate_item (GedaMenuShell *menu_shell,
                                GtkWidget     *menu_item,
@@ -1926,7 +1931,7 @@ geda_menu_shell_get_mnemonic_hash (GedaMenuShell *menu_shell, bool create)
 
   return priv->mnemonic_hash;
 }
-
+/*
 static void
 menu_shell_add_mnemonic_foreach (unsigned int keyval, GSList *targets, void *data)
 {
@@ -1934,8 +1939,9 @@ menu_shell_add_mnemonic_foreach (unsigned int keyval, GSList *targets, void *dat
 
   geda_key_hash_add_entry (key_hash, keyval, 0, UINT_TO_POINTER(keyval));
 }
+*/
 
-/* Helper called by: geda_menu_shell_activate_mnemonic */
+/* Helper called by: geda_menu_shell_activate_mnemonic
 static GedaKeyHash *
 geda_menu_shell_get_key_hash (GedaMenuShell *menu_shell, bool create)
 {
@@ -1962,6 +1968,7 @@ geda_menu_shell_get_key_hash (GedaMenuShell *menu_shell, bool create)
 
   return priv->key_hash;
 }
+ */
 /*---------------------------- End Hash Helpers -----------------------------*/
 
 /* Helper called by:
@@ -1985,36 +1992,53 @@ static bool
 geda_menu_shell_activate_mnemonic (GedaMenuShell *menu_shell,
                                    GdkEventKey   *event)
 {
-  GedaMnemonicHash *mnemonic_hash;
-  GedaKeyHash      *key_hash;
-  GSList           *entries;
   bool result = FALSE;
 
-  mnemonic_hash = geda_menu_shell_get_mnemonic_hash (menu_shell, FALSE);
+  if (menu_shell->children) {
 
-  if (mnemonic_hash) {
+    GList *iter;
 
-    key_hash = geda_menu_shell_get_key_hash (menu_shell, TRUE);
+    for (iter = menu_shell->children; iter; iter = iter->next) {
 
-    if (key_hash) {
+      if (GEDA_IS_MENU_ITEM(iter->data)) {
 
-      entries = geda_key_hash_lookup (key_hash,
-                                      event->hardware_keycode,
-                                      event->state,
-                                      gtk_accelerator_get_default_mod_mask (),
-                                      event->group);
+        GedaMenuItem *menu_item = iter->data;
 
-      if (entries) {
+        char mnemonic = geda_menu_item_get_mnemonic(menu_item);
+        char key_char = (char)event->keyval;
 
-        result = geda_mnemonic_hash_activate (mnemonic_hash,
-                                             (unsigned int)(long)entries->data);
-        g_slist_free (entries);
+        if (((mnemonic >> 5) & 1) ^ 1)
+        {
+          mnemonic = tolower(mnemonic);
+        }
+
+        if (key_char == mnemonic){
+
+          if (geda_menu_item_is_selectable(menu_item)) {
+
+            GtkWidget *widget = (GtkWidget*)menu_item;
+
+            if (geda_menu_item_get_submenu(menu_item)) {
+              geda_menu_shell_select_item(menu_shell, widget);
+            }
+            else {
+              geda_menu_shell_activate_item (menu_shell, widget, TRUE);
+            }
+          }
+          result = TRUE;
+          break;
+        }
       }
     }
   }
   return result;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_menu_shell_add_mnemonic (GedaMenuShell *menu_shell,
                               unsigned int   keyval,
@@ -2030,6 +2054,11 @@ geda_menu_shell_add_mnemonic (GedaMenuShell *menu_shell,
   geda_menu_shell_reset_key_hash (menu_shell);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_menu_shell_remove_mnemonic (GedaMenuShell *menu_shell,
                                  unsigned int   keyval,
