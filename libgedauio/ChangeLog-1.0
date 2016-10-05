@@ -1,7 +1,7 @@
 2016-10-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Call gtk_tree_view_set_tooltip_column in
-      geda_combo_box_set_tooltip_column.
+      geda_combo_box_set_tooltip_column. Update Doxygen comments.
 
     * src/widgets/geda_menu_shell.c: Reduce scope of enable_mnemonics in
       geda_menu_shell_menu_key_press.

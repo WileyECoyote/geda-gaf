@@ -489,9 +489,9 @@ geda_combo_box_text_new_with_entry (void)
   return g_object_new (GEDA_TYPE_COMBO_BOX_TEXT, "has-entry", TRUE, NULL);
 }
 
-/*! \brief Create a New GedaComboBoxText with Entry
- *  \par Function Description
- *
+/*!
+ * \brief Create a New GedaComboBoxText with Entry
+ * \par Function Description
  * Creates a new #GedaComboBoxText, which is a GedaComboBox just displaying
  * strings. The combo box created by this function has an entry. The parent
  * GedaComboBox rebuilt the widget when the "list-view" property was set,
@@ -512,6 +512,7 @@ geda_combo_box_text_list_new(void)
   return widget;
 }
 
+/* Stores text, and optionally text2, in list store at position */
 static void
 geda_combo_box_text_real_insert (GedaComboBoxText *combo_box,
                                  int               position,
