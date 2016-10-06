@@ -262,6 +262,23 @@ geda_menu_bar_get_property (GObject      *object,
     }
 }
 
+/* Common helper called by:
+ *
+ * geda_menu_bar_size_allocate
+ * geda_menu_bar_size_request
+ * geda_menu_bar_paint
+ * geda_menu_bar_draw
+ */
+static GtkShadowType
+get_shadow_type (GedaMenuBar *menubar)
+{
+  GtkShadowType shadow_type = GTK_SHADOW_OUT;
+
+  gtk_widget_style_get (GTK_WIDGET(menubar), "shadow-type", &shadow_type, NULL);
+
+  return shadow_type;
+}
+
 #if GTK_MAJOR_VERSION < 3
 
 static void
@@ -1492,16 +1509,6 @@ geda_menu_bar_cycle_focus (GedaMenuBar *menubar, GtkDirectionType  dir)
   if (to_activate)
     g_signal_emit_by_name (to_activate, "activate_item");
 
-}
-
-static GtkShadowType
-get_shadow_type (GedaMenuBar *menubar)
-{
-  GtkShadowType shadow_type = GTK_SHADOW_OUT;
-
-  gtk_widget_style_get (GTK_WIDGET(menubar), "shadow-type", &shadow_type, NULL);
-
-  return shadow_type;
 }
 
 static int
