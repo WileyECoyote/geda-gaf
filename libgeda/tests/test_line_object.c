@@ -44,8 +44,8 @@
 
 /** \defgroup test-object-geda-line Test GEDA Line object Module
  * @{
- * \brief Group 10 src/object/o_line_object.c geda_line_object_
- *  Group 10 == Module/File No.
+ * \brief Group 11 src/object/o_line_object.c geda_line_object_
+ *  Group 11 == Module/File No.
  * \par
  *
  *  Test Identifiers:  O  11  88, 88
@@ -60,47 +60,47 @@
  *
  *  See tests/README for more details on the nomenclature for test identifiers.
  *
- *      O1001    geda_line_object_copy
+ *      O1101    geda_line_object_copy
  *               geda_line_object_get_closest_endpoint
- *      O1003    geda_line_object_get_end_cap
- *      O1004    geda_line_object_get_line_length
- *      O1005    geda_line_object_get_line_space
- *      O1006    geda_line_object_get_line_type
- *      O1007    geda_line_object_get_line_width
+ *      O1103    geda_line_object_get_end_cap
+ *      O1104    geda_line_object_get_line_length
+ *      O1105    geda_line_object_get_line_space
+ *      O1106    geda_line_object_get_line_type
+ *      O1107    geda_line_object_get_line_width
  *               geda_line_object_get_intersection
  *               geda_line_object_get_midpoint
  *               geda_line_object_get_nearest_point
  *               geda_line_object_get_position
  *               geda_line_object_get_slope
- *      O1013    geda_line_object_get_x1
- *      O1014    geda_line_object_get_x2
- *      O1015    geda_line_object_get_y1
- *      O1016    geda_line_object_get_y2
+ *      O1113    geda_line_object_get_x1
+ *      O1114    geda_line_object_get_x2
+ *      O1115    geda_line_object_get_y1
+ *      O1116    geda_line_object_get_y2
  *               geda_line_object_is_endpoint
  *               geda_line_object_length
  *               geda_line_object_mirror
  *               geda_line_object_modify
- *      O1021    geda_line_object_new
+ *      O1121    geda_line_object_new
  *               geda_line_object_print
  *               geda_line_object_print_center
  *               geda_line_object_print_dashed
  *               geda_line_object_print_dotted
  *               geda_line_object_print_phantom
  *               geda_line_object_print_solid
- *      O1028    geda_line_object_read
+ *      O1128    geda_line_object_read
  *               geda_line_object_rotate
- *      O1030    geda_line_object_set_end_cap
- *      O1031    geda_line_object_set_line_length
- *      O1032    geda_line_object_set_line_space
- *      O1033    geda_line_object_set_line_type
- *      O1034    geda_line_object_set_line_width
- *      O1035    geda_line_object_set_x1
- *      O1036    geda_line_object_set_x2
- *      O1037    geda_line_object_set_y1
- *      O1038    geda_line_object_set_y2
+ *      O1130    geda_line_object_set_end_cap
+ *      O1131    geda_line_object_set_line_length
+ *      O1132    geda_line_object_set_line_space
+ *      O1133    geda_line_object_set_line_type
+ *      O1134    geda_line_object_set_line_width
+ *      O1135    geda_line_object_set_x1
+ *      O1136    geda_line_object_set_x2
+ *      O1137    geda_line_object_set_y1
+ *      O1138    geda_line_object_set_y2
  *               geda_line_object_scale
  *               geda_line_object_shortest_distance
- *      O1041    geda_line_object_to_buffer
+ *      O1141    geda_line_object_to_buffer
  *               geda_line_object_translate
  */
 
@@ -123,13 +123,13 @@ check_construction (void)
     GedaObject *object0 = geda_line_object_new(c, x0, y0, x1, y1);
 
     if (!GEDA_IS_OBJECT(object0)) {
-      fprintf(stderr, "FAILED: (O102101A) New GedaObject Failed: %s\n", TOBJECT);
+      fprintf(stderr, "FAILED: (O112101A) New GedaObject Failed: %s\n", TOBJECT);
       result++;
       break;   /* terminate loop if fail */
     }
 
     if (!GEDA_IS_LINE(object0->line)) {
-      fprintf(stderr, "FAILED: (O102101B) sub-pointer not a %s\n", TOBJECT);
+      fprintf(stderr, "FAILED: (O112101B) sub-pointer not a %s\n", TOBJECT);
       result++;
       break;   /* terminate loop if fail */
     }
@@ -148,25 +148,25 @@ check_construction (void)
 
       value = line->x[0];
       if (value - x0) {
-        fprintf(stderr, "FAILED: (O102101CX) line first x %d != %d\n", value, x0);
+        fprintf(stderr, "FAILED: (O112101CX) line first x %d != %d\n", value, x0);
         fail++;
       }
 
       value = line->y[0];
       if (value - y0) {
-        fprintf(stderr, "FAILED: (O102101CY) line first y %d != %d\n", value, y0);
+        fprintf(stderr, "FAILED: (O112101CY) line first y %d != %d\n", value, y0);
         fail++;
       }
 
       value = line->x[1];
       if (value - x1) {
-        fprintf(stderr, "FAILED: (O102101CX) line second x %d != %d\n", value, x1);
+        fprintf(stderr, "FAILED: (O112101CX) line second x %d != %d\n", value, x1);
         fail++;
       }
 
       value = line->y[1];
       if (value - y1) {
-        fprintf(stderr, "FAILED: (O102101CY) line second y %d != %d\n", value, y1);
+        fprintf(stderr, "FAILED: (O112101CY) line second y %d != %d\n", value, y1);
         fail++;
       }
 
@@ -225,22 +225,22 @@ check_accessors (void)
   int result = 0;
 
   if (geda_line_object_get_x1(NULL)) {
-    fprintf(stderr, "FAILED: (O101300) %s first x not zero\n", TOBJECT);
+    fprintf(stderr, "FAILED: (O111300) %s first x not zero\n", TOBJECT);
     result++;
   }
 
   if (geda_line_object_get_x2(NULL)) {
-    fprintf(stderr, "FAILED: (O101400) %s second x not zero\n", TOBJECT);
+    fprintf(stderr, "FAILED: (O111400) %s second x not zero\n", TOBJECT);
     result++;
   }
 
   if (geda_line_object_get_y1(NULL)) {
-    fprintf(stderr, "FAILED: (O101500) %s first y not zero\n", TOBJECT);
+    fprintf(stderr, "FAILED: (O111500) %s first y not zero\n", TOBJECT);
     result++;
   }
 
   if (geda_line_object_get_y2(NULL)) {
-    fprintf(stderr, "FAILED: (O101600) %s second y not zero\n", TOBJECT);
+    fprintf(stderr, "FAILED: (O111600) %s second y not zero\n", TOBJECT);
     result++;
   }
 
@@ -249,12 +249,12 @@ check_accessors (void)
     GedaObject *object0 = geda_line_object_new (3, 11, 21, 31, 41);
 
     if (!GEDA_IS_OBJECT(object0)) {
-      fprintf(stderr, "FAILED: (O102101C) New GedaObject Failed\n");
+      fprintf(stderr, "FAILED: (O112101C) New GedaObject Failed\n");
       result++;
       break;
     }
     else if (!GEDA_IS_LINE(object0->line)) {
-      fprintf(stderr, "FAILED: (O102101D) sub-pointer not a %s\n", TOBJECT);
+      fprintf(stderr, "FAILED: (O112101D) sub-pointer not a %s\n", TOBJECT);
       result++;
       break;
     }
@@ -293,49 +293,49 @@ check_accessors (void)
 
       value = object0->line->x[0];
       if (value - x0) {
-        fprintf(stderr, "FAILED: (O103501) set_x1 %d != %d\n", value, x0);
+        fprintf(stderr, "FAILED: (O113501) set_x1 %d != %d\n", value, x0);
         fail++;
       }
 
       value = object0->line->x[1];
       if (value - x1) {
-        fprintf(stderr, "FAILED: (O103601) set_x2 %d != %d\n", value, x1);
+        fprintf(stderr, "FAILED: (O113601) set_x2 %d != %d\n", value, x1);
         fail++;
       }
 
       value = object0->line->y[0];
       if (value - y0) {
-        fprintf(stderr, "FAILED: (O103701) set_y1 %d != %d\n", value, y0);
+        fprintf(stderr, "FAILED: (O113701) set_y1 %d != %d\n", value, y0);
         fail++;
       }
 
       value = object0->line->y[1];
       if (value - y1) {
-        fprintf(stderr, "FAILED: (O103801) set_y2 %d != %d\n", value, y1);
+        fprintf(stderr, "FAILED: (O113801) set_y2 %d != %d\n", value, y1);
         fail++;
       }
 
       value = geda_line_object_get_x1(object0);
       if (value - x0) {
-        fprintf(stderr, "FAILED: (O101301) get x1 %d != %d\n", value, x0);
+        fprintf(stderr, "FAILED: (O111301) get x1 %d != %d\n", value, x0);
         fail++;
       }
 
       value = geda_line_object_get_x2(object0);
       if (value - x1) {
-        fprintf(stderr, "FAILED: (O101401) get x2 %d != %d\n", value, x1);
+        fprintf(stderr, "FAILED: (O111401) get x2 %d != %d\n", value, x1);
         fail++;
       }
 
       value = geda_line_object_get_y1(object0);
       if (value - y0) {
-        fprintf(stderr, "FAILED: (O101501) get y1 %d != %d\n", value, y0);
+        fprintf(stderr, "FAILED: (O111501) get y1 %d != %d\n", value, y0);
         fail++;
       }
 
       value = geda_line_object_get_y2(object0);
       if (value - y1) {
-        fprintf(stderr, "FAILED: (O101601) get y2 %d != %d\n", value, y1);
+        fprintf(stderr, "FAILED: (O111601) get y2 %d != %d\n", value, y1);
         fail++;
       }
 
@@ -345,7 +345,7 @@ check_accessors (void)
 
       value = object0->line_options->line_end;
       if (value - e) {
-        fprintf(stderr, "FAILED: (O103001) %d != %d\n", value, e);
+        fprintf(stderr, "FAILED: (O113001) %d != %d\n", value, e);
         fail++;
       }
 
@@ -353,7 +353,7 @@ check_accessors (void)
 
       value = object0->line_options->line_length;
       if (value - l) {
-        fprintf(stderr, "FAILED: (O103101) %d != %d\n", value, l);
+        fprintf(stderr, "FAILED: (O113101) %d != %d\n", value, l);
         fail++;
       }
 
@@ -361,7 +361,7 @@ check_accessors (void)
 
       value = object0->line_options->line_space;
       if (value - p) {
-        fprintf(stderr, "FAILED: (O103201) %d != %d\n", value, p);
+        fprintf(stderr, "FAILED: (O113201) %d != %d\n", value, p);
         fail++;
       }
 
@@ -369,7 +369,7 @@ check_accessors (void)
 
       value = object0->line_options->line_type;
       if (value - t) {
-        fprintf(stderr, "FAILED: (O103301) %d != %d\n", value, t);
+        fprintf(stderr, "FAILED: (O113301) %d != %d\n", value, t);
         fail++;
       }
 
@@ -377,42 +377,42 @@ check_accessors (void)
 
       value = object0->line_options->line_width;
       if (value - w) {
-        fprintf(stderr, "FAILED: (O103401) %d != %d\n", value, w);
+        fprintf(stderr, "FAILED: (O113401) %d != %d\n", value, w);
         fail++;
       }
 
       value = geda_line_object_get_end_cap(object0);
 
       if (value - e) {
-        fprintf(stderr, "FAILED: (O100301) %d != %d\n", value, e);
+        fprintf(stderr, "FAILED: (O110301) %d != %d\n", value, e);
         fail++;
       }
 
       value = geda_line_object_get_line_length(object0);
 
       if (value - l) {
-        fprintf(stderr, "FAILED: (O100401) %d != %d\n", value, l);
+        fprintf(stderr, "FAILED: (O110401) %d != %d\n", value, l);
         fail++;
       }
 
       value = geda_line_object_get_line_space(object0);
 
       if (value - p) {
-        fprintf(stderr, "FAILED: (O100501) %d != %d\n", value, p);
+        fprintf(stderr, "FAILED: (O110501) %d != %d\n", value, p);
         fail++;
       }
 
       value = geda_line_object_get_line_type(object0);
 
       if (value - t) {
-        fprintf(stderr, "FAILED: (O100601) %d != %d\n", value, t);
+        fprintf(stderr, "FAILED: (O110601) %d != %d\n", value, t);
         fail++;
       }
 
       value = geda_line_object_get_line_width(object0);
 
       if (value - w) {
-        fprintf(stderr, "FAILED: (O100701) %d != %d\n", value, w);
+        fprintf(stderr, "FAILED: (O110701) %d != %d\n", value, w);
         fail++;
       }
 
@@ -470,7 +470,7 @@ check_serialization (void)
     g_object_unref (object0);
 
     if (!buffer0) {
-      fprintf(stderr, "FAILED: (O104101A) line object to buffer\n");
+      fprintf(stderr, "FAILED: (O114101A) line object to buffer\n");
       result++;
       break;
     }
@@ -481,13 +481,13 @@ check_serialization (void)
                                                  NULL);
 
     if (!GEDA_IS_OBJECT(object1)) {
-      fprintf(stderr, "FAILED: (O102801A) Read GedaObject Failed\n");
+      fprintf(stderr, "FAILED: (O112801A) Read GedaObject Failed\n");
       result++;
       break;
     }
 
     if (!GEDA_IS_LINE(object1->line)) {
-      fprintf(stderr, "FAILED: (O102801B) sub-pointer not a GedaLine\n");
+      fprintf(stderr, "FAILED: (O112801B) sub-pointer not a GedaLine\n");
       result++;
       break;   /* terminate loop if fail */
     }
@@ -504,22 +504,22 @@ check_serialization (void)
       }
 
       if (line->x[0] - x1) {
-        fprintf(stderr, "FAILED: (O1041/O1028X1) line x1 %d != %d\n", line->x[0], x1);
+        fprintf(stderr, "FAILED: (O1141/O1128X1) line x1 %d != %d\n", line->x[0], x1);
         fail++;
       }
 
       if (line->y[0] - y1) {
-        fprintf(stderr, "FAILED: (O1041/O1028Y1) line y1 %d != %d\n", line->y[0], y1);
+        fprintf(stderr, "FAILED: (O1141/O1128Y1) line y1 %d != %d\n", line->y[0], y1);
         fail++;
       }
 
       if (line->x[1] - x2) {
-        fprintf(stderr, "FAILED: (O1041/O1028X2) line x2 %d != %d\n", line->x[1], x2);
+        fprintf(stderr, "FAILED: (O1141/O1128X2) line x2 %d != %d\n", line->x[1], x2);
         fail++;
       }
 
       if (line->y[1] - y2) {
-        fprintf(stderr, "FAILED: (O1041/O1028Y2) line y2 %d != %d\n", line->y[1], y2);
+        fprintf(stderr, "FAILED: (O1141/O1128Y2) line y2 %d != %d\n", line->y[1], y2);
         fail++;
       }
 
@@ -543,7 +543,7 @@ check_serialization (void)
       g_object_unref (object1);
 
       if (strcmp (buffer0, buffer1)) {
-        fprintf(stderr, "FAILED: (O104101B) %s buffer mismatch\n", TOBJECT);
+        fprintf(stderr, "FAILED: (O114101B) %s buffer mismatch\n", TOBJECT);
         result++;
         break;
       }

@@ -1,6 +1,8 @@
-2016-10-04 Wiley E. Hill <wileyhill@gmail.com>
+2016-10-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_menu.c: Rename functions with geda_iface prefix.
+
+    * tests/test_line_object.c: Update module/file group code=11.
 
 2016-10-04 Wiley E. Hill <wileyhill@gmail.com>
 
