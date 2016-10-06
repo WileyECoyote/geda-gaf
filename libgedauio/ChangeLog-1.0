@@ -6,6 +6,9 @@
     * src/widgets/geda_menu_bar.c: Reduce scope of variables in geda_menu_
       bar_size_allocate.
 
+    * src/widgets/geda_menu_item.c: Reorganize module. Revise geda_menu_
+      item_class_init to use conventional cast since is all the same pointer.
+
     * src/widgets/geda_menu_shell.c: Reorganize module.
 
 2016-10-05 Wiley E. Hill <wileyhill@gmail.com>

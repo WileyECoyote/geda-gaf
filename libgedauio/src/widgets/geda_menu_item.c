@@ -254,6 +254,37 @@ static GtkBuildableIface *parent_buildable_iface;
 
 static void *geda_menu_item_parent_class = NULL;
 
+static void
+geda_menu_item_disconnect_accelerator(GedaAction *action)
+{
+  if (GTK_ACTION (action)) {
+    gtk_action_disconnect_accelerator (GTK_ACTION(action));
+  }
+}
+
+static void
+geda_menu_item_selection_done (GedaMenu     *menu,
+                               GedaMenuItem *menu_item)
+{
+  /* A submenu was activated or torn-off, so deselect parent */
+  geda_real_menu_item_deselect(menu_item);
+}
+
+static void
+geda_menu_item_detacher (GtkWidget *widget, GedaMenu *menu)
+{
+  GedaMenuItem *menu_item = GEDA_MENU_ITEM(widget);
+  GedaMenuItemPrivate *priv = menu_item->priv;
+
+  g_return_if_fail (priv->submenu == (GtkWidget*) menu);
+
+  g_signal_handlers_disconnect_by_func (menu,
+                                        geda_menu_item_selection_done,
+                                        menu_item);
+
+  priv->submenu = NULL;
+}
+
 #if (GTK_MAJOR_VERSION == 3)
 
 static void
@@ -320,6 +351,71 @@ geda_menu_item_do_set_right_justified (GedaMenuItem *menu_item,
     priv->right_justify = right_justified;
     gtk_widget_queue_resize (GTK_WIDGET(menu_item));
   }
+}
+
+#if GTK_MAJOR_VERSION < 3
+
+static void
+geda_menu_item_destroy (GtkObject *object)
+{
+  GedaMenuItem *menu_item = GEDA_MENU_ITEM(object);
+  GedaMenuItemPrivate *priv = menu_item->priv;
+
+  if (priv->submenu) {
+    gtk_widget_destroy (priv->submenu);
+  }
+
+  GTK_OBJECT_CLASS (geda_menu_item_parent_class)->destroy (object);
+}
+
+#else
+
+static void
+geda_menu_item_destroy (GtkWidget *widget)
+{
+  GedaMenuItem *menu_item = GEDA_MENU_ITEM(widget);
+  GedaMenuItemPrivate *priv = menu_item->priv;
+
+  if (priv->submenu) {
+    gtk_widget_destroy (priv->submenu);
+  }
+
+  GTK_WIDGET_CLASS (geda_menu_item_parent_class)->destroy (widget);
+}
+
+#endif
+
+/* GObject Over-rides*/
+
+static void
+geda_menu_item_dispose (GObject *object)
+{
+  GedaMenuItem        *menu_item = GEDA_MENU_ITEM(object);
+  GedaMenuItemPrivate *priv      = menu_item->priv;
+
+  if (priv->action) {
+    geda_menu_item_disconnect_accelerator(priv->action);
+    gtk_activatable_do_set_related_action (GTK_ACTIVATABLE(menu_item), NULL);
+    priv->action = NULL;
+  }
+
+  if (priv->submenu) {
+    g_signal_handlers_disconnect_by_func (priv->submenu,
+                                          geda_menu_item_selection_done,
+                                          menu_item);
+    priv->submenu = NULL;
+  }
+
+  G_OBJECT_CLASS (geda_menu_item_parent_class)->dispose (object);
+}
+
+static void geda_menu_item_finalize (GObject *object)
+{
+  GedaMenuItem *menu_item = GEDA_MENU_ITEM(object);
+
+  g_free(menu_item->priv);
+
+  G_OBJECT_CLASS (geda_menu_item_parent_class)->finalize (object);
 }
 
 static void
@@ -437,38 +533,6 @@ geda_menu_item_get_property (GObject     *object,
   }
 }
 
-#if GTK_MAJOR_VERSION < 3
-
-static void
-geda_menu_item_destroy (GtkObject *object)
-{
-  GedaMenuItem *menu_item = GEDA_MENU_ITEM(object);
-  GedaMenuItemPrivate *priv = menu_item->priv;
-
-  if (priv->submenu) {
-    gtk_widget_destroy (priv->submenu);
-  }
-
-  GTK_OBJECT_CLASS (geda_menu_item_parent_class)->destroy (object);
-}
-
-#else
-
-static void
-geda_menu_item_destroy (GtkWidget *widget)
-{
-  GedaMenuItem *menu_item = GEDA_MENU_ITEM(widget);
-  GedaMenuItemPrivate *priv = menu_item->priv;
-
-  if (priv->submenu) {
-    gtk_widget_destroy (priv->submenu);
-  }
-
-  GTK_WIDGET_CLASS (geda_menu_item_parent_class)->destroy (widget);
-}
-
-#endif
-
 /*!
  * \brief GedaMenuSeparator Class Initializer
  * \par Function Description
@@ -480,9 +544,9 @@ geda_menu_item_destroy (GtkWidget *widget)
 static void
 geda_menu_item_class_init  (void *class, void *class_data)
 {
-  GObjectClass      *gobject_class   = G_OBJECT_CLASS (class);
-  GtkWidgetClass    *widget_class    = GTK_WIDGET_CLASS (class);
-  GtkContainerClass *container_class = GTK_CONTAINER_CLASS (class);
+  GObjectClass      *gobject_class   = (GObjectClass*)class;
+  GtkWidgetClass    *widget_class    = (GtkWidgetClass*)class;
+  GtkContainerClass *container_class = (GtkContainerClass*)class;
   GedaMenuItemClass *menu_item_class = (GedaMenuItemClass*)class;
   GParamSpec        *params;
 
@@ -894,68 +958,6 @@ bool is_a_geda_menu_item (GedaMenuItem  *menu_item)
     return (geda_menu_item_get_type() == menu_item->instance_type);
   }
   return FALSE;
-}
-
-static void
-geda_menu_item_disconnect_accelerator(GedaAction *action)
-{
-  if (GTK_ACTION (action)) {
-    gtk_action_disconnect_accelerator (GTK_ACTION(action));
-  }
-}
-
-static void
-geda_menu_item_selection_done (GedaMenu     *menu,
-                               GedaMenuItem *menu_item)
-{
-  /* A submenu was activated or torn-off, so deselect parent */
-  geda_real_menu_item_deselect(menu_item);
-}
-
-static void
-geda_menu_item_dispose (GObject *object)
-{
-  GedaMenuItem        *menu_item = GEDA_MENU_ITEM(object);
-  GedaMenuItemPrivate *priv      = menu_item->priv;
-
-  if (priv->action) {
-    geda_menu_item_disconnect_accelerator(priv->action);
-    gtk_activatable_do_set_related_action (GTK_ACTIVATABLE(menu_item), NULL);
-    priv->action = NULL;
-  }
-
-  if (priv->submenu) {
-    g_signal_handlers_disconnect_by_func (priv->submenu,
-                                          geda_menu_item_selection_done,
-                                          menu_item);
-    priv->submenu = NULL;
-  }
-
-  G_OBJECT_CLASS (geda_menu_item_parent_class)->dispose (object);
-}
-
-static void geda_menu_item_finalize (GObject *object)
-{
-  GedaMenuItem *menu_item = GEDA_MENU_ITEM(object);
-
-  g_free(menu_item->priv);
-
-  G_OBJECT_CLASS (geda_menu_item_parent_class)->finalize (object);
-}
-
-static void
-geda_menu_item_detacher (GtkWidget *widget, GedaMenu *menu)
-{
-  GedaMenuItem *menu_item = GEDA_MENU_ITEM(widget);
-  GedaMenuItemPrivate *priv = menu_item->priv;
-
-  g_return_if_fail (priv->submenu == (GtkWidget*) menu);
-
-  g_signal_handlers_disconnect_by_func (menu,
-                                        geda_menu_item_selection_done,
-                                        menu_item);
-
-  priv->submenu = NULL;
 }
 
 static void
