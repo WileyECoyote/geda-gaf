@@ -1,3 +1,8 @@
+2016-10-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_menu_shell.h: Remove declaration for non-existent
+      geda_menu_shell_get_grab_device.
+
 2016-10-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_menu_shell.h: Eliminate virtual menu_key_press, is probably

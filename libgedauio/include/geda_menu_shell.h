@@ -123,8 +123,6 @@ void       geda_menu_shell_deactivate        (GedaMenuShell *menu_shell);
 
 void       geda_menu_shell_deselect          (GedaMenuShell *menu_shell);
 
-GdkDevice *geda_menu_shell_get_grab_device   (GedaMenuShell *menu_shell);
-
 bool       geda_menu_shell_get_keyboard_mode (GedaMenuShell *menu_shell);
 
 GtkWidget *geda_menu_shell_get_parent_shell  (GedaMenuShell *menu_shell);
@@ -140,7 +138,12 @@ void       geda_menu_shell_insert            (GedaMenuShell *menu_shell,
                                               int            position);
 
 void       geda_menu_shell_prepend           (GedaMenuShell *menu_shell,
+
                                               GtkWidget     *child);
+
+void       geda_menu_shell_remove_mnemonic   (GedaMenuShell *menu_shell,
+                                              unsigned int   keyval,
+                                              GtkWidget     *target);
 
 void       geda_menu_shell_set_grab_device   (GedaMenuShell *menu_shell,
                                               GdkDevice     *device);
@@ -158,9 +161,6 @@ void       geda_menu_shell_select_item       (GedaMenuShell *menu_shell,
 GtkWidget *geda_menu_shell_select_last       (GedaMenuShell *menu_shell,
                                               bool           search_sensitive);
 
-void       geda_menu_shell_remove_mnemonic   (GedaMenuShell *menu_shell,
-                                              unsigned int   keyval,
-                                              GtkWidget     *target);
 void       geda_menu_shell_update_mnemonics  (GedaMenuShell *menu_shell);
 
 #ifdef __cplusplus
