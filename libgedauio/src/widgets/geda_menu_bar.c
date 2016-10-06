@@ -1073,7 +1073,7 @@ geda_menu_bar_class_init (void *class, void *class_data)
                                 G_TYPE_INT,
                                 MENU_DIR_CHILD);
 
-  /**
+  /*!
    * GedaMenuBar:pack-direction:
    *
    * The pack direction of the menubar. It determines how
@@ -1087,7 +1087,7 @@ geda_menu_bar_class_init (void *class, void *class_data)
                                G_PARAM_READWRITE);
   g_object_class_install_property (object_class,PROP_PACK_DIRECTION, params);
 
-  /**
+  /*!
    * GedaMenuBar:child-pack-direction:
    *
    * The child pack direction of the menubar. It determines how
@@ -1110,7 +1110,7 @@ geda_menu_bar_class_init (void *class, void *class_data)
                                G_PARAM_READABLE);
   gtk_widget_class_install_style_property (widget_class, params);
 
- /**
+ /*!
   * GedaMenuBar:internal-padding:
   *
   * Amount of border space between the menubar shadow and the menu items
