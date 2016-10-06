@@ -153,6 +153,8 @@ struct _GedaMenuShellPriv
   /*GdkDevice *grab_pointer;*/
 };
 
+static void geda_menu_shell_dispose           (GObject           *object);
+static void geda_menu_shell_finalize          (GObject           *object);
 static void geda_menu_shell_set_property      (GObject           *object,
                                                unsigned int        prop_id,
                                                const GValue      *value,
@@ -161,10 +163,7 @@ static void geda_menu_shell_get_property      (GObject           *object,
                                                unsigned int       prop_id,
                                                GValue            *value,
                                                GParamSpec        *pspec);
-static void geda_menu_shell_dispose           (GObject           *object);
-static void geda_menu_shell_finalize          (GObject           *object);
 
-static void geda_menu_shell_realize           (GtkWidget         *widget);
 static int  geda_menu_shell_button_press      (GtkWidget         *widget,
                                                GdkEventButton    *event);
 static int  geda_menu_shell_button_release    (GtkWidget         *widget,
@@ -173,6 +172,7 @@ static int  geda_menu_shell_enter_notify      (GtkWidget         *widget,
                                                GdkEventCrossing  *event);
 static int  geda_menu_shell_leave_notify      (GtkWidget         *widget,
                                                GdkEventCrossing  *event);
+static void geda_menu_shell_realize           (GtkWidget         *widget);
 static void geda_menu_shell_screen_changed    (GtkWidget         *widget,
                                                GdkScreen         *previous_screen);
 static bool geda_menu_shell_grab_broken       (GtkWidget         *widget,
@@ -219,51 +219,1070 @@ static unsigned int menu_shell_signals[LAST_SIGNAL] = { 0 };
 
 static void *geda_menu_shell_parent_class = NULL;
 
+static int
+geda_menu_shell_is_item (GedaMenuShell *menu_shell, GtkWidget *child)
+{
+  GtkWidget *parent;
+
+  g_return_val_if_fail (GEDA_IS_MENU_SHELL (menu_shell), FALSE);
+  g_return_val_if_fail (child != NULL, FALSE);
+
+  parent = child->parent;
+  while (GEDA_IS_MENU_SHELL(parent)) {
+
+    if (parent == (GtkWidget*)menu_shell) {
+      return TRUE;
+    }
+    parent = GEDA_MENU_SHELL (parent)->parent_menu_shell;
+  }
+
+  return FALSE;
+}
+
+/*----------------------- Begin Mnemonic Hash Helpers -----------------------*/
+
+static GedaMnemonicHash *
+geda_menu_shell_get_mnemonic_hash (GedaMenuShell *menu_shell, bool create)
+{
+  GedaMenuShellPriv *priv = menu_shell->priv;
+
+  if (!priv->mnemonic_hash && create)
+    priv->mnemonic_hash = geda_mnemonic_hash_new ();
+
+  return priv->mnemonic_hash;
+}
+
+/*
+static void
+menu_shell_add_mnemonic_foreach (unsigned int keyval, GSList *targets, void *data)
+{
+  GedaKeyHash *key_hash = data;
+
+  geda_key_hash_add_entry (key_hash, keyval, 0, UINT_TO_POINTER(keyval));
+}
+*/
+
+/* Helper called by: geda_menu_shell_activate_mnemonic
+static GedaKeyHash *
+geda_menu_shell_get_key_hash (GedaMenuShell *menu_shell, bool create)
+{
+  GedaMenuShellPriv *priv   = menu_shell->priv;
+  GtkWidget         *widget = GTK_WIDGET (menu_shell);
+
+  if (!priv->key_hash && create && gtk_widget_has_screen (widget)) {
+
+    GedaMnemonicHash *mnemonic_hash;
+    GdkScreen        *screen;
+    GdkKeymap        *keymap;
+
+    mnemonic_hash = geda_menu_shell_get_mnemonic_hash (menu_shell, FALSE);
+
+    screen = gtk_widget_get_screen (widget);
+    keymap = gdk_keymap_get_for_display (gdk_screen_get_display (screen));
+
+    priv->key_hash = geda_key_hash_new (keymap, NULL);
+
+    geda_mnemonic_hash_foreach (mnemonic_hash,
+                                menu_shell_add_mnemonic_foreach,
+                                priv->key_hash);
+  }
+
+  return priv->key_hash;
+}
+ */
+
+/* Helper called by:
+ *
+ *  geda_menu_shell_add_mnemonic()
+ *  geda_menu_shell_remove_mnemonic()
+ *  geda_menu_shell_screen_changed()
+ */
+static void
+geda_menu_shell_reset_key_hash (GedaMenuShell *menu_shell)
+{
+  GedaMenuShellPriv *priv = menu_shell->priv;
+
+  if (priv->key_hash) {
+    geda_key_hash_free (priv->key_hash);
+    priv->key_hash = NULL;
+  }
+}
+
+/*---------------------------- End Hash Helpers -----------------------------*/
+
+/* Widget Helpers */
+
+/*! \internal called by
+ * geda_menu_shell_button_press
+ * geda_menu_shell_button_release
+ */
+static GtkWidget*
+geda_menu_shell_get_item (GedaMenuShell *menu_shell, GdkEvent *event)
+{
+  GtkWidget *menu_item;
+
+  menu_item = gtk_get_event_widget ((GdkEvent*) event);
+
+  while (menu_item && !GEDA_IS_MENU_ITEM (menu_item)) {
+    menu_item = menu_item->parent;
+  }
+
+  if (menu_item && geda_menu_shell_is_item (menu_shell, menu_item)) {
+    return menu_item;
+  }
+  return NULL;
+}
+
+/*! \internal called by geda_menu_shell_key_press */
+static bool
+geda_menu_shell_activate_mnemonic (GedaMenuShell *menu_shell,
+                                   GdkEventKey   *event)
+{
+  bool result = FALSE;
+
+  if (menu_shell->children) {
+
+    GList *iter;
+
+    for (iter = menu_shell->children; iter; iter = iter->next) {
+
+      if (GEDA_IS_MENU_ITEM(iter->data)) {
+
+        GedaMenuItem *menu_item = iter->data;
+
+        char mnemonic = geda_menu_item_get_mnemonic(menu_item);
+        char key_char = (char)event->keyval;
+
+        if (((mnemonic >> 5) & 1) ^ 1)
+        {
+          mnemonic = tolower(mnemonic);
+        }
+
+        if (key_char == mnemonic){
+
+          if (geda_menu_item_is_selectable(menu_item)) {
+
+            GtkWidget *widget = (GtkWidget*)menu_item;
+
+            if (geda_menu_item_get_submenu(menu_item)) {
+              geda_menu_shell_select_item(menu_shell, widget);
+            }
+            else {
+              geda_menu_shell_activate_item (menu_shell, widget, TRUE);
+            }
+          }
+          result = TRUE;
+          break;
+        }
+      }
+    }
+  }
+  return result;
+}
+
+/* GedaMenuShell Virtual */
+
+/* menu_shell_class->activate_current */
+static void
+geda_real_menu_shell_activate_current (GedaMenuShell *menu_shell,
+                                       bool           force_hide)
+{
+  GedaMenuItem *active_item = GEDA_MENU_ITEM(menu_shell->active_menu_item);
+
+  if (active_item &&
+      geda_menu_item_is_widget_selectable (menu_shell->active_menu_item))
+  {
+    if (!geda_menu_item_get_submenu(active_item)) {
+      geda_menu_shell_activate_item (menu_shell,
+                                     menu_shell->active_menu_item,
+                                     force_hide);
+    }
+    else {
+      geda_menu_item_popup_submenu (active_item, FALSE);
+    }
+  }
+}
+
+/* menu_shell_class->cancel */
+static void
+geda_real_menu_shell_cancel (GedaMenuShell *menu_shell)
+{
+  /* Unset the active menu item so geda_menu_popdown() doesn't see it.
+   */
+  geda_menu_shell_deselect (menu_shell);
+
+  geda_menu_shell_deactivate (menu_shell);
+  g_signal_emit (menu_shell, menu_shell_signals[SELECTION_DONE], 0);
+}
+
+static void
+geda_real_menu_shell_cycle_focus (GedaMenuShell   *menu_shell,
+                                  GtkDirectionType dir)
+{
+  while (menu_shell && !GEDA_IS_MENU_BAR (menu_shell)) {
+
+    if (menu_shell->parent_menu_shell) {
+      menu_shell = GEDA_MENU_SHELL (menu_shell->parent_menu_shell);
+    }
+    else {
+      menu_shell = NULL;
+    }
+  }
+
+  if (menu_shell) {
+    geda_menu_bar_cycle_focus (GEDA_MENU_BAR (menu_shell), dir);
+  }
+}
+
+/* menu_shell_class->deactivate */
+static void
+geda_real_menu_shell_deactivate (GedaMenuShell *menu_shell)
+{
+  if (menu_shell->active) {
+
+    menu_shell->button = 0;
+    menu_shell->active = FALSE;
+    menu_shell->activate_time = 0;
+
+    if (menu_shell->active_menu_item) {
+
+      geda_menu_item_deselect (GEDA_MENU_ITEM (menu_shell->active_menu_item));
+      menu_shell->active_menu_item = NULL;
+    }
+
+    if (menu_shell->have_grab) {
+
+      menu_shell->have_grab = FALSE;
+      gtk_grab_remove (GTK_WIDGET (menu_shell));
+    }
+    if (menu_shell->have_xgrab) {
+
+      GdkDisplay *display = gtk_widget_get_display (GTK_WIDGET (menu_shell));
+
+      menu_shell->have_xgrab = FALSE;
+      gdk_display_pointer_ungrab (display, GDK_CURRENT_TIME);
+      gdk_display_keyboard_ungrab (display, GDK_CURRENT_TIME);
+    }
+
+    menu_shell->keyboard_mode = FALSE;
+
+    geda_menu_shell_update_mnemonics (menu_shell);
+  }
+}
+
+/* menu_shell_class->insert */
+static void
+geda_menu_shell_real_insert (GedaMenuShell *menu_shell,
+                             GtkWidget     *child,
+                             int            position)
+{
+  menu_shell->children = g_list_insert (menu_shell->children, child, position);
+
+  gtk_widget_set_parent (child, GTK_WIDGET (menu_shell));
+}
+
+/* Distance should be +/- 1 */
+static void
+geda_menu_shell_move_selected (GedaMenuShell *menu_shell, int distance)
+{
+  bool handled = FALSE;
+
+  g_signal_emit (menu_shell, menu_shell_signals[MOVE_SELECTED], 0,
+                 distance, &handled);
+}
+
+/* menu_shell_class->move_current */
+static void
+geda_real_menu_shell_move_current (GedaMenuShell *menu_shell,
+                                   MenuDirection  direction)
+{
+  GedaMenuShellPriv *priv;
+  GedaMenuShell     *parent_menu_shell;
+  GedaMenuItem      *active_menu_item;
+  GtkWidget         *submenu;
+  bool had_selection;
+
+  priv = menu_shell->priv;
+
+  priv->in_unselectable_item = FALSE;
+
+  if (menu_shell->active_menu_item) {
+    active_menu_item = GEDA_MENU_ITEM (menu_shell->active_menu_item);
+    submenu = geda_menu_item_get_submenu(active_menu_item);
+  }
+  else {
+    active_menu_item = NULL;
+    submenu = NULL;
+  }
+
+  if (menu_shell->parent_menu_shell) {
+    parent_menu_shell = GEDA_MENU_SHELL (menu_shell->parent_menu_shell);
+  }
+  else {
+    parent_menu_shell = NULL;
+  }
+
+  had_selection = active_menu_item != NULL;
+
+  switch (direction) {
+
+    case MENU_DIR_PARENT:
+      if (parent_menu_shell) {
+
+        if (GEDA_MENU_SHELL_GET_CLASS (parent_menu_shell)->submenu_placement ==
+          GEDA_MENU_SHELL_GET_CLASS (menu_shell)->submenu_placement)
+        {
+          geda_menu_shell_deselect (menu_shell);
+        }
+        else {
+          if (PACK_DIRECTION (parent_menu_shell) == PACK_DIRECTION_LTR) {
+            geda_menu_shell_move_selected (parent_menu_shell, -1);
+          }
+          else {
+            geda_menu_shell_move_selected (parent_menu_shell, 1);
+          }
+          geda_menu_shell_select_submenu_first (parent_menu_shell);
+        }
+      }
+      /* If there is no parent and the submenu is in the opposite direction
+       * to the menu, then make the PARENT direction wrap around to
+       * the bottom of the submenu.
+       */
+      else if (active_menu_item &&
+               geda_menu_item_is_widget_selectable ((GtkWidget*)active_menu_item) &&
+               submenu)
+      {
+        GedaMenuShellClass *shell_class;
+        GedaMenuShellClass *sub_class;
+        GedaMenuShell      *sub_shell;
+
+        shell_class = GEDA_MENU_SHELL_GET_CLASS (menu_shell);
+        sub_shell   = GEDA_MENU_SHELL (submenu);
+        sub_class   = GEDA_MENU_SHELL_GET_CLASS (sub_shell);
+
+        if (shell_class->submenu_placement != sub_class->submenu_placement) {
+          geda_menu_shell_select_last (sub_shell, TRUE);
+        }
+      }
+      break;
+
+    case MENU_DIR_CHILD:
+      if (active_menu_item &&
+          geda_menu_item_is_widget_selectable ((GtkWidget*)active_menu_item) &&
+          submenu)
+      {
+        if (geda_menu_shell_select_submenu_first (menu_shell))
+          break;
+      }
+
+      /* Try to find a menu running the opposite direction */
+      while (parent_menu_shell &&
+            (GEDA_MENU_SHELL_GET_CLASS (parent_menu_shell)->submenu_placement ==
+             GEDA_MENU_SHELL_GET_CLASS (menu_shell)->submenu_placement))
+      {
+        parent_menu_shell = GEDA_MENU_SHELL (parent_menu_shell->parent_menu_shell);
+      }
+
+      if (parent_menu_shell) {
+
+        if (PACK_DIRECTION (parent_menu_shell) == PACK_DIRECTION_LTR)
+          geda_menu_shell_move_selected (parent_menu_shell, 1);
+        else
+          geda_menu_shell_move_selected (parent_menu_shell, -1);
+
+        geda_menu_shell_select_submenu_first (parent_menu_shell);
+      }
+      break;
+
+    case MENU_DIR_PREV:
+      geda_menu_shell_move_selected (menu_shell, -1);
+      if (!had_selection && !active_menu_item && menu_shell->children)
+        geda_menu_shell_select_last (menu_shell, TRUE);
+      break;
+
+    case MENU_DIR_NEXT:
+      geda_menu_shell_move_selected (menu_shell, 1);
+      if (!had_selection && !active_menu_item && menu_shell->children)
+        geda_menu_shell_select_first (menu_shell, TRUE);
+      break;
+  }
+}
+
+/* menu_shell_class->move_selected */
+/* Distance should be +/- 1 */
+static bool
+geda_menu_shell_real_move_selected (GedaMenuShell  *menu_shell,
+                                    int             distance)
+{
+  if (menu_shell->active_menu_item) {
+
+    GList *node = g_list_find (menu_shell->children,
+                               menu_shell->active_menu_item);
+    GList *start_node = node;
+    bool   wrap_around;
+
+    g_object_get (gtk_widget_get_settings (GTK_WIDGET (menu_shell)),
+                  "gtk-keynav-wrap-around", &wrap_around,
+                  NULL);
+
+    if (distance > 0) {
+
+      node = node->next;
+
+      while (node != start_node &&
+            (!node || !geda_menu_item_is_widget_selectable (node->data)))
+      {
+        if (node) {
+          node = node->next;
+        }
+        else if (wrap_around) {
+          node = menu_shell->children;
+        }
+        else {
+          gtk_widget_error_bell (GTK_WIDGET (menu_shell));
+          break;
+        }
+      }
+    }
+    else {
+
+      node = node->prev;
+      while (node != start_node &&
+            (!node || !geda_menu_item_is_widget_selectable (node->data)))
+      {
+        if (node) {
+          node = node->prev;
+        }
+        else if (wrap_around) {
+          node = g_list_last (menu_shell->children);
+        }
+        else {
+          gtk_widget_error_bell (GTK_WIDGET (menu_shell));
+          break;
+        }
+      }
+    }
+
+    if (node) {
+      geda_menu_shell_select_item (menu_shell, node->data);
+    }
+  }
+
+  return TRUE;
+}
+
+/* menu_shell_class->selection_done */
+
+/* menu_shell_class->select_item */
+/* Handlers for action signals */
+
+static void
+geda_menu_shell_real_select_item (GedaMenuShell *menu_shell,
+                                  GtkWidget     *menu_item)
+{
+  PackDirection pack_dir = PACK_DIRECTION (menu_shell);
+  GtkWidget    *submenu;
+
+  if (menu_shell->active_menu_item) {
+
+      geda_menu_item_deselect (GEDA_MENU_ITEM (menu_shell->active_menu_item));
+      menu_shell->active_menu_item = NULL;
+  }
+
+  if (!geda_menu_item_is_widget_selectable (menu_item)) {
+
+      GedaMenuShellPriv *priv = menu_shell->priv;
+
+      priv->in_unselectable_item = TRUE;
+      geda_menu_shell_update_mnemonics (menu_shell);
+
+      return;
+  }
+
+  menu_shell->active_menu_item = menu_item;
+  if (pack_dir == PACK_DIRECTION_TTB || pack_dir == PACK_DIRECTION_BTT) {
+    geda_menu_item_set_submenu_placement (GEDA_MENU_ITEM (menu_shell->active_menu_item), GTK_LEFT_RIGHT);
+  }
+  else {
+    geda_menu_item_set_submenu_placement (GEDA_MENU_ITEM (menu_shell->active_menu_item),
+                                         GEDA_MENU_SHELL_GET_CLASS (menu_shell)->submenu_placement);
+  }
+
+  geda_menu_item_select (GEDA_MENU_ITEM (menu_shell->active_menu_item));
+
+  geda_menu_shell_update_mnemonics (menu_shell);
+
+  /* This allows the bizarre radio buttons-with-submenus-display-history
+   * behavior
+   */
+
+  submenu = geda_menu_item_get_submenu(GEDA_MENU_ITEM (menu_shell->active_menu_item));
+
+  if (submenu) {
+    gtk_widget_activate (menu_shell->active_menu_item);
+  }
+}
+
+/* GtkContainer Over-rides */
+
+/* container_class->add */
+static void
+geda_menu_shell_add (GtkContainer *container, GtkWidget *widget)
+{
+  geda_menu_shell_append (GEDA_MENU_SHELL (container), widget);
+}
+
+/* container_class->child_type */
 static GType
 geda_menu_shell_child_type (GtkContainer *container)
 {
   return GEDA_TYPE_MENU_ITEM;
 }
 
+/* container_class->remove */
 static void
-geda_menu_shell_set_property (GObject      *object,
-                              unsigned int  prop_id,
-                              const GValue *value,
-                              GParamSpec   *pspec)
+geda_menu_shell_remove (GtkContainer *container, GtkWidget *widget)
 {
-  GedaMenuShell *menu_shell = GEDA_MENU_SHELL (object);
+  GedaMenuShell *menu_shell = GEDA_MENU_SHELL (container);
+  int was_visible;
 
-  switch (prop_id) {
+  was_visible          = gtk_widget_get_visible (widget);
+  menu_shell->children = g_list_remove (menu_shell->children, widget);
 
-    case PROP_TAKE_FOCUS:
-      geda_menu_shell_set_take_focus (menu_shell, g_value_get_boolean (value));
-      break;
+  if (widget == menu_shell->active_menu_item) {
 
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-      break;
+      g_signal_emit_by_name (menu_shell->active_menu_item, "deselect");
+      //gtk_item_deselect (GTK_ITEM (menu_shell->active_menu_item));
+      menu_shell->active_menu_item = NULL;
+    }
+
+  gtk_widget_unparent (widget);
+
+  /* queue resize regardless of gtk_widget_get_visible (container),
+   * since that's what is needed by toplevels.
+   */
+  if (was_visible) {
+    gtk_widget_queue_resize (GTK_WIDGET (container));
   }
 }
 
+/* container_class->forall */
 static void
-geda_menu_shell_get_property (GObject      *object,
-                              unsigned int  prop_id,
-                              GValue       *value,
-                              GParamSpec   *pspec)
+geda_menu_shell_forall (GtkContainer *container,
+                        bool          include_internals,
+                        GtkCallback   callback,
+                        void         *callback_data)
 {
-  GedaMenuShell *menu_shell = GEDA_MENU_SHELL (object);
+  GedaMenuShell *menu_shell = GEDA_MENU_SHELL (container);
+  GList         *children   = menu_shell->children;
 
-  switch (prop_id) {
+  while (children) {
 
-    case PROP_TAKE_FOCUS:
-      g_value_set_boolean (value, geda_menu_shell_get_take_focus (menu_shell));
-      break;
+    GtkWidget     *child;
 
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-      break;
+    child = children->data;
+    children = children->next;
+
+    (* callback) (child, callback_data);
   }
 }
+
+/* GtkWidget Over-rides */
+
+/* widget_class->button_press_event */
+static int
+geda_menu_shell_button_press (GtkWidget *widget, GdkEventButton *event)
+{
+  GedaMenuShell *menu_shell;
+  GedaMenuShell *parent;
+  GtkWidget     *menu_item;
+
+  if (event->type != GDK_BUTTON_PRESS)
+    return FALSE;
+
+  menu_shell = GEDA_MENU_SHELL (widget);
+
+  if (menu_shell->parent_menu_shell) {
+    return gtk_widget_event (menu_shell->parent_menu_shell, (GdkEvent*)event);
+  }
+
+  menu_item = geda_menu_shell_get_item (menu_shell, (GdkEvent*)event);
+
+  if (menu_item) {
+
+    parent = GEDA_MENU_SHELL (menu_item->parent);
+
+    if (geda_menu_item_is_widget_selectable (menu_item) &&
+        menu_item != parent->active_menu_item)
+    {
+      /*  select the menu item *before* activating the shell, so submenus
+       *  which might be open are closed the friendly way. If we activate
+       *  (and thus grab) this menu shell first, we might get grab_broken
+       *  events which will close the entire menu hierarchy. Selecting the
+       *  menu item also fixes up the state as if enter_notify() would
+       *  have run before (which normally selects the item).
+       */
+      if (GEDA_MENU_SHELL_GET_CLASS (parent)->submenu_placement != GTK_TOP_BOTTOM)
+      {
+        geda_menu_shell_select_item (parent, menu_item);
+      }
+    }
+  }
+
+  if (!menu_shell->active || !menu_shell->button) {
+
+    geda_menu_shell_activate (menu_shell);
+
+    menu_shell->button = event->button;
+
+    if (menu_item && geda_menu_item_is_widget_selectable (menu_item) &&
+        menu_item->parent == widget &&
+        menu_item != menu_shell->active_menu_item)
+    {
+      if (GEDA_MENU_SHELL_GET_CLASS (menu_shell)->submenu_placement == GTK_TOP_BOTTOM)
+      {
+        menu_shell->activate_time = event->time;
+        geda_menu_shell_select_item (menu_shell, menu_item);
+      }
+    }
+  }
+  else {
+
+    widget = gtk_get_event_widget ((GdkEvent*)event);
+
+    if (widget == GTK_WIDGET (menu_shell)) {
+      geda_menu_shell_deactivate (menu_shell);
+      g_signal_emit (menu_shell, menu_shell_signals[SELECTION_DONE], 0);
+    }
+  }
+
+  if (menu_item && geda_menu_item_is_widget_selectable (menu_item)) {
+
+    GtkWidget *submenu;
+
+    submenu = geda_menu_item_get_submenu(GEDA_MENU_ITEM (menu_item));
+
+    if (submenu && !gtk_widget_get_visible (submenu)) {
+
+      GedaMenuShellPriv *priv;
+
+      geda_menu_item_popup_submenu (GEDA_MENU_ITEM (menu_item), FALSE);
+
+      parent = GEDA_MENU_SHELL (menu_item->parent);
+
+      priv = parent->priv;
+      priv->activated_submenu = TRUE;
+    }
+  }
+
+  /* return false in no item, see geda_menu_bar_button_press */
+  return (menu_item != NULL);
+}
+
+/* widget_class->button_release_event */
+static int
+geda_menu_shell_button_release (GtkWidget      *widget,
+                                GdkEventButton *event)
+{
+  GedaMenuShell     *menu_shell = GEDA_MENU_SHELL (widget);
+  GedaMenuShellPriv *priv       = menu_shell->priv;
+
+  if (menu_shell->parent_menu_shell) {
+
+    GedaMenuShell *parent_shell;
+
+    parent_shell = GEDA_MENU_SHELL (menu_shell->parent_menu_shell);
+
+    if (event->time - parent_shell->activate_time < MENU_SHELL_TIMEOUT)
+    {
+      /* The button-press originated in the parent menu bar and we are
+       * a pop-up menu, was a quick press-and-release so we don't want
+       * to activate an item but we leave the popup in place instead.
+       */
+      parent_shell->activate_time = 0;
+      return TRUE;
+    }
+  }
+
+  if (menu_shell->active) {
+
+    GtkWidget *menu_item;
+    bool       deactivate = TRUE;
+
+    if (menu_shell->button && (event->button != menu_shell->button))
+    {
+      menu_shell->button = 0;
+      if (menu_shell->parent_menu_shell)
+        return gtk_widget_event (menu_shell->parent_menu_shell, (GdkEvent*)event);
+    }
+
+    menu_shell->button = 0;
+    menu_item = geda_menu_shell_get_item (menu_shell, (GdkEvent*) event);
+
+    if ((event->time - menu_shell->activate_time) > MENU_SHELL_TIMEOUT)
+    {
+      if (menu_item && (menu_shell->active_menu_item == menu_item) &&
+          geda_menu_item_is_widget_selectable (menu_item))
+      {
+
+        GtkWidget *submenu;
+
+        submenu = geda_menu_item_get_submenu(GEDA_MENU_ITEM (menu_item));
+
+        if (submenu == NULL) {
+
+          geda_menu_shell_activate_item (menu_shell, menu_item, TRUE);
+
+          deactivate = FALSE;
+        }
+        else if (GEDA_MENU_SHELL_GET_CLASS (menu_shell)->submenu_placement != GTK_TOP_BOTTOM ||
+                 priv->activated_submenu)
+        {
+          GTimeVal *popup_time;
+          int64_t   usec_since_popup = 0;
+          int       popdown_delay;
+
+          popup_time = g_object_get_data (G_OBJECT (submenu),
+                                          MENU_POPUP_TIME_KEY);
+          if (popup_time) {
+
+            GTimeVal current_time;
+
+            g_get_current_time (&current_time);
+
+            usec_since_popup = ((int64) current_time.tv_sec * 1000 * 1000 +
+            (int64) current_time.tv_usec -
+            (int64) popup_time->tv_sec * 1000 * 1000 -
+            (int64) popup_time->tv_usec);
+
+            g_object_set_data (G_OBJECT (submenu),
+                               MENU_POPUP_TIME_KEY, NULL);
+          }
+
+          if (GEDA_IS_MENU(submenu)) {
+            gtk_widget_style_get (GTK_WIDGET(submenu),
+                                  "menu-popdown-delay", &popdown_delay, NULL);
+          }
+          else {
+            popdown_delay = MENU_POPDOWN_DELAY;
+          }
+
+          /*  only close the submenu on click if we opened the
+           *  menu explicitely (usec_since_popup == 0) or
+           *  enough time has passed since it was opened by
+           *  GedaMenuItem's timeout (usec_since_popup > delay).
+           */
+          if (!priv->activated_submenu &&
+             (usec_since_popup == 0 ||
+              usec_since_popup > popdown_delay * 1000))
+          {
+            geda_menu_item_popdown_submenu (GEDA_MENU_ITEM (menu_item));
+          }
+          else {
+            geda_menu_item_select (GEDA_MENU_ITEM (menu_item));
+          }
+
+          deactivate = FALSE;
+        }
+      }
+      else if (menu_item &&
+              !geda_menu_item_is_widget_selectable (menu_item) &&
+               GEDA_MENU_SHELL_GET_CLASS (menu_shell)->submenu_placement != GTK_TOP_BOTTOM)
+      {
+        deactivate = FALSE;
+      }
+      else if (menu_shell->parent_menu_shell)
+      {
+        menu_shell->active = TRUE;
+        gtk_widget_event (menu_shell->parent_menu_shell, (GdkEvent*)event);
+        deactivate = FALSE;
+      }
+
+      /* If we ended up on an item with a submenu, leave the menu up.
+       */
+      if (menu_item && (menu_shell->active_menu_item == menu_item) &&
+        GEDA_MENU_SHELL_GET_CLASS (menu_shell)->submenu_placement != GTK_TOP_BOTTOM)
+      {
+        deactivate = FALSE;
+      }
+    }
+    else {/* a very fast press-release */
+
+      /* We only ever want to prevent deactivation on the first
+       * press/release. Setting the time to zero is a bit of a
+       * hack, since we could be being triggered in the first
+       * few fractions of a second after a server time wraparound.
+       * the chances of that happening are ~1/10^6, without
+       * serious harm if we lose.
+       */
+      menu_shell->activate_time = 0;
+      deactivate = FALSE;
+    }
+
+    if (deactivate) {
+
+      geda_menu_shell_deactivate (menu_shell);
+      g_signal_emit (menu_shell, menu_shell_signals[SELECTION_DONE], 0);
+    }
+
+    priv->activated_submenu = FALSE;
+  }
+
+  return TRUE;
+}
+
+/* widget_class->enter_notify_event */
+static int
+geda_menu_shell_enter_notify (GtkWidget *widget, GdkEventCrossing *event)
+{
+  GedaMenuShell *menu_shell = GEDA_MENU_SHELL (widget);
+
+  if (event->mode == GDK_CROSSING_GTK_GRAB ||
+      event->mode == GDK_CROSSING_GTK_UNGRAB ||
+      event->mode == GDK_CROSSING_STATE_CHANGED)
+    return TRUE;
+
+  if (menu_shell->active) {
+
+    GtkWidget *menu_item;
+
+    menu_item = gtk_get_event_widget ((GdkEvent*) event);
+
+    if (!menu_item)
+      return TRUE;
+
+    if (GEDA_IS_MENU_ITEM (menu_item) &&
+       !geda_menu_item_is_widget_selectable (menu_item))
+    {
+      GedaMenuShellPriv *priv;
+
+      priv = menu_shell->priv;
+      priv->in_unselectable_item = TRUE;
+
+      return TRUE;
+    }
+
+    if (menu_item->parent == widget && GEDA_IS_MENU_ITEM (menu_item)) {
+
+      if (menu_shell->ignore_enter)
+        return TRUE;
+
+      if (event->detail != GDK_NOTIFY_INFERIOR) {
+
+        GtkWidget *submenu;
+
+        if (gtk_widget_get_state (menu_item) != GTK_STATE_PRELIGHT) {
+          geda_menu_shell_select_item (menu_shell, menu_item);
+        }
+
+        submenu = geda_menu_item_get_submenu(GEDA_MENU_ITEM (menu_item));
+
+        /* If any mouse button is down, and there is a submenu
+         * that is not yet visible, activate it. It's sufficient
+         * to check for any button's mask (not only the one
+         * matching menu_shell->button), because there is no
+         * situation a mouse button could be pressed while
+         * entering a menu item where we wouldn't want to show
+         * its submenu.
+         */
+        if ((event->state & (GDK_BUTTON1_MASK | GDK_BUTTON2_MASK | GDK_BUTTON3_MASK)) &&
+             submenu != NULL)
+        {
+          GedaMenuShellPriv *priv;
+
+          priv = GEDA_MENU_SHELL (menu_item->parent)->priv;
+          priv->activated_submenu = TRUE;
+
+          if (!gtk_widget_get_visible (submenu)) {
+
+            bool touchscreen_mode;
+
+#if GTK_MAJOR_VERSION < 3
+
+            g_object_get (gtk_widget_get_settings (widget),
+                          "gtk-touchscreen-mode", &touchscreen_mode,
+                          NULL);
+
+#else /* GTK_MAJOR_VERSION >= 3.0 */
+
+            GdkDevice *source_device;
+
+            source_device = gdk_event_get_source_device ((GdkEvent*)event);
+
+            touchscreen_mode = gdk_device_get_source (source_device) == GDK_SOURCE_TOUCHSCREEN;
+
+#endif
+            if (touchscreen_mode) {
+              geda_menu_item_popup_submenu (GEDA_MENU_ITEM (menu_item), TRUE);
+            }
+          }
+        }
+      }
+    }
+    else if (menu_shell->parent_menu_shell) {
+      gtk_widget_event (menu_shell->parent_menu_shell, (GdkEvent*) event);
+    }
+  }
+
+  return TRUE;
+}
+
+/* widget_class->grab_broken_event */
+static bool
+geda_menu_shell_grab_broken (GtkWidget *widget, GdkEventGrabBroken *event)
+{
+  GedaMenuShell *menu_shell = GEDA_MENU_SHELL (widget);
+
+  if (menu_shell->have_xgrab && event->grab_window == NULL) {
+
+    /* Unset the active menu item so geda_menu_popdown() does not
+     * see the item */
+
+    geda_menu_shell_deselect (menu_shell);
+
+    geda_menu_shell_deactivate (menu_shell);
+    g_signal_emit (menu_shell, menu_shell_signals[SELECTION_DONE], 0);
+  }
+
+  return TRUE;
+}
+
+/* widget_class->key_press_event */
+static int
+geda_menu_shell_key_press (GtkWidget *widget, GdkEventKey *event)
+{
+  GedaMenuShell *menu_shell;
+  GedaMenuShell *parent_shell;
+
+  bool handled;
+
+  menu_shell   = GEDA_MENU_SHELL(widget);
+  parent_shell = GEDA_MENU_SHELL(menu_shell->parent_menu_shell);
+
+  menu_shell->keyboard_mode = TRUE;
+
+  /* If no item is selected then let parent check */
+  if (!menu_shell->active_menu_item && parent_shell) {
+
+    GtkWidget *parent_widget_shell = GTK_WIDGET(parent_shell);
+
+    /* This is in-effect geda_menu_bar_key_press */
+    handled = gtk_widget_event (parent_widget_shell, (GdkEvent*)event);
+
+  }
+  else {
+    handled = FALSE;
+  }
+
+  if (!handled) {
+
+    /* Check if key is bound */
+    handled = gtk_bindings_activate_event (GTK_OBJECT(menu_shell), event);
+
+    if (!handled) {
+
+      bool enable_mnemonics;
+
+      g_object_get (gtk_widget_get_settings (widget),
+                    "gtk-enable-mnemonics", &enable_mnemonics, NULL);
+
+      if (enable_mnemonics) {
+        handled = geda_menu_shell_activate_mnemonic (menu_shell, event);
+      }
+    }
+  }
+
+  return handled;
+}
+
+/* widget_class->leave_notify_event */
+static int
+geda_menu_shell_leave_notify (GtkWidget *widget, GdkEventCrossing *event)
+{
+  if (event->mode == GDK_CROSSING_GTK_GRAB ||
+      event->mode == GDK_CROSSING_GTK_UNGRAB ||
+      event->mode == GDK_CROSSING_STATE_CHANGED) {
+    return TRUE;
+  }
+
+  if (gtk_widget_get_visible (widget)) {
+
+    GedaMenuShell *menu_shell   = GEDA_MENU_SHELL (widget);
+    GtkWidget     *event_widget = gtk_get_event_widget ((GdkEvent*)event);
+    GedaMenuItem  *menu_item;
+    GtkWidget     *submenu;
+
+    if (!event_widget || !GEDA_IS_MENU_ITEM (event_widget))
+      return TRUE;
+
+    menu_item = GEDA_MENU_ITEM (event_widget);
+
+    if (!geda_menu_item_is_widget_selectable (event_widget)) {
+
+      menu_shell->priv->in_unselectable_item = TRUE;
+
+      return TRUE;
+    }
+
+    submenu = geda_menu_item_get_submenu(GEDA_MENU_ITEM(menu_item));
+
+    if ((menu_shell->active_menu_item == event_widget) && (submenu == NULL))
+    {
+      if ((event->detail != GDK_NOTIFY_INFERIOR) &&
+          (gtk_widget_get_state (GTK_WIDGET (menu_item)) != GTK_STATE_NORMAL))
+      {
+        geda_menu_shell_deselect (menu_shell);
+      }
+    }
+    else if (menu_shell->parent_menu_shell) {
+      gtk_widget_event (menu_shell->parent_menu_shell, (GdkEvent*) event);
+    }
+  }
+
+  return TRUE;
+}
+
+/* widget->realize*/
+static void
+geda_menu_shell_realize (GtkWidget *widget)
+{
+  GdkWindowAttr attributes;
+  int attributes_mask;
+
+  gtk_widget_set_realized (widget, TRUE);
+
+  attributes.x = widget->allocation.x;
+  attributes.y = widget->allocation.y;
+  attributes.width = widget->allocation.width;
+  attributes.height = widget->allocation.height;
+  attributes.window_type = GDK_WINDOW_CHILD;
+  attributes.wclass = GDK_INPUT_OUTPUT;
+  attributes.visual = gtk_widget_get_visual (widget);
+  attributes.colormap = gtk_widget_get_colormap (widget);
+  attributes.event_mask = gtk_widget_get_events (widget);
+  attributes.event_mask |= (GDK_EXPOSURE_MASK |
+                GDK_BUTTON_PRESS_MASK |
+                GDK_BUTTON_RELEASE_MASK |
+                GDK_KEY_PRESS_MASK |
+                GDK_ENTER_NOTIFY_MASK |
+                GDK_LEAVE_NOTIFY_MASK);
+
+  attributes_mask = GDK_WA_X | GDK_WA_Y | GDK_WA_VISUAL | GDK_WA_COLORMAP;
+  widget->window = gdk_window_new (gtk_widget_get_parent_window (widget), &attributes, attributes_mask);
+  gdk_window_set_user_data (widget->window, widget);
+
+  widget->style = gtk_style_attach (widget->style, widget->window);
+  gtk_style_set_background (widget->style, widget->window, GTK_STATE_NORMAL);
+}
+
+/* widget_class->screen_changed */
+static void
+geda_menu_shell_screen_changed (GtkWidget *widget, GdkScreen *previous_screen)
+{
+  geda_menu_shell_reset_key_hash (GEDA_MENU_SHELL (widget));
+}
+
+/* GObject over-rides */
 
 static void
 geda_menu_shell_dispose (GObject *object)
@@ -292,6 +1311,46 @@ geda_menu_shell_finalize (GObject *object)
   G_OBJECT_CLASS (geda_menu_shell_parent_class)->finalize (object);
 }
 
+static void
+geda_menu_shell_get_property (GObject      *object,
+                              unsigned int  prop_id,
+                              GValue       *value,
+                              GParamSpec   *pspec)
+{
+  GedaMenuShell *menu_shell = GEDA_MENU_SHELL (object);
+
+  switch (prop_id) {
+
+    case PROP_TAKE_FOCUS:
+      g_value_set_boolean (value, geda_menu_shell_get_take_focus (menu_shell));
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
+  }
+}
+
+static void
+geda_menu_shell_set_property (GObject      *object,
+                              unsigned int  prop_id,
+                              const GValue *value,
+                              GParamSpec   *pspec)
+{
+  GedaMenuShell *menu_shell = GEDA_MENU_SHELL (object);
+
+  switch (prop_id) {
+
+    case PROP_TAKE_FOCUS:
+      geda_menu_shell_set_take_focus (menu_shell, g_value_get_boolean (value));
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
+  }
+}
+
 /*!
  * \brief GedaMenuShell Type Class Initializer
  * \par Function Description
@@ -316,34 +1375,36 @@ geda_menu_shell_class_init(void *class, void *class_data)
   container_class  = (GtkContainerClass*) class;
   menu_shell_class = (GedaMenuShellClass*) class;
 
-  object_class->set_property          = geda_menu_shell_set_property;
-  object_class->get_property          = geda_menu_shell_get_property;
   object_class->dispose               = geda_menu_shell_dispose;
   object_class->finalize              = geda_menu_shell_finalize;
+  object_class->get_property          = geda_menu_shell_get_property;
+  object_class->set_property          = geda_menu_shell_set_property;
 
-  widget_class->realize               = geda_menu_shell_realize;
   widget_class->button_press_event    = geda_menu_shell_button_press;
   widget_class->button_release_event  = geda_menu_shell_button_release;
-  widget_class->grab_broken_event     = geda_menu_shell_grab_broken;
   widget_class->enter_notify_event    = geda_menu_shell_enter_notify;
+  widget_class->grab_broken_event     = geda_menu_shell_grab_broken;
   widget_class->key_press_event       = geda_menu_shell_key_press;
   widget_class->leave_notify_event    = geda_menu_shell_leave_notify;
+  widget_class->realize               = geda_menu_shell_realize;
   widget_class->screen_changed        = geda_menu_shell_screen_changed;
 
   container_class->add                = geda_menu_shell_add;
+  container_class->child_type         = geda_menu_shell_child_type;
   container_class->remove             = geda_menu_shell_remove;
   container_class->forall             = geda_menu_shell_forall;
-  container_class->child_type         = geda_menu_shell_child_type;
 
-  menu_shell_class->submenu_placement = GTK_TOP_BOTTOM;
-  menu_shell_class->deactivate        = geda_real_menu_shell_deactivate;
-  menu_shell_class->selection_done    = NULL;
-  menu_shell_class->move_current      = geda_real_menu_shell_move_current;
   menu_shell_class->activate_current  = geda_real_menu_shell_activate_current;
   menu_shell_class->cancel            = geda_real_menu_shell_cancel;
-  menu_shell_class->select_item       = geda_menu_shell_real_select_item;
+
+  menu_shell_class->deactivate        = geda_real_menu_shell_deactivate;
   menu_shell_class->insert            = geda_menu_shell_real_insert;
+  menu_shell_class->move_current      = geda_real_menu_shell_move_current;
   menu_shell_class->move_selected     = geda_menu_shell_real_move_selected;
+  menu_shell_class->selection_done    = NULL;
+  menu_shell_class->select_item       = geda_menu_shell_real_select_item;
+
+  menu_shell_class->submenu_placement = GTK_TOP_BOTTOM;
 
   geda_menu_shell_parent_class = g_type_class_peek_parent (class);
 
@@ -596,77 +1657,6 @@ bool is_a_geda_menu_shell (GedaMenuShell *menu_shell)
   return FALSE;
 }
 
-static void
-geda_menu_shell_real_insert (GedaMenuShell *menu_shell,
-                             GtkWidget     *child,
-                             int            position)
-{
-  menu_shell->children = g_list_insert (menu_shell->children, child, position);
-
-  gtk_widget_set_parent (child, GTK_WIDGET (menu_shell));
-}
-
-void
-geda_menu_shell_insert (GedaMenuShell *menu_shell,
-                        GtkWidget     *child,
-                        int            position)
-{
-  GedaMenuShellClass *class;
-
-  g_return_if_fail (GEDA_IS_MENU_SHELL (menu_shell));
-  g_return_if_fail (GEDA_IS_MENU_ITEM (child));
-
-  class = GEDA_MENU_SHELL_GET_CLASS (menu_shell);
-
-  if (class->insert) {
-    class->insert (menu_shell, child, position);
-  }
-}
-
-void
-geda_menu_shell_append (GedaMenuShell *menu_shell, GtkWidget *child)
-{
-  geda_menu_shell_insert (menu_shell, child, -1);
-}
-
-void
-geda_menu_shell_prepend (GedaMenuShell *menu_shell, GtkWidget *child)
-{
-  geda_menu_shell_insert (menu_shell, child, 0);
-}
-
-static void
-geda_menu_shell_realize (GtkWidget *widget)
-{
-  GdkWindowAttr attributes;
-  int attributes_mask;
-
-  gtk_widget_set_realized (widget, TRUE);
-
-  attributes.x = widget->allocation.x;
-  attributes.y = widget->allocation.y;
-  attributes.width = widget->allocation.width;
-  attributes.height = widget->allocation.height;
-  attributes.window_type = GDK_WINDOW_CHILD;
-  attributes.wclass = GDK_INPUT_OUTPUT;
-  attributes.visual = gtk_widget_get_visual (widget);
-  attributes.colormap = gtk_widget_get_colormap (widget);
-  attributes.event_mask = gtk_widget_get_events (widget);
-  attributes.event_mask |= (GDK_EXPOSURE_MASK |
-                GDK_BUTTON_PRESS_MASK |
-                GDK_BUTTON_RELEASE_MASK |
-                GDK_KEY_PRESS_MASK |
-                GDK_ENTER_NOTIFY_MASK |
-                GDK_LEAVE_NOTIFY_MASK);
-
-  attributes_mask = GDK_WA_X | GDK_WA_Y | GDK_WA_VISUAL | GDK_WA_COLORMAP;
-  widget->window = gdk_window_new (gtk_widget_get_parent_window (widget), &attributes, attributes_mask);
-  gdk_window_set_user_data (widget->window, widget);
-
-  widget->style = gtk_style_attach (widget->style, widget->window);
-  gtk_style_set_background (widget->style, widget->window, GTK_STATE_NORMAL);
-}
-
 void
 geda_menu_shell_activate (GedaMenuShell *menu_shell)
 {
@@ -675,754 +1665,6 @@ geda_menu_shell_activate (GedaMenuShell *menu_shell)
     gtk_grab_add (GTK_WIDGET (menu_shell));
     menu_shell->have_grab = TRUE;
     menu_shell->active = TRUE;
-  }
-}
-
-static int
-geda_menu_shell_button_press (GtkWidget *widget, GdkEventButton *event)
-{
-  GedaMenuShell *menu_shell;
-  GedaMenuShell *parent;
-  GtkWidget     *menu_item;
-
-  if (event->type != GDK_BUTTON_PRESS)
-    return FALSE;
-
-  menu_shell = GEDA_MENU_SHELL (widget);
-
-  if (menu_shell->parent_menu_shell) {
-    return gtk_widget_event (menu_shell->parent_menu_shell, (GdkEvent*)event);
-  }
-
-  menu_item = geda_menu_shell_get_item (menu_shell, (GdkEvent*)event);
-
-  if (menu_item) {
-
-    parent = GEDA_MENU_SHELL (menu_item->parent);
-
-    if (geda_menu_item_is_widget_selectable (menu_item) &&
-        menu_item != parent->active_menu_item)
-    {
-      /*  select the menu item *before* activating the shell, so submenus
-       *  which might be open are closed the friendly way. If we activate
-       *  (and thus grab) this menu shell first, we might get grab_broken
-       *  events which will close the entire menu hierarchy. Selecting the
-       *  menu item also fixes up the state as if enter_notify() would
-       *  have run before (which normally selects the item).
-       */
-      if (GEDA_MENU_SHELL_GET_CLASS (parent)->submenu_placement != GTK_TOP_BOTTOM)
-      {
-        geda_menu_shell_select_item (parent, menu_item);
-      }
-    }
-  }
-
-  if (!menu_shell->active || !menu_shell->button) {
-
-    geda_menu_shell_activate (menu_shell);
-
-    menu_shell->button = event->button;
-
-    if (menu_item && geda_menu_item_is_widget_selectable (menu_item) &&
-        menu_item->parent == widget &&
-        menu_item != menu_shell->active_menu_item)
-    {
-      if (GEDA_MENU_SHELL_GET_CLASS (menu_shell)->submenu_placement == GTK_TOP_BOTTOM)
-      {
-        menu_shell->activate_time = event->time;
-        geda_menu_shell_select_item (menu_shell, menu_item);
-      }
-    }
-  }
-  else {
-
-    widget = gtk_get_event_widget ((GdkEvent*)event);
-
-    if (widget == GTK_WIDGET (menu_shell)) {
-      geda_menu_shell_deactivate (menu_shell);
-      g_signal_emit (menu_shell, menu_shell_signals[SELECTION_DONE], 0);
-    }
-  }
-
-  if (menu_item && geda_menu_item_is_widget_selectable (menu_item)) {
-
-    GtkWidget *submenu;
-
-    submenu = geda_menu_item_get_submenu(GEDA_MENU_ITEM (menu_item));
-
-    if (submenu && !gtk_widget_get_visible (submenu)) {
-
-      GedaMenuShellPriv *priv;
-
-      geda_menu_item_popup_submenu (GEDA_MENU_ITEM (menu_item), FALSE);
-
-      parent = GEDA_MENU_SHELL (menu_item->parent);
-
-      priv = parent->priv;
-      priv->activated_submenu = TRUE;
-    }
-  }
-
-  /* return false in no item, see geda_menu_bar_button_press */
-  return (menu_item != NULL);
-}
-
-static bool
-geda_menu_shell_grab_broken (GtkWidget *widget, GdkEventGrabBroken *event)
-{
-  GedaMenuShell *menu_shell = GEDA_MENU_SHELL (widget);
-
-  if (menu_shell->have_xgrab && event->grab_window == NULL) {
-
-    /* Unset the active menu item so geda_menu_popdown() does not
-     * see the item */
-
-    geda_menu_shell_deselect (menu_shell);
-
-    geda_menu_shell_deactivate (menu_shell);
-    g_signal_emit (menu_shell, menu_shell_signals[SELECTION_DONE], 0);
-  }
-
-  return TRUE;
-}
-
-static int
-geda_menu_shell_button_release (GtkWidget      *widget,
-                                GdkEventButton *event)
-{
-  GedaMenuShell     *menu_shell = GEDA_MENU_SHELL (widget);
-  GedaMenuShellPriv *priv       = menu_shell->priv;
-
-  if (menu_shell->parent_menu_shell) {
-
-    GedaMenuShell *parent_shell;
-
-    parent_shell = GEDA_MENU_SHELL (menu_shell->parent_menu_shell);
-
-    if (event->time - parent_shell->activate_time < MENU_SHELL_TIMEOUT)
-    {
-      /* The button-press originated in the parent menu bar and we are
-       * a pop-up menu, was a quick press-and-release so we don't want
-       * to activate an item but we leave the popup in place instead.
-       */
-      parent_shell->activate_time = 0;
-      return TRUE;
-    }
-  }
-
-  if (menu_shell->active) {
-
-    GtkWidget *menu_item;
-    bool       deactivate = TRUE;
-
-    if (menu_shell->button && (event->button != menu_shell->button))
-    {
-      menu_shell->button = 0;
-      if (menu_shell->parent_menu_shell)
-        return gtk_widget_event (menu_shell->parent_menu_shell, (GdkEvent*)event);
-    }
-
-    menu_shell->button = 0;
-    menu_item = geda_menu_shell_get_item (menu_shell, (GdkEvent*) event);
-
-    if ((event->time - menu_shell->activate_time) > MENU_SHELL_TIMEOUT)
-    {
-      if (menu_item && (menu_shell->active_menu_item == menu_item) &&
-          geda_menu_item_is_widget_selectable (menu_item))
-      {
-
-        GtkWidget *submenu;
-
-        submenu = geda_menu_item_get_submenu(GEDA_MENU_ITEM (menu_item));
-
-        if (submenu == NULL) {
-
-          geda_menu_shell_activate_item (menu_shell, menu_item, TRUE);
-
-          deactivate = FALSE;
-        }
-        else if (GEDA_MENU_SHELL_GET_CLASS (menu_shell)->submenu_placement != GTK_TOP_BOTTOM ||
-                 priv->activated_submenu)
-        {
-          GTimeVal *popup_time;
-          int64_t   usec_since_popup = 0;
-          int       popdown_delay;
-
-          popup_time = g_object_get_data (G_OBJECT (submenu),
-                                          MENU_POPUP_TIME_KEY);
-          if (popup_time) {
-
-            GTimeVal current_time;
-
-            g_get_current_time (&current_time);
-
-            usec_since_popup = ((int64) current_time.tv_sec * 1000 * 1000 +
-            (int64) current_time.tv_usec -
-            (int64) popup_time->tv_sec * 1000 * 1000 -
-            (int64) popup_time->tv_usec);
-
-            g_object_set_data (G_OBJECT (submenu),
-                               MENU_POPUP_TIME_KEY, NULL);
-          }
-
-          if (GEDA_IS_MENU(submenu)) {
-            gtk_widget_style_get (GTK_WIDGET(submenu),
-                                  "menu-popdown-delay", &popdown_delay, NULL);
-          }
-          else {
-            popdown_delay = MENU_POPDOWN_DELAY;
-          }
-
-          /*  only close the submenu on click if we opened the
-           *  menu explicitely (usec_since_popup == 0) or
-           *  enough time has passed since it was opened by
-           *  GedaMenuItem's timeout (usec_since_popup > delay).
-           */
-          if (!priv->activated_submenu &&
-             (usec_since_popup == 0 ||
-              usec_since_popup > popdown_delay * 1000))
-          {
-            geda_menu_item_popdown_submenu (GEDA_MENU_ITEM (menu_item));
-          }
-          else {
-            geda_menu_item_select (GEDA_MENU_ITEM (menu_item));
-          }
-
-          deactivate = FALSE;
-        }
-      }
-      else if (menu_item &&
-              !geda_menu_item_is_widget_selectable (menu_item) &&
-               GEDA_MENU_SHELL_GET_CLASS (menu_shell)->submenu_placement != GTK_TOP_BOTTOM)
-      {
-        deactivate = FALSE;
-      }
-      else if (menu_shell->parent_menu_shell)
-      {
-        menu_shell->active = TRUE;
-        gtk_widget_event (menu_shell->parent_menu_shell, (GdkEvent*)event);
-        deactivate = FALSE;
-      }
-
-      /* If we ended up on an item with a submenu, leave the menu up.
-       */
-      if (menu_item && (menu_shell->active_menu_item == menu_item) &&
-        GEDA_MENU_SHELL_GET_CLASS (menu_shell)->submenu_placement != GTK_TOP_BOTTOM)
-      {
-        deactivate = FALSE;
-      }
-    }
-    else {/* a very fast press-release */
-
-      /* We only ever want to prevent deactivation on the first
-       * press/release. Setting the time to zero is a bit of a
-       * hack, since we could be being triggered in the first
-       * few fractions of a second after a server time wraparound.
-       * the chances of that happening are ~1/10^6, without
-       * serious harm if we lose.
-       */
-      menu_shell->activate_time = 0;
-      deactivate = FALSE;
-    }
-
-    if (deactivate) {
-
-      geda_menu_shell_deactivate (menu_shell);
-      g_signal_emit (menu_shell, menu_shell_signals[SELECTION_DONE], 0);
-    }
-
-    priv->activated_submenu = FALSE;
-  }
-
-  return TRUE;
-}
-
-void
-geda_menu_shell_set_keyboard_mode (GedaMenuShell *menu_shell,
-                                   bool          keyboard_mode)
-{
-  menu_shell->keyboard_mode = keyboard_mode;
-}
-
-bool
-geda_menu_shell_get_keyboard_mode (GedaMenuShell *menu_shell)
-{
-  return menu_shell->keyboard_mode;
-}
-
-void
-geda_menu_shell_update_mnemonics (GedaMenuShell *menu_shell)
-{
-  GedaMenuShell *target;
-  bool auto_mnemonics;
-  bool found;
-
-  g_object_get (gtk_widget_get_settings (GTK_WIDGET (menu_shell)),
-                "gtk-auto-mnemonics", &auto_mnemonics, NULL);
-
-  if (!auto_mnemonics)
-    return;
-
-  target = menu_shell;
-  found  = FALSE;
-
-  while (target) {
-
-    GedaMenuShellPriv *priv = target->priv;
-    GtkWidget         *toplevel;
-
-    bool mnemonics_visible;
-
-    toplevel = gtk_widget_get_toplevel (GTK_WIDGET (target));
-
-    /* The idea with keyboard mode is that once you start using
-     * the keyboard to navigate the menus, we show mnemonics
-     * until the menu navigation is over. To that end, we spread
-     * the keyboard mode upwards in the menu hierarchy here.
-     * Also see geda_menu_popup, where we inherit it downwards.
-     */
-    if (menu_shell->keyboard_mode) {
-      target->keyboard_mode = TRUE;
-    }
-
-    /* While navigating menus, the first parent menu with an active
-     * item is the one where mnemonics are effective, as can be seen
-     * in geda_menu_shell_key_press below.
-     * We also show mnemonics in context menus. The grab condition is
-     * necessary to ensure we remove underlines from menu bars when
-     * dismissing menus.
-     */
-    mnemonics_visible = target->keyboard_mode &&
-                        (((target->active_menu_item || priv->in_unselectable_item) && !found) ||
-                          (target == menu_shell &&
-                          !target->parent_menu_shell && gtk_widget_has_grab (GTK_WIDGET(target))));
-
-    /* While menus are up, only show underlines inside the menubar,
-     * not in the entire window.
-     */
-    if (GEDA_IS_MENU_BAR (target)) {
-
-      gtk_window_set_mnemonics_visible (GTK_WINDOW (toplevel), FALSE);
-
-      geda_label_mnemonics_visible_apply_recursively (GTK_WIDGET (target),
-                                                      mnemonics_visible);
-    }
-    else {
-      gtk_window_set_mnemonics_visible (GTK_WINDOW (toplevel), mnemonics_visible);
-    }
-
-    if (target->active_menu_item || priv->in_unselectable_item)
-      found = TRUE;
-
-    target = GEDA_MENU_SHELL (target->parent_menu_shell);
-  }
-}
-
-static int
-geda_menu_shell_key_press (GtkWidget *widget, GdkEventKey *event)
-{
-  GedaMenuShell *menu_shell;
-  GedaMenuShell *parent_shell;
-
-  bool handled;
-
-  menu_shell   = GEDA_MENU_SHELL(widget);
-  parent_shell = GEDA_MENU_SHELL(menu_shell->parent_menu_shell);
-
-  menu_shell->keyboard_mode = TRUE;
-
-  /* If no item is selected then let parent check */
-  if (!menu_shell->active_menu_item && parent_shell) {
-
-    GtkWidget *parent_widget_shell = GTK_WIDGET(parent_shell);
-
-    handled = gtk_widget_event (parent_widget_shell, (GdkEvent*)event);
-
-  }
-  else {
-    handled = FALSE;
-  }
-
-  if (!handled) {
-
-    /* Check if key is bound */
-    handled = gtk_bindings_activate_event (GTK_OBJECT(menu_shell), event);
-
-    if (!handled) {
-
-      bool enable_mnemonics;
-
-      g_object_get (gtk_widget_get_settings (widget),
-                    "gtk-enable-mnemonics", &enable_mnemonics, NULL);
-
-      if (enable_mnemonics) {
-        handled = geda_menu_shell_activate_mnemonic (menu_shell, event);
-      }
-    }
-  }
-
-  return handled;
-}
-
-static int
-geda_menu_shell_enter_notify (GtkWidget *widget, GdkEventCrossing *event)
-{
-  GedaMenuShell *menu_shell = GEDA_MENU_SHELL (widget);
-
-  if (event->mode == GDK_CROSSING_GTK_GRAB ||
-      event->mode == GDK_CROSSING_GTK_UNGRAB ||
-      event->mode == GDK_CROSSING_STATE_CHANGED)
-    return TRUE;
-
-  if (menu_shell->active) {
-
-    GtkWidget *menu_item;
-
-    menu_item = gtk_get_event_widget ((GdkEvent*) event);
-
-    if (!menu_item)
-      return TRUE;
-
-    if (GEDA_IS_MENU_ITEM (menu_item) &&
-       !geda_menu_item_is_widget_selectable (menu_item))
-    {
-      GedaMenuShellPriv *priv;
-
-      priv = menu_shell->priv;
-      priv->in_unselectable_item = TRUE;
-
-      return TRUE;
-    }
-
-    if (menu_item->parent == widget && GEDA_IS_MENU_ITEM (menu_item)) {
-
-      if (menu_shell->ignore_enter)
-        return TRUE;
-
-      if (event->detail != GDK_NOTIFY_INFERIOR) {
-
-        GtkWidget *submenu;
-
-        if (gtk_widget_get_state (menu_item) != GTK_STATE_PRELIGHT) {
-          geda_menu_shell_select_item (menu_shell, menu_item);
-        }
-
-        submenu = geda_menu_item_get_submenu(GEDA_MENU_ITEM (menu_item));
-
-        /* If any mouse button is down, and there is a submenu
-         * that is not yet visible, activate it. It's sufficient
-         * to check for any button's mask (not only the one
-         * matching menu_shell->button), because there is no
-         * situation a mouse button could be pressed while
-         * entering a menu item where we wouldn't want to show
-         * its submenu.
-         */
-        if ((event->state & (GDK_BUTTON1_MASK | GDK_BUTTON2_MASK | GDK_BUTTON3_MASK)) &&
-             submenu != NULL)
-        {
-          GedaMenuShellPriv *priv;
-
-          priv = GEDA_MENU_SHELL (menu_item->parent)->priv;
-          priv->activated_submenu = TRUE;
-
-          if (!gtk_widget_get_visible (submenu)) {
-
-            bool touchscreen_mode;
-
-#if GTK_MAJOR_VERSION < 3
-
-            g_object_get (gtk_widget_get_settings (widget),
-                          "gtk-touchscreen-mode", &touchscreen_mode,
-                          NULL);
-
-#else /* GTK_MAJOR_VERSION >= 3.0 */
-
-            GdkDevice *source_device;
-
-            source_device = gdk_event_get_source_device ((GdkEvent*)event);
-
-            touchscreen_mode = gdk_device_get_source (source_device) == GDK_SOURCE_TOUCHSCREEN;
-
-#endif
-            if (touchscreen_mode) {
-              geda_menu_item_popup_submenu (GEDA_MENU_ITEM (menu_item), TRUE);
-            }
-          }
-        }
-      }
-    }
-    else if (menu_shell->parent_menu_shell) {
-      gtk_widget_event (menu_shell->parent_menu_shell, (GdkEvent*) event);
-    }
-  }
-
-  return TRUE;
-}
-
-static int
-geda_menu_shell_leave_notify (GtkWidget *widget, GdkEventCrossing *event)
-{
-  if (event->mode == GDK_CROSSING_GTK_GRAB ||
-      event->mode == GDK_CROSSING_GTK_UNGRAB ||
-      event->mode == GDK_CROSSING_STATE_CHANGED) {
-    return TRUE;
-  }
-
-  if (gtk_widget_get_visible (widget)) {
-
-    GedaMenuShell *menu_shell   = GEDA_MENU_SHELL (widget);
-    GtkWidget     *event_widget = gtk_get_event_widget ((GdkEvent*)event);
-    GedaMenuItem  *menu_item;
-    GtkWidget     *submenu;
-
-    if (!event_widget || !GEDA_IS_MENU_ITEM (event_widget))
-      return TRUE;
-
-    menu_item = GEDA_MENU_ITEM (event_widget);
-
-    if (!geda_menu_item_is_widget_selectable (event_widget)) {
-
-      menu_shell->priv->in_unselectable_item = TRUE;
-
-      return TRUE;
-    }
-
-    submenu = geda_menu_item_get_submenu(GEDA_MENU_ITEM(menu_item));
-
-    if ((menu_shell->active_menu_item == event_widget) && (submenu == NULL))
-    {
-      if ((event->detail != GDK_NOTIFY_INFERIOR) &&
-          (gtk_widget_get_state (GTK_WIDGET (menu_item)) != GTK_STATE_NORMAL))
-      {
-        geda_menu_shell_deselect (menu_shell);
-      }
-    }
-    else if (menu_shell->parent_menu_shell) {
-      gtk_widget_event (menu_shell->parent_menu_shell, (GdkEvent*) event);
-    }
-  }
-
-  return TRUE;
-}
-
-static void
-geda_menu_shell_screen_changed (GtkWidget *widget, GdkScreen *previous_screen)
-{
-  geda_menu_shell_reset_key_hash (GEDA_MENU_SHELL (widget));
-}
-
-static void
-geda_menu_shell_add (GtkContainer *container, GtkWidget *widget)
-{
-  geda_menu_shell_append (GEDA_MENU_SHELL (container), widget);
-}
-
-static void
-geda_menu_shell_remove (GtkContainer *container, GtkWidget *widget)
-{
-  GedaMenuShell *menu_shell = GEDA_MENU_SHELL (container);
-  int was_visible;
-
-  was_visible          = gtk_widget_get_visible (widget);
-  menu_shell->children = g_list_remove (menu_shell->children, widget);
-
-  if (widget == menu_shell->active_menu_item) {
-
-      g_signal_emit_by_name (menu_shell->active_menu_item, "deselect");
-      //gtk_item_deselect (GTK_ITEM (menu_shell->active_menu_item));
-      menu_shell->active_menu_item = NULL;
-    }
-
-  gtk_widget_unparent (widget);
-
-  /* queue resize regardless of gtk_widget_get_visible (container),
-   * since that's what is needed by toplevels.
-   */
-  if (was_visible) {
-    gtk_widget_queue_resize (GTK_WIDGET (container));
-  }
-}
-
-static void
-geda_menu_shell_forall (GtkContainer *container,
-                        bool          include_internals,
-                        GtkCallback   callback,
-                        void         *callback_data)
-{
-  GedaMenuShell *menu_shell = GEDA_MENU_SHELL (container);
-  GList         *children   = menu_shell->children;
-
-  while (children) {
-
-    GtkWidget     *child;
-
-    child = children->data;
-    children = children->next;
-
-    (* callback) (child, callback_data);
-  }
-}
-
-static void
-geda_real_menu_shell_deactivate (GedaMenuShell *menu_shell)
-{
-  if (menu_shell->active) {
-
-    menu_shell->button = 0;
-    menu_shell->active = FALSE;
-    menu_shell->activate_time = 0;
-
-    if (menu_shell->active_menu_item) {
-
-      geda_menu_item_deselect (GEDA_MENU_ITEM (menu_shell->active_menu_item));
-      menu_shell->active_menu_item = NULL;
-    }
-
-    if (menu_shell->have_grab) {
-
-      menu_shell->have_grab = FALSE;
-      gtk_grab_remove (GTK_WIDGET (menu_shell));
-    }
-    if (menu_shell->have_xgrab) {
-
-      GdkDisplay *display = gtk_widget_get_display (GTK_WIDGET (menu_shell));
-
-      menu_shell->have_xgrab = FALSE;
-      gdk_display_pointer_ungrab (display, GDK_CURRENT_TIME);
-      gdk_display_keyboard_ungrab (display, GDK_CURRENT_TIME);
-    }
-
-    menu_shell->keyboard_mode = FALSE;
-
-    geda_menu_shell_update_mnemonics (menu_shell);
-  }
-}
-
-static int
-geda_menu_shell_is_item (GedaMenuShell *menu_shell, GtkWidget *child)
-{
-  GtkWidget *parent;
-
-  g_return_val_if_fail (GEDA_IS_MENU_SHELL (menu_shell), FALSE);
-  g_return_val_if_fail (child != NULL, FALSE);
-
-  parent = child->parent;
-  while (GEDA_IS_MENU_SHELL(parent)) {
-
-    if (parent == (GtkWidget*)menu_shell) {
-      return TRUE;
-    }
-    parent = GEDA_MENU_SHELL (parent)->parent_menu_shell;
-  }
-
-  return FALSE;
-}
-
-static GtkWidget*
-geda_menu_shell_get_item (GedaMenuShell *menu_shell, GdkEvent *event)
-{
-  GtkWidget *menu_item;
-
-  menu_item = gtk_get_event_widget ((GdkEvent*) event);
-
-  while (menu_item && !GEDA_IS_MENU_ITEM (menu_item))
-    menu_item = menu_item->parent;
-
-  if (menu_item && geda_menu_shell_is_item (menu_shell, menu_item)) {
-    return menu_item;
-  }
-  return NULL;
-}
-
-/* Handlers for action signals */
-
-static void
-geda_menu_shell_real_select_item (GedaMenuShell *menu_shell,
-                                  GtkWidget     *menu_item)
-{
-  PackDirection pack_dir = PACK_DIRECTION (menu_shell);
-  GtkWidget    *submenu;
-
-  if (menu_shell->active_menu_item) {
-
-      geda_menu_item_deselect (GEDA_MENU_ITEM (menu_shell->active_menu_item));
-      menu_shell->active_menu_item = NULL;
-  }
-
-  if (!geda_menu_item_is_widget_selectable (menu_item)) {
-
-      GedaMenuShellPriv *priv = menu_shell->priv;
-
-      priv->in_unselectable_item = TRUE;
-      geda_menu_shell_update_mnemonics (menu_shell);
-
-      return;
-  }
-
-  menu_shell->active_menu_item = menu_item;
-  if (pack_dir == PACK_DIRECTION_TTB || pack_dir == PACK_DIRECTION_BTT) {
-    geda_menu_item_set_submenu_placement (GEDA_MENU_ITEM (menu_shell->active_menu_item), GTK_LEFT_RIGHT);
-  }
-  else {
-    geda_menu_item_set_submenu_placement (GEDA_MENU_ITEM (menu_shell->active_menu_item),
-                                         GEDA_MENU_SHELL_GET_CLASS (menu_shell)->submenu_placement);
-  }
-
-  geda_menu_item_select (GEDA_MENU_ITEM (menu_shell->active_menu_item));
-
-  geda_menu_shell_update_mnemonics (menu_shell);
-
-  /* This allows the bizarre radio buttons-with-submenus-display-history
-   * behavior
-   */
-
-  submenu = geda_menu_item_get_submenu(GEDA_MENU_ITEM (menu_shell->active_menu_item));
-
-  if (submenu) {
-    gtk_widget_activate (menu_shell->active_menu_item);
-  }
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
-void
-geda_menu_shell_select_item (GedaMenuShell *menu_shell,
-                             GtkWidget     *menu_item)
-{
-  GedaMenuShellClass *class;
-
-  g_return_if_fail (GEDA_IS_MENU_SHELL (menu_shell));
-  g_return_if_fail (GEDA_IS_MENU_ITEM (menu_item));
-
-  class = GEDA_MENU_SHELL_GET_CLASS (menu_shell);
-
-  if (class->select_item && !(menu_shell->active &&
-      menu_shell->active_menu_item == menu_item)) {
-    class->select_item (menu_shell, menu_item);
-  }
-}
-
-/*!
- * \brief GedaMenuShell Deselect
- * \par Function Description
- *  Deselects the currently selected item from the menu shell,
- *  if any.
- *
- * \param [in] menu_shell a #GedaMenuShell
- */
-void
-geda_menu_shell_deselect (GedaMenuShell *menu_shell)
-{
-  g_return_if_fail (GEDA_IS_MENU_SHELL (menu_shell));
-
-  if (menu_shell->active_menu_item) {
-
-    geda_menu_item_deselect (GEDA_MENU_ITEM (menu_shell->active_menu_item));
-    menu_shell->active_menu_item = NULL;
-    geda_menu_shell_update_mnemonics (menu_shell);
   }
 }
 
@@ -1491,76 +1733,232 @@ geda_menu_shell_activate_item (GedaMenuShell *menu_shell,
   g_object_unref (menu_item);
 }
 
-/* Distance should be +/- 1 */
-static bool
-geda_menu_shell_real_move_selected (GedaMenuShell  *menu_shell,
-                                    int             distance)
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+void
+geda_menu_shell_add_mnemonic (GedaMenuShell *menu_shell,
+                              unsigned int   keyval,
+                              GtkWidget     *target)
 {
-  if (menu_shell->active_menu_item) {
+  GedaMnemonicHash *mnemonic_hash;
 
-    GList *node = g_list_find (menu_shell->children,
-                               menu_shell->active_menu_item);
-    GList *start_node = node;
-    bool   wrap_around;
+  g_return_if_fail (GEDA_IS_MENU_SHELL (menu_shell));
+  g_return_if_fail (GTK_IS_WIDGET (target));
 
-    g_object_get (gtk_widget_get_settings (GTK_WIDGET (menu_shell)),
-                  "gtk-keynav-wrap-around", &wrap_around,
-                  NULL);
-
-    if (distance > 0) {
-
-      node = node->next;
-
-      while (node != start_node &&
-            (!node || !geda_menu_item_is_widget_selectable (node->data)))
-      {
-        if (node) {
-          node = node->next;
-        }
-        else if (wrap_around) {
-          node = menu_shell->children;
-        }
-        else {
-          gtk_widget_error_bell (GTK_WIDGET (menu_shell));
-          break;
-        }
-      }
-    }
-    else {
-
-      node = node->prev;
-      while (node != start_node &&
-            (!node || !geda_menu_item_is_widget_selectable (node->data)))
-      {
-        if (node) {
-          node = node->prev;
-        }
-        else if (wrap_around) {
-          node = g_list_last (menu_shell->children);
-        }
-        else {
-          gtk_widget_error_bell (GTK_WIDGET (menu_shell));
-          break;
-        }
-      }
-    }
-
-    if (node) {
-      geda_menu_shell_select_item (menu_shell, node->data);
-    }
-  }
-
-  return TRUE;
+  mnemonic_hash = geda_menu_shell_get_mnemonic_hash (menu_shell, TRUE);
+  geda_mnemonic_hash_add (mnemonic_hash, keyval, target);
+  geda_menu_shell_reset_key_hash (menu_shell);
 }
 
-/* Distance should be +/- 1 */
-static void
-geda_menu_shell_move_selected (GedaMenuShell *menu_shell, int distance)
+void
+geda_menu_shell_append (GedaMenuShell *menu_shell, GtkWidget *child)
 {
-  bool handled = FALSE;
+  geda_menu_shell_insert (menu_shell, child, -1);
+}
 
-  g_signal_emit (menu_shell, menu_shell_signals[MOVE_SELECTED], 0,
-                 distance, &handled);
+/*!
+ * \brief Cancel GedaMenuShell selection
+ * \par Function Description
+ * Cancels the selection within the menu shell.
+ *
+ * \param [in] menu_shell a #GedaMenuShell
+ */
+void
+geda_menu_shell_cancel (GedaMenuShell *menu_shell)
+{
+  g_return_if_fail (GEDA_IS_MENU_SHELL (menu_shell));
+
+  g_signal_emit (menu_shell, menu_shell_signals[CANCEL], 0);
+}
+
+/*!
+ * \brief Deactivates a GedaMenuShell
+ * \par Function Description
+ * Deactivates the menu shell. Typically this results in the menu
+ * shell being erased from the screen.
+ *
+ * \param [in] menu_shell a #GedaMenuShell
+ */
+void
+geda_menu_shell_deactivate (GedaMenuShell *menu_shell)
+{
+  g_return_if_fail (GEDA_IS_MENU_SHELL (menu_shell));
+
+  if (menu_shell->active) {
+    g_signal_emit (menu_shell, menu_shell_signals[DEACTIVATE], 0);
+  }
+}
+
+/*!
+ * \brief GedaMenuShell Deselect
+ * \par Function Description
+ *  Deselects the currently selected item from the menu shell,
+ *  if any.
+ *
+ * \param [in] menu_shell a #GedaMenuShell
+ */
+void
+geda_menu_shell_deselect (GedaMenuShell *menu_shell)
+{
+  g_return_if_fail (GEDA_IS_MENU_SHELL (menu_shell));
+
+  if (menu_shell->active_menu_item) {
+
+    geda_menu_item_deselect (GEDA_MENU_ITEM (menu_shell->active_menu_item));
+    menu_shell->active_menu_item = NULL;
+    geda_menu_shell_update_mnemonics (menu_shell);
+  }
+}
+
+bool
+geda_menu_shell_get_keyboard_mode (GedaMenuShell *menu_shell)
+{
+  return menu_shell->keyboard_mode;
+}
+
+/*!
+ * \brief Retrieve GedaMenuShell Parent
+ * \par Function Description
+ * Gets the parent menu shell. The parent menu shell of a submenu
+ * is the #GedaMenu or #GedaMenuBar from which it was opened up.
+ *
+ * \param [in] menu_shell a #GedaMenuShell
+ *
+ * \returns the parent #GedaMenuShell
+ */
+GtkWidget *
+geda_menu_shell_get_parent_shell (GedaMenuShell *menu_shell)
+{
+  g_return_val_if_fail (GEDA_IS_MENU_SHELL (menu_shell), NULL);
+
+  return menu_shell->parent_menu_shell;
+}
+
+int
+geda_menu_shell_get_popup_delay (GedaMenuShell *menu_shell)
+{
+  GedaMenuShellClass *class = GEDA_MENU_SHELL_GET_CLASS (menu_shell);
+
+  if (class->get_popup_delay) {
+    return class->get_popup_delay (menu_shell);
+  }
+
+  return MENU_POPUP_DELAY;
+}
+
+/*!
+ * \brief Retrieve Selected Item from a GedaMenuShell
+ * \par Function Description
+ *  Gets the currently selected item.
+ *
+ * \param [in] menu_shell a #GedaMenuShell
+ *
+ * \returns the selected menu item or NULL if no item is active
+ */
+GtkWidget*
+geda_menu_shell_get_selected_item (GedaMenuShell *menu_shell)
+{
+  g_return_val_if_fail (GEDA_IS_MENU_SHELL (menu_shell), NULL);
+
+  return menu_shell->active_menu_item;
+}
+
+/*!
+ * \brief geda_menu_shell_get_take_focus
+ * \par Function Description
+ * Returns %TRUE if the menu shell will take the keyboard focus on popup.
+ *
+ * \param [in] menu_shell a #GedaMenuShell
+ *
+ * \retval %TRUE if the menu shell will take the keyboard focus on popup.
+ */
+bool
+geda_menu_shell_get_take_focus (GedaMenuShell *menu_shell)
+{
+  GedaMenuShellPriv *priv;
+
+  g_return_val_if_fail (GEDA_IS_MENU_SHELL (menu_shell), FALSE);
+
+  priv = menu_shell->priv;
+
+  return priv->take_focus;
+}
+
+void
+geda_menu_shell_insert (GedaMenuShell *menu_shell,
+                        GtkWidget     *child,
+                        int            position)
+{
+  GedaMenuShellClass *class;
+
+  g_return_if_fail (GEDA_IS_MENU_SHELL (menu_shell));
+  g_return_if_fail (GEDA_IS_MENU_ITEM (child));
+
+  class = GEDA_MENU_SHELL_GET_CLASS (menu_shell);
+
+  if (class->insert) {
+    class->insert (menu_shell, child, position);
+  }
+}
+
+void
+geda_menu_shell_prepend (GedaMenuShell *menu_shell, GtkWidget *child)
+{
+  geda_menu_shell_insert (menu_shell, child, 0);
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+void
+geda_menu_shell_remove_mnemonic (GedaMenuShell *menu_shell,
+                                 unsigned int   keyval,
+                                 GtkWidget     *target)
+{
+  GedaMnemonicHash *mnemonic_hash;
+
+  g_return_if_fail (GEDA_IS_MENU_SHELL (menu_shell));
+  g_return_if_fail (GTK_IS_WIDGET (target));
+
+  mnemonic_hash = geda_menu_shell_get_mnemonic_hash (menu_shell, TRUE);
+
+  geda_mnemonic_hash_remove (mnemonic_hash, keyval, target);
+
+  geda_menu_shell_reset_key_hash (menu_shell);
+}
+
+void
+geda_menu_shell_set_keyboard_mode (GedaMenuShell *menu_shell,
+                                   bool          keyboard_mode)
+{
+  menu_shell->keyboard_mode = keyboard_mode;
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+void
+geda_menu_shell_select_item (GedaMenuShell *menu_shell,
+                             GtkWidget     *menu_item)
+{
+  GedaMenuShellClass *class;
+
+  g_return_if_fail (GEDA_IS_MENU_SHELL (menu_shell));
+  g_return_if_fail (GEDA_IS_MENU_ITEM (menu_item));
+
+  class = GEDA_MENU_SHELL_GET_CLASS (menu_shell);
+
+  if (class->select_item && !(menu_shell->active &&
+      menu_shell->active_menu_item == menu_item)) {
+    class->select_item (menu_shell, menu_item);
+  }
 }
 
 /*!
@@ -1671,432 +2069,6 @@ geda_menu_shell_select_submenu_first (GedaMenuShell *menu_shell)
   return FALSE;
 }
 
-static void
-geda_real_menu_shell_move_current (GedaMenuShell *menu_shell,
-                                   MenuDirection  direction)
-{
-  GedaMenuShellPriv *priv;
-  GedaMenuShell     *parent_menu_shell;
-  GedaMenuItem      *active_menu_item;
-  GtkWidget         *submenu;
-  bool had_selection;
-
-  priv = menu_shell->priv;
-
-  priv->in_unselectable_item = FALSE;
-
-  if (menu_shell->active_menu_item) {
-    active_menu_item = GEDA_MENU_ITEM (menu_shell->active_menu_item);
-    submenu = geda_menu_item_get_submenu(active_menu_item);
-  }
-  else {
-    active_menu_item = NULL;
-    submenu = NULL;
-  }
-
-  if (menu_shell->parent_menu_shell) {
-    parent_menu_shell = GEDA_MENU_SHELL (menu_shell->parent_menu_shell);
-  }
-  else {
-    parent_menu_shell = NULL;
-  }
-
-  had_selection = active_menu_item != NULL;
-
-  switch (direction) {
-
-    case MENU_DIR_PARENT:
-      if (parent_menu_shell) {
-
-        if (GEDA_MENU_SHELL_GET_CLASS (parent_menu_shell)->submenu_placement ==
-          GEDA_MENU_SHELL_GET_CLASS (menu_shell)->submenu_placement)
-        {
-          geda_menu_shell_deselect (menu_shell);
-        }
-        else {
-          if (PACK_DIRECTION (parent_menu_shell) == PACK_DIRECTION_LTR) {
-            geda_menu_shell_move_selected (parent_menu_shell, -1);
-          }
-          else {
-            geda_menu_shell_move_selected (parent_menu_shell, 1);
-          }
-          geda_menu_shell_select_submenu_first (parent_menu_shell);
-        }
-      }
-      /* If there is no parent and the submenu is in the opposite direction
-       * to the menu, then make the PARENT direction wrap around to
-       * the bottom of the submenu.
-       */
-      else if (active_menu_item &&
-               geda_menu_item_is_widget_selectable ((GtkWidget*)active_menu_item) &&
-               submenu)
-      {
-        GedaMenuShellClass *shell_class;
-        GedaMenuShellClass *sub_class;
-        GedaMenuShell      *sub_shell;
-
-        shell_class = GEDA_MENU_SHELL_GET_CLASS (menu_shell);
-        sub_shell   = GEDA_MENU_SHELL (submenu);
-        sub_class   = GEDA_MENU_SHELL_GET_CLASS (sub_shell);
-
-        if (shell_class->submenu_placement != sub_class->submenu_placement) {
-          geda_menu_shell_select_last (sub_shell, TRUE);
-        }
-      }
-      break;
-
-    case MENU_DIR_CHILD:
-      if (active_menu_item &&
-          geda_menu_item_is_widget_selectable ((GtkWidget*)active_menu_item) &&
-          submenu)
-      {
-        if (geda_menu_shell_select_submenu_first (menu_shell))
-          break;
-      }
-
-      /* Try to find a menu running the opposite direction */
-      while (parent_menu_shell &&
-            (GEDA_MENU_SHELL_GET_CLASS (parent_menu_shell)->submenu_placement ==
-             GEDA_MENU_SHELL_GET_CLASS (menu_shell)->submenu_placement))
-      {
-        parent_menu_shell = GEDA_MENU_SHELL (parent_menu_shell->parent_menu_shell);
-      }
-
-      if (parent_menu_shell) {
-
-        if (PACK_DIRECTION (parent_menu_shell) == PACK_DIRECTION_LTR)
-          geda_menu_shell_move_selected (parent_menu_shell, 1);
-        else
-          geda_menu_shell_move_selected (parent_menu_shell, -1);
-
-        geda_menu_shell_select_submenu_first (parent_menu_shell);
-      }
-      break;
-
-    case MENU_DIR_PREV:
-      geda_menu_shell_move_selected (menu_shell, -1);
-      if (!had_selection && !active_menu_item && menu_shell->children)
-        geda_menu_shell_select_last (menu_shell, TRUE);
-      break;
-
-    case MENU_DIR_NEXT:
-      geda_menu_shell_move_selected (menu_shell, 1);
-      if (!had_selection && !active_menu_item && menu_shell->children)
-        geda_menu_shell_select_first (menu_shell, TRUE);
-      break;
-  }
-}
-
-static void
-geda_real_menu_shell_activate_current (GedaMenuShell *menu_shell,
-                                       bool           force_hide)
-{
-  GedaMenuItem *active_item = GEDA_MENU_ITEM(menu_shell->active_menu_item);
-
-  if (active_item &&
-      geda_menu_item_is_widget_selectable (menu_shell->active_menu_item))
-  {
-    if (!geda_menu_item_get_submenu(active_item)) {
-      geda_menu_shell_activate_item (menu_shell,
-                                     menu_shell->active_menu_item,
-                                     force_hide);
-    }
-    else {
-      geda_menu_item_popup_submenu (active_item, FALSE);
-    }
-  }
-}
-
-static void
-geda_real_menu_shell_cancel (GedaMenuShell *menu_shell)
-{
-  /* Unset the active menu item so geda_menu_popdown() doesn't see it.
-   */
-  geda_menu_shell_deselect (menu_shell);
-
-  geda_menu_shell_deactivate (menu_shell);
-  g_signal_emit (menu_shell, menu_shell_signals[SELECTION_DONE], 0);
-}
-
-/* Handlers for action signals */
-
-static void
-geda_real_menu_shell_cycle_focus (GedaMenuShell   *menu_shell,
-                                  GtkDirectionType dir)
-{
-  while (menu_shell && !GEDA_IS_MENU_BAR (menu_shell)) {
-
-    if (menu_shell->parent_menu_shell) {
-      menu_shell = GEDA_MENU_SHELL (menu_shell->parent_menu_shell);
-    }
-    else {
-      menu_shell = NULL;
-    }
-  }
-
-  if (menu_shell) {
-    geda_menu_bar_cycle_focus (GEDA_MENU_BAR (menu_shell), dir);
-  }
-}
-
-/*!
- * \brief Deactivates a GedaMenuShell
- * \par Function Description
- * Deactivates the menu shell. Typically this results in the menu
- * shell being erased from the screen.
- *
- * \param [in] menu_shell a #GedaMenuShell
- */
-void
-geda_menu_shell_deactivate (GedaMenuShell *menu_shell)
-{
-  g_return_if_fail (GEDA_IS_MENU_SHELL (menu_shell));
-
-  if (menu_shell->active) {
-    g_signal_emit (menu_shell, menu_shell_signals[DEACTIVATE], 0);
-  }
-}
-
-/*!
- * \brief Retrieve GedaMenuShell Parent
- * \par Function Description
- * Gets the parent menu shell. The parent menu shell of a submenu
- * is the #GedaMenu or #GedaMenuBar from which it was opened up.
- *
- * \param [in] menu_shell a #GedaMenuShell
- *
- * \returns the parent #GedaMenuShell
- */
-GtkWidget *
-geda_menu_shell_get_parent_shell (GedaMenuShell *menu_shell)
-{
-  g_return_val_if_fail (GEDA_IS_MENU_SHELL (menu_shell), NULL);
-
-  return menu_shell->parent_menu_shell;
-}
-
-int
-geda_menu_shell_get_popup_delay (GedaMenuShell *menu_shell)
-{
-  GedaMenuShellClass *class = GEDA_MENU_SHELL_GET_CLASS (menu_shell);
-
-  if (class->get_popup_delay) {
-    return class->get_popup_delay (menu_shell);
-  }
-
-  return MENU_POPUP_DELAY;
-}
-
-/*!
- * \brief Retrieve Selected Item from a GedaMenuShell
- * \par Function Description
- *  Gets the currently selected item.
- *
- * \param [in] menu_shell a #GedaMenuShell
- *
- * \returns the selected menu item or NULL if no item is active
- */
-GtkWidget*
-geda_menu_shell_get_selected_item (GedaMenuShell *menu_shell)
-{
-  g_return_val_if_fail (GEDA_IS_MENU_SHELL (menu_shell), NULL);
-
-  return menu_shell->active_menu_item;
-}
-
-/*!
- * \brief Cancel GedaMenuShell selection
- * \par Function Description
- * Cancels the selection within the menu shell.
- *
- * \param [in] menu_shell a #GedaMenuShell
- */
-void
-geda_menu_shell_cancel (GedaMenuShell *menu_shell)
-{
-  g_return_if_fail (GEDA_IS_MENU_SHELL (menu_shell));
-
-  g_signal_emit (menu_shell, menu_shell_signals[CANCEL], 0);
-}
-
-/*--------------------------- Begin Hash Helpers ---------------------------*/
-
-static GedaMnemonicHash *
-geda_menu_shell_get_mnemonic_hash (GedaMenuShell *menu_shell, bool create)
-{
-  GedaMenuShellPriv *priv = menu_shell->priv;
-
-  if (!priv->mnemonic_hash && create)
-    priv->mnemonic_hash = geda_mnemonic_hash_new ();
-
-  return priv->mnemonic_hash;
-}
-/*
-static void
-menu_shell_add_mnemonic_foreach (unsigned int keyval, GSList *targets, void *data)
-{
-  GedaKeyHash *key_hash = data;
-
-  geda_key_hash_add_entry (key_hash, keyval, 0, UINT_TO_POINTER(keyval));
-}
-*/
-
-/* Helper called by: geda_menu_shell_activate_mnemonic
-static GedaKeyHash *
-geda_menu_shell_get_key_hash (GedaMenuShell *menu_shell, bool create)
-{
-  GedaMenuShellPriv *priv   = menu_shell->priv;
-  GtkWidget         *widget = GTK_WIDGET (menu_shell);
-
-  if (!priv->key_hash && create && gtk_widget_has_screen (widget)) {
-
-    GedaMnemonicHash *mnemonic_hash;
-    GdkScreen        *screen;
-    GdkKeymap        *keymap;
-
-    mnemonic_hash = geda_menu_shell_get_mnemonic_hash (menu_shell, FALSE);
-
-    screen = gtk_widget_get_screen (widget);
-    keymap = gdk_keymap_get_for_display (gdk_screen_get_display (screen));
-
-    priv->key_hash = geda_key_hash_new (keymap, NULL);
-
-    geda_mnemonic_hash_foreach (mnemonic_hash,
-                                menu_shell_add_mnemonic_foreach,
-                                priv->key_hash);
-  }
-
-  return priv->key_hash;
-}
- */
-/*---------------------------- End Hash Helpers -----------------------------*/
-
-/* Helper called by:
- *
- *  geda_menu_shell_add_mnemonic()
- *  geda_menu_shell_remove_mnemonic()
- *  geda_menu_shell_screen_changed()
- */
-static void
-geda_menu_shell_reset_key_hash (GedaMenuShell *menu_shell)
-{
-  GedaMenuShellPriv *priv = menu_shell->priv;
-
-  if (priv->key_hash) {
-    geda_key_hash_free (priv->key_hash);
-    priv->key_hash = NULL;
-  }
-}
-
-static bool
-geda_menu_shell_activate_mnemonic (GedaMenuShell *menu_shell,
-                                   GdkEventKey   *event)
-{
-  bool result = FALSE;
-
-  if (menu_shell->children) {
-
-    GList *iter;
-
-    for (iter = menu_shell->children; iter; iter = iter->next) {
-
-      if (GEDA_IS_MENU_ITEM(iter->data)) {
-
-        GedaMenuItem *menu_item = iter->data;
-
-        char mnemonic = geda_menu_item_get_mnemonic(menu_item);
-        char key_char = (char)event->keyval;
-
-        if (((mnemonic >> 5) & 1) ^ 1)
-        {
-          mnemonic = tolower(mnemonic);
-        }
-
-        if (key_char == mnemonic){
-
-          if (geda_menu_item_is_selectable(menu_item)) {
-
-            GtkWidget *widget = (GtkWidget*)menu_item;
-
-            if (geda_menu_item_get_submenu(menu_item)) {
-              geda_menu_shell_select_item(menu_shell, widget);
-            }
-            else {
-              geda_menu_shell_activate_item (menu_shell, widget, TRUE);
-            }
-          }
-          result = TRUE;
-          break;
-        }
-      }
-    }
-  }
-  return result;
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
-void
-geda_menu_shell_add_mnemonic (GedaMenuShell *menu_shell,
-                              unsigned int   keyval,
-                              GtkWidget     *target)
-{
-  GedaMnemonicHash *mnemonic_hash;
-
-  g_return_if_fail (GEDA_IS_MENU_SHELL (menu_shell));
-  g_return_if_fail (GTK_IS_WIDGET (target));
-
-  mnemonic_hash = geda_menu_shell_get_mnemonic_hash (menu_shell, TRUE);
-  geda_mnemonic_hash_add (mnemonic_hash, keyval, target);
-  geda_menu_shell_reset_key_hash (menu_shell);
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
-void
-geda_menu_shell_remove_mnemonic (GedaMenuShell *menu_shell,
-                                 unsigned int   keyval,
-                                 GtkWidget     *target)
-{
-  GedaMnemonicHash *mnemonic_hash;
-
-  g_return_if_fail (GEDA_IS_MENU_SHELL (menu_shell));
-  g_return_if_fail (GTK_IS_WIDGET (target));
-
-  mnemonic_hash = geda_menu_shell_get_mnemonic_hash (menu_shell, TRUE);
-
-  geda_mnemonic_hash_remove (mnemonic_hash, keyval, target);
-
-  geda_menu_shell_reset_key_hash (menu_shell);
-}
-
-/*!
- * \brief geda_menu_shell_get_take_focus
- * \par Function Description
- * Returns %TRUE if the menu shell will take the keyboard focus on popup.
- *
- * \param [in] menu_shell a #GedaMenuShell
- *
- * Returns: %TRUE if the menu shell will take the keyboard focus on popup.
- */
-bool
-geda_menu_shell_get_take_focus (GedaMenuShell *menu_shell)
-{
-  GedaMenuShellPriv *priv;
-
-  g_return_val_if_fail (GEDA_IS_MENU_SHELL (menu_shell), FALSE);
-
-  priv = menu_shell->priv;
-
-  return priv->take_focus;
-}
-
 /*!
  * \brief geda_menu_shell_set_take_focus
  * \par Function Description
@@ -2143,6 +2115,74 @@ geda_menu_shell_set_take_focus (GedaMenuShell *menu_shell, bool take_focus)
 
     priv->take_focus = take_focus;
     g_object_notify (G_OBJECT (menu_shell), "take-focus");
+  }
+}
+
+void
+geda_menu_shell_update_mnemonics (GedaMenuShell *menu_shell)
+{
+  GedaMenuShell *target;
+  bool auto_mnemonics;
+  bool found;
+
+  g_object_get (gtk_widget_get_settings (GTK_WIDGET (menu_shell)),
+                "gtk-auto-mnemonics", &auto_mnemonics, NULL);
+
+  if (!auto_mnemonics)
+    return;
+
+  target = menu_shell;
+  found  = FALSE;
+
+  while (target) {
+
+    GedaMenuShellPriv *priv = target->priv;
+    GtkWidget         *toplevel;
+
+    bool mnemonics_visible;
+
+    toplevel = gtk_widget_get_toplevel (GTK_WIDGET (target));
+
+    /* The idea with keyboard mode is that once you start using
+     * the keyboard to navigate the menus, we show mnemonics
+     * until the menu navigation is over. To that end, we spread
+     * the keyboard mode upwards in the menu hierarchy here.
+     * Also see geda_menu_popup, where we inherit it downwards.
+     */
+    if (menu_shell->keyboard_mode) {
+      target->keyboard_mode = TRUE;
+    }
+
+    /* While navigating menus, the first parent menu with an active
+     * item is the one where mnemonics are effective, as can be seen
+     * in geda_menu_shell_key_press below.
+     * We also show mnemonics in context menus. The grab condition is
+     * necessary to ensure we remove underlines from menu bars when
+     * dismissing menus.
+     */
+    mnemonics_visible = target->keyboard_mode &&
+                        (((target->active_menu_item || priv->in_unselectable_item) && !found) ||
+                          (target == menu_shell &&
+                          !target->parent_menu_shell && gtk_widget_has_grab (GTK_WIDGET(target))));
+
+    /* While menus are up, only show underlines inside the menubar,
+     * not in the entire window.
+     */
+    if (GEDA_IS_MENU_BAR (target)) {
+
+      gtk_window_set_mnemonics_visible (GTK_WINDOW (toplevel), FALSE);
+
+      geda_label_mnemonics_visible_apply_recursively (GTK_WIDGET (target),
+                                                      mnemonics_visible);
+    }
+    else {
+      gtk_window_set_mnemonics_visible (GTK_WINDOW (toplevel), mnemonics_visible);
+    }
+
+    if (target->active_menu_item || priv->in_unselectable_item)
+      found = TRUE;
+
+    target = GEDA_MENU_SHELL (target->parent_menu_shell);
   }
 }
 
