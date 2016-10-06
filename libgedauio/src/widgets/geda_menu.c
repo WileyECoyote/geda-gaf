@@ -1711,18 +1711,14 @@ geda_menu_popup (GedaMenu         *menu,
   GdkEvent      *current_event;
   GedaMenuShell *menu_shell;
   bool           grab_keyboard;
-  GedaMenuPriv  *priv;
   GtkWidget     *parent_toplevel;
 
   g_return_if_fail (GEDA_IS_MENU (menu));
 
   widget     = GTK_WIDGET (menu);
   menu_shell = GEDA_MENU_SHELL (menu);
-  priv       = menu->priv;
 
   menu_shell->parent_menu_shell = parent_menu_shell;
-
-  priv->seen_item_enter = FALSE;
 
   /* Find the last viewable ancestor, and make an X grab on it
    */

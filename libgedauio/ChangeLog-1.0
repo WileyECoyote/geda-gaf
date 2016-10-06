@@ -3,6 +3,8 @@
     * include/geda_menu_shell.h: Remove declaration for non-existent
       geda_menu_shell_get_grab_device.
 
+    * src/widgets/geda_menu.c: Remove unused variables priv and seen_item_enter.
+
     * src/widgets/geda_menu_bar.c: Reduce scope of variables in geda_menu_
       bar_size_allocate.
 
