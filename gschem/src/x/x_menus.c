@@ -315,7 +315,7 @@ void x_menu_free_all(void)
   }
   mapcar(ui_list);
 
-  i_menu_free();
+  geda_iface_menu_free();
 }
 
 /*!
@@ -710,12 +710,12 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
   g_dynwind_window (w_current);
 
   /* Loop through all top-level menu container */
-  for (i = 0 ; i < i_menu_return_num(); i++) {
+  for (i = 0 ; i < geda_iface_menu_return_num(); i++) {
 
     GtkWidget *root_menu = NULL;
     int scm_items_len;
 
-    scm_items = i_menu_return_entry(i, raw_menu_name);
+    scm_items = geda_iface_menu_return_entry(i, raw_menu_name);
 
     if (*raw_menu_name == NULL) {
       fprintf(stderr, _("Oops.. got a NULL menu name in %s()\n"), __func__);
@@ -737,6 +737,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     scm_items_len = (int) scm_ilength (scm_items);
 
     for (j = 0 ; j < scm_items_len; j++) {
+
       menu_item = get_menu_item_from_scheme(scm_items, j);
       gtk_container_add (GTK_CONTAINER(menu), menu_item);
       g_object_set (menu_item, "visible", TRUE, NULL);

@@ -146,7 +146,7 @@ void libgeda_init(int argc, char **argv)
 
   geda_struct_clib_init();
   geda_struct_slib_init();
-  i_menu_init();
+  geda_iface_menu_init();
   geda_struct_attrib_init();
   geda_struct_conn_init();
 
