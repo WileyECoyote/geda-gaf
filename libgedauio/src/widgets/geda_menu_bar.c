@@ -287,14 +287,12 @@ geda_menu_bar_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
   GedaMenuBar        *menu_bar;
   GedaMenuShell      *menu_shell;
   GedaMenuBarPrivate *priv;
-  GtkWidget          *child;
   GList              *children;
   GtkAllocation       child_allocation;
   GtkRequisition      child_requisition;
   unsigned int        offset;
   GtkTextDirection    direction;
   int ltr_x, ltr_y;
-  int ipadding;
 
   g_return_if_fail (GEDA_IS_MENU_BAR (widget));
   g_return_if_fail (allocation != NULL);
@@ -306,20 +304,24 @@ geda_menu_bar_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
   direction = gtk_widget_get_direction (widget);
 
   widget->allocation = *allocation;
-  if (gtk_widget_get_realized (widget))
+
+  if (gtk_widget_get_realized (widget)) {
     gdk_window_move_resize (widget->window,
                             allocation->x, allocation->y,
                             allocation->width, allocation->height);
-
-    gtk_widget_style_get (widget, "internal-padding", &ipadding, NULL);
+  }
 
   if (menu_shell->children) {
 
+    GtkWidget *child;
+    int ipadding;
+
+    gtk_widget_style_get (widget, "internal-padding", &ipadding, NULL);
+
     child_allocation.x = (GTK_CONTAINER (menu_bar)->border_width +
-    ipadding +
-    BORDER_SPACING);
+                          ipadding + BORDER_SPACING);
     child_allocation.y = (GTK_CONTAINER (menu_bar)->border_width +
-    BORDER_SPACING);
+                          BORDER_SPACING);
 
     if (get_shadow_type (menu_bar) != GTK_SHADOW_NONE)
     {
@@ -327,21 +329,21 @@ geda_menu_bar_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
       child_allocation.y += widget->style->ythickness;
     }
 
+    children = menu_shell->children;
+
     if (priv->pack_direction == PACK_DIRECTION_LTR ||
-      priv->pack_direction == PACK_DIRECTION_RTL)
+        priv->pack_direction == PACK_DIRECTION_RTL)
     {
       child_allocation.height = MAX (1, (int)allocation->height - child_allocation.y * 2);
 
       offset = child_allocation.x;  /* Window edge to menubar start */
-      ltr_x = child_allocation.x;
-
-      children = menu_shell->children;
+      ltr_x  = child_allocation.x;
 
       while (children) {
 
         int toggle_size;
 
-        child = children->data;
+        child    = children->data;
         children = children->next;
 
         geda_menu_item_toggle_size_request (GEDA_MENU_ITEM (child),
@@ -365,8 +367,9 @@ geda_menu_bar_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
           ltr_x = allocation->width -
           child_requisition.width - offset;
         }
-        if (gtk_widget_get_visible (child))
-        {
+
+        if (gtk_widget_get_visible (child)) {
+
           if ((direction == GTK_TEXT_DIR_LTR) == (priv->pack_direction == PACK_DIRECTION_LTR))
             child_allocation.x = ltr_x;
           else
@@ -389,8 +392,6 @@ geda_menu_bar_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
 
       offset = child_allocation.y;  /* Window edge to menubar start */
       ltr_y  = child_allocation.y;
-
-      children = menu_shell->children;
 
       while (children) {
 
