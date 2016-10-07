@@ -36,7 +36,8 @@
  *
  * \sa geda_struct_page_get_selection
  */
-GList *geda_toplevel_struct_get_selection (GedaToplevel *toplevel)
+GList*
+geda_toplevel_struct_get_selection (GedaToplevel *toplevel)
 {
   Page      *page;
   SELECTION *selection;
@@ -67,7 +68,8 @@ GList *geda_toplevel_struct_get_selection (GedaToplevel *toplevel)
  *
  * \return GList of symbols.
  */
-GList *geda_toplevel_struct_get_symbols (const GedaToplevel *toplevel)
+GList*
+geda_toplevel_struct_get_symbols (const GedaToplevel *toplevel)
 {
   g_return_val_if_fail ((toplevel != NULL), NULL);
 
