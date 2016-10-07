@@ -48,7 +48,7 @@
  *  Group 6 == Module/File No.
  * \par
  *
- *  Test Identifiers:  O  06  88, 88
+ *  Test Identifiers:  O  06  88  88
  *                     ^   ^   ^   ^
  *    group-code ______|   |   |   |
  *                         |   |   |
@@ -108,7 +108,6 @@
  *      O0646    geda_circle_object_shortest_distance
  *      O0647    geda_circle_object_to_buffer
  *      O0648    geda_circle_object_translate
- *
  */
 
 int

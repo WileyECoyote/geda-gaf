@@ -45,7 +45,7 @@
  *  Group 5 == Module/File No.
  * \par
  *
- *  Test Identifiers:  O  05  88, 88
+ *  Test Identifiers:  O  05  88  88
  *                     ^   ^   ^   ^
  *    group-code ______|   |   |   |
  *                         |   |   |

@@ -45,7 +45,7 @@
  */
 
 /*
- *  Test Identifiers:  O  03  88, 88
+ *  Test Identifiers:  O  03  88  88
  *                     ^   ^   ^   ^
  *    group-code ______|   |   |   |
  *                         |   |   |

@@ -51,7 +51,7 @@
  *  Group 16 == Module/File No.
  * \par
  *
- *  Test Identifiers:  O  16  88, 88
+ *  Test Identifiers:  O  16  88  88
  *                     ^   ^   ^   ^
  *    group-code ______|   |   |   |
  *                         |   |   |

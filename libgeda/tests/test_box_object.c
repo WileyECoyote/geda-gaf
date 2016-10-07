@@ -45,7 +45,7 @@
  *  Group 4 == Module/File No.
  * \par
  *
- *  Test Identifiers:  O  04  88, 88
+ *  Test Identifiers:  O  04  88  88
  *                     ^   ^   ^   ^
  *    group-code ______|   |   |   |
  *                         |   |   |

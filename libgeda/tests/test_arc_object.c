@@ -43,7 +43,7 @@
  */
 
 /*
- *  Test Identifiers:  O  02  88, 88
+ *  Test Identifiers:  O  02  88  88
  *                     ^   ^   ^   ^
  *    group-code ______|   |   |   |
  *                         |   |   |

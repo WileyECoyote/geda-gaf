@@ -48,7 +48,7 @@
  *  Group 11 == Module/File No.
  * \par
  *
- *  Test Identifiers:  O  11  88, 88
+ *  Test Identifiers:  O  11  88  88
  *                     ^   ^   ^   ^
  *    group-code ______|   |   |   |
  *                         |   |   |
