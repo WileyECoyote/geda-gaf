@@ -1,3 +1,7 @@
+2016-10-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/Makefile.am: Include geda_math.h.
+
 2016-10-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_menu.c: Rename functions with geda_iface prefix.
