@@ -4,6 +4,8 @@
 
     * src/object/o_set.c: Add function geda_set_object_selected.
 
+    * tests/test_object_list.c: Add test module for functions in o_list.c.
+
 2016-10-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_menu.c: Rename functions with geda_iface prefix.

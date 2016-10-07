@@ -19,6 +19,7 @@ test_complex_object
 test_file
 test_line
 test_line_object
+test_object_list
 test_list
 test_net
 test_net_object

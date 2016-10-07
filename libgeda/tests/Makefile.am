@@ -26,6 +26,7 @@ check_object = \
 	test_bus_object \
 	test_circle_object \
 	test_line_object \
+	test_object_list \
 	test_net_object \
 	test_picture_object
 
