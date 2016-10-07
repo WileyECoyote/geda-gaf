@@ -225,14 +225,36 @@ void geda_set_object_line_options(GedaObject *object, LINE_OPTIONS *line_options
   }
 }
 
-/*! \brief Set visibility of the object.
- *  \par Function Description
+/*!
+ * \brief Set object Select Flag
+ * \par Function Description
+ *  Sets the select flag for the given object.
+ *
+ * \warning Sets flag only, does NOT emit notifications
+ *
+ * \param [in] object  GedaObject to be set selected.
+ *
+ * \sa geda_object_selection_select
+ */
+void geda_set_object_selected(GedaObject *object)
+{
+  if (GEDA_IS_OBJECT(object)) {
+    object->selected = TRUE;
+  }
+  else {
+    BUG_PMSG("Not a gEDA GedaObject: <%p>", object);
+  }
+}
+
+/*!
+ * \brief Set visibility of the object.
+ * \par Function Description
  *  Set value of visibility field within the object.
  *  If resulting visibility value is changed,
  *  invalidate the bounds of the object and parent objects.
  *
- *  \param object     The #GedaObject structure to be modified
- *  \param visibility Boolean desired state
+ * \param object     The #GedaObject structure to be modified
+ * \param visibility Boolean desired state
  */
 void
 geda_set_object_visibility (GedaObject *object, int visibility)

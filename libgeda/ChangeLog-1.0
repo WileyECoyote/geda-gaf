@@ -2,6 +2,8 @@
 
     * include/Makefile.am: Include geda_math.h.
 
+    * src/object/o_set.c: Add function geda_set_object_selected.
+
 2016-10-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_menu.c: Rename functions with geda_iface prefix.
