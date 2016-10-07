@@ -5880,7 +5880,6 @@ void geda_combo_box_set_active_iter (GedaComboBox *combobox, GtkTreeIter *iter)
  *
  * \returns Count of GtkTreeModel items or 0.
  */
-
 int
 geda_combo_box_get_count (GedaComboBox *combo_box)
 {
@@ -5892,8 +5891,9 @@ geda_combo_box_get_count (GedaComboBox *combo_box)
 
     if (combo_box->priv->model) {
 
-      void counter(void *model, void *path, void *iter, void *data) {
-        count++;
+      bool counter(void *model, void *path, void *iter, void *data) {
+         count++;
+         return FALSE;
       }
 
       gtk_tree_model_foreach (combo_box->priv->model,

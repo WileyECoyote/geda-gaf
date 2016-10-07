@@ -1,3 +1,8 @@
+2016-10-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_combobox.c: Revise subfunction counter to return
+      FALSE.
+
 2016-10-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_menu_shell.h: Remove declaration for non-existent
