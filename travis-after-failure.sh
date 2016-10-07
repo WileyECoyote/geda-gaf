@@ -12,4 +12,6 @@ test -f ./libgedacolor/tests/test-suite.log && cat ./libgedacolor/tests/test-sui
 test -f ./libgedathon/tests/test-suite.log && cat libgedathon/tests/test-suite.log
 test -f ./libgedathon/tests/run_tests.sh.log && cat ./libgedathon/tests/run_tests.sh.log
 
+test -f ./libgedauio/tests/test-suite.log && cat ./libgedauio/tests/test-suite.log
+
 test -f ./gschem/tests/test-suite.log && cat ./gschem/tests/test-suite.log
