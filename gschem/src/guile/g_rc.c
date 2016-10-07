@@ -901,7 +901,7 @@ SCM g_rc_add_menu(SCM scm_menu_name, SCM scm_menu_items)
 
   menu_name = scm_to_utf8_string (scm_menu_name);
 
-  i_menu_add_entry(menu_name, scm_menu_items);
+  geda_iface_menu_add_entry(menu_name, scm_menu_items);
   free (menu_name);
 
   return SCM_BOOL_T;
