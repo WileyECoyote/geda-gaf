@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-09-05 15:35-0500\n"
+"POT-Creation-Date: 2016-10-06 23:22-0500\n"
 "PO-Revision-Date: 2012-01-27 14:17+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Serbian <sr@li.org>\n"
@@ -101,12 +101,12 @@ msgstr ""
 msgid " DONE\n"
 msgstr ""
 
-#: gattrib/src/s_object.c:217
+#: gattrib/src/s_object.c:216
 #, c-format
 msgid "%s, we have failed to find the attrib %s on the component. Exiting...\n"
 msgstr ""
 
-#: gattrib/src/s_object.c:335
+#: gattrib/src/s_object.c:334
 #, c-format
 msgid "%s: trying to add attrib to non-complex or non-net!\n"
 msgstr ""
@@ -182,7 +182,7 @@ msgstr ""
 msgid "In s_string_list_delete_item, couldn't delete item %s\n"
 msgstr ""
 
-#: gattrib/src/s_table.c:565
+#: gattrib/src/s_table.c:568
 #, c-format
 msgid "- Starting internal pin TABLE creation\n"
 msgstr ""

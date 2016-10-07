@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-09-05 15:35-0500\n"
+"POT-Creation-Date: 2016-10-06 23:22-0500\n"
 "PO-Revision-Date: 2014-08-31 20:31+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -108,14 +108,14 @@ msgstr ""
 msgid " DONE\n"
 msgstr " GEDAAN\n"
 
-#: gattrib/src/s_object.c:217
+#: gattrib/src/s_object.c:216
 #, fuzzy, c-format
 msgid "%s, we have failed to find the attrib %s on the component. Exiting...\n"
 msgstr ""
 "In s_object_remove_attrib_in_object, is gefaald om attrib %s in de component "
 "te vinden.  Afsluiten . . .\n"
 
-#: gattrib/src/s_object.c:335
+#: gattrib/src/s_object.c:334
 #, fuzzy, c-format
 msgid "%s: trying to add attrib to non-complex or non-net!\n"
 msgstr ""
@@ -202,7 +202,7 @@ msgstr ""
 msgid "In s_string_list_delete_item, couldn't delete item %s\n"
 msgstr "In s_string_list_delete_item, kan item %s niet verwijderen\n"
 
-#: gattrib/src/s_table.c:565
+#: gattrib/src/s_table.c:568
 #, c-format
 msgid "- Starting internal pin TABLE creation\n"
 msgstr "- Start het aanmaken van de interne pennen TABEL.\n"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-09-05 13:51-0500\n"
+"POT-Creation-Date: 2016-10-06 23:21-0500\n"
 "PO-Revision-Date: 2012-10-22 13:10+0000\n"
 "Last-Translator: Patrick Fiquet <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1153,12 +1153,12 @@ msgstr ""
 msgid "Setting mirror to 0\n"
 msgstr ""
 
-#: libgeda/src/object/o_embed.c:52
+#: libgeda/src/object/o_embed.c:51
 #, c-format
 msgid "Component [%s] has been embedded\n"
 msgstr "Le composant [%s] a été embarqué\n"
 
-#: libgeda/src/object/o_embed.c:103
+#: libgeda/src/object/o_embed.c:101
 #, c-format
 msgid ""
 "Could not find component [%s], while trying to unembed. Component is still "
@@ -1167,7 +1167,7 @@ msgstr ""
 "Impossible de trouver le composant [%s] lors du détachement. Le composant "
 "est encore embarqué\n"
 
-#: libgeda/src/object/o_embed.c:112
+#: libgeda/src/object/o_embed.c:110
 #, c-format
 msgid "Component [%s] has been successfully unembedded\n"
 msgstr "Le composant [%s] a été détaché avec succès\n"

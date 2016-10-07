@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-09-05 13:51-0500\n"
+"POT-Creation-Date: 2016-10-06 23:21-0500\n"
 "PO-Revision-Date: 2012-01-27 14:12+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Serbian <sr@li.org>\n"
@@ -1147,12 +1147,12 @@ msgstr ""
 msgid "Setting mirror to 0\n"
 msgstr ""
 
-#: libgeda/src/object/o_embed.c:52
+#: libgeda/src/object/o_embed.c:51
 #, c-format
 msgid "Component [%s] has been embedded\n"
 msgstr "Компонента (%s) је уграђена\n"
 
-#: libgeda/src/object/o_embed.c:103
+#: libgeda/src/object/o_embed.c:101
 #, c-format
 msgid ""
 "Could not find component [%s], while trying to unembed. Component is still "
@@ -1161,7 +1161,7 @@ msgstr ""
 "Не могу да пронађем компоненту (%s), док покушавам да је избацим. Компонента "
 "је још увек уграђена.\n"
 
-#: libgeda/src/object/o_embed.c:112
+#: libgeda/src/object/o_embed.c:110
 #, c-format
 msgid "Component [%s] has been successfully unembedded\n"
 msgstr "Компонента (%s) је успешно избачена\n"
