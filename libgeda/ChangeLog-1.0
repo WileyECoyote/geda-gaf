@@ -1,3 +1,7 @@
+2016-10-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/file/f_sys.c:: Rename functions with geda_file prefix.
+
 2016-10-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/Makefile.am: Include geda_math.h.

@@ -766,7 +766,7 @@ static void i_sessions_load_data(void)
           record.page_count   = i_sessions_get_count(record.session_file);
 
           tmpname = (char*)f_get_basename(file);
-          f_sys_remove_extension(tmpname);
+          geda_remove_extension(tmpname);
 
           record.session_name = geda_utility_string_strdup(tmpname);
 
@@ -842,7 +842,7 @@ int i_sessions_delete_session(GschemToplevel *w_current, const char *name)
 
   u_log_message( _("Removing session: %s"), name);
 
-  if (!f_sys_remove(record->session_file)) {
+  if (!geda_remove_file(record->session_file)) {
 
     /* Do this BEFORE we delete name! */
     if (w_current->session_name != NULL) {
@@ -891,7 +891,7 @@ int i_sessions_delete_session(GschemToplevel *w_current, const char *name)
 int i_sessions_export_session(const char *name, const char *filename)
 {
   Session *record = i_session_get_record(name);
-  return f_sys_copy (record->session_file, filename);
+  return geda_file_copy (record->session_file, filename);
 }
 
 /*!

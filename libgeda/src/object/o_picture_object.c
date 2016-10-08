@@ -1524,7 +1524,7 @@ geda_picture_object_read (const char  *first_line,
     /* Handle relative filenames, which will not work with UNDODISK.
      * File names in schematics would not normally be relative but
      * could happen if someone edited the file */
-    filename = f_sys_normalize_name (tmpstr, &err);
+    filename = geda_file_sys_normalize_name (tmpstr, &err);
 
     if (err) {
       if (!embedded) {

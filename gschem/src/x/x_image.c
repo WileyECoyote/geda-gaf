@@ -299,7 +299,7 @@ x_image_update_dialog_filename(GedaComboBox     *type_Combo,
   file_name = (char*)f_get_basename (fullname);
 
   /* Get file name, without extension, add NULL where right-most period */
-  f_sys_remove_extension (file_name);
+  geda_remove_extension (file_name);
 
   /* Add the extension */
   strcat(file_name, ".");

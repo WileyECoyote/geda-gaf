@@ -183,7 +183,7 @@ SCM g_rc_component_library(SCM path, SCM name)
             temp = g_build_filename (cwd, directory + 2, NULL);
           }
           else { /* Is above so normalize the path */
-            temp = f_sys_normalize_name(directory, NULL);
+            temp = geda_file_sys_normalize_name(directory, NULL);
             /*temp = g_build_filename (cwd, directory, NULL);*/
           }
           geda_struct_clib_add_directory (temp, namestr);

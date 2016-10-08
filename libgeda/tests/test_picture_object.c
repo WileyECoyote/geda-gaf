@@ -112,7 +112,7 @@ int pretest(void)
     if (src_dir) {
       char *source;
       source = g_build_filename(src_dir, IMAGE_FILE, NULL);
-      result = f_sys_copy(source, IMAGE_FILE);
+      result = geda_file_copy(source, IMAGE_FILE);
       g_free (source);
       remove_file = 1;
     }
@@ -128,7 +128,7 @@ void posttest(void)
    * a make check in a VPATH build, so remove the file if set */
   if (remove_file) {
     if(access(IMAGE_FILE, R_OK) == 0) {
-      if (f_sys_remove(IMAGE_FILE)) {
+      if (geda_file_sys_remove(IMAGE_FILE)) {
         fprintf(stderr,"Error removing file <%s>: %s\n", IMAGE_FILE, strerror(errno));
         exit (1);
       }

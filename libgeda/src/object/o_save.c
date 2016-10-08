@@ -62,7 +62,7 @@ geda_object_save_auto_backup(GedaToplevel *toplevel)
       char *real_filename;
 
       /* Get the real filename and file permissions */
-      real_filename = f_sys_follow_symlinks (p_current->filename, NULL);
+      real_filename = geda_file_sys_follow_symlinks (p_current->filename, NULL);
 
       count++;
 

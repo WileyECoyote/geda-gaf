@@ -2023,7 +2023,7 @@ void x_menu_recent_files_add(const char *filename)
    }
 
    /* Normalize the filename. */
-   save_fn = f_sys_normalize_name (filename, &err);
+   save_fn = geda_file_sys_normalize_name (filename, &err);
    if (err != NULL) {
      save_fn = geda_utility_string_strdup (filename);
      g_error_free (err);

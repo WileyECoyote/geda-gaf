@@ -89,7 +89,7 @@ geda_struct_hierarchy_down_single(GedaToplevel *toplevel, const char *filename,
   switch (flag) {
     case HIERARCHY_NORMAL_LOAD:
     {
-      char *filename = f_sys_normalize_name (string, NULL);
+      char *filename = geda_file_sys_normalize_name (string, NULL);
 
       found = geda_struct_page_search (toplevel, filename);
       GEDA_FREE (filename);

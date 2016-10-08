@@ -41,12 +41,12 @@ extern "C" {
          void    f_print_set_type                (GedaToplevel *toplevel, int type);
 
 /* f_sys.c */
-          int    f_sys_copy                      (const char *source, const char *target);
-          int    f_sys_cmp_mod_time              (const char *filename, time_t ref_time);
-         char   *f_sys_follow_symlinks           (const char *filename, GError **error);
-         char   *f_sys_normalize_name            (const char *filename, GError **error);
-          int    f_sys_remove                    (const char *pathname);
-         bool    f_sys_remove_extension          (      char *filename);
+          int    geda_file_copy                  (const char *source, const char *target);
+          int    geda_file_sys_cmp_mod_time      (const char *filename, time_t ref_time);
+         char   *geda_file_sys_follow_symlinks   (const char *filename, GError **error);
+         char   *geda_file_sys_normalize_name    (const char *filename, GError **error);
+          int    geda_file_sys_remove            (const char *pathname);
+         bool    geda_file_sys_remove_extension  (      char *filename);
 
 /* g_evaluate.c */
           SCM    g_scm_eval_action               (SCM action);

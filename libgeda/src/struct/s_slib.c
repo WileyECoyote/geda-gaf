@@ -293,7 +293,7 @@ geda_struct_slib_search_for_file (const char *basename)
 
   if (slib_path) {
 
-    char *file_path = f_sys_normalize_name (slib_path, NULL);
+    char *file_path = geda_file_sys_normalize_name (slib_path, NULL);
 
     char *full_path = g_build_filename (file_path, basename, NULL);
 

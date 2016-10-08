@@ -118,7 +118,7 @@ int test_file (void)
 
   char *auto_fname = f_get_autosave_filename (source);
 
-  f_sys_copy(source, auto_fname);
+  geda_file_copy(source, auto_fname);
 
   if (!f_has_active_autosave(source, &err)) {
     fprintf(stderr, "FAILED: (F010202) file_has_autosave %s\n", auto_fname);
@@ -218,7 +218,7 @@ int test_file (void)
     result++;
   }
 
-  f_sys_remove(auto_fname);
+  geda_file_sys_remove(auto_fname);
   GEDA_FREE(auto_fname);
 
   geda_remove_backup_file(NULL);
@@ -398,7 +398,7 @@ int test_print (void)
 
 static int remove_file = 0;
 
-int test_f_sys_copy ()
+int test_geda_file_copy ()
 {
   int result = 0;
 
@@ -444,21 +444,21 @@ int test_sys (void)
 
   result = errno = 0;
 
-  /* === Function 01: f_sys_copy === */
+  /* === Function 01: geda_file_copy === */
 
-      /* See also test_picture_object.c f_sys_copy() */
+      /* See also test_picture_object.c geda_file_copy() */
 
-      result = test_f_sys_copy(); /* test performed in subfunction */
+      result = test_geda_file_copy(); /* test performed in subfunction */
 
-  /* === Function 02: geda_cmp_file_mod_time f_sys_cmp_mod_time === */
+  /* === Function 02: geda_cmp_file_mod_time geda_file_sys_cmp_mod_time === */
 
       /* TODO: check geda_cmp_file_mod_time */
 
-  /* === Function 03: geda_follow_symlinks f_sys_follow_symlinks === */
+  /* === Function 03: geda_follow_symlinks geda_file_sys_follow_symlinks === */
 
       /* TODO: check geda_follow_symlinks */
 
-  /* === Function 04: f_sys_normalize_name === */
+  /* === Function 04: geda_file_sys_normalize_name === */
 
   string = geda_normalize_name(NULL, NULL);
   if (string) {
@@ -534,7 +534,7 @@ int test_sys (void)
     g_error_free(F0504_err);
   }
 
-  /* === Function 05: f_sys_remove === */
+  /* === Function 05: geda_file_sys_remove === */
 
   /* See also test_picture_object.c posttest() */
 
@@ -543,7 +543,7 @@ int test_sys (void)
     if(access(TEST_FILE, R_OK) == 0) {
 
       /* This deletes the file that was copied to the tests directory
-       * while testing f_sys_copy
+       * while testing geda_file_copy
        */
 
       if (geda_remove_file(TEST_FILE)) {
@@ -557,7 +557,7 @@ int test_sys (void)
     }
   }
 
-  /* === Function 06: f_sys_remove_extension === */
+  /* === Function 06: geda_file_sys_remove_extension === */
 
   static const struct _TestData F06_str[] =
   {

@@ -71,11 +71,11 @@
 #define geda_set_print_type       f_print_set_type
 
 /* f_sys.c */
-#define geda_copy_file            f_sys_copy
-#define geda_cmp_file_mod_time    f_sys_cmp_mod_time
-#define geda_follow_symlinks      f_sys_follow_symlinks
-#define geda_normalize_name       f_sys_normalize_name
-#define geda_remove_file          f_sys_remove
-#define geda_remove_extension     f_sys_remove_extension
+#define geda_copy_file            geda_file_copy
+#define geda_cmp_file_mod_time    geda_file_sys_cmp_mod_time
+#define geda_follow_symlinks      geda_file_sys_follow_symlinks
+#define geda_normalize_name       geda_file_sys_normalize_name
+#define geda_remove_file          geda_file_sys_remove
+#define geda_remove_extension     geda_file_sys_remove_extension
 
 #endif /* __GEDA_FILE_MAC__ */

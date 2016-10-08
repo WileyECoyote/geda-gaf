@@ -1,5 +1,10 @@
 2016-10-04 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_image.c: Utilize geda_remove_extension macro in function
+      x_image_update_dialog_filename.
+
+2016-10-04 Wiley E. Hill <wileyhill@gmail.com>
+
     * etc/gschem-gtkrc: Change GedaMenu::vertical-padding setting to 5, which
       seems to prove a more uniform gap around popup menus. Add GedaMenuItem::
       vertical-padding with a value of 2.

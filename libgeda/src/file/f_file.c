@@ -201,7 +201,7 @@ f_open(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
   }
 
   /* get full, absolute path to file */
-  full_filename = f_sys_normalize_name (filename, &tmp_err);
+  full_filename = geda_file_sys_normalize_name (filename, &tmp_err);
 
   if (full_filename == NULL) {
     g_set_error (err, G_FILE_ERROR, tmp_err->code,
@@ -389,7 +389,7 @@ f_remove_backup_file (const char *filename)
     char *real_filename;
 
     /* Get the real filename and file permissions */
-    real_filename = f_sys_follow_symlinks (filename, NULL);
+    real_filename = geda_file_sys_follow_symlinks (filename, NULL);
 
     if (real_filename == NULL) {
       u_log_message (_("%s: Can not get the real filename of %s."),
@@ -463,7 +463,7 @@ f_save(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
   result        = 1;
 
   /* Get the real filename and file permissions */
-  real_filename = f_sys_follow_symlinks (filename, &tmp_err);
+  real_filename = geda_file_sys_follow_symlinks (filename, &tmp_err);
 
   if (real_filename == NULL) {
     g_set_error (err, tmp_err->domain, tmp_err->code, err_not_real,
@@ -520,11 +520,11 @@ f_save(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
             u_log_message (log_set_back, backup_filename, strerror (errno));
           }
           else { /* delete backup from previous session */
-            f_sys_remove (backup_filename);
+            geda_file_sys_remove (backup_filename);
           }
         }
 
-        if (f_sys_copy(real_filename, backup_filename) != 0) {
+        if (geda_file_copy(real_filename, backup_filename) != 0) {
           u_log_message (log_not_back, backup_filename, strerror (errno));
         }
         else {
