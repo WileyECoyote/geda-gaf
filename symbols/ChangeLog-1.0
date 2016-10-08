@@ -1,5 +1,8 @@
 2016-10-08 Wiley E. Hill <wileyhill@gmail.com>
 
+    * arduino/arduino-nano-1.sym: Change footprint DIL 30 600->DIL-30-600,
+      fix attribute visibility and positions.
+
     * diode/half-bridge/MBR1545CT-1.sym: Change footprint TO-220AB->TO-220
       since there is no TO-220AB in PCB library.
 
