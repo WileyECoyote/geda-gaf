@@ -1,3 +1,11 @@
+2016-10-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu.c: Give up on "can-change-accels". Users can
+      change the menu options is scheme for gschem and in xml for gattrib,
+      "other" applications could do like-wise. A flaw in Glib result in
+      glib completing the class initialization before the settings property
+      is setup by Gtk.
+
 2016-10-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Revise subfunction counter to return
