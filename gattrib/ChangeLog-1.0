@@ -1,3 +1,8 @@
+2016-10-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gattrib/src/gattrib.c: Utilize geda_normalize_filename macro in function
+      gattrib_main.
+
 2016-09-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_dialog.c: Replace geda_entry_new with geda_entry_new_visible

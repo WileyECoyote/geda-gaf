@@ -460,22 +460,22 @@ int test_sys (void)
 
   /* === Function 04: geda_file_sys_normalize_name === */
 
-  string = geda_normalize_name(NULL, NULL);
+  string = geda_normalize_filename(NULL, NULL);
   if (string) {
-    fprintf(stderr, "FAILED: (F050400) geda_normalize_name <%s>\n", string);
+    fprintf(stderr, "FAILED: (F050400) geda_normalize_filename <%s>\n", string);
     result++;
   }
 
-  string = geda_normalize_name("./../src", NULL);
+  string = geda_normalize_filename("./../src", NULL);
   if (string) {
     if (strncmp(string, "/", 1)) {
-      fprintf(stderr, "FAILED: (F050401A) geda_normalize_name <%s>\n", string);
+      fprintf(stderr, "FAILED: (F050401A) geda_normalize_filename <%s>\n", string);
       result++;
       string = NULL;
     }
     else {
       if (!strstr(string, "/libgeda/src")) {
-        fprintf(stderr, "FAILED: (F050401B) geda_normalize_name <%s>\n", string);
+        fprintf(stderr, "FAILED: (F050401B) geda_normalize_filename <%s>\n", string);
         result++;
         string = NULL;
       }
@@ -483,7 +483,7 @@ int test_sys (void)
 
   }
   else {
-    fprintf(stderr, "FAILED: (F050401C) geda_normalize_name NULL\n");
+    fprintf(stderr, "FAILED: (F050401C) geda_normalize_filename NULL\n");
     result++;
     string = NULL;
   }
@@ -492,42 +492,42 @@ int test_sys (void)
 
     free(string);
 
-    string = geda_normalize_name("../tests/../src", NULL);
+    string = geda_normalize_filename("../tests/../src", NULL);
     if (string) {
       if (strncmp(string, "/", 1)) {
-        fprintf(stderr, "FAILED: (F050402A) geda_normalize_name <%s>\n", string);
+        fprintf(stderr, "FAILED: (F050402A) geda_normalize_filename <%s>\n", string);
         result++;
       }
       else {
         if (!strstr(string, "/libgeda/src")) {
-          fprintf(stderr, "FAILED: (F050402B) geda_normalize_name <%s>\n", string);
+          fprintf(stderr, "FAILED: (F050402B) geda_normalize_filename <%s>\n", string);
           result++;
         }
         if (strstr(string, "..")) {
-          fprintf(stderr, "FAILED: (F050402B) geda_normalize_name <%s>\n", string);
+          fprintf(stderr, "FAILED: (F050402B) geda_normalize_filename <%s>\n", string);
           result++;
         }
       }
       free(string);
     }
     else {
-      fprintf(stderr, "FAILED: (F050402D) geda_normalize_name NULL\n");
+      fprintf(stderr, "FAILED: (F050402D) geda_normalize_filename NULL\n");
       result++;
     }
   }
 
-  string = geda_normalize_name("../noexist", NULL);
+  string = geda_normalize_filename("../noexist", NULL);
   if (string) {
-    fprintf(stderr, "FAILED: (F050403) geda_normalize_name <%s>\n", string);
+    fprintf(stderr, "FAILED: (F050403) geda_normalize_filename <%s>\n", string);
     result++;
   }
 
   GError *F0504_err = NULL;
 
-  string = geda_normalize_name("../noexist", &F0504_err);
+  string = geda_normalize_filename("../noexist", &F0504_err);
 
   if (!F0504_err) {
-    fprintf(stderr, "FAILED: (F050404) geda_normalize_name <%s>\n", string);
+    fprintf(stderr, "FAILED: (F050404) geda_normalize_filename <%s>\n", string);
     result++;
   }
   else {
