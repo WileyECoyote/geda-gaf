@@ -6,6 +6,8 @@
     * diode/half-bridge/MBR1545CT-1.sym: Change footprint TO-220AB->TO-220
       since there is no TO-220AB in PCB library.
 
+    * irf/IRF510N-1.sym: Add symbol; N-Channel Power MOSFET.
+
     * irf/IR3315-1.sym: Add symbol; high side MOSFET switch.
 
 2016-09-30 Wiley E. Hill <wileyhill@gmail.com>
