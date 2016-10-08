@@ -10,6 +10,9 @@
 
     * irf/IR3315-1.sym: Add symbol; high side MOSFET switch.
 
+    * linear/switchreg/IZ1215SA-1.sym: Add symbol; isolated DC-DC converter,
+      15V out.
+
 2016-09-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * micro/ACE1202-1.sym: Update pin 3 (NC) type = pas, resequence attributes.
