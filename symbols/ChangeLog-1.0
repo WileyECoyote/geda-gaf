@@ -1,3 +1,7 @@
+2016-10-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * lineartech/LT1719-1.sym: Add symbol LT1719 comparator.
+
 2016-10-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * arduino/arduino-nano-1.sym: Change footprint DIL 30 600->DIL-30-600,
