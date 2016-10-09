@@ -61,7 +61,6 @@ enum {
    PROP_SHOW_PREVIEW
 };
 
-
 enum {
   FAMILY_COLUMN,
   FAMILY_NAME_COLUMN
@@ -129,6 +128,7 @@ geda_font_dialog_change_entry_map (GedaFontDialog *dialog, GtkWidget *widget)
   pango_font_description_free(desc);
 
 }
+
 /* This sets the font in the preview entry to the selected font, and tries to
    make sure that the preview entry is a reasonable size, i.e. so that the
    text can be seen with a bit of space to spare. But it tries to avoid
@@ -315,6 +315,7 @@ geda_font_dialog_ref_face (GedaFontDialog *dialog, PangoFontFace *face)
 
   dialog->face = face;
 }
+
 static void
 geda_font_dialog_load_font (GedaFontDialog *dialog)
 {
@@ -334,7 +335,6 @@ geda_font_dialog_font_changed (GtkWidget *entry, GedaFontDialog *dialog)
 {
   geda_font_dialog_load_font(dialog);
 }
-
 
 static void
 scroll_to_selection (GtkTreeView *tree_view)
@@ -512,7 +512,6 @@ geda_font_dialog_show_available_sizes (GedaFontDialog *dialog)
     if (font_sizes[i] == dialog->font_size)
       set_cursor_to_iter (GTK_TREE_VIEW (dialog->size_list), &iter);
   }
-
 }
 
 int valid_font_size (int new_size)
@@ -533,6 +532,7 @@ int valid_font_size (int new_size)
   }
   return font_size;
 }
+
 /* This is called when a size is selected in the list. */
 static void callback_select_size (GtkTreeSelection *selection, void * data)
 {
@@ -564,7 +564,6 @@ static void callback_select_size (GtkTreeSelection *selection, void * data)
 
   }
 }
-
 
 /* This selects a style when the user selects a font. It just uses the first
    available style at present. I was thinking of trying to maintain the
@@ -699,6 +698,7 @@ callback_select_style (GtkTreeSelection *selection, void * data)
     g_free(face_name);
   }
 }
+
 /* This selects the appropriate list rows.
    First we check the fontname is valid and try to find the font family
    - i.e. the name in the main list. If we can't find that, then just return.
@@ -1086,6 +1086,7 @@ static bool callback_size_entry_focus_out (GtkWidget     *w,
 
   return TRUE;
 }
+
 static AtkObject*
 atk_widget_linked_label_new( GtkWidget *label, GtkWidget *linkto)
 {
@@ -1137,6 +1138,7 @@ atk_widget_linked_label_new( GtkWidget *label, GtkWidget *linkto)
 
   return atk_obj;
 }
+
 static void
 geda_font_dialog_add_widgets(GedaFontDialog *dialog)
 {
@@ -1729,12 +1731,20 @@ is_a_geda_font_dialog (GedaFontDialog *font_dialog)
   return FALSE;
 }
 
-GtkWidget* geda_font_dialog_new (void)
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
+GtkWidget *geda_font_dialog_new (void)
 {
   return g_object_new (GEDA_TYPE_FONT_DIALOG, NULL);
 }
 
-GtkWidget* geda_font_dialog_new_with_title (const char *title)
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
+GtkWidget *geda_font_dialog_new_with_title (const char *title)
 {
   GedaFontDialog *dialog;
 
@@ -1747,7 +1757,11 @@ GtkWidget* geda_font_dialog_new_with_title (const char *title)
   return GTK_WIDGET (dialog);
 }
 
-GtkWidget* geda_font_dialog_new_with_font_name (const char *font_name)
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
+GtkWidget *geda_font_dialog_new_with_font_name (const char *font_name)
 {
   GedaFontDialog *dialog;
 
@@ -1760,6 +1774,10 @@ GtkWidget* geda_font_dialog_new_with_font_name (const char *font_name)
   return GTK_WIDGET (dialog);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 GtkWidget*
 geda_font_chooser_dialog_new (const char *title, GtkWindow   *parent)
 {
@@ -1773,6 +1791,10 @@ geda_font_chooser_dialog_new (const char *title, GtkWindow   *parent)
   return GTK_WIDGET (dialog);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 GdkFont*
 geda_font_dialog_get_font (GedaFontDialog *dialog)
 {
@@ -1785,6 +1807,10 @@ geda_font_dialog_get_font (GedaFontDialog *dialog)
   return dialog->font;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 PangoFontDescription*
 geda_font_dialog_get_font_desc (GedaFontDialog *dialog)
 {
@@ -1801,6 +1827,10 @@ geda_font_dialog_get_font_desc (GedaFontDialog *dialog)
   return font_desc;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 void
 geda_font_dialog_set_font_desc (GedaFontDialog *dialog, const PangoFontDescription *font_desc)
 {
@@ -1810,6 +1840,10 @@ geda_font_dialog_set_font_desc (GedaFontDialog *dialog, const PangoFontDescripti
 
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 char *geda_font_dialog_get_font_name (GedaFontDialog *dialog)
 {
   char *fontname;
@@ -1821,6 +1855,10 @@ char *geda_font_dialog_get_font_name (GedaFontDialog *dialog)
   return fontname;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 bool
 geda_font_dialog_set_font_name (GedaFontDialog *dialog, const char *fontname)
 {
@@ -1868,7 +1906,6 @@ geda_font_dialog_set_font_name (GedaFontDialog *dialog, const char *fontname)
  *  This function retrieves the font size property.
  *
  * \retval interger value of the current font size setting.
- *
  */
 int geda_font_dialog_get_font_size (GedaFontDialog *dialog)
 {
@@ -1935,6 +1972,11 @@ geda_font_dialog_set_preview_text (GedaFontDialog *dialog, const char *text)
   return TRUE;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 bool
 geda_font_dialog_get_show_preview (GedaFontDialog *dialog)
 {

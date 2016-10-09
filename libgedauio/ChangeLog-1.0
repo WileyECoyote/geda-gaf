@@ -1,3 +1,8 @@
+2016-10-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_font_dialog.c Add Doxygen "template" blocks, remove
+      extra lines.
+
 2016-10-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Give up on "can-change-accels". Users can
