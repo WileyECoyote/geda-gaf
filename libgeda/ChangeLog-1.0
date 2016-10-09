@@ -1,9 +1,13 @@
+2016-10-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/file/f_print.c: Rename functions with geda_file prefix.
+
 2016-10-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_file.h: rename macro geda_normalize_name->
       geda_normalize_filename.
 
-    * src/file/f_sys.c:: Rename functions with geda_file prefix.
+    * src/file/f_sys.c: Rename functions with geda_file prefix.
 
 2016-10-07 Wiley E. Hill <wileyhill@gmail.com>
 

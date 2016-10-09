@@ -79,7 +79,7 @@ void f_print_set_line_width(FILE *fp, int width)
  *
  *  \returns color string or NULL if the color is disabled.
  *
- *  \sa f_print_file f_print_command
+ *  \sa geda_file_print_file geda_file_print_command
  */
 static char *f_print_get_color_string(int index)
 {
@@ -428,7 +428,7 @@ void f_print_objects (GedaToplevel *toplevel, FILE *fp, const GList *obj_list,
  *  \return 0 on success, -1 on failure.
  */
 int
-f_print_file (GedaToplevel *toplevel, Page *page, GArray *color_map, const char *filename)
+geda_file_print_file (GedaToplevel *toplevel, Page *page, GArray *color_map, const char *filename)
 {
   FILE *fp;
   int result;
@@ -445,10 +445,10 @@ f_print_file (GedaToplevel *toplevel, Page *page, GArray *color_map, const char 
   }
   else {
 
-    result = f_print_stream(toplevel, page, fp);
+    result = geda_file_print_stream(toplevel, page, fp);
 
     if (result != 0) {
-      /* If there was an error in f_print_stream, then unlink the output file. */
+      /* If there was an error in geda_file_print_stream, then unlink the output file. */
       unlink(filename);
     }
     fclose (fp);
@@ -471,7 +471,7 @@ f_print_file (GedaToplevel *toplevel, Page *page, GArray *color_map, const char 
  *  \return 0 on success, -1 on failure.
  */
 int
-f_print_command (GedaToplevel *toplevel, Page *page, GArray *color_map, const char *command)
+geda_file_print_command (GedaToplevel *toplevel, Page *page, GArray *color_map, const char *command)
 {
   FILE *fp;
   int   result;
@@ -488,7 +488,7 @@ f_print_command (GedaToplevel *toplevel, Page *page, GArray *color_map, const ch
       result = -1;
   }
   else {
-    result = f_print_stream (toplevel, page, fp);
+    result = geda_file_print_stream (toplevel, page, fp);
     pclose (fp);
   }
 
@@ -507,7 +507,7 @@ f_print_command (GedaToplevel *toplevel, Page *page, GArray *color_map, const ch
  *  \return 0 on success, -1 on failure.
  */
 
-int f_print_stream(GedaToplevel *toplevel, Page *page, FILE *fp)
+int geda_file_print_stream(GedaToplevel *toplevel, Page *page, FILE *fp)
 {
   int origin_x, origin_y, bottom, right;
   int margin_x=0, margin_y=0;
@@ -705,7 +705,7 @@ int f_print_stream(GedaToplevel *toplevel, Page *page, FILE *fp)
  *  \param [in,out] toplevel  The GedaToplevel object to set output type in.
  *  \param [in]     type       The print type to set.
  */
-void f_print_set_type(GedaToplevel *toplevel, int type)
+void geda_file_print_set_type(GedaToplevel *toplevel, int type)
 {
   toplevel->print_output_type = type;
 }

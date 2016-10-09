@@ -350,7 +350,7 @@ void x_image_write_eps(GschemToplevel *w_current, const char*filename)
   color_map = geda_color_get_print_map();
   page      = geda_toplevel_get_current_page(toplevel);
 
-  result = f_print_file (toplevel, page, color_map, filename);
+  result = geda_file_print_file (toplevel, page, color_map, filename);
 
   if (result) {
     u_log_message(_("Error: Unable to write eps file %s.\n"), filename);
