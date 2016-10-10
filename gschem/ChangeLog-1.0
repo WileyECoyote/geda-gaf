@@ -2,7 +2,7 @@
 
     * etc/system-gschemrc.scm: Revise hotkeys for Page actions; change page-discard
       to "P <Shift>D", add hotkeys "page-next", "page-prev" and change "page-down"
-      and "page-up".
+      and "page-up". Rearrange menu entries and revise mnemonics for page menu.
 
     * include/i_actions.h: Change PAGE_PREV action page-previous->page-prev.
 
