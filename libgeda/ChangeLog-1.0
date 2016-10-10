@@ -2,6 +2,9 @@
 
     * src/file/f_print.c: Rename functions with geda_file prefix.
 
+    * src/object/o_line_object.c: Revise geda_line_object_get_intersection
+      to use double and only round using rint for the final results.
+
     * tests/test_line_object.c: Add checks for geda_line_object_get_closest_
       endpoint.
 

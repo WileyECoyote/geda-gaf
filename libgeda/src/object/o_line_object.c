@@ -142,12 +142,14 @@ geda_line_object_get_intersection(GedaObject *object1, GedaObject *object2, POIN
     if (slope1 != slope2) {
 
       /* y-intercept = ordinate - slope x abscissa */
-      int b11 = rint(object1->line->y[0] - (slope1 * object1->line->x[0]));
-      int b21 = rint(object2->line->y[0] - (slope2 * object2->line->x[0]));
+      double b11 = object1->line->y[0] - (slope1 * object1->line->x[0]);
+      double b21 = object2->line->y[0] - (slope2 * object2->line->x[0]);
 
       /* abscissa = y-intercept2 - y-intercept1 / slope1 - slope2 */
-      point->x = rint((b21 - b11) / (slope1 - slope2));
-      point->y = rint((slope1 * point->x) + b11); /* pick 1 */
+      double x = (b21 - b11) / (slope1 - slope2);
+
+      point->x = rint(x);
+      point->y = rint((slope1 * x) + b11); /* pick 1 */
 
       intersect = TRUE; /* Not arbitrary */
     }
@@ -168,7 +170,10 @@ geda_line_object_get_intersection(GedaObject *object1, GedaObject *object2, POIN
         point->y = object1->line->y[0];  /* arbitrary, y's are equal */
       }
       else { /* get y-intercept for object1 */
-        int b11  = rint(object1->line->y[0] - (slope1 * object1->line->x[0]));
+
+        double b11;
+
+        b11      = object1->line->y[0] - (slope1 * object1->line->x[0]);
         point->y = rint(slope1 * point->x + b11); /* solve for y1(1) at x */
       }
 
@@ -192,7 +197,10 @@ geda_line_object_get_intersection(GedaObject *object1, GedaObject *object2, POIN
         point->y = object2->line->y[0];  /* arbitrary, y's are equal */
       }
       else { /* get y-intercept for object2 */
-        int b21  = rint(object2->line->y[0] - (slope2 * object2->line->x[0]));
+
+        double b21;
+
+        b21      = object2->line->y[0] - (slope2 * object2->line->x[0]);
         point->y = rint(slope2 * point->x + b21); /* solve for y2(1) at x */
       }
 
