@@ -23,26 +23,26 @@
 
 #include <geda_debug.h>
 
-/*! \brief Returns a pointer to a new SELECTION object
- *
- *  \par Function Description
+/*!
+ * \brief Returns a pointer to a new SELECTION object
+ * \par Function Description
  *  Returns a pointer to a new SELECTION object.
  *
- *  \return pointer to the new SELECTION object.
+ * \return pointer to the new SELECTION object.
  */
 SELECTION *geda_object_selection_new( void )
 {
   return (SELECTION*)geda_list_new();
 }
 
-/*! \brief Selects the given object and adds it to the selection list
- *
- *  \par Function Description
+/*!
+ * \brief Selects the given object and adds it to the selection list
+ * \par Function Description
  *  Selects the given object and does the needed work to make the
  *  object visually selected. Skip objects that are already selected.
  *
- *  \param [in] selection  Pointer to the selection list
- *  \param [in] o_selected GedaObject to select.
+ * \param [in] selection  Pointer to the selection list
+ * \param [in] o_selected GedaObject to select.
  */
 void geda_object_selection_add (SELECTION *selection, GedaObject *o_selected)
 {
@@ -51,15 +51,15 @@ void geda_object_selection_add (SELECTION *selection, GedaObject *o_selected)
   }
 }
 
-/*! \brief Get the first object in selection list
- *
- *  \par Function Description
+/*!
+ * \brief Get the first object in selection list
+ * \par Function Description
  *  Returns the first data referenced in the glist associated
  *  with the selection or NULL if the list is empty.
  *
- *  \param [in] selection  Pointer to the selection list
+ * \param [in] selection  Pointer to the selection list
  *
- *  \returns The first GedaObject or NULL if there is no selection
+ * \returns The first GedaObject or NULL if there is no selection
  */
 GedaObject *geda_object_selection_get_first(SELECTION *selection)
 {
@@ -69,9 +69,9 @@ GedaObject *geda_object_selection_get_first(SELECTION *selection)
   return (GedaObject*)g_list_first(geda_list_get_glist(selection))->data;
 }
 
-/*! \brief Removes the given object from the selection list
- *
- *  \par Function Description
+/*!
+ * \brief Removes the given object from the selection list
+ * \par Function Description
  *  Removes the given object from the selection list and does the
  *  needed work to make the object visually unselected. It's ok to
  *  call this function with an object which is not necessarily
@@ -117,10 +117,9 @@ int geda_object_selection_remove (SELECTION *selection, GedaObject *object)
 /*!
  * \brief Prints the given selection list
  * \par Function Description
- * Prints the given selection list.
+ *  Prints the given selection list.
  *
  * \param [in] selection Pointer to selection list to print.
- *
  */
 void geda_object_selection_print_all(const SELECTION *selection)
 {
@@ -141,18 +140,18 @@ void geda_object_selection_print_all(const SELECTION *selection)
   printf("\n");
 }
 
-/*! \brief Selects the given object
+/*!
+ * \brief Selects the given object
+ * \par Function Description
+ *  If the given object is not currently selected the prechange
+ *  notifier is called before setting the select flag on the
+ *  object. After setting the flag the change notifier is called.
  *
- *  \par Function Description
- *  If the given object is not current select the prechange notifier
- *  is called before setting the select flag on the object. After
- *  setting the flag the change notifier is called.
+ * \param [in] object  GedaObject to select.
  *
- *  \param [in] object    GedaObject to select.
- *
- *  \returns TRUE if the was not selected, FALSE if the object
- *           was already selected, or -1 to indicate an error
- *           because \a object is not a valid gEDA object.
+ * \returns TRUE if the was not selected, FALSE if the object
+ *          was already selected, or -1 to indicate an error
+ *          because \a object is not a valid gEDA object.
  */
 int geda_object_selection_select(GedaObject *object)
 {
@@ -176,16 +175,16 @@ int geda_object_selection_select(GedaObject *object)
   return result;
 }
 
-/*! \brief Unselects the given object
- *
- *  \par Function Description
+/*!
+ * \brief Unselects the given object
+ * \par Function Description
  *  Unsets the select flag for the given object.
  *
- *  \param [in] object    GedaObject to unselect.
+ * \param [in] object  GedaObject to unselect.
  *
- *  \returns TRUE if the was selected, FALSE if the object
- *           was not selected, or -1 to indicate an error
- *           because \a object is not a valid gEDA object.
+ * \returns TRUE if the was selected, FALSE if the object
+ *          was not selected, or -1 to indicate an error
+ *          because \a object is not a valid gEDA object.
  */
 int geda_object_selection_unselect (GedaObject *object)
 {
@@ -206,16 +205,16 @@ int geda_object_selection_unselect (GedaObject *object)
   return result;
 }
 
-/*! \brief Unselects all objects in given selection
- *
- *  \par Function Description
+/*!
+ * \brief Unselects all objects in given selection
+ * \par Function Description
  *  Unsets the selected flag for each object in \a selection.
  *
- *  \param [in] selection #GedaList of objects to unselect.
+ * \param [in] selection #GedaList of objects to unselect.
  *
- *  \returns count of the number of objects unselected, FALSE if no
- *           objects were unselected, or -1 to indicate an error
- *           because \a object is not a valid #GedaList.
+ * \returns count of the number of objects unselected, FALSE if no
+ *          objects were unselected, or -1 to indicate an error
+ *          because \a object is not a valid #GedaList.
  */
 int geda_object_selection_unselect_all (SELECTION *selection)
 {
