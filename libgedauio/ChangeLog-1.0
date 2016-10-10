@@ -4,7 +4,8 @@
 
     * src/widgets/geda_menu_item.c: Revise geda_menu_item_refresh_accel_path
       to seperate NULL and non-NULL accel_group; eliminate early return, and
-      reduce scope of path variable.
+      reduce scope of path variable. Update geda_menu_item_get_from_menubar
+      Doxygen comments add comments for geda_menu_item_refresh_accel_path.
 
 2016-10-09 Wiley E. Hill <wileyhill@gmail.com>
 

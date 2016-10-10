@@ -3415,6 +3415,14 @@ geda_menu_item_accel_name_foreach (GtkWidget *widget, void *data)
   }
 }
 
+/*!
+ * \brief Refresh GedaMenuItem Accelertor Path
+ * \par Function Description
+ *  Called from GedaMenu routines as part of a scheme to "auto"
+ *  set/update accelertor paths when the accelertor path of the
+ *  parent menu is set.
+ *  \see geda_menu_set_accel_path
+ */
 void
 geda_menu_item_refresh_accel_path (GedaMenuItem  *menu_item,
                                    const char    *prefix,
@@ -3666,8 +3674,7 @@ geda_menu_item_get_toggle_size (GedaMenuItem  *menu_item)
  *
  * \param [in] menu_item a GedaMenuItem
  *
- * \returns The text in the \a menu_item label. This is the internal
- *          string used by the label, and must not be modified.
+ * \retval TRUE is the parent of \a menu_item is MenuBar.
  */
 bool
 geda_menu_item_get_from_menubar (GedaMenuItem *menu_item)
