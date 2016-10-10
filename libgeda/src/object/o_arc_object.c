@@ -417,7 +417,7 @@ geda_arc_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, in
 
       /* If negative, make the angle positive */
       if (radians < 0) {
-        radians += 2 * M_PI;
+        radians += 2.0 * M_PI;
       }
 
       if (radians < end_angle && radians > start_angle) {
@@ -454,13 +454,13 @@ geda_arc_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, in
         C = -1 * r * r;
 
         /* The D = (B * B) - (4 * A * C) reduces to */
-        D = 0 - (4 * A * C);                         /* The discriminant */
+        D = 0 - (4.0 * A * C);                       /* The discriminant */
 
         if (cx > x) {                                /* Easterly */
-          tmp_x = (0 - sqrt(D)) / (2 * A);
+          tmp_x = (0 - sqrt(D)) / (2.0 * A);
         }
         else {                                       /* Westward */
-          tmp_x = sqrt(D) / (2 * A);
+          tmp_x = sqrt(D) / (2.0 * A);
         }
 
         tmp_x = tmp_x + cx;                          /* Add offset to true cx */

@@ -1,5 +1,12 @@
 2016-10-10 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_arc_object.c: Try to suppress rounding errors. Rounding
+      errors are observed in approximately 1 in 12 test runs, tests iterate
+      10 times but stop iterating when errors occur. Changed constant whole
+      numbers in geda_arc_object_get_nearest_point to decimals and had zero
+      failures in 30 tests runs (300 calls to arc_object_get_nearest_point),
+      which appears to be an improvement.
+
     * src/object/o_line_object.c: Substitute geda_distance macro for
       geda_math_distance in geda_line_object_get_closest_endpoint. Add
       HAVE_LRINT conditionals in geda_line_object_get_intersection and
