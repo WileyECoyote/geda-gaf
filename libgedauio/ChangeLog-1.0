@@ -2,6 +2,10 @@
 
     * src/functions/geda_mnemonic_hash.c: Remove annoying output to console.
 
+    * src/widgets/geda_menu_item.c: Revise geda_menu_item_refresh_accel_path
+      to seperate NULL and non-NULL accel_group; eliminate early return, and
+      reduce scope of path variable.
+
 2016-10-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_font_dialog.c Add Doxygen "template" blocks, remove

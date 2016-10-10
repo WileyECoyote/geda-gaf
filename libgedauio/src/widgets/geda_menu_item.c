@@ -3156,15 +3156,18 @@ geda_menu_item_position_menu (GedaMenu  *menu,
     *push_in = FALSE;
   }
 
-  direction = gtk_widget_get_direction (widget);
+  direction   = gtk_widget_get_direction (widget);
 
-  twidth = gtk_widget_get_allocated_width (GTK_WIDGET(menu));
-  theight = gtk_widget_get_allocated_height (GTK_WIDGET(menu));
+  twidth      = gtk_widget_get_allocated_width (GTK_WIDGET(menu));
+  theight     = gtk_widget_get_allocated_height (GTK_WIDGET(menu));
 
-  screen = gtk_widget_get_screen (GTK_WIDGET(menu));
+  screen      = gtk_widget_get_screen (GTK_WIDGET(menu));
   monitor_num = gdk_screen_get_monitor_at_window (screen, priv->event_window);
-  if (monitor_num < 0)
+
+  if (monitor_num < 0) {
     monitor_num = 0;
+  }
+
   gdk_screen_get_monitor_workarea (screen, monitor_num, &monitor);
 
   if (!gdk_window_get_origin (gtk_widget_get_window (widget), &tx, &ty)) {
@@ -3419,47 +3422,51 @@ geda_menu_item_refresh_accel_path (GedaMenuItem  *menu_item,
                                    bool           group_changed)
 {
   GedaMenuItemPrivate *priv = menu_item->priv;
-  const char *path;
+
   GtkWidget  *widget;
 
   g_return_if_fail (GEDA_IS_MENU_ITEM(menu_item));
-  g_return_if_fail (!accel_group || GTK_IS_ACCEL_GROUP(accel_group));
 
   widget = GTK_WIDGET(menu_item);
 
   if (!accel_group) {
     gtk_widget_set_accel_path (widget, NULL, NULL);
-    return;
   }
+  else if (GTK_IS_ACCEL_GROUP(accel_group)) {
 
-  path = geda_widget_get_accel_path (widget, NULL);
-  if (!path)  { /* no active accel_path yet */
+    const char *path;
 
-    path = priv->accel_path;
-    if (!path && prefix) {
+    path = geda_widget_get_accel_path (widget, NULL);
 
-      const char *postfix = NULL;
+    if (!path) { /* no active accel_path yet */
 
-      /* try to construct one from label text */
-      gtk_container_foreach (GTK_CONTAINER(menu_item),
-                             geda_menu_item_accel_name_foreach,
-                             &postfix);
-      if (postfix) {
+      path = priv->accel_path;
 
-        char *new_path;
+      if (!path && prefix) {
 
-        new_path = g_strconcat (prefix, "/", postfix, NULL);
-        path = priv->accel_path = (char*)g_intern_string (new_path);
-        g_free (new_path);
+        const char *postfix = NULL;
+
+        /* try to construct one from label text */
+        gtk_container_foreach (GTK_CONTAINER(menu_item),
+                               geda_menu_item_accel_name_foreach,
+                               &postfix);
+        if (postfix) {
+
+          char *new_path;
+
+          new_path = g_strconcat (prefix, "/", postfix, NULL);
+          path = priv->accel_path = (char*)g_intern_string (new_path);
+          g_free (new_path);
+        }
+      }
+
+      if (path) {
+        gtk_widget_set_accel_path (widget, path, accel_group);
       }
     }
-
-    if (path) {
+    else if (group_changed)  {   /* reinstall accelerators */
       gtk_widget_set_accel_path (widget, path, accel_group);
     }
-  }
-  else if (group_changed)  {   /* reinstall accelerators */
-    gtk_widget_set_accel_path (widget, path, accel_group);
   }
 }
 
@@ -3500,7 +3507,7 @@ geda_menu_item_set_accel_path (GedaMenuItem *menu_item, const char *accel_path)
 
   g_return_if_fail (GEDA_IS_MENU_ITEM(menu_item));
   g_return_if_fail (accel_path == NULL ||
-  (accel_path[0] == '<' && strchr (accel_path, '/')));
+                   (accel_path[0] == '<' && strchr (accel_path, '/')));
 
   widget = GTK_WIDGET(menu_item);
 
