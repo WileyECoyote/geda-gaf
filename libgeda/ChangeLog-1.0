@@ -2,6 +2,9 @@
 
     * src/file/f_print.c: Rename functions with geda_file prefix.
 
+    * tests/test_line_object.c: Add checks for geda_line_object_get_closest_
+      endpoint.
+
 2016-10-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_file.h: rename macro geda_normalize_name->

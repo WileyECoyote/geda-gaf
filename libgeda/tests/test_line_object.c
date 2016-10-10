@@ -556,6 +556,150 @@ check_serialization (void)
 }
 
 int
+check_get_closest_endpoint(GedaObject *object)
+{
+  int result = 0;
+
+  int x1 = geda_line_object_get_x1 (object);
+  int x2 = geda_line_object_get_x2 (object);
+  int y1 = geda_line_object_get_y1 (object);
+  int y2 = geda_line_object_get_y2 (object) ;
+
+  /* === Function 02: geda_line_object_get_closest_endpoint  === */
+
+  if (geda_line_object_get_closest_endpoint(object, x1 - 10, y1 - 10)) {
+    fprintf(stderr, "FAILED: (O110101) %s closest_endpoint != 0\n", TOBJECT);
+    result++;
+  }
+
+  if (!geda_line_object_get_closest_endpoint(object, x2 + 10, y2 + 10)) {
+    fprintf(stderr, "FAILED: (O110102) %s closest_endpoint != 0\n", TOBJECT);
+    result++;
+  }
+
+  return result;
+}
+
+int
+check_get_intersection(GedaObject *object)
+{
+  int result = 0;
+
+  /* === Function 08: geda_line_object_get_intersection  === */
+
+  return result;
+}
+
+int
+check_get_midpoint(GedaObject *object)
+{
+  int result = 0;
+
+  /* === Function 09: geda_line_object_get_midpoint  === */
+
+  return result;
+}
+
+int
+check_get_nearest_point(GedaObject *object)
+{
+  int result = 0;
+
+  /* === Function 10: geda_line_object_get_nearest_point  === */
+
+  return result;
+}
+
+int
+check_get_position(GedaObject *object)
+{
+  int result = 0;
+
+  /* === Function 11: geda_line_object_get_position  === */
+
+  return result;
+}
+
+int
+check_get_slope(GedaObject *object)
+{
+  int result = 0;
+
+  /* === Function 12: geda_line_object_get_slope  === */
+
+  return result;
+}
+
+int
+check_is_endpoint(GedaObject *object)
+{
+  int result = 0;
+
+  /* === Function 17: geda_line_object_is_endpoint  === */
+
+  return result;
+}
+
+int
+check_length(GedaObject *object)
+{
+  int result = 0;
+
+  /* === Function 18: geda_line_object_length  === */
+
+  return result;
+}
+
+int
+check_shortest_distance(GedaObject *object)
+{
+  int result = 0;
+
+  /* === Function 40: geda_line_object_shortest_distance  === */
+
+  return result;
+}
+
+int
+check_query(void)
+{
+  int count;
+  int result = 0;
+
+  for (count = 0; count < 3; count++) {
+
+    int c  = geda_random_number ( 0, MAX_COLORS - 1);
+    int x1 = geda_random_number ( 0,       119800);
+    int y2 = geda_random_number ( 0,        79800);
+    int x2 = geda_random_number (x1 + 100, 120000);
+    int y1 = geda_random_number (y2 + 100,  80000);
+
+    GedaObject *object = geda_line_object_new(c, x1, y1, x2, y2);
+
+    result  = check_get_closest_endpoint(object);
+
+    result += check_get_intersection(object);
+
+    result += check_get_midpoint(object);
+
+    result += check_get_nearest_point(object);
+
+    result += check_get_position(object);
+
+    result += check_get_slope(object);
+
+    result += check_is_endpoint(object);
+
+    result += check_length(object);
+
+    result += check_shortest_distance(object);
+
+    g_object_unref (object);
+  }
+  return result;
+}
+
+int
 main (int argc, char *argv[])
 {
   int result = 0;
@@ -590,6 +734,14 @@ main (int argc, char *argv[])
     }
     else {
       fprintf(stderr, "Caught signal checking serialization in %s\n\n", MUT);
+      return 1;
+    }
+
+    if (setjmp(point) == 0) {
+      result += check_query();
+    }
+    else {
+      fprintf(stderr, "Caught signal during query in %s\n\n", MUT);
       return 1;
     }
 
