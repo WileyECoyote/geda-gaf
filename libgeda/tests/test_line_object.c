@@ -61,13 +61,13 @@
  *  See tests/README for more details on the nomenclature for test identifiers.
  *
  *      O1101    geda_line_object_copy
- *               geda_line_object_get_closest_endpoint
+ *      O1102    geda_line_object_get_closest_endpoint
  *      O1103    geda_line_object_get_end_cap
  *      O1104    geda_line_object_get_line_length
  *      O1105    geda_line_object_get_line_space
  *      O1106    geda_line_object_get_line_type
  *      O1107    geda_line_object_get_line_width
- *               geda_line_object_get_intersection
+ *      O1108    geda_line_object_get_intersection
  *               geda_line_object_get_midpoint
  *               geda_line_object_get_nearest_point
  *               geda_line_object_get_position
@@ -563,29 +563,95 @@ check_get_closest_endpoint(GedaObject *object)
   int x1 = geda_line_object_get_x1 (object);
   int x2 = geda_line_object_get_x2 (object);
   int y1 = geda_line_object_get_y1 (object);
-  int y2 = geda_line_object_get_y2 (object) ;
+  int y2 = geda_line_object_get_y2 (object);
 
   /* === Function 02: geda_line_object_get_closest_endpoint  === */
 
   if (geda_line_object_get_closest_endpoint(object, x1 - 10, y1 - 10)) {
-    fprintf(stderr, "FAILED: (O110101) %s closest_endpoint != 0\n", TOBJECT);
+    fprintf(stderr, "FAILED: (O110201) %s closest_endpoint != 0\n", TOBJECT);
     result++;
   }
 
   if (!geda_line_object_get_closest_endpoint(object, x2 + 10, y2 + 10)) {
-    fprintf(stderr, "FAILED: (O110102) %s closest_endpoint != 0\n", TOBJECT);
+    fprintf(stderr, "FAILED: (O110202) %s closest_endpoint != 0\n", TOBJECT);
     result++;
   }
 
   return result;
 }
 
+/* === Function 08: geda_line_object_get_intersection  === */
 int
-check_get_intersection(GedaObject *object)
+check_get_intersection(GedaObject *object0)
 {
   int result = 0;
 
-  /* === Function 08: geda_line_object_get_intersection  === */
+  int x1 = geda_line_object_get_x1 (object0);
+  int x2 = geda_line_object_get_x2 (object0);
+  int y1 = geda_line_object_get_y1 (object0);
+  int y2 = geda_line_object_get_y2 (object0);
+
+  int x = geda_random_number (x1, x2);
+  int y = geda_random_number (y1, y2);
+
+  POINT point;
+
+  /* Does not intersect */
+  GedaObject *object1 = geda_line_object_new(0, x1, y1 + 10, x2, y2 + 10);
+
+  if (geda_line_object_get_intersection(object0, object1, &point)) {
+    fprintf(stderr, "FAILED: (O110801) %s intersection FALSE\n", TOBJECT);
+    result++;
+  }
+
+  g_object_unref (object1);
+
+  /* intersects at first endpoint */
+  GedaObject *object2 = geda_line_object_new(0, x1, y1, x, y);
+
+  if (!geda_line_object_get_intersection(object0, object2, &point)) {
+    fprintf(stderr, "FAILED: (O110802F) %s intersection FALSE\n", TOBJECT);
+    result++;
+  }
+  else {
+
+    if (point.x != x1) {
+      fprintf(stderr, "FAILED: (O110802X) intersection %d != %d\n", point.x, x1);
+      result++;
+    }
+
+    if (point.y != y1) {
+      fprintf(stderr, "FAILED: (O110802Y) intersection %d != %d\n", point.y, y1);
+      result++;
+    }
+  }
+
+  g_object_unref (object2);
+
+  int dx = lrint((x2 + x1) / 2.0);
+  int dy = lrint((y2 + y1) / 2.0);
+
+  /* intersects at midpoint */
+  GedaObject *object3 = geda_line_object_new(0, dx + 100, dy + 100, dx, dy);
+
+  if (!geda_line_object_get_intersection(object0, object3, &point)) {
+    fprintf(stderr, "FAILED: (O110803F) %s intersection FALSE\n", TOBJECT);
+    result++;
+  }
+  else {
+
+    if (point.x != dx) {
+      fprintf(stderr, "FAILED: (O110803X) intersection %d != %d\n", point.x, dx);
+      result++;
+    }
+
+    if (point.y != dy) {
+      fprintf(stderr, "FAILED: (O110803Y) intersection %d != %d\n", point.y, dy);
+      result++;
+    }
+  }
+
+  g_object_unref (object2);
 
   return result;
 }
@@ -676,7 +742,7 @@ check_query(void)
 
     GedaObject *object = geda_line_object_new(c, x1, y1, x2, y2);
 
-    result  = check_get_closest_endpoint(object);
+    result += check_get_closest_endpoint(object);
 
     result += check_get_intersection(object);
 

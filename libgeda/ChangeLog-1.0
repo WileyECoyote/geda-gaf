@@ -12,6 +12,9 @@
       HAVE_LRINT conditionals in geda_line_object_get_intersection and
       explicitly declare doubles as long doubles.
 
+    * tests/test_line_object.c: Add checks for geda_line_object_get_inter-
+      section.
+
 2016-10-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_print.c: Rename functions with geda_file prefix.
