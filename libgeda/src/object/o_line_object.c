@@ -142,14 +142,23 @@ geda_line_object_get_intersection(GedaObject *object1, GedaObject *object2, POIN
     if (slope1 != slope2) {
 
       /* y-intercept = ordinate - slope x abscissa */
-      double b11 = object1->line->y[0] - (slope1 * object1->line->x[0]);
-      double b21 = object2->line->y[0] - (slope2 * object2->line->x[0]);
+      long double b11 = object1->line->y[0] - (slope1 * object1->line->x[0]);
+      long double b21 = object2->line->y[0] - (slope2 * object2->line->x[0]);
 
       /* abscissa = y-intercept2 - y-intercept1 / slope1 - slope2 */
-      double x = (b21 - b11) / (slope1 - slope2);
+      long double x = (b21 - b11) / (slope1 - slope2);
 
-      point->x = rint(x);
-      point->y = rint((slope1 * x) + b11); /* pick 1 */
+#ifdef HAVE_LRINT
+
+      point->x = lrint(x);
+      point->y = lrint((slope1 * x) + b11); /* pick 1 */
+
+#else
+
+      point->x = x + 0.5;
+      point->y = (slope1 * x) + b11 + 0.5; /* pick 1 */
+
+#endif
 
       intersect = TRUE; /* Not arbitrary */
     }
@@ -171,10 +180,19 @@ geda_line_object_get_intersection(GedaObject *object1, GedaObject *object2, POIN
       }
       else { /* get y-intercept for object1 */
 
-        double b11;
+        long double b11;
 
-        b11      = object1->line->y[0] - (slope1 * object1->line->x[0]);
-        point->y = rint(slope1 * point->x + b11); /* solve for y1(1) at x */
+        b11 = object1->line->y[0] - (slope1 * object1->line->x[0]);
+
+#ifdef HAVE_LRINT
+
+        point->y = lrint(slope1 * point->x + b11); /* solve for y1(1) at x */
+
+#else
+
+        point->y = slope1 * point->x + b11 + 0.5; /* solve for y1(1) at x */
+
+#endif
       }
 
       intersect = TRUE;
@@ -198,10 +216,19 @@ geda_line_object_get_intersection(GedaObject *object1, GedaObject *object2, POIN
       }
       else { /* get y-intercept for object2 */
 
-        double b21;
+        long double b21;
 
-        b21      = object2->line->y[0] - (slope2 * object2->line->x[0]);
-        point->y = rint(slope2 * point->x + b21); /* solve for y2(1) at x */
+        b21 = object2->line->y[0] - (slope2 * object2->line->x[0]);
+
+#ifdef HAVE_LRINT
+
+        point->y = lrint(slope2 * point->x + b21); /* solve for y2(1) at x */
+
+#else
+
+        point->y = slope2 * point->x + b21 + 0.5; /* solve for y2(1) at x */
+
+#endif
       }
 
       intersect = TRUE;
@@ -442,6 +469,7 @@ geda_line_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, i
       point.y = iy + 0.5;
 
 #endif
+
       if (geda_math_line_includes_point(line, &point)) {
        *nx = point.x;
        *ny = point.y;
@@ -516,7 +544,7 @@ geda_line_object_get_slope (GedaObject *object, double *slope)
 
       dy    = object->line->y[1] - object->line->y[0];
       dx    = object->line->x[1] - object->line->x[0];
-      *slope = dy / dx;
+     *slope = dy / dx;
     }
   }
   else {
