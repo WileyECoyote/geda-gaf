@@ -2,6 +2,12 @@
 
     * src/functions/geda_mnemonic_hash.c: Remove annoying output to console.
 
+    * src/widgets/geda_menu_bar.c: Add a private GtkAccelGroup for menu bars
+      and connect an activate signal to each item on the menubar utilizing
+      gtk_widget_add_accelerator in new function accelerate_children with call
+      back activate_child in order to "hot-key" items on the menu bar and this
+      mimics Gtk behavior but is implemented in a more straight forward approach.
+
     * src/widgets/geda_menu_item.c: Revise geda_menu_item_refresh_accel_path
       to seperate NULL and non-NULL accel_group; eliminate early return, and
       reduce scope of path variable. Update geda_menu_item_get_from_menubar

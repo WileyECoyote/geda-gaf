@@ -71,9 +71,9 @@ struct _GedaMenuBarPrivate
   PackDirection pack_direction;
   PackDirection child_pack_direction;
 
-  unsigned int settings_signal_id;
-
-  char        *accel;
+  unsigned int  settings_signal_id;
+  GtkAccelGroup *accel_group;
+  char          *accel;
 };
 
 static void geda_menu_bar_set_property        (GObject         *object,
@@ -1226,25 +1226,68 @@ geda_menu_bar_new (void)
 }
 
 static GList*
-get_menu_bars (GtkWindow *window)
-{
+get_menu_bars (GtkWindow *window) {
   return g_object_get_data (G_OBJECT (window), menu_bar_key);
-}
-static void
-set_menu_bars (GtkWindow *window, GList *menubars)
-{
-  g_object_set_data (G_OBJECT (window), menu_bar_key, menubars);
 }
 
 static void
-add_to_window (GtkWindow  *window, GedaMenuBar *menubar)
+set_menu_bars (GtkWindow *window, GList *menubars) {
+  g_object_set_data (G_OBJECT (window), menu_bar_key, menubars);
+}
+
+static void activate_child(GtkWidget *menu_item)
+{
+  if (geda_menu_item_is_widget_selectable(menu_item)) {
+
+    /* The item is not activatable directly, so get parent */
+    GtkWidget *parent = gtk_widget_get_parent(menu_item);
+
+    if GEDA_IS_MENU_SHELL(parent) {
+
+      GedaMenuShell *menu_shell = (GedaMenuShell*)parent;
+
+      geda_menu_shell_activate(menu_shell);
+      geda_menu_shell_set_keyboard_mode(menu_shell, TRUE);
+      geda_menu_shell_select_item(menu_shell, menu_item);
+    }
+  }
+}
+
+static void
+accelerate_children(GedaMenuItem *menu_item, GtkAccelGroup *accel_group)
+{
+  if (GEDA_IS_MENU_ITEM(menu_item)) {
+
+    char mnemonic[2];
+    unsigned int keyval;
+
+    mnemonic[0] = toupper(geda_menu_item_get_mnemonic(menu_item));
+    mnemonic[1] = 0;
+
+    keyval = gdk_keyval_from_name(&mnemonic[0]);
+
+    gtk_widget_add_accelerator(GTK_WIDGET (menu_item),
+                               "activate",
+                               accel_group,
+                               keyval,
+                               GDK_MOD1_MASK,
+                               0);
+
+    g_signal_connect(G_OBJECT(menu_item),"activate",
+                     G_CALLBACK(activate_child),NULL);
+  }
+}
+
+static void
+add_to_window (GtkWindow *window, GedaMenuBar *menubar)
 {
   GList *menubars = get_menu_bars (window);
 
   if (!menubars) {
 
-    GtkSettings *settings;
-    char        *accel;
+    GtkAccelGroup *accel_group;
+    GtkSettings   *settings;
+    char          *accel;
 
     g_signal_connect (window,
                       "key-press-event",
@@ -1256,10 +1299,20 @@ add_to_window (GtkWindow  *window, GedaMenuBar *menubar)
 
     g_object_get (settings, "gtk-menu-bar-accel", &accel, NULL);
 
+    accel_group = gtk_accel_group_new();
+    gtk_window_add_accel_group (window, accel_group);
+
     menubar->priv->accel = geda_strdup(accel);
+    menubar->priv->accel_group = accel_group;
   }
 
+  /* Monitor if "gtk-menu-bar-accel" setting is changed */
   connect_settings_signal(menubar);
+
+  /* Connect an accelerator to items on the Menu Bar */
+  gtk_container_foreach (GTK_CONTAINER(menubar),
+                        (GtkCallback)accelerate_children,
+                         menubar->priv->accel_group);
 
   set_menu_bars (window, g_list_prepend (menubars, menubar));
 }
@@ -1273,11 +1326,14 @@ remove_from_window (GtkWindow *window, GedaMenuBar *menubar)
 
   if (!menubars) {
 
+    g_object_unref(menubar->priv->accel_group);
+
     g_signal_handlers_disconnect_by_func (window,
                                           geda_menu_bar_window_key_press_handler,
                                           NULL);
   }
 
+  /* Disconnect the settings Monitor */
   remove_settings_signal(menubar, gtk_widget_get_screen (GTK_WIDGET (menubar)));
 
   set_menu_bars (window, menubars);
