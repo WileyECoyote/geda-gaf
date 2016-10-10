@@ -287,8 +287,8 @@
 (define-action-public (&page-first #:label (_ "First Page") #:icon "gtk-go-up")
   (%page-first))
 
-(define-action-public (&page-previous #:label (_ "Previous Page") #:icon "gtk-go-up")
-  (%page-previous))
+(define-action-public (&page-prev #:label (_ "Previous Page") #:icon "gtk-go-up")
+  (%page-prev))
 
 (define-action-public (&page-next #:label (_ "Next Page") #:icon "gtk-go-up")
   (%page-next))

@@ -4,6 +4,8 @@
       to "P <Shift>D", add hotkeys "page-next", "page-prev" and change "page-down"
       and "page-up".
 
+    * include/i_actions.h: Change PAGE_PREV action page-previous->page-prev.
+
 2016-10-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_image.c: Utilize geda_remove_extension macro in function
