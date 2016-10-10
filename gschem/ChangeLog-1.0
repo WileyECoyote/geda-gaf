@@ -1,3 +1,9 @@
+2016-10-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * etc/system-gschemrc.scm: Revise hotkeys for Page actions; change page-discard
+      to "P <Shift>D", add hotkeys "page-next", "page-prev" and change "page-down"
+      and "page-up".
+
 2016-10-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_image.c: Utilize geda_remove_extension macro in function
