@@ -96,8 +96,8 @@ geda_line_object_get_closest_endpoint(GedaObject *object, int x, int y)
   int anwser;
 
   if (GEDA_IS_LINE(object)) {
-    double first  = geda_math_distance (object->line->x[0], object->line->y[0], x, y);
-    double second = geda_math_distance (object->line->x[1], object->line->y[1], x, y);
+    double first  = geda_distance (object->line->x[0], object->line->y[0], x, y);
+    double second = geda_distance (object->line->x[1], object->line->y[1], x, y);
     anwser = first < second ? 0 : 1;
   }
   else {

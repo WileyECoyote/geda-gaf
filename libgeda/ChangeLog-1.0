@@ -1,3 +1,8 @@
+2016-10-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_line_object.c: Substitute geda_distance macro for
+      geda_math_distance in geda_line_object_get_closest_endpoint.
+
 2016-10-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_print.c: Rename functions with geda_file prefix.
