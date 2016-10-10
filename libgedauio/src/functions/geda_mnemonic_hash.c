@@ -51,8 +51,6 @@ mnemonic_hash_free_foreach (void *key, void *value, void *user)
 
   char *name = gtk_accelerator_name (keyval, 0);
 
-  fprintf(stderr, "mnemonic \"%s\" wasn't removed for widget (%p)",
-          name, targets->data);
   g_free (name);
 
   g_slist_free (targets);

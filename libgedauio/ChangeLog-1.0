@@ -1,3 +1,7 @@
+2016-10-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/functions/geda_mnemonic_hash.c: Remove annoying output to console.
+
 2016-10-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_font_dialog.c Add Doxygen "template" blocks, remove

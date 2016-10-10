@@ -45,7 +45,7 @@ void              geda_mnemonic_hash_remove   (GedaMnemonicHash *mnemonic_hash,
                                                GtkWidget        *target);
 bool              geda_mnemonic_hash_activate (GedaMnemonicHash *mnemonic_hash,
                                                unsigned int      keyval);
-GSList *          geda_mnemonic_hash_lookup   (GedaMnemonicHash *mnemonic_hash,
+GSList           *geda_mnemonic_hash_lookup   (GedaMnemonicHash *mnemonic_hash,
                                                unsigned int      keyval);
 void              geda_mnemonic_hash_foreach  (GedaMnemonicHash *mnemonic_hash,
                                                MnemonicHashFunc  func,
