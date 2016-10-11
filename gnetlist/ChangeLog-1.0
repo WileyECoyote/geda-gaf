@@ -1,3 +1,12 @@
+2016-10-11 Vladimir Zhbanov <vzhbanov@gmail.com>
+
+    * scheme/gnetlist.scm: WEH: Modified similar to commit to Master branch
+      by Vladimir Zhbanov, commit  b7d897b0f9ddb297256fb61ce56c6ed79f6d20f0:
+      gnetlist: Add a Scheme script for unit testing
+
+      This script uses standard Scheme testing API defined in SRFI-64.
+      Currently a minimal compatibility with automake is provided.
+
 2016-09-29 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * scheme/gnetlist.scm: WEH: Modified per commit to Master branch by

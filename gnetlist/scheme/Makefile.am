@@ -52,6 +52,23 @@ DIST_SCM   =	gnet-PCB.scm \
 		spice-common.scm \
 		gnetlist/backend-getopt.scm
 
+# Guile 1.8 does not have srfi-64
+if HAVE_SRFI_64
+
+  TESTS = unit-tests/test-partlist.scm
+  # TEST_EXTENSIONS = .scm
+  # $(srcdir) and $(builddir) are added here and not in
+  # AM_SCM_LOG_FLAGS below because guile must know where to find
+  # gnetlist modules before it runs tests
+  SCM_LOG_DRIVER = $(GUILE) -L $(srcdir) -L $(builddir) --no-auto-compile -e main -s unit-test.scm
+  AM_SCM_LOG_FLAGS = --
+  AM_TESTS_ENVIRONMENT = GUILE_AUTO_COMPILE=0
+
+  dist_noinst_DATA = unit-test.scm $(TESTS)
+else !HAVE_SRFI_64
+	@echo 'srfi-64 is require for scheme unit tests, skipping.'
+endif
+
 EXTRA_DIST = $(DIST_SCM) $(SCM_SRCS)
 
 SCM_SRCS   =	gnet-gsch2pcb.scm.in
