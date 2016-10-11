@@ -840,7 +840,7 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
     x_image_lowlevel(w_current, filename, width, height, image_type,
                      last_extents, use_print_map, invert_color_bw);
 
-    file_path = geda_file_path_get_dirname(filename);
+    file_path = geda_get_dirname(filename);
     gschem_toplevel_set_last_image_path(w_current, file_path);
 
     /* file_path is not free here, pointer stored in toplevel */

@@ -1021,7 +1021,7 @@ SCM g_rc_log_directory(SCM path)
   free (temp);
 
   /* invalid path? */
-  if (geda_file_path_create (string, 0777 /*octal*/ ) != NO_ERROR) {
+  if (geda_create_path (string, 0777 /*octal*/ ) != NO_ERROR) {
     fprintf (stderr, _("Path invalid[%s], %s\n"), string, strerror (errno));
     GEDA_FREE(string);
     return SCM_BOOL_F;

@@ -223,9 +223,9 @@ void x_icons_add_search_path (const char *path)
 {
   char *icon_path;
 
-  g_return_if_fail (geda_file_path_sys_data () != NULL);
+  g_return_if_fail (geda_sys_data_path () != NULL);
 
-  icon_path = g_build_filename (geda_file_path_sys_data(), path, NULL);
+  icon_path = g_build_filename (geda_sys_data_path(), path, NULL);
   gtk_icon_theme_append_search_path (gtk_icon_theme_get_default(),
                                      icon_path);
 
@@ -357,7 +357,7 @@ static void x_icons_setup_factory()
     icon_name = IDS_THEME_ICONS_22[index];
 
     filename = geda_strconcat (icon_name, ".png", NULL);
-    pathname = g_build_filename (geda_file_path_sys_data (), ACTION_ICON_THEME_22_PATH, filename, NULL);
+    pathname = g_build_filename (geda_sys_data_path (), ACTION_ICON_THEME_22_PATH, filename, NULL);
     GEDA_FREE(filename);
 
     if (pathname) {

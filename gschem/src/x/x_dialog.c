@@ -3907,7 +3907,7 @@ char *x_dialog_select_file (GschemToplevel *w_current,
     result = geda_file_chooser_get_filename (dialog);
 
     if (result !=NULL) {
-      char *file_path = geda_file_path_get_dirname(result);
+      char *file_path = geda_get_dirname(result);
       gschem_toplevel_set_last_image_path(w_current, file_path);
     }
   }

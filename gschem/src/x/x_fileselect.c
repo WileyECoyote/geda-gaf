@@ -395,7 +395,7 @@ x_fileselect_select_image(GschemToplevel *w_current, const char *filename)
    * readable by the current user */
   if (filename) {
 
-    char *filepath = geda_file_path_get_dirname (filename);
+    char *filepath = geda_get_dirname (filename);
 
     if (filepath && g_file_test (filepath, G_FILE_TEST_IS_DIR)) {
 
@@ -428,7 +428,7 @@ x_fileselect_select_image(GschemToplevel *w_current, const char *filename)
   if (gtk_dialog_run ((GtkDialog*)dialog) == GEDA_RESPONSE_ACCEPT) {
     outfile = geda_image_chooser_get_filename (dialog);
     if (outfile !=NULL) {
-      char *file_path = geda_file_path_get_dirname(outfile);
+      char *file_path = geda_get_dirname(outfile);
       gschem_toplevel_set_last_image_path(w_current, file_path);
     }
   }

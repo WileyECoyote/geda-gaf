@@ -396,7 +396,7 @@ i_sessions_create(GschemToplevel *w_current, const char *name, GError **err)
 
   /* It's called "pre-reusing" a variable */
   filename = geda_strconcat(name, SESSIONS_FILE_DOT_SUFFIX, NULL);
-  session_file = g_build_filename(geda_file_path_user_config (),
+  session_file = g_build_filename(geda_user_config_path (),
                                   SESSIONS_DIRECTORY,
                                   filename,
                                   NULL);
@@ -728,12 +728,12 @@ static void i_sessions_load_data(void)
 
   sessions = NULL;   /* The main array, global to this module */
 
-  path = g_build_filename(geda_file_path_user_config (), SESSIONS_DIRECTORY, NULL);
+  path = g_build_filename(geda_user_config_path (), SESSIONS_DIRECTORY, NULL);
 
   if(!g_file_test(path, G_FILE_TEST_EXISTS)) {
 
     /* There was no session directory so create an empty one */
-    geda_file_path_create(path, S_IRWXU | S_IRWXG);
+    geda_create_path(path, S_IRWXU | S_IRWXG);
 
   }
   else {
@@ -1014,7 +1014,7 @@ int i_sessions_rename_session(GschemToplevel *w_current, const char *old_name,
 
   filename = geda_strconcat(new_name, SESSIONS_FILE_DOT_SUFFIX, NULL);
 
-  new_filename = g_build_filename(geda_file_path_user_config (),
+  new_filename = g_build_filename(geda_user_config_path (),
                                   SESSIONS_DIRECTORY,
                                   filename,
                                   NULL);

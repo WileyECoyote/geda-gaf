@@ -1920,7 +1920,7 @@ int main (int argc, char **argv)
     g_list_free(pcb_element_list);
   }
 
-  geda_file_path_free();
+  geda_free_path();
 
   return exit_code;
 }

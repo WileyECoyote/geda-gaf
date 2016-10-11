@@ -81,7 +81,7 @@ void g_rc_parse_gtkrc()
   char *filename;
 
   /* System */
-  filename = g_build_filename (geda_file_path_sys_config (), "gschem-gtkrc", NULL);
+  filename = g_build_filename (geda_sys_config_path (), "gschem-gtkrc", NULL);
   if (access(filename, R_OK) == 0) {
     v_log_message(_("Processing %s\n"), filename);
     gtk_rc_parse (filename);
@@ -92,7 +92,7 @@ void g_rc_parse_gtkrc()
   GEDA_FREE (filename);
 
   /* User */
-  filename = g_build_filename (geda_file_path_user_config (), "gschem-gtkrc", NULL);
+  filename = g_build_filename (geda_user_config_path (), "gschem-gtkrc", NULL);
   if (access(filename, R_OK) == 0) {
     v_log_message(_("Processing %s\n"), filename);
     gtk_rc_parse (filename);

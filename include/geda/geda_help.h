@@ -1,12 +1,12 @@
 
 
 /* Filenames for HTML files - To reference these html files in code
- * the prefix the each with the path returned from geda_file_path_sys_doc
+ * the prefix the each with the path returned from geda_sys_doc_path
  * and "wiki".
  *
  * Ex "C" :
  *
- *  fn= g_build_filename (geda_file_path_sys_doc(), "wiki", HELP_GEDA_DOC_HTML, NULL);
+ *  fn= g_build_filename (geda_sys_doc_path(), "wiki", HELP_GEDA_DOC_HTML, NULL);
  *
  */
 #define HELP_GATTRIB_GUIDE_HTML  "geda-gattrib_readme.html"

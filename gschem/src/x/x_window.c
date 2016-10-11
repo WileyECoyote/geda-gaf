@@ -972,7 +972,7 @@ x_window_open_page(GschemToplevel *w_current, const char *filename)
 
       file_err = errno;                     /* save file error */
       path     = strcpy (&strbuff[0], filename);
-      path     = dirname(path);             /* geda_file_path_get_dirname make copy */
+      path     = dirname(path);             /* geda_get_dirname make copy */
 
       /* If the path is OK but no file then just create a new file */
       if ((access(path, W_OK && X_OK && F_OK) == 0) && (file_err == ENOENT)) {
@@ -989,7 +989,7 @@ x_window_open_page(GschemToplevel *w_current, const char *filename)
          * to sort out the problem:
          */
         if (errno == ENOENT) { /* 100% sure file_err == ENOENT */
-          if (geda_file_path_create (path, S_IRWXU | S_IRWXG) == NO_ERROR ) {
+          if (geda_create_path (path, S_IRWXU | S_IRWXG) == NO_ERROR ) {
             u_log_message("Path \"%s\": did not exist\n, successfully created\n", path);
             page = empty_page(filename);
             errno = NO_ERROR;

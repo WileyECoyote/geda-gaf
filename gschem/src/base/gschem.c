@@ -309,7 +309,7 @@ static void gschem( int argc, char *argv[])
   g_init_builtins ();
   g_init_util ();
 
-  if (geda_file_path_sys_data () == NULL) {
+  if (geda_sys_data_path () == NULL) {
     const char *message =
       _("You must set the GEDADATA environment variable!\n\n"
         "gschem cannot locate some data files. Please ensure the GEDADATA\n"

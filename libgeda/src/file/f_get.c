@@ -76,7 +76,7 @@ char *f_get_autosave_filename (const char *filename)
          char *path_spec;
 
     old_basename  = f_get_basename(filename);
-    path_spec     = geda_file_path_get_dirname(filename);
+    path_spec     = geda_get_dirname(filename);
     new_basename  = geda_sprintf(AUTOSAVE_BACKUP_FILENAME_STRING, old_basename);
     autosave_name = g_build_filename(path_spec, new_basename, NULL);
 
@@ -128,7 +128,7 @@ char *f_get_basename_dup(const char *path)
  *  Prepends the path to the bitmaps directory to \a filename.
  *  User path specified paths using the bitmap-directory keyword
  *  are given precedence, otherwise the path is the default path,
- *  which is the path returned by geda_file_path_sys_data suffix suffixed
+ *  which is the path returned by geda_sys_data_path suffix suffixed
  *  with "bitmaps".
  *
  *  \param [in] filename The file name to prepend the path to.
@@ -165,7 +165,7 @@ char *f_get_bitmap_filespec (const char *filename)
       const char *base;
       const char *subfolder;
 
-      base      = geda_file_path_sys_data();
+      base      = geda_sys_data_path();
       subfolder = "bitmap";
       filespec  = geda_strconcat (base, seperator, subfolder,
                                         seperator, filename, NULL);
@@ -233,7 +233,7 @@ char *f_get_data_filespec (const char *filename)
     /* Look for file in user config/data directory */
     if (!filespec) {
 
-      directory = geda_file_path_user_config();
+      directory = geda_user_config_path();
       filespec  = geda_strconcat (directory, seperator, filename, NULL);
 
       if ((access (filespec, R_OK)) != 0) {
@@ -245,7 +245,7 @@ char *f_get_data_filespec (const char *filename)
     /* Look for file in system data directory */
     if (!filespec) {
 
-      directory = geda_file_path_sys_data();
+      directory = geda_sys_data_path();
       filespec  = geda_strconcat (directory, seperator, filename, NULL);
 
       if ((access (filespec, R_OK)) != 0) {

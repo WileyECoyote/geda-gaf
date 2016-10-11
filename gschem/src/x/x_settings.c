@@ -333,7 +333,7 @@ int get_titleblock_cnt(void) {
   int  count = 0;
   DIR *dirp;
 
-  strcpy (TitleBlockPath, geda_file_path_sys_data());
+  strcpy (TitleBlockPath, geda_sys_data_path());
   strcat (TitleBlockPath, TITLE_BLOCK_PATH);
 
   dirp = opendir (TitleBlockPath);
@@ -376,7 +376,7 @@ bool get_titleblock_list(char **Buffer) {
   char TitleBlockPath[MAX_PATH];
   DIR *dirp;
 
-  strcpy (TitleBlockPath, geda_file_path_sys_data());
+  strcpy (TitleBlockPath, geda_sys_data_path());
   strcat (TitleBlockPath, TITLE_BLOCK_PATH);
 
   dirp   = opendir (TitleBlockPath);
@@ -511,7 +511,7 @@ int generate_rc(GschemToplevel *w_current, const char *rcname)
   int result;                /* Our exit code */
 
   /* Build path for user config file */
-  inputfile = geda_strconcat (geda_file_path_user_config (), DIR_SEPARATOR_S, rcname, NULL);
+  inputfile = geda_strconcat (geda_user_config_path (), DIR_SEPARATOR_S, rcname, NULL);
 
   /* Check for existence of user config file */
   if(access(inputfile, R_OK) != 0) {
@@ -519,7 +519,7 @@ int generate_rc(GschemToplevel *w_current, const char *rcname)
     char *templatefile;      /* Name of the Template file */
 
     /* Copy the template user config file to user's folder */
-    templatefile = geda_strconcat (geda_file_path_sys_config (), DIR_SEPARATOR_S,
+    templatefile = geda_strconcat (geda_sys_config_path (), DIR_SEPARATOR_S,
                                    "user-", rcname, NULL);
     result = geda_file_copy(templatefile, inputfile);
   }
@@ -529,7 +529,7 @@ int generate_rc(GschemToplevel *w_current, const char *rcname)
     return -1;
   }
 
-  outputfile = geda_strconcat (geda_file_path_user_config (), DIR_SEPARATOR_S,
+  outputfile = geda_strconcat (geda_user_config_path (), DIR_SEPARATOR_S,
                             rcname, ".tmp", NULL);
 
   if ((input = fopen (inputfile, "r" )) == NULL) {

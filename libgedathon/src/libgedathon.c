@@ -1313,7 +1313,7 @@ PyGeda_open_page( const char *filename )
 
       file_err = errno;                     /* save file error */
       path     = strcpy (&strbuff[0], filename);
-      path     = dirname(path);             /* geda_file_path_get_dirname make copy */
+      path     = dirname(path);             /* geda_get_dirname make copy */
 
       /* If the path is OK but no file then just create a new file */
       if ((access(path, W_OK && X_OK && F_OK) == 0) && (file_err == ENOENT)) {

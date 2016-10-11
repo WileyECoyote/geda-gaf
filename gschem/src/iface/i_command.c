@@ -4401,7 +4401,7 @@ COMMAND (do_show_manual)
 
   char *pathname = NULL;
 
-  pathname = g_build_filename (geda_file_path_sys_doc (), "wiki",
+  pathname = g_build_filename (geda_sys_doc_path (), "wiki",
                                HELP_GSCHEM_GUIDE_HTML, NULL);
   if (pathname) {
 
@@ -4430,7 +4430,7 @@ COMMAND (do_show_faq)
   BEGIN_COMMAND(do_show_faq);
 
   char *pathname = NULL;
-  pathname = g_build_filename (geda_file_path_sys_doc (), "wiki",
+  pathname = g_build_filename (geda_sys_doc_path (), "wiki",
                                HELP_GSCHEM_FAQ_HTML, NULL);
   if (pathname) {
 
@@ -4450,7 +4450,7 @@ COMMAND (do_show_geda)
   BEGIN_COMMAND(do_show_geda);
 
   char *pathname = NULL;
-  pathname = g_build_filename (geda_file_path_sys_doc (), "wiki",
+  pathname = g_build_filename (geda_sys_doc_path (), "wiki",
                                HELP_GEDA_DOC_HTML, NULL);
   if (pathname) {
 
@@ -4470,7 +4470,7 @@ COMMAND (do_show_wiki)
   BEGIN_COMMAND(do_show_wiki);
 
   char *pathname = NULL;
-  pathname = g_build_filename (geda_file_path_sys_doc (), "wiki", HELP_GEDA_WIKI_HTML, NULL);
+  pathname = g_build_filename (geda_sys_doc_path (), "wiki", HELP_GEDA_WIKI_HTML, NULL);
 
   if (pathname) {
 
