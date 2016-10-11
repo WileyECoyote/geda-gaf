@@ -96,8 +96,7 @@ void geda_math_papersize_to_world(int width, int height, int border, int *right,
 #ifdef HAVE_LRINT
     *right = lrint (width+border + ((height+border)*1.33333333 - (width+border)));
 #else
-    *right = (int) width+border +
-      ((height+border)*1.33333333 - (width+border));
+    *right = (int) width+border + ((height+border)*1.33333333 - (width+border));
 #endif
     *bottom = height+border;
   } else {
