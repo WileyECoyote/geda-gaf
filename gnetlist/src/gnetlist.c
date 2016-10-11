@@ -375,7 +375,7 @@ void main_prog(void *closure, int argc, char *argv[])
         char   *name_norm;
         GError *err = NULL;
 
-        name_norm = geda_file_sys_normalize_name (path, &err);
+        name_norm = geda_normalize_filename (path, &err);
 
         GEDA_FREE(name_norm); /* Did not need, checking for error */
 

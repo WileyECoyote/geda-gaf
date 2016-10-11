@@ -239,7 +239,7 @@ int gschem_parse_commandline(int argc, char *argv[])
          * load. Validate the file and add the necessary expression to
          * be evaluated after loading. */
         err = NULL;
-        str = geda_file_sys_normalize_name (optarg, &err);
+        str = geda_normalize_filename (optarg, &err);
         if (str == NULL) {
           u_log_message(_("error parsing: <%s>: %s\n"), optarg, err->message);
           g_clear_error(&err);
