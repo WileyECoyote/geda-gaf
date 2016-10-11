@@ -20,10 +20,12 @@
 #include <config.h>
 #include <libgeda_priv.h>
 
-/*! \brief Initialize a bounds by setting it to empty
+/*!
+ * \brief Initialize a bounds by setting it to empty
+ * \par Function Description
+ *  The \a bonds parameter must not be NULL.
  *
- *  \param bounds [in] The bounds to set to empty.  This parameter must not
- *  be NULL.
+ * \param [in] bounds The bounds to set to empty.
  */
 void geda_math_bounds_init(BOUNDS *bounds)
 {
@@ -33,16 +35,17 @@ void geda_math_bounds_init(BOUNDS *bounds)
   bounds->max_y = INT_MIN;
 }
 
-/*! \brief Calculate the bounds of a set of points
- *
+/*!
+ * \brief Calculate the bounds of a set of points
+ * \par Function Description
  *  For an empty set of points, this function returns an empty bounds.
+ *  The \a bounds does not need to be initialized before calling this
+ *  function, but this  parameter must not be NULL. If the \a count is
+ *  greater than zero, \a points argument must not be NULL.
  *
- *  \param bounds [out] The bounds of the given set of points.  The bounds
- *  does not need to be initialized before calling this function, but this
- *  parameter must not be NULL.
- *  \param points [in] The given set of points.  If the count is greater than
- *  zero, this parameter must not be NULL.
- *  \param count [in] The number of points in the set.
+ * \param [out] bounds  The bounds of the given set of points.
+ * \param [in]  points  The given set of points.
+ * \param [in]  count   The number of points in the set.
  */
 void geda_math_bounds_of_points(BOUNDS *bounds, POINT points[], int count)
 {

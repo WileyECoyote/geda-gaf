@@ -32,30 +32,32 @@
 
 #include <geda_debug.h>
 
-/*! \brief Calculates the length of an Arc sector
+/*!
+ * \brief Calculates the length of an Arc sector
  *  Returns length of the Arc sector.
  *
- *  \param [in] radius  The radius of the arc.
- *  \param [in] sweep   The included angle.
+ * \param [in] radius  The radius of the arc.
+ * \param [in] sweep   The included angle.
  *
- *  \return The length of the sector.
+ * \return The length of the sector.
  */
 double  geda_math_arc_length (int radius, int sweep)
 {
   return 2 * M_PI * radius * (sweep / 360);
 }
 
-/*! \brief Determine if Arc Sector includes a Point
+/*!
+ * \brief Determine if Arc Sector includes a Point
  *  Compares distance from point to the center of the Arc to the radius
  *  of the Arc, if there is no difference, compares the angle of the ray
  *  from the center to the point to the starting and ending angles of
  *  \a arc. Returns True if the ray is within the Arc's included angle
  *  otherwise false.
  *
- *  \param [in] arc    The arc object.
- *  \param [in] point  Point to test for inclusion.
+ * \param [in] arc    The arc object.
+ * \param [in] point  Point to test for inclusion.
  *
- *  \return True if \a arc includes \a point
+ * \return True if \a arc includes \a point
  */
 bool geda_math_arc_includes_point (GedaArc *arc, POINT *point)
 {

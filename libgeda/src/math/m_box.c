@@ -31,17 +31,21 @@
 
 #include <geda_debug.h>
 
-/*! \brief Calculates the distance between the given point and the closest
+/*!
+ * \brief Determine shortest distance from a Box to Point
+ * \par Function Description
+ *  Calculates the distance between the given point and the closest
  *  point on the perimeter or interior of the Gedabox.
  *
- *  \param [in] box    The Gedabox.
- *  \param [in] x      The x coordinate of the given point.
- *  \param [in] y      The y coordinate of the given point.
- *  \param [in] solid  TRUE if the box should be treated as solid, FALSE if
- *  the box should be treated as hollow.
- *  \return The shortest distance from the box to the point. With a solid
- *          shape, this function returns a distance of zero for interior points.
- *          With an invalid parameter, this function returns G_MAXDOUBLE.
+ * \param [in] box    The Gedabox.
+ * \param [in] x      The x coordinate of the given point.
+ * \param [in] y      The y coordinate of the given point.
+ * \param [in] solid  TRUE if the box should be treated as solid, FALSE if
+ *                     the box should be treated as hollow.
+ *
+ * \return The shortest distance from the box to the point. With a solid
+ *         shape, this function returns a distance of zero for interior points.
+ *         With an invalid parameter, this function returns G_MAXDOUBLE.
  */
 double geda_math_box_shortest_distance (GedaBox *box, int x, int y, int solid)
 {

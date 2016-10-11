@@ -42,17 +42,18 @@ static int calculate_initial_sweep(int pitch, int min_y, int max_y);
 static int compare_events(const void *a, const void *b);
 static int compare_status(const void *a, const void *b);
 
-/*! \brief Calculate the initial y cooridinate of the hatch sweep line
- *
+/*!
+ * \brief Calculate the initial y cooridinate of the hatch sweep line
+ * \par Function Description
  *  This function centers the hatch lines across the extents of the shape being
  *  hatched.  This caclulation provides symmetrical hatch lines inside
  *  symmetrical shapes, such as circles and squares.  This mechanism may not
  *  provide as nice of an appearance in asymmetrical shapes.
  *
- *  \param pitch [in] The perpendicular distance between hatch lines.
- *  \param min_y [in] The minimum y coordinate of the object being hatched.
- *  \param max_y [in] The maximum y coordinate of the object being hatched.
- *  \return The initital y coordinate of the sweep line.
+ * \param pitch [in] The perpendicular distance between hatch lines.
+ * \param min_y [in] The minimum y coordinate of the object being hatched.
+ * \param max_y [in] The maximum y coordinate of the object being hatched.
+ * \return The initital y coordinate of the sweep line.
  */
 static int calculate_initial_sweep(int pitch, int min_y, int max_y)
 {

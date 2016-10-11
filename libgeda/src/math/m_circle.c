@@ -37,14 +37,15 @@ double  geda_math_circle_circumference (int radius)
   return 2 * M_PI * radius;
 }
 
-/*! \brief Determine if a Circle includes a Point
+/*!
+ * \brief Determine if a Circle includes a Point
  *  Compares distance from point to the center of the Circle to the radius
  *  of the Circle returns True if there is no difference.
  *
- *  \param [in] circle The circle object.
- *  \param [in] point  Point to test for inclusion.
+ * \param [in] circle The circle object.
+ * \param [in] point  Point to test for inclusion.
  *
- *  \return True if \a circle includes \a point.
+ * \return True if \a circle includes \a point.
  */
 bool geda_math_circle_includes_point (GedaCircle *circle, POINT *point)
 {
@@ -61,18 +62,21 @@ bool geda_math_circle_includes_point (GedaCircle *circle, POINT *point)
   return delta ? FALSE : TRUE;
 }
 
-/*! \brief Calculates the distance between the given point and the closest
- * point on the perimeter or interior of the circle.
+/*!
+ * \brief  Determine shortest distance from a Circle to  a Point
+ * \par Function Description
+ *  Calculates the distance between the given point and the closest
+ *  point on the perimeter or interior of the circle.
  *
- *  \param [in] circle  The circle.
- *  \param [in] x       The x coordinate of the given point.
- *  \param [in] y       The y coordinate of the given point.
- *  \param [in] solid   TRUE if the circle should be treated as solid, FALSE if
+ * \param [in] circle  The circle.
+ * \param [in] x       The x coordinate of the given point.
+ * \param [in] y       The y coordinate of the given point.
+ * \param [in] solid   TRUE if the circle should be treated as solid, FALSE if
  *                      the circle should be treated as hollow.
  *
- *  \return The shortest distance from the circle to the point. With a solid
- *          shape, this function returns a distance of zero for interior points,
- *          or G_MAXDOUBLE if the parameters are invalid parameter.
+ * \return The shortest distance from the circle to the point. With a solid
+ *         shape, this function returns a distance of zero for interior points,
+ *         or G_MAXDOUBLE if the parameters are invalid parameter.
  */
 double geda_math_circle_shortest_distance (GedaCircle *circle, int x, int y, int solid)
 {
