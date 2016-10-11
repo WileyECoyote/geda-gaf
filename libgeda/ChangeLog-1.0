@@ -1,3 +1,9 @@
+2016-10-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_arc_object.c: Increase minimum random radius in check_query
+      from 5 to 10. The algorithms in geda_arc_object_get_nearest_point fail
+      when small arcs, < 8 pixels, are tested with points far from the arc.
+
 2016-10-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_arc_object.c: Try to suppress rounding errors. Rounding

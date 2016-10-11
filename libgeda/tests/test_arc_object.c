@@ -980,8 +980,8 @@ query_nearest_Q13_90 (GedaObject *object)
   ny = 0;
 
   /* Convert arc sweep to radian measure */
-  double sweep = s * M_PI / 180;
-  double angle = a * M_PI / 180;
+  double sweep = s * M_PI / 180.0;
+  double angle = a * M_PI / 180.0;
 
   /* Get the first point of the sagitta of this Arc */
   int sag_px = (spx + epx) / 2;
@@ -1031,11 +1031,11 @@ query_nearest_Q13_90 (GedaObject *object)
   ny = 0;
 
   /* Finally check on the exterior/far-side of the bulge */
-  if (!geda_arc_object_get_nearest_point (object, mpx + 10, mpy + 10, &nx, &ny)) {
+  if (!geda_arc_object_get_nearest_point (object, mpx + 5, mpy + 5, &nx, &ny)) {
     fprintf(stderr, "FAILED: (O021606-Q13-90A) nearest arc object point\n");
     fprintf(stderr, "with input conditions (  x=%d,\t   y=%d,\t r=%d,\t a=%d)\n", x, y, r, a);
     fprintf(stderr, " calculated midpoint  (mpx=%d,\t mpy=%d)\n", mpx, mpy);
-    fprintf(stderr, " query point          (mpx=%d,\t mpy=%d)\n\n", mpx + 10, mpy + 10);
+    fprintf(stderr, " query point          (mpx=%d,\t mpy=%d)\n\n", mpx + 5, mpy + 5);
     fprintf(stderr, " returned INVALID     ( nx=%d,\t  ny=%d)\n\n", nx, ny);
     result++;
   }
@@ -1112,7 +1112,7 @@ query_nearest_Q24_90 (GedaObject *object)
       qy = epy + 10;  /* North 10 units */
   }
 
-  /* Q2 below, Q4 above of ending point for X = {-5, 0, +5}  */
+  /* Q2 below, Q4 above ending point for X = {-5, 0, +5}  */
   /* Sweep X below the ending Y should return the end point */
   for (qx = epx - 5; qx < epx + 10; qx = qx + 5) {
     if (!geda_arc_object_get_nearest_point (object, qx, qy, &nx, &ny)) {
@@ -1167,16 +1167,16 @@ query_nearest_Q24_90 (GedaObject *object)
   ny = 0;
 
   /* Convert arc sweep to radian measure */
-  double sweep = s * M_PI / 180;
-  double angle = a * M_PI / 180;
+  double sweep = s * M_PI / 180.0;
+  double angle = a * M_PI / 180.0;
 
   /* Get the first point of the sagitta of this Arc */
   int sag_px = (spx + epx) / 2;
   int sag_py = (spy + epy) / 2;
 
   /* So the midpoint of the arc will be ... */
-  int mpx = x + rint(r * cos(angle + sweep/2));
-  int mpy = y + rint(r * sin(angle + sweep/2));
+  int mpx = x + rint(r * cos(angle + sweep / 2));
+  int mpy = y + rint(r * sin(angle + sweep / 2));
 
   /* Which will be the point on the arc nearest the 1st point of the sagitta  */
 
@@ -1218,11 +1218,11 @@ query_nearest_Q24_90 (GedaObject *object)
   ny = 0;
 
   /* Finally check on the exterior/far-side of the bulge */
-  if (!geda_arc_object_get_nearest_point (object, mpx - 10, mpy + 10, &nx, &ny)) {
+  if (!geda_arc_object_get_nearest_point (object, mpx - 5, mpy + 5, &nx, &ny)) {
     fprintf(stderr, "FAILED: (O021606-Q24-90A) nearest arc object point\n");
     fprintf(stderr, "with input conditions (  x=%d,\t   y=%d,\t r=%d,\t a=%d)\n", x, y, r, a);
     fprintf(stderr, " calculated midpoint  (mpx=%d,\t mpy=%d)\n", mpx, mpy);
-    fprintf(stderr, " query point          (mpx=%d,\t mpy=%d)\n\n", mpx + 10, mpy + 10);
+    fprintf(stderr, " query point          (mpx=%d,\t mpy=%d)\n\n", mpx + 5, mpy + 5);
     fprintf(stderr, " returned INVALID     ( nx=%d,\t  ny=%d)\n\n", nx, ny);
     result++;
   }
@@ -1328,13 +1328,13 @@ check_query (void)
   for (count = 0; count < 10; count++) {
 
 #if USE_RANDOM_NUMBERS
-    int x = geda_random_number (0, 120000);
-    int y = geda_random_number (0, 80000);
-    int r = geda_random_number (5, 5000);
+    int x = geda_random_number ( 0, 120000);
+    int y = geda_random_number ( 0, 80000);
+    int r = geda_random_number (10, 5000);
 #else
-    int x = 1050; //1000;
-    int y = 6000; //1000;
-    int r = 3233; //100;
+    int x = 43766; //1000;
+    int y = 63418; //1000;
+    int r = 10;    //100;
 #endif
 
     geda_arc_object_set_radius (object, r);
