@@ -246,12 +246,13 @@ void i_command_disengage(bool immediate, bool wait_return)
 
 /* Command Interface Helpers */
 
-/*! \brief Get List of actions
- *  \par Function Description
+/*!
+ * \brief Get List of actions
+ * \par Function Description
  *  Indexes through the main command table and adds each action
  *  member to the \a list.
  *
- *  \param [out] list Pointer of GList to be populated
+ * \param [out] list Pointer of GList to be populated
  */
 void i_command_get_action_list(GList** list)
 {
@@ -709,11 +710,10 @@ COMMAND (do_file_new)
 
 }
 
-/*! \brief File New Window Action
- *
- *  @brief i_cmd_do_file_new_window in i_command_Option_Actions
- *
- *  \par Function Description
+/*!
+ * \brief File New Window Action
+ * \brief i_cmd_do_file_new_window in i_command_Option_Actions
+ * \par Function Description
  *  Action handler function for the File New Window action. This
  *  function creates a new toplevel window.
  */
@@ -864,13 +864,14 @@ COMMAND (do_open) {
 /** @} endgroup open-files-command */
 
 /** @brief i_cmd_do_save in i_command_File_Actions */
-/*! \brief Save File As command action handler function
- *  \par Function Description
+/*!
+ * \brief Save File As command action handler function
+ * \par Function Description
  *  Save the current file to disk.
- *  \note should be a flag that says whether filename is
- *        derived from untitled_name or specified by a user.
- *        Some twisted people might name their files like
- *        untitled_name. :-)
+ * \note should be a flag that says whether filename is
+ *       derived from untitled_name or specified by a user.
+ *       Some twisted people might name their files like
+ *       untitled_name. :-)
  */
 COMMAND (do_save) {
   BEGIN_NO_ARGUMENT(do_save);
@@ -898,8 +899,9 @@ COMMAND (do_save) {
   }
 }
 
-/*! \brief Save File As action
- *  \par Function Description
+/*!
+ * \brief Save File As action
+ * \par Function Description
  *  This is a callback function for the File Save As API
  *  The function calls i_command to process the action.
  */
@@ -1034,8 +1036,9 @@ COMMAND (do_write_image) {
 }
 
 /** @brief i_cmd_do_write_pdf in i_command_File_Actions */
-/*! \brief Write PDF command
- *  \par Function Description
+/*!
+ * \brief Write PDF command
+ * \par Function Description
  *  This is handles the file-write-pdf action
  */
 COMMAND (do_write_pdf) {
@@ -1282,8 +1285,9 @@ COMMAND (do_copy_clip)
   EXIT_COMMAND(do_copy_clip);
 }
 
-/*! \brief Action Paste Clipboard Contents
- *  \par Function Description
+/*!
+ * \brief Action Paste Clipboard Contents
+ * \par Function Description
  *  This function initiates the pasting of the clipboard contents
  *  into the drawing.
  */
@@ -1342,9 +1346,10 @@ COMMAND (do_delete)
 }
 
 /** @brief i_cmd_do_copy in i_command_Edit_Actions */
-/*! \brief Copy selected objects on page.
- *  \par Function Description
- *   Initiate Copy mode for selected objects
+/*!
+ * \brief Copy selected objects on page.
+ * \par Function Description
+ *  Initiate Copy mode for selected objects
  */
 COMMAND (do_copy)
 {
@@ -1372,9 +1377,10 @@ COMMAND (do_copy)
 }
 
 /** @brief i_cmd_do_mcopy in i_command_Edit_Actions */
-/*! \brief Make multi copies of selected objects on page.
- *  \par Function Description
- *   Initiates Multi-Copy mode for selected objects
+/*!
+ * \brief Make multi copies of selected objects on page.
+ * \par Function Description
+ *  Initiates Multi-Copy mode for selected objects
  */
 COMMAND (do_mcopy)
 {
@@ -1398,13 +1404,11 @@ COMMAND (do_mcopy)
   EXIT_COMMAND(do_mcopy);
 }
 
-/*! \brief Mirror selected objects on page
- *
- *  @brief i_cmd_do_mirror in i_command_Edit_Actions
- *
- *  \par Function Description
+/*!
+ * \brief Mirror selected objects on page
+ * \brief i_cmd_do_mirror in i_command_Edit_Actions
+ * \par Function Description
  *  Initiate Mirror mode for selected object.
- *
  */
 COMMAND (do_mirror)
 {
@@ -1440,9 +1444,10 @@ COMMAND (do_mirror)
 }
 
 /** @brief i_cmd_do_move in i_command_Edit_Actions */
-/*! \brief Move selected objects on page.
- *  \par Function Description
- *   Initiate Move mode for selected objects
+/*!
+ * \brief Move selected objects on page.
+ * \par Function Description
+ *  Initiate Move mode for selected objects
  */
 COMMAND (do_move)
 {
@@ -1479,14 +1484,12 @@ COMMAND (do_array)
   EXIT_COMMAND(do_array);
 }
 
-/*! \brief Break Editing Mode
- *
- *  @brief i_cmd_do_break in i_command_Edit_Actions
- *
- *  \par Function Description
+/*!
+ * \brief Break Editing Mode
+ * \brief i_cmd_do_break in i_command_Edit_Actions
+ * \par Function Description
  *  Initiate Break mode, possibly handling if there
  *  object are already selected.
- *
  */
 COMMAND (do_break)
 {
@@ -1518,14 +1521,12 @@ COMMAND (do_break)
   EXIT_COMMAND(do_break);
 }
 
-/*! \brief Project Editing Mode
- *
- *  @brief i_cmd_do_extend in i_command_Edit_Actions
- *
- *  \par Function Description
+/*!
+ * \brief Project Editing Mode
+ * \brief i_cmd_do_extend in i_command_Edit_Actions
+ * \par Function Description
  *  Initiate Projection mode, possibly handling if there
  *  object are already selected.
- *
  */
 COMMAND (do_extend)
 {
@@ -1553,13 +1554,11 @@ COMMAND (do_extend)
   EXIT_COMMAND(do_extend);
 }
 
-/*! \brief Offset selected objects
- *
- *  @brief i_cmd_do_offset in i_command_Edit_Actions
- *
- *  \par Function Description
+/*!
+ * \brief Offset selected objects
+ * \brief i_cmd_do_offset in i_command_Edit_Actions
+ * \par Function Description
  *  Create a copy of selected objects at offset to pointer position.
- *
  */
 COMMAND (do_offset)
 {
@@ -1611,13 +1610,11 @@ COMMAND (do_offset)
   EXIT_COMMAND(do_offset);
 }
 
-/*! \brief Action Rotate  in i_command_Edit_Actions
- *
- *  @brief i_cmd_do_rotate_left
- *
- *  \par Function Description
+/*!
+ * \brief Action Rotate  in i_command_Edit_Actions
+ * \brief i_cmd_do_rotate_left
+ * \par Function Description
  *  This function rotate all objects in the selection list by 90 degrees.
- *
  */
 COMMAND (do_rotate_left)
 {
@@ -1659,14 +1656,12 @@ COMMAND (do_rotate_left)
   EXIT_COMMAND(do_rotate_left);
 }
 
-/*! \brief Snap Selecion Editing Action
- *
- *  @brief i_cmd_do_snap in i_command_Edit_Actions
- *
- *  \par Function Description
+/*!
+ * \brief Snap Selecion Editing Action
+ * \brief i_cmd_do_snap in i_command_Edit_Actions
+ * \par Function Description
  *  Responses to edit-snap actions, simply by passing the list of
  *  currently selected objects to he o_edit_snap function.
- *
  */
 COMMAND (do_snap)
 {
@@ -1686,14 +1681,12 @@ COMMAND (do_snap)
   EXIT_COMMAND(do_snap);
 }
 
-/*! \brief Edit Attributes for selected object
- *
- *  @brief i_cmd_edit_butes in i_command_Edit_Actions
- *
- *  \par Function Description
- *   Calls o_edit_objects to initiate the Edit Attributes dialog for
- *   selected object
- *
+/*!
+ * \brief Edit Attributes for selected object
+ * \brief i_cmd_edit_butes in i_command_Edit_Actions
+ * \par Function Description
+ *  Calls o_edit_objects to initiate the Edit Attributes dialog for
+ *  selected object
  */
 COMMAND (do_edit_butes)
 {
@@ -1816,11 +1809,10 @@ COMMAND (do_lock)
   EXIT_COMMAND(do_lock);
 }
 
-/*! \brief Unlock objects in selection list
- *
- *  @brief i_cmd_do_unlock in i_command_Edit_Actions
- *
- *  \par Function Description
+/*!
+ * \brief Unlock objects in selection list
+ * \brief i_cmd_do_unlock in i_command_Edit_Actions
+ * \par Function Description
  *  This function calls o_edit_unlock to unlocks all objects in selection.
  *
  */
@@ -1990,8 +1982,9 @@ COMMAND (do_pan)
   i_status_set_state(w_current, PAN);
 }
 
-/*! \brief Zoom Box Action Function in i_command_View_Actions
- *  \par Function Description
+/*!
+ * \brief Zoom Box Action Function in i_command_View_Actions
+ * \par Function Description
  *  This is a callback function for the Zoom Box action.
  */
 COMMAND (do_zoom_box)
@@ -2011,8 +2004,10 @@ COMMAND (do_zoom_box)
 
   EXIT_COMMAND(do_zoom_box);
 }
-/*! \brief Zoom Extents Action Function in i_command_View_Actions
- *  \par Function Description
+
+/*!
+ * \brief Zoom Extents Action Function in i_command_View_Actions
+ * \par Function Description
  *  This is a callback function for the Zoom Extents action.
  */
 COMMAND (do_zoom_selected)
@@ -2036,8 +2031,9 @@ COMMAND (do_zoom_selected)
   EXIT_COMMAND(do_zoom_selected);
 }
 
-/*! \brief Zoom Extents Action Function in i_command_View_Actions
- *  \par Function Description
+/*!
+ * \brief Zoom Extents Action Function in i_command_View_Actions
+ * \par Function Description
  *  This is a callback function for the view-zoom-extents action.
  */
 COMMAND (do_zoom_extents)
@@ -2057,8 +2053,9 @@ COMMAND (do_zoom_extents)
   EXIT_COMMAND(do_zoom_extents);
 }
 
-/*! \brief Zoom In Action Function in i_command_View_Actions
- *  \par Function Description
+/*!
+ * \brief Zoom In Action Function in i_command_View_Actions
+ * \par Function Description
  *  This is a callback function for the view-zoom-in action.
  */
 COMMAND (do_zoom_in)
@@ -2073,8 +2070,9 @@ COMMAND (do_zoom_in)
   EXIT_COMMAND(do_zoom_in);
 }
 
-/*! \brief Zoom Out Action Function in i_command_View_Actions
- *  \par Function Description
+/*!
+ * \brief Zoom Out Action Function in i_command_View_Actions
+ * \par Function Description
  *  This is a callback function for the view-zoom-out action.
  */
 COMMAND (do_zoom_out)
@@ -2089,8 +2087,9 @@ COMMAND (do_zoom_out)
   EXIT_COMMAND(do_zoom_out);
 }
 
-/*! \brief Zoom All Action Function in i_command_View_Actions
- *  \par Function Description
+/*!
+ * \brief Zoom All Action Function in i_command_View_Actions
+ * \par Function Description
  *  This is a callback function for the view-zoom-all action.
  */
 COMMAND (do_zoom_all)
@@ -2104,12 +2103,13 @@ COMMAND (do_zoom_all)
   EXIT_COMMAND(do_zoom_all);
 }
 
-/*! \brief Zoom to Magnification Function in i_command_View_Actions
- *  \par Function Description
+/*!
+ * \brief Zoom to Magnification Function in i_command_View_Actions
+ * \par Function Description
  *  This is the callback handler for the view-zoom-to-mag action.
  *
- *  \note Magnification in this context is the reciprocal of the scale
- *        factor, i.e. to_screen_y_constant and to_screen_x_constant.
+ * \note Magnification in this context is the reciprocal of the scale
+ *       factor, i.e. to_screen_y_constant and to_screen_x_constant.
  */
 COMMAND (do_zoom_to_mag)
 {
@@ -2134,8 +2134,9 @@ COMMAND (do_zoom_to_mag)
   EXIT_COMMAND(do_zoom_to_mag);
 }
 
-/*! \brief View Documentation Action Function in i_command_View_Actions
- *  \par Function Description
+/*!
+ * \brief View Documentation Action Function in i_command_View_Actions
+ * \par Function Description
  *  This is a callback function for the view-documentation action.
  */
 COMMAND (do_documentation)
@@ -2177,6 +2178,7 @@ COMMAND (do_documentation)
 
   EXIT_COMMAND(do_documentation);
 }
+
 COMMAND (do_show_hidden)
 {
   BEGIN_W_COMMAND(do_show_hidden);
@@ -2222,10 +2224,11 @@ COMMAND (do_show_nets)
   EXIT_COMMAND(do_show_nets);
 }
 
-/*! \brief Load the Dark color map scheme in i_command_View_Actions
- *  \par Function Description
- *       This function loads the Dark color map scheme
- *       based on user input from the keyboard or menu.
+/*!
+ * \brief Load the Dark color map scheme in i_command_View_Actions
+ * \par Function Description
+ *  This function loads the Dark color map scheme
+ *  based on user input from the keyboard or menu.
  */
 COMMAND (do_dark_colors)
 {
@@ -2238,10 +2241,12 @@ COMMAND (do_dark_colors)
 
   EXIT_COMMAND(do_dark_colors);
 }
-/*! \brief Load the Light color map scheme in i_command_View_Actions
- *  \par Function Description
- *       This function loads the Light color map scheme
- *       based on user input from the keyboard or menu.
+
+/*!
+ * \brief Load the Light color map scheme in i_command_View_Actions
+ * \par Function Description
+ *  This function loads the Light color map scheme
+ *  based on user input from the keyboard or menu.
  */
 COMMAND (do_light_colors)
 {
@@ -2254,10 +2259,11 @@ COMMAND (do_light_colors)
 
   EXIT_COMMAND(do_light_colors);
 }
-/*! \brief Load the BW color map scheme in i_command_View_Actions
- *  \par Function Description
- *       This function loads the BW color map scheme
- *       based on user input from the keyboard or menu.
+/*!
+ * \brief Load the BW color map scheme in i_command_View_Actions
+ * \par Function Description
+ *  This function loads the BW color map scheme
+ *  based on user input from the keyboard or menu.
  */
 COMMAND (do_bw_colors)
 {
@@ -3098,8 +3104,9 @@ COMMAND (do_add)
  * @{
  */
 
-/*! \brief Action Add Component in i_command_Add_Actions
- *  \par Function Description
+/*!
+ * \brief Action Add Component in i_command_Add_Actions
+ * \par Function Description
  *  This is a callback function for the #ADD_COMPONENT action.
  */
 COMMAND (do_add_component)
@@ -3115,8 +3122,9 @@ COMMAND (do_add_component)
   EXIT_COMMAND(do_add_component);
 }
 
-/*! \brief Action Add Net in i_command_Add_Actions
- *  \par Function Description
+/*!
+ * \brief Action Add Net in i_command_Add_Actions
+ * \par Function Description
  *  This is a callback function for the #ADD_NET action.
  */
 COMMAND (do_add_net)
@@ -3135,8 +3143,9 @@ COMMAND (do_add_net)
   EXIT_COMMAND(do_add_net);
 }
 
-/*! \brief Action Add Bus in i_command_Add_Actions
- *  \par Function Description
+/*!
+ * \brief Action Add Bus in i_command_Add_Actions
+ * \par Function Description
  *  This is a callback function for the #ADD_BUS action.
  */
 COMMAND (do_add_bus)
@@ -3158,12 +3167,12 @@ COMMAND (do_add_bus)
   EXIT_COMMAND(do_add_bus);
 }
 
-/*! \brief Action Add Attribute in i_command_Add_Actions
- *  \par Function Description
+/*!
+ * \brief Action Add Attribute in i_command_Add_Actions
+ * \par Function Description
  *  This is the action handler function for #ADD_ATTRIB action.
  *  The function calls x_attrib_add_dialog to launch the Single
  *  Attribute Editor with the SAE_ADD_MODE flag.
- *
  */
 COMMAND (do_add_attribute)
 {
@@ -3181,8 +3190,9 @@ COMMAND (do_add_attribute)
   EXIT_COMMAND( do_add_attribute);
 }
 
-/*! \brief Add Line Mode  in i_command_Add_Actions
- *  \par Function Description
+/*!
+ * \brief Add Line Mode  in i_command_Add_Actions
+ * \par Function Description
  *  This is the action handler function for ADD_LINE.
  */
 /** @brief i_cmd_do_add_line in i_command_Command_Functions */
@@ -3205,8 +3215,9 @@ COMMAND (do_add_line)
   EXIT_COMMAND(do_add_line);
 }
 
-/*! \brief Add Text Mode in i_command_Add_Actions
- *  \par Function Description
+/*!
+ * \brief Add Text Mode in i_command_Add_Actions
+ * \par Function Description
  *  This is the action handler function for #ADD_TEXT.
  */
 COMMAND (do_add_text)
@@ -3225,8 +3236,9 @@ COMMAND (do_add_text)
   EXIT_COMMAND(do_add_text);
 }
 
-/*! \brief Action Add Pin Mode in i_command_Add_Actions
- *  \par Function Description
+/*!
+ * \brief Action Add Pin Mode in i_command_Add_Actions
+ * \par Function Description
  *  This is the command function for the #ADD_PIN hotkey action.
  */
 COMMAND (do_add_pin)
@@ -3248,13 +3260,11 @@ COMMAND (do_add_pin)
   EXIT_COMMAND(do_add_pin);
 }
 
-/*! \brief Action Add Box Mode initiated by Keyboard Hotkey
- *
- *  @brief i_cmd_do_add_bix in i_command_Add_Actions
- *
- *  \par Function Description
+/*!
+ * \brief Action Add Box Mode initiated by Keyboard Hotkey
+ * \brief i_cmd_do_add_bix in i_command_Add_Actions
+ * \par Function Description
  *  This is the command function for the #ADD_BOX action.
- *
  */
 COMMAND (do_add_box)
 {
@@ -3275,8 +3285,9 @@ COMMAND (do_add_box)
   EXIT_COMMAND(do_add_box);
 }
 
-/*! \brief Action Add Circle Mode in i_command_Add_Actions
- *  \par Function Description
+/*!
+ * \brief Action Add Circle Mode in i_command_Add_Actions
+ * \par Function Description
  *  This is the command function for the #ADD_CIRCLE action.
  */
 COMMAND (do_add_circle)
@@ -3298,15 +3309,15 @@ COMMAND (do_add_circle)
   EXIT_COMMAND(do_add_circle);
 }
 
-/*! \brief Action Add Arc Mode in i_command_Add_Actions
- *  \par Function Description
+/*!
+ * \brief Action Add Arc Mode in i_command_Add_Actions
+ * \par Function Description
  *  This is the command function for the #ADD_ARC action. An ARC
  *  is slightly different than other adder, an Arc requires users
  *  to draw the radius and then a dialog obtain further input, the
  *  dialog is also the Edit Arc and will react to all currently
  *  selected Arc objects, therefore this routine deselects all
  *  if needed.
- *
  */
 COMMAND (do_add_arc)
 {
@@ -3327,8 +3338,9 @@ COMMAND (do_add_arc)
   EXIT_COMMAND(do_add_arc);
 }
 
-/*! \brief Action Add Path Mode in i_command_Add_Actions
- *  \par Function Description
+/*!
+ * \brief Action Add Path Mode in i_command_Add_Actions
+ * \par Function Description
  *  This is the command function for the #ADD_PATH action.
  */
 COMMAND (do_add_path)
@@ -3350,8 +3362,9 @@ COMMAND (do_add_path)
   EXIT_COMMAND(do_add_path);
 }
 
-/*! \brief Action Add Path Mode in i_command_Add_Actions
- *  \par Function Description
+/*!
+ * \brief Action Add Path Mode in i_command_Add_Actions
+ * \par Function Description
  *  This is the command function for the #ADD_PICTURE action.
  */
 COMMAND (do_add_picture)
@@ -3390,8 +3403,9 @@ COMMAND (do_add_picture)
  * @{
  */
 
-/*! \brief Create a New Session in i_command_Sessions_Actions
- *  \par Function Description
+/*!
+ * \brief Create a New Session in i_command_Sessions_Actions
+ * \par Function Description
  *  This is the action handler function for #SESSION_NEW.
  */
 COMMAND (do_session_new)
@@ -3410,8 +3424,9 @@ COMMAND (do_session_new)
 
 }
 
-/*! \brief Open an Existing Session in i_command_Sessions_Actions
- *  \par Function Description
+/*!
+ * \brief Open an Existing Session in i_command_Sessions_Actions
+ * \par Function Description
  *  This is the action handler function for #SESSION_OPEN.
  */
 COMMAND (do_session_open)
@@ -3429,8 +3444,9 @@ COMMAND (do_session_open)
   EXIT_COMMAND(do_session_open);
 }
 
-/*! \brief Save Session in i_command_Sessions_Actions
- *  \par Function Description
+/*!
+ * \brief Save Session in i_command_Sessions_Actions
+ * \par Function Description
  *  This is the action handler function for #SESSION_SAVE.
  *
  * \note If the there is not current session then this option
@@ -3456,8 +3472,9 @@ COMMAND (do_session_save)
   EXIT_COMMAND(do_session_save);
 }
 
-/*! \brief Save Session As in i_command_Sessions_Actions
- *  \par Function Description
+/*!
+ * \brief Save Session As in i_command_Sessions_Actions
+ * \par Function Description
  *  This is the action handler function for #SESSION_SAVE_AS.
  */
 COMMAND (do_session_save_as)
@@ -3480,8 +3497,9 @@ COMMAND (do_session_save_as)
   EXIT_COMMAND(do_session_save_as);
 }
 
-/*! \brief Open Session Manager in i_command_Sessions_Actions
- *  \par Function Description
+/*!
+ * \brief Open Session Manager in i_command_Sessions_Actions
+ * \par Function Description
  *  This is the action handler function for #SESSION_MANAGE.
  */
 COMMAND (do_session_manage)
@@ -3507,11 +3525,11 @@ COMMAND (do_session_manage)
  * @{
  */
 
-/*! \brief Attach Selected Attributes
- *  \par Function Description
+/*!
+ * \brief Attach Selected Attributes
+ * \par Function Description
  *  This is the action handler function to attach selected attributes
  *  to an object.
- *
  */
 /** @brief i_cmd_do_attach in i_command_Attribute_Actions */
 COMMAND (do_attach)
@@ -3600,11 +3618,11 @@ COMMAND (do_attach)
   EXIT_COMMAND(do_attach);
 }
 
-/*! \brief Detach Selected Attributes
- *  \par Function Description
+/*!
+ * \brief Detach Selected Attributes
+ * \par Function Description
  *  This is the action handler function to detach selected attributes
  *  from their parent.
- *
  */
 /** @brief i_cmd_do_detach in i_command_Attribute_Actions */
 COMMAND (do_detach)
@@ -3649,12 +3667,12 @@ COMMAND (do_detach)
   EXIT_COMMAND(do_detach);
 }
 
-/*! \brief Set Attributes to default X-Y Positions
- *  \par Function Description
+/*!
+ * \brief Set Attributes to default X-Y Positions
+ * \par Function Description
  *  This is the action handler function to reset Attributes
  *  positions. The function operates on either selected text
  *  attributes or complex objects.
- *
  */
 /** @brief do_home_attributes in i_command_Attribute_Actions */
 COMMAND (do_home_attributes)
@@ -3701,11 +3719,11 @@ COMMAND (do_home_attributes)
   EXIT_COMMAND(do_home_attributes);
 }
 
-/*! \brief Set selected Attributes to Show value
- *  \par Function Description
+/*!
+ * \brief Set selected Attributes to Show value
+ * \par Function Description
  *  This is the action handler function to set selected Attributes bits
  *  to show only the value of the attributes.
- *
  */
 /** @brief i_cmd_do_show_value in i_command_Attribute_Actions */
 COMMAND (do_show_value)
@@ -3735,11 +3753,11 @@ COMMAND (do_show_value)
   EXIT_COMMAND(do_show_value);
 }
 
-/*! \brief Set selected Attributes to Show Name
- *  \par Function Description
+/*!
+ * \brief Set selected Attributes to Show Name
+ * \par Function Description
  *  This is the action handler function to set selected Attributes bits
  *  to show only the name of the attributes.
- *
  */
 /** @brief i_cmd_do_show_name in i_command_Attribute_Actions */
 COMMAND (do_show_name)
@@ -3769,11 +3787,11 @@ COMMAND (do_show_name)
   EXIT_COMMAND(do_show_name);
 }
 
-/*! \brief Set selected Attributes to Show Both
- *  \par Function Description
+/*!
+ * \brief Set selected Attributes to Show Both
+ * \par Function Description
  *  This is the action handler function to set selected Attributes bits
  *  to show both the name and the value of selected attributes.
- *
  */
 /** @brief i_cmd_do_show_both in i_command_Attribute_Actions */
 COMMAND (do_show_both)
@@ -3892,13 +3910,12 @@ COMMAND (do_autonumber)
 }
 
 
-/*! \brief Launch the Log Console Dialog Action Responder
+/*!
+ * \brief Launch the Log Console Dialog Action Responder
+ * \brief i_cmd_do_show_console in i_command_Option_Actions
  *
- *  @brief i_cmd_do_show_console in i_command_Option_Actions
- *
- *  \par Function Description
+ * \par Function Description
  *  This is a callback function to launch the Console Dialog.
- *
  */
 COMMAND (do_show_console)
 {
@@ -3907,14 +3924,14 @@ COMMAND (do_show_console)
   EXIT_COMMAND(do_show_console);
 }
 
-/*! \brief Launch the Coordinates Dialog Action Responder
+/*!
+ * \brief Launch the Coordinates Dialog Action Responder
+ * \brief i_cmd_do_show_coordinates in i_command_Option_Actions
  *
- *  @brief i_cmd_do_show_coordinates in i_command_Option_Actions
- *
- *  \par Function Description
+ * \par Function Description
  *  This is a callback function to launch the Coordinates Dialog.
  *
- *  TODO: Slated to be relocated in 2.09
+ *  TODO: Slated to be relocated in 2.09. Where?
  */
 COMMAND (do_show_coordinates)
 {
@@ -3923,14 +3940,13 @@ COMMAND (do_show_coordinates)
   EXIT_COMMAND(do_show_coordinates);
 }
 
-/*! \brief Toggle Macro Entry Area
+/*!
+ * \brief Toggle Macro Entry Area
+ * @brief i_cmd_do_macro in i_command_Edit_Actions
  *
- *  @brief i_cmd_do_macro in i_command_Edit_Actions
- *
- *  \par Function Description
+ * \par Function Description
  *  This function set the macro widget to visable and set focus to
  *  to the entry object member.
- *
  */
 COMMAND (do_macro)
 {
@@ -4000,7 +4016,8 @@ COMMAND (do_embed)
       NEXT(s_current);
     }
     o_undo_savestate(w_current, UNDO_ALL);
-  } else {
+  }
+  else {
     /* nothing selected, go back to select state */
     o_redraw_cleanstates(w_current);
     i_status_action_stop(w_current);
@@ -4041,7 +4058,8 @@ COMMAND (do_unembed)
       NEXT(s_current);
     }
     o_undo_savestate(w_current, UNDO_ALL);
-  } else {
+  }
+  else {
     /* nothing selected, go back to select state */
     o_redraw_cleanstates(w_current);
     i_status_action_stop(w_current);
