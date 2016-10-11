@@ -816,7 +816,7 @@ static int translate_color(PyObject *py_color, int default_color)
  *  \ingroup Python_API_Library_Internal
  *  \par Function Description
  *  This function is called by the initializer to setup the s_clib module
- *  in Libgeda using the data path returned from f_path_sys_data().
+ *  in Libgeda using the data path returned from geda_sys_data_path().
  */
 static void setup_source_library (void)
 {
@@ -825,11 +825,11 @@ static void setup_source_library (void)
   char           *data_path;
   int n;
 
-  data_path = geda_strconcat(f_path_sys_data(), DIR_SEPARATOR_S, "sym", NULL);
+  data_path = geda_strconcat(geda_sys_data_path(), DIR_SEPARATOR_S, "sym", NULL);
 
   n = scandir(data_path, &namelist, NULL, alphasort);
   if (n < 0)
-    fprintf(stderr, "libgedathon <setup_source_library> bad f_path_sys_data, %s\n",strerror (errno));
+    fprintf(stderr, "libgedathon <setup_source_library> bad geda_sys_data_path, %s\n",strerror (errno));
   else {
 
     int i;
@@ -1313,7 +1313,7 @@ PyGeda_open_page( const char *filename )
 
       file_err = errno;                     /* save file error */
       path     = strcpy (&strbuff[0], filename);
-      path     = dirname(path);             /* f_path_get_dirname make copy */
+      path     = dirname(path);             /* geda_file_path_get_dirname make copy */
 
       /* If the path is OK but no file then just create a new file */
       if ((access(path, W_OK && X_OK && F_OK) == 0) && (file_err == ENOENT)) {
@@ -1327,7 +1327,7 @@ PyGeda_open_page( const char *filename )
          * to sort out the problem:
          */
         if (errno == ENOENT) { /* 100% sure file_err == ENOENT */
-          if (f_path_create (path, S_IRWXU | S_IRWXG) == NO_ERROR ) {
+          if (geda_create_path (path, S_IRWXU | S_IRWXG) == NO_ERROR ) {
             page = empty_page(filename);
             errno = NO_ERROR;
           }

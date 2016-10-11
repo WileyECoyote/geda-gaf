@@ -388,7 +388,7 @@ x_dnd_receive_string_sym (GschemToplevel *w_current, int x, int y,
   char *path;
 
   page = gschem_toplevel_get_current_page(w_current);
-  path = f_path_get_dirname(filename);
+  path = geda_file_path_get_dirname(filename);
 
   if (page && geda_struct_clib_source_path_exist(path)) {
 

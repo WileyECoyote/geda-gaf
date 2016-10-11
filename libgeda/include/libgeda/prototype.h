@@ -26,13 +26,13 @@ extern "C" {
          bool    f_get_is_path_absolute          (const char *filename);
 
 /* f_path.c */
-         void    f_path_free                     (void);
-         char   *f_path_get_dirname              (const char *filename);
-   const char   *f_path_sys_data                 (void);
-   const char   *f_path_sys_doc                  (void);
-   const char   *f_path_sys_config               (void);
-   const char   *f_path_user_config              (void);
-          int    f_path_create                   (const char *path, mode_t mode);
+         void    geda_file_path_free             (void);
+         char   *geda_file_path_get_dirname      (const char *filename);
+   const char   *geda_file_path_sys_data         (void);
+   const char   *geda_file_path_sys_doc          (void);
+   const char   *geda_file_path_sys_config       (void);
+   const char   *geda_file_path_user_config      (void);
+          int    geda_file_path_create           (const char *path, mode_t mode);
 
 /* f_print.c */
           int    geda_file_print_file            (GedaToplevel *toplevel, Page *page, GArray *color_map, const char *filename);

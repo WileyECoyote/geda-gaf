@@ -408,7 +408,7 @@ static void propagate_key_file_error (GError *src, GError **dest)
 char *
 eda_config_find_project_root (const char *path, const char *filename)
 {
-  char *root_path = f_path_get_dirname (path);
+  char *root_path = geda_file_path_get_dirname (path);
   char *proj_root = root_path;
   char *dir       = root_path;
 
@@ -435,7 +435,7 @@ eda_config_find_project_root (const char *path, const char *filename)
   }
   else {
     free(root_path); /* This version was modified by dirname() */
-    proj_root = f_path_get_dirname (path);
+    proj_root = geda_file_path_get_dirname (path);
   }
   return proj_root;
 }
@@ -542,7 +542,7 @@ eda_config_get_system_context (const char *context)
     /* If we didn't find a configuration file, just use a filename in
      * the traditional location. */
     if (filespec == NULL) {
-      filespec = g_build_filename (f_path_sys_config (), filename, NULL);
+      filespec = g_build_filename (geda_file_path_sys_config (), filename, NULL);
       if (!g_file_test (filespec, G_FILE_TEST_EXISTS)) {
         GEDA_FREE (filespec);
         filespec = NULL;
@@ -614,7 +614,7 @@ eda_config_get_user_context (void)
     char *tmpname;
 
     tmpname  = geda_strconcat(app_name, GEDA_CONFIG_USER_SUFFIX, NULL);
-    filename = g_build_filename(f_path_user_config(), tmpname, NULL);
+    filename = g_build_filename(geda_file_path_user_config(), tmpname, NULL);
     GEDA_FREE (tmpname);
 
     config = g_object_new (EDA_TYPE_CONFIG,
@@ -1001,7 +1001,7 @@ eda_config_save (EdaConfig *cfg, GError **error)
       errno = 0;
       if (!g_file_test (filename, G_FILE_TEST_EXISTS)) {
         if (!g_file_test (dir, G_FILE_TEST_EXISTS)) {
-          f_path_create (dir, S_IRWXU | S_IRWXG);
+          geda_file_path_create (dir, S_IRWXU | S_IRWXG);
           g_set_error(error, G_FILE_ERROR, status,
                       _("file <%s> %s"), filename, strerror(errno));
         }

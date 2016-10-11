@@ -43,7 +43,7 @@ create_pixmap (const char *filename)
       return gtk_image_new_from_stock(GTK_STOCK_MISSING_IMAGE ,
                                       GTK_ICON_SIZE_INVALID);
 
-  pathname = g_build_filename (f_path_sys_data (), "bitmap", filename, NULL);
+  pathname = g_build_filename (geda_file_path_sys_data (), "bitmap", filename, NULL);
 
   if (!pathname) {
 
@@ -134,7 +134,7 @@ static void save_geometry_to_file(void *user_data)
   g_assert( dialog_geometry != NULL );
 
   data = g_key_file_to_data(dialog_geometry, NULL, NULL);
-  file = g_build_filename(f_path_user_config (), DIALOG_GEOMETRY_STORE,
+  file = g_build_filename(geda_file_path_user_config (), DIALOG_GEOMETRY_STORE,
         NULL);
   g_file_set_contents(file, data, -1, NULL);
   GEDA_FREE(data);
@@ -200,7 +200,7 @@ static void setup_keyfile ()
   if (dialog_geometry != NULL)
     return;
 
-  char *file = g_build_filename (f_path_user_config (),
+  char *file = g_build_filename (geda_file_path_user_config (),
                                   DIALOG_GEOMETRY_STORE, NULL);
 
   dialog_geometry = g_key_file_new();
@@ -209,7 +209,7 @@ static void setup_keyfile ()
   geda_atexit(save_geometry_to_file, NULL);
 
   if (!g_file_test (file, G_FILE_TEST_EXISTS)) {
-    f_path_create (f_path_user_config (), S_IRWXU | S_IRWXG);
+    geda_file_path_create (geda_user_config_path (), S_IRWXU | S_IRWXG);
 
     g_file_set_contents (file, "", -1, NULL);
   }

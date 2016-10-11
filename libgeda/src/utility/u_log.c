@@ -255,12 +255,12 @@ void geda_utility_log_init (const char *prefix)
 
     const char *user_dir;
 
-    user_dir = f_path_user_config();
+    user_dir = geda_file_path_user_config();
     dir_path = g_build_filename(user_dir, "logs", NULL);
   }
 
   /* Try to create the directory. */
-  if (f_path_create (dir_path, 0777 /*octal*/ ) != 0) {
+  if (geda_file_path_create (dir_path, 0777 /*octal*/ ) != 0) {
     /* It is okay to use the logging functions from here, because
      * there is already a default handler. */
     fprintf(stderr, _("Could not create log directory %s: %s\n"), dir_path,

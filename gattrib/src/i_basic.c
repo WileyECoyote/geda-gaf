@@ -202,7 +202,7 @@ void i_show_wiki_help(const char *html_file)
 {
   char *pathname = NULL;
 
-  pathname = g_build_filename (f_path_sys_doc (), "wiki", html_file, NULL);
+  pathname = g_build_filename (geda_file_path_sys_doc (), "wiki", html_file, NULL);
 
   if (pathname) {
 

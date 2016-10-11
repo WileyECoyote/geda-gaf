@@ -588,7 +588,7 @@ GtkWidget* x_menu_create_menu(GtkWindow *main_window)
   gtk_ui_manager_insert_action_group(menu_manager, action_group, 0);
   gtk_ui_manager_insert_action_group(menu_manager, recent_group, 0);
 
-  menu_file = g_build_filename(f_path_sys_data (), "gattrib-menus.xml", NULL);
+  menu_file = g_build_filename(geda_file_path_sys_data (), "gattrib-menus.xml", NULL);
 
   gtk_ui_manager_add_ui_from_file(menu_manager, menu_file, &error);
   if(error != NULL) {

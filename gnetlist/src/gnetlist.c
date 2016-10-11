@@ -365,7 +365,7 @@ void main_prog(void *closure, int argc, char *argv[])
     char *path;
 
     errno = 0;
-    path  = f_path_get_dirname(output_filename);
+    path  = geda_get_dirname(output_filename);
 
     /* Check if a path was included in the output file name */
     if (strlen(path) > 1) {
@@ -386,7 +386,7 @@ void main_prog(void *closure, int argc, char *argv[])
             g_clear_error (&err);
 
             /* attempt to create the directories */
-            if (f_path_create (path, S_IRWXU | S_IRWXG)) {
+            if (geda_file_path_create (path, S_IRWXU | S_IRWXG)) {
               fprintf(stderr, "Path \"%s\": is not accessible: %s\n", path,
                       strerror(errno));
               GEDA_FREE(path);
@@ -411,7 +411,7 @@ void main_prog(void *closure, int argc, char *argv[])
         if (!g_file_test(path, G_FILE_TEST_IS_DIR)) {
 
           /* Does not exist so attempt to create the path */
-          if (f_path_create (path, S_IRWXU | S_IRWXG)) {
+          if (geda_file_path_create (path, S_IRWXU | S_IRWXG)) {
             fprintf(stderr, "Path \"%s\": is not accessible: %s\n", path,
                     strerror(errno));
             GEDA_FREE(path);

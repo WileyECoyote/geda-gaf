@@ -97,7 +97,7 @@ static char *user_config_path = NULL;
  *  module without calling libgeda_init. Programs that do so should
  *  call this function before exiting.
  */
-void f_path_free (void) {
+void geda_file_path_free (void) {
   GEDA_FREE(sys_data_path);
   GEDA_FREE(sys_doc_path);
   GEDA_FREE(sys_config_path);
@@ -119,7 +119,7 @@ void f_path_free (void) {
  *
  *  \return the gEDA shared data path, or NULL if none could be found.
  */
-const char *f_path_sys_data () {
+const char *geda_file_path_sys_data () {
 
   /* If GEDADATA is set in the environment, use that path */
   if (sys_data_path == NULL) {
@@ -164,7 +164,7 @@ const char *f_path_sys_data () {
  *
  *  \return the gEDA shared doc path, or NULL if none could be found.
  */
-const char *f_path_sys_doc () {
+const char *geda_file_path_sys_doc () {
 
   /* If GEDADOC is set in the environment, use that path */
   if (sys_doc_path == NULL) {
@@ -191,7 +191,7 @@ const char *f_path_sys_doc () {
  *
  *  \remark The returned string is owned by libgeda and should not be
  *  modified or free'd. Path strings are automatically freed when the
- *  library is released or by calling f_path_free().
+ *  library is released or by calling geda_file_path_free().
  *
  *  \note On UNIX platforms the XDG Base Directory may or may not
  *        return useful directories. We only use for Windows which
@@ -200,7 +200,7 @@ const char *f_path_sys_doc () {
  *  \return the gEDA shared config path, or NULL if none could be
  *  found.
  */
-const char *f_path_sys_config () {
+const char *geda_file_path_sys_config () {
 
   /* If GEDADATARC is set in the environment, use that path */
   if (sys_config_path == NULL) {
@@ -223,7 +223,7 @@ const char *f_path_sys_config () {
     sys_config_path = geda_utility_string_strdup(GEDARCDIR);
 #else
     /* Otherwise, just use the data directory */
-    sys_config_path = geda_utility_string_strdup(f_path_sys_data ());
+    sys_config_path = geda_utility_string_strdup(geda_file_path_sys_data ());
 #endif
 
   }
@@ -249,7 +249,7 @@ const char *f_path_sys_config () {
  *  modified or free'd.
  *
  */
-const char *f_path_user_config () {
+const char *geda_file_path_user_config () {
 
   if (user_config_path == NULL) {
 
@@ -291,7 +291,7 @@ const char *f_path_user_config () {
                             DIR_SEPARATOR_S, GEDA_CONFIG_DIR, NULL);
 
     if (user_config_path == NULL) {  /* Otherwise, just use the data directory */
-      user_config_path = geda_utility_string_strdup(f_path_sys_data ());
+      user_config_path = geda_utility_string_strdup(geda_file_path_sys_data ());
     }
   }
   return user_config_path;
@@ -323,7 +323,7 @@ const char *f_path_user_config () {
 
 /*! \brief Make a Directory
  *  \par Function description
- *  This is an internal function used by the f_path_create below.
+ *  This is an internal function used by the geda_file_path_create below.
  *  This function creates a new non-nested directory entry with the
  *  given permission attribute.
  *
@@ -371,7 +371,7 @@ static int f_create_dir(const char *path, mode_t mode)
  *
  *  \remark WEH Tweeked for libgeda
  */
-int f_path_create(const char *path, mode_t mode)
+int geda_file_path_create(const char *path, mode_t mode)
 {
   char           *pp;
   char           *sp;
@@ -406,7 +406,7 @@ int f_path_create(const char *path, mode_t mode)
 }
 #else
 
-int f_path_create(const char *path, mode_t mode)
+int geda_file_path_create(const char *path, mode_t mode)
 {
 
 #if (( GLIB_MAJOR_VERSION >= 2 ) && ( GLIB_MINOR_VERSION >= 8 ))
@@ -430,7 +430,7 @@ int f_path_create(const char *path, mode_t mode)
  *  \returns directory components of \a filepath.
  */
 char*
-f_path_get_dirname (const char *filepath)
+geda_file_path_get_dirname (const char *filepath)
 {
   register char *path;
 

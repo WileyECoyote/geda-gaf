@@ -70,7 +70,7 @@ AC_DEFUN([AX_DATA_DIRS],
   datadir="$datarootdir/$GEDA_DATA_DIR"
 
   AC_DEFINE_DIR([GEDADATADIR], [datadir], [gEDA/gaf shared data directory])
-  AC_MSG_NOTICE([only libgeda should use this - apps should use f_path_sys_data()])
+  AC_MSG_NOTICE([only libgeda should use this - apps should use geda_sys_data_path()])
   AC_MSG_RESULT([$GEDADATADIR])
   AC_SUBST([GEDADATADIR])
 

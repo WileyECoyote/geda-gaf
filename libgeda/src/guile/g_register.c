@@ -96,7 +96,7 @@ g_register_libgeda_dirs (void)
 {
   char *scheme_dir;
 
-  scheme_dir = g_build_filename (f_path_sys_data (), "scheme", NULL);
+  scheme_dir = g_build_filename (geda_file_path_sys_data (), "scheme", NULL);
   g_rc_scheme_directory (scm_from_utf8_string (scheme_dir));
   GEDA_FREE (scheme_dir);
 }

@@ -124,7 +124,7 @@ void libgeda_init(int argc, char **argv)
 
   if (env_path != NULL) {
     char *path = geda_sprintf ("%s", env_path);
-    if (f_path_create (path, 0777 /*octal*/ ) == NO_ERROR) {
+    if (geda_file_path_create (path, 0777 /*octal*/ ) == NO_ERROR) {
       default_log_directory = path;
     }
     else {
@@ -141,8 +141,8 @@ void libgeda_init(int argc, char **argv)
 
   geda_set_default_logger(NULL, NULL);
 
-  f_path_sys_data ();
-  f_path_sys_config ();
+  geda_file_path_sys_data ();
+  geda_file_path_sys_config ();
 
   geda_struct_clib_init();
   geda_struct_slib_init();
@@ -165,7 +165,7 @@ void libgeda_init(int argc, char **argv)
  */
 void libgeda_release(void)
 {
-  f_path_free();
+  geda_file_path_free();
   geda_struct_clib_free();
   geda_struct_slib_free();
   geda_struct_attrib_free();

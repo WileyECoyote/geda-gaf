@@ -552,7 +552,7 @@ geda_struct_page_goto (Page *page)
     int   sav_err = 0;
 #endif
 
-    target_dirname = f_path_get_dirname(page->filename);
+    target_dirname = geda_file_path_get_dirname(page->filename);
 
     if (!chdir (target_dirname)) {
 

@@ -1768,7 +1768,7 @@ static void x_menu_recent_files_create_empty(void)
    char *c;
    const char * const tmp[] = { NULL };
    GKeyFile *kf = g_key_file_new();
-   char *file   = g_build_filename(f_path_user_config (),
+   char *file   = g_build_filename(geda_file_path_user_config (),
                                    RECENT_FILES_STORE, NULL);
 
    g_key_file_set_string_list(kf, "Recent files", "Files", tmp, 0);
@@ -2062,7 +2062,7 @@ void x_menu_recent_files_save(void *user_data)
    char *files[MAX_RECENT_FILES];
    int num = 0;
    char *c;
-   char *file = g_build_filename(f_path_user_config(), RECENT_FILES_STORE, NULL);
+   char *file = g_build_filename(geda_file_path_user_config(), RECENT_FILES_STORE, NULL);
 
    GList *p = recent_files;
    if(p == NULL) {
@@ -2096,10 +2096,10 @@ void x_menu_recent_files_save(void *user_data)
 void x_menu_recent_files_load()
 {
    GKeyFile *kf = g_key_file_new();
-   char *file = g_build_filename(f_path_user_config (), RECENT_FILES_STORE, NULL);
+   char *file = g_build_filename(geda_file_path_user_config (), RECENT_FILES_STORE, NULL);
 
    if(!g_file_test(file, G_FILE_TEST_EXISTS)) {
-     f_path_create(f_path_user_config (), S_IRWXU | S_IRWXG);
+     geda_file_path_create(geda_file_path_user_config (), S_IRWXU | S_IRWXG);
 
       x_menu_recent_files_create_empty();
    }

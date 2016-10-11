@@ -312,7 +312,7 @@ g_rc_parse_system (const char *rcname, GError **err)
 
   sysname = geda_sprintf ("system-%s", rcname);
 
-  rcfile = g_build_filename (f_path_sys_config (), sysname, NULL);
+  rcfile = g_build_filename (geda_file_path_sys_config (), sysname, NULL);
 
   status = g_rc_parse_file (rcfile, eda_config_get_system_context ("geda"), err);
 
@@ -342,7 +342,7 @@ g_rc_parse_user (const char *rcname, GError **err)
   /* Default to gafrc */
   rcname = (rcname != NULL) ? rcname : "gafrc";
 
-  rcfile = g_build_filename (f_path_user_config (), rcname, NULL);
+  rcfile = g_build_filename (geda_file_path_user_config (), rcname, NULL);
   status = g_rc_parse_file (rcfile, eda_config_get_user_context (), err);
 
   GEDA_FREE (rcfile);

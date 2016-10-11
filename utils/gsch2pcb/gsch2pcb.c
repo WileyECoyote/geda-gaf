@@ -1516,7 +1516,7 @@ load_extra_project_files (void)
   load_project (path);
   GEDA_FREE (path);
 
-  config_dir = f_path_user_config();
+  config_dir = geda_user_config_path();
 
   path = geda_strconcat(config_dir, DIR_SEPARATOR_S, "gsch2pcb", NULL);
 
@@ -1920,7 +1920,7 @@ int main (int argc, char **argv)
     g_list_free(pcb_element_list);
   }
 
-  f_path_free();
+  geda_file_path_free();
 
   return exit_code;
 }

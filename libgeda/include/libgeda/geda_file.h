@@ -56,19 +56,19 @@
 #define geda_is_path_absolute     f_get_is_path_absolute
 
 /* f_path.c */
-#define geda_create_path          f_path_create
-#define geda_free_path            f_path_free
-#define geda_get_dirname          f_path_get_dirname
-#define geda_sys_data_path        f_path_sys_data
-#define geda_sys_doc_path         f_path_sys_doc
-#define geda_sys_config_path      f_path_sys_config
-#define geda_user_config_path     f_path_user_config
+#define geda_create_path          geda_file_path_create
+#define geda_free_path            geda_file_path_free
+#define geda_get_dirname          geda_file_path_get_dirname
+#define geda_sys_data_path        geda_file_path_sys_data
+#define geda_sys_doc_path         geda_file_path_sys_doc
+#define geda_sys_config_path      geda_file_path_sys_config
+#define geda_user_config_path     geda_file_path_user_config
 
 /* f_print.c */
-#define geda_print_file           f_print_file
-#define geda_print_command        f_print_command;
-#define geda_print_stream         f_print_stream
-#define geda_set_print_type       f_print_set_type
+#define geda_print_file           geda_file_print_file
+#define geda_print_command        geda_file_print_command;
+#define geda_print_stream         geda_file_print_stream
+#define geda_set_print_type       geda_file_print_set_type
 
 /* f_sys.c */
 #define geda_copy_file            geda_file_copy
