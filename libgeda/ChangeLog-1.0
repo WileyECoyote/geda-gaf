@@ -1,6 +1,7 @@
 2016-10-12 Wiley E. Hill <wileyhill@gmail.com>
 
-    * libgeda/src/file/f_get.c: Rename functions with geda_file prefix.
+    * libgeda/src/file/f_get.c: Rename functions with geda_file prefix, and
+      reorganize module.
 
 2016-10-11 Wiley E. Hill <wileyhill@gmail.com>
 
