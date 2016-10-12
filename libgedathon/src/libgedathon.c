@@ -992,7 +992,7 @@ PyGeda_append_symbol_path( const char *path )
 
     char *namestr = basename(directory);
 
-    if (f_get_is_path_absolute (directory)) {
+    if (geda_file_get_is_path_absolute (directory)) {
       geda_struct_clib_add_directory (directory, namestr);
     }
     else {

@@ -62,7 +62,7 @@
  *  \param [in] filename The filename to create an autosave filename for.
  *  \return A newly allocated string buffer.
  */
-char *f_get_autosave_filename (const char *filename)
+char *geda_file_get_autosave_filename (const char *filename)
 {
   char *autosave_name;
 
@@ -75,7 +75,7 @@ char *f_get_autosave_filename (const char *filename)
          char *new_basename;
          char *path_spec;
 
-    old_basename  = f_get_basename(filename);
+    old_basename  = geda_file_get_basename(filename);
     path_spec     = geda_get_dirname(filename);
     new_basename  = geda_sprintf(AUTOSAVE_BACKUP_FILENAME_STRING, old_basename);
     autosave_name = g_build_filename(path_spec, new_basename, NULL);
@@ -96,7 +96,7 @@ char *f_get_autosave_filename (const char *filename)
  *  \param [in] path The path to search.
  *  \return offset if found, otherwise NULL.
  */
-const char *f_get_basename(const char *path)
+const char *geda_file_get_basename(const char *path)
 {
   if (path) {
     const char *base = strrchr(path, DIR_SEPARATOR);
@@ -107,15 +107,15 @@ const char *f_get_basename(const char *path)
 
 /*! \brief Return copy base file name
  *  \par Function description
- *  Convenience function to combine f_get_basename and
+ *  Convenience function to combine geda_file_get_basename and
  *  geda_utility_string_strdup.
  *
  *  \param [in] path The path to search.
  *  \return offset if found, otherwise NULL.
  */
-char *f_get_basename_dup(const char *path)
+char *geda_file_get_basename_dup(const char *path)
 {
-  const char *base = f_get_basename(path);
+  const char *base = geda_file_get_basename(path);
 
   if (base) {
     return geda_utility_string_strdup(base);
@@ -135,7 +135,7 @@ char *f_get_basename_dup(const char *path)
  *
  *  \return string with file name and path for the specified file.
  */
-char *f_get_bitmap_filespec (const char *filename)
+char *geda_file_get_bitmap_filespec (const char *filename)
 {
   char *filespec;
 
@@ -200,7 +200,7 @@ char *f_get_bitmap_filespec (const char *filename)
  *
  *  \return string with file name and path for the specified file.
  */
-char *f_get_data_filespec (const char *filename)
+char *geda_file_get_data_filespec (const char *filename)
 {
   char *filespec;
 
@@ -272,7 +272,7 @@ char *f_get_data_filespec (const char *filename)
  *
  * \retval Returns GSList of files or NULL if no matching files
 */
-GSList *f_get_dir_list_files(char *path, char *filter)
+GSList *geda_file_get_dir_list_files(char *path, char *filter)
 {
         GSList *files = NULL;
   const char   *real_filter;
@@ -295,7 +295,7 @@ GSList *f_get_dir_list_files(char *path, char *filter)
 
       if (real_filter) {
 
-        const char *suffix = f_get_filename_ext(ent->d_name);
+        const char *suffix = geda_file_get_filename_ext(ent->d_name);
 
         if ( suffix && strcmp (suffix, real_filter) == 0) {
           filename = geda_utility_string_strdup(ent->d_name);
@@ -488,7 +488,7 @@ error:
 #endif
 
 bool
-f_get_file_contents(const char *filename, char **contents, size_t *length, GError **err)
+geda_file_get_contents(const char *filename, char **contents, size_t *length, GError **err)
 {
   bool retval = FALSE; /* Assume failure */
 
@@ -583,7 +583,7 @@ f_get_file_contents(const char *filename, char **contents, size_t *length, GErro
  *
  *  \return offset if found, otherwise NULL.
  */
-const char *f_get_filename_ext(const char *filename)
+const char *geda_file_get_filename_ext(const char *filename)
 {
     const char *dot = strrchr(filename, '.');
     if(!dot || dot == filename) return NULL;
@@ -597,7 +597,7 @@ const char *f_get_filename_ext(const char *filename)
  *
  *  \remarks <em>Do not</em> free the returned string.
  */
-const char *f_get_format_header()
+const char *geda_file_get_format_header()
 {
   static char *header = NULL;
 
@@ -616,7 +616,7 @@ const char *f_get_format_header()
  *
  *  \returns TRUE if \a filename is absolute
  */
-bool f_get_is_path_absolute (const char *filename)
+bool geda_file_get_is_path_absolute (const char *filename)
 {
   bool result;
 

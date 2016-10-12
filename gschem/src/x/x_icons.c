@@ -259,7 +259,7 @@ static void x_icons_setup_factory()
     icon_name = IDS_GEDA_ICONS[index];
 
     filename = geda_strconcat (icon_name, ".png", NULL);
-    pathname = f_get_bitmap_filespec (filename);
+    pathname = geda_file_get_bitmap_filespec (filename);
     GEDA_FREE(filename);
     if (pathname) {
       if (g_file_test(pathname, G_FILE_TEST_EXISTS) &&
@@ -291,7 +291,7 @@ static void x_icons_setup_factory()
     icon_name = IDS_GSCHEM_ICONS[index];
 
     filename = geda_strconcat (icon_name, ".png", NULL);
-    pathname = f_get_bitmap_filespec (filename);
+    pathname = geda_file_get_bitmap_filespec (filename);
     GEDA_FREE(filename);
 
     if(pathname) {
@@ -324,7 +324,7 @@ static void x_icons_setup_factory()
     icon_name = IDS_GSCHEM_XCONS[index];
 
     filename = geda_strconcat (icon_name, ".xpm", NULL);
-    pathname = f_get_bitmap_filespec (filename);
+    pathname = geda_file_get_bitmap_filespec (filename);
     GEDA_FREE(filename);
 
     if(pathname) {

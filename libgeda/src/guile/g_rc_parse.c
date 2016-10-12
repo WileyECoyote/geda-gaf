@@ -216,7 +216,7 @@ g_rc_parse_file (const char *rcfile, EdaConfig *cfg, GError **err)
 
       /* See get file extension and check for keystyle conf files*/
       const char *extension;
-      extension = f_get_filename_ext(fig_file);
+      extension = geda_file_get_filename_ext(fig_file);
 
       if (extension && (strcmp(extension, "conf") == 0)) {
         eda_config_load (cfg, &tmp_err);
@@ -226,7 +226,7 @@ g_rc_parse_file (const char *rcfile, EdaConfig *cfg, GError **err)
         /* Check if base rc file is the same name as config version, if
          * the names match we substitude the filename from config because
          * this is the file that was found for the given context */
-        if (strcmp(f_get_basename(rcfile), f_get_basename(fig_file)) == 0) {
+        if (strcmp(geda_file_get_basename(rcfile), geda_file_get_basename(fig_file)) == 0) {
           rcfile = fig_file;
         }
       }
@@ -439,7 +439,7 @@ g_rc_parse__process_error (GError **err, const char *pname)
     fprintf (stderr, _("ERROR: %s\n"), (*err)->message);
   }
 
-  pbase = f_get_basename (pname);
+  pbase = geda_file_get_basename (pname);
 
   fprintf (stderr, _("ERROR: The %s log may contain more information.\n"),
            pbase);

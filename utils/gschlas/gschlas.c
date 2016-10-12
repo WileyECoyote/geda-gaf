@@ -103,7 +103,7 @@ main_prog(void *closure, int argc, char *argv[])
       char       *filename;
       GError     *err = NULL;
 
-      if (f_get_is_path_absolute(argv[index])) {
+      if (geda_file_get_is_path_absolute(argv[index])) {
 
         /* Path is already absolute so no need to do any concat of cwd */
         filename = geda_utility_string_strdup (argv[index]);

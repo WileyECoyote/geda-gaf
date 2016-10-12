@@ -81,7 +81,7 @@ geda_object_save_auto_backup(GedaToplevel *toplevel)
 
         /* Get the directory in which the real filename lives */
         dirname         = geda_get_dirname (real_filename);
-        only_filename   = f_get_basename(real_filename);
+        only_filename   = geda_file_get_basename(real_filename);
 
         backup_filename = geda_sprintf("%s%c"AUTOSAVE_BACKUP_FILENAME_STRING,
                                        dirname, DIR_SEPARATOR, only_filename);
@@ -359,7 +359,7 @@ geda_object_save_buffer (const GList *object_list)
         char *buffer;
         int   size;
 
-  header = f_get_format_header();
+  header = geda_file_get_format_header();
   buffer = geda_object_save_objects (object_list, FALSE);
   size   = strlen(header) + strlen(buffer);
   acc    = GEDA_MEM_ALLOC(size + 1);

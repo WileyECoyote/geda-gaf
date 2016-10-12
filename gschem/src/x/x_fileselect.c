@@ -304,7 +304,7 @@ x_fileselect_save (GschemToplevel *w_current)
     tmpname  = NULL;
 
     if (auto_ext && (filebase != NULL)) {
-      if (!f_get_filename_ext(filebase)) {
+      if (!geda_file_get_filename_ext(filebase)) {
 
         int index = geda_file_chooser_get_filter(dialog);
 
@@ -406,7 +406,7 @@ x_fileselect_select_image(GschemToplevel *w_current, const char *filename)
       }
       GEDA_FREE(filepath);
     }
-    geda_image_chooser_set_filename (dialog, f_get_basename(filename));
+    geda_image_chooser_set_filename (dialog, geda_file_get_basename(filename));
   }
   else {
 

@@ -133,7 +133,7 @@ GtkWidget *create_pixmap (const char *filename)
                                       GTK_ICON_SIZE_INVALID);
   }
 
-  pathname = f_get_bitmap_filespec (filename);
+  pathname = geda_file_get_bitmap_filespec (filename);
 
   if (!pathname) {
       u_log_message("Could not find image file: %s.\n", filename);
@@ -426,7 +426,7 @@ void about_dialog (GschemToplevel *w_current)
                                      PACKAGE_DOTTED_VERSION,
                                      PACKAGE_GIT_COMMIT);
 
-  logo_file =  f_get_bitmap_filespec ("gschem_about_logo.png");
+  logo_file =  geda_file_get_bitmap_filespec ("gschem_about_logo.png");
 
   logo = gdk_pixbuf_new_from_file (logo_file, &error);
   GEDA_FREE (logo_file);

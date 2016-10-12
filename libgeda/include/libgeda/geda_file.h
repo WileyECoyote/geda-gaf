@@ -44,16 +44,16 @@
 #define geda_save_file            f_save
 
 /* f_get.c */
-#define geda_get_autosave_name    f_get_autosave_filename
-#define geda_get_basename         f_get_basename
-#define geda_get_basename_dup     f_get_basename_dup
-#define geda_get_bitmap_spec      f_get_bitmap_filespec
-#define geda_get_data_spec        f_get_data_filespec
-#define geda_get_dir_list         f_get_dir_list_files
-#define geda_get_file_contents    f_get_file_contents
-#define geda_get_extension        f_get_filename_ext
-#define geda_get_format_header    f_get_format_header
-#define geda_is_path_absolute     f_get_is_path_absolute
+#define geda_get_autosave_name    geda_file_get_autosave_filename
+#define geda_get_basename         geda_file_get_basename
+#define geda_get_basename_dup     geda_file_get_basename_dup
+#define geda_get_bitmap_spec      geda_file_get_bitmap_filespec
+#define geda_get_data_spec        geda_file_get_data_filespec
+#define geda_get_dir_list         geda_file_get_dir_list_files
+#define geda_get_file_contents    geda_file_get_contents
+#define geda_get_extension        geda_file_get_filename_ext
+#define geda_get_format_header    geda_file_get_format_header
+#define geda_is_path_absolute     geda_file_get_is_path_absolute
 
 /* f_path.c */
 #define geda_create_path          geda_file_path_create

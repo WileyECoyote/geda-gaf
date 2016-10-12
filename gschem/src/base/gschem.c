@@ -166,7 +166,7 @@ load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[]
         continue;
       }
 
-      if (f_get_is_path_absolute(argv[i])) {
+      if (geda_file_get_is_path_absolute(argv[i])) {
 
         /* Path is already absolute so no need to do any concat of cwd */
         filename = geda_utility_string_strdup (argv[i]);
@@ -179,7 +179,7 @@ load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[]
       if (access(filename, F_OK ) == -1 ) {
 
         /* See if user left off our file suffixes */
-        const char *ext = f_get_filename_ext(filename);
+        const char *ext = geda_file_get_filename_ext(filename);
 
         if (!ext) {
 

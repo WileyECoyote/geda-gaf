@@ -124,13 +124,13 @@ SCM g_rc_component_library(SCM path, SCM name)
   else {
 
     /* Check if path is absolute */
-    if (f_get_is_path_absolute (directory)) {
+    if (geda_file_get_is_path_absolute (directory)) {
 
       /* Check if scheme passed a NULL */
       if (namestr) {
 
         /* This should not freed */
-        const char *fname = f_get_basename(directory);
+        const char *fname = geda_file_get_basename(directory);
 
         /* Check if scheme passed a zero length string,
          * aka a pointer to a NULL */
@@ -322,7 +322,7 @@ SCM g_rc_source_library(SCM path)
     return SCM_BOOL_F;
   }
 
-  if (f_get_is_path_absolute (string)) {
+  if (geda_file_get_is_path_absolute (string)) {
     geda_struct_slib_add_entry (string);
   }
   else {
@@ -393,7 +393,7 @@ SCM g_rc_source_library_search(SCM path)
 
       if (geda_struct_slib_unique_dir_exist (fullpath)) {
 
-        if (f_get_is_path_absolute (fullpath)) {
+        if (geda_file_get_is_path_absolute (fullpath)) {
           geda_struct_slib_add_entry (fullpath);
         }
         else {
@@ -970,7 +970,7 @@ SCM g_rc_keep_invisible(SCM mode)
  *
  *  \returns SCM_BOOL_T on success, SCM_BOOL_F if path is invalid.
  *
- *  \sa f_get_bitmap_filespec
+ *  \sa geda_file_get_bitmap_filespec
  */
 SCM g_rc_bitmap_directory(SCM path)
 {

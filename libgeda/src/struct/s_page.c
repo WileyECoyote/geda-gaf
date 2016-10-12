@@ -161,7 +161,7 @@ geda_struct_page_new (GedaToplevel *toplevel, const char *filename)
   page = geda_page_new();
 
   if (filename != NULL) {
-    if (f_get_is_path_absolute (filename)) {
+    if (geda_file_get_is_path_absolute (filename)) {
       page->filename = geda_utility_string_strdup (filename);
     }
     else {
@@ -186,7 +186,7 @@ geda_struct_page_new_with_notify (GedaToplevel *toplevel, const char *filename)
   page = geda_page_new_with_notify();
 
   if (filename != NULL) {
-    if (f_get_is_path_absolute (filename)) {
+    if (geda_file_get_is_path_absolute (filename)) {
       page->filename = geda_utility_string_strdup (filename);
     }
     else {
@@ -502,7 +502,7 @@ const char *
 geda_struct_page_get_file_extension (Page *page)
 {
   if (page != NULL && page->filename != NULL) {
-    return f_get_filename_ext(page->filename);
+    return geda_file_get_filename_ext(page->filename);
   }
   return NULL;
 }

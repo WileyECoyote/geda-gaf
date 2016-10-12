@@ -275,7 +275,7 @@ void geda_utility_log_init (const char *prefix)
 
     last_exist_logn = 0;
 
-    files = f_get_dir_list_files(dir_path, "log");
+    files = geda_file_get_dir_list_files(dir_path, "log");
 
     for (iter = files; iter != NULL; iter = iter->next) {
 

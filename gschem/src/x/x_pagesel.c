@@ -688,7 +688,7 @@ pagesel_treeview_set_cell_filename (GtkTreeViewColumn *tree_column,
 
     const char *filename;
 
-    filename = state ? page->filename : f_get_basename(page->filename);
+    filename = state ? page->filename : geda_file_get_basename(page->filename);
     g_object_set ((GObject*)cell, "text", filename, NULL);
   }
 }
@@ -807,7 +807,7 @@ pagesel_dnd_drag_receive(GtkWidget *widget, GdkDragContext   *context, int x, in
     }
 
     /* check if string could be a symbol file */
-    ext = f_get_filename_ext(string);
+    ext = geda_file_get_filename_ext(string);
 
     if (ext && strcmp (ext, SYMBOL_FILE_SUFFIX) == 0) {
 

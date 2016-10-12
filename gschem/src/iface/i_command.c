@@ -991,7 +991,7 @@ COMMAND (do_print) {
     p_current = gschem_toplevel_get_current_page(w_current);
     filename  = p_current->filename;
 
-    extension = f_get_filename_ext(filename);
+    extension = geda_file_get_filename_ext(filename);
 
     /* get the base file name */
     if (strncmp(extension, SCHEMATIC_FILE_DOT_SUFFIX, 4)) {

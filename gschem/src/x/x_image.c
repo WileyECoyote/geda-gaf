@@ -296,7 +296,7 @@ x_image_update_dialog_filename(GedaComboBox     *type_Combo,
   }
 
   /* Get pointer pass the any path characters */
-  file_name = (char*)f_get_basename (fullname);
+  file_name = (char*)geda_file_get_basename (fullname);
 
   /* Get file name, without extension, add NULL where right-most period */
   geda_remove_extension (file_name);

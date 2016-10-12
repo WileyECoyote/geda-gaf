@@ -674,7 +674,7 @@ static void x_dialog_ep_component_change(GschemToplevel *w_current,
 
     if (GEDA_IS_PAGE(page)) {
 
-      filename = f_get_basename(page->filename);
+      filename = geda_file_get_basename(page->filename);
       SetEntryText(properties->symbol_entry, filename);
 
       /* set the tooltip as the full file name */

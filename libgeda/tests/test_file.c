@@ -116,7 +116,7 @@ int test_file (void)
     result++;
   }
 
-  char *auto_fname = f_get_autosave_filename (source);
+  char *auto_fname = geda_file_get_autosave_filename (source);
 
   geda_file_copy(source, auto_fname);
 
@@ -250,8 +250,8 @@ int test_get (void)
   int   index;
   int   result = 0;
 
-  /* === Function 01: geda_get_autosave_name    f_get_autosave_filename === */
-  /* === Function 02: f_get_basename === */
+  /* === Function 01: geda_get_autosave_name    geda_file_get_autosave_filename === */
+  /* === Function 02: geda_file_get_basename === */
 
   static const struct _TestData F02_str[] =
   {
@@ -269,7 +269,7 @@ int test_get (void)
 
   string = (char*)geda_get_basename (NULL);
   if (string) {                           /* NULL input */
-    fprintf(stderr, "FAILED: (F020200) f_get_basename <%s>\n", string);
+    fprintf(stderr, "FAILED: (F020200) geda_file_get_basename <%s>\n", string);
     result++;
   }
 
@@ -282,7 +282,7 @@ int test_get (void)
 
     if (string) {
       if (strcmp(string, expected)) {      /* See structure F02_str */
-        fprintf(stderr, "FAILED: (F020201A-%d) f_get_basename <%s>\n",index, string);
+        fprintf(stderr, "FAILED: (F020201A-%d) geda_file_get_basename <%s>\n",index, string);
         result++;
       }
       free (input);
@@ -296,12 +296,12 @@ int test_get (void)
     string = NULL;
   }
 
-  /* === Function 03: f_get_basename_dup === */
+  /* === Function 03: geda_file_get_basename_dup === */
 
   string = geda_get_basename_dup(F02_str[8].input);
   if (string) {
     if (strcmp(string, F02_str[8].expected)) {      /* See structure F02_str */
-        fprintf(stderr, "FAILED: (F020301A) f_get_basename_dup <%s>\n", string);
+        fprintf(stderr, "FAILED: (F020301A) geda_file_get_basename_dup <%s>\n", string);
         result++;
     }
     free (string);
@@ -311,14 +311,14 @@ int test_get (void)
       result++;
   }
 
-  /* === Function 04: geda_get_bitmap_spec      f_get_bitmap_filespec === */
-  /* === Function 05: geda_get_data_spec        f_get_data_filespec === */
-  /* === Function 06: geda_get_dir_list         f_get_dir_list_files === */
-  /* === Function 07: geda_get_file_contents    f_get_file_contents === */
-  /* === Function 08: geda_get_extension        f_get_filename_ext === */
-  /* === Function 09: geda_get_format_header    f_get_format_header === */
+  /* === Function 04: geda_get_bitmap_spec      geda_file_get_bitmap_filespec === */
+  /* === Function 05: geda_get_data_spec        geda_file_get_data_filespec === */
+  /* === Function 06: geda_get_dir_list         geda_file_get_dir_list_files === */
+  /* === Function 07: geda_get_file_contents    geda_file_get_contents === */
+  /* === Function 08: geda_get_extension        geda_file_get_filename_ext === */
+  /* === Function 09: geda_get_format_header    geda_file_get_format_header === */
 
-  /* === Function 10: f_get_is_path_absolute === */
+  /* === Function 10: geda_file_get_is_path_absolute === */
 
   if (geda_is_path_absolute(NULL)) {                           /* NULL input */
     fprintf(stderr, "FAILED: (F021000) NULL path_absolute\n");

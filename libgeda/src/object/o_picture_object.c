@@ -113,7 +113,7 @@ geda_picture_object_embed (GedaObject *object)
     }
     else {
 
-      const char *basename = f_get_basename (filename);
+      const char *basename = geda_file_get_basename (filename);
       geda_log (_("Picture [%s] has been embedded\n"), basename);
 
       object->picture->is_embedded = 1;
@@ -595,7 +595,7 @@ geda_picture_object_get_fallback_pixbuf (void)
     char   *pathname;
     GError *error = NULL;
 
-    pathname = f_get_bitmap_filespec (filename);
+    pathname = geda_file_get_bitmap_filespec (filename);
     pixbuf   = gdk_pixbuf_new_from_file (pathname, &error);
 
     if (pixbuf == NULL) {
@@ -1512,7 +1512,7 @@ geda_picture_object_read (const char  *first_line,
   tmpstr = geda_utility_string_strdup(geda_struct_textbuffer_next_line(tb));
   tmpstr = geda_utility_string_remove_last_nl(tmpstr);
 
-  if (f_get_is_path_absolute(tmpstr)) {
+  if (geda_file_get_is_path_absolute(tmpstr)) {
 
     /* Path is already absolute so no need to do anything */
     filename = tmpstr;
@@ -1956,7 +1956,7 @@ geda_picture_object_unembed (GedaObject *object)
       }
       else {
 
-        const char *basename = f_get_basename(filename);
+        const char *basename = geda_file_get_basename(filename);
 
         geda_log (_("Picture [%s] has been unembedded\n"), basename);
 

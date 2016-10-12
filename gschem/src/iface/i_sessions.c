@@ -319,7 +319,7 @@ static int i_session_load_session(GschemToplevel *w_current, Session *record)
       filename = iter->data;
       exist_count++;
 
-      if (!f_get_is_path_absolute(filename)) {
+      if (!geda_file_get_is_path_absolute(filename)) {
         missing_path++;
       }
 
@@ -738,7 +738,7 @@ static void i_sessions_load_data(void)
   }
   else {
 
-    session_files = f_get_dir_list_files(path, SESSIONS_FILE_SUFFIX);
+    session_files = geda_file_get_dir_list_files(path, SESSIONS_FILE_SUFFIX);
 
     if (session_files) {
 
@@ -765,7 +765,7 @@ static void i_sessions_load_data(void)
           record.session_file = g_build_filename(path, file, NULL);
           record.page_count   = i_sessions_get_count(record.session_file);
 
-          tmpname = (char*)f_get_basename(file);
+          tmpname = (char*)geda_file_get_basename(file);
           geda_remove_extension(tmpname);
 
           record.session_name = geda_utility_string_strdup(tmpname);

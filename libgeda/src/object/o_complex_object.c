@@ -180,7 +180,7 @@ geda_complex_object_check_symbol_version(GedaToplevel *toplevel, GedaObject *obj
   /* Retrieve the file name from the page */
   if (page) {
     /* The path can clutter the message so just use the base name */
-    schematic = f_get_basename(page->filename); /* Do not free */
+    schematic = geda_file_get_basename(page->filename); /* Do not free */
   }
   else {
     schematic = _("unknown file");

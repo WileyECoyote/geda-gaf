@@ -345,7 +345,7 @@ int get_titleblock_cnt(void) {
      /* get all the files within directory */
      while ((ent = readdir (dirp)) != NULL) {
 
-       const char *suffix = f_get_filename_ext(ent->d_name);
+       const char *suffix = geda_file_get_filename_ext(ent->d_name);
 
        if (suffix && strcmp (suffix, SYMBOL_FILE_SUFFIX) == 0) {
          count++;
@@ -389,7 +389,7 @@ bool get_titleblock_list(char **Buffer) {
     /* get all the files within directory */
     while ((ent = readdir (dirp)) != NULL) {
 
-      const char *suffix = f_get_filename_ext(ent->d_name);
+      const char *suffix = geda_file_get_filename_ext(ent->d_name);
 
       if (suffix && !geda_utility_string_stricmp (suffix, SYMBOL_FILE_SUFFIX))
       {

@@ -292,7 +292,7 @@ static GtkWidget *get_pixmap(GschemToplevel *w_current, const char *name)
 {
   GtkWidget *wpixmap = NULL;
 
-  char *filename = f_get_bitmap_filespec (name);
+  char *filename = geda_file_get_bitmap_filespec (name);
 
   /* First check for custom icon */
   if (filename) {

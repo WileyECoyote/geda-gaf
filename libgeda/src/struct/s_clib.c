@@ -648,7 +648,7 @@ static void refresh_directory (CLibSource *source)
       /* skip subdirectories (for now) */
       if (g_file_test (&tmpname[0], G_FILE_TEST_IS_REGULAR)) {
 
-        suffix = f_get_filename_ext(entry->d_name);
+        suffix = geda_file_get_filename_ext(entry->d_name);
 
         if (suffix && !geda_utility_string_stricmp (suffix, SYMBOL_FILE_SUFFIX)) {
 
@@ -879,7 +879,7 @@ const CLibSource *geda_struct_clib_get_source_by_name (const char *name)
  *  Adds a directory containing symbol files to the library. Only files
  *  ending with <b>#SYMBOL_FILE_DOT_SUFFIX</b> are considered to be symbol
  *  files. A \a name may be specified for the source; if \a name is \b NULL,
- *  the basename of the directory as returned by f_get_basename_dup() is used.
+ *  the basename of the directory as returned by geda_file_get_basename_dup() is used.
  *
  *  \param directory The path of the directory to add.
  *  \param name      A descriptive name for the directory.
@@ -981,7 +981,7 @@ const CLibSource *geda_struct_clib_add_directory (const char *directory,
     }
   }
   else {
-    tmpstr = f_get_basename_dup(directory);
+    tmpstr = geda_file_get_basename_dup(directory);
   }
 
   if( category == NULL) {

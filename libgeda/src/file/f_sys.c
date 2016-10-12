@@ -313,7 +313,7 @@ geda_file_sys_follow_symlinks (const char *filename, GError **err)
      * is /foo/bar/eek.txt.
      */
 
-    if (!f_get_is_path_absolute(linkname)) {
+    if (!geda_file_get_is_path_absolute(linkname)) {
 
       char *dirname = NULL;
       char *tmp     = NULL;

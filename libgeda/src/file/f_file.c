@@ -76,7 +76,7 @@ f_has_active_autosave (const char *filename, GError **err)
 
     struct stat file_stat, auto_stat;
 
-    auto_filename = f_get_autosave_filename (filename);
+    auto_filename = geda_file_get_autosave_filename (filename);
 
     if (stat (filename, &file_stat) != 0) {
       file_err = errno;
@@ -252,7 +252,7 @@ f_open(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
 
     /* Check for a newer autosave backup file */
     bool active_backup = f_has_active_autosave (full_filename, &tmp_err);
-    backup_filename    = f_get_autosave_filename (full_filename);
+    backup_filename    = geda_file_get_autosave_filename (full_filename);
 
     if (tmp_err != NULL) {
       fprintf (stderr, "%s\n", tmp_err->message);
@@ -397,7 +397,7 @@ f_remove_backup_file (const char *filename)
     }
     else {
 
-      char *backup_filename = f_get_autosave_filename (real_filename);
+      char *backup_filename = geda_file_get_autosave_filename (real_filename);
 
       /* Delete the backup file */
       if ((g_file_test(backup_filename, G_FILE_TEST_EXISTS)) &&
@@ -496,7 +496,7 @@ f_save(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
 
     /* Get the directory in which the real filename lives */
     dirname       = geda_get_dirname (real_filename);
-    only_filename = f_get_basename(real_filename);
+    only_filename = geda_file_get_basename(real_filename);
 
     /* Do a backup if page is not an undo file backup and the page has
      * never saved. Only do a backup if backup files are enabled */

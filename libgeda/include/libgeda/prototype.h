@@ -13,17 +13,17 @@ extern "C" {
          void    f_remove_backup_file            (const char *filename);
 
 /* f_get.c */
-         char   *f_get_autosave_filename         (const char *filename);
-   const char   *f_get_basename                  (const char *path);
-         char   *f_get_basename_dup              (const char *path);
-         char   *f_get_bitmap_filespec           (const char *filename);
-         char   *f_get_data_filespec             (const char *filename);
-       GSList   *f_get_dir_list_files            (      char *path, char *filter);
+         char   *geda_file_get_autosave_filename (const char *filename);
+   const char   *geda_file_get_basename          (const char *path);
+         char   *geda_file_get_basename_dup      (const char *path);
+         char   *geda_file_get_bitmap_filespec   (const char *filename);
+         char   *geda_file_get_data_filespec     (const char *filename);
+       GSList   *geda_file_get_dir_list_files    (      char *path, char *filter);
 
-         bool    f_get_file_contents             (const char *filename, char **contents, size_t *length, GError **err);
-   const char   *f_get_filename_ext              (const char *filename);
-   const char   *f_get_format_header             (void);
-         bool    f_get_is_path_absolute          (const char *filename);
+         bool    geda_file_get_contents          (const char *filename, char **contents, size_t *length, GError **err);
+   const char   *geda_file_get_filename_ext      (const char *filename);
+   const char   *geda_file_get_format_header     (void);
+         bool    geda_file_get_is_path_absolute  (const char *filename);
 
 /* f_path.c */
          void    geda_file_path_free             (void);

@@ -344,7 +344,7 @@ o_picture_exchange_file (GschemToplevel *w_current, GedaObject *o_current)
         }
         GEDA_FREE(filepath);
       }
-      geda_image_chooser_set_filename (dialog, f_get_basename(oldfilename));
+      geda_image_chooser_set_filename (dialog, geda_file_get_basename(oldfilename));
     }
     else { /* start in current working directory, NOT in 'Recently Used' */
 
@@ -441,7 +441,7 @@ o_picture_export (GschemToplevel *w_current, GedaObject *o_current)
     int         result;
 
     filename = geda_image_chooser_get_filename (dialog);
-    file_ext = f_get_filename_ext(filename);
+    file_ext = geda_file_get_filename_ext(filename);
 
     orgin_size = gtk_toggle_button_get_active ((GtkToggleButton*)cb_aspect);
 

@@ -172,7 +172,7 @@ static char *get_page_name (GtkTreeModel *model, GtkTreeIter *piter)
 
   gtk_tree_model_get (model, &iter, COLUMN_Page, &page, -1);
 
-  return f_get_basename_dup (page->filename);
+  return geda_file_get_basename_dup (page->filename);
 }
 
 /*! \brief Sets the contents of the name cell in the treeview of dialog.

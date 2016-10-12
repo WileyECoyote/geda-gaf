@@ -255,7 +255,7 @@ geda_struct_slib_print_dirs(void)
 
     printf("Opened %s\n", directory);
 
-    GSList *files = f_get_dir_list_files (directory, NULL);
+    GSList *files = geda_file_get_dir_list_files (directory, NULL);
 
     while (files) {
 

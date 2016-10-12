@@ -108,7 +108,7 @@ int geda_color_load_print_scheme(char *scheme) {
   char *inputfile;
   int   result;
 
-  inputfile = f_get_data_filespec(scheme);
+  inputfile = geda_file_get_data_filespec(scheme);
 
   if (inputfile) {
 

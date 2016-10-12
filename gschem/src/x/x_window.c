@@ -1130,7 +1130,7 @@ x_window_close_page (GschemToplevel *w_current, Page *page)
         }
       }
 
-      if ((geda_utility_string_strncmpi(f_get_basename(page->filename), "untitled", 8) != 0) ||
+      if ((geda_utility_string_strncmpi(geda_file_get_basename(page->filename), "untitled", 8) != 0) ||
         verbose_mode)
       {
         q_log_message (page->CHANGED ? _("Discarding page [%s]\n") : _("Closing [%s]\n"),
@@ -1369,7 +1369,7 @@ x_window_update_title(GschemToplevel *w_current)
         filename = current_page->filename;
       }
       else {
-        filename = f_get_basename(current_page->filename);
+        filename = geda_file_get_basename(current_page->filename);
       }
 
     }

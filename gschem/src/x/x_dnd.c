@@ -395,7 +395,7 @@ x_dnd_receive_string_sym (GschemToplevel *w_current, int x, int y,
     const CLibSymbol *symbol;
     const char       *symbolfile;
 
-    symbolfile = f_get_basename (filename);
+    symbolfile = geda_file_get_basename (filename);
     symbol     = geda_struct_clib_get_symbol_by_name(symbolfile);
 
     result = FALSE;

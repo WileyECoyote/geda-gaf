@@ -455,7 +455,7 @@ geda_object_read (GedaToplevel *toplevel, GList *object_list, char *filename,
    * for an error isn't NULL. */
   g_return_val_if_fail (err == (NULL) || *err == NULL, (NULL));
 
-  if (!f_get_file_contents (filename, &buffer, &size, err)){
+  if (!geda_file_get_contents (filename, &buffer, &size, err)){
     return (NULL);
   }
 
