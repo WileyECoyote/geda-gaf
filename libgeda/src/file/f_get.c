@@ -53,16 +53,19 @@
 #define O_BINARY 0
 #endif
 
-/*! \brief Get the autosave filename for a file
- *  \par Function description
+/*!
+ * \brief Get the autosave filename for a file
+ * \par Function description
  *  Returns the expected autosave filename for the \a filename passed.
  *
- *  \remarks Returned allocation should be freed when no longer needed.
+ * \remarks Returned allocation should be freed when no longer needed.
  *
- *  \param [in] filename The filename to create an autosave filename for.
- *  \return A newly allocated string buffer.
+ * \param [in] filename The filename to create an autosave filename.
+ *
+ * \return A newly allocated string buffer.
  */
-char *geda_file_get_autosave_filename (const char *filename)
+char*
+geda_file_get_autosave_filename (const char *filename)
 {
   char *autosave_name;
 
@@ -87,16 +90,18 @@ char *geda_file_get_autosave_filename (const char *filename)
   return autosave_name;
 }
 
-/*! \brief Return pointer to base file name
- *  \par Function description
+/*!
+ * \brief Return pointer to base file name
+ * \par Function description
  *  Returns a pointer to the characters after the right most
  *  seperator or NULL if no sting was passed. The returned
  *  pointer points to the given string, and not reallocated.
  *
- *  \param [in] path The path to search.
- *  \return offset if found, otherwise NULL.
+ * \param [in] path The path to search.
+ * \return offset if found, otherwise NULL.
  */
-const char *geda_file_get_basename(const char *path)
+const char*
+geda_file_get_basename(const char *path)
 {
   if (path) {
     const char *base = strrchr(path, DIR_SEPARATOR);
@@ -105,37 +110,41 @@ const char *geda_file_get_basename(const char *path)
   return NULL;
 }
 
-/*! \brief Return copy base file name
- *  \par Function description
+/*!
+ * \brief Return copy base file name
+ * \par Function description
  *  Convenience function to combine geda_file_get_basename and
- *  geda_utility_string_strdup.
+ *  geda_strdup.
  *
- *  \param [in] path The path to search.
- *  \return offset if found, otherwise NULL.
+ * \param [in] path The path to search.
+ * \return offset if found, otherwise NULL.
  */
-char *geda_file_get_basename_dup(const char *path)
+char*
+geda_file_get_basename_dup(const char *path)
 {
   const char *base = geda_file_get_basename(path);
 
   if (base) {
-    return geda_utility_string_strdup(base);
+    return geda_strdup(base);
   }
   return NULL;
 }
 
-/*! \brief Get full path of given bitmap file name
- *  \par Function description
+/*!
+ * \brief Get full path of given bitmap file name
+ * \par Function description
  *  Prepends the path to the bitmaps directory to \a filename.
  *  User path specified paths using the bitmap-directory keyword
  *  are given precedence, otherwise the path is the default path,
  *  which is the path returned by geda_sys_data_path suffix suffixed
  *  with "bitmaps".
  *
- *  \param [in] filename The file name to prepend the path to.
+ * \param [in] filename The file name to prepend the path to.
  *
- *  \return string with file name and path for the specified file.
+ * \return string with file name and path for the specified file.
  */
-char *geda_file_get_bitmap_filespec (const char *filename)
+char*
+geda_file_get_bitmap_filespec (const char *filename)
 {
   char *filespec;
 
@@ -365,15 +374,18 @@ error:
  *  is saved to \a contents and the size of the buffer is written
  *  to \a length.
  *
- *  \param [in]  filename The filename of the file whose contents are to be retrieved.
- *  \param [out] contents Pointer to location receive the address if successful.
- *  \param [out] length   Size of the buffer if successful.
- *  \param [out] err      Pointer to location of error record if not successful.
-*
- *  \return TRUE on success, FALSE if an error occured.
+ * \param [in]  filename The filename of the file whose contents are to be retrieved.
+ * \param [out] contents Pointer to location receive the address if successful.
+ * \param [out] length   Size of the buffer if successful.
+ * \param [out] err      Pointer to location of error record if not successful.
+ *
+ * \retval TRUE on success, FALSE if an error occured.
  */
 bool
-geda_file_get_contents(const char *filename, char **contents, size_t *length, GError **err)
+geda_file_get_contents(const char  *filename,
+                             char **contents,
+                           size_t  *length,
+                           GError **err)
 {
   bool retval = FALSE; /* Assume failure */
 
@@ -459,21 +471,22 @@ geda_file_get_contents(const char *filename, char **contents, size_t *length, GE
   return retval;
 }
 
-/*! \brief Get full path of given Data File
- *
- *  \par Function description
+/*!
+ * \brief Get full path of given Data File
+ * \par Function description
  *  Checks for the existence of a file with the given name in the
  *  current, user data, and system data directories. Testing stops
  *  if a file is found. The full filename is returned or NULL if
  *  a file is not found.
  *
- *  \note \a filename could have a subfolder prefix.
+ * \note \a filename could have a subfolder prefix.
  *
- *  \param [in] filename The data file to find.
+ * \param [in] filename The data file to find.
  *
- *  \return string with file name and path for the specified file.
+ * \return string with file name and path for the specified file.
  */
-char *geda_file_get_data_filespec (const char *filename)
+char*
+geda_file_get_data_filespec (const char *filename)
 {
   char *filespec;
 
@@ -534,18 +547,20 @@ char *geda_file_get_data_filespec (const char *filename)
   return filespec;
 }
 
-/*! \brief Get list of file in Given directory
- *  \par Function Description
+/*!
+ * \brief Get list of file in Given directory
+ * \par Function Description
  *  This function collect the names of files contained in the
  *  specified path using the optional extension filter. The
  *  list of files is return in a single linked list.
  *
- *  \param [in] path    Path to directory to examine
- *  \param [in] filter  Optional file extension to use as filter
+ * \param [in] path    Path to directory to examine
+ * \param [in] filter  Optional file extension to use as filter
  *
- * \retval Returns GSList of files or NULL if no matching files
+ * \returns GSList of files or NULL if no matching files
 */
-GSList *geda_file_get_dir_list_files(char *path, char *filter)
+GSList*
+geda_file_get_dir_list_files(char *path, char *filter)
 {
         GSList *files = NULL;
   const char   *real_filter;
@@ -571,12 +586,12 @@ GSList *geda_file_get_dir_list_files(char *path, char *filter)
         const char *suffix = geda_file_get_filename_ext(ent->d_name);
 
         if ( suffix && strcmp (suffix, real_filter) == 0) {
-          filename = geda_utility_string_strdup(ent->d_name);
+          filename = geda_strdup(ent->d_name);
           files = g_slist_prepend(files, filename);
         }
       }
       else {
-        filename = geda_utility_string_strdup(ent->d_name);
+        filename = geda_strdup(ent->d_name);
         files = g_slist_prepend(files, filename);
       }
     }
@@ -589,30 +604,34 @@ GSList *geda_file_get_dir_list_files(char *path, char *filter)
   return g_slist_reverse(files);
 }
 
-/*! \brief Return pointer filename extension
- *  \par Function description
+/*!
+ * \brief Return pointer filename extension
+ * \par Function description
  *  Returns a pointer to the characters after the period or
  *  NULL if the is no period in the filename.
  *
- *  \param [in] filename The filename to search.
+ * \param [in] filename The filename to search.
  *
- *  \return offset if found, otherwise NULL.
+ * \return offset if found, otherwise NULL.
  */
-const char *geda_file_get_filename_ext(const char *filename)
+const char *
+geda_file_get_filename_ext(const char *filename)
 {
     const char *dot = strrchr(filename, '.');
     if(!dot || dot == filename) return NULL;
     return dot + 1;
 }
 
-/*! \brief Get the file header string.
- *  \par Function Description
+/*!
+ * \brief Get the file header string.
+ * \par Function Description
  *  This function returns the PACKAGE_DATE_VERSION and
  *  #FILEFORMAT_VERSION formatted as a gEDA file header.
  *
- *  \remarks <em>Do not</em> free the returned string.
+ * \remarks <em>Do not</em> free the returned string.
  */
-const char *geda_file_get_format_header()
+const char*
+geda_file_get_format_header(void)
 {
   static char *header = NULL;
 
@@ -623,15 +642,17 @@ const char *geda_file_get_format_header()
   return header;
 }
 
-/*! \brief Get is Path absolute
- *  \par Function description
+/*!
+ * \brief Get is Path absolute
+ * \par Function description
  *  Determines if the path of the given file name is absolute or relative.
  *
- *  \param [in] filename The filename to interrogate.
+ * \param [in] filename The filename to interrogate.
  *
- *  \returns TRUE if \a filename is absolute
+ * \retval TRUE if \a filename is absolute
  */
-bool geda_file_get_is_path_absolute (const char *filename)
+bool
+geda_file_get_is_path_absolute (const char *filename)
 {
   bool result;
 

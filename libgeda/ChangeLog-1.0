@@ -3,7 +3,8 @@
     * include/libgeda_priv.h: Include libgeda/geda_file.h macros.
 
     * libgeda/src/file/f_get.c: Rename functions with geda_file prefix, and
-      reorganize module. Add Doxygen comments for geda_file_get_contents.
+      reorganize module. Add Doxygen comments for geda_file_get_contents,
+      reformat Doxygen comment blocks and adjust function wrap.
 
 2016-10-11 Wiley E. Hill <wileyhill@gmail.com>
 
