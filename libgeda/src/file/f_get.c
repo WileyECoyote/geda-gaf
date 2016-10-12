@@ -186,136 +186,6 @@ char *geda_file_get_bitmap_filespec (const char *filename)
   return filespec;
 }
 
-/*! \brief Get full path of given Data File
- *
- *  \par Function description
- *  Checks for the existence of a file with the given name in the
- *  current, user data, and system data directories. Testing stops
- *  if a file is found. The full filename is returned or NULL if
- *  a file is not found.
- *
- *  \note \a filename could have a subfolder prefix.
- *
- *  \param [in] filename The data file to find.
- *
- *  \return string with file name and path for the specified file.
- */
-char *geda_file_get_data_filespec (const char *filename)
-{
-  char *filespec;
-
-  if (filename) {
-
-          char *cwd;
-    const char *directory;
-    const char *seperator;
-
-    /* initialize variables */
-    cwd       = getcwd(0,0);
-    filespec  = NULL;
-    seperator = DIR_SEPARATOR_S;
-
-    /* Look for file in current directory */
-    if (!cwd) {
-      fprintf (stderr, "System error getting cwd: [%s]\n", strerror(errno));
-    }
-    else {
-
-      filespec = geda_strconcat (cwd, seperator, filename, NULL);
-      free (cwd);
-
-      if ((access (filespec, R_OK)) != 0) {
-        /* Does not point to accessible file, release string */
-        GEDA_FREE(filespec);
-      }
-    }
-
-    /* Look for file in user config/data directory */
-    if (!filespec) {
-
-      directory = geda_user_config_path();
-      filespec  = geda_strconcat (directory, seperator, filename, NULL);
-
-      if ((access (filespec, R_OK)) != 0) {
-        /* Does not point to accessible file, release string */
-        GEDA_FREE(filespec);
-      }
-    }
-
-    /* Look for file in system data directory */
-    if (!filespec) {
-
-      directory = geda_sys_data_path();
-      filespec  = geda_strconcat (directory, seperator, filename, NULL);
-
-      if ((access (filespec, R_OK)) != 0) {
-        /* Does not point to accessible file, release string */
-        GEDA_FREE(filespec);
-      }
-    }
-  }
-  else {
-    return NULL;
-  }
-
-  return filespec;
-}
-
-/*! \brief Get list of file in Given directory
- *  \par Function Description
- *  This function collect the names of files contained in the
- *  specified path using the optional extension filter. The
- *  list of files is return in a single linked list.
- *
- *  \param [in] path    Path to directory to examine
- *  \param [in] filter  Optional file extension to use as filter
- *
- * \retval Returns GSList of files or NULL if no matching files
-*/
-GSList *geda_file_get_dir_list_files(char *path, char *filter)
-{
-        GSList *files = NULL;
-  const char   *real_filter;
-        DIR    *dirp;
-
-  real_filter = filter;
-
-  if (*real_filter == 0x2E ) real_filter++; /* skip over Period  */
-
-  dirp = opendir (path);
-
-  if (dirp != NULL) {
-
-    struct      dirent *ent;
-
-    /* get all the files within directory */
-    while ((ent = readdir (dirp)) != NULL) {
-
-      char   *filename;
-
-      if (real_filter) {
-
-        const char *suffix = geda_file_get_filename_ext(ent->d_name);
-
-        if ( suffix && strcmp (suffix, real_filter) == 0) {
-          filename = geda_utility_string_strdup(ent->d_name);
-          files = g_slist_prepend(files, filename);
-        }
-      }
-      else {
-        filename = geda_utility_string_strdup(ent->d_name);
-        files = g_slist_prepend(files, filename);
-      }
-    }
-    closedir (dirp);
-  }
-  else { /* could not open directory */
-    u_log_message(_("%s: error accessing: %s\n"), __func__, path);
-  }
-
-  return g_slist_reverse(files);
-}
-
 static bool
 get_contents_stdio (const char *filename, FILE *f, char **contents,
                     size_t     *length,   GError        **err)
@@ -487,6 +357,21 @@ error:
 }
 #endif
 
+/*!
+ * \brief Get the contents of a file
+ * \par Function description
+ *  Returns the entire contents of the file with name \a filename.
+ *  If successful, the address of the dynamically allocated buffer
+ *  is saved to \a contents and the size of the buffer is written
+ *  to \a length.
+ *
+ *  \param [in]  filename The filename of the file whose contents are to be retrieved.
+ *  \param [out] contents Pointer to location receive the address if successful.
+ *  \param [out] length   Size of the buffer if successful.
+ *  \param [out] err      Pointer to location of error record if not successful.
+*
+ *  \return TRUE on success, FALSE if an error occured.
+ */
 bool
 geda_file_get_contents(const char *filename, char **contents, size_t *length, GError **err)
 {
@@ -572,6 +457,136 @@ geda_file_get_contents(const char *filename, char **contents, size_t *length, GE
   }
 
   return retval;
+}
+
+/*! \brief Get full path of given Data File
+ *
+ *  \par Function description
+ *  Checks for the existence of a file with the given name in the
+ *  current, user data, and system data directories. Testing stops
+ *  if a file is found. The full filename is returned or NULL if
+ *  a file is not found.
+ *
+ *  \note \a filename could have a subfolder prefix.
+ *
+ *  \param [in] filename The data file to find.
+ *
+ *  \return string with file name and path for the specified file.
+ */
+char *geda_file_get_data_filespec (const char *filename)
+{
+  char *filespec;
+
+  if (filename) {
+
+          char *cwd;
+    const char *directory;
+    const char *seperator;
+
+    /* initialize variables */
+    cwd       = getcwd(0,0);
+    filespec  = NULL;
+    seperator = DIR_SEPARATOR_S;
+
+    /* Look for file in current directory */
+    if (!cwd) {
+      fprintf (stderr, "System error getting cwd: [%s]\n", strerror(errno));
+    }
+    else {
+
+      filespec = geda_strconcat (cwd, seperator, filename, NULL);
+      free (cwd);
+
+      if ((access (filespec, R_OK)) != 0) {
+        /* Does not point to accessible file, release string */
+        GEDA_FREE(filespec);
+      }
+    }
+
+    /* Look for file in user config/data directory */
+    if (!filespec) {
+
+      directory = geda_user_config_path();
+      filespec  = geda_strconcat (directory, seperator, filename, NULL);
+
+      if ((access (filespec, R_OK)) != 0) {
+        /* Does not point to accessible file, release string */
+        GEDA_FREE(filespec);
+      }
+    }
+
+    /* Look for file in system data directory */
+    if (!filespec) {
+
+      directory = geda_sys_data_path();
+      filespec  = geda_strconcat (directory, seperator, filename, NULL);
+
+      if ((access (filespec, R_OK)) != 0) {
+        /* Does not point to accessible file, release string */
+        GEDA_FREE(filespec);
+      }
+    }
+  }
+  else {
+    return NULL;
+  }
+
+  return filespec;
+}
+
+/*! \brief Get list of file in Given directory
+ *  \par Function Description
+ *  This function collect the names of files contained in the
+ *  specified path using the optional extension filter. The
+ *  list of files is return in a single linked list.
+ *
+ *  \param [in] path    Path to directory to examine
+ *  \param [in] filter  Optional file extension to use as filter
+ *
+ * \retval Returns GSList of files or NULL if no matching files
+*/
+GSList *geda_file_get_dir_list_files(char *path, char *filter)
+{
+        GSList *files = NULL;
+  const char   *real_filter;
+        DIR    *dirp;
+
+  real_filter = filter;
+
+  if (*real_filter == 0x2E ) real_filter++; /* skip over Period  */
+
+  dirp = opendir (path);
+
+  if (dirp != NULL) {
+
+    struct      dirent *ent;
+
+    /* get all the files within directory */
+    while ((ent = readdir (dirp)) != NULL) {
+
+      char   *filename;
+
+      if (real_filter) {
+
+        const char *suffix = geda_file_get_filename_ext(ent->d_name);
+
+        if ( suffix && strcmp (suffix, real_filter) == 0) {
+          filename = geda_utility_string_strdup(ent->d_name);
+          files = g_slist_prepend(files, filename);
+        }
+      }
+      else {
+        filename = geda_utility_string_strdup(ent->d_name);
+        files = g_slist_prepend(files, filename);
+      }
+    }
+    closedir (dirp);
+  }
+  else { /* could not open directory */
+    u_log_message(_("%s: error accessing: %s\n"), __func__, path);
+  }
+
+  return g_slist_reverse(files);
 }
 
 /*! \brief Return pointer filename extension
