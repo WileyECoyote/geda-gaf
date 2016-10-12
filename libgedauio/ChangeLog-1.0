@@ -1,3 +1,13 @@
+2016-10-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu.c: Reduce scope of variables in functions:
+
+        * geda_menu_get_tearoff_state
+        * geda_menu_size_request
+        * geda_menu_enter_notify
+        * geda_menu_leave_notify
+        * geda_menu_position
+
 2016-10-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/functions/geda_mnemonic_hash.c: Remove annoying output to console.

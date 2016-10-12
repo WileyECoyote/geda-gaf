@@ -2237,10 +2237,11 @@ geda_menu_set_accel_path (GedaMenu *menu, const char *accel_path)
 {
   g_return_if_fail (GEDA_IS_MENU (menu));
 
-  if (accel_path)
+  if (accel_path) {
     g_return_if_fail (accel_path[0] == '<' && strchr (accel_path, '/')); /* simplistic check */
+  }
 
-  menu->accel_path = (char *)g_intern_string (accel_path);
+  menu->accel_path = (char*)g_intern_string (accel_path);
 
   if (menu->accel_path) {
     geda_menu_refresh_accel_paths (menu, FALSE);
@@ -2357,12 +2358,11 @@ geda_menu_update_title (GedaMenu *menu)
 {
   if (menu->tearoff_window) {
 
-    const char *title;
-    GtkWidget  *attach_widget;
-
-    title = geda_menu_get_title (menu);
+    const char *title = geda_menu_get_title (menu);
 
     if (!title) {
+
+      GtkWidget  *attach_widget;
 
       attach_widget = geda_menu_get_attach_widget (menu);
 
@@ -2766,9 +2766,10 @@ geda_menu_realize (GtkWidget *widget)
   gtk_style_set_background (widget->style, menu->view_window, GTK_STATE_NORMAL);
   gtk_style_set_background (widget->style, widget->window,    GTK_STATE_NORMAL);
 
-  if (GEDA_MENU_SHELL (widget)->active_menu_item)
+  if (GEDA_MENU_SHELL (widget)->active_menu_item) {
     geda_menu_scroll_item_visible (GEDA_MENU_SHELL (widget),
                   GEDA_MENU_SHELL (widget)->active_menu_item);
+  }
 
   gdk_window_show (menu->bin_window);
   gdk_window_show (menu->view_window);
@@ -2853,7 +2854,6 @@ geda_menu_size_request (GtkWidget *widget, GtkRequisition *requisition)
   int  i;
   GedaMenu      *menu;
   GedaMenuShell *menu_shell;
-  GtkWidget     *child;
   GList         *children;
   GedaMenuPriv  *priv;
 
@@ -2885,6 +2885,7 @@ geda_menu_size_request (GtkWidget *widget, GtkRequisition *requisition)
 
   while (children) {
 
+      GtkWidget *child;
       int  part;
       int  toggle_size;
       int  l, r, t, b;
@@ -2972,7 +2973,6 @@ geda_menu_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
 {
   GedaMenu      *menu;
   GedaMenuShell *menu_shell;
-  GtkWidget     *child;
   GList         *children;
   GedaMenuPriv  *priv;
   GtkAllocation  child_allocation;
@@ -3036,10 +3036,14 @@ geda_menu_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
 
   if (menu_shell->children) {
 
-    int  base_width = width / geda_menu_get_n_columns (menu);
+    int base_width;
 
-    children = menu_shell->children;
+    base_width = width / geda_menu_get_n_columns (menu);
+    children   = menu_shell->children;
+
     while (children) {
+
+      GtkWidget *child;
 
       child = children->data;
       children = children->next;
@@ -4242,7 +4246,6 @@ geda_menu_leave_notify (GtkWidget *widget, GdkEventCrossing *event)
 {
   GedaMenuShell *menu_shell;
   GedaMenu      *menu;
-  GedaMenuItem  *menu_item;
   GtkWidget     *event_widget;
 
   if (event->mode == GDK_CROSSING_GTK_GRAB ||
@@ -4264,7 +4267,7 @@ geda_menu_leave_notify (GtkWidget *widget, GdkEventCrossing *event)
 
   if (GEDA_IS_MENU_ITEM (event_widget)) {
 
-    menu_item = GEDA_MENU_ITEM (event_widget);
+    GedaMenuItem *menu_item = GEDA_MENU_ITEM (event_widget);
 
     /* Check to see if we're leaving an active menu item with a submenu,
      * in which case we enter submenu navigation mode.
@@ -4537,7 +4540,6 @@ geda_menu_position (GedaMenu *menu, bool set_scroll_offset)
   GdkScreen    *pointer_screen;
   int           x, y;
   int           scroll_offset;
-  int           menu_height;
 
   GdkRectangle    monitor;
   GtkRequisition  requisition;
@@ -4718,7 +4720,7 @@ geda_menu_position (GedaMenu *menu, bool set_scroll_offset)
 
   if (private->initially_pushed_in) {
 
-    menu_height = GTK_WIDGET (menu)->requisition.height;
+    int menu_height = GTK_WIDGET (menu)->requisition.height;
 
     if (y + menu_height > monitor.y + monitor.height) {
       scroll_offset -= y + menu_height - (monitor.y + monitor.height);
