@@ -74,7 +74,7 @@ check_list_copy_all (GedaToplevel *toplevel)
 
   Page       *page    = geda_toplevel_get_current_page(toplevel);
 
-  GedaObject *object  = geda_arc_object_new (3, 10, 20, 33, 0, 90);
+  GedaObject *object  = geda_arc_object_new (4, 10, 20, 33, 0, 90);
 
   GedaObject *attrib1 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "A=1");
   GedaObject *attrib2 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "B=2");
@@ -107,29 +107,42 @@ check_list_copy_all (GedaToplevel *toplevel)
     result++;
   }
 
+  /* Check if original objects have been set selected */
+
+  if (geda_object_get_is_selected(object)) {
+    fprintf(stderr, "FAILED: (O120102A) selected <%s> \n", object->name);
+    result++;
+  }
+
+  if (geda_object_get_is_selected(attrib1)) {
+    fprintf(stderr, "FAILED: (O120102B) selected <%s> \n", attrib1->name);
+    result++;
+  }
+
+  if (geda_object_get_is_selected(attrib2)) {
+    fprintf(stderr, "FAILED: (O120102C) selected <%s> \n", attrib2->name);
+    result++;
+  }
+
+  /* Check if attrib3 has been unselected */
+
+  if (!geda_object_get_is_selected(attrib3)) {
+    fprintf(stderr, "FAILED: (O120102D) <%s> not selected\n", attrib3->name);
+    result++;
+  }
+
   GedaObject *obj = g_list_nth_data (list, 0);
 
   if (obj != attrib4) {
-    fprintf(stderr, "FAILED: (O120102A) object_list_copy_all 0 <%p>\n", obj);
+    fprintf(stderr, "FAILED: (O120103A) object_list_copy_all 0 <%p>\n", obj);
     result++;
   }
   else if (geda_object_get_is_selected(obj)) {
-    fprintf(stderr, "FAILED: (O120102B) object_list_copy_all 1 <%p>\n", obj);
+    fprintf(stderr, "FAILED: (O120103B) object_list_copy_all 1 <%p>\n", obj);
     result++;
   }
 
   obj = g_list_nth_data (list, 1);
-
-  if (!GEDA_IS_OBJECT(obj)) {
-    fprintf(stderr, "FAILED: (O120103A) object_list_copy_all <%p>\n", obj);
-    result++;
-  }
-  else if (geda_object_get_is_selected(obj)) {
-    fprintf(stderr, "FAILED: (O120103B) object_list_copy_all <%p>\n", obj);
-    result++;
-  }
-
-  obj = g_list_nth_data (list, 2);
 
   if (!GEDA_IS_OBJECT(obj)) {
     fprintf(stderr, "FAILED: (O120104A) object_list_copy_all <%p>\n", obj);
@@ -140,7 +153,7 @@ check_list_copy_all (GedaToplevel *toplevel)
     result++;
   }
 
-  obj = g_list_nth_data (list, 3);
+  obj = g_list_nth_data (list, 2);
 
   if (!GEDA_IS_OBJECT(obj)) {
     fprintf(stderr, "FAILED: (O120105A) object_list_copy_all <%p>\n", obj);
@@ -151,7 +164,7 @@ check_list_copy_all (GedaToplevel *toplevel)
     result++;
   }
 
-  obj = g_list_nth_data (list, 4);
+  obj = g_list_nth_data (list, 3);
 
   if (!GEDA_IS_OBJECT(obj)) {
     fprintf(stderr, "FAILED: (O120106A) object_list_copy_all <%p>\n", obj);
@@ -159,6 +172,17 @@ check_list_copy_all (GedaToplevel *toplevel)
   }
   else if (geda_object_get_is_selected(obj)) {
     fprintf(stderr, "FAILED: (O120106B) object_list_copy_all <%p>\n", obj);
+    result++;
+  }
+
+  obj = g_list_nth_data (list, 4);
+
+  if (!GEDA_IS_OBJECT(obj)) {
+    fprintf(stderr, "FAILED: (O120107A) object_list_copy_all <%p>\n", obj);
+    result++;
+  }
+  else if (geda_object_get_is_selected(obj)) {
+    fprintf(stderr, "FAILED: (O120107B) object_list_copy_all <%p>\n", obj);
     result++;
   }
 

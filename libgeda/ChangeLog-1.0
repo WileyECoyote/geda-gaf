@@ -18,6 +18,9 @@
       error pointer to geda_file_get_dir_list_files and clear in the unlikely
       event an error does occur, less we be cursed by evil spirits.
 
+    * tests/test_object_list.c: Perform additional checks of function geda_
+      object_list_copy_all.
+
 2016-10-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_path.c: Rename functions with geda_file prefix.
