@@ -560,7 +560,7 @@ geda_file_get_data_filespec (const char *filename)
  * \returns GSList of files or NULL if no matching files
 */
 GSList*
-geda_file_get_dir_list_files(char *path, char *filter)
+geda_file_get_dir_list_files(char *path, char *filter, GError **err)
 {
         GSList *files = NULL;
   const char   *real_filter;
@@ -574,7 +574,7 @@ geda_file_get_dir_list_files(char *path, char *filter)
 
   if (dirp != NULL) {
 
-    struct      dirent *ent;
+    struct dirent *ent;
 
     /* get all the files within directory */
     while ((ent = readdir (dirp)) != NULL) {
@@ -585,7 +585,7 @@ geda_file_get_dir_list_files(char *path, char *filter)
 
         const char *suffix = geda_file_get_filename_ext(ent->d_name);
 
-        if ( suffix && strcmp (suffix, real_filter) == 0) {
+        if (suffix && strcmp (suffix, real_filter) == 0) {
           filename = geda_strdup(ent->d_name);
           files = g_slist_prepend(files, filename);
         }
@@ -598,7 +598,9 @@ geda_file_get_dir_list_files(char *path, char *filter)
     closedir (dirp);
   }
   else { /* could not open directory */
-    u_log_message(_("%s: error accessing: %s\n"), __func__, path);
+    g_set_error (err, G_FILE_ERROR, errno,
+               _("error accessing '%s': %s"), path, strerror (errno));
+    return NULL;
   }
 
   return g_slist_reverse(files);
@@ -637,7 +639,7 @@ geda_file_get_format_header(void)
 
   if (header == NULL)
     header = geda_sprintf("v %s %u\n", PACKAGE_DATE_VERSION,
-                             FILEFORMAT_VERSION);
+                                       FILEFORMAT_VERSION);
 
   return header;
 }

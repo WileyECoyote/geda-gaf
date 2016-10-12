@@ -1,3 +1,9 @@
+2016-10-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_sessions.c: Revise function i_sessions_load_data to pass
+      an error pointer to geda_file_get_dir_list_files and acknowledge when
+      set.
+
 2016-10-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_status.c: Update menu strings in i_status_idle_update_sensitivities.

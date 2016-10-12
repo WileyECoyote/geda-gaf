@@ -730,7 +730,7 @@ static void i_sessions_load_data(void)
 
   path = g_build_filename(geda_user_config_path (), SESSIONS_DIRECTORY, NULL);
 
-  if(!g_file_test(path, G_FILE_TEST_EXISTS)) {
+  if (!g_file_test(path, G_FILE_TEST_EXISTS)) {
 
     /* There was no session directory so create an empty one */
     geda_create_path(path, S_IRWXU | S_IRWXG);
@@ -738,7 +738,9 @@ static void i_sessions_load_data(void)
   }
   else {
 
-    session_files = geda_file_get_dir_list_files(path, SESSIONS_FILE_SUFFIX);
+    GError *err = NULL;
+
+    session_files = geda_get_dir_list(path, SESSIONS_FILE_SUFFIX, &err);
 
     if (session_files) {
 
@@ -766,6 +768,7 @@ static void i_sessions_load_data(void)
           record.page_count   = i_sessions_get_count(record.session_file);
 
           tmpname = (char*)geda_file_get_basename(file);
+
           geda_remove_extension(tmpname);
 
           record.session_name = geda_utility_string_strdup(tmpname);
@@ -778,6 +781,10 @@ static void i_sessions_load_data(void)
 
       g_slist_free(session_files);
 
+    }
+    else if (err) {
+      geda_log_w (_("Sessions: %s\n"), err->message);
+      g_error_free(err);
     }
   }
 

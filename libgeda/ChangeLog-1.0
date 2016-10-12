@@ -4,7 +4,17 @@
 
     * libgeda/src/file/f_get.c: Rename functions with geda_file prefix, and
       reorganize module. Add Doxygen comments for geda_file_get_contents,
-      reformat Doxygen comment blocks and adjust function wrap.
+      reformat Doxygen comment blocks and adjust function wrap. Add err
+      argument to function geda_file_get_dir_list_files and set error message
+      instead issuing a warning to the log.
+
+    * src/struct/s_slib.c: Revise function geda_struct_slib_print_dirs to
+      pass an error pointer to geda_file_get_dir_list_files and acknowledge
+      when set.
+
+    * src/utility/u_log.c: Revise function geda_utility_log_init to pass an
+      error pointer to geda_file_get_dir_list_files and clear in the unlikely
+      event an error does occur, less we be cursed by evil spirits.
 
 2016-10-11 Wiley E. Hill <wileyhill@gmail.com>
 

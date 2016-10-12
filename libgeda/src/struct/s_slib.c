@@ -245,30 +245,42 @@ geda_struct_slib_print(void)
 void
 geda_struct_slib_print_dirs(void)
 {
-  int i;
-  char *directory;
+  GError *err;
+  char   *directory;
+  int     i;
 
   i = 0;
+
   directory = geda_struct_slib_get_dir(i);
 
   while (directory != NULL) {
 
+    err = NULL;
+
     printf("Opened %s\n", directory);
 
-    GSList *files = geda_file_get_dir_list_files (directory, NULL);
+    GSList *files = geda_file_get_dir_list_files (directory, NULL, &err);
 
-    while (files) {
+    if (err) {
+      geda_log_w ("%s\n", err->message);
+      g_error_free(err);
+    }
+    else {
 
-      char *file = files->data;
+      while (files) {
 
-      printf("file: %s\n", file);
+        char *file = files->data;
 
-      files = files->next;
+        printf("file: %s\n", file);
+
+        files = files->next;
+      }
+
+      geda_utility_gslist_free_full (files, g_free);
     }
 
-    geda_utility_gslist_free_full (files, g_free);
-
     printf("Closed %s\n", directory);
+
     GEDA_FREE(directory);
 
     i++;

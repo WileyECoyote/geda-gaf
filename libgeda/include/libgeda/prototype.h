@@ -19,7 +19,7 @@ extern "C" {
          char   *geda_file_get_bitmap_filespec   (const char *filename);
          bool    geda_file_get_contents          (const char *filename, char **contents, size_t *length, GError **err);
          char   *geda_file_get_data_filespec     (const char *filename);
-       GSList   *geda_file_get_dir_list_files    (      char *path, char *filter);
+       GSList   *geda_file_get_dir_list_files    (      char *path, char *filter,  GError **err);
    const char   *geda_file_get_filename_ext      (const char *filename);
    const char   *geda_file_get_format_header     (void);
          bool    geda_file_get_is_path_absolute  (const char *filename);

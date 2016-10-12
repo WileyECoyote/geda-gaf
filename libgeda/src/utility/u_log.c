@@ -268,14 +268,21 @@ void geda_utility_log_init (const char *prefix)
   }
   else {
 
+    GError *err;
     GSList *iter;
     int     index;
     int     last_exist_logn;
     int     logcount;
 
+    err = NULL;
     last_exist_logn = 0;
+    files = geda_get_dir_list(dir_path, "log", &err);
 
-    files = geda_file_get_dir_list_files(dir_path, "log");
+    if (err == NULL) {
+        /* Should never occur since path was checked above,
+         * but glib will squawk if was set and not cleared */
+        g_error_free(err);
+    }
 
     for (iter = files; iter != NULL; iter = iter->next) {
 
