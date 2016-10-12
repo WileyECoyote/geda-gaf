@@ -8,6 +8,8 @@
       argument to function geda_file_get_dir_list_files and set error message
       instead issuing a warning to the log.
 
+    * src/object/o_save.c: Initialize err to NULL geda_object_save_auto_backup.
+
     * src/struct/s_slib.c: Revise function geda_struct_slib_print_dirs to
       pass an error pointer to geda_file_get_dir_list_files and acknowledge
       when set.

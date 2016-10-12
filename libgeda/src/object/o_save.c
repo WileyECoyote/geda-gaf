@@ -130,6 +130,8 @@ geda_object_save_auto_backup(GedaToplevel *toplevel)
           umask(saved_umask);
         }
 
+        err = NULL;
+
         if (geda_object_save (geda_struct_page_get_objects (p_current), backup_filename, &err)) {
 
           geda_log_v (_("Automatic backup file saved [%s]\n"), backup_filename);

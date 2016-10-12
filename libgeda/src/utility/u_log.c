@@ -278,7 +278,7 @@ void geda_utility_log_init (const char *prefix)
     last_exist_logn = 0;
     files = geda_get_dir_list(dir_path, "log", &err);
 
-    if (err == NULL) {
+    if (err != NULL) {
         /* Should never occur since path was checked above,
          * but glib will squawk if was set and not cleared */
         g_error_free(err);
