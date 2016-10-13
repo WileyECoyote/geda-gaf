@@ -590,7 +590,7 @@ geda_object_get_attrib_value (GedaObject *object, const char *name)
  *          type or the input list was empty.
  */
 GList*
-geda_object_get_objects_by_type (GList *olist, int type)
+geda_object_get_objects_by_type (const GList *olist, int type)
 {
   GList  *objects = NULL;
 

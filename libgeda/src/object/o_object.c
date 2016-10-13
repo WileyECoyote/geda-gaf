@@ -417,7 +417,7 @@ geda_object_read_buffer (GedaToplevel *toplevel, GList    *object_list,
 
   new_object_list = g_list_reverse(new_object_list);
 
-  object_list     = g_list_concat (object_list, new_object_list);
+  object_list     = geda_glist_concat (object_list, new_object_list);
 
   return(object_list);
 

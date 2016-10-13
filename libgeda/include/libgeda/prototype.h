@@ -350,17 +350,17 @@ extern "C" {
          bool    geda_object_get_is_selected               (GedaObject *object);
          bool    geda_object_get_is_valid_attribute        (GedaObject *object);
          bool    geda_object_get_is_visible                (const GedaObject *object);
-     LINE_END    geda_object_get_line_cap_style            (int capstyle);
-         bool    geda_object_get_line_options              (GedaObject *object, LINE_END *end, LINE_TYPE *type, int *width, int *length, int *space);
-         bool    geda_object_get_nearest_point             (GedaObject *object, int x, int y, int *nx, int *ny);
-          int    geda_object_get_num_text_lines            (const char *string);
-   const char   *geda_object_get_attrib_value              (GedaObject *object, const char *name);
-        GList   *geda_object_get_objects_by_type           (GList  *object_list, int type);
-   GedaObject   *geda_object_get_parent                    (GedaObject *object);
-          int    geda_object_get_parent_id                 (GedaObject *object);
-         bool    geda_object_get_position                  (GedaObject *object, int *x, int *y);
-       double    geda_object_get_shortest_distance         (GedaObject *object, int x, int y);
-       double    geda_object_get_shortest_distance_full    (GedaObject *object, int x, int y, int force_solid);
+     LINE_END    geda_object_get_line_cap_style            (int          capstyle);
+         bool    geda_object_get_line_options              (GedaObject  *object, LINE_END *end, LINE_TYPE *type, int *width, int *length, int *space);
+         bool    geda_object_get_nearest_point             (GedaObject  *object, int x, int y, int *nx, int *ny);
+          int    geda_object_get_num_text_lines            (const char  *string);
+   const char   *geda_object_get_attrib_value              (GedaObject  *object, const char *name);
+        GList   *geda_object_get_objects_by_type           (const GList *object_list, int type);
+   GedaObject   *geda_object_get_parent                    (GedaObject  *object);
+          int    geda_object_get_parent_id                 (GedaObject  *object);
+         bool    geda_object_get_position                  (GedaObject  *object, int *x, int *y);
+       double    geda_object_get_shortest_distance         (GedaObject  *object, int x, int y);
+       double    geda_object_get_shortest_distance_full    (GedaObject  *object, int x, int y, int force_solid);
 
 /* o_line_object.c */
    GedaObject   *geda_line_object_copy                     (GedaObject *object) WARN_UNUSED;

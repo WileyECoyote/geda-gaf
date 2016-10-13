@@ -4,6 +4,9 @@
       which is just g_list_concat with a cast on the second list so that
       const GList pointers can be used g_list_concat without warnings.
 
+    * src/object/o_get.c: Declare first Glist argument to function
+      geda_object_get_objects_by_type a const.
+
 2016-10-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda_priv.h: Include libgeda/geda_file.h macros.
