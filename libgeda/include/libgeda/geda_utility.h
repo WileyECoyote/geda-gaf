@@ -34,6 +34,8 @@
 #ifndef __GEDA_UTILITIES_MAC__
 #define __GEDA_UTILITIES_MAC__
 
+#define geda_glist_concat(l1, l2) g_list_concat (l1, (GList*)l2)
+
 /* u_utility.c */
 #define geda_expand_env_variable  geda_utility_expand_env_variable
 #define geda_print_object         geda_utility_program_print_object

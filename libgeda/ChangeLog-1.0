@@ -1,3 +1,9 @@
+2016-10-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/libgeda/geda_utility.h: Add utility macro geda_glist_concat,
+      which is just g_list_concat with a cast on the second list so that
+      const GList pointers can be used g_list_concat without warnings.
+
 2016-10-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda_priv.h: Include libgeda/geda_file.h macros.
