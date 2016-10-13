@@ -7,6 +7,9 @@
     * src/object/o_get.c: Declare first Glist argument to function
       geda_object_get_objects_by_type a const.
 
+    * src/object/o_list.c: Revise geda_object_list_copy_all; eliminate variable
+      selected_save and associated conditional, update comments.
+
     * libgeda/src/struct/s_page.c: Declare second Glist argument to function
       geda_struct_page_append_list a const.
 

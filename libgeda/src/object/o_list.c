@@ -26,15 +26,13 @@
 /*!
  * \brief Copy GList to GList
  * \par Function Description
- *  you need to pass in a head_node for dest_list_head flag is either
- *  NORMAL_FLAG or SELECTION_FLAG this function copies the objects in
- *  the src GList, \a src_list, to the destination GList, \a dest_list
- *  this routine assumes that objects in src_list are selected objects
- *  are unselected before they are copied and then reselected this is
- *  necessary to preserve the color info.
+ *  This function copies the objects in the src GList, \a src_list, to
+ *  the destination GList \a dest_list. Objects selected in the src_list
+ *  are unselected before they are copied and then reselected to preserve
+ *  the color info.
  *
  * \param [in] src_list   The GList to copy from
- * \param [in] dest_list  The GList to copy to
+ * \param [in] dest_list  Head node of GList to copy to
  *
  * \return dest_list GList with objects appended
  *
@@ -43,78 +41,80 @@
 GList*
 geda_object_list_copy_all (const GList *src_list, GList *dest_list)
 {
+   GedaObject *src_object, *dst_object;
   const GList *src;
-  GList *dest;
-  GedaObject *src_object, *dst_object;
-  int selected_save;
+        GList *dest;
 
-  src = src_list;
-  /* Reverse any existing items, as we will prepend, then reverse at the end */
-  dest = g_list_reverse (dest_list);
-
-  if (src == NULL) {
+  if (src_list == NULL) {
     return(NULL);
   }
 
-  /* first do all NON text items */
-  while(src != NULL) {
+  /* Reverse any existing items, as we will prepend, then reverse at the end */
+  dest = g_list_reverse (dest_list);
 
-    src_object = (GedaObject *) src->data;
+  src = src_list;
 
-    if (GEDA_IS_OBJECT(src_object)) {
+  /* First do all NON text items */
+  while (src != NULL) {
 
-      /* unselect the object before the copy */
-      selected_save = src_object->selected;
+    src_object = src->data;
 
-      if (selected_save)
+    if (GEDA_IS_OBJECT(src_object) && (src_object->type != OBJ_TEXT)) {
+
+      if (src_object->selected) {
+
+        /* Unselect the object before the copy */
         geda_object_selection_unselect (src_object);
 
-      if (src_object->type != OBJ_TEXT) {
         dst_object = geda_object_copy (src_object);
-        dest = g_list_prepend (dest, dst_object);
-      }
 
-      /* reselect it */
-      if (selected_save) {
         geda_object_selection_select (src_object);
       }
-    }
+      else {
+        dst_object = geda_object_copy (src_object);
+      }
 
+      dest = g_list_prepend (dest, dst_object);
+    }
     src = g_list_next(src);
   }
 
   src = src_list;
 
   /* then do all text items */
-  while(src != NULL) {
+  while (src != NULL) {
 
     src_object = (GedaObject *) src->data;
 
-    if (GEDA_IS_OBJECT(src_object)) {
+    if (GEDA_IS_OBJECT(src_object) && (src_object->type == OBJ_TEXT)) {
 
-      /* unselect the object before the copy */
-      selected_save = src_object->selected;
+      if (src_object->selected) {
 
-      if (selected_save)
+        /* unselect the object before the copy */
         geda_object_selection_unselect (src_object);
 
-      if (src_object->type == OBJ_TEXT) {
         dst_object = geda_object_copy (src_object);
-        dest = g_list_prepend (dest, dst_object);
 
-        if (src_object->attached_to != NULL &&
-            src_object->attached_to->copied_to != NULL)
-        {
-          geda_attrib_object_attach(src_object->attached_to->copied_to, dst_object, FALSE);
-          /* handle slot= attribute, it's a special case */
-          if (g_ascii_strncasecmp (dst_object->text->string, "slot=", 5) == 0)
-            geda_struct_slot_update_object (src_object->attached_to->copied_to);
-        }
+        geda_object_selection_select (src_object);
+      }
+      else {
+        dst_object = geda_object_copy (src_object);
       }
 
-      /* reselect it */
-      if (selected_save) {
-        geda_object_selection_select (src_object);
+      dest = g_list_prepend (dest, dst_object);
+
+      /* If an object in the */
+      if (src_object->attached_to != NULL &&
+          src_object->attached_to->copied_to != NULL)
+      {
+
+        GedaObject *copied_to = src_object->attached_to->copied_to;
+
+        geda_attrib_object_attach(src_object->attached_to->copied_to, dst_object, FALSE);
+        /* handle slot= attribute, it's a special case */
+        if (g_ascii_strncasecmp (dst_object->text->string, "slot=", 5) == 0) {
+          geda_struct_slot_update_object (src_object->attached_to->copied_to);
+        }
       }
     }
     src = g_list_next(src);
