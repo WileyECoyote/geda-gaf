@@ -876,13 +876,13 @@ geda_struct_page_append_object (Page *page, GedaObject *object)
  * \todo The list of objects is not checked
  */
 void
-geda_struct_page_append_list (Page *page, GList *obj_list)
+geda_struct_page_append_list (Page *page, const GList *obj_list)
 {
   if (GEDA_IS_PAGE(page)) {
 
-    GList  *iter;
+    const GList  *iter;
 
-    page->_object_list = g_list_concat (page->_object_list, obj_list);
+    page->_object_list = geda_glist_concat(page->_object_list, obj_list);
 
     for (iter = obj_list; iter != NULL; iter = iter->next) {
 

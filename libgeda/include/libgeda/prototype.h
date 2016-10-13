@@ -668,8 +668,8 @@ const CLibSymbol *geda_struct_clib_get_symbol_by_name      (const char *name);
          Page   *geda_struct_page_search_by_page_id        (PageList *list, int pid);
          void    geda_struct_page_set_bounds_func          (Page *page, RenderedBoundsFunc func, void *user_data);
 
-         void    geda_struct_page_append_object            (Page *page, GedaObject *object);
-         void    geda_struct_page_append_list              (Page *page, GList *obj_list);
+         void    geda_struct_page_append_object            (Page *page, GedaObject  *object);
+         void    geda_struct_page_append_list              (Page *page, const GList *obj_list);
 
          void    geda_struct_page_remove_object            (Page *page, GedaObject *object);
          void    geda_struct_page_replace_object           (Page *page, GedaObject *object1, GedaObject *object2);

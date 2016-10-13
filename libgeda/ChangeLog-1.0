@@ -7,6 +7,9 @@
     * src/object/o_get.c: Declare first Glist argument to function
       geda_object_get_objects_by_type a const.
 
+    * libgeda/src/struct/s_page.c: Declare second Glist argument to function
+      geda_struct_page_append_list a const.
+
 2016-10-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda_priv.h: Include libgeda/geda_file.h macros.
