@@ -67,6 +67,50 @@
 
 int notify_attribute;
 
+/*!
+ * \brief Test geda_object_list_copy_all
+ * \par Methodology
+ * A. Create 7 objects:
+ *    object 0 is an arc, aka non-text object.
+ *    objects 1-6 are text attribute objects; attribx.
+ *
+ * B. Attach 2 attributes, 5 & 6, directly to Arc object 0 and append
+ *    Arc object 0 to a page object. The first is attached with the set
+ *    color flag, the second is not.
+ *
+ * C. Attached 3 of the remaining 4 text attributes, and one of the
+ *    floating attributes attached to the arc, attrib6, to the page.
+ *    Set one of the 3, attrib3, and child of the arc, attrib6, "selected".
+ *
+ * D. Create a new list and add the 1 remaining text attribute, attrib4,
+ *    that is not on the page nor attached to any object, to the list.
+ *
+ * E. Use geda_object_list_copy_all to append the list of objects on the
+ *    page to the new list containing only member, attrib4.
+ *
+ * Expected results:
+ *
+ * R1. There should be 6 members in the resulting list, attrib4, a copy
+ *     the arc object, a copy of attrib1, attrib2, and attrib3, and a
+ *     copy of attrib6. Only the count is checked here.
+ *
+ * R2. The "selected" state of the orginal objects should not be changed;
+ *     The arc and attributes attrib1 and attrib2 should not be selected
+ *     and attrib3 and attrib6 should still be selected.
+ *
+ * R3: attrib4 should still be the first member of the resulting list
+ *     and should not be set selected.
+ *
+ * R4: The 2 attributes, attrib5 and attrib6, attached to the arc should
+ *     still be attached. The color property of attrib5 and attrib6 should
+ *     not be changed.
+ *
+ * R5: The remaining 5 members of the list should be "copies" of the
+ *     objects added to the page, starting with the arc, and none of
+ *     the items should be set selected.
+ *
+ * R6: The new arc should have one attachment, a copy of attrib6.
+ */
 int
 check_list_copy_all (GedaToplevel *toplevel)
 {
@@ -74,12 +118,17 @@ check_list_copy_all (GedaToplevel *toplevel)
 
   Page       *page    = geda_toplevel_get_current_page(toplevel);
 
-  GedaObject *object  = geda_arc_object_new (4, 10, 20, 33, 0, 90);
+  GedaObject *object  = geda_arc_object_new (0, 10, 20, 33, 0, 90);
 
-  GedaObject *attrib1 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "A=1");
-  GedaObject *attrib2 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "B=2");
+  GedaObject *attrib1 = geda_text_object_new(1, 0, 0, 0, 0, 10, 1, 1, "A=1");
+  GedaObject *attrib2 = geda_text_object_new(2, 0, 0, 0, 0, 10, 1, 1, "B=2");
   GedaObject *attrib3 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "C=3");
-  GedaObject *attrib4 = geda_text_object_new(3, 0, 0, 0, 0, 10, 1, 1, "D=4");
+  GedaObject *attrib4 = geda_text_object_new(4, 0, 0, 0, 0, 10, 1, 1, "D=4");
+  GedaObject *attrib5 = geda_text_object_new(5, 0, 0, 0, 0, 10, 1, 1, "E=5");
+  GedaObject *attrib6 = geda_text_object_new(6, 0, 0, 0, 0, 10, 1, 1, "F=6");
+
+  geda_attrib_object_attach (object, attrib5, TRUE);
+  geda_attrib_object_attach (object, attrib6, FALSE);
 
   geda_struct_page_append_object(page, object);
 
@@ -88,10 +137,12 @@ check_list_copy_all (GedaToplevel *toplevel)
   list = g_list_append(NULL, attrib1);
   list = g_list_append(list, attrib2);
   list = g_list_append(list, attrib3);
+  list = g_list_append(list, attrib6);
 
   geda_struct_page_append_list(page, list);
 
   geda_set_object_selected(attrib3);
+  geda_set_object_selected(attrib6);
 
   /* start a new list */
   list = g_list_append(NULL, attrib4);
@@ -100,90 +151,199 @@ check_list_copy_all (GedaToplevel *toplevel)
 
   list = geda_copy_list(geda_struct_page_get_objects(page), list);
 
+  /* R1: Check that the list contains the correct number of items */
   int cnt = g_list_length(list);
 
-  if (cnt != 5) {
+  if (cnt != 6) {
     fprintf(stderr, "FAILED: (O120101) object_list_copy_all <%d>\n", cnt);
     result++;
   }
 
-  /* Check if original objects have been set selected */
+  /* R2A: Check if original objects have been set selected */
 
   if (geda_object_get_is_selected(object)) {
-    fprintf(stderr, "FAILED: (O120102A) selected <%s> \n", object->name);
+    fprintf(stderr, "FAILED: (O120102A) <%s> should not be selected\n", object->name);
     result++;
   }
 
   if (geda_object_get_is_selected(attrib1)) {
-    fprintf(stderr, "FAILED: (O120102B) selected <%s> \n", attrib1->name);
+    fprintf(stderr, "FAILED: (O120102B) <%s> should not be selected\n", attrib1->name);
     result++;
   }
 
   if (geda_object_get_is_selected(attrib2)) {
-    fprintf(stderr, "FAILED: (O120102C) selected <%s> \n", attrib2->name);
+    fprintf(stderr, "FAILED: (O120102C) <%s> should not be selected\n", attrib2->name);
     result++;
   }
 
-  /* Check if attrib3 has been unselected */
+  /* R2B: Check if attrib3 or attrib6 has been unselected */
 
   if (!geda_object_get_is_selected(attrib3)) {
-    fprintf(stderr, "FAILED: (O120102D) <%s> not selected\n", attrib3->name);
+    fprintf(stderr, "FAILED: (O120102D) <%s> should be selected\n", attrib3->name);
     result++;
   }
+
+  if (!geda_object_get_is_selected(attrib6)) {
+    fprintf(stderr, "FAILED: (O120102E) <%s> should be selected\n", attrib3->name);
+    result++;
+  }
+
+  /* R3: Check list, this first object was already in the list */
 
   GedaObject *obj = g_list_nth_data (list, 0);
 
   if (obj != attrib4) {
-    fprintf(stderr, "FAILED: (O120103A) object_list_copy_all 0 <%p>\n", obj);
+    fprintf(stderr, "FAILED: (O120103A) object_list_copy_all <%p>\n", obj);
     result++;
   }
   else if (geda_object_get_is_selected(obj)) {
-    fprintf(stderr, "FAILED: (O120103B) object_list_copy_all 1 <%p>\n", obj);
+    fprintf(stderr, "FAILED: (O120103B) object_list_copy_all <%d>\n", obj->selected);
     result++;
   }
 
+  const GList *attached;
+
+  /* R4: The original arc object should still have 2 attachments */
+
+  attached = geda_object_get_attached(object);
+
+  cnt = geda_glist_length(attached);
+
+  if (cnt != 2) {
+    fprintf(stderr, "FAILED: (O120104A) object_list_copy_all <%d>\n", cnt);
+    result++;
+  }
+  else {
+
+    GedaObject *bute;
+
+    bute = attached->data;
+
+    if (bute != attrib5) {
+      fprintf(stderr, "FAILED: (O120104B1) object_list_copy_all <%p>\n", bute);
+      result++;
+    }
+
+    if (bute->color != attrib5->color) {
+      fprintf(stderr, "FAILED: (O120104B2) object_list_copy_all <%d>\n", bute->color);
+      result++;
+    }
+
+    attached = attached->next;
+    bute     = attached->data;
+
+    if (bute != attrib6) {
+      fprintf(stderr, "FAILED: (O120104C1) object_list_copy_all <%p>\n", bute);
+      result++;
+    }
+
+    if (bute->color != attrib6->color) {
+      fprintf(stderr, "FAILED: (O120104C2) object_list_copy_all <%d>\n", bute->color);
+      result++;
+    }
+  }
+
+  /* R5: Remaining members of list are copies of the originals starting
+   *     with the arc object */
   obj = g_list_nth_data (list, 1);
 
-  if (!GEDA_IS_OBJECT(obj)) {
-    fprintf(stderr, "FAILED: (O120104A) object_list_copy_all <%p>\n", obj);
+  if (!GEDA_IS_ARC(obj)) {
+    fprintf(stderr, "FAILED: (O120105A1) object_list_copy_all <%p>\n", obj);
+    result++;
+  }
+  else {
+
+    if (geda_object_get_is_selected(obj)) {
+    fprintf(stderr, "FAILED: (O120105A2) object_list_copy_all <%p>\n", obj);
+    result++;
+    }
+
+    /* Defer checking attachment to copied arc */
+    attached = geda_object_get_attached(obj);
+  }
+
+  obj = g_list_nth_data (list, 2); /* Copy of attrib1 */
+
+  if (!GEDA_IS_TEXT(obj)) {
+    fprintf(stderr, "FAILED: (O120105B1) object_list_copy_all <%p>\n", obj);
     result++;
   }
   else if (geda_object_get_is_selected(obj)) {
-    fprintf(stderr, "FAILED: (O120104B) object_list_copy_all <%p>\n", obj);
+    fprintf(stderr, "FAILED: (O120105B2) object_list_copy_all <%d>\n", obj->selected);
+    result++;
+  }
+  else if (obj->text->string[0] != 'A') {
+    fprintf(stderr, "FAILED: (O120105B3) object_list_copy_all <%c>\n", obj->text->string[0]);
     result++;
   }
 
-  obj = g_list_nth_data (list, 2);
+  obj = g_list_nth_data (list, 3); /* Copy of attrib2 */
 
-  if (!GEDA_IS_OBJECT(obj)) {
-    fprintf(stderr, "FAILED: (O120105A) object_list_copy_all <%p>\n", obj);
-    result++;
-  }
-  else if (geda_object_get_is_selected(obj)) {
-    fprintf(stderr, "FAILED: (O120105B) object_list_copy_all <%p>\n", obj);
-    result++;
-  }
-
-  obj = g_list_nth_data (list, 3);
-
-  if (!GEDA_IS_OBJECT(obj)) {
-    fprintf(stderr, "FAILED: (O120106A) object_list_copy_all <%p>\n", obj);
+  if (!GEDA_IS_TEXT(obj)) {
+    fprintf(stderr, "FAILED: (O120105C1) object_list_copy_all <%p>\n", obj);
     result++;
   }
   else if (geda_object_get_is_selected(obj)) {
-    fprintf(stderr, "FAILED: (O120106B) object_list_copy_all <%p>\n", obj);
+    fprintf(stderr, "FAILED: (O120105C2) object_list_copy_all <%d>\n", obj->selected);
+    result++;
+  }
+  else if (obj->text->string[0] != 'B') {
+    fprintf(stderr, "FAILED: (O120105C3) object_list_copy_all <%c>\n", obj->text->string[0]);
     result++;
   }
 
-  obj = g_list_nth_data (list, 4);
+  obj = g_list_nth_data (list, 4); /* Copy of attrib3 */
 
-  if (!GEDA_IS_OBJECT(obj)) {
-    fprintf(stderr, "FAILED: (O120107A) object_list_copy_all <%p>\n", obj);
+  if (!GEDA_IS_TEXT(obj)) {
+    fprintf(stderr, "FAILED: (O120105D1) object_list_copy_all <%p>\n", obj);
     result++;
   }
   else if (geda_object_get_is_selected(obj)) {
-    fprintf(stderr, "FAILED: (O120107B) object_list_copy_all <%p>\n", obj);
+    fprintf(stderr, "FAILED: (O120105D2) object_list_copy_all <%d>\n", obj->selected);
     result++;
+  }
+  else if (obj->text->string[0] != 'C') {
+    fprintf(stderr, "FAILED: (O120105C3) object_list_copy_all <%c>\n", obj->text->string[0]);
+    result++;
+  }
+
+  obj = g_list_nth_data (list, 5); /* Copy of attrib6 */
+
+  if (!GEDA_IS_TEXT(obj)) {
+    fprintf(stderr, "FAILED: (O120105E1) object_list_copy_all <%p>\n", obj);
+    result++;
+  }
+  else if (geda_object_get_is_selected(obj)) {
+    fprintf(stderr, "FAILED: (O120105E2) object_list_copy_all <%d>\n", obj->selected);
+    result++;
+  }
+  else {
+
+    GedaObject *bute;
+
+    if (obj->text->string[0] != 'F') {
+      fprintf(stderr, "FAILED: (O120105C3) object_list_copy_all <%c>\n", obj->text->string[0]);
+      result++;
+    }
+
+    /* R6A: Check that there is only attachment to the new arc */
+    cnt = geda_glist_length(attached);
+
+    if (cnt - 1) {
+      fprintf(stderr, "FAILED: (O120106A) object_list_copy_all <%d>\n", cnt);
+      result++;
+    }
+    else {
+
+      /* Recall the attribute attached to the new arc */
+      bute = attached->data;
+
+      /* R6B: Attached attribute and last member of the list should be one in the same */
+      if (bute != obj) {
+        fprintf(stderr, "FAILED: (O120106B) object_list_copy_all <%p>\n", bute);
+        result++;
+      }
+    }
   }
 
   return result;
