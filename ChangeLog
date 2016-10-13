@@ -1,3 +1,9 @@
+2016-10-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda/geda_macros.h: Add cast to foreach and mapcar, which pass
+      the list to g_list_foreach  and g_slist_foreach, respectively, so that
+      list declared as const pointers can be used without compiler warnings.
+
 2016-10-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * travis-after-failure.sh: Add libgedauio/tests/test-suite.log to list.
