@@ -449,7 +449,7 @@ PyGeda_update_complex_butes(GedaObject *object, PyGedaObject *py_object )
   }
 
   if (count > 0) {
-    g_list_free(geda_object_get_attached(object));
+    g_list_free(object->attribs);
     object->attribs = butes;
   }
 

@@ -1,3 +1,8 @@
+2016-10-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/update_objects.c: Access object->attribs directly instead of using
+      geda_object_get_attached.
+
 2016-09-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/libgedathon.c: Substitute geda_strconcat for geda_utility_string_concat.
