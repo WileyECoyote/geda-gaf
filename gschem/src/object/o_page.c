@@ -100,13 +100,16 @@ static GList *remove_title_blocks(GList **page_list)
 
       if (geda_utility_string_stristr(filename, "title") >= 0) {
 
-        GList *children;
+        const GList *children;
 
         list     = g_list_remove (list, object);
         titles   = g_list_prepend (titles, object);
         children = geda_object_get_attached(object);
+
         if (children) {
-          GList *iter2 = children;
+
+          const GList *iter2 = children;
+
           while (iter2) {
             object = iter2->data;
             list   = g_list_remove (list, object);
