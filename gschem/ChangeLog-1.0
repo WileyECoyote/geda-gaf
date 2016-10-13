@@ -1,7 +1,10 @@
 2016-10-13 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/object/o_page.c: Declare children and iter2 list pointers const in
-      function remove_title_blocks.
+    * src/object/o_page.c: Declare children and iter2 list pointers const
+      in function remove_title_blocks.
+
+    * src/x/x_edit_cprop.c: Declare attribs, new_butes, old_ribs, and iter
+      list pointers const in function x_dialog_ep_check_update_attribs.
 
 2016-10-12 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -105,9 +105,9 @@ static bool x_dialog_ep_check_update_attribs (GschemToplevel *w_current,
 
   if (new_value != NULL && strlen(new_value) !=0 ) {
 
-    GList      *attribs;
-    GedaObject *a_current;
-    char       *o_value;
+    const GList *attribs;
+    GedaObject  *a_current;
+    char        *o_value;
 
     if (object) {
 
@@ -369,12 +369,12 @@ static void x_dialog_edit_properties_ok(GtkWidget     *dialog,
         }
         else {
 
-          GList      *new_butes;
-          GList      *old_ribs;
-          GList      *iter;
-          const char *refdes;
-          GedaObject *o_new;
-          GedaObject *attrib;
+          const GList *new_butes;
+          const GList *old_ribs;
+          const GList *iter;
+          GedaObject  *o_new;
+          GedaObject  *attrib;
+          const char  *refdes;
 
           /* do not use library, the selection change will trigger an event */
           Current_Selection->glist = g_list_remove (Current_Selection->glist, o_current);
@@ -422,7 +422,9 @@ static void x_dialog_edit_properties_ok(GtkWidget     *dialog,
           old_ribs = geda_object_get_attached (o_current);
 
           for (iter = old_ribs; iter != NULL; iter = g_list_next (iter)) {
-           GedaObject *obj = (GedaObject*) iter->data;
+
+            GedaObject *obj = (GedaObject*) iter->data;
+
             Current_Selection->glist = g_list_remove (Current_Selection->glist, obj);
             geda_struct_page_remove_object (p_current, obj);
             geda_struct_object_release (obj);
@@ -600,11 +602,11 @@ static void x_dialog_ep_component_change(GschemToplevel *w_current,
                                          GedaObject     *object,
                                          property_data  *properties)
 {
-  GedaObject *a_current;
-  GList      *attribs;
-  GList      *all_butes;
-  const char *filename;
-  char       *value;
+  GedaObject  *a_current;
+  const GList *attribs;
+        GList *all_butes;
+  const char  *filename;
+        char  *value;
 
   void (*set_entry)(const char *name, GtkWidget *entry);
 
