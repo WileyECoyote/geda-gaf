@@ -55,7 +55,8 @@ static int compare_status(const void *a, const void *b);
  * \param max_y [in] The maximum y coordinate of the object being hatched.
  * \return The initital y coordinate of the sweep line.
  */
-static int calculate_initial_sweep(int pitch, int min_y, int max_y)
+static int
+calculate_initial_sweep(int pitch, int min_y, int max_y)
 {
   int delta = max_y - min_y;
 
@@ -73,7 +74,8 @@ static int calculate_initial_sweep(int pitch, int min_y, int max_y)
  *  first equals the second, and a positive value if the first is greater than
  *  the second.
  */
-static int compare_events(const void *a, const void *b)
+static int
+compare_events(const void *a, const void *b)
 {
   SWEEP_EVENT *event_a = (SWEEP_EVENT*) a;
   SWEEP_EVENT *event_b = (SWEEP_EVENT*) b;
@@ -92,7 +94,8 @@ static int compare_events(const void *a, const void *b)
  *  first equals the second, and a positive value if the first is greater than
  *  the second.
  */
-static int compare_status(const void *a, const void *b)
+static int
+compare_status(const void *a, const void *b)
 {
   SWEEP_STATUS *status_a = (SWEEP_STATUS*) a;
   SWEEP_STATUS *status_b = (SWEEP_STATUS*) b;
@@ -114,7 +117,8 @@ static int compare_status(const void *a, const void *b)
  *  segments.  This function appends new line segments to the GArray and leaves
  *  existing GArray contents unchanged.
  */
-void geda_math_hatch_box(GedaBox *box, int angle, int pitch, GArray *lines)
+void
+geda_math_hatch_box(GedaBox *box, int angle, int pitch, GArray *lines)
 {
   GArray *corners;
   POINT point;
@@ -211,7 +215,8 @@ geda_math_hatch_circle(GedaCircle *circle, int angle, int pitch, GArray *lines)
  *                     This function appends new line segments to the GArray
  *                     and leaves existing GArray contents unchanged.
  */
-void geda_math_hatch_path (GedaPath *path, int angle, int pitch, GArray *lines)
+void
+geda_math_hatch_path (GedaPath *path, int angle, int pitch, GArray *lines)
 {
   GArray *points;
 
@@ -241,7 +246,8 @@ void geda_math_hatch_path (GedaPath *path, int angle, int pitch, GArray *lines)
  *  segments.  This function appends new line segments to the GArray and leaves
  *  existing GArray contents unchanged.
  */
-void geda_math_hatch_polygon(GArray *points, int angle, int pitch, GArray *lines)
+void
+geda_math_hatch_polygon(GArray *points, int angle, int pitch, GArray *lines)
 {
   BOUNDS bounds;
   GArray *events;
@@ -346,7 +352,8 @@ void geda_math_hatch_polygon(GArray *points, int angle, int pitch, GArray *lines
   g_array_free(status, TRUE);
 }
 
-GArray *geda_math_hatch_object  (GedaObject *object)
+GArray *
+geda_math_hatch_object (GedaObject *object)
 {
   GArray *fill_lines;
   int fill_type;

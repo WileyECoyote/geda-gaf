@@ -47,7 +47,8 @@
  *
  *  \sa geda_math_line_get_intersection
  */
-bool geda_math_line_get_intersection(GedaLine *line1, GedaLine *line2, POINT *point)
+bool
+geda_math_line_get_intersection(GedaLine *line1, GedaLine *line2, POINT *point)
 {
   LINE *L1 = (LINE*) &line1->x[0];
   LINE *L2 = (LINE*) &line2->x[0];
@@ -57,7 +58,8 @@ bool geda_math_line_get_intersection(GedaLine *line1, GedaLine *line2, POINT *po
 
 /*! \brief Returns True if Line contains point
  */
-bool geda_math_line_includes_point (GedaLine *line, POINT *point)
+bool
+geda_math_line_includes_point (GedaLine *line, POINT *point)
 {
   bool included;
 
@@ -93,7 +95,8 @@ bool geda_math_line_includes_point (GedaLine *line, POINT *point)
  *
  *  \sa geda_math_line_get_intersection
  */
-bool geda_math_line_intersection(LINE *line1, LINE *line2, POINT *point)
+bool
+geda_math_line_intersection(LINE *line1, LINE *line2, POINT *point)
 {
   bool   has_slope1;
   bool   has_slope2;
@@ -224,7 +227,8 @@ bool geda_math_line_intersection(LINE *line1, LINE *line2, POINT *point)
  *
  *  \sa geda_distance
  */
-int geda_math_line_length (int x1, int y1, int x2, int y2)
+int
+geda_math_line_length (int x1, int y1, int x2, int y2)
 {
   int length;
 
@@ -253,7 +257,8 @@ int geda_math_line_length (int x1, int y1, int x2, int y2)
  *  \return The shortest distance from the object to the point. With an
  *  invalid parameter, this function returns G_MAXDOUBLE.
  */
-double geda_math_line_shortest_distance (GedaLine *line, int x, int y)
+double
+geda_math_line_shortest_distance (GedaLine *line, int x, int y)
 {
   double dx, dy;
   double lx0, ly0;

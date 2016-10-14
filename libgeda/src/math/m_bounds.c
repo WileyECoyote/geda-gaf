@@ -27,7 +27,8 @@
  *
  * \param [in] bounds The bounds to set to empty.
  */
-void geda_math_bounds_init(BOUNDS *bounds)
+void
+geda_math_bounds_init(BOUNDS *bounds)
 {
   bounds->min_x = INT_MAX;
   bounds->min_y = INT_MAX;
@@ -47,7 +48,8 @@ void geda_math_bounds_init(BOUNDS *bounds)
  * \param [in]  points  The given set of points.
  * \param [in]  count   The number of points in the set.
  */
-void geda_math_bounds_of_points(BOUNDS *bounds, POINT points[], int count)
+void
+geda_math_bounds_of_points(BOUNDS *bounds, POINT points[], int count)
 {
   int index;
 

@@ -42,7 +42,8 @@ static struct st_menu menu[MAX_MENUS];
  *  \par Function Description
  *
  */
-int geda_iface_menu_return_num(void)
+int
+geda_iface_menu_return_num(void)
 {
   return(menu_index);
 }
@@ -52,7 +53,8 @@ int geda_iface_menu_return_num(void)
  *  \par Function Description
  *
  */
-SCM geda_iface_menu_return_entry(int index, char **menu_name)
+SCM
+geda_iface_menu_return_entry(int index, char **menu_name)
 {
   if (menu_name == NULL) {
     return SCM_BOOL_F;
@@ -73,7 +75,8 @@ SCM geda_iface_menu_return_entry(int index, char **menu_name)
  *  menu_items to existing records or adds a new record with
  *  for the menu_items if a not found.
  */
-int geda_iface_menu_add_entry(char *menu_name, SCM menu_items)
+int
+geda_iface_menu_add_entry(char *menu_name, SCM menu_items)
 {
   int index;
   SCM new_list;
@@ -125,7 +128,8 @@ int geda_iface_menu_add_entry(char *menu_name, SCM menu_items)
  *  \par Function Description
  *
  */
-void geda_iface_menu_print()
+void
+geda_iface_menu_print()
 {
   int i;
 
@@ -142,7 +146,8 @@ void geda_iface_menu_print()
  *   structure and frees memory for the strings and call
  *   scm_gc_unprotect_object to unprotect the guile objects.
  */
-void geda_iface_menu_free()
+void
+geda_iface_menu_free()
 {
   int i;
 
@@ -161,7 +166,8 @@ void geda_iface_menu_free()
  *  \par Function Description
  *
  */
-void geda_iface_menu_init()
+void
+geda_iface_menu_init()
 {
   int i;
   for (i = 0; i < MAX_MENUS; i++) {
