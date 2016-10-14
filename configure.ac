@@ -39,10 +39,10 @@ AC_GNU_SOURCE # This enable extensions on GNU/Linux platforms (used by intl)
 # Do version number magic
 #####################################################################
 
-AX_GIT_VERSION([20160704])
+AX_GIT_VERSION([20161017])
 
 # This is used for keeping the ChangeLog files up-to-date
-AC_SUBST([CHANGELOG_BASE], [1.0-20160704])
+AC_SUBST([CHANGELOG_BASE], [1.0-20161017])
 
 #####################################################################
 # Windows/MinGW/Cygwin support
@@ -208,7 +208,7 @@ AX_LIBGEDACOLOR([0:3:0])
 AX_LIBGEDATHON([0:7:0])
 
 # Set up libgedauio with the correct ld version number
-AX_LIBGEDAUIO([0:11:0])
+AX_LIBGEDAUIO([0:12:0])
 
 #####################################################################
 # Generate output

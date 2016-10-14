@@ -1,3 +1,8 @@
+2016-10-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * configure.ac: Bump mutation to 2.1.0.24, 20161017 for working menu
+      system, bump AX_LIBGEDAUIO to 0.12.
+
 2016-10-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda/geda_macros.h: Add cast to foreach and mapcar, which pass
