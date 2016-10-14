@@ -858,7 +858,7 @@ check_attrib_read (GedaToplevel *toplevel)
   }
   else {
 
-    GList *a_iter = geda_object_get_attached(object1);
+    const GList *a_iter = geda_object_get_attached(object1);
 
     if (!a_iter) {
       fprintf(stderr, "FAILED: (O031401B) geda_attrib_object_read\n");
@@ -866,8 +866,10 @@ check_attrib_read (GedaToplevel *toplevel)
     }
     else {
 
-      if (g_list_length(a_iter) != 4) {
-        fprintf(stderr, "FAILED: (O031401C) geda_attrib_object_read\n");
+      int cnt = geda_glist_length(a_iter);
+
+      if (cnt != 4) {
+        fprintf(stderr, "FAILED: (O031401C) geda_attrib_object_read <%d>\n", cnt);
         result++;
       }
 
@@ -1058,11 +1060,11 @@ check_return_attribs (GedaToplevel *toplevel)
   GedaObject *attrib4R = list->data;
 
   if (!attrib4R) {
-    fprintf(stderr, "FAILED: (O031602A) geda_attrib_object_first_attrib_by_name\n");
+    fprintf(stderr, "FAILED: (O031602A) geda_attrib_object_return_attribs\n");
     result++;
   }
   else if (attrib4R != attrib4) {
-    fprintf(stderr, "FAILED: (O031602B) geda_attrib_object_first_attrib_by_name\n");
+    fprintf(stderr, "FAILED: (O031602B) geda_attrib_object_return_attribs\n");
     result++;
   }
 
@@ -1070,11 +1072,11 @@ check_return_attribs (GedaToplevel *toplevel)
   GedaObject *attrib1R = g_list_nth_data(list, 3);
 
   if (!attrib1R) {
-    fprintf(stderr, "FAILED: (O031603A) geda_attrib_object_first_attrib_by_name\n");
+    fprintf(stderr, "FAILED: (O031603A) geda_attrib_object_return_attribs\n");
     result++;
   }
   else if (attrib1R != attrib1) {
-    fprintf(stderr, "FAILED: (O031603B) geda_attrib_object_first_attrib_by_name\n");
+    fprintf(stderr, "FAILED: (O031603B) geda_attrib_object_return_attribs\n");
     result++;
   }
 

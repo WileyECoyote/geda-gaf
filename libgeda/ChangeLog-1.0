@@ -10,6 +10,10 @@
     * object/o_list.c: Revise geda_object_list_copy_all to use intermediate
       pointer to reference copied_to.
 
+    * tests/test_attrib_object.c: Update const GList in check_attrib_read
+      and replace g_list_length with geda_glist_length. Update function
+      reference in output messages in check_return_attribs.
+
 2016-10-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_utility.h: Add utility macro geda_glist_concat,
