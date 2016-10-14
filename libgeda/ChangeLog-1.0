@@ -1,5 +1,8 @@
 2016-10-14 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_object.c: Revised geda_object_get_attached to declare
+      return pointer to object attrib list a constant.
+
     * include/libgeda/geda_utility.h: Add utility macro geda_glist_length.
 
     * src/object/o_attrib.c: Add test identifiers for references, update comments.

@@ -130,7 +130,7 @@ int geda_object_bounds(const GedaObject *object)
  *
  * \return List of attached attributes.
  */
-GList*
+const GList*
 geda_object_get_attached (const GedaObject *object)
 {
   if (is_a_geda_object(object)) {
