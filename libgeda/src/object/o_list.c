@@ -110,10 +110,12 @@ geda_object_list_copy_all (const GList *src_list, GList *dest_list)
 
         GedaObject *copied_to = src_object->attached_to->copied_to;
 
-        geda_attrib_object_attach(src_object->attached_to->copied_to, dst_object, FALSE);
+        geda_attrib_object_attach(copied_to, dst_object, FALSE);
+
         /* handle slot= attribute, it's a special case */
-        if (g_ascii_strncasecmp (dst_object->text->string, "slot=", 5) == 0) {
-          geda_struct_slot_update_object (src_object->attached_to->copied_to);
+        if (!g_ascii_strncasecmp (dst_object->text->string, "slot=", 5))
+        {
+          geda_struct_slot_update_object (copied_to);
         }
       }
     }
