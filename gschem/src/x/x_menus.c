@@ -1955,7 +1955,7 @@ void x_menu_attach_recent_submenu(GschemToplevel *w_current)
      menu_data->filename       = iter->data;
      menu_data->w_current      = w_current;
 
-     filename = show_recent_path ? filename : f_get_basename(filename);
+     filename = show_recent_path ? filename : geda_file_get_basename(filename);
 
      item = geda_menu_item_new_with_label((char*) filename);
 
@@ -2017,7 +2017,7 @@ void x_menu_recent_files_add(const char *filename)
    const char *basename;
          char *save_fn;
 
-   basename = f_get_basename(filename);
+   basename = geda_file_get_basename(filename);
    if(strstr(basename, "untitled_") == basename) {
       return;
    }
