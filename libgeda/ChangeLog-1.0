@@ -5,6 +5,8 @@
 
     * include/libgeda/geda_utility.h: Add utility macro geda_glist_length.
 
+    * src/guile/g_rc_parse.c: Rename functions with g_rc_parse prefix.
+
     * src/object/o_attrib.c: Add test identifiers for references, update comments.
 
     * object/o_list.c: Revise geda_object_list_copy_all to use intermediate

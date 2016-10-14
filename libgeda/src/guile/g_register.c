@@ -65,8 +65,8 @@ static struct gsubr_t rc_func_table[] = {
   { "log-time",                   1, 0, 0, g_rc_log_time },
   { "postscript-prolog",          1, 0, 0, g_rc_postscript_prolog },
   { "make-backup-files",          1, 0, 0, g_rc_make_backup_files },
-  { "rc-filename",                0, 0, 0, g_rc_rc_filename },
-  { "rc-config",                  0, 0, 0, g_rc_rc_config },
+  { "rc-filename",                0, 0, 0, g_rc_parse_rc_filename },
+  { "rc-config",                  0, 0, 0, g_rc_parse_rc_config },
   { "show-full-path",             1, 0, 0, g_rc_show_full_path },
   { "untitled-name",              1, 0, 0, g_rc_untitled_name },
   { NULL,                         0, 0, 0, NULL } };

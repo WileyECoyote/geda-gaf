@@ -65,12 +65,12 @@ extern "C" {
          bool    g_rc_parse_user                 (const char *rcname, GError **err);
          bool    g_rc_parse_local                (const char *rcname, const char *path,    GError       **err);
          bool    g_rc_parse                      (const char *pname,  const char *rcname,  const char    *rcfile);
-         void    g_rc_gafrc_parse_handler        (const char *dummy,  ConfigParseErrorFunc handler, void *user_data);
-         void    g_rc_rcname_parse_handler       (const char *rcname, ConfigParseErrorFunc handler, void *user_data);
-         void    g_rc_rcfile_parse_handler       (const char *rcfile, ConfigParseErrorFunc handler, void *user_data);
+         void    g_rc_parse_gafrc_handler        (const char *dummy,  ConfigParseErrorFunc handler, void *user_data);
+         void    g_rc_parse_rcname_handler       (const char *rcname, ConfigParseErrorFunc handler, void *user_data);
+         void    g_rc_parse_rcfile_handler       (const char *rcfile, ConfigParseErrorFunc handler, void *user_data);
          void    g_rc_parse_handler              (const char *rcname, const char *rcfile, ConfigParseErrorFunc handler, void *user_data);
-          SCM    g_rc_rc_filename                (void);
-          SCM    g_rc_rc_config                  (void);
+          SCM    g_rc_parse_rc_filename          (void);
+          SCM    g_rc_parse_rc_config            (void);
 
 /* i_menu.c */
           int    geda_iface_menu_return_num      (void);

@@ -56,7 +56,7 @@ SCM g_rc_gschlas_version(SCM scm_version)
     char *sourcefile;
     SCM   rc_filename;
 
-    rc_filename = g_rc_rc_filename ();
+    rc_filename = g_rc_parse_rc_filename ();
 
     if (rc_filename == SCM_BOOL_F) {
       sourcefile = geda_utility_string_strdup ("gschlasrc");

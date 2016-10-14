@@ -171,9 +171,9 @@ x_rc_parse_gschem (GschemToplevel *w_current, const char *rcfile) {
   struct {
     ConfigParseFunc;
     const char *arg;
-  } rc_processors[] = {{ g_rc_gafrc_parse_handler,   NULL      },
-                       { g_rc_rcname_parse_handler, "gschemrc" },
-                       { g_rc_rcfile_parse_handler,  rcfile    }};
+  } rc_processors[] = {{ g_rc_parse_gafrc_handler,   NULL      },
+                       { g_rc_parse_rcname_handler, "gschemrc" },
+                       { g_rc_parse_rcfile_handler,  rcfile    }};
 
   for ( index = 0; index < G_N_ELEMENTS(rc_processors); index++)
   {
