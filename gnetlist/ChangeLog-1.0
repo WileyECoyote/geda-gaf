@@ -1,3 +1,8 @@
+2016-10-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gnetlist/src/vams_misc.c: Declare a_iter a constant in vams_get_
+      attribs_list.
+
 2016-10-11 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * scheme/gnetlist.scm: WEH: Modified similar to commit to Master branch

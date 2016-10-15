@@ -37,8 +37,8 @@
  */
 SCM vams_get_attribs_list (GedaObject *object)
 {
-  GList *a_iter;
-  SCM    list = SCM_EOL;
+  const GList *a_iter;
+  SCM   list = SCM_EOL;
 
   /* search outside the symbol (attached attributes only) */
   a_iter = geda_object_get_attached(object);
