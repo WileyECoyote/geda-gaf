@@ -218,7 +218,8 @@ load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[]
       /*
        * \notes SDB: at this point the filename might be unnormalized, like
        * /path/to/foo/../bar/baz.sch. Bad filenames will be normalized in
-       * f_open, called by x_window_open_page. This works for Linux and MINGW32.
+       * geda_file_open, called by x_window_open_page. This works for Linux
+       * and MINGW32.
        */
 
       if (x_window_open_page(w_current, filename)) {

@@ -64,7 +64,7 @@ bool geda_color_guile_load_scheme (const char *inputfile)
 
     GError *err = NULL;
 
-    result = g_read_scheme_file (inputfile, &err);
+    result = g_evaluate_scheme_file (inputfile, &err);
 
     if(err != NULL) {
       u_log_message(err_load, inputfile, strerror(errno));

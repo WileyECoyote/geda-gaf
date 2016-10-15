@@ -36,12 +36,12 @@
 #define __GEDA_FILE_MAC__
 
 /* f_file.c */
-#define geda_close_file           f_close
-#define geda_file_has_autosave    f_has_active_autosave
-#define geda_open_file            f_open
-#define geda_open_flags           f_open_flags
-#define geda_remove_backup_file   f_remove_backup_file
-#define geda_save_file            f_save
+#define geda_close_file           geda_file_close
+#define geda_file_has_autosave    geda_file_has_active_autosave
+#define geda_open_file            geda_file_open
+#define geda_open_flags           geda_file_open_flags
+#define geda_remove_backup_file   geda_file_remove_backup
+#define geda_save_file            geda_file_save
 
 /* f_get.c */
 #define geda_get_autosave_name    geda_file_get_autosave_filename

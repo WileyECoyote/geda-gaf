@@ -435,7 +435,7 @@ UNDO *geda_struct_undo_return_tail(UNDO *head)
 /*!
  * \brief Reset Page Changed Flags in the Undo System
  * \par Function Description
- *  Called by f_save to reset the page changed flags in the Undo system.
+ *  Called by geda_file_save to reset the page changed flags in the Undo system.
  *  This is accomplished by setting all Undo records as modified, and
  *  then setting the current record as not modified. This results in a
  *  "saved" page floating around in the Undo stack if a file is saved

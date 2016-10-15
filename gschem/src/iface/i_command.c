@@ -927,7 +927,7 @@ COMMAND (do_save_as) {
   /* If the user actually changed the file name then delete the
    * the old backup file or else the file will be stranded! */
   if (strcmp(p_current->filename, old_name) != 0) {
-    f_remove_backup_file(old_name);
+    geda_file_remove_backup(old_name);
   }
 
   GEDA_FREE(old_name);

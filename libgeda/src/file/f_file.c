@@ -39,7 +39,7 @@
  * \param [in,out] toplevel  The GedaToplevel object with schematic to be closed.
  */
 void
-f_close(GedaToplevel *toplevel)
+geda_file_close(GedaToplevel *toplevel)
 {
 
 }
@@ -60,7 +60,7 @@ f_close(GedaToplevel *toplevel)
  * \returns TRUE if autosave active, FALSE otherwise
  */
 bool
-f_has_active_autosave (const char *filename, GError **err)
+geda_file_has_active_autosave (const char *filename, GError **err)
 {
   bool result;
 
@@ -154,7 +154,7 @@ f_has_active_autosave (const char *filename, GError **err)
  * \return 0 on failure, 1 on success.
  */
 int
-f_open(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
+geda_file_open(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
 {
   GError *tmp_err            = NULL;
   GList  *objects            = NULL;
@@ -179,7 +179,7 @@ f_open(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
   log_situation  = _("This situation may have when an application crashed or was forced to exit abruptly.\n");
   err_corrective = _("\nRun the application to correct this situation or manually delete the backup file.\n\n");
 
-  int inline f_open_exit (int status) {
+  int inline geda_file_open_exit (int status) {
     if (saved_cwd != NULL) {
       free(saved_cwd);
     }
@@ -207,7 +207,7 @@ f_open(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
     g_set_error (err, G_FILE_ERROR, tmp_err->code,
                _("Cannot find file %s: %s"), filename, tmp_err->message);
     g_error_free(tmp_err);
-    return f_open_exit(0);
+    return geda_file_open_exit(0);
   }
 
   /* write full, absolute filename into page->filename */
@@ -224,7 +224,7 @@ f_open(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
       /* Error occurred with chdir */
       fprintf(stderr, _("ERROR, <libgeda>: Could not changed current directory to %s:%s"),
               file_directory, strerror (errno));
-      return f_open_exit(0);
+      return geda_file_open_exit(0);
     }
 
     /* Now open RC and process file */
@@ -251,7 +251,7 @@ f_open(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
   if (flags & F_OPEN_CHECK_BACKUP) {
 
     /* Check for a newer autosave backup file */
-    bool active_backup = f_has_active_autosave (full_filename, &tmp_err);
+    bool active_backup = geda_file_has_active_autosave (full_filename, &tmp_err);
     backup_filename    = geda_file_get_autosave_filename (full_filename);
 
     if (tmp_err != NULL) {
@@ -351,7 +351,7 @@ f_open(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
     }
   }
 
-  return f_open_exit(opened);
+  return geda_file_open_exit(opened);
 }
 
 /*!
@@ -364,7 +364,7 @@ f_open(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
  * \return Returns file open_flags.
  */
 int
-f_open_flags (GedaToplevel *toplevel)
+geda_file_open_flags (GedaToplevel *toplevel)
 {
   return toplevel->open_flags;
 }
@@ -382,7 +382,7 @@ f_open_flags (GedaToplevel *toplevel)
  *                           NULL to disable error reporting
  */
 void
-f_remove_backup_file (const char *filename)
+geda_file_remove_backup (const char *filename)
 {
   if (filename) {
 
@@ -437,7 +437,7 @@ f_file_size(const char *filename)
  * \return 1 on success, 0 on failure.
  */
 bool
-f_save(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
+geda_file_save(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
 {
   const char *err_not_real;
   const char *err_not_saved;

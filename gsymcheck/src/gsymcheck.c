@@ -105,7 +105,7 @@ static void main_prog(void *closure, int argc, char *argv[])
     page = geda_struct_page_new (pr_current, filename);
     geda_struct_page_goto (page);
 
-    if (!f_open (pr_current, page, page->filename, &err)) {
+    if (!geda_file_open (pr_current, page, page->filename, &err)) {
 
       /* Not being able to load a file is apparently a fatal error */
       log_destiny = STDOUT_TTY;

@@ -280,7 +280,7 @@ void main_prog(void *closure, int argc, char *argv[])
 
     geda_struct_page_goto (geda_struct_page_new (pr_current, filename));
 
-    if (!f_open (pr_current, pr_current->page_current, filename, &err)) {
+    if (!geda_file_open (pr_current, pr_current->page_current, filename, &err)) {
       fprintf (stderr, _("load failed [%s]: %s\n"), filename, err->message);
       g_error_free (err);
       GEDA_FREE (filename);

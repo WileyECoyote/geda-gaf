@@ -1,5 +1,7 @@
 2016-10-15 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/file/f_file.c: Rename functions with geda_file prefix.
+
     * src/guile/g_evaluate.c: Rename functions with g_evaluate prefix.
 
 2016-10-14 Wiley E. Hill <wileyhill@gmail.com>

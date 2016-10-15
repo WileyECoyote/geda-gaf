@@ -5,12 +5,12 @@ extern "C" {
 #endif
 
 /* f_file.c */
-         bool    f_has_active_autosave           (const char   *filename, GError **err);
-          int    f_open                          (GedaToplevel *toplevel, Page *page, const char *filename, GError **err);
-          int    f_open_flags                    (GedaToplevel *toplevel);
-         void    f_close                         (GedaToplevel *toplevel);
-         bool    f_save                          (GedaToplevel *toplevel, Page *page, const char *filename, GError **error);
-         void    f_remove_backup_file            (const char *filename);
+         bool    geda_file_has_active_autosave   (const char   *filename, GError **err);
+          int    geda_file_open                  (GedaToplevel *toplevel, Page *page, const char *filename, GError **err);
+          int    geda_file_open_flags            (GedaToplevel *toplevel);
+         void    geda_file_close                 (GedaToplevel *toplevel);
+         bool    geda_file_save                  (GedaToplevel *toplevel, Page *page, const char *filename, GError **error);
+         void    geda_file_remove_backup         (const char *filename);
 
 /* f_get.c */
          char   *geda_file_get_autosave_filename (const char *filename);

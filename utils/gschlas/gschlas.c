@@ -114,7 +114,7 @@ main_prog(void *closure, int argc, char *argv[])
 
       geda_struct_page_goto (geda_struct_page_new (pr_current, filename));
 
-      if (!f_open (pr_current, pr_current->page_current,
+      if (!geda_file_open (pr_current, pr_current->page_current,
                    pr_current->page_current->filename, &err))
       {
         fprintf(stderr, "%s\n", err->message);

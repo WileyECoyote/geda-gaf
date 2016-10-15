@@ -261,7 +261,7 @@ cmd_export_impl (void *data, int argc, char **argv)
 
     page = geda_struct_page_new (toplevel, tmp);
 
-    if (!f_open (toplevel, page, tmp, &err)) {
+    if (!geda_file_open (toplevel, page, tmp, &err)) {
       fprintf (stderr,
                _("ERROR: Failed to load '%s': %s\n"), tmp,
                err->message);

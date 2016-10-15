@@ -280,7 +280,7 @@ preview_update (GschemPreview *preview)
       err = NULL;
 
       /* open up file in current page */
-      if (!f_open(preview_toplevel, p_current, preview->filename, &err))
+      if (!geda_file_open(preview_toplevel, p_current, preview->filename, &err))
       {
         text = geda_text_object_new(2, 100, 100, LOWER_MIDDLE, 0, 10, VISIBLE,
                           SHOW_NAME_VALUE, err->message);

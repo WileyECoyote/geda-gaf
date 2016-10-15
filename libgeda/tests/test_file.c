@@ -102,16 +102,16 @@ int test_file (void)
 
   int result = 0;
 
-  /* === Function 01: geda_close_file f_close === */
+  /* === Function 01: geda_close_file geda_file_close === */
 
-  /* === Function 02: f_has_active_autosave === */
+  /* === Function 02: geda_file_has_active_autosave === */
 
-  if (f_has_active_autosave(NULL, &err)) {
+  if (geda_file_has_active_autosave(NULL, &err)) {
     fprintf(stderr, "FAILED: (F010200A) file_has_autosave NULL\n");
     result++;
   }
 
-  if (f_has_active_autosave(source, &err)) {
+  if (geda_file_has_active_autosave(source, &err)) {
     fprintf(stderr, "FAILED: (F010201) file_has_autosave NULL\n");
     result++;
   }
@@ -120,21 +120,21 @@ int test_file (void)
 
   geda_file_copy(source, auto_fname);
 
-  if (!f_has_active_autosave(source, &err)) {
+  if (!geda_file_has_active_autosave(source, &err)) {
     fprintf(stderr, "FAILED: (F010202) file_has_autosave %s\n", auto_fname);
     result++;
   }
 
-  /* === Function 03: f_open === */
+  /* === Function 03: geda_file_open === */
 
   err = NULL;
 
   if (geda_open_file(toplevel, NULL, NULL, &err)) {
-    fprintf(stderr, "FAILED: (F010300A) f_open NULL\n");
+    fprintf(stderr, "FAILED: (F010300A) geda_file_open NULL\n");
     result++;
   }
   else if (!err) {
-    fprintf(stderr, "FAILED: (F010300B) f_open NULL\n");
+    fprintf(stderr, "FAILED: (F010300B) geda_file_open NULL\n");
     result++;
   }
   else {
@@ -145,11 +145,11 @@ int test_file (void)
   page = geda_struct_page_new (toplevel, NULL);
 
   if (geda_open_file(toplevel, page, NULL, &err)) {
-    fprintf(stderr, "FAILED: (F010300C) f_open NULL\n");
+    fprintf(stderr, "FAILED: (F010300C) geda_file_open NULL\n");
     result++;
   }
   else if (!err) {
-    fprintf(stderr, "FAILED: (F010300D) f_open NULL\n");
+    fprintf(stderr, "FAILED: (F010300D) geda_file_open NULL\n");
     result++;
   }
   else {
@@ -158,11 +158,11 @@ int test_file (void)
 
   err = NULL;
   if (geda_open_file(toplevel, page, "nonexistence", &err)) {
-    fprintf(stderr, "FAILED: (F010301A) f_open NULL\n");
+    fprintf(stderr, "FAILED: (F010301A) geda_file_open NULL\n");
     result++;
   }
   else if (!err) {
-    fprintf(stderr, "FAILED: (F010301B) f_open NULL\n");
+    fprintf(stderr, "FAILED: (F010301B) geda_file_open NULL\n");
     result++;
   }
   else {
@@ -171,32 +171,32 @@ int test_file (void)
 
   err = NULL;
   if (!geda_open_file(toplevel, page, source, &err)) {
-    fprintf(stderr, "FAILED: (F010302A) f_open %s\n", source);
+    fprintf(stderr, "FAILED: (F010302A) geda_file_open %s\n", source);
     result++;
   }
   else if (err) {
-    fprintf(stderr, "FAILED: (F010302B) f_open %s\n", source);
+    fprintf(stderr, "FAILED: (F010302B) geda_file_open %s\n", source);
     g_error_free (err);
   }
 
   cwd = getcwd(0,0);
 
   if (cwd && strcmp(cwd, cwd_sav) != 0) {
-    fprintf(stderr, "FAILED: (F010302C) f_open <%s>!=<%s>\n", cwd, cwd_sav);
+    fprintf(stderr, "FAILED: (F010302C) geda_file_open <%s>!=<%s>\n", cwd, cwd_sav);
     result++;
   }
   free(cwd);
 
   geda_struct_page_delete (toplevel, page, FALSE);
 
-  /* === Function 04: f_open_flags === */
+  /* === Function 04: geda_file_open_flags === */
 
   unsigned int flags;
 
   flags = geda_open_flags(toplevel);
 
   if (flags ^ F_OPEN_RESTORE_CWD) {
-    fprintf(stderr, "FAILED: (F010401) f_open_flags <%d>\n", flags);
+    fprintf(stderr, "FAILED: (F010401) geda_file_open_flags <%d>\n", flags);
     result++;
   }
 
@@ -205,15 +205,15 @@ int test_file (void)
   flags = geda_open_flags(toplevel);
 
   if (flags) {
-    fprintf(stderr, "FAILED: (F010402) f_open_flags <%u>\n", flags);
+    fprintf(stderr, "FAILED: (F010402) geda_file_open_flags <%u>\n", flags);
     result++;
   }
 
-  /* === Function 05: f_remove_backup_file === */
+  /* === Function 05: geda_file_remove_backup === */
 
   geda_remove_backup_file(source);
 
-  if (f_has_active_autosave(source, &err)) {
+  if (geda_file_has_active_autosave(source, &err)) {
     fprintf(stderr, "FAILED: (F010501) remove_backup_file %s\n", auto_fname);
     result++;
   }
@@ -223,7 +223,7 @@ int test_file (void)
 
   geda_remove_backup_file(NULL);
 
-  /* === Function 06: geda_save_file            f_save === */
+  /* === Function 06: geda_save_file            geda_file_save === */
 
   geda_toplevel_set_file_open_flags(toplevel, F_OPEN_NONE);
 

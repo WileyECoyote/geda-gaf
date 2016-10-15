@@ -237,7 +237,7 @@ void i_window_revert_page (GschemToplevel *w_current)
 
     page->filename = NULL;
 
-    if (f_open(toplevel, page, filename, &err)) {
+    if (geda_file_open(toplevel, page, filename, &err)) {
 
     /* make sure we maintain the hierarchy info */
       page->page_control    = page_control;

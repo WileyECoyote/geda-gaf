@@ -544,7 +544,7 @@ void o_undo_callback(GschemToplevel *w_current, int type)
     logging              = FALSE;   /* temporarily disable logging */
     toplevel->open_flags = F_OPEN_RESTORE_CWD;
 
-    if (f_open(toplevel, Current_Page, u_current->filename, &err)) {
+    if (geda_file_open(toplevel, Current_Page, u_current->filename, &err)) {
       restored = TRUE;
     }
     else {

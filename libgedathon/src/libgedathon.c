@@ -1283,7 +1283,7 @@ PyGeda_open_page( const char *filename )
 
       if (page == NULL ) {
         GError *err = NULL;
-        /* Problem: f_open needs a pointer to a page so we have to create
+        /* Problem: geda_file_open needs a pointer to a page so we have to create
          * a page struct without knowing the file can be read. If an error
          * occurs then we have to delete this page but geda_struct_page_delete is
          * going to free the name, the one passed to us as a constant, so
@@ -1291,7 +1291,7 @@ PyGeda_open_page( const char *filename )
         page = geda_struct_page_new (toplevel, geda_utility_string_strdup (filename));
 
         /* Try to load the file */
-        if (!f_open (toplevel, page, (char *) filename, &err)) {
+        if (!geda_file_open (toplevel, page, (char *) filename, &err)) {
           fprintf(stderr, "Error loading file:%s\n", err->message);
           g_error_free (err);
           geda_struct_page_delete (toplevel, page, FALSE);
@@ -1514,7 +1514,7 @@ int PyGeda_rename_page (int pid, const char *filename)
 /*! \brief Save Page
  *  \ingroup Python_API_Library
  *  \par Function Description
- *  This function calls the libgeda function f_save to save the page document
+ *  This function calls the libgeda function geda_file_save to save the page document
  *  referenced by the ID argument.
  *
  *  \param [in] pid  Integer, the page id of the page to be saved
@@ -1532,7 +1532,7 @@ PyGeda_save_page( int pid )
   page = geda_toplevel_get_page_by_id(toplevel, pid);
 
   if (page && (GEDA_IS_PAGE(page))) {
-    if (!f_save (toplevel, page, page->filename, &err)) {
+    if (!geda_file_save (toplevel, page, page->filename, &err)) {
       fprintf(stderr, "Failed to save file <%s> Error: %s\n", page->filename, err->message);
       g_clear_error (&err);
       status++;
@@ -1569,7 +1569,7 @@ int PyGeda_save_page_as (int pid, const char *filename)
  *  \ingroup Python_API_Library
  *  \par Function Description
  *  This function iterates through all Page objects in the argument list or all
- *  pages of the argument is NULL, and calls the libgeda function f_save for each
+ *  pages of the argument is NULL, and calls the libgeda function geda_file_save for each
  *  page document.
  *
  *  \param [in] py_page_list A PyList Object
@@ -1611,7 +1611,7 @@ PyGeda_save_all_pages( PyObject *py_page_list )
   while (iter) {
     page = iter->data;
     if (page && (GEDA_IS_PAGE(page))) {
-      if (!f_save (toplevel, page, page->filename, &err)) {
+      if (!geda_file_save (toplevel, page, page->filename, &err)) {
         fprintf(stderr, "Failed to save file <%s> Error: %s\n", page->filename, err->message);
         g_clear_error (&err);
         status++;
