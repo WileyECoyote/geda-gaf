@@ -422,7 +422,12 @@ static void gschem( int argc, char *argv[])
 
   /* Run post-load expressions */
   if (scm_ilength(s_post_load_expr) - 1) {
-    if (scm_is_false (g_scm_eval_protected (s_post_load_expr, scm_current_module ()))) {
+
+    SCM s_result;
+
+    s_result = g_scm_eval_protected (s_post_load_expr, scm_current_module ());
+
+    if (scm_is_false (s_result)) {
       fprintf(stderr, _("ERROR: Failed to load or evaluate startup script.\n"));
     }
   }

@@ -1,3 +1,8 @@
+2016-10-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/base/gschem.c: Add s_result to check value returned from g_scm_
+      eval_protected in gschem().
+
 2016-10-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_page.c: Declare children and iter2 list pointers const
