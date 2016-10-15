@@ -381,7 +381,7 @@ x_window_invoke_macro (GtkWidget *widget, int response, GschemToplevel *w_curren
 
     scm_dynwind_begin (0);
     g_dynwind_window (w_current);
-    g_scm_eval_protected(interpreter, SCM_UNDEFINED);
+    g_evaluate_scm_protected(interpreter, SCM_UNDEFINED);
     scm_dynwind_end ();
   }
 

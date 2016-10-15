@@ -48,11 +48,11 @@ extern "C" {
          bool    geda_file_sys_remove_extension  (      char *filename);
 
 /* g_evaluate.c */
-          SCM    g_scm_eval_action               (SCM action);
-          SCM    g_scm_eval_protected            (SCM exp, SCM module_or_state);
-          SCM    g_scm_eval_string_protected     (SCM str);
-          SCM    g_scm_c_eval_string_protected   (const char *str);
-         bool    g_read_scheme_file              (const char *filename, GError **err);
+          SCM    g_evaluate_scm_action           (SCM action);
+          SCM    g_evaluate_scm_protected        (SCM exp, SCM module_or_state);
+          SCM    g_evaluate_scm_string_protected (SCM str);
+          SCM    g_evaluate_c_string_protected   (const char *str);
+         bool    g_evaluate_scheme_file          (const char *filename, GError **err);
 
 /* g_rc_color.c
           SCM    g_rc_color_map_to_scm           (const COLOR *map);

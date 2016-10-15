@@ -87,7 +87,7 @@ g_get_hook_by_name (const char *name)
 #if DEBUG || DEBUG_HOOKS
   fprintf(stderr, "g_get_hook_by_name: exit\n");
 #endif
-  return g_scm_eval_protected (exp, SCM_UNDEFINED);
+  return g_evaluate_scm_protected (exp, SCM_UNDEFINED);
 }
 
 /*! \brief Runs a object hook with a single Object.
@@ -116,7 +116,7 @@ g_hook_idle_run_object(GschemToplevel *w_current, const char *name, GedaObject *
   fprintf(stderr,"%s running hook <%s>\n",__func__, name);
 #endif
 
-  g_scm_eval_protected (expr, scm_interaction_environment ());
+  g_evaluate_scm_protected (expr, scm_interaction_environment ());
   scm_dynwind_end ();
   scm_remember_upto_here_1 (expr);
 }
@@ -160,7 +160,7 @@ g_hook_idle_run_object_list (GschemToplevel *w_current, const char *name,
                            scm_cons (list_sym,
                                      scm_reverse_x (lst, SCM_EOL)));
 
-    g_scm_eval_protected (expr, scm_interaction_environment ());
+    g_evaluate_scm_protected (expr, scm_interaction_environment ());
 
     scm_remember_upto_here_1 (expr);
   }
@@ -187,7 +187,7 @@ g_hook_idle_run_page (GschemToplevel *w_current, const char *name, Page *page)
                          g_get_hook_by_name (name),
                          edascm_from_page (page));
 
-  g_scm_eval_protected (expr, scm_interaction_environment ());
+  g_evaluate_scm_protected (expr, scm_interaction_environment ());
   scm_dynwind_end ();
   scm_remember_upto_here_1 (expr);
 }

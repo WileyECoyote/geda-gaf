@@ -25,8 +25,8 @@
 
 /*! \brief */
 static struct gsubr_t rc_func_table[] = {
-  { "eval-protected",             1, 1, 0, g_scm_eval_protected },
-  { "eval-string-protected",      1, 0, 0, g_scm_eval_string_protected },
+  { "eval-protected",             1, 1, 0, g_evaluate_scm_protected },
+  { "eval-string-protected",      1, 0, 0, g_evaluate_scm_string_protected },
 
   { "component-groups",           1, 0, 0, g_rc_component_groups },
   { "component-library",          1, 1, 0, g_rc_component_library },

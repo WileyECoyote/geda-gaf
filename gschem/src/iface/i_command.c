@@ -1068,7 +1068,7 @@ COMMAND (do_run_script) {
   gschem_threads_enter();
   filename = x_dialog_select_file(w_current, "Execute Script...", NULL, FSB_LOAD);
   if (filename != NULL) { /* if user did not cancel */
-    g_read_scheme_file(filename, NULL);
+    g_evaluate_scheme_file(filename, NULL);
     GEDA_FREE(filename);
   }
   gschem_threads_leave();

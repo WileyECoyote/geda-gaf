@@ -200,7 +200,7 @@ void o_complex_place_changed_run_hook(GschemToplevel *w_current) {
                                complex_place_list_changed_hook,
                                edascm_from_object ((GedaObject*) iter->data));
 
-        g_scm_eval_protected (expr, scm_interaction_environment ());
+        g_evaluate_scm_protected (expr, scm_interaction_environment ());
         iter = iter->next;
       }
       scm_dynwind_end ();

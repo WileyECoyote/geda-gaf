@@ -259,7 +259,7 @@ g_rc_parse_file (const char *rcfile, EdaConfig *cfg, GError **err)
        * cfg, so we *don't* free it. */
 
       status = (g_rc_try_mark_read (cfg, name_norm, &tmp_err) &&
-      g_read_scheme_file (name_norm, &tmp_err));
+      g_evaluate_scheme_file (name_norm, &tmp_err));
 
       scm_dynwind_end ();
 

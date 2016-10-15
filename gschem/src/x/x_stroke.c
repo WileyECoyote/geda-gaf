@@ -176,7 +176,7 @@ x_stroke_translate_and_execute (GschemToplevel *w_current)
     char *expr;
 
     expr    = geda_sprintf("(eval-stroke \"%s\")", sequence);
-    scm_str = g_scm_c_eval_string_protected (expr);
+    scm_str = g_evaluate_c_string_protected (expr);
     action  = scm_to_utf8_string (scm_str);
 
     GEDA_FREE(expr);
@@ -195,7 +195,7 @@ x_stroke_translate_and_execute (GschemToplevel *w_current)
         expr = geda_sprintf("(%s)", action);
         scm_dynwind_begin (0);
         scm_dynwind_unwind_handler (g_free, expr, SCM_F_WIND_EXPLICITLY);
-        ret = g_scm_c_eval_string_protected (expr);
+        ret = g_evaluate_c_string_protected (expr);
         result= (SCM_NFALSEP (ret));
         scm_dynwind_end ();
       }

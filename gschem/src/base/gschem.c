@@ -338,7 +338,7 @@ static void gschem( int argc, char *argv[])
 
   /* Check for and run pre-load Scheme expressions */
   if (scm_ilength(s_pre_load_expr) - 1) {
-    g_scm_eval_protected (s_pre_load_expr, scm_current_module ());
+    g_evaluate_scm_protected (s_pre_load_expr, scm_current_module ());
   }
 
   /* By this point, libgeda should have setup the Guile load path.
@@ -353,7 +353,7 @@ static void gschem( int argc, char *argv[])
 
     input_str = scm_to_utf8_string (scm_tmp);
 
-    if (g_read_scheme_file(input_str, NULL)) {
+    if (g_evaluate_scheme_file(input_str, NULL)) {
       geda_log_v (_("Read scheme initialization file [%s]\n"), input_str);
     }
     else {
@@ -425,7 +425,7 @@ static void gschem( int argc, char *argv[])
 
     SCM s_result;
 
-    s_result = g_scm_eval_protected (s_post_load_expr, scm_current_module ());
+    s_result = g_evaluate_scm_protected (s_post_load_expr, scm_current_module ());
 
     if (scm_is_false (s_result)) {
       fprintf(stderr, _("ERROR: Failed to load or evaluate startup script.\n"));

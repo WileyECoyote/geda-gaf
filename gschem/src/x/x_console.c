@@ -431,7 +431,7 @@ void x_console_eval_command (GedaEntry *entry, int arg1, void * user_data)
                                  scm_from_utf8_string(command_line));
     scm_dynwind_begin (0);
     g_dynwind_window (w_current);
-    g_scm_eval_protected(interpreter, SCM_UNDEFINED);
+    g_evaluate_scm_protected(interpreter, SCM_UNDEFINED);
     scm_dynwind_end ();
   }
   else {

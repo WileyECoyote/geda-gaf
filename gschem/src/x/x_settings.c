@@ -302,7 +302,7 @@ bool x_settings_set_scm_int(char *symbol_name, int value )
     strcat(strbuff, " " );
     strcat(strbuff, str );
     strcat(strbuff, ")" );
-    g_scm_c_eval_string_protected(strbuff);
+    g_evaluate_c_string_protected(strbuff);
   }
   else
     return FALSE;

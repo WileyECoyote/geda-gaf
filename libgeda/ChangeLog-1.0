@@ -1,3 +1,7 @@
+2016-10-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/guile/g_evaluate.c: Rename functions with g_evaluate prefix.
+
 2016-10-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_object.c: Revised geda_object_get_attached to declare

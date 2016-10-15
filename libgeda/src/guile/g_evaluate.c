@@ -144,7 +144,7 @@ static SCM protected_body_eval (void *data)
  *
  *  \returns Evaluation results or SCM_BOOL_F if exception caught.
  */
-SCM g_scm_eval_protected (SCM exp, SCM module_or_state)
+SCM g_evaluate_scm_protected (SCM exp, SCM module_or_state)
 {
   SCM stack = SCM_BOOL_T;
   SCM body_data;
@@ -186,13 +186,13 @@ static SCM protected_body_eval_string (void *data)
  *  any errors or exceptions and reporting them via the libgeda
  *  logging mechanism.
  *
- *  See also g_scm_eval_protected() and g_scm_c_eval_string_protected().
+ *  See also g_evaluate_scm_protected() and g_evaluate_c_string_protected().
  *
  *  \param str  String to evaluate.
  *
  *  \returns Evaluation results or SCM_BOOL_F if exception caught.
  */
-SCM g_scm_eval_string_protected (SCM str)
+SCM g_evaluate_scm_string_protected (SCM str)
 {
   SCM stack = SCM_BOOL_T;
   SCM result;
@@ -220,7 +220,7 @@ static SCM action_body_eval (void *data)
   return scm_eval (scm_car (args), scm_cadr (args));
 }
 
-SCM  g_scm_eval_action (SCM action)
+SCM  g_evaluate_scm_action (SCM action)
 {
   SCM stack = SCM_BOOL_T;
   SCM body_data;
@@ -243,34 +243,34 @@ SCM  g_scm_eval_action (SCM action)
 
 /* ---------------------------- FILE ----------------------------*/
 
-/* Data to be passed to g_read_scheme_file()'s worker functions. */
-struct g_read_scheme_file_data_t
+/* Data to be passed to g_evaluate_scheme_file()'s worker functions. */
+struct g_evaluate_scheme_file_data_t
 {
   SCM stack;
   SCM filename;
   GError *err;
 };
 
-/* Body function for g_read_scheme_file(). Simply loads the specified
+/* Body function for g_evaluate_scheme_file(). Simply loads the specified
  * file. */
-static SCM g_read_scheme_file__body (struct g_read_scheme_file_data_t *data)
+static SCM g_evaluate_scheme_file__body (struct g_evaluate_scheme_file_data_t *data)
 {
   return scm_primitive_load (data->filename);
 }
 
-/* Post-unwind handler for g_read_scheme_file(). Processes the stack captured
+/* Post-unwind handler for g_evaluate_scheme_file(). Processes the stack captured
  * in the pre-unwind handler. */
 static SCM
-g_read_scheme_file__post_handler (struct g_read_scheme_file_data_t *data, SCM key, SCM args)
+g_evaluate_scheme_file__post_handler (struct g_evaluate_scheme_file_data_t *data, SCM key, SCM args)
 {
   process_error_stack (data->stack, key, args, &data->err);
   return SCM_BOOL_F;
 }
 
-/* Pre-unwind handler for g_read_scheme_file().  Captures the Guile stack for
+/* Pre-unwind handler for g_evaluate_scheme_file().  Captures the Guile stack for
  * processing in the post-unwind handler. */
 static SCM
-g_read_scheme_file__pre_handler (struct g_read_scheme_file_data_t *data, SCM key, SCM args)
+g_evaluate_scheme_file__pre_handler (struct g_evaluate_scheme_file_data_t *data, SCM key, SCM args)
 {
   data->stack = scm_make_stack (SCM_BOOL_T, SCM_EOL);
   return SCM_BOOL_F;
@@ -280,18 +280,18 @@ g_read_scheme_file__pre_handler (struct g_read_scheme_file_data_t *data, SCM key
  *  \par Function Description
  *
  *  Evaluates string like scm_c_eval_string().  Simple wrapper for
- *  g_scm_eval_string_protected().
+ *  g_evaluate_scm_string_protected().
  *
  *  \param str  String to evaluate.
  *
  *  \returns Evaluation results or SCM_BOOL_F if exception caught.
  */
-SCM g_scm_c_eval_string_protected (const char *str) {
+SCM g_evaluate_c_string_protected (const char *str) {
   SCM s_str;
   g_return_val_if_fail ((str != NULL), SCM_BOOL_F);
 
   s_str = scm_from_utf8_string (str);
-  return g_scm_eval_string_protected (s_str);
+  return g_evaluate_scm_string_protected (s_str);
 }
 
 /*!
@@ -304,9 +304,9 @@ SCM g_scm_c_eval_string_protected (const char *str) {
  *
  * \return TRUE on success, FALSE on failure.
  */
-bool g_read_scheme_file (const char *filename, GError **err)
+bool g_evaluate_scheme_file (const char *filename, GError **err)
 {
-  struct g_read_scheme_file_data_t data;
+  struct g_evaluate_scheme_file_data_t data;
   bool   result;
 
   const char *msg_change  = _("changed");
@@ -356,9 +356,9 @@ bool g_read_scheme_file (const char *filename, GError **err)
         scm_dynwind_begin (SCM_F_DYNWIND_REWINDABLE);
 
         scm_c_catch (SCM_BOOL_T,
-                     (scm_t_catch_body)    g_read_scheme_file__body, &data,
-                     (scm_t_catch_handler) g_read_scheme_file__post_handler, &data,
-                     (scm_t_catch_handler) g_read_scheme_file__pre_handler, &data);
+                     (scm_t_catch_body)    g_evaluate_scheme_file__body, &data,
+                     (scm_t_catch_handler) g_evaluate_scheme_file__post_handler, &data,
+                     (scm_t_catch_handler) g_evaluate_scheme_file__pre_handler, &data);
 
         scm_dynwind_end ();
 

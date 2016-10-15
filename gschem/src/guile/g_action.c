@@ -124,7 +124,7 @@ g_action_eval_by_name (GschemToplevel *w_current, const char *action_name)
                                    scm_from_utf8_symbol (action_name)));
 
   /* Evaluate and get return value */
-  s_result = g_scm_eval_action (s_expr);
+  s_result = g_evaluate_scm_action (s_expr);
   result = scm_is_true (s_result);
 
   scm_dynwind_end ();

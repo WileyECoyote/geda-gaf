@@ -123,7 +123,7 @@ edascm_c_make_closure (SCM (*func)(SCM, void *), void *user_data)
   /* expr = list (lambda args (marshal args smob)) */
   expr   = scm_list_3 (lambda_sym, args_sym,
                        scm_list_3 (marshal_proc, args_sym, smob));
-  result = g_scm_eval_protected (expr, scm_current_module ());
+  result = g_evaluate_scm_protected (expr, scm_current_module ());
 
   g_warn_if_fail (scm_is_true (scm_procedure_p (result)));
   return result;

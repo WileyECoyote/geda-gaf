@@ -1246,7 +1246,7 @@ scheme_config_event_dispatcher (EdaConfig *cfg, const char *group,
                          scm_from_utf8_string (group),
                          scm_from_utf8_string (key));
 
-  g_scm_eval_protected (expr, scm_interaction_environment ());
+  g_evaluate_scm_protected (expr, scm_interaction_environment ());
   scm_remember_upto_here_1 (expr);
 }
 

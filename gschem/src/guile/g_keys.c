@@ -368,7 +368,7 @@ void g_keys_reset (GschemToplevel *w_current)
   scm_dynwind_begin (0);
   g_dynwind_window (w_current);
 
-  g_scm_eval_protected (s_expr, scm_interaction_environment ());
+  g_evaluate_scm_protected (s_expr, scm_interaction_environment ());
   scm_dynwind_end ();
 }
 
@@ -523,7 +523,7 @@ int g_keys_execute(GschemToplevel *w_current, GdkEventKey *event)
   g_dynwind_window (w_current);
   s_expr = scm_list_2 (press_key_sym, s_key);
 
-  s_retval = g_scm_eval_protected (s_expr, scm_interaction_environment ());
+  s_retval = g_evaluate_scm_protected (s_expr, scm_interaction_environment ());
   scm_dynwind_end ();
 
   /* If the keystroke was not part of a prefix, start a timer to clear
@@ -576,7 +576,7 @@ char *g_keys_find_key (char *action) {
 
     /* Call Scheme procedure to dump global keymap into list */
     s_expr = scm_list_1 (scm_from_utf8_symbol ("dump-global-keymap"));
-    s_lst  = g_scm_eval_protected (s_expr, scm_interaction_environment ());
+    s_lst  = g_evaluate_scm_protected (s_expr, scm_interaction_environment ());
   }
   else {
     s_lst = SCM_UNDEFINED;
@@ -633,7 +633,7 @@ GtkListStore *g_keys_to_new_list_store (void)
 
   /* Call Scheme procedure to dump global keymap into list */
   s_expr = scm_list_1 (scm_from_utf8_symbol ("dump-global-keymap"));
-  s_lst = g_scm_eval_protected (s_expr, scm_interaction_environment ());
+  s_lst = g_evaluate_scm_protected (s_expr, scm_interaction_environment ());
 
   g_return_val_if_fail (scm_is_true (scm_list_p (s_lst)), NULL);
 

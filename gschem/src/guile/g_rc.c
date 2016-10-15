@@ -962,7 +962,7 @@ SCM g_rc_map_keys(SCM keys, SCM action)
   strcat(scm_expr, action_str);
   strcat(scm_expr, ")");
 
-  s_result = g_scm_c_eval_string_protected(scm_expr);
+  s_result = g_evaluate_c_string_protected(scm_expr);
 
   free(action_str);
   free(keys_str);
