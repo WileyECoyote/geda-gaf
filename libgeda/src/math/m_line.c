@@ -32,9 +32,9 @@
 
 #include <geda_debug.h>
 
-/*! \brief Determine the Intersection of two lines
- *
- *  \par Function Description
+/*!
+ * \brief Determine the Intersection of two lines
+ * \par Function Description
  *  This function determines if two lines intersect. If lines intersect
  *  the function returns true and the value of points is set to that of
  *  the intersection. Otherwise the function returns false.
@@ -80,20 +80,20 @@ geda_math_line_includes_point (GedaLine *line, POINT *point)
   return included;
 }
 
-/*! \brief Determine the Intersection of two lines with structures
- *
- *  \par Function Description
+/*!
+ * \brief Determine the Intersection of two lines with structures
+ * \par Function Description
  *  This function determines if two lines intersect. If lines intersect
  *  the function returns true and the value of points is set to that of
  *  the intersection. Otherwise the function returns false.
  *
- *  \param [in]  line1 First Line
- *  \param [in]  line2 Second Line
- *  \param [out] point Intersection if lines intersect
+ * \param [in]  line1 First Line
+ * \param [in]  line2 Second Line
+ * \param [out] point Intersection if lines intersect
  *
- *  \return TRUE if lines intersect
+ * \return TRUE if lines intersect
  *
- *  \sa geda_math_line_get_intersection
+ * \sa geda_math_line_get_intersection
  */
 bool
 geda_math_line_intersection(LINE *line1, LINE *line2, POINT *point)
@@ -223,9 +223,10 @@ geda_math_line_intersection(LINE *line1, LINE *line2, POINT *point)
   return intersect;
 }
 
-/*! \brief Returns integer distance between two points
+/*!
+ * \brief Returns integer distance between two points
  *
- *  \sa geda_distance
+ * \sa geda_distance
  */
 int
 geda_math_line_length (int x1, int y1, int x2, int y2)
@@ -241,8 +242,8 @@ geda_math_line_length (int x1, int y1, int x2, int y2)
   return length;
 };
 
-/*! \brief Calculates the distance between the given point and the closest
- *  point on the given line segment.
+/*!
+ * \brief Get Shortest distance from Point to a Line segment.
  *
  *  If the closest point on the line resides beyond the line segment's
  *  end point, this function returns the distance from the given point
@@ -251,11 +252,12 @@ geda_math_line_length (int x1, int y1, int x2, int y2)
  *  If the line represents a single point (the endpoints are the same),
  *  this function calculates the distance to that point.
  *
- *  \param [in] line  The Line object.
- *  \param [in] x     The x coordinate of the given point.
- *  \param [in] y     The y coordinate of the given point.
- *  \return The shortest distance from the object to the point. With an
- *  invalid parameter, this function returns G_MAXDOUBLE.
+ * \param [in] line  The Line object,
+ * \param [in] x     The x coordinate of the given point,
+ * \param [in] y     The y coordinate of the given point.
+ *
+ * \return The shortest distance from the object to the point. With an
+ *         invalid parameter, this function returns G_MAXDOUBLE.
  */
 double
 geda_math_line_shortest_distance (GedaLine *line, int x, int y)

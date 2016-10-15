@@ -63,16 +63,18 @@ calculate_initial_sweep(int pitch, int min_y, int max_y)
   return min_y + ((delta - ((delta - pitch) / pitch * pitch)) / 2);
 }
 
-/*! \brief Compares two sweep events
- *
+/*!
+ * \brief Compares two sweep events
+ * \par Function Description
  *  Compares two sweep events for ordering the event queue.  The prototype
  *  and behavior are consistant with GCompareFunc.
  *
- *  \param a [in] The first sweep event.
- *  \param b [in] The second sweep event.
- *  \return A negative value if the first is less than the second, zero if the
- *  first equals the second, and a positive value if the first is greater than
- *  the second.
+ * \param a [in] The first sweep event.
+ * \param b [in] The second sweep event.
+ *
+ * \return A negative value if the first is less than the second, zero if the
+ *         first equals the second, and a positive value if the first is greater
+ *         than the second.
  */
 static int
 compare_events(const void *a, const void *b)
@@ -83,16 +85,18 @@ compare_events(const void *a, const void *b)
   return (event_a->y0 - event_b->y0);
 }
 
-/*! \brief Compares two sweep status structs
- *
+/*!
+ * \brief Compares two sweep status structs
+ * \par Function Description
  *  Compares two sweep status for ordering the sweep status.  The prototype
  *  and behavior are consistant with GCompareFunc.
  *
- *  \param a [in] The first sweep status.
- *  \param b [in] The second sweep status.
- *  \return A negative value if the first is less than the second, zero if the
- *  first equals the second, and a positive value if the first is greater than
- *  the second.
+ * \param a [in] The first sweep status.
+ * \param b [in] The second sweep status.
+ *
+ * \return A negative value if the first is less than the second, zero if the
+ *         first equals the second, and a positive value if the first is greater
+ *         than the second.
  */
 static int
 compare_status(const void *a, const void *b)
@@ -103,19 +107,20 @@ compare_status(const void *a, const void *b)
   return (status_b->x - status_a->x);
 }
 
-/*! \brief Calculates line segments to hatch a box shape
- *
+/*!
+ * \brief Calculates line segments to hatch a box shape
+ * \par Function Description
  *  This function appends new line segments to the lines GArray.  For creating
  *  a hatch pattern, the GArray must be cleared before calling this function.
  *  For creating cross hatch patterns, this function can be called multiple
  *  times with a different angle or pitch while passing the same lines GArray.
+ *  This function appends new line segments to the GArray and leaves existing
+ *  GArray contents unchanged.
  *
- *  \param box   [in] The Gedabox shape to hatch.
- *  \param angle [in] The angle of the hatch lines with respect to the x axis.
- *  \param pitch [in] The distance between hatch lines
- *  \param lines [inout] A GArray of Line to contain the new hatch line
- *  segments.  This function appends new line segments to the GArray and leaves
- *  existing GArray contents unchanged.
+ * \param [in]     box   The Gedabox shape to hatch.
+ * \param [in]     angle The angle of the hatch lines with respect to the x axis.
+ * \param [in]     pitch The distance between hatch lines
+ * \param [in,out] lines A GArray of Line to contain the new hatch line segments.
  */
 void
 geda_math_hatch_box(GedaBox *box, int angle, int pitch, GArray *lines)
@@ -149,20 +154,21 @@ geda_math_hatch_box(GedaBox *box, int angle, int pitch, GArray *lines)
   g_array_free(corners, TRUE);
 }
 
-/*! \brief Calculates line segments to hatch a circle.
- *
+/*!
+ * \brief Calculates line segments to hatch a circle.
+ * \par Function Description
  *  This function appends new line segments to the lines GArray.  For creating
  *  a hatch pattern, the GArray must be cleared before calling this function.
  *  For creating cross hatch patterns, this function can be called multiple
  *  times with a different angle or pitch while passing the same lines GArray.
+ *  This function appends new line segments to the GArray and leaves existing
+ *  GArray contents unchanged.
  *
- *  \param circle [in] The circle shape to hatch.
- *  \param angle  [in] The angle of the hatch lines with respect to the x axis.
- *  \param pitch  [in] The distance between hatch lines
+ * \param circle [in] The circle shape to hatch.
+ * \param angle  [in] The angle of the hatch lines with respect to the x axis.
+ * \param pitch  [in] The distance between hatch lines
  *
- *  \param lines  [out] A GArray of Line to contain the new hatch line segments.
- *                      This function appends new line segments to the GArray and
- *                      leaves existing GArray contents unchanged.
+ * \param lines  [out] A GArray of Line to contain the new hatch line segments.
  */
 void
 geda_math_hatch_circle(GedaCircle *circle, int angle, int pitch, GArray *lines)
@@ -201,19 +207,20 @@ geda_math_hatch_circle(GedaCircle *circle, int angle, int pitch, GArray *lines)
   }
 }
 
-/*! \brief Calculates line segments to hatch a path.
- *
+/*!
+ * \brief Calculates line segments to hatch a path.
+ * \par Function Description
  *  This function appends new line segments to the lines GArray.  For creating
  *  a hatch pattern, the GArray must be cleared before calling this function.
  *  For creating cross hatch patterns, this function can be called multiple
  *  times with a different angle or pitch while passing the same lines GArray.
+ *  This function appends new line segments to the GArray and leaves existing
+ *  GArray contents unchanged.
  *
  *  \param path  [in]  The path shape to hatch.
  *  \param angle [in]  The angle of the hatch lines with respect to the x axis.
  *  \param pitch [in]  The distance between hatch lines
  *  \param lines [out] A GArray of Line to contain the new hatch line segments.
- *                     This function appends new line segments to the GArray
- *                     and leaves existing GArray contents unchanged.
  */
 void
 geda_math_hatch_path (GedaPath *path, int angle, int pitch, GArray *lines)
@@ -231,20 +238,20 @@ geda_math_hatch_path (GedaPath *path, int angle, int pitch, GArray *lines)
   g_array_free (points, TRUE);
 }
 
-/*! \brief Calculates line segments to hatch an arbitrary polygon.
- *
+/*!
+ * \brief Calculates line segments to hatch an arbitrary polygon.
+ * \par Function Description
  *  This function appends new line segments to the lines GArray.  For creating
  *  a hatch pattern, the GArray must be cleared before calling this function.
  *  For creating cross hatch patterns, this function can be called multiple
  *  times with a different angle or pitch while passing the same lines GArray.
+ *  This function appends new line segments to the GArray and leaves existing
+ *  GArray contents unchanged.
  *
- *  \param points [in] The endpoints of the arbitrary closed polygon to hatch.
- *  \param angle [in] The angle of the hatch lines with respect to the x axis.
- *  \param pitch [in] The distance between hatch lines.  This value must be
- *  greater than zero.
- *  \param lines [inout] A GArray of Line to contain the new hatch line
- *  segments.  This function appends new line segments to the GArray and leaves
- *  existing GArray contents unchanged.
+ * \param [in]     points The endpoints of the arbitrary closed polygon to hatch.
+ * \param [in]     angle  The angle of the hatch lines with respect to the x axis.
+ * \param [in]     pitch  The distance between hatch lines, must be greater than zero.
+ * \param [in,out] lines  A GArray of Line to contain the new hatch line segments.
  */
 void
 geda_math_hatch_polygon(GArray *points, int angle, int pitch, GArray *lines)
@@ -352,7 +359,12 @@ geda_math_hatch_polygon(GArray *points, int angle, int pitch, GArray *lines)
   g_array_free(status, TRUE);
 }
 
-GArray *
+/*!
+ * \brief
+ * \par Function Description
+ *  Wrapper for all hatchable object types.
+ */
+GArray*
 geda_math_hatch_object (GedaObject *object)
 {
   GArray *fill_lines;
