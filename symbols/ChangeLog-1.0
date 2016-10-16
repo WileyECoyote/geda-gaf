@@ -1,3 +1,10 @@
+2016-10-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * lineartech/LT1181-1.sym: Redo symbol, add description, documentation and
+      symversion attributes.
+
+    * serial/ST16C552-1.sym: Add symbol; Dual UART with Parallel port.
+
 2016-10-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * lineartech/LTC1696-1.sym: Add symbol; over-voltage protection controller.
