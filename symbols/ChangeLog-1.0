@@ -5,6 +5,19 @@
 
     * lineartech/switchreg/LT3652-1.sym: Add symbol; 2A Solar Panel Power Manager
 
+    * Add some "template" symbols for small-outline packages:
+
+            * packages/SO8N-1.sym
+            * packages/SO14N-1.sym
+            * packages/SO16N-1.sym
+            * packages/SO18N-1.sym
+            * packages/SO20N-1.sym
+            * packages/SO24N-1.sym
+            * packages/SO24W-1.sym
+            * packages/SO28N-1.sym
+            * packages/SO28W-1.sym
+            * packages/SO32W-1.sym
+
     * serial/ST16C552-1.sym: Add symbol; Dual UART with Parallel port.
 
 2016-10-15 Wiley E. Hill <wileyhill@gmail.com>
