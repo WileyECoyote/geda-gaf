@@ -2,6 +2,8 @@
 
     * lineartech/LTC1696-1.sym: Add symbol; over-voltage protection controller.
 
+    * ti/switchreg/LM5118-1.sym: Add symbol; Current Mode Buck-Boost Controller.
+
 2016-10-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * lineartech/LT1719-1.sym: Add symbol LT1719 comparator.
