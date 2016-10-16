@@ -1,3 +1,7 @@
+2016-10-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * module/geda.c: Use relative path to headers for local includes.
+
 2016-10-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/update_objects.c: Access object->attribs directly instead of using

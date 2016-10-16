@@ -36,8 +36,8 @@
 #define FIRST_PASS_METHODS(func) static PyObject *do_##func(PyObject *self, PyObject *args)
 
 #include <geda/geda.h>
-#include <geda_module.h>
-#include <geda_capsule.h>
+#include "../include/geda_module.h"
+#include "../include/geda_capsule.h"
 
 #include <libgeda/o_types.h>
 #include <libgedathon.h>
