@@ -561,6 +561,7 @@ FUNCTION(DefaultInductorSymbol)
  *  [in] symbol Optional Python string to set the symbol name
  *
  * \return Pointer to PyObject of PyString_Type, containing the symbol name.
+ *
  * \code
  *  example: DefaultOpAmpSymbol("default")  # restore the default symbol "dual-opamp-1"
  * \endcode
@@ -1325,6 +1326,7 @@ FUNCTION(AddElectrolytic)
  * \code
  *  example 1: AddInductor(page,  5000, 6500, "20mH")
  *  example 2: AddInductor(filter, 14000, 9800, "4.7uH")
+ * \endcode
  */
 FUNCTION(AddInductor)
 {
@@ -1402,6 +1404,7 @@ FUNCTION(AddInductor)
  *  example 2: line = AddLine(schematic, 2200, 5200, 2800, 5200)
  *              line.line_type = TYPE_DASHED
  *              line.line_space = 25
+ * \endcode
  */
 FUNCTION(AddLine)
 {
@@ -1463,6 +1466,7 @@ FUNCTION(AddLine)
  *  example 1: AddNet(circuit, 12400,  8800, 13900,  8800)
  *
  *  example 2: AddNet(schematic,2000, 4400, 2700, 4400, "U1_1_U1_5")
+ * \endcode
  */
 FUNCTION(AddNet)
 {
@@ -1533,6 +1537,7 @@ FUNCTION(AddNet)
  *  example 1: AddOpAmp(page, 5000, 6500)
  *
  *  example 2: AddOpAmp(schematic, 6800, 8000, "U1", 0, 0, 0, 0)
+ * \endcode
  */
 FUNCTION(AddOpAmp)
 {
@@ -1617,6 +1622,7 @@ FUNCTION(AddOpAmp)
  *  example 1: path = AddPath(page, "M100,200 C100,100 250,100 250,200 S400,300 400,200")
  *
  *  example 2: AddPath(page, "M 100,200, C 100,100 250,100 250,200 C 250,300 400,300 400,200")
+ * \endcode
  */
 FUNCTION(AddPath)
 {
@@ -1676,6 +1682,7 @@ FUNCTION(AddPath)
  * \return [out] PyGedaPictureObject or Py_None if an error occured
  * \code
  *  example: AddPicture(page, "./pic/1377339524810.jpg", 8000, 3000, 14000, 9000)
+ * \endcode
  */
 FUNCTION(AddPicture)
 {
@@ -1760,6 +1767,7 @@ FUNCTION(AddPicture)
  *  example 1: AddPin(resistor, 0, 100, 100, 100)
  *
  *  example 2: pin = AddPin(symbol, 0, 100, 100, 100, 0, "1", "1", PIN_ELECT_PAS, 0, 0)
+ * \endcode
  */
 FUNCTION(AddPin)
 {
@@ -1901,6 +1909,7 @@ FUNCTION(AddPin)
  *  example 1: AddResistor(schematic, 4300,  7800, "560")
  *
  *  example 2: AddResistor(lpbf, 13800, 7100, "22k", "angle=270")
+ * \endcode
  */
 FUNCTION(AddResistor)
 {
@@ -1976,6 +1985,7 @@ FUNCTION(AddResistor)
  *  example 1: AddSource(lpbf, "12V-plus-1", 12800, 10300)
  *
  *  example 2: AddSource(lpbf, "12V-minus-1", 8400,  5100, 180)
+ * \endcode
  */
 FUNCTION(AddSource)
 {
@@ -2046,6 +2056,7 @@ FUNCTION(AddSource)
  * \code
  *  example 1: amp = AddComponent(circuit, "dual-opamp-py", "U1", 7700, 7300)
  *              AddAttribute(amp, "slot", "2",  7650, 7250)
+ * \endcode
  */
 FUNCTION ( AddText )
 {
@@ -2130,6 +2141,7 @@ FUNCTION ( AddText )
  *  example 1: AddOpAmp(page, 5000, 6500)
  *
  *  example 2: AddOpAmp(schematic, 6800, 8000, "U1", 0, 0, 0, 0)
+ * \endcode
  */
 FUNCTION(AddTitleblock)
 {

@@ -1,3 +1,8 @@
+2016-10-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * module/functions.c: Add missing \endcode tags, the assumption that code tag
+      would only apply "until end of block" was incorrect.
+
 2016-10-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * module/geda.c: Use relative path to headers for local includes.
