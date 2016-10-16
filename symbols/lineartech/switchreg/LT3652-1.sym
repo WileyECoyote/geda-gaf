@@ -1,0 +1,163 @@
+v 20150401 2
+T 400 3600 9 10 0 0 0 0 1
+device=LT3652
+T 2200 3200 8 10 1 1 0 6 1
+refdes=U?
+T 400 3800 9 10 0 1 0 0 1
+description=2A Solar Panel Power Manager
+T 2300 500 9 10 0 0 0 0 1
+numslots=0
+T 400 3400 9 10 1 1 0 0 1
+footprint=MSOP12-EP
+B 400 400 1800 2700 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+P 400 2800 100 2800 1 0 1
+{
+T 250 2850 5 10 1 1 0 6 1
+pinnumber=1
+T 250 2850 5 10 0 1 0 6 1
+pinseq=1
+T 450 2800 3 10 1 1 0 1 1
+pinlabel=VIN
+T 450 2700 5 10 0 1 0 2 1
+pintype=pwr
+}
+P 400 2400 100 2400 1 0 1
+{
+T 250 2450 5 10 1 1 0 6 1
+pinnumber=2
+T 250 2450 5 10 0 1 0 6 1
+pinseq=2
+T 450 2400 3 10 1 1 0 1 1
+pinlabel=VIN_REG
+T 450 2300 5 10 0 1 0 2 1
+pintype=pas
+}
+P 400 2000 100 2000 1 0 1
+{
+T 250 2050 5 10 1 1 0 6 1
+pinnumber=3
+T 250 2050 5 10 0 1 0 6 1
+pinseq=3
+T 450 2000 3 10 1 1 0 1 1
+pinlabel=\_SHDN\_
+T 450 1900 5 10 0 1 0 2 1
+pintype=in
+}
+P 400 1600 100 1600 1 0 1
+{
+T 250 1650 5 10 1 1 0 6 1
+pinnumber=4
+T 250 1650 5 10 0 1 0 6 1
+pinseq=4
+T 450 1600 3 10 1 1 0 1 1
+pinlabel=\_CHRG\_
+T 450 1500 5 10 0 1 0 2 1
+pintype=in
+}
+P 400 1200 100 1200 1 0 1
+{
+T 250 1250 5 10 1 1 0 6 1
+pinnumber=5
+T 250 1250 5 10 0 1 0 6 1
+pinseq=5
+T 450 1200 3 10 1 1 0 1 1
+pinlabel=\_FAULT\_
+T 450 1100 5 10 0 1 0 2 1
+pintype=in
+}
+P 400 800 100 800 1 0 1
+{
+T 250 850 5 10 1 1 0 6 1
+pinnumber=6
+T 250 850 5 10 0 1 0 6 1
+pinseq=6
+T 450 800 3 10 1 1 0 1 1
+pinlabel=TIMER
+T 450 700 5 10 0 1 0 2 1
+pintype=pas
+}
+P 2500 800 2200 800 1 0 0
+{
+T 2350 850 5 10 1 1 0 0 1
+pinnumber=7
+T 2350 850 5 10 0 1 0 0 1
+pinseq=7
+T 2150 800 3 10 1 1 0 7 1
+pinlabel=VFB
+T 2150 600 5 10 0 1 0 6 1
+pintype=pas
+}
+P 2500 1200 2200 1200 1 0 0
+{
+T 2350 1250 5 10 1 1 0 0 1
+pinnumber=8
+T 2350 1250 5 10 0 1 0 0 1
+pinseq=8
+T 2150 1200 3 10 1 1 0 7 1
+pinlabel=NTC
+T 2150 1000 5 10 0 1 0 6 1
+pintype=pas
+}
+P 2500 1600 2200 1600 1 0 0
+{
+T 2350 1650 5 10 1 1 0 0 1
+pinnumber=9
+T 2350 1650 5 10 0 1 0 0 1
+pinseq=9
+T 2150 1600 3 10 1 1 0 7 1
+pinlabel=BAT
+T 2150 1400 5 10 0 1 0 6 1
+pintype=in
+}
+P 2500 2000 2200 2000 1 0 0
+{
+T 2350 2050 5 10 1 1 0 0 1
+pinnumber=10
+T 2350 2050 5 10 0 1 0 0 1
+pinseq=10
+T 2150 2000 3 10 1 1 0 7 1
+pinlabel=SENSE
+T 2150 1800 5 10 0 1 0 6 1
+pintype=in
+}
+P 2500 2400 2200 2400 1 0 0
+{
+T 2350 2450 5 10 1 1 0 0 1
+pinnumber=11
+T 2350 2450 5 10 0 1 0 0 1
+pinseq=11
+T 2150 2400 3 10 1 1 0 7 1
+pinlabel=BOOST
+T 2150 2200 5 10 0 1 0 6 1
+pintype=pas
+}
+P 2500 2800 2200 2800 1 0 0
+{
+T 2350 2850 5 10 1 1 0 0 1
+pinnumber=12
+T 2350 2850 5 10 0 1 0 0 1
+pinseq=12
+T 2150 2800 3 10 1 1 0 7 1
+pinlabel=SW
+T 2150 2600 5 10 0 1 0 6 1
+pintype=out
+}
+P 1300 400 1300 100 1 0 1
+{
+T 1250 200 5 10 1 1 0 6 1
+pinnumber=13
+T 1250 200 5 10 0 1 0 6 1
+pinseq=13
+T 1300 450 3 10 1 1 0 3 1
+pinlabel=GND
+T 1350 250 5 10 0 1 0 0 1
+pintype=pwr
+}
+T 2300 300 9 10 0 0 0 0 1
+symversion=0.1
+T 400 3200 5 10 1 1 0 0 1
+value=LT3652
+T 400 4000 9 10 0 1 0 0 1
+documentation=http://cds.linear.com/docs/en/datasheet/3652fe.pdf
+T 2300 100 5 10 0 0 0 0 1
+author=AutoTron

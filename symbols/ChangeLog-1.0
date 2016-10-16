@@ -3,6 +3,8 @@
     * lineartech/LT1181-1.sym: Redo symbol, add description, documentation and
       symversion attributes.
 
+    * lineartech/switchreg/LT3652-1.sym: Add symbol; 2A Solar Panel Power Manager
+
     * serial/ST16C552-1.sym: Add symbol; Dual UART with Parallel port.
 
 2016-10-15 Wiley E. Hill <wileyhill@gmail.com>
