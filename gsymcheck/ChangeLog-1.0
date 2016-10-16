@@ -1,3 +1,7 @@
+2016-10-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gsymcheck.c: Substitute geda_open_file macro for geda_file_open.
+
 2016-09-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/gsymcheck.dox: Enable EXTERNAL_PAGES so that links to the libraries

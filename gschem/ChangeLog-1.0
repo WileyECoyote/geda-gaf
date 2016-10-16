@@ -1,3 +1,14 @@
+2016-10-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/: Substitute geda_open_file macro for geda_file_open in
+
+            * src/gschem_preview.c:
+            * src/iface/i_window.c
+            * gschem/src/object/o_undo.c
+
+    * src/iface/i_command.c: Substitute geda_remove_backup_file macro for geda_
+      file_remove_backup.
+
 2016-10-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem.c: Add s_result to check value returned from g_scm_

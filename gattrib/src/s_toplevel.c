@@ -37,7 +37,7 @@
 /*------------------------------------------------------------------*/
 /*! \brief Close the TopLevel
  *
- *  This function gets calls the Libgeda geda_file_close functions
+ *  This function gets calls the Libgeda geda_close_file functions
  *
  */
 void s_toplevel_close(PageDataSet *PageData) {
@@ -51,12 +51,12 @@ void s_toplevel_close(PageDataSet *PageData) {
     geda_struct_page_delete (pr_current, pr_current->page_current, FALSE);
   }
 
-  geda_file_close(pr_current);  /*  Does absolutely nothing */
+  geda_close_file(pr_current);  /*  Does absolutely nothing */
 }
 
 /*! \brief Read a schematic page
  *
- * Reads in a schematic page & calls geda_file_open, which fills out the
+ * Reads in a schematic page & calls geda_open_file, which fills out the
  * toplevel structure.
  *
  *  \param toplevel GedaToplevel structure
@@ -72,8 +72,8 @@ int s_toplevel_read_page(GedaToplevel *toplevel, char *filename)
   /* Set the new filename */
   toplevel->page_current->filename = geda_strdup(filename);
 
-  /* Read in and fill out toplevel using geda_file_open and its callees */
-  if(!geda_file_open (toplevel, toplevel->page_current, filename, &err)) {
+  /* Read in and fill out toplevel using geda_open_file and its callees */
+  if(!geda_open_file (toplevel, toplevel->page_current, filename, &err)) {
     geda_log ("%s\n", err->message);
     result = 0;
     g_error_free (err);

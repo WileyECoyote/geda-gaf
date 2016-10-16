@@ -937,7 +937,7 @@ x_window_open_page(GschemToplevel *w_current, const char *filename)
 
         GError *err = NULL;
 
-        /* Problem: geda_file_open needs a pointer to a page so we have to create
+        /* Problem: geda_open_file needs a pointer to a page so we have to create
          * a page struct without knowing the file can be read. If an error
          * occurs then we have to delete this page but geda_struct_page_delete is
          * going to free the name, the one passed to us as a constant, so
@@ -945,7 +945,7 @@ x_window_open_page(GschemToplevel *w_current, const char *filename)
         page = new_page(filename);
 
         /* Try to load the file */
-        if (!geda_file_open (toplevel, page, (char *) filename, &err)) {
+        if (!geda_open_file (toplevel, page, (char *) filename, &err)) {
           fprintf(stderr, "Error loading file:%s\n", err->message);
           u_log_message ("Failed to load file:%s\n", err->message);
           g_error_free (err);
@@ -1165,7 +1165,7 @@ x_window_close_page (GschemToplevel *w_current, Page *page)
  *  This function saves the page <B>page</B> to a file named
  *  <B>filename</B>.
  *
- *  It returns the value returned by function <B>geda_file_save()</B> trying
+ *  It returns the value returned by function <B>geda_save_file()</B> trying
  *  to save page <B>page</B> to file <B>filename</B> (1 on success, 0
  *  on failure).
  *
@@ -1193,7 +1193,7 @@ x_window_save_page (GschemToplevel *w_current, Page *page, const char *filename)
 
 
   /* and try saving current page to filename */
-  result = geda_file_save (toplevel, toplevel->page_current, filename, &err);
+  result = geda_save_file (toplevel, toplevel->page_current, filename, &err);
 
   if (result != 1) {
 

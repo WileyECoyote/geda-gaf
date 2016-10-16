@@ -367,7 +367,7 @@ geda_struct_page_delete (GedaToplevel *toplevel, Page *page, int previous)
     geda_struct_page_goto (page);
   }
 
-  geda_file_remove_backup(page->filename);
+  geda_remove_backup_file(page->filename);
 
   /* Free the selection object */
   GEDA_UNREF (page->selection_list);
@@ -686,7 +686,7 @@ geda_struct_page_save_all (GedaToplevel *toplevel)
 
     p_current = (Page *)iter->data;
 
-    if (geda_file_save (toplevel, p_current, p_current->filename, NULL)) {
+    if (geda_save_file (toplevel, p_current, p_current->filename, NULL)) {
 
       u_log_message (_("Saved [%s]\n"), p_current->filename);
 
@@ -730,7 +730,7 @@ geda_struct_page_save_all_changed (GedaToplevel *toplevel)
 
     if (p_current && p_current->CHANGED) {
 
-      if (geda_file_save (toplevel, p_current, p_current->filename, NULL)) {
+      if (geda_save_file (toplevel, p_current, p_current->filename, NULL)) {
 
         u_log_message (_("Saved [%s]\n"), p_current->filename);
 

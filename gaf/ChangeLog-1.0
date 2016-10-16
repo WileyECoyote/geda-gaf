@@ -1,3 +1,7 @@
+2016-10-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/export.c: Substitute geda_open_file macro for geda_file_open.
+
 2016-03-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/export.c:Replace gsize with size_t in function export_config.

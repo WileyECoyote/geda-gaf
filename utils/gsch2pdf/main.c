@@ -723,7 +723,7 @@ static void main2(void *closure, int argc, char *argv[])
 
         Page *page = geda_struct_page_new(current, argv[i]);
 
-        int success = geda_file_open(current, page, argv[i], NULL);
+        int success = geda_open_file(current, page, argv[i], NULL);
 
         if (success && need_cairo_init) {
 

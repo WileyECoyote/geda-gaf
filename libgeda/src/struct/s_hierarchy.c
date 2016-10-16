@@ -122,14 +122,14 @@ geda_struct_hierarchy_down_single(GedaToplevel *toplevel, const char *filename,
 
       found = geda_struct_page_new_with_notify (toplevel, string);
 
-      geda_file_open (toplevel, found, found->filename, NULL);
+      geda_open_file (toplevel, found, found->filename, NULL);
     }
     break;
 
     case HIERARCHY_FORCE_LOAD:
     {
       found = geda_struct_page_new_with_notify (toplevel, string);
-      geda_file_open (toplevel, found, found->filename, NULL);
+      geda_open_file (toplevel, found, found->filename, NULL);
     }
     break;
 
@@ -182,7 +182,7 @@ geda_struct_hierarchy_down_symbol (GedaToplevel     *toplevel,
 
     geda_struct_page_goto (page);
 
-    geda_file_open(toplevel, page, page->filename, NULL);
+    geda_open_file(toplevel, page, page->filename, NULL);
 
     page->hierarchy_up = parent->pid;
     page_control_counter++;

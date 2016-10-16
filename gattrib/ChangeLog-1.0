@@ -1,3 +1,7 @@
+2016-10-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gattrib.c: Substitute geda_open_file macro for geda_file_open.
+
 2016-10-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * gattrib/src/gattrib.c: Utilize geda_normalize_filename macro in function

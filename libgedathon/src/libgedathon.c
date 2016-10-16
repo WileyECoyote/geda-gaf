@@ -1244,9 +1244,12 @@ PyGeda_open_page( const char *filename )
 
   /* Create an empty page with optional filename */
   inline Page* empty_page( const char *name ) {
+
     char *fname;
+
     fname = geda_utility_string_strdup ( name ? name : generate_untitled() );
-    page = geda_struct_page_new (toplevel, fname);
+    page  = geda_struct_page_new (toplevel, fname);
+
     geda_struct_page_goto (page);
     GEDA_FREE (fname);
     return page;
@@ -1514,8 +1517,8 @@ int PyGeda_rename_page (int pid, const char *filename)
 /*! \brief Save Page
  *  \ingroup Python_API_Library
  *  \par Function Description
- *  This function calls the libgeda function geda_file_save to save the page document
- *  referenced by the ID argument.
+ *  This function calls the libgeda function geda_save_file to save the
+ *  page document referenced by the ID argument.
  *
  *  \param [in] pid  Integer, the page id of the page to be saved
  *
@@ -1532,7 +1535,7 @@ PyGeda_save_page( int pid )
   page = geda_toplevel_get_page_by_id(toplevel, pid);
 
   if (page && (GEDA_IS_PAGE(page))) {
-    if (!geda_file_save (toplevel, page, page->filename, &err)) {
+    if (!geda_save_file (toplevel, page, page->filename, &err)) {
       fprintf(stderr, "Failed to save file <%s> Error: %s\n", page->filename, err->message);
       g_clear_error (&err);
       status++;
@@ -1569,8 +1572,8 @@ int PyGeda_save_page_as (int pid, const char *filename)
  *  \ingroup Python_API_Library
  *  \par Function Description
  *  This function iterates through all Page objects in the argument list or all
- *  pages of the argument is NULL, and calls the libgeda function geda_file_save for each
- *  page document.
+ *  pages of the argument is NULL, and calls the libgeda function geda_save_file
+ *  for each page document.
  *
  *  \param [in] py_page_list A PyList Object
  *
@@ -1611,7 +1614,7 @@ PyGeda_save_all_pages( PyObject *py_page_list )
   while (iter) {
     page = iter->data;
     if (page && (GEDA_IS_PAGE(page))) {
-      if (!geda_file_save (toplevel, page, page->filename, &err)) {
+      if (!geda_save_file (toplevel, page, page->filename, &err)) {
         fprintf(stderr, "Failed to save file <%s> Error: %s\n", page->filename, err->message);
         g_clear_error (&err);
         status++;
