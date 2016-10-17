@@ -28,44 +28,48 @@
 #include <gschem.h>
 #include <geda_debug.h>
 
-/*! \brief Copy Current Selection to Buffer
+/*!
+ * \brief Copy Current Selection to Buffer
+ * \par Function Description
  *
- *  \par Function Description
+ *  The function is used by both the "clipboard" copy and the
+ *  "clipboard" cut routines. This function first deleted the
+ *  contents of the assigned buffer before copying the current
+ *  selection to the buffer.
  *
- *   The function is used by both the "clipboard" copy and the
- *   "clipboard" cut routines. This function first deleted the
- *   contents of the assigned buffer before copying the current
- *   selection to the buffer.
- *
- *   \param w_current A pointer to a GSCHEM top level object
- *   \param buf_num   integer value of the buffer to use.
+ * \param w_current A pointer to a GSCHEM top level object
+ * \param buf_num   integer value of the buffer to use.
  */
 static void selection_to_buffer(GschemToplevel *w_current, int buf_num)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
-  GList *s_current       = NULL;
+  Page  *p_current;
+  GList *s_current;
 
-  s_current = geda_list_get_glist( toplevel->page_current->selection_list );
+  p_current = gschem_toplevel_get_current_page (w_current);
+  s_current = geda_list_get_glist(p_current->selection_list);
 
   if (object_buffer[buf_num] != NULL) {
+
     geda_struct_object_release_objects(object_buffer[buf_num]);
+
+    /* NULL pointer so geda_copy_list does not append to the
+     * list of objects that was just released.*/
     object_buffer[buf_num] = NULL;
   }
 
   object_buffer[buf_num] = geda_copy_list(s_current, object_buffer[buf_num]);
 }
 
-/*! \brief Copy Selection to Buffer
- *
- *  \par Function Description
- *
+/*!
+ * \brief Copy Selection to Buffer
+ * \par Function Description
  *  This function calls selection_to_buffer to copy the current
  *  selection data to a buffer and then iterator over the objects
  *  in the buffer, calling geda_complex_object_reset_refdes for each
  *  complex in the copied buffer.
  *
- *  \param w_current A pointer to a GSCHEM top level object
- *  \param buf_num   integer value of the buffer to use.
+ * \param w_current A pointer to a GSCHEM top level object
+ * \param buf_num   integer value of the buffer to use.
  */
 void o_buffer_copy(GschemToplevel *w_current, int buf_num)
 {
@@ -74,8 +78,9 @@ void o_buffer_copy(GschemToplevel *w_current, int buf_num)
   if (buf_num < 0 || buf_num >= MAX_BUFFERS) {
     BUG_IMSG ("o_buffer_copy: Invalid buffer %i\n", buf_num);
   }
-  else
+  else {
     selection_to_buffer (w_current, buf_num);
+  }
 
   /* Get a pointer to the glist in the buffer */
   iter = object_buffer[buf_num];
