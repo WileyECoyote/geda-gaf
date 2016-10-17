@@ -9,6 +9,8 @@
     * src/object/o_extend.c: Substitute geda_distance macro for geda_math_
       distance.
 
+    * src/x/x_event.c: Utilize __func__ macro in debug output.
+
 2016-10-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/: Substitute geda_open_file macro for geda_file_open in

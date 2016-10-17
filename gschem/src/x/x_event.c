@@ -598,7 +598,7 @@ int x_event_expose (GtkWidget      *widget,
 
 #if DEBUG_EVENTS
   const char  *name = gtk_widget_get_name (widget);
-  fprintf (stderr, "x_event_expose, exposing %s <%p>\n", name, widget);
+  printf ("%s, exposing %s <%p>\n", __func__, name, widget);
 #endif
 
   if (w_current != NULL) {
@@ -696,7 +696,7 @@ bool x_event_key (GtkWidget      *widget,
   int  wx, wy;
 
 #if DEBUG_EVENTS
-  printf("x_event_key_pressed: Pressed key %i.\n", event->keyval);
+  printf("%s: Pressed key %i.\n", _func__, event->keyval);
 #endif
 
   /* update the state of the modifiers */
