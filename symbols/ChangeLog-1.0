@@ -18,6 +18,13 @@
             * packages/SO28W-1.sym
             * packages/SO32W-1.sym
 
+    * Revise wide DIP "template": Move box after pins.
+
+            * packages/DIP24-600-1.sym
+            * packages/DIP28-600-1.sym
+            * packages/DIP32-600-1.sym
+            * packages/DIP40-600-1.sym
+
     * serial/ST16C552-1.sym: Add symbol; Dual UART with Parallel port.
 
 2016-10-15 Wiley E. Hill <wileyhill@gmail.com>

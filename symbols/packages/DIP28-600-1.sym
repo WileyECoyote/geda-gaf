@@ -1,7 +1,14 @@
 v 20160214 2
-B 300 0 1800 5650 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 300 6100 5 10 0 0 0 0 1
 device=DIP28
+T 2000 5700 8 10 1 1 0 0 1
+refdes=U?
+T 300 6700 9 10 0 0 0 0 1
+numslots=0
+T 300 5900 9 10 0 1 0 0 1
+footprint=DIP28-600
+T 300 6300 9 10 0 0 0 0 1
+description=DIP PACKAGE,EMPTY,SIDE-BRAZED
 P 300 5400 0 5400 1 0 1
 {
 T 200 5450 5 10 1 1 0 6 1
@@ -310,16 +317,9 @@ pinlabel=28
 T 2400 5350 5 8 0 1 0 8 1
 pintype=pas
 }
+B 300 0 1800 5650 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 300 5700 9 10 1 1 0 0 1
 value=DIP28
-T 2000 5700 8 10 1 1 0 0 1
-refdes=U?
-T 300 6700 9 10 0 0 0 0 1
-numslots=0
-T 300 5900 9 10 0 1 0 0 1
-footprint=DIP28-600
-T 300 6300 9 10 0 0 0 0 1
-description=DIP PACKAGE,EMPTY,SIDE-BRAZED
 T 300 6500 9 10 0 0 0 0 1
 documentation=http://dipville
 T 550 50 5 8 0 0 0 0 1
