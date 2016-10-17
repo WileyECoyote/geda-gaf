@@ -1,7 +1,13 @@
 2016-10-17 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_break.c: Substitute geda_distance macro for geda_math_
+      distance.
+
     * src/object/o_buffer.c: Revise function selection_to_buffer; use
       gschem_toplevel_get_current_page to get the current page, add comments.
+
+    * src/object/o_extend.c: Substitute geda_distance macro for geda_math_
+      distance.
 
 2016-10-15 Wiley E. Hill <wileyhill@gmail.com>
 

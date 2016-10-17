@@ -499,7 +499,7 @@ static bool o_extend_can_arc_bound(GedaObject *boundary,
       answer = FALSE;
 
       /* recall X2,Y2 is the "hot" point */
-      dist1 = geda_math_distance(x2, y2, pt1.x, pt1.y);
+      dist1 = geda_distance(x2, y2, pt1.x, pt1.y);
 
       /* Calculate second intercept */
 
@@ -539,7 +539,7 @@ static bool o_extend_can_arc_bound(GedaObject *boundary,
 #endif
 
       /* Get distance to second intercept */
-      dist2 = geda_math_distance(x2, y2, pt2.x, pt2.y);
+      dist2 = geda_distance(x2, y2, pt2.x, pt2.y);
 
       if (dist1 < dist2) {
         included = !geda_line_includes_point(projectile->line, &pt1);
@@ -1585,7 +1585,7 @@ static bool o_extend_can_hit_target(GedaObject *projectile,
     GedaLine *line;
 
     line     = projectile->line;
-   *distance = geda_math_distance(line->x[which_end], line->y[which_end], point.x, point.y);
+   *distance = geda_distance(line->x[which_end], line->y[which_end], point.x, point.y);
   }
 
   return answer; /* In theory, there's a chance */

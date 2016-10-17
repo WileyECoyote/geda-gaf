@@ -1015,7 +1015,7 @@ void o_break_snap_object(GschemToplevel *w_current, GedaObject *object)
 
   if (geda_object_get_nearest_point(object, point.x, point.y, &x, &y)) {
 
-    dist    = geda_math_distance(x, y, point.x, point.y);
+    dist    = geda_distance(x, y, point.x, point.y);
     w_slack = WORLDabs (w_current, w_current->select_slack_pixels) / 2.5;
 
     if (dist && (w_slack > dist)) {
@@ -1029,7 +1029,7 @@ void o_break_snap_object(GschemToplevel *w_current, GedaObject *object)
 
   if (geda_object_get_nearest_point(object, point.x, point.y, &x, &y)) {
 
-    dist    = geda_math_distance(x, y, point.x, point.y);
+    dist    = geda_distance(x, y, point.x, point.y);
     w_slack = WORLDabs (w_current, w_current->select_slack_pixels) / 3;
 
     if (dist && (w_slack > dist)) {
