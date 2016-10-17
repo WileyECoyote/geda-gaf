@@ -179,12 +179,13 @@ unrealize (GtkWidget *widget)
   GTK_WIDGET_CLASS(gschem_macro_widget_parent_class)->unrealize (widget);
 }
 
-/*! \brief Get a property
- *
- *  \param [in]     object
- *  \param [in]     param_id
- *  \param [in,out] value
- *  \param [in]     pspec
+/*!
+ * \brief Get a property
+ * \par Function Description
+ * \param [in]     object
+ * \param [in]     param_id
+ * \param [in,out] value
+ * \param [in]     pspec
  */
 static void
 get_property (GObject *object, unsigned int param_id, GValue *value, GParamSpec *pspec)
@@ -206,10 +207,11 @@ get_property (GObject *object, unsigned int param_id, GValue *value, GParamSpec 
   }
 }
 
-/*! \brief Initialize GschemMacroWidget class
- *
- *  \param [in]  class       The GschemMacroWidgetClass to be initialized
- *  \param [in]  class_data  (unused)
+/*!
+ * \brief Initialize GschemMacroWidget class
+ * \par Function Description
+ * \param [in]  class       The GschemMacroWidgetClass to be initialized
+ * \param [in]  class_data  (unused)
  */
 static void
 gschem_macro_widget_class_init (void *class, void *class_data)
@@ -242,11 +244,11 @@ gschem_macro_widget_class_init (void *class, void *class_data)
                                                         G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 }
 
-
-/*! \brief Get the entry
- *
- *  \param [in] widget This GschemMacroWidget
- *  \return The entry
+/*!
+ * \brief Get the entry
+ * \par Function Description
+ * \param [in] widget This GschemMacroWidget
+ * \return The entry
  */
 GtkWidget*
 gschem_macro_widget_get_entry (GtkWidget *widget)
@@ -267,10 +269,11 @@ gschem_macro_widget_get_entry (GtkWidget *widget)
   return ret_val;
 }
 
-/*! \brief Get the label text
- *
- *  \param [in] widget This GschemMacroWidget
- *  \return The label text
+/*!
+ * \brief Get the label text
+ * \par Function Description
+ * \param [in] widget This GschemMacroWidget
+ * \return The label text
  */
 const char*
 gschem_macro_widget_get_label_text (GtkWidget *widget)
@@ -292,10 +295,11 @@ gschem_macro_widget_get_label_text (GtkWidget *widget)
   return ret_val;
 }
 
-/*! \brief Get the macro string
- *
- *  \param [in] widget This GschemMacroWidget
- *  \return The macro string
+/*!
+ * \brief Get the macro string
+ * \par Function Description
+ * \param [in] widget This GschemMacroWidget
+ * \return The macro string
  */
 const char*
 gschem_macro_widget_get_macro_string (GtkWidget *widget)
@@ -317,10 +321,11 @@ gschem_macro_widget_get_macro_string (GtkWidget *widget)
   return ret_val;
 }
 
-/*! \brief Initialize GschemMacroWidget instance
- *
- *  \param [in,out] instance The GschemMacroWidget being initialized.
- *  \param [in]     class  The class of the type the instance is created for.
+/*!
+ * \brief Initialize GschemMacroWidget instance
+ * \par Function Description
+ * \param [in,out] instance The GschemMacroWidget being initialized.
+ * \param [in]     class  The class of the type the instance is created for.
  */
 static void
 gschem_macro_widget_instance_init(GTypeInstance *instance, void *class)
@@ -363,7 +368,9 @@ gschem_macro_widget_instance_init(GTypeInstance *instance, void *class)
   g_object_set (action, "visible", FALSE, NULL);
 }
 
-/*! \brief Get/register GschemMacroWidget type.
+/*!
+ * \brief Get/register GschemMacroWidget type.
+ * \par Function Description
  */
 GedaType gschem_macro_widget_get_type (void)
 {
@@ -420,10 +427,11 @@ gschem_macro_widget_new(void)
   return g_object_new (GSCHEM_TYPE_MACRO_WIDGET, NULL);
 }
 
-/*! \brief Set the label text
- *
- *  \param [in,out] widget This GschemMacroWidget
- *  \param [in]     text   The label text
+/*!
+ * \brief Set the label text
+ * \par Function Description
+ * \param [in,out] widget This GschemMacroWidget
+ * \param [in]     text   The label text
  */
 void
 gschem_macro_widget_set_label_text (GtkWidget *widget, const char *text)
@@ -444,10 +452,11 @@ gschem_macro_widget_set_label_text (GtkWidget *widget, const char *text)
 }
 
 
-/*! \brief Set the macro string
- *
- *  \param [in,out] widget This GschemMacroWidget
- *  \param [in]     str    The macro string
+/*!
+ * \brief Set the macro string
+ * \par Function Description
+ * \param [in,out] widget This GschemMacroWidget
+ * \param [in]     str    The macro string
  */
 void
 gschem_macro_widget_set_macro_string (GtkWidget *widget, const char *str)
@@ -468,7 +477,9 @@ gschem_macro_widget_set_macro_string (GtkWidget *widget, const char *str)
 }
 
 
-/*! \brief Update the sensitivity of the evaluate button
+/*!
+ * \brief Update the sensitivity of the evaluate button
+ * \par Function Description
  */
 static void
 notify_entry_text (GtkWidget *entry, GParamSpec *pspec, GschemMacroWidget *widget)
@@ -480,7 +491,9 @@ notify_entry_text (GtkWidget *entry, GParamSpec *pspec, GschemMacroWidget *widge
 }
 
 
-/*! \brief Set a gobject property
+/*!
+ * \brief Set a gobject property
+ * \par Function Description
  */
 static void
 set_property (GObject *object, unsigned int param_id, const GValue *value, GParamSpec *pspec)

@@ -243,8 +243,9 @@ preview_callback_button_press (GtkWidget      *widget,
   return FALSE;
 }
 
-/*! \brief Updates the preview widget.
- *  \par Function Description
+/*!
+ * \brief Updates the preview widget.
+ * \par Function Description
  *  This function updates the preview: if the preview is active and a
  *  filename has been given, it opens the file and displays the contents.
  *  Otherwise the display will be a blank page.
@@ -457,14 +458,15 @@ preview_get_property (GObject     *object,
 
 }
 
-/*! \brief Dispose of the preview widget.
- *  \par Function Description
+/*!
+ * \brief Dispose of the preview widget.
+ * \par Function Description
  *  This function removes the change notify handlers for the
  *  page \a Object used for the preview widget so that when the
  *  Page is deleted in the finalizer, the callback does not get
  *  called to repaint a not nonextant window.
  *
- *  \param [in] self The preview widget.
+ * \param [in] self The preview widget.
  */
 static void
 preview_dispose  (GObject *self)
@@ -512,14 +514,14 @@ preview_finalize (GObject *self)
   G_OBJECT_CLASS (preview_parent_class)->dispose (self);
 }
 
-/*! \brief Type class initializer for GschemPreview
- *
- *  \par Function Description
+/*!
+ * \brief Type class initializer for GschemPreview
+ * \par Function Description
  *  Type class initializer GschemPreview. We override parents virtual
- *   class methods as needed and register GObject signals.
+ *  class methods as needed and register GObject signals.
  *
- *  \param [in]  g_class     The GschemPreviewClass we are initialising
- *  \param [in]  class_data  GschemPreview structure associated with the class
+ * \param [in]  g_class     The GschemPreviewClass we are initialising
+ * \param [in]  class_data  GschemPreview structure associated with the class
  */
 static void preview_class_init (void *g_class, void *class_data)
 {
@@ -566,14 +568,14 @@ static void preview_class_init (void *g_class, void *class_data)
                           G_PARAM_WRITABLE));
 }
 
-/*! \brief Type instance initializer for GschemPreview Widget
- *
- *  \par Function Description
+/*!
+ * \brief Type instance initializer for GschemPreview Widget
+ * \par Function Description
  *  Type instance initializer for GschemPreview, initializes a new empty
  *  GschemPreview object by setting pointers to NULL and numbers to zero.
  *
- *  \param [in] instance The Preview structure being initialized,
- *  \param [in] class    The Preview class we are initializing.
+ * \param [in] instance The Preview structure being initialized,
+ * \param [in] class    The Preview class we are initializing.
  */
 static void preview_instance_init(GTypeInstance *instance, void *class)
 {
@@ -641,13 +643,14 @@ static void preview_instance_init(GTypeInstance *instance, void *class)
   }
 }
 
-/*! \brief Function to retrieve PreviewClass's Type identifier.
- *  \par Function Description
+/*!
+ * \brief Function to retrieve PreviewClass's Type identifier.
+ * \par Function Description
  *  Function to retrieve PreviewClass's Type identifier. On the first call,
  *  this registers the pagesel in the GedaTypesystem.  Subsequently
  *  the functions returns the saved value from its first execution.
  *
- *  \returns the Type identifier associated with PreviewClass.
+ * \returns the Type identifier associated with PreviewClass.
  */
 GedaType
 gschem_preview_get_type (void)

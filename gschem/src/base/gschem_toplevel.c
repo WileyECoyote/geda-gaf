@@ -46,13 +46,13 @@
 
 static GObjectClass *gschem_toplevel_parent_class = NULL;
 
-/*! \brief Type instance initializer for GschemToplevel
- *
- *  \par Function Description
+/*!
+ * \brief Type instance initializer for GschemToplevel
+ * \par Function Description
  *  Type instance initializer for GschemToplevel.
  *
- *  \param [in]  instance  The GschemToplevel being initialized.
- *  \param [in]  class     The class of the type the instance is created for.
+ * \param [in]  instance  The GschemToplevel being initialized.
+ * \param [in]  class     The class of the type the instance is created for.
  */
 static void gschem_toplevel_instance_init( GTypeInstance *instance, void *class)
 {
@@ -298,13 +298,13 @@ static void gschem_toplevel_instance_init( GTypeInstance *instance, void *class)
   w_current->smob                      = SCM_UNDEFINED;
 }
 
-/*! \brief GObject finalise handler for GschemToplevel
- *
- *  \par Function Description
+/*!
+ * \brief GObject finalise handler for GschemToplevel
+ * \par Function Description
  *  release the memory allocated to the given GschemToplevel data
  *  structure and then chain up to the parent's finalize handler.
  *
- *  \param [in] object  The GschemToplevel object being finalized.
+ * \param [in] object  The GschemToplevel object being finalized.
  */
 static void gschem_toplevel_finalize( GObject *object )
 {
@@ -368,14 +368,14 @@ static void gschem_toplevel_finalize( GObject *object )
   G_OBJECT_CLASS( gschem_toplevel_parent_class )->finalize( object );
 }
 
-/*! \brief Type class initializer for GschemToplevel
- *
- *  \par Function Description
+/*!
+ * \brief Type class initializer for GschemToplevel
+ * \par Function Description
  *  Type class initializer for GschemToplevel. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- *  \param [in]  g_class       The GschemToplevel being initialized
- *  \param [in]  g_class_data  (unused)
+ * \param [in]  g_class       The GschemToplevel being initialized
+ * \param [in]  g_class_data  (unused)
  */
 static void gschem_toplevel_class_init( void *g_class, void *g_class_data )
 {
@@ -387,14 +387,14 @@ static void gschem_toplevel_class_init( void *g_class, void *g_class_data )
 
 }
 
-/*! \brief Function to retrieve GschemToplevel's Type identifier.
- *
- *  \par Function Description
+/*!
+ * \brief Function to retrieve GschemToplevel's Type identifier.
+ * \par Function Description
  *  Function to retrieve GschemToplevel's Type identifier. On first call,
  *  this registers the GattribDialog in the GedaType system. Subsequently
  *  the function returns the saved value from its first execution.
  *
- *  \return GedaType identifier associated with GschemToplevel.
+ * \return GedaType identifier associated with GschemToplevel.
  */
 GedaType gschem_toplevel_get_type(void)
 {
@@ -417,12 +417,12 @@ GedaType gschem_toplevel_get_type(void)
   return type;
 }
 
-/*! \brief Returns a pointer to a new GschemToplevel object.
- *
- *  \par Function Description
+/*!
+ * \brief Returns a pointer to a new GschemToplevel object.
+ * \par Function Description
  *  Returns a pointer to a new GschemToplevel object.
  *
- *  \return pointer to the new GschemToplevel object.
+ * \return pointer to the new GschemToplevel object.
  */
 GschemToplevel *gschem_toplevel_new( void ) {
   return g_object_new( GSCHEM_TYPE_TOPLEVEL, NULL );
@@ -447,11 +447,12 @@ void gschem_toplevel_free_primary (GschemToplevel *w_current)
   }
 }
 
-/*! \brief Get the Current Page from toplevel
+/*!
+ * \brief Get the Current Page from toplevel
+ * \par Function Description
+ * \param [in] w_current This gschem toplevel
  *
- *  \param [in] w_current This gschem toplevel
- *
- *  \return The libgeda toplevel
+ * \return The libgeda toplevel
  */
 Page*
 gschem_toplevel_get_current_page (GschemToplevel *w_current)
@@ -462,11 +463,13 @@ gschem_toplevel_get_current_page (GschemToplevel *w_current)
   return geda_toplevel_get_current_page(w_current->toplevel);
 }
 
-/*! \brief Get the libgeda toplevel for this gschem toplevel
+/*!
+ * \brief Get the libgeda toplevel for this gschem toplevel
+ * \par Function Description
  *
- *  \param [in] w_current This gschem toplevel
+ * \param [in] w_current This gschem toplevel
  *
- *  \return The libgeda toplevel
+ * \return The libgeda toplevel
  */
 GedaToplevel*
 gschem_toplevel_get_geda_toplevel (GschemToplevel *w_current)
@@ -478,12 +481,13 @@ gschem_toplevel_get_geda_toplevel (GschemToplevel *w_current)
 
 /*!
  * \brief Get the last_image_path in the GschemToplevel
+ * \par Function Description
  *  Returns the last_image_path in \a w_current, which could be NULL.
  *  Silently returns NULL if w_current is not a GschemToplevel
  *
- *  \param [in] w_current This GschemToplevel
+ * \param [in] w_current This GschemToplevel
  *
- *  \returns last_image_path if \a w_current is a GschemToplevel
+ * \returns last_image_path if \a w_current is a GschemToplevel
  */
 char*
 gschem_toplevel_get_last_image_path (GschemToplevel *w_current)
@@ -500,8 +504,8 @@ gschem_toplevel_get_last_image_path (GschemToplevel *w_current)
  *  Calls geda_toplevel_move_page_down to move \a page down in the
  *  list of pages after validating \a w_current.
  *
- *  \param [in] w_current This GschemToplevel
- *  \param [in] page      The page that is to be moved.
+ * \param [in] w_current This GschemToplevel
+ * \param [in] page      The page that is to be moved.
  */
 bool
 gschem_toplevel_move_page_down (GschemToplevel *w_current, Page *page)
@@ -526,8 +530,8 @@ gschem_toplevel_move_page_down (GschemToplevel *w_current, Page *page)
  *  Calls geda_toplevel_move_page_up to move \a page up in the list
  *  of pages after validating \a w_current.
  *
- *  \param [in] w_current This GschemToplevel
- *  \param [in] page      The page that is to be moved.
+ * \param [in] w_current This GschemToplevel
+ * \param [in] page      The page that is to be moved.
  */
 bool
 gschem_toplevel_move_page_up (GschemToplevel *w_current, Page *page)
@@ -551,8 +555,8 @@ gschem_toplevel_move_page_up (GschemToplevel *w_current, Page *page)
  * \par Function Description
  *  Sets \a page to be the current page and updates history.
  *
- *  \param [in] w_current This GschemToplevel
- *  \param [in] page      The page that is to be the current page.
+ * \param [in] w_current This GschemToplevel
+ * \param [in] page      The page that is to be the current page.
  */
 bool
 gschem_toplevel_set_current_page (GschemToplevel *w_current, Page *page)
@@ -586,8 +590,8 @@ gschem_toplevel_set_current_page (GschemToplevel *w_current, Page *page)
  *  error if either argument is NULL. This allows callers to not check the
  *  inputs, only the returned path, which callers would already need to do.
  *
- *  \param [in] w_current This GschemToplevel
- *  \param [in] path      New string for last_image_path.
+ * \param [in] w_current This GschemToplevel
+ * \param [in] path      New string for last_image_path.
  */
 void
 gschem_toplevel_set_last_image_path (GschemToplevel *w_current, char *path)

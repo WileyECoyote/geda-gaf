@@ -164,9 +164,9 @@ static void status_options_popup_clicked (GedaMenuItem *menuitem, void *user_dat
 
 /* -------------- Popup Menu for Mouse Middle Button Options  -------------- */
 
-/*! \brief GschemStatusBar Show Coordinate Display Options Popup
- *
- *  \par Function Description
+/*!
+ * \brief GschemStatusBar Show Coordinate Display Options Popup
+ * \par Function Description
  *  This functions creates and displays a small pop-up menu on
  *  the coordinates display widget when the right mouse button
  *  is released on the widget.
@@ -204,13 +204,14 @@ static void coord_display_options_popup (GtkWidget      *event_box,
                   gdk_event_get_time ((GdkEvent*)event));
 }
 
-/*! \brief coordinate Display Indicator Button Released callback
- *  \par Function Description
+/*!
+ * \brief coordinate Display Indicator Button Released callback
+ * \par Function Description
  *  Called when a mouse button is release with the cursor over
  *  the coordinate display indicator. If the 3rd button was
  *  released, a small popup menu is displayed.
  *
- *  \sa middle_button_options_popup
+ * \sa middle_button_options_popup
  */
 static bool coord_display_released (GtkWidget      *label,
                                     GdkEventButton *event,
@@ -233,9 +234,9 @@ static bool coord_display_released (GtkWidget      *label,
 
 /* -------------- Popup Menu for Mouse Middle Button Options  -------------- */
 
-/*! \brief GschemStatusBar Show Middle Mouse Options Popup
- *
- *  \par Function Description
+/*!
+ * \brief GschemStatusBar Show Middle Mouse Options Popup
+ * \par Function Description
  *  This functions creates and displays a small pop-up menu on
  *  the middle-button status widget when the right mouse button
  *  is released on the widget.
@@ -273,13 +274,14 @@ static void middle_button_options_popup (GtkWidget      *event_box,
                   gdk_event_get_time ((GdkEvent*)event));
 }
 
-/*! \brief Middle Button Status Indicator Button Released callback
- *  \par Function Description
+/*!
+ * \brief Middle Button Status Indicator Button Released callback
+ * \par Function Description
  *  Called when a mouse button is release with the cursor over
  *  the middle button status indicator. If the 3rd button was
  *  released, a small popup menu is displayed.
  *
- *  \sa middle_button_options_popup
+ * \sa middle_button_options_popup
  */
 static bool middle_button_released (GtkWidget      *label,
                                     GdkEventButton *event,
@@ -302,9 +304,9 @@ static bool middle_button_released (GtkWidget      *label,
 
 /* --------------- Popup Menu for Mouse Third Button Options  -------------- */
 
-/*! \brief GschemStatusBar Show Third Mouse Options Popup
- *
- *  \par Function Description
+/*!
+ * \brief GschemStatusBar Show Third Mouse Options Popup
+ * \par Function Description
  *  This functions creates and displays a small pop-up menu on
  *  the third-button status widget when the right mouse button
  *  is released on the widget.
@@ -342,13 +344,14 @@ static void third_button_options_popup (GtkWidget      *event_box,
                   gdk_event_get_time ((GdkEvent*)event));
 }
 
-/*! \brief Third Button Status Indicator Button Released callback
- *  \par Function Description
+/*!
+ * \brief Third Button Status Indicator Button Released callback
+ * \par Function Description
  *  Called when a mouse button is release with the cursor over
  *  the third button status indicator. If the 3rd button was
  *  released, a small popup menu is displayed.
  *
- *  \sa middle_button_options_popup
+ * \sa middle_button_options_popup
  */
 static bool third_button_released (GtkWidget      *label,
                                     GdkEventButton *event,
@@ -386,7 +389,9 @@ static void gschem_status_bar_style_set (GtkWidget *widget, GtkStyle *previous)
   gschem_status_bar_set_height (widget, height);
 }
 
-/*! \brief Finalize object
+/*!
+ * \brief Finalize object
+ * \par Function Description
  */
 static void finalize (GObject *object)
 {
@@ -399,12 +404,13 @@ static void finalize (GObject *object)
   gschem_status_bar_parent_class->finalize (object);
 }
 
-/*! \brief Get a property
- *
- *  \param [in]     object
- *  \param [in]     param_id
- *  \param [in,out] value
- *  \param [in]     pspec
+/*!
+ * \brief Get a property
+ * \par Function Description
+ * \param [in]     object
+ * \param [in]     param_id
+ * \param [in,out] value
+ * \param [in]     pspec
  */
 static void
 get_property (GObject *object, unsigned int param_id, GValue *value, GParamSpec *pspec)
@@ -462,10 +468,11 @@ get_property (GObject *object, unsigned int param_id, GValue *value, GParamSpec 
   }
 }
 
-/*! \brief Initialize GschemStatusBar class
- *
- *  \param [in]  class       The GschemStatusBarClass to be initialized
- *  \param [in]  class_data  (unused)
+/*!
+ * \brief Initialize GschemStatusBar class
+ * \par Function Description
+ * \param [in]  class       The GschemStatusBarClass to be initialized
+ * \param [in]  class_data  (unused)
  */
 static void
 gschem_status_bar_class_init (void *class, void *class_data)
@@ -657,11 +664,12 @@ gschem_status_bar_class_init (void *class, void *class_data)
 }
 
 
-/*! \brief Get the Status Bar grid mode
+/*!
+ * \brief Get the Status Bar grid mode
+ * \par Function Description
+ * \param [in] widget This GschemStatusBar
  *
- *  \param [in] widget This GschemStatusBar
- *
- *  \return The grid mode
+ * \return The grid mode
  */
 int
 gschem_status_bar_get_grid_mode (GtkWidget *widget)
@@ -688,10 +696,13 @@ gschem_status_bar_get_grid_mode (GtkWidget *widget)
 }
 
 
-/*! \brief Get the Status Bar grid size
+/*!
+ * \brief Get the Status Bar grid size
+ * \par Function Description
  *
- *  \param [in] widget This GschemStatusBar
- *  \return The grid size
+ * \param [in] widget This GschemStatusBar
+ *
+ * \return The grid size
  */
 int
 gschem_status_bar_get_grid_size (GtkWidget *widget)
@@ -717,11 +728,12 @@ gschem_status_bar_get_grid_size (GtkWidget *widget)
 #endif
 }
 
-/*! \brief Get the Height of the Status Bar
+/*!
+ * \brief Get the Height of the Status Bar
+ * \par Function Description
+ * \param [in] widget This GschemStatusBar
  *
- *  \param [in] widget This GschemStatusBar
- *
- *  \return The height
+ * \return The height
  */
 int
 gschem_status_bar_get_height (GtkWidget *widget)
@@ -747,11 +759,12 @@ gschem_status_bar_get_height (GtkWidget *widget)
   return ypad;
 }
 
-/*! \brief Get the Status Bar left button text
+/*!
+ * \brief Get the Status Bar left button text
+ * \par Function Description
+ * \param [in] widget This GschemStatusBar
  *
- *  \param [in] widget This GschemStatusBar
- *
- *  \return The left button text
+ * \return The left button text
  */
 const char*
 gschem_status_bar_get_left_button_text (GtkWidget *widget)
@@ -782,11 +795,12 @@ gschem_status_bar_get_left_button_text (GtkWidget *widget)
 #endif
 }
 
-/*! \brief Get the Status Bar middle button text
+/*!
+ * \brief Get the Status Bar middle button text
+ * \par Function Description
+ * \param [in] widget This GschemStatusBar
  *
- *  \param [in] widget This GschemStatusBar
- *
- *  \return The middle button text
+ * \return The middle button text
  */
 const char*
 gschem_status_bar_get_middle_button_text (GtkWidget *widget)
@@ -818,15 +832,17 @@ gschem_status_bar_get_middle_button_text (GtkWidget *widget)
 }
 
 
-/*! \brief Get the Status Bar right button text
+/*!
+ * \brief Get the Status Bar right button text
+ * \par Function Description
+ * \param [in] widget This GschemStatusBar
  *
- *  \param [in] widget This GschemStatusBar
- *
- *  \return The right button text
+ * \return The right button text
  */
 const char*
 gschem_status_bar_get_right_button_text( GtkWidget *widget)
 {
+
 #if defined (G_DISABLE_ASSERT)
   return geda_label_get_text ((GedaLabel*)gsb->right_label);
 #else
@@ -853,17 +869,17 @@ gschem_status_bar_get_right_button_text( GtkWidget *widget)
 #endif
 }
 
-/*! \brief Get the Status Bar Coordinates Mode
+/*!
+ * \brief Get the Status Bar Coordinates Mode
+ * \par Function Description
+ *  This function returns the coordinates display mode used by
+ *  the #GschemStatusBar. If \a widget is not GschemStatusBar,
+ *  aka w_current->status_bar is NULL the function returns 0
+ *  without squealing.
  *
- *  \par Function Description
- *   This function returns the coordinates display mode used by
- *   the #GschemStatusBar. If \a widget is not GschemStatusBar,
- *   aka w_current->status_bar is NULL the function returns 0
- *   without squealing.
+ * \param [in] widget This GschemStatusBar
  *
- *  \param [in] widget This GschemStatusBar
- *
- *  \return The snap mode
+ * \return The snap mode
  */
 int
 gschem_status_bar_get_coord_mode (GtkWidget *widget)
@@ -874,11 +890,12 @@ gschem_status_bar_get_coord_mode (GtkWidget *widget)
   return 0;
 }
 
-/*! \brief Get the Status Bar  snap mode
+/*!
+ * \brief Get the Status Bar  snap mode
+ * \par Function Description
+ * \param [in] widget This GschemStatusBar
  *
- *  \param [in] widget This GschemStatusBar
- *
- *  \return The snap mode
+ * \return The snap mode
  */
 int
 gschem_status_bar_get_snap_mode (GtkWidget *widget)
@@ -905,11 +922,12 @@ gschem_status_bar_get_snap_mode (GtkWidget *widget)
 }
 
 
-/*! \brief Get the Status Bar snap size
+/*!
+ * \brief Get the Status Bar snap size
+ * \par Function Description
+ * \param [in] widget This GschemStatusBar
  *
- *  \param [in] widget This GschemStatusBar
- *
- *  \return The snap size
+ * \return The snap size
  */
 int
 gschem_status_bar_get_snap_size (GtkWidget *widget)
@@ -935,11 +953,12 @@ gschem_status_bar_get_snap_size (GtkWidget *widget)
 #endif
 }
 
-/*! \brief Get the Status Bar status text
+/*!
+ * \brief Get the Status Bar status text
+ * \par Function Description
+ * \param [in] widget This GschemStatusBar
  *
- *  \param [in] widget This GschemStatusBar
- *
- *  \return The status text
+ * \return The status text
  */
 const char*
 gschem_status_bar_get_status_text (GtkWidget *widget)
@@ -971,7 +990,9 @@ gschem_status_bar_get_status_text (GtkWidget *widget)
 }
 
 
-/*! \brief Get/register GschemStatusBar type.
+/*!
+ * \brief Get/register GschemStatusBar type.
+ * \par Function Description
  */
 GedaType
 gschem_status_bar_get_type (void)
@@ -1002,9 +1023,9 @@ gschem_status_bar_get_type (void)
  */
 #define TheTarget(target) (unsigned long int*)(dest + offsetof(GschemStatusBar, target))
 
-/*! \brief Gschem Status Bar Setup Buffers
- *
- *  \par Function Description
+/*!
+ * \brief Gschem Status Bar Setup Buffers
+ * \par Function Description
  *  This function dynamically allocates memory for a structure similar to
  *  private structures used by GtkWidgets, except that we don't use the
  *  g_type_class_add_private() function. Currently, the structure contains
@@ -1017,7 +1038,7 @@ gschem_status_bar_get_type (void)
  *  dynamicaly allocated ram, we must initially write to the read only ram
  *  that the pointers are pointing to, this function does that.
  *
- *  \param [in] widget This GschemStatusBar
+ * \param [in] widget This GschemStatusBar
  */
 static GschemStatusBarBuffers*
 gschem_status_bar_setup_buffers (GschemStatusBar *widget)
@@ -1050,10 +1071,11 @@ gschem_status_bar_setup_buffers (GschemStatusBar *widget)
 }
 #undef TheTarget
 
-/*! \brief Initialize GschemStatusBar instance
- *
- *  \param [in,out] instance The GschemStatusBar being initialized.
- *  \param [in]     g_class  The class of the type the instance is created for.
+/*!
+ * \brief Initialize GschemStatusBar instance
+ * \par Function Description
+ * \param [in,out] instance The GschemStatusBar being initialized.
+ * \param [in]     g_class  The class of the type the instance is created for.
  */
 static void
 gschem_status_bar_instance_init (GTypeInstance *instance, void *g_class)
@@ -1194,16 +1216,16 @@ gschem_status_bar_instance_init (GTypeInstance *instance, void *g_class)
                     widget);
 }
 
-/*! \brief Set the mode used to display coordinates on the status bar
- *
- *  \par Function Description
+/*!
+ * \brief Set the mode used to display coordinates on the status bar
+ * \par Function Description
  *  This routine sets the coordinate display mode on the status bar,
  *  and, if the value is not a "solo" format, save the value to the
  *  key file. The "solo" formats are not saved because it is assumed
  *  users would not want to retain this state between sessions.
  *
- *  \param [in] widget This GschemStatusBar
- *  \param [in] mode   The coordinate mode
+ * \param [in] widget This GschemStatusBar
+ * \param [in] mode   The coordinate mode
  */
 void
 gschem_status_bar_set_coord_mode (GtkWidget *widget, int mode)
@@ -1234,10 +1256,11 @@ gschem_status_bar_set_coord_mode (GtkWidget *widget, int mode)
   }
 }
 
-/*! \brief Set the grid mode displayed on the status bar
- *
- *  \param [in] widget This GschemStatusBar
- *  \param [in] mode   The grid mode
+/*!
+ * \brief Set the grid mode displayed on the status bar
+ * \par Function Description
+ * \param [in] widget This GschemStatusBar
+ * \param [in] mode   The grid mode
  */
 void
 gschem_status_bar_set_grid_mode (GtkWidget *widget, int mode)
@@ -1260,10 +1283,11 @@ gschem_status_bar_set_grid_mode (GtkWidget *widget, int mode)
 #endif
 }
 
-/*! \brief Set the grid size displayed on the status bar
- *
- *  \param [in] widget This GschemStatusBar
- *  \param [in] size   The grid size
+/*!
+ * \brief Set the grid size displayed on the status bar
+ * \par Function Description
+ * \param [in] widget This GschemStatusBar
+ * \param [in] size   The grid size
  */
 void
 gschem_status_bar_set_grid_size (GtkWidget *widget, int size)
@@ -1285,10 +1309,11 @@ gschem_status_bar_set_grid_size (GtkWidget *widget, int size)
 #endif
 }
 
-/*! \brief Set the Height of the Status Bar
- *
- *  \param [in] widget This GschemStatusBar
- *  \param [in] height The new height
+/*!
+ * \brief Set the Height of the Status Bar
+ * \par Function Description
+ * \param [in] widget This GschemStatusBar
+ * \param [in] height The new height
  */
 void
 gschem_status_bar_set_height (GtkWidget *widget, int height)
@@ -1325,10 +1350,11 @@ gschem_status_bar_set_height (GtkWidget *widget, int height)
 #endif
 }
 
-/*! \brief Set the left button text displayed on the status bar
- *
- *  \param [in] widget This GschemStatusBar
- *  \param [in] text   The text
+/*!
+ * \brief Set the left button text displayed on the status bar
+ * \par Function Description
+ * \param [in] widget This GschemStatusBar
+ * \param [in] text   The text
  */
 void
 gschem_status_bar_set_left_button_text (GtkWidget *widget, const char *text)
@@ -1358,10 +1384,11 @@ gschem_status_bar_set_left_button_text (GtkWidget *widget, const char *text)
 }
 
 
-/*! \brief Set the middle button text displayed on the status bar
- *
- *  \param [in] widget This GschemStatusBar
- *  \param [in] text   The text
+/*!
+ * \brief Set the middle button text displayed on the status bar
+ * \par Function Description
+ * \param [in] widget This GschemStatusBar
+ * \param [in] text   The text
  */
 void
 gschem_status_bar_set_middle_button_text (GtkWidget *widget, const char *text)
@@ -1390,10 +1417,11 @@ gschem_status_bar_set_middle_button_text (GtkWidget *widget, const char *text)
 }
 
 
-/*! \brief Set the right button text displayed on the status bar
- *
- *  \param [in] widget This GschemStatusBar
- *  \param [in] text   The text
+/*!
+ * \brief Set the right button text displayed on the status bar
+ * \par Function Description
+ * \param [in] widget This GschemStatusBar
+ * \param [in] text   The text
  */
 void
 gschem_status_bar_set_right_button_text (GtkWidget *widget, const char *text)
@@ -1421,10 +1449,11 @@ gschem_status_bar_set_right_button_text (GtkWidget *widget, const char *text)
 #endif
 }
 
-/*! \brief Set the snap mode displayed on the status bar
- *
- *  \param [in] widget This GschemStatusBar
- *  \param [in] mode   The snap mode
+/*!
+ * \brief Set the snap mode displayed on the status bar
+ * \par Function Description
+ * \param [in] widget This GschemStatusBar
+ * \param [in] mode   The snap mode
  */
 void
 gschem_status_bar_set_snap_mode (GtkWidget *widget, int mode)
@@ -1446,10 +1475,11 @@ gschem_status_bar_set_snap_mode (GtkWidget *widget, int mode)
 #endif
 }
 
-/*! \brief Set the snap size displayed on the status bar
- *
- *  \param [in] widget This GschemStatusBar
- *  \param [in] size   The snap size
+/*!
+ * \brief Set the snap size displayed on the status bar
+ * \par Function Description
+ * \param [in] widget This GschemStatusBar
+ * \param [in] size   The snap size
  */
 void
 gschem_status_bar_set_snap_size (GtkWidget *widget, int size)
@@ -1471,27 +1501,27 @@ gschem_status_bar_set_snap_size (GtkWidget *widget, int size)
 #endif
 }
 
-/*! \brief Set the Coordinate text displayed on the status bar
+/*!
+ * \brief Set the Coordinate text displayed on the status bar
+ * \par Function Description
+ *  This routine sets the coordinate string displayed on the status bar.
+ *  The x0 and y0 arguments are only used in vector mode, otherwise both
+ *  are ignored. In vector mode, if the x0 argument is equal to negative
+ *  zero, yes -0, the format specified prior to changing to vector mode
+ *  is used. In our scheme, vector mode is bit 1 of mode, the other bits
+ *  are used for the "other" formats. For the other formats we calculate
+ *  the index to the format string by counting bit shifts after clearing
+ *  bit 1, which may be set but gschem is not inside an action.
  *
- *  \par Function Description
- *   This routine sets the coordinate string displayed on the status bar.
- *   The x0 and y0 arguments are only used in vector mode, otherwise both
- *   are ignored. In vector mode, if the x0 argument is equal to negative
- *   zero, yes -0, the format specified prior to changing to vector mode
- *   is used. In our scheme, vector mode is bit 1 of mode, the other bits
- *   are used for the "other" formats. For the other formats we calculate
- *   the index to the format string by counting bit shifts after clearing
- *   bit 1, which may be set but gschem is not inside an action.
+ * \param [in] widget  This GschemStatusBar
+ * \param [in] x0      First abscissa or -0 in not inside an action
+ * \param [in] y0      First ordinate, used if in vectored mode and x0
+ * \param [in] x1      Second abscissa, is X value of the cursor position
+ * \param [in] y1      Second ordinate, is Y value of the cursor position
  *
- *  \param [in] widget  This GschemStatusBar
- *  \param [in] x0      First abscissa or -0 in not inside an action
- *  \param [in] y0      First ordinate, used if in vectored mode and x0
- *  \param [in] x1      Second abscissa, is X value of the cursor position
- *  \param [in] y1      Second ordinate, is Y value of the cursor position
+ * \note All coordinates must be world (since this module has no w_current).
  *
- *  \note All coordinates must be world (since this module has no w_current).
- *
- *  \sa gschem_status_bar_get_coord_mode gschem_status_bar_set_coord_mode
+ * \sa gschem_status_bar_get_coord_mode gschem_status_bar_set_coord_mode
  */
 void
 gschem_status_bar_set_coordinates (GtkWidget *widget, int x0, int y0, int x1, int y1)
@@ -1614,10 +1644,11 @@ gschem_status_bar_set_coordinates (GtkWidget *widget, int x0, int y0, int x1, in
   GEDA_FREE(text);
 }
 
-/*! \brief Set the status text displayed on the status bar
- *
- *  \param [in] widget This GschemStatusBar
- *  \param [in] text   The status text
+/*!
+ * \brief Set the status text displayed on the status bar
+ * \par Function Description
+ * \param [in] widget This GschemStatusBar
+ * \param [in] text   The status text
  */
 void
 gschem_status_bar_set_status_text (GtkWidget *widget, const char *text)
@@ -1645,11 +1676,11 @@ gschem_status_bar_set_status_text (GtkWidget *widget, const char *text)
 #endif
 }
 
-/*! \brief Set the status text color
- *
+/*!
+ * \brief Set the status text color
  * \par Function Description
- * Changes the status text color to show if the current editing
- * action is active or not.
+ *  Changes the status text color to show if the current editing
+ *  action is active or not.
  *
  * \param [in] widget This GschemStatusBar
  * \param [in] index  The state to visualise
@@ -1684,7 +1715,9 @@ gschem_status_bar_set_status_text_color (GtkWidget *widget, int index)
 #endif
 }
 
-/*! \brief Set a gobject property
+/*!
+ * \brief Set a gobject property
+ * \par Function Description
  */
 static void
 set_property (GObject *object, unsigned int param_id, const GValue *value, GParamSpec *pspec)
@@ -1742,15 +1775,15 @@ set_property (GObject *object, unsigned int param_id, const GValue *value, GPara
   }
 }
 
-/*! \brief Write the grid settings to the gschem "status bar."
- *
- *  \par Function Description
+/*!
+ * \brief Write the grid settings to the gschem "status bar."
+ * \par Function Description
  *  This function creates the string for the Grid/Snap label on
  *  the status bar utilizing the classes internal scratch ram,
  *  widget->grid_label_text and local char array for integers.
  *  The assemulated string is uploaded to the grid label widget.
  *
- *  \param [in] widget This GschemStatusBar
+ * \param [in] widget This GschemStatusBar
  */
 static void
 update_grid_label (GschemStatusBar *widget)
