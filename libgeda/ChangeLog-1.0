@@ -1,3 +1,8 @@
+2016-10-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/math/m_angle.c: Add new module from master branch with some of
+      the "g" removed.
+
 2016-10-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_file.c: Rename functions with geda_file prefix.

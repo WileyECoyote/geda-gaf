@@ -104,13 +104,19 @@ extern "C" {
          void    geda_math_bounds_init                   (BOUNDS *bounds);
          void    geda_math_bounds_of_points              (BOUNDS *bounds, POINT points[], int count);
 
+/* m_angle.c */
+         bool    geda_math_angle_is_normal               (int angle);
+         bool    geda_math_angle_is_ortho                (int angle);
+          int    geda_math_angle_make_ortho              (int angle);
+          int    geda_math_angle_normalize               (int angle);
+
 /* m_arc.c */
        double    geda_math_arc_length                    (int radius, int sweep);
-       bool      geda_math_arc_includes_point            (GedaArc *arc, POINT *point);
+         bool    geda_math_arc_includes_point            (GedaArc *arc, POINT *point);
 
 /* m_circle.c */
        double    geda_math_circle_circumference          (int radius);
-       bool      geda_math_circle_includes_point         (GedaCircle *circle, POINT *point);
+         bool    geda_math_circle_includes_point         (GedaCircle *circle, POINT *point);
        double    geda_math_circle_shortest_distance      (GedaCircle *circle, int x, int y, int solid);
 
 /* m_hatch.c */
