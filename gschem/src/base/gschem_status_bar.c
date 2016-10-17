@@ -1503,8 +1503,8 @@ gschem_status_bar_set_coordinates (GtkWidget *widget, int x0, int y0, int x1, in
     const char *text;
   } coordinate_formats[] = {
     {_(COORD_DISPLAY_OFF)},
-    {"%d<%d"},                /* COORD_FORMAT_V180 */
-    {"%d<<%d"},               /* COORD_FORMAT_V360 */
+    {"%d<%.1f"},              /* COORD_FORMAT_V180 */
+    {"%d<<%.1f"},             /* COORD_FORMAT_V360 */
     {"X=%d, Y=%d"},           /* COORD_FORMAT_XY */
     {"(%d, %d)"},             /* COORD_FORMAT_COORD */
     {"%d, %d"},               /* COORD_FORMAT_COMMA */
@@ -1535,7 +1535,7 @@ gschem_status_bar_set_coordinates (GtkWidget *widget, int x0, int y0, int x1, in
          mode & COORD_FORMAT_V360) && x0 != -0) {
 
       double radians;
-      int    degrees;
+      float  degrees;
       int    length;
 
       /* Get the magnitude*/

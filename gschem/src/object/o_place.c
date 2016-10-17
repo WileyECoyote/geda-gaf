@@ -96,11 +96,12 @@ o_place_end (GschemToplevel *w_current, int continue_placing, GList **ret_new_ob
 {
   if (w_current->inside_action) {
 
-    GList        *object_list    = NULL;
-    GList        *connected_list = NULL;
-    GList        *iter;
-    Page         *p_current;
-    int w_diff_x, w_diff_y;
+    GList *object_list;
+    GList *connected_list = NULL;
+    GList *iter;
+    GList *place_list;
+    Page  *p_current;
+    int    w_diff_x, w_diff_y;
 
     /* Turn off flag */
     w_current->rubber_visible = FALSE;
@@ -118,16 +119,17 @@ o_place_end (GschemToplevel *w_current, int continue_placing, GList **ret_new_ob
       }
     }
 
-    p_current = gschem_toplevel_get_current_page (w_current);
+    p_current  = gschem_toplevel_get_current_page (w_current);
+    place_list = geda_page_get_place_list(p_current);
 
     if (continue_placing) {
       /* Make a copy of the place list if we want to keep it afterwards */
-      object_list = geda_copy_list (Current_PlaceList, object_list);
+      object_list = geda_copy_list (place_list, NULL);
     }
     else {
       /* Otherwise just take it */
-      object_list = Current_PlaceList;
-      Current_PlaceList = NULL;
+      object_list = place_list;
+      geda_page_set_place_list(p_current, NULL);
     }
 
     if (ret_new_objects != NULL) {
