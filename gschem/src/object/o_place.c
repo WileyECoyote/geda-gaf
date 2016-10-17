@@ -85,18 +85,17 @@ bool o_place_start (GschemToplevel *w_current, int w_x, int w_y)
   return result;
 }
 
-/*! \brief Finalize objects being Placed
- *
- *  \par Function Description
- *   Handles x_event_button_pressed for ENDCOMP, ENDPASTE ENDTEXT events,
- *   and o_copy_end, o_copy_multiple_end and x_dnd_receive_string_sym.
+/*!
+ * \brief Finalize objects being Placed
+ * \par Function Description
+ *  Handles x_event_button_pressed for ENDCOMP, ENDPASTE ENDTEXT events,
+ *  and o_copy_end, o_copy_multiple_end and x_dnd_receive_string_sym.
  */
 void
 o_place_end (GschemToplevel *w_current, int continue_placing, GList **ret_new_objects, Hooker id)
 {
   if (w_current->inside_action) {
 
-    GedaToplevel *toplevel       = w_current->toplevel;
     GList        *object_list    = NULL;
     GList        *connected_list = NULL;
     GList        *iter;
@@ -119,6 +118,8 @@ o_place_end (GschemToplevel *w_current, int continue_placing, GList **ret_new_ob
       }
     }
 
+    p_current = gschem_toplevel_get_current_page (w_current);
+
     if (continue_placing) {
       /* Make a copy of the place list if we want to keep it afterwards */
       object_list = geda_copy_list (Current_PlaceList, object_list);
@@ -135,8 +136,6 @@ o_place_end (GschemToplevel *w_current, int continue_placing, GList **ret_new_ob
 
     /* Attach each item onto the page's object list. Update object
      * connectivity and add the new objects to the selection list.*/
-    p_current = toplevel->page_current;
-
     for (iter = object_list; iter != NULL; NEXT(iter)) {
 
       GedaObject *o_current = iter->data;              /* Get pointer to object */
