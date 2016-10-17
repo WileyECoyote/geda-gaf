@@ -1,5 +1,11 @@
 2016-10-16 Wiley E. Hill <wileyhill@gmail.com>
 
+    * /connector: Clean symbols: Use round end-cap to improve appearance, moves
+      box and lines before pins, reposition attributes.
+
+            * connector/barrel/pwrjack-1.sym (add description)
+            * connector/barrel/pwrjack-2.sym (revise description)
+
     * lineartech/LT1181-1.sym: Redo symbol, add description, documentation and
       symversion attributes.
 
