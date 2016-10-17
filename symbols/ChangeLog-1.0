@@ -1,5 +1,19 @@
 2016-10-16 Wiley E. Hill <wileyhill@gmail.com>
 
+    * /connector: Clean symbols, add description attributes:
+
+            * connector/DIN/DIN41612C48-1.sym
+            * connector/DIN/DIN41612C48-2.sym
+            * connector/DIN/DIN41612C56-1.sym
+            * connector/DIN/DIN41612C56-2.sym
+            * connector/DIN/DIN41612C96-1.sym
+            * connector/DIN/DIN41612C96-2.sym
+            * connector/DIN/DIN41617C13-1.sym
+            * connector/DIN/DIN41617C15-1.sym
+            * connector/DIN/DIN41617C31-1.sym
+
+2016-10-16 Wiley E. Hill <wileyhill@gmail.com>
+
     * /connector: Clean symbols: Use round end-cap to improve appearance, moves
       box and lines before pins, reposition attributes.
 
