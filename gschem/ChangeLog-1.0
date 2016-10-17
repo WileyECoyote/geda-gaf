@@ -10,7 +10,9 @@
       distance.
 
     * src/object/o_place.c: Utilize to retrieve the current page object in
-      o_place_end.
+      o_place_end and remove GedaToplevel variable, add GList place_list
+      variable and use geda_page_get_place_list and geda_page_set_place_list
+      rather than accessing directly.
 
     * src/x/x_event.c: Utilize __func__ macro in debug output.
 
