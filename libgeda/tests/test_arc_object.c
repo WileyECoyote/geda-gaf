@@ -479,12 +479,23 @@ check_accessors (void)
 
       fail = 0;
 
+#if USE_RANDOM_NUMBERS
+
       int a = geda_random_number (0, 359);
       int c = geda_random_number (0, MAX_COLORS - 1);
       int r = geda_random_number (5, 20000);
       int s = geda_random_number (1, 359);
       int x = geda_random_number (0, 120000);
       int y = geda_random_number (0, 80000);
+
+#else
+      int a = 17;
+      int c = 0;
+      int r = 14761;
+      int s = 33;
+      int x = 87101;
+      int y = 46399;
+#endif
 
       /* Line type options */
       int e = geda_random_number (END_NONE, END_ROUND);
@@ -1558,31 +1569,28 @@ main (int argc, char *argv[])
 #endif
 
   if (setjmp(point) == 0) {
-    subtotal = check_construction();
+    result = check_construction();
   }
   else {
     fprintf(stderr, "Caught signal in constructors in src/object/o_arc_object.c\n\n");
     return 1;
   }
 
-  if (subtotal) {
+  if (result) {
     fprintf(stderr, "Check constructors in src/object/o_arc_object.c\n\n");
-    result   = subtotal;
-    subtotal = 0;
-  }
-
-  if (setjmp(point) == 0) {
-    subtotal = check_accessors();
   }
   else {
-    fprintf(stderr, "Caught signal in accessors in src/object/o_arc_object.c\n\n");
-    return 1;
-  }
 
-  if (subtotal) {
-    fprintf(stderr, "Check accessors in src/object/o_arc_object.c\n\n");
-    result   = result + subtotal;
-    subtotal = 0;
+    if (setjmp(point) == 0) {
+      result = check_accessors();
+    }
+    else {
+      fprintf(stderr, "Caught signal in accessors in src/object/o_arc_object.c\n\n");
+      return 1;
+    }
+    if (result) {
+      fprintf(stderr, "Check accessors in src/object/o_arc_object.c\n\n");
+    }
   }
 
   if (!result) {
