@@ -42,6 +42,12 @@
 #define geda_rotate_point               geda_math_rotate_point
 #define geda_rotate_point_90            geda_math_rotate_point_90
 
+/* m_angle.c */
+#define geda_angle_is_normal            geda_math_angle_is_normal
+#define geda_angle_is_ortho             geda_math_angle_is_ortho
+#define geda_angle_make_ortho           geda_math_angle_make_ortho
+#define geda_angle_normalize            geda_math_angle_normalize
+
 /* m_arc.c */
 #define geda_arc_length                 geda_math_arc_length
 #define geda_arc_includes_point         geda_math_arc_includes_point

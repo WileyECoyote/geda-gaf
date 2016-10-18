@@ -1,3 +1,7 @@
+2016-10-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/libgeda/geda_math.h: Add macros for m_angle module.
+
 2016-10-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/math/m_angle.c: Add new module from master branch with some of

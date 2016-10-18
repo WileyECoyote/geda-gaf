@@ -6,6 +6,7 @@
 
 libgeda_la_SOURCES += \
 			math/m_math.c \
+			math/m_angle.c \
 			math/m_arc.c \
 			math/m_bounds.c \
 			math/m_box.c \
