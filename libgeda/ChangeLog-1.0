@@ -6,6 +6,9 @@
       in check_accessors, revise main to not use subtotal when checking
       construction and accessors.
 
+    * tests/test_line_object.c: Add USE_RANDOM_NUMBERS so that fixed numbers
+      can be used for debugging.
+
 2016-10-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/math/m_angle.c: Add new module from master branch with some of

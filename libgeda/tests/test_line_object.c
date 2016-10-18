@@ -42,6 +42,8 @@
 
 #define TOBJECT "GedaLine"
 
+#define USE_RANDOM_NUMBERS 1
+
 /** \defgroup test-object-geda-line Test GEDA Line object Module
  * @{
  * \brief Group 11 src/object/o_line_object.c geda_line_object_
@@ -594,7 +596,13 @@ check_get_intersection(GedaObject *object0)
   int x = geda_random_number (x1, x2);
   int y = geda_random_number (y1, y2);
 
-  POINT point;
+  double slope;
+  POINT  point;
+
+  /* Reference */
+  if (!geda_line_object_get_slope(object0, &slope)) {
+    slope = 90;
+  }
 
   /* Does not intersect */
   GedaObject *object1 = geda_line_object_new(0, x1, y1 + 10, x2, y2 + 10);
@@ -628,11 +636,13 @@ check_get_intersection(GedaObject *object0)
 
   g_object_unref (object2);
 
-  int dx = lrint((x2 + x1) / 2.0);
-  int dy = lrint((y2 + y1) / 2.0);
+  int x31 = lrint((x2 + x1) / 2.0);
+  int y31 = lrint((y2 + y1) / 2.0);
+  int x32 = 2 * (x31 - slope);
+  int y32 = 2 * (y31 - slope);
 
   /* intersects at midpoint */
-  GedaObject *object3 = geda_line_object_new(0, dx + 100, dy + 100, dx, dy);
+  GedaObject *object3 = geda_line_object_new(0, x31, y31, x32, y32);
 
   if (!geda_line_object_get_intersection(object0, object3, &point)) {
     fprintf(stderr, "FAILED: (O110803F) %s intersection FALSE\n", TOBJECT);
@@ -640,13 +650,14 @@ check_get_intersection(GedaObject *object0)
   }
   else {
 
-    if (point.x != dx) {
-      fprintf(stderr, "FAILED: (O110803X) intersection %d != %d\n", point.x, dx);
+    if (point.x - x31 > 1) {
+      fprintf(stderr, "FAILED: (O110803X) intersection %d != %d\n", point.x, x31);
+       fprintf(stderr, "x31=%d, y31=%d, x32=%d, y32=%d\n", x31, y31, x32, y32);
       result++;
     }
 
-    if (point.y != dy) {
-      fprintf(stderr, "FAILED: (O110803Y) intersection %d != %d\n", point.y, dy);
+    if (point.y - y31 > 1) {
+      fprintf(stderr, "FAILED: (O110803Y) intersection %d != %d\n", point.y, y31);
       result++;
     }
   }
@@ -734,33 +745,67 @@ check_query(void)
 
   for (count = 0; count < 3; count++) {
 
+#if USE_RANDOM_NUMBERS
+
     int c  = geda_random_number ( 0, MAX_COLORS - 1);
     int x1 = geda_random_number ( 0,       119800);
-    int y2 = geda_random_number ( 0,        79800);
+    int y1 = geda_random_number ( 0,        79800);
     int x2 = geda_random_number (x1 + 100, 120000);
-    int y1 = geda_random_number (y2 + 100,  80000);
+    int y2 = geda_random_number (y1 + 100,  80000);
+
+#else
+
+    int c  = 0;
+    int x1 = 80040;
+    int y1 = 34801;
+    int x2 = 85821;
+    int y2 = 42975;
+
+#endif
+
+    int fail = 0;
 
     GedaObject *object = geda_line_object_new(c, x1, y1, x2, y2);
 
-    result += check_get_closest_endpoint(object);
+    fail += check_get_closest_endpoint(object);
 
-    result += check_get_intersection(object);
+    fail += check_get_intersection(object);
 
-    result += check_get_midpoint(object);
+    fail += check_get_midpoint(object);
 
-    result += check_get_nearest_point(object);
+    fail += check_get_nearest_point(object);
 
-    result += check_get_position(object);
+    fail += check_get_position(object);
 
-    result += check_get_slope(object);
+    fail += check_get_slope(object);
 
-    result += check_is_endpoint(object);
+    fail += check_is_endpoint(object);
 
-    result += check_length(object);
+    fail += check_length(object);
 
-    result += check_shortest_distance(object);
+    fail += check_shortest_distance(object);
+
+    if (fail) {
+
+        fprintf(stderr, "Test Function: %s, in loop index %d\n", __func__, count);
+        fprintf(stderr, "failed to determine %d %s quer%s\n", fail, TOBJECT,
+                fail > 1 ? "ies" : "y");
+        fprintf(stderr, "Conditions:\n");
+        fprintf(stderr, "\t      c: %d\n", c);
+        fprintf(stderr, "\t      x1: %d\n", x1);
+        fprintf(stderr, "\t      y1: %d\n", y1);
+        fprintf(stderr, "\t      x2: %d\n", x2);
+        fprintf(stderr, "\t      y2: %d\n", y2);
+
+        result = result + fail;
+    }
 
     g_object_unref (object);
+
+#if !USE_RANDOM_NUMBERS
+    break;
+#endif
+
   }
   return result;
 }
