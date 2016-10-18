@@ -65,6 +65,7 @@ AC_DEFUN([AX_CHECK_GUILE],
       AC_DEFINE([HAVE_SRFI_64], [1],
        [Define to 1 if checks using srfi-64 should be performed.])
     fi
+    AM_CONDITIONAL(HAVE_SRFI_64, test x$enable_srfi64 = xyes)
     AC_MSG_RESULT([$enable_srfi64])
   fi
 
