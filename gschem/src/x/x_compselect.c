@@ -3195,7 +3195,7 @@ compselect_class_init (void *class, void *class_data)
                                     G_SIGNAL_RUN_FIRST,
                                     G_STRUCT_OFFSET (CompselectClass, refresh),
                                     NULL, NULL,
-                                    g_cclosure_marshal_VOID__VOID,
+                                    geda_marshal_VOID__VOID,
                                     G_TYPE_NONE, 0);
 }
 
