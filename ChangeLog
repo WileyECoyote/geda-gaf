@@ -8,6 +8,9 @@
       and still would not be available even if Travis-CI completes the upgrade
       to Ubuntu/Trusty 14.10.
 
+    * configure.ac: Bump libgeda minor version 51.4.1 for completion of new
+      API, still being tested for 52.0 release.
+
 2016-10-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * configure.ac: Bump mutation to 2.1.0.24, 20161017 for working menu
