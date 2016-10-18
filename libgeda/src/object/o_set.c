@@ -25,7 +25,6 @@
  *
  *  This file contains routines used to set the properties of
  *  <b>GedaObjects</b>.
- *
  */
 
 #include <config.h>

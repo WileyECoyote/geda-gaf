@@ -64,13 +64,13 @@ struct _GedaToplevel {
   /* This is the GObject parent and has nothing to do with LibGeda */
   GObject parent;
 
-  GedaTopType head_marker;       /* structure type signature */
+  GedaTopType head_marker;   /* structure type signature */
 
-  int    open_flags;             /* Control flags for the geda_file_open function. Indexed by FOpenFlags */
-  char  *untitled_name;          /* untitled sch basename */
-  int    num_untitled;           /* keep track of untitled pages */
+  int    open_flags;         /* Control flags for the geda_file_open function. Indexed by FOpenFlags */
+  char  *untitled_name;      /* untitled sch basename */
+  int    num_untitled;       /* keep track of untitled pages */
 
-  char  *bitmap_directory;       /* path of the bitmaps */
+  char  *bitmap_directory;   /* path of the bitmaps */
 
   /* page system */
   Page     *page_current;

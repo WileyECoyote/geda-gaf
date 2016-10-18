@@ -54,10 +54,6 @@ extern "C" {
           SCM    g_evaluate_c_string_protected   (const char *str);
          bool    g_evaluate_scheme_file          (const char *filename, GError **err);
 
-/* g_rc_color.c
-          SCM    g_rc_color_map_to_scm           (const COLOR *map);
-         void    g_rc_color_map_from_scm         (COLOR *map, SCM lst, const char *scheme_proc_name);
-*/
 /* g_rc_parse.c */
           SCM    g_rc_parse_mode                 (SCM scmmode, const char *rc_name, int *mode_var, const vstbl_entry *table, int table_size);
          bool    g_rc_parse_file                 (const char *rcfile, EdaConfig *cfg, GError **err);

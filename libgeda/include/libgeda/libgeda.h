@@ -36,10 +36,6 @@
 #define SCM void*
 #endif
 
-#ifndef WITHOUT_GDK_PIX_BUFFER
-# include <gdk-pixbuf/gdk-pixbuf.h>
-#endif
-
 #include <geda/geda.h>
 
 #include "defines.h"
