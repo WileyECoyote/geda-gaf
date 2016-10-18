@@ -54,10 +54,19 @@ AC_DEFUN([AX_CHECK_GUILE],
 
   if test "${_found_pkg_config_guile}" = "no" ; then
     AC_MSG_ERROR([you need at least version ${GUILE_MIN_VER} of guile])
+  else
+    AC_MSG_CHECKING([whether to enable support for srfi-64])
+    AC_ARG_ENABLE([srfi64],
+      [AS_HELP_STRING([--enable-srfi64],
+        [enable tests using srfi-64 [default=no]])],
+      [], [enable_srfi64=no])
 
+    if test "X$enable_srfi64" = "Xyes"; then
+      AC_DEFINE([HAVE_SRFI_64], [1],
+       [Define to 1 if checks using srfi-64 should be performed.])
+    fi
+    AC_MSG_RESULT([$enable_srfi64])
   fi
-
-  AM_CONDITIONAL([HAVE_SRFI_64], test "X${GUILE_PKG_NAME}" = Xguile-2.0)
 
   AC_SUBST([GUILE_PKG_NAME])
 
