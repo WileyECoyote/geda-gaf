@@ -62,10 +62,11 @@ geda_arc_object_copy(GedaObject *o_source)
     GedaObject *new_obj;
 
     new_obj = geda_arc_object_new (o_source->color,
-                         o_source->arc->x, o_source->arc->y,
-                         o_source->arc->radius,
-                         o_source->arc->start_angle,
-                         o_source->arc->arc_sweep);
+                                   o_source->arc->x,
+                                   o_source->arc->y,
+                                   o_source->arc->radius,
+                                   o_source->arc->start_angle,
+                                   o_source->arc->arc_sweep);
 
     geda_set_object_line_options(new_obj, o_source->line_options);
 
