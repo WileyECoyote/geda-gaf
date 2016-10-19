@@ -276,8 +276,8 @@ check_accessors (void)
       /* Line type options */
       int e = geda_random_number (END_NONE, END_ROUND);
       int t = geda_random_number (TYPE_SOLID, TYPE_PHANTOM);
-      int l = geda_random_number (0, 500);
-      int p = geda_random_number (0, 500);
+      int l = geda_random_number (5, 500);
+      int p = geda_random_number (5, 500);
       int w = geda_random_number (0, 500);
 
       geda_set_object_color (object0, c);
@@ -636,13 +636,19 @@ check_get_intersection(GedaObject *object0)
 
   g_object_unref (object2);
 
-  int x31 = lrint((x2 + x1) / 2.0);
-  int y31 = lrint((y2 + y1) / 2.0);
-  int x32 = 2 * (x31 - slope);
-  int y32 = 2 * (y31 - slope);
+  double x31 = (x2 + x1) / 2.0;
+  double y31 = (y2 + y1) / 2.0;
+
+  double m = -1 / slope;
+  double b = y31  - m * x31;
+
+  int ix31 = x31;
+  int iy31 = y31;
+  int ix32 = x31 + 20;
+  int iy32 = (m * ix32) + b;
 
   /* intersects at midpoint */
-  GedaObject *object3 = geda_line_object_new(0, x31, y31, x32, y32);
+  GedaObject *object3 = geda_line_object_new(0, ix31, iy31, ix32, iy32);
 
   if (!geda_line_object_get_intersection(object0, object3, &point)) {
     fprintf(stderr, "FAILED: (O110803F) %s intersection FALSE\n", TOBJECT);
@@ -650,14 +656,15 @@ check_get_intersection(GedaObject *object0)
   }
   else {
 
-    if (point.x - x31 > 1) {
-      fprintf(stderr, "FAILED: (O110803X) intersection %d != %d\n", point.x, x31);
-       fprintf(stderr, "x31=%d, y31=%d, x32=%d, y32=%d\n", x31, y31, x32, y32);
+    if (point.x - ix31 > 1) {
+      fprintf(stderr, "FAILED: (O110803X) intersection %d != %d\n", point.x, ix31);
+       fprintf(stderr, "x31=%d, y31=%d, x32=%d, y32=%d\n", ix31, iy31, ix32, iy32);
       result++;
     }
 
-    if (point.y - y31 > 1) {
-      fprintf(stderr, "FAILED: (O110803Y) intersection %d != %d\n", point.y, y31);
+    if (point.y - iy31 > 1) {
+      fprintf(stderr, "FAILED: (O110803Y) intersection %d != %d\n", point.y, iy31);
+      fprintf(stderr, "x31=%d, y31=%d, x32=%d, y32=%d\n", ix31, iy31, ix32, iy32);
       result++;
     }
   }
@@ -756,10 +763,10 @@ check_query(void)
 #else
 
     int c  = 0;
-    int x1 = 80040;
-    int y1 = 34801;
-    int x2 = 85821;
-    int y2 = 42975;
+    int x1 = 118097;
+    int y1 = 61417;
+    int x2 = 119978;
+    int y2 = 71137;
 
 #endif
 
