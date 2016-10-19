@@ -38,9 +38,9 @@
 extern "C" {
 #endif
 
-typedef struct _GedaCompletion     GedaCompletion;
+typedef struct _GedaCompletion GedaCompletion;
 
-typedef char* (*GedaCompletionFunc)      (void *);
+typedef char* (*GedaCompletionFunc) (void *);
 
 /* GedaCompletion */
 
