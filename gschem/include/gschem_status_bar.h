@@ -137,11 +137,11 @@ int           gschem_status_bar_get_grid_size          (GtkWidget *widget);
 
 int           gschem_status_bar_get_height             (GtkWidget *widget);
 
-const char*   gschem_status_bar_get_left_button_text   (GtkWidget *widget);
+const char   *gschem_status_bar_get_left_button_text   (GtkWidget *widget);
 
-const char*   gschem_status_bar_get_middle_button_text (GtkWidget *widget);
+const char   *gschem_status_bar_get_middle_button_text (GtkWidget *widget);
 
-const char*   gschem_status_bar_get_right_button_text  (GtkWidget *widget);
+const char   *gschem_status_bar_get_right_button_text  (GtkWidget *widget);
 
 int           gschem_status_bar_get_coord_mode         (GtkWidget *widget);
 
@@ -149,7 +149,7 @@ int           gschem_status_bar_get_snap_mode          (GtkWidget *widget);
 
 int           gschem_status_bar_get_snap_size          (GtkWidget *widget);
 
-const char*   gschem_status_bar_get_status_text        (GtkWidget *widget);
+const char   *gschem_status_bar_get_status_text        (GtkWidget *widget);
 
 void          gschem_status_bar_set_coord_mode         (GtkWidget *widget, int mode);
 
