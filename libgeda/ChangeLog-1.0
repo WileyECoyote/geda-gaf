@@ -7,6 +7,8 @@
       5 because geda_arc_object_copy utilizes geda_set_object_line_options,
       which checks that both values are greater than 1.
 
+    * tests/test_object_list.c: Add checks for geda_object_list_mirror.
+
     * tests/: Set all the random line length and spaces to have a minimum
       of 5 units, just in case.
 

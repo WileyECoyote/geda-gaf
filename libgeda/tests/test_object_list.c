@@ -58,7 +58,7 @@
  *      O1201    geda_object_list_copy_all
  *      O1203    geda_object_list_find_attrib_by_name
  *      O1203    geda_object_list_find_floating
- *       O1204   geda_object_list_mirror
+ *      O1204    geda_object_list_mirror
  *       O1205   geda_object_list_rotate
  *       O1206   geda_object_list_scale
  *       O1207   geda_object_list_set_color
@@ -473,6 +473,81 @@ check_list_find_floating (GedaToplevel *toplevel)
   return result;
 }
 
+static const char path_string[] = "M1900,13100,L 8400,16100,z";
+
+int
+check_object_list_mirror (GedaToplevel *toplevel)
+{
+  int result = 0;
+
+  int x1 = 100;
+  int y1 = 100;
+  int x2 = 200;
+  int y2 = 200;
+  int r  = 100;
+
+  GedaObject *object1  = geda_arc_object_new (1, x1, y1, r, 0, 90);
+  GedaObject *object2  = geda_box_object_new(2, x1, y1, x2, y2);
+  GedaObject *object3  = geda_bus_object_new(3, x1, y1, x2, y2, 0);
+  GedaObject *object4  = geda_circle_object_new(4, x1, y1, r);
+  GedaObject *object5  = geda_complex_new();
+  GedaObject *object6  = geda_line_object_new(6, x1, y1, x2, y2);
+  GedaObject *object7  = geda_net_object_new (7, x1, y1, x2, y2);
+  GedaObject *object8  = geda_path_object_new(8, &path_string[0]);
+  GedaObject *object9  = geda_picture_new();
+  GedaObject *object10 = geda_pin_object_new(10, x1, y1, x2, y2, 0, 0);
+  GedaObject *object11 = geda_text_object_new(11, x1, y1, 0, 0, 10, 1, 0, "tests");
+
+  geda_picture_object_modify_all (object9, x1, y1, x2, y2);
+
+  GList *list;
+
+  list = g_list_append(NULL, object1);
+  list = g_list_append(list, object2);
+  list = g_list_append(list, object3);
+  list = g_list_append(list, object4);
+  list = g_list_append(list, object5);
+  list = g_list_append(list, object6);
+  list = g_list_append(list, object7);
+  list = g_list_append(list, object8);
+  list = g_list_append(list, object9);
+  list = g_list_append(list, object10);
+  list = g_list_append(list, object11);
+
+  /* === Function 04: geda_object_list_mirror  === */
+  geda_object_list_mirror(list, x1, y1);
+
+  if (!geda_complex_get_is_mirror(object5->complex)) {
+    fprintf(stderr, "FAILED: (O120405) geda_object_list_mirror\n");
+    result++;
+  }
+
+  if (!object9->picture->mirrored) {
+    fprintf(stderr, "FAILED: (O120409) geda_object_list_mirror\n");
+    result++;
+  }
+
+  if (object11->text->alignment != 6) {
+    int a = object11->text->alignment;
+    fprintf(stderr, "FAILED: (O120411) geda_object_list_mirror %d\n", a);
+    result++;
+  }
+
+  g_object_unref (object1);
+  g_object_unref (object2);
+  g_object_unref (object3);
+  g_object_unref (object4);
+  g_object_unref (object5);
+  g_object_unref (object6);
+  g_object_unref (object7);
+  g_object_unref (object8);
+  g_object_unref (object9);
+  g_object_unref (object10);
+  g_object_unref (object11);
+
+  return result;
+}
+
 GedaToplevel *setup_new_toplevel(void)
 {
   GedaToplevel *toplevel;
@@ -528,6 +603,13 @@ main (int argc, char *argv[])
     return 1;
   }
 
+  if (setjmp(point) == 0) {
+    result += check_object_list_mirror(toplevel);
+  }
+  else {
+    fprintf(stderr, "Caught signal checking geda_object_list_mirror\n\n");
+    return 1;
+  }
   g_object_unref(toplevel);
 
   return result;
