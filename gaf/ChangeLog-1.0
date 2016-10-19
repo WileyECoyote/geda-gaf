@@ -1,3 +1,7 @@
+2016-10-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gaf/src/gaf.c Update copyright date.
+
 2016-10-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/export.c: Substitute geda_open_file macro for geda_file_open.
