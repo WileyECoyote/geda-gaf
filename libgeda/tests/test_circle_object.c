@@ -317,8 +317,8 @@ check_accessors (void)
       /* Line type options */
       int e = geda_random_number (END_NONE, END_ROUND);
       int t = geda_random_number (TYPE_SOLID, TYPE_PHANTOM);
-      int l = geda_random_number (0, 500);
-      int p = geda_random_number (0, 500);
+      int l = geda_random_number (5, 500);
+      int p = geda_random_number (5, 500);
       int w = geda_random_number (0, 500);
 
       /* Filling options */

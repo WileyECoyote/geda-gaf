@@ -150,7 +150,7 @@ geda_set_object_fill_options(GedaObject *object, FILL_OPTIONS *fill_options)
  */
 void geda_set_object_line_options(GedaObject *object, LINE_OPTIONS *line_options)
 {
-  g_return_if_fail( GEDA_IS_LINE(object)   ||
+  g_return_if_fail (GEDA_IS_LINE(object)   ||
                     GEDA_IS_CIRCLE(object) ||
                     GEDA_IS_ARC(object)    ||
                     GEDA_IS_BOX(object)    ||

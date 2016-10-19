@@ -7,6 +7,9 @@
       5 because geda_arc_object_copy utilizes geda_set_object_line_options,
       which checks that both values are greater than 1.
 
+    * tests/: Set all the random line length and spaces to have a minimum
+      of 5 units, just in case.
+
 2016-10-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_math.h: Add macros for m_angle module.
