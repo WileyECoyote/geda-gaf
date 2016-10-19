@@ -346,6 +346,9 @@ check_list_copy_all (GedaToplevel *toplevel)
     }
   }
 
+  g_object_unref (attrib4);
+  g_object_unref (attrib5);
+
   return result;
 }
 
