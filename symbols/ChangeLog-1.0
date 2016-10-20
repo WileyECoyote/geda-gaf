@@ -1,3 +1,9 @@
+2016-10-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * lineartech/switchreg/LT1308-1.sym: Hide pin type attribute, revise
+      attribute positions, add description, resequenced pins to match model
+      and bump symversion.
+
 2016-10-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * /connector: Clean symbols, add description attributes:
