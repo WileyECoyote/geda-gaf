@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-10-06 23:21-0500\n"
+"POT-Creation-Date: 2016-10-19 12:11-0500\n"
 "PO-Revision-Date: 2012-01-27 14:12+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Danish <da@li.org>\n"
@@ -140,49 +140,49 @@ msgstr ""
 msgid "Can not create backup file: %s: %s\n"
 msgstr ""
 
-#: libgeda/src/file/f_get.c:313
-#, c-format
-msgid "%s: error accessing: %s\n"
-msgstr ""
-
-#: libgeda/src/file/f_get.c:352
+#: libgeda/src/file/f_get.c:231
 #, c-format
 msgid "Could not allocate %lu bytes to read file \"%s\""
 msgstr ""
 
-#: libgeda/src/file/f_get.c:363
+#: libgeda/src/file/f_get.c:242
 #, c-format
 msgid "Error reading file '%s': %s"
 msgstr ""
 
-#: libgeda/src/file/f_get.c:374
+#: libgeda/src/file/f_get.c:253
 #, c-format
 msgid "File \"%s\" is too large"
 msgstr ""
 
-#: libgeda/src/file/f_get.c:430
+#: libgeda/src/file/f_get.c:309
 #, c-format
 msgid "Could not allocate %ld byte to read file \"%s\""
 msgstr ""
 
-#: libgeda/src/file/f_get.c:456
+#: libgeda/src/file/f_get.c:335
 #, c-format
 msgid "Failed to read from file '%s': %s"
 msgstr ""
 
-#: libgeda/src/file/f_get.c:525
+#: libgeda/src/file/f_get.c:422
 #, c-format
 msgid "Failed to open file '%s': %s"
 msgstr ""
 
-#: libgeda/src/file/f_get.c:539
+#: libgeda/src/file/f_get.c:436
 #, c-format
 msgid "Failed to get attributes of file '%s': fstat() failed: %s"
 msgstr ""
 
-#: libgeda/src/file/f_get.c:557
+#: libgeda/src/file/f_get.c:454
 #, c-format
 msgid "Failed to open file '%s': fdopen() failed: %s"
+msgstr ""
+
+#: libgeda/src/file/f_get.c:602
+#, c-format
+msgid "error accessing '%s': %s"
 msgstr ""
 
 #: libgeda/src/file/f_print.c:101
@@ -885,37 +885,37 @@ msgstr ""
 msgid " On or about line %d, "
 msgstr ""
 
-#: libgeda/src/object/o_arc_object.c:1448
-#: libgeda/src/object/o_arc_object.c:1463
+#: libgeda/src/object/o_arc_object.c:1449
+#: libgeda/src/object/o_arc_object.c:1464
 msgid "Failed to parse arc object"
 msgstr ""
 
-#: libgeda/src/object/o_arc_object.c:1471
+#: libgeda/src/object/o_arc_object.c:1472
 #, c-format
 msgid "Found arc with negative radius [ %c %d, %d, %d, %d, %d, %d ]\n"
 msgstr ""
 
-#: libgeda/src/object/o_arc_object.c:1474
+#: libgeda/src/object/o_arc_object.c:1475
 #: libgeda/src/object/o_circle_object.c:1345
 #, c-format
 msgid "Setting radius to %d\n"
 msgstr ""
 
-#: libgeda/src/object/o_arc_object.c:1478
+#: libgeda/src/object/o_arc_object.c:1479
 #, c-format
 msgid "Found an arc with radius zero [ %c %d, %d, %d, %d, %d, %d ]\n"
 msgstr ""
 
-#: libgeda/src/object/o_arc_object.c:1480
+#: libgeda/src/object/o_arc_object.c:1481
 #: libgeda/src/object/o_circle_object.c:1350
 msgid "Setting zero radius to 1000\n"
 msgstr ""
 
-#: libgeda/src/object/o_arc_object.c:1485
+#: libgeda/src/object/o_arc_object.c:1486
 #: libgeda/src/object/o_box_object.c:1613
 #: libgeda/src/object/o_bus_object.c:592
 #: libgeda/src/object/o_circle_object.c:1355
-#: libgeda/src/object/o_line_object.c:1524
+#: libgeda/src/object/o_line_object.c:1560
 #: libgeda/src/object/o_net_object.c:715
 #: libgeda/src/object/o_path_object.c:570
 #: libgeda/src/object/o_pin_object.c:180
@@ -924,11 +924,11 @@ msgstr ""
 msgid "Found an invalid color [ %s ]\n"
 msgstr ""
 
-#: libgeda/src/object/o_arc_object.c:1486
+#: libgeda/src/object/o_arc_object.c:1487
 #: libgeda/src/object/o_box_object.c:1614
 #: libgeda/src/object/o_bus_object.c:593
 #: libgeda/src/object/o_circle_object.c:1356
-#: libgeda/src/object/o_line_object.c:1525
+#: libgeda/src/object/o_line_object.c:1561
 #: libgeda/src/object/o_net_object.c:716
 #: libgeda/src/object/o_path_object.c:571
 #: libgeda/src/object/o_pin_object.c:181
@@ -1119,12 +1119,12 @@ msgstr ""
 msgid "Component [%s] has been successfully unembedded\n"
 msgstr ""
 
-#: libgeda/src/object/o_line_object.c:1487
-#: libgeda/src/object/o_line_object.c:1507
+#: libgeda/src/object/o_line_object.c:1523
+#: libgeda/src/object/o_line_object.c:1543
 msgid "Failed to parse line object"
 msgstr ""
 
-#: libgeda/src/object/o_line_object.c:1519
+#: libgeda/src/object/o_line_object.c:1555
 #, c-format
 msgid "Found a zero length line [ %c %d %d %d %d %d ]\n"
 msgstr ""
@@ -1292,42 +1292,42 @@ msgstr ""
 msgid "Could NOT set previous backup file [%s] read-write\n"
 msgstr ""
 
-#: libgeda/src/object/o_save.c:135
+#: libgeda/src/object/o_save.c:137
 #, c-format
 msgid "Automatic backup file saved [%s]\n"
 msgstr ""
 
-#: libgeda/src/object/o_save.c:147
+#: libgeda/src/object/o_save.c:149
 #, c-format
 msgid "Could NOT set backup file [%s] readonly\n"
 msgstr ""
 
-#: libgeda/src/object/o_save.c:153
+#: libgeda/src/object/o_save.c:155
 #, c-format
 msgid "Could NOT save backup file [%s]: %s\n"
 msgstr ""
 
-#: libgeda/src/object/o_save.c:312
+#: libgeda/src/object/o_save.c:314
 #, c-format
 msgid "%s: object %p has unknown type '%c'\n"
 msgstr ""
 
-#: libgeda/src/object/o_save.c:368
+#: libgeda/src/object/o_save.c:370
 #, c-format
 msgid "%s: Memory allocation error."
 msgstr ""
 
-#: libgeda/src/object/o_save.c:401
+#: libgeda/src/object/o_save.c:403
 #, c-format
 msgid "[%s]: because %s"
 msgstr ""
 
-#: libgeda/src/object/o_set.c:176
+#: libgeda/src/object/o_set.c:175
 #, c-format
 msgid "Setting line length to default=%d\n"
 msgstr ""
 
-#: libgeda/src/object/o_set.c:189
+#: libgeda/src/object/o_set.c:188
 #, c-format
 msgid "Setting line space to default=%d\n"
 msgstr ""
