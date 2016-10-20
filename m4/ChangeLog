@@ -1,3 +1,13 @@
+2016-10-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * geda-guile.m4: Disable support for srfi-64 unless specifically enabled
+      by the user as the srfi-64.scm module seems to be absent from guile
+      installations until version 2.0.11, which means srfi-64.scm is probably
+      not included with any current stable distributions, more importantly;
+      srfi-64 is not currently on Travis-CI machines (Ubuntu/Linaro 12.11,04),
+      and still would not be available even if Travis-CI completes the upgrade
+      to Ubuntu/Trusty 14.10.
+
 2016-08-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * m4/geda-guile.m4: Add define HAVE_GUILE_VER2, conditional HAVE_SRFI_64,
