@@ -1,3 +1,8 @@
+2016-10-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/base/gschem_parsecmd.c: Include the program name in the version
+      output message.
+
 2016-10-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_compselect.c: Replace g_cclosure_marshal_VOID__VOID with
