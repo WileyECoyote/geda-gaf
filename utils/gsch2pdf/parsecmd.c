@@ -28,7 +28,6 @@
 
 #define WITHOUT_GDK_PIX_BUFFER 1
 #include <libgeda/libgeda.h>
-#include "../../include/gettext.h"
 
 #define OPTIONS "hquvV"
 

@@ -3,6 +3,12 @@ gsch2pcb Changelog
 1.12
 ---------
 
+2016-10-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * utils/gsch2pdf/parsecmd.c: Include the program name in the version
+      output message; gsch2pdf. Remove inclusion of gettext.h, which is
+      now include in the common header.
+
 2016-09-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * gsch2pcb/gsch2pcb.c: Substitute geda_strconcat for geda_utility_string_concat.

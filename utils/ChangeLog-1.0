@@ -1,7 +1,10 @@
 2016-10-20 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/common.h: Use relative path to version.h and add gettext.h.
+
     * utils/gsch2pdf/parsecmd.c: Include the program name in the version
-      output message; gsch2pdf.
+      output message; gsch2pdf. Remove inclusion of gettext.h, which is
+      now include in the common header as described above.
 
 2016-09-14 Wiley E. Hill <wileyhill@gmail.com>
 
