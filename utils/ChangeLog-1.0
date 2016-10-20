@@ -1,3 +1,8 @@
+2016-10-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * utils/gsch2pdf/parsecmd.c: Include the program name in the version
+      output message; gsch2pdf.
+
 2016-09-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * utils/src/gmk_sym.c: Revised strLabel() to not initialize the value
