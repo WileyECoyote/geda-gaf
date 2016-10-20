@@ -1,0 +1,75 @@
+# Russian translation for gEDA utils
+# Copyright (c) 2003-2014 gEDA Developers
+# Copyright (c) Andy Shevchenko <andy@smile.org.ua>, 2003-2008.
+# Copyright (c) Sergey Alyoshin <alyoshin.s@gmail.com>, 2009, 2012, 2013, 2015.
+# Copyright (c) Vladimir Zhbanov <vzhbanov@gmail.com>, 2011, 2014.
+#
+# This file is distributed under the same license as the gEDA utils package.
+#
+# Переводчикам: см. примечания в libgeda/po/ru.po
+msgid ""
+msgstr ""
+"Project-Id-Version: geda utils ru\n"
+"Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
+"POT-Creation-Date: 2016-10-19 15:00-0500\n"
+"PO-Revision-Date: 2015-09-13 16:05+0300\n"
+"Last-Translator: Sergey Alyoshin <alyoshin.s@gmail.com>\n"
+"Language-Team: geda-user@delorie.com\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: utils/gsch2pdf/parsecmd.c:68
+#, c-format
+msgid ""
+"\n"
+"Usage: %s [OPTIONS] filename1 ... filenameN\n"
+"  -h, --help        Print usage\n"
+"  -q, --quiet       Quiet mode\n"
+"  -v, --verbose     Verbose mode (cumulative: errors, warnings, info)\n"
+"  -V, --version     Show version information.\n"
+"\n"
+"Generates a pdf file using the name \"output.pdf\". Each input file, "
+"filename1\n"
+"... filenameN, is converted to pdf format and printed as seperate pages.\n"
+"\n"
+msgstr ""
+
+#: utils/gsch2pdf/parsecmd.c:92
+#, fuzzy, c-format
+msgid ""
+"gEDA/gsch2pdf %s (%s) (g%.7s)\n"
+"Copyright (C) 1998-2016 gEDA developers\n"
+"This is free software, and you are welcome to redistribute it under\n"
+"certain conditions. For details, see the file `COPYING', which is\n"
+"included in the gEDA distribution.\n"
+"There is NO WARRANTY, to the extent permitted by law.\n"
+msgstr ""
+"gEDA %s (g%.7s)\n"
+"Copyright (C) 1998-2012 gEDA developers\n"
+"Это свободное программное обеспечение, и его можно распространять при\n"
+"определённых условиях. Подробности см. в файле COPYING\n"
+"в дистрибутиве gEDA.\n"
+"Нет НИКАКИХ ГАРАНТИЙ в рамках, допустимых имеющимся\n"
+"законодательством.\n"
+
+#: utils/gschlas/gschlas.c:82
+#, fuzzy, c-format
+msgid ""
+"gEDA/gschlas version %s (%s) (g%.7s)\n"
+"Copyright (C) 1998-2013 gEDA developers\n"
+"This is free software, and you are welcome to redistribute it under\n"
+"certain conditions. For details, see the file `COPYING', which is\n"
+"included in the gEDA distribution.\n"
+"There is NO WARRANTY, to the extent permitted by law.\n"
+msgstr ""
+"gEDA %s (g%.7s)\n"
+"Copyright (C) 1998-2012 gEDA developers\n"
+"Это свободное программное обеспечение, и его можно распространять при\n"
+"определённых условиях. Подробности см. в файле COPYING\n"
+"в дистрибутиве gEDA.\n"
+"Нет НИКАКИХ ГАРАНТИЙ в рамках, допустимых имеющимся\n"
+"законодательством.\n"

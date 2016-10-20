@@ -1,0 +1,74 @@
+# gEDA/gaf utils french translation
+# Copyright (C) 2005-2008 Iznogood
+# Copyright (C) 2006-2008 Patrick Bernaud
+# This file is distributed under the same license as the gEDA/gaf package.
+# Iznogood <iznogood@iznogood-factory.org>, 2005.
+# Patrick Bernaud <b-patrick@wanadoo.fr>, 2006.
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: fr_FR\n"
+"Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
+"POT-Creation-Date: 2016-10-19 15:00-0500\n"
+"PO-Revision-Date: 2012-10-28 15:46+0000\n"
+"Last-Translator: Penegal <Unknown>\n"
+"Language-Team: gEDA developers <geda-dev@seul.org>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
+"X-Generator: Launchpad (build 16265)\n"
+
+#: utils/gsch2pdf/parsecmd.c:68
+#, c-format
+msgid ""
+"\n"
+"Usage: %s [OPTIONS] filename1 ... filenameN\n"
+"  -h, --help        Print usage\n"
+"  -q, --quiet       Quiet mode\n"
+"  -v, --verbose     Verbose mode (cumulative: errors, warnings, info)\n"
+"  -V, --version     Show version information.\n"
+"\n"
+"Generates a pdf file using the name \"output.pdf\". Each input file, "
+"filename1\n"
+"... filenameN, is converted to pdf format and printed as seperate pages.\n"
+"\n"
+msgstr ""
+
+#: utils/gsch2pdf/parsecmd.c:92
+#, fuzzy, c-format
+msgid ""
+"gEDA/gsch2pdf %s (%s) (g%.7s)\n"
+"Copyright (C) 1998-2016 gEDA developers\n"
+"This is free software, and you are welcome to redistribute it under\n"
+"certain conditions. For details, see the file `COPYING', which is\n"
+"included in the gEDA distribution.\n"
+"There is NO WARRANTY, to the extent permitted by law.\n"
+msgstr ""
+"gEDA %s (g%.7s)\n"
+"Copyright (C) 1998-2012 gEDA developers\n"
+"Ceci est un logiciel libre, et vous êtes invité à le diffuser sous\n"
+"certaines conditions. Pour plus de détails, reportez-vous au fichier "
+"`COPYING',\n"
+"inclus dans la distribution gEDA.\n"
+"Il n'y a AUCUNE GARANTIE autre que celles prévues par la loi.\n"
+
+#: utils/gschlas/gschlas.c:82
+#, c-format
+msgid ""
+"gEDA/gschlas version %s (%s) (g%.7s)\n"
+"Copyright (C) 1998-2013 gEDA developers\n"
+"This is free software, and you are welcome to redistribute it under\n"
+"certain conditions. For details, see the file `COPYING', which is\n"
+"included in the gEDA distribution.\n"
+"There is NO WARRANTY, to the extent permitted by law.\n"
+msgstr ""
+"gEDA/gschlas version %s (%s) (g%.7s)\n"
+"Copyright (C) 1998-2012 gEDA developers\n"
+"Ceci est un logiciel libre, et vous êtes invité à le diffuser sous\n"
+"certaines conditions. Pour plus de détails, reportez-vous au fichier "
+"`COPYING',\n"
+"inclus dans la distribution gEDA.\n"
+"Il n'y a AUCUNE GARANTIE autre que celles prévues par la loi.\n"

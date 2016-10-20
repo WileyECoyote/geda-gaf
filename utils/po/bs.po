@@ -1,0 +1,57 @@
+# Bosnian translation for geda
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the geda package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: geda\n"
+"Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
+"POT-Creation-Date: 2016-10-19 15:00-0500\n"
+"PO-Revision-Date: 2012-01-27 14:18+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Bosnian <bs@li.org>\n"
+"Language: bs\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
+"X-Generator: Launchpad (build 16265)\n"
+
+#: utils/gsch2pdf/parsecmd.c:68
+#, c-format
+msgid ""
+"\n"
+"Usage: %s [OPTIONS] filename1 ... filenameN\n"
+"  -h, --help        Print usage\n"
+"  -q, --quiet       Quiet mode\n"
+"  -v, --verbose     Verbose mode (cumulative: errors, warnings, info)\n"
+"  -V, --version     Show version information.\n"
+"\n"
+"Generates a pdf file using the name \"output.pdf\". Each input file, "
+"filename1\n"
+"... filenameN, is converted to pdf format and printed as seperate pages.\n"
+"\n"
+msgstr ""
+
+#: utils/gsch2pdf/parsecmd.c:92
+#, c-format
+msgid ""
+"gEDA/gsch2pdf %s (%s) (g%.7s)\n"
+"Copyright (C) 1998-2016 gEDA developers\n"
+"This is free software, and you are welcome to redistribute it under\n"
+"certain conditions. For details, see the file `COPYING', which is\n"
+"included in the gEDA distribution.\n"
+"There is NO WARRANTY, to the extent permitted by law.\n"
+msgstr ""
+
+#: utils/gschlas/gschlas.c:82
+#, c-format
+msgid ""
+"gEDA/gschlas version %s (%s) (g%.7s)\n"
+"Copyright (C) 1998-2013 gEDA developers\n"
+"This is free software, and you are welcome to redistribute it under\n"
+"certain conditions. For details, see the file `COPYING', which is\n"
+"included in the gEDA distribution.\n"
+"There is NO WARRANTY, to the extent permitted by law.\n"
+msgstr ""

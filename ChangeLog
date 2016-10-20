@@ -1,3 +1,7 @@
+2016-10-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * configure.ac: Add utils/po directory.
+
 2016-10-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * configure.ac: Bump libgeda minor version 51.4.1 for completion of new

@@ -1,5 +1,8 @@
 2016-10-20 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Makefile.am: Add po to SUBDIRS and update-po and maintainer-clean-local
+      rules.
+
     * include/common.h: Use relative path to version.h and add gettext.h.
 
     * utils/gsch2pdf/parsecmd.c: Include the program name in the version
@@ -8,6 +11,14 @@
 
     * gschlas/gschlas.c: Write copyright/version blup to stdout instead of
       to the log, adjust line wrap.
+
+    * po/LINGUAS: Add file (copied from gschem).
+
+    * utils/po/.gitignore: Add file (copied from gschem).
+
+    * po/Makevars: Add file (copied from gschem).
+
+    * po/POTFILES.in: Add new file list of translatables.
 
 2016-09-14 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -1,0 +1,71 @@
+# Cambodia translation for geda
+# Copyright (c) 2015 Wiley Edward Hill
+# Copyright (c) 2015 gEDA Developers
+# This file is distributed under the same license as the geda package.
+# Wiley Edward Hill <wileyhill@gmail.com>, 2015.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: geda\n"
+"Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
+"POT-Creation-Date: 2016-10-19 15:00-0500\n"
+"PO-Revision-Date: 2015-07-29 00:24-0600\n"
+"Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
+"Language-Team: gEDA developers <geda-dev@seul.org>\n"
+"Language: kh\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-Language: Khmer\n"
+"X-Poedit-Country: CAMBODIA\n"
+
+#: utils/gsch2pdf/parsecmd.c:68
+#, c-format
+msgid ""
+"\n"
+"Usage: %s [OPTIONS] filename1 ... filenameN\n"
+"  -h, --help        Print usage\n"
+"  -q, --quiet       Quiet mode\n"
+"  -v, --verbose     Verbose mode (cumulative: errors, warnings, info)\n"
+"  -V, --version     Show version information.\n"
+"\n"
+"Generates a pdf file using the name \"output.pdf\". Each input file, "
+"filename1\n"
+"... filenameN, is converted to pdf format and printed as seperate pages.\n"
+"\n"
+msgstr ""
+
+#: utils/gsch2pdf/parsecmd.c:92
+#, fuzzy, c-format
+msgid ""
+"gEDA/gsch2pdf %s (%s) (g%.7s)\n"
+"Copyright (C) 1998-2016 gEDA developers\n"
+"This is free software, and you are welcome to redistribute it under\n"
+"certain conditions. For details, see the file `COPYING', which is\n"
+"included in the gEDA distribution.\n"
+"There is NO WARRANTY, to the extent permitted by law.\n"
+msgstr ""
+"gEDA %s (g%.7s)\n"
+"Roksaasetthi (C) 1998-2015 gEDA anak aphivodtho\n"
+"nih kuchea phnek tn seri haey anak ka ach chekchay vea now kraom\n"
+"lokkhakhand cheakleak. saum meul kar `COPYING' eksar samreab p tr\n"
+"mean lomet, del trauv ban ruom banhchoul nowknong karchekcheay gEDA.\n"
+"kmean karthanea , tomham del ban anounhnhat daoy chbab.\n"
+
+#: utils/gschlas/gschlas.c:82
+#, fuzzy, c-format
+msgid ""
+"gEDA/gschlas version %s (%s) (g%.7s)\n"
+"Copyright (C) 1998-2013 gEDA developers\n"
+"This is free software, and you are welcome to redistribute it under\n"
+"certain conditions. For details, see the file `COPYING', which is\n"
+"included in the gEDA distribution.\n"
+"There is NO WARRANTY, to the extent permitted by law.\n"
+msgstr ""
+"gEDA %s (g%.7s)\n"
+"Roksaasetthi (C) 1998-2015 gEDA anak aphivodtho\n"
+"nih kuchea phnek tn seri haey anak ka ach chekchay vea now kraom\n"
+"lokkhakhand cheakleak. saum meul kar `COPYING' eksar samreab p tr\n"
+"mean lomet, del trauv ban ruom banhchoul nowknong karchekcheay gEDA.\n"
+"kmean karthanea , tomham del ban anounhnhat daoy chbab.\n"

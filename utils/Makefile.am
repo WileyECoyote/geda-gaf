@@ -3,7 +3,7 @@
 ## Process this file with automake to produce Makefile.in
 
 SUBDIRS = docs examples include gmake gsch2pcb gsch2pdf gschemdoc gschlas \
-	      gxyrs etc scripts src tests
+	      gxyrs etc scripts src po tests
 
 EXTRA_DIST = ChangeLog ChangeLog.tragesym-1.0 ChangeLog.gsch2pcb-1.0 \
 	         ChangeLog-1.0 AUTHORS
@@ -25,6 +25,12 @@ else
 	@echo 'configure was not run with the --enable-doxygen switch.'
 	@echo 'The documentation cannot be built from the sources.'
 endif
+
+update-po:
+	$(MAKE) -C po update-po || exit 1;
+
+maintainer-clean-local:
+	-rm -rf po/*.sed po/*.header po/*.sin po/*.template po/Rules-quot
 
 MOSTLYCLEANFILES     = *.log core FILE *~
 CLEANFILES           = *.log core FILE *~

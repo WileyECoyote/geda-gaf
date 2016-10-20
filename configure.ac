@@ -380,6 +380,7 @@ AC_CONFIG_FILES([Makefile
 
                  utils/Makefile
                  utils/docs/Makefile
+                 utils/po/Makefile.in
                  utils/examples/Makefile
                  utils/examples/gmk_sym/Makefile
                  utils/examples/gsch2pcb/Makefile
