@@ -79,9 +79,13 @@ main_prog(void *closure, int argc, char *argv[])
 #endif
 
     if (!quiet_mode) {
-      u_log_message ("gEDA/gschlas version %s%s.%s\ngEDA/gschlas comes with ABSOLUTELY NO WARRANTY; see COPYING for more details.\nThis is free software, and you are welcome to redistribute it under certain\nconditions; please see the COPYING file for more details.\n\n",
-                      PREPEND_VERSION_STRING, PACKAGE_DOTTED_VERSION,
-                      PACKAGE_DATE_VERSION);
+      printf(_("gEDA/gschlas version %s (%s) (g%.7s)\n"
+               "Copyright (C) 1998-2013 gEDA developers\nThis is free "
+               "software, and you are welcome to redistribute it under\ncertain"
+               " conditions. For details, see the file `COPYING', which is\n"
+               "included in the gEDA distribution.\n"
+               "There is NO WARRANTY, to the extent permitted by law.\n"),
+                PACKAGE_DOTTED_VERSION, PACKAGE_DATE_VERSION, PACKAGE_GIT_COMMIT);
     }
 
     /* register guile (scheme) functions */
@@ -141,7 +145,7 @@ main_prog(void *closure, int argc, char *argv[])
     geda_struct_page_print_all(pr_current);
 #endif
 
-    if (!quiet_mode) u_log_message("\n");
+    geda_log_q("\n");
 
     if (embed_mode) {
       s_util_embed(pr_current, TRUE);
