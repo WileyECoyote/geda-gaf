@@ -70,10 +70,10 @@ SCM g_rc_gschlas_version(SCM scm_version)
       free (scmfile);
     }
 
-    fprintf(stderr, "You are running gEDA/gaf version [%s%s.%s],\n",
+    fprintf(stderr, _("You are running gEDA/gaf version [%s%s.%s],\n"),
             PREPEND_VERSION_STRING, PACKAGE_DOTTED_VERSION,
             PACKAGE_DATE_VERSION);
-    fprintf(stderr, "but you have a version [%s] gschlasrc file:\n[%s]\n",
+    fprintf(stderr, _("but you have a version [%s] gschlasrc file:\n[%s]\n"),
             version, sourcefile);
 
     GEDA_FREE(sourcefile);

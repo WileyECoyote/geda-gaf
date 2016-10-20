@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-10-19 15:00-0500\n"
+"POT-Creation-Date: 2016-10-20 02:08-0500\n"
 "PO-Revision-Date: 2012-01-31 12:08+0000\n"
 "Last-Translator: Antonio Augusto Todo Bom Neto <atodobom@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
 "X-Generator: Launchpad (build 16265)\n"
 
-#: utils/gsch2pdf/parsecmd.c:68
+#: utils/gsch2pdf/parsecmd.c:69
 #, c-format
 msgid ""
 "\n"
@@ -35,7 +35,7 @@ msgid ""
 "\n"
 msgstr ""
 
-#: utils/gsch2pdf/parsecmd.c:92
+#: utils/gsch2pdf/parsecmd.c:93
 #, fuzzy, c-format
 msgid ""
 "gEDA/gsch2pdf %s (%s) (g%.7s)\n"
@@ -51,6 +51,18 @@ msgstr ""
 "condições. Para detalhes, veja arquivo `COPYING', o qual\n"
 "é incluído na distribuição gEDA.\n"
 "Ele é SEM GARANTIA, dentro do permitido pela lei.\n"
+
+#: utils/gschlas/g_rc.c:73
+#, c-format
+msgid "You are running gEDA/gaf version [%s%s.%s],\n"
+msgstr ""
+
+#: utils/gschlas/g_rc.c:76
+#, c-format
+msgid ""
+"but you have a version [%s] gschlasrc file:\n"
+"[%s]\n"
+msgstr ""
 
 #: utils/gschlas/gschlas.c:82
 #, fuzzy, c-format
@@ -68,3 +80,26 @@ msgstr ""
 "condições. Para detalhes, veja arquivo `COPYING', o qual\n"
 "é incluído na distribuição gEDA.\n"
 "Ele é SEM GARANTIA, dentro do permitido pela lei.\n"
+
+#: utils/gschlas/gschlas.c:130
+#, c-format
+msgid "Loaded file [%s]\n"
+msgstr ""
+
+#: utils/gschlas/gschlas.c:138
+#, c-format
+msgid ""
+"\n"
+"ERROR! You must specify at least one filename\n"
+"\n"
+msgstr ""
+
+#: utils/gschlas/gschlas.c:166
+#, c-format
+msgid "Cannot specify both -e and -u at the same time\n"
+msgstr ""
+
+#: utils/gschlas/gschlas.c:169
+#, c-format
+msgid "Must specify whether to embed or unembed\n"
+msgstr ""

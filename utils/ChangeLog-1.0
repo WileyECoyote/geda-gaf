@@ -10,7 +10,9 @@
       now include in the common header as described above.
 
     * gschlas/gschlas.c: Write copyright/version blup to stdout instead of
-      to the log, adjust line wrap.
+      to the log, adjust line wrap. Wrap output strings with gettext.
+
+    * gschlas/g_rc.c: Use gettext in g_rc_gschlas_version.
 
     * po/LINGUAS: Add file (copied from gschem).
 

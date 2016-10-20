@@ -127,7 +127,7 @@ main_prog(void *closure, int argc, char *argv[])
         exit(2);
       }
       else {
-        g_message ("Loaded file [%s]\n", filename);
+        g_message (_("Loaded file [%s]\n"), filename);
       }
 
       index++;
@@ -135,7 +135,7 @@ main_prog(void *closure, int argc, char *argv[])
     }
 
     if (argv[argv_index] == NULL) {
-      fprintf(stderr, "\nERROR! You must specify at least one filename\n\n");
+      fprintf(stderr,_("\nERROR! You must specify at least one filename\n\n"));
       usage(argv[0]);
     }
 
@@ -163,10 +163,10 @@ main_prog(void *closure, int argc, char *argv[])
   }
   else {
     if (embed_mode && unembed_mode) {
-      fprintf(stderr, "Cannot specify both -e and -u at the same time\n");
+      fprintf(stderr, _("Cannot specify both -e and -u at the same time\n"));
     }
     else {
-      fprintf(stderr, "Must specify whether to embed or unembed\n");
+      fprintf(stderr, _("Must specify whether to embed or unembed\n"));
     }
   }
   exit(0);

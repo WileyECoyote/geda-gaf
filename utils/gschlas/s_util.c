@@ -51,7 +51,6 @@ s_util_embed(GedaToplevel *pr_current, int embed_mode)
           geda_object_unembed(o_current);
         }
       }
-
     }
   }
 }
