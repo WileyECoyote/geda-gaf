@@ -5,6 +5,8 @@
       with other application in the suite and also change to 3 identifier version
       scheme for the same reason. Bump version for language support.
 
+    * src/char_width.c: Use relative path to config.h.
+
 2016-10-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * Makefile.am: Add po to SUBDIRS and update-po and maintainer-clean-local
