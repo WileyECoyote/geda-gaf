@@ -1,3 +1,9 @@
+2016-10-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu.c: Revise geda_menu_scroll_item_visible; reduce
+      scope of y and rename to scroll_offset, add int new_offset instead of
+      reusing y (now scroll_offset).
+
 2016-10-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Reduce scope of variables in functions:

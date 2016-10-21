@@ -5032,9 +5032,8 @@ static void
 geda_menu_scroll_item_visible (GedaMenuShell *menu_shell, GtkWidget *menu_item)
 {
   GedaMenu *menu;
-  int   child_offset, child_height;
-  int   y;
-  bool  last_child = 0;
+  int       child_offset, child_height;
+  bool      last_child = 0;
 
   menu = GEDA_MENU (menu_shell);
 
@@ -5045,12 +5044,13 @@ geda_menu_scroll_item_visible (GedaMenuShell *menu_shell, GtkWidget *menu_item)
   if (compute_child_offset (menu, menu_item,
                            &child_offset, &child_height, &last_child))
   {
-    GdkWindow    *window;
-    unsigned int  vertical_padding;
-    bool          double_arrows;
-    int           height;
+    GdkWindow   *window;
+    unsigned int vertical_padding;
+    bool         double_arrows;
+    int          height;
+    int          scroll_offset;
 
-    y = menu->scroll_offset;
+    scroll_offset = menu->scroll_offset;
 
     window =  geda_get_widget_window(menu);
 
@@ -5074,7 +5074,7 @@ geda_menu_scroll_item_visible (GedaMenuShell *menu_shell, GtkWidget *menu_item)
                GTK_WIDGET (menu)->style->ythickness +
                vertical_padding) << 1;
 
-    if (child_offset < y) {
+    if (child_offset < scroll_offset) {
 
       /* Ignore the enter event we might get if the pointer is on the menu */
       menu_shell->ignore_enter = TRUE;
@@ -5093,7 +5093,9 @@ geda_menu_scroll_item_visible (GedaMenuShell *menu_shell, GtkWidget *menu_item)
         arrow_height = arrow_border.top + arrow_border.bottom;
       }
 
-      if (child_offset + child_height > y + height - arrow_height) {
+      if (child_offset + child_height > scroll_offset + height - arrow_height)
+      {
+        int new_offset;
 
         arrow_height = 0;
 
@@ -5101,18 +5103,18 @@ geda_menu_scroll_item_visible (GedaMenuShell *menu_shell, GtkWidget *menu_item)
           arrow_height += arrow_border.bottom;
         }
 
-        y = child_offset + child_height - height + arrow_height;
+        new_offset = child_offset + child_height - height + arrow_height;
 
-        if (((y > 0) && !menu->tearoff_active) || double_arrows) {
+        if (((new_offset > 0) && !menu->tearoff_active) || double_arrows) {
 
           /* Need upper arrow */
           arrow_height += arrow_border.top;
-          y = child_offset + child_height - height + arrow_height;
+          new_offset = child_offset + child_height - height + arrow_height;
         }
         /* Ignore the enter event we might get if the pointer is on the menu
          */
         menu_shell->ignore_enter = TRUE;
-        geda_menu_scroll_to (menu, y);
+        geda_menu_scroll_to (menu, new_offset);
       }
     }
   }
