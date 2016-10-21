@@ -1,3 +1,7 @@
+2016-10-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/parsecmd.c: Include the program name in the version output message.
+
 2016-10-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gsymcheck.c: Substitute geda_open_file macro for geda_file_open.
