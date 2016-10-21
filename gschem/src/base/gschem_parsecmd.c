@@ -110,7 +110,7 @@ usage(char *cmd)
     "  --                         Treat all remaining arguments as filenames.\n"
     "\n"
     "Report bugs at <https://bugs.launchpad.net/geda>\n"
-    "gEDA/gaf homepage: <http://www.geda-project.org/>\n"),
+    "gEDA homepage: <http://www.geda-project.org>\n"),
     cmd);
   exit(0);
 }
