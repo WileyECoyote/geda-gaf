@@ -94,7 +94,8 @@ void usage(char *cmd)
     "  to the backend will be displayed.\n"
     "\n"
     "Report bugs at <https://bugs.launchpad.net/geda>\n"
-    "gEDA/gaf homepage: <http://www.geda-project.org/>\n"),
+    "gEDA homepage: <http://www.geda-project.org>\n"
+    " PCB homepage: <http://pcb.geda-project.org>\n"),
     cmd);
 }
 
@@ -108,7 +109,7 @@ version ()
 {
   if (!quiet_mode)
     printf(_(
-      "gEDA %s (%s) (g%.7s)\n"
+      "gEDA/gnetlist %s (%s) (g%.7s)\n"
       "Copyright (C) 1998-2016 gEDA developers\n"
       "This is free software, and you are welcome to redistribute it under\n"
       "certain conditions. For details, see the file `COPYING', which is\n"

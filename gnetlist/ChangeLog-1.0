@@ -1,3 +1,10 @@
+2016-10-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/parsecmd.c: Include program name in the version output message,
+      Remove gaf from gEDA/gaf in usage output because the latter looks
+      like it was output from the gaf program, remove the trailing forward
+      slash ".org" and add link http://pcb.geda-project.org.
+
 2016-10-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gnetlist.c: Substitute geda_open_file macro for geda_file_open.
