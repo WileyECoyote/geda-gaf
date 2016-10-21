@@ -1,11 +1,22 @@
 gsch2pcb Changelog
 ------------------
+1.13.0
+---------
+
+2016-10-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gsch2pcb/gsch2pcb.c: Check quiet_mode for version command-line query and
+      only output the dot version if quiet_mode is set; this is to be consistent
+      with other application in the suite and also change to 3 identifier version
+      scheme for the same reason. Bump version for language support.
+
+------------------
 1.12
 ---------
 
 2016-10-20 Wiley E. Hill <wileyhill@gmail.com>
 
-    * utils/gsch2pdf/parsecmd.c: Include the program name in the version
+    * gsch2pcb/gsch2pcb.c: Include the program name in the version
       output message; gsch2pdf. Remove inclusion of gettext.h, which is
       now include in the common header.
 

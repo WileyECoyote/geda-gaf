@@ -31,7 +31,7 @@
 
 #include <ctype.h>
 
-#define GSC2PCB_VERSION "1.12"
+#define GSC2PCB_VERSION "1.13.0"
 
 #define DEFAULT_PCB_INC    "pcb.inc"
 
@@ -1639,7 +1639,12 @@ get_args (int argc, char **argv)
       }
 
       if (!strcmp (opt, "version") || !strcmp (opt, "V")) {
-        printf ("gsch2pcb %s\n", GSC2PCB_VERSION);
+        if (!quiet_mode) {
+          printf ("gsch2pcb %s\n", GSC2PCB_VERSION);
+        }
+        else {
+          printf (GSC2PCB_VERSION "\n");
+        }
         exit (0);
       }
       else if (!strcmp (opt, "verbose") || !strcmp (opt, "v")) {
