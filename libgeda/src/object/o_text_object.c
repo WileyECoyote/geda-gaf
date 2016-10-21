@@ -64,9 +64,9 @@
 
 #include <libgeda_priv.h>
 
-/*! \brief Scale factor between legacy gschem font units and postscript points.
- *
- *  \par Description
+/*!
+ * \brief Scale factor between legacy gschem font units and postscript points.
+ * \par Description
  *  gschem fonts are nominally specified in points, however there is a
  *  difference in how the specified font size corresponds to the metrics of
  *  the font when compared to typical typographic usage.
@@ -77,21 +77,22 @@
  */
 #define GEDA_FONT_FACTOR 1.3
 
-/*! \brief Scale factor font height and line-spacing (for print only)
- *
- *  \par Description
+/*!
+ * \brief Scale factor font height and line-spacing (for print only)
+ * \par Description
  *  Specifies the scale factor between the nominal font size and the inter-
  *  line spacing used to render it when printing.
  */
 #define PRINT_LINE_SPACING 1.12
 
-/*! \brief Create a copy of a text object
- *  \par Function Description
+/*!
+ * \brief Create a copy of a text object
+ * \par Function Description
  *  This function creates a copy of the text object \a o_current.
  *
- *  \param [in] o_current    The object that is copied
+ * \param [in] o_current  The object that is copied
  *
- *  \return a new text object
+ * \return a new text object
  */
 GedaObject*
 geda_text_object_copy(const GedaObject *o_current)
@@ -285,7 +286,8 @@ geda_text_object_get_string (const GedaObject *object)
 /*!
  * \brief Get the x coordinate of the text insertion point
  * \par Function Description
- *  The x coordinate of the insertion point.
+ *  Returns the x coordinate of the insertion point.
+ *
  * \param [in] object The text object
  * \return x coordinate of the insertion point
  */
@@ -300,7 +302,8 @@ geda_text_object_get_x (const GedaObject *object)
 /*!
  * \brief Get the y coordinate of the text insertion point
  * \par Function Description
- *  The x coordinate of the insertion point
+ *  Returns the y coordinate of the insertion point.
+ *
  * \param [in] object The text object
  * \return y coodinate of the insertion point
  */
@@ -315,8 +318,8 @@ geda_text_object_get_y (const GedaObject *object)
 /*!
  * \brief mirror a text object horizontaly at a centerpoint
  * \par Function Description
- *  This function mirrors a text \a object horizontaly at the point
- *  (\a center_x, \a center_y).
+ *  This function mirrors a text \a object horizontaly at the
+ *  point (\a center_x, \a center_y).
  *
  * \param [in,out] object    The text object
  * \param [in]     center_x  x-coord of the mirror position
@@ -401,27 +404,27 @@ geda_text_object_mirror(GedaObject *object, int center_x, int center_y)
   geda_text_object_recreate(object);
 }
 
-/*! \brief Creates a text Object and the graphical objects representing it
- *  \par Function Description
+/*!
+ * \brief Creates a text Object and the graphical objects representing it
+ * \par Function Description
  *  Create an GedaObject of type OBJ_TEXT.
  *
- *  \param [in]  color                  The color of the text
- *  \param [in]  x                      x coord of text
- *  \param [in]  y                      y coord of text
- *  \param [in]  alignment              How text bounding box aligns on (x, y)
- *  \param [in]  angle                  Angle at which text will appear
- *  \param [in]  size                   Text size
- *  \param [in]  visibility             VISIBLE or INVISIBLE
- *  \param [in]  show_name_value        SHOW_NAME_VALUE
- *  \param [in]  string                 The text
- *  \return Pointer to text Object.
+ * \param [in]  color                  The color of the text
+ * \param [in]  x                      x coord of text
+ * \param [in]  y                      y coord of text
+ * \param [in]  alignment              How text bounding box aligns on (x, y)
+ * \param [in]  angle                  Angle at which text will appear
+ * \param [in]  size                   Text size
+ * \param [in]  visibility             VISIBLE or INVISIBLE
+ * \param [in]  show_name_value        SHOW_NAME_VALUE
+ * \param [in]  string                 The text
+ * \return Pointer to text Object.
  *
- *  \note
- *  Caller is responsible for string; this function allocates its own copy.
+ * \note Caller is responsible for string; this function allocates its own copy.
  */
 GedaObject*
 geda_text_object_new(int color, int x, int y, int alignment, int angle, int size,
-           int visibility, int show_name_value, const char *string)
+                     int visibility, int show_name_value, const char *string)
 {
   GedaObject *new_obj=NULL;
   GedaText   *text;
@@ -434,7 +437,7 @@ geda_text_object_new(int color, int x, int y, int alignment, int angle, int size
 
   text = GEDA_TEXT(new_obj);
 
-  text->string      = geda_utility_string_strdup (string);
+  text->string      = geda_strdup (string);
   text->disp_string = NULL; /* We'll fix this up later */
   text->length      = strlen(string);
   text->size        = size;
@@ -491,29 +494,29 @@ geda_text_object_print(GedaToplevel *toplevel, FILE *fp,
   if (geda_attrib_object_get_name_value (o_current, &name, &value)) {
     switch(o_current->show_name_value) {
       case(SHOW_NAME_VALUE):
-        output_string = geda_utility_string_strdup(o_current->text->string);
+        output_string = geda_strdup(o_current->text->string);
         break;
 
       case(SHOW_NAME):
         if (name[0] != '\0') {
-          output_string = geda_utility_string_strdup(name);
+          output_string = geda_strdup(name);
         }
         else {
           fprintf(stderr,"Got an improper attribute: %s\n",
                   o_current->text->string);
-          output_string = geda_utility_string_strdup("invalid");
+          output_string = geda_strdup("invalid");
         }
         break;
 
       case(SHOW_VALUE):
         if (value[0] != '\0') {
-          output_string = geda_utility_string_strdup(value);
+          output_string = geda_strdup(value);
         } else {
           /* you probably can remove this now... */
           /* since improper attributes will never get here */
           fprintf(stderr, "Got an improper attribute: %s\n",
                   o_current->text->string);
-          output_string = geda_utility_string_strdup("invalid");
+          output_string = geda_strdup("invalid");
         }
         break;
 
@@ -523,7 +526,7 @@ geda_text_object_print(GedaToplevel *toplevel, FILE *fp,
     }
   }
   else {
-    output_string = geda_utility_string_strdup(o_current->text->string);
+    output_string = geda_strdup(o_current->text->string);
   }
 
   /* Apply alignment map to apply when text is 180 degrees rotated.
@@ -841,18 +844,19 @@ geda_text_object_read (const char *first_line, TextBuffer *tb, unsigned int rele
   }
 
   new_obj = geda_text_object_new(color, x, y, alignment, angle, size,
-                       visibility, show_name_value, string);
+                                 visibility, show_name_value, string);
   GEDA_FREE(string);
 
   return new_obj;
 }
 
-/*! \brief recreate the graphics of a text object
- *  \par Function Description
+/*!
+ * \brief recreate the graphics of a text object
+ * \par Function Description
  *  This function updates the underlying primary of the text object
  *  \a o_current.
  *
- *  \param o_current The text object to update
+ * \param o_current The text object to update
  */
 void
 geda_text_object_recreate(GedaObject *o_current)
@@ -873,18 +877,18 @@ geda_text_object_recreate(GedaObject *o_current)
   geda_page_set_changed (page, TRUE); /* set CHANGED flag */
 }
 
-/*! \brief rotate a text object around a centerpoint
- *
- *  \par Function Description
+/*!
+ * \brief rotate a text object around a centerpoint
+ * \par Function Description
  *  This function rotates a text \a object around the point
  *  (\a center_x, \a center_y).
  *
- *  \param [in,out] object    The text object
- *  \param [in]     center_x  x-coord of the rotation center
- *  \param [in]     center_y  y-coord of the rotation center
- *  \param [in]     angle     The angle to rotate the text object
-
- *  \note only steps of 90 degrees are allowed for the \a angle
+ * \param [in,out] object    The text object
+ * \param [in]     center_x  x-coord of the rotation center
+ * \param [in]     center_y  y-coord of the rotation center
+ * \param [in]     angle     The angle to rotate the text object
+ *
+ * \note only steps of 90 degrees are allowed for the \a angle
  */
 void
 geda_text_object_rotate(GedaObject *object, int center_x, int center_y, int angle)
@@ -992,16 +996,17 @@ geda_text_object_set_angle (GedaObject *object, int angle)
   }
 }
 
-/*! \brief Set the font-renderer-specific bounds function.
- *  \par Function Description
+/*!
+ * \brief Set the font-renderer-specific bounds function.
+ * \par Function Description
  *  Set the function to be used to calculate text bounds for a given
  *  #GedaText Object. This allow a per text object renderer function to
  *  be defined. If the function is not defined the renderer for the
  *  Page will be used instead, if the Page rennderer is defined.
  *
- *  \param [in] object    The GedaToplevel object
- *  \param [in] func      Function to use.
- *  \param [in] user_data User data to be passed to the function.
+ * \param [in] object    The GedaToplevel object
+ * \param [in] func      Function to use.
+ * \param [in] user_data User data to be passed to the function.
  */
 void
 geda_text_object_set_rendered_bounds_func (GedaObject         *object,
@@ -1014,13 +1019,14 @@ geda_text_object_set_rendered_bounds_func (GedaObject         *object,
   text->rendered_text_bounds_data = user_data;
 }
 
-/*! \brief Set the text size
- *  \par Function Description
- *  The text size must be greater than or equal to the MINUMUM_TEXT_SIZE. In
- *  the case of an invalid text size, the property remains unchanged.
+/*!
+ * \brief Set the text size
+ * \par Function Description
+ *  The text size must be greater than or equal to the MINUMUM_TEXT_SIZE.
+ *  In the case of an invalid text size, the property remains unchanged.
  *
- *  \param [in,out] object The text object
- *  \param [in]     size   The text size
+ * \param [in,out] object The text object
+ * \param [in]     size   The text size
  */
 void
 geda_text_object_set_size (GedaObject *object, int size)
@@ -1038,12 +1044,13 @@ geda_text_object_set_size (GedaObject *object, int size)
   }
 }
 
-/*! \brief Set the string displayed by a text object.
- *  \par Function Description
+/*!
+ * \brief Set the string displayed by a text object.
+ * \par Function Description
  *  Updates the text object with a new text string.
  *
- *  \param [in]  object      The text object.
- *  \param [in]  new_string  The new value.
+ * \param [in] object      The text object.
+ * \param [in] new_string  The new value.
  */
 void
 geda_text_object_set_string (GedaObject *object, const char *new_string)
@@ -1052,16 +1059,17 @@ geda_text_object_set_string (GedaObject *object, const char *new_string)
   g_return_if_fail (new_string != NULL);
 
   GEDA_FREE (object->text->string);
-  object->text->string = geda_utility_string_strdup (new_string);
+  object->text->string = geda_strdup (new_string);
 
   geda_text_object_recreate (object);
 
 }
 
-/*! \brief Set the x coordinate of the text insertion point
+/*!
+ * \brief Set the x coordinate of the text insertion point
  *
- *  \param [in,out] object The text object
- *  \param [in]     x      New x coordinate of the text insertion point
+ * \param [in,out] object The text object
+ * \param [in]     x      New x coordinate of the text insertion point
  */
 void
 geda_text_object_set_x (GedaObject *object, int x)
@@ -1074,10 +1082,11 @@ geda_text_object_set_x (GedaObject *object, int x)
   }
 }
 
-/*! \brief Set the y coordinate of the text insertion point
+/*!
+ * \brief Set the y coordinate of the text insertion point
  *
- *  \param [in,out] object The text object
- *  \param [in]     y      New y coordinate of the text insertion point
+ * \param [in,out] object The text object
+ * \param [in]     y      New y coordinate of the text insertion point
  */
 void
 geda_text_object_set_y (GedaObject *object, int y)
@@ -1090,21 +1099,22 @@ geda_text_object_set_y (GedaObject *object, int y)
   }
 }
 
-/*! \brief Calculates the distance between the given point and the closest
- *  point on the text.
+/*!
+ * \brief Calculates distance between a given point and the closest
+ *        point on the text.
  *
  *  This function will calculate the distance to the text regardless
  *  if the text is visible or not.
  *
- *  \param [in] object       A text Object.
- *  \param [in] x            The x coordinate of the given point.
- *  \param [in] y            The y coordinate of the given point.
- *  \param [in] force_solid  If true, force treating the object as solid.
+ * \param [in] object       A text Object.
+ * \param [in] x            The x coordinate of the given point.
+ * \param [in] y            The y coordinate of the given point.
+ * \param [in] force_solid  If true, force treating the object as solid.
  *
- *  \return The shortest distance from the object to the point. If the
- *  distance cannot be calculated, this function returns a really large
- *  number (G_MAXDOUBLE).  With an invalid parameter, this funciton
- *  returns G_MAXDOUBLE.
+ * \return The shortest distance from the object to the point. If the
+ *         distance cannot be calculated, this function returns a really
+ *         large number (G_MAXDOUBLE).  With an invalid parameter, this
+ *         funciton returns G_MAXDOUBLE.
  */
 double
 geda_text_object_shortest_distance (GedaObject *object, int x, int y, int force_solid)
@@ -1136,11 +1146,11 @@ geda_text_object_shortest_distance (GedaObject *object, int x, int y, int force_
  *  object \a object2 after validating that both objects are GedaText
  *  objects. This function can be used as a GCompareFunc type.
  *
- *  \param [in] object1 Text Object 1.
- *  \param [in] object2 Text Object 2.
+ * \param [in] object1 Text Object 1.
+ * \param [in] object2 Text Object 2.
  *
- *  \return result of strcmp if both objects are GedaText object, if either
- *          of the object is not a GedaText returns G_MAXINT.
+ * \return result of strcmp if both objects are GedaText object, if either
+ *         of the object is not a GedaText returns G_MAXINT.
  */
 int
 geda_text_object_strcmp(const GedaObject *object1, const GedaObject *object2)
@@ -1151,14 +1161,14 @@ geda_text_object_strcmp(const GedaObject *object1, const GedaObject *object2)
   return G_MAXINT;
 }
 
-/*! \brief Translate a text object
- *
- *  \par Function Description
+/*!
+ * \brief Translate a text object
+ * \par Function Description
  *  This function changes the position of a text object \a object.
  *
- *  \param [in] object  The text Object to be moved
- *  \param [in] dx      The x-distance to move the object
- *  \param [in] dy      The y-distance to move the object
+ * \param [in] object  The text Object to be moved
+ * \param [in] dx      The x-distance to move the object
+ * \param [in] dy      The y-distance to move the object
  */
 void
 geda_text_object_translate(GedaObject *object, int dx, int dy)
@@ -1170,14 +1180,14 @@ geda_text_object_translate(GedaObject *object, int dx, int dy)
   object->w_bounds_valid_for = NULL;
 }
 
-/*! \brief update the visible part of a string
- *
- *  \par Function Description
+/*!
+ * \brief update the visible part of a string
+ * \par Function Description
  *  If a string is an attribute, then it is possible to hide the name or
  *  the value part of the attribute string. This functions updates the
  *  text->disp_string according to the object->show_name_value settings
  *
- *  \param [in] object  The GedaObject to update
+ * \param [in] object  The GedaObject to update
  */
 void
 geda_text_object_update_disp_string (GedaObject *object)
@@ -1191,26 +1201,26 @@ geda_text_object_update_disp_string (GedaObject *object)
   if (geda_attrib_object_get_name_value (object, &name, &value)) {
     switch (object->show_name_value) {
       case (SHOW_NAME_VALUE):
-        text->disp_string = geda_utility_string_strdup (text->string);
+        text->disp_string = geda_strdup (text->string);
         break;
 
       case (SHOW_NAME):
         if (name[0] != '\0') {
-          text->disp_string = geda_utility_string_strdup (name);
+          text->disp_string = geda_strdup (name);
         }
         else {
           g_critical ("Got an improper attribute: %s\n", text->string);
-          text->disp_string = geda_utility_string_strdup ("invalid");
+          text->disp_string = geda_strdup ("invalid");
         }
         break;
 
       case (SHOW_VALUE):
         if (value[0] != '\0') {
-          text->disp_string = geda_utility_string_strdup(value);
+          text->disp_string = geda_strdup(value);
         }
         else {
           g_critical ("Got an improper attribute: %s\n", text->string);
-          text->disp_string = geda_utility_string_strdup ("invalid");
+          text->disp_string = geda_strdup ("invalid");
         }
         break;
     }
@@ -1219,6 +1229,6 @@ geda_text_object_update_disp_string (GedaObject *object)
     GEDA_FREE(value);
   }
   else {
-    text->disp_string = geda_utility_string_strdup (text->string);
+    text->disp_string = geda_strdup (text->string);
   }
 }
