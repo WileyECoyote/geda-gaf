@@ -1009,11 +1009,10 @@ geda_menu_item_buildable_custom_finished (GtkBuildable *buildable,
                                           const char   *tagname,
                                           void         *user_data)
 {
-  GtkWidget *toplevel;
-
   if (strcmp (tagname, "accelerator") == 0) {
 
     GedaMenuShell *menu_shell;
+    GtkWidget     *toplevel;
 
     menu_shell = GEDA_MENU_SHELL(gtk_widget_get_parent (GTK_WIDGET(buildable)));
 
@@ -2190,8 +2189,8 @@ geda_menu_item_get_preferred_width (GtkWidget *widget,
   GtkBin    *bin;
   GtkWidget *child;
   GtkWidget *parent;
-  unsigned intaccel_width;
-  unsigned intborder_width;
+  unsigned int accel_width;
+  unsigned int border_width;
   int  min_width, nat_width;
   GtkStyleContext *context;
   GtkStateFlags state;
@@ -2271,8 +2270,6 @@ geda_menu_item_real_get_height (GtkWidget *widget,
   unsigned int border_widthx2;
   int min_height, nat_height;
   int avail_size = 0;
-
-  min_height = nat_height = 0;
 
   context = gtk_widget_get_style_context (widget);
   state   = gtk_widget_get_state_flags (widget);
@@ -3403,6 +3400,7 @@ geda_menu_item_accel_name_foreach (GtkWidget *widget, void *data)
     if (GEDA_IS_LABEL (widget)) {
 
       *path_p = geda_label_get_text (GEDA_LABEL(widget));
+
       if (*path_p && (*path_p)[0] == 0) {
         *path_p = NULL;
       }
@@ -3472,7 +3470,7 @@ geda_menu_item_refresh_accel_path (GedaMenuItem  *menu_item,
         gtk_widget_set_accel_path (widget, path, accel_group);
       }
     }
-    else if (group_changed)  {   /* reinstall accelerators */
+    else if (group_changed) {   /* reinstall accelerators */
       gtk_widget_set_accel_path (widget, path, accel_group);
     }
   }
