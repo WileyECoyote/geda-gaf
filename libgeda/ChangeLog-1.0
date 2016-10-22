@@ -3,6 +3,9 @@
     * src/file/f_file.c: Revise function geda_file_save: replace variable
       int result to bool success and edit comments.
 
+    * tests/test_file.c: Add routine to add or remove both good and bad
+      symbolic links.
+
 2016-10-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_text_object.c: Substituted geda_strdup for geda_utility_

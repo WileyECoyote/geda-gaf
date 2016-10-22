@@ -63,6 +63,15 @@
 #define TEST_FILE "logo_256x101.png"
 #define SYM_FILE "data/ATMega32-DIP_test.sym"
 
+#define BAD_LINK_FILE "data/link_to_nowhere.sch"
+#define GOOD_LINK_FILE "data/link_to_somewhere.sch"
+
+/*! Where the file data/link_to_nowhere.sch points to */
+#define LINK2NOWHERE "nowhere/tests/data/no_file.sch"
+
+/*! Where the file data/link_to_somewhere.sch points to */
+#define LINK2SOMEWHERE "ATMega32-DIP_test.sym"
+
 struct _TestData
 {
   char *input;
@@ -642,6 +651,52 @@ int test_sys (void)
   return result;
 }
 
+void
+file_links_4_test(bool create)
+{
+  char *test_dir;
+  char *filename;
+
+  /* This is only needed for distcheck VPATH builds */
+  char *src_dir = getenv ("srcdir");
+
+  if (src_dir) {
+    test_dir = src_dir;
+  }
+  else {
+    test_dir = getcwd(0,0);
+  }
+
+  filename = g_build_filename(test_dir, BAD_LINK_FILE, NULL);
+
+  /* If filename exist then remove */
+  geda_remove_file(filename);
+
+  if (create) {
+    if (symlink(LINK2NOWHERE, filename)) {
+      fprintf(stderr, "%s unexpected failure: %s\n", __func__, strerror(errno));
+      exit (1);
+    }
+  }
+  g_free(filename);
+
+  filename = g_build_filename(test_dir, GOOD_LINK_FILE, NULL);
+
+  geda_remove_file(filename);
+
+  if (create) {
+    if (symlink(LINK2SOMEWHERE, filename)) {
+      fprintf(stderr, "%s unexpected failure: %s\n", __func__, strerror(errno));
+      exit (1);
+    }
+  }
+  g_free(filename);
+
+  if (!src_dir) {
+    g_free(test_dir);
+  }
+}
+
 /** @} endgroup test-file-geda-sys */
 
 int
@@ -655,6 +710,8 @@ main (int argc, char *argv[])
 #if (( GLIB_MAJOR_VERSION == 2 ) && ( GLIB_MINOR_VERSION < 36 ))
   g_type_init();
 #endif
+
+  file_links_4_test(1);
 
   if (setjmp(point) == 0) {
       result = test_file();
@@ -695,6 +752,8 @@ main (int argc, char *argv[])
     fprintf(stderr, "Caught signal checking file group 5 src/file/f_sys.c\n\n");
     result++;
   }
+
+  file_links_4_test(0);
 
   return result;
 }
