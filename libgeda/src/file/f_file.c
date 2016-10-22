@@ -427,9 +427,9 @@ f_file_size(const char *filename)
 /*!
  * \brief Save Schematic or Symbol file
  * \par Function Description
- *  This function saves the current file in the toplevel object.
+ *  This function saves the \a page to a file with name \a filename.
  *
- * \param [in,out] toplevel  The GedaToplevel object containing the file.
+ * \param [in,out] toplevel  GedaToplevel object.
  * \param [in]     page      A Page object to be associated with the file
  * \param [in]     filename  The file name to save the schematic or symbol.
  * \param [in,out] err       GError structure for error reporting, or
@@ -450,7 +450,7 @@ geda_file_save(GedaToplevel *toplevel, Page *page, const char *filename, GError 
 
   GError *tmp_err;
   struct  stat st_ActiveFile;
-  int     result;
+  bool    success;
 
   err_not_real  = _("Can't get the real filename of %s: %s");
   err_not_saved = _("Could NOT save file: %s");
@@ -460,7 +460,7 @@ geda_file_save(GedaToplevel *toplevel, Page *page, const char *filename, GError 
   log_not_back  = _("Can not create backup file: %s: %s\n");
 
   tmp_err       = NULL;
-  result        = 1;
+  success       = 1;
 
   /* Get the real filename and file permissions */
   real_filename = geda_file_sys_follow_symlinks (filename, &tmp_err);
@@ -468,7 +468,7 @@ geda_file_save(GedaToplevel *toplevel, Page *page, const char *filename, GError 
   if (real_filename == NULL) {
     g_set_error (err, tmp_err->domain, tmp_err->code, err_not_real,
                  filename, tmp_err->message);
-    result = 0;
+    success = 0;
   }
   /* Check to see if filename is writable */
   else if (access(filename, R_OK) == 0)  {
@@ -478,11 +478,11 @@ geda_file_save(GedaToplevel *toplevel, Page *page, const char *filename, GError 
 
     if (errno == EACCES) {
       g_set_error (err, G_FILE_ERROR, G_FILE_ERROR_PERM, err_read_only, filename);
-      result = 0;
+      success = 0;
     }
   }
 
-  if (result) {
+  if (success) {
 
     const char *only_filename;
           char *dirname;
@@ -499,7 +499,7 @@ geda_file_save(GedaToplevel *toplevel, Page *page, const char *filename, GError 
     only_filename = geda_file_get_basename(real_filename);
 
     /* Do a backup if page is not an undo file backup and the page has
-     * never saved. Only do a backup if backup files are enabled */
+     * been never saved. Only do a backup if backup files are enabled */
     if (page->saved_since_first_loaded == 0 &&
         geda_toplevel_get_make_backups(toplevel))
     {
@@ -541,8 +541,8 @@ geda_file_save(GedaToplevel *toplevel, Page *page, const char *filename, GError 
 
     GEDA_FREE (dirname);
 
-    if (geda_object_save (geda_struct_page_get_objects (page), real_filename, &tmp_err)) {
-
+    if (geda_object_save (geda_struct_page_get_objects (page), real_filename, &tmp_err))
+    {
       page->saved_since_first_loaded = 1;
 
       /* Restore permissions. */
@@ -565,7 +565,7 @@ geda_file_save(GedaToplevel *toplevel, Page *page, const char *filename, GError 
       geda_struct_undo_update_modified(toplevel->page_current);
 
       GEDA_FREE (real_filename);
-      result = 1;
+      success = 1;
     }
     else {
       g_set_error (err, tmp_err->domain, tmp_err->code,
@@ -573,9 +573,9 @@ geda_file_save(GedaToplevel *toplevel, Page *page, const char *filename, GError 
                    tmp_err->message);
       g_clear_error (&tmp_err);
       GEDA_FREE (real_filename);
-      result = 0;
+      success = 0;
     }
   }
 
-  return result;
+  return success;
 }
