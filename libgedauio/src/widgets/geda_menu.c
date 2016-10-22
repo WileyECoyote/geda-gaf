@@ -2221,16 +2221,13 @@ geda_menu_get_accel_path (GedaMenu *menu)
  * <b>geda_menu_set_accel_path (menu, "&lt;Gnumeric-Sheet&gt;/File");</b>
  * has been called, assign its items the accel paths:
  * <b>"&lt;Gnumeric-Sheet&gt;/File/New"</b> and <b>"&lt;Gnumeric-Sheet&gt;/File/Exit"</b>.
- * Assigning accel paths to menu items then enables the user to change
- * their accelerators at runtime. More details about accelerator paths
- * and their default setups can be found at gtk_accel_map_add_entry().
  *
- * Note that \a accel_path string will be stored in a GQuark. Therefore,
- * if a static string is passed, some memory can be saved by interning
- * the string first with g_intern_static_string().
+ * \note that \a accel_path string will be stored in a GQuark. Therefore,
+ *  if a static string is passed, some memory can be saved by interning
+ *  the string first with g_intern_static_string().
  *
- * \param[in] menu:       a valid #GedaMenu
- * \param[in] accel_path: (allow-none): a valid accelerator path
+ * \param[in] menu        a valid #GedaMenu
+ * \param[in] accel_path  a valid accelerator path
  */
 void
 geda_menu_set_accel_path (GedaMenu *menu, const char *accel_path)
@@ -2253,6 +2250,7 @@ typedef struct {
   bool  group_changed;
 } AccelPropagation;
 
+/*! \internal Update path prefix of children items */
 static void
 refresh_accel_paths_foreach (GtkWidget *widget, void *data)
 {
@@ -2267,6 +2265,11 @@ refresh_accel_paths_foreach (GtkWidget *widget, void *data)
   }
 }
 
+/*!
+ * \internal called by:
+ *  geda_menu_set_accel_path
+ *  geda_menu_show
+ */
 static void
 geda_menu_refresh_accel_paths (GedaMenu *menu, bool group_changed)
 {
@@ -2338,7 +2341,7 @@ geda_menu_set_tearoff_hints (GedaMenu *menu, int width)
 /*!
  * \brief get the Tear-Off state
  * \par Function Description
- * Returns whether the menu is torn off.
+ *  Returns whether the menu is torn off.
  * \sa  geda_menu_set_tearoff_state ().
  *
  * \param[in] menu: a #GedaMenu
@@ -2391,6 +2394,15 @@ tearoff_window_destroyed (GtkWidget *widget, GedaMenu *menu)
   geda_menu_set_tearoff_state (menu, FALSE);
 }
 
+/*!
+ * \brief Set the Tear-Off state Property
+ * \par Function Description
+ *  Pogrammactically set whether the menu is torn off.
+ * \sa  geda_menu_get_tearoff_state ().
+ *
+ * \param[in] menu      Pointer to a #GedaMenu
+ * \param[in] torn_off  whether menu is to be torn off.
+ */
 void
 geda_menu_set_tearoff_state (GedaMenu *menu, bool torn_off)
 {
@@ -2684,6 +2696,7 @@ get_arrows_border (GedaMenu *menu, GtkBorder *border)
   border->left = border->right = 0;
 }
 
+/* widget_class->realize */
 static void
 geda_menu_realize (GtkWidget *widget)
 {
@@ -3344,6 +3357,7 @@ geda_menu_expose (GtkWidget *widget, GdkEventExpose *event)
   return FALSE;
 }
 
+/* widget_class->show */
 static void
 geda_menu_show (GtkWidget *widget)
 {
@@ -4982,6 +4996,10 @@ geda_menu_scroll_to (GedaMenu *menu, int offset)
   menu->scroll_offset = offset;
 }
 
+/*! \internal called by:
+ * geda_menu_scroll_item_visible
+ * geda_menu_real_move_scroll
+ */
 static bool
 compute_child_offset (GedaMenu  *menu,
                       GtkWidget *menu_item,
@@ -5028,6 +5046,10 @@ compute_child_offset (GedaMenu  *menu,
   return TRUE;
 }
 
+/*! \internal called by:
+ * widget_class->realize
+ * shell_class->geda_menu_select_item
+ */
 static void
 geda_menu_scroll_item_visible (GedaMenuShell *menu_shell, GtkWidget *menu_item)
 {
@@ -5120,6 +5142,7 @@ geda_menu_scroll_item_visible (GedaMenuShell *menu_shell, GtkWidget *menu_item)
   }
 }
 
+/* shell_class->select_item */
 static void
 geda_menu_select_item (GedaMenuShell *menu_shell, GtkWidget *menu_item)
 {
