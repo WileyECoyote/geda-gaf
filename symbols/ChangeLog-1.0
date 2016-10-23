@@ -1,3 +1,8 @@
+2016-10-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * lineartech/LTC4020-1.sym: Add symbol Multi-Chemistry Battery Charger,
+      Buck-Boost, 55V.
+
 2016-10-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * lineartech/switchreg/LT1308-1.sym: Hide pin type attribute, revise
