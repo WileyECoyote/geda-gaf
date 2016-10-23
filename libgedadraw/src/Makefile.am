@@ -25,9 +25,9 @@ libgedadraw_la_SOURCES       =
 
 include x11/Makefile_insert
 
-libgedadraw_la_CFLAGS        =
+libgedadraw_la_CFLAGS        = $(AM_CFLAGS)
 
-libgedadraw_la_CPPFLAGS      = $(DEBUGGING) $(GEDA_INCLUDES) $(AM_CFLAGS)
+libgedadraw_la_CPPFLAGS      = $(DEBUGGING) $(GEDA_INCLUDES)
 
 libgedadraw_la_LDFLAGS       = $(DEBUGGING) $(LDFLAGS) $(AM_LDFLAGS)
 
