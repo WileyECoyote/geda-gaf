@@ -1,7 +1,8 @@
 2016-10-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_file.c: Revise function geda_file_save: replace variable
-      int result to bool success and edit comments.
+      int result to bool success and edit comments, free err returned from
+      geda_file_sys_follow_symlinks.
 
     * tests/test_file.c: Add routine to add or remove both good and bad
       symbolic links. Add checks for geda_file_sys_follow_symlinks.

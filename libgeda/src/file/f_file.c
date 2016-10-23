@@ -466,8 +466,10 @@ geda_file_save(GedaToplevel *toplevel, Page *page, const char *filename, GError 
   real_filename = geda_file_sys_follow_symlinks (filename, &tmp_err);
 
   if (real_filename == NULL) {
+
     g_set_error (err, tmp_err->domain, tmp_err->code, err_not_real,
                  filename, tmp_err->message);
+    g_error_free (tmp_err);
     success = 0;
   }
   /* Check to see if filename is writable */
