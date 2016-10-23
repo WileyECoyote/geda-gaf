@@ -1,3 +1,7 @@
+2016-10-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda/geda_types.h: Remove duplicate typedef for int8.
+
 2016-10-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * configure.ac: Add utils/po directory.

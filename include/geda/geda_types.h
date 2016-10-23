@@ -47,7 +47,6 @@ typedef enum { FALSE, TRUE } Boolean;
 
 #endif
 
-typedef unsigned char uint8;
 typedef unsigned long DWORD;
 
 typedef int8_t   int8;
