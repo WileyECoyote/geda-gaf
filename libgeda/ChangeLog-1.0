@@ -4,6 +4,8 @@
       int result to bool success and edit comments, free err returned from
       geda_file_sys_follow_symlinks.
 
+    * src/file/f_sys.c: Update geda_file_sys_follow_symlinks documentation.
+
     * tests/test_file.c: Add routine to add or remove both good and bad
       symbolic links. Add checks for geda_file_sys_follow_symlinks.
 

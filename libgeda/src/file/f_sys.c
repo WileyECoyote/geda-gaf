@@ -239,11 +239,17 @@ geda_file_sys_cmp_mod_time (const char *filename, time_t ref_time)
 /*!
  * \brief Follow symlinks until a real file is found
  * \par Function Description
- *  Does readlink() recursively until we find a real filename.
+ *  Attempts to resolve \a filename to the real name of the file but does
+ *  not guarantee the existence of the file. In other words, if a string
+ *  is returned, the string will be the name of a file, or the target of
+ *  one or more symbolic links. If \a filename is a real file then string
+ *  is a copy of \a filename. In all cases, returned pointers should be
+ *  freed when no longer needed.
  *
  * \param [in]     filename  The filename to search for.
  * \param [in,out] err       GError structure for error reporting,
  *                           or NULL to disable error reporting.
+ *
  * \returns The newly-allocated path to real file on success, NULL
  *          otherwise.
  *
