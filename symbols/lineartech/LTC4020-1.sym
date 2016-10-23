@@ -82,26 +82,26 @@ pinlabel=SENSVIN
 T 450 2375 5 8 0 1 0 2 1
 pintype=pas
 }
-P 100 1800 400 1800 1 0 0
-{
-T 250 1850 5 8 1 1 0 6 1
-pinnumber=8
-T 250 1850 5 8 0 1 0 6 1
-pinseq=8
-T 450 1800 9 10 1 1 0 0 1
-pinlabel=RT
-T 450 1775 5 8 0 1 0 2 1
-pintype=pas
-}
 P 100 2100 400 2100 1 0 0
 {
 T 250 2150 5 8 1 1 0 6 1
-pinnumber=9
+pinnumber=8
 T 250 2150 5 8 0 1 0 6 1
-pinseq=9
+pinseq=8
 T 450 2100 9 10 1 1 0 0 1
-pinlabel=SHDN
+pinlabel=RT
 T 450 2075 5 8 0 1 0 2 1
+pintype=pas
+}
+P 100 1800 400 1800 1 0 0
+{
+T 250 1850 5 8 1 1 0 6 1
+pinnumber=9
+T 250 1850 5 8 0 1 0 6 1
+pinseq=9
+T 450 1800 9 10 1 1 0 0 1
+pinlabel=SHDN
+T 450 1775 5 8 0 1 0 2 1
 pintype=pas
 }
 P 100 1500 400 1500 1 0 0

@@ -3,6 +3,9 @@
     * lineartech/LTC4020-1.sym: Add symbol Multi-Chemistry Battery Charger,
       Buck-Boost, 55V.
 
+    * lineartech/LTC6945-1.sym: Add symbol; PLL synthesizers, 6GHz, low noise,
+      with SPI.
+
 2016-10-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * lineartech/switchreg/LT1308-1.sym: Hide pin type attribute, revise
