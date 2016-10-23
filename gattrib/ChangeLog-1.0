@@ -1,3 +1,9 @@
+2016-10-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_sheet_data.c: Combine strcpy as argument to strcat, mainly to
+      appease static code analysis reporting that Buffer 'none' is being
+      written before its old content has been used.
+
 2016-10-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/parsecmd.c: Include the program name in the version output message.

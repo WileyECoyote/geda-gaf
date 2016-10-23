@@ -202,11 +202,8 @@ void s_sheet_data_load_blank(PageDataSet *PageData)
       s_sheet_data_add_comp_attrib(PageData, comp_attrib[blank]);
       s_sheet_data_attached_attrib(PageData, comp_attrib[blank]);
 
-      strcpy(none, "none");
-      s_sheet_data_add_net(PageData, strcat(none, str));
-
-      strcpy(none, "node");
-      s_sheet_data_add_net_attrib(PageData, strcat(none, str));
+      s_sheet_data_add_net(PageData, strcat(strcpy(none, "none"), str));
+      s_sheet_data_add_net_attrib(PageData, strcat(strcpy(none, "node"), str));
 
       s_sheet_data_add_pin(PageData, str);
     }
