@@ -2,7 +2,7 @@
 
     * src/file/f_file.c: Revise function geda_file_save: replace variable
       int result to bool success and edit comments, free err returned from
-      geda_file_sys_follow_symlinks.
+      geda_file_sys_follow_symlinks add validation for page object.
 
     * src/file/f_sys.c: Update geda_file_sys_follow_symlinks documentation.
 

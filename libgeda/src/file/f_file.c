@@ -430,7 +430,7 @@ f_file_size(const char *filename)
  *  This function saves the \a page to a file with name \a filename.
  *
  * \param [in,out] toplevel  GedaToplevel object.
- * \param [in]     page      A Page object to be associated with the file
+ * \param [in]     page      A Page object associated with the file
  * \param [in]     filename  The file name to save the schematic or symbol.
  * \param [in,out] err       GError structure for error reporting, or
  *                           NULL to disable error reporting
@@ -488,6 +488,8 @@ geda_file_save(GedaToplevel *toplevel, Page *page, const char *filename, GError 
 
     const char *only_filename;
           char *dirname;
+
+    g_return_val_if_fail (GEDA_IS_PAGE(page), FALSE);
 
     /* Get the files original permissions */
     if (stat (real_filename, &st_ActiveFile) != 0) {
