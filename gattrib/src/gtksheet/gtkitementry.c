@@ -39,6 +39,7 @@
  */
 
 #include <string.h>
+#include <stdint.h>
 
 #include <pango/pango.h>
 

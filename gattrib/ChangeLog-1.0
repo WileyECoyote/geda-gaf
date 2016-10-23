@@ -1,3 +1,7 @@
+2016-10-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gtksheet/gtkitementry.c: Include stdint.h for type int16_t.
+
 2016-10-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_sheet_data.c: Combine strcpy as argument to strcat, mainly to
