@@ -14,7 +14,10 @@ LOG_DOMAIN                   = -DG_LOG_DOMAIN=\"libgedadraw\"
 GEDA_INCLUDES                = $(LOG_DOMAIN) $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA) $(INC_LIBCOLOR)
 
 AM_CFLAGS                    = $(GCC_CFLAGS) $(MINGW_CFLAGS) $(GLIB_CFLAGS)  $(GTK_CFLAGS) \
-			      $(GDK_CFLAGS) $(CAIRO_CFLAGS) $(PANGO_CFLAGS) $(GDK_PIXBUF_CFLAGS)
+			       $(GDK_CFLAGS) $(CAIRO_CFLAGS) $(PANGO_CFLAGS) $(GDK_PIXBUF_CFLAGS)
+
+AM_CPPFLAGS                  = $(MINGW_CFLAGS) $(GLIB_CFLAGS)  $(GTK_CFLAGS) \
+			       $(GDK_CFLAGS)   $(CAIRO_CFLAGS) $(PANGO_CFLAGS) $(GDK_PIXBUF_CFLAGS)
 
 AM_LDFLAGS                   = -version-info $(LIBGEDADRAW_SHLIB_VERSION) $(GLIB_LIBS) $(X11_LIBS) \
 			      $(WINDOWS_LIBTOOL_FLAGS)  $(MINGW_LDFLAGS) $(GDK_PIXBUF_LIBS)
@@ -27,7 +30,7 @@ include x11/Makefile_insert
 
 libgedadraw_la_CFLAGS        = $(AM_CFLAGS)
 
-libgedadraw_la_CPPFLAGS      = $(DEBUGGING) $(GEDA_INCLUDES)
+libgedadraw_la_CPPFLAGS      = $(DEBUGGING) $(GEDA_INCLUDES) $(AM_CPPFLAGS)
 
 libgedadraw_la_LDFLAGS       = $(DEBUGGING) $(LDFLAGS) $(AM_LDFLAGS)
 

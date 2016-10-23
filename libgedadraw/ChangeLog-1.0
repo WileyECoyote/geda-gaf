@@ -1,6 +1,7 @@
 2016-10-23 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/Makefile.am: Move AM_CFLAGS to CFLAGS.
+    * src/Makefile.am: Move AM_CFLAGS to CFLAGS, add AM_CPPFLAGS with allows
+      flags except GCC_CFLAGS.
 
 2016-06-05 Wiley E. Hill <wileyhill@gmail.com>
 
