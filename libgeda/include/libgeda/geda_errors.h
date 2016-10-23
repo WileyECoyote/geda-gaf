@@ -45,10 +45,10 @@ extern "C" {
 
 GQuark eda_error_quark (void);
 
-void   geda_error_object_argument(const char      *file,
-                                  const char      *func,
-                                  const void      *object,
-                                  IDE_OBJECT_TYPE  type);
+void   geda_error_object_argument(const char *file,
+                                  const char *func,
+                                  const void *object,
+                                  const char  type);
 
 #ifdef __cplusplus
 }

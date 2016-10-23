@@ -30,10 +30,10 @@ eda_error_quark (void)
 }
 
 void
-geda_error_object_argument(const char      *file,
-                           const char      *func,
-                           const void      *object,
-                           IDE_OBJECT_TYPE  type)
+geda_error_object_argument(const char *file,
+                           const char *func,
+                           const void *object,
+                           const char  type)
 {
   if (type <= GEDA_OBJECT_TEXT) {
 
@@ -54,10 +54,10 @@ geda_error_object_argument(const char      *file,
     fprintf(stderr, "File %s, <%s>: ", file, func);
 
     if (!object) {
-      fprintf(stderr, "Geda%s object argument is NULL\n", type_string[type]);
+      fprintf(stderr, "Geda%s object argument is NULL\n", type_string[(int)type]);
     }
     else {
-      fprintf(stderr, "Not a valid Geda%s <%p>\n", type_string[type], object);
+      fprintf(stderr, "Not a valid Geda%s <%p>\n", type_string[(int)type], object);
     }
   }
   else {
