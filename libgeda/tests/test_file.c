@@ -448,10 +448,15 @@ int test_geda_file_copy ()
 
 int test_sys (void)
 {
-  int   result;
-  char *string;
+  GError *err;
+  char   *string;
+  int     result;
 
   result = errno = 0;
+  err = NULL;
+
+  /* This is only needed for distcheck VPATH builds */
+  const char *src_dir = getenv ("srcdir");
 
   /* === Function 01: geda_file_copy === */
 
@@ -463,9 +468,89 @@ int test_sys (void)
 
       /* TODO: check geda_cmp_file_mod_time */
 
-  /* === Function 03: geda_follow_symlinks geda_file_sys_follow_symlinks === */
+  /* === Function 03: geda_file_sys_follow_symlinks === */
 
-      /* TODO: check geda_follow_symlinks */
+  string = geda_follow_symlinks(NULL, &err);
+  if (string) {
+    fprintf(stderr, "FAILED: (F050300A) geda_follow_symlinks NULL\n");
+  }
+  else {
+    if (!err) {
+      fprintf(stderr, "FAILED: (F050300B) geda_follow_symlinks NULL\n");
+    }
+    else {
+      g_error_free (err);
+    }
+  }
+
+  string = geda_follow_symlinks(BAD_LINK_FILE, &err);
+  if (!string) {
+    if (!err) {
+      fprintf(stderr, "FAILED: (F050301A) geda_follow_symlinks <%s>\n", strerror(errno));
+    }
+    else {
+      fprintf(stderr, "FAILED: (F050301B) geda_follow_symlinks <%s>\n", err->message);
+      g_error_free (err);
+    }
+    result++;
+  }
+  else {
+
+    /* Because geda_file_sys_follow_symlinks was given a relative path
+     * that contained a relative link, the returned "target" should be
+     * relative to the current directory.
+     */
+    char *target;
+
+    if (src_dir && strlen(src_dir) > 1) { /* VPATH builds */
+      target = geda_strdup(BAD_LINK_FILE);
+    }
+    else {
+      target = g_build_filename("data", LINK2NOWHERE, NULL);
+    }
+
+    if (strcmp(string, target)) {
+      fprintf(stderr, "FAILED: (F050301C) geda_follow_symlinks <%s>", string);
+      fprintf(stderr, " expected <%s>\n",target);
+      result++;
+    }
+
+    GEDA_FREE(target); /* string returned from g_build_filename */
+    GEDA_FREE(string); /* string returned from geda_follow_symlinks */
+  }
+
+  string = geda_follow_symlinks(GOOD_LINK_FILE, &err);
+  if (!string) {
+    if (!err) {
+      fprintf(stderr, "FAILED: (F050302A) geda_follow_symlinks <%s>\n", strerror(errno));
+    }
+    else {
+      fprintf(stderr, "FAILED: (F050302B) geda_follow_symlinks <%s>\n", err->message);
+      g_error_free (err);
+    }
+    result++;
+  }
+  else {
+
+    char *target;
+
+    if (src_dir && strlen(src_dir) > 1) { /* VPATH builds */
+      target = geda_strdup(GOOD_LINK_FILE);
+    }
+    else {
+      target = g_build_filename("data", LINK2SOMEWHERE, NULL);
+    }
+
+    /* string = "data/ATMega32-DIP_test.sym" */
+    if (strcmp(string, target)) {
+      fprintf(stderr, "FAILED: (F050302C) geda_follow_symlinks <%s>",string);
+      fprintf(stderr, " expected <%s>\n", target);
+      result++;
+    }
+
+    GEDA_FREE(target); /* string returned from g_build_filename */
+    GEDA_FREE(string); /* string returned from geda_follow_symlinks */
+  }
 
   /* === Function 04: geda_file_sys_normalize_name === */
 
@@ -546,6 +631,8 @@ int test_sys (void)
   /* === Function 05: geda_file_sys_remove === */
 
   /* See also test_picture_object.c posttest() */
+
+  errno = 0;
 
   if (remove_file) {
 
@@ -693,7 +780,7 @@ file_links_4_test(bool create)
   g_free(filename);
 
   if (!src_dir) {
-    g_free(test_dir);
+    GEDA_FREE(test_dir);
   }
 }
 
