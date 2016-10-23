@@ -2417,6 +2417,7 @@ geda_menu_set_tearoff_state (GedaMenu *menu, bool torn_off)
 
       GdkWindow *window;
       int        width;
+      int        height;
 
       if (gtk_widget_get_visible (GTK_WIDGET (menu))) {
         geda_menu_popdown (menu);
@@ -2425,7 +2426,6 @@ geda_menu_set_tearoff_state (GedaMenu *menu, bool torn_off)
       if (!menu->tearoff_window) {
 
         GtkWidget *toplevel;
-        int        height;
 
         menu->tearoff_window = g_object_new (GTK_TYPE_WINDOW,
                                              "type", GTK_WINDOW_TOPLEVEL,
