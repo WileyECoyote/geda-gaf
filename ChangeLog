@@ -1,3 +1,9 @@
+2016-10-24 Wiley E. Hill <wileyhill@gmail.com>
+
+      * autogen.sh: Add utils/po to podirs list.
+
+    * configure.ac: Add external option to AM_GNU_GETTEXT.
+
 2016-10-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda/geda_types.h: Define type mode_t to fix bad system
