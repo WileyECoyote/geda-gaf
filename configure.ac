@@ -95,7 +95,7 @@ AX_GEDA_STD_CHECKS
 #####################################################################
 
 AM_NLS
-AM_GNU_GETTEXT([external])
+AM_GNU_GETTEXT
 AM_GNU_GETTEXT_VERSION([0.16])dnl
 AX_DESKTOP_I18N
 

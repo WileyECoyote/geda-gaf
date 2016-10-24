@@ -1,8 +1,10 @@
 2016-10-24 Wiley E. Hill <wileyhill@gmail.com>
 
-      * autogen.sh: Add utils/po to podirs list.
+    * autogen.sh: Add utils/po to podirs list.
 
-    * configure.ac: Add external option to AM_GNU_GETTEXT.
+    * configure.ac: Add external option to AM_GNU_GETTEXT. Then REVERT
+      commit bfc654938a66bbc9617a17a6305d771b5b522d29, which was made
+      from a Windoze machine.
 
 2016-10-23 Wiley E. Hill <wileyhill@gmail.com>
 
