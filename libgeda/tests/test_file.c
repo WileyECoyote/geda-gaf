@@ -65,6 +65,7 @@
 
 #define BAD_LINK_FILE "data/link_to_nowhere.sch"
 #define GOOD_LINK_FILE "data/link_to_somewhere.sch"
+#define READ_ONLY_FILE "data/read_only.sch"
 
 /*! Where the file data/link_to_nowhere.sch points to */
 #define LINK2NOWHERE "nowhere/tests/data/no_file.sch"
@@ -232,7 +233,88 @@ int test_file (void)
 
   geda_remove_backup_file(NULL);
 
-  /* === Function 06: geda_save_file            geda_file_save === */
+  err = NULL;
+
+  /* === Function 06: geda_file_save === */
+
+  geda_save_file(NULL, NULL, NULL, &err);
+
+  if (!err) {
+    fprintf(stderr, "FAILED: (F010600A1) geda_file_save NULL\n");
+    result++;
+  }
+  else {
+    fprintf(stderr, "Message: (F010600A2) %s.\n", err->message);
+    g_error_free (err);
+    err = NULL;
+  }
+
+  geda_save_file(NULL, NULL, READ_ONLY_FILE, &err);
+
+  if (!err) {
+    fprintf(stderr, "FAILED: (F010600B1) geda_file_save NULL\n");
+    result++;
+  }
+  else {
+    fprintf(stderr, "Message: (F010600B2) %s.\n", err->message);
+    g_error_free (err);
+    err = NULL;
+  }
+
+  geda_save_file(NULL, NULL, "data/bad_geda.sch", &err);
+
+  if (!err) {
+    fprintf(stderr, "FAILED: (F010600C1) geda_file_save NULL\n");
+    result++;
+  }
+  else {
+    fprintf(stderr, "Message: (F010600C2) %s.\n", err->message);
+    g_error_free (err);
+    err = NULL;
+  }
+
+  free(source);
+
+  const char *fname06 = "data/test.sch";
+
+  source = g_build_filename(src_dir, fname06, NULL);
+
+  page = geda_struct_page_new (toplevel, source);
+
+  geda_save_file(toplevel, page, source, &err);
+
+  if (err) {
+    fprintf(stderr, "FAILED: (F010601A) geda_file_save\n");
+    g_error_free (err);
+    err = NULL;
+    result++;
+  }
+  else {
+    if (access(source, R_OK))  {
+      fprintf(stderr, "FAILED: (F010601B) %s not found\n", source);
+      result++;
+    }
+    else {
+      /* File containing only version should have been written to disk */
+      geda_remove_file(source);
+    }
+  }
+
+  /* Try to over-write a read only file, note that distcheck fail
+   * because there is no data subdirectory */
+  geda_save_file(toplevel, page, READ_ONLY_FILE, &err);
+
+  if (!err) {
+    fprintf(stderr, "FAILED: (F010602A) READ_ONLY <%s>\n", source);
+    result++;
+  }
+  else {
+    fprintf(stderr, "Message: (F010602B) %s.\n", err->message);
+    g_error_free (err);
+    err = NULL;
+  }
+
+  geda_struct_page_delete (toplevel, page, FALSE);
 
   geda_toplevel_set_file_open_flags(toplevel, F_OPEN_NONE);
 

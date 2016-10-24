@@ -4,6 +4,12 @@
       g_return_val_if_fail and check the page object and set error using
       g_set_error_literal instead.
 
+    * tests/data/read_only.sch: Add minimalist file with read only attributes.
+
+    * tests/Makefile.am: Add read_only.sch to TEST_FILES.
+
+    * tests/test_file.c: Add some checks for geda_file_save.
+
 2016-10-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_errors.c: Change last argument geda_error_object_argument
