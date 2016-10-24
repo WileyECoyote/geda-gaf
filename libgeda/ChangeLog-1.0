@@ -1,3 +1,9 @@
+2016-10-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/file/f_file.c: Revise function geda_file_save again: remove
+      g_return_val_if_fail and check the page object and set error using
+      g_set_error_literal instead.
+
 2016-10-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_errors.c: Change last argument geda_error_object_argument

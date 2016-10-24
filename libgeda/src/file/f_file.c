@@ -483,13 +483,17 @@ geda_file_save(GedaToplevel *toplevel, Page *page, const char *filename, GError 
       success = 0;
     }
   }
+  else if (!GEDA_IS_PAGE(page))  {
+
+    g_set_error_literal (err, G_FILE_ERROR, G_FILE_ERROR_INVAL,
+                         "Invalid or corrupt Page object");
+    success = 0;
+  }
 
   if (success) {
 
     const char *only_filename;
           char *dirname;
-
-    g_return_val_if_fail (GEDA_IS_PAGE(page), FALSE);
 
     /* Get the files original permissions */
     if (stat (real_filename, &st_ActiveFile) != 0) {
