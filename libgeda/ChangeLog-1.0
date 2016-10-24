@@ -5,7 +5,8 @@
 
     * src/file/f_file.c: Revise function geda_file_save again: remove
       g_return_val_if_fail and check the page object and set error using
-      g_set_error_literal instead.
+      g_set_error_literal instead. Set the permissions of read_only.sch
+      to insure git did not drop the read-only attributes.
 
     * tests/data/read_only.sch: Add minimalist file with read only attributes.
 

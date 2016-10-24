@@ -28,6 +28,11 @@
 #include <stdlib.h>
 #include <errno.h>
 
+#include <geda/geda_stat.h>
+
+#include <glib.h>
+#include <glib/gstdio.h>
+
 #include "test-suite.h"
 
 /*! \file test_file.c
@@ -236,6 +241,10 @@ int test_file (void)
   err = NULL;
 
   /* === Function 06: geda_file_save === */
+
+  if (access(READ_ONLY_FILE, F_OK) == 0)  {
+    g_chmod(READ_ONLY_FILE, S_IRUSR|S_IRGRP|S_IROTH);
+  }
 
   geda_save_file(NULL, NULL, NULL, &err);
 
