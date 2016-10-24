@@ -549,8 +549,7 @@ Page*
 geda_toplevel_get_current_page (GedaToplevel *toplevel)
 {
   g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), NULL);
-
-  return toplevel->page_current;
+  return GEDA_IS_PAGE(toplevel->page_current) ? toplevel->page_current : NULL;
 }
 
 /*!
@@ -811,6 +810,7 @@ geda_toplevel_remove_page (GedaToplevel *toplevel, Page *page)
     if (geda_list_is_in_list(toplevel->pages, page)) {
       geda_page_unref (page);
       geda_list_remove (toplevel->pages, page);
+      /* Note toplevel->page_current maybe dead! */
     }
   }
 }

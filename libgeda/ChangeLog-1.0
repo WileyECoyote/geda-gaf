@@ -1,5 +1,8 @@
 2016-10-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_toplevel.c: Revise geda_toplevel_get_current_page to
+      return NULL if the current page is invalid.
+
     * src/file/f_file.c: Revise function geda_file_save again: remove
       g_return_val_if_fail and check the page object and set error using
       g_set_error_literal instead.
