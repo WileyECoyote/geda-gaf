@@ -11,6 +11,8 @@
       page if the page that was deleted was the first and the current
       page.
 
+    * tests/test_file.c: Add some checks for geda_file_get_autosave_filename.
+
 2016-10-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_toplevel.c: Revise geda_toplevel_get_current_page to

@@ -314,7 +314,7 @@ int test_file (void)
   geda_save_file(toplevel, page, READ_ONLY_FILE, &err);
 
   if (!err) {
-    fprintf(stderr, "FAILED: (F010602A) READ_ONLY <%s>\n", source);
+    fprintf(stderr, "FAILED: (F010602A) <%s>\n", READ_ONLY_FILE);
     result++;
   }
   else {
@@ -350,7 +350,41 @@ int test_get (void)
   int   index;
   int   result = 0;
 
-  /* === Function 01: geda_get_autosave_name    geda_file_get_autosave_filename === */
+  /* === Function 01:  geda_file_get_autosave_filename === */
+
+  const char *expected_0101 = "./#" LINK2SOMEWHERE "#";
+
+  /* LINK2SOMEWHERE is SYM_FILE with the data/ prefix */
+  string = geda_get_autosave_name(LINK2SOMEWHERE);
+
+  if (!string) {
+    fprintf(stderr, "FAILED: (F020101A) geda_file_get_autosave_filename\n");
+    result++;
+  }
+  else {
+    if (strcmp(string, expected_0101)) {
+      fprintf(stderr, "FAILED: (F020101B) geda_file_get_autosave_filename <%s>\n", string);
+      result++;
+    }
+    free (string);
+  }
+
+  const char *expected_0102 = "nowhere/tests/data/#no_file.sch#";
+
+  string = geda_get_autosave_name(LINK2NOWHERE);
+
+  if (!string) {
+    fprintf(stderr, "FAILED: (F020102A) geda_file_get_autosave_filename\n");
+    result++;
+  }
+  else {
+    if (strcmp(string, expected_0102)) {
+      fprintf(stderr, "FAILED: (F020102B) geda_file_get_autosave_filename <%s>\n", string);
+      result++;
+    }
+    free (string);
+  }
+
   /* === Function 02: geda_file_get_basename === */
 
   static const struct _TestData F02_str[] =
@@ -368,6 +402,7 @@ int test_get (void)
   };
 
   string = (char*)geda_get_basename (NULL);
+
   if (string) {                           /* NULL input */
     fprintf(stderr, "FAILED: (F020200) geda_file_get_basename <%s>\n", string);
     result++;
