@@ -565,9 +565,10 @@ geda_toplevel_get_current_page (GedaToplevel *toplevel)
 int
 geda_toplevel_get_file_open_flags (GedaToplevel *toplevel)
 {
-  g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), 0);
-
-  return toplevel->open_flags;
+  if (GEDA_IS_TOPLEVEL(toplevel)) {
+    return toplevel->open_flags;
+  }
+  return F_OPEN_NONE;
 }
 
 /*!
@@ -581,9 +582,10 @@ geda_toplevel_get_file_open_flags (GedaToplevel *toplevel)
 int
 geda_toplevel_get_make_backups (GedaToplevel *toplevel)
 {
-  g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), FALSE);
-
-  return toplevel->make_backup_files;
+  if (GEDA_IS_TOPLEVEL(toplevel)) {
+    return toplevel->make_backup_files;
+  }
+  return FALSE;
 }
 
 /*!
