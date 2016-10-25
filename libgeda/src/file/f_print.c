@@ -416,6 +416,44 @@ void f_print_objects (GedaToplevel *toplevel, FILE *fp, const GList *obj_list,
   return;
 }
 
+/*! \brief Opens a pipe to the specified command and prints the
+ *  current GedaToplevel object to the pipe as a postscript document.
+ *
+ *  \par Function Description
+ *
+ *  \param [in] toplevel   The GedaToplevel object.
+ *  \param [in] page       The Page to print.
+ *  \param [in] color_map  The color map to use when printing.
+ *  \param [in] command    The command to print to.
+ *  \return 0 on success, -1 on failure.
+ */
+int
+geda_file_print_command (GedaToplevel *toplevel, Page *page, GArray *color_map, const char *command)
+{
+  FILE *fp;
+  int   result;
+
+  fp = popen (command, "w");
+
+  print_colormap =  color_map;
+
+  /* check to see if it worked */
+  if (fp == NULL) {
+
+      u_log_message(_("Could not execute command [%s] for printing\n"),
+                    command);
+      result = -1;
+  }
+  else {
+    result = geda_file_print_stream (toplevel, page, fp);
+    pclose (fp);
+  }
+
+  print_colormap = NULL;
+
+  return result;
+}
+
 /*! \brief Print the current GedaToplevel object to a file as a postscript
  *  document.
  *
@@ -459,42 +497,16 @@ geda_file_print_file (GedaToplevel *toplevel, Page *page, GArray *color_map, con
   return result;
 }
 
-/*! \brief Opens a pipe to the specified command and prints the
- *  current GedaToplevel object to the pipe as a postscript document.
- *
+/*! \brief Sets the current GedaToplevel object output type
  *  \par Function Description
+ *  Sets the current GedaToplevel object output type.
  *
- *  \param [in] toplevel   The GedaToplevel object.
- *  \param [in] page       The Page to print.
- *  \param [in] color_map  The color map to use when printing.
- *  \param [in] command    The command to print to.
- *  \return 0 on success, -1 on failure.
+ *  \param [in,out] toplevel  The GedaToplevel object to set output type in.
+ *  \param [in]     type       The print type to set.
  */
-int
-geda_file_print_command (GedaToplevel *toplevel, Page *page, GArray *color_map, const char *command)
+void geda_file_print_set_type(GedaToplevel *toplevel, int type)
 {
-  FILE *fp;
-  int   result;
-
-  fp = popen (command, "w");
-
-  print_colormap =  color_map;
-
-  /* check to see if it worked */
-  if (fp == NULL) {
-
-      u_log_message(_("Could not execute command [%s] for printing\n"),
-                    command);
-      result = -1;
-  }
-  else {
-    result = geda_file_print_stream (toplevel, page, fp);
-    pclose (fp);
-  }
-
-  print_colormap = NULL;
-
-  return result;
+  toplevel->print_output_type = type;
 }
 
 /*! \brief Print the current GedaToplevel object to a stream as a
@@ -696,18 +708,6 @@ int geda_file_print_stream(GedaToplevel *toplevel, Page *page, FILE *fp)
     f_print_footer(fp);
 
     return(0);
-}
-
-/*! \brief Sets the current GedaToplevel object output type
- *  \par Function Description
- *  Sets the current GedaToplevel object output type.
- *
- *  \param [in,out] toplevel  The GedaToplevel object to set output type in.
- *  \param [in]     type       The print type to set.
- */
-void geda_file_print_set_type(GedaToplevel *toplevel, int type)
-{
-  toplevel->print_output_type = type;
 }
 
 /*! \brief Converts all text strings to unicode format.

@@ -49,6 +49,275 @@ static const char const DOC_ENV_STR[]    = "GEDADOC";
 static const char const DATA_ENV_STR[]   = "GEDADATA";
 static const char const RCDATA_ENV_STR[] = "GEDADATARC";
 
+static char *sys_data_path    = NULL;
+static char *sys_doc_path     = NULL;
+static char *sys_config_path  = NULL;
+static char *user_config_path = NULL;
+
+/* ------------------ Directory Utility Functions --------------- */
+
+/** \defgroup libgeda-dir-utilities Libgeda Directory Utilities
+ *  @{ \par This Group contains utilities to manipulate directories.
+*/
+
+#if defined (HAVE_MKDIR) || defined (HAVE__MKDIR)
+
+  #if MKDIR_TAKES_ONE_ARG
+
+    /* MinGW32, mkdir under MinGW only takes one argument */
+    #define MKDIR(a, b) mkdir(a)
+
+  #else
+
+    #if HAVE__MKDIR
+      /* plain Windows 32 */
+      #define MKDIR(a, b) _mkdir(a)
+    #else
+      #define MKDIR(a, b) mkdir(a, b)
+    #endif
+
+  #endif
+
+/*! \brief Make a Directory
+ *  \par Function description
+ *  This is an internal function used by the geda_file_path_create below.
+ *  This function creates a new non-nested directory entry with the
+ *  given permission attribute.
+ *
+ *  \Author Jonathan Leffler
+ *  \copyright (C) JLSS 1990-2012
+ *
+ *  \param path Pointer to string path to be created
+ *  \param mode is valid mode_t permission integer
+ *
+ *  \retval NO_ERROR on success or -1 if and error was encountered
+ */
+static int f_create_dir(const char *path, mode_t mode)
+{
+    struct stat stat_buf;
+    int         status = NO_ERROR;
+
+    if (stat(path, &stat_buf) != 0) {
+        /* Directory does not exist. EEXIST for race condition */
+        if (mkdir(path, mode) != 0 && errno != EEXIST)
+            status = -1;
+    }
+    else if (!S_ISDIR(stat_buf.st_mode)) {
+        errno = ENOTDIR;
+        status = -1;
+    }
+
+    return (status);
+}
+
+/*! \brief Create a Directory Path
+ *  \par Function description
+ *  Ensure all directories in path exist, these algorithm takes the
+ *  pessimistic view and works top-down to ensure each directory in
+ *  path exists, rather than optimistically creating the last element
+ *  and working backwards.
+ *
+ *  \Author Jonathan Leffler
+ *  \copyright (C) JLSS 1990-2012
+ *
+ *  \param path Pointer to string path to be created
+ *  \param mode valid mode_t integer permission attribute
+ *
+ *  \retval NO_ERROR on success or -1 if and error was encountered,
+ *          if \a path is NULL then NO_ERROR is returned.
+ *
+ *  \remark WEH Tweeked for libgeda
+ */
+int geda_file_path_create(const char *path, mode_t mode)
+{
+  char           *pp;
+  char           *sp;
+  int             status;
+  char           *copypath;
+
+  status = NO_ERROR;
+
+  if (path) {
+
+    copypath = geda_strdup(path);
+    pp       = copypath;
+
+    while (status == NO_ERROR && (sp = strchr(pp, '/')) != 0) {
+
+      if (sp != pp) {
+
+        /* Neither root nor double slash in path */
+        *sp = '\0';
+        status = f_create_dir(copypath, mode);
+        *sp = '/';
+      }
+      pp = sp + 1;
+    }
+    if (status == NO_ERROR) {
+      status = f_create_dir(path, mode);
+    }
+    GEDA_FREE(copypath);
+  }
+
+  return (status);
+}
+
+#else /* Not defined (HAVE_MKDIR) || defined (HAVE__MKDIR) */
+
+int geda_file_path_create(const char *path, mode_t mode)
+{
+
+#if (( GLIB_MAJOR_VERSION >= 2 ) && ( GLIB_MINOR_VERSION >= 8 ))
+  return g_mkdir_with_parents (path, mode);
+#else
+  #error "Don't know how to create a directory on this system."
+#endif
+
+}
+
+#endif
+
+/*! \brief Free memory used by Libgeda Path Module.
+ *  \par Function Description
+ *  This function is public so that programs can use libgeda's path
+ *  module without calling libgeda_init. Programs that do so should
+ *  call this function before exiting.
+ */
+void geda_file_path_free (void) {
+  GEDA_FREE(sys_data_path);
+  GEDA_FREE(sys_doc_path);
+  GEDA_FREE(sys_config_path);
+  GEDA_FREE(user_config_path);
+}
+
+/*! \brief Gets Directory Component of a File Name
+ *  \par Function Description
+ *   Returns directory portion of \a filepath. If \a filepath is
+ *  a directory a copy of \a filepath is returned. If \a filepath
+ *  has no directory components "." is returned. The returned
+ *  string should be freed when no longer needed.
+ *
+ *  \param [in] filepath The filepath to search.
+ *
+ *  \returns directory components of \a filepath.
+ */
+char *geda_file_path_get_dirname (const char *filepath)
+{
+  register char *path;
+
+  if (filepath == NULL) {
+    path = NULL;
+  }
+  else if (g_file_test (filepath, G_FILE_TEST_IS_DIR)) {
+    path = geda_strdup(filepath);
+  }
+  else {
+
+    register unsigned int  len;
+
+    path = strrchr (filepath, G_DIR_SEPARATOR);
+
+#if defined (OS_WIN32_NATIVE) || defined(__MINGW32__)
+
+    const char *ptr;
+
+    ptr = strrchr (filepath, '/');
+
+    if (path == NULL || (ptr != NULL && ptr > path)) {
+      path = ptr;
+    }
+
+#endif
+
+    if (!path) {
+
+#if defined (OS_WIN32_NATIVE) || defined(__MINGW32__)
+
+      if (isalpha (filepath[0]) && filepath[1] == ':') {
+
+        char root_path[4];
+
+        root_path[0] = filepath[0];
+        root_path[1] = ':';
+        root_path[2] = '.';
+        root_path[3] = '\0';
+
+      }
+
+#else
+
+      char root_path[2];
+
+      root_path[0] = '.';
+      root_path[1] = '\0';
+
+#endif
+
+      return geda_strdup (root_path);
+    }
+
+    while (path > filepath && G_IS_DIR_SEPARATOR (*path)) path--;
+
+#if defined (OS_WIN32_NATIVE) || defined(__MINGW32__)
+
+    /* path points to the char before the last slash.
+     *
+     * In case filepath is the root of a drive (X:\) or a child of the
+     * root of a drive (X:\foo), include the slash.
+     *
+     * In case filepath is the root share of an UNC path
+     * (\\server\share), add a slash, returning \\server\share\ .
+     *
+     * In case filepath is a direct child of a share in an UNC path
+     * (\\server\share\foo), include the slash after the share name,
+     * returning \\server\share\ .
+     */
+    if (path == filepath + 1 && isalpha (filepath[0]) && filepath[1] == ':') {
+      path++;
+    }
+    else if (G_IS_DIR_SEPARATOR (filepath[0]) &&
+             G_IS_DIR_SEPARATOR (filepath[1]) &&
+             filepath[2] &&
+            !G_IS_DIR_SEPARATOR (filepath[2]) &&
+             path >= filepath + 2)
+    {
+      ptr = filepath + 2;
+
+      while (*ptr && !G_IS_DIR_SEPARATOR (*ptr)) ptr++;
+
+      if (ptr == path + 1) {
+        len = (unsigned int) strlen (filepath) + 1;
+        path = GEDA_MEM_ALLOC (len + 1);
+        strcpy (path, filepath);
+        path[len-1] = G_DIR_SEPARATOR;
+        path[len] = 0;
+        return path;
+      }
+
+      if (G_IS_DIR_SEPARATOR (*ptr)) {
+
+        ptr++;
+        while (*ptr && !G_IS_DIR_SEPARATOR (*ptr)) ptr++;
+
+        if (ptr == path + 1) {
+          path++;
+        }
+      }
+    }
+
+#endif
+
+    len = (unsigned int) 1 + path - filepath;
+
+    path = GEDA_MEM_ALLOC (len + 1);
+    memmove (path, filepath, len);
+    path[len] = 0;
+  }
+  return path;
+}
+
+/** @} endgroup libgeda-dir-utilities */
+
 #ifdef OS_WIN32
 
 /* Get a module handle for the libgeda DLL.
@@ -84,25 +353,6 @@ static void *libgeda_module_handle (void)
 }
 
 #endif /* G_OS_WIN32 */
-
-static char *sys_data_path    = NULL;
-static char *sys_doc_path     = NULL;
-static char *sys_config_path  = NULL;
-static char *user_config_path = NULL;
-
-
-/*! \brief Free memory used by Libgeda Path Module.
- *  \par Function Description
- *  This function is public so that programs can use libgeda's path
- *  module without calling libgeda_init. Programs that do so should
- *  call this function before exiting.
- */
-void geda_file_path_free (void) {
-  GEDA_FREE(sys_data_path);
-  GEDA_FREE(sys_doc_path);
-  GEDA_FREE(sys_config_path);
-  GEDA_FREE(user_config_path);
-}
 
 /*! \brief Get the directory with the gEDA system data.
  *
@@ -296,253 +546,3 @@ const char *geda_file_path_user_config (void) {
   }
   return user_config_path;
 }
-
-/* ------------------ Directory Utility Functions --------------- */
-
-/** \defgroup libgeda-dir-utilities Libgeda Directory Utilities
- *  @{ \par This Group contains utilities to manipulate directories.
-*/
-
-#if defined (HAVE_MKDIR) || defined (HAVE__MKDIR)
-
-  #if MKDIR_TAKES_ONE_ARG
-
-    /* MinGW32, mkdir under MinGW only takes one argument */
-    #define MKDIR(a, b) mkdir(a)
-
-  #else
-
-    #if HAVE__MKDIR
-      /* plain Windows 32 */
-      #define MKDIR(a, b) _mkdir(a)
-    #else
-      #define MKDIR(a, b) mkdir(a, b)
-    #endif
-
-  #endif
-
-/*! \brief Make a Directory
- *  \par Function description
- *  This is an internal function used by the geda_file_path_create below.
- *  This function creates a new non-nested directory entry with the
- *  given permission attribute.
- *
- *  \Author Jonathan Leffler
- *  \copyright (C) JLSS 1990-2012
- *
- *  \param path Pointer to string path to be created
- *  \param mode is valid mode_t permission integer
- *
- *  \retval NO_ERROR on success or -1 if and error was encountered
- */
-static int f_create_dir(const char *path, mode_t mode)
-{
-    struct stat stat_buf;
-    int         status = NO_ERROR;
-
-    if (stat(path, &stat_buf) != 0) {
-        /* Directory does not exist. EEXIST for race condition */
-        if (mkdir(path, mode) != 0 && errno != EEXIST)
-            status = -1;
-    }
-    else if (!S_ISDIR(stat_buf.st_mode)) {
-        errno = ENOTDIR;
-        status = -1;
-    }
-
-    return (status);
-}
-
-/*! \brief Create a Directory Path
- *  \par Function description
- *  Ensure all directories in path exist, these algorithm takes the
- *  pessimistic view and works top-down to ensure each directory in
- *  path exists, rather than optimistically creating the last element
- *  and working backwards.
- *
- *  \Author Jonathan Leffler
- *  \copyright (C) JLSS 1990-2012
- *
- *  \param path Pointer to string path to be created
- *  \param mode valid mode_t integer permission attribute
- *
- *  \retval NO_ERROR on success or -1 if and error was encountered,
- *          if \a path is NULL then NO_ERROR is returned.
- *
- *  \remark WEH Tweeked for libgeda
- */
-int geda_file_path_create(const char *path, mode_t mode)
-{
-  char           *pp;
-  char           *sp;
-  int             status;
-  char           *copypath;
-
-  status = NO_ERROR;
-
-  if (path) {
-
-    copypath = geda_strdup(path);
-    pp       = copypath;
-
-    while (status == NO_ERROR && (sp = strchr(pp, '/')) != 0) {
-
-      if (sp != pp) {
-
-        /* Neither root nor double slash in path */
-        *sp = '\0';
-        status = f_create_dir(copypath, mode);
-        *sp = '/';
-      }
-      pp = sp + 1;
-    }
-    if (status == NO_ERROR) {
-      status = f_create_dir(path, mode);
-    }
-    GEDA_FREE(copypath);
-  }
-
-  return (status);
-}
-#else
-
-int geda_file_path_create(const char *path, mode_t mode)
-{
-
-#if (( GLIB_MAJOR_VERSION >= 2 ) && ( GLIB_MINOR_VERSION >= 8 ))
-  return g_mkdir_with_parents (path, mode);
-#else
-  #error "Don't know how to create a directory on this system."
-#endif
-
-}
-#endif
-
-/*! \brief Gets Directory Component of a File Name
- *  \par Function Description
- *   Returns directory portion of \a filepath. If \a filepath is
- *  a directory a copy of \a filepath is returned. If \a filepath
- *  has no directory components "." is returned. The returned
- *  string should be freed when no longer needed.
- *
- *  \param [in] filepath The filepath to search.
- *
- *  \returns directory components of \a filepath.
- */
-char*
-geda_file_path_get_dirname (const char *filepath)
-{
-  register char *path;
-
-  if (filepath == NULL) {
-    path = NULL;
-  }
-  else if (g_file_test (filepath, G_FILE_TEST_IS_DIR)) {
-    path = geda_strdup(filepath);
-  }
-  else {
-
-    register unsigned int  len;
-
-    path = strrchr (filepath, G_DIR_SEPARATOR);
-
-#if defined (OS_WIN32_NATIVE) || defined(__MINGW32__)
-
-    const char *ptr;
-
-    ptr = strrchr (filepath, '/');
-
-    if (path == NULL || (ptr != NULL && ptr > path)) {
-      path = ptr;
-    }
-
-#endif
-
-    if (!path) {
-
-#if defined (OS_WIN32_NATIVE) || defined(__MINGW32__)
-
-      if (isalpha (filepath[0]) && filepath[1] == ':') {
-
-        char root_path[4];
-
-        root_path[0] = filepath[0];
-        root_path[1] = ':';
-        root_path[2] = '.';
-        root_path[3] = '\0';
-
-      }
-
-#else
-
-      char root_path[2];
-
-      root_path[0] = '.';
-      root_path[1] = '\0';
-
-#endif
-
-      return geda_strdup (root_path);
-    }
-
-    while (path > filepath && G_IS_DIR_SEPARATOR (*path)) path--;
-
-#if defined (OS_WIN32_NATIVE) || defined(__MINGW32__)
-
-    /* path points to the char before the last slash.
-     *
-     * In case filepath is the root of a drive (X:\) or a child of the
-     * root of a drive (X:\foo), include the slash.
-     *
-     * In case filepath is the root share of an UNC path
-     * (\\server\share), add a slash, returning \\server\share\ .
-     *
-     * In case filepath is a direct child of a share in an UNC path
-     * (\\server\share\foo), include the slash after the share name,
-     * returning \\server\share\ .
-     */
-    if (path == filepath + 1 && isalpha (filepath[0]) && filepath[1] == ':') {
-      path++;
-    }
-    else if (G_IS_DIR_SEPARATOR (filepath[0]) &&
-             G_IS_DIR_SEPARATOR (filepath[1]) &&
-             filepath[2] &&
-            !G_IS_DIR_SEPARATOR (filepath[2]) &&
-             path >= filepath + 2)
-    {
-      ptr = filepath + 2;
-
-      while (*ptr && !G_IS_DIR_SEPARATOR (*ptr)) ptr++;
-
-      if (ptr == path + 1) {
-        len = (unsigned int) strlen (filepath) + 1;
-        path = GEDA_MEM_ALLOC (len + 1);
-        strcpy (path, filepath);
-        path[len-1] = G_DIR_SEPARATOR;
-        path[len] = 0;
-        return path;
-      }
-
-      if (G_IS_DIR_SEPARATOR (*ptr)) {
-
-        ptr++;
-        while (*ptr && !G_IS_DIR_SEPARATOR (*ptr)) ptr++;
-
-        if (ptr == path + 1) {
-          path++;
-        }
-      }
-    }
-
-#endif
-
-    len = (unsigned int) 1 + path - filepath;
-
-    path = GEDA_MEM_ALLOC (len + 1);
-    memmove (path, filepath, len);
-    path[len] = 0;
-  }
-  return path;
-}
-
-/** @} endgroup libgeda-dir-utilities */

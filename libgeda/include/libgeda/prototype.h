@@ -9,8 +9,8 @@ extern "C" {
           int    geda_file_open                  (GedaToplevel *toplevel, Page *page, const char *filename, GError **err);
           int    geda_file_open_flags            (GedaToplevel *toplevel);
          void    geda_file_close                 (GedaToplevel *toplevel);
-         bool    geda_file_save                  (GedaToplevel *toplevel, Page *page, const char *filename, GError **error);
          void    geda_file_remove_backup         (const char *filename);
+         bool    geda_file_save                  (GedaToplevel *toplevel, Page *page, const char *filename, GError **error);
 
 /* f_get.c */
          char   *geda_file_get_autosave_filename (const char *filename);
@@ -25,17 +25,17 @@ extern "C" {
          bool    geda_file_get_is_path_absolute  (const char *filename);
 
 /* f_path.c */
+          int    geda_file_path_create           (const char *path, mode_t mode);
          void    geda_file_path_free             (void);
          char   *geda_file_path_get_dirname      (const char *filename);
    const char   *geda_file_path_sys_data         (void);
    const char   *geda_file_path_sys_doc          (void);
    const char   *geda_file_path_sys_config       (void);
    const char   *geda_file_path_user_config      (void);
-          int    geda_file_path_create           (const char *path, mode_t mode);
 
 /* f_print.c */
-          int    geda_file_print_file            (GedaToplevel *toplevel, Page *page, GArray *color_map, const char *filename);
           int    geda_file_print_command         (GedaToplevel *toplevel, Page *page, GArray *color_map, const char *command);
+          int    geda_file_print_file            (GedaToplevel *toplevel, Page *page, GArray *color_map, const char *filename);
           int    geda_file_print_stream          (GedaToplevel *toplevel, Page *page, FILE *fp);
          void    geda_file_print_set_type        (GedaToplevel *toplevel, int type);
 
