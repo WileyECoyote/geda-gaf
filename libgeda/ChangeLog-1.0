@@ -4,8 +4,12 @@
       geda_toplevel_get_page_up to check page_current and if null, then
       and there is one and only one page then set that page as current.
 
-    * src/struct/s_page.c: Add validation for toplevel argument in
-      function geda_struct_page_delete.
+    * src/struct/s_page.c: Add validation for toplevel and page argument
+      in function geda_struct_page_delete and rename tmp->old_current,
+      call geda_toplevel_get_page_up before deleting the page if previous
+      flag is set, and revise the "previous" section to get the "next"
+      page if the page that was deleted was the first and the current
+      page.
 
 2016-10-24 Wiley E. Hill <wileyhill@gmail.com>
 

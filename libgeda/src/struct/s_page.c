@@ -340,8 +340,7 @@ geda_struct_page_clear_changed (PageList *list)
 void
 geda_struct_page_delete (GedaToplevel *toplevel, Page *page, int previous)
 {
-  Page *tmp;
-  char *saved_cwd;
+
   g_return_if_fail (GEDA_IS_TOPLEVEL(toplevel));
 
   /* We need to temporarily make the page being deleted current because
@@ -352,71 +351,111 @@ geda_struct_page_delete (GedaToplevel *toplevel, Page *page, int previous)
    *   geda_struct_object_release ()
    */
 
-  if (!previous) {
-    saved_cwd = getcwd(0,0);
-  }
-  else {
-    saved_cwd = NULL;
-  }
+  if (GEDA_IS_PAGE(page)) {
 
-  /* save page_current and switch to page */
-  if (page && page == toplevel->page_current) {
-    tmp = NULL;
-  }
-  else {
-    tmp = geda_toplevel_get_current_page(toplevel);
-    geda_struct_page_goto (page);
-  }
+    Page *old_current;
+    Page *page_up;
+    char *saved_cwd;
 
-  geda_remove_backup_file(page->filename);
+    if (!previous) {
+      saved_cwd = getcwd(0,0);
+    }
+    else {
+      saved_cwd = NULL;
+    }
 
-  /* Free the selection object */
-  GEDA_UNREF (page->selection_list);
+    /* save page_current and switch to page */
+    if (page == toplevel->page_current) {
+      old_current = NULL;
+    }
+    else {
+      old_current = geda_toplevel_get_current_page(toplevel);
+      geda_struct_page_goto (page);
+    }
 
-  /* then delete objects of page */
-  geda_struct_page_delete_objects (page);
+    geda_remove_backup_file(page->filename);
 
-  /* Free the objects in the place list. */
-  geda_struct_object_release_objects (page->place_list);
-  page->place_list = NULL;
+    /* Free the selection object */
+    GEDA_UNREF (page->selection_list);
 
-  geda_struct_tile_free_all (page);
+    /* then delete objects of page */
+    geda_struct_page_delete_objects (page);
 
-  /* free current page undo structs */
-  geda_struct_undo_free_all (page);
+    /* Free the objects in the place list. */
+    geda_struct_object_release_objects (page->place_list);
+    page->place_list = NULL;
 
-  /* ouch, deal with parents going away and the children still around */
-  page->hierarchy_up = -2;
+    geda_struct_tile_free_all (page);
 
-  GEDA_FREE (page->filename);
+    /* free current page undo structs */
+    geda_struct_undo_free_all (page);
+
+    /* ouch, deal with parents going away and the children still around */
+    page->hierarchy_up = -2;
+
+    GEDA_FREE (page->filename);
 
 #if DEBUG
-  geda_struct_tile_print (toplevel, page);
+    geda_struct_tile_print (toplevel, page);
 #endif
 
-  /*geda_page_weakref_notify (page);*/
-
-  geda_toplevel_remove_page(toplevel, page); /* remove reference on page */
-
-  /* This should destroy the Page object */
-  geda_page_unref (page); /* Removes internal reference to toplevel */
-
-  /* restore page_current */
-  if (tmp != NULL) {
-    geda_struct_page_goto (tmp);
-  }
-  else {
-    /* page was page_current, so check previous flag */
     if (previous) {
-      tmp = geda_toplevel_get_page_up(toplevel);
-      geda_toplevel_set_current_page(toplevel, tmp);
+      page_up = geda_toplevel_get_page_up(toplevel);
+    }
+    else {
+      page_up = NULL;
+    }
+
+    /*geda_page_weakref_notify (page);*/
+
+    geda_toplevel_remove_page(toplevel, page); /* remove reference on page */
+
+    /* This should destroy the Page object */
+    geda_page_unref (page); /* Removes internal reference to toplevel */
+
+    /* restore page_current */
+    if (old_current != NULL) {
+
+      /* page_current was not the page deleted */
+      geda_struct_page_goto (old_current);
+    }
+    else {
+
+      /* page was page_current, so check previous flag */
+      if (previous) {
+
+        /* If page was not the first page */
+        if (page_up) {
+          geda_toplevel_set_current_page(toplevel, page_up);
+        }
+        else {
+
+          /* The deleted page was the first of multible page so
+           * set the current page to the next valid page in the
+           * list of pages */
+          GList *iter;
+
+          iter = geda_toplevel_get_pages(toplevel);
+
+          while (iter) {
+
+            Page *page = iter->data;
+
+            if (GEDA_IS_PAGE(page)) {
+              geda_toplevel_set_current_page(toplevel, page);
+              break;
+            }
+            iter = iter->next;
+          }
+        }
+      }
+      if (saved_cwd) {
+        if (!chdir(saved_cwd));
+      }
     }
     if (saved_cwd) {
-      if (!chdir(saved_cwd));
+      free(saved_cwd);
     }
-  }
-  if (saved_cwd) {
-    free(saved_cwd);
   }
 }
 
