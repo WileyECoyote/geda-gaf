@@ -507,7 +507,9 @@ geda_file_save(GedaToplevel *toplevel, Page *page, const char *filename, GError 
     only_filename = geda_file_get_basename(real_filename);
 
     /* Do a backup if page is not an undo file backup and the page has
-     * been never saved. Only do a backup if backup files are enabled */
+     * been never saved. Only do a backup if backup files are enabled,
+     * noting that geda_toplevel_get_make_backups returns FALSE if the
+     * toplevel argument is invalid, which was not checked */
     if (page->saved_since_first_loaded == 0 &&
         geda_toplevel_get_make_backups(toplevel))
     {
@@ -570,7 +572,8 @@ geda_file_save(GedaToplevel *toplevel, Page *page, const char *filename, GError 
       page->do_autosave_backup    = 0;
       page->CHANGED               = 0; /* WEH: added 11/17/13, really */
 
-      geda_struct_undo_update_modified(toplevel->page_current);
+      //geda_struct_undo_update_modified(toplevel->page_current);
+      geda_struct_undo_update_modified(page);
 
       GEDA_FREE (real_filename);
       success = 1;

@@ -7,6 +7,9 @@
       make_backups validate the toplevel and return a value without
       complaining.
 
+    * src/file/f_file.c: Revise geda_file_save to pass the page to function
+      geda_struct_undo_update_modified instead of toplevel->page_current.
+
     * src/file/f_path.c: Rectify incomplete function () definitions.
 
     * src/struct/s_page.c: Add validation for toplevel and page argument
