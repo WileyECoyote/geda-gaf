@@ -342,6 +342,7 @@ geda_struct_page_delete (GedaToplevel *toplevel, Page *page, int previous)
 {
   Page *tmp;
   char *saved_cwd;
+  g_return_if_fail (GEDA_IS_TOPLEVEL(toplevel));
 
   /* We need to temporarily make the page being deleted current because
    * various functions called below (some indirectly) assume they are
