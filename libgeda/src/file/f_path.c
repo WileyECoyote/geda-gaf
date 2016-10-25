@@ -56,7 +56,7 @@ static const char const RCDATA_ENV_STR[] = "GEDADATARC";
  * Adapted from GLib, originally licensed under LGPLv2+.
  *
  */
-static void *libgeda_module_handle ()
+static void *libgeda_module_handle (void)
 {
   typedef BOOL (WINAPI *t_GetModuleHandleExA) (DWORD, LPCTSTR, HMODULE *);
   static t_GetModuleHandleExA p_GetModuleHandleExA = NULL;
@@ -119,7 +119,7 @@ void geda_file_path_free (void) {
  *
  *  \return the gEDA shared data path, or NULL if none could be found.
  */
-const char *geda_file_path_sys_data () {
+const char *geda_file_path_sys_data (void) {
 
   /* If GEDADATA is set in the environment, use that path */
   if (sys_data_path == NULL) {
@@ -164,7 +164,7 @@ const char *geda_file_path_sys_data () {
  *
  *  \return the gEDA shared doc path, or NULL if none could be found.
  */
-const char *geda_file_path_sys_doc () {
+const char *geda_file_path_sys_doc (void) {
 
   /* If GEDADOC is set in the environment, use that path */
   if (sys_doc_path == NULL) {
@@ -200,7 +200,7 @@ const char *geda_file_path_sys_doc () {
  *  \return the gEDA shared config path, or NULL if none could be
  *  found.
  */
-const char *geda_file_path_sys_config () {
+const char *geda_file_path_sys_config (void) {
 
   /* If GEDADATARC is set in the environment, use that path */
   if (sys_config_path == NULL) {
@@ -249,7 +249,7 @@ const char *geda_file_path_sys_config () {
  *  modified or free'd.
  *
  */
-const char *geda_file_path_user_config () {
+const char *geda_file_path_user_config (void) {
 
   if (user_config_path == NULL) {
 
