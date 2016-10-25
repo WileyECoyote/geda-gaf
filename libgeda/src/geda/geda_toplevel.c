@@ -656,7 +656,19 @@ Page *geda_toplevel_get_page_down (GedaToplevel *toplevel)
 
   list = geda_toplevel_get_pages(toplevel);
 
-  iter = g_list_find(list, toplevel->page_current);
+  /* Note that page_current is not validated here */
+  if (toplevel->page_current) {
+    iter = g_list_find(list, toplevel->page_current);
+  }
+  else {
+
+    int len = geda_glist_length(list);
+
+    if (len == 1 && GEDA_IS_PAGE(list->data)) {
+      page = toplevel->page_current = list->data;
+    }
+    iter = NULL;
+  }
 
   if (iter != NULL) {
 
@@ -695,7 +707,19 @@ Page *geda_toplevel_get_page_up (GedaToplevel *toplevel)
 
   list = geda_toplevel_get_pages(toplevel);
 
-  iter = g_list_find(list, toplevel->page_current);
+  /* Note that page_current is not validated here */
+  if (toplevel->page_current) {
+    iter = g_list_find(list, toplevel->page_current);
+  }
+  else {
+
+    int len = geda_glist_length(list);
+
+    if (len == 1 && GEDA_IS_PAGE(list->data)) {
+      page = toplevel->page_current = list->data;
+    }
+    iter = NULL;
+  }
 
   if (iter != NULL) {
 
