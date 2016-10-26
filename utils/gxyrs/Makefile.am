@@ -12,12 +12,6 @@ dist_bin_SCRIPTS  = gxyrs.pl \
 
 all: gxyrs
 
-distclean-local:
-	-rm -rf autom4te.cache
-
-maintainer-clean-local:
-	-rm -rf autom4te.cache
-
 ##  This hardcodes the path to the
 ##  system libraries into geda_filter prior to installation.
 gxyrs: $(srcdir)/gxyrs.pl
