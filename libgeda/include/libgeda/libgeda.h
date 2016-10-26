@@ -77,4 +77,5 @@
 #include "geda_object_list.h"
 #include "geda_utility.h"
 #include "prototype.h"
-#endif
+
+#endif /* LIBGEDA_H */
