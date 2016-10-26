@@ -435,10 +435,10 @@ UNDO *geda_struct_undo_return_tail(UNDO *head)
 /*!
  * \brief Reset Page Changed Flags in the Undo System
  * \par Function Description
- *  Called by geda_file_save to reset the page changed flags in the Undo system.
- *  This is accomplished by setting all Undo records as modified, and
- *  then setting the current record as not modified. This results in a
- *  "saved" page floating around in the Undo stack if a file is saved
+ *  Called by geda_file_save to reset the page changed flags in the Undo
+ *  system. This is accomplished by setting all Undo records as modified,
+ *  and then setting the current record as not modified. This results in
+ *  a "saved" page floating around in the Undo stack if a file is saved
  *  within the limits of the Undo buffer window.
  *
  *  For example, deleting 3 objects, then saving the page, then deleting
@@ -459,7 +459,9 @@ void geda_struct_undo_update_modified (Page *p_current)
   }
 
   u_current = p_current->undo_current;
-  if (u_current) u_current->modified = 0;
+  if (u_current) {
+    u_current->modified = 0;
+  }
 }
 
 /*!
