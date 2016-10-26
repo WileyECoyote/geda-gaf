@@ -23,6 +23,9 @@
  * 02110-1301 USA, <http://www.gnu.org/licenses/>.
  */
 
+#ifndef __GEDA_ERRORS_H__
+#define __GEDA_ERRORS_H__
+
 /*! Domain for GErrors originating in libgeda. */
 #define EDA_ERROR eda_error_quark ()
 
@@ -53,3 +56,5 @@ void   geda_error_object_argument(const char *file,
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
+
+#endif /* __GEDA_ERRORS_H__ */
