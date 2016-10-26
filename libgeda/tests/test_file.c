@@ -290,7 +290,7 @@ int test_file (void)
 
   page = geda_struct_page_new (toplevel, source);
 
-  geda_save_file(toplevel, page, source, &err);
+  geda_save_file(NULL, page, source, &err);
 
   if (err) {
     fprintf(stderr, "FAILED: (F010601A) geda_file_save\n");

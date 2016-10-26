@@ -3,6 +3,9 @@
     * libgeda/geda_errors.h: Define __GEDA_ERRORS_H__ to prevent double
       inclusion.
 
+    * libgeda/tests/test_file.c: Modify tests 01 for geda_save_file; pass
+      NULL for toplevel, the file should still be saved.
+
 2016-10-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_toplevel.c: Revise geda_toplevel_get_page_down and
