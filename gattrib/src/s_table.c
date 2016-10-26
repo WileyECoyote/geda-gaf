@@ -278,8 +278,7 @@ STRING_LIST *s_table_create_attrib_pair(char *row_name,
 /*------------------------------------------------------------------*/
 /*! \brief Add components to the component table
  *  \par Function Description
-* This fcn iterates over adds all
-* objects found on this page looking
+* This fcn iterates over adds all objects found on this page looking
 * for components. When it finds a component, it finds all component
 * attribs and sticks them in the TABLE.
 * \param obj_list pointer to GList containing objects on this page
@@ -350,12 +349,12 @@ void s_table_add_items_to_comp_table (const GList *obj_list) {
               /* Sanity check */
               if (row == -1) {
                 /* we didn't find the item in the table */
-                fprintf (stderr, "Component Error looking for row ref [%s]\n", temp_uref);
+                fprintf (stderr, _("Component Error looking for row ref [%s]\n"), temp_uref);
               }
               else {
 
                 if (col == -1) {
-                  fprintf (stderr, "Component Error looking for column named [%s]\n", attrib_name);
+                  fprintf (stderr, _("Component Error looking for column named [%s]\n"), attrib_name);
                 }
                 else {
                   /* Is there a compelling reason to put this into a separate fcn? */
@@ -413,11 +412,11 @@ void s_table_add_items_to_comp_table (const GList *obj_list) {
                   /* Sanity check */
                   if (row == -1) {
                     /* we didn't find the item in the table */
-                    fprintf (stderr, "Component Error looking for row ref [%s]\n", temp_uref);
+                    fprintf (stderr, _("Component Error looking for row ref [%s]\n"), temp_uref);
                   }
                   else {
                     if (col == -1) {
-                      fprintf (stderr, "Component Error looking for column named [%s]\n", attrib_name);
+                      fprintf (stderr, _("Component Error looking for column named [%s]\n"), attrib_name);
                     }
                     else {
                       /* Is there a compelling reason for me to put this into a separate fcn? */
@@ -628,11 +627,11 @@ void s_table_add_tems_to_pin_table (const GList *obj_list) {
                   /* Sanity check */
                   if (row == -1) {
                     /* we didn't find the item in the table */
-                    fprintf (stderr, "Pin Error looking for row ref [%s]\n", row_label);
+                    fprintf (stderr, _("Pin Error looking for row ref [%s]\n"), row_label);
                   }
                   else {
                     if (col == -1) {
-                      fprintf (stderr, "Pin Error looking for column named [%s]\n", attrib_name);
+                      fprintf (stderr, _("Pin Error looking for column named [%s]\n"), attrib_name);
                     }
                     else {
                       /* Is there a compelling reason for me to put this into a separate fcn? */
@@ -843,13 +842,13 @@ void s_table_gtksheet_to_table(GtkSheet    *local_gtk_sheet,
 #endif
 
 #if DEBUG
-      fprintf(stderr,"In s_table_gtksheet_to_table, found attrib_value = %s in cell row=%d, col=%d\n",
+      printf("In s_table_gtksheet_to_table, found attrib_value = %s in cell row=%d, col=%d\n",
             attrib_value, row, col);
 #endif
 
     /* first handle attrib value in cell */
 #if DEBUG
-      fprintf(stderr,"     Updating attrib_value %s\n", attrib_value);
+      printf("     Updating attrib_value %s\n", attrib_value);
 #endif
 
       GEDA_FREE (local_table[col][row].attrib_value);

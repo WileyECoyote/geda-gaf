@@ -1,3 +1,8 @@
+2016-10-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gattrib/src/s_table.c: Add gettext to translate error messages in
+      s_table_add_items_to_comp_table and s_table_add_tems_to_pin_table.
+
 2016-10-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtkitementry.c: Include stdint.h for type int16_t.
