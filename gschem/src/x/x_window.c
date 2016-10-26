@@ -822,10 +822,10 @@ x_window_open_page(GschemToplevel *w_current, const char *filename)
   /* Generate unique untitled filename if none was specified */
   char *generate_untitled(void) {
 
-    EdaConfig *cfg;
-    char      *str;
-    char      *tmp_str;
-    char      *untitled;
+    EdaConfig  *cfg;
+    char       *str;
+    char       *tmp_str;
+    const char *untitled;
 
     inline void unique_untitled(void) {
 
