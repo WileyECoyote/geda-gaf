@@ -23,4 +23,3 @@ MOSTLYCLEANFILES     = *.log *.ps core FILE *~
 CLEANFILES           = *.log *.ps core FILE *~
 DISTCLEANFILES       = *.log *.ps core FILE *~ gxyrs
 MAINTAINERCLEANFILES = *.log *.ps core FILE *~ gxyrs Makefile.in
-

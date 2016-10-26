@@ -3,9 +3,9 @@ Makefile.in
 Makefile.in.in
 POTFILES
 *.gmo
-*.gmo
-*.sed
 *.header
+*.mo
+*.sed
 *.sin
 libgeda*.pot
 Rules-quot

@@ -3,8 +3,9 @@ Makefile.in
 Makefile.in.in
 POTFILES
 *.gmo
-*.sed
 *.header
+*.mo
+*.sed
 *.sin
 libgedauio.pot
 Rules-quot
