@@ -2559,7 +2559,7 @@ multiattrib_populate_liststore (Multiattrib *ThisDialog, GList *model_rows)
 static void
 update_dialog_title (Multiattrib *ThisDialog, const char *complex_title_name)
 {
-  char *title_string = _("Edit Attributes");
+  const char *title_string = _("Edit Attributes");
   char *title;
 
   unsigned len;
@@ -2578,11 +2578,11 @@ update_dialog_title (Multiattrib *ThisDialog, const char *complex_title_name)
 
   if (sc > 0) {
     if (sc > 1) {
-      char *str = _("symbols");
+      const char *str = _("symbols");
       ss = geda_sprintf(" %i %s (%s)", sc, str, complex_title_name);
     }
     else {
-      char *str = _("symbol");
+      const char *str = _("symbol");
       ss = geda_sprintf(" 1 %s (%s)", str, complex_title_name);
     }
     sl = strlen(ss);
@@ -2593,11 +2593,11 @@ update_dialog_title (Multiattrib *ThisDialog, const char *complex_title_name)
 
   if (pc > 0) {
     if (pc > 1) {
-      char *str = _("pins");
+      const char *str = _("pins");
       ps = geda_sprintf(" %i %s", pc, str);
     }
     else {
-      char *str = _("pin");
+      const char *str = _("pin");
       ps  = geda_sprintf(" 1 %s", str);
     }
     pl = strlen(ps);
@@ -2608,11 +2608,11 @@ update_dialog_title (Multiattrib *ThisDialog, const char *complex_title_name)
 
   if (nc > 0) {
     if (nc > 1) {
-      char *str = _("nets");
+      const char *str = _("nets");
       ns = geda_sprintf(" %i %s", nc, str);
     }
     else {
-      char *str = _("net");
+      const char *str = _("net");
       ns = geda_sprintf(" 1 %s", str);
     }
     nl = strlen(ns);
@@ -2623,11 +2623,11 @@ update_dialog_title (Multiattrib *ThisDialog, const char *complex_title_name)
 
   if (bc > 0) {
     if (bc > 1) {
-      char *str = _("buses");
+      const char *str = _("buses");
       bs = geda_sprintf(" %i %s", bc, str);
     }
     else {
-      char *str = _("bus");
+      const char *str = _("bus");
       bs = geda_sprintf(" 1 %s", str);
     }
     bl = strlen(bs);
@@ -2638,11 +2638,11 @@ update_dialog_title (Multiattrib *ThisDialog, const char *complex_title_name)
 
   if (ac > 0) {
     if (ac > 1) {
-      char *str = _("attributes");
+      const char *str = _("attributes");
       as = geda_sprintf(" %i %s", ac, str);
     }
     else {
-      char *str = _("attribute");
+      const char *str = _("attribute");
       as = geda_sprintf(" 1 %s", str);
     }
     al = strlen(as);
