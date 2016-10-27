@@ -134,13 +134,16 @@ static void get_filter_button(GedaFileChooser *chooser)
 static void
 geda_file_chooser_setup_filters (GtkFileChooser *filechooser)
 {
-  GtkFileFilter         *filter;
   GedaFileFilterDataDef *data;
   int i;
 
   for (data = filter_data; data->name != NULL; data++) {
+
+    GtkFileFilter *filter;
+
     filter = gtk_file_filter_new ();
     gtk_file_filter_set_name(filter, data->name);
+
     for (i = 0; data->pattern[i] != '\0'; i++) {
       const char *ext = data->pattern[i];
       gtk_file_filter_add_pattern (filter, ext);
@@ -542,7 +545,7 @@ geda_file_chooser_instance_init (GTypeInstance *instance, void *class)
  */
 GedaType geda_file_chooser_get_type (void)
 {
-  static GedaType geda_file_chooser_type = 0;
+  static volatile GedaType geda_file_chooser_type = 0;
 
   if (g_once_init_enter (&geda_file_chooser_type)) {
 
@@ -587,12 +590,7 @@ GtkWidget*
 geda_file_chooser_new (GtkWidget *parent,
                        FileChooserAction chooser_action)
 {
-  GtkWidget       *widget;
-  GtkDialog       *dialog;
-  GedaFileChooser *chooser;
-
-  const char *second_button_text;
-  const char *title = NULL;
+  GtkWidget *widget;
 
   widget = g_object_new (geda_file_chooser_get_type(),
                          "action", chooser_action,
@@ -601,6 +599,11 @@ geda_file_chooser_new (GtkWidget *parent,
                          NULL);
 
   if ( G_IS_OBJECT(widget)) {
+
+    GedaFileChooser *chooser;
+    GtkDialog       *dialog;
+    const char      *second_button_text;
+    const char      *title;
 
     chooser = (GedaFileChooser*)widget;
     dialog  = (GtkDialog*)widget;
@@ -623,6 +626,7 @@ geda_file_chooser_new (GtkWidget *parent,
 
       default:
         second_button_text = _("OOPS");
+        title = NULL;
         break;
     }
 
@@ -671,7 +675,7 @@ geda_file_chooser_dialog_new_valist (const char        *title,
 {
   GtkWidget  *result;
   const char *button_text = first_button_text;
-  int         response_id;
+
 
   result = g_object_new (geda_file_chooser_get_type(),
                          "title", title,
@@ -683,9 +687,11 @@ geda_file_chooser_dialog_new_valist (const char        *title,
   }
 
   while (button_text) {
-      response_id = va_arg (varargs, gint);
-      gtk_dialog_add_button (GTK_DIALOG (result), button_text, response_id);
-      button_text = va_arg (varargs, const char *);
+
+    int response_id = va_arg (varargs, int);
+
+    gtk_dialog_add_button (GTK_DIALOG (result), button_text, response_id);
+    button_text = va_arg (varargs, const char *);
   }
 
   return result;
@@ -743,14 +749,13 @@ GtkEntry *geda_file_chooser_get_entry (GtkWidget *widget)
 char*
 geda_file_chooser_get_entry_text(GtkWidget *despicable)
 {
-  char     *name;
-  GtkEntry *entry;
+  char *name;
 
   name = NULL;
 
   if (GTK_IS_FILE_CHOOSER(despicable)) {
 
-    entry = geda_file_chooser_get_entry(despicable);
+    GtkEntry *entry = geda_file_chooser_get_entry(despicable);
 
     if (GTK_IS_ENTRY(entry)) {
 
@@ -769,11 +774,9 @@ geda_file_chooser_get_entry_text(GtkWidget *despicable)
 void
 geda_file_chooser_set_entry_text(GtkWidget *despicable, const char *text)
 {
-  GtkEntry *entry;
-
   if (GTK_IS_FILE_CHOOSER(despicable)) {
 
-    entry = geda_file_chooser_get_entry(despicable);
+    GtkEntry *entry = geda_file_chooser_get_entry(despicable);
 
     if (GTK_IS_ENTRY(entry)) {
 

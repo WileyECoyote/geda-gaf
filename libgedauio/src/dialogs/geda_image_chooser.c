@@ -1103,7 +1103,7 @@ geda_image_chooser_instance_init (GTypeInstance *instance, void *class)
  */
 GedaType geda_image_chooser_get_type (void)
 {
-  static GedaType geda_image_chooser_type = 0;
+  static volatile GedaType geda_image_chooser_type = 0;
 
   if (g_once_init_enter (&geda_image_chooser_type)) {
 
