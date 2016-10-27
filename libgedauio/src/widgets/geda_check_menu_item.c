@@ -395,7 +395,7 @@ geda_check_menu_item_activatable_interface_init (GtkActivatableIface  *iface)
 GedaType
 geda_check_menu_item_get_type (void)
 {
-  static GedaType geda_check_menu_item_type = 0;
+  static volatile GedaType geda_check_menu_item_type = 0;
 
   if (g_once_init_enter (&geda_check_menu_item_type)) {
 

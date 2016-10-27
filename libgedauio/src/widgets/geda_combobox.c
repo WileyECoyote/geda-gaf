@@ -2369,7 +2369,7 @@ geda_combo_box_instance_init(GTypeInstance *instance, void *class)
 GedaType
 geda_combo_box_get_type (void)
 {
-  static GedaType geda_combo_box_type = 0;
+  static volatile GedaType geda_combo_box_type = 0;
 
   if (g_once_init_enter (&geda_combo_box_type)) {
 
@@ -7435,7 +7435,6 @@ geda_combo_widget_set_entry_text_column (GtkWidget *cb, int text_column) {
 /** \defgroup GedaComboBox-widget-programmatic GedaComboBox Programmatic Control
  *  @{
  */
-
 
 /*!
  * \brief Shows the menu or dropdown list of #GedaComboBox Widget

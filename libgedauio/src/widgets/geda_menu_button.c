@@ -1391,7 +1391,7 @@ static void geda_menu_button_class_init (void *class, void *class_data)
 GedaType
 geda_menu_button_get_type (void)
 {
-  static GedaType geda_menu_button_type = 0;
+  static volatile GedaType geda_menu_button_type = 0;
 
   if (g_once_init_enter (&geda_menu_button_type)) {
 

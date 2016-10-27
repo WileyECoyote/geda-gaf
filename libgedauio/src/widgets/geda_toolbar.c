@@ -146,7 +146,7 @@ geda_toolbar_instance_init(GTypeInstance *instance, void *g_class)
  */
 GedaType geda_toolbar_get_type (void)
 {
-  static GedaType geda_toolbar_type = 0;
+  static volatile GedaType geda_toolbar_type = 0;
 
   if (g_once_init_enter (&geda_toolbar_type)) {
 

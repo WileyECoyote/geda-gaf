@@ -1687,7 +1687,7 @@ static void geda_font_dialog_instance_init(GTypeInstance *instance, void *g_clas
  */
 GedaType geda_font_dialog_get_type (void)
 {
-  static GedaType geda_font_dialog_type = 0;
+  static volatile GedaType geda_font_dialog_type = 0;
 
   if (g_once_init_enter (&geda_font_dialog_type)) {
 

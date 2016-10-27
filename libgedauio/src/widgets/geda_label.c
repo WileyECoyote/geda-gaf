@@ -1697,7 +1697,7 @@ geda_label_buildable_interface_init (GtkBuildableIface *iface)
 GedaType
 geda_label_get_type (void)
 {
-  static GedaType geda_label_type = 0;
+  static volatile GedaType geda_label_type = 0;
 
   if (g_once_init_enter (&geda_label_type)) {
 

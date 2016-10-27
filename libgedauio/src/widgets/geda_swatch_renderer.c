@@ -310,7 +310,7 @@ swatch_renderer_instance_init (GTypeInstance *instance, void *class)
  */
 GedaType geda_swatch_renderer_get_type (void)
 {
-  static GedaType swatch_renderer_type = 0;
+  static volatile GedaType swatch_renderer_type = 0;
 
   if (g_once_init_enter (&swatch_renderer_type)) {
 

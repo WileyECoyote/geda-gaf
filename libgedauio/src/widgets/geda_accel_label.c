@@ -591,7 +591,7 @@ geda_accel_label_instance_init (GTypeInstance *instance, void *g_class)
  */
 GedaType geda_accel_label_get_type (void)
 {
-  static GedaType geda_accel_label_type = 0;
+  static volatile GedaType geda_accel_label_type = 0;
 
   if (g_once_init_enter (&geda_accel_label_type)) {
 

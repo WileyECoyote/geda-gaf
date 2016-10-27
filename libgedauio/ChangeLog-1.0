@@ -1,3 +1,31 @@
+2016-10-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets: declare widget type identifiers volatile in widget
+      modules:
+
+        * geda_accel_label.c
+        * geda_action.c
+        * geda_bulb.c
+        * geda_check_menu_item.c
+        * geda_combobox.c
+        * geda_comboboxtext.c
+        * geda_entry.c
+        * geda_font_button.c
+        * geda_font_dialog.c
+        * geda_handlebox.c
+        * geda_image_menu_item.c
+        * geda_label.c
+        * geda_menu_button.c
+        * geda_menu_separator.c
+        * geda_option_menu.c
+        * geda_radio_menu_item.c
+        * geda_separator.c
+        * geda_swatch_renderer.c
+        * geda_tearoff_menu_item.c
+        * geda_toggle_action.c
+        * geda_toolbar.c
+        * geda_tree_view.c
+
 2016-10-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Increase scope of height in geda_menu_set_

@@ -552,7 +552,7 @@ geda_tearoff_menu_item_instance_init (GTypeInstance *instance, void *class)
 GedaType
 geda_tearoff_menu_item_get_type (void)
 {
-  static GedaType tearoff_menu_item_type = 0;
+  static volatile GedaType tearoff_menu_item_type = 0;
 
   if (g_once_init_enter (&tearoff_menu_item_type)) {
 

@@ -257,7 +257,7 @@ geda_toggle_action_instance_init (GTypeInstance *instance, void *class)
  */
 GedaType geda_toggle_action_get_type (void)
 {
-  static GedaType toggle_action_type = 0;
+  static volatile GedaType toggle_action_type = 0;
 
   if (g_once_init_enter (&toggle_action_type)) {
 

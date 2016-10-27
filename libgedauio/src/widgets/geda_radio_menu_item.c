@@ -308,7 +308,7 @@ geda_radio_menu_item_instance_init(GTypeInstance *instance, void *class)
 GedaType
 geda_radio_menu_item_get_type (void)
 {
-  static GedaType geda_radio_menu_item_type = 0;
+  static volatile GedaType geda_radio_menu_item_type = 0;
 
   if (g_once_init_enter (&geda_radio_menu_item_type)) {
 
