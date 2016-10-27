@@ -400,7 +400,7 @@ Pixbuf2Ximage (GdkPixbuf *pixbuf)
 
         case EDA_X11_FORMAT_NONE:
         default:
-          g_assert_not_reached ();
+          fprintf (stderr, "%s: unexpected format type <%d>\n", __func__, format_type);
           break;
       }
     }
