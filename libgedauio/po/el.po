@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-10-15 22:07-0500\n"
+"POT-Creation-Date: 2016-10-22 16:46-0500\n"
 "PO-Revision-Date: 2012-09-01 20:41+0000\n"
 "Last-Translator: Panos Bouklis <panos@echidna-band.com>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -18,56 +18,56 @@ msgstr ""
 "X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
 "X-Generator: Launchpad (build 16265)\n"
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:446
+#: libgedauio/src/dialogs/geda_file_chooser.c:449
 #: libgedauio/src/dialogs/geda_image_chooser.c:1024
 msgid "Set or retrieve index of the filter combo"
 msgstr ""
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:447
+#: libgedauio/src/dialogs/geda_file_chooser.c:450
 #: libgedauio/src/dialogs/geda_image_chooser.c:1025
 msgid "IDE_FILTER"
 msgstr ""
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:610
+#: libgedauio/src/dialogs/geda_file_chooser.c:613
 #: libgedauio/src/dialogs/geda_image_chooser.c:1172
 #, fuzzy
 msgid "_Open"
 msgstr "_Άνοιγμα..."
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:611
+#: libgedauio/src/dialogs/geda_file_chooser.c:614
 #: libgedauio/src/dialogs/geda_image_chooser.c:1173
 msgid "Open..."
 msgstr "Άνοιγμα..."
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:615
+#: libgedauio/src/dialogs/geda_file_chooser.c:618
 #: libgedauio/src/dialogs/geda_image_chooser.c:1177
 msgid "_Save"
 msgstr "_Αποθήκευση"
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:616
+#: libgedauio/src/dialogs/geda_file_chooser.c:619
 #: libgedauio/src/dialogs/geda_image_chooser.c:1178
 #, fuzzy
 msgid "Save As.."
 msgstr "Αποθήκευση _ως..."
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:620
+#: libgedauio/src/dialogs/geda_file_chooser.c:623
 #: libgedauio/src/dialogs/geda_image_chooser.c:1182
 #, fuzzy
 msgid "_Select Folder..."
 msgstr "Λειτουργία Επιλογής"
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:621
+#: libgedauio/src/dialogs/geda_file_chooser.c:624
 #: libgedauio/src/dialogs/geda_image_chooser.c:1183
 #, fuzzy
 msgid "Select Folder"
 msgstr "Λειτουργία Επιλογής"
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:625
+#: libgedauio/src/dialogs/geda_file_chooser.c:628
 #: libgedauio/src/dialogs/geda_image_chooser.c:1187
 msgid "OOPS"
 msgstr ""
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:630
+#: libgedauio/src/dialogs/geda_file_chooser.c:634
 #: libgedauio/src/dialogs/geda_image_chooser.c:1192
 #, fuzzy
 msgid "_Cancel"

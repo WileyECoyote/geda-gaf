@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-10-06 23:22-0500\n"
+"POT-Creation-Date: 2016-10-27 10:39-0500\n"
 "PO-Revision-Date: 2012-09-01 18:26+0000\n"
 "Last-Translator: Panos Bouklis <panos@echidna-band.com>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -81,7 +81,7 @@ msgstr ""
 #: gattrib/src/parsecmd.c:100
 #, c-format
 msgid ""
-"gEDA %s (%s) (g%.7s)\n"
+"gEDA/gattrib %s (%s) (g%.7s)\n"
 "Copyright (C) 1998-2016 gEDA developers\n"
 "This is free software, and you are welcome to redistribute it under\n"
 "certain conditions. For details, see the file `COPYING', which is\n"
@@ -140,29 +140,29 @@ msgstr ""
 msgid "Increase number of rename_pairs (MAX_RENAME) in s_rename.c\n"
 msgstr ""
 
-#: gattrib/src/s_sheet_data.c:248
+#: gattrib/src/s_sheet_data.c:245
 #, c-format
 msgid "Starting master comp list creation.\n"
 msgstr ""
 
-#: gattrib/src/s_sheet_data.c:312
+#: gattrib/src/s_sheet_data.c:309
 #, c-format
 msgid "- Starting master comp attrib list creation.\n"
 msgstr ""
 
-#: gattrib/src/s_sheet_data.c:427
+#: gattrib/src/s_sheet_data.c:424
 #, c-format
 msgid "- Creating master pin list.\n"
 msgstr ""
 
-#: gattrib/src/s_sheet_data.c:467
+#: gattrib/src/s_sheet_data.c:464
 #, c-format
 msgid ""
 "In s_sheet_data_add_master_pin_list_items, found component pin with no "
 "pinnumber.\n"
 msgstr ""
 
-#: gattrib/src/s_sheet_data.c:524
+#: gattrib/src/s_sheet_data.c:521
 #, c-format
 msgid "- Starting master pin attrib list creation.\n"
 msgstr ""
@@ -182,9 +182,29 @@ msgstr ""
 msgid "In s_string_list_delete_item, couldn't delete item %s\n"
 msgstr ""
 
-#: gattrib/src/s_table.c:568
+#: gattrib/src/s_table.c:352 gattrib/src/s_table.c:415
+#, c-format
+msgid "Component Error looking for row ref [%s]\n"
+msgstr ""
+
+#: gattrib/src/s_table.c:357 gattrib/src/s_table.c:419
+#, c-format
+msgid "Component Error looking for column named [%s]\n"
+msgstr ""
+
+#: gattrib/src/s_table.c:567
 #, c-format
 msgid "- Starting internal pin TABLE creation\n"
+msgstr ""
+
+#: gattrib/src/s_table.c:630
+#, c-format
+msgid "Pin Error looking for row ref [%s]\n"
+msgstr ""
+
+#: gattrib/src/s_table.c:634
+#, c-format
+msgid "Pin Error looking for column named [%s]\n"
 msgstr ""
 
 #: gattrib/src/s_toplevel.c:490

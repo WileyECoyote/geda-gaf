@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-10-19 12:11-0500\n"
+"POT-Creation-Date: 2016-10-27 10:39-0500\n"
 "PO-Revision-Date: 2014-06-06 16:40+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -267,12 +267,12 @@ msgstr ""
 
 #: libgeda/src/file/f_print.c:443
 #, c-format
-msgid "Could not open [%s] for printing\n"
+msgid "Could not execute command [%s] for printing\n"
 msgstr ""
 
-#: libgeda/src/file/f_print.c:486
+#: libgeda/src/file/f_print.c:481
 #, c-format
-msgid "Could not execute command [%s] for printing\n"
+msgid "Could not open [%s] for printing\n"
 msgstr ""
 
 #: libgeda/src/file/f_print.c:771
@@ -293,7 +293,7 @@ msgstr ""
 msgid "%s: attempting to unlock file \"%s\"\n"
 msgstr ""
 
-#: libgeda/src/file/f_sys.c:337
+#: libgeda/src/file/f_sys.c:343
 #, c-format
 msgid "%s: %s"
 msgstr "%s: %s"
@@ -978,7 +978,7 @@ msgstr "Установка радиуса в 0\n"
 #: libgeda/src/object/o_net_object.c:715
 #: libgeda/src/object/o_path_object.c:570
 #: libgeda/src/object/o_pin_object.c:180
-#: libgeda/src/object/o_text_object.c:780
+#: libgeda/src/object/o_text_object.c:783
 #, c-format
 msgid "Found an invalid color [ %s ]\n"
 msgstr "Недопустимое значение цветового индекса «%s»\n"
@@ -991,7 +991,7 @@ msgstr "Недопустимое значение цветового индек�
 #: libgeda/src/object/o_net_object.c:716
 #: libgeda/src/object/o_path_object.c:571
 #: libgeda/src/object/o_pin_object.c:181
-#: libgeda/src/object/o_text_object.c:781
+#: libgeda/src/object/o_text_object.c:784
 msgid "Setting color to default color\n"
 msgstr "Установка цвета по умолчанию\n"
 
@@ -1228,7 +1228,7 @@ msgid "Failed to parse path object"
 msgstr "Ошибка в определении контура"
 
 #: libgeda/src/object/o_path_object.c:586
-#: libgeda/src/object/o_text_object.c:796
+#: libgeda/src/object/o_text_object.c:799
 #, c-format
 msgid "Unexpected end-of-file after %d lines"
 msgstr "Неожиданный конец файла после %d строк"
@@ -1430,30 +1430,30 @@ msgstr "Установка цвета по умолчанию\n"
 msgid "Setting line space to default=%d\n"
 msgstr "Установка цвета по умолчанию\n"
 
-#: libgeda/src/object/o_text_object.c:721
-#: libgeda/src/object/o_text_object.c:733
-#: libgeda/src/object/o_text_object.c:745
+#: libgeda/src/object/o_text_object.c:724
+#: libgeda/src/object/o_text_object.c:736
+#: libgeda/src/object/o_text_object.c:748
 msgid "Failed to parse text object"
 msgstr "Ошибка в определении текстового объекта"
 
-#: libgeda/src/object/o_text_object.c:752
+#: libgeda/src/object/o_text_object.c:755
 #, c-format
 msgid "Found a zero size text string [ %c %d %d %d %d %d %d %d %d ]\n"
 msgstr "Текстовая строка нулевого размера «%c %d %d %d %d %d %d %d %d»\n"
 
-#: libgeda/src/object/o_text_object.c:754
+#: libgeda/src/object/o_text_object.c:757
 #, fuzzy
 msgid "Setting text to default size\n"
 msgstr "Установка цвета по умолчанию\n"
 
-#: libgeda/src/object/o_text_object.c:772
+#: libgeda/src/object/o_text_object.c:775
 #, c-format
 msgid "Found an unsupported text alignment [ %c %d %d %d %d %d %d %d %d ]\n"
 msgstr ""
 "Неподдерживаемое значение поля «alignment» в определении текстового объекта  "
 "«%c %d %d %d %d %d %d %d %d»\n"
 
-#: libgeda/src/object/o_text_object.c:774
+#: libgeda/src/object/o_text_object.c:777
 msgid "Setting alignment to LOWER_LEFT\n"
 msgstr "Установка выравнивания по левому нижнему углу\n"
 
@@ -1746,12 +1746,12 @@ msgstr "Не удалось перейти к подсхеме «%s»: %s\n"
 msgid "Disabling auto save timer, no toplevel"
 msgstr ""
 
-#: libgeda/src/struct/s_page.c:691 libgeda/src/struct/s_page.c:735
+#: libgeda/src/struct/s_page.c:731 libgeda/src/struct/s_page.c:775
 #, c-format
 msgid "Saved [%s]\n"
 msgstr "Файл «%s» сохранён\n"
 
-#: libgeda/src/struct/s_page.c:697 libgeda/src/struct/s_page.c:742
+#: libgeda/src/struct/s_page.c:737 libgeda/src/struct/s_page.c:782
 #, c-format
 msgid "Could NOT save [%s]\n"
 msgstr "Не удалось сохранить «%s»\n"
