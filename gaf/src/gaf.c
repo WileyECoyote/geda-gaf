@@ -139,7 +139,7 @@ main (int argc, char **argv)
       break;
 
     default:
-      g_assert_not_reached ();
+      fprintf (stderr, "%s: unhandled case <%d>\n", __func__, c);
     }
   }
 

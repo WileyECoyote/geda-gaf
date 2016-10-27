@@ -132,7 +132,7 @@ cmd_config_impl (void *data, int argc, char **argv)
       break;
 
     default:
-      g_assert_not_reached ();
+      fprintf (stderr, "%s: unhandled case <%d>\n", __func__, c);
     }
   }
 
@@ -212,7 +212,7 @@ cmd_config_impl (void *data, int argc, char **argv)
     exit (0);
   }
 
-  g_assert_not_reached ();
+  fprintf (stderr, "%s: internal error\n", __func__);
 
   exit (1);
 }

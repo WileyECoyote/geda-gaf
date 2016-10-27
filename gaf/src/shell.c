@@ -134,7 +134,7 @@ cmd_shell_impl (void *data, int argc, char **argv)
         exit (1);
         break;
       default:
-        g_assert_not_reached ();
+        fprintf (stderr, "%s: unhandled case <%d>\n", __func__, c);
     }
   }
 

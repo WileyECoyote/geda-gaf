@@ -1,3 +1,12 @@
+2016-10-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/config.c: Replace g_assert_not_reached with fprintf in function
+      cmd_config_impl.
+
+    * src/gaf.c: Replace g_assert_not_reached in main.
+
+    * src/shell.c: Replace g_assert_not_reached in cmd_shell_impl.
+
 2016-10-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * gaf/src/gaf.c Update copyright date.
