@@ -1,0 +1,104 @@
+v 20161017 2
+P 100 1600 400 1600 1 0 0
+{
+T 450 1600 9 10 1 1 0 0 1
+pinlabel=FB
+T 250 1650 5 10 1 1 0 6 1
+pinnumber=1
+T 250 1650 5 10 0 1 0 6 1
+pinseq=1
+T 475 1550 5 8 0 1 0 2 1
+pintype=pas
+}
+P 100 1200 400 1200 1 0 0
+{
+T 450 1200 9 10 1 1 0 0 1
+pinlabel=GND
+T 250 1250 5 10 1 1 0 6 1
+pinnumber=2
+T 250 1250 5 10 0 1 0 6 1
+pinseq=2
+T 475 1150 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 100 800 400 800 1 0 0
+{
+T 450 800 9 10 1 1 0 0 1
+pinlabel=SW
+T 250 850 5 10 1 1 0 6 1
+pinnumber=3
+T 250 850 5 10 0 1 0 6 1
+pinseq=3
+T 475 750 5 8 0 1 0 2 1
+pintype=pas
+}
+B 400 100 1300 1800 3 0 1 0 -1 -1 0 -1 -1 -1 -1 -1
+P 100 400 400 400 1 0 0
+{
+T 450 400 9 10 1 1 0 0 1
+pinlabel=SW
+T 250 450 5 10 1 1 0 6 1
+pinnumber=4
+T 250 450 5 10 0 1 0 6 1
+pinseq=4
+T 475 350 5 8 0 1 0 2 1
+pintype=pas
+}
+P 2000 400 1700 400 1 0 0
+{
+T 1650 400 9 10 1 1 0 6 1
+pinlabel=GND
+T 1850 450 5 10 1 1 0 0 1
+pinnumber=5
+T 1850 450 5 10 0 1 0 0 1
+pinseq=5
+T 1625 350 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 2000 800 1700 800 1 0 0
+{
+T 1650 800 9 10 1 1 0 6 1
+pinlabel=VIN
+T 1850 850 5 10 1 1 0 0 1
+pinnumber=6
+T 1850 850 5 10 0 1 0 0 1
+pinseq=6
+T 1625 750 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 2000 1200 1700 1200 1 0 0
+{
+T 1650 1200 9 10 1 1 0 6 1
+pinlabel=SS
+T 1850 1250 5 10 1 1 0 0 1
+pinnumber=7
+T 1850 1250 5 10 0 1 0 0 1
+pinseq=7
+T 1650 1175 5 8 0 1 0 8 1
+pintype=pas
+}
+P 2000 1600 1700 1600 1 0 0
+{
+T 1650 1600 9 10 1 1 0 6 1
+pinlabel=\_SHDN\_
+T 1850 1650 5 10 1 1 0 0 1
+pinnumber=8
+T 1850 1650 5 10 0 1 0 0 1
+pinseq=8
+T 1650 1575 5 8 0 1 0 8 1
+pintype=in
+}
+T 1700 2000 8 10 1 1 0 6 1
+refdes=U?
+T 400 2400 5 10 0 0 0 0 1
+device=LT3467
+T 400 2600 5 10 0 1 0 0 1
+description=boost converter,40V,1A
+T 400 2000 9 10 1 1 0 0 1
+value=LT3467
+T 400 2200 5 10 0 0 0 0 1
+footprint=DFN-2-3-8
+T 400 2800 5 10 0 1 0 0 1
+documentation=http://www.linear.com/product/LT3467
+T 400 3000 5 10 0 0 0 0 1
+author=AutoTron

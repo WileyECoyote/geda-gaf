@@ -1,5 +1,12 @@
 2016-10-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * lineartech/switchreg/LT3467-1.sym: Add symbol 40V 1A boost converter.
+
+    * lineartech/switchreg/LT3467-2.sym: Add symbol LT3467 alternate SOT
+      package.
+
+2016-10-24 Wiley E. Hill <wileyhill@gmail.com>
+
     * lineartech/LTC4020-1.sym: Add symbol Multi-Chemistry Battery Charger,
       Buck-Boost, 55V.
 
