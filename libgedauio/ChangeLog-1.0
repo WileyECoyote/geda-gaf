@@ -1,12 +1,12 @@
 2016-10-27 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/dialogs: declare type identifiers volatile in dialog
+    * src/dialogs: Declare type identifiers volatile in dialog
       modules:
 
         * geda_file_chooser.c
         * geda_image_chooser.c
 
-    * src/widgets: declare type identifiers volatile in widget
+    * src/widgets: Declare type identifiers volatile in widget
       modules:
 
         * geda_accel_label.c

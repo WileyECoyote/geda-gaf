@@ -1,5 +1,11 @@
 2016-10-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/scheme/edascmhookproxy.c: Declare type identifiers volatile.
+
+    * src/scheme/edascmvaluetypes.c: Declare type identifiers volatile.
+
+2016-10-26 Wiley E. Hill <wileyhill@gmail.com>
+
     * libgeda/geda_errors.h: Define __GEDA_ERRORS_H__ to prevent double
       inclusion.
 

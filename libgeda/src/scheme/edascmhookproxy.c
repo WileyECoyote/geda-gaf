@@ -186,7 +186,7 @@ edascm_hook_proxy_init (EdascmHookProxy *proxy)
  */
 GedaType edascm_hook_proxy_get_type (void)
 {
-  static GedaType edascm_hook_proxy_type = 0;
+  static volatile GedaType edascm_hook_proxy_type = 0;
 
   if (!edascm_hook_proxy_type) {
 
