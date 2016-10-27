@@ -251,8 +251,9 @@ x_clipboard_set (GschemToplevel *w_current, const GList *object_list)
   cb = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
 
   /* Clear the clipboard buffer */
-  if (w_current->clipboard_buffer)
+  if (w_current->clipboard_buffer) {
     gtk_clipboard_clear (cb);
+  }
 
   /* Copy the objects to the clipboard buffer */
   w_current->clipboard_buffer =
