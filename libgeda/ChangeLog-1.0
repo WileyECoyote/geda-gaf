@@ -1,7 +1,9 @@
 2016-10-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_get.c: Fix geda_file_get_bitmap_filespec; add missing s
-      to "bitmaps".
+      to "bitmaps". Revise function geda_file_get_contents to set the err
+      arrgument when present if either the filename or the pointer to the
+      buffer are NULL.
 
     * src/object/o_object.c: Use __func__ macro to avoid translating the
       function name in geda_object_read_buffer.

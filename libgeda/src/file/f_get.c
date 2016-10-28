@@ -467,6 +467,18 @@ geda_file_get_contents(const char  *filename,
 
     }
   }
+  else if (err) {
+
+    const char *msg;
+
+    if (filename == NULL) {
+      msg = _("<%s> pointer to filename is NULL");
+    }
+    else {
+      msg = _("<%s> detected NULL pointer to buffer");
+    }
+    g_set_error (err, G_FILE_ERROR, G_FILE_ERROR_INVAL, msg, __func__);
+  }
 
   return retval;
 }
