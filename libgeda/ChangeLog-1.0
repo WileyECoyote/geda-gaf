@@ -1,7 +1,7 @@
 2016-10-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_file.c: Replace G_FILE_ERROR_INVAL with EDA_ERROR_INVALID_PAGE
-      in geda_file_save.
+      in geda_file_save edit/revise error messages.
 
     * src/file/f_get.c: Fix geda_file_get_bitmap_filespec; add missing s
       to "bitmaps". Revise function geda_file_get_contents to set the err

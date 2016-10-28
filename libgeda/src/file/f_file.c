@@ -175,8 +175,8 @@ geda_file_open(GedaToplevel *toplevel, Page *page, const char *filename, GError 
 
   log_auto_back  = _("\nWARNING: Found an autosave backup file:\n \"%s\".\n\n");
   log_undetemine = _("Could not detemine which file is newer, so you should do this manually.\n");
-  log_back_newer = _("The backup copy is newer than the schematic, so it seems you should load it instead of the original file.\n");
-  log_situation  = _("This situation may have when an application crashed or was forced to exit abruptly.\n");
+  log_back_newer = _("The backup copy is newer than the schematic, it seems you should load it instead of the original file.\n");
+  log_situation  = _("This situation may have occured when an application crashed or was forced to exit abruptly.\n");
   err_corrective = _("\nRun the application to correct this situation or manually delete the backup file.\n\n");
 
   int inline geda_file_open_exit (int status) {
@@ -222,7 +222,7 @@ geda_file_open(GedaToplevel *toplevel, Page *page, const char *filename, GError 
 
     if (chdir (file_directory)) {
       /* Error occurred with chdir */
-      fprintf(stderr, _("ERROR, <libgeda>: Could not changed current directory to %s:%s"),
+      fprintf(stderr, _("ERROR, <libgeda>: Could not change current directory to %s:%s"),
               file_directory, strerror (errno));
       return geda_file_open_exit(0);
     }
@@ -280,7 +280,7 @@ geda_file_open(GedaToplevel *toplevel, Page *page, const char *filename, GError 
       message = malloc(mem_needed + 100);
 
       if(!message) { /* Should this be translated? */
-        fprintf(stderr, _("%s: Memory Allocation Error!\n"), __func__);
+        fprintf(stderr, _("%s: Memory allocation error!\n"), __func__);
       }
       else {
 
