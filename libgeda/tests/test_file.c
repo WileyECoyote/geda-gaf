@@ -117,7 +117,9 @@ int test_file (void)
 
   int result = 0;
 
-  /* === Function 01: geda_close_file geda_file_close === */
+  /* === Function 01:  geda_file_close === */
+
+  geda_close_file(NULL); /* Does absolutely nothing */
 
   /* === Function 02: geda_file_has_active_autosave === */
 
@@ -454,10 +456,16 @@ int test_get (void)
     fprintf(stderr, "FAILED: (F020400) string <%s>\n", string);
   }
 
+  string = geda_file_get_bitmap_filespec("do_not_exist.png");
+
+  if (string) {
+    fprintf(stderr, "FAILED: (F020401) string <%s>\n", string);
+  }
+
   string = geda_file_get_bitmap_filespec("close_box.png");
 
   if (!string) {
-    fprintf(stderr, "FAILED: (F020401) string <%s>\n", string);
+    fprintf(stderr, "FAILED: (F020402) string <%s>\n", string);
   }
 
   /* === Function 05: geda_get_data_spec        geda_file_get_data_filespec === */
@@ -779,7 +787,7 @@ int test_sys (void)
 
   if (remove_file) {
 
-    if(access(TEST_FILE, R_OK) == 0) {
+    if (access(TEST_FILE, R_OK) == 0) {
 
       /* This deletes the file that was copied to the tests directory
        * while testing geda_file_copy
