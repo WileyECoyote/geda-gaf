@@ -485,7 +485,7 @@ geda_file_save(GedaToplevel *toplevel, Page *page, const char *filename, GError 
   }
   else if (!GEDA_IS_PAGE(page))  {
 
-    g_set_error_literal (err, G_FILE_ERROR, G_FILE_ERROR_INVAL,
+    g_set_error_literal (err, EDA_ERROR, EDA_ERROR_INVALID_PAGE,
                          "Invalid or corrupt Page object");
     success = 0;
   }
