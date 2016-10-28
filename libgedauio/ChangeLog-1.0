@@ -3,6 +3,11 @@
     * src/widgets/geda_entry.c: Rename new_text_length argument text_length,
       add documentation.
 
+    * tests/test_entry.c: Add checks for function:
+
+        * geda_entry_widget_get_text
+        * geda_entry_widget_set_text
+
 2016-10-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/dialogs: Declare type identifiers volatile in dialog

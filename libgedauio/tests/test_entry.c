@@ -338,7 +338,6 @@ check_accessors ()
     result++;
   }
 
-
   /* Check attributes */
 
   PangoAttrList *alist;
@@ -435,6 +434,32 @@ check_accessors ()
     result++;
   }
 
+  const char *string;
+
+  string = geda_entry_widget_get_text(widget);
+
+  if (!string) {
+    fprintf(stderr, "FAILED: %s line <%d> string is NULL\n", TWIDGET, __LINE__);
+    result++;
+  }
+  else if (strlen(string)) {
+    fprintf(stderr, "FAILED: %s line <%d> buffer is not empty\n", TWIDGET, __LINE__);
+    result++;
+  }
+
+  geda_entry_widget_set_text(widget, "Fandango");
+
+  string = geda_entry_widget_get_text(widget);
+
+  if (!string) {
+    fprintf(stderr, "FAILED: %s line <%d> string is NULL\n", TWIDGET, __LINE__);
+    result++;
+  }
+  else if (strcmp(string, "Fandango")) {
+    fprintf(stderr, "FAILED: %s line <%d> string <%s>\n", TWIDGET, __LINE__, string);
+    result++;
+  }
+
   g_object_ref_sink(widget); /* Sink reference to entry widget */
   g_object_unref(widget);    /* Destroy the widget */
 
@@ -449,7 +474,7 @@ void on_activate(GedaEntry *entry)
 }
 
 int
-check_overides ()
+check_overides (void)
 {
   int result = 0;
 
