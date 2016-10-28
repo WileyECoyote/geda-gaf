@@ -446,11 +446,28 @@ int test_get (void)
       result++;
   }
 
-  /* === Function 04: geda_get_bitmap_spec      geda_file_get_bitmap_filespec === */
+  /* === Function 04: geda_get_bitmap_spec       === */
+
+  string = geda_file_get_bitmap_filespec(NULL);
+
+  if (string) {
+    fprintf(stderr, "FAILED: (F020400) string <%s>\n", string);
+  }
+
+  string = geda_file_get_bitmap_filespec("close_box.png");
+
+  if (!string) {
+    fprintf(stderr, "FAILED: (F020401) string <%s>\n", string);
+  }
+
   /* === Function 05: geda_get_data_spec        geda_file_get_data_filespec === */
+
   /* === Function 06: geda_get_dir_list         geda_file_get_dir_list_files === */
+
   /* === Function 07: geda_get_file_contents    geda_file_get_contents === */
+
   /* === Function 08: geda_get_extension        geda_file_get_filename_ext === */
+
   /* === Function 09: geda_get_format_header    geda_file_get_format_header === */
 
   /* === Function 10: geda_file_get_is_path_absolute === */
@@ -910,6 +927,72 @@ file_links_4_test(bool create)
   }
 }
 
+static char *old_sys_data_path;
+static char *old_rc_path;
+
+void setup_environment(void)
+{
+  const char *path;
+        char *test_dir;
+        char *lib_dir;
+        char *top_dir;
+
+  path = getenv ("GEDADATA");
+
+  if (path != NULL) {
+    old_sys_data_path = geda_strdup(path);
+  }
+  else {
+    old_sys_data_path = NULL;
+  }
+
+  path = getenv ("GEDADATARC");
+
+  if (path != NULL) {
+    old_rc_path = geda_strdup(path);
+  }
+  else {
+    old_rc_path = NULL;
+  }
+
+  /* This is only needed for distcheck VPATH builds */
+  char *src_dir = getenv ("srcdir");
+
+  if (src_dir) {
+    test_dir = src_dir;
+  }
+  else {
+    test_dir = getcwd(0,0);
+  }
+
+  path = g_build_filename(test_dir, "../..", NULL);
+
+  top_dir = realpath(path, NULL);
+
+  setenv ("GEDADATA", top_dir, TRUE);
+
+  lib_dir = g_build_filename(top_dir, "libgeda", NULL);
+
+  setenv ("GEDADATARC", lib_dir, TRUE);
+
+  if (!src_dir) {
+    GEDA_FREE(test_dir);
+  }
+  GEDA_FREE(lib_dir);
+  GEDA_FREE(top_dir);
+}
+
+void restore_environment(void)
+{
+  if (old_sys_data_path != NULL) {
+    setenv ("GEDADATA", old_sys_data_path, TRUE);
+  }
+
+  if (old_rc_path != NULL) {
+    setenv ("GEDADATA", old_rc_path, TRUE);
+  }
+}
+
 /** @} endgroup test-file-geda-sys */
 
 int
@@ -925,6 +1008,7 @@ main (int argc, char *argv[])
 #endif
 
   file_links_4_test(1);
+  setup_environment();
 
   if (setjmp(point) == 0) {
       result = test_file();
@@ -967,6 +1051,7 @@ main (int argc, char *argv[])
   }
 
   file_links_4_test(0);
+  restore_environment();
 
   return result;
 }
