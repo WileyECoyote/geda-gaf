@@ -175,7 +175,7 @@ geda_file_get_bitmap_filespec (const char *filename)
       const char *subfolder;
 
       base      = geda_sys_data_path();
-      subfolder = "bitmap";
+      subfolder = "bitmaps";
       filespec  = geda_strconcat (base, seperator, subfolder,
                                         seperator, filename, NULL);
     }

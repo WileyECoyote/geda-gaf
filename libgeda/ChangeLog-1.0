@@ -1,3 +1,8 @@
+2016-10-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/file/f_get.c: Fix geda_file_get_bitmap_filespec; add missing s
+      to "bitmaps".
+
 2016-10-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/scheme/edascmhookproxy.c: Declare type identifiers volatile.
