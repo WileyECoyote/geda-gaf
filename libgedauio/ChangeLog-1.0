@@ -1,3 +1,8 @@
+2016-10-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_entry.c: Rename new_text_length argument text_length,
+      add documentation.
+
 2016-10-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/dialogs: Declare type identifiers volatile in dialog

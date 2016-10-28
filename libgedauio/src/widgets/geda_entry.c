@@ -1102,22 +1102,33 @@ geda_entry_tab_complete (GedaEntry *entry)
   return exit (TRUE);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief GedaEntry insert Text
+ * \par Function Description
+ *  Wrapper for gtk_entry_buffer_insert_text. Inserts \a text_length
+ *  characters of \a new_text into the contents of the entry buffer,
+ *  starting at position \a position. If \a text_length is negative,
+ *  then characters from \a new_text will be inserted until a null
+ *  terminator is found. If \a position or the maximum buffer text
+ *  length is exceeded, then they are coerced to sane values. Note
+ *  that the position and length are in characters not in bytes.
  *
+ * \param [in] entry        Pointer to a #GedaEntry object.
+ * \param [in] new_text     Pointer to string to be inserted
+ * \param [in] text_length  Integer length of the new string
+ * \param [in] position     Integer position to insert the text.
  */
 static void
 geda_entry_real_insert_text (GedaEntry  *entry,
                              const char *new_text,
-                             int         new_text_length,
+                             int         text_length,
                              int        *position)
 {
   GtkEntryBuffer *buffer;
   unsigned int n_inserted;
   int n_chars;
 
-  n_chars = g_utf8_strlen (new_text, new_text_length);
+  n_chars = g_utf8_strlen (new_text, text_length);
 
   /* The actual insertion into the buffer. This will end up firing the
    * following signal handlers:
@@ -1131,7 +1142,8 @@ geda_entry_real_insert_text (GedaEntry  *entry,
 
   g_object_get (entry, "buffer", &buffer, NULL);
 
-  n_inserted = gtk_entry_buffer_insert_text (buffer, *position, new_text, n_chars);
+  n_inserted = gtk_entry_buffer_insert_text (buffer, *position,
+                                             new_text, n_chars);
 
   end_change (entry);
 
