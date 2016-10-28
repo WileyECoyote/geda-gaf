@@ -3,6 +3,9 @@
     * src/file/f_get.c: Fix geda_file_get_bitmap_filespec; add missing s
       to "bitmaps".
 
+    * src/object/o_object.c: Use __func__ macro to avoid translating the
+      function name in geda_object_read_buffer.
+
     * tests/test_file.c: Add setup_environment and restore_environment
       to set environment for tests. Add checks for:
 

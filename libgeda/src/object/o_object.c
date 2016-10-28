@@ -97,7 +97,7 @@ geda_object_read_buffer (GedaToplevel *toplevel, GList    *object_list,
 
   if (buffer == NULL) {
     g_set_error (err, EDA_ERROR, EDA_ERROR_NULL_POINTER,
-                 _("<geda_object_read_buffer> detected NULL pointer to buffer "));
+                 _("<%s> detected NULL pointer to buffer "), __func__);
     return NULL;
   }
 
