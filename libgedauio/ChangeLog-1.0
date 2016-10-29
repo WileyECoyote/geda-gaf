@@ -1,5 +1,7 @@
 2016-10-29 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_entry.c: Validate geda_entry_set_valid_input inputs.
+
     * tests/test_entry.c: Add checks for function:
 
         * geda_entry_widget_set_completion

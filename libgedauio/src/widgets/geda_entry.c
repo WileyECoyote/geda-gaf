@@ -1682,6 +1682,9 @@ geda_entry_get_valid_input (GedaEntry *entry)
 void
 geda_entry_set_valid_input (GedaEntry *entry, GedaEntryAccept mode)
 {
+  g_return_if_fail (GEDA_IS_ENTRY (entry));
+  g_return_if_fail (mode >= ACCEPT_ALL_ASCII && mode <= ACCEPT_REAL);
+
   GEDA_ENTRY(entry)->validation_mode = mode;
 }
 
