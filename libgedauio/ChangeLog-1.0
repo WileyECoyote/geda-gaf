@@ -1,8 +1,10 @@
-2016-10-28 Wiley E. Hill <wileyhill@gmail.com>
+2016-10-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_entry.c: Add checks for function:
 
         * geda_entry_widget_set_completion
+        * geda_entry_widget_completion_get_case
+        * geda_entry_widget_completion_set_case
 
 2016-10-28 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -175,6 +175,20 @@ int check_construction (void)
       fprintf(stderr, "FAILED: line <%d> completion %s\n", __LINE__, TWIDGET);
       result++;
     }
+    else {
+
+      if (geda_entry_widget_completion_get_case(widget)) {
+        fprintf(stderr, "FAILED: line <%d> completion get_case %s\n", __LINE__, TWIDGET);
+        result++;
+      }
+
+      geda_entry_widget_completion_set_case(widget, TRUE);
+
+      if (!geda_entry_widget_completion_get_case(widget)) {
+        fprintf(stderr, "FAILED: line <%d> completion set_case %s\n", __LINE__, TWIDGET);
+        result++;
+      }
+    }
   }
 
   g_object_ref_sink(widget); /* Sink reference to entry widget */
