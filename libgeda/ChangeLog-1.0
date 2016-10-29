@@ -3,6 +3,9 @@
     * src/file/f_sys.c: Add check for empty filename string in function
       geda_file_sys_follow_symlinks.
 
+    * tests/test_file.c: Add check for src_dir when constructing fname06 in
+      test_file when executing the file without invoking with make check.
+
 2016-10-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_file.c: Replace G_FILE_ERROR_INVAL with EDA_ERROR_INVALID_PAGE

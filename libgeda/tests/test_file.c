@@ -288,7 +288,12 @@ int test_file (void)
 
   const char *fname06 = "data/test.sch";
 
-  source = g_build_filename(src_dir, fname06, NULL);
+  if (src_dir) {
+    source = g_build_filename(src_dir, fname06, NULL);
+  }
+  else {
+    source = geda_strdup(fname06);
+  }
 
   page = geda_struct_page_new (toplevel, source);
 
