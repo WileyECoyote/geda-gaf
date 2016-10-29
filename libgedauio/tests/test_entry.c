@@ -482,6 +482,7 @@ check_accessors ()
     result++;
   }
 
+  /* Check get/set text */
   const char *string;
 
   string = geda_entry_widget_get_text(widget);
@@ -505,6 +506,33 @@ check_accessors ()
   }
   else if (strcmp(string, "Fandango")) {
     fprintf(stderr, "FAILED: %s line <%d> string <%s>\n", TWIDGET, __LINE__, string);
+    result++;
+  }
+
+  /* Check get/set valid input */
+
+  value = geda_entry_widget_get_valid_input(widget);
+
+  if (value != ACCEPT_ALL_ASCII) {
+    fprintf(stderr, "FAILED: %s line <%d> valid_input %d != %d\n", TWIDGET, __LINE__, value, ACCEPT_ALL_ASCII);
+    result++;
+  }
+
+  geda_entry_widget_set_valid_input(widget, ACCEPT_REAL);
+
+  value = geda_entry_widget_get_valid_input(widget);
+
+  if (value != ACCEPT_REAL) {
+    fprintf(stderr, "FAILED: %s line <%d> valid_input %d != %d\n", TWIDGET, __LINE__, value, ACCEPT_ALL_ASCII);
+    result++;
+  }
+
+  geda_entry_widget_set_valid_input(widget, ACCEPT_REAL + 1);
+
+  value = geda_entry_widget_get_valid_input(widget);
+
+  if (value != ACCEPT_REAL) {
+    fprintf(stderr, "FAILED: %s line <%d> valid_input %d != %d\n", TWIDGET, __LINE__, value, ACCEPT_ALL_ASCII);
     result++;
   }
 

@@ -7,6 +7,8 @@
         * geda_entry_widget_set_completion
         * geda_entry_widget_completion_get_case
         * geda_entry_widget_completion_set_case
+        * geda_entry_widget_get_valid_input
+        * geda_entry_widget_set_valid_input
 
 2016-10-28 Wiley E. Hill <wileyhill@gmail.com>
 
