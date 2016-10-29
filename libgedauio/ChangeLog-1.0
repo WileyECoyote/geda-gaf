@@ -1,5 +1,11 @@
 2016-10-28 Wiley E. Hill <wileyhill@gmail.com>
 
+    * tests/test_entry.c: Add checks for function:
+
+        * geda_entry_widget_set_completion
+
+2016-10-28 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/widgets/geda_entry.c: Rename new_text_length argument text_length,
       add documentation.
 

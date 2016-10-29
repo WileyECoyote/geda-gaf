@@ -148,6 +148,40 @@ int check_construction (void)
 
   widget = NULL;
 
+  /* geda_entry_widget_set_completion */
+
+  widget = geda_entry_new_visible ();
+
+  if (!GEDA_IS_ENTRY(widget)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+  else {
+
+    GedaCompletion *comp1;
+    GedaCompletion *comp2;
+
+    comp1 = geda_completion_new (NULL);
+
+    geda_entry_widget_set_completion(widget, comp1);
+
+    comp2 = geda_entry_widget_get_completion(widget);
+
+    if (!comp2) {
+      fprintf(stderr, "FAILED: line <%d> completion %s\n", __LINE__, TWIDGET);
+      result++;
+    }
+    else if (comp1 != comp2) {
+      fprintf(stderr, "FAILED: line <%d> completion %s\n", __LINE__, TWIDGET);
+      result++;
+    }
+  }
+
+  g_object_ref_sink(widget); /* Sink reference to entry widget */
+  g_object_unref(widget);    /* Destroy the widget */
+
+  widget = NULL;
+
   /* geda_entry_new_visible */
 
   widget = geda_entry_new_visible ();
