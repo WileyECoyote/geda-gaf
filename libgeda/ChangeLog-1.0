@@ -5,6 +5,9 @@
 
     * tests/test_file.c: Add check for src_dir when constructing fname06 in
       test_file when executing the file without invoking with make check.
+      Add checks for:
+
+          * geda_file_get_contents
 
 2016-10-28 Wiley E. Hill <wileyhill@gmail.com>
 

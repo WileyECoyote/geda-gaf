@@ -353,9 +353,12 @@ int test_file (void)
 
 int test_get (void)
 {
+  char *src_dir;
   char *string;
   int   index;
   int   result = 0;
+
+  src_dir = getenv ("srcdir");
 
   /* === Function 01:  geda_file_get_autosave_filename === */
 
@@ -459,25 +462,87 @@ int test_get (void)
 
   if (string) {
     fprintf(stderr, "FAILED: (F020400) string <%s>\n", string);
+    result++;
   }
 
   string = geda_file_get_bitmap_filespec("do_not_exist.png");
 
   if (string) {
     fprintf(stderr, "FAILED: (F020401) string <%s>\n", string);
+    result++;
   }
 
   string = geda_file_get_bitmap_filespec("close_box.png");
 
   if (!string) {
     fprintf(stderr, "FAILED: (F020402) string <%s>\n", string);
+    result++;
   }
 
-  /* === Function 05: geda_get_data_spec        geda_file_get_data_filespec === */
+  /* === Function 05: geda_file_get_contents === */
+  GError *err;
+  char   *filename_05;
+  char   *buffer_05;
+  size_t  n_byte;
 
-  /* === Function 06: geda_get_dir_list         geda_file_get_dir_list_files === */
+  err = NULL;
 
-  /* === Function 07: geda_get_file_contents    geda_file_get_contents === */
+  if (geda_get_file_contents(NULL, NULL, &n_byte, &err)) {
+    fprintf(stderr, "FAILED: (F020500A) geda_file_get_contents NULL\n");
+    result++;
+  }
+  else {
+    if (!err) {
+      fprintf(stderr, "FAILED: (F020500B1) geda_file_get_contents NULL\n");
+      result++;
+    }
+    else {
+      fprintf(stderr, "Message: (F020500B2) %s.\n", err->message);
+      g_error_free (err);
+      err = NULL;
+    }
+  }
+
+  if (src_dir) {
+    filename_05 = g_build_filename(src_dir, READ_ONLY_FILE, NULL);
+  }
+  else {
+    filename_05 = geda_strdup(READ_ONLY_FILE);
+  }
+
+  if (geda_get_file_contents(filename_05, &buffer_05, &n_byte, NULL)) {
+
+    if (n_byte != 13) {
+      fprintf(stderr, "FAILED: (F020501A) n_byte <%d>\n", n_byte);
+      result++;
+    }
+    free (filename_05);
+    free (buffer_05);
+  }
+  else {
+    fprintf(stderr, "FAILED: (F020501B) geda_file_get_contents\n");
+    result++;
+  }
+
+  if (geda_get_file_contents(BAD_LINK_FILE, &buffer_05, &n_byte, &err)) {
+    fprintf(stderr, "FAILED: (F020502A) geda_file_get_contents NULL\n");
+    result++;
+  }
+  else {
+    if (!err) {
+      fprintf(stderr, "FAILED: (F020502B1) geda_file_get_contents NULL\n");
+      result++;
+    }
+    else {
+      fprintf(stderr, "Message: (F020502B2) %s.\n", err->message);
+      g_error_free (err);
+      err = NULL;
+    }
+  }
+
+  /* === Function 06: geda_get_data_spec        geda_file_get_data_filespec === */
+
+  /* === Function 07: geda_get_dir_list         geda_file_get_dir_list_files === */
 
   /* === Function 08: geda_get_extension        geda_file_get_filename_ext === */
 
