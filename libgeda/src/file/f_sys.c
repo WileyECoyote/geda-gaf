@@ -260,7 +260,7 @@ geda_file_sys_follow_symlinks (const char *filename, GError **err)
 {
   char *followed_filename;
 
-  if (filename == NULL) {
+  if (filename == NULL || *filename == 0) {
     g_set_error (err, G_FILE_ERROR, G_FILE_ERROR_INVAL,
                  "%s", strerror (EINVAL));
     return NULL;
