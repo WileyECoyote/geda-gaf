@@ -31,7 +31,8 @@
  *
  * \returns the newly created GedaObject.
  */
-GedaObject *geda_struct_object_new (int type, char const *name)
+GedaObject *
+geda_struct_object_new (int type, char const *name)
 {
   return geda_object_new(type, name);
 }
@@ -49,7 +50,8 @@ GedaObject *geda_struct_object_new (int type, char const *name)
  *
  * \return nothing.
  */
-void geda_struct_object_add_child(GedaObject *parent, GedaObject *child) {
+void
+geda_struct_object_add_child(GedaObject *parent, GedaObject *child) {
 
   /* if the object is on a page then add the child */
   Page *page = geda_object_get_page(parent);
@@ -134,7 +136,8 @@ geda_struct_object_release_objects(GList *list)
  *  Updates the CHANGED flag of the page associated with \a object
  *  if the object is attached to a page.
  */
-void geda_struct_object_set_page_changed (const GedaObject *object)
+void
+geda_struct_object_set_page_changed (const GedaObject *object)
 {
   Page *page = geda_object_get_page (object);
   geda_page_set_changed (page, TRUE);        /* possibly set CHANGED flag */
