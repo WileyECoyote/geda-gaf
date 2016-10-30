@@ -1,3 +1,9 @@
+2016-10-30 Vladimir Zhbanov <vzhbanov@gmail.com>
+
+    * .dir-locals.el: WEH: Modified per commit to Master branch by
+      Vladimir Zhbanov, commit f85c2c71ca422a17011ab59d1f886cb85306980e:
+      Add .dir-locals.el file for Emacs.
+
 2016-10-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * configure.ac: update gettext to version 0.18.
