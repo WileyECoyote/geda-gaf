@@ -1,5 +1,9 @@
 2016-10-29 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/file/f_file.c: Revise error output messages in geda_file_open.
+
+    * src/file/f_get.c: Revise error messages in geda_file_get_contents.
+
     * src/file/f_sys.c: Add check for empty filename string in function
       geda_file_sys_follow_symlinks.
 

@@ -1481,10 +1481,16 @@ geda_entry_set_attributes (GedaEntry *entry, PangoAttrList *attrs)
   gtk_widget_queue_resize (GTK_WIDGET (entry));
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Set GedaEntry Max History Property
+ * \par Function Description
+ *  The maximum length of history property controls the number of
+ *  entries stored by the GedaEntry. The max-history property is
+ *  only relevant to GedaEntries that were created with history.
+ *  History is stored in a GList so in effect max-history controls
+ *  the maximum number of items in the list with the oldest item
+ *  being removed when the a new item is added should the number of
+ *  items reaches \a value.
  */
 void
 geda_entry_set_max_history (GedaEntry *entry, int value)
@@ -1492,10 +1498,10 @@ geda_entry_set_max_history (GedaEntry *entry, int value)
   entry->max_history = value;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Get GedaEntry Max History Property
+ * \par Function Description
+ *  Gets the current max-history setting.
  */
 int
 geda_entry_get_max_history (GedaEntry *entry)
@@ -1861,10 +1867,11 @@ geda_entry_widget_set_attributes (GtkWidget *entry, PangoAttrList *attrs)
   geda_entry_set_attributes ((GedaEntry*)entry, attrs);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Get the Completion Object from a GedaEntry Wdget
+ * \par Function Description
+ *  Convenience wrapper that accepts a GedaEntry of type GtkWidget
+ *  and returns the GedaCompletion object associated with the entry.
  */
 GedaCompletion *
 geda_entry_widget_get_completion (GtkWidget *entry)
@@ -1872,11 +1879,12 @@ geda_entry_widget_get_completion (GtkWidget *entry)
   return geda_entry_get_completion (GEDA_ENTRY(entry));
 }
 
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Set the GedaEntry Widget Completion Object
+ * \par Function Description
+ *  Convenience wrapper that accepts a GedaEntry of type GtkWidget,
+ *  which may be assigned a GedaCompletion object after construction
+ *  using this function.
  */
 void
 geda_entry_widget_set_completion (GtkWidget      *entry,
@@ -1885,10 +1893,13 @@ geda_entry_widget_set_completion (GtkWidget      *entry,
   geda_entry_set_completion (GEDA_ENTRY(entry), completion);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Get sensitivity of widget completion algorithms
+ * \par Function Description
+ *  Gets the case sensitivity used by the GedaEntry widget for
+ *  completion comparisons.
  *
+ * \param [in] entry  Pointer to a #GedaEntry widget.
  */
 bool
 geda_entry_widget_completion_get_case (GtkWidget *entry)
@@ -1896,10 +1907,15 @@ geda_entry_widget_completion_get_case (GtkWidget *entry)
   return geda_entry_completion_get_case (GEDA_ENTRY(entry));
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Set sensitivity of widget completion algorithms
+ * \par Function Description
+ *  Sets the case sensitivity for the GedaEntry widget completion
+ *  operations. This set which GedaStrCompareNFunc algorithms are
+ *  used by the GedaCompletion.
  *
+ * \param [in] entry     Pointer to a #GedaEntry widget.
+ * \param [in] sensitive Desired boolean case sensitivity setting.
  */
 void
 geda_entry_widget_completion_set_case (GtkWidget *entry, bool sensitive)
@@ -1907,10 +1923,11 @@ geda_entry_widget_completion_set_case (GtkWidget *entry, bool sensitive)
   geda_entry_completion_set_case (GEDA_ENTRY(entry), sensitive);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Get GedaEntry Widget Input Case Property
+ * \par Function Description
+ * \returns the current text_case setting.
+ * \sa geda_entry_get_input_case
  */
 bool
 geda_entry_widget_get_input_case (GtkWidget *entry)
@@ -1918,10 +1935,18 @@ geda_entry_widget_get_input_case (GtkWidget *entry)
   return geda_entry_get_input_case (GEDA_ENTRY(entry));
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Set GedaEntry Widget Input Case Property
+ * \par Function Description
+ *  Sets if user input of characters is changed to upper or lower case.
+ *  The mode can be one of:
+ *  <DL>
+ *    <DT>LOWER_CASE</DT>
+ *    <DT>UPPER_CASE</DT>
+ *    <DT>BOTH_CASES</DT>
+ *  </DL>
+ *  The default is BOTH_CASES, which means the case of text entered by
+ *  the used will not be changed.
  */
 void
 geda_entry_widget_set_input_case (GtkWidget *entry, int mode)

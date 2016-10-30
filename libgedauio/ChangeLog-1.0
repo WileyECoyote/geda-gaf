@@ -1,3 +1,7 @@
+2016-10-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_entry.c: Update/add Doxygen comments.
+
 2016-10-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Validate geda_entry_set_valid_input inputs.
