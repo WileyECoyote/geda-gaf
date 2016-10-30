@@ -1,3 +1,7 @@
+2016-10-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src\Makefile.am: Add subdir-objects to shut-up automake 1.15.
+
 2016-05-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/Makefile.am: Add include LOG_DOMAIN.

@@ -2,6 +2,8 @@
 ## This file is processed by automake to produce Makefile.in, after which
 ## The configure script generates the actual Makefile from the Makefile.in.
 
+AUTOMAKE_OPTIONS = subdir-objects
+
 INC_GEDA = -I$(top_srcdir) -I$(top_srcdir)/include -I$(top_srcdir)/intl
 INC_LOCAL =  -I$(srcdir)/../include
 INC_LIBGEDA = -I$(top_srcdir)/libgeda/include

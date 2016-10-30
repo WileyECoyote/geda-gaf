@@ -1,3 +1,8 @@
+2016-10-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src\Makefile.am: Re-enable subdir-objects for to suppress warning
+      from automake 1.15.
+
 2016-10-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_multiattrib.c: Declare title_string and strings for gettext

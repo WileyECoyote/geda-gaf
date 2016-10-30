@@ -2,6 +2,8 @@
 ## Process this file with automake to produce Makefile.in
 ## `pkg-config --cflags freetype2`
 
+AUTOMAKE_OPTIONS             = subdir-objects
+
 #DEBUGGING                   = --debug --verbose
 
 INC_GEDA                     = -I$(top_srcdir)/include -I$(top_srcdir)/intl

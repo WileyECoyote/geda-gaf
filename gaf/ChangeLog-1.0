@@ -1,3 +1,8 @@
+2016-10-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src\Makefile.am: Add subdir-objects for to suppress warning from
+      automake 1.15.
+
 2016-10-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/config.c: Replace g_assert_not_reached with fprintf in function

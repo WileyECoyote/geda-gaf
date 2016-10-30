@@ -4,7 +4,7 @@
 
 #DEBUGGING                    = --debug --verbose
 
-#AUTOMAKE_OPTIONS             = 1.6 subdir-objects
+AUTOMAKE_OPTIONS             = 1.6 subdir-objects
 
 LIB_FILE_DIALOG              = dialogs/fileselector
 

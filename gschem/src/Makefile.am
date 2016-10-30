@@ -2,6 +2,8 @@
 ## This file is processed by automake to produce Makefile.in, after which
 ## The configure script generates the actual Makefile from the Makefile.in.
 
+AUTOMAKE_OPTIONS = subdir-objects
+
 # This is used for debugging the local build not the source
 #DEBUGGING = --debug --verbose
 
