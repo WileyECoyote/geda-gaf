@@ -1,3 +1,7 @@
+2016-10-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * configure.ac: update gettext to version 0.18.
+
 2016-10-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * autogen.sh: Add utils/po to podirs list.
