@@ -222,7 +222,7 @@ geda_file_open(GedaToplevel *toplevel, Page *page, const char *filename, GError 
 
     if (chdir (file_directory)) {
       /* Error occurred with chdir */
-      fprintf(stderr, _("ERROR, <libgeda>: Could not change current directory to %s:%s"),
+      fprintf(stderr, _("<libgeda> ERROR: Could not change current directory to %s:%s"),
               file_directory, strerror (errno));
       return geda_file_open_exit(0);
     }
@@ -346,7 +346,7 @@ geda_file_open(GedaToplevel *toplevel, Page *page, const char *filename, GError 
   /* Reset current directory to the orginal location */
   if (flags & F_OPEN_RESTORE_CWD) {
     if (chdir (saved_cwd)) {
-      fprintf(stderr, _("ERROR, <libgeda>: Could not restore current directory to %s:%s"),
+      fprintf(stderr, _("<libgeda> ERROR: Could not restore current directory to %s:%s"),
               saved_cwd, strerror (errno));
     }
   }
@@ -454,7 +454,7 @@ geda_file_save(GedaToplevel *toplevel, Page *page, const char *filename, GError 
 
   err_not_real  = _("Can't get the real filename of %s: %s");
   err_not_saved = _("Could NOT save file: %s");
-  err_read_only = _("File %s is read-only");
+  err_read_only = _("File \"%s\" is read-only");
 
   log_set_back  = _("Could not set previous backup file [%s] read-write:%s\n");
   log_not_back  = _("Can not create backup file: %s: %s\n");

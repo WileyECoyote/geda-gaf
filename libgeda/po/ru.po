@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-10-27 10:39-0500\n"
+"POT-Creation-Date: 2016-10-29 19:16-0500\n"
 "PO-Revision-Date: 2014-06-06 16:40+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -84,8 +84,9 @@ msgid ""
 msgstr "Не удалось определить новее ли он, решите это сами.\n"
 
 #: libgeda/src/file/f_file.c:178
+#, fuzzy
 msgid ""
-"The backup copy is newer than the schematic, so it seems you should load it "
+"The backup copy is newer than the schematic, it seems you should load it "
 "instead of the original file.\n"
 msgstr ""
 "Резервная копия новее схемы, поэтому, видимо, следует загрузить её вместо "
@@ -94,8 +95,8 @@ msgstr ""
 #: libgeda/src/file/f_file.c:179
 #, fuzzy
 msgid ""
-"This situation may have when an application crashed or was forced to exit "
-"abruptly.\n"
+"This situation may have occured when an application crashed or was forced to "
+"exit abruptly.\n"
 msgstr ""
 "Обычно gschem автоматически создаёт резервные копии, и такая ситуация может "
 "быть результатом крушения или внезапного завершения программы.\n"
@@ -118,19 +119,19 @@ msgid "Cannot find file %s: %s"
 msgstr "Файл «%s» не найден: %s"
 
 #: libgeda/src/file/f_file.c:225
-#, c-format
-msgid "ERROR, <libgeda>: Could not changed current directory to %s:%s"
-msgstr ""
+#, fuzzy, c-format
+msgid "<libgeda> ERROR: Could not change current directory to %s:%s"
+msgstr "Не удалось сохранить файл резервной копии: %s."
 
-#: libgeda/src/file/f_file.c:283 libgeda/src/file/f_sys.c:109
+#: libgeda/src/file/f_file.c:283
 #, c-format
-msgid "%s: Memory Allocation Error!\n"
+msgid "%s: Memory allocation error!\n"
 msgstr ""
 
 #: libgeda/src/file/f_file.c:349
-#, c-format
-msgid "ERROR, <libgeda>: Could not restore current directory to %s:%s"
-msgstr ""
+#, fuzzy, c-format
+msgid "<libgeda> ERROR: Could not restore current directory to %s:%s"
+msgstr "Не удалось сохранить файл резервной копии: %s."
 
 # Эта функция пытается найти для указанного имени реальный файл (не являющийся
 # ссылкой).
@@ -157,8 +158,8 @@ msgid "Could NOT save file: %s"
 msgstr "Не удалось сохранить файл: %s"
 
 #: libgeda/src/file/f_file.c:457
-#, c-format
-msgid "File %s is read-only"
+#, fuzzy, c-format
+msgid "File \"%s\" is read-only"
 msgstr "Файл %s только для чтения"
 
 #: libgeda/src/file/f_file.c:459
@@ -213,7 +214,17 @@ msgstr ""
 msgid "Failed to open file '%s': fdopen() failed: %s"
 msgstr "Не удалось загрузить изображение из файла «%s»: %s\n"
 
-#: libgeda/src/file/f_get.c:602
+#: libgeda/src/file/f_get.c:475
+#, c-format
+msgid "libgeda <%s> ERROR: pointer to filename is NULL"
+msgstr ""
+
+#: libgeda/src/file/f_get.c:478
+#, c-format
+msgid "libgeda <%s> ERROR: pointer to a buffer is NULL"
+msgstr ""
+
+#: libgeda/src/file/f_get.c:614
 #, fuzzy, c-format
 msgid "error accessing '%s': %s"
 msgstr "Файл «%s» не найден: %s"
@@ -291,6 +302,11 @@ msgstr ""
 #: libgeda/src/file/f_sys.c:80
 #, c-format
 msgid "%s: attempting to unlock file \"%s\"\n"
+msgstr ""
+
+#: libgeda/src/file/f_sys.c:109
+#, c-format
+msgid "%s: Memory Allocation Error!\n"
 msgstr ""
 
 #: libgeda/src/file/f_sys.c:343
@@ -868,14 +884,20 @@ msgid "ERROR: The %s log may contain more information.\n"
 msgstr "ОШИБКА: в файле журнала %s может быть больше информации\n"
 
 #: libgeda/src/object/o_object.c:100
-msgid "<geda_object_read_buffer> detected NULL pointer to buffer "
+#, c-format
+msgid "<%s> detected NULL pointer to buffer "
 msgstr ""
 
 #: libgeda/src/object/o_object.c:107
 msgid "Schematic data was not valid UTF-8"
 msgstr "Данные принципиальной схемы не являются допустимыми для UTF-8"
 
-#: libgeda/src/object/o_object.c:262
+#: libgeda/src/object/o_object.c:113
+#, c-format
+msgid "<%s> Invalid pointer to GedaToplevel"
+msgstr ""
+
+#: libgeda/src/object/o_object.c:268
 #, fuzzy, c-format
 msgid ""
 "Read unexpected attach symbol start marker on line <%d>, in [%s] :\n"
@@ -886,7 +908,7 @@ msgstr ""
 ">>\n"
 "%s<<\n"
 
-#: libgeda/src/object/o_object.c:286 libgeda/src/object/o_object.c:294
+#: libgeda/src/object/o_object.c:292 libgeda/src/object/o_object.c:300
 #, fuzzy, c-format
 msgid ""
 "Read unexpected embedded symbol start marker on line <%d>, in [%s] :\n"
@@ -897,7 +919,7 @@ msgstr ""
 ">>\n"
 "%s<<\n"
 
-#: libgeda/src/object/o_object.c:332
+#: libgeda/src/object/o_object.c:338
 #, fuzzy, c-format
 msgid ""
 "Read unexpected embedded symbol end marker on line <%d>, in [%s] :\n"
@@ -908,7 +930,7 @@ msgstr ""
 ">>\n"
 "%s<<\n"
 
-#: libgeda/src/object/o_object.c:370
+#: libgeda/src/object/o_object.c:376
 #, c-format
 msgid ""
 "Read an old format sym/sch file!\n"
@@ -919,7 +941,7 @@ msgstr ""
 "Выполните g[sym|sch]update для:\n"
 "«%s»\n"
 
-#: libgeda/src/object/o_object.c:389
+#: libgeda/src/object/o_object.c:395
 #, fuzzy, c-format
 msgid ""
 "Read garbage line <%d> in [%s] :\n"
@@ -930,7 +952,7 @@ msgstr ""
 ">>\n"
 "%s<<\n"
 
-#: libgeda/src/object/o_object.c:393
+#: libgeda/src/object/o_object.c:399
 #, fuzzy, c-format
 msgid "Read garbage line <%d> in [%s]"
 msgstr ""
@@ -938,7 +960,7 @@ msgstr ""
 ">>\n"
 "%s<<\n"
 
-#: libgeda/src/object/o_object.c:426
+#: libgeda/src/object/o_object.c:432
 #, c-format
 msgid " On or about line %d, "
 msgstr ""
@@ -1415,7 +1437,7 @@ msgstr "o_save_objects: объект %p неизвестного типа «%c»
 msgid "%s: Memory allocation error."
 msgstr ""
 
-#: libgeda/src/object/o_save.c:403
+#: libgeda/src/object/o_save.c:404
 #, c-format
 msgid "[%s]: because %s"
 msgstr ""

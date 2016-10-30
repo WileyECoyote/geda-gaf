@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-10-27 10:39-0500\n"
+"POT-Creation-Date: 2016-10-29 19:16-0500\n"
 "PO-Revision-Date: 2012-09-01 18:46+0000\n"
 "Last-Translator: Panos Bouklis <panos@echidna-band.com>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -69,8 +69,9 @@ msgstr ""
 "χέρι.\n"
 
 #: libgeda/src/file/f_file.c:178
+#, fuzzy
 msgid ""
-"The backup copy is newer than the schematic, so it seems you should load it "
+"The backup copy is newer than the schematic, it seems you should load it "
 "instead of the original file.\n"
 msgstr ""
 "Το αντίγραφο ασφαλείας είναι νεότερο από το σχεδιάγραμμα, άρα μάλλον πρέπει "
@@ -79,8 +80,8 @@ msgstr ""
 #: libgeda/src/file/f_file.c:179
 #, fuzzy
 msgid ""
-"This situation may have when an application crashed or was forced to exit "
-"abruptly.\n"
+"This situation may have occured when an application crashed or was forced to "
+"exit abruptly.\n"
 msgstr ""
 "Το gschem συνήθως δημιουργεί αντίγραφα ασφαλείας αυτόματα, και αυτή η "
 "περίπτωση συμβαίνει όταν κατέρρευσε ή έγινε βίαιη έξοδος.\n"
@@ -103,19 +104,19 @@ msgid "Cannot find file %s: %s"
 msgstr "Αδυναμία εύρεσης του αρχείου %s: %s"
 
 #: libgeda/src/file/f_file.c:225
-#, c-format
-msgid "ERROR, <libgeda>: Could not changed current directory to %s:%s"
-msgstr ""
+#, fuzzy, c-format
+msgid "<libgeda> ERROR: Could not change current directory to %s:%s"
+msgstr "Αδυναμία αποθήκευσης αντιγράφου ασφαλείας: %s."
 
-#: libgeda/src/file/f_file.c:283 libgeda/src/file/f_sys.c:109
+#: libgeda/src/file/f_file.c:283
 #, c-format
-msgid "%s: Memory Allocation Error!\n"
+msgid "%s: Memory allocation error!\n"
 msgstr ""
 
 #: libgeda/src/file/f_file.c:349
-#, c-format
-msgid "ERROR, <libgeda>: Could not restore current directory to %s:%s"
-msgstr ""
+#, fuzzy, c-format
+msgid "<libgeda> ERROR: Could not restore current directory to %s:%s"
+msgstr "Αδυναμία αποθήκευσης αντιγράφου ασφαλείας: %s."
 
 #: libgeda/src/file/f_file.c:395
 #, fuzzy, c-format
@@ -138,8 +139,8 @@ msgid "Could NOT save file: %s"
 msgstr "ΔΕΝ ήταν δυνατή η αποθήκευση του αρχείου: %s"
 
 #: libgeda/src/file/f_file.c:457
-#, c-format
-msgid "File %s is read-only"
+#, fuzzy, c-format
+msgid "File \"%s\" is read-only"
 msgstr "Το αρχείο %s είναι μόνο για ανάγνωση"
 
 #: libgeda/src/file/f_file.c:459
@@ -192,7 +193,17 @@ msgstr ""
 msgid "Failed to open file '%s': fdopen() failed: %s"
 msgstr "Αδυναμία ανοίγματος καταλόγου [%s]: %s\n"
 
-#: libgeda/src/file/f_get.c:602
+#: libgeda/src/file/f_get.c:475
+#, c-format
+msgid "libgeda <%s> ERROR: pointer to filename is NULL"
+msgstr ""
+
+#: libgeda/src/file/f_get.c:478
+#, c-format
+msgid "libgeda <%s> ERROR: pointer to a buffer is NULL"
+msgstr ""
+
+#: libgeda/src/file/f_get.c:614
 #, fuzzy, c-format
 msgid "error accessing '%s': %s"
 msgstr "Αδυναμία εύρεσης του αρχείου %s: %s"
@@ -269,6 +280,11 @@ msgstr ""
 #: libgeda/src/file/f_sys.c:80
 #, c-format
 msgid "%s: attempting to unlock file \"%s\"\n"
+msgstr ""
+
+#: libgeda/src/file/f_sys.c:109
+#, c-format
+msgid "%s: Memory Allocation Error!\n"
 msgstr ""
 
 #: libgeda/src/file/f_sys.c:343
@@ -841,14 +857,20 @@ msgid "ERROR: The %s log may contain more information.\n"
 msgstr "ΣΦΑΛΜΑ: Η καταγραφή %s μπορεί να περιέχει περισσότερες πληροφορίες.\n"
 
 #: libgeda/src/object/o_object.c:100
-msgid "<geda_object_read_buffer> detected NULL pointer to buffer "
+#, c-format
+msgid "<%s> detected NULL pointer to buffer "
 msgstr ""
 
 #: libgeda/src/object/o_object.c:107
 msgid "Schematic data was not valid UTF-8"
 msgstr ""
 
-#: libgeda/src/object/o_object.c:262
+#: libgeda/src/object/o_object.c:113
+#, c-format
+msgid "<%s> Invalid pointer to GedaToplevel"
+msgstr ""
+
+#: libgeda/src/object/o_object.c:268
 #, c-format
 msgid ""
 "Read unexpected attach symbol start marker on line <%d>, in [%s] :\n"
@@ -856,7 +878,7 @@ msgid ""
 "%s<<\n"
 msgstr ""
 
-#: libgeda/src/object/o_object.c:286 libgeda/src/object/o_object.c:294
+#: libgeda/src/object/o_object.c:292 libgeda/src/object/o_object.c:300
 #, c-format
 msgid ""
 "Read unexpected embedded symbol start marker on line <%d>, in [%s] :\n"
@@ -864,7 +886,7 @@ msgid ""
 "%s<<\n"
 msgstr ""
 
-#: libgeda/src/object/o_object.c:332
+#: libgeda/src/object/o_object.c:338
 #, c-format
 msgid ""
 "Read unexpected embedded symbol end marker on line <%d>, in [%s] :\n"
@@ -872,7 +894,7 @@ msgid ""
 "%s<<\n"
 msgstr ""
 
-#: libgeda/src/object/o_object.c:370
+#: libgeda/src/object/o_object.c:376
 #, c-format
 msgid ""
 "Read an old format sym/sch file!\n"
@@ -883,7 +905,7 @@ msgstr ""
 "Παρακαλούμε εκτελέστε το g[sym|sch]update σε:\n"
 "[%s]\n"
 
-#: libgeda/src/object/o_object.c:389
+#: libgeda/src/object/o_object.c:395
 #, fuzzy, c-format
 msgid ""
 "Read garbage line <%d> in [%s] :\n"
@@ -894,7 +916,7 @@ msgstr ""
 ">>\n"
 "%s<<\n"
 
-#: libgeda/src/object/o_object.c:393
+#: libgeda/src/object/o_object.c:399
 #, fuzzy, c-format
 msgid "Read garbage line <%d> in [%s]"
 msgstr ""
@@ -902,7 +924,7 @@ msgstr ""
 ">>\n"
 "%s<<\n"
 
-#: libgeda/src/object/o_object.c:426
+#: libgeda/src/object/o_object.c:432
 #, c-format
 msgid " On or about line %d, "
 msgstr ""
@@ -1350,7 +1372,7 @@ msgstr "o_save_objects: το αντικείμενο %p έχει άγνωστο �
 msgid "%s: Memory allocation error."
 msgstr ""
 
-#: libgeda/src/object/o_save.c:403
+#: libgeda/src/object/o_save.c:404
 #, c-format
 msgid "[%s]: because %s"
 msgstr ""

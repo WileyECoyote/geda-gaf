@@ -472,10 +472,10 @@ geda_file_get_contents(const char  *filename,
     const char *msg;
 
     if (filename == NULL) {
-      msg = _("<%s> pointer to filename is NULL");
+      msg = _("libgeda <%s> ERROR: pointer to filename is NULL");
     }
     else {
-      msg = _("<%s> detected NULL pointer to buffer");
+      msg = _("libgeda <%s> ERROR: pointer to a buffer is NULL");
     }
     g_set_error (err, G_FILE_ERROR, G_FILE_ERROR_INVAL, msg, __func__);
   }
