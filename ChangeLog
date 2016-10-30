@@ -1,3 +1,9 @@
+2016-10-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * .gitattributes: Add git attribute file; the only rule is to tell
+       git configure.ac is text with eol=lf because this file will not
+       be processed correctly under MinGW if eol=crlf.
+
 2016-10-30 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * .dir-locals.el: WEH: Modified per commit to Master branch by

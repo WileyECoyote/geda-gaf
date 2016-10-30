@@ -1,0 +1,6 @@
+# Auto detect text files and perform LF normalization
+# see https://github.com/alexkaratarakis/gitattributes
+* text=auto
+
+# Not handled on MinGW if crlf are in this file
+configure.ac text eol=lf
