@@ -21,6 +21,8 @@
 
 2016-10-30 Wiley E. Hill <wileyhill@gmail.com>
 
+    * arduino/xbee-1.sym: Add description attribute.
+
     * connector: Clean symbols; adjust sequence, update footprints, add
       description attributes:
 
@@ -36,6 +38,13 @@
             * connector/DB/DB31-1.sym
             * connector/DB/DB37-1.sym
             * connector/DB/DB37f-2.sym
+
+    * thyristor: Update footprints, add description attributes:
+
+            * thyristor/scr-1.sym
+            * thyristor/scr-2.sym
+            * thyristor/scr-3.sym
+            * thyristor/scr-4.sym
 
 2016-10-17 Wiley E. Hill <wileyhill@gmail.com>
 
