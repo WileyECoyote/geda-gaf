@@ -1,3 +1,10 @@
+2016-10-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * geda-python.m4: Remove AM_CONDITIONAL(HAVE_PYGOBJECT) and AC_DEFINE_UNQUOTED
+      whether or not PYGOBJECT is present. This because the former results in errors
+      be generated if python is not present since the default is to enable, punting
+      on this one.
+
 2016-10-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-guile.m4: Disable support for srfi-64 unless specifically enabled
