@@ -86,14 +86,14 @@ void geda_math_polygon_append_bezier (GArray *points, BEZIER *bezier, int segmen
  */
 void geda_math_polygon_append_point (GArray *points, int x, int y)
 {
-  POINT point = { x, y };
+  GedaPoint point = { x, y };
 
   point.x = x;
   point.y = y;
 
   if (points->len == 0 ||
-      memcmp (&g_array_index (points, POINT, points->len - 1),
-              &point, sizeof(POINT)) != 0) {
+      memcmp (&g_array_index (points, GedaPoint, points->len - 1),
+              &point, sizeof(GedaPoint)) != 0) {
     g_array_append_val (points, point);
   }
 }
@@ -121,14 +121,14 @@ bool geda_math_polygon_interior_point (GArray *points, int x, int y)
   if (points->len > 0) {
 
     int i;
-    POINT p1 = g_array_index (points, POINT, points->len - 1);
+    GedaPoint p1 = g_array_index (points, GedaPoint, points->len - 1);
 
     for (i=0; i < points->len; i++) {
 
-      POINT p0 = p1;
+      GedaPoint p0 = p1;
       double xi;
 
-      p1 = g_array_index (points, POINT, i);
+      p1 = g_array_index (points, GedaPoint, i);
 
       if (y < p0.y && y < p1.y)
         continue;
@@ -168,13 +168,13 @@ double geda_math_polygon_shortest_distance (GArray *points, int x, int y, int cl
 
   if (points->len > 0) {
     int i = 0;
-    POINT point;
+    GedaPoint point;
 
     if (closed) {
-      point = g_array_index (points, POINT, points->len - 1);
+      point = g_array_index (points, GedaPoint, points->len - 1);
     }
     else {
-      point = g_array_index (points, POINT, i++);
+      point = g_array_index (points, GedaPoint, i++);
     }
 
     while (i < points->len) {
@@ -185,7 +185,7 @@ double geda_math_polygon_shortest_distance (GArray *points, int x, int y, int cl
       line.x[0] = point.x;
       line.y[0] = point.y;
 
-      point = g_array_index (points, POINT, i++);
+      point = g_array_index (points, GedaPoint, i++);
 
       line.x[1] = point.x;
       line.y[1] = point.y;

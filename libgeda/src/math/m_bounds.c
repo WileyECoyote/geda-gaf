@@ -49,7 +49,7 @@ geda_math_bounds_init(BOUNDS *bounds)
  * \param [in]  count   The number of points in the set.
  */
 void
-geda_math_bounds_of_points(BOUNDS *bounds, POINT points[], int count)
+geda_math_bounds_of_points(BOUNDS *bounds, GedaPoint points[], int count)
 {
   int index;
 

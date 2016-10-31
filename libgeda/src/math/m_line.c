@@ -48,7 +48,7 @@
  *  \sa geda_math_line_get_intersection
  */
 bool
-geda_math_line_get_intersection(GedaLine *line1, GedaLine *line2, POINT *point)
+geda_math_line_get_intersection(GedaLine *line1, GedaLine *line2, GedaPoint *point)
 {
   LINE *L1 = (LINE*) &line1->x[0];
   LINE *L2 = (LINE*) &line2->x[0];
@@ -59,7 +59,7 @@ geda_math_line_get_intersection(GedaLine *line1, GedaLine *line2, POINT *point)
 /*! \brief Returns True if Line contains point
  */
 bool
-geda_math_line_includes_point (GedaLine *line, POINT *point)
+geda_math_line_includes_point (GedaLine *line, GedaPoint *point)
 {
   bool included;
 
@@ -96,7 +96,7 @@ geda_math_line_includes_point (GedaLine *line, POINT *point)
  * \sa geda_math_line_get_intersection
  */
 bool
-geda_math_line_intersection(LINE *line1, LINE *line2, POINT *point)
+geda_math_line_intersection(LINE *line1, LINE *line2, GedaPoint *point)
 {
   bool   has_slope1;
   bool   has_slope2;

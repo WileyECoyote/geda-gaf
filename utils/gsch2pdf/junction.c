@@ -39,8 +39,8 @@ struct st_sweep_event
 
 static int compare_points(const void *a, const void *b)
 {
-  POINT *point_a = (POINT*) a;
-  POINT *point_b = (POINT*) b;
+  GedaPoint *point_a = (GedaPoint*) a;
+  GedaPoint *point_b = (GedaPoint*) b;
 
   return (point_a->y - point_b->y);
 }
@@ -49,10 +49,10 @@ static int compare_points(const void *a, const void *b)
  *
  *  \param [in] current the GedaToplevel object
  *  \param [in] objects The objects on the schematic
- *  \param [in,out] junctions A GArray of POINT to contain the coordinates
+ *  \param [in,out] junctions A GArray of GedaPoint to contain the coordinates
  *  of junctions.  This function appends new junctions to the GArray and leaves
  *  existing GArray contents unchanged.
- *  \param [in,out] unconnected A GArray of POINT to contain the coordinates
+ *  \param [in,out] unconnected A GArray of GedaPoint to contain the coordinates
  *  of unconnected endpoints.  This function appends new endpoints to the GArray and leaves
  *  existing GArray contents unchanged.
  */
@@ -61,14 +61,14 @@ void junction_locate(const GList *objects, GArray *junctions, GArray *unconnecte
   const GList *node = objects;
 
   GArray *events = g_array_new(FALSE, FALSE, sizeof(SWEEP_EVENT));
-  GArray *points = g_array_new(FALSE, FALSE, sizeof(POINT));
+  GArray *points = g_array_new(FALSE, FALSE, sizeof(GedaPoint));
   GArray *status = g_array_new(FALSE, FALSE, sizeof(SWEEP_STATUS));
 
   while (node != NULL) {
     GedaObject *object = (GedaObject*) node->data;
     if (object->type == OBJ_NET) {
       SWEEP_EVENT event;
-      POINT point;
+      GedaPoint point;
       event.y0 = min(object->line->y[0], object->line->y[1]);
       event.status.y1 = max(object->line->y[0], object->line->y[1]);
       LINE sline;
@@ -86,7 +86,7 @@ void junction_locate(const GList *objects, GArray *junctions, GArray *unconnecte
       g_array_append_val(points, point);
     }
     else if (object->type == OBJ_PIN) {
-      POINT point;
+      GedaPoint point;
       geda_pin_object_get_position(&point.x, &point.y, object);
       g_array_append_val(points, point);
     }
@@ -95,7 +95,7 @@ void junction_locate(const GList *objects, GArray *junctions, GArray *unconnecte
       while (node2 != NULL) {
         GedaObject *object2 = (GedaObject*) node2->data;
         if (object2->type == OBJ_PIN) {
-          POINT point2;
+          GedaPoint point2;
           geda_pin_object_get_position(&point2.x, &point2.y, object2);
           g_array_append_val(points, point2);
         }
@@ -110,7 +110,7 @@ void junction_locate(const GList *objects, GArray *junctions, GArray *unconnecte
   while ( points->len > 0 ) {
     int count;
     int index;
-    POINT current = g_array_index(points, POINT, 0);
+    GedaPoint current = g_array_index(points, GedaPoint, 0);
 
     /* add new segments that intersect the sweep line */
     index = 0;
@@ -137,8 +137,8 @@ void junction_locate(const GList *objects, GArray *junctions, GArray *unconnecte
 
     /* test for endpoint intersections */
     for (index=0; index<points->len; index++) {
-      POINT *point = &g_array_index(points, POINT, index);
-      if (memcmp(&current, point, sizeof(POINT)) == 0) {
+      GedaPoint *point = &g_array_index(points, GedaPoint, index);
+      if (memcmp(&current, point, sizeof(GedaPoint)) == 0) {
         count++;
       }
     }
@@ -178,8 +178,8 @@ void junction_locate(const GList *objects, GArray *junctions, GArray *unconnecte
     /* remove points from array */
     index = 0;
     while ( index < points->len ) {
-      POINT *point = &g_array_index(points, POINT, index);
-      if ( memcmp(&current, point, sizeof(POINT)) == 0 ) {
+      GedaPoint *point = &g_array_index(points, GedaPoint, index);
+      if ( memcmp(&current, point, sizeof(GedaPoint)) == 0 ) {
         g_array_remove_index(points, index);
       } else {
         index++;

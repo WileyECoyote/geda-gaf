@@ -139,7 +139,7 @@ void m_transform_point(TRANSFORM *transform, int *x, int *y)
 /*! \brief Transforms a polyline or polygon
  *
  *  \param transform [in] The transform function.
- *  \param points [inout] The GArray of POINT to transform.
+ *  \param points [inout] The GArray of GedaPoint to transform.
  */
 void m_transform_points(TRANSFORM *transform, GArray *points)
 {
@@ -149,7 +149,7 @@ void m_transform_points(TRANSFORM *transform, GArray *points)
   g_return_if_fail (points != NULL);
 
   for (index=0; index<points->len; index++) {
-    POINT *point = &g_array_index(points, POINT, index);
+    GedaPoint *point = &g_array_index(points, GedaPoint, index);
     m_transform_point(transform, &(point->x), &(point->y));
   }
 }

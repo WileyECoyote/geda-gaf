@@ -799,7 +799,7 @@ int geda_struct_path_to_polygon (GedaPath *path, GArray *points)
 {
   int closed = FALSE;
   int i;
-  POINT point = { 0, 0 };
+  GedaPoint point = { 0, 0 };
 
   if (points->len > 0) {
     g_array_remove_range (points, 0, points->len - 1);
@@ -862,7 +862,7 @@ double geda_struct_path_shortest_distance (GedaPath *path, int x, int y, int sol
   int closed;
   GArray *points;
 
-  points = g_array_new (FALSE, FALSE, sizeof(POINT));
+  points = g_array_new (FALSE, FALSE, sizeof(GedaPoint));
   closed = geda_struct_path_to_polygon (path, points);
 
   if (!solid) {

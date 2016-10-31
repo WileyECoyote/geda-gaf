@@ -122,7 +122,7 @@ geda_line_object_get_closest_endpoint(GedaObject *object, int x, int y)
  * \return TRUE if both are lines and intersect
  */
 bool
-geda_line_object_get_intersection(GedaObject *object1, GedaObject *object2, POINT *point)
+geda_line_object_get_intersection(GedaObject *object1, GedaObject *object2, GedaPoint *point)
 {
   bool   has_slope1;
   bool   has_slope2;
@@ -365,7 +365,7 @@ geda_line_object_get_line_width (const GedaObject *object)
  * \return TRUE if \a object is linear
  */
 bool
-geda_line_object_get_midpoint(GedaObject *object, POINT *point)
+geda_line_object_get_midpoint(GedaObject *object, GedaPoint *point)
 {
   bool status;
 
@@ -445,7 +445,7 @@ geda_line_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, i
 
       double dx, dy, ix, iy;
       double m1, m2, b1, b2;
-      POINT  point;
+      GedaPoint  point;
 
       dx = line->x[1] - line->x[0];
       dy = line->y[1] - line->y[0];
@@ -642,7 +642,7 @@ geda_line_object_get_y2 (const GedaObject *object)
  * \return TRUE if point is an end-point of the line
  */
 bool
-geda_line_object_is_endpoint (GedaObject *object, POINT *point)
+geda_line_object_is_endpoint (GedaObject *object, GedaPoint *point)
 {
   bool anwser;
 

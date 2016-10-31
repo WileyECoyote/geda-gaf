@@ -233,7 +233,7 @@ static void print_junctions(GedaToplevel *current, cairo_t *cairo, const GArray 
         );
 
   for (index=0; index<junctions->len; index++) {
-    POINT junction = g_array_index(junctions, POINT ,index);
+    GedaPoint junction = g_array_index(junctions, GedaPoint ,index);
 
     cairo_arc(
          cairo,
@@ -684,7 +684,7 @@ static void print_page(GedaToplevel *current, cairo_t *cairo, Page *page)
 
     print_object_list(current, cairo, list);
 
-    GArray *junctions = g_array_new(FALSE, FALSE, sizeof(POINT));
+    GArray *junctions = g_array_new(FALSE, FALSE, sizeof(GedaPoint));
 
     junction_locate(list, junctions, NULL);
 

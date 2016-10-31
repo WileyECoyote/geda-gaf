@@ -34,7 +34,7 @@ typedef struct st_object_color  COLOR;
 typedef struct st_fill_options  FILL_OPTIONS;
 typedef struct st_line          LINE;
 typedef struct st_line_options  LINE_OPTIONS;
-typedef struct st_point         POINT;
+typedef struct st_point         GedaPoint;
 typedef struct st_path_section  PATH_SECTION;
 
 /* Structures for user interface objects */

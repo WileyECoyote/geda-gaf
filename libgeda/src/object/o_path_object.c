@@ -69,7 +69,7 @@ geda_path_object_error(const char *func, const void *object)
 bool
 geda_path_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
 {
-  POINT   target;
+  GedaPoint   target;
   bool    result;
 
 #if DEBUG
@@ -102,12 +102,12 @@ geda_path_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, i
     GedaLine  segment;
     int       closed;
 
-    points = g_array_new (FALSE, FALSE, sizeof(POINT));
+    points = g_array_new (FALSE, FALSE, sizeof(GedaPoint));
     closed = geda_struct_path_to_polygon (object->path, points);
     result = FALSE;
 
     if (closed) {
-      target = g_array_index (points, POINT, points->len - 1);
+      target = g_array_index (points, GedaPoint, points->len - 1);
       points = g_array_prepend_val (points, target);
     }
 
@@ -115,9 +115,9 @@ geda_path_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, i
 
       double shortest = G_MAXDOUBLE;
       int i = 1;
-      POINT vertex;
+      GedaPoint vertex;
 
-      vertex = g_array_index (points, POINT, 0);
+      vertex = g_array_index (points, GedaPoint, 0);
 
       while (i < points->len) {
 
@@ -127,7 +127,7 @@ geda_path_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, i
         line.x[0] = vertex.x;
         line.y[0] = vertex.y;
 
-        vertex = g_array_index (points, POINT, i++);
+        vertex = g_array_index (points, GedaPoint, i++);
 
         line.x[1] = vertex.x;
         line.y[1] = vertex.y;
@@ -198,7 +198,7 @@ geda_path_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, i
         double m1, b1;
         double off;
 
-        POINT  point;
+        GedaPoint  point;
 
         dx  = segment.x[1] - segment.x[0];
         dy  = segment.y[1] - segment.y[0];
@@ -389,8 +389,8 @@ geda_path_object_new_from_polygon (GArray *points, int color)
 {
   GedaObject *new_obj;
   GedaPath   *path;
-  POINT   first;
-  POINT   point;
+  GedaPoint   first;
+  GedaPoint   point;
   int     i;
 
   /* create the object */
@@ -404,7 +404,7 @@ geda_path_object_new_from_polygon (GArray *points, int color)
 
   path->sections = g_new (PATH_SECTION, path->num_sections);
 
-  point = g_array_index (points, POINT, 0);
+  point = g_array_index (points, GedaPoint, 0);
 
   path->sections->code   = PATH_MOVETO;
   path->sections->x3     = first.x = point.x;
@@ -412,7 +412,7 @@ geda_path_object_new_from_polygon (GArray *points, int color)
 
   for (i = 1; i < points->len; i++) {
 
-    point = g_array_index (points, POINT, i);
+    point = g_array_index (points, GedaPoint, i);
     PATH_SECTION *section = &path->sections[i];
 
     section->code   = PATH_LINETO;

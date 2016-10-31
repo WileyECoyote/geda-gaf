@@ -98,7 +98,7 @@ extern "C" {
 
 /* m_bounds.c */
          void    geda_math_bounds_init                   (BOUNDS *bounds);
-         void    geda_math_bounds_of_points              (BOUNDS *bounds, POINT points[], int count);
+         void    geda_math_bounds_of_points              (BOUNDS *bounds, GedaPoint points[], int count);
 
 /* m_angle.c */
          bool    geda_math_angle_is_normal               (int angle);
@@ -108,11 +108,11 @@ extern "C" {
 
 /* m_arc.c */
        double    geda_math_arc_length                    (int radius, int sweep);
-         bool    geda_math_arc_includes_point            (GedaArc *arc, POINT *point);
+         bool    geda_math_arc_includes_point            (GedaArc *arc, GedaPoint *point);
 
 /* m_circle.c */
        double    geda_math_circle_circumference          (int radius);
-         bool    geda_math_circle_includes_point         (GedaCircle *circle, POINT *point);
+         bool    geda_math_circle_includes_point         (GedaCircle *circle, GedaPoint *point);
        double    geda_math_circle_shortest_distance      (GedaCircle *circle, int x, int y, int solid);
 
 /* m_hatch.c */
@@ -123,9 +123,9 @@ extern "C" {
        GArray   *geda_math_hatch_object                  (GedaObject *object);
 
 /* m_line.c */
-         bool    geda_math_line_get_intersection         (GedaLine *line1, GedaLine *line2, POINT *point);
-         bool    geda_math_line_includes_point           (GedaLine *line, POINT *point);
-         bool    geda_math_line_intersection             (LINE *line1, LINE *line2, POINT *point);
+         bool    geda_math_line_get_intersection         (GedaLine *line1, GedaLine *line2, GedaPoint *point);
+         bool    geda_math_line_includes_point           (GedaLine *line, GedaPoint *point);
+         bool    geda_math_line_intersection             (LINE *line1, LINE *line2, GedaPoint *point);
           int    geda_math_line_length                   (int x1, int y1, int x2, int y2);
        double    geda_math_line_shortest_distance        (GedaLine *line, int x, int y);
 
@@ -366,15 +366,15 @@ extern "C" {
 
 /* o_line_object.c */
    GedaObject   *geda_line_object_copy                     (GedaObject *object) WARN_UNUSED;
-         bool    geda_line_object_is_endpoint              (GedaObject *object, POINT *point);
+         bool    geda_line_object_is_endpoint              (GedaObject *object, GedaPoint *point);
          int     geda_line_object_get_closest_endpoint     (GedaObject *object, int x, int y);
-         bool    geda_line_object_get_intersection         (GedaObject *object1, GedaObject *object2, POINT *point);
+         bool    geda_line_object_get_intersection         (GedaObject *object1, GedaObject *object2, GedaPoint *point);
           int    geda_line_object_get_end_cap              (const GedaObject *object) WARN_UNUSED;
           int    geda_line_object_get_line_length          (const GedaObject *object) WARN_UNUSED;
           int    geda_line_object_get_line_space           (const GedaObject *object) WARN_UNUSED;
           int    geda_line_object_get_line_type            (const GedaObject *object) WARN_UNUSED;
           int    geda_line_object_get_line_width           (const GedaObject *object) WARN_UNUSED;
-         bool    geda_line_object_get_midpoint             (GedaObject *object, POINT *point);
+         bool    geda_line_object_get_midpoint             (GedaObject *object, GedaPoint *point);
          bool    geda_line_object_get_nearest_point        (GedaObject *object, int x, int y, int *nx, int *ny);
          bool    geda_line_object_get_slope                (GedaObject *object, double *anwser);
           int    geda_line_object_get_x1                   (const GedaObject *object) WARN_UNUSED;

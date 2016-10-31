@@ -262,7 +262,7 @@ static GedaObject *o_extend_get_bounder_of_two_linears (GedaObject *object1,
                                                         GedaObject *object2)
 {
   GedaObject *bounder;
-  POINT       point;
+  GedaPoint   point;
 
 
   if (geda_line_object_get_intersection(object1, object2, &point)) {
@@ -400,7 +400,7 @@ static bool o_extend_can_arc_bound(GedaObject *boundary,
                                    GedaObject *projectile,
                                    int         which_end,
                                    char        direction,
-                                   POINT      *point)
+                                   GedaPoint  *point)
 {
   int    answer;
   int    included;
@@ -411,9 +411,9 @@ static bool o_extend_can_arc_bound(GedaObject *boundary,
   double b;
   double m;
 
-  POINT pt1;
-  POINT pt2;
-  POINT pt3;
+  GedaPoint pt1;
+  GedaPoint pt2;
+  GedaPoint pt3;
 
   x1 = projectile->line->x[!which_end];
   y1 = projectile->line->y[!which_end];
@@ -637,7 +637,7 @@ static bool o_extend_can_box_bound(GedaObject *boundary,
                                    GedaObject *projectile,
                                    int         which_end,
                                    char        direction,
-                                   POINT      *point)
+                                   GedaPoint  *point)
 {
   GedaBox  *box  = boundary->box;
   GedaLine *proj = projectile->line;
@@ -839,8 +839,8 @@ static bool o_extend_can_box_bound(GedaObject *boundary,
     }
     else { /* projectile is on an angle, y is not arbitrary */
 
-      GedaLine diagonal;
-      POINT    tmp;
+      GedaLine  diagonal;
+      GedaPoint tmp;
 
       /* If box is to bound, projectile must intersect a diagonal */
 
@@ -1096,42 +1096,42 @@ static bool o_extend_can_path_bound(GedaObject *boundary,
                                     GedaObject *projectile,
                                     int         which_end,
                                     char        direction,
-                                    POINT      *point)
+                                    GedaPoint  *point)
 {
-  GArray *points;
-  POINT   target;
-  bool    answer;
-  int     closed;
+  GArray   *points;
+  GedaPoint target;
+  bool      answer;
+  int       closed;
 
   int x1 = projectile->line->x[which_end];
   int y1 = projectile->line->y[which_end];
 
   answer = FALSE;
-  points = g_array_new (FALSE, FALSE, sizeof(POINT));
+  points = g_array_new (FALSE, FALSE, sizeof(GedaPoint));
   closed = geda_struct_path_to_polygon (boundary->path, points);
 
   if (points->len > 0) {
 
     double shortest = G_MAXDOUBLE;
     int i = 0;
-    POINT vertex;
+    GedaPoint vertex;
 
     if (closed) {
-      vertex = g_array_index (points, POINT, points->len - 1);
+      vertex = g_array_index (points, GedaPoint, points->len - 1);
     }
     else {
-      vertex = g_array_index (points, POINT, i++);
+      vertex = g_array_index (points, GedaPoint, i++);
     }
 
     while (i < points->len) {
 
-      POINT intersect;
+      GedaPoint intersect;
       GedaLine line;
 
       line.x[0] = vertex.x;
       line.y[0] = vertex.y;
 
-      vertex = g_array_index (points, POINT, i++);
+      vertex = g_array_index (points, GedaPoint, i++);
 
       line.x[1] = vertex.x;
       line.y[1] = vertex.y;
@@ -1192,14 +1192,14 @@ static bool o_extend_can_linear_bound(GedaObject *boundary,
                                       GedaObject *projectile,
                                       int         which_end,
                                       char        direction,
-                                      POINT      *point)
+                                      GedaPoint  *point)
 {
   bool  has_slope1;
   bool  has_slope2;
   bool  included1;
   bool  included2;
   bool  answer;
-  POINT pt;
+  GedaPoint pt;
 
   answer = geda_line_object_get_intersection(boundary, projectile, &pt);
 
@@ -1297,7 +1297,7 @@ static bool o_extend_can_circle_bound(GedaObject *boundary,
                                       GedaObject *projectile,
                                       int         which_end,
                                       char        direction,
-                                      POINT      *point)
+                                      GedaPoint  *point)
 {
   bool   answer;
   int    x1, y1, x2, y2;
@@ -1348,8 +1348,8 @@ static bool o_extend_can_circle_bound(GedaObject *boundary,
   }
   else {                           /* maybe, if not already crossing */
 
-    POINT pt1;
-    POINT pt2;
+    GedaPoint pt1;
+    GedaPoint pt2;
 
 #ifdef HAVE_LRINT
 
@@ -1537,9 +1537,9 @@ static bool o_extend_can_bound(GedaObject *boundary,
                                GedaObject *projectile,
                                int         which_end,
                                char        direction,
-                               POINT      *point)
+                               GedaPoint  *point)
 {
-  bool (*discriminator)(GedaObject *, GedaObject *, int, char, POINT *);
+  bool (*discriminator)(GedaObject *, GedaObject *, int, char, GedaPoint *);
 
   switch (boundary->type) {
     case OBJ_ARC:
@@ -1576,7 +1576,7 @@ static bool o_extend_can_hit_target(GedaObject *projectile,
                                     double     *distance)
 {
   bool   answer;
-  POINT  point;
+  GedaPoint  point;
 
   answer = o_extend_can_bound(target, projectile, which_end, direction, &point);
 
@@ -1665,7 +1665,7 @@ char o_extend_get_direction(GedaObject *object, int which_end)
  *
  *  \remark Note that all projectiles can also be bounders.
  */
-GedaObject *o_extend_get_bounder (GList *list, const POINT *point)
+GedaObject *o_extend_get_bounder (GList *list, const GedaPoint *point)
 {
   GedaObject *bounder = NULL;
   GList      *iter    = list;
@@ -1910,10 +1910,10 @@ GedaObject *o_extend_get_bounder (GList *list, const POINT *point)
  */
 bool o_extend_object (GedaObject *projectile, GedaObject *bounder)
 {
-  POINT  point;
-  char   direction;
-  int    result;
-  int    which_end;
+  GedaPoint point;
+  char direction;
+  int  result;
+  int  which_end;
 
   which_end = o_extend_get_closest_end(projectile, bounder);
 
@@ -2025,7 +2025,7 @@ int o_extend_blind (GschemToplevel *w_current, GedaObject *projectile)
     }
 
     if (target != NULL) {
-      POINT point;
+      GedaPoint point;
 
       if (o_extend_can_bound(target, projectile, which_end, direction, &point))
       {

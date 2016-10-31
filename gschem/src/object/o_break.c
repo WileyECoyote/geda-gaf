@@ -90,8 +90,8 @@ static bool o_break_is_breakable (GedaObject *object)
 static bool o_break_arc(GschemToplevel *w_current, GedaObject *object)
 {
   bool result = FALSE;
-  POINT point1;
-  POINT point2;
+  GedaPoint point1;
+  GedaPoint point2;
 
   point1.x = w_current->first_wx;
   point1.y = w_current->first_wy;
@@ -211,8 +211,8 @@ static bool o_break_box(GschemToplevel *w_current, GedaObject *object)
 {
   GedaBox *box = object->box;
   bool  result = FALSE;
-  POINT point1;
-  POINT point2;
+  GedaPoint point1;
+  GedaPoint point2;
   int   corn1;
   int   corn2;
   int   side1;
@@ -225,7 +225,7 @@ static bool o_break_box(GschemToplevel *w_current, GedaObject *object)
 
   /* Internal function to determine which side of the box a point is on,
    * if any. Note left is side 1, then continue counter-clockwise. */
-  int get_side (POINT *point) {
+  int get_side (GedaPoint *point) {
     int side = 0;
     if (point->x == left && (point->y < top || point->y > bottom)) {
       side = 1;
@@ -244,7 +244,7 @@ static bool o_break_box(GschemToplevel *w_current, GedaObject *object)
 
   /* Internal function to check if a point is a vertex of the box.
    * Note bottom left is 1, then continue counter-clockwise. */
-  int get_corner (POINT *point) {
+  int get_corner (GedaPoint *point) {
     int corner = 0;
     if (point->x == left && point->y == bottom) {
       corner = 1;
@@ -263,7 +263,7 @@ static bool o_break_box(GschemToplevel *w_current, GedaObject *object)
 
   /* Internal wrapper for get_side and get_corner to set cornX
    * and sideX by reference */
-  inline void checkpoint (POINT *point, int *side, int *corner) {
+  inline void checkpoint (GedaPoint *point, int *side, int *corner) {
     *side = get_side(point);
     if (*side == 0) {
       *corner = get_corner(point);
@@ -291,9 +291,9 @@ static bool o_break_box(GschemToplevel *w_current, GedaObject *object)
 
       GArray     *vertices;
       GedaObject *new_path;
-      POINT   points[5];
-      POINT  *start;
-      POINT  *end;
+      GedaPoint   points[5];
+      GedaPoint  *start;
+      GedaPoint  *end;
       int     done;
       int     index;
       int     stop;
@@ -390,7 +390,7 @@ static bool o_break_box(GschemToplevel *w_current, GedaObject *object)
       points[4].x = left;
       points[4].y = top;
 
-      vertices = g_array_new (FALSE, FALSE, sizeof(POINT));
+      vertices = g_array_new (FALSE, FALSE, sizeof(GedaPoint));
 
       /* Add the starting point */
       g_array_append_val (vertices, *start);
@@ -443,9 +443,10 @@ static bool o_break_box(GschemToplevel *w_current, GedaObject *object)
  */
 static bool o_break_circle(GschemToplevel *w_current, GedaObject *object)
 {
-  bool  result = FALSE;
-  POINT point1;
-  POINT point2;
+  GedaPoint point1;
+  GedaPoint point2;
+
+  bool result = FALSE;
 
   point1.x = w_current->first_wx;
   point1.y = w_current->first_wy;
@@ -539,29 +540,29 @@ static bool o_break_circle(GschemToplevel *w_current, GedaObject *object)
  */
 static bool o_break_path(GschemToplevel *w_current, GedaObject *object)
 {
-  bool     result = FALSE;
-  bool     closed;
-  GArray  *points;
-  GedaLine segments[2];
-  POINT    point1;
-  POINT    point2;
-  int      vertex1;
-  int      vertex2;
-  int      segment1;
-  int      segment2;
+  bool      result = FALSE;
+  bool      closed;
+  GArray   *points;
+  GedaLine  segments[2];
+  GedaPoint point1;
+  GedaPoint point2;
+  int       vertex1;
+  int       vertex2;
+  int       segment1;
+  int       segment2;
 
-  points = g_array_new (FALSE, FALSE, sizeof(POINT));
+  points = g_array_new (FALSE, FALSE, sizeof(GedaPoint));
   closed = geda_struct_path_to_polygon (object->path, points);
 
   if (closed) {
-    point1 = g_array_index (points, POINT, points->len - 1);
+    point1 = g_array_index (points, GedaPoint, points->len - 1);
     points = g_array_prepend_val (points, point1);
   }
 
 #if DEBUG
   int i;
   for (i = 0; i < points->len; i++) {
-    POINT vertex = g_array_index (points, POINT, i);
+    GedaPoint vertex = g_array_index (points, GedaPoint, i);
     fprintf(stderr, "vertex[%d] x=%d, y=%d)\n", i, vertex.x, vertex.y);
   }
 #endif
@@ -570,11 +571,11 @@ static bool o_break_path(GschemToplevel *w_current, GedaObject *object)
    * returned segment corresponds to the index in points of the first
    * point of the segment that was hit and a returned node cooresponds
    * to the second point */
-  void checkpoint (POINT *point, int *segment, int *node, GedaLine *line) {
+  void checkpoint (GedaPoint *point, int *segment, int *node, GedaLine *line) {
 
     int   i;
-    POINT vertex;
-    POINT snapped;
+    GedaPoint vertex;
+    GedaPoint snapped;
 
     /* Important: Initialize both values to Zero or the main routine
      * will not knows which, if either, was set */
@@ -585,17 +586,17 @@ static bool o_break_path(GschemToplevel *w_current, GedaObject *object)
     snapped.x = snap_grid (w_current, point->x);
     snapped.y = snap_grid (w_current, point->y);
 
-    vertex = g_array_index (points, POINT, 0);
+    vertex = g_array_index (points, GedaPoint, 0);
 
     for(i = 1; i < points->len; i++) {
 
       bool  do_snap;
-      POINT tmp;  /* Point to check, is point possibly adjusted for snap */
+      GedaPoint tmp;  /* Point to check, is point possibly adjusted for snap */
 
       line->x[0] = vertex.x;
       line->y[0] = vertex.y;
 
-      vertex = g_array_index (points, POINT, i);
+      vertex = g_array_index (points, GedaPoint, i);
 
       line->x[1] = vertex.x;
       line->y[1] = vertex.y;
@@ -652,8 +653,8 @@ static bool o_break_path(GschemToplevel *w_current, GedaObject *object)
 
       GArray     *vertices;
       GedaObject *new_path;
-      POINT      *start;
-      POINT      *end;
+      GedaPoint  *start;
+      GedaPoint  *end;
       int         done;
       int         index;
       int         stop;
@@ -667,11 +668,11 @@ static bool o_break_path(GschemToplevel *w_current, GedaObject *object)
        */
       if (segment1 == segment2) { /* If both points are on the same segment */
 
-        POINT  previous;
-        double distance1;
-        double distance2;
+        GedaPoint  previous;
+        double     distance1;
+        double     distance2;
 
-        previous  = g_array_index (points, POINT, segment1 - 1);
+        previous  = g_array_index (points, GedaPoint, segment1 - 1);
         int Px    = previous.x;
         int Py    = previous.y;
 
@@ -746,7 +747,7 @@ static bool o_break_path(GschemToplevel *w_current, GedaObject *object)
         stop = points->len; /* Will break at end of table */
       }
 
-      vertices = g_array_new (FALSE, FALSE, sizeof(POINT));
+      vertices = g_array_new (FALSE, FALSE, sizeof(GedaPoint));
 
       /* Add the starting point */
       g_array_append_val (vertices, *start);
@@ -759,7 +760,7 @@ static bool o_break_path(GschemToplevel *w_current, GedaObject *object)
 
       do {                /* gather vertices, while */
 
-        POINT vertex;
+        GedaPoint vertex;
 
         if (index == points->len) { /* rotating around in data table */
           if (closed) {
@@ -770,7 +771,7 @@ static bool o_break_path(GschemToplevel *w_current, GedaObject *object)
           }
         }
 
-        vertex = g_array_index (points, POINT, index);
+        vertex = g_array_index (points, GedaPoint, index);
         g_array_append_val (vertices, vertex);
 
 #if DEBUG
@@ -798,7 +799,7 @@ static bool o_break_path(GschemToplevel *w_current, GedaObject *object)
 
         g_array_free (vertices, TRUE);
 
-        vertices = g_array_new (FALSE, FALSE, sizeof(POINT));
+        vertices = g_array_new (FALSE, FALSE, sizeof(GedaPoint));
 
         index = 0;
         if (segment1 == segment2) {
@@ -809,7 +810,7 @@ static bool o_break_path(GschemToplevel *w_current, GedaObject *object)
         }
 
         while (index != stop) {
-          POINT vertex = g_array_index (points, POINT, index);
+          GedaPoint vertex = g_array_index (points, GedaPoint, index);
           g_array_append_val (vertices, vertex);
 
 #if DEBUG
@@ -861,8 +862,8 @@ static bool o_break_line(GschemToplevel *w_current, GedaObject *object)
 {
   bool  result = FALSE;
   bool  do_snap;
-  POINT point1;
-  POINT point2;
+  GedaPoint point1;
+  GedaPoint point2;
 
   do_snap = object->line->x[0] == object->line->x[1] ||
             object->line->y[0] == object->line->y[1];
@@ -933,8 +934,8 @@ static bool o_break_net(GschemToplevel *w_current, GedaObject *object)
 {
   bool  result = FALSE;
   bool  do_snap;
-  POINT point1;
-  POINT point2;
+  GedaPoint point1;
+  GedaPoint point2;
 
   do_snap = object->line->x[0] == object->line->x[1] ||
             object->line->y[0] == object->line->y[1];
@@ -1004,10 +1005,9 @@ static bool o_break_net(GschemToplevel *w_current, GedaObject *object)
 
 void o_break_snap_object(GschemToplevel *w_current, GedaObject *object)
 {
-  double w_slack;
+  GedaPoint point;
   double dist;
-  POINT point;
-
+  double w_slack;
   int x, y;
 
   point.x = w_current->first_wx;

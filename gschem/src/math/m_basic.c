@@ -368,7 +368,8 @@ struct st_halfspace {
  *  \warning halfspace must be allocated before this function is called
  */
 static void WORLDencode_halfspace (GschemToplevel *w_current,
-                                   POINT *point, HALFSPACE *halfspace)
+                                   GedaPoint      *point,
+                                   HALFSPACE      *halfspace)
 {
   halfspace->left   = point->x < w_current->toplevel->page_current->left;
   halfspace->right  = point->x > w_current->toplevel->page_current->right;
@@ -396,8 +397,8 @@ int WORLDclip_change (GschemToplevel *w_current,
 {
   HALFSPACE half1, half2;
   HALFSPACE tmp_half;
-  POINT tmp_point;
-  POINT point1, point2;
+  GedaPoint tmp_point;
+  GedaPoint point1, point2;
   float slope;
   int done;
   int visible;
@@ -530,8 +531,8 @@ int clip_nochange (GschemToplevel *w_current, int x1, int y1, int x2, int y2)
 {
   HALFSPACE half1, half2;
   HALFSPACE tmp_half;
-  POINT tmp_point;
-  POINT point1, point2;
+  GedaPoint tmp_point;
+  GedaPoint point1, point2;
   float slope;
   int done;
   int visible;

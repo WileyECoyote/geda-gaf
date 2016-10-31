@@ -49,7 +49,7 @@ geda_math_circle_circumference (int radius)
  * \return True if \a circle includes \a point.
  */
 bool
-geda_math_circle_includes_point (GedaCircle *circle, POINT *point)
+geda_math_circle_includes_point (GedaCircle *circle, GedaPoint *point)
 {
   int  delta;  /* Will be difference between point to center and radius */
   int  cx;

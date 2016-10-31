@@ -125,13 +125,13 @@ compare_status(const void *a, const void *b)
 void
 geda_math_hatch_box(GedaBox *box, int angle, int pitch, GArray *lines)
 {
-  GArray *corners;
-  POINT point;
+  GArray   *corners;
+  GedaPoint point;
 
   g_return_if_fail(box!=NULL);
   g_return_if_fail(lines!=NULL);
 
-  corners = g_array_sized_new(FALSE, FALSE, sizeof(POINT), 4);
+  corners = g_array_sized_new(FALSE, FALSE, sizeof(GedaPoint), 4);
 
   point.x = box->upper_x;
   point.y = box->upper_y;
@@ -230,7 +230,7 @@ geda_math_hatch_path (GedaPath *path, int angle, int pitch, GArray *lines)
   g_return_if_fail (path != NULL);
   g_return_if_fail (lines != NULL);
 
-  points = g_array_new (FALSE, FALSE, sizeof(POINT));
+  points = g_array_new (FALSE, FALSE, sizeof(GedaPoint));
 
   geda_struct_path_to_polygon (path, points);
   geda_math_hatch_polygon (points, angle, pitch, lines);
@@ -269,7 +269,7 @@ geda_math_hatch_polygon(GArray *points, int angle, int pitch, GArray *lines)
   g_return_if_fail(lines!=NULL);
 
   events  = g_array_new(FALSE, FALSE, sizeof(SWEEP_EVENT));
-  points2 = g_array_sized_new(FALSE, FALSE, sizeof(POINT), points->len);
+  points2 = g_array_sized_new(FALSE, FALSE, sizeof(GedaPoint), points->len);
   status  = g_array_new(FALSE, FALSE, sizeof(SWEEP_STATUS));
 
   m_transform_init(&transform);
@@ -283,9 +283,9 @@ geda_math_hatch_polygon(GArray *points, int angle, int pitch, GArray *lines)
   /* build list of sweep events */
   if ( points2->len > 1 ) {
     int index;
-    POINT *p0 = &g_array_index(points2, POINT, points2->len-1);
+    GedaPoint *p0 = &g_array_index(points2, GedaPoint, points2->len-1);
     for (index=0; index<points2->len; index++) {
-      POINT *p1 = &g_array_index(points2, POINT, index);
+      GedaPoint *p1 = &g_array_index(points2, GedaPoint, index);
       if ( p0->y != p1->y ) {
         SWEEP_EVENT event;
         event.y0 = min(p0->y, p1->y);
@@ -301,7 +301,7 @@ geda_math_hatch_polygon(GArray *points, int angle, int pitch, GArray *lines)
   /* sort sweep events in ascending order by starting y coordinate */
   g_array_sort(events, compare_events);
 
-  geda_math_bounds_of_points(&bounds, (POINT*)points2->data, points2->len);
+  geda_math_bounds_of_points(&bounds, (GedaPoint*)points2->data, points2->len);
   sweep_y = calculate_initial_sweep(10 * pitch, bounds.min_y, bounds.max_y);
 
   while ( events->len > 0 || status->len > 0 ) {

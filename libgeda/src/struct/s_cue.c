@@ -42,8 +42,8 @@
  *   NULL.
  *
  *  \param [in]     objects     GedaObjects to get the cue points for
- *  \param [in,out] junctions   GArray of POINT to contain the coordinates of junctions
- *  \param [in,out] unconnected GArray of POINT to contain the coordinates of unconnected
+ *  \param [in,out] junctions   GArray of GedaPoint to contain the coordinates of junctions
+ *  \param [in,out] unconnected GArray of GedaPoint to contain the coordinates of unconnected
  *                              endpoints.
  *
  *  example 1: geda_struct_cue_get_locations (list, junctions, noconnects);
@@ -54,8 +54,8 @@
 void geda_struct_cue_get_locations(const GList *objects, GArray *junctions,
                                                GArray *unconnected)
 {
-  const GList  *iter;
-        POINT   point;
+  const GList    *iter;
+        GedaPoint point;
 
   void add_end_cues (GedaObject *object, int end) {
 

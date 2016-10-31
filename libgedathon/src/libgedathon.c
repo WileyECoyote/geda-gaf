@@ -3183,8 +3183,8 @@ get_cue_locations_lowlevel(GList *list, PyObject *py_list, int flag)
   GArray   *results;
   int       index;
 
-  junctions  = g_array_new(FALSE, FALSE, sizeof(POINT));
-  noconnects = g_array_new(FALSE, FALSE, sizeof(POINT));
+  junctions  = g_array_new(FALSE, FALSE, sizeof(GedaPoint));
+  noconnects = g_array_new(FALSE, FALSE, sizeof(GedaPoint));
 
   geda_struct_cue_get_locations (list, junctions, noconnects);
 
@@ -3197,10 +3197,10 @@ get_cue_locations_lowlevel(GList *list, PyObject *py_list, int flag)
 
   for (index = 0; index<results->len; index++) {
 
-    PyObject *py_pair;
-    POINT    *point;
+    PyObject  *py_pair;
+    GedaPoint *point;
 
-    point   = &g_array_index(results, POINT, index);
+    point   = &g_array_index(results, GedaPoint, index);
     py_pair = Py_BuildValue("ii", point->x, point->y);
     PyList_Append(py_list, py_pair);
   }
