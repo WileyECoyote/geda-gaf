@@ -1,3 +1,9 @@
+2016-10-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda/geda_types.h: Only define DWORD if OS_WIN32 is not
+      defined and define GedaType as unsigned long if IS64BIT is defined
+      to avoid conflicts with Windows API.
+
 2016-10-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * .gitattributes: Add git attribute file; the only rule is to tell

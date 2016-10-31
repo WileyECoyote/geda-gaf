@@ -47,7 +47,9 @@ typedef enum { FALSE, TRUE } Boolean;
 
 #endif
 
+#ifndef OS_WIN32
 typedef unsigned long DWORD;
+#endif
 
 typedef int8_t   int8;
 typedef int16_t  int16;
@@ -66,7 +68,7 @@ typedef uint64_t uint64;
 #endif
 
 #ifdef IS64BIT
-typedef DWORD GedaType;
+typedef unsigned long GedaType;
 #else
 typedef unsigned int GedaType;
 #endif
