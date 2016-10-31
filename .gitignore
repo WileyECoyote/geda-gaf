@@ -1,4 +1,5 @@
 .desktop-i18n
+.dirstamp
 ABOUT-NLS
 Makefile
 Makefile.in
