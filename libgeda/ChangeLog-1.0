@@ -1,6 +1,11 @@
+2016-10-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/images/Makefile.am: Wrap  "make images" yelping in ENABLE_DOXYGEN
+      conditional since the images are only used in DOxygen generated docs.
+
 2016-10-30 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src\Makefile.am: Re-enable subdir-objects to shut-up automake 1.15.
+    * src/Makefile.am: Re-enable subdir-objects to shut-up automake 1.15.
 
 2016-10-29 Wiley E. Hill <wileyhill@gmail.com>
 
