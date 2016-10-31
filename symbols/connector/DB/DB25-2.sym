@@ -1,6 +1,6 @@
-v 20130223 3
+v 20130223 2
 L 100 300 100 7500 3 15 0 0 -1 -1
-T 200 8750 8 10 0 0 0 0 1
+T 200 8600 8 10 0 0 0 0 1
 device=DB25
 A 850 150 150 250 110 3 15 0 0 -1 -1
 A 175 300 75 180 60 3 15 0 0 -1 -1
@@ -87,7 +87,7 @@ pinnumber=10
 T 1400 2050 5 8 0 0 0 0 1
 pinseq=7
 T 700 1950 3 4 1 1 0 3 1
-pinlabel=/ACK
+pinlabel=\_ACK\_
 T 700 1950 3 4 1 1 0 3 1
 pintype=out
 }
@@ -219,7 +219,7 @@ pinnumber=17
 T 1400 5350 5 8 0 0 0 0 1
 pinseq=18
 T 400 5250 9 4 1 1 0 3 1
-pinlabel=/SLCTIN
+pinlabel=\_SLCTIN\_
 T 400 5250 9 4 1 1 0 3 1
 pintype=in
 }
@@ -243,7 +243,7 @@ pinnumber=16
 T 1400 5950 5 8 0 0 0 0 1
 pinseq=20
 T 400 5850 9 4 1 1 0 3 1
-pinlabel=/INIT
+pinlabel=\_INIT\_
 T 400 5850 9 4 1 1 0 3 1
 pintype=in
 }
@@ -267,7 +267,7 @@ pinnumber=15
 T 1400 6550 5 8 0 0 0 0 1
 pinseq=22
 T 400 6450 9 4 1 1 0 3 1
-pinlabel=/ERROR
+pinlabel=\_ERROR\_
 T 400 6450 9 4 1 1 0 3 1
 pintype=out
 }
@@ -291,7 +291,7 @@ pinnumber=14
 T 1400 7150 5 8 0 0 0 0 1
 pinseq=24
 T 400 7050 9 4 1 1 0 3 1
-pinlabel=/AUTOF
+pinlabel=\_AUTOF\_
 T 400 7050 9 4 1 1 0 3 1
 pintype=in
 }
@@ -303,7 +303,7 @@ pinnumber=1
 T 1400 7450 5 8 0 0 0 0 1
 pinseq=25
 T 700 7350 3 4 1 1 0 3 1
-pinlabel=/STROBE
+pinlabel=\_STROBE\_
 T 700 7350 3 4 1 1 0 3 1
 pintype=clk
 }
@@ -311,13 +311,13 @@ L 139 234 803 8 3 15 0 0 -1 -1
 L 801 7832 138 7566 3 15 0 0 -1 -1
 T 200 8000 8 10 1 1 0 0 1
 refdes=CONN?
-T 200 8550 8 10 0 0 0 0 1
+T 200 8400 8 10 0 0 0 0 1
 description=DB-25 with PC parallel printer pin-out
-T 200 8350 8 10 0 0 0 0 1
+T 200 9200 8 10 0 0 0 0 1
 author=Walter Fetter Lages <w.fetter@ieee.org> & Diego Caberlon Santini <diegos@eletro.ufrgs.br>
-T 0 0 8 10 0 0 0 0 1
-dist-license=GPL
-T 1600 0 8 10 0 0 0 0 1
+T 200 9000 8 10 0 0 0 0 1
+dist-license=GPL2
+T 200 8800 8 10 0 0 0 0 1
 use-license=unlimited
-T 0 200 8 10 0 0 0 0 1
-footprint=none
+T 200 8200 8 10 0 0 0 0 1
+footprint=DB-25F

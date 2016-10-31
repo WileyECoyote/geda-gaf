@@ -1,20 +1,14 @@
 v 20080127 1
-T 25 9225 9 10 0 0 0 0 1
-author=Alexander Kurz
-T 25 8625 9 10 0 0 0 0 1
-use-license=Unlimited
-T 25 8825 9 10 0 0 0 0 1
-dist-license=CC-BY-SA-3.0
 T 300 8425 8 10 1 1 0 0 1
-refdes=X?
+refdes=CONN?
 T 25 9425 9 10 0 0 0 0 1
 numslots=0
 T 25 9625 9 10 0 0 0 0 1
-footprint=DB37F.fp
+footprint=DB-37F
 T 25 9825 9 10 0 0 0 0 1
-description=d-sub DB37 female connector
+description=D-Sub DB37 female connector
 T 325 8225 9 10 1 1 0 0 1
-device=DC37-f
+device=DB37F
 L 1175 7925 525 8125 3 0 0 0 -1 -1
 L 350 7975 350 200 3 0 0 0 -1 -1
 L 1250 7800 1250 400 3 0 0 0 -1 -1
@@ -286,7 +280,7 @@ pinnumber=17
 T 25 1300 5 10 0 0 0 0 1
 pinseq=17
 T 500 1425 9 10 1 1 0 0 1
-pinlabel=17 
+pinlabel=17
 }
 P 0 900 200 900 1 0 0
 {
@@ -530,3 +524,9 @@ pinnumber=M2
 T 1575 100 5 10 0 0 180 6 1
 pinseq=39
 }
+T 25 9225 9 10 0 0 0 0 1
+author=Alexander Kurz
+T 25 8625 9 10 0 0 0 0 1
+use-license=Unlimited
+T 25 8825 9 10 0 0 0 0 1
+dist-license=GPL2

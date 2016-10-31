@@ -1,20 +1,14 @@
-v 20080127 1
-T 0 6900 9 10 0 0 0 0 1
-author=Alexander Kurz
-T 0 6300 9 10 0 0 0 0 1
-use-license=Unlimited
-T 0 6500 9 10 0 0 0 0 1
-dist-license=CC-BY-SA-3.0
-T 350 6025 8 10 1 1 0 0 1
-refdes=X?
-T 0 7100 9 10 0 0 0 0 1
+v 20161017 2
+T 300 6000 8 10 1 1 0 0 1
+refdes=CONN?
+T 300 6200 9 10 0 0 0 0 1
 numslots=0
-T 0 7300 9 10 0 0 0 0 1
-footprint=DB25F.fp
-T 0 7500 9 10 0 0 0 0 1
-description=d-sub DB25 female connector
-T 350 5825 9 10 1 1 0 0 1
-device=DB25-f
+T 300 6400 9 10 0 0 0 0 1
+footprint=DB-25F
+T 300 6600 9 10 0 1 0 0 1
+description=D-Sub DB25 female connector
+T 300 5800 9 10 1 1 0 0 1
+device=DB25F
 L 1175 5525 525 5725 3 0 0 0 -1 -1
 L 350 5575 350 200 3 0 0 0 -1 -1
 L 1250 5425 1250 400 3 0 0 0 -1 -1
@@ -374,3 +368,9 @@ pinnumber=M2
 T 1575 100 5 10 0 0 180 6 1
 pinseq=27
 }
+T 300 7200 8 10 0 0 0 0 1
+author=Alexander Kurz
+T 300 6800 8 10 0 0 0 0 1
+use-license=Unlimited
+T 300 7000 8 10 0 0 0 0 1
+dist-license=GPL2

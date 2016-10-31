@@ -19,9 +19,27 @@
       attribute positions, add description, resequenced pins to match model
       and bump symversion.
 
-2016-10-16 Wiley E. Hill <wileyhill@gmail.com>
+2016-10-30 Wiley E. Hill <wileyhill@gmail.com>
 
-    * /connector: Clean symbols, add description attributes:
+    * connector: Clean symbols; adjust sequence, update footprints, add
+      description attributes:
+
+            * connector/DB/DB9-1.sym
+            * connector/DB/DB9-2.sym
+            * connector/DB/DB9-3.sym (rename DE9-3->DB9-3)
+            * connector/DB/DB15-1.sym
+            * connector/DB/DB25-1.sym
+            * connector/DB/DB25-2.sym
+            * connector/DB/DB25-3.sym
+            * connector/DB/DB25-4.sym
+            * connector/DB/DB25f-5.sym
+            * connector/DB/DB31-1.sym
+            * connector/DB/DB37-1.sym
+            * connector/DB/DB37f-2.sym
+
+2016-10-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * connector: Clean symbols, add description attributes:
 
             * connector/DIN/DIN41612C48-1.sym
             * connector/DIN/DIN41612C48-2.sym
@@ -35,7 +53,7 @@
 
 2016-10-16 Wiley E. Hill <wileyhill@gmail.com>
 
-    * /connector: Clean symbols: Use round end-cap to improve appearance, moves
+    * connector: Clean symbols: Use round end-cap to improve appearance, moves
       box and lines before pins, reposition attributes.
 
             * connector/barrel/pwrjack-1.sym (add description)
