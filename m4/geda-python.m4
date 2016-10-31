@@ -89,13 +89,12 @@ AC_DEFUN([AX_CHECK_PYOBJECT],
      fi
   fi
 
-  if test x"$have_pygobject" = xyes; then
+  if test x"$have_pygobject" != xyes; then
     AC_DEFINE_UNQUOTED(HAVE_PYGOBJECT, 1)
   else
-    have_pygobject=no
+    AC_DEFINE_UNQUOTED(HAVE_PYGOBJECT, 0)
   fi
 
-  AM_CONDITIONAL(HAVE_PYGOBJECT, test x"$have_pygobject" = xyes)
   AC_SUBST(PYGOBJECT_CFLAGS)
   AC_SUBST(PYGOBJECT_LIBS)
   []dnl

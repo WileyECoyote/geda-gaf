@@ -14,7 +14,9 @@ png_images = $(EXTRA_DIST:.svg=.png)
 pdf_images = $(EXTRA_DIST:.svg=.pdf)
 
 all:
-	@echo 'Type: make images  to create all the png/pdf images'
+if ENABLE_DOXYGEN
+	@echo 'Type: "make images"  to create all the png/pdf images'
+endif
 
 images: $(png_images) $(pdf_images)
 
