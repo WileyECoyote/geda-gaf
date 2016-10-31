@@ -5,6 +5,9 @@
       be generated if python is not present since the default is to enable, punting
       on this one.
 
+    * geda-x11.m4: Revise AX_CHECK_X11 to conditionally set the default --with-x
+      based on OS_LINUX, if yes then default to yes, otherwise no.
+
 2016-10-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-guile.m4: Disable support for srfi-64 unless specifically enabled

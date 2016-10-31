@@ -25,18 +25,24 @@ AC_DEFUN([AX_CHECK_X11],
 
   AC_MSG_NOTICE(checking whether to build X11 bindings)
 
-  AC_ARG_WITH([x], AS_HELP_STRING([--with-x], [Enable X11 routines]), [with_x=$withval], [with_x=yes])
+  if test x"$OS_LINUX" = xyes; then
+      default_x11=yes
+  else
+      default_x11=no
+  fi
+
+  AC_ARG_WITH([x], AS_HELP_STRING([--with-x], [Enable X11 routines]), [with_x=$withval], [with_x=$default_x11])
 
   if test x$with_x = xyes; then
 
     AC_CHECK_LIB([X11], [XInitThreads], have_x11="yes")
 
-    if test x$have_x11 = xyes ; then
+    if test x"$have_x11" = xyes ; then
       X11_LIBS="-lX11"
       AC_DEFINE([HAVE_X11], [1], [Define to 1 if have X11])
     else
       with_x=no
-      AC_MSG_ERROR(X11 support explicitly requested but X11 was detected, pkg-config --modversion x11)
+      AC_MSG_ERROR(X11 support explicitly requested but X11 was not detected)
     fi
   fi
 
