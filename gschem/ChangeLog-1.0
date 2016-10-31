@@ -1,6 +1,10 @@
+2016-10-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/base/gschem.c: Conditionaly call XInitThreads().
+
 2016-10-30 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src\Makefile.am: Re-enable subdir-objects for to suppress warning
+    * src/Makefile.am: Re-enable subdir-objects for to suppress warning
       from automake 1.15.
 
 2016-10-27 Wiley E. Hill <wileyhill@gmail.com>

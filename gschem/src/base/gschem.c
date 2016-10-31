@@ -447,7 +447,10 @@ static void gschem( int argc, char *argv[])
  */
 static void main_prog(void *closure, int argc, char *argv[])
 {
+
+#ifdef HAVE_X11
   XInitThreads();
+#endif
 
 #ifdef G_STAT_MEM
   g_mem_set_vtable(glib_mem_profiler_table);
