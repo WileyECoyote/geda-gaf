@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-10-22 16:46-0500\n"
+"POT-Creation-Date: 2016-10-31 13:36-0500\n"
 "PO-Revision-Date: 2012-09-01 20:41+0000\n"
 "Last-Translator: Panos Bouklis <panos@echidna-band.com>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -90,7 +90,7 @@ msgstr ""
 "\n"
 "Η καταγραφή του gschem μπορεί να περιέχει περισσότερες πληροφορίες."
 
-#: gschem/src/base/gschem.c:522
+#: gschem/src/base/gschem.c:525
 msgid "Exiting normal\n"
 msgstr ""
 
@@ -1076,14 +1076,14 @@ msgstr ""
 msgid "Recovery: undo last action\n"
 msgstr "Αναίρεση τελευταίας ενέργειας"
 
-#: gschem/src/object/o_break.c:186 gschem/src/object/o_break.c:518
-#: gschem/src/object/o_break.c:841
+#: gschem/src/object/o_break.c:186 gschem/src/object/o_break.c:519
+#: gschem/src/object/o_break.c:842
 #, c-format
 msgid "Point 2 missed x=%d, y=%d\n"
 msgstr ""
 
-#: gschem/src/object/o_break.c:189 gschem/src/object/o_break.c:521
-#: gschem/src/object/o_break.c:844
+#: gschem/src/object/o_break.c:189 gschem/src/object/o_break.c:522
+#: gschem/src/object/o_break.c:845
 #, c-format
 msgid "Point 1 missed x=%d, y=%d\n"
 msgstr ""

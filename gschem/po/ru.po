@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gschem ru\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-10-22 16:46-0500\n"
+"POT-Creation-Date: 2016-10-31 13:36-0500\n"
 "PO-Revision-Date: 2015-09-13 16:05+0300\n"
 "Last-Translator: Sergey Alyoshin <alyoshin.s@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -90,7 +90,7 @@ msgstr ""
 "\n"
 "В журнале gschem может быть больше информации.\n"
 
-#: gschem/src/base/gschem.c:522
+#: gschem/src/base/gschem.c:525
 msgid "Exiting normal\n"
 msgstr ""
 
@@ -1104,14 +1104,14 @@ msgstr ""
 msgid "Recovery: undo last action\n"
 msgstr "Отменить последнее действие"
 
-#: gschem/src/object/o_break.c:186 gschem/src/object/o_break.c:518
-#: gschem/src/object/o_break.c:841
+#: gschem/src/object/o_break.c:186 gschem/src/object/o_break.c:519
+#: gschem/src/object/o_break.c:842
 #, c-format
 msgid "Point 2 missed x=%d, y=%d\n"
 msgstr ""
 
-#: gschem/src/object/o_break.c:189 gschem/src/object/o_break.c:521
-#: gschem/src/object/o_break.c:844
+#: gschem/src/object/o_break.c:189 gschem/src/object/o_break.c:522
+#: gschem/src/object/o_break.c:845
 #, c-format
 msgid "Point 1 missed x=%d, y=%d\n"
 msgstr ""

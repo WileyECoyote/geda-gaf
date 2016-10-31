@@ -1,5 +1,8 @@
 2016-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
+    * configure.ac: Bump mutation to 31, date version 20161031, libgeda
+      version 51:4:1 -> 51:5:0.
+
     * include/geda/geda_types.h: Only define DWORD if OS_WIN32 is not
       defined and define GedaType as unsigned long if IS64BIT is defined
       to avoid conflicts with Windows API.
