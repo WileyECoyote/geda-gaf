@@ -224,18 +224,21 @@ char *geda_file_path_get_dirname (const char *filepath)
     ptr = strrchr (filepath, '/');
 
     if (path == NULL || (ptr != NULL && ptr > path)) {
-      path = ptr;
+      path = geda_strdup(ptr);
     }
 
 #endif
 
     if (!path) {
 
+      char root_path[4];
+
+      root_path[0] = '.';
+      root_path[1] = '\0';
+
 #if defined (OS_WIN32_NATIVE) || defined(__MINGW32__)
 
       if (isalpha (filepath[0]) && filepath[1] == ':') {
-
-        char root_path[4];
 
         root_path[0] = filepath[0];
         root_path[1] = ':';
@@ -243,13 +246,6 @@ char *geda_file_path_get_dirname (const char *filepath)
         root_path[3] = '\0';
 
       }
-
-#else
-
-      char root_path[2];
-
-      root_path[0] = '.';
-      root_path[1] = '\0';
 
 #endif
 
