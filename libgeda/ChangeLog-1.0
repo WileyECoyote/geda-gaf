@@ -8,6 +8,8 @@
       regardless of compilation. Fix return pointer to hmodule for windows
       builds.
 
+    * src\file\f_sys.c: Conditionally include windows.h.
+
 2016-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/s_struct.h: Rename POINT to GedaPoint in order to

@@ -42,6 +42,10 @@
 # include <errno.h>
 #endif
 
+#if defined (OS_WIN32_NATIVE) || defined(__MINGW32__)
+#  define WIN32_LEAN_AND_MEAN
+#  include <windows.h> /* for GetFullPathName */
+#endif
 #include <libgeda_priv.h>
 
 /*! /comment: The functions in f_basic.c are mostly application
