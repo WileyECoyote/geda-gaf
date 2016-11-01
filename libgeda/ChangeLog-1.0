@@ -20,6 +20,10 @@
           * src/struct/s_undo.c
           * src/utility/u_glist.c
 
+    * src\utility\u_program.c: A preprocessor conditionals to only provide
+      backtraces for linux, i.e. geda_utility_program_backtrace. For other
+      platforms issue a not avlailable notice.
+
     * tests/test_line_object.c: Fix broken line object test; missed POINT.
 
 2016-10-31 Wiley E. Hill <wileyhill@gmail.com>

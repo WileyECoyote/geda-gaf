@@ -29,16 +29,17 @@
 #endif
 
 #include <geda/geda_standard.h>
+#include <geda_debug.h>
 
 #include <glib.h>
 
+static GMemVTable memvtable;
+
+#ifdef __linux__
+
 #include <execinfo.h>
 
-#include <geda_debug.h>
-
 #define BACK_TRACE_SIZE 20
-
-static GMemVTable memvtable;
 
 static void inline traceback(void)  /* "static" means don't export the symbol... */
 {
@@ -80,6 +81,15 @@ void geda_utility_program_backtrace(void)
 {
   traceback();
 }
+
+#else
+
+void geda_utility_program_backtrace(void)
+{
+  fprintf(stderr, "geda_utility_program_backtrace in only available for linux\n");
+}
+
+#endif
 
 /*! \brief Setup GLib Memory Table
  *
