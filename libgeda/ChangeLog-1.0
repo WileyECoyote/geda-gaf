@@ -1,5 +1,8 @@
 2016-11-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src\file\f_get.c: Include libgeda_priv.h after windows.h so that
+      local headers can see windows definitions.
+
     * src\file\f_path.c: Revise geda_file_path_get_dirname to copy the ptr
       to path, only allocate root_path in one place, initialize root_path
       regardless of compilation. Fix return pointer to hmodule for windows

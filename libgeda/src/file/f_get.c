@@ -40,14 +40,14 @@
 # include <errno.h>
 #endif
 
-#include <libgeda_priv.h>
-#include <version.h>
-
 #if defined (OS_WIN32_NATIVE) || defined(__MINGW32__)
 #  define WIN32_LEAN_AND_MEAN
 #  include <windows.h> /* for GetFullPathName */
 #  include <io.h>
 #endif
+
+#include <libgeda_priv.h>
+#include <version.h>
 
 #ifndef O_BINARY
 #define O_BINARY 0
