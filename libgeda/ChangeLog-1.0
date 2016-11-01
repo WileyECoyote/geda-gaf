@@ -1,16 +1,26 @@
 2016-11-01 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src\file\f_get.c: Include libgeda_priv.h after windows.h so that
+    * src/file/f_get.c: Include libgeda_priv.h after windows.h so that
       local headers can see windows definitions.
 
-    * src\file\f_path.c: Revise geda_file_path_get_dirname to copy the ptr
+    * src/file/f_path.c: Revise geda_file_path_get_dirname to copy the ptr
       to path, only allocate root_path in one place, initialize root_path
       regardless of compilation. Fix return pointer to hmodule for windows
       builds.
 
-    * src\file\f_sys.c: Conditionally include windows.h.
+    * src/file/f_sys.c: Conditionally include windows.h.
 
-    * tests\test_line_object.c: Fix broken line object test; missed POINT.
+    * src: include config.h in:
+
+          * src/object/o_selection.c
+          * src/object/o_text_object.c
+          * src/struct/s_conn.c
+          * src/struct/s_place.c
+          * src/struct/s_slib.c
+          * src/struct/s_undo.c
+          * src/utility/u_glist.c
+
+    * tests/test_line_object.c: Fix broken line object test; missed POINT.
 
 2016-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -3444,7 +3454,7 @@
 
       On Windows system, guile post-2.0.11 prepends a %load-path directory
       to the path that is already built using build-path for some reason,
-      which leads to strange names, e.g. "d:\usr\share\geda\d:/usr/share/
+      which leads to strange names, e.g. "d:/usr/share/geda/d:/usr/share/
       gEDA/gschem-colormap-darkbg", in several case, which, in turn, breaks
       loading of rc files by gschem. Using 'primitive-load' instead of
       'load' solves this.

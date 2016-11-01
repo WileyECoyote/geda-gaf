@@ -19,6 +19,7 @@
  * MA 02111-1301 USA, <http://www.gnu.org/licenses/>.
  */
 
+#include <config.h>
 #include <libgeda_priv.h>
 #include <geda_debug.h>
 

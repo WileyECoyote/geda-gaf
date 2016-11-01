@@ -19,6 +19,7 @@
  * 02110-1301 USA
  */
 
+#include <config.h>
 #include <libgeda_priv.h>
 
 #include <geda_debug.h>
