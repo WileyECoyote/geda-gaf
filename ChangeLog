@@ -3,6 +3,8 @@
     * include\geda\geda_idefines.h: Modify conditional defines for MAX_PATH
       and NO_ERROR.
 
+    * include\geda\geda_system.h: Modify conditionals for DIR_SEPARATOR.
+
 2016-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * configure.ac: Bump mutation to 31, date version 20161031, libgeda
