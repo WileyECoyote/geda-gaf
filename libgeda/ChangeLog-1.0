@@ -10,6 +10,8 @@
 
     * src\file\f_sys.c: Conditionally include windows.h.
 
+    * tests\test_line_object.c: Fix broken line object test; missed POINT.
+
 2016-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/s_struct.h: Rename POINT to GedaPoint in order to

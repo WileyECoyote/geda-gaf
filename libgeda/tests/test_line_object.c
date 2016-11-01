@@ -596,8 +596,8 @@ check_get_intersection(GedaObject *object0)
   int x = geda_random_number (x1, x2);
   int y = geda_random_number (y1, y2);
 
-  double slope;
-  POINT  point;
+  GedaPoint point;
+  double    slope;
 
   /* Reference */
   if (!geda_line_object_get_slope(object0, &slope)) {
