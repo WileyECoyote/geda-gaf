@@ -345,7 +345,7 @@ static void *libgeda_module_handle (void)
     hmodule = (HMODULE) mbi.AllocationBase;
   }
 
-  return (void) hmodule;
+  return (void*) hmodule;
 }
 
 #endif /* G_OS_WIN32 */
