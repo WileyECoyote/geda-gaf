@@ -1,3 +1,8 @@
+2016-11-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include\geda\geda_idefines.h: Modify conditional defines for MAX_PATH
+      and NO_ERROR.
+
 2016-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * configure.ac: Bump mutation to 31, date version 20161031, libgeda

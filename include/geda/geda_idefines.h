@@ -33,13 +33,15 @@
 #  define MAX_FILE 255
 #endif
 
-#ifndef _WIN32
+#define MAX_FILENAME 64
+
+#ifndef MAX_PATH
 #  define MAX_PATH 248
 #endif
 
-#define MAX_FILENAME 64
-
-#define NO_ERROR    0
+#ifndef NO_ERROR
+#  define NO_ERROR    0
+#endif
 
 #define BITS_BYTE   8
 #define BITS_WORD   16
