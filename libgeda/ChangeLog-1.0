@@ -11,6 +11,8 @@
       geda_file_get_contents in function geda_picture_object_set_from_file,
       hope it works.
 
+    * src/scheme/scheme_config.c: Eliminate G_IO_ERROR in error_from_gerror.
+
     * src/struct/s_clib.c: Replace g_file_get_contents with geda_file_get_
       contents in function get_data_directory.
 
