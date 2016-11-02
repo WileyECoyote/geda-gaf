@@ -2,7 +2,8 @@
 
     * src/geda/geda_config.c: Replace G_IO_ERROR with EDA_ERROR and
       G_IO_ERROR_FAILED with EDA_ERROR_NULL_POINTER, having gio as a
-      dependency for enumerations make no sense.
+      dependency for enumerations make no sense. Remove conversion of
+      error using g_file_error_from_errno, just return the errno.
 
 2016-11-01 Wiley E. Hill <wileyhill@gmail.com>
 

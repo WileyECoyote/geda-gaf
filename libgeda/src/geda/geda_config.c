@@ -915,8 +915,7 @@ eda_config_load (EdaConfig *cfg, GError **error)
 
         if(error != NULL) {
 
-          g_set_error(error, G_FILE_ERROR,
-                      g_file_error_from_errno (errno),
+          g_set_error(error, G_FILE_ERROR, errno,
                      "accessing file %s", filename);
         }
         else {
