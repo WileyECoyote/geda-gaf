@@ -7,6 +7,9 @@
       Replace g_file_get_contents with geda_file_get_contents in function
       eda_config_load.
 
+    * src/struct/s_clib.c: Replace g_file_get_contents with geda_file_get_
+      contents in function get_data_directory.
+
 2016-11-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_get.c: Include libgeda_priv.h after windows.h so that

@@ -1222,7 +1222,7 @@ static char *get_data_directory (const CLibSymbol *symbol)
   filename = g_build_filename(symbol->source->directory,
                               symbol->name, NULL);
 
-  g_file_get_contents (filename, &data, NULL, &err);
+  geda_file_get_contents (filename, &data, NULL, &err);
 
   if (err != NULL) {
     u_log_message (_("Failed to load symbol from file [%s]: %s\n"),
