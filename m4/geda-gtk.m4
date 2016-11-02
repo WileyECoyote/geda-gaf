@@ -1,5 +1,5 @@
 # geda-gtk.m4              -*-Autoconf-*-
-# serial 1.3
+# serial 1.4
 
 dnl gEDA Prebuild checks for GTK Library Headers and Functions
 dnl
@@ -30,6 +30,12 @@ AC_DEFUN([AX_CHECK_GTK],
 
   PKG_CHECK_MODULES(GTK, [gtk+-2.0 >= $1], ,
   AC_MSG_ERROR([GTK+ $1 or later is required.]))
+
+  GDK_CFLAGS="`pkg-config --cflags gdk-2.0`"
+  GDK_LIBS="`pkg-config --libs gdk-2.0`"
+
+  AC_SUBST([GDK_CFLAGS])
+  AC_SUBST([GDK_LIBS])
 
    # Search for gthread
   PKG_CHECK_MODULES(GTHREAD, gthread-2.0, GTHREAD="yes", no_GTHREAD="yes")
