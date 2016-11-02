@@ -1849,7 +1849,7 @@ geda_picture_object_set_from_file (GedaObject *object,
 
   g_return_val_if_fail (filename != NULL, FALSE);
 
-  if (!g_file_get_contents (filename, &buf, &len, error)) {
+  if (!geda_file_get_contents(filename, &buf, &len, error)) {
     return FALSE;
   }
 

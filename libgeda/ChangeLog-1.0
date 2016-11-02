@@ -7,6 +7,10 @@
       Replace g_file_get_contents with geda_file_get_contents in function
       eda_config_load.
 
+    * src/object/o_picture_object.c: Replace g_file_get_contents with
+      geda_file_get_contents in function geda_picture_object_set_from_file,
+      hope it works.
+
     * src/struct/s_clib.c: Replace g_file_get_contents with geda_file_get_
       contents in function get_data_directory.
 
