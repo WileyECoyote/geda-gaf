@@ -833,8 +833,7 @@ eda_config_get_filename (EdaConfig *cfg)
  * Attempt to load configuration parameters for the context \a cfg
  * from its associated file.  Returns FALSE and generates an Error
  * or #EdaConfigError on error.  If \a cfg does not have an associated
- * file, does nothing, returns FALSE, and generates a
- * G_IO_ERROR_FAILED error.
+ * file, does nothing, returns FALSE, and generates an EDA_ERROR error.
  *
  * \see eda_config_is_loaded(), eda_config_get_file(),
  * eda_config_save().
@@ -855,11 +854,9 @@ eda_config_load (EdaConfig *cfg, GError **error)
   filename = eda_config_get_filename (cfg);
 
   if (filename == NULL) {
-    if(error != NULL) {
-       g_set_error (error,
-                 G_IO_ERROR,
-                 G_IO_ERROR_FAILED,
-                 _("Undefined configuration filename"));
+    if (error != NULL) {
+       g_set_error (error, EDA_ERROR, EDA_ERROR_NULL_POINTER,
+                  _("Undefined configuration filename"));
     }
     else {
       fprintf(stderr, "Error loading configuration, file name is undefined\n");
@@ -956,12 +953,13 @@ eda_config_is_loaded (EdaConfig *cfg)
  * Attempt to save configuration parameters for the context \a cfg to
  * its associated file.  Returns FALSE and generates a GError on
  * error.  If \a cfg does not have an associated file, does nothing,
- * returns FALSE, and generates a G_IO_ERROR_FAILED error.
+ * returns FALSE, and generates an EDA_ERROR error.
  *
  * \see eda_config_load(), eda_config_get_file().
  *
  * \param cfg    Configuration context.
  * \param error  Location to return error information.
+ *
  * \return TRUE on success, FALSE on failure.
  */
 bool
@@ -973,10 +971,8 @@ eda_config_save (EdaConfig *cfg, GError **error)
 
   if (cfg->priv->filename == NULL) {
     if(error != NULL) {
-      g_set_error (error,
-                   G_IO_ERROR,
-                   G_IO_ERROR_FAILED,
-                   _("Undefined configuration filename"));
+      g_set_error (error, EDA_ERROR, EDA_ERROR_NULL_POINTER,
+                 _("Undefined configuration filename"));
     }
     else {
       fprintf(stderr, "Error saving configuration, file name is undefined\n");
