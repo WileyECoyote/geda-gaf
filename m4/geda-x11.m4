@@ -1,5 +1,5 @@
 # geda-x11.m4              -*-Autoconf-*-
-# serial 1.2
+# serial 1.3
 
 dnl gEDA Prebuild checks for GTK Library Headers and Functions
 dnl
@@ -22,6 +22,7 @@ dnl Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
 AC_DEFUN([AX_CHECK_X11],
 [
   AC_PREREQ([2.52])dnl
+  AC_REQUIRE([AX_HOST])dnl
 
   AC_MSG_NOTICE(checking whether to build X11 bindings)
 
@@ -38,7 +39,15 @@ AC_DEFUN([AX_CHECK_X11],
     AC_CHECK_LIB([X11], [XInitThreads], have_x11="yes")
 
     if test x"$have_x11" = xyes ; then
-      X11_LIBS="-lX11"
+
+      AC_CHECK_LIB([Xrender], [XRenderFindFormat], [have_xrender=yes], [have_xrender=no])
+      if test "$have_xrender" = "yes" ; then
+        X11_LIBS="-lX11 -lXrender"
+        AC_DEFINE([HAVE_XRANDR], [1], [Define to 1 if have Xrender])
+      else
+        X11_LIBS="-lX11"
+      fi
+
       AC_DEFINE([HAVE_X11], [1], [Define to 1 if have X11])
     else
       with_x=no
@@ -55,13 +64,13 @@ AC_DEFUN([AX_CHECK_X11],
   AH_TEMPLATE([HAVE_XFT], [Whether FreeType is installed])
 
   if test x"$enable_Xft" = xyes -a x"$with_x" = xno; then
-      AC_MSG_ERROR(Xft support explicitly requested but X11 was explicitly disabled)
+      AC_MSG_ERROR(Xft support explicitly requested but X11 is not available)
   else
     if test "x$enable_Xft" = xyes; then
       if test "$OS_LINUX"  = yes; then
-        AC_CHECK_LIB([Xft], [XftDrawCreate], [XFT=yes], [XFT=no])
+        AC_CHECK_LIB([Xft], [XftDrawCreate], [have_xft=yes], [have_xft=no])
       fi
-      if test "$XFT" = "yes" ; then
+      if test "$have_xft" = "yes" ; then
         X11_LIBS="$X11_LIBS -lXft"
         AC_DEFINE([HAVE_XFT], [1], [Define to 1 if have Xft])
       else

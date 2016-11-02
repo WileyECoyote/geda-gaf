@@ -1,3 +1,8 @@
+2016-11-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * m4/geda-x11.m4: Require AX_HOST in AX_CHECK_X11, check for XRenderFindFormat
+      and add lXrender, rename XFT -> have_xft.
+
 2016-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-python.m4: Remove AM_CONDITIONAL(HAVE_PYGOBJECT) and AC_DEFINE_UNQUOTED
