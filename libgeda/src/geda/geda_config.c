@@ -872,7 +872,7 @@ eda_config_load (EdaConfig *cfg, GError **error)
       char  *buf;
       size_t len;
 
-      if (g_file_get_contents (filename, &buf, &len, error)) {
+      if (geda_file_get_contents(filename, &buf, &len, error)) {
 
         if (len != 0) { /* Don't load zero-length keyfiles */
           status = g_key_file_load_from_data (key_file, buf, len,
