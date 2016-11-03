@@ -265,14 +265,12 @@ geda_file_sys_follow_symlinks (const char *filename, GError **err)
   char *followed_filename;
 
   if (filename == NULL || *filename == 0) {
-    g_set_error (err, G_FILE_ERROR, G_FILE_ERROR_INVAL,
-                 "%s", strerror (EINVAL));
+    g_set_error (err, EDA_ERROR, EINVAL, "%s", strerror (EINVAL));
     return NULL;
   }
 
   if (strlen (filename) + 1 > MAX_PATH) {
-    g_set_error (err, G_FILE_ERROR, G_FILE_ERROR_NAMETOOLONG,
-                 "%s", strerror (ENAMETOOLONG));
+    g_set_error (err, EDA_ERROR, ENAMETOOLONG, "%s", strerror (ENAMETOOLONG));
     return NULL;
   }
 
@@ -343,8 +341,8 @@ geda_file_sys_follow_symlinks (const char *filename, GError **err)
   }
 
   /* Too many symlinks */
-  g_set_error (err, G_FILE_ERROR, G_FILE_ERROR_LOOP,
-               _("%s: %s"), strerror (EMLINK), followed_filename);
+  g_set_error (err, EDA_ERROR, EDA_ERROR_LOOP,
+             _("%s: %s"), strerror (EMLINK), followed_filename);
   GEDA_FREE (followed_filename);
   return NULL;
 
@@ -383,14 +381,12 @@ geda_file_sys_normalize_name (const char *name, GError **error)
   char *result;
 
   if (name == NULL) {
-    g_set_error (error, G_FILE_ERROR, G_FILE_ERROR_INVAL,
-                 "%s", strerror (EINVAL));
+    g_set_error (error, EDA_ERROR, EINVAL, "%s", strerror (EINVAL));
     return NULL;
   }
 
   if (*name == '\0') {
-    g_set_error (error, G_FILE_ERROR, G_FILE_ERROR_NOENT,
-                 "%s", strerror (ENOENT));
+    g_set_error (error, EDA_ERROR, ENOENT, "%s", strerror (ENOENT));
     return NULL;
   }
 
@@ -424,8 +420,7 @@ geda_file_sys_normalize_name (const char *name, GError **error)
   /* Test that the file actually exists, and fail if it does not.
    * This is consistent with behaviour on POSIX platforms. */
   if (!g_file_test (result, G_FILE_TEST_EXISTS)) {
-    g_set_error (error, G_FILE_ERROR, G_FILE_ERROR_NOENT,
-                 "%s", strerror (ENOENT));
+    g_set_error (error, EDA_ERROR, ENOENT, "%s", strerror (ENOENT));
     GEDA_FREE (result);
     return NULL;
   }
@@ -433,8 +428,7 @@ geda_file_sys_normalize_name (const char *name, GError **error)
 #else
 
   if (!g_file_test(name, G_FILE_TEST_EXISTS)) {
-    g_set_error (error, G_FILE_ERROR, G_FILE_ERROR_NOENT,
-                 "%s", strerror (ENOENT));
+    g_set_error (error, EDA_ERROR, ENOENT, "%s", strerror (ENOENT));
     return NULL;
   }
 

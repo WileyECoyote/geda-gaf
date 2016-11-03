@@ -279,7 +279,7 @@ g_rc_parse_file (const char *rcfile, EdaConfig *cfg, GError **err)
     else { /* Can not access name_norm for reading */
 
       if(err != NULL) {
-        g_set_error(err, G_FILE_ERROR, errno, "accessing file %s", name_norm);
+        g_set_error(err, EDA_ERROR, errno, "accessing file %s", name_norm);
       }
       else {
         fprintf(stderr, err_access, name_norm, strerror(errno));
@@ -431,7 +431,7 @@ g_rc_parse__process_error (GError **err, const char *pname)
   else {
 
     /* Config files are allowed to be missing or skipped; check for this. */
-    if (g_error_matches (*err, G_FILE_ERROR, G_FILE_ERROR_NOENT) ||
+    if (g_error_matches (*err, EDA_ERROR, ENOENT) ||
         g_error_matches (*err, EDA_ERROR, EDA_ERROR_RC_TWICE)) {
       return;
     }
