@@ -1,3 +1,8 @@
+2016-11-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gnetlist.c: Replace G_FILE_ERROR with EDA_ERROR domain, change
+      G_FILE_ERROR_NOENT to ENOENT.
+
 2016-10-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/parsecmd.c: Include program name in the version output message,

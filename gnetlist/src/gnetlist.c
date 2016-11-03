@@ -381,7 +381,7 @@ void main_prog(void *closure, int argc, char *argv[])
 
         if (err) {
 
-          if (g_error_matches (err, G_FILE_ERROR, G_FILE_ERROR_NOENT)) {
+          if (g_error_matches (err, EDA_ERROR, ENOENT)) {
 
             g_clear_error (&err);
 

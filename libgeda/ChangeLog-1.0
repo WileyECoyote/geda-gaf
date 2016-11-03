@@ -1,19 +1,19 @@
 2016-11-03 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/file/f_file.c: Replace G_IO_ERROR with EDA_ERROR domain, change
+    * src/file/f_file.c: Replace G_FILE_ERROR with EDA_ERROR domain, change
       G_FILE_ERROR_NOENT to ENOENT and G_FILE_ERROR_PERM to EACCES.
 
-    * src/file/f_get.c: Replace G_IO_ERROR with EDA_ERROR domain, change
+    * src/file/f_get.c: Replace G_FILE_ERROR with EDA_ERROR domain, change
       G_FILE_ERROR_INVAL to EDA_ERROR_NULL_POINTER.
 
-    * src/file/f_sys.c: Replace G_IO_ERROR with EDA_ERROR domain, change
+    * src/file/f_sys.c: Replace G_FILE_ERROR with EDA_ERROR domain, change
       G_FILE_ERROR_INVAL to EINVAL, G_FILE_ERROR_NAMETOOLONG to ENAMETOOLONG.
 
-    * src/geda/geda_config.c: Replace G_IO_ERROR with EDA_ERROR domain and
+    * src/geda/geda_config.c: Replace G_FILE_ERROR with EDA_ERROR domain and
       remove g_file_error_from_errno.
 
-    * src/guile/g_rc_parse.c: Replace G_IO_ERROR with EDA_ERROR domain and
-      G_IO_ERROR_NOT_FOUND with ENOENT in function g_rc_parse_file.
+    * src/guile/g_rc_parse.c: Replace G_FILE_ERROR with EDA_ERROR domain and
+      G_FILE_ERROR_NOT_FOUND with ENOENT in function g_rc_parse_file.
 
 2016-11-02 Wiley E. Hill <wileyhill@gmail.com>
 
