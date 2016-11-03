@@ -915,7 +915,7 @@ eda_config_load (EdaConfig *cfg, GError **error)
 
         if(error != NULL) {
 
-          g_set_error(error, G_FILE_ERROR, errno,
+          g_set_error(error, EDA_ERROR, errno,
                      "accessing file %s", filename);
         }
         else {
@@ -984,7 +984,7 @@ eda_config_save (EdaConfig *cfg, GError **error)
     char *scratch;
 
     filename = cfg->priv->filename;
-    scratch  = geda_utility_string_strdup(filename);
+    scratch  = geda_strdup(filename);
 
     /* First try and make the directory, if necessary. */
     dir = dirname (scratch);
@@ -997,7 +997,7 @@ eda_config_save (EdaConfig *cfg, GError **error)
       if (!g_file_test (filename, G_FILE_TEST_EXISTS)) {
         if (!g_file_test (dir, G_FILE_TEST_EXISTS)) {
           geda_create_path (dir, S_IRWXU | S_IRWXG);
-          g_set_error(error, G_FILE_ERROR, status,
+          g_set_error(error, EDA_ERROR, status,
                       _("file <%s> %s"), filename, strerror(errno));
         }
       }
@@ -1024,13 +1024,13 @@ eda_config_save (EdaConfig *cfg, GError **error)
         cfg->priv->changed = FALSE;
       }
       else {
+
         if (fp) {
           fclose(fp);
         }
-        if(error != NULL) {
-          g_set_error(error, G_FILE_ERROR,
-                      g_file_error_from_errno (errno),
-                      strerror(errno), filename);
+
+        if (error != NULL) {
+          g_set_error(error, EDA_ERROR, errno, strerror(errno), filename);
         }
         else {
           fprintf(stderr, "Error saving configuration to %s, %s\n",
@@ -1040,9 +1040,7 @@ eda_config_save (EdaConfig *cfg, GError **error)
     }
     else {
       if(error != NULL) {
-        g_set_error(error, G_FILE_ERROR,
-                    g_file_error_from_errno (errno),
-                    _("bad path in file %s"), filename);
+        g_set_error(error, EDA_ERROR, errno, _("bad path in file %s"), filename);
       }
       else {
         fprintf(stderr, "Error saving configuration, bad path in %s\n", filename);
