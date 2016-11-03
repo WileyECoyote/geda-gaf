@@ -93,8 +93,8 @@ geda_file_has_active_autosave (const char *filename, GError **err)
     else {
 
       if (save_errno) {
-        g_set_error (err, G_FILE_ERROR, save_errno,
-                     _("Failed to stat [%s]: %s"),
+        g_set_error (err, EDA_ERROR, save_errno,
+                   _("Failed to stat [%s]: %s"),
                      auto_filename, strerror (save_errno));
         result = TRUE;
       }
@@ -108,8 +108,8 @@ geda_file_has_active_autosave (const char *filename, GError **err)
 
           if (file_err) {
 
-            g_set_error (err, G_FILE_ERROR, file_err,
-                         _("Failed to stat [%s]: %s"),
+            g_set_error (err, EDA_ERROR, file_err,
+                       _("Failed to stat [%s]: %s"),
                          auto_filename, strerror (file_err));
             result = TRUE;
           }
@@ -204,7 +204,7 @@ geda_file_open(GedaToplevel *toplevel, Page *page, const char *filename, GError 
   full_filename = geda_file_sys_normalize_name (filename, &tmp_err);
 
   if (full_filename == NULL) {
-    g_set_error (err, G_FILE_ERROR, tmp_err->code,
+    g_set_error (err, EDA_ERROR, tmp_err->code,
                _("Cannot find file %s: %s"), filename, tmp_err->message);
     g_error_free(tmp_err);
     return geda_file_open_exit(0);
@@ -235,8 +235,8 @@ geda_file_open(GedaToplevel *toplevel, Page *page, const char *filename, GError 
       if (tmp_err != NULL) {
 
         /* RC files are allowed to be missing or skipped; check for this. */
-        if (!g_error_matches (tmp_err, G_FILE_ERROR, G_FILE_ERROR_NOENT) &&
-            !g_error_matches (tmp_err, EDA_ERROR,    EDA_ERROR_RC_TWICE))
+        if (!g_error_matches (tmp_err, EDA_ERROR, ENOENT) &&
+            !g_error_matches (tmp_err, EDA_ERROR, EDA_ERROR_RC_TWICE))
         {
           u_log_message ("%s\n", tmp_err->message);
         }
@@ -401,7 +401,7 @@ geda_file_remove_backup (const char *filename)
 
       /* Delete the backup file */
       if ((g_file_test(backup_filename, G_FILE_TEST_EXISTS)) &&
-        (!g_file_test(backup_filename, G_FILE_TEST_IS_DIR)))
+         (!g_file_test(backup_filename, G_FILE_TEST_IS_DIR)))
       {
         if (unlink(backup_filename) != 0) {
           u_log_message(_("%s: Unable to delete backup file %s."),
@@ -479,7 +479,7 @@ geda_file_save(GedaToplevel *toplevel, Page *page, const char *filename, GError 
     access(filename, W_OK);
 
     if (errno == EACCES) {
-      g_set_error (err, G_FILE_ERROR, G_FILE_ERROR_PERM, err_read_only, filename);
+      g_set_error (err, EDA_ERROR, EACCES, err_read_only, filename);
       success = 0;
     }
   }

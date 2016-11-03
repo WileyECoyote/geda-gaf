@@ -1,5 +1,8 @@
 2016-11-03 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/file/f_file.c: Replace G_IO_ERROR with EDA_ERROR domain, change
+      G_FILE_ERROR_NOENT to ENOENT and G_FILE_ERROR_PERM to EACCES.
+
     * src/geda/geda_config.c: Replace G_IO_ERROR with EDA_ERROR domain and
       remove g_file_error_from_errno.
 
