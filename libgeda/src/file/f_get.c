@@ -227,7 +227,7 @@ get_contents_stdio (const char *filename, FILE *f, char **contents,
 
       if (tmp == NULL) {
         g_free (str);
-        g_set_error (err, G_FILE_ERROR, ENOMEM,
+        g_set_error (err, EDA_ERROR, ENOMEM,
                    _("Could not allocate %lu bytes to read file \"%s\""),
                     (unsigned long)total_allocated,
                     filename);
@@ -238,7 +238,7 @@ get_contents_stdio (const char *filename, FILE *f, char **contents,
     }
 
     if (ferror (f)) {
-      g_set_error (err, G_FILE_ERROR, save_errno,
+      g_set_error (err, EDA_ERROR, save_errno,
                  _("Error reading file '%s': %s"),
                    filename,
                    strerror(save_errno));
@@ -249,7 +249,7 @@ get_contents_stdio (const char *filename, FILE *f, char **contents,
     memcpy (str + total_bytes, buf, bytes);
 
     if (total_bytes + bytes < total_bytes) {
-      g_set_error (err, G_FILE_ERROR, ENOMEM,
+      g_set_error (err, EDA_ERROR, ENOMEM,
                    _("File \"%s\" is too large"),
                    filename);
       g_free (str);
@@ -305,7 +305,7 @@ get_contents_regfile (const char   *filename,
 
   if (buf == NULL) {
 
-    g_set_error (err, G_FILE_ERROR, ENOMEM,
+    g_set_error (err, EDA_ERROR, ENOMEM,
                _("Could not allocate %ld byte to read file \"%s\""),
                 (unsigned long int) alloc_size,
                  filename);
@@ -331,7 +331,7 @@ get_contents_regfile (const char   *filename,
 
           g_free (buf); /* This could modify errno */
 
-          g_set_error (err, G_FILE_ERROR, save_errno,
+          g_set_error (err, EDA_ERROR, save_errno,
                      _("Failed to read from file '%s': %s"),
                         filename,
                         strerror(save_errno));
@@ -418,7 +418,7 @@ geda_file_get_contents(const char  *filename,
 #endif
 
     {
-      g_set_error (err, G_FILE_ERROR, errno,
+      g_set_error (err, EDA_ERROR, errno,
                  _("Failed to open file '%s': %s"), filename, strerror (errno));
     }
 
@@ -432,7 +432,7 @@ geda_file_get_contents(const char  *filename,
 
       close (fd);
 
-      g_set_error (err, G_FILE_ERROR, save_errno,
+      g_set_error (err, EDA_ERROR, save_errno,
                  _("Failed to get attributes of file '%s': fstat() failed: %s"),
                     filename, strerror (errno));
     }
@@ -450,7 +450,7 @@ geda_file_get_contents(const char  *filename,
 
       if (file == NULL) {
 
-        g_set_error (err, G_FILE_ERROR, errno,
+        g_set_error (err, EDA_ERROR, errno,
                    _("Failed to open file '%s': fdopen() failed: %s"),
                       filename, strerror (errno));
       }
@@ -477,7 +477,7 @@ geda_file_get_contents(const char  *filename,
     else {
       msg = _("libgeda <%s> ERROR: pointer to a buffer is NULL");
     }
-    g_set_error (err, G_FILE_ERROR, G_FILE_ERROR_INVAL, msg, __func__);
+    g_set_error (err, EDA_ERROR, EDA_ERROR_NULL_POINTER, msg, __func__);
   }
 
   return retval;
@@ -610,7 +610,7 @@ geda_file_get_dir_list_files(char *path, char *filter, GError **err)
     closedir (dirp);
   }
   else { /* could not open directory */
-    g_set_error (err, G_FILE_ERROR, errno,
+    g_set_error (err, EDA_ERROR, errno,
                _("error accessing '%s': %s"), path, strerror (errno));
     return NULL;
   }
