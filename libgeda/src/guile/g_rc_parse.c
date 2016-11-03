@@ -226,16 +226,17 @@ g_rc_parse_file (const char *rcfile, EdaConfig *cfg, GError **err)
         /* Check if base rc file is the same name as config version, if
          * the names match we substitude the filename from config because
          * this is the file that was found for the given context */
-        if (strcmp(geda_file_get_basename(rcfile), geda_file_get_basename(fig_file)) == 0) {
+        if (strcmp(geda_file_get_basename(rcfile),
+                   geda_file_get_basename(fig_file)) == 0) {
           rcfile = fig_file;
         }
       }
       if (tmp_err) {
-        if (!g_error_matches (tmp_err, G_IO_ERROR, G_IO_ERROR_NOT_FOUND)) {
+        if (!g_error_matches (tmp_err, EDA_ERROR, ENOENT)) {
           u_log_message ( err_load_msg, fig_file, tmp_err->message);
         }
+        g_clear_error (&tmp_err);
       }
-      g_clear_error (&tmp_err);
     }
   }
 
