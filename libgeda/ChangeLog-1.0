@@ -15,6 +15,9 @@
     * src/guile/g_rc_parse.c: Replace G_FILE_ERROR with EDA_ERROR domain and
       G_FILE_ERROR_NOT_FOUND with ENOENT in function g_rc_parse_file.
 
+    * src/scheme/scheme_config.c: Revise error_from_gerror and make EDA_ERROR
+      system errors.
+
 2016-11-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_config.c: Replace G_IO_ERROR with EDA_ERROR and

@@ -60,7 +60,7 @@ SCM_SYMBOL (invalid_value_sym,    "invalid-value");
  * - Otherwise, it will be converted to a misc-error.
  *
  * \bug For GFileErrors, the GLib error code will be returned rather
- * than the system error code.
+ *      than the system error code.
  *
  * param subr   name of failed procedure, or NULL.
  * param error  error to be converted to a Scheme exception.
@@ -82,7 +82,7 @@ error_from_gerror (const char *subr, GError **error)
 
   SCM rest;
 
-  if (err->domain == G_FILE_ERROR) {
+  if (err->domain == EDA_ERROR || err->domain == G_FILE_ERROR) {
     /* File-related errors */
     scm_error (system_error_sym, subr, err->message, SCM_EOL,
                scm_list_1 (scm_from_int (err->code)));
