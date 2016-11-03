@@ -442,7 +442,7 @@ i_sessions_create(GschemToplevel *w_current, const char *name, GError **err)
   }
   else {
 
-    g_set_error (err, G_FILE_ERROR, errno, "\"%s\": %s",
+    g_set_error (err, EDA_ERROR, errno, "\"%s\": %s",
                  session_file, strerror(errno));
 
     GEDA_FREE(session_file);
@@ -504,7 +504,7 @@ static int i_sessions_save(GschemToplevel *w_current, GError *err)
       w_current->session_name = record->session_name;
     }
     else {
-      g_set_error (&err, G_FILE_ERROR, errno, "%s: %s",
+      g_set_error (&err, EDA_ERROR, errno, "%s: %s",
       session_file, strerror(errno));
     }
   }

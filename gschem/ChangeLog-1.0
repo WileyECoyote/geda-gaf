@@ -1,3 +1,10 @@
+2016-11-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_sessions.c: Replace G_FILE_ERROR with EDA_ERROR domain.
+
+    * src/x/x_rc.c: Replace G_FILE_ERROR with EDA_ERROR domain, change
+      G_FILE_ERROR_NOENT to ENOENT.
+
 2016-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem.c: Conditionaly call XInitThreads().

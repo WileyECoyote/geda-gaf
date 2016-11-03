@@ -108,7 +108,7 @@ x_rc_parse_gschem_error (GError **err, void *retry_flag)
     const char *unbound_needle  = "Unbound variable:";
 
     /* Config files are allowed to be missing or skipped; check for this. */
-    if (g_error_matches (*err, G_FILE_ERROR, G_FILE_ERROR_NOENT) ||
+    if (g_error_matches (*err, EDA_ERROR, ENOENT) ||
         g_error_matches (*err, EDA_ERROR, EDA_ERROR_RC_TWICE)) {
       return;
     }
