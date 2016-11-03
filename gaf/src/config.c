@@ -162,7 +162,7 @@ cmd_config_impl (void *data, int argc, char **argv)
         eda_config_get_filename (parent) == NULL) continue;
 
     if (!eda_config_load (parent, &err)) {
-      if (!g_error_matches (err, G_FILE_ERROR, G_FILE_ERROR_NOENT)) {
+      if (!g_error_matches (err, EDA_ERROR, ENOENT)) {
         fprintf (stderr, _("WARNING: Could not load '%s': %s.\n"),
                  eda_config_get_filename (parent),
                  err->message);

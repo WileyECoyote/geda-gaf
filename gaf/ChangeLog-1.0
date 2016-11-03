@@ -1,3 +1,8 @@
+2016-11-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/config.c: Replace G_IO_ERROR with EDA_ERROR domain, change
+      G_FILE_ERROR_NOENT to ENOENT.
+
 2016-10-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src\Makefile.am: Add subdir-objects for to suppress warning from
