@@ -1778,9 +1778,8 @@ geda_picture_object_set_from_buffer (GedaObject    *object,
                                      unsigned int   len,
                                      GError       **error)
 {
-  GdkPixbuf    *pixbuf;
-  GInputStream *stream;
-  char         *tmp_name;
+  GdkPixbuf *pixbuf;
+  char      *tmp_name;
 
   int height;
   int width;
@@ -1790,15 +1789,52 @@ geda_picture_object_set_from_buffer (GedaObject    *object,
 
   /* Check that we can actually load the data before making any
    * changes to the object. */
+
+#if HAVE_GDK_PIXBUF_LOADER_WRITE
+
+  GdkPixbufLoader *loader;
+
+  loader = gdk_pixbuf_loader_new ();
+
+  if (gdk_pixbuf_loader_write (loader, (unsigned char*)data, len, error))
+  {
+    gdk_pixbuf_loader_close(loader, NULL);
+    pixbuf = gdk_pixbuf_loader_get_pixbuf (loader);
+
+    if (pixbuf) {
+      GEDA_REF (pixbuf);
+    }
+    else {
+      g_set_error (error, GDK_PIXBUF_ERROR, GDK_PIXBUF_ERROR_FAILED,
+                 _("Error processing image '%s'"), filename);
+    }
+  }
+  else
+  {
+    pixbuf = NULL;
+  }
+
+  GEDA_UNREF (loader);
+
+#else
+
+  GInputStream *stream;
+
   stream = G_INPUT_STREAM (g_memory_input_stream_new_from_data (data, len, NULL));
   pixbuf = gdk_pixbuf_new_from_stream (stream, NULL, error);
   GEDA_UNREF (stream);
 
-  if (pixbuf == NULL) return FALSE;
+#endif
 
+  if (pixbuf == NULL) {
+    return FALSE;
+  }
+
+  /* If object already has pixbuf, then loose it */
   if (object->picture->pixbuf != NULL) {
     GEDA_UNREF (object->picture->pixbuf);
   }
+
   object->picture->pixbuf = pixbuf;
 
   width  = gdk_pixbuf_get_width(pixbuf);
@@ -1809,7 +1845,7 @@ geda_picture_object_set_from_buffer (GedaObject    *object,
    * in effect, rounding the ratio to a whole number */
   object->picture->ratio = (double) width / height;
 
-  tmp_name = geda_utility_string_strdup (filename);
+  tmp_name = geda_strdup (filename);
   GEDA_FREE (object->picture->filename);
   object->picture->filename = tmp_name;
 
