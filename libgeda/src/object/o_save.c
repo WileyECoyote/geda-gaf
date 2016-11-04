@@ -395,31 +395,41 @@ geda_object_save (const GList *object_list, const char *filename, GError **err)
   char *path;
   int   result;
 
-  errno = 0;
-  path  = geda_get_dirname(filename);
+  errno  = 0;
+  result = 0;
+  path   = geda_get_dirname(filename);
 
-  /* Check to see if real filename is writable */
+  /* Check to see if path is writable */
   if (access(path, W_OK) != 0) {
     g_set_error (err, EDA_ERROR, errno, _("[%s]: because %s"),
                  path, strerror(errno));
-    result = 0;
   }
   else {
 
     FILE *output;
-    char *buffer;
 
+    errno  = 0;
     output = fopen (filename, "w" );
 
-    buffer = geda_object_save_buffer (object_list);
+    if (errno) {
+      g_set_error (err, EDA_ERROR, errno, "file <%s>: %s",
+                   filename, strerror(errno));
+    }
+    else {
 
-    fputs(buffer, output);
+      char *buffer = geda_object_save_buffer (object_list);
 
-    fclose(output);
+      if (buffer) {
 
-    GEDA_FREE (buffer);
+        fputs(buffer, output);
 
-    result = 1;
+        fclose(output);
+
+        GEDA_FREE (buffer);
+
+        result = 1;
+      }
+    }
   }
   GEDA_FREE (path);
   return result;

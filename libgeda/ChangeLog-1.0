@@ -1,7 +1,8 @@
 2016-11-04 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/object/o_save.c: Revise function geda_object_save; replace G_FILE_ERROR
-      with EDA_ERROR domain.
+    * src/object/o_save.c: Revise function geda_object_save; Check errno after
+      fopen and buffer after geda_object_save_buffer, replace G_FILE_ERROR with
+      EDA_ERROR domain.
 
 2016-11-03 Wiley E. Hill <wileyhill@gmail.com>
 
