@@ -1,5 +1,8 @@
 2016-11-04 Wiley E. Hill <wileyhill@gmail.com>
 
+    * libgeda/geda_errors.h: Start EDA_ERROR enumeration at 132, which should
+      be greater than those found in errno.h.
+
     * src/object/o_save.c: Revise function geda_object_save; Check errno after
       fopen and buffer after geda_object_save_buffer, replace G_FILE_ERROR with
       EDA_ERROR domain.

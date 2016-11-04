@@ -29,14 +29,22 @@
 /*! Domain for GErrors originating in libgeda. */
 #define EDA_ERROR eda_error_quark ()
 
-/*! Error numbers for errors originating in libgeda. */
+/*!
+ * \brief Error numbers for errors originating in libgeda.
+ * \par
+ * The starting number used here is above the POSIX.1 range defined
+ * in errno.h so that effectively, EDA_ERRORs become an extension of
+ * the standard error codes.
+ * A hard coded value is used here rather than requiring all source
+ * modules that include libgeda.h to have previously include errno.h.
+ */
 typedef enum {
-  EDA_ERROR_SCHEME,           /* A Scheme error occurred */
-  EDA_ERROR_RC_TWICE,         /* Attempted to read a configuration file twice */
-  EDA_ERROR_PARSE,            /* Schematic data could not be parsed. */
-  EDA_ERROR_NOLIB,            /* A requested library resource was missing. */
-  EDA_ERROR_LOOP,             /* The data model contains a circular dependency. */
-  EDA_ERROR_UNKNOWN_ENCODING, /* Schematic data was not UTF-8-encoded. */
+  EDA_ERROR_SCHEME = 132,      /* A Scheme error occurred */
+  EDA_ERROR_RC_TWICE,          /* Attempted to read a configuration file twice */
+  EDA_ERROR_PARSE,             /* Schematic data could not be parsed. */
+  EDA_ERROR_NOLIB,             /* A requested library resource was missing. */
+  EDA_ERROR_LOOP,              /* The data model contains a circular dependency. */
+  EDA_ERROR_UNKNOWN_ENCODING,  /* Schematic data was not UTF-8-encoded. */
   EDA_ERROR_NUM_ERRORS,
   EDA_ERROR_NULL_POINTER,
   EDA_ERROR_INVALID_PAGE
