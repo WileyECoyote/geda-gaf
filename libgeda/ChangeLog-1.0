@@ -14,6 +14,9 @@
       fopen and buffer after geda_object_save_buffer, replace G_FILE_ERROR with
       EDA_ERROR domain.
 
+    * tests/test_file.c: Change permissions of the data subdirectory back to
+      read/write in the dist source after automake manipulates.
+
 2016-11-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_file.c: Replace G_FILE_ERROR with EDA_ERROR domain, change

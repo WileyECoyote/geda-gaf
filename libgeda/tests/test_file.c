@@ -969,7 +969,18 @@ file_links_4_test(bool create)
   char *src_dir = getenv ("srcdir");
 
   if (src_dir) {
+
+    char *datadir;
+
     test_dir = src_dir;
+
+    /* Automake changes permissions of source directories,
+     * so change the data subdirectory back to read/write */
+    datadir = g_build_filename(test_dir, "data", NULL);
+
+    g_chmod(datadir, S_IRWXU|S_IRWXG);
+    g_free(datadir);
+
   }
   else {
     test_dir = getcwd(0,0);
@@ -982,7 +993,7 @@ file_links_4_test(bool create)
 
   if (create) {
     if (symlink(LINK2NOWHERE, filename)) {
-      fprintf(stderr, "%s unexpected failure: %s\n", __func__, strerror(errno));
+      fprintf(stderr, "%s unexpected failure: <%s> %s\n", __func__, filename, strerror(errno));
       exit (1);
     }
   }
@@ -994,7 +1005,7 @@ file_links_4_test(bool create)
 
   if (create) {
     if (symlink(LINK2SOMEWHERE, filename)) {
-      fprintf(stderr, "%s unexpected failure: %s\n", __func__, strerror(errno));
+      fprintf(stderr, "%s unexpected failure: <%s> %s\n", __func__, filename, strerror(errno));
       exit (1);
     }
   }
