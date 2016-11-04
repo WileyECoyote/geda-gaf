@@ -108,6 +108,12 @@ geda_object_read_buffer (GedaToplevel *toplevel, GList    *object_list,
     return NULL;
   }
 
+  if (!GEDA_IS_TOPLEVEL(toplevel)) {
+    g_set_error (err, EDA_ERROR, EINVAL,
+                 _("<%s> Invalid pointer to GedaToplevel"), __func__);
+    return NULL;
+  }
+
   tb   = geda_struct_textbuffer_new (buffer, size);
 
   line = geda_struct_textbuffer_next_line(tb);
@@ -443,7 +449,7 @@ error2:
  *                               NULL to disable error reporting
  *  \return object_list if successful read, or NULL on error.
  */
-GList *
+GList*
 geda_object_read (GedaToplevel *toplevel, GList *object_list, char *filename,
                   GError      **err)
 {
