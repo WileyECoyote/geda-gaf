@@ -198,7 +198,7 @@ fprintf(stderr, "%s: looking for %02x%02x%02x\n", __func__,(int)c1->r, (int)c1->
           fprintf(stderr, "%s: I see RED\n", __func__);
         }
         else {
-          g_set_error (err, G_FILE_ERROR, EDA_ERROR_NUM_ERRORS, "I see RED");
+          g_set_error (err, EDA_ERROR, EDA_ERROR_NUM_ERRORS, "I see RED");
         }
       }
       break;
