@@ -400,7 +400,7 @@ geda_object_save (const GList *object_list, const char *filename, GError **err)
 
   /* Check to see if real filename is writable */
   if (access(path, W_OK) != 0) {
-    g_set_error (err, G_FILE_ERROR, errno, _("[%s]: because %s"),
+    g_set_error (err, EDA_ERROR, errno, _("[%s]: because %s"),
                  path, strerror(errno));
     result = 0;
   }
