@@ -2,6 +2,8 @@
 
     * geda-gtk.m4: Add check existence of function gdk_pixbuf_loader_write.
 
+    * geda-x11.m4: Require check for FcPatternCreate and add lfontconfig.
+
 2016-11-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-gtk.m4: Add GDK_CFLAGS and GDK_LIBS separately from Gtk.

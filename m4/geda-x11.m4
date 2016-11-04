@@ -1,5 +1,5 @@
 # geda-x11.m4              -*-Autoconf-*-
-# serial 1.3
+# serial 1.4
 
 dnl gEDA Prebuild checks for GTK Library Headers and Functions
 dnl
@@ -80,6 +80,16 @@ AC_DEFUN([AX_CHECK_X11],
       fi
     fi #endif Xft was requested
   fi
+
+  if test x"$have_x11" = xyes -a "$have_xft" = yes; then
+    AC_CHECK_LIB(fontconfig, FcPatternCreate, have_fc=yes, have_fc=no)
+    AC_CHECK_HEADER(fontconfig/fontconfig.h)
+    if test "$have_fc" = yes -a "$ac_cv_header_fontconfig_fontconfig_h" = yes; then
+      X11_LIBS="$X11_LIBS -lfontconfig"
+      AC_DEFINE(HAVE_FC,1,[Define if you have FcPatternCreate])
+    fi
+  fi
+
   AC_SUBST(X11_LIBS)
   []dnl
 ])dnl AX_CHECK_X11
