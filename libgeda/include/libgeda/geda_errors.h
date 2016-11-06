@@ -26,7 +26,7 @@
 #ifndef __GEDA_ERRORS_H__
 #define __GEDA_ERRORS_H__
 
-/*! Domain for GErrors originating in libgeda. */
+/*! Domain for Errors originating in libgeda. */
 #define EDA_ERROR eda_error_quark ()
 
 /*!
