@@ -1493,7 +1493,7 @@ geda_entry_set_attributes (GedaEntry *entry, PangoAttrList *attrs)
  *  items reaches \a value.
  */
 void
-geda_entry_set_max_history (GedaEntry *entry, int value)
+geda_entry_set_max_history (GedaEntry *entry, unsigned int value)
 {
   entry->max_history = value;
 }
@@ -1503,7 +1503,7 @@ geda_entry_set_max_history (GedaEntry *entry, int value)
  * \par Function Description
  *  Gets the current max-history setting.
  */
-int
+unsigned int
 geda_entry_get_max_history (GedaEntry *entry)
 {
   return entry->max_history;
@@ -1514,14 +1514,14 @@ geda_entry_get_max_history (GedaEntry *entry)
  *  \par Function Description
  *
  */
-int
+unsigned int
 geda_entry_get_max_length (GedaEntry *entry)
 {
-  volatile int max;
+  volatile unsigned int max;
 
   g_object_get (entry, "max-length", &max, NULL);
 
-  return (int)max;
+  return (unsigned int)max;
 }
 
 /*! \todo Finish function documentation!!!
@@ -1530,7 +1530,7 @@ geda_entry_get_max_length (GedaEntry *entry)
  *
  */
 void
-geda_entry_set_max_length (GedaEntry *entry, int max)
+geda_entry_set_max_length (GedaEntry *entry, unsigned int max)
 {
    g_object_set (entry, "max-length", max, NULL);
 }
@@ -1959,7 +1959,7 @@ geda_entry_widget_set_input_case (GtkWidget *entry, int mode)
  *  \par Function Description
  *
  */
-int
+unsigned int
 geda_entry_widget_get_max_history (GtkWidget *entry)
 {
   return geda_entry_get_max_history (GEDA_ENTRY(entry));
@@ -1971,7 +1971,7 @@ geda_entry_widget_get_max_history (GtkWidget *entry)
  *
  */
 void
-geda_entry_widget_set_max_history (GtkWidget *entry, int value)
+geda_entry_widget_set_max_history (GtkWidget *entry, unsigned int value)
 {
   geda_entry_set_max_history (GEDA_ENTRY(entry), value);
 }
@@ -1981,7 +1981,7 @@ geda_entry_widget_set_max_history (GtkWidget *entry, int value)
  *  \par Function Description
  *
  */
-int
+unsigned int
 geda_entry_widget_get_max_length (GtkWidget *entry)
 {
   return geda_entry_get_max_length (GEDA_ENTRY(entry));
@@ -1993,7 +1993,7 @@ geda_entry_widget_get_max_length (GtkWidget *entry)
  *
  */
 void
-geda_entry_widget_set_max_length (GtkWidget *entry, int max)
+geda_entry_widget_set_max_length (GtkWidget *entry, unsigned int max)
 {
   geda_entry_set_max_length (GEDA_ENTRY(entry), max);
 }
@@ -2319,7 +2319,7 @@ geda_entry_new_with_history (GList **history)
  * \return a new #GedaEntry
  */
 GtkWidget*
-geda_entry_new_with_max_length (int max_length)
+geda_entry_new_with_max_length (unsigned int max_length)
 {
   GtkWidget *entry;
   entry = geda_entry_new ();
