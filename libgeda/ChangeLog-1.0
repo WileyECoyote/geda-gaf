@@ -1,3 +1,8 @@
+2016-11-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/file/f_get.c: Eliminate save_errno in get_contents_regfile and
+      geda_file_get_contents.
+
 2016-11-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/utility/u_string.c: Add function geda_utility_string_get_valid_utf8

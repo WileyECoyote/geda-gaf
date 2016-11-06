@@ -1,7 +1,7 @@
 /* -*- C header file: f_get.c indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
  *
- * Copyright (C) 2013-2015 Wiley Edward Hill
- * Copyright (C) 2013-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2013-2016 Wiley Edward Hill
+ * Copyright (C) 2013-2016 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
  * Date: October, 31, 2012
  * Contributing Author: Wiley Edward Hill
  *
-*/
+ */
 
 #include <config.h>
 
@@ -327,16 +327,12 @@ get_contents_regfile (const char   *filename,
 
         if (errno != EINTR) {
 
-          int save_errno = errno;
-
-          g_free (buf); /* This could modify errno */
-
-          g_set_error (err, EDA_ERROR, save_errno,
+          g_set_error (err, EDA_ERROR, errno,
                      _("Failed to read from file '%s': %s"),
                         filename,
-                        strerror(save_errno));
-
-                       goto error;
+                        strerror(errno));
+          g_free (buf); /* This could modify errno */
+          goto error;
         }
       }
       else if (rc == 0) {
@@ -426,15 +422,10 @@ geda_file_get_contents(const char  *filename,
 
     else if (fstat (fd, &stat_buf) < 0) {
 
-      int save_errno;
-
-      save_errno = errno;
-
-      close (fd);
-
-      g_set_error (err, EDA_ERROR, save_errno,
+      g_set_error (err, EDA_ERROR, errno,
                  _("Failed to get attributes of file '%s': fstat() failed: %s"),
                     filename, strerror (errno));
+      close (fd);
     }
     else if (stat_buf.st_size > 0 && S_ISREG (stat_buf.st_mode)) {
 
