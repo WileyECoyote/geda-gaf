@@ -1,3 +1,8 @@
+2016-11-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/utility/u_string.c: Add function geda_utility_string_get_valid_utf8
+      with alias geda_get_utf8.
+
 2016-11-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_parsecmd.h: Add command line parser for test options.

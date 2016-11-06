@@ -117,6 +117,56 @@ geda_utility_string_concat (const char *string1, ...)
 }
 
 /*! U0602
+ * \brief Get Valid UTF8 string from string
+ * \par Function Description
+ *  Returns a new allocated utf8 encoding string containing valid
+ *  chars from the array pointed to by \a instr.
+ */
+char*
+geda_utility_string_get_valid_utf8 (const char *instr)
+{
+  GString    *string;
+  const char *remainder;
+  const char *invalid;
+
+  int remaining_bytes, valid_bytes;
+
+  g_return_val_if_fail (instr != NULL, NULL);
+
+  string = NULL;
+  remainder = instr;
+  remaining_bytes = strlen (instr);
+
+  while (remaining_bytes != 0) {
+
+    if (g_utf8_validate (remainder, remaining_bytes, &invalid))
+      break;
+
+    valid_bytes = invalid - remainder;
+
+    if (string == NULL)
+      string = g_string_sized_new (remaining_bytes);
+
+    g_string_append_len (string, remainder, valid_bytes);
+    /* append U+FFFD REPLACEMENT CHARACTER */
+    g_string_append (string, "\357\277\275");
+
+    remaining_bytes -= valid_bytes + 1;
+    remainder = invalid + 1;
+  }
+
+  if (string == NULL) {
+    return g_strdup (instr);
+  }
+
+  g_string_append (string, remainder);
+
+  g_assert (g_utf8_validate (string->str, -1, NULL));
+
+  return g_string_free (string, FALSE);
+}
+
+/*! U0603
  * \brief itoa() for c
  * \par Function Description
  *  Translate an integer to askii, like itoa cpp function
@@ -173,7 +223,7 @@ geda_utility_string_int2str(int value, char *str, int radix) {
   return str;
 }
 
-/*! U0603
+/*! U0604
  * \brief Interrogate string for alpha-numeric characters
  * \par Function Description
  *  Determines if a string contains only alpha-numeric character.
@@ -197,7 +247,7 @@ geda_utility_string_isalnum (const char *str)
   return TRUE;
 }
 
-/*! U0604
+/*! U0605
  * \brief Find substring in string, ignore case.
  * \par Function Description
  *  Uses geda_utility_string_stricmp or geda_utility_string_strncmpi to
@@ -243,7 +293,7 @@ geda_utility_string_istr(const char *str1, const char *str2)
   return NULL;
 }
 
-/*! U0605
+/*! U0606
  * \brief Parse a c String for X and Y integer pair
  * \par Function Description
  *  Iterates over a string looking for askii digits, parenthesis are
@@ -337,7 +387,7 @@ geda_utility_string_parse_xy(const char *string, int *x, int *y)
   return valid;
 }
 
-/*! U0606
+/*! U0607
  * \brief Remove Last Line Feed and Carriage Return from string
  * \par Function Description
  *  This function replaces trailing 0x0D and 0x0A, Carriage Return
@@ -366,7 +416,7 @@ geda_utility_string_remove_last_nl(char *string)
   return(string);
 }
 
-/*! U0607
+/*! U0608
  * \brief Remove Line Feed and Carriage Return Characters from string
  * \par Function Description
  *  This function searches a string and replaces the first occurrences of
@@ -393,7 +443,7 @@ geda_utility_string_remove_nl(char *string)
   return (string);
 }
 
-/*! U0608
+/*! U0609
  * \brief return c pointer to SCM string.
  * \par Function Description
  *  String utility function to get a c pointer to a scm string.
@@ -414,7 +464,7 @@ geda_utility_string_scm2c( char *scm_str_name) /* WEH: couldn't find it, made it
   return NULL;
 }
 
-/*! U0609
+/*! U0610
  * \brief  Sort an array of Characters
  * \par Function Description
  *  sort array using qsort functions
@@ -437,7 +487,7 @@ geda_utility_string_sort_array( char *strings[], size_t strings_size) {
 }
 
 /* Copyright (C) 1998, 1999, 2000 Kazu Hirata / Ales Hvezda */
-/*! U0610
+/*! U0611
  * \brief Split a string using an optional delimiter
  * \par Function Description
  *  If \a delimiter is zero a copy of string is returned.
@@ -513,7 +563,7 @@ geda_utility_string_split(char *string, char delimiter, int count)
   return NULL;
 }
 
-/*! U0611 - geda_sprintf
+/*! U0612 - geda_sprintf
  * \brief  Get formated string using printf like specifiers
  * \par Function Description
  * \returns a newly allocated string that is the result of
@@ -572,7 +622,7 @@ geda_utility_string_sprintf (const char *format, ...)
   return buffer;
 }
 
-/*! U0612
+/*! U0613
  * \brief  Get a Duplicate string
  * \par Function Description
  * \returns a newly allocated string copy of \a str.
@@ -590,7 +640,7 @@ geda_utility_string_strdup (const char *str)
   return ptr ? (char*)memcpy(ptr, str, len) : NULL;
 }
 
-/*! U0613
+/*! U0614
  * \brief Check for equal strings
  * \par Function Description
  *  This function compares two strings and returns TRUE if
@@ -610,7 +660,7 @@ geda_utility_string_strequal(const char *str1, const char *str2)
   return ((*str1 == '\0') && (*str2 == '\0'));
 }
 
-/*! U0614
+/*! U0615
  * \brief Compare strings ignoring case
  * \par Function Description
  *  This is a garden varity string compare using toupper
@@ -635,7 +685,7 @@ geda_utility_string_stricmp(const char *str1, const char *str2)
   return !((*str1 == '\0') && (*str2 == '\0'));
 }
 
-/*! U0615
+/*! U0616
  * \brief Non case sensitive search for string in a string
  * \par Function Description
  * \retval  A non negative result is the position needle was found
@@ -676,7 +726,7 @@ geda_utility_string_stristr ( const char *haystack, const char *needle)
   return result;
 }
 
-/*! U0616
+/*! U0617
  * \brief Replace substring in string ignoring case
  * \par Function Description
  *  This function replaces the first occurrence of str1 with str2 in
@@ -747,7 +797,7 @@ geda_utility_string_strisubst(char *source, char *old_str, char *new_str)
   return NULL;
 }
 
-/*! U0617
+/*! U0618
  * \brief Compare n characters ignoring case.
  * \par Function Description
  *  Another garden varity string compare using toupper on both inputs.
@@ -791,7 +841,7 @@ geda_utility_string_strncmpi(const char *str1, const char *str2, int n)
           return ((*str1 > *str2 ) ? -1 : 1);
 }
 
-/*! U0618
+/*! U0619
  * \brief  Duplicate a specified number of characters
  * \par Function Description
  *  The newly allocated NULL terminated string.
@@ -824,7 +874,7 @@ geda_utility_string_strndup(const char *str, int n)
   return ptr;
 }
 
-/*! U0619
+/*! U0620
  * \brief  Get the formated size of a string
  * \par Function Description
  *  Returns the number of bytes needed to hold the string formed
@@ -859,7 +909,7 @@ geda_utility_string_strsize (const char *format, va_list args)
   return size;
 }
 
-/*! U0620
+/*! U0621
  * \brief strstr_rep for c
  * \par Function Description
  *  Recursively replace substring in string with new string. This
@@ -997,7 +1047,7 @@ geda_utility_string_strsubst(char *source, char *old_str, char *new_str)
   return NULL;
 }
 
-/*! U0622
+/*! U0623
  * \brief  Get Word Count
  * \par Function Description
  *  returns the number of spaces in a string plus one.

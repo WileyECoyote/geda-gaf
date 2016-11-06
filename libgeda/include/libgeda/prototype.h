@@ -797,6 +797,7 @@ const CLibSymbol *geda_struct_clib_get_symbol_by_name      (const char *name);
 
 /* u_string.c */
          char   *geda_utility_string_concat           (const char *string1, ...) WARN_UNUSED;
+         char   *geda_utility_string_get_valid_utf8   (const char *string) WARN_UNUSED;
          char   *geda_utility_string_int2str          (int value, char *str, int radix);
          bool    geda_utility_string_isalnum          (const char *string);
    const char   *geda_utility_string_istr             (const char *str1, const char *str2);

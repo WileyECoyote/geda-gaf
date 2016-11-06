@@ -605,9 +605,11 @@ int test_strings (void)
     result++;
   }
 
-  /* === Function 02: geda_utility_string_int2str === */
+  /* === Function 02: geda_utility_string_get_valid_utf8 === */
 
-  char U02_val[10];
+  /* === Function 03: geda_utility_string_int2str === */
+
+  char U03_val[10];
 
   string = geda_string_int2str(0, NULL, 10);
   if (string) {                           /* NULL input */
@@ -615,253 +617,253 @@ int test_strings (void)
     result++;
   }
 
-  string = geda_string_int2str(0, U02_val, 10);
+  string = geda_string_int2str(0, U03_val, 10);
   if (strcmp(string, "0")) {              /* Zero */
     fprintf(stderr, "FAILED: (U060201) geda_string_int2str <%s>\n", string);
     result++;
   }
 
-  string = geda_string_int2str(123456789, U02_val, 10);
+  string = geda_string_int2str(123456789, U03_val, 10);
   if (strcmp(string, "123456789")) {      /* 9 digits plus NULL */
     fprintf(stderr, "FAILED: (U060202) geda_string_int2str <%s>\n", string);
     result++;
   }
 
-  string = geda_string_int2str(-12345678, U02_val, 10);
+  string = geda_string_int2str(-12345678, U03_val, 10);
   if (strcmp(string, "-12345678")) {      /* Neg 8 digits plus NULL */
     fprintf(stderr, "FAILED: (U060203) geda_string_int2str <%s>\n", string);
     result++;
   }
 
-  string = geda_string_int2str(345.6, U02_val, 10);
+  string = geda_string_int2str(345.6, U03_val, 10);
   if (strcmp(string, "345")) {            /* Only integers returned */
     fprintf(stderr, "FAILED: (U060204) geda_string_int2str <%s>\n", string);
     result++;
   }
 
-  string = geda_string_int2str(16, U02_val, 16);
+  string = geda_string_int2str(16, U03_val, 16);
   if (strcmp(string, "10")) {             /* Is hex */
     fprintf(stderr, "FAILED: (U060205) geda_string_int2str <%s>\n", string);
     result++;
   }
 
-  string = geda_string_int2str(16, U02_val, 8);
+  string = geda_string_int2str(16, U03_val, 8);
   if (strcmp(string, "20")) {             /* 16 Dec = 20 base 8 */
     fprintf(stderr, "FAILED: (U060206) geda_string_int2str <%s>\n", string);
     result++;
   }
 
-  /* === Function 03: geda_utility_string_isalnum === */
+  /* === Function 04: geda_utility_string_isalnum === */
 
   value = geda_utility_string_isalnum(NULL);
   if (value) {                            /* NULL input */
-    fprintf(stderr, "FAILED: (U060300) geda_utility_string_isalnum\n");
+    fprintf(stderr, "FAILED: (U060400) geda_utility_string_isalnum\n");
     result++;
   }
 
   value = geda_utility_string_isalnum("60");
   if (!value) {                           /* NULL input */
-    fprintf(stderr, "FAILED: (U060301) geda_utility_string_isalnum <%d>\n", value);
+    fprintf(stderr, "FAILED: (U060401) geda_utility_string_isalnum <%d>\n", value);
     result++;
   }
 
   value = geda_utility_string_isalnum(str4);
   if (!value) {                           /* NULL input */
-    fprintf(stderr, "FAILED: (U060302) geda_utility_string_isalnum <%d>\n", value);
+    fprintf(stderr, "FAILED: (U060402) geda_utility_string_isalnum <%d>\n", value);
     result++;
   }
 
   value = geda_utility_string_isalnum("$#!");
   if (value) {                            /* NULL input */
-    fprintf(stderr, "FAILED: (U060303) geda_utility_string_isalnum <%d>\n", value);
+    fprintf(stderr, "FAILED: (U060403) geda_utility_string_isalnum <%d>\n", value);
     result++;
   }
 
-  /* === Function 04: geda_utility_string_istr  === */
+  /* === Function 05: geda_utility_string_istr  === */
 
   const char *ptr;
 
   ptr = geda_string_istr(NULL, NULL);
   if (ptr) {                              /* NULL input */
-    fprintf(stderr, "FAILED: (U060400) geda_string_istr <%s>\n", ptr);
+    fprintf(stderr, "FAILED: (U060500) geda_string_istr <%s>\n", ptr);
     result++;
   }
 
   ptr = geda_string_istr(str2, str1);
   if (ptr) {                              /* doo not in dog */
-    fprintf(stderr, "FAILED: (U060401) geda_string_istr NULL\n");
+    fprintf(stderr, "FAILED: (U060501) geda_string_istr NULL\n");
     result++;
   }
 
   ptr = geda_string_istr(str3, str1);
   if (!ptr) {                             /* NULL returned */
-    fprintf(stderr, "FAILED: (U060402A) geda_string_istr NULL\n");
+    fprintf(stderr, "FAILED: (U060502A) geda_string_istr NULL\n");
     result++;
   }
   else if (strcmp(ptr, "dog")) {          /* Dog in hounddog */
-    fprintf(stderr, "FAILED: (U060402B) geda_string_istr <%s>\n", ptr);
+    fprintf(stderr, "FAILED: (U060502B) geda_string_istr <%s>\n", ptr);
     result++;
   }
 
   ptr = geda_string_istr(str4, str1);
   if (!ptr) {                             /* NULL returned */
-    fprintf(stderr, "FAILED: (U060403A) geda_string_istr NULL\n");
+    fprintf(stderr, "FAILED: (U060503A) geda_string_istr NULL\n");
     result++;
   }
   else if (strcmp(ptr, "DOGBONE")) {      /* Dog in DOGBONE */
-    fprintf(stderr, "FAILED: (U060403B) geda_string_istr <%s>\n", ptr);
+    fprintf(stderr, "FAILED: (U060503B) geda_string_istr <%s>\n", ptr);
     result++;
   }
 
-  /* === Function 05: geda_utility_string_parse_xy === */
+  /* === Function 06: geda_utility_string_parse_xy === */
 
-  int X05, Y05;
+  int X06, Y06;
 
-  value = geda_string_parse_xy(NULL, &X05, &Y05);
+  value = geda_string_parse_xy(NULL, &X06, &Y06);
   if (value) {                            /* NULL input */
-    fprintf(stderr, "FAILED: (U060500A) geda_string_parse_xy <%d>\n", value);
+    fprintf(stderr, "FAILED: (U060600A) geda_string_parse_xy <%d>\n", value);
     result++;
   }
 
-  X05 = Y05 = 1;
+  X06 = Y06 = 1;
 
-  value = geda_string_parse_xy("0,0", NULL, &Y05);
+  value = geda_string_parse_xy("0,0", NULL, &Y06);
   if (!value) {                            /* NULL X, Y okay */
-    fprintf(stderr, "FAILED: (U060500B1) geda_string_parse_xy <%d>\n", value);
+    fprintf(stderr, "FAILED: (U060600B1) geda_string_parse_xy <%d>\n", value);
     result++;
   }
   else {
-    if (Y05 != 0) {
-      fprintf(stderr, "FAILED: (U060500B2) geda_string_parse_xy <%d>\n", Y05);
+    if (Y06 != 0) {
+      fprintf(stderr, "FAILED: (U060600B2) geda_string_parse_xy <%d>\n", Y06);
       result++;
     }
   }
 
-  X05 = Y05 = 1;
+  X06 = Y06 = 1;
 
-  value = geda_string_parse_xy("0,0", &X05, NULL);
+  value = geda_string_parse_xy("0,0", &X06, NULL);
   if (!value) {                            /* NULL Y, X okay */
-    fprintf(stderr, "FAILED: (U060500C1) geda_string_parse_xy <%d>\n", value);
+    fprintf(stderr, "FAILED: (U060600C1) geda_string_parse_xy <%d>\n", value);
     result++;
   }
   else {
-    if (X05 != 0) {
-      fprintf(stderr, "FAILED: (U060500C2) geda_string_parse_xy <%d>\n", X05);
+    if (X06 != 0) {
+      fprintf(stderr, "FAILED: (U060600C2) geda_string_parse_xy <%d>\n", X06);
       result++;
     }
   }
 
-  X05 = Y05 = 1;
+  X06 = Y06 = 1;
 
-  value = geda_string_parse_xy("0,0", &X05, &Y05);
+  value = geda_string_parse_xy("0,0", &X06, &Y06);
   if (!value) {                            /* NULL input */
-    fprintf(stderr, "FAILED: (U060501A) geda_string_parse_xy <%d>\n", value);
+    fprintf(stderr, "FAILED: (U060601A) geda_string_parse_xy <%d>\n", value);
     result++;
   }
   else {
-    if (X05 != 0) {
-      fprintf(stderr, "FAILED: (U060501B) geda_string_parse_xy <%d>\n", value);
+    if (X06 != 0) {
+      fprintf(stderr, "FAILED: (U060601B) geda_string_parse_xy <%d>\n", value);
       result++;
     }
-    if (Y05 != 0) {
-      fprintf(stderr, "FAILED: (U060501C) geda_string_parse_xy <%d>\n", Y05);
+    if (Y06 != 0) {
+      fprintf(stderr, "FAILED: (U060601C) geda_string_parse_xy <%d>\n", Y06);
       result++;
     }
   }
 
-  X05 = Y05 = 1;
+  X06 = Y06 = 1;
 
-  value = geda_string_parse_xy("(0,0)", &X05, &Y05);
+  value = geda_string_parse_xy("(0,0)", &X06, &Y06);
   if (!value) {                            /* NULL input */
-    fprintf(stderr, "FAILED: (U060502A) geda_string_parse_xy <%d>\n", value);
+    fprintf(stderr, "FAILED: (U060602A) geda_string_parse_xy <%d>\n", value);
     result++;
   }
   else {
-    if (X05 != 0) {
-      fprintf(stderr, "FAILED: (U060502B) geda_string_parse_xy <%d>\n", value);
+    if (X06 != 0) {
+      fprintf(stderr, "FAILED: (U060602B) geda_string_parse_xy <%d>\n", value);
       result++;
     }
-    if (Y05 != 0) {
-      fprintf(stderr, "FAILED: (U060502C) geda_string_parse_xy <%d>\n", Y05);
+    if (Y06 != 0) {
+      fprintf(stderr, "FAILED: (U060602C) geda_string_parse_xy <%d>\n", Y06);
       result++;
     }
   }
 
-  X05 = Y05 = 1;
+  X06 = Y06 = 1;
 
-  value = geda_string_parse_xy("4500 380", &X05, &Y05);
+  value = geda_string_parse_xy("4500 380", &X06, &Y06);
   if (!value) {                           /* NULL input */
-    fprintf(stderr, "FAILED: (U060503A) geda_string_parse_xy <%d>\n", value);
+    fprintf(stderr, "FAILED: (U060603A) geda_string_parse_xy <%d>\n", value);
     result++;
   }
   else {
-    if (X05 != 4500) {
-      fprintf(stderr, "FAILED: (U060503B) geda_string_parse_xy <%d>\n", X05);
+    if (X06 != 4500) {
+      fprintf(stderr, "FAILED: (U060603B) geda_string_parse_xy <%d>\n", X06);
       result++;
     }
-    if (Y05 != 380) {
-      fprintf(stderr, "FAILED: (U060503C) geda_string_parse_xy <%d>\n", Y05);
+    if (Y06 != 380) {
+      fprintf(stderr, "FAILED: (U060603C) geda_string_parse_xy <%d>\n", Y06);
       result++;
     }
   }
 
-  X05 = Y05 = 1;
+  X06 = Y06 = 1;
 
-  value = geda_string_parse_xy("2200", &X05, &Y05);
+  value = geda_string_parse_xy("2200", &X06, &Y06);
   if (!value) {                           /* No y input, x valid */
-    fprintf(stderr, "FAILED: (U060504A) geda_string_parse_xy <%d>\n", value);
+    fprintf(stderr, "FAILED: (U060604A) geda_string_parse_xy <%d>\n", value);
     result++;
   }
   else {
-    if (X05 != 2200) {
-      fprintf(stderr, "FAILED: (U060504B) geda_string_parse_xy <%d>\n", X05);
+    if (X06 != 2200) {
+      fprintf(stderr, "FAILED: (U060604B) geda_string_parse_xy <%d>\n", X06);
       result++;
     }
-    if (Y05 != 0) {
-      fprintf(stderr, "FAILED: (U060504C) geda_string_parse_xy <%d>\n", Y05);
+    if (Y06 != 0) {
+      fprintf(stderr, "FAILED: (U060604C) geda_string_parse_xy <%d>\n", Y06);
       result++;
     }
   }
 
-  X05 = Y05 = 1;
+  X06 = Y06 = 1;
 
-  value = geda_string_parse_xy(",313", NULL, &Y05);
+  value = geda_string_parse_xy(",313", NULL, &Y06);
   if (!value) {                           /* NULL x io, y valid */
-    fprintf(stderr, "FAILED: (U060505A) geda_string_parse_xy <%d>\n", value);
+    fprintf(stderr, "FAILED: (U060605A) geda_string_parse_xy <%d>\n", value);
     result++;
   }
   else {
-    if (X05 != 1) {
-      fprintf(stderr, "FAILED: (U060505B) geda_string_parse_xy <%d>\n", X05);
+    if (X06 != 1) {
+      fprintf(stderr, "FAILED: (U060605B) geda_string_parse_xy <%d>\n", X06);
       result++;
     }
-    if (Y05 != 313) {
-      fprintf(stderr, "FAILED: (U060505C) geda_string_parse_xy <%d>\n", Y05);
+    if (Y06 != 313) {
+      fprintf(stderr, "FAILED: (U060605C) geda_string_parse_xy <%d>\n", Y06);
       result++;
     }
   }
 
-  X05 = Y05 = 1;
+  X06 = Y06 = 1;
 
-  value = geda_string_parse_xy("", &X05, &Y05);
+  value = geda_string_parse_xy("", &X06, &Y06);
   if (value) {                            /* empty string */
-    fprintf(stderr, "FAILED: (U060505A) geda_string_parse_xy <%d>\n", value);
+    fprintf(stderr, "FAILED: (U060605A) geda_string_parse_xy <%d>\n", value);
     result++;
   }
   else {
-    if (X05 != 1) {
-      fprintf(stderr, "FAILED: (U060505B) geda_string_parse_xy <%d>\n", X05);
+    if (X06 != 1) {
+      fprintf(stderr, "FAILED: (U060605B) geda_string_parse_xy <%d>\n", X06);
       result++;
     }
-    if (Y05 != 1) {
-      fprintf(stderr, "FAILED: (U060505C) geda_string_parse_xy <%d>\n", Y05);
+    if (Y06 != 1) {
+      fprintf(stderr, "FAILED: (U060605C) geda_string_parse_xy <%d>\n", Y06);
       result++;
     }
   }
 
-  /* === Function 06: geda_utility_string_remove_last_nl   === */
+  /* === Function 07: geda_utility_string_remove_last_nl   === */
 
-  static const struct _TestData U06_str[] =
+  static const struct _TestData U07_str[] =
   {
     { "",       ""     },
     { "a",      "a"    },
@@ -875,37 +877,37 @@ int test_strings (void)
 
   string = geda_remove_last_newline(NULL);
   if (string) {                           /* NULL input */
-    fprintf(stderr, "FAILED: (U060600) geda_remove_last_newline <%s>\n", string);
+    fprintf(stderr, "FAILED: (U060700) geda_remove_last_newline <%s>\n", string);
     result++;
   }
 
-  count = sizeof(U06_str) / sizeof(struct _TestData);
+  count = sizeof(U07_str) / sizeof(struct _TestData);
 
   for (index = 0; index < count; index++) {
 
-    char *expected = U06_str[index].expected;
-    char *input    = geda_strdup (U06_str[index].input);
+    char *expected = U07_str[index].expected;
+    char *input    = geda_strdup (U07_str[index].input);
 
     string = geda_remove_last_newline (input);
 
     if (string) {
-      if (strcmp(string, expected)) {      /* See structure U06_str */
-        fprintf(stderr, "FAILED: (U060601A-%d) geda_remove_last_newline <%s>\n",index, string);
+      if (strcmp(string, expected)) {      /* See structure U07_str */
+        fprintf(stderr, "FAILED: (U060701A-%d) geda_remove_last_newline <%s>\n",index, string);
         result++;
       }
       free (input);
     }
     else {
-      if (strcmp(string, expected)) {      /* See structure U06_str */
-        fprintf(stderr, "FAILED: (U060601B-%d) expected <%s> NULL\n",index, expected);
+      if (strcmp(string, expected)) {      /* See structure U07_str */
+        fprintf(stderr, "FAILED: (U060701B-%d) expected <%s> NULL\n",index, expected);
         result++;
       }
     }
   }
 
-  /* === Function 07: geda_utility_string_remove_nl === */
+  /* === Function 08: geda_utility_string_remove_nl === */
 
-  static const struct _TestData U07_str[] =
+  static const struct _TestData U08_str[] =
   {
     { "",       ""  },
     { "a",      "a" },
@@ -919,144 +921,144 @@ int test_strings (void)
 
   string = geda_remove_newline(NULL);
   if (string) {                           /* NULL input */
-    fprintf(stderr, "FAILED: (U060700) geda_remove_newline <%s>\n", string);
+    fprintf(stderr, "FAILED: (U060800) geda_remove_newline <%s>\n", string);
     result++;
   }
 
-  count = sizeof(U07_str) / sizeof(struct _TestData);
+  count = sizeof(U08_str) / sizeof(struct _TestData);
 
   for (index = 0; index < count; index++) {
 
-    char *expected = U07_str[index].expected;
-    char *input    = geda_strdup (U07_str[index].input);
+    char *expected = U08_str[index].expected;
+    char *input    = geda_strdup (U08_str[index].input);
 
     string = geda_remove_newline (input);
 
     if (string) {
-      if (strcmp(string, expected)) {      /* See structure U07_str */
-        fprintf(stderr, "FAILED: (U060701A-%d) geda_remove_newline <%s>\n",index, string);
+      if (strcmp(string, expected)) {      /* See structure U08_str */
+        fprintf(stderr, "FAILED: (U060801A-%d) geda_remove_newline <%s>\n",index, string);
         result++;
       }
       free (input);
     }
     else {
-      if (strcmp(string, expected)) {      /* See structure U07_str */
-        fprintf(stderr, "FAILED: (U060701B-%d) expected <%s> NULL\n",index, expected);
+      if (strcmp(string, expected)) {      /* See structure U08_str */
+        fprintf(stderr, "FAILED: (U060801B-%d) expected <%s> NULL\n",index, expected);
         result++;
       }
     }
   }
 
-  /* === Function 08: geda_utility_string_scm2c === */
+  /* === Function 09: geda_utility_string_scm2c === */
 
   string = geda_utility_string_scm2c(NULL);
   if (string) {                           /* NULL input */
-    fprintf(stderr, "FAILED: (U060800) geda_string_scm2c <%s>\n", string);
+    fprintf(stderr, "FAILED: (U060900) geda_string_scm2c <%s>\n", string);
     result++;
   }
 
   /* Additional tests not performed because rc files were not processed */
 
-  /* === Function 09: geda_utility_string_sort_array === */
+  /* === Function 10: geda_utility_string_sort_array === */
 
-  char *arr_090[] = {"Black", "red", "blue", "pink", "lavender"};
+  char *arr_010[] = {"Black", "red", "blue", "pink", "lavender"};
 
-  geda_sort_string_array (arr_090, sizeof(arr_090));
-  if (strcmp(arr_090[0], "Black"))
+  geda_sort_string_array (arr_010, sizeof(arr_010));
+  if (strcmp(arr_010[0], "Black"))
   {
-    fprintf(stderr, "FAILED: (U060900A) geda_sort_string_array <%s>\n", arr_090[0]);
+    fprintf(stderr, "FAILED: (U061000A) geda_sort_string_array <%s>\n", arr_010[0]);
     result++;
   }
 
-  if (strcmp(arr_090[1], "blue"))
+  if (strcmp(arr_010[1], "blue"))
   {
-    fprintf(stderr, "FAILED: (U060900B) geda_sort_string_array <%s>\n", arr_090[1]);
+    fprintf(stderr, "FAILED: (U061000B) geda_sort_string_array <%s>\n", arr_010[1]);
     result++;
   }
 
-  if (strcmp(arr_090[2], "lavender"))
+  if (strcmp(arr_010[2], "lavender"))
   {
-    fprintf(stderr, "FAILED: (U060900C) geda_sort_string_array <%s>\n", arr_090[2]);
+    fprintf(stderr, "FAILED: (U061000C) geda_sort_string_array <%s>\n", arr_010[2]);
     result++;
   }
 
-  if (strcmp(arr_090[3], "pink"))
+  if (strcmp(arr_010[3], "pink"))
   {
-    fprintf(stderr, "FAILED: (U060900D) geda_sort_string_array <%s>\n", arr_090[3]);
+    fprintf(stderr, "FAILED: (U061000D) geda_sort_string_array <%s>\n", arr_010[3]);
     result++;
   }
 
-  if (strcmp(arr_090[4], "red"))
+  if (strcmp(arr_010[4], "red"))
   {
-    fprintf(stderr, "FAILED: (U060900E) geda_sort_string_array <%s>\n", arr_090[4]);
+    fprintf(stderr, "FAILED: (U061000E) geda_sort_string_array <%s>\n", arr_010[4]);
     result++;
   }
 
-  /* === Function 10: geda_utility_string_split === */
+  /* === Function 11: geda_utility_string_split === */
 
-  char *str_100 = "Kansas=Topeka=Capital";
+  char *str_110 = "Kansas=Topeka=Capital";
 
   string = geda_strsplit(NULL, '=', 0); /* NULL Argument 1 */
   if (string != NULL) {
-    fprintf(stderr, "FAILED: (U061000A) geda_strsplit <%s>\n", string);
+    fprintf(stderr, "FAILED: (U061100A) geda_strsplit <%s>\n", string);
     result++;
   }
 
-  string = geda_strsplit(str_100, 0, 0); /* NULL Argument 2 defaults space */
+  string = geda_strsplit(str_110, 0, 0); /* NULL Argument 2 defaults space */
   if (string == NULL) {
-    fprintf(stderr, "FAILED: (U061000B) geda_strsplit <%s>\n", string);
+    fprintf(stderr, "FAILED: (U061100B) geda_strsplit <%s>\n", string);
     result++;
   }
   else {
 
     /* Orginal string should be returned because there is no space */
-    if (strcmp(string, str_100) != 0) {
-      fprintf(stderr, "FAILED: (U061000C) geda_strsplit <%s>\n", string);
+    if (strcmp(string, str_110) != 0) {
+      fprintf(stderr, "FAILED: (U061100C) geda_strsplit <%s>\n", string);
       result++;
     }
 
     free(string);
   }
 
-  string = geda_strsplit(str_100, '=', 0);
+  string = geda_strsplit(str_110, '=', 0);
   if (string == NULL) {
-    fprintf(stderr, "FAILED: (U061001A) geda_strsplit\n");
+    fprintf(stderr, "FAILED: (U061101A) geda_strsplit\n");
     result++;
   }
   else {
 
     if (strcmp(string, "Kansas") != 0) {
-      fprintf(stderr, "FAILED: (U061001B) geda_strsplit <%s>\n", string);
+      fprintf(stderr, "FAILED: (U061101B) geda_strsplit <%s>\n", string);
       result++;
     }
 
     free(string);
   }
 
-  string = geda_strsplit(str_100, '=', 1);
+  string = geda_strsplit(str_110, '=', 1);
   if (string == NULL) {
-    fprintf(stderr, "FAILED: (U061002A) geda_strsplit\n");
+    fprintf(stderr, "FAILED: (U061102A) geda_strsplit\n");
     result++;
   }
   else {
 
     if (strcmp(string, "Topeka") != 0) {
-      fprintf(stderr, "FAILED: (U061002B) geda_strsplit <%s>\n", string);
+      fprintf(stderr, "FAILED: (U061102B) geda_strsplit <%s>\n", string);
       result++;
     }
 
     free(string);
   }
 
-  string = geda_strsplit(str_100, '=', 2);
+  string = geda_strsplit(str_110, '=', 2);
   if (string == NULL) {
-    fprintf(stderr, "FAILED: (U061003A) geda_strsplit\n");
+    fprintf(stderr, "FAILED: (U061103A) geda_strsplit\n");
     result++;
   }
   else {
 
     if (strcmp(string, "Capital") != 0) {
-      fprintf(stderr, "FAILED: (U061003B) geda_strsplit <%s>\n", string);
+      fprintf(stderr, "FAILED: (U061103B) geda_strsplit <%s>\n", string);
       result++;
     }
 
@@ -1064,205 +1066,205 @@ int test_strings (void)
   }
 
   /* Verify that the orginal string was not altered or released */
-  if (strcmp(str_100, "Kansas=Topeka=Capital") != 0) {
-    fprintf(stderr, "FAILED: (U061004) geda_strsplit <%s>\n", str_100);
+  if (strcmp(str_110, "Kansas=Topeka=Capital") != 0) {
+    fprintf(stderr, "FAILED: (U061104) geda_strsplit <%s>\n", str_110);
     result++;
   }
 
-  /* === Function 11: geda_utility_string_sprintf  geda_sprintf === */
+  /* === Function 12: geda_utility_string_sprintf  geda_sprintf === */
 
-  char *str_110 = "The quick brown fox jumped\0";
-  char *str_111 = "over the lazy dog's back\0";
+  char *str_120 = "The quick brown fox jumped\0";
+  char *str_121 = "over the lazy dog's back\0";
 
-  string = geda_sprintf ("%s %s", str_110, str_111);
+  string = geda_sprintf ("%s %s", str_120, str_121);
   if (string) {
     if (strcmp(string, "The quick brown fox jumped over the lazy dog's back"))
     {
-      fprintf(stderr, "FAILED: (U061101A) geda_sprintf <%s>\n", string);
+      fprintf(stderr, "FAILED: (U061201A) geda_sprintf <%s>\n", string);
       result++;
     }
     free (string);
   }
   else {
-    fprintf(stderr, "FAILED: (U061101B) geda_sprintf returned NULL\n");
+    fprintf(stderr, "FAILED: (U061201B) geda_sprintf returned NULL\n");
     result++;
   }
 
-  string = geda_sprintf ("%s %1.3f meters in %d days", str_110, 3.45, 10);
+  string = geda_sprintf ("%s %1.3f meters in %d days", str_120, 3.45, 10);
   if (string) {
     if (strcmp(string, "The quick brown fox jumped 3.450 meters in 10 days"))
     {
-      fprintf(stderr, "FAILED: (U061102A) geda_sprintf <%s>\n", string);
+      fprintf(stderr, "FAILED: (U061202A) geda_sprintf <%s>\n", string);
       result++;
     }
     free (string);
   }
   else {
-    fprintf(stderr, "FAILED: (U061102B) geda_sprintf returned NULL\n");
+    fprintf(stderr, "FAILED: (U061202B) geda_sprintf returned NULL\n");
     result++;
   }
 
-  /* === Function 12: geda_utility_string_strdup === */
+  /* === Function 13: geda_utility_string_strdup === */
 
   string = geda_strdup(NULL);
   if (string) {                           /* NULL input */
-    fprintf(stderr, "FAILED: (U061200) geda_strdup <%s>\n", string);
+    fprintf(stderr, "FAILED: (U061300) geda_strdup <%s>\n", string);
     result++;
   }
 
   string = geda_strdup(str3);
   if (string) {
     if (strcmp(string, str3) != 0) {      /* 9 > input */
-      fprintf(stderr, "FAILED: (U061201A) geda_strdup <%s>\n", string);
+      fprintf(stderr, "FAILED: (U061301A) geda_strdup <%s>\n", string);
       result++;
     }
     free(string);
   }
   else {
-    fprintf(stderr, "FAILED: (U061201B) geda_strdup returned NULL\n");
+    fprintf(stderr, "FAILED: (U061301B) geda_strdup returned NULL\n");
     result++;
   }
 
-  /* === Function 13: geda_utility_string_strequal === */
+  /* === Function 14: geda_utility_string_strequal === */
 
   value = geda_strequal(NULL, "due");
   if (value) {                            /* NULL != due */
-    fprintf(stderr, "FAILED: (U061300A) geda_strequal <%d>\n", value);
+    fprintf(stderr, "FAILED: (U061400A) geda_strequal <%d>\n", value);
     result++;
   }
 
   value = geda_strequal("dew", NULL);
   if (value) {                            /* due != NULL */
-    fprintf(stderr, "FAILED: (U061300B) geda_strequal <%d>\n", value);
+    fprintf(stderr, "FAILED: (U061400B) geda_strequal <%d>\n", value);
     result++;
   }
 
   value = geda_strequal("dew", "");
   if (value) {                            /* due != "" */
-    fprintf(stderr, "FAILED: (U061301) geda_strequal <%d>\n", value);
+    fprintf(stderr, "FAILED: (U061401) geda_strequal <%d>\n", value);
     result++;
   }
 
   value = geda_strequal("dew", str2);
   if (value) {                            /* dew != doo */
-    fprintf(stderr, "FAILED: (U061302) geda_strequal <%d>\n", value);
+    fprintf(stderr, "FAILED: (U061402) geda_strequal <%d>\n", value);
     result++;
   }
 
   value = geda_strequal("Doo", "Doo");
   if (!value) {                           /* Doo == Doo */
-    fprintf(stderr, "FAILED: (U061303) geda_strequal <%d>\n", value);
+    fprintf(stderr, "FAILED: (U061403) geda_strequal <%d>\n", value);
     result++;
   }
 
-  /* === Function 14: geda_utility_string_stricmp === */
+  /* === Function 15: geda_utility_string_stricmp === */
 
   value = geda_stricmp(str1, "DOG");
   if (value) {                            /* Dog == DOG */
-    fprintf(stderr, "FAILED: (U061401) geda_stricmp <%d>\n", value);
+    fprintf(stderr, "FAILED: (U061501) geda_stricmp <%d>\n", value);
     result++;
   }
 
   value = geda_stricmp("dew", "due");
   if (!value) {                           /* dew != due */
-    fprintf(stderr, "FAILED: (U061402) geda_stricmp <%d>\n", value);
+    fprintf(stderr, "FAILED: (U061502) geda_stricmp <%d>\n", value);
     result++;
   }
 
   value = geda_stricmp(str2, "Do");
   if (!value) {                           /* doo != Do */
-    fprintf(stderr, "FAILED: (U061403) geda_stricmp <%d>\n", value);
+    fprintf(stderr, "FAILED: (U061503) geda_stricmp <%d>\n", value);
     result++;
   }
 
-  /* === Function 15: geda_utility_string_stristr === */
+  /* === Function 16: geda_utility_string_stristr === */
 
   value = geda_stristr(NULL, "dog");
   if (!value < 0) {                       /* NULL input */
-    fprintf(stderr, "FAILED: (U061500A) geda_stristr <%d>\n", value);
+    fprintf(stderr, "FAILED: (U061600A) geda_stristr <%d>\n", value);
     result++;
   }
 
   value = geda_stristr("fox", NULL);
   if (!value < 0) {                       /* NULL input */
-    fprintf(stderr, "FAILED: (U061500B) geda_stristr <%d>\n", value);
+    fprintf(stderr, "FAILED: (U061600B) geda_stristr <%d>\n", value);
     result++;
   }
 
-  value = geda_stristr(str_110, "fox");
+  value = geda_stristr(str_120, "fox");
   if (value != 16) {                      /* fox @ position 16 */
-    fprintf(stderr, "FAILED: (U061501) geda_stristr <%d>\n", value);
+    fprintf(stderr, "FAILED: (U061601) geda_stristr <%d>\n", value);
     result++;
   }
 
-  value = geda_stristr(str_110, "Dog");
-  if (!value < 0) {                       /* Dog not in str_110 */
-    fprintf(stderr, "FAILED: (U061502) geda_stristr <%d>\n", value);
+  value = geda_stristr(str_120, "Dog");
+  if (!value < 0) {                       /* Dog not in str_120 */
+    fprintf(stderr, "FAILED: (U061602) geda_stristr <%d>\n", value);
     result++;
   }
 
-  value = geda_stristr(str_111, "Dog");
+  value = geda_stristr(str_121, "Dog");
   if (value != 14) {                      /* dog @ position 14 */
-    fprintf(stderr, "FAILED: (U061503) geda_stristr <%d>\n", value);
+    fprintf(stderr, "FAILED: (U061603) geda_stristr <%d>\n", value);
     result++;
   }
 
-  value = geda_stristr(str_110, "The");
+  value = geda_stristr(str_120, "The");
   if (value != 0) {                       /* The @ position 0 */
-    fprintf(stderr, "FAILED: (U061504) geda_stristr <%d>\n", value);
+    fprintf(stderr, "FAILED: (U061604) geda_stristr <%d>\n", value);
     result++;
   }
 
-  /* === Function 16: geda_utility_string_strisubst === */
+  /* === Function 17: geda_utility_string_strisubst === */
 
-  char str_160[32] = {"The quick Brown fox\0"};
+  char str_170[32] = {"The quick Brown fox\0"};
 
   string = geda_strisubst(NULL, "Green", "Red");
   if (string != NULL) {                   /* Arg1 NULL */
-    fprintf(stderr, "FAILED: (U061600A) geda_strisubst <%s>\n", string);
+    fprintf(stderr, "FAILED: (U061700A) geda_strisubst <%s>\n", string);
     result++;
   }
 
-  string = geda_strisubst(str_160, NULL, "Red");
+  string = geda_strisubst(str_170, NULL, "Red");
   if (string != NULL) {                   /* Arg2 NULL */
-    fprintf(stderr, "FAILED: (U061600B) geda_strisubst <%s>\n", string);
+    fprintf(stderr, "FAILED: (U061700B) geda_strisubst <%s>\n", string);
     result++;
   }
 
-  string = geda_strisubst(str_160, "red", NULL);
+  string = geda_strisubst(str_170, "red", NULL);
   if (string != NULL) {                   /* Arg3 NULL */
-    fprintf(stderr, "FAILED: (U061600C) geda_strisubst <%s>\n", string);
+    fprintf(stderr, "FAILED: (U061700C) geda_strisubst <%s>\n", string);
     result++;
   }
 
-  string = geda_strisubst(str_160, "brown", "Silver");
+  string = geda_strisubst(str_170, "brown", "Silver");
   if (string == NULL) {
-    fprintf(stderr, "FAILED: (U061601) geda_strisubst <%s>\n", string);
+    fprintf(stderr, "FAILED: (U061701) geda_strisubst <%s>\n", string);
     result++;
   }
 
   /* Brown is now Silver */
 
-  string = geda_strisubst(str_160, "Silver", "Grey");
+  string = geda_strisubst(str_170, "Silver", "Grey");
   if (string == NULL) {
-    fprintf(stderr, "FAILED: (U061602) geda_strisubst <%s>\n", string);
+    fprintf(stderr, "FAILED: (U061702) geda_strisubst <%s>\n", string);
     result++;
   }
 
-  if (strcmp(str_160, "The quick Grey fox")) {
-    fprintf(stderr, "FAILED: (U061603) geda_strisubst <%s>\n", str_160);
+  if (strcmp(str_170, "The quick Grey fox")) {
+    fprintf(stderr, "FAILED: (U061703) geda_strisubst <%s>\n", str_170);
     result++;
   }
 
-  /* === Function 17: geda_utility_string_strncmpi === */
+  /* === Function 18: geda_utility_string_strncmpi === */
 
   value = geda_strncmpi(NULL, NULL, 3);
   if (value != -2) {                      /* NULL input */
-    fprintf(stderr, "FAILED: (U061700A) geda_strncmpi <%d>\n", value);
+    fprintf(stderr, "FAILED: (U061800A) geda_strncmpi <%d>\n", value);
     result++;
   }
   if (errno != EINVAL) {                  /* err must be set */
-    fprintf(stderr, "FAILED: (U061700B) errno != EINVAL\n");
+    fprintf(stderr, "FAILED: (U061800B) errno != EINVAL\n");
     result++;
   }
 
@@ -1271,49 +1273,49 @@ int test_strings (void)
  /* equal, same length, index more than string okay*/
   value = geda_strncmpi(str1, str1, 99);  /* equal */
   if (value != 0) {
-    fprintf(stderr, "FAILED: (U061701) geda_strncmpi <%d>\n", value);
+    fprintf(stderr, "FAILED: (U061801) geda_strncmpi <%d>\n", value);
     result++;
   }
 
   /* equal, not same length, index more than string not okay*/
   value = geda_strncmpi(str1, str4, 99);  /* not equal */
   if (value != 1) {
-    fprintf(stderr, "FAILED: (U061702) geda_strncmpi <%d>\n", value);
+    fprintf(stderr, "FAILED: (U061802) geda_strncmpi <%d>\n", value);
     result++;
   }
 
   /* "Dog" "doo" n = 3 */
   value = geda_strncmpi(str1, str2, 3);   /* str1 greater */
   if (value != 1) {
-    fprintf(stderr, "FAILED: (U061703) geda_strncmpi <%d>\n", value);
+    fprintf(stderr, "FAILED: (U061803) geda_strncmpi <%d>\n", value);
     result++;
   }
 
   /* "Dog" "DOGBONE" n = 3 */
   value = geda_strncmpi(str1, str4, 3);   /* equal */
   if (value != 0) {
-    fprintf(stderr, "FAILED: (U061704) geda_strncmpi <%d>\n", value);
+    fprintf(stderr, "FAILED: (U061804) geda_strncmpi <%d>\n", value);
     result++;
   }
 
   value = geda_strncmpi(str3, str4, 3);   /* str2 greater */
   if (value != -1) {
-    fprintf(stderr, "FAILED: (U061705) geda_strncmpi <%d>\n", value);
+    fprintf(stderr, "FAILED: (U061805) geda_strncmpi <%d>\n", value);
     result++;
   }
 
-  /* === Function 18: geda_utility_string_strndup === */
+  /* === Function 19: geda_utility_string_strndup === */
 
   string = geda_strndup(NULL, 5);
   if (string) {                           /* NULL input */
-    fprintf(stderr, "FAILED: (U061800A) geda_strndup <%s>\n", string);
+    fprintf(stderr, "FAILED: (U061900A) geda_strndup <%s>\n", string);
     result++;
     free(string);
   }
 
   string = geda_strndup(str3, -5);
   if (string) {                           /* Bad/invalid input */
-    fprintf(stderr, "FAILED: (U061800B) geda_strndup <%s>\n", string);
+    fprintf(stderr, "FAILED: (U061900B) geda_strndup <%s>\n", string);
     result++;
     free(string);
   }
@@ -1321,137 +1323,137 @@ int test_strings (void)
   string = geda_strndup(str3, 99);
   if (string) {
     if (strcmp(string, str3) != 0) {      /* 9 > input */
-      fprintf(stderr, "FAILED: (U061801A) geda_strndup <%s>\n", string);
+      fprintf(stderr, "FAILED: (U061901A) geda_strndup <%s>\n", string);
       result++;
     }
     free(string);
   }
   else {
-    fprintf(stderr, "FAILED: (U061801B) geda_strndup returned NULL\n");
+    fprintf(stderr, "FAILED: (U061901B) geda_strndup returned NULL\n");
     result++;
   }
 
   string = geda_strndup(str3, 5);
   if (string) {
     if (strcmp(string, "hound") != 0) {   /* hound from hounddog */
-      fprintf(stderr, "FAILED: (U061802A) geda_strndup <%s>\n", string);
+      fprintf(stderr, "FAILED: (U061902A) geda_strndup <%s>\n", string);
       result++;
     }
     free(string);
   }
   else {
-    fprintf(stderr, "FAILED: (U061802B) geda_strndup returned NULL\n");
+    fprintf(stderr, "FAILED: (U061902B) geda_strndup returned NULL\n");
     result++;
   }
 
   string = geda_strndup(str3, 0);
   if (string) {
     if (strcmp(string, "") != 0) {   /* Zero length string */
-      fprintf(stderr, "FAILED: (U061803A) geda_strndup <%s>\n", string);
+      fprintf(stderr, "FAILED: (U061903A) geda_strndup <%s>\n", string);
       result++;
     }
     free(string);
   }
   else {
-    fprintf(stderr, "FAILED: (U061803B) geda_strndup returned NULL\n");
+    fprintf(stderr, "FAILED: (U061903B) geda_strndup returned NULL\n");
     result++;
   }
-  /* === Function 19: geda_utility_string_strsize === */
+  /* === Function 20: geda_utility_string_strsize === */
 
     /* See function geda_utility_string_sprintf */
 
-  /* === Function 20: geda_utility_string_strstr_rep === */
+  /* === Function 21: geda_utility_string_strstr_rep === */
 
-  char str_20[32] = {"The  quick  brown  fox\0"};
+  char str_21[32] = {"The  quick  brown  fox\0"};
 
   string = geda_strstr_rep(NULL, "fox", "dog");
   if (string) {                            /* NULL input */
-    fprintf(stderr, "FAILED: (U062000A) geda_strstr_rep <%s>\n", string);
+    fprintf(stderr, "FAILED: (U062100A) geda_strstr_rep <%s>\n", string);
     result++;
   }
 
-  string = geda_strstr_rep(str_20, NULL, "dog");
+  string = geda_strstr_rep(str_21, NULL, "dog");
   if (string) {                            /* NULL input */
-    fprintf(stderr, "FAILED: (U062000B) geda_strstr_rep <%s>\n", string);
+    fprintf(stderr, "FAILED: (U062100B) geda_strstr_rep <%s>\n", string);
     result++;
   }
 
-  string = geda_strstr_rep(str_20, "fox", NULL);
+  string = geda_strstr_rep(str_21, "fox", NULL);
   if (string) {                            /* NULL input */
-    fprintf(stderr, "FAILED: (U062000B) geda_strstr_rep <%s>\n", string);
+    fprintf(stderr, "FAILED: (U062100B) geda_strstr_rep <%s>\n", string);
     result++;
   }
 
-  string = geda_strstr_rep(str_20, "brown", "grey ");
+  string = geda_strstr_rep(str_21, "brown", "grey ");
   if (!string) {                            /* simple replacement */
-    fprintf(stderr, "FAILED: (U062001A) geda_strstr_rep returned NULL\n");
+    fprintf(stderr, "FAILED: (U062101A) geda_strstr_rep returned NULL\n");
     result++;
   }
   else {
-    if (strcmp(str_20, "The  quick  grey   fox") != 0) {
-      fprintf(stderr, "FAILED: (U062001B) geda_strstr_rep <%s>\n", str_20);
+    if (strcmp(str_21, "The  quick  grey   fox") != 0) {
+      fprintf(stderr, "FAILED: (U062101B) geda_strstr_rep <%s>\n", str_21);
       result++;
     }
   }
 
-  string = geda_strstr_rep(str_20, "  ", " ");
+  string = geda_strstr_rep(str_21, "  ", " ");
   if (!string) {                            /* Shrink space */
-    fprintf(stderr, "FAILED: (U062002A) geda_strstr_rep returned NULL\n");
+    fprintf(stderr, "FAILED: (U062102A) geda_strstr_rep returned NULL\n");
     result++;
   }
   else {
-    if (strcmp(str_20, "The quick grey fox") != 0) {
-      fprintf(stderr, "FAILED: (U062002B) geda_strstr_rep <%s>\n", str_20);
+    if (strcmp(str_21, "The quick grey fox") != 0) {
+      fprintf(stderr, "FAILED: (U062102B) geda_strstr_rep <%s>\n", str_21);
       result++;
     }
   }
 
-  /* === Function 21: geda_utility_string_strsubst === */
+  /* === Function 212: geda_utility_string_strsubst === */
 
-  char str_21[32] = {"The quick Brown fox\0"};
+  char str_22[32] = {"The quick Brown fox\0"};
 
   string = geda_strsubst(NULL, "Purple", "Red");
   if (string != NULL) {
-    fprintf(stderr, "FAILED: (U062100A) geda_strsubst <%s>\n", string);
+    fprintf(stderr, "FAILED: (U062200A) geda_strsubst <%s>\n", string);
     result++;
   }
 
-  string = geda_strsubst(str_21, NULL, "Red");
+  string = geda_strsubst(str_22, NULL, "Red");
   if (string != NULL) {
-    fprintf(stderr, "FAILED: (U062100B) geda_strsubst <%s>\n", string);
+    fprintf(stderr, "FAILED: (U062200B) geda_strsubst <%s>\n", string);
     result++;
   }
 
-  string = geda_strsubst(str_21, "Brown", NULL);
+  string = geda_strsubst(str_22, "Brown", NULL);
   if (string != NULL) {
-    fprintf(stderr, "FAILED: (U062100C) geda_strsubst <%s>\n", string);
+    fprintf(stderr, "FAILED: (U062200C) geda_strsubst <%s>\n", string);
     result++;
   }
 
-  string = geda_strsubst(str_21, "Brown", "Red");
+  string = geda_strsubst(str_22, "Brown", "Red");
   if (string == NULL) {
-    fprintf(stderr, "FAILED: (U062101) geda_strsubst <%s>\n", string);
+    fprintf(stderr, "FAILED: (U062201) geda_strsubst <%s>\n", string);
     result++;
   }
 
   /* Brown is now Red */
-  string = geda_strsubst(str_21, "Brown", "Red");
+  string = geda_strsubst(str_22, "Brown", "Red");
   if (string != NULL) {                   /* "Brown" not string */
-    fprintf(stderr, "FAILED: (U062102) geda_strsubst <%s>\n", string);
+    fprintf(stderr, "FAILED: (U062202) geda_strsubst <%s>\n", string);
     result++;
   }
 
-  /* === Function 22: geda_utility_string_word_count === */
+  /* === Function 23: geda_utility_string_word_count === */
 
   value = geda_word_count(NULL);   /* NULL input */
   if (value != -1) {
-    fprintf(stderr, "FAILED: (U062200) geda_word_count <%d> \n", value);
+    fprintf(stderr, "FAILED: (U062300) geda_word_count <%d> \n", value);
     result++;
   }
 
-  value = geda_word_count(str_21);   /* reuse */
+  value = geda_word_count(str_22);   /* reuse */
   if (value != 4) {
-    fprintf(stderr, "FAILED: (U062201) geda_word_count <%d> \n", value);
+    fprintf(stderr, "FAILED: (U062301) geda_word_count <%d> \n", value);
     result++;
   }
 

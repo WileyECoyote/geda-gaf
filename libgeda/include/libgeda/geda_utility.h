@@ -78,6 +78,7 @@
 
 /* u_string.c */
 #define geda_strconcat            geda_utility_string_concat
+#define geda_get_utf8             geda_utility_string_get_valid_utf8
 #define geda_string_int2str       geda_utility_string_int2str
 #define geda_string_isalnum       geda_utility_string_isalnum
 #define geda_string_istr          geda_utility_string_istr
