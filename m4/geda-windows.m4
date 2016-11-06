@@ -1,5 +1,5 @@
 # geda-windows.m4                                           -*-Autoconf-*-
-# serial 1.1
+# serial 1.2
 
 dnl Check Windows-specific flags
 dnl Copyright (C) 2009-2013  Cesar Strauss <cestrauss@gmail.com>
@@ -22,31 +22,31 @@ dnl The Windows platform has a native gcc port (MinGW) and a
 dnl POSIX compliant one (Cygwin). Both need specific flags to
 dnl build correctly.
 dnl
-dnlThe rules are:
+dnl The rules are:
 dnl
-dnlOn all Windows platforms, pass -no-undefined to libtool.
-dnlThis allows shared libraries (DLLs) to be built.
-dnl  
+dnl On all Windows platforms, pass -no-undefined to libtool.
+dnl This allows shared libraries (DLLs) to be built.
+dnl
 dnl On MinGW, use the -mms-bitfields compiler flag.
 dnl This increases compatibility with the MSVC compiler.
 dnl
 dnl On MinGW, pass -mwindows when linking GUI-only applications.
 dnl This avoids opening a text console when running from a shortcut.
 dnl WEH:
-dnl  m4_ifdef([AC_DEPLIBS_CHECK_METHOD], [m4_undefine([AC_DEPLIBS_CHECK_METHOD])]) 
+dnl  m4_ifdef([AC_DEPLIBS_CHECK_METHOD], [m4_undefine([AC_DEPLIBS_CHECK_METHOD])])
 dnl  m4_defun([AC_DEPLIBS_CHECK_METHOD],[])
-dnl  lt_cv_deplibs_check_method=pass_all 
-  
+dnl  lt_cv_deplibs_check_method=pass_all
+
 AC_DEFUN([AX_WINDOWS_FLAGS],
 [
   AC_PREREQ([2.60])dnl
   AC_REQUIRE([AX_HOST])dnl
 
-  if test "$PLATFORM_WIN32" = "yes"; then
+  if test "$OS_WIN32" = "yes"; then
     WINDOWS_LIBTOOL_FLAGS=-no-undefined
   fi
 
-  if test "$PLATFORM_WIN32_NATIVE" = "yes"; then
+  if test "$OS_WIN32_NATIVE" = "yes"; then
     MINGW_GUI_LDFLAGS=-mwindows
     MINGW_CFLAGS="-mms-bitfields"
   fi
