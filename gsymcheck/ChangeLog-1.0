@@ -1,3 +1,7 @@
+2016-11-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/Makefile.am: Remove LIBSTROKE_LDFLAGS and MINGW_GUI_LDFLAGS.
+
 2016-10-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/parsecmd.c: Include the program name in the version output message.

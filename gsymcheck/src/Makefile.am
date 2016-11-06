@@ -27,9 +27,9 @@ AM_CFLAGS            = $(GEDA_INCLUDES) -I$(includedir)
 gsymcheck_CPPFLAGS   =
 
 gsymcheck_CFLAGS     = $(AM_CFLAGS)    $(GCC_CFLAGS)   $(GLIB_CFLAGS) \
-	               $(GUILE_CFLAGS) $(MINGW_CFLAGS) $(GDK_PIXBUF_CFLAGS)
-gsymcheck_LDFLAGS    = $(LIBSTROKE_LDFLAGS) $(GLIB_LIBS) $(GTK_LIBS) \
-		       $(GTHREAD_LIBS) $(GUILE_LIBS) $(MINGW_GUI_LDFLAGS)
+	                   $(GUILE_CFLAGS) $(MINGW_CFLAGS)
+gsymcheck_LDFLAGS    = $(GLIB_LIBS)    $(GTK_LIBS) \
+		       		   $(GTHREAD_LIBS) $(GUILE_LIBS)
 gsymcheck_LDADD      = $(top_builddir)/libgeda/src/libgeda.la @LIBINTL@
 
 doxygen:
