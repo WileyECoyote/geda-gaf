@@ -1,7 +1,7 @@
 TEST_FILES = data/ATMega32-DIP_test.sym \
              data/read_only.sch
 
-EXTRA_DIST = README test-suite.h $(TEST_FILES)
+EXTRA_DIST = README test_parsecmd.h test-suite.h $(TEST_FILES)
 
 check_file = \
 	test_file

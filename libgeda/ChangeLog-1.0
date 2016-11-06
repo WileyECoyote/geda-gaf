@@ -1,5 +1,9 @@
 2016-11-04 Wiley E. Hill <wileyhill@gmail.com>
 
+    * tests/test_parsecmd.h: Add command line parser for test options.
+
+2016-11-04 Wiley E. Hill <wileyhill@gmail.com>
+
     * libgeda/geda_errors.h: Start EDA_ERROR enumeration at 132, which should
       be greater than those found in errno.h.
 
