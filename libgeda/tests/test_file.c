@@ -24,6 +24,8 @@
  *  Date Contributed: March, TBD, 2016
  */
 
+#include <config.h>
+
 #include <libgeda.h>
 #include <stdlib.h>
 #include <errno.h>
@@ -34,6 +36,7 @@
 #include <glib/gstdio.h>
 
 #include "test-suite.h"
+#include "test_parsecmd.h"
 
 /*! \file test_file.c
  *  \brief Tests for geda file functions
@@ -255,7 +258,7 @@ int test_file (void)
     result++;
   }
   else {
-    fprintf(stderr, "Message: (F010600A2) %s.\n", err->message);
+    vmessage("Message: (F010600A2) %s.\n", err->message);
     g_error_free (err);
     err = NULL;
   }
@@ -267,7 +270,7 @@ int test_file (void)
     result++;
   }
   else {
-    fprintf(stderr, "Message: (F010600B2) %s.\n", err->message);
+    vmessage("Message: (F010600B2) %s.\n", err->message);
     g_error_free (err);
     err = NULL;
   }
@@ -279,7 +282,7 @@ int test_file (void)
     result++;
   }
   else {
-    fprintf(stderr, "Message: (F010600C2) %s.\n", err->message);
+    vmessage("Message: (F010600C2) %s.\n", err->message);
     g_error_free (err);
     err = NULL;
   }
@@ -325,7 +328,7 @@ int test_file (void)
     result++;
   }
   else {
-    fprintf(stderr, "Message: (F010602B) %s.\n", err->message);
+    vmessage("Message: (F010602B) %s.\n", err->message);
     g_error_free (err);
     err = NULL;
   }
@@ -497,7 +500,7 @@ int test_get (void)
       result++;
     }
     else {
-      fprintf(stderr, "Message: (F020500B2) %s.\n", err->message);
+      vmessage("Message: (F020500B2) %s.\n", err->message);
       g_error_free (err);
       err = NULL;
     }
@@ -534,7 +537,7 @@ int test_get (void)
       result++;
     }
     else {
-      fprintf(stderr, "Message: (F020502B2) %s.\n", err->message);
+      vmessage("Message: (F020502B2) %s.\n", err->message);
       g_error_free (err);
       err = NULL;
     }
@@ -1095,6 +1098,8 @@ main (int argc, char *argv[])
 #if (( GLIB_MAJOR_VERSION == 2 ) && ( GLIB_MINOR_VERSION < 36 ))
   g_type_init();
 #endif
+
+  parse_commandline(argc, argv);
 
   file_links_4_test(1);
   setup_environment();

@@ -3,6 +3,10 @@
     * src/utility/u_string.c: Add function geda_utility_string_get_valid_utf8
       with alias geda_get_utf8.
 
+    * tests/test_file.c: Implement command line parser with verbose option,
+      using verbose outputs formated error messages that would other wise
+      be output from libgeda if and error is encountered.
+
 2016-11-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_parsecmd.h: Add command line parser for test options.
