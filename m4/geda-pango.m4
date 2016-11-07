@@ -31,12 +31,13 @@ AC_DEFUN([AX_CHECK_PANGO],
 
   # In Pango >= 1.23.0, check for PangoCairo separately.
   PKG_CHECK_MODULES([PANGO], [pango >= 1.23], [PANGO=yes], [PANGO=no])
+
   if test "$PANGO" = "yes"; then
-      PANGO_PKG=`$PKG_CONFIG --modversion pango`
+      PANGO_VER=`$PKG_CONFIG --modversion pango`
   else
     PKG_CHECK_MODULES([pango_ok], [pango >= 1.23], [],
       AC_MSG_ERROR([Pango 1.23.0 or later is required.]))
   fi
-  AC_SUBST([PANGO_PKG])
+  AC_SUBST([PANGO_VER])
   []dnl
 ])dnl AX_CHECK_PANGO

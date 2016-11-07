@@ -22,7 +22,6 @@ dnl MA 02110-1301 USA
 
 m4_define([AX_LD_FLAG],
 [
-
   original_LDFLAGS="$LDFLAGS"
 
   LDFLAGS="$LDFLAGS $1"
@@ -36,7 +35,7 @@ m4_define([AX_LD_FLAG],
   []dnl
 ])dnl AX_LD_FLAG
 
-AC_DEFUN([AX_CHECK_LD_FLAGS],
+AC_DEFUN([AX_SETUP_LD_FLAGS],
 [
   AC_PREREQ([2.5])dnl
   AC_REQUIRE([AC_PROG_LD])dnl
@@ -46,8 +45,10 @@ AC_DEFUN([AX_CHECK_LD_FLAGS],
   AX_LD_FLAG([-Wl,-z,relro])
   AC_MSG_RESULT([$ld_flags_ok])
 
+  #LDFLAGS="-Wl,--no-undefined $LDFLAGS"
+
   AC_SUBST([LDFLAGS])
   []dnl
-])dnl AX_CHECK_LD_FLAGS
+])dnl AX_SETUP_LD_FLAGS
 
 
