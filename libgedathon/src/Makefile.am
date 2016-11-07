@@ -27,8 +27,8 @@ PY_LIBFLAGS              = $(PYTHON_LDFLAGS) $(PYTHON_LIBS) -export-symbols-rege
 AM_CFLAGS                = $(GCC_CFLAGS) $(MINGW_CFLAGS) $(GLIB_CFLAGS) \
 			  $(GDK_CFLAGS) $(CAIRO_CFLAGS) $(PANGO_CFLAGS) $(GDK_PIXBUF_CFLAGS)
 
-AM_LDFLAGS               = -version-info $(LIBGEDATHON_SHLIB_VERSION) $(GLIB_LIBS) \
-			  $(MINGW_LDFLAGS)  $(GDK_PIXBUF_LIBS)
+AM_LDFLAGS               = $(WINDOWS_LIBTOOL_FLAGS) -version-info $(LIBGEDATHON_SHLIB_VERSION) \
+						   $(GLIB_LIBS) $(MINGW_LDFLAGS) $(GDK_PIXBUF_LIBS)
 
 lib_LTLIBRARIES          = libgedathon.la
 
@@ -44,7 +44,7 @@ libgedathon_la_DEPENDENCIES = $(top_builddir)/libgeda/src/libgeda.la
 
 libgedathon_la_LIBADD       = $(top_builddir)/libgeda/src/libgeda.la
 
-LIBTOOL                     = @LIBTOOL@ --silent $(WINDOWS_LIBTOOL_FLAGS)
+LIBTOOL                     = @LIBTOOL@ --silent
 
 doxygen:
 # Change to the docs directory and 'make doxygen' for libgedathon

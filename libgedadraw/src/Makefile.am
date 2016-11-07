@@ -21,8 +21,8 @@ GEDA_INCLUDES                = $(LOG_DOMAIN) $(INC_GEDA) $(INC_LOCAL) $(INC_LIBG
 AM_CPPFLAGS                  = $(DEBUGGING) $(MINGW_CFLAGS) $(GLIB_CFLAGS)  $(GTK_CFLAGS) \
 	                           $(GDK_CFLAGS)   $(CAIRO_CFLAGS) $(PANGO_CFLAGS) $(GDK_PIXBUF_CFLAGS)
 
-AM_LDFLAGS                   = $(DEBUGGING)-version-info $(LIBGEDADRAW_SHLIB_VERSION) $(GLIB_LIBS) $(X11_LIBS) \
-				$(CAIRO_LIBS) $(MINGW_LDFLAGS) $(GDK_PIXBUF_LIBS)
+AM_LDFLAGS                   = $(DEBUGGING) $(WINDOWS_LIBTOOL_FLAGS) -version-info $(LIBGEDADRAW_SHLIB_VERSION) \
+								$(GLIB_LIBS) $(X11_LIBS) $(CAIRO_LIBS) $(MINGW_LDFLAGS) $(GDK_PIXBUF_LIBS)
 
 lib_LTLIBRARIES              = libgedadraw.la
 
@@ -40,7 +40,7 @@ libgedadraw_la_DEPENDENCIES  = $(top_builddir)/libgeda/src/libgeda.la
 
 libgedadraw_la_LIBADD        = $(top_builddir)/libgeda/src/libgeda.la
 
-LIBTOOL                      =@LIBTOOL@ --silent $(WINDOWS_LIBTOOL_FLAGS)
+LIBTOOL                      =@LIBTOOL@ --silent
 
 doxygen:
 # Change to the docs directory and 'make doxygen' for libgedadraw
