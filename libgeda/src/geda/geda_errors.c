@@ -21,14 +21,30 @@
 #include <config.h>
 #include <libgeda_priv.h>
 
-/* Used by EDA_ERROR. Returns a GQuark used to identify GErrors
- * originating in libgeda. Should not be called directly. */
+/*!
+ * \brief EDA Error type Identifier
+ * \par Function Description
+ * Used by EDA_ERROR. Returns a GQuark used to identify GErrors
+ * originating in libgeda. Should not be called directly.
+ */
 GQuark
 eda_error_quark (void)
 {
   return g_quark_from_static_string ("eda-error-quark");
 }
 
+/*!
+ * \brief Output Error when an invalid argument passed as Object
+ * \par Function Description
+ *  Common helper function to display errors when a pointer is passed
+ *  to a function that is not the type the function required or is
+ *  NULL.
+ *
+ * \param [in] file   The file where the error was detected.
+ * \param [in] func   The function that detect the error.
+ * \param [in] object Pointer that was  passed to the function.
+ * \param [in] type   The object type that was expected.
+ */
 void
 geda_error_object_argument(const char *file,
                            const char *func,
