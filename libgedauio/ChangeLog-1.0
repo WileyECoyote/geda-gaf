@@ -1,6 +1,7 @@
 2016-11-07 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/widgets/geda_entry.c: Make the history_list private.
+    * src/widgets/geda_entry.c: Make the history_list private, add function
+      geda_entry_get_length_history.
 
 2016-11-06 Wiley E. Hill <wileyhill@gmail.com>
 

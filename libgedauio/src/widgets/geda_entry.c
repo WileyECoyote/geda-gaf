@@ -1488,6 +1488,13 @@ geda_entry_set_attributes (GedaEntry *entry, PangoAttrList *attrs)
   gtk_widget_queue_resize (GTK_WIDGET (entry));
 }
 
+unsigned int
+geda_entry_get_length_history(GedaEntry *entry)
+{
+  return g_list_length(entry->priv->history_list);
+}
+
+
 /*!
  * \brief Set GedaEntry Max History Property
  * \par Function Description
