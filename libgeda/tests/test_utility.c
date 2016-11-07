@@ -607,49 +607,90 @@ int test_strings (void)
 
   /* === Function 02: geda_utility_string_get_valid_utf8 === */
 
+  static const struct _TestData U02_str[] =
+  {
+    { "",                 ""                  }, /* empty string */
+    { "\27",              "\27"               }, /* "a"          */
+    { "\27\010",          "\27\010"           }, /* "a\n"        */
+    { "\357\277\275\013", "\357\277\275\013"  }, /* "\r"     */
+    { "\010\127",         "\010\127"          }, /* */
+    { "\0540\05C0",       "\0540\05C0"        }, /* Armenia thru Hebrew */
+    { "\000\000",         ""                  }, /* MUTF-8 is not UTF-8 */
+    { "\27\0xFE\0xFF\27", "\27"               }  /* 0xFE 0xFF not allowed */
+  };
+
+  string = geda_get_utf8(NULL);
+  if (string) {                           /* NULL input */
+    fprintf(stderr, "FAILED: (U060200) geda_get_utf8 <%s>\n", string);
+    result++;
+  }
+
+  count = sizeof(U02_str) / sizeof(struct _TestData);
+
+  for (index = 0; index < count; index++) {
+
+    char *expected = U02_str[index].expected;
+    char *input    = U02_str[index].input;
+
+    string = geda_get_utf8 (input);
+
+    if (string) {
+      if (strcmp(string, expected)) {      /* See structure U02_str */
+        fprintf(stderr, "FAILED: (U060201A-%d) geda_get_utf8 <%s>\n",index, string);
+        result++;
+      }
+    }
+    else {
+      if (strcmp(string, expected)) {      /* See structure U02_str */
+        fprintf(stderr, "FAILED: (U060201B-%d) expected <%s> NULL\n",index, expected);
+        result++;
+      }
+    }
+  }
+
   /* === Function 03: geda_utility_string_int2str === */
 
   char U03_val[10];
 
   string = geda_string_int2str(0, NULL, 10);
   if (string) {                           /* NULL input */
-    fprintf(stderr, "FAILED: (U060200) geda_string_int2str <%s>\n", string);
+    fprintf(stderr, "FAILED: (U060300) geda_string_int2str <%s>\n", string);
     result++;
   }
 
   string = geda_string_int2str(0, U03_val, 10);
   if (strcmp(string, "0")) {              /* Zero */
-    fprintf(stderr, "FAILED: (U060201) geda_string_int2str <%s>\n", string);
+    fprintf(stderr, "FAILED: (U060301) geda_string_int2str <%s>\n", string);
     result++;
   }
 
   string = geda_string_int2str(123456789, U03_val, 10);
   if (strcmp(string, "123456789")) {      /* 9 digits plus NULL */
-    fprintf(stderr, "FAILED: (U060202) geda_string_int2str <%s>\n", string);
+    fprintf(stderr, "FAILED: (U060302) geda_string_int2str <%s>\n", string);
     result++;
   }
 
   string = geda_string_int2str(-12345678, U03_val, 10);
   if (strcmp(string, "-12345678")) {      /* Neg 8 digits plus NULL */
-    fprintf(stderr, "FAILED: (U060203) geda_string_int2str <%s>\n", string);
+    fprintf(stderr, "FAILED: (U060303) geda_string_int2str <%s>\n", string);
     result++;
   }
 
   string = geda_string_int2str(345.6, U03_val, 10);
   if (strcmp(string, "345")) {            /* Only integers returned */
-    fprintf(stderr, "FAILED: (U060204) geda_string_int2str <%s>\n", string);
+    fprintf(stderr, "FAILED: (U060304) geda_string_int2str <%s>\n", string);
     result++;
   }
 
   string = geda_string_int2str(16, U03_val, 16);
   if (strcmp(string, "10")) {             /* Is hex */
-    fprintf(stderr, "FAILED: (U060205) geda_string_int2str <%s>\n", string);
+    fprintf(stderr, "FAILED: (U060305) geda_string_int2str <%s>\n", string);
     result++;
   }
 
   string = geda_string_int2str(16, U03_val, 8);
   if (strcmp(string, "20")) {             /* 16 Dec = 20 base 8 */
-    fprintf(stderr, "FAILED: (U060206) geda_string_int2str <%s>\n", string);
+    fprintf(stderr, "FAILED: (U060306) geda_string_int2str <%s>\n", string);
     result++;
   }
 
