@@ -1509,7 +1509,24 @@ geda_entry_get_length_history(GedaEntry *entry)
 void
 geda_entry_set_max_history (GedaEntry *entry, unsigned int value)
 {
+  unsigned int len;
+
   entry->max_history = value;
+
+  len = geda_entry_get_length_history(entry);
+
+  if (len > value) {
+
+    GedaEntryPriv *priv = entry->priv;
+
+    while (len > value) {
+
+      GList *history_list = priv->history_list;
+      priv->history_list = g_list_delete_link(history_list, history_list);
+
+      len = g_list_length(priv->history_list);
+    }
+  }
 }
 
 /*!

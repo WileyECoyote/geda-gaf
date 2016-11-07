@@ -1,7 +1,8 @@
 2016-11-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Make the history_list private, add function
-      geda_entry_get_length_history.
+      geda_entry_get_length_history, revise geda_entry_set_max_history to
+      reduce history if the max is set below the current list length.
 
 2016-11-06 Wiley E. Hill <wileyhill@gmail.com>
 
