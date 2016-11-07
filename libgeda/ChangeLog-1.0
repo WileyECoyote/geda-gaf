@@ -1,5 +1,9 @@
 2016-11-06 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/Makefile.am: Move WINDOWS_LIBTOOL_FLAGS to LIBTOOL flags.
+
+    * tests/Makefile.am: Remove WINDOWS_LIBTOOL_FLAGS flags.
+
     * src/file/f_get.c: Eliminate save_errno in get_contents_regfile and
       geda_file_get_contents.
 

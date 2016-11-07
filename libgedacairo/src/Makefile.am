@@ -11,25 +11,32 @@ LOG_DOMAIN      = -DG_LOG_DOMAIN=\"libgedacairo\"
 
 GEDA_INCLUDES   = $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA)
 
-lib_LTLIBRARIES = libgedacairo.la
-
-libgedacairo_la_SOURCES = edacairo.c \
-			 edapangorenderer.c \
-			 edarenderer.c
-
 AM_CPPFLAGS = $(LOG_DOMAIN) $(GEDA_INCLUDES) -I$(includedir)
 
 AM_CFLAGS   = $(GCC_CFLAGS) $(MINGW_CFLAGS) $(GUILE_CFLAGS) $(GLIB_CFLAGS) \
-	      $(GDK_CFLAGS) $(CAIRO_CFLAGS) $(PANGO_CFLAGS) $(GDK_PIXBUF_CFLAGS)
+	          $(GDK_CFLAGS) $(CAIRO_CFLAGS) $(PANGO_CFLAGS) $(GDK_PIXBUF_CFLAGS)
+
+AM_LDFLAGS = -version-info $(LIBGEDACAIRO_SHLIB_VERSION) \
+		$(WINDOWS_LIBTOOL_FLAGS) \
+		$(MINGW_LDFLAGS) $(GUILE_LIBS) $(GLIB_LIBS) $(CAIRO_LIBS) \
+		$(PANGO_LIBS)    $(GDK_LIBS)   $(GDK_PIXBUF_LIBS)
+
+lib_LTLIBRARIES = libgedacairo.la
+
+libgedacairo_la_SOURCES = \
+				edacairo.c \
+				edapangorenderer.c \
+				edarenderer.c
 
 libgedacairo_la_CFLAGS = $(GCC_CFLAGS) $(AM_CFLAGS) $(GLIB_CFLAGS) $(GTK_CFLAGS)
 
-AM_LDFLAGS = -version-info \
-             $(LIBGEDACAIRO_SHLIB_VERSION) $(WINDOWS_LIBTOOL_FLAGS) \
-	     $(MINGW_LDFLAGS) $(GUILE_LIBS) $(GLIB_LIBS) $(CAIRO_LIBS) \
-	     $(PANGO_LIBS)  $(GDK_PIXBUF_LIBS)
+libgedacairo_la_LDFLAGS       = $(AM_LDFLAGS) $(LDFLAGS)
 
-LIBTOOL=@LIBTOOL@ --silent
+libgedacairo_la_DEPENDENCIES  = $(top_builddir)/libgeda/src/libgeda.la
+
+libgedacairo_la_LIBADD        = $(top_builddir)/libgeda/src/libgeda.la
+
+LIBTOOL=@LIBTOOL@ --silent $(WINDOWS_LIBTOOL_FLAGS)
 
 doxygen:
 # Change to the docs directory and 'make doxygen' for libgedacairo

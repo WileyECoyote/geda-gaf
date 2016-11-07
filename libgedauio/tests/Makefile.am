@@ -68,8 +68,7 @@ AM_CFLAGS = -DWOW \
 	$(GCC_CFLAGS) $(GTK_CFLAGS) $(MINGW_CFLAGS) $(GLIB_CFLAGS) $(GDK_PIXBUF_CFLAGS)
 
 AM_LDFLAGS = \
-	$(WINDOWS_LIBTOOL_FLAGS) $(MINGW_LDFLAGS) \
-	$(GLIB_LIBS) $(GTK_LIBS) $(GDK_PIXBUF_LIBS) \
+	$(GLIB_LIBS) $(GTK_LIBS) $(GDK_PIXBUF_LIBS) $(MINGW_LDFLAGS) \
 	$(top_builddir)/libgedauio/src/libgedauio.la \
 	$(top_builddir)/libgeda/src/libgeda.la \
 	@LIBINTL@

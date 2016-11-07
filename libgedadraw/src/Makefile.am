@@ -4,7 +4,7 @@
 
 AUTOMAKE_OPTIONS             = subdir-objects
 
-#DEBUGGING                   = --debug --verbose
+#DEBUGGING                    = --debug --verbose
 
 INC_GEDA                     = -I$(top_srcdir)/include -I$(top_srcdir)/intl
 INC_LOCAL                    = -I$(srcdir)/../include
@@ -15,14 +15,14 @@ LOG_DOMAIN                   = -DG_LOG_DOMAIN=\"libgedadraw\"
 
 GEDA_INCLUDES                = $(LOG_DOMAIN) $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA) $(INC_LIBCOLOR)
 
-AM_CFLAGS                    = $(GCC_CFLAGS) $(MINGW_CFLAGS) $(GLIB_CFLAGS)  $(GTK_CFLAGS) \
-			       $(GDK_CFLAGS) $(CAIRO_CFLAGS) $(PANGO_CFLAGS) $(GDK_PIXBUF_CFLAGS)
+#AM_CFLAGS                    = $(GCC_CFLAGS) $(MINGW_CFLAGS) $(GLIB_CFLAGS)  $(GTK_CFLAGS) \
+#			                    $(GDK_CFLAGS) $(CAIRO_CFLAGS) $(PANGO_CFLAGS) $(GDK_PIXBUF_CFLAGS)
 
-AM_CPPFLAGS                  = $(MINGW_CFLAGS) $(GLIB_CFLAGS)  $(GTK_CFLAGS) \
-			       $(GDK_CFLAGS)   $(CAIRO_CFLAGS) $(PANGO_CFLAGS) $(GDK_PIXBUF_CFLAGS)
+AM_CPPFLAGS                  = $(DEBUGGING) $(MINGW_CFLAGS) $(GLIB_CFLAGS)  $(GTK_CFLAGS) \
+	                           $(GDK_CFLAGS)   $(CAIRO_CFLAGS) $(PANGO_CFLAGS) $(GDK_PIXBUF_CFLAGS)
 
-AM_LDFLAGS                   = -version-info $(LIBGEDADRAW_SHLIB_VERSION) $(GLIB_LIBS) $(X11_LIBS) \
-			      $(WINDOWS_LIBTOOL_FLAGS)  $(MINGW_LDFLAGS) $(GDK_PIXBUF_LIBS)
+AM_LDFLAGS                   = $(DEBUGGING)-version-info $(LIBGEDADRAW_SHLIB_VERSION) $(GLIB_LIBS) $(X11_LIBS) \
+				$(CAIRO_LIBS) $(MINGW_LDFLAGS) $(GDK_PIXBUF_LIBS)
 
 lib_LTLIBRARIES              = libgedadraw.la
 
@@ -30,7 +30,7 @@ libgedadraw_la_SOURCES       =
 
 include x11/Makefile_insert
 
-libgedadraw_la_CFLAGS        = $(AM_CFLAGS)
+#libgedadraw_la_CFLAGS        = $(AM_CFLAGS)
 
 libgedadraw_la_CPPFLAGS      = $(DEBUGGING) $(GEDA_INCLUDES) $(AM_CPPFLAGS)
 
@@ -40,7 +40,7 @@ libgedadraw_la_DEPENDENCIES  = $(top_builddir)/libgeda/src/libgeda.la
 
 libgedadraw_la_LIBADD        = $(top_builddir)/libgeda/src/libgeda.la
 
-LIBTOOL                      = @LIBTOOL@ --silent
+LIBTOOL                      =@LIBTOOL@ --silent $(WINDOWS_LIBTOOL_FLAGS)
 
 doxygen:
 # Change to the docs directory and 'make doxygen' for libgedadraw

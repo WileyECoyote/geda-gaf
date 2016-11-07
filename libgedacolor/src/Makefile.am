@@ -35,12 +35,12 @@ libgedacolor_la_CFLAGS    = $(AM_CFLAGS)    $(GCC_CFLAGS) $(GUILE_CFLAGS) \
 			   $(MINGW_CFLAGS)
 
 libgedacolor_la_LDFLAGS   = -version-info $(LIBGEDACOLOR_SHLIB_VERSION) \
-			   $(GLIB_LIBS) $(GTK_LIBS) $(GUILE_LIBS) $(GDK_PIXBUF_LIBS) \
-			   $(WINDOWS_LIBTOOL_FLAGS) $(MINGW_LDFLAGS)
+			   $(GLIB_LIBS) $(GTK_LIBS) $(GUILE_LIBS) \
+			   $(GDK_PIXBUF_LIBS) $(MINGW_LDFLAGS)
 
 libgedacolor_la_LIBADD    = $(top_builddir)/libgeda/src/libgeda.la
 
-LIBTOOL=@LIBTOOL@ --silent
+LIBTOOL=@LIBTOOL@ --silent $(WINDOWS_LIBTOOL_FLAGS)
 
 doxygen:
 # Change to the docs directory and 'make doxygen' for libgedacolor

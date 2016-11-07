@@ -54,7 +54,7 @@ AM_CFLAGS = -DWOW -D _GNU_SOURCE \
 	$(GDK_PIXBUF_CFLAGS)
 
 AM_LDFLAGS = \
-	$(WINDOWS_LIBTOOL_FLAGS) $(MINGW_LDFLAGS) $(GUILE_LIBS) \
+	$(MINGW_LDFLAGS) $(GUILE_LIBS) \
 	$(GLIB_LIBS) $(GDK_PIXBUF_LIBS) \
 	$(top_builddir)/libgedacairo/src/libgedacairo.la \
 	$(top_builddir)/libgeda/src/libgeda.la \

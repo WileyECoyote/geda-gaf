@@ -1,3 +1,4 @@
+## $Id$ indent-tabs-mode: t; tab-width: 4
 ## Process this file with automake to produce Makefile.in
 # Currently not using the CAIRO_CFLAGS or PANGO_CFLAGS but libgedathon is still
 # in infancy, leaving for now. GDK_CFLAGS added due to inclusion of GDK_PIXBUF
@@ -7,7 +8,6 @@
 #REF: (geda-python.m4).PYTHON_CFLAGS  = -Wstrict-prototypes -pthread -fno-strict-aliasing -fwrapv -fPIC
 #REF: (geda-python.m4).PYTHON_LDFLAGS = -shared -Bsymbolic-functions
 #REF: (geda-python.m4).PYTHON_LIBS    = -lpython$PYTHON_VERSION
-## $Id$ indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4
 
 #DEBUGGING               = --debug --verbose
 
@@ -25,10 +25,10 @@ PY_INCLUDES              = $(PYTHON_CFLAGS) $(PYTHON_IFLAGS)
 PY_LIBFLAGS              = $(PYTHON_LDFLAGS) $(PYTHON_LIBS) -export-symbols-regex initialize
 
 AM_CFLAGS                = $(GCC_CFLAGS) $(MINGW_CFLAGS) $(GLIB_CFLAGS) \
-			   $(GDK_CFLAGS) $(CAIRO_CFLAGS) $(PANGO_CFLAGS) $(GDK_PIXBUF_CFLAGS)
+			  $(GDK_CFLAGS) $(CAIRO_CFLAGS) $(PANGO_CFLAGS) $(GDK_PIXBUF_CFLAGS)
 
 AM_LDFLAGS               = -version-info $(LIBGEDATHON_SHLIB_VERSION) $(GLIB_LIBS) \
-					$(MINGW_LDFLAGS) $(WINDOWS_LIBTOOL_FLAGS) $(GDK_PIXBUF_LIBS)
+			  $(MINGW_LDFLAGS)  $(GDK_PIXBUF_LIBS)
 
 lib_LTLIBRARIES          = libgedathon.la
 
@@ -44,7 +44,7 @@ libgedathon_la_DEPENDENCIES = $(top_builddir)/libgeda/src/libgeda.la
 
 libgedathon_la_LIBADD       = $(top_builddir)/libgeda/src/libgeda.la
 
-LIBTOOL                     = @LIBTOOL@ --silent
+LIBTOOL                     = @LIBTOOL@ --silent $(WINDOWS_LIBTOOL_FLAGS)
 
 doxygen:
 # Change to the docs directory and 'make doxygen' for libgedathon

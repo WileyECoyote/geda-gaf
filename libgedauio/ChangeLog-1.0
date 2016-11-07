@@ -1,3 +1,7 @@
+2016-11-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/Makefile.am: Move WINDOWS_LIBTOOL_FLAGS to LIBTOOL flags.
+
 2016-11-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_entry.h: Make max_history an unsigned int and reformat.

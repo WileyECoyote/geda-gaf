@@ -1,3 +1,7 @@
+2016-11-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/Makefile.am: Move WINDOWS_LIBTOOL_FLAGS to LIBTOOL flags.
+
 2016-10-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src\Makefile.am: Reinstate subdir-objects to shut-up automake 1.15.

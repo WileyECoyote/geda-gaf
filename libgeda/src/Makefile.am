@@ -51,13 +51,13 @@ AM_CFLAGS            = $(LOG_DOMAIN) $(GEDA_INCLUDES) -I$(includedir)
 libgeda_la_CPPFLAGS  = -DLOCALEDIR=\"$(localedir)\" $(DATADIR_DEFS)
 
 libgeda_la_CFLAGS    = $(AM_CFLAGS)   $(GUILE_CFLAGS) $(GCC_CFLAGS)   \
-	               $(GLIB_CFLAGS) $(MINGW_CFLAGS) $(GDK_PIXBUF_CFLAGS)
+		       $(GLIB_CFLAGS) $(MINGW_CFLAGS) $(GDK_PIXBUF_CFLAGS)
 
 libgeda_la_LDFLAGS   = -version-info $(LIBGEDA_SHLIB_VERSION) \
-		       $(WINDOWS_LIBTOOL_FLAGS) $(MINGW_LDFLAGS) $(GUILE_LIBS) \
-		       $(GLIB_LIBS) $(GDK_PIXBUF_LIBS)
+		       		   $(MINGW_LDFLAGS) $(GUILE_LIBS) \
+		       		   $(GLIB_LIBS) $(GDK_PIXBUF_LIBS)
 
-LIBTOOL=@LIBTOOL@ --silent
+LIBTOOL=@LIBTOOL@ --silent $(WINDOWS_LIBTOOL_FLAGS)
 
 # This is used to generate boilerplate for defining edascm functions in C.
 SUFFIXES = .x
