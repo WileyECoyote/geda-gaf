@@ -1985,10 +1985,12 @@ geda_entry_widget_set_input_case (GtkWidget *entry, int mode)
   return geda_entry_set_input_case (GEDA_ENTRY(entry), mode);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Get Maximum History propertyr from GedaEntry Widget
+ * \par Function Description
+ *  Retrieve the current max-history setting.
  *
+ * \sa geda_entry_get_max_history geda_entry_set_max_history
  */
 unsigned int
 geda_entry_widget_get_max_history (GtkWidget *entry)
@@ -1996,10 +1998,12 @@ geda_entry_widget_get_max_history (GtkWidget *entry)
   return geda_entry_get_max_history (GEDA_ENTRY(entry));
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief
+ * \par Function Description
+ *  Set the max-history property.
  *
+ * \sa geda_entry_get_max_history geda_entry_set_max_history
  */
 void
 geda_entry_widget_set_max_history (GtkWidget *entry, unsigned int value)

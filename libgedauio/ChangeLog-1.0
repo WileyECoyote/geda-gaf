@@ -2,7 +2,8 @@
 
     * src/widgets/geda_entry.c: Make the history_list private, add function
       geda_entry_get_length_history, revise geda_entry_set_max_history to
-      reduce history if the max is set below the current list length.
+      reduce history if the max is set below the current list length, add
+      Doxygen comments.
 
 2016-11-06 Wiley E. Hill <wileyhill@gmail.com>
 
