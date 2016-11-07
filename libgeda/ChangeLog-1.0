@@ -1,3 +1,8 @@
+2016-11-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/utility/u_string.c: Revise function geda_utility_string_get_valid_utf8;
+      eliminate g_return_val_if_fail.
+
 2016-11-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * BUGS: Update issues documention.

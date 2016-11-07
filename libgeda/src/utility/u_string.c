@@ -120,50 +120,57 @@ geda_utility_string_concat (const char *string1, ...)
  * \brief Get Valid UTF8 string from string
  * \par Function Description
  *  Returns a new allocated utf8 encoding string containing valid
- *  chars from the array pointed to by \a instr.
+ *  chars from the array pointed to by \a instr. Chars following
+ *  an invalid chars are omitted.
  */
 char*
 geda_utility_string_get_valid_utf8 (const char *instr)
 {
-  GString    *string;
-  const char *remainder;
-  const char *invalid;
+  if (instr != NULL) {
 
-  int remaining_bytes, valid_bytes;
+    GString    *string;
+    const char *remainder;
+    const char *invalid;
+          char *outstr;
 
-  g_return_val_if_fail (instr != NULL, NULL);
+    int remaining_bytes, valid_bytes;
 
-  string = NULL;
-  remainder = instr;
-  remaining_bytes = strlen (instr);
+    string = NULL;
+    remainder = instr;
+    remaining_bytes = strlen (instr);
 
-  while (remaining_bytes != 0) {
+    while (remaining_bytes != 0) {
 
-    if (g_utf8_validate (remainder, remaining_bytes, &invalid))
-      break;
+      if (g_utf8_validate (remainder, remaining_bytes, &invalid))
+        break;
 
-    valid_bytes = invalid - remainder;
+      valid_bytes = invalid - remainder;
 
-    if (string == NULL)
-      string = g_string_sized_new (remaining_bytes);
+      if (string == NULL)
+        string = g_string_sized_new (remaining_bytes);
 
-    g_string_append_len (string, remainder, valid_bytes);
-    /* append U+FFFD REPLACEMENT CHARACTER */
-    g_string_append (string, "\357\277\275");
+      g_string_append_len (string, remainder, valid_bytes);
+      /* append U+FFFD REPLACEMENT CHARACTER */
+      g_string_append (string, "\357\277\275");
 
-    remaining_bytes -= valid_bytes + 1;
-    remainder = invalid + 1;
+      remaining_bytes -= valid_bytes + 1;
+      remainder = invalid + 1;
+    }
+
+    if (string == NULL) {
+      outstr = geda_strdup (instr);
+    }
+    else {
+      g_string_append (string, remainder);
+
+      g_assert (g_utf8_validate (string->str, -1, NULL));
+
+      outstr = g_string_free (string, FALSE);
+    }
+
+    return outstr;
   }
-
-  if (string == NULL) {
-    return g_strdup (instr);
-  }
-
-  g_string_append (string, remainder);
-
-  g_assert (g_utf8_validate (string->str, -1, NULL));
-
-  return g_string_free (string, FALSE);
+  return NULL;
 }
 
 /*! U0603
