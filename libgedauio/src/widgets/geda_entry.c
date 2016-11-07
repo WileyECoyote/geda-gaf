@@ -141,7 +141,6 @@ static void    geda_entry_populate_popup     (GedaEntry        *entry,
                                               void             *data);
 
 /* These flags and pointers are used for construction */
-static GList  *history_list;
 static GList **history_list_arg;
 static  bool   have_history;
 
@@ -157,6 +156,8 @@ struct _GedaEntryPriv
   GedaCompletion *command_completion;
   PangoAttrList  *attrs;
   PangoFontMap   *font_map;
+  GList          *history_list;
+  GList         **history_store;
   bool            case_sensitive;
   int             change_count;
 };
@@ -214,7 +215,7 @@ geda_entry_finalize (GObject *object)
 
   /* Save history to caller's glist*/
   if (entry->have_history)
-    *history_list_arg  = history_list;
+    *entry->priv->history_store = entry->priv->history_list;
 
   G_OBJECT_CLASS (geda_entry_parent_class)->finalize (object);
 
@@ -744,9 +745,10 @@ geda_entry_instance_init(GTypeInstance *instance, void *g_class)
 
     if (history_list_arg) {
 
-      history_list         = *history_list_arg;
-      entry->history_index = g_list_length (history_list);
-      entry->max_history   = MAX_ENTRY_HISTORY;
+      priv->history_store  =  history_list_arg;
+      priv->history_list   = *history_list_arg;
+      entry->history_index =  g_list_length (priv->history_list);
+      entry->max_history   =  MAX_ENTRY_HISTORY;
     }
     else {
       entry->history_index = 0;
@@ -854,6 +856,7 @@ is_a_geda_entry (GedaEntry *entry)
 static void
 geda_entry_activate (GedaEntry *entry, void *data)
 {
+  GedaEntryPriv *priv = entry->priv;
   int list_length;
 
   const char *entry_text = geda_entry_get_text(entry);
@@ -863,12 +866,14 @@ geda_entry_activate (GedaEntry *entry, void *data)
     return;
   }
 
-  if (history_list) {                                         /* if not a new buffer */
+  if (priv->history_list) {                                   /* if not a new buffer */
 
+    GList *history;
     GList *iter;
 
-    list_length = g_list_length (history_list);   /* hit enter so end is now current */
-    iter        = g_list_last(history_list);                   /* get the last entry */
+    history     = priv->history_list;
+    list_length = g_list_length (history);        /* hit enter so end is now current */
+    iter        = g_list_last(history);                        /* get the last entry */
 
     if (g_ascii_strcasecmp (iter->data, entry_text) != 0) {   /* same as last entry? */
 
@@ -878,27 +883,27 @@ geda_entry_activate (GedaEntry *entry, void *data)
 
         GList *prev;
 
-        iter = g_list_first(history_list);                          /* get the start */
+        iter = g_list_first(history);                          /* get the start */
         g_free(iter->data);                                 /* first the oldest data */
         prev = iter;                       /* but save address that held the pointer */
-        for (iter = g_list_next(iter); iter != NULL; iter=g_list_next(iter)) {
+        for (iter = iter->next; iter != NULL; iter = iter->next) {
           prev->data = iter->data;                           /* rotate pointers down */
           prev       = iter;
         }
-        iter        = g_list_last(history_list);    /* get the last entry again */
+        iter        = g_list_last(history);         /* get the last entry again */
         iter->data  = geda_strdup (entry_text);     /* save the new text */
-        list_length = g_list_length (history_list); /* is really ++list_length | max */
+        list_length = g_list_length (history);      /* is really ++list_length | max */
       }
       else { /* the buffer is not full so just add to the end */
-        char *text   = geda_strdup (entry_text);
-        history_list = g_list_append(history_list, text);
+        char *text = geda_strdup (entry_text);
+        priv->history_list = g_list_append(history, text);
       }
     }
   }
   else { /* we were created with a NULL list, this means glist is a new buffer list */
-    char *text   = geda_strdup (entry_text);
-    history_list = g_list_append(history_list, text);
-    list_length  = 1;
+    char *text         = geda_strdup (entry_text);
+    priv->history_list = g_list_append(NULL, text);
+    list_length        = 1;
   }
   entry->history_index = list_length;
 }
@@ -918,7 +923,7 @@ geda_entry_history_up (GedaEntry *entry)
     char *new_line;
 
     --entry->history_index;
-      new_line = g_list_nth_data(history_list, entry->history_index);
+      new_line = g_list_nth_data(entry->priv->history_list, entry->history_index);
       geda_entry_set_text (entry, new_line);
       gtk_editable_set_position (GTK_EDITABLE (GTK_ENTRY (entry)), -1);
   }
@@ -940,16 +945,18 @@ geda_entry_history_down (GedaEntry *entry)
 
   if (entry->history_index < (entry->max_history - 1)) {
 
-    int list_length = g_list_length (history_list);
+    GedaEntryPriv *priv = entry->priv;
+
+    int list_length = g_list_length (priv->history_list);
 
     if (entry->history_index < list_length) {
 
-      if (g_list_nth_data(history_list, entry->history_index + 1)) {
+      if (g_list_nth_data(priv->history_list, entry->history_index + 1)) {
 
         char *new_line;
 
         ++entry->history_index;
-        new_line = g_list_nth_data(history_list, entry->history_index);
+        new_line = g_list_nth_data(priv->history_list, entry->history_index);
         geda_entry_set_text (entry, new_line);
         gtk_editable_set_position (GTK_EDITABLE (gtk_entry), -1);
       }

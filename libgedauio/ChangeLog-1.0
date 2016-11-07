@@ -1,3 +1,7 @@
+2016-11-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_entry.c: Make the history_list private.
+
 2016-11-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/Makefile.am: Move WINDOWS_LIBTOOL_FLAGS to LIBTOOL flags.
