@@ -1,11 +1,14 @@
 
 
-Bugs (no particular order): 
+Bugs (no particular order):
 ----------------------
 
-	See gschem/BUGS for a more complete bug list. 
+	See gschem/BUGS for a more complete bug list.
 
-	Move libgeda bugs into this file.
+    Opening files mounted on a cifs file system may fail on 32 bit
+    platforms if the share was mounted without the "noserverino". This
+    is not a bug in libgeda.
+    Try remounting using the "noserverino" option.
 
 	Deleting top level schematics before the childern is a bad idea.
-	It's hard to reconnect them later. Fix this 
+	It's hard to reconnect them later. Fix this

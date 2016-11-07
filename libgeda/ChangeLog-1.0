@@ -1,5 +1,7 @@
 2016-11-06 Wiley E. Hill <wileyhill@gmail.com>
 
+    * BUGS: Update issues documention.
+
     * src/Makefile.am: Move WINDOWS_LIBTOOL_FLAGS to LIBTOOL flags.
 
     * tests/Makefile.am: Remove WINDOWS_LIBTOOL_FLAGS flags.
