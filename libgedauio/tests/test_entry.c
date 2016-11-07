@@ -542,6 +542,64 @@ check_accessors ()
   return result;
 }
 
+int
+check_integration (void)
+{
+  int result = 0;
+
+  static GList *C1, *C2;
+  static GList *H1, *H2;
+
+  GtkWidget *W1, *W2;
+
+  C1 = get_completion();
+  H1 = get_history();
+  W1 = geda_entry_new_history_complete(&H1, &C1);
+
+  if (!GEDA_IS_ENTRY(W1)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  const char *more = "Mesozoic";
+
+  C2 = get_completion();
+  H2 = get_history();
+
+  H2 = g_list_append(H2, (void*)more);
+
+  W2 = geda_entry_new_history_complete(&H2, &C2);
+
+  if (!GEDA_IS_ENTRY(W2)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  int L1, L2, L3;
+
+  L1 = geda_entry_get_length_history(GEDA_ENTRY(W1));
+
+  L2 = geda_entry_get_length_history(GEDA_ENTRY(W2));
+
+  if (L1 == L2) {
+    fprintf(stderr, "FAILED: %s line <%d> %d == %d\n", TWIDGET, __LINE__, L1, L2);
+    result++;
+  }
+
+  geda_entry_widget_set_text(W2, "Cenozoic");
+
+  g_signal_emit_by_name (G_OBJECT (W2), "process-entry");
+
+  L3 = geda_entry_get_length_history(GEDA_ENTRY(W2));
+
+  if (L2 == L3) {
+    fprintf(stderr, "FAILED: %s line <%d> %d == %d\n", TWIDGET, __LINE__, L2, L3);
+    result++;
+  }
+
+  return result;
+}
+
 static int activated = 0;
 
 void on_activate(GedaEntry *entry)
@@ -604,6 +662,14 @@ main (int argc, char *argv[])
       }
       else {
         fprintf(stderr, "Caught signal checking accessors in %s\n\n", MUT);
+        return 1;
+      }
+
+      if (setjmp(point) == 0) {
+        result += check_integration();
+      }
+      else {
+        fprintf(stderr, "Caught signal checking integration in %s\n\n", MUT);
         return 1;
       }
 

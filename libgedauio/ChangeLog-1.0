@@ -5,6 +5,9 @@
       reduce history if the max is set below the current list length, add
       Doxygen comments.
 
+    * tests/test_entry.c: Add checks for multiple instances of GedaEntry with
+      history.
+
 2016-11-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/Makefile.am: Move WINDOWS_LIBTOOL_FLAGS to LIBTOOL flags.
