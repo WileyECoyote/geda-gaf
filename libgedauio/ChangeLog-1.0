@@ -1,3 +1,10 @@
+2016-11-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_entry.c: Add checks for functions:
+
+        * geda_entry_widget_modify_bg
+        * geda_entry_widget_modify_fg
+
 2016-11-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Make the history_list private, add function
@@ -28,7 +35,7 @@
 
     * src/widgets/geda_entry.c: Validate geda_entry_set_valid_input inputs.
 
-    * tests/test_entry.c: Add checks for function:
+    * tests/test_entry.c: Add checks for functions:
 
         * geda_entry_widget_set_completion
         * geda_entry_widget_completion_get_case

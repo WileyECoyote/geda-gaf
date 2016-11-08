@@ -550,6 +550,8 @@ check_integration (void)
   static GList *C1, *C2;
   static GList *H1, *H2;
 
+  GtkWidget *vbox;
+  GtkWidget *window;
   GtkWidget *W1, *W2;
 
   C1 = get_completion();
@@ -596,6 +598,50 @@ check_integration (void)
     fprintf(stderr, "FAILED: %s line <%d> %d == %d\n", TWIDGET, __LINE__, L2, L3);
     result++;
   }
+
+  GtkStyle *style;
+  GdkColor  color;
+
+  color.red   = 0xffff;
+  color.green = 0xffff;
+  color.blue  = 0;
+
+  geda_entry_widget_modify_bg(W1, GTK_STATE_NORMAL, &color);
+
+  color.green = 0;
+  color.blue  = 0xffff;
+
+  geda_entry_widget_modify_fg(W2, GTK_STATE_NORMAL, &color);
+
+  window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+
+  vbox = gtk_vbox_new (FALSE, 0);
+  gtk_container_add (GTK_CONTAINER (window), vbox);
+  gtk_widget_show (vbox);
+
+  gtk_box_pack_start (GTK_BOX (vbox), W1, FALSE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (vbox), W2, FALSE, TRUE, 0);
+
+  /* If not visible then color not updated */
+  gtk_widget_show (W1);
+  gtk_widget_show (W2);
+  gtk_widget_show (window);
+
+  style = W1->style;
+
+  if (style->bg[GTK_STATE_NORMAL].red != color.red) {
+    fprintf(stderr, "FAILED: %s line <%d> bg.red=%.4x\n", TWIDGET, __LINE__, style->bg[GTK_STATE_NORMAL].red);
+    result++;
+  }
+
+  style = W2->style;
+
+  if (style->fg[GTK_STATE_NORMAL].blue != color.blue) {
+    fprintf(stderr, "FAILED: %s line <%d> fg.blue=%.4x\n", TWIDGET, __LINE__, style->fg[GTK_STATE_NORMAL].blue);
+    result++;
+  }
+
+  gtk_widget_destroy(window);
 
   return result;
 }
