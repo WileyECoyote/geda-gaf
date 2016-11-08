@@ -155,9 +155,9 @@ GtkWidget *create_pixmap (const char *filename)
  *       for the on and off state.
  */
 
-GtkWidget* get_geda_switch_image (bool WhichState)
+GtkWidget *get_geda_switch_image (bool WhichState)
 {
-   GtkWidget* image;
+   GtkWidget *image;
 
    if (WhichState) {
      image = create_pixmap (GEDA_BITMAP_SWITCH_ON);
@@ -219,7 +219,7 @@ create_geda_switch(GtkWidget *Dialog, GtkWidget *parent, GtkWidget *widget,
 GtkWidget*
 get_bulb_image (bool WhichState)
 {
-   GtkWidget* image;
+   GtkWidget *image;
 
    if (WhichState)
      image = create_pixmap (GEDA_BITMAP_BULB_ON );
@@ -230,13 +230,13 @@ get_bulb_image (bool WhichState)
 }
 void set_bulb_on( GtkWidget *widget) {
 
-  GList* button   = gtk_container_get_children (GTK_CONTAINER(widget));
-  GList* align    = gtk_container_get_children (GTK_CONTAINER(button->data));
-  GList* lightbox = gtk_container_get_children (GTK_CONTAINER(align->data));
+  GList *button   = gtk_container_get_children (GTK_CONTAINER(widget));
+  GList *align    = gtk_container_get_children (GTK_CONTAINER(button->data));
+  GList *lightbox = gtk_container_get_children (GTK_CONTAINER(align->data));
 
-  GtkWidget* BulbOnImage  = lightbox->data;
+  GtkWidget *BulbOnImage  = lightbox->data;
   lightbox                = lightbox->next;
-  GtkWidget* BulbOffImage = lightbox->data;
+  GtkWidget *BulbOffImage = lightbox->data;
 
   g_object_set (BulbOnImage,  "visible", TRUE, NULL);
   g_object_set (BulbOffImage, "visible", FALSE, NULL);
@@ -248,13 +248,13 @@ void set_bulb_on( GtkWidget *widget) {
 
 void set_bulb_off( GtkWidget *widget) {
 
-  GList* button   = gtk_container_get_children (GTK_CONTAINER(widget));
-  GList* align    = gtk_container_get_children (GTK_CONTAINER(button->data));
-  GList* lightbox = gtk_container_get_children (GTK_CONTAINER(align->data));
+  GList *button   = gtk_container_get_children (GTK_CONTAINER(widget));
+  GList *align    = gtk_container_get_children (GTK_CONTAINER(button->data));
+  GList *lightbox = gtk_container_get_children (GTK_CONTAINER(align->data));
 
-  GtkWidget* BulbOnImage  = lightbox->data;
+  GtkWidget *BulbOnImage  = lightbox->data;
   lightbox                = lightbox->next;
-  GtkWidget* BulbOffImage = lightbox->data;
+  GtkWidget *BulbOffImage = lightbox->data;
 
   g_object_set (BulbOnImage,  "visible", FALSE, NULL);
   g_object_set (BulbOffImage, "visible", TRUE, NULL);
@@ -312,8 +312,7 @@ void bulb_group_set_active(GSList *RadioGroupList, int value)
 /** \defgroup Text-View-Utilities Utility Functions for TextView Widgets
  *  @{
  *  \ingroup (Dialog-Utilities)
- *  \par
- *  Generic utility functions for textview widgets.
+ *  \brief Generic utility functions for textview widgets.
  */
 
 /*! \brief Selects all text in a TextView widget
@@ -378,7 +377,8 @@ text_view_calculate_real_tab_width(GtkTextView *textview, int tab_size)
 /** @} endgroup Dialog-Utilities */
 
 /** \defgroup Standard-Dialogs Standard Program Dialogs
- *  @{ \par This Group contains Functions for Standard Dialogs
+ *  @{
+ *  \brief This Group contains Functions for Standard Dialogs
 */
 
 /* Enumerate Control IDs */
@@ -722,11 +722,11 @@ void text_size_dialog (GschemToplevel *w_current)
  * to stay open while other editing is performed.
  */
 
-static      GtkWidget* create_linetype_menu (GschemToplevel *w_current);
+static      GtkWidget *create_linetype_menu (GschemToplevel *w_current);
 static int  x_dialog_edit_line_type_change  (GtkWidget *w, line_type_data *ld);
 static void x_dialog_edit_line_type_ok      (GtkWidget *w, line_type_data *ld);
 
-static      GtkWidget* create_menu_filltype (GschemToplevel *w_current);
+static      GtkWidget *create_menu_filltype (GschemToplevel *w_current);
 static int  x_dialog_edit_fill_type_change  (GtkWidget *w, fill_type_data *fd);
 static void x_dialog_edit_fill_type_ok      (GtkWidget *w, fill_type_data *fd);
 
@@ -3629,14 +3629,14 @@ void xd_add_changed_symbol_list (GschemToplevel   *w_current,
  *
  *  \param [in] w_current Pointer to a GschemToplevel object
  */
-void x_dialog_symbol_changed(GschemToplevel* w_current)
+void x_dialog_symbol_changed(GschemToplevel *w_current)
 {
   if (w_current->toplevel && Current_Page) {
 
     if (w_current->toplevel->page_current->major_changed_refdes) {
 
-      GtkWidget* dialog;
-      GtkWidget* close_butt;
+      GtkWidget *dialog;
+      GtkWidget *close_butt;
 
       dialog = gtk_message_dialog_new ((GtkWindow*) w_current->main_window,
                                        GTK_DIALOG_DESTROY_WITH_PARENT,
