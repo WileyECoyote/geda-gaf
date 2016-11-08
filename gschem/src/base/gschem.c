@@ -239,7 +239,7 @@ load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[]
     /*! \brief Sessions */
     if (start_session) { /* If session specified on command line */
       if (!i_sessions_open_session(w_current, start_session)) {
-        q_log_message(_("An error was encountered loading requested session %s\n"), start_session);
+        geda_log_q(_("An error was encountered loading requested session %s\n"), start_session);
 
         /* Open a blank document */
         x_window_open_page( w_current, NULL);
@@ -263,7 +263,8 @@ load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[]
 
       /* Check and do Auto Load if file recordered */
       if ((load_last) && (x_menu_recent_files_last() != NULL)) {
-        q_log_message("Auto Load: . . .%s\n", x_menu_recent_files_last()); /* maybe Log what we are doing */
+         /* maybe Log what we are doing */
+        geda_log_q("Auto Load: . . .%s\n", x_menu_recent_files_last());
         x_window_open_page(w_current, x_menu_recent_files_last());
       }
       else {

@@ -3,6 +3,8 @@
     * po/kh.po: Add translations for Khmer; primarly spoken in the Kingdom
       of Cambodia.
 
+    * src/base/gschem.c: Replace q_log_message with geda_log_q.
+
 2016-11-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_sessions.c: Replace G_FILE_ERROR with EDA_ERROR domain.
