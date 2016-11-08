@@ -1,3 +1,11 @@
+2016-11-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gattrib.c: Substitute macro geda_gslist_free_all for function
+      geda_utility_gslist_free_all in gattrib_main.
+
+    * src/x_menus.c: Substitute macro geda_gslist_free_all for function
+      geda_utility_gslist_free_all in x_menu_file_open.
+
 2016-10-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * gattrib/src/s_table.c: Add gettext to translate error messages in

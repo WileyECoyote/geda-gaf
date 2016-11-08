@@ -116,7 +116,7 @@ void x_menu_file_open()
 #endif
 
   if (file_list != NULL ) {
-    geda_utility_gslist_free_all(file_list);
+    geda_gslist_free_all(file_list);
   }
 }
 

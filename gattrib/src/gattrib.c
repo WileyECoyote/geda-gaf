@@ -378,7 +378,7 @@ void gattrib_main(void *closure, int argc, char *argv[])
   /* -------------- Complete Remaining Windows Stuff ------------- */
   x_window_finalize_startup(GTK_WINDOW (main_window), sheet_head);
 
-  geda_utility_gslist_free_all(file_list);
+  geda_gslist_free_all(file_list);
 
   gtk_main();
   exit(0);
