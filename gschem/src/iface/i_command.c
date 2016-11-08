@@ -804,7 +804,7 @@ open_command_idle_notify (void *data)
   }
 
   /* free all the filenames in the list, and the list */
-  geda_utility_gslist_free_all (files);
+  geda_gslist_free_all (files);
 
   /* free the IdleTaskData structure */
   GEDA_FREE(data);
@@ -1276,6 +1276,7 @@ COMMAND (do_copy_clip)
 
     /* Copy to one of our buffer */
     o_buffer_copy (w_current, narg);
+
     /* if buffer number = 0, then copy to system buffer */
     if ( narg == 0) {
       x_clipboard_set (w_current, object_buffer[0]);

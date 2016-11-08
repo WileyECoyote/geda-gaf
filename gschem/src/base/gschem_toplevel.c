@@ -322,7 +322,7 @@ static void gschem_toplevel_finalize( GObject *object )
   }
 
   if (w_current->toolbar_mode_grp != NULL) {
-    geda_utility_gslist_free_all (w_current->toolbar_mode_grp);
+    geda_gslist_free_all (w_current->toolbar_mode_grp);
     w_current->toolbar_mode_grp = NULL;
   }
 

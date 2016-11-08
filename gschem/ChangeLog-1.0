@@ -5,6 +5,14 @@
 
     * src/base/gschem.c: Replace q_log_message with geda_log_q.
 
+    * src/: Substitute macro geda_gslist_free_all for function
+      geda_utility_gslist_free_all in:
+
+            * src/base/gschem_toplevel.c
+            * src/guile/g_rc.c,
+            * src/iface/i_command.c
+            * src/iface/i_sessions.c
+
 2016-11-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_sessions.c: Replace G_FILE_ERROR with EDA_ERROR domain.

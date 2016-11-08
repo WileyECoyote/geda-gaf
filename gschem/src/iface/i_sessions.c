@@ -335,7 +335,7 @@ static int i_session_load_session(GschemToplevel *w_current, Session *record)
     }
 
     /* Free the filenames and the list */
-    geda_utility_gslist_free_all (file_list);
+    geda_gslist_free_all (file_list);
 
     /* Note: blank could be NULL if x_window_set_current_page
      * was not called after loading a blank "dummy" page */

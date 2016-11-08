@@ -882,6 +882,7 @@ static void x_dnd_drag_data_get
 
     case DND_TARGET_OBJECTS:
       o_buffer_copy(w_current, DND_BUFFER);
+
 #if DEBUG  || DEBUG_DND_EVENTS
       printf (" Sending %d objects.\n", g_list_length(object_buffer[DND_BUFFER]));
 #endif
