@@ -1,3 +1,8 @@
+2016-11-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/kh.po: Add translations for Khmer; primarly spoken in the Kingdom
+      of Cambodia.
+
 2016-11-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_sessions.c: Replace G_FILE_ERROR with EDA_ERROR domain.
@@ -72,7 +77,7 @@
 
             * src/gschem_preview.c:
             * src/iface/i_window.c
-            * gschem/src/object/o_undo.c
+            * src/object/o_undo.c
 
     * src/iface/i_command.c: Substitute geda_remove_backup_file macro for geda_
       file_remove_backup.
