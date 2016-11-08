@@ -82,7 +82,7 @@ SCM g_rc_valid_attributes(SCM stringlist)
   g_list_free(default_valid_attributes);
 
   scm_dynwind_begin(0);
-  scm_dynwind_unwind_handler(geda_utility_gslist_free_all, (void *) &list, 0);
+  scm_dynwind_unwind_handler(geda_gslist_free_all, (void*)&list, 0);
 
   /* convert the scm list into a GList */
   for (i=0; i < length; i++) {

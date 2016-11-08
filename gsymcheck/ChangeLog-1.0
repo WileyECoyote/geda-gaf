@@ -1,3 +1,8 @@
+2016-11-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/g_rc.c: Substitute macro geda_gslist_free_all for function
+      geda_utility_gslist_free_all in gattrib_main.
+
 2016-11-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/Makefile.am: Remove LIBSTROKE_LDFLAGS and MINGW_GUI_LDFLAGS.
