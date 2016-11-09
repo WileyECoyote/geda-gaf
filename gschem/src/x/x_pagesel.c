@@ -1197,7 +1197,7 @@ pagesel_instance_init (GTypeInstance *instance, void *class)
   GtkWidget *AutoHeightSwitch;
   GtkWidget *ShowFullNameSwitch;
   GtkWidget *fresh_butt;
-  GtkWidget *close_butt;
+  GtkWidget *okay_butt;
   GtkWidget *alignment;
   GtkDialog *Dialog;
 
@@ -1255,7 +1255,7 @@ pagesel_instance_init (GTypeInstance *instance, void *class)
 
   /* Create and connect the Close and Refresh Buttons */
   fresh_butt = gtk_button_new_from_stock (GTK_STOCK_REFRESH);
-  close_butt = gtk_button_new_from_stock (GTK_STOCK_CLOSE);
+  okay_butt = gtk_button_new_from_stock (GTK_STOCK_OK);
 
   g_signal_connect( ThisDialog, "notify::gschem-toplevel",
                     G_CALLBACK( notify_gschem_toplevel_cb ), NULL);
@@ -1265,15 +1265,15 @@ pagesel_instance_init (GTypeInstance *instance, void *class)
                     G_CALLBACK (pagesel_callback_refresh_clicked),
                     pagesel);
 
-  g_signal_connect (close_butt,
+  g_signal_connect (okay_butt,
                     "clicked",
                     G_CALLBACK (pagesel_callback_close_clicked),
                     pagesel);
 
-  g_object_set (close_butt, "visible", TRUE, NULL);
+  g_object_set (okay_butt, "visible", TRUE, NULL);
   g_object_set (fresh_butt, "visible", TRUE, "can-default", TRUE, NULL);
 
-  gtk_box_pack_end (GTK_BOX (butt_hbox), close_butt, FALSE, FALSE,
+  gtk_box_pack_end (GTK_BOX (butt_hbox), okay_butt, FALSE, FALSE,
                     DIALOG_H_SPACING);
 
   gtk_box_pack_end (GTK_BOX (butt_hbox), fresh_butt, FALSE, FALSE,

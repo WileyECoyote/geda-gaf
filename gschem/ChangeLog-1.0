@@ -1,3 +1,8 @@
+2016-11-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_pagesel.c: Change GTK_STOCK_CLOSE button to GTK_STOCK_OK,
+      the former is ambiguous with close page.
+
 2016-11-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/kh.po: Add translations for Khmer; primarly spoken in the Kingdom
