@@ -71,8 +71,9 @@ typedef struct {
 } NewGedaObjectHook;
 
 
-/*! \brief Internal Function to Call Register GedaObject Hooks
- *  \par Function Description
+/*!
+ * \brief Internal Function to Call Register GedaObject Hooks
+ * \par Function Description
  *
  */
 static void call_new_object_hook (void *hook, void *object)
@@ -83,11 +84,12 @@ static void call_new_object_hook (void *hook, void *object)
   h->func (o, h->data);
 }
 
-/*! \brief Append New GedaObject Hook List to this GedaObject.
+/*!
+ * \brief Append New GedaObject Hook List to this GedaObject.
  * \par Function Description
- * Adds a callback hook \a notify_func to \a object. After a new
- * \a object is created, \a notify_func will be called with two
- * arguments: the \a object, and the \a user_data.
+ *  Adds a callback hook \a notify_func to \a object. After a new
+ *  \a object is created, \a notify_func will be called with two
+ *  arguments: the \a object, and the \a user_data.
  *
  * \sa object_weak_unref
  *
@@ -146,16 +148,16 @@ int geda_object_get_color (const GedaObject *object) {
   return -0;
 }
 
-/*! \brief GedaObject property getter function
- *
- *  \par Function Description
+/*!
+ * \brief GedaObject property getter function
+ * \par Function Description
  *  Getter function for GedaObject's properties,
  *
- *  \param [in]  gobject      The GedaObject whose properties we are getting
- *  \param [in]  property_id  The numeric id. under which the property was
- *                            registered with g_object_class_install_property()
- *  \param [out] value        The GValue in which to return the value of the property
- *  \param [in]  pspec        A GParamSpec describing the property being got
+ * \param [in]  gobject      The GedaObject whose properties we are getting
+ * \param [in]  property_id  The numeric id. under which the property was
+ *                           registered with g_object_class_install_property()
+ * \param [out] value        The GValue in which to return the value of the property
+ * \param [in]  pspec        A GParamSpec describing the property being got
  */
 static void
 geda_object_get_property (GObject *gobject, unsigned int property_id,
@@ -202,16 +204,17 @@ geda_object_get_property (GObject *gobject, unsigned int property_id,
   }
 }
 
-/*! \brief GedaObject property setter function
- *  \par Function Description
+/*!
+ * \brief GedaObject property setter function
+ * \par Function Description
  *  Setter function for GedaAction's GObject properties,
  *  "settings-name" and "toplevel".
  *
- *  \param [in]  gobject      The GObject whose properties we are setting
- *  \param [in]  property_id  The numeric id. under which the property was
+ * \param [in]  gobject      The GObject whose properties we are setting
+ * \param [in]  property_id  The numeric id. under which the property was
  *                            registered with g_object_class_install_property()
- *  \param [in]  value        The GValue the property is being set from
- *  \param [in]  pspec        A GParamSpec describing the property being set
+ * \param [in]  value        The GValue the property is being set from
+ * \param [in]  pspec        A GParamSpec describing the property being set
  */
 static void
 geda_object_set_property (GObject *gobject, unsigned int property_id,
@@ -265,14 +268,15 @@ int geda_object_get_next_sid(void)
   return global_sid++;
 }
 
-/*! \brief GedaType instance initializer for a Geda GedaObject
- *  \par Function Description
+/*!
+ * \brief GedaType instance initializer for a Geda GedaObject
+ * \par Function Description
  *  GedaType instance initializer for an GedaObject, initializes a new empty
  *  GedaObject by setting pointers to NULL and numbers to zero or default
  *  values, the object SID variable is set to the next GedaObject index.
  *
- *  \param [in]  instance  The GedaObject being initialising.
- *  \param [in]  g_class   The class of the type the instance is created for.
+ * \param [in]  instance  The GedaObject being initialising.
+ * \param [in]  g_class   The class of the type the instance is created for.
  */
 static void
 geda_object_instance_init(GTypeInstance *instance, void *g_class)
@@ -345,11 +349,12 @@ geda_object_instance_init(GTypeInstance *instance, void *g_class)
 
 }
 
-/*! \brief Geda GedaObject Finalization Function
- *  \par Function Description
- *   This function removes or releases all internal references
- *   and releases the memory allocated to the given GedaObject data
- *   structure and then chain up to the parent's finalize handler.
+/*!
+ * \brief Geda GedaObject Finalization Function
+ * \par Function Description
+ *  This function removes or releases all internal references
+ *  and releases the memory allocated to the given GedaObject data
+ *  structure and then chain up to the parent's finalize handler.
  */
 static void geda_object_finalize(GObject *gobject)
 {
@@ -390,14 +395,15 @@ static void geda_object_finalize(GObject *gobject)
   /* Return to the child's finalizer */
 }
 
-/*! \brief GedaObjectType class initializer for GedaObject
- *  \par Function Description
+/*!
+ * \brief GedaObjectType class initializer for GedaObject
+ * \par Function Description
  *  GedaObjectType class initializer for #GedaObject, registers
  *  GObject signals and over-rides parent virtual class methods
  *  as needed.
  *
- *  \param [in] g_class     The GedaObject we are initializing
- *  \param [in] class_data  (unused)
+ * \param [in] g_class     The GedaObject we are initializing
+ * \param [in] class_data  (unused)
  */
 static void geda_object_class_init(void *g_class, void *class_data)
 {
@@ -488,16 +494,16 @@ static void geda_object_class_init(void *g_class, void *class_data)
   g_object_class_install_property (gclass, OBJECT_VISIBLE, params);
 }
 
-/*! \brief Function to retrieve GedaObject's Type identifier.
- *
- *  \par Function Description
+/*!
+ * \brief Function to retrieve GedaObject's Type identifier.
+ * \par Function Description
  *  Function to retrieve a #GedaObject Type identifier. When first called,
  *  the function registers a #GedaObject in the GedaObjectType system to
  *  obtain an identifier that uniquely itentifies a GedaObject and returns
  *  the unsigned integer value. The retained value is returned on all
  *  Subsequent calls.
  *
- *  \return GedaObjectType identifier associated with GedaObject.
+ * \return GedaObjectType identifier associated with GedaObject.
  */
 GedaObjectType geda_object_get_type (void)
 {
@@ -529,26 +535,28 @@ GedaObjectType geda_object_get_type (void)
   return geda_object_type;
 }
 
-/*! \brief Create a new GedaObject.
- *  \par Function Description
+/*!
+ * \brief Create a new GedaObject.
+ * \par Function Description
  *  Returns a pointer to a new GedaObject object.
  *
- *  \param [in] type      The object type; one of the OBJ_* constants.
- *  \param [in] name      A prefix for the object's session-unique name.
+ * \param [in] type      The object type; one of the OBJ_* constants.
+ * \param [in] name      A prefix for the object's session-unique name.
  *
- *  \return A pointer to the initialized object.
+ * \return A pointer to the initialized object.
  */
 GedaObject *geda_object_new (int type, char const *name)
 {
-  GedaObject *object = g_object_new( GEDA_TYPE_OBJECT,
-                                "type", type,
-                                "name", name,
-                                 NULL);
+  GedaObject *object = g_object_new(GEDA_TYPE_OBJECT,
+                                    "type", type,
+                                    "name", name,
+                                    NULL);
   return object;
 }
 
-/*! \brief Determine if object is a Geda GedaObject.
- *  \par Function Description
+/*!
+ * \brief Determine if object is a Geda GedaObject.
+ * \par Function Description
  *  Returns true if the argument is a Geda GedaObject.
  *  All of the graphical and connection type Geda objects
  *  such as Circle, Lines, Pins, ... etc, are derived from
@@ -561,7 +569,7 @@ GedaObject *geda_object_new (int type, char const *name)
  *
  *  example   if (GEDA_IS_OBJECT(MyComplex))
  *
- *  \return boolean.
+ * \return boolean.
  */
 bool is_a_geda_object (const void *object)
 {
@@ -581,8 +589,9 @@ bool is_a_geda_object (const void *object)
   return answer;
 }
 
-/*! \brief Increment the GedaObject Reference Count
- *  \par Function Description
+/*!
+ * \brief Increment the GedaObject Reference Count
+ * \par Function Description
  *  Increases the GedaObject's reference count by one
  *
  * \param [in,out] object Pointer to a GedaObject.
@@ -597,8 +606,9 @@ GedaObject *geda_object_ref(GedaObject *object)
   return g_object_ref ((GObject*)object);
 }
 
-/*! \brief Decrement the GedaObject Reference Count
- *  \par Function Description
+/*!
+ * \brief Decrement the GedaObject Reference Count
+ * \par Function Description
  *  decreases the GedaObject's reference count;
  *
  * \param [in] object  Pointer to a GedaObject.
@@ -611,15 +621,15 @@ void geda_object_unref(GedaObject *object)
   g_object_unref ((GObject*)object);
 }
 
-/*! \brief Notify weak reference watchers that a structure is dead.
- *  \par Function Description
+/*!
+ * \brief Notify weak reference watchers that a structure is dead.
+ * \par Function Description
  *  For each entry in \a weak_refs, call notify function with the dead
- * pointer \a dead_ptr and the entry's specified user data, and free
- * \a weak_refs. Should be called during destruction of an structure
- * that allows weak references.
+ *  pointer \a dead_ptr and the entry's specified user data, and free
+ *  \a weak_refs. Should be called during destruction of an structure
+ *  that allows weak references.
  *
  * \param [in] object  Pointer to GedaObject being destroyed.
- *
  */
 void
 geda_object_weakref_notify (GedaObject *object)
@@ -630,11 +640,12 @@ geda_object_weakref_notify (GedaObject *object)
   }
 }
 
-/*! \brief Add a weak reference watcher to an GedaObject
- *  \par Function Description
- *   Adds the weak reference callback \a notify_func to \a GedaObject.
- * When \a GedaObject is destroyed, the \a notify_func will be called
- * with two arguments: the \a GedaObject, and the \a user_data.
+/*!
+ * \brief Add a weak reference watcher to an GedaObject
+ * \par Function Description
+ *  Adds the weak reference callback \a notify_func to \a GedaObject.
+ *  When \a GedaObject is destroyed, the \a notify_func will be called
+ *  with two arguments: the \a GedaObject, and the \a user_data.
  *
  * \note This function is for legacy purposes; since GedaObject is
  *       now a GObject, just use g_object_weak_ref instead!
@@ -654,14 +665,15 @@ void geda_object_weak_ref (GedaObject *object, WeakNotifyFunc notify_func, void 
     BUG_MSG("GedaObject is not a GedaObject");
 }
 
-/*! \brief Remove a weak reference watcher from a GedaObject.
- *  \par Function Description
+/*!
+ * \brief Remove a weak reference watcher from a GedaObject.
+ * \par Function Description
  *  Removes the weak reference callback \a notify_func from \a GedaObject.
  *
  * \note This function is for legacy purposes; since GedaObject is
  *       now a GObject, just use g_object_weak_unref instead!
  *
- * \param [in,out] object        GedaObject to remove weak-reference function.
+ * \param [in,out] object      GedaObject to remove weak-reference function.
  * \param [in]     notify_func Notify function to search for.
  * \param [in]     user_data   Data to to search for.
  *
@@ -676,15 +688,16 @@ void geda_object_weak_unref (GedaObject *object, WeakNotifyFunc notify_func, voi
     BUG_MSG("GedaObject is not a GedaObject");
 }
 
-/*! \brief Add a weak pointer to a GedaObject.
- *  \par Function Description
+/*!
+ * \brief Add a weak pointer to a GedaObject.
+ * \par Function Description
  *  Adds the weak pointer at \a weak_pointer_loc to \a object. The
- * value of \a weak_pointer_loc will be set to NULL when \a object is
- * destroyed.
+ *  value of \a weak_pointer_loc will be set to NULL when \a object is
+ *  destroyed.
  *
  * \sa object_remove_weak_ptr
  *
- * \param [in,out] object          GedaObject to weak-reference.
+ * \param [in,out] object        GedaObject to weak-reference.
  * \param [in] weak_pointer_loc  Memory address of a pointer.
  */
 void geda_object_add_weak_ptr (GedaObject *object, void *weak_pointer_loc)
@@ -693,13 +706,14 @@ void geda_object_add_weak_ptr (GedaObject *object, void *weak_pointer_loc)
   g_object_add_weak_pointer ((GObject*)object, weak_pointer_loc);
 }
 
-/*! \brief Remove a weak pointer from an GedaObject.
- *  \par Function Description
+/*!
+ * \brief Remove a weak pointer from an GedaObject.
+ * \par Function Description
  *  Removes the weak pointer at \a weak_pointer_loc from \a object.
  *
  * \sa object_add_weak_ptr()
  *
- * \param [in,out] object          GedaObject to weak-reference.
+ * \param [in,out] object        GedaObject to weak-reference.
  * \param [in] weak_pointer_loc  Memory address of a pointer.
  */
 void geda_object_remove_weak_ptr (GedaObject *object, void *weak_pointer_loc)
@@ -708,11 +722,12 @@ void geda_object_remove_weak_ptr (GedaObject *object, void *weak_pointer_loc)
   g_object_remove_weak_pointer ((GObject*)object, weak_pointer_loc);
 }
 
-/*! \brief Get an object's parent Page.
- *  \par Function Description
+/*!
+ * \brief Get an object's parent Page.
+ * \par Function Description
  *  Returns the Page structure which owns \a object. If \a object is
- * not currently associated with a Page, returns NULL. If \a object is
- * part of a compound object, recurses upward.
+ *  not currently associated with a Page, returns NULL. If \a object is
+ *  part of a compound object, recurses upward.
  *
  * \param [in] object    The GedaObject for which to retrieve the parent Page.
  *
