@@ -1,5 +1,8 @@
 2016-11-09 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_dialog.c: Change the field text "*unchanged*" to "*varies*",
+      which is more consistence with other applications, I think.
+
     * src/x/x_pagesel.c: Change GTK_STOCK_CLOSE button to GTK_STOCK_OK,
       the former is ambiguous with close page. Set the new okay button
       wider than normal to match the "refresh" button.

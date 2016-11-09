@@ -1180,11 +1180,11 @@ static GtkWidget *create_menu_filltype (GschemToplevel *w_current)
   struct fill_type {
     char *str;
     OBJECT_FILLING type;
-  } types[] = { { N_("Hollow"), FILLING_HOLLOW },
-                { N_("Filled"), FILL_SOLID },
-                { N_("Mesh"),   FILLING_MESH },
-                { N_("Hatch"),  FILLING_HATCH },
-                { N_("*unchanged*"), FILLING_VOID } };
+  } types[] = { { N_("Hollow"),   FILLING_HOLLOW },
+                { N_("Filled"),   FILL_SOLID },
+                { N_("Mesh"),     FILLING_MESH },
+                { N_("Hatch"),    FILLING_HATCH },
+                { N_("*varies*"), FILLING_VOID } };
 
   int i;
 
@@ -1266,7 +1266,7 @@ static bool selection_get_fill_type(GList *selection,
 /*! \brief Set the filltype in the filltype dialog
  *  \par Function Description
  *  Set all widgets in the filltype dialog. Variables marked with the
- *  invalid value -2 are set to *unchanged*.
+ *  invalid value -2 are set to *varies*.
  *
  *  \param [in]   fill_data dialog structure
  *  \param [in]   type      OBJECT_FILLING type
@@ -1293,7 +1293,7 @@ static void x_dialog_edit_fill_type_set_values(fill_type_data *fill_data,
   geda_check_menu_item_set_active(GEDA_CHECK_MENU_ITEM(menuitem), TRUE);
 
   if (width == LEAVE_ALONE)
-    text = geda_strdup(_("*unchanged*"));
+    text = geda_strdup(_("*varies*"));
   else
     text = geda_sprintf ("%d", width);
 
@@ -1302,7 +1302,7 @@ static void x_dialog_edit_fill_type_set_values(fill_type_data *fill_data,
   GEDA_FREE(text);
 
   if (pitch1 == LEAVE_ALONE)
-    text = geda_strdup(_("*unchanged*"));
+    text = geda_strdup(_("*varies*"));
   else
     text = geda_sprintf ("%d", pitch1);
 
@@ -1311,7 +1311,7 @@ static void x_dialog_edit_fill_type_set_values(fill_type_data *fill_data,
   GEDA_FREE(text);
 
   if (angle1 == LEAVE_ALONE)
-    text = geda_strdup(_("*unchanged*"));
+    text = geda_strdup(_("*varies*"));
   else
     text = geda_sprintf ("%d", angle1);
 
@@ -1320,7 +1320,7 @@ static void x_dialog_edit_fill_type_set_values(fill_type_data *fill_data,
   GEDA_FREE(text);
 
   if (pitch2 == LEAVE_ALONE)
-    text = geda_strdup(_("*unchanged*"));
+    text = geda_strdup(_("*varies*"));
   else
     text = geda_sprintf ("%d", pitch2);
 
@@ -1329,7 +1329,7 @@ static void x_dialog_edit_fill_type_set_values(fill_type_data *fill_data,
   GEDA_FREE(text);
 
   if (angle2 == LEAVE_ALONE)
-    text = geda_strdup(_("*unchanged*"));
+    text = geda_strdup(_("*varies*"));
   else
     text = geda_sprintf ("%d", angle2);
 
@@ -1438,20 +1438,20 @@ x_dialog_edit_fill_type_ok(GtkWidget *Dialog, fill_type_data *fill_data)
   if (type == FILLING_VOID)
     type = LEAVE_ALONE;
 
-  /* convert the options to integers, if string is "*unchanged*"
+  /* convert the options to integers, if string is "*varies*"
    * then there are multible object with different values and
    * the current value for each object should not be changed.
    * To indicate this, we set such fields to LEAVE_ALONE */
   width  = g_ascii_strcasecmp (width_str,
-                         _("*unchanged*")) ? atoi (width_str)  : LEAVE_ALONE;
+                         _("*varies*")) ? atoi (width_str)  : LEAVE_ALONE;
   angle1 = g_ascii_strcasecmp (angle1_str,
-                         _("*unchanged*")) ? atoi (angle1_str) : LEAVE_ALONE;
+                         _("*varies*")) ? atoi (angle1_str) : LEAVE_ALONE;
   pitch1 = g_ascii_strcasecmp (pitch1_str,
-                         _("*unchanged*")) ? atoi (pitch1_str) : LEAVE_ALONE;
+                         _("*varies*")) ? atoi (pitch1_str) : LEAVE_ALONE;
   angle2 = g_ascii_strcasecmp (angle2_str,
-                         _("*unchanged*")) ? atoi (angle2_str) : LEAVE_ALONE;
+                         _("*varies*")) ? atoi (angle2_str) : LEAVE_ALONE;
   pitch2 = g_ascii_strcasecmp (pitch2_str,
-                         _("*unchanged*")) ? atoi (pitch2_str) : LEAVE_ALONE;
+                         _("*varies*")) ? atoi (pitch2_str) : LEAVE_ALONE;
 
   for (iter = selection; iter != NULL; NEXT(iter)) {
 
@@ -1744,10 +1744,10 @@ static GtkWidget *create_endtype_menu (GschemToplevel *w_current)
   struct end_type {
     char *str;
     LINE_END end;
-  } types[] = { { N_("None"),        END_NONE   },
-                { N_("Square"),      END_SQUARE },
-                { N_("Round"),       END_ROUND  },
-                { N_("*unchanged*"), END_VOID   }
+  } types[] = { { N_("None"),     END_NONE   },
+                { N_("Square"),   END_SQUARE },
+                { N_("Round"),    END_ROUND  },
+                { N_("*varies*"), END_VOID   }
               };
   int i;
 
@@ -1789,7 +1789,7 @@ static GtkWidget *create_linetype_menu (GschemToplevel *w_current)
                 { N_("Dashed"),      TYPE_DASHED  },
                 { N_("Center"),      TYPE_CENTER  },
                 { N_("Phantom"),     TYPE_PHANTOM },
-                { N_("*unchanged*"), TYPE_ERASE } };
+                { N_("*varies*"), TYPE_ERASE } };
   int i;
 
   menu  = geda_menu_new ();
@@ -1868,7 +1868,7 @@ selection_get_line_type(GList *selection, LINE_END *end, LINE_TYPE *type,
 /*! \brief set the linetype in the linetype dialog
  *  \par Function Description
  *  Set all widgets in the linetype dialog. Variables marked with the
- *  invalid value LEAVE_ALONE (-2) are set to *unchanged*.
+ *  invalid value LEAVE_ALONE (-2) are set to *varies*.
  *
  *  \param [in]   line_data line dialog structure
  *  \param [in]   end       #LINE_END type (currently not used)
@@ -1902,7 +1902,7 @@ x_dialog_edit_line_type_set_values(line_type_data *line_data,
   geda_check_menu_item_set_active(GEDA_CHECK_MENU_ITEM(menuitem), TRUE);
 
   if (width == LEAVE_ALONE)
-    text = geda_strdup(_("*unchanged*"));
+    text = geda_strdup(_("*varies*"));
   else
     text = geda_sprintf ("%d", width);
 
@@ -1911,7 +1911,7 @@ x_dialog_edit_line_type_set_values(line_type_data *line_data,
   GEDA_FREE(text);
 
   if (length == LEAVE_ALONE)
-    text = geda_strdup(_("*unchanged*"));
+    text = geda_strdup(_("*varies*"));
   else
     text = geda_sprintf ("%d", length);
 
@@ -1921,7 +1921,7 @@ x_dialog_edit_line_type_set_values(line_type_data *line_data,
   GEDA_FREE(text);
 
   if (space == LEAVE_ALONE)
-    text = geda_strdup(_("*unchanged*"));
+    text = geda_strdup(_("*varies*"));
   else
     text = geda_sprintf ("%d", space);
   SetEntryText   ( line_data->space_entry, text );
@@ -2028,16 +2028,16 @@ x_dialog_edit_line_type_ok(GtkWidget *Dialog, line_type_data *line_data)
     end = LEAVE_ALONE;
   }
 
-  /* convert the options to integers, if string is "*unchanged*"
+  /* convert the options to integers, if string is "*varies*"
    * then there are multible object with different values and
    * the current value for each object should not be changed.
    * To indicate this, we set such fields to LEAVE_ALONE */
   width =  g_ascii_strcasecmp (width_str,
-                         _("*unchanged*")) ? atoi (width_str)  : LEAVE_ALONE;
+                         _("*varies*")) ? atoi (width_str)  : LEAVE_ALONE;
   length = g_ascii_strcasecmp (length_str,
-                         _("*unchanged*")) ? atoi (length_str) : LEAVE_ALONE;
+                         _("*varies*")) ? atoi (length_str) : LEAVE_ALONE;
   space  = g_ascii_strcasecmp (space_str,
-                         _("*unchanged*")) ? atoi (space_str)  : LEAVE_ALONE;
+                         _("*varies*")) ? atoi (space_str)  : LEAVE_ALONE;
 
   for (iter = selection; iter != NULL; NEXT(iter)) {
 
