@@ -1279,6 +1279,8 @@ pagesel_instance_init (GTypeInstance *instance, void *class)
   gtk_box_pack_end (GTK_BOX (butt_hbox), fresh_butt, FALSE, FALSE,
                     DIALOG_H_SPACING);
 
+  gtk_widget_set_size_request(okay_butt, DIALOG_BUTTON_HSIZE + 50, -1);
+
   gtk_dialog_set_default_response (GTK_DIALOG (ThisDialog), GEDA_RESPONSE_REFRESH);
   gtk_widget_grab_default (fresh_butt);
 
