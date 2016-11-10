@@ -494,8 +494,9 @@ is_symbol_record (GtkTreeModel *tree_model, GtkTreeIter *iter)
   return FALSE;
 }
 
-/*! \brief Sets data for a particular cell in Library treeviews.
- *  \par Function Description
+/*!
+ * \brief Sets data for a particular cell in Library treeviews.
+ * \par Function Description
  *  This function determines what data is to be displayed in the
  *  selection selection view.
  *
@@ -849,7 +850,6 @@ compselect_cb_tree_selection_changed (GtkTreeSelection *selection,
   GtkTreeIter   iter;
   Compselect   *compselect = (Compselect*)user_data;
 
-  const CLibSymbol *sym = NULL;
   char *buffer          = NULL;
   bool is_symbol        = FALSE;
 
@@ -859,6 +859,7 @@ compselect_cb_tree_selection_changed (GtkTreeSelection *selection,
 
     if (is_symbol) {
 
+      const CLibSymbol *sym = NULL;
       GtkTreeView  *view;
 
       /* get pointer to tree that triggered signal */
@@ -870,33 +871,36 @@ compselect_cb_tree_selection_changed (GtkTreeSelection *selection,
       else {
         gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &sym, -1);
       }
+
       buffer = geda_struct_clib_symbol_get_data (sym);
     }
   }
 
-  /* update the preview with new symbol data */
-  g_object_set (compselect->preview,
-                "buffer", buffer,
-                "active", (buffer != NULL),
-                NULL);
+  if (buffer) {
 
-  /* update the attributes with the toplevel of the preview widget*/
-  if (compselect->attrtreeview != NULL) {
-    compselect_update_attributes_model (compselect,
-                                        compselect->preview->
-                                        preview_window->toplevel);
+    /* update the preview with new symbol data */
+    g_object_set (compselect->preview,
+                  "buffer", buffer,
+                  "active", (buffer != NULL),
+                  NULL);
+
+    /* update the attributes with the toplevel of the preview widget*/
+    if (compselect->attrtreeview != NULL) {
+      compselect_update_attributes_model (compselect,
+                                          compselect->preview->
+                                          preview_window->toplevel);
+    }
+
+    if (is_symbol) {
+      /* signal a component has been selected to parent of dialog */
+      g_signal_emit_by_name (compselect,
+                             "response",
+                             COMPSELECT_RESPONSE_PLACE,
+                             NULL);
+    }
+
+    GEDA_FREE (buffer);
   }
-
-  if (is_symbol) {
-    /* signal a component has been selected to parent of dialog */
-    g_signal_emit_by_name (compselect,
-                           "response",
-                           COMPSELECT_RESPONSE_PLACE,
-                           NULL);
-  }
-
-  GEDA_FREE (buffer);
-
 }
 
 /*! \brief Apply Filter to supplied View.
@@ -955,7 +959,7 @@ compselect_apply_filter_tree_view (Compselect *Dialog, GtkTreeView *view)
 static bool
 compselect_filter_timeout (void *data)
 {
-  Compselect  *Dialog = COMPSELECT (data);
+  Compselect  *Dialog = COMPSELECT(data);
   GtkTreeView *view;
 
   /* resets the source id in compselect */
@@ -1013,8 +1017,9 @@ compselect_callback_filter_entry_changed (GtkEditable *editable,
   compselect->applying_filter = sensitive;
 
   /* Cancel any pending update of the component list filter */
-  if (compselect->filter_timeout != 0)
+  if (compselect->filter_timeout != 0) {
     g_source_remove (compselect->filter_timeout);
+  }
 
   /* Schedule an update of the component list filter in
    * COMPSELECT_FILTER_INTERVAL milliseconds */
@@ -2011,11 +2016,13 @@ compselect_on_notebook_switch_page (GtkNotebook     *notebook,
 {
   dialog->active_tab = page_num;
 
-  if (dialog->applying_filter)
+  if (dialog->applying_filter) {
     compselect_apply_filter_tree_view (dialog, get_active_tree_view(dialog));
+  }
 
-  if (page_num == IN_USE_TAB)
+  if (page_num == IN_USE_TAB) {
     compselect_refresh_inuse_view (NULL, dialog);
+  }
 
   return;
 }
@@ -2999,6 +3006,7 @@ compselect_finalize (GObject *object)
   Compselect *ThisDialog = COMPSELECT (object);
 
   if (ThisDialog->filter_timeout != 0) {
+
     g_source_remove (ThisDialog->filter_timeout);
     ThisDialog->filter_timeout = 0;
   }

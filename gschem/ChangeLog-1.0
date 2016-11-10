@@ -1,7 +1,9 @@
 2016-11-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_compselect.c Revise is_symbol_record to ensure the function
-      only returns a boolean.
+      only returns a boolean. Revise compselect_cb_tree_selection_changed
+      to check if a pointer to a buffer was returned by geda_struct_clib_
+      symbol_get_data and reduce scope of CLibSymbol.
 
 2016-11-09 Wiley E. Hill <wileyhill@gmail.com>
 
