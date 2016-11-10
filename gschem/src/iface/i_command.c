@@ -1044,6 +1044,8 @@ COMMAND (do_write_image) {
 COMMAND (do_write_pdf) {
   BEGIN_W_COMMAND(do_write_pdf);
 
+  Page *page;
+  char *fname;
   char *filename;
 
   i_status_action_stop(w_current);
@@ -1052,10 +1054,34 @@ COMMAND (do_write_pdf) {
   i_status_set_state(w_current, SELECT);
   i_status_update_sensitivities(w_current);
 
-  filename = x_dialog_select_file(w_current, "Select destination...", "*.pdf", FSB_SAVE);
+  page  = gschem_toplevel_get_current_page(w_current);
+  fname = (char*)geda_page_get_filename(page);
+
+  if (fname) {
+
+    /* Do not free this fname */
+
+    char *name = geda_get_file_name(fname);
+
+    if (name) {
+      fname = geda_strconcat(name, ".pdf", NULL);
+      GEDA_FREE(name);
+    }
+    else {
+      fname = NULL;
+    }
+  }
+
+  if (!fname) {
+    fname = geda_strdup("*.pdf");
+  }
+
+  filename = x_dialog_select_file(w_current, "Select destination...", fname, FSB_SAVE);
+
+  GEDA_FREE(fname);
 
   if (filename != NULL) { /* if user did not cancel */
-    x_print_export_pdf_page(w_current,filename);
+    x_print_export_pdf_page(w_current, filename);
     GEDA_FREE(filename);
   }
   EXIT_COMMAND(do_write_pdf);

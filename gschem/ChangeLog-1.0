@@ -1,5 +1,8 @@
 2016-11-09 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/iface/i_command.c: Revise i_cmd_do_write_pdf: to file in the
+      file name with the pdf extension.
+
     * src/x/x_dialog.c: Change the field text "*unchanged*" to "*varies*",
       which is more consistence with other applications, I think.
 
