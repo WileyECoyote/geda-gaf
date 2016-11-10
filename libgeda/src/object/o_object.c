@@ -52,8 +52,9 @@
 
 #include <geda_diagnostics.h>
 
-/*! \brief Read a memory buffer
- *  \par Function Description
+/*!
+ * \brief Read a memory buffer
+ * \par Function Description
  *  This function reads data in libgeda format from a memory buffer.
  *
  *  If the size argument is negative, the buffer is assumed to be
@@ -62,14 +63,14 @@
  *  The name argument is used for debugging, and should be set to a
  *  meaningful string (e.g. the name of the file the data is from).
  *
- *  \param [in,out] toplevel     Current GedaToplevel structure,
- *  \param [in]     object_list  Object list to read data to,
- *  \param [in]     buffer       Memory buffer to read from,
- *  \param [in]     size         Size of the buffer,
- *  \param [in]     name         Name to describe the data,
- *  \param [in,out] err          GError structure for error reporting.
+ * \param [in,out] toplevel     Current GedaToplevel structure,
+ * \param [in]     object_list  Object list to read data to,
+ * \param [in]     buffer       Memory buffer to read from,
+ * \param [in]     size         Size of the buffer,
+ * \param [in]     name         Name to describe the data,
+ * \param [in,out] err          GError structure for error reporting.
  *
- *  \return GList of objects if successful read, or NULL on error.
+ * \return GList of objects if successful read, or NULL on error.
  */
 GList *
 geda_object_read_buffer (GedaToplevel *toplevel, GList    *object_list,
@@ -438,16 +439,17 @@ error2:
   return NULL;
 }
 
-/*! \brief Read a file
- *  \par Function Description
+/*!
+ * \brief Read a file
+ * \par Function Description
  *  This function reads a file in libgeda format.
  *
- *  \param [in,out] toplevel     The current GedaToplevel structure.
- *  \param [in]     object_list  The object_list to read data to.
- *  \param [in]     filename     The filename to read from.
- *  \param [in,out] err          GError structure for error reporting, or
- *                               NULL to disable error reporting
- *  \return object_list if successful read, or NULL on error.
+ * \param [in,out] toplevel     The current GedaToplevel structure.
+ * \param [in]     object_list  The object_list to read data to.
+ * \param [in]     filename     The filename to read from.
+ * \param [in,out] err          GError structure for error reporting, or
+ *                              NULL to disable error reporting
+ * \return object_list if successful read, or NULL on error.
  */
 GList*
 geda_object_read (GedaToplevel *toplevel, GList *object_list, char *filename,
@@ -480,14 +482,15 @@ geda_object_read (GedaToplevel *toplevel, GList *object_list, char *filename,
   return result;
 }
 
-/*! \brief Make a Copy a GedaObject
- *  \par Function Description
+/*!
+ * \brief Make a Copy a GedaObject
+ * \par Function Description
  *  returns head !!!!!!!!!!!!!!!!!!!
  *  look at above.. this returns what was passed in!!!!
  *  copies object to list_head (!! returns new list)
  *
- *  \param [in]  o_current
- *  \return GedaObject pointer.
+ * \param [in]  o_current
+ * \return GedaObject pointer.
  */
 GedaObject *
 geda_object_copy (GedaObject *o_current)
@@ -564,14 +567,15 @@ geda_object_copy (GedaObject *o_current)
   return new_obj;
 }
 
-/*! \brief Mirrors an object
- *  \par Function Description
+/*!
+ * \brief Mirrors an object
+ * \par Function Description
  *  This function mirrors an object about the point
  *  (<B>center_wx</B>,<B>center_wy</B>).
  *
- *  \param [in]     center_x  Origin x coordinate.
- *  \param [in]     center_y  Origin y coordinate.
- *  \param [in,out] object    The GedaObject to mirror.
+ * \param [in]     center_x  Origin x coordinate.
+ * \param [in]     center_y  Origin y coordinate.
+ * \param [in,out] object    The GedaObject to mirror.
  */
 void
 geda_object_mirror (GedaObject *object, int center_x, int center_y)
@@ -612,15 +616,16 @@ geda_object_mirror (GedaObject *object, int center_x, int center_y)
   }
 }
 
-/*! \brief Rotates an object
- *  \par Function Description
+/*!
+ * \brief Rotates an object
+ * \par Function Description
  *  This function rotates the object <B>object</B> about the coordinates
  *  <B>center_wx</B> and <B>center_wy</B>, by <B>angle</B>degrees.
  *
- *  \param [in] object    The object to rotate.
- *  \param [in] center_x  X coordinate of rotation center
- *  \param [in] center_y  Y coordinate of rotation center
- *  \param [in] angle     Angle of rotation (degrees)
+ * \param [in] object    The object to rotate.
+ * \param [in] center_x  X coordinate of rotation center
+ * \param [in] center_y  Y coordinate of rotation center
+ * \param [in] angle     Angle of rotation (degrees)
  */
 void
 geda_object_rotate (GedaObject *object, int center_x, int center_y, int angle)
@@ -663,14 +668,15 @@ geda_object_rotate (GedaObject *object, int center_x, int center_y, int angle)
   }
 }
 
-/*! \brief Translates an object
- *  \par Function Description
+/*!
+ * \brief Translates an object
+ * \par Function Description
  *  This function translates the object <B>object</B> by
  *  <B>dx</B> and <B>dy</B>.
  *
- *  \param [in] object   The object to translate
- *  \param [in] dx       Amount to horizontally translate object
- *  \param [in] dy       Amount to vertically translate object
+ * \param [in] object   The object to translate
+ * \param [in] dx       Amount to horizontally translate object
+ * \param [in] dy       Amount to vertically translate object
  */
 void
 geda_object_translate (GedaObject *object, int dx, int dy)
@@ -712,13 +718,14 @@ geda_object_translate (GedaObject *object, int dx, int dy)
   }
 }
 
-/*! \brief Update an object connections
- *  \par Function Description
+/*!
+ * \brief Update an object connections
+ * \par Function Description
  *  Convienence function that combines
  *  <B>geda_struct_tile_update_object</B> and
  *  <B>geda_struct_conn_update_object</B>.
  *
- *  \param [in] object The object to update.
+ * \param [in] object The object to update.
  */
 void
 geda_object_update (GedaObject *object)
