@@ -360,9 +360,14 @@ geda_math_hatch_polygon(GArray *points, int angle, int pitch, GArray *lines)
 }
 
 /*!
- * \brief
+ * \brief Hatch a Hatchable Geda Object
  * \par Function Description
- *  Wrapper for all hatchable object types.
+ *  Wrapper for all hatchable object types. Hatchable object type are:
+ *  <DL>
+ *    <DT><DD>GedaBox</DT>
+ *    <DT><DD>GedaCircle</DT>
+ *    <DT><DD>GedaPath</DT>
+ *  </DL>
  */
 GArray*
 geda_math_hatch_object (GedaObject *object)
@@ -390,8 +395,7 @@ geda_math_hatch_object (GedaObject *object)
 
   if ( fill_pitch1 > 0) { /* Handle mesh and hatch fill types */
 
-    switch (fill_type)
-    {
+    switch (fill_type) {
       case FILLING_MESH:
         if ( fill_pitch2 > 0) {
           switch (object->type) {
