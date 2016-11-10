@@ -1,5 +1,7 @@
 2016-11-09 Wiley E. Hill <wileyhill@gmail.com>
 
+    * libgeda/src/file/f_get.c: Add function geda_file_get_name.
+
     * src/geda/geda_page.c: Add accessor functions:
 
           * geda_page_get_filename

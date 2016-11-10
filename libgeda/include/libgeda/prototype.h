@@ -22,6 +22,7 @@ extern "C" {
        GSList   *geda_file_get_dir_list_files    (      char *path, char *filter,  GError **err);
    const char   *geda_file_get_filename_ext      (const char *filename);
    const char   *geda_file_get_format_header     (void);
+         char   *geda_file_get_name              (const char *filename);
          bool    geda_file_get_is_path_absolute  (const char *filename);
 
 /* f_path.c */

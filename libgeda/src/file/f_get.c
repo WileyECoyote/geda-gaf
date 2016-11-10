@@ -623,7 +623,7 @@ const char *
 geda_file_get_filename_ext(const char *filename)
 {
     const char *dot = strrchr(filename, '.');
-    if(!dot || dot == filename) return NULL;
+    if (!dot || dot == filename) return NULL;
     return dot + 1;
 }
 
@@ -645,6 +645,46 @@ geda_file_get_format_header(void)
                                        FILEFORMAT_VERSION);
 
   return header;
+}
+
+/*!
+ * \brief Get the name of a file without the path or extension
+ * \par Function description
+ *  Returns the base file without the path or the extension as
+ *  a newly allocated string.
+ *
+ * \param [in] filename The filename to interrogate.
+ *
+ * \retval name of file without an extension
+ */
+char*
+geda_file_get_name (const char *filespec)
+{
+  char *fname;
+
+  fname = geda_file_get_basename_dup(filespec);
+
+  if (fname) {
+
+    const char *dot = strrchr(fname, '.');
+
+    if (dot) {
+
+      char *tmp;
+      int   len;
+
+      len = (strlen(fname) - (strlen(dot)));
+      tmp = geda_strndup(fname, len);
+
+      GEDA_FREE(fname);
+
+      fname = tmp;
+    }
+  }
+  else {
+    return NULL;
+  }
+  return fname;
 }
 
 /*!
