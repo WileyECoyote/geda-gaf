@@ -1,3 +1,11 @@
+2016-11-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_page.c: Add accessor functions:
+
+          * geda_page_get_filename
+          * geda_page_get_filename_dup
+          * geda_page_set_filename
+
 2016-11-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/utility/u_string.c: Revise function geda_utility_string_get_valid_utf8;

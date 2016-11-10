@@ -285,8 +285,9 @@ static void geda_page_finalize(GObject *object)
 {
   Page *page = GEDA_PAGE(object);
 
-  if (page->filename)
+  if (page->filename) {
     GEDA_FREE(page->filename);
+  }
 
   /* The object is no longer a GedaPage object */
   page->head_marker = 1;
@@ -573,6 +574,28 @@ void geda_page_set_changed (Page *page, int changed)
 {
   if (GEDA_IS_PAGE(page)) {
     page->CHANGED = changed;
+  }
+}
+
+const char *geda_page_get_filename (Page *page)
+{
+  g_return_val_if_fail (GEDA_IS_PAGE(page), NULL);
+  return page->filename;
+}
+
+char *geda_page_get_filename_dup (Page *page)
+{
+  g_return_val_if_fail (GEDA_IS_PAGE(page), NULL);
+  return geda_strdup(page->filename);
+}
+
+void geda_page_set_filename (Page *page, const char *filename)
+{
+  if (GEDA_IS_PAGE(page)) {
+    if (page->filename) {
+      GEDA_FREE(page->filename);
+    }
+    page->filename = geda_strdup(filename);
   }
 }
 
