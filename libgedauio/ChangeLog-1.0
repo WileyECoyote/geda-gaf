@@ -1,3 +1,7 @@
+2016-11-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_entry.h: Update geda_entry_new_with_max_length argument.
+
 2016-11-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_entry.c: Add checks for functions:

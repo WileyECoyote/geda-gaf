@@ -162,7 +162,7 @@ extern "C" {
     GtkWidget *geda_entry_new_with_completion    (GList         **complete) WARN_UNUSED;
     GtkWidget *geda_entry_new_with_history       (GList         **history)  WARN_UNUSED;
 
-    GtkWidget *geda_entry_new_with_max_length    (size_t          length);
+    GtkWidget *geda_entry_new_with_max_length    (unsigned int    length);
 
          bool  geda_entry_get_activates_default  (GedaEntry      *entry);
          void  geda_entry_set_activates_default  (GedaEntry      *entry,
