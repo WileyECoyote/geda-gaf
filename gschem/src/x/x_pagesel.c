@@ -285,7 +285,7 @@ pagesel_get_row_height (Pagesel *pagesel)
  *  components such as the tree row height could not be determine
  *  during initialization, so these are resolved the first time the
  *  function executes with auto_height enabled. Note this function
- *  called by the callback for the AutoHeight toggle switch.
+ *  is called by the callback for the AutoHeight toggle switch.
  */
 static void
 pagesel_auto_height(Pagesel *pagesel)

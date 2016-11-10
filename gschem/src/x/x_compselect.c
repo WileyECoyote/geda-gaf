@@ -1466,12 +1466,14 @@ compselect_create_lib_tree_model (Compselect *compselect, DialogTabs  data_set)
 
       /* Might eliminate 1 of these, they alway seemed to occur in pairs */
       if (at_boundary) {
+
         /* At the start of a new group, either add it */
         if (compselect->subgroups == TRUE) {
           gtk_tree_store_append (store, &tree_iter, &parent);
         }
-        else /* or load symbols directly under parent */
+        else { /* or load symbols directly under parent */
           goto load_symbols;
+        }
       }
       else {
         gtk_tree_store_append (store, &tree_iter, NULL);
@@ -1479,10 +1481,11 @@ compselect_create_lib_tree_model (Compselect *compselect, DialogTabs  data_set)
       }
     }
     else { /* Not Nesting a Group */
+
       if (sym_count > 0) {
         gtk_tree_store_append (store, &tree_iter, NULL);
       }
-      else { /* is empty "special" folder with not files so */
+      else { /* is empty "special" folder with no files so */
         continue;
       }
     }
@@ -1494,8 +1497,9 @@ compselect_create_lib_tree_model (Compselect *compselect, DialogTabs  data_set)
       /* Add tool tip to the source row */
       tooltip_text = geda_sprintf("%s contains %d symbols", source->name, sym_count);
     }
-    else
+    else {
       tooltip_text = geda_sprintf("%s Group", source->name);
+    }
 
     gtk_tree_store_set (store, &tree_iter,
                         LVC_ROW_TYPE, FALSE,
@@ -2175,9 +2179,9 @@ compselect_menu_tooltips_off(GedaMenuItem *menu_item, Compselect *compselect)
 /*! \brief Create and Setup Popup Mouse Menu for the View Trees
  *
  *  \par Function Description
- * This function constructs a pop-up menu for the Library Tree Views.
- * The function sets sensitivity on menu choices based on the Tree-View
- * position and the state of the containing Tree-View.
+ * This function constructs a pop-up menu for the Library Tree Views
+ * settting sensitivity on menu choices based on Tree-View position
+ * and the state of the containing Tree-View.
  *
  *  \param [in] compselect Pointer Compselect dialog structure
  *  \param [in] treeview   widget
@@ -2277,7 +2281,9 @@ compselect_build_view_menu(Compselect *compselect, GtkWidget *treeview)
 
   index = 0;
 
-  for (iter2 = compselect->style_menu_widgets; iter2 != NULL; iter2 = g_slist_next (iter2)) {
+  for (iter2 = compselect->style_menu_widgets;
+       iter2 != NULL;
+       iter2 = g_slist_next (iter2)) {
 
     GedaCheckMenuItem *check_item;  /* Ptr to "main" style widget */
 
@@ -2377,8 +2383,7 @@ compselect_view_onButtonPressed (GtkWidget      *treeview,
                                  Compselect     *compselect)
 {
     /* single click with the right mouse button? */
-    if (event->type == GDK_BUTTON_PRESS  &&  event->button == 3)
-    {
+    if (event->type == GDK_BUTTON_PRESS  &&  event->button == 3) {
 
       compselect_view_popup_menu(treeview, event, compselect);
 
