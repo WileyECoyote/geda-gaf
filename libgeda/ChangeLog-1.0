@@ -1,4 +1,7 @@
-    * include/libgeda/geda_keyfile.h: New header file.
+2016-11-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_save.c: Revise geda_object_save to close the file even if
+      geda_object_save_buffer does not return pointer to buffer.
 
 2016-11-09 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -411,7 +411,7 @@ geda_object_save (const GList *object_list, const char *filename, GError **err)
     errno  = 0;
     output = fopen (filename, "w" );
 
-    if (errno) {
+    if (!output) {
       g_set_error (err, EDA_ERROR, errno, "file <%s>: %s",
                    filename, strerror(errno));
     }
@@ -423,12 +423,11 @@ geda_object_save (const GList *object_list, const char *filename, GError **err)
 
         fputs(buffer, output);
 
-        fclose(output);
-
         GEDA_FREE (buffer);
 
         result = 1;
       }
+      fclose(output);
     }
   }
   GEDA_FREE (path);
