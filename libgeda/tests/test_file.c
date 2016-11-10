@@ -562,7 +562,7 @@ int test_get (void)
     { "Somewhere/Over/The/Rainbow.sym", "Rainbow"}
   };
 
-  if (geda_file_get_name(NULL)) {                              /* NULL input */
+  if (geda_get_file_name(NULL)) {                              /* NULL input */
     fprintf(stderr, "FAILED: (F021000) NULL file_get_name\n");
     result++;
   }
@@ -574,7 +574,7 @@ int test_get (void)
     char *expected = filename_10[index].expected;
     char *input    = filename_10[index].input;
 
-    string = geda_file_get_name (input);
+    string = geda_get_file_name (input);
 
     if (string) {
       if (strcmp(string, expected)) {      /* See structure U02_str */
