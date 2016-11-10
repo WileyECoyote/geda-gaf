@@ -471,25 +471,27 @@ inuse_treeview_set_cell_data (GtkTreeViewColumn *tree_column,
   g_object_set ((GObject*)cell, "text", geda_struct_clib_symbol_get_name (symbol), NULL);
 }
 
-/*! \brief Returns whether a treeview node contains symbol data.
- *  \par Function Description
- *  This function returns the integer store in column LVC_ROW_TYPE at
- *  the given (row) \a iter. A zero in this columns indicate the row
- *  contains sources (folder or category) data, otherwise the row is
+/*!
+ * \brief Returns whether a treeview node contains symbol data.
+ * \par Function Description
+ *  This function returns TRUE if the integer stored in column LVC_ROW_TYPE
+ *  at the given (row) \a iter is not zero. A zero in this columns indicates
+ *  the row contains a source (folder or category) data, otherwise the row is
  *  for a symbol record.
  */
 static inline bool
 is_symbol_record (GtkTreeModel *tree_model, GtkTreeIter *iter)
 {
-  bool result;
+  if (iter->stamp != 0) {
 
-  result = (iter->stamp != 0 ? TRUE : FALSE);
+    unsigned result;
 
-  if (result) {
     gtk_tree_model_get (tree_model, iter, LVC_ROW_TYPE, &result, -1);
+
+    return (result != 0);
   }
 
-  return result;
+  return FALSE;
 }
 
 /*! \brief Sets data for a particular cell in Library treeviews.
