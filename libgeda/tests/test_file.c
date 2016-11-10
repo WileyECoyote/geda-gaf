@@ -551,35 +551,73 @@ int test_get (void)
 
   /* === Function 09: geda_get_format_header    geda_file_get_format_header === */
 
-  /* === Function 10: geda_file_get_is_path_absolute === */
+  /* === Function 10: geda_file_get_name === */
+
+  static const struct _TestData filename_10[] =
+  {
+    { "",  ""                      }, /* empty string */
+    { "Rainbow",         "Rainbow" },
+    { "Rainbow.sch",     "Rainbow" },
+    { "Over/The/Rainbow","Rainbow" },
+    { "Somewhere/Over/The/Rainbow.sym", "Rainbow"}
+  };
+
+  if (geda_file_get_name(NULL)) {                              /* NULL input */
+    fprintf(stderr, "FAILED: (F021000) NULL file_get_name\n");
+    result++;
+  }
+
+  int count = sizeof(filename_10) / sizeof(struct _TestData);
+
+  for (index = 0; index < count; index++) {
+
+    char *expected = filename_10[index].expected;
+    char *input    = filename_10[index].input;
+
+    string = geda_file_get_name (input);
+
+    if (string) {
+      if (strcmp(string, expected)) {      /* See structure U02_str */
+        fprintf(stderr, "FAILED: (F021001-%d) file_get_name <%s>\n",index, string);
+        result++;
+      }
+    }
+    else {
+      fprintf(stderr, "FAILED: (F021001B-%d) expected <%s> NULL\n",index, expected);
+      result++;
+    }
+  }
+
+
+  /* === Function 11: geda_file_get_is_path_absolute === */
 
   if (geda_is_path_absolute(NULL)) {                           /* NULL input */
-    fprintf(stderr, "FAILED: (F021000) NULL path_absolute\n");
+    fprintf(stderr, "FAILED: (F021100) NULL path_absolute\n");
     result++;
   }
 
   if (geda_is_path_absolute("")) {                            /* Empty input */
-    fprintf(stderr, "FAILED: (F021001) Empty path_absolute\n");
+    fprintf(stderr, "FAILED: (F021101) Empty path_absolute\n");
     result++;
   }
 
   if (geda_is_path_absolute("../")) {                        /* Relative input */
-    fprintf(stderr, "FAILED: (F021002) parent path_absolute\n");
+    fprintf(stderr, "FAILED: (F021102) parent path_absolute\n");
     result++;
   }
 
   if (geda_is_path_absolute("../src")) {                      /* Relative input */
-    fprintf(stderr, "FAILED: (F021003) src path_absolute\n");
+    fprintf(stderr, "FAILED: (F021103) src path_absolute\n");
     result++;
   }
 
   if (geda_is_path_absolute("data/")) {                      /* subdirectory input */
-    fprintf(stderr, "FAILED: (F021003) src path_absolute\n");
+    fprintf(stderr, "FAILED: (F021103) src path_absolute\n");
     result++;
   }
 
   if (geda_is_path_absolute("data/../src")) {                /* Relative input */
-    fprintf(stderr, "FAILED: (F021004) src path_absolute\n");
+    fprintf(stderr, "FAILED: (F021104) src path_absolute\n");
     result++;
   }
 
@@ -588,7 +626,7 @@ int test_get (void)
   cwd = getcwd(0,0);
 
   if (!geda_is_path_absolute(cwd)) {                         /* absolute input */
-    fprintf(stderr, "FAILED: (F021005) src path_absolute\n");
+    fprintf(stderr, "FAILED: (F021105) src path_absolute\n");
     result++;
   }
   free(cwd);

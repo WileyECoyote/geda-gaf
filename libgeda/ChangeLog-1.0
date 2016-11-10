@@ -1,3 +1,5 @@
+    * include/libgeda/geda_keyfile.h: New header file.
+
 2016-11-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * libgeda/src/file/f_get.c: Add function geda_file_get_name.
@@ -7,6 +9,8 @@
           * geda_page_get_filename
           * geda_page_get_filename_dup
           * geda_page_set_filename
+
+    * tests/test_file.c: Add checks for function geda_file_get_name.
 
 2016-11-07 Wiley E. Hill <wileyhill@gmail.com>
 

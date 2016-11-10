@@ -53,6 +53,8 @@
 #define geda_get_file_contents    geda_file_get_contents
 #define geda_get_extension        geda_file_get_filename_ext
 #define geda_get_format_header    geda_file_get_format_header
+#define geda_get_file_name        geda_file_get_name
+
 #define geda_is_path_absolute     geda_file_get_is_path_absolute
 
 /* f_path.c */
