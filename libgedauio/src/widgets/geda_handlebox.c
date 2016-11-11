@@ -1492,6 +1492,15 @@ geda_handle_box_class_init(void *g_class, void *class_data)
   class->child_attached = NULL;
   class->child_detached = NULL;
 
+  /*!
+   * signal "child-attached": GedaComboBox::child-attached:
+   * \brief emitted when active item is changed.
+   * This signal is emitted when the contents of the
+   * handlebox are reattached to the main window.
+   *
+   * param handlebox: the object which received the signal.
+   * param widget:    the child widget of the handlebox.(for backwards-compatibility)
+   */
   handle_box_signals[SIGNAL_CHILD_ATTACHED] =
     g_signal_new ("child-attached",
                    G_TYPE_FROM_CLASS (class),
@@ -1502,6 +1511,15 @@ geda_handle_box_class_init(void *g_class, void *class_data)
                    G_TYPE_NONE, 1,
                    G_TYPE_POINTER);
 
+  /*!
+   * signal "child-detached": GedaComboBox::child-detached:
+   * \brief emitted when active item is changed.
+   * This signal is emitted when the contents of the
+   * handlebox are detached from the handlebox.
+   *
+   * param handlebox: the object which received the signal.
+   * param widget:    the child widget of the handlebox.(for backwards-compatibility)
+   */
   handle_box_signals[SIGNAL_CHILD_DETACHED] =
     g_signal_new ("child-detached",
                    G_TYPE_FROM_CLASS (class),
