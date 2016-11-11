@@ -3,6 +3,9 @@
     * src/object/o_save.c: Revise geda_object_save to close the file even if
       geda_object_save_buffer does not return pointer to buffer.
 
+    * src/utility/u_string.c: Reduce scope of valid_bytes in function
+      geda_utility_string_get_valid_utf8.
+
 2016-11-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * libgeda/src/file/f_get.c: Add function geda_file_get_name.

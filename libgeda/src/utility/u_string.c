@@ -133,13 +133,15 @@ geda_utility_string_get_valid_utf8 (const char *instr)
     const char *invalid;
           char *outstr;
 
-    int remaining_bytes, valid_bytes;
+    int remaining_bytes;
 
     string = NULL;
     remainder = instr;
     remaining_bytes = strlen (instr);
 
     while (remaining_bytes != 0) {
+
+      int valid_bytes;
 
       if (g_utf8_validate (remainder, remaining_bytes, &invalid))
         break;
