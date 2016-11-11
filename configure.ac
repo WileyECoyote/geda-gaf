@@ -102,7 +102,7 @@ AX_DESKTOP_I18N
 #####################################################################
 # Linker flags...
 #####################################################################
-AX_CHECK_LD_FLAGS
+AX_SETUP_LD_FLAGS
 
 #####################################################################
 # Check for libraries that use pkg-config
@@ -296,7 +296,6 @@ AC_CONFIG_FILES([Makefile
                  libgedauio/docs/Makefile
                  libgedauio/docs/images/Makefile
                  libgedauio/include/Makefile
-                 libgedauio/src/dialogs/Makefile
                  libgedauio/src/Makefile
                  libgedauio/tests/Makefile
 
