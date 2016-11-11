@@ -1,3 +1,7 @@
+2016-11-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_file.c: Add checks for function geda_file_get_data_filespec.
+
 2016-11-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_save.c: Revise geda_object_save to close the file even if

@@ -483,6 +483,7 @@ int test_get (void)
   }
 
   /* === Function 05: geda_file_get_contents === */
+
   GError *err;
   char   *filename_05;
   char   *buffer_05;
@@ -543,7 +544,62 @@ int test_get (void)
     }
   }
 
-  /* === Function 06: geda_get_data_spec        geda_file_get_data_filespec === */
+  /* === Function 06: geda_file_get_data_filespec === */
+
+  char *filename_06;
+
+  if (geda_get_data_spec (NULL)) {
+    fprintf(stderr, "FAILED: (F020600) geda_get_data_spec NULL\n");
+    result++;
+  }
+
+  filename_06 = geda_get_data_spec (__FILE__);
+
+  if (!filename_06) {
+    fprintf(stderr, "FAILED: (F020601A) geda_get_data_spec __FILE__\n");
+    result++;
+  }
+  else {
+
+    char *cwd;
+
+    cwd = getcwd(0,0);
+
+    if (!strstr(filename_06, cwd)) { /* check path was included */
+      fprintf(stderr, "FAILED: (F020601B) geda_get_data_spec %s\n", filename_06);
+      result++;
+    }
+
+    free(cwd);
+
+    if (!strstr(filename_06, __FILE__)) { /* check file is included */
+      fprintf(stderr, "FAILED: (F020601C) geda_get_data_spec %s\n", filename_06);
+      result++;
+    }
+    free(filename_06);
+  }
+
+  /* GEDADATA = top of source */
+  filename_06 = geda_get_data_spec ("config.h");
+
+  if (!filename_06) {
+    fprintf(stderr, "FAILED: (F020602A) geda_get_data_spec __FILE__\n");
+    result++;
+  }
+  else {
+    if (!strstr(filename_06, "/config.h")) {
+      fprintf(stderr, "FAILED: (F020602B) geda_get_data_spec %s\n", filename_06);
+      result++;
+    }
+    free(filename_06);
+  }
+
+  filename_06 = geda_get_data_spec (LINK2NOWHERE);
+
+  if (filename_06) {
+    fprintf(stderr, "FAILED: (F020603) geda_get_data_spec %s\n", filename_06);
+    result++;
+  }
 
   /* === Function 07: geda_get_dir_list         geda_file_get_dir_list_files === */
 
