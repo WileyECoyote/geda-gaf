@@ -49,8 +49,9 @@ geda_path_object_error(const char *func, const void *object)
   geda_object_error(func, object, GEDA_OBJECT_PATH);
 }
 
-/*! \brief Get Point on a GedaPath Nearest a Given Point
- *  \par Function Description
+/*!
+ * \brief Get Point on a GedaPath Nearest a Given Point
+ * \par Function Description
  *  This function is intended to locate a point on a GedaPath object given
  *  a point \a x, \a y, that is on or about the vicinity of \a object. If
  *  True is returned, <B>nx</B> and <B>ny</B> are set in world unit to a point
@@ -58,13 +59,13 @@ geda_path_object_error(const char *func, const void *object)
  *  \a x, \a y. If the found point is within #NEAR_DISTANCE distance to a
  *  vertex of the path, the vertex is return as the result.
  *
- *  \param [in]  object  Pointer to a GedaPath object
- *  \param [in]  x       Integer x of point near or on the path
- *  \param [in]  y       Integer y of point near or on the path
- *  \param [out] nx      Integer pointer to resulting x value
- *  \param [out] ny      Integer pointer to resulting y value
+ * \param [in]  object  Pointer to a GedaPath object
+ * \param [in]  x       Integer x of point near or on the path
+ * \param [in]  y       Integer y of point near or on the path
+ * \param [out] nx      Integer pointer to resulting x value
+ * \param [out] ny      Integer pointer to resulting y value
  *
- *  \returns TRUE is the results are valid, FALSE if \a object was not a GedaPath.
+ * \returns TRUE is the results are valid, FALSE if \a object was not a GedaPath.
  */
 bool
 geda_path_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
@@ -335,8 +336,9 @@ geda_path_object_get_position (GedaObject *object, int *x, int *y)
   return FALSE;
 }
 
-/*! \brief Create and add path GedaObject to list.
- *  \par Function Description
+/*!
+ * \brief Create and add path GedaObject to list.
+ * \par Function Description
  *  This function creates a new object representing a path.
  *  This object is added to the end of the list <B>object_list</B>
  *  pointed object belongs to.
@@ -355,10 +357,10 @@ geda_path_object_get_position (GedaObject *object, int *x, int *y)
  *  It can be changed after with the #geda_set_object_line_options() and
  *  #geda_set_object_fill_options().
  *
+ * \param [in]     color        The path color.
+ * \param [in]     path_string  The string representation of the path
  *
- *  \param [in]     color        The path color.
- *  \param [in]     path_string  The string representation of the path
- *  \return A pointer to the new end of the object list.
+ * \return A pointer to the new end of the object list.
  */
 GedaObject*
 geda_path_object_new (int color, const char *path_string)
@@ -372,17 +374,18 @@ geda_path_object_new (int color, const char *path_string)
   return new_obj;
 }
 
-/*! \brief Create a New Path GedaObject from an Array of Points
- *  \par Function Description
+/*!
+ * \brief Create a New Path GedaObject from an Array of Points
+ * \par Function Description
  *  This function creates a new path object using the vertices
  *  given in the array \a points and sets the color property
  *  of the object to \a color. This function essentially does
  *  the oposite of the function geda_struct_path_to_polygon.
  *
- *  \param [in] points A GArray containing points
- *  \param [in] color  Color index the path should be set to
+ * \param [in] points A GArray containing points
+ * \param [in] color  Color index the path should be set to
  *
- *  \return A pointer to the new GedaPath object.
+ * \return A pointer to the new GedaPath object.
  */
 GedaObject*
 geda_path_object_new_from_polygon (GArray *points, int color)
@@ -429,18 +432,19 @@ geda_path_object_new_from_polygon (GArray *points, int color)
   return new_obj;
 }
 
-/*! \brief Create a new path object.
- *  \par Function Description
+/*!
+ * \brief Create a new path object.
+ * \par Function Description
  *  This function creates and returns a new GedaObject representing
  *  a path using the path shape data stored in \a path_data. The
  *  \a path_data is subsequently owned by the returned GedaObject.
  *
- *  \sa geda_path_object_new
+ * \sa geda_path_object_new
  *
- *  \param [in]     color        The path color
- *  \param [in]     path_data    The #GedaPath data structure to use
+ * \param [in]     color        The path color
+ * \param [in]     path_data    The #GedaPath data structure to use
  *
- *  \return A pointer to the new end of the object list.
+ * \return A pointer to the new end of the object list.
  */
 GedaObject*
 geda_path_object_new_take_path (int color, GedaPath *path_data)
@@ -469,16 +473,18 @@ geda_path_object_new_take_path (int color, GedaPath *path_data)
 
   return new_obj;
 }
-/*! \brief Create a copy of a path.
- *  \par Function Description
+
+/*!
+ * \brief Create a copy of a path.
+ * \par Function Description
  *  This function creates a verbatim copy of the
  *  object pointed by <B>\a o_current</B> describing a path. The new object
  *  is added at the end of the list following the <B>list_tail</B>
  *  parameter.
  *
- *  \param [in]  o_current  Line GedaObject to copy.
+ * \param [in]  o_current  Line GedaObject to copy.
  *
- *  \return A new pointer to the end of the object list.
+ * \return A new pointer to the end of the object list.
  */
 GedaObject*
 geda_path_object_copy (const GedaObject *o_current)
@@ -509,8 +515,9 @@ geda_path_object_copy (const GedaObject *o_current)
   return NULL;
 }
 
-/*! \brief Create path GedaObject from character string.
- *  \par Function Description
+/*!
+ * \brief Create path GedaObject from character string.
+ * \par Function Description
  *  This function creates a path GedaObject from the character string <B>*buf</B>
  *  and a number of lines following that describing the path, read from <B>*tb</B>.
  *  A path is internally described by its two ends. A new object is allocated,
@@ -527,14 +534,14 @@ geda_path_object_copy (const GedaObject *o_current)
  *    <DT><DD>the file format used for the releases after 20010704.</DT>
  *  </DL>
  *
- *  \param [in]  first_line      Character string with path description.
- *  \param [in]  tb              Text buffer containing the path string.
- *  \param [in]  release_ver     libgeda release version number.
- *  \param [in]  fileformat_ver  libgeda file format version number.
+ * \param [in]  first_line      Character string with path description.
+ * \param [in]  tb              Text buffer containing the path string.
+ * \param [in]  release_ver     libgeda release version number.
+ * \param [in]  fileformat_ver  libgeda file format version number.
  *
- *  \param [out] err           A GError obejct
+ * \param [out] err           A GError obejct
  *
- *  \return A pointer to the new path object, or NULL on error;
+ * \return A pointer to the new path object, or NULL on error;
  */
 GedaObject*
 geda_path_object_read (const char *first_line,
@@ -635,17 +642,17 @@ geda_path_object_read (const char *first_line,
   return new_obj;
 }
 
-/*! \brief Create a character string representation of a path GedaObject.
- *  \par Function Description
+/*!
+ * \brief Create a character string representation of a path GedaObject.
+ * \par Function Description
  *  The function formats a string in the buffer <B>*buff</B> to describe
  *  the path object <B>*object</B>.
  *
- *  \param [in] object  path GedaObject to create string from.
- *  \return A pointer to the path GedaObject character string.
+ * \param [in] object  path GedaObject to create string from.
  *
- *  \note
- *  Caller must GEDA_FREE returned character string.
+ * \return A pointer to the path GedaObject character string.
  *
+ * \note Caller should GEDA_FREE returned character string.
  */
 char*
 geda_path_object_to_buffer (GedaObject *object)
@@ -687,19 +694,19 @@ geda_path_object_to_buffer (GedaObject *object)
   return buf;
 }
 
-/*! \brief Modify control point location
- *
- *  \par Function Description
+/*!
+ * \brief Modify control point location
+ * \par Function Description
  *  This function modifies a control point location of the path object
  *  *object. The control point being modified is selected according to
  *  the whichone parameter.
  *
  *  The new position is given by <B>x</B> and <B>y</B>.
  *
- *  \param [in,out] object    The path GedaObject
- *  \param [in]     x         New x coordinate for the control point
- *  \param [in]     y         New y coordinate for the control point
- *  \param [in]     whichone  Which control point is being modified
+ * \param [in,out] object    The path GedaObject
+ * \param [in]     x         New x coordinate for the control point
+ * \param [in]     y         New y coordinate for the control point
+ * \param [in]     whichone  Which control point is being modified
  */
 void
 geda_path_object_modify (GedaObject *object, int x, int y, int whichone)
@@ -747,14 +754,15 @@ geda_path_object_modify (GedaObject *object, int x, int y, int whichone)
   }
 }
 
-/*! \brief Mirror a Path.
- *  \par Function Description
+/*!
+ * \brief Mirror a Path.
+ * \par Function Description
  *  This function mirrors the path from the point
  *  (<B>center_x</B>,<B>center_y</B>) in world unit.
  *
- *  \param [in,out] object    Line GedaObject to mirror.
- *  \param [in]     center_x  Origin x coordinate.
- *  \param [in]     center_y  Origin y coordinate.
+ * \param [in,out] object    Line GedaObject to mirror.
+ * \param [in]     center_x  Origin x coordinate.
+ * \param [in]     center_y  Origin y coordinate.
  */
 void
 geda_path_object_mirror (GedaObject *object, int center_x, int center_y)
@@ -791,16 +799,17 @@ geda_path_object_mirror (GedaObject *object, int center_x, int center_y)
   }
 }
 
-/*! \brief Rotate Line GedaObject.
- *  \par Function Description
+/*!
+ * \brief Rotate Line GedaObject.
+ * \par Function Description
  *  This function rotates the path described by  <B>*object</B> around
  *  the (<B>center_x</B>,<B>center_y</B>) point by <B>angle</B> degrees.
  *  The center of rotation is in world units.
  *
- *  \param [in,out] object    Line GedaObject to rotate
- *  \param [in]     center_x  Rotation center x coordinate
- *  \param [in]     center_y  Rotation center y coordinate
- *  \param [in]     angle     Rotation angle in degrees (See note below).
+ * \param [in,out] object    Line GedaObject to rotate
+ * \param [in]     center_x  Rotation center x coordinate
+ * \param [in]     center_y  Rotation center y coordinate
+ * \param [in]     angle     Rotation angle in degrees (See note below).
  */
 void
 geda_path_object_rotate (GedaObject *object, int center_x, int center_y, int angle)
@@ -842,14 +851,15 @@ geda_path_object_rotate (GedaObject *object, int center_x, int center_y, int ang
   }
 }
 
-/*! \brief Translate a path position by a delta.
- *  \par Function Description
+/*!
+ * \brief Translate a path position by a delta.
+ * \par Function Description
  *  This function applies a translation of (<B>x1</B>,<B>y1</B>) to the path
  *  described by <B>*object</B>. <B>x1</B> and <B>y1</B> are in world unit.
  *
- *  \param [in,out] object     Line GedaObject to translate
- *  \param [in]     dx         x distance to move
- *  \param [in]     dy         y distance to move.
+ * \param [in,out] object     Line GedaObject to translate
+ * \param [in]     dx         x distance to move
+ * \param [in]     dy         y distance to move.
  */
 void
 geda_path_object_translate (GedaObject *object, int dx, int dy)
@@ -888,22 +898,23 @@ geda_path_object_translate (GedaObject *object, int dx, int dy)
   }
 }
 
-/*! \brief Print a solid PATH to Postscript document.
- *  \par Function Description
+/*!
+ * \brief Print a solid PATH to Postscript document.
+ * \par Function Description
  *  This function prints the outline of a path when a solid line type is
  *  required. The postscript file is defined by the file pointer <B>fp</B>.
  *  The parameters <B>length</B> and <B>space</B> are ignored.
  *
  *  All dimensions are in mils.
  *
- *  \param [in] toplevel    The GedaToplevel object
- *  \param [in] fp          FILE pointer to Postscript document
- *  \param [in] path        The PATH object ot print
- *  \param [in] line_width  PATH Line width
- *  \param [in] length      Dashed line length
- *  \param [in] space       Amount of space between dashes
- *  \param [in] origin_x    Page x coordinate to place PATH GedaObject
- *  \param [in] origin_y    Page y coordinate to place PATH GedaObject
+ * \param [in] toplevel    The GedaToplevel object
+ * \param [in] fp          FILE pointer to Postscript document
+ * \param [in] path        The PATH object ot print
+ * \param [in] line_width  PATH Line width
+ * \param [in] length      Dashed line length
+ * \param [in] space       Amount of space between dashes
+ * \param [in] origin_x    Page x coordinate to place PATH GedaObject
+ * \param [in] origin_y    Page y coordinate to place PATH GedaObject
  */
 static void
 geda_path_object_print_solid (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
@@ -947,22 +958,23 @@ geda_path_object_print_solid (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
 }
 
 
-/*! \brief Print a dotted Path to Postscript document.
- *  \par Function Description
+/*!
+ * \brief Print a dotted Path to Postscript document.
+ * \par Function Description
  *  This function prints the outline of a path when a dotted line type is
  *  required. The postscript file is defined by the file pointer <B>fp</B>.
  *  The parameter <B>length</B> is ignored.
  *
  *  All dimensions are in mils.
  *
- *  \param [in] toplevel    The GedaToplevel object
- *  \param [in] fp          FILE pointer to Postscript document
- *  \param [in] path        The GedaPath object to print
- *  \param [in] line_width  Path Line width
- *  \param [in] length      Dashed line length
- *  \param [in] space       Amount of space between dashes
- *  \param [in] origin_x    Page x coordinate to place Path GedaObject
- *  \param [in] origin_y    Page y coordinate to place Path GedaObject
+ * \param [in] toplevel    The GedaToplevel object
+ * \param [in] fp          FILE pointer to Postscript document
+ * \param [in] path        The GedaPath object to print
+ * \param [in] line_width  Path Line width
+ * \param [in] length      Dashed line length
+ * \param [in] space       Amount of space between dashes
+ * \param [in] origin_x    Page x coordinate to place Path GedaObject
+ * \param [in] origin_y    Page y coordinate to place Path GedaObject
  */
 static void
 geda_path_object_print_dotted (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
@@ -974,21 +986,22 @@ geda_path_object_print_dotted (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
 }
 
 
-/*! \brief Print a dashed Path to Postscript document.
- *  \par Function Description
+/*!
+ * \brief Print a dashed Path to Postscript document.
+ * \par Function Description
  *  This function prints the outline of a path when a dashed line type is
  *  required. The postscript file is defined by the file pointer <B>fp</B>.
  *
  *  All dimensions are in mils.
  *
- *  \param [in] toplevel    The GedaToplevel object
- *  \param [in] fp          FILE pointer to Postscript document
- *  \param [in] path        The GedaPath object to print
- *  \param [in] line_width  Path Line width
- *  \param [in] length      Dashed line length
- *  \param [in] space       Amount of space between dashes
- *  \param [in] origin_x    Page x coordinate to place Path GedaObject
- *  \param [in] origin_y    Page y coordinate to place Path GedaObject
+ * \param [in] toplevel    The GedaToplevel object
+ * \param [in] fp          FILE pointer to Postscript document
+ * \param [in] path        The GedaPath object to print
+ * \param [in] line_width  Path Line width
+ * \param [in] length      Dashed line length
+ * \param [in] space       Amount of space between dashes
+ * \param [in] origin_x    Page x coordinate to place Path GedaObject
+ * \param [in] origin_y    Page y coordinate to place Path GedaObject
  */
 static void
 geda_path_object_print_dashed (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
@@ -1000,21 +1013,22 @@ geda_path_object_print_dashed (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
 }
 
 
-/*! \brief Print centered line type Path to Postscript document.
- *  \par Function Description
+/*!
+ * \brief Print centered line type Path to Postscript document.
+ * \par Function Description
  *  This function prints the outline of a path when a centered line type is
  *  required. The postscript file is defined by the file pointer <B>fp</B>.
  *
  *  All dimensions are in mils.
  *
- *  \param [in] toplevel    The GedaToplevel object
- *  \param [in] fp          FILE pointer to Postscript document
- *  \param [in] path        The Path object to print
- *  \param [in] line_width  Path Line width
- *  \param [in] length      Dashed line length
- *  \param [in] space       Amount of space between dashes
- *  \param [in] origin_x    Page x coordinate to place Path GedaObject
- *  \param [in] origin_y    Page y coordinate to place Path GedaObject
+ * \param [in] toplevel    The GedaToplevel object
+ * \param [in] fp          FILE pointer to Postscript document
+ * \param [in] path        The Path object to print
+ * \param [in] line_width  Path Line width
+ * \param [in] length      Dashed line length
+ * \param [in] space       Amount of space between dashes
+ * \param [in] origin_x    Page x coordinate to place Path GedaObject
+ * \param [in] origin_y    Page y coordinate to place Path GedaObject
  */
 static void
 geda_path_object_print_center (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
@@ -1026,21 +1040,22 @@ geda_path_object_print_center (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
 }
 
 
-/*! \brief Print phantom line type Path to Postscript document.
- *  \par Function Description
+/*!
+ * \brief Print phantom line type Path to Postscript document.
+ * \par Function Description
  *  This function prints the outline of a path when a phantom line type is
  *  required. The postscript file is defined by the file pointer <B>fp</B>.
  *
  *  All dimensions are in mils.
  *
- *  \param [in] toplevel    The GedaToplevel object
- *  \param [in] fp          FILE pointer to Postscript document
- *  \param [in] path        The Path object to print
- *  \param [in] line_width  GedaPath Line width
- *  \param [in] length      Dashed line length
- *  \param [in] space       Amount of space between dashes
- *  \param [in] origin_x    Page x coordinate to place Path GedaObject
- *  \param [in] origin_y    Page y coordinate to place Path GedaObject
+ * \param [in] toplevel    The GedaToplevel object
+ * \param [in] fp          FILE pointer to Postscript document
+ * \param [in] path        The Path object to print
+ * \param [in] line_width  GedaPath Line width
+ * \param [in] length      Dashed line length
+ * \param [in] space       Amount of space between dashes
+ * \param [in] origin_x    Page x coordinate to place Path GedaObject
+ * \param [in] origin_y    Page y coordinate to place Path GedaObject
  */
 static void
 geda_path_object_print_phantom (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
@@ -1052,8 +1067,9 @@ geda_path_object_print_phantom (GedaToplevel *toplevel, FILE *fp, GedaPath *path
 }
 
 
-/*! \brief Print a solid pattern Path to Postscript document.
- *  \par Function Description
+/*!
+ * \brief Print a solid pattern Path to Postscript document.
+ * \par Function Description
  *  The function prints a filled path with a solid pattern. No outline is
  *  printed. The postscript file is defined by the file pointer <B>fp</B>.
  *  <B>fill_width</B>, <B>angle1</B> and <B>pitch1</B>, <B>angle2</B> and <B>pitch2</B>
@@ -1062,16 +1078,16 @@ geda_path_object_print_phantom (GedaToplevel *toplevel, FILE *fp, GedaPath *path
  *
  *  All dimensions are in mils.
  *
- *  \param [in] toplevel    The GedaToplevel object
- *  \param [in] fp          FILE pointer to Postscript document
- *  \param [in] path        The Path object to print
- *  \param [in] fill_width  GedaPath fill width (unused)
- *  \param [in] angle1      (unused)
- *  \param [in] pitch1      (unused)
- *  \param [in] angle2      (unused)
- *  \param [in] pitch2      (unused)
- *  \param [in] origin_x    Page x coordinate to place Path GedaObject
- *  \param [in] origin_y    Page y coordinate to place Path GedaObject
+ * \param [in] toplevel    The GedaToplevel object
+ * \param [in] fp          FILE pointer to Postscript document
+ * \param [in] path        The Path object to print
+ * \param [in] fill_width  GedaPath fill width (unused)
+ * \param [in] angle1      (unused)
+ * \param [in] pitch1      (unused)
+ * \param [in] angle2      (unused)
+ * \param [in] pitch2      (unused)
+ * \param [in] origin_x    Page x coordinate to place Path GedaObject
+ * \param [in] origin_y    Page y coordinate to place Path GedaObject
  */
 static void
 geda_path_object_print_filled (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
@@ -1114,8 +1130,9 @@ geda_path_object_print_filled (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
 }
 
 
-/*! \brief Print a hatch pattern Path to Postscript document.
- *  \par Function Description
+/*!
+ * \brief Print a hatch pattern Path to Postscript document.
+ * \par Function Description
  *  The function prints a hatched path. No outline is printed.
  *  The postscript file is defined by the file pointer <B>fp</B>.
  *  <B>fill_width</B>, <B>angle1</B>, <B>pitch1</B> parameters define the way the path
@@ -1127,16 +1144,16 @@ geda_path_object_print_filled (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
  *
  *  All dimensions are in mils.
  *
- *  \param [in] toplevel    The GedaToplevel object
- *  \param [in] fp          FILE pointer to Postscript document
- *  \param [in] path        The Path object to print
- *  \param [in] fill_width  GedaPath fill width
- *  \param [in] angle1      Angle of hatch pattern
- *  \param [in] pitch1      Pitch of hatch pattern
- *  \param [in] angle2      (unused)
- *  \param [in] pitch2      (unused)
- *  \param [in] origin_x    Page x coordinate to place Path GedaObject
- *  \param [in] origin_y    Page y coordinate to place Path GedaObject
+ * \param [in] toplevel    The GedaToplevel object
+ * \param [in] fp          FILE pointer to Postscript document
+ * \param [in] path        The Path object to print
+ * \param [in] fill_width  GedaPath fill width
+ * \param [in] angle1      Angle of hatch pattern
+ * \param [in] pitch1      Pitch of hatch pattern
+ * \param [in] angle2      (unused)
+ * \param [in] pitch2      (unused)
+ * \param [in] origin_x    Page x coordinate to place Path GedaObject
+ * \param [in] origin_y    Page y coordinate to place Path GedaObject
  */
 static void
 geda_path_object_print_hatch (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
@@ -1166,8 +1183,9 @@ geda_path_object_print_hatch (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
   g_array_free (lines, TRUE);
 }
 
-/*! \brief Print a mesh pattern Path to Postscript document.
- *  \par Function Description
+/*!
+ * \brief Print a mesh pattern Path to Postscript document.
+ * \par Function Description
  *  This function prints a meshed path. No outline is printed.
  *  The postscript file is defined by the file pointer <B>fp</B>.
  *
@@ -1176,16 +1194,16 @@ geda_path_object_print_hatch (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
  *
  *  All dimensions are in mils.
  *
- *  \param [in] toplevel    The GedaToplevel object
- *  \param [in] fp          FILE pointer to Postscript document
- *  \param [in] path        The Path object to print
- *  \param [in] fill_width  GedaPath fill width
- *  \param [in] angle1      1st angle for mesh pattern
- *  \param [in] pitch1      1st pitch for mesh pattern
- *  \param [in] angle2      2nd angle for mesh pattern
- *  \param [in] pitch2      2nd pitch for mesh pattern
- *  \param [in] origin_x    Page x coordinate to place Path GedaObject
- *  \param [in] origin_y    Page y coordinate to place Path GedaObject
+ * \param [in] toplevel    The GedaToplevel object
+ * \param [in] fp          FILE pointer to Postscript document
+ * \param [in] path        The Path object to print
+ * \param [in] fill_width  GedaPath fill width
+ * \param [in] angle1      1st angle for mesh pattern
+ * \param [in] pitch1      1st pitch for mesh pattern
+ * \param [in] angle2      2nd angle for mesh pattern
+ * \param [in] pitch2      2nd pitch for mesh pattern
+ * \param [in] origin_x    Page x coordinate to place Path GedaObject
+ * \param [in] origin_y    Page y coordinate to place Path GedaObject
  */
 static void
 geda_path_object_print_mesh (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
@@ -1200,17 +1218,18 @@ geda_path_object_print_mesh (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
 }
 
 
-/*! \brief Print Path to Postscript document.
- *  \par Function Description
+/*!
+ * \brief Print Path to Postscript document.
+ * \par Function Description
  *  This function prints the path described by the <B>\a o_current</B>
  *  parameter to a Postscript document.
  *  The Postscript document is descibed by the file pointer <B>fp</B>.
  *
- *  \param [in] toplevel   GedaToplevel object
- *  \param [in] fp         FILE pointer to Postscript document
- *  \param [in] o_current  Path GedaObject to write to document
- *  \param [in] origin_x   Page x coordinate to place Path GedaObject
- *  \param [in] origin_y   Page y coordinate to place Path GedaObject
+ * \param [in] toplevel   GedaToplevel object
+ * \param [in] fp         FILE pointer to Postscript document
+ * \param [in] o_current  Path GedaObject to write to document
+ * \param [in] origin_x   Page x coordinate to place Path GedaObject
+ * \param [in] origin_y   Page y coordinate to place Path GedaObject
  */
 void
 geda_path_object_print(GedaToplevel *toplevel, FILE *fp,
@@ -1358,16 +1377,17 @@ geda_path_object_print(GedaToplevel *toplevel, FILE *fp,
   }
 }
 
-/*! \brief Calculates the distance between the given point and the closest
- *         point on the given path segment.
+/*!
+ * \brief Calculates the distance between the given point and the closest
+ *        point on the given path segment.
  *
- *  \param [in] object       The path GedaObject
- *  \param [in] x            The x coordinate of the given point
- *  \param [in] y            The y coordinate of the given point
- *  \param [in] force_solid  If true, force treating the object as solid
+ * \param [in] object       The path GedaObject
+ * \param [in] x            The x coordinate of the given point
+ * \param [in] y            The y coordinate of the given point
+ * \param [in] force_solid  If true, force treating the object as solid
  *
- *  \return The shortest distance from the object to the point. With an
- *          invalid parameter, this function returns G_MAXDOUBLE.
+ * \return The shortest distance from the object to the point. With an
+ *         invalid parameter, this function returns G_MAXDOUBLE.
  */
 double
 geda_path_object_shortest_distance (GedaObject *object, int x, int y, int force_solid)
