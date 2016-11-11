@@ -1348,12 +1348,11 @@ eda_config_get_keys (EdaConfig *cfg, const char *group, unsigned *length,
     for (i = 0; i < len; i++) {
       g_hash_table_insert (key_table, local_keys[i], NULL);
     }
-    GEDA_FREE (local_keys); /* Keys are now owned by hashtable, don't
-                            need to use g_strfreev(). */
+    GEDA_FREE (local_keys); /* Keys are now owned by hashtable, do not
+                               need to use g_strfreev(). */
   }
 
-  /* If the hashtable was never created, it means that no matching
-   * group was found. */
+  /* If the hashtable was never created, then no matching group was found. */
   if (key_table == NULL) {
     g_set_error (error, EDA_CONFIG_ERROR,
                  EDA_CONFIG_ERROR_GROUP_NOT_FOUND,
