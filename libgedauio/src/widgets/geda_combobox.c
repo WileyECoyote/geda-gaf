@@ -6981,8 +6981,8 @@ geda_combo_box_set_focus_on_click (GedaComboBox *combo_box, bool focus_on_click)
  *  tree-view’s model containing the tooltip texts, or -1 to disable
  *  this feature.
  *
- *  When enabled, #GtkWidget:has-tooltip will be set to %TRUE and
- *  tree_view will connect a #GtkWidget::query-tooltip signal handler.
+ *  When enabled, GtkWidget:has-tooltip will be set to %TRUE and
+ *  tree_view will connect a GtkWidget::query-tooltip signal handler.
  *
  * Note that the signal handler sets the text with gtk_tooltip_set_markup(),
  * so &, <, etc have to be escaped in the text.
@@ -7074,15 +7074,15 @@ geda_combo_widget_get_row_span_column (GtkWidget *combo_box) {
  *  be \a row_span. The row span column contains integers which
  *  indicate how many rows an item should span.
  *
- * \param [in] combo_box A #GedaComboBox.
+ * \param [in] combo     A #GedaComboBox.
  * \param [in] row_span  A column in the model passed during construction.
  *
  * \sa geda_combo_box_set_row_span_column
  */
 void
-geda_combo_widget_set_row_span_column (GtkWidget *cb, int row_span)
+geda_combo_widget_set_row_span_column (GtkWidget *combo, int row_span)
 {
-  return geda_combo_box_set_row_span_column((GedaComboBox*)cb, row_span);
+  return geda_combo_box_set_row_span_column((GedaComboBox*)combo, row_span);
 }
 
 /*!
@@ -7111,15 +7111,15 @@ geda_combo_widget_get_column_span_column (GtkWidget *combo_box) {
  *  \a column_span. The column span column contains integers which indicate
  *  how many columns an item should span.
  *
- * \param [in] combo_box   A #GedaComboBox
+ * \param [in] combo   A #GedaComboBox
  * \param [in] column_span A column in the model passed during construction
  *
  * \sa geda_combo_box_set_column_span_column
  */
 void
-geda_combo_widget_set_column_span_column (GtkWidget *cb, int column_span)
+geda_combo_widget_set_column_span_column (GtkWidget *combo, int column_span)
 {
-  return geda_combo_box_set_column_span_column((GedaComboBox*)cb, column_span);
+  return geda_combo_box_set_column_span_column((GedaComboBox*)combo, column_span);
 }
 
 /*!
@@ -7135,8 +7135,9 @@ geda_combo_widget_set_column_span_column (GtkWidget *cb, int column_span)
  */
 bool
 geda_combo_widget_get_add_tearoffs (GtkWidget *combo_box) {
-  if (GEDA_IS_COMBO_BOX (combo_box))
+  if (GEDA_IS_COMBO_BOX (combo_box)) {
     return ((GedaComboBox*)combo_box)->priv->add_tearoffs;
+  }
   BUG_MSG ("Operative is not a GedaComboBox");
   return FALSE;
 }
@@ -7146,7 +7147,7 @@ geda_combo_widget_get_add_tearoffs (GtkWidget *combo_box) {
  * \par Function Description
  *  Sets whether the popup menu should have a tearoff menu item.
  *
- * \param [in] combo_box    a #GedaComboBox
+ * \param [in] combo        a #GedaComboBox
  * \param [in] add_tearoffs %TRUE to add tearoff menu items
  *
  * \sa geda_combo_box_set_add_tearoffs
@@ -7185,7 +7186,7 @@ geda_combo_widget_get_title (GtkWidget *combo_box) {
  *  Sets the menu's title in tearoff mode.
  *
  * \param [in] combo_box a #GedaComboBox
- * \param [in] title: a title for the menu in tearoff mode
+ * \param [in] title     a title for the menu in tearoff mode
  *
  * \sa geda_combo_box_set_title
  */
@@ -7200,7 +7201,7 @@ geda_combo_widget_set_title (GtkWidget *combo_box, const char  *title) {
  *  Returns whether the combo box grabs focus when it is clicked
  *  with the mouse. See geda_combo_box_set_focus_on_click().
  *
- * \param [in] combo  Pointer to a #GedaComboBox
+ * \param [in] combo_box  Pointer to a #GedaComboBox
  *
  * \retval %TRUE if the combo box grabs focus when it is clicked
  *         with the mouse.
@@ -7221,14 +7222,14 @@ geda_combo_widget_get_focus_on_click (GtkWidget *combo_box) {
  *  Sets whether the combo box will grab focus when it is clicked with
  *  the mouse, \see geda_combo_box_set_focus_on_click.
  *
- * \param [in] combo_box       Pointer to a #GedaComboBox
+ * \param [in] combo           Pointer to a #GedaComboBox
  * \param [in] focus_on_click  whether the combo box grabs focus when clicked
  *                             with the mouse
  */
 void
-geda_combo_widget_set_focus_on_click (GtkWidget *cb, bool focus_on_click)
+geda_combo_widget_set_focus_on_click (GtkWidget *combo, bool focus_on_click)
 {
-  return geda_combo_box_set_focus_on_click((GedaComboBox*)cb, focus_on_click);
+  return geda_combo_box_set_focus_on_click((GedaComboBox*)combo, focus_on_click);
 }
 
 /*! \todo Finish function documentation!!!
@@ -7383,8 +7384,9 @@ geda_combo_widget_get_entry (GtkWidget *combo_box)
 GtkWidget*
 geda_combo_widget_get_entry_widget (GtkWidget *combo_box) {
   if (GEDA_IS_COMBO_BOX (combo_box)) {
-    if (((GedaComboBox*)combo_box)->priv->has_entry)
+    if (((GedaComboBox*)combo_box)->priv->has_entry) {
       return gtk_bin_get_child(GTK_BIN(combo_box));
+    }
   }
   else {
     BUG_MSG ("Operative is not a GedaComboBox");
@@ -7406,8 +7408,9 @@ geda_combo_widget_get_entry_widget (GtkWidget *combo_box) {
  */
 int
 geda_combo_widget_get_entry_text_column (GtkWidget *combo_box) {
-  if (GEDA_IS_COMBO_BOX (combo_box))
+  if (GEDA_IS_COMBO_BOX (combo_box)){
     return ((GedaComboBox*)combo_box)->priv->text_column;
+  }
   BUG_MSG ("Operative is not a GedaComboBox");
   return 0;
 }
@@ -7421,13 +7424,13 @@ geda_combo_widget_get_entry_text_column (GtkWidget *combo_box) {
  *
  *  This is only relevant if \a combo_box has an entry.
  *
- * \param [in] combo_box    A #GedaComboBox
+ * \param [in] combo        A #GedaComboBox
  * \param [in] text_column  A column in \a model to get the strings from for
  *                          the internal entry
  */
 void
-geda_combo_widget_set_entry_text_column (GtkWidget *cb, int text_column) {
- return geda_combo_box_set_entry_text_column((GedaComboBox*)cb, text_column);
+geda_combo_widget_set_entry_text_column (GtkWidget *combo, int text_column) {
+ return geda_combo_box_set_entry_text_column((GedaComboBox*)combo, text_column);
 }
 
 /** @} endgroup GedaComboBox-widget-getters-setters */
@@ -7445,8 +7448,9 @@ geda_combo_widget_set_entry_text_column (GtkWidget *cb, int text_column) {
  */
 void
 geda_combo_widget_popup (GtkWidget *combo_box) {
-  if (GEDA_IS_COMBO_BOX (combo_box))
+  if (GEDA_IS_COMBO_BOX (combo_box)) {
     g_signal_emit (combo_box, combo_box_signals[POPUP], 0);
+  }
 }
 
 /*!
