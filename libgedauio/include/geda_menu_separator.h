@@ -42,7 +42,7 @@ extern "C" {
 #define GEDA_TYPE_MENU_SEPARATOR            (geda_menu_separator_get_type ())
 #define GEDA_MENU_SEPARATOR(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_MENU_SEPARATOR, GedaMenuSeparator))
 #define GEDA_MENU_SEPARATOR_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GEDA_TYPE_MENU_SEPARATOR, GedaMenuSeparatorClass))
-#define GEDA_IS_MENU_SEPERATOR(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GEDA_TYPE_MENU_SEPARATOR))
+#define GEDA_IS_MENU_SEPERATOR(obj)         (is_a_geda_menu_separator((GedaMenuSeparator*)(obj)))
 #define GEDA_IS_MENU_SEPERATOR_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GEDA_TYPE_MENU_SEPARATOR))
 #define GEDA_MENU_SEPARATOR_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GEDA_TYPE_MENU_SEPARATOR, GedaMenuSeparatorClass))
 
@@ -62,9 +62,10 @@ struct _GedaMenuSeparatorClass
 };
 
 
-GedaType	   geda_menu_separator_get_type	   (void) GEDA_CONST;
-GtkWidget *geda_menu_separator_new	       (void);
+GedaType   geda_menu_separator_get_type     (void) GEDA_CONST;
+bool       is_a_geda_menu_separator         (GedaMenuSeparator *menu_separator);
 
+GtkWidget *geda_menu_separator_new          (void);
 
 #ifdef __cplusplus
 }

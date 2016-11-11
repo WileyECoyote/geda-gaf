@@ -96,6 +96,23 @@ geda_menu_separator_get_type (void)
   return geda_menu_separator_type;
 }
 
+/*!
+ * \brief Check if an object is a GedaMenuSeparator
+ * \par Function Description
+ *  Ensures \a separator is a valid G_Object and compares signature
+ *  to geda menu separator type.
+ *
+ * \returns TRUE if \a separator is a valid GedaSeparator
+ */
+bool
+is_a_geda_menu_separator (GedaMenuSeparator *separator)
+{
+  if (G_IS_OBJECT(separator)) {
+    return (geda_menu_separator_get_type() == separator->instance_type);
+  }
+  return FALSE;
+}
+
 GtkWidget *
 geda_menu_separator_new (void)
 {

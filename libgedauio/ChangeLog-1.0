@@ -1,3 +1,10 @@
+2016-11-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_menu_separator.h: Replace G_TYPE_CHECK_INSTANCE_TYPE
+      with is_a_geda_menu_separator.
+
+    * src/widgets/geda_menu_separator.c: Add function is_a_geda_menu_separator.
+
 2016-11-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_entry.h: Update geda_entry_new_with_max_length argument.
