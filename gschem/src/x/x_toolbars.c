@@ -893,7 +893,7 @@ static GtkWidget *build_menu(GtkWidget *widget)
   int  i;
 
   ActiveToolBar.handlebox = GEDA_HANDLE_BOX (widget);
-  ActiveToolBar.toolbar   = (GtkToolbar*)gtk_bin_get_child(GTK_BIN(ActiveToolBar.handlebox));
+  ActiveToolBar.toolbar   = geda_handle_box_get_toolbar(ActiveToolBar.handlebox);
 
   is_floating = !geda_handle_box_get_child_detached (ActiveToolBar.handlebox);
   orientation =  gtk_toolbar_get_orientation(ActiveToolBar.toolbar);
