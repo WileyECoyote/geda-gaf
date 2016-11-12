@@ -1,3 +1,24 @@
+2016-11-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    Revert "gnetlist/test: replace line endings crlf->lf"
+
+    This reverts commit be4a26bb2f44c0f7e38cfde242940880e9dad87d. See
+    commit 291502025248298b4d42cfbd80ff605dc62c3f92 (02/27/2008). The
+    crlf were intentional and I unwittingly replaced so put them back.
+
+    This poses a problem with git which normally attempts to maintain the
+    line-endings but will remove the crlf under certain circumstances.
+    Adding gitattributes files to specify the line-ending to be used for
+    the specific files identified to intentionally have crlf line-endings
+    so that git will know the correct line-endings (and hopefully this
+    will never ever happen again).
+
+    * tests/.gitattributes: Contains list of files in the tests/ directory
+      that should have crlf line-ending.
+
+    * tests/common/outputs/.gitattributes: Contains list of files in the
+      tests/common/outputs/ directory that should have crlf line-ending.
+
 2016-11-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gnetlist.c: Replace G_FILE_ERROR with EDA_ERROR domain, change
