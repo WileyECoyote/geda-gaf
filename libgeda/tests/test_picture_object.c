@@ -105,7 +105,7 @@ int pretest(void)
 {
   int result = 0;
 
-  if(access(IMAGE_FILE, R_OK) != 0) {
+  if (access(IMAGE_FILE, R_OK) != 0) {
 
     char *src_dir = getenv ("srcdir");
 

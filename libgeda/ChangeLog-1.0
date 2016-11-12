@@ -1,3 +1,8 @@
+2016-11-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/data/.gitattributes: Designate that ATMega32-DIP_test.sym should
+      have crlf line-ending.
+
 2016-11-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_file.c: Add checks for function geda_file_get_data_filespec.
