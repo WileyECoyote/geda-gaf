@@ -1,0 +1,13 @@
+inputs/protel_example1_mil.txt eol=crlf
+inputs/protel_example1_mm.txt eol=crlf
+outputs/chunits_2mm_6col_tab_nt-protel_example1_mil.txt eol=crlf
+outputs/chunits_already_done-protel_example1_mil.txt eol=crlf
+outputs/chunits_done_notitle-protel_example1_mil.txt eol=crlf
+outputs/chunits_to_mil-protel_example1_mm.txt eol=crlf
+outputs/chunits_to_mil_2cols-protel_example1_mm.txt eol=crlf
+outputs/chunits_to_mm-protel_example1_mil.txt eol=crlf
+outputs/chunits_to_mm_2cols-protel_example1_mil.txt eol=crlf
+outputs/chunits_to_mm_6col_tab-protel_example1_mil.txt eol=crlf
+outputs/chunits_to_mm_no_title-protel_example1_mil.txt eol=crlf
+outputs/chunits_unsupported-protel_example1_mil.txt eol=crlf
+outputs/footprint_protel1-protel_example1_mil.txt eol=crlf
