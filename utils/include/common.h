@@ -32,4 +32,4 @@
 #include "utils.h"
 #include "prototype.h"
 #include "../../version.h"
-#include "../include/gettext.h"
+#include "../../include/gettext.h"
