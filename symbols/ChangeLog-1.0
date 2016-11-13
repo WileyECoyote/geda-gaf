@@ -1,3 +1,16 @@
+2016-11-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/switchreg/TPS61201-1.sym: Add symbol 3.3V synchronous boost converter.
+
+    * ti/switchreg/TPS61202-1.sym: Add symbol 5.0V synchronous boost converter.
+
+2016-11-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * serial/IA82510-1.sym: Add symbol asynchronous serial controller, 28 pin
+      DIP package.
+
+    * serial/IA82510-2.sym: A alternate IA82510 symbol for PLCC-28 package.
+
 2016-11-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * lineartech/switchreg: Add symbols for updated versions of LT1308
