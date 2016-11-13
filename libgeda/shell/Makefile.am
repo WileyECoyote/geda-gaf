@@ -26,7 +26,7 @@ DEFS = -DLOCALEDIR=\"$(localedir)\" @DEFS@
 # in C.
 SUFFIXES = .x
 snarf_cpp_opts = $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
-	$(geda_shell_CPPFLAGS) $(AM_CFLAGS) $(geda_shell_CFLAGS)
+			$(geda_shell_CPPFLAGS) $(AM_CFLAGS) $(geda_shell_CFLAGS)
 .c.x:
 	CPP="$(CPP)" $(GUILE_SNARF) -o $@ $< $(snarf_cpp_opts)
 
