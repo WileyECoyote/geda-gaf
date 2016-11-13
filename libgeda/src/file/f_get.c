@@ -602,8 +602,10 @@ geda_file_get_dir_list_files(char *path, char *filter, GError **err)
     closedir (dirp);
   }
   else { /* could not open directory */
-    g_set_error (err, EDA_ERROR, errno,
-               _("error accessing '%s': %s"), path, strerror (errno));
+    if (err) {
+      g_set_error (err, EDA_ERROR, errno,
+                 _("error accessing '%s': %s"), path, strerror (errno));
+    }
     return NULL;
   }
 
