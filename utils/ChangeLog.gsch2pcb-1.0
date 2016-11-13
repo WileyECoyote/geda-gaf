@@ -10,6 +10,10 @@ gsch2pcb Changelog
       with other application in the suite and also change to 3 identifier version
       scheme for the same reason. Bump version for language support.
 
+2016-11-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gsch2pcb/gsch2pcb.c: User relative path to include "../../config.h".
+
 ------------------
 1.12
 ---------

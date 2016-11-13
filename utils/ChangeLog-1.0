@@ -2,6 +2,8 @@
 
     * include/common.h: Fix path to common header = ../../include/gettext.h.
 
+    * gsch2pcb/gsch2pcb.c: User relative path to include "../../config.h".
+
     * tests/gxyrs/.gitattributes: Contains list of files in the tests/gxyrs
       directory that should have crlf line-ending.
 
