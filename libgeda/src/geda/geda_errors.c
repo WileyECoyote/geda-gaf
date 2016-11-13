@@ -21,6 +21,12 @@
 #include <config.h>
 #include <libgeda_priv.h>
 
+/** \defgroup geda-errors Libgeda Error Module
+ * @{
+ * \brief Contains routines for handling errors in libgeda
+ * \par
+ */
+
 /*!
  * \brief EDA Error type Identifier
  * \par Function Description
@@ -80,3 +86,5 @@ geda_error_object_argument(const char *file,
     fprintf(stderr, "Invalid type: %s <%s> <%c>\n", file, func, type);
   }
 }
+
+/** @} endgroup geda-errors */
