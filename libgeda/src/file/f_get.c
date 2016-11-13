@@ -559,9 +559,10 @@ geda_file_get_data_filespec (const char *filename)
  *
  * \param [in] path    Path to directory to examine
  * \param [in] filter  Optional file extension to use as filter
+ * \param [in] err     Optional location of error record if not successful
  *
  * \returns GSList of files or NULL if no matching files
-*/
+ */
 GSList*
 geda_file_get_dir_list_files(char *path, char *filter, GError **err)
 {
@@ -653,7 +654,7 @@ geda_file_get_format_header(void)
  *  Returns the base file without the path or the extension as
  *  a newly allocated string.
  *
- * \param [in] filename The filename to interrogate.
+ * \param [in] filespec The filename to interrogate, with or without a path.
  *
  * \retval name of file without an extension
  */

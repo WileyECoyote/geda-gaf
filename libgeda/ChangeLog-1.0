@@ -1,3 +1,7 @@
+2016-11-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/file/f_get.c: Update Doxygen param arguments
+
 2016-11-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/data/.gitattributes: Designate that ATMega32-DIP_test.sym should
