@@ -566,50 +566,68 @@ geda_file_get_data_filespec (const char *filename)
 GSList*
 geda_file_get_dir_list_files(char *path, char *filter, GError **err)
 {
-        GSList *files = NULL;
-  const char   *real_filter;
-        DIR    *dirp;
+  GSList *files = NULL;
 
-  real_filter = filter;
+  if (!path) {
 
-  if (*real_filter == 0x2E ) real_filter++; /* skip over Period  */
+    if (err) {
+      const char *msg = _("libgeda <%s> ERROR: pointer to path is NULL.\n");
 
-  dirp = opendir (path);
+      g_set_error (err, EDA_ERROR, EDA_ERROR_NULL_POINTER, msg, __func__);
+    }
+  }
+  else {
 
-  if (dirp != NULL) {
+    const char *real_filter;
+    DIR        *dirp;
 
-    struct dirent *ent;
+    real_filter = filter;
 
-    /* get all the files within directory */
-    while ((ent = readdir (dirp)) != NULL) {
+    if (real_filter && *real_filter == 0x2E )
+      real_filter++; /* skip over Period  */
 
-      char   *filename;
+      dirp = opendir (path);
 
-      if (real_filter) {
+    if (dirp != NULL) {
 
-        const char *suffix = geda_file_get_filename_ext(ent->d_name);
+      struct dirent *ent;
 
-        if (suffix && strcmp (suffix, real_filter) == 0) {
+      /* get all the files within directory */
+      while ((ent = readdir (dirp)) != NULL) {
+
+        char   *filename;
+
+        if (real_filter) {
+
+          const char *suffix = geda_file_get_filename_ext(ent->d_name);
+
+          if (suffix && strcmp (suffix, real_filter) == 0) {
+            filename = geda_strdup(ent->d_name);
+            files = g_slist_prepend(files, filename);
+          }
+        }
+        else {
           filename = geda_strdup(ent->d_name);
           files = g_slist_prepend(files, filename);
         }
       }
-      else {
-        filename = geda_strdup(ent->d_name);
-        files = g_slist_prepend(files, filename);
+      closedir (dirp);
+    }
+    else { /* could not open directory */
+
+      if (err) {
+
+        const char *msg = _("error accessing '%s': %s\n");
+
+        g_set_error (err, EDA_ERROR, errno, msg, path, strerror (errno));
       }
     }
-    closedir (dirp);
-  }
-  else { /* could not open directory */
-    if (err) {
-      g_set_error (err, EDA_ERROR, errno,
-                 _("error accessing '%s': %s"), path, strerror (errno));
-    }
-    return NULL;
   }
 
-  return g_slist_reverse(files);
+  if (files) {
+    return g_slist_reverse(files);
+  }
+  return NULL;
 }
 
 /*!

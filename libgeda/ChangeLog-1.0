@@ -1,8 +1,8 @@
 2016-11-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_get.c: Revise geda_file_get_dir_list_files to check the
-      err argument abd set onlyif passed, and therefore optional. Update
-      Doxygen param arguments.
+      err argument abd set only if passed, and therefore optional. Update
+      Doxygen param arguments, also add check if path argument is NULL.
 
     * src/geda/geda_errors.c: Add Doxygen group geda-errors.
 
