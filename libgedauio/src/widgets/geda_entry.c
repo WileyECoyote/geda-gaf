@@ -1157,10 +1157,11 @@ geda_entry_real_insert_text (GedaEntry  *entry,
   *position += n_inserted;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Validate GedaEntry Input
+ * \par Function Description
+ *  Callback for insert-text signal, called when text is inserted
+ *  into the entry to validate characters based on validation_mode.
  */
 static void
 geda_entry_validate_input (GtkEntry    *entry,
@@ -1540,10 +1541,21 @@ geda_entry_get_max_history (GedaEntry *entry)
   return entry->max_history;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Get the GedaEntry Maximun Allow Length property
+ * \par Function Description
+ *  Retrieves the maximum allowed length of the text in \a entry.
  *
+ *  This is equivalent to:
+ *
+ *  gtk_entry_buffer_get_max_length (gtk_entry_get_buffer (entry));
+ *
+ * \param [in] entry Pointer to a #GedaEntry object.
+ *
+ * \returns the maximum allowed number of characters or 0 if there
+ *          is no maximum.
+ *
+ * \sa geda_entry_set_max_length
  */
 unsigned int
 geda_entry_get_max_length (GedaEntry *entry)
@@ -1555,10 +1567,20 @@ geda_entry_get_max_length (GedaEntry *entry)
   return (unsigned int)max;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Set the GedaEntry Maximun Allow Length property
+ * \par Function Description
+ *  Sets the maximum allowed length of the contents of the widget. If
+ *  the current contents are longer than the given length, then they
+ *  will be truncated to fit. The value passed in will be clamped to
+ *  the range 0-65536.
  *
+ *  This is equivalent to:
+ *
+ *  gtk_entry_buffer_set_max_length (gtk_entry_get_buffer (entry), max);
+ *
+ * \param [in] entry  Pointer to a #GedaEntry object.
+ * \param [in] max   the maximum length of the entry, or 0 for no maximum.
  */
 void
 geda_entry_set_max_length (GedaEntry *entry, unsigned int max)
@@ -2011,10 +2033,17 @@ geda_entry_widget_set_max_history (GtkWidget *entry, unsigned int value)
   geda_entry_set_max_history (GEDA_ENTRY(entry), value);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Get the GedaEntry Maximun Allow Length property
+ * \par Function Description
+ *  Retrieves the maximum allowed length of the text in \a entry.
  *
+ * \param [in] entry Pointer to a #GedaEntry object.
+ *
+ * \returns the maximum allowed number of characters or 0 if there
+ *          is no maximum.
+ *
+ * \sa geda_entry_get_max_length
  */
 unsigned int
 geda_entry_widget_get_max_length (GtkWidget *entry)
@@ -2022,10 +2051,15 @@ geda_entry_widget_get_max_length (GtkWidget *entry)
   return geda_entry_get_max_length (GEDA_ENTRY(entry));
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief  Set the GedaEntry Maximun Allow Length property
+ * \par Function Description
+ *  Sets the maximum allowed length of the contents of the widget.
  *
+ * \param [in] entry Pointer to a GedaEntry widget object.
+ * \param [in] max   the maximum length of the entry, or 0 for no maximum.
+ *
+ * \sa geda_entry_set_max_length
  */
 void
 geda_entry_widget_set_max_length (GtkWidget *entry, unsigned int max)
