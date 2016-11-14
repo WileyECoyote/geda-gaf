@@ -1,3 +1,9 @@
+2016-11-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * geda-python.m4: Change the results variable of checking for headers to use
+      have_python, like other m4 functions that use the with/have convention and
+      change the AM_CONDITIONAL HAVE_PYTHON to test for yes, not no.
+
 2016-11-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-ld-flags.m4: Rename AX_CHECK_LD_FLAGS->AX_SETUP_LD_FLAGS.

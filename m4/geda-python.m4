@@ -1,5 +1,5 @@
 # geda-python.m4                                      -*-Autoconf-*-
-# serial 1.0
+# serial 1.2
 
 dnl gEDA Prebuild Checks and Setup Options for Python
 dnl
@@ -186,11 +186,11 @@ AC_DEFUN([AX_CHECK_PYTHON],
 
             AM_PATH_PYTHON($PYTHON_MIN_VERSION)
             AX_PYTHON_MOD_PATH
-            AX_CHECK_PYTHON_HEADERS(with_python="yes",with_python="no")
+            AX_CHECK_PYTHON_HEADERS(have_python="yes",have_python="no")
             AX_CHECK_PYOBJECT
 
             echo "test for python ldflags"
-            if test "X$with_python" = Xyes; then
+            if test "X$have_python" = Xyes; then
 
                 dnl copied from the Redland RDF bindings, http://librdf.org/
                 if test `uname` = Darwin; then
@@ -212,19 +212,19 @@ AC_DEFUN([AX_CHECK_PYTHON],
                 AC_SUBST([PYTHON_CFLAGS])
 
                 dnl check for mutagen module >= $PYTHON_MUTAGEN_MIN_VERSION
-                AM_CHECK_PYMOD(mutagen,$PYTHON_MUTAGEN_MIN_VERSION,mutagen.version_string,,with_python=no)
+                AM_CHECK_PYMOD(mutagen,$PYTHON_MUTAGEN_MIN_VERSION,mutagen.version_string,,have_python=no)
 
                 dnl this test should perhaps be re-enabled, but only produce a warning -- tmz
                 if test "X$have_gdkpixbuf" = "Xyes" -a "X$have_pygobject" = "Xyes"; then
                     dnl check for gtk module >= $PYTHON_GTK_MIN_VERSION
-                    AM_CHECK_PYMOD(gtk,$PYTHON_GTK_MIN_VERSION,'.'.join(map(str, gtk.ver)),,with_python=no)
+                    AM_CHECK_PYMOD(gtk,$PYTHON_GTK_MIN_VERSION,'.'.join(map(str, gtk.ver)),,have_python=no)
                 fi
             fi
         else
             AC_MSG_WARN(python not found.  try --with-python=/path/to/python)
-            with_python="no"
+            have_python="no"
         fi
     fi
-    AM_CONDITIONAL(HAVE_PYTHON, test x$with_python = xyes)
+    AM_CONDITIONAL(HAVE_PYTHON, test x$have_python = xyes)
   []dnl
 ])dnl
