@@ -1,3 +1,8 @@
+2016-11-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/Makefile.am: Add libgeda.la to LDADD since the libgedacolor is
+      also linked with libgeda.
+
 2016-11-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/Makefile.am: Move WINDOWS_LIBTOOL_FLAGS to LIBTOOL flags.

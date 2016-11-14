@@ -19,7 +19,9 @@ AM_CFLAGS = -DWOW \
 AM_LDFLAGS = $(MINGW_LDFLAGS) $(GUILE_LIBS) $(GLIB_LIBS) $(GDK_PIXBUF_LIBS) \
 	     @LIBINTL@
 
-test_color_LDADD  = $(top_builddir)/libgedacolor/src/libgedacolor.la @LIBINTL@
+test_color_LDADD  = $(top_builddir)/libgedacolor/src/libgedacolor.la  \
+		    $(top_builddir)/libgeda/src/libgeda.la \
+		    @LIBINTL@
 
 DEPENDS=\
 	libgeda/src \
