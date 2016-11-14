@@ -1,3 +1,18 @@
+2016-11-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/file/f_get.c: Revise geda_file_get_dir_list_files to check the
+      err argument abd set only if passed, and therefore optional. Update
+      Doxygen param arguments, also add check if path argument is NULL.
+
+    * src/geda/geda_errors.c: Add Doxygen group geda-errors.
+
+    * tests/test_file.c: Add checks for geda_file_get_dir_list_files.
+
+2016-11-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/data/.gitattributes: Designate that ATMega32-DIP_test.sym should
+      have crlf line-ending.
+
 2016-11-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_file.c: Add checks for function geda_file_get_data_filespec.

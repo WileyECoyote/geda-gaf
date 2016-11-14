@@ -132,6 +132,7 @@ struct _EdaRenderer
   EdaRendererData *priv;
 };
 
+/*! EdaRendererFlags type */
 #define EDA_TYPE_RENDERER_FLAGS (eda_renderer_flags_get_type ())
 
 enum _EdaRendererFlags
@@ -150,7 +151,6 @@ enum _EdaRendererFlags
 
   /* Should text origin markers be drawn? */
   EDA_RENDERER_FLAG_TEXT_ORIGIN     = 1 << 4,
-
 };
 
 typedef enum _EdaRendererFlags EdaRendererFlags;
@@ -159,82 +159,82 @@ typedef enum _EdaRendererFlags EdaRendererFlags;
 extern "C" {
 #endif
 
-GedaType     eda_renderer_get_type       (void) GEDA_CONST;
-GedaType     eda_renderer_flags_get_type (void) GEDA_CONST;
+GedaType     eda_renderer_get_type             (void) GEDA_CONST;
+GedaType     eda_renderer_flags_get_type       (void) GEDA_CONST;
 
-EdaRenderer *eda_renderer_new          (cairo_t *cr, PangoContext *pc) GEDA_WARN_UNUSED_RESULT;
-void         eda_renderer_destroy      (EdaRenderer *renderer);
+EdaRenderer *eda_renderer_new                  (cairo_t *cr, PangoContext *pc) GEDA_WARN_UNUSED_RESULT;
+void         eda_renderer_destroy              (EdaRenderer *renderer);
 
-bool     eda_renderer_parse_color      (const char  *spec, COLOR *color);
+bool     eda_renderer_parse_color              (const char  *spec, COLOR *color);
 
-void     eda_renderer_draw             (EdaRenderer *renderer, GedaObject *object);
-void     eda_renderer_draw_grips       (EdaRenderer *renderer, GedaObject *object);
-void     eda_renderer_draw_grips_list  (EdaRenderer *renderer, GList      *objects);
-void     eda_renderer_draw_cues        (EdaRenderer *renderer, GedaObject *object);
+void     eda_renderer_draw                     (EdaRenderer *renderer, GedaObject *object);
+void     eda_renderer_draw_grips               (EdaRenderer *renderer, GedaObject *object);
+void     eda_renderer_draw_grips_list          (EdaRenderer *renderer, GList      *objects);
+void     eda_renderer_draw_cues                (EdaRenderer *renderer, GedaObject *object);
 
-int      eda_renderer_get_user_bounds  (EdaRenderer      *renderer,
-                                        const GedaObject *object,
-                                        int *left,   int *top,
-                                        int *right,  int *bottom);
+int      eda_renderer_get_user_bounds          (EdaRenderer      *renderer,
+                                                const GedaObject *object,
+                                                int *left,   int *top,
+                                                int *right,  int *bottom);
 
-int      eda_renderer_get_text_user_bounds (EdaRenderer      *renderer,
-                                            const GedaObject *object,
-                                            int *left,   int *top,
-                                            int *right,  int *bottom);
+int      eda_renderer_get_text_user_bounds     (EdaRenderer      *renderer,
+                                                const GedaObject *object,
+                                                int *left,   int *top,
+                                                int *right,  int *bottom);
 
-GArray  *eda_renderer_get_color_map     (EdaRenderer *renderer);
-void     eda_renderer_set_color_map     (EdaRenderer *renderer, GArray *map);
+GArray  *eda_renderer_get_color_map            (EdaRenderer *renderer);
+void     eda_renderer_set_color_map            (EdaRenderer *renderer, GArray *map);
 
-cairo_t *eda_renderer_get_cairo_context (EdaRenderer *renderer);
-int      eda_renderer_get_cairo_flags   (EdaRenderer *renderer);
+cairo_t *eda_renderer_get_cairo_context        (EdaRenderer *renderer);
+int      eda_renderer_get_cairo_flags          (EdaRenderer *renderer);
 
 const
-char    *eda_renderer_get_font_name     (EdaRenderer *renderer);
-void     eda_renderer_set_font_name     (EdaRenderer *renderer, const char *name);
+char    *eda_renderer_get_font_name            (EdaRenderer *renderer);
+void     eda_renderer_set_font_name            (EdaRenderer *renderer, const char *name);
 
-bool     eda_renderer_set_flags         (EdaRenderer *renderer, int flags);
-int      eda_renderer_get_flags         (EdaRenderer *renderer);
-bool     eda_renderer_mask_flags        (EdaRenderer *renderer, int flags);
+bool     eda_renderer_set_flags                (EdaRenderer *renderer, int flags);
+int      eda_renderer_get_flags                (EdaRenderer *renderer);
+bool     eda_renderer_mask_flags               (EdaRenderer *renderer, int flags);
 
 int      eda_renderer_get_override_color_index (EdaRenderer *renderer);
 void     eda_renderer_set_override_color_index (EdaRenderer *renderer,
                                                 int          color_index);
 
-int      eda_renderer_get_circle_grip_quad    (EdaRenderer *renderer);
-void     eda_renderer_set_circle_grip_quad    (EdaRenderer *renderer,
-                                               int          quadrant);
-double   eda_renderer_get_grips_size          (EdaRenderer *renderer);
-void     eda_renderer_set_grips_size          (EdaRenderer *renderer,
-                                               double       new_size);
+int      eda_renderer_get_circle_grip_quad     (EdaRenderer *renderer);
+void     eda_renderer_set_circle_grip_quad     (EdaRenderer *renderer,
+                                                int          quadrant);
+double   eda_renderer_get_grips_size           (EdaRenderer *renderer);
+void     eda_renderer_set_grips_size           (EdaRenderer *renderer,
+                                                double       new_size);
 const
-GdkColor *eda_renderer_get_grips_stroke_color (EdaRenderer *renderer);
-void      eda_renderer_set_grips_stroke_color (EdaRenderer *renderer,
-                                               GdkColor    *color);
+GdkColor *eda_renderer_get_grips_stroke_color  (EdaRenderer *renderer);
+void      eda_renderer_set_grips_stroke_color  (EdaRenderer *renderer,
+                                                GdkColor    *color);
 const
-GdkColor *eda_renderer_get_grips_fill_color   (EdaRenderer *renderer);
-void      eda_renderer_set_grips_fill_color   (EdaRenderer *renderer,
-                                               GdkColor    *color);
+GdkColor *eda_renderer_get_grips_fill_color    (EdaRenderer *renderer);
+void      eda_renderer_set_grips_fill_color    (EdaRenderer *renderer,
+                                                GdkColor    *color);
 const
-GdkColor *eda_renderer_get_junction_color     (EdaRenderer *renderer);
-void      eda_renderer_set_junction_color     (EdaRenderer *renderer,
-                                               GdkColor*    color);
-int       eda_renderer_get_junction_size      (EdaRenderer *renderer);
-void      eda_renderer_set_junction_size      (EdaRenderer *renderer,
-                                               int          new_size);
-double    eda_renderer_get_marker_threshold   (EdaRenderer *renderer);
-void      eda_renderer_set_marker_threshold   (EdaRenderer *renderer,
-                                               double       threshold);
+GdkColor *eda_renderer_get_junction_color      (EdaRenderer *renderer);
+void      eda_renderer_set_junction_color      (EdaRenderer *renderer,
+                                                GdkColor*    color);
+int       eda_renderer_get_junction_size       (EdaRenderer *renderer);
+void      eda_renderer_set_junction_size       (EdaRenderer *renderer,
+                                                int          new_size);
+double    eda_renderer_get_marker_threshold    (EdaRenderer *renderer);
+void      eda_renderer_set_marker_threshold    (EdaRenderer *renderer,
+                                                double       threshold);
 const
-GdkColor *eda_renderer_get_net_endpoint_color (EdaRenderer *renderer);
-void      eda_renderer_set_net_endpoint_color (EdaRenderer *renderer,
-                                               GdkColor    *color);
+GdkColor *eda_renderer_get_net_endpoint_color  (EdaRenderer *renderer);
+void      eda_renderer_set_net_endpoint_color  (EdaRenderer *renderer,
+                                                GdkColor    *color);
 const
-GdkColor *eda_renderer_get_text_marker_color  (EdaRenderer *renderer);
-void      eda_renderer_set_text_marker_color  (EdaRenderer *renderer,
-                                               GdkColor    *color);
-int       eda_renderer_get_text_marker_size   (EdaRenderer *renderer);
-void      eda_renderer_set_text_marker_size   (EdaRenderer *renderer,
-                                               int          new_size);
+GdkColor *eda_renderer_get_text_marker_color   (EdaRenderer *renderer);
+void      eda_renderer_set_text_marker_color   (EdaRenderer *renderer,
+                                                GdkColor    *color);
+int       eda_renderer_get_text_marker_size    (EdaRenderer *renderer);
+void      eda_renderer_set_text_marker_size    (EdaRenderer *renderer,
+                                                int          new_size);
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */

@@ -67,7 +67,10 @@
  *
  *  See tests/README for more details on the nomenclature for test identifiers.
  */
-#define TEST_FILE_PATH "../docs"
+
+#define TEST_FILE_PATH "data/"
+#define TEST_FILE_PATH2 "../docs"
+
 #define TEST_FILE "logo_256x101.png"
 #define SYM_FILE "data/ATMega32-DIP_test.sym"
 
@@ -601,7 +604,62 @@ int test_get (void)
     result++;
   }
 
-  /* === Function 07: geda_get_dir_list         geda_file_get_dir_list_files === */
+  /* === Function 07: geda_file_get_dir_list_files === */
+
+  GSList *files;
+
+  if (geda_get_dir_list(NULL, NULL, NULL)) {
+    fprintf(stderr, "FAILED: (F020700A) geda_get_dir_list NULL\n");
+    result++;
+  }
+
+  if (geda_get_dir_list(NULL, NULL, &err)) {
+    fprintf(stderr, "FAILED: (F020700B) geda_get_dir_list NULL\n");
+    result++;
+  }
+  else {
+    if (!err) {
+      fprintf(stderr, "FAILED: (F020700C1) geda_get_dir_list err\n");
+      result++;
+    }
+    else {
+      vmessage("Message: (F020700C2) %s.\n", err->message);
+      g_error_free (err);
+      err = NULL;
+    }
+  }
+
+  files = geda_get_dir_list(TEST_FILE_PATH, NULL, NULL);
+
+  int num_file_07 = g_slist_length(files);
+
+  /* current, parent, files and tmp test links = 7 */
+  if (num_file_07 != 7) {
+    fprintf(stderr, "FAILED: (F020701) geda_get_dir_list <%d>\n", num_file_07);
+    result++;
+  }
+
+  geda_gslist_free_all(files);
+
+  files = geda_get_dir_list(TEST_FILE_PATH, ".sym", NULL);
+
+  num_file_07 = g_slist_length(files);
+
+  /* ATMega32-DIP_test.sym is the sym file in data/ */
+  if (num_file_07 - 1) {
+    fprintf(stderr, "FAILED: (F020702A) geda_get_dir_list <%d>\n", num_file_07);
+    result++;
+  }
+  else {
+
+    string = files->data;
+
+    if (strcmp(string, LINK2SOMEWHERE)) {
+      fprintf(stderr, "FAILED: (F020702B) geda_get_dir_list <%s>\n", string);
+      result++;
+    }
+    geda_gslist_free_all(files);
+  }
 
   /* === Function 08: geda_get_extension        geda_file_get_filename_ext === */
 
@@ -735,7 +793,7 @@ int test_geda_file_copy ()
 
     char *source;
 
-    source = g_build_filename(src_dir, TEST_FILE_PATH, TEST_FILE, NULL);
+    source = g_build_filename(src_dir, TEST_FILE_PATH2, TEST_FILE, NULL);
 
     if (access(source, R_OK) == 0) {
 

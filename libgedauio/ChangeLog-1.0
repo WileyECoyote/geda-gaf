@@ -1,3 +1,15 @@
+2016-11-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_entry.c: Add GedaEntry Doxygen comments:
+
+        * geda_entry_validate_input
+        * geda_entry_get_max_history
+        * geda_entry_set_max_history
+        * geda_entry_widget_get_max_history
+        * geda_entry_widget_set_max_history
+
+    * tests/test_menu_separator.c: Add new test module for GedaMenuSeparator.
+
 2016-11-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_handlebox.c: Add documentation commments for signals.
