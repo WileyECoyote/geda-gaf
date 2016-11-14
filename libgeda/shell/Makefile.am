@@ -16,7 +16,8 @@ geda_shell_CPPFLAGS = \
 geda_shell_CFLAGS = $(GCC_CFLAGS)  $(AM_CFLAGS) $(MINGW_CFLAGS) \
 		    $(GLIB_CFLAGS) $(GUILE_CFLAGS)
 
-geda_shell_LDFLAGS = $(GLIB_LIBS) $(GUILE_LIBS)
+geda_shell_LDFLAGS = $(GLIB_LIBS) $(GUILE_LIBS) $(MINGW_LDFLAGS)
+
 geda_shell_LDADD = ../src/libgeda.la @LIBINTL@
 
 localedir = @datadir@/locale
