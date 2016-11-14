@@ -1,3 +1,11 @@
+2016-11-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/Makefile.am: Move automake conditional ENABLE_GROFF_HTML before
+      the rules converting man->html for all modules that generate html man
+      pages so that systems without groff can still build successfully, and
+      these builds still have man pages, just not in html format, the build
+      is more important than fancy pages that few will ever read.
+
 2016-11-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * include\geda\geda_idefines.h: Modify conditional defines for MAX_PATH
