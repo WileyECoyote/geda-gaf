@@ -1,5 +1,10 @@
 2016-11-14 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Makefile.am: Add conditional HAVE_PYTHON and set GEDATHON_DIR to allow
+      for builds without python, and consequently libgedathon. Cannot image
+      anyone really doing this, but remaining source can build be built with
+      out python.
+
     * docs/Makefile.am: Move automake conditional ENABLE_GROFF_HTML before
       the rules converting man->html for all modules that generate html man
       pages so that systems without groff can still build successfully, and
