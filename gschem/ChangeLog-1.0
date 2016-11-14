@@ -1,3 +1,7 @@
+2016-11-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/gschem/gschem-tools-menu.scm: Rename check-ext->tools:check-file.
+
 2016-11-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_toolbars.c: Replace gtk_bin_get_child with geda_handle_box
