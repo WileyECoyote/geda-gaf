@@ -216,7 +216,9 @@ void parse_titleblock(int fd)
     case 2: pagesize = 'C'; ypos = 17*scale; break;
     case 3: pagesize = 'D'; ypos = 22*scale; break;
     case 4: pagesize = 'E'; ypos = 34*scale; break;
-    default:  fprintf(stderr,"Unknown Page Size\n");
+    default:
+      fprintf(stderr,"Unknown page Size, defaulting to A\n");
+      pagesize = 'A'; ypos = 8*scale+scale/2;
     //exit(-1);
   }
 

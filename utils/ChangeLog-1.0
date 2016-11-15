@@ -1,7 +1,7 @@
 2016-11-15 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/sarlacc_schem.c: Fix switch in parse_titleblock, switching on
-      logical is not logical.
+    * src/sarlacc_schem.c: Fix switch in parse_titleblock; switching on
+      logical is not logical and default to size A in default case,
 
 2016-11-12 Wiley E. Hill <wileyhill@gmail.com>
 
