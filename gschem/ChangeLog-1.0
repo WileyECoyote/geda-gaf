@@ -1,5 +1,8 @@
 2016-11-15 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/guile/g_util.c: Revise s_show_uri; add SCM_ASSERT back, remove
+      unneeded conditionals.
+
     * gschem/src/iface/i_threads.c: Revise gschem_threads_init to call
       gschem_threads_enter so that the the lock is set initially and this
       was detected by glib 2.48, rather rudely. Attempting to unlock a

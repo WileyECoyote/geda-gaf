@@ -108,7 +108,8 @@ bool gschem_threads_init (void)
     result = TRUE;
 
     if (g_once_init_enter (&init_called)) {
-      gdk_threads_set_lock_functions (gschem_threads_impl_lock,
+
+        gdk_threads_set_lock_functions (gschem_threads_impl_lock,
                                       gschem_threads_impl_unlock);
       if (!gschem_threads_lock) {
         gschem_threads_lock = gschem_threads_impl_lock;
