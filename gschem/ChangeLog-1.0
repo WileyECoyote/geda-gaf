@@ -1,3 +1,12 @@
+2016-11-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gschem/src/iface/i_threads.c: Revise gschem_threads_init to call
+      gschem_threads_enter so that the the lock is set initially and this
+      was detected by glib 2.48, rather rudely. Attempting to unlock a
+      thread that is not locked is probably not sufficient cause for an
+      library to shutdown a program, when only a warning is warrented.
+      No linkage to glib should be a goal.
+
 2016-11-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gschem/gschem-tools-menu.scm: Rename check-ext->tools:check-file.

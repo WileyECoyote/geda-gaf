@@ -120,6 +120,8 @@ bool gschem_threads_init (void)
 
       gdk_threads_init();
 
+      gschem_threads_enter();
+
       g_once_init_leave (&init_called, 1);
     }
   }
