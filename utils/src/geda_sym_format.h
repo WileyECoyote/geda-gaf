@@ -23,7 +23,6 @@
 */
 
 
-
 /* general sizes */
 #define SCALE		100
 #define PIN_SPACE	3*SCALE
