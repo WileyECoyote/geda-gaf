@@ -1,5 +1,8 @@
 2016-11-16 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src\Makefile.am: Revert adding subdir-objects, the src does not
+      have a subdirectory.
+
     * src/export.c: Revise cmd_export_impl to use libgedacairo setters
       eda_renderer_set_font_name, eda_renderer_set_cairo_context, and
       eda_renderer_set_flags instead of g_object_set call eda_renderer_
