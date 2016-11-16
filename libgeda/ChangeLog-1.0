@@ -2,6 +2,9 @@
 
     * src/geda/geda_config.c: Initialize fp to NULL in eda_config_save.
 
+    * src/utility/u_program.c: Conditionally call g_mem_set_vtable if glic
+      < than 2.44.
+
 2016-11-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * shell\Makefile.am: Add MINGW_LDFLAGS to LDFLAGS, don't remember why
