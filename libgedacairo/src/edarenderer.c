@@ -2081,11 +2081,24 @@ eda_renderer_get_cairo_context (EdaRenderer *renderer)
   return cr;
 }
 
+/*! \brief Set the active EdaRenderer Cairo Context
+ *  \par Function Description
+ *  Function to retrieve the current Cairo Context.
+ */
+void
+eda_renderer_set_cairo_context (EdaRenderer *renderer, cairo_t *cr)
+{
+  if (EDA_IS_RENDERER (renderer)) {
+    eda_renderer_update_contexts(renderer, cr, NULL);
+  }
+}
+
 /*! \brief Get the EdaRenderer Hinting Enabled Property
  *  \par Function Description
  *  Function to retrieve the current hinting property.
  */
-bool eda_renderer_get_hinting_enabled (EdaRenderer *renderer)
+bool
+eda_renderer_get_hinting_enabled (EdaRenderer *renderer)
 {
   g_return_val_if_fail (EDA_IS_RENDERER (renderer), FALSE);
   return EDA_RENDERER_CHECK_FLAG (renderer, FLAG_HINTING);

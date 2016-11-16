@@ -1,6 +1,7 @@
-2016-11-06 Wiley E. Hill <wileyhill@gmail.com>
+2016-11-16 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/edarenderer.c: Replace g_return_if_reached with BUG_IMSG
+    * src/edarenderer.c: Replace g_return_if_reached with BUG_IMSG. Add setter
+      for cairo context.
 
 2016-11-06 Wiley E. Hill <wileyhill@gmail.com>
 
