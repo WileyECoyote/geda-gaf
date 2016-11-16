@@ -326,6 +326,7 @@ cmd_export_impl (void *data, int argc, char **argv)
 
   g_array_free (color_map, TRUE);
 
+  eda_renderer_destroy(renderer);
   libgedacolor_release();
   libgeda_release();
 
