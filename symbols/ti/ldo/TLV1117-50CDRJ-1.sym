@@ -103,7 +103,7 @@ documentation=www​.ti.com/lit/ds/symlink/tlv1117.pdf
 T 100 2900 5 10 0 0 0 0 1
 symversion=1.0
 T 100 3100 5 10 0 0 0 0 1
-dist-license=GPL3
+dist-license=GPL2
 T 100 3300 5 10 0 0 0 0 1
 use-license=unlimited
 T 100 3500 5 10 0 0 0 0 1

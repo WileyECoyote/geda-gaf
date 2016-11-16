@@ -193,6 +193,6 @@ documentation=http://www.ti.com.cn/cn/lit/ds/symlink/tps2043.pdf
 T 300 5200 5 10 0 0 0 0 1
 author=AutoTron
 T 300 4800 5 10 0 0 0 0 1
-dist-license=GPL3
+dist-license=GPL2
 T 300 5000 5 10 0 0 0 0 1
 use-license=unlimited

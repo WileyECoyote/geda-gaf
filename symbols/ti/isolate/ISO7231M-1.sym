@@ -206,7 +206,7 @@ description=Three Channel Digital Isolators,2.5kV,150Mbps
 T 400 4000 5 10 0 0 0 0 1
 numslots=0
 T 400 4800 5 10 0 0 0 0 1
-dist-license=GPL3
+dist-license=GPL2
 T 400 5000 5 10 0 0 0 0 1
 use-license=unlimited
 T 1000 200 5 8 0 0 0 0 1

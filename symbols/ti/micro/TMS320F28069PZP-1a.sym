@@ -369,7 +369,7 @@ description=Piccolo Microcontroller, 90MHz
 T 3400 10100 5 10 0 0 0 0 1
 numslots=0
 T 400 11500 5 10 0 0 0 0 1
-dist-license=GPL3
+dist-license=GPL2
 T 400 11300 5 10 0 0 0 0 1
 use-license=unlimited
 T 2100 10100 9 10 0 0 0 0 1
