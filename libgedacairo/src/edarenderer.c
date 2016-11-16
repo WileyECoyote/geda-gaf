@@ -1299,7 +1299,7 @@ eda_renderer_default_draw_grips (EdaRenderer *renderer, GedaObject *object)
       /* No grips */
       break;
     default:
-      g_return_if_reached ();
+      BUG_IMSG("unhandled case <%c>\n", object->type);
   }
 }
 
@@ -1328,7 +1328,7 @@ eda_renderer_draw_grips_impl (EdaRenderer *renderer, int type, int n_grips, ...)
                               0, 360);
         break;
       default:
-        g_return_if_reached ();
+        BUG_IMSG("unhandled case <%d>\n", type);
     }
 
     gdk_cairo_set_source_color (renderer->priv->cr, &EDAR_GRIP_FILL_COLOR);
@@ -1565,7 +1565,7 @@ eda_renderer_draw_end_cues (EdaRenderer *renderer, GedaObject *object, int end)
     case OBJ_BUS:
       break;
     default:
-      g_return_if_reached ();
+      BUG_IMSG("unhandled case <%c>\n", object->type);
   }
 }
 
@@ -1602,7 +1602,7 @@ eda_renderer_default_draw_cues (EdaRenderer *renderer, GedaObject *object)
       BUG_IMSG("pin->whichend is invalid=%d \n", object->pin->whichend);
     break;
   default:
-    g_return_if_reached ();
+    BUG_IMSG("unhandled case <%c>\n", object->type);
   }
 }
 
