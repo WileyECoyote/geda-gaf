@@ -1,3 +1,9 @@
+
+2016-11-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ax_func_mkdir.m4: Add file with function AX_FUNC_MKDIR to set in
+      determining if MKDIR_TAKES_ONE_ARG, for MinGW builds.
+
 2016-11-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-ld-flags.m4: Rename AX_CHECK_LD_FLAGS->AX_SETUP_LD_FLAGS.

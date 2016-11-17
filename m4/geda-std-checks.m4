@@ -114,6 +114,8 @@ m4_define([AX_GEDA_FSC],
 
   AC_CHECK_FUNCS([mkdir])
 
+  AX_FUNC_MKDIR
+
   AC_FUNC_CHOWN                         # used to manipulate ownership in f_basic.c
 
   AC_CHECK_FUNCS([getlogin])            # used in f_print.c
