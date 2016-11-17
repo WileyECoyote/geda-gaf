@@ -32,6 +32,7 @@
 #include <libgeda_priv.h>
 
 #ifdef OS_WIN32
+#  include <ctype.h>    /* for isalpha */
 #  ifndef STRICT
 #    define STRICT
 #    include <windows.h>
