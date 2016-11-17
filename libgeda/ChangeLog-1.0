@@ -3,7 +3,8 @@
     * src\file\f_get.c: Include ctype.h for isalpha if OS_WIN32 defined.
 
     * src\file\f_path.c: Relocate inclusion of pwd.h so this header is
-      not included if OS_WIN32 is defined but do nclude ctype.h for isalpha.
+      not included if OS_WIN32 is defined but do nclude ctype.h for isalpha
+      and change mkdir -> MKDIR macro.
 
 2016-11-14 Wiley E. Hill <wileyhill@gmail.com>
 

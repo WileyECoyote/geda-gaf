@@ -100,7 +100,7 @@ static int f_create_dir(const char *path, mode_t mode)
 
     if (stat(path, &stat_buf) != 0) {
         /* Directory does not exist. EEXIST for race condition */
-        if (mkdir(path, mode) != 0 && errno != EEXIST)
+        if (MKDIR(path, mode) != 0 && errno != EEXIST)
             status = -1;
     }
     else if (!S_ISDIR(stat_buf.st_mode)) {
