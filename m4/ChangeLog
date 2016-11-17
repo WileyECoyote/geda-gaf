@@ -4,6 +4,12 @@
     * ax_func_mkdir.m4: Add file with function AX_FUNC_MKDIR to set in
       determining if MKDIR_TAKES_ONE_ARG, for MinGW builds.
 
+    * geda-gtk.m4: Revise AX_CHECK_GTK to check if something was passed to
+      the function, and pass local variable to PKG_CHECK_MODULES unquoted.
+      This seems to resolve an issues with MinGW's autoconf and pkg-config
+      being able to sort out the correct version, otherwise an error was
+      generated stated with install version 2.24.28 was lass than 2.16.0.
+
 2016-11-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-ld-flags.m4: Rename AX_CHECK_LD_FLAGS->AX_SETUP_LD_FLAGS.
