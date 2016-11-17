@@ -1,3 +1,8 @@
+2016-11-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda/geda_types.h: Revise conditional for typedef mode_t; do
+      not define mode_t if OS_WIN32_NATIVE.
+
 2016-11-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * include\geda\geda_idefines.h: Modify conditional defines for MAX_PATH
