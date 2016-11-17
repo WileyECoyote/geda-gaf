@@ -1,3 +1,12 @@
+2016-11-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/gtksheet/gtksheettypebuiltins.h: Add declarations for
+
+          * gtk_sheet_entry_type_get_type
+          * gtk_sheet_vertical_justification_get_type
+
+      located in gtksheettypebuiltins.c and referenced in other modules.
+
 2016-11-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gattrib.c: Substitute macro geda_gslist_free_all for function

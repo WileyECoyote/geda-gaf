@@ -223,7 +223,7 @@
 ;; ----------------- tools:gnet_hier_verilog  -----------------------
 (define (tools:gnet_hier_verilog)
   (let  ((fout  (string-append (tools:ifbase) ".v")))
-    (if (tools:check-ext "sch")
+    (if (tools:check-file "sch")
       (begin
         (system (string-append "gnet_hier_verilog " (tools:ifpath)))
         (tools:open-editor? fout)

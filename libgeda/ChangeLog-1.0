@@ -6,15 +6,26 @@
       not included if OS_WIN32 is defined but do nclude ctype.h for isalpha
       and change mkdir -> MKDIR macro.
 
+2016-11-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_config.c: Initialize fp to NULL in eda_config_save.
+
+    * src/utility/u_program.c: Conditionally call g_mem_set_vtable if glic
+      < than 2.44.
+
 2016-11-14 Wiley E. Hill <wileyhill@gmail.com>
 
-    * shell\Makefile.am: Add MINGW_LDFLAGS to LDFLAGS, don't remember why
-	    but it had to be done for this Win7-64 box.
+    * shell\Makefile.am: Add MINGW_LDFLAGS to LDFLAGS, do not remember why
+      but it had to be done for this Win7-64 box.
+
+    * src/geda/geda_config.c: Revise eda_config_get_default_context to
+      release the empty string created during initialization of the
+      EDA_CONFIG object in addition to setting to NULL.
 
 2016-11-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_get.c: Revise geda_file_get_dir_list_files to check the
-      err argument abd set only if passed, and therefore optional. Update
+      err argument and set only if passed, and therefore optional. Update
       Doxygen param arguments, also add check if path argument is NULL.
 
     * src/geda/geda_errors.c: Add Doxygen group geda-errors.

@@ -464,7 +464,9 @@ eda_config_get_default_context ()
 
     config = g_object_new (EDA_TYPE_CONFIG, "trusted", TRUE, NULL);
 
-    config->priv->filename = NULL;
+    /* The default filename for an EDA_CONFIG object is an empty
+     * string, which is released here for the default context */
+    GEDA_FREE(config->priv->filename);
 
     config->priv->loaded = TRUE;
 
@@ -994,6 +996,8 @@ eda_config_save (EdaConfig *cfg, GError **error)
       FILE *fp;
 
       errno = 0;
+      fp = NULL;
+
       if (!g_file_test (filename, G_FILE_TEST_EXISTS)) {
         if (!g_file_test (dir, G_FILE_TEST_EXISTS)) {
           geda_create_path (dir, S_IRWXU | S_IRWXG);

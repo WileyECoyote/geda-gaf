@@ -545,7 +545,7 @@ eda_renderer_default_draw (EdaRenderer *renderer, GedaObject *object)
       case OBJ_PLACEHOLDER: draw_func = eda_renderer_draw_complex; break;
 
       default:
-        BUG_IMSG("unhandled case <%d>", object->type);
+        BUG_IMSG("unhandled case <%c>", object->type);
         return;
     }
 
@@ -575,8 +575,10 @@ eda_renderer_set_color (EdaRenderer *renderer, int color)
     BUG_IMSG("color = %d\n", color);
   }
   else {
-    eda_cairo_set_source_color (renderer->priv->cr, color,
-                                renderer->priv->color_map);
+
+    cairo_t *cr = renderer->priv->cr;
+
+    eda_cairo_set_source_color (cr, color, renderer->priv->color_map);
   }
 }
 
@@ -613,7 +615,7 @@ eda_renderer_is_drawable (EdaRenderer *renderer, GedaObject *object)
 static int
 eda_renderer_draw_hatch (EdaRenderer *renderer, GedaObject *object)
 {
-  bool    result;
+  bool result;
 
   g_return_val_if_fail ((object->type == OBJ_ARC    ||
                          object->type == OBJ_BOX    ||
@@ -625,6 +627,8 @@ eda_renderer_draw_hatch (EdaRenderer *renderer, GedaObject *object)
   if (object->fill_options->fill_type != FILLING_HOLLOW) {
 
     if (object->fill_options->fill_type != FILL_SOLID) {
+
+      cairo_t *cr = renderer->priv->cr;
 
       GArray *fill_lines;
       int     fill_width;
@@ -638,12 +642,12 @@ eda_renderer_draw_hatch (EdaRenderer *renderer, GedaObject *object)
 
         LINE *line = &g_array_index (fill_lines, LINE, index);
 
-        eda_cairo_line (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
+        eda_cairo_line (cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                         END_NONE, fill_width,
                         line->x[0], line->y[0], line->x[1], line->y[1]);
       }
 
-      eda_cairo_stroke (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
+      eda_cairo_stroke (cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                         TYPE_SOLID, END_NONE,
                         EDA_RENDERER_STROKE_WIDTH (renderer, fill_width), -1, -1);
 
@@ -751,21 +755,22 @@ eda_renderer_draw_arc (EdaRenderer *renderer, GedaObject *object)
 static void
 eda_renderer_draw_box (EdaRenderer *renderer, GedaObject *object)
 {
-  int fill_solid;
+  cairo_t *cr = renderer->priv->cr;
 
   /* Hatch box */
-  fill_solid = eda_renderer_draw_hatch (renderer, object);
+  int fill_solid = eda_renderer_draw_hatch (renderer, object);
 
   /* Draw outline of box */
-  eda_cairo_box (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
+  eda_cairo_box (cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                  object->line_options->line_width,
                  object->box->lower_x, object->box->lower_y,
                  object->box->upper_x, object->box->upper_y);
 
-  if (fill_solid)
-    cairo_fill_preserve (renderer->priv->cr);
+  if (fill_solid) {
+    cairo_fill_preserve (cr);
+  }
 
-  eda_cairo_stroke (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
+  eda_cairo_stroke (cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                     object->line_options->line_type, object->line_options->line_end,
                     EDA_RENDERER_STROKE_WIDTH (renderer, object->line_options->line_width),
                     object->line_options->line_length, object->line_options->line_space);
@@ -774,20 +779,22 @@ eda_renderer_draw_box (EdaRenderer *renderer, GedaObject *object)
 static void
 eda_renderer_draw_circle (EdaRenderer *renderer, GedaObject *object)
 {
-  int fill_solid;
+  cairo_t *cr = renderer->priv->cr;
 
   /* Hatch circle */
-  fill_solid = eda_renderer_draw_hatch (renderer, object);
+  int fill_solid = eda_renderer_draw_hatch (renderer, object);
 
   /* Draw outline of circle */
-  eda_cairo_arc (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
+  eda_cairo_arc (cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                  object->line_options->line_width,
                  object->circle->center_x, object->circle->center_y,
                  object->circle->radius, 0, 360);
 
-  if (fill_solid) cairo_fill_preserve (renderer->priv->cr);
+  if (fill_solid) {
+    cairo_fill_preserve (cr);
+  }
 
-  eda_cairo_stroke (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
+  eda_cairo_stroke (cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                     object->line_options->line_type, object->line_options->line_end,
                     EDA_RENDERER_STROKE_WIDTH (renderer, object->line_options->line_width),
                     object->line_options->line_length, object->line_options->line_space);
@@ -796,18 +803,21 @@ eda_renderer_draw_circle (EdaRenderer *renderer, GedaObject *object)
 static void
 eda_renderer_draw_path (EdaRenderer *renderer, GedaObject *object)
 {
-  int fill_solid;
+  cairo_t *cr = renderer->priv->cr;
 
   /* Hatch path */
-  fill_solid = eda_renderer_draw_hatch (renderer, object);
+  int fill_solid = eda_renderer_draw_hatch (renderer, object);
 
   /* Draw outline of path */
-  eda_cairo_path (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
+  eda_cairo_path (cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                   object->line_options->line_width, object->path->num_sections,
                   object->path->sections);
 
-  if (fill_solid) cairo_fill_preserve (renderer->priv->cr);
-  eda_cairo_stroke (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
+  if (fill_solid) {
+    cairo_fill_preserve (cr);
+  }
+
+  eda_cairo_stroke (cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                     object->line_options->line_type, object->line_options->line_end,
                     EDA_RENDERER_STROKE_WIDTH (renderer, object->line_options->line_width),
                     object->line_options->line_length, object->line_options->line_space);
@@ -816,14 +826,17 @@ eda_renderer_draw_path (EdaRenderer *renderer, GedaObject *object)
 static void
 eda_renderer_draw_text (EdaRenderer *renderer, GedaObject *object)
 {
+  cairo_t *cr = renderer->priv->cr;
   double dummy = 0;
   double marker_dist = EDAR_TEXT_MARKER_SIZE;
 
   void text_as_outline_box () {
-    eda_cairo_box (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer), 0,
+
+    eda_cairo_box (cr, EDA_RENDERER_CAIRO_FLAGS (renderer), 0,
                    object->left, object->bottom,
                    object->right, object->top);
-    eda_cairo_stroke (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
+
+    eda_cairo_stroke (cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                       TYPE_SOLID, END_SQUARE,
                       EDA_RENDERER_STROKE_WIDTH (renderer, 0),
                       -1, -1);
@@ -846,14 +859,14 @@ eda_renderer_draw_text (EdaRenderer *renderer, GedaObject *object)
 
   /* Otherwise, actually draw the text */
 
-  cairo_save (renderer->priv->cr);
+  cairo_save (cr);
 
   if (eda_renderer_prepare_text (renderer, object)) {
     eda_pango_renderer_show_layout (renderer->priv->pr, renderer->priv->pl);
-    cairo_restore (renderer->priv->cr);
+    cairo_restore (cr);
   }
   else {
-    cairo_restore (renderer->priv->cr);
+    cairo_restore (cr);
     return;
   }
 
@@ -865,13 +878,13 @@ eda_renderer_draw_text (EdaRenderer *renderer, GedaObject *object)
     /* If the text marker is too tiny, don't draw it. */
     if (EDA_RENDERER_CHECK_FLAG (renderer, FLAG_HINTING)) {
 
-      cairo_user_to_device_distance (renderer->priv->cr, &marker_dist, &dummy);
+      cairo_user_to_device_distance (cr, &marker_dist, &dummy);
 
       if (marker_dist > EDAR_MARKER_THRESHOLD) {
 
         double x, y;
 
-        gdk_cairo_set_source_color (renderer->priv->cr, &EDAR_TEXT_MARKER_COLOR);
+        gdk_cairo_set_source_color (cr, &EDAR_TEXT_MARKER_COLOR);
 
         /* Centre of marker is just below and to the right of the text
          * object's origin - FIXME: even if it falls on top of text. */
@@ -879,24 +892,24 @@ eda_renderer_draw_text (EdaRenderer *renderer, GedaObject *object)
         y = object->text->y - 2 * EDAR_TEXT_MARKER_SIZE;
 
         /* Top */
-        eda_cairo_line (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
+        eda_cairo_line (cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                         END_NONE, 0,
                         x - EDAR_TEXT_MARKER_SIZE, y + EDAR_TEXT_MARKER_SIZE,
                         x + EDAR_TEXT_MARKER_SIZE, y + EDAR_TEXT_MARKER_SIZE);
 
         /* Vertical */
-        eda_cairo_line (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
+        eda_cairo_line (cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                         END_NONE, 0,
                         x + EDAR_MARKER_THRESHOLD, y + EDAR_TEXT_MARKER_SIZE,
                         x + EDAR_MARKER_THRESHOLD, y - EDAR_TEXT_MARKER_SIZE);
 
         /* Bottom */
-        eda_cairo_line (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
+        eda_cairo_line (cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                         END_NONE, 0,
                         x - EDAR_TEXT_MARKER_SIZE, y - EDAR_TEXT_MARKER_SIZE,
                         x + EDAR_TEXT_MARKER_SIZE, y - EDAR_TEXT_MARKER_SIZE);
 
-        eda_cairo_stroke (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
+        eda_cairo_stroke (cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                           TYPE_SOLID, END_NONE,
                           EDA_RENDERER_STROKE_WIDTH (renderer, 0),
                           -1, -1);
@@ -1032,11 +1045,13 @@ eda_renderer_prepare_text (EdaRenderer *renderer, const GedaObject *object)
     return FALSE;
   }
 
+  cairo_t *cr = renderer->priv->cr;
+
   pango_layout_set_text (renderer->priv->pl, draw_string, -1);
 
   pango_layout_set_attributes (renderer->priv->pl, attrs);
 
-  pango_cairo_update_layout (renderer->priv->cr, renderer->priv->pl);
+  pango_cairo_update_layout (cr, renderer->priv->pl);
 
   GEDA_FREE (draw_string);
   pango_attr_list_unref (attrs);
@@ -1044,15 +1059,15 @@ eda_renderer_prepare_text (EdaRenderer *renderer, const GedaObject *object)
   /* Calculate text position. */
   eda_renderer_calc_text_position (renderer, object, descent, &dx, &dy);
 
-  cairo_translate (renderer->priv->cr, object->text->x, object->text->y);
+  cairo_translate (cr, object->text->x, object->text->y);
 
   /* Special case turns upside-down text back upright */
   if (object->text->angle != 180) {
-    cairo_rotate (renderer->priv->cr, M_PI * object->text->angle / 180.);
+    cairo_rotate (cr, M_PI * object->text->angle / 180.);
   }
 
-  cairo_scale (renderer->priv->cr, 1, -1);
-  cairo_translate (renderer->priv->cr, dx, dy);
+  cairo_scale (cr, 1, -1);
+  cairo_translate (cr, dx, dy);
 
   if (EDA_RENDERER_CHECK_FLAG (renderer, FLAG_HINTING)) {
   /* NB: Shift the position by 0.5px to match the hinting applied to single
@@ -1060,20 +1075,21 @@ eda_renderer_prepare_text (EdaRenderer *renderer, const GedaObject *object)
    *     the grid lines, and ensures consistency with other lines when the
    *     page view is zoomed out. */
     dx = 0.5; dy = 0.5;
-    cairo_device_to_user_distance (renderer->priv->cr, &dx, &dy);
-    cairo_translate (renderer->priv->cr, dx, dy);
+    cairo_device_to_user_distance (cr, &dx, &dy);
+    cairo_translate (cr, dx, dy);
   }
 
   /* tell Pango to re-layout the text with the new transformation matrix */
   pango_layout_context_changed (renderer->priv->pl);
 
-  pango_cairo_update_layout (renderer->priv->cr, renderer->priv->pl);
+  pango_cairo_update_layout (cr, renderer->priv->pl);
   return TRUE;
 }
 
 static void
 eda_renderer_draw_picture (EdaRenderer *renderer, GedaObject *object)
 {
+  cairo_t *cr = renderer->priv->cr;
   double width,  orig_width;
   double height, orig_height;
 
@@ -1109,11 +1125,11 @@ eda_renderer_draw_picture (EdaRenderer *renderer, GedaObject *object)
       /* If no pixbuf was found, fall back to drawing an outline */
       if (EDA_RENDERER_CHECK_FLAG (renderer, FLAG_PICTURE_OUTLINE)) {
 
-        eda_cairo_box (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
+        eda_cairo_box (cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                        0,
                        object->picture->lower_x, object->picture->lower_y,
                        object->picture->upper_x, object->picture->upper_y);
-        eda_cairo_stroke (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
+        eda_cairo_stroke (cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                           TYPE_SOLID, END_SQUARE,
                           EDA_RENDERER_STROKE_WIDTH (renderer, 0),
                           -1, -1);
@@ -1123,7 +1139,7 @@ eda_renderer_draw_picture (EdaRenderer *renderer, GedaObject *object)
     }
   }
 
-  cairo_save (renderer->priv->cr);
+  cairo_save (cr);
 
   width  = gdk_pixbuf_get_width (pixbuf);
   height = gdk_pixbuf_get_height (pixbuf);
@@ -1138,34 +1154,34 @@ eda_renderer_draw_picture (EdaRenderer *renderer, GedaObject *object)
     orig_height = height;
   }
 
-  cairo_translate (renderer->priv->cr,
+  cairo_translate (cr,
                    object->picture->upper_x, object->picture->upper_y);
 
-  cairo_scale (renderer->priv->cr,
+  cairo_scale (cr,
                fabs (object->picture->upper_x - object->picture->lower_x) / orig_width,
              - fabs (object->picture->upper_y - object->picture->lower_y) / orig_height);
 
   /* Evil magic translates picture origin to the right position for a given rotation */
   switch (object->picture->angle) {
     case 0:                                                                    break;
-    case 90:   cairo_translate (renderer->priv->cr, 0,          orig_height);  break;
-    case 180:  cairo_translate (renderer->priv->cr, orig_width, orig_height);  break;
-    case 270:  cairo_translate (renderer->priv->cr, orig_width, 0          );  break;
+    case 90:   cairo_translate (cr, 0,          orig_height);  break;
+    case 180:  cairo_translate (cr, orig_width, orig_height);  break;
+    case 270:  cairo_translate (cr, orig_width, 0          );  break;
   }
 
-  cairo_rotate (renderer->priv->cr, -object->picture->angle * M_PI / 180.);
+  cairo_rotate (cr, -object->picture->angle * M_PI / 180.);
 
   if (object->picture->mirrored) {
-    cairo_translate (renderer->priv->cr, width, 0);
-    cairo_scale (renderer->priv->cr, -1, 1);
+    cairo_translate (cr, width, 0);
+    cairo_scale (cr, -1, 1);
   }
 
-  gdk_cairo_set_source_pixbuf (renderer->priv->cr, pixbuf, 0,0);
+  gdk_cairo_set_source_pixbuf (cr, pixbuf, 0,0);
 
-  cairo_rectangle (renderer->priv->cr, 0, 0, width, height);
+  cairo_rectangle (cr, 0, 0, width, height);
 
-  cairo_clip (renderer->priv->cr);
-  cairo_paint (renderer->priv->cr);
+  cairo_clip (cr);
+  cairo_paint (cr);
 
   if (missing) { /* Add some useful text */
 
@@ -1174,16 +1190,16 @@ eda_renderer_draw_picture (EdaRenderer *renderer, GedaObject *object)
 
     filename  = object->picture->filename;
     err_msg = geda_sprintf (_("Error loading: %s"), filename);
-    cairo_set_font_size(renderer->priv->cr, 6);
+    cairo_set_font_size(cr, 6);
 
     /* add the text */
-    cairo_move_to( renderer->priv->cr, 3, height * 0.95);
-    cairo_set_source_rgba(renderer->priv->cr, 0,0,0,1);
-    cairo_show_text(renderer->priv->cr, err_msg);
+    cairo_move_to( cr, 3, height * 0.95);
+    cairo_set_source_rgba(cr, 0,0,0,1);
+    cairo_show_text(cr, err_msg);
     GEDA_FREE(err_msg);
   }
 
-  cairo_restore (renderer->priv->cr);
+  cairo_restore (cr);
   GEDA_UNREF (pixbuf);
 }
 
@@ -1299,43 +1315,45 @@ eda_renderer_default_draw_grips (EdaRenderer *renderer, GedaObject *object)
       /* No grips */
       break;
     default:
-      g_return_if_reached ();
+      BUG_IMSG("unhandled case <%c>\n", object->type);
   }
 }
 
 static void
 eda_renderer_draw_grips_impl (EdaRenderer *renderer, int type, int n_grips, ...)
 {
+  cairo_t *cr = renderer->priv->cr;
   va_list coordinates;
   int i;
 
   va_start (coordinates, n_grips);
   for (i = 0; i < n_grips; i++) {
+
     int x = va_arg (coordinates, int);
     int y = va_arg (coordinates, int);
 
     switch (type) {
       case EDAR_GRIP_SQUARE:
-        eda_cairo_center_box (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
+        eda_cairo_center_box (cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                               0, 0, x, y,
                               EDAR_GRIP_SIZE,
                               EDAR_GRIP_SIZE);
         break;
       case EDAR_GRIP_CIRCLE:
-        eda_cairo_center_arc (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
+        eda_cairo_center_arc (cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                               0, 0, x, y,
                               EDAR_GRIP_SIZE,
                               0, 360);
         break;
       default:
-        g_return_if_reached ();
+        BUG_IMSG("unhandled case <%d>\n", type);
     }
 
-    gdk_cairo_set_source_color (renderer->priv->cr, &EDAR_GRIP_FILL_COLOR);
-    cairo_fill_preserve (renderer->priv->cr);
+    gdk_cairo_set_source_color (cr, &EDAR_GRIP_FILL_COLOR);
+    cairo_fill_preserve (cr);
 
-    gdk_cairo_set_source_color (renderer->priv->cr, &EDAR_GRIP_STROKE_COLOR);
-    eda_cairo_stroke (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
+    gdk_cairo_set_source_color (cr, &EDAR_GRIP_STROKE_COLOR);
+    eda_cairo_stroke (cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                       TYPE_SOLID, END_NONE,
                       0, -1, -1);
   }
@@ -1377,9 +1395,12 @@ eda_renderer_draw_arc_grips (EdaRenderer *renderer, GedaObject *object)
 static void
 eda_renderer_draw_path_grips (EdaRenderer *renderer, GedaObject *object)
 {
+  cairo_t *cr = renderer->priv->cr;
   int i, last_x = 0, last_y = 0, next_x, next_y;
 
   for (i = 0; i < object->path->num_sections; i++) {
+
+
 
     PATH_SECTION *section = object->path->sections + i;
 
@@ -1391,13 +1412,13 @@ eda_renderer_draw_path_grips (EdaRenderer *renderer, GedaObject *object)
     switch (section->code) {
     case PATH_CURVETO:
       /* Two control point lines */
-      eda_cairo_line (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
+      eda_cairo_line (cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                       END_NONE, 0,
                       last_x, last_y, section->x1, section->y1);
-      eda_cairo_line (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
+      eda_cairo_line (cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                       END_NONE, 0,
                       next_x, next_y, section->x2, section->y2);
-      eda_cairo_stroke (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
+      eda_cairo_stroke (cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                         TYPE_SOLID, END_NONE,
                         EDA_RENDERER_STROKE_WIDTH (renderer, 0), -1, -1);
       /* Two control point grips */
@@ -1423,7 +1444,8 @@ eda_renderer_draw_path_grips (EdaRenderer *renderer, GedaObject *object)
 static void
 eda_renderer_draw_text_grips (EdaRenderer *renderer, GedaObject *object)
 {
-  double dummy = 0;
+  cairo_t *cr        = renderer->priv->cr;
+  double dummy       = 0;
   double marker_dist = EDAR_TEXT_MARKER_SIZE;
 
   int x = object->text->x;
@@ -1436,22 +1458,24 @@ eda_renderer_draw_text_grips (EdaRenderer *renderer, GedaObject *object)
   }
 
   /* If the text marker is too tiny, don't draw it. */
-  cairo_user_to_device_distance (renderer->priv->cr, &marker_dist, &dummy);
+  cairo_user_to_device_distance (cr, &marker_dist, &dummy);
 
   if (marker_dist < EDAR_MARKER_THRESHOLD)
     return;
 
-  gdk_cairo_set_source_color (renderer->priv->cr, &EDAR_TEXT_MARKER_COLOR);
+  gdk_cairo_set_source_color (cr, &EDAR_TEXT_MARKER_COLOR);
 
-  eda_cairo_line (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
+  eda_cairo_line (cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                   END_NONE, 0,
                   x - EDAR_TEXT_MARKER_SIZE, y - EDAR_TEXT_MARKER_SIZE,
                   x + EDAR_TEXT_MARKER_SIZE, y + EDAR_TEXT_MARKER_SIZE);
-  eda_cairo_line (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
+
+  eda_cairo_line (cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                   END_NONE, 0,
                   x - EDAR_TEXT_MARKER_SIZE, y + EDAR_TEXT_MARKER_SIZE,
                   x + EDAR_TEXT_MARKER_SIZE, y - EDAR_TEXT_MARKER_SIZE);
-  eda_cairo_stroke (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
+
+  eda_cairo_stroke (cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                     TYPE_SOLID, END_NONE,
                     EDA_RENDERER_STROKE_WIDTH (renderer, 0),
                     -1, -1);
@@ -1565,7 +1589,7 @@ eda_renderer_draw_end_cues (EdaRenderer *renderer, GedaObject *object, int end)
     case OBJ_BUS:
       break;
     default:
-      g_return_if_reached ();
+      BUG_IMSG("unhandled case <%c>\n", object->type);
   }
 }
 
@@ -1602,7 +1626,7 @@ eda_renderer_default_draw_cues (EdaRenderer *renderer, GedaObject *object)
       BUG_IMSG("pin->whichend is invalid=%d \n", object->pin->whichend);
     break;
   default:
-    g_return_if_reached ();
+    BUG_IMSG("unhandled case <%c>\n", object->type);
   }
 }
 
@@ -2081,11 +2105,24 @@ eda_renderer_get_cairo_context (EdaRenderer *renderer)
   return cr;
 }
 
+/*! \brief Set the active EdaRenderer Cairo Context
+ *  \par Function Description
+ *  Function to retrieve the current Cairo Context.
+ */
+void
+eda_renderer_set_cairo_context (EdaRenderer *renderer, cairo_t *cr)
+{
+  if (EDA_IS_RENDERER (renderer)) {
+    eda_renderer_update_contexts(renderer, cr, NULL);
+  }
+}
+
 /*! \brief Get the EdaRenderer Hinting Enabled Property
  *  \par Function Description
  *  Function to retrieve the current hinting property.
  */
-bool eda_renderer_get_hinting_enabled (EdaRenderer *renderer)
+bool
+eda_renderer_get_hinting_enabled (EdaRenderer *renderer)
 {
   g_return_val_if_fail (EDA_IS_RENDERER (renderer), FALSE);
   return EDA_RENDERER_CHECK_FLAG (renderer, FLAG_HINTING);

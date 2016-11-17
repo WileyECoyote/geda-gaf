@@ -59,14 +59,14 @@ SCM_DEFINE (show_uri, "%show-uri", 1, 0, 0, (SCM uri_s),
             "Show a URI in the associated default application")
 {
   /* Check that we were passed a string. */
-  if (scm_is_string (uri_s), uri_s, SCM_ARG1, s_show_uri) {
+  SCM_ASSERT (scm_is_string (uri_s), uri_s, SCM_ARG1, s_show_uri);
 
-    const char *uri = scm_to_utf8_string (uri_s);
+  const char *uri = scm_to_utf8_string (uri_s);
 
-    if (!x_show_uri (uri)) {
-      u_log_message( _("Could not launch URI %s\n"), uri);
-    }
+  if (!x_show_uri (uri)) {
+    u_log_message( _("Could not launch URI %s\n"), uri);
   }
+
   return SCM_UNDEFINED;
 }
 

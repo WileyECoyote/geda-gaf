@@ -1,21 +1,21 @@
-/* $Id$ */
-/*	This is grenum, an advanced refdes renumber utility for gEDA's gschem.
+/* $Id$ indent-tabs-mode: t; c-basic-offset: 2; tab-width: 2 */
+/*  This is grenum, an advanced refdes renumber utility for gEDA's gschem.
  *
- *	Copyright (C) 2005-2014  Levente Kovacs
+ *  Copyright (C) 2005-2014  Levente Kovacs
  *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 2 of the License, or
- *	(at your option) any later version.
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
  *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
  *
- *	You should have received a copy of the GNU General Public License
- *	along with this program; if not, write to the Free Software
- *	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program; if not, write to the Free Software
+ *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  *
  * Levente.Kovacs@interware.hu
  *
@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
 
   struct refdes_ refdes, refdes_db[MAX_PREFIX_COUNT];
 
-  flags=0x00; /*Clear all flags*/
+  flags=0x00; /* Clear all flags */
 
   while(1) {
 
@@ -79,7 +79,7 @@ int main(int argc, char *argv[])
         printver();
         return 0;
       case 'p':
-        flags|=PageJUMP; /*Set the pagejump flag*/
+        flags|=PageJUMP; /* Set the pagejump flag */
         break;
     }
   }
@@ -91,27 +91,30 @@ int main(int argc, char *argv[])
     return NO_INPUT_FILE;
   }
 
-  for (c=0;c<MAX_PREFIX_COUNT;++c) {
-
-    refdes_db[c].prefix[0]='\0';	/*Zero all the strings in the database.*/
+  /* Zero all the strings in the database. */
+  for (c = 0; c < MAX_PREFIX_COUNT; ++c) {
+    refdes_db[c].prefix[0]='\0';
     refdes_db[c].value=COUNT_START;
   }
 
-  for (pages=1;optind<argc;++optind,++pages) {
+  for (pages = 1; optind < argc; ++optind, ++pages) {
 
     FILE *infile, *outfile;
     int ret;
 
-    if ((flags&PageJUMP)==PageJUMP) { /*pagejumps*/
+    if ((flags&PageJUMP)==PageJUMP) { /* pagejumps */
 
-      for (c=0;c<MAX_PREFIX_COUNT;++c) {
-        refdes_db[c].value=Page_JMP*pages+COUNT_START;	/*Reset the counters according to page numbers*/
+      for (c = 0; c < MAX_PREFIX_COUNT; ++c) {
+        /* Reset the counters according to page numbers */
+        refdes_db[c].value=Page_JMP*pages+COUNT_START;
       }
     }
 
-    strcpy(&infilename[0],argv[optind]);	/*Copy the filename to the buffer*/
+    /* Copy the filename to the buffer */
+    strcpy(&infilename[0], argv[optind]);
 
-    if ((infile=fopen(infilename, "r")) == NULL)	 {/*Open file, use r+ for read and write*/
+    /* Open file, use r+ for read only */
+    if ((infile=fopen(infilename, "r")) == NULL) {
       perror("grenum: unable to open input file");
       return FILE_OP_ERROR;
     }
@@ -120,53 +123,59 @@ int main(int argc, char *argv[])
 
     if ((outfile=fopen(strcat(&outfilename[0],".tmp"),"wb"))==NULL) {
       perror("grenum: could not create tmp file");
-      fclose(infile);	/*Close the file*/
+      /* Close the file */
+      fclose(infile);
       return FILE_OP_ERROR;
     }
 
     printf("grenum: processing file %s\n",&infilename[0]);
 
-    while((ret=get_refdes_from_file(infile, &refdes, buff))!=END_OF_FILE) { /*Read one line.*/
+    /* Read one line. */
+    while((ret=get_refdes_from_file(infile, &refdes, buff))!=END_OF_FILE) {
 
-      /*Process starts here*/
+    /*Process starts here */
+
 #ifdef DEBUG
-      printf("%s\n",&buff[0]);	/*Print out what is read*/
+      printf("%s\n",&buff[0]); /* Print out what is read */
 #endif
-      switch(ret)
-      {
 
+      switch(ret) {
         case NOT_REFDES_LINE:
           if (fputs(buff,outfile)==-1) {
             perror("grenum: could not write to tmp file");
-            fclose(infile);	/*Close the files*/
+            /* Close the files */
+            fclose(infile);
             fclose(outfile);
             return FILE_OP_ERROR;
           }
           continue;
 
-        case REFDES_WITH_VALUE:	/*We shall compare the maximum value, shall search for gaps, and set the refes_db.value to the next  free value*/
-          c=refdes_lookup(refdes_db, &refdes);
+        case REFDES_WITH_VALUE: /* Compare the maximum value, search for gaps, and set the refes_db.value to the next free value */
+          c = refdes_lookup(refdes_db, &refdes);
           switch(c) {
 
-            case REFDES_NOT_FOUND:	/*No such prefix*/
-              strcpy(&refdes_db[refdes.prefixes].prefix[0],&refdes.prefix[0]);	/*Register the prefix to the database*/
+            case REFDES_NOT_FOUND: /* No such prefix */
+              strcpy(&refdes_db[refdes.prefixes].prefix[0],&refdes.prefix[0]); /* Register the prefix to the database */
               refdes_db[refdes.prefixes+1].prefix[0]='\0';
-            refdes_db[refdes.prefixes].value=refdes.value;	/*Renumber... Finally :-)*/
+            refdes_db[refdes.prefixes].value=refdes.value; /* Renumber... Finally :-)*/
             break;
 
-            case MAX_PREFIX_COUNT:	/*Out of memory*/
+            case MAX_PREFIX_COUNT: /* Out of memory */
               printf("grenum: out of memory. Too much refdes prefixes.\n");
-              fclose(infile);	/*Close the files*/
+              /* Close the files */
+              fclose(infile);
               fclose(outfile);
               return OUT_OF_MEMORY;
 
             default:
-              if (refdes.value-refdes_db[c].value==1) {/*If we have the next value, don't do anything, just update the database.*/
+              if (refdes.value-refdes_db[c].value==1) {
 
+                /* If we have the next value, don't do anything, just update the database. */
                 refdes_db[c].value=refdes.value;
                 break;
               }
-              /*Now we have a hole in numbering. Let's see if it'll be fixed, and seek for the maximum value. eg. R1,R2,R5,R3. So, we have to search for R3,R4, and set the db to R3.*/
+
+              /* Now we have a hole in numbering. Let's see if it'll be fixed, and seek for the maximum value. eg. R1,R2,R5,R3. So, we have to search for R3,R4, and set the db to R3. */
 
               for (i=refdes_db[c].value+1; i<refdes.value; ++i) {
                 if (seek_value(c, infile, i, refdes_db)==VALUE_NOT_FOUND) {
@@ -183,18 +192,18 @@ int main(int argc, char *argv[])
               }
               break;
           }
-          break;	/*continue our job*/
+          break; /* continue our job */
             case REFDES_WITHOUT_VALUE:
               c=refdes_lookup(refdes_db, &refdes);
               switch(c) {
-                case -1:	/*No such prefix*/
+                case -1: /* No such prefix */
                   strcpy(&refdes_db[refdes.prefixes].prefix[0],&refdes.prefix[0]);
                   refdes.value=++refdes_db[refdes.prefixes].value;
                   refdes_db[refdes.prefixes+1].prefix[0]='\0';
               break;
                 case MAX_PREFIX_COUNT:
                   printf("grenum: out of memory. Too much refdes prefixes.\n");
-                  fclose(infile);	/*Close the files*/
+                  fclose(infile); /* Close the files */
                   fclose(outfile);
                   return OUT_OF_MEMORY;
                 default:
@@ -203,53 +212,58 @@ int main(int argc, char *argv[])
                          refdes.value=refdes_db[c].value=i;
                   }
                   else {
-                    refdes.value=++refdes_db[c].value;	/*renumber*/
+                    refdes.value=++refdes_db[c].value; /* renumber */
                   }
                    break;
               }
               sprintf(buff, "refdes=%s%d\n", &refdes.prefix[0], refdes.value);
               break;
-                case REFDES_ERROR:	/*e.g. awdf#$%WSf82f8 :-) No "=" signal in the refdes string.*/
+                case REFDES_ERROR: /* e.g. awdf#$%WSf82f8 :-) No "=" signal in the refdes string. */
                   printf("grenum: parse error\n");
-                  fclose(infile);	/*Close the files*/
+                  fclose(infile);
                   fclose(outfile);
                   return PARSE_ERROR;
       }
 
-      if (fputs(buff,outfile)==-1) { /*Finally, write the refdes line to the output file*/
-
+      { /* Finally, write the refdes line to the output file */
+      if (fputs(buff,outfile)==-1)
         perror("grenum: could not write to tmp file");
-        fclose(infile);	/*Close the files*/
+        fclose(infile);
         fclose(outfile);
         return FILE_OP_ERROR;
       }
-    }	/*Process ends here*/
+    } /* Process ends here */
 
     fclose(outfile);
-    strcpy(&buff[0],&infilename[0]); /*buff has the original infilename*/
 
-    /*The next few lines implements the copy program*/
-    fseek(infile,0L,SEEK_SET); /*Go to the begining of the infile*/
+    /* buff has the original infilename */
+    strcpy(&buff[0],&infilename[0]);
+
+    /* The next few lines implements the copy program */
+    fseek(infile,0L,SEEK_SET); /* Go to the begining of the infile */
     outfile=fopen(strcat(&buff[0],".save"),"wb");
 
     if (outfile==NULL) {
       perror("grenum: ould not create backup file");
-      fclose(infile);	/*Close the file*/
+      fclose(infile);
       return FILE_OP_ERROR;
     }
 
-    while(fgets(&buff[0],BUFFSIZE,infile)!=NULL)  { /*Read one line.*/
+    while(fgets(&buff[0],BUFFSIZE,infile)!=NULL)  { /* Read one line. */
 
       if (fputs(&buff[0],outfile)==-1) {
         perror("grenum: could not write to backup file");
-        fclose(infile);	/*Close the files*/
+        fclose(infile);
         fclose(outfile);
         return FILE_OP_ERROR;
       }
     }
+
     fclose(infile);
     fclose(outfile);
-    rename(outfilename, infilename);	/*Move the tmpfile to the original*/
+
+    /* Move the tmpfile to the original */
+    rename(outfilename, infilename);
   }
   printf("grenum: file(s) successfully processed\n");
   return OK; /*Everything is okay*/
@@ -257,9 +271,9 @@ int main(int argc, char *argv[])
 
 int get_refdes_from_file(FILE *fp, struct refdes_ *refdes, char *buff)
 {
-  /*	Read one line from file, and return the following things:
+  /* Read one line from file, and return the following things:
    *
-   *	END_OF_FILE if file reaches its end. The content of buff is unknown!
+   * END_OF_FILE if file reaches its end. The content of buff is unknown!
    *
    * NOT_REFDES_LINE if the current line is not a refdes. The line will
    * saved in buff.
@@ -283,8 +297,10 @@ int seek_value(int prefix, FILE *fp, unsigned int value, struct refdes_ *db)
   struct refdes_ refdes;
   char buff[BUFFSIZE];
 
-  fgetpos(fp, &filepos);	/*First of all, save the file pos.*/
-  rewind(fp);	/*Rewind*/
+  /* First of all, save the file pos. */
+  fgetpos(fp, &filepos);
+
+  rewind(fp); /* Rewind */
 
   while((ret=get_refdes_from_file(fp, &refdes, buff))!=END_OF_FILE) {
 
@@ -324,21 +340,22 @@ int parse_refdes(struct refdes_ *refdes, char *ref_str)
    * Note that if a "?" is found, the value member remains untouched.
    */
 
-  cpr=strstr(ref_str,"=");	/*seek for the "="*/
+  /* seek for the "=" */
+  cpr=strstr(ref_str,"=");
 
-  if (cpr==NULL)	/*This should not happen*/
+  if (cpr==NULL) /* Should not happen */
     return REFDES_ERROR;
 
   cp=strstr(ref_str,"?");
 
-  /*refdes=U1		refdes=IC?
-   *      |		         |
-   *    *cpr		        cp
+  /* refdes=U1    refdes=IC?
+   *      |             |
+   *    *cpr            cp
    */
   if (cp!=NULL) {
 
-    /*Not renumbered yet*/
-    strncpy(&refdes->prefix[0],cpr+1,cp-cpr-1);	/*Copy the prefix to the refdes structure*/
+    /* Not renumbered yet */
+    strncpy(&refdes->prefix[0], cpr+1,cp-cpr-1); /* Copy the prefix to the refdes structure */
     refdes->prefix[cp-cpr-1]='\0';
 
 #ifdef DEBUG
@@ -348,22 +365,27 @@ int parse_refdes(struct refdes_ *refdes, char *ref_str)
     return REFDES_WITHOUT_VALUE;
   }
 
-  for (cp=cpr+1,i=0;(*cp != '\n' && *cp>='A' && *cp<='z');++i,++cp) /*No "?". Copy the prefix*/
-    buff[i]=*cp;	/*Fill the buffer from char to char*/
+  /* No "?". Copy the prefix */
+  for (cp=cpr+1,i=0;(*cp != '\n' && *cp >= 'A' && *cp <= 'z'); ++i,++cp)
+    buff[i]=*cp;  /* Fill the buffer from char to char */
 
-  buff[i]='\0';	/*Terminate with NULL to be a string*/
+  /* Terminate with NULL to be a string */
+  buff[i]='\0';
 
 #ifdef DEBUG
   printf("Prefix=%s\n",&buff[0]);
 #endif
 
-  strcpy(&refdes->prefix[0],&buff[0]);	/*Copy to refdes structure*/
+  /* Copy to refdes structure */
+  strcpy(&refdes->prefix[0],&buff[0]);
 
-  for (i=0,cp; (*cp != '\n' && *cp>='0' && *cp<='9');++cp,++i)  {
-    buff[i]=*cp;	/*Fill the buffer from char to char*/
+  for (i = 0; (*cp != '\n' && *cp >= '0' && *cp <=  '9'); ++cp, ++i) {
+    /* Fill the buffer from char to char */
+    buff[i]=*cp;
   }
 
-  buff[i]='\0';	/*Terminate with NULL to be a string*/
+  /* Terminate with NULL to be a string */
+  buff[i]='\0';
 
 #ifdef DEBUG
     printf("Value=%s\n",&buff[0]);
@@ -415,7 +437,7 @@ void printhelp()
 void printver()
 {
   printf("This is grenum, an advanced refdes renumber utility for gEDA's gschem.\n");
-  printf("Version %s.  gEDA/gaf version %s.%s\n",GRVERSION,
-  PACKAGE_DOTTED_VERSION, PACKAGE_DATE_VERSION);
+  printf("Version %s.  gEDA/gaf version %s.%s\n", GRVERSION,
+          PACKAGE_DOTTED_VERSION, PACKAGE_DATE_VERSION);
   printf("Compiled on %s at %s\n",COMP_DATE,COMP_TIME);
 }

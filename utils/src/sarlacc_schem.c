@@ -209,14 +209,16 @@ void parse_titleblock(int fd)
   read_string(data,sizeof(data),localbuf+DATE);
   fprintf(stderr,"%s\n",data);
 
-  switch(localbuf[4] && 0x0F)
+  switch(localbuf[4] & 0x0F)
   {
     case 0: pagesize = 'A'; ypos = 8*scale+scale/2; break;
     case 1: pagesize = 'B'; ypos = 11*scale; break;
     case 2: pagesize = 'C'; ypos = 17*scale; break;
     case 3: pagesize = 'D'; ypos = 22*scale; break;
     case 4: pagesize = 'E'; ypos = 34*scale; break;
-    default:  fprintf(stderr,"Unknown Page Size\n");
+    default:
+      fprintf(stderr,"Unknown page Size, defaulting to A\n");
+      pagesize = 'A'; ypos = 8*scale+scale/2;
     //exit(-1);
   }
 

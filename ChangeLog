@@ -3,6 +3,19 @@
     * include/geda/geda_types.h: Revise conditional for typedef mode_t; do
       not define mode_t if OS_WIN32_NATIVE.
 
+2016-11-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Makefile.am: Add conditional HAVE_PYTHON and set GEDATHON_DIR to allow
+      for builds without python, and consequently libgedathon. Cannot image
+      anyone really doing this, but remaining source can build be built with
+      out python.
+
+    * docs/Makefile.am: Move automake conditional ENABLE_GROFF_HTML before
+      the rules converting man->html for all modules that generate html man
+      pages so that systems without groff can still build successfully, and
+      these builds still have man pages, just not in html format, the build
+      is more important than fancy pages that few will ever read.
+
 2016-11-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * include\geda\geda_idefines.h: Modify conditional defines for MAX_PATH

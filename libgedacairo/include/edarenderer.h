@@ -186,6 +186,8 @@ GArray  *eda_renderer_get_color_map            (EdaRenderer *renderer);
 void     eda_renderer_set_color_map            (EdaRenderer *renderer, GArray *map);
 
 cairo_t *eda_renderer_get_cairo_context        (EdaRenderer *renderer);
+void     eda_renderer_set_cairo_context        (EdaRenderer *renderer, cairo_t *cr);
+
 int      eda_renderer_get_cairo_flags          (EdaRenderer *renderer);
 
 const

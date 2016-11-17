@@ -402,7 +402,7 @@ description=Multi-Chemistry Battery Charger
 T 2900 4600 5 10 0 0 0 0 1
 numslots=0
 T 2900 5600 5 10 0 0 0 0 1
-dist-license=GPL3
+dist-license=GPL2
 T 2900 5400 5 10 0 0 0 0 1
 use-license=unlimited
 T 2900 4400 5 10 0 0 0 0 1

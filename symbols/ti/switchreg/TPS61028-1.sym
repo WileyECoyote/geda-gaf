@@ -136,7 +136,7 @@ documentation=http://www.ti.com/product/TPS61028-Q1
 T 1400 3700 5 10 0 0 0 0 1
 symversion=1.0
 T 400 4300 5 10 0 0 0 0 1
-dist-license=GPL3
+dist-license=GPL2
 T 400 4500 5 10 0 0 0 0 1
 use-license=unlimited
 T 400 4700 5 10 0 0 0 0 1

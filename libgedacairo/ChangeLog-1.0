@@ -1,3 +1,8 @@
+2016-11-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edarenderer.c: Replace g_return_if_reached with BUG_IMSG. Add setter
+      for cairo context. Add some local cairo_t pointers in various functions.
+
 2016-11-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/Makefile.am: Move WINDOWS_LIBTOOL_FLAGS to LIBTOOL flags.
