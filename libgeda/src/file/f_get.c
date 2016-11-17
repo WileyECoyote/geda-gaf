@@ -40,6 +40,10 @@
 # include <errno.h>
 #endif
 
+#ifdef OS_WIN32
+#include <ctype.h>  /* for isalpha */
+#endif
+
 #if defined (OS_WIN32_NATIVE) || defined(__MINGW32__)
 #  define WIN32_LEAN_AND_MEAN
 #  include <windows.h> /* for GetFullPathName */

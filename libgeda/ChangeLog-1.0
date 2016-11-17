@@ -1,7 +1,11 @@
+2016-11-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src\file\f_get.c: Include ctype.h for isalpha if OS_WIN32 defined.
+
 2016-11-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * shell\Makefile.am: Add MINGW_LDFLAGS to LDFLAGS, don't remember why
-	  but it had to be done for this Win7-64 box.
+	    but it had to be done for this Win7-64 box.
 
 2016-11-13 Wiley E. Hill <wileyhill@gmail.com>
 
