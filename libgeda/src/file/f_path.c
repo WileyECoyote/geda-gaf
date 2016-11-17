@@ -25,8 +25,6 @@
 #include <errno.h>
 #endif
 
-#include <pwd.h>
-
 #if MKDIR_TAKES_ONE_ARG /* MinGW32 */
 #  include <io.h>
 #endif
@@ -43,6 +41,8 @@
 #    define GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT 2
 #    define GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS 4
 #  endif
+#else
+#include <pwd.h>
 #endif
 
 static const char const DOC_ENV_STR[]    = "GEDADOC";
