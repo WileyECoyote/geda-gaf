@@ -1,3 +1,11 @@
+2016-11-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/grenum.c: Remove superfluous variable in loop construct and
+      update/reformat comments.
+
+    * src/sarlacc_schem.c: Fix switch in parse_titleblock; switching on
+      logical is not logical and default to size A in default case,
+
 2016-11-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/common.h: Fix path to common header = ../../include/gettext.h.

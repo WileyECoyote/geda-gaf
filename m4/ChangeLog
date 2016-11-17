@@ -1,3 +1,15 @@
+2016-11-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * geda-groff.m4: Initialize HAVE_GROFF_HTML to no and check AM_CONDITIONAL
+      HAVE_GROFF_HTML = yes, because on systems without a groff HAVE_GROFF_HTML
+      was not defined and then "X" != "Xno" in true. This was annoying because
+      suite would configure and then fail during the build, of course that does
+      not happen now, but the html man pages will get not generated.
+
+    * geda-python.m4: Change the results variable of checking for headers to use
+      have_python, like other m4 functions that use the with/have convention and
+      change the AM_CONDITIONAL HAVE_PYTHON to test for yes, not no.
+
 2016-11-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-ld-flags.m4: Rename AX_CHECK_LD_FLAGS->AX_SETUP_LD_FLAGS.

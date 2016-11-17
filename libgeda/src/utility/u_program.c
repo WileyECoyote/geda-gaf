@@ -113,7 +113,9 @@ void geda_utility_program_mem_set_vtable(void)
    memvtable.calloc      = calloc;
    memvtable.try_malloc  = 0;
    memvtable.try_realloc = 0;
+#if !GLIB_CHECK_VERSION(2, 44, 0)
    g_mem_set_vtable (&memvtable);
+#endif
 }
 
 /* Virutal over-ride, because we set the vtable, glib incorrectly

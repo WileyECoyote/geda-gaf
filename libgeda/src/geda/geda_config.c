@@ -996,6 +996,8 @@ eda_config_save (EdaConfig *cfg, GError **error)
       FILE *fp;
 
       errno = 0;
+      fp = NULL;
+
       if (!g_file_test (filename, G_FILE_TEST_EXISTS)) {
         if (!g_file_test (dir, G_FILE_TEST_EXISTS)) {
           geda_create_path (dir, S_IRWXU | S_IRWXG);
