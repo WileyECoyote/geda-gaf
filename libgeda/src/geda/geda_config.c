@@ -229,12 +229,13 @@ static void eda_config_class_init(void *class, void *class_data)
 
   config_class->config_changed = default_config_changed_handler;
 
+  eda_config_parent_class      = g_type_class_peek_parent(object_class);
+
   /* Register properties */
   pspec = g_param_spec_string ("file", _("Configuration file"),
                               _("Set underlying file for EdaConfig"),
                                 "",
                                 G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE);
-
   g_object_class_install_property (object_class,
                                    PROP_CONFIG_FILE,
                                    pspec);
