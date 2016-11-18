@@ -130,7 +130,8 @@ void eda_config_set_property (GObject *object, unsigned int property_id,
                                  (GCallback) parent_config_changed_handler,
                                  config,
                                  G_CONNECT_SWAPPED);
-    } else {
+    }
+    else {
       config->priv->parent = NULL;
     }
     break;
@@ -168,7 +169,7 @@ void eda_config_get_property (GObject *object, unsigned int property_id,
 }
 
 /*! Dispose of an EdaConfig instance. Drop all references to other
- * GObjects, but keep the instance otherwise intact. May be run multiple
+ * Objects, but keep the instance otherwise intact. May be run multiple
  * times (due to reference loops).
  */
 static void eda_config_dispose (GObject *object)
@@ -178,7 +179,7 @@ static void eda_config_dispose (GObject *object)
   g_object_set (object, "parent", NULL, NULL);
 
   if (config->RC_list != NULL) {
-    g_list_foreach(config->RC_list, (GFunc) g_free, NULL);
+    g_list_foreach(config->RC_list, (GFunc)g_free, NULL);
     g_list_free(config->RC_list);
     config->RC_list = NULL;
   }
@@ -205,15 +206,15 @@ static void eda_config_finalize (GObject *object)
   G_OBJECT_CLASS (eda_config_parent_class)->finalize (object);
 }
 
-/*! \brief Initialisze EdaConfig class
- *
- *  \par Function Description
+/*!
+ * \brief Initialise EdaConfig class
+ * \par Function Description
  *  GedaType class initializer for EdaConfigClass. We override the
  *  parent virtual class methods as needed and register GObject
  *  signals.
  *
- *  \param [in,out] class       A EdaConfigClass GedaObject
- *  \param [in]     class_data  A EdaConfigClass data structure (unused)
+ * \param [in,out] class       A EdaConfigClass GedaObject
+ * \param [in]     class_data  A EdaConfigClass data structure (unused)
  */
 static void eda_config_class_init(void *class, void *class_data)
 {
@@ -271,7 +272,7 @@ static void eda_config_class_init(void *class, void *class_data)
                 G_TYPE_STRING, G_TYPE_STRING);
 }
 
-/*! Initialize EdaConfig instance. */
+/*! Initialise EdaConfig instance. */
 static void
 eda_config_instance_init(GTypeInstance *instance, void *class)
 {
@@ -290,14 +291,14 @@ eda_config_instance_init(GTypeInstance *instance, void *class)
   config->RC_list                 = NULL;
 }
 
-/*! \brief Retrieve EdaConfig GedaConfigType identifier.
- *
- *  \par Function Description
+/*!
+ * \brief Retrieve EdaConfig GedaConfigType identifier.
+ * \par Function Description
  *  Function to retrieve EdaConfig GedaConfigType identifier. Upon first
  *  call, this registers the EdaConfig in the Type system. The value
  *  retained from the first execution is returned on subsequent calls.
  *
- *  \return the GedaConfigType identifier associated with EdaConfig.
+ * \return the GedaConfigType identifier associated with EdaConfig.
  */
 GedaConfigType eda_config_get_type (void)
 {
@@ -337,11 +338,12 @@ bool is_a_eda_config (const EdaConfig *cfg)
   return FALSE;
 }
 
-/*! \brief Create an #EdaConfigError from a GKeyFileError.
- *
- * Propagate an error returned by a GKeyFile function, converting any
- * GKeyFileError found into a #EdaConfigError.  The \a src error will
- * be freed.
+/*!
+ * \brief Create an #EdaConfigError from a GKeyFileError.
+ * \par Function Description
+ *  Propagate an error returned by a GKeyFile function, converting any
+ *  GKeyFileError found into a #EdaConfigError. The \a src error will
+ *  be freed.
  *
  * \note We do this so that we can move away from using a GKeyFile
  *       internally if we want to at some point.
@@ -394,17 +396,18 @@ static void propagate_key_file_error (GError *src, GError **dest)
   }
 }
 
-/*! \public \memberof EdaConfig
- *
- *  \brief Look for Directory Containing Configuration File.
+/*!
+ * \public \memberof EdaConfig
+ * \par Function Description
+ * \brief Look for Directory Containing Configuration File.
  *  Recursively searches upwards from \a path, looking for a
  *  "geda.conf" file.  If the root directory is reached without finding
  *  a configuration file, returns the directory part of \a path (if \a
  *  path points to a regular file) or \a path itself (if \a path is a
  *  directory).
  *
- *  \returns path of directory containing \a filename or directory
- *           portion of \a path if the file was not found
+ * \returns path of directory containing \a filename or directory
+ *          portion of \a path if the file was not found
  */
 char *
 eda_config_find_project_root (const char *path, const char *filename)
@@ -441,9 +444,10 @@ eda_config_find_project_root (const char *path, const char *filename)
   return proj_root;
 }
 
-/*! \public \memberof EdaConfig
+/*!
+ * \public \memberof EdaConfig
  * \brief Return the default configuration context.
- *
+ * \par Function Description
  * The default context is not associated with any physical path or
  * on-disk configuration file, and has no parent context. The default
  * context contains the default configuration used when no configuration
@@ -477,9 +481,10 @@ eda_config_get_default_context ()
   return config;
 }
 
-/*! \public \memberof EdaConfig
+/*!
+ * \public \memberof EdaConfig
  * \brief Return the system configuration context.
- *
+ * \par Function Description
  * The system context is used for system-wide configuration.  It is
  * located:
  *
@@ -498,11 +503,12 @@ eda_config_get_system_context (const char *context)
   static EdaConfig *config = NULL;
 
   if (g_once_init_enter (&initialized)) {
+
     char *filename = NULL;
     char *filespec = NULL;
 
     if ( context == NULL) {
-      filename=geda_utility_string_strdup(SYSTEM_CONFIG_FILE);
+      filename = geda_utility_string_strdup(SYSTEM_CONFIG_FILE);
     }
     else {
       filename = geda_strconcat(context, GEDA_CONFIG_SYS_SUFFIX, NULL);
@@ -563,6 +569,7 @@ eda_config_get_system_context (const char *context)
       }
     }
 #else
+
     if (filespec == NULL) {
       if ( context == NULL) {
         filespec=g_build_filename (GEDA_CONFIG_SYSDIR, SYSTEM_CONFIG_FILE, NULL);
@@ -590,12 +597,13 @@ eda_config_get_system_context (const char *context)
   return config;
 }
 
-/*! \public \memberof EdaConfig
+/*!
+ * \public \memberof EdaConfig
  * \brief Return the user configuration context.
- *
- * The user context is used for user-specific configuration, and is
- * loaded from "${XDG_CONFIG_HOME}/gEDA/geda-user.conf". Its parent
- * context is the system context.
+ * \par Function Description
+ *  The user context is used for user-specific configuration, and is
+ *  loaded from "${XDG_CONFIG_HOME}/gEDA/geda-user.conf". Its parent
+ *  context is the system context.
  *
  * \return the user #EdaConfig configuration context.
  */
@@ -643,9 +651,10 @@ static bool strhashcmp (const void *a, const void *b) {
   return answer;
 }
 
-/*! \public \memberof EdaConfig
+/*!
+ * \public \memberof EdaConfig
  * \brief Return a local configuration context.
- *
+ * \par Function Description
  * Looks for a configuration file named "geda.conf".  If \a path is
  * not a directory, it is truncated and then a file named "geda.conf"
  * is looked for in that directory.  If none is found, the parent
@@ -771,9 +780,10 @@ eda_config_get_context_for_file (const char *path)
   return config;
 }
 
-/*! \public \memberof EdaConfig
+/*!
+ * \public \memberof EdaConfig
  * \brief Return a local configuration context.
- *
+ * \par Function Description
  * Looks for a configuration file named "geda.conf".  If \a path is
  * not a directory, it is truncated and then a file named "geda.conf"
  * is looked for in that directory.  If none is found, the parent
@@ -783,18 +793,17 @@ eda_config_get_context_for_file (const char *path)
  * in the same directory as \a path.
  *
  * \warning Do not assume that the configuration file associated with
- * the context returned by eda_config_get_context_for_path() is
- * located in the directory specified by \a path.
+ *          the context returned by eda_config_get_context_for_path()
+ *          is located in the directory specified by \a path.
  *
  * By default, the parent context of the returned #EdaConfig will be
- * the user context.
- *
- * Multiple calls to eda_config_get_context_for_path() with the same
- * \a path will return the same configuration context.
+ * the user context. Multiple calls to eda_config_get_context_for_path
+ * with the same \a path will return the same configuration context.
  *
  * \see eda_config_get_context_for_file().
  *
  * \param [in] path    Path to search for configuration from.
+ *
  * \return a local #EdaConfig configuration context for \a path.
  */
 EdaConfig *
@@ -811,16 +820,18 @@ eda_config_get_context_for_path (const char *path)
   return config;
 }
 
-/*! \public \memberof EdaConfig
+/*!
+ * \public \memberof EdaConfig
  * \brief Return underlying filename for configuration context.
- *
- * Return the filename of the configuration file associated with the
- * context \a cfg.  May return NULL.  The return value is owned by the
- * API and should not be modified or freed.
+ * \par Function Description
+ *  Return the filename of the configuration file associated with the
+ *  context \a cfg.  May return NULL.  The return value is owned by the
+ *  API and should not be modified or freed.
  *
  * \see eda_config_get_file().
  *
  * \param cfg  Configuration context.
+ *
  * \return Filename of configuration file for \a cfg.
  */
 const char*
@@ -830,19 +841,20 @@ eda_config_get_filename (EdaConfig *cfg)
   return cfg->priv->filename;
 }
 
-/*! \public \memberof EdaConfig
+/*!
+ * \public \memberof EdaConfig
  * \brief Load configuration parameters from file.
+ * \par Function Description
+ *  Attempt to load configuration parameters for the context \a cfg
+ *  from its associated file.  Returns FALSE and generates an Error
+ *  or #EdaConfigError on error.  If \a cfg does not have an associated
+ *  file, does nothing, returns FALSE, and generates an EDA_ERROR error.
  *
- * Attempt to load configuration parameters for the context \a cfg
- * from its associated file.  Returns FALSE and generates an Error
- * or #EdaConfigError on error.  If \a cfg does not have an associated
- * file, does nothing, returns FALSE, and generates an EDA_ERROR error.
- *
- * \see eda_config_is_loaded(), eda_config_get_file(),
- * eda_config_save().
+ * \see eda_config_is_loaded(), eda_config_get_filename(), eda_config_save()
  *
  * \param cfg    Configuration context.
  * \param error  Location to return error information.
+ *
  * \return TRUE on success, FALSE on failure.
  */
 bool
@@ -932,15 +944,16 @@ eda_config_load (EdaConfig *cfg, GError **error)
   return status;
 }
 
-/*! \public \memberof EdaConfig
+/*!
+ * \public \memberof EdaConfig
  * \brief Test whether a configuration context has been loaded.
- *
+ * \par Function Description
  * Test whether the configuration context \a cfg has been successfully
  * loaded from disk.
  *
  * \param cfg  Configuration context.
- * \return TRUE if \a cfg has been loaded at some point, FALSE
- * otherwise.
+ *
+ * \return TRUE if \a cfg has been loaded at some point, FALSE otherwise.
  */
 bool
 eda_config_is_loaded (EdaConfig *cfg)
@@ -949,13 +962,14 @@ eda_config_is_loaded (EdaConfig *cfg)
   return cfg->priv->loaded;
 }
 
-/*! \public \memberof EdaConfig
+/*!
+ * \public \memberof EdaConfig
  * \brief Save changes to a configuration context.
- *
- * Attempt to save configuration parameters for the context \a cfg to
- * its associated file.  Returns FALSE and generates a GError on
- * error.  If \a cfg does not have an associated file, does nothing,
- * returns FALSE, and generates an EDA_ERROR error.
+ * \par Function Description
+ *  Attempt to save configuration parameters for the context \a cfg to
+ *  its associated file.  Returns FALSE and generates a GError on error.
+ *  If \a cfg does not have an associated file, does nothing, returns
+ *  FALSE and generates an EDA_ERROR error.
  *
  * \see eda_config_load(), eda_config_get_file().
  *
@@ -1058,16 +1072,18 @@ eda_config_save (EdaConfig *cfg, GError **error)
   return status;
 }
 
-/*! \public \memberof EdaConfig
+/*!
+ * \public \memberof EdaConfig
  * \brief Test whether configuration was changed since last saved/loaded.
- *
- * Determine whether the configuration context \a cfg has been altered
- * since it was last synchronised with the on-disk version by loading
- * or saving it.
+ * \par Function Description
+ *  Determine whether the configuration context \a cfg has been altered
+ *  since it was last synchronised with the on-disk version by loading
+ *  or saving it.
  *
  * \see eda_config_save(), eda_config_load().
  *
  * \param cfg  Configuration context.
+ *
  * \return TRUE if altered since last load/save, FALSE otherwise.
  */
 bool
@@ -1077,13 +1093,15 @@ eda_config_is_changed (EdaConfig *cfg)
   return cfg->priv->changed;
 }
 
-/*! \public \memberof EdaConfig
+/*!
+ * \public \memberof EdaConfig
  * \brief Get a configuration context's parent context.
- *
- * Return the parent context of the context \a cfg, if it has one; if
- * not, returns NULL.
+ * \par Function Description
+ *  Return the parent context of the context \a cfg, if it has one; if
+ *  not, returns NULL.
  *
  * \param cfg  Configuration context.
+ *
  * \return parent context of \a cfg, or NULL.
  */
 EdaConfig*
@@ -1093,17 +1111,20 @@ eda_config_get_parent (EdaConfig *cfg)
   return cfg->priv->parent;
 }
 
-/*! \private \memberof EdaConfig
+/*!
+ * \private \memberof EdaConfig
  * \brief Test whether one configuration context is child of another.
- *
- * Returns TRUE if \a cfg is a descendent context of \a parent,
- * directly or indirectly.
+ * \par Function Description
+ *  Returns TRUE if \a cfg is a descendent context of \a parent,
+ *  directly or indirectly.
  *
  * \param cfg     Configuration context.
  * \param parent  Context to check if ancestor of \a cfg.
+ *
  * \return TRUE if \a parent is ancestor of \a cfg, FALSE otherwise.
  */
-static bool eda_config_is_descendent (EdaConfig *cfg, EdaConfig *parent)
+static bool
+eda_config_is_descendent (EdaConfig *cfg, EdaConfig *parent)
 {
   g_return_val_if_fail (EDA_IS_CONFIG (cfg), FALSE);
   g_return_val_if_fail (EDA_IS_CONFIG (parent), FALSE);
@@ -1116,12 +1137,13 @@ static bool eda_config_is_descendent (EdaConfig *cfg, EdaConfig *parent)
   return FALSE;
 }
 
-/*! \public \memberof EdaConfig
+/*!
+ * \public \memberof EdaConfig
  * \brief Set a configuration context's parent context.
- *
- * Sets \a parent as the parent context of \a cfg.  If \a parent is
- * NULL, sets \a cfg as having no parent context.  Inheritance loops
- * are not permitted.
+ * \par Function Description
+ *  Sets \a parent as the parent context of \a cfg.  If \a parent is
+ *  NULL, sets \a cfg as having no parent context.  Inheritance loops
+ *  are not permitted.
  *
  * \warning Normally, application code should avoid using this
  *          function; keeping to the default configuration inheritance
@@ -1138,14 +1160,16 @@ eda_config_set_parent (EdaConfig *cfg, EdaConfig *parent)
   g_object_set (cfg, "parent", parent, NULL);
 }
 
-/*! \public \memberof EdaConfig
+/*!
+ * \public \memberof EdaConfig
  * \brief Test whether a context is trusted.
- *
- * Returns TRUE if \a cfg is a "trusted" configuration context
- * (i.e. if it is permitted as a source for risky configuration
- * parameters such as system commands).
+ * \par Function Description
+ *  Returns TRUE if \a cfg is a "trusted" configuration context
+ *  (i.e. if it is permitted as a source for risky configuration
+ *  parameters such as system commands).
  *
  * \param cfg  Configuration context.
+ *
  * \return TRUE if \a cfg is trusted.
  */
 bool
@@ -1155,11 +1179,12 @@ eda_config_is_trusted (EdaConfig *cfg)
   return cfg->priv->trusted;
 }
 
-/*! \public \memberof EdaConfig
+/*!
+ * \public \memberof EdaConfig
  * \brief Set whether a context is trusted.
- *
- * Set whether the configuration context \a cfg is trusted as a source
- * for risky configuration parameters.
+ * \par Function Description
+ *  Set whether the configuration context \a cfg is trusted as a source
+ *  for risky configuration parameters.
  *
  * \warning You should not set a configuration context as trusted
  *          unless you are certain that it originated from a safe
@@ -1175,14 +1200,16 @@ eda_config_set_trusted (EdaConfig *cfg, bool trusted)
   g_object_set (cfg, "trusted", trusted, NULL);
 }
 
-/*! \public \memberof EdaConfig
+/*!
+ * \public \memberof EdaConfig
  * \brief Get a configuration contexts first trusted ancestor.
- *
+ * \par Function Description
  * Returns the first trusted configuration context that \a cfg
  * inherits from, or \a cfg if \a cfg is trusted.  If no trusted
  * context is found, returns NULL.
  *
  * \param cfg  Configuration context.
+ *
  * \return first trusted ancestor of \a cfg, or NULL.
  */
 EdaConfig *
@@ -1197,14 +1224,15 @@ eda_config_get_trusted_context (EdaConfig *cfg)
   return NULL;
 }
 
-/*! \brief Turn hashtable into key list.
- *
+/*!
+ * \brief Turn hashtable into key list.
+ * \par Function Description
  * Convert a hashtable with string keys and empty values into an array
  * of string pointers.  Used by eda_config_get_groups() and
  * eda_config_get_keys().
  */
-static
-char **hash_table_keys_array (GHashTable *table, unsigned int *length)
+static char**
+hash_table_keys_array (GHashTable *table, unsigned int *length)
 {
   unsigned int len = g_hash_table_size (table);
   char **result    = GEDA_MEM_ALLOC0 (sizeof(char*) * (len + 1));
@@ -1230,22 +1258,24 @@ char **hash_table_keys_array (GHashTable *table, unsigned int *length)
   return result;
 }
 
-/*! \public \memberof EdaConfig
- *  \brief Return a list of a configuration context's available groups.
- *  \par Function Description
- * Returns a list of the all groups available in \a cfg and its parent
- * contexts.  The value returned by eda_config_get_groups() is a
- * newly-allocated NULL-terminated array of strings.  Use g_strfreev()
- * to free it.  The \a length argument is an optional return location
- * for the number of groups returned.
+/*!
+ * \public \memberof EdaConfig
+ * \brief Return a list of a configuration context's available groups.
+ * \par Function Description
+ *  Returns a list of the all groups available in \a cfg and its parent
+ *  contexts.  The value returned by eda_config_get_groups() is a
+ *  newly-allocated NULL-terminated array of strings.  Use g_strfreev()
+ *  to free it.  The \a length argument is an optional return location
+ *  for the number of groups returned.
  *
  * \see eda_config_has_group().
  *
  * \todo The current implementation is not enormously efficient; we
- * can do better!
+ *       can do better!
  *
  * \param cfg     Configuration context.
  * \param length  Return location for number of groups.
+ *
  * \return a newly-allocated NULL-terminated array of strings.
  */
 char **
@@ -1279,18 +1309,20 @@ eda_config_get_groups (EdaConfig *cfg, unsigned *length)
   return hash_table_keys_array (group_table, length);
 }
 
-/*! \public \memberof EdaConfig
+/*!
+ * \public \memberof EdaConfig
  * \brief Test whether a configuration context has a particular group.
- *
- * Tests whether the configuration context \a cfg, or any of its
- * parent contexts, contains the \a group.
+ * \par Function Description
+ *  Tests whether the configuration context \a cfg, or any of its
+ *  parent contexts, contains the \a group.
  *
  * \see eda_config_get_keys().
  *
  * \param cfg    Configuration context.
  * \param group  Group to check for.
+ *
  * \return TRUE if \a cfg or any of its ancestors contains \a group,
- * otherwise FALSE.
+ *         otherwise FALSE.
  */
 bool
 eda_config_has_group (EdaConfig *cfg, const char *group)
@@ -1310,15 +1342,16 @@ eda_config_has_group (EdaConfig *cfg, const char *group)
   return FALSE;
 }
 
-/*! \public \memberof EdaConfig
+/*!
+ * \public \memberof EdaConfig
  * \brief Get the keys available in a particular configuration group.
- *
- * Get a list of all keys available in the specified \a group in the
- * configuration context \a cfg and its parent contexts.  The value
- * returned by eda_config_get_keys() is a newly-allocated
- * NULL-terminated array of strings.  Use g_strfreev() to free it.
- * The \a length argument is an optional return location for the
- * number of keys returned.  If an error occurs, returns NULL.
+ * \par Function Description
+ *  Get a list of all keys available in the specified \a group in the
+ *  configuration context \a cfg and its parent contexts.  The value
+ *  returned by eda_config_get_keys() is a newly-allocated
+ *  NULL-terminated array of strings.  Use g_strfreev() to free it.
+ *  The \a length argument is an optional return location for the
+ *  number of keys returned.  If an error occurs, returns NULL.
  *
  * \see eda_config_has_key().
  *
@@ -1369,12 +1402,13 @@ eda_config_get_keys (EdaConfig *cfg, const char *group, unsigned *length,
   return hash_table_keys_array (key_table, length);
 }
 
-/*! \public \memberof EdaConfig
+/*!
+ * \public \memberof EdaConfig
  * \brief Test whether a configuration context has a particular key.
- *
- * Tests whether the configuration context \a cfg, or any of its
- * parent contexts, contains the parameter specified by \a group and
- * \a key.  If \a group was not found, returns FALSE and sets \a error.
+ * \par Function Description
+ *  Tests whether the configuration context \a cfg, or any of its parent
+ *  contexts, contains the parameter specified by \a group and \a key.
+ *  If \a group was not found, returns FALSE and sets \a error.
  *
  * \note This function does not folow the rules for GError strictly;
  *       the return value both carries meaning and signals an error.
@@ -1388,8 +1422,9 @@ eda_config_get_keys (EdaConfig *cfg, const char *group, unsigned *length,
  * \param group  Group to look for \a key in.
  * \param key    Key to check for.
  * \param error  Return location for error information.
+ *
  * \return TRUE if \a cfg or any of its ancestors contains \a group
- * and \a key, otherwise FALSE.
+ *         and \a key, otherwise FALSE.
  */
 bool
 eda_config_has_key (EdaConfig *cfg, const char *group,
@@ -1398,14 +1433,14 @@ eda_config_has_key (EdaConfig *cfg, const char *group,
   return (eda_config_get_source (cfg, group, key, error) != NULL);
 }
 
-/*! \public \memberof EdaConfig
- * \brief Obtain the originating context for a configuration
- * parameter.
- *
- * Returns the configuration context (either \a cfg or one of its
- * parent contexts) in which the configuration parameter with the
- * given \a group and \a key has a value specified.  If the group or
- * key cannot be found, returns FALSE and sets \a error.
+/*!
+ * \public \memberof EdaConfig
+ * \brief Obtain the originating context for a configuration parameter.
+ * \par Function Description
+ *  Returns the configuration context (either \a cfg or one of its
+ *  parent contexts) in which the configuration parameter with the
+ *  given \a group and \a key has a value specified.  If the group or
+ *  key cannot be found, returns FALSE and sets \a error.
  *
  * \see eda_config_is_inherited().
  *
@@ -1431,6 +1466,7 @@ eda_config_get_source (EdaConfig *cfg, const char *group,
   }
 
   EdaConfig *curr;
+
   for (curr = cfg; curr != NULL; curr = eda_config_get_parent (curr)) {
     if (g_key_file_has_key (curr->priv->keyfile, group, key, NULL)) {
       return curr;
@@ -1444,12 +1480,13 @@ eda_config_get_source (EdaConfig *cfg, const char *group,
   return NULL;
 }
 
-/*! \public \memberof EdaConfig
+/*!
+ * \public \memberof EdaConfig
  * \brief Test whether a configuration parameter is inherited.
- *
- * Tests whether the value of the configuration parameter with the
- * given \a group and \a key is specified in the context \a cfg, or
- * whether it is inherited from a parent context of \a cfg.
+ * \par Function Description
+ *  Tests whether the value of the configuration parameter with the
+ *  given \a group and \a key is specified in the context \a cfg, or
+ *  whether it is inherited from a parent context of \a cfg.
  *
  * \note This function does not folow the rules for GError strictly;
  *       the return value both carries meaning and signals an error.
@@ -1471,15 +1508,16 @@ eda_config_is_inherited (EdaConfig *cfg, const char *group,
   return (eda_config_get_source (cfg, group, key, error) != cfg);
 }
 
-/*! \public \memberof EdaConfig
+/*!
+ * \public \memberof EdaConfig
  * \brief Get the value of a configuration parameter as a string.
+ * \par Function Description
+ *  Get the value of the configuration parameter specified by \a group
+ *  and \a key in the configuration context \a cfg, as a string. If an
+ *  error occurs, NULL is returned and \a error is set.
  *
- * Get the value of the configuration parameter specified by \a group
- * and \a key in the configuration context \a cfg, as a string.  If an
- * error occurs, NULL is returned and \a error is set.
- *
- * The returned string is owned by the caller, and should be freed
- * with GEDA_FREE() when no longer needed.
+ *  The returned string is owned by the caller, and should be freed
+ *  with GEDA_FREE() when no longer needed.
  *
  * \see eda_config_set_string().
  *
@@ -1487,9 +1525,10 @@ eda_config_is_inherited (EdaConfig *cfg, const char *group,
  * \param group  Configuration group name.
  * \param key    Configuration key name.
  * \param error  Return location for error information.
+ *
  * \return configuration value as string, or NULL.
  */
-char *
+char*
 eda_config_get_string (EdaConfig *cfg, const char *group,
                        const char *key, GError **error)
 {
@@ -1503,12 +1542,13 @@ eda_config_get_string (EdaConfig *cfg, const char *group,
   return result;
 }
 
-/*! \public \memberof EdaConfig
+/*!
+ * \public \memberof EdaConfig
  * \brief Get the value of a configuration parameter as a boolean.
- *
- * Get the value of the configuration parameter specified by \a group
- * and \a key in the configuration context \a cfg, as a boolean.  If
- * an error occurs, FALSE is returned and \a error is set.
+ * \par Function Description
+ *  Get the value of the configuration parameter specified by \a group
+ *  and \a key in the configuration context \a cfg, as a boolean.  If
+ *  an error occurs, FALSE is returned and \a error is set.
  *
  * \note This function does not folow the rules for GError strictly;
  *       the return value both carries meaning and signals an error.
@@ -1522,6 +1562,7 @@ eda_config_get_string (EdaConfig *cfg, const char *group,
  * \param group  Configuration group name.
  * \param key    Configuration key name.
  * \param error  Return location for error information.
+ *
  * \return configuration value as a boolean.
  */
 bool
@@ -1538,12 +1579,13 @@ eda_config_get_boolean (EdaConfig *cfg, const char *group,
   return result;
 }
 
-/*! \public \memberof EdaConfig
+/*!
+ * \public \memberof EdaConfig
  * \brief Get the value of a configuration parameter as an integer.
- *
- * Get the value of the configuration parameter specified by \a group
- * and \a key in the configuration context \a cfg, as an integer.  If
- * an error occurs, 0 is returned and \a error is set.
+ * \par Function Description
+ *  Get the value of the configuration parameter specified by \a group
+ *  and \a key in the configuration context \a cfg, as an integer. If
+ *  an error occurs, 0 is returned and \a error is set.
  *
  * \note This function does not folow the rules for GError strictly;
  *       the return value both carries meaning and signals an error.
@@ -1557,6 +1599,7 @@ eda_config_get_boolean (EdaConfig *cfg, const char *group,
  * \param group  Configuration group name.
  * \param key    Configuration key name.
  * \param error  Return location for error information.
+ *
  * \return configuration value as a integer.
  */
 int
@@ -1567,6 +1610,7 @@ eda_config_get_integer (EdaConfig *cfg, const char *group,
   GError *sys_err;
 
   cfg = eda_config_get_source (cfg, group, key, error);
+
   if (cfg == NULL) {
     result = 0;
   }
@@ -1578,12 +1622,13 @@ eda_config_get_integer (EdaConfig *cfg, const char *group,
   return result;
 }
 
-/*! \public \memberof EdaConfig
+/*!
+ * \public \memberof EdaConfig
  * \brief Get the value of a configuration parameter as a double.
- *
- * Get the value of the configuration parameter specified by \a group
- * and \a key in the configuration context \a cfg, as a double.  If
- * an error occurs, 0.0 is returned and \a error is set.
+ * \par Function Description
+ *  Get the value of the configuration parameter specified by \a group
+ *  and \a key in the configuration context \a cfg, as a double. If
+ *  an error occurs, 0.0 is returned and \a error is set.
  *
  * \note This function does not folow the rules for GError strictly;
  *       the return value both carries meaning and signals an error.
@@ -1620,14 +1665,15 @@ eda_config_get_double (EdaConfig *cfg, const char *group,
 }
 
 
-/*! \public \memberof EdaConfig
+/*!
+ * \public \memberof EdaConfig
  * \brief Get the value of a configuration parameter as a string list.
- *
- * Get the value of the configuration parameter specified by \a group
- * and \a key in the configuration context \a cfg, as a
- * newly-allocated NULL-terminated array of strings.  If an error
- * occurs, NULL is returned and \a error is set.  The returned value
- * should be freed with g_strfreev() when no longer needed.
+ * \par Function Description
+ *  Get the value of the configuration parameter specified by \a group
+ *  and \a key in the configuration context \a cfg, as a
+ *  newly-allocated NULL-terminated array of strings.  If an error
+ *  occurs, NULL is returned and \a error is set.  The returned value
+ *  should be freed with g_strfreev() when no longer needed.
  *
  * \see eda_config_set_string_list().
  *
@@ -1636,6 +1682,7 @@ eda_config_get_double (EdaConfig *cfg, const char *group,
  * \param key    Configuration key name.
  * \param length Return location for array length, or NULL.
  * \param error  Return location for error information.
+ *
  * \return configuration value as an array of strings.
  */
 char **
@@ -1643,7 +1690,7 @@ eda_config_get_string_list (EdaConfig *cfg, const char *group,
                             const char *key,size_t *length, GError **error)
 {
   GError *sys_err;
-  char **result;
+  char  **result;
 
   cfg = eda_config_get_source (cfg, group, key, error);
 
@@ -1659,13 +1706,14 @@ eda_config_get_string_list (EdaConfig *cfg, const char *group,
   return result;
 }
 
-/*! \public \memberof EdaConfig
+/*!
+ * \public \memberof EdaConfig
  * \brief Get the value of a configuration parameter as a boolean list.
- *
- * Get the value of the configuration parameter specified by \a group
- * and \a key in the configuration context \a cfg, as a
- * newly-allocated array of booleans.  If an error occurs, NULL is
- * returned and \a error is set.
+ * \par Function Description
+ *  Get the value of the configuration parameter specified by \a group
+ *  and \a key in the configuration context \a cfg, as a
+ *  newly-allocated array of booleans.  If an error occurs, NULL is
+ *  returned and \a error is set.
  *
  * \see eda_config_set_boolean_list().
  *
@@ -1674,6 +1722,7 @@ eda_config_get_string_list (EdaConfig *cfg, const char *group,
  * \param key    Configuration key name.
  * \param length Return location for array length.
  * \param error  Return location for error information.
+ *
  * \return configuration value as an array of booleans.
  */
 bool *
@@ -1698,9 +1747,10 @@ eda_config_get_boolean_list (EdaConfig *cfg, const char *group,
   return result;
 }
 
-/*! \public \memberof EdaConfig
+/*!
+ * \public \memberof EdaConfig
  * \brief Get the value of a configuration parameter as an integer list.
- *
+ * \par Function Description
  * Get the value of the configuration parameter specified by \a group
  * and \a key in the configuration context \a cfg, as a newly-allocated
  * array of integers or  NULL if an error occurs, in which case \a error is
@@ -1717,7 +1767,7 @@ eda_config_get_boolean_list (EdaConfig *cfg, const char *group,
  *
  * \return configuration value as an array of integers.
  */
-int *
+int*
 eda_config_get_int_list (EdaConfig  *cfg, const char *group,
                          const char *key, size_t *length, GError **error)
 {
@@ -1739,13 +1789,14 @@ eda_config_get_int_list (EdaConfig  *cfg, const char *group,
   return result;
 }
 
-/*! \public \memberof EdaConfig
+/*!
+ * \public \memberof EdaConfig
  * \brief Get the value of a configuration parameter as a double list.
- *
- * Get the value of the configuration parameter specified by \a group
- * and \a key in the configuration context \a cfg, as a
- * newly-allocated array of doubles.  If an error occurs, NULL is
- * returned and \a error is set.
+ * \par Function Description
+ *  Get the value of the configuration parameter specified by \a group
+ *  and \a key in the configuration context \a cfg, as a newly-allocated
+ *  array of doubles.  If an error occurs, NULL is returned and \a error
+ *  is set.
  *
  * \see eda_config_set_double_list().
  *
@@ -1754,9 +1805,10 @@ eda_config_get_int_list (EdaConfig  *cfg, const char *group,
  * \param key    Configuration key name.
  * \param length Return location for array length.
  * \param error  Return location for error information.
+ *
  * \return configuration value as an array of doubles.
  */
-double *
+double*
 eda_config_get_double_list (EdaConfig *cfg, const char *group,
                             const char *key, size_t *length, GError **error)
 {
@@ -1771,11 +1823,12 @@ eda_config_get_double_list (EdaConfig *cfg, const char *group,
   return result;
 }
 
-/*! \public \memberof EdaConfig
+/*!
+ * \public \memberof EdaConfig
  * \brief Set the value of a configuration parameter from a string.
- *
- * Set the value of the configuration parameter specified by \a group
- * and \a key in the configuration context \a cfg from a string.
+ * \par Function Description
+ *  Set the value of the configuration parameter specified by \a group
+ *  and \a key in the configuration context \a cfg from a string.
  *
  * \see eda_config_get_string().
  *
@@ -1792,11 +1845,12 @@ eda_config_set_string (EdaConfig *cfg, const char *group,
   g_signal_emit_by_name (cfg, "config-changed", group, key);
 }
 
-/*! \public \memberof EdaConfig
+/*!
+ * \public \memberof EdaConfig
  * \brief Set the value of a configuration parameter from a boolean.
- *
- * Set the value of the configuration parameter specified by \a group
- * and \a key in the configuration context \a cfg from a boolean.
+ * \par Function Description
+ *  Set the value of the configuration parameter specified by \a group
+ *  and \a key in the configuration context \a cfg from a boolean.
  *
  * \see eda_config_get_boolean().
  *
@@ -1813,11 +1867,12 @@ eda_config_set_boolean (EdaConfig *cfg, const char *group,
   g_signal_emit_by_name (cfg, "config-changed", group, key);
 }
 
-/*! \public \memberof EdaConfig
+/*!
+ * \public \memberof EdaConfig
  * \brief Set the value of a configuration parameter from an integer.
- *
- * Set the value of the configuration parameter specified by \a group
- * and \a key in the configuration context \a cfg from an integer.
+ * \par Function Description
+ *  Set the value of the configuration parameter specified by \a group
+ *  and \a key in the configuration context \a cfg from an integer.
  *
  * \see eda_config_get_integer().
  *
@@ -1834,11 +1889,12 @@ eda_config_set_integer (EdaConfig *cfg, const char *group,
   g_signal_emit_by_name (cfg, "config-changed", group, key);
 }
 
-/*! \public \memberof EdaConfig
+/*!
+ * \public \memberof EdaConfig
  * \brief Set the value of a configuration parameter from a double.
- *
- * Set the value of the configuration parameter specified by \a group
- * and \a key in the configuration context \a cfg from a double.
+ * \par Function Description
+ *  Set the value of the configuration parameter specified by \a group
+ *  and \a key in the configuration context \a cfg from a double.
  *
  * \see eda_config_get_double().
  *
@@ -1855,12 +1911,13 @@ eda_config_set_double (EdaConfig *cfg, const char *group,
   g_signal_emit_by_name (cfg, "config-changed", group, key);
 }
 
-/*! \public \memberof EdaConfig
+/*!
+ * \public \memberof EdaConfig
  * \brief Set the value of a configuration parameter from a string list.
- *
- * Set the value of the configuration parameter specified by \a group
- * and \a key in the configuration context \a cfg from a list of
- * strings.
+ * \par Function Description
+ *  Set the value of the configuration parameter specified by \a group
+ *  and \a key in the configuration context \a cfg from a list of
+ *  strings.
  *
  * \see eda_config_get_string_list().
  *
@@ -1880,12 +1937,13 @@ eda_config_set_string_list (EdaConfig *cfg, const char *group,
   g_signal_emit_by_name (cfg, "config-changed", group, key);
 }
 
-/*! \public \memberof EdaConfig
+/*!
+ * \public \memberof EdaConfig
  * \brief Set the value of a configuration parameter from a boolean list.
- *
- * Set the value of the configuration parameter specified by \a group
- * and \a key in the configuration context \a cfg from a list of
- * booleans.
+ * \par Function Description
+ *  Set the value of the configuration parameter specified by \a group
+ *  and \a key in the configuration context \a cfg from a list of
+ *  booleans.
  *
  * \see eda_config_get_boolean_list().
  *
@@ -1904,12 +1962,12 @@ eda_config_set_boolean_list (EdaConfig *cfg, const char *group,
   g_signal_emit_by_name (cfg, "config-changed", group, key);
 }
 
-/*! \public \memberof EdaConfig
+/*!
+ * \public \memberof EdaConfig
  * \brief Set the value of a configuration parameter from an integer list.
- *
- * Set the value of the configuration parameter specified by \a group
- * and \a key in the configuration context \a cfg from a list of
- * integers.
+ * \par Function Description
+ *  Set the value of the configuration parameter specified by \a group
+ *  and \a key in the configuration context \a cfg from a list of integers.
  *
  * \see eda_config_get_int_list().
  *
@@ -1929,12 +1987,12 @@ eda_config_set_int_list (EdaConfig *cfg, const char *group,
 }
 
 
-/*! \public \memberof EdaConfig
+/*!
+ * \public \memberof EdaConfig
  * \brief Set the value of a configuration parameter from a double list.
- *
- * Set the value of the configuration parameter specified by \a group
- * and \a key in the configuration context \a cfg from a list of
- * doubles.
+ * \par Function Description
+ *  Set the value of the configuration parameter specified by \a group
+ *  and \a key in the configuration context \a cfg from a list of doubles.
  *
  * \see eda_config_get_double_list().
  *
@@ -1990,9 +2048,10 @@ void cclosure_marshal_VOID__STRING_STRING (GClosure *closure,
             data2);
 }
 
-/*! \brief Default handler for config change signals.
- *
- * Sets the changed flag for \a cfg.
+/*!
+ * \brief Default handler for config change signals.
+ * \par Function Description
+ *  Sets the changed flag for \a cfg.
  *
  * \param cfg     Configuration context.
  * \param group   Configuration group name.
@@ -2006,12 +2065,13 @@ void default_config_changed_handler (EdaConfig  *cfg, const char *group,
   cfg->priv->changed = TRUE;
 }
 
-/*! \brief Emit config change signals for inherited configuration.
- *
- * Signal handler used by configuration contexts with parent contexts
- * to emit signals. When the value of a configuration parameter that
- * is inherited from the parent context is changed in the parent
- * context, re-emits the signal.
+/*!
+ * \brief Emit config change signals for inherited configuration.
+ * \par Function Description
+ *  Signal handler used by configuration contexts with parent contexts
+ *  to emit signals. When the value of a configuration parameter that
+ *  is inherited from the parent context is changed in the parent
+ *  context, re-emits the signal.
  *
  * \param parent  Parent configuration context.
  * \param group   Configuration group name.

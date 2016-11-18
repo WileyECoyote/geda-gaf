@@ -1,6 +1,7 @@
 2016-11-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_config.c: Set parent_class in eda_config_class_init.
+      Reformat and edit Doxygen comments.
 
     * libgeda/tests/test_file.c: Change format specifier for size_t to zu
       for tests F020501A to suppress warning on 64 bit compilations.
