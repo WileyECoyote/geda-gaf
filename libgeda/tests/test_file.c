@@ -520,7 +520,7 @@ int test_get (void)
   if (geda_get_file_contents(filename_05, &buffer_05, &n_byte, NULL)) {
 
     if (n_byte != 13) {
-      fprintf(stderr, "FAILED: (F020501A) n_byte <%d>\n", n_byte);
+      fprintf(stderr, "FAILED: (F020501A) n_byte <%zu>\n", n_byte);
       result++;
     }
     free (filename_05);

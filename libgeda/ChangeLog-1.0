@@ -1,3 +1,8 @@
+2016-11-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * libgeda/tests/test_file.c: Change format specifier for size_t to zu
+      for tests F020501A to suppress warning on 64 bit compilations.
+
 2016-11-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src\file\f_get.c: Include ctype.h for isalpha if OS_WIN32 defined.
