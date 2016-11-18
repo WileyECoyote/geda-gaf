@@ -1,3 +1,13 @@
+2016-11-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets: Substitute GEDA_MEM_ALLOC0 for g_malloc0 in:
+
+        * src/widgets/geda_combobox.c
+        * src/widgets/geda_completion.c
+        * src/widgets/geda_label.c
+        * src/widgets/geda_menu.c
+        * src/widgets/geda_menu_bar.c
+
 2016-11-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Add GedaEntry Doxygen comments:

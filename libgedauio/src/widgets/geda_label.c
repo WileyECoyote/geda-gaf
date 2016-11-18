@@ -3036,7 +3036,7 @@ start_element_handler (GMarkupParseContext *context,
       }
     }
 
-    link          = g_malloc0 (sizeof(GedaLabelLink));
+    link          = GEDA_MEM_ALLOC0(sizeof(GedaLabelLink));
     link->uri     = geda_strdup (uri);
     link->title   = geda_strdup (title);
     link->visited = visited;

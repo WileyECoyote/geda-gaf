@@ -346,7 +346,7 @@ get_attach_info (GtkWidget *child)
 
   if (!info) {
 
-    info = g_malloc0 (sizeof(AttachInfo));
+    info = GEDA_MEM_ALLOC0 (sizeof(AttachInfo));
     g_object_set_data_full (object, attached_info_key, info,
                            (GDestroyNotify) attach_info_free);
   }
@@ -395,7 +395,7 @@ menu_ensure_layout (GedaMenu *menu)
 
     /* Find empty rows
      */
-    row_occupied = g_malloc0 (max_bottom_attach);
+    row_occupied = GEDA_MEM_ALLOC0 (max_bottom_attach);
 
     for (iter = menu_shell->children; iter; iter = iter->next) {
 
@@ -2891,7 +2891,7 @@ geda_menu_size_request (GtkWidget *widget, GtkRequisition *requisition)
 
   g_free (priv->heights);
 
-  priv->heights = g_malloc0 (sizeof(unsigned int) * geda_menu_get_n_rows (menu));
+  priv->heights = GEDA_MEM_ALLOC0 (sizeof(unsigned int) * geda_menu_get_n_rows (menu));
   priv->heights_length = geda_menu_get_n_rows (menu);
 
   children = menu_shell->children;

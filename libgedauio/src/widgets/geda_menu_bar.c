@@ -1141,7 +1141,7 @@ geda_menu_bar_instance_init (GTypeInstance *instance, void *class)
 {
   GedaMenuBar *menu_bar = (GedaMenuBar*)instance;
 
-  menu_bar->priv          = g_malloc0 (sizeof(GedaMenuBarPrivate));
+  menu_bar->priv          = GEDA_MEM_ALLOC0 (sizeof(GedaMenuBarPrivate));
   menu_bar->instance_type = geda_menu_bar_get_type();
 
 #if GTK_MAJOR_VERSION == 3
