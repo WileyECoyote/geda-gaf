@@ -1,3 +1,7 @@
+2016-11-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/Makefile.am: Remove libgedathon as a dependent for test?
+
 2016-11-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/Makefile.am: Add libgeda.la to LDADD since the libgedacolor is
