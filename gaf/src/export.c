@@ -355,13 +355,21 @@ export_text_rendered_bounds (void *user_data, GedaObject *object,
 
   EdaRenderer *renderer = EDA_RENDERER (user_data);
 
-  result  = eda_renderer_get_user_bounds (renderer, object, &l, &t, &r, &b);
+  if (!renderer) {
+    fprintf(stderr, "<%s>: renderer is NULL\n", __func__);
+    result = FALSE;
+  }
+  else {
 
- *left   = lrint (min (l,r));
- *top    = lrint (min (t, b));
- *right  = lrint (max (l, r));
- *bottom = lrint (max (t, b));
+    t = l = r = b = 0;
 
+    result  = eda_renderer_get_user_bounds (renderer, object, &l, &t, &r, &b);
+
+    *left   = lrint (min (l, r));
+    *top    = lrint (min (t, b));
+    *right  = lrint (max (l, r));
+    *bottom = lrint (max (t, b));
+  }
   return result;
 }
 
