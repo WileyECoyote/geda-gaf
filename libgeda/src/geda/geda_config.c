@@ -690,6 +690,7 @@ eda_config_get_context_for_file (const char *path)
   static volatile GedaType initialized  = 0;
   static GHashTable *local_contexts = NULL;
 
+  char *cwd;
   char *ptr;
   char  dir[PATH_MAX];
 
@@ -697,6 +698,7 @@ eda_config_get_context_for_file (const char *path)
 
   /* Initialise global state */
   if (g_once_init_enter (&initialized)) {
+
     local_contexts = g_hash_table_new_full (g_str_hash,
                                            (GEqualFunc) strhashcmp,
                                             NULL,
@@ -704,20 +706,29 @@ eda_config_get_context_for_file (const char *path)
     g_once_init_leave (&initialized, 1);
   }
 
+  if (path != NULL) {
+
 #if HAVE_REALPATH
 
-  ptr = realpath(path, &dir[0]);
+    ptr = realpath(path, &dir[0]);
 
 #else
 
-  if (g_path_is_absolute(path)) {
-    ptr = strncpy(&dir[0], path, PATH_MAX);
-  }
-  else {
-    ptr = NULL;
-  }
+    if (g_path_is_absolute(path)) {
+      ptr = strncpy(&dir[0], path, PATH_MAX);
+    }
+    else {
+      ptr = NULL;
+    }
 
 #endif
+
+    cwd = NULL;
+
+  }
+  else {
+    ptr = cwd = getcwd(0,0);
+  }
 
   if (ptr != NULL) {
 
@@ -781,6 +792,9 @@ eda_config_get_context_for_file (const char *path)
                            "trusted", FALSE, NULL);
   }
 
+  if (cwd != NULL) {
+    g_free(cwd);
+  }
   return config;
 }
 

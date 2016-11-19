@@ -1,3 +1,8 @@
+2016-11-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_config.c: Revise eda_config_get_context_for_file to
+      use the cwd if passed a NULL path.
+
 2016-11-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_config.c: Set parent_class in eda_config_class_init.
