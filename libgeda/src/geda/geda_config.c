@@ -1550,13 +1550,21 @@ char*
 eda_config_get_string (EdaConfig *cfg, const char *group,
                        const char *key, GError **error)
 {
+  char *result;
+
   cfg = eda_config_get_source (cfg, group, key, error);
-  if (cfg == NULL) return NULL;
 
-  GError *sys_err = NULL;
-  char   *result  =  g_key_file_get_string (cfg->priv->keyfile, group, key, &sys_err);
-  propagate_key_file_error (sys_err, error);
+  if (cfg == NULL) {
+    result = NULL;
+  }
+  else {
 
+    GError *sys_err = NULL;
+
+    result = g_key_file_get_string (cfg->priv->keyfile, group, key, &sys_err);
+
+    propagate_key_file_error (sys_err, error);
+  }
   return result;
 }
 
@@ -1587,13 +1595,21 @@ bool
 eda_config_get_boolean (EdaConfig *cfg, const char *group,
                         const char *key, GError **error)
 {
-  cfg = eda_config_get_source (cfg, group, key, error);
-  if (cfg == NULL) return FALSE;
+  bool result;
 
-  GError *sys_err = NULL;
-  bool result =
-    g_key_file_get_boolean (cfg->priv->keyfile, group, key, &sys_err);
-  propagate_key_file_error (sys_err, error);
+  cfg = eda_config_get_source (cfg, group, key, error);
+
+  if (cfg == NULL) {
+    result = FALSE;
+  }
+  else {
+
+    GError *sys_err = NULL;
+
+    result = g_key_file_get_boolean (cfg->priv->keyfile, group, key, &sys_err);
+
+    propagate_key_file_error (sys_err, error);
+  }
   return result;
 }
 
@@ -1666,8 +1682,7 @@ double
 eda_config_get_double (EdaConfig *cfg, const char *group,
                        const char *key, GError **error)
 {
-  double result;
-  GError *sys_err;
+  double  result;
 
   cfg = eda_config_get_source (cfg, group, key, error);
 
@@ -1675,8 +1690,11 @@ eda_config_get_double (EdaConfig *cfg, const char *group,
     result = 0.0;
   }
   else {
-    sys_err = NULL;
+
+    GError *sys_err = NULL;
+
     result = g_key_file_get_double (cfg->priv->keyfile, group, key, &sys_err);
+
     propagate_key_file_error (sys_err, error);
   }
   return result;
@@ -1830,14 +1848,22 @@ double*
 eda_config_get_double_list (EdaConfig *cfg, const char *group,
                             const char *key, size_t *length, GError **error)
 {
-  cfg = eda_config_get_source (cfg, group, key, error);
-  if (cfg == NULL) return NULL;
+  double *result;
 
-  GError *sys_err = NULL;
-  double *result =
-    g_key_file_get_double_list (cfg->priv->keyfile, group, key,
-                                length, &sys_err);
-  propagate_key_file_error (sys_err, error);
+  cfg = eda_config_get_source (cfg, group, key, error);
+
+  if (cfg == NULL) {
+    result = NULL;
+  }
+  else {
+
+    GError *sys_err = NULL;
+
+    result = g_key_file_get_double_list (cfg->priv->keyfile, group, key,
+                                         length, &sys_err);
+    propagate_key_file_error (sys_err, error);
+  }
+
   return result;
 }
 
