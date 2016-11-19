@@ -207,10 +207,12 @@ GList *s_hierarchy_remove_urefconn(NETLIST *head, char *uref_disable)
 
           char uref[80];
 
+          /* Copy the old "uref pin" pair to buffer */
           strcpy(&uref[0], n_current->connected_to);
 
           int i = 0;
 
+          /* Change the space to a null, do not the pin */
           while (uref[i]){
             if (uref[i] == ' ') {
               uref[i] = '\0';
@@ -695,11 +697,12 @@ char *s_hierarchy_create_netattrib(GedaToplevel *pr_current, char *basename,
   return (return_value);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief Hierarchy Remove Mangling from Reference
- *  \par Function Description
- *
- *  \note Caller should release the returned character string.
+/*!
+ * \brief Hierarchy Remove Mangling from Reference
+ * \par Function Description
+ *  Removes the hierarchy prefix from reference desginator.
+ *  Example:
+ *           Sheets_18/J4 18 -> J4 18
  */
 void
 s_hierarchy_remove_uref_mangling(GedaToplevel *pr_current, NETLIST *head)
@@ -707,9 +710,7 @@ s_hierarchy_remove_uref_mangling(GedaToplevel *pr_current, NETLIST *head)
   NETLIST  *nl_current;
   CPINLIST *pl_current;
   NET      *n_current;
-  char uref[80], pin[10];
-  char *new_uref = NULL;
-  char *new_connected_to = NULL;
+  char     *new_uref = NULL;
 
   nl_current = head;
 
@@ -733,16 +734,37 @@ s_hierarchy_remove_uref_mangling(GedaToplevel *pr_current, NETLIST *head)
 
         if (n_current->connected_to) {
 
+          char *pin = NULL;
+          char  uref[80];
+
+          /* Copy the old "uref pin" pair to buffer */
+          strcpy(&uref[0], n_current->connected_to);
+
+          int i = 0;
+
+          /* Change the space to a null and get pointer to pin */
+          while (uref[i]){
+            if (uref[i] == ' ') {
+              pin = &uref[i + 1];
+              uref[i] = '\0';
+              break;
+            }
+            i++;
+          }
+
           verbose_print("U");
 
-          sscanf(n_current->connected_to, "%s %s", uref, pin);
+          /* Retrieve the new reference */
+          new_uref = s_hierarchy_return_baseuref(pr_current, uref);
 
-          new_uref         = s_hierarchy_return_baseuref(pr_current, uref);
-          new_connected_to = geda_sprintf("%s %s", new_uref, pin, NULL);
+          /* Build the new "uref pin" pair */
+          strcpy(&uref[0], new_uref);
+          strcat(&uref[0], " ");
+          strcat(&uref[0], pin);
 
           GEDA_FREE(new_uref);
           GEDA_FREE(n_current->connected_to);
-          n_current->connected_to = new_connected_to;
+          n_current->connected_to = geda_strdup(&uref[0]);
         }
         n_current = n_current->next;
       }

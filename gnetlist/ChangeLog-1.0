@@ -1,7 +1,9 @@
 2016-11-18 Wiley E. Hill <wileyhill@gmail.com>
 
     src/s_hierarchy.c: Replace sscanf in s_hierarchy_remove_urefconn, reduce
-    scope of uref and eliminate pin array.
+    scope of uref and eliminate pin array, replace sscanf and geda_sprintf
+    in s_hierarchy_remove_uref_mangling using a similar technique and add
+    comments.
 
 2016-11-12 Wiley E. Hill <wileyhill@gmail.com>
 
