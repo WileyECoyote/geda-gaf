@@ -123,7 +123,7 @@ s_hierarchy_traverse(GedaToplevel *pr_current,
 
         netlist->composite_component = TRUE;
 
-        netlist->hierarchy_tag = geda_utility_string_strdup (netlist->component_uref);
+        netlist->hierarchy_tag = geda_strdup (netlist->component_uref);
 
         s_traverse_hierarchy_sheet (pr_current, netlist);
 
@@ -326,7 +326,7 @@ char *s_hierarchy_create_uref(GedaToplevel *pr_current, char *basename,
   }
   else {
     if (basename) {
-      return_value = geda_utility_string_strdup (basename);
+      return_value = geda_strdup (basename);
     }
     else {
       return_value = NULL;
@@ -565,7 +565,7 @@ char *s_hierarchy_create_netname(GedaToplevel *pr_current, char *basename,
   if (pr_current->hierarchy_netname_mangle == FALSE) {
 
     if (basename) {
-      return (geda_utility_string_strdup (basename));
+      return (geda_strdup (basename));
     }
     else {
       return (NULL);
@@ -614,7 +614,7 @@ char *s_hierarchy_create_netname(GedaToplevel *pr_current, char *basename,
   }
   else {
     if (basename) {
-      return_value = geda_utility_string_strdup (basename);
+      return_value = geda_strdup (basename);
     }
     else {
       return_value = NULL;
@@ -637,7 +637,7 @@ char *s_hierarchy_create_netattrib(GedaToplevel *pr_current, char *basename,
   if (pr_current->hierarchy_netattrib_mangle == FALSE) {
 
     if (basename) {
-      return (geda_utility_string_strdup (basename));
+      return (geda_strdup (basename));
     }
     else {
       return (NULL);
@@ -687,7 +687,7 @@ char *s_hierarchy_create_netattrib(GedaToplevel *pr_current, char *basename,
   else {
 
     if (basename) {
-      return_value = geda_utility_string_strdup (basename);
+      return_value = geda_strdup (basename);
     }
     else {
       return_value = NULL;
@@ -799,10 +799,10 @@ char *s_hierarchy_return_baseuref(GedaToplevel *pr_current, char *uref)
     char *start_of_base = strrchr(uref, '/');	/* separator is always '/' */
 
     if (start_of_base == NULL) {
-      return (geda_utility_string_strdup (uref));
+      return (geda_strdup (uref));
     }
 
-    return_value = geda_utility_string_strdup (start_of_base + 1);
+    return_value = geda_strdup (start_of_base + 1);
 
   }
   else if (pr_current->hierarchy_uref_order == PREPEND) {
@@ -810,10 +810,10 @@ char *s_hierarchy_return_baseuref(GedaToplevel *pr_current, char *uref)
     char *end_of_base = strchr(uref, '/');
 
     if (end_of_base == NULL) {
-      return (geda_utility_string_strdup (uref));
+      return (geda_strdup (uref));
     }
 
-    return_value = geda_utility_string_strndup(uref, end_of_base - uref);
+    return_value = geda_strndup(uref, end_of_base - uref);
   }
 
 #if DEBUG
