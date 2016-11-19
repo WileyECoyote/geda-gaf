@@ -190,8 +190,6 @@ GList *s_hierarchy_remove_urefconn(NETLIST *head, char *uref_disable)
   NET      *n_current;
   GList    *removed;
 
-  char uref[80], pin[10];
-
   nl_current = head;
   removed    = NULL;
 
@@ -207,10 +205,22 @@ GList *s_hierarchy_remove_urefconn(NETLIST *head, char *uref_disable)
 
         if (n_current->connected_to != NULL) {
 
-          sscanf(n_current->connected_to, "%s %s", uref, pin);
+          char uref[80];
+
+          strcpy(&uref[0], n_current->connected_to);
+
+          int i = 0;
+
+          while (uref[i]){
+            if (uref[i] == ' ') {
+              uref[i] = '\0';
+              break;
+            }
+            i++;
+          }
 
 #if DEBUG
-          printf("  looking at : %s %s\n", uref, pin);
+          printf("  looking at : %s %s\n", uref, /*pin*/ uref[i+1]);
 #endif
 
           if (strcmp(uref_disable, uref) == 0) {
