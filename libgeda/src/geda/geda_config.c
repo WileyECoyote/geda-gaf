@@ -177,7 +177,10 @@ static void eda_config_dispose (GObject *object)
 {
   EdaConfig *config = EDA_CONFIG (object);
 
-  g_object_set (object, "parent", NULL, NULL);
+  if (config->priv->parent) {
+    /* This will decrement the reference count of parent */
+    g_object_set (object, "parent", NULL, NULL);
+  }
 
   if (config->RC_list != NULL) {
     g_list_foreach(config->RC_list, (GFunc)g_free, NULL);
