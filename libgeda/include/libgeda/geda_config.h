@@ -170,6 +170,7 @@ extern "C" {
 
 GedaConfigType eda_config_get_type (void) GEDA_CONST;
 bool           is_a_eda_config     (const EdaConfig *cfg);
+
 /* ---------------------------------------------------------------- */
 
 char       *eda_config_find_project_root     (const char *path, const char *filename) GEDA_WARN_UNUSED_RESULT;
@@ -196,13 +197,14 @@ void        eda_config_set_trusted           (EdaConfig *cfg, bool trusted);
 
 EdaConfig  *eda_config_get_trusted_context   (EdaConfig *cfg);
 
-char **eda_config_get_groups         (EdaConfig *cfg, unsigned   *length) GEDA_WARN_UNUSED_RESULT;
-bool   eda_config_has_group          (EdaConfig *cfg, const char *group);
-char **eda_config_get_keys           (EdaConfig *cfg, const char *group, unsigned   *length, GError **error) GEDA_WARN_UNUSED_RESULT;
-bool   eda_config_has_key            (EdaConfig *cfg, const char *group, const char *key, GError **err);
-bool   eda_config_is_inherited       (EdaConfig *cfg, const char *group, const char *key, GError **err);
+char      **eda_config_get_groups            (EdaConfig *cfg, unsigned   *length) GEDA_WARN_UNUSED_RESULT;
+bool        eda_config_has_group             (EdaConfig *cfg, const char *group);
+char      **eda_config_get_keys              (EdaConfig *cfg, const char *group, unsigned   *length, GError **error) GEDA_WARN_UNUSED_RESULT;
+bool        eda_config_has_key               (EdaConfig *cfg, const char *group, const char *key, GError **err);
+bool        eda_config_is_inherited          (EdaConfig *cfg, const char *group, const char *key, GError **err);
 
-EdaConfig *eda_config_get_source     (EdaConfig *cfg, const char *group, const char *key, GError **err);
+EdaConfig  *eda_config_get_source            (EdaConfig *cfg, const char *group, const char *key, GError **err);
+void        eda_config_release_resources     (void);
 
 /* ---------------------------------------------------------------- */
 

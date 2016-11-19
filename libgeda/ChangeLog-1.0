@@ -3,7 +3,10 @@
     * src/geda/geda_config.c: Revise eda_config_get_context_for_file to
       use the cwd if passed a NULL path. Revise eda_config_get_boolean
       eda_config_get_double and eda_config_get_double_list for uniform
-      flow without early returns.
+      flow without early returns. Add private functions eda_config_ref
+      and eda_config_unref to reference count the static default, user
+      and system EdaConfig objects. Add eda_config_release_resources
+      to destroy the objects when libgeda is shutdown.
 
 2016-11-18 Wiley E. Hill <wileyhill@gmail.com>
 

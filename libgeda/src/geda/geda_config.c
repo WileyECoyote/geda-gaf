@@ -58,6 +58,7 @@ struct _EdaConfigData
   /* Accessed via properties */
   EdaConfig    *parent;
   unsigned long parent_handler_id;
+  int           ref_count;
   bool          trusted;
   char         *filename;
 
@@ -67,6 +68,8 @@ struct _EdaConfigData
   bool          changed;
 };
 
+static EdaConfig *eda_config_ref     (EdaConfig *cfg);
+static void eda_config_unref         (EdaConfig *cfg);
 static void eda_config_dispose       (GObject *object);
 static void eda_config_finalize      (GObject *object);
 static void eda_config_set_property  (GObject *object, unsigned int property_id, const GValue *value, GParamSpec *pspec);
@@ -84,6 +87,28 @@ static void parent_config_changed_handler  (EdaConfig *parent, const char *group
 static void propagate_key_file_error       (GError *src, GError **dest);
 
 static GObjectClass *eda_config_parent_class = NULL;
+
+/*! Increment the reference count of a EdaConfig instance. */
+static EdaConfig*
+eda_config_ref (EdaConfig *cfg)
+{
+  if (cfg) {
+    cfg->priv->ref_count++;
+  }
+  return g_object_ref(cfg);
+}
+
+/*! Decrement the reference count of a EdaConfig instance. */
+static void
+eda_config_unref (EdaConfig *cfg)
+{
+  if (cfg) {
+    if (cfg->priv->ref_count > 0){
+      cfg->priv->ref_count--;
+      g_object_unref(cfg);
+    }
+  }
+}
 
 /*! Set a property of an EdaConfig instance. */
 static
@@ -119,11 +144,13 @@ void eda_config_set_property (GObject *object, unsigned int property_id,
         g_signal_handler_disconnect (priv->parent,
                                      priv->parent_handler_id);
       }
-      GEDA_UNREF (priv->parent);
+      eda_config_unref (priv->parent);
       priv->parent_handler_id = 0;
     }
     if (parent != NULL) {
-      config->priv->parent = g_object_ref (parent);
+
+      config->priv->parent = eda_config_ref (parent);
+
       /* Connect signal handler to new parent. */
       priv->parent_handler_id =
         g_signal_connect_object (parent,
@@ -290,6 +317,7 @@ eda_config_instance_init(GTypeInstance *instance, void *class)
   config->priv->keyfile           = g_key_file_new ();
   config->priv->loaded            = FALSE;
   config->priv->changed           = FALSE;
+  config->priv->ref_count         = 0;
   config->priv->parent_handler_id = 0;
 
   config->RC_list                 = NULL;
@@ -464,7 +492,7 @@ eda_config_find_project_root (const char *path, const char *filename)
  * \return the default #EdaConfig configuration context.
  */
 EdaConfig *
-eda_config_get_default_context ()
+eda_config_get_default_context (void)
 {
   static volatile GedaType initialized = 0;
   static EdaConfig *config = NULL;
@@ -482,7 +510,7 @@ eda_config_get_default_context ()
     g_once_init_leave (&initialized, 1);
 
   }
-  return config;
+  return eda_config_ref(config);
 }
 
 /*!
@@ -598,7 +626,7 @@ eda_config_get_system_context (const char *context)
     GEDA_FREE (filename);
     g_once_init_leave (&initialized, 1);
   }
-  return config;
+  return eda_config_ref(config);
 }
 
 /*!
@@ -643,7 +671,7 @@ eda_config_get_user_context (void)
     GEDA_FREE (filename);
     g_once_init_leave (&initialized, 1);
   }
-  return config;
+  return eda_config_ref(config);
 }
 
 static bool strhashcmp (const void *a, const void *b) {
@@ -2131,12 +2159,13 @@ void parent_config_changed_handler (EdaConfig *cfg, const char *group,
   }
 }
 
-/*! \brief Get #EdaConfig error domain.
+/*!
+ * \brief Get #EdaConfig error domain.
  * \par Function Description
- * Return the domain for errors relating to configuration contexts.
+ *  Return the domain for errors relating to configuration contexts.
  *
  * \warning You should not call this function directly; use
- * EDA_CONFIG_ERROR instead.
+ *          EDA_CONFIG_ERROR instead.
  *
  * \return a GQuark representing the error domain.
  */
@@ -2145,4 +2174,46 @@ eda_config_error_quark (void)
 {
   return g_quark_from_static_string ("eda-config-error-quark");
 }
+
+/*!
+ * \private \memberof EdaConfig
+ * \brief Release Resources associated with EdaConfig system.
+ * \par Function Description
+ *  Called from libgeda_release.
+ *
+ * \warning You should not call this function directly; use
+ *          libgeda_release instead.
+ */
+void
+eda_config_release_resources (void)
+{
+  EdaConfig *cfg;
+  int i;
+
+  cfg = eda_config_get_user_context();
+
+  if (cfg) {
+    for (i = cfg->priv->ref_count; i > 0; --i) {
+      g_object_unref(cfg);
+    }
+    GEDA_UNREF(cfg);
+  }
+
+  cfg = eda_config_get_system_context(NULL);
+  if (cfg) {
+    for (i = cfg->priv->ref_count; i > 0; --i) {
+      g_object_unref(cfg);
+    }
+    GEDA_UNREF(cfg);
+  }
+
+  cfg = eda_config_get_default_context();
+  if (cfg) {
+    for (i = cfg->priv->ref_count; i > 0; --i) {
+      g_object_unref(cfg);
+    }
+    GEDA_UNREF(cfg);
+  }
+}
+
 /** @} endgroup geda-config */
