@@ -66,7 +66,8 @@ struct _GedaObject {
 
   GObject parent;
 
-  GedaObjectType head_marker;          /* structure type signature */
+  /* structure type signature */
+  GedaObjectType head_marker __attribute__ ((aligned (32)));
 
   char    type;                        /* Basic information */
   int     sid;                         /* sequence id ?? */
@@ -127,7 +128,8 @@ struct _GedaObject {
 
   GList   *weak_refs;             /* Weak references */
 
-  GedaObjectType tail_marker;     /* structure type signature */
+  /* structure type signature */
+  GedaObjectType tail_marker __attribute__ ((aligned (32)));
 };
 
 #ifdef __cplusplus
