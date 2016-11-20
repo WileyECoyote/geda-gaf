@@ -369,7 +369,12 @@ geda_struct_page_delete (GedaToplevel *toplevel, Page *page, int previous)
       old_current = NULL;
     }
     else {
-      old_current = geda_toplevel_get_current_page(toplevel);
+      if (previous) {
+        old_current = geda_toplevel_get_current_page(toplevel);
+      }
+      else {
+        old_current = NULL;
+      }
       geda_struct_page_goto (page);
     }
 

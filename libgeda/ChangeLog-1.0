@@ -17,6 +17,9 @@
     * src/geda/geda_toplevel.c Revise geda_toplevel_get_current_page to
       not check GEDA_IS_PAGE if the current page is not set.
 
+    * src/struct/s_page.c: Revise geda_struct_page_delete to not call
+      geda_toplevel_get_current_page if the previous argument is set.
+
 2016-11-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_config.c: Set parent_class in eda_config_class_init.
