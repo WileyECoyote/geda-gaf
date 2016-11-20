@@ -1,4 +1,4 @@
-v 20060123 1
+v 20161031 2
 P 200 2300 500 2300 1 0 0
 {
 T 400 2350 5 8 1 1 0 6 1
@@ -146,11 +146,9 @@ pintype=in
 }
 T 200 3650 8 10 0 1 0 0 1
 documentation=http://www.chipcon.com/files/CC1000PP_User_Manual_1_22.pdf
-T 3600 0 8 10 0 0 0 0 1
+T 200 4300 8 10 0 0 0 0 1
 author=Wojciech Zabolotny wzabATise.pw.edu.pl
-T 0 0 8 10 0 0 0 0 1
-dist-license=GPL
-T 1600 0 8 10 0 0 0 0 1
+T 200 4100 8 10 0 0 0 0 1
+dist-license=GPL2
+T 200 3900 8 10 0 0 0 0 1
 use-license=unlimited
-T 0 200 8 10 0 0 0 0 1
-comment=Suggested library: rf
