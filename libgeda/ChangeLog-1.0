@@ -14,6 +14,9 @@
       and system EdaConfig objects. Add eda_config_release_resources
       to destroy the objects when libgeda is shutdown.
 
+    * src/geda/geda_toplevel.c Revise geda_toplevel_get_current_page to
+      not check GEDA_IS_PAGE if the current page is not set.
+
 2016-11-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_config.c: Set parent_class in eda_config_class_init.

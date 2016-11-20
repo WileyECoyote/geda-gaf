@@ -541,7 +541,8 @@ geda_toplevel_get_auto_save_interval  (GedaToplevel *toplevel)
 /*!
  * \brief Get the current page
  * \par Function Description
- *  This function returns a pointer the current Page object.
+ *  This function returns a pointer the current Page object or
+ *  NULL if the current page is not set or is invalid.
  *
  * \param [in,out] toplevel This toplevel
  */
@@ -549,7 +550,14 @@ Page*
 geda_toplevel_get_current_page (GedaToplevel *toplevel)
 {
   g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), NULL);
-  return GEDA_IS_PAGE(toplevel->page_current) ? toplevel->page_current : NULL;
+
+  if (toplevel->page_current) {
+    if (GEDA_IS_PAGE(toplevel->page_current)) {
+      return toplevel->page_current;
+    }
+  }
+
+  return NULL;
 }
 
 /*!
