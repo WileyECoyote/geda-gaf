@@ -1,3 +1,8 @@
+2016-11-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * lineartech/switchreg/LTC3531-1.sym: Add symbol; low noise 180/350mA boost
+      converter.
+
 2016-11-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * passive/rf/CC1000PP.sym: Rename file with upper case, reposition and
