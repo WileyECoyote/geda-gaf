@@ -1,3 +1,10 @@
+2016-11-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/struct/s_page.c: Revise to geda_struct_page_goto check the
+      toplevel and not call geda_toplevel_set_current_page which will
+      return NULL when the current page has been deleted, which occurs
+      when deleting all pages.
+
 2016-11-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/math/m_angle.c: Use relative path to include libgeda_priv.h.

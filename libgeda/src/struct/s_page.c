@@ -601,12 +601,18 @@ geda_struct_page_goto (Page *page)
 
     if (!chdir (target_dirname)) {
 
-      success = TRUE;            /* Assume success */
+      if (GEDA_IS_TOPLEVEL(page->toplevel)) {
 
-      /* Check if page is already the current page, set if not */
-      if (geda_toplevel_get_current_page(page->toplevel) != page) {
+        success = TRUE;            /* Assume success */
 
-        success = geda_toplevel_set_current_page(page->toplevel, page);
+        /* Check if page is already the current page, set if not */
+        if (page->toplevel->page_current != page) {
+
+          success = geda_toplevel_set_current_page(page->toplevel, page);
+        }
+      }
+      else {
+        success = FALSE;  /* Page has invalid pointer to toplevel */
       }
     }
     else {
@@ -626,7 +632,7 @@ geda_struct_page_goto (Page *page)
 
   }
   else {
-    success = FALSE;  /* Invalid pointer to Page*/
+    success = FALSE;  /* Invalid pointer to Page */
   }
 
   return success;
