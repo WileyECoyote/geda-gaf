@@ -133,9 +133,6 @@ smob_free (SCM smob)
     break;
 
   case GEDA_SMOB_CONFIG:
-    GEDA_UNREF (G_OBJECT (obj));
-    break;
-
   case GEDA_SMOB_CLOSURE:
     break;
   default:
@@ -399,7 +396,7 @@ SCM
 edascm_from_config (EdaConfig *cfg)
 {
   SCM smob;
-  SCM_NEWSMOB (smob, geda_smob_tag, g_object_ref (cfg));
+  SCM_NEWSMOB (smob, geda_smob_tag, cfg);
   SCM_SET_SMOB_FLAGS (smob, GEDA_SMOB_CONFIG);
   return smob;
 }
