@@ -892,7 +892,7 @@ geda_toplevel_set_bkloader_query_func (GedaToplevel *toplevel, void *func, ...)
 /*!
  * \brief Set the current page
  * \par Function Description
- *  Set the currentpage in \a toplevel to \a page.
+ *  Set the current page in \a toplevel to \a page.
  *
  * \param [in] toplevel GedaToplevel object
  * \param [in] page     Page object
