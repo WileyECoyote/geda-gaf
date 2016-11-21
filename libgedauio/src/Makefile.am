@@ -2,9 +2,9 @@
 ## Process this file with automake to produce Makefile.in
 #
 
-#DEBUGGING                    = --debug --verbose
+#AUTOMAKE_OPTIONS             = 1.6 subdir-objects
 
-AUTOMAKE_OPTIONS             = 1.6 subdir-objects
+#DEBUGGING                    = --debug --verbose
 
 LIB_FILE_DIALOG              = dialogs/fileselector
 

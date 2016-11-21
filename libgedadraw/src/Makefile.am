@@ -2,7 +2,7 @@
 ## Process this file with automake to produce Makefile.in
 ## `pkg-config --cflags freetype2`
 
-AUTOMAKE_OPTIONS             = subdir-objects
+#AUTOMAKE_OPTIONS             = 1.6 subdir-objects
 
 #DEBUGGING                    = --debug --verbose
 
