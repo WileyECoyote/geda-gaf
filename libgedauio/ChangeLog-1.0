@@ -1,3 +1,15 @@
+2016-11-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_entry.c: Add/update GedaEntry Doxygen comments:
+
+        * geda_entry_finalize
+        * geda_entry_drag_drop
+        * geda_entry_drag_end
+        * geda_entry_drag_leave
+        * geda_entry_drag_motion
+        * geda_entry_widget_get_valid_input
+        * geda_entry_widget_set_valid_input
+
 2016-11-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets: Substitute GEDA_MEM_ALLOC0 for g_malloc0 in:
