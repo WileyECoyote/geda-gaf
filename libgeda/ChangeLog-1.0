@@ -1,5 +1,8 @@
 2016-11-21 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_list.c: Replace macro G_OBJECT_CLASS_TYPE with
+      G_TYPE_FROM_CLASS, the former just expands to the later.
+
     * src/object/o_path_object.c: Replace <DL><DT><DD>t HTML tags for
       funtion geda_path_object_copy with \li.
 
