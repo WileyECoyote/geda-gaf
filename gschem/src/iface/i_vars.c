@@ -572,7 +572,6 @@ i_vars_recall_user_settings(GschemToplevel *w_current)
  */
 void i_vars_set(GschemToplevel *w_current)
 {
-
   inline void i_set_rc(int *var, int rc) { if (rc != RC_NIL) *var = rc; };
 
   GedaToplevel *toplevel               = w_current->toplevel;

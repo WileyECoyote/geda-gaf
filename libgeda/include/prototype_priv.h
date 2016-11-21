@@ -160,7 +160,6 @@ GedaObject *geda_circle_object_read              (const char buf[], unsigned int
 char       *geda_circle_object_to_buffer         (GedaObject *object);
 double      geda_circle_object_shortest_distance (GedaObject *object, int x, int y, int force_soild);
 
-
 /* o_complex_object.c */
 int         geda_complex_object_get_bounds       (GedaObject *complex);
 bool        geda_complex_object_get_position     (GedaObject *object, int *x, int *y);
