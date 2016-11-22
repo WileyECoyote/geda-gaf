@@ -587,8 +587,11 @@ static void print_page(GedaToplevel *current, cairo_t *cairo, Page *page)
     rectangle.width  = wx_max - wx_min;
     rectangle.height = wy_max - wy_min;
 
-    double sx = 72.0 * print_settings_get_print_width(print_settings) / rectangle.width;
-    double sy = 72.0 * print_settings_get_print_height(print_settings) / rectangle.height;
+    double print_width  = print_settings_get_print_width(print_settings);
+    double print_height = print_settings_get_print_height(print_settings);
+
+    double sx = 72.0 * print_width / rectangle.width;
+    double sy = 72.0 * print_height / rectangle.height;
 
     double s;
 
@@ -599,11 +602,10 @@ static void print_page(GedaToplevel *current, cairo_t *cairo, Page *page)
         s = sy;
     }
 
-    cairo_translate(
-        cairo,
-        72.0 * print_settings_get_page_margin_left(print_settings) + (72.0 * print_settings_get_print_width(print_settings) - s * rectangle.width) * print_settings_get_page_align_horizontal(print_settings),
-        72.0 * (print_settings_get_page_margin_top(print_settings) + print_settings_get_print_height(print_settings)) - (72.0 * print_settings_get_print_height(print_settings) - s * rectangle.height) * print_settings_get_page_align_vertical(print_settings)
-        );
+    sx = 72.0 * print_settings_get_page_margin_left(print_settings) + (72.0 * print_width - s * rectangle.width) * print_settings_get_page_align_horizontal(print_settings);
+    sy = 72.0 * (print_settings_get_page_margin_top(print_settings) + print_height) - (72.0 * print_height - s * rectangle.height) * print_settings_get_page_align_vertical(print_settings);
+
+    cairo_translate(cairo, sx, sy);
 
     cairo_scale(cairo, s, -s);
 

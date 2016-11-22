@@ -3,7 +3,8 @@
     * gsch2pdf/main.c: Reformat module; remove unnecessary line wrap to improve
       readability. Expand print_complex to iterate over prim_objs and pass each
       to print_object instead of recursively calling print_object_list so that
-      node->next is not skewed.
+      node->next is not skewed. Add doubles print_width and print_height in
+      print_page to reduce line length and improve readability.
 
 2016-11-21 Wiley E. Hill <wileyhill@gmail.com>
 
