@@ -320,6 +320,7 @@ extern "C" {
    GedaObject   *geda_complex_object_copy                  (GedaObject *o_current);
          void    geda_complex_object_check_symbol_version  (GedaToplevel *toplevel, GedaObject *object);
          bool    geda_complex_object_get_nearest_point     (GedaObject *object, int x, int y, int *nx, int *ny);
+        GList   *geda_complex_object_get_prim_objs         (GedaObject *object);
    GedaObject   *geda_complex_object_find_pin_by_attribute (GedaObject *object, char *name, char *wanted_value);
           int    geda_complex_object_is_embedded           (GedaObject *o_current);
          void    geda_complex_object_mirror                (GedaObject *object, int center_x, int center_y);

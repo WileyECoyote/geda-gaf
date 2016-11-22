@@ -552,6 +552,24 @@ geda_complex_object_get_position (GedaObject *object, int *x, int *y)
   return FALSE;
 }
 
+/*!
+ * \brief Get list of objects from a Complex object
+ * \par Function Description
+ *  Returns a GList of GedaObjects associated with \a object.
+ *
+ *  \param [in] object A GedaComplex object
+ *
+ *  \returns GList of subobjects belonging to the complex.
+ */
+GList *geda_complex_object_get_prim_objs (GedaObject *object)
+{
+  if (!GEDA_IS_COMPLEX(object)) {
+    geda_complex_object_error(__func__, object);
+    return NULL;
+  }
+  return object->complex->prim_objs;
+}
+
 /*! \brief Get attributes eligible for promotion from inside a complex
  *
  *  \par Function Description
