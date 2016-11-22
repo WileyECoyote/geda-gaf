@@ -827,11 +827,9 @@ eda_config_get_context_for_file (const char *path)
   }
   else {
 
-    /* The file does not exist so return the default context */
-    config = g_object_new (EDA_TYPE_CONFIG,
-                           "file", NULL,
-                           "parent", eda_config_get_default_context(),
-                           "trusted", FALSE, NULL);
+    /* Should not be reached, is error, return the default context */
+    config = eda_config_get_default_context();
+    eda_config_set_trusted(config, FALSE);
   }
 
   if (cwd != NULL) {
