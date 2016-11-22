@@ -225,6 +225,10 @@ static void eda_config_finalize (GObject *object)
 {
   EdaConfig *config = EDA_CONFIG (object);
 
+#ifdef DEBUG
+  fprintf(stderr, "%s: finalizing %p\n", __func__, config);
+#endif
+
   if (config->priv->filename != NULL) {
     GEDA_FREE (config->priv->filename);
   }
@@ -507,6 +511,10 @@ eda_config_get_default_context (void)
 
     config->priv->loaded = TRUE;
 
+#ifdef DEBUG
+    fprintf(stderr, "%s: created %p\n", __func__, config);
+#endif
+
     g_once_init_leave (&initialized, 1);
 
   }
@@ -616,11 +624,15 @@ eda_config_get_system_context (const char *context)
 
     config = g_object_new (EDA_TYPE_CONFIG,
                            "file", filespec,
-                           "parent", eda_config_get_default_context (),
+                           "parent", eda_config_get_default_context(),
                            "trusted", TRUE,
                            NULL);
 
     eda_config_load (config, NULL);
+
+#ifdef DEBUG
+    fprintf(stderr, "%s: created %p\n", __func__, config);
+#endif
 
     GEDA_FREE (filespec);
     GEDA_FREE (filename);
@@ -667,6 +679,10 @@ eda_config_get_user_context (void)
                            NULL);
 
     eda_config_load (config, NULL);
+
+#ifdef DEBUG
+    fprintf(stderr, "%s: created %p\n", __func__, config);
+#endif
 
     GEDA_FREE (filename);
     g_once_init_leave (&initialized, 1);
@@ -2191,7 +2207,6 @@ eda_config_release_resources (void)
   int i;
 
   cfg = eda_config_get_user_context();
-
   if (cfg) {
     for (i = cfg->priv->ref_count; i > 0; --i) {
       g_object_unref(cfg);
