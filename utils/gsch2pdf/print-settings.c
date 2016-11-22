@@ -229,16 +229,20 @@ print_settings_get_page_height(const PrintSettings *settings)
     if (settings->orientation == PRINT_ORIENTATION_LANDSCAPE) {
       if (settings->paper_width > settings->paper_height) {
         height = settings->paper_height;
-      } else {
+      }
+      else {
         height = settings->paper_width;
       }
-    } else if (settings->orientation == PRINT_ORIENTATION_PORTRAIT) {
+    }
+    else if (settings->orientation == PRINT_ORIENTATION_PORTRAIT) {
       if (settings->paper_width > settings->paper_height) {
         height = settings->paper_width;
-      } else {
+      }
+      else {
         height = settings->paper_height;
       }
-    } else {
+    }
+    else {
       height = settings->paper_height;
     }
   }
@@ -265,16 +269,20 @@ print_settings_get_page_width(const PrintSettings *settings)
     if (settings->orientation == PRINT_ORIENTATION_LANDSCAPE) {
       if (settings->paper_width > settings->paper_height) {
         width = settings->paper_width;
-      } else {
+      }
+      else {
         width = settings->paper_height;
       }
-    } else if (settings->orientation == PRINT_ORIENTATION_PORTRAIT) {
+    }
+    else if (settings->orientation == PRINT_ORIENTATION_PORTRAIT) {
       if (settings->paper_width > settings->paper_height) {
         width = settings->paper_height;
-      } else {
+      }
+      else {
         width = settings->paper_width;
       }
-    } else {
+    }
+    else {
       width = settings->paper_width;
     }
   }
@@ -298,8 +306,6 @@ print_settings_get_paper_height(const PrintSettings *settings)
 
   return height;
 }
-
-
 
 /*! \brief Get the width of the physical paper
  *
@@ -431,7 +437,8 @@ print_settings_set_junction_size_bus(PrintSettings *settings, double size)
   if (settings != NULL) {
     if (size > 0.0) {
       settings->junction_size_bus = size;
-    } else {
+    }
+    else {
       settings->junction_size_bus = 0.0;
     }
   }
@@ -448,7 +455,8 @@ print_settings_set_junction_size_net(PrintSettings *settings, double size)
   if (settings != NULL) {
     if (size > 0.0) {
       settings->junction_size_net = size;
-    } else {
+    }
+    else {
       settings->junction_size_net = 0.0;
     }
   }
@@ -472,9 +480,11 @@ print_settings_set_page_align_horizontal(PrintSettings *settings, double align)
   if (settings != NULL) {
     if (align < 0.0) {
       settings->align_horizontal = 0.0;
-    } else if (align > 1.0) {
+    }
+    else if (align > 1.0) {
       settings->align_horizontal = 1.0;
-    } else {
+    }
+    else {
       settings->align_horizontal = align;
     }
   }
@@ -498,9 +508,11 @@ print_settings_set_page_align_vertical(PrintSettings *settings, double align)
   if (settings != NULL) {
     if (align < 0.0) {
       settings->align_vertical = 0.0;
-    } else if (align > 1.0) {
+    }
+    else if (align > 1.0) {
       settings->align_vertical = 1.0;
-    } else {
+    }
+    else {
       settings->align_vertical = align;
     }
   }
@@ -517,7 +529,8 @@ print_settings_set_page_margin_bottom(PrintSettings *settings, double margin)
   if (settings != NULL) {
     if (margin < 0.0) {
       settings->margin_bottom = 0.0;
-    } else {
+    }
+    else {
       settings->margin_bottom = margin;
     }
   }
@@ -534,7 +547,8 @@ print_settings_set_page_margin_left(PrintSettings *settings, double margin)
   if (settings != NULL) {
     if (margin < 0.0) {
       settings->margin_left = 0.0;
-    } else {
+    }
+    else {
       settings->margin_left = margin;
     }
   }
@@ -551,7 +565,8 @@ print_settings_set_page_margin_right(PrintSettings *settings, double margin)
   if (settings != NULL) {
     if (margin < 0.0) {
       settings->margin_right = 0.0;
-    } else {
+    }
+    else {
       settings->margin_right = margin;
     }
   }
@@ -570,7 +585,8 @@ print_settings_set_page_margin_top(PrintSettings *settings, double margin)
   if (settings != NULL) {
     if (margin < 0.0) {
       settings->margin_top = 0.0;
-    } else {
+    }
+    else {
       settings->margin_top = margin;
     }
   }
@@ -588,7 +604,8 @@ print_settings_set_paper_height(PrintSettings *settings, double height)
   if (settings != NULL) {
     if (height < 0.0) {
       settings->paper_height = 0.0;
-    } else {
+    }
+    else {
       settings->paper_height = height;
     }
   }
@@ -605,7 +622,8 @@ print_settings_set_paper_width(PrintSettings *settings, double width)
   if (settings != NULL) {
     if (width < 0.0) {
       settings->paper_width = 0.0;
-    } else {
+    }
+    else {
       settings->paper_width = width;
     }
   }
