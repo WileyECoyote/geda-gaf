@@ -34,48 +34,39 @@ static void print_object_list(GedaToplevel *current, cairo_t *cairo, const GList
 
 static void print_arc(GedaToplevel *current, cairo_t *cairo, GedaObject *object)
 {
-    cairo_set_line_width(
-        cairo, object->line_options->line_width > 10.0 ?
-               object->line_options->line_width : 10.0);
+  cairo_set_line_width(cairo, object->line_options->line_width > 10.0 ?
+  object->line_options->line_width : 10.0);
 
-    cairo_set_source_rgb( cairo, 0.0, 0.0, 0.0);
+  cairo_set_source_rgb( cairo, 0.0, 0.0, 0.0);
 
-    cairo_new_sub_path(cairo);
+  cairo_new_sub_path(cairo);
 
-    if (object->arc->arc_sweep > 0) {
+  if (object->arc->arc_sweep > 0) {
 
-        cairo_arc(
-            cairo,
-            object->arc->x,
-            object->arc->y,
-            object->arc->radius,
-            M_PI * object->arc->start_angle / 180.0,
-            M_PI * (object->arc->start_angle + object->arc->arc_sweep) / 180.0
-            );
-    }
-    else {
+    cairo_arc(cairo,
+              object->arc->x,
+              object->arc->y,
+              object->arc->radius,
+              M_PI * object->arc->start_angle / 180.0,
+              M_PI * (object->arc->start_angle + object->arc->arc_sweep) / 180.0);
+  }
+  else {
 
-         cairo_arc_negative(
-            cairo,
-            object->arc->x,
-            object->arc->y,
-            object->arc->radius,
-            M_PI * object->arc->start_angle / 180.0,
-            M_PI * (object->arc->start_angle + object->arc->arc_sweep) / 180.0
-            );
-    }
+    cairo_arc_negative(cairo,
+                       object->arc->x,
+                       object->arc->y,
+                       object->arc->radius,
+                       M_PI * object->arc->start_angle / 180.0,
+                       M_PI * (object->arc->start_angle + object->arc->arc_sweep) / 180.0);
+  }
 
-    cairo_stroke(cairo);
+  cairo_stroke(cairo);
 }
 
-static void print_box(GedaToplevel *current, cairo_t *cairo, GedaObject *object)
+static void
+print_box(GedaToplevel *current, cairo_t *cairo, GedaObject *object)
 {
-    cairo_set_source_rgb(
-        cairo,
-        0.0,
-        0.0,
-        0.0
-        );
+    cairo_set_source_rgb(cairo, 0.0, 0.0, 0.0);
 
     if ((object->fill_options->fill_type == FILLING_HATCH) ||
         (object->fill_options->fill_type == FILLING_MESH))
@@ -92,26 +83,16 @@ static void print_box(GedaToplevel *current, cairo_t *cairo, GedaObject *object)
                                      object->fill_options->fill_pitch2, lines);
         }
 
-        cairo_set_line_width(
-            cairo,
-            object->fill_options->fill_width > 5.0 ? object->fill_options->fill_width : 5.0
-            );
+        cairo_set_line_width(cairo, object->fill_options->fill_width > 5.0 ?
+                                    object->fill_options->fill_width : 5.0);
 
         for (index=0; index<lines->len; index++) {
 
             LINE *line = &g_array_index(lines, LINE, index);
 
-            cairo_move_to(
-                cairo,
-                line->x[0],
-                line->y[0]
-                );
+            cairo_move_to( cairo, line->x[0], line->y[0]);
 
-            cairo_line_to(
-                cairo,
-                line->x[1],
-                line->y[1]
-                );
+            cairo_line_to(cairo, line->x[1], line->y[1]);
         }
     }
 
@@ -122,8 +103,7 @@ static void print_box(GedaToplevel *current, cairo_t *cairo, GedaObject *object)
 
     cairo_line_to(cairo, object->box->lower_x, object->box->upper_y);
 
-    cairo_line_to(cairo, object->box->lower_x, object->box->lower_y
-        );
+    cairo_line_to(cairo, object->box->lower_x, object->box->lower_y);
 
     cairo_line_to(cairo, object->box->upper_x, object->box->lower_y);
 
@@ -176,21 +156,13 @@ static void print_circle(GedaToplevel *current, cairo_t *cairo, GedaObject *obje
                                      object->fill_options->fill_width : 5.0);
 
 
-        for (index=0; index<lines->len; index++)
-        {
+        for (index=0; index<lines->len; index++) {
+
             LINE *line = &g_array_index(lines, LINE, index);
 
-            cairo_move_to(
-                cairo,
-                line->x[0],
-                line->y[0]
-                );
+            cairo_move_to(cairo, line->x[0], line->y[0]);
 
-            cairo_line_to(
-                cairo,
-                line->x[1],
-                line->y[1]
-                );
+            cairo_line_to(cairo, line->x[1], line->y[1]);
         }
     }
 
@@ -199,14 +171,12 @@ static void print_circle(GedaToplevel *current, cairo_t *cairo, GedaObject *obje
 
     cairo_new_sub_path(cairo);
 
-    cairo_arc(
-        cairo,
-        object->circle->center_x,
-        object->circle->center_y,
-        object->circle->radius,
-        0.0,
-        2.0 * M_PI
-        );
+    cairo_arc(cairo,
+              object->circle->center_x,
+              object->circle->center_y,
+              object->circle->radius,
+              0.0,
+              2.0 * M_PI);
 
     if (object->fill_options->fill_type == FILL_SOLID) {
 
@@ -225,24 +195,17 @@ static void print_junctions(GedaToplevel *current, cairo_t *cairo, const GArray 
 {
     int index;
 
-    cairo_set_source_rgb(
-        cairo,
-        0.0,
-        0.0,
-        0.0
-        );
+    cairo_set_source_rgb(cairo, 0.0, 0.0, 0.0);
 
   for (index=0; index<junctions->len; index++) {
     GedaPoint junction = g_array_index(junctions, GedaPoint ,index);
 
-    cairo_arc(
-         cairo,
-         junction.x,
-         junction.y,
-         print_settings_get_junction_size_net(print_settings),
-         0,
-         2 * M_PI
-         );
+    cairo_arc(cairo,
+              junction.x,
+              junction.y,
+              print_settings_get_junction_size_net(print_settings),
+              0,
+              2 * M_PI);
 
     cairo_fill(cairo);
   }
@@ -250,29 +213,14 @@ static void print_junctions(GedaToplevel *current, cairo_t *cairo, const GArray 
 
 static void print_line(GedaToplevel *current, cairo_t *cairo, GedaObject *object)
 {
-    cairo_set_line_width(
-        cairo,
-        object->line_options->line_width > 10.0 ? object->line_options->line_width : 10.0
-        );
+    cairo_set_line_width(cairo,object->line_options->line_width > 10.0 ?
+                               object->line_options->line_width : 10.0);
 
-    cairo_set_source_rgb(
-        cairo,
-        0.0,
-        0.0,
-        0.0
-        );
+    cairo_set_source_rgb(cairo, 0.0, 0.0, 0.0);
 
-    cairo_move_to(
-        cairo,
-        object->line->x[0],
-        object->line->y[0]
-        );
+    cairo_move_to(cairo, object->line->x[0], object->line->y[0]);
 
-    cairo_line_to(
-        cairo,
-        object->line->x[1],
-        object->line->y[1]
-        );
+    cairo_line_to(cairo, object->line->x[1], object->line->y[1]);
 
     cairo_stroke(cairo);
 }
@@ -314,7 +262,7 @@ static void print_path(GedaToplevel *current, cairo_t *cairo, GedaObject *object
     }
 
     fill_width = object->fill_options->fill_width > 5.0 ?
-    object->fill_options->fill_width : 5.0;
+                 object->fill_options->fill_width : 5.0;
 
     cairo_set_line_width(cairo, fill_width);
 
@@ -338,11 +286,7 @@ static void print_path(GedaToplevel *current, cairo_t *cairo, GedaObject *object
         cairo_close_path(cairo);
 
       case PATH_MOVETO_OPEN:
-        cairo_move_to(
-          cairo,
-          section->x3,
-          section->y3
-        );
+        cairo_move_to(cairo, section->x3, section->y3);
         break;
 
       case PATH_CURVETO:
@@ -400,41 +344,25 @@ static void print_text(GedaToplevel *current, cairo_t *cairo, GedaObject *object
 
     cairo_save(cairo);
 
-    cairo_move_to(
-      cairo,
-      object->text->x,
-      object->text->y
-    );
+    cairo_move_to(cairo, object->text->x, object->text->y);
 
-    cairo_scale(
-      cairo,
-      1.0,
-      -1.0
-    );
+    cairo_scale(cairo, 1.0, -1.0);
 
     int flip = (object->text->angle == 180);
 
-    if (!flip)
-    {
-      cairo_rotate(
-        cairo,
-        M_PI * object->text->angle / -180.0
-      );
+    if (!flip) {
+      cairo_rotate(cairo, M_PI * object->text->angle / -180.0);
     }
 
     PangoContext *context = pango_cairo_create_context(cairo);
 
-    pango_cairo_context_set_resolution(
-      context,
-      1600.0
-    );
+    pango_cairo_context_set_resolution(context, 1600.0);
 
     PangoLayout *layout = pango_layout_new(context);
 
     PangoAlignment halign = PANGO_ALIGN_LEFT;
 
-    switch (object->text->alignment)
-    {
+    switch (object->text->alignment) {
       case LOWER_LEFT:
       case MIDDLE_LEFT:
       case UPPER_LEFT:
@@ -462,6 +390,7 @@ static void print_text(GedaToplevel *current, cairo_t *cairo, GedaObject *object
     pango_font_description_set_size(desc, PANGO_SCALE * object->text->size);
 
     pango_layout_set_font_description(layout, desc);
+
     pango_font_description_free(desc);
 
     /* Begin cap height computation */
@@ -472,11 +401,7 @@ static void print_text(GedaToplevel *current, cairo_t *cairo, GedaObject *object
     PangoRectangle extents_ink;
     PangoRectangle extents_logical;
 
-    pango_layout_get_extents(
-      layout,
-      &extents_ink,
-      &extents_logical
-    );
+    pango_layout_get_extents(layout, &extents_ink, &extents_logical);
 
     int coffset = extents_ink.y;
 
@@ -489,26 +414,21 @@ static void print_text(GedaToplevel *current, cairo_t *cairo, GedaObject *object
 
     PangoLayoutIter *iter = pango_layout_get_iter(layout);
 
-    while (pango_layout_iter_next_line(iter))
-    {
+    while (pango_layout_iter_next_line(iter)) {
       baseline = pango_layout_iter_get_baseline(iter);
     }
 
     pango_layout_iter_free(iter);
 
-    pango_layout_get_extents(
-      layout,
-      &extents_ink,
-      &extents_logical
-    );
+    pango_layout_get_extents(layout, &extents_ink, &extents_logical);
 
     double xalign = 0.0;
     double xoffset;
     double yalign = 0.0;
     double yoffset;
 
-    switch (object->text->alignment)
-    {
+    switch (object->text->alignment) {
+
       case LOWER_LEFT:
       case MIDDLE_LEFT:
       case UPPER_LEFT:
@@ -528,15 +448,13 @@ static void print_text(GedaToplevel *current, cairo_t *cairo, GedaObject *object
         break;
     }
 
-    if (flip)
-    {
+    if (flip) {
       xalign = 1.0 - xalign;
     }
 
     xoffset = extents_ink.x + xalign * extents_ink.width;
 
-    switch (object->text->alignment)
-    {
+    switch (object->text->alignment) {
       case LOWER_LEFT:
       case LOWER_MIDDLE:
       case LOWER_RIGHT:
@@ -556,8 +474,7 @@ static void print_text(GedaToplevel *current, cairo_t *cairo, GedaObject *object
         break;
     }
 
-    if (flip)
-    {
+    if (flip) {
       yalign = 1.0 - yalign;
     }
 
@@ -576,76 +493,75 @@ static void print_text(GedaToplevel *current, cairo_t *cairo, GedaObject *object
 
 static void print_object(GedaToplevel *current, cairo_t *cairo, GedaObject *object)
 {
-    if (geda_object_get_is_visible(object))
-    {
-        switch (object->type)
-        {
-            case OBJ_ARC:
-                print_arc(current, cairo, object);
-                break;
+  if (geda_object_get_is_visible(object)) {
 
-            case OBJ_BOX:
-                print_box(current, cairo, object);
-                break;
+    switch (object->type) {
+      case OBJ_ARC:
+        print_arc(current, cairo, object);
+        break;
 
-            case OBJ_BUS:
-                print_bus(current, cairo, object);
-                break;
+      case OBJ_BOX:
+        print_box(current, cairo, object);
+        break;
 
-            case OBJ_CIRCLE:
-                print_circle(current, cairo, object);
-                break;
+      case OBJ_BUS:
+        print_bus(current, cairo, object);
+        break;
 
-            case OBJ_COMPLEX:
-            case OBJ_PLACEHOLDER:
-                print_complex(current, cairo, object);
-                break;
+      case OBJ_CIRCLE:
+        print_circle(current, cairo, object);
+        break;
 
-            case OBJ_LINE:
-                print_line(current, cairo, object);
-                break;
+      case OBJ_COMPLEX:
+      case OBJ_PLACEHOLDER:
+        print_complex(current, cairo, object);
+        break;
 
-            case OBJ_NET:
-                print_net(current, cairo, object);
-                break;
+      case OBJ_LINE:
+        print_line(current, cairo, object);
+        break;
 
-            case OBJ_PATH:
-                print_path(current, cairo, object);
-                break;
+      case OBJ_NET:
+        print_net(current, cairo, object);
+        break;
 
-            case OBJ_PIN:
-                print_pin(current, cairo, object);
-                break;
+      case OBJ_PATH:
+        print_path(current, cairo, object);
+        break;
 
-            case OBJ_TEXT:
-                print_text(current, cairo, object);
-                break;
+      case OBJ_PIN:
+        print_pin(current, cairo, object);
+        break;
 
-            default:
-                printf("default\n");
-        }
+      case OBJ_TEXT:
+        print_text(current, cairo, object);
+        break;
+
+      default:
+        printf("default\n");
     }
+  }
 }
 
 static void print_object_list(GedaToplevel *current, cairo_t *cairo, const GList *objects)
 {
-    const GList *node = objects;
+  const GList *node = objects;
 
-    while (node != NULL)
-    {
-        GedaObject *object = (GedaObject*) node->data;
+  while (node != NULL) {
 
-        print_object(current, cairo, object);
+    GedaObject *object = (GedaObject*) node->data;
 
-        node = g_list_next(node);
-    }
+    print_object(current, cairo, object);
+
+    node = g_list_next(node);
+  }
 }
 
 static void print_page(GedaToplevel *current, cairo_t *cairo, Page *page)
 {
     cairo_rectangle_t  rectangle;
 
-    const GList       *list;
+    const GList *list;
     int wx_min, wy_min, wx_max, wy_max;
 
     cairo_save(cairo);
@@ -711,7 +627,6 @@ static void main2(void *closure, int argc, char *argv[])
 
     rc_config_init();
     rc_config_set_print_settings(print_settings);
-
     g_rc_parse(argv[0], "gsch2pdfrc", NULL);
 
     geda_utility_log_init ("gsch2pdf");
