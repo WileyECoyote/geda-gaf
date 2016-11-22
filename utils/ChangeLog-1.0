@@ -1,7 +1,9 @@
 2016-11-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * gsch2pdf/main.c: Reformat module; remove unnecessary line wrap to improve
-      readability.
+      readability. Expand print_complex to iterate over prim_objs and pass each
+      to print_object instead of recursively calling print_object_list so that
+      node->next is not skewed.
 
 2016-11-21 Wiley E. Hill <wileyhill@gmail.com>
 

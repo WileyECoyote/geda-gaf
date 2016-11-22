@@ -30,7 +30,9 @@
 #include <geda_debug.h>
 
 static PrintSettings *print_settings = NULL;
-static void print_object_list(GedaToplevel *current, cairo_t *cairo, const GList *objects);
+
+static void print_object       (GedaToplevel *current, cairo_t *cairo, GedaObject *object);
+static void print_object_list  (GedaToplevel *current, cairo_t *cairo, const GList *objects);
 
 static void print_arc(GedaToplevel *current, cairo_t *cairo, GedaObject *object)
 {
@@ -188,7 +190,16 @@ static void print_circle(GedaToplevel *current, cairo_t *cairo, GedaObject *obje
 
 static void print_complex(GedaToplevel *current, cairo_t *cairo, GedaObject *object)
 {
-    print_object_list(current, cairo, object->complex->prim_objs);
+  const GList *iter = object->complex->prim_objs;
+
+  while (iter != NULL) {
+
+    GedaObject *object = (GedaObject*)iter->data;
+
+    print_object(current, cairo, object);
+
+    iter = g_list_next(iter);
+  }
 }
 
 static void print_junctions(GedaToplevel *current, cairo_t *cairo, const GArray *junctions)
@@ -682,4 +693,3 @@ int main(int argc, char *argv[])
 
     return EXIT_FAILURE;
 }
-
