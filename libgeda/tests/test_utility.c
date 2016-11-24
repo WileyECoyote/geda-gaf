@@ -28,6 +28,8 @@
 #include <stdlib.h>
 #include <errno.h>
 
+#include "test-suite.h"
+
 /*! \file test_utility.c
  *  \brief Tests for geda utility functions
  *  \par
@@ -451,9 +453,9 @@ int test_log (void)
 int test_program (void)
 {
   /* === Function 01: geda_program_backtrace  geda_utility_program_backtrace === */
-  /* === Function 02: geda_malloc             geda_utility_program_mem_alloc
-  /* === Function 03: geda_calloc             geda_utility_program_mem_calloc
-  /* === Function 04: geda_free               geda_utility_program_mem_free
+  /* === Function 02: geda_malloc             geda_utility_program_mem_alloc === */
+  /* === Function 03: geda_calloc             geda_utility_program_mem_calloc === */
+  /* === Function 04: geda_free               geda_utility_program_mem_free === */
   /* === Function 05: geda_set_memory_vtable  geda_utility_program_mem_set_vtable === */
   return 0;
 }
@@ -1511,17 +1513,71 @@ main (int argc, char *argv[])
 {
   int result = 0;
 
+  const char *msg_signal;
+
+  msg_signal = "Caught signal checking utility group 1 src/utility/%s\n\n";
+
+  SETUP_SIGSEGV_HANDLER;
+
   /* Initialize gobject */
 #if (( GLIB_MAJOR_VERSION == 2 ) && ( GLIB_MINOR_VERSION < 36 ))
   g_type_init();
 #endif
 
-  result  = test_utility();
-  result += test_glist();
-  result += test_log();
-  result += test_program();
-  result += test_refdes();
-  result += test_strings();
+  if (setjmp(point) == 0) {
+      result = test_utility();
+  }
+  else {
+    fprintf(stderr, msg_signal, "u_utility.c");
+    result++;
+  }
 
+  if (setjmp(point) == 0) {
+    result += test_glist();
+  }
+  else {
+    fprintf(stderr, msg_signal, "u_glist.c");
+    result++;
+  }
+
+  if (setjmp(point) == 0) {
+    result += test_log();
+  }
+  else {
+    fprintf(stderr, msg_signal, "u_log.c");
+    result++;
+  }
+
+  if (setjmp(point) == 0) {
+    result += test_log();
+  }
+  else {
+    fprintf(stderr, msg_signal, "u_log.c");
+    result++;
+  }
+
+  if (setjmp(point) == 0) {
+    result += test_program();
+  }
+  else {
+    fprintf(stderr, msg_signal, "u_program.c");
+    result++;
+  }
+
+  if (setjmp(point) == 0) {
+    result += test_refdes();
+  }
+  else {
+    fprintf(stderr, msg_signal, "u_refdes.c");
+    result++;
+  }
+
+  if (setjmp(point) == 0) {
+    result += test_strings();
+  }
+  else {
+    fprintf(stderr, msg_signal, "u_string.c");
+    result++;
+  }
   return result;
 }

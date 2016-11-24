@@ -11,6 +11,9 @@
           * geda_utility_program_mem_calloc
           * geda_utility_program_mem_free
 
+    * tests/test_utility.c: Include "test-suite.h" and setup setjmp and longjmp
+      to trap seg faults during tests.
+
 2016-11-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_config.c: Add debug output of eda_config created and
