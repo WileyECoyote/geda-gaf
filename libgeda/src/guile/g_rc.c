@@ -991,7 +991,10 @@ SCM g_rc_bitmap_directory(SCM path)
     return SCM_BOOL_F;
   }
 
-  GEDA_FREE(default_bitmap_directory);
+  if (default_bitmap_directory) {
+    geda_free (default_bitmap_directory);
+  }
+
   default_bitmap_directory = string;
 
   return SCM_BOOL_T;
@@ -1027,7 +1030,9 @@ SCM g_rc_log_directory(SCM path)
     return SCM_BOOL_F;
   }
 
-  GEDA_FREE(default_log_directory);
+  if (default_log_directory) {
+    geda_free (default_log_directory);
+  }
   default_log_directory = string;
 
   return SCM_BOOL_T;
@@ -1058,7 +1063,10 @@ SCM g_rc_scheme_directory(SCM s_path)
   s_path   = scm_from_utf8_string (expanded);
 
   free (temp);
-  GEDA_FREE (expanded);
+
+  if (expanded) {
+    geda_free (expanded);
+  }
 
   s_load_path_var = scm_c_lookup ("%load-path");
   s_load_path     = scm_variable_ref (s_load_path_var);
@@ -1212,11 +1220,13 @@ SCM g_rc_untitled_name(SCM name)
 
   SCM_ASSERT (scm_is_string (name), name, SCM_ARG1, "untitled-name");
 
-  GEDA_FREE(default_untitled_name);
+  if (default_untitled_name) {
+    geda_free(default_untitled_name);
+  }
 
   temp = scm_to_utf8_string (name);
 
-  default_untitled_name = geda_utility_string_strdup (temp);
+  default_untitled_name = geda_strdup (temp);
 
   free (temp);
 

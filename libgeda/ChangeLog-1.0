@@ -3,6 +3,9 @@
     * include/libgeda/defines.h: Remove memory and g_object related macros
       relocated to geda/geda_wrap.h.
 
+    * src/guile/g_rc.c: Check and release default strings directly instead of
+      indiscriminately using GEDA_FREE macro.
+
     * src/utility/u_program.c: Initialize memvtable to zeros, adjust function
       wraps and refrain from setting setting values in memvtable if glib is
       version 2.44 or above. Add functions:
