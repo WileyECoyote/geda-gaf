@@ -1,3 +1,8 @@
+2016-11-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/libgeda/defines.h: Remove memory and g_object related macros
+      relocated to geda/geda_wrap.h.
+
 2016-11-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_config.c: Add debug output of eda_config created and

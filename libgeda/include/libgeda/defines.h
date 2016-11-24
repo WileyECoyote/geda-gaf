@@ -73,14 +73,6 @@
                               (default_ ## name) : (str));     \
 }
 
-#define GEDA_FREE(ptr) do { g_free(ptr); (ptr) = NULL; } while (0);
-#define GEDA_MEM_ALLOC(amount) g_malloc(amount);
-#define GEDA_MEM_ALLOC0(amount) g_malloc0(amount);
-#define GEDA_MEM_REALLOC(ptr, amount) g_realloc ((ptr), amount)
-
-#define GEDA_REF(obj) if (G_IS_OBJECT(obj)) g_object_ref (obj);
-#define GEDA_UNREF(obj) if (G_IS_OBJECT(obj)) g_object_unref (obj);
-
 #define DISK_BUFFER_SIZE        4096
 
 #define DEFAULT_PAGE_WIDTH      121000

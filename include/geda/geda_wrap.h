@@ -33,9 +33,31 @@
  *
  *   \defgroup geda-wrapper-macros Global Wrappper Macros
  * @{\par This group defines utility macros for wrapping functions
- *        in external librarie.
+ *        in external libraries.
  *   \ingroup (geda-globals)
  */
+
+/* memory related */
+
+#define GEDA_FREE(ptr) \
+    do { g_free(ptr); (ptr) = NULL; } while (0);
+
+#define GEDA_MEM_ALLOC(amount) \
+    g_malloc(amount);
+
+#define GEDA_MEM_ALLOC0(amount) \
+    g_malloc0(amount);
+
+#define GEDA_MEM_REALLOC(ptr, amount) \
+    g_realloc ((ptr), amount)
+
+/* g_object stuff */
+
+#define GEDA_REF(obj) \
+    if (G_IS_OBJECT(obj)) g_object_ref (obj);
+
+#define GEDA_UNREF(obj) \
+    if (G_IS_OBJECT(obj)) g_object_unref (obj);
 
 #define GEDA_OBJECT_GET_DATA(object, key) \
     g_object_get_data (G_OBJECT(object), key)

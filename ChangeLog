@@ -1,3 +1,9 @@
+2016-11-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * geda/geda_wrap.h: Add memory and g_object related macros from libgeda
+      into toplevel header so that these macros can be utilized without
+      including all the libgeda headers.
+
 2016-11-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda/geda_types.h: Revise conditional for typedef mode_t; do
