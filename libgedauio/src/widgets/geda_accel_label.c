@@ -140,6 +140,53 @@ geda_accel_label_refetch (GedaAccelLabel *accel_label)
   return FALSE;
 }
 
+static void
+geda_accel_label_reset (GedaAccelLabel *accel_label)
+{
+  if (accel_label->accel_string) {
+
+    g_free (accel_label->accel_string);
+    accel_label->accel_string = NULL;
+  }
+
+  gtk_widget_queue_resize (GTK_WIDGET (accel_label));
+}
+
+static void
+check_accel_changed (GtkAccelGroup   *accel_group,
+                     unsigned int     keyval,
+                     GdkModifierType  modifier,
+                     GClosure        *accel_closure,
+                     GedaAccelLabel  *accel_label)
+{
+  if (accel_closure == accel_label->accel_closure) {
+    geda_accel_label_reset (accel_label);
+  }
+}
+
+static void
+refetch_widget_accel_closure (GedaAccelLabel *accel_label)
+{
+  GClosure *closure = NULL;
+  GList    *clist;
+  GList    *list;
+
+  g_return_if_fail (GEDA_IS_ACCEL_LABEL (accel_label));
+  g_return_if_fail (GTK_IS_WIDGET (accel_label->accel_widget));
+
+  clist = gtk_widget_list_accel_closures (accel_label->accel_widget);
+
+  for (list = clist; list; list = list->next) {
+
+    /* we just take the first closure used */
+    closure = list->data;
+    break;
+  }
+
+  g_list_free (clist);
+  geda_accel_label_set_accel_closure (accel_label, closure);
+}
+
 static const char *
 geda_accel_label_get_string (GedaAccelLabel *accel_label)
 {
@@ -212,6 +259,23 @@ geda_accel_label_finalize (GObject *object)
   GedaAccelLabel *accel_label = GEDA_ACCEL_LABEL (object);
 
   GEDA_FREE (accel_label->accel_string);
+
+  if (accel_label->accel_closure) {
+
+    g_signal_handlers_disconnect_by_func (accel_label->accel_group,
+                                          check_accel_changed,
+                                          accel_label);
+    accel_label->accel_group = NULL;
+    g_closure_unref (accel_label->accel_closure);
+  }
+
+  if (accel_label->accel_widget) {
+
+    g_signal_handlers_disconnect_by_func (accel_label->accel_widget,
+                                          refetch_widget_accel_closure,
+                                          accel_label);
+    g_object_unref (accel_label->accel_widget);
+  }
 
   G_OBJECT_CLASS (geda_accel_label_parent_class)->finalize (object);
 }
@@ -658,30 +722,6 @@ geda_accel_label_new (const char *string)
   return GTK_WIDGET (accel_label);
 }
 
-static void
-geda_accel_label_reset (GedaAccelLabel *accel_label)
-{
-  if (accel_label->accel_string) {
-
-    g_free (accel_label->accel_string);
-    accel_label->accel_string = NULL;
-  }
-
-  gtk_widget_queue_resize (GTK_WIDGET (accel_label));
-}
-
-static void
-check_accel_changed (GtkAccelGroup   *accel_group,
-                     unsigned int     keyval,
-                     GdkModifierType  modifier,
-                     GClosure        *accel_closure,
-                     GedaAccelLabel  *accel_label)
-{
-  if (accel_closure == accel_label->accel_closure) {
-    geda_accel_label_reset (accel_label);
-  }
-}
-
 /*!
  * \brief Create a New GedaAccelLabel Closure.
  * \par Function Description
@@ -742,29 +782,6 @@ geda_accel_label_get_accel_widget (GedaAccelLabel *accel_label)
   g_return_val_if_fail (GEDA_IS_ACCEL_LABEL (accel_label), NULL);
 
   return accel_label->accel_widget;
-}
-
-static void
-refetch_widget_accel_closure (GedaAccelLabel *accel_label)
-{
-  GClosure *closure = NULL;
-  GList    *clist;
-  GList    *list;
-
-  g_return_if_fail (GEDA_IS_ACCEL_LABEL (accel_label));
-  g_return_if_fail (GTK_IS_WIDGET (accel_label->accel_widget));
-
-  clist = gtk_widget_list_accel_closures (accel_label->accel_widget);
-
-  for (list = clist; list; list = list->next) {
-
-    /* we just take the first closure used */
-    closure = list->data;
-    break;
-  }
-
-  g_list_free (clist);
-  geda_accel_label_set_accel_closure (accel_label, closure);
 }
 
 /*!

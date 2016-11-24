@@ -1,3 +1,10 @@
+2016-11-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_accel_label.c: Reorganize check_accel_changed and
+      refetch_widget_accel_closure; relocate before geda_accel_label_finalize
+      and disconnect signal for each and unreference the accel_closure and
+      the accel_widget.
+
 2016-11-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Add/update GedaEntry Doxygen comments:
