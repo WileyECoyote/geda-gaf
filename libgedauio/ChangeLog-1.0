@@ -5,6 +5,14 @@
       and disconnect signal for each and unreference the accel_closure and
       the accel_widget.
 
+    * src/widgets/geda_label.c: Add geda_label_dispose and hook widget disposer.
+      Disconnect signals for label_shortcut_setting_changed from settings and
+      label_mnemonics_visible_changed from toplevel; these would be handled
+      automatically when the corresponding objects are destroyed but in the
+      mean time if the signals fire GEDA_IS_LABEL and GEDA_IS_ACCEL_LABEL
+      could be called for objects being destroyed. Does not seem to break
+      anything.
+
 2016-11-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Add/update GedaEntry Doxygen comments:

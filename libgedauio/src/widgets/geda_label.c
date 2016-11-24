@@ -280,6 +280,10 @@ static void geda_label_buildable_custom_finished  (GtkBuildable      *buildable,
                                                    void              *user_data);
 
 static void connect_mnemonics_visible_notify      (GedaLabel         *label);
+static void label_mnemonics_visible_changed       (GtkWindow         *window,
+                                                   GParamSpec        *pspec,
+                                                   void              *data);
+static void label_shortcut_setting_changed        (GtkSettings       *settings);
 static bool separate_uline_pattern                (const char        *str,
                                                    unsigned int      *accel_key,
                                                    char             **new_str,
@@ -932,6 +936,41 @@ geda_label_destroy (GtkObject *object)
   GTK_OBJECT_CLASS (geda_label_parent_class)->destroy (object);
 }
 
+
+static void geda_label_dispose (GObject *object)
+{
+  GedaLabel   *label = GEDA_LABEL (object);
+  GtkSettings *settings;
+  GtkWidget   *toplevel;
+  bool         connected;
+
+  settings = gtk_widget_get_settings ((GtkWidget*)object);
+
+  connected = (int)(long)GEDA_OBJECT_GET_DATA (settings, "label-short-connected");
+
+  if (connected) {
+
+    g_signal_handlers_disconnect_by_func (settings, label_shortcut_setting_changed, NULL);
+
+    g_object_set_data (G_OBJECT (settings), "label-short-connected",
+                       (void*)(long)FALSE);
+  }
+
+  toplevel = gtk_widget_get_toplevel (GTK_WIDGET (label));
+
+  connected = (int)(long)GEDA_OBJECT_GET_DATA(toplevel, "label-mnemonics-connected");
+
+  if (connected) {
+
+    g_signal_handlers_disconnect_by_func (toplevel, label_mnemonics_visible_changed, label);
+
+    g_object_set_data (G_OBJECT (toplevel), "label-mnemonics-connected",
+                       (void*)(long)FALSE);
+  }
+
+  G_OBJECT_CLASS (geda_label_parent_class)->dispose (object);
+}
+
 static void geda_label_finalize (GObject *object)
 {
   GedaLabel *label = GEDA_LABEL (object);
@@ -1123,6 +1162,7 @@ geda_label_class_init  (void *class, void *class_data)
 
   gobject_class->set_property        = geda_label_set_property;
   gobject_class->get_property        = geda_label_get_property;
+  gobject_class->dispose             = geda_label_dispose;
   gobject_class->finalize            = geda_label_finalize;
 
   object_class->destroy              = geda_label_destroy;
