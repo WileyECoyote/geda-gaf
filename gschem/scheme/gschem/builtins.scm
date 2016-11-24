@@ -122,6 +122,9 @@
 (define-action-public (&edit-rotate-left #:label (_ "Rotate Mode") #:icon "geda-rotate")
   (%edit-rotate-left))
 
+(define-action-public (&edit-rotate-right #:label (_ "Rotate Mode") #:icon "geda-rotate")
+  (%edit-rotate-right))
+
 (define-action-public (&edit-snap #:label (_ "Snap to Grid") #:icon "geda-snap")
   (%edit-snap))
 

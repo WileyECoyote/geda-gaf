@@ -1624,6 +1624,7 @@
 (map-keys "E N"        "edit-snap")
 (map-keys "E P"        "edit-extend")
 (map-keys "E R"        "edit-rotate-left")
+(map-keys "E T"        "edit-rotate-right")
 (map-keys "E O"        "edit-offset")
 (map-keys "E I"        "edit-mirror")
 (map-keys "E <Shift>C" "edit-color")

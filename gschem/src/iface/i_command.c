@@ -1684,6 +1684,52 @@ COMMAND (do_rotate_left)
 }
 
 /*!
+ * \brief Action Rotate  in i_command_Edit_Actions
+ * \brief i_cmd_do_rotate_right
+ * \par Function Description
+ *  This function rotate all objects in the selection list by -90 degrees.
+ */
+COMMAND (do_rotate_right)
+{
+  BEGIN_W_COMMAND(do_rotate_right);
+
+  if (w_current->inside_action) {
+
+    o_place_rotate (w_current, 270);
+
+  }
+  else {
+
+    int state;
+
+    o_redraw_cleanstates(w_current);
+
+    if HOT_ACTION (do_rotate_right) {
+
+      GList *object_list;
+
+      object_list = geda_list_get_glist (Current_Selection);
+
+      if (object_list) {
+        /* Allow o_edit_rotate_world to redraw the objects */
+        o_edit_rotate_world(w_current, CMD_X(do_rotate_right),
+                                       CMD_Y(do_rotate_right), 270, object_list);
+      }
+
+      state = SELECT;
+    }
+    else {
+      state = ENDROTATE;
+
+    }
+
+    i_status_set_state(w_current, state);
+  }
+
+  EXIT_COMMAND(do_rotate_right);
+}
+
+/*!
  * \brief Snap Selecion Editing Action
  * \brief i_cmd_do_snap in i_command_Edit_Actions
  * \par Function Description
