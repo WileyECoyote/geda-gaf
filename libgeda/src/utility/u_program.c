@@ -33,7 +33,7 @@
 
 #include <glib.h>
 
-static GMemVTable memvtable;
+static GMemVTable memvtable = {0};
 
 #ifdef __linux__
 
@@ -41,7 +41,8 @@ static GMemVTable memvtable;
 
 #define BACK_TRACE_SIZE 20
 
-static void inline traceback(void)  /* "static" means don't export the symbol... */
+static void
+inline traceback(void)  /* "static" means don't export the symbol... */
 {
   int j, nptrs;
 
@@ -77,14 +78,16 @@ static void inline traceback(void)  /* "static" means don't export the symbol...
  * locate errent routines.
  *
  */
-void geda_utility_program_backtrace(void)
+void
+geda_utility_program_backtrace(void)
 {
   traceback();
 }
 
 #else
 
-void geda_utility_program_backtrace(void)
+void
+geda_utility_program_backtrace(void)
 {
   fprintf(stderr, "geda_utility_program_backtrace in only available for linux\n");
 }
@@ -105,17 +108,23 @@ void geda_utility_program_backtrace(void)
  * and g_malloc, free and g_free can be freely mixed. Guile uses
  * GLIBC, and not GLIB.
  */
-void geda_utility_program_mem_set_vtable(void)
+void
+geda_utility_program_mem_set_vtable(void)
 {
+
+#if !GLIB_CHECK_VERSION(2, 44, 0)
+
    memvtable.malloc      = malloc;
    memvtable.realloc     = realloc;
    memvtable.free        = free;
    memvtable.calloc      = calloc;
    memvtable.try_malloc  = 0;
    memvtable.try_realloc = 0;
-#if !GLIB_CHECK_VERSION(2, 44, 0)
+
    g_mem_set_vtable (&memvtable);
+
 #endif
+
 }
 
 /* Virutal over-ride, because we set the vtable, glib incorrectly
