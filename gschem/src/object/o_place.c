@@ -433,7 +433,7 @@ void o_place_mirror (GschemToplevel *w_current)
  *   Passes list of objects being placed to geda_rotate_list
  *   with and angle of 90.
  */
-void o_place_rotate (GschemToplevel *w_current)
+void o_place_rotate (GschemToplevel *w_current, int angle)
 {
   GList *list;
 
@@ -444,7 +444,7 @@ void o_place_rotate (GschemToplevel *w_current)
 
     o_place_invalidate_rubber (w_current, FALSE);
 
-    geda_rotate_list (list, wx, wy, 90);
+    geda_rotate_list (list, wx, wy, angle);
 
     if (w_current->ALTKEY) {
 
@@ -454,7 +454,9 @@ void o_place_rotate (GschemToplevel *w_current)
 
       if (alist) {
 
-        geda_rotate_list (alist, 0, 0, -90);
+        int text_angle = -1 * angle;
+
+        geda_rotate_list (alist, 0, 0, text_angle);
 
         g_list_free(alist);
       }

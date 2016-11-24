@@ -1649,7 +1649,7 @@ COMMAND (do_rotate_left)
 
   if (w_current->inside_action) {
 
-    o_place_rotate (w_current);
+    o_place_rotate (w_current, 90);
 
   }
   else {

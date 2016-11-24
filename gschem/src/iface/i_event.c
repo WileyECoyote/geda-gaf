@@ -605,7 +605,7 @@ i_event_paster_released(GtkWidget      *widget,
           }
           w_current->rubber_visible = FALSE;
 
-          o_place_rotate(w_current);
+          o_place_rotate(w_current, 90);
 
           if (w_current->event_state == COMPMODE) {
             o_complex_place_changed_run_hook (w_current);

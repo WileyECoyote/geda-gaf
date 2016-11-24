@@ -596,7 +596,7 @@ void       o_place_motion                    (GschemToplevel *w_current, int x, 
 void       o_place_invalidate_rubber         (GschemToplevel *w_current, int drawing);
 void       o_place_draw_rubber               (GschemToplevel *w_current, int drawing);
 void       o_place_mirror                    (GschemToplevel *w_current);
-void       o_place_rotate                    (GschemToplevel *w_current);
+void       o_place_rotate                    (GschemToplevel *w_current, int angle);
 bool       o_place_start                     (GschemToplevel *w_current, int x, int y);
 
 /* o_redraw.c */

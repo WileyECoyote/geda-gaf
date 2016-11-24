@@ -1,3 +1,7 @@
+2016-11-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_place.c: Add angle argument to o_place_rotate.
+
 2016-11-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_util.c: Revise s_show_uri; add SCM_ASSERT back, remove
@@ -6,7 +10,7 @@
     * gschem/src/iface/i_threads.c: Revise gschem_threads_init to call
       gschem_threads_enter so that the the lock is set initially and this
       was detected by glib 2.48, rather rudely. Attempting to unlock a
-      thread that is not locked is probably not sufficient cause for an
+      thread that is not locked is probably not sufficient cause for a
       library to shutdown a program, when only a warning is warrented.
       No linkage to glib should be a goal.
 
