@@ -978,9 +978,7 @@ static void geda_label_finalize (GObject *object)
   GEDA_FREE (label->label);
   GEDA_FREE (label->text);
 
-  if (label->layout) {
-    g_object_unref (label->layout);
-  }
+  geda_label_clear_links (label);
 
   if (label->attrs) {
     pango_attr_list_unref (label->attrs);
@@ -990,9 +988,13 @@ static void geda_label_finalize (GObject *object)
     pango_attr_list_unref (label->markup_attrs);
   }
 
-  geda_label_clear_links (label);
+  if (label->layout) {
+    g_object_unref (label->layout);
+  }
 
   GEDA_FREE (label->priv->select_info);
+
+  pango_cairo_font_map_set_default(NULL);
 
   GEDA_UNREF (label->priv->font_map);
 
