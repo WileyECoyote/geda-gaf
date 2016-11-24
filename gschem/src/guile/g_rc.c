@@ -1454,10 +1454,12 @@ SCM g_rc_bus_ripper_symname(SCM scmsymname)
   SCM_ASSERT (scm_is_string (scmsymname), scmsymname,
               SCM_ARG1, "bus-ripper-symname");
 
-  GEDA_FREE(default_bus_ripper_symname);
+  if (default_bus_ripper_symname) {
+    geda_free (g_rc_bus_ripper_symname);
+  }
 
   temp = scm_to_utf8_string (scmsymname);
-  default_bus_ripper_symname = geda_utility_string_strdup (temp);
+  default_bus_ripper_symname = geda_strdup (temp);
   free (temp);
 
   return SCM_BOOL_T;
@@ -1709,7 +1711,10 @@ SCM g_rc_print_command(SCM scm_command)
 
   command = scm_to_utf8_string (scm_command);
 
-  GEDA_FREE (default_print_command);
+  if (default_print_command) {
+    geda_free (default_print_command);
+  }
+
   default_print_command = geda_utility_string_strdup (command);
   free (command);
 

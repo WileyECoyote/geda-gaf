@@ -4,6 +4,9 @@
 
     * include/i_actions.h: Add action edit-rotate-right as EDIT_ROTATE_RIGHT.
 
+    * src/guile/g_rc.c: Check and release default strings directly instead of
+      indiscriminately using GEDA_FREE macro.
+
     * src/iface/i_command.c: Add handler i_cmd_do_rotate_right to handler
       action edit-rotate-right.
 
