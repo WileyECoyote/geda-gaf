@@ -451,7 +451,10 @@ int test_log (void)
 int test_program (void)
 {
   /* === Function 01: geda_program_backtrace  geda_utility_program_backtrace === */
-  /* === Function 02: geda_set_memory_vtable  geda_utility_program_mem_set_vtable === */
+  /* === Function 02: geda_malloc             geda_utility_program_mem_alloc
+  /* === Function 03: geda_calloc             geda_utility_program_mem_calloc
+  /* === Function 04: geda_free               geda_utility_program_mem_free
+  /* === Function 05: geda_set_memory_vtable  geda_utility_program_mem_set_vtable === */
   return 0;
 }
 /** @} endgroup test-utility-geda-program */

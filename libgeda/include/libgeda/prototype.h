@@ -824,6 +824,9 @@ const CLibSymbol *geda_struct_clib_get_symbol_by_name      (const char *name);
 
 /* u_program.c */
          void    geda_utility_program_backtrace       (void);
+         void   *geda_utility_program_mem_alloc      (unsigned int amount);
+         void   *geda_utility_program_mem_calloc      (unsigned int amount);
+         void    geda_utility_program_mem_free        (void *mem);
          void    geda_utility_program_mem_set_vtable  (void);
 
 /* u_refdes.c */

@@ -5,7 +5,11 @@
 
     * src/utility/u_program.c: Initialize memvtable to zeros, adjust function
       wraps and refrain from setting setting values in memvtable if glib is
-      version 2.44 or above.
+      version 2.44 or above. Add functions:
+
+          * geda_utility_program_mem_alloc
+          * geda_utility_program_mem_calloc
+          * geda_utility_program_mem_free
 
 2016-11-22 Wiley E. Hill <wileyhill@gmail.com>
 

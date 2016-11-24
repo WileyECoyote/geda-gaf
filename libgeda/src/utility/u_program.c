@@ -94,6 +94,76 @@ geda_utility_program_backtrace(void)
 
 #endif
 
+void*
+geda_utility_program_mem_alloc (unsigned int amount)
+{
+  void *ptr_mem;
+
+  if (amount > 0) {
+
+#if !GLIB_CHECK_VERSION(2, 44, 0)
+
+    if (memvtable.malloc) {
+      ptr_mem = malloc(amount);
+    }
+    else {
+      ptr_mem = g_malloc(amount);
+    }
+
+#else
+
+    ptr_mem = malloc(amount);
+
+#endif
+
+  }
+  else {
+    fprintf(stderr, "%s: tried to allocate memory with size zero\n", __func__);
+    ptr_mem = NULL;
+  }
+
+  return ptr_mem;
+}
+
+void*
+geda_utility_program_mem_calloc (unsigned int amount)
+{
+  void *ptr_mem;
+
+  ptr_mem = geda_utility_program_mem_alloc(amount);
+
+  if (ptr_mem) {
+    return memset(ptr_mem, 0, amount);
+  }
+  return NULL;
+}
+
+void
+geda_utility_program_mem_free (void *ptr_mem)
+{
+  if (ptr_mem != NULL) {
+
+#if !GLIB_CHECK_VERSION(2, 44, 0)
+
+    if (memvtable.free) {
+      free (ptr_mem);
+    }
+    else {
+      g_free(ptr_mem);
+    }
+
+#else
+
+    free (ptr_mem);
+
+#endif
+  }
+  else {
+    fprintf(stderr, "%s: pointer to mem is NULL>\n", __func__);
+    EMBED_BREAKPOINT;
+  }
+}
+
 /*! \brief Setup GLib Memory Table
  *
  *  \par Function Description
