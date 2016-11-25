@@ -20,6 +20,10 @@
       menubar->priv->accel before setting, and set directly using the pointer
       returned from g_object_get instead of making a copy using geda_strdup.
 
+    * src/widgets/geda_menu_item.c: Revise geda_menu_item_is_selectable and
+      geda_menu_item_is_widget_selectable to return FALSE if the argument is
+      NULL without checking any other conditions.
+
 2016-11-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Add/update GedaEntry Doxygen comments:

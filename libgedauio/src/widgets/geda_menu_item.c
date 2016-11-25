@@ -755,12 +755,18 @@ geda_menu_item_class_init  (void *class, void *class_data)
                                                          FALSE,
                                                          G_PARAM_READWRITE));
 
-  g_object_class_override_property (gobject_class, PROP_ACTIVATABLE_RELATED_ACTION, "related-action");
-  g_object_class_override_property (gobject_class, PROP_ACTIVATABLE_USE_ACTION_APPEARANCE, "use-action-appearance");
+  g_object_class_override_property (gobject_class,
+                                    PROP_ACTIVATABLE_RELATED_ACTION,
+                                    "related-action");
+
+  g_object_class_override_property (gobject_class,
+                                    PROP_ACTIVATABLE_USE_ACTION_APPEARANCE,
+                                    "use-action-appearance");
 
 #if GTK_MAJOR_VERSION == 3
 
   g_object_class_override_property (gobject_class, PROP_ACTION_NAME, "action-name");
+
   g_object_class_override_property (gobject_class, PROP_ACTION_TARGET, "action-target");
 
 #endif
@@ -3627,27 +3633,33 @@ geda_menu_item_ensure_label (GedaMenuItem *menu_item)
 bool
 geda_menu_item_is_selectable (GedaMenuItem  *menu_item)
 {
-  if ((!gtk_bin_get_child (GTK_BIN(menu_item)) &&
-    G_OBJECT_TYPE (menu_item) == GEDA_TYPE_MENU_ITEM) ||
-    GEDA_IS_MENU_SEPERATOR (menu_item) ||
-    !gtk_widget_is_sensitive (GTK_WIDGET(menu_item)) ||
-    !gtk_widget_get_visible (GTK_WIDGET(menu_item)))
-    return FALSE;
+  if (menu_item != NULL) {
+    if ((!gtk_bin_get_child (GTK_BIN(menu_item)) &&
+      G_OBJECT_TYPE (menu_item) == GEDA_TYPE_MENU_ITEM) ||
+      GEDA_IS_MENU_SEPERATOR (menu_item) ||
+      !gtk_widget_is_sensitive (GTK_WIDGET(menu_item)) ||
+      !gtk_widget_get_visible (GTK_WIDGET(menu_item)))
+      return FALSE;
 
-  return TRUE;
+    return TRUE;
+  }
+  return FALSE;
 }
 
 bool
 geda_menu_item_is_widget_selectable (GtkWidget *widget)
 {
-  if ((!gtk_bin_get_child (GTK_BIN(widget)) &&
-    G_OBJECT_TYPE (widget) == GEDA_TYPE_MENU_ITEM) ||
-    GEDA_IS_MENU_SEPERATOR (widget) ||
-    !gtk_widget_is_sensitive (widget) ||
-    !gtk_widget_get_visible (widget))
-    return FALSE;
+  if (widget != NULL) {
+    if ((!gtk_bin_get_child (GTK_BIN(widget)) &&
+      G_OBJECT_TYPE (widget) == GEDA_TYPE_MENU_ITEM) ||
+      GEDA_IS_MENU_SEPERATOR (widget) ||
+      !gtk_widget_is_sensitive (widget) ||
+      !gtk_widget_get_visible (widget))
+      return FALSE;
 
-  return TRUE;
+    return TRUE;
+  }
+  return FALSE;
 }
 
 /*!
