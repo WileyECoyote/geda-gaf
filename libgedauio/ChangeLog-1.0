@@ -14,6 +14,8 @@
       anything. Call pango_cairo_font_map_set_default in geda_label_finalize.
       Replace gtk_marshal_VOID__OBJECT with geda_marshal_VOID__OBJECT.
 
+    * src/widgets/geda_menu.c: Add geda_menu_finalize, free priv.
+
 2016-11-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Add/update GedaEntry Doxygen comments:

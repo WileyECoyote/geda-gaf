@@ -562,6 +562,16 @@ geda_menu_window_size_request (GtkWidget      *window,
 }
 
 static void
+geda_menu_finalize (GObject *object)
+{
+  GedaMenu *menu = GEDA_MENU (object);
+
+  g_free(menu->priv);
+
+  G_OBJECT_CLASS (geda_menu_parent_class)->finalize (object);
+}
+
+static void
 geda_menu_set_property (GObject      *object,
                         unsigned int  prop_id,
                         const GValue *value,
@@ -689,10 +699,11 @@ geda_menu_class_init  (void *class, void *class_data)
   GtkBindingSet      *binding_set;
   GParamSpec         *params;
 
-  gobject_class->set_property = geda_menu_set_property;
-  gobject_class->get_property = geda_menu_get_property;
+  gobject_class->finalize             = geda_menu_finalize;
+  gobject_class->set_property         = geda_menu_set_property;
+  gobject_class->get_property         = geda_menu_get_property;
 
-  object_class->destroy       = geda_menu_destroy;
+  object_class->destroy               = geda_menu_destroy;
 
   widget_class->realize               = geda_menu_realize;
   widget_class->unrealize             = geda_menu_unrealize;
