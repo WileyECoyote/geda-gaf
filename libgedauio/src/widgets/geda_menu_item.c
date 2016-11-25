@@ -47,12 +47,12 @@
  * @{
  * \brief A widget used for an item in menus
  * \par
- * The #GedaMenuItem widget and the derived widgets are the only valid
- * children for menus. Their function is to correctly handle highlighting,
- * alignment, events and submenus.
+ * The #GedaMenuItem and derivative widgets are the only valid children
+ * for menus. Their function is to correctly handle alignment and events
+ * and display text and submenus.
  *
- * As a GedaMenuItem derives from GtkBin it can hold any valid child widget,
- * although only a few are really useful.
+ * A GedaMenuItem is derived from GtkBin and therfore can hold any valid
+ * child widget, although only a few are really useful.
  *
  * By default, a GedaMenuItem sets a #GedaAccelLabel as its child.
  * GedaMenuItem has direct functions to set the label and its mnemonic.
@@ -66,10 +66,10 @@
  * geda_accel_label_set_accel (GEDA_ACCEL_LABEL(child), GDK_KEY_1, 0);
  * \endcode
  *
- * # GedaMenuItem as GtkBuildable
+ * GedaMenuItem as GtkBuildable
  *
  * The GedaMenuItem implementation of the GtkBuildable interface supports
- * adding a submenu by specifying “submenu” as the “type” attribute of
+ * adding a submenu by specifying "submenu" as the "type" attribute of
  * a "child" element.
  *
  * An example of UI definition fragment with submenus:
@@ -81,10 +81,43 @@
  * </object>
  * \endcode
  *
+ * GedaMenuItem as GtkActivatable
+ *
+ * GedaMenuItem are typically created using geda_action_create_menu_item,
+ * as shown in this example:
+ * \code{.html}
+ * action = geda_action_new (action_name,     // Action name
+ *                           menu_item_name,  // Text
+ *                           menu_item_tip,   // Tooltip
+ *                           menu_icon_name,  // Icon stock ID
+ *                           action_keys);    // Accelerator string
+ * menu_item = geda_action_create_menu_item (action);
+ * \endcode
+ *
+ * As a GtkActivatable an action can be associated with GedaMenuItems
+ * using gtk_activatable_set_related_action or using the object properties
+ * as shown in this example:
+ * \code{.html}
+ * g_object_set (menu_item, "related-action", action, NULL);
+ * \endcode
+ *
+ * \note Associated actions are NOT referenced by GedaMenuItems but actions
+ *       ARE unreferenced when GedaMenuItems are destroyed. This is for the
+ *       convenience of applications, so that applications do not need to
+ *       keep a list of actions to be destroyed or iterating over menu items
+ *       in order to release actions. GedaMenuItems, #GedaAccelLabels and
+ *       #GedaActions will be destroyed when the applications containing
+ *       window is released. If for some reason an application needs to keep
+ *       the actions alive, wrap the actions with g_object_ref when passing
+ *       the action arguments as shown in this example:
+ * \code{.html}
+ * menu_item = geda_action_create_menu_item (g_object_ref(action));
+ * \endcode
+ *
  * \class GedaMenuBar geda_menu_item.h "include/geda_menu_item.h"
  * \implements GedaMenuShell
  *
- * \sa GtkBin, GedaMenuShell
+ * \sa GtkBin, GedaMenuShell, geda_action_create_menu_item
  */
 
 #define MENU_POPUP_DELAY     225
@@ -396,6 +429,7 @@ geda_menu_item_dispose (GObject *object)
   if (priv->action) {
     geda_menu_item_disconnect_accelerator(priv->action);
     gtk_activatable_do_set_related_action (GTK_ACTIVATABLE(menu_item), NULL);
+    g_object_unref(priv->action);
     priv->action = NULL;
   }
 
