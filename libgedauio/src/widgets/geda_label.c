@@ -1281,7 +1281,7 @@ geda_label_class_init  (void *class, void *class_data)
                    G_SIGNAL_RUN_LAST,
                    G_STRUCT_OFFSET (GedaLabelClass, populate_popup),
                    NULL, NULL,
-                   gtk_marshal_VOID__OBJECT,
+                   geda_marshal_VOID__OBJECT,
                    G_TYPE_NONE, 1,
                    GEDA_TYPE_MENU);
 

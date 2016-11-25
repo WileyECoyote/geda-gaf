@@ -12,6 +12,7 @@
       mean time if the signals fire GEDA_IS_LABEL and GEDA_IS_ACCEL_LABEL
       could be called for objects being destroyed. Does not seem to break
       anything. Call pango_cairo_font_map_set_default in geda_label_finalize.
+      Replace gtk_marshal_VOID__OBJECT with geda_marshal_VOID__OBJECT.
 
 2016-11-21 Wiley E. Hill <wileyhill@gmail.com>
 
