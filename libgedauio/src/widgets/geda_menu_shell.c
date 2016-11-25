@@ -1308,6 +1308,8 @@ geda_menu_shell_finalize (GObject *object)
     geda_key_hash_free (priv->key_hash);
   }
 
+  g_free(priv);
+
   G_OBJECT_CLASS (geda_menu_shell_parent_class)->finalize (object);
 }
 

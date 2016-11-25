@@ -25,6 +25,9 @@
       NULL without checking any other conditions. Unreferenced priv->action
       in geda_menu_item_dispose and add/revise documentation explaining why.
 
+    * src/widgets/geda_menu_shell.c: Release priv in geda_menu_shell_finalize,
+      hope everyone had a good thanksgiving.
+
 2016-11-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Add/update GedaEntry Doxygen comments:
