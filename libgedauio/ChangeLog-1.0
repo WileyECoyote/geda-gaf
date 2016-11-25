@@ -16,6 +16,10 @@
 
     * src/widgets/geda_menu.c: Add geda_menu_finalize, free priv.
 
+    * src/widgets/geda_menu_bar.c: Revise add_to_window to check and release
+      menubar->priv->accel before setting, and set directly using the pointer
+      returned from g_object_get instead of making a copy using geda_strdup.
+
 2016-11-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Add/update GedaEntry Doxygen comments:

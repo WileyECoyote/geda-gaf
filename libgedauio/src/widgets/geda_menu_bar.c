@@ -1302,7 +1302,10 @@ add_to_window (GtkWindow *window, GedaMenuBar *menubar)
     accel_group = gtk_accel_group_new();
     gtk_window_add_accel_group (window, accel_group);
 
-    menubar->priv->accel = geda_strdup(accel);
+    if (menubar->priv->accel) {
+      g_free (menubar->priv->accel);
+    }
+    menubar->priv->accel = accel;
     menubar->priv->accel_group = accel_group;
   }
 
