@@ -3,6 +3,9 @@
     * src/base/gschem.c: Remove G_STAT_MEM and g_mem_profile, g_mem_profile
       does not work anymore.
 
+    * src/x/x_menus.c: Rename x_menu_free_recent_file_data -> x_menu_free_
+      recent_file_record. Adjust line-wrap and edit comments.
+
 2016-11-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Map keys "E T" to action edit-rotate-right.

@@ -173,8 +173,8 @@ static int     show_recent_path;
 static GList  *recent_files = NULL;
 static GSList *ui_list      = NULL;
 
-static void x_menu_toggle_icons        (GtkWidget *widget, GSList* list);
-static void x_menu_toggle_tips         (GtkWidget  *widget, GSList* list);
+static void x_menu_toggle_icons        (GtkWidget *widget, GSList *list);
+static void x_menu_toggle_tips         (GtkWidget *widget, GSList *list);
 static void x_menu_update_recent_files (void);
 
 /*! \brief Execute Main Menu Selection
@@ -343,13 +343,11 @@ GtkWidget *x_menu_get_main_menu(GschemToplevel *w_current)
  */
 GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 {
-  EdaConfig   *cfg;
-  const char  *group = MENU_CONFIG_GROUP;
-
-  GedaAction  *action;
-  GtkWidget   *image;
-  GtkWidget   *menu_item;
-  GtkWidget   *menu;
+  EdaConfig  *cfg;
+  GedaAction *action;
+  GtkWidget  *image;
+  GtkWidget  *menu_item;
+  GtkWidget  *menu;
 
   SCM scm_items;
   SCM scm_item;
@@ -359,9 +357,10 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
   SCM scm_item_stock;
   SCM scm_index;
 
-  char  *menu_name;
-  char  *dummy = NULL;
+  char *menu_name;
+  char *dummy = NULL;
 
+  const char  *group = MENU_CONFIG_GROUP;
   const char  *menu_item_name;
         char  *menu_item_tip;
         char  *menu_item_stock;
@@ -644,7 +643,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
           }
 
           /* Cast is for GedaToggleAction items */
-          menu_item = geda_action_create_menu_item ((GedaAction*)(action));
+          menu_item = geda_action_create_menu_item ((GedaAction*)action);
 
           free(action_name);
 
@@ -1689,22 +1688,24 @@ static void x_menu_update_recent_files(void)
    for (iter = global_window_list; iter != NULL; iter = g_list_next (iter)) {
 
      GschemToplevel *w_current;
-    GtkWidget *submenu, *recent_menu_item;
-     MenuData *menu_data;
+     GtkWidget      *submenu;
+     GtkWidget      *recent_menu_item;
+     MenuData       *menu_data;
 
-     w_current = (GschemToplevel*) iter->data;
+     w_current = (GschemToplevel*)iter->data;
      menu_data = g_slist_nth_data (ui_list, w_current->ui_index);
+
      if (MENU_BAR == NULL)
        continue;
 
-     recent_menu_item =
-     GEDA_OBJECT_GET_DATA (MENU_BAR,
-                           "_File/Open Recen_t");
-     if(recent_menu_item == NULL)
+     recent_menu_item = GEDA_OBJECT_GET_DATA (MENU_BAR, "_File/Open Recen_t");
+
+     if (recent_menu_item == NULL)
        return;
 
      submenu = geda_menu_item_get_submenu(GEDA_MENU_ITEM(recent_menu_item));
      gtk_widget_destroy(submenu);
+
      x_menu_attach_recent_submenu(w_current);
    }
 }
@@ -1727,7 +1728,7 @@ static void x_menu_clear_recent_file_list(void *data)
    x_menu_update_recent_files();
 }
 
-static void x_menu_free_recent_file_data (void *data)
+static void x_menu_free_recent_file_record (void *data)
 {
   GEDA_FREE (data);
 }
@@ -1792,11 +1793,11 @@ static void x_menu_recent_files_create_empty(void)
  */
 static void x_menu_toggle_recent_path (GedaMenuItem *menuitem, void *user_data)
 {
-  RecentMenuData *data      = (RecentMenuData*) user_data;
+  RecentMenuData *data      = (RecentMenuData*)user_data;
   GschemToplevel *w_current = data->w_current;
 
   GedaMenuItem *menu_item;
-  MenuData    *menu_data;
+  MenuData     *menu_data;
 
   show_recent_path = !show_recent_path;
   x_menu_update_recent_files();
@@ -1819,7 +1820,7 @@ static void x_menu_toggle_recent_path (GedaMenuItem *menuitem, void *user_data)
 static void x_menu_recent_file_remove (GedaMenuItem *menuitem, void *user_data)
 {
   RecentMenuData *menu_data = user_data;
-  char *filename            = menu_data->filename;
+  char           *filename  = menu_data->filename;
 
   /* Remove this entry from all menus */
   recent_files = g_list_remove(recent_files, filename);
@@ -1848,7 +1849,7 @@ static void x_menu_recent_show_popup (GedaMenuItem   *menu_widget,
 
   g_signal_connect_data (GTK_OBJECT(popup_item), "activate",
                         (GCallback) x_menu_recent_file_clicked, user_data,
-                        (GClosureNotify) x_menu_free_recent_file_data,
+                        (GClosureNotify) x_menu_free_recent_file_record,
                          0);
 
   geda_menu_shell_append (GEDA_MENU_SHELL (menu), popup_item);
@@ -1857,7 +1858,7 @@ static void x_menu_recent_show_popup (GedaMenuItem   *menu_widget,
 
   g_signal_connect_data (GTK_OBJECT(popup_item), "activate",
                         (GCallback) x_menu_recent_file_remove, user_data,
-                        (GClosureNotify) x_menu_free_recent_file_data,
+                        (GClosureNotify) x_menu_free_recent_file_record,
                          0);
 
   geda_menu_shell_append (GEDA_MENU_SHELL (menu), popup_item);
@@ -1923,9 +1924,9 @@ void x_menu_attach_recent_submenu(GschemToplevel *w_current)
    bool       show_menu_tips;
 
    menu_data        = g_slist_nth_data (ui_list, w_current->ui_index);
-   recent_menu_item = GEDA_OBJECT_GET_DATA (MENU_BAR,
-                                                        "_File/Open Recen_t");
-   if(recent_menu_item == NULL)
+   recent_menu_item = GEDA_OBJECT_GET_DATA (MENU_BAR, "_File/Open Recen_t");
+
+   if (recent_menu_item == NULL)
       return;
 
    /* disconnect all unblocked signals */
@@ -1935,7 +1936,7 @@ void x_menu_attach_recent_submenu(GschemToplevel *w_current)
 
      id = g_signal_handler_find(recent_menu_item, G_SIGNAL_MATCH_UNBLOCKED,
                                 0, 0, NULL, NULL, NULL);
-     if(id == 0)
+     if (id == 0)
        break;
      g_signal_handler_disconnect(recent_menu_item, id);
    }
@@ -1945,7 +1946,7 @@ void x_menu_attach_recent_submenu(GschemToplevel *w_current)
    recent_submenu = geda_menu_new();
    iter = recent_files;
 
-   while(iter) {
+   while (iter) {
 
      const char *filename;
 
@@ -1967,7 +1968,7 @@ void x_menu_attach_recent_submenu(GschemToplevel *w_current)
 
      g_signal_connect_data (GTK_OBJECT(item), "activate",
                            (GCallback) x_menu_recent_file_clicked, menu_data,
-                           (GClosureNotify) x_menu_free_recent_file_data,
+                           (GClosureNotify) x_menu_free_recent_file_record,
                             0);
 
      g_signal_connect (item, "button-release-event",
@@ -1978,7 +1979,7 @@ void x_menu_attach_recent_submenu(GschemToplevel *w_current)
      iter = g_list_next(iter);
    }
 
-   if(recent_files != NULL) {
+   if (recent_files != NULL) {
 
      GtkWidget *label;
 
@@ -2077,8 +2078,7 @@ void x_menu_recent_files_save(void *user_data)
 
    GKeyFile *kf = g_key_file_new();
 
-   g_key_file_set_string_list(kf, "Recent files", "Files",
-         (const char **)files, num);
+   g_key_file_set_string_list(kf, "Recent files", "Files", (const char**)files, num);
    c = g_key_file_to_data(kf, NULL, NULL);
    g_file_set_contents(file, c, -1, NULL);
 
@@ -2087,8 +2087,7 @@ void x_menu_recent_files_save(void *user_data)
    g_key_file_free(kf);
 }
 
-/*! \brief Load the recent file list using data from
- *         RECENT_FILES_STORE.
+/*! \brief Load the recent file list using data from RECENT_FILES_STORE.
  *
  *  Must be called before any other recent-files-related
  *  functions.
@@ -2132,15 +2131,10 @@ void x_menu_recent_files_load()
    g_key_file_free(kf);
 }
 
-/* Date: Sept 05, 2012
- * Who:  Wiley E. Hill
- * What  Function: x_menu_recent_files_last
- * Why:  This Function was added to support the auto_load_last mechanism.
-*/
 /*! \brief Get the Most Recent Filename
  *  \par Function Description
  *  This function returns a char pointer to the name of the most
- *  recent file loaded.
+ *  recent file loaded and is used by the auto_load_last mechanism.
  *
  *  \return  const char pointer to the filename string
  */
