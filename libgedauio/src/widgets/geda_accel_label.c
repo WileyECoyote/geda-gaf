@@ -260,22 +260,9 @@ geda_accel_label_finalize (GObject *object)
 
   GEDA_FREE (accel_label->accel_string);
 
-  if (accel_label->accel_closure) {
+  geda_accel_label_set_accel_closure(accel_label, NULL);
 
-    g_signal_handlers_disconnect_by_func (accel_label->accel_group,
-                                          check_accel_changed,
-                                          accel_label);
-    accel_label->accel_group = NULL;
-    g_closure_unref (accel_label->accel_closure);
-  }
-
-  if (accel_label->accel_widget) {
-
-    g_signal_handlers_disconnect_by_func (accel_label->accel_widget,
-                                          refetch_widget_accel_closure,
-                                          accel_label);
-    g_object_unref (accel_label->accel_widget);
-  }
+  geda_accel_label_set_accel_widget(accel_label, NULL);
 
   G_OBJECT_CLASS (geda_accel_label_parent_class)->finalize (object);
 }
