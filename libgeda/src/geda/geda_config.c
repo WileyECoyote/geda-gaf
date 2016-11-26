@@ -2212,7 +2212,7 @@ eda_config_release_resources (void)
     for (i = cfg->priv->ref_count; i > 0; --i) {
       g_object_unref(cfg);
     }
-    GEDA_UNREF(cfg);
+    g_object_unref(cfg);
   }
 
   cfg = eda_config_get_system_context(NULL);
@@ -2220,7 +2220,7 @@ eda_config_release_resources (void)
     for (i = cfg->priv->ref_count; i > 0; --i) {
       g_object_unref(cfg);
     }
-    GEDA_UNREF(cfg);
+    g_object_unref(cfg);
   }
 
   cfg = eda_config_get_default_context();
@@ -2228,7 +2228,7 @@ eda_config_release_resources (void)
     for (i = cfg->priv->ref_count; i > 0; --i) {
       g_object_unref(cfg);
     }
-    GEDA_UNREF(cfg);
+    g_object_unref(cfg);
   }
 }
 

@@ -5,6 +5,9 @@
       of dynamically allocating each parent directory; path only get smaller.
       Replace free with geda_free to insure the correct release function is
       called when geda_utility_program_mem_set_vtable has not been called.
+      Use g_object_unref directly in eda_config_release_resources instead of
+      GEDA_UNREF macros; the references do not need to be checked, the new
+      reference counting scheme seems to be working now.
 
 2016-11-23 Wiley E. Hill <wileyhill@gmail.com>
 
