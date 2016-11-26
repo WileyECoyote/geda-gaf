@@ -1,3 +1,9 @@
+2016-11-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_config.c: Revise eda_config_find_project_root to use one
+      dynamically allocated buffer, filespec, with strcpy and strcat instead
+      of dynamically allocating each parent directory; path only get smaller.
+
 2016-11-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/defines.h: Remove memory and g_object related macros
@@ -5699,7 +5705,7 @@
         structures in structures prohibited. Also relocated some enumerated
         types to geda_enum.h  Now edacairo.c does not have to have include
         EVERY libgeda header just to get the definition for PATH_SECTION.
-        A similar situation    was also occurring with some of the utilities.
+        A similar situation was also occurring with some of the utilities.
 
         * src/Makefile.am: Added GEDA_INCLUDES variable, as was done for
         gschem to clean up the include paths.

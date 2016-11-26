@@ -456,16 +456,21 @@ eda_config_find_project_root (const char *path, const char *filename)
     filename = LOCAL_CONFIG_FILE;
   }
 
+  char *filespec = GEDA_MEM_ALLOC(MAX_PATH);
+
   while (dir && strlen(dir) > 1){
-      char *filespec = geda_strconcat (dir, DIR_SEPARATOR_S, filename, NULL);
+
+      strcpy(filespec, dir);
+      strcat(filespec, DIR_SEPARATOR_S);
+      strcat(filespec, filename);
+
       if (g_file_test (filespec, G_FILE_TEST_EXISTS)) {
-        free(filespec);
         found = 1;
         break;
       }
-      free(filespec);
       dir = dirname (dir);
   }
+  geda_free(filespec);
 
   if (found) {
     proj_root = geda_utility_string_strdup (dir);
