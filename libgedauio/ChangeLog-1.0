@@ -4,6 +4,8 @@
       call geda_accel_label_set_accel_closure and geda_accel_label_set_accel
       _widget with a NULL argument rather disconnecting the signals directly.
 
+    * src/widgets/geda_menu_shell.c: Free the list of children.
+
 2016-11-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_accel_label.c: Reorganize check_accel_changed and
