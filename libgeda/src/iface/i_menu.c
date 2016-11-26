@@ -129,7 +129,7 @@ geda_iface_menu_add_entry(char *menu_name, SCM menu_items)
  *
  */
 void
-geda_iface_menu_print()
+geda_iface_menu_print(void)
 {
   int i;
 
@@ -147,7 +147,7 @@ geda_iface_menu_print()
  *   scm_gc_unprotect_object to unprotect the guile objects.
  */
 void
-geda_iface_menu_free()
+geda_iface_menu_free(void)
 {
   int i;
 
@@ -167,7 +167,7 @@ geda_iface_menu_free()
  *
  */
 void
-geda_iface_menu_init()
+geda_iface_menu_init(void)
 {
   int i;
   for (i = 0; i < MAX_MENUS; i++) {
