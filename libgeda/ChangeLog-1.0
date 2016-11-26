@@ -9,6 +9,11 @@
       GEDA_UNREF macros; the references do not need to be checked, the new
       reference counting scheme seems to be working now.
 
+    * src/guile/g_evaluate.c: Replace free/set NULL with GEDA_FREE and free
+      with geda_free in g_evaluate_scheme_file to insure the correct release
+      function is called when geda_utility_program_mem_set_vtable has not been
+      called.
+
 2016-11-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/defines.h: Remove memory and g_object related macros
