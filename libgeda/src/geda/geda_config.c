@@ -474,10 +474,10 @@ eda_config_find_project_root (const char *path, const char *filename)
 
   if (found) {
     proj_root = geda_utility_string_strdup (dir);
-    free(root_path);
+    geda_free(root_path);
   }
   else {
-    free(root_path); /* This version was modified by dirname() */
+    geda_free(root_path); /* This version was modified by dirname() */
     proj_root = geda_get_dirname (path);
   }
   return proj_root;

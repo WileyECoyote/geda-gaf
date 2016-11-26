@@ -3,6 +3,8 @@
     * src/geda/geda_config.c: Revise eda_config_find_project_root to use one
       dynamically allocated buffer, filespec, with strcpy and strcat instead
       of dynamically allocating each parent directory; path only get smaller.
+      Replace free with geda_free to insure the correct release function is
+      called when geda_utility_program_mem_set_vtable has not been called.
 
 2016-11-23 Wiley E. Hill <wileyhill@gmail.com>
 
