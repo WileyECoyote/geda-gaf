@@ -5,7 +5,10 @@
       geda_accel_label_set_accel_closure and geda_accel_label_set_accel_widget
       to use the argument pointer instead of the stored pointer.
 
-    * src/widgets/geda_action.c: Revise Doxygen comments.
+    * src/widgets/geda_action.c: Removed setting multikey_accel to NULL in
+      geda_action_finalize after releasing allocation. Check icon_name before
+      freeing in geda_action_finalize and geda_action_set_icon_name, revise
+      Doxygen comments.
 
 2016-11-25 Wiley E. Hill <wileyhill@gmail.com>
 

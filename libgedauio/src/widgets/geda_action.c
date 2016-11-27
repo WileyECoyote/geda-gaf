@@ -96,10 +96,11 @@ static void geda_action_finalize (GObject *object)
 
   if (action->multikey_accel) {
     g_free (action->multikey_accel);
-    action->multikey_accel = NULL;
   }
-  g_free (action->icon_name);
 
+  if (action->icon_name) {
+    g_free (action->icon_name);
+  }
   G_OBJECT_CLASS (geda_action_parent_class)->finalize (object);
 }
 
@@ -422,19 +423,21 @@ GedaAction *geda_action_new (const char *name,
 
   g_return_val_if_fail (name != NULL, NULL);
 
-  if (multikey_accel != NULL)
+  if (multikey_accel != NULL) {
     action = g_object_new (GEDA_TYPE_ACTION, "name", name,
                                              "label", label,
                                              "tooltip", tooltip,
                                              "stock-id", icon_id,
                                              "multikey-accel", multikey_accel,
                                              NULL);
-  else
+  }
+  else {
     action = g_object_new (GEDA_TYPE_ACTION, "name", name,
                                              "label", label,
                                              "tooltip", tooltip,
                                              "stock-id", icon_id,
                                              NULL);
+  }
   return action;
 }
 
@@ -489,8 +492,9 @@ geda_action_set_icon_name (GedaAction *action, const char *icon_name)
 
   parent_action = (GtkAction*)action;
 
-  g_free (action->icon_name);
-  action->icon_name = NULL;
+  if (action->icon_name) {
+    g_free (action->icon_name);
+  }
 
   action->icon_name = geda_strdup (icon_name);
 
