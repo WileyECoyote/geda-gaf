@@ -85,8 +85,8 @@ static void *geda_action_parent_class = NULL;
 /*! \brief GObject finalize handler
  *
  *  \par Function Description
- *  Called just before the GtkAction GObject is destroyed to free our
- *  allocated data, and then chain up to the parent's finalize handler.
+ *  Called just before the Action object is destroyed to release
+ *  resources. Chains up to the parent's finalize handler.
  *
  *  \param [in] object The GObject being finalized.
  */
@@ -345,9 +345,12 @@ is_a_geda_action (GedaAction *action)
  *  This function creates a geda menu item widget that proxies
  *  for the given action.
  *
+ *  As a convenience, this function also accepts GedaToggleAction
+ *  as the \a action argument but this may require a cast.
+ *
  * \param [in] action A GedaAction object
  *
- * \returns: GtkWidget pointer to a new action menu item.
+ * \returns GtkWidget pointer to a new action menu item.
  */
 GtkWidget *
 geda_action_create_menu_item (GedaAction *action)

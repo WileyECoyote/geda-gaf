@@ -5,6 +5,8 @@
       geda_accel_label_set_accel_closure and geda_accel_label_set_accel_widget
       to use the argument pointer instead of the stored pointer.
 
+    * src/widgets/geda_action.c: Revise Doxygen comments.
+
 2016-11-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_accel_label.c: Revise geda_accel_label_finalize to
