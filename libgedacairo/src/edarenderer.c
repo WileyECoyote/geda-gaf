@@ -115,8 +115,8 @@ static GObject *eda_renderer_constructor (GType type,
                                           unsigned int n_construct_properties,
                                           GObjectConstructParam *construct_params);
 
-static void eda_renderer_finalize        (GObject *object);
 static void eda_renderer_dispose         (GObject *object);
+static void eda_renderer_finalize        (GObject *object);
 static void eda_renderer_set_property    (GObject *object, unsigned int property_id,
                                           const GValue *value, GParamSpec *pspec);
 static void eda_renderer_get_property    (GObject *object, unsigned int property_id,
@@ -189,6 +189,8 @@ eda_renderer_dispose (GObject *object)
 
   if (renderer->priv->pc != NULL) {
     if (G_IS_OBJECT(renderer->priv->pc)) {
+      pango_cairo_context_set_font_options (renderer->priv->pc, NULL);
+      pango_context_set_font_map(renderer->priv->pc, NULL);
       GEDA_UNREF (renderer->priv->pc);
     }
     renderer->priv->pc = NULL;
@@ -408,6 +410,7 @@ eda_renderer_update_contexts (EdaRenderer  *renderer,
   }
   else if (new_pc != NULL) {
     if (renderer->priv->pc != NULL) {
+      pango_cairo_context_set_font_options (renderer->priv->pc, NULL);
       GEDA_UNREF (G_OBJECT (renderer->priv->pc));
       renderer->priv->pc = NULL;
     }
@@ -439,7 +442,7 @@ eda_renderer_update_contexts (EdaRenderer  *renderer,
 
   if ((renderer->priv->pr == NULL) && (renderer->priv->cr != NULL)) {
     renderer->priv->pr =
-      (EdaPangoRenderer *) eda_pango_renderer_new (renderer->priv->cr);
+      (EdaPangoRenderer*)eda_pango_renderer_new (renderer->priv->cr);
   }
   else if (renderer->priv->cr != NULL) {
     eda_pango_renderer_update(renderer->priv->pr, renderer->priv->cr);
@@ -1815,8 +1818,8 @@ eda_renderer_class_init(void *g_class, void *class_data)
 
   /* Register functions with base class */
   gobject_class->constructor  = eda_renderer_constructor;
-  gobject_class->finalize     = eda_renderer_finalize;
   gobject_class->dispose      = eda_renderer_dispose;
+  gobject_class->finalize     = eda_renderer_finalize;
   gobject_class->set_property = eda_renderer_set_property;
   gobject_class->get_property = eda_renderer_get_property;
 
