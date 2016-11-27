@@ -254,15 +254,23 @@ geda_accel_label_get_property (GObject      *object,
 }
 
 static void
+geda_accel_label_dispose (GObject *object)
+{
+  GedaAccelLabel *accel_label = GEDA_ACCEL_LABEL (object);
+
+  geda_accel_label_set_accel_closure(accel_label, NULL);
+
+  geda_accel_label_set_accel_widget(accel_label, NULL);
+
+  G_OBJECT_CLASS (geda_accel_label_parent_class)->dispose (object);
+}
+
+static void
 geda_accel_label_finalize (GObject *object)
 {
   GedaAccelLabel *accel_label = GEDA_ACCEL_LABEL (object);
 
   GEDA_FREE (accel_label->accel_string);
-
-  geda_accel_label_set_accel_closure(accel_label, NULL);
-
-  geda_accel_label_set_accel_widget(accel_label, NULL);
 
   G_OBJECT_CLASS (geda_accel_label_parent_class)->finalize (object);
 }
@@ -574,6 +582,7 @@ geda_accel_label_class_init(void *g_class, void *class_data)
   GObjectClass   *object_class = G_OBJECT_CLASS (class);
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (class);
 
+  object_class->dispose        = geda_accel_label_dispose;
   object_class->finalize       = geda_accel_label_finalize;
   object_class->set_property   = geda_accel_label_set_property;
   object_class->get_property   = geda_accel_label_get_property;

@@ -1,3 +1,8 @@
+2016-11-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_accel_label.c: Over-ride widget-dispose and relocate
+      disconnecting signals from geda_accel_label_finalize.
+
 2016-11-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_accel_label.c: Revise geda_accel_label_finalize to
