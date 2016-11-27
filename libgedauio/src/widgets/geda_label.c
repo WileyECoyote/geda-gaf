@@ -930,15 +930,6 @@ static void geda_label_ensure_layout (GedaLabel *label)
 static void
 geda_label_destroy (GtkObject *object)
 {
-  GedaLabel *label = GEDA_LABEL (object);
-  geda_label_set_mnemonic_widget (label, NULL);
-
-  GTK_OBJECT_CLASS (geda_label_parent_class)->destroy (object);
-}
-
-
-static void geda_label_dispose (GObject *object)
-{
   GedaLabel   *label = GEDA_LABEL (object);
   GtkSettings *settings;
   GtkWidget   *toplevel;
@@ -968,6 +959,42 @@ static void geda_label_dispose (GObject *object)
                        (void*)(long)FALSE);
   }
 
+  geda_label_set_mnemonic_widget (label, NULL);
+
+  GTK_OBJECT_CLASS (geda_label_parent_class)->destroy (object);
+}
+
+
+static void geda_label_dispose (GObject *object)
+{
+  GedaLabel   *label = GEDA_LABEL (object);
+
+  if (label->attrs) {
+    pango_attr_list_unref (label->attrs);
+    label->attrs = NULL;
+  }
+
+  if (label->markup_attrs) {
+    pango_attr_list_unref (label->markup_attrs);
+    label->markup_attrs = NULL;
+  }
+
+  if (label->layout) {
+    g_object_unref (label->layout);
+    label->layout = NULL;
+  }
+
+  if (label->priv->font_map) {
+    g_object_unref (label->priv->font_map);
+    label->priv->font_map = NULL;
+  }
+
+  if (label->priv->accessible){
+    atk_object_set_name (label->priv->accessible, "");
+    g_object_unref (label->priv->accessible);
+    label->priv->accessible = NULL;
+  }
+
   G_OBJECT_CLASS (geda_label_parent_class)->dispose (object);
 }
 
@@ -980,28 +1007,7 @@ static void geda_label_finalize (GObject *object)
 
   geda_label_clear_links (label);
 
-  if (label->attrs) {
-    pango_attr_list_unref (label->attrs);
-  }
-
-  if (label->markup_attrs) {
-    pango_attr_list_unref (label->markup_attrs);
-  }
-
-  if (label->layout) {
-    g_object_unref (label->layout);
-  }
-
   GEDA_FREE (label->priv->select_info);
-
-  pango_cairo_font_map_set_default(NULL);
-
-  GEDA_UNREF (label->priv->font_map);
-
-  if (label->priv->accessible){
-    atk_object_set_name (label->priv->accessible, "");
-    GEDA_UNREF (label->priv->accessible);
-  }
 
   GEDA_FREE(label->priv);
 

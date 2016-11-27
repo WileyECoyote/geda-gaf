@@ -10,6 +10,9 @@
       freeing in geda_action_finalize and geda_action_set_icon_name, revise
       Doxygen comments.
 
+    * src/widgets/geda_label.c: Relocate unreferencing of object from geda_
+      label_finalize to geda_label_dispose.
+
 2016-11-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_accel_label.c: Revise geda_accel_label_finalize to
