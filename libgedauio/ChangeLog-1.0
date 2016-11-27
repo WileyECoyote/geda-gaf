@@ -15,7 +15,9 @@
       apply to not call geda_accel_label_refetch and notify "label" instead.
       This does not work yet but is not needed either, but does fix a race
       conditions and stops the class from referencing the memory of a dying
-      child, specifically a GedaAccelLabel.
+      child, specifically a GedaAccelLabel. Add line-breaks after breaks in
+      geda_label_get_property and geda_label_get_property to improve
+      readability.
 
 2016-11-25 Wiley E. Hill <wileyhill@gmail.com>
 

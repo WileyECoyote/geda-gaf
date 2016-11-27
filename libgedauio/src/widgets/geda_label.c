@@ -1014,7 +1014,6 @@ static void geda_label_finalize (GObject *object)
   G_OBJECT_CLASS (geda_label_parent_class)->finalize (object);
 }
 
-
 static void
 geda_label_get_property (GObject *object, unsigned int  prop_id,
                          GValue  *value,  GParamSpec   *pspec)
@@ -1022,62 +1021,80 @@ geda_label_get_property (GObject *object, unsigned int  prop_id,
   GedaLabel     *label = GEDA_LABEL (object);
   GedaLabelData *priv  = label->priv;
 
-  switch (prop_id)
-    {
+  switch (prop_id) {
+
     case PROP_LABEL:
       g_value_set_string (value, label->label);
       break;
+
     case PROP_ATTRIBUTES:
       g_value_set_boxed (value, label->attrs);
       break;
+
     case PROP_USE_MARKUP:
       g_value_set_boolean (value, priv->use_markup);
       break;
+
     case PROP_USE_UNDERLINE:
       g_value_set_boolean (value, priv->use_underline);
       break;
+
     case PROP_JUSTIFY:
       g_value_set_enum (value, priv->jtype);
       break;
+
     case PROP_WRAP:
       g_value_set_boolean (value, priv->wrap);
       break;
+
     case PROP_WRAP_MODE:
       g_value_set_enum (value, priv->wrap_mode);
       break;
+
     case PROP_SELECTABLE:
       g_value_set_boolean (value, geda_label_get_selectable (label));
       break;
+
     case PROP_MNEMONIC_KEYVAL:
       g_value_set_uint (value, priv->mnemonic_keyval);
       break;
+
     case PROP_MNEMONIC_WIDGET:
       g_value_set_object (value, (GObject*) priv->mnemonic_widget);
       break;
+
     case PROP_CURSOR_POSITION:
       g_value_set_int (value, geda_label_get_cursor_position (label));
       break;
+
     case PROP_SEL_BOUND:
       g_value_set_int (value, geda_label_get_selection_bound (label));
       break;
+
     case PROP_ELLIPSIZE:
       g_value_set_enum (value, priv->ellipsize);
       break;
+
     case PROP_WIDTH_CHARS:
       g_value_set_int (value, geda_label_get_width_chars (label));
       break;
+
     case PROP_SINGLE_LINE_MODE:
       g_value_set_boolean (value, geda_label_get_single_line_mode (label));
       break;
+
     case PROP_ANGLE:
       g_value_set_double (value, geda_label_get_angle (label));
       break;
+
     case PROP_MAX_WIDTH:
       g_value_set_int (value, geda_label_get_max_width_chars (label));
       break;
+
     case PROP_TRACK_VISITED_LINKS:
       g_value_set_boolean (value, geda_label_get_track_visited_links (label));
       break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -1090,56 +1107,72 @@ geda_label_set_property (GObject *object,     unsigned int  prop_id,
 {
   GedaLabel *label = GEDA_LABEL (object);
 
-  switch (prop_id)
-  {
+  switch (prop_id) {
+
     case PROP_LABEL:
       geda_label_set_label (label, g_value_get_string (value));
       break;
+
     case PROP_ATTRIBUTES:
       geda_label_set_attributes (label, g_value_get_boxed (value));
       break;
+
     case PROP_USE_MARKUP:
       geda_label_set_use_markup (label, g_value_get_boolean (value));
       break;
+
     case PROP_USE_UNDERLINE:
       geda_label_set_use_underline (label, g_value_get_boolean (value));
       break;
+
     case PROP_JUSTIFY:
       geda_label_set_justify (label, g_value_get_enum (value));
       break;
+
     case PROP_PATTERN:
       geda_label_set_pattern (label, g_value_get_string (value));
       break;
+
     case PROP_WRAP:
       geda_label_set_line_wrap (label, g_value_get_boolean (value));
       break;
+
     case PROP_WRAP_MODE:
       geda_label_set_line_wrap_mode (label, g_value_get_enum (value));
       break;
+
     case PROP_SELECTABLE:
       geda_label_set_selectable (label, g_value_get_boolean (value));
       break;
+
     case PROP_MNEMONIC_WIDGET:
       geda_label_set_mnemonic_widget (label, (GtkWidget*) g_value_get_object (value));
       break;
+
     case PROP_ELLIPSIZE:
       geda_label_set_ellipsize (label, g_value_get_enum (value));
       break;
+
     case PROP_WIDTH_CHARS:
       geda_label_set_width_chars (label, g_value_get_int (value));
       break;
+
     case PROP_SINGLE_LINE_MODE:
       geda_label_set_single_line_mode (label, g_value_get_boolean (value));
       break;
+
     case PROP_ANGLE:
       geda_label_set_angle (label, g_value_get_double (value));
       break;
+
     case PROP_MAX_WIDTH:
       geda_label_set_max_width_chars (label, g_value_get_int (value));
       break;
+
     case PROP_TRACK_VISITED_LINKS:
       geda_label_set_track_visited_links (label, g_value_get_boolean (value));
       break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
