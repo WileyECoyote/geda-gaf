@@ -1308,6 +1308,8 @@ geda_menu_shell_finalize (GObject *object)
     geda_key_hash_free (priv->key_hash);
   }
 
+  g_list_foreach(menu_shell->children, (GFunc)g_object_unref, NULL);
+
   g_list_free(menu_shell->children);
 
   g_free(priv);
