@@ -11,7 +11,11 @@
       Doxygen comments.
 
     * src/widgets/geda_label.c: Relocate unreferencing of object from geda_
-      label_finalize to geda_label_dispose.
+      label_finalize to geda_label_dispose. Revise label_shortcut_setting_
+      apply to not call geda_accel_label_refetch and notify "label" instead.
+      This does not work yet but is not needed either, but does fix a race
+      conditions and stops the class from referencing the memory of a dying
+      child, specifically a GedaAccelLabel.
 
 2016-11-25 Wiley E. Hill <wileyhill@gmail.com>
 
