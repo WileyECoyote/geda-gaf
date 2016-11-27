@@ -472,6 +472,16 @@ geda_tearoff_menu_item_new (void)
   return g_object_new (GEDA_TYPE_TEAROFF_MENU_ITEM, NULL);
 }
 
+static void
+geda_tearoff_menu_finalize (GObject *object)
+{
+  GedaTearoffMenuItem *menu = GEDA_TEAROFF_MENU_ITEM (object);
+
+  g_free(menu->priv);
+
+  G_OBJECT_CLASS (geda_tearoff_menu_item_parent_class)->finalize (object);
+}
+
 /*! \brief GedaTearoffMenuItem Class Initializer
  *  \par Function Description
  *  Function is called to initialize the class instance.
@@ -480,13 +490,17 @@ geda_tearoff_menu_item_new (void)
  * \param [in] klass_data GedaTearoffMenuItem structure
  */
 static void
-geda_tearoff_menu_item_class_init   (void *klass, void *klass_data)
+geda_tearoff_menu_item_class_init (void *klass, void *klass_data)
 {
+  GObjectClass      *gobject_class;
   GtkWidgetClass    *widget_class;
   GedaMenuItemClass *menu_item_class;
 
+  gobject_class   = (GObjectClass*)klass;
   widget_class    = (GtkWidgetClass*)klass;
   menu_item_class = (GedaMenuItemClass*)klass;
+
+  gobject_class->finalize    = geda_tearoff_menu_finalize;
 
 #if GTK_MAJOR_VERSION < 3
 

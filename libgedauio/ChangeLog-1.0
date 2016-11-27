@@ -22,6 +22,9 @@
     * src/widgets/geda_menu_shell.c: Release children before freeing the list
       of children in geda_menu_shell_finalize.
 
+    * src/widgets/geda_tearoff_menu_item.c: Add geda_tearoff_menu_finalize
+      and free private data structure.
+
 2016-11-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_accel_label.c: Revise geda_accel_label_finalize to
