@@ -1,7 +1,9 @@
 2016-11-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_accel_label.c: Over-ride widget-dispose and relocate
-      disconnecting signals from geda_accel_label_finalize.
+      disconnecting signals from geda_accel_label_finalize. Revise functions
+      geda_accel_label_set_accel_closure and geda_accel_label_set_accel_widget
+      to use the argument pointer instead of the stored pointer.
 
 2016-11-25 Wiley E. Hill <wileyhill@gmail.com>
 
