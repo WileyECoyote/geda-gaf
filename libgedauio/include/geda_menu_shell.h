@@ -51,7 +51,6 @@ typedef struct _GedaMenuShellPriv   GedaMenuShellPriv;
 struct _GedaMenuShell
 {
   GtkContainer container;
-  GedaType     instance_type;
 
   GList       *children;
   GtkWidget   *active_menu_item;

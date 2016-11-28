@@ -17,6 +17,9 @@
     * src/widgets/geda_menu_separator.c: Implement new identifier system
       for GedaMenuSeparators.
 
+    * src/widgets/geda_menu_shell.c: Implement new identifier system
+      for GedaMenuShells.
+
 2016-11-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets: Use accessor gtk_widget_get_parent instead of widget->

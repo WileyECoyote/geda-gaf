@@ -217,6 +217,9 @@ static bool geda_menu_shell_real_move_selected     (GedaMenuShell     *menu_shel
 
 static unsigned int menu_shell_signals[LAST_SIGNAL] = { 0 };
 
+/* List of pointers to GedaMenuShell instances */
+static GList *list_of_objects = NULL;
+
 static void *geda_menu_shell_parent_class = NULL;
 
 static int
@@ -1300,6 +1303,13 @@ geda_menu_shell_finalize (GObject *object)
   GedaMenuShell *menu_shell = GEDA_MENU_SHELL (object);
   GedaMenuShellPriv *priv = menu_shell->priv;
 
+  list_of_objects = g_list_remove(list_of_objects, object);
+
+  if (!g_list_length(list_of_objects)) {
+    g_list_free(list_of_objects);
+    list_of_objects = NULL;
+  }
+
   if (priv->mnemonic_hash) {
     geda_mnemonic_hash_free (priv->mnemonic_hash);
   }
@@ -1605,11 +1615,12 @@ geda_menu_shell_instance_init(GTypeInstance *instance, void *class)
 
   menu_shell                = (GedaMenuShell*)instance;
   menu_shell->children      = NULL;
-  menu_shell->instance_type = geda_menu_shell_get_type();
 
   menu_shell->priv = g_malloc0 (sizeof(GedaMenuShellPriv));
 
   menu_shell->priv->take_focus = TRUE;
+
+  list_of_objects = g_list_append(list_of_objects, instance);
 }
 
 /*!
@@ -1657,8 +1668,8 @@ geda_menu_shell_get_type (void)
 
 bool is_a_geda_menu_shell (GedaMenuShell *menu_shell)
 {
-  if (G_IS_OBJECT(menu_shell)) {
-    return (geda_menu_shell_get_type() == menu_shell->instance_type);
+  if (menu_shell) {
+    return g_list_find(list_of_objects, menu_shell) ? TRUE : FALSE;
   }
   return FALSE;
 }
