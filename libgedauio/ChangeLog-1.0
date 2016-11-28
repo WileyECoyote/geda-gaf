@@ -8,11 +8,14 @@
       the object because the pointer could be any address. Note that the
       new scheme can be mixed with old scheme and works for derivatives.
 
-    * src/widgets/geda_menu.c: Implement new identifier for GedaMenus.
+    * src/widgets/geda_menu.c: Implement new identifier system for GedaMenus.
 
     * src/widgets/geda_menu_bar.c: Check and unreference accel_group in
       geda_menu_bar_finalize and accel_group and set to NULL in remove_
       from_window so thatthe finalizer would not normally unreference.
+
+    * src/widgets/geda_menu_separator.c: Implement new identifier system
+      for GedaMenuSeparators.
 
 2016-11-27 Wiley E. Hill <wileyhill@gmail.com>
 

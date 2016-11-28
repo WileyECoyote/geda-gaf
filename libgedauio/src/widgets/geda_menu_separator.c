@@ -21,7 +21,34 @@
 #include "../../include/geda_menu_item.h"
 #include "../../include/geda_menu_separator.h"
 
+/* hold list of pointers to GedaMenuSeparator instances */
+static GList *list_of_objects = NULL;
+
 static void *geda_menu_separator_parent_class = NULL;
+
+/*!
+ * \brief gobject_class->finalize a GedaSeparator object
+ * \par Function Description
+ *  Releases resources associated with the GedaSeparator object.
+ *  The object should not be referenced after this function
+ *  is executes.
+ */
+static void
+geda_menu_separator_finalize (GObject *object)
+{
+  list_of_objects = g_list_remove(list_of_objects, object);
+
+  G_OBJECT_CLASS (geda_menu_separator_parent_class)->finalize (object);
+
+#ifndef DEBUG_GEDA_SEPARATOR
+
+  if (!g_list_length(list_of_objects)) {
+    g_list_free(list_of_objects);
+    list_of_objects = NULL;
+  }
+
+#endif /* DEBUG_GEDA_SEPARATOR */
+}
 
 /*!
  * \brief GedaMenuSeparator Class Initializer
@@ -34,7 +61,16 @@ static void *geda_menu_separator_parent_class = NULL;
 static void
 geda_menu_separator_class_init (void *klass, void *data)
 {
-  GTK_CONTAINER_CLASS (klass)->child_type = NULL;
+  GObjectClass       *object_class;
+  GtkContainerClass  *container_class;
+
+  object_class = G_OBJECT_CLASS (klass);
+  container_class = GTK_CONTAINER_CLASS (klass);
+
+  object_class->finalize = geda_menu_separator_finalize;
+
+  container_class->child_type = NULL;
+
   geda_menu_separator_parent_class = g_type_class_peek_parent(klass);
 }
 
@@ -50,8 +86,7 @@ geda_menu_separator_class_init (void *klass, void *data)
 static void
 geda_menu_separator_instance_init(GTypeInstance *instance, void *class)
 {
-  GedaMenuSeparator *item = (GedaMenuSeparator*)instance;
-  item->instance_type     = geda_menu_separator_get_type();
+  list_of_objects = g_list_append(list_of_objects, instance);
 }
 
 /*! \brief Retrieve GedaMenuSeparator's Type identifier.
@@ -107,8 +142,8 @@ geda_menu_separator_get_type (void)
 bool
 is_a_geda_menu_separator (GedaMenuSeparator *separator)
 {
-  if (G_IS_OBJECT(separator)) {
-    return (geda_menu_separator_get_type() == separator->instance_type);
+  if (separator) {
+    return g_list_find(list_of_objects, separator) ? TRUE : FALSE;
   }
   return FALSE;
 }
