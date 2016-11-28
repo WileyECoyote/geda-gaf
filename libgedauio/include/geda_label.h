@@ -65,7 +65,6 @@ typedef struct _GedaLabelClass GedaLabelClass;
 struct _GedaLabel
 {
   GtkMisc        misc;
-  GedaType       instance_type;
 
   PangoAttrList *attrs;
   PangoAttrList *markup_attrs;

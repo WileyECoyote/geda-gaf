@@ -323,6 +323,10 @@ static void *geda_label_parent_class = NULL;
 
 static GtkBuildableIface *buildable_parent_iface = NULL;
 
+
+/* hold list of pointers to GedaLabel instances */
+static GList *list_of_objects = NULL;
+
 static void
 add_move_binding (GtkBindingSet  *binding_set, unsigned int keyval,
                   unsigned int  modmask,     GtkMovementStep step,
@@ -1002,6 +1006,8 @@ static void geda_label_finalize (GObject *object)
 {
   GedaLabel *label = GEDA_LABEL (object);
 
+  list_of_objects = g_list_remove(list_of_objects, label);
+
   GEDA_FREE (label->label);
   GEDA_FREE (label->text);
 
@@ -1012,6 +1018,11 @@ static void geda_label_finalize (GObject *object)
   GEDA_FREE(label->priv);
 
   G_OBJECT_CLASS (geda_label_parent_class)->finalize (object);
+
+  if (!g_list_length(list_of_objects)) {
+    g_list_free(list_of_objects);
+    list_of_objects = NULL;
+  }
 }
 
 static void
@@ -1704,7 +1715,6 @@ geda_label_instance_init(GTypeInstance *instance, void *g_class)
   gtk_widget_set_app_paintable ((GtkWidget*)label, TRUE);
   gtk_widget_set_can_default   ((GtkWidget*)label, FALSE);
 
-  label->instance_type    = geda_label_get_type();
   priv->font_map          = pango_cairo_font_map_new ();
 
   label->width_chars      = -1;
@@ -1742,6 +1752,8 @@ geda_label_instance_init(GTypeInstance *instance, void *g_class)
   else {
     priv->accessible = NULL;
   }
+
+  list_of_objects = g_list_append(list_of_objects, label);
 }
 
 static void
@@ -2372,6 +2384,11 @@ geda_label_setup_mnemonic (GedaLabel *label, unsigned int last_key)
       menu_shell = gtk_widget_get_ancestor (widget, GEDA_TYPE_MENU_SHELL);
 
       if (menu_shell) {
+
+        /* Not sure if this ever works */
+        geda_menu_shell_add_mnemonic (GEDA_MENU_SHELL (menu_shell),
+                                      priv->mnemonic_keyval,
+                                      widget);
         mnemonic_menu = menu_shell;
       }
 

@@ -1,3 +1,13 @@
+2016-11-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_label.c: Integrate a new type identifier system
+      with gobject system. The new scheme adds each label to a glist when
+      the instance is initialized and removes the pointer when the label
+      is finalized. The pointer is a label if the pointer is in the list
+      and this allows objects to be identified without "looking" inside
+      the object because the pointer could be any address. Note that the
+      new scheme can be mixed with old scheme and works for derivatives.
+
 2016-11-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets: Use accessor gtk_widget_get_parent instead of widget->
