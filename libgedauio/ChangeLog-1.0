@@ -10,6 +10,9 @@
     * src/widgets/geda_label.c: Replace GTK_WIDGET function calls with plain
       cast. Minor edits; remove extra spaces, clean old signal.
 
+    * src/widgets/geda_menu.c: Notify "attach-widget" in geda_menu_detach
+      because attach state changes.
+
 2016-11-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_accel_label.c: Over-ride widget-dispose and relocate

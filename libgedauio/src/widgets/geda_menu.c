@@ -1536,6 +1536,7 @@ geda_menu_detach (GedaMenu *menu)
   /* Fallback title for menu comes from attach widget */
   geda_menu_update_title (menu);
 
+  g_object_notify (G_OBJECT (menu), "attach-widget");
   g_object_unref (menu);
 }
 
