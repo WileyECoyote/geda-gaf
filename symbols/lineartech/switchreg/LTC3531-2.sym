@@ -1,0 +1,82 @@
+v 20161017 2
+T 1700 1600 8 10 1 1 0 6 1
+refdes=U?
+T 400 2000 5 10 0 0 0 0 1
+device=LTC3531
+T 400 2200 5 10 0 1 0 0 1
+description=Synchronous Buck Boost converter,200mA
+P 100 1200 400 1200 1 0 0
+{
+T 450 1200 9 10 1 1 0 0 1
+pinlabel=SW2
+T 250 1250 5 10 1 1 0 6 1
+pinnumber=1
+T 250 1250 5 10 0 1 0 6 1
+pinseq=1
+T 475 1150 5 8 0 1 0 2 1
+pintype=pas
+}
+P 100 400 400 400 1 0 0
+{
+T 450 400 9 10 1 1 0 0 1
+pinlabel=GND
+T 250 450 5 10 1 1 0 6 1
+pinnumber=2
+T 250 450 5 10 0 1 0 6 1
+pinseq=2
+T 475 350 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 2000 800 1700 800 1 0 0
+{
+T 1650 800 9 10 1 1 0 6 1
+pinlabel=VOUT
+T 1850 850 5 10 1 1 0 0 1
+pinnumber=3
+T 1850 850 5 10 0 1 0 0 1
+pinseq=3
+T 1625 750 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 2000 400 1700 400 1 0 0
+{
+T 1650 400 9 10 1 1 0 6 1
+pinlabel=\_SHDN\_
+T 1850 450 5 10 1 1 0 0 1
+pinnumber=4
+T 1850 450 5 10 0 1 0 0 1
+pinseq=4
+T 1625 350 5 8 0 1 0 8 1
+pintype=in
+}
+P 100 800 400 800 1 0 0
+{
+T 450 800 9 10 1 1 0 0 1
+pinlabel=VIN
+T 250 850 5 10 1 1 0 6 1
+pinnumber=5
+T 250 850 5 10 0 1 0 6 1
+pinseq=5
+T 450 775 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 2000 1200 1700 1200 1 0 0
+{
+T 1650 1200 9 10 1 1 0 6 1
+pinlabel=SW2
+T 1850 1250 5 10 1 1 0 0 1
+pinnumber=6
+T 1850 1250 5 10 0 1 0 0 1
+pinseq=6
+T 1650 1175 5 8 0 1 0 8 1
+pintype=in
+}
+B 400 100 1300 1400 3 0 1 0 -1 -1 0 -1 -1 -1 -1 -1
+T 400 1600 9 10 1 1 0 0 1
+value=LTC3531
+T 400 1800 5 10 0 0 0 0 1
+footprint=SOT326
+T 400 2400 5 10 0 1 0 0 1
+documentation=http://cds.linear.com/docs/en/datasheet/3531fb.pdf
+T 400 2600 5 10 0 0 0 0 1
+author=AutoTron
