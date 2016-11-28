@@ -50,6 +50,9 @@ static int global_pid = 0; /* Global integer for Page Indentification */
 
 static GList *new_page_hooks = NULL;
 
+/* List of pointers to GedaPage instances */
+static GList *list_of_pages = NULL;
+
 typedef struct {
   NewPageFunc func;
   void *data;
@@ -217,12 +220,11 @@ geda_page_instance_init( GTypeInstance *instance, void *class)
 
   page->weak_refs                 = NULL;
 
-  page->head_marker               = GEDA_TYPE_PAGE;
-  page->tail_marker               = page->head_marker;
+  /* Append page to list of valid page objects */
+  list_of_pages = g_list_append(list_of_pages, instance);
 
   /* Call hooks */
   g_list_foreach (new_page_hooks, call_new_page_hook, page);
-
 }
 
 /*! \brief Geda Page Object Dispose Function
@@ -285,13 +287,16 @@ static void geda_page_finalize(GObject *object)
 {
   Page *page = GEDA_PAGE(object);
 
+  list_of_pages = g_list_remove(list_of_pages, object);
+
+  if (!g_list_length(list_of_pages)) {
+    g_list_free(list_of_pages);
+    list_of_pages = NULL;
+  }
+
   if (page->filename) {
     GEDA_FREE(page->filename);
   }
-
-  /* The object is no longer a GedaPage object */
-  page->head_marker = 1;
-  page->tail_marker = 0;
 
   G_OBJECT_CLASS(geda_page_parent_class)->finalize(object);
 }
@@ -315,7 +320,6 @@ geda_page_class_init(void *class, void *class_data)
 
   object_class->dispose      = geda_page_dispose;
   object_class->finalize     = geda_page_finalize;
-
 }
 
 /*! \brief Function to retrieve Page's Type identifier.
@@ -369,7 +373,7 @@ GedaPageType geda_page_get_type (void)
 Page *geda_page_new (void)
 {
   Page *page;
-  page = g_object_new( geda_page_get_type(), NULL);
+  page = g_object_new (geda_page_get_type(), NULL);
   return page;
 }
 
@@ -398,8 +402,10 @@ Page *geda_page_new_with_notify (void)
  */
 bool is_a_geda_page (const Page *page)
 {
-  return ((unsigned long)page > 0x7FFFE) &&
-  (GEDA_TYPE_PAGE == (page->head_marker & page->tail_marker));
+  if (page) {
+    return g_list_find(list_of_pages, page) ? TRUE : FALSE;
+  }
+  return FALSE;
 }
 
 /*! \todo Finish function documentation!!!

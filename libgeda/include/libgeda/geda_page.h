@@ -5,8 +5,8 @@
  * gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
  *
- * Copyright (C) 2013-2015 Wiley Edward Hill
- * Copyright (C) 2013-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2013-2016 Wiley Edward Hill
+ * Copyright (C) 2013-2016 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -63,9 +63,6 @@ struct _GedaPageClass {
 struct _GedaPage {
 
   GObject parent;
-
-  /* structure type signature */
-  GedaPageType head_marker __attribute__ ((aligned (32)));
 
   GedaToplevel *toplevel;
 
@@ -132,9 +129,6 @@ struct _GedaPage {
   GList *conns_changed_hooks;
 
   GList *weak_refs;               /* Weak references */
-
-  /* structure type signature */
-  GedaPageType tail_marker __attribute__ ((aligned (32)));
 };
 
 #ifdef __cplusplus

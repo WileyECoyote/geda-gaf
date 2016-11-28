@@ -1,3 +1,12 @@
+2016-11-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_page.c: Integrate a new type identifier system with
+      gobject system. The new scheme adds each page to a glist when the
+      instance is initialized and removes the pointer when the page is
+      finalized. The pointer is a page if the pointer is in the list and
+      this allows objects to be identified without "looking" inside the
+      object because the pointer could be any address.
+
 2016-11-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_complex_object.c: Add accessor function geda_complex_
