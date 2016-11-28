@@ -789,7 +789,7 @@ static void geda_label_ensure_layout (GedaLabel *label)
     PangoContext  *context;
     bool           R2L;
 
-    //context = g_object_new (PANGO_TYPE_CONTEXT, NULL);
+    //context = pango_context_new (PANGO_TYPE_CONTEXT);
     context = gtk_widget_get_pango_context (widget);
 
     /* We Specify our own map to avoid memory leak in FontConfig */
@@ -1700,9 +1700,9 @@ geda_label_instance_init(GTypeInstance *instance, void *g_class)
   label->priv = GEDA_MEM_ALLOC0 (sizeof(GedaLabelData));
   priv        = label->priv;
 
-  gtk_widget_set_has_window    (GTK_WIDGET (label), FALSE);
-  gtk_widget_set_app_paintable (GTK_WIDGET (label), TRUE);
-  gtk_widget_set_can_default   (GTK_WIDGET (label), FALSE);
+  gtk_widget_set_has_window    ((GtkWidget*)label, FALSE);
+  gtk_widget_set_app_paintable ((GtkWidget*)label, TRUE);
+  gtk_widget_set_can_default   ((GtkWidget*)label, FALSE);
 
   label->instance_type    = geda_label_get_type();
   priv->font_map          = pango_cairo_font_map_new ();
@@ -1733,7 +1733,7 @@ geda_label_instance_init(GTypeInstance *instance, void *g_class)
 
   geda_label_set_text (label, "label");
 
-  accessible = gtk_widget_get_accessible(GTK_WIDGET(label));
+  accessible = gtk_widget_get_accessible((GtkWidget*)label);
 
   if (accessible) {
     priv->accessible = g_object_ref(accessible);
@@ -2512,7 +2512,7 @@ geda_label_screen_changed (GtkWidget *widget, GdkScreen *old_screen)
                         (void*)(long)TRUE);
   }
 
-  label_shortcut_setting_apply (GEDA_LABEL (widget));
+  label_shortcut_setting_apply (GEDA_LABEL(widget));
 }
 
 /* Helper called by geda_label_set_mnemonic_widget */
@@ -3273,7 +3273,7 @@ parse_uri_markup (GedaLabel *label, const char *str, char **new_str,
 failed:
   g_markup_parse_context_free (context);
   g_string_free (pdata.new_str, TRUE);
-  g_list_foreach (pdata.links, (GFunc) link_free, NULL);
+  g_list_foreach (pdata.links, (GFunc)link_free, NULL);
   g_list_free (pdata.links);
   pdata.links = NULL;
   return FALSE;
@@ -4011,7 +4011,7 @@ void geda_label_widget_set_max_width_chars (GtkWidget *widget, int n_chars)
 static void
 geda_label_clear_layout (GedaLabel *label)
 {
-  if (label->layout){
+  if (label->layout) {
     g_object_unref (label->layout);
     label->layout = NULL;
   }
@@ -6614,7 +6614,7 @@ geda_label_clear_links (GedaLabel *label)
 
   if (info) {
 
-    g_list_foreach (info->links, (GFunc) link_free, NULL);
+    g_list_foreach (info->links, (GFunc)link_free, NULL);
     g_list_free (info->links);
     info->links = NULL;
     info->active_link = NULL;

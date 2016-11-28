@@ -7,7 +7,8 @@
         * src/widgets/geda_menu.c
         * src/widgets/geda_menu_shell.c
 
-    * src/widgets/geda_label.c: Clean old signal.
+    * src/widgets/geda_label.c: Replace GTK_WIDGET function calls with plain
+      cast. Minor edits; remove extra spaces, clean old signal.
 
 2016-11-26 Wiley E. Hill <wileyhill@gmail.com>
 
