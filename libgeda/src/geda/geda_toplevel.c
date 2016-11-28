@@ -52,6 +52,9 @@ static GObjectClass *geda_toplevel_parent_class = NULL;
 
 static GList *new_toplevel_hooks = NULL;
 
+/* List of pointers to GedaToplevel instances */
+static GList *list_of_toplevels = NULL;
+
 typedef struct {
   NewToplevelFunc func;
   void *data;
@@ -193,12 +196,11 @@ geda_toplevel_instance_init(GTypeInstance *instance, void *g_class)
   toplevel->auto_save_interval             = 0;
   toplevel->auto_save_timeout              = 0;
 
-  toplevel->head_marker                    = GEDA_TYPE_TOPLEVEL;
-  toplevel->tail_marker                    = toplevel->head_marker;
+  /* Append toplevel to list of valid toplevel objects */
+  list_of_toplevels = g_list_append(list_of_toplevels, instance);
 
   /* Call hooks */
   g_list_foreach (new_toplevel_hooks, call_new_toplevel_hook, toplevel);
-
 }
 
 /*!
@@ -213,6 +215,13 @@ static void geda_toplevel_finalize(GObject *object)
 {
   GedaToplevel *toplevel = GEDA_TOPLEVEL(object);
   GList *iter;
+
+  list_of_toplevels = g_list_remove(list_of_toplevels, object);
+
+  if (!g_list_length(list_of_toplevels)) {
+    g_list_free(list_of_toplevels);
+    list_of_toplevels = NULL;
+  }
 
   if (toplevel->auto_save_timeout != 0) {
     /* Assume this works */
@@ -253,10 +262,6 @@ static void geda_toplevel_finalize(GObject *object)
   }
   toplevel->weak_refs = NULL;
 
-  /* The object is no longer a GedaToplevel object */
-  toplevel->head_marker = 1;
-  toplevel->tail_marker = 0;
-
   G_OBJECT_CLASS(geda_toplevel_parent_class)->finalize(object);
 }
 
@@ -276,7 +281,6 @@ geda_toplevel_class_init (void *class, void *class_data)
   GObjectClass *gobject_class = G_OBJECT_CLASS(klass);
   geda_toplevel_parent_class  = g_type_class_peek_parent(klass);
   gobject_class->finalize     = geda_toplevel_finalize;
-
 }
 
 /*!
@@ -346,8 +350,10 @@ GedaToplevel *geda_toplevel_new (void) {
  */
 bool is_a_geda_toplevel (GedaToplevel *toplevel)
 {
-  return ((unsigned long)toplevel > 0x7FFFE) &&
-  (GEDA_TYPE_TOPLEVEL == (toplevel->head_marker & toplevel->tail_marker));
+  if (toplevel) {
+    return g_list_find(list_of_toplevels, toplevel) ? TRUE : FALSE;
+  }
+  return FALSE;
 }
 
 bool
