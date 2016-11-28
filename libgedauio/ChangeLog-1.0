@@ -7,6 +7,8 @@
         * src/widgets/geda_menu.c
         * src/widgets/geda_menu_shell.c
 
+    * src/widgets/geda_label.c: Clean old signal.
+
 2016-11-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_accel_label.c: Over-ride widget-dispose and relocate

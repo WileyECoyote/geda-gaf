@@ -1356,24 +1356,13 @@ geda_label_class_init  (void *class, void *class_data)
    *
    * retval: %TRUE if the link has been activated
    */
-/*
-  signals[ACTIVATE_LINK] =
-  g_signal_new ("activate-link",
-                G_TYPE_FROM_CLASS (gobject_class),
-                G_SIGNAL_RUN_LAST,
-                G_STRUCT_OFFSET (GedaLabelClass, activate_link),
-                _gtk_boolean_handled_accumulator, NULL,
-                gtk_marshal_BOOLEAN__STRING,
-                G_TYPE_BOOLEAN, 1, G_TYPE_STRING);
-*/
-  signals[ACTIVATE_LINK] =
-  g_signal_new ("activate-link",
-                G_TYPE_FROM_CLASS (gobject_class),
-                G_SIGNAL_RUN_LAST,
-                G_STRUCT_OFFSET (GedaLabelClass, activate_link),
-                NULL, NULL,
-                gtk_marshal_BOOLEAN__POINTER,
-                G_TYPE_BOOLEAN, 1, G_TYPE_STRING);
+  signals[ACTIVATE_LINK] = g_signal_new ("activate-link",
+                                         G_TYPE_FROM_CLASS (gobject_class),
+                                         G_SIGNAL_RUN_LAST,
+                                         G_STRUCT_OFFSET (GedaLabelClass, activate_link),
+                                         NULL, NULL,
+                                         geda_marshal_BOOL__POINTER,
+                                         G_TYPE_BOOLEAN, 1, G_TYPE_STRING);
 
   params = g_param_spec_string ("label", _("Label"),
                               _("The text of the label"),
@@ -1867,7 +1856,6 @@ attribute_from_text (GtkBuilder *builder, const char *name,
       }
       break;
 
-
     case PANGO_ATTR_STYLE: /* PangoAttrInt */
       if (gtk_builder_value_from_string_type (builder, PANGO_TYPE_STYLE, value, &val, error))
       {
@@ -1932,12 +1920,10 @@ attribute_from_text (GtkBuilder *builder, const char *name,
       }
       break;
 
-
     case PANGO_ATTR_FAMILY: /* PangoAttrString */
       attribute = pango_attr_family_new (value);
       g_value_init (&val, G_TYPE_INT);
       break;
-
 
     case PANGO_ATTR_SIZE: /* PangoAttrSize */
       if (gtk_builder_value_from_string_type (builder, G_TYPE_INT,
@@ -1951,7 +1937,6 @@ attribute_from_text (GtkBuilder *builder, const char *name,
         attribute = pango_attr_size_new_absolute (g_value_get_int (&val));
       break;
 
-
     case PANGO_ATTR_FONT_DESC: /* PangoAttrFontDesc */
       if ((font_desc = pango_font_description_from_string (value)))
       {
@@ -1960,7 +1945,6 @@ attribute_from_text (GtkBuilder *builder, const char *name,
         g_value_init (&val, G_TYPE_INT);
       }
       break;
-
 
     case PANGO_ATTR_FOREGROUND: /* PangoAttrColor */
       if (gtk_builder_value_from_string_type (builder, GDK_TYPE_COLOR, value, &val, error))
