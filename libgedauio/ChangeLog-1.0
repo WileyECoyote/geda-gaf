@@ -1,3 +1,12 @@
+2016-11-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets: Use accessor gtk_widget_get_parent instead of widget->
+      parent in module:
+
+        * src/widgets/geda_combobox.c
+        * src/widgets/geda_menu.c
+        * src/widgets/geda_menu_shell.c
+
 2016-11-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_accel_label.c: Over-ride widget-dispose and relocate

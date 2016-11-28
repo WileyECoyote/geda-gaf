@@ -476,7 +476,7 @@ get_effective_child_attach (GtkWidget *child,
                             int       *t,
                             int       *b)
 {
-  GedaMenu   *menu = GEDA_MENU (child->parent);
+  GedaMenu   *menu = GEDA_MENU (gtk_widget_get_parent(child));
   AttachInfo *info;
 
   menu_ensure_layout (menu);

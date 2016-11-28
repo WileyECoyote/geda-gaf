@@ -3424,7 +3424,7 @@ geda_combo_box_menu_setup (GedaComboBox *combo_box, bool add_children)
     g_signal_connect (priv->button, "toggled",
                       G_CALLBACK (geda_combo_box_button_toggled), combo_box);
 
-    gtk_widget_set_parent (priv->button, child->parent);
+    gtk_widget_set_parent (priv->button, gtk_widget_get_parent(child));
 
     priv->box = gtk_hbox_new (FALSE, 0);
     gtk_container_add (GTK_CONTAINER (priv->button), priv->box);
@@ -3446,7 +3446,7 @@ geda_combo_box_menu_setup (GedaComboBox *combo_box, bool add_children)
       g_signal_connect (priv->button, "toggled",
                         G_CALLBACK (geda_combo_box_button_toggled), combo_box);
 
-      gtk_widget_set_parent (priv->button, child->parent);
+      gtk_widget_set_parent (priv->button, gtk_widget_get_parent(child));
 
       priv->arrow = gtk_arrow_new (GTK_ARROW_DOWN, GTK_SHADOW_NONE);
       gtk_container_add (GTK_CONTAINER (priv->button), priv->arrow);

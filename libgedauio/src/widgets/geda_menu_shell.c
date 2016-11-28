@@ -227,7 +227,7 @@ geda_menu_shell_is_item (GedaMenuShell *menu_shell, GtkWidget *child)
   g_return_val_if_fail (GEDA_IS_MENU_SHELL (menu_shell), FALSE);
   g_return_val_if_fail (child != NULL, FALSE);
 
-  parent = child->parent;
+  parent = gtk_widget_get_parent(child);
   while (GEDA_IS_MENU_SHELL(parent)) {
 
     if (parent == (GtkWidget*)menu_shell) {
