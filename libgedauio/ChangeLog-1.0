@@ -8,6 +8,8 @@
       the object because the pointer could be any address. Note that the
       new scheme can be mixed with old scheme and works for derivatives.
 
+    * src/widgets/geda_menu.c: Implement new identifier for GedaMenus.
+
 2016-11-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets: Use accessor gtk_widget_get_parent instead of widget->

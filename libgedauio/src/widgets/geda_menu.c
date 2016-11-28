@@ -321,6 +321,9 @@ static const char const transfer_window_key[] = "menu-transfer-window";
 
 static unsigned int menu_signals[LAST_SIGNAL] = { 0 };
 
+/* List of pointers to GedaMenu instances */
+static GList *list_of_objects = NULL;
+
 static void *geda_menu_parent_class = NULL;
 
 static void
@@ -503,7 +506,7 @@ get_effective_child_attach (GtkWidget *child,
 static bool
 geda_menu_window_event (GtkWidget *window, GdkEvent *event, GtkWidget *menu)
 {
-  bool  handled = FALSE;
+  bool handled = FALSE;
 
   g_object_ref (window);
   g_object_ref (menu);
@@ -565,6 +568,15 @@ static void
 geda_menu_finalize (GObject *object)
 {
   GedaMenu *menu = GEDA_MENU (object);
+
+  geda_menu_set_accel_group(menu, NULL);
+
+  list_of_objects = g_list_remove(list_of_objects, object);
+
+  if (!g_list_length(list_of_objects)) {
+    g_list_free(list_of_objects);
+    list_of_objects = NULL;
+  }
 
   g_free(menu->priv);
 
@@ -1119,10 +1131,9 @@ geda_menu_instance_init (GTypeInstance *instance, void *class)
   GedaMenuPriv *priv;
   GtkWindow    *toplevel;
 
-  menu                 = (GedaMenu *)instance;
+  menu                 = (GedaMenu*)instance;
   menu->priv           = g_malloc0 (sizeof(GedaMenuPriv));
   priv                 = menu->priv;
-  menu->instance_type  = geda_menu_get_type();
 
   menu->parent_menu_item     = NULL;
   menu->old_active_menu_item = NULL;
@@ -1184,6 +1195,7 @@ geda_menu_instance_init (GTypeInstance *instance, void *class)
 
 #endif
 
+  list_of_objects = g_list_append(list_of_objects, instance);
 }
 
 /*!
@@ -1230,8 +1242,8 @@ geda_menu_get_type (void)
 
 bool is_a_geda_menu (GedaMenu *menu)
 {
-  if (G_IS_OBJECT(menu)) {
-    return (geda_menu_get_type() == menu->instance_type);
+  if (menu) {
+    return g_list_find(list_of_objects, menu) ? TRUE : FALSE;
   }
   return FALSE;
 }
@@ -1486,7 +1498,7 @@ geda_menu_get_attach_widget (GedaMenu *menu)
 /*!
  * \brief Detach a GedaMenu from a Widget
  * \par Function Description
- * Detaches the menu from the widget to which it had been attached.
+ * Detaches the menu from the widget to which the menu had been attached.
  * This function will call the callback function, \a detacher, provided
  * when the geda_menu_attach_to_widget() function was called.
  *
@@ -1839,9 +1851,9 @@ geda_menu_popup (GedaMenu         *menu,
                                   GTK_WINDOW (parent_toplevel));
   }
 
-  menu->parent_menu_item = parent_menu_item;
-  menu->position_func = func;
-  menu->position_func_data = data;
+  menu->parent_menu_item    = parent_menu_item;
+  menu->position_func       = func;
+  menu->position_func_data  = data;
   menu_shell->activate_time = activate_time;
 
   /* We need to show the menu here rather in the init function because
@@ -2143,8 +2155,8 @@ geda_menu_set_accel_group (GedaMenu *menu, GtkAccelGroup *accel_group)
     menu->accel_group = accel_group;
 
     /* Add a reference to the new group */
-    if (menu->accel_group) {
-      g_object_ref (menu->accel_group);
+    if (accel_group) {
+      g_object_ref (accel_group);
     }
 
     geda_menu_refresh_accel_paths (menu, TRUE);

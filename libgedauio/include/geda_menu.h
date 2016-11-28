@@ -94,7 +94,6 @@ typedef void (*MenuDetachFunc) (GtkWidget *attach_widget, GedaMenu *menu);
 struct _GedaMenu
 {
   GedaMenuShell     menu_shell;
-  GedaType          instance_type;
 
   GtkAccelGroup    *accel_group;
   char             *accel_path;
