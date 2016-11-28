@@ -530,6 +530,25 @@ geda_complex_object_get_nearest_point (GedaObject *object, int x, int y, int *nx
 }
 
 /*!
+ * \brief Get list of pin objects from a Complex object
+ * \par Function Description
+ *  Returns a GList of GedaPin objects associated with \a object.
+ *
+ *  \param [in] object A GedaComplex object
+ *
+ *  \returns GList of pins belonging to the complex.
+ */
+GList*
+geda_complex_object_get_pin_objs(GedaObject *object)
+{
+  if (!GEDA_IS_COMPLEX(object)) {
+    geda_complex_object_error(__func__, object);
+    return NULL;
+  }
+  return object->complex->pin_objs;
+}
+
+/*!
  * \brief Get the position of complex base point
  * \par Function Description
  *  This function gets the position of the base point of a complex object.
