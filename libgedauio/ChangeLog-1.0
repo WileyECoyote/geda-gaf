@@ -24,6 +24,10 @@
       a pointer to 0x7FFF0. With the old system the former would pass
       bu the later would seg fault.
 
+    * tests/test_menu_separator.c: Add additional checks for the construction
+      section for validating the instance identification system. These checks
+      are a bit more comprehensive than in other object modules.
+
 2016-11-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets: Use accessor gtk_widget_get_parent instead of widget->
