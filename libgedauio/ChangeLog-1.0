@@ -20,6 +20,10 @@
     * src/widgets/geda_menu_shell.c: Implement new identifier system
       for GedaMenuShells.
 
+    * tests/test_menu.c: Add instance identifier checks with NULL and
+      a pointer to 0x7FFF0. With the old system the former would pass
+      bu the later would seg fault.
+
 2016-11-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets: Use accessor gtk_widget_get_parent instead of widget->
