@@ -960,6 +960,10 @@ static void geda_menu_bar_finalize (GObject *object)
     g_free(menu_bar->priv->accel);
   }
 
+  if (menu_bar->priv->accel_group) {
+    g_object_unref(menu_bar->priv->accel_group);
+  }
+
   g_free(menu_bar->priv);
 
   G_OBJECT_CLASS (geda_menu_bar_parent_class)->finalize (object);
@@ -1306,6 +1310,10 @@ add_to_window (GtkWindow *window, GedaMenuBar *menubar)
       g_free (menubar->priv->accel);
     }
     menubar->priv->accel = accel;
+
+    if (menubar->priv->accel_group) {
+      g_object_unref (menubar->priv->accel_group);
+    }
     menubar->priv->accel_group = accel_group;
   }
 
@@ -1330,7 +1338,7 @@ remove_from_window (GtkWindow *window, GedaMenuBar *menubar)
   if (!menubars) {
 
     g_object_unref(menubar->priv->accel_group);
-
+    menubar->priv->accel_group = NULL;
     g_signal_handlers_disconnect_by_func (window,
                                           geda_menu_bar_window_key_press_handler,
                                           NULL);

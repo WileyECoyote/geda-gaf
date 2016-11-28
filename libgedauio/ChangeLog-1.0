@@ -10,6 +10,10 @@
 
     * src/widgets/geda_menu.c: Implement new identifier for GedaMenus.
 
+    * src/widgets/geda_menu_bar.c: Check and unreference accel_group in
+      geda_menu_bar_finalize and accel_group and set to NULL in remove_
+      from_window so thatthe finalizer would not normally unreference.
+
 2016-11-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets: Use accessor gtk_widget_get_parent instead of widget->
