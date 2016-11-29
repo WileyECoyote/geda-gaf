@@ -644,12 +644,16 @@ geda_file_get_dir_list_files(char *path, char *filter, GError **err)
  *
  * \return offset if found, otherwise NULL.
  */
-const char *
+const char*
 geda_file_get_filename_ext(const char *filename)
 {
+  if (filename && *filename) {
     const char *dot = strrchr(filename, '.');
     if (!dot || dot == filename) return NULL;
+    if (IS_DIR_SEPARATOR(*(dot-1))) return NULL;
     return dot + 1;
+  }
+  return NULL;
 }
 
 /*!

@@ -1,3 +1,10 @@
+2016-11-229 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/file/f_get.c: Revise function geda_file_get_filename_ext to check
+      for NULL and empty strings, and if the character before the dot is a
+      directory separator, which would occur if the filename argument refer-
+      red to a hidden file nested in a directory.
+
 2016-11-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_page.c: Integrate a new type identifier system with
