@@ -88,6 +88,9 @@ static void propagate_key_file_error       (GError *src, GError **dest);
 
 static GObjectClass *eda_config_parent_class = NULL;
 
+/* List of pointers to EdaConfig instances */
+static GList *list_of_configs = NULL;
+
 /*! Increment the reference count of a EdaConfig instance. */
 static EdaConfig*
 eda_config_ref (EdaConfig *cfg)
@@ -229,6 +232,13 @@ static void eda_config_finalize (GObject *object)
   fprintf(stderr, "%s: finalizing %p\n", __func__, config);
 #endif
 
+  list_of_configs = g_list_remove(list_of_configs, object);
+
+  if (!g_list_length(list_of_configs)) {
+    g_list_free(list_of_configs);
+    list_of_configs = NULL;
+  }
+
   if (config->priv->filename != NULL) {
     GEDA_FREE (config->priv->filename);
   }
@@ -311,8 +321,6 @@ eda_config_instance_init(GTypeInstance *instance, void *class)
 {
   EdaConfig *config     = (EdaConfig*)instance;
 
-  config->instance_type = eda_config_get_type();
-
   config->priv          = GEDA_MEM_ALLOC0(sizeof(EdaConfigData));
 
   config->priv->parent            = NULL;
@@ -323,6 +331,9 @@ eda_config_instance_init(GTypeInstance *instance, void *class)
   config->priv->parent_handler_id = 0;
 
   config->RC_list                 = NULL;
+
+  /* Append config to list of valid config objects */
+  list_of_configs = g_list_append(list_of_configs, instance);
 }
 
 /*!
@@ -366,8 +377,8 @@ GedaConfigType eda_config_get_type (void)
 
 bool is_a_eda_config (const EdaConfig *cfg)
 {
-  if (G_IS_OBJECT(cfg)) {
-    return (eda_config_get_type() == cfg->instance_type);
+  if (cfg) {
+    return g_list_find(list_of_configs, cfg) ? TRUE : FALSE;
   }
   return FALSE;
 }

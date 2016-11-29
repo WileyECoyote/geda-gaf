@@ -156,8 +156,6 @@ struct _EdaConfig
 {
   GObject parent_instance;
 
-  GedaConfigType instance_type;
-
   /* Private members */
   EdaConfigData *priv;
 
