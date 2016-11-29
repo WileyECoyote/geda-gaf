@@ -436,14 +436,19 @@ geda_menu_item_dispose (GObject *object)
   if (priv->action) {
     geda_menu_item_disconnect_accelerator(priv->action);
     gtk_activatable_do_set_related_action (GTK_ACTIVATABLE(menu_item), NULL);
-    g_object_unref(priv->action);
     priv->action = NULL;
   }
 
   if (priv->submenu) {
-    g_signal_handlers_disconnect_by_func (priv->submenu,
+
+    GedaMenu *menu = GEDA_MENU(priv->submenu);
+
+    g_signal_handlers_disconnect_by_func (menu,
                                           geda_menu_item_selection_done,
                                           menu_item);
+    geda_menu_set_accel_group (menu, NULL);
+    geda_menu_detach(menu);
+
     priv->submenu = NULL;
   }
 
@@ -453,6 +458,13 @@ geda_menu_item_dispose (GObject *object)
 static void geda_menu_item_finalize (GObject *object)
 {
   GedaMenuItem *menu_item = GEDA_MENU_ITEM(object);
+
+  list_of_objects = g_list_remove(list_of_objects, object);
+
+  if (!g_list_length(list_of_objects)) {
+    g_list_free(list_of_objects);
+    list_of_objects = NULL;
+  }
 
   g_free(menu_item->priv);
 

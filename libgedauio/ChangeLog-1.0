@@ -3,6 +3,9 @@
     * src/widgets/geda_menu_item.c: Revise function geda_menu_item_destroy
       to fetch children with geda_get_child_widget and remove when found
       using gtk_container_remove instead calling gtk_widget_destroy.
+      Revise geda_menu_item_dispose to detach sub-menus and set the accel
+      group to NULL using geda_menu_set_accel_group and not unreference
+      actions.
 
 2016-11-28 Wiley E. Hill <wileyhill@gmail.com>
 
