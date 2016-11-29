@@ -1158,16 +1158,22 @@ int test_strings (void)
     result++;
   }
 
+  string = geda_strdup("");
+  if (!string) {                           /* EMPTY input */
+    fprintf(stderr, "FAILED: (U061301) geda_strdup returned NULL\n");
+    result++;
+  }
+
   string = geda_strdup(str3);
   if (string) {
     if (strcmp(string, str3) != 0) {      /* 9 > input */
-      fprintf(stderr, "FAILED: (U061301A) geda_strdup <%s>\n", string);
+      fprintf(stderr, "FAILED: (U061302A) geda_strdup <%s>\n", string);
       result++;
     }
     free(string);
   }
   else {
-    fprintf(stderr, "FAILED: (U061301B) geda_strdup returned NULL\n");
+    fprintf(stderr, "FAILED: (U061302B) geda_strdup returned NULL\n");
     result++;
   }
 

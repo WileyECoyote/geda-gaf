@@ -16,6 +16,9 @@
     * tests/test_file.c: Revise F020201B to not pass the NULL to strcmp.
       Add checks for geda_file_get_filename_ext.
 
+    * tests/test_utility.c: Add check for passing an empty string to
+      geda_utility_string_strdup.
+
 2016-11-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_page.c: Integrate a new type identifier system with
