@@ -24,7 +24,7 @@
  *  Date Contributed: March, TBD, 2016
  */
 
-#include <config.h>
+#include "../../config.h"
 
 #include <libgeda.h>
 #include <stdlib.h>
@@ -35,8 +35,8 @@
 #include <glib.h>
 #include <glib/gstdio.h>
 
-#include "test-suite.h"
 #include "test_parsecmd.h"
+#include "test-suite.h"
 
 /*! \file test_file.c
  *  \brief Tests for geda file functions
@@ -439,10 +439,7 @@ int test_get (void)
       free (input);
     }
     else {
-      if (strcmp(string, expected)) {      /* See structure F02_str */
-        fprintf(stderr, "FAILED: (F020201B-%d) expected <%s> NULL\n",index, expected);
-        result++;
-      }
+      fprintf(stderr, "FAILED: (F020201B-%d) expected <%s> NULL\n",index, expected);
     }
     string = NULL;
   }
