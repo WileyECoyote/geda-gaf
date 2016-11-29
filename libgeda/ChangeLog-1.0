@@ -11,6 +11,8 @@
     * src/geda/geda_config.c: Implement new object type identifier scheme
       for GedaObject objects.
 
+    * src/object/o_object.c: Reduce scope of result in geda_object_read.
+
 2016-11-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_page.c: Integrate a new type identifier system with
