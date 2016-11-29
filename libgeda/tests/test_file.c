@@ -658,7 +658,54 @@ int test_get (void)
     geda_gslist_free_all(files);
   }
 
-  /* === Function 08: geda_get_extension        geda_file_get_filename_ext === */
+  /* === Function 08: geda_file_get_filename_ext === */
+
+  static const struct _TestData F08_str[] =
+  {
+    { "",            ""     }, /* Emtpy */
+    { ".",           ""     }, /* Current Directory */
+    { "noextension", ""     }, /* Extensionless */
+    { "with.2.dots", "dots" }, /* with 2 DOTS */
+    { "a.png",       "png"  }, /* a png file */
+    { "a/b.sym",     "sym"  }, /* a symbol named b in a */
+    { "c.d/e.sch" ,  "sch"  }, /* a schematic named e in c.d */
+    { "/a/b.c",      "c"    }, /* with leading separator */
+    { "./a/b/c.d",   "d"    }, /* hidden directory */
+    { ".hidden",     ""     }, /* hidden file */
+    { "/a/b/.f",     ""     }, /* hidden file in nested dir */
+    { 0 },
+  };
+
+  const char *ext = geda_get_extension (NULL);
+
+  if (ext) {                           /* NULL input */
+    fprintf(stderr, "FAILED: (F080200) geda_get_extension <%s>\n", ext);
+    result++;
+  }
+
+  for (index = 0; F08_str[index].input; index++) {
+
+    char *expected = F08_str[index].expected;
+    char *input    = geda_strdup (F08_str[index].input);
+
+    ext = geda_get_extension (input);
+
+    if (ext) {
+      if (strcmp(ext, expected)) {      /* See structure F08_str */
+        fprintf(stderr, "FAILED: (F080201A-%d) geda_get_extension <%s>\n",index, ext);
+        result++;
+      }
+      free (input);
+    }
+    else {
+      if (*expected) {      /* See structure F08_str */
+        fprintf(stderr, "FAILED: (F080201B-%d) expected <%s> NULL\n",index, expected);
+        result++;
+      }
+    }
+    ext = NULL;
+  }
+
 
   /* === Function 09: geda_get_format_header    geda_file_get_format_header === */
 

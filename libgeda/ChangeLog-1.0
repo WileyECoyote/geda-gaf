@@ -14,6 +14,7 @@
     * src/object/o_object.c: Reduce scope of result in geda_object_read.
 
     * tests/test_file.c: Revise F020201B to not pass the NULL to strcmp.
+      Add checks for geda_file_get_filename_ext.
 
 2016-11-28 Wiley E. Hill <wileyhill@gmail.com>
 
