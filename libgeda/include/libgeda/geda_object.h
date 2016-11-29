@@ -66,9 +66,6 @@ struct _GedaObject {
 
   GObject parent;
 
-  /* structure type signature */
-  GedaObjectType head_marker __attribute__ ((aligned (32)));
-
   char    type;                        /* Basic information */
   int     sid;                         /* sequence id ?? */
   char   *name;
@@ -127,9 +124,6 @@ struct _GedaObject {
   int conn_notify_pending;
 
   GList   *weak_refs;             /* Weak references */
-
-  /* structure type signature */
-  GedaObjectType tail_marker __attribute__ ((aligned (32)));
 };
 
 #ifdef __cplusplus

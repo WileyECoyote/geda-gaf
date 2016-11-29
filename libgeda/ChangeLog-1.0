@@ -6,7 +6,10 @@
       red to a hidden file nested in a directory.
 
     * src/geda/geda_config.c: Implement new object type identifier scheme
-      to EdaConfig objects.
+      for EdaConfig objects.
+
+    * src/geda/geda_config.c: Implement new object type identifier scheme
+      for GedaObject objects.
 
 2016-11-28 Wiley E. Hill <wileyhill@gmail.com>
 

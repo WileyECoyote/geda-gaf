@@ -60,6 +60,9 @@ enum {
 
 static GObjectClass *geda_object_parent_class = NULL;
 
+/* hold list of pointers to GedaObject instances */
+static GList *list_of_objects = NULL;
+
 /*! this is modified here and in o_list.c */
 static int global_sid = 0; /* Global integer for GedaObject Indentification */
 
@@ -341,12 +344,10 @@ geda_object_instance_init(GTypeInstance *instance, void *g_class)
 
   object->weak_refs                  = NULL;
 
-  object->head_marker                = GEDA_TYPE_OBJECT;
-  object->tail_marker                = object->head_marker;
+  list_of_objects = g_list_append(list_of_objects, object);
 
   /* Call hooks */
   g_list_foreach (new_object_hooks, call_new_object_hook, object);
-
 }
 
 /*!
@@ -358,7 +359,14 @@ geda_object_instance_init(GTypeInstance *instance, void *g_class)
  */
 static void geda_object_finalize(GObject *gobject)
 {
-  GedaObject *object = GEDA_OBJECT(gobject);
+  GedaObject *object = (GedaObject*)(gobject);
+
+  list_of_objects = g_list_remove(list_of_objects, object);
+
+  if (!g_list_length(list_of_objects)) {
+    g_list_free(list_of_objects);
+    list_of_objects = NULL;
+  }
 
   if (object->name) {
     GEDA_FREE(object->name);
@@ -385,10 +393,6 @@ static void geda_object_finalize(GObject *gobject)
     g_list_free (object->weak_refs);
     object->weak_refs = NULL;
   }
-
-  /* The object is no longer a GedaObject */
-  object->head_marker = 0;
-  object->tail_marker = 0;
 
   G_OBJECT_CLASS(geda_object_parent_class)->finalize(gobject);
 
@@ -573,20 +577,10 @@ GedaObject *geda_object_new (int type, char const *name)
  */
 bool is_a_geda_object (const void *object)
 {
-  bool  answer;
-  const GedaObject *obj = object;
-
-  if ((unsigned long)obj > 0x7FFFE) {
-    answer = (GEDA_TYPE_OBJECT == (obj->head_marker & obj->tail_marker));
+  if (object) {
+    return g_list_find(list_of_objects, object) ? TRUE : FALSE;
   }
-  else {
-    if (obj != NULL) {
-      fprintf(stderr, "%s: Bad pointer <%p>", __func__, obj);
-    }
-    answer = FALSE;
-  }
-
-  return answer;
+  return FALSE;
 }
 
 /*!
