@@ -1,3 +1,9 @@
+2016-11-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_item.c: Revise function geda_menu_item_destroy
+      to fetch children with geda_get_child_widget and remove when found
+      using gtk_container_remove instead calling gtk_widget_destroy.
+
 2016-11-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_label.c: Integrate a new type identifier system

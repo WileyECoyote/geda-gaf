@@ -392,10 +392,14 @@ static void
 geda_menu_item_destroy (GtkObject *object)
 {
   GedaMenuItem *menu_item = GEDA_MENU_ITEM(object);
-  GedaMenuItemPrivate *priv = menu_item->priv;
+  GtkWidget    *child;
 
-  if (priv->submenu) {
-    gtk_widget_destroy (priv->submenu);
+  child = geda_get_child_widget (GTK_BIN(menu_item));
+
+  if (child) {
+    if (GEDA_IS_LABEL(child)) {
+      gtk_container_remove (GTK_CONTAINER(menu_item), child);
+    }
   }
 
   GTK_OBJECT_CLASS (geda_menu_item_parent_class)->destroy (object);
@@ -407,10 +411,13 @@ static void
 geda_menu_item_destroy (GtkWidget *widget)
 {
   GedaMenuItem *menu_item = GEDA_MENU_ITEM(widget);
-  GedaMenuItemPrivate *priv = menu_item->priv;
 
-  if (priv->submenu) {
-    gtk_widget_destroy (priv->submenu);
+  child = geda_get_child_widget (GTK_BIN(menu_item));
+
+  if (child) {
+    if (GEDA_IS_LABEL(child)) {
+      gtk_container_remove (GTK_CONTAINER(menu_item), child);
+    }
   }
 
   GTK_WIDGET_CLASS (geda_menu_item_parent_class)->destroy (widget);
