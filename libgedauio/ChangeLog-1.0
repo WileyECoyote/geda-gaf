@@ -4,6 +4,9 @@
       geda_label_get_report_instances if DEBUG_GEDA_LABEL when testing
       potential resources leaks, see comments in source.
 
+    * src/widgets/geda_separator.c: Implement new identifier system in
+      GedaSeparator class.
+
 2016-11-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_item.c: Revise function geda_menu_item_destroy

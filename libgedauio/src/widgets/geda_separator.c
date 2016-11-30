@@ -66,9 +66,10 @@ static void geda_separator_size_request (GtkWidget      *widget,
 static bool geda_separator_expose       (GtkWidget      *widget,
                                          GdkEventExpose *event);
 
-
-
 static void *geda_separator_parent_class = NULL;
+
+/* hold list of pointers to GedaLabel instances */
+static GList *list_of_objects = NULL;
 
 #if GTK_MAJOR_VERSION < 3
 
@@ -272,6 +273,30 @@ geda_separator_draw (GtkWidget *widget, cairo_t *cr)
 
 #endif
 
+/*!
+ * \brief gobject_class->finalize a GedaSeparator object
+ * \par Function Description
+ *  Releases resources associated with the GedaSeparator object.
+ *  The object should not be referenced after this function
+ *  is executes.
+ */
+static void
+geda_separator_finalize (GObject *object)
+{
+  list_of_objects = g_list_remove(list_of_objects, object);
+
+  G_OBJECT_CLASS (geda_separator_parent_class)->finalize (object);
+
+#ifndef DEBUG_GEDA_SEPARATOR
+
+  if (!g_list_length(list_of_objects)) {
+    g_list_free(list_of_objects);
+    list_of_objects = NULL;
+  }
+
+#endif /* DEBUG_GEDA_SEPARATOR */
+}
+
 static void
 geda_separator_get_property (GObject     *object,
                              unsigned int prop_id,
@@ -309,6 +334,7 @@ geda_separator_set_property (GObject      *object,
   }
 }
 
+
 static void
 geda_separator_class_init(void *class, void *class_data)
 {
@@ -316,6 +342,7 @@ geda_separator_class_init(void *class, void *class_data)
   GObjectClass   *object_class = G_OBJECT_CLASS (class);
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (class);
 
+  object_class->finalize     = geda_separator_finalize;
   object_class->set_property = geda_separator_set_property;
   object_class->get_property = geda_separator_get_property;
 
@@ -363,6 +390,8 @@ geda_separator_instance_init(GTypeInstance *instance, void *g_class)
 
   widget->requisition.width  = 1;
   widget->requisition.height = widget->style->ythickness;
+
+  list_of_objects = g_list_append(list_of_objects, separator);
 }
 
 /*!
