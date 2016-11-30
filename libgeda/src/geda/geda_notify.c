@@ -53,6 +53,9 @@
 
 static GObjectClass *geda_notify_list_parent_class = NULL;
 
+/* List of pointers to GedaNotifyList instances */
+static GList *list_of_objects = NULL;
+
 /*! \brief GedaType instance initializer for GedaNotifyList
  *
  *  GedaType Function Description
@@ -70,6 +73,8 @@ static void geda_notify_list_instance_init (GTypeInstance *instance, void *class
   /* Strictly un-necessary, as the memory is zero'd after allocation */
   list->glist          = NULL;
   list->freeze_count   = 0;
+
+  list_of_objects = g_list_append(list_of_objects, list);
 }
 
 /*! \brief GObject finalise handler
@@ -83,8 +88,18 @@ static void geda_notify_list_instance_init (GTypeInstance *instance, void *class
 static void geda_notify_list_finalize (GObject *object)
 {
   GedaNotifyList *list = GEDA_NOTIFY_LIST( object );
+
+  list_of_objects = g_list_remove(list_of_objects, object);
+
+  if (!g_list_length(list_of_objects)) {
+    g_list_free(list_of_objects);
+    list_of_objects = NULL;
+  }
+
   geda_utility_glist_free_full (list->glist, g_free);
+
   list->glist = NULL;
+
   G_OBJECT_CLASS( geda_notify_list_parent_class )->finalize (object);
 }
 
@@ -151,8 +166,8 @@ GedaNotifyType geda_notify_list_get_type (void)
 
 bool is_a_geda_notify_list (const GedaNotifyList *list)
 {
-  if (G_IS_OBJECT(list)) {
-    return (geda_notify_list_get_type() == list->instance_type);
+  if (list) {
+    return g_list_find(list_of_objects, list) ? TRUE : FALSE;
   }
   return FALSE;
 }
