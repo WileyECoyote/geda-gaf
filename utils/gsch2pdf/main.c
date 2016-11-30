@@ -190,7 +190,7 @@ static void print_circle(GedaToplevel *current, cairo_t *cairo, GedaObject *obje
 
 static void print_complex(GedaToplevel *current, cairo_t *cairo, GedaObject *object)
 {
-  const GList *iter = object->complex->prim_objs;
+  const GList *iter = geda_complex_object_get_prim_objs(object);
 
   while (iter != NULL) {
 
