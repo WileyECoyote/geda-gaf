@@ -1,3 +1,8 @@
+2016-11-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_window.c: Substitute geda_strncmpi macro for geda_utility_
+      string_strncmpi in x_window_open_page.
+
 2016-11-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem.c: Remove G_STAT_MEM and g_mem_profile, g_mem_profile

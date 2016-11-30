@@ -1066,7 +1066,6 @@ x_window_close_page (GschemToplevel *w_current, Page *page)
 {
   GedaToplevel *toplevel = w_current->toplevel;
 
-
   g_return_if_fail (toplevel != NULL);
 
   if (page != NULL) {
@@ -1130,8 +1129,8 @@ x_window_close_page (GschemToplevel *w_current, Page *page)
         }
       }
 
-      if ((geda_utility_string_strncmpi(geda_file_get_basename(page->filename), "untitled", 8) != 0) ||
-        verbose_mode)
+      if ((geda_strncmpi(geda_get_basename(page->filename), "untitled", 8) != 0) ||
+           verbose_mode)
       {
         q_log_message (page->CHANGED ? _("Discarding page [%s]\n") : _("Closing [%s]\n"),
         page->filename);
