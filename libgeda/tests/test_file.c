@@ -90,6 +90,8 @@ struct _TestData
   char *expected;
 };
 
+bool vpath_build;
+
 /** \defgroup test-file-geda-file Test GEDA f_file Module
  * @{
  * \brief Group 1 src/file/f_file.c geda_file_
@@ -1241,6 +1243,13 @@ void setup_environment(void)
   }
   else {
     old_rc_path = NULL;
+  }
+
+  if (g_file_test("Makefile.am", G_FILE_TEST_EXISTS)) {
+    vpath_build = FALSE;
+  }
+  else {
+    vpath_build = TRUE;
   }
 
   /* This is only needed for distcheck VPATH builds */

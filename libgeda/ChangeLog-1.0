@@ -1,3 +1,8 @@
+2016-11-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/file/f_file.c: Add global boolean vpath_build and set if Makefile.am
+      is not present to allow test to be skipped during checks for vpath builds.
+
 2016-11-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_get.c: Revise function geda_file_get_filename_ext to check
