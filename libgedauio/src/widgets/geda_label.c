@@ -327,6 +327,40 @@ static GtkBuildableIface *buildable_parent_iface = NULL;
 /* hold list of pointers to GedaLabel instances */
 static GList *list_of_objects = NULL;
 
+#ifdef DEBUG_GEDA_LABEL
+
+/*!
+ * \brief Report GedaLabel Instances
+ * \par Function Description
+ *  This function can be called after all libgedauio resources
+ *  have been released to print a list of pointers to GedaLabel
+ *  objects that are still alive or the NULL message if all of
+ *  the GedaLabels were released. This is particularly useful
+ *  for debugging/developing menu systems.
+ */
+void geda_label_get_report_instances (void)
+{
+  if (labels) {
+
+    GList *iter;
+
+    for (iter = labels; iter; iter = iter->next) {
+
+      GedaLabel *label = iter->data;
+
+      fprintf(stderr, "label,%p,text=<%s>\n", label, label->text);
+    }
+
+    g_list_free(list_of_objects);
+    labels = NULL;
+  }
+  else {
+    fprintf(stderr, "%s: list of labels is NULL\n", __func__);
+  }
+}
+
+#endif /* DEBUG_GEDA_LABEL */
+
 static void
 add_move_binding (GtkBindingSet  *binding_set, unsigned int keyval,
                   unsigned int  modmask,     GtkMovementStep step,
@@ -1019,10 +1053,14 @@ static void geda_label_finalize (GObject *object)
 
   G_OBJECT_CLASS (geda_label_parent_class)->finalize (object);
 
+#ifndef DEBUG_GEDA_LABEL
+
   if (!g_list_length(list_of_objects)) {
     g_list_free(list_of_objects);
     list_of_objects = NULL;
   }
+
+#endif /* DEBUG_GEDA_LABEL */
 }
 
 static void
@@ -1741,6 +1779,8 @@ geda_label_instance_init(GTypeInstance *instance, void *g_class)
 
   priv->mnemonics_visible = TRUE;
 
+  list_of_objects = g_list_append(list_of_objects, label);
+
   geda_label_set_text (label, "label");
 
   accessible = gtk_widget_get_accessible((GtkWidget*)label);
@@ -1752,8 +1792,6 @@ geda_label_instance_init(GTypeInstance *instance, void *g_class)
   else {
     priv->accessible = NULL;
   }
-
-  list_of_objects = g_list_append(list_of_objects, label);
 }
 
 static void
@@ -1826,8 +1864,8 @@ geda_label_get_type (void)
 bool
 is_a_geda_label (GedaLabel *label)
 {
-  if (G_IS_OBJECT(label)) {
-    return (geda_label_get_type() == label->instance_type);
+  if (label) {
+    return g_list_find(list_of_objects, label) ? TRUE : FALSE;
   }
   return FALSE;
 }
