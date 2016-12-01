@@ -15,6 +15,9 @@
     * src/widgets/geda_menu_separator.c: Redo object type identifier scheme for
       GedaMenuSeparator objects and replace glist with hash table.
 
+    * src/widgets/geda_menu_shell.c: Redo object type identifier scheme for
+      GedaMenuSeparator objects and replace glist with hash table.
+
 2016-11-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_label.c: Add conditionally build function

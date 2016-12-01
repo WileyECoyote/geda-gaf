@@ -217,8 +217,8 @@ static bool geda_menu_shell_real_move_selected     (GedaMenuShell     *menu_shel
 
 static unsigned int menu_shell_signals[LAST_SIGNAL] = { 0 };
 
-/* List of pointers to GedaMenuShell instances */
-static GList *list_of_objects = NULL;
+/* Table of pointers to GedaMenuShell instances */
+static GHashTable *shell_hash = NULL;
 
 static void *geda_menu_shell_parent_class = NULL;
 
@@ -757,7 +757,7 @@ geda_menu_shell_remove (GtkContainer *container, GtkWidget *widget)
       g_signal_emit_by_name (menu_shell->active_menu_item, "deselect");
       //gtk_item_deselect (GTK_ITEM (menu_shell->active_menu_item));
       menu_shell->active_menu_item = NULL;
-    }
+  }
 
   gtk_widget_unparent (widget);
 
@@ -1303,11 +1303,11 @@ geda_menu_shell_finalize (GObject *object)
   GedaMenuShell *menu_shell = GEDA_MENU_SHELL (object);
   GedaMenuShellPriv *priv = menu_shell->priv;
 
-  list_of_objects = g_list_remove(list_of_objects, object);
-
-  if (!g_list_length(list_of_objects)) {
-    g_list_free(list_of_objects);
-    list_of_objects = NULL;
+  if (g_hash_table_remove (shell_hash, object)) {
+    if (!g_hash_table_size (shell_hash)) {
+      g_hash_table_destroy (shell_hash);
+      shell_hash = NULL;
+    }
   }
 
   if (priv->mnemonic_hash) {
@@ -1620,7 +1620,11 @@ geda_menu_shell_instance_init(GTypeInstance *instance, void *class)
 
   menu_shell->priv->take_focus = TRUE;
 
-  list_of_objects = g_list_append(list_of_objects, instance);
+  if (!shell_hash) {
+    shell_hash = g_hash_table_new (g_direct_hash, NULL);
+  }
+
+  g_hash_table_add (shell_hash, instance);
 }
 
 /*!
@@ -1668,8 +1672,8 @@ geda_menu_shell_get_type (void)
 
 bool is_a_geda_menu_shell (GedaMenuShell *menu_shell)
 {
-  if (menu_shell) {
-    return g_list_find(list_of_objects, menu_shell) ? TRUE : FALSE;
+  if ((menu_shell != NULL) && (shell_hash != NULL)) {
+    return g_hash_table_lookup(shell_hash, menu_shell) ? TRUE : FALSE;
   }
   return FALSE;
 }
