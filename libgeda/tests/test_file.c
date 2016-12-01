@@ -628,36 +628,39 @@ int test_get (void)
     }
   }
 
-  files = geda_get_dir_list(TEST_FILE_PATH, NULL, NULL);
+  if (!vpath_build) {
 
-  int num_file_07 = g_slist_length(files);
+    files = geda_get_dir_list(TEST_FILE_PATH, NULL, NULL);
 
-  /* current, parent, files and tmp test links = 7 */
-  if (num_file_07 != 7) {
-    fprintf(stderr, "FAILED: (F020701) geda_get_dir_list <%d>\n", num_file_07);
-    result++;
-  }
+    int num_file_07 = g_slist_length(files);
 
-  geda_gslist_free_all(files);
-
-  files = geda_get_dir_list(TEST_FILE_PATH, ".sym", NULL);
-
-  num_file_07 = g_slist_length(files);
-
-  /* ATMega32-DIP_test.sym is the sym file in data/ */
-  if (num_file_07 - 1) {
-    fprintf(stderr, "FAILED: (F020702A) geda_get_dir_list <%d>\n", num_file_07);
-    result++;
-  }
-  else {
-
-    string = files->data;
-
-    if (strcmp(string, LINK2SOMEWHERE)) {
-      fprintf(stderr, "FAILED: (F020702B) geda_get_dir_list <%s>\n", string);
+    /* current, parent, files and tmp test links = 7 */
+    if (num_file_07 != 7) {
+      fprintf(stderr, "FAILED: (F020701) geda_get_dir_list <%d>\n", num_file_07);
       result++;
     }
+
     geda_gslist_free_all(files);
+
+    files = geda_get_dir_list(TEST_FILE_PATH, ".sym", NULL);
+
+    num_file_07 = g_slist_length(files);
+
+    /* ATMega32-DIP_test.sym is the sym file in data/ */
+    if (num_file_07 - 1) {
+      fprintf(stderr, "FAILED: (F020702A) geda_get_dir_list <%d>\n", num_file_07);
+      result++;
+    }
+    else {
+
+      string = files->data;
+
+      if (strcmp(string, LINK2SOMEWHERE)) {
+        fprintf(stderr, "FAILED: (F020702B) geda_get_dir_list <%s>\n", string);
+        result++;
+      }
+      geda_gslist_free_all(files);
+    }
   }
 
   /* === Function 08: geda_file_get_filename_ext === */

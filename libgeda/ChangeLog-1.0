@@ -4,6 +4,8 @@
       objects and replace glist with hash table. The performance with glist was
       unacceptable poor for schematics with high component counts.
 
+    * tests/test_file.c: Skip F0207 if vpath_build.
+
 2016-11-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_file.c: Add global boolean vpath_build and set if Makefile.am
