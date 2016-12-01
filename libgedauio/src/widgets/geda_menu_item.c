@@ -1393,9 +1393,10 @@ geda_menu_item_set_submenu (GedaMenuItem *menu_item, GtkWidget *submenu)
       geda_menu_detach (GEDA_MENU(priv->submenu));
     }
 
+    priv->submenu = submenu;
+
     if (submenu) {
 
-      priv->submenu = submenu;
       geda_menu_attach_to_widget (GEDA_MENU(submenu), widget,
                                   geda_menu_item_detacher);
 

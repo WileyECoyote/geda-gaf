@@ -9,7 +9,8 @@
       objects and replace glist with hash table.
 
     * src/widgets/geda_menu_item.c: Implement new identifier system using a hash
-      table in GedaMenuItem.
+      table in GedaMenuItem. Revise geda_menu_item_set_submenu to only set priv
+      sub-menu if a submenu was passed.
 
 2016-11-30 Wiley E. Hill <wileyhill@gmail.com>
 
