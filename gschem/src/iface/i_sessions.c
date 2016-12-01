@@ -619,7 +619,7 @@ static void i_sessions_attach_submenu(GschemToplevel *w_current)
       gtk_widget_show_all(sessions_submenu);
 
       geda_menu_item_set_submenu(GEDA_MENU_ITEM(sessions_menu_item),
-                                sessions_submenu);
+                                 sessions_submenu);
     }
   }
 }
