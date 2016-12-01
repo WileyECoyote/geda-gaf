@@ -8,6 +8,9 @@
     * src/widgets/geda_menu.c: Redo object type identifier scheme for GedaLabel
       objects and replace glist with hash table.
 
+    * src/widgets/geda_menu_item.c: Implement new identifier system using a hash
+      table in GedaMenuItem.
+
 2016-11-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_label.c: Add conditionally build function

@@ -285,6 +285,9 @@ static unsigned int menu_item_signals[LAST_SIGNAL] = { 0 };
 
 static GtkBuildableIface *parent_buildable_iface;
 
+/* Table of pointers to GedaMenuItem instances */
+static GHashTable *menu_item_hash_table = NULL;
+
 static void *geda_menu_item_parent_class = NULL;
 
 static void
@@ -309,12 +312,11 @@ geda_menu_item_detacher (GtkWidget *widget, GedaMenu *menu)
   GedaMenuItem *menu_item = GEDA_MENU_ITEM(widget);
   GedaMenuItemPrivate *priv = menu_item->priv;
 
-  g_return_if_fail (priv->submenu == (GtkWidget*) menu);
+  g_return_if_fail (priv->submenu == (GtkWidget*)menu);
 
   g_signal_handlers_disconnect_by_func (menu,
                                         geda_menu_item_selection_done,
                                         menu_item);
-
   priv->submenu = NULL;
 }
 
@@ -459,11 +461,11 @@ static void geda_menu_item_finalize (GObject *object)
 {
   GedaMenuItem *menu_item = GEDA_MENU_ITEM(object);
 
-  list_of_objects = g_list_remove(list_of_objects, object);
-
-  if (!g_list_length(list_of_objects)) {
-    g_list_free(list_of_objects);
-    list_of_objects = NULL;
+  if (g_hash_table_remove (menu_item_hash_table, object)) {
+    if (!g_hash_table_size (menu_item_hash_table)) {
+      g_hash_table_destroy (menu_item_hash_table);
+      menu_item_hash_table = NULL;
+    }
   }
 
   g_free(menu_item->priv);
@@ -595,7 +597,7 @@ geda_menu_item_get_property (GObject     *object,
  * \param [in] class_data GedaMenuSeparator structure associated with the class
  */
 static void
-geda_menu_item_class_init  (void *class, void *class_data)
+geda_menu_item_class_init (void *class, void *class_data)
 {
   GObjectClass      *gobject_class   = (GObjectClass*)class;
   GtkWidgetClass    *widget_class    = (GtkWidgetClass*)class;
@@ -917,8 +919,6 @@ geda_menu_item_instance_init(GTypeInstance *instance, void *class)
   priv            = g_malloc0 (sizeof(GedaMenuItemPrivate));
   menu_item->priv = priv;
 
-  menu_item->instance_type = geda_menu_item_get_type();
-
   priv->use_action_appearance = TRUE;
   priv->mnemonic              = (char)GDK_KEY_VoidSymbol;
 
@@ -939,6 +939,10 @@ geda_menu_item_instance_init(GTypeInstance *instance, void *class)
   gtk_style_context_add_class (context, GTK_STYLE_CLASS_MENUITEM);
 #endif
 
+  if (!menu_item_hash_table) {
+    menu_item_hash_table = g_hash_table_new (g_direct_hash, NULL);
+  }
+  g_hash_table_add (menu_item_hash_table, instance);
 }
 
 /*!
@@ -1011,10 +1015,10 @@ geda_menu_item_get_type (void)
   return geda_menu_item_type;
 }
 
-bool is_a_geda_menu_item (GedaMenuItem  *menu_item)
+bool is_a_geda_menu_item (GedaMenuItem *menu_item)
 {
-  if (G_IS_OBJECT(menu_item)) {
-    return (geda_menu_item_get_type() == menu_item->instance_type);
+  if ((menu_item != NULL) && (menu_item_hash_table != NULL)) {
+    return g_hash_table_lookup(menu_item_hash_table, menu_item) ? TRUE : FALSE;
   }
   return FALSE;
 }
