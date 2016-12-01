@@ -21,8 +21,8 @@
 #include "../../include/geda_menu_item.h"
 #include "../../include/geda_menu_separator.h"
 
-/* hold list of pointers to GedaMenuSeparator instances */
-static GList *list_of_objects = NULL;
+/* Table of pointers to GedaMenuSeparator instances */
+static GHashTable *separator_hash_table = NULL;
 
 static void *geda_menu_separator_parent_class = NULL;
 
@@ -36,18 +36,18 @@ static void *geda_menu_separator_parent_class = NULL;
 static void
 geda_menu_separator_finalize (GObject *object)
 {
-  list_of_objects = g_list_remove(list_of_objects, object);
-
-  G_OBJECT_CLASS (geda_menu_separator_parent_class)->finalize (object);
-
 #ifndef DEBUG_GEDA_SEPARATOR
 
-  if (!g_list_length(list_of_objects)) {
-    g_list_free(list_of_objects);
-    list_of_objects = NULL;
+  if (g_hash_table_remove (separator_hash_table, object)) {
+    if (!g_hash_table_size (separator_hash_table)) {
+      g_hash_table_destroy (separator_hash_table);
+      separator_hash_table = NULL;
+    }
   }
 
 #endif /* DEBUG_GEDA_SEPARATOR */
+
+  G_OBJECT_CLASS (geda_menu_separator_parent_class)->finalize (object);
 }
 
 /*!
@@ -86,7 +86,11 @@ geda_menu_separator_class_init (void *klass, void *data)
 static void
 geda_menu_separator_instance_init(GTypeInstance *instance, void *class)
 {
-  list_of_objects = g_list_append(list_of_objects, instance);
+  if (!separator_hash_table) {
+    separator_hash_table = g_hash_table_new (g_direct_hash, NULL);
+  }
+
+  g_hash_table_add (separator_hash_table, instance);
 }
 
 /*! \brief Retrieve GedaMenuSeparator's Type identifier.
@@ -142,8 +146,8 @@ geda_menu_separator_get_type (void)
 bool
 is_a_geda_menu_separator (GedaMenuSeparator *separator)
 {
-  if (separator) {
-    return g_list_find(list_of_objects, separator) ? TRUE : FALSE;
+  if ((separator != NULL) && (separator_hash_table != NULL)) {
+    return g_hash_table_lookup(separator_hash_table, separator) ? TRUE : FALSE;
   }
   return FALSE;
 }

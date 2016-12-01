@@ -12,6 +12,9 @@
       table in GedaMenuItem. Revise geda_menu_item_set_submenu to only set priv
       sub-menu if a submenu was passed.
 
+    * src/widgets/geda_menu_separator.c: Redo object type identifier scheme for
+      GedaMenuSeparator objects and replace glist with hash table.
+
 2016-11-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_label.c: Add conditionally build function
