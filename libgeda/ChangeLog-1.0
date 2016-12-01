@@ -1,3 +1,9 @@
+2016-12-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_object.c: Redo object type identifier scheme for GedaObject
+      objects and replace glist with hash table. The performance with glist was
+      unacceptable poor for schematics with high component counts.
+
 2016-11-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_file.c: Add global boolean vpath_build and set if Makefile.am
@@ -16,7 +22,7 @@
     * src/geda/geda_config.c: Implement new object type identifier scheme
       for EdaConfig objects.
 
-    * src/geda/geda_config.c: Implement new object type identifier scheme
+    * src/geda/geda_object.c: Implement new object type identifier scheme
       for GedaObject objects.
 
     * src/object/o_object.c: Reduce scope of result in geda_object_read.

@@ -61,7 +61,7 @@ enum {
 static GObjectClass *geda_object_parent_class = NULL;
 
 /* hold list of pointers to GedaObject instances */
-static GList *list_of_objects = NULL;
+static GHashTable *object_hash_table = NULL;
 
 /*! this is modified here and in o_list.c */
 static int global_sid = 0; /* Global integer for GedaObject Indentification */
@@ -344,7 +344,11 @@ geda_object_instance_init(GTypeInstance *instance, void *g_class)
 
   object->weak_refs                  = NULL;
 
-  list_of_objects = g_list_append(list_of_objects, object);
+  if (!object_hash_table) {
+    object_hash_table = g_hash_table_new (NULL, NULL);
+  }
+
+  g_hash_table_add (object_hash_table, object);
 
   /* Call hooks */
   g_list_foreach (new_object_hooks, call_new_object_hook, object);
@@ -361,12 +365,13 @@ static void geda_object_finalize(GObject *gobject)
 {
   GedaObject *object = (GedaObject*)(gobject);
 
-  list_of_objects = g_list_remove(list_of_objects, object);
-
-  if (!g_list_length(list_of_objects)) {
-    g_list_free(list_of_objects);
-    list_of_objects = NULL;
+  if (g_hash_table_remove (object_hash_table, object)) {
+    if (!g_hash_table_size (object_hash_table)) {
+      g_hash_table_destroy (object_hash_table);
+      object_hash_table = NULL;
+    }
   }
+
 
   if (object->name) {
     GEDA_FREE(object->name);
@@ -577,8 +582,8 @@ GedaObject *geda_object_new (int type, char const *name)
  */
 bool is_a_geda_object (const void *object)
 {
-  if (object) {
-    return g_list_find(list_of_objects, object) ? TRUE : FALSE;
+  if ((object != NULL) && (object_hash_table != NULL)) {
+    return g_hash_table_lookup (object_hash_table, object) ? TRUE : FALSE;
   }
   return FALSE;
 }
