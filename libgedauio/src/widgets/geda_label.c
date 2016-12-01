@@ -324,8 +324,8 @@ static void *geda_label_parent_class = NULL;
 static GtkBuildableIface *buildable_parent_iface = NULL;
 
 
-/* hold list of pointers to GedaLabel instances */
-static GList *list_of_objects = NULL;
+/* Table of pointers to GedaLabel instances */
+static GHashTable *label_hash_table = NULL;
 
 #ifdef DEBUG_GEDA_LABEL
 
@@ -340,22 +340,18 @@ static GList *list_of_objects = NULL;
  */
 void geda_label_get_report_instances (void)
 {
-  if (labels) {
+  if (label_hash_table) {
 
-    GList *iter;
-
-    for (iter = labels; iter; iter = iter->next) {
-
-      GedaLabel *label = iter->data;
-
+    void print_hash(GedaLabel *label, void *value, void *nothing) {
       fprintf(stderr, "label,%p,text=<%s>\n", label, label->text);
     }
 
-    g_list_free(list_of_objects);
-    labels = NULL;
+    g_hash_table_foreach (label_hash_table, (GHFunc)print_hash, NULL);
+    g_hash_table_destroy (label_hash_table);
+    label_hash_table = NULL;
   }
   else {
-    fprintf(stderr, "%s: list of labels is NULL\n", __func__);
+    fprintf(stderr, "%s: the table of labels is empty\n", __func__);
   }
 }
 
@@ -1040,27 +1036,27 @@ static void geda_label_finalize (GObject *object)
 {
   GedaLabel *label = GEDA_LABEL (object);
 
-  list_of_objects = g_list_remove(list_of_objects, label);
+  geda_label_clear_links (label);
+
+  if (g_hash_table_remove (label_hash_table, object)) {
+
+#ifndef DEBUG_GEDA_LABEL
+    if (!g_hash_table_size (label_hash_table)) {
+      g_hash_table_destroy (label_hash_table);
+      label_hash_table = NULL;
+    }
+#endif /* DEBUG_GEDA_LABEL */
+
+  }
 
   GEDA_FREE (label->label);
   GEDA_FREE (label->text);
-
-  geda_label_clear_links (label);
 
   GEDA_FREE (label->priv->select_info);
 
   GEDA_FREE(label->priv);
 
   G_OBJECT_CLASS (geda_label_parent_class)->finalize (object);
-
-#ifndef DEBUG_GEDA_LABEL
-
-  if (!g_list_length(list_of_objects)) {
-    g_list_free(list_of_objects);
-    list_of_objects = NULL;
-  }
-
-#endif /* DEBUG_GEDA_LABEL */
 }
 
 static void
@@ -1779,7 +1775,11 @@ geda_label_instance_init(GTypeInstance *instance, void *g_class)
 
   priv->mnemonics_visible = TRUE;
 
-  list_of_objects = g_list_append(list_of_objects, label);
+  if (!label_hash_table) {
+    label_hash_table = g_hash_table_new (g_direct_hash, NULL);
+  }
+
+  g_hash_table_add (label_hash_table, label);
 
   geda_label_set_text (label, "label");
 
@@ -1864,8 +1864,8 @@ geda_label_get_type (void)
 bool
 is_a_geda_label (GedaLabel *label)
 {
-  if (label) {
-    return g_list_find(list_of_objects, label) ? TRUE : FALSE;
+  if ((label != NULL) && (label_hash_table != NULL)) {
+    return g_hash_table_lookup(label_hash_table, label) ? TRUE : FALSE;
   }
   return FALSE;
 }
