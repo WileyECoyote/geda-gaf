@@ -5,6 +5,9 @@
       libgeda objects even though the degradation in performance was not notice-
       able with the menu system.
 
+    * src/widgets/geda_menu.c: Redo object type identifier scheme for GedaLabel
+      objects and replace glist with hash table.
+
 2016-11-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_label.c: Add conditionally build function

@@ -321,8 +321,8 @@ static const char const transfer_window_key[] = "menu-transfer-window";
 
 static unsigned int menu_signals[LAST_SIGNAL] = { 0 };
 
-/* List of pointers to GedaMenu instances */
-static GList *list_of_objects = NULL;
+/* Table of pointers to GedaMenu instances */
+static GHashTable *menu_hash_table = NULL;
 
 static void *geda_menu_parent_class = NULL;
 
@@ -567,15 +567,15 @@ geda_menu_window_size_request (GtkWidget      *window,
 static void
 geda_menu_finalize (GObject *object)
 {
-  GedaMenu *menu = GEDA_MENU (object);
+  GedaMenu *menu = (GedaMenu*)object;
 
   geda_menu_set_accel_group(menu, NULL);
 
-  list_of_objects = g_list_remove(list_of_objects, object);
-
-  if (!g_list_length(list_of_objects)) {
-    g_list_free(list_of_objects);
-    list_of_objects = NULL;
+  if (g_hash_table_remove (menu_hash_table, object)) {
+    if (!g_hash_table_size (menu_hash_table)) {
+      g_hash_table_destroy (menu_hash_table);
+      menu_hash_table = NULL;
+    }
   }
 
   g_free(menu->priv);
@@ -1195,7 +1195,11 @@ geda_menu_instance_init (GTypeInstance *instance, void *class)
 
 #endif
 
-  list_of_objects = g_list_append(list_of_objects, instance);
+  if (!menu_hash_table) {
+    menu_hash_table = g_hash_table_new (g_direct_hash, NULL);
+  }
+
+  g_hash_table_add (menu_hash_table, instance);
 }
 
 /*!
@@ -1242,8 +1246,8 @@ geda_menu_get_type (void)
 
 bool is_a_geda_menu (GedaMenu *menu)
 {
-  if (menu) {
-    return g_list_find(list_of_objects, menu) ? TRUE : FALSE;
+  if ((menu != NULL) && (menu_hash_table != NULL)) {
+    return g_hash_table_lookup(menu_hash_table, menu) ? TRUE : FALSE;
   }
   return FALSE;
 }
