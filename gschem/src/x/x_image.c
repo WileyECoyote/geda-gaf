@@ -979,7 +979,7 @@ GdkPixbuf *x_image_get_pixbuf (GschemToplevel *w_current, ImageExtent extent,
   int size_x, size_y, s_right, s_left, s_top,s_bottom;
 
   new_w_current = malloc(sizeof(GschemToplevel));
-  toplevel      = malloc(sizeof(GedaToplevel));
+  toplevel      = geda_toplevel_new();
 
   if (!new_w_current || !toplevel) {
     char *errmsg = strerror(errno);
@@ -989,7 +989,7 @@ GdkPixbuf *x_image_get_pixbuf (GschemToplevel *w_current, ImageExtent extent,
     if (new_w_current)
       free (new_w_current);
     if (toplevel)
-      free (toplevel);
+      g_object_unref (toplevel);
     return NULL;
   }
 
@@ -1093,7 +1093,7 @@ GdkPixbuf *x_image_get_pixbuf (GschemToplevel *w_current, ImageExtent extent,
     GEDA_UNREF (new_w_current->window);
   }
 
-  free (toplevel);
+  g_object_unref (toplevel);
   free (new_w_current);
 
   return(pixbuf);
