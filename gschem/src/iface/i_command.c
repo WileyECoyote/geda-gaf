@@ -3085,10 +3085,12 @@ COMMAND (do_down_symbol)
 
     if (object->type == OBJ_COMPLEX) { /* only allow going into symbols */
 
-      const char *filename = object->complex->filename;
       const CLibSymbol *sym;
       Page *child;
       Page *p_current;
+      char *filename;
+
+      filename = object->complex->filename;
 
       u_log_message(_("Searching for symbol [%s]\n"), filename);
 
@@ -3096,11 +3098,15 @@ COMMAND (do_down_symbol)
 
       if (sym == NULL)
         return;
-      if (geda_struct_clib_symbol_get_filename(sym) == NULL) {
+
+      filename = geda_struct_clib_symbol_get_filename(sym);
+
+      if (filename == NULL) {
         u_log_message(_("Symbol is not a real file."
                         " Symbol cannot be loaded.\n"));
         return;
       }
+      geda_free(filename);
 
       p_current = gschem_toplevel_get_current_page(w_current);
 
