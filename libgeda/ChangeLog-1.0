@@ -2,6 +2,9 @@
 
     * include/libgeda/geda_page.h: Add missing cast in GEDA_IS_PAGE macro.
 
+    * src/geda/geda_toplevel.c: Replace GEDA_TOPLEVEL call with cast in
+      geda_toplevel_finalize.
+
 2016-12-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_object.c: Redo object type identifier scheme for GedaObject

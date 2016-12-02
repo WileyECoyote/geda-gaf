@@ -213,7 +213,7 @@ geda_toplevel_instance_init(GTypeInstance *instance, void *g_class)
  */
 static void geda_toplevel_finalize(GObject *object)
 {
-  GedaToplevel *toplevel = GEDA_TOPLEVEL(object);
+  GedaToplevel *toplevel = (GedaToplevel*)object;
   GList *iter;
 
   list_of_toplevels = g_list_remove(list_of_toplevels, object);
