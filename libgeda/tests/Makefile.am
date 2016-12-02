@@ -18,7 +18,8 @@ check_geda = \
 	test_path  \
 	test_picture \
 	test_pin \
-	test_text
+	test_text \
+	test_toplevel
 
 check_object = \
 	test_arc_object \

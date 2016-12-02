@@ -28,4 +28,6 @@ test_picture
 test_picture_object
 test_pin
 test_text
+test_toplevel
 test_utility
+
