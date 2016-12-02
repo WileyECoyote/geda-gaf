@@ -77,7 +77,6 @@ geda_object_read_buffer (GedaToplevel *toplevel, GList    *object_list,
                          const char   *buffer,   const int size,
                          const char   *name,     GError  **err)
 {
-
   GList  *object_list_save     = NULL;
   GList  *new_attrs_list       = NULL;
   GList  *new_object_list      = NULL;
