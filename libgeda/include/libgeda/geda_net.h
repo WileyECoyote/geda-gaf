@@ -38,7 +38,7 @@
 #define GEDA_TYPE_NET            (geda_net_get_type())
 #define GEDA_NET(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_NET, GedaNet))
 #define GEDA_NET_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),  GEDA_TYPE_NET, GedaNetClass))
-#define GEDA_IS_NET(obj)         (is_a_geda_net((GedaNet*)obj))
+#define GEDA_IS_NET(obj)         (is_a_geda_net((GedaNet*)(obj)))
 #define GEDA_IS_NET_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),  GEDA_TYPE_NET))
 #define GEDA_NET_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_NET, GedaNetClass))
 

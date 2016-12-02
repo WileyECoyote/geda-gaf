@@ -45,7 +45,7 @@
 #define GEDA_TYPE_PATH            (geda_path_get_type())
 #define GEDA_PATH(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_PATH, GedaPath))
 #define GEDA_PATH_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),  GEDA_TYPE_PATH, GedaPathClass))
-#define GEDA_IS_PATH(obj)         (is_a_geda_path((GedaPath*)obj))
+#define GEDA_IS_PATH(obj)         (is_a_geda_path((GedaPath*)(obj)))
 #define GEDA_IS_PATH_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),  GEDA_TYPE_PATH))
 #define GEDA_PATH_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_PATH, GedaPathClass))
 

@@ -39,7 +39,7 @@
 #define GEDA_TYPE_BOX            (geda_box_get_type())
 #define GEDA_BOX(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_BOX, GedaBox))
 #define GEDA_BOX_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),  GEDA_TYPE_BOX, GedaBoxClass))
-#define GEDA_IS_BOX(obj)         (is_a_geda_box((GedaBox*)obj))
+#define GEDA_IS_BOX(obj)         (is_a_geda_box((GedaBox*)(obj)))
 #define GEDA_IS_BOX_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),  GEDA_TYPE_BOX))
 #define GEDA_BOX_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_BOX, GedaBoxClass))
 

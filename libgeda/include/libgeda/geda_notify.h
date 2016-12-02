@@ -55,7 +55,7 @@ struct st_change_notify {
 #define GEDA_TYPE_NOTIFY_LIST            (geda_notify_list_get_type())
 #define GEDA_NOTIFY_LIST(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_NOTIFY_LIST, GedaNotifyList))
 #define GEDA_NOTIFY_LIST_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),  GEDA_TYPE_NOTIFY_LIST, GedaNotifyListClass))
-#define GEDA_IS_NOTIFY_LIST(obj)         (is_a_geda_notify_list((GedaNotifyList*)obj))
+#define GEDA_IS_NOTIFY_LIST(obj)         (is_a_geda_notify_list((GedaNotifyList*)(obj)))
 #define GEDA_IS_NOTIFY_LIST_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),  GEDA_TYPE_NOTIFY_LIST))
 #define GEDA_NOTIFY_LIST_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_NOTIFY_LIST, GedaNotifyListClass))
 

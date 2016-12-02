@@ -1,5 +1,20 @@
 2016-12-02 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/libgeda/: Add parenthesis around obj in GEDA_IS_* macros in:
+
+            * geda_arc.h
+            * geda_box.h
+            * geda_bus.h
+            * geda_circle.h
+            * geda_config.h
+            * geda_line.h
+            * geda_net.h
+            * geda_notify.h
+            * geda_path.h
+            * geda_picture.h
+            * geda_pin.h
+            * geda_text.h
+
     * include/libgeda/geda_page.h: Add missing cast in GEDA_IS_PAGE macro.
 
     * include/libgeda/geda_toplevel.h: Add missing cast in GEDA_IS_TOPLEVEL

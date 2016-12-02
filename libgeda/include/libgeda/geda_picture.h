@@ -44,7 +44,7 @@
 #define GEDA_TYPE_PICTURE            (geda_picture_get_type())
 #define GEDA_PICTURE(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_PICTURE, GedaPicture))
 #define GEDA_PICTURE_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),  GEDA_TYPE_PICTURE, GedaPictureClass))
-#define GEDA_IS_PICTURE(obj)         (is_a_geda_picture((GedaPicture*)obj))
+#define GEDA_IS_PICTURE(obj)         (is_a_geda_picture((GedaPicture*)(obj)))
 #define GEDA_IS_PICTURE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),  GEDA_TYPE_PICTURE))
 #define GEDA_PICTURE_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_PICTURE, GedaPictureClass))
 
