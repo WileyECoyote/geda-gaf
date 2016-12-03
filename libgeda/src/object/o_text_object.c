@@ -105,13 +105,13 @@ geda_text_object_copy(const GedaObject *o_current)
     GedaText   *text_obj;
 
     new_obj = geda_text_object_new (o_current->color,
-                          o_current->text->x, o_current->text->y,
-                          o_current->text->alignment,
-                          o_current->text->angle,
-                          o_current->text->size,
-                          geda_object_get_is_visible (o_current) ? VISIBLE : INVISIBLE,
-                          o_current->show_name_value,
-                          o_current->text->string);
+                                    o_current->text->x, o_current->text->y,
+                                    o_current->text->alignment,
+                                    o_current->text->angle,
+                                    o_current->text->size,
+                                    geda_object_get_is_visible (o_current) ? VISIBLE : INVISIBLE,
+                                    o_current->show_name_value,
+                                    o_current->text->string);
 
     text_obj = GEDA_TEXT(o_current);
 
