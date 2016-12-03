@@ -20,6 +20,8 @@
     * include/libgeda/geda_toplevel.h: Add missing cast in GEDA_IS_TOPLEVEL
       macro.
 
+    * src/geda/geda_object.c: Add function geda_object_get_conn_list.
+
     * src/geda/geda_toplevel.c: Replace GEDA_TOPLEVEL call with cast in
       geda_toplevel_finalize.
 

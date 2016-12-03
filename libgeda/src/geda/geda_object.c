@@ -151,6 +151,15 @@ int geda_object_get_color (const GedaObject *object) {
   return -0;
 }
 
+const GList*
+geda_object_get_conn_list (const GedaObject *object)
+{
+  if (is_a_geda_object(object)) {
+    return object->conn_list;
+  }
+  return NULL;
+}
+
 /*!
  * \brief GedaObject property getter function
  * \par Function Description
@@ -284,7 +293,7 @@ int geda_object_get_next_sid(void)
 static void
 geda_object_instance_init(GTypeInstance *instance, void *g_class)
 {
-  GedaObject *object             = (GedaObject *)instance;
+  GedaObject *object             = (GedaObject*)instance;
 
   /* setup sid */
   object->sid                    = global_sid++;
@@ -371,7 +380,6 @@ static void geda_object_finalize(GObject *gobject)
       object_hash_table = NULL;
     }
   }
-
 
   if (object->name) {
     GEDA_FREE(object->name);
