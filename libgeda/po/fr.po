@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-10-31 13:36-0500\n"
+"POT-Creation-Date: 2016-12-03 00:55-0600\n"
 "PO-Revision-Date: 2012-10-22 13:10+0000\n"
 "Last-Translator: Patrick Fiquet <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -156,22 +156,22 @@ msgstr ""
 msgid "Can not create backup file: %s: %s\n"
 msgstr "Impossible de sauvegarder le fichier de sauvegarde: %s."
 
-#: libgeda/src/file/f_get.c:231
+#: libgeda/src/file/f_get.c:235
 #, c-format
 msgid "Could not allocate %lu bytes to read file \"%s\""
 msgstr ""
 
-#: libgeda/src/file/f_get.c:242
+#: libgeda/src/file/f_get.c:246
 #, fuzzy, c-format
 msgid "Error reading file '%s': %s"
 msgstr "Impossible de trouver le fichier %s: %s"
 
-#: libgeda/src/file/f_get.c:253
+#: libgeda/src/file/f_get.c:257
 #, fuzzy, c-format
 msgid "File \"%s\" is too large"
 msgstr "Le fichier %s est en lecture seule"
 
-#: libgeda/src/file/f_get.c:309
+#: libgeda/src/file/f_get.c:313
 #, c-format
 msgid "Could not allocate %ld byte to read file \"%s\""
 msgstr ""
@@ -186,29 +186,34 @@ msgstr "Échec du chargement de l'image depuis le fichier [%s]: %s\n"
 msgid "Failed to open file '%s': %s"
 msgstr "Échec de l'ouverture du répertoire [%s]: %s\n"
 
-#: libgeda/src/file/f_get.c:436
+#: libgeda/src/file/f_get.c:430
 #, c-format
 msgid "Failed to get attributes of file '%s': fstat() failed: %s"
 msgstr ""
 
-#: libgeda/src/file/f_get.c:454
+#: libgeda/src/file/f_get.c:449
 #, fuzzy, c-format
 msgid "Failed to open file '%s': fdopen() failed: %s"
 msgstr "Échec du chargement de l'image depuis le fichier [%s]: %s\n"
 
-#: libgeda/src/file/f_get.c:475
+#: libgeda/src/file/f_get.c:470
 #, c-format
 msgid "libgeda <%s> ERROR: pointer to filename is NULL"
 msgstr ""
 
-#: libgeda/src/file/f_get.c:478
+#: libgeda/src/file/f_get.c:473
 #, c-format
 msgid "libgeda <%s> ERROR: pointer to a buffer is NULL"
 msgstr ""
 
-#: libgeda/src/file/f_get.c:614
+#: libgeda/src/file/f_get.c:578
+#, c-format
+msgid "libgeda <%s> ERROR: pointer to path is NULL.\n"
+msgstr ""
+
+#: libgeda/src/file/f_get.c:624
 #, fuzzy, c-format
-msgid "error accessing '%s': %s"
+msgid "error accessing '%s': %s\n"
 msgstr "Impossible de trouver le fichier %s: %s"
 
 #: libgeda/src/file/f_print.c:101
@@ -273,25 +278,25 @@ msgstr "Impossible d'ouvrir [%s] pour l'impression\n"
 msgid "Too many UTF-8 characters, cannot print\n"
 msgstr "Trop de caractères UTF-8, impossible d'imprimer\n"
 
-#: libgeda/src/file/f_sys.c:74
+#: libgeda/src/file/f_sys.c:78
 msgid "File error"
 msgstr ""
 
-#: libgeda/src/file/f_sys.c:79
+#: libgeda/src/file/f_sys.c:83
 msgid "File lock error"
 msgstr ""
 
-#: libgeda/src/file/f_sys.c:80
+#: libgeda/src/file/f_sys.c:84
 #, c-format
 msgid "%s: attempting to unlock file \"%s\"\n"
 msgstr ""
 
-#: libgeda/src/file/f_sys.c:109
+#: libgeda/src/file/f_sys.c:113
 #, c-format
 msgid "%s: Memory Allocation Error!\n"
 msgstr ""
 
-#: libgeda/src/file/f_sys.c:343
+#: libgeda/src/file/f_sys.c:345
 #, c-format
 msgid "%s: %s"
 msgstr "%s: %s"
@@ -494,41 +499,162 @@ msgstr ""
 msgid "Line end cap is not used by circles"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:233
+#: libgeda/src/geda/geda_config.c:282
 msgid "Configuration file"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:234
+#: libgeda/src/geda/geda_config.c:283
 msgid "Set underlying file for EdaConfig"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:862 libgeda/src/geda/geda_config.c:979
+#: libgeda/src/geda/geda_config.c:948 libgeda/src/geda/geda_config.c:1065
 msgid "Undefined configuration filename"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1006
+#: libgeda/src/geda/geda_config.c:1094
 #, c-format
 msgid "file <%s> %s"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1050
+#: libgeda/src/geda/geda_config.c:1136
 #, fuzzy, c-format
 msgid "bad path in file %s"
 msgstr "Impossible de trouver le fichier %s: %s"
 
-#: libgeda/src/geda/geda_config.c:1367
+#: libgeda/src/geda/geda_config.c:1471
 #, c-format
 msgid "Configuration does not have group '%s'\n"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1431
+#: libgeda/src/geda/geda_config.c:1537
 #, c-format
 msgid "Configuration does not have group '%s'"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1445
+#: libgeda/src/geda/geda_config.c:1552
 #, c-format
 msgid "Configuration does not have key '%s'"
+msgstr ""
+
+#: libgeda/src/geda/geda_keyfile.c:479
+msgid "Valid key file could not be found in search dirs"
+msgstr ""
+
+#: libgeda/src/geda/geda_keyfile.c:513
+msgid "Not a regular file"
+msgstr ""
+
+#: libgeda/src/geda/geda_keyfile.c:909
+#, c-format
+msgid ""
+"Key file contains line '%s' which is not a key-value pair, group, or comment"
+msgstr ""
+
+#: libgeda/src/geda/geda_keyfile.c:968
+#, c-format
+msgid "Invalid group name: %s"
+msgstr ""
+
+#: libgeda/src/geda/geda_keyfile.c:990
+msgid "Key file does not start with a group"
+msgstr ""
+
+#: libgeda/src/geda/geda_keyfile.c:1016
+#, c-format
+msgid "Invalid key name: %s"
+msgstr ""
+
+#: libgeda/src/geda/geda_keyfile.c:1044
+#, c-format
+msgid "Key file contains unsupported encoding '%s'"
+msgstr ""
+
+#: libgeda/src/geda/geda_keyfile.c:1292 libgeda/src/geda/geda_keyfile.c:1468
+#: libgeda/src/geda/geda_keyfile.c:2839 libgeda/src/geda/geda_keyfile.c:2909
+#: libgeda/src/geda/geda_keyfile.c:3033 libgeda/src/geda/geda_keyfile.c:3173
+#: libgeda/src/geda/geda_keyfile.c:3357 libgeda/src/geda/geda_keyfile.c:3549
+#: libgeda/src/geda/geda_keyfile.c:3616
+#, c-format
+msgid "Key file does not have group '%s'"
+msgstr ""
+
+#: libgeda/src/geda/geda_keyfile.c:1448
+#, c-format
+msgid "libgeda <%s> ERROR: pointer to key file is NULL"
+msgstr ""
+
+#: libgeda/src/geda/geda_keyfile.c:1451
+#, c-format
+msgid "libgeda <%s> ERROR: pointer to group name is NULL"
+msgstr ""
+
+#: libgeda/src/geda/geda_keyfile.c:1454
+#, c-format
+msgid "libgeda <%s> ERROR: pointer to key is NULL"
+msgstr ""
+
+#: libgeda/src/geda/geda_keyfile.c:1481
+#, c-format
+msgid "Key file does not have key '%s'"
+msgstr ""
+
+#: libgeda/src/geda/geda_keyfile.c:1587 libgeda/src/geda/geda_keyfile.c:1701
+#, c-format
+msgid "Key file contains key '%s' with value '%s' which is not UTF-8"
+msgstr ""
+
+#: libgeda/src/geda/geda_keyfile.c:1607 libgeda/src/geda/geda_keyfile.c:1721
+#: libgeda/src/geda/geda_keyfile.c:2086
+#, c-format
+msgid ""
+"Key file contains key '%s' which has a value that cannot be interpreted."
+msgstr ""
+
+#: libgeda/src/geda/geda_keyfile.c:2302 libgeda/src/geda/geda_keyfile.c:2669
+#, c-format
+msgid ""
+"Key file contains key '%s' in group '%s' which has a value that cannot be "
+"interpreted."
+msgstr ""
+
+#: libgeda/src/geda/geda_keyfile.c:2379 libgeda/src/geda/geda_keyfile.c:2455
+#, c-format
+msgid "Key '%s' in group '%s' has value '%s' where %s was expected"
+msgstr ""
+
+#: libgeda/src/geda/geda_keyfile.c:2854 libgeda/src/geda/geda_keyfile.c:3048
+#: libgeda/src/geda/geda_keyfile.c:3627
+#, c-format
+msgid "Key file does not have key '%s' in group '%s'"
+msgstr ""
+
+#: libgeda/src/geda/geda_keyfile.c:3852
+msgid "Key file contains escape character at end of line"
+msgstr ""
+
+#: libgeda/src/geda/geda_keyfile.c:3874
+#, c-format
+msgid "Key file contains invalid escape sequence '%s'"
+msgstr ""
+
+#: libgeda/src/geda/geda_keyfile.c:4015
+#, c-format
+msgid "Value '%s' cannot be interpreted as a number."
+msgstr ""
+
+#: libgeda/src/geda/geda_keyfile.c:4031
+#, c-format
+msgid "Integer value '%s' out of range"
+msgstr ""
+
+#: libgeda/src/geda/geda_keyfile.c:4064
+#, c-format
+msgid "Value '%s' cannot be interpreted as a float number."
+msgstr ""
+
+#: libgeda/src/geda/geda_keyfile.c:4090
+#, c-format
+msgid "Value '%s' cannot be interpreted as a boolean."
 msgstr ""
 
 #: libgeda/src/geda/geda_line.c:277
@@ -563,75 +689,75 @@ msgstr ""
 msgid "Y coordinate of the second point"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:419
+#: libgeda/src/geda/geda_object.c:442
 msgid "object-type"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:420
+#: libgeda/src/geda/geda_object.c:443
 msgid "Character identifier corresponding to the type of object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:429
+#: libgeda/src/geda/geda_object.c:452
 msgid "sequence-identification"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:430
+#: libgeda/src/geda/geda_object.c:453
 msgid "Sequence identifier created during object construction"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:437
+#: libgeda/src/geda/geda_object.c:460
 msgid "object-name"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:438
+#: libgeda/src/geda/geda_object.c:461
 msgid "Unique name of this object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:444
+#: libgeda/src/geda/geda_object.c:467
 msgid "Parent"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:445
+#: libgeda/src/geda/geda_object.c:468
 msgid "Pointer to parent object - a Page or a Complex"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:450
+#: libgeda/src/geda/geda_object.c:473
 msgid "Selectable"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:451
+#: libgeda/src/geda/geda_object.c:474
 msgid "Whether the label text can be selected with the mouse"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:457
+#: libgeda/src/geda/geda_object.c:480
 msgid "Redraw"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:458
+#: libgeda/src/geda/geda_object.c:481
 msgid "Whether the object redrawn, used for temporary objects"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:464
+#: libgeda/src/geda/geda_object.c:487
 msgid "Selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:465
+#: libgeda/src/geda/geda_object.c:488
 msgid "Whether the object is currently selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:472
+#: libgeda/src/geda/geda_object.c:495
 msgid "Show-Name-Value-flag"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:473
+#: libgeda/src/geda/geda_object.c:496
 msgid "Flag to indicate whether to show the name, value or both"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:481
+#: libgeda/src/geda/geda_object.c:504
 msgid "Visible"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:482
+#: libgeda/src/geda/geda_object.c:505
 msgid "Whether the object is displayed, normaly text attributes"
 msgstr ""
 
@@ -816,7 +942,7 @@ msgstr ""
 msgid "always-promote-attribute: list element is not a string"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:989 libgeda/src/guile/g_rc.c:1025
+#: libgeda/src/guile/g_rc.c:989 libgeda/src/guile/g_rc.c:1028
 #, c-format
 msgid "Path invalid[%s], %s\n"
 msgstr ""
@@ -841,23 +967,23 @@ msgstr ""
 msgid "Error accessing configuration %s, %s\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:269
+#: libgeda/src/guile/g_rc_parse.c:270
 #, fuzzy, c-format
 msgid "libgeda: Loaded RC file [%s]\n"
 msgstr "Échec de la commande de bibliothèque [%s]\n"
 
-#: libgeda/src/guile/g_rc_parse.c:425
+#: libgeda/src/guile/g_rc_parse.c:426
 msgid "ERROR: An unknown error occurred while parsing configuration files."
 msgstr ""
 "ERREUR : Une erreur inconnue s'est produite lors de l'interprétation des "
 "fichiers de configuration."
 
-#: libgeda/src/guile/g_rc_parse.c:438 libgeda/src/guile/g_rc_parse.c:439
+#: libgeda/src/guile/g_rc_parse.c:439 libgeda/src/guile/g_rc_parse.c:440
 #, c-format
 msgid "ERROR: %s\n"
 msgstr "ERREUR : %s\n"
 
-#: libgeda/src/guile/g_rc_parse.c:444
+#: libgeda/src/guile/g_rc_parse.c:445
 #, c-format
 msgid "ERROR: The %s log may contain more information.\n"
 msgstr "ERREUR : Le fichier journal %s contient plus d'information.\n"
@@ -977,9 +1103,9 @@ msgstr "Initilisation du miroir à 0\n"
 #: libgeda/src/object/o_circle_object.c:1355
 #: libgeda/src/object/o_line_object.c:1560
 #: libgeda/src/object/o_net_object.c:715
-#: libgeda/src/object/o_path_object.c:570
+#: libgeda/src/object/o_path_object.c:576
 #: libgeda/src/object/o_pin_object.c:180
-#: libgeda/src/object/o_text_object.c:783
+#: libgeda/src/object/o_text_object.c:785
 #, c-format
 msgid "Found an invalid color [ %s ]\n"
 msgstr "Trouvé une couleur invalide [ %s ]\n"
@@ -990,9 +1116,9 @@ msgstr "Trouvé une couleur invalide [ %s ]\n"
 #: libgeda/src/object/o_circle_object.c:1356
 #: libgeda/src/object/o_line_object.c:1561
 #: libgeda/src/object/o_net_object.c:716
-#: libgeda/src/object/o_path_object.c:571
+#: libgeda/src/object/o_path_object.c:577
 #: libgeda/src/object/o_pin_object.c:181
-#: libgeda/src/object/o_text_object.c:784
+#: libgeda/src/object/o_text_object.c:786
 msgid "Setting color to default color\n"
 msgstr "Initialiser à la couleur par défaut\n"
 
@@ -1148,22 +1274,22 @@ msgstr ""
 "Composant non trouvé :\n"
 " %s"
 
-#: libgeda/src/object/o_complex_object.c:1080
+#: libgeda/src/object/o_complex_object.c:1117
 msgid "Failed to parse complex object"
 msgstr "Erreur lors de l'interprétation d'un objet complexe"
 
-#: libgeda/src/object/o_complex_object.c:1093
+#: libgeda/src/object/o_complex_object.c:1130
 #, c-format
 msgid "Found a component with an invalid rotation [ %c %d %d %d %d %d %s ]\n"
 msgstr ""
 "Trouvé un composant avec une mauvaise rotation [ %c %d %d %d %d %d %s ]\n"
 
-#: libgeda/src/object/o_complex_object.c:1094
+#: libgeda/src/object/o_complex_object.c:1131
 #: libgeda/src/object/o_picture_object.c:1506
 msgid "Setting angle to 0\n"
 msgstr "Initialisé l'angle à 0\n"
 
-#: libgeda/src/object/o_complex_object.c:1106
+#: libgeda/src/object/o_complex_object.c:1143
 #, c-format
 msgid ""
 "Found a component with an invalid mirror flag [ %c %d %d %d %d %d %s ]\n"
@@ -1171,7 +1297,7 @@ msgstr ""
 "Trouvé un composant avec un marqueur de miroir invalide [ %c %d %d %d %d %d "
 "%s ]\n"
 
-#: libgeda/src/object/o_complex_object.c:1107
+#: libgeda/src/object/o_complex_object.c:1144
 msgid "Setting mirror to 0\n"
 msgstr ""
 
@@ -1213,12 +1339,12 @@ msgstr ""
 msgid "Found a zero length net [ %c %d %d %d %d %d ]\n"
 msgstr "Trouvé un net à longueur nulle [ %c %d %d %d %d %d ]\n"
 
-#: libgeda/src/object/o_path_object.c:564
+#: libgeda/src/object/o_path_object.c:570
 msgid "Failed to parse path object"
 msgstr ""
 
-#: libgeda/src/object/o_path_object.c:586
-#: libgeda/src/object/o_text_object.c:799
+#: libgeda/src/object/o_path_object.c:592
+#: libgeda/src/object/o_text_object.c:801
 #, c-format
 msgid "Unexpected end-of-file after %d lines"
 msgstr ""
@@ -1331,16 +1457,21 @@ msgstr "Échec du chargement du fichier. Image enlevée.\n"
 msgid "ERROR: geda_picture_object_save: unable to encode the picture.\n"
 msgstr "ERROR: o_picture_save: impossible d'encoder l'image.\n"
 
-#: libgeda/src/object/o_picture_object.c:1950
+#: libgeda/src/object/o_picture_object.c:1809
+#, fuzzy, c-format
+msgid "Error processing image '%s'"
+msgstr "Impossible de trouver le fichier %s: %s"
+
+#: libgeda/src/object/o_picture_object.c:1986
 #, c-format
 msgid "Failed to load image from file [%s]: %s\n"
 msgstr "Échec du chargement de l'image depuis le fichier [%s]: %s\n"
 
-#: libgeda/src/object/o_picture_object.c:1952
+#: libgeda/src/object/o_picture_object.c:1988
 msgid "Picture is still embedded.\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1961
+#: libgeda/src/object/o_picture_object.c:1997
 #, c-format
 msgid "Picture [%s] has been unembedded\n"
 msgstr "L'image [%s] a été débarquée\n"
@@ -1413,30 +1544,30 @@ msgstr "Initialiser à la couleur par défaut\n"
 msgid "Setting line space to default=%d\n"
 msgstr "Initialiser à la couleur par défaut\n"
 
-#: libgeda/src/object/o_text_object.c:724
-#: libgeda/src/object/o_text_object.c:736
-#: libgeda/src/object/o_text_object.c:748
+#: libgeda/src/object/o_text_object.c:726
+#: libgeda/src/object/o_text_object.c:738
+#: libgeda/src/object/o_text_object.c:750
 msgid "Failed to parse text object"
 msgstr ""
 
-#: libgeda/src/object/o_text_object.c:755
+#: libgeda/src/object/o_text_object.c:757
 #, c-format
 msgid "Found a zero size text string [ %c %d %d %d %d %d %d %d %d ]\n"
 msgstr ""
 "Trouvé une chaîne de texte à longueur nulle [ %c %d %d %d %d %d %d %d %d ]\n"
 
-#: libgeda/src/object/o_text_object.c:757
+#: libgeda/src/object/o_text_object.c:759
 #, fuzzy
 msgid "Setting text to default size\n"
 msgstr "Initialiser à la couleur par défaut\n"
 
-#: libgeda/src/object/o_text_object.c:775
+#: libgeda/src/object/o_text_object.c:777
 #, c-format
 msgid "Found an unsupported text alignment [ %c %d %d %d %d %d %d %d %d ]\n"
 msgstr ""
 "Trouvé un alignement de texte non supporté [ %c %d %d %d %d %d %d %d %d ]\n"
 
-#: libgeda/src/object/o_text_object.c:777
+#: libgeda/src/object/o_text_object.c:779
 msgid "Setting alignment to LOWER_LEFT\n"
 msgstr "Alignement positionné à LOWER_LEFT\n"
 
@@ -1717,12 +1848,12 @@ msgstr "Échec de l'ouverture du répertoire [%s]: %s\n"
 msgid "Disabling auto save timer, no toplevel"
 msgstr ""
 
-#: libgeda/src/struct/s_page.c:731 libgeda/src/struct/s_page.c:775
+#: libgeda/src/struct/s_page.c:742 libgeda/src/struct/s_page.c:786
 #, c-format
 msgid "Saved [%s]\n"
 msgstr "Sauvegarder [%s]\n"
 
-#: libgeda/src/struct/s_page.c:737 libgeda/src/struct/s_page.c:782
+#: libgeda/src/struct/s_page.c:748 libgeda/src/struct/s_page.c:793
 #, c-format
 msgid "Could NOT save [%s]\n"
 msgstr "Impossible de sauvegarder [%s]\n"

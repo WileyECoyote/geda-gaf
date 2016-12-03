@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gnetlist\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-10-31 13:37-0500\n"
+"POT-Creation-Date: 2016-12-03 00:56-0600\n"
 "PO-Revision-Date: 2014-08-31 20:38+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA Developers\n"
@@ -253,17 +253,17 @@ msgstr ""
 msgid "Missing Attributes (refdes and pin number)\n"
 msgstr "Ontbrekende Attributen (refdes en pennummer)\n"
 
-#: gnetlist/src/s_net.c:354 gnetlist/src/s_net.c:394
+#: gnetlist/src/s_net.c:353 gnetlist/src/s_net.c:393
 #, c-format
 msgid "Found duplicate net name, renaming [%s] to [%s]\n"
 msgstr "Vond een duplicaat net naam, hernoem [%s] naar [%s]\n"
 
-#: gnetlist/src/s_net.c:516
+#: gnetlist/src/s_net.c:515
 #, fuzzy, c-format
 msgid "s_net_name: incorrect node type %i\n"
 msgstr "s_net_name: incorrect verbinding type %i\n"
 
-#: gnetlist/src/s_net.c:540
+#: gnetlist/src/s_net.c:539
 #, c-format
 msgid "Increase number of unnamed nets (s_net.c)\n"
 msgstr "Verhoog aantal naamloze netten (s_net.c)\n"
