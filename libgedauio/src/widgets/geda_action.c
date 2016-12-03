@@ -45,6 +45,7 @@
  *                | Revise geda_action_create_menu_item to use g_object_set
  *                | instead of gtk_activatable_set_use_action_appearance
  *                | to set the "use-action-appearance" property.
+ * WEH | 09/04/16 | Implement object identication system using a hash table.
  */
 
 #ifdef HAVE_CONFIG_H
@@ -82,6 +83,8 @@ enum {
 
 static void *geda_action_parent_class = NULL;
 
+static GHashTable *action_hash_table = NULL;
+
 /*! \brief GObject finalize handler
  *
  *  \par Function Description
@@ -93,6 +96,13 @@ static void *geda_action_parent_class = NULL;
 static void geda_action_finalize (GObject *object)
 {
   GedaAction *action = GEDA_ACTION (object);
+
+  if (g_hash_table_remove (action_hash_table, object)) {
+    if (!g_hash_table_size (action_hash_table)) {
+      g_hash_table_destroy (action_hash_table);
+      action_hash_table = NULL;
+    }
+  }
 
   if (action->multikey_accel) {
     g_free (action->multikey_accel);
@@ -282,6 +292,12 @@ geda_action_instance_init (GTypeInstance *instance, void *class)
 
   action->multikey_accel = NULL;
   action->icon_name      = NULL;
+
+  if (!action_hash_table) {
+    action_hash_table = g_hash_table_new (g_direct_hash, NULL);
+  }
+
+  g_hash_table_add (action_hash_table, instance);
 }
 
 /*! \brief Function to retrieve GedaAction's Type identifier.
@@ -335,8 +351,8 @@ GedaType geda_action_get_type (void)
 bool
 is_a_geda_action (GedaAction *action)
 {
-  if (G_IS_OBJECT(action)) {
-    return (geda_action_get_type() == action->instance_type);
+  if ((action != NULL) && (action_hash_table != NULL)) {
+    return g_hash_table_lookup(action_hash_table, action) ? TRUE : FALSE;
   }
   return FALSE;
 }

@@ -3,6 +3,9 @@
     * src/widgets/geda_accel_label.c: Implement new identifier system using a
       hash table in GedaAccelLabel.
 
+    * src/widgets/geda_action.c: Implement new identifier system using a
+      hash table in GedaAction.
+
     * src/widgets/geda_separator.c: Redo object type identifier scheme for
       GedaSeparator objects and replace glist with hash table.
 
