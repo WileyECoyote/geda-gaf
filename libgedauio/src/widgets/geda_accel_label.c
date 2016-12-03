@@ -115,6 +115,8 @@ enum {
 
 static void *geda_accel_label_parent_class = NULL;
 
+static GHashTable *accel_label_hash = NULL;
+
 bool
 geda_accel_label_refetch (GedaAccelLabel *accel_label)
 {
@@ -269,6 +271,13 @@ static void
 geda_accel_label_finalize (GObject *object)
 {
   GedaAccelLabel *accel_label = GEDA_ACCEL_LABEL (object);
+
+  if (g_hash_table_remove (accel_label_hash, object)) {
+    if (!g_hash_table_size (accel_label_hash)) {
+      g_hash_table_destroy (accel_label_hash);
+      accel_label_hash = NULL;
+    }
+  }
 
   GEDA_FREE (accel_label->accel_string);
 
@@ -637,6 +646,12 @@ geda_accel_label_instance_init (GTypeInstance *instance, void *g_class)
 
   accel_label->accel_padding = 3;
   accel_label->accel_string  = NULL;
+
+  if (!accel_label_hash) {
+    accel_label_hash = g_hash_table_new (g_direct_hash, NULL);
+  }
+
+  g_hash_table_add (accel_label_hash, instance);
 }
 
 /*! \brief Function to retrieve GedaAccelLabel's Type identifier.
@@ -689,8 +704,8 @@ GedaType geda_accel_label_get_type (void)
 bool
 is_a_geda_accel_label (GedaAccelLabel *accel_label)
 {
-  if (G_IS_OBJECT(accel_label)) {
-    return (geda_accel_label_get_type() == accel_label->instance_type);
+  if ((accel_label != NULL) && (accel_label_hash != NULL)) {
+    return g_hash_table_lookup(accel_label_hash, accel_label) ? TRUE : FALSE;
   }
   return FALSE;
 }
