@@ -70,8 +70,7 @@ AX_GCC_FLAGS([-Wformat-security])
 AX_GCC_FLAGS([-fstack-protector])
 AX_GCC_FLAGS([-D_FORTIFY_SOURCE=2])
 AX_GCC_FLAGS([-O2 -Wall])
-#AX_GCC_FLAGS([-std=c99])
-AX_GCC_FLAGS([-std=gnu99])
+AX_GCC_FLAGS([-std=c99])
 
 #####################################################################
 # Check for existence of utilitity Programs required for building
@@ -297,9 +296,6 @@ AC_CONFIG_FILES([Makefile
                  libgedauio/docs/Makefile
                  libgedauio/docs/images/Makefile
                  libgedauio/include/Makefile
-                 libgedauio/include/fileselector/Makefile
-                 libgedauio/src/dialogs/Makefile
-                 libgedauio/src/dialogs/fileselector/Makefile
                  libgedauio/src/Makefile
                  libgedauio/tests/Makefile
 
