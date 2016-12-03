@@ -1,5 +1,8 @@
 2016-12-03 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_separator.c: Redo object type identifier scheme for
+      GedaSeparator objects and replace glist with hash table.
+
     * tests/test_menu_item.c: Pass a bad pointer to GEDA_IS_MENU_ITEM.
 
 2016-12-01 Wiley E. Hill <wileyhill@gmail.com>

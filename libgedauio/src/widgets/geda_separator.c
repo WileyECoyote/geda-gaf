@@ -68,8 +68,8 @@ static bool geda_separator_expose       (GtkWidget      *widget,
 
 static void *geda_separator_parent_class = NULL;
 
-/* hold list of pointers to GedaLabel instances */
-static GList *list_of_objects = NULL;
+/* Table of pointers to GedaSeparator instances */
+static GHashTable *separator_hash_table = NULL;
 
 #if GTK_MAJOR_VERSION < 3
 
@@ -283,18 +283,18 @@ geda_separator_draw (GtkWidget *widget, cairo_t *cr)
 static void
 geda_separator_finalize (GObject *object)
 {
-  list_of_objects = g_list_remove(list_of_objects, object);
-
-  G_OBJECT_CLASS (geda_separator_parent_class)->finalize (object);
-
 #ifndef DEBUG_GEDA_SEPARATOR
 
-  if (!g_list_length(list_of_objects)) {
-    g_list_free(list_of_objects);
-    list_of_objects = NULL;
+  if (g_hash_table_remove (separator_hash_table, object)) {
+    if (!g_hash_table_size (separator_hash_table)) {
+      g_hash_table_destroy (separator_hash_table);
+      separator_hash_table = NULL;
+    }
   }
 
 #endif /* DEBUG_GEDA_SEPARATOR */
+
+  G_OBJECT_CLASS (geda_separator_parent_class)->finalize (object);
 }
 
 static void
@@ -373,7 +373,7 @@ geda_separator_class_init(void *class, void *class_data)
                               1,
                               G_PARAM_READWRITE);
 
-   g_object_class_install_property (object_class, PROP_ORIENTATION, params);
+  g_object_class_install_property (object_class, PROP_ORIENTATION, params);
 }
 
 static void
@@ -391,7 +391,11 @@ geda_separator_instance_init(GTypeInstance *instance, void *g_class)
   widget->requisition.width  = 1;
   widget->requisition.height = widget->style->ythickness;
 
-  list_of_objects = g_list_append(list_of_objects, separator);
+  if (!separator_hash_table) {
+    separator_hash_table = g_hash_table_new (g_direct_hash, NULL);
+  }
+
+  g_hash_table_add (separator_hash_table, instance);
 }
 
 /*!
@@ -445,8 +449,8 @@ GedaType geda_separator_get_type (void)
 bool
 is_a_geda_separator (GedaSeparator *separator)
 {
-  if (G_IS_OBJECT(separator)) {
-    return (geda_separator_get_type() == separator->instance_type);
+  if ((separator != NULL) && (separator_hash_table != NULL)) {
+    return g_hash_table_lookup(separator_hash_table, separator) ? TRUE : FALSE;
   }
   return FALSE;
 }
