@@ -3,6 +3,8 @@
     * src/gsymcheck.c: Substitute geda_set_log_update_func macro for
       geda_utility_log_set_update_func.
 
+    * src/s_check.c: Use accessor geda_text_object_get_string.
+
 2016-12-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_check.c: Use accessor eda_text_object_get_string in function

@@ -401,13 +401,15 @@ static void s_check_symbol_structure (const GList *obj_list, SYMCHECK *s_current
 
     if (o_current->type == OBJ_TEXT) {
 
-      tokens = g_strsplit(o_current->text->string,"=", 2);
+      const char *string = geda_text_object_get_string(o_current);
+
+      tokens = g_strsplit(string,"=", 2);
 
       if (tokens[0] != NULL && tokens[1] != NULL) {
 
         if (s_current->has_directive) {
 
-          if (s_check_is_valid_directive(o_current->text->string)) {
+          if (s_check_is_valid_directive(string)) {
             g_strfreev(tokens);
             continue;
           }
@@ -446,7 +448,7 @@ static void s_check_symbol_structure (const GList *obj_list, SYMCHECK *s_current
         if (o_current->show_name_value != SHOW_NAME_VALUE) {
           message = geda_sprintf (_("Found a simple text object with only SHOW_NAME"
           " or SHOW_VALUE set [%s]\n"),
-          o_current->text->string);
+          string);
           ADD_WARN_MESSAGE(message);
         }
       }
@@ -479,7 +481,7 @@ static void s_check_text (const GList *obj_list, SYMCHECK *s_current)
       continue;
 
     overbar_started = escape = leave_parser = FALSE;
-    text_string = o_current->text->string;
+    text_string = geda_text_object_get_string(o_current);
 
     for (ptr = text_string;
          ptr != NULL && !leave_parser;
@@ -1125,6 +1127,7 @@ static void s_check_pin_ongrid (const GList *obj_list, SYMCHECK *s_current)
     GedaObject *o_current = iter->data;
 
     if (o_current->type == OBJ_PIN) {
+
       x1 = o_current->line->x[0];
       y1 = o_current->line->y[0];
       x2 = o_current->line->x[1];
@@ -1140,6 +1143,7 @@ static void s_check_pin_ongrid (const GList *obj_list, SYMCHECK *s_current)
           ADD_WARN_MESSAGE(message);
         }
       }
+
       if (x2 % 100 != 0 || y2 % 100 != 0) {
         message = geda_sprintf(_("Found offgrid pin at location (x2=%d,y2=%d)\n"), x2, y2);
         /* error when whichend, warning if not */
@@ -1441,10 +1445,12 @@ static void s_check_oldpin (const GList *obj_list, SYMCHECK *s_current)
 
     if (o_current->type == OBJ_TEXT) {
 
-      if (strstr(o_current->text->string, "pin")) {
+      const char *string = geda_text_object_get_string(o_current);
+
+      if (strstr(string, "pin")) {
 
         /* skip over "pin" */
-        ptr = o_current->text->string + 3;
+        ptr = string + 3;
 
         found_old = FALSE;
         number_counter = 0;
@@ -1478,10 +1484,9 @@ static void s_check_oldpin (const GList *obj_list, SYMCHECK *s_current)
 
         /* 2 matches -> number found after pin and only numbers after = sign */
         if (found_old == 2) {
-          message = geda_sprintf (_("Found old pin#=# attribute: %s\n"),
-                                         o_current->text->string);
-            ADD_ERROR_MESSAGE(message);
-            s_current->found_oldpin_attrib += found_old;
+          message = geda_sprintf (_("Found old pin#=# attribute: %s\n"), string);
+          ADD_ERROR_MESSAGE(message);
+          s_current->found_oldpin_attrib += found_old;
         }
       }
     }
@@ -1506,10 +1511,12 @@ static void s_check_oldslot (const GList *obj_list, SYMCHECK *s_current)
 
     if (o_current->type == OBJ_TEXT) {
 
-      if (strstr(o_current->text->string, "slot")) {
+      const char *string = geda_text_object_get_string(o_current);
+
+      if (strstr(string, "slot")) {
 
         /* skip over "slot" */
-        char *ptr = o_current->text->string + 4;
+        char *ptr = string + 4;
 
         found_old = FALSE;
         number_counter = 0;
@@ -1541,11 +1548,10 @@ static void s_check_oldslot (const GList *obj_list, SYMCHECK *s_current)
         /* 2 matches -> number found after slot and only numbers after = */
         if (found_old == 2) {
 
-          message = geda_sprintf (
-            _("Found old slot#=# attribute: %s\n"),
-              o_current->text->string);
-            ADD_ERROR_MESSAGE(message);
-            s_current->found_oldslot_attrib += found_old;
+          message = geda_sprintf (_("Found old slot#=# attribute: %s\n"),
+                                  string);
+          ADD_ERROR_MESSAGE(message);
+          s_current->found_oldslot_attrib += found_old;
         }
       }
     }
@@ -1639,20 +1645,19 @@ void s_check_missing_attributes (const GList *obj_list, SYMCHECK *s_current)
 
     if (o_current->type == OBJ_TEXT) {
 
-      if (strstr(o_current->text->string, "footprint=")) {
-        message = geda_sprintf (
-          _("Found %s attribute\n"), o_current->text->string);
-          ADD_INFO_MESSAGE(message);;
-          s_current->found_footprint++;
+      const char *string = geda_text_object_get_string(o_current);
+
+      if (strstr(string, "footprint=")) {
+        message = geda_sprintf (_("Found %s attribute\n"), string);
+        ADD_INFO_MESSAGE(message);;
+        s_current->found_footprint++;
       }
 
-      if (strstr(o_current->text->string, "refdes=")) {
-        message = geda_sprintf (
-          _("Found %s attribute\n"), o_current->text->string);
-          ADD_INFO_MESSAGE(message);
-          s_current->found_refdes++;
+      if (strstr(string, "refdes=")) {
+        message = geda_sprintf (_("Found %s attribute\n"), string);
+        ADD_INFO_MESSAGE(message);
+        s_current->found_refdes++;
       }
-
     }
   }
 
@@ -1704,6 +1709,5 @@ static void s_check_nets_buses (const GList *obj_list, SYMCHECK *s_current)
       ADD_ERROR_MESSAGE(message);
       s_current->found_bus++;
     }
-
   }
 }
