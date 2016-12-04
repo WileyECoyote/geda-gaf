@@ -1,4 +1,4 @@
-2016-12-03 Wiley E. Hill <wileyhill@gmail.com>
+2016-12-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gsymcheck.c: Substitute geda_set_log_update_func macro for
       geda_utility_log_set_update_func.

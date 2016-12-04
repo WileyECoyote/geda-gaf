@@ -1,3 +1,7 @@
+2016-12-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/functions/geda_marshal.c: Add marshal function geda_marshal_VOID__INT.
+
 2016-12-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_accel_label.c: Implement new identifier system using a

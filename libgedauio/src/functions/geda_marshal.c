@@ -671,6 +671,37 @@ geda_marshal_STRING__STRING (GClosure     *closure,
 }
 
 /* VOID:INT (geda-marshal.list:16) */
+void
+geda_marshal_VOID__INT (GClosure     *closure,
+                        GValue       *return_value GEDA_UNUSED,
+                        unsigned int  n_param_values,
+                        const GValue *param_values,
+                        void         *invocation_hint GEDA_UNUSED,
+                        void         *marshal_data)
+{
+  typedef void (*GMarshalFunc_VOID__INT) (void    *data1,
+                                          int      arg_1,
+                                          void    *data2);
+
+  register GMarshalFunc_VOID__INT callback;
+  register GCClosure *cc = (GCClosure*) closure;
+  register void *data1;
+  register void *data2;
+
+  g_return_if_fail (n_param_values == 2);
+
+  if (G_CCLOSURE_SWAP_DATA (closure)) {
+      data1 = closure->data;
+      data2 = g_value_peek_pointer (param_values + 0);
+  }
+  else {
+      data1 = g_value_peek_pointer (param_values + 0);
+      data2 = closure->data;
+  }
+  callback = (GMarshalFunc_VOID__INT) (marshal_data ? marshal_data : cc->callback);
+
+  callback (data1, g_marshal_value_peek_int (param_values + 1), data2);
+}
 
 /* VOID:INT,STRING (geda-marshal.list:17) */
 void
