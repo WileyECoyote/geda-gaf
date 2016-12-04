@@ -578,8 +578,8 @@ static void s_check_connections (const GList *obj_list, SYMCHECK *s_current)
     GedaObject *o_current = iter->data;
 
     if (o_current->conn_list) {
-      message =
-      geda_strdup (_("Found a connection inside a symbol\n"));
+
+      message = geda_strdup (_("Found a connection inside a symbol\n"));
       ADD_ERROR_MESSAGE(message);
       s_current->found_connection++;
     }
@@ -588,7 +588,7 @@ static void s_check_connections (const GList *obj_list, SYMCHECK *s_current)
 
 /*! \brief Check if symbol has a Directive
  *  \par Function Description
- *   Checks for the existence of graphical attribute and set flag
+ *   Checks for the existence of directive attribute and set flag
  *   in \a s_current if found. Does not set any error or warnings.
  */
 static void s_check_directive (const GList *obj_list, SYMCHECK *s_current)
@@ -596,7 +596,7 @@ static void s_check_directive (const GList *obj_list, SYMCHECK *s_current)
   const char  *directive = "Directive";
   const GList *iter;
 
-  /* look for special graphical tag */
+  /* look for special directive tag */
 
   for (iter = obj_list; iter != NULL; iter = iter->next) {
 
@@ -972,8 +972,8 @@ static void s_check_pinseq (const GList *obj_list, SYMCHECK *s_current)
       found_first = FALSE;
       counter = 0;
 
-      string = geda_attrib_search_object_by_name (o_current, "pinseq",
-                                                       counter);
+      string = geda_attrib_search_object_by_name(o_current, "pinseq", counter);
+
       if (!string) {
 
         message = geda_strdup (_("Missing pinseq= attribute\n"));
@@ -995,8 +995,7 @@ static void s_check_pinseq (const GList *obj_list, SYMCHECK *s_current)
 
         if (found_first) {
           message = geda_sprintf (
-            _("Found multiple pinseq=%s attributes on one pin\n"),
-              string);
+            _("Found multiple pinseq=%s attributes on one pin\n"), string);
             ADD_ERROR_MESSAGE(message);
             multiple_pinseq_attrib_sum++;
         }
@@ -1014,7 +1013,7 @@ static void s_check_pinseq (const GList *obj_list, SYMCHECK *s_current)
 
         counter++;
         string = geda_attrib_search_object_by_name (o_current, "pinseq",
-                                                         counter);
+                                                    counter);
       }
 
       s_current->missing_pinseq_attrib += missing_pinseq_attrib_sum;
@@ -1034,7 +1033,7 @@ static void s_check_pinseq (const GList *obj_list, SYMCHECK *s_current)
 
     while(ptr2 && string) {
 
-      char *current = (char *) ptr2->data;
+      char *current = (char*) ptr2->data;
 
       if (current && strcmp(string, current) == 0) {
         found++;
