@@ -160,7 +160,6 @@ geda_utility_program_mem_free (void *ptr_mem)
   }
   else {
     fprintf(stderr, "%s: pointer to mem is NULL>\n", __func__);
-    EMBED_BREAKPOINT;
   }
 }
 
