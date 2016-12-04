@@ -5,6 +5,8 @@
 
     * src/s_check.c: Use accessor geda_text_object_get_string.
 
+    * tests/runtest.sh: Leave run directory if DEBUG defined.
+
 2016-12-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_check.c: Use accessor eda_text_object_get_string in function
