@@ -105,6 +105,10 @@ struct _GschemStatusBar
   GtkWidget *right_label;
   GtkWidget *status_label;
 
+  GtkWidget *coord_popup;              /*!< Coordinates popup menu */
+  GtkWidget *middle_popup;             /*!< Middle Button popup menu */
+  GtkWidget *third_popup;              /*!< Third Button popup menu */
+
   int        coord_mode;
   int        grid_mode;
   int        grid_size;

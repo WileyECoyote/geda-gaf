@@ -1,3 +1,14 @@
+2016-12-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/gschem_status_bar.h: A GschemStatusBar structure members;
+      coord_popup, middle_popup and third_popup.
+
+    * src/base/gschem_status_bar.c: Add create_third_button_options_popup
+      to create the popuo menu for the third button options once and save
+      pointer to GschemStatusBar structure third_popup. Revise function
+      third_button_options_popup accordingly. Over-ride virtural dispose
+      and release the resources for the third button options pop up menu.
+
 2016-12-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_image.c: Revise x_image_get_pixbuf to actually create a real
