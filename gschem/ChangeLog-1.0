@@ -11,6 +11,9 @@
       so also add g_object_unref. Add compselect_dispose and unreferene the
       compselect view popup menu.
 
+    * src/x/x_console.c: Substitute geda_set_log_update_func macro for
+      geda_utility_log_set_update_func in x_console_open.
+
 2016-12-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_status_bar.h: A GschemStatusBar structure members;

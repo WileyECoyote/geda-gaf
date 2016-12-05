@@ -253,7 +253,7 @@ void x_console_open (GschemToplevel *w_current)
       GEDA_FREE (contents);
     }
 
-    geda_utility_log_set_update_func(x_log_message);
+    geda_set_log_update_func(x_log_message);
 
     if ( auto_place_mode ) {
       gtk_widget_set_uposition (console_dialog, 10, 10);
@@ -279,7 +279,7 @@ void x_console_close ()
   if (console_dialog) {
     if (IS_CONSOLE (console_dialog)) {
       gtk_widget_destroy (console_dialog);
-      geda_utility_log_set_update_func(NULL);
+      geda_set_log_update_func(NULL);
       console_dialog = NULL;
     }
     else
