@@ -1766,18 +1766,24 @@ static void x_menu_recent_file_clicked (GedaMenuItem *menuitem, void *user_data)
  */
 static void x_menu_recent_files_create_empty(void)
 {
-   char *c;
-   const char * const tmp[] = { NULL };
-   GKeyFile *kf = g_key_file_new();
-   char *file   = g_build_filename(geda_user_config_path (),
-                                   RECENT_FILES_STORE, NULL);
+   GKeyFile   *keyfile;
+   char       *data;
+   char       *file;
+   const char *path;
+   const char *const tmp[] = { NULL };
 
-   g_key_file_set_string_list(kf, "Recent files", "Files", tmp, 0);
-   c = g_key_file_to_data(kf, NULL, NULL);
-   g_key_file_free(kf);
+   path    = geda_user_config_path ();
+   file    = g_build_filename(path, RECENT_FILES_STORE, NULL);
+   keyfile = g_key_file_new();
 
-   g_file_set_contents(file, c, -1, NULL);
-   GEDA_FREE(c);
+   g_key_file_set_string_list(keyfile, "Recent files", "Files", tmp, 0);
+
+   data = g_key_file_to_data(keyfile, NULL, NULL);
+
+   g_key_file_free(keyfile);
+   g_file_set_contents(file, data, -1, NULL);
+
+   GEDA_FREE(data);
    GEDA_FREE(file);
 }
 
@@ -2026,7 +2032,7 @@ void x_menu_recent_files_add(const char *filename)
    /* Normalize the filename. */
    save_fn = geda_normalize_filename (filename, &err);
    if (err != NULL) {
-     save_fn = geda_utility_string_strdup (filename);
+     save_fn = geda_strdup (filename);
      g_error_free (err);
    }
 
@@ -2061,9 +2067,12 @@ void x_menu_recent_files_add(const char *filename)
 void x_menu_recent_files_save(void *user_data)
 {
    char *files[MAX_RECENT_FILES];
-   int num = 0;
-   char *c;
-   char *file = g_build_filename(geda_user_config_path(), RECENT_FILES_STORE, NULL);
+   char *data;
+   char *file;
+   int   num;
+
+   file = g_build_filename(geda_user_config_path(), RECENT_FILES_STORE, NULL);
+   num  = 0;
 
    GList *p = recent_files;
    if(p == NULL) {
@@ -2076,15 +2085,15 @@ void x_menu_recent_files_save(void *user_data)
      p = g_list_next(p);
    }
 
-   GKeyFile *kf = g_key_file_new();
+   GKeyFile *keyfile = g_key_file_new();
 
-   g_key_file_set_string_list(kf, "Recent files", "Files", (const char**)files, num);
-   c = g_key_file_to_data(kf, NULL, NULL);
-   g_file_set_contents(file, c, -1, NULL);
+   g_key_file_set_string_list(keyfile, "Recent files", "Files", (const char**)files, num);
+   data = g_key_file_to_data(keyfile, NULL, NULL);
+   g_file_set_contents(file, data, -1, NULL);
 
-   GEDA_FREE(c);
+   GEDA_FREE(data);
    GEDA_FREE(file);
-   g_key_file_free(kf);
+   g_key_file_free(keyfile);
 }
 
 /*! \brief Load the recent file list using data from RECENT_FILES_STORE.
@@ -2094,24 +2103,26 @@ void x_menu_recent_files_save(void *user_data)
  */
 void x_menu_recent_files_load()
 {
-   GKeyFile *kf = g_key_file_new();
-   char *file = g_build_filename(geda_user_config_path (), RECENT_FILES_STORE, NULL);
+   GKeyFile *keyfile;
+   char     *file;
+
+   keyfile = g_key_file_new();
+   file = g_build_filename(geda_user_config_path(), RECENT_FILES_STORE, NULL);
 
    if(!g_file_test(file, G_FILE_TEST_EXISTS)) {
      geda_create_path(geda_user_config_path (), S_IRWXU | S_IRWXG);
-
-      x_menu_recent_files_create_empty();
+     x_menu_recent_files_create_empty();
    }
 
-   if(!g_key_file_load_from_file(kf, file, G_KEY_FILE_NONE, NULL)) {
+   if(!g_key_file_load_from_file(keyfile, file, G_KEY_FILE_NONE, NULL)) {
       /* error opening key file, create an empty one and try again */
       x_menu_recent_files_create_empty();
-      if(!g_key_file_load_from_file(kf, file, G_KEY_FILE_NONE, NULL))
+      if(!g_key_file_load_from_file(keyfile, file, G_KEY_FILE_NONE, NULL))
          return;
    }
 
    size_t len;
-   char **list = g_key_file_get_string_list(kf, "Recent files", "Files",
+   char **list = g_key_file_get_string_list(keyfile, "Recent files", "Files",
                                             &len, NULL);
 
    if(list == NULL) {
@@ -2128,7 +2139,7 @@ void x_menu_recent_files_load()
 
    GEDA_FREE(list);
    GEDA_FREE(file);
-   g_key_file_free(kf);
+   g_key_file_free(keyfile);
 }
 
 /*! \brief Get the Most Recent Filename

@@ -14,6 +14,10 @@
     * src/x/x_console.c: Substitute geda_set_log_update_func macro for
       geda_utility_log_set_update_func in x_console_open.
 
+    * src/x/x_menus.c: Rename kf->keyfile and c->data in recent menu routines.
+      Substitute geda_strdup macro for geda_utility_string_strdup in function
+      x_menu_recent_files_add.
+
 2016-12-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_status_bar.h: A GschemStatusBar structure members;
