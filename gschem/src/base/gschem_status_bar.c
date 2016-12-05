@@ -164,21 +164,14 @@ static void status_options_popup_clicked (GedaMenuItem *menuitem, void *user_dat
 
 /* -------------- Popup Menu for Mouse Middle Button Options  -------------- */
 
-/*!
- * \brief GschemStatusBar Show Coordinate Display Options Popup
- * \par Function Description
- *  This functions creates and displays a small pop-up menu on
- *  the coordinates display widget when the right mouse button
- *  is released on the widget.
- */
-static void coord_display_options_popup (GtkWidget      *event_box,
-                                         GdkEventButton *event,
-                                         void           *user_data)
+/*! Creates the context menu for the third button options */
+static GtkWidget*
+create_coord_display_options_popup(GschemStatusBar *status_bar)
 {
   GtkWidget *menu;
   int i;
 
-  /* create the context menu */
+  /* create the context menu coordinates display */
   menu = geda_menu_new();
 
   for (i = 0; coord_popup_items[i].text != NULL; i++) {
@@ -191,9 +184,34 @@ static void coord_display_options_popup (GtkWidget      *event_box,
                      (GCallback)coord_options_popup_clicked,
                       UINT_TO_POINTER(entry.signal));
 
-    GEDA_OBJECT_SET_DATA (popup_item, user_data, "status-bar");
+    GEDA_OBJECT_SET_DATA (popup_item, status_bar, "status-bar");
 
     geda_menu_shell_append (GEDA_MENU_SHELL (menu), popup_item);
+  }
+
+  status_bar->coord_popup = menu;
+
+  return menu;
+}
+
+/*!
+ * \brief GschemStatusBar Show Coordinate Display Options Popup
+ * \par Function Description
+ *  This functions creates and displays a small pop-up menu on
+ *  the coordinates display widget when the right mouse button
+ *  is released on the widget.
+ */
+static void coord_display_options_popup (GtkWidget       *event_box,
+                                         GdkEventButton  *event,
+                                         GschemStatusBar *status_bar)
+{
+  GtkWidget *menu;
+
+  if (!status_bar->coord_popup) {
+    menu = create_coord_display_options_popup (status_bar);
+  }
+  else {
+    menu = status_bar->coord_popup;
   }
 
   gtk_widget_show_all (menu);
@@ -215,13 +233,13 @@ static void coord_display_options_popup (GtkWidget      *event_box,
  */
 static bool coord_display_released (GtkWidget      *label,
                                     GdkEventButton *event,
-                                    void           *user_data)
+                                    void           *status_bar)
 {
   bool ret_val;
 
   if (event->button == 3) {
 
-    coord_display_options_popup(label, event, user_data);
+    coord_display_options_popup(label, event, status_bar);
 
     ret_val = TRUE;
   }
