@@ -2185,6 +2185,9 @@ compselect_menu_tooltips_off(GedaMenuItem *menu_item, Compselect *compselect)
  *
  *  \param [in] compselect Pointer Compselect dialog structure
  *  \param [in] treeview   widget
+ *
+ * TODO: Should not have recreate the popup menu everytime the user
+ *       right-clicks.
  */
 static GtkWidget*
 compselect_build_view_menu(Compselect *compselect, GtkWidget *treeview)
@@ -2215,8 +2218,8 @@ compselect_build_view_menu(Compselect *compselect, GtkWidget *treeview)
     gtk_widget_set_sensitive(GTK_WIDGET(menuitem), TRUE);
     gtk_widget_set_can_focus(GTK_WIDGET(menuitem), TRUE);
     g_signal_connect(GTK_OBJECT(menuitem),"activate",
-                    (void *) compselect_open_tree_row,
-                    (void *) treeview);
+                    (void*)compselect_open_tree_row,
+                    (void*)treeview);
   }
   else {
     gtk_widget_set_sensitive(GTK_WIDGET(menuitem), FALSE);
@@ -2230,8 +2233,8 @@ compselect_build_view_menu(Compselect *compselect, GtkWidget *treeview)
     gtk_widget_set_sensitive(GTK_WIDGET(menuitem), TRUE);
     gtk_widget_set_can_focus(GTK_WIDGET(menuitem), TRUE);
     g_signal_connect(GTK_OBJECT(menuitem),"activate",
-                    (void *) compselect_open_tree_rows,
-                    (void *) treeview);
+                    (void*)compselect_open_tree_rows,
+                    (void*)treeview);
   }
   else {
     gtk_widget_set_sensitive(GTK_WIDGET(menuitem), FALSE);
@@ -2352,7 +2355,8 @@ compselect_view_popup_menu (GtkWidget      *treeview,
                             Compselect     *compselect)
 {
   if (GEDA_IS_MENU(tree_view_popup_menu)) {
-    gtk_object_destroy(GTK_OBJECT(tree_view_popup_menu));
+    gtk_widget_destroy(GTK_WIDGET(tree_view_popup_menu));
+    g_object_unref(tree_view_popup_menu);
     tree_view_popup_menu = NULL;
   }
 

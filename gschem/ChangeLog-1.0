@@ -6,6 +6,10 @@
       button_options_popup accordingly. Add destroy_popup and call from
       dispose for each retained popup menu.
 
+    * src/x/x_compselect.c: Replace gtk_object_destroy with gtk_widget_destroy,
+      which does not actually destroy the widget in compselect_view_popup_menu,
+      so also add g_object_unref.
+
 2016-12-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_status_bar.h: A GschemStatusBar structure members;
