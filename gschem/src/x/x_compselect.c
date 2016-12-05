@@ -3010,6 +3010,20 @@ compselect_style_set (GtkWidget *widget, GtkStyle *previous)
 }
 
 static void
+compselect_dispose (GObject *object)
+{
+  //Compselect *ThisDialog = COMPSELECT (object);
+
+  if (tree_view_popup_menu != NULL) {
+    gtk_widget_destroy(GTK_WIDGET(tree_view_popup_menu));
+    g_object_unref(tree_view_popup_menu);
+    tree_view_popup_menu = NULL; /* Is static to the module */
+  }
+
+  G_OBJECT_CLASS (compselect_parent_class)->dispose (object);
+}
+
+static void
 compselect_finalize (GObject *object)
 {
   Compselect *ThisDialog = COMPSELECT (object);
@@ -3021,7 +3035,6 @@ compselect_finalize (GObject *object)
   }
 
   G_OBJECT_CLASS (compselect_parent_class)->finalize (object);
-
 }
 
 /*! \brief  Set Properties of the Compselect Dialog
@@ -3165,6 +3178,7 @@ compselect_class_init (void *class, void *class_data)
   gschem_dialog_class->geometry_restore  = compselect_geometry_restore;
 
   object_class->constructor   = compselect_constructor;
+  object_class->dispose       = compselect_dispose;
   object_class->finalize      = compselect_finalize;
   object_class->set_property  = compselect_set_property;
   object_class->get_property  = compselect_get_property;

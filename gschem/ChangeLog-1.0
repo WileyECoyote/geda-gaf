@@ -8,7 +8,8 @@
 
     * src/x/x_compselect.c: Replace gtk_object_destroy with gtk_widget_destroy,
       which does not actually destroy the widget in compselect_view_popup_menu,
-      so also add g_object_unref.
+      so also add g_object_unref. Add compselect_dispose and unreferene the
+      compselect view popup menu.
 
 2016-12-04 Wiley E. Hill <wileyhill@gmail.com>
 
