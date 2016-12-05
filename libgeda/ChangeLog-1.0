@@ -1,3 +1,19 @@
+2016-12-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/: Add headers in files:
+
+            * tests/test_box.c
+            * tests/test_bus.c
+            * tests/test_circle.c
+            * tests/test_complex.c
+            * tests/test_line.c
+            * tests/test_list.c
+            * tests/test_parsecmd.h
+            * tests/test_path.c
+            * tests/test_picture.c
+            * tests/test_pin.c
+            * tests/test_text.c
+
 2016-12-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/: Add parenthesis around obj in GEDA_IS_* macros in:
