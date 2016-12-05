@@ -442,6 +442,13 @@ static void gschem_status_bar_style_set (GtkWidget *widget, GtkStyle *previous)
   gschem_status_bar_set_height (widget, height);
 }
 
+static void destroy_popup(GtkWidget *widget)
+{
+  gtk_widget_destroy(widget);
+  g_object_ref_sink(widget);
+  g_object_unref(widget);
+}
+
 /*!
  * \brief Dispose Reference of a  GschemStatusBar object
  * \par Function Description
@@ -450,10 +457,18 @@ static void dispose (GObject *object)
 {
   GschemStatusBar *status_bar = GSCHEM_STATUS_BAR (object);
 
+  if (status_bar->coord_popup) {
+    destroy_popup(status_bar->coord_popup);
+    status_bar->coord_popup = NULL;
+  }
+
+  if (status_bar->middle_popup) {
+    destroy_popup(status_bar->middle_popup);
+    status_bar->middle_popup = NULL;
+  }
+
   if (status_bar->third_popup) {
-    gtk_widget_destroy(status_bar->third_popup);
-    g_object_ref_sink(status_bar->third_popup);
-    g_object_unref(status_bar->third_popup);
+    destroy_popup(status_bar->third_popup);
     status_bar->third_popup = NULL;
   }
 
