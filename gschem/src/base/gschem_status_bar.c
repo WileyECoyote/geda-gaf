@@ -252,21 +252,14 @@ static bool coord_display_released (GtkWidget      *label,
 
 /* -------------- Popup Menu for Mouse Middle Button Options  -------------- */
 
-/*!
- * \brief GschemStatusBar Show Middle Mouse Options Popup
- * \par Function Description
- *  This functions creates and displays a small pop-up menu on
- *  the middle-button status widget when the right mouse button
- *  is released on the widget.
- */
-static void middle_button_options_popup (GtkWidget      *event_box,
-                                         GdkEventButton *event,
-                                         void           *user_data)
+/*! Creates the context menu for the middle button options */
+static GtkWidget*
+create_middle_button_options_popup(GschemStatusBar *status_bar)
 {
   GtkWidget *menu;
   int i;
 
-  /* create the context menu */
+  /* create the middle button context menu */
   menu = geda_menu_new();
 
   for (i = 0; middle_popup_items[i].text != NULL; i++) {
@@ -279,9 +272,33 @@ static void middle_button_options_popup (GtkWidget      *event_box,
                       (GCallback)status_options_popup_clicked,
                       (void*)(long)(entry.signal));
 
-    GEDA_OBJECT_SET_DATA (popup_item, user_data, "status-bar");
+    GEDA_OBJECT_SET_DATA (popup_item, status_bar, "status-bar");
 
     geda_menu_shell_append (GEDA_MENU_SHELL (menu), popup_item);
+  }
+  status_bar->middle_popup = menu;
+
+  return menu;
+}
+
+/*!
+ * \brief GschemStatusBar Show Middle Mouse Options Popup
+ * \par Function Description
+ *  This functions creates and displays a small pop-up menu on
+ *  the middle-button status widget when the right mouse button
+ *  is released on the widget.
+ */
+static void middle_button_options_popup (GtkWidget       *event_box,
+                                         GdkEventButton  *event,
+                                         GschemStatusBar *status_bar)
+{
+  GtkWidget *menu;
+
+  if (!status_bar->middle_popup) {
+    menu = create_middle_button_options_popup (status_bar);
+  }
+  else {
+    menu = status_bar->middle_popup;
   }
 
   gtk_widget_show_all (menu);
@@ -303,13 +320,13 @@ static void middle_button_options_popup (GtkWidget      *event_box,
  */
 static bool middle_button_released (GtkWidget      *label,
                                     GdkEventButton *event,
-                                    void           *user_data)
+                                    void           *status_bar)
 {
   bool ret_val;
 
   if (event->button == 3) {
 
-    middle_button_options_popup(label, event, user_data);
+    middle_button_options_popup(label, event, status_bar);
 
     ret_val = TRUE;
   }
@@ -391,7 +408,7 @@ static void third_button_options_popup (GtkWidget       *event_box,
  */
 static bool third_button_released (GtkWidget       *label,
                                    GdkEventButton  *event,
-                                   GschemStatusBar *status_bar)
+                                   void            *status_bar)
 {
   bool ret_val;
 
