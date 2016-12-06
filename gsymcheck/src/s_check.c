@@ -469,10 +469,10 @@ static void s_check_text (const GList *obj_list, SYMCHECK *s_current)
 {
   const GList *iter;
   GedaObject  *o_current;
-  bool overbar_started, escape, leave_parser;
-  char *message;
-  char *text_string, *ptr;
-  gunichar current_char;
+  const char  *text_string, *ptr;
+  char        *message;
+  gunichar     current_char;
+  bool         overbar_started, escape, leave_parser;
 
   for (iter = obj_list; iter != NULL; iter = g_list_next(iter)) {
     o_current = iter->data;
@@ -485,7 +485,7 @@ static void s_check_text (const GList *obj_list, SYMCHECK *s_current)
 
     for (ptr = text_string;
          ptr != NULL && !leave_parser;
-    ptr = g_utf8_find_next_char (ptr, NULL)) {
+         ptr = g_utf8_find_next_char (ptr, NULL)) {
 
       current_char = g_utf8_get_char_validated (ptr, -1);
 
@@ -1433,10 +1433,10 @@ static void s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
 static void s_check_oldpin (const GList *obj_list, SYMCHECK *s_current)
 {
   const GList *iter;
-  char *ptr;
-  int found_old = FALSE;
+  char        *message;
+
+  int found_old      = FALSE;
   int number_counter = 0;
-  char *message;
 
   for (iter = obj_list; iter != NULL; iter = iter->next) {
 
@@ -1449,7 +1449,7 @@ static void s_check_oldpin (const GList *obj_list, SYMCHECK *s_current)
       if (strstr(string, "pin")) {
 
         /* skip over "pin" */
-        ptr = string + 3;
+        const char *ptr = string + 3;
 
         found_old = FALSE;
         number_counter = 0;
@@ -1515,7 +1515,7 @@ static void s_check_oldslot (const GList *obj_list, SYMCHECK *s_current)
       if (strstr(string, "slot")) {
 
         /* skip over "slot" */
-        char *ptr = string + 4;
+        const char *ptr = string + 4;
 
         found_old = FALSE;
         number_counter = 0;

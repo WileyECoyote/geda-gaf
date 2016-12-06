@@ -3,6 +3,9 @@
     * src/gsymcheck.c: Release resource before aborting when an error
       occurs opening a file.
 
+    * src/s_check.c: Declare pointers associated with geda_text_object_get_
+      string constant and reduce scope in s_check_oldpin and s_check_oldslot.
+
 2016-12-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gsymcheck.c: Substitute geda_set_log_update_func macro for
