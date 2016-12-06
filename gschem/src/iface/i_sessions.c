@@ -180,7 +180,7 @@ static bool i_session_close_all (GschemToplevel *w_current)
   if (!can_close) {         /* Ask to save unsaved pages */
 
     close_all = x_confirm_close_window (w_current);
-    if (!close_all) {       /* user cancelled the close */
+    if (!close_all) {       /* user canceled the close */
       v_log_message(_("Canceled Close all\n"));
     }
   }

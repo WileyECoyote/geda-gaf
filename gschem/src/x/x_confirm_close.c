@@ -722,7 +722,7 @@ x_confirm_close_changed_page (GschemToplevel *w_current, Page *page)
  *  have unsaved changes, if any.
  *
  *  It returns TRUE if the user really accepts the close of the
- *  window. Otherwise the user has somehow cancelled and the window
+ *  window. Otherwise the user has somehow canceled and the window
  *  must not be closed.
  *
  *  \param [in] w_current The toplevel environment.
@@ -787,7 +787,7 @@ x_confirm_close_window (GschemToplevel *w_current)
           x_window_save_page (w_current, p_current,
                               Current_Page->filename);
 
-          /* if user cancelled previous, do not close window */
+          /* if user canceled previous, do not close window */
           return_value &= !p_current->CHANGED;
         }
         g_list_free (unsaved_pages);

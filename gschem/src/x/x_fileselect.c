@@ -334,7 +334,7 @@ x_fileselect_save (GschemToplevel *w_current)
                               filename);
                               gtk_window_set_title (GTK_WINDOW (checkdialog), _("Overwrite file?"));
                               if (gtk_dialog_run (GTK_DIALOG (checkdialog)) != GEDA_RESPONSE_YES) {
-                                q_log_message (_("Save cancelled on user request\n"));
+                                q_log_message (_("Save canceled on user request\n"));
                                 GEDA_FREE (filename);
                                 filename = NULL;
                               }
@@ -373,7 +373,7 @@ x_fileselect_save (GschemToplevel *w_current)
  *  \param [in] filename  Optional file name to fill in the chooser.
  *
  *  \returns pointer to filename string or NULL if the operation was
- *           cancelled by the user. The returned string must be freed
+ *           canceled by the user. The returned string must be freed
  *           by the caller.
  *
  *  \sa x_fileselect_list
