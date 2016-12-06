@@ -2319,7 +2319,7 @@
 
         ("SEPARATOR"                     #f                        #f)
         (,(N_ "Toggle _Snap On-Off")      options-cycle-snap       #f ,(N_ "Toggle the object snap mode"))
-        (,(N_ "Toggle _Rubberband")       options-rubberband       #f ,(N_ "Toggle rubberband mode"))
+        (,(N_ "Toggle _Rubberband")       options-rubberband       #f ,(N_ "Toggle rubberband net mode"))
         (,(N_ "Toggle _Magnetic Net")     options-magneticnet      #f ,(N_ "Toggle magnetic net mode"))
         (,(N_ "Toggle _Drag Move")        options-dragcanmove      #f ,(N_ "Toggle Drag-can-Move mode"))
         (,(N_ "Toggle _Outline-Box")      options-action-feedback  #f ,(N_ "Toggle action feedback"))
