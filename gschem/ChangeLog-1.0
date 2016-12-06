@@ -6,6 +6,9 @@
     * src/guile/g_rc.c: Revise message in g_rc_text_display_zoomfactor;
       "zoomfactor" is not a word.
 
+    * src/x/x_sessions.c: Revise messages in create_action_area; hyphenated
+      start-up.
+
 2016-12-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_status_bar.c: Add create_coord_display_options_popup

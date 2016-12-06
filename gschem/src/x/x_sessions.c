@@ -411,13 +411,13 @@ create_action_area (GschemDialog *ThisDialog, GtkWidget *parent)
   int         startup;
 
   open_tip    = _("Loads the selected session");
-  startup_tip = _("Show the Open Session dialog at startup, over-rides auto-load-last feature");
+  startup_tip = _("Show the Open Session dialog at start-up, over-rides auto-load-last feature");
   update_tip  = _("Add and remove files to the sessions automatically");
 
   /* Create a Horizontal Box for everything to go into */
   NEW_HCONTROL_BOX(parent, action, DIALOG_H_SPACING);
 
-  startup_checkbutt = gtk_check_button_new_with_mnemonic (_("Show at startup"));
+  startup_checkbutt = gtk_check_button_new_with_mnemonic (_("Show at start-up"));
   g_object_set (startup_checkbutt, "visible", TRUE, NULL);
   gtk_box_pack_start (GTK_BOX (action_hbox), startup_checkbutt, FALSE, FALSE, 0);
   gtk_widget_set_tooltip_text(startup_checkbutt, startup_tip);
