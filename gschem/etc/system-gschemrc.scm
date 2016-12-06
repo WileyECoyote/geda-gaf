@@ -2101,7 +2101,7 @@
 
         ("SEPARATOR"               #f                     #f                       #f)
         (,(N_ "_Array")             edit-array            #f                  ,(N_ "Create and array of objects"))
-        (,(N_ "_Break")             edit-break            #f                  ,(N_ "Break a linear object into seperate objects"))
+        (,(N_ "_Break")             edit-break            #f                  ,(N_ "Break a linear object into separate objects"))
         (,(N_ "E_xtend")            edit-extend           #f                  ,(N_ "Project a linear objects to other objects"))
 
         ("SEPARATOR"               #f                     #f                       #f)
@@ -2146,7 +2146,7 @@
       )
 )
 
-;; If you prefer, the buffer menu items can be under a seperate top-level menu,
+;; If you prefer, the buffer menu items can be under a separate top-level menu,
 ;; to do this uncomment all of this section and, though not actually required,
 ;; comment-out the same items under select-menu-items and uncomment the "_Buffer"
 ;; top-level menu near the end of the menu section.

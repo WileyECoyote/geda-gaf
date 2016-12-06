@@ -157,7 +157,7 @@ x_rc_parse_gschem_error (GError **err, void *retry_flag)
  *  integer is not incremented, meaning an error did not occur, or the
  *  number of attempts equals MAX_RC_ATTEMPTS, defined in idefines.h.
  *  Currently the limit is set to make 3 attempts, which applies to
- *  each type, gafrc, gschemrc, and rcfile, seperately, not in total.
+ *  each type, gafrc, gschemrc, and rcfile, separately, not in total.
  *
  * \param w_current  The current #GschemToplevel structure.
  * \param rcfile     Specific config file path, or NULL.

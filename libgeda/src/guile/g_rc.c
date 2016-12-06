@@ -864,7 +864,7 @@ SCM g_rc_thin_pin_width (SCM width)
  *  promoted when symbols file are loaded. A pointer to the list is stored
  *  to default_always_promote_attributes.
  *
- *  \param [in] attrlist Can be a space seperated list of string or a SCM list
+ *  \param [in] attrlist Can be a space separated list of string or a SCM list
  *
  *  \returns SCM_BOOL_T always.
  */

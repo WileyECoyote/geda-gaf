@@ -527,7 +527,7 @@ void geda_pin_object_update_whichend (GList *object_list, int num_pins)
  *  Sets the pin's electrical type code and updates the pin's
  *  internal electrical description. Attributes assicated with
  *  the pins electrical properties are not updated. Applicated
- *  should manage such attributes seperately or use the pin's
+ *  should manage such attributes separately or use the pin's
  *  internal description.
  *
  *  \param [in] o_current  The pin Object being modified
@@ -558,7 +558,7 @@ bool geda_pin_object_set_elect_type (GedaObject *o_current, PIN_ELECT e_type)
  *  Sets the pin's mechanical type code and updates the pin's
  *  internal mechanical description. Attributes assicated with
  *  the pins mechanical properties are not updated. Applicated
- *  should manage such attributes seperately or use the pin's
+ *  should manage such attributes separately or use the pin's
  *  internal description.
  *
  *  \param [in] o_current  The pin Object being modified

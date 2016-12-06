@@ -32,7 +32,7 @@
  * ---------------|--------------------------------------------------
  * WEH | 01/31/13 |  Inital release, new file.
  * ---------------|--------------------------------------------------
- * WEH | 09/10/13 | Added more icons, seperate geda &  gschem (to
+ * WEH | 09/10/13 | Added more icons, separate geda &  gschem (to
  *                | reduce the lists to smaller sizes, in anticipation
  *                | adding more icons).
  *                | to support routines not using embed labels.
