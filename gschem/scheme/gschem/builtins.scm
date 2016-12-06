@@ -116,7 +116,7 @@
 (define-action-public (&edit-mirror #:label (_ "Mirror Mode") #:icon "geda-mirror")
   (%edit-mirror))
 
-(define-action-public (&edit-offset #:label (_ "Offest selection") #:icon "geda-offset")
+(define-action-public (&edit-offset #:label (_ "Offset selection") #:icon "geda-offset")
   (%edit-offset))
 
 (define-action-public (&edit-rotate-left #:label (_ "Rotate Mode") #:icon "geda-rotate")
