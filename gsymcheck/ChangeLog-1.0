@@ -1,3 +1,8 @@
+2016-12-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gsymcheck.c: Release resource before aborting when an error
+      occurs opening a file.
+
 2016-12-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gsymcheck.c: Substitute geda_set_log_update_func macro for

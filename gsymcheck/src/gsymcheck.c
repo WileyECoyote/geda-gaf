@@ -103,11 +103,15 @@ static void main_prog(void *closure, int argc, char *argv[])
     }
 
     page = geda_struct_page_new (pr_current, filename);
+
     geda_struct_page_goto (page);
 
     if (!geda_open_file (pr_current, page, page->filename, &err)) {
 
       /* Not being able to load a file is apparently a fatal error */
+      GEDA_FREE(cwd);
+      geda_struct_page_delete_list(pr_current);
+      gsymcheck_quit();
       log_destiny = STDOUT_TTY;
       fprintf(stderr, "%s\n", err->message);
       g_error_free (err);
