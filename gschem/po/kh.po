@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-12-03 00:56-0600\n"
+"POT-Creation-Date: 2016-12-05 03:55-0600\n"
 "PO-Revision-Date: 2015-07-29 00:24-0600\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -20,33 +20,33 @@ msgstr ""
 "X-Poedit-Language: Khmer\n"
 "X-Poedit-Country: CAMBODIA\n"
 
-#: gschem/src/base/gschem.c:158
+#: gschem/src/base/gschem.c:159
 #, c-format
 msgid "Warning: <%s> did not expand\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:159
+#: gschem/src/base/gschem.c:160
 msgid "Command-line error: disabling auto load last\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:192
+#: gschem/src/base/gschem.c:193
 #, c-format
 msgid "Assumming schematic file suffix for [%s]\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:206
+#: gschem/src/base/gschem.c:207
 #, c-format
 msgid "Assumming symbol file suffix for [%s]\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:237
+#: gschem/src/base/gschem.c:238
 #, c-format
 msgid "An error was encountered loading requested session %s\n"
 msgstr ""
 "ban chuobabrateah kamhosa muoy knong kar phtok ban snae rsom samyobrachoum "
 "%s\n"
 
-#: gschem/src/base/gschem.c:311
+#: gschem/src/base/gschem.c:312
 msgid ""
 "You must set the GEDADATA environment variable!\n"
 "\n"
@@ -54,37 +54,37 @@ msgid ""
 "environment variable points to the correct location.\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:347
+#: gschem/src/base/gschem.c:348
 msgid "Unable to locate scheme initialization file \"gschem.scm\"\n"
 msgstr "Unable to locate initialization file \"gschem.scm\"\n"
 
-#: gschem/src/base/gschem.c:354
+#: gschem/src/base/gschem.c:355
 #, c-format
 msgid "Read scheme initialization file [%s]\n"
 msgstr "saum an eksar chabphdaem chamrouh [%s]\n"
 
-#: gschem/src/base/gschem.c:357
+#: gschem/src/base/gschem.c:358
 #, c-format
 msgid "Failed to read initialization scheme file [%s]\n"
 msgstr "breachy knong kar an eksar chabphdaem [%s]\n"
 
-#: gschem/src/base/gschem.c:383
+#: gschem/src/base/gschem.c:384
 #, c-format
 msgid "gEDA/gschem version %s%s.%s\n"
 msgstr "kamne gEDA/gschem %s%s.%s\n"
 
-#: gschem/src/base/gschem.c:388
+#: gschem/src/base/gschem.c:389
 #, fuzzy
 msgid "Logging system is disabled\n"
 msgstr "samy del ban chabphtaem chea brapn\n"
 
-#: gschem/src/base/gschem.c:428
+#: gschem/src/base/gschem.c:429
 #, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
 msgstr ""
 "kamhosa: ban breachy knong kar phtok ryy veayotamlei skrib pel chabphdaem.\n"
 
-#: gschem/src/base/gschem.c:520
+#: gschem/src/base/gschem.c:521
 #, fuzzy
 msgid "Exiting normal\n"
 msgstr "kammovithi chenh thommotea"
@@ -247,7 +247,7 @@ msgstr ""
 msgid "Preview Buffer"
 msgstr ""
 
-#: gschem/src/base/gschem_preview.c:541 gschem/src/x/x_pagesel.c:1109
+#: gschem/src/base/gschem_preview.c:541 gschem/src/x/x_pagesel.c:1135
 msgid "Filename"
 msgstr ""
 
@@ -281,149 +281,149 @@ msgstr "star tomham"
 msgid "Whether the preview widget show be large or small"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:498
+#: gschem/src/base/gschem_status_bar.c:587
 msgid "Coordinates Mode"
 msgstr "rbieb kauardaone"
 
-#: gschem/src/base/gschem_status_bar.c:499
+#: gschem/src/base/gschem_status_bar.c:588
 msgid "Sets the Format Mode used to display coordinates on the status bar"
 msgstr ""
 "kamnt rbieb trongtreay del ban brae daembi bangheanh kar saam rb saamruol "
 "leu rbar sthanphap"
 
-#: gschem/src/base/gschem_status_bar.c:508
+#: gschem/src/base/gschem_status_bar.c:597
 msgid "Grid Mode"
 msgstr "rbieb kraleachatrang"
 
-#: gschem/src/base/gschem_status_bar.c:509
+#: gschem/src/base/gschem_status_bar.c:598
 msgid "Sets the Gride Mode to display on the status bar"
 msgstr "kamnt rbieb Gride daembi bangheanh now leu rbar sthanphap"
 
-#: gschem/src/base/gschem_status_bar.c:518
+#: gschem/src/base/gschem_status_bar.c:607
 msgid "Grid Size"
 msgstr "tomham kraleachatrang"
 
-#: gschem/src/base/gschem_status_bar.c:519
+#: gschem/src/base/gschem_status_bar.c:608
 msgid "Sets the Grid Size to display on the status bar"
 msgstr "kamnt tomham kraleachatrangk daembi bangheanh now leu rbar sthanphap"
 
-#: gschem/src/base/gschem_status_bar.c:528
+#: gschem/src/base/gschem_status_bar.c:617
 msgid "height"
 msgstr "kamposa"
 
-#: gschem/src/base/gschem_status_bar.c:529
+#: gschem/src/base/gschem_status_bar.c:618
 msgid "Sets the height of the status bar"
 msgstr "kamnt kamposa robsa rbar sthanphap"
 
-#: gschem/src/base/gschem_status_bar.c:538
+#: gschem/src/base/gschem_status_bar.c:627
 msgid "Left Button Text"
 msgstr "atthabt boutong chhveng"
 
-#: gschem/src/base/gschem_status_bar.c:539
+#: gschem/src/base/gschem_status_bar.c:628
 msgid "Set the string for the Left Button Text"
 msgstr "kamnt khsae aksaar samreab atthabt boutong chhveng"
 
-#: gschem/src/base/gschem_status_bar.c:545
+#: gschem/src/base/gschem_status_bar.c:634
 msgid "Middle Button Text"
 msgstr "atthabt boutong k nta l"
 
-#: gschem/src/base/gschem_status_bar.c:546
+#: gschem/src/base/gschem_status_bar.c:635
 msgid "Set the string for the Middle Button Text"
 msgstr "kamnt khsae aksaar samreab atthabt boutong k nta l"
 
-#: gschem/src/base/gschem_status_bar.c:552
+#: gschem/src/base/gschem_status_bar.c:641
 msgid "Right Button Text"
 msgstr "atthabt boutong stam"
 
-#: gschem/src/base/gschem_status_bar.c:553
+#: gschem/src/base/gschem_status_bar.c:642
 msgid "Set the string for the Right Button Text"
 msgstr "kamnt khsae aksaar samreab atthabt boutong sdam"
 
-#: gschem/src/base/gschem_status_bar.c:559
+#: gschem/src/base/gschem_status_bar.c:648
 msgid "Snap Mode"
 msgstr "rbieb khtasa"
 
-#: gschem/src/base/gschem_status_bar.c:560
+#: gschem/src/base/gschem_status_bar.c:649
 msgid "Sets the Snap Mode to display on the status bar"
 msgstr "kamnt rbieb khtasa daembi bangheanh now leu rbar sthanphap"
 
-#: gschem/src/base/gschem_status_bar.c:569 gschem/src/x/x_dialog.c:543
+#: gschem/src/base/gschem_status_bar.c:658 gschem/src/x/x_dialog.c:543
 msgid "Snap Size"
 msgstr "tomham khtasa"
 
-#: gschem/src/base/gschem_status_bar.c:570
+#: gschem/src/base/gschem_status_bar.c:659
 msgid "Sets the Size Mode to display on the status bar"
 msgstr "Sets the Size Mode to display on the status bar"
 
-#: gschem/src/base/gschem_status_bar.c:579
+#: gschem/src/base/gschem_status_bar.c:668
 msgid "Status Text"
 msgstr "atthabt sthanphap"
 
-#: gschem/src/base/gschem_status_bar.c:580
+#: gschem/src/base/gschem_status_bar.c:669
 msgid "Set the string for the text on the Status Bar"
 msgstr "kamnt khsae aksaar samreab atthabt now leu rbar sthanphap"
 
-#: gschem/src/base/gschem_status_bar.c:586
-#: gschem/src/base/gschem_status_bar.c:587
+#: gschem/src/base/gschem_status_bar.c:675
+#: gschem/src/base/gschem_status_bar.c:676
 msgid "Status State"
 msgstr "rodth sthanphap"
 
-#: gschem/src/base/gschem_status_bar.c:600
+#: gschem/src/base/gschem_status_bar.c:689
 msgid "Status Bar Height"
 msgstr "sthanphap bar kamposa"
 
-#: gschem/src/base/gschem_status_bar.c:601
+#: gschem/src/base/gschem_status_bar.c:690
 msgid "Sets or gets the height of the status bar"
 msgstr "kamnt ryy ttuol ban kamposa robsa rbar sthanphap"
 
-#: gschem/src/base/gschem_status_bar.c:1099
+#: gschem/src/base/gschem_status_bar.c:1188
 msgid "Coordinate display, right click for format options"
 msgstr ""
 "saam rb saamruol kar bangheanh, choch kandor khangosdam samreab chomreusa "
 "kar thveu trongtreay"
 
-#: gschem/src/base/gschem_status_bar.c:1100
+#: gschem/src/base/gschem_status_bar.c:1189
 msgid "Left pointer button assignment"
 msgstr "karchattang boutong pruonh now khangochhveng"
 
-#: gschem/src/base/gschem_status_bar.c:1101
+#: gschem/src/base/gschem_status_bar.c:1190
 msgid "Middle pointer button assignment, right click for options"
 msgstr ""
 "karchattang boutong pruonh now m chchhu m, choch kandor khangosdam samreab "
 "chomreus"
 
-#: gschem/src/base/gschem_status_bar.c:1102
+#: gschem/src/base/gschem_status_bar.c:1191
 msgid "Right pointer button assignment, right click for options"
 msgstr ""
 "karchattang boutong pruonh now khangosdam, choch kandor khangosdam samreab "
 "chomreus"
 
-#: gschem/src/base/gschem_status_bar.c:1103
+#: gschem/src/base/gschem_status_bar.c:1192
 msgid "Indicates the current snap,grid units or states"
 msgstr "bangheanh pi kar khtasa krueng kraleachatrangk bachchobbann ryy rod"
 
-#: gschem/src/base/gschem_status_bar.c:1104
+#: gschem/src/base/gschem_status_bar.c:1193
 msgid "Indicates the current command state"
 msgstr "banhcheak pi sthanphap bachchobbann robsa peaky banhchea"
 
-#: gschem/src/base/gschem_status_bar.c:1105
+#: gschem/src/base/gschem_status_bar.c:1194
 msgid "Gschem status bar"
 msgstr "Gschem rbar sthanphap"
 
-#: gschem/src/base/gschem_status_bar.c:1795
+#: gschem/src/base/gschem_status_bar.c:1888
 msgid "Grid"
 msgstr "Kraleachatrang"
 
-#: gschem/src/base/gschem_status_bar.c:1801
-#: gschem/src/base/gschem_status_bar.c:1822
+#: gschem/src/base/gschem_status_bar.c:1894
+#: gschem/src/base/gschem_status_bar.c:1915
 msgid "OFF"
 msgstr "BET"
 
-#: gschem/src/base/gschem_status_bar.c:1814
+#: gschem/src/base/gschem_status_bar.c:1907
 msgid "Error"
 msgstr "kamhosa knong kar"
 
-#: gschem/src/base/gschem_status_bar.c:1826
+#: gschem/src/base/gschem_status_bar.c:1919
 msgid "NONE"
 msgstr "KMEAN"
 
@@ -562,9 +562,9 @@ msgstr ""
 "karchattang braphet min troemotrauv , pinityameul scrollpan chaul knong "
 "chomhan eksar daoy rc\n"
 
-#: gschem/src/guile/g_rc.c:2059
-#, c-format
-msgid "Invalid zoomfactor [%d] passed to %s\n"
+#: gschem/src/guile/g_rc.c:2058
+#, fuzzy, c-format
+msgid "Invalid zoom factor [%d] passed to %s\n"
 msgstr "zoomfactor min troemotrauv [%d] ban chhlang tow %s\n"
 
 #: gschem/src/guile/g_select.c:84 gschem/src/guile/g_select.c:120
@@ -1406,93 +1406,93 @@ msgstr "sameasapheak del ban bangkob knong koumnour bampruonh"
 msgid "Include component as individual objects"
 msgstr "ruom banhchoul teang sameasapheak chea vottho bokkol"
 
-#: gschem/src/x/x_compselect.c:2092 gschem/src/x/x_compselect.c:2466
+#: gschem/src/x/x_compselect.c:2092 gschem/src/x/x_compselect.c:2470
 msgid "Components"
 msgstr "sameasapheak"
 
-#: gschem/src/x/x_compselect.c:2543 gschem/src/x/x_multiattrib.c:1987
+#: gschem/src/x/x_compselect.c:2547 gschem/src/x/x_multiattrib.c:1987
 #: gschem/src/x/x_multiattrib.c:1993
 msgid "Name"
 msgstr "chhmoh"
 
-#: gschem/src/x/x_compselect.c:2555 gschem/src/x/x_multiattrib.c:1989
+#: gschem/src/x/x_compselect.c:2559 gschem/src/x/x_multiattrib.c:1989
 #: gschem/src/x/x_multiattrib.c:1995
 msgid "Value"
 msgstr "koun tamlei"
 
-#: gschem/src/x/x_compselect.c:2737 gschem/src/x/x_dialog.c:1747
+#: gschem/src/x/x_compselect.c:2741 gschem/src/x/x_dialog.c:1747
 msgid "None"
 msgstr "kmean"
 
-#: gschem/src/x/x_compselect.c:2738
+#: gschem/src/x/x_compselect.c:2742
 msgid "Style 1"
 msgstr "rochneabtm 1"
 
-#: gschem/src/x/x_compselect.c:2739
+#: gschem/src/x/x_compselect.c:2743
 msgid "Style 2"
 msgstr "rochneabtm 2"
 
-#: gschem/src/x/x_compselect.c:2740
+#: gschem/src/x/x_compselect.c:2744
 msgid "Style 3"
 msgstr "rochneabtm 3"
 
-#: gschem/src/x/x_compselect.c:2741
+#: gschem/src/x/x_compselect.c:2745
 msgid "Style 4"
 msgstr "rochneabtm 4"
 
-#: gschem/src/x/x_compselect.c:2742
+#: gschem/src/x/x_compselect.c:2746
 msgid "Style 5"
 msgstr "rochneabtm 5"
 
-#: gschem/src/x/x_compselect.c:2743
+#: gschem/src/x/x_compselect.c:2747
 msgid "Style 6"
 msgstr "rochneabtm 6"
 
-#: gschem/src/x/x_compselect.c:2744
+#: gschem/src/x/x_compselect.c:2748
 msgid "Style 7"
 msgstr "rochneabtm 7"
 
-#: gschem/src/x/x_compselect.c:2745
+#: gschem/src/x/x_compselect.c:2749
 msgid "Style 8"
 msgstr "rochneabtm 8"
 
-#: gschem/src/x/x_compselect.c:2746
+#: gschem/src/x/x_compselect.c:2750
 msgid "All"
 msgstr "teangoasa"
 
-#: gschem/src/x/x_compselect.c:2782
+#: gschem/src/x/x_compselect.c:2786
 msgid "Enable all styles"
 msgstr "anounhnhat rochneabtm teangoasa"
 
-#: gschem/src/x/x_compselect.c:2783
+#: gschem/src/x/x_compselect.c:2787
 msgid "Uncheck all styles"
 msgstr "daoh thik rochneabtm teangoasa"
 
-#: gschem/src/x/x_compselect.c:2807
+#: gschem/src/x/x_compselect.c:2811
 msgid "Reference"
 msgstr "sechaktei yong"
 
-#: gschem/src/x/x_compselect.c:2808
+#: gschem/src/x/x_compselect.c:2812
 msgid "Embed"
 msgstr "banhchoul"
 
-#: gschem/src/x/x_compselect.c:2809
+#: gschem/src/x/x_compselect.c:2813
 msgid "Include"
 msgstr "banhchoul"
 
-#: gschem/src/x/x_compselect.c:3189
+#: gschem/src/x/x_compselect.c:3207
 msgid "active view"
 msgstr "tidthpheap sakam"
 
-#: gschem/src/x/x_compselect.c:3190
+#: gschem/src/x/x_compselect.c:3208
 msgid "Active sheet of the notebook"
 msgstr "tompr bachchobbann nei kompyoutr yuordai nih"
 
-#: gschem/src/x/x_compselect.c:3201
+#: gschem/src/x/x_compselect.c:3219
 msgid "Focus Filter"
 msgstr "tamrong kar phtao t"
 
-#: gschem/src/x/x_compselect.c:3202
+#: gschem/src/x/x_compselect.c:3220
 #, fuzzy
 msgid ""
 "When true, initial focus will be the filter entry, otherwise the Component "
@@ -1501,23 +1501,23 @@ msgstr ""
 "nowpel del kar pit, kar phtao t arommo dambaung nung trauv ttuol "
 "theatotamrong nih bae min dauchneh te sameasapheak mektheang"
 
-#: gschem/src/x/x_compselect.c:3305
+#: gschem/src/x/x_compselect.c:3323
 msgid "Rescan"
 msgstr "sken laengvinh"
 
-#: gschem/src/x/x_compselect.c:3313
+#: gschem/src/x/x_compselect.c:3331
 msgid "Rescan component libraries"
 msgstr "bannaly sameasapheak sken laengvinh"
 
-#: gschem/src/x/x_compselect.c:3315
+#: gschem/src/x/x_compselect.c:3333
 msgid "Set style filter"
 msgstr "kamnt tamrong del mean steil beb"
 
-#: gschem/src/x/x_compselect.c:3516 gschem/src/x/x_fileselect.c:123
+#: gschem/src/x/x_compselect.c:3534 gschem/src/x/x_fileselect.c:123
 msgid "Preview"
 msgstr "meul cheamoun"
 
-#: gschem/src/x/x_compselect.c:3552
+#: gschem/src/x/x_compselect.c:3570
 msgid "Attributes"
 msgstr "kounalokkhan"
 
@@ -2552,7 +2552,7 @@ msgid "Overwrite file?"
 msgstr ""
 
 #: gschem/src/x/x_fileselect.c:337
-msgid "Save cancelled on user request\n"
+msgid "Save canceled on user request\n"
 msgstr ""
 
 #: gschem/src/x/x_fileselect.c:476
@@ -2800,7 +2800,7 @@ msgid "Break"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:118
-msgid "Break an object into seperate objects"
+msgid "Break an object into separate objects"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:119
@@ -3132,20 +3132,20 @@ msgstr ""
 msgid "Could not open file %s\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1866
+#: gschem/src/x/x_menus.c:1870
 #, fuzzy
 msgid "Open"
 msgstr "..."
 
-#: gschem/src/x/x_menus.c:1875
+#: gschem/src/x/x_menus.c:1879
 msgid "Remove"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1884
+#: gschem/src/x/x_menus.c:1888
 msgid "_Show path"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:2025
+#: gschem/src/x/x_menus.c:2013
 msgid "Clear"
 msgstr ""
 
@@ -3266,50 +3266,50 @@ msgstr "kounalokkhan"
 msgid "attribute"
 msgstr "kounalokkhan"
 
-#: gschem/src/x/x_pagesel.c:594
+#: gschem/src/x/x_pagesel.c:583
 #, fuzzy
 msgid "Move Up"
 msgstr "kar phlasa btaur rbieb"
 
-#: gschem/src/x/x_pagesel.c:595
+#: gschem/src/x/x_pagesel.c:584
 #, fuzzy
 msgid "Move Down"
 msgstr "kar phlasa btaur rbieb"
 
-#: gschem/src/x/x_pagesel.c:597
+#: gschem/src/x/x_pagesel.c:586
 msgid "New Blank"
 msgstr ""
 
-#: gschem/src/x/x_pagesel.c:598 gschem/scheme/gschem/builtins.scm:308
+#: gschem/src/x/x_pagesel.c:587 gschem/scheme/gschem/builtins.scm:308
 msgid "New Page"
 msgstr ""
 
-#: gschem/src/x/x_pagesel.c:599
+#: gschem/src/x/x_pagesel.c:588
 #, fuzzy
 msgid "Open Page..."
 msgstr "..."
 
-#: gschem/src/x/x_pagesel.c:601
+#: gschem/src/x/x_pagesel.c:590
 msgid "Save Page"
 msgstr ""
 
-#: gschem/src/x/x_pagesel.c:602 gschem/scheme/gschem/builtins.scm:320
+#: gschem/src/x/x_pagesel.c:591 gschem/scheme/gschem/builtins.scm:320
 msgid "Close Page"
 msgstr ""
 
-#: gschem/src/x/x_pagesel.c:603 gschem/scheme/gschem/builtins.scm:323
+#: gschem/src/x/x_pagesel.c:592 gschem/scheme/gschem/builtins.scm:323
 msgid "Discard Page"
 msgstr ""
 
-#: gschem/src/x/x_pagesel.c:1048 gschem/scheme/gschem/builtins.scm:287
+#: gschem/src/x/x_pagesel.c:1074 gschem/scheme/gschem/builtins.scm:287
 msgid "Page Manager"
 msgstr ""
 
-#: gschem/src/x/x_pagesel.c:1138
+#: gschem/src/x/x_pagesel.c:1164
 msgid "Changed"
 msgstr ""
 
-#: gschem/src/x/x_pagesel.c:1168
+#: gschem/src/x/x_pagesel.c:1194
 msgid "Right click on rows for more options..."
 msgstr ""
 
@@ -3454,7 +3454,7 @@ msgstr ""
 
 #: gschem/src/x/x_sessions.c:414
 msgid ""
-"Show the Open Session dialog at startup, over-rides auto-load-last feature"
+"Show the Open Session dialog at start-up, over-rides auto-load-last feature"
 msgstr ""
 
 #: gschem/src/x/x_sessions.c:415
@@ -3462,8 +3462,9 @@ msgid "Add and remove files to the sessions automatically"
 msgstr ""
 
 #: gschem/src/x/x_sessions.c:420
-msgid "Show at startup"
-msgstr ""
+#, fuzzy
+msgid "Show at start-up"
+msgstr "bangheanh atthabt del phtae m daoy"
 
 #: gschem/src/x/x_sessions.c:427
 msgid "Auto update"
@@ -3897,7 +3898,7 @@ msgid "_Break"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2104
-msgid "Break a linear object into seperate objects"
+msgid "Break a linear object into separate objects"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2105
@@ -4625,7 +4626,7 @@ msgid "Toggle _Rubberband"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2322
-msgid "Toggle rubberband mode"
+msgid "Toggle net rubberband mode"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2323
@@ -4847,7 +4848,7 @@ msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:119
 #, fuzzy
-msgid "Offest selection"
+msgid "Offset selection"
 msgstr "kar chreus"
 
 #: gschem/scheme/gschem/builtins.scm:128 gschem/scheme/gschem/builtins.scm:131
@@ -5313,6 +5314,3 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
-
-#~ msgid "*unchanged*"
-#~ msgstr "*kar phlasa btau r*"
