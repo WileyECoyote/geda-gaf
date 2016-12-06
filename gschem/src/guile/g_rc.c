@@ -2041,10 +2041,10 @@ SCM g_rc_text_case(SCM mode)
             default_text_case, mode_table);
 }
 
-/*! \brief This function processes the text-display_zoomfactor RC entry.
+/*! \brief This function processes the text-display_zoom factor RC entry.
  *  \par Function Description
- *       C function to dynamically convert lisp variable while
- *       processing configuration data for the text_display_zoomfactor RC entry.
+ *       C function to dynamically convert lisp variable while processing
+ *       configuration data for the text_display_zoom factor RC entry.
  */
 SCM g_rc_text_display_zoomfactor(SCM zoomfactor)
 {
@@ -2055,10 +2055,8 @@ SCM g_rc_text_display_zoomfactor(SCM zoomfactor)
 
   val = scm_to_int (zoomfactor);
   if (val < MIN_TEXT_ZOOM) {
-    fprintf(stderr,
-            _("Invalid zoomfactor [%d] passed to %s\n"),
-            val,
-            "text-display-zoom-factor");
+    fprintf(stderr, _("Invalid zoom factor [%d] passed to %s\n"),
+            val, "text-display-zoom-factor");
     val = DEFAULT_TEXT_ZOOM; /* default */
   }
 
