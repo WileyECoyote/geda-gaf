@@ -351,7 +351,7 @@ void geda_label_get_report_instances (void)
     label_hash_table = NULL;
   }
   else {
-    fprintf(stderr, "%s: the table of labels is empty\n", __func__);
+    fprintf(stderr, "%s: the table of labels is NULL\n", __func__);
   }
 }
 
@@ -1417,7 +1417,7 @@ geda_label_class_init  (void *class, void *class_data)
   g_object_class_install_property (gobject_class, PROP_LABEL, params);
 
   params =  g_param_spec_boxed ("attributes", _("Attributes"),
-                              _("A list of style attributes to apply to the text of the label"),
+                              _("List of style attributes to apply to the text of the label"),
                                  PANGO_TYPE_ATTR_LIST,
                                  G_PARAM_READWRITE);
 
@@ -1467,7 +1467,7 @@ geda_label_class_init  (void *class, void *class_data)
    *
    */
   params = g_param_spec_enum ("wrap-mode", _("Line wrap mode"),
-                            _("If wrap is set, controls how linewrapping is done"),
+                            _("If wrap is set, controls how line wrapping is done"),
                                PANGO_TYPE_WRAP_MODE,
                                PANGO_WRAP_WORD,
                                G_PARAM_READWRITE);
@@ -1532,8 +1532,9 @@ geda_label_class_init  (void *class, void *class_data)
    * geda_label_set_width_chars().
    *
    */
-  params = g_param_spec_enum ("ellipsize", _("Ellipsize"),
-                            _("The preferred place to break the string, if ellipes needed"),
+  params = g_param_spec_enum ("ellipsize",
+                            _("Ellipsize"),
+                            _("The preferred place to break the string, if an ellipsis is needed"),
                                PANGO_TYPE_ELLIPSIZE_MODE,
                                PANGO_ELLIPSIZE_NONE,
                                G_PARAM_READWRITE);
@@ -1570,8 +1571,8 @@ geda_label_class_init  (void *class, void *class_data)
    * changes would be distracting, e.g. in a statusbar.
    *
    */
-  params = g_param_spec_boolean ("single-line-mode", _("Single Line Mode"),
-                               _("Whether the label is in single line mode"),
+  params = g_param_spec_boolean ("single-line-mode", _("Single-Line Mode"),
+                               _("Whether the label is in single-line mode"),
                                   FALSE,
                                   G_PARAM_READWRITE);
 
@@ -1587,7 +1588,7 @@ geda_label_class_init  (void *class, void *class_data)
    *
    */
   params = g_param_spec_double ("angle", _("Angle"),
-                              _("Angle at which the label is rotated"),
+                              _("Angle of rotation of the label"),
                                  0.0,
                                  360.0,
                                  0.0,
@@ -1606,7 +1607,8 @@ geda_label_class_init  (void *class, void *class_data)
    * wrapped labels.
    *
    */
-  params = g_param_spec_int ("max-width-chars", _("Maximum Width In Characters"),
+  params = g_param_spec_int ("max-width-chars",
+                           _("Maximum Width In Characters"),
                            _("The desired maximum width of the label, in characters"),
                              -1,
                               G_MAXINT,
@@ -1623,7 +1625,8 @@ geda_label_class_init  (void *class, void *class_data)
    * color, instead of link-color.
    *
    */
-  params = g_param_spec_boolean ("track-visited-links", _("Track visited links"),
+  params = g_param_spec_boolean ("track-visited-links",
+                               _("Track visited links"),
                                _("Whether visited links should be tracked"),
                                   FALSE,
                                   G_PARAM_READWRITE);

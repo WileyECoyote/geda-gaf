@@ -4,6 +4,9 @@
       eliminate contraction and other descriptions in an attempt to make the
       descriptions more concise.
 
+    * src/widgets/geda_label.c: Revise text for properties; add missing space
+      in "line wrapping", hyphenate "Single-Line Mode".
+
 2016-12-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/functions/geda_marshal.c: Add marshal function geda_marshal_VOID__INT.
