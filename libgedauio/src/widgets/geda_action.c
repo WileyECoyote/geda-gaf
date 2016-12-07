@@ -111,6 +111,7 @@ static void geda_action_finalize (GObject *object)
   if (action->icon_name) {
     g_free (action->icon_name);
   }
+
   G_OBJECT_CLASS (geda_action_parent_class)->finalize (object);
 }
 

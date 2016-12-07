@@ -1,3 +1,9 @@
+2016-12-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_handlebox.c: Revise "snap-edge" property description to
+      eliminate contraction and other descriptions in an attempt to make the
+      descriptions more concise.
+
 2016-12-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/functions/geda_marshal.c: Add marshal function geda_marshal_VOID__INT.

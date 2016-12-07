@@ -1443,7 +1443,7 @@ geda_handle_box_class_init(void *g_class, void *class_data)
 
   params =g_param_spec_enum ("handle-position",
                              NULL,
-                           _("Position of the handle relative to the child widget"),
+                           _("Position of the handle relative to the child toolbar"),
                              GTK_TYPE_POSITION_TYPE,
                              GTK_POS_LEFT,
                              G_PARAM_READWRITE);
@@ -1452,7 +1452,7 @@ geda_handle_box_class_init(void *g_class, void *class_data)
 
   params =g_param_spec_enum ("snap-edge",
                              NULL,
-                           _("Side of the handlebox that's lined up with the docking point to dock the handlebox"),
+                           _("Side of the handlebox that is lined up with the docking point to dock the handlebox"),
                              GTK_TYPE_POSITION_TYPE,
                              GTK_POS_TOP,
                              G_PARAM_READWRITE);
@@ -1469,7 +1469,7 @@ geda_handle_box_class_init(void *g_class, void *class_data)
 
   params = g_param_spec_boolean ("child-detached",
                                  NULL,
-                               _("A boolean value indicating whether the handlebox's child is attached or detached."),
+                               _("Boolean value indicating whether the toolbar is attached or detached."),
                                  FALSE,
                                  G_PARAM_READABLE);
 
