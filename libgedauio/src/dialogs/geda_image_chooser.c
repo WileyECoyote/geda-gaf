@@ -404,6 +404,7 @@ static int popup_activated(GtkWidget *widget, IDS_PV_Popup_items *selection)
     } /* End Switch WhichItem */
 
     gtk_widget_destroy(popup_menu);
+    popup_menu = NULL;
     return (TRUE);
 }
 
@@ -503,7 +504,7 @@ On_mouse_button_press(GtkWidget *widget, GdkEventButton *event, void *user_data)
   if (mods&GDK_BUTTON3_MASK) {
 
     if (popup_menu) {
-      gtk_object_destroy(GTK_OBJECT(popup_menu));
+      gtk_widget_destroy(GTK_WIDGET(popup_menu));
       popup_menu = NULL;
     }
 
@@ -1179,7 +1180,7 @@ geda_image_chooser_new (GtkWidget *parent,
         break;
 
       case IMAGE_CHOOSER_ACTION_SELECT_FOLDER:
-        second_button_text = _("_Select Folder...");
+        second_button_text = _("Select _Folder...");
         title = _("Select Folder");
         break;
 

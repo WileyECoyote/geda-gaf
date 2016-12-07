@@ -620,7 +620,7 @@ geda_file_chooser_new (GtkWidget *parent,
         break;
 
       case FILE_CHOOSER_ACTION_SELECT_FOLDER:
-        second_button_text = _("_Select Folder...");
+        second_button_text = _("Select _Folder...");
         title = _("Select Folder");
         break;
 
