@@ -1176,11 +1176,11 @@ geda_image_chooser_new (GtkWidget *parent,
 
       case IMAGE_CHOOSER_ACTION_SAVE:
         second_button_text = _("_Save");
-        title = _("Save As..");
+        title = _("Save As...");
         break;
 
       case IMAGE_CHOOSER_ACTION_SELECT_FOLDER:
-        second_button_text = _("Select _Folder...");
+        second_button_text = _("_Select Folder...");
         title = _("Select Folder");
         break;
 
