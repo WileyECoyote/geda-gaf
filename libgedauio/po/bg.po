@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-12-03 00:56-0600\n"
+"POT-Creation-Date: 2016-12-05 02:03-0600\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -19,106 +19,106 @@ msgstr ""
 "X-Generator: Launchpad (build 16265)\n"
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:449
-#: libgedauio/src/dialogs/geda_image_chooser.c:1024
+#: libgedauio/src/dialogs/geda_image_chooser.c:1025
 msgid "Set or retrieve index of the filter combo"
 msgstr ""
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:450
-#: libgedauio/src/dialogs/geda_image_chooser.c:1025
+#: libgedauio/src/dialogs/geda_image_chooser.c:1026
 msgid "IDE_FILTER"
 msgstr ""
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:613
-#: libgedauio/src/dialogs/geda_image_chooser.c:1172
+#: libgedauio/src/dialogs/geda_image_chooser.c:1173
 msgid "_Open"
 msgstr ""
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:614
-#: libgedauio/src/dialogs/geda_image_chooser.c:1173
+#: libgedauio/src/dialogs/geda_image_chooser.c:1174
 #, fuzzy
 msgid "Open..."
 msgstr "Отвори Страница..."
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:618
-#: libgedauio/src/dialogs/geda_image_chooser.c:1177
+#: libgedauio/src/dialogs/geda_image_chooser.c:1178
 #, fuzzy
 msgid "_Save"
 msgstr "Съхрани Всичко"
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:619
-#: libgedauio/src/dialogs/geda_image_chooser.c:1178
+#: libgedauio/src/dialogs/geda_image_chooser.c:1179
 #, fuzzy
 msgid "Save As.."
 msgstr "Съхрани Всичко"
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:623
-#: libgedauio/src/dialogs/geda_image_chooser.c:1182
+#: libgedauio/src/dialogs/geda_image_chooser.c:1183
 msgid "_Select Folder..."
 msgstr ""
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:624
-#: libgedauio/src/dialogs/geda_image_chooser.c:1183
+#: libgedauio/src/dialogs/geda_image_chooser.c:1184
 #, fuzzy
 msgid "Select Folder"
 msgstr "Избери режим"
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:628
-#: libgedauio/src/dialogs/geda_image_chooser.c:1187
+#: libgedauio/src/dialogs/geda_image_chooser.c:1188
 msgid "OOPS"
 msgstr ""
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:634
-#: libgedauio/src/dialogs/geda_image_chooser.c:1192
+#: libgedauio/src/dialogs/geda_image_chooser.c:1193
 msgid "_Cancel"
 msgstr ""
 
-#: libgedauio/src/dialogs/geda_image_chooser.c:595
-#: libgedauio/src/dialogs/geda_image_chooser.c:779
+#: libgedauio/src/dialogs/geda_image_chooser.c:596
+#: libgedauio/src/dialogs/geda_image_chooser.c:780
 #, fuzzy
 msgid "Preview"
 msgstr "Затвори Страницата"
 
-#: libgedauio/src/dialogs/geda_image_chooser.c:781
+#: libgedauio/src/dialogs/geda_image_chooser.c:782
 msgid "Active to enable the preview pane"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_accel_label.c:609
+#: libgedauio/src/widgets/geda_accel_label.c:618
 msgid "Accelerator Closure"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_accel_label.c:610
+#: libgedauio/src/widgets/geda_accel_label.c:619
 msgid "The closure to be monitored for accelerator changes"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_accel_label.c:616
+#: libgedauio/src/widgets/geda_accel_label.c:625
 msgid "Accelerator Widget"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_accel_label.c:617
+#: libgedauio/src/widgets/geda_accel_label.c:626
 msgid "The widget to be monitored for accelerator changes"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_accel_label.c:623
+#: libgedauio/src/widgets/geda_accel_label.c:632
 msgid "Accelerator String"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_accel_label.c:624
+#: libgedauio/src/widgets/geda_accel_label.c:633
 msgid "The accelerator string to be displayed"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_action.c:252
+#: libgedauio/src/widgets/geda_action.c:263
 msgid "multikey-accelerator"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_action.c:253
+#: libgedauio/src/widgets/geda_action.c:264
 msgid "A string with characters in positions key characters"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_action.c:260
+#: libgedauio/src/widgets/geda_action.c:271
 msgid "icon-identification"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_action.c:261
+#: libgedauio/src/widgets/geda_action.c:272
 msgid "String name of the icon image"
 msgstr ""
 
@@ -322,7 +322,7 @@ msgid "Whether to activate the default widget when Enter is pressed"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_entry.c:633
-#: libgedauio/src/widgets/geda_label.c:1419
+#: libgedauio/src/widgets/geda_label.c:1406
 msgid "Attributes"
 msgstr ""
 
@@ -621,171 +621,171 @@ msgstr ""
 msgid "The Accel Group to use for stock accelerator keys"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1412
-#: libgedauio/src/widgets/geda_label.c:1790
+#: libgedauio/src/widgets/geda_label.c:1399
+#: libgedauio/src/widgets/geda_label.c:1777
 #: libgedauio/src/widgets/geda_menu_button.c:1172
 msgid "Label"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1413
+#: libgedauio/src/widgets/geda_label.c:1400
 msgid "The text of the label"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1420
+#: libgedauio/src/widgets/geda_label.c:1407
 msgid "A list of style attributes to apply to the text of the label"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1426
+#: libgedauio/src/widgets/geda_label.c:1413
 msgid "Use markup"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1427
+#: libgedauio/src/widgets/geda_label.c:1414
 msgid "The text of the label includes XML markup. See pango_parse_markup()"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1433
+#: libgedauio/src/widgets/geda_label.c:1420
 msgid "Use underline"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1434
+#: libgedauio/src/widgets/geda_label.c:1421
 msgid ""
 "If set, underline in text indicates the next character is mnemonic for "
 "accelerator key"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1439
+#: libgedauio/src/widgets/geda_label.c:1426
 msgid "Justification"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1440
+#: libgedauio/src/widgets/geda_label.c:1427
 msgid ""
 "The alignment of the lines in the text of the label relative to each other. "
 "This does NOT affect the alignment of the label within its allocation. See "
 "GtkMisc::xalign for that"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1447
+#: libgedauio/src/widgets/geda_label.c:1434
 msgid "Pattern"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1448
+#: libgedauio/src/widgets/geda_label.c:1435
 msgid ""
 "A string with _ characters in positions correspond to characters in the text "
 "to underline"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1454
+#: libgedauio/src/widgets/geda_label.c:1441
 msgid "Line wrap"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1455
+#: libgedauio/src/widgets/geda_label.c:1442
 msgid "If set, wrap lines if the text becomes too wide"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1469
+#: libgedauio/src/widgets/geda_label.c:1456
 msgid "Line wrap mode"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1470
+#: libgedauio/src/widgets/geda_label.c:1457
 msgid "If wrap is set, controls how linewrapping is done"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1477
+#: libgedauio/src/widgets/geda_label.c:1464
 #, fuzzy
 msgid "Selectable"
 msgstr "Избери режим"
 
-#: libgedauio/src/widgets/geda_label.c:1478
+#: libgedauio/src/widgets/geda_label.c:1465
 msgid "Whether the label text can be selected with the mouse"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1484
+#: libgedauio/src/widgets/geda_label.c:1471
 msgid "Mnemonic key"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1485
+#: libgedauio/src/widgets/geda_label.c:1472
 msgid "The mnemonic accelerator key for this label"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1493
+#: libgedauio/src/widgets/geda_label.c:1480
 msgid "Mnemonic widget"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1494
+#: libgedauio/src/widgets/geda_label.c:1481
 msgid "The widget to be activated when the label's mnemonic key is pressed"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1501
+#: libgedauio/src/widgets/geda_label.c:1488
 msgid "Cursor Position"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1502
+#: libgedauio/src/widgets/geda_label.c:1489
 msgid "The current position of the insertion cursor in chars"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1510
+#: libgedauio/src/widgets/geda_label.c:1497
 #, fuzzy
 msgid "Selection Bound"
 msgstr "Избери режим"
 
-#: libgedauio/src/widgets/geda_label.c:1511
+#: libgedauio/src/widgets/geda_label.c:1498
 msgid ""
 "The position of the opposite end of the selection from the cursor in chars"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1535
+#: libgedauio/src/widgets/geda_label.c:1522
 msgid "Ellipsize"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1536
+#: libgedauio/src/widgets/geda_label.c:1523
 msgid "The preferred place to break the string, if ellipes needed"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1554
+#: libgedauio/src/widgets/geda_label.c:1541
 msgid "Width In Characters"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1555
+#: libgedauio/src/widgets/geda_label.c:1542
 msgid "The desired width of the label, in characters"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1573
+#: libgedauio/src/widgets/geda_label.c:1560
 msgid "Single Line Mode"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1574
+#: libgedauio/src/widgets/geda_label.c:1561
 msgid "Whether the label is in single line mode"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1589
+#: libgedauio/src/widgets/geda_label.c:1576
 msgid "Angle"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1590
+#: libgedauio/src/widgets/geda_label.c:1577
 msgid "Angle at which the label is rotated"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1609
+#: libgedauio/src/widgets/geda_label.c:1596
 msgid "Maximum Width In Characters"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1610
+#: libgedauio/src/widgets/geda_label.c:1597
 msgid "The desired maximum width of the label, in characters"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1626
+#: libgedauio/src/widgets/geda_label.c:1613
 msgid "Track visited links"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1627
+#: libgedauio/src/widgets/geda_label.c:1614
 msgid "Whether visited links should be tracked"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:6606
+#: libgedauio/src/widgets/geda_label.c:6593
 msgid "_Open Link"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:6618
+#: libgedauio/src/widgets/geda_label.c:6605
 msgid "Copy _Link Address"
 msgstr ""
 
@@ -880,134 +880,3 @@ msgstr ""
 #: libgedauio/src/widgets/geda_toggle_action.c:225
 msgid "Multikey Accelerator"
 msgstr ""
-
-#~ msgid "Copy Mode"
-#~ msgstr "Копирен Режим"
-
-#~ msgid "Move Mode"
-#~ msgstr "Режим Местене"
-
-#~ msgid "Mirror Mode"
-#~ msgstr "Огледален Режим"
-
-#, fuzzy
-#~ msgid "Path Mode"
-#~ msgstr "Завърти 90 Режим"
-
-#~ msgid "Multiple Copy Mode"
-#~ msgstr "Многокопирен Режим"
-
-#~ msgid "Delete"
-#~ msgstr "Изтрий"
-
-#~ msgid "Edit"
-#~ msgstr "Редактирай"
-
-#~ msgid "Lock"
-#~ msgstr "Заключване"
-
-#~ msgid "Unlock"
-#~ msgstr "Отключване"
-
-#, fuzzy
-#~ msgid "Copy %i"
-#~ msgstr "Копирен Режим"
-
-#~ msgid "Write image..."
-#~ msgstr "Запиши Снимката..."
-
-#, fuzzy
-#~ msgid "Add Text"
-#~ msgstr "Редактирай Текст..."
-
-#~ msgid "Edit..."
-#~ msgstr "Редактирай..."
-
-#, fuzzy
-#~ msgid "Edit Pin Type..."
-#~ msgstr "Редактирай Текст..."
-
-#~ msgid "New Page"
-#~ msgstr "Нова Страница"
-
-#~ msgid "Save Page"
-#~ msgstr "Съхрани Страницата"
-
-#~ msgid "Close Page"
-#~ msgstr "Затвори Страницата"
-
-#~ msgid "Execute Script..."
-#~ msgstr "Изпълни Скрипт"
-
-#~ msgid "Undo"
-#~ msgstr "Върни"
-
-#~ msgid "Redo"
-#~ msgstr "Направи отново"
-
-#~ msgid "Save All"
-#~ msgstr "Съхрани Всичко"
-
-#~ msgid "New Window"
-#~ msgstr "Нов Прозорец"
-
-#~ msgid "Rotate 90 Mode"
-#~ msgstr "Завърти 90 Режим"
-
-#~ msgid "Edit Text..."
-#~ msgstr "Редактирай Текст..."
-
-#~ msgid "Color..."
-#~ msgstr "Цвят..."
-
-#~ msgid "Line Width & Type..."
-#~ msgstr "Широчина на Линията & Тип"
-
-#, fuzzy
-#~ msgid "Pin Type..."
-#~ msgstr "Широчина на Линията & Тип"
-
-#~ msgid "Symbol Translate..."
-#~ msgstr "Превеждане на Символ"
-
-#~ msgid "Embed Component/Picture"
-#~ msgstr "Вграден Компонент/Картина"
-
-#~ msgid "Unembed Component/Picture"
-#~ msgstr "Невграден Компонент/Картина"
-
-#~ msgid "Update Component"
-#~ msgstr "Обнови Компонент"
-
-#~ msgid "_File"
-#~ msgstr "Файл"
-
-#~ msgid "_Edit"
-#~ msgstr "Редактирай"
-
-#~ msgid "_Page"
-#~ msgstr "Нова Страница"
-
-#, fuzzy
-#~ msgid "New File"
-#~ msgstr "Нова Страница"
-
-#, fuzzy
-#~ msgid "Print"
-#~ msgstr "Принтирай..."
-
-#, fuzzy
-#~ msgid "Close Window"
-#~ msgstr "Нов Прозорец"
-
-#, fuzzy
-#~ msgid "Edit Line Width & Type"
-#~ msgstr "Широчина на Линията & Тип"
-
-#, fuzzy
-#~ msgid "Embed Component/Pictore"
-#~ msgstr "Вграден Компонент/Картина"
-
-#, fuzzy
-#~ msgid "Next Page"
-#~ msgstr "Нова Страница"
