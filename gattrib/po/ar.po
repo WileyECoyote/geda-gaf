@@ -385,7 +385,3 @@ msgstr ""
 #: gattrib/src/x_window.c:205
 msgid "Retrieving main Window geometry and settings.\n"
 msgstr ""
-
-#, fuzzy
-#~ msgid "gattrib -- gEDA attribute editor"
-#~ msgstr "محرّر السّمة ل‍ gEDA"
