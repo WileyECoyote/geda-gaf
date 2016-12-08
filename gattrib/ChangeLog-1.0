@@ -1,3 +1,7 @@
+2016-12-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gattrib.c: Call gattrib_save_user_config before libgeda_release.
+
 2016-11-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gtksheet/gtksheettypebuiltins.h: Add declarations for

@@ -215,6 +215,8 @@ int gattrib_quit(int return_code)
   if (search_history)
     g_list_free(search_history);
 
+  gattrib_save_user_config();
+
   /* Shutdown libgeda */
   libgeda_release();
 
@@ -225,8 +227,6 @@ int gattrib_quit(int return_code)
   fflush(stdout);
   printf("In gattrib_quit, calling gtk_main_quit()\n");
 #endif
-
-  gattrib_save_user_config();
 
   gtk_main_quit();
   exit(return_code);
