@@ -534,7 +534,7 @@ void s_table_add_items_to_net_table(Object *start_obj) {
 #if DEBUG
   fflush(stderr);
   fflush(stdout);
-  printf("In s_table_add_items_to_net_table -- we are about to return\n");
+  printf("%s: exit\n", __func__);
 #endif
 
 }

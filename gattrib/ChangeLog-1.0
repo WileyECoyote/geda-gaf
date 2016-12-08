@@ -9,6 +9,10 @@
       with newer version from gschem, change return type to void. The bool
       was not being utilized.
 
+    * src/s_rename.c: Revise error message in s_rename_init to use "MAX_SETS"
+      instead of rename_pair and use __FILE__ macro as the function is not
+      in s_net.c.
+
 2016-11-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gtksheet/gtksheettypebuiltins.h: Add declarations for

@@ -1,6 +1,6 @@
 /* gEDA - GPL Electronic Design Automation
  * gattrib -- gEDA component and net attribute manipulation using spreadsheet.
- * Copyright (C) 2003-2015 Stuart D. Brorson.
+ * Copyright (C) 2003-2016 Stuart D. Brorson.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,7 +14,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301 USA
  */
 
 /*!
@@ -94,9 +95,8 @@ void s_rename_destroy_all(void)
 void s_rename_next_set(void)
 {
   if (cur_set == MAX_SETS) {
-    fprintf(stderr,
-            _("Increase number of rename_pair sets in s_net.c\n"));
-            return;
+    fprintf(stderr, _("Increase MAX_SETS in %s\n"), __FILE__);
+    return;
   }
   cur_set++;
   rename_counter = 0;
@@ -117,7 +117,7 @@ void s_rename_print(void)
         }
 
         if (rename_pairs[i][j].dest) {
-          printf(_(" -> Dest: _%s_\n"), rename_pairs[i][j].dest);
+          printf(_(" -> Destination: _%s_\n"), rename_pairs[i][j].dest);
         }
       }
     }
@@ -216,12 +216,11 @@ void s_rename_add(char *src, char *dest)
   }
   if (rename_counter == MAX_RENAME) {
     fprintf(stderr,
-            _("Increase number of rename_pairs (MAX_RENAME) in s_rename.c\n"));
+            _("Increase the number of rename_pairs (MAX_RENAME) in s_rename.c\n"));
     return;
   }
 
 }
-
 
 
 void s_rename_all_lowlevel(NETLIST * netlist_head, char *src, char *dest)
