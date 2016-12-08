@@ -2,6 +2,9 @@
 
     * src/gattrib.c: Call gattrib_save_user_config before libgeda_release.
 
+    * src/parsecmd.c: Revise quiet and verbose mode help options to include
+      the word "enable" and not the word "on".
+
 2016-11-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gtksheet/gtksheettypebuiltins.h: Add declarations for
