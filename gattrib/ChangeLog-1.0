@@ -5,6 +5,10 @@
     * src/parsecmd.c: Revise quiet and verbose mode help options to include
       the word "enable" and not the word "on".
 
+    * src/s_object.c: Update function s_object_attrib_add_attrib_in_object
+      with newer version from gschem, change return type to void. The bool
+      was not being utilized.
+
 2016-11-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gtksheet/gtksheettypebuiltins.h: Add declarations for

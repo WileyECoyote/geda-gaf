@@ -1,8 +1,8 @@
 /* gEDA - GPL Electronic Design Automation
  * gattrib -- gEDA component and net attribute manipulation using spreadsheet.
  *
- * Copyright (C) 2003-2015 Stuart D. Brorson.
- * Copyright (C) 2003-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2003-2016 Stuart D. Brorson.
+ * Copyright (C) 2003-2016 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -210,10 +210,10 @@ s_object_replace_attrib_in_object(GedaToplevel *toplevel,
     a_iter = g_list_next (a_iter);
   } /* wend */
 
-  /* if we get here, it's because we have failed to find the attrib on the component.
-   * This is an error condition. */
+  /* if we get here, it is because we have failed to find the attrib on the
+   * component, this is an error condition. */
   fprintf(stderr,
-          _("%s, we have failed to find the attrib %s on the component. Exiting...\n"),
+          _("%s, failed to find the attribute %s on the component. Exiting...\n"),
             __func__, new_attrib_name);
 
   return;
@@ -299,81 +299,147 @@ s_object_release_attrib_in_object (GedaToplevel *toplevel,
  *
  * \returns TRUE if the attribute was added, else FALSE
  */
-bool
+void
 s_object_attrib_add_attrib_in_object (GedaToplevel *toplevel,
                                       char         *text_string,
                                       int           visibility,
                                       int           show_name_value,
-                                      GedaObject   *object)
+                                      GedaObject   *parent)
 {
-  GedaObject *o_current;
-  GedaObject *new_obj;
+  Page *page;
+  int world_x, world_y;
+  int align;
+  int angle;
   int color;
   int left, right, top, bottom;
-  int world_x = -1, world_y = -1;
 
-  o_current = object;
+  GedaObject *new_obj;
+
+  world_x = -1;
+  world_y = -1;
+
+  /* change later if needed */
+  align   = LOWER_LEFT;
+  angle   = 0;
+
+  page = geda_toplevel_get_current_page (toplevel);
 
   /* creating a toplevel or unattached attribute */
-  if (o_current) {
+  if (parent) {
+
+    color = ATTRIBUTE_COLOR;
+
     /* get coordinates of where to place the text object */
-    switch (o_current->type) {
-    case (OBJ_COMPLEX):
-      world_x = o_current->complex->x;
-      world_y = o_current->complex->y;
-      color = ATTRIBUTE_COLOR;
+    switch(parent->type) {
+      case(OBJ_COMPLEX):
+      case(OBJ_PLACEHOLDER):
+        world_x = parent->complex->x;
+        world_y = parent->complex->y;
+        break;
+
+      case(OBJ_ARC):
+        world_x = parent->arc->x;
+        world_y = parent->arc->y;
+        break;
+
+      case(OBJ_CIRCLE):
+        world_x = parent->circle->center_x;
+        world_y = parent->circle->center_y;
+        break;
+
+      case(OBJ_BOX):
+        world_x = parent->box->upper_x;
+        world_y = parent->box->upper_y;
+        break;
+
+      case(OBJ_LINE):
+      case(OBJ_NET):
+      case(OBJ_PIN):
+      case(OBJ_BUS):
+      {
+        int dx = parent->line->x[1] - parent->line->x[0];
+        int dy = parent->line->y[1] - parent->line->y[0];
+
+        if (dy == 0) {
+          if (dx > 0) {
+            world_x = parent->line->x[0] + ( 2 * DEFAULT_ATTRIBUTE_OFFSET);
+            world_y = parent->line->y[0] + DEFAULT_ATTRIBUTE_OFFSET;
+          }
+          else {
+            world_x = parent->line->x[0] - ( 2 * DEFAULT_ATTRIBUTE_OFFSET);
+            world_y = parent->line->y[0] + DEFAULT_ATTRIBUTE_OFFSET;
+
+            align = LOWER_RIGHT;
+          }
+        }
+        else if (dx == 0) {
+          if (dy > 0) {
+            world_x = parent->line->x[0] - DEFAULT_ATTRIBUTE_OFFSET;
+            world_y = parent->line->y[0] + ( 2 * DEFAULT_ATTRIBUTE_OFFSET);
+
+            angle = 90;
+          }
+          else {
+            world_x = parent->line->x[0] - DEFAULT_ATTRIBUTE_OFFSET;
+            world_y = parent->line->y[0] - ( 2 * DEFAULT_ATTRIBUTE_OFFSET);
+
+            align = LOWER_RIGHT;
+            angle = 90;
+          }
+        }
+        else {
+          world_x = parent->line->x[0];
+          world_y = parent->line->y[0];
+        }
+      }
       break;
 
-    case (OBJ_NET):
-      world_x = o_current->complex->x;
-      world_y = o_current->complex->y;
-      color = ATTRIBUTE_COLOR;
-      break;
-
-    default:
-      fprintf(stderr, _("%s: trying to add attrib to non-complex or non-net!\n"), __func__);
-      return FALSE;
+      case(OBJ_TEXT):
+        world_x = parent->text->x;
+        world_y = parent->text->y - ( 2 * DEFAULT_ATTRIBUTE_OFFSET);
+        color = DETACHED_ATTRIBUTE_COLOR;
+        break;
     }
   }
-  else {    /* This must be a floating attrib, but what is that !?!?!?!?!  */
-    geda_object_get_bounds_list (geda_struct_page_get_objects (toplevel->page_current),
-                                &left, &top, &right, &bottom);
+  else {
+
+    color = DETACHED_ATTRIBUTE_COLOR;
+
+    geda_object_get_bounds_list (geda_struct_page_get_objects (page),
+                             &left, &top, &right, &bottom);
 
     /* this really is the lower left hand corner */
     world_x = left;
     world_y = top;
 
-    /* printf("%d %d\n", world_x, world_y); */
-    color = DETACHED_ATTRIBUTE_COLOR;
   }
+
+  /* printf("%d %d\n", world_x, world_y); */
 
   /* first create text item */
-#if DEBUG
-  printf("===  %s: about to attach new text attrib with properties:\n", __func__);
-  printf("     color = %d\n", color);
-  printf("     text_string = %s \n", text_string);
-  printf("     visibility = %d \n", visibility);
-  printf("     show_name_value = %d \n", show_name_value);
-#endif
+  new_obj = geda_text_object_new(color, world_x, world_y,
+                       align, angle,            /* zero is angle */
+                       DEFAULT_TEXT_SIZE,       /* default text size */
+                       visibility,              /* we did not check */
+                       show_name_value, text_string);
 
-  new_obj = geda_text_object_new (color, world_x, world_y,
-                        LOWER_LEFT, 0, /* zero is angle */
-                        DEFAULT_TEXT_SIZE,
-                        visibility, show_name_value,text_string);
-
-  geda_struct_page_append_object(toplevel->page_current, new_obj);
-
-  /* now toplevel->page_current->object_tail contains new text item */
-
-  /* now attach the attribute to the object (if o_current is not NULL) */
-  /* note that o_current contains the object to get the attribute */
-  if (o_current) {
-    geda_attrib_object_attach (o_current, new_obj, FALSE);
+  /* Attach the new attribute to the object if parent is not NULL */
+  /* remember that parent contains the object to get the attribute */
+  if (parent) {
+    geda_struct_object_add_child (parent, new_obj);
+  }
+  else {
+    geda_struct_page_append_object (page, new_obj);
   }
 
-  geda_object_selection_add (toplevel->page_current->selection_list, new_obj);
-
-  return TRUE;
+  /* handle slot= attribute, it's a special case */
+  if (parent != NULL &&
+    g_ascii_strncasecmp (text_string, "slot=", 5) == 0) {
+    geda_struct_slot_update_object (parent);
+  }
+  else if (parent && parent->selected) {
+    geda_object_selection_add (toplevel->page_current->selection_list, new_obj);
+  }
 }
 
 /*------------------------------------------------------------------*/

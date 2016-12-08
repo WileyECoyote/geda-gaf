@@ -68,7 +68,7 @@ void s_object_release_attrib_in_object (GedaToplevel *toplevel,
                                         GedaObject *o_current,
                                         char *new_attrib_name);
 
-bool s_object_attrib_add_attrib_in_object (GedaToplevel *toplevel,
+void s_object_attrib_add_attrib_in_object (GedaToplevel *toplevel,
                                            char         *text_string,
                                            int           visibility,
                                            int           show_name_value,
