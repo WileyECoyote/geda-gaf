@@ -207,7 +207,7 @@ void i_show_wiki_help(const char *html_file)
   if (pathname) {
 
     if (!i_basic_show_uri (pathname)) {
-      geda_log (_("Check: path \"%s\"\n"), pathname);
+      geda_log (_("Check path: \"%s\"\n"), pathname);
     }
 
     GEDA_FREE(pathname);
