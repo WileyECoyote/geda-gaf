@@ -45,7 +45,7 @@ static int cur_set = 0;
 
 /*! \brief Initialize the renaming data space
  *
- * Initializee the renaming data space by setting all the pair
+ * Initializes the renaming data space by setting all the pair
  * pointers to NULL.
  */
 void s_rename_init(void)
