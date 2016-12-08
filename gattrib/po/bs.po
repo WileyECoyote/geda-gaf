@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-12-03 00:56-0600\n"
+"POT-Creation-Date: 2016-12-08 02:24-0600\n"
 "PO-Revision-Date: 2012-01-27 14:17+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Bosnian <bs@li.org>\n"
@@ -55,7 +55,7 @@ msgstr ""
 
 #: gattrib/src/i_basic.c:210
 #, c-format
-msgid "Check: path \"%s\"\n"
+msgid "Check path: \"%s\"\n"
 msgstr ""
 
 #: gattrib/src/parsecmd.c:62
@@ -68,8 +68,8 @@ msgid ""
 "Usage: %s [OPTIONS] filename1 ... filenameN\n"
 "\n"
 "\t-h, --help      This help menu\n"
-"\t-q, --quiet     Quiet mode\n"
-"\t-v, --verbose   Verbose mode on\n"
+"\t-q, --quiet     Enable quiet mode\n"
+"\t-v, --verbose   Enable verbose mode\n"
 "\t-V, --version   Show version information.\n"
 "\n"
 "  FAQ:\n"
@@ -103,17 +103,12 @@ msgstr ""
 
 #: gattrib/src/s_object.c:216
 #, c-format
-msgid "%s, we have failed to find the attrib %s on the component. Exiting...\n"
-msgstr ""
-
-#: gattrib/src/s_object.c:334
-#, c-format
-msgid "%s: trying to add attrib to non-complex or non-net!\n"
+msgid "%s, failed to find the attribute %s on the component. Exiting...\n"
 msgstr ""
 
 #: gattrib/src/s_rename.c:98
 #, c-format
-msgid "Increase number of rename_pair sets in s_net.c\n"
+msgid "Increase MAX_SETS in %s\n"
 msgstr ""
 
 #: gattrib/src/s_rename.c:116
@@ -123,7 +118,7 @@ msgstr ""
 
 #: gattrib/src/s_rename.c:120
 #, c-format
-msgid " -> Dest: _%s_\n"
+msgid " -> Destination: _%s_\n"
 msgstr ""
 
 #: gattrib/src/s_rename.c:151
@@ -137,7 +132,7 @@ msgstr ""
 
 #: gattrib/src/s_rename.c:219
 #, c-format
-msgid "Increase number of rename_pairs (MAX_RENAME) in s_rename.c\n"
+msgid "Increase the number of rename_pairs (MAX_RENAME) in s_rename.c\n"
 msgstr ""
 
 #: gattrib/src/s_sheet_data.c:245

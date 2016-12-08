@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-12-03 00:56-0600\n"
+"POT-Creation-Date: 2016-12-08 02:24-0600\n"
 "PO-Revision-Date: 2014-08-31 20:31+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -60,7 +60,7 @@ msgstr ""
 
 #: gattrib/src/i_basic.c:210
 #, c-format
-msgid "Check: path \"%s\"\n"
+msgid "Check path: \"%s\"\n"
 msgstr ""
 
 #: gattrib/src/parsecmd.c:62
@@ -73,8 +73,8 @@ msgid ""
 "Usage: %s [OPTIONS] filename1 ... filenameN\n"
 "\n"
 "\t-h, --help      This help menu\n"
-"\t-q, --quiet     Quiet mode\n"
-"\t-v, --verbose   Verbose mode on\n"
+"\t-q, --quiet     Enable quiet mode\n"
+"\t-v, --verbose   Enable verbose mode\n"
 "\t-V, --version   Show version information.\n"
 "\n"
 "  FAQ:\n"
@@ -110,21 +110,14 @@ msgstr " GEDAAN\n"
 
 #: gattrib/src/s_object.c:216
 #, fuzzy, c-format
-msgid "%s, we have failed to find the attrib %s on the component. Exiting...\n"
+msgid "%s, failed to find the attribute %s on the component. Exiting...\n"
 msgstr ""
 "In s_object_remove_attrib_in_object, is gefaald om attrib %s in de component "
 "te vinden.  Afsluiten . . .\n"
 
-#: gattrib/src/s_object.c:334
-#, fuzzy, c-format
-msgid "%s: trying to add attrib to non-complex or non-net!\n"
-msgstr ""
-"In s_object_attrib_add_attrib_in_object, geprobeerd om attrib toe te voegen "
-"aan een non-complex of niet-net!\n"
-
 #: gattrib/src/s_rename.c:98
-#, c-format
-msgid "Increase number of rename_pair sets in s_net.c\n"
+#, fuzzy, c-format
+msgid "Increase MAX_SETS in %s\n"
 msgstr "Verhoog het aantal rename_pair sets in s_net.c\n"
 
 #: gattrib/src/s_rename.c:116
@@ -133,8 +126,8 @@ msgid "%d) Source: _%s_"
 msgstr "%d) Bron: _%s_"
 
 #: gattrib/src/s_rename.c:120
-#, c-format
-msgid " -> Dest: _%s_\n"
+#, fuzzy, c-format
+msgid " -> Destination: _%s_\n"
 msgstr " -> Best: _%s_\n"
 
 #: gattrib/src/s_rename.c:151
@@ -151,8 +144,8 @@ msgstr ""
 "Deze waarschuwing is in orde als U meervoudige hiërarchie niveaus heeft!\n"
 
 #: gattrib/src/s_rename.c:219
-#, c-format
-msgid "Increase number of rename_pairs (MAX_RENAME) in s_rename.c\n"
+#, fuzzy, c-format
+msgid "Increase the number of rename_pairs (MAX_RENAME) in s_rename.c\n"
 msgstr "Verhoog het aantal rename_pairs (MAX_RENAME) in s_rename.c\n"
 
 #: gattrib/src/s_sheet_data.c:245
