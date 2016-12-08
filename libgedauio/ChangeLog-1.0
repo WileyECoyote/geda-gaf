@@ -1,3 +1,7 @@
+2016-12-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/af.po: update Afrikaans translations.
+
 2016-12-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_handlebox.c: Revise "snap-edge" property description to
