@@ -114,9 +114,6 @@ char *s_attrib_get_refdes(GedaObject *object)
       GEDA_FREE (numslots);
     }
   }
-  else {
-    return NULL;
-  }
 
   return temp_uref;
 }

@@ -1,6 +1,7 @@
 2016-12-09 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/s_attrib.c: Free slot_value and numslots in s_attrib_get_refdes.
+    * src/s_attrib.c: Free slot_value and numslots in s_attrib_get_refdes
+      and eliminated needless return statement.
 
 2016-12-08 Wiley E. Hill <wileyhill@gmail.com>
 
