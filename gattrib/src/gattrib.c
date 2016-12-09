@@ -218,6 +218,7 @@ int gattrib_quit(int return_code)
 
   x_gtksheet_destroy_all();
 
+  x_window_release_all();
 
   gattrib_save_user_config();
 
@@ -385,6 +386,7 @@ void gattrib_main(void *closure, int argc, char *argv[])
   geda_gslist_free_all(file_list);
 
   gtk_main();
+
   exit(0);
 }
 

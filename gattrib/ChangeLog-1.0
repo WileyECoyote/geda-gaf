@@ -14,6 +14,9 @@
       destroy_all in case the user right clicks but does not select a menu
       item.
 
+    * src/x_window.c: Add function x_window_release_all and call in gattrib_
+      quit.
+
 2016-12-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gattrib.c: Call gattrib_save_user_config before libgeda_release.

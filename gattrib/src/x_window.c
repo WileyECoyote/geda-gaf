@@ -639,3 +639,10 @@ void x_window_grid_toggle(GtkToggleAction *action, GtkWindow *main_window)
   gtk_sheet_show_grid(sheets[Nets], show);
   gtk_sheet_show_grid(sheets[Pins], show);
 }
+
+void x_window_release_all(void)
+{
+  gtk_widget_destroy (location);
+  g_object_unref (recent_manager);
+  g_object_unref (menu_manager);
+}

@@ -276,3 +276,4 @@ void  x_window_inherited_toggle(GtkToggleAction *action, GtkWindow *main_window)
 void  x_window_autoresize_toggle(GtkToggleAction *action, GtkWindow *window);
 void  x_window_autoscroll_toggle(GtkToggleAction *action, GtkWindow *window);
 void  x_window_grid_toggle(GtkToggleAction *action, GtkWindow *window);
+void  x_window_release_all(void);
