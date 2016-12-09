@@ -6,7 +6,8 @@
       is not called twice, adjust indentation.
 
     * src/s_attrib.c: Free slot_value and numslots in s_attrib_get_refdes
-      and eliminated needless return statement.
+      and eliminated needless return statement. Call x_gtksheet_destroy_all
+      in gattrib_quit.
 
     * src/x_gtksheet.c: Replace gtk_object_destroy with gtk_widget_destroy
       and unreference popup menu. Check and destroy popup in x_gtksheet_

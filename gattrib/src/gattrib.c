@@ -199,7 +199,7 @@ int gattrib_quit(int return_code)
   /* Call all registered functions in order */
   list = exit_functions;
 
-  while(list != NULL) {
+  while (list != NULL) {
 
     geda_atexit_struct *p;
 
@@ -212,8 +212,12 @@ int gattrib_quit(int return_code)
 
   g_list_free(exit_functions);
 
-  if (search_history)
+  if (search_history) {
     g_list_free(search_history);
+  }
+
+  x_gtksheet_destroy_all();
+
 
   gattrib_save_user_config();
 
