@@ -120,29 +120,37 @@ static int popup_activated(GtkWidget *widget, IDS_Popup_items *selection)
         else
           s_properties_set_visible();
         break;
+
       case AddAttribute:
         s_toplevel_add_new_attrib(-1);
         break;
+
       case InsertAttribute:
         s_toplevel_add_new_attrib(sheet->range.col0);
         break;
+
       case HideAttribute:
         gtk_sheet_column_set_visibility(sheet, sheet->range.col0, FALSE);
         break;
       case RevealAttribute:
         x_gtksheet_reveal_columns(sheet);
         break;
+
       case DeleteAttribute:
         s_toplevel_delete_attrib_col(sheet);
         break;
+
       case ClearAttributeData:
         gtk_sheet_range_clear(sheet, &sheet->range);
         break;
+
       default:
           geda_log ("%s: unknown button ID: %d\n", __func__, WhichItem);
     } /* End Switch WhichItem */
 
     gtk_widget_destroy(popup);
+    g_object_unref(popup);
+    popup = NULL;
     return (TRUE);
 }
 
@@ -166,7 +174,7 @@ static GtkWidget *build_popup_menu(GtkWidget *sheet)
   {
     GtkWidget *item = geda_menu_item_new_with_label(popup_items[i]);
 
-    GEDA_SIGNAL_CONNECT(item,"activate", popup_activated, (void*)(long) i);
+    GEDA_SIGNAL_CONNECT(item, "activate", popup_activated, (void*)(long) i);
 
     gtk_widget_set_sensitive(GTK_WIDGET(item), TRUE);
     gtk_widget_set_can_focus(GTK_WIDGET(item), TRUE);
@@ -242,15 +250,17 @@ static int on_mouse_button_press(GtkWidget *widget,
     gdk_window_get_pointer (gtk_widget_get_window(sheet), NULL, NULL, &mods);
 
     if (mods&GDK_BUTTON3_MASK) {
-        if (popup) {
-            gtk_object_destroy(GTK_OBJECT(popup));
-            popup = NULL;
-        }
 
-        popup = build_popup_menu(sheet);
-        /* Display the menu we just created */
-        geda_menu_popup(GEDA_MENU(popup), NULL, NULL, NULL, NULL,
-                        event->button, event->time);
+      if (popup) {
+        gtk_widget_destroy(GTK_WIDGET(popup));
+        g_object_unref(popup);
+        popup = NULL;
+      }
+
+      popup = build_popup_menu(sheet);
+      /* Display the menu we just created */
+      geda_menu_popup(GEDA_MENU(popup), NULL, NULL, NULL, NULL,
+                      event->button, event->time);
     }
     return (FALSE);
 }
@@ -401,7 +411,7 @@ static bool on_deactivate_cell(GtkWidget *widget, int row, int col,
   celltext = gtk_sheet_cell_get_text((GtkSheet*)widget, row, col);
   if (EditBuffer != NULL) { /* If NULL then we're loading data from file */
     if (celltext != NULL) { /* If NULL then cell was empty */
-      if ( strcmp(EditBuffer, celltext) != 0) {
+      if (strcmp(EditBuffer, celltext) != 0) {
         PageData->CHANGED = TRUE;
         x_window_update_title(pr_current, PageData);
       }
@@ -647,10 +657,11 @@ void x_gtksheet_init(PageDataSet *PageData)
 
   /* --- Finally stick labels on the notebooks holding the sheets. --- */
   for(i=0; i<NUM_SHEETS; i++){
+
     if (sheets[i] != NULL) {  /* is this check needed?
       * Yes, it prevents us from segfaulting on empty nets sheet. */
-      scrolled_windows=(GtkWidget **)realloc(scrolled_windows, (i+1)*sizeof(GtkWidget *));
-      scrolled_windows[i]=gtk_scrolled_window_new(NULL, NULL);
+      scrolled_windows = (GtkWidget **)realloc(scrolled_windows, (i+1)*sizeof(GtkWidget*));
+      scrolled_windows[i] = gtk_scrolled_window_new(NULL, NULL);
 
       gtk_container_add( GTK_CONTAINER(scrolled_windows[i]), GTK_WIDGET(sheets[i]) );
 
