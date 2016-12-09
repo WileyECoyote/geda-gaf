@@ -3287,11 +3287,12 @@ gtk_sheet_construct(GtkSheet *sheet, unsigned int rows, unsigned int columns, co
     /* create global selection button */
     create_global_button(sheet);
 
-    if (title)
-    {
-	if (sheet->title)
-	    g_free(sheet->title);
-	sheet->title = g_strdup(title);
+    if (title) {
+
+      if (sheet->title) {
+        g_free(sheet->title);
+      }
+      sheet->title = g_strdup(title);
     }
 }
 
@@ -5961,7 +5962,9 @@ gtk_sheet_finalize_handler(GObject *object)
     sheet->column = NULL;
   }
 
+  g_free(sheet->data[0]);
   g_free(sheet->data);
+
   sheet->data = NULL;
 
   if (sheet->title) {

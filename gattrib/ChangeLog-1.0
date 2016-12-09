@@ -1,5 +1,8 @@
 2016-12-09 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/gtksheet/gtksheet.c: Release sheet->data[0], allocated in gtk
+      _sheet_construct, in gtk_sheet_finalize_handler.
+
     * src/s_attrib.c: Free slot_value and numslots in s_attrib_get_refdes
       and eliminated needless return statement.
 
