@@ -87,7 +87,7 @@ char *s_attrib_get_refdes(GedaObject *object)
 
   if (temp_uref) {
 
-    char   *numslots;
+    char *numslots;
 
     /*------- Now append .slot to refdes if part is slotted -------- */
     /* Check if this is a multislotted component */
@@ -105,9 +105,13 @@ char *s_attrib_get_refdes(GedaObject *object)
         char *suffixed;
 
         suffixed = geda_strconcat(temp_uref, ".", slot_value, NULL);
+
+        GEDA_FREE (slot_value);
         GEDA_FREE (temp_uref);
+
         temp_uref = suffixed;
       }
+      GEDA_FREE (numslots);
     }
   }
   else {
