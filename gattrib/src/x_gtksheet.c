@@ -67,9 +67,11 @@ GtkSheet *x_gtksheet_get_current_sheet() {
 }
 
 /*! \brief Destroy All GtkSheets */
-void x_gtksheet_destroy_all(){
+void x_gtksheet_destroy_all() {
+
   int i;
-  for(i=0; i<NUM_SHEETS; i++){
+
+  for(i = 0; i < NUM_SHEETS; i++) {
     if (sheets[i] !=NULL) {
       if (GTK_IS_SHEET (sheets[i])) {
         gtk_widget_destroy( (GtkWidget*) sheets[i]);
@@ -79,6 +81,15 @@ void x_gtksheet_destroy_all(){
 	fprintf(stderr, "ERROR: x_gtksheet_destroy_all: reference is not a SHEET!\n");
       }
     }
+  }
+  if (popup) {
+
+    /* This would only occurif the user views the context menu without
+     * selecting an item, otherwise the callack would have destroyed
+     * the popup menu */
+    gtk_widget_destroy (GTK_WIDGET(popup));
+    g_object_unref (popup);
+    popup = NULL;
   }
 }
 

@@ -4,7 +4,9 @@
       and eliminated needless return statement.
 
     * src/x_gtksheet.c: Replace gtk_object_destroy with gtk_widget_destroy
-      and unreference popup menu.
+      and unreference popup menu. Check and destroy popup in x_gtksheet_
+      destroy_all in case the user right clicks but does not select a menu
+      item.
 
 2016-12-08 Wiley E. Hill <wileyhill@gmail.com>
 
