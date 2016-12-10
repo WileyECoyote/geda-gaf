@@ -9,6 +9,10 @@
       and eliminated needless return statement. Call x_gtksheet_destroy_all
       in gattrib_quit.
 
+    * src/s_table.c: Revise s_table_add_items_to_comp_table to release the
+      string returned from s_attrib_get_refdes even for graphical and pin
+      label.
+
     * src/x_gtksheet.c: Replace gtk_object_destroy with gtk_widget_destroy
       and unreference popup menu. Check and destroy popup in x_gtksheet_
       destroy_all in case the user right clicks but does not select a menu

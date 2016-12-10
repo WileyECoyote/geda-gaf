@@ -313,98 +313,37 @@ void s_table_add_items_to_comp_table (const GList *obj_list) {
       temp_uref = s_attrib_get_refdes(o_current);
 
       /* Don't add graphical objects or pin label designators*/
-      if ((temp_uref) &&
-          (strcmp (temp_uref, "none")) &&
-          (strcmp (temp_uref, "pinlabel"))) {
+      if (temp_uref) {
 
-        /* Having found a component, we loop over All ATTACHED attribs for this component,
-         * and stick them into cells in the table. */
-         AttachedAttributes = s_string_list_new();
-         counter = 0;
-         a_iter = o_current->attribs; /* This gets a pointer to ATTACHED list of atrributes */
+        if ((strcmp (temp_uref, "none")) &&
+            (strcmp (temp_uref, "pinlabel")))
+        {
 
-         while (a_iter != NULL) {
+          /* Having found a component, we loop over All ATTACHED attribs for this component,
+           * and stick them into cells in the table. */
+          AttachedAttributes = s_string_list_new();
+          counter = 0;
+          a_iter = o_current->attribs; /* This gets a pointer to ATTACHED list of atrributes */
 
-           a_current = a_iter->data;
+          while (a_iter != NULL) {
 
-           if (a_current->type == OBJ_TEXT && a_current->text != NULL) { /* found an attribute */
-
-            /* may need to check more thoroughly here. . . . */
-            attrib_text         = geda_strdup(a_current->text->string);
-            attrib_name         = geda_strsplit(attrib_text, '=', 0);
-            attrib_value        = s_misc_remaining_string(attrib_text, '=', 1);
-            old_visibility      = geda_object_get_is_visible (a_current) ? VISIBLE : INVISIBLE;
-            old_show_name_value = a_current->show_name_value;
-
-            /* Don't include "refdes" or "slot" because they form the row name. */
-            /* Also don't include "net" per bug found by Steve W. 4.3.2007 -- SDB */
-            if ((strcmp(attrib_name, "refdes") != 0) &&
-                (strcmp(attrib_name, "net") != 0) &&
-                (strcmp(attrib_name, "slot") != 0)) {
-
-              /* Get row and col where to put this attrib */
-              row = s_table_get_index(sheet_head->master_comp_list_head, temp_uref);
-              col = s_table_get_index(sheet_head->master_comp_attrib_list_head, attrib_name);
-
-              /* Sanity check */
-              if (row == -1) {
-                /* we didn't find the item in the table */
-                fprintf (stderr, _("Component Error looking for row ref [%s]\n"), temp_uref);
-              }
-              else {
-
-                if (col == -1) {
-                  fprintf (stderr, _("Component Error looking for column named [%s]\n"), attrib_name);
-                }
-                else {
-                  /* Is there a compelling reason to put this into a separate fcn? */
-                  ((sheet_head->component_table)[col][row]).row = row;
-                  ((sheet_head->component_table)[col][row]).col = col;
-                  ((sheet_head->component_table)[col][row]).row_name = geda_strdup(temp_uref);
-                  ((sheet_head->component_table)[col][row]).col_name = geda_strdup(attrib_name);
-                  ((sheet_head->component_table)[col][row]).attrib_value = geda_strdup(attrib_value);
-                  ((sheet_head->component_table)[col][row]).visibility = old_visibility;
-                  ((sheet_head->component_table)[col][row]).show_name_value = old_show_name_value;
-                  ((sheet_head->component_table)[col][row]).is_inherited = FALSE;
-                  ((sheet_head->component_table)[col][row]).is_promoted = -1;
-                  s_string_list_add_item(AttachedAttributes, &counter, geda_strdup(attrib_name));
-                  counter++;
-                }
-              }
-            }
-            GEDA_FREE(attrib_name);
-            GEDA_FREE(attrib_text);
-            GEDA_FREE(attrib_value);
-          }
-          a_iter = g_list_next (a_iter);
-        } /* while (a_iter != NULL) */
-
-        /* Do it again but this time for ALL attributes associated with this component */
-        a_iter = geda_attrib_return_attribs (o_current);
-        while (a_iter != NULL) {
-
-          a_current   = a_iter->data;
-          is_attached = a_current->attached_to == o_current ? TRUE : FALSE;
-
-          if (!is_attached) {
+            a_current = a_iter->data;
 
             if (a_current->type == OBJ_TEXT && a_current->text != NULL) { /* found an attribute */
 
-              attrib_text  = geda_strdup(a_current->text->string);
-              attrib_name  = geda_strsplit(attrib_text, '=', 0);
-              attrib_value = s_misc_remaining_string(attrib_text, '=', 1);
-
-              if (!s_string_list_in_list(AttachedAttributes, attrib_name)) {
-
-                old_visibility      = geda_object_get_is_visible (a_current) ? VISIBLE : INVISIBLE;
-                old_show_name_value = a_current->show_name_value;
+              /* may need to check more thoroughly here. . . . */
+              attrib_text         = geda_strdup(a_current->text->string);
+              attrib_name         = geda_strsplit(attrib_text, '=', 0);
+              attrib_value        = s_misc_remaining_string(attrib_text, '=', 1);
+              old_visibility      = geda_object_get_is_visible (a_current) ? VISIBLE : INVISIBLE;
+              old_show_name_value = a_current->show_name_value;
 
               /* Don't include "refdes" or "slot" because they form the row name. */
               /* Also don't include "net" per bug found by Steve W. 4.3.2007 -- SDB */
-                if ((strcmp(attrib_name, "refdes") != 0) &&
-                    (strcmp(attrib_name, "net") != 0) &&
-                    (strcmp(attrib_name, "slot") != 0))
-                {
+              if ((strcmp(attrib_name, "refdes") != 0) &&
+                (strcmp(attrib_name, "net") != 0) &&
+                (strcmp(attrib_name, "slot") != 0)) {
+
                   /* Get row and col where to put this attrib */
                   row = s_table_get_index(sheet_head->master_comp_list_head, temp_uref);
                   col = s_table_get_index(sheet_head->master_comp_attrib_list_head, attrib_name);
@@ -415,11 +354,12 @@ void s_table_add_items_to_comp_table (const GList *obj_list) {
                     fprintf (stderr, _("Component Error looking for row ref [%s]\n"), temp_uref);
                   }
                   else {
+
                     if (col == -1) {
                       fprintf (stderr, _("Component Error looking for column named [%s]\n"), attrib_name);
                     }
                     else {
-                      /* Is there a compelling reason for me to put this into a separate fcn? */
+                      /* Is there a compelling reason to put this into a separate fcn? */
                       ((sheet_head->component_table)[col][row]).row = row;
                       ((sheet_head->component_table)[col][row]).col = col;
                       ((sheet_head->component_table)[col][row]).row_name = geda_strdup(temp_uref);
@@ -427,20 +367,84 @@ void s_table_add_items_to_comp_table (const GList *obj_list) {
                       ((sheet_head->component_table)[col][row]).attrib_value = geda_strdup(attrib_value);
                       ((sheet_head->component_table)[col][row]).visibility = old_visibility;
                       ((sheet_head->component_table)[col][row]).show_name_value = old_show_name_value;
-                      ((sheet_head->component_table)[col][row]).is_inherited = TRUE;
-                      ((sheet_head->component_table)[col][row]).is_promoted = FALSE;
+                      ((sheet_head->component_table)[col][row]).is_inherited = FALSE;
+                      ((sheet_head->component_table)[col][row]).is_promoted = -1;
+                      s_string_list_add_item(AttachedAttributes, &counter, geda_strdup(attrib_name));
+                      counter++;
                     }
                   }
                 }
-              }
-              GEDA_FREE(attrib_name);
-              GEDA_FREE(attrib_text);
-              GEDA_FREE(attrib_value);
+                GEDA_FREE(attrib_name);
+                GEDA_FREE(attrib_text);
+                GEDA_FREE(attrib_value);
             }
-          }
-          a_iter = g_list_next (a_iter);
-        } /* while (a_iter != NULL) */
-        s_string_list_free(AttachedAttributes);
+            a_iter = g_list_next (a_iter);
+          } /* while (a_iter != NULL) */
+
+          /* Do it again but this time for ALL attributes associated with this component */
+          a_iter = geda_attrib_return_attribs (o_current);
+          while (a_iter != NULL) {
+
+            a_current   = a_iter->data;
+            is_attached = a_current->attached_to == o_current ? TRUE : FALSE;
+
+            if (!is_attached) {
+
+              if (a_current->type == OBJ_TEXT && a_current->text != NULL) { /* found an attribute */
+
+                attrib_text  = geda_strdup(a_current->text->string);
+                attrib_name  = geda_strsplit(attrib_text, '=', 0);
+                attrib_value = s_misc_remaining_string(attrib_text, '=', 1);
+
+                if (!s_string_list_in_list(AttachedAttributes, attrib_name)) {
+
+                  old_visibility      = geda_object_get_is_visible (a_current) ? VISIBLE : INVISIBLE;
+                  old_show_name_value = a_current->show_name_value;
+
+                  /* Don't include "refdes" or "slot" because they form the row name. */
+                  /* Also don't include "net" per bug found by Steve W. 4.3.2007 -- SDB */
+                  if ((strcmp(attrib_name, "refdes") != 0) &&
+                    (strcmp(attrib_name, "net") != 0) &&
+                    (strcmp(attrib_name, "slot") != 0))
+                  {
+                    /* Get row and col where to put this attrib */
+                    row = s_table_get_index(sheet_head->master_comp_list_head, temp_uref);
+                    col = s_table_get_index(sheet_head->master_comp_attrib_list_head, attrib_name);
+
+                    /* Sanity check */
+                    if (row == -1) {
+                      /* we didn't find the item in the table */
+                      fprintf (stderr, _("Component Error looking for row ref [%s]\n"), temp_uref);
+                    }
+                    else {
+                      if (col == -1) {
+                        fprintf (stderr, _("Component Error looking for column named [%s]\n"), attrib_name);
+                      }
+                      else {
+                        /* Is there a compelling reason for me to put this into a separate fcn? */
+                        ((sheet_head->component_table)[col][row]).row = row;
+                        ((sheet_head->component_table)[col][row]).col = col;
+                        ((sheet_head->component_table)[col][row]).row_name = geda_strdup(temp_uref);
+                        ((sheet_head->component_table)[col][row]).col_name = geda_strdup(attrib_name);
+                        ((sheet_head->component_table)[col][row]).attrib_value = geda_strdup(attrib_value);
+                        ((sheet_head->component_table)[col][row]).visibility = old_visibility;
+                        ((sheet_head->component_table)[col][row]).show_name_value = old_show_name_value;
+                        ((sheet_head->component_table)[col][row]).is_inherited = TRUE;
+                        ((sheet_head->component_table)[col][row]).is_promoted = FALSE;
+                      }
+                    }
+                  }
+                }
+                GEDA_FREE(attrib_name);
+                GEDA_FREE(attrib_text);
+                GEDA_FREE(attrib_value);
+              }
+            }
+            a_iter = g_list_next (a_iter);
+          } /* while (a_iter != NULL) */
+          s_string_list_free(AttachedAttributes);
+        }
+        GEDA_FREE(temp_uref);
       } /* if (temp_uref) */
     } /* if (o_current->type == OBJ_COMPLEX) */
   }
