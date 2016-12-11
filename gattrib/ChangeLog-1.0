@@ -1,3 +1,8 @@
+2016-12-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gtksheet/gtksheet.c: Remove validation if gobject in function
+      gtk_sheet_finalize_handler.
+
 2016-12-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheet.c: Release sheet->data[0], allocated in gtk

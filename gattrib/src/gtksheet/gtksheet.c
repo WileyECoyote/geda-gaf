@@ -5941,9 +5941,6 @@ gtk_sheet_finalize_handler(GObject *object)
 {
   GtkSheet *sheet;
 
-  g_return_if_fail(object != NULL);
-  g_return_if_fail(GTK_IS_SHEET(object));
-
   sheet = GTK_SHEET(object);
 
   /* get rid of all the cells */
