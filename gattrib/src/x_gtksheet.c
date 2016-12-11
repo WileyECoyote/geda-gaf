@@ -66,19 +66,22 @@ GtkSheet *x_gtksheet_get_current_sheet() {
   return GTK_SHEET(sheets[gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook))]);
 }
 
-/*! \brief Destroy All GtkSheets */
+/*!
+ * \brief Release GtkSheet related resources
+ * \par Function Description
+ *  Destroy All GtkSheets.
+ */
 void x_gtksheet_destroy_all() {
 
   int i;
 
   for(i = 0; i < NUM_SHEETS; i++) {
+
     if (sheets[i] !=NULL) {
+
       if (GTK_IS_SHEET (sheets[i])) {
-        gtk_widget_destroy( (GtkWidget*) sheets[i]);
+        gtk_widget_destroy ((GtkWidget*)sheets[i]);
         sheets[i]=NULL;
-      }
-      else {
-	fprintf(stderr, "ERROR: x_gtksheet_destroy_all: reference is not a SHEET!\n");
       }
     }
   }

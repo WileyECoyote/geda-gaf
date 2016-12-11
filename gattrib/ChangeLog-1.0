@@ -9,6 +9,10 @@
     * src/s_sheet_data.c Revise s_sheet_data_add_master_comp_list_items
       to release temp_uref for for graphical and pin label objects.
 
+    * src/x_gtksheet.c: Remove else yelp "reference is not a SHEET!" in
+      x_gtksheet_destroy_all; if the pointer to the sheets was corrupt a
+      seg fault will likely occur long before this function was executed.
+
 2016-12-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheet.c: Release sheet->data[0], allocated in gtk
