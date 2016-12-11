@@ -5986,7 +5986,7 @@ static void
 gtk_sheet_destroy_handler(GtkObject *object)
 {
     GtkSheet *sheet;
-    GList *children;
+    GList    *children;
 
     g_return_if_fail(object != NULL);
     g_return_if_fail(GTK_IS_SHEET(object));
@@ -5994,68 +5994,68 @@ gtk_sheet_destroy_handler(GtkObject *object)
     sheet = GTK_SHEET(object);
 
     /* destroy the entry */
-    if (sheet->sheet_entry && GTK_IS_WIDGET(sheet->sheet_entry))
-    {
-	gtk_widget_destroy(sheet->sheet_entry);
-	sheet->sheet_entry = NULL;
+    if (sheet->sheet_entry && GTK_IS_WIDGET(sheet->sheet_entry)) {
+      gtk_widget_destroy(sheet->sheet_entry);
+      sheet->sheet_entry = NULL;
     }
 
     /* destroy the global selection button */
-    if (sheet->button && GTK_IS_WIDGET(sheet->button))
-    {
+    if (sheet->button && GTK_IS_WIDGET(sheet->button)) {
+
 #if GTK_SHEET_DEBUG_REALIZE > 0
-	fprintf(stderr,"gtk_sheet_destroy: destroying old entry %p", sheet->button);
+      fprintf(stderr,"gtk_sheet_destroy: destroying button %p", sheet->button);
 #endif
-	gtk_widget_destroy(sheet->button);
-	sheet->button = NULL;
+
+      gtk_widget_destroy(sheet->button);
+      sheet->button = NULL;
     }
 
-    if (sheet->timer)
-    {
-	g_source_remove(sheet->timer);
-	sheet->timer = 0;
+    if (sheet->timer) {
+      g_source_remove(sheet->timer);
+      sheet->timer = 0;
     }
 
-    if (sheet->clip_timer)
-    {
-	g_source_remove(sheet->clip_timer);
-	sheet->clip_timer = 0;
+    if (sheet->clip_timer) {
+      g_source_remove(sheet->clip_timer);
+      sheet->clip_timer = 0;
     }
 
     /* unref adjustments */
-    if (sheet->hadjustment)
-    {
-	g_signal_handlers_disconnect_matched(
-	    G_OBJECT(sheet->hadjustment),
-	    G_SIGNAL_MATCH_DATA,
-	    0, 0, NULL, NULL, sheet);
-	g_object_unref(G_OBJECT(sheet->hadjustment));
-	sheet->hadjustment = NULL;
+    if (sheet->hadjustment) {
+
+      g_signal_handlers_disconnect_matched(G_OBJECT(sheet->hadjustment),
+                                           G_SIGNAL_MATCH_DATA,
+                                           0, 0, NULL, NULL, sheet);
+      g_object_unref(G_OBJECT(sheet->hadjustment));
+      sheet->hadjustment = NULL;
     }
-    if (sheet->vadjustment)
-    {
-	g_signal_handlers_disconnect_matched(
-	    G_OBJECT(sheet->vadjustment),
-	    G_SIGNAL_MATCH_DATA,
-	    0, 0, NULL, NULL, sheet);
-	g_object_unref(G_OBJECT(sheet->vadjustment));
-	sheet->vadjustment = NULL;
+
+    if (sheet->vadjustment)  {
+
+      g_signal_handlers_disconnect_matched(G_OBJECT(sheet->vadjustment),
+                                           G_SIGNAL_MATCH_DATA,
+                                           0, 0, NULL, NULL, sheet);
+      g_object_unref(G_OBJECT(sheet->vadjustment));
+      sheet->vadjustment = NULL;
     }
 
     children = sheet->children;
-    while (children)
-    {
-	GtkSheetChild *child = (GtkSheetChild *)children->data;
-	if (child && child->widget)
-	    gtk_sheet_remove_handler(GTK_CONTAINER(sheet), child->widget);
-	children = sheet->children;
+
+    while (children) {
+
+      GtkSheetChild *child = (GtkSheetChild *)children->data;
+
+      if (child && child->widget) {
+        gtk_sheet_remove_handler(GTK_CONTAINER(sheet), child->widget);
+      }
+      children = sheet->children;
     }
-    sheet->children = NULL;
 
     GTK_SHEET_SET_FLAGS(sheet, GTK_SHEET_IS_DESTROYED);
 
-    if (GTK_OBJECT_CLASS(sheet_parent_class)->destroy)
-	(*GTK_OBJECT_CLASS(sheet_parent_class)->destroy)(object);
+    if (GTK_OBJECT_CLASS(sheet_parent_class)->destroy) {
+      (*GTK_OBJECT_CLASS(sheet_parent_class)->destroy)(object);
+    }
 }
 
 /*

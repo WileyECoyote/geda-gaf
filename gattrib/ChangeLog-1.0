@@ -1,7 +1,8 @@
 2016-12-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheet.c: Remove validation if gobject in function
-      gtk_sheet_finalize_handler.
+      gtk_sheet_finalize_handler. Remove unnecessary setting of children
+      to NULL in gtk_sheet_destroy_handler.
 
     * src/s_sheet_data.c Revise s_sheet_data_add_master_comp_list_items
       to release temp_uref for for graphical and pin label objects.
