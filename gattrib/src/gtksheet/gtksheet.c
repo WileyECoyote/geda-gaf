@@ -7701,7 +7701,7 @@ gtk_sheet_cell_finalize(GtkSheet *sheet, GtkSheetCell *cell)
 static GtkSheetCell *
 gtk_sheet_cell_new(void)
 {
-    GtkSheetCell *cell = g_new(GtkSheetCell, 1);
+    GtkSheetCell *cell = g_malloc(sizeof(GtkSheetCell));
     gtk_sheet_cell_init(cell);
     return (cell);
 }
@@ -7952,9 +7952,7 @@ gtk_sheet_cell_delete(GtkSheet *sheet, int row, int column)
 }
 
 static void
-gtk_sheet_real_cell_clear(GtkSheet *sheet,
-                          int row, int column,
-                          int delete)
+gtk_sheet_real_cell_clear(GtkSheet *sheet, int row, int column, int delete)
 {
   GtkSheetCell *cell;
 
@@ -14479,8 +14477,9 @@ gtk_sheet_set_cell_attributes(GtkSheet *sheet,
 
     cell = sheet->data[row][col];
 
-    if (!cell->attributes)
-	cell->attributes = g_new(GtkSheetCellAttr, 1);
+    if (!cell->attributes) {
+      cell->attributes = g_malloc(sizeof(GtkSheetCellAttr));
+    }
 
     *(cell->attributes) = attributes;
 }
@@ -15062,7 +15061,7 @@ gtk_sheet_put(GtkSheet *sheet, GtkWidget *child, int x, int y)
 	sheet, gtk_widget_get_name(sheet), child);
 #endif
 
-    child_info = g_new(GtkSheetChild, 1);
+    child_info = g_malloc(sizeof(GtkSheetChild));
     child_info->widget = child;
     child_info->x = x;
     child_info->y = y;
@@ -15275,7 +15274,7 @@ gtk_sheet_button_attach(GtkSheet *sheet, GtkWidget *widget, int row, int col)
     fprintf(stderr,"gtk_sheet_button_attach: called");
 #endif
 
-    child = g_new(GtkSheetChild, 1);
+    child = g_malloc(sizeof(GtkSheetChild));
     child->widget = widget;
     child->x = 0;
     child->y = 0;

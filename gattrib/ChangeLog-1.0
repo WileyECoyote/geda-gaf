@@ -2,7 +2,9 @@
 
     * src/gtksheet/gtksheet.c: Remove validation if gobject in function
       gtk_sheet_finalize_handler. Remove unnecessary setting of children
-      to NULL in gtk_sheet_destroy_handler.
+      to NULL in gtk_sheet_destroy_handler. Replace g_new with g_malloc
+      in gtk_sheet_cell_new, gtk_sheet_set_cell_attributes, gtk_sheet_put
+      and gtk_widget_get_name.
 
     * src/s_sheet_data.c Revise s_sheet_data_add_master_comp_list_items
       to release temp_uref for for graphical and pin label objects.
