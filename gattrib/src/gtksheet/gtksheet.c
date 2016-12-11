@@ -3267,9 +3267,9 @@ gtk_sheet_new(unsigned int rows, unsigned int columns, const char *title)
 void
 gtk_sheet_construct(GtkSheet *sheet, unsigned int rows, unsigned int columns, const char *title)
 {
-    sheet->data = (GtkSheetCell ***)g_malloc(sizeof(GtkSheetCell **));
+    sheet->data = (GtkSheetCell***)g_malloc(sizeof(GtkSheetCell**));
 
-    sheet->data[0] = (GtkSheetCell **)g_malloc(sizeof(GtkSheetCell *)+sizeof(gdouble));
+    sheet->data[0] = (GtkSheetCell**)g_malloc(sizeof(GtkSheetCell*)+sizeof(double));
     sheet->data[0][0] = NULL;
 
     /* set number of rows and columns */
@@ -3345,7 +3345,7 @@ gtk_sheet_construct_browser(GtkSheet *sheet, unsigned int rows, unsigned int col
  *
  * Returns: the new sheet #GtkSheet
  */
-GtkWidget *
+GtkWidget*
 gtk_sheet_new_with_custom_entry(unsigned int rows,
                                 unsigned int columns,
                                 const char  *title,
@@ -3375,9 +3375,9 @@ gtk_sheet_new_with_custom_entry(unsigned int rows,
  */
 void
 gtk_sheet_construct_with_custom_entry(GtkSheet *sheet,
-    unsigned int rows, unsigned int columns,
-    const char *title,
-    GType entry_type)
+                                      unsigned int rows, unsigned int columns,
+                                      const char *title,
+                                      GType entry_type)
 {
     gtk_sheet_construct(sheet, rows, columns, title);
 
@@ -6069,22 +6069,16 @@ gtk_sheet_destroy_handler(GtkObject *object)
 static void
 gtk_sheet_style_set_handler(GtkWidget *widget, GtkStyle  *previous_style)
 {
-    //GtkSheet *sheet;
+  if (GTK_WIDGET_CLASS(sheet_parent_class)->style_set)
+    (*GTK_WIDGET_CLASS(sheet_parent_class)->style_set)(widget, previous_style);
 
-    g_return_if_fail(widget != NULL);
-    g_return_if_fail(GTK_IS_SHEET(widget));
 
-    if (GTK_WIDGET_CLASS(sheet_parent_class)->style_set)
-	(*GTK_WIDGET_CLASS(sheet_parent_class)->style_set)(widget, previous_style);
+  if (gtk_widget_get_realized(widget)) {
 
-    //sheet = GTK_SHEET(widget);
-
-    if (gtk_widget_get_realized(widget))
-    {
-	gtk_style_set_background(gtk_widget_get_style(widget),
-	    gtk_widget_get_window(widget),
-	    gtk_widget_get_state(widget));
-    }
+    gtk_style_set_background(gtk_widget_get_style(widget),
+                             gtk_widget_get_window(widget),
+                             gtk_widget_get_state(widget));
+  }
 }
 
 /*
@@ -6403,10 +6397,10 @@ gtk_sheet_unrealize_handler(GtkWidget *widget)
     gdk_window_destroy(sheet->column_title_window);
     gdk_window_destroy(sheet->row_title_window);
 
-    if (sheet->pixmap)
-    {
-	g_object_unref(G_OBJECT(sheet->pixmap));
-	sheet->pixmap = NULL;
+    if (sheet->pixmap) {
+
+      g_object_unref(G_OBJECT(sheet->pixmap));
+      sheet->pixmap = NULL;
     }
 
     sheet->column_title_window = NULL;
@@ -6442,8 +6436,8 @@ gtk_sheet_map_handler(GtkWidget *widget)
   fprintf(stderr,"gtk_sheet_map_handler: called");
 #endif
 
-  if (!gtk_widget_get_mapped(widget))
-  {
+  if (!gtk_widget_get_mapped(widget)) {
+
     GtkWidget *WdChild;
 
     gtk_widget_set_mapped_true(GTK_WIDGET(widget));
@@ -6463,17 +6457,6 @@ gtk_sheet_map_handler(GtkWidget *widget)
       size_allocate_row_title_buttons(sheet);
       gdk_window_show(sheet->row_title_window);
     }
-
-#if 0
-    /* this will be done by gtk_sheet_activate_cell() below,
-     *   it causes trouble when there is no active cell in the sheet,
-     *   because sheet_entry will start to process events */
-    if (!gtk_widget_get_mapped (sheet->sheet_entry))
-  {
-    gtk_widget_show (sheet->sheet_entry);
-  gtk_widget_map (sheet->sheet_entry);
-  }
-#endif
 
   if (gtk_widget_get_visible(sheet->button) &&
      !gtk_widget_get_mapped(sheet->button))
@@ -6497,12 +6480,6 @@ gtk_sheet_map_handler(GtkWidget *widget)
 
   _gtk_sheet_recalc_view_range(sheet);
   _gtk_sheet_range_draw(sheet, NULL, TRUE);
-
-  /* this was already done above - why again?
-   * gtk_sheet_activate_cell(sheet,
-   *    sheet->active_cell.row,
-   *    sheet->active_cell.col);
-   */
 
   children = sheet->children;
 
@@ -7681,48 +7658,44 @@ gtk_sheet_cell_init(GtkSheetCell *cell)
 static void
 gtk_sheet_cell_finalize(GtkSheet *sheet, GtkSheetCell *cell)
 {
-    g_return_if_fail(cell != NULL);
+  g_return_if_fail(cell != NULL);
 
-    if (cell->text)
-    {
-	g_free(cell->text);
-	cell->text = NULL;
+  if (cell->text) {
 
-	if (GTK_IS_OBJECT(sheet) && G_OBJECT(sheet)->ref_count > 0)
-	    g_signal_emit(G_OBJECT(sheet), sheet_signals[CLEAR_CELL], 0,
-		cell->row, cell->col);
+    g_free(cell->text);
+    cell->text = NULL;
+
+    if (GTK_IS_OBJECT(sheet) && G_OBJECT(sheet)->ref_count > 0)
+      g_signal_emit(G_OBJECT(sheet), sheet_signals[CLEAR_CELL], 0,
+                    cell->row, cell->col);
+  }
+
+  if (cell->link) {
+    cell->link = NULL;
+  }
+
+  if (cell->tooltip_markup) {
+    g_free(cell->tooltip_markup);
+    cell->tooltip_markup = NULL;
+  }
+
+  if (cell->tooltip_text) {
+    g_free(cell->tooltip_text);
+    cell->tooltip_text = NULL;
+  }
+
+  if (cell->attributes) {
+
+    GtkSheetCellAttr *attributes = cell->attributes;
+
+    if (attributes->font_desc && attributes->do_font_desc_free) {
+      pango_font_description_free(attributes->font_desc);  /* free */
+      attributes->font_desc = NULL;
     }
+    g_free(attributes);
 
-    if (cell->link)
-    {
-	cell->link = NULL;
-    }
-
-    if (cell->tooltip_markup)
-    {
-	g_free(cell->tooltip_markup);
-	cell->tooltip_markup = NULL;
-    }
-
-    if (cell->tooltip_text)
-    {
-	g_free(cell->tooltip_text);
-	cell->tooltip_text = NULL;
-    }
-
-    if (cell->attributes)
-    {
-	GtkSheetCellAttr *attributes = cell->attributes;
-
-	if (attributes->font_desc && attributes->do_font_desc_free)
-	{
-	    pango_font_description_free(attributes->font_desc);  /* free */
-	    attributes->font_desc = NULL;
-	}
-	g_free(attributes);
-
-	cell->attributes = NULL;
-    }
+    cell->attributes = NULL;
+  }
 }
 
 static GtkSheetCell *
@@ -7751,6 +7724,7 @@ gtk_sheet_set_cell_text(GtkSheet *sheet, int row, int col, const char *text)
 
     if (col > sheet->maxcol || row > sheet->maxrow)
 	return;
+
     if (col < 0 || row < 0)
 	return;
 
@@ -8000,8 +7974,9 @@ gtk_sheet_real_cell_clear(GtkSheet *sheet,
     g_free(cell->text);
     cell->text = NULL;
 
-    if (GTK_IS_OBJECT(sheet) && G_OBJECT(sheet)->ref_count > 0)
+    if (GTK_IS_OBJECT(sheet) && G_OBJECT(sheet)->ref_count > 0) {
       g_signal_emit(G_OBJECT(sheet), sheet_signals[CLEAR_CELL], 0, row, column);
+    }
   }
 
   if (cell->link) {
@@ -14035,8 +14010,9 @@ gtk_sheet_delete_rows(GtkSheet *sheet, unsigned int row, unsigned int nrows)
 
     GtkSheetChild *child = (GtkSheetChild *)children->data;
 
-    if (child->attached_to_cell && child->row > row)
+    if (child->attached_to_cell && child->row > row) {
       child->row -= nrows;
+    }
     children = children->next;
   }
 
@@ -14103,8 +14079,9 @@ gtk_sheet_delete_columns(GtkSheet *sheet, unsigned int col, unsigned int ncols)
 
       GtkSheetChild *child = (GtkSheetChild *)children->data;
 
-      if (child->attached_to_cell && child->col > col)
+      if (child->attached_to_cell && child->col > col) {
         child->col -= ncols;
+      }
       children = children->next;
     }
 
@@ -14438,64 +14415,65 @@ gtk_sheet_range_set_font(GtkSheet *sheet,
     const GtkSheetRange *urange,
     PangoFontDescription *font_desc)
 {
-    int i, j;
-    int font_height;
-    GtkSheetRange range;
-    PangoContext *context;
-    PangoFontMetrics *metrics;
+  int i, j;
+  int font_height;
+  GtkSheetRange range;
+  PangoContext *context;
+  PangoFontMetrics *metrics;
 
-    g_return_if_fail(sheet != NULL);
-    g_return_if_fail(GTK_IS_SHEET(sheet));
+  g_return_if_fail(sheet != NULL);
+  g_return_if_fail(GTK_IS_SHEET(sheet));
 
-    if (!urange)
-	range = sheet->range;
-    else
-	range = *urange;
+  if (!urange)
+    range = sheet->range;
+  else
+    range = *urange;
 
-    gtk_sheet_freeze(sheet);
+  gtk_sheet_freeze(sheet);
 
-    context = gtk_widget_get_pango_context(GTK_WIDGET(sheet));
-    metrics = pango_context_get_metrics(context,
-	font_desc,
-	pango_context_get_language(context));
-    font_height = pango_font_metrics_get_descent(metrics) +
-	pango_font_metrics_get_ascent(metrics);
-    font_height = PANGO_PIXELS(font_height) + 2 * CELLOFFSET;
+  context = gtk_widget_get_pango_context(GTK_WIDGET(sheet));
+  metrics = pango_context_get_metrics(context,
+                                      font_desc,
+                                      pango_context_get_language(context));
 
-    for (i = range.row0; i <= range.rowi; i++)
-    {
-	for (j = range.col0; j <= range.coli; j++)
-	{
-	    GtkSheetCellAttr attributes;
-	    gtk_sheet_get_attributes(sheet, i, j, &attributes);
-	    attributes.font_desc = pango_font_description_copy(font_desc);  /* copy */
-	    attributes.do_font_desc_free = TRUE;
+  font_height = pango_font_metrics_get_descent(metrics) +
+  pango_font_metrics_get_ascent(metrics);
+  font_height = PANGO_PIXELS(font_height) + 2 * CELLOFFSET;
 
-	    if (font_height > sheet->row[i].height)
-	    {
-		sheet->row[i].height = font_height;
-		_gtk_sheet_recalc_top_ypixels(sheet);
-	    }
+  for (i = range.row0; i <= range.rowi; i++) {
 
-	    gtk_sheet_set_cell_attributes(sheet, i, j, attributes);
-	}
+    for (j = range.col0; j <= range.coli; j++) {
+
+      GtkSheetCellAttr attributes;
+      gtk_sheet_get_attributes(sheet, i, j, &attributes);
+      attributes.font_desc = pango_font_description_copy(font_desc);  /* copy */
+      attributes.do_font_desc_free = TRUE;
+
+      if (font_height > sheet->row[i].height) {
+        sheet->row[i].height = font_height;
+        _gtk_sheet_recalc_top_ypixels(sheet);
+      }
+
+      gtk_sheet_set_cell_attributes(sheet, i, j, attributes);
     }
+  }
 
-    gtk_sheet_thaw(sheet);
-    pango_font_metrics_unref(metrics);
+  gtk_sheet_thaw(sheet);
+  pango_font_metrics_unref(metrics);
 }
 
 static void
 gtk_sheet_set_cell_attributes(GtkSheet *sheet,
-    int row, int col,
-    GtkSheetCellAttr attributes)
+                              int row, int col,
+                              GtkSheetCellAttr attributes)
 {
     GtkSheetCell *cell;
 
     if (row < 0 || row > sheet->maxrow)
-	return;
+      return;
+
     if (col < 0 || col > sheet->maxcol)
-	return;
+      return;
 
     CheckCellData(sheet, row, col);
 
@@ -14622,8 +14600,9 @@ AddColumns(GtkSheet *sheet, int position, int ncols)
       sheet->column = (GtkSheetColumn **)g_realloc(sheet->column,
                                                    (sheet->maxcol + 1 + ncols)* sizeof(GtkSheetColumn *));
 
-      for (c = sheet->maxcol; c >= position; c--)  /* make space */
-      {
+      /* make space */
+      for (c = sheet->maxcol; c >= position; c--)  {
+
         sheet->column[c + ncols] = sheet->column[c];
         sheet->column[c] = NULL;
       }
@@ -14749,20 +14728,22 @@ DeleteColumn(GtkSheet *sheet, int position, int ncols)
           if (c + ncols <= sheet->maxalloccol) {
             sheet->data[r][c] = sheet->data[r][c + ncols];
             sheet->data[r][c + ncols] = NULL;
-            if (sheet->data[r][c])
+            if (sheet->data[r][c]) {
               sheet->data[r][c]->col = c;
+            }
           }
         }
       }
 
-      for (c = sheet->maxcol - ncols + 1; c <= sheet->maxcol; c++)  /* clear tail */
-      {
-        if (c > sheet->maxalloccol) break;
+      /* clear tail */
+      for (c = sheet->maxcol - ncols + 1; c <= sheet->maxcol; c++) {
 
-           for (r = 0; r <= sheet->maxallocrow; r++)
-           {
-             gtk_sheet_real_cell_clear(sheet, r, c, TRUE);
-           }
+        if (c > sheet->maxalloccol)
+          break;
+
+        for (r = 0; r <= sheet->maxallocrow; r++) {
+          gtk_sheet_real_cell_clear(sheet, r, c, TRUE);
+        }
       }
 
       sheet->maxalloccol -= MIN(ncols, sheet->maxalloccol - position + 1);
@@ -14914,17 +14895,18 @@ DeleteRow(GtkSheet *sheet, int position, int nrows)
         }
       }
 
-      for (r = sheet->maxrow - nrows + 1; r <= sheet->maxrow; r++)  /* clear tail */
-      {
+      /* clear tail */
+      for (r = sheet->maxrow - nrows + 1; r <= sheet->maxrow; r++) {
+
         if (r > sheet->maxallocrow) break;
 
-           for (c = 0; c <= sheet->maxalloccol; c++)  /* dispose cell data */
-           {
+            /* dispose cell data */
+           for (c = 0; c <= sheet->maxalloccol; c++) {
              gtk_sheet_real_cell_clear(sheet, r, c, TRUE);
            }
 
-           if (sheet->data[r])  /* dispose row data pointer array */
-           {
+           /* dispose row data pointer array */
+           if (sheet->data[r]) {
              g_free(sheet->data[r]);
              sheet->data[r] = NULL;
            }
@@ -14957,15 +14939,14 @@ GrowSheet(GtkSheet *tbl, int newrows, int newcols)
   if (newrows > 0) {
 
     tbl->data = (GtkSheetCell ***)
-    g_realloc(tbl->data, (tbl->maxallocrow + 1)*sizeof(GtkSheetCell **)+sizeof(double));
+    g_realloc(tbl->data, (tbl->maxallocrow + 1)*sizeof(GtkSheetCell**)+sizeof(double));
 
     for (r = inirow; r <= tbl->maxallocrow; r++) {
 
-      tbl->data[r] = (GtkSheetCell **)
-      g_malloc((tbl->maxcol + 1)*sizeof(GtkSheetCell *)+sizeof(double));
+      tbl->data[r] = (GtkSheetCell**)
+      g_malloc((tbl->maxcol + 1)*sizeof(GtkSheetCell*)+sizeof(double));
 
-      for (c = 0; c < inicol; c++)
-      {
+      for (c = 0; c < inicol; c++) {
         tbl->data[r][c] = NULL;
       }
     }
@@ -14978,7 +14959,7 @@ GrowSheet(GtkSheet *tbl, int newrows, int newcols)
 
       tbl->data[r] = (GtkSheetCell **)
 
-      g_realloc(tbl->data[r], (tbl->maxalloccol + 1)*sizeof(GtkSheetCell *)+sizeof(double));
+      g_realloc(tbl->data[r], (tbl->maxalloccol + 1)*sizeof(GtkSheetCell*)+sizeof(double));
 
       for (c = inicol; c <= tbl->maxalloccol; c++) {
         tbl->data[r][c] = NULL;
@@ -15279,18 +15260,16 @@ gtk_sheet_attach(GtkSheet *sheet,
  * Button attach works like cell attach but for the buttons.
  */
 void
-gtk_sheet_button_attach(GtkSheet *sheet,
-    GtkWidget *widget,
-    int row, int col)
+gtk_sheet_button_attach(GtkSheet *sheet, GtkWidget *widget, int row, int col)
 {
     GtkSheetButton *button;
-    GtkSheetChild *child;
-    GtkRequisition button_requisition;
+    GtkSheetChild  *child;
+    GtkRequisition  button_requisition;
 
     if (row >= 0 && col >= 0)
-	return;
+      return;
     if (row < 0 && col < 0)
-	return;
+      return;
 
 #if GTK_SHEET_DEBUG_CHILDREN > 0
     fprintf(stderr,"gtk_sheet_button_attach: called");
@@ -15308,15 +15287,13 @@ gtk_sheet_button_attach(GtkSheet *sheet,
     child->xshrink = child->yshrink = FALSE;
     child->xfill = child->yfill = FALSE;
 
-    if (row == -1)
-    {
-	button = &COLPTR(sheet, col)->button;
-	button->child = child;
+    if (row == -1) {
+      button = &COLPTR(sheet, col)->button;
+      button->child = child;
     }
-    else
-    {
-	button = &sheet->row[row].button;
-	button->child = child;
+    else {
+      button = &sheet->row[row].button;
+      button->child = child;
     }
 
     sheet->children = g_list_append(sheet->children, child);
@@ -15324,76 +15301,79 @@ gtk_sheet_button_attach(GtkSheet *sheet,
 
     _gtk_sheet_button_size_request(sheet, button, &button_requisition);
 
-    if (row == -1)
-    {
-	if (button_requisition.height > sheet->column_title_area.height)
-	    sheet->column_title_area.height = button_requisition.height;
-	if (button_requisition.width > COLPTR(sheet, col)->width)
-	    COLPTR(sheet, col)->width = button_requisition.width;
+    if (row == -1) {
+
+      if (button_requisition.height > sheet->column_title_area.height)
+        sheet->column_title_area.height = button_requisition.height;
+      if (button_requisition.width > COLPTR(sheet, col)->width)
+        COLPTR(sheet, col)->width = button_requisition.width;
     }
 
-    if (col == -1)
-    {
-	if (button_requisition.width > sheet->row_title_area.width)
-	    sheet->row_title_area.width = button_requisition.width;
-	if (button_requisition.height > sheet->row[row].height)
-	    sheet->row[row].height = button_requisition.height;
+    if (col == -1) {
+
+      if (button_requisition.width > sheet->row_title_area.width)
+        sheet->row_title_area.width = button_requisition.width;
+      if (button_requisition.height > sheet->row[row].height)
+        sheet->row[row].height = button_requisition.height;
     }
 
-    if (gtk_widget_get_visible(GTK_WIDGET(sheet)))
-    {
-	if (gtk_widget_get_realized(GTK_WIDGET(sheet)) &&
-	    (!gtk_widget_get_realized(widget) || gtk_widget_get_has_window(widget)))
-	    gtk_sheet_realize_child(sheet, child);
+    if (gtk_widget_get_visible(GTK_WIDGET(sheet))) {
 
-	if (gtk_widget_get_mapped(GTK_WIDGET(sheet)) &&
-	    !gtk_widget_get_mapped(widget))
-	    gtk_widget_map(widget);
+      if (gtk_widget_get_realized(GTK_WIDGET(sheet)) &&
+        (!gtk_widget_get_realized(widget) || gtk_widget_get_has_window(widget)))
+        gtk_sheet_realize_child(sheet, child);
+
+      if (gtk_widget_get_mapped(GTK_WIDGET(sheet)) &&
+        !gtk_widget_get_mapped(widget))
+        gtk_widget_map(widget);
     }
 
-    if (row == -1)
-	_gtk_sheet_column_buttons_size_allocate(sheet);
-    if (col == -1)
-	size_allocate_row_title_buttons(sheet);
+    if (row == -1) {
+      _gtk_sheet_column_buttons_size_allocate(sheet);
+    }
+
+    if (col == -1) {
+      size_allocate_row_title_buttons(sheet);
+    }
 }
 
 static void
 label_size_request(GtkSheet *sheet, char *label, GtkRequisition *req)
 {
-    char *words;
-    char word[1000];
-    int n = 0;
-    int row_height = _gtk_sheet_row_default_height(GTK_WIDGET(sheet)) - 2 * CELLOFFSET + 2;
+  char *words;
+  char word[1000];
+  int n = 0;
+  int row_height = _gtk_sheet_row_default_height(GTK_WIDGET(sheet)) - 2 * CELLOFFSET + 2;
 
-    req->height = 0;
-    req->width = 0;
-    words = label;
+  req->height = 0;
+  req->width = 0;
+  words = label;
 
-    while (words && *words != '\0')
-    {
-	if (*words == '\n' || *(words + 1) == '\0')
-	{
-	    unsigned int text_width, text_height;
+  while (words && *words != '\0') {
 
-	    req->height += row_height;
+    if (*words == '\n' || *(words + 1) == '\0') {
 
-	    word[n] = '\0';
+      unsigned int text_width, text_height;
 
-	    _get_string_extent(sheet, NULL,
-		gtk_widget_get_style(GTK_WIDGET(sheet))->font_desc,
-		word, &text_width, &text_height);
-	    req->width = MAX(req->width, text_width);
-	    n = 0;
-	}
-	else
-	{
-	    word[n++] = *words;
-	}
-	words++;
+      req->height += row_height;
+
+      word[n] = '\0';
+
+        _get_string_extent(sheet, NULL,
+                           gtk_widget_get_style(GTK_WIDGET(sheet))->font_desc,
+                           word, &text_width, &text_height);
+        req->width = MAX(req->width, text_width);
+        n = 0;
     }
+    else {
 
-    if (n > 0)
-	req->height -= 2;
+      word[n++] = *words;
+    }
+    words++;
+  }
+
+  if (n > 0)
+    req->height -= 2;
 }
 
 /**
@@ -15796,37 +15776,37 @@ gtk_sheet_remove_handler(GtkContainer *container, GtkWidget *widget)
 
     children = sheet->children;
 
-    while (children)
-    {
-	child = (GtkSheetChild *)children->data;
+    while (children) {
 
-	if (child->widget == widget)
-	    break;
+      child = (GtkSheetChild *)children->data;
 
-	children = children->next;
+      if (child->widget == widget)
+        break;
+
+      children = children->next;
     }
 
-    if (children)
-    {
-	if (child->row == -1)
-	    sheet->row[child->col].button.child = NULL;
+    if (children) {
 
-	if (child->col == -1)
-	    COLPTR(sheet, child->row)->button.child = NULL;
+      if (child->row == -1)
+        sheet->row[child->col].button.child = NULL;
+
+      if (child->col == -1)
+        COLPTR(sheet, child->row)->button.child = NULL;
 
 #if GTK_SHEET_DEBUG_CHILDREN > 0
-	fprintf(stderr,"gtk_sheet_remove_handler: %p %s widget %p",
-	    sheet, gtk_widget_get_name(sheet), widget);
+        fprintf(stderr,"gtk_sheet_remove_handler: %p %s widget %p",
+                sheet, gtk_widget_get_name(sheet), widget);
 #endif
 
-	gtk_widget_unparent(widget);
-	if (G_IS_OBJECT(child->widget))
-	    g_object_unref(child->widget);
-	child->widget = NULL;
+        gtk_widget_unparent(widget);
+        if (G_IS_OBJECT(child->widget))
+          g_object_unref(child->widget);
 
-	sheet->children = g_list_remove_link(sheet->children, children);
-	g_list_free_1(children);
-	g_free(child);
+        child->widget = NULL;
+        sheet->children = g_list_remove_link(sheet->children, children);
+        g_list_free_1(children);
+        g_free(child);
     }
 
 }
