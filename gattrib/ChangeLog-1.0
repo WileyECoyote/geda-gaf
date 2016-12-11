@@ -3,6 +3,9 @@
     * src/gtksheet/gtksheet.c: Remove validation if gobject in function
       gtk_sheet_finalize_handler.
 
+    * src/s_sheet_data.c Revise s_sheet_data_add_master_comp_list_items
+      to release temp_uref for for graphical and pin label objects.
+
 2016-12-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheet.c: Release sheet->data[0], allocated in gtk
