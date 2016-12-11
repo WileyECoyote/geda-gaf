@@ -85,6 +85,9 @@ void x_gtksheet_destroy_all() {
       }
     }
   }
+
+  g_free(sheets);
+
   if (popup) {
 
     /* This would only occurif the user views the context menu without
@@ -634,9 +637,7 @@ void  x_gtksheet_reinititialize(PageDataSet *PageData)
  */
 void x_gtksheet_init(PageDataSet *PageData)
 {
-  int i;
   char *SheetNames[]= { "Components",  "Nets", "Pins"};
-  GtkWidget *label;
 
   void CreateSheet(SheetId index, int nRow, int nCol) {
     if((sheets[index] != NULL) && (GTK_IS_SHEET (sheets[index]))) {
@@ -653,12 +654,17 @@ void x_gtksheet_init(PageDataSet *PageData)
         gtk_sheet_set_locked(GTK_SHEET(sheets[index]), TRUE);   /* disallow editing */
       }
     }
+
     if(!GTK_IS_SHEET (sheets[index])) {
       fprintf(stderr, "ERROR: x_gtksheet_init: could not create %s sheet!\n", SheetNames[index]);
     }
   }
 
-  /* ---  Create three new sheets that were malloc'ed in x_window_init  --- */
+  /* Dynamically allocate storage for pointers  to sheet, this block
+   * is released in x_gtksheet_destroy_all */
+  sheets = GEDA_MEM_ALLOC0(NUM_SHEETS * sizeof(GtkWidget*));
+
+  /* ---  Create three new sheets  --- */
 
   /* -----  Components  ----- */
   CreateSheet(Components, PageData->comp_count, PageData->comp_attrib_count);
@@ -669,8 +675,10 @@ void x_gtksheet_init(PageDataSet *PageData)
   /* -----  Pins  ----- */
   CreateSheet(Pins, PageData->pin_count, PageData->pin_attrib_count);
 
+  int i;
+
   /* --- Finally stick labels on the notebooks holding the sheets. --- */
-  for(i=0; i<NUM_SHEETS; i++){
+  for (i = 0; i < NUM_SHEETS; i++) {
 
     if (sheets[i] != NULL) {  /* is this check needed?
       * Yes, it prevents us from segfaulting on empty nets sheet. */
@@ -680,11 +688,12 @@ void x_gtksheet_init(PageDataSet *PageData)
       gtk_container_add( GTK_CONTAINER(scrolled_windows[i]), GTK_WIDGET(sheets[i]) );
 
       /* First remove old notebook page. Maybe should probably do some checking here. */
-      if (notebook != NULL)
+      if (notebook != NULL) {
         gtk_notebook_remove_page(GTK_NOTEBOOK(notebook), i);
+      }
 
       /* Then add new, updated notebook page */
-      label= gtk_label_new(_(SheetNames[i]));
+      GtkWidget *label= gtk_label_new(_(SheetNames[i]));
 
       gtk_notebook_append_page(GTK_NOTEBOOK(notebook),
                                GTK_WIDGET(scrolled_windows[i]),

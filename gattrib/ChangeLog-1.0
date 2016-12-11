@@ -12,6 +12,12 @@
     * src/x_gtksheet.c: Remove else yelp "reference is not a SHEET!" in
       x_gtksheet_destroy_all; if the pointer to the sheets was corrupt a
       seg fault will likely occur long before this function was executed.
+      Alllocate pointers for sheets, previously allocated in x_window_init
+      and reduce the scope of GtkWidget *label in x_gtksheet_init. Release
+      the allocation of sheet pointers in x_gtksheet_destroy_all.
+
+    * src/x_window.c: Remove allocating of the (three) pointers for sheets
+      from the end of x_window_init.
 
 2016-12-09 Wiley E. Hill <wileyhill@gmail.com>
 

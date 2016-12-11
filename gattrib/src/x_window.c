@@ -321,11 +321,6 @@ void x_window_init()
   GEDA_SIGNAL_CONNECT (notebook, "switch-page",
                        G_CALLBACK (on_notebook_switch_page),
                        NULL);
-  /* -----  Now malloc -- but don't fill out -- space for sheets  ----- */
-  /* This basically sets up the overhead for the sheets, as I understand
-   * it.  The memory for the actual sheet cells is allocated later,
-   * when gtk_sheet_new is invoked, I think.  */
-  sheets = GEDA_MEM_ALLOC0(NUM_SHEETS * sizeof(GtkWidget *));
 
   x_menu_fix_gtk_recent_submenu();
 }
