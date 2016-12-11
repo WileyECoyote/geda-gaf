@@ -19,7 +19,7 @@
     * src/x_window.c: Remove allocating of the (three) pointers for sheets
       from the end of x_window_init, add a space the location label so
       the GedaLabel does not add the text "label: because the string is
-      empty.
+      empty. Destroy the entry and location widget in x_window_release_all.
 
 2016-12-09 Wiley E. Hill <wileyhill@gmail.com>
 

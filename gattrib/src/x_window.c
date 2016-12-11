@@ -624,8 +624,8 @@ void x_window_autoscroll_toggle(GtkToggleAction *action, GtkWindow *main_window)
 /*!
  * \brief Toggle Sheet Grid Option On Off
  * \par Function Description
- *      This function toggles visibility of the grid lines in the GTKSheets
- * The flag is normally turned on.
+ *  This function toggles visibility of the grid lines in the GTKSheets
+ *  The flag is normally turned on.
  */
 void x_window_grid_toggle(GtkToggleAction *action, GtkWindow *main_window)
 {
@@ -635,9 +635,17 @@ void x_window_grid_toggle(GtkToggleAction *action, GtkWindow *main_window)
   gtk_sheet_show_grid(sheets[Pins], show);
 }
 
+/*!
+ * \brief Release GUI related resources
+ * \par Function Description
+ *  This function releases various resources associated with the GUI.
+ */
 void x_window_release_all(void)
 {
+  /* edit_box contains entry and location */
+  gtk_widget_destroy (entry);
   gtk_widget_destroy (location);
+  gtk_widget_destroy (edit_box);
   g_object_unref (recent_manager);
   g_object_unref (menu_manager);
 }
