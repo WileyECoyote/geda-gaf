@@ -302,7 +302,7 @@ void x_window_init()
   gtk_widget_show(edit_box);
 
    /* This is the RC box in the top left cell */
-  location = geda_visible_label_new("");
+  location = geda_visible_label_new(" ");
 
   gtk_widget_size_request(location, &request);
   gtk_widget_set_usize(location, 150, request.height);
