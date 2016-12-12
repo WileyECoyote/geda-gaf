@@ -157,8 +157,9 @@ gtk_sheet_column_set_property(GObject *object,
                     if (button->label) g_free(button->label);
                     button->label = g_strdup(label);
                 }
-                else
+                else {
                     gtk_sheet_column_button_add_label(sheet, col, label);
+                }
             }
             break;
 
@@ -708,26 +709,22 @@ gtk_sheet_column_finalize_handler(GObject *gobject)
 {
     GtkSheetColumn *column = GTK_SHEET_COLUMN(gobject);
 
-    if (column->title)
-    {
+    if (column->title) {
         g_free(column->title);
         column->title = NULL;
     }
 
-    if (column->button.label)
-    {
+    if (column->button.label) {
         g_free(column->button.label);
         column->button.label = NULL;
     }
 
-    if (column->data_format)
-    {
+    if (column->data_format) {
         g_free(column->data_format);
         column->data_format = NULL;
     }
 
-    if (column->description)
-    {
+    if (column->description) {
         g_free(column->description);
         column->description = NULL;
     }
@@ -1134,11 +1131,16 @@ gtk_sheet_column_button_add_label(GtkSheet *sheet, int col, const char *label)
 #endif
 
     button = &COLPTR(sheet, col)->button;
-    if (button->label) g_free(button->label);
+
+    if (button->label) {
+      g_free(button->label);
+    }
+
     button->label = g_strdup(label);
 
     aux_c = gtk_sheet_autoresize_columns(sheet);
     aux_r = gtk_sheet_autoresize_rows(sheet);
+
     gtk_sheet_set_autoresize(sheet, FALSE);
     gtk_sheet_set_autoresize_columns(sheet, TRUE);
     _gtk_sheet_button_size_request(sheet, button, &req);
@@ -1153,7 +1155,9 @@ gtk_sheet_column_button_add_label(GtkSheet *sheet, int col, const char *label)
         gtk_sheet_set_column_width(sheet, col, req.width);
     }
 
-    if (req.height > sheet->column_title_area.height) gtk_sheet_set_column_titles_height(sheet, req.height);
+    if (req.height > sheet->column_title_area.height) {
+      gtk_sheet_set_column_titles_height(sheet, req.height);
+    }
 
     if (!gtk_sheet_is_frozen(sheet)) {
         _gtk_sheet_draw_button(sheet, -1, col);
@@ -1644,8 +1648,8 @@ gtk_sheet_column_set_sensitivity(GtkSheet *sheet, int col, int sensitive)
     else
         COLPTR(sheet, col)->button.state = GTK_STATE_NORMAL;
 
-    if (gtk_widget_get_realized(GTK_WIDGET(sheet))
-        && !gtk_sheet_is_frozen(sheet))
+    if (gtk_widget_get_realized(GTK_WIDGET(sheet)) &&
+       !gtk_sheet_is_frozen(sheet))
     {
         _gtk_sheet_draw_button(sheet, -1, col);
     }
@@ -1736,8 +1740,11 @@ _gtk_sheet_column_button_set(GtkSheet *sheet, int col)
 void
 _gtk_sheet_column_button_release(GtkSheet *sheet, int col)
 {
-    if (col < 0 || col > sheet->maxcol) return;
-    if (COLPTR(sheet, col)->button.state == GTK_STATE_NORMAL) return;
+    if (col < 0 || col > sheet->maxcol)
+      return;
+
+    if (COLPTR(sheet, col)->button.state == GTK_STATE_NORMAL)
+      return;
 
 #if GTK_SHEET_COL_DEBUG_DRAW > 0
     g_debug("_gtk_sheet_column_button_release: col %d", col);
@@ -1762,7 +1769,8 @@ gtk_sheet_column_visible(GtkSheet *sheet, int column)
     g_return_val_if_fail(sheet != NULL, FALSE);
     g_return_val_if_fail(GTK_IS_SHEET(sheet), FALSE);
 
-    if (column < 0 || column > sheet->maxcol) return (FALSE);
+    if (column < 0 || column > sheet->maxcol)
+      return (FALSE);
 
     return (GTK_SHEET_COLUMN_IS_VISIBLE(COLPTR(sheet, column)));
 }
@@ -1788,16 +1796,20 @@ gtk_sheet_column_set_visibility(GtkSheet *sheet, int col, int visible)
     g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
-    if (col < 0 || col > sheet->maxcol) return;
+    if (col < 0 || col > sheet->maxcol)
+      return;
 
     colobj = COLPTR(sheet, col);
-    if (GTK_SHEET_COLUMN_IS_VISIBLE(colobj) == visible) return;
+
+    if (GTK_SHEET_COLUMN_IS_VISIBLE(colobj) == visible)
+      return;
 
     //act_row = sheet->active_cell.row;
     act_col = sheet->active_cell.col;
 
-    if (act_col == col)   /* hide active column -> disable active cell */
-    {
+    /* hide active column -> disable active cell */
+    if (act_col == col) {
+
         _gtk_sheet_hide_active_cell(sheet);
 
         sheet->active_cell.row = -1;
@@ -1857,8 +1869,7 @@ gtk_sheet_column_button_justify(GtkSheet *sheet, int col,
     button = &COLPTR(sheet, col)->button;
     button->justification = justification;
 
-    if (!gtk_sheet_is_frozen(sheet))
-    {
+    if (!gtk_sheet_is_frozen(sheet)) {
         _gtk_sheet_draw_button(sheet, -1, col);
     }
 }
