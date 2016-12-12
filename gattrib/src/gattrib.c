@@ -118,8 +118,6 @@
 #include <glib.h>
 #include <glib-object.h>
 
-#include <geda_keysyms.h>
-
 #ifdef HAVE_STRING_H
 #include <string.h>
 #endif
@@ -131,6 +129,8 @@
  *------------------------------------------------------------------*/
 #include "../include/gattrib.h"  /* include Gattrib specific headers  */
 
+#include <geda_keysyms.h>
+#include <geda_label.h>
 #include <geda_debug.h>
 
 typedef struct {
@@ -234,6 +234,12 @@ int gattrib_quit(int return_code)
 #endif
 
   gtk_main_quit();
+
+#if DEBUG_GEDA_LABEL
+  /* This can be helpful in identifying unreleased resources */
+  geda_label_get_report_instances();
+#endif
+
   exit(return_code);
 }
 
@@ -357,9 +363,10 @@ void gattrib_main(void *closure, int argc, char *argv[])
   }
 
   /* ---------- Initialize SHEET_DATA data structure ---------- */
-  sheet_head = s_sheet_data_new();   /* sheet_head was declared in globals.h */
+  sheet_head = s_sheet_data_new();   /* sheet_head is declared in globals.h */
 
   if (file_list) { /* do we need to call g here? */
+
     /* Attempt to Load the files */
     if (x_fileselect_load_files(file_list)) {
       /* Sort, Load Tables, Verify Design- Really? */
