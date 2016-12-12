@@ -117,7 +117,7 @@ void x_gtksheet_reveal_columns(GtkSheet *sheet) {
  * This function calls the appropriate functions to process request
  * from the mouse menu that can be activated when not in editing mode.
  * Unlike the example in the testgtksheet program this function
- * receives a pointer to enumerated integer value rather than a string.
+ * receives a pointer to an enumerated integer value rather than a string.
  *
  *  \param [in] widget is button widget
  *  \param [in] selection pointer to enumerated menu selection
@@ -586,7 +586,7 @@ static int activate_sheet_cell(GtkWidget *widget, int row, int column, void * da
  *
  */
 
-void  x_gtksheet_reinititialize(PageDataSet *PageData)
+void x_gtksheet_reinititialize(PageDataSet *PageData)
 {
 
   void RedimensionSheet(GtkSheet *sheet, int nRows, int nCols) {
@@ -604,6 +604,7 @@ void  x_gtksheet_reinititialize(PageDataSet *PageData)
       }
       /* else they are the same size so do nothing */
     }
+
     if (nCols > 0) {
       if ( nCols > cCols) {
         gtk_sheet_add_column(sheet, nCols - cCols );
@@ -639,6 +640,7 @@ void x_gtksheet_init(PageDataSet *PageData)
   char *SheetNames[]= { "Components",  "Nets", "Pins"};
 
   void CreateSheet(SheetId index, int nRow, int nCol) {
+
     if((sheets[index] != NULL) && (GTK_IS_SHEET (sheets[index]))) {
       fprintf(stderr, "ERROR: x_gtksheet_init: %s sheet already exist!\n", SheetNames[index]);
     }
@@ -740,7 +742,6 @@ void x_gtksheet_init(PageDataSet *PageData)
   SetupCSheetHandlers(sheets[Components], PageData);
 
   sheets[Pins]->autoresize_columns=TRUE;
-  //sheets[Pins]->autoresize_rows=TRUE;
 }
 
 /*------------------------------------------------------------------*/

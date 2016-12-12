@@ -15048,12 +15048,13 @@ CheckCellData(GtkSheet *sheet, const int row, const int col)
  * \param y: y coordinate where we put the widget
  *
  * Add widgets to the sheet.
- * The widget is floating in one given position (x,y) regardless of the configurations of rows/columns.
- * This means that cells do not resize depending on the widgets' size.
- * You can resize it yourself or use gtk_sheet_attach_*()
- * You may remove it with gtk_container_remove(GTK_CONTAINER(sheet), GtkWidget *child);
+ * The widget is floating in one given position (x,y) regardless of the
+ * configurations of rows/columns. This means that cells do not resize
+ * depending on the widgets' size. You can resize it yourself or use
+ * gtk_sheet_attach_*() You may remove it with gtk_container_remove
+ * (GTK_CONTAINER(sheet), GtkWidget *child);
  *
- * Returns:  (transfer none) TRUE means that the cell is currently allocated.
+ * \retval TRUE means that the cell is currently allocated.
  */
 GtkSheetChild *
 gtk_sheet_put(GtkSheet *sheet, GtkWidget *child, int x, int y)
