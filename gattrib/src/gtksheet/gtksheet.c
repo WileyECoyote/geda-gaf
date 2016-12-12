@@ -4429,13 +4429,13 @@ gtk_sheet_thaw(GtkSheet *sheet)
     if (sheet->freeze_count > 0) {
 
 #if GTK_SHEET_DEBUG_FREEZE > 0
-	g_warning("gtk_sheet_thaw: ignored (freeze_count > 0)");
+        g_warning("%s: ignored (freeze_count > 0)\n", __func__);
 #endif
         return;
     }
 
 #if GTK_SHEET_DEBUG_FREEZE > 0
-    fprintf(stderr,"gtk_sheet_thaw: freeze_count == %d", sheet->freeze_count);
+    fprintf(stderr,"%s: freeze_count == %d\n", __func__, sheet->freeze_count);
 #endif
 
     _gtk_sheet_scrollbar_adjust(sheet);
@@ -4901,8 +4901,8 @@ gtk_sheet_moveto(GtkSheet *sheet, int row, int col, int row_align, int col_align
       }
 
 #if GTK_SHEET_DEBUG_ADJUSTMENT > 0
-      fprintf(stderr,"gtk_sheet_moveto: colLpx %d hoffs %d width %d cwidth %d rowTw %s x %d",
-          _gtk_sheet_column_left_xpixel(sheet, col), sheet->hoffset,
+      fprintf(stderr,"%s: colLpx %d hoffs %d width %d cwidth %d rowTw %s x %d\n",
+          __func__, _gtk_sheet_column_left_xpixel(sheet, col), sheet->hoffset,
           width, COLPTR(sheet, col)->width,
           sheet->row_titles_visible ? "Yes" : "No",
           x);
@@ -5911,7 +5911,7 @@ gtk_sheet_set_scroll_adjustments(GtkSheet *sheet, GtkAdjustment *hadjustment,
                                                   GtkAdjustment *vadjustment)
 {
 #if GTK_SHEET_DEBUG_SIGNALS > 0
-    fprintf(stderr,"SIGNAL set-scroll-adjustments %p", sheet);
+    fprintf(stderr,"SIGNAL set-scroll-adjustments %p\n", sheet);
 #endif
 
     if (sheet->hadjustment != hadjustment)
@@ -5995,7 +5995,7 @@ gtk_sheet_destroy_handler(GtkObject *object)
     if (sheet->button && GTK_IS_WIDGET(sheet->button)) {
 
 #if GTK_SHEET_DEBUG_REALIZE > 0
-      fprintf(stderr,"gtk_sheet_destroy: destroying button %p", sheet->button);
+      fprintf(stderr,"%s: destroying button %p\n", __func__, sheet->button);
 #endif
 
       gtk_widget_destroy(sheet->button);
@@ -6105,7 +6105,7 @@ gtk_sheet_realize_handler(GtkWidget *widget)
   _gtk_sheet_recalc_left_xpixels(sheet);
 
 #if GTK_SHEET_DEBUG_REALIZE > 0
-  fprintf(stderr,"gtk_sheet_realize_handler: called (%p)", sheet->sheet_entry);
+  fprintf(stderr,"%s: called (%p)\n", __func__, sheet->sheet_entry);
 #endif
 
   gtk_widget_set_realized_true(GTK_WIDGET(widget));
@@ -7781,21 +7781,21 @@ gtk_sheet_set_cell(GtkSheet *sheet, int row, int col,
       }
 
 #if GTK_SHEET_DEBUG_SET_CELL_TEXT > 0
-	fprintf(stderr,"gtk_sheet_set_cell[%p]: r %d c %d ar %d ac %d <%s>",
-	    sheet, row, col, sheet->active_cell.row, sheet->active_cell.col, text);
+      fprintf(stderr,"%s[%p]: r %d c %d ar %d ac %d <%s>\n", __func__,
+              sheet, row, col, sheet->active_cell.row, sheet->active_cell.col, text);
 #endif
 
       cell->text = g_strdup(text);
     }
 
 #if 0 && GTK_SHEET_DEBUG_SET_CELL_TIMER > 0
-    fprintf(stderr,"st2: %0.6f", g_timer_elapsed(tm, NULL));
+    fprintf(stderr,"st2: %0.6f\n", g_timer_elapsed(tm, NULL));
 #endif
 
     _gtk_sheet_update_extent(sheet, cell, row, col);
 
 #if GTK_SHEET_DEBUG_SET_CELL_TIMER > 0
-    fprintf(stderr,"st3: %0.6f", g_timer_elapsed(tm, NULL));
+    fprintf(stderr,"st3: %0.6f\n", g_timer_elapsed(tm, NULL));
 #endif
 
     if (attributes.is_visible) {
@@ -7808,7 +7808,7 @@ gtk_sheet_set_cell(GtkSheet *sheet, int row, int col,
       if (row == sheet->active_cell.row && col == sheet->active_cell.col)
       {
 #if GTK_SHEET_DEBUG_SET_CELL_TEXT > 0
-	    fprintf(stderr,"gtk_sheet_set_cell[%p]: update sheet entry");
+        fprintf(stderr,"%s[%p]: update sheet entry", __func__);
 #endif
         gtk_sheet_set_entry_text(sheet, text);  /* PR#104553 */
       }
@@ -7826,7 +7826,7 @@ gtk_sheet_set_cell(GtkSheet *sheet, int row, int col,
             if (new_width != colptr->width) {
 
 #if GTK_SHEET_DEBUG_SIZE > 0
-			fprintf(stderr,"gtk_sheet_set_cell[%d]: set col width %d", col, new_width);
+              fprintf(stderr,"%s[%d]: set col width %d", __func__, col, new_width);
 #endif
               gtk_sheet_set_column_width(sheet, col, new_width);
               GTK_SHEET_SET_FLAGS(sheet, GTK_SHEET_IN_REDRAW_PENDING);
@@ -7842,7 +7842,7 @@ gtk_sheet_set_cell(GtkSheet *sheet, int row, int col,
             if (new_height != rowptr->height) {
 
 #if GTK_SHEET_DEBUG_SIZE > 0
-			fprintf(stderr,"gtk_sheet_set_cell[%d]: set row height %d", row, new_height);
+              fprintf(stderr,"%s [%d]: set row height %d", __func__, row, new_height);
 #endif
               gtk_sheet_set_row_height(sheet, row, new_height);
               GTK_SHEET_SET_FLAGS(sheet, GTK_SHEET_IN_REDRAW_PENDING);
@@ -7873,7 +7873,7 @@ gtk_sheet_set_cell(GtkSheet *sheet, int row, int col,
     g_signal_emit(G_OBJECT(sheet), sheet_signals[CHANGED], 0, row, col);
 
 #if GTK_SHEET_DEBUG_SET_CELL_TIMER > 0
-    fprintf(stderr,"st9: %0.6f", g_timer_elapsed(tm, NULL));
+    fprintf(stderr," st9: %0.6f\n", g_timer_elapsed(tm, NULL));
     g_timer_destroy(tm);
 #endif
 }
@@ -7991,7 +7991,7 @@ gtk_sheet_real_cell_clear(GtkSheet *sheet, int row, int column, int delete)
     gtk_sheet_cell_finalize(sheet, cell);
 
 #if GTK_SHEET_DEBUG_ALLOCATION > 0
-    fprintf(stderr,"%s: freeing %d %d", __func__, row, column);
+    fprintf(stderr,"%s: freeing %d %d\n", __func__, row, column);
 #endif
 
     g_free(cell);
