@@ -2,6 +2,8 @@
 
     * po/af.po: update Afrikaans translations.
 
+    * src/gtksheet/gtksheet.c: Change default sheet name "GtkSheet" -> "Sheet".
+
 2016-12-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gattrib.c: Add conditional directive DEBUG_GEDA_LABEL to call

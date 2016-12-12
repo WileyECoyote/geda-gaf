@@ -1525,12 +1525,12 @@ gtk_sheet_get_type(void)
 	};
 
 	sheet_type = g_type_register_static(gtk_container_get_type(),
-	    "GtkSheet",
-	    &sheet_info,
-	    0);
+                                        "GtkSheet",
+                                        &sheet_info,
+                                        0);
 
 	g_type_add_interface_static(sheet_type, GTK_TYPE_BUILDABLE,
-	    &interface_info);
+                                &interface_info);
     }
     return (sheet_type);
 }
@@ -1955,10 +1955,11 @@ gtk_sheet_class_init_properties(GObjectClass *gobject_class)
      *
      * The sheets title string
      */
-    pspec = g_param_spec_string("title", "Sheet title",
-	"The sheets title string",
-	"GtkSheet" /* default value */,
-	G_PARAM_READWRITE);
+    pspec = g_param_spec_string("title",
+                                "Sheet title",
+                                "The sheets title string",
+                                "Sheet" /* default value */,
+                                G_PARAM_READWRITE);
     g_object_class_install_property(gobject_class, PROP_GTK_SHEET_TITLE, pspec);
 
     /**
@@ -3166,7 +3167,7 @@ gtk_sheet_init(GtkSheet *sheet)
     gtk_widget_set_can_focus(GTK_WIDGET(sheet), TRUE);
 
     /* for glade to be able to construct the object, we need to complete initialization here */
-    //gtk_sheet_construct(sheet, 0, 0, "GtkSheet");
+    //gtk_sheet_construct(sheet, 0, 0, "Sheet");
 
     g_signal_connect(G_OBJECT(sheet),
                      "query-tooltip",
