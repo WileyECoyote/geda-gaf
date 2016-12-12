@@ -81,18 +81,17 @@ void x_gtksheet_destroy_all() {
 
       if (GTK_IS_SHEET (sheets[i])) {
         gtk_widget_destroy ((GtkWidget*)sheets[i]);
-        sheets[i]=NULL;
       }
     }
   }
 
   g_free(sheets);
+  sheets = NULL;
 
   if (popup) {
 
-    /* This would only occurif the user views the context menu without
-     * selecting an item, otherwise the callack would have destroyed
-     * the popup menu */
+    /* Only occurs if user views the context menu without selecting
+     * an item, otherwise the callack would have destroyed the popup */
     gtk_widget_destroy (GTK_WIDGET(popup));
     g_object_unref (popup);
     popup = NULL;

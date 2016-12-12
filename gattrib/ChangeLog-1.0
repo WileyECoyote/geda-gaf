@@ -3,6 +3,9 @@
     * src/gattrib.c: Add conditional directive DEBUG_GEDA_LABEL to call
       geda_label_get_report_instances.
 
+    * src/x_gtksheet.c: Remove setting of individual sheet pointers to NULL
+      and set the pointer to the pointers to NULL in x_gtksheet_destroy_all.
+
 2016-12-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheet.c: Remove validation if gobject in function
