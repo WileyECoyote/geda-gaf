@@ -6092,8 +6092,8 @@ gtk_sheet_realize_handler(GtkWidget *widget)
   GdkGCValues    auxvalues;
   int            attributes_mask;
 
-  g_return_if_fail(widget != NULL);
-  g_return_if_fail(GTK_IS_SHEET(widget));
+  //g_return_if_fail(widget != NULL);
+  //g_return_if_fail(GTK_IS_SHEET(widget));
 
   sheet = GTK_SHEET(widget);
 
@@ -6416,16 +6416,15 @@ gtk_sheet_unrealize_handler(GtkWidget *widget)
 static void
 gtk_sheet_map_handler(GtkWidget *widget)
 {
+  //g_return_if_fail(widget != NULL);
+  //g_return_if_fail(GTK_IS_SHEET(widget));
   GList    *children;
   GtkSheet *sheet;
-
-  g_return_if_fail(widget != NULL);
-  g_return_if_fail(GTK_IS_SHEET(widget));
 
   sheet = GTK_SHEET(widget);
 
 #if GTK_SHEET_DEBUG_EXPOSE > 0
-  fprintf(stderr,"gtk_sheet_map_handler: called");
+  fprintf(stderr,"%s: called\n", __func__);
 #endif
 
   if (!gtk_widget_get_mapped(widget)) {
@@ -6502,16 +6501,15 @@ gtk_sheet_map_handler(GtkWidget *widget)
 static void
 gtk_sheet_unmap_handler(GtkWidget *widget)
 {
+  //g_return_if_fail(widget != NULL);
+  //g_return_if_fail(GTK_IS_SHEET(widget));
   GList    *children;
   GtkSheet *sheet;
-
-  g_return_if_fail(widget != NULL);
-  g_return_if_fail(GTK_IS_SHEET(widget));
 
   sheet = GTK_SHEET(widget);
 
 #if GTK_SHEET_DEBUG_DRAW > 0
-  fprintf(stderr,"gtk_sheet_unmap: called");
+  fprintf(stderr,"%s: called\n", __func__);
 #endif
 
   if (gtk_widget_get_mapped(widget)) {

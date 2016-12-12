@@ -3,6 +3,8 @@
     * po/af.po: update Afrikaans translations.
 
     * src/gtksheet/gtksheet.c: Change default sheet name "GtkSheet" -> "Sheet".
+      Remove validations of widget in functions gtk_sheet_realize_handler and
+      gtk_sheet_unrealize_handler.
 
 2016-12-11 Wiley E. Hill <wileyhill@gmail.com>
 
