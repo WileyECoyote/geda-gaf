@@ -12397,20 +12397,6 @@ create_sheet_entry(GtkSheet *sheet, GType new_entry_type)
 	fprintf(stderr,"create_sheet_entry: got new_entry %p", new_entry);
 #endif
 
-    /* connect focus signal propagation handlers */
-    g_signal_connect_swapped(new_entry, "focus-in-event",
-	G_CALLBACK(sheet_entry_focus_in_handler), sheet);
-    g_signal_connect_swapped(new_entry, "focus-out-event",
-	G_CALLBACK(sheet_entry_focus_out_handler), sheet);
-
-    if (GTK_IS_ENTRY(new_entry) ||
-        GTK_IS_DATA_TEXT_VIEW(new_entry) ||
-        GTK_IS_TEXT_VIEW(new_entry))
-    {
-	g_signal_connect_swapped(new_entry, "populate-popup",
-	    G_CALLBACK(sheet_entry_populate_popup_handler), sheet);
-    }
-
     sheet->installed_entry_type = new_entry_type;
     sheet->sheet_entry = new_entry;
     entry = gtk_sheet_get_entry(sheet);
@@ -12425,6 +12411,21 @@ create_sheet_entry(GtkSheet *sheet, GType new_entry_type)
       sheet->installed_entry_type = G_TYPE_ITEM_ENTRY;
     }
     g_object_ref_sink(sheet->sheet_entry);
+
+    /* connect focus signal propagation handlers */
+    g_signal_connect_swapped(new_entry, "focus-in-event",
+                             G_CALLBACK(sheet_entry_focus_in_handler), sheet);
+    g_signal_connect_swapped(new_entry, "focus-out-event",
+                             G_CALLBACK(sheet_entry_focus_out_handler), sheet);
+
+    if (GTK_IS_ENTRY(new_entry) ||
+        GTK_IS_DATA_TEXT_VIEW(new_entry) ||
+        GTK_IS_TEXT_VIEW(new_entry))
+    {
+      g_signal_connect_swapped(new_entry, "populate-popup",
+                               G_CALLBACK(sheet_entry_populate_popup_handler),
+                               sheet);
+    }
 
 #if GTK_SHEET_DEBUG_FINALIZE > 0
     g_object_weak_ref(G_OBJECT(sheet->sheet_entry), weak_notify, "Sheet-Entry");
