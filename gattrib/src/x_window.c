@@ -642,6 +642,7 @@ void x_window_grid_toggle(GtkToggleAction *action, GtkWindow *main_window)
  */
 void x_window_release_all(void)
 {
+  x_toolbar_release_all();
   x_menu_release_all();
 
   /* edit_box contains entry and location */

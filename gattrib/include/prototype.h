@@ -260,6 +260,7 @@ void  x_menu_release_all(void);
 /* ------------- x_toolbars.c ------------- */
 void  x_toolbars_init(GtkWidget *parent_container);
 void  x_toolbar_set_sensitivities(GSList *ListToolBarItems, int sensitive);
+void  x_toolbar_release_all(void);
 
 /* ------------- x_window.c ------------- */
 void  x_window_update_title(GedaToplevel *toplevel, PageDataSet *PageData);

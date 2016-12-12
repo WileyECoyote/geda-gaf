@@ -10,7 +10,10 @@
       action groups; remove and unreference each group; remove and unreference
       each action in each group.
 
-    * src/x_window.c: Call function x_menu_release_all in x_window_release_all.
+    * src/x_toolbars.c: Add function x_toolbar_release_all.
+
+    * src/x_window.c: Call function x_menu_release_all and x_toolbar_release_all
+      in x_window_release_all.
 
 2016-12-10 Wiley E. Hill <wileyhill@gmail.com>
 
