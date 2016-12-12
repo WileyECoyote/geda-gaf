@@ -642,10 +642,10 @@ void x_window_grid_toggle(GtkToggleAction *action, GtkWindow *main_window)
  */
 void x_window_release_all(void)
 {
+  x_menu_release_all();
+
   /* edit_box contains entry and location */
   gtk_widget_destroy (entry);
   gtk_widget_destroy (location);
   gtk_widget_destroy (edit_box);
-  g_object_unref (recent_manager);
-  g_object_unref (menu_manager);
 }

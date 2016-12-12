@@ -6,6 +6,11 @@
     * src/x_gtksheet.c: Remove setting of individual sheet pointers to NULL
       and set the pointer to the pointers to NULL in x_gtksheet_destroy_all.
 
+    * src/x_menus.c: Add function x_menu_release_all to retrieve and loop over
+      action groups; remove and unreference each group.
+
+    * src/x_window.c: Call function x_menu_release_all in x_window_release_all.
+
 2016-12-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheet.c: Remove validation if gobject in function

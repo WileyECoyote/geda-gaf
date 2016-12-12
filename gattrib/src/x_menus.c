@@ -612,3 +612,24 @@ GtkWidget* x_menu_create_menu(GtkWindow *main_window)
   }
   return menubar; /* WEH: Does this really get saved? */
 }
+
+void x_menu_release_all(void)
+{
+  GList *groups;
+
+  groups = gtk_ui_manager_get_action_groups (menu_manager);
+
+  while (groups) {
+
+      GtkActionGroup *action_group = groups->data;
+
+      gtk_ui_manager_remove_action_group(menu_manager, action_group);
+
+      g_object_unref(action_group);
+
+      groups = gtk_ui_manager_get_action_groups (menu_manager);
+  }
+
+  g_object_unref (recent_manager);
+  g_object_unref (menu_manager);
+}

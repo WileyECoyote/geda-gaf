@@ -255,6 +255,7 @@ void  x_menus_set_sensitivities(GSList *ListMenuItems, int sensitive);
 void  x_menu_fix_gtk_recent_submenu();
 GtkActionGroup* x_menu_create_recent_action_group(void);
 GtkWidget* x_menu_create_menu(GtkWindow *window);
+void  x_menu_release_all(void);
 
 /* ------------- x_toolbars.c ------------- */
 void  x_toolbars_init(GtkWidget *parent_container);
