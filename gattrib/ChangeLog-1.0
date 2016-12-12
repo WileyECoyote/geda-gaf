@@ -1,3 +1,7 @@
+2016-12-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/af.po: update Afrikaans translations.
+
 2016-12-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gattrib.c: Add conditional directive DEBUG_GEDA_LABEL to call
