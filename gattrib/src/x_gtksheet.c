@@ -754,7 +754,7 @@ void x_gtksheet_init(PageDataSet *PageData)
  *  \param list_head Top of the string list
  */
 void x_gtksheet_add_row_labels(GtkSheet *sheet, int count,
-			       STRING_LIST *list_head)
+                               STRING_LIST *list_head)
 {
   STRING_LIST *string_list_item;
 
