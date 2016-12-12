@@ -4,7 +4,8 @@
 
     * src/gtksheet/gtksheet.c: Change default sheet name "GtkSheet" -> "Sheet".
       Remove validations of widget in functions gtk_sheet_realize_handler and
-      gtk_sheet_unrealize_handler.
+      gtk_sheet_unrealize_handler. Reduce the scope of sheet and children in
+      gtk_sheet_map_handler and gtk_sheet_unmap_handler.
 
 2016-12-11 Wiley E. Hill <wileyhill@gmail.com>
 

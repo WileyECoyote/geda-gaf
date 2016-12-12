@@ -6418,10 +6418,6 @@ gtk_sheet_map_handler(GtkWidget *widget)
 {
   //g_return_if_fail(widget != NULL);
   //g_return_if_fail(GTK_IS_SHEET(widget));
-  GList    *children;
-  GtkSheet *sheet;
-
-  sheet = GTK_SHEET(widget);
 
 #if GTK_SHEET_DEBUG_EXPOSE > 0
   fprintf(stderr,"%s: called\n", __func__);
@@ -6429,7 +6425,11 @@ gtk_sheet_map_handler(GtkWidget *widget)
 
   if (!gtk_widget_get_mapped(widget)) {
 
+    GList     *children;
+    GtkSheet  *sheet;
     GtkWidget *WdChild;
+
+    sheet = GTK_SHEET(widget);
 
     gtk_widget_set_mapped_true(GTK_WIDGET(widget));
 
@@ -6503,16 +6503,17 @@ gtk_sheet_unmap_handler(GtkWidget *widget)
 {
   //g_return_if_fail(widget != NULL);
   //g_return_if_fail(GTK_IS_SHEET(widget));
-  GList    *children;
-  GtkSheet *sheet;
-
-  sheet = GTK_SHEET(widget);
 
 #if GTK_SHEET_DEBUG_DRAW > 0
   fprintf(stderr,"%s: called\n", __func__);
 #endif
 
   if (gtk_widget_get_mapped(widget)) {
+
+    GList    *children;
+    GtkSheet *sheet;
+
+    sheet = GTK_SHEET(widget);
 
     gtk_widget_set_mapped_false(GTK_WIDGET(widget));
 
