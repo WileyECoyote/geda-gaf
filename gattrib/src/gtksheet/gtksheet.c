@@ -14967,6 +14967,9 @@ GrowSheet(GtkSheet *tbl, int newrows, int newcols)
 
       tbl->data[r] = (GtkSheetCell**)
       g_malloc((tbl->maxcol + 1)*sizeof(GtkSheetCell*)+sizeof(double));
+      if (r == 0)
+        g_free(tbl->data[0]);
+
 
       for (c = 0; c < inicol; c++) {
         tbl->data[r][c] = NULL;

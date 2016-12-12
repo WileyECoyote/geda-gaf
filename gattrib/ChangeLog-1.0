@@ -8,7 +8,8 @@
       gtk_sheet_map_handler and gtk_sheet_unmap_handler. Revise create_sheet_
       entry to not connect signal handlers until after the widget has verified.
       Add function destroy_sheet_entry and call from gtk_sheet_destroy_handler
-      and create_sheet_entry.
+      and create_sheet_entry. Fix leak by revising function GrowSheet to not
+      over-write sheet->data[0] without releasing the prior allocation.
 
 2016-12-11 Wiley E. Hill <wileyhill@gmail.com>
 
