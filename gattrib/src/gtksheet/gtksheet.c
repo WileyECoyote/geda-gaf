@@ -5968,6 +5968,31 @@ gtk_sheet_finalize_handler(GObject *object)
 }
 
 /*
+ * helper called by:
+ * gtk_sheet_destroy_handler
+ * create_sheet_entry
+ */
+static void
+destroy_sheet_entry(GtkSheet *sheet)
+{
+    if (sheet->sheet_entry) {
+
+      /* avoids warnings */
+      g_object_ref(sheet->sheet_entry);
+      gtk_widget_unparent(sheet->sheet_entry);
+
+#if GTK_SHEET_DEBUG_ENTRY > 0
+      fprintf(stderr,"%s: destroying old entry %p\n", __func__, sheet->sheet_entry);
+#endif
+
+      gtk_widget_destroy(sheet->sheet_entry);
+      g_object_unref(sheet->sheet_entry);
+      g_object_unref(sheet->sheet_entry);
+      sheet->sheet_entry = NULL;
+    }
+}
+
+/*
  * gtk_sheet_destroy_handler:
  *
  * this is the #GtkSheet object class "finalize" handler
@@ -5986,10 +6011,7 @@ gtk_sheet_destroy_handler(GtkObject *object)
     sheet = GTK_SHEET(object);
 
     /* destroy the entry */
-    if (sheet->sheet_entry && GTK_IS_WIDGET(sheet->sheet_entry)) {
-      gtk_widget_destroy(sheet->sheet_entry);
-      sheet->sheet_entry = NULL;
-    }
+    destroy_sheet_entry(sheet);
 
     /* destroy the global selection button */
     if (sheet->button && GTK_IS_WIDGET(sheet->button)) {
@@ -12372,17 +12394,7 @@ create_sheet_entry(GtkSheet *sheet, GType new_entry_type)
 
     //style = gtk_style_copy(gtk_widget_get_style(GTK_WIDGET(sheet)));
 
-    if (sheet->sheet_entry)
-    {
-	/* avoids warnings */
-	g_object_ref(sheet->sheet_entry);
-	gtk_widget_unparent(sheet->sheet_entry);
-#if GTK_SHEET_DEBUG_ENTRY > 0
-	fprintf(stderr,"create_sheet_entry: destroying old entry %p", sheet->sheet_entry);
-#endif
-	gtk_widget_destroy(sheet->sheet_entry);
-	sheet->sheet_entry = NULL;
-    }
+    destroy_sheet_entry(sheet);
 
     if (new_entry_type == G_TYPE_NONE) new_entry_type = G_TYPE_ITEM_ENTRY;
 
@@ -12404,10 +12416,11 @@ create_sheet_entry(GtkSheet *sheet, GType new_entry_type)
     if (!entry)  { /* this was an unsupported entry type */
 
       g_warning("Unsupported entry type - widget must contain an GtkEditable or GtkTextView");
-      gtk_widget_destroy(new_entry);
 
-      new_entry = gtk_item_entry_new();
-      sheet->sheet_entry = new_entry;
+      destroy_sheet_entry(sheet);
+
+      new_entry                   = gtk_item_entry_new();
+      sheet->sheet_entry          = new_entry;
       sheet->installed_entry_type = G_TYPE_ITEM_ENTRY;
     }
     g_object_ref_sink(sheet->sheet_entry);
