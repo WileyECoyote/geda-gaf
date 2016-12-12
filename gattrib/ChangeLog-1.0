@@ -7,7 +7,8 @@
       and set the pointer to the pointers to NULL in x_gtksheet_destroy_all.
 
     * src/x_menus.c: Add function x_menu_release_all to retrieve and loop over
-      action groups; remove and unreference each group.
+      action groups; remove and unreference each group; remove and unreference
+      each action in each group.
 
     * src/x_window.c: Call function x_menu_release_all in x_window_release_all.
 
