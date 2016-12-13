@@ -296,9 +296,8 @@ void s_table_add_items_to_comp_table (const GList *obj_list) {
   bool is_attached;
 
   GedaObject  *a_current;
-  STRING_LIST *AttachedAttributes;
   const GList *o_iter;
-  GList       *a_iter;
+  const GList *a_iter;
 
   /* ----- Iterate through all objects found on page ----- */
   for (o_iter = obj_list; o_iter != NULL; o_iter = g_list_next (o_iter)) {
@@ -319,11 +318,13 @@ void s_table_add_items_to_comp_table (const GList *obj_list) {
             (strcmp (temp_uref, "pinlabel")))
         {
 
-          /* Having found a component, we loop over All ATTACHED attribs for this component,
-           * and stick them into cells in the table. */
+          STRING_LIST *AttachedAttributes;
+
+          /* Having found a component, loop over All ATTACHED attribs for
+           * this component, and stick them into cells in the table. */
           AttachedAttributes = s_string_list_new();
-          counter = 0;
-          a_iter = o_current->attribs; /* This gets a pointer to ATTACHED list of atrributes */
+          a_iter             = geda_object_get_attached(o_current);
+          counter            = 0;
 
           while (a_iter != NULL) {
 
@@ -344,45 +345,46 @@ void s_table_add_items_to_comp_table (const GList *obj_list) {
                   (strcmp(attrib_name, "net") != 0) &&
                   (strcmp(attrib_name, "slot") != 0)) {
 
-                  /* Get row and col where to put this attrib */
-                  row = s_table_get_index(sheet_head->master_comp_list_head, temp_uref);
-                  col = s_table_get_index(sheet_head->master_comp_attrib_list_head, attrib_name);
+                /* Get row and col where to put this attrib */
+                row = s_table_get_index(sheet_head->master_comp_list_head, temp_uref);
+                col = s_table_get_index(sheet_head->master_comp_attrib_list_head, attrib_name);
 
-                  /* Sanity check */
-                  if (row == -1) {
-                    /* we didn't find the item in the table */
-                    fprintf (stderr, _("Component Error looking for row ref [%s]\n"), temp_uref);
+                /* Sanity check */
+                if (row == -1) {
+                  /* we didn't find the item in the table */
+                  fprintf (stderr, _("Component Error looking for row ref [%s]\n"), temp_uref);
+                }
+                else {
+
+                  if (col == -1) {
+                    fprintf (stderr, _("Component Error looking for column named [%s]\n"), attrib_name);
                   }
                   else {
-
-                    if (col == -1) {
-                      fprintf (stderr, _("Component Error looking for column named [%s]\n"), attrib_name);
-                    }
-                    else {
-                      /* Is there a compelling reason to put this into a separate fcn? */
-                      ((sheet_head->component_table)[col][row]).row = row;
-                      ((sheet_head->component_table)[col][row]).col = col;
-                      ((sheet_head->component_table)[col][row]).row_name = geda_strdup(temp_uref);
-                      ((sheet_head->component_table)[col][row]).col_name = geda_strdup(attrib_name);
-                      ((sheet_head->component_table)[col][row]).attrib_value = geda_strdup(attrib_value);
-                      ((sheet_head->component_table)[col][row]).visibility = old_visibility;
-                      ((sheet_head->component_table)[col][row]).show_name_value = old_show_name_value;
-                      ((sheet_head->component_table)[col][row]).is_inherited = FALSE;
-                      ((sheet_head->component_table)[col][row]).is_promoted = -1;
-                      s_string_list_add_item(AttachedAttributes, &counter, geda_strdup(attrib_name));
-                      counter++;
-                    }
+                    /* Is there a compelling reason to put this into a separate fcn? */
+                    ((sheet_head->component_table)[col][row]).row             = row;
+                    ((sheet_head->component_table)[col][row]).col             = col;
+                    ((sheet_head->component_table)[col][row]).row_name        = geda_strdup(temp_uref);
+                    ((sheet_head->component_table)[col][row]).col_name        = geda_strdup(attrib_name);
+                    ((sheet_head->component_table)[col][row]).attrib_value    = geda_strdup(attrib_value);
+                    ((sheet_head->component_table)[col][row]).visibility      = old_visibility;
+                    ((sheet_head->component_table)[col][row]).show_name_value = old_show_name_value;
+                    ((sheet_head->component_table)[col][row]).is_inherited    = FALSE;
+                    ((sheet_head->component_table)[col][row]).is_promoted     = -1;
+                    s_string_list_add_item(AttachedAttributes, &counter, geda_strdup(attrib_name));
+                    counter++;
                   }
                 }
-                GEDA_FREE(attrib_name);
-                GEDA_FREE(attrib_text);
-                GEDA_FREE(attrib_value);
+              }
+              GEDA_FREE(attrib_name);
+              GEDA_FREE(attrib_text);
+              GEDA_FREE(attrib_value);
             }
             a_iter = g_list_next (a_iter);
           } /* while (a_iter != NULL) */
 
           /* Do it again but this time for ALL attributes associated with this component */
           a_iter = geda_attrib_return_attribs (o_current);
+
           while (a_iter != NULL) {
 
             a_current   = a_iter->data;

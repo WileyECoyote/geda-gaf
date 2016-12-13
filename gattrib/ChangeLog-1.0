@@ -4,6 +4,9 @@
       to improve readability. Add more line-endings in debug output and adjust
       indentations.
 
+    * src/s_table.c: Use accessor geda_object_get_attached to get the list of
+      attached attributes in s_table_add_items_to_comp_table.
+
     * src/s_toplevel.c: Eliminated over-writing of the current page filename in
       s_toplevel_read_page.
 
