@@ -9,7 +9,7 @@
 
     * src/x_menus.c: Remove the acceleration group from the main window in
       x_menu_release_all, rename actions->action_list and iterate the list and
-      the free the list.
+      the free the list, unreference accel_group.
 
 2016-12-12 Wiley E. Hill <wileyhill@gmail.com>
 

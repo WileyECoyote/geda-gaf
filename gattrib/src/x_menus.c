@@ -638,6 +638,8 @@ void x_menu_release_all(void)
 
         gtk_action_group_remove_action(action_group, action);
 
+        g_object_set (action, "stock-id", NULL, NULL);
+
         g_object_unref(action);
 
         action_list = action_list->next;
@@ -651,7 +653,7 @@ void x_menu_release_all(void)
 
       groups = gtk_ui_manager_get_action_groups (menu_manager);
   }
-
+  g_object_unref (accel_group);
   g_object_unref (recent_manager);
   g_object_unref (menu_manager);
 }
