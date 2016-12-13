@@ -4,6 +4,9 @@
       to improve readability. Add more line-endings in debug output and adjust
       indentations.
 
+    * src/s_string_list.c: Revise function s_string_list_free to release the
+      actual strlist allocated in s_string_list_new.
+
     * src/s_table.c: Use accessor geda_object_get_attached to get the list of
       attached attributes in s_table_add_items_to_comp_table.
 

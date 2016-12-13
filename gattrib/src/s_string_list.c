@@ -57,19 +57,19 @@ STRING_LIST *s_string_list_new() {
 
 void s_string_list_free(STRING_LIST *strlist)
 {
-  if (strlist != NULL) {
+  STRING_LIST *s_iter = strlist;
 
-    while (strlist != NULL) {
+  while (s_iter != NULL) {
 
-      char *data = strlist->data;
+    char *data = s_iter->data;
 
-      if (data != NULL) {
-        GEDA_FREE(data);
-      }
-
-      strlist = strlist->next;
+    if (data != NULL) {
+      GEDA_FREE(data);
     }
+
+    s_iter = s_iter->next;
   }
+  GEDA_FREE(strlist);
 
   return;
 }
