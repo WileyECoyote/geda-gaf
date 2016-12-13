@@ -4,6 +4,9 @@
       to improve readability. Add more line-endings in debug output and adjust
       indentations.
 
+    * src/x_menus.c: Remove the acceleration group from the main window in
+      x_menu_release_all.
+
 2016-12-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: update Afrikaans translations.

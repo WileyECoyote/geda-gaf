@@ -615,7 +615,12 @@ GtkWidget* x_menu_create_menu(GtkWindow *main_window)
 
 void x_menu_release_all(void)
 {
-  GList *groups;
+  GtkAccelGroup *accel_group;
+  GList         *groups;
+
+  accel_group = gtk_ui_manager_get_accel_group(menu_manager);
+
+  gtk_window_remove_accel_group ((GtkWindow*)main_window, accel_group);
 
   groups = gtk_ui_manager_get_action_groups (menu_manager);
 
