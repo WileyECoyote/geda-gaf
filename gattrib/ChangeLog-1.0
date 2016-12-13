@@ -4,6 +4,9 @@
       to improve readability. Add more line-endings in debug output and adjust
       indentations.
 
+    * src/s_toplevel.c: Eliminated over-writing of the current page filename in
+      s_toplevel_read_page.
+
     * src/x_menus.c: Remove the acceleration group from the main window in
       x_menu_release_all.
 

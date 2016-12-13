@@ -69,9 +69,6 @@ int s_toplevel_read_page(GedaToplevel *toplevel, char *filename)
   GError *err = NULL;
   int result;
 
-  /* Set the new filename */
-  toplevel->page_current->filename = geda_strdup(filename);
-
   /* Read in and fill out toplevel using geda_open_file and its callees */
   if(!geda_open_file (toplevel, toplevel->page_current, filename, &err)) {
     geda_log ("%s\n", err->message);
