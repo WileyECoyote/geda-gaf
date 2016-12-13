@@ -14965,26 +14965,26 @@ GrowSheet(GtkSheet *tbl, int newrows, int newcols)
 
     for (r = inirow; r <= tbl->maxallocrow; r++) {
 
-      tbl->data[r] = (GtkSheetCell**)
-      g_malloc((tbl->maxcol + 1)*sizeof(GtkSheetCell*)+sizeof(double));
+      int size = (tbl->maxcol + 1)*sizeof(GtkSheetCell*)+sizeof(double);
+
       if (r == 0)
         g_free(tbl->data[0]);
 
+      tbl->data[r] = (GtkSheetCell**)g_malloc(size);
 
       for (c = 0; c < inicol; c++) {
         tbl->data[r][c] = NULL;
       }
     }
-
   }
 
   if (newcols > 0) {
 
     for (r = 0; r <= tbl->maxallocrow; r++) {
 
-      tbl->data[r] = (GtkSheetCell **)
+      int size = (tbl->maxalloccol + 1)*sizeof(GtkSheetCell*)+sizeof(double);
 
-      g_realloc(tbl->data[r], (tbl->maxalloccol + 1)*sizeof(GtkSheetCell*)+sizeof(double));
+      tbl->data[r] = (GtkSheetCell**)g_realloc(tbl->data[r], size);
 
       for (c = inicol; c <= tbl->maxalloccol; c++) {
         tbl->data[r][c] = NULL;
