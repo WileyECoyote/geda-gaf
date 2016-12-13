@@ -628,11 +628,11 @@ void x_menu_release_all(void)
 
       GtkActionGroup *action_group = groups->data;
 
-      GList *actions = gtk_action_group_list_actions (action_group);
+      GList *action_list = gtk_action_group_list_actions (action_group);
 
-      while (actions) {
+      while (action_list) {
 
-        GtkAction *action = actions->data;
+        GtkAction *action = action_list->data;
 
         gtk_action_disconnect_accelerator(action);
 
@@ -640,8 +640,10 @@ void x_menu_release_all(void)
 
         g_object_unref(action);
 
-        actions = gtk_action_group_list_actions (action_group);
+        action_list = action_list->next;
       }
+
+      g_list_free(action_list);
 
       gtk_ui_manager_remove_action_group(menu_manager, action_group);
 
