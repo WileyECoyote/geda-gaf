@@ -1,7 +1,8 @@
 2016-12-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheet.c: Calculate allocation size separately in GrowSheet
-      to improve readability.
+      to improve readability. Add more line-endings in debug output and adjust
+      indentations.
 
 2016-12-12 Wiley E. Hill <wileyhill@gmail.com>
 

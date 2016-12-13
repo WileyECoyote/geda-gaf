@@ -12389,29 +12389,30 @@ create_sheet_entry(GtkSheet *sheet, GType new_entry_type)
     //widget = GTK_WIDGET(sheet);
 
 #if GTK_SHEET_DEBUG_ENTRY > 0
-    fprintf(stderr,"create_sheet_entry: called");
+    fprintf(stderr,"%s: called\n", __func__);
 #endif
 
     //style = gtk_style_copy(gtk_widget_get_style(GTK_WIDGET(sheet)));
 
     destroy_sheet_entry(sheet);
 
-    if (new_entry_type == G_TYPE_NONE) new_entry_type = G_TYPE_ITEM_ENTRY;
+    if (new_entry_type == G_TYPE_NONE) {
+      new_entry_type = G_TYPE_ITEM_ENTRY;
+    }
 
 #if GTK_SHEET_DEBUG_ENTRY > 0
-	fprintf(stderr,"create_sheet_entry: new_entry type %s",
-	    g_type_name(new_entry_type));
+    fprintf(stderr,"%s: new_entry type %s\n", __func__,g_type_name(new_entry_type));
 #endif
 
     new_entry = gtk_widget_new(new_entry_type, NULL);
 
 #if GTK_SHEET_DEBUG_ENTRY > 0
-	fprintf(stderr,"create_sheet_entry: got new_entry %p", new_entry);
+	fprintf(stderr,"%s: created new_entry %p\n", __func__, new_entry);
 #endif
 
     sheet->installed_entry_type = new_entry_type;
-    sheet->sheet_entry = new_entry;
-    entry = gtk_sheet_get_entry(sheet);
+    sheet->sheet_entry          = new_entry;
+    entry                       = gtk_sheet_get_entry(sheet);
 
     if (!entry)  { /* this was an unsupported entry type */
 
@@ -12449,16 +12450,17 @@ create_sheet_entry(GtkSheet *sheet, GType new_entry_type)
       gtk_widget_size_request(sheet->sheet_entry, NULL);
 
 #if GTK_SHEET_DEBUG_ENTRY > 0
-      fprintf(stderr,"create_sheet_entry: sheet was realized");
+      fprintf(stderr,"%s: sheet was realized", __func__);
 #endif
+
       gtk_widget_set_parent_window(sheet->sheet_entry, sheet->sheet_window);
       gtk_widget_set_parent(sheet->sheet_entry, GTK_WIDGET(sheet));
       gtk_widget_realize(sheet->sheet_entry);
     }
 
     g_signal_connect_swapped(G_OBJECT(entry), "key_press_event",
-	(void *)gtk_sheet_entry_key_press_handler,
-	G_OBJECT(sheet));
+                             (void *)gtk_sheet_entry_key_press_handler,
+                             G_OBJECT(sheet));
 
     gtk_widget_show(sheet->sheet_entry);
 }
@@ -12492,7 +12494,7 @@ gtk_sheet_get_entry_type(GtkSheet *sheet)
  * the container itself to be returned, you should use
  * #gtk_sheet_get_entry_widget() instead.
  *
- * Returns: (transfer none) a GtkWidget or NULL
+ * \returns a GtkWidget or NULL
  */
 GtkWidget *
 gtk_sheet_get_entry(GtkSheet *sheet)
@@ -12507,47 +12509,50 @@ gtk_sheet_get_entry(GtkSheet *sheet)
     g_return_val_if_fail(GTK_IS_SHEET(sheet), NULL);
 
     if (!sheet->sheet_entry)   /* PR#102114 */
-	return(NULL);
+      return(NULL);
 
     if (GTK_IS_EDITABLE(sheet->sheet_entry))
-	return (sheet->sheet_entry);
+      return (sheet->sheet_entry);
+
     if (GTK_IS_DATA_TEXT_VIEW(sheet->sheet_entry))
-	return (sheet->sheet_entry);
+      return (sheet->sheet_entry);
+
     if (GTK_IS_TEXT_VIEW(sheet->sheet_entry))
-	return (sheet->sheet_entry);
+      return (sheet->sheet_entry);
 
     parent = GTK_WIDGET(sheet->sheet_entry);
 
     if (GTK_IS_TABLE(parent))
-	children = GTK_TABLE(parent)->children;
+      children = GTK_TABLE(parent)->children;
+
     if (GTK_IS_BOX(parent))
-	children = GTK_BOX(parent)->children;
+      children = GTK_BOX(parent)->children;
 
     if (!children)
-	return (NULL);
+      return (NULL);
 
-    while (children)
-    {
-	if (GTK_IS_TABLE(parent))
-	{
-	    table_child = children->data;
-	    entry = table_child->widget;
-	}
+    while (children) {
 
-	if (GTK_IS_BOX(parent))
-	{
-	    box_child = children->data;
-	    entry = box_child->widget;
-	}
+      if (GTK_IS_TABLE(parent)) {
+        table_child = children->data;
+        entry = table_child->widget;
+      }
 
-	if (GTK_IS_EDITABLE(entry))
-	    return (entry);
-	if (GTK_IS_DATA_TEXT_VIEW(entry))
-	    return (entry);
-	if (GTK_IS_TEXT_VIEW(entry))
-	    return (entry);
+      if (GTK_IS_BOX(parent)) {
+        box_child = children->data;
+        entry = box_child->widget;
+      }
 
-	children = children->next;
+      if (GTK_IS_EDITABLE(entry))
+        return (entry);
+
+      if (GTK_IS_DATA_TEXT_VIEW(entry))
+        return (entry);
+
+      if (GTK_IS_TEXT_VIEW(entry))
+        return (entry);
+
+      children = children->next;
     }
 
     return (NULL);
@@ -12600,26 +12605,23 @@ char *gtk_sheet_get_entry_text(GtkSheet *sheet)
     g_return_val_if_fail(GTK_IS_SHEET(sheet), NULL);
 
     if (!sheet->sheet_entry)   /* PR#102114 */
-	return(NULL);
+      return(NULL);
 
     entry = gtk_sheet_get_entry(sheet);
     g_return_val_if_fail(entry != NULL, NULL);
 
-    if (GTK_IS_EDITABLE(entry))
-    {
-	text = gtk_editable_get_chars(GTK_EDITABLE(entry), 0, -1);
+    if (GTK_IS_EDITABLE(entry)) {
+      text = gtk_editable_get_chars(GTK_EDITABLE(entry), 0, -1);
     }
-    else if ( GTK_IS_DATA_TEXT_VIEW(entry)
-	     || GTK_IS_TEXT_VIEW(entry) )
+    else if (GTK_IS_DATA_TEXT_VIEW(entry) || GTK_IS_TEXT_VIEW(entry))
     {
-	GtkTextIter start, end;
-	GtkTextBuffer *buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(entry));
-	gtk_text_buffer_get_bounds(buffer, &start, &end);
-	text = gtk_text_buffer_get_text(buffer, &start, &end, TRUE);
+      GtkTextIter start, end;
+      GtkTextBuffer *buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(entry));
+      gtk_text_buffer_get_bounds(buffer, &start, &end);
+      text = gtk_text_buffer_get_text(buffer, &start, &end, TRUE);
     }
-    else
-    {
-	g_warning("gtk_sheet_get_entry_text: no GTK_EDITABLE, don't know how to get the text.");
+    else {
+      g_warning("%s: no GTK_EDITABLE, don't know how to get the text.\n", __func__);
     }
     return (text);
 }
