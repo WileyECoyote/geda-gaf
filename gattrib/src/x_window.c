@@ -48,7 +48,7 @@
  */
 static void x_window_set_default_icon( void )
 {
-  gtk_window_set_default_icon_name( GATTRIB_THEME_ICON_NAME );
+  gtk_window_set_default_icon_name( GATTRIB_THEME_ICON_NAME);
 }
 
 /*! \brief Set or Update the Window Title
@@ -177,7 +177,7 @@ static void x_window_save_settings(void *data)
     /* Save the Window Geometry data */
     eda_config_set_integer (cfg, win_group, "window-x-position", x);
     eda_config_set_integer (cfg, win_group, "window-y-position", y);
-    eda_config_set_integer (cfg, win_group, "window-width",      width );
+    eda_config_set_integer (cfg, win_group, "window-width",      width);
     eda_config_set_integer (cfg, win_group, "window-height",     height);
   }
 }
@@ -286,7 +286,7 @@ void x_window_init()
 
   main_vbox = gtk_vbox_new(FALSE,1);
   gtk_container_set_border_width(GTK_CONTAINER(main_vbox), 1);
-  gtk_container_add(GTK_CONTAINER(main_window), GTK_WIDGET(main_vbox) );
+  gtk_container_add(GTK_CONTAINER(main_window), GTK_WIDGET(main_vbox));
   gtk_widget_show( GTK_WIDGET(main_vbox));
 
   /* -----  Now create menu bar  ----- */
@@ -385,14 +385,13 @@ void x_window_add_items(PageDataSet *PageData)
   /* ------ Comp sheet: put values in the individual cells ------- */
   for (col = 0; col < PageData->comp_attrib_count; col++) {
     for (row = 0; row < PageData->comp_count; row++) {
-      if ( (PageData->component_table)[col][row].attrib_value ) { /* NULL = no entry */
-        text = geda_utility_string_strdup( (PageData->component_table)[col][row].attrib_value );
-        visibility = (PageData->component_table)[col][row].visibility;
+      if ((PageData->component_table)[col][row].attrib_value ) { /* NULL = no entry */
+        text            = (PageData->component_table)[col][row].attrib_value;
+        visibility      = (PageData->component_table)[col][row].visibility;
         show_name_value = (PageData->component_table)[col][row].show_name_value;
-        is_inherited = (PageData->component_table)[col][row].is_inherited;
-        x_gtksheet_add_cell_item( GTK_SHEET(sheets[Components]), row, col, text,
+        is_inherited    = (PageData->component_table)[col][row].is_inherited;
+        x_gtksheet_add_cell_item(GTK_SHEET(sheets[Components]), row, col, text,
                                   visibility, show_name_value, is_inherited);
-        GEDA_FREE(text);
       }
     }
   }
@@ -400,12 +399,11 @@ void x_window_add_items(PageDataSet *PageData)
   /* ------ Net sheet: put values in the individual cells ------- */
   for (col = 0; col <PageData->net_attrib_count; col++) {
     for (row = 0; row < PageData->net_count; row++) {
-      if ( (PageData->net_table)[col][row].attrib_value ) { /* NULL = no entry */
-        text =  geda_utility_string_strdup( (PageData->net_table)[col][row].attrib_value );
-        visibility = (PageData->net_table)[col][row].visibility;
+      if ((PageData->net_table)[col][row].attrib_value ) { /* NULL = no entry */
+        text            = (PageData->net_table)[col][row].attrib_value;
+        visibility      = (PageData->net_table)[col][row].visibility;
         show_name_value = (PageData->component_table)[col][row].show_name_value;
-        x_gtksheet_add_cell_item( GTK_SHEET(sheets[1]), row, col, text, visibility, show_name_value, 0);
-        GEDA_FREE(text);
+        x_gtksheet_add_cell_item (GTK_SHEET(sheets[1]), row, col, text, visibility, show_name_value, 0);
       }
     }
   }
@@ -413,11 +411,10 @@ void x_window_add_items(PageDataSet *PageData)
   /* ------ Pin sheet: put pin attribs in the individual cells ------- */
   for (col = 0; col < PageData->pin_attrib_count; col++) {
     for (row = 0; row < PageData->pin_count; row++) {
-      if ( (PageData->pin_table)[col][row].attrib_value ) { /* NULL = no entry */
-        text = geda_utility_string_strdup( (PageData->pin_table)[col][row].attrib_value );
+      if ((PageData->pin_table)[col][row].attrib_value) { /* NULL = no entry */
+        text = (PageData->pin_table)[col][row].attrib_value;
         /* pins have no visibility attributes, must therefore provide default. */
         x_gtksheet_add_cell_item( GTK_SHEET(sheets[2]), row, col, text,  VISIBLE, SHOW_VALUE, 0);
-        GEDA_FREE(text);
       }
     }
   }

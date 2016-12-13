@@ -11,6 +11,10 @@
       x_menu_release_all, rename actions->action_list and iterate the list and
       the free the list, unreference accel_group.
 
+    * src/x_window.c: Revise x_window_add_items to pass the pointer to attribute
+      text directly to x_gtksheet_add_cell_item instead of allocating and freeing
+      each string since gtk_sheet_set_cell is going to make a copy anyways.
+
 2016-12-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: update Afrikaans translations.
