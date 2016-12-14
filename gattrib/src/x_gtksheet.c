@@ -696,9 +696,9 @@ void x_gtksheet_init(PageDataSet *PageData)
       /* Then add new, updated notebook page */
       GtkWidget *label= gtk_label_new(_(SheetNames[i]));
 
-      gtk_notebook_append_page(GTK_NOTEBOOK(notebook),
-                               GTK_WIDGET(scrolled_windows[i]),
-                               GTK_WIDGET(label) );
+      gtk_notebook_insert_page_menu (GTK_NOTEBOOK(notebook),
+                                     GTK_WIDGET(scrolled_windows[i]),
+                                     GTK_WIDGET(label), NULL, -1);
 
       sheets[i]->autoresize_columns = FALSE;
       sheets[i]->autoresize_rows = FALSE;
@@ -830,7 +830,9 @@ void x_gtksheet_add_col_labels(GtkSheet    *sheet,
     text  = string_list_item->data;
     width = strlen(text);
 
-    if (width < COLUMN_MIN_WIDTH) width = COLUMN_MIN_WIDTH;
+    if (width < COLUMN_MIN_WIDTH) {
+      width = COLUMN_MIN_WIDTH;
+    }
     gtk_sheet_set_column_width(sheet, j, char_width * width);
 
     gtk_sheet_column_button_add_label(sheet, j, text);
@@ -947,13 +949,15 @@ void x_gtksheet_add_cell_item(GtkSheet *sheet, int row, int col, char *text,
   int fgcolor;
 
   /* Auto resize up to limit */
-  if (( desired_width <= COLUMN_WIDTH_LIMIT) &&
-      ( desired_width > sheet->column[col]->width )) {
+  if ((desired_width <= COLUMN_WIDTH_LIMIT) &&
+      (desired_width > sheet->column[col]->width)) {
     gtk_sheet_set_column_width(sheet, col, desired_width);
   }
 
   gtk_sheet_set_cell(sheet, row, col, GTK_JUSTIFY_LEFT, text);
+
   fgcolor = s_properties_get_fgcolor_index(visibility, show_name_value, is_inherited);
+
   x_gtksheet_set_cell_fgcolor(sheet, row, col, fgcolor);
 }
 

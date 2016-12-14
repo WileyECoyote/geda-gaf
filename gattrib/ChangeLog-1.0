@@ -14,6 +14,9 @@
       to for loop in s_table_add_items_to_comp_table and release all_attribs,
       simplify control structure and eliminate reallocation of attrib_name.
 
+    * src/x_gtksheet.c: Replace gtk_notebook_append_page with gtk_notebook_
+      insert_page_menu.
+
 2016-12-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheet.c: Calculate allocation size separately in GrowSheet
