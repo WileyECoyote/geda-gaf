@@ -3,6 +3,10 @@
     * src/s_sheet_data.c: Reduce scope amd free of object_attribs in function
       s_sheet_data_add_master_comp_attrib_list_items, also reduce a_current.
 
+    * src/s_string_list.c: Revise s_string_list_add_item to not reallocate
+      strings when looping through list looking for duplicates and check that
+      the list data is not NULL before passing to strcmp in the conditional.
+
 2016-12-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheet.c: Calculate allocation size separately in GrowSheet

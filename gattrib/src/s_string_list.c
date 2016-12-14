@@ -138,7 +138,7 @@ void s_string_list_add_item(STRING_LIST *list, int *count, const char *item)
     list->data = geda_utility_string_strdup(item);
     list->next = NULL;
     list->prev = NULL;   /* this may have already been initialized. . . . */
-    list->pos  = *count; /* This enumerates the pos on the list.  Value is reset later by sorting. */
+    list->pos  = *count; /* This enumerates the pos on the list. Value is reset later by sorting. */
     (*count)++;          /* increment count to 1 */
     return;
   }
@@ -147,15 +147,12 @@ void s_string_list_add_item(STRING_LIST *list, int *count, const char *item)
   prev = list;
   while (list != NULL) {
 
-    char *trial_item = geda_utility_string_strdup(list->data);
+    char *trial_item = list->data;
 
-    if (strcmp(trial_item, item) == 0) {
+    if (trial_item && strcmp(trial_item, item) == 0) {
       /* Found item already in list.  Just return. */
-      GEDA_FREE(trial_item);
       return;
     }
-
-    GEDA_FREE(trial_item);
 
     prev = list;
     list = list->next;
@@ -171,9 +168,10 @@ void s_string_list_add_item(STRING_LIST *list, int *count, const char *item)
   prev->next = local_list;  /* make last item in old list point to this one. */
   local_list->pos = *count; /* This enumerates the pos on the list.  Value is reset later by sorting. */
   (*count)++;               /* increment count */
-  /*   list = local_list;  */
-  return;
 
+  /* list = local_list;  */
+
+  return;
 }
 
 /*------------------------------------------------------------------*/
