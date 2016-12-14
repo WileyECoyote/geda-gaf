@@ -212,10 +212,8 @@ s_object_replace_attrib_in_object(GedaToplevel *toplevel,
 
   /* if we get here, it is because we have failed to find the attrib on the
    * component, this is an error condition. */
-  fprintf(stderr,
-          _("%s, failed to find the attribute %s on the component. Exiting...\n"),
-            __func__, new_attrib_name);
-
+  fprintf(stderr, "%s: %s <%s>.", __func__, _("failed to find attribute"), new_attrib_name);
+  fprintf(stderr, " %s\n", _("Exiting..."));
   return;
 }
 
@@ -278,7 +276,7 @@ s_object_release_attrib_in_object (GedaToplevel *toplevel,
 
   /* if we get here, it's because we have failed to find the attrib on the component.
    * This is an error condition. */
-  BUG_MSG("failed to find the attrib");
+  BUG_MSG("failed to find the attrib: ");
   fprintf(stderr, "%s\n", new_attrib_name);
 }
 

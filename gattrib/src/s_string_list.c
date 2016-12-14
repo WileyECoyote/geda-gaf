@@ -128,7 +128,7 @@ void s_string_list_add_item(STRING_LIST *list, int *count, const char *item)
   STRING_LIST *local_list;
 
   if (list == NULL) {
-    fprintf(stderr, _("In s_string_list_add_item, tried to add to a NULL list.\n"));
+    fprintf(stderr, "%s: %s",  __func__, _("attempted to add to a NULL list.\n"));
     return;
   }
 
@@ -193,7 +193,7 @@ void s_string_list_delete_item(STRING_LIST **list, int *count, char *item)
 
   /* First check to see if list is empty.  If empty, spew error and return */
   if ( (*list)->data == NULL) {
-    fprintf(stderr, _("In s_string_list_delete_item, tried to remove item from empty list\n"));
+    fprintf(stderr, "%s: %s",  __func__, _("attempted to remove item from an empty list\n"));
     return;
   }
 
@@ -255,7 +255,9 @@ void s_string_list_delete_item(STRING_LIST **list, int *count, char *item)
 #ifdef DEBUG
     printf("In s_string_list_delete_item, now free trial_item\n");
 #endif
+
       GEDA_FREE(trial_item); /* free trial item before returning */
+
 #ifdef DEBUG
     printf("In s_string_list_delete_item, returning . . . .\n");
 #endif
@@ -269,9 +271,9 @@ void s_string_list_delete_item(STRING_LIST **list, int *count, char *item)
   /* If we are here, it's 'cause we didn't find the item.
    * Spew error and return.
    */
-  fprintf(stderr, _("In s_string_list_delete_item, couldn't delete item %s\n"), item);
-  return;
+  fprintf(stderr, "%s: %s %s\n",  __func__, _("could not delete item"), item);
 
+  return;
 }
 
 /*------------------------------------------------------------------*/
