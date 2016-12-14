@@ -170,6 +170,7 @@ s_sheet_data_add_pin(PageDataSet *PageData, const char *pin_str_name)
   s_string_list_add_item (PageData->master_pin_list_head,
                           &(PageData->pin_count), pin_str_name);
 }
+
 static void
 s_sheet_data_add_pin_attrib(PageDataSet *PageData,
                             const char *pin_attrib_str_name)
@@ -233,7 +234,8 @@ void s_sheet_data_load_blank(PageDataSet *PageData)
  *
  * \param obj_list pointer to the component list to be added.
  */
-void s_sheet_data_add_master_comp_list_items (const GList *obj_list) {
+void s_sheet_data_add_master_comp_list_items (const GList *obj_list)
+{
   char *temp_uref;
   const GList *iter;
 
@@ -298,11 +300,9 @@ void s_sheet_data_add_master_comp_list_items (const GList *obj_list) {
  *
  * \param obj_list pointer to list of objects
  */
-void s_sheet_data_add_master_comp_attrib_list_items (const GList *obj_list) {
-
-  GedaObject  *a_current;
+void s_sheet_data_add_master_comp_attrib_list_items (const GList *obj_list)
+{
   GList       *a_iter;
-  GList       *object_attribs;
   char        *attrib_text;
   char        *attrib_name;
   const GList *o_iter;
@@ -315,6 +315,7 @@ void s_sheet_data_add_master_comp_attrib_list_items (const GList *obj_list) {
 
   /* -----  Iterate through all objects found on page looking for components (OBJ_COMPLEX) ----- */
   for (o_iter = obj_list; o_iter != NULL; o_iter = g_list_next (o_iter)) {
+
     GedaObject *o_current = o_iter->data;
 
 #ifdef DEBUG
@@ -322,43 +323,52 @@ void s_sheet_data_add_master_comp_attrib_list_items (const GList *obj_list) {
 #endif
 
     /*-----  only process if this is a component with attributes ----*/
-    //if (o_current->type == OBJ_COMPLEX && o_current->attribs != NULL) {
     if (o_current->type == OBJ_COMPLEX) {
-      object_attribs = geda_attrib_return_attribs (o_current);
-      for (a_iter = object_attribs; a_iter != NULL; a_iter = g_list_next (a_iter)) {
-        a_current = a_iter->data;
 
-	  if (a_current->type == OBJ_TEXT ) { /* WEH: Are there attributes that are not text? */
-	  /* found an attribute */
-	  attrib_text = geda_utility_string_strdup(a_current->text->string);
-	  attrib_name = geda_utility_string_split(attrib_text, '=', 0);
+      GList *object_attribs = geda_attrib_return_attribs (o_current);
 
-	  /* Don't include "refdes" or "slot" because they form the row name */
-	  /* Also don't include "net" per bug found by Steve W. -- 4.3.2007, SDB */
-	  //WEH: use instr and gang strings?
-	  if ((strcmp(attrib_name, "graphical") != 0) &&
-              (strcmp(attrib_name, "refdes") != 0) &&
-	      (strcmp(attrib_name, "net") != 0) &&
-	      (strcmp(attrib_name, "slot") != 0) ) {
+      for (a_iter = object_attribs; a_iter != NULL; a_iter = g_list_next (a_iter))
+      {
+        GedaObject *a_current = a_iter->data;
 
-	     is_attached = a_current->attached_to == o_current ? TRUE : FALSE;
+        if (a_current->type == OBJ_TEXT ) { /* WEH: Are there attributes that are not text? */
 
-	     if (is_attached) {
+          /* found an attribute */
+          attrib_text = geda_utility_string_strdup(a_current->text->string);
+          attrib_name = geda_utility_string_split(attrib_text, '=', 0);
+
+          /* Don't include "refdes" or "slot" because they form the row name */
+          /* Also don't include "net" per bug found by Steve W. -- 4.3.2007, SDB */
+          //WEH: use instr and gang strings?
+          if ((strcmp(attrib_name, "graphical") != 0) &&
+            (strcmp(attrib_name, "refdes") != 0) &&
+            (strcmp(attrib_name, "net") != 0) &&
+            (strcmp(attrib_name, "slot") != 0) )
+          {
+
+            is_attached = a_current->attached_to == o_current ? TRUE : FALSE;
+
+            if (is_attached) {
+
 #if DEBUG
-               printf("adding an attached attrib to master attrib list, attrib = %s\n", attrib_text);
+              printf("adding an attached attrib to master attrib list, attrib = %s\n", attrib_text);
 #endif
-               s_sheet_data_attached_attrib(sheet_head, attrib_name);
 
-	     }
+              s_sheet_data_attached_attrib(sheet_head, attrib_name);
+
+            }
+
 #if DEBUG
-	     printf("adding an attrib to master comp attrib list attrib = %s\n", attrib_text);
+            printf("adding an attrib to master comp attrib list attrib = %s\n", attrib_text);
 #endif
-             s_sheet_data_add_comp_attrib(sheet_head, attrib_name);
-	  }
-	  GEDA_FREE(attrib_name);
-	  GEDA_FREE(attrib_text);
-	}
+
+            s_sheet_data_add_comp_attrib(sheet_head, attrib_name);
+          }
+          GEDA_FREE(attrib_name);
+          GEDA_FREE(attrib_text);
+        }
       } /* Next attribute_iter*/
+      g_list_free(object_attribs);
 
     } /* if (o_current->type == OBJ_COMPLEX) */
   }
@@ -456,17 +466,25 @@ void s_sheet_data_add_master_pin_list_items (const GList *obj_list) {
 #if DEBUG
           printf ("In s_sheet_data_add_master_pin_list_items, examining object name %s\n", o_lower_current->name);
 #endif
+
           if (o_lower_current->type == OBJ_PIN) {
+
             temp_pinnumber = geda_attrib_search_object_by_name (o_lower_current, "pinnumber", 0);
 
             if (temp_pinnumber != NULL) {
+
               row_label = geda_strconcat (temp_uref, ":", temp_pinnumber, NULL);
+
 #if DEBUG
               printf ("In s_sheet_data_add_master_pin_list_items, about to add to master pin list row_label = %s\n", row_label);
 #endif
+
               s_sheet_data_add_pin(sheet_head, row_label);
-            } else {      /* didn't find pinnumber.  Report error to log. */
+            }
+            else {      /* didn't find pinnumber.  Report error to log. */
+
               fprintf (stderr, _("In s_sheet_data_add_master_pin_list_items, found component pin with no pinnumber.\n"));
+
 #ifdef DEBUG
               fprintf (stderr, ". . . . refdes = %s.\n", temp_uref);
 #endif
@@ -475,11 +493,14 @@ void s_sheet_data_add_master_pin_list_items (const GList *obj_list) {
           }
         }
 
-      } else {          /* didn't find refdes.  Report error to log. */
+      }
+      else {          /* didn't find refdes.  Report error to log. */
+
 #ifdef DEBUG
         fprintf (stderr, "In s_sheet_data_add_master_pin_list_items, found component with no refdes.\n");
         fprintf (stderr, ". . . . filename = %s.\n", o_current->filename);
 #endif
+
       }
       GEDA_FREE (temp_uref);
 
