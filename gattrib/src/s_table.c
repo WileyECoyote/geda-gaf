@@ -317,7 +317,7 @@ void s_table_add_items_to_comp_table (const GList *obj_list) {
         if ((strcmp (temp_uref, "none")) &&
             (strcmp (temp_uref, "pinlabel")))
         {
-
+          GList       *all_attribs;
           STRING_LIST *AttachedAttributes;
 
           /* Having found a component, loop over All ATTACHED attribs for
@@ -383,9 +383,9 @@ void s_table_add_items_to_comp_table (const GList *obj_list) {
           } /* while (a_iter != NULL) */
 
           /* Do it again but this time for ALL attributes associated with this component */
-          a_iter = geda_attrib_return_attribs (o_current);
+          all_attribs = geda_attrib_return_attribs (o_current);
 
-          while (a_iter != NULL) {
+          for (a_iter = all_attribs; a_iter; a_iter = a_iter->next) {
 
             a_current   = a_iter->data;
             is_attached = a_current->attached_to == o_current ? TRUE : FALSE;
@@ -442,9 +442,9 @@ void s_table_add_items_to_comp_table (const GList *obj_list) {
                 GEDA_FREE(attrib_value);
               }
             }
-            a_iter = g_list_next (a_iter);
-          } /* while (a_iter != NULL) */
-          s_string_list_free(AttachedAttributes);
+          } /* for (a_iter != NULL) */
+          g_list_free (all_attribs);
+          s_string_list_free (AttachedAttributes);
         }
         GEDA_FREE(temp_uref);
       } /* if (temp_uref) */

@@ -10,7 +10,8 @@
 
     * src/s_table.c: Revise s_table_gtksheet_to_table to reduce the scope and
       not reallocate attrib_value and col_title string twice and declare both
-      constant, along with row_title, and remove unnecessary cast.
+      constant, along with row_title, and remove unnecessary cast. Change while
+      to for loop in s_table_add_items_to_comp_table and release all_attribs.
 
 2016-12-13 Wiley E. Hill <wileyhill@gmail.com>
 
