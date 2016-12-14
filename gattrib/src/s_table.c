@@ -354,12 +354,10 @@ void s_table_add_items_to_comp_table (const GList *obj_list) {
                   /* we didn't find the item in the table */
                   fprintf (stderr, _("Component Error looking for row ref [%s]\n"), temp_uref);
                 }
-                else {
-
-                  if (col == -1) {
+                else if (col == -1) {
                     fprintf (stderr, _("Component Error looking for column named [%s]\n"), attrib_name);
-                  }
-                  else {
+                }
+                else {
                     /* Is there a compelling reason to put this into a separate fcn? */
                     ((sheet_head->component_table)[col][row]).row             = row;
                     ((sheet_head->component_table)[col][row]).col             = col;
@@ -370,9 +368,8 @@ void s_table_add_items_to_comp_table (const GList *obj_list) {
                     ((sheet_head->component_table)[col][row]).show_name_value = old_show_name_value;
                     ((sheet_head->component_table)[col][row]).is_inherited    = FALSE;
                     ((sheet_head->component_table)[col][row]).is_promoted     = -1;
-                    s_string_list_add_item(AttachedAttributes, &counter, geda_strdup(attrib_name));
+                    s_string_list_add_item(AttachedAttributes, &counter, attrib_name);
                     counter++;
-                  }
                 }
               }
               GEDA_FREE(attrib_name);
