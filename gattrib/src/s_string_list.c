@@ -59,17 +59,28 @@ void s_string_list_free(STRING_LIST *strlist)
 {
   STRING_LIST *s_iter = strlist;
 
+  /* Free each record and containing string on a single pass */
   while (s_iter != NULL) {
 
+    STRING_LIST *p_iter;
+
+    /* Get pointer to the string for this record */
     char *data = s_iter->data;
 
+    /* If pointer to data then free the string */
     if (data != NULL) {
       GEDA_FREE(data);
     }
 
+    /* Save pointer to this record */
+    p_iter = s_iter;
+
+    /* Get pointer to the next record */
     s_iter = s_iter->next;
+
+    /* Free this record */
+    GEDA_FREE(p_iter);
   }
-  GEDA_FREE(strlist);
 
   return;
 }
@@ -161,7 +172,7 @@ void s_string_list_add_item(STRING_LIST *list, int *count, const char *item)
   /* If we are here, it's 'cause we didn't find the item pre-existing in the list. */
   /* In this case, we insert it. */
 
-  local_list = (STRING_LIST *) GEDA_MEM_ALLOC(sizeof(STRING_LIST));  /* allocate space for this list entry */
+  local_list = (STRING_LIST *)GEDA_MEM_ALLOC(sizeof(STRING_LIST));  /* allocate space for this list entry */
   local_list->data = geda_utility_string_strdup(item);   /* copy data into list */
   local_list->next = NULL;
   local_list->prev = prev;  /* point this item to last entry in old list */
@@ -631,8 +642,9 @@ void s_string_list_sort_master_pin_list()
  * Right now it does nothing other than fill in the "position".
  */
 void s_string_list_sort_master_pin_attrib_list() {
-  int i = 0;
+
   STRING_LIST *local_list;
+  int i = 0;
 
   /* Here's where we do the sort */
 

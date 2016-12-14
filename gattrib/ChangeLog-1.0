@@ -6,6 +6,7 @@
     * src/s_string_list.c: Revise s_string_list_add_item to not reallocate
       strings when looping through list looking for duplicates and check that
       the list data is not NULL before passing to strcmp in the conditional.
+      Revise s_string_list_free, again, so that each record is also released.
 
     * src/s_table.c: Revise s_table_gtksheet_to_table to reduce the scope and
       not reallocate attrib_value and col_title string twice and declare both
