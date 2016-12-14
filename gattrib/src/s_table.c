@@ -772,8 +772,8 @@ void s_table_gtksheet_to_all_tables() {
   local_table = sheet_head->net_table;
 
   s_table_gtksheet_to_table(local_gtk_sheet, master_row_list,
-		       master_col_list, local_table,
-		       num_rows, num_cols);
+                            master_col_list, local_table,
+                            num_rows, num_cols);
 #endif
 
   /* Finally, handle component pin sheet */
@@ -786,8 +786,8 @@ void s_table_gtksheet_to_all_tables() {
   local_table = sheet_head->pin_table;
 
   s_table_gtksheet_to_table(local_gtk_sheet, master_row_list,
-		       master_col_list, local_table,
-		       num_rows, num_cols);
+                            master_col_list, local_table,
+                            num_rows, num_cols);
   return;
 }
 
@@ -815,30 +815,31 @@ void s_table_gtksheet_to_table(GtkSheet    *local_gtk_sheet,
 {
   STRING_LIST *row_list_item;
   STRING_LIST *col_list_item;
-  char        *col_title;
-  char        *attrib_value;
   int          row;
 
 #ifdef DEBUG
-  printf("**********    Entering s_table_gtksheet_to_table     ******************\n");
+  printf("********** Entering s_table_gtksheet_to_table ******************\n");
 #endif
 
   row_list_item = master_row_list;
 
   for (row = 0; row < num_rows; row++) {
 
-    char *row_title;
+    const char *row_title;
     int   col;
 
-    row_title     = (char*)geda_strdup(row_list_item->data);
+    row_title     = (char*)row_list_item->data;
     col_list_item = master_col_list;
 
     for (col = 0; col < num_cols; col++) {
 
-      col_title = (char*)geda_strdup(col_list_item->data);
+      const char *attrib_value;
+      const char *col_title;
+
+      col_title = (char*)col_list_item->data;
 
       /* get value of attrib in cell  */
-      attrib_value = (char*)gtk_sheet_cell_get_text(GTK_SHEET(local_gtk_sheet), row, col);
+      attrib_value = gtk_sheet_cell_get_text(GTK_SHEET(local_gtk_sheet), row, col);
 
 #if 0
       if (strlen(attrib_value) == 0) {
@@ -848,8 +849,8 @@ void s_table_gtksheet_to_table(GtkSheet    *local_gtk_sheet,
 #endif
 
 #if DEBUG
-      printf("In s_table_gtksheet_to_table, found attrib_value = %s in cell row=%d, col=%d\n",
-            attrib_value, row, col);
+      printf("%s: found attrib_value = %s in cell row=%d, col=%d\n",
+             __func__, attrib_value, row, col);
 #endif
 
     /* first handle attrib value in cell */
@@ -860,7 +861,7 @@ void s_table_gtksheet_to_table(GtkSheet    *local_gtk_sheet,
       GEDA_FREE (local_table[col][row].attrib_value);
 
       if (attrib_value != NULL) {
-        local_table[col][row].attrib_value = (char*) geda_strdup(attrib_value);
+        local_table[col][row].attrib_value = geda_strdup(attrib_value);
       }
       else {
         local_table[col][row].attrib_value = NULL;
@@ -874,7 +875,7 @@ void s_table_gtksheet_to_table(GtkSheet    *local_gtk_sheet,
       GEDA_FREE (local_table[col][row].row_name);
 
       if (row_title != NULL) {
-        local_table[col][row].row_name = (char*) geda_strdup(row_title);
+        local_table[col][row].row_name = geda_strdup(row_title);
       }
       else {
         local_table[col][row].row_name = NULL;
@@ -888,7 +889,7 @@ void s_table_gtksheet_to_table(GtkSheet    *local_gtk_sheet,
       GEDA_FREE(local_table[col][row].col_name);
 
       if (col_title != NULL) {
-        local_table[col][row].col_name = (char*)geda_strdup(col_title);
+        local_table[col][row].col_name = geda_strdup(col_title);
       }
       else {
         local_table[col][row].col_name = NULL;
