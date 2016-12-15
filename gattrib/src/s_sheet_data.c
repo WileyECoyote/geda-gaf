@@ -172,11 +172,10 @@ s_sheet_data_add_pin(PageDataSet *PageData, const char *pin_str_name)
 }
 
 static void
-s_sheet_data_add_pin_attrib(PageDataSet *PageData,
-                            const char *pin_attrib_str_name)
+s_sheet_data_add_pin_attrib(PageDataSet *PageData, const char *pin_attrib_str)
 {
   s_string_list_add_item(PageData->master_pin_attrib_list_head,
-                         &(PageData->pin_attrib_count), pin_attrib_str_name);
+                         &(PageData->pin_attrib_count), pin_attrib_str);
 }
 
 /*------------------------------------------------------------------*/

@@ -2,6 +2,9 @@
 
     * src/gtksheet/gtksheet.c: Add function destroy_global_button.
 
+    * src/s_sheet_data.c: Rename s_sheet_data_add_pin_attrib argument:
+      pin_attrib_str_name -> pin_attrib_str.
+
     * src/x_menus.c: Rename menu_files->recent_chooser in x_menu_fix_gtk_
       recent_submenu. Add function x_menu_disconnect_recent_submenu and amend
       atexit in x_menu_fix_gtk_recent_submenu. Destroy recent_chooser in
