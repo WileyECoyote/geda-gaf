@@ -1,3 +1,7 @@
+2016-12-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gtksheet/gtksheet.c: Add function destroy_global_button.
+
 2016-12-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_sheet_data.c: Reduce scope amd free of object_attribs in function

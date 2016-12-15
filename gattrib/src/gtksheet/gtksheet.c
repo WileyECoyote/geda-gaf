@@ -299,8 +299,6 @@ typedef enum _GtkSheetArea
      || (range1)->col0 != (range2)->col0 || (range1)->coli != (range2)->coli)
 
 
-
-
 /* defaults */
 
 #define CELL_SPACING    1
@@ -1186,8 +1184,8 @@ static unsigned int new_column_width(GtkSheet *sheet, int column, int *x);
 static unsigned int new_row_height(GtkSheet *sheet, int row, int *y);
 
 /* Sheet Button */
-
 static void create_global_button(GtkSheet *sheet);
+static void destroy_global_button(GtkSheet *sheet);
 
 /* Sheet Entry */
 
@@ -6015,13 +6013,7 @@ gtk_sheet_destroy_handler(GtkObject *object)
 
     /* destroy the global selection button */
     if (sheet->button && GTK_IS_WIDGET(sheet->button)) {
-
-#if GTK_SHEET_DEBUG_REALIZE > 0
-      fprintf(stderr,"%s: destroying button %p\n", __func__, sheet->button);
-#endif
-
-      gtk_widget_destroy(sheet->button);
-      sheet->button = NULL;
+      destroy_global_button(sheet);
     }
 
     if (sheet->timer) {
@@ -6326,8 +6318,8 @@ gtk_sheet_realize_handler(GtkWidget *widget)
  */
 static int
 global_button_press_handler(GtkWidget *widget,
-    GdkEventButton *event,
-    void *data)
+                            GdkEventButton *event,
+                            void *data)
 {
     int veto;
     GtkSheet *sheet = GTK_SHEET(data);
@@ -6356,10 +6348,27 @@ create_global_button(GtkSheet *sheet)
 {
     sheet->button = gtk_button_new_with_label(" ");
 
-    g_signal_connect(G_OBJECT(sheet->button),
-	"button-press-event",
-	G_CALLBACK(global_button_press_handler),
-	(gpointer)sheet);
+    g_signal_connect(G_OBJECT(sheet->button), "button-press-event",
+                     G_CALLBACK(global_button_press_handler),
+                     (void*)sheet);
+}
+
+static void
+destroy_global_button(GtkSheet *sheet)
+{
+#if GTK_SHEET_DEBUG_REALIZE > 0
+    fprintf(stderr,"%s: destroying button %p\n", __func__, sheet->button);
+#endif
+
+    g_signal_handlers_disconnect_by_func(sheet->button,
+                                         global_button_press_handler,
+                                         sheet);
+    /* avoids warnings */
+    g_object_ref(sheet->button);
+    gtk_widget_unparent(sheet->button);
+    gtk_widget_destroy(sheet->button);
+    g_object_unref(sheet->button);
+    sheet->button = NULL;
 }
 
 static void
