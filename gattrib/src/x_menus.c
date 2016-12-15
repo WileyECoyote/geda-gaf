@@ -446,7 +446,7 @@ GtkRecentChooser *GetRecentMenuChooser(GtkRecentManager *rm )  {
  */
 void x_menu_fix_gtk_recent_submenu(void) {
 
-  GtkWidget        *menu_files;
+  GtkWidget        *recent_chooser;
   GtkWidget        *recent_items;         /* Be the ones GTK errently added */
   GtkRecentFilter  *recent_filter;
   GtkRecentChooser *recent_file_chooser;
@@ -459,21 +459,23 @@ void x_menu_fix_gtk_recent_submenu(void) {
      return;
   }
 
-  menu_files = gtk_recent_chooser_menu_new_for_manager (recent_manager);
+  recent_chooser = gtk_recent_chooser_menu_new_for_manager (recent_manager);
 
   recent_filter = x_menu_geda_filter ();
-  recent_file_chooser = (GtkRecentChooser*)menu_files;
+  recent_file_chooser = (GtkRecentChooser*)recent_chooser;
   gtk_recent_chooser_add_filter (recent_file_chooser, recent_filter);
   gtk_recent_chooser_set_show_tips (recent_file_chooser, TRUE);
   gtk_recent_chooser_set_sort_type (recent_file_chooser, GTK_RECENT_SORT_MRU);
   gtk_recent_chooser_set_limit(recent_file_chooser, MAX_RECENT_FILES);
   gtk_recent_chooser_set_local_only(recent_file_chooser, FALSE);
-  gtk_recent_chooser_menu_set_show_numbers(GTK_RECENT_CHOOSER_MENU(menu_files), TRUE);
+  gtk_recent_chooser_menu_set_show_numbers(GTK_RECENT_CHOOSER_MENU(recent_chooser), TRUE);
 
-  gtk_menu_item_set_submenu (GTK_MENU_ITEM (recent_items), menu_files);
+  gtk_menu_item_set_submenu (GTK_MENU_ITEM (recent_items), recent_chooser);
 
-  GEDA_SIGNAL_CONNECT (menu_files, "selection-done",
-                       G_CALLBACK (on_recent_selection), main_window);
+  GEDA_SIGNAL_CONNECT (recent_chooser, "selection-done",
+                       on_recent_selection, main_window);
+
+
   return;
 }
 

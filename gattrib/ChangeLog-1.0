@@ -2,6 +2,9 @@
 
     * src/gtksheet/gtksheet.c: Add function destroy_global_button.
 
+    * src/x_menus.c: Rename menu_files->recent_chooser in x_menu_fix_gtk_
+      recent_submenu.
+
 2016-12-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_sheet_data.c: Reduce scope amd free of object_attribs in function
