@@ -6,6 +6,9 @@
       recent_submenu. Add function x_menu_disconnect_recent_submenu and amend
       atexit in x_menu_fix_gtk_recent_submenu.
 
+    * src/x_window.c: Add x_window_disconnect_notebook_switch_page and amend
+      atexit in x_window_init.
+
 2016-12-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_sheet_data.c: Reduce scope amd free of object_attribs in function

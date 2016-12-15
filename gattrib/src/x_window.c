@@ -153,6 +153,14 @@ on_notebook_switch_page (GtkNotebook *notebook, GtkNotebookPage *page,
   return;
 }
 
+/* Disconnects the on_notebook_switch_page handler at exit */
+static void x_window_disconnect_notebook_switch_page(void *notebook)
+{
+  g_signal_handlers_disconnect_by_func(notebook,
+                                       on_notebook_switch_page,
+                                       NULL);
+}
+
 static void x_window_save_settings(void *data)
 {
   if (GTK_IS_WINDOW(data)) {
@@ -319,8 +327,10 @@ void x_window_init()
   gtk_box_pack_start(GTK_BOX(main_vbox), notebook, TRUE, TRUE, 0);
 
   GEDA_SIGNAL_CONNECT (notebook, "switch-page",
-                       G_CALLBACK (on_notebook_switch_page),
+                       on_notebook_switch_page,
                        NULL);
+
+  geda_atexit(x_window_disconnect_notebook_switch_page, notebook);
 
   x_menu_fix_gtk_recent_submenu();
 }
