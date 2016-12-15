@@ -585,7 +585,7 @@ static void x_menu_get_collections (GtkUIManager *ui_man) {
  * 11/05/12 WEH Revised to include toggle_actions group
  * 11/10/12 WEH Revised to include recent_group
  */
-GtkWidget* x_menu_create_menu(GtkWindow *main_window)
+GtkWidget *x_menu_create_menu(GtkWindow *main_window)
 {
   char           *menu_file;
   GError         *error = NULL;
@@ -646,10 +646,11 @@ void x_menu_release_all(void)
       GtkActionGroup *action_group = groups->data;
 
       GList *action_list = gtk_action_group_list_actions (action_group);
+      GList *iter        = action_list;
 
-      while (action_list) {
+      while (iter) {
 
-        GtkAction *action = action_list->data;
+        GtkAction *action = iter->data;
 
         gtk_action_disconnect_accelerator(action);
 
@@ -659,7 +660,7 @@ void x_menu_release_all(void)
 
         g_object_unref(action);
 
-        action_list = action_list->next;
+        iter = iter->next;
       }
 
       g_list_free(action_list);
