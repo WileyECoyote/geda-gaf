@@ -539,7 +539,7 @@ void s_sheet_data_add_master_pin_attrib_list_items (const GList *obj_list) {
 #ifdef DEBUG
   fflush(stderr);
   fflush(stdout);
-  printf("=========== Just entered  s_sheet_data_add_master_pin_attrib_list_items!  ==============\n");
+  printf("============== %s! ==============\n", __func__);
 #endif
 
   if (verbose_mode) {
@@ -552,7 +552,7 @@ void s_sheet_data_add_master_pin_attrib_list_items (const GList *obj_list) {
     GedaObject *o_current = o_iter->data;
 
 #ifdef DEBUG
-    printf("In s_sheet_data_add_master_pin_attrib_list_items, examining o_current->name = %s\n", o_current->name);
+    printf("In %s, examining o_current->name = %s\n", __func__, o_current->name);
 #endif
 
     if (o_current->type == OBJ_COMPLEX) {
@@ -570,7 +570,7 @@ void s_sheet_data_add_master_pin_attrib_list_items (const GList *obj_list) {
           GedaObject *o_lower_current = o_lower_iter->data;
 
 #if DEBUG
-          printf("In s_sheet_data_add_master_pin_attrib_list_items, examining component refdes =  %s\n", temp_uref);
+          printf("In %s, examining component refdes =  %s\n", __func__, temp_uref);
 #endif
           if (o_lower_current->type == OBJ_PIN) {
 
@@ -593,8 +593,8 @@ void s_sheet_data_add_master_pin_attrib_list_items (const GList *obj_list) {
                    * Also guard against pathalogical symbols which have non-attrib text inside pins. */
 
 #if DEBUG
-                  printf("In s_sheet_data_add_master_pin_attrib_list_items, found pin attrib =  %s\n", attrib_name);
-                  printf(". . . . . adding it to master_pin_attrib_list\n");
+                  printf("In %s, found pin attrib =  %s\n", __func__, attrib_name);
+                  printf("... adding attribute name to master_pin_attrib_list\n");
 #endif
 
                   s_sheet_data_add_pin_attrib(sheet_head, attrib_name);
