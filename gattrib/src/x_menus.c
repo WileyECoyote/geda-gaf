@@ -323,6 +323,10 @@ static void x_menu_disconnect_recent_submenu(void *recent_chooser)
   g_signal_handlers_disconnect_by_func(recent_chooser,
                                        on_recent_selection,
                                        main_window);
+  g_object_ref(recent_chooser);
+  gtk_widget_unparent(recent_chooser);
+  gtk_widget_destroy(recent_chooser);
+  g_object_unref(recent_chooser);
 }
 
 /*! \brief Set Senitivity of Menu Items.
