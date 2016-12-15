@@ -17,6 +17,9 @@
     * src/x_gtksheet.c: Replace gtk_notebook_append_page with gtk_notebook_
       insert_page_menu.
 
+    * src/x_window.c: Valgrind says better to call x_menu_release_all before
+      x_toolbar_release_all.
+
 2016-12-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheet.c: Calculate allocation size separately in GrowSheet
