@@ -561,6 +561,8 @@ static void x_menu_get_collections (GtkUIManager *ui_man) {
   ComponentMenuItems = g_slist_append(ComponentMenuItems, item);
   item = gtk_ui_manager_get_widget(ui_man, "/menubar/visibility/visibility-name-value");
   ComponentMenuItems = g_slist_append(ComponentMenuItems, item);
+
+  geda_atexit((geda_atexit_func)g_slist_free, ComponentMenuItems);
 }
 
 /*! \brief Create and attach the menu bar

@@ -5,7 +5,8 @@
     * src/x_menus.c: Rename menu_files->recent_chooser in x_menu_fix_gtk_
       recent_submenu. Add function x_menu_disconnect_recent_submenu and amend
       atexit in x_menu_fix_gtk_recent_submenu. Destroy recent_chooser in
-      x_menu_disconnect_recent_submenu.
+      x_menu_disconnect_recent_submenu. Add amend g_slist_free to atexit
+      chores in x_menu_get_collections to free ComponentMenuItems.
 
     * src/x_window.c: Add x_window_disconnect_notebook_switch_page and amend
       atexit in x_window_init.
