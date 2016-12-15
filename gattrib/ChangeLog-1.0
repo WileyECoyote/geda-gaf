@@ -3,7 +3,8 @@
     * src/gtksheet/gtksheet.c: Add function destroy_global_button.
 
     * src/x_menus.c: Rename menu_files->recent_chooser in x_menu_fix_gtk_
-      recent_submenu.
+      recent_submenu. Add function x_menu_disconnect_recent_submenu and amend
+      atexit in x_menu_fix_gtk_recent_submenu.
 
 2016-12-14 Wiley E. Hill <wileyhill@gmail.com>
 

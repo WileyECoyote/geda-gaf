@@ -317,6 +317,14 @@ static void on_recent_selection (GtkRecentChooser *chooser)
   GEDA_FREE(filename);
 }
 
+/* Disconnects the on_recent_selection handler at exit */
+static void x_menu_disconnect_recent_submenu(void *recent_chooser)
+{
+  g_signal_handlers_disconnect_by_func(recent_chooser,
+                                       on_recent_selection,
+                                       main_window);
+}
+
 /*! \brief Set Senitivity of Menu Items.
  *  \par Function Description
  *       This function is called by on_notebook_switch_page when ever a TAB
@@ -475,6 +483,7 @@ void x_menu_fix_gtk_recent_submenu(void) {
   GEDA_SIGNAL_CONNECT (recent_chooser, "selection-done",
                        on_recent_selection, main_window);
 
+  geda_atexit(x_menu_disconnect_recent_submenu, recent_chooser);
 
   return;
 }
