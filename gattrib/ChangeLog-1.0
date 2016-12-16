@@ -2,6 +2,7 @@
 
     * src/gtksheet/gtksheet.c: Revise function DeleteColumn to unparent the
       column being deleted (using gtk_widget_unparent) before unreferencing.
+      Chain-up to widget_class->unmap.
 
     * src/s_sheet_data.c: Release row_label in s_sheet_data_add_master_pin_
       list_items.

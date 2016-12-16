@@ -6579,6 +6579,10 @@ gtk_sheet_unmap_handler(GtkWidget *widget)
       }
     }
   }
+
+  if (GTK_WIDGET_CLASS(sheet_parent_class)->unmap) {
+    (*GTK_WIDGET_CLASS(sheet_parent_class)->unmap)(widget);
+  }
 }
 
 /*
