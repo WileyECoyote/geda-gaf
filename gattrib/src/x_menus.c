@@ -637,6 +637,8 @@ void x_menu_release_all(void)
 
   accel_group = gtk_ui_manager_get_accel_group(menu_manager);
 
+  gtk_accel_group_disconnect (accel_group, NULL);
+
   gtk_window_remove_accel_group ((GtkWindow*)main_window, accel_group);
 
   groups = gtk_ui_manager_get_action_groups (menu_manager);

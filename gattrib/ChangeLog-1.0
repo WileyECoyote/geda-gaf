@@ -7,7 +7,7 @@
       list_items.
 
     * src/x_menus.c: Revise x_menu_release_all to unreference the closure
-      for each action.
+      for each action and disconnect the ui manager accelerator group.
 
 2016-12-15 Wiley E. Hill <wileyhill@gmail.com>
 
