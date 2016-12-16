@@ -651,6 +651,7 @@ void x_menu_release_all(void)
       while (iter) {
 
         GtkAction *action = iter->data;
+        GClosure  *closure;
 
         gtk_action_disconnect_accelerator(action);
 
@@ -658,6 +659,9 @@ void x_menu_release_all(void)
 
         g_object_set (action, "stock-id", NULL, NULL);
 
+        closure = gtk_action_get_accel_closure(action);
+
+        g_closure_unref (closure);
         g_object_unref(action);
 
         iter = iter->next;
@@ -671,6 +675,7 @@ void x_menu_release_all(void)
 
       groups = gtk_ui_manager_get_action_groups (menu_manager);
   }
+
   g_object_unref (accel_group);
   g_object_unref (recent_manager);
   g_object_unref (menu_manager);

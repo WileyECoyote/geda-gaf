@@ -3,6 +3,9 @@
     * src/s_sheet_data.c: Release row_label in s_sheet_data_add_master_pin_
       list_items.
 
+    * src/x_menus.c: Revise x_menu_release_all to unreference the closure
+      for each action.
+
 2016-12-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheet.c: Add function destroy_global_button.
