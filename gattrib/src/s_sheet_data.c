@@ -479,6 +479,8 @@ void s_sheet_data_add_master_pin_list_items (const GList *obj_list) {
 #endif
 
               s_sheet_data_add_pin(sheet_head, row_label);
+
+              GEDA_FREE (row_label);
             }
             else {      /* didn't find pinnumber.  Report error to log. */
 
