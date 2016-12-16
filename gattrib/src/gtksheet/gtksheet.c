@@ -6317,9 +6317,9 @@ gtk_sheet_realize_handler(GtkWidget *widget)
  * \param return TRUE to stop other handlers from being invoked for the event. FALSE to propagate the event further.
  */
 static int
-global_button_press_handler(GtkWidget *widget,
+global_button_press_handler(GtkWidget      *widget,
                             GdkEventButton *event,
-                            void *data)
+                            void           *data)
 {
     int veto;
     GtkSheet *sheet = GTK_SHEET(data);
@@ -6356,18 +6356,29 @@ create_global_button(GtkSheet *sheet)
 static void
 destroy_global_button(GtkSheet *sheet)
 {
+    GtkWidget *widget = (GtkWidget*)sheet->button;
+
 #if GTK_SHEET_DEBUG_REALIZE > 0
-    fprintf(stderr,"%s: destroying button %p\n", __func__, sheet->button);
+
+    _Bool realized  = gtk_widget_get_realized (widget);
+
+    fprintf(stderr,"%s: realized %d, button %p\n", __func__, realized, widget);
 #endif
 
     g_signal_handlers_disconnect_by_func(sheet->button,
                                          global_button_press_handler,
                                          sheet);
+
+    _Bool had_parent  = (widget->parent != NULL);
+
     /* avoids warnings */
     g_object_ref(sheet->button);
     gtk_widget_unparent(sheet->button);
     gtk_widget_destroy(sheet->button);
     g_object_unref(sheet->button);
+
+    if (!had_parent)
+      g_object_unref(sheet->button);
     sheet->button = NULL;
 }
 
