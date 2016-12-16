@@ -1256,12 +1256,12 @@ gtk_sheet_buildable_add_child_internal(GtkSheet *sheet,
     gtk_sheet_add_column(sheet, 1);
     col = gtk_sheet_get_columns_count(sheet) - 1;
 
-    if (sheet->column[col])
-    {
-	COLPTR(sheet, col)->sheet = NULL;
+    if (sheet->column[col]) {
 
-	g_object_unref(sheet->column[col]);
-	sheet->column[col] = NULL;
+      COLPTR(sheet, col)->sheet = NULL;
+
+      g_object_unref(sheet->column[col]);
+      sheet->column[col] = NULL;
     }
 
     child->sheet = sheet;
@@ -6248,19 +6248,19 @@ gtk_sheet_realize_handler(GtkWidget *widget)
                                          GDK_GC_FUNCTION |
                                          GDK_GC_SUBWINDOW);
 
-  if (gtk_widget_get_parent(sheet->sheet_entry))
-  {
+  if (gtk_widget_get_parent(sheet->sheet_entry)) {
     g_object_ref(sheet->sheet_entry);
     gtk_widget_unparent(sheet->sheet_entry);
   }
+
   gtk_widget_set_parent_window(sheet->sheet_entry, sheet->sheet_window);
   gtk_widget_set_parent(sheet->sheet_entry, GTK_WIDGET(sheet));
 
-  if (sheet->button && gtk_widget_get_parent(sheet->button))
-  {
+  if (sheet->button && gtk_widget_get_parent(sheet->button)) {
     g_object_ref(sheet->button);
     gtk_widget_unparent(sheet->button);
   }
+
   gtk_widget_set_parent_window(sheet->button, sheet->sheet_window);
   gtk_widget_set_parent(sheet->button, GTK_WIDGET(sheet));
 
@@ -14115,11 +14115,11 @@ gtk_sheet_delete_columns(GtkSheet *sheet, unsigned int col, unsigned int ncols)
       children = children->next;
     }
 
-    if (!gtk_widget_get_realized(GTK_WIDGET(sheet)))
-	return;
-
     sheet->active_cell.row = -1;
     sheet->active_cell.col = -1;
+
+    if (!gtk_widget_get_realized(GTK_WIDGET(sheet)))
+      return;
 
     _gtk_sheet_scrollbar_adjust(sheet);
     _gtk_sheet_redraw_internal(sheet, TRUE, FALSE);
@@ -14619,7 +14619,6 @@ init_attributes(GtkSheet *sheet, int col, GtkSheetCellAttr *attributes)
 static void
 AddColumns(GtkSheet *sheet, int position, int ncols)
 {
-
     GtkSheetColumn *newobj;
 
     g_assert(ncols >= 0);
@@ -14712,7 +14711,7 @@ DeleteColumn(GtkSheet *sheet, int position, int ncols)
     ncols = MIN(ncols, sheet->maxcol - position + 1);
 
     if (ncols <= 0 || position > sheet->maxcol)
-	return;
+      return;
 
 #if GTK_SHEET_DEBUG_ALLOCATION > 0
     fprintf(stderr,"Delete Column: pos %d ncols %d mxr %d mxc %d mxar %d mxac %d\n",
@@ -14724,7 +14723,7 @@ DeleteColumn(GtkSheet *sheet, int position, int ncols)
     for (c = position; c < position + ncols; c++)  {
 
       sheet->column[c]->sheet = NULL;
-
+      gtk_widget_unparent((GtkWidget*)sheet->column[c]);
       g_object_unref(sheet->column[c]);
       sheet->column[c] = NULL;
     }
@@ -15258,6 +15257,7 @@ gtk_sheet_attach(GtkSheet *sheet,
 
     sheet->children = g_list_append(sheet->children, child);
     g_object_ref(child->widget);
+
     gtk_sheet_get_cell_area(sheet, row, col, &area);
 
     child->x = area.x + child->xpadding;
