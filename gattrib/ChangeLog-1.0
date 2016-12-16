@@ -9,7 +9,8 @@
       list_items.
 
     * src/x_menus.c: Revise x_menu_release_all to unreference the closure
-      for each action and disconnect the ui manager accelerator group.
+      for each action and disconnect the ui manager accelerator group. Then
+      revert unreferencing the closure, and destroy the manu_bar.
 
 2016-12-15 Wiley E. Hill <wileyhill@gmail.com>
 
