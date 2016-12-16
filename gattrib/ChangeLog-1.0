@@ -12,6 +12,11 @@
       for each action and disconnect the ui manager accelerator group. Then
       revert unreferencing the closure, and destroy the manu_bar.
 
+    * src/x_window.c: Add x_window_quit to handle the "delete-event" so that
+      the handler can ad a reference to the menu bar to balance-out the
+      reference that would be added if the program was closed using the file
+      quit menu item.
+
 2016-12-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheet.c: Add function destroy_global_button.

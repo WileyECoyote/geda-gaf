@@ -262,13 +262,27 @@ void x_window_restore_settings(GtkWidget *MainWindow)
   gtk_window_resize (window, width, height);
 }
 
+/*!
+ * \brief Delete Event handler for the Main Window
+ * \par Function Description
+ * When the File/Quit menu option is used to exit gattrib, an extra reference
+ * is held on the menu_bar. This function increases the reference on the menu
+ * bar when the main window receives a "delete_event" to balance the reference
+ * count so that x_menu_release_all can unreference the menu_bar regardless of
+ * which method was used to terminate the program.
+ */
+static bool x_window_quit(void)
+{
+  g_object_ref(menu_bar);
+  return gattrib_really_quit();
+}
+
 /*! \brief Initializes the Main Window
  * \par Function Description
- * This function creates and initializes the Main window, calling
- * various other function to add the primary window widgets like
- * menus, toolbars, the GTK notebook container, etc. Each widget
- * is set visible here except the main window itself, which is
- * done later.
+ * This function creates and initializes the Main window, calling various
+ * other function to add the primary window widgets like menus, toolbars,
+ * the GTK notebook container, etc. Each widget is set visible here except
+ * the main window itself, which is done later.
  *
  *  \sa x_window_finalize_startup
  */
@@ -288,7 +302,7 @@ void x_window_init()
   x_window_restore_settings(main_window);
 
   GEDA_SIGNAL_CONNECT (main_window, "delete_event",
-                       GTK_SIGNAL_FUNC (gattrib_really_quit), 0);
+                       GTK_SIGNAL_FUNC (x_window_quit), 0);
 
   /* -----  Now create main_vbox container to hold everthing ----- */
 
