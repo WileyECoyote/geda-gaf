@@ -667,6 +667,12 @@ void x_menu_release_all(void)
 
         g_object_set (action, "stock-id", NULL, NULL);
 
+        /* Handler the special (defective) case */
+        if (GTK_IS_RECENT_ACTION(action)) {
+            GClosure *closure = gtk_action_get_accel_closure(action);
+          g_closure_unref (closure);
+        }
+
         iter = iter->next;
       }
 

@@ -6,7 +6,8 @@
     * src/x_menus.c: Remove "main_window" argument from recent_chooser callback
       since on_recent_selection has one and only one argument -> the chooser.
       Add function x_menu_disconnect_recent_action and amend atexit in x_menu_
-      create_recent_action_group.
+      create_recent_action_group. Revise x_menu_release_all to unreference the
+      closure for the "recent action", apparently Gtk does not get the job done.
 
 2016-12-16 Wiley E. Hill <wileyhill@gmail.com>
 
