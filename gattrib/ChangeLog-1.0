@@ -8,6 +8,10 @@
       Add function x_menu_disconnect_recent_action and amend atexit in x_menu_
       create_recent_action_group. Revise x_menu_release_all to unreference the
       closure for the "recent action", apparently Gtk does not get the job done.
+      Sink the reference to the old submenu in x_menu_fix_gtk_recent_submenu.
+
+    * gattrib/src/x_toolbars.c: Amend g_slist_free to atexit task in x_toolbars
+      _init to free the ComponentToolbarButtons list.
 
 2016-12-16 Wiley E. Hill <wileyhill@gmail.com>
 
