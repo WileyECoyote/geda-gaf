@@ -299,6 +299,10 @@ void gattrib_main(void *closure, int argc, char *argv[])
   int argv_index;
   GSList *file_list = NULL;
 
+#if !GLIB_CHECK_VERSION(2, 44, 0)
+  geda_utility_program_mem_set_vtable();
+#endif
+
 #ifdef HAVE_GTHREAD
 
   /* Gattrib isn't threaded, but some of GTK's file chooser
