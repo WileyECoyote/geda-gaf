@@ -3,6 +3,9 @@
     * src/gattrib.c: Add geda_utility_program_mem_set_vtable in gattrib_main
       and this makes the world a better place.
 
+    * src/x_menus.c: Remove "main_window" argument from recent_chooser callback
+      since on_recent_selection has one and only one argument -> the chooser.
+
 2016-12-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheet.c: Revise function DeleteColumn to unparent the

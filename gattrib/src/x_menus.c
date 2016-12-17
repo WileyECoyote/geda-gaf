@@ -322,7 +322,7 @@ static void x_menu_disconnect_recent_submenu(void *recent_chooser)
 {
   g_signal_handlers_disconnect_by_func(recent_chooser,
                                        on_recent_selection,
-                                       main_window);
+                                       NULL);
   g_object_ref(recent_chooser);
   gtk_widget_unparent(recent_chooser);
   gtk_widget_destroy(recent_chooser);
@@ -484,8 +484,7 @@ void x_menu_fix_gtk_recent_submenu(void) {
 
   gtk_menu_item_set_submenu (GTK_MENU_ITEM (recent_items), recent_chooser);
 
-  GEDA_SIGNAL_CONNECT (recent_chooser, "selection-done",
-                       on_recent_selection, main_window);
+  GEDA_SIGNAL_CONNECT (recent_chooser, "selection-done", on_recent_selection, NULL);
 
   geda_atexit(x_menu_disconnect_recent_submenu, recent_chooser);
 
