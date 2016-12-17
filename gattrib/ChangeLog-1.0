@@ -5,6 +5,8 @@
 
     * src/x_menus.c: Remove "main_window" argument from recent_chooser callback
       since on_recent_selection has one and only one argument -> the chooser.
+      Add function x_menu_disconnect_recent_action and amend atexit in x_menu_
+      create_recent_action_group.
 
 2016-12-16 Wiley E. Hill <wileyhill@gmail.com>
 

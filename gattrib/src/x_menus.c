@@ -317,7 +317,15 @@ static void on_recent_selection (GtkRecentChooser *chooser)
   GEDA_FREE(filename);
 }
 
-/* Disconnects the on_recent_selection handler at exit */
+/* Disconnects the on_recent_selection action handler at exit */
+static void x_menu_disconnect_recent_action(void *recent_action)
+{
+  g_signal_handlers_disconnect_by_func(recent_action,
+                                       on_recent_selection,
+                                       NULL);
+}
+
+/* Disconnects and destroys the recent_chooser at exit */
 static void x_menu_disconnect_recent_submenu(void *recent_chooser)
 {
   g_signal_handlers_disconnect_by_func(recent_chooser,
@@ -525,9 +533,9 @@ GtkActionGroup *x_menu_create_recent_action_group(void) {
  */
 
   gtk_action_group_add_action (recent_action_group, GTK_ACTION (recent_action));
-  GEDA_SIGNAL_CONNECT (recent_action, "item-activated",
-                       G_CALLBACK (on_recent_selection),
-                       NULL);
+  GEDA_SIGNAL_CONNECT (recent_action, "item-activated", on_recent_selection, NULL);
+
+  geda_atexit(x_menu_disconnect_recent_action, recent_action);
 
   return recent_action_group;
 }
