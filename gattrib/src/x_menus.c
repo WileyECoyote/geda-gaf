@@ -466,6 +466,7 @@ GtkRecentChooser *GetRecentMenuChooser(GtkRecentManager *rm )  {
  */
 void x_menu_fix_gtk_recent_submenu(void) {
 
+  GtkWidget        *old_submenu;
   GtkWidget        *recent_chooser;
   GtkWidget        *recent_items;         /* Be the ones GTK errently added */
   GtkRecentFilter  *recent_filter;
@@ -478,6 +479,10 @@ void x_menu_fix_gtk_recent_submenu(void) {
      gtk_container_remove (menu, recent_items);
      return;
   }
+
+  old_submenu = gtk_menu_item_get_submenu ((GtkMenuItem*)recent_items);
+
+  g_object_ref_sink(old_submenu);
 
   recent_chooser = gtk_recent_chooser_menu_new_for_manager (recent_manager);
 
@@ -606,6 +611,7 @@ GtkWidget *x_menu_create_menu(GtkWindow *main_window)
   gtk_action_group_add_toggle_actions (action_group, toggle_entries, G_N_ELEMENTS (toggle_entries), main_window);
 
   recent_group = x_menu_create_recent_action_group();
+
   /* Create the UI manager object */
   menu_manager  = gtk_ui_manager_new();
 
@@ -669,8 +675,11 @@ void x_menu_release_all(void)
 
         /* Handler the special (defective) case */
         if (GTK_IS_RECENT_ACTION(action)) {
-            GClosure *closure = gtk_action_get_accel_closure(action);
+
+          GClosure *closure = gtk_action_get_accel_closure(action);
+
           g_closure_unref (closure);
+
         }
 
         iter = iter->next;
