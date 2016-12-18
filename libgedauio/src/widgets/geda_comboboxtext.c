@@ -909,6 +909,35 @@ geda_combo_box_text_get_entry_widget (GedaComboBoxText *combo_box)
   return geda_combo_get_entry_widget(GEDA_COMBO_BOX(combo_box));;
 }
 
+int
+geda_combo_box_text_get_text_length (GedaComboBoxText *combo_box)
+{
+  GtkWidget *widget;
+  int length;
+
+  widget = geda_combo_get_entry_widget(GEDA_COMBO_BOX(combo_box));
+
+  if (widget) {
+    length = geda_entry_get_text_length(GEDA_ENTRY(widget));
+  }
+  else {
+
+    char *text;
+
+    text = geda_combo_box_text_get_active_text(combo_box);
+
+    if (text) {
+      length = strlen(text);
+      g_free(text);
+    }
+    else {
+      length = 0;
+    }
+  }
+
+  return length;
+}
+
 /* These are probably more practical, but have longer names */
 void
 geda_combo_box_text_widget_append (GtkWidget *widget, const char *text)
@@ -963,6 +992,12 @@ bool
 geda_combo_box_text_widget_set_active_text(GtkWidget *widget, const char *text)
 {
   return geda_combo_box_text_set_active_text (GEDA_COMBO_BOX_TEXT(widget), text);
+}
+
+int
+geda_combo_box_text_widget_get_text_length(GtkWidget *widget)
+{
+  return geda_combo_box_text_get_text_length ((GedaComboBoxText*)widget);
 }
 
 /** @} end group GedaComboBoxText */
