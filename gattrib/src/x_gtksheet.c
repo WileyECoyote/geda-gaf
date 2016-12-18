@@ -131,10 +131,15 @@ static int popup_activated(GtkWidget *widget, IDS_Popup_items *selection)
 
     switch ( WhichItem ) {
       case ToggleVisibility:
-        if(s_properties_get_visibility(sheet->active_cell.row, sheet->active_cell.col))
-          s_properties_set_invisible();
-        else
-          s_properties_set_visible();
+        if (!x_gtksheet_get_is_empty(sheet, sheet->active_cell.row,
+                                            sheet->active_cell.col))
+        {
+          if (s_properties_get_visibility(sheet->active_cell.row,
+                                          sheet->active_cell.col))
+            s_properties_set_invisible();
+          else
+            s_properties_set_visible();
+        }
         break;
 
       case AddAttribute:

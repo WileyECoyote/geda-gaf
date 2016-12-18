@@ -13,7 +13,9 @@
       of strlen(GetGedaComboActiveText()) because the returned strings were not
       being released.
 
-    * src/x_gtksheet.c: Add function x_gtksheet_get_is_empty.
+    * src/x_gtksheet.c: Add function x_gtksheet_get_is_empty. Revise function
+      popup_activated to check if the active cell is is empty before calling
+      s_properties_get_invisible or s_properties_set_invisible.
 
 2016-12-17 Wiley E. Hill <wileyhill@gmail.com>
 
