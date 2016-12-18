@@ -453,6 +453,21 @@ GtkRecentChooser *GetRecentMenuChooser(GtkRecentManager *rm )  {
   return (GtkRecentChooser*) rc;
 }
 
+/*! \internal This function is used to destroy the single menu item that was
+ * added under the "/ui/menubar/file/OpenRecent" sub-menu when the defective
+ * gtk_ui_manager created the menu. The widget has a default accelerator and
+ * label associated the item and these will not be destroy by Gtk because
+ * the entire sub-menu is replaced by x_menu_fix_gtk_recent_submenu.
+ */
+static void
+destroy_defective_child(GtkWidget *menu_item, void *nothing)
+{
+  if (GTK_IS_ACTIVATABLE(menu_item)) {
+    gtk_activatable_do_set_related_action (GTK_ACTIVATABLE(menu_item), NULL);
+    gtk_widget_destroy(menu_item);
+  }
+}
+
 /*! \brief Fix the GTK 'Open Recent' Menu Option
  *  \par Function Description
  *  gtk_ui_manager deliberately setups up the Recent Menu, in the presents
@@ -481,6 +496,10 @@ void x_menu_fix_gtk_recent_submenu(void) {
   }
 
   old_submenu = gtk_menu_item_get_submenu ((GtkMenuItem*)recent_items);
+
+  gtk_container_foreach (GTK_CONTAINER(old_submenu),
+                         (GtkCallback)destroy_defective_child,
+                         NULL);
 
   g_object_ref_sink(old_submenu);
 
