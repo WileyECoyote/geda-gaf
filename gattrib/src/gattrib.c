@@ -212,8 +212,9 @@ int gattrib_quit(int return_code)
 
   g_list_free(exit_functions);
 
+  /* Currently the search history is not retained between sessions */
   if (search_history) {
-    g_list_free(search_history);
+    geda_glist_free_all(search_history);
   }
 
   x_gtksheet_destroy_all();

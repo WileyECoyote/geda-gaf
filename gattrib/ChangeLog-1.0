@@ -6,6 +6,9 @@
           * gtk/gtkpixmap.h
           * pango/pango.h
 
+    * src/gattrib.c: Replace g_list_free with geda_glist_free_all to release
+      search_history strings and the list.
+
     * src/x_dialog.c: Utilize geda_combo_box_text_widget_get_text_length instead
       of strlen(GetGedaComboActiveText()) because the returned strings were not
       being released.
