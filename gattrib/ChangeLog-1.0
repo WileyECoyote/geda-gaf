@@ -13,6 +13,8 @@
       of strlen(GetGedaComboActiveText()) because the returned strings were not
       being released.
 
+    * src/x_gtksheet.c: Add function x_gtksheet_get_is_empty.
+
 2016-12-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gattrib.c: Add g_slice_set_config and geda_utility_program_mem_set_

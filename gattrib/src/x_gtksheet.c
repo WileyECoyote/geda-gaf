@@ -961,6 +961,13 @@ void x_gtksheet_add_cell_item(GtkSheet *sheet, int row, int col, char *text,
   x_gtksheet_set_cell_fgcolor(sheet, row, col, fgcolor);
 }
 
+
+bool x_gtksheet_get_is_empty(GtkSheet *sheet, int row, int col)
+{
+  return gtk_sheet_cell_get_text(sheet, row, col) == NULL;
+
+}
+
 /*! \brief Get the first column selected in the GtkSheet
  *  \par Function Description
  * Get the first column selected in the GtkSheet

@@ -230,7 +230,7 @@ void  x_gtksheet_set_cell_fgcolor(GtkSheet *sheet, int row, int col, ColorId Col
 void  x_gtksheet_set_cell_bgcolor(GtkSheet *sheet, int row, int col, ColorId Color );
 void  x_gtksheet_add_cell_item(GtkSheet *sheet, int i, int j, char *text,
                               int visibility, int show_name_value, int is_inherited);
-
+bool  x_gtksheet_get_is_empty(GtkSheet *sheet, int row, int col);
 int   x_gtksheet_get_min_col(GtkSheet *sheet);
 int   x_gtksheet_get_max_col(GtkSheet *sheet);
 void  x_gtksheet_range_copy(GtkSheetRange *s_range, GtkSheetRange *t_range);
