@@ -13,7 +13,8 @@
       item created when the ui_manager created the defective recent sub-menu.
 
     * gattrib/src/x_toolbars.c: Amend g_slist_free to atexit task in x_toolbars
-      _init to free the ComponentToolbarButtons list.
+      _init to free the ComponentToolbarButtons list. Revise x_toolbar_release
+      _all to destroy the handleboxes rather removing the toolbar widgets.
 
 2016-12-16 Wiley E. Hill <wileyhill@gmail.com>
 

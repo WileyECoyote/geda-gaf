@@ -283,6 +283,6 @@ void x_toolbar_set_sensitivities(GSList *ListToolBarItems, int sensitive)
 
 void x_toolbar_release_all(void)
 {
-  gtk_container_remove (GTK_CONTAINER(Attribute_handlebox), Attribute_Toolbar);
-  gtk_container_remove (GTK_CONTAINER(Standard_handlebox), Standard_Toolbar);
+  gtk_widget_destroy (Attribute_handlebox);
+  gtk_widget_destroy (Standard_handlebox);
 }
