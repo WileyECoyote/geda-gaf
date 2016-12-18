@@ -1,3 +1,9 @@
+2016-12-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_dialog.c: Utilize geda_combo_box_text_widget_get_text_length instead
+      of strlen(GetGedaComboActiveText()) because the returned strings were not
+      being released.
+
 2016-12-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gattrib.c: Add g_slice_set_config and geda_utility_program_mem_set_
