@@ -2,6 +2,8 @@
 
     * src/gtksheet/gtksheetcolumn.c: Revise doxygens comments: add param tags.
 
+    * src/gattrib.c: Replace g_new in g_malloc in geda_atexit.
+
     * gattrib/src/s_sheet_data.c: Rename s_sheet_data_reset->s_sheet_data_free
       and revise to not return a boolean.
 

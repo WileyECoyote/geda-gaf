@@ -155,7 +155,7 @@ void geda_atexit(geda_atexit_func func, void* data)
 {
   geda_atexit_struct *p;
 
-  p = g_new(geda_atexit_struct, 1);
+  p = g_malloc(sizeof(geda_atexit_struct));
   p->func = func;
   p->arg = data;
   exit_functions = g_list_append(exit_functions, p);
