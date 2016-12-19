@@ -2,6 +2,9 @@
 
     * src/gtksheet/gtksheetcolumn.c: Revise doxygens comments: add param tags.
 
+    * gattrib/src/s_sheet_data.c: Rename s_sheet_data_reset->s_sheet_data_free
+      and revise to not return a boolean.
+
 2016-12-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheetcolumn.c: Eliminate unnecessary inclusion of:

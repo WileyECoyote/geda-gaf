@@ -108,7 +108,8 @@ void s_rename_all(GedaToplevel *toplevel, NETLIST *netlist_head);
 
 /* ------------- s_sheet_data.c ------------- */
 SHEET_DATA *s_sheet_data_new();
-bool s_sheet_data_reset(PageDataSet *PageData);
+void s_sheet_data_free(PageDataSet *PageData);
+
 /*
 void s_sheet_data_add_comp(PageDataSet *PageData, char *component_str_name);
 void s_sheet_data_add_comp_attrib(PageDataSet *PageData, char *comp_attrib_str_name);

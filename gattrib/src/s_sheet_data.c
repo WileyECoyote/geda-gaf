@@ -81,14 +81,14 @@ SHEET_DATA *s_sheet_data_new()
 }
 
 /*------------------------------------------------------------------*/
+
 /*!
- * \brief Frees a SHEET_DATA struct and all of it's contents.
+ * \brief Frees the contents of a SHEET_DATA struct.
  * \par Function Description
- * Creates an initialised but empty SHEET_DATA struct.
- *
- * \returns a pointer to a SHEET_DATA struct.
+ * Frees the string lists in a SHEET_DATA struct.
  */
-bool s_sheet_data_reset(PageDataSet *PageData)
+void
+s_sheet_data_free(PageDataSet *PageData)
 {
   if (PageData != NULL) {
 
@@ -104,10 +104,6 @@ bool s_sheet_data_reset(PageDataSet *PageData)
 
     free(PageData);
   }
-  else {
-    return FALSE;
-  }
-  return TRUE;
 }
 
 /* ------------ s_sheet_data interface to s_string_list --------- */
