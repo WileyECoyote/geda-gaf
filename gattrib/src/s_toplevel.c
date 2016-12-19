@@ -289,8 +289,8 @@ void s_toplevel_delete_attrib_col(GtkSheet *sheet) {
 #ifdef DEBUG
   printf("%s: about to delete col in gtksheet.\n", __func__);
 #endif
-  /* Delete col on gtksheet  */
 
+  /* Delete col on gtksheet */
   gtk_sheet_delete_columns (sheet, sheet->range.col0, 1);
 
   sheet_head->CHANGED = TRUE;  /* Set changed flag so user is prompted when exiting */
@@ -605,13 +605,13 @@ s_toplevel_update_component_attribs_in_toplevel (
       /* Else clause is suggestion from Ales */
       old_attrib_name = geda_utility_string_split(old_name_value_pair, '=', 0);
       if ((strcmp(old_attrib_name, "refdes") != 0) &&
-          (strcmp(old_attrib_name, "net") != 0) &&
-          (strcmp(old_attrib_name, "slot") != 0) &&
-          (s_attrib_name_in_list(new_comp_attrib_list, old_attrib_name) == FALSE))
-      {
-        s_string_list_add_item(complete_comp_attrib_list, &count, old_name_value_pair);
-      }
-      else {
+        (strcmp(old_attrib_name, "net") != 0) &&
+        (strcmp(old_attrib_name, "slot") != 0) &&
+        (s_attrib_name_in_list(new_comp_attrib_list, old_attrib_name) == FALSE))
+        {
+          s_string_list_add_item(complete_comp_attrib_list, &count, old_name_value_pair);
+        }
+        else {
 
           int status;
 
@@ -639,7 +639,7 @@ s_toplevel_update_component_attribs_in_toplevel (
 
 
   /*
-   *Now the main business of this function:  updating the attribs attached to this o_current.
+   * Now the main business of this function:  updating the attribs attached to this o_current.
    * Loop on name=value pairs held in complete_comp_attrib_list , and then use this to get the
    * name=value pairs out of new_comp_attrib_list and from o_current.
    */
@@ -726,7 +726,7 @@ s_toplevel_update_component_attribs_in_toplevel (
     }
 
     /* -------  Four cases to consider: Case 2 ----- */
-    else if ( (old_attrib_value != NULL) && (new_attrib_value == NULL) ) {
+    else if ((old_attrib_value != NULL) && (new_attrib_value == NULL)) {
       /* remove attrib from component*/
 
 #if DEBUG
@@ -738,7 +738,7 @@ s_toplevel_update_component_attribs_in_toplevel (
     }
 
     /* -------  Four cases to consider: Case 3 ----- */
-    else if ( (old_attrib_value == NULL) && (new_attrib_value != NULL) ) {
+    else if ((old_attrib_value == NULL) && (new_attrib_value != NULL)) {
       /* add new attrib to component. */
 
 #if DEBUG

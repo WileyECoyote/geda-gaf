@@ -101,6 +101,7 @@ bool x_fileselect ( char* filename )
  *  successful otherwaise TRUE.
  *
  *  \param [in] filename name of file to be opened
+ *
  *  \retval FALSE if the file could not be opened, TRUE otherwise
  */
 /* TODO:move gtk_recent_manager_add_item from x_fileselect_open to here */

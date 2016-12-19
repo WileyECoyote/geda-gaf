@@ -293,7 +293,7 @@ s_object_release_attrib_in_object (GedaToplevel *toplevel,
  * \param text_string
  * \param visibility
  * \param show_name_value
- * \param object
+ * \param parent
  *
  * \returns TRUE if the attribute was added, else FALSE
  */

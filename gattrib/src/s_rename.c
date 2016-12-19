@@ -192,6 +192,7 @@ void s_rename_add(char *src, char *dest)
         && rename_pairs[cur_set][i].dest)
       {
         if (strcmp(dest, rename_pairs[cur_set][i].src) == 0) {
+
 #if DEBUG
           printf
           ("Found dest [%s] in src [%s] and that had a dest as: [%s]\nSo you want rename [%s] to [%s]\n",
