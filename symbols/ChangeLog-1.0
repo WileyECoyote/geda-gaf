@@ -2,6 +2,12 @@
 
     * Update many license tags to dist-license=GPLv2, use-license=unlimited.
 
+    * ti/INA200-1.sym: Update device and value INA202->INA200, revise description
+      to indicate gain of op-amp stage.
+
+    * ti/INA201-1.sym: Update device and value INA202->INA201, revise description
+      to indicate gain of op-amp stage.
+
 2016-12-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/switchreg/LM2621-1.sym: Add symbol; Low Voltage Boost Regulator.
