@@ -12,6 +12,9 @@
 
     * io/subsheet-2.sym: Change commented lines to comment attributes.
 
+    * serial/TL16C554AFN-1.sym: Fix incorrect pintype attributes and improper
+      over-bar tags. Added documentation attribute.
+
 2016-12-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/switchreg/LM2621-1.sym: Add symbol; Low Voltage Boost Regulator.
