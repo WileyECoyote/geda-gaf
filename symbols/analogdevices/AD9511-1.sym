@@ -556,7 +556,7 @@ documentation=http://www.analog.com/en/products/clock-and-timing/clock-generatio
 T 200 8200 5 10 0 0 0 0 1
 author=Darrell Harmon mail@dlharmon.com
 T 200 8000 5 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 200 7800 5 10 0 0 0 0 1
 use-license=unlimited
 T 2600 1400 9 8 0 0 0 0 1

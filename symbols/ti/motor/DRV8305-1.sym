@@ -556,7 +556,7 @@ description=Three Phase Gate Driver With Current Shunt Amplifiers
 T 5100 5400 5 10 0 0 0 0 1
 numslots=0
 T 5100 5800 5 10 0 0 0 0 1
-dist-license=GPL2
+dist-license=GPLv2
 T 5100 5600 5 10 0 0 0 0 1
 use-license=unlimited
 T 3000 2100 9 10 1 0 0 3 1

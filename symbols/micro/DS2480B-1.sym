@@ -78,6 +78,6 @@ documentation=http://pdfserv.maxim-ic.com/en/ds/DS2480B.pdf
 T 300 1700 9 10 1 0 0 0 1
 DS2480B
 T 300 3700 5 10 0 0 0 0 1
-dist-license=GLP3
+dist-license=GPLv2
 T 300 3500 5 10 0 0 0 0 1
 use-license=unlimited

@@ -713,6 +713,6 @@ footprint=VQFP64
 T 300 11100 8 10 0 0 0 0 1
 use-license=unlimited
 T 300 11300 8 10 0 0 0 0 1
-dist-license=GPL 2
+dist-license=GPLv2
 T 300 11500 8 10 0 0 0 0 1
 author=Piotr Wiszowaty pwiszowaty458@gmail.com

@@ -82,6 +82,6 @@ refdes=U?
 T 200 2400 5 10 0 0 0 0 1
 author=Bill Gatliff <bgat@billgatliff.com>
 T 200 2600 5 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 200 2800 5 10 0 0 0 0 1
 use-license=unlimited

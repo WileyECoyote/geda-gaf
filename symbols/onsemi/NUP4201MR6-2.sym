@@ -12,12 +12,6 @@ T 300 1550 5 10 1 1 0 0 1
 footprint=TSOP6
 T 650 150 9 10 0 0 0 0 1
 numslots=0
-T 300 2150 5 10 0 0 0 0 1
-dist-license=GPL
-T 300 2350 5 10 0 0 0 0 1
-use-license=unlimited
-T 300 2550 5 10 0 0 0 0 1
-author=AutoTron
 P 0 1000 300 1000 1 0 0
 {
 T 350 1000 9 14 1 1 0 1 1
@@ -84,3 +78,9 @@ pinseq=6
 T 2025 875 5 8 0 1 0 0 1
 pintype=pas
 }
+T 300 2550 5 10 0 0 0 0 1
+author=AutoTron
+T 300 2150 5 10 0 0 0 0 1
+dist-license=GPLv2
+T 300 2350 5 10 0 0 0 0 1
+use-license=unlimited

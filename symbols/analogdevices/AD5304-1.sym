@@ -130,6 +130,6 @@ net=11:GND
 T 375 4350 5 10 0 0 0 0 1
 author=Anton Dubniak <twister@tfsoft.org.ua>
 T 375 4150 5 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 375 3950 5 10 0 0 0 0 1
 use-license=unlimited

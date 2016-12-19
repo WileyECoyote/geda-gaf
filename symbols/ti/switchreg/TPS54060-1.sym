@@ -142,6 +142,6 @@ pintype=in
 T 100 3800 5 10 0 0 0 0 1
 author=AutoTron
 T 100 3600 5 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 100 3400 5 10 0 0 0 0 1
 use-license=unlimited

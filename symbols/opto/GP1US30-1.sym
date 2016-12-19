@@ -14,7 +14,7 @@ documentation=http://www.sharp-world.com/
 T 850 1650 5 10 0 0 0 0 1
 description=GP1US30 infrared receiver module
 T 850 2050 5 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 850 2250 5 10 0 0 0 0 1
 use-license=unlimited
 P 500 1100 500 900 1 0 0

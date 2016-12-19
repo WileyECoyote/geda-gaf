@@ -412,7 +412,7 @@ pintype=io
 }
 L 440 7340 640 7340 3 15 0 0 -1 -1
 T 0 0 8 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 1600 0 8 10 0 0 0 0 1
 use-license=unlimited
 T 0 200 8 10 0 0 0 0 1

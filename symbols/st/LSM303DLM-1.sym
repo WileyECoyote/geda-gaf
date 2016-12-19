@@ -193,7 +193,7 @@ description=Sensor module: 3-axis accelerometer and 3-axis magnetometer (ST)
 T 300 4700 5 10 0 0 0 0 1
 numslots=0
 T 300 4100 5 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 300 3900 5 10 0 0 0 0 1
 use-license=unlimited
 P 0 1200 300 1200 1 0 0

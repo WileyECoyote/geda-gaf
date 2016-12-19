@@ -721,7 +721,7 @@ description=Tiva C Series Microcontroller
 T 1600 11200 5 10 0 0 0 0 1
 numslots=0
 T 400 12200 5 10 0 0 0 0 1
-dist-license=GPL2
+dist-license=GPLv2
 T 400 12000 5 10 0 0 0 0 1
 use-license=unlimited
 T 2000 11000 9 10 0 0 0 0 1

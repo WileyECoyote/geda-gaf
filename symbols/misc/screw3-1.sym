@@ -56,6 +56,6 @@ L 427 273 570 131 3 10 0 0 -1 -1
 T 300 2700 5 10 0 0 0 0 1
 author=Amand Tihon amand.tihon@alrj.org
 T 300 2500 5 10 0 0 0 0 1
-dist-license=GPLv2, http://www.gnu.org/licenses/gpl-2.0.txt
+dist-license=GPLv2
 T 300 2300 5 10 0 0 0 0 1
 use-license=unrestricted

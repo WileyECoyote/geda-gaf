@@ -655,7 +655,7 @@ description=Piccolo Microcontroller
 T 3600 11600 5 10 0 0 0 0 1
 numslots=0
 T 400 13000 5 10 0 0 0 0 1
-dist-license=GPL2
+dist-license=GPLv2
 T 400 12800 5 10 0 0 0 0 1
 use-license=unlimited
 T 2200 11600 9 10 0 0 0 0 1

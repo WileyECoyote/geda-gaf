@@ -374,6 +374,6 @@ description=8 bit Atmel MicroController
 T 400 9800 5 10 0 0 0 0 1
 numslots=0
 T 400 10000 5 10 0 0 0 0 1
-dist-license=GNU GPL
+dist-license=GPLv2
 T 400 10200 5 10 0 0 0 0 1
-use-license=Unlimited
+use-license=unlimited

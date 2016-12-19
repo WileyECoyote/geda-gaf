@@ -119,12 +119,6 @@ T 300 4500 5 10 0 0 0 0 1
 documentation=http://winstar.com.tw/mysql/chip/WG240128B.PDF
 T 300 4300 5 10 0 0 0 0 1
 description=WG240128E or similar LCD with RA6963 controller
-T 300 5100 5 10 0 0 0 0 1
-author=Anton Dubniak <twister@tfsoft.org.ua>
-T 300 4900 5 10 0 0 0 0 1
-dist-license=GPL
-T 300 4700 5 10 0 0 0 0 1
-use-license=unlimited
 B 900 200 1600 3400 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 V 2600 3700 50 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 V 2600 100 50 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
@@ -230,3 +224,9 @@ T 1085 500 9 10 1 0 0 0 1
 symversion=0.2
 T 1800 1900 9 10 1 0 0 3 1
 LCD DISPLAY
+T 300 5100 5 10 0 0 0 0 1
+author=Anton Dubniak <twister@tfsoft.org.ua>
+T 300 4900 5 10 0 0 0 0 1
+dist-license=GPLv2
+T 300 4700 5 10 0 0 0 0 1
+use-license=unlimited

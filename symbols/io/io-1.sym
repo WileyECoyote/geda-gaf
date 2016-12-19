@@ -12,7 +12,7 @@ symversion=0.5
 T 0 800 5 8 0 0 0 0 1
 dist-license=GPLv2
 T 0 650 5 8 0 0 0 0 1
-use-license=free, no restrictions
+use-license=unlimited
 P 0 100 200 100 1 0 0
 {
 T 100 150 5 8 0 1 0 0 1

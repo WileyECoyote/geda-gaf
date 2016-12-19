@@ -884,7 +884,7 @@ B 400 400 14000 6000 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 7500 3300 9 10 1 0 0 3 1
 IEEE1394 LLC
 T 2000 4800 5 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 2000 4600 5 10 0 0 0 0 1
 use-license=unlimited
 T 2000 3000 9 10 0 0 0 0 1

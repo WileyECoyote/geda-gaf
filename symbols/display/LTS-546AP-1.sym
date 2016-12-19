@@ -184,7 +184,7 @@ dp
 T 2200 1400 8 10 0 0 0 0 1
 author=Matthieu Crapet mcrapetATgmail.com
 T 2200 1200 8 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 2200 1000 8 10 0 0 0 0 1
 use-license=unlimited
 T 2200 2700 9 10 0 1 0 0 1

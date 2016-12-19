@@ -14,7 +14,7 @@ description=Boost Converter with Battery Management for Energy Harvester
 T 1800 3900 5 10 0 0 0 0 1
 numslots=0
 T 400 4900 5 10 0 0 0 0 1
-dist-license=GPLv3
+dist-license=GPLv2
 T 400 4700 5 10 0 0 0 0 1
 use-license=unlimited
 B 400 400 2000 3000 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1

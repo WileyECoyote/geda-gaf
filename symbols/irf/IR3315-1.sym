@@ -70,7 +70,7 @@ B 400 100 700 1000 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 400 1800 5 10 0 0 0 0 1
 numslots=0
 T 400 2200 5 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 400 2000 5 10 0 0 0 0 1
 use-license=unlimited
 T 400 2400 5 10 0 0 0 0 1

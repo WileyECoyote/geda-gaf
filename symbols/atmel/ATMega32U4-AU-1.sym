@@ -501,9 +501,9 @@ description=$6.04 MOUSER 556-ATMEGA32U4-AU
 T 400 12200 5 10 0 0 0 0 1
 numslots=0
 T 400 12400 5 10 0 0 0 0 1
-dist-license=MIT
+dist-license=GPLv2
 T 400 12600 5 10 0 0 0 0 1
-use-license=MIT
+use-license=unlimited
 #
 #The MIT License (MIT)
 #

@@ -312,7 +312,7 @@ author=Andreas Kemnade <andreas@kemnade.info>
 T 150 4840 8 10 0 0 0 0 1
 use-license=unlimited
 T 150 5040 8 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 P 1900 0 1900 300 1 0 0
 {
 T 2000 0 5 8 0 1 90 0 1

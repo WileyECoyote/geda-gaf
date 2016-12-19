@@ -320,7 +320,7 @@ net=VCC:4,6
 T 300 5800 5 10 0 0 0 0 1
 net=GND:3,5,21
 T 0 0 8 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 1600 0 8 10 0 0 0 0 1
 use-license=unlimited
 

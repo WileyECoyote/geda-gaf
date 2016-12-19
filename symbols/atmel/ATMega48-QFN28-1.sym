@@ -323,7 +323,7 @@ documentation=http://www.atmel.com/dyn/resources/prod_documents/doc2545.pdf
 T 300 7400 5 10 0 0 0 0 1
 description=ATMega48,2545 8 bit AVR Microcontroller,QFN28
 T 300 7800 5 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 300 7600 5 10 0 0 0 0 1
 use-license=unlimited
 P 2600 0 2600 300 1 0 0

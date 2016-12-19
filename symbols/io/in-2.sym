@@ -8,7 +8,7 @@ author=K-M. Knaak, kmk@lilalaser.de
 T 700 1600 5 10 0 0 0 0 1
 dist-license=GPLv2
 T 700 1400 5 10 0 0 0 0 1
-use-license=free, no restrictions
+use-license=unlimited
 T 700 400 5 10 0 0 0 0 1
 footprint=JUMPER-1
 T 650 100 8 10 1 1 0 7 1

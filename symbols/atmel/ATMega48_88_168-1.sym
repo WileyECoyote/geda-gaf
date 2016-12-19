@@ -366,7 +366,7 @@ symversion=0
 T 0 8100 8 10 0 0 0 0 1
 use-license=unlimited
 T 0 8300 8 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 0 8700 8 10 0 0 0 0 1
 author=Sergey Alyoshin
 T 30 7700 8 10 0 0 0 0 1

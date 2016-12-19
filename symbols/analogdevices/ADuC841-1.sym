@@ -589,7 +589,7 @@ ADuC841/2/3 52-LEAD PQFP
 T 3600 0 8 10 0 0 0 0 1
 author=Wojciech M. Zabolotny wzabATise.pw.edu.pl
 T 0 0 8 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 1600 0 8 10 0 0 0 0 1
 use-license=unlimited
 T 0 200 8 10 0 0 0 0 1

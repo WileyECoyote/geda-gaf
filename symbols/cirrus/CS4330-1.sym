@@ -97,7 +97,7 @@ description=18 bit serial dual D/A converter,SOIC8
 T 400 3700 5 10 0 0 0 0 1
 author=Vanessa Ezekowitz
 T 400 3500 5 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 400 3300 5 10 0 0 0 0 1
 use-license=unlimited
 T 400 3100 5 10 0 0 0 0 1

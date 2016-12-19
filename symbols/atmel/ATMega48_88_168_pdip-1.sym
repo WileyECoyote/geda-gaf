@@ -322,7 +322,7 @@ symversion=0.1
 T 200 7100 8 10 0 0 0 0 1
 use-license=unlimited
 T 200 7300 8 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 200 7700 8 10 0 0 0 0 1
 author=Sergey Alyoshin, Edward Venator
 T 200 6700 8 8 1 0 0 0 1

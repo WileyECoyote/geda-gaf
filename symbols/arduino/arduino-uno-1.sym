@@ -319,6 +319,6 @@ description=Arduino Uno-Compatible Device
 T 0 4900 8 10 0 0 0 0 1
 dist-license=GPLv2
 T 0 5100 8 10 0 0 0 0 1
-use-license=GPLv2
+use-license=unlimited
 T 0 5300 8 10 0 0 0 0 1
 author=jlamothe

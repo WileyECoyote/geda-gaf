@@ -121,7 +121,7 @@ symversion=1.0
 T 3600 0 8 10 0 0 0 0 1
 author=Bob Paddock bpaddockATcsonline.net
 T 0 0 8 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 1600 0 8 10 0 0 0 0 1
 use-license=unlimited
 T 2000 2100 8 10 1 1 0 6 1

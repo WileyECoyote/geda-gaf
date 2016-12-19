@@ -3297,6 +3297,6 @@ value=AM3357BZCE
 T 400 46900 5 10 0 0 0 0 1
 author=Max Feoktistov <max@lsol.ru>
 T 400 46500 5 10 0 0 0 0 1
-dist-license=GPL2
+dist-license=GPLv2
 T 400 46700 5 10 0 0 0 0 1
 use-license=unlimited

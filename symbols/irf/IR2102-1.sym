@@ -101,7 +101,7 @@ documentation=http://www.irf.com/product-info/datasheets/data/ir2101.pdf
 T 300 2000 5 10 0 1 0 0 1
 description=IR2102 Half Bridge Driver
 T 300 2600 5 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 300 2400 5 10 0 0 0 0 1
 use-license=unlimited
 T 300 1800 5 10 0 1 0 0 1

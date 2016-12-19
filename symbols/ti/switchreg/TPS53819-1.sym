@@ -191,7 +191,7 @@ description=Single Synchronous Step-Down Controller
 T 2200 3500 5 10 0 0 0 0 1
 numslots=0
 T 2200 3700 5 10 0 0 0 0 1
-dist-license=GPL2
+dist-license=GPLv2
 T 2200 3900 5 10 0 0 0 0 1
 use-license=unlimited
 T 2200 4100 5 10 0 0 0 0 1
