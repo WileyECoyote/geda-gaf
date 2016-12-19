@@ -11,7 +11,7 @@ documentation=www.microsemi.com
 T 400 6500 5 10 0 0 0 0 1
 author=AutoTron
 T 400 6300 5 10 0 0 0 0 1
-dist-license=GPL3
+dist-license=GPLv2
 T 5300 5650 8 10 1 1 0 6 1
 refdes=U?
 T 2300 2950 9 10 1 0 0 0 2

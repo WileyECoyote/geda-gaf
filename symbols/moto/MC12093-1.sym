@@ -4,7 +4,7 @@ description=divide by 2,4,8, model MC12093 by ON-Semi
 T 100 2400 5 8 0 0 0 0 1
 documentation=http://www.onsemi.com/pub/Collateral/MC12093-D.PDF
 T 100 2800 5 8 0 0 0 0 1
-dist-license=GPL 3, see http://www.gnu.org/licenses/gpl-3.0.txt
+dist-license=GPL 3, see http://www.gnu.org/licenses/gpl-2.0.txt
 T 100 2600 5 8 0 0 0 0 1
 use-license=free, no restrictions
 T 100 3000 5 10 0 0 0 0 1

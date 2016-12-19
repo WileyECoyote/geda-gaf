@@ -44,6 +44,6 @@ author=AutoTron
 T 600 1300 9 10 0 0 0 0 1
 symversion=0.4
 T 600 1900 5 10 0 0 0 0 1
-dist-license=GPL3
+dist-license=GPLv2
 T 600 1700 5 10 0 0 0 0 1
 use-license=unlimited

@@ -99,7 +99,7 @@ documentation=http://www.ti.com/lit/ds/symlink/lm25101.pdf
 T 400 2500 5 10 0 1 0 0 1
 description=Half-Bridge Gate Driver,80V,1A
 T 400 2900 5 10 0 0 0 0 1
-dist-license=GPL2
+dist-license=GPLv2
 T 400 3100 5 10 0 0 0 0 1
 use-license=unlimited
 T 400 1900 8 10 1 1 0 0 1

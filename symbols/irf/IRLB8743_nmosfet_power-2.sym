@@ -6,7 +6,7 @@ documentation=http://www.irf.com/product-info/datasheets/data/irlb8743pbf.pdf
 T 700 2600 5 8 0 0 0 0 1
 author=Kai-Martin Knaak kmk@lilalaser.de
 T 700 2400 5 8 0 0 0 0 1
-dist-license=GPL 3, see http://www.gnu.org/licenses/gpl-3.0.txt
+dist-license=GPL 3, see http://www.gnu.org/licenses/gpl-2.0.txt
 T 700 2200 5 8 0 0 0 0 1
 use-license=free, no restrictions
 T 700 600 8 10 1 1 0 0 1

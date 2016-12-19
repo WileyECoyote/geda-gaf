@@ -40,6 +40,6 @@ value=BAS16
 T 100 1800 9 10 0 0 0 0 1
 author=Amand Tihon amand.tihon@alrj.org
 T 100 1600 9 10 0 0 0 0 1
-dist-license=GPL3, http://www.gnu.org/licenses/gpl-3.0.txt
+dist-license=GPLv2, http://www.gnu.org/licenses/gpl-2.0.txt
 T 100 1400 9 10 0 0 0 0 1
 use-license=unrestricted

@@ -92,7 +92,7 @@ refdes=U?
 T 350 50 5 10 0 0 0 0 1
 symversion=1.0
 T 300 3100 5 10 0 0 0 0 1
-dist-license=GPL2
+dist-license=GPLv2
 T 300 2900 5 10 0 0 0 0 1
 use-license=unlimited
 T 300 2700 5 10 0 0 0 0 1

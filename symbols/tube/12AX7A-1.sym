@@ -151,7 +151,7 @@ author=AutoTron
 T 4200 3500 5 10 0 0 0 0 1
 use-license=unrestricted
 T 4200 3700 5 10 0 0 0 0 1
-dist-license=GPL3
+dist-license=GPLv2
 T 4200 2700 5 10 1 1 0 0 1
 value=12AX7A
 T 4200 3300 5 10 0 1 0 0 1

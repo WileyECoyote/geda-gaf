@@ -42,7 +42,7 @@ footprint=PHOTORES-400
 T 500 1800 5 10 0 0 0 0 1
 documentation=https://en.wikipedia.org/wiki/Photoresistor
 T 500 2200 5 10 0 0 0 0 1
-dist-license=GPL2
+dist-license=GPLv2
 T 500 2000 5 10 0 0 0 0 1
 use-license=unlimited
 T 500 1600 5 10 0 0 0 0 1

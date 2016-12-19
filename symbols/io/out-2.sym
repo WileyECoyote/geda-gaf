@@ -26,7 +26,7 @@ symversion=0.3
 T 100 1600 5 10 0 0 0 0 1
 author=K-M. Knaak, kmk@lilalaser.de
 T 100 1400 5 10 0 0 0 0 1
-dist-license=GPL3
+dist-license=GPLv2
 T 100 1200 5 10 0 0 0 0 1
 use-license=free, no restrictions
 T 400 400 5 10 0 1 0 0 1

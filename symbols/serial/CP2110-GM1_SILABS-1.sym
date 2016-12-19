@@ -268,7 +268,7 @@ use-license=unlimited
 T 400 6700 5 10 0 0 0 0 1
 author=AutoTron
 T 400 6500 5 10 0 0 0 0 1
-dist-license=GPL3
+dist-license=GPLv2
 T 400 5300 3 10 1 0 0 0 1
 CP2110-GM
 T 450 5050 3 10 0 0 0 0 1

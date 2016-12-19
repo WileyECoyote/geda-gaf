@@ -116,4 +116,4 @@ author=AutoTron
 T 2300 3200 9 10 0 0 0 0 1
 use-license=unrestricted
 T 2300 3400 9 10 0 0 0 0 1
-dist-license=GPL3
+dist-license=GPLv2

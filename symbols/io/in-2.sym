@@ -6,7 +6,7 @@ description=signal that enters a sub sheet
 T 700 1800 5 10 0 0 0 0 1
 author=K-M. Knaak, kmk@lilalaser.de
 T 700 1600 5 10 0 0 0 0 1
-dist-license=GPL3
+dist-license=GPLv2
 T 700 1400 5 10 0 0 0 0 1
 use-license=free, no restrictions
 T 700 400 5 10 0 0 0 0 1

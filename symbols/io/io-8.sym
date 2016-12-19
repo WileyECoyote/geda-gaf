@@ -10,7 +10,7 @@ author=AutoTron
 T 1250 0 5 8 0 0 0 0 1
 symversion=0.4
 T 0 900 5 8 0 0 0 0 1
-dist-license=GPL3
+dist-license=GPLv2
 T 0 750 5 8 0 0 0 0 1
 use-license=free, no restrictions
 P 0 100 200 100 1 0 0

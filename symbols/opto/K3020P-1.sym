@@ -77,9 +77,9 @@ footprint=SMD 6
 T 0 2600 5 10 0 0 0 0 1
 author=AutoTron
 T 0 2450 5 10 0 0 0 0 1
-dist-license=GPL3
+dist-license=GPLv2
 T 0 2300 5 10 0 0 0 0 1
-use-license=GPL3
+use-license=unlimited
 T 0 2150 5 10 0 0 0 0 1
 symversion=0.2
 T 0 1975 5 10 0 0 0 0 1

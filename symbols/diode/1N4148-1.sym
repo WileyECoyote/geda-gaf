@@ -40,7 +40,7 @@ numslots=0
 T 500 2200 5 10 0 0 0 0 1
 author=Amand Tihon amand.tihon@alrj.org
 T 500 2000 5 10 0 0 0 0 1
-dist-license=GPL3, http://www.gnu.org/licenses/gpl-3.0.txt
+dist-license=GPLv2, http://www.gnu.org/licenses/gpl-2.0.txt
 T 500 1800 5 10 0 0 0 0 1
 use-license=unrestricted
 T 500 1600 5 10 0 1 0 0 1

@@ -103,7 +103,7 @@ documentation=http://pdfserv.maxim-ic.com/en/ds/MAX1811.pdf
 T 100 2900 5 10 0 0 0 0 1
 symversion=1.0
 T 100 3100 5 10 0 0 0 0 1
-dist-license=GPL3
+dist-license=GPLv2
 T 100 3300 5 10 0 0 0 0 1
 use-license=unlimited
 T 100 3500 5 10 0 0 0 0 1

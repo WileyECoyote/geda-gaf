@@ -44,6 +44,6 @@ symversion=1.0
 T 9000 2700 5 8 0 0 0 0 1
 author=Kai-Martin Knaak kmk@lilalaser.de
 T 9000 2500 5 8 0 0 0 0 1
-dist-license=GPL 3, http://www.gnu.org/licenses/gpl-3.0.txt
+dist-license=GPLv2, http://www.gnu.org/licenses/gpl-2.0.txt
 T 9000 2300 5 8 0 0 0 0 1
 use-license=free, no restrictions

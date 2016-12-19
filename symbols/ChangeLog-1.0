@@ -1,5 +1,9 @@
 2016-12-04 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Update many license tags to dist-license=GPLv2, use-license=unlimited.
+
+2016-12-04 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/switchreg/LM2621-1.sym: Add symbol; Low Voltage Boost Regulator.
 
 2016-11-30 Wiley E. Hill <wileyhill@gmail.com>

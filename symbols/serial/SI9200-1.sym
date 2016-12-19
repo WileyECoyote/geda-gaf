@@ -103,6 +103,6 @@ use-license=unlimited
 T 300 2900 5 10 0 0 0 0 1
 author=AutoTron
 T 300 2700 5 10 0 0 0 0 1
-dist-license=GPL3
+dist-license=GPLv2
 T 300 2300 3 10 0 0 0 0 1
 symversion=0.2

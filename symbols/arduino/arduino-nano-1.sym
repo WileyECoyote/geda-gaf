@@ -339,8 +339,8 @@ T 400 950 5 10 0 1 0 6 1
 pinseq=28
 }
 T 2008 5408 8 10 0 1 0 0 1
-dist-license=LGPLv3 (or later)
+dist-license=GPLv2
 T 2008 5208 8 10 0 1 0 0 1
-use-license=LGPLv3 (or later)
+use-license=unlimited
 T 2008 5008 8 10 0 0 0 0 1
 symversion=0.2

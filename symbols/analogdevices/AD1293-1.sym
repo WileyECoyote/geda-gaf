@@ -157,7 +157,7 @@ pinseq=14
 T 2000 2700 9 10 1 1 0 6 1
 value=AD1293
 T 100 3500 5 10 0 0 0 0 1
-dist-license=GPL-3
+dist-license=GPLv2
 T 100 2900 5 10 0 0 0 0 1
 numslots=0
 T 2000 2900 8 10 1 1 0 6 1

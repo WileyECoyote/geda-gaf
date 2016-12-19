@@ -98,9 +98,9 @@ footprint=DIP6
 T 0 2800 5 10 0 0 0 0 1
 author=AutoTron
 T 0 2650 5 10 0 0 0 0 1
-dist-license=GPL3
+dist-license=GPLv2
 T 0 2500 5 10 0 0 0 0 1
-use-license=GPL3
+use-license=unlimited
 T 0 2350 5 10 0 0 0 0 1
 symversion=0.2
 T 0 2175 5 10 0 0 0 0 1

@@ -101,7 +101,7 @@ description=Half-Bridge Gate Driver, 100V,Adaptive Delay
 T 1700 2300 5 10 0 0 0 0 1
 numslots=0
 T 400 2900 5 10 0 0 0 0 1
-dist-license=GPL2
+dist-license=GPLv2
 T 400 3100 5 10 0 0 0 0 1
 use-license=unlimited
 T 1800 1700 8 10 1 1 0 6 1
