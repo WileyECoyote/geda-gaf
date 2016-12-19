@@ -671,4 +671,5 @@ void x_window_release_all(void)
   gtk_widget_destroy (entry);
   gtk_widget_destroy (location);
   gtk_widget_destroy (edit_box);
+  gtk_widget_destroy (notebook);
 }

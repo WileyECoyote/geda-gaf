@@ -7,6 +7,8 @@
     * gattrib/src/s_sheet_data.c: Rename s_sheet_data_reset->s_sheet_data_free
       and revise to not return a boolean.
 
+    * src/x_window.c: Destroy the notebook in x_window_release_all.
+
 2016-12-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheetcolumn.c: Eliminate unnecessary inclusion of:
