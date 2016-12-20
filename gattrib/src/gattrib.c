@@ -217,6 +217,8 @@ int gattrib_quit(int return_code)
     geda_glist_free_all(search_history);
   }
 
+  s_toplevel_close(sheet_head);
+
   x_gtksheet_destroy_all();
 
   x_window_release_all();

@@ -1,3 +1,7 @@
+2016-12-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gattrib.c: Call s_toplevel_close in gattrib_quit to close the page.
+
 2016-12-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheetcolumn.c: Revise doxygens comments: add param tags.
