@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-12-05 03:55-0600\n"
+"POT-Creation-Date: 2016-12-20 13:44-0600\n"
 "PO-Revision-Date: 2012-01-31 12:07+0000\n"
 "Last-Translator: Peter TB Brett <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -2060,7 +2060,7 @@ msgstr ""
 
 #: gschem/src/x/x_edit_attrib.c:406
 #, fuzzy
-msgid "Select the attribute name to add"
+msgid "Select the name of the attribute to add"
 msgstr "スロットアトリビュートが変です。\n"
 
 #: gschem/src/x/x_edit_attrib.c:407
@@ -4520,8 +4520,9 @@ msgid "Show _Console Window..."
 msgstr "ウィンドウを閉じています。\n"
 
 #: gschem/etc/system-gschemrc.scm:2296
-msgid "Display the console"
-msgstr ""
+#, fuzzy
+msgid "Display the console window"
+msgstr "ウィンドウを閉じています。\n"
 
 #: gschem/etc/system-gschemrc.scm:2297
 msgid "Show Coord _Window..."
@@ -4617,7 +4618,7 @@ msgstr "ラバーバンド・オン\n"
 
 #: gschem/etc/system-gschemrc.scm:2322
 #, fuzzy
-msgid "Toggle net rubberband mode"
+msgid "Toggle rubberband net mode"
 msgstr "ラバーバンド・オン\n"
 
 #: gschem/etc/system-gschemrc.scm:2323
@@ -5351,3 +5352,7 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
+
+#, fuzzy
+#~ msgid "Select the attribute name to add"
+#~ msgstr "スロットアトリビュートが変です。\n"

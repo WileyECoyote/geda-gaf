@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gschem\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-12-05 03:55-0600\n"
+"POT-Creation-Date: 2016-12-20 13:44-0600\n"
 "PO-Revision-Date: 2010-02-14 01:03+0000\n"
 "Last-Translator: Bernd Jendrissek <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -362,7 +362,6 @@ msgid "Gschem status bar"
 msgstr ""
 
 #: gschem/src/base/gschem_status_bar.c:1888
-#, fuzzy
 msgid "Grid"
 msgstr ""
 
@@ -833,7 +832,6 @@ msgstr "Gered %d dokumente sessie %s\n"
 #, fuzzy, c-format
 msgid "An error occurred attempting to save session %s: %s."
 msgstr "'N fout probeer sessie te spaar %s: %s."
-
 
 #: gschem/src/iface/i_sessions.c:1113
 #, fuzzy
@@ -2067,8 +2065,8 @@ msgstr "<b>Bewerk Eienskap</b>"
 
 #: gschem/src/x/x_edit_attrib.c:406
 #, fuzzy
-msgid "Select the attribute name to add"
-msgstr "Kies die naam van die eiendom by te voeg"
+msgid "Select the name of the attribute to add"
+msgstr "Kies kenmerk te voeg"
 
 #: gschem/src/x/x_edit_attrib.c:407
 msgid "Select the name of the attribute to edit"
@@ -4560,7 +4558,8 @@ msgid "Show _Console Window..."
 msgstr "Wys die konsole..."
 
 #: gschem/etc/system-gschemrc.scm:2296
-msgid "Display the console"
+#, fuzzy
+msgid "Display the console window"
 msgstr "Wys die konsole"
 
 #: gschem/etc/system-gschemrc.scm:2297
@@ -4658,7 +4657,7 @@ msgstr "Toggle netto rekkie af"
 
 #: gschem/etc/system-gschemrc.scm:2322
 #, fuzzy
-msgid "Toggle net rubberband mode"
+msgid "Toggle rubberband net mode"
 msgstr "Toggle netto rekkie af"
 
 #: gschem/etc/system-gschemrc.scm:2323
@@ -5394,3 +5393,7 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
+
+#, fuzzy
+#~ msgid "Select the attribute name to add"
+#~ msgstr "Kies die naam van die eiendom by te voeg"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-12-08 02:24-0600\n"
+"POT-Creation-Date: 2016-12-20 13:44-0600\n"
 "PO-Revision-Date: 2010-01-29 16:49+0000\n"
 "Last-Translator: Carlos Nieves Ónega <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -38,7 +38,7 @@ msgstr ""
 msgid "Failed to save user configuration to '%s': %s."
 msgstr ""
 
-#: gattrib/src/gattrib.c:349
+#: gattrib/src/gattrib.c:371
 #, c-format
 msgid "Couldn not find file [%s]\n"
 msgstr ""
@@ -103,9 +103,12 @@ msgstr ""
 msgid " DONE\n"
 msgstr ""
 
+#: gattrib/src/s_object.c:215
+msgid "failed to find attribute"
+msgstr ""
+
 #: gattrib/src/s_object.c:216
-#, c-format
-msgid "%s, failed to find the attribute %s on the component. Exiting...\n"
+msgid "Exiting..."
 msgstr ""
 
 #: gattrib/src/s_rename.c:98
@@ -132,91 +135,86 @@ msgid ""
 "This warning is okay if you have multiple levels of hierarchy!\n"
 msgstr ""
 
-#: gattrib/src/s_rename.c:219
+#: gattrib/src/s_rename.c:220
 #, c-format
 msgid "Increase the number of rename_pairs (MAX_RENAME) in s_rename.c\n"
 msgstr ""
 
-#: gattrib/src/s_sheet_data.c:245
+#: gattrib/src/s_sheet_data.c:242
 #, c-format
 msgid "Starting master comp list creation.\n"
 msgstr ""
 
-#: gattrib/src/s_sheet_data.c:309
+#: gattrib/src/s_sheet_data.c:308
 #, c-format
 msgid "- Starting master comp attrib list creation.\n"
 msgstr ""
 
-#: gattrib/src/s_sheet_data.c:424
+#: gattrib/src/s_sheet_data.c:434
 #, c-format
 msgid "- Creating master pin list.\n"
 msgstr ""
 
-#: gattrib/src/s_sheet_data.c:464
-#, c-format
-msgid ""
-"In s_sheet_data_add_master_pin_list_items, found component pin with no "
-"pinnumber.\n"
+#: gattrib/src/s_sheet_data.c:484
+msgid "found component pin with no pinnumber."
 msgstr ""
 
-#: gattrib/src/s_sheet_data.c:521
+#: gattrib/src/s_sheet_data.c:545
 #, c-format
 msgid "- Starting master pin attrib list creation.\n"
 msgstr ""
 
-#: gattrib/src/s_string_list.c:131
-#, c-format
-msgid "In s_string_list_add_item, tried to add to a NULL list.\n"
+#: gattrib/src/s_string_list.c:142
+msgid "attempted to add to a NULL list.\n"
 msgstr ""
 
-#: gattrib/src/s_string_list.c:196
-#, c-format
-msgid "In s_string_list_delete_item, tried to remove item from empty list\n"
+#: gattrib/src/s_string_list.c:205
+msgid "attempted to remove item from an empty list\n"
 msgstr ""
 
-#: gattrib/src/s_string_list.c:272
-#, c-format
-msgid "In s_string_list_delete_item, couldn't delete item %s\n"
+#: gattrib/src/s_string_list.c:283
+msgid "could not delete item"
 msgstr ""
 
-#: gattrib/src/s_table.c:352 gattrib/src/s_table.c:415
+#: gattrib/src/s_table.c:355 gattrib/src/s_table.c:416
 #, c-format
 msgid "Component Error looking for row ref [%s]\n"
 msgstr ""
 
-#: gattrib/src/s_table.c:357 gattrib/src/s_table.c:419
+#: gattrib/src/s_table.c:358 gattrib/src/s_table.c:420
 #, c-format
 msgid "Component Error looking for column named [%s]\n"
 msgstr ""
 
-#: gattrib/src/s_table.c:567
+#: gattrib/src/s_table.c:570
 #, c-format
 msgid "- Starting internal pin TABLE creation\n"
 msgstr ""
 
-#: gattrib/src/s_table.c:630
+#: gattrib/src/s_table.c:633
 #, c-format
 msgid "Pin Error looking for row ref [%s]\n"
 msgstr ""
 
-#: gattrib/src/s_table.c:634
+#: gattrib/src/s_table.c:637
 #, c-format
 msgid "Pin Error looking for column named [%s]\n"
 msgstr ""
 
-#: gattrib/src/s_toplevel.c:490
-#, c-format
-msgid "%s: did not find the refdes in the master list!\n"
+#: gattrib/src/s_toplevel.c:487
+msgid "did not find the refdes in the master list\n"
 msgstr ""
 
-#: gattrib/src/s_toplevel.c:526 gattrib/src/s_toplevel.c:890
-#, c-format
-msgid "%s: count != i!  Exiting . . . .\n"
+#: gattrib/src/s_toplevel.c:523 gattrib/src/s_toplevel.c:882
+msgid "count != i! Exiting ..."
 msgstr ""
 
-#: gattrib/src/s_toplevel.c:850
-#, c-format
-msgid "%s: either refdes or pinnumber of object missing!\n"
+#: gattrib/src/s_toplevel.c:842
+msgid "object missing either refdes or pinnumber"
+msgstr ""
+
+#: gattrib/src/s_toplevel.c:851
+msgid "didn't find the refdes:pin "
 msgstr ""
 
 #: gattrib/src/x_dialog.c:111
@@ -350,12 +348,12 @@ msgstr ""
 msgid "Find next"
 msgstr ""
 
-#: gattrib/src/x_fileselect.c:112
+#: gattrib/src/x_fileselect.c:113
 #, c-format
 msgid "Loading file [%s]\n"
 msgstr ""
 
-#: gattrib/src/x_fileselect.c:118
+#: gattrib/src/x_fileselect.c:119
 #, c-format
 msgid "Could not load schematic [%s]\n"
 msgstr ""
@@ -369,17 +367,17 @@ msgstr "Editor de Propiedades de gEDA"
 msgid "Designator"
 msgstr ""
 
-#: gattrib/src/x_menus.c:596
+#: gattrib/src/x_menus.c:645
 #, c-format
 msgid ""
 "Error loading %s:\n"
 "%s\n"
 msgstr ""
 
-#: gattrib/src/x_window.c:168
+#: gattrib/src/x_window.c:176
 msgid "Saving main window geometry and settings.\n"
 msgstr ""
 
-#: gattrib/src/x_window.c:205
+#: gattrib/src/x_window.c:213
 msgid "Retrieving main Window geometry and settings.\n"
 msgstr ""

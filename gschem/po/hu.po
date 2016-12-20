@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-12-05 03:55-0600\n"
+"POT-Creation-Date: 2016-12-20 13:44-0600\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: kop <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -2089,7 +2089,7 @@ msgstr "<b>Attribútum szerkesztése</b>"
 
 #: gschem/src/x/x_edit_attrib.c:406
 #, fuzzy
-msgid "Select the attribute name to add"
+msgid "Select the name of the attribute to add"
 msgstr "Válaszd ki a menteni kívánt rajzot:"
 
 #: gschem/src/x/x_edit_attrib.c:407
@@ -4595,8 +4595,9 @@ msgid "Show _Console Window..."
 msgstr "Ablak bezárása\n"
 
 #: gschem/etc/system-gschemrc.scm:2296
-msgid "Display the console"
-msgstr ""
+#, fuzzy
+msgid "Display the console window"
+msgstr "Ablak bezárása\n"
 
 #: gschem/etc/system-gschemrc.scm:2297
 msgid "Show Coord _Window..."
@@ -4691,7 +4692,7 @@ msgid "Toggle _Rubberband"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2322
-msgid "Toggle net rubberband mode"
+msgid "Toggle rubberband net mode"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2323

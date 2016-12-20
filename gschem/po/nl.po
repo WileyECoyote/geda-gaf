@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gschem\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-12-05 03:55-0600\n"
+"POT-Creation-Date: 2016-12-20 13:44-0600\n"
 "PO-Revision-Date: 2014-08-31 22:35+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -2146,7 +2146,7 @@ msgstr "<b>Bewerk Attribuut</b>"
 
 #: gschem/src/x/x_edit_attrib.c:406
 #, fuzzy
-msgid "Select the attribute name to add"
+msgid "Select the name of the attribute to add"
 msgstr "Slot attribuut misvormd\n"
 
 #: gschem/src/x/x_edit_attrib.c:407
@@ -4667,8 +4667,9 @@ msgid "Show _Console Window..."
 msgstr "Toon _Coordinaten venster..."
 
 #: gschem/etc/system-gschemrc.scm:2296
-msgid "Display the console"
-msgstr ""
+#, fuzzy
+msgid "Display the console window"
+msgstr "Toon Coordinaten Venster"
 
 #: gschem/etc/system-gschemrc.scm:2297
 #, fuzzy
@@ -4768,7 +4769,7 @@ msgstr "Schakel D_raad Elastiekband"
 
 #: gschem/etc/system-gschemrc.scm:2322
 #, fuzzy
-msgid "Toggle net rubberband mode"
+msgid "Toggle rubberband net mode"
 msgstr "Schakel D_raad Elastiekband"
 
 #: gschem/etc/system-gschemrc.scm:2323
@@ -5473,3 +5474,7 @@ msgstr "~S is geen geldige toetsencombinatie."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S is geen voorafgaande toetsen combinatie."
+
+#, fuzzy
+#~ msgid "Select the attribute name to add"
+#~ msgstr "Slot attribuut misvormd\n"

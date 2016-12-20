@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gschem VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-12-05 03:55-0600\n"
+"POT-Creation-Date: 2016-12-20 13:44-0600\n"
 "PO-Revision-Date: 2012-03-23 03:04+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitoschido@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -2173,7 +2173,7 @@ msgstr "<b>Editar propiedades</b>"
 
 #: gschem/src/x/x_edit_attrib.c:406
 #, fuzzy
-msgid "Select the attribute name to add"
+msgid "Select the name of the attribute to add"
 msgstr "El atributo del elemento está mal especificado\n"
 
 #: gschem/src/x/x_edit_attrib.c:407
@@ -4704,8 +4704,9 @@ msgid "Show _Console Window..."
 msgstr "Mostrar ventana de _coordenadas..."
 
 #: gschem/etc/system-gschemrc.scm:2296
-msgid "Display the console"
-msgstr ""
+#, fuzzy
+msgid "Display the console window"
+msgstr "Mostrar ventana de _coordenadas..."
 
 #: gschem/etc/system-gschemrc.scm:2297
 #, fuzzy
@@ -4804,7 +4805,7 @@ msgstr "Act/Desact conserva_r conexiones"
 
 #: gschem/etc/system-gschemrc.scm:2322
 #, fuzzy
-msgid "Toggle net rubberband mode"
+msgid "Toggle rubberband net mode"
 msgstr "Act/Desact conserva_r conexiones"
 
 #: gschem/etc/system-gschemrc.scm:2323
@@ -5562,3 +5563,7 @@ msgstr "~S no es una combinación de teclas válida."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S no es una secuencia de teclas válida como prefijo."
+
+#, fuzzy
+#~ msgid "Select the attribute name to add"
+#~ msgstr "El atributo del elemento está mal especificado\n"

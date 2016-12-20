@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-12-05 03:55-0600\n"
+"POT-Creation-Date: 2016-12-20 13:44-0600\n"
 "PO-Revision-Date: 2015-07-29 00:24-0600\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -2150,8 +2150,9 @@ msgid "<b>Edit Attribute</b>"
 msgstr "<b>kesamruol kounalokkhan</b>"
 
 #: gschem/src/x/x_edit_attrib.c:406
-msgid "Select the attribute name to add"
-msgstr "chreusa chhmoh kounalokkhan banthem"
+#, fuzzy
+msgid "Select the name of the attribute to add"
+msgstr "chreusa chhmoh kounalokkhan daembi kesamruol"
 
 #: gschem/src/x/x_edit_attrib.c:407
 msgid "Select the name of the attribute to edit"
@@ -4534,7 +4535,7 @@ msgid "Show _Console Window..."
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2296
-msgid "Display the console"
+msgid "Display the console window"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2297
@@ -4626,7 +4627,7 @@ msgid "Toggle _Rubberband"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2322
-msgid "Toggle net rubberband mode"
+msgid "Toggle rubberband net mode"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2323
@@ -5314,3 +5315,6 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
+
+#~ msgid "Select the attribute name to add"
+#~ msgstr "chreusa chhmoh kounalokkhan banthem"

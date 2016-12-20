@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-12-08 02:24-0600\n"
+"POT-Creation-Date: 2016-12-20 13:44-0600\n"
 "PO-Revision-Date: 2014-08-31 20:31+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -38,7 +38,7 @@ msgstr "o_save: Kan [%s] niet openen\n"
 msgid "Failed to save user configuration to '%s': %s."
 msgstr ""
 
-#: gattrib/src/gattrib.c:349
+#: gattrib/src/gattrib.c:371
 #, fuzzy, c-format
 msgid "Couldn not find file [%s]\n"
 msgstr "Kan bestand [%s] niet vinden\n"
@@ -108,12 +108,14 @@ msgstr ""
 msgid " DONE\n"
 msgstr " GEDAAN\n"
 
+#: gattrib/src/s_object.c:215
+#, fuzzy
+msgid "failed to find attribute"
+msgstr "Verwijder attribuut"
+
 #: gattrib/src/s_object.c:216
-#, fuzzy, c-format
-msgid "%s, failed to find the attribute %s on the component. Exiting...\n"
+msgid "Exiting..."
 msgstr ""
-"In s_object_remove_attrib_in_object, is gefaald om attrib %s in de component "
-"te vinden.  Afsluiten . . .\n"
 
 #: gattrib/src/s_rename.c:98
 #, fuzzy, c-format
@@ -143,102 +145,106 @@ msgstr ""
 "zijn beide een bron en bestemming naam\n"
 "Deze waarschuwing is in orde als U meervoudige hiërarchie niveaus heeft!\n"
 
-#: gattrib/src/s_rename.c:219
+#: gattrib/src/s_rename.c:220
 #, fuzzy, c-format
 msgid "Increase the number of rename_pairs (MAX_RENAME) in s_rename.c\n"
 msgstr "Verhoog het aantal rename_pairs (MAX_RENAME) in s_rename.c\n"
 
-#: gattrib/src/s_sheet_data.c:245
+#: gattrib/src/s_sheet_data.c:242
 #, fuzzy, c-format
 msgid "Starting master comp list creation.\n"
 msgstr "- Start het aanmaken van de hoofdcomponentenlijst.\n"
 
-#: gattrib/src/s_sheet_data.c:309
+#: gattrib/src/s_sheet_data.c:308
 #, c-format
 msgid "- Starting master comp attrib list creation.\n"
 msgstr "- Start het aanmaken van de hoofdattributenlijst.\n"
 
-#: gattrib/src/s_sheet_data.c:424
+#: gattrib/src/s_sheet_data.c:434
 #, fuzzy, c-format
 msgid "- Creating master pin list.\n"
 msgstr "- Start het aanmaken van de hoofdpennenlijst.\n"
 
-#: gattrib/src/s_sheet_data.c:464
-#, c-format
-msgid ""
-"In s_sheet_data_add_master_pin_list_items, found component pin with no "
-"pinnumber.\n"
+#: gattrib/src/s_sheet_data.c:484
+#, fuzzy
+msgid "found component pin with no pinnumber."
 msgstr ""
 "In s_sheet_data_add_master_pin_list_items, is een component pen zonder "
 "pennummer gevonden.\n"
 
-#: gattrib/src/s_sheet_data.c:521
+#: gattrib/src/s_sheet_data.c:545
 #, c-format
 msgid "- Starting master pin attrib list creation.\n"
 msgstr "- Start het aanmaken van de hoofdpennenattributenlijst.\n"
 
-#: gattrib/src/s_string_list.c:131
-#, c-format
-msgid "In s_string_list_add_item, tried to add to a NULL list.\n"
+#: gattrib/src/s_string_list.c:142
+#, fuzzy
+msgid "attempted to add to a NULL list.\n"
 msgstr ""
 "In s_string_list_add_item, is geprobeerd toe te voegen aan een NULL lijst.\n"
 
-#: gattrib/src/s_string_list.c:196
-#, c-format
-msgid "In s_string_list_delete_item, tried to remove item from empty list\n"
+#: gattrib/src/s_string_list.c:205
+#, fuzzy
+msgid "attempted to remove item from an empty list\n"
 msgstr ""
 "In s_string_list_delete_item, is geprobeerd om een item te verwijderen van "
 "een lege lijst\n"
 
-#: gattrib/src/s_string_list.c:272
-#, c-format
-msgid "In s_string_list_delete_item, couldn't delete item %s\n"
-msgstr "In s_string_list_delete_item, kan item %s niet verwijderen\n"
+#: gattrib/src/s_string_list.c:283
+msgid "could not delete item"
+msgstr ""
 
-#: gattrib/src/s_table.c:352 gattrib/src/s_table.c:415
+#: gattrib/src/s_table.c:355 gattrib/src/s_table.c:416
 #, c-format
 msgid "Component Error looking for row ref [%s]\n"
 msgstr ""
 
-#: gattrib/src/s_table.c:357 gattrib/src/s_table.c:419
+#: gattrib/src/s_table.c:358 gattrib/src/s_table.c:420
 #, c-format
 msgid "Component Error looking for column named [%s]\n"
 msgstr ""
 
-#: gattrib/src/s_table.c:567
+#: gattrib/src/s_table.c:570
 #, c-format
 msgid "- Starting internal pin TABLE creation\n"
 msgstr "- Start het aanmaken van de interne pennen TABEL.\n"
 
-#: gattrib/src/s_table.c:630
+#: gattrib/src/s_table.c:633
 #, c-format
 msgid "Pin Error looking for row ref [%s]\n"
 msgstr ""
 
-#: gattrib/src/s_table.c:634
+#: gattrib/src/s_table.c:637
 #, c-format
 msgid "Pin Error looking for column named [%s]\n"
 msgstr ""
 
-#: gattrib/src/s_toplevel.c:490
-#, fuzzy, c-format
-msgid "%s: did not find the refdes in the master list!\n"
+#: gattrib/src/s_toplevel.c:487
+#, fuzzy
+msgid "did not find the refdes in the master list\n"
 msgstr ""
 "In s_toplevel_get_pin_attribs_in_sheet, is geen refdes:pin gevonden in de "
 "hoofdlijst!\n"
 
-#: gattrib/src/s_toplevel.c:526 gattrib/src/s_toplevel.c:890
-#, fuzzy, c-format
-msgid "%s: count != i!  Exiting . . . .\n"
+#: gattrib/src/s_toplevel.c:523 gattrib/src/s_toplevel.c:882
+#, fuzzy
+msgid "count != i! Exiting ..."
 msgstr ""
 "In s_toplevel_get_pin_attribs_in_sheet, count != i!  Afsluiten . . . .\n"
 
-#: gattrib/src/s_toplevel.c:850
-#, fuzzy, c-format
-msgid "%s: either refdes or pinnumber of object missing!\n"
+#: gattrib/src/s_toplevel.c:842
+#, fuzzy
+msgid "object missing either refdes or pinnumber"
 msgstr ""
 "In s_toplevel_get_pin_attribs_in_sheet, ofwel een refdes of een pennummer "
 "van het object ontbreken!\n"
+
+#: gattrib/src/s_toplevel.c:851
+#, fuzzy
+msgid "didn't find the refdes:pin "
+msgstr ""
+"In s_toplevel_get_pin_attribs_in_sheet, is geen refdes:pin gevonden in de "
+"hoofdlijst!\n"
 
 #: gattrib/src/x_dialog.c:111
 msgid "Add new attribute"
@@ -400,12 +406,12 @@ msgstr ""
 msgid "Find next"
 msgstr ""
 
-#: gattrib/src/x_fileselect.c:112
+#: gattrib/src/x_fileselect.c:113
 #, c-format
 msgid "Loading file [%s]\n"
 msgstr "Laad bestand [%s]\n"
 
-#: gattrib/src/x_fileselect.c:118
+#: gattrib/src/x_fileselect.c:119
 #, fuzzy, c-format
 msgid "Could not load schematic [%s]\n"
 msgstr "Kon schema [%s] niet laden\n"
@@ -419,7 +425,7 @@ msgstr "Voeg nieuwe attribuut toe"
 msgid "Designator"
 msgstr ""
 
-#: gattrib/src/x_menus.c:596
+#: gattrib/src/x_menus.c:645
 #, c-format
 msgid ""
 "Error loading %s:\n"
@@ -428,10 +434,19 @@ msgstr ""
 "Fout tijdens laden %s:\n"
 "%s\n"
 
-#: gattrib/src/x_window.c:168
+#: gattrib/src/x_window.c:176
 msgid "Saving main window geometry and settings.\n"
 msgstr ""
 
-#: gattrib/src/x_window.c:205
+#: gattrib/src/x_window.c:213
 msgid "Retrieving main Window geometry and settings.\n"
 msgstr ""
+
+#, fuzzy
+#~ msgid "%s, failed to find the attribute %s on the component. Exiting...\n"
+#~ msgstr ""
+#~ "In s_object_remove_attrib_in_object, is gefaald om attrib %s in de "
+#~ "component te vinden.  Afsluiten . . .\n"
+
+#~ msgid "In s_string_list_delete_item, couldn't delete item %s\n"
+#~ msgstr "In s_string_list_delete_item, kan item %s niet verwijderen\n"
