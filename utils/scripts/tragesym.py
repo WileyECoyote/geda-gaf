@@ -338,7 +338,7 @@ def writesym(filename,options,attr,pins):
         value=attr[("version",1)]
         if re.match("[0-9]{8}$", value):
             f.write("v " + value + " 1\n")
-        elif re.match("[0-9]{8} 1$", value):
+        elif re.match("[0-9]{8} [1,2]$", value):
             f.write("v " + value + "\n")
         else:
             print "error: version string format invalid: [%s]" % value
