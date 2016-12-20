@@ -1,3 +1,9 @@
+2016-12-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gschem/src/x/x_pagesel.c: Add function pagesel_create_popup_menu to
+      create the popup menu and store in pagesel structure so that the menu
+      can be reused until the pagesel object is destroyed.
+
 2016-12-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Revised the tool-tip for the options-rubberband

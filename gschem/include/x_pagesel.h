@@ -56,6 +56,7 @@ struct _PageselClass {
 struct _Pagesel {
   GschemDialog     parent_instance;
   GedaType         instance_type;
+  GtkWidget       *popup;
   GtkCellRenderer *renderer;        /* For Name Column */
   GtkTreeView     *treeview;
   int              action_height;

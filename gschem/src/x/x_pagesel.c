@@ -569,21 +569,10 @@ DEFINE_POPUP_CALLBACK (save_page,    ACTION(FILE_SAVE))
 DEFINE_POPUP_CALLBACK (close_page,   ACTION(PAGE_CLOSE))
 DEFINE_POPUP_CALLBACK (discard_page, ACTION(PAGE_DISCARD))
 
-/*! \brief Popup context-sensitive menu.
- *  \par Function Description
- *  Pops up a context-sensitive menu.
- *
- *  <B>event</B> can be NULL if the popup is triggered by a key
- *  binding instead of a mouse click.
- *
- *  \param [in] pagesel  The Pagesel object.
- *  \param [in] event    Mouse click event info.
- */
-static void
-pagesel_popup_menu (Pagesel *pagesel, GdkEventButton *event)
+static GtkWidget*
+pagesel_create_popup_menu (Pagesel *pagesel)
 {
-  GtkTreePath *path;
-  GtkWidget   *menu;
+  GtkWidget *menu;
 
   struct menuitem_t {
     char *label;
@@ -602,7 +591,47 @@ pagesel_popup_menu (Pagesel *pagesel, GdkEventButton *event)
     { N_("Close Page"),   G_CALLBACK (pagesel_callback_popup_close_page)   },
     { N_("Discard Page"), G_CALLBACK (pagesel_callback_popup_discard_page) },
     { NULL,               NULL                                             }};
+
   struct menuitem_t *tmp;
+
+  /* create the context menu */
+  menu = geda_menu_new();
+
+  for (tmp = menuitems; tmp->label != NULL; tmp++) {
+
+    GtkWidget *menuitem;
+
+    if (g_ascii_strcasecmp (tmp->label, "-") == 0) {
+      menuitem = geda_menu_separator_new ();
+    }
+    else {
+      menuitem = geda_menu_item_new_with_label (_(tmp->label));
+      g_signal_connect (menuitem, "activate", tmp->callback, pagesel);
+    }
+    geda_menu_shell_append (GEDA_MENU_SHELL (menu), menuitem);
+  }
+
+  /* Save for destruction when dialog is closed */
+  pagesel->popup = menu;
+
+  return menu;
+}
+
+/*! \brief Popup context-sensitive menu.
+ *  \par Function Description
+ *  Pops up a context-sensitive menu.
+ *
+ *  <B>event</B> can be NULL if the popup is triggered by a key
+ *  binding instead of a mouse click.
+ *
+ *  \param [in] pagesel  The Pagesel object.
+ *  \param [in] event    Mouse click event info.
+ */
+static void
+pagesel_popup_menu (Pagesel *pagesel, GdkEventButton *event)
+{
+  GtkTreePath *path;
+  GtkWidget   *menu;
 
   if (event != NULL &&
       gtk_tree_view_get_path_at_pos (pagesel->treeview,
@@ -616,27 +645,19 @@ pagesel_popup_menu (Pagesel *pagesel, GdkEventButton *event)
     gtk_tree_path_free (path);
   }
 
-  /* create the context menu */
-  menu = geda_menu_new();
-  for (tmp = menuitems; tmp->label != NULL; tmp++) {
-    GtkWidget *menuitem;
-    if (g_ascii_strcasecmp (tmp->label, "-") == 0) {
-      menuitem = geda_menu_separator_new ();
-    }
-    else {
-      menuitem = geda_menu_item_new_with_label (_(tmp->label));
-      g_signal_connect (menuitem,
-                        "activate",
-                        tmp->callback,
-                        pagesel);
-    }
-    geda_menu_shell_append (GEDA_MENU_SHELL (menu), menuitem);
+  if (!pagesel->popup) {
+    menu = pagesel_create_popup_menu (pagesel);
   }
+  else {
+    menu = pagesel->popup;
+  }
+
   gtk_widget_show_all (menu);
+
   /* make menu a popup menu */
   geda_menu_popup (GEDA_MENU (menu), NULL, NULL, NULL, NULL,
                   (event != NULL) ? event->button : 0,
-                  gdk_event_get_time ((GdkEvent*)event));
+                   gdk_event_get_time ((GdkEvent*)event));
 }
 
 /*!
@@ -935,6 +956,12 @@ pagesel_finalize(GObject *object)
 
   eda_config_set_boolean (cfg, group, key, value);
 
+  if (pagesel->popup) {
+    gtk_widget_destroy(pagesel->popup);
+    g_object_unref(pagesel->popup);
+    pagesel->popup = NULL;
+  }
+
   /* Chain up to parent Class */
   G_OBJECT_CLASS(pagesel_parent_class)->finalize(object);
 }
@@ -1033,6 +1060,7 @@ pagesel_instance_init (GTypeInstance *instance, void *class)
   pagesel = (Pagesel*)instance;
 
   pagesel->instance_type = pagesel_get_type();
+  pagesel->popup         = NULL;
 
   i_var_restore_group_boolean(cfg, group, key, &full_names, TRUE);
 
