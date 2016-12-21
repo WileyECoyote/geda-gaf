@@ -1,6 +1,6 @@
 2016-12-21 Wiley E. Hill <wileyhill@gmail.com>
 
-    * Update GPL license version to 2 in:
+    * scripts: Update GPL license version to 2 in:
 
             * geda-snap-grid.py
             * geda2xml.py
@@ -8,6 +8,11 @@
             * gsym-set-font-size.py
             * gsym-set-visibility.py
             * xml2geda.py
+
+    * src/libgedathon.c: Revise function PyGeda_close_page and compare pointer
+      instead of accessing toplevel->page_current->pid, which assumes there is
+      a page_current and utilize geda_toplevel_get_page_up and geda_page_get_pid
+      to simplify.
 
 2016-11-06 Wiley E. Hill <wileyhill@gmail.com>
 

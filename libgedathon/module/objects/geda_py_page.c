@@ -35,8 +35,8 @@
 #include "../../include/geda_py_page.h"
 #include "../../include/geda_py_docs.h"
 
-static PyObject* page_module;
-static PyObject* geda_module;
+static PyObject *page_module;
+static PyObject *geda_module;
 
 /* ------------------------- PyGedaPageObject Destructor ------------------------- */
 
@@ -115,29 +115,29 @@ Page_filename(PyGedaPageObject* self)
 
   return result;
 }
-static PyObject* go_save(PyObject *self)
+static PyObject *go_save(PyObject *self)
 {
   return PyObject_CallMethod(geda_module, "save_page", "O", self);
 }
-static PyObject* go_select(PyObject *self)
+static PyObject *go_select(PyObject *self)
 {
   return PyObject_CallMethod(geda_module, "set_active_page", "O", self);
 }
-static PyObject* go_to_page(PyObject *self)
+static PyObject *go_to_page(PyObject *self)
 {
   return PyObject_CallMethod(geda_module, "goto_page", "O", self);
 }
-static PyObject* go_close(PyObject *self)
+static PyObject *go_close(PyObject *self)
 {
   return PyObject_CallMethod(geda_module, "close_page", "O", self);
 }
 
-static PyObject* go_get_objects(PyObject *self, PyObject *args)
+static PyObject *go_get_objects(PyObject *self, PyObject *args)
 {
   return PyObject_CallMethod(geda_module, "get_objects", "O", self);
 }
 
-static PyObject* go_add(PyObject *self, PyObject *args)
+static PyObject *go_add(PyObject *self, PyObject *args)
 {
   PyObject *object;
 
@@ -149,7 +149,7 @@ static PyObject* go_add(PyObject *self, PyObject *args)
   return PyObject_CallMethod(geda_module, "add_object", "OO", self, object);
 }
 
-static PyObject* go_delete(PyObject *self, PyObject *args)
+static PyObject *go_delete(PyObject *self, PyObject *args)
 {
   return PyObject_CallMethod(geda_module, "delete_object", "O", args);
 }
