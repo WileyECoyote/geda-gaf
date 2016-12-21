@@ -468,14 +468,14 @@ static void s_check_symbol_structure (const GList *obj_list, SYMCHECK *s_current
 static void s_check_text (const GList *obj_list, SYMCHECK *s_current)
 {
   const GList *iter;
-  GedaObject  *o_current;
   const char  *text_string, *ptr;
   char        *message;
   gunichar     current_char;
   bool         overbar_started, escape, leave_parser;
 
   for (iter = obj_list; iter != NULL; iter = g_list_next(iter)) {
-    o_current = iter->data;
+
+    GedaObject *o_current = iter->data;
 
     if (o_current->type != OBJ_TEXT)
       continue;

@@ -1,5 +1,9 @@
 2016-12-06 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/s_check.c: Reduce scope of o_current in s_check_text.
+
+2016-12-06 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/gsymcheck.c: Release resource before aborting when an error
       occurs opening a file.
 
