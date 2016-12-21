@@ -770,18 +770,18 @@ const CLibSymbol *geda_struct_clib_get_symbol_by_name      (const char *name);
 
 /* u_glist.c */
         GList   *geda_utility_glist_clear        (GList *list);
-          int    geda_utility_glist_find_string  (GList *list, char *string);
+          int    geda_utility_glist_find_string  (GList *list, const char *string);
          void    geda_utility_glist_free_all     (void  *data);
          void    geda_utility_glist_free_full    (GList *list, GDestroyNotify free_func);
-         bool    geda_utility_glist_str_inlist   (GList *list, char *string);
-         bool    geda_utility_glist_stri_inlist  (GList *list, char *string);
+         bool    geda_utility_glist_str_inlist   (GList *list, const char *string);
+         bool    geda_utility_glist_stri_inlist  (GList *list, const char *string);
 
        GSList   *geda_utility_gslist_clear       (GSList *list);
-          int    geda_utility_gslist_find_string (GSList *list, char *string);
+          int    geda_utility_gslist_find_string (GSList *list, const char *string);
          void    geda_utility_gslist_free_all    (void   *data);
          void    geda_utility_gslist_free_full   (GSList *list, GDestroyNotify free_func);
-         bool    geda_utility_gslist_str_inlist  (GSList *list, char *string);
-         bool    geda_utility_gslist_stri_inlist (GSList *list, char *string);
+         bool    geda_utility_gslist_str_inlist  (GSList *list, const char *string);
+         bool    geda_utility_gslist_stri_inlist (GSList *list, const char *string);
 
 /* u_log.c */
          void    geda_utility_log_close               (void);
@@ -826,7 +826,7 @@ const CLibSymbol *geda_struct_clib_get_symbol_by_name      (const char *name);
 
 /* u_program.c */
          void    geda_utility_program_backtrace       (void);
-         void   *geda_utility_program_mem_alloc      (unsigned int amount);
+         void   *geda_utility_program_mem_alloc       (unsigned int amount);
          void   *geda_utility_program_mem_calloc      (unsigned int amount);
          void    geda_utility_program_mem_free        (void *mem);
          void    geda_utility_program_mem_set_vtable  (void);

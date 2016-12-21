@@ -1,3 +1,15 @@
+2016-12-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/utility/u_glist.c: Declare second (string) argument const for
+      functions:
+
+            * geda_utility_glist_find_string
+            * geda_utility_glist_str_inlist
+            * geda_utility_glist_stri_inlist
+            * geda_utility_gslist_find_string
+            * geda_utility_gslist_str_inlist
+            * geda_utility_gslist_stri_inlist
+
 2016-12-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/: Add headers in files:
@@ -47,7 +59,7 @@
 
     * src/geda/geda_object.c: Redo object type identifier scheme for GedaObject
       objects and replace glist with hash table. The performance with glist was
-      unacceptable poor for schematics with high component counts.
+      unacceptable for schematics with high component counts.
 
     * tests/test_file.c: Skip F0207 if vpath_build.
 
