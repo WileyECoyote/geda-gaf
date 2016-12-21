@@ -1,5 +1,9 @@
 2016-12-21 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_page.c: Add accessor function geda_page_get_pid;
+
+    * src/geda/geda_toplevel.c: Add function geda_toplevel_is_current_page.
+
     * src/utility/u_glist.c: Declare second (string) argument const for
       functions:
 

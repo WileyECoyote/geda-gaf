@@ -166,6 +166,7 @@ const char  *geda_page_get_filename      (Page *page) WARN_UNUSED;
 char        *geda_page_get_filename_dup  (Page *page) WARN_UNUSED;
 void         geda_page_set_filename      (Page *page, const char  *filename);
 
+int          geda_page_get_pid           (Page *page) GEDA_WARN_UNUSED_RESULT;
 GList       *geda_page_get_place_list    (Page *page) GEDA_WARN_UNUSED_RESULT;
 void         geda_page_set_place_list    (Page *page, GList *object_list);
 
