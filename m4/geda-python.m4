@@ -1,9 +1,9 @@
 # geda-python.m4                                      -*-Autoconf-*-
-# serial 1.2
+# serial 1.3
 
 dnl gEDA Prebuild Checks and Setup Options for Python
 dnl
-dnl Copyright (C) 2013-2014  Wiley Edward Hill <wileyhill@gmail.com>
+dnl Copyright (C) 2013-2016  Wiley Edward Hill <wileyhill@gmail.com>
 dnl
 dnl This program is free software; you can redistribute it and/or modify
 dnl it under the terms of the GNU General Public License as published by
@@ -212,8 +212,7 @@ AC_DEFUN([AX_CHECK_PYTHON],
                 AC_SUBST([PYTHON_CFLAGS])
 
                 dnl check for mutagen module >= $PYTHON_MUTAGEN_MIN_VERSION
-                AM_CHECK_PYMOD(mutagen,$PYTHON_MUTAGEN_MIN_VERSION,mutagen.version_string,,have_python=no)
-
+                dnl AX_CHECK_PYMOD(mutagen,$PYTHON_MUTAGEN_MIN_VERSION,mutagen.version_string,,have_python=no)
                 dnl this test should perhaps be re-enabled, but only produce a warning -- tmz
 
                 if test "X$have_gdkpixbuf" = "Xyes" -a "X$have_pygobject" = "Xyes"; then

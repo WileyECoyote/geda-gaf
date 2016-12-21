@@ -1,7 +1,9 @@
 2016-12-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-python.m4: Rename local function AM_CHECK_PYMOD->AX_CHECK_PYMOD,
-      is confusing to me.
+      is confusing to me and eliminate checking the version of the mutagen
+      module. Turns out mutagen module = Mutagen, which is a Python module
+      to handle audio metadata, who knew?
 
 2016-11-17 Wiley E. Hill <wileyhill@gmail.com>
 
