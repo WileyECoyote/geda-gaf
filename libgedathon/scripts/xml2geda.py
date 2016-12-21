@@ -55,7 +55,7 @@ Example: Set the footprint in all symbol files in the current directory to SO8:
 
             xml2geda -f simple.xml
 
-Copyright (C) 2015 by gEDA Contributors.  Released under GPL Version 3.
+Copyright (C) 2015 by gEDA Contributors.  Released under GPL Version 2.
 
 """
 

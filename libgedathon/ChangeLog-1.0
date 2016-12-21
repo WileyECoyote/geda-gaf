@@ -1,3 +1,14 @@
+2016-12-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Update GPL license version to 2 in:
+
+            * geda-snap-grid.py
+            * geda2xml.py
+            * gsym-attribute.py
+            * gsym-set-font-size.py
+            * gsym-set-visibility.py
+            * xml2geda.py
+
 2016-11-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/Makefile.am: Move WINDOWS_LIBTOOL_FLAGS to LIBTOOL flags.
