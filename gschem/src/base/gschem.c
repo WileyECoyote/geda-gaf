@@ -72,7 +72,7 @@ void gschem_atexit(geda_atexit_func func, void* data)
 {
   geda_atexit_struct *p;
 
-  p = g_new(geda_atexit_struct, 1);
+  p = geda_malloc(sizeof(geda_atexit_struct));
   p->func = func;
   p->arg = data;
   exit_functions = g_list_append(exit_functions, p);
@@ -96,7 +96,7 @@ void gschem_quit(void)
 
     ptr = (geda_atexit_struct*)list->data;
     ptr->func(ptr->arg);
-    GEDA_FREE(ptr);
+    geda_free(ptr);
     list = g_list_next(list);
   }
   g_list_free(exit_functions);
