@@ -1,6 +1,8 @@
 2016-12-20 Wiley E. Hill <wileyhill@gmail.com>
 
-    * base/gschem.c: Replace g_new with geda_malloc for geda_atexit_structs.
+    * base/gschem.c: Replace g_new with geda_malloc for geda_atexit_structs,
+      add conditional call geda_label_get_report_instances for debugging
+      memory resources issues.
 
     * gschem/src/x/x_pagesel.c: Add function pagesel_create_popup_menu to
       create the popup menu and store in pagesel structure so that the menu
