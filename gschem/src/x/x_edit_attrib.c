@@ -403,7 +403,7 @@ void attrib_edit_dialog (GschemToplevel *w_current, GedaObject *object, int flag
     name_label_text_add  = _("<b>Add Attribute</b>");
     name_label_text_edit = _("<b>Edit Attribute</b>");
 
-    name_list_add_tip    = _("Select the attribute name to add");
+    name_list_add_tip    = _("Select the name of the attribute to add");
     name_list_edit_tip   = _("Select the name of the attribute to edit");
 
     value_entry_add_tip  = _("Input a value for the new attribute");
