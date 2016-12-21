@@ -5,8 +5,8 @@
  * gEDA - GPL Electronic Design Automation
  * gsymcheck - gEDA Symbol Check
  *
- * Copyright (C) 1998-2015 Ales Hvezda
- * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2016 Ales Hvezda
+ * Copyright (C) 1998-2016 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -62,7 +62,52 @@ SCM g_rc_gsymcheck_version(SCM scm_version)
   return ret;
 }
 
-/*! \brief This function processes the component dialog RC entry.
+/*! \brief This function processes the known-devices RC entry.
+ *  \par Function Description
+ *  This function reads the string list from the known-devices
+ *  configuration parameter and converts the list into a GList.
+ *  The GList is stored in the global default_known_devices variable.
+ */
+SCM g_rc_known_devices(SCM stringlist)
+{
+  GList *list=NULL;
+  int    length, i;
+
+  SCM_ASSERT(scm_list_p(stringlist), stringlist, SCM_ARG1, "scm_is_list failed");
+  length = scm_ilength(stringlist);
+
+  /* If the command is called multiple times, remove the old list before
+     recreating it */
+  g_list_foreach(default_known_devices, (GFunc)g_free, NULL);
+  g_list_free(default_known_devices);
+
+  scm_dynwind_begin(0);
+  scm_dynwind_unwind_handler(geda_gslist_free_all, (void*)&list, 0);
+
+  /* convert the scm list into a GList */
+  for (i=0; i < length; i++) {
+
+    char  *attr;
+    char *str;
+    SCM elem = scm_list_ref(stringlist, scm_from_int(i));
+
+    SCM_ASSERT(scm_is_string(elem), elem, SCM_ARG1, "list element is not a string");
+
+    str = scm_to_utf8_string(elem);
+    attr = geda_utility_string_strdup(str);
+    free(str);
+    list = g_list_prepend(list, attr);
+  }
+
+  scm_dynwind_end();
+
+  default_known_devices = g_list_reverse(list);
+
+  return SCM_BOOL_T;
+
+}
+
+/*! \brief This function processes the valid-attributes RC entry.
  *  \par Function Description
  *  This function reads the string list from the valid-attributes
  *  configuration parameter and converts the list into a GList.
