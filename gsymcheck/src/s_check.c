@@ -750,7 +750,7 @@ static void s_check_device (const GList *obj_list, SYMCHECK *s_current)
         /* And if not a known device type */
         if (!s_check_is_known_device(string)) {
           s_current->device_attribute_incorrect=TRUE;
-          message = geda_strdup (_("Device not found in symbol filename\n"));
+          message = geda_strconcat (_("Device not found in symbol filename"), " \"", string, "\"\n", NULL);
           ADD_WARN_MESSAGE(message);
         }
       }

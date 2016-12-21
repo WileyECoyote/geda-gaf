@@ -236,7 +236,7 @@ msgstr "Grafisch symbool gevonden, device= dient op none te worden ingesteld\n"
 
 #: gsymcheck/src/s_check.c:752
 msgid "Device not found in symbol filename"
-msgstr ""
+msgstr "Apparaat niet gevonden in symbool filename"
 
 #: gsymcheck/src/s_check.c:794
 #, c-format
