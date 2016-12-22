@@ -1,3 +1,8 @@
+2016-12-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/struct/s_clib.c: Revert c7e5e080ef846c03169a1af2fac41437ab707591,
+      at least to use of geda_stricmp instead of strcasecmp part.
+
 2016-12-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_page.c: Add accessor function geda_page_get_pid;
