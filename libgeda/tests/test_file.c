@@ -21,7 +21,7 @@
  * 02110-1301 USA, <http://www.gnu.org/licenses/>.
  *
  *  Contributing Author: Wiley Edward Hill
- *  Date Contributed: March, TBD, 2016
+ *  Date Contributed: March, 22nd, 2016
  */
 
 #include "../../config.h"

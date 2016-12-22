@@ -15,7 +15,8 @@
 
     * tests/test_keyfile.c: Add test module for geda_keyfile.c module.
 
-    * tests/test_utility.c: Remove running test_log twice.
+    * tests/test_utility.c: Remove running test_log twice. Revise U031101B
+      to include the errant string in the log output.
 
 2016-12-21 Wiley E. Hill <wileyhill@gmail.com>
 

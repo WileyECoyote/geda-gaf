@@ -362,7 +362,7 @@ int test_log (void)
   }
   else {
     if (!strcmp(log_mess, "message 1")) {
-      fprintf(stderr, "FAILED: (U031101B) log_set_update_func\n");
+      fprintf(stderr, "FAILED: (U031101B) log_set_update_func <%s>\n", log_mess);
       result++;
     }
   }
