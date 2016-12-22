@@ -1,3 +1,23 @@
+2016-12-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * arduino/XBeePRO.sym: Resequence pin and pin attributes.
+
+    * atmel/ATMega16L-1.sym: Remove "L_DIP" from the device value.
+
+    * atmel/ATMega48_88_168-1.sym: Resequence pin attributes, add description
+      and documentation attributes. Use underscope in device. Using forward
+      slashes in a device number should probably disqualify the device.
+
+    * atmel/ATMega48_88_168-DIP-1.sym: Rename file with upper case DIP and
+      same as ATMega48_88_168-1.sym.
+
+    * atmel/ATMega644-1.sym: Remove "PA" device suffix, reposition attributes.
+
+    * atmel/ATMega644-2.sym: Remove "PA" device suffix, reposition attributes.
+
+    * atmel/ATMegax8*.sym: Revise symbol fragments; replace lines with boxes,
+      add description and documentation attributes.
+
 2016-12-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * Update many license tags to dist-license=GPLv2, use-license=unlimited.
