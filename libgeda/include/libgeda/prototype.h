@@ -814,7 +814,7 @@ const CLibSymbol *geda_struct_clib_get_symbol_by_name      (const char *name);
          char   *geda_utility_string_sprintf          (const char *format, ...) WARN_UNUSED;
          char   *geda_utility_string_strdup           (const char *str) WARN_UNUSED;
          bool    geda_utility_string_strequal         (const char *str1, const char *str2) WARN_UNUSED;
-         int     geda_utility_string_stricmp          (const char *str1, const char *str2);
+         bool    geda_utility_string_stricmp          (const char *str1, const char *str2);
          int     geda_utility_string_stristr          (const char *haystack, const char *needle);
          char   *geda_utility_string_strisubst        (char *source, char *old_str, char *new_str);
          int     geda_utility_string_strncmpi         (const char *str1, const char *str2, int n);

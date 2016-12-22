@@ -9,6 +9,10 @@
     * src/geda/geda_keyfile.c: Add new procedural module for manipulation of
       key/ini files (I know, is in directory of class modules).
 
+    * src/utility/u_string.c: Revise geda_stricmp to indicate return type
+      bool to emphasize geda_stricmp is not a replacement for strcasecmp
+      and add note to comments.
+
 2016-12-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_page.c: Add accessor function geda_page_get_pid;
