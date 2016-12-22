@@ -1,7 +1,7 @@
 v 20150101 2
 B 300 300 3000 5400 3 0 0 0 -1 -1 0 0 -1 -1 -1 -1
-T 300 6200 5 10 0 0 0 0 1
-device=CS5396-KS
+T 300 6800 5 10 0 0 0 0 1
+device=CS5396
 T 300 6000 8 10 1 1 0 0 1
 refdes=U?
 P 300 4200 0 4200 1 0 1
@@ -316,7 +316,7 @@ pinlabel=AGND1
 T 1150 250 5 6 0 1 0 8 1
 pintype=pwr
 }
-T 300 6800 5 10 0 0 0 0 1
+T 300 6200 5 10 0 0 0 0 1
 footprint=SO28
 T 300 7000 5 10 0 0 0 0 1
 description=120dB, 96kHz Audio A/D Converter
@@ -326,5 +326,5 @@ T 300 6400 5 10 0 0 0 0 1
 symversion=0.1
 T 300 7200 5 10 0 0 0 0 1
 documentation=http://www.cirrus.com/en/pubs/proBulletin/5396pi_3.pdf
-T 300 5750 3 10 1 0 0 0 1
-CS5396-KS
+T 300 5750 3 10 1 1 0 0 1
+value=CS5396-KS

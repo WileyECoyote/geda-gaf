@@ -18,6 +18,8 @@
     * atmel/ATMegax8*.sym: Revise symbol fragments; replace lines with boxes,
       add description and documentation attributes.
 
+    * cirrus/CS5396-1.sym: Remove "KS" device suffix.
+
 2016-12-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * Update many license tags to dist-license=GPLv2, use-license=unlimited.
