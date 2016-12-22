@@ -12,6 +12,7 @@ check_geda = \
 	test_bus \
 	test_circle \
 	test_complex \
+	test_keyfile \
 	test_line \
 	test_list \
 	test_net \

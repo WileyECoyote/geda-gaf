@@ -13,6 +13,8 @@
       bool to emphasize geda_stricmp is not a replacement for strcasecmp
       and add note to comments.
 
+    * tests/test_keyfile.c: Add test module for geda_keyfile.c module.
+
 2016-12-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_page.c: Add accessor function geda_page_get_pid;
