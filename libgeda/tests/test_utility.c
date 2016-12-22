@@ -21,7 +21,7 @@
  * 02110-1301 USA, <http://www.gnu.org/licenses/>.
  *
  *  Contributing Author: Wiley Edward Hill
- *  Date Contributed: March, TBD, 2016
+ *  Date Contributed: April, 1st, 2016
  */
 
 #include <libgeda.h>
@@ -1543,14 +1543,6 @@ main (int argc, char *argv[])
   }
   else {
     fprintf(stderr, msg_signal, "u_glist.c");
-    result++;
-  }
-
-  if (setjmp(point) == 0) {
-    result += test_log();
-  }
-  else {
-    fprintf(stderr, msg_signal, "u_log.c");
     result++;
   }
 
