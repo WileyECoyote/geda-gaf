@@ -7,6 +7,9 @@
     * src/iface/i_sessions.c: Reformat error messages in i_sessions_new_session and
       i_sessions_save_session to remove c-format specifiers from translation strings.
 
+    * src/iface/i_vars.c: Reformat error messages in i_vars_atexit_save_user_config
+      to remove c-format specifiers from translation strings.
+
 2016-12-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Revised the tool-tip for the options-rubberband
