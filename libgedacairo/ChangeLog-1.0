@@ -1,3 +1,8 @@
+2016-12-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edarenderer.c: Add preprocesor conditional in eda_renderer_dispose
+      and call pango_context_set_font_map based on the PANGO version.
+
 2016-11-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/edarenderer.c: Call pango_cairo_context_set_font_options and

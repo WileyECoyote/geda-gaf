@@ -186,7 +186,7 @@ static void gschem_main_show (GtkWidget *widget)
 
   gtk_window_set_resizable (GTK_WINDOW(widget), TRUE);
 
-  //g_signal_emit (GEDA_FILE_CHOOSER (widget), chooser_signals[ GEOMETRY_RESTORE ], 0, group);
+  //g_signal_emit (GEDA_FILE_CHOOSER (widget), chooser_signals[GEOMETRY_RESTORE], 0, group);
 }
 
 /*!
