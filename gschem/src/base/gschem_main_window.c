@@ -168,6 +168,27 @@ gschem_window_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
   }
 }
 
+/*! \brief GtkWidget show signal handler
+ *
+ *  \par Function Description
+ *  Before the Dialog widget is shown, restore previously saved
+ *  position and size.
+ *
+ *  \param [in] widget  The GtkWidget being shown.
+ */
+static void gschem_main_show (GtkWidget *widget)
+{
+  /* Hack to fix BUG in GtkFileChooserDialog */
+  gtk_window_set_resizable (GTK_WINDOW(widget), FALSE);
+
+  /* Let Gtk show the window */
+  GTK_WIDGET_CLASS (gschem_main_window_parent_class)->show (widget);
+
+  gtk_window_set_resizable (GTK_WINDOW(widget), TRUE);
+
+  //g_signal_emit (GEDA_FILE_CHOOSER (widget), chooser_signals[ GEOMETRY_RESTORE ], 0, group);
+}
+
 /*!
  * \brief Initialize GschemMainWindow class
  * \par Function Description
@@ -185,6 +206,7 @@ gschem_main_window_class_init (void *class, void *class_data)
 
   widget_class->map               = gschem_main_window_map;
   widget_class->unmap             = gschem_main_window_unmap;
+  widget_class->show              = gschem_main_show;
   widget_class->size_request      = gschem_window_size_request;
   widget_class->size_allocate     = gschem_window_size_allocate;
 
