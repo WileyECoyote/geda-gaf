@@ -932,10 +932,10 @@ int i_sessions_new_session(GschemToplevel *w_current, const char *name)
 
     char *msg;
 
-    msg = geda_sprintf ( _("An error occurred attemting to create session %s: %s."),
+    msg = geda_sprintf ( "%s %s: %s.", _("An error occurred attemting to create session"),
                          name, err->message);
     /* Log the error */
-    u_log_message( "%s %s", __func__, msg);
+    u_log_message( "%s %s\n", __func__, msg);
 
     /* inform the user */
     titled_pango_error_dialog ( _("<b>Session Error</b>"), msg, _("Creation failed") );
@@ -1105,12 +1105,12 @@ int i_sessions_save_session(GschemToplevel *w_current, const char *name)
 
   if (err) {
 
-    msg = geda_sprintf(_("An error occurred attempting to save session %s: %s."), name, err->message);
+    msg = geda_sprintf( "%s %s: %s.", _("An error occurred attempting to save session"), name, err->message);
 
-    u_log_message ("%s", msg); /* Log the error */
+    u_log_message ("%s\n", msg); /* Log the error */
 
     /* inform the user */
-    titled_pango_error_dialog( _("<b>Session Error</b>"), msg, _("Save session failed") );
+    titled_pango_error_dialog( _("<b>Session Error</b>"), msg, _("Save session failed"));
 
     g_error_free(err);
     count = -1;
