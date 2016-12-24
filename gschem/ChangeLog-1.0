@@ -1,7 +1,10 @@
 2016-12-24 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/base/gschem.c: Reformat error messages to remove format specifier from
+    * src/base/gschem.c: Reformat error messages to remove format specifiers from
       translatable strings.
+
+    * src/base/gschem_parsecmd.c: Reformat error messages to remove format specifiers
+      from translatable strings; add seperate const _ERROR, err_ukn, and err_info.
 
 2016-12-23 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -241,7 +241,7 @@ int gschem_parse_commandline(int argc, char *argv[])
         err = NULL;
         str = geda_normalize_filename (optarg, &err);
         if (str == NULL) {
-          u_log_message(_("error parsing: <%s>: %s\n"), optarg, err->message);
+          u_log_message("%s <%s>: %s\n", _("error parsing"), optarg, err->message);
           g_clear_error(&err);
         }
         else {
@@ -277,21 +277,31 @@ int gschem_parse_commandline(int argc, char *argv[])
 
 #ifndef HAVE_GETOPT_LONG
 
+        const char *_ERROR = _("ERROR");
+
         if ((optopt != ':') && (strchr (GETOPT_OPTIONS, optopt) != NULL)) {
-          fprintf (stderr,
-                   "ERROR: -%c option requires an argument.\n\n",
-                   optopt);
+
+          const char *err_arg = _("option requires an argument");
+
+          fprintf (stderr, "%s: -%c %s.\n\n", _ERROR, optopt, err_arg);
         }
         else if (isprint (optopt)) {
-          fprintf (stderr, "ERROR: Unknown option -%c.\n\n", optopt);
+
+          const char *err_ukn = _("Unknown option");
+
+          fprintf (stderr, "%s: -%c.\n\n", _ERROR, err_ukn, optopt);
         }
         else {
-          fprintf (stderr, "ERROR: Unknown option character `\\x%x'.\n\n",
-                   optopt);
+
+          const char *err_ukn = _("Unknown option character");
+
+          fprintf (stderr, "%s: %s `\\x%x'.\n\n", _ERROR, err_ukn, optopt);
         }
 #endif
 
-        fprintf (stderr, "\nRun `%s --help' for more information.\n", argv[0]);
+        const char *err_info = _("--help' for more information");
+
+        fprintf (stderr, "\n%s `%s %s.\n", _("Run"), argv[0], err_info);
         exit (1);
         break;
 
@@ -309,7 +319,7 @@ int gschem_parse_commandline(int argc, char *argv[])
         break;
 
       default:
-        fprintf (stderr, "<parse_commandline> unhandler case for <%c>.\n", ch);
+        fprintf (stderr, "<%s> unhandler case for <%c>.\n", __func__, ch);
     }
   }
 
