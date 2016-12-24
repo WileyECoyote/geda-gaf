@@ -6,6 +6,9 @@
     * analogdevices/AD5314-1.sym: Add symbol; Quad 12-Bit DACs, 2.5 V to 5.5 V,
       500 uA, Voltage Output, 3-wire.
 
+    * analogdevices/ADuC812-1.sym: Add symbol; 8-bit CMOS microcontroller with
+      A/D converter.
+
 2016-11-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * lineartech/switchreg/LTC3531-2.sym: Add LTC3531 symbol with alternate
