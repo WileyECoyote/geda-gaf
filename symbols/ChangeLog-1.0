@@ -2,6 +2,9 @@
 
     * analogdevices/LT317A-1.sym: Add symbol; adjustable positive voltage regulator.
 
+    * analogdevices/ADuC841-1.sym: Add symbol; 8-bit CMOS microcontroller with A/D
+      converter.
+
 2016-11-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/switchreg/TPS61201-1.sym: Add symbol 3.3V synchronous boost converter.
