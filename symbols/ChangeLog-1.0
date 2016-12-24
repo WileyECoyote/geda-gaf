@@ -1,3 +1,7 @@
+2016-12-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * analogdevices/LT317A-1.sym: Add symbol; adjustable positive voltage regulator.
+
 2016-11-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/switchreg/TPS61201-1.sym: Add symbol 3.3V synchronous boost converter.
