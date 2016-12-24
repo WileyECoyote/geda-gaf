@@ -6,7 +6,7 @@ refdes=U?
 T 375 3150 5 10 0 0 0 0 1
 numslots=0
 T 375 3350 5 10 0 0 0 0 1
-description=10-Bit DACs,2.5 V to 5.5 V, 500 uA, Quad Voltage Output, 3-wire
+description=Quad 10-Bit DACs,2.5 V to 5.5 V, 500 uA, Voltage Output, 3-wire
 T 375 3750 5 10 0 0 0 0 1
 documentation=http://www.analog.com/static/imported-files/data_sheets/AD5304_5314_5324.pdf
 P 100 2300 400 2300 1 0 0
