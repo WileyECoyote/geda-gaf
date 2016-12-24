@@ -14,6 +14,9 @@
     * src/iface/i_window.c: Revise error message, and redo output formating in
       o_picture_set_pixbuf.
 
+    * src/object/o_picture.c: Revise error message, and redo output formating in
+      o_picture_set_pixbuf.
+
 2016-12-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Revised the tool-tip for the options-rubberband
