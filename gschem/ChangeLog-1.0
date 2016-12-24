@@ -17,7 +17,8 @@
       _ERROR, err_rcv, dat_err and remove format specifier from translatable
       strings.
 
-    * src/x/x_dialog.c
+    * src/x/x_dialog.c: Reformat error format in x_dialog_validate_attribute;
+      add const strings and remove format specifier from translatable strings.
 
 2016-12-23 Wiley E. Hill <wileyhill@gmail.com>
 
