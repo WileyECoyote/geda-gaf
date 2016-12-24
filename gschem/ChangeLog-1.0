@@ -8,9 +8,16 @@
       gschem_parse_commandline.
 
     * src/x/x_clipboard.c: Reformat error messages in x_clipboard_get; add const
-      string and share bold_msg with log and dialog, dd seperate const _ERROR,
+      string and share bold_msg with log and dialog, add seperate const _ERROR,
       inv_clip, err_ins and title remove format specifier and mark-up tags from
       translatable strings.
+
+    * src/x/x_coord.c: Reformat error messages in x_dialog_coord_dnd_drag_receive;
+      add const string and share bold_msg with log and dialog, add seperate const
+      _ERROR, err_rcv, dat_err and remove format specifier from translatable
+      strings.
+
+    * src/x/x_dialog.c
 
 2016-12-23 Wiley E. Hill <wileyhill@gmail.com>
 
