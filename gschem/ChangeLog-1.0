@@ -1,5 +1,7 @@
 2016-12-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * po/es.po: update Spanish translations.
+
     * src/base/gschem.c: Reformat error messages to remove format specifiers from
       translatable strings.
 
