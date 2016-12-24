@@ -20,6 +20,8 @@
     * src/x/x_dialog.c: Reformat error format in x_dialog_validate_attribute;
       add const strings and remove format specifier from translatable strings.
 
+    * src/x/x_dnd.c: Reformat translatable error strings in x_dnd_receive_objects.
+
 2016-12-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_main_window.c: Add widget_class->show handler in an
