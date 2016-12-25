@@ -546,7 +546,7 @@ static void preview_class_init (void *g_class, void *class_data)
   g_object_class_install_property (
     gobject_class, PROP_BUFFER,
     g_param_spec_string ("buffer",
-                       _("Buffer"),
+                       _("Object List"),
                        _("object list to be previewed"),
                          NULL, /* default value */
                          G_PARAM_WRITABLE));
@@ -563,7 +563,7 @@ static void preview_class_init (void *g_class, void *class_data)
     gobject_class, PROP_LARGE,
     g_param_spec_boolean ("large-size",
                         _("Large size"),
-                        _("Whether the preview widget show be large or small"),
+                        _("Whether the preview widget should be large or small"),
                           FALSE,
                           G_PARAM_WRITABLE));
 }
