@@ -1,5 +1,7 @@
 2016-12-25 Wiley E. Hill <wileyhill@gmail.com>
 
+    * po/af.po: update Afrikaan translations.
+
     * src/guile/g_rc.c: Revise output message format in order to minimize format
       specifiers in translatable string, add sub function show_bad_value in
       check_and_convert_scm_integer.
