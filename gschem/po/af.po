@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gschem\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-12-25 22:43-0600\n"
+"POT-Creation-Date: 2016-12-26 04:32-0600\n"
 "PO-Revision-Date: 2010-02-14 01:03+0000\n"
 "Last-Translator: Bernd Jendrissek <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -69,9 +69,8 @@ msgid "Failed to read scheme initialization file"
 msgstr "Het scm-aanvangslêer gelees"
 
 #: gschem/src/base/gschem.c:379
-#, c-format
-msgid "gEDA/gschem version %s%s.%s\n"
-msgstr "gEDA/gschem uitgawe %s%s.%s\n"
+msgid "version"
+msgstr "weergawe"
 
 #: gschem/src/base/gschem.c:384
 msgid "Logging system is disabled\n"
@@ -373,67 +372,64 @@ msgstr ""
 
 #: gschem/src/base/gschem_status_bar.c:658 gschem/src/x/x_dialog.c:543
 msgid "Snap Size"
-msgstr ""
+msgstr "Snap Grootte"
 
 #: gschem/src/base/gschem_status_bar.c:659
 msgid "Sets the Size Mode to display on the status bar"
-msgstr ""
+msgstr "Stel die grootte-modus word getoon op die status bar"
 
 #: gschem/src/base/gschem_status_bar.c:668
-#, fuzzy
 msgid "Status Text"
-msgstr "Stand"
+msgstr "status teks"
 
 #: gschem/src/base/gschem_status_bar.c:669
 msgid "Set the string for the text on the Status Bar"
-msgstr ""
+msgstr "Stel die string vir die teks op die Status Bar"
 
 #: gschem/src/base/gschem_status_bar.c:675
 #: gschem/src/base/gschem_status_bar.c:676
-#, fuzzy
 msgid "Status State"
-msgstr "Stand"
+msgstr "status staat"
 
 #: gschem/src/base/gschem_status_bar.c:689
-#, fuzzy
 msgid "Status Bar Height"
-msgstr "Stand"
+msgstr "Status Bar Hoogte"
 
 #: gschem/src/base/gschem_status_bar.c:690
 msgid "Sets or gets the height of the status bar"
-msgstr ""
+msgstr "Stel of kry die hoogte van die status bar"
 
 #: gschem/src/base/gschem_status_bar.c:1188
 msgid "Coordinate display, right click for format options"
-msgstr ""
+msgstr "Koördineer vertoon, regs kliek vir formaat opsies"
 
 #: gschem/src/base/gschem_status_bar.c:1189
 msgid "Left pointer button assignment"
-msgstr ""
+msgstr "Links muis knoppie opdrag"
 
 #: gschem/src/base/gschem_status_bar.c:1190
 msgid "Middle pointer button assignment, right click for options"
-msgstr ""
+msgstr "Midde-wyser knoppie opdrag, regs kliek vir opsies"
 
 #: gschem/src/base/gschem_status_bar.c:1191
 msgid "Right pointer button assignment, right click for options"
-msgstr ""
+msgstr "Reg wyser knoppie opdrag, regs kliek vir opsies"
 
 #: gschem/src/base/gschem_status_bar.c:1192
 msgid "Indicates the current snap,grid units or states"
-msgstr ""
+msgstr "Dui die huidige snap, rooster eenhede of state"
 
 #: gschem/src/base/gschem_status_bar.c:1193
 msgid "Indicates the current command state"
-msgstr ""
+msgstr "Dui die huidige opdrag staat"
 
 #: gschem/src/base/gschem_status_bar.c:1194
 msgid "Gschem status bar"
-msgstr ""
+msgstr "Gschem statusbalk"
 
 #: gschem/src/base/gschem_status_bar.c:1888
 msgid "Grid"
-msgstr ""
+msgstr "Grid"
 
 #: gschem/src/base/gschem_status_bar.c:1894
 #: gschem/src/base/gschem_status_bar.c:1915
@@ -442,21 +438,20 @@ msgstr "AF"
 
 #: gschem/src/base/gschem_status_bar.c:1907 gschem/src/object/o_picture.c:615
 #: gschem/src/object/o_picture.c:619
-#, fuzzy
 msgid "Error"
 msgstr "Weerkaats"
 
 #: gschem/src/base/gschem_status_bar.c:1919
 msgid "NONE"
-msgstr ""
+msgstr "GEEN"
 
 #: gschem/src/guile/g_attrib.c:97
 msgid "Object ~A is not included in the current gschem page."
-msgstr ""
+msgstr "voorwerp ~A is nie ingesluit in die huidige gschem bladsy."
 
 #: gschem/src/guile/g_attrib.c:117
 msgid "Invalid text name/value visibility ~A."
-msgstr ""
+msgstr "Ongeldige teks naam/waarde sigbaarheid ~A."
 
 #: gschem/src/guile/g_rc.c:86 gschem/src/guile/g_rc.c:97
 msgid "Processing"
@@ -464,72 +459,70 @@ msgstr "Verwerking"
 
 #: gschem/src/guile/g_rc.c:90 gschem/src/guile/g_rc.c:101
 msgid "Skipping"
-msgstr ""
+msgstr "huppel"
 
 #: gschem/src/guile/g_rc.c:121
 msgid "entry in rc file"
-msgstr ""
+msgstr "inskrywing in RC lêer"
 
 #: gschem/src/guile/g_rc.c:125
-#, fuzzy
 msgid "Bad Value"
 msgstr "Waarde"
 
 #: gschem/src/guile/g_rc.c:126
 msgid "check"
-msgstr ""
+msgstr "kontroleer"
 
 #: gschem/src/guile/g_rc.c:127
 msgid "or Scheme, continuing with"
-msgstr ""
+msgstr "of skema, voort te gaan met"
 
 #: gschem/src/guile/g_rc.c:135
 msgid "maximum value"
-msgstr ""
+msgstr "maksimum waarde"
 
 #: gschem/src/guile/g_rc.c:139
 msgid "minimum value"
-msgstr ""
+msgstr "minimumwaarde"
 
 #: gschem/src/guile/g_rc.c:143
 msgid "default value"
-msgstr ""
+msgstr "standaard waarde"
 
 #: gschem/src/guile/g_rc.c:157
 msgid "Invalid type assignment, check"
-msgstr ""
+msgstr "Ongeldige tipe opdrag, gaan"
 
 #: gschem/src/guile/g_rc.c:198
-#, fuzzy
 msgid "This is gEDA/gaf version"
 msgstr "dit is gEDA/gaf weergawe"
 
 #: gschem/src/guile/g_rc.c:199
 msgid "but you have a version"
-msgstr ""
+msgstr "maar jy het 'n weergawe"
 
 #: gschem/src/guile/g_rc.c:200
 msgid "Please be sure that you have the latest rc file"
-msgstr ""
+msgstr "Maak seker dat jy die nuutste RC lêer"
 
 #: gschem/src/guile/g_rc.c:206
 msgid "file"
-msgstr ""
+msgstr "lêer"
 
 #: gschem/src/guile/g_rc.c:725
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
-msgstr ""
+msgstr "Ongeldige waarde, kan zoom-wins nie nul wees, check inskrywing in RC lêer\n"
 
 #: gschem/src/guile/g_rc.c:730
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
-msgstr ""
+msgstr "Ongeldige tipe opdrag, nagaan zoom-wins inskrywing in RC lêer\n"
 
 #: gschem/src/guile/g_rc.c:731 gschem/src/guile/g_rc.c:1276
 #: gschem/src/guile/g_rc.c:1428 gschem/src/guile/g_rc.c:2026
 msgid "Continuing with default value"
-msgstr ""
+msgstr "Voort te gaan met standaard waarde"
 
 #: gschem/src/guile/g_rc.c:815
 #, c-format
@@ -5456,6 +5449,9 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
+
+#~ msgid "gEDA/gschem version %s%s.%s\n"
+#~ msgstr "gEDA/gschem uitgawe %s%s.%s\n"
 
 #, fuzzy
 #~ msgid "Failed to write PDF to '%s': %s\n"

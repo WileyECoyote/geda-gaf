@@ -1,5 +1,7 @@
 2016-12-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * po/af.po: update Afrikaan translations.
+
     * po/bg.po: update Bulgarian translations.
 
     * src/*.c: down-grade FSF license version = GPLv2.
