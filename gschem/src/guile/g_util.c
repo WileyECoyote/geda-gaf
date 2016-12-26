@@ -64,7 +64,7 @@ SCM_DEFINE (show_uri, "%show-uri", 1, 0, 0, (SCM uri_s),
   const char *uri = scm_to_utf8_string (uri_s);
 
   if (!x_show_uri (uri)) {
-    u_log_message( _("Could not launch URI %s\n"), uri);
+    u_log_message( "%s %s\n", _("Could not launch URI"), uri);
   }
 
   return SCM_UNDEFINED;

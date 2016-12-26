@@ -11,6 +11,9 @@
     * src/base/gschem.c: Revise output message format in order to minimize format
       specifiers in translatable strings.
 
+    * src/guile/g_util.c: Revise output message format in order to eliminate format
+      specifiers in translatable string.
+
     * src/x/x_coord.c: Revise output message format in order to minimize format
       specifiers in translatable strings.
 
