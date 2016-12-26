@@ -14,6 +14,9 @@
     * src/guile/g_util.c: Revise output message format in order to eliminate format
       specifiers in translatable string.
 
+    * src/object/o_undo.c: Revise output message format in order to minimize format
+      specifiers in translatable strings.
+
     * src/x/x_coord.c: Revise output message format in order to minimize format
       specifiers in translatable strings.
 
