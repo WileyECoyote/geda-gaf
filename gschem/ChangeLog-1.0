@@ -1,8 +1,11 @@
-2016-12-24 Wiley E. Hill <wileyhill@gmail.com>
+2016-12-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_rc.c: Revise output message format in order to minimize format
       specifiers in translatable string, add sub function show_bad_value in
       check_and_convert_scm_integer.
+
+    * src/x/x_print.c: Revise output message format in order to minimize format
+      specifiers in translatable string.
 
 2016-12-24 Wiley E. Hill <wileyhill@gmail.com>
 
