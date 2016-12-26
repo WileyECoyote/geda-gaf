@@ -687,7 +687,7 @@ gschem_status_bar_class_init (void *class, void *class_data)
   */
   pspec = g_param_spec_int ("height",
                           _("Status Bar Height"),
-                          _("Sets or gets the height of the status bar"),
+                          _("Set or get the height of the status bar"),
                              0,
                              25,
                              2,
