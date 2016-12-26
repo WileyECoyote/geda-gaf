@@ -84,7 +84,7 @@ x_rc_parse_gschem_error (GError **err, void *retry_flag)
   const char *dialog_message  = _("<b>Error Proccessing Configuration.</b>");
   const char *dialog_title    = _("gschem RC File Error");
   const char *err_msg_unknown = _("An unknown error occurred while parsing configuration files.");
-  const char *msg_log_more    = _("The gschem log may contain more information.");
+  const char *msg_log_more    = _("The log may contain more information.");
   char       *msg2;             /* Secondary message text */
 
   if (err == NULL) {

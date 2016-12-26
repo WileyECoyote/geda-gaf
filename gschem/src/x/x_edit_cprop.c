@@ -1293,7 +1293,7 @@ GtkWidget* x_dialog_edit_properties_constructor (GschemToplevel *w_current)
   gtk_toggle_button_set_active ((GtkToggleButton*)widget, FALSE);
   properties->electrical_cb = widget;
 
-  electrical_label = GEDA_AVM_LABEL_NEW (_(" _Electrical:"), 0, 0);
+  electrical_label = GEDA_AVM_LABEL_NEW (_("_Electrical:"), 0, 0);
   gtk_container_add (GTK_CONTAINER (hbox), electrical_label);
 
   gtk_frame_set_label_widget (GTK_FRAME(frame), hbox);

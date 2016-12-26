@@ -538,7 +538,7 @@ x_toolbars_save_state(GschemToplevel *w_current)
     return results;
   }
 
-  v_log_message(_("Saving Toolbar configuration..."));
+  v_log_message(_("Saving Toolbar settings..."));
 
   filename = g_build_filename(geda_user_config_path (), TOOLBAR_CONFIG_STORE, NULL);
 

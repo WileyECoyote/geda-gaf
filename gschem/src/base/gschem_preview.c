@@ -547,7 +547,7 @@ static void preview_class_init (void *g_class, void *class_data)
     gobject_class, PROP_BUFFER,
     g_param_spec_string ("buffer",
                        _("Object List"),
-                       _("object list to be previewed"),
+                       _("List of objects to be previewed"),
                          NULL, /* default value */
                          G_PARAM_WRITABLE));
 
