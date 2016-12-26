@@ -185,7 +185,7 @@ load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[]
 
             if (verbose_mode) {
               const char *fname = geda_get_basename (filename);
-              geda_log ("%s [%s]\n", _("Assumming schematic file suffix for"), fname);
+              geda_log ("%s [%s]\n", _("Assuming schematic file suffix for"), fname);
             }
           }
           else {
@@ -199,7 +199,7 @@ load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[]
 
               if (verbose_mode) {
                 const char *fname = geda_get_basename (filename);
-                geda_log ("%s [%s]\n", _("Assumming symbol file suffix for"), fname);
+                geda_log ("%s [%s]\n", _("Assuming symbol file suffix for"), fname);
               }
             }
           }
