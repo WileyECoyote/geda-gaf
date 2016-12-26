@@ -4,6 +4,8 @@
 
     * po/bg.po: update Bulgarian translations.
 
+    * po/bs.po: update Bosnian translations.
+
     * src/*.c: down-grade FSF license version = GPLv2.
 
     * src/base/gschem.c: Revise output message format in order to minimize format
