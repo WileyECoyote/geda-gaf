@@ -347,10 +347,10 @@ static void gschem( int argc, char *argv[])
     input_str = scm_to_utf8_string (scm_tmp);
 
     if (g_evaluate_scheme_file(input_str, NULL)) {
-      geda_log_v ("%s  [%s]\n", _("Read scheme initialization file"), input_str);
+      geda_log_v ("%s [%s]\n", _("Read scheme initialization file"), input_str);
     }
     else {
-      geda_log ("%s  [%s]\n", _("Failed to read scheme initialization file"), input_str);
+      geda_log ("%s [%s]\n", _("Failed to read scheme initialization file"), input_str);
     }
   }
   free (input_str); /* M'allocated by scm_to_utf8_string() */
@@ -376,9 +376,9 @@ static void gschem( int argc, char *argv[])
     }
 
     /* now we can spam the log */
-    geda_log (_("gEDA/gschem version %s%s.%s\n"), PREPEND_VERSION_STRING,
-                                                  PACKAGE_DOTTED_VERSION,
-                                                  PACKAGE_DATE_VERSION);
+    geda_log ("gEDA/gschem %s %s%s.%s\n", _("version"), PREPEND_VERSION_STRING,
+                                                        PACKAGE_DOTTED_VERSION,
+                                                        PACKAGE_DATE_VERSION);
   }
   else {
     geda_log_v(_("Logging system is disabled\n"));
