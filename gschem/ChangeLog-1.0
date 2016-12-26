@@ -7,6 +7,9 @@
     * src/base/gschem.c: Revise output message format in order to minimize format
       specifiers in translatable strings.
 
+    * src/x/x_coord.c: Revise output message format in order to minimize format
+      specifiers in translatable strings.
+
 2016-12-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: update Afrikaan translations.

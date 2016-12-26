@@ -282,7 +282,7 @@ bool x_dialog_coord_drag_drop (GtkWidget      *widget,
         if (!geda_stricmp (target_entry->target, gdk_atom_name(target_type))) {
 
 #if DEBUG || DEBUG_DND_EVENTS
-          g_print ("x_dialog_coord_drag_drop, requesting a %s\n", gdk_atom_name(target_type));
+          g_print ("%s, requesting a %s\n", __func__, gdk_atom_name(target_type));
 #endif
           index = -1;
           break;
