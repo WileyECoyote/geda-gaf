@@ -6,6 +6,8 @@
 
     * po/es.po: update Spanish translations.
 
+    * po/kh.po: update Khmer translations.
+
     * src/guile/g_rc.c: Revise output message format in order to minimize format
       specifiers in translatable string, add sub function show_bad_value in
       check_and_convert_scm_integer.
