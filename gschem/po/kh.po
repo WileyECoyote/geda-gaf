@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-12-25 22:43-0600\n"
+"POT-Creation-Date: 2016-12-26 06:05-0600\n"
 "PO-Revision-Date: 2015-07-29 00:24-0600\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -72,9 +72,9 @@ msgid "Failed to read scheme initialization file"
 msgstr "saum an eksar chabphdaem chamrouh"
 
 #: gschem/src/base/gschem.c:379
-#, c-format
-msgid "gEDA/gschem version %s%s.%s\n"
-msgstr "kamne gEDA/gschem %s%s.%s\n"
+#, fuzzy
+msgid "version"
+msgstr "Kamne:"
 
 #: gschem/src/base/gschem.c:384
 #, fuzzy
@@ -401,7 +401,8 @@ msgid "Status Bar Height"
 msgstr "sthanphap bar kamposa"
 
 #: gschem/src/base/gschem_status_bar.c:690
-msgid "Sets or gets the height of the status bar"
+#, fuzzy
+msgid "Set or get the height of the status bar"
 msgstr "kamnt ryy ttuol ban kamposa robsa rbar sthanphap"
 
 #: gschem/src/base/gschem_status_bar.c:1188
@@ -606,8 +607,8 @@ msgid "Object ~A is not directly included in a page."
 msgstr "vottho ~A min mean daoy phtal nowknong tompr muoy."
 
 #: gschem/src/guile/g_util.c:67
-#, c-format
-msgid "Could not launch URI %s\n"
+#, fuzzy
+msgid "Could not launch URI"
 msgstr "min ach baek chea URI %s\n"
 
 #: gschem/src/guile/g_window.c:146
@@ -1289,8 +1290,8 @@ msgid "Gschem Undo System"
 msgstr "brapnth minothveuvinh Gschem"
 
 #: gschem/src/object/o_undo.c:207
-#, c-format
-msgid "Undo: encountered an error: file=<%s> %s\n"
+#, fuzzy
+msgid "Undo: encountered an error: file"
 msgstr "minothveuvinh nouv brapn kamhosa: eksar=<%s> %s\n"
 
 #: gschem/src/object/o_undo.c:208
@@ -1300,8 +1301,8 @@ msgstr ""
 "minothveuvinh nouv brapn; kamhosa brapn <%d>, bdaur tow rbieb kar changcham\n"
 
 #: gschem/src/object/o_undo.c:462
-#, c-format
-msgid "An error occurred during an UNDO disk operation: %s."
+#, fuzzy
+msgid "An error occurred during an UNDO disk operation"
 msgstr ""
 "kamhosa muoy ban kaetlaeng now amlong pel bratebatte kar thasa "
 "minothveuvinh: %s."
@@ -5335,6 +5336,9 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
+
+#~ msgid "gEDA/gschem version %s%s.%s\n"
+#~ msgstr "kamne gEDA/gschem %s%s.%s\n"
 
 #~ msgid "Bad Value [%d], check %s entry in rc file\n"
 #~ msgstr "tamlei minol [%d], pinityameul %s theato nowknong eksar daoy rc\n"

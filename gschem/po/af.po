@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gschem\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-12-26 04:32-0600\n"
+"POT-Creation-Date: 2016-12-26 06:05-0600\n"
 "PO-Revision-Date: 2010-02-14 01:03+0000\n"
 "Last-Translator: Bernd Jendrissek <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -396,7 +396,8 @@ msgid "Status Bar Height"
 msgstr "Status Bar Hoogte"
 
 #: gschem/src/base/gschem_status_bar.c:690
-msgid "Sets or gets the height of the status bar"
+#, fuzzy
+msgid "Set or get the height of the status bar"
 msgstr "Stel of kry die hoogte van die status bar"
 
 #: gschem/src/base/gschem_status_bar.c:1188
@@ -512,7 +513,8 @@ msgstr "lêer"
 #: gschem/src/guile/g_rc.c:725
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
-msgstr "Ongeldige waarde, kan zoom-wins nie nul wees, check inskrywing in RC lêer\n"
+msgstr ""
+"Ongeldige waarde, kan zoom-wins nie nul wees, check inskrywing in RC lêer\n"
 
 #: gschem/src/guile/g_rc.c:730
 #, c-format
@@ -571,8 +573,8 @@ msgid "Object ~A is not directly included in a page."
 msgstr ""
 
 #: gschem/src/guile/g_util.c:67
-#, fuzzy, c-format
-msgid "Could not launch URI %s\n"
+#, fuzzy
+msgid "Could not launch URI"
 msgstr "Kon nie %s oproep nie\n"
 
 #: gschem/src/guile/g_window.c:146
@@ -1257,8 +1259,7 @@ msgid "Gschem Undo System"
 msgstr ""
 
 #: gschem/src/object/o_undo.c:207
-#, c-format
-msgid "Undo: encountered an error: file=<%s> %s\n"
+msgid "Undo: encountered an error: file"
 msgstr ""
 
 #: gschem/src/object/o_undo.c:208
@@ -1267,9 +1268,9 @@ msgid "Undo: system error: <%d>, switching to MEMORY mode\n"
 msgstr ""
 
 #: gschem/src/object/o_undo.c:462
-#, c-format
-msgid "An error occurred during an UNDO disk operation: %s."
-msgstr ""
+#, fuzzy
+msgid "An error occurred during an UNDO disk operation"
+msgstr "'N fout tydens 'n lêer open werking: %s."
 
 #: gschem/src/object/o_undo.c:465
 msgid "Undo/Redo disabled\n"
@@ -5460,10 +5461,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Failed to read initialization scheme file"
 #~ msgstr "Het misluk of scm-aanvangslêer [%s] te lees\n"
-
-#, fuzzy
-#~ msgid "An error occurred during a File Revert operation: %s."
-#~ msgstr "'N fout tydens 'n lêer open werking: %s."
 
 #, fuzzy
 #~ msgid "Invalid input attribute"

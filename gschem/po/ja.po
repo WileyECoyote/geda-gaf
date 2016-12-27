@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-12-05 03:55-0600\n"
+"POT-Creation-Date: 2016-12-26 06:05-0600\n"
 "PO-Revision-Date: 2012-01-31 12:07+0000\n"
 "Last-Translator: Peter TB Brett <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -18,31 +18,32 @@ msgstr ""
 "X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
 "X-Generator: Launchpad (build 16265)\n"
 
-#: gschem/src/base/gschem.c:159
+#: gschem/src/base/gschem.c:154
 #, c-format
 msgid "Warning: <%s> did not expand\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:160
+#: gschem/src/base/gschem.c:155
 msgid "Command-line error: disabling auto load last\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:193
-#, c-format
-msgid "Assumming schematic file suffix for [%s]\n"
+#: gschem/src/base/gschem.c:188
+msgid "Assuming schematic file suffix for"
 msgstr ""
 
-#: gschem/src/base/gschem.c:207
-#, c-format
-msgid "Assumming symbol file suffix for [%s]\n"
+#: gschem/src/base/gschem.c:202
+msgid "Assuming symbol file suffix for"
 msgstr ""
 
-#: gschem/src/base/gschem.c:238
-#, c-format
-msgid "An error was encountered loading requested session %s\n"
+#: gschem/src/base/gschem.c:233
+msgid "An error was encountered loading requested session"
 msgstr ""
 
-#: gschem/src/base/gschem.c:312
+#: gschem/src/base/gschem.c:258
+msgid "Auto Load"
+msgstr ""
+
+#: gschem/src/base/gschem.c:307
 msgid ""
 "You must set the GEDADATA environment variable!\n"
 "\n"
@@ -50,35 +51,36 @@ msgid ""
 "environment variable points to the correct location.\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:348
-msgid "Unable to locate scheme initialization file \"gschem.scm\"\n"
-msgstr ""
-
-#: gschem/src/base/gschem.c:355
-#, fuzzy, c-format
-msgid "Read scheme initialization file [%s]\n"
+#: gschem/src/base/gschem.c:343
+#, fuzzy
+msgid "Unable to locate scheme initialization file"
 msgstr "初期化scmファイルを読み込んでいます。[%s]\n"
 
-#: gschem/src/base/gschem.c:358
-#, fuzzy, c-format
-msgid "Failed to read initialization scheme file [%s]\n"
-msgstr "初期化scmファイルの読み込みに失敗。[%s]\n"
+#: gschem/src/base/gschem.c:350
+#, fuzzy
+msgid "Read scheme initialization file"
+msgstr "初期化scmファイルを読み込んでいます。[%s]\n"
+
+#: gschem/src/base/gschem.c:353
+#, fuzzy
+msgid "Failed to read scheme initialization file"
+msgstr "初期化scmファイルを読み込んでいます。[%s]\n"
+
+#: gschem/src/base/gschem.c:379
+#, fuzzy
+msgid "version"
+msgstr "すべて保存"
 
 #: gschem/src/base/gschem.c:384
-#, c-format
-msgid "gEDA/gschem version %s%s.%s\n"
-msgstr ""
-
-#: gschem/src/base/gschem.c:389
 msgid "Logging system is disabled\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:429
+#: gschem/src/base/gschem.c:424
 #, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:521
+#: gschem/src/base/gschem.c:516
 msgid "Exiting normal\n"
 msgstr ""
 
@@ -190,15 +192,38 @@ msgid ""
 msgstr ""
 
 #: gschem/src/base/gschem_parsecmd.c:244
-#, c-format
-msgid "error parsing: <%s>: %s\n"
+msgid "error parsing"
+msgstr ""
+
+#: gschem/src/base/gschem_parsecmd.c:280
+msgid "ERROR"
+msgstr ""
+
+#: gschem/src/base/gschem_parsecmd.c:284
+msgid "option requires an argument"
+msgstr ""
+
+#: gschem/src/base/gschem_parsecmd.c:290
+msgid "Unknown option"
+msgstr ""
+
+#: gschem/src/base/gschem_parsecmd.c:296
+msgid "Unknown option character"
+msgstr ""
+
+#: gschem/src/base/gschem_parsecmd.c:302
+msgid "--help for more information"
+msgstr ""
+
+#: gschem/src/base/gschem_parsecmd.c:304
+msgid "Run"
 msgstr ""
 
 #: gschem/src/base/gschem_preview.c:299
 msgid "Preview Buffer"
 msgstr ""
 
-#: gschem/src/base/gschem_preview.c:541 gschem/src/x/x_pagesel.c:1135
+#: gschem/src/base/gschem_preview.c:541 gschem/src/x/x_pagesel.c:1109
 msgid "Filename"
 msgstr "ファイル名"
 
@@ -208,11 +233,11 @@ msgstr ""
 
 #: gschem/src/base/gschem_preview.c:549
 #, fuzzy
-msgid "Buffer"
-msgstr "バッファ(_B)"
+msgid "Object List"
+msgstr "選択"
 
 #: gschem/src/base/gschem_preview.c:550
-msgid "object list to be previewed"
+msgid "List of objects to be previewed"
 msgstr ""
 
 #: gschem/src/base/gschem_preview.c:557
@@ -229,7 +254,7 @@ msgid "Large size"
 msgstr ""
 
 #: gschem/src/base/gschem_preview.c:566
-msgid "Whether the preview widget show be large or small"
+msgid "Whether the preview widget should be large or small"
 msgstr ""
 
 #: gschem/src/base/gschem_status_bar.c:587
@@ -329,7 +354,7 @@ msgid "Status Bar Height"
 msgstr "ステータス"
 
 #: gschem/src/base/gschem_status_bar.c:690
-msgid "Sets or gets the height of the status bar"
+msgid "Set or get the height of the status bar"
 msgstr ""
 
 #: gschem/src/base/gschem_status_bar.c:1188
@@ -370,7 +395,8 @@ msgstr "円弧モード"
 msgid "OFF"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:1907
+#: gschem/src/base/gschem_status_bar.c:1907 gschem/src/object/o_picture.c:615
+#: gschem/src/object/o_picture.c:619
 #, fuzzy
 msgid "Error"
 msgstr "反転"
@@ -379,119 +405,124 @@ msgstr "反転"
 msgid "NONE"
 msgstr ""
 
-#: gschem/src/guile/g_attrib.c:95
+#: gschem/src/guile/g_attrib.c:97
 msgid "Object ~A is not included in the current gschem page."
 msgstr ""
 
-#: gschem/src/guile/g_attrib.c:115
+#: gschem/src/guile/g_attrib.c:117
 msgid "Invalid text name/value visibility ~A."
 msgstr ""
 
 #: gschem/src/guile/g_rc.c:86 gschem/src/guile/g_rc.c:97
-#, fuzzy, c-format
-msgid "Processing %s\n"
+#, fuzzy
+msgid "Processing"
 msgstr "閉じています。[%s]\n"
 
 #: gschem/src/guile/g_rc.c:90 gschem/src/guile/g_rc.c:101
-#, c-format
-msgid "Skipping %s, %s\n"
+msgid "Skipping"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:122 gschem/src/guile/g_rc.c:127
-#, c-format
-msgid "Bad Value [%d], check %s entry in rc file\n"
+#: gschem/src/guile/g_rc.c:121
+msgid "entry in rc file"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:123
-#, c-format
-msgid "or Scheme, continuing with maximum value=[%d]\n"
+#: gschem/src/guile/g_rc.c:125
+#, fuzzy
+msgid "Bad Value"
+msgstr "値"
+
+#: gschem/src/guile/g_rc.c:126
+msgid "check"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:128
-#, c-format
-msgid "or Scheme, continuing with minimum value=[%d]\n"
+#: gschem/src/guile/g_rc.c:127
+msgid "or Scheme, continuing with"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:132
-#, c-format
-msgid "or Scheme, continuing with default value=[%d]\n"
+#: gschem/src/guile/g_rc.c:135
+msgid "maximum value"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:147
-#, c-format
-msgid "Invalid type assignment, check %s entry in rc file\n"
+#: gschem/src/guile/g_rc.c:139
+msgid "minimum value"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:189
-#, c-format
-msgid "You are running gEDA/gaf version [%s%s.%s],\n"
+#: gschem/src/guile/g_rc.c:143
+msgid "default value"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:194
-#, c-format
-msgid ""
-"but you have a version [%s] gschemrc file:\n"
-"[%s]\n"
+#: gschem/src/guile/g_rc.c:157
+msgid "Invalid type assignment, check"
 msgstr ""
 
 #: gschem/src/guile/g_rc.c:198
-#, c-format
-msgid "Please be sure that you have the latest rc file.\n"
+msgid "This is gEDA/gaf version"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:714
+#: gschem/src/guile/g_rc.c:199
+msgid "but you have a version"
+msgstr ""
+
+#: gschem/src/guile/g_rc.c:200
+msgid "Please be sure that you have the latest rc file"
+msgstr ""
+
+#: gschem/src/guile/g_rc.c:206
+msgid "file"
+msgstr ""
+
+#: gschem/src/guile/g_rc.c:725
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:719
+#: gschem/src/guile/g_rc.c:730
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:720 gschem/src/guile/g_rc.c:1265
-#: gschem/src/guile/g_rc.c:1417 gschem/src/guile/g_rc.c:2015
-#, c-format
-msgid "Continuing with default value=[%d]\n"
+#: gschem/src/guile/g_rc.c:731 gschem/src/guile/g_rc.c:1276
+#: gschem/src/guile/g_rc.c:1428 gschem/src/guile/g_rc.c:2026
+msgid "Continuing with default value"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:804
+#: gschem/src/guile/g_rc.c:815
 #, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1259
+#: gschem/src/guile/g_rc.c:1270
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1264
+#: gschem/src/guile/g_rc.c:1275
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1411
+#: gschem/src/guile/g_rc.c:1422
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1416
+#: gschem/src/guile/g_rc.c:1427
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2009
+#: gschem/src/guile/g_rc.c:2020
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2014
+#: gschem/src/guile/g_rc.c:2025
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2058
+#: gschem/src/guile/g_rc.c:2069
 #, fuzzy, c-format
 msgid "Invalid zoom factor [%d] passed to %s\n"
 msgstr "無効な拡大率[%d]が%sに指定されました。\n"
@@ -502,8 +533,8 @@ msgid "Object ~A is not directly included in a page."
 msgstr ""
 
 #: gschem/src/guile/g_util.c:67
-#, fuzzy, c-format
-msgid "Could not launch URI %s\n"
+#, fuzzy
+msgid "Could not launch URI"
 msgstr "指定できない色[%s]です!\n"
 
 #: gschem/src/guile/g_window.c:146
@@ -654,82 +685,82 @@ msgstr ""
 "警告:原点へ転送するときはスナップのグリッドサイズを\n"
 "100に設定してください。\n"
 
-#: gschem/src/iface/i_command.c:4262
+#: gschem/src/iface/i_command.c:4242
 msgid "Grid OFF\n"
 msgstr "グリッド・オフ\n"
 
-#: gschem/src/iface/i_command.c:4263
+#: gschem/src/iface/i_command.c:4243
 msgid "Dot grid activated\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4264
+#: gschem/src/iface/i_command.c:4244
 msgid "Mesh grid activated\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4343
+#: gschem/src/iface/i_command.c:4323
 msgid "Snap OFF (CAUTION!)\n"
 msgstr "スナップ・オフ(注意!)\n"
 
-#: gschem/src/iface/i_command.c:4348
+#: gschem/src/iface/i_command.c:4328
 msgid "Snap ON\n"
 msgstr "スナップ・オン\n"
 
-#: gschem/src/iface/i_command.c:4352
+#: gschem/src/iface/i_command.c:4332
 msgid "Snap back to the grid (CAUTION!)\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4376
+#: gschem/src/iface/i_command.c:4356
 #, fuzzy
 msgid "Rubber band mode is OFF\n"
 msgstr "ラバーバンド・オフ \n"
 
-#: gschem/src/iface/i_command.c:4379
+#: gschem/src/iface/i_command.c:4359
 #, fuzzy
 msgid "Rubber band mode is ON\n"
 msgstr "ラバーバンド・オン\n"
 
-#: gschem/src/iface/i_command.c:4390
+#: gschem/src/iface/i_command.c:4370
 msgid "Magnetic net mode is ON\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4393
+#: gschem/src/iface/i_command.c:4373
 msgid "Magnetic net mode is OFF\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4410 gschem/src/iface/i_command.c:4452
+#: gschem/src/iface/i_command.c:4390 gschem/src/iface/i_command.c:4432
 msgid "Off"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4413 gschem/src/iface/i_command.c:4455
+#: gschem/src/iface/i_command.c:4393 gschem/src/iface/i_command.c:4435
 #, fuzzy
 msgid "On"
 msgstr "開く"
 
-#: gschem/src/iface/i_command.c:4415
+#: gschem/src/iface/i_command.c:4395
 #, c-format
 msgid "Drag-Can-Move is now %s\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4427
+#: gschem/src/iface/i_command.c:4407
 msgid "Action feedback mode set to OUTLINE\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4431
+#: gschem/src/iface/i_command.c:4411
 msgid "Action feedback mode set to BOUNDINGBOX\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4457
+#: gschem/src/iface/i_command.c:4437
 #, c-format
 msgid "Auto-Pan is now %s\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4509 gschem/src/iface/i_command.c:4538
-#: gschem/src/iface/i_command.c:4558 gschem/src/iface/i_command.c:4578
+#: gschem/src/iface/i_command.c:4489 gschem/src/iface/i_command.c:4518
+#: gschem/src/iface/i_command.c:4538 gschem/src/iface/i_command.c:4558
 #, c-format
 msgid "Check: path \"%s\"\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4678
+#: gschem/src/iface/i_command.c:4658
 #, c-format
 msgid "(read only) width=%d, height=%d\n"
 msgstr ""
@@ -788,8 +819,7 @@ msgid "session %s created with %d documents.\n"
 msgstr ""
 
 #: gschem/src/iface/i_sessions.c:935
-#, c-format
-msgid "An error occurred attemting to create session %s: %s."
+msgid "An error occurred attemting to create session"
 msgstr ""
 
 #: gschem/src/iface/i_sessions.c:941 gschem/src/iface/i_sessions.c:1113
@@ -831,8 +861,7 @@ msgid "Saved %d documents to session %s\n"
 msgstr "現在のウィンドウ"
 
 #: gschem/src/iface/i_sessions.c:1108
-#, c-format
-msgid "An error occurred attempting to save session %s: %s."
+msgid "An error occurred attempting to save session"
 msgstr ""
 
 #: gschem/src/iface/i_sessions.c:1113
@@ -997,9 +1026,9 @@ msgstr ""
 msgid "Initializing default configuration settings\n"
 msgstr ""
 
-#: gschem/src/iface/i_vars.c:810
-#, fuzzy, c-format
-msgid "Failed to save user configuration to '%s': %s."
+#: gschem/src/iface/i_vars.c:812
+#, fuzzy
+msgid "Failed to save user configuration to"
 msgstr "初期化scmファイルの読み込みに失敗。[%s]\n"
 
 #: gschem/src/iface/i_window.c:104
@@ -1017,25 +1046,24 @@ msgid "Really revert page?"
 msgstr ""
 
 #: gschem/src/iface/i_window.c:254
-#, c-format
-msgid "An error occurred during a File Revert operation: %s."
+msgid "An error occurred while processing request to revert"
 msgstr ""
 
-#: gschem/src/iface/i_window.c:257
+#: gschem/src/iface/i_window.c:258
 msgid "<b>File error.</b>"
 msgstr ""
 
-#: gschem/src/iface/i_window.c:257
+#: gschem/src/iface/i_window.c:258
 #, fuzzy
 msgid "Revert failed"
 msgstr "アンドゥ/リドゥはrcファイルで無効に設定されています。\n"
 
-#: gschem/src/iface/i_window.c:264
+#: gschem/src/iface/i_window.c:265
 #, c-format
 msgid "Error encountered during file operation <%s>\n"
 msgstr ""
 
-#: gschem/src/iface/i_window.c:265
+#: gschem/src/iface/i_window.c:266
 #, fuzzy
 msgid "Recovery: undo last action\n"
 msgstr "アンドゥ"
@@ -1135,27 +1163,15 @@ msgstr ""
 msgid "When checked the image size will be exported"
 msgstr ""
 
-#: gschem/src/object/o_picture.c:615
-#, c-format
-msgid "Error: %s."
-msgstr ""
-
 #: gschem/src/object/o_picture.c:619
-#, c-format
-msgid ""
-"Error: %s\n"
-"%s."
-msgstr ""
-
-#: gschem/src/object/o_picture.c:620
 msgid "An unknown error occurred"
 msgstr ""
 
-#: gschem/src/object/o_picture.c:623
+#: gschem/src/object/o_picture.c:622
 msgid "<b>Failed to load picture</b>"
 msgstr ""
 
-#: gschem/src/object/o_picture.c:624
+#: gschem/src/object/o_picture.c:623
 msgid "Load failed"
 msgstr ""
 
@@ -1199,8 +1215,7 @@ msgid "Gschem Undo System"
 msgstr ""
 
 #: gschem/src/object/o_undo.c:207
-#, c-format
-msgid "Undo: encountered an error: file=<%s> %s\n"
+msgid "Undo: encountered an error: file"
 msgstr ""
 
 #: gschem/src/object/o_undo.c:208
@@ -1209,8 +1224,7 @@ msgid "Undo: system error: <%d>, switching to MEMORY mode\n"
 msgstr ""
 
 #: gschem/src/object/o_undo.c:462
-#, c-format
-msgid "An error occurred during an UNDO disk operation: %s."
+msgid "An error occurred during an UNDO disk operation"
 msgstr ""
 
 #: gschem/src/object/o_undo.c:465
@@ -1295,21 +1309,15 @@ msgstr ""
 msgid "<b>Options</b>"
 msgstr ""
 
-#: gschem/src/x/x_clipboard.c:319
-#, c-format
-msgid "%s: Invalid schematic on clipboard. %s\n"
-msgstr ""
-
 #: gschem/src/x/x_clipboard.c:320
-#, c-format
-msgid "An error occurred while inserting clipboard data: %s."
+msgid "Invalid schematic on clipboard"
 msgstr ""
 
 #: gschem/src/x/x_clipboard.c:321
-msgid "<b>Invalid schematic on clipboard.</b>"
+msgid "An error occurred while inserting clipboard data"
 msgstr ""
 
-#: gschem/src/x/x_clipboard.c:321
+#: gschem/src/x/x_clipboard.c:322
 msgid "Clipboard Insertion Failed"
 msgstr ""
 
@@ -1462,30 +1470,29 @@ msgstr ""
 msgid "Drag & Drop"
 msgstr ""
 
-#: gschem/src/x/x_coord.c:154
-#, c-format
-msgid "An error occurred while receiving dropped data: %s."
-msgstr ""
-
 #: gschem/src/x/x_coord.c:155
-msgid "<b>Data error.</b>"
+msgid "An error occurred while receiving drag-and-drop data"
 msgstr ""
 
-#: gschem/src/x/x_coord.c:155 gschem/src/x/x_dnd.c:578
+#: gschem/src/x/x_coord.c:156
+msgid "Data error"
+msgstr ""
+
+#: gschem/src/x/x_coord.c:161 gschem/src/x/x_dnd.c:582
 #, fuzzy
 msgid "Drag & Drop failed"
 msgstr "アンドゥ/リドゥはrcファイルで無効に設定されています。\n"
 
-#: gschem/src/x/x_coord.c:463
+#: gschem/src/x/x_coord.c:471
 #, fuzzy
 msgid "Coordinates"
 msgstr "部品モード"
 
-#: gschem/src/x/x_coord.c:478
+#: gschem/src/x/x_coord.c:486
 msgid "Screen"
 msgstr "スクリーン"
 
-#: gschem/src/x/x_coord.c:488
+#: gschem/src/x/x_coord.c:496
 msgid "World"
 msgstr "ワールド"
 
@@ -1520,7 +1527,7 @@ msgstr ""
 #: gschem/src/x/x_dialog.c:579
 msgid ""
 "Sets the default spacing\n"
-" which objects snaps to."
+"which objects snaps to."
 msgstr ""
 
 #: gschem/src/x/x_dialog.c:655
@@ -1962,18 +1969,23 @@ msgstr ""
 msgid "Dismiss this dialog"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3704
-#, c-format
-msgid ""
-"<span weight=\"bold\" size=\"larger\">The input attribute \"%s\" is invalid\n"
-"Please correct in order to continue</span>\n"
-"\n"
-"The name and value must be non-empty.\n"
-"The name cannot end with a space.\n"
-"The value cannot start with a space."
+#: gschem/src/x/x_dialog.c:3700
+#, fuzzy
+msgid "Input attribute is invalid"
+msgstr "スロット番号がありません。\n"
+
+#: gschem/src/x/x_dialog.c:3701
+msgid "Please correct in order to continue"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3706
+#: gschem/src/x/x_dialog.c:3702
+msgid ""
+"The name and value must be non-empty.\n"
+"The name cannot end with a space.\n"
+"The value cannot start with a space"
+msgstr ""
+
+#: gschem/src/x/x_dialog.c:3710
 msgid "Invalid Attribute"
 msgstr ""
 
@@ -1987,28 +1999,27 @@ msgstr ""
 msgid "symbol [%s] not in library opening as page\n"
 msgstr ""
 
-#: gschem/src/x/x_dnd.c:577
-#, c-format
-msgid "An error occurred while dropping data: %s."
+#: gschem/src/x/x_dnd.c:580
+msgid "An error occurred while dropping data"
 msgstr ""
 
-#: gschem/src/x/x_dnd.c:578
+#: gschem/src/x/x_dnd.c:582
 msgid "<b>Invalid Data.</b>"
 msgstr ""
 
-#: gschem/src/x/x_draw.cpp:492
+#: gschem/src/x/x_draw.cpp:463
 msgid "Initializing: Graphics Renderer Adaptor...."
 msgstr ""
 
-#: gschem/src/x/x_draw.cpp:508
+#: gschem/src/x/x_draw.cpp:479
 msgid "done\n"
 msgstr ""
 
-#: gschem/src/x/x_draw.cpp:514
+#: gschem/src/x/x_draw.cpp:485
 msgid "Shutting down: Graphics Renderer Adaptor..."
 msgstr ""
 
-#: gschem/src/x/x_draw.cpp:516
+#: gschem/src/x/x_draw.cpp:487
 msgid "Done, renderer is down\n"
 msgstr ""
 
@@ -2117,7 +2128,7 @@ msgstr ""
 
 #: gschem/src/x/x_edit_color.c:182
 #, fuzzy
-msgid "Select a color for the select objects."
+msgid "Select a color for the selected objects."
 msgstr "現在のウィンドウ"
 
 #: gschem/src/x/x_edit_cprop.c:267
@@ -2172,7 +2183,7 @@ msgid "_Comment:"
 msgstr "部品(_C)"
 
 #: gschem/src/x/x_edit_cprop.c:1296
-msgid " _Electrical:"
+msgid "_Electrical:"
 msgstr ""
 
 #: gschem/src/x/x_edit_cprop.c:1324
@@ -2491,7 +2502,7 @@ msgstr ""
 msgid "Shutting down icon factory\n"
 msgstr ""
 
-#: gschem/src/x/x_icons.c:442
+#: gschem/src/x/x_icons.c:440
 msgid "Initializing icon factory\n"
 msgstr ""
 
@@ -2916,185 +2927,185 @@ msgstr "パン/キャンセル"
 msgid "Cancel path mode"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:424 gschem/etc/system-gschemrc.scm:2052
+#: gschem/src/x/x_menus.c:418 gschem/etc/system-gschemrc.scm:2052
 msgid "Open an existing schematic or symbol file"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:435 gschem/etc/system-gschemrc.scm:2057
+#: gschem/src/x/x_menus.c:429 gschem/etc/system-gschemrc.scm:2057
 msgid "Save the current document"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:445 gschem/etc/system-gschemrc.scm:2076
+#: gschem/src/x/x_menus.c:439 gschem/etc/system-gschemrc.scm:2076
 msgid "Quit gschem and exit"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:478 gschem/etc/system-gschemrc.scm:2180
+#: gschem/src/x/x_menus.c:472 gschem/etc/system-gschemrc.scm:2180
 #, fuzzy
 msgid "redraw the current window"
 msgstr "現在のウィンドウ"
 
-#: gschem/src/x/x_menus.c:518 gschem/src/x/x_menus.c:521
+#: gschem/src/x/x_menus.c:512 gschem/src/x/x_menus.c:515
 #, c-format
 msgid "Error reading menu item <%d>, Bad string\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:726
+#: gschem/src/x/x_menus.c:720
 #, c-format
 msgid "Oops.. got a NULL menu name in %s()\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:853
+#: gschem/src/x/x_menus.c:840
 msgid "Toggle visibility of the Standard toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:854
+#: gschem/src/x/x_menus.c:841
 msgid "Toggle visibility of the Selection toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:855
+#: gschem/src/x/x_menus.c:842
 msgid "Toggle visibility of the Page toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:856
+#: gschem/src/x/x_menus.c:843
 msgid "Toggle visibility of the Add toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:857
+#: gschem/src/x/x_menus.c:844
 msgid "Toggle visibility of the Zoom toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:858
+#: gschem/src/x/x_menus.c:845
 msgid "Toggle visibility of the Edit toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:859
+#: gschem/src/x/x_menus.c:846
 msgid "Toggle visibility of the Attributes toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:860
+#: gschem/src/x/x_menus.c:847
 msgid "Toggle visibility of the Grid/Snap toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:915
+#: gschem/src/x/x_menus.c:902
 msgid "Display Icons on the toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:916
+#: gschem/src/x/x_menus.c:903
 msgid "Display Text on the toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:917
+#: gschem/src/x/x_menus.c:904
 msgid "Display Icons and Text vertically on the toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:918
+#: gschem/src/x/x_menus.c:905
 msgid "Display Icons and Text horizontally on the toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:982
+#: gschem/src/x/x_menus.c:969
 msgid "Toggle visibility of main menu icons"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:983
+#: gschem/src/x/x_menus.c:970
 msgid "Toggle main menu tooltips"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:984
+#: gschem/src/x/x_menus.c:971
 msgid "Toggle visibility of main context menu icons"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:985
+#: gschem/src/x/x_menus.c:972
 msgid "Toggle main context menu tooltips"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1335
+#: gschem/src/x/x_menus.c:1319
 #, c-format
 msgid "Tried to set the sensitivity on non-existent menu item '%s'\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1339
+#: gschem/src/x/x_menus.c:1323
 #, c-format
 msgid "Tried to set the sensitivity on non-existent menu item '%s',\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1343
+#: gschem/src/x/x_menus.c:1327
 #, c-format
 msgid "Excessive errors <%d>, disabling sensitivity warnings\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1364
+#: gschem/src/x/x_menus.c:1348
 #, c-format
 msgid "Popup menu widget doesn't exist!\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1419
+#: gschem/src/x/x_menus.c:1403
 msgid "Saving menu toolbar options..."
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1429
+#: gschem/src/x/x_menus.c:1413
 msgid " done\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1432
+#: gschem/src/x/x_menus.c:1416
 #, c-format
 msgid " there were %d errors\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1477
+#: gschem/src/x/x_menus.c:1461
 msgid "gschem: Enabling menu icons\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1480
+#: gschem/src/x/x_menus.c:1464
 msgid "gschem: Disabling menu icons\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1543
+#: gschem/src/x/x_menus.c:1527
 msgid "Enabling menu tooltips\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1546
+#: gschem/src/x/x_menus.c:1530
 msgid "Disabling menu tooltips\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1587
+#: gschem/src/x/x_menus.c:1571
 #, c-format
 msgid "%s: Action not found, \"%s\" \n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1590
+#: gschem/src/x/x_menus.c:1574
 #, c-format
 msgid "%s: Menu path not found, \"%s\" \n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1593
+#: gschem/src/x/x_menus.c:1577
 #, c-format
 msgid "%s: invalid pointer [menubar]\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1669
+#: gschem/src/x/x_menus.c:1653
 #, c-format
 msgid "Error, x_menu_set_toolbar_toggle: Did not find path \"%s\"\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1769
+#: gschem/src/x/x_menus.c:1753
 #, fuzzy, c-format
 msgid "Could not open file %s\n"
 msgstr "指定できない色[%s]です!\n"
 
-#: gschem/src/x/x_menus.c:1870
+#: gschem/src/x/x_menus.c:1854
 #, fuzzy
 msgid "Open"
 msgstr "開く..."
 
-#: gschem/src/x/x_menus.c:1879
+#: gschem/src/x/x_menus.c:1863
 msgid "Remove"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1888
+#: gschem/src/x/x_menus.c:1872
 msgid "_Show path"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:2013
+#: gschem/src/x/x_menus.c:1997
 msgid "Clear"
 msgstr ""
 
@@ -3214,50 +3225,50 @@ msgstr "アトリビュート"
 msgid "attribute"
 msgstr "アトリビュート"
 
-#: gschem/src/x/x_pagesel.c:583
+#: gschem/src/x/x_pagesel.c:594
 #, fuzzy
 msgid "Move Up"
 msgstr "移動"
 
-#: gschem/src/x/x_pagesel.c:584
+#: gschem/src/x/x_pagesel.c:595
 #, fuzzy
 msgid "Move Down"
 msgstr "パンモード"
 
-#: gschem/src/x/x_pagesel.c:586
+#: gschem/src/x/x_pagesel.c:597
 msgid "New Blank"
 msgstr ""
 
-#: gschem/src/x/x_pagesel.c:587 gschem/scheme/gschem/builtins.scm:308
+#: gschem/src/x/x_pagesel.c:598 gschem/scheme/gschem/builtins.scm:308
 msgid "New Page"
 msgstr "新規ページ"
 
-#: gschem/src/x/x_pagesel.c:588
+#: gschem/src/x/x_pagesel.c:599
 #, fuzzy
 msgid "Open Page..."
 msgstr "ファイルを開く..."
 
-#: gschem/src/x/x_pagesel.c:590
+#: gschem/src/x/x_pagesel.c:601
 msgid "Save Page"
 msgstr "保存"
 
-#: gschem/src/x/x_pagesel.c:591 gschem/scheme/gschem/builtins.scm:320
+#: gschem/src/x/x_pagesel.c:602 gschem/scheme/gschem/builtins.scm:320
 msgid "Close Page"
 msgstr "閉じる"
 
-#: gschem/src/x/x_pagesel.c:592 gschem/scheme/gschem/builtins.scm:323
+#: gschem/src/x/x_pagesel.c:603 gschem/scheme/gschem/builtins.scm:323
 msgid "Discard Page"
 msgstr "破棄"
 
-#: gschem/src/x/x_pagesel.c:1074 gschem/scheme/gschem/builtins.scm:287
+#: gschem/src/x/x_pagesel.c:1048 gschem/scheme/gschem/builtins.scm:287
 msgid "Page Manager"
 msgstr "ページマネージャ"
 
-#: gschem/src/x/x_pagesel.c:1164
+#: gschem/src/x/x_pagesel.c:1138
 msgid "Changed"
 msgstr ""
 
-#: gschem/src/x/x_pagesel.c:1194
+#: gschem/src/x/x_pagesel.c:1168
 msgid "Right click on rows for more options..."
 msgstr ""
 
@@ -3323,39 +3334,36 @@ msgstr ""
 msgid "No print destination specified\n"
 msgstr ""
 
-#: gschem/src/x/x_print.c:785
-#, c-format
-msgid "Cannot print current schematic to [%s]\n"
+#: gschem/src/x/x_print.c:787
+#, fuzzy
+msgid "Cannot print current schematic to"
 msgstr "現在のスケマチックを印刷できません。[%s]\n"
 
-#: gschem/src/x/x_print.c:789 gschem/src/x/x_print.c:1221
-msgid "<b>An error occurred while printing</b>"
+#: gschem/src/x/x_print.c:790 gschem/src/x/x_print.c:1226
+msgid "An error occurred while printing"
 msgstr ""
 
-#: gschem/src/x/x_print.c:790
+#: gschem/src/x/x_print.c:794
 msgid "check the log for more information"
 msgstr ""
 
-#: gschem/src/x/x_print.c:791 gschem/src/x/x_print.c:1222
+#: gschem/src/x/x_print.c:795 gschem/src/x/x_print.c:1229
 #, fuzzy
 msgid "Print Error"
 msgstr "印刷..."
 
-#: gschem/src/x/x_print.c:796
-#, c-format
-msgid "Printed current schematic to [%s]\n"
+#: gschem/src/x/x_print.c:800
+#, fuzzy
+msgid "Printed current schematic to"
 msgstr "現在のスケマチックを印刷しました。[%s]\n"
 
-#: gschem/src/x/x_print.c:1106 gschem/src/x/x_print.c:1168
-#, fuzzy, c-format
-msgid "Failed to write PDF to '%s': %s\n"
+#: gschem/src/x/x_print.c:1109 gschem/src/x/x_print.c:1171
+#, fuzzy
+msgid "Failed to write PDF to"
 msgstr "初期化scmファイルの読み込みに失敗。[%s]\n"
 
-#: gschem/src/x/x_print.c:1218
-#, c-format
-msgid ""
-"x_print: Error printing file:\n"
-"%s"
+#: gschem/src/x/x_print.c:1224
+msgid "Error printing file"
 msgstr ""
 
 #: gschem/src/x/x_rc.c:84
@@ -3371,7 +3379,7 @@ msgid "An unknown error occurred while parsing configuration files."
 msgstr ""
 
 #: gschem/src/x/x_rc.c:87
-msgid "The gschem log may contain more information."
+msgid "The log may contain more information."
 msgstr ""
 
 #: gschem/src/x/x_rc.c:100 gschem/src/x/x_rc.c:136
@@ -3559,7 +3567,7 @@ msgid "Creating new Toolbar configuration\n"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:541
-msgid "Saving Toolbar configuration..."
+msgid "Saving Toolbar settings..."
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:566
@@ -4176,7 +4184,7 @@ msgid "B_W color scheme"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2199
-msgid "Set the color map to the Black and White"
+msgid "Set the color map to Black and White"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2208
@@ -4617,7 +4625,7 @@ msgstr "ラバーバンド・オン\n"
 
 #: gschem/etc/system-gschemrc.scm:2322
 #, fuzzy
-msgid "Toggle net rubberband mode"
+msgid "Toggle rubberband net mode"
 msgstr "ラバーバンド・オン\n"
 
 #: gschem/etc/system-gschemrc.scm:2323
@@ -5333,11 +5341,11 @@ msgstr ""
 msgid "No documentation found"
 msgstr ""
 
-#: gschem/scheme/gschem/gschem-export-menu.scm:79
+#: gschem/scheme/gschem/gschem-export-menu.scm:57
 msgid "Export embed symbol"
 msgstr ""
 
-#: gschem/scheme/gschem/gschem-export-menu.scm:80
+#: gschem/scheme/gschem/gschem-export-menu.scm:58
 #, fuzzy
 msgid "Export embed picture"
 msgstr "画像・コンポーネントの埋め込み"
@@ -5351,3 +5359,19 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
+
+#, fuzzy
+#~ msgid "Buffer"
+#~ msgstr "バッファ(_B)"
+
+#, fuzzy
+#~ msgid "Failed to write PDF to '%s': %s\n"
+#~ msgstr "初期化scmファイルの読み込みに失敗。[%s]\n"
+
+#, fuzzy
+#~ msgid "Failed to read initialization scheme file"
+#~ msgstr "初期化scmファイルの読み込みに失敗。[%s]\n"
+
+#, fuzzy
+#~ msgid "Invalid input attribute"
+#~ msgstr "アトリビュート編集"

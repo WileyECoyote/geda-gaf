@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-12-26 04:32-0600\n"
+"POT-Creation-Date: 2016-12-26 06:05-0600\n"
 "PO-Revision-Date: 2012-01-27 14:18+0000\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: Bosnian <bs@li.org>\n"
@@ -350,7 +350,7 @@ msgid "Status Bar Height"
 msgstr "Izmijeni tekst"
 
 #: gschem/src/base/gschem_status_bar.c:690
-msgid "Sets or gets the height of the status bar"
+msgid "Set or get the height of the status bar"
 msgstr ""
 
 #: gschem/src/base/gschem_status_bar.c:1188
@@ -528,8 +528,7 @@ msgid "Object ~A is not directly included in a page."
 msgstr ""
 
 #: gschem/src/guile/g_util.c:67
-#, c-format
-msgid "Could not launch URI %s\n"
+msgid "Could not launch URI"
 msgstr ""
 
 #: gschem/src/guile/g_window.c:146
@@ -1196,8 +1195,7 @@ msgid "Gschem Undo System"
 msgstr ""
 
 #: gschem/src/object/o_undo.c:207
-#, c-format
-msgid "Undo: encountered an error: file=<%s> %s\n"
+msgid "Undo: encountered an error: file"
 msgstr ""
 
 #: gschem/src/object/o_undo.c:208
@@ -1206,8 +1204,7 @@ msgid "Undo: system error: <%d>, switching to MEMORY mode\n"
 msgstr ""
 
 #: gschem/src/object/o_undo.c:462
-#, c-format
-msgid "An error occurred during an UNDO disk operation: %s."
+msgid "An error occurred during an UNDO disk operation"
 msgstr ""
 
 #: gschem/src/object/o_undo.c:465

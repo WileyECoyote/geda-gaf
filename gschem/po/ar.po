@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-12-25 22:43-0600\n"
+"POT-Creation-Date: 2016-12-26 06:05-0600\n"
 "PO-Revision-Date: 2016-12-23 15:41-0600\n"
 "Last-Translator: عبدالله شلي (Abdellah Chelli) <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -77,9 +77,9 @@ msgid "Failed to read scheme initialization file"
 msgstr "قراءة ملف الاستهلال"
 
 #: gschem/src/base/gschem.c:379
-#, c-format
-msgid "gEDA/gschem version %s%s.%s\n"
-msgstr "إصدار gEDA/gschem‫ %s%s.%s\n"
+#, fuzzy
+msgid "version"
+msgstr "احفظ الكل"
 
 #: gschem/src/base/gschem.c:384
 msgid "Logging system is disabled\n"
@@ -369,7 +369,7 @@ msgid "Status Bar Height"
 msgstr "الحالة"
 
 #: gschem/src/base/gschem_status_bar.c:690
-msgid "Sets or gets the height of the status bar"
+msgid "Set or get the height of the status bar"
 msgstr ""
 
 #: gschem/src/base/gschem_status_bar.c:1188
@@ -549,8 +549,8 @@ msgid "Object ~A is not directly included in a page."
 msgstr ""
 
 #: gschem/src/guile/g_util.c:67
-#, fuzzy, c-format
-msgid "Could not launch URI %s\n"
+#, fuzzy
+msgid "Could not launch URI"
 msgstr "تعذّر استحضار %s\n"
 
 #: gschem/src/guile/g_window.c:146
@@ -1251,8 +1251,7 @@ msgid "Gschem Undo System"
 msgstr "الأ_سئلة الأكثر شيوعا لـ gschem"
 
 #: gschem/src/object/o_undo.c:207
-#, c-format
-msgid "Undo: encountered an error: file=<%s> %s\n"
+msgid "Undo: encountered an error: file"
 msgstr ""
 
 #: gschem/src/object/o_undo.c:208
@@ -1261,9 +1260,9 @@ msgid "Undo: system error: <%d>, switching to MEMORY mode\n"
 msgstr ""
 
 #: gschem/src/object/o_undo.c:462
-#, c-format
-msgid "An error occurred during an UNDO disk operation: %s."
-msgstr ""
+#, fuzzy
+msgid "An error occurred during an UNDO disk operation"
+msgstr "حدث خطأ أثناء تلقي البيانات السحب والإفلات"
 
 #: gschem/src/object/o_undo.c:465
 #, fuzzy
@@ -5497,6 +5496,9 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
+
+#~ msgid "gEDA/gschem version %s%s.%s\n"
+#~ msgstr "إصدار gEDA/gschem‫ %s%s.%s\n"
 
 #~ msgid "Buffer"
 #~ msgstr "ذاكرة وسيطة"
