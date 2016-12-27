@@ -8,7 +8,7 @@
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 3 of
+ * published by the Free Software Foundation; either version 2 of
  * the License, or (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -576,7 +576,7 @@ void snap_size_dialog (GschemToplevel *w_current)
     gtk_entry_set_activates_default(GTK_ENTRY(snap_size), TRUE);
     gtk_widget_grab_focus(snap_size);
 
-    SetWidgetTip(snap_size, _("Sets the default spacing\n which objects snaps to."));
+    SetWidgetTip(snap_size, _("Sets the default spacing\nwhich objects snaps to."));
 
     GEDA_HOOKUP_OBJECT(Dialog, snap_size, IDS_SNAP_SIZE);
 
@@ -3697,12 +3697,16 @@ int x_dialog_validate_attribute(GtkWindow *parent, char *attribute)
 
     GtkWidget *message_box;
 
+    const char *msg1 = _("Input attribute is invalid");
+    const char *msg2 = _("Please correct in order to continue");
+    const char *msg3 = _("The name and value must be non-empty.\nThe name cannot end with a space.\nThe value cannot start with a space");
+
     message_box = gtk_message_dialog_new_with_markup (parent,
                                   GTK_DIALOG_DESTROY_WITH_PARENT,
                                   GTK_MESSAGE_ERROR,
                                   GTK_BUTTONS_CLOSE,
-                                  _("<span weight=\"bold\" size=\"larger\">The input attribute \"%s\" is invalid\nPlease correct in order to continue</span>\n\nThe name and value must be non-empty.\nThe name cannot end with a space.\nThe value cannot start with a space."),
-                                  attribute);
+                                  "<span weight=\"bold\" size=\"larger\">%s \"%s\" \n%s</span>\n\n%s.", msg1, attribute, msg2, msg3);
+
      gtk_window_set_title(GTK_WINDOW(message_box), _("Invalid Attribute"));
      gtk_dialog_run (GTK_DIALOG (message_box));
      gtk_widget_destroy (message_box);

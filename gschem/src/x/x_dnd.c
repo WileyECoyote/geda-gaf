@@ -10,7 +10,7 @@
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 3 of
+ * published by the Free Software Foundation; either version 2 of
  * the License, or (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -574,8 +574,13 @@ x_dnd_receive_objects(GschemToplevel  *w_current, int x, int y, const char *buff
                                                          buffer,
                                                          -1, "Drag & Drop", &err);
     if (err) {
-      char *errmsg = geda_sprintf ( _("An error occurred while dropping data: %s."), err->message);
-      titled_pango_error_dialog ( _("<b>Invalid Data.</b>"), errmsg, _("Drag & Drop failed") );
+
+      char *errmsg;
+
+      errmsg = geda_sprintf ("%s: %s.", _("An error occurred while dropping data"), err->message);
+
+      titled_pango_error_dialog (_("<b>Invalid Data.</b>"), errmsg, _("Drag & Drop failed"));
+
       GEDA_FREE(errmsg);
       g_error_free(err);
       result = FALSE;

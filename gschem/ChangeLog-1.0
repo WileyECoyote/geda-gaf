@@ -1,3 +1,89 @@
+2016-12-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/af.po: update Afrikaan translations.
+
+    * po/bg.po: update Bulgarian translations.
+
+    * po/bs.po: update Bosnian translations.
+
+    * src/ *.c: down-grade FSF license version = GPLv2.
+
+    * src/base/gschem.c: Revise output message format in order to minimize format
+      specifiers in translatable strings.
+
+    * src/guile/g_util.c: Revise output message format in order to eliminate format
+      specifiers in translatable string.
+
+    * src/object/o_undo.c: Revise output message format in order to minimize format
+      specifiers in translatable strings.
+
+    * src/x/x_coord.c: Revise output message format in order to minimize format
+      specifiers in translatable strings.
+
+2016-12-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/af.po: update Afrikaan translations.
+
+    * po/ar.po: update Arabic translations.
+
+    * po/es.po: update Spanish translations.
+
+    * po/kh.po: update Khmer translations.
+
+    * po/sr.po: update Serbian translations.
+
+    * src/guile/g_rc.c: Revise output message format in order to minimize format
+      specifiers in translatable string, add sub function show_bad_value in
+      check_and_convert_scm_integer.
+
+    * src/x/x_print.c: Revise output message format in order to minimize format
+      specifiers in translatable string.
+
+2016-12-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/es.po: update Spanish translations.
+
+    * src/base/gschem.c: Reformat error messages to remove format specifiers from
+      translatable strings.
+
+    * src/base/gschem_parsecmd.c: Reformat error messages to remove format specifiers
+      from translatable strings; add seperate const _ERROR, err_ukn, and err_info in
+      gschem_parse_commandline.
+
+    * src/x/x_clipboard.c: Reformat error messages in x_clipboard_get; add const
+      string and share bold_msg with log and dialog, add seperate const _ERROR,
+      inv_clip, err_ins and title remove format specifier and mark-up tags from
+      translatable strings.
+
+    * src/x/x_coord.c: Reformat error messages in x_dialog_coord_dnd_drag_receive;
+      add const string and share bold_msg with log and dialog, add seperate const
+      _ERROR, err_rcv, dat_err and remove format specifier from translatable
+      strings.
+
+    * src/x/x_dialog.c: Reformat error format in x_dialog_validate_attribute;
+      add const strings and remove format specifier from translatable strings.
+
+    * src/x/x_dnd.c: Reformat translatable error strings in x_dnd_receive_objects.
+
+2016-12-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/base/gschem_main_window.c: Add widget_class->show handler in an
+      an attempt to stop window managers from "automatically resizing" the
+      main window.
+
+    * src/iface/i_sessions.c: Reformat error messages in i_sessions_new_session
+      and i_sessions_save_session to remove c-format specifiers from translation
+      strings.
+
+    * src/iface/i_vars.c: Reformat error messages in i_vars_atexit_save_user_config
+      to remove c-format specifiers from translation strings.
+
+    * src/iface/i_window.c: Revise error message, and redo output formating in
+      o_picture_set_pixbuf.
+
+    * src/object/o_picture.c: Revise error message, and redo output formating in
+      o_picture_set_pixbuf.
+
 2016-12-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * base/gschem.c: Replace g_new with geda_malloc for geda_atexit_structs,

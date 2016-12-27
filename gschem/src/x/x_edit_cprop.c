@@ -10,7 +10,7 @@
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 3 of
+ * published by the Free Software Foundation; either version 2 of
  * the License, or (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -1293,7 +1293,7 @@ GtkWidget* x_dialog_edit_properties_constructor (GschemToplevel *w_current)
   gtk_toggle_button_set_active ((GtkToggleButton*)widget, FALSE);
   properties->electrical_cb = widget;
 
-  electrical_label = GEDA_AVM_LABEL_NEW (_(" _Electrical:"), 0, 0);
+  electrical_label = GEDA_AVM_LABEL_NEW (_("_Electrical:"), 0, 0);
   gtk_container_add (GTK_CONTAINER (hbox), electrical_label);
 
   gtk_frame_set_label_widget (GTK_FRAME(frame), hbox);

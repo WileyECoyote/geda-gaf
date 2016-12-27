@@ -10,7 +10,7 @@
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 3 of
+ * published by the Free Software Foundation; either version 2 of
  * the License, or (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -141,19 +141,27 @@ void x_dialog_coord_dnd_drag_receive(GtkWidget        *widget,
 
       case DND_TARGET_OBJECTS:
 
-        buffer =  (char *)gtk_selection_data_get_data(selection_data);
+        buffer = (char*)gtk_selection_data_get_data(selection_data);
 
         /* Copy received objects to the Drag&Drop buffer */
         object_buffer[DND_BUFFER] = geda_object_read_buffer (toplevel,
-                                                   object_buffer[DND_BUFFER],
-                                                   buffer,
-                                                   -1, _("Drag & Drop"), &err);
+                                                             object_buffer[DND_BUFFER],
+                                                             buffer,
+                                                             -1, _("Drag & Drop"), &err);
 
         /* Check for errors */
         if (err) {
-          char *errmsg = geda_sprintf ( _("An error occurred while receiving dropped data: %s."), err->message);
-          titled_pango_error_dialog ( _("<b>Data error.</b>"), errmsg, _("Drag & Drop failed") );
-          GEDA_FREE(errmsg);
+
+          const char *err_rcv = _("An error occurred while receiving drag-and-drop data");
+          const char *dat_err = _("Data error");
+
+          char *bold_msg = geda_sprintf ("<b>%s.</b>", dat_err);
+          char *err_msg  = geda_sprintf ("%s: %s.", err_rcv, err->message);
+
+          titled_pango_error_dialog (bold_msg, err_msg, _("Drag & Drop failed"));
+
+          GEDA_FREE(bold_msg);
+          GEDA_FREE(err_msg);
           g_error_free(err);
           dnd_success = FALSE;
         }
@@ -274,7 +282,7 @@ bool x_dialog_coord_drag_drop (GtkWidget      *widget,
         if (!geda_stricmp (target_entry->target, gdk_atom_name(target_type))) {
 
 #if DEBUG || DEBUG_DND_EVENTS
-          g_print ("x_dialog_coord_drag_drop, requesting a %s\n", gdk_atom_name(target_type));
+          g_print ("%s, requesting a %s\n", __func__, gdk_atom_name(target_type));
 #endif
           index = -1;
           break;

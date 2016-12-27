@@ -88,7 +88,9 @@ SCM_DEFINE (add_attrib_x, "%add-attrib!", 5, 0, 0,
   /* Check target object, if present */
   GedaObject *obj = NULL;
   if (edascm_is_object (target_s)) {
+
     obj = edascm_to_object (target_s);
+
     if (geda_object_get_page (obj) != toplevel->page_current) {
       scm_error (object_state_sym,
                  s_add_attrib_x,
@@ -112,8 +114,8 @@ SCM_DEFINE (add_attrib_x, "%add-attrib!", 5, 0, 0,
   else if (show_s == both_sym)  { show = SHOW_NAME_VALUE; }
   else {
     scm_misc_error (s_add_attrib_x,
-                    _("Invalid text name/value visibility ~A."),
-                      scm_list_1 (show_s));
+                  _("Invalid text name/value visibility ~A."),
+                    scm_list_1 (show_s));
   }
   scm_dynwind_begin (0);
 

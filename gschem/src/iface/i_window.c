@@ -251,9 +251,10 @@ void i_window_revert_page (GschemToplevel *w_current)
 
       const char *disk_err_msg;
 
-      disk_err_msg = _("An error occurred during a File Revert operation: %s.");
+      disk_err_msg = _("An error occurred while processing request to revert");
 
-      char *errmsg = geda_sprintf (disk_err_msg, err->message);
+      char *errmsg = geda_sprintf ("%s: %s.", disk_err_msg, err->message);
+
       titled_pango_error_dialog(_("<b>File error.</b>"), errmsg, _("Revert failed"));
       GEDA_FREE(errmsg);
       g_error_free(err);

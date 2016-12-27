@@ -8,7 +8,7 @@
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 3 of
+ * published by the Free Software Foundation; either version 2 of
  * the License, or (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -782,19 +782,22 @@ void x_print_setup (GschemToplevel *w_current, char *filename)
     /* Check whether it worked */
     if (result) {
 
-      u_log_message (_("Cannot print current schematic to [%s]\n"),
-                       destination);
+      char *bold_msg;
+
+      u_log_message ("%s [%s]\n", _("Cannot print current schematic to"), destination);
+
+
+      bold_msg = geda_sprintf ("<b>%s.</b>", _("An error occurred while printing"));
 
       /* Inform user */
-      titled_pango_error_dialog ( _("<b>An error occurred while printing</b>"),
-                                    _("check the log for more information"),
-                                      _("Print Error") );
-
+      titled_pango_error_dialog (bold_msg,
+                               _("check the log for more information"),
+                               _("Print Error"));
+      GEDA_FREE(bold_msg);
     }
     else {
 
-      u_log_message (_("Printed current schematic to [%s]\n"),
-                       destination);
+      u_log_message ("%s [%s]\n", _("Printed current schematic to"), destination);
     }
   }
 
@@ -1103,7 +1106,7 @@ x_print_export_pdf_page (GschemToplevel *w_current, const char *filename)
   status = cairo_surface_status (surface);
   if (status != CAIRO_STATUS_SUCCESS) {
     const char *err_str = cairo_status_to_string (status);
-    fprintf(stderr, _("Failed to write PDF to '%s': %s\n"), filename, err_str);
+    fprintf(stderr, "%s '%s': %s\n", _("Failed to write PDF to"), filename, err_str);
     result = FALSE;
   }
   else {
@@ -1165,7 +1168,7 @@ bool x_print_export_pdf (GschemToplevel *w_current, const char *filename)
   cr_status = cairo_surface_status (surface);
   if (cr_status != CAIRO_STATUS_SUCCESS) {
     const char *err_str = cairo_status_to_string (cr_status);
-    fprintf(stderr, _("Failed to write PDF to '%s': %s\n"), filename, err_str);
+    fprintf(stderr, "%s '%s': %s\n", _("Failed to write PDF to"), filename, err_str);
     result = FALSE;
   }
   else {
@@ -1214,12 +1217,19 @@ void x_print (GschemToplevel *w_current)
                                  GTK_WINDOW (w_current->main_window), &err);
 
   if (res == GTK_PRINT_OPERATION_RESULT_ERROR) {
+
+    char *bold_msg;
+
     /* Log the error */
-    u_log_message( _("x_print: Error printing file:\n%s"), err->message);
+    u_log_message("%s:\n%s", _("Error printing file"), err->message);
+
+    bold_msg = geda_sprintf ("<b>%s.</b>", _("An error occurred while printing"));
 
     /* If printing failed due to an error, inform the user */
-    titled_pango_error_dialog ( _("<b>An error occurred while printing</b>"),  err->message,
-                                _("Print Error") );
+    titled_pango_error_dialog (bold_msg,  err->message, _("Print Error"));
+
+    GEDA_FREE(bold_msg);
+
     /* clear error */
     g_error_free(err);
 
