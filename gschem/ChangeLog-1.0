@@ -1,5 +1,7 @@
 2016-12-28 Wiley E. Hill <wileyhill@gmail.com>
 
+    * etc/system-gschemrc.scm: Revise menu toolip text.
+
     * src/: Revise output message format in order to minimize format specifiers
       in translatable string in various modules:
 

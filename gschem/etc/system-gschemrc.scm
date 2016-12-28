@@ -2065,14 +2065,14 @@
         (,(N_ "_Print...")         file-print           "gtk-print"           ,(N_ "Print the current document"))
         (,(N_ "_Export")           #f                   "gtk-save-as"         ,(N_ "Export options"))
         (,(N_ "Write p_df")        file-write-pdf            #f                    ,(N_ "Create PDF document"))
-        (,(N_ "Write _image...")   file-write-image     "geda-save-image"     ,(N_ "This is a dummy tip"))
+        (,(N_ "Write _image...")   file-write-image     "geda-save-image"     ,(N_ "Export image"))
 
         ("SEPARATOR"               #f                   #f            #f)
         (,(N_ "E_xecute Script...")file-run-script      "gtk-execute"         ,(N_ "Execute a script file"))
 
         ("SEPARATOR"               #f                   #f            #f)
         (,(N_ "_Close")            file-close           "gtk-close"           ,(N_ "Close the current document"))
-        (,(N_ "Close All")        file-close-all       "geda-close-all"      ,(N_ "Close all open documents"))
+        (,(N_ "Close All")         file-close-all       "geda-close-all"      ,(N_ "Close all open documents"))
         (,(N_ "_Quit")             file-quit            "gtk-quit"            ,(N_ "Quit gschem and exit"))
       )
 )
@@ -2196,7 +2196,7 @@
         ("SEPARATOR"                #f                      #f)
         (,(N_ "_Dark color scheme")  view-dark-colors       #f               ,(N_ "Set the color map to the Dark set"))
         (,(N_ "_Light color scheme") view-light-colors      #f               ,(N_ "Set the color map to the Light set"))
-        (,(N_ "B_W color scheme")    view-bw-colors         #f               ,(N_ "Set the color map to the Black and White"))
+        (,(N_ "B_W color scheme")    view-bw-colors         #f               ,(N_ "Set the color map to Black and White"))
       )
 )
 
@@ -2293,7 +2293,7 @@
 ;;      menu item name                    menu action            menu icon name            Menu Item Tooltip
 ;;
      `( (,(N_ "A_utonumber Text...")      tools-autonumber       #f                 ,(N_ "Open Auto Number dialog"))
-        (,(N_ "Show _Console Window...")  tools-show-console     #f                 ,(N_ "Display the console"))
+        (,(N_ "Show _Console Window...")  tools-show-console     #f                 ,(N_ "Display the console window"))
         (,(N_ "Show Coord _Window...")    tools-show-coordinates #f                 ,(N_ "Display coordinates"))
 
         ("SEPARATOR"                      #f                     #f)
