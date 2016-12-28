@@ -13,6 +13,7 @@
             * src/x/x_misc.c
             * src/x/x_rc.c
             * src/x/x_sessions.c
+            * src/x/x_settings.c
 
 2016-12-27 Wiley E. Hill <wileyhill@gmail.com>
 
