@@ -508,11 +508,14 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     /* Check the first member */
     if (!scm_is_string(scm_item_name)) {
 
+      const char *err_msg = _("Error reading menu item");
+      const char *bad_str = _("Bad string");
+
       if (!menus_broken) { /* Issue message only for first occurence */
-        fprintf(stderr, _("Error reading menu item <%d>, Bad string\n"), i);
+        fprintf(stderr, "%s <%d>: %s\n", err_msg, i, bad_str);
       }
       else {
-        u_log_message(_("Error reading menu item <%d>, Bad string\n"), i);
+        u_log_message("%s <%d>: %s\n", err_msg, i, bad_str);
       }
       menus_broken = TRUE;
       menu_item    = NULL;
@@ -717,7 +720,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     scm_items = geda_iface_menu_return_entry(i, raw_menu_name);
 
     if (*raw_menu_name == NULL) {
-      fprintf(stderr, _("Oops.. got a NULL menu name in %s()\n"), __func__);
+      fprintf(stderr, "%s: %s\n", __func__, _("Oops... got a NULL menu name"));
       return NULL;
     }
 
@@ -1315,16 +1318,20 @@ void x_menus_sensitivity (GschemToplevel *w_current, const char *buf, int flag)
     }
     else {
 
+      const char *log_msg = _("Tried to set the sensitivity on non-existent menu item");
+
       if (verbose_mode) {
-        u_log_message(_("Tried to set the sensitivity on non-existent menu item '%s'\n"), buf);
+        u_log_message("%s '%s'\n", log_msg, buf);
       }
       else {
         if (sensitivity_errors < SENSITIVITY_ERROR_LIMIT) {
-          q_log_message(_("Tried to set the sensitivity on non-existent menu item '%s',\n"), buf);
+          q_log_message("%s '%s',\n", log_msg, buf);
         }
         sensitivity_errors++;
         if (sensitivity_errors == SENSITIVITY_ERROR_LIMIT) {
-          q_log_message(_("Excessive errors <%d>, disabling sensitivity warnings\n"), sensitivity_errors);
+          const char *log_msg1 = _("Excessive errors");
+          const char *log_msg2 = _("disabling sensitivity warnings");
+          geda_log_q("%s <%d>, %s\n", log_msg1, sensitivity_errors, log_msg2);
         }
       }
     }
@@ -1345,7 +1352,7 @@ void x_menus_popup_sensitivity (GschemToplevel *w_current,
   menu_data = g_slist_nth_data (ui_list, w_current->ui_index);
 
   if (!POPUP_MAIN) {
-    fprintf(stderr, _("Popup menu widget doesn't exist!\n"));
+    fprintf(stderr, "Popup menu widget doesn't exist!\n");
   }
   else {
 
@@ -1567,14 +1574,19 @@ static void x_menu_set_toggler(ToggleMenuData *toggler_data, bool state)
            geda_check_menu_item_set_active((GedaCheckMenuItem*)menu_item, state);
          g_signal_handler_unblock(action, toggler_data->handler);
        }
-       else
-         u_log_message(_("%s: Action not found, \"%s\" \n"), __func__, menu_path);
+       else {
+         const char *log_msg = _("Action not found");
+         u_log_message("%s: %s, \"%s\" \n", __func__, log_msg, menu_path);
+       }
      }
-     else
-       u_log_message(_("%s: Menu path not found, \"%s\" \n"), __func__, menu_path);
+     else {
+       const char *log_msg = _("Menu path not found");
+       u_log_message("%s: %s, \"%s\" \n", __func__, log_msg, menu_path);
+     }
   }
-  else
-    u_log_message(_("%s: invalid pointer [menubar]\n"),  __func__);
+  else {
+    BUG_MSG("invalid pointer [menubar]");
+  }
   return;
 }
 
@@ -1639,18 +1651,20 @@ void x_menu_set_toolbar_toggle(GschemToplevel *w_current, int toggle_id, bool st
   char  menu_name[36] = "_View/_Toolbars/";
   char *menu_path;
 
+  GtkWidget *menu_bar;
   GtkWidget *menu_item;
 
-  GtkWidget* menubar;
-  menubar = x_menu_get_main_menu(w_current);
-
+  menu_bar  = x_menu_get_main_menu(w_current);
   menu_path = geda_strconcat (menu_name, IDS_Menu_Toolbar_Toggles[toggle_id], NULL);
-  menu_item = GEDA_OBJECT_GET_DATA (menubar, menu_path);
+  menu_item = GEDA_OBJECT_GET_DATA (menu_bar, menu_path);
+
   if (menu_item != NULL) {
-    geda_check_menu_item_set_active((GedaCheckMenuItem*) menu_item, state);
+    geda_check_menu_item_set_active((GedaCheckMenuItem*)menu_item, state);
   }
-  else
-    u_log_message(_("Error, x_menu_set_toolbar_toggle: Did not find path \"%s\"\n"), menu_path);
+  else {
+    u_log_message("%s \"%s\"\n", _("Error: did not find path"), menu_path);
+  }
+
   GEDA_FREE(menu_path);
   return;
 }
@@ -1748,16 +1762,17 @@ static void x_menu_recent_file_clicked (GedaMenuItem *menuitem, void *user_data)
 
    /* Check if the file exists */
    fp = fopen((char*) filename, "r");
-   if(fp == NULL) {
+
+   if (fp == NULL) {
       /* Remove this entry from all menus */
-      u_log_message(_("Could not open file %s\n"), (char*) filename);
+      u_log_message("%s \"%s\"\n", _("Could not open file"), filename);
       recent_files = g_list_remove(recent_files, filename);
       x_menu_update_recent_files();
       return;
    }
    fclose(fp);
 
-   page = x_window_open_page(w_current, (char*) filename);
+   page = x_window_open_page(w_current, filename);
    x_window_set_current_page(w_current, page);
 }
 

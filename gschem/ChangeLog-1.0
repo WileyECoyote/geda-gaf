@@ -7,6 +7,7 @@
             * src/iface/i_sessions.c
             * src/x/x_dnd.c
             * src/x/x_image.c
+            * src/x/x_menu.c
 
 2016-12-27 Wiley E. Hill <wileyhill@gmail.com>
 
