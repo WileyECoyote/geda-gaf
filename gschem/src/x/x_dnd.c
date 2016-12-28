@@ -432,11 +432,14 @@ x_dnd_receive_string_sym (GschemToplevel *w_current, int x, int y,
     }
     else {
       /* TODO: Should embed the symbol */
-      u_log_message(_("Could not locate symbol [%s] in library, try refreshing\n"), symbolfile);
+      const char *log_msg1 = _("Could not locate symbol");
+      const char *log_msg2 = _("in library, try refreshing");
+      u_log_message("%s [%s], %s\n", log_msg1, symbolfile, log_msg2);
     }
   }
   else { /* symbol file is not our library source path so load new page */
-    v_log_message(_("symbol [%s] not in library opening as page\n"), filename);
+    const char *log_msg = _("not in library, opening as page");
+    v_log_message("%s [%s] %s\n", _("symbol"), filename, log_msg);
     result = TRUE;
   }
   GEDA_FREE(path);

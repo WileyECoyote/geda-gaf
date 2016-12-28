@@ -175,7 +175,7 @@ void x_console_init_commands(GschemToplevel *w_current, int mode) {
 
 #ifdef HAVE_GTHREAD
 
-  char* describe_level[] = {  "safe mode",
+  char *describe_level[] = {  "safe mode",
                               "multitasking mode",
                               "unknown"
                            };
@@ -186,10 +186,10 @@ void x_console_init_commands(GschemToplevel *w_current, int mode) {
     mode = mode - 1;
     nlevel = mode > nlevel ? nlevel - 1 : mode;
     i_command_engage(w_current);
-    v_log_message(_("Command interface: engaged using (%s)\n"), describe_level[mode]);
+    v_log_message("%s (%s)\n", _("Command interface: engaged using"), describe_level[mode]);
   }
   else {
-    v_log_message(_("Command interface: engaged using (%s)\n"), describe_level[0]);
+    v_log_message("%s (%s)\n", _("Command interface: engaged using"), describe_level[0]);
     i_command_disengage(FALSE, FALSE);
   }
 #endif

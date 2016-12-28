@@ -67,7 +67,7 @@ void o_undo_init(GschemToplevel *w_current)
   const char *msg_not_rw;
   const char *msg_use_mem;
 
-  msg_cl_tmp  = _("Undo: using tmp directory specified on command-line: <%s>\n");
+  msg_cl_tmp  = _("Undo: using temporary directory specified on command-line");
   msg_not_rw  = _("Directory: %s is not read/writable, check permissions.\n");
   msg_use_mem = _("<b>Auto switching Undo system to type Memory</b>\n");
 
@@ -81,7 +81,7 @@ void o_undo_init(GschemToplevel *w_current)
 
   if (tmp_directory != NULL) {
     tmp_path = tmp_directory;
-    v_log_message(msg_cl_tmp, tmp_path);
+    geda_log_v("%s: <%s>\n", msg_cl_tmp, tmp_path);
   }
   else {
 
