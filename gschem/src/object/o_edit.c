@@ -514,11 +514,11 @@ void o_edit_rotate_world(GschemToplevel *w_current,
 static void log_visibility (int set_hidden, int set_visible)
 {
   if (set_hidden > 0) {
-    q_log_message(_("%d attributes were hidden\n"), set_hidden);
+    geda_log_q("%d %s\n", _("attributes were hidden"), set_hidden);
   }
 
   if (set_visible > 0) {
-    q_log_message(_("%d hidden attributes were revealed\n"), set_visible);
+    geda_log_q("%d %s\n", _("hidden attributes were revealed"), set_visible);
   }
 }
 
@@ -1118,12 +1118,14 @@ o_edit_update_component (GschemToplevel *w_current, GedaObject *o_current)
   geda_struct_clib_symbol_invalidate_data (clib);
 
   if (clib == NULL) {
-    u_log_message (_("Could not find symbol [%s] in library. Update failed.\n"),
-                   o_current->complex->filename);
+    const char *log_msg1 = _("Could not find symbol");
+    const char *log_msg2 = _("in library. Update failed");
+    geda_log ("%s [%s] %s.\n", log_msg1, o_current->complex->filename, log_msg2);
     return NULL;
   }
-  else
-    q_log_message (_("Updating symbol [%s]\n"), o_current->complex->filename);
+  else {
+    geda_log_q ("%s [%s].\n", _("Updating symbol"), o_current->complex->filename);
+  }
 
   /* Unselect the old object. */
   geda_object_selection_remove (page->selection_list, o_current);

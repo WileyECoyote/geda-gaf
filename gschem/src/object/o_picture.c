@@ -394,7 +394,7 @@ o_picture_exchange_file (GschemToplevel *w_current, GedaObject *o_current)
       const char *message = err->message;
 
       /* Log the error */
-      u_log_message( _("%s: Failed to replace picture: %s"), __func__, message);
+      geda_log("%s: %s\n", _("Failed to replace picture"), message);
 
       /* inform the user */
       pango_error_dialog ( _("<b>Failed to replace picture</b>"), message);
