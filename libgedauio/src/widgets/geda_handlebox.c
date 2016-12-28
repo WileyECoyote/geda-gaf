@@ -998,6 +998,8 @@ geda_handle_box_unmap (GtkWidget *widget)
       gdk_window_hide (handlebox->float_window);
       handlebox->float_window_mapped = FALSE;
   }
+
+  GTK_WIDGET_CLASS (geda_handle_box_parent_class)->unmap (widget);
 }
 
 /* widget_class->realize */
