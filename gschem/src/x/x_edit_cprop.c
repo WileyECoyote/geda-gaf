@@ -364,8 +364,9 @@ static void x_dialog_edit_properties_ok(GtkWidget     *dialog,
         geda_struct_clib_symbol_invalidate_data (clib);
 
         if (clib == NULL) {
-          u_log_message (_("Could not find symbol [%s] in library. Update failed.\n"),
-                         filename);
+          const char *log_msg1 = _("Could not find symbol");
+          const char *log_msg2 = _("in library. Update failed");
+          geda_log ("%s [%s] %s.\n", log_msg1, filename, log_msg2);
         }
         else {
 

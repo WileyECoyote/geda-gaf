@@ -323,15 +323,14 @@ x_fileselect_save (GschemToplevel *w_current)
     /* If the file already exists, display a dialog box to check if
      *       the user really wants to overwrite it. */
     if ((filename != NULL) && g_file_test (filename, G_FILE_TEST_EXISTS)) {
+
       GtkWidget *checkdialog =
       gtk_message_dialog_new (GTK_WINDOW(dialog),
                               (GTK_DIALOG_MODAL |
                               GTK_DIALOG_DESTROY_WITH_PARENT),
                               GTK_MESSAGE_QUESTION,
                               GTK_BUTTONS_YES_NO,
-                              _("The selected file `%s' already exists.\n\n"
-                              "Would you like to overwrite it?"),
-                              filename);
+                              "%s %s.\n\n%s?", filename, _("already exists"), _("Overwrite"));
                               gtk_window_set_title (GTK_WINDOW (checkdialog), _("Overwrite file?"));
                               if (gtk_dialog_run (GTK_DIALOG (checkdialog)) != GEDA_RESPONSE_YES) {
                                 q_log_message (_("Save canceled on user request\n"));
