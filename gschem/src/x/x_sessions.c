@@ -229,7 +229,7 @@ on_export_butt_clicked (GtkWidget *button, void *user_data)
 
     if(filename != NULL) { /* if user did not cancel */
       i_sessions_export_session(name, filename);
-      q_log_message(_("Exported session %s to %s\n"), name, filename);
+      geda_log_q("%s %s %s %s\n", _("Session"), name, _("exported to"), filename);
       GEDA_FREE(filename);
     }
   }

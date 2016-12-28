@@ -8,6 +8,9 @@
             * src/x/x_dnd.c
             * src/x/x_image.c
             * src/x/x_menu.c
+            * src/x/x_misc.c
+            * src/x/x_rc.c
+            * src/x/x_sessions.c
 
 2016-12-27 Wiley E. Hill <wileyhill@gmail.com>
 

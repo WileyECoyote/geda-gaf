@@ -97,7 +97,7 @@ x_rc_parse_gschem_error (GError **err, void *retry_flag)
   if (*err == NULL) {
 
     /* Log message */
-    u_log_message (_("ERROR: %s\n"), err_msg_unknown);
+    u_log_message ("%s: %s\n", _("ERROR"), err_msg_unknown);
 
     /* Dialog message */
     msg2 = geda_strconcat ( err_msg_unknown, "\n\n", msg_log_more, NULL);
@@ -133,7 +133,7 @@ x_rc_parse_gschem_error (GError **err, void *retry_flag)
       GEDA_FREE(unbound_sym);
     }
     else  /* Log message */ {
-      u_log_message (_("ERROR: %s\n"), (*err)->message);
+      u_log_message ("%s: %s\n", _("ERROR"), (*err)->message);
     }
     /* Dialog message */
     msg2 = geda_sprintf ("%s\n\n%s", (*err)->message, msg_log_more);
