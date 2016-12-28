@@ -5,8 +5,8 @@
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 2013-2015 Wiley Edward Hill
- * Copyright (C) 2013-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2013-2016 Wiley Edward Hill
+ * Copyright (C) 2013-2016 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -580,7 +580,7 @@ x_dnd_receive_objects(GschemToplevel  *w_current, int x, int y, const char *buff
 
       char *errmsg;
 
-      errmsg = geda_sprintf ("%s: %s.", _("An error occurred while dropping data"), err->message);
+      errmsg = geda_sprintf ("%s: %s.", _("An error occurred while receiving Drag & Drop data"), err->message);
 
       titled_pango_error_dialog (_("<b>Invalid Data.</b>"), errmsg, _("Drag & Drop failed"));
 

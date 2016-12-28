@@ -5,7 +5,7 @@
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 2014-2015 Wiley Edward Hill <wileyhill@gmail.com>
+ * Copyright (C) 2014-2016 Wiley Edward Hill <wileyhill@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -937,7 +937,7 @@ int i_sessions_new_session(GschemToplevel *w_current, const char *name)
   }
   else {
 
-    const char *log_msg = _("An error occurred attemting to create session");
+    const char *log_msg = _("An error occurred attempting to create session");
 
     char *msg;
 

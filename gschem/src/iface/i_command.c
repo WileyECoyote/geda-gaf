@@ -5,8 +5,8 @@
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 2013-2015 Wiley Edward Hill
- * Copyright (C) 2013-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2013-2016 Wiley Edward Hill
+ * Copyright (C) 2013-2016 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -472,7 +472,7 @@ static inline void msg_need_select_1st(GschemToplevel *w_current)
 
 static inline void action_err(char *var)
 {
-  geda_log_v("%s %s %s!\n", _("Cannot"), var, _("while inside and action!\n"));
+  geda_log_v("%s %s %s!\n", _("Cannot"), var, _("while inside an action!\n"));
 }
 
 #define NO_ACTION(symbol) if (w_current->inside_action) \
