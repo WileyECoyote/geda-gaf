@@ -3,6 +3,8 @@
     * src/widgets/geda_handlebox.c: Redo object type identifier scheme for
       GedaHandleBox objects and replace instance_type with hash table.
       Revise function geda_handle_box_unmap to chain-up to the parent.
+      Remove setting GDK_WINDOW_TYPE_HINT_TOOLBAR in geda_handle_box_realize,
+      update comments.
 
 2016-12-18 Wiley E. Hill <wileyhill@gmail.com>
 

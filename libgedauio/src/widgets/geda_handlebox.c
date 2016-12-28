@@ -45,10 +45,10 @@
 /**
  * \brief GedaHandleBox - A Container Widget for toolbars
  * \par
- * A GedaHandleBox is a container object used toolbars. The GedaHandleBox
+ * A GedaHandleBox is a container object used to hold toolbars. GedaHandleBox
  * is a replacement for the GtkHandleBox because the GtkHandleBox is listed
  * as depreciated. A GedaHandleBox allows toolbars to float or be docked to
- * edges of a window.
+ * the edges of a window.
  *
  * \defgroup GedaHandleBox Handle Box
  * @{
@@ -58,7 +58,7 @@
  * drag to tear off a separate window, the float window, containing the child
  * widget. A thin "ghost" outline is drawn in the original location of the
  * handlebox. By dragging the separate window back to its original location,
- * float window can be re-attached.
+ * the floating window can be re-attached.
  *
  * When re-attaching the float window to the ghost, the float window must be
  * aligned along one of the edges, the "snap edge", which can be specified
@@ -1071,8 +1071,12 @@ geda_handle_box_realize (GtkWidget *widget)
                                             &attributes, attributes_mask);
   gdk_window_set_user_data (handlebox->float_window, widget);
   gdk_window_set_decorations (handlebox->float_window, 0);
-  gdk_window_set_type_hint (handlebox->float_window, GDK_WINDOW_TYPE_HINT_TOOLBAR |
-                                                     GDK_WINDOW_TYPE_HINT_DOCK);
+
+  /* Setting GDK_WINDOW_TYPE_HINT_TOOLBAR here results in the toolbar lowering
+   * to the bottom window on the display with gtk+-2.0 == 2.24.30, but not with
+   * 2.24.10 */
+  gdk_window_set_type_hint (handlebox->float_window, GDK_WINDOW_TYPE_HINT_DOCK);
+
   /* Use to work fine, then gtk erratica. Added DOCK hint above and next two lines */
   GtkWidget *topwindow = gtk_widget_get_toplevel (widget);
   gdk_window_set_transient_for (handlebox->float_window,GDK_WINDOW(topwindow->window));
@@ -1453,21 +1457,21 @@ geda_handle_box_class_init(void *g_class, void *class_data)
 
   g_object_class_install_property (object_class, PROP_SHADOW_TYPE, params);
 
-  params =g_param_spec_enum ("handle-position",
-                             NULL,
-                           _("Position of the handle relative to the child toolbar"),
-                             GTK_TYPE_POSITION_TYPE,
-                             GTK_POS_LEFT,
-                             G_PARAM_READWRITE);
+  params = g_param_spec_enum ("handle-position",
+                               NULL,
+                            _("Position of the handle relative to the child toolbar"),
+                               GTK_TYPE_POSITION_TYPE,
+                               GTK_POS_LEFT,
+                               G_PARAM_READWRITE);
 
   g_object_class_install_property (object_class, PROP_HANDLE_POSITION, params);
 
-  params =g_param_spec_enum ("snap-edge",
-                             NULL,
-                           _("Side of the handlebox that is lined up with the docking point to dock the handlebox"),
-                             GTK_TYPE_POSITION_TYPE,
-                             GTK_POS_TOP,
-                             G_PARAM_READWRITE);
+  params = g_param_spec_enum ("snap-edge",
+                               NULL,
+                            _("Side of the handlebox that is lined up with the docking point to dock the handlebox"),
+                               GTK_TYPE_POSITION_TYPE,
+                               GTK_POS_TOP,
+                               G_PARAM_READWRITE);
 
   g_object_class_install_property (object_class, PROP_SNAP_EDGE, params);
 
