@@ -1,3 +1,8 @@
+2016-12-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_handlebox.c: Redo object type identifier scheme for
+      GedaHandleBox objects and replace instance_type with hash table.
+
 2016-12-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_comboboxtext.c: Add functions:

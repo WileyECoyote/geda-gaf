@@ -207,6 +207,9 @@ static unsigned int handle_box_signals[SIGNAL_LAST] = { 0 };
 
 static void *geda_handle_box_parent_class = NULL;
 
+/* Table of pointers to GedaHandleBox instances */
+static GHashTable *handlebox_hash = NULL;
+
 static int
 effective_handle_position (GedaHandleBox *handlebox)
 {
@@ -254,8 +257,8 @@ geda_handle_box_get_invisible (void)
   return handle_box_invisible;
 }
 
-/* Helper for geda_handle_box_grab_event, removes the grab from handlebox
- * and disconnects the grab handler
+/* Helper for geda_handle_box_grab_event, removes the grab from
+ * handlebox and disconnects the grab handler
  */
 static void
 geda_handle_box_end_drag (GedaHandleBox *handlebox, unsigned int time)
@@ -515,7 +518,7 @@ geda_handle_box_grab_event(GtkWidget *widget, GdkEvent *event, GedaHandleBox *ha
       break;
 
     case GDK_MOTION_NOTIFY:
-      return geda_handle_box_motion (GTK_WIDGET (handlebox), (GdkEventMotion *)event);
+      return geda_handle_box_motion (GTK_WIDGET(handlebox), (GdkEventMotion *)event);
       break;
 
     default:
@@ -1388,6 +1391,13 @@ geda_handle_box_finalize (GObject *object)
 {
   GedaHandleBox *handlebox = GEDA_HANDLE_BOX (object);
 
+  if (g_hash_table_remove (handlebox_hash, object)) {
+    if (!g_hash_table_size (handlebox_hash)) {
+      g_hash_table_destroy (handlebox_hash);
+      handlebox_hash = NULL;
+    }
+  }
+
   g_free (handlebox->priv);
 
   G_OBJECT_CLASS (geda_handle_box_parent_class)->finalize (object);
@@ -1544,7 +1554,6 @@ static void
 geda_handle_box_instance_init(GTypeInstance *instance, void *g_class)
 {
   GedaHandleBox *handle_box = (GedaHandleBox*)instance;
-  handle_box->instance_type = geda_handle_box_get_type();
 
   gtk_widget_set_has_window (GTK_WIDGET (handle_box), TRUE);
 
@@ -1560,6 +1569,12 @@ geda_handle_box_instance_init(GTypeInstance *instance, void *g_class)
   handle_box->shrink_on_detach    = TRUE;
   handle_box->snap_edge           = -1;
   handle_box->dock_orientation    = GTK_ORIENTATION_HORIZONTAL;
+
+  if (!handlebox_hash) {
+    handlebox_hash = g_hash_table_new (g_direct_hash, NULL);
+  }
+
+  g_hash_table_add (handlebox_hash, instance);
 }
 
 /**
@@ -1619,8 +1634,8 @@ GedaType geda_handle_box_get_type (void)
 bool
 is_a_geda_handle_box (GedaHandleBox *handlebox)
 {
-  if (G_IS_OBJECT(handlebox)) {
-    return (geda_handle_box_get_type() == handlebox->instance_type);
+  if ((handlebox != NULL) && (handlebox_hash != NULL)) {
+    return g_hash_table_lookup(handlebox_hash, handlebox) ? TRUE : FALSE;
   }
   return FALSE;
 }
