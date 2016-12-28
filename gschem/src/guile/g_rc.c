@@ -221,9 +221,7 @@ SCM g_rc_gschem_version(SCM scm_version)
 
 /*! \brief This function processes the display-color-map RC entry.
  *  \par Function Description
- *       C function to dynamically convert lisp variable while
- *       processing configuration data for the display-color-map RC entry.
- *
+ *   This keyword is handled by libgedacolor and is defunct in gschem.
  */
 SCM g_rc_display_color_map (SCM scm_map)
 {
@@ -2061,13 +2059,16 @@ SCM g_rc_text_display_zoomfactor(SCM zoomfactor)
 {
   int val;
 
-  SCM_ASSERT (scm_is_integer (zoomfactor), zoomfactor,
-              SCM_ARG1, "test-display-zoom-factor");
+  const char *keyword = "test-display-zoom-factor";
+
+  SCM_ASSERT (scm_is_integer (zoomfactor), zoomfactor, SCM_ARG1, keyword);
 
   val = scm_to_int (zoomfactor);
   if (val < MIN_TEXT_ZOOM) {
-    fprintf(stderr, _("Invalid zoom factor [%d] passed to %s\n"),
-            val, "text-display-zoom-factor");
+
+    const char *inv_msg = _("Invalid zoom factor");
+
+    fprintf(stderr,"%s [%d] %s %s\n", inv_msg, val, _("check"), keyword);
     val = DEFAULT_TEXT_ZOOM; /* default */
   }
 

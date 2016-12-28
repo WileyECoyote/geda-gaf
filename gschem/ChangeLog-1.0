@@ -3,6 +3,10 @@
     * src/base/gschem_dialog.c: Revise output message format in order to minimize
       format specifiers in translatable string in gschem_dialog_get_parent.
 
+    * src/guile/g_rc.c: Revise output message format in order to minimize
+      format specifiers in translatable string; g_rc_text_display_zoomfactor,
+      check_and_convert_scm_integer.
+
 2016-12-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: update Afrikaan translations.
