@@ -7,6 +7,10 @@
       format specifiers in translatable string; g_rc_text_display_zoomfactor,
       check_and_convert_scm_integer.
 
+    * src/iface/i_command.c: Revise output message formats to minimize format
+      specifiers in translatable string; replace _log_message with geda_log
+      counterparts.
+
 2016-12-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: update Afrikaan translations.
