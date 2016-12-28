@@ -181,7 +181,7 @@ static bool i_session_close_all (GschemToplevel *w_current)
 
     close_all = x_confirm_close_window (w_current);
     if (!close_all) {       /* user canceled the close */
-      v_log_message(_("Canceled Close all\n"));
+      geda_log_v(_("Canceled Close all\n"));
     }
   }
   else {
@@ -190,7 +190,7 @@ static bool i_session_close_all (GschemToplevel *w_current)
 
   if (close_all) {          /* Still want to close all? */
 
-    v_log_message(_("Closing all documents\n"));
+    geda_log_v(_("Closing all documents\n"));
 
     /* Loop through all the pages */
     for ( iter = pages; iter != NULL; NEXT(iter)) {
@@ -259,15 +259,17 @@ static GSList *i_sessions_get_file_list(Session *record)
   }
   else {
     /* Remove this entry from all menus */
-    u_log_message(_("Could not open session file \"%s\"\n"), sfile);
+    geda_log("%s \"%s\"\n", _("Could not open the session file"), sfile);
   }
 
   /* Check for any bad files names and resolve */
   if (bad) {
 
+    const char *log_msg = _("is not accessible");
+
     while (bad) {
       fname = bad->data;
-      u_log_message(_("file: <%s> is not accessible\n"), fname);
+      geda_log("%s \"%s\" %s.\n", _("File"), fname, log_msg);
       bad = g_slist_remove(bad, fname);
       free(fname);
     }
@@ -330,8 +332,8 @@ static int i_session_load_session(GschemToplevel *w_current, Session *record)
     }
 
     if (missing_path) {
-      q_log_message(_("Warning relative file names detected in session \"%s\"\n"),
-                       record->session_name);
+      const char *log_msg = _("Warning relative file names detected in session");
+      q_log_message("%s \"%s\"\n", log_msg, record->session_name);
     }
 
     /* Free the filenames and the list */
@@ -340,8 +342,11 @@ static int i_session_load_session(GschemToplevel *w_current, Session *record)
     /* Note: blank could be NULL if x_window_set_current_page
      * was not called after loading a blank "dummy" page */
     if (load_count) {
-      q_log_message(_("Session %s, opening %d of %d documents\n"),
-                       record->session_name, load_count, exist_count);
+
+      q_log_message("%s %s %s %d %s %d %s\n", _("Session"), record->session_name,
+                                              _("opening"), load_count,
+                                              _("of"), exist_count,
+                                              _("documents"));
       if (blank != NULL) {
         x_window_close_page (w_current, blank);
       }
@@ -350,8 +355,8 @@ static int i_session_load_session(GschemToplevel *w_current, Session *record)
     }
     else { /* do error recovery */
       if (!exist_count) {
-        v_log_message(_("Session \"%s\" did not contain any accessible documents\n"),
-                         record->session_name);
+        const char *log_msg = _("did not contain any accessible documents");
+        geda_log_v("%s \"%s\" %s\n", _("Session"), log_msg, record->session_name);
       }
       if (blank == NULL) { /* Do Error recovery */
         i_command_process(w_current, "file-new", 0, NULL, ID_ORIGIN_CCODE);
@@ -783,7 +788,7 @@ static void i_sessions_load_data(void)
 
     }
     else if (err) {
-      geda_log_w (_("Sessions: %s\n"), err->message);
+      geda_log_w ("%s: %s\n", _("Sessions"), err->message);
       g_error_free(err);
     }
   }
@@ -847,7 +852,7 @@ int i_sessions_delete_session(GschemToplevel *w_current, const char *name)
 
   record = i_session_get_record(name);
 
-  u_log_message( _("Removing session: %s"), name);
+  geda_log( "%s: %s\n", _("Removing session"), name);
 
   if (!geda_remove_file(record->session_file)) {
 
@@ -867,12 +872,12 @@ int i_sessions_delete_session(GschemToplevel *w_current, const char *name)
   }
   else {
 
-    char    *msg;
+    char *msg;
 
     msg = geda_sprintf ("%s, %s", record->session_file, strerror(errno));
 
     /* Log the error */
-    u_log_message( _("%s: Failed to remove session: %s"), __func__, msg);
+    geda_log("%s: %s\n", _("Failed to remove session"), msg);
 
     /* inform the user */
     pango_error_dialog ( _("<b>Could not remove session</b>"), msg);
@@ -923,22 +928,26 @@ int i_sessions_new_session(GschemToplevel *w_current, const char *name)
 
   if (!err) {
 
-    u_log_message( _("session %s created with %d documents.\n"), name, count);
+    geda_log("%s %s %s %d %s.\n", _("session"), name,
+                                  _("created with"), count,
+                                  _("documents"));
 
     update_sessions_menus(w_current);
 
   }
   else {
 
+    const char *log_msg = _("An error occurred attemting to create session");
+
     char *msg;
 
-    msg = geda_sprintf ( "%s %s: %s.", _("An error occurred attemting to create session"),
-                         name, err->message);
+    msg = geda_sprintf ("%s %s: %s.", log_msg, name, err->message);
+
     /* Log the error */
-    u_log_message( "%s %s\n", __func__, msg);
+    geda_log( "%s\n", msg);
 
     /* inform the user */
-    titled_pango_error_dialog ( _("<b>Session Error</b>"), msg, _("Creation failed") );
+    titled_pango_error_dialog (_("<b>Session Error</b>"), msg, _("Creation failed"));
 
     GEDA_FREE(msg);
     g_error_free(err);
@@ -982,7 +991,7 @@ bool i_sessions_open_session(GschemToplevel *w_current, const char *name)
       result = FALSE;
     }
     else {
-      v_log_message(_("Opened session %s\n"), name);
+      geda_log_v("%s %s\n", _("Opened session"), name);
       result = TRUE;
     }
 
@@ -1031,8 +1040,8 @@ int i_sessions_rename_session(GschemToplevel *w_current, const char *old_name,
 
     str = geda_utility_string_strdup(new_name);
 
-    q_log_message(_("Renaming session %s to renamed %s\n"),
-                  record->session_name, str);
+    q_log_message("%s %s %s %s.\n", _("Renaming session"), record->session_name,
+                                    _("to"), str);
 
     /* If we are renaming the active session update toplevel */
     if ((w_current->session_name != NULL) &&
@@ -1056,7 +1065,7 @@ int i_sessions_rename_session(GschemToplevel *w_current, const char *old_name,
     str = geda_sprintf ("%s, %s", record->session_file, strerror(errno));
 
     /* Log the error */
-    u_log_message( _("%s: Failed to rename session: %s"), __func__, str);
+    geda_log("%s: %s\n", _("Failed to rename session"), str);
 
     /* inform the user */
     pango_error_dialog ( _("<b>Could not rename session</b>"), str);
@@ -1090,8 +1099,12 @@ int i_sessions_save_session(GschemToplevel *w_current, const char *name)
     count = i_sessions_create(w_current, name, &err);
 
     if (!err) {
+
       update_sessions_menus(w_current);
-      msg = geda_sprintf(_("Created session %s with %d documents.\n"), name, count);
+
+      msg = geda_sprintf("%s %s %s %d %s.\n", _("Created session"), name,
+                                              _("with"), count,
+                                              _("documents"));
     }
   }
   else {
@@ -1099,18 +1112,27 @@ int i_sessions_save_session(GschemToplevel *w_current, const char *name)
     count = i_sessions_save(w_current, err);
 
     if (!err) {
-      msg = geda_sprintf(_("Saved %d documents to session %s\n"), count, w_current->session_name);
+
+      const char *_Save   = _("Saved");
+      const char *log_msg = _("documents to session");
+
+      msg = geda_sprintf("%s %d %s: %s\n", _Save, count,
+                                            log_msg,
+                                            w_current->session_name);
     }
   }
 
   if (err) {
 
-    msg = geda_sprintf( "%s %s: %s.", _("An error occurred attempting to save session"), name, err->message);
+    const char *log_msg = _("An error occurred attempting to save session");
 
-    u_log_message ("%s\n", msg); /* Log the error */
+    msg = geda_sprintf("%s %s: %s.", log_msg, name, err->message);
+
+    geda_log ("%s\n", msg); /* Log the error */
 
     /* inform the user */
-    titled_pango_error_dialog( _("<b>Session Error</b>"), msg, _("Save session failed"));
+    titled_pango_error_dialog( _("<b>Session Error</b>"), msg,
+                               _("Save session failed"));
 
     g_error_free(err);
     count = -1;
@@ -1201,10 +1223,10 @@ void i_sessions_set_show_at_startup(bool show)
   eda_config_set_boolean (cfg, group, key, show);
 
   if (show) {
-    v_log_message(_("Show Sessions at startup is now ENABLED\n"));
+    geda_log_v(_("Show Sessions at startup is now ENABLED\n"));
   }
   else {
-    v_log_message(_("Show Sessions at startup is now DISABLED\n"));
+    geda_log_v(_("Show Sessions at startup is now DISABLED\n"));
   }
 }
 
@@ -1274,7 +1296,7 @@ void i_sessions_init(GschemToplevel *w_current)
   else {
     w_current->auto_sessions = tmp_bool;
   }
-  v_log_message(_("Session system initialized!\n"));
+  geda_log_v(_("Session system initialized!\n"));
 }
 /** @} endgroup sessions-global-utilities */
 /** @} endgroup sessions-global-functions */

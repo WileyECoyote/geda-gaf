@@ -11,6 +11,10 @@
       specifiers in translatable string; replace _log_message with geda_log
       counterparts.
 
+    * src/iface/i_sessions.c: Revise output message formats to minimize format
+      specifiers in translatable string; replace _log_message with geda_log
+      counterparts.
+
 2016-12-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: update Afrikaan translations.
