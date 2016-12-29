@@ -2,6 +2,16 @@
 
     * src/guile/g_rc.c: gEDA/gaf -> gEDA/gschem in g_rc_gschem_version.
 
+    * src/iface/i_command.c: Edit "Close all canceled" message to be
+      "Canceled close all", reads bad both ways.
+
+    * src/object/o_edit.c: Reverse backwards arguments in log_visibility.
+
+    * src/object/o_undo.c: Reduce scope of error message semi constants;
+      file_err_msg and sys_err_msg so that these string are not translated
+      unless there is an actual error. Revise sys_err_msg to eliminate the
+      format specifiers from the translatable string.
+
 2016-12-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Revise menu toolip text.

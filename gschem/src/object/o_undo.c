@@ -68,7 +68,7 @@ void o_undo_init(GschemToplevel *w_current)
   const char *msg_use_mem;
 
   msg_cl_tmp  = _("Undo: using temporary directory specified on command-line");
-  msg_not_rw  = _("Directory: %s is not read/writable, check permissions.\n");
+  msg_not_rw  = _("Directory is not read/writable, check permissions");
   msg_use_mem = _("<b>Auto switching Undo system to type Memory</b>\n");
 
   prog_pid = getpid();
@@ -113,7 +113,7 @@ void o_undo_init(GschemToplevel *w_current)
   }
   if (w_current->undo_type == UNDO_DISK) {
     if ((access(tmp_path, R_OK) != 0) || (access(tmp_path, W_OK) != 0)) {
-      char *errmsg = geda_sprintf (msg_not_rw, tmp_path);
+      char *errmsg = geda_sprintf ("%s: %s\n", msg_not_rw, tmp_path);
       titled_pango_warning_dialog (msg_use_mem,  errmsg, _("Gschem Undo System"));
       GEDA_FREE(errmsg);
       w_current->undo_type = UNDO_MEMORY;
@@ -201,12 +201,6 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
   UNDO         *u_current;
   UNDO         *u_current_next;
 
-  const char *file_err_msg;
-  const char *sys_err_msg;
-
-  file_err_msg = _("Undo: encountered an error: file");
-  sys_err_msg  = _("Undo: system error: <%d>, switching to MEMORY mode\n");
-
   /* save auto save backups if necessary */
   geda_object_save_auto_backup(w_current->toplevel);
 
@@ -255,11 +249,15 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
 
       if (!geda_object_save (geda_struct_page_get_objects (p_current), filename, &err))
       {
+          const char *file_err_msg = _("Undo: encountered an error, file");
+          const char *sys_err_msg1 = _("Undo: system error");
+          const char *sys_err_msg2 = _("switching to MEMORY mode");
+
           /* Error recovery sequence, the last disk operation failed
            * so log the event and switched to type Memory. We do not,
            * and likely can not, remove any existing undo files.*/
           u_log_message("%s=<%s> %s\n", file_err_msg, filename, err->message);
-          u_log_message(sys_err_msg, err->code);
+          u_log_message("%s: <%d>, %s\n", sys_err_msg1, err->code, sys_err_msg2);
           g_clear_error (&err);
           w_current->undo_type = UNDO_MEMORY;
           geda_struct_undo_free_all (p_current);

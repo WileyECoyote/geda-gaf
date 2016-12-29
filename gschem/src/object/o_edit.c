@@ -514,11 +514,11 @@ void o_edit_rotate_world(GschemToplevel *w_current,
 static void log_visibility (int set_hidden, int set_visible)
 {
   if (set_hidden > 0) {
-    geda_log_q("%d %s\n", _("attributes were hidden"), set_hidden);
+    geda_log_q("%d %s\n", set_hidden, _("attributes were hidden"));
   }
 
   if (set_visible > 0) {
-    geda_log_q("%d %s\n", _("hidden attributes were revealed"), set_visible);
+    geda_log_q("%d %s\n", set_visible, _("hidden attributes were revealed"));
   }
 }
 
