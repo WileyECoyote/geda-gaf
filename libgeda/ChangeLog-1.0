@@ -1,3 +1,8 @@
+2016-12-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/file/f_file.c: Reduce scope of translatable strings in geda_file_open
+      and revise (tweak) mem_needed, reformat allocation error.
+
 2016-12-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_clib.c: Revert c7e5e080ef846c03169a1af2fac41437ab707591,
