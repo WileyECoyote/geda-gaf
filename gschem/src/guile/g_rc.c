@@ -195,7 +195,7 @@ SCM g_rc_gschem_version(SCM scm_version)
 
     scm_dynwind_free (sourcefile);
 
-    const char *running = _("This is gEDA/gaf version");
+    const char *running = _("This is gEDA/gschem version");
     const char *have    = _("but you have a version");
     const char *please  = _("Please be sure that you have the latest rc file");
 
