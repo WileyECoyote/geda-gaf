@@ -12,6 +12,15 @@
       unless there is an actual error. Revise sys_err_msg to eliminate the
       format specifiers from the translatable string.
 
+    * src/x/x_coord.c: Revise err_rcv message in x_dialog_coord_dnd_drag_receive
+      to be the same as in x_dnd_receive_objects.
+
+    * src/x/x_dialog.c: Add seperate string for glib, glib_str in about dialog,
+      update copyright in dialog and file.
+
+    * src/x/x_print.c: Revise message in x_print_setup to be the same as
+      in x_rc_parse_gschem_error "The log may contain more information".
+
 2016-12-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Revise menu toolip text.

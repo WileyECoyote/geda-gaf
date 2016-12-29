@@ -791,7 +791,7 @@ void x_print_setup (GschemToplevel *w_current, char *filename)
 
       /* Inform user */
       titled_pango_error_dialog (bold_msg,
-                               _("check the log for more information"),
+                               _("The log may contain more information."),
                                _("Print Error"));
       GEDA_FREE(bold_msg);
     }

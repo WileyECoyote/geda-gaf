@@ -152,7 +152,8 @@ void x_dialog_coord_dnd_drag_receive(GtkWidget        *widget,
         /* Check for errors */
         if (err) {
 
-          const char *err_rcv = _("An error occurred while receiving drag-and-drop data");
+          /* This message is also translated in x_dnd_receive_objects */
+          const char *err_rcv = _("An error occurred while receiving Drag & Drop data");
           const char *dat_err = _("Data error");
 
           char *bold_msg = geda_sprintf ("<b>%s.</b>", dat_err);
