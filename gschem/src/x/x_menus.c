@@ -731,9 +731,10 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
     menu_item = geda_tearoff_menu_item_new ();
     gtk_container_add (GTK_CONTAINER (menu), menu_item);
-
+    g_object_set (menu_item, "visible", TRUE, NULL);
     g_signal_connect(menu_item, "torn-off", G_CALLBACK(x_menu_torn),
                                             w_current);
+
 
     /* Loop through all items subordinate to this top-level menu container */
     scm_items_len = (int) scm_ilength (scm_items);

@@ -18,6 +18,8 @@
     * src/x/x_dialog.c: Add seperate string for glib, glib_str in about dialog,
       update copyright in dialog and file.
 
+    * src/x/x_menus.c Revert 150858afda18c6e8d4aef6e97434925f3850b1d5.
+
     * src/x/x_print.c: Revise message in x_print_setup to be the same as
       in x_rc_parse_gschem_error "The log may contain more information".
 
@@ -476,13 +478,15 @@
 
     * etc/system-gschemrc.scm: Revise mnemonic characters under the File menu.
 
-2016-09-07 Wiley E. Hill <wileyhill@gmail.com>
+2016-09-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_menus.c: Substitute geda_strconcat for geda_utility_string_concat.
 
 2016-09-07 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/x/x_menus.c: Removed setting new menu objects "visible".
+    * src/x/x_menus.c: Removed setting new menu objects "visible". (12/28/16:
+      Why? This applied to the tear-off items on the menu bar, rendering
+      tear-off items nonoperative! Revert this see 2016-12-29)
 
     * tests/runtest.sh: Revised to tests for verbose before the functions
       file is sourced with vecho function, move debug and verbose squeal
