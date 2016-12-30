@@ -441,14 +441,14 @@ void about_dialog (GschemToplevel *w_current)
   }
 
   gEDA_str  = _("gEDA: GPL Electronic Design Automation");
-  glib_str  = _("glibc ");
-  guile_str = _("Guile ");
+  glib_str  = _("glibc");
+  guile_str = _("Guile");
 
   guile_ver = scm_to_utf8_string(scm_version());
 
   comments  = geda_strconcat (gEDA_str, "\n\n",
-                              glib_str, gnu_get_libc_version(), "\n",
-                              guile_str, guile_ver, "\n", NULL);
+                              glib_str, " ", gnu_get_libc_version(), "\n",
+                              guile_str," ", guile_ver, "\n", NULL);
 
   free(guile_ver);
 

@@ -410,7 +410,7 @@ create_action_area (GschemDialog *ThisDialog, GtkWidget *parent)
 
   int         startup;
 
-  open_tip    = _("Loads the selected session");
+  open_tip    = _("Load the selected session");
   startup_tip = _("Show the Open Session dialog at start-up, over-rides auto-load-last feature");
   update_tip  = _("Add and remove files to the sessions automatically");
 

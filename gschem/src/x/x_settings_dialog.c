@@ -2648,7 +2648,7 @@ create_settings_dialog (GschemToplevel *w_current)
   g_object_set (OkayButt, "visible", TRUE, NULL);
   gtk_dialog_add_action_widget (GTK_DIALOG (ThisDialog), OkayButt, GEDA_RESPONSE_OK);
   gtk_widget_set_can_default(OkayButt, TRUE);
-  gtk_widget_set_tooltip_text ( OkayButt, _("Change settings and close but do not write settings to storage.."));
+  gtk_widget_set_tooltip_text ( OkayButt, _("Change settings and close but do not write settings to storage"));
 
   /* Store pointers to widgets, for use by get_widget_data(). */
   GEDA_OBJECT_SET_DATA (ThisDialog, ThisDialog, "ThisDialog");

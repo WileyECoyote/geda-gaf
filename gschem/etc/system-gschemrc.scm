@@ -2097,7 +2097,7 @@
         (,(N_ "Mo_ve")              edit-move              "geda-move"        ,(N_ "Move selection"))
         (,(N_ "O_ffset")            edit-offset            #f                 ,(N_ "Offset the selected objects"))
         (,(N_ "Rotate _90")         edit-rotate-left       #f                 ,(N_ "Rotate the current selection about a point"))
-        (,(N_ "Snap to _grid")      edit-snap              "geda-snap"        ,(N_ "Snap selection to grid to current grid"))
+        (,(N_ "Snap to _grid")      edit-snap              "geda-snap"        ,(N_ "Snap selection to current grid"))
 
         ("SEPARATOR"               #f                     #f                       #f)
         (,(N_ "_Array")             edit-array            #f                  ,(N_ "Create and array of objects"))
