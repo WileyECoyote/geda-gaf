@@ -25,7 +25,10 @@
       in x_rc_parse_gschem_error "The log may contain more information".
 
     * src/x/x_toolbars.c: Revise output message format in order to minimize
-      format specifiers in translatable string;
+      format specifiers in translatable string.
+
+    * src/x/x_window.c: Revise output message format in order to minimize
+      format specifiers in translatable string.
 
 2016-12-28 Wiley E. Hill <wileyhill@gmail.com>
 
