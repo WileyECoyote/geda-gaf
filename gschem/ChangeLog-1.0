@@ -4,6 +4,8 @@
 
     * po/ar.po: update Arabic translations.
 
+    * src/guile/g_rc.c: fix freeing string, not function.
+
 2016-12-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_rc.c: gEDA/gaf -> gEDA/gschem in g_rc_gschem_version.

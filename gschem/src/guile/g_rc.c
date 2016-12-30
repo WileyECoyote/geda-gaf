@@ -1464,7 +1464,7 @@ SCM g_rc_bus_ripper_symname(SCM scmsymname)
               SCM_ARG1, "bus-ripper-symname");
 
   if (default_bus_ripper_symname) {
-    geda_free (g_rc_bus_ripper_symname);
+    geda_free (default_bus_ripper_symname);
   }
 
   temp = scm_to_utf8_string (scmsymname);
