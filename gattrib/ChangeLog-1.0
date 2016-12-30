@@ -1,3 +1,17 @@
+2016-12-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/f_export.c: Replace square brackets with double quotes for the
+      filename in f_export_components and format in order to minimize
+      format specifiers in translatable string.
+
+    * src/gattrib.c: Replace square brackets with double quotes for the
+      filename in gattrib_main and format in order to minimize format
+      specifiers in translatable string.
+
+    * src/x_fileselect.c: Replace square brackets with double quotes for the
+      filename in x_fileselect and format in order to minimize format
+      specifiers in translatable string.
+
 2016-12-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gattrib.c: Call s_toplevel_close in gattrib_quit to close the page.

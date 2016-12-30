@@ -368,7 +368,7 @@ void gattrib_main(void *closure, int argc, char *argv[])
       file_list = g_slist_append(file_list, filename);
     }
     else {
-      fprintf(stderr, _("Couldn not find file [%s]\n"), argv[argv_index]);
+      fprintf(stderr, "%s \"%s\"\n", _("Couldn not find file"), argv[argv_index]);
     }
     argv_index++;
   }

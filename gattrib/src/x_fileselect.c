@@ -110,13 +110,13 @@ bool x_fileselect_load_file (char *filename) {
   const GList *Objects;
 
   if (!quiet_mode) {
-    geda_log (_("Loading file [%s]\n"), filename);
+    geda_log ("%s: \"%s\"\n", _("Loading file"), filename);
   }
 
   geda_struct_page_goto (geda_struct_page_new (pr_current, filename));
 
   if (s_toplevel_read_page(pr_current, filename) == 0) {
-     fprintf(stderr, _("Could not load schematic [%s]\n"), filename);
+     fprintf(stderr,"%s: \"%s\"\n",  _("Could not load schematic"), filename);
      return FALSE;
   }
 
