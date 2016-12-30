@@ -219,7 +219,7 @@ s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list)
     netlist   = s_netlist_return_tail (netlist_head);
 
     if (o_current->type == OBJ_PLACEHOLDER) {
-      printf(_("WARNING: Found a placeholder/missing component, is symbol file missing? [%s]\n"),
+      printf("%s \"%s\"?\n", _("WARNING: Found a placeholder/missing component, is symbol file missing"),
                 o_current->complex->filename);
     }
 
@@ -352,7 +352,7 @@ s_traverse_hierarchy_sheet (GedaToplevel *pr_current, NETLIST *netlist)
     netlist = s_netlist_return_tail (netlist_head);
 
     if (o_current->type == OBJ_PLACEHOLDER) {
-      printf(_("WARNING: Found a placeholder/missing component, is symbol file missing? [%s]\n"),
+      printf("%s \"%s\"?\n", _("WARNING: Found a placeholder/missing component, is symbol file missing"),
                 o_current->complex->filename);
     }
 

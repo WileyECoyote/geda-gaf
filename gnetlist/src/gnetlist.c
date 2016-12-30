@@ -274,14 +274,14 @@ void main_prog(void *closure, int argc, char *argv[])
     }
 
     if (!quiet_mode) {
-      u_log_message (_("Loading schematic <%s>\n"), filename);
-      fprintf (stderr, _("Loading schematic [%s]\n"), filename);
+      u_log_message ("%s: \"%s\"\n", _("Loading schematic"), filename);
+      fprintf (stderr,"%s: \"%s\"\n", _("Loading schematic"), filename);
     }
 
     geda_struct_page_goto (geda_struct_page_new (pr_current, filename));
 
     if (!geda_open_file (pr_current, pr_current->page_current, filename, &err)) {
-      fprintf (stderr, _("load failed [%s]: %s\n"), filename, err->message);
+      fprintf (stderr, "%s: \"%s\", %s\n", _("load failed"), filename, err->message);
       g_error_free (err);
       GEDA_FREE (filename);
       GEDA_FREE(output_filename);

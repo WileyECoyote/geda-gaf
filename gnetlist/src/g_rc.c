@@ -47,7 +47,7 @@ SCM g_rc_gnetlist_version(SCM scm_version)
             PREPEND_VERSION_STRING, PACKAGE_DOTTED_VERSION,
             PACKAGE_DATE_VERSION);
     fprintf(stderr,
-            "but you have a version [%s] gnetlistrc file:\n[%s]\n",
+            "but you have a version [%s] gnetlistrc file:\n\"%s\"\n",
             version, rc_filename);
     fprintf(stderr,
             "Please be sure that you have the latest rc file.\n");
