@@ -818,7 +818,7 @@ KEYWORD (scrollbar_update) {
 
 /** @brief function do_kw_scrollbars_visible in Settings-Keyword-Handlers */
 KEYWORD (scrollbars_visible) {
-  RC_INTEGER_WOUT (scrollbars_visible)
+  RC_BOOLEAN_WOUT (scrollbars_visible)
 }
 
 /** @brief function do_kw_scrollpan_steps in Settings-Keyword-Handlers */

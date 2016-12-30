@@ -4,11 +4,14 @@
 
     * po/ar.po: update Arabic translations.
 
-    * src/guile/g_rc.c: fix freeing string, not function.
+    * src/guile/g_rc.c: Fix freeing string, not function.
 
-    src/: Replace square brackets with double quotes for the file names
-    and format in order to eliminate format specifiers in translatable
-    strings:
+    * src/x/x_settings.c: Fix scrollbars-visible in do_kw_scrollbars_visible;
+      use RC_BOOLEAN_WOUT (writes enable/disable) instead of RC_INTEGER_WOUT.
+
+    * src/: Replace square brackets with double quotes for the file names
+      and format in order to eliminate format specifiers in translatable
+      strings:
 
           * src/base/gschem.c      (func=load_documents)
           * src/guile/i_command.c  (funcs=do_file_new, do_file_new_window,
