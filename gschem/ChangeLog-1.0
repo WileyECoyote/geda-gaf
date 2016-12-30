@@ -2,6 +2,8 @@
 
     * po/af.po: update Afrikaan translations.
 
+    * po/ar.po: update Arabic translations.
+
 2016-12-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_rc.c: gEDA/gaf -> gEDA/gschem in g_rc_gschem_version.
