@@ -329,8 +329,9 @@ static GtkWidget *get_pixmap(GschemToplevel *w_current, const char *name)
   }
 
   if (wpixmap == NULL) {
-     v_log_message("get_stock_alt_pixmap: image file not found: \"%s\".\n", name);
-     wpixmap = gtk_image_new_from_stock(GTK_STOCK_MISSING_IMAGE , TB_SMALL_ICON);
+    const char *log_msg = _("image file not found");
+    v_log_message("%s: %s \"%s\".\n", __func__, log_msg, name);
+    wpixmap = gtk_image_new_from_stock(GTK_STOCK_MISSING_IMAGE , TB_SMALL_ICON);
   }
   else {
     gtk_image_set_pixel_size((GtkImage*)wpixmap, TB_SMALL_ICON);
@@ -403,7 +404,8 @@ static void x_toolbars_load_icons( GschemToplevel *w_current)
     }
 
     if (!tb_data->icon) {
-      u_log_message("Toolbar: icon not found <%s>\n",tb_data->icon_id);
+      const char *log_msg = _("Toolbar icon not found");
+      u_log_message("%s: <%s>\n", log_msg, tb_data->icon_id);
     }
 
 #if DEBUG_TB_CONS
@@ -557,13 +559,14 @@ x_toolbars_save_state(GschemToplevel *w_current)
 
     g_file_set_contents(filename, data, -1, NULL);
 
-    v_log_message("data saved to %s\n", filename);
+    v_log_message("%s %s\n", _("data saved to"), filename);
 
     GEDA_FREE(data);
     g_key_file_free(key_file);
   }
   else {
-    u_log_message(_("Could not save Toolbar configuration to %s\n"), filename);
+    const char *log_msg = _("Could not save Toolbar configuration to");
+    u_log_message("%s %s\n", log_msg, filename);
   }
 
   GEDA_FREE(filename);
@@ -635,14 +638,15 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
       }
     }
     else {
-      u_log_message("Error, Toolbar configuration key file, %s\n", group_name);
+      const char *log_msg = _("Error, Toolbar configuration key file");
+      u_log_message("%s, %s\n", log_msg, group_name);
     }
   }
 
   void RestoreAllBars() {
 
     if (key_file) {
-      v_log_message("Retrieving toolbar geometry\n");
+      v_log_message(_("Retrieving toolbar geometry\n"));
       RestoreBarProperties(w_current->add_handlebox);
       RestoreBarProperties(w_current->attribute_handlebox);
       RestoreBarProperties(w_current->edit_handlebox);
@@ -667,18 +671,19 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
       key_file = g_key_file_new();
 
       if (g_key_file_load_from_file(key_file, filename, G_KEY_FILE_NONE, &err)) {
+        const char *log_msg = _("Toolbar configuration restored from");
         RestoreAllBars();
-        v_log_message("Toolbar configuration restored from %s\n", filename);
+        v_log_message("%s %s\n", log_msg, filename);
       }
       else {
-        u_log_message("Warning, Error Restoring Toolbar configuration, %s %s\n",
-                      filename, err->message);
+        const char *log_msg = _("Warning, Error Restoring Toolbar configuration");
+        u_log_message("%s, %s %s\n", log_msg, filename, err->message);
         g_clear_error (&err);
       }
     }
     else {
-      u_log_message("Warning, Toolbar configuration file access error:, %s %s\n",
-                    filename, err->message);
+      const char *log_msg = _("Warning, Toolbar configuration file access error");
+      u_log_message("%s: %s %s\n", log_msg, filename, err->message);
     }
 
     /* Check if toolbars styles are uniform and set radio in menu
@@ -695,7 +700,8 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
       }
   }
   else {
-    v_log_message("Toolbar configuration <%s> not found!\n", filename);
+    const char *log_msg = _("Toolbar configuration not found");
+    v_log_message("%s: <%s>!\n", log_msg, filename);
   }
 
   if (key_file) {
@@ -866,7 +872,7 @@ static int popup_activated(GtkWidget *widget, IDS_HB_Popup_items* selection)
         gtk_toolbar_set_style (GTK_TOOLBAR (ActiveToolBar.toolbar), TOOLBAR_SHOW_HORIZ);
         break;
       default:
-        u_log_message("menu_responder(): UKNOWN MENU ID: %d\n", WhichItem);
+        u_log_message("%s: UKNOWN MENU ID: %d\n", __func__, WhichItem);
     } /* End Switch WhichItem */
 
     gtk_widget_destroy(popup_menu);
@@ -985,7 +991,7 @@ On_mouse_button_press(GtkWidget *widget, GdkEventButton *event, GschemToplevel *
 
     if (popup_menu) {
 
-      gtk_object_destroy(GTK_OBJECT(popup_menu));
+      gtk_widget_destroy(GTK_WIDGET(popup_menu));
       popup_menu = NULL;
     }
 

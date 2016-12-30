@@ -3,7 +3,8 @@
     * src/guile/g_rc.c: gEDA/gaf -> gEDA/gschem in g_rc_gschem_version.
 
     * src/iface/i_command.c: Edit "Close all canceled" message to be
-      "Canceled close all", reads bad both ways.
+      "Canceled close all", reads bad both ways. Revise output message
+       format in do_file_new.
 
     * src/object/o_edit.c: Reverse backwards arguments in log_visibility.
 
@@ -22,6 +23,9 @@
 
     * src/x/x_print.c: Revise message in x_print_setup to be the same as
       in x_rc_parse_gschem_error "The log may contain more information".
+
+    * src/x/x_toolbars.c: Revise output message format in order to minimize
+      format specifiers in translatable string;
 
 2016-12-28 Wiley E. Hill <wileyhill@gmail.com>
 

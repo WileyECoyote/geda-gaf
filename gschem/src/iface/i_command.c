@@ -710,7 +710,7 @@ COMMAND (do_file_new)
   x_window_set_current_page (w_current, page);
   g_hook_run_page (w_current, NEW_PAGE_HOOK, page);
 
-  geda_log_q (_("New page created [%s]\n"), page->filename);
+  geda_log_q ("%s [%s]\n", _("New page created"), page->filename);
 
   EXIT_COMMAND(do_file_new);
 
