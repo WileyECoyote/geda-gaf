@@ -190,7 +190,7 @@ load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[]
 
             if (verbose_mode) {
               const char *fname = geda_get_basename (filename);
-              geda_log ("%s [%s]\n", _("Assuming schematic file suffix for"), fname);
+              geda_log ("%s \"%s\"\n", _("Assuming schematic file suffix for"), fname);
             }
           }
           else {
@@ -204,7 +204,7 @@ load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[]
 
               if (verbose_mode) {
                 const char *fname = geda_get_basename (filename);
-                geda_log ("%s [%s]\n", _("Assuming symbol file suffix for"), fname);
+                geda_log ("%s \"%s\"\n", _("Assuming symbol file suffix for"), fname);
               }
             }
           }
@@ -352,10 +352,10 @@ static void gschem( int argc, char *argv[])
     input_str = scm_to_utf8_string (scm_tmp);
 
     if (g_evaluate_scheme_file(input_str, NULL)) {
-      geda_log_v ("%s [%s]\n", _("Read scheme initialization file"), input_str);
+      geda_log_v ("%s \"%s\"\n", _("Read scheme initialization file"), input_str);
     }
     else {
-      geda_log ("%s [%s]\n", _("Failed to read scheme initialization file"), input_str);
+      geda_log ("%s \"%s\"\n", _("Failed to read scheme initialization file"), input_str);
     }
   }
   free (input_str); /* M'allocated by scm_to_utf8_string() */

@@ -6,6 +6,24 @@
 
     * src/guile/g_rc.c: fix freeing string, not function.
 
+    src/: Replace square brackets with double quotes for the file names
+    and format in order to eliminate format specifiers in translatable
+    strings:
+
+          * src/base/gschem.c      (func=load_documents)
+          * src/guile/i_command.c  (funcs=do_file_new, do_file_new_window,
+                                          do_page_new, do_down_schematic,
+                                          do_down_symbol)
+          * src/object/o_edit.c    (func=o_edit_update_component)
+          * src/object/o_net.c     (func=o_net_add_busrippers)
+          * src/x/x_dnd.c          (func=x_dnd_receive_string_sym)
+          * src/x/x_edit_cprop.c   (func=x_dialog_edit_properties_ok)
+          * src/x/x_image.c        (func=x_image_write_eps, x_image_lowlevel,
+                                         x_image_setup)
+          * src/x/x_print.c        (func=x_print_setup)
+          * src/x/x_settings.c     (func=get_titleblock_list, generate_rc)
+          * src/x/x_window.c       (func=x_window_close_page, x_window_save_page)
+
 2016-12-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_rc.c: gEDA/gaf -> gEDA/gschem in g_rc_gschem_version.

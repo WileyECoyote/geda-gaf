@@ -710,7 +710,7 @@ COMMAND (do_file_new)
   x_window_set_current_page (w_current, page);
   g_hook_run_page (w_current, NEW_PAGE_HOOK, page);
 
-  geda_log_q ("%s [%s]\n", _("New page created"), page->filename);
+  geda_log_q ("%s \"%s\"\n", _("New page created"), page->filename);
 
   EXIT_COMMAND(do_file_new);
 
@@ -748,7 +748,7 @@ COMMAND (do_file_new_window)
   page = x_window_open_page (new_window, NULL);
   x_window_set_current_page (new_window, page);
 
-  geda_log_q (_("New Window created [%s]\n"), page->filename);
+  geda_log_q ("%s \"%s\"\n", _("New Window created"), page->filename);
 
 }
 
@@ -2711,7 +2711,7 @@ COMMAND (do_page_new)
 
   i_zoom_world_extents (w_current, geda_struct_page_get_objects (page), I_PAN_DONT_REDRAW);
 
-  geda_log_q ("%s [%s]\n", _("New page created"), page->filename);
+  geda_log_q ("%s \"%s\"\n", _("New page created"), page->filename);
 
   EXIT_COMMAND(do_page_new);
 }
@@ -2978,7 +2978,7 @@ COMMAND (do_down_schematic)
 
       GError *err = NULL;
 
-      geda_log(_("Searching for source [%s]\n"), current_filename);
+      geda_log("%s: \"%s\"\n", _("Searching for source"), current_filename);
 
       child = geda_struct_hierarchy_down_single(w_current->toplevel,
                                                 current_filename,
@@ -3098,7 +3098,7 @@ COMMAND (do_down_symbol)
 
       filename = object->complex->filename;
 
-      geda_log(_("Searching for symbol [%s]\n"), filename);
+      geda_log("%s: \"%s\"\n", _("Searching for symbol"), filename);
 
       sym = geda_struct_clib_get_symbol_by_name (filename);
 

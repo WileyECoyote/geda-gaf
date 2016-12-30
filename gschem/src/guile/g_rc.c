@@ -203,7 +203,7 @@ SCM g_rc_gschem_version(SCM scm_version)
                                                 PACKAGE_DOTTED_VERSION,
                                                 PACKAGE_DATE_VERSION);
 
-    fprintf(stderr, "%s [%s] gschemrc %s:\n[%s]\n", have, _("file"),
+    fprintf(stderr, "%s [%s] gschemrc %s:\n\"%s\"\n", have, _("file"),
             version, sourcefile);
 
     fprintf(stderr, "%s.\n", please);

@@ -1143,7 +1143,7 @@ x_window_close_page (GschemToplevel *w_current, Page *page)
         const char *log_msg1 = _("Discarding page");
         const char *log_msg2 = _("Closing");
 
-        geda_log_q ("%s: [%s]\n", page->CHANGED ? log_msg1 : log_msg2, page->filename);
+        geda_log_q ("%s \"%s\"\n", page->CHANGED ? log_msg1 : log_msg2, page->filename);
       }
 
       geda_page_feeze_notify(page); /* don't bother with thawing */
@@ -1235,7 +1235,7 @@ x_window_save_page (GschemToplevel *w_current, Page *page, const char *filename)
   }
 
   /* log status of operation */
-  geda_log ("%s: [%s]\n", log_msg, filename);
+  geda_log ("%s \"%s\"\n", log_msg, filename);
 
   /* update display and page manager */
   x_pagesel_update (w_current);

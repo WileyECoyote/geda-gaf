@@ -784,7 +784,7 @@ void x_print_setup (GschemToplevel *w_current, char *filename)
 
       char *bold_msg;
 
-      u_log_message ("%s [%s]\n", _("Cannot print current schematic to"), destination);
+      u_log_message ("%s \"%s\"\n", _("Cannot print current schematic to"), destination);
 
 
       bold_msg = geda_sprintf ("<b>%s.</b>", _("An error occurred while printing"));
@@ -797,7 +797,7 @@ void x_print_setup (GschemToplevel *w_current, char *filename)
     }
     else {
 
-      u_log_message ("%s [%s]\n", _("Printed current schematic to"), destination);
+      u_log_message ("%s \"%s\"\n", _("Printed current schematic to"), destination);
     }
   }
 

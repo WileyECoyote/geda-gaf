@@ -410,7 +410,7 @@ bool get_titleblock_list(char **Buffer) {
     result = TRUE;
   }
   else { /* could not open directory */
-    geda_log("%s [%s]: %s\n", _("Failed to open"), TitleBlockPath,
+    geda_log("%s: \"%s\", %s\n", _("Failed to open"), TitleBlockPath,
                   strerror(errno));
     result = FALSE;
   }
@@ -601,7 +601,7 @@ int generate_rc(GschemToplevel *w_current, const char *rcname)
     if ((result = remove(inputfile)) == 0) {
       result = rename(outputfile, inputfile);
       /* Is inputfile or outputfile? */
-      geda_log("%s [%s]\n", _("Wrote configuration to"), inputfile);
+      geda_log("%s \"%s\"\n", _("Wrote configuration to"), inputfile);
     }
     else {
       geda_log("%s: \"%s\", %s\n", _("File error"), inputfile, strerror(errno));

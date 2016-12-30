@@ -353,10 +353,10 @@ void x_image_write_eps(GschemToplevel *w_current, const char*filename)
   result = geda_file_print_file (toplevel, page, color_map, filename);
 
   if (result) {
-    geda_log("%s %s.\n", _("Error: Unable to write eps file"), filename);
+    geda_log("%s \"%s\".\n", _("Error: Unable to write eps file"), filename);
   }
   else {
-    geda_log("%s [%s] [%d x %d]\n", _("Wrote black and white image to"),
+    geda_log("%s \"%s\" [%d x %d]\n", _("Wrote black and white image to"),
               filename, toplevel->paper_width, toplevel->paper_height);
   }
 
@@ -462,7 +462,7 @@ void x_image_lowlevel(GschemToplevel *w_current, const char *filename,
 
     if (strncmp(filetype, "pdf", 3) == 0) {
       if (x_print_export_pdf (w_current, filename)) {
-        geda_log("%s [%s]\n", _("Generated PDF file"), filename);
+        geda_log("%s \"%s\"\n", _("Generated PDF file"), filename);
       }
     }
     else {
@@ -478,7 +478,7 @@ void x_image_lowlevel(GschemToplevel *w_current, const char *filename,
           const char *err_msg2  = _("to filename");
 
           /* Log the error */
-          geda_log("%s %s %s, [%s] %s\n", log_msg1, filetype, _("file"), filename, err->message);
+          geda_log("%s %s %s, \"%s\" %s\n", log_msg1, filetype, _("file"), filename, err->message);
 
           char *errmsg = geda_sprintf ("%s %s %s:\n%s\n\n%s.\n", err_msg1,
                                                                  filetype,
@@ -499,12 +499,12 @@ void x_image_lowlevel(GschemToplevel *w_current, const char *filename,
         }
         else {
           if (toplevel->image_color == TRUE) {
-            geda_log("%s [%s] [%d x %d]\n", _("Wrote color image to"),
-                                               filename, width, height);
+            geda_log("%s \"%s\" [%d x %d]\n", _("Wrote color image to"),
+                                                 filename, width, height);
           }
           else {
-            geda_log("%s [%s] [%d x %d]\n", _("Wrote black and white image to"),
-                                               filename, width, height);
+            geda_log("%s \"%s\" [%d x %d]\n", _("Wrote black and white image to"),
+                                                 filename, width, height);
           }
         }
 
@@ -773,8 +773,11 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
   gtk_widget_set_sensitive (use_print, image_color_save ? TRUE  : FALSE);
   gtk_widget_set_sensitive (invert_bw, image_color_save ? TRUE  : FALSE);
 
-  gtk_widget_set_tooltip_text ( use_print, _("Enable to use the Print color map instead of the display color map"));
-  gtk_widget_set_tooltip_text ( invert_bw, _("When enbled for reversed color images, only black and white will be reversed"));
+  gtk_widget_set_tooltip_text ( use_print,
+    _("Enable to use the Print color map instead of the display color map"));
+
+  gtk_widget_set_tooltip_text ( invert_bw,
+    _("When enabled for reversed color images, only black and white will be reversed"));
 
   gtk_widget_show_all(vbox3); /* set every widget in container visible */
 
@@ -783,9 +786,7 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
 
   /* Setup the GedaFileChooser options */
   g_object_set (ThisDialog, "select-multiple", FALSE,
-                            "do-overwrite-confirmation", TRUE,
-
-  NULL);
+                            "do-overwrite-confirmation", TRUE, NULL);
 
   /* Update the filename */
   x_image_update_dialog_filename(GEDA_COMBO_BOX(type_Combo), w_current);

@@ -1120,11 +1120,11 @@ o_edit_update_component (GschemToplevel *w_current, GedaObject *o_current)
   if (clib == NULL) {
     const char *log_msg1 = _("Could not find symbol");
     const char *log_msg2 = _("in library. Update failed");
-    geda_log ("%s [%s] %s.\n", log_msg1, o_current->complex->filename, log_msg2);
+    geda_log ("%s \"%s\" %s.\n", log_msg1, o_current->complex->filename, log_msg2);
     return NULL;
   }
   else {
-    geda_log_q ("%s [%s].\n", _("Updating symbol"), o_current->complex->filename);
+    geda_log_q ("%s \"%s\".\n", _("Updating symbol"), o_current->complex->filename);
   }
 
   /* Unselect the old object. */

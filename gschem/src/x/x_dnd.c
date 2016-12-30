@@ -434,12 +434,12 @@ x_dnd_receive_string_sym (GschemToplevel *w_current, int x, int y,
       /* TODO: Should embed the symbol */
       const char *log_msg1 = _("Could not locate symbol");
       const char *log_msg2 = _("in library, try refreshing");
-      u_log_message("%s [%s], %s\n", log_msg1, symbolfile, log_msg2);
+      u_log_message("%s \"%s\", %s\n", log_msg1, symbolfile, log_msg2);
     }
   }
   else { /* symbol file is not our library source path so load new page */
     const char *log_msg = _("not in library, opening as page");
-    v_log_message("%s [%s] %s\n", _("symbol"), filename, log_msg);
+    v_log_message("%s \"%s\" %s\n", _("symbol"), filename, log_msg);
     result = TRUE;
   }
   GEDA_FREE(path);
