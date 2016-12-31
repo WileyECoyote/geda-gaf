@@ -114,6 +114,8 @@ enum {
 
 static void *geda_bulb_parent_class = NULL;
 
+static GHashTable *bulb_hash_table = NULL;
+
 static unsigned int group_changed_signal = 0;
 
 static GdkPixbuf *off_pixbuf = NULL;
@@ -184,6 +186,13 @@ geda_bulb_finalize (GObject *object)
   GedaBulb  *bulb                = GEDA_BULB (object);
   GSList    *tmp_list;
   bool       was_in_group;
+
+  if (g_hash_table_remove (bulb_hash_table, object)) {
+    if (!g_hash_table_size (bulb_hash_table)) {
+      g_hash_table_destroy (bulb_hash_table);
+      bulb_hash_table = NULL;
+    }
+  }
 
   was_in_group = bulb->group && bulb->group->next;
   bulb->group  = g_slist_remove (bulb->group, bulb);
@@ -280,8 +289,7 @@ up_down_compare (const void *a, const void * b, void *data)
 }
 
 static bool
-geda_bulb_focus (GtkWidget         *widget,
-                 GtkDirectionType   direction)
+geda_bulb_focus (GtkWidget *widget, GtkDirectionType direction)
 {
   GedaBulb *bulb = GEDA_BULB (widget);
   bool      result;
@@ -781,8 +789,6 @@ geda_bulb_instance_init (GTypeInstance *instance, void *class)
   GtkButton *button = (GtkButton*)bulb;
   GtkWidget *widget = (GtkWidget*)bulb;
 
-  bulb->instance_type = geda_bulb_get_type();
-
   if (off_pixbuf == NULL) {
     off_pixbuf = gdk_pixbuf_new_from_xpm_data (geda_bulb_off_xpm);
   }
@@ -800,6 +806,12 @@ geda_bulb_instance_init (GTypeInstance *instance, void *class)
 
   bulb->height = gdk_pixbuf_get_height (on_pixbuf);
   bulb->width  = gdk_pixbuf_get_width  (on_pixbuf);
+
+  if (!bulb_hash_table) {
+    bulb_hash_table = g_hash_table_new (g_direct_hash, NULL);
+  }
+
+  g_hash_table_add (bulb_hash_table, instance);
 
   gtk_widget_set_receives_default (widget, FALSE);
 
@@ -868,8 +880,8 @@ GedaType geda_bulb_get_type (void)
 bool
 is_a_geda_bulb (GedaBulb *bulb)
 {
-  if (G_IS_OBJECT(bulb)) {
-    return (geda_bulb_get_type() == bulb->instance_type);
+  if ((bulb != NULL) && (bulb_hash_table != NULL)) {
+    return g_hash_table_lookup(bulb_hash_table, bulb) ? TRUE : FALSE;
   }
   return FALSE;
 }
