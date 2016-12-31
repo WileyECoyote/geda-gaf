@@ -53,7 +53,6 @@ typedef struct _GedaCheckMenuItemClass  GedaCheckMenuItemClass;
 struct _GedaCheckMenuItem
 {
   GedaMenuItem menu_item;
-  GedaType     instance_type;
 
   unsigned int active : 1;
   unsigned int always_show_toggle : 1;
