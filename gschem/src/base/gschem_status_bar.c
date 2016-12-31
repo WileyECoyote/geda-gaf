@@ -595,7 +595,7 @@ gschem_status_bar_class_init (void *class, void *class_data)
 
   pspec = g_param_spec_int ("grid-mode",
                           _("Grid Mode"),
-                          _("Sets the Gride Mode to display on the status bar"),
+                          _("Sets the Grid Mode to display on the status bar"),
                               GRID_NONE,
                               GRID_MESH,
                               GRID_NONE,
@@ -1189,7 +1189,7 @@ gschem_status_bar_instance_init (GTypeInstance *instance, void *g_class)
   left_label_tip   = _("Left pointer button assignment");
   middle_label_tip = _("Middle pointer button assignment, right click for options");
   right_label_tip  = _("Right pointer button assignment, right click for options");
-  grid_label_tip   = _("Indicates the current snap, grid units or states");
+  grid_label_tip   = _("Indicates the current snap, grid units or state");
   status_label_tip = _("Indicates the current command state");
   status_bar_tip   = _("Gschem status bar");
 
