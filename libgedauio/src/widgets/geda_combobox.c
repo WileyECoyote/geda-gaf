@@ -472,6 +472,8 @@ static void     geda_combo_box_start_editing                  (GtkCellEditable *
 
 static void *geda_combo_box_parent_class = NULL;
 
+static GHashTable *combo_box_hash = NULL;
+
 static GtkBuildableIface *parent_buildable_iface;
 
 static char *
@@ -1523,6 +1525,13 @@ geda_combo_box_finalize (GObject *object)
 
   geda_combo_box_unset_model (combo_box);
 
+  if (g_hash_table_remove (combo_box_hash, object)) {
+    if (!g_hash_table_size (combo_box_hash)) {
+      g_hash_table_destroy (combo_box_hash);
+      combo_box_hash = NULL;
+    }
+  }
+
   for (iter = combo_box->priv->cells; iter; iter = iter->next) {
 
     ComboCellInfo *info = (ComboCellInfo*)iter->data;
@@ -2316,8 +2325,6 @@ geda_combo_box_instance_init(GTypeInstance *instance, void *class)
 
   combo_box = (GedaComboBox*)instance;
 
-  combo_box->instance_type = geda_combo_box_get_type();
-
   priv = GEDA_MEM_ALLOC0(sizeof(GedaComboBoxData));
 
   priv->cell_view = gtk_cell_view_new ();
@@ -2351,6 +2358,12 @@ geda_combo_box_instance_init(GTypeInstance *instance, void *class)
   priv->text_renderer      = NULL;
 
   combo_box->priv = priv;
+
+  if (!combo_box_hash) {
+    combo_box_hash = g_hash_table_new (g_direct_hash, NULL);
+  }
+
+  g_hash_table_add (combo_box_hash, instance);
 
   geda_combo_box_check_appearance (combo_box);
 }
@@ -2432,8 +2445,8 @@ geda_combo_box_get_type (void)
 bool
 is_a_geda_combo_box (GedaComboBox *combo_box)
 {
-  if (G_IS_OBJECT(combo_box)) {
-    return (geda_combo_box_get_type() == combo_box->instance_type);
+  if ((combo_box != NULL) && (combo_box_hash != NULL)) {
+    return g_hash_table_lookup(combo_box_hash, combo_box) ? TRUE : FALSE;
   }
   return FALSE;
 }
