@@ -10,6 +10,9 @@
     * src/widgets/geda_combobox.c: Replace object type identifier scheme
       for GedaComboBox objects with new hash table type identifier system.
 
+    * src/widgets/geda_comboboxtext.c: Replace object type identifier scheme
+      for GedaComboBoxText objects with new hash table type identifier system.
+
 2016-12-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_handlebox.c: Redo object type identifier scheme for

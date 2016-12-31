@@ -48,7 +48,7 @@ struct _GedaComboBoxText
 {
   /*< private >*/
   GedaComboBox  parent_instance;
-  GedaType      instance_type;
+
   GtkListStore *store;
   GtkWidget    *tree;
   GtkWidget    *button;

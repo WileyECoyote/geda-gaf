@@ -99,6 +99,8 @@ static void geda_combo_box_text_buildable_custom_finished   (GtkBuildable      *
 
 static void *geda_combo_box_text_parent_class = NULL;
 
+static GHashTable *combo_text_box_hash = NULL;
+
 static GtkBuildableIface *buildable_parent_iface = NULL;
 
 static void FixGtkCrap(GtkWidget *widget, void *combo)
@@ -153,6 +155,13 @@ geda_combo_box_text_constructor (GType                  type,
 static void geda_combo_box_text_finalize  (GObject *object)
 {
   GedaComboBoxText *self = GEDA_COMBO_BOX_TEXT(object);
+
+  if (g_hash_table_remove (combo_text_box_hash, object)) {
+    if (!g_hash_table_size (combo_text_box_hash)) {
+      g_hash_table_destroy (combo_text_box_hash);
+      combo_text_box_hash = NULL;
+    }
+  }
 
   g_object_unref (self->store);
   G_OBJECT_CLASS (geda_combo_box_text_parent_class)->finalize (object);
@@ -384,7 +393,11 @@ geda_combo_box_text_instance_init (GTypeInstance *instance, void *class)
 
   combo_box = (GedaComboBoxText*)instance;
 
-  combo_box->instance_type = geda_combo_box_text_get_type();
+  if (!combo_text_box_hash) {
+    combo_text_box_hash = g_hash_table_new (g_direct_hash, NULL);
+  }
+
+  g_hash_table_add (combo_text_box_hash, instance);
 
   store = gtk_list_store_new (3, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
 
@@ -453,8 +466,8 @@ geda_combo_box_text_get_type (void)
 bool
 is_a_geda_combo_box_text (GedaComboBoxText *combo_text_box)
 {
-  if (G_IS_OBJECT(combo_text_box)) {
-    return (geda_combo_box_text_get_type() == combo_text_box->instance_type);
+  if ((combo_text_box != NULL) && (combo_text_box_hash != NULL)) {
+    return g_hash_table_lookup(combo_text_box_hash, combo_text_box) ? TRUE : FALSE;
   }
   return FALSE;
 }
