@@ -289,7 +289,6 @@ static void
 geda_action_instance_init (GTypeInstance *instance, void *class)
 {
   GedaAction *action     = (GedaAction*)instance;
-  action->instance_type  = geda_action_get_type();
 
   action->multikey_accel = NULL;
   action->icon_name      = NULL;

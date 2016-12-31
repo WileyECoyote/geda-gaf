@@ -642,7 +642,6 @@ static void
 geda_accel_label_instance_init (GTypeInstance *instance, void *g_class)
 {
   GedaAccelLabel *accel_label = (GedaAccelLabel*)instance;
-  accel_label->instance_type  = geda_accel_label_get_type();
 
   accel_label->accel_padding = 3;
   accel_label->accel_string  = NULL;
