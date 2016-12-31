@@ -1,8 +1,10 @@
 2016-12-30 Wiley E. Hill <wileyhill@gmail.com>
 
-    * po/af.po: update Afrikaan translations.
+    * po/af.po: Update Afrikaan translations.
 
-    * po/ar.po: update Arabic translations.
+    * po/ar.po: Update Arabic translations.
+
+    * po/bg.po: Update Bulgarian translations.
 
     * src/guile/g_rc.c: Fix freeing string, not function.
 
