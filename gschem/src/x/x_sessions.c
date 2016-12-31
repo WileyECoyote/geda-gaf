@@ -407,7 +407,8 @@ create_action_area (GschemDialog *ThisDialog, GtkWidget *parent)
   const char *open_tip;
   const char *startup_tip;
   const char *update_tip;
-
+  bool        show_image;
+  int         butt_width;
   int         startup;
 
   open_tip    = _("Load the selected session");
@@ -435,8 +436,18 @@ create_action_area (GschemDialog *ThisDialog, GtkWidget *parent)
   GtkWidget *close_butt = gtk_button_new_from_stock (GTK_STOCK_CLOSE);
   GtkWidget *open_butt  = gtk_button_new_from_stock (GTK_STOCK_OPEN);
 
-  SetWidgetSize (close_butt, DIALOG_BUTTON_HSIZE, DIALOG_BUTTON_VSIZE);
-  SetWidgetSize (open_butt, DIALOG_BUTTON_HSIZE, DIALOG_BUTTON_VSIZE);
+  g_object_get (gtk_widget_get_settings (GTK_WIDGET (close_butt)),
+                "gtk-button-images", &show_image, NULL);
+
+  if (show_image) {
+    butt_width = DIALOG_BUTTON_HSIZE + 24;
+  }
+  else {
+    butt_width = DIALOG_BUTTON_HSIZE;
+  }
+
+  SetWidgetSize (close_butt, butt_width, DIALOG_BUTTON_VSIZE);
+  SetWidgetSize (open_butt, butt_width, DIALOG_BUTTON_VSIZE);
 
   gtk_box_pack_end (GTK_BOX (action_hbox), close_butt, FALSE, FALSE,
                     DIALOG_H_SPACING);

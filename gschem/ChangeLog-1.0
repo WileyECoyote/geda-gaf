@@ -6,6 +6,14 @@
 
     * src/guile/g_rc.c: Fix freeing string, not function.
 
+    * src/iface/i_sessions.c: Capitalize "Session" in i_sessions_new_session in
+      order to consolidate translation strings; the capitalized version is used
+      three other places.
+
+    * src/x/x_sessions.c: Revise create_action_area to retrieve the "gtk-button
+      -images" setting and set the widget of the button 24 pixels wider if the
+      image is enabled, previously the text overlapped the image.
+
     * src/x/x_settings.c: Fix scrollbars-visible in do_kw_scrollbars_visible;
       use RC_BOOLEAN_WOUT (writes enable/disable) instead of RC_INTEGER_WOUT.
 

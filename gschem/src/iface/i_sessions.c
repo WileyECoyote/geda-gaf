@@ -928,7 +928,7 @@ int i_sessions_new_session(GschemToplevel *w_current, const char *name)
 
   if (!err) {
 
-    geda_log("%s %s %s %d %s.\n", _("session"), name,
+    geda_log("%s %s %s %d %s.\n", _("Session"), name,
                                   _("created with"), count,
                                   _("documents"));
 
