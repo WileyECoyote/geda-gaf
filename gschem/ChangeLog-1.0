@@ -2,6 +2,9 @@
 
     * po/kh.po: Update Khmer translations.
 
+    * src/x/x_draw.cpp: Revise output message format in order to minimize
+      format specifiers in translatable string.
+
 2016-12-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: Update Afrikaan translations.
