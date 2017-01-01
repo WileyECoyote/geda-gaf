@@ -1,6 +1,17 @@
 2017-01-01 Wiley E. Hill <wileyhill@gmail.com>
 
-    *ti/ADS88*: add 12 symbols for ti ADS88 series A/D converters:
+    * lineartech/switchreg/LT107*: Add 8 switching regulator symbols:
+
+            * lineartech/switchreg/LT1070-1.sym
+            * lineartech/switchreg/LT1071-1.sym
+            * lineartech/switchreg/LT1071HV-1.sym
+            * lineartech/switchreg/LT1072-1.sym
+            * lineartech/switchreg/LT1072-2.sym
+            * lineartech/switchreg/LT1073-1.sym
+            * lineartech/switchreg/LT1073-5.sym
+            * lineartech/switchreg/LT1073-12.sym
+
+    * ti/ADS88*: add 12 symbols for ti ADS88 series A/D converters:
 
             * ti/ADS8860-1.sym
             * ti/ADS8861-1.sym

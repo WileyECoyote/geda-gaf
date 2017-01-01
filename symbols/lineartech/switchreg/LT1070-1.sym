@@ -1,0 +1,73 @@
+v 20150401 2
+T 400 1800 5 10 1 1 0 0 1
+device=LT1070
+T 400 2000 8 10 1 1 0 0 1
+refdes=U?
+T 400 2200 5 10 0 1 0 0 1
+description=Switching Regulators,2.5A
+P 1000 400 1000 100 1 0 1
+{
+T 950 150 5 8 1 1 0 6 1
+pinnumber=2
+T 850 450 9 8 1 1 0 0 1
+pinlabel=FB
+T 1050 150 5 8 0 1 0 0 1
+pinseq=1
+T 1050 300 5 8 0 1 0 0 1
+pintype=pas
+}
+P 1600 1200 1900 1200 1 0 1
+{
+T 1700 1250 5 10 1 1 0 0 1
+pinnumber=5
+T 1550 1150 9 8 1 1 0 6 1
+pinlabel=VIN
+T 1700 1050 5 10 0 1 0 0 1
+pinseq=2
+T 1550 1125 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 100 1200 400 1200 1 0 0
+{
+T 300 1250 5 10 1 1 0 6 1
+pinnumber=1
+T 450 1200 9 8 1 1 0 0 1
+pinlabel=VC
+T 300 1050 5 10 0 1 0 6 1
+pinseq=3
+T 450 1175 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 400 700 100 700 1 0 1
+{
+T 300 750 5 10 1 1 0 6 1
+pinnumber=3
+T 450 700 9 8 1 1 0 0 1
+pinlabel=GND
+T 300 550 5 10 0 1 0 6 1
+pinseq=4
+T 450 675 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 1600 700 1900 700 1 0 1
+{
+T 1700 750 5 10 1 1 0 0 1
+pinnumber=4
+T 1550 650 9 8 1 1 0 6 1
+pinlabel=VSW
+T 1700 550 5 10 0 1 0 0 1
+pinseq=5
+T 1550 625 5 8 0 1 0 8 1
+pintype=pas
+}
+B 400 400 1200 1100 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 400 2400 9 10 0 0 0 0 1
+numslots=0
+T 600 900 9 10 1 1 0 0 1
+value=LT1070CT
+T 400 1600 9 10 1 1 0 0 1
+footprint=TO-225
+T 400 2600 5 10 0 1 0 0 1
+documentation=http://cds.linear.com/docs/en/datasheet/10701fe.pdf
+T 400 2800 5 10 0 0 0 0 1
+author=AutoTron
