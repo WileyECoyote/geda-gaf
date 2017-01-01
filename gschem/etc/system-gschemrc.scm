@@ -2059,7 +2059,7 @@
         (,(N_ "Save A_ll")         file-save-all        "gtk-save"            ,(N_ "Save all open documents"))
         (,(N_ "Save _Modified")    file-save-modified   "gtk-save"            ,(N_ "Save all modified documents"))
         (,(N_ "_Revert")           page-revert          "gtk-revert-to-saved" ,(N_ "Discard changes and reload the current document"))
-        (,(N_ "Re_vert All")       page-revert-all      "gtk-revert-to-saved" ,(N_ "Discard changes and reload the all documents"))
+        (,(N_ "Re_vert All")       page-revert-all      "gtk-revert-to-saved" ,(N_ "Discard changes and reload all open documents"))
 
         ("SEPARATOR"               #f                   #f            #f)
         (,(N_ "_Print...")         file-print           "gtk-print"           ,(N_ "Print the current document"))
