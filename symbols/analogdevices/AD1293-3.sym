@@ -179,7 +179,7 @@ pinseq=16
 T 1575 1625 9 10 1 1 0 3 1
 value=AD1293
 T 2800 3300 5 10 0 0 0 0 1
-dist-license=GPL-3
+dist-license=GPLv2
 T 1600 2100 5 10 0 0 0 3 1
 numslots=0
 T 1600 1800 8 10 1 1 0 3 1

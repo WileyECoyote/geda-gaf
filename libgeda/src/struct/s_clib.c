@@ -336,7 +336,7 @@ void geda_struct_clib_free (void)
  *  \par Function Description
  *  Compare two component sources by name, case-insensitively.
  *  Typically used when calling g_list_sort(). Private function used
- *  only in s_clib.c.  Argument order is as geda_stricmp().
+ *  only in s_clib.c. Argument order is as strcasecmp().
  *
  *  \param a First source to compare
  *  \param b Second source to compare
@@ -355,14 +355,14 @@ static int compare_source_name (const void *a, const void *b)
   g_return_val_if_fail ((src1->name != NULL), 0);
   g_return_val_if_fail ((src2->name != NULL), 0);
 
-  return geda_stricmp(src1->name, src2->name);
+  return strcasecmp(src1->name, src2->name);
 }
 
 /*! \brief Compare two component symbols by name.
  *  \par Function Description
  *  Compare two component symbols by name, case-insensitively.
  *  Typically used when calling g_list_sort(). Private function used
- *  only in s_clib.c.  Argument order is as geda_stricmp().
+ *  only in s_clib.c.  Argument order is as strcasecmp().
  *
  *  \param a First symbol to compare
  *  \param b Second symbol to compare
@@ -381,7 +381,7 @@ static int compare_symbol_name (const void *a, const void *b)
   g_return_val_if_fail ((sym1->name != NULL), 0);
   g_return_val_if_fail ((sym2->name != NULL), 0);
 
-  return geda_stricmp(sym1->name, sym2->name);
+  return strcasecmp(sym1->name, sym2->name);
 }
 
 /*! \brief Iterator callback for finding oldest symbol cache entry

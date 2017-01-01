@@ -8,7 +8,7 @@
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 3 of
+ * published by the Free Software Foundation; either version 2 of
  * the License, or (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -102,9 +102,12 @@ x_window_setup (GschemToplevel *w_current)
 bool
 x_window_setup_context(GschemToplevel *w_current)
 {
+  const char *log_msg = _("Could not allocate a graphics context");
+
   bool result = FALSE;
+
   if (!w_current) {
-    g_critical(_("Could not allocate gc, w_current is NULL\n"));
+    g_critical("%s %s\n", log_msg, _("there is no current window"));
   }
   else {
 
@@ -120,7 +123,7 @@ x_window_setup_context(GschemToplevel *w_current)
       }
     }
     else {
-      g_critical(_("Could not allocate gc, w_current->window is not a valid Window\n"));
+      g_critical("%s %s\n", log_msg, _("window is not valid"));
     }
   }
   return result;
@@ -183,7 +186,7 @@ x_window_save_settings(GschemToplevel *w_current)
   int x, y, width, height;
   int array[4];
 
-  v_log_message(_("Saving main window geometry and settings.\n"));
+  geda_log_v(_("Saving main window geometry and settings.\n"));
 
   /* Get the Window Geometry - Restored by x_window_restore_settings */
   window = GTK_WINDOW(MainWindow);
@@ -307,7 +310,7 @@ x_window_restore_settings(GschemToplevel *w_current)
 
   int x, y, width, height;
 
-  v_log_message(_("Retrieving main Window geometry and settings.\n"));
+  geda_log_v(_("Retrieving main Window geometry and settings.\n"));
 
   window = GTK_WINDOW(MainWindow);
   cfg    = eda_config_get_user_context ();
@@ -669,13 +672,13 @@ x_window_close(GschemToplevel *w_current)
   /* If we're closing whilst inside an action, re-wind the
    * page contents back to their state before we started */
   if (w_current->inside_action) {
-    v_log_message(_("Aborting action\n"));
+    geda_log_v(_("Aborting action\n"));
     i_callback_cancel (w_current, 0, NULL);
   }
 
   /* last chance to save possible unsaved pages */
   if (!x_confirm_close_window (w_current)) {
-    v_log_message(_("Close Window canceled\n"));
+    geda_log_v(_("Close Window canceled\n"));
     /* user canceled the close */
     return;
   }
@@ -761,7 +764,7 @@ x_window_close_all(GschemToplevel *w_current)
 static bool
 x_window_idle_thread_post_load_file (void *filename)
 {
-  q_log_message (_("Loading \"%s\"\n"), filename);
+  geda_log_q ("%s \"%s\"\n", _("Loading file"), filename);
   x_menu_recent_files_add (filename);
   return FALSE;
 }
@@ -905,7 +908,7 @@ x_window_open_page(GschemToplevel *w_current, const char *filename)
 
     /* Hack: There is no page so status bar did not get updated */
     i_status_update_grid_info (w_current);
-    v_log_message (_("New file [%s]\n"), fname);
+    geda_log_v ("%s \"%s\"\n", _("New file"), fname);
     GEDA_FREE (fname);
     return page;
   }
@@ -947,7 +950,7 @@ x_window_open_page(GschemToplevel *w_current, const char *filename)
         /* Try to load the file */
         if (!geda_open_file (toplevel, page, (char *) filename, &err)) {
           fprintf(stderr, "Error loading file:%s\n", err->message);
-          u_log_message ("Failed to load file:%s\n", err->message);
+          geda_log ("%s \"%s\"\n", _("Failed to load file"), err->message);
           g_error_free (err);
           geda_struct_page_delete (toplevel, page, FALSE); /* FALSE for now */
           resolve_2_recover(NULL);
@@ -977,7 +980,7 @@ x_window_open_page(GschemToplevel *w_current, const char *filename)
       /* If the path is OK but no file then just create a new file */
       if ((access(path, W_OK && X_OK && F_OK) == 0) && (file_err == ENOENT)) {
 
-        q_log_message("Creating new file \"%s\"\n", filename);
+        geda_log_q ("%s \"%s\"\n", _("Creating new file"), filename);
 
         /* Filespec may not exist but user has authority to create */
         page = empty_page(filename);
@@ -989,13 +992,18 @@ x_window_open_page(GschemToplevel *w_current, const char *filename)
          * to sort out the problem:
          */
         if (errno == ENOENT) { /* 100% sure file_err == ENOENT */
+
+          const char *_Path = _("Path");
+
           if (geda_create_path (path, S_IRWXU | S_IRWXG) == NO_ERROR ) {
-            u_log_message("Path \"%s\": did not exist\n, successfully created\n", path);
+            const char *log_msg = _("did not exist\nsuccessfully created");
+            geda_log("%s \"%s\": %s\n",_Path, path, log_msg);
             page = empty_page(filename);
             errno = NO_ERROR;
           }
           else {
-            u_log_message("Path \"%s\": is not accessible: %s\n", path, strerror (errno));
+            const char *log_msg = _("is not accessible");
+            geda_log("%s \"%s\": %s: %s\n", _Path, path, log_msg, strerror (errno));
           }
         }
 
@@ -1084,7 +1092,7 @@ x_window_close_page (GschemToplevel *w_current, Page *page)
       /* If we're closing whilst inside an action, re-wind the
        * page contents back to their state before we started */
       if (w_current->inside_action) {
-        v_log_message(_("Aborting action\n"));
+        geda_log_v(_("Aborting action\n"));
         i_callback_cancel (w_current, 0, NULL);
       }
 
@@ -1132,8 +1140,10 @@ x_window_close_page (GschemToplevel *w_current, Page *page)
       if ((geda_strncmpi(geda_get_basename(page->filename), "untitled", 8) != 0) ||
            verbose_mode)
       {
-        q_log_message (page->CHANGED ? _("Discarding page [%s]\n") : _("Closing [%s]\n"),
-        page->filename);
+        const char *log_msg1 = _("Discarding page");
+        const char *log_msg2 = _("Closing");
+
+        geda_log_q ("%s \"%s\"\n", page->CHANGED ? log_msg1 : log_msg2, page->filename);
       }
 
       geda_page_feeze_notify(page); /* don't bother with thawing */
@@ -1196,7 +1206,7 @@ x_window_save_page (GschemToplevel *w_current, Page *page, const char *filename)
 
   if (result != 1) {
 
-    log_msg    = _("Could NOT save page [%s]:\n");
+    log_msg    = _("Could NOT save page");
 
     state_msg  = _("Error while trying to save");
 
@@ -1205,16 +1215,17 @@ x_window_save_page (GschemToplevel *w_current, Page *page, const char *filename)
     g_clear_error (&err);
   }
   else {
-    /* successful save of page to file, update page... */
+
+    /* successfully saved page to file, update page... */
     /* change page name if necessary and prepare log message */
     if (g_ascii_strcasecmp (page->filename, filename) != 0) {
       GEDA_FREE (page->filename);
-      page->filename = geda_utility_string_strdup (filename);
+      page->filename = geda_strdup (filename);
 
-      log_msg = _("Saved as [%s] Okay\n");
+      log_msg = _("Saved as");
     }
     else {
-      log_msg = _("Saved [%s] Okay\n");
+      log_msg = _("Saved");
     }
 
     state_msg  = _("Saved");
@@ -1224,7 +1235,7 @@ x_window_save_page (GschemToplevel *w_current, Page *page, const char *filename)
   }
 
   /* log status of operation */
-  u_log_message (log_msg, filename);
+  geda_log ("%s \"%s\"\n", log_msg, filename);
 
   /* update display and page manager */
   x_pagesel_update (w_current);

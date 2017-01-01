@@ -2,8 +2,10 @@ v 20150315 2
 T 300 11600 5 10 0 0 0 0 1
 footprint=PLCC-68
 B 300 300 6000 10800 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 300 12000 5 10 0 1 0 0 1
+T 3300 8900 5 10 0 1 0 3 1
 device=TL16C554AFN
+T 3300 8700 5 10 0 1 0 3 1
+description=Quad UART,16-Byte FIFO
 T 300 11400 2 10 1 1 0 0 1
 refdes=U?
 T 275 11200 3 10 1 0 0 0 1
@@ -215,7 +217,7 @@ pinseq=19
 T 375 8050 3 10 1 1 0 0 1
 pinlabel=A2
 T 375 7925 5 8 0 1 0 0 1
-pintype=io
+pintype=in
 }
 P 300 7800 0 7800 1 0 1
 {
@@ -226,7 +228,7 @@ pinseq=20
 T 375 7750 3 10 1 1 0 0 1
 pinlabel=A1
 T 375 7625 5 8 0 1 0 0 1
-pintype=io
+pintype=in
 }
 P 300 7500 0 7500 1 0 1
 {
@@ -237,7 +239,7 @@ pinseq=21
 T 375 7450 3 10 1 1 0 0 1
 pinlabel=A0
 T 375 7325 5 8 0 1 0 0 1
-pintype=io
+pintype=in
 }
 V 250 6900 50 6 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 P 200 6900 0 6900 1 0 1
@@ -480,9 +482,9 @@ pinnumber=12
 T 6400 8875 5 8 0 1 0 0 1
 pinseq=42
 T 6250 8950 3 10 1 1 0 6 1
-pinlabel=/DTRA
+pinlabel=\_DTRA\_
 T 6250 8825 5 8 0 1 0 6 1
-pintype=io
+pintype=out
 }
 V 6350 8700 50 6 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 P 6400 8700 6600 8700 1 0 1
@@ -494,7 +496,7 @@ pinseq=43
 T 6225 8650 3 10 1 1 0 6 1
 pinlabel=\_RTSA\_
 T 6250 8525 5 8 0 1 0 6 1
-pintype=io
+pintype=out
 }
 P 6300 8100 6600 8100 1 0 1
 {
@@ -576,7 +578,7 @@ pinseq=50
 T 6250 6250 3 10 1 1 0 6 1
 pinlabel=\_DTRB\_
 T 6250 6125 5 8 0 1 0 6 1
-pintype=io
+pintype=out
 }
 V 6350 6000 50 6 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 P 6400 6000 6600 6000 1 0 1
@@ -588,7 +590,7 @@ pinseq=51
 T 6225 5950 3 10 1 1 0 6 1
 pinlabel=\_RTSB\_
 T 6250 5825 5 8 0 1 0 6 1
-pintype=io
+pintype=out
 }
 P 6300 5400 6600 5400 1 0 1
 {
@@ -670,7 +672,7 @@ pinseq=58
 T 6225 3550 3 10 1 1 0 6 1
 pinlabel=\_DTRC\_
 T 6250 3425 5 8 0 1 0 6 1
-pintype=io
+pintype=out
 }
 V 6350 3300 50 6 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 P 6400 3300 6600 3300 1 0 1
@@ -682,7 +684,7 @@ pinseq=59
 T 6225 3250 3 10 1 1 0 6 1
 pinlabel=\_RTSC\_
 T 6250 3125 5 8 0 1 0 6 1
-pintype=io
+pintype=out
 }
 P 6300 2700 6600 2700 1 0 1
 {
@@ -764,7 +766,7 @@ pinseq=66
 T 6225 850 3 10 1 1 0 6 1
 pinlabel=\_DTRD\_
 T 6225 725 5 8 0 1 0 6 1
-pintype=io
+pintype=out
 }
 V 6350 600 50 6 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 P 6400 600 6600 600 1 0 1
@@ -776,15 +778,17 @@ pinseq=67
 T 6225 550 3 10 1 1 0 6 1
 pinlabel=\_RTSD\_
 T 6225 425 5 8 0 1 0 6 1
-pintype=io
+pintype=out
 }
-T 300 11800 9 10 0 0 0 0 1
+T 3300 8500 9 10 0 0 0 3 1
 numslots=0
-T 300 12200 3 10 0 0 0 0 1
+T 300 11800 5 10 0 1 0 0 1
+documentation=http://www.ti.com/lit/ds/symlink/tl16c554a.pdf
+T 3300 8300 3 10 0 0 0 3 1
 symversion=0.2
-T 300 12400 5 10 0 0 0 0 1
+T 300 12000 5 10 0 0 0 0 1
 use-license=unlimited
-T 300 12800 5 10 0 0 0 0 1
+T 300 12400 5 10 0 0 0 0 1
 author=AutoTron
-T 300 12600 5 10 0 0 0 0 1
-dist-license=GPL3
+T 300 12200 5 10 0 0 0 0 1
+dist-license=GPLv2

@@ -54,7 +54,7 @@ Example: Get the value of slotdef in the file dual-opamp-3.sym
 
 	        gsym-attribute.py slotdef dual-opamp-3
 
-Copyright (C) 2014-2015 by Wiley Edward Hill.  Released under GPL Version 3.
+Copyright (C) 2014-2015 by Wiley Edward Hill.  Released under GPL Version 2.
 
 """
 #------------------------ Functions used by Classes ------------------------

@@ -13,7 +13,7 @@ T 3700 2400 5 10 0 0 0 0 1
 footprint=LN526RA
 B 0 300 3600 2700 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 3700 1200 8 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 3700 1400 8 10 0 0 0 0 1
 use-license=unlimited
 P 200 0 200 300 1 0 0

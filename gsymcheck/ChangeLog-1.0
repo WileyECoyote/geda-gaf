@@ -1,4 +1,36 @@
-2016-12-03 Wiley E. Hill <wileyhill@gmail.com>
+2016-12-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * etc/system-gsymcheckrc.in: Add new keyword "known-devices" as a
+      a list of spice device tags.
+
+    * include/i_vars.h: Add declare default_known_devices extern.
+
+    * include/struct.h: Add GList pointer known_devices.
+
+    * src/g_rc.c: Add function g_rc_known_devices to handle the new "known-
+      devices" keyword.
+
+    * src/g_register.c: Register g_rc_known_devices with schema.
+
+    * src/i_vars.c: Add function i_vars_set_known_devices.
+
+    * src/s_check.c: Reduce scope of o_current in s_check_text. Revise
+      s_check_device to include the device "value" if the device was not
+      in filename. Add SYMCHECK as argument to s_check_is_known_device
+      and implement s_current->known_devices.
+
+    * src/s_symstruct.c: Call i_vars_set_known_devices to initialize the
+      known_devices list in the SYMCHECK structure.
+
+2016-12-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gsymcheck.c: Release resource before aborting when an error
+      occurs opening a file.
+
+    * src/s_check.c: Declare pointers associated with geda_text_object_get_
+      string constant and reduce scope in s_check_oldpin and s_check_oldslot.
+
+2016-12-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gsymcheck.c: Substitute geda_set_log_update_func macro for
       geda_utility_log_set_update_func.

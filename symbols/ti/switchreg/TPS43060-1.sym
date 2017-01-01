@@ -191,7 +191,7 @@ documentation=http://www.ti.com/lit/ds/symlink/tps43060.pdf
 T 1400 4800 5 10 0 0 0 0 1
 symversion=1.0
 T 400 5400 5 10 0 0 0 0 1
-dist-license=GPL2
+dist-license=GPLv2
 T 400 5600 5 10 0 0 0 0 1
 use-license=unlimited
 T 400 5800 5 10 0 0 0 0 1

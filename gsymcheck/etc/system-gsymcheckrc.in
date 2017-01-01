@@ -36,6 +36,23 @@
 ; End of path related keywords
 ;
 
+; known-devices stringlist
+;
+; Sets the list of known devices, which is used when checking device attributes.
+; If the value of the device attribute is not found in the symbol file name then
+; a warning will be issued unless the string is a member of this list. In older
+; versions this list was hard-coded. The is now configurable to allow flexibility
+; but users should not need to modify this list for most installations. Before
+; modifying be sure to review the gnetlist spice back-ends, which recognize these
+; strings as key-words.
+;
+(known-devices '("none" "RESISTOR" "CAPACITOR" "POLARIZED_CAPACITOR" "COIL"
+                        "INDUCTOR" "DIODE" "PMOS_TRANSISTOR" "NMOS_TRANSISTOR"
+                        "PNP_TRANSISTOR" "NPN_TRANSISTOR" "PFET_TRANSISTOR"
+                        "NFET_TRANSISTOR" "MESFET_TRANSISTOR" "TESTPOINT"
+                        "VOLTAGE_SOURCE" "CURRENT_SOURCE" "ZENER"))
+
+
 ; valid-attributes stringlist
 ;
 ; Sets the list of attributes that is used when checking for valid attributes,

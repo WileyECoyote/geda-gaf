@@ -3,12 +3,12 @@
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 1998-2015 Ales Hvezda
- * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2017 Ales Hvezda
+ * Copyright (C) 1998-2017 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 3 of
+ * published by the Free Software Foundation; either version 2 of
  * the License, or (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -416,6 +416,7 @@ void about_dialog (GschemToplevel *w_current)
         char *comments;
   const char *copyright;
   const char *gEDA_str;
+  const char *glib_str;
   const char *guile_str;
         char *guile_ver;
   GdkPixbuf  *logo;
@@ -431,45 +432,52 @@ void about_dialog (GschemToplevel *w_current)
   logo = gdk_pixbuf_new_from_file (logo_file, &error);
   GEDA_FREE (logo_file);
 
-  if (error != NULL) {
-    if (logo == NULL){
-      u_log_message ("Could not load image at file: %s\n%s\n",
-                      logo_file, error->message);
-      g_error_free (error);
-    }
+  if (error != NULL && logo == NULL) {
+
+    const char *logo_err = _("Could not load image file");
+
+    u_log_message ("%s: %s\n%s\n", logo_err, logo_file, error->message);
+    g_error_free (error);
   }
 
-  gEDA_str  = _("gEDA: GPL Electronic Design Automation\n\nglibc ");
-  guile_str = _("\nGuile ");
+  gEDA_str  = _("gEDA: GPL Electronic Design Automation");
+  glib_str  = _("glibc");
+  guile_str = _("Guile");
 
   guile_ver = scm_to_utf8_string(scm_version());
 
-  comments  = geda_strconcat (gEDA_str, gnu_get_libc_version(),
-                               guile_str, guile_ver, NULL);
+  comments  = geda_strconcat (gEDA_str, "\n\n",
+                              glib_str, " ", gnu_get_libc_version(), "\n",
+                              guile_str," ", guile_ver, "\n", NULL);
 
   free(guile_ver);
 
-  copyright = _("\nCopyright © 1998-2015 Ales Hvezda"
-                " <ahvezda@geda.seul.org>\n"
-                "Copyright © 1998-2015 gEDA Contributors"
-                " (see ChangeLog for details)");
+  copyright = _("Copyright © 1998-2017 Ales Hvezda "
+                "<ahvezda@geda.seul.org>\n"
+                "Copyright © 1998-2017 gEDA Contributors "
+                "(see ChangeLog for details)");
 
   Dialog = gtk_about_dialog_new ();
 
-  g_object_set (G_OBJECT(Dialog), "version",    version_string,
-                                  "logo",       logo,
-                                  "title",      _("About gschem"),
-                                  "comments",   comments,
-                                  "copyright",  copyright,
-                                  "website",    "http://geda-project.org/",
+  g_object_set (G_OBJECT(Dialog), "version",   version_string,
+                                  "logo",      logo,
+                                  "title",    _("About gschem"),
+                                  "comments",  comments,
+                                  "copyright", copyright,
+                                  "website",   "http://geda-project.org/",
                                    NULL);      /* End marker */
 
   /* About dialog URI calls maybe broken on Windows */
 #if (GTK_MAJOR_VERSION == 2 && GTK_MINOR_VERSION < 24)
+
   /* deprecated since GTK 2.24 */
   gtk_about_dialog_set_url_hook(dialog_link_cb, NULL, NULL);
- #else
-  g_signal_connect(GTK_ABOUT_DIALOG(Dialog), "activate-link", G_CALLBACK(dialog_link_cb), NULL);
+
+#else
+
+  g_signal_connect(GTK_ABOUT_DIALOG(Dialog), "activate-link",
+                   G_CALLBACK(dialog_link_cb), NULL);
+
 #endif
 
   gtk_dialog_run(GTK_DIALOG(Dialog));
@@ -477,8 +485,9 @@ void about_dialog (GschemToplevel *w_current)
 
   GEDA_FREE (version_string);
   GEDA_FREE (comments);
-  if (logo) GEDA_UNREF (logo);
-
+  if (logo) {
+    GEDA_UNREF (logo);
+  }
 }
 
 /******************* End of help/about dialog box **********************/
@@ -576,7 +585,7 @@ void snap_size_dialog (GschemToplevel *w_current)
     gtk_entry_set_activates_default(GTK_ENTRY(snap_size), TRUE);
     gtk_widget_grab_focus(snap_size);
 
-    SetWidgetTip(snap_size, _("Sets the default spacing\n which objects snaps to."));
+    SetWidgetTip(snap_size, _("Sets the default spacing\nwhich objects snaps to."));
 
     GEDA_HOOKUP_OBJECT(Dialog, snap_size, IDS_SNAP_SIZE);
 
@@ -3697,12 +3706,16 @@ int x_dialog_validate_attribute(GtkWindow *parent, char *attribute)
 
     GtkWidget *message_box;
 
+    const char *msg1 = _("Input attribute is invalid");
+    const char *msg2 = _("Please correct in order to continue");
+    const char *msg3 = _("The name and value must be non-empty.\nThe name cannot end with a space.\nThe value cannot start with a space");
+
     message_box = gtk_message_dialog_new_with_markup (parent,
                                   GTK_DIALOG_DESTROY_WITH_PARENT,
                                   GTK_MESSAGE_ERROR,
                                   GTK_BUTTONS_CLOSE,
-                                  _("<span weight=\"bold\" size=\"larger\">The input attribute \"%s\" is invalid\nPlease correct in order to continue</span>\n\nThe name and value must be non-empty.\nThe name cannot end with a space.\nThe value cannot start with a space."),
-                                  attribute);
+                                  "<span weight=\"bold\" size=\"larger\">%s \"%s\" \n%s</span>\n\n%s.", msg1, attribute, msg2, msg3);
+
      gtk_window_set_title(GTK_WINDOW(message_box), _("Invalid Attribute"));
      gtk_dialog_run (GTK_DIALOG (message_box));
      gtk_widget_destroy (message_box);

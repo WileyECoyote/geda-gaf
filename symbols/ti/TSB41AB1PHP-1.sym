@@ -412,7 +412,7 @@ value=TSB41AB1
 T 4500 8300 5 10 0 0 0 0 1
 author=AutoTron
 T 4500 8100 8 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 4500 7900 8 10 0 0 0 0 1
 use-license=unliminted
 T 4500 7700 5 10 0 1 0 0 1

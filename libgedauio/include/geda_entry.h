@@ -194,6 +194,8 @@ GedaCompletion *geda_entry_get_completion        (GedaEntry      *entry);
    const char *geda_entry_get_text               (GedaEntry      *entry);
          void  geda_entry_set_text               (GedaEntry      *entry,
                                                   const char     *new_text);
+          int  geda_entry_get_text_length        (GedaEntry      *entry);
+
 GedaEntryAccept geda_entry_get_valid_input       (GedaEntry      *entry);
          void  geda_entry_set_valid_input        (GedaEntry      *entry,
                                                   GedaEntryAccept mode);

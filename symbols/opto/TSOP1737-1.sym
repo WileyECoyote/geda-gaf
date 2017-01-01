@@ -52,7 +52,7 @@ device=TSOP1737
 T 0 3300 5 10 0 0 0 0 1
 author=Onno Kortmann <onno@gmx.net>
 T 0 3100 5 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 0 2900 5 10 0 0 0 0 1
 use-license=unlimited
 T 0 1900 9 10 0 1 0 0 1

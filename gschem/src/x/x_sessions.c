@@ -229,7 +229,7 @@ on_export_butt_clicked (GtkWidget *button, void *user_data)
 
     if(filename != NULL) { /* if user did not cancel */
       i_sessions_export_session(name, filename);
-      q_log_message(_("Exported session %s to %s\n"), name, filename);
+      geda_log_q("%s %s %s %s\n", _("Session"), name, _("exported to"), filename);
       GEDA_FREE(filename);
     }
   }
@@ -407,17 +407,18 @@ create_action_area (GschemDialog *ThisDialog, GtkWidget *parent)
   const char *open_tip;
   const char *startup_tip;
   const char *update_tip;
-
+  bool        show_image;
+  int         butt_width;
   int         startup;
 
-  open_tip    = _("Loads the selected session");
-  startup_tip = _("Show the Open Session dialog at startup, over-rides auto-load-last feature");
+  open_tip    = _("Load the selected session");
+  startup_tip = _("Show the Open Session dialog at start-up, over-rides auto-load-last feature");
   update_tip  = _("Add and remove files to the sessions automatically");
 
   /* Create a Horizontal Box for everything to go into */
   NEW_HCONTROL_BOX(parent, action, DIALOG_H_SPACING);
 
-  startup_checkbutt = gtk_check_button_new_with_mnemonic (_("Show at startup"));
+  startup_checkbutt = gtk_check_button_new_with_mnemonic (_("Show at start-up"));
   g_object_set (startup_checkbutt, "visible", TRUE, NULL);
   gtk_box_pack_start (GTK_BOX (action_hbox), startup_checkbutt, FALSE, FALSE, 0);
   gtk_widget_set_tooltip_text(startup_checkbutt, startup_tip);
@@ -435,8 +436,18 @@ create_action_area (GschemDialog *ThisDialog, GtkWidget *parent)
   GtkWidget *close_butt = gtk_button_new_from_stock (GTK_STOCK_CLOSE);
   GtkWidget *open_butt  = gtk_button_new_from_stock (GTK_STOCK_OPEN);
 
-  SetWidgetSize (close_butt, DIALOG_BUTTON_HSIZE, DIALOG_BUTTON_VSIZE);
-  SetWidgetSize (open_butt, DIALOG_BUTTON_HSIZE, DIALOG_BUTTON_VSIZE);
+  g_object_get (gtk_widget_get_settings (GTK_WIDGET (close_butt)),
+                "gtk-button-images", &show_image, NULL);
+
+  if (show_image) {
+    butt_width = DIALOG_BUTTON_HSIZE + 24;
+  }
+  else {
+    butt_width = DIALOG_BUTTON_HSIZE;
+  }
+
+  SetWidgetSize (close_butt, butt_width, DIALOG_BUTTON_VSIZE);
+  SetWidgetSize (open_butt, butt_width, DIALOG_BUTTON_VSIZE);
 
   gtk_box_pack_end (GTK_BOX (action_hbox), close_butt, FALSE, FALSE,
                     DIALOG_H_SPACING);

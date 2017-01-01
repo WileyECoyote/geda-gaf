@@ -1,5 +1,6 @@
 /* g_rc.c */
 SCM  g_rc_gsymcheck_version(SCM version);
+SCM  g_rc_known_devices(SCM stringlist);
 SCM  g_rc_valid_attributes(SCM stringlist);
 
 /* g_register.c */
@@ -11,6 +12,7 @@ void gsymcheck_quit(void);
 
 /* i_vars.c */
 void i_vars_release_all(void);
+void i_vars_set_known_devices(SYMCHECK *s_current);
 void i_vars_set_valid_attributes(SYMCHECK *s_current);
 void i_vars_set(GedaToplevel *pr_current);
 

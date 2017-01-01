@@ -265,7 +265,7 @@ bool i_callback_close_wm ( GtkWidget      *widget, GdkEvent *event,
   x_window_close(w_current);
 
   /* Stop further propagation of the delete_event signal for window:
-   * If user has cancelled the close the window should obvioulsy not
+   * If user has canceled the close the window should obviously not
    * be destroyed, otherwise window has already been destroyed and
    * there is nothing more to do
    */

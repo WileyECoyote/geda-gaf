@@ -365,7 +365,7 @@ documentation=http://www.ftdichip.com/Documents/DataSheets/ds232b17.pdf
 T 100 7300 5 10 0 0 0 0 1
 author=Wojciech Zabolotny wzabATise.pw.edu.pl
 T 100 7100 5 10 0 0 0 0 1
-dist-license=GPL3
+dist-license=GPLv2
 T 100 6900 5 10 0 0 0 0 1
 use-license=unlimited
 T 100 6500 5 10 0 1 0 0 1

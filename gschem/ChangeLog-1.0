@@ -1,3 +1,253 @@
+2016-12-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/kh.po: Update Khmer translations.
+
+    * src/x/x_draw.cpp: Revise output message format in order to minimize
+      format specifiers in translatable string.
+
+2016-12-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/af.po: Update Afrikaan translations.
+
+    * po/ar.po: Update Arabic translations.
+
+    * po/bg.po: Update Bulgarian translations.
+
+    * src/guile/g_rc.c: Fix freeing string, not function.
+
+    * src/iface/i_sessions.c: Capitalize "Session" in i_sessions_new_session in
+      order to consolidate translation strings; the capitalized version is used
+      three other places.
+
+    * src/x/x_sessions.c: Revise create_action_area to retrieve the "gtk-button
+      -images" setting and set the widget of the button 24 pixels wider if the
+      image is enabled, previously the text overlapped the image.
+
+    * src/x/x_settings.c: Fix scrollbars-visible in do_kw_scrollbars_visible;
+      use RC_BOOLEAN_WOUT (writes enable/disable) instead of RC_INTEGER_WOUT.
+
+    * src/: Replace square brackets with double quotes for the file names
+      and format in order to eliminate format specifiers in translatable
+      strings:
+
+          * src/base/gschem.c      (func=load_documents)
+          * src/guile/i_command.c  (funcs=do_file_new, do_file_new_window,
+                                          do_page_new, do_down_schematic,
+                                          do_down_symbol)
+          * src/object/o_edit.c    (func=o_edit_update_component)
+          * src/object/o_net.c     (func=o_net_add_busrippers)
+          * src/x/x_dnd.c          (func=x_dnd_receive_string_sym)
+          * src/x/x_edit_cprop.c   (func=x_dialog_edit_properties_ok)
+          * src/x/x_image.c        (func=x_image_write_eps, x_image_lowlevel,
+                                         x_image_setup)
+          * src/x/x_print.c        (func=x_print_setup)
+          * src/x/x_settings.c     (func=get_titleblock_list, generate_rc)
+          * src/x/x_window.c       (func=x_window_close_page, x_window_save_page)
+
+2016-12-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/guile/g_rc.c: gEDA/gaf -> gEDA/gschem in g_rc_gschem_version.
+
+    * src/iface/i_command.c: Edit "Close all canceled" message to be
+      "Canceled close all", reads bad both ways. Revise output message
+       format in do_file_new.
+
+    * src/object/o_edit.c: Reverse backwards arguments in log_visibility.
+
+    * src/object/o_undo.c: Reduce scope of error message semi constants;
+      file_err_msg and sys_err_msg so that these string are not translated
+      unless there is an actual error. Revise sys_err_msg to eliminate the
+      format specifiers from the translatable string.
+
+    * src/x/x_coord.c: Revise err_rcv message in x_dialog_coord_dnd_drag_receive
+      to be the same as in x_dnd_receive_objects.
+
+    * src/x/x_dialog.c: Add seperate string for glib, glib_str in about dialog,
+      update copyright in dialog and file.
+
+    * src/x/x_menus.c Revert 150858afda18c6e8d4aef6e97434925f3850b1d5.
+
+    * src/x/x_print.c: Revise message in x_print_setup to be the same as
+      in x_rc_parse_gschem_error "The log may contain more information".
+
+    * src/x/x_toolbars.c: Revise output message format in order to minimize
+      format specifiers in translatable string.
+
+    * src/x/x_window.c: Revise output message format in order to minimize
+      format specifiers in translatable string.
+
+2016-12-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * etc/system-gschemrc.scm: Revise menu toolip text.
+
+    * src/: Revise output message format in order to minimize format specifiers
+      in translatable string in various modules:
+
+            * src/iface/i_command.c
+            * src/iface/i_sessions.c
+            * src/x/x_dnd.c
+            * src/x/x_image.c
+            * src/x/x_menu.c
+            * src/x/x_misc.c
+            * src/x/x_rc.c
+            * src/x/x_sessions.c
+            * src/x/x_settings.c
+
+2016-12-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/base/gschem_dialog.c: Revise output message format in order to minimize
+      format specifiers in translatable string in gschem_dialog_get_parent.
+
+    * src/guile/g_rc.c: Revise output message format in order to minimize
+      format specifiers in translatable string; g_rc_text_display_zoomfactor,
+      check_and_convert_scm_integer.
+
+    * src/iface/i_command.c: Revise output message formats to minimize format
+      specifiers in translatable string; replace _log_message with geda_log
+      counterparts.
+
+    * src/iface/i_sessions.c: Revise output message formats to minimize format
+      specifiers in translatable string; replace _log_message with geda_log
+      counterparts.
+
+2016-12-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/af.po: update Afrikaan translations.
+
+    * po/bg.po: update Bulgarian translations.
+
+    * po/bs.po: update Bosnian translations.
+
+    * src/ *.c: down-grade FSF license version = GPLv2.
+
+    * src/base/gschem.c: Revise output message format in order to minimize
+      format specifiers in translatable strings.
+
+    * src/guile/g_util.c: Revise output message format in order to eliminate
+      format specifiers in translatable string.
+
+    * src/object/o_undo.c: Revise output message format in order to minimize
+      format specifiers in translatable strings.
+
+    * src/x/x_coord.c: Revise output message format in order to minimize
+      format specifiers in translatable strings.
+
+2016-12-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/af.po: update Afrikaan translations.
+
+    * po/ar.po: update Arabic translations.
+
+    * po/es.po: update Spanish translations.
+
+    * po/kh.po: update Khmer translations.
+
+    * po/sr.po: update Serbian translations.
+
+    * src/guile/g_rc.c: Revise output message format in order to minimize format
+      specifiers in translatable string, add sub function show_bad_value in
+      check_and_convert_scm_integer.
+
+    * src/x/x_print.c: Revise output message format in order to minimize format
+      specifiers in translatable string.
+
+2016-12-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/es.po: update Spanish translations.
+
+    * src/base/gschem.c: Reformat error messages to remove format specifiers from
+      translatable strings.
+
+    * src/base/gschem_parsecmd.c: Reformat error messages to remove format specifiers
+      from translatable strings; add seperate const _ERROR, err_ukn, and err_info in
+      gschem_parse_commandline.
+
+    * src/x/x_clipboard.c: Reformat error messages in x_clipboard_get; add const
+      string and share bold_msg with log and dialog, add seperate const _ERROR,
+      inv_clip, err_ins and title remove format specifier and mark-up tags from
+      translatable strings.
+
+    * src/x/x_coord.c: Reformat error messages in x_dialog_coord_dnd_drag_receive;
+      add const string and share bold_msg with log and dialog, add seperate const
+      _ERROR, err_rcv, dat_err and remove format specifier from translatable
+      strings.
+
+    * src/x/x_dialog.c: Reformat error format in x_dialog_validate_attribute;
+      add const strings and remove format specifier from translatable strings.
+
+    * src/x/x_dnd.c: Reformat translatable error strings in x_dnd_receive_objects.
+
+2016-12-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/base/gschem_main_window.c: Add widget_class->show handler in an
+      an attempt to stop window managers from "automatically resizing" the
+      main window.
+
+    * src/iface/i_sessions.c: Reformat error messages in i_sessions_new_session
+      and i_sessions_save_session to remove c-format specifiers from translation
+      strings.
+
+    * src/iface/i_vars.c: Reformat error messages in i_vars_atexit_save_user_config
+      to remove c-format specifiers from translation strings.
+
+    * src/iface/i_window.c: Revise error message, and redo output formating in
+      o_picture_set_pixbuf.
+
+    * src/object/o_picture.c: Revise error message, and redo output formating in
+      o_picture_set_pixbuf.
+
+2016-12-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * base/gschem.c: Replace g_new with geda_malloc for geda_atexit_structs,
+      add conditional call geda_label_get_report_instances for debugging
+      memory resources issues.
+
+    * gschem/src/x/x_pagesel.c: Add function pagesel_create_popup_menu to
+      create the popup menu and store in pagesel structure so that the menu
+      can be reused until the pagesel object is destroyed.
+
+2016-12-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * etc/system-gschemrc.scm: Revised the tool-tip for the options-rubberband
+      menu item to include the word "net".
+
+    * src/guile/g_rc.c: Revise message in g_rc_text_display_zoomfactor;
+      "zoomfactor" is not a word.
+
+    * src/x/x_sessions.c: Revise messages in create_action_area; hyphenated
+      start-up.
+
+2016-12-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/base/gschem_status_bar.c: Add create_coord_display_options_popup
+      to create the coord display options popup menu and reuse menu, also
+      add create_middle_button_options_popup and revise function middle_
+      button_options_popup accordingly. Add destroy_popup and call from
+      dispose for each retained popup menu.
+
+    * src/x/x_compselect.c: Replace gtk_object_destroy with gtk_widget_destroy,
+      which does not actually destroy the widget in compselect_view_popup_menu,
+      so also add g_object_unref. Add compselect_dispose and unreferene the
+      compselect view popup menu.
+
+    * src/x/x_console.c: Substitute geda_set_log_update_func macro for
+      geda_utility_log_set_update_func in x_console_open.
+
+    * src/x/x_menus.c: Rename kf->keyfile and c->data in recent menu routines.
+      Substitute geda_strdup macro for geda_utility_string_strdup in function
+      x_menu_recent_files_add.
+
+2016-12-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/gschem_status_bar.h: A GschemStatusBar structure members;
+      coord_popup, middle_popup and third_popup.
+
+    * src/base/gschem_status_bar.c: Add create_third_button_options_popup
+      to create the popup menu for the third button options once and save
+      pointer to GschemStatusBar structure third_popup. Revise function
+      third_button_options_popup accordingly. Over-ride virtural dispose
+      and release the resources for the third button options pop up menu.
+
 2016-12-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_image.c: Revise x_image_get_pixbuf to actually create a real
@@ -281,13 +531,15 @@
 
     * etc/system-gschemrc.scm: Revise mnemonic characters under the File menu.
 
-2016-09-07 Wiley E. Hill <wileyhill@gmail.com>
+2016-09-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_menus.c: Substitute geda_strconcat for geda_utility_string_concat.
 
 2016-09-07 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/x/x_menus.c: Removed setting new menu objects "visible".
+    * src/x/x_menus.c: Removed setting new menu objects "visible". (12/28/16:
+      Why? This applied to the tear-off items on the menu bar, rendering
+      tear-off items nonoperative! Revert this see 2016-12-29)
 
     * tests/runtest.sh: Revised to tests for verbose before the functions
       file is sourced with vecho function, move debug and verbose squeal

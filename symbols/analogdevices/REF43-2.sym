@@ -61,7 +61,7 @@ description=2.5V Reference
 T 400 2500 5 10 0 0 0 0 1
 numslots=0
 T 400 3300 5 10 0 0 0 0 1
-use-license=GPL
+use-license=unlimited
 T 400 3500 5 10 0 0 0 0 1
 author=jpd@noqsi.com
 T 400 3100 8 10 0 1 0 0 1

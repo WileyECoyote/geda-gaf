@@ -8,7 +8,7 @@
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 3 of
+ * published by the Free Software Foundation; either version 2 of
  * the License, or (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -2185,6 +2185,9 @@ compselect_menu_tooltips_off(GedaMenuItem *menu_item, Compselect *compselect)
  *
  *  \param [in] compselect Pointer Compselect dialog structure
  *  \param [in] treeview   widget
+ *
+ * TODO: Should not have recreate the popup menu everytime the user
+ *       right-clicks.
  */
 static GtkWidget*
 compselect_build_view_menu(Compselect *compselect, GtkWidget *treeview)
@@ -2215,8 +2218,8 @@ compselect_build_view_menu(Compselect *compselect, GtkWidget *treeview)
     gtk_widget_set_sensitive(GTK_WIDGET(menuitem), TRUE);
     gtk_widget_set_can_focus(GTK_WIDGET(menuitem), TRUE);
     g_signal_connect(GTK_OBJECT(menuitem),"activate",
-                    (void *) compselect_open_tree_row,
-                    (void *) treeview);
+                    (void*)compselect_open_tree_row,
+                    (void*)treeview);
   }
   else {
     gtk_widget_set_sensitive(GTK_WIDGET(menuitem), FALSE);
@@ -2230,8 +2233,8 @@ compselect_build_view_menu(Compselect *compselect, GtkWidget *treeview)
     gtk_widget_set_sensitive(GTK_WIDGET(menuitem), TRUE);
     gtk_widget_set_can_focus(GTK_WIDGET(menuitem), TRUE);
     g_signal_connect(GTK_OBJECT(menuitem),"activate",
-                    (void *) compselect_open_tree_rows,
-                    (void *) treeview);
+                    (void*)compselect_open_tree_rows,
+                    (void*)treeview);
   }
   else {
     gtk_widget_set_sensitive(GTK_WIDGET(menuitem), FALSE);
@@ -2352,7 +2355,8 @@ compselect_view_popup_menu (GtkWidget      *treeview,
                             Compselect     *compselect)
 {
   if (GEDA_IS_MENU(tree_view_popup_menu)) {
-    gtk_object_destroy(GTK_OBJECT(tree_view_popup_menu));
+    gtk_widget_destroy(GTK_WIDGET(tree_view_popup_menu));
+    g_object_unref(tree_view_popup_menu);
     tree_view_popup_menu = NULL;
   }
 
@@ -3006,6 +3010,20 @@ compselect_style_set (GtkWidget *widget, GtkStyle *previous)
 }
 
 static void
+compselect_dispose (GObject *object)
+{
+  //Compselect *ThisDialog = COMPSELECT (object);
+
+  if (tree_view_popup_menu != NULL) {
+    gtk_widget_destroy(GTK_WIDGET(tree_view_popup_menu));
+    g_object_unref(tree_view_popup_menu);
+    tree_view_popup_menu = NULL; /* Is static to the module */
+  }
+
+  G_OBJECT_CLASS (compselect_parent_class)->dispose (object);
+}
+
+static void
 compselect_finalize (GObject *object)
 {
   Compselect *ThisDialog = COMPSELECT (object);
@@ -3017,7 +3035,6 @@ compselect_finalize (GObject *object)
   }
 
   G_OBJECT_CLASS (compselect_parent_class)->finalize (object);
-
 }
 
 /*! \brief  Set Properties of the Compselect Dialog
@@ -3161,6 +3178,7 @@ compselect_class_init (void *class, void *class_data)
   gschem_dialog_class->geometry_restore  = compselect_geometry_restore;
 
   object_class->constructor   = compselect_constructor;
+  object_class->dispose       = compselect_dispose;
   object_class->finalize      = compselect_finalize;
   object_class->set_property  = compselect_set_property;
   object_class->get_property  = compselect_get_property;

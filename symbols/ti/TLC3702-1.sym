@@ -49,7 +49,7 @@ symversion=0.2
 T 100 3000 5 10 0 0 0 0 1
 author=Autotron
 T 100 2600 5 10 0 0 0 0 1
-dist-license=GPL2
+dist-license=GPLv2
 T 100 2800 5 10 0 0 0 0 1
 use-license=unlimited
 T 1300 100 5 10 0 0 0 0 1

@@ -8,7 +8,7 @@
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 3 of
+ * published by the Free Software Foundation; either version 2 of
  * the License, or (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -179,7 +179,7 @@ void x_dialog_edit_color (GschemToplevel *w_current)
     optionmenu = create_color_menu (w_current, color_index);
 
     gtk_box_pack_start(GTK_BOX(vbox), optionmenu, FALSE, FALSE, 0);
-    gtk_widget_set_tooltip_text(optionmenu, _("Select a color for the select objects."));
+    gtk_widget_set_tooltip_text(optionmenu, _("Select a color for the selected objects."));
 
     GEDA_HOOKUP_OBJECT(Dialog, optionmenu, IDS_COLOR_EDIT);
 

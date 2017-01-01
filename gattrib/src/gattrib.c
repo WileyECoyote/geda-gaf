@@ -118,8 +118,6 @@
 #include <glib.h>
 #include <glib-object.h>
 
-#include <geda_keysyms.h>
-
 #ifdef HAVE_STRING_H
 #include <string.h>
 #endif
@@ -131,6 +129,8 @@
  *------------------------------------------------------------------*/
 #include "../include/gattrib.h"  /* include Gattrib specific headers  */
 
+#include <geda_keysyms.h>
+#include <geda_label.h>
 #include <geda_debug.h>
 
 typedef struct {
@@ -155,7 +155,7 @@ void geda_atexit(geda_atexit_func func, void* data)
 {
   geda_atexit_struct *p;
 
-  p = g_new(geda_atexit_struct, 1);
+  p = g_malloc(sizeof(geda_atexit_struct));
   p->func = func;
   p->arg = data;
   exit_functions = g_list_append(exit_functions, p);
@@ -199,7 +199,7 @@ int gattrib_quit(int return_code)
   /* Call all registered functions in order */
   list = exit_functions;
 
-  while(list != NULL) {
+  while (list != NULL) {
 
     geda_atexit_struct *p;
 
@@ -212,8 +212,18 @@ int gattrib_quit(int return_code)
 
   g_list_free(exit_functions);
 
-  if (search_history)
-    g_list_free(search_history);
+  /* Currently the search history is not retained between sessions */
+  if (search_history) {
+    geda_glist_free_all(search_history);
+  }
+
+  s_toplevel_close(sheet_head);
+
+  x_gtksheet_destroy_all();
+
+  x_window_release_all();
+
+  gattrib_save_user_config();
 
   /* Shutdown libgeda */
   libgeda_release();
@@ -226,9 +236,13 @@ int gattrib_quit(int return_code)
   printf("In gattrib_quit, calling gtk_main_quit()\n");
 #endif
 
-  gattrib_save_user_config();
-
   gtk_main_quit();
+
+#if DEBUG_GEDA_LABEL
+  /* This can be helpful in identifying unreleased resources */
+  geda_label_get_report_instances();
+#endif
+
   exit(return_code);
 }
 
@@ -288,6 +302,14 @@ void gattrib_main(void *closure, int argc, char *argv[])
   int argv_index;
   GSList *file_list = NULL;
 
+#if !GLIB_CHECK_VERSION(2, 44, 0)
+  geda_utility_program_mem_set_vtable();
+#endif
+
+#if ((GLIB_MAJOR_VERSION >= 2 ) && (GLIB_MINOR_VERSION <= 33 ))
+  g_slice_set_config(G_SLICE_CONFIG_ALWAYS_MALLOC, 1);
+#endif
+
 #ifdef HAVE_GTHREAD
 
   /* Gattrib isn't threaded, but some of GTK's file chooser
@@ -346,15 +368,16 @@ void gattrib_main(void *closure, int argc, char *argv[])
       file_list = g_slist_append(file_list, filename);
     }
     else {
-      fprintf(stderr, _("Couldn not find file [%s]\n"), argv[argv_index]);
+      fprintf(stderr, "%s \"%s\"\n", _("Couldn not find file"), argv[argv_index]);
     }
     argv_index++;
   }
 
   /* ---------- Initialize SHEET_DATA data structure ---------- */
-  sheet_head = s_sheet_data_new();   /* sheet_head was declared in globals.h */
+  sheet_head = s_sheet_data_new();   /* sheet_head is declared in globals.h */
 
   if (file_list) { /* do we need to call g here? */
+
     /* Attempt to Load the files */
     if (x_fileselect_load_files(file_list)) {
       /* Sort, Load Tables, Verify Design- Really? */
@@ -381,6 +404,7 @@ void gattrib_main(void *closure, int argc, char *argv[])
   geda_gslist_free_all(file_list);
 
   gtk_main();
+
   exit(0);
 }
 

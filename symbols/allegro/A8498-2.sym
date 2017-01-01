@@ -105,7 +105,7 @@ documentation=www.allegromicro.com/en/Products/Regulators-And-Lighting/Single-Ou
 T 400 3700 5 10 0 0 0 0 1
 author=Newell Jensen
 T 400 3300 5 10 0 0 0 0 1
-dist-license=GPL3
+dist-license=GPLv2
 T 400 3500 5 10 0 0 0 0 1
 use-license=unlimited
 T 578 250 9 10 0 0 0 0 1

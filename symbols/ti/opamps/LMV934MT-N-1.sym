@@ -71,6 +71,6 @@ L 350 600 250 600 3 0 0 0 -1 -1
 T 700 750 5 10 1 1 0 0 1
 value=LMV934MT
 T 200 2500 5 10 0 0 0 0 1
-dist-license=GPLv3
+dist-license=GPLv2
 T 200 2300 5 10 0 0 0 0 1
 use-license=unlimited

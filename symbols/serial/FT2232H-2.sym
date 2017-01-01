@@ -85,7 +85,7 @@ use-license=unlimited
 T 400 13600 5 10 0 0 0 0 1
 author=AutoTron
 T 400 13400 5 10 0 0 0 0 1
-dist-license=GPL3
+dist-license=GPLv2
 T 1200 12000 9 10 0 0 0 0 1
 symversion=0.3
 P 100 7500 400 7500 1 0 0

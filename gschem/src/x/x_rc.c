@@ -81,10 +81,10 @@ SCM g_rc_unbound_handler (SCM rst)
 static void
 x_rc_parse_gschem_error (GError **err, void *retry_flag)
 {
-  const char *dialog_message  = _("<b>Error Proccessing Configuration.</b>");
+  const char *dialog_message  = _("<b>Error Processing Configuration.</b>");
   const char *dialog_title    = _("gschem RC File Error");
   const char *err_msg_unknown = _("An unknown error occurred while parsing configuration files.");
-  const char *msg_log_more    = _("The gschem log may contain more information.");
+  const char *msg_log_more    = _("The log may contain more information.");
   char       *msg2;             /* Secondary message text */
 
   if (err == NULL) {
@@ -97,7 +97,7 @@ x_rc_parse_gschem_error (GError **err, void *retry_flag)
   if (*err == NULL) {
 
     /* Log message */
-    u_log_message (_("ERROR: %s\n"), err_msg_unknown);
+    u_log_message ("%s: %s\n", _("ERROR"), err_msg_unknown);
 
     /* Dialog message */
     msg2 = geda_strconcat ( err_msg_unknown, "\n\n", msg_log_more, NULL);
@@ -133,7 +133,7 @@ x_rc_parse_gschem_error (GError **err, void *retry_flag)
       GEDA_FREE(unbound_sym);
     }
     else  /* Log message */ {
-      u_log_message (_("ERROR: %s\n"), (*err)->message);
+      u_log_message ("%s: %s\n", _("ERROR"), (*err)->message);
     }
     /* Dialog message */
     msg2 = geda_sprintf ("%s\n\n%s", (*err)->message, msg_log_more);
@@ -157,7 +157,7 @@ x_rc_parse_gschem_error (GError **err, void *retry_flag)
  *  integer is not incremented, meaning an error did not occur, or the
  *  number of attempts equals MAX_RC_ATTEMPTS, defined in idefines.h.
  *  Currently the limit is set to make 3 attempts, which applies to
- *  each type, gafrc, gschemrc, and rcfile, seperately, not in total.
+ *  each type, gafrc, gschemrc, and rcfile, separately, not in total.
  *
  * \param w_current  The current #GschemToplevel structure.
  * \param rcfile     Specific config file path, or NULL.

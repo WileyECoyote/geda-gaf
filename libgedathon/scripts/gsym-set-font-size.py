@@ -64,7 +64,7 @@ Example: Set the font size of all attributes to default values in all symbol fil
 
          gsym-set-font-size.py -R
 
-Copyright (C) 2014-2015 by Wiley Edward Hill.  Released under GPL Version 3.
+Copyright (C) 2014-2015 by Wiley Edward Hill.  Released under GPL Version 2.
 
 """
 

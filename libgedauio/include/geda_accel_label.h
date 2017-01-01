@@ -56,7 +56,6 @@ typedef struct _GedaAccelLabelClass  GedaAccelLabelClass;
 struct _GedaAccelLabel
 {
   GedaLabel      label;
-  GedaType       instance_type;
 
   GClosure      *accel_closure;
   GtkAccelGroup *accel_group;        /* set by set_accel_closure() */

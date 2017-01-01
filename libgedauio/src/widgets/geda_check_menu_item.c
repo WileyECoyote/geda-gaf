@@ -86,6 +86,8 @@ static unsigned int check_menu_item_signals[LAST_SIGNAL] = { 0 };
 
 static void *geda_check_menu_item_parent_class = NULL;
 
+static GHashTable *check_menu_item_hash = NULL;
+
 static void
 geda_check_menu_item_draw_indicator (GedaCheckMenuItem *check_menu_item,
                                      GdkRectangle      *area)
@@ -271,6 +273,21 @@ geda_check_menu_item_set_property (GObject      *object,
   }
 }
 
+static void
+geda_check_menu_item_finalize (GObject *object)
+{
+  //GedaCheckMenuItem *check_menu_item = GEDA_CHECK_MENU_ITEM (object);
+
+  if (g_hash_table_remove (check_menu_item_hash, object)) {
+    if (!g_hash_table_size (check_menu_item_hash)) {
+      g_hash_table_destroy (check_menu_item_hash);
+      check_menu_item_hash = NULL;
+    }
+  }
+
+  G_OBJECT_CLASS (geda_check_menu_item_parent_class)->finalize (object);
+}
+
 /*!
  * \brief GedaCheckMenuItem Type Class Initializer
  * \par Function Description
@@ -295,6 +312,7 @@ geda_check_menu_item_class_init(void *class, void *class_data)
   widget_class     = (GtkWidgetClass*) class;
   menu_item_class  = (GedaMenuItemClass*) class;
 
+  gobject_class->finalize     = geda_check_menu_item_finalize;
   gobject_class->set_property = geda_check_menu_item_set_property;
   gobject_class->get_property = geda_check_menu_item_get_property;
 
@@ -367,7 +385,11 @@ geda_check_menu_item_instance_init(GTypeInstance *instance, void *class)
 {
   GedaCheckMenuItem *check_menu_item = (GedaCheckMenuItem*)instance;
 
-  check_menu_item->instance_type      = geda_check_menu_item_get_type();
+  if (!check_menu_item_hash) {
+    check_menu_item_hash = g_hash_table_new (g_direct_hash, NULL);
+  }
+
+  g_hash_table_add (check_menu_item_hash, instance);
 
   check_menu_item->active             = FALSE;
   check_menu_item->always_show_toggle = TRUE;
@@ -442,8 +464,8 @@ geda_check_menu_item_get_type (void)
 bool
 is_a_geda_check_menu_item (GedaCheckMenuItem *check_menu_item)
 {
-  if (G_IS_OBJECT(check_menu_item)) {
-    return (geda_check_menu_item_get_type() == check_menu_item->instance_type);
+  if ((check_menu_item != NULL) && (check_menu_item_hash != NULL)) {
+    return g_hash_table_lookup(check_menu_item_hash, check_menu_item) ? TRUE : FALSE;
   }
   return FALSE;
 }

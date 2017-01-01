@@ -44,7 +44,7 @@ device=TUNNEL_DIODE
 T 100 1600 5 10 0 0 0 0 1
 use-license=unlimited
 T 100 1800 5 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 100 2000 5 10 0 0 0 0 1
 author=Daniel Fekete <thefekete AT gmail DOT com>
 T 700 0 5 10 1 1 0 0 1

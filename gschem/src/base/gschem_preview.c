@@ -10,7 +10,7 @@
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 3 of
+ * published by the Free Software Foundation; either version 2 of
  * the License, or (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -546,8 +546,8 @@ static void preview_class_init (void *g_class, void *class_data)
   g_object_class_install_property (
     gobject_class, PROP_BUFFER,
     g_param_spec_string ("buffer",
-                       _("Buffer"),
-                       _("object list to be previewed"),
+                       _("Object List"),
+                       _("List of objects to be previewed"),
                          NULL, /* default value */
                          G_PARAM_WRITABLE));
 
@@ -563,7 +563,7 @@ static void preview_class_init (void *g_class, void *class_data)
     gobject_class, PROP_LARGE,
     g_param_spec_boolean ("large-size",
                         _("Large size"),
-                        _("Whether the preview widget show be large or small"),
+                        _("Whether the preview widget should be large or small"),
                           FALSE,
                           G_PARAM_WRITABLE));
 }

@@ -296,13 +296,14 @@ x_clipboard_get (GschemToplevel *w_current)
 
   toplevel = w_current->toplevel;
 
-  cb = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
+  cb   = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
   type = gdk_atom_intern (MIME_TYPE_SCHEMATIC, FALSE);
 
   /* Try to get the contents of the clipboard */
   selection_data = gtk_clipboard_wait_for_contents (cb, type);
 
-  if (selection_data == NULL) return FALSE;
+  if (selection_data == NULL)
+    return FALSE;
 
   /* Convert the data buffer to Objects */
 #if GTK_CHECK_VERSION(2,14,0)
@@ -312,14 +313,26 @@ x_clipboard_get (GschemToplevel *w_current)
 #endif
 
   object_list = geda_object_read_buffer (toplevel, object_list,
-                               (char *) buf, -1, "Clipboard", &err);
+                               (char*)buf, -1, "Clipboard", &err);
 
   if (err) {
-    char *errmsg;
-    u_log_message(_("%s: Invalid schematic on clipboard. %s\n"),__func__, err->message);
-    errmsg = geda_sprintf (_("An error occurred while inserting clipboard data: %s."), err->message);
-    titled_pango_error_dialog (_("<b>Invalid schematic on clipboard.</b>"), errmsg, _("Clipboard Insertion Failed"));
-    GEDA_FREE(errmsg);
+
+    const char *inv_clip = _("Invalid schematic on clipboard");
+    const char *err_ins  = _("An error occurred while inserting clipboard data");
+    const char *title    = _("Clipboard Insertion Failed");
+
+    char *bold_msg;
+    char *err_msg;
+
+    u_log_message("%s. %s\n", inv_clip, err->message);
+
+    bold_msg = geda_sprintf ("<b>%s.</b>", inv_clip);
+    err_msg  = geda_sprintf ("%s: %s.", err_ins, err->message);
+
+    titled_pango_error_dialog (bold_msg, err_msg, title);
+
+    GEDA_FREE(bold_msg);
+    GEDA_FREE(err_msg);
     g_error_free(err);
   }
 

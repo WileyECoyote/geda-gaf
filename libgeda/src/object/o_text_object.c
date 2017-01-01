@@ -945,7 +945,7 @@ geda_text_object_save(GedaObject *object)
   string = object->text->string;
   size   = object->text->size;
 
-  /* string can have multiple lines (seperated by \n's) */
+  /* string can have multiple lines (separated by \n's) */
   num_lines = geda_object_get_num_text_lines(string);
 
   /* Don't save invisible == 2 as visible */

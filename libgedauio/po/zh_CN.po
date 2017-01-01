@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-12-03 00:56-0600\n"
+"POT-Creation-Date: 2016-12-20 13:44-0600\n"
 "PO-Revision-Date: 2010-02-11 03:18+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -19,107 +19,108 @@ msgstr ""
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:449
-#: libgedauio/src/dialogs/geda_image_chooser.c:1024
+#: libgedauio/src/dialogs/geda_image_chooser.c:1025
 msgid "Set or retrieve index of the filter combo"
 msgstr ""
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:450
-#: libgedauio/src/dialogs/geda_image_chooser.c:1025
+#: libgedauio/src/dialogs/geda_image_chooser.c:1026
 msgid "IDE_FILTER"
 msgstr ""
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:613
-#: libgedauio/src/dialogs/geda_image_chooser.c:1172
+#: libgedauio/src/dialogs/geda_image_chooser.c:1173
 #, fuzzy
 msgid "_Open"
 msgstr "打开页面..."
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:614
-#: libgedauio/src/dialogs/geda_image_chooser.c:1173
+#: libgedauio/src/dialogs/geda_image_chooser.c:1174
 #, fuzzy
 msgid "Open..."
 msgstr "打开页面..."
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:618
-#: libgedauio/src/dialogs/geda_image_chooser.c:1177
+#: libgedauio/src/dialogs/geda_image_chooser.c:1178
 #, fuzzy
 msgid "_Save"
 msgstr "全部保存"
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:619
-#: libgedauio/src/dialogs/geda_image_chooser.c:1178
+#: libgedauio/src/dialogs/geda_image_chooser.c:1179
 #, fuzzy
-msgid "Save As.."
+msgid "Save As..."
 msgstr "页面保存为..."
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:623
-#: libgedauio/src/dialogs/geda_image_chooser.c:1182
+#: libgedauio/src/dialogs/geda_image_chooser.c:1183
+#, fuzzy
 msgid "_Select Folder..."
-msgstr ""
+msgstr "选择模式"
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:624
-#: libgedauio/src/dialogs/geda_image_chooser.c:1183
+#: libgedauio/src/dialogs/geda_image_chooser.c:1184
 #, fuzzy
 msgid "Select Folder"
 msgstr "选择模式"
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:628
-#: libgedauio/src/dialogs/geda_image_chooser.c:1187
+#: libgedauio/src/dialogs/geda_image_chooser.c:1188
 msgid "OOPS"
 msgstr ""
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:634
-#: libgedauio/src/dialogs/geda_image_chooser.c:1192
+#: libgedauio/src/dialogs/geda_image_chooser.c:1193
 msgid "_Cancel"
 msgstr ""
 
-#: libgedauio/src/dialogs/geda_image_chooser.c:595
-#: libgedauio/src/dialogs/geda_image_chooser.c:779
+#: libgedauio/src/dialogs/geda_image_chooser.c:596
+#: libgedauio/src/dialogs/geda_image_chooser.c:780
 #, fuzzy
 msgid "Preview"
 msgstr "上一个"
 
-#: libgedauio/src/dialogs/geda_image_chooser.c:781
+#: libgedauio/src/dialogs/geda_image_chooser.c:782
 msgid "Active to enable the preview pane"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_accel_label.c:609
+#: libgedauio/src/widgets/geda_accel_label.c:618
 msgid "Accelerator Closure"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_accel_label.c:610
+#: libgedauio/src/widgets/geda_accel_label.c:619
 msgid "The closure to be monitored for accelerator changes"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_accel_label.c:616
+#: libgedauio/src/widgets/geda_accel_label.c:625
 msgid "Accelerator Widget"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_accel_label.c:617
+#: libgedauio/src/widgets/geda_accel_label.c:626
 msgid "The widget to be monitored for accelerator changes"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_accel_label.c:623
+#: libgedauio/src/widgets/geda_accel_label.c:632
 msgid "Accelerator String"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_accel_label.c:624
+#: libgedauio/src/widgets/geda_accel_label.c:633
 msgid "The accelerator string to be displayed"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_action.c:252
+#: libgedauio/src/widgets/geda_action.c:263
 msgid "multikey-accelerator"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_action.c:253
+#: libgedauio/src/widgets/geda_action.c:264
 msgid "A string with characters in positions key characters"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_action.c:260
+#: libgedauio/src/widgets/geda_action.c:271
 msgid "icon-identification"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_action.c:261
+#: libgedauio/src/widgets/geda_action.c:272
 msgid "String name of the icon image"
 msgstr ""
 
@@ -324,7 +325,7 @@ msgid "Whether to activate the default widget when Enter is pressed"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_entry.c:633
-#: libgedauio/src/widgets/geda_label.c:1419
+#: libgedauio/src/widgets/geda_label.c:1405
 msgid "Attributes"
 msgstr "属性"
 
@@ -572,12 +573,12 @@ msgid "Appearance of the shadow that surrounds the container"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_handlebox.c:1446
-msgid "Position of the handle relative to the child widget"
+msgid "Position of the handle relative to the child toolbar"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_handlebox.c:1455
 msgid ""
-"Side of the handlebox that's lined up with the docking point to dock the "
+"Side of the handlebox that is lined up with the docking point to dock the "
 "handlebox"
 msgstr ""
 
@@ -588,9 +589,7 @@ msgid ""
 msgstr ""
 
 #: libgedauio/src/widgets/geda_handlebox.c:1472
-msgid ""
-"A boolean value indicating whether the handlebox's child is attached or "
-"detached."
+msgid "Boolean value indicating whether the toolbar is attached or detached."
 msgstr ""
 
 #: libgedauio/src/widgets/geda_image_menu_item.c:404
@@ -621,179 +620,179 @@ msgid "Whether the image will always be shown"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_image_menu_item.c:445
-msgid "Accel Group"
+msgid "Accelerator Group"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_image_menu_item.c:446
 msgid "The Accel Group to use for stock accelerator keys"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1412
-#: libgedauio/src/widgets/geda_label.c:1790
+#: libgedauio/src/widgets/geda_label.c:1398
+#: libgedauio/src/widgets/geda_label.c:1779
 #: libgedauio/src/widgets/geda_menu_button.c:1172
 msgid "Label"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1413
+#: libgedauio/src/widgets/geda_label.c:1399
 msgid "The text of the label"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1420
-msgid "A list of style attributes to apply to the text of the label"
+#: libgedauio/src/widgets/geda_label.c:1406
+msgid "List of style attributes to apply to the text of the label"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1426
+#: libgedauio/src/widgets/geda_label.c:1412
 msgid "Use markup"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1427
+#: libgedauio/src/widgets/geda_label.c:1413
 msgid "The text of the label includes XML markup. See pango_parse_markup()"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1433
+#: libgedauio/src/widgets/geda_label.c:1419
 msgid "Use underline"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1434
+#: libgedauio/src/widgets/geda_label.c:1420
 msgid ""
 "If set, underline in text indicates the next character is mnemonic for "
 "accelerator key"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1439
+#: libgedauio/src/widgets/geda_label.c:1425
 msgid "Justification"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1440
+#: libgedauio/src/widgets/geda_label.c:1426
 msgid ""
 "The alignment of the lines in the text of the label relative to each other. "
 "This does NOT affect the alignment of the label within its allocation. See "
 "GtkMisc::xalign for that"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1447
+#: libgedauio/src/widgets/geda_label.c:1433
 msgid "Pattern"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1448
+#: libgedauio/src/widgets/geda_label.c:1434
 msgid ""
 "A string with _ characters in positions correspond to characters in the text "
 "to underline"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1454
+#: libgedauio/src/widgets/geda_label.c:1440
 msgid "Line wrap"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1455
+#: libgedauio/src/widgets/geda_label.c:1441
 msgid "If set, wrap lines if the text becomes too wide"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1469
+#: libgedauio/src/widgets/geda_label.c:1455
 msgid "Line wrap mode"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1470
-msgid "If wrap is set, controls how linewrapping is done"
+#: libgedauio/src/widgets/geda_label.c:1456
+msgid "If wrap is set, controls how line wrapping is done"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1477
+#: libgedauio/src/widgets/geda_label.c:1463
 #, fuzzy
 msgid "Selectable"
 msgstr "选择模式"
 
-#: libgedauio/src/widgets/geda_label.c:1478
+#: libgedauio/src/widgets/geda_label.c:1464
 msgid "Whether the label text can be selected with the mouse"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1484
+#: libgedauio/src/widgets/geda_label.c:1470
 msgid "Mnemonic key"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1485
+#: libgedauio/src/widgets/geda_label.c:1471
 msgid "The mnemonic accelerator key for this label"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1493
+#: libgedauio/src/widgets/geda_label.c:1479
 msgid "Mnemonic widget"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1494
+#: libgedauio/src/widgets/geda_label.c:1480
 msgid "The widget to be activated when the label's mnemonic key is pressed"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1501
+#: libgedauio/src/widgets/geda_label.c:1487
 msgid "Cursor Position"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1502
+#: libgedauio/src/widgets/geda_label.c:1488
 msgid "The current position of the insertion cursor in chars"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1510
+#: libgedauio/src/widgets/geda_label.c:1496
 #, fuzzy
 msgid "Selection Bound"
 msgstr "选择模式"
 
-#: libgedauio/src/widgets/geda_label.c:1511
+#: libgedauio/src/widgets/geda_label.c:1497
 msgid ""
 "The position of the opposite end of the selection from the cursor in chars"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1535
+#: libgedauio/src/widgets/geda_label.c:1522
 msgid "Ellipsize"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1536
-msgid "The preferred place to break the string, if ellipes needed"
+#: libgedauio/src/widgets/geda_label.c:1523
+msgid "The preferred place to break the string, if an ellipsis is needed"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1554
+#: libgedauio/src/widgets/geda_label.c:1541
 msgid "Width In Characters"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1555
+#: libgedauio/src/widgets/geda_label.c:1542
 msgid "The desired width of the label, in characters"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1573
-msgid "Single Line Mode"
+#: libgedauio/src/widgets/geda_label.c:1560
+msgid "Single-Line Mode"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1574
-msgid "Whether the label is in single line mode"
+#: libgedauio/src/widgets/geda_label.c:1561
+msgid "Whether the label is in single-line mode"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1589
+#: libgedauio/src/widgets/geda_label.c:1576
 msgid "Angle"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1590
-msgid "Angle at which the label is rotated"
+#: libgedauio/src/widgets/geda_label.c:1577
+msgid "Angle of rotation of the label"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1609
+#: libgedauio/src/widgets/geda_label.c:1597
 msgid "Maximum Width In Characters"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1610
+#: libgedauio/src/widgets/geda_label.c:1598
 msgid "The desired maximum width of the label, in characters"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1626
+#: libgedauio/src/widgets/geda_label.c:1615
 msgid "Track visited links"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1627
+#: libgedauio/src/widgets/geda_label.c:1616
 msgid "Whether visited links should be tracked"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:6606
+#: libgedauio/src/widgets/geda_label.c:6595
 #, fuzzy
 msgid "_Open Link"
 msgstr "文件"
 
-#: libgedauio/src/widgets/geda_label.c:6618
+#: libgedauio/src/widgets/geda_label.c:6607
 msgid "Copy _Link Address"
 msgstr ""
 
@@ -802,7 +801,7 @@ msgid "Menu"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_menu_button.c:1166
-msgid "The dropdown menu"
+msgid "The drop-down menu"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_menu_button.c:1173
@@ -888,459 +887,3 @@ msgstr ""
 #: libgedauio/src/widgets/geda_toggle_action.c:225
 msgid "Multikey Accelerator"
 msgstr ""
-
-#~ msgid "Copy Mode"
-#~ msgstr "复制模式"
-
-#~ msgid "Move Mode"
-#~ msgstr "移动模式"
-
-#~ msgid "Mirror Mode"
-#~ msgstr "镜像模式"
-
-#, fuzzy
-#~ msgid "Path Mode"
-#~ msgstr "旋转 90 度"
-
-#~ msgid "Copy"
-#~ msgstr "复制"
-
-#~ msgid "Multiple Copy Mode"
-#~ msgstr "多重复制模式"
-
-#~ msgid "Delete"
-#~ msgstr "删除"
-
-#~ msgid "Edit"
-#~ msgstr "编辑"
-
-#~ msgid "Lock"
-#~ msgstr "锁定"
-
-#~ msgid "Unlock"
-#~ msgstr "解锁"
-
-#, fuzzy
-#~ msgid "Copy %i"
-#~ msgstr "复制"
-
-#, fuzzy
-#~ msgid "Cut %i"
-#~ msgstr "剪切到 1"
-
-#, fuzzy
-#~ msgid "Paste %i"
-#~ msgstr "粘贴"
-
-#~ msgid "Bus"
-#~ msgstr "总线"
-
-#~ msgid "Circle"
-#~ msgstr "圆"
-
-#~ msgid "Arc"
-#~ msgstr "弧线"
-
-#~ msgid "Attach"
-#~ msgstr "连接"
-
-#~ msgid "Detach"
-#~ msgstr "脱离"
-
-#~ msgid "Write image..."
-#~ msgstr "写入图片..."
-
-#, fuzzy
-#~ msgid "Add Text"
-#~ msgstr "编辑文本..."
-
-#, fuzzy
-#~ msgid "Zoom In"
-#~ msgstr "放大"
-
-#, fuzzy
-#~ msgid "Zoom Out"
-#~ msgstr "缩小"
-
-#, fuzzy
-#~ msgid "Zoom Extents"
-#~ msgstr "放大"
-
-#~ msgid "Edit..."
-#~ msgstr "编辑..."
-
-#, fuzzy
-#~ msgid "Edit Pin Type..."
-#~ msgstr "编辑文本..."
-
-#, fuzzy
-#~ msgid "Edit Attributes - %s"
-#~ msgstr "属性"
-
-#~ msgid "New Page"
-#~ msgstr "新建页面"
-
-#~ msgid "Open Page..."
-#~ msgstr "打开页面..."
-
-#~ msgid "Save Page"
-#~ msgstr "保存页面"
-
-#~ msgid "Close Page"
-#~ msgstr "关闭页面"
-
-#~ msgid "Execute Script..."
-#~ msgstr "执行脚本..."
-
-#~ msgid "New"
-#~ msgstr "新建"
-
-#~ msgid "Undo"
-#~ msgstr "撤销"
-
-#~ msgid "Redo"
-#~ msgstr "重做"
-
-#, fuzzy
-#~ msgid "_New"
-#~ msgstr "新建"
-
-#~ msgid "Save All"
-#~ msgstr "全部保存"
-
-#, fuzzy
-#~ msgid "_Revert"
-#~ msgstr "翻转页面"
-
-#, fuzzy
-#~ msgid "_Print..."
-#~ msgstr "打印..."
-
-#, fuzzy
-#~ msgid "Write _image..."
-#~ msgstr "写入图片..."
-
-#~ msgid "New Window"
-#~ msgstr "新建窗口"
-
-#, fuzzy
-#~ msgid "_Close Window"
-#~ msgstr "关闭窗口"
-
-#, fuzzy
-#~ msgid "_Quit"
-#~ msgstr "退出"
-
-#, fuzzy
-#~ msgid "_Undo"
-#~ msgstr "撤销"
-
-#, fuzzy
-#~ msgid "_Redo"
-#~ msgstr "重做"
-
-#, fuzzy
-#~ msgid "Cu_t"
-#~ msgstr "剪切"
-
-#, fuzzy
-#~ msgid "_Copy"
-#~ msgstr "复制"
-
-#, fuzzy
-#~ msgid "_Paste"
-#~ msgstr "粘贴"
-
-#, fuzzy
-#~ msgid "_Delete"
-#~ msgstr "删除"
-
-#~ msgid "Rotate 90 Mode"
-#~ msgstr "旋转 90 度"
-
-#~ msgid "Edit Text..."
-#~ msgstr "编辑文本..."
-
-#~ msgid "Color..."
-#~ msgstr "颜色..."
-
-#~ msgid "Line Width & Type..."
-#~ msgstr "线宽和线型..."
-
-#~ msgid "Fill Type..."
-#~ msgstr "填充类型..."
-
-#, fuzzy
-#~ msgid "Pin Type..."
-#~ msgstr "填充类型..."
-
-#~ msgid "Update Component"
-#~ msgstr "更新组件"
-
-#~ msgid "Copy into 1"
-#~ msgstr "复制到 1"
-
-#~ msgid "Copy into 2"
-#~ msgstr "复制到 2"
-
-#~ msgid "Copy into 3"
-#~ msgstr "复制到 3"
-
-#~ msgid "Copy into 4"
-#~ msgstr "复制到 4"
-
-#~ msgid "Copy into 5"
-#~ msgstr "复制到 5"
-
-#~ msgid "Cut into 1"
-#~ msgstr "剪切到 1"
-
-#~ msgid "Cut into 2"
-#~ msgstr "剪切到 2"
-
-#~ msgid "Cut into 3"
-#~ msgstr "剪切到 3"
-
-#~ msgid "Cut into 4"
-#~ msgstr "剪切到 4"
-
-#~ msgid "Cut into 5"
-#~ msgstr "剪切到 5"
-
-#~ msgid "Paste from 1"
-#~ msgstr "粘贴自 1"
-
-#~ msgid "Paste from 2"
-#~ msgstr "粘贴自 2"
-
-#~ msgid "Paste from 3"
-#~ msgstr "粘贴自 3"
-
-#~ msgid "Paste from 4"
-#~ msgstr "粘贴自 4"
-
-#~ msgid "Paste from 5"
-#~ msgstr "粘贴自 5"
-
-#, fuzzy
-#~ msgid "_Redraw"
-#~ msgstr "重画"
-
-#, fuzzy
-#~ msgid "Zoom _Box"
-#~ msgstr "放大"
-
-#, fuzzy
-#~ msgid "Zoom _Extents"
-#~ msgstr "放大"
-
-#, fuzzy
-#~ msgid "Zoom _In"
-#~ msgstr "放大"
-
-#, fuzzy
-#~ msgid "Zoom _Out"
-#~ msgstr "缩小"
-
-#, fuzzy
-#~ msgid "Zoom _Full"
-#~ msgstr "缩小"
-
-#, fuzzy
-#~ msgid "_Manager..."
-#~ msgstr "打开页面..."
-
-#, fuzzy
-#~ msgid "_Next"
-#~ msgstr "下一个"
-
-#, fuzzy
-#~ msgid "_Close"
-#~ msgstr "关闭"
-
-#, fuzzy
-#~ msgid "_Component..."
-#~ msgstr "组件..."
-
-#, fuzzy
-#~ msgid "_Net"
-#~ msgstr "下一个"
-
-#, fuzzy
-#~ msgid "B_us"
-#~ msgstr "总线"
-
-#, fuzzy
-#~ msgid "_Attribute..."
-#~ msgstr "属性..."
-
-#, fuzzy
-#~ msgid "_Text..."
-#~ msgstr "文本..."
-
-#, fuzzy
-#~ msgid "C_ircle"
-#~ msgstr "圆"
-
-#, fuzzy
-#~ msgid "A_rc"
-#~ msgstr "弧线"
-
-#, fuzzy
-#~ msgid "Pictu_re..."
-#~ msgstr "图片..."
-
-#, fuzzy
-#~ msgid "D_ocumentation..."
-#~ msgstr "文档"
-
-#, fuzzy
-#~ msgid "_Attach"
-#~ msgstr "连接"
-
-#, fuzzy
-#~ msgid "_Detach"
-#~ msgstr "脱离"
-
-#, fuzzy
-#~ msgid "_Toggle Visibility"
-#~ msgstr "变换可见性"
-
-#, fuzzy
-#~ msgid "gEDA Docu_mentation..."
-#~ msgstr "文档"
-
-#, fuzzy
-#~ msgid "Component D_ocumentation..."
-#~ msgstr "文档"
-
-#, fuzzy
-#~ msgid "_About..."
-#~ msgstr "属性..."
-
-#, fuzzy
-#~ msgid "_File"
-#~ msgstr "文件"
-
-#, fuzzy
-#~ msgid "_Edit"
-#~ msgstr "编辑"
-
-#, fuzzy
-#~ msgid "_View"
-#~ msgstr "查看"
-
-#, fuzzy
-#~ msgid "_Page"
-#~ msgstr "页面"
-
-#, fuzzy
-#~ msgid "_Add"
-#~ msgstr "添加"
-
-#, fuzzy
-#~ msgid "Hie_rarchy"
-#~ msgstr "层次"
-
-#, fuzzy
-#~ msgid "A_ttributes"
-#~ msgstr "属性"
-
-#, fuzzy
-#~ msgid "New File"
-#~ msgstr "文件"
-
-#, fuzzy
-#~ msgid "Save As"
-#~ msgstr "全部保存"
-
-#, fuzzy
-#~ msgid "Print"
-#~ msgstr "打印..."
-
-#, fuzzy
-#~ msgid "Close Window"
-#~ msgstr "关闭窗口"
-
-#, fuzzy
-#~ msgid "Quit"
-#~ msgstr "退出"
-
-#, fuzzy
-#~ msgid "Edit Line Width & Type"
-#~ msgstr "线宽和线型..."
-
-#, fuzzy
-#~ msgid "Edit Fill Type"
-#~ msgstr "填充类型..."
-
-#, fuzzy
-#~ msgid "Cut"
-#~ msgstr "剪切"
-
-#, fuzzy
-#~ msgid "Paste"
-#~ msgstr "粘贴"
-
-#, fuzzy
-#~ msgid "Redraw"
-#~ msgstr "重画"
-
-#, fuzzy
-#~ msgid "Zoom Full"
-#~ msgstr "缩小"
-
-#, fuzzy
-#~ msgid "Previous Page"
-#~ msgstr "上一个"
-
-#, fuzzy
-#~ msgid "Next Page"
-#~ msgstr "新建页面"
-
-#, fuzzy
-#~ msgid "Add Circle"
-#~ msgstr "圆"
-
-#, fuzzy
-#~ msgid "Add Picture"
-#~ msgstr "图片..."
-
-#, fuzzy
-#~ msgid "Show Hotkeys"
-#~ msgstr "都显示"
-
-#, fuzzy
-#~ msgid "Component Documentation"
-#~ msgstr "文档"
-
-#, fuzzy
-#~ msgid "No documentation found"
-#~ msgstr "文档"
-
-#, fuzzy
-#~ msgid "Ne_w"
-#~ msgstr "新建"
-
-#, fuzzy
-#~ msgid "_Buffer"
-#~ msgstr "缓冲区"
-
-#, fuzzy
-#~ msgid "_Discard"
-#~ msgstr "丢弃"
-
-#~ msgid "Buffer"
-#~ msgstr "缓冲区"
-
-#~ msgid "Page"
-#~ msgstr "页面"
-
-#~ msgid "Add"
-#~ msgstr "添加"
-
-#~ msgid "Hierarchy"
-#~ msgstr "层次"
-
-#~ msgid "Recent files"
-#~ msgstr "最近打开的文件"

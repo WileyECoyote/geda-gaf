@@ -616,7 +616,7 @@ geda_file_chooser_new (GtkWidget *parent,
 
       case FILE_CHOOSER_ACTION_SAVE:
         second_button_text = _("_Save");
-        title = _("Save As..");
+        title = _("Save As...");
         break;
 
       case FILE_CHOOSER_ACTION_SELECT_FOLDER:

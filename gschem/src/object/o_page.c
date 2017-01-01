@@ -78,7 +78,7 @@ static bool list_was_modified (GList *list1, GList *list2)
  *  \par Function Description
  *  This function attempts to locate title blocks by searching for "title"
  *  in the name of Complex objects, if found the object and all associated
- *  children are removed from \a page_list and returned as a seperate list.
+ *  children are removed from \a page_list and returned as a separate list.
  *
  *  \param [in,out] page_list List to search for title block objects,
  *

@@ -442,7 +442,7 @@ geda_image_menu_item_class_init (void *class, void *class_data)
    * The Accel Group to use for stock accelerator keys
    */
   params = g_param_spec_object ("accel-group",
-                              _("Accel Group"),
+                              _("Accelerator Group"),
                               _("The Accel Group to use for stock accelerator keys"),
                                  GTK_TYPE_ACCEL_GROUP,
                                  G_PARAM_WRITABLE);

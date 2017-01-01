@@ -1,4 +1,14 @@
 v 20100214 2
+T 2500 5250 8 10 1 1 0 6 1
+refdes=U?
+T 300 150 9 10 1 0 0 2 1
+ATmega168 TQFP Arduino
+T 300 7400 5 10 0 0 0 0 1
+device=ATMEGA168
+T 300 5600 5 10 0 0 0 0 1
+numslots=0
+T 300 7000 5 10 0 0 0 0 1
+description=8 bit Atmel MicroController
 P 2800 4800 2500 4800 1 0 0
 {
 T 2550 4850 5 8 1 1 0 0 1
@@ -357,23 +367,13 @@ pintype=clk
 L 400 1800 300 1875 3 0 0 0 -1 -1
 L 400 1800 300 1725 3 0 0 0 -1 -1
 B 300 200 2200 5000 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 2500 5250 8 10 1 1 0 6 1
-refdes=U?
-T 300 150 9 10 1 0 0 2 1
-ATmega168 TQFP Arduino
-T 300 7400 5 10 0 0 0 0 1
-device=ATMEGA168
 T 300 7200 5 10 0 0 0 0 1
 footprint=TQFP32
 T 300 6400 5 10 0 0 0 0 1
 author=Dan Fekete <thefekete AT gmail DOT com>
 T 300 6800 5 10 0 0 0 0 1
 documentation=http://www.atmel.com/dyn/resources/prod_documents/doc8271.pdf
-T 300 7000 5 10 0 0 0 0 1
-description=8 bit Atmel MicroController
-T 300 5600 5 10 0 0 0 0 1
-numslots=0
 T 300 6000 5 10 0 0 0 0 1
-dist-license=GNU GPL
+dist-license=GPLv2
 T 300 6200 5 10 0 0 0 0 1
-use-license=Unlimited
+use-license=unlimited

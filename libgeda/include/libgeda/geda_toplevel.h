@@ -226,6 +226,8 @@ int           geda_toplevel_get_page_count          (GedaToplevel *toplevel);
 Page         *geda_toplevel_get_page_down           (GedaToplevel *toplevel);
 Page         *geda_toplevel_get_page_up             (GedaToplevel *toplevel);
 
+bool          geda_toplevel_is_current_page         (GedaToplevel *toplevel, Page *page);
+
 bool          geda_toplevel_move_page_down          (GedaToplevel *toplevel, Page *page);
 bool          geda_toplevel_move_page_up            (GedaToplevel *toplevel, Page *page);
 

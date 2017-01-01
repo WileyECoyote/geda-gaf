@@ -1163,7 +1163,7 @@ static void geda_menu_button_class_init (void *class, void *class_data)
                                    PROP_MENU,
                                    g_param_spec_object ("menu",
                                                       _("Menu"),
-                                                      _("The dropdown menu"),
+                                                      _("The drop-down menu"),
                                                         GTK_TYPE_MENU,
                                                         G_PARAM_READWRITE));
   g_object_class_install_property (object_class,

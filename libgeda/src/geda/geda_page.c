@@ -605,6 +605,14 @@ void geda_page_set_filename (Page *page, const char *filename)
   }
 }
 
+int geda_page_get_pid (Page *page)
+{
+  if (GEDA_IS_PAGE(page)) {
+    return page->pid;
+  }
+  return -1;
+}
+
 GList *geda_page_get_place_list (Page *page)
 {
   g_return_val_if_fail (GEDA_IS_PAGE(page), NULL);

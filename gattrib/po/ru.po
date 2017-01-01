@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gattrib\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-12-03 00:56-0600\n"
+"POT-Creation-Date: 2016-12-20 13:44-0600\n"
 "PO-Revision-Date: 2014-03-08 20:49+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -38,7 +38,7 @@ msgstr "o_save: Не удалось открыть «%s»\n"
 msgid "Failed to save user configuration to '%s': %s."
 msgstr ""
 
-#: gattrib/src/gattrib.c:349
+#: gattrib/src/gattrib.c:371
 #, fuzzy, c-format
 msgid "Couldn not find file [%s]\n"
 msgstr "Не удалось найти файл «%s»\n"
@@ -60,7 +60,7 @@ msgstr ""
 
 #: gattrib/src/i_basic.c:210
 #, c-format
-msgid "Check: path \"%s\"\n"
+msgid "Check path: \"%s\"\n"
 msgstr ""
 
 #: gattrib/src/parsecmd.c:62
@@ -73,8 +73,8 @@ msgid ""
 "Usage: %s [OPTIONS] filename1 ... filenameN\n"
 "\n"
 "\t-h, --help      This help menu\n"
-"\t-q, --quiet     Quiet mode\n"
-"\t-v, --verbose   Verbose mode on\n"
+"\t-q, --quiet     Enable quiet mode\n"
+"\t-v, --verbose   Enable verbose mode\n"
 "\t-V, --version   Show version information.\n"
 "\n"
 "  FAQ:\n"
@@ -108,23 +108,18 @@ msgstr ""
 msgid " DONE\n"
 msgstr " ЗАВЕРШЕНО\n"
 
-#: gattrib/src/s_object.c:216
-#, fuzzy, c-format
-msgid "%s, we have failed to find the attrib %s on the component. Exiting...\n"
-msgstr ""
-"s_object_remove_attrib_in_object: не удалось найти атрибут «%s» для "
-"компонента. Выход . . .\n"
+#: gattrib/src/s_object.c:215
+#, fuzzy
+msgid "failed to find attribute"
+msgstr "Удаление атрибута"
 
-#: gattrib/src/s_object.c:334
-#, fuzzy, c-format
-msgid "%s: trying to add attrib to non-complex or non-net!\n"
+#: gattrib/src/s_object.c:216
+msgid "Exiting..."
 msgstr ""
-"s_object_attrib_add_attrib_in_object: попытка добавить атрибут к объекту, не "
-"являющимся ни составным, ни соединением!\n"
 
 #: gattrib/src/s_rename.c:98
-#, c-format
-msgid "Increase number of rename_pair sets in s_net.c\n"
+#, fuzzy, c-format
+msgid "Increase MAX_SETS in %s\n"
 msgstr "Следует увеличить количество наборов rename_pair в s_net.c\n"
 
 #: gattrib/src/s_rename.c:116
@@ -133,8 +128,8 @@ msgid "%d) Source: _%s_"
 msgstr "%d) Источник: _%s_"
 
 #: gattrib/src/s_rename.c:120
-#, c-format
-msgid " -> Dest: _%s_\n"
+#, fuzzy, c-format
+msgid " -> Destination: _%s_\n"
 msgstr " -> Назначение: _%s_\n"
 
 #: gattrib/src/s_rename.c:151
@@ -150,100 +145,104 @@ msgstr ""
 "оба являются именами источника и назначения\n"
 "Это предупреждение несущественно, если имеется несколько уровней иерархии!\n"
 
-#: gattrib/src/s_rename.c:219
-#, c-format
-msgid "Increase number of rename_pairs (MAX_RENAME) in s_rename.c\n"
+#: gattrib/src/s_rename.c:220
+#, fuzzy, c-format
+msgid "Increase the number of rename_pairs (MAX_RENAME) in s_rename.c\n"
 msgstr "Увеличьте количество пар переименования (MAX_RENAME) в s_rename.c\n"
 
-#: gattrib/src/s_sheet_data.c:245
+#: gattrib/src/s_sheet_data.c:242
 #, fuzzy, c-format
 msgid "Starting master comp list creation.\n"
 msgstr "- Приступаем к созданию основного списка компонентов.\n"
 
-#: gattrib/src/s_sheet_data.c:309
+#: gattrib/src/s_sheet_data.c:308
 #, c-format
 msgid "- Starting master comp attrib list creation.\n"
 msgstr "- Приступаем к созданию основного списка атрибутов компонентов.\n"
 
-#: gattrib/src/s_sheet_data.c:424
+#: gattrib/src/s_sheet_data.c:434
 #, fuzzy, c-format
 msgid "- Creating master pin list.\n"
 msgstr "- Приступаем к созданию основного списка выводов.\n"
 
-#: gattrib/src/s_sheet_data.c:464
-#, c-format
-msgid ""
-"In s_sheet_data_add_master_pin_list_items, found component pin with no "
-"pinnumber.\n"
+#: gattrib/src/s_sheet_data.c:484
+#, fuzzy
+msgid "found component pin with no pinnumber."
 msgstr ""
 "s_sheet_data_add_master_pin_list_items: обнаружен вывод компонента без "
 "атрибута pinnumber.\n"
 
-#: gattrib/src/s_sheet_data.c:521
+#: gattrib/src/s_sheet_data.c:545
 #, c-format
 msgid "- Starting master pin attrib list creation.\n"
 msgstr "- Приступаем к созданию основного списка атрибутов выводов.\n"
 
-#: gattrib/src/s_string_list.c:131
-#, c-format
-msgid "In s_string_list_add_item, tried to add to a NULL list.\n"
+#: gattrib/src/s_string_list.c:142
+#, fuzzy
+msgid "attempted to add to a NULL list.\n"
 msgstr ""
 "s_string_list_add_item: попытка добавления к списку со значением NULL.\n"
 
-#: gattrib/src/s_string_list.c:196
-#, c-format
-msgid "In s_string_list_delete_item, tried to remove item from empty list\n"
+#: gattrib/src/s_string_list.c:205
+#, fuzzy
+msgid "attempted to remove item from an empty list\n"
 msgstr ""
 "s_string_list_delete_item: попытка удаления элемента из пустого списка\n"
 
-#: gattrib/src/s_string_list.c:272
-#, c-format
-msgid "In s_string_list_delete_item, couldn't delete item %s\n"
-msgstr "s_string_list_delete_item: не удалось удалить элемент %s\n"
+#: gattrib/src/s_string_list.c:283
+msgid "could not delete item"
+msgstr ""
 
-#: gattrib/src/s_table.c:352 gattrib/src/s_table.c:415
+#: gattrib/src/s_table.c:355 gattrib/src/s_table.c:416
 #, c-format
 msgid "Component Error looking for row ref [%s]\n"
 msgstr ""
 
-#: gattrib/src/s_table.c:357 gattrib/src/s_table.c:419
+#: gattrib/src/s_table.c:358 gattrib/src/s_table.c:420
 #, c-format
 msgid "Component Error looking for column named [%s]\n"
 msgstr ""
 
-#: gattrib/src/s_table.c:567
+#: gattrib/src/s_table.c:570
 #, c-format
 msgid "- Starting internal pin TABLE creation\n"
 msgstr "- Приступаем к созданию внутренней таблицы выводов\n"
 
-#: gattrib/src/s_table.c:630
+#: gattrib/src/s_table.c:633
 #, c-format
 msgid "Pin Error looking for row ref [%s]\n"
 msgstr ""
 
-#: gattrib/src/s_table.c:634
+#: gattrib/src/s_table.c:637
 #, c-format
 msgid "Pin Error looking for column named [%s]\n"
 msgstr ""
 
-#: gattrib/src/s_toplevel.c:490
-#, fuzzy, c-format
-msgid "%s: did not find the refdes in the master list!\n"
+#: gattrib/src/s_toplevel.c:487
+#, fuzzy
+msgid "did not find the refdes in the master list\n"
 msgstr ""
 "s_toplevel_get_pin_attribs_in_sheet: не удалось найти нужную строку "
 "«refdes»:«pinnumber» в основном списке!\n"
 
-#: gattrib/src/s_toplevel.c:526 gattrib/src/s_toplevel.c:890
-#, fuzzy, c-format
-msgid "%s: count != i!  Exiting . . . .\n"
+#: gattrib/src/s_toplevel.c:523 gattrib/src/s_toplevel.c:882
+#, fuzzy
+msgid "count != i! Exiting ..."
 msgstr "s_toplevel_get_pin_attribs_in_sheet: count != i!  Выход . . .\n"
 
-#: gattrib/src/s_toplevel.c:850
-#, fuzzy, c-format
-msgid "%s: either refdes or pinnumber of object missing!\n"
+#: gattrib/src/s_toplevel.c:842
+#, fuzzy
+msgid "object missing either refdes or pinnumber"
 msgstr ""
 "s_toplevel_get_pin_attribs_in_sheet: отсутствует атрибут «refdes» или "
 "«pinnumber» у объекта!\n"
+
+#: gattrib/src/s_toplevel.c:851
+#, fuzzy
+msgid "didn't find the refdes:pin "
+msgstr ""
+"s_toplevel_get_pin_attribs_in_sheet: не удалось найти нужную строку "
+"«refdes»:«pinnumber» в основном списке!\n"
 
 #: gattrib/src/x_dialog.c:111
 msgid "Add new attribute"
@@ -404,12 +403,12 @@ msgstr ""
 msgid "Find next"
 msgstr ""
 
-#: gattrib/src/x_fileselect.c:112
+#: gattrib/src/x_fileselect.c:113
 #, c-format
 msgid "Loading file [%s]\n"
 msgstr "Загрузка файла «%s»\n"
 
-#: gattrib/src/x_fileselect.c:118
+#: gattrib/src/x_fileselect.c:119
 #, fuzzy, c-format
 msgid "Could not load schematic [%s]\n"
 msgstr "Не удалось загрузить схему «%s»\n"
@@ -423,7 +422,7 @@ msgstr "Добавление нового атрибута"
 msgid "Designator"
 msgstr ""
 
-#: gattrib/src/x_menus.c:596
+#: gattrib/src/x_menus.c:645
 #, c-format
 msgid ""
 "Error loading %s:\n"
@@ -432,215 +431,19 @@ msgstr ""
 "Ошибка загрузки %s:\n"
 "%s\n"
 
-#: gattrib/src/x_window.c:168
+#: gattrib/src/x_window.c:176
 msgid "Saving main window geometry and settings.\n"
 msgstr ""
 
-#: gattrib/src/x_window.c:205
+#: gattrib/src/x_window.c:213
 msgid "Retrieving main Window geometry and settings.\n"
 msgstr ""
 
-#~ msgid "Schematics"
-#~ msgstr "Схемы"
-
-#~ msgid "Symbols"
-#~ msgstr "Символы"
-
-#~ msgid "Schematics and symbols"
-#~ msgstr "Схемы и символы"
-
-#~ msgid "All files"
-#~ msgstr "Все файлы"
-
-#~ msgid "Save as..."
-#~ msgstr "Сохранить как..."
-
-#~ msgid "Open..."
-#~ msgstr "Открыть..."
-
-#~ msgid ""
-#~ "In s_object_replace_attrib_in_object, we have failed to find the attrib "
-#~ "%s on the component.  Exiting . . .\n"
+#, fuzzy
+#~ msgid "%s, failed to find the attribute %s on the component. Exiting...\n"
 #~ msgstr ""
-#~ "s_object_replace_attrib_in_object: не удалось найти атрибут «%s» для "
+#~ "s_object_remove_attrib_in_object: не удалось найти атрибут «%s» для "
 #~ "компонента. Выход . . .\n"
 
-#~ msgid ""
-#~ "In s_toplevel_get_component_attribs_in_sheet, we didn't find the refdes "
-#~ "in the master list!\n"
-#~ msgstr ""
-#~ "s_toplevel_get_component_attribs_in_sheet: не найдено значение «refdes» в "
-#~ "основном списке!\n"
-
-#~ msgid ""
-#~ "In s_toplevel_get_component_attribs_in_sheet, count != i!  "
-#~ "Exiting . . . .\n"
-#~ msgstr ""
-#~ "s_toplevel_get_component_attribs_in_sheet: count != i!  Выход . . .\n"
-
-#~ msgid ""
-#~ "\n"
-#~ "Gattrib:  The gEDA project's attribute editor.\n"
-#~ "Presents schematic attributes in easy-to-edit spreadsheet format.\n"
-#~ "\n"
-#~ "Usage: %s [OPTIONS] filename1 ... filenameN\n"
-#~ "  -q, --quiet            Quiet mode\n"
-#~ "  -v, --verbose          Verbose mode on\n"
-#~ "  -h, --help             This help menu\n"
-#~ "\n"
-#~ "  FAQ:\n"
-#~ "  *  What do the colors of the cell text mean?\n"
-#~ "     The cell colors indicate the visibility of the attribute.\n"
-#~ "     Black = Visible attribute, value displayed only.\n"
-#~ "     Grey  = Invisible attribute.\n"
-#~ "     Red   = Visible attribute, name displayed only.\n"
-#~ "     Blue  = Visible attribute, both name and value displayed.\n"
-#~ "\n"
-#~ "  *  What does the period (\".\") at the end of some component refdeses "
-#~ "mean?\n"
-#~ "     The period is placed after the refdeses of slotted components.\n"
-#~ "     If slots are present on the component, then the different slots "
-#~ "appear\n"
-#~ "     in different rows with the slot number after the period.  Example:  "
-#~ "C101.2.\n"
-#~ "\n"
-#~ "Copyright (C) 2003 -- 2006 Stuart D. Brorson.  E-mail: sdb (AT) cloud9 "
-#~ "(DOT) net.\n"
-#~ "\n"
-#~ msgstr ""
-#~ "\n"
-#~ "Gattrib:  редактор атрибутов проекта gEDA.\n"
-#~ "Представляет атрибуты схемы в удобном для редактирования формате "
-#~ "электронной таблицы.\n"
-#~ "\n"
-#~ "Использование: %s [КЛЮЧИ] имя_файла1 ... имя_файлаN\n"
-#~ "  -q, --quiet            Без вывода информации\n"
-#~ "  -v, --verbose          Подробный вывод\n"
-#~ "  -h, --help             Данная справка\n"
-#~ "\n"
-#~ "  FAQ:\n"
-#~ "  *  Что означает цвет текста в ячейках?\n"
-#~ "     Цвет текста отражает видимость атрибута.\n"
-#~ "     Чёрный  = видимый атрибут, отображается только значение.\n"
-#~ "     Серый   = Невидимый атрибут.\n"
-#~ "     Красный = Видимый атрибут, отображается только имя.\n"
-#~ "     Синий   = Видимый атрибут, отображается и имя, и значение.\n"
-#~ "\n"
-#~ "  *  Что означает точка («.») в конце позиционных обозначений некоторых "
-#~ "компонентов?\n"
-#~ "     Точка помещается после позиционных обозначений многосекционных "
-#~ "компонентов.\n"
-#~ "     Если компонент содержит секции, то различные секции отображаются\n"
-#~ "     в различных строках с номером секции после точки. Пример:  C101.2.\n"
-#~ "\n"
-#~ "Copyright (C) 2003 -- 2006 Stuart D. Brorson.  E-mail: sdb (AT) cloud9 "
-#~ "(DOT) net.\n"
-#~ "\n"
-
-#~ msgid ""
-#~ "gEDA/gattrib version %s%s.%s\n"
-#~ "gEDA/gattrib comes with ABSOLUTELY NO WARRANTY; see COPYING for more "
-#~ "details.\n"
-#~ "This is free software, and you are welcome to redistribute it under "
-#~ "certain\n"
-#~ "conditions; please see the COPYING file for more details.\n"
-#~ "\n"
-#~ msgstr ""
-#~ "gEDA/gattrib version версии %s%s.%s\n"
-#~ "gEDA/gattrib поставляется БЕЗ КАКИХ БЫ ТО НИ БЫЛО ГАРАНТИЙ; подробности "
-#~ "см. в файле COPYING.\n"
-#~ "Это свободное программное обеспечение, и его можно распространять при "
-#~ "определённых\n"
-#~ "\n"
-
-#~ msgid "Entry type must be GtkEntry subclass, using default"
-#~ msgstr ""
-#~ "Тип записи должен быть подклассом GtkEntry, используется значение по "
-#~ "умолчанию"
-
-#~ msgid "Widget must be a GtkSheet child"
-#~ msgstr "Виджет должен быть дочерним для GtkSheet"
-
-#~ msgid "WARNING: Found uref=%s, uref= is deprecated, please use refdes=\n"
-#~ msgstr ""
-#~ "ВНИМАНИЕ: Обнаружен не рекомендуемый к использованию атрибут «uref=%s», "
-#~ "используйте вместо него «refdes».\n"
-
-#~ msgid ""
-#~ "In s_table_create_attrib_pair, we didn't find the row name in the row "
-#~ "list!\n"
-#~ msgstr ""
-#~ "s_table_create_attrib_pair: не удалось найти имя строки в списке строк!\n"
-
-#~ msgid "- Starting internal component TABLE creation\n"
-#~ msgstr "- Приступаем к созданию внутренней таблицы компонентов\n"
-
-#~ msgid ""
-#~ "In s_table_add_toplevel_comp_items_to_comp_table, we didn't find either "
-#~ "row or col in the lists!\n"
-#~ msgstr ""
-#~ "s_table_add_toplevel_comp_items_to_comp_table: не удалось найти либо "
-#~ "строку, либо столбец в соответствующем списке!\n"
-
-#~ msgid ""
-#~ "In s_table_add_toplevel_pin_items_to_pin_table, we didn't find either row "
-#~ "or col in the lists!\n"
-#~ msgstr ""
-#~ "s_table_add_toplevel_pin_items_to_pin_table: не удалось найти либо "
-#~ "строку, либо столбец в соответствующем списке!\n"
-
-#~ msgid "In s_toplevel_delete_attrib_col, can't get attrib name\n"
-#~ msgstr "s_toplevel_delete_attrib_col: не удалось получить имя атрибута\n"
-
-#~ msgid "Saved As [%s]\n"
-#~ msgstr "Файл сохранён как «%s»\n"
-
-#~ msgid "Could NOT save [%s]\n"
-#~ msgstr "Не удалось сохранить «%s»\n"
-
-#~ msgid "Components"
-#~ msgstr "Компоненты"
-
-#~ msgid "Nets"
-#~ msgstr "Соединения"
-
-#~ msgid "Pins"
-#~ msgstr "Выводы"
-
-#~ msgid ""
-#~ "No components found in design.  Please check your schematic and try "
-#~ "again!\n"
-#~ msgstr ""
-#~ "Не обнаружено компонентов в проекте. Проверьте свою схему и попробуйте "
-#~ "снова!\n"
-
-#~ msgid "TBD"
-#~ msgstr "не реализовано"
-
-#~ msgid "couldn't allocate color"
-#~ msgstr "Не удалось выделить цвет"
-
-#~ msgid "gattrib -- gEDA attribute editor"
-#~ msgstr "gattrib — редактор атрибутов gEDA"
-
-#~ msgid ""
-#~ "No components found in entire design!\n"
-#~ "Do you have refdeses on your components?"
-#~ msgstr ""
-#~ "Во всём проекте не обнаружено ни одного компонента!\n"
-#~ "Вы не забыли добавить для своих компонентов позиционные обозначения?"
-
-#~ msgid ""
-#~ "No configurable component attributes found in entire design!\n"
-#~ "Please attach at least some attributes before running gattrib."
-#~ msgstr ""
-#~ "Во всём проекте не обнаружено ни одного атрибута компонента, который "
-#~ "можно отредактировать!\n"
-#~ "Прикрепите хотя бы несколько атрибутов, прежде чем запускать gattrib."
-
-#~ msgid ""
-#~ "No pins found on any components!\n"
-#~ "Please check your design."
-#~ msgstr ""
-#~ "Не найдено выводов ни у одного компонента!\n"
-#~ "Проверьте свой проект."
+#~ msgid "In s_string_list_delete_item, couldn't delete item %s\n"
+#~ msgstr "s_string_list_delete_item: не удалось удалить элемент %s\n"

@@ -1,24 +1,17 @@
 v 20110115 2
-B 300 0 800 800 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 275 3650 5 10 0 0 0 0 1
-device=AD7416
-T 1000 950 8 10 1 1 0 0 1
-refdes=U?
 T 275 2250 5 10 0 0 0 0 1
+device=AD7416
+T 1000 850 8 10 1 1 0 0 1
+refdes=U?
+T 275 1050 5 10 0 0 0 0 1
 footprint=DIP8
-T 300 950 9 10 1 0 0 0 1
-AD7416
+T 300 850 9 10 1 1 0 0 1
+value=AD7416
 T 275 1650 5 10 0 0 0 0 1
-author=Anton Dubniak <twister@tfsoft.org.ua>
-T 275 2050 5 10 0 0 0 0 1
 numslots=0
-T 275 1450 5 10 0 0 0 0 1
-dist-license=GPL
-T 275 1250 5 10 0 0 0 0 1
-use-license=unlimited
-T 275 3450 5 10 0 0 0 0 1
+T 275 2050 5 10 0 0 0 0 1
 description=10-Bit Digital Temperature Sensor
-T 275 3250 5 10 0 0 0 0 1
+T 275 1850 5 10 0 0 0 0 1
 documentation=http://www.analog.com/static/imported-files/data_sheets/AD7416_7417_7418.pdf
 B 725 275 50 350 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 L 775 575 800 575 3 0 0 0 -1 -1
@@ -93,10 +86,17 @@ pinlabel=A0
 T 900 775 5 8 0 1 0 8 1
 pintype=in
 }
-T 275 2850 5 10 0 0 0 0 1
-net=GND:4
-T 275 2650 5 10 0 0 0 0 1
-net=VCC:8
+B 300 0 800 800 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 L 725 275 775 275 3 0 0 0 -1 -1
 V 750 250 50 3 0 0 0 -1 -1 1 -1 -1 -1 -1 -1
 L 750 475 750 275 3 40 0 0 -1 -1
+T 275 1450 5 10 0 0 0 0 1
+net=GND:4
+T 275 1250 5 10 0 0 0 0 1
+net=VCC:8
+T 275 2850 5 10 0 0 0 0 1
+author=Anton Dubniak <twister@tfsoft.org.ua>
+T 275 2650 5 10 0 0 0 0 1
+dist-license=GPLv2
+T 275 2450 5 10 0 0 0 0 1
+use-license=unlimited

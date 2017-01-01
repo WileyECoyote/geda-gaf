@@ -648,8 +648,8 @@ static void search_replace_combo_responder(GtkWidget *widgetCombo, void *data)
   case ReplaceText:
     /* We are not going to enable Replace buttons unless there is text in the
      * Search Combo, the pointer in text is to the text in the Replace Combo */
-    if ((strlen(GetGedaComboActiveText (SearchText)) > 0) &&
-        (strlen(GetGedaComboActiveText (ReplaceText)) > 0))
+    if ((geda_combo_box_text_widget_get_text_length (SearchTextCombo) > 0) &&
+        (geda_combo_box_text_widget_get_text_length (ReplaceTextCombo) > 0))
     {
        gtk_widget_set_sensitive (ReplaceButt, TRUE);
        gtk_widget_set_sensitive (ReplaceAllButt, TRUE);

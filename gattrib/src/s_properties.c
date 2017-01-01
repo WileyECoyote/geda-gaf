@@ -133,6 +133,7 @@ void s_properties_set_cell_show_name(int row, int col, int show_name_value)
     sheet_head->CHANGED = 1;  /* cell has been updated.  */
   }
 }
+
 /*! \brief Returns the current visibility setting of a cell */
 bool s_properties_get_visibility(int row, int col) {
 
@@ -142,6 +143,7 @@ bool s_properties_get_visibility(int row, int col) {
 
   return local_table[col][row].visibility;
 }
+
 /*! \brief Returns the current Show Name value of a cell */
 int s_properties_get_show_name_value(int row, int col) {
 
@@ -151,6 +153,7 @@ int s_properties_get_show_name_value(int row, int col) {
 
   return local_table[col][row].show_name_value;
 }
+
 /*! \brief Returns heredity of the current cell */
 int s_properties_get_heritence(int row, int col) {
 
@@ -160,6 +163,7 @@ int s_properties_get_heritence(int row, int col) {
 
   return local_table[col][row].is_inherited;
 }
+
 /*! \brief Set the Foreground color of the cell
   * \par Function Description
   *      This function retrieves the color index based on the current
@@ -187,6 +191,7 @@ void s_properties_set_cell_fgcolor(GtkSheet *sheet, int row, int col) {
  * handlers in this modules.
  */
 static void s_properties_set_range_visibility(int visibility) {
+
   int i, j;
   int row_start, row_end, col_start, col_end;
   GtkSheet *sheet;
@@ -210,10 +215,10 @@ static void s_properties_set_range_visibility(int visibility) {
     col_end = sheet->range.coli;
     for (i=row_start; i<=row_end; i++) {
       for (j=col_start; j<=col_end; j++) {
-	/* first set cell in SHEET_DATA to invisible */
+        /* first set cell in SHEET_DATA to invisible */
         s_properties_set_cell_visibility(i, j, visibility);
-	/* Now set cell in gtksheet to desired color */
-	/* Color names are defined in gattrib/include/globals.h */
+        /* Now set cell in gtksheet to desired color */
+        /* Color names are defined in gattrib/include/globals.h */
         s_properties_set_cell_fgcolor(sheet, i, j);
       }
     }

@@ -83,22 +83,22 @@ void g_rc_parse_gtkrc()
   /* System */
   filename = g_build_filename (geda_sys_config_path (), "gschem-gtkrc", NULL);
   if (access(filename, R_OK) == 0) {
-    v_log_message(_("Processing %s\n"), filename);
+    v_log_message("%s %s\n", _("Processing"), filename);
     gtk_rc_parse (filename);
   }
   else {
-    v_log_message(_("Skipping %s, %s\n"), filename, strerror(errno));
+    v_log_message("%s %s, %s\n", _("Skipping"), filename, strerror(errno));
   }
   GEDA_FREE (filename);
 
   /* User */
   filename = g_build_filename (geda_user_config_path (), "gschem-gtkrc", NULL);
   if (access(filename, R_OK) == 0) {
-    v_log_message(_("Processing %s\n"), filename);
+    v_log_message("%s %s\n", _("Processing"), filename);
     gtk_rc_parse (filename);
   }
   else {
-    v_log_message(_("Skipping %s, %s\n"), filename, strerror(errno));
+    v_log_message("%s %s, %s\n", _("Skipping"), filename, strerror(errno));
   }
   GEDA_FREE (filename);
 }
@@ -118,19 +118,29 @@ int check_and_convert_scm_integer( SCM val2chk, int min_value, int max_value,
 
   int val;
 
+  const char *rc_entry = _("entry in rc file");
+
+  int show_bad_value(const char *msg, int ret_val) {
+
+    const char *bv  = _("Bad Value");
+    const char *chk = _("check");
+    const char *scw = _("or Scheme, continuing with");
+
+    fprintf (stderr, "%s [%d], %s %s %s\n", bv, val, chk, keyword, rc_entry);
+    fprintf (stderr, "%s %s =[%d]\n", scw, msg, ret_val);
+    return ret_val;
+  }
+
   int above() {
-    fprintf (stderr, _("Bad Value [%d], check %s entry in rc file\n"), val, keyword);
-    fprintf (stderr, _("or Scheme, continuing with maximum value=[%d]\n"), max_value);
-    return max_value; /* maximum value */
+    return show_bad_value(_("maximum value"), max_value);     /* maximum value */
   }
+
   int below() {
-    fprintf (stderr, _("Bad Value [%d], check %s entry in rc file\n"), val, keyword);
-    fprintf (stderr, _("or Scheme, continuing with minimum value=[%d]\n"), min_value);
-    return min_value;   /* minimum value */
+    return show_bad_value(_("minimum value"), min_value);     /* minimum value */
   }
+
   int the_default() {
-    fprintf (stderr, _("or Scheme, continuing with default value=[%d]\n"), default_value);
-    return default_value; /* default value*/
+    return show_bad_value(_("default value"), default_value); /* default value */
   }
 
   /* -- Parent function begins here -- */
@@ -144,7 +154,7 @@ int check_and_convert_scm_integer( SCM val2chk, int min_value, int max_value,
     }
   }
   else {
-    fprintf (stderr, _("Invalid type assignment, check %s entry in rc file\n"), keyword);
+    fprintf (stderr, "%s %s %s\n", _("Invalid type assignment, check"), keyword, rc_entry);
     the_default();
   }
   return val;
@@ -185,17 +195,18 @@ SCM g_rc_gschem_version(SCM scm_version)
 
     scm_dynwind_free (sourcefile);
 
-    fprintf(stderr,
-          _("You are running gEDA/gaf version [%s%s.%s],\n"),
-            PREPEND_VERSION_STRING, PACKAGE_DOTTED_VERSION,
-            PACKAGE_DATE_VERSION);
+    const char *running = _("This is gEDA/gschem version");
+    const char *have    = _("but you have a version");
+    const char *please  = _("Please be sure that you have the latest rc file");
 
-    fprintf(stderr,
-          _("but you have a version [%s] gschemrc file:\n[%s]\n"),
+    fprintf(stderr, "%s [%s%s.%s],\n", running, PREPEND_VERSION_STRING,
+                                                PACKAGE_DOTTED_VERSION,
+                                                PACKAGE_DATE_VERSION);
+
+    fprintf(stderr, "%s [%s] gschemrc %s:\n\"%s\"\n", have, _("file"),
             version, sourcefile);
 
-    fprintf(stderr,
-          _("Please be sure that you have the latest rc file.\n"));
+    fprintf(stderr, "%s.\n", please);
 
     ret = SCM_BOOL_F;
   }
@@ -210,9 +221,7 @@ SCM g_rc_gschem_version(SCM scm_version)
 
 /*! \brief This function processes the display-color-map RC entry.
  *  \par Function Description
- *       C function to dynamically convert lisp variable while
- *       processing configuration data for the display-color-map RC entry.
- *
+ *   This keyword is handled by libgedacolor and is defunct in gschem.
  */
 SCM g_rc_display_color_map (SCM scm_map)
 {
@@ -717,7 +726,7 @@ SCM g_rc_zoom_gain(SCM gain)
   }
   else {
     fprintf (stderr, _("Invalid type assignment, check zoom-gain entry in rc file\n"));
-    fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_ZOOM_GAIN);
+    fprintf (stderr, "%s=[%d]\n", _("Continuing with default value"), DEFAULT_ZOOM_GAIN);
     val = DEFAULT_ZOOM_GAIN; /* assign default */
   }
 
@@ -1262,7 +1271,7 @@ SCM g_rc_snap_size(SCM size)
   }
   else {
     fprintf (stderr, _("Invalid type assignment, check snap-size entry in rc file\n"));
-    fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_SNAP_SIZE);
+    fprintf (stderr, "%s=[%d]\n",_("Continuing with default value"), DEFAULT_SNAP_SIZE);
     val = DEFAULT_SNAP_SIZE; /* assign default */
   }
 
@@ -1414,7 +1423,7 @@ SCM g_rc_bus_ripper_size(SCM size)
   }
   else {
     fprintf (stderr, _("Invalid type assignment, check bus-ripper-size entry in rc file\n"));
-    fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_RIPPER_SIZE);
+    fprintf (stderr, "%s=[%d]\n", _("Continuing with default value"), DEFAULT_RIPPER_SIZE);
     val = DEFAULT_RIPPER_SIZE; /* assign default */
   }
 
@@ -1455,7 +1464,7 @@ SCM g_rc_bus_ripper_symname(SCM scmsymname)
               SCM_ARG1, "bus-ripper-symname");
 
   if (default_bus_ripper_symname) {
-    geda_free (g_rc_bus_ripper_symname);
+    geda_free (default_bus_ripper_symname);
   }
 
   temp = scm_to_utf8_string (scmsymname);
@@ -2012,7 +2021,7 @@ SCM g_rc_scrollpan_steps(SCM steps)
   }
   else {
     fprintf (stderr, _("Invalid type assignment, check scrollpan-steps entry in rc file\n"));
-    fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_SCROLLPAN_STEPS);
+    fprintf (stderr, "%s=[%d]\n",_("Continuing with default value"), DEFAULT_SCROLLPAN_STEPS);
     val = DEFAULT_SCROLLPAN_STEPS; /* default value*/
   }
 
@@ -2041,24 +2050,25 @@ SCM g_rc_text_case(SCM mode)
             default_text_case, mode_table);
 }
 
-/*! \brief This function processes the text-display_zoomfactor RC entry.
+/*! \brief This function processes the text-display_zoom factor RC entry.
  *  \par Function Description
- *       C function to dynamically convert lisp variable while
- *       processing configuration data for the text_display_zoomfactor RC entry.
+ *       C function to dynamically convert lisp variable while processing
+ *       configuration data for the text_display_zoom factor RC entry.
  */
 SCM g_rc_text_display_zoomfactor(SCM zoomfactor)
 {
   int val;
 
-  SCM_ASSERT (scm_is_integer (zoomfactor), zoomfactor,
-              SCM_ARG1, "test-display-zoom-factor");
+  const char *keyword = "test-display-zoom-factor";
+
+  SCM_ASSERT (scm_is_integer (zoomfactor), zoomfactor, SCM_ARG1, keyword);
 
   val = scm_to_int (zoomfactor);
   if (val < MIN_TEXT_ZOOM) {
-    fprintf(stderr,
-            _("Invalid zoomfactor [%d] passed to %s\n"),
-            val,
-            "text-display-zoom-factor");
+
+    const char *inv_msg = _("Invalid zoom factor");
+
+    fprintf(stderr,"%s [%d] %s %s\n", inv_msg, val, _("check"), keyword);
     val = DEFAULT_TEXT_ZOOM; /* default */
   }
 

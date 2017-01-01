@@ -6,9 +6,9 @@ symversion=0.3
 T 1500 600 9 10 0 0 0 0 1
 numslots=0
 T 100 1200 5 10 0 0 0 0 1
-dist-license=GPL3
+dist-license=GPLv2
 T 100 1000 5 10 0 0 0 0 1
-use-license=free, no restrictions
+use-license=unlimited
 P 0 100 200 100 1 0 0
 {
 T 350 150 5 6 0 1 0 0 1

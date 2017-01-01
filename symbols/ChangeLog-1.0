@@ -9,6 +9,53 @@
     * analogdevices/ADuC812-1.sym: Add symbol; 8-bit CMOS microcontroller with
       A/D converter.
 
+2016-12-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * arduino/XBeePRO.sym: Resequence pin and pin attributes.
+
+    * atmel/ATMega16L-1.sym: Remove "L_DIP" from the device value.
+
+    * atmel/ATMega48_88_168-1.sym: Resequence pin attributes, add description
+      and documentation attributes. Use underscope in device. Using forward
+      slashes in a device number should probably disqualify the device.
+
+    * atmel/ATMega48_88_168-DIP-1.sym: Rename file with upper case DIP and
+      same as ATMega48_88_168-1.sym.
+
+    * atmel/ATMega644-1.sym: Remove "PA" device suffix, reposition attributes.
+
+    * atmel/ATMega644-2.sym: Remove "PA" device suffix, reposition attributes.
+
+    * atmel/ATMegax8*.sym: Revise symbol fragments; replace lines with boxes,
+      add description and documentation attributes.
+
+    * cirrus/CS5396-1.sym: Remove "KS" device suffix.
+
+2016-12-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Update many license tags to dist-license=GPLv2, use-license=unlimited.
+
+    * ti/INA200-1.sym: Update device and value INA202->INA200, revise description
+      to indicate gain of op-amp stage.
+
+    * ti/INA201-1.sym: Update device and value INA202->INA201, revise description
+      to indicate gain of op-amp stage.
+
+    * io/subsheet-1.sym: Change commented lines to comment attributes.
+
+    * io/subsheet-2.sym: Change commented lines to comment attributes.
+
+    * serial/TL16C554AFN-1.sym: Fix incorrect pintype attributes and improper
+      over-bar tags. Added documentation attribute.
+
+2016-12-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/switchreg/LM2621-1.sym: Add symbol; Low Voltage Boost Regulator.
+
+2016-11-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/switchreg/LM5118-1.sym: Add symbol; Current Mode Buck-Boost Controller.
+
 2016-11-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * lineartech/switchreg/LTC3531-2.sym: Add LTC3531 symbol with alternate

@@ -787,7 +787,7 @@ documentation=https://www.exar.com/product/interface/uarts/8-bit-vlio-uarts/st16
 T 950 15750 5 10 0 0 0 0 1
 author=AutoTron
 T 950 15550 8 10 0 0 0 0 1
-dist-license=GPL2
+dist-license=GPLv2
 T 950 15350 8 10 0 0 0 0 1
 use-license=unlimited
 T 3100 8200 5 8 0 0 0 3 1

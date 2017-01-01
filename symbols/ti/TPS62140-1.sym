@@ -4,7 +4,7 @@ author=AutoTron
 T 300 4500 5 10 0 0 0 0 1
 device=TPS62140
 T 300 4900 5 10 0 0 0 0 1
-dist-license=GPLv3
+dist-license=GPLv2
 T 300 4700 5 10 0 0 0 0 1
 use-license=unlimited
 T 2500 3450 8 10 1 1 0 6 1

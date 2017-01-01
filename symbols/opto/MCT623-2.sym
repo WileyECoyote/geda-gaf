@@ -81,7 +81,7 @@ documentation=https://www.fairchildsemi.com/products/optoelectronics/phototransi
 T 800 2700 5 10 0 0 0 0 1
 author=AutoTron
 T 800 2500 5 10 0 0 0 0 1
-dist-license=GPL2
+dist-license=GPLv2
 T 800 2300 5 10 0 0 0 0 1
 use-license=unlimited
 T 800 500 9 10 1 1 0 0 1

@@ -71,6 +71,6 @@ slotdef=3:10,9,8
 T 1700 500 5 10 0 0 0 0 1
 slotdef=4:12,13,14
 T 200 2500 5 10 0 0 0 0 1
-dist-license=GPLv3
+dist-license=GPLv2
 T 200 2300 5 10 0 0 0 0 1
 use-license=unlimited

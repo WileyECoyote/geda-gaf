@@ -662,7 +662,8 @@ geda_toplevel_get_page_count (GedaToplevel *toplevel)
  *
  *  \param [in] toplevel This toplevel
  */
-Page *geda_toplevel_get_page_down (GedaToplevel *toplevel)
+Page*
+geda_toplevel_get_page_down (GedaToplevel *toplevel)
 {
   GList *iter;
   GList *list;
@@ -713,7 +714,8 @@ Page *geda_toplevel_get_page_down (GedaToplevel *toplevel)
  *
  * \param [in] toplevel This toplevel
  */
-Page *geda_toplevel_get_page_up (GedaToplevel *toplevel)
+Page*
+geda_toplevel_get_page_up (GedaToplevel *toplevel)
 {
   GList *iter;
   GList *list;
@@ -753,6 +755,32 @@ Page *geda_toplevel_get_page_up (GedaToplevel *toplevel)
   }
 
   return page;
+}
+
+/*!
+ * \brief Get if Page is the Current Page in Toplevel
+ * \par Function Description
+ *  Compares PID of \page to the PID of the current page if
+ *  both are valid page objects and returns the result.
+ *
+ * \param [in] toplevel A toplevel object
+ * \param [in] page     The page to be queried
+ *
+ * \returns TRUE if \a page is the current page, otherwise FALSE.
+ */
+bool
+geda_toplevel_is_current_page(GedaToplevel *toplevel, Page *page)
+{
+  g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), FALSE);
+
+  if (GEDA_IS_PAGE(page)) {
+
+    if (toplevel->page_current) {
+      return (toplevel->page_current->pid == page->pid);
+    }
+  }
+
+  return FALSE;
 }
 
 /*!

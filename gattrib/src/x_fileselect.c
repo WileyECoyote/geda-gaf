@@ -101,6 +101,7 @@ bool x_fileselect ( char* filename )
  *  successful otherwaise TRUE.
  *
  *  \param [in] filename name of file to be opened
+ *
  *  \retval FALSE if the file could not be opened, TRUE otherwise
  */
 /* TODO:move gtk_recent_manager_add_item from x_fileselect_open to here */
@@ -109,13 +110,13 @@ bool x_fileselect_load_file (char *filename) {
   const GList *Objects;
 
   if (!quiet_mode) {
-    geda_log (_("Loading file [%s]\n"), filename);
+    geda_log ("%s: \"%s\"\n", _("Loading file"), filename);
   }
 
   geda_struct_page_goto (geda_struct_page_new (pr_current, filename));
 
   if (s_toplevel_read_page(pr_current, filename) == 0) {
-     fprintf(stderr, _("Could not load schematic [%s]\n"), filename);
+     fprintf(stderr,"%s: \"%s\"\n",  _("Could not load schematic"), filename);
      return FALSE;
   }
 
@@ -171,7 +172,7 @@ bool x_fileselect_load_files (GSList *filenames)
  * This function opens a file chooser dialog and waits for the user
  *  to select at least one file to load as toplevel's new pages.
  *
- *  \returns list of files to be opened, or NULL if the user cancelled
+ *  \returns list of files to be opened, or NULL if the user canceled
  *           the dialog
  */
 GSList *x_fileselect_open (void)

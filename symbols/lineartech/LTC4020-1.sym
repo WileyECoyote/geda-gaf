@@ -441,6 +441,6 @@ mfr=Linear Technology
 T 4000 6600 5 10 0 0 0 0 1
 author=AutoTron
 T 4000 6400 5 10 0 0 0 0 1
-dist-license=GPL2
+dist-license=GPLv2
 T 4000 6200 5 10 0 0 0 0 1
 use-license=unlimited

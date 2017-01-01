@@ -76,4 +76,4 @@ symversion=0.1
 T 0 2350 5 10 0 0 0 0 1
 use-license=unlimited
 T 0 2550 5 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2

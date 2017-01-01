@@ -123,7 +123,7 @@ description=Half-Bridge Gate Driver, 100V
 T 400 3000 5 10 0 0 0 0 1
 numslots=0
 T 400 3400 5 10 0 0 0 0 1
-dist-license=GPL2
+dist-license=GPLv2
 T 400 3600 5 10 0 0 0 0 1
 use-license=unlimited
 T 400 2200 8 10 1 1 0 0 1

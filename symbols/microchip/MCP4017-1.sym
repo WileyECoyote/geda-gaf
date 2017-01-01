@@ -97,9 +97,9 @@ symversion=0.2
 T 100 3000 9 8 0 0 0 0 1
 documentation=http://www.microchip.com
 T 100 3400 8 10 0 0 0 0 1
-dist-license=GPL3
+dist-license=GPLv2
 T 100 3600 8 10 0 0 0 0 1
-use-license=GPL3
+use-license=unlimited
 T 100 3800 8 10 0 0 0 0 1
 author=AutoTron
 L 1200 900 1200 1100 3 0 0 0 -1 -1

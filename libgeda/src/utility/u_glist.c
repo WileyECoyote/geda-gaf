@@ -1,8 +1,8 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
  *
- * Copyright (C) 2014 Wiley Edward Hill <wileyhill@gmail.com>
- * Copyright (C) 2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2014-2016 Wiley Edward Hill <wileyhill@gmail.com>
+ * Copyright (C) 2014-2016 gEDA Contributors (see ChangeLog for details)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -62,7 +62,7 @@ GList *geda_utility_glist_clear(GList *list)
  *          -1 if not found or
  *          -2 if either if the argument is NULL
  */
-int geda_utility_glist_find_string(GList *list, char *str)
+int geda_utility_glist_find_string(GList *list, const char *str)
 {
   int index = -2;
 
@@ -131,7 +131,7 @@ void geda_utility_glist_free_full (GList *list, GDestroyNotify free_func)
  * \sa geda_utility_glist_find_string
  */
 bool
-geda_utility_glist_str_inlist(GList *list, char *string)
+geda_utility_glist_str_inlist(GList *list, const char *string)
 {
   bool   answer = FALSE;
   GList *iter;
@@ -158,7 +158,7 @@ geda_utility_glist_str_inlist(GList *list, char *string)
  * \retval TRUE if equivalent string is found in GLIST,
  *              otherwise FALSE.
  */
-bool geda_utility_glist_stri_inlist(GList *list, char *string)
+bool geda_utility_glist_stri_inlist(GList *list, const char *string)
 {
   bool   answer = FALSE;
   GList *iter;
@@ -208,7 +208,7 @@ geda_utility_gslist_clear(GSList *list) {
  * \returns 0 if absent, 1 if present
  */
 int
-geda_utility_gslist_find_string(GSList *list, char *str) {
+geda_utility_gslist_find_string(GSList *list, const char *str) {
 
   if ((list == NULL) || (str == NULL))
     return -2;
@@ -285,7 +285,7 @@ void geda_utility_gslist_free_full (GSList *list, GDestroyNotify free_func)
  *
  * \sa geda_utility_gslist_find_string
  */
-bool geda_utility_gslist_str_inlist(GSList *list, char *string)
+bool geda_utility_gslist_str_inlist(GSList *list, const char *string)
 {
   bool    answer = FALSE;
   GSList *iter;
@@ -312,7 +312,7 @@ bool geda_utility_gslist_str_inlist(GSList *list, char *string)
  * \retval TRUE if equivalent string is found in \a list data,
  *              otherwise FALSE.
  */
-bool geda_utility_gslist_stri_inlist(GSList *list, char *string)
+bool geda_utility_gslist_stri_inlist(GSList *list, const char *string)
 {
   bool    answer = FALSE;
   GSList *iter;

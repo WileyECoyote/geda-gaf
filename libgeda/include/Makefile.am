@@ -18,6 +18,7 @@ libgedainclude_HEADERS = \
 	libgeda/geda_errors.h \
 	libgeda/geda_file.h \
 	libgeda/geda_hierarchy.h \
+	libgeda/geda_keyfile.h \
 	libgeda/geda_line.h \
 	libgeda/geda_list.h \
 	libgeda/geda_math.h \

@@ -195,7 +195,7 @@ description=3-axis digital output MEMS gyroscope (ST)
 T 300 3700 5 10 0 0 0 0 1
 numslots=0
 T 300 4500 5 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 300 4300 5 10 0 0 0 0 1
 use-license=unlimited
 A 825 2400 200 270 270 3 0 0 0 -1 -1

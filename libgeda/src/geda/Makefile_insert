@@ -10,6 +10,7 @@ libgeda_la_SOURCES += \
 			geda/geda_complex.c \
 			geda/geda_config.c \
 			geda/geda_errors.c \
+			geda/geda_keyfile.c \
 			geda/geda_line.c \
 			geda/geda_list.c \
 			geda/geda_net.c \

@@ -63,7 +63,7 @@ Example: Snap all attribute coordinates values in all files in the current
 
     geda-snap-grid.py --verbose -R -m 50
 
-Copyright (C) 2015 by Wiley Edward Hill. Released under GPL Version 3.
+Copyright (C) 2015 by Wiley Edward Hill. Released under GPL Version 2.
 
 """
 

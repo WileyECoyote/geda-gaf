@@ -317,6 +317,26 @@ static void on_recent_selection (GtkRecentChooser *chooser)
   GEDA_FREE(filename);
 }
 
+/* Disconnects the on_recent_selection action handler at exit */
+static void x_menu_disconnect_recent_action(void *recent_action)
+{
+  g_signal_handlers_disconnect_by_func(recent_action,
+                                       on_recent_selection,
+                                       NULL);
+}
+
+/* Disconnects and destroys the recent_chooser at exit */
+static void x_menu_disconnect_recent_submenu(void *recent_chooser)
+{
+  g_signal_handlers_disconnect_by_func(recent_chooser,
+                                       on_recent_selection,
+                                       NULL);
+  g_object_ref(recent_chooser);
+  gtk_widget_unparent(recent_chooser);
+  gtk_widget_destroy(recent_chooser);
+  g_object_unref(recent_chooser);
+}
+
 /*! \brief Set Senitivity of Menu Items.
  *  \par Function Description
  *       This function is called by on_notebook_switch_page when ever a TAB
@@ -433,6 +453,21 @@ GtkRecentChooser *GetRecentMenuChooser(GtkRecentManager *rm )  {
   return (GtkRecentChooser*) rc;
 }
 
+/*! \internal This function is used to destroy the single menu item that was
+ * added under the "/ui/menubar/file/OpenRecent" sub-menu when the defective
+ * gtk_ui_manager created the menu. The widget has a default accelerator and
+ * label associated the item and these will not be destroy by Gtk because
+ * the entire sub-menu is replaced by x_menu_fix_gtk_recent_submenu.
+ */
+static void
+destroy_defective_child(GtkWidget *menu_item, void *nothing)
+{
+  if (GTK_IS_ACTIVATABLE(menu_item)) {
+    gtk_activatable_do_set_related_action (GTK_ACTIVATABLE(menu_item), NULL);
+    gtk_widget_destroy(menu_item);
+  }
+}
+
 /*! \brief Fix the GTK 'Open Recent' Menu Option
  *  \par Function Description
  *  gtk_ui_manager deliberately setups up the Recent Menu, in the presents
@@ -446,7 +481,8 @@ GtkRecentChooser *GetRecentMenuChooser(GtkRecentManager *rm )  {
  */
 void x_menu_fix_gtk_recent_submenu(void) {
 
-  GtkWidget        *menu_files;
+  GtkWidget        *old_submenu;
+  GtkWidget        *recent_chooser;
   GtkWidget        *recent_items;         /* Be the ones GTK errently added */
   GtkRecentFilter  *recent_filter;
   GtkRecentChooser *recent_file_chooser;
@@ -459,21 +495,31 @@ void x_menu_fix_gtk_recent_submenu(void) {
      return;
   }
 
-  menu_files = gtk_recent_chooser_menu_new_for_manager (recent_manager);
+  old_submenu = gtk_menu_item_get_submenu ((GtkMenuItem*)recent_items);
+
+  gtk_container_foreach (GTK_CONTAINER(old_submenu),
+                         (GtkCallback)destroy_defective_child,
+                         NULL);
+
+  g_object_ref_sink(old_submenu);
+
+  recent_chooser = gtk_recent_chooser_menu_new_for_manager (recent_manager);
 
   recent_filter = x_menu_geda_filter ();
-  recent_file_chooser = (GtkRecentChooser*)menu_files;
+  recent_file_chooser = (GtkRecentChooser*)recent_chooser;
   gtk_recent_chooser_add_filter (recent_file_chooser, recent_filter);
   gtk_recent_chooser_set_show_tips (recent_file_chooser, TRUE);
   gtk_recent_chooser_set_sort_type (recent_file_chooser, GTK_RECENT_SORT_MRU);
   gtk_recent_chooser_set_limit(recent_file_chooser, MAX_RECENT_FILES);
   gtk_recent_chooser_set_local_only(recent_file_chooser, FALSE);
-  gtk_recent_chooser_menu_set_show_numbers(GTK_RECENT_CHOOSER_MENU(menu_files), TRUE);
+  gtk_recent_chooser_menu_set_show_numbers(GTK_RECENT_CHOOSER_MENU(recent_chooser), TRUE);
 
-  gtk_menu_item_set_submenu (GTK_MENU_ITEM (recent_items), menu_files);
+  gtk_menu_item_set_submenu (GTK_MENU_ITEM (recent_items), recent_chooser);
 
-  GEDA_SIGNAL_CONNECT (menu_files, "selection-done",
-                       G_CALLBACK (on_recent_selection), main_window);
+  GEDA_SIGNAL_CONNECT (recent_chooser, "selection-done", on_recent_selection, NULL);
+
+  geda_atexit(x_menu_disconnect_recent_submenu, recent_chooser);
+
   return;
 }
 
@@ -511,9 +557,9 @@ GtkActionGroup *x_menu_create_recent_action_group(void) {
  */
 
   gtk_action_group_add_action (recent_action_group, GTK_ACTION (recent_action));
-  GEDA_SIGNAL_CONNECT (recent_action, "item-activated",
-                       G_CALLBACK (on_recent_selection),
-                       NULL);
+  GEDA_SIGNAL_CONNECT (recent_action, "item-activated", on_recent_selection, NULL);
+
+  geda_atexit(x_menu_disconnect_recent_action, recent_action);
 
   return recent_action_group;
 }
@@ -546,6 +592,8 @@ static void x_menu_get_collections (GtkUIManager *ui_man) {
   ComponentMenuItems = g_slist_append(ComponentMenuItems, item);
   item = gtk_ui_manager_get_widget(ui_man, "/menubar/visibility/visibility-name-value");
   ComponentMenuItems = g_slist_append(ComponentMenuItems, item);
+
+  geda_atexit((geda_atexit_func)g_slist_free, ComponentMenuItems);
 }
 
 /*! \brief Create and attach the menu bar
@@ -568,7 +616,7 @@ static void x_menu_get_collections (GtkUIManager *ui_man) {
  * 11/05/12 WEH Revised to include toggle_actions group
  * 11/10/12 WEH Revised to include recent_group
  */
-GtkWidget* x_menu_create_menu(GtkWindow *main_window)
+GtkWidget *x_menu_create_menu(GtkWindow *main_window)
 {
   char           *menu_file;
   GError         *error = NULL;
@@ -582,6 +630,7 @@ GtkWidget* x_menu_create_menu(GtkWindow *main_window)
   gtk_action_group_add_toggle_actions (action_group, toggle_entries, G_N_ELEMENTS (toggle_entries), main_window);
 
   recent_group = x_menu_create_recent_action_group();
+
   /* Create the UI manager object */
   menu_manager  = gtk_ui_manager_new();
 
@@ -611,4 +660,65 @@ GtkWidget* x_menu_create_menu(GtkWindow *main_window)
     fprintf(stderr, "ERROR: GTK failed to return Menu objects\n");
   }
   return menubar; /* WEH: Does this really get saved? */
+}
+
+void x_menu_release_all(void)
+{
+  GtkAccelGroup *accel_group;
+  GList         *groups;
+
+  accel_group = gtk_ui_manager_get_accel_group(menu_manager);
+
+  gtk_accel_group_disconnect (accel_group, NULL);
+
+  gtk_window_remove_accel_group ((GtkWindow*)main_window, accel_group);
+
+  groups = gtk_ui_manager_get_action_groups (menu_manager);
+
+  while (groups) {
+
+      GtkActionGroup *action_group = groups->data;
+
+      GList *action_list = gtk_action_group_list_actions (action_group);
+      GList *iter        = action_list;
+
+      while (iter) {
+
+        GtkAction *action = iter->data;
+
+        gtk_action_disconnect_accelerator(action);
+
+        gtk_action_group_remove_action(action_group, action);
+
+        g_object_set (action, "stock-id", NULL, NULL);
+
+        /* Handler the special (defective) case */
+        if (GTK_IS_RECENT_ACTION(action)) {
+
+          GClosure *closure = gtk_action_get_accel_closure(action);
+
+          g_closure_unref (closure);
+
+        }
+
+        iter = iter->next;
+      }
+
+      g_list_free(action_list);
+
+      gtk_ui_manager_remove_action_group(menu_manager, action_group);
+
+      g_object_unref(action_group);
+
+      groups = gtk_ui_manager_get_action_groups (menu_manager);
+  }
+
+  g_object_unref (accel_group);
+  g_object_unref (recent_manager);
+  g_object_unref (menu_manager);
+
+  gtk_widget_destroy(menu_bar);
+
+  /* See x_window_quit() */
+  g_object_unref(menu_bar);
 }

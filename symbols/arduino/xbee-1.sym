@@ -229,7 +229,7 @@ description=Radio module,802.15.4
 T 500 5200 8 10 0 1 0 0 1
 author=Nicholas De Cicco velociostrich@gmail.com
 T 500 4800 8 10 0 0 0 0 1
-dist-license=GPLv3
+dist-license=GPLv2
 T 500 4600 8 10 0 0 0 0 1
 use-license=unlimited
 T 500 4400 8 10 0 0 0 0 1

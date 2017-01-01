@@ -5,8 +5,8 @@
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 2013-2015 Wiley Edward Hill
- * Copyright (C) 2013-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2013-2016 Wiley Edward Hill
+ * Copyright (C) 2013-2016 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -129,7 +129,7 @@ static struct {
 #define GET_W(var)command_struc[cmd_##var].narg=w_current->var;
 
 #define SHOW_VARIABLE(name, type) GET_##type(name) \
-  u_log_message("current value of <%s> is <%d>\n", #name, CMD_INTEGER(name));
+  geda_log("current value of <%s> is <%d>\n", #name, CMD_INTEGER(name));
 
 /* Anonymous Static Mutex */
 static GedaMutex (i_lock_last_command);
@@ -362,7 +362,11 @@ void i_command_process(GschemToplevel *w_current, const char* command,
 
     if (geda_strequal(command_struc[i].name, command)) {
 
-      v_log_message(_("Processing Action <%s>, at index %d\n"), command_struc[i].name, i);
+#if DEBUG
+      geda_log("Processing Action: %s, at index %d.", command_struc[i].name, i);
+#else
+      geda_log_v("%s: %s.\n", _("Processing Action"), command_struc[i].name);
+#endif
 
       if (command_struc[i].repeat != NULL) {
         set_last_command(i); /* save last index for recall by repeat-last */
@@ -435,10 +439,12 @@ void i_command_process(GschemToplevel *w_current, const char* command,
 #endif
 
       /* Either push task to cache of actions, or do in-line */
-      if (is_engaged && !(command_struc[i].aflag & USE_INLINE_MODE))
+      if (is_engaged && !(command_struc[i].aflag & USE_INLINE_MODE)) {
         g_thread_pool_push (CommandPool, command_struc[i].name, NULL);
-      else
+      }
+      else {
         command_struc[i].func(w_current);
+      }
       break;
     }
   }
@@ -466,7 +472,7 @@ static inline void msg_need_select_1st(GschemToplevel *w_current)
 
 static inline void action_err(char *var)
 {
-  v_log_message(_("Cannot %s while inside and action!\n"), var);
+  geda_log_v("%s %s %s!\n", _("Cannot"), var, _("while inside an action!\n"));
 }
 
 #define NO_ACTION(symbol) if (w_current->inside_action) \
@@ -474,7 +480,7 @@ static inline void action_err(char *var)
 
 static inline void null_err(char *var)
 {
-  u_log_message("internal error, i_command: variable <%s> can not be NULL\n", var);
+  geda_log("internal error, i_command: variable <%s> can not be NULL\n", var);
 }
 
 #define NOT_NULL(symbol) if (!symbol) return null_err(#symbol)
@@ -641,7 +647,7 @@ COMMAND (do_debug)
   p_current->CHANGED = old_page_state;
 
 #else
-  u_log_message("Performance diagnostic is not enable, must recompile\n");
+  geda_log("Performance diagnostic is not enable, must recompile\n");
 #endif
 
   EXIT_COMMAND(do_debug);
@@ -704,7 +710,7 @@ COMMAND (do_file_new)
   x_window_set_current_page (w_current, page);
   g_hook_run_page (w_current, NEW_PAGE_HOOK, page);
 
-  q_log_message (_("New page created [%s]\n"), page->filename);
+  geda_log_q ("%s \"%s\"\n", _("New page created"), page->filename);
 
   EXIT_COMMAND(do_file_new);
 
@@ -742,7 +748,7 @@ COMMAND (do_file_new_window)
   page = x_window_open_page (new_window, NULL);
   x_window_set_current_page (new_window, page);
 
-  q_log_message (_("New Window created [%s]\n"), page->filename);
+  geda_log_q ("%s \"%s\"\n", _("New Window created"), page->filename);
 
 }
 
@@ -1145,8 +1151,8 @@ COMMAND (do_close_all) {
 
   if (!can_close) {         /* Ask to save unsaved pages */
     close_all = x_confirm_close_window (w_current);
-    if (!close_all) {       /* user cancelled the close */
-      v_log_message(_("Close all canceled\n"));
+    if (!close_all) {       /* user canceled the close */
+      geda_log_v(_("Canceled close all\n"));
     }
   }
   else {
@@ -1155,7 +1161,7 @@ COMMAND (do_close_all) {
 
   if (close_all) {          /* Still want to close all? */
 
-    q_log_message(_("Closing all documents\n"));
+    geda_log_q(_("Closing all documents\n"));
 
     /* Loop through all the pages */
     for ( iter = pages; iter != NULL; NEXT(iter)) {
@@ -1178,7 +1184,7 @@ COMMAND (do_close_all) {
 /** @brief i_cmd_do_quit in i_command_File_Actions */
 COMMAND (do_quit) {
   BEGIN_NO_ARGUMENT(do_file_new_window);
-  v_log_message(_("gschem: starting shut-down\n"));
+  geda_log_v(_("gschem: starting shut-down\n"));
   x_window_close_all(w_current);
 }
 
@@ -1237,7 +1243,7 @@ COMMAND (do_export_picture) {
 COMMAND (do_edit)
 {
   BEGIN_COMMAND(do_edit);
-  //u_log_message("do edit command handler");
+  //geda_log("do edit command handler");
   char *msg = "Not an object";
 
   geda_set_object_visibility ((GedaObject*)msg, 1);
@@ -1624,7 +1630,7 @@ COMMAND (do_offset)
           state = ENDOFFSET;
         }
         else {
-          u_log_message("Ignoring zero offset\n");
+          geda_log("Ignoring zero offset\n");
           w_current->offset = -0;
         }
       }
@@ -2032,7 +2038,7 @@ COMMAND (do_deselect_all)
 COMMAND (do_view)
 {
   BEGIN_COMMAND(do_view);
-  u_log_message("do_view command handler");
+  geda_log("do_view command handler");
   EXIT_COMMAND(do_view);
 }
 
@@ -2238,7 +2244,7 @@ COMMAND (do_documentation)
         result = g_app_info_launch_default_for_uri(attrib_doc, NULL, &error);
 
         if (!result) {
-          u_log_message("error: %s", error->message);
+          geda_log("error: %s", error->message);
           g_error_free (error);
         }
         GEDA_FREE(attrib_doc);
@@ -2246,7 +2252,7 @@ COMMAND (do_documentation)
     }
   }
   else {
-    q_log_message(_("No component selected\n"));
+    geda_log_q(_("No component selected\n"));
   }
 
   EXIT_COMMAND(do_documentation);
@@ -2357,7 +2363,7 @@ COMMAND (do_bw_colors)
 COMMAND (do_page)
 {
   BEGIN_COMMAND(do_page);
-  u_log_message("do_page command handler");
+  geda_log("do_page command handler");
   EXIT_COMMAND(do_page);
 }
 
@@ -2705,7 +2711,7 @@ COMMAND (do_page_new)
 
   i_zoom_world_extents (w_current, geda_struct_page_get_objects (page), I_PAN_DONT_REDRAW);
 
-  q_log_message (_("New page created [%s]\n"), page->filename);
+  geda_log_q ("%s \"%s\"\n", _("New page created"), page->filename);
 
   EXIT_COMMAND(do_page_new);
 }
@@ -2972,7 +2978,7 @@ COMMAND (do_down_schematic)
 
       GError *err = NULL;
 
-      u_log_message(_("Searching for source [%s]\n"), current_filename);
+      geda_log("%s: \"%s\"\n", _("Searching for source"), current_filename);
 
       child = geda_struct_hierarchy_down_single(w_current->toplevel,
                                                 current_filename,
@@ -3009,7 +3015,7 @@ COMMAND (do_down_schematic)
         const char *msg1 = _("Failed to descend into");
         const char *msg2 = (err != NULL) ? err->message : "Unknown error.";
 
-        u_log_message("%s '%s': %s\n", msg1, current_filename, msg2);
+        geda_log("%s '%s': %s\n", msg1, current_filename, msg2);
 
         char *secondary = geda_sprintf ("%s '%s': <i>%s</i>",
                                             msg1, current_filename, msg2);
@@ -3092,7 +3098,7 @@ COMMAND (do_down_symbol)
 
       filename = object->complex->filename;
 
-      u_log_message(_("Searching for symbol [%s]\n"), filename);
+      geda_log("%s: \"%s\"\n", _("Searching for symbol"), filename);
 
       sym = geda_struct_clib_get_symbol_by_name (filename);
 
@@ -3102,7 +3108,7 @@ COMMAND (do_down_symbol)
       filename = geda_struct_clib_symbol_get_filename(sym);
 
       if (filename == NULL) {
-        u_log_message(_("Symbol is not a real file."
+        geda_log(_("Symbol is not a real file."
                         " Symbol cannot be loaded.\n"));
         return;
       }
@@ -3150,7 +3156,7 @@ COMMAND (do_hierarchy_up)
   up_page = geda_hierarchy_find_up_page (w_current->toplevel->pages, child);
 
   if (up_page == NULL) {
-    u_log_message(_("Cannot find any schematics above the current one!\n"));
+    geda_log(_("Cannot find any schematics above the current one!\n"));
   }
   else {
 
@@ -3175,7 +3181,7 @@ COMMAND (do_hierarchy_up)
 COMMAND (do_add)
 {
   BEGIN_COMMAND(do_add);
-  u_log_message("do_add command handler");
+  geda_log("do_add command handler");
   EXIT_COMMAND(do_add);
 }
 
@@ -3633,7 +3639,7 @@ COMMAND (do_attach)
     count    = o_select_get_count(w_current);
 
     if (count == 1) {
-      u_log_message("Feature not implemented\n");
+      geda_log("Feature not implemented\n");
     }
     else if (count == 2) {
 
@@ -3668,7 +3674,7 @@ COMMAND (do_attach)
           o_attrib_attach_list_2_object(w_current, selected);
         }
         else {
-          u_log_message(_("Attribute is already attached\n"));
+          geda_log(_("Attribute is already attached\n"));
         }
       }
     }
@@ -4056,15 +4062,15 @@ COMMAND (do_translate)
   BEGIN_W_COMMAND(do_translate);
 
   if (w_current->snap == SNAP_OFF) {
-    u_log_message(_("WARNING: Do not translate with snap off!\n"));
-    u_log_message(_("WARNING: Turning snap on and continuing with translate.\n"));
+    geda_log(_("WARNING: Do not translate with snap off!\n"));
+    geda_log(_("WARNING: Turning snap on and continuing with translate.\n"));
     w_current->snap = SNAP_GRID;
     i_status_show_state(w_current, NULL); /* update status on screen */
   }
 
   if (w_current->snap_size != 100) {
-    u_log_message(_("WARNING: Snap grid size is not equal to 100!\n"));
-    u_log_message(_("WARNING: If you are translating a symbol "
+    geda_log(_("WARNING: Snap grid size is not equal to 100!\n"));
+    geda_log(_("WARNING: If you are translating a symbol "
                     "to the origin, the snap grid size should be "
                     "set to 100\n"));
   }
@@ -4181,7 +4187,7 @@ COMMAND (do_update)
   }
   else {
     /* nothing selected, go back to select state */
-    u_log_message("Nothing selected\n");
+    geda_log("Nothing selected\n");
     o_redraw_cleanstates(w_current);
     i_status_action_stop(w_current);
     i_status_set_state(w_current, SELECT);
@@ -4239,9 +4245,9 @@ COMMAND (do_cycle_grid)
   }
 
   switch (w_current->grid_mode) {
-    case GRID_NONE: q_log_message (_("Grid OFF\n"));            break;
-    case GRID_DOTS: q_log_message (_("Dot grid activated\n"));  break;
-    case GRID_MESH: q_log_message (_("Mesh grid activated\n")); break;
+    case GRID_NONE: geda_log_q (_("Grid OFF\n"));            break;
+    case GRID_DOTS: geda_log_q (_("Dot grid activated\n"));  break;
+    case GRID_MESH: geda_log_q (_("Mesh grid activated\n")); break;
   }
 
   i_status_update_grid_info (w_current);
@@ -4320,16 +4326,16 @@ COMMAND (do_cycle_snap)
 
   switch (w_current->snap) {
   case SNAP_OFF:
-    q_log_message(_("Snap OFF (CAUTION!)\n"));
+    geda_log_q(_("Snap OFF (CAUTION!)\n"));
     x_menu_set_togglable(w_current, SNAP_TOGGLE, FALSE);
     break;
   case SNAP_GRID:
     x_menu_set_togglable(w_current, SNAP_TOGGLE, TRUE);
-    q_log_message(_("Snap ON\n"));
+    geda_log_q(_("Snap ON\n"));
     break;
   case SNAP_RESNAP:
     x_menu_set_togglable(w_current, SNAP_TOGGLE, TRUE);
-    q_log_message(_("Snap back to the grid (CAUTION!)\n"));
+    geda_log_q(_("Snap back to the grid (CAUTION!)\n"));
     break;
   default:
     g_critical("options_snap: toplevel->snap out of range: %d\n", w_current->snap);
@@ -4353,10 +4359,10 @@ COMMAND (do_toggle_rubberband)
   BEGIN_NO_ARGUMENT(do_toggle_rubberband);
   if (w_current->netconn_rubberband) {
     w_current->netconn_rubberband = 0;
-    q_log_message(_("Rubber band mode is OFF\n"));
+    geda_log_q(_("Rubber band mode is OFF\n"));
   } else {
     w_current->netconn_rubberband = 1;
-    q_log_message(_("Rubber band mode is ON\n"));
+    geda_log_q(_("Rubber band mode is ON\n"));
   }
   x_menu_set_togglable(w_current, RUBBER_TOGGLE, w_current->netconn_rubberband);
 }
@@ -4367,10 +4373,10 @@ COMMAND (do_toggle_magneticnet)
   NOT_NULL(w_current);
   BEGIN_NO_ARGUMENT(do_toggle_magneticnet);
   if ((w_current->magnetic_net_mode = !w_current->magnetic_net_mode)) {
-    q_log_message(_("Magnetic net mode is ON\n"));
+    geda_log_q(_("Magnetic net mode is ON\n"));
   }
   else {
-    q_log_message(_("Magnetic net mode is OFF\n"));
+    geda_log_q(_("Magnetic net mode is OFF\n"));
   }
   x_menu_set_togglable(w_current, MAGNETIC_TOGGLE, w_current->magnetic_net_mode);
   i_status_show_state(w_current, NULL);
@@ -4392,7 +4398,7 @@ COMMAND (do_toggle_dragcanmove)
     w_current->drag_can_move = 1;
     OnOff =_("On");
   }
-  q_log_message(_("Drag-Can-Move is now %s\n"), OnOff);
+  geda_log_q(_("Drag-Can-Move is now %s\n"), OnOff);
   x_menu_set_togglable(w_current, DRAG_CAN_MOVE, w_current->drag_can_move);
 }
 
@@ -4404,11 +4410,11 @@ COMMAND (do_toggle_feedback)
 
   if (w_current->action_feedback_mode == BOUNDINGBOX) {
     w_current->action_feedback_mode = OUTLINE;
-    q_log_message(_("Action feedback mode set to OUTLINE\n"));
+    geda_log_q(_("Action feedback mode set to OUTLINE\n"));
   }
   else {
     w_current->action_feedback_mode = BOUNDINGBOX;
-    q_log_message(_("Action feedback mode set to BOUNDINGBOX\n"));
+    geda_log_q(_("Action feedback mode set to BOUNDINGBOX\n"));
   }
 
   if (w_current->inside_action && Current_PlaceList != NULL) {
@@ -4434,7 +4440,7 @@ COMMAND (do_toggle_auto_pan)
     w_current->auto_pan = 1;
     OnOff =_("On");
   }
-  q_log_message(_("Auto-Pan is now %s\n"), OnOff);
+  geda_log_q(_("Auto-Pan is now %s\n"), OnOff);
   x_menu_set_togglable(w_current, AUTO_PAN_TOGGLE, w_current->auto_pan);
 }
 
@@ -4486,7 +4492,7 @@ COMMAND (do_show_manual)
 
     if (!x_show_uri (pathname)) {
 
-      u_log_message(_("Check: path \"%s\"\n"), pathname);
+      geda_log(_("Check: path \"%s\"\n"), pathname);
 
     }
     GEDA_FREE(pathname);
@@ -4515,7 +4521,7 @@ COMMAND (do_show_faq)
 
     if (!x_show_uri (pathname)) {
 
-      u_log_message(_("Check: path \"%s\"\n"), pathname);
+      geda_log(_("Check: path \"%s\"\n"), pathname);
 
     }
     GEDA_FREE(pathname);
@@ -4535,7 +4541,7 @@ COMMAND (do_show_geda)
 
     if (!x_show_uri (pathname)) {
 
-      u_log_message(_("Check: path \"%s\"\n"), pathname);
+      geda_log(_("Check: path \"%s\"\n"), pathname);
 
     }
     GEDA_FREE(pathname);
@@ -4555,7 +4561,7 @@ COMMAND (do_show_wiki)
 
     if (!x_show_uri (pathname)) {
 
-      u_log_message(_("Check: path \"%s\"\n"), pathname);
+      geda_log(_("Check: path \"%s\"\n"), pathname);
 
     }
     GEDA_FREE(pathname);
@@ -4655,7 +4661,7 @@ COMMAND (world_size) {
 
   int width  = w_current->world_right;
   int height = w_current->world_bottom;
-  u_log_message(_("(read only) width=%d, height=%d\n"), width, height);
+  geda_log(_("(read only) width=%d, height=%d\n"), width, height);
 }
 
 /** @brief i_cmd_zoom_gain in i_command_Variable_Handlers */
@@ -4804,7 +4810,7 @@ COMMAND (sort_component_library) {
 /** @brief i_cmd_untitled_name in i_command_Variable_Handlers */
 COMMAND (untitled_name) {
 
-  u_log_message("<%s>", w_current->toplevel->untitled_name);
+  geda_log("<%s>", w_current->toplevel->untitled_name);
 }
 
 /** @brief i_cmd_net_consolidate in i_command_Variable_Handlers */
@@ -4917,7 +4923,7 @@ COMMAND (bus_ripper_type) {
 /** @brief i_cmd_bus_ripper_symname in i_command_Variable_Handlers */
 COMMAND(bus_ripper_symname) {
 
-  u_log_message("<%s>", w_current->bus_ripper_symname);
+  geda_log("<%s>", w_current->bus_ripper_symname);
 }
 
 /** @brief i_cmd_fast_mousepan in i_command_Variable_Handlers */
@@ -4996,7 +5002,7 @@ COMMAND (text_marker_size) {
 }
 /** @brief i_cmd_text_marker_threshold in i_command_Variable_Handlers */
 COMMAND (text_marker_threshold) {
-  u_log_message("current value of <%s> is <%.1f>\n", "text-marker-threshold",
+  geda_log("current value of <%s> is <%.1f>\n", "text-marker-threshold",
                 w_current->cairo_renderer->text_marker_threshold);
 }
 /** @brief i_cmd_text_size in i_command_Variable_Handlers */

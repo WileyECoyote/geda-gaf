@@ -7,7 +7,7 @@
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
+ * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -21,7 +21,7 @@
  * 02110-1301 USA, <http://www.gnu.org/licenses/>.
  *
  *  Contributing Author: Wiley Edward Hill
- *  Date Contributed: March, TBD, 2016
+ *  Date Contributed: April, 1st, 2016
  */
 
 #include <libgeda.h>
@@ -362,7 +362,7 @@ int test_log (void)
   }
   else {
     if (!strcmp(log_mess, "message 1")) {
-      fprintf(stderr, "FAILED: (U031101B) log_set_update_func\n");
+      fprintf(stderr, "FAILED: (U031101B) log_set_update_func <%s>\n", log_mess);
       result++;
     }
   }
@@ -1543,14 +1543,6 @@ main (int argc, char *argv[])
   }
   else {
     fprintf(stderr, msg_signal, "u_glist.c");
-    result++;
-  }
-
-  if (setjmp(point) == 0) {
-    result += test_log();
-  }
-  else {
-    fprintf(stderr, msg_signal, "u_log.c");
     result++;
   }
 

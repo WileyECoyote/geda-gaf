@@ -367,7 +367,7 @@ documentation=http://www.ftdichip.com/Documents/DataSheets/DS_FT232R.pdf
 T 300 6300 5 10 0 1 0 0 1
 description=FTDA FT232RL USB to UART bridge
 T 300 6500 5 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 300 6700 5 10 0 0 0 0 1
 use-license=unlimited
 T 300 5700 3 10 0 0 0 0 1

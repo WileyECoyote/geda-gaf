@@ -458,7 +458,7 @@ B 400 400 3400 9200 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 2100 6200 9 10 1 0 0 3 1
 UART
 T 350 11450 8 10 0 0 0 0 1
-dist-license=GPL3
+dist-license=GPLv2
 T 350 11250 8 10 0 0 0 0 1
 use-license=unlimited
 T 100 100 5 8 0 0 0 0 1

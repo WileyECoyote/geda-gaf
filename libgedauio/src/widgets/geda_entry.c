@@ -1399,6 +1399,28 @@ geda_entry_set_text (GedaEntry *entry, const char *new_text)
 }
 
 /*!
+ * \brief Get the Text Length in the GedaEntry
+ * \par Function Description
+ *  Retrieves the string a returns the length.
+ *
+ * \param [in] entry Pointer to a #GedaEntry object.
+ *
+ * \returns length of the string or -1 if entry is invalid
+ */
+int
+geda_entry_get_text_length (GedaEntry *entry)
+{
+  const char *curr_text;
+
+  curr_text = geda_entry_get_text (entry);
+
+  if (curr_text) {
+    return strlen(curr_text);
+  }
+  return -1;
+}
+
+/*!
  * \brief Get GedaEntry Activates Default
  * \par Function Description
  *  Retrieves the value set by gtk_entry_set_activates_default().

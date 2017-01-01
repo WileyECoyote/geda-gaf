@@ -61,7 +61,7 @@ volatile int console_window_type;
  *  \par Description
  * Gschem currently uses 8 glist buffers, there used to be 6,
  * with system clipboard data errently mixed between 0 and 1.
- * So a seperate glist was created in the toplevel, clipboard
+ * So a separate glist was created in the toplevel, clipboard
  * _buffer. The next five buffers are the buffers in the menu
  * labeled 1 through 5, these are object_buffer[0] thru object
  * _buffer[4].

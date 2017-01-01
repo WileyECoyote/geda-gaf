@@ -10,7 +10,7 @@
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 3 of
+ * published by the Free Software Foundation; either version 2 of
  * the License, or (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -356,7 +356,7 @@ int get_titleblock_cnt(void) {
   else {
 
     /* Could not open directory */
-    u_log_message(_("%s: error opening: %s\n"), __func__, TitleBlockPath);
+    geda_log("%s: %s\n", _("error opening"), TitleBlockPath);
     count--; /* decrement to -1 */
   }
   return count;
@@ -410,7 +410,8 @@ bool get_titleblock_list(char **Buffer) {
     result = TRUE;
   }
   else { /* could not open directory */
-    u_log_message(_("Failed to open [%s]: %s\n"), TitleBlockPath, strerror(errno));
+    geda_log("%s: \"%s\", %s\n", _("Failed to open"), TitleBlockPath,
+                  strerror(errno));
     result = FALSE;
   }
 
@@ -511,7 +512,8 @@ int generate_rc(GschemToplevel *w_current, const char *rcname)
   int result;                /* Our exit code */
 
   /* Build path for user config file */
-  inputfile = geda_strconcat (geda_user_config_path (), DIR_SEPARATOR_S, rcname, NULL);
+  inputfile = geda_strconcat (geda_user_config_path(), DIR_SEPARATOR_S,
+                              rcname, NULL);
 
   /* Check for existence of user config file */
   if(access(inputfile, R_OK) != 0) {
@@ -525,21 +527,27 @@ int generate_rc(GschemToplevel *w_current, const char *rcname)
   }
 
   if (inputfile == NULL) {
-    u_log_message(_("File Name error! system-%s\n"), rcname);
+    geda_log("%s-%s\n", _("File Name error! system"), rcname);
     return -1;
   }
 
-  outputfile = geda_strconcat (geda_user_config_path (), DIR_SEPARATOR_S,
-                            rcname, ".tmp", NULL);
+  outputfile = geda_strconcat (geda_user_config_path(), DIR_SEPARATOR_S,
+                               rcname, ".tmp", NULL);
 
   if ((input = fopen (inputfile, "r" )) == NULL) {
-    u_log_message(_("File open for read-only error: \"%s\", %s\n"), inputfile, strerror( errno ));
+
+    const char *log_msg = _("File open for read-only error");
+
+    geda_log("%s: \"%s\", %s\n", log_msg, inputfile, strerror(errno));
     result = errno;
   }
-  else if (( output = fopen (outputfile, "w" )) == NULL) {
-      u_log_message(_("Error, opening output \"%s\", %s\n"), inputfile, strerror( errno ));
-      fclose(input);
-      result = -1;
+  else if ((output = fopen (outputfile, "w" )) == NULL) {
+
+    const char *log_msg = _("Error, opening output");
+
+    geda_log("%s: \"%s\", %s\n", log_msg, inputfile, strerror(errno));
+    fclose(input);
+    result = -1;
   }
   else {
 
@@ -588,13 +596,15 @@ int generate_rc(GschemToplevel *w_current, const char *rcname)
     fclose(output);
     result = EXIT_SUCCESS;
   }
+
   if (result == EXIT_SUCCESS) {
     if ((result = remove(inputfile)) == 0) {
       result = rename(outputfile, inputfile);
-      u_log_message(_("Writing configuration to [%s]\n"), inputfile);
+      /* Is inputfile or outputfile? */
+      geda_log("%s \"%s\"\n", _("Wrote configuration to"), inputfile);
     }
     else {
-      u_log_message(_("File error: \"%s\", %s\n"), inputfile, strerror( errno ));
+      geda_log("%s: \"%s\", %s\n", _("File error"), inputfile, strerror(errno));
       result = errno;
     }
   }
@@ -808,7 +818,7 @@ KEYWORD (scrollbar_update) {
 
 /** @brief function do_kw_scrollbars_visible in Settings-Keyword-Handlers */
 KEYWORD (scrollbars_visible) {
-  RC_INTEGER_WOUT (scrollbars_visible)
+  RC_BOOLEAN_WOUT (scrollbars_visible)
 }
 
 /** @brief function do_kw_scrollpan_steps in Settings-Keyword-Handlers */

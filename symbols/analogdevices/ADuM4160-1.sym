@@ -187,7 +187,7 @@ footprint=SO16
 T 400 4500 5 10 0 0 0 0 1
 author=coldnew <coldnew.tw@gmail.com>
 T 400 4300 5 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 400 4100 5 10 0 0 0 0 1
 use-license=unlimited
 T 400 3700 5 10 0 0 0 0 1

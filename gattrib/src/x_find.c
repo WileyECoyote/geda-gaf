@@ -101,7 +101,10 @@ bool x_find_main_search(char* text, char *replacement) {
   gtk_sheet_get_active_cell (Search.sheet, &srow, &scol);
 
   int ishit( ) {
-    if (!cell_text) return 0;
+
+    if (!cell_text)
+      return 0;
+
     if (Search.Whole)
       if (Search.Case)
         return !(strcmp ( cell_text, text));
@@ -115,7 +118,9 @@ bool x_find_main_search(char* text, char *replacement) {
   }
 
   void do_replace_text(int row, int col) {
+
     char *new;
+
     new = malloc(strlen (cell_text) - strlen (text) + strlen (replacement) +2 );
 
     if (Search.Whole)

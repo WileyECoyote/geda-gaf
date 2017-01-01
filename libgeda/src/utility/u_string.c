@@ -672,9 +672,8 @@ geda_utility_string_strequal(const char *str1, const char *str2)
 /*! U0615
  * \brief Compare strings ignoring case
  * \par Function Description
- *  This is a garden varity string compare using toupper
- *  on both inputs. This is commonly in standard libraries,
- *  but not always.
+ *  This is a garden varity string compare using toupper on both
+ *  inputs. This is commonly in standard libraries, but not always.
  *
  * \param [in] str1 is the string to be search
  * \param [in] str2 is the string to search for
@@ -683,11 +682,14 @@ geda_utility_string_strequal(const char *str1, const char *str2)
  *
  * \retval 0 if the strings are equivalent, or
  *         1 if the strings are NOT equivalent.
+ *
+ * \note This not the same as strcasecmp, strcasecmp returns an integer.
+ *       geda_utility_string_stricmp returns a Boolean!
  */
-int
+bool
 geda_utility_string_stricmp(const char *str1, const char *str2)
 {
-  while (( toupper(*str1) == toupper(*str2)) && (*str1))
+  while ((toupper(*str1) == toupper(*str2)) && (*str1))
   {
     str1++; str2++;
   }

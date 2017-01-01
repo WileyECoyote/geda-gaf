@@ -283,6 +283,6 @@ description=Hot Swap Controller with I2C
 T 300 6600 5 8 0 0 0 0 1
 author=AutoTron
 T 300 6450 5 8 0 0 0 0 1
-dist-license=GPL3
+dist-license=GPLv2
 T 300 6300 5 8 0 0 0 0 1
 use-license=unrestricted

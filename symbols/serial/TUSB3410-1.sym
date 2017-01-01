@@ -318,7 +318,7 @@ pintype=io
 T 400 6000 9 10 1 0 0 0 1
 TUSB3410
 T 400 7800 5 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 400 7600 5 10 0 0 0 0 1
 use-license=unlimited
 T 400 7200 3 10 0 0 0 0 1

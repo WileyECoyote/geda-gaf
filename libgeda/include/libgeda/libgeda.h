@@ -51,6 +51,7 @@
 #include "geda_errors.h"
 
 #include "papersizes.h"
+#include "geda_keyfile.h"
 #include "geda_list.h"
 #include "geda_notify.h"
 #include "geda_object.h"

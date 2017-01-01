@@ -5,7 +5,7 @@
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
+ * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -72,7 +72,7 @@ void gschem_atexit(geda_atexit_func func, void* data)
 {
   geda_atexit_struct *p;
 
-  p = g_new(geda_atexit_struct, 1);
+  p = geda_malloc(sizeof(geda_atexit_struct));
   p->func = func;
   p->arg = data;
   exit_functions = g_list_append(exit_functions, p);
@@ -96,7 +96,7 @@ void gschem_quit(void)
 
     ptr = (geda_atexit_struct*)list->data;
     ptr->func(ptr->arg);
-    GEDA_FREE(ptr);
+    geda_free(ptr);
     list = g_list_next(list);
   }
   g_list_free(exit_functions);
@@ -105,6 +105,11 @@ void gschem_quit(void)
   libgedacolor_release();
 
   x_menu_free_all();
+
+#if DEBUG_GEDA_LABEL
+  /* This can be helpful in identifying unreleased resources */
+  geda_label_get_report_instances();
+#endif
 
 #ifdef HAVE_LIBSTROKE
   x_stroke_free ();
@@ -185,7 +190,7 @@ load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[]
 
             if (verbose_mode) {
               const char *fname = geda_get_basename (filename);
-              geda_log (_("Assumming schematic file suffix for [%s]\n"), fname);
+              geda_log ("%s \"%s\"\n", _("Assuming schematic file suffix for"), fname);
             }
           }
           else {
@@ -199,7 +204,7 @@ load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[]
 
               if (verbose_mode) {
                 const char *fname = geda_get_basename (filename);
-                geda_log (_("Assumming symbol file suffix for [%s]\n"), fname);
+                geda_log ("%s \"%s\"\n", _("Assuming symbol file suffix for"), fname);
               }
             }
           }
@@ -230,7 +235,7 @@ load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[]
     /*! \brief Sessions */
     if (start_session) { /* If session specified on command line */
       if (!i_sessions_open_session(w_current, start_session)) {
-        geda_log_q(_("An error was encountered loading requested session %s\n"), start_session);
+        geda_log_q("%s: %s\n", _("An error was encountered loading requested session"), start_session);
 
         /* Open a blank document */
         x_window_open_page( w_current, NULL);
@@ -255,7 +260,7 @@ load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[]
       /* Check and do Auto Load if file recordered */
       if ((load_last) && (x_menu_recent_files_last() != NULL)) {
          /* maybe Log what we are doing */
-        geda_log_q("Auto Load: . . .%s\n", x_menu_recent_files_last());
+        geda_log_q("%s: ...%s\n", _("Auto Load"), x_menu_recent_files_last());
         x_window_open_page(w_current, x_menu_recent_files_last());
       }
       else {
@@ -340,17 +345,17 @@ static void gschem( int argc, char *argv[])
   scm_tmp = scm_sys_search_load_path (scm_from_utf8_string ("gschem.scm"));
 
   if (scm_is_false (scm_tmp)) {
-    geda_log (_("Unable to locate scheme initialization file \"gschem.scm\"\n"));
+    geda_log ("%s \"gschem.scm\"\n", _("Unable to locate scheme initialization file"));
   }
   else {
 
     input_str = scm_to_utf8_string (scm_tmp);
 
     if (g_evaluate_scheme_file(input_str, NULL)) {
-      geda_log_v (_("Read scheme initialization file [%s]\n"), input_str);
+      geda_log_v ("%s \"%s\"\n", _("Read scheme initialization file"), input_str);
     }
     else {
-      geda_log (_("Failed to read initialization scheme file [%s]\n"), input_str);
+      geda_log ("%s \"%s\"\n", _("Failed to read scheme initialization file"), input_str);
     }
   }
   free (input_str); /* M'allocated by scm_to_utf8_string() */
@@ -376,9 +381,9 @@ static void gschem( int argc, char *argv[])
     }
 
     /* now we can spam the log */
-    geda_log (_("gEDA/gschem version %s%s.%s\n"), PREPEND_VERSION_STRING,
-                                                  PACKAGE_DOTTED_VERSION,
-                                                  PACKAGE_DATE_VERSION);
+    geda_log ("gEDA/gschem %s %s%s.%s\n", _("version"), PREPEND_VERSION_STRING,
+                                                        PACKAGE_DOTTED_VERSION,
+                                                        PACKAGE_DATE_VERSION);
   }
   else {
     geda_log_v(_("Logging system is disabled\n"));

@@ -9,7 +9,7 @@
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 3 of
+ * published by the Free Software Foundation; either version 2 of
  * the License, or (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -175,7 +175,7 @@ void x_console_init_commands(GschemToplevel *w_current, int mode) {
 
 #ifdef HAVE_GTHREAD
 
-  char* describe_level[] = {  "safe mode",
+  char *describe_level[] = {  "safe mode",
                               "multitasking mode",
                               "unknown"
                            };
@@ -186,10 +186,10 @@ void x_console_init_commands(GschemToplevel *w_current, int mode) {
     mode = mode - 1;
     nlevel = mode > nlevel ? nlevel - 1 : mode;
     i_command_engage(w_current);
-    v_log_message(_("Command interface: engaged using (%s)\n"), describe_level[mode]);
+    v_log_message("%s (%s)\n", _("Command interface: engaged using"), describe_level[mode]);
   }
   else {
-    v_log_message(_("Command interface: engaged using (%s)\n"), describe_level[0]);
+    v_log_message("%s (%s)\n", _("Command interface: engaged using"), describe_level[0]);
     i_command_disengage(FALSE, FALSE);
   }
 #endif
@@ -253,7 +253,7 @@ void x_console_open (GschemToplevel *w_current)
       GEDA_FREE (contents);
     }
 
-    geda_utility_log_set_update_func(x_log_message);
+    geda_set_log_update_func(x_log_message);
 
     if ( auto_place_mode ) {
       gtk_widget_set_uposition (console_dialog, 10, 10);
@@ -279,7 +279,7 @@ void x_console_close ()
   if (console_dialog) {
     if (IS_CONSOLE (console_dialog)) {
       gtk_widget_destroy (console_dialog);
-      geda_utility_log_set_update_func(NULL);
+      geda_set_log_update_func(NULL);
       console_dialog = NULL;
     }
     else

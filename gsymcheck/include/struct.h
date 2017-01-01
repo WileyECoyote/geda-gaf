@@ -30,6 +30,7 @@ typedef struct st_symcheck SYMCHECK;
 /* gsymcheck structure */
 struct st_symcheck {
 
+  GList *known_devices;
   GList *valid_attributes;
 
   /* unused for now */

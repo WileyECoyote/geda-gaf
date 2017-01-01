@@ -32,7 +32,7 @@
  * ---------------|--------------------------------------------------
  * WEH | 01/31/13 |  Inital release, new file.
  * ---------------|--------------------------------------------------
- * WEH | 09/10/13 | Added more icons, seperate geda &  gschem (to
+ * WEH | 09/10/13 | Added more icons, separate geda &  gschem (to
  *                | reduce the lists to smaller sizes, in anticipation
  *                | adding more icons).
  *                | to support routines not using embed labels.
@@ -248,6 +248,9 @@ static void x_icons_setup_factory()
   char       *pathname;
   int index;
 
+  const char *err_warn_read   = _("Warning, Error reading image file");
+  const char *err_warn_access = _("Warning, Error accessing image file");
+
   err       = NULL;
   icon_name = NULL;
 
@@ -272,7 +275,7 @@ static void x_icons_setup_factory()
           GEDA_UNREF(pixbuf);
         }
         else {
-          u_log_message("Warning, Error reading image file: %s\n", err->message);
+          u_log_message("%s: %s\n", err_warn_read, err->message);
           g_clear_error (&err);
           err = NULL;
         }
@@ -280,7 +283,7 @@ static void x_icons_setup_factory()
       else
       {
         /* file non existence or not accessible */
-        u_log_message("Warning, Error accessing image file: %s\n", pathname);
+        u_log_message("%s: %s\n", err_warn_access, pathname);
       }
       GEDA_FREE(pathname);
     }
@@ -305,7 +308,7 @@ static void x_icons_setup_factory()
           GEDA_UNREF(pixbuf);
         }
         else {
-          u_log_message("Warning, Error reading image file: %s\n", err->message);
+          u_log_message("%s: %s\n", err_warn_read, err->message);
           g_clear_error (&err);
           err = NULL;
         }
@@ -313,7 +316,7 @@ static void x_icons_setup_factory()
       else
       {
         /* file non existence or not accessible */
-        u_log_message("Warning, Error accessing image file: %s\n", pathname);
+        u_log_message("%s: %s\n", err_warn_access, pathname);
       }
       GEDA_FREE(pathname);
     }
@@ -338,7 +341,7 @@ static void x_icons_setup_factory()
           GEDA_UNREF(pixbuf);
         }
         else {
-          u_log_message("Warning, Error reading image file: %s\n", err->message);
+          u_log_message("%s: %s\n", err_warn_read, err->message);
           g_clear_error (&err);
           err = NULL;
         }
@@ -346,7 +349,7 @@ static void x_icons_setup_factory()
       else
       {
         /* file non existence or not accessible */
-        u_log_message("Warning, Error accessing image file: %s\n", pathname);
+        u_log_message("%s: %s\n", err_warn_access, pathname);
       }
       GEDA_FREE(pathname);
     }
@@ -371,7 +374,7 @@ static void x_icons_setup_factory()
           GEDA_UNREF(pixbuf);
         }
         else {
-          u_log_message("Warning, Error reading image file: %s\n", err->message);
+          u_log_message("%s: %s\n", err_warn_read, err->message);
           g_clear_error (&err);
           err = NULL;
         }
@@ -379,7 +382,7 @@ static void x_icons_setup_factory()
       else
       {
         /* file non existence or not accessible */
-        u_log_message("Warning, Error accessing image file: %s\n", pathname);
+        u_log_message("%s: %s\n", err_warn_access, pathname);
       }
       GEDA_FREE(pathname);
     }

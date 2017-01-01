@@ -1,3 +1,63 @@
+2016-12-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/file/f_file.c: Reduce scope of translatable strings in geda_file_open
+      and revise (tweak) mem_needed, reformat allocation error.
+
+    * src/utility/u_log.c: Revise geda_utility_log_quite and geda_utility_log_
+      verbose to verify that the format argument is not null.
+
+2016-12-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/struct/s_clib.c: Revert c7e5e080ef846c03169a1af2fac41437ab707591,
+      at least to use of geda_stricmp instead of strcasecmp part.
+
+    * include/libgeda/geda_keyfile.h: Add new header to define would be
+      GedaKeyFile class.
+
+    * src/geda/geda_keyfile.c: Add new procedural module for manipulation of
+      key/ini files (I know, is in directory of class modules).
+
+    * src/utility/u_string.c: Revise geda_stricmp to indicate return type
+      bool to emphasize geda_stricmp is not a replacement for strcasecmp
+      and add note to comments.
+
+    * tests/test_keyfile.c: Add test module for geda_keyfile.c module.
+
+    * tests/test_utility.c: Remove running test_log twice. Revise U031101B
+      to include the errant string in the log output.
+
+2016-12-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_page.c: Add accessor function geda_page_get_pid;
+
+    * src/geda/geda_toplevel.c: Add function geda_toplevel_is_current_page.
+
+    * src/utility/u_glist.c: Declare second (string) argument const for
+      functions:
+
+            * geda_utility_glist_find_string
+            * geda_utility_glist_str_inlist
+            * geda_utility_glist_stri_inlist
+            * geda_utility_gslist_find_string
+            * geda_utility_gslist_str_inlist
+            * geda_utility_gslist_stri_inlist
+
+2016-12-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/: Add headers in files:
+
+            * tests/test_box.c
+            * tests/test_bus.c
+            * tests/test_circle.c
+            * tests/test_complex.c
+            * tests/test_line.c
+            * tests/test_list.c
+            * tests/test_parsecmd.h
+            * tests/test_path.c
+            * tests/test_picture.c
+            * tests/test_pin.c
+            * tests/test_text.c
+
 2016-12-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/: Add parenthesis around obj in GEDA_IS_* macros in:
@@ -31,7 +91,7 @@
 
     * src/geda/geda_object.c: Redo object type identifier scheme for GedaObject
       objects and replace glist with hash table. The performance with glist was
-      unacceptable poor for schematics with high component counts.
+      unacceptable for schematics with high component counts.
 
     * tests/test_file.c: Skip F0207 if vpath_build.
 

@@ -17,7 +17,7 @@ V 500 200 100 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 0 1700 9 10 0 0 0 0 1
 author=DJ Delorie
 T 0 1500 9 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 0 1300 9 10 0 0 0 0 1
 use-license=unlimited
 T 0 1100 9 10 0 0 0 0 1

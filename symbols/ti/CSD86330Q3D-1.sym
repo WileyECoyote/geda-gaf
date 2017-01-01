@@ -105,7 +105,7 @@ documentation=http://www.ti.com/product/CSD86330Q3D
 T 1900 2700 5 10 0 0 0 0 1
 symversion=0.1
 T 400 3300 5 10 0 0 0 0 1
-dist-license=GPL2
+dist-license=GPLv2
 T 400 3500 5 10 0 0 0 0 1
 use-license=unlimited
 T 400 3700 5 10 0 0 0 0 1

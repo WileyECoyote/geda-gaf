@@ -283,7 +283,7 @@ numslots=0
 T 300 6175 5 10 0 0 0 0 1
 author=Wojciech M. Zabolotny wzabATise.pw.edu.pl
 T 300 5975 5 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 300 5775 5 10 0 0 0 0 1
 use-license=unlimited
 T 300 4775 3 10 0 0 0 0 1

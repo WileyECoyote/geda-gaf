@@ -549,7 +549,7 @@ documentation=http://www.analog.com/static/imported-files/data_sheets/ADV7123.pd
 T 4000 4700 8 10 0 0 0 0 1
 author=coldnew <coldnew.tw@gmail.com>
 T 4000 4500 8 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 4000 4300 8 10 0 0 0 0 1
 use-license=unlimited
 T 1600 900 9 10 0 0 0 0 1

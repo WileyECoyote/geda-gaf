@@ -13,7 +13,7 @@ author=Anton Dubniak <twister@tfsoft.org.ua>
 T 275 2450 5 10 0 0 0 0 1
 numslots=0
 T 275 1850 5 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 275 1650 5 10 0 0 0 0 1
 use-license=unlimited
 T 275 3250 5 10 0 0 0 0 1

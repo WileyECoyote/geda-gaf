@@ -297,7 +297,7 @@ pintype=in
 V 350 400 50 6 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 B 400 0 2000 7200 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 400 9100 5 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 400 8900 5 10 0 0 0 0 1
 use-license=unlimited
 T 400 8100 5 10 0 0 0 0 1

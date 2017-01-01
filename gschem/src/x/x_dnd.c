@@ -5,12 +5,12 @@
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 2013-2015 Wiley Edward Hill
- * Copyright (C) 2013-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2013-2016 Wiley Edward Hill
+ * Copyright (C) 2013-2016 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 3 of
+ * published by the Free Software Foundation; either version 2 of
  * the License, or (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -432,11 +432,14 @@ x_dnd_receive_string_sym (GschemToplevel *w_current, int x, int y,
     }
     else {
       /* TODO: Should embed the symbol */
-      u_log_message(_("Could not locate symbol [%s] in library, try refreshing\n"), symbolfile);
+      const char *log_msg1 = _("Could not locate symbol");
+      const char *log_msg2 = _("in library, try refreshing");
+      u_log_message("%s \"%s\", %s\n", log_msg1, symbolfile, log_msg2);
     }
   }
   else { /* symbol file is not our library source path so load new page */
-    v_log_message(_("symbol [%s] not in library opening as page\n"), filename);
+    const char *log_msg = _("not in library, opening as page");
+    v_log_message("%s \"%s\" %s\n", _("symbol"), filename, log_msg);
     result = TRUE;
   }
   GEDA_FREE(path);
@@ -574,8 +577,13 @@ x_dnd_receive_objects(GschemToplevel  *w_current, int x, int y, const char *buff
                                                          buffer,
                                                          -1, "Drag & Drop", &err);
     if (err) {
-      char *errmsg = geda_sprintf ( _("An error occurred while dropping data: %s."), err->message);
-      titled_pango_error_dialog ( _("<b>Invalid Data.</b>"), errmsg, _("Drag & Drop failed") );
+
+      char *errmsg;
+
+      errmsg = geda_sprintf ("%s: %s.", _("An error occurred while receiving Drag & Drop data"), err->message);
+
+      titled_pango_error_dialog (_("<b>Invalid Data.</b>"), errmsg, _("Drag & Drop failed"));
+
       GEDA_FREE(errmsg);
       g_error_free(err);
       result = FALSE;

@@ -67,8 +67,8 @@ void o_undo_init(GschemToplevel *w_current)
   const char *msg_not_rw;
   const char *msg_use_mem;
 
-  msg_cl_tmp  = _("Undo: using tmp directory specified on command-line: <%s>\n");
-  msg_not_rw  = _("Directory: %s is not read/writable, check permissions.\n");
+  msg_cl_tmp  = _("Undo: using temporary directory specified on command-line");
+  msg_not_rw  = _("Directory is not read/writable, check permissions");
   msg_use_mem = _("<b>Auto switching Undo system to type Memory</b>\n");
 
   prog_pid = getpid();
@@ -81,7 +81,7 @@ void o_undo_init(GschemToplevel *w_current)
 
   if (tmp_directory != NULL) {
     tmp_path = tmp_directory;
-    v_log_message(msg_cl_tmp, tmp_path);
+    geda_log_v("%s: <%s>\n", msg_cl_tmp, tmp_path);
   }
   else {
 
@@ -113,7 +113,7 @@ void o_undo_init(GschemToplevel *w_current)
   }
   if (w_current->undo_type == UNDO_DISK) {
     if ((access(tmp_path, R_OK) != 0) || (access(tmp_path, W_OK) != 0)) {
-      char *errmsg = geda_sprintf (msg_not_rw, tmp_path);
+      char *errmsg = geda_sprintf ("%s: %s\n", msg_not_rw, tmp_path);
       titled_pango_warning_dialog (msg_use_mem,  errmsg, _("Gschem Undo System"));
       GEDA_FREE(errmsg);
       w_current->undo_type = UNDO_MEMORY;
@@ -201,12 +201,6 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
   UNDO         *u_current;
   UNDO         *u_current_next;
 
-  const char *file_err_msg;
-  const char *sys_err_msg;
-
-  file_err_msg = _("Undo: encountered an error: file=<%s> %s\n");
-  sys_err_msg  = _("Undo: system error: <%d>, switching to MEMORY mode\n");
-
   /* save auto save backups if necessary */
   geda_object_save_auto_backup(w_current->toplevel);
 
@@ -255,11 +249,15 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
 
       if (!geda_object_save (geda_struct_page_get_objects (p_current), filename, &err))
       {
+          const char *file_err_msg = _("Undo: encountered an error, file");
+          const char *sys_err_msg1 = _("Undo: system error");
+          const char *sys_err_msg2 = _("switching to MEMORY mode");
+
           /* Error recovery sequence, the last disk operation failed
            * so log the event and switched to type Memory. We do not,
            * and likely can not, remove any existing undo files.*/
-          u_log_message(file_err_msg, filename, err->message);
-          u_log_message(sys_err_msg, err->code);
+          u_log_message("%s=<%s> %s\n", file_err_msg, filename, err->message);
+          u_log_message("%s: <%d>, %s\n", sys_err_msg1, err->code, sys_err_msg2);
           g_clear_error (&err);
           w_current->undo_type = UNDO_MEMORY;
           geda_struct_undo_free_all (p_current);
@@ -459,7 +457,7 @@ void o_undo_callback(GschemToplevel *w_current, int type)
 
   const char *disk_err_msg;
 
-  disk_err_msg = _("An error occurred during an UNDO disk operation: %s.");
+  disk_err_msg = _("An error occurred during an UNDO disk operation");
 
   if (w_current->undo_control == FALSE) {
     q_log_message(_("Undo/Redo disabled\n"));
@@ -548,7 +546,7 @@ void o_undo_callback(GschemToplevel *w_current, int type)
       restored = TRUE;
     }
     else {
-      char *errmsg = geda_sprintf (disk_err_msg, err->message);
+      char *errmsg = geda_sprintf ("%s: %s.", disk_err_msg, err->message);
       titled_pango_error_dialog(_("<b>Undo error.</b>"), errmsg, _("Undo failed"));
       GEDA_FREE(errmsg);
       g_error_free(err);

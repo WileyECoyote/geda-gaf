@@ -81,7 +81,7 @@ documentation=http://www.cel.com/pdf/datasheets/ps2501.pdf
 T 800 3100 5 10 0 0 0 0 1
 author=AutoTron
 T 800 2900 5 10 0 0 0 0 1
-dist-license=GPL2
+dist-license=GPLv2
 T 800 2700 5 10 0 0 0 0 1
 use-license=unlimited
 T 800 500 9 10 1 1 0 0 1

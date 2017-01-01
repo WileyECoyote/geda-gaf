@@ -1,11 +1,16 @@
+2016-12-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scripts/tragesym.py: Revise function writesym to allow file version 2
+      as parameter.
+
 2016-11-30 Wiley E. Hill <wileyhill@gmail.com>
 
-    * utils/gsch2pdf/main.c: Use accessor geda_complex_object_get_prim_objs
+    * gsch2pdf/main.c: Use accessor geda_complex_object_get_prim_objs
       in function print_complex.
 
 2016-11-23 Wiley E. Hill <wileyhill@gmail.com>
 
-    * utils/gsch2pdf/main.c: Call pango_cairo_font_map_set_default with NULL as
+    * gsch2pdf/main.c: Call pango_cairo_font_map_set_default with NULL as
       the argument to release multible resources that valgrind is reporting as
       definitely lost.
 
@@ -19,7 +24,7 @@
 
 2016-11-21 Wiley E. Hill <wileyhill@gmail.com>
 
-    * utils/gsch2pdf/junction.c: Update arguments for geda_pin_object_get_position.
+    * gsch2pdf/junction.c: Update arguments for geda_pin_object_get_position.
 
 2016-11-15 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -54,7 +59,7 @@
 
     * include/common.h: Use relative path to version.h and add gettext.h.
 
-    * utils/gsch2pdf/parsecmd.c: Include the program name in the version
+    * gsch2pdf/parsecmd.c: Include the program name in the version
       output message; gsch2pdf. Remove inclusion of gettext.h, which is
       now include in the common header as described above.
 
@@ -380,7 +385,7 @@
 
 2015-10-10 Wiley E. Hill <wileyhill@gmail.com>
 
-    * utils/gsch2pdf/main.c: Call libgeda_release instead of just s_clib_free and
+    * gsch2pdf/main.c: Call libgeda_release instead of just s_clib_free and
       s_slib_free.
 
     * utils/gschlas/gschlas.c: Call libgeda_release instead of just s_clib_free and

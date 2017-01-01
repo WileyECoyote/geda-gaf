@@ -5,7 +5,7 @@
  * gEDA - GPL Electronic Design Automation
  * gsymcheck - gEDA Symbol Check
  *
- * Copyright (C) 1998-2015 Ales Hvezda
+ * Copyright (C) 1998-2016 Ales Hvezda
  * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
@@ -45,6 +45,7 @@ SYMCHECK *s_symstruct_init(void)
   s_symcheck = (SYMCHECK*) GEDA_MEM_ALLOC(sizeof(SYMCHECK));
 
   i_vars_set_valid_attributes (memset(s_symcheck, 0, sizeof(SYMCHECK)));
+  i_vars_set_known_devices (s_symcheck);
 
   return s_symcheck;
 }
@@ -160,6 +161,7 @@ void s_symstruct_reset(SYMCHECK *s_current)
 
     memset(s_current, 0, sizeof(SYMCHECK));
 
+    i_vars_set_known_devices (s_current);
     i_vars_set_valid_attributes(s_current);
   }
 }

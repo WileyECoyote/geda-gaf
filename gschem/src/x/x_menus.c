@@ -10,7 +10,7 @@
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 3 of
+ * published by the Free Software Foundation; either version 2 of
  * the License, or (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -115,7 +115,7 @@ static PopupEntry main_popup_items[] = {
   { "END_SUB",               NULL,                      0,                  0,  NULL,            NULL },
 
   { N_("Array"),             x_menu_main_popup_execute, pop_edit_array,     1, "gschem-array",       N_("Create and array of objects") },
-  { N_("Break"),             x_menu_main_popup_execute, pop_edit_break,     1, "break",              N_("Break an object into seperate objects") },
+  { N_("Break"),             x_menu_main_popup_execute, pop_edit_break,     1, "break",              N_("Break an object into separate objects") },
   { N_("Extend"),            x_menu_main_popup_execute, pop_edit_extend,    1, "extend",             N_("Project a linear objects to other objects") },
   { N_("Delete"),            x_menu_main_popup_execute, pop_edit_delete,    1, "gtk-delete",         N_("Delete the current selection" )},
   { N_("Copy"),              x_menu_main_popup_execute, pop_edit_copy,      1, "geda-copy",          N_("Copy selection") },
@@ -508,11 +508,14 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     /* Check the first member */
     if (!scm_is_string(scm_item_name)) {
 
+      const char *err_msg = _("Error reading menu item");
+      const char *bad_str = _("Bad string");
+
       if (!menus_broken) { /* Issue message only for first occurence */
-        fprintf(stderr, _("Error reading menu item <%d>, Bad string\n"), i);
+        fprintf(stderr, "%s <%d>: %s\n", err_msg, i, bad_str);
       }
       else {
-        u_log_message(_("Error reading menu item <%d>, Bad string\n"), i);
+        u_log_message("%s <%d>: %s\n", err_msg, i, bad_str);
       }
       menus_broken = TRUE;
       menu_item    = NULL;
@@ -717,7 +720,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     scm_items = geda_iface_menu_return_entry(i, raw_menu_name);
 
     if (*raw_menu_name == NULL) {
-      fprintf(stderr, _("Oops.. got a NULL menu name in %s()\n"), __func__);
+      fprintf(stderr, "%s: %s\n", __func__, _("Oops... got a NULL menu name"));
       return NULL;
     }
 
@@ -728,9 +731,10 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
     menu_item = geda_tearoff_menu_item_new ();
     gtk_container_add (GTK_CONTAINER (menu), menu_item);
-
+    g_object_set (menu_item, "visible", TRUE, NULL);
     g_signal_connect(menu_item, "torn-off", G_CALLBACK(x_menu_torn),
                                             w_current);
+
 
     /* Loop through all items subordinate to this top-level menu container */
     scm_items_len = (int) scm_ilength (scm_items);
@@ -1315,16 +1319,20 @@ void x_menus_sensitivity (GschemToplevel *w_current, const char *buf, int flag)
     }
     else {
 
+      const char *log_msg = _("Tried to set the sensitivity on non-existent menu item");
+
       if (verbose_mode) {
-        u_log_message(_("Tried to set the sensitivity on non-existent menu item '%s'\n"), buf);
+        u_log_message("%s '%s'\n", log_msg, buf);
       }
       else {
         if (sensitivity_errors < SENSITIVITY_ERROR_LIMIT) {
-          q_log_message(_("Tried to set the sensitivity on non-existent menu item '%s',\n"), buf);
+          q_log_message("%s '%s',\n", log_msg, buf);
         }
         sensitivity_errors++;
         if (sensitivity_errors == SENSITIVITY_ERROR_LIMIT) {
-          q_log_message(_("Excessive errors <%d>, disabling sensitivity warnings\n"), sensitivity_errors);
+          const char *log_msg1 = _("Excessive errors");
+          const char *log_msg2 = _("disabling sensitivity warnings");
+          geda_log_q("%s <%d>, %s\n", log_msg1, sensitivity_errors, log_msg2);
         }
       }
     }
@@ -1345,7 +1353,7 @@ void x_menus_popup_sensitivity (GschemToplevel *w_current,
   menu_data = g_slist_nth_data (ui_list, w_current->ui_index);
 
   if (!POPUP_MAIN) {
-    fprintf(stderr, _("Popup menu widget doesn't exist!\n"));
+    fprintf(stderr, "Popup menu widget doesn't exist!\n");
   }
   else {
 
@@ -1567,14 +1575,19 @@ static void x_menu_set_toggler(ToggleMenuData *toggler_data, bool state)
            geda_check_menu_item_set_active((GedaCheckMenuItem*)menu_item, state);
          g_signal_handler_unblock(action, toggler_data->handler);
        }
-       else
-         u_log_message(_("%s: Action not found, \"%s\" \n"), __func__, menu_path);
+       else {
+         const char *log_msg = _("Action not found");
+         u_log_message("%s: %s, \"%s\" \n", __func__, log_msg, menu_path);
+       }
      }
-     else
-       u_log_message(_("%s: Menu path not found, \"%s\" \n"), __func__, menu_path);
+     else {
+       const char *log_msg = _("Menu path not found");
+       u_log_message("%s: %s, \"%s\" \n", __func__, log_msg, menu_path);
+     }
   }
-  else
-    u_log_message(_("%s: invalid pointer [menubar]\n"),  __func__);
+  else {
+    BUG_MSG("invalid pointer [menubar]");
+  }
   return;
 }
 
@@ -1639,18 +1652,20 @@ void x_menu_set_toolbar_toggle(GschemToplevel *w_current, int toggle_id, bool st
   char  menu_name[36] = "_View/_Toolbars/";
   char *menu_path;
 
+  GtkWidget *menu_bar;
   GtkWidget *menu_item;
 
-  GtkWidget* menubar;
-  menubar = x_menu_get_main_menu(w_current);
-
+  menu_bar  = x_menu_get_main_menu(w_current);
   menu_path = geda_strconcat (menu_name, IDS_Menu_Toolbar_Toggles[toggle_id], NULL);
-  menu_item = GEDA_OBJECT_GET_DATA (menubar, menu_path);
+  menu_item = GEDA_OBJECT_GET_DATA (menu_bar, menu_path);
+
   if (menu_item != NULL) {
-    geda_check_menu_item_set_active((GedaCheckMenuItem*) menu_item, state);
+    geda_check_menu_item_set_active((GedaCheckMenuItem*)menu_item, state);
   }
-  else
-    u_log_message(_("Error, x_menu_set_toolbar_toggle: Did not find path \"%s\"\n"), menu_path);
+  else {
+    u_log_message("%s \"%s\"\n", _("Error: did not find path"), menu_path);
+  }
+
   GEDA_FREE(menu_path);
   return;
 }
@@ -1748,16 +1763,17 @@ static void x_menu_recent_file_clicked (GedaMenuItem *menuitem, void *user_data)
 
    /* Check if the file exists */
    fp = fopen((char*) filename, "r");
-   if(fp == NULL) {
+
+   if (fp == NULL) {
       /* Remove this entry from all menus */
-      u_log_message(_("Could not open file %s\n"), (char*) filename);
+      u_log_message("%s \"%s\"\n", _("Could not open file"), filename);
       recent_files = g_list_remove(recent_files, filename);
       x_menu_update_recent_files();
       return;
    }
    fclose(fp);
 
-   page = x_window_open_page(w_current, (char*) filename);
+   page = x_window_open_page(w_current, filename);
    x_window_set_current_page(w_current, page);
 }
 
@@ -1766,18 +1782,24 @@ static void x_menu_recent_file_clicked (GedaMenuItem *menuitem, void *user_data)
  */
 static void x_menu_recent_files_create_empty(void)
 {
-   char *c;
-   const char * const tmp[] = { NULL };
-   GKeyFile *kf = g_key_file_new();
-   char *file   = g_build_filename(geda_user_config_path (),
-                                   RECENT_FILES_STORE, NULL);
+   GKeyFile   *keyfile;
+   char       *data;
+   char       *file;
+   const char *path;
+   const char *const tmp[] = { NULL };
 
-   g_key_file_set_string_list(kf, "Recent files", "Files", tmp, 0);
-   c = g_key_file_to_data(kf, NULL, NULL);
-   g_key_file_free(kf);
+   path    = geda_user_config_path ();
+   file    = g_build_filename(path, RECENT_FILES_STORE, NULL);
+   keyfile = g_key_file_new();
 
-   g_file_set_contents(file, c, -1, NULL);
-   GEDA_FREE(c);
+   g_key_file_set_string_list(keyfile, "Recent files", "Files", tmp, 0);
+
+   data = g_key_file_to_data(keyfile, NULL, NULL);
+
+   g_key_file_free(keyfile);
+   g_file_set_contents(file, data, -1, NULL);
+
+   GEDA_FREE(data);
    GEDA_FREE(file);
 }
 
@@ -2026,7 +2048,7 @@ void x_menu_recent_files_add(const char *filename)
    /* Normalize the filename. */
    save_fn = geda_normalize_filename (filename, &err);
    if (err != NULL) {
-     save_fn = geda_utility_string_strdup (filename);
+     save_fn = geda_strdup (filename);
      g_error_free (err);
    }
 
@@ -2061,9 +2083,12 @@ void x_menu_recent_files_add(const char *filename)
 void x_menu_recent_files_save(void *user_data)
 {
    char *files[MAX_RECENT_FILES];
-   int num = 0;
-   char *c;
-   char *file = g_build_filename(geda_user_config_path(), RECENT_FILES_STORE, NULL);
+   char *data;
+   char *file;
+   int   num;
+
+   file = g_build_filename(geda_user_config_path(), RECENT_FILES_STORE, NULL);
+   num  = 0;
 
    GList *p = recent_files;
    if(p == NULL) {
@@ -2076,15 +2101,15 @@ void x_menu_recent_files_save(void *user_data)
      p = g_list_next(p);
    }
 
-   GKeyFile *kf = g_key_file_new();
+   GKeyFile *keyfile = g_key_file_new();
 
-   g_key_file_set_string_list(kf, "Recent files", "Files", (const char**)files, num);
-   c = g_key_file_to_data(kf, NULL, NULL);
-   g_file_set_contents(file, c, -1, NULL);
+   g_key_file_set_string_list(keyfile, "Recent files", "Files", (const char**)files, num);
+   data = g_key_file_to_data(keyfile, NULL, NULL);
+   g_file_set_contents(file, data, -1, NULL);
 
-   GEDA_FREE(c);
+   GEDA_FREE(data);
    GEDA_FREE(file);
-   g_key_file_free(kf);
+   g_key_file_free(keyfile);
 }
 
 /*! \brief Load the recent file list using data from RECENT_FILES_STORE.
@@ -2094,24 +2119,26 @@ void x_menu_recent_files_save(void *user_data)
  */
 void x_menu_recent_files_load()
 {
-   GKeyFile *kf = g_key_file_new();
-   char *file = g_build_filename(geda_user_config_path (), RECENT_FILES_STORE, NULL);
+   GKeyFile *keyfile;
+   char     *file;
+
+   keyfile = g_key_file_new();
+   file = g_build_filename(geda_user_config_path(), RECENT_FILES_STORE, NULL);
 
    if(!g_file_test(file, G_FILE_TEST_EXISTS)) {
      geda_create_path(geda_user_config_path (), S_IRWXU | S_IRWXG);
-
-      x_menu_recent_files_create_empty();
+     x_menu_recent_files_create_empty();
    }
 
-   if(!g_key_file_load_from_file(kf, file, G_KEY_FILE_NONE, NULL)) {
+   if(!g_key_file_load_from_file(keyfile, file, G_KEY_FILE_NONE, NULL)) {
       /* error opening key file, create an empty one and try again */
       x_menu_recent_files_create_empty();
-      if(!g_key_file_load_from_file(kf, file, G_KEY_FILE_NONE, NULL))
+      if(!g_key_file_load_from_file(keyfile, file, G_KEY_FILE_NONE, NULL))
          return;
    }
 
    size_t len;
-   char **list = g_key_file_get_string_list(kf, "Recent files", "Files",
+   char **list = g_key_file_get_string_list(keyfile, "Recent files", "Files",
                                             &len, NULL);
 
    if(list == NULL) {
@@ -2128,7 +2155,7 @@ void x_menu_recent_files_load()
 
    GEDA_FREE(list);
    GEDA_FREE(file);
-   g_key_file_free(kf);
+   g_key_file_free(keyfile);
 }
 
 /*! \brief Get the Most Recent Filename

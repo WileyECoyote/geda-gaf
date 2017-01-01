@@ -105,6 +105,6 @@ description=23K256 SRAM
 T 400 3400 5 10 0 0 0 0 1
 numslots=0
 T 400 3600 5 10 0 0 0 0 1
-dist-license=GNU Free Document License
+dist-license=GPLv2
 T 400 3800 5 10 0 0 0 0 1
-use-license=GNU Free Document License
+use-license=unlimited

@@ -325,7 +325,7 @@ numslots=0
 T 800 200 5 8 0 0 0 0 1
 symversion=0.2
 T 400 6100 5 10 0 0 0 0 1
-dist-license=GPL (version 3 or later)
+dist-license=GPLv2
 T 400 5900 5 10 0 0 0 0 1
 use-license=unlimited
 T 400 6300 5 10 0 0 0 0 1

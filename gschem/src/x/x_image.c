@@ -3,12 +3,12 @@
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 1998-2015 Ales Hvezda
- * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2016 Ales Hvezda
+ * Copyright (C) 1998-2016 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 3 of
+ * published by the Free Software Foundation; either version 2 of
  * the License, or (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -312,7 +312,7 @@ x_image_update_dialog_filename(GedaComboBox     *type_Combo,
     geda_image_chooser_set_current_name (file_chooser, file_name);
   }
   else {
-    u_log_message("%s: No parent file chooser found!.\n", __func__);
+    geda_log("%s: No parent file chooser found!.\n", __func__);
   }
 }
 
@@ -353,11 +353,11 @@ void x_image_write_eps(GschemToplevel *w_current, const char*filename)
   result = geda_file_print_file (toplevel, page, color_map, filename);
 
   if (result) {
-    u_log_message(_("Error: Unable to write eps file %s.\n"), filename);
+    geda_log("%s \"%s\".\n", _("Error: Unable to write eps file"), filename);
   }
   else {
-    u_log_message(_("Wrote black and white image to [%s] [%d x %d]\n"),
-                    filename, toplevel->paper_width, toplevel->paper_height);
+    geda_log("%s \"%s\" [%d x %d]\n", _("Wrote black and white image to"),
+              filename, toplevel->paper_width, toplevel->paper_height);
   }
 
   g_array_free (color_map, TRUE);
@@ -462,7 +462,7 @@ void x_image_lowlevel(GschemToplevel *w_current, const char *filename,
 
     if (strncmp(filetype, "pdf", 3) == 0) {
       if (x_print_export_pdf (w_current, filename)) {
-        u_log_message(_("Generated PDF file [%s]\n"), filename);
+        geda_log("%s \"%s\"\n", _("Generated PDF file"), filename);
       }
     }
     else {
@@ -472,10 +472,19 @@ void x_image_lowlevel(GschemToplevel *w_current, const char *filename,
       if (pixbuf != NULL) {
 
         if (!gdk_pixbuf_save(pixbuf, filename, filetype, &err, NULL)) {
+
+          const char *log_msg1 = _("Unable to write");
+          const char *err_msg1  = _("An error occured while saving image with type");
+          const char *err_msg2  = _("to filename");
+
           /* Log the error */
-          u_log_message(_("Unable to write %s file %s. %s\n"), filetype, filename, err->message);
-          char *errmsg = geda_sprintf (_("An error occured while saving image with type %s to filename:\n%s\n\n%s.\n"),
-                                            filetype, filename, err->message);
+          geda_log("%s %s %s, \"%s\" %s\n", log_msg1, filetype, _("file"), filename, err->message);
+
+          char *errmsg = geda_sprintf ("%s %s %s:\n%s\n\n%s.\n", err_msg1,
+                                                                 filetype,
+                                                                 err_msg2,
+                                                                 filename,
+                                                                 err->message);
           /* Warn the user */
           titled_pango_error_dialog ( _("<b>Error Writing Imaging.</b>"), errmsg, _("Write Image") );
 
@@ -490,12 +499,12 @@ void x_image_lowlevel(GschemToplevel *w_current, const char *filename,
         }
         else {
           if (toplevel->image_color == TRUE) {
-            u_log_message(_("Wrote color image to [%s] [%d x %d]\n"),
-                          filename, width, height);
+            geda_log("%s \"%s\" [%d x %d]\n", _("Wrote color image to"),
+                                                 filename, width, height);
           }
           else {
-            u_log_message(_("Wrote black and white image to [%s] [%d x %d]\n"),
-                          filename, width, height);
+            geda_log("%s \"%s\" [%d x %d]\n", _("Wrote black and white image to"),
+                                                 filename, width, height);
           }
         }
 
@@ -504,7 +513,7 @@ void x_image_lowlevel(GschemToplevel *w_current, const char *filename,
         }
       }
       else {
-        u_log_message(_("Unable to get pixbuf from gschem's window.\n"));
+        geda_log(_("Unable to get pixbuf from gschem's window.\n"));
       }
     }
   }
@@ -612,7 +621,7 @@ static void switch_responder(GtkWidget *widget, ControlID *Control)
   case InvertImage: /* Has it's own callback, should not get here! */
     break;
   default:
-    u_log_message("toggle_switch(): UKNOWN SWITCH ID: %d\n", WhichOne);
+    geda_log("toggle_switch(): UKNOWN SWITCH ID: %d\n", WhichOne);
   }
   return;
 }
@@ -764,8 +773,11 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
   gtk_widget_set_sensitive (use_print, image_color_save ? TRUE  : FALSE);
   gtk_widget_set_sensitive (invert_bw, image_color_save ? TRUE  : FALSE);
 
-  gtk_widget_set_tooltip_text ( use_print, _("Enable to use the Print color map instead of the display color map"));
-  gtk_widget_set_tooltip_text ( invert_bw, _("When enbled for reversed color images, only black and white will be reversed"));
+  gtk_widget_set_tooltip_text ( use_print,
+    _("Enable to use the Print color map instead of the display color map"));
+
+  gtk_widget_set_tooltip_text ( invert_bw,
+    _("When enabled for reversed color images, only black and white will be reversed"));
 
   gtk_widget_show_all(vbox3); /* set every widget in container visible */
 
@@ -774,9 +786,7 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
 
   /* Setup the GedaFileChooser options */
   g_object_set (ThisDialog, "select-multiple", FALSE,
-                            "do-overwrite-confirmation", TRUE,
-
-  NULL);
+                            "do-overwrite-confirmation", TRUE, NULL);
 
   /* Update the filename */
   x_image_update_dialog_filename(GEDA_COMBO_BOX(type_Combo), w_current);

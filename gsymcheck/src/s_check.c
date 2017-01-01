@@ -5,8 +5,8 @@
  * gEDA - GPL Electronic Design Automation
  * gsymcheck - gEDA Symbol Check
  *
- * Copyright (C) 1998-2015 Ales Hvezda
- * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2016 Ales Hvezda
+ * Copyright (C) 1998-2016 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -44,7 +44,7 @@
 /* Function prototypes */
 static int  s_check_symbol(SYMCHECK *s_current, const GList *obj_list);
 static bool s_check_list_has_item(char **list , const char *item);
-static bool s_check_is_known_device(const char *device);
+static bool s_check_is_known_device(const char *device, SYMCHECK *s_current);
 static bool s_check_is_valid_directive(const char *string);
 static void s_check_symbol_structure(const GList *obj_list, SYMCHECK *s_current);
 static void s_check_text (const GList *obj_list, SYMCHECK *s_current);
@@ -299,45 +299,19 @@ static bool s_check_list_has_item(char **list , const char *item)
  *
  * \returns TRUE if device value is known
  */
-static bool s_check_is_known_device (const char *device)
+static bool s_check_is_known_device (const char *device, SYMCHECK *s_current)
 {
   bool  strict = FALSE;
   bool  known;
-  char *known_devices[] = { "none",
-                            "RESISTOR",
-                            "CAPACITOR",
-                            "POLARIZED_CAPACITOR",
-                            "COIL",
-                            "INDUCTOR",
-                            "DIODE",
-                            "PMOS_TRANSISTOR",
-                            "NMOS_TRANSISTOR",
-                            "PNP_TRANSISTOR",
-                            "NPN_TRANSISTOR",
-                            "PFET_TRANSISTOR",
-                            "NFET_TRANSISTOR",
-                            "MESFET_TRANSISTOR",
-                            "TESTPOINT",
-                            "VOLTAGE_SOURCE",
-                            "CURRENT_SOURCE",
-                            "ZENER",
-                            NULL};
 
-  if (geda_utility_string_strncmpi(device, "SPICE", 5) == 0)
+  if (geda_strncmpi(device, "SPICE", 5) == 0)
     return TRUE;
 
   if (!strict) {
-
-    int  index;
-
-    for (index = 0; known_devices[index] != NULL; index++) {
-      if (!geda_utility_string_stricmp(device, known_devices[index]))
-        return TRUE;
-    }
-    known = FALSE;
+    known = geda_glist_stri_inlist(s_current->known_devices, device);
   }
   else {
-   known = s_check_list_has_item(known_devices, device);
+    known = geda_glist_str_inlist(s_current->known_devices, device);
   }
 
   return known;
@@ -360,7 +334,7 @@ static bool s_check_is_valid_directive(const char *string)
 {
   const char *ptr;
 
-  ptr = geda_utility_string_istr(string, "Directive");
+  ptr = geda_string_istr(string, "Directive");
 
   /* If Directive followed by an EQUAL and not equal NULL */
   if (ptr && *ptr + 9 == ASCII_EQUAL_SIGN && *ptr + 10) {
@@ -370,15 +344,14 @@ static bool s_check_is_valid_directive(const char *string)
   return FALSE;
 }
 
-/*! \brief Check a symbol attributes
- *  \par Function Description
+/*!
+ * \brief Check a symbol attributes
+ * \par Function Description
  *  Checks for "valid", "forbidden", obsolete, and improperly attached
  *  attributes.
  *
  * \param [in] obj_list  List of all object in the symbol.
  * \param [in] s_current Pointer to current s_symcheck data structure
- *
- * \todo get list of valid_attributes using scheme
  */
 static void s_check_symbol_structure (const GList *obj_list, SYMCHECK *s_current)
 {
@@ -387,9 +360,9 @@ static void s_check_symbol_structure (const GList *obj_list, SYMCHECK *s_current
   char *message;
   char **tokens;
 
-  char *valid_pin_attributes[] = {"pinlabel", "pintype",
-  "pinseq", "pinnumber", "electtype", "mechtype",
-  NULL};
+  char *valid_pin_attributes[] = {"pinlabel", "pintype", "pinseq",
+                                  "pinnumber", "electtype", "mechtype",
+                                  NULL};
 
   char *obsolete_attributes[]  = {"email", "label", "uref", NULL};
   char *forbidden_attributes[] = {"name",  "type", NULL};
@@ -468,14 +441,14 @@ static void s_check_symbol_structure (const GList *obj_list, SYMCHECK *s_current
 static void s_check_text (const GList *obj_list, SYMCHECK *s_current)
 {
   const GList *iter;
-  GedaObject  *o_current;
-  bool overbar_started, escape, leave_parser;
-  char *message;
-  char *text_string, *ptr;
-  gunichar current_char;
+  const char  *text_string, *ptr;
+  char        *message;
+  gunichar     current_char;
+  bool         overbar_started, escape, leave_parser;
 
   for (iter = obj_list; iter != NULL; iter = g_list_next(iter)) {
-    o_current = iter->data;
+
+    GedaObject *o_current = iter->data;
 
     if (o_current->type != OBJ_TEXT)
       continue;
@@ -485,7 +458,7 @@ static void s_check_text (const GList *obj_list, SYMCHECK *s_current)
 
     for (ptr = text_string;
          ptr != NULL && !leave_parser;
-    ptr = g_utf8_find_next_char (ptr, NULL)) {
+         ptr = g_utf8_find_next_char (ptr, NULL)) {
 
       current_char = g_utf8_get_char_validated (ptr, -1);
 
@@ -748,9 +721,9 @@ static void s_check_device (const GList *obj_list, SYMCHECK *s_current)
       if (geda_utility_string_stristr(s_current->filename, string) < 0) {
 
         /* And if not a known device type */
-        if (!s_check_is_known_device(string)) {
+        if (!s_check_is_known_device(string, s_current)) {
           s_current->device_attribute_incorrect=TRUE;
-          message = geda_strdup (_("Device not found in symbol filename\n"));
+          message = geda_strconcat (_("Device not found in symbol filename"), " \"", string, "\"\n", NULL);
           ADD_WARN_MESSAGE(message);
         }
       }
@@ -1433,10 +1406,10 @@ static void s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
 static void s_check_oldpin (const GList *obj_list, SYMCHECK *s_current)
 {
   const GList *iter;
-  char *ptr;
-  int found_old = FALSE;
+  char        *message;
+
+  int found_old      = FALSE;
   int number_counter = 0;
-  char *message;
 
   for (iter = obj_list; iter != NULL; iter = iter->next) {
 
@@ -1449,7 +1422,7 @@ static void s_check_oldpin (const GList *obj_list, SYMCHECK *s_current)
       if (strstr(string, "pin")) {
 
         /* skip over "pin" */
-        ptr = string + 3;
+        const char *ptr = string + 3;
 
         found_old = FALSE;
         number_counter = 0;
@@ -1515,7 +1488,7 @@ static void s_check_oldslot (const GList *obj_list, SYMCHECK *s_current)
       if (strstr(string, "slot")) {
 
         /* skip over "slot" */
-        char *ptr = string + 4;
+        const char *ptr = string + 4;
 
         found_old = FALSE;
         number_counter = 0;

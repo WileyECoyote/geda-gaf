@@ -35,9 +35,6 @@
 #include <gdk/gdk.h>
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
-#include <gtk/gtksignal.h>
-#include <gtk/gtkpixmap.h>
-#include <pango/pango.h>
 
 #define __GTKEXTRA_H_INSIDE__
 
@@ -157,8 +154,9 @@ gtk_sheet_column_set_property(GObject *object,
                     if (button->label) g_free(button->label);
                     button->label = g_strdup(label);
                 }
-                else
+                else {
                     gtk_sheet_column_button_add_label(sheet, col, label);
+                }
             }
             break;
 
@@ -708,26 +706,22 @@ gtk_sheet_column_finalize_handler(GObject *gobject)
 {
     GtkSheetColumn *column = GTK_SHEET_COLUMN(gobject);
 
-    if (column->title)
-    {
+    if (column->title) {
         g_free(column->title);
         column->title = NULL;
     }
 
-    if (column->button.label)
-    {
+    if (column->button.label) {
         g_free(column->button.label);
         column->button.label = NULL;
     }
 
-    if (column->data_format)
-    {
+    if (column->data_format) {
         g_free(column->data_format);
         column->data_format = NULL;
     }
 
-    if (column->description)
-    {
+    if (column->description) {
         g_free(column->description);
         column->description = NULL;
     }
@@ -799,8 +793,8 @@ gtk_sheet_column_get_type(void)
 {
     static GType sheet_column_type = 0;
 
-    if (!sheet_column_type)
-    {
+    if (!sheet_column_type) {
+
         static const GTypeInfo sheet_column_info =
         {
             sizeof(GtkSheetColumnClass),
@@ -835,12 +829,12 @@ gtk_sheet_column_get_type(void)
 
 /**
  * gtk_sheet_column_get:
- * @sheet:  a #GtkSheet.
- * @col: column index
+ * \param sheet  a #GtkSheet.
+ * \param col column index
  *
  * Get a #GtkSheetColumn
  *
- * Returns:	(transfer none) the requested #GtkSheetColumn or
+ * \returns	(transfer none) the requested #GtkSheetColumn or
  * NULL
  */
 GtkSheetColumn *gtk_sheet_column_get(GtkSheet *sheet, int col)
@@ -856,11 +850,11 @@ GtkSheetColumn *gtk_sheet_column_get(GtkSheet *sheet, int col)
 
 /**
  * gtk_sheet_column_get_index:
- * @colobj: #GtkSheetColumn to find
+ * \param colobj #GtkSheetColumn to find
  *
  * find index of @colobj in GtkSheet
  *
- * Returns: column index or -1
+ * \returns column index or -1
  */
 int
 gtk_sheet_column_get_index(GtkSheetColumn *colobj)
@@ -880,11 +874,11 @@ gtk_sheet_column_get_index(GtkSheetColumn *colobj)
 
 /**
  * gtk_sheet_column_rightmost_visible:
- * @sheet:  the sheet
+ * \param sheet  the sheet
  *
  * rightmost visible column index
  *
- * Returns: index of rightmost visible column or -1 (if none)
+ * \returns index of rightmost visible column or -1 (if none)
  */
 static inline int
 gtk_sheet_column_rightmost_visible(GtkSheet *sheet)
@@ -901,12 +895,12 @@ gtk_sheet_column_rightmost_visible(GtkSheet *sheet)
 
 /**
  * _gtk_sheet_column_left_xpixel:
- * @sheet:  the #GtkSheet
- * @col:    column index
+ * \param sheet  the #GtkSheet
+ * \param col    column index
  *
  * gives the left pixel of the given column in context of the sheet's hoffset
  *
- * Returns: pixel offset
+ * \returns pixel offset
  */
 int
 _gtk_sheet_column_left_xpixel(GtkSheet *sheet, int col)
@@ -917,13 +911,13 @@ _gtk_sheet_column_left_xpixel(GtkSheet *sheet, int col)
 
 /**
  * _gtk_sheet_column_right_xpixel:
- * @sheet:  the #GtkSheet
- * @col:    column index
+ * \param sheet  the #GtkSheet
+ * \param col    column index
  *
  * gives the right pixel of the given column in context of the
  * sheet's hoffset
  *
- * Returns: pixel offset
+ * \returns pixel offset
  */
 int
 _gtk_sheet_column_right_xpixel(GtkSheet *sheet, int col)
@@ -933,16 +927,11 @@ _gtk_sheet_column_right_xpixel(GtkSheet *sheet, int col)
     return (xpixel);
 }
 
-
-
-
-
-
 /**
  * _gtk_sheet_column_size_request:
- * @sheet:  the #GtkSheet
- * @col: column index
- * @button_requisition: the requisition width
+ * \param sheet       the #GtkSheet
+ * \param col         column index
+ * \param requisition the requisition width
  *
  * size request handler for all sheet buttons
  */
@@ -983,7 +972,7 @@ _gtk_sheet_column_size_request(GtkSheet *sheet,
 
 /**
  * _gtk_sheet_column_buttons_size_allocate:
- * @sheet:  the #GtkSheet
+ * \param sheet  the #GtkSheet
  *
  * column title button size allocation
  */
@@ -1050,9 +1039,9 @@ _gtk_sheet_column_buttons_size_allocate(GtkSheet *sheet)
 
 /**
  * gtk_sheet_set_column_width:
- * @sheet: a #GtkSheet.
- * @column: column number.
- * @width: the width of the column.
+ * \param sheet  a #GtkSheet.
+ * \param column column number.
+ * \param width  the width of the column.
  *
  * Set column width.
  */
@@ -1092,12 +1081,12 @@ gtk_sheet_set_column_width(GtkSheet *sheet, int col, guint width)
 
 /**
  * gtk_sheet_get_column_width:
- * @sheet: a #GtkSheet
- * @column: column number
+ * \param sheet a #GtkSheet
+ * \param column column number
  *
  * Get column width.
  *
- * Returns: column width
+ * \returns column width
  */
 const int
 gtk_sheet_get_column_width(GtkSheet *sheet, int col)
@@ -1111,9 +1100,9 @@ gtk_sheet_get_column_width(GtkSheet *sheet, int col)
 
 /**
  * gtk_sheet_column_button_add_label:
- * @sheet: a #GtkSheet
- * @col: column number
- * @label: text label
+ * \param sheet a #GtkSheet
+ * \param col   column number
+ * \param label text label
  *
  * Set button label.It is used to set a column title.
  */
@@ -1134,11 +1123,16 @@ gtk_sheet_column_button_add_label(GtkSheet *sheet, int col, const char *label)
 #endif
 
     button = &COLPTR(sheet, col)->button;
-    if (button->label) g_free(button->label);
+
+    if (button->label) {
+      g_free(button->label);
+    }
+
     button->label = g_strdup(label);
 
     aux_c = gtk_sheet_autoresize_columns(sheet);
     aux_r = gtk_sheet_autoresize_rows(sheet);
+
     gtk_sheet_set_autoresize(sheet, FALSE);
     gtk_sheet_set_autoresize_columns(sheet, TRUE);
     _gtk_sheet_button_size_request(sheet, button, &req);
@@ -1153,7 +1147,9 @@ gtk_sheet_column_button_add_label(GtkSheet *sheet, int col, const char *label)
         gtk_sheet_set_column_width(sheet, col, req.width);
     }
 
-    if (req.height > sheet->column_title_area.height) gtk_sheet_set_column_titles_height(sheet, req.height);
+    if (req.height > sheet->column_title_area.height) {
+      gtk_sheet_set_column_titles_height(sheet, req.height);
+    }
 
     if (!gtk_sheet_is_frozen(sheet)) {
         _gtk_sheet_draw_button(sheet, -1, col);
@@ -1163,9 +1159,9 @@ gtk_sheet_column_button_add_label(GtkSheet *sheet, int col, const char *label)
 
 /**
  * gtk_sheet_column_set_justification:
- * @sheet: a #GtkSheet.
- * @col: column number
- * @just: a #GtkJustification : GTK_JUSTIFY_LEFT, RIGHT, CENTER
+ * \param sheet a #GtkSheet.
+ * \param col   column number
+ * \param just  a #GtkJustification : GTK_JUSTIFY_LEFT, RIGHT, CENTER
  *
  * Set column justification (GTK_JUSTIFY_LEFT, RIGHT, CENTER).
  * The default value is GTK_JUSTIFY_LEFT.
@@ -1194,12 +1190,12 @@ gtk_sheet_column_set_justification(GtkSheet *sheet, int col,
 
 /**
  * gtk_sheet_column_get_justification:
- * @sheet: a #GtkSheet.
- * @col: column number
+ * \param sheet a #GtkSheet.
+ * \param col column number
  *
  * Get the column justification.
  *
- * Returns: a #GtkJustification
+ * \returns a #GtkJustification
  */
 GtkJustification
 gtk_sheet_column_get_justification(GtkSheet *sheet, int col)
@@ -1213,9 +1209,9 @@ gtk_sheet_column_get_justification(GtkSheet *sheet, int col)
 
 /**
  * gtk_sheet_column_set_vjustification:
- * @sheet: a #GtkSheet.
- * @col: column number
- * @vjust: a #GtkSheetVerticalJustification
+ * \param sheet a #GtkSheet.
+ * \param col   column number
+ * \param vjust a #GtkSheetVerticalJustification
  *
  * Set vertical cell text jjustification
  */
@@ -1241,13 +1237,13 @@ gtk_sheet_column_set_vjustification(GtkSheet *sheet, int col,
 
 /**
  * gtk_sheet_column_get_vjustification:
- * @sheet: a #GtkSheet.
- * @col: column number
+ * \param sheet a #GtkSheet.
+ * \param col column number
  *
  * Get the vertical cell text justification. This overrides the
  * default vertical cell text justification of the #GtkSheet.
  *
- * Returns: a #GtkSheetVerticalJustification
+ * \returns a #GtkSheetVerticalJustification
  */
 GtkSheetVerticalJustification
 gtk_sheet_column_get_vjustification(GtkSheet *sheet, int col)
@@ -1262,12 +1258,12 @@ gtk_sheet_column_get_vjustification(GtkSheet *sheet, int col)
 
 /**
  * gtk_sheet_column_get_iskey:
- * @sheet:  a #GtkSheet.
- * @col: column index
+ * \param sheet  a #GtkSheet.
+ * \param col column index
  *
  * Gets the column is_key flag
  *
- * Returns:	the is_key flag
+ * \returns	the is_key flag
  */
 int gtk_sheet_column_get_iskey(GtkSheet *sheet, const int col)
 {
@@ -1281,9 +1277,9 @@ int gtk_sheet_column_get_iskey(GtkSheet *sheet, const int col)
 
 /**
  * gtk_sheet_column_set_iskey:
- * @sheet:  a #GtkSheet.
- * @col: column index
- * @is_key:  the column is_key flag
+ * \param sheet   a #GtkSheet.
+ * \param col     column index
+ * \param is_key  the column is_key flag
  *
  * Sets the column is_key flag. This flag has no effect on
  * calculation or presentation, it is reserved for application
@@ -1302,12 +1298,12 @@ void gtk_sheet_column_set_iskey(GtkSheet *sheet, const int col,
 
 /**
  * gtk_sheet_column_get_readonly:
- * @sheet:  a #GtkSheet.
- * @col: column index
+ * \param sheet  a #GtkSheet.
+ * \param col column index
  *
  * Gets the column readonly flag
  *
- * Returns:	the readonly flag
+ * \returns the readonly flag
  */
 int gtk_sheet_column_get_readonly(GtkSheet *sheet, const int col)
 {
@@ -1321,9 +1317,9 @@ int gtk_sheet_column_get_readonly(GtkSheet *sheet, const int col)
 
 /**
  * gtk_sheet_column_set_readonly:
- * @sheet:  a #GtkSheet.
- * @col: column index
- * @is_readonly:  the column is_readonly flag
+ * \param sheet        a #GtkSheet.
+ * \param col          column index
+ * \param is_readonly  the column is_readonly flag
  *
  * Sets the column readonly flag.
  * A cell is editable if the sheet is not locked, the column is
@@ -1342,12 +1338,12 @@ void gtk_sheet_column_set_readonly(GtkSheet *sheet, const int col,
 
 /**
  * gtk_sheet_column_get_format:
- * @sheet:  a #GtkSheet.
- * @col: column index
+ * \param sheet  a #GtkSheet.
+ * \param col column index
  *
  * Gets the column data formatting pattern
  *
- * Returns:	the formatting pattern or NULL, You should free the
+ * \returns the formatting pattern or NULL, You should free the
  *          returned string with g_free() when done.
  */
 char *gtk_sheet_column_get_format(GtkSheet *sheet, const int col)
@@ -1362,13 +1358,14 @@ char *gtk_sheet_column_get_format(GtkSheet *sheet, const int col)
 
 /**
  * gtk_sheet_column_set_format:
- * @sheet:  a #GtkSheet.
- * @col: column index
- * @format:  the data_format pattern or NULL
+ * \param sheet   a #GtkSheet.
+ * \param col     column index
+ * \param format  the data_format pattern or NULL
  *
  * Sets the column data formatting pattern.
  */
-void gtk_sheet_column_set_format(GtkSheet *sheet, const int col,
+void gtk_sheet_column_set_format(GtkSheet   *sheet,
+                                 const int   col,
                                  const char *data_format)
 {
     GtkSheetColumn *colp;
@@ -1386,12 +1383,12 @@ void gtk_sheet_column_set_format(GtkSheet *sheet, const int col,
 
 /**
  * gtk_sheet_column_get_datatype:
- * @sheet:  a #GtkSheet.
- * @col: column index
+ * \param sheet  a #GtkSheet.
+ * \param col    column index
  *
  * Gets the column data_type for application use
  *
- * Returns:	the datatype or NULL
+ * \returns	the datatype or NULL
  */
 char *gtk_sheet_column_get_datatype(GtkSheet *sheet, const int col)
 {
@@ -1405,13 +1402,14 @@ char *gtk_sheet_column_get_datatype(GtkSheet *sheet, const int col)
 
 /**
  * gtk_sheet_column_set_datatype:
- * @sheet:  a #GtkSheet.
- * @col: column index
- * @data_type:  the datatype
+ * \param sheet      a #GtkSheet.
+ * \param col        column index
+ * \param data_type  the datatype
  *
  * Sets the column data data_type for application use
  */
-void gtk_sheet_column_set_datatype(GtkSheet *sheet, const int col,
+void gtk_sheet_column_set_datatype(GtkSheet   *sheet,
+                                   const int   col,
                                    const char *data_type)
 {
     GtkSheetColumn *colp;
@@ -1429,12 +1427,12 @@ void gtk_sheet_column_set_datatype(GtkSheet *sheet, const int col,
 
 /**
  * gtk_sheet_column_get_description:
- * @sheet:  a #GtkSheet.
- * @col: column index
+ * \param sheet  a #GtkSheet.
+ * \param col column index
  *
  * Gets the column description
  *
- * Returns:	the description or NULL, You should free the
+ * \returns	the description or NULL, You should free the
  *          returned string with g_free() when done.
  */
 char *gtk_sheet_column_get_description(GtkSheet *sheet, const int col)
@@ -1449,13 +1447,14 @@ char *gtk_sheet_column_get_description(GtkSheet *sheet, const int col)
 
 /**
  * gtk_sheet_column_set_description:
- * @sheet:  a #GtkSheet.
- * @col: column index
- * @description:  the description or NULL
+ * \param sheet        a #GtkSheet.
+ * \param col          column index
+ * \param description  the description or NULL
  *
  * Sets the column description.
  */
-void gtk_sheet_column_set_description(GtkSheet *sheet, const int col,
+void gtk_sheet_column_set_description(GtkSheet   *sheet,
+                                      const int   col,
                                       const char *description)
 {
     GtkSheetColumn *colp;
@@ -1473,12 +1472,12 @@ void gtk_sheet_column_set_description(GtkSheet *sheet, const int col,
 
 /**
  * gtk_sheet_column_get_entry_type:
- * @sheet:  a #GtkSheet.
- * @col: column index
+ * \param sheet  a #GtkSheet.
+ * \param col    column index
  *
  * Gets the column entry type if known
  *
- * Returns:	the entry type or GTK_SHEET_ENTRY_TYPE_DEFAULT
+ * \returns	the entry type or GTK_SHEET_ENTRY_TYPE_DEFAULT
  */
 GType
 gtk_sheet_column_get_entry_type(GtkSheet *sheet, const int col)
@@ -1493,9 +1492,9 @@ gtk_sheet_column_get_entry_type(GtkSheet *sheet, const int col)
 
 /**
  * gtk_sheet_column_set_entry_type:
- * @sheet:  a #GtkSheet.
- * @col: column index
- * @entry_type:  the entry type or G_TYPE_NONE
+ * \param sheet       a #GtkSheet.
+ * \param col         column index
+ * \param entry_type  the entry type or G_TYPE_NONE
  *
  * Supersedes the sheet entry type for this column. Pass
  * G_TYPE_NONE to reset the column to the sheet entry type.
@@ -1514,16 +1513,16 @@ gtk_sheet_column_set_entry_type(GtkSheet *sheet, const int col,
 
 /**
  * gtk_sheet_column_get_tooltip_markup:
- * @sheet:  a #GtkSheet.
- * @col: column index
+ * \param sheet  a #GtkSheet.
+ * \param col column index
  *
  * Gets the contents of the tooltip (markup) for the column
  *
- * Returns:	the tooltip text, or NULL. You should free the
+ * \returns the tooltip text, or NULL. You should free the
  *          returned string with g_free() when done.
  */
 char *gtk_sheet_column_get_tooltip_markup(GtkSheet *sheet,
-                                           const int col)
+                                          const int col)
 {
     g_return_val_if_fail(sheet != NULL, NULL);
     g_return_val_if_fail(GTK_IS_SHEET(sheet), NULL);
@@ -1535,15 +1534,15 @@ char *gtk_sheet_column_get_tooltip_markup(GtkSheet *sheet,
 
 /**
  * gtk_sheet_column_set_tooltip_markup:
- * @sheet:  a #GtkSheet.
- * @col: column index
- * @markup:  	the contents of the tooltip for widget, or NULL.
+ * \param sheet  a #GtkSheet.
+ * \param col    column index
+ * \param markup the contents of the tooltip for widget, or NULL.
  *
  * Sets markup as the contents of the tooltip, which is marked
  * up with the Pango text markup language.
  */
-void gtk_sheet_column_set_tooltip_markup(GtkSheet *sheet,
-                                         const int col,
+void gtk_sheet_column_set_tooltip_markup(GtkSheet   *sheet,
+                                         const int   col,
                                          const char *markup)
 {
     g_return_if_fail(sheet != NULL);
@@ -1556,16 +1555,16 @@ void gtk_sheet_column_set_tooltip_markup(GtkSheet *sheet,
 
 /**
  * gtk_sheet_column_get_tooltip_text:
- * @sheet:  a #GtkSheet.
- * @col: column index
+ * \param sheet  a #GtkSheet.
+ * \param col column index
  *
  * Gets the contents of the tooltip for the column
  *
- * Returns:	the tooltip text, or NULL. You should free the
- *          returned string with g_free() when done.
+ * \returns the tooltip text, or NULL.
+ *          The returned string with g_free() when done.
  */
 char *gtk_sheet_column_get_tooltip_text(GtkSheet *sheet,
-                                         const int col)
+                                        const int col)
 {
     g_return_val_if_fail(sheet != NULL, NULL);
     g_return_val_if_fail(GTK_IS_SHEET(sheet), NULL);
@@ -1577,14 +1576,14 @@ char *gtk_sheet_column_get_tooltip_text(GtkSheet *sheet,
 
 /**
  * gtk_sheet_column_set_tooltip_text:
- * @sheet:  a #GtkSheet.
- * @col: column index
- * @text:  the contents of the tooltip for widget
+ * \param sheet a #GtkSheet.
+ * \param col   column index
+ * \param text  the contents of the tooltip for widget
  *
  * Sets text as the contents of the tooltip.
  */
-void gtk_sheet_column_set_tooltip_text(GtkSheet *sheet,
-                                       const int col,
+void gtk_sheet_column_set_tooltip_text(GtkSheet   *sheet,
+                                       const int   col,
                                        const char *text)
 {
     g_return_if_fail(sheet != NULL);
@@ -1598,14 +1597,13 @@ void gtk_sheet_column_set_tooltip_text(GtkSheet *sheet,
 
 /**
  * gtk_sheet_column_sensitive:
- * @sheet: a #GtkSheet.
- * @column: column number
+ * \param sheet a #GtkSheet.
+ * \param column column number
  *
  * Get column button sensitivity.
  *
- * Returns:
- * TRUE - the column is sensitive, FALSE - insensitive or not
- * existant
+ * \retval TRUE - if the column is sensitive,
+ *         FALSE - insensitive or does not exist
  */
 int
 gtk_sheet_column_sensitive(GtkSheet *sheet, int column)
@@ -1620,9 +1618,9 @@ gtk_sheet_column_sensitive(GtkSheet *sheet, int column)
 
 /**
  * gtk_sheet_column_set_sensitivity:
- * @sheet: a #GtkSheet.
- * @column: column number
- * @sensitive: TRUE or FALSE
+ * \param sheet a #GtkSheet.
+ * \param column column number
+ * \param sensitive TRUE or FALSE
  *
  * Set column button sensitivity. If sensitivity is TRUE it can be toggled, otherwise it acts as a title.
  */
@@ -1644,8 +1642,8 @@ gtk_sheet_column_set_sensitivity(GtkSheet *sheet, int col, int sensitive)
     else
         COLPTR(sheet, col)->button.state = GTK_STATE_NORMAL;
 
-    if (gtk_widget_get_realized(GTK_WIDGET(sheet))
-        && !gtk_sheet_is_frozen(sheet))
+    if (gtk_widget_get_realized(GTK_WIDGET(sheet)) &&
+       !gtk_sheet_is_frozen(sheet))
     {
         _gtk_sheet_draw_button(sheet, -1, col);
     }
@@ -1653,8 +1651,8 @@ gtk_sheet_column_set_sensitivity(GtkSheet *sheet, int col, int sensitive)
 
 /**
  * gtk_sheet_columns_set_sensitivity:
- * @sheet: a #GtkSheet.
- * @sensitive: TRUE or FALSE
+ * \param sheet a #GtkSheet.
+ * \param sensitive TRUE or FALSE
  *
  * Set all columns buttons sensitivity. If sensitivity is TRUE
  * button can be toggled, otherwise  act as titles. The sheet itself
@@ -1674,8 +1672,8 @@ gtk_sheet_columns_set_sensitivity(GtkSheet *sheet, int sensitive)
 
 /**
  * gtk_sheet_columns_set_resizable:
- * @sheet: a #GtkSheet.
- * @resizable: TRUE or FALSE
+ * \param sheet a #GtkSheet.
+ * \param resizable TRUE or FALSE
  *
  * Set columns resizable status.
  */
@@ -1690,11 +1688,11 @@ gtk_sheet_columns_set_resizable(GtkSheet *sheet, int resizable)
 
 /**
  * gtk_sheet_columns_resizable:
- * @sheet: a #GtkSheet.
+ * \param sheet a #GtkSheet.
  *
  * Get columns resizable status.
  *
- * Returns: TRUE or FALSE
+ * \returns TRUE or FALSE
  */
 int
 gtk_sheet_columns_resizable(GtkSheet *sheet)
@@ -1707,8 +1705,8 @@ gtk_sheet_columns_resizable(GtkSheet *sheet)
 
 /**
  * _gtk_sheet_column_button_set:
- * @sheet:  the #GtkSheet
- * @col:    column index
+ * \param sheet  the #GtkSheet
+ * \param col    column index
  *
  * activate and draw column button
  */
@@ -1728,16 +1726,19 @@ _gtk_sheet_column_button_set(GtkSheet *sheet, int col)
 
 /**
  * _gtk_sheet_column_button_release:
- * @sheet:  the #GtkSheet
- * @col:    column index
+ * \param sheet  the #GtkSheet
+ * \param col    column index
  *
  * reset and draw column button
  */
 void
 _gtk_sheet_column_button_release(GtkSheet *sheet, int col)
 {
-    if (col < 0 || col > sheet->maxcol) return;
-    if (COLPTR(sheet, col)->button.state == GTK_STATE_NORMAL) return;
+    if (col < 0 || col > sheet->maxcol)
+      return;
+
+    if (COLPTR(sheet, col)->button.state == GTK_STATE_NORMAL)
+      return;
 
 #if GTK_SHEET_COL_DEBUG_DRAW > 0
     g_debug("_gtk_sheet_column_button_release: col %d", col);
@@ -1749,12 +1750,12 @@ _gtk_sheet_column_button_release(GtkSheet *sheet, int col)
 
 /**
  * gtk_sheet_column_visible:
- * @sheet: a #GtkSheet.
- * @column: column number
+ * \param sheet a #GtkSheet.
+ * \param column column number
  *
  * Get column visible property.
  *
- * Returns: TRUE - visible, FALSE - hidden or not existant
+ * \retval TRUE - visible, FALSE - hidden or not existant
  */
 int
 gtk_sheet_column_visible(GtkSheet *sheet, int column)
@@ -1762,42 +1763,44 @@ gtk_sheet_column_visible(GtkSheet *sheet, int column)
     g_return_val_if_fail(sheet != NULL, FALSE);
     g_return_val_if_fail(GTK_IS_SHEET(sheet), FALSE);
 
-    if (column < 0 || column > sheet->maxcol) return (FALSE);
+    if (column < 0 || column > sheet->maxcol)
+      return (FALSE);
 
     return (GTK_SHEET_COLUMN_IS_VISIBLE(COLPTR(sheet, column)));
 }
 
 /**
  * gtk_sheet_column_set_visibility:
- * @sheet: a #GtkSheet.
- * @column: column number
- * @visible: TRUE or FALSE
+ * \param sheet   a #GtkSheet.
+ * \param column  column number
+ * \param visible TRUE or FALSE
  *
  * Set column visible property.
  *
- * Default value is TRUE. When set to FALSE, the column is
- * hidden.
+ * Default value is TRUE. When set to FALSE, the column is hidden.
  */
 void
 gtk_sheet_column_set_visibility(GtkSheet *sheet, int col, int visible)
 {
     GtkSheetColumn *colobj;
-    //int act_row;
     int act_col;
 
     g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
-    if (col < 0 || col > sheet->maxcol) return;
+    if (col < 0 || col > sheet->maxcol)
+      return;
 
     colobj = COLPTR(sheet, col);
-    if (GTK_SHEET_COLUMN_IS_VISIBLE(colobj) == visible) return;
 
-    //act_row = sheet->active_cell.row;
+    if (GTK_SHEET_COLUMN_IS_VISIBLE(colobj) == visible)
+      return;
+
     act_col = sheet->active_cell.col;
 
-    if (act_col == col)   /* hide active column -> disable active cell */
-    {
+    /* hide active column -> disable active cell */
+    if (act_col == col) {
+
         _gtk_sheet_hide_active_cell(sheet);
 
         sheet->active_cell.row = -1;
@@ -1832,10 +1835,9 @@ gtk_sheet_column_set_visibility(GtkSheet *sheet, int col, int visible)
 
 /**
  * gtk_sheet_column_button_justify:
- * @sheet: a #GtkSheet.
- * @col: column number
- * @justification: a #GtkJustification :GTK_JUSTIFY_LEFT, RIGHT,
- *  			 CENTER
+ * \param sheet         a #GtkSheet.
+ * \param col           column number
+ * \param justification a #GtkJustification :GTK_JUSTIFY_LEFT, RIGHT, CENTER
  *
  * Set the justification(alignment) of the column buttons.
  */
@@ -1857,20 +1859,19 @@ gtk_sheet_column_button_justify(GtkSheet *sheet, int col,
     button = &COLPTR(sheet, col)->button;
     button->justification = justification;
 
-    if (!gtk_sheet_is_frozen(sheet))
-    {
+    if (!gtk_sheet_is_frozen(sheet)) {
         _gtk_sheet_draw_button(sheet, -1, col);
     }
 }
 
 /**
  * gtk_sheet_column_button_get_label:
- * @sheet: a #GtkSheet.
- * @col: column number.
+ * \param sheet a #GtkSheet.
+ * \param col column number.
  *
  * Get column button label.
  *
- * Returns: Column button label.
+ * \returns Column button label.
  */
 const char *
 gtk_sheet_column_button_get_label(GtkSheet *sheet, int col)
@@ -1885,9 +1886,9 @@ gtk_sheet_column_button_get_label(GtkSheet *sheet, int col)
 
 /**
  * gtk_sheet_column_label_set_visibility:
- * @sheet: a #GtkSheet.
- * @col: column number.
- * @visible: TRUE or FALSE
+ * \param sheet   a #GtkSheet.
+ * \param col     column number.
+ * \param visible TRUE or FALSE
  *
  * Set column label visibility. The default value is TRUE. If FALSE, the column label is hidden.
  */
@@ -1905,16 +1906,15 @@ gtk_sheet_column_label_set_visibility(GtkSheet *sheet, int col, int visible)
 
     COLPTR(sheet, col)->button.label_visible = visible;
 
-    if (!gtk_sheet_is_frozen(sheet))
-    {
+    if (!gtk_sheet_is_frozen(sheet)) {
         _gtk_sheet_draw_button(sheet, -1, col);
     }
 }
 
 /**
  * gtk_sheet_columns_labels_set_visibility:
- * @sheet: a #GtkSheet.
- * @visible: TRUE or FALSE
+ * \param sheet a #GtkSheet.
+ * \param visible TRUE or FALSE
  *
  * Set all columns labels visibility. The default value is TRUE.
  * If FALSE, the columns labels are hidden. The sheet itself
@@ -1934,8 +1934,8 @@ gtk_sheet_columns_labels_set_visibility(GtkSheet *sheet, int visible)
 
 /**
  * gtk_sheet_set_column_titles_height:
- * @sheet: a #GtkSheet
- * @height: column title height.
+ * \param sheet  a #GtkSheet
+ * \param height column title height.
  *
  * Resize column titles area .
  */
@@ -1956,7 +1956,7 @@ gtk_sheet_set_column_titles_height(GtkSheet *sheet, guint height)
 
 /**
  * gtk_sheet_show_column_titles:
- * @sheet: a #GtkSheet
+ * \param sheet a #GtkSheet
  *
  * Show column titles .
  */
@@ -1996,7 +1996,7 @@ gtk_sheet_show_column_titles(GtkSheet *sheet)
 
 /**
  * gtk_sheet_hide_column_titles:
- * @sheet: a #GtkSheet
+ * \param sheet a #GtkSheet
  *
  * Hide column titles .
  */
@@ -2032,9 +2032,9 @@ gtk_sheet_hide_column_titles(GtkSheet *sheet)
 
 /**
  * gtk_sheet_set_column_title:
- * @sheet: a #GtkSheet
- * @column: column number
- * @title: column title
+ * \param sheet  a #GtkSheet
+ * \param column column number
+ * \param title  column title
  *
  * Set column title.
  */
@@ -2052,12 +2052,12 @@ gtk_sheet_set_column_title(GtkSheet *sheet,
 
 /**
  * gtk_sheet_get_column_title:
- * @sheet: a #GtkSheet
- * @column: column number
+ * \param sheet  a #GtkSheet
+ * \param column column number
  *
  * Get column title.
  *
- * Returns: column title, do not modify or free it.
+ * \returns column title, do not modify or free it.
  */
 const char *
 gtk_sheet_get_column_title(GtkSheet *sheet,
@@ -2071,11 +2071,11 @@ gtk_sheet_get_column_title(GtkSheet *sheet,
 
 /**
  * gtk_sheet_column_titles_visible:
- * @sheet: a #GtkSheet
+ * \param sheet a #GtkSheet
  *
  * Get the visibility of sheet column titles .
  *
- * Returns: TRUE or FALSE
+ * \returns TRUE or FALSE
  */
 int
 gtk_sheet_column_titles_visible(GtkSheet *sheet)
