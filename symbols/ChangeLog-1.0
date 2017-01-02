@@ -4,6 +4,8 @@
 
     * lineartech/LT1054-1.sym: Add symbol; voltage converter, 100mA regulator.
 
+    * serial/ST16C554-1.sym: Add symbol; quad UART, 16-Byte FIFO, PLCC-68.
+
 2016-12-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * analogdevices/LT317A-1.sym: Add symbol; adjustable positive voltage regulator.
