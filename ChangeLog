@@ -2,6 +2,10 @@
 
     * geda-gaf/NEWS: update news for release of 2.1.1.0.
 
+    * configure.ac: Bump mirco to 1, date version 20170101, (after 20 months
+      of mutations), libgeda version 51:6:0 -> 52:0:0, libgedacolor version
+      0:3:0 -> 0:4:0; libgedauio version 0:14:0 -> 0:15:0;
+
 2016-12-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * configure.ac: Bump mutation to 32, date version 20161203, libgeda

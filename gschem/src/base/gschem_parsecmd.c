@@ -126,7 +126,7 @@ static void version (void)
   if (!quiet_mode)
     printf(_(
       "gEDA/gschem %s (%s) (g%.7s)\n"
-      "Copyright (C) 1998-2016 gEDA developers\n"
+      "Copyright (C) 1998-2017 gEDA developers\n"
       "This is free software, and you are welcome to redistribute it under\n"
       "certain conditions. For details, see the file `COPYING', which is\n"
       "included in the gEDA distribution.\n"
