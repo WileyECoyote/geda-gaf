@@ -11,6 +11,9 @@
     * ti/switchreg/LM5175-1.sym: Add symbol; synchronous 4-Switch buck-boost
       controller.
 
+    * ti/switchreg/TPS61099-1.sym: Add symbol; Low quiescent synchronous
+      boost converter.
+
 2016-12-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * analogdevices/LT317A-1.sym: Add symbol; adjustable positive voltage regulator.
