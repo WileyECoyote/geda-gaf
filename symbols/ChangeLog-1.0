@@ -8,6 +8,9 @@
 
     * ti/SN65220DBV-1.sym: Add symbol; USB host transient suppressors.
 
+    * ti/switchreg/LM5175-1.sym: Add symbol; synchronous 4-Switch buck-boost
+      controller.
+
 2016-12-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * analogdevices/LT317A-1.sym: Add symbol; adjustable positive voltage regulator.
