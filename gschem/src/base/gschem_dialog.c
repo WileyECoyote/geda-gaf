@@ -6,7 +6,7 @@
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 3 of
+ * published by the Free Software Foundation; either version 2 of
  * the License, or (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -768,7 +768,7 @@ GtkWidget* gschem_dialog_new_with_buttons (const char *title, GtkWindow *parent,
 GtkWindow *gschem_dialog_get_parent(GschemDialog *dialog)
 {
   if( !GSCHEM_IS_DIALOG(dialog))
-    fprintf(stderr, "Error, <gschem_dialog_get_parent> object is not a GschemDialog\n");
+    fprintf(stderr, "Error, <%s> object is not a GschemDialog\n", __func__);
   else
     return dialog->parent_window;
   return NULL;
@@ -777,9 +777,9 @@ GtkWindow *gschem_dialog_get_parent(GschemDialog *dialog)
 void gschem_dialog_set_parent(GschemDialog *dialog, GtkWindow *parent)
 {
   if( !GSCHEM_IS_DIALOG(dialog))
-    fprintf (stderr, "Error, <gschem_dialog_set_parent> parameter 1 is not a GschemDialog\n");
+    fprintf (stderr, "Error, <%s> parameter 1 is not a GschemDialog\n", __func__);
   else if (!GTK_IS_WINDOW(parent))
-    fprintf (stderr, "Error, <gschem_dialog_set_parent> parameter 2 is not a GtkWindow\n");
+    fprintf (stderr, "Error, <%s> parameter 2 is not a GtkWindow\n", __func__);
   else {
     if (dialog->parent_window) {
       gtk_window_set_transient_for (GTK_WINDOW (dialog), NULL);

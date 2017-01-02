@@ -1,68 +1,69 @@
-v 20080127 1
-T -2505 -3600 8 10 0 1 0 0 1
-device=ATMEGAX8
-T -2505 -3600 8 10 0 1 0 0 1
-footprint=DIP28N
-T 295 1200 9 10 1 1 0 0 1
-value=MEGAx8
-T 1695 1200 5 10 1 1 0 6 1
-refdes=U?
-L 300 1100 1700 1100 3 0 0 0 -1 -1
-L 300 1100 300 0 3 0 0 0 -1 -1
-L 300 0 1700 0 3 0 0 0 -1 -1
-L 1700 1100 1700 0 3 0 0 0 -1 -1
-P 0 800 300 800 1 0 0
+v 20080127 2
+P 100 1100 400 1100 1 0 0
 {
-T 0 800 5 10 0 0 0 0 1
+T 450 1075 5 8 0 1 0 2 1
 pintype=in
-T 355 795 9 8 1 1 0 0 1
+T 450 1100 9 8 1 1 0 0 1
 pinlabel=T0
-T 205 845 5 8 1 1 0 6 1
+T 300 1150 5 8 1 1 0 6 1
 pinnumber=6
-T 0 800 5 10 0 0 0 0 1
+T 300 950 5 8 0 1 0 6 1
 pinseq=1
 }
-P 2000 700 1700 700 1 0 0
+P 100 700 400 700 1 0 0
 {
-T 2000 700 5 10 0 0 0 0 1
-pintype=out
-T 1645 695 9 8 1 1 0 6 1
-pinlabel=OC1A
-T 1795 745 5 8 1 1 0 0 1
-pinnumber=15
-T 2000 700 5 10 0 0 0 0 1
-pinseq=4
-}
-P 2000 400 1700 400 1 0 0
-{
-T 2000 400 5 10 0 0 0 0 1
-pintype=out
-T 1645 395 9 8 1 1 0 6 1
-pinlabel=OC1B
-T 1795 445 5 8 1 1 0 0 1
-pinnumber=16
-T 2000 400 5 10 0 0 0 0 1
-pinseq=5
-}
-P 0 200 300 200 1 0 0
-{
-T 0 200 5 10 0 0 0 0 1
+T 450 675 5 8 0 1 0 2 1
 pintype=in
-T 355 195 9 8 1 1 0 0 1
-pinlabel=ICP1
-T 205 245 5 8 1 1 0 6 1
-pinnumber=14
-T 0 200 5 10 0 0 0 0 1
-pinseq=3
-}
-P 0 500 300 500 1 0 0
-{
-T 0 500 5 10 0 0 0 0 1
-pintype=in
-T 355 495 9 8 1 1 0 0 1
+T 450 700 9 8 1 1 0 0 1
 pinlabel=T1
-T 205 545 5 8 1 1 0 6 1
+T 300 750 5 8 1 1 0 6 1
 pinnumber=11
-T 0 500 5 10 0 0 0 0 1
+T 300 550 5 8 0 1 0 6 1
 pinseq=2
 }
+P 100 300 400 300 1 0 0
+{
+T 450 275 5 8 0 1 0 2 1
+pintype=in
+T 450 300 9 8 1 1 0 0 1
+pinlabel=ICP1
+T 300 350 5 8 1 1 0 6 1
+pinnumber=14
+T 300 150 5 8 0 1 0 6 1
+pinseq=3
+}
+P 2100 1100 1800 1100 1 0 0
+{
+T 1750 1075 5 8 0 1 0 8 1
+pintype=out
+T 1750 1100 9 8 1 1 0 6 1
+pinlabel=OC1A
+T 1900 1150 5 8 1 1 0 0 1
+pinnumber=15
+T 1950 950 5 8 0 1 0 0 1
+pinseq=4
+}
+P 2100 700 1800 700 1 0 0
+{
+T 1750 675 5 8 0 1 0 8 1
+pintype=out
+T 1750 700 9 8 1 1 0 6 1
+pinlabel=OC1B
+T 1900 750 5 8 1 1 0 0 1
+pinnumber=16
+T 1950 550 5 8 0 1 0 0 1
+pinseq=5
+}
+B 400 100 1400 1300 3 0 0 0 100 100 0 0 45 50 135 50
+T 400 2100 5 10 0 1 0 0 1
+device=ATMEGAX8
+T 400 1700 9 10 0 1 0 0 1
+footprint=DIP28N
+T 400 1500 5 10 1 1 0 0 1
+value=MEGAx8
+T 1800 1500 8 10 1 1 0 6 1
+refdes=U?
+T 400 2300 5 10 0 1 0 0 1
+documentation=http://atmel.com/dyn/resources/prod_documents/doc2545.pdf
+T 400 1900 5 10 0 1 0 0 1
+description=Atmel AVR series RISC microprocessor,DIP28

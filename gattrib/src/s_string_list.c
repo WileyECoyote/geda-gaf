@@ -57,18 +57,29 @@ STRING_LIST *s_string_list_new() {
 
 void s_string_list_free(STRING_LIST *strlist)
 {
-  if (strlist != NULL) {
+  STRING_LIST *s_iter = strlist;
 
-    while (strlist != NULL) {
+  /* Free each record and containing string on a single pass */
+  while (s_iter != NULL) {
 
-      char *data = strlist->data;
+    STRING_LIST *p_iter;
 
-      if (data != NULL) {
-        GEDA_FREE(data);
-      }
+    /* Get pointer to the string for this record */
+    char *data = s_iter->data;
 
-      strlist = strlist->next;
+    /* If pointer to data then free the string */
+    if (data != NULL) {
+      GEDA_FREE(data);
     }
+
+    /* Save pointer to this record */
+    p_iter = s_iter;
+
+    /* Get pointer to the next record */
+    s_iter = s_iter->next;
+
+    /* Free this record */
+    GEDA_FREE(p_iter);
   }
 
   return;
@@ -128,7 +139,7 @@ void s_string_list_add_item(STRING_LIST *list, int *count, const char *item)
   STRING_LIST *local_list;
 
   if (list == NULL) {
-    fprintf(stderr, _("In s_string_list_add_item, tried to add to a NULL list.\n"));
+    fprintf(stderr, "%s: %s",  __func__, _("attempted to add to a NULL list.\n"));
     return;
   }
 
@@ -138,7 +149,7 @@ void s_string_list_add_item(STRING_LIST *list, int *count, const char *item)
     list->data = geda_utility_string_strdup(item);
     list->next = NULL;
     list->prev = NULL;   /* this may have already been initialized. . . . */
-    list->pos  = *count; /* This enumerates the pos on the list.  Value is reset later by sorting. */
+    list->pos  = *count; /* This enumerates the pos on the list. Value is reset later by sorting. */
     (*count)++;          /* increment count to 1 */
     return;
   }
@@ -147,15 +158,12 @@ void s_string_list_add_item(STRING_LIST *list, int *count, const char *item)
   prev = list;
   while (list != NULL) {
 
-    char *trial_item = geda_utility_string_strdup(list->data);
+    char *trial_item = list->data;
 
-    if (strcmp(trial_item, item) == 0) {
+    if (trial_item && strcmp(trial_item, item) == 0) {
       /* Found item already in list.  Just return. */
-      GEDA_FREE(trial_item);
       return;
     }
-
-    GEDA_FREE(trial_item);
 
     prev = list;
     list = list->next;
@@ -164,16 +172,17 @@ void s_string_list_add_item(STRING_LIST *list, int *count, const char *item)
   /* If we are here, it's 'cause we didn't find the item pre-existing in the list. */
   /* In this case, we insert it. */
 
-  local_list = (STRING_LIST *) GEDA_MEM_ALLOC(sizeof(STRING_LIST));  /* allocate space for this list entry */
+  local_list = (STRING_LIST *)GEDA_MEM_ALLOC(sizeof(STRING_LIST));  /* allocate space for this list entry */
   local_list->data = geda_utility_string_strdup(item);   /* copy data into list */
   local_list->next = NULL;
   local_list->prev = prev;  /* point this item to last entry in old list */
   prev->next = local_list;  /* make last item in old list point to this one. */
   local_list->pos = *count; /* This enumerates the pos on the list.  Value is reset later by sorting. */
   (*count)++;               /* increment count */
-  /*   list = local_list;  */
-  return;
 
+  /* list = local_list;  */
+
+  return;
 }
 
 /*------------------------------------------------------------------*/
@@ -193,7 +202,7 @@ void s_string_list_delete_item(STRING_LIST **list, int *count, char *item)
 
   /* First check to see if list is empty.  If empty, spew error and return */
   if ( (*list)->data == NULL) {
-    fprintf(stderr, _("In s_string_list_delete_item, tried to remove item from empty list\n"));
+    fprintf(stderr, "%s: %s",  __func__, _("attempted to remove item from an empty list\n"));
     return;
   }
 
@@ -255,7 +264,9 @@ void s_string_list_delete_item(STRING_LIST **list, int *count, char *item)
 #ifdef DEBUG
     printf("In s_string_list_delete_item, now free trial_item\n");
 #endif
+
       GEDA_FREE(trial_item); /* free trial item before returning */
+
 #ifdef DEBUG
     printf("In s_string_list_delete_item, returning . . . .\n");
 #endif
@@ -269,9 +280,9 @@ void s_string_list_delete_item(STRING_LIST **list, int *count, char *item)
   /* If we are here, it's 'cause we didn't find the item.
    * Spew error and return.
    */
-  fprintf(stderr, _("In s_string_list_delete_item, couldn't delete item %s\n"), item);
-  return;
+  fprintf(stderr, "%s: %s %s\n",  __func__, _("could not delete item"), item);
 
+  return;
 }
 
 /*------------------------------------------------------------------*/
@@ -631,8 +642,9 @@ void s_string_list_sort_master_pin_list()
  * Right now it does nothing other than fill in the "position".
  */
 void s_string_list_sort_master_pin_attrib_list() {
-  int i = 0;
+
   STRING_LIST *local_list;
+  int i = 0;
 
   /* Here's where we do the sort */
 

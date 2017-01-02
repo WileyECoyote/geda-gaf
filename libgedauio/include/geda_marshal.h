@@ -170,7 +170,12 @@ extern void geda_marshal_STRING__STRING (GClosure     *closure,
                                          void         *marshal_data);
 
 /* VOID:INT (geda-marshal.list:16) */
-#define geda_marshal_VOID__INT	g_cclosure_marshal_VOID__INT
+extern void geda_marshal_VOID__INT (GClosure     *closure,
+                                    GValue       *return_value GEDA_UNUSED,
+                                    unsigned int  n_param_values,
+                                    const GValue *param_values,
+                                    void         *invocation_hint GEDA_UNUSED,
+                                    void         *marshal_data);
 
 /* VOID:INT,STRING (geda-marshal.list:17) */
 extern void geda_marshal_VOID__INT_STRING (GClosure     *closure,

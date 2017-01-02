@@ -245,11 +245,11 @@ o_complex_translate_all(GschemToplevel *w_current, int offset, bool zoom_extents
   y = snap_grid (w_current, top);
 
   if (offset == 0) {
-    u_log_message(_("Translating schematic [%d %d]\n"), -x, -y);
+    u_log_message("%s [%d %d]\n", _("Translating schematic"), -x, -y);
     geda_translate_list (object_list, -x, -y);
   }
   else {
-    u_log_message(_("Translating schematic [%d %d]\n"), offset, offset);
+    u_log_message("%s [%d %d]\n", _("Translating schematic"), offset, offset);
     geda_translate_list (object_list, offset, offset);
   }
 

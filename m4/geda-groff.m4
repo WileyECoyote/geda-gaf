@@ -1,8 +1,8 @@
 # geda-groff.m4                                         -*-Autoconf-*-
-# serial 1
+# serial 1.1
 
 dnl Look for GNU troff
-dnl Copyright (C) 2009  Peter Brett <peter@peter-b.co.uk>
+dnl Copyright (C) 2009,2016  Peter Brett <peter@peter-b.co.uk>
 dnl
 dnl This program is free software; you can redistribute it and/or modify
 dnl it under the terms of the GNU General Public License as published by
@@ -24,6 +24,8 @@ AC_DEFUN([AX_PROG_GROFF],
   AC_ARG_VAR([GROFF], [Path to groff executable])
   AC_CHECK_PROG([GROFF], [groff], [groff], [no])
 
+  HAVE_GROFF_HTML=no
+
   # Some distros are annoying and package groff into a crippled
   # version without many of the drivers, along with a separate full
   # version.  So explicitly check for the html driver.
@@ -32,14 +34,12 @@ AC_DEFUN([AX_PROG_GROFF],
     echo '.TH conftest 1 "January 1st, 1970" Version 1' > conftest.1
     if LC_NUMERIC=C $GROFF -man -T html > /dev/null 2>&AS_MESSAGE_LOG_FD; then
       HAVE_GROFF_HTML=yes
-    else
-      HAVE_GROFF_HTML=no
     fi
     rm -f conftest.1
     AC_MSG_RESULT([$HAVE_GROFF_HTML])
   fi
 
   AM_CONDITIONAL([ENABLE_GROFF_HTML],
-                 [test "X$HAVE_GROFF_HTML" != Xno])
+                 [test "$HAVE_GROFF_HTML" = yes])
   []dnl
 ])dnl AX_PROG_GROFF

@@ -170,7 +170,7 @@ void i_window_on_page_changed (GschemToplevel *w_current)
 
   page = gschem_toplevel_get_current_page (w_current);
 
-  u_log_message(_("Set page <%s> active.\n"), geda_file_get_basename(page->filename));
+  geda_log(_("Set page <%s> active.\n"), geda_file_get_basename(page->filename));
 
   g_hook_run_page (w_current, CHANGE_PAGE_HOOK, page);
 }
@@ -251,9 +251,10 @@ void i_window_revert_page (GschemToplevel *w_current)
 
       const char *disk_err_msg;
 
-      disk_err_msg = _("An error occurred during a File Revert operation: %s.");
+      disk_err_msg = _("An error occurred while processing request to revert");
 
-      char *errmsg = geda_sprintf (disk_err_msg, err->message);
+      char *errmsg = geda_sprintf ("%s: %s.", disk_err_msg, err->message);
+
       titled_pango_error_dialog(_("<b>File error.</b>"), errmsg, _("Revert failed"));
       GEDA_FREE(errmsg);
       g_error_free(err);
@@ -261,8 +262,8 @@ void i_window_revert_page (GschemToplevel *w_current)
       /* Put the file name back */
       page->filename = filename;
 
-      u_log_message(_("Error encountered during file operation <%s>\n"), filename);
-      u_log_message(_("Recovery: undo last action\n"));
+      geda_log("%s: %s.\n", _("Error encountered during file operation"), filename);
+      geda_log(_("Recovery: undo last action\n"));
 
       /* Do error recovery */
       o_undo_callback(w_current, UNDO_ACTION);

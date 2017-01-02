@@ -38,7 +38,7 @@ rm -f ${tmpfile}
 diff "${ref}" "${new}"
 status=$?
 
-rm -rf $rundir
+test ${DEBUG} || rm -rf $rundir
 
 if test $status -ne 0; then
 	exit 2

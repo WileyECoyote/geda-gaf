@@ -321,6 +321,9 @@ static const char const transfer_window_key[] = "menu-transfer-window";
 
 static unsigned int menu_signals[LAST_SIGNAL] = { 0 };
 
+/* Table of pointers to GedaMenu instances */
+static GHashTable *menu_hash_table = NULL;
+
 static void *geda_menu_parent_class = NULL;
 
 static void
@@ -346,7 +349,7 @@ get_attach_info (GtkWidget *child)
 
   if (!info) {
 
-    info = g_malloc0 (sizeof(AttachInfo));
+    info = GEDA_MEM_ALLOC0 (sizeof(AttachInfo));
     g_object_set_data_full (object, attached_info_key, info,
                            (GDestroyNotify) attach_info_free);
   }
@@ -395,7 +398,7 @@ menu_ensure_layout (GedaMenu *menu)
 
     /* Find empty rows
      */
-    row_occupied = g_malloc0 (max_bottom_attach);
+    row_occupied = GEDA_MEM_ALLOC0 (max_bottom_attach);
 
     for (iter = menu_shell->children; iter; iter = iter->next) {
 
@@ -476,7 +479,7 @@ get_effective_child_attach (GtkWidget *child,
                             int       *t,
                             int       *b)
 {
-  GedaMenu   *menu = GEDA_MENU (child->parent);
+  GedaMenu   *menu = GEDA_MENU (gtk_widget_get_parent(child));
   AttachInfo *info;
 
   menu_ensure_layout (menu);
@@ -503,7 +506,7 @@ get_effective_child_attach (GtkWidget *child,
 static bool
 geda_menu_window_event (GtkWidget *window, GdkEvent *event, GtkWidget *menu)
 {
-  bool  handled = FALSE;
+  bool handled = FALSE;
 
   g_object_ref (window);
   g_object_ref (menu);
@@ -559,6 +562,25 @@ geda_menu_window_size_request (GtkWidget      *window,
       requisition->height -= monitor.y - private->y;
     }
   }
+}
+
+static void
+geda_menu_finalize (GObject *object)
+{
+  GedaMenu *menu = (GedaMenu*)object;
+
+  geda_menu_set_accel_group(menu, NULL);
+
+  if (g_hash_table_remove (menu_hash_table, object)) {
+    if (!g_hash_table_size (menu_hash_table)) {
+      g_hash_table_destroy (menu_hash_table);
+      menu_hash_table = NULL;
+    }
+  }
+
+  g_free(menu->priv);
+
+  G_OBJECT_CLASS (geda_menu_parent_class)->finalize (object);
 }
 
 static void
@@ -689,10 +711,11 @@ geda_menu_class_init  (void *class, void *class_data)
   GtkBindingSet      *binding_set;
   GParamSpec         *params;
 
-  gobject_class->set_property = geda_menu_set_property;
-  gobject_class->get_property = geda_menu_get_property;
+  gobject_class->finalize             = geda_menu_finalize;
+  gobject_class->set_property         = geda_menu_set_property;
+  gobject_class->get_property         = geda_menu_get_property;
 
-  object_class->destroy       = geda_menu_destroy;
+  object_class->destroy               = geda_menu_destroy;
 
   widget_class->realize               = geda_menu_realize;
   widget_class->unrealize             = geda_menu_unrealize;
@@ -1108,10 +1131,9 @@ geda_menu_instance_init (GTypeInstance *instance, void *class)
   GedaMenuPriv *priv;
   GtkWindow    *toplevel;
 
-  menu                 = (GedaMenu *)instance;
+  menu                 = (GedaMenu*)instance;
   menu->priv           = g_malloc0 (sizeof(GedaMenuPriv));
   priv                 = menu->priv;
-  menu->instance_type  = geda_menu_get_type();
 
   menu->parent_menu_item     = NULL;
   menu->old_active_menu_item = NULL;
@@ -1173,6 +1195,11 @@ geda_menu_instance_init (GTypeInstance *instance, void *class)
 
 #endif
 
+  if (!menu_hash_table) {
+    menu_hash_table = g_hash_table_new (g_direct_hash, NULL);
+  }
+
+  g_hash_table_add (menu_hash_table, instance);
 }
 
 /*!
@@ -1219,8 +1246,8 @@ geda_menu_get_type (void)
 
 bool is_a_geda_menu (GedaMenu *menu)
 {
-  if (G_IS_OBJECT(menu)) {
-    return (geda_menu_get_type() == menu->instance_type);
+  if ((menu != NULL) && (menu_hash_table != NULL)) {
+    return g_hash_table_lookup(menu_hash_table, menu) ? TRUE : FALSE;
   }
   return FALSE;
 }
@@ -1475,7 +1502,7 @@ geda_menu_get_attach_widget (GedaMenu *menu)
 /*!
  * \brief Detach a GedaMenu from a Widget
  * \par Function Description
- * Detaches the menu from the widget to which it had been attached.
+ * Detaches the menu from the widget to which the menu had been attached.
  * This function will call the callback function, \a detacher, provided
  * when the geda_menu_attach_to_widget() function was called.
  *
@@ -1525,6 +1552,7 @@ geda_menu_detach (GedaMenu *menu)
   /* Fallback title for menu comes from attach widget */
   geda_menu_update_title (menu);
 
+  g_object_notify (G_OBJECT (menu), "attach-widget");
   g_object_unref (menu);
 }
 
@@ -1827,9 +1855,9 @@ geda_menu_popup (GedaMenu         *menu,
                                   GTK_WINDOW (parent_toplevel));
   }
 
-  menu->parent_menu_item = parent_menu_item;
-  menu->position_func = func;
-  menu->position_func_data = data;
+  menu->parent_menu_item    = parent_menu_item;
+  menu->position_func       = func;
+  menu->position_func_data  = data;
   menu_shell->activate_time = activate_time;
 
   /* We need to show the menu here rather in the init function because
@@ -2131,8 +2159,8 @@ geda_menu_set_accel_group (GedaMenu *menu, GtkAccelGroup *accel_group)
     menu->accel_group = accel_group;
 
     /* Add a reference to the new group */
-    if (menu->accel_group) {
-      g_object_ref (menu->accel_group);
+    if (accel_group) {
+      g_object_ref (accel_group);
     }
 
     geda_menu_refresh_accel_paths (menu, TRUE);
@@ -2891,7 +2919,7 @@ geda_menu_size_request (GtkWidget *widget, GtkRequisition *requisition)
 
   g_free (priv->heights);
 
-  priv->heights = g_malloc0 (sizeof(unsigned int) * geda_menu_get_n_rows (menu));
+  priv->heights = GEDA_MEM_ALLOC0 (sizeof(unsigned int) * geda_menu_get_n_rows (menu));
   priv->heights_length = geda_menu_get_n_rows (menu);
 
   children = menu_shell->children;

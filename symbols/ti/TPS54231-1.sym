@@ -116,7 +116,7 @@ documentation=http://www.ti.com/product/TPS54231
 T 400 3200 5 10 0 0 0 0 1
 numslots=0
 T 400 3600 5 10 0 0 0 0 1
-dist-license=GPL (version 3 or later)
+dist-license=GPLv2
 T 400 3800 5 10 0 0 0 0 1
 use-license=unlimited
 T 525 2175 5 8 0 0 0 0 1

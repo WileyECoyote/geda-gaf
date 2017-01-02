@@ -1,12 +1,283 @@
+2017-01-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/libgeda/geda_keyfile.h: Resolve size_t arguments to keyfile
+      function => unsigned int.
+
+    * src/utility/u_program.c: Wrap memvtable with connditional to not define if
+      glib >= 2.44.
+
+2016-12-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/file/f_file.c: Reduce scope of translatable strings in geda_file_open
+      and revise (tweak) mem_needed, reformat allocation error.
+
+    * src/utility/u_log.c: Revise geda_utility_log_quite and geda_utility_log_
+      verbose to verify that the format argument is not null.
+
+2016-12-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/struct/s_clib.c: Revert c7e5e080ef846c03169a1af2fac41437ab707591,
+      at least to use of geda_stricmp instead of strcasecmp part.
+
+    * include/libgeda/geda_keyfile.h: Add new header to define would be
+      GedaKeyFile class.
+
+    * src/geda/geda_keyfile.c: Add new procedural module for manipulation of
+      key/ini files (I know, is in directory of class modules).
+
+    * src/utility/u_string.c: Revise geda_stricmp to indicate return type
+      bool to emphasize geda_stricmp is not a replacement for strcasecmp
+      and add note to comments.
+
+    * tests/test_keyfile.c: Add test module for geda_keyfile.c module.
+
+    * tests/test_utility.c: Remove running test_log twice. Revise U031101B
+      to include the errant string in the log output.
+
+2016-12-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_page.c: Add accessor function geda_page_get_pid;
+
+    * src/geda/geda_toplevel.c: Add function geda_toplevel_is_current_page.
+
+    * src/utility/u_glist.c: Declare second (string) argument const for
+      functions:
+
+            * geda_utility_glist_find_string
+            * geda_utility_glist_str_inlist
+            * geda_utility_glist_stri_inlist
+            * geda_utility_gslist_find_string
+            * geda_utility_gslist_str_inlist
+            * geda_utility_gslist_stri_inlist
+
+2016-12-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/: Add headers in files:
+
+            * tests/test_box.c
+            * tests/test_bus.c
+            * tests/test_circle.c
+            * tests/test_complex.c
+            * tests/test_line.c
+            * tests/test_list.c
+            * tests/test_parsecmd.h
+            * tests/test_path.c
+            * tests/test_picture.c
+            * tests/test_pin.c
+            * tests/test_text.c
+
+2016-12-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/libgeda/: Add parenthesis around obj in GEDA_IS_* macros in:
+
+            * geda_arc.h
+            * geda_box.h
+            * geda_bus.h
+            * geda_circle.h
+            * geda_config.h
+            * geda_line.h
+            * geda_net.h
+            * geda_notify.h
+            * geda_path.h
+            * geda_picture.h
+            * geda_pin.h
+            * geda_text.h
+
+    * include/libgeda/geda_page.h: Add missing cast in GEDA_IS_PAGE macro.
+
+    * include/libgeda/geda_toplevel.h: Add missing cast in GEDA_IS_TOPLEVEL
+      macro.
+
+    * src/geda/geda_object.c: Add function geda_object_get_conn_list.
+
+    * src/geda/geda_toplevel.c: Replace GEDA_TOPLEVEL call with cast in
+      geda_toplevel_finalize.
+
+    * tests/test_toplevel.c: Add basic checks for GedaToplevel construction.
+
+2016-12-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_object.c: Redo object type identifier scheme for GedaObject
+      objects and replace glist with hash table. The performance with glist was
+      unacceptable for schematics with high component counts.
+
+    * tests/test_file.c: Skip F0207 if vpath_build.
+
+2016-11-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/file/f_file.c: Add global boolean vpath_build and set if Makefile.am
+      is not present to allow test to be skipped during checks for vpath builds.
+
+    * src/geda/geda_notify.c: Implement new object type identifier scheme
+      for GedaNotifyList objects.
+
+2016-11-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/file/f_get.c: Revise function geda_file_get_filename_ext to check
+      for NULL and empty strings, and if the character before the dot is a
+      directory separator, which would occur if the filename argument refer-
+      red to a hidden file nested in a directory.
+
+    * src/geda/geda_config.c: Implement new object type identifier scheme
+      for EdaConfig objects.
+
+    * src/geda/geda_object.c: Implement new object type identifier scheme
+      for GedaObject objects.
+
+    * src/object/o_object.c: Reduce scope of result in geda_object_read.
+
+    * tests/test_file.c: Revise F020201B to not pass the NULL to strcmp.
+      Add checks for geda_file_get_filename_ext.
+
+    * tests/test_utility.c: Add check for passing an empty string to
+      geda_utility_string_strdup.
+
+2016-11-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_page.c: Integrate a new type identifier system with
+      gobject system. The new scheme adds each page to a glist when the
+      instance is initialized and removes the pointer when the page is
+      finalized. The pointer is a page if the pointer is in the list and
+      this allows objects to be identified without "looking" inside the
+      object because the pointer could be any address.
+
+    * src/geda/geda_toplevel.c: Implement new object type identifier scheme
+      to GedaToplevel objects.
+
+2016-11-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_complex_object.c: Add accessor function geda_complex_
+      object_get_pin_objs.
+
+2016-11-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_config.c: Revise eda_config_find_project_root to use one
+      dynamically allocated buffer, filespec, with strcpy and strcat instead
+      of dynamically allocating each parent directory; path only get smaller.
+      Replace free with geda_free to insure the correct release function is
+      called when geda_utility_program_mem_set_vtable has not been called.
+      Use g_object_unref directly in eda_config_release_resources instead of
+      GEDA_UNREF macros; the references do not need to be checked, the new
+      reference counting scheme seems to be working now.
+
+    * src/guile/g_evaluate.c: Replace free/set NULL with GEDA_FREE and free
+      with geda_free in g_evaluate_scheme_file to insure the correct release
+      function is called when geda_utility_program_mem_set_vtable has not been
+      called.
+
+    * src/iface/i_menu.c: Fix incomplete argument-less function definitions;
+      add type void and this make the functions easier to find grep.
+
+2016-11-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/libgeda/defines.h: Remove memory and g_object related macros
+      relocated to geda/geda_wrap.h.
+
+    * src/guile/g_rc.c: Check and release default strings directly instead of
+      indiscriminately using GEDA_FREE macro.
+
+    * src/utility/u_program.c: Initialize memvtable to zeros, adjust function
+      wraps and refrain from setting setting values in memvtable if glib is
+      version 2.44 or above. Add functions:
+
+          * geda_utility_program_mem_alloc
+          * geda_utility_program_mem_calloc
+          * geda_utility_program_mem_free
+
+    * tests/test_utility.c: Include "test-suite.h" and setup setjmp and longjmp
+      to trap seg faults during tests.
+
+2016-11-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_config.c: Add debug output of eda_config created and
+      destroyed. Revise eda_config_get_context_for_file to return the only
+      the default config if an argument was passed but the real path could
+      not be determined.
+
+    * src/object/o_complex_object.c: Add accessor function geda_complex_
+      object_get_prim_objs.
+
+2016-11-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_list.c: Replace macro G_OBJECT_CLASS_TYPE with
+      G_TYPE_FROM_CLASS, the former just expands to the later.
+
+    * src/object/o_path_object.c: Replace <DL><DT><DD>t HTML tags for
+      funtion geda_path_object_copy with \li.
+
+    * src/scheme/scheme_smob.c: Revise edascm_from_config to not increment
+      the reference count on EdaConfig objects for new smobs since config
+      objects stay alive until libgeda is shutdown and do not unreference
+      in smob_free.
+
+    * src/struct/s_page.c: Revise to geda_struct_page_goto check the
+      toplevel and not call geda_toplevel_set_current_page which will
+      return NULL when the current page has been deleted, which occurs
+      when deleting all pages.
+
+2016-11-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/math/m_angle.c: Use relative path to include libgeda_priv.h.
+
+2016-11-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/libgeda/: Align structure markers on dword boundaries:
+
+          * include/libgeda/geda_object.h
+          * include/libgeda/geda_page.h
+          * include/libgeda/geda_toplevel.h
+
+    * src/geda/geda_config.c: Revise eda_config_get_context_for_file to
+      use the cwd if passed a NULL path. Revise eda_config_get_boolean
+      eda_config_get_double and eda_config_get_double_list for uniform
+      flow without early returns. Add private functions eda_config_ref
+      and eda_config_unref to reference count the static default, user
+      and system EdaConfig objects. Add eda_config_release_resources
+      to destroy the objects when libgeda is shutdown.
+
+    * src/geda/geda_toplevel.c Revise geda_toplevel_get_current_page to
+      not check GEDA_IS_PAGE if the current page is not set.
+
+    * src/struct/s_page.c: Revise geda_struct_page_delete to not call
+      geda_toplevel_get_current_page if the previous argument is set.
+
+2016-11-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_config.c: Set parent_class in eda_config_class_init.
+      Reformat and edit Doxygen comments. Conditionaly set the parent to
+      NULL in eda_config_dispose. Include geda_debug.h.
+
+    * libgeda/tests/test_file.c: Change format specifier for size_t to zu
+      for tests F020501A to suppress warning on 64 bit compilations.
+
+2016-11-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src\file\f_get.c: Include ctype.h for isalpha if OS_WIN32 defined.
+
+    * src\file\f_path.c: Relocate inclusion of pwd.h so this header is
+      not included if OS_WIN32 is defined but do nclude ctype.h for isalpha
+      and change mkdir -> MKDIR macro.
+
+2016-11-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_config.c: Initialize fp to NULL in eda_config_save.
+
+    * src/utility/u_program.c: Conditionally call g_mem_set_vtable if glic
+      < than 2.44.
+
 2016-11-14 Wiley E. Hill <wileyhill@gmail.com>
 
-    * shell\Makefile.am: Add MINGW_LDFLAGS to LDFLAGS, don't remember why
-	  but it had to be done for this Win7-64 box.
+    * shell\Makefile.am: Add MINGW_LDFLAGS to LDFLAGS, do not remember why
+      but it had to be done for this Win7-64 box.
+
+    * src/geda/geda_config.c: Revise eda_config_get_default_context to
+      release the empty string created during initialization of the
+      EDA_CONFIG object in addition to setting to NULL.
 
 2016-11-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_get.c: Revise geda_file_get_dir_list_files to check the
-      err argument abd set only if passed, and therefore optional. Update
+      err argument and set only if passed, and therefore optional. Update
       Doxygen param arguments, also add check if path argument is NULL.
 
     * src/geda/geda_errors.c: Add Doxygen group geda-errors.
@@ -5598,7 +5869,7 @@
         structures in structures prohibited. Also relocated some enumerated
         types to geda_enum.h  Now edacairo.c does not have to have include
         EVERY libgeda header just to get the definition for PATH_SECTION.
-        A similar situation    was also occurring with some of the utilities.
+        A similar situation was also occurring with some of the utilities.
 
         * src/Makefile.am: Added GEDA_INCLUDES variable, as was done for
         gschem to clean up the include paths.

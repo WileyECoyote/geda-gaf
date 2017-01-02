@@ -7,7 +7,7 @@
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
+ * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -21,12 +21,14 @@
  * 02110-1301 USA, <http://www.gnu.org/licenses/>.
  *
  *  Contributing Author: Wiley Edward Hill
- *  Date Contributed: March, TBD, 2016
+ *  Date Contributed: April, 1st, 2016
  */
 
 #include <libgeda.h>
 #include <stdlib.h>
 #include <errno.h>
+
+#include "test-suite.h"
 
 /*! \file test_utility.c
  *  \brief Tests for geda utility functions
@@ -360,7 +362,7 @@ int test_log (void)
   }
   else {
     if (!strcmp(log_mess, "message 1")) {
-      fprintf(stderr, "FAILED: (U031101B) log_set_update_func\n");
+      fprintf(stderr, "FAILED: (U031101B) log_set_update_func <%s>\n", log_mess);
       result++;
     }
   }
@@ -451,7 +453,10 @@ int test_log (void)
 int test_program (void)
 {
   /* === Function 01: geda_program_backtrace  geda_utility_program_backtrace === */
-  /* === Function 02: geda_set_memory_vtable  geda_utility_program_mem_set_vtable === */
+  /* === Function 02: geda_malloc             geda_utility_program_mem_alloc === */
+  /* === Function 03: geda_calloc             geda_utility_program_mem_calloc === */
+  /* === Function 04: geda_free               geda_utility_program_mem_free === */
+  /* === Function 05: geda_set_memory_vtable  geda_utility_program_mem_set_vtable === */
   return 0;
 }
 /** @} endgroup test-utility-geda-program */
@@ -1153,16 +1158,22 @@ int test_strings (void)
     result++;
   }
 
+  string = geda_strdup("");
+  if (!string) {                           /* EMPTY input */
+    fprintf(stderr, "FAILED: (U061301) geda_strdup returned NULL\n");
+    result++;
+  }
+
   string = geda_strdup(str3);
   if (string) {
     if (strcmp(string, str3) != 0) {      /* 9 > input */
-      fprintf(stderr, "FAILED: (U061301A) geda_strdup <%s>\n", string);
+      fprintf(stderr, "FAILED: (U061302A) geda_strdup <%s>\n", string);
       result++;
     }
     free(string);
   }
   else {
-    fprintf(stderr, "FAILED: (U061301B) geda_strdup returned NULL\n");
+    fprintf(stderr, "FAILED: (U061302B) geda_strdup returned NULL\n");
     result++;
   }
 
@@ -1508,17 +1519,63 @@ main (int argc, char *argv[])
 {
   int result = 0;
 
+  const char *msg_signal;
+
+  msg_signal = "Caught signal checking utility group 1 src/utility/%s\n\n";
+
+  SETUP_SIGSEGV_HANDLER;
+
   /* Initialize gobject */
 #if (( GLIB_MAJOR_VERSION == 2 ) && ( GLIB_MINOR_VERSION < 36 ))
   g_type_init();
 #endif
 
-  result  = test_utility();
-  result += test_glist();
-  result += test_log();
-  result += test_program();
-  result += test_refdes();
-  result += test_strings();
+  if (setjmp(point) == 0) {
+      result = test_utility();
+  }
+  else {
+    fprintf(stderr, msg_signal, "u_utility.c");
+    result++;
+  }
 
+  if (setjmp(point) == 0) {
+    result += test_glist();
+  }
+  else {
+    fprintf(stderr, msg_signal, "u_glist.c");
+    result++;
+  }
+
+  if (setjmp(point) == 0) {
+    result += test_log();
+  }
+  else {
+    fprintf(stderr, msg_signal, "u_log.c");
+    result++;
+  }
+
+  if (setjmp(point) == 0) {
+    result += test_program();
+  }
+  else {
+    fprintf(stderr, msg_signal, "u_program.c");
+    result++;
+  }
+
+  if (setjmp(point) == 0) {
+    result += test_refdes();
+  }
+  else {
+    fprintf(stderr, msg_signal, "u_refdes.c");
+    result++;
+  }
+
+  if (setjmp(point) == 0) {
+    result += test_strings();
+  }
+  else {
+    fprintf(stderr, msg_signal, "u_string.c");
+    result++;
+  }
   return result;
 }

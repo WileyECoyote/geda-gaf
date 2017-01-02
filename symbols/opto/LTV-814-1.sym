@@ -102,6 +102,6 @@ numslots=0
 T 700 2600 8 10 0 0 0 0 1
 author=Daniel Fekete <thefekete AT gmail DOT com>
 T 700 2400 8 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 700 2200 8 10 0 0 0 0 1
 use-license=unlimited

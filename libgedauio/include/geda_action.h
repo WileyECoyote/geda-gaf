@@ -40,7 +40,7 @@ typedef struct _GedaActionClass GedaActionClass;
 struct _GedaAction
 {
   GtkAction parent_instance;
-  GedaType  instance_type;
+
   char     *multikey_accel;
   char     *icon_name;
 };

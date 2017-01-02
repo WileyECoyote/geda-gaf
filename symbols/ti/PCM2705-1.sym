@@ -327,6 +327,6 @@ author=AutoTron
 T 400 6600 5 10 0 0 0 0 1
 documentation=http://www.ti.com/lit/ds/symlink/pcm2707.pdf
 T 400 7000 5 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 400 6800 5 10 0 0 0 0 1
 use-license=unlimited

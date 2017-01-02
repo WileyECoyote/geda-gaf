@@ -103,7 +103,7 @@ numslots=0
 T 300 3850 5 10 0 0 0 0 1
 author=Lucas Vogelsang lucasvoATgmx.ch
 T 300 3450 5 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 300 3650 5 10 0 0 0 0 1
 use-license=unlimited
 T 300 2850 5 10 0 0 0 0 1

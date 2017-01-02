@@ -1,3 +1,235 @@
+2016-12-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_bulb.c: Replace object type identifier scheme for
+      GedaBulb objects with new hash table type identifier system.
+
+    * src/widgets/geda_check_menu_item.c: Replace object type identifier
+      scheme for GedaCheckMenuItem objects with new hash table type
+      identifier system.
+
+    * src/widgets/geda_combobox.c: Replace object type identifier scheme
+      for GedaComboBox objects with new hash table type identifier system.
+
+    * src/widgets/geda_comboboxtext.c: Replace object type identifier scheme
+      for GedaComboBoxText objects with new hash table type identifier system.
+
+2016-12-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_handlebox.c: Redo object type identifier scheme for
+      GedaHandleBox objects and replace instance_type with hash table.
+      Revise function geda_handle_box_unmap to chain-up to the parent.
+      Remove setting GDK_WINDOW_TYPE_HINT_TOOLBAR in geda_handle_box_realize,
+      update comments.
+
+2016-12-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_comboboxtext.c: Add functions:
+
+        * geda_combo_box_text_get_text_length
+        * geda_combo_box_text_widget_get_text_length
+
+    * src/widgets/geda_entry.c: Add function geda_entry_get_text_length.
+
+2016-12-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/af.po: update Afrikaans translations.
+
+2016-12-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_handlebox.c: Revise "snap-edge" property description to
+      eliminate contraction and other descriptions in an attempt to make the
+      descriptions more concise.
+
+    * src/widgets/geda_label.c: Revise text for properties; add missing space
+      in "line wrapping", hyphenate "Single-Line Mode".
+
+2016-12-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/functions/geda_marshal.c: Add marshal function geda_marshal_VOID__INT.
+
+2016-12-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_accel_label.c: Implement new identifier system using a
+      hash table in GedaAccelLabel.
+
+    * src/widgets/geda_action.c: Implement new identifier system using a
+      hash table in GedaAction.
+
+    * src/widgets/geda_separator.c: Redo object type identifier scheme for
+      GedaSeparator objects and replace glist with hash table.
+
+    * tests/test_menu_item.c: Pass a bad pointer to GEDA_IS_MENU_ITEM.
+
+2016-12-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_label.c: Redo object type identifier scheme for GedaLabel
+      objects and replace glist with hash table based on performance test with
+      libgeda objects even though the degradation in performance was not notice-
+      able with the menu system.
+
+    * src/widgets/geda_menu.c: Redo object type identifier scheme for GedaLabel
+      objects and replace glist with hash table.
+
+    * src/widgets/geda_menu_item.c: Implement new identifier system using a hash
+      table in GedaMenuItem. Revise geda_menu_item_set_submenu to only set priv
+      sub-menu if a submenu was passed.
+
+    * src/widgets/geda_menu_separator.c: Redo object type identifier scheme for
+      GedaMenuSeparator objects and replace glist with hash table.
+
+    * src/widgets/geda_menu_shell.c: Redo object type identifier scheme for
+      GedaMenuSeparator objects and replace glist with hash table.
+
+2016-11-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_label.c: Add conditionally build function
+      geda_label_get_report_instances if DEBUG_GEDA_LABEL when testing
+      potential resources leaks, see comments in source.
+
+    * src/widgets/geda_separator.c: Implement new identifier system in
+      GedaSeparator class.
+
+2016-11-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_item.c: Revise function geda_menu_item_destroy
+      to fetch children with geda_get_child_widget and remove when found
+      using gtk_container_remove instead calling gtk_widget_destroy.
+      Revise geda_menu_item_dispose to detach sub-menus and set the accel
+      group to NULL using geda_menu_set_accel_group and not unreference
+      actions.
+
+2016-11-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_label.c: Integrate a new type identifier system
+      with gobject system. The new scheme adds each label to a glist when
+      the instance is initialized and removes the pointer when the label
+      is finalized. The pointer is a label if the pointer is in the list
+      and this allows objects to be identified without "looking" inside
+      the object because the pointer could be any address. Note that the
+      new scheme can be mixed with old scheme and works for derivatives.
+
+    * src/widgets/geda_menu.c: Implement new identifier system for GedaMenus.
+
+    * src/widgets/geda_menu_bar.c: Check and unreference accel_group in
+      geda_menu_bar_finalize and accel_group and set to NULL in remove_
+      from_window so thatthe finalizer would not normally unreference.
+
+    * src/widgets/geda_menu_separator.c: Implement new identifier system
+      for GedaMenuSeparators.
+
+    * src/widgets/geda_menu_shell.c: Implement new identifier system
+      for GedaMenuShells.
+
+    * tests/test_menu.c: Add instance identifier checks with NULL and
+      a pointer to 0x7FFF0. With the old system the former would pass
+      bu the later would seg fault.
+
+    * tests/test_menu_separator.c: Add additional checks for the construction
+      section for validating the instance identification system. These checks
+      are a bit more comprehensive than in other object modules.
+
+2016-11-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets: Use accessor gtk_widget_get_parent instead of widget->
+      parent in module:
+
+        * src/widgets/geda_combobox.c
+        * src/widgets/geda_menu.c
+        * src/widgets/geda_menu_shell.c
+
+    * src/widgets/geda_label.c: Replace GTK_WIDGET function calls with plain
+      cast. Minor edits; remove extra spaces, clean old signal.
+
+    * src/widgets/geda_menu.c: Notify "attach-widget" in geda_menu_detach
+      because attach state changes.
+
+2016-11-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_accel_label.c: Over-ride widget-dispose and relocate
+      disconnecting signals from geda_accel_label_finalize. Revise functions
+      geda_accel_label_set_accel_closure and geda_accel_label_set_accel_widget
+      to use the argument pointer instead of the stored pointer.
+
+    * src/widgets/geda_action.c: Removed setting multikey_accel to NULL in
+      geda_action_finalize after releasing allocation. Check icon_name before
+      freeing in geda_action_finalize and geda_action_set_icon_name, revise
+      Doxygen comments.
+
+    * src/widgets/geda_label.c: Relocate unreferencing of object from geda_
+      label_finalize to geda_label_dispose. Revise label_shortcut_setting_
+      apply to not call geda_accel_label_refetch and notify "label" instead.
+      This does not work yet but is not needed either, but does fix a race
+      conditions and stops the class from referencing the memory of a dying
+      child, specifically a GedaAccelLabel. Add line-breaks after breaks in
+      geda_label_get_property and geda_label_get_property to improve
+      readability.
+
+    * src/widgets/geda_menu_shell.c: Release children before freeing the list
+      of children in geda_menu_shell_finalize.
+
+    * src/widgets/geda_tearoff_menu_item.c: Add geda_tearoff_menu_finalize
+      and free private data structure.
+
+2016-11-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_accel_label.c: Revise geda_accel_label_finalize to
+      call geda_accel_label_set_accel_closure and geda_accel_label_set_accel
+      _widget with a NULL argument rather disconnecting the signals directly.
+
+    * src/widgets/geda_menu_shell.c: Free the list of children.
+
+2016-11-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_accel_label.c: Reorganize check_accel_changed and
+      refetch_widget_accel_closure; relocate before geda_accel_label_finalize
+      and disconnect signal for each and unreference the accel_closure and
+      the accel_widget.
+
+    * src/widgets/geda_label.c: Add geda_label_dispose and hook widget disposer.
+      Disconnect signals for label_shortcut_setting_changed from settings and
+      label_mnemonics_visible_changed from toplevel; these would be handled
+      automatically when the corresponding objects are destroyed but in the
+      mean time if the signals fire GEDA_IS_LABEL and GEDA_IS_ACCEL_LABEL
+      could be called for objects being destroyed. Does not seem to break
+      anything. Call pango_cairo_font_map_set_default in geda_label_finalize.
+      Replace gtk_marshal_VOID__OBJECT with geda_marshal_VOID__OBJECT.
+
+    * src/widgets/geda_menu.c: Add geda_menu_finalize, free priv.
+
+    * src/widgets/geda_menu_bar.c: Revise add_to_window to check and release
+      menubar->priv->accel before setting, and set directly using the pointer
+      returned from g_object_get instead of making a copy using geda_strdup.
+
+    * src/widgets/geda_menu_item.c: Revise geda_menu_item_is_selectable and
+      geda_menu_item_is_widget_selectable to return FALSE if the argument is
+      NULL without checking any other conditions. Unreferenced priv->action
+      in geda_menu_item_dispose and add/revise documentation explaining why.
+
+    * src/widgets/geda_menu_shell.c: Release priv in geda_menu_shell_finalize,
+      hope everyone had a good thanksgiving.
+
+2016-11-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_entry.c: Add/update GedaEntry Doxygen comments:
+
+        * geda_entry_finalize
+        * geda_entry_drag_drop
+        * geda_entry_drag_end
+        * geda_entry_drag_leave
+        * geda_entry_drag_motion
+        * geda_entry_widget_get_valid_input
+        * geda_entry_widget_set_valid_input
+
+2016-11-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets: Substitute GEDA_MEM_ALLOC0 for g_malloc0 in:
+
+        * src/widgets/geda_combobox.c
+        * src/widgets/geda_completion.c
+        * src/widgets/geda_label.c
+        * src/widgets/geda_menu.c
+        * src/widgets/geda_menu_bar.c
+
 2016-11-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Add GedaEntry Doxygen comments:

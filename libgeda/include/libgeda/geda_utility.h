@@ -103,6 +103,9 @@
 
 /* u_program.c */
 #define geda_program_backtrace    geda_utility_program_backtrace
+#define geda_malloc               geda_utility_program_mem_alloc
+#define geda_calloc               geda_utility_program_mem_calloc
+#define geda_free                 geda_utility_program_mem_free
 #define geda_set_memory_vtable    geda_utility_program_mem_set_vtable
 
 /* u_refdes.c */

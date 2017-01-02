@@ -52,7 +52,7 @@ typedef struct _GedaBulbClass  GedaBulbClass;
 struct _GedaBulb
 {
   GtkCheckButton check_button;
-  GedaType       instance_type;
+
   GSList        *group;
 
   int show_butt;

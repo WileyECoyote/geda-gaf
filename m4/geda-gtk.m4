@@ -26,9 +26,16 @@ dnl##################################################################
 AC_DEFUN([AX_CHECK_GTK],
 [
   AC_PREREQ([2.50])dnl
+
+  min_ver=$1
+
+  if test x"$min_ver" = x; then
+    AC_MSG_ERROR([Configuration error: minimum GTK+2 version was not specified.])
+  fi
+
   echo "Checking for installed versions of GTK and gdk_pixbuff"
 
-  PKG_CHECK_MODULES(GTK, [gtk+-2.0 >= $1], ,
+  PKG_CHECK_MODULES(GTK, gtk+-2.0 >= $min_ver, ,
   AC_MSG_ERROR([GTK+ $1 or later is required.]))
 
   GDK_CFLAGS="`pkg-config --cflags gdk-2.0`"

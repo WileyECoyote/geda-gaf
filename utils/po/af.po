@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-utils\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-10-31 13:37-0500\n"
+"POT-Creation-Date: 2017-01-01 21:03-0600\n"
 "PO-Revision-Date: 2010-02-14 01:03+0000\n"
 "Last-Translator: Bernd Jendrissek <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -29,7 +29,7 @@ msgid ""
 "\n"
 "Generates a pdf file using the name \"output.pdf\". Each input file, "
 "filename1\n"
-"... filenameN, is converted to pdf format and printed as seperate pages.\n"
+"... filenameN, is converted to pdf format and printed as separate pages.\n"
 "\n"
 msgstr ""
 
@@ -68,8 +68,7 @@ msgid ""
 msgstr ""
 
 #: utils/gschlas/gschlas.c:130
-#, c-format
-msgid "Loaded file [%s]\n"
+msgid "Loaded file"
 msgstr ""
 
 #: utils/gschlas/gschlas.c:138

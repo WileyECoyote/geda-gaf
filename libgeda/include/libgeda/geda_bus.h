@@ -39,7 +39,7 @@
 #define GEDA_TYPE_BUS            (geda_bus_get_type())
 #define GEDA_BUS(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_BUS, GedaBus))
 #define GEDA_BUS_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),  GEDA_TYPE_BUS, GedaBusClass))
-#define GEDA_IS_BUS(obj)         (is_a_geda_bus((GedaBus*)obj))
+#define GEDA_IS_BUS(obj)         (is_a_geda_bus((GedaBus*)(obj)))
 #define GEDA_IS_BUS_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),  GEDA_TYPE_BUS))
 #define GEDA_BUS_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_BUS, GedaBusClass))
 

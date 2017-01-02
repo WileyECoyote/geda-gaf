@@ -73,7 +73,7 @@ documentation=http://www.ti.com/product/lmc6081
 T 0 1550 5 10 0 0 0 0 1
 symversion=0.2
 T 0 1700 5 10 0 0 0 0 1
-dist-license=GPLv3
+dist-license=GPLv2
 T 0 1850 5 10 0 0 0 0 1
 use-license=unlimited
 T 0 2000 5 10 0 0 0 0 1

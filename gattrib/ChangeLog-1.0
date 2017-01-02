@@ -1,3 +1,252 @@
+2016-12-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/f_export.c: Replace square brackets with double quotes for the
+      filename in f_export_components and format in order to minimize
+      format specifiers in translatable string.
+
+    * src/gattrib.c: Replace square brackets with double quotes for the
+      filename in gattrib_main and format in order to minimize format
+      specifiers in translatable string.
+
+    * src/x_fileselect.c: Replace square brackets with double quotes for the
+      filename in x_fileselect and format in order to minimize format
+      specifiers in translatable string.
+
+2016-12-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gattrib.c: Call s_toplevel_close in gattrib_quit to close the page.
+
+2016-12-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gtksheet/gtksheetcolumn.c: Revise doxygens comments: add param tags.
+
+    * src/gattrib.c: Replace g_new in g_malloc in geda_atexit.
+
+    * gattrib/src/s_sheet_data.c: Rename s_sheet_data_reset->s_sheet_data_free
+      and revise to not return a boolean.
+
+    * src/x_window.c: Destroy the notebook in x_window_release_all.
+
+2016-12-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gtksheet/gtksheetcolumn.c: Eliminate unnecessary inclusion of:
+
+          * gtk/gtksignal.h
+          * gtk/gtkpixmap.h
+          * pango/pango.h
+
+    * src/gattrib.c: Replace g_list_free with geda_glist_free_all to release
+      search_history strings and the list.
+
+    * src/x_dialog.c: Utilize geda_combo_box_text_widget_get_text_length instead
+      of strlen(GetGedaComboActiveText()) because the returned strings were not
+      being released.
+
+    * src/x_gtksheet.c: Add function x_gtksheet_get_is_empty. Revise function
+      popup_activated to check if the active cell is is empty before calling
+      s_properties_get_invisible or s_properties_set_invisible.
+
+2016-12-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gattrib.c: Add g_slice_set_config and geda_utility_program_mem_set_
+      vtable in gattrib_main and this makes the world a better place.
+
+    * src/x_menus.c: Remove "main_window" argument from recent_chooser callback
+      since on_recent_selection has one and only one argument -> the chooser.
+      Add function x_menu_disconnect_recent_action and amend atexit in x_menu_
+      create_recent_action_group. Revise x_menu_release_all to unreference the
+      closure for the "recent action", apparently Gtk does not get the job done.
+      Sink the reference to the old sub-menu in x_menu_fix_gtk_recent_submenu.
+      Add function destroy_defective_child and implement to destroy the menu
+      item created when the ui_manager created the defective recent sub-menu.
+
+    * gattrib/src/x_toolbars.c: Amend g_slist_free to atexit task in x_toolbars
+      _init to free the ComponentToolbarButtons list. Revise x_toolbar_release
+      _all to destroy the handleboxes rather removing the toolbar widgets.
+
+2016-12-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gtksheet/gtksheet.c: Revise function DeleteColumn to unparent the
+      column being deleted (using gtk_widget_unparent) before unreferencing.
+      Chain-up to widget_class->unmap. Revise destroy_global_button to
+      unreference the button if the button did not have a parent.
+
+    * src/s_sheet_data.c: Release row_label in s_sheet_data_add_master_pin_
+      list_items.
+
+    * src/x_menus.c: Revise x_menu_release_all to unreference the closure
+      for each action and disconnect the ui manager accelerator group. Then
+      revert unreferencing the closure, and destroy the manu_bar.
+
+    * src/x_window.c: Add x_window_quit to handle the "delete-event" so that
+      the handler can ad a reference to the menu bar to balance-out the
+      reference that would be added if the program was closed using the file
+      quit menu item.
+
+2016-12-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gtksheet/gtksheet.c: Add function destroy_global_button.
+
+    * src/s_sheet_data.c: Rename s_sheet_data_add_pin_attrib argument:
+      pin_attrib_str_name -> pin_attrib_str. Revise debug messages to
+      utilize __func__ macro and add line-endings.
+
+    * src/x_menus.c: Rename menu_files->recent_chooser in x_menu_fix_gtk_
+      recent_submenu. Add function x_menu_disconnect_recent_submenu and amend
+      atexit in x_menu_fix_gtk_recent_submenu. Destroy recent_chooser in
+      x_menu_disconnect_recent_submenu. Add amend g_slist_free to atexit
+      chores in x_menu_get_collections to free ComponentMenuItems. Revise
+      x_menu_release_all to free the list returned from gtk_action_group_
+      list_actions.
+
+    * src/x_window.c: Add x_window_disconnect_notebook_switch_page and amend
+      atexit in x_window_init.
+
+2016-12-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_sheet_data.c: Reduce scope amd free of object_attribs in function
+      s_sheet_data_add_master_comp_attrib_list_items, also reduce a_current.
+
+    * src/s_string_list.c: Revise s_string_list_add_item to not reallocate
+      strings when looping through list looking for duplicates and check that
+      the list data is not NULL before passing to strcmp in the conditional.
+      Revise s_string_list_free, again, so that each record is also released.
+
+    * src/s_table.c: Revise s_table_gtksheet_to_table to reduce the scope and
+      not reallocate attrib_value and col_title string twice and declare both
+      constant, along with row_title, and remove unnecessary cast. Change while
+      to for loop in s_table_add_items_to_comp_table and release all_attribs,
+      simplify control structure and eliminate reallocation of attrib_name.
+
+    * src/x_gtksheet.c: Replace gtk_notebook_append_page with gtk_notebook_
+      insert_page_menu.
+
+    * src/x_window.c: Valgrind says better to call x_menu_release_all before
+      x_toolbar_release_all.
+
+2016-12-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gtksheet/gtksheet.c: Calculate allocation size separately in GrowSheet
+      to improve readability. Add more line-endings in debug output and adjust
+      indentations.
+
+    * src/s_string_list.c: Revise function s_string_list_free to release the
+      actual strlist allocated in s_string_list_new.
+
+    * src/s_table.c: Use accessor geda_object_get_attached to get the list of
+      attached attributes in s_table_add_items_to_comp_table.
+
+    * src/s_toplevel.c: Eliminated over-writing of the current page filename in
+      s_toplevel_read_page.
+
+    * src/x_menus.c: Remove the acceleration group from the main window in
+      x_menu_release_all, rename actions->action_list and iterate the list and
+      the free the list, unreference accel_group.
+
+    * src/x_window.c: Revise x_window_add_items to pass the pointer to attribute
+      text directly to x_gtksheet_add_cell_item instead of allocating and freeing
+      each string since gtk_sheet_set_cell is going to make a copy anyways.
+
+2016-12-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/af.po: update Afrikaans translations.
+
+    * src/gtksheet/gtksheet.c: Change default sheet name "GtkSheet" -> "Sheet".
+      Remove validations of widget in functions gtk_sheet_realize_handler and
+      gtk_sheet_unrealize_handler. Reduce the scope of sheet and children in
+      gtk_sheet_map_handler and gtk_sheet_unmap_handler. Revise create_sheet_
+      entry to not connect signal handlers until after the widget has verified.
+      Add function destroy_sheet_entry and call from gtk_sheet_destroy_handler
+      and create_sheet_entry. Fix leak by revising function GrowSheet to not
+      over-write sheet->data[0] without releasing the prior allocation.
+
+2016-12-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gattrib.c: Add conditional directive DEBUG_GEDA_LABEL to call
+      geda_label_get_report_instances.
+
+    * src/x_gtksheet.c: Remove setting of individual sheet pointers to NULL
+      and set the pointer to the pointers to NULL in x_gtksheet_destroy_all.
+
+    * src/x_menus.c: Add function x_menu_release_all to retrieve and loop over
+      action groups; remove and unreference each group; remove and unreference
+      each action in each group.
+
+    * src/x_toolbars.c: Add function x_toolbar_release_all.
+
+    * src/x_window.c: Call function x_menu_release_all and x_toolbar_release_all
+      in x_window_release_all.
+
+2016-12-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gtksheet/gtksheet.c: Remove validation if gobject in function
+      gtk_sheet_finalize_handler. Remove unnecessary setting of children
+      to NULL in gtk_sheet_destroy_handler. Replace g_new with g_malloc
+      in gtk_sheet_cell_new, gtk_sheet_set_cell_attributes, gtk_sheet_put
+      and gtk_widget_get_name.
+
+    * src/s_sheet_data.c Revise s_sheet_data_add_master_comp_list_items
+      to release temp_uref for for graphical and pin label objects.
+
+    * src/x_gtksheet.c: Remove else yelp "reference is not a SHEET!" in
+      x_gtksheet_destroy_all; if the pointer to the sheets was corrupt a
+      seg fault will likely occur long before this function was executed.
+      Alllocate pointers for sheets, previously allocated in x_window_init
+      and reduce the scope of GtkWidget *label in x_gtksheet_init. Release
+      the allocation of sheet pointers in x_gtksheet_destroy_all.
+
+    * src/x_window.c: Remove allocating of the (three) pointers for sheets
+      from the end of x_window_init, add a space the location label so
+      the GedaLabel does not add the text "label: because the string is
+      empty. Destroy the entry and location widget in x_window_release_all.
+
+2016-12-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gtksheet/gtksheet.c: Release sheet->data[0], allocated in gtk
+      _sheet_construct, in gtk_sheet_finalize_handler.  Remove/comment-out
+      calling gtk_sheet_construct in gtk_sheet_init so that the constructor
+      is not called twice, adjust indentation.
+
+    * src/s_attrib.c: Free slot_value and numslots in s_attrib_get_refdes
+      and eliminated needless return statement. Call x_gtksheet_destroy_all
+      in gattrib_quit.
+
+    * src/s_table.c: Revise s_table_add_items_to_comp_table to release the
+      string returned from s_attrib_get_refdes even for graphical and pin
+      label.
+
+    * src/x_gtksheet.c: Replace gtk_object_destroy with gtk_widget_destroy
+      and unreference popup menu. Check and destroy popup in x_gtksheet_
+      destroy_all in case the user right clicks but does not select a menu
+      item.
+
+    * src/x_window.c: Add function x_window_release_all and call in gattrib_
+      quit.
+
+2016-12-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gattrib.c: Call gattrib_save_user_config before libgeda_release.
+
+    * src/parsecmd.c: Revise quiet and verbose mode help options to include
+      the word "enable" and not the word "on".
+
+    * src/s_object.c: Update function s_object_attrib_add_attrib_in_object
+      with newer version from gschem, change return type to void. The bool
+      was not being utilized.
+
+    * src/s_rename.c: Revise error message in s_rename_init to use "MAX_SETS"
+      instead of rename_pair and use __FILE__ macro as the function is not
+      in s_net.c.
+
+2016-11-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/gtksheet/gtksheettypebuiltins.h: Add declarations for
+
+          * gtk_sheet_entry_type_get_type
+          * gtk_sheet_vertical_justification_get_type
+
+      located in gtksheettypebuiltins.c and referenced in other modules.
+
 2016-11-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gattrib.c: Substitute macro geda_gslist_free_all for function

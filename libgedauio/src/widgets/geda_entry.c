@@ -197,10 +197,12 @@ end_change (GedaEntry *entry)
   priv->change_count--;
 }
 
-/*! \todo Finish function documentation!!!
- * \brief gobject_class->finalize
+/*!
+ * \brief gobject_class->finalize a GedaEntry object
  * \par Function Description
- *
+ *  Releases resources associated with the GedaEntry object.
+ *  The object should not be referenced after this function
+ *  is executes.
  */
 static void
 geda_entry_finalize (GObject *object)
@@ -384,10 +386,12 @@ geda_entry_drag_begin (GtkWidget      *widget,
    g_print ("TODO: geda_entry_drag_data_get\n" );
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Drag & Drop Callback when dropped on a GedaEntry
+ * \par Function Description
+ *  This is primarily to over-ride the default behavior of
+ *  GtkEntry, Drag & Drop is not implemented for GedaEntry
+ *  widgets.
  */
 static bool
 geda_entry_drag_drop (GtkWidget      *widget,
@@ -400,14 +404,17 @@ geda_entry_drag_drop (GtkWidget      *widget,
   if (geda_entry->enable_drag_n_drop)
    g_print ("TODO: geda_entry_drag_data_get\n" );
 
-
   return FALSE; /* No continue */
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Drag & Drop End Callback GedaEntry On End
+ * \par Function Description
+ *  This is primarily to over-ride the default behavior of
+ *  GtkEntry, Drag & Drop is not implemented for GedaEntry
+ *  widgets. Normally used to release resources associated
+ *  with the prior Drag & Drop operation, may set cursor
+ *  back to normal if was changed.
  */
 static void
 geda_entry_drag_end (GtkWidget      *widget,
@@ -416,13 +423,14 @@ geda_entry_drag_end (GtkWidget      *widget,
   GedaEntry *geda_entry = GEDA_ENTRY   (widget);
   if (geda_entry->enable_drag_n_drop)
    g_print ("TODO: geda_entry_drag_data_get\n" );
-
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief When Drag for GedaEntry Leaves the Destination
+ * \par Function Description
+ *  This is primarily to over-ride the default behavior of
+ *  GtkEntry, Drag & Drop is not implemented for GedaEntry
+ *  widgets. Called when the drag leaves the destination.
  */
 static void
 geda_entry_drag_leave (GtkWidget      *widget,
@@ -435,10 +443,12 @@ geda_entry_drag_leave (GtkWidget      *widget,
   gtk_widget_queue_draw (widget);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief When Drag for GedaEntry Motion is over the Destination
+ * \par Function Description
+ *  This is primarily to over-ride the default behavior of
+ *  GtkEntry, Drag & Drop is not implemented for GedaEntry
+ *  widgets. Called when the drag is over the destination.
  */
 static bool
 geda_entry_drag_motion (GtkWidget       *widget,
@@ -485,7 +495,6 @@ geda_entry_drag_data_delete (GtkWidget *widget, GdkDragContext *context)
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
- *
  */
 static void
 geda_entry_drag_data_received (GtkWidget        *widget,
@@ -1390,6 +1399,28 @@ geda_entry_set_text (GedaEntry *entry, const char *new_text)
 }
 
 /*!
+ * \brief Get the Text Length in the GedaEntry
+ * \par Function Description
+ *  Retrieves the string a returns the length.
+ *
+ * \param [in] entry Pointer to a #GedaEntry object.
+ *
+ * \returns length of the string or -1 if entry is invalid
+ */
+int
+geda_entry_get_text_length (GedaEntry *entry)
+{
+  const char *curr_text;
+
+  curr_text = geda_entry_get_text (entry);
+
+  if (curr_text) {
+    return strlen(curr_text);
+  }
+  return -1;
+}
+
+/*!
  * \brief Get GedaEntry Activates Default
  * \par Function Description
  *  Retrieves the value set by gtk_entry_set_activates_default().
@@ -2098,10 +2129,12 @@ geda_entry_widget_set_text (GtkWidget *entry, const char *new_text)
   geda_entry_set_text (GEDA_ENTRY(entry), new_text);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Get the GedaEntry Widget Input Validation Mode
+ * \par Function Description
+ *  The default is ACCEPT_ALL_ASCII.
  *
+ * \sa geda_entry_set_valid_input
  */
 GedaEntryAccept
 geda_entry_widget_get_valid_input (GtkWidget *entry)
@@ -2109,11 +2142,12 @@ geda_entry_widget_get_valid_input (GtkWidget *entry)
   return geda_entry_get_valid_input (GEDA_ENTRY (entry));
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Set GedaEntry Widget Input Validation
+ * \par Function Description
+ *  Set which type of characters will be accepted as input.
  *
- *  \sa geda_entry_set_valid_input
+ * \sa geda_entry_set_valid_input
  */
 void
 geda_entry_widget_set_valid_input (GtkWidget *entry, GedaEntryAccept mode)

@@ -237,4 +237,4 @@ author=Andreas Kemnade <andreas@kemnade.info>
 T 50 4240 8 10 0 0 0 0 1
 use-license=unlimited
 T 50 4040 8 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2

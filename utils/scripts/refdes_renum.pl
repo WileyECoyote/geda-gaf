@@ -17,9 +17,8 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 
-# This script is used to renumber devices in a gschem (part of gEDA)
-# schematic.  This program works on single as well as multi-sheet
-# schematics.
+# This script is used to renumber devices in a geda schematic.
+# This program works on single as well as multi-sheet schematics.
 #
 # Usage:
 #    renum.pl file1.sch [file2.sch [file3.sch ...]]

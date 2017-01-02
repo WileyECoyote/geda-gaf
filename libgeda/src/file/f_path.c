@@ -25,8 +25,6 @@
 #include <errno.h>
 #endif
 
-#include <pwd.h>
-
 #if MKDIR_TAKES_ONE_ARG /* MinGW32 */
 #  include <io.h>
 #endif
@@ -34,6 +32,7 @@
 #include <libgeda_priv.h>
 
 #ifdef OS_WIN32
+#  include <ctype.h>    /* for isalpha */
 #  ifndef STRICT
 #    define STRICT
 #    include <windows.h>
@@ -43,6 +42,8 @@
 #    define GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT 2
 #    define GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS 4
 #  endif
+#else
+#include <pwd.h>
 #endif
 
 static const char const DOC_ENV_STR[]    = "GEDADOC";
@@ -99,7 +100,7 @@ static int f_create_dir(const char *path, mode_t mode)
 
     if (stat(path, &stat_buf) != 0) {
         /* Directory does not exist. EEXIST for race condition */
-        if (mkdir(path, mode) != 0 && errno != EEXIST)
+        if (MKDIR(path, mode) != 0 && errno != EEXIST)
             status = -1;
     }
     else if (!S_ISDIR(stat_buf.st_mode)) {

@@ -41,7 +41,7 @@
 /**
  * \brief GedaToolbar - A Seperator for Menus and Toolbars
  * \par
- * A visual widget use to seperate items in meu and toolbars.
+ * A visual widget use to separate items in menu and toolbars.
  *
  * \defgroup GedaToolbar Geda Toolbar
  * @{

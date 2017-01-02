@@ -105,6 +105,6 @@ use-license=unlimited
 T 400 2700 5 10 0 1 0 0 1
 documentation=http://www.irf.com/product-info/datasheets/data/irf7509.pdf
 T 400 3300 8 10 0 0 0 0 1
-dist-license=GPL3
+dist-license=GPLv2
 T 400 3500 8 10 0 0 0 0 1
 author=AutoTron

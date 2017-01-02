@@ -1,3 +1,16 @@
+2017-01-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * etc/display-colormap-darkbg: Fix incorrect color data for the mesh
+      grid major and minor color.
+
+    * tests/test_color.c: Check geda_color_x11_color_from_index actually
+      returns the correct data; use defines for MESH_GRID_ major and minor
+      to check indivual values of color members.
+
+2016-11-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/Makefile.am: Remove libgedathon as a dependent for test?
+
 2016-11-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/Makefile.am: Add libgeda.la to LDADD since the libgedacolor is

@@ -24,6 +24,10 @@ unsigned int gtk_sheet_border_flags_get_type (void);
 
 #define GTK_TYPE_SHEET_BORDER_FLAGS (gtk_sheet_border_flags_get_type())
 
+unsigned int gtk_sheet_entry_type_get_type (void);
+
+unsigned int gtk_sheet_vertical_justification_get_type (void);
+
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */

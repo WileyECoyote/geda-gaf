@@ -7,7 +7,7 @@
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
+ * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -21,10 +21,10 @@
  * 02110-1301 USA, <http://www.gnu.org/licenses/>.
  *
  *  Contributing Author: Wiley Edward Hill
- *  Date Contributed: March, TBD, 2016
+ *  Date Contributed: March, 22nd, 2016
  */
 
-#include <config.h>
+#include "../../config.h"
 
 #include <libgeda.h>
 #include <stdlib.h>
@@ -35,8 +35,8 @@
 #include <glib.h>
 #include <glib/gstdio.h>
 
-#include "test-suite.h"
 #include "test_parsecmd.h"
+#include "test-suite.h"
 
 /*! \file test_file.c
  *  \brief Tests for geda file functions
@@ -89,6 +89,8 @@ struct _TestData
   char *input;
   char *expected;
 };
+
+bool vpath_build;
 
 /** \defgroup test-file-geda-file Test GEDA f_file Module
  * @{
@@ -439,10 +441,7 @@ int test_get (void)
       free (input);
     }
     else {
-      if (strcmp(string, expected)) {      /* See structure F02_str */
-        fprintf(stderr, "FAILED: (F020201B-%d) expected <%s> NULL\n",index, expected);
-        result++;
-      }
+      fprintf(stderr, "FAILED: (F020201B-%d) expected <%s> NULL\n",index, expected);
     }
     string = NULL;
   }
@@ -520,7 +519,7 @@ int test_get (void)
   if (geda_get_file_contents(filename_05, &buffer_05, &n_byte, NULL)) {
 
     if (n_byte != 13) {
-      fprintf(stderr, "FAILED: (F020501A) n_byte <%d>\n", n_byte);
+      fprintf(stderr, "FAILED: (F020501A) n_byte <%zu>\n", n_byte);
       result++;
     }
     free (filename_05);
@@ -629,39 +628,89 @@ int test_get (void)
     }
   }
 
-  files = geda_get_dir_list(TEST_FILE_PATH, NULL, NULL);
+  if (!vpath_build) {
 
-  int num_file_07 = g_slist_length(files);
+    files = geda_get_dir_list(TEST_FILE_PATH, NULL, NULL);
 
-  /* current, parent, files and tmp test links = 7 */
-  if (num_file_07 != 7) {
-    fprintf(stderr, "FAILED: (F020701) geda_get_dir_list <%d>\n", num_file_07);
-    result++;
-  }
+    int num_file_07 = g_slist_length(files);
 
-  geda_gslist_free_all(files);
-
-  files = geda_get_dir_list(TEST_FILE_PATH, ".sym", NULL);
-
-  num_file_07 = g_slist_length(files);
-
-  /* ATMega32-DIP_test.sym is the sym file in data/ */
-  if (num_file_07 - 1) {
-    fprintf(stderr, "FAILED: (F020702A) geda_get_dir_list <%d>\n", num_file_07);
-    result++;
-  }
-  else {
-
-    string = files->data;
-
-    if (strcmp(string, LINK2SOMEWHERE)) {
-      fprintf(stderr, "FAILED: (F020702B) geda_get_dir_list <%s>\n", string);
+    /* current, parent, files and tmp test links = 7 */
+    if (num_file_07 != 7) {
+      fprintf(stderr, "FAILED: (F020701) geda_get_dir_list <%d>\n", num_file_07);
       result++;
     }
+
     geda_gslist_free_all(files);
+
+    files = geda_get_dir_list(TEST_FILE_PATH, ".sym", NULL);
+
+    num_file_07 = g_slist_length(files);
+
+    /* ATMega32-DIP_test.sym is the sym file in data/ */
+    if (num_file_07 - 1) {
+      fprintf(stderr, "FAILED: (F020702A) geda_get_dir_list <%d>\n", num_file_07);
+      result++;
+    }
+    else {
+
+      string = files->data;
+
+      if (strcmp(string, LINK2SOMEWHERE)) {
+        fprintf(stderr, "FAILED: (F020702B) geda_get_dir_list <%s>\n", string);
+        result++;
+      }
+      geda_gslist_free_all(files);
+    }
   }
 
-  /* === Function 08: geda_get_extension        geda_file_get_filename_ext === */
+  /* === Function 08: geda_file_get_filename_ext === */
+
+  static const struct _TestData F08_str[] =
+  {
+    { "",            ""     }, /* Emtpy */
+    { ".",           ""     }, /* Current Directory */
+    { "noextension", ""     }, /* Extensionless */
+    { "with.2.dots", "dots" }, /* with 2 DOTS */
+    { "a.png",       "png"  }, /* a png file */
+    { "a/b.sym",     "sym"  }, /* a symbol named b in a */
+    { "c.d/e.sch" ,  "sch"  }, /* a schematic named e in c.d */
+    { "/a/b.c",      "c"    }, /* with leading separator */
+    { "./a/b/c.d",   "d"    }, /* hidden directory */
+    { ".hidden",     ""     }, /* hidden file */
+    { "/a/b/.f",     ""     }, /* hidden file in nested dir */
+    { 0 },
+  };
+
+  const char *ext = geda_get_extension (NULL);
+
+  if (ext) {                           /* NULL input */
+    fprintf(stderr, "FAILED: (F080200) geda_get_extension <%s>\n", ext);
+    result++;
+  }
+
+  for (index = 0; F08_str[index].input; index++) {
+
+    char *expected = F08_str[index].expected;
+    char *input    = geda_strdup (F08_str[index].input);
+
+    ext = geda_get_extension (input);
+
+    if (ext) {
+      if (strcmp(ext, expected)) {      /* See structure F08_str */
+        fprintf(stderr, "FAILED: (F080201A-%d) geda_get_extension <%s>\n",index, ext);
+        result++;
+      }
+      free (input);
+    }
+    else {
+      if (*expected) {      /* See structure F08_str */
+        fprintf(stderr, "FAILED: (F080201B-%d) expected <%s> NULL\n",index, expected);
+        result++;
+      }
+    }
+    ext = NULL;
+  }
+
 
   /* === Function 09: geda_get_format_header    geda_file_get_format_header === */
 
@@ -1197,6 +1246,13 @@ void setup_environment(void)
   }
   else {
     old_rc_path = NULL;
+  }
+
+  if (g_file_test("Makefile.am", G_FILE_TEST_EXISTS)) {
+    vpath_build = FALSE;
+  }
+  else {
+    vpath_build = TRUE;
   }
 
   /* This is only needed for distcheck VPATH builds */

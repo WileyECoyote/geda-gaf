@@ -57,6 +57,22 @@ int check_construction (void)
 
   GtkWidget *widget = geda_menu_item_new();
 
+  /* Check instance identifier with NULL */
+
+  if (GEDA_IS_MENU_ITEM(NULL)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  /* Check instance identifier with pointer to low memory location */
+
+  unsigned int bad_address = 0x7FFF0;
+
+  if (GEDA_IS_MENU_ITEM(&bad_address)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
   if (!GEDA_IS_MENU_ITEM(widget)) {
     fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
     result++;

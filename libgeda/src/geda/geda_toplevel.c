@@ -52,6 +52,9 @@ static GObjectClass *geda_toplevel_parent_class = NULL;
 
 static GList *new_toplevel_hooks = NULL;
 
+/* List of pointers to GedaToplevel instances */
+static GList *list_of_toplevels = NULL;
+
 typedef struct {
   NewToplevelFunc func;
   void *data;
@@ -193,12 +196,11 @@ geda_toplevel_instance_init(GTypeInstance *instance, void *g_class)
   toplevel->auto_save_interval             = 0;
   toplevel->auto_save_timeout              = 0;
 
-  toplevel->head_marker                    = GEDA_TYPE_TOPLEVEL;
-  toplevel->tail_marker                    = toplevel->head_marker;
+  /* Append toplevel to list of valid toplevel objects */
+  list_of_toplevels = g_list_append(list_of_toplevels, instance);
 
   /* Call hooks */
   g_list_foreach (new_toplevel_hooks, call_new_toplevel_hook, toplevel);
-
 }
 
 /*!
@@ -211,8 +213,15 @@ geda_toplevel_instance_init(GTypeInstance *instance, void *g_class)
  */
 static void geda_toplevel_finalize(GObject *object)
 {
-  GedaToplevel *toplevel = GEDA_TOPLEVEL(object);
+  GedaToplevel *toplevel = (GedaToplevel*)object;
   GList *iter;
+
+  list_of_toplevels = g_list_remove(list_of_toplevels, object);
+
+  if (!g_list_length(list_of_toplevels)) {
+    g_list_free(list_of_toplevels);
+    list_of_toplevels = NULL;
+  }
 
   if (toplevel->auto_save_timeout != 0) {
     /* Assume this works */
@@ -253,10 +262,6 @@ static void geda_toplevel_finalize(GObject *object)
   }
   toplevel->weak_refs = NULL;
 
-  /* The object is no longer a GedaToplevel object */
-  toplevel->head_marker = 1;
-  toplevel->tail_marker = 0;
-
   G_OBJECT_CLASS(geda_toplevel_parent_class)->finalize(object);
 }
 
@@ -276,7 +281,6 @@ geda_toplevel_class_init (void *class, void *class_data)
   GObjectClass *gobject_class = G_OBJECT_CLASS(klass);
   geda_toplevel_parent_class  = g_type_class_peek_parent(klass);
   gobject_class->finalize     = geda_toplevel_finalize;
-
 }
 
 /*!
@@ -346,8 +350,10 @@ GedaToplevel *geda_toplevel_new (void) {
  */
 bool is_a_geda_toplevel (GedaToplevel *toplevel)
 {
-  return ((unsigned long)toplevel > 0x7FFFE) &&
-  (GEDA_TYPE_TOPLEVEL == (toplevel->head_marker & toplevel->tail_marker));
+  if (toplevel) {
+    return g_list_find(list_of_toplevels, toplevel) ? TRUE : FALSE;
+  }
+  return FALSE;
 }
 
 bool
@@ -541,7 +547,8 @@ geda_toplevel_get_auto_save_interval  (GedaToplevel *toplevel)
 /*!
  * \brief Get the current page
  * \par Function Description
- *  This function returns a pointer the current Page object.
+ *  This function returns a pointer the current Page object or
+ *  NULL if the current page is not set or is invalid.
  *
  * \param [in,out] toplevel This toplevel
  */
@@ -549,7 +556,14 @@ Page*
 geda_toplevel_get_current_page (GedaToplevel *toplevel)
 {
   g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), NULL);
-  return GEDA_IS_PAGE(toplevel->page_current) ? toplevel->page_current : NULL;
+
+  if (toplevel->page_current) {
+    if (GEDA_IS_PAGE(toplevel->page_current)) {
+      return toplevel->page_current;
+    }
+  }
+
+  return NULL;
 }
 
 /*!
@@ -648,7 +662,8 @@ geda_toplevel_get_page_count (GedaToplevel *toplevel)
  *
  *  \param [in] toplevel This toplevel
  */
-Page *geda_toplevel_get_page_down (GedaToplevel *toplevel)
+Page*
+geda_toplevel_get_page_down (GedaToplevel *toplevel)
 {
   GList *iter;
   GList *list;
@@ -699,7 +714,8 @@ Page *geda_toplevel_get_page_down (GedaToplevel *toplevel)
  *
  * \param [in] toplevel This toplevel
  */
-Page *geda_toplevel_get_page_up (GedaToplevel *toplevel)
+Page*
+geda_toplevel_get_page_up (GedaToplevel *toplevel)
 {
   GList *iter;
   GList *list;
@@ -739,6 +755,32 @@ Page *geda_toplevel_get_page_up (GedaToplevel *toplevel)
   }
 
   return page;
+}
+
+/*!
+ * \brief Get if Page is the Current Page in Toplevel
+ * \par Function Description
+ *  Compares PID of \page to the PID of the current page if
+ *  both are valid page objects and returns the result.
+ *
+ * \param [in] toplevel A toplevel object
+ * \param [in] page     The page to be queried
+ *
+ * \returns TRUE if \a page is the current page, otherwise FALSE.
+ */
+bool
+geda_toplevel_is_current_page(GedaToplevel *toplevel, Page *page)
+{
+  g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), FALSE);
+
+  if (GEDA_IS_PAGE(page)) {
+
+    if (toplevel->page_current) {
+      return (toplevel->page_current->pid == page->pid);
+    }
+  }
+
+  return FALSE;
 }
 
 /*!
@@ -884,7 +926,7 @@ geda_toplevel_set_bkloader_query_func (GedaToplevel *toplevel, void *func, ...)
 /*!
  * \brief Set the current page
  * \par Function Description
- *  Set the currentpage in \a toplevel to \a page.
+ *  Set the current page in \a toplevel to \a page.
  *
  * \param [in] toplevel GedaToplevel object
  * \param [in] page     Page object

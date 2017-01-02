@@ -211,10 +211,10 @@ static void geda_text_finalize(GObject *object)
 static void geda_text_class_init(void *g_class, void *class_data)
 {
   GedaTextClass   *class         = (GedaTextClass*)g_class;
-  GObjectClass    *gobject_class = G_OBJECT_CLASS( class );
+  GObjectClass    *gobject_class = G_OBJECT_CLASS(class);
   GedaObjectClass *geda_class    = GEDA_OBJECT_CLASS( class );
 
-  geda_text_parent_class         = g_type_class_peek_parent( class );
+  geda_text_parent_class         = g_type_class_peek_parent(class);
 
   gobject_class->dispose         = geda_text_dispose;
   gobject_class->finalize        = geda_text_finalize;
@@ -272,10 +272,10 @@ GedaObjectType geda_text_get_type (void)
  */
 GedaObject *geda_text_new (void)
 {
-  GedaObject *text = g_object_new( GEDA_TYPE_TEXT,
-                               "type", OBJ_TEXT,
-                               "name", "text",
-                                NULL );
+  GedaObject *text = g_object_new(GEDA_TYPE_TEXT,
+                                  "type", OBJ_TEXT,
+                                  "name", "text",
+                                  NULL );
   return GEDA_OBJECT(text);
 }
 

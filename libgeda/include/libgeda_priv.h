@@ -35,6 +35,7 @@
 #include "libgeda/geda_object_list.h"
 #include "libgeda/geda_utility.h"
 
+#include "libgeda/geda_keyfile.h"
 #include "libgeda/geda_list.h"
 #include "libgeda/geda_notify.h"
 #include "libgeda/geda_object.h"

@@ -16,7 +16,7 @@ symversion=0.2
 T 0 3050 5 8 0 0 0 0 1
 use-license=unrestricted
 T 0 3200 5 8 0 0 0 0 1
-dist-license=GPL3
+dist-license=GPLv2
 T 0 1950 9 10 0 0 0 0 1
 footprint=QLQ289
 T 2650 750 9 10 0 1 0 0 1

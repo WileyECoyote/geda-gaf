@@ -18,9 +18,61 @@
     * ti/switchreg/TPS61099-1.sym: Add symbol; Low quiescent synchronous
       boost converter.
 
+2017-01-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * lineartech/switchreg/LT107*: Add 8 switching regulator symbols:
+
+            * lineartech/switchreg/LT1070-1.sym
+            * lineartech/switchreg/LT1071-1.sym
+            * lineartech/switchreg/LT1071HV-1.sym
+            * lineartech/switchreg/LT1072-1.sym
+            * lineartech/switchreg/LT1072-2.sym
+            * lineartech/switchreg/LT1073-1.sym
+            * lineartech/switchreg/LT1073-5.sym
+            * lineartech/switchreg/LT1073-12.sym
+
+    * ti/micro/: add 14 symbols for ti MS320F280x Motor Microcontrollers:
+
+            * ti/micro/TMS320F28020DA-1.sym
+            * ti/micro/TMS320F28020PT-1.sym
+            * ti/micro/TMS320F28020DA-1.sym
+            * ti/micro/TMS320F28020PT-1.sym
+            * ti/micro/TMS320F28021DA-1.sym
+            * ti/micro/TMS320F28021PT-1.sym
+            * ti/micro/TMS320F28022DA-1.sym
+            * ti/micro/TMS320F28022PT-1.sym
+            * ti/micro/TMS320F28023DA-1.sym
+            * ti/micro/TMS320F28023PT-1.sym
+            * ti/micro/TMS320F28026DA-1.sym
+            * ti/micro/TMS320F28026PT-1.sym
+            * ti/micro/TMS320F28027DA-1.sym
+            * ti/micro/TMS320F28027PT-1.sym
+
+    * ti/ADS88*: add 12 symbols for ti ADS88 series A/D converters:
+
+            * ti/ADS8860-1.sym
+            * ti/ADS8861-1.sym
+            * ti/ADS8862-1.sym
+            * ti/ADS8863-1.sym
+            * ti/ADS8864-1.sym
+            * ti/ADS8865-1.sym
+            * ti/ADS8866-1.sym
+            * ti/ADS8867-1.sym
+            * ti/ADS8881-1.sym
+            * ti/ADS8883-1.sym
+            * ti/ADS8885-1.sym
+            * ti/ADS8887-1.sym
+
 2016-12-23 Wiley E. Hill <wileyhill@gmail.com>
 
-    * analogdevices/LT317A-1.sym: Add symbol; adjustable positive voltage regulator.
+    * analogdevices/AD5314-1.sym: Add symbol; Quad 10-Bit DACs, 2.5 V to 5.5 V,
+      500 uA, Voltage Output, 3-wire.
+
+    * analogdevices/AD5314-1.sym: Add symbol; Quad 12-Bit DACs, 2.5 V to 5.5 V,
+      500 uA, Voltage Output, 3-wire.
+
+    * analogdevices/ADuC812-1.sym: Add symbol; 8-bit CMOS microcontroller with
+      A/D converter.
 
     * analogdevices/ADuC841-1.sym: Add symbol; 8-bit CMOS microcontroller with A/D
       converter.
@@ -31,6 +83,80 @@
     * analogdevices/ADuC843-1.sym: Add symbol; 8-bit CMOS microcontroller with A/D
       converter.
 
+    * lineartech/LT317A-1.sym: Add symbol; adjustable positive voltage regulator.
+
+2016-12-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * arduino/XBeePRO.sym: Resequence pin and pin attributes.
+
+    * atmel/ATMega16L-1.sym: Remove "L_DIP" from the device value.
+
+    * atmel/ATMega48_88_168-1.sym: Resequence pin attributes, add description
+      and documentation attributes. Use underscope in device. Using forward
+      slashes in a device number should probably disqualify the device.
+
+    * atmel/ATMega48_88_168-DIP-1.sym: Rename file with upper case DIP and
+      same as ATMega48_88_168-1.sym.
+
+    * atmel/ATMega644-1.sym: Remove "PA" device suffix, reposition attributes.
+
+    * atmel/ATMega644-2.sym: Remove "PA" device suffix, reposition attributes.
+
+    * atmel/ATMegax8*.sym: Revise symbol fragments; replace lines with boxes,
+      add description and documentation attributes.
+
+    * cirrus/CS5396-1.sym: Remove "KS" device suffix.
+
+2016-12-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Update many license tags to dist-license=GPLv2, use-license=unlimited.
+
+    * ti/INA200-1.sym: Update device and value INA202->INA200, revise description
+      to indicate gain of op-amp stage.
+
+    * ti/INA201-1.sym: Update device and value INA202->INA201, revise description
+      to indicate gain of op-amp stage.
+
+    * io/subsheet-1.sym: Change commented lines to comment attributes.
+
+    * io/subsheet-2.sym: Change commented lines to comment attributes.
+
+    * serial/TL16C554AFN-1.sym: Fix incorrect pintype attributes and improper
+      over-bar tags. Added documentation attribute.
+
+2016-12-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/switchreg/LM2621-1.sym: Add symbol; Low Voltage Boost Regulator.
+
+2016-11-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/switchreg/LM5118-1.sym: Add symbol; Current Mode Buck-Boost Controller.
+
+2016-11-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * lineartech/switchreg/LTC3531-2.sym: Add LTC3531 symbol with alternate
+      pin-out.
+
+    * lineartech/switchreg/LTC3537-1.sym: Add symbol; 600mA synchronous buck
+      boost converter.
+
+2016-11-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * lineartech/switchreg/LTC3531-1.sym: Add symbol; low noise 180/350mA boost
+      converter.
+
+2016-11-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * passive/rf/CC1000PP.sym: Rename file with upper case, reposition and
+      hide pin type attributes.
+
+    * passive/rf/MC13175-1.sym: Rename file with upper case, reposition and
+      hide pin type attributes, remove "comment" and "pins" attributes.
+
+    * passive/rf/RF2155-1.sym: Rename file with upper case, reposition and
+      hide pin type attributes.
+
+>>>>>>> 580b9ff42656b422d9d94d6ab4d511a5db963819
 2016-11-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/switchreg/TPS61201-1.sym: Add symbol 3.3V synchronous boost converter.

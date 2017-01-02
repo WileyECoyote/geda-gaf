@@ -3,12 +3,6 @@ T 100 2200 5 10 0 0 0 0 1
 description=divide by 2,4,8, model MC12093 by ON-Semi
 T 100 2400 5 8 0 0 0 0 1
 documentation=http://www.onsemi.com/pub/Collateral/MC12093-D.PDF
-T 100 2800 5 8 0 0 0 0 1
-dist-license=GPL 3, see http://www.gnu.org/licenses/gpl-3.0.txt
-T 100 2600 5 8 0 0 0 0 1
-use-license=free, no restrictions
-T 100 3000 5 10 0 0 0 0 1
-author=Kai-Martin Knaak
 T 400 2000 8 10 1 1 0 0 1
 refdes=U?
 T 400 1850 5 10 1 1 0 0 1
@@ -104,3 +98,9 @@ pintype=in
 T 1850 1350 5 8 0 1 0 0 1
 pinseq=8
 }
+T 100 3000 5 10 0 0 0 0 1
+author=Kai-Martin Knaak
+T 100 2800 5 8 0 0 0 0 1
+dist-license=GPLv2
+T 100 2600 5 8 0 0 0 0 1
+use-license=unlimited

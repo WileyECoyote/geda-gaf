@@ -572,7 +572,7 @@ void o_move_check_endpoint(GschemToplevel *w_current, GedaObject *object)
       geda_struct_page_append_object (toplevel->page_current, new_net);
 
       /* FIXME:This new net object is only picked up for stretching later,
-       * somewhat of a kludge. If the move operation is cancelled, these
+       * somewhat of a kludge. If the move operation is canceled, these
        * new 0 length nets are removed by the "undo" operation invoked.
        */
     }

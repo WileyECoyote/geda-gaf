@@ -409,7 +409,7 @@ T 2450 250 5 8 0 1 0 6 1
 pinseq=3
 }
 T 4600 8300 8 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 4600 8100 8 10 0 0 0 0 1
 use-license=unlimited
 T 2600 1600 9 10 0 0 0 3 1

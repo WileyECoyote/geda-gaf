@@ -57,7 +57,7 @@ re_section_header = re.compile("^\s*\[(?P<name>.+)]\s*$")
 class Pin:
     '''Encapsulation for all data related to a pin.'''
     def __init__(self, element):
-		
+
         element.extend(('', '', '', '', '', '', ''))
         self.nr = element[P_NR].strip()
         self.seq = element[P_SEQ].strip()
@@ -120,8 +120,8 @@ class Pin:
         if self.pos == "" and self.net == "":
             print "There must be either position or a netlabel: \n", self
             sys.exit()
-        
-        
+
+
 ################################# FUNCTIONS ##############################
 
 def usage():
@@ -143,11 +143,11 @@ def parselabel(str):
                 neg = 1
             else:
                 neg = 0
-            slash = 0                
+            slash = 0
         else:
             textout=textout+letter
             slash = 0
-            
+
     if slash == 1 or neg == 1:
         print '''unbalanced overbars or escapesequence: ''', str
         print '''the overbar starts and ends with "\_" example: \"\_enable\_'''
@@ -159,8 +159,8 @@ def parselabel(str):
 def round_closest(x,r):
     return x-(x+r/2)%r+r/2
 
-## returns the words in reverse order    
-def swapwords(str): 
+## returns the words in reverse order
+def swapwords(str):
     list=string.split(str," ")
     back=list[0]
     for i in list[1:]:
@@ -191,7 +191,7 @@ def readsrc(filename):
     	if len(line) == 0:
     		continue
         match = re_section_header.match(line)
-        if match:        			# find a section 
+        if match:        			# find a section
             section=match.group('name')
             continue
         elif section=="" or line[0]=="#" \
@@ -253,7 +253,7 @@ def splitspecial(str):
 def writesym(filename,options,attr,pins):
     o_symwidth=string.atoi(options["sym_width"])
     o_hdist=string.atoi(options["pinwidthhorizontal"])
-    
+
     # If pinwidthvertikal was defined, use it, else use pinwidthvertical
     # This keeps compatibility with older versions, while fixing the spell
     # bug
@@ -284,7 +284,7 @@ def writesym(filename,options,attr,pins):
     	elif pin.pos == "t": #right pin
     		numptop=numptop+1
 
-    # Calculate the position of the pins in the left and right side.    
+    # Calculate the position of the pins in the left and right side.
     plefty, prighty = 0, 0
     if numpleft >  numpright:
         plefty=plefty+(numpleft-1)*o_vdist
@@ -301,7 +301,7 @@ def writesym(filename,options,attr,pins):
     # Calculate the minimum symwidth and increase it if necessary
     calculated_top_symwidth=(numptop-1)*o_hdist+2*o_hdist
     calculated_bottom_symwidth=(numpbottom-1)*o_hdist+2*o_hdist
-    
+
     calculated_symwidth = max(calculated_bottom_symwidth,
                               calculated_top_symwidth)
 
@@ -313,16 +313,16 @@ def writesym(filename,options,attr,pins):
 
     # Calculate the symbol's high
     if numpleft < numpright:
-        high=(numpright+1)*o_vdist 
+        high=(numpright+1)*o_vdist
     else:
-        high=(numpleft+1)*o_vdist 
+        high=(numpleft+1)*o_vdist
     topy = bottomlefty + high
 
     # Calculate the position of several items.
     prightx, prighty= bottomleftx + pinlength + o_symwidth, prighty + bottomlefty + o_vdist
     pleftx, plefty= bottomleftx - pinlength, plefty + bottomlefty + o_vdist
     ptopx, ptopy= bottomleftx + o_hdist, bottomlefty + high + pinlength
-    pbottomx, pbottomy = bottomleftx + o_hdist, bottomlefty - pinlength   
+    pbottomx, pbottomy = bottomleftx + o_hdist, bottomlefty - pinlength
 
     # Lets add some pad if sym_width was defined
     ptopx = ptopx + (o_symwidth - calculated_top_symwidth) / 2
@@ -330,7 +330,7 @@ def writesym(filename,options,attr,pins):
 
     ptopx = round_closest(ptopx, 100)
     pbottomx = round_closest(pbottomx, 100)
-    
+
     f = open(filename, "w")
 
 ### Draw the symbol version
@@ -338,15 +338,15 @@ def writesym(filename,options,attr,pins):
         value=attr[("version",1)]
         if re.match("[0-9]{8}$", value):
             f.write("v " + value + " 1\n")
-        elif re.match("[0-9]{8} 1$", value):
+        elif re.match("[0-9]{8} [1,2]$", value):
             f.write("v " + value + "\n")
         else:
             print "error: version string format invalid: [%s]" % value
             sys.exit()
     else:
-        print "error: version attribut missing"
+        print "error: version attribute missing"
         sys.exit()
-   
+
     if o_sort == "yes":
         pins.sort()
 
@@ -366,12 +366,12 @@ def writesym(filename,options,attr,pins):
             elif pin.pos == "t": # top pin
                 ptopx=ptopx + o_hdist
             continue
-        
+
 ### decide which pindirection to use
-        ## TODO: put all constants into a dictionary         
+        ## TODO: put all constants into a dictionary
         if pin.pos == "l": #left pin
             basex, basey= pleftx, plefty  #where to draw this pin
-            xf, yf= 1, 0  # orientation factors  
+            xf, yf= 1, 0  # orientation factors
             pint=(200,50,6,0) # dx, dy, alignment, angle
             pinl=(350,0,0,0)  # """"
             pina=(350,0,2,0)  # """"
@@ -379,7 +379,7 @@ def writesym(filename,options,attr,pins):
             swap=0   # swap words in label ?
             plefty=plefty - o_vdist  #where to draw the _next_ pin
         elif pin.pos == "r": #right pin
-            basex, basey = prightx, prighty 
+            basex, basey = prightx, prighty
             xf, yf= -1, 0
             pint=(-200,50,0,0)
             pinl=(-350,0,6,0)
@@ -450,7 +450,7 @@ def writesym(filename,options,attr,pins):
             pinax=pinax + xf*75
             pinay=pinay + yf*75
         pinlx=pinlx + basex
-        pinly=pinly + basey 
+        pinly=pinly + basey
         pinax=pinax + basex
         pinay=pinay + basey
         if o_wordswap=="yes" and swap==1:
@@ -478,7 +478,7 @@ def writesym(filename,options,attr,pins):
             y3=y1- yf*100 -xf*75
             f.write("L %i"%x1+" %i"%y1+" %i"%x2+" %i"%y2 + " 3 0 0 0 -1 -1\n")
             f.write("L %i"%x1+" %i"%y1+" %i"%x3+" %i"%y3 + " 3 0 0 0 -1 -1\n")
-### draw a box 
+### draw a box
     f.write("B %i"%bottomleftx+" %i"%bottomlefty+" %i"%o_symwidth+" %i"%high+
             " 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1\n")
 
@@ -495,7 +495,7 @@ def writesym(filename,options,attr,pins):
     texty = namey + 200
     if numptop > 0:
  	texty += 100
-    
+
     ## special attribute format
     if attr.has_key(("refdes",1)):
         f.write("T %i"% urefx +" %i"% urefy +" 8 10 1 1 0 6 1\n")
@@ -553,7 +553,7 @@ def writesym(filename,options,attr,pins):
         f.write("T %i" %textx + " %i"% texty + " 5 10 0 0 0 0 1\n")
         f.write("net=" + key + ":" + value + "\n")
         texty=texty+200
- 
+
     return 0
 
 def mergeoptions(source_opt,pre_opt):

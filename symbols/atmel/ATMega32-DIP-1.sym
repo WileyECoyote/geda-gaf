@@ -458,6 +458,6 @@ value=ATmega32
 T 400 11200 8 10 0 0 0 0 1
 author=Darren Fulton darren.fultonATgmail.com
 T 400 11000 8 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 400 10800 8 10 0 0 0 0 1
 use-license=unlimited

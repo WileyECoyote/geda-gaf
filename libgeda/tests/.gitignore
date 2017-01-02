@@ -17,6 +17,7 @@ test_circle_object
 test_complex
 test_complex_object
 test_file
+test_keyfile
 test_line
 test_line_object
 test_object_list
@@ -28,4 +29,6 @@ test_picture
 test_picture_object
 test_pin
 test_text
+test_toplevel
 test_utility
+

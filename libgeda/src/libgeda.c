@@ -171,4 +171,6 @@ void libgeda_release(void)
   geda_struct_attrib_free();
   geda_struct_papersizes_free();
   geda_iface_vars_freenames();
+
+  eda_config_release_resources();
 }

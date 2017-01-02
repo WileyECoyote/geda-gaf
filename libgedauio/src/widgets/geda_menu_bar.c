@@ -960,6 +960,10 @@ static void geda_menu_bar_finalize (GObject *object)
     g_free(menu_bar->priv->accel);
   }
 
+  if (menu_bar->priv->accel_group) {
+    g_object_unref(menu_bar->priv->accel_group);
+  }
+
   g_free(menu_bar->priv);
 
   G_OBJECT_CLASS (geda_menu_bar_parent_class)->finalize (object);
@@ -1141,7 +1145,7 @@ geda_menu_bar_instance_init (GTypeInstance *instance, void *class)
 {
   GedaMenuBar *menu_bar = (GedaMenuBar*)instance;
 
-  menu_bar->priv          = g_malloc0 (sizeof(GedaMenuBarPrivate));
+  menu_bar->priv          = GEDA_MEM_ALLOC0 (sizeof(GedaMenuBarPrivate));
   menu_bar->instance_type = geda_menu_bar_get_type();
 
 #if GTK_MAJOR_VERSION == 3
@@ -1302,7 +1306,14 @@ add_to_window (GtkWindow *window, GedaMenuBar *menubar)
     accel_group = gtk_accel_group_new();
     gtk_window_add_accel_group (window, accel_group);
 
-    menubar->priv->accel = geda_strdup(accel);
+    if (menubar->priv->accel) {
+      g_free (menubar->priv->accel);
+    }
+    menubar->priv->accel = accel;
+
+    if (menubar->priv->accel_group) {
+      g_object_unref (menubar->priv->accel_group);
+    }
     menubar->priv->accel_group = accel_group;
   }
 
@@ -1327,7 +1338,7 @@ remove_from_window (GtkWindow *window, GedaMenuBar *menubar)
   if (!menubars) {
 
     g_object_unref(menubar->priv->accel_group);
-
+    menubar->priv->accel_group = NULL;
     g_signal_handlers_disconnect_by_func (window,
                                           geda_menu_bar_window_key_press_handler,
                                           NULL);

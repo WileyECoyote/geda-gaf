@@ -124,7 +124,8 @@ x_show_uri (const char *uri)
 
   if (!show_uri__win32 (uri, error)) {
     if (verbose_mode) {
-      u_log_message("Failed to open <%s>, %s\n", uri, error->message);
+      const char *log_msg = _("Failed to open");
+      u_log_message("%s <%s>, %s\n", log_msg, uri, error->message);
     }
     g_error_free (error);
     error = NULL;
@@ -141,7 +142,8 @@ x_show_uri (const char *uri)
 
   if (!gtk_show_uri (screen, uri, GDK_CURRENT_TIME, &error)) {
     if (verbose_mode) {
-      u_log_message("gtk Failed to open <%s>, %s\n", uri, error->message);
+      const char *log_msg = _("Failed to open");
+      u_log_message("Gtk %s <%s>, %s\n", log_msg, uri, error->message);
     }
     g_error_free (error);
     error = NULL;
@@ -154,7 +156,8 @@ x_show_uri (const char *uri)
 
   if (!g_app_info_launch_default_for_uri(uri, NULL, &error)) {
     if (verbose_mode) {
-      u_log_message("glib Failed to open <%s>, %s\n", uri, error->message);
+      const char *log_msg = _("Failed to open");
+     u_log_message("glib %s <%s>, %s\n", log_msg, uri, error->message);
     }
     g_error_free (error);
     error = NULL;
@@ -168,7 +171,8 @@ x_show_uri (const char *uri)
 #if defined (SHOW_URI_GIO)
 
   if (verbose_mode) {
-    u_log_message("x_show_uri: falling back to %s\n", SHOW_URI_COMMAND);
+    const char *log_msg = _("falling back to");
+    u_log_message("%s: %s %s\n", __func__, log_msg, SHOW_URI_COMMAND);
   }
 
   bool spawn_status;

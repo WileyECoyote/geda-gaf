@@ -41,7 +41,7 @@
 /**
  * \brief GedaSeparator - A Seperator for Menus and Toolbars
  * \par
- * A visual widget use to seperate items in meu and toolbars.
+ * A visual widget use to separate items in meu and toolbars.
  *
  * \defgroup GedaSeparator Geda Separator
  * @{
@@ -66,9 +66,10 @@ static void geda_separator_size_request (GtkWidget      *widget,
 static bool geda_separator_expose       (GtkWidget      *widget,
                                          GdkEventExpose *event);
 
-
-
 static void *geda_separator_parent_class = NULL;
+
+/* Table of pointers to GedaSeparator instances */
+static GHashTable *separator_hash_table = NULL;
 
 #if GTK_MAJOR_VERSION < 3
 
@@ -272,6 +273,30 @@ geda_separator_draw (GtkWidget *widget, cairo_t *cr)
 
 #endif
 
+/*!
+ * \brief gobject_class->finalize a GedaSeparator object
+ * \par Function Description
+ *  Releases resources associated with the GedaSeparator object.
+ *  The object should not be referenced after this function
+ *  is executes.
+ */
+static void
+geda_separator_finalize (GObject *object)
+{
+#ifndef DEBUG_GEDA_SEPARATOR
+
+  if (g_hash_table_remove (separator_hash_table, object)) {
+    if (!g_hash_table_size (separator_hash_table)) {
+      g_hash_table_destroy (separator_hash_table);
+      separator_hash_table = NULL;
+    }
+  }
+
+#endif /* DEBUG_GEDA_SEPARATOR */
+
+  G_OBJECT_CLASS (geda_separator_parent_class)->finalize (object);
+}
+
 static void
 geda_separator_get_property (GObject     *object,
                              unsigned int prop_id,
@@ -309,6 +334,7 @@ geda_separator_set_property (GObject      *object,
   }
 }
 
+
 static void
 geda_separator_class_init(void *class, void *class_data)
 {
@@ -316,6 +342,7 @@ geda_separator_class_init(void *class, void *class_data)
   GObjectClass   *object_class = G_OBJECT_CLASS (class);
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (class);
 
+  object_class->finalize     = geda_separator_finalize;
   object_class->set_property = geda_separator_set_property;
   object_class->get_property = geda_separator_get_property;
 
@@ -346,7 +373,7 @@ geda_separator_class_init(void *class, void *class_data)
                               1,
                               G_PARAM_READWRITE);
 
-   g_object_class_install_property (object_class, PROP_ORIENTATION, params);
+  g_object_class_install_property (object_class, PROP_ORIENTATION, params);
 }
 
 static void
@@ -363,6 +390,12 @@ geda_separator_instance_init(GTypeInstance *instance, void *g_class)
 
   widget->requisition.width  = 1;
   widget->requisition.height = widget->style->ythickness;
+
+  if (!separator_hash_table) {
+    separator_hash_table = g_hash_table_new (g_direct_hash, NULL);
+  }
+
+  g_hash_table_add (separator_hash_table, instance);
 }
 
 /*!
@@ -416,8 +449,8 @@ GedaType geda_separator_get_type (void)
 bool
 is_a_geda_separator (GedaSeparator *separator)
 {
-  if (G_IS_OBJECT(separator)) {
-    return (geda_separator_get_type() == separator->instance_type);
+  if ((separator != NULL) && (separator_hash_table != NULL)) {
+    return g_hash_table_lookup(separator_hash_table, separator) ? TRUE : FALSE;
   }
   return FALSE;
 }

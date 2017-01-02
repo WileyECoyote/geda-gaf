@@ -4,7 +4,7 @@ author=AutoTron
 T 3000 8600 8 10 1 1 0 6 1
 refdes=U?
 T 400 8750 5 10 0 0 0 0 1
-device=ATmega16L_DIP
+device=ATmega16
 T 400 8950 5 10 0 0 0 0 1
 footprint=DIP40
 T 400 9150 5 10 0 0 0 0 1

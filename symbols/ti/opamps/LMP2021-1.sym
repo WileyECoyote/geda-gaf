@@ -73,7 +73,7 @@ documentation=http://www.ti.com/product/lmp2021
 T 800 50 9 10 0 0 0 0 1
 symversion=0.4
 T 100 2000 5 10 0 0 0 0 1
-dist-license=GPLv3
+dist-license=GPLv2
 T 100 1800 5 10 0 0 0 0 1
 use-license=unlimited
 T 100 2200 5 10 0 0 0 0 1

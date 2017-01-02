@@ -394,7 +394,7 @@ o_picture_exchange_file (GschemToplevel *w_current, GedaObject *o_current)
       const char *message = err->message;
 
       /* Log the error */
-      u_log_message( _("%s: Failed to replace picture: %s"), __func__, message);
+      geda_log("%s: %s\n", _("Failed to replace picture"), message);
 
       /* inform the user */
       pango_error_dialog ( _("<b>Failed to replace picture</b>"), message);
@@ -612,12 +612,11 @@ o_picture_set_pixbuf(GschemToplevel *w_current, char *filename)
     char *errmsg;
 
     if (error) {
-      errmsg = geda_sprintf ( _("Error: %s."), error->message);
+      errmsg = geda_sprintf ( "%s: %s.", _("Error"), error->message);
       g_error_free(error);
     }
     else {
-      errmsg = geda_sprintf ( _("Error: %s\n%s."), filename,
-                                  _("An unknown error occurred"));
+      errmsg = geda_sprintf ("%s: %s\n%s.", _("Error"), filename, _("An unknown error occurred"));
     }
 
     titled_pango_error_dialog ( _("<b>Failed to load picture</b>"), errmsg,

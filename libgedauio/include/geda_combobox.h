@@ -56,7 +56,6 @@ typedef struct _GedaComboBoxData  GedaComboBoxData;
 struct _GedaComboBox
 {
   GtkBin   parent_instance;
-  GedaType instance_type;
 
   /*< private >*/
   int tip_column;

@@ -40,6 +40,10 @@
 # include <errno.h>
 #endif
 
+#ifdef OS_WIN32
+#include <ctype.h>  /* for isalpha */
+#endif
+
 #if defined (OS_WIN32_NATIVE) || defined(__MINGW32__)
 #  define WIN32_LEAN_AND_MEAN
 #  include <windows.h> /* for GetFullPathName */
@@ -640,12 +644,16 @@ geda_file_get_dir_list_files(char *path, char *filter, GError **err)
  *
  * \return offset if found, otherwise NULL.
  */
-const char *
+const char*
 geda_file_get_filename_ext(const char *filename)
 {
+  if (filename && *filename) {
     const char *dot = strrchr(filename, '.');
     if (!dot || dot == filename) return NULL;
+    if (IS_DIR_SEPARATOR(*(dot-1))) return NULL;
     return dot + 1;
+  }
+  return NULL;
 }
 
 /*!

@@ -48,7 +48,7 @@
  */
 static void x_window_set_default_icon( void )
 {
-  gtk_window_set_default_icon_name( GATTRIB_THEME_ICON_NAME );
+  gtk_window_set_default_icon_name( GATTRIB_THEME_ICON_NAME);
 }
 
 /*! \brief Set or Update the Window Title
@@ -153,6 +153,14 @@ on_notebook_switch_page (GtkNotebook *notebook, GtkNotebookPage *page,
   return;
 }
 
+/* Disconnects the on_notebook_switch_page handler at exit */
+static void x_window_disconnect_notebook_switch_page(void *notebook)
+{
+  g_signal_handlers_disconnect_by_func(notebook,
+                                       on_notebook_switch_page,
+                                       NULL);
+}
+
 static void x_window_save_settings(void *data)
 {
   if (GTK_IS_WINDOW(data)) {
@@ -177,7 +185,7 @@ static void x_window_save_settings(void *data)
     /* Save the Window Geometry data */
     eda_config_set_integer (cfg, win_group, "window-x-position", x);
     eda_config_set_integer (cfg, win_group, "window-y-position", y);
-    eda_config_set_integer (cfg, win_group, "window-width",      width );
+    eda_config_set_integer (cfg, win_group, "window-width",      width);
     eda_config_set_integer (cfg, win_group, "window-height",     height);
   }
 }
@@ -254,13 +262,27 @@ void x_window_restore_settings(GtkWidget *MainWindow)
   gtk_window_resize (window, width, height);
 }
 
+/*!
+ * \brief Delete Event handler for the Main Window
+ * \par Function Description
+ * When the File/Quit menu option is used to exit gattrib, an extra reference
+ * is held on the menu_bar. This function increases the reference on the menu
+ * bar when the main window receives a "delete_event" to balance the reference
+ * count so that x_menu_release_all can unreference the menu_bar regardless of
+ * which method was used to terminate the program.
+ */
+static bool x_window_quit(void)
+{
+  g_object_ref(menu_bar);
+  return gattrib_really_quit();
+}
+
 /*! \brief Initializes the Main Window
  * \par Function Description
- * This function creates and initializes the Main window, calling
- * various other function to add the primary window widgets like
- * menus, toolbars, the GTK notebook container, etc. Each widget
- * is set visible here except the main window itself, which is
- * done later.
+ * This function creates and initializes the Main window, calling various
+ * other function to add the primary window widgets like menus, toolbars,
+ * the GTK notebook container, etc. Each widget is set visible here except
+ * the main window itself, which is done later.
  *
  *  \sa x_window_finalize_startup
  */
@@ -280,13 +302,13 @@ void x_window_init()
   x_window_restore_settings(main_window);
 
   GEDA_SIGNAL_CONNECT (main_window, "delete_event",
-                       GTK_SIGNAL_FUNC (gattrib_really_quit), 0);
+                       GTK_SIGNAL_FUNC (x_window_quit), 0);
 
   /* -----  Now create main_vbox container to hold everthing ----- */
 
   main_vbox = gtk_vbox_new(FALSE,1);
   gtk_container_set_border_width(GTK_CONTAINER(main_vbox), 1);
-  gtk_container_add(GTK_CONTAINER(main_window), GTK_WIDGET(main_vbox) );
+  gtk_container_add(GTK_CONTAINER(main_window), GTK_WIDGET(main_vbox));
   gtk_widget_show( GTK_WIDGET(main_vbox));
 
   /* -----  Now create menu bar  ----- */
@@ -302,7 +324,7 @@ void x_window_init()
   gtk_widget_show(edit_box);
 
    /* This is the RC box in the top left cell */
-  location = geda_visible_label_new("");
+  location = geda_visible_label_new(" ");
 
   gtk_widget_size_request(location, &request);
   gtk_widget_set_usize(location, 150, request.height);
@@ -319,13 +341,10 @@ void x_window_init()
   gtk_box_pack_start(GTK_BOX(main_vbox), notebook, TRUE, TRUE, 0);
 
   GEDA_SIGNAL_CONNECT (notebook, "switch-page",
-                       G_CALLBACK (on_notebook_switch_page),
+                       on_notebook_switch_page,
                        NULL);
-  /* -----  Now malloc -- but don't fill out -- space for sheets  ----- */
-  /* This basically sets up the overhead for the sheets, as I understand
-   * it.  The memory for the actual sheet cells is allocated later,
-   * when gtk_sheet_new is invoked, I think.  */
-  sheets = GEDA_MEM_ALLOC0(NUM_SHEETS * sizeof(GtkWidget *));
+
+  geda_atexit(x_window_disconnect_notebook_switch_page, notebook);
 
   x_menu_fix_gtk_recent_submenu();
 }
@@ -390,14 +409,13 @@ void x_window_add_items(PageDataSet *PageData)
   /* ------ Comp sheet: put values in the individual cells ------- */
   for (col = 0; col < PageData->comp_attrib_count; col++) {
     for (row = 0; row < PageData->comp_count; row++) {
-      if ( (PageData->component_table)[col][row].attrib_value ) { /* NULL = no entry */
-        text = geda_utility_string_strdup( (PageData->component_table)[col][row].attrib_value );
-        visibility = (PageData->component_table)[col][row].visibility;
+      if ((PageData->component_table)[col][row].attrib_value ) { /* NULL = no entry */
+        text            = (PageData->component_table)[col][row].attrib_value;
+        visibility      = (PageData->component_table)[col][row].visibility;
         show_name_value = (PageData->component_table)[col][row].show_name_value;
-        is_inherited = (PageData->component_table)[col][row].is_inherited;
-        x_gtksheet_add_cell_item( GTK_SHEET(sheets[Components]), row, col, text,
+        is_inherited    = (PageData->component_table)[col][row].is_inherited;
+        x_gtksheet_add_cell_item(GTK_SHEET(sheets[Components]), row, col, text,
                                   visibility, show_name_value, is_inherited);
-        GEDA_FREE(text);
       }
     }
   }
@@ -405,12 +423,11 @@ void x_window_add_items(PageDataSet *PageData)
   /* ------ Net sheet: put values in the individual cells ------- */
   for (col = 0; col <PageData->net_attrib_count; col++) {
     for (row = 0; row < PageData->net_count; row++) {
-      if ( (PageData->net_table)[col][row].attrib_value ) { /* NULL = no entry */
-        text =  geda_utility_string_strdup( (PageData->net_table)[col][row].attrib_value );
-        visibility = (PageData->net_table)[col][row].visibility;
+      if ((PageData->net_table)[col][row].attrib_value ) { /* NULL = no entry */
+        text            = (PageData->net_table)[col][row].attrib_value;
+        visibility      = (PageData->net_table)[col][row].visibility;
         show_name_value = (PageData->component_table)[col][row].show_name_value;
-        x_gtksheet_add_cell_item( GTK_SHEET(sheets[1]), row, col, text, visibility, show_name_value, 0);
-        GEDA_FREE(text);
+        x_gtksheet_add_cell_item (GTK_SHEET(sheets[1]), row, col, text, visibility, show_name_value, 0);
       }
     }
   }
@@ -418,11 +435,10 @@ void x_window_add_items(PageDataSet *PageData)
   /* ------ Pin sheet: put pin attribs in the individual cells ------- */
   for (col = 0; col < PageData->pin_attrib_count; col++) {
     for (row = 0; row < PageData->pin_count; row++) {
-      if ( (PageData->pin_table)[col][row].attrib_value ) { /* NULL = no entry */
-        text = geda_utility_string_strdup( (PageData->pin_table)[col][row].attrib_value );
+      if ((PageData->pin_table)[col][row].attrib_value) { /* NULL = no entry */
+        text = (PageData->pin_table)[col][row].attrib_value;
         /* pins have no visibility attributes, must therefore provide default. */
         x_gtksheet_add_cell_item( GTK_SHEET(sheets[2]), row, col, text,  VISIBLE, SHOW_VALUE, 0);
-        GEDA_FREE(text);
       }
     }
   }
@@ -629,8 +645,8 @@ void x_window_autoscroll_toggle(GtkToggleAction *action, GtkWindow *main_window)
 /*!
  * \brief Toggle Sheet Grid Option On Off
  * \par Function Description
- *      This function toggles visibility of the grid lines in the GTKSheets
- * The flag is normally turned on.
+ *  This function toggles visibility of the grid lines in the GTKSheets
+ *  The flag is normally turned on.
  */
 void x_window_grid_toggle(GtkToggleAction *action, GtkWindow *main_window)
 {
@@ -638,4 +654,22 @@ void x_window_grid_toggle(GtkToggleAction *action, GtkWindow *main_window)
   gtk_sheet_show_grid(sheets[Components], show);
   gtk_sheet_show_grid(sheets[Nets], show);
   gtk_sheet_show_grid(sheets[Pins], show);
+}
+
+/*!
+ * \brief Release GUI related resources
+ * \par Function Description
+ *  This function releases various resources associated with the GUI.
+ */
+void x_window_release_all(void)
+{
+  /* Release Menu before the toolbar stuff */
+  x_menu_release_all();
+  x_toolbar_release_all();
+
+  /* edit_box contains entry and location */
+  gtk_widget_destroy (entry);
+  gtk_widget_destroy (location);
+  gtk_widget_destroy (edit_box);
+  gtk_widget_destroy (notebook);
 }

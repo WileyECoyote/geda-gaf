@@ -331,6 +331,6 @@ mfr=Linear Technology
 T 3700 6100 5 10 0 0 0 0 1
 author=AutoTron
 T 3700 5900 5 10 0 0 0 0 1
-dist-license=GPL2
+dist-license=GPLv2
 T 3700 5700 5 10 0 0 0 0 1
 use-license=unlimited

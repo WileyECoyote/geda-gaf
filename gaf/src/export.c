@@ -278,8 +278,10 @@ cmd_export_impl (void *data, int argc, char **argv)
 
   /* Create renderer */
   renderer = eda_renderer_new (NULL, NULL);
+
+  /* Tell the renderer library what font to use */
   if (settings.font != NULL) {
-    g_object_set (renderer, "font-name", settings.font, NULL);
+    eda_renderer_set_font_name(renderer, settings.font);
   }
 
   /* Make sure libgeda knows how to calculate the bounds of text
@@ -324,6 +326,7 @@ cmd_export_impl (void *data, int argc, char **argv)
 
   g_array_free (color_map, TRUE);
 
+  eda_renderer_destroy(renderer);
   libgedacolor_release();
   libgeda_release();
 
@@ -352,13 +355,21 @@ export_text_rendered_bounds (void *user_data, GedaObject *object,
 
   EdaRenderer *renderer = EDA_RENDERER (user_data);
 
-  result  = eda_renderer_get_user_bounds (renderer, object, &l, &t, &r, &b);
+  if (!renderer) {
+    fprintf(stderr, "<%s>: renderer is NULL\n", __func__);
+    result = FALSE;
+  }
+  else {
 
- *left   = lrint (min (l,r));
- *top    = lrint (min (t, b));
- *right  = lrint (max (l, r));
- *bottom = lrint (max (t, b));
+    t = l = r = b = 0;
 
+    result  = eda_renderer_get_user_bounds (renderer, object, &l, &t, &r, &b);
+
+    *left   = lrint (min (l, r));
+    *top    = lrint (min (t, b));
+    *right  = lrint (max (l, r));
+    *bottom = lrint (max (t, b));
+  }
   return result;
 }
 
@@ -548,10 +559,8 @@ export_png (void)
   cr      = cairo_create (surface);
   cairo_surface_destroy (surface);
 
-  g_object_set (renderer,
-                "cairo-context", cr,
-                "render-flags", EDA_RENDERER_FLAG_HINTING,
-                NULL);
+  eda_renderer_set_cairo_context (renderer, cr);
+  eda_renderer_set_flags(renderer, EDA_RENDERER_FLAG_HINTING);
 
   /* Calculate page layout */
   export_layout_page (NULL, &extents, &mtx);
@@ -571,7 +580,7 @@ export_png (void)
   cairo_transform (cr, &mtx);
 
   /* Set up renderer. We need to enable subpixel hinting. */
-  g_object_set (renderer, "cairo-context", cr, NULL);
+  eda_renderer_set_cairo_context (renderer, cr);
 
   /* Draw */
   export_draw_page (NULL);

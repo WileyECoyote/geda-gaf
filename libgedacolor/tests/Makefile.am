@@ -24,8 +24,7 @@ test_color_LDADD  = $(top_builddir)/libgedacolor/src/libgedacolor.la  \
 		    @LIBINTL@
 
 DEPENDS=\
-	libgeda/src \
-	libgedathon/src
+	libgeda/src
 
 update-dependents:
 	@for d in $(DEPENDS); do \

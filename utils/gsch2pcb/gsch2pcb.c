@@ -1529,7 +1529,7 @@ load_extra_project_files (void)
 static char *usage_string0 =
   "usage: gsch2pcb [options] {project | foo.sch [foo1.sch ...]}\n"
   "\n"
-  "   Generate a PCB layout file from a set of gschem schematics.\n"
+  "   Generate a PCB layout file from a set of geda schematics.\n"
   "   gnetlist -g PCB is run to generate foo.net from the schematics.\n"
   "\n"
   "   gnetlist -g gsch2pcb is run to get PCB m4 derived elements which\n"

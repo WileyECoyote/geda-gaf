@@ -46,14 +46,12 @@ extern "C" {
 #define GEDA_IS_MENU_SEPERATOR_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GEDA_TYPE_MENU_SEPARATOR))
 #define GEDA_MENU_SEPARATOR_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GEDA_TYPE_MENU_SEPARATOR, GedaMenuSeparatorClass))
 
-
 typedef struct _GedaMenuSeparator       GedaMenuSeparator;
 typedef struct _GedaMenuSeparatorClass  GedaMenuSeparatorClass;
 
 struct _GedaMenuSeparator
 {
   GedaMenuItem menu_item;
-  GedaType     instance_type;
 };
 
 struct _GedaMenuSeparatorClass

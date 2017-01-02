@@ -77,7 +77,6 @@ geda_object_read_buffer (GedaToplevel *toplevel, GList    *object_list,
                          const char   *buffer,   const int size,
                          const char   *name,     GError  **err)
 {
-
   GList  *object_list_save     = NULL;
   GList  *new_attrs_list       = NULL;
   GList  *new_object_list      = NULL;
@@ -457,7 +456,6 @@ geda_object_read (GedaToplevel *toplevel, GList *object_list, char *filename,
 {
   char  *buffer = (NULL);
   size_t size   = 0;
-  GList *result;
 
   /* Return NULL if error reporting is enabled and the return location
    * for an error isn't NULL. */
@@ -471,6 +469,8 @@ geda_object_read (GedaToplevel *toplevel, GList *object_list, char *filename,
   printf("%s processing <%s>\n",__func__, filename);
   START_GEDA_PERFORMANCE
 #endif
+
+  GList *result;
 
   /* Parse file contents */
   result = geda_object_read_buffer (toplevel, object_list, buffer, size, filename, err);

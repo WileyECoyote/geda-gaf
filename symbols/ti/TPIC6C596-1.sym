@@ -181,6 +181,6 @@ net=VDD:1
 T 300 5400 5 10 0 0 0 0 1
 net=GND:16
 T 300 5600 5 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 300 5800 5 10 0 0 0 0 1
 use-license=unlimited

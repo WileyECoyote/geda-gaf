@@ -1,7 +1,8 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2015 Ales Hvezda
- * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
+ *
+ * Copyright (C) 1998-2017 Ales Hvezda
+ * Copyright (C) 1998-2017 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -167,18 +168,6 @@ geda_file_open(GedaToplevel *toplevel, Page *page, const char *filename, GError 
   int     opened             = FALSE;
   int     flags;
 
-  const char *log_auto_back;
-  const char *log_undetemine;
-  const char *log_back_newer;
-  const char *log_situation;
-  const char *err_corrective;
-
-  log_auto_back  = _("\nWARNING: Found an autosave backup file:\n \"%s\".\n\n");
-  log_undetemine = _("Could not detemine which file is newer, so you should do this manually.\n");
-  log_back_newer = _("The backup copy is newer than the schematic, it seems you should load it instead of the original file.\n");
-  log_situation  = _("This situation may have occured when an application crashed or was forced to exit abruptly.\n");
-  err_corrective = _("\nRun the application to correct this situation or manually delete the backup file.\n\n");
-
   int inline geda_file_open_exit (int status) {
     if (saved_cwd != NULL) {
       free(saved_cwd);
@@ -260,27 +249,35 @@ geda_file_open(GedaToplevel *toplevel, Page *page, const char *filename, GError 
 
     if (active_backup) {
 
-      const char   *str;
-      char         *message;
-      unsigned int  mem_needed;
+      const char *log_auto_back;
+      const char *log_undetemine;
+      const char *log_back_newer;
+      const char *log_situation;
+      const char *err_corrective;
+      const char *str;
+      char       *message;
 
-      mem_needed = strlen(log_auto_back) + strlen(backup_filename);
+      log_auto_back  = _("\nWARNING: Found an autosave backup file:\n \"%s\".\n\n");
+      log_undetemine = _("Could not detemine which file is newer, so you should do this manually.\n");
+      log_back_newer = _("The backup copy is newer than the schematic, it seems you should load it instead of the original file.\n");
+      log_situation  = _("This situation may have occured when an application crashed or was forced to exit abruptly.\n");
+      err_corrective = _("\nRun the application to correct this situation or manually delete the backup file.\n\n");
+
+      register unsigned int mem_needed = strlen(log_auto_back)
+                                       + strlen(backup_filename)
+                                       + strlen(log_situation);
 
       if (tmp_err != NULL) {
-        str = log_undetemine;
-        mem_needed = mem_needed + strlen(log_undetemine);
+        mem_needed += strlen(str = log_undetemine);
       }
       else {
-        str = log_back_newer;
-        mem_needed = mem_needed + strlen(log_back_newer);
+        mem_needed += strlen(str = log_back_newer);
       }
-
-      mem_needed = mem_needed + strlen(log_situation);
 
       message = malloc(mem_needed + 100);
 
       if(!message) { /* Should this be translated? */
-        fprintf(stderr, _("%s: Memory allocation error!\n"), __func__);
+        fprintf(stderr, "%s: %s\n", __func__, _("Memory allocation error!"));
       }
       else {
 
@@ -341,7 +338,7 @@ geda_file_open(GedaToplevel *toplevel, Page *page, const char *filename, GError 
 
   GEDA_FREE(full_filename);
   GEDA_FREE(full_rcfilename);
-  GEDA_FREE (backup_filename);
+  GEDA_FREE(backup_filename);
 
   /* Reset current directory to the orginal location */
   if (flags & F_OPEN_RESTORE_CWD) {

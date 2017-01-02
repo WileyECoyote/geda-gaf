@@ -39,7 +39,7 @@
 #define GEDA_TYPE_LINE            (geda_line_get_type())
 #define GEDA_LINE(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_LINE, GedaLine))
 #define GEDA_LINE_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),  GEDA_TYPE_LINE, GedaLineClass))
-#define GEDA_IS_LINE(obj)         (is_a_geda_line((GedaLine*)obj))
+#define GEDA_IS_LINE(obj)         (is_a_geda_line((GedaLine*)(obj)))
 #define GEDA_IS_LINE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),  GEDA_TYPE_LINE))
 #define GEDA_LINE_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_LINE, GedaLineClass))
 

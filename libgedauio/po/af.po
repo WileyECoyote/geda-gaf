@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gschem\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-10-31 13:36-0500\n"
+"POT-Creation-Date: 2017-01-01 21:03-0600\n"
 "PO-Revision-Date: 2010-02-14 01:03+0000\n"
 "Last-Translator: Bernd Jendrissek <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -18,872 +18,877 @@ msgstr ""
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:449
-#: libgedauio/src/dialogs/geda_image_chooser.c:1024
+#: libgedauio/src/dialogs/geda_image_chooser.c:1025
 msgid "Set or retrieve index of the filter combo"
 msgstr ""
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:450
-#: libgedauio/src/dialogs/geda_image_chooser.c:1025
+#: libgedauio/src/dialogs/geda_image_chooser.c:1026
 msgid "IDE_FILTER"
 msgstr ""
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:613
-#: libgedauio/src/dialogs/geda_image_chooser.c:1172
+#: libgedauio/src/dialogs/geda_image_chooser.c:1173
 #, fuzzy
 msgid "_Open"
 msgstr "Maak lêer oop..."
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:614
-#: libgedauio/src/dialogs/geda_image_chooser.c:1173
+#: libgedauio/src/dialogs/geda_image_chooser.c:1174
 msgid "Open..."
 msgstr "Open..."
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:618
-#: libgedauio/src/dialogs/geda_image_chooser.c:1177
-#, fuzzy
+#: libgedauio/src/dialogs/geda_image_chooser.c:1178
 msgid "_Save"
 msgstr "Bewaar"
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:619
-#: libgedauio/src/dialogs/geda_image_chooser.c:1178
-#, fuzzy
-msgid "Save As.."
-msgstr "Bewaar Alles"
+#: libgedauio/src/dialogs/geda_image_chooser.c:1179
+msgid "Save As..."
+msgstr "Slaan lêer as..."
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:623
-#: libgedauio/src/dialogs/geda_image_chooser.c:1182
-#, fuzzy
-msgid "_Select Folder..."
-msgstr "Kiesmodus"
-
-#: libgedauio/src/dialogs/geda_file_chooser.c:624
 #: libgedauio/src/dialogs/geda_image_chooser.c:1183
 #, fuzzy
+msgid "_Select Folder..."
+msgstr "Kies gids..."
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:624
+#: libgedauio/src/dialogs/geda_image_chooser.c:1184
+#, fuzzy
 msgid "Select Folder"
-msgstr "Kiesmodus"
+msgstr "Kies gids"
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:628
-#: libgedauio/src/dialogs/geda_image_chooser.c:1187
+#: libgedauio/src/dialogs/geda_image_chooser.c:1188
 msgid "OOPS"
 msgstr ""
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:634
-#: libgedauio/src/dialogs/geda_image_chooser.c:1192
+#: libgedauio/src/dialogs/geda_image_chooser.c:1193
 #, fuzzy
 msgid "_Cancel"
 msgstr "Menu/Kanselleer"
 
-#: libgedauio/src/dialogs/geda_image_chooser.c:595
-#: libgedauio/src/dialogs/geda_image_chooser.c:779
+#: libgedauio/src/dialogs/geda_image_chooser.c:596
+#: libgedauio/src/dialogs/geda_image_chooser.c:780
 #, fuzzy
 msgid "Preview"
 msgstr "Voorskou"
 
-#: libgedauio/src/dialogs/geda_image_chooser.c:781
+#: libgedauio/src/dialogs/geda_image_chooser.c:782
 msgid "Active to enable the preview pane"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_accel_label.c:543
+#: libgedauio/src/widgets/geda_accel_label.c:618
 msgid "Accelerator Closure"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_accel_label.c:544
+#: libgedauio/src/widgets/geda_accel_label.c:619
 msgid "The closure to be monitored for accelerator changes"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_accel_label.c:550
+#: libgedauio/src/widgets/geda_accel_label.c:625
 msgid "Accelerator Widget"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_accel_label.c:551
+#: libgedauio/src/widgets/geda_accel_label.c:626
 msgid "The widget to be monitored for accelerator changes"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_accel_label.c:557
+#: libgedauio/src/widgets/geda_accel_label.c:632
 msgid "Accelerator String"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_accel_label.c:558
+#: libgedauio/src/widgets/geda_accel_label.c:633
 msgid "The accelerator string to be displayed"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_action.c:251
+#: libgedauio/src/widgets/geda_action.c:263
 msgid "multikey-accelerator"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_action.c:252
+#: libgedauio/src/widgets/geda_action.c:264
 msgid "A string with characters in positions key characters"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_action.c:259
+#: libgedauio/src/widgets/geda_action.c:271
 msgid "icon-identification"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_action.c:260
+#: libgedauio/src/widgets/geda_action.c:272
 msgid "String name of the icon image"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_bulb.c:706
+#: libgedauio/src/widgets/geda_bulb.c:714
 msgid "Group"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_bulb.c:707
+#: libgedauio/src/widgets/geda_bulb.c:715
 msgid "The bulb button whose group this widget belongs to."
 msgstr ""
 
-#: libgedauio/src/widgets/geda_bulb.c:718
+#: libgedauio/src/widgets/geda_bulb.c:726
 #, fuzzy
 msgid "Show Button"
 msgstr "ToonB"
 
-#: libgedauio/src/widgets/geda_bulb.c:719
+#: libgedauio/src/widgets/geda_bulb.c:727
 msgid "Whether the draw the button during mouse over events"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_bulb.c:726
+#: libgedauio/src/widgets/geda_bulb.c:734
 msgid "Indicator Size"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_bulb.c:727
+#: libgedauio/src/widgets/geda_bulb.c:735
 msgid "Size of check or radio indicator"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_bulb.c:736
+#: libgedauio/src/widgets/geda_bulb.c:744
 msgid "Indicator Spacing"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_bulb.c:737
+#: libgedauio/src/widgets/geda_bulb.c:745
 msgid "Spacing around check or radio indicator"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2011
+#: libgedauio/src/widgets/geda_combobox.c:2020
 #, fuzzy
 msgid "ComboBox model"
 msgstr "Reghoekmodus"
 
-#: libgedauio/src/widgets/geda_combobox.c:2012
+#: libgedauio/src/widgets/geda_combobox.c:2021
 msgid "The model for the combo box"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2026
+#: libgedauio/src/widgets/geda_combobox.c:2035
 #, fuzzy
 msgid "Wrap width"
 msgstr "Wydte:"
 
-#: libgedauio/src/widgets/geda_combobox.c:2027
+#: libgedauio/src/widgets/geda_combobox.c:2036
 msgid "Wrap width for laying out the items in a grid"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2045
+#: libgedauio/src/widgets/geda_combobox.c:2054
 msgid "Row span column"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2046
+#: libgedauio/src/widgets/geda_combobox.c:2055
 msgid "TreeModel column containing the row span values"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2064
+#: libgedauio/src/widgets/geda_combobox.c:2073
 msgid "Column span column"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2065
+#: libgedauio/src/widgets/geda_combobox.c:2074
 msgid "TreeModel column containing the column span values"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2084
+#: libgedauio/src/widgets/geda_combobox.c:2093
 msgid "Active item"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2085
+#: libgedauio/src/widgets/geda_combobox.c:2094
 msgid "The item which is currently active"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2102
+#: libgedauio/src/widgets/geda_combobox.c:2111
 msgid "Add tearoffs to menus"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2103
+#: libgedauio/src/widgets/geda_combobox.c:2112
 msgid "Whether dropdowns should have a tearoff menu item"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2116
+#: libgedauio/src/widgets/geda_combobox.c:2125
 msgid "Has Frame"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2117
+#: libgedauio/src/widgets/geda_combobox.c:2126
 msgid "Whether the combo box draws a frame around the child"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2130
-#: libgedauio/src/widgets/geda_menu_button.c:1188
+#: libgedauio/src/widgets/geda_combobox.c:2139
+#: libgedauio/src/widgets/geda_menu_button.c:1201
 msgid "Focus on click"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2131
+#: libgedauio/src/widgets/geda_combobox.c:2140
 msgid "Whether the combo box grabs focus when it is clicked with the mouse"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2146
+#: libgedauio/src/widgets/geda_combobox.c:2155
 msgid "Tearoff Title"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2147
+#: libgedauio/src/widgets/geda_combobox.c:2156
 msgid ""
 "A title that may be displayed by the window manager when the popup is torn-"
 "off"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2161
+#: libgedauio/src/widgets/geda_combobox.c:2170
 msgid "Popup shown"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2162
+#: libgedauio/src/widgets/geda_combobox.c:2171
 msgid "Whether the combo's dropdown is shown"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2175
+#: libgedauio/src/widgets/geda_combobox.c:2184
 msgid "Button Sensitivity"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2176
+#: libgedauio/src/widgets/geda_combobox.c:2185
 msgid "Whether the dropdown button is sensitive when the model is empty"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2189
+#: libgedauio/src/widgets/geda_combobox.c:2198
 msgid "Has Entry"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2190
+#: libgedauio/src/widgets/geda_combobox.c:2199
 msgid "Whether combo box has an entry"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2202
+#: libgedauio/src/widgets/geda_combobox.c:2211
 msgid "Appear as list"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2203
+#: libgedauio/src/widgets/geda_combobox.c:2212
 msgid "Whether popup should look like lists rather than menus"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2218
+#: libgedauio/src/widgets/geda_combobox.c:2227
 msgid "Entry Text Column"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2219
+#: libgedauio/src/widgets/geda_combobox.c:2228
 msgid ""
 "The column in the combo box's model to associate with strings from the entry "
 "if the combo was created with #GedaComboBox:has-entry = %TRUE"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2238
+#: libgedauio/src/widgets/geda_combobox.c:2247
 msgid "Arrow Size"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2239
+#: libgedauio/src/widgets/geda_combobox.c:2248
 msgid "The minimum size of the arrow in the combo box"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2251
+#: libgedauio/src/widgets/geda_combobox.c:2260
 #, fuzzy
 msgid "List View"
 msgstr "Aansig"
 
-#: libgedauio/src/widgets/geda_combobox.c:2252
+#: libgedauio/src/widgets/geda_combobox.c:2261
 msgid ""
 "When true, the drop-down appears as a list view, otherwise an ugly menus"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2264
+#: libgedauio/src/widgets/geda_combobox.c:2273
 msgid "Shadow type"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2265
+#: libgedauio/src/widgets/geda_combobox.c:2274
 msgid "Which kind of shadow to draw around the combo box"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:3576
-#: libgedauio/src/widgets/geda_combobox.c:4337
+#: libgedauio/src/widgets/geda_combobox.c:3589
+#: libgedauio/src/widgets/geda_combobox.c:4350
 msgid "gtk-combo-box-item-path"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:3894
+#: libgedauio/src/widgets/geda_combobox.c:3907
 msgid "Auto view"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:3901
+#: libgedauio/src/widgets/geda_combobox.c:3914
 msgid "view as Menu"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:3908
+#: libgedauio/src/widgets/geda_combobox.c:3921
 msgid "view as List"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:615
+#: libgedauio/src/widgets/geda_entry.c:634
 msgid "Activates default"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:616
+#: libgedauio/src/widgets/geda_entry.c:635
 msgid "Whether to activate the default widget when Enter is pressed"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:623
-#: libgedauio/src/widgets/geda_label.c:1304
+#: libgedauio/src/widgets/geda_entry.c:642
+#: libgedauio/src/widgets/geda_label.c:1405
 msgid "Attributes"
 msgstr "Eienskappe"
 
-#: libgedauio/src/widgets/geda_entry.c:624
+#: libgedauio/src/widgets/geda_entry.c:643
 msgid "A list of style attributes to apply to the text"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:631
+#: libgedauio/src/widgets/geda_entry.c:650
 msgid "Auto-Completion"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:632
+#: libgedauio/src/widgets/geda_entry.c:651
 msgid "Enable Auto-completion, if installed"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:639
+#: libgedauio/src/widgets/geda_entry.c:658
 msgid "FALSE Auto-Completion in NOT case sensitive"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:640
+#: libgedauio/src/widgets/geda_entry.c:659
 msgid "if Auto-completion is enabled, set case compare function"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:647
+#: libgedauio/src/widgets/geda_entry.c:666
 msgid "Set case of input"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:648
+#: libgedauio/src/widgets/geda_entry.c:667
 msgid "0 = lower, 1 lower, 2 don't change the case"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:657
+#: libgedauio/src/widgets/geda_entry.c:676
 msgid "Set maxium history"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:658
+#: libgedauio/src/widgets/geda_entry.c:677
 msgid "maximum length of history"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:667
+#: libgedauio/src/widgets/geda_entry.c:686
 msgid "Set valid input type"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:668
+#: libgedauio/src/widgets/geda_entry.c:687
 msgid "0 = All, 1 Alphnumeric, 3 Numeric, 4 Number, 5 Integer, 6 Real"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:1293
+#: libgedauio/src/widgets/geda_entry.c:1323
 #, fuzzy
 msgid "Auto Complete"
 msgstr "/Voeg Komponent By"
 
-#: libgedauio/src/widgets/geda_entry.c:1301
+#: libgedauio/src/widgets/geda_entry.c:1331
 #, fuzzy
 msgid "On"
 msgstr "Maak Oop"
 
-#: libgedauio/src/widgets/geda_entry.c:1306
+#: libgedauio/src/widgets/geda_entry.c:1336
 msgid "Off"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_button.c:760
-#: libgedauio/src/widgets/geda_font_dialog.c:1500
+#: libgedauio/src/widgets/geda_font_button.c:769
+#: libgedauio/src/widgets/geda_font_dialog.c:1507
 msgid "Title"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_button.c:761
-#: libgedauio/src/widgets/geda_font_dialog.c:1501
+#: libgedauio/src/widgets/geda_font_button.c:770
+#: libgedauio/src/widgets/geda_font_dialog.c:1508
 msgid "The title of the font selection dialog"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_button.c:762
-#: libgedauio/src/widgets/geda_font_dialog.c:1502
+#: libgedauio/src/widgets/geda_font_button.c:771
+#: libgedauio/src/widgets/geda_font_dialog.c:1509
 msgid "Pick a Font"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_button.c:771
-#: libgedauio/src/widgets/geda_font_dialog.c:1524
+#: libgedauio/src/widgets/geda_font_button.c:780
+#: libgedauio/src/widgets/geda_font_dialog.c:1531
 msgid "Font name"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_button.c:772
+#: libgedauio/src/widgets/geda_font_button.c:781
 msgid "The name of the selected font"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_button.c:783
+#: libgedauio/src/widgets/geda_font_button.c:792
 msgid "Use font in label"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_button.c:784
+#: libgedauio/src/widgets/geda_font_button.c:793
 msgid "Whether the label is drawn in the selected font"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_button.c:795
+#: libgedauio/src/widgets/geda_font_button.c:804
 msgid "Use size in label"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_button.c:796
+#: libgedauio/src/widgets/geda_font_button.c:805
 msgid "Whether the label is drawn with the selected font size"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_button.c:808
+#: libgedauio/src/widgets/geda_font_button.c:817
 #, fuzzy
 msgid "Show style"
 msgstr "Toon Verskuilde"
 
-#: libgedauio/src/widgets/geda_font_button.c:809
+#: libgedauio/src/widgets/geda_font_button.c:818
 msgid "Whether the selected font style is shown in the label"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_button.c:821
+#: libgedauio/src/widgets/geda_font_button.c:830
 #, fuzzy
 msgid "Show size"
 msgstr "Toon Verskuilde"
 
-#: libgedauio/src/widgets/geda_font_button.c:822
+#: libgedauio/src/widgets/geda_font_button.c:831
 msgid "Whether selected font size is shown in the label"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_button.c:832
-#: libgedauio/src/widgets/geda_font_dialog.c:1535
+#: libgedauio/src/widgets/geda_font_button.c:841
+#: libgedauio/src/widgets/geda_font_dialog.c:1542
 #, fuzzy
 msgid "Set Size"
 msgstr "Teksgrootte"
 
-#: libgedauio/src/widgets/geda_font_button.c:833
-#: libgedauio/src/widgets/geda_font_dialog.c:1536
+#: libgedauio/src/widgets/geda_font_button.c:842
+#: libgedauio/src/widgets/geda_font_dialog.c:1543
 msgid "Set point size of the font"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_button.c:889
+#: libgedauio/src/widgets/geda_font_button.c:897
 msgid "Open font selection dialog"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_button.c:927
+#: libgedauio/src/widgets/geda_font_button.c:941
 msgid "Font button"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_button.c:1555
-#: libgedauio/src/widgets/geda_font_dialog.c:1508
+#: libgedauio/src/widgets/geda_font_button.c:1568
+#: libgedauio/src/widgets/geda_font_dialog.c:1515
 msgid "Font"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1169
+#: libgedauio/src/widgets/geda_font_dialog.c:1171
 msgid "Select the desired font family"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1170
+#: libgedauio/src/widgets/geda_font_dialog.c:1172
 msgid "Select the style to apply to the font"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1171
+#: libgedauio/src/widgets/geda_font_dialog.c:1173
 #, fuzzy
 msgid "Current font size"
 msgstr "Lopende bladsy"
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1172
+#: libgedauio/src/widgets/geda_font_dialog.c:1174
 msgid "Select the desired font size"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1173
+#: libgedauio/src/widgets/geda_font_dialog.c:1175
 msgid "Editable sample preview of the currently selected font settings"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1181
+#: libgedauio/src/widgets/geda_font_dialog.c:1183
 msgid "_Family:"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1186
+#: libgedauio/src/widgets/geda_font_dialog.c:1188
 msgid "_Style:"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1191
+#: libgedauio/src/widgets/geda_font_dialog.c:1193
 msgid "Si_ze:"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1244
+#: libgedauio/src/widgets/geda_font_dialog.c:1246
 msgid "Family"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1284
-#: libgedauio/src/widgets/geda_font_dialog.c:1324
+#: libgedauio/src/widgets/geda_font_dialog.c:1286
+#: libgedauio/src/widgets/geda_font_dialog.c:1326
 msgid "Face"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1358
+#: libgedauio/src/widgets/geda_font_dialog.c:1360
 #, fuzzy
 msgid "_Preview:"
-msgstr "Voorskou"
+msgstr "Voorskou:"
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1385
+#: libgedauio/src/widgets/geda_font_dialog.c:1387
 msgid "Font scroll list"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1389
+#: libgedauio/src/widgets/geda_font_dialog.c:1391
 msgid "Font style scroll list"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1393
+#: libgedauio/src/widgets/geda_font_dialog.c:1395
 msgid "Font size scroll list"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1397
+#: libgedauio/src/widgets/geda_font_dialog.c:1399
 msgid "Font preview text entry"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1509
+#: libgedauio/src/widgets/geda_font_dialog.c:1516
 msgid "The GdkFont that is currently selected"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1516
+#: libgedauio/src/widgets/geda_font_dialog.c:1523
 msgid "Font description"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1517
+#: libgedauio/src/widgets/geda_font_dialog.c:1524
 msgid "Pango Font Description struct"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1525
+#: libgedauio/src/widgets/geda_font_dialog.c:1532
 msgid "The string that represents this font"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1546
+#: libgedauio/src/widgets/geda_font_dialog.c:1553
 #, fuzzy
 msgid "Preview text"
-msgstr "Voorskou"
+msgstr "Voorskou teks"
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1547
+#: libgedauio/src/widgets/geda_font_dialog.c:1554
 msgid "The text to display in order to demonstrate the selected font"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1554
+#: libgedauio/src/widgets/geda_font_dialog.c:1561
 msgid "Show preview text entry"
-msgstr ""
+msgstr "Wys voorskou teks"
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1555
+#: libgedauio/src/widgets/geda_font_dialog.c:1562
 msgid "Whether the preview text entry is displayed"
-msgstr ""
+msgstr "Of die voorskou teks word vertoon"
 
-#: libgedauio/src/widgets/geda_font_dialog.c:1659
+#: libgedauio/src/widgets/geda_font_dialog.c:1670
 #, fuzzy
 msgid "_Select"
 msgstr "Kies"
 
-#: libgedauio/src/widgets/geda_handlebox.c:1428
-#: libgedauio/src/widgets/geda_handlebox.c:1437
+#: libgedauio/src/widgets/geda_handlebox.c:1444
+#: libgedauio/src/widgets/geda_handlebox.c:1453
 msgid "Appearance of the shadow that surrounds the container"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_handlebox.c:1446
-msgid "Position of the handle relative to the child widget"
+#: libgedauio/src/widgets/geda_handlebox.c:1462
+msgid "Position of the handle relative to the child toolbar"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_handlebox.c:1455
+#: libgedauio/src/widgets/geda_handlebox.c:1471
 msgid ""
-"Side of the handlebox that's lined up with the docking point to dock the "
+"Side of the handlebox that is lined up with the docking point to dock the "
 "handlebox"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_handlebox.c:1464
+#: libgedauio/src/widgets/geda_handlebox.c:1480
 msgid ""
 "Whether to use the value from the snap_edge property or a value derived from "
 "handle_position"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_handlebox.c:1472
-msgid ""
-"A boolean value indicating whether the handlebox's child is attached or "
-"detached."
+#: libgedauio/src/widgets/geda_handlebox.c:1488
+msgid "Boolean value indicating whether the toolbar is attached or detached."
 msgstr ""
 
-#: libgedauio/src/widgets/geda_image_menu_item.c:404
-#: libgedauio/src/widgets/geda_menu_button.c:1215
+#: libgedauio/src/widgets/geda_image_menu_item.c:413
+#: libgedauio/src/widgets/geda_menu_button.c:1228
 #, fuzzy
 msgid "Image widget"
 msgstr "Afbeeldingsoort"
 
-#: libgedauio/src/widgets/geda_image_menu_item.c:405
+#: libgedauio/src/widgets/geda_image_menu_item.c:414
 msgid "Child widget to appear next to the menu text"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_image_menu_item.c:417
-#: libgedauio/src/widgets/geda_menu_button.c:1180
+#: libgedauio/src/widgets/geda_image_menu_item.c:426
+#: libgedauio/src/widgets/geda_menu_button.c:1193
 msgid "Use stock"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_image_menu_item.c:418
+#: libgedauio/src/widgets/geda_image_menu_item.c:427
 msgid "Whether to use the label text to create a stock menu item"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_image_menu_item.c:433
+#: libgedauio/src/widgets/geda_image_menu_item.c:442
 #, fuzzy
 msgid "Show image"
 msgstr "Toon Verskuilde"
 
-#: libgedauio/src/widgets/geda_image_menu_item.c:434
+#: libgedauio/src/widgets/geda_image_menu_item.c:443
 msgid "Whether the image will always be shown"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_image_menu_item.c:445
-msgid "Accel Group"
+#: libgedauio/src/widgets/geda_image_menu_item.c:454
+msgid "Accelerator Group"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_image_menu_item.c:446
+#: libgedauio/src/widgets/geda_image_menu_item.c:455
 msgid "The Accel Group to use for stock accelerator keys"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1297
-#: libgedauio/src/widgets/geda_label.c:1670
-#: libgedauio/src/widgets/geda_menu_button.c:1172
+#: libgedauio/src/widgets/geda_label.c:1398
+#: libgedauio/src/widgets/geda_label.c:1779
+#: libgedauio/src/widgets/geda_menu_button.c:1185
 msgid "Label"
-msgstr ""
+msgstr "Etiket"
 
-#: libgedauio/src/widgets/geda_label.c:1298
+#: libgedauio/src/widgets/geda_label.c:1399
 msgid "The text of the label"
-msgstr ""
+msgstr "Die teks van die etiket"
 
-#: libgedauio/src/widgets/geda_label.c:1305
-msgid "A list of style attributes to apply to the text of the label"
-msgstr ""
+#: libgedauio/src/widgets/geda_label.c:1406
+#, fuzzy
+msgid "List of style attributes to apply to the text of the label"
+msgstr "Lys stylattribute om aansoek te doen om die teks van die etiket"
 
-#: libgedauio/src/widgets/geda_label.c:1311
+#: libgedauio/src/widgets/geda_label.c:1412
 msgid "Use markup"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1312
+#: libgedauio/src/widgets/geda_label.c:1413
 msgid "The text of the label includes XML markup. See pango_parse_markup()"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1318
+#: libgedauio/src/widgets/geda_label.c:1419
 msgid "Use underline"
-msgstr ""
+msgstr "gebruik onderstreep"
 
-#: libgedauio/src/widgets/geda_label.c:1319
+#: libgedauio/src/widgets/geda_label.c:1420
 msgid ""
 "If set, underline in text indicates the next character is mnemonic for "
 "accelerator key"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1324
+#: libgedauio/src/widgets/geda_label.c:1425
 #, fuzzy
 msgid "Justification"
 msgstr "Bestemming"
 
-#: libgedauio/src/widgets/geda_label.c:1325
+#: libgedauio/src/widgets/geda_label.c:1426
 msgid ""
 "The alignment of the lines in the text of the label relative to each other. "
 "This does NOT affect the alignment of the label within its allocation. See "
 "GtkMisc::xalign for that"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1332
+#: libgedauio/src/widgets/geda_label.c:1433
 msgid "Pattern"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1333
+#: libgedauio/src/widgets/geda_label.c:1434
 msgid ""
 "A string with _ characters in positions correspond to characters in the text "
 "to underline"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1339
+#: libgedauio/src/widgets/geda_label.c:1440
 #, fuzzy
 msgid "Line wrap"
 msgstr "Lyn"
 
-#: libgedauio/src/widgets/geda_label.c:1340
+#: libgedauio/src/widgets/geda_label.c:1441
 msgid "If set, wrap lines if the text becomes too wide"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1354
+#: libgedauio/src/widgets/geda_label.c:1455
 #, fuzzy
 msgid "Line wrap mode"
 msgstr "Lynmodus"
 
-#: libgedauio/src/widgets/geda_label.c:1355
-msgid "If wrap is set, controls how linewrapping is done"
+#: libgedauio/src/widgets/geda_label.c:1456
+msgid "If wrap is set, controls how line wrapping is done"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1362
+#: libgedauio/src/widgets/geda_label.c:1463
 #, fuzzy
 msgid "Selectable"
 msgstr "Kies"
 
-#: libgedauio/src/widgets/geda_label.c:1363
+#: libgedauio/src/widgets/geda_label.c:1464
 msgid "Whether the label text can be selected with the mouse"
-msgstr ""
+msgstr "Of die etiket teks gekies kan word met die muis"
 
-#: libgedauio/src/widgets/geda_label.c:1369
+#: libgedauio/src/widgets/geda_label.c:1470
 msgid "Mnemonic key"
-msgstr ""
+msgstr "Mnemoniese sleutel"
 
-#: libgedauio/src/widgets/geda_label.c:1370
+#: libgedauio/src/widgets/geda_label.c:1471
 msgid "The mnemonic accelerator key for this label"
-msgstr ""
+msgstr "Die mnemoniese snelsleutel vir hierdie etiket"
 
-#: libgedauio/src/widgets/geda_label.c:1378
+#: libgedauio/src/widgets/geda_label.c:1479
 msgid "Mnemonic widget"
-msgstr ""
+msgstr "Mnemoniese widget"
 
-#: libgedauio/src/widgets/geda_label.c:1379
+#: libgedauio/src/widgets/geda_label.c:1480
 msgid "The widget to be activated when the label's mnemonic key is pressed"
-msgstr ""
+msgstr "Die widget te aktiveer wanneer mnemoniese sleutel die etiket se gedruk"
 
-#: libgedauio/src/widgets/geda_label.c:1386
+#: libgedauio/src/widgets/geda_label.c:1487
 msgid "Cursor Position"
-msgstr ""
+msgstr "wyser posisie"
 
-#: libgedauio/src/widgets/geda_label.c:1387
+#: libgedauio/src/widgets/geda_label.c:1488
 msgid "The current position of the insertion cursor in chars"
-msgstr ""
+msgstr "Die huidige stand van die inplanting wyser in karakters"
 
-#: libgedauio/src/widgets/geda_label.c:1395
+#: libgedauio/src/widgets/geda_label.c:1496
 #, fuzzy
 msgid "Selection Bound"
 msgstr "Uitsoekmodus"
 
-#: libgedauio/src/widgets/geda_label.c:1396
+#: libgedauio/src/widgets/geda_label.c:1497
 msgid ""
 "The position of the opposite end of the selection from the cursor in chars"
 msgstr ""
+"Die posisie van die teenoorgestelde kant van die seleksie van die wyser in "
+"karakters"
 
-#: libgedauio/src/widgets/geda_label.c:1420
+#: libgedauio/src/widgets/geda_label.c:1522
 msgid "Ellipsize"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1421
-msgid "The preferred place to break the string, if ellipes needed"
-msgstr ""
+#: libgedauio/src/widgets/geda_label.c:1523
+#, fuzzy
+msgid "The preferred place to break the string, if an ellipsis is needed"
+msgstr "Die voorkeur plek om die string te breek, as 'n ellips is nodig"
 
-#: libgedauio/src/widgets/geda_label.c:1439
+#: libgedauio/src/widgets/geda_label.c:1541
 msgid "Width In Characters"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1440
+#: libgedauio/src/widgets/geda_label.c:1542
 msgid "The desired width of the label, in characters"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1458
+#: libgedauio/src/widgets/geda_label.c:1560
 #, fuzzy
-msgid "Single Line Mode"
-msgstr "Lynmodus"
+msgid "Single-Line Mode"
+msgstr "Enkel-lyn af"
 
-#: libgedauio/src/widgets/geda_label.c:1459
-msgid "Whether the label is in single line mode"
-msgstr ""
+#: libgedauio/src/widgets/geda_label.c:1561
+#, fuzzy
+msgid "Whether the label is in single-line mode"
+msgstr "Of die etiket teks gekies kan word met die muis"
 
-#: libgedauio/src/widgets/geda_label.c:1474
+#: libgedauio/src/widgets/geda_label.c:1576
 #, fuzzy
 msgid "Angle"
 msgstr "Hoek 1:"
 
-#: libgedauio/src/widgets/geda_label.c:1475
-msgid "Angle at which the label is rotated"
-msgstr ""
+#: libgedauio/src/widgets/geda_label.c:1577
+#, fuzzy
+msgid "Angle of rotation of the label"
+msgstr "Die teks van die etiket"
 
-#: libgedauio/src/widgets/geda_label.c:1494
+#: libgedauio/src/widgets/geda_label.c:1597
 msgid "Maximum Width In Characters"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1495
+#: libgedauio/src/widgets/geda_label.c:1598
 msgid "The desired maximum width of the label, in characters"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1511
+#: libgedauio/src/widgets/geda_label.c:1615
 msgid "Track visited links"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1512
+#: libgedauio/src/widgets/geda_label.c:1616
 msgid "Whether visited links should be tracked"
-msgstr ""
+msgstr "Of besoek skakels moet nagespoor"
 
-#: libgedauio/src/widgets/geda_label.c:6493
+#: libgedauio/src/widgets/geda_label.c:6595
 #, fuzzy
 msgid "_Open Link"
 msgstr "Maak lêer oop..."
 
-#: libgedauio/src/widgets/geda_label.c:6505
+#: libgedauio/src/widgets/geda_label.c:6607
 msgid "Copy _Link Address"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1165
+#: libgedauio/src/widgets/geda_menu_button.c:1178
 msgid "Menu"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1166
-msgid "The dropdown menu"
-msgstr ""
+#: libgedauio/src/widgets/geda_menu_button.c:1179
+#, fuzzy
+msgid "The drop-down menu"
+msgstr "Die drop-down menu"
 
-#: libgedauio/src/widgets/geda_menu_button.c:1173
+#: libgedauio/src/widgets/geda_menu_button.c:1186
 msgid ""
 "Text of the label widget inside the button, if the button contains a label "
 "widget"
 msgstr ""
+"Teks van die etiketdingesie binne die knoppie, indien die knoppie bevat 'n "
+"etiket widget"
 
-#: libgedauio/src/widgets/geda_menu_button.c:1181
+#: libgedauio/src/widgets/geda_menu_button.c:1194
 msgid ""
 "If set, the label is used to pick a stock item instead of being displayed"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1189
+#: libgedauio/src/widgets/geda_menu_button.c:1202
 msgid "Whether the button grabs focus when it is clicked with the mouse"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1196
+#: libgedauio/src/widgets/geda_menu_button.c:1209
 msgid "Border relief"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1197
+#: libgedauio/src/widgets/geda_menu_button.c:1210
 msgid "The border relief style"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1205
+#: libgedauio/src/widgets/geda_menu_button.c:1218
 msgid "Arrow Border relief"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1206
+#: libgedauio/src/widgets/geda_menu_button.c:1219
 msgid "The arrow border relief style"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1216
+#: libgedauio/src/widgets/geda_menu_button.c:1229
 msgid "Child widget to appear next to the button text"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1224
+#: libgedauio/src/widgets/geda_menu_button.c:1237
 msgid "Image position"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1225
+#: libgedauio/src/widgets/geda_menu_button.c:1238
 msgid "The position of the image relative to the text"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1239
+#: libgedauio/src/widgets/geda_menu_button.c:1252
 msgid "Default Spacing"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1240
+#: libgedauio/src/widgets/geda_menu_button.c:1253
 msgid "Extra space to add for GTK_CAN_DEFAULT buttons"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1253
+#: libgedauio/src/widgets/geda_menu_button.c:1266
 msgid "Default Outside Spacing"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1254
+#: libgedauio/src/widgets/geda_menu_button.c:1267
 msgid ""
 "Extra space to add for GTK_CAN_DEFAULT buttons that is always drawn outside "
 "the border"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1264
+#: libgedauio/src/widgets/geda_menu_button.c:1277
 #, fuzzy
 msgid "Inner Border"
 msgstr "Lêerorde"
 
-#: libgedauio/src/widgets/geda_menu_button.c:1265
+#: libgedauio/src/widgets/geda_menu_button.c:1278
 msgid "Border between button edges and child."
 msgstr ""
 
@@ -898,1506 +903,10 @@ msgstr "Kleur"
 msgid "Swatch Enabled"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_toggle_action.c:224
-#: libgedauio/src/widgets/geda_toggle_action.c:225
+#: libgedauio/src/widgets/geda_toggle_action.c:234
+#: libgedauio/src/widgets/geda_toggle_action.c:235
 msgid "Multikey Accelerator"
 msgstr ""
 
-#, fuzzy
-#~ msgid "group-changed"
-#~ msgstr "*onveranderd*"
-
-#, fuzzy
-#~ msgid "changed"
-#~ msgstr "Veranderd"
-
-#, fuzzy
-#~ msgid "view-changed"
-#~ msgstr "Veranderd"
-
-#~ msgid "Zoom too small!  Cannot zoom further.\n"
-#~ msgstr "Zoem is te klein!  Kan nie verder zoem nie.\n"
-
-#~ msgid "Invalid size [%d] passed to text-size\n"
-#~ msgstr "Ongeldige grootte [%d] gegee aan text-size\n"
-
-#~ msgid "Invalid size [%d] passed to snap-size\n"
-#~ msgstr "Ongeldige grootte [%d] aan snap-size gegee\n"
-
-#~ msgid "Invalid num levels [%d] passed to undo-levels\n"
-#~ msgstr "Ongeldige getal vlakke [%d] gegee aan undo-levels\n"
-
-#~ msgid "Invalid size [%d] passed to bus-ripper-size\n"
-#~ msgstr "Ongeldige grootte [%d] gegee aan bus-ripper-size\n"
-
-#~ msgid "Invalid dot size [%d] passed to dots-grid-dot-size\n"
-#~ msgstr "Ongeldige puntgrootte [%d] gegee aan dots-grid-dot-size\n"
-
-#~ msgid "Invalid offset [%d] passed to add-attribute-offset\n"
-#~ msgstr "Ongeldige verkuiwing [%d] gegee aan add-attribute-offset\n"
-
-#~ msgid "Invalid number of seconds [%d] passed to auto-save-interval\n"
-#~ msgstr "Ongeldige hoeveelheid sekondes [%d] gegee aan auto-save-interval\n"
-
-#~ msgid "Invalid gain [%d] passed to mousepan-gain\n"
-#~ msgstr "Ongeldige versterking [%d] gegee aan mousepan-gain\n"
-
-#~ msgid "Invalid gain [%d] passed to keyboardpan-gain\n"
-#~ msgstr "Ongeldige versterking [%d] gegee aan keyboardpan-gain\n"
-
-#~ msgid "Invalid gain [%d] passed to zoom-gain\n"
-#~ msgstr "Ongeldige versterking [%d] gegee aan zoom-gain\n"
-
-#~ msgid "gEDA/gschem version %s%s.%s\n"
-#~ msgstr "gEDA/gschem uitgawe %s%s.%s\n"
-
-# FIXME: Best to get a real lawyer to translate this into Afrikaans legalese.
-#~ msgid ""
-#~ "gEDA/gschem comes with ABSOLUTELY NO WARRANTY; see COPYING for more "
-#~ "details.\n"
-#~ msgstr ""
-#~ "gEDA/gschem comes with ABSOLUTELY NO WARRANTY; see COPYING for more "
-#~ "details.\n"
-
-#~ msgid "Read init scm file [%s]\n"
-#~ msgstr "Het scm-aanvangslêer [%s] gelees\n"
-
-#~ msgid "Failed to read init scm file [%s]\n"
-#~ msgstr "Het misluk of scm-aanvangslêer [%s] te lees\n"
-
-#~ msgid "Component Mode"
-#~ msgstr "Komponentmodus"
-
-#~ msgid "Text Mode"
-#~ msgstr "Teksmodues"
-
-#~ msgid "Copy Mode"
-#~ msgstr "Kopieermodus"
-
-#~ msgid "Move Mode"
-#~ msgstr "Skuifmodus"
-
-#~ msgid "Rotate Mode"
-#~ msgstr "Roteermodus"
-
-#~ msgid "Mirror Mode"
-#~ msgstr "Weerkaatsmodus"
-
-#~ msgid "Zoom Box"
-#~ msgstr "Zoem Reghoek"
-
-#~ msgid "Pan Mode"
-#~ msgstr "Aansigskuifmodus"
-
-#~ msgid "Paste %d Mode"
-#~ msgstr "Plak %d Modus"
-
-#~ msgid "Net Mode"
-#~ msgstr "Netmodus"
-
-#~ msgid "Bus Mode"
-#~ msgstr "Busmodus"
-
-#, fuzzy
-#~ msgid "Path Mode"
-#~ msgstr "Aansigskuifmodus"
-
-#~ msgid "Picture Mode"
-#~ msgstr "Afbeeldingmodus"
-
-#~ msgid "Circle Mode"
-#~ msgstr "Sirkelmodus"
-
-#~ msgid "Arc Mode"
-#~ msgstr "Boogmodus"
-
-#~ msgid "Pin Mode"
-#~ msgstr "Penmodus"
-
-#~ msgid "Copy"
-#~ msgstr "Kopieer"
-
-#~ msgid "Move"
-#~ msgstr "Beweeg"
-
-#~ msgid "Multiple Copy"
-#~ msgstr "Veelvoudige Kopieer"
-
-#~ msgid "Multiple Copy Mode"
-#~ msgstr "Meervoudige Kopieermodus"
-
-#~ msgid "Action"
-#~ msgstr "Handeling"
-
-#~ msgid "Stroke"
-#~ msgstr "Wyserslag"
-
-#~ msgid "none"
-#~ msgstr "geen"
-
-#~ msgid "Repeat/"
-#~ msgstr "Herhaal/"
-
-#~ msgid "OFF"
-#~ msgstr "AF"
-
-#~ msgid "Grid(%s, %s)"
-#~ msgstr "Rooster(%s, %s)"
-
-#~ msgid "New page created [%s]\n"
-#~ msgstr "Nuwe bladsy geskep [%s]\n"
-
-#~ msgid "New Window created [%s]\n"
-#~ msgstr "Nuwe Venster geskep [%s]\n"
-
-#~ msgid "Failed to Save All"
-#~ msgstr "Misluk om alles te bewaar"
-
-#~ msgid "Saved All"
-#~ msgstr "Alles Bewaar"
-
-#~ msgid "Closing Window\n"
-#~ msgstr "Sluit Venster\n"
-
-#~ msgid "Select objs first"
-#~ msgstr "Kies eers voorwerpe"
-
-#~ msgid "Delete"
-#~ msgstr "Verwyder"
-
-#~ msgid "Edit"
-#~ msgstr "Bewerk"
-
-#~ msgid "Edit Text"
-#~ msgstr "Bewerk Teks"
-
-#~ msgid "Slot"
-#~ msgstr "Gleuf"
-
-#~ msgid "Color"
-#~ msgstr "Kleur"
-
-#~ msgid "Rotate"
-#~ msgstr "Roteer"
-
-#~ msgid "Mirror"
-#~ msgstr "Weerkaats"
-
-#~ msgid "Lock"
-#~ msgstr "Sluit"
-
-#~ msgid "Unlock"
-#~ msgstr "Ontsluit"
-
-#~ msgid "Translate"
-#~ msgstr "Verskuif"
-
-#~ msgid "Embed"
-#~ msgstr "Lê In"
-
-# FIXME: too klunky!
-#~ msgid "Unembed"
-#~ msgstr "Ont-lê In"
-
-#~ msgid "ShowHidden"
-#~ msgstr "ToonVerskuil"
-
-#~ msgid "Pan"
-#~ msgstr "Skuif Aansig"
-
-#, fuzzy
-#~ msgid "Copy %i"
-#~ msgstr "Kopieer 1"
-
-#, fuzzy
-#~ msgid "Cut %i"
-#~ msgstr "Sny 1"
-
-#, fuzzy
-#~ msgid "Paste %i"
-#~ msgstr "Plak 1"
-
-#~ msgid "Empty buffer"
-#~ msgstr "Maak buffer leeg"
-
-#~ msgid "Component"
-#~ msgstr "Komponent"
-
-#~ msgid "Attribute"
-#~ msgstr "Eienskap"
-
-#~ msgid "Net"
-#~ msgstr "Skakeling"
-
-#~ msgid "Bus"
-#~ msgstr "Bus"
-
-#~ msgid "Box"
-#~ msgstr "Reghoek"
-
-#~ msgid "Circle"
-#~ msgstr "Sirkel"
-
-#~ msgid "Arc"
-#~ msgstr "Boog"
-
-#~ msgid "Pin"
-#~ msgstr "Pen"
-
-#~ msgid "Searching for source [%s]\n"
-#~ msgstr "Soek vir bron [%s]\n"
-
-#, fuzzy
-#~ msgid "Failed to descend into '%s': %s\n"
-#~ msgstr "Kon nie afbeelding laai nie: %s"
-
-#, fuzzy
-#~ msgid "Failed to descend hierarchy."
-#~ msgstr "daal in hierargie af"
-
-#~ msgid "Searching for symbol [%s]\n"
-#~ msgstr "Soek vir simbool [%s]\n"
-
-#~ msgid "Attach"
-#~ msgstr "Heg aan"
-
-#~ msgid "Detach"
-#~ msgstr "Heg af"
-
-#~ msgid "ShowN"
-#~ msgstr "ToonN"
-
-#~ msgid "ShowV"
-#~ msgstr "ToonW"
-
-#~ msgid "VisToggle"
-#~ msgstr "SigSkakel"
-
-#~ msgid "Sorry but this is a non-functioning menu option\n"
-#~ msgstr "Jammer, maar hierdie opsie werk nie\n"
-
-#~ msgid "Action feedback mode set to OUTLINE\n"
-#~ msgstr "Handelingsterugvoermodus na SKETS gestel\n"
-
-#~ msgid "Action feedback mode set to BOUNDINGBOX\n"
-#~ msgstr "Handelingsterugvoermodus na OMTREKREGHOEK\n"
-
-#~ msgid "Grid OFF\n"
-#~ msgstr "Rooster AF\n"
-
-#~ msgid "Rubber band OFF \n"
-#~ msgstr "Rubberband AF \n"
-
-#~ msgid "Rubber band ON\n"
-#~ msgstr "Rubberband AAN\n"
-
-#~ msgid "Got an invalid buffer_number [o_buffer_paste_start]\n"
-#~ msgstr "Het 'n ongeldige buffer_number gekry [o_buffer_paste_start]\n"
-
-#~ msgid "Translating schematic [%d %d]\n"
-#~ msgstr "Verskuif stroombaandiagram [%d %d]\n"
-
-#~ msgid "Got an unexpected NULL in o_edit\n"
-#~ msgstr "Het 'n onverwagte NULL in o_edit gekry\n"
-
-#~ msgid "Object already locked\n"
-#~ msgstr "Voorwerp klaar gesluit\n"
-
-#~ msgid "Object already unlocked\n"
-#~ msgstr "Voorwerp klaar ontsluit\n"
-
-#~ msgid "Hidden text is now visible\n"
-#~ msgstr "Verskuilde teks is nou sigbaar\n"
-
-#~ msgid "Hidden text is now invisible\n"
-#~ msgstr "Verskuilde teks is nou onsigbaar\n"
-
-#~ msgid "o_autosave_backups: Can't get the real filename of %s."
-#~ msgstr "o_autosave_backups: Kan nie die egte lêernaam van %s kry nie."
-
-#~ msgid "Could NOT set previous backup file [%s] read-write\n"
-#~ msgstr "Kon NIE vorige bestandlêer [%s] lees-skryf stel nie\n"
-
-#~ msgid "Could NOT set backup file [%s] readonly\n"
-#~ msgstr "Kon NIE bestandlêer [%s] lees-slegs stel nie\n"
-
-#~ msgid "Could NOT save backup file [%s]\n"
-#~ msgstr "Kon NIE bestandlêer [%s] bewaar nie\n"
-
-#~ msgid "ERROR: NULL object in o_move_end!\n"
-#~ msgstr "FOUT: NULL voorwerp in o_move_end!\n"
-
-# Thanks to Frank Shearar for reminding me of BLIKSEM!
-#~ msgid "DOH! tried to find the whichone, but didn't find it!\n"
-#~ msgstr ""
-#~ "BLIKSEM!  Het probeer om die whichone te vind, maar kon dit nie kry nie!\n"
-
-#~ msgid "Got a non line object in o_move_check_endpoint\n"
-#~ msgstr ""
-#~ "Het 'n voorwerp wat nie 'n lyn is nie in o_move_check_endpoint gekry\n"
-
-#~ msgid "Tried to add more than two bus rippers. Internal gschem error.\n"
-#~ msgstr ""
-#~ "Het probeer om meer as twee busrippers bytevoeg.  Interne gschem fout.\n"
-
-#~ msgid "Bus ripper symbol [%s] was not found in any component library\n"
-#~ msgstr ""
-#~ "Busrippersimbool [%s] is nie in enige komponentbiblioteek gevind nie\n"
-
-#, fuzzy
-#~ msgid "Select a picture file..."
-#~ msgstr "Kies PostScript Lêernaam"
-
-#~ msgid "Failed to load picture: %s"
-#~ msgstr "Kon nie afbeelding laai nie: %s"
-
-#~ msgid "Picture"
-#~ msgstr "Afbeelding"
-
-#, fuzzy
-#~ msgid "Failed to replace pictures: %s"
-#~ msgstr "Kon nie afbeelding laai nie: %s"
-
-#~ msgid "Slot attribute malformed\n"
-#~ msgstr "\"slot\" eienskap is misvorm\n"
-
-#~ msgid "numslots attribute missing\n"
-#~ msgstr "\"numslots\" eienskap bestaan nie\n"
-
-#~ msgid "Slotting not allowed for this component\n"
-#~ msgstr "Gleuwe is nie toegelaat vir hierdie komponent nie\n"
-
-#~ msgid "New slot number out of range\n"
-#~ msgstr "Nuwe gleufnommer buite bereik\n"
-
-#~ msgid "ERROR: NULL object!\n"
-#~ msgstr "FOUT: NULL voorwerp!\n"
-
-#~ msgid "Single Attribute Editor"
-#~ msgstr "Enkeleienskap-Bewerker"
-
-#~ msgid "<b>Edit Attribute</b>"
-#~ msgstr "<b>Bewerk Eienskap</b>"
-
-#~ msgid "<b>Add Attribute</b>"
-#~ msgstr "<b>Voeg Eienskap By</b>"
-
-#~ msgid "Name:"
-#~ msgstr "Naam:"
-
-#~ msgid "Value:"
-#~ msgstr "Waarde:"
-
-#~ msgid "Visible"
-#~ msgstr "Sigbaar"
-
-#~ msgid "Show Value Only"
-#~ msgstr "Toon Slegs Waarde"
-
-#~ msgid "Show Name Only"
-#~ msgstr "Toon Slegs Naam"
-
-#~ msgid "Show Name & Value"
-#~ msgstr "Toon Naam & Waarde"
-
-#~ msgid "<b>Attach Options</b>"
-#~ msgstr "<b>AAnhegopsies</b>"
-
-#~ msgid "All"
-#~ msgstr "Alles"
-
-#~ msgid "Components"
-#~ msgstr "Komponente"
-
-# FIXME: "Nette"
-#~ msgid "Nets"
-#~ msgstr "Nette"
-
-#~ msgid "Replace existing attributes"
-#~ msgstr "Vervang bestaande eienskappe"
-
-#~ msgid ""
-#~ "duplicate slot may cause problems: [symbolname=%s, number=%d, slot=%d]\n"
-#~ msgstr ""
-#~ "duplikaatgleuf mag probleme veroorsaak: [symbolname=%s, number=%d, slot="
-#~ "%d]\n"
-
-#~ msgid "Diagonal"
-#~ msgstr "Diagonaal"
-
-#~ msgid "Top to bottom"
-#~ msgstr "Bo to onder"
-
-#~ msgid "Bottom to top"
-#~ msgstr "Onder tot bo"
-
-#~ msgid "Left to right"
-#~ msgstr "Links tot regs"
-
-#~ msgid "Right to left"
-#~ msgstr "Regs tot links"
-
-#~ msgid "<b>Scope</b>"
-#~ msgstr "<b>Bestek</b>"
-
-#~ msgid "Search for:"
-#~ msgstr "Soek vir:"
-
-#~ msgid "Skip numbers found in:"
-#~ msgstr "Slaan nommers oor in:"
-
-#~ msgid "Whole hierarchy"
-#~ msgstr "Hele hierargie"
-
-#~ msgid "Overwrite existing numbers"
-#~ msgstr "Vervang bestaande nommers"
-
-#~ msgid "<b>Options</b>"
-#~ msgstr "<b>Opsies</b>"
-
-#~ msgid "Starting number:"
-#~ msgstr "Begin by nommer:"
-
-#~ msgid "Sort order:"
-#~ msgstr "Rangskikkingsorde:"
-
-#~ msgid "Remove numbers"
-#~ msgstr "Verwyder syfers"
-
-#~ msgid "Automatic slotting"
-#~ msgstr "Outomatiese begleuwing"
-
-#~ msgid "Could not allocate the color %s!\n"
-#~ msgstr "Kon nie aanspraak maak op die kleur %s nie!\n"
-
-#~ msgid "black"
-#~ msgstr "swart"
-
-#~ msgid "white"
-#~ msgstr "wit"
-
-#~ msgid "Tried to get an invalid color: %d\n"
-#~ msgstr "Het probeer om 'n ongeldige kleur te kry: %d\n"
-
-#~ msgid "Filter:"
-#~ msgstr "Deursyfer:"
-
-#~ msgid "Name"
-#~ msgstr "Naam"
-
-#~ msgid "Value"
-#~ msgstr "Waarde"
-
-#~ msgid "Default behavior - reference component"
-#~ msgstr "Verstekgedrag - verwys na komponent"
-
-#~ msgid "Embed component in schematic"
-#~ msgstr "Lê komponent in stroombaandiagram in"
-
-#~ msgid "Include component as individual objects"
-#~ msgstr "Sluit komponent as afsonderlike voorwerpe in"
-
-#~ msgid "Select Component..."
-#~ msgstr "Kies Komponent..."
-
-#~ msgid "In Use"
-#~ msgstr "In Gebruik"
-
-#~ msgid "Libraries"
-#~ msgstr "Biblioteke"
-
-#~ msgid "Arc Params"
-#~ msgstr "Boogparameters"
-
-#~ msgid "Start Angle:"
-#~ msgstr "Beginhoek:"
-
-#~ msgid "Degrees of Sweep:"
-#~ msgstr "Grade van Kromming:"
-
-#~ msgid ""
-#~ "Offset to translate?\n"
-#~ "(0 for origin)"
-#~ msgstr ""
-#~ "Afwyking om te verskuif?\n"
-#~ "(0 vir oorsprong)"
-
-#~ msgid "Enter new text size:"
-#~ msgstr "Gee nuwe teksgrootte aan:"
-
-#~ msgid "Edit slot number"
-#~ msgstr "Bewerk gleufnommer"
-
-#~ msgid "Edit slot number:"
-#~ msgstr "Bewerk gleufnommer:"
-
-#~ msgid "About gschem"
-#~ msgstr "Oor gschem"
-
-#~ msgid "gEDA: GPL Electronic Design Automation"
-#~ msgstr "gEDA: GPL Elektroniese Ontwerp Outomatisering"
-
-# FIXME: May need to have a deëlteken on second 'o'.
-#~ msgid "Coords"
-#~ msgstr "Koordinate"
-
-#~ msgid "Screen"
-#~ msgstr "Skerm"
-
-#~ msgid "World"
-#~ msgstr "Wêreld"
-
-#~ msgid "Keystroke(s)"
-#~ msgstr "Sleutelslae"
-
-#~ msgid "Find Text"
-#~ msgstr "Vind Teks"
-
-#~ msgid "Text to find:"
-#~ msgstr "Teks om te vind:"
-
-#~ msgid "descend into hierarchy"
-#~ msgstr "daal in hierargie af"
-
-#~ msgid "Hide Text"
-#~ msgstr "Verskuil Teks"
-
-#~ msgid "Hide text starting with:"
-#~ msgstr "Verskuil teks beginnende met:"
-
-#~ msgid "Show Text"
-#~ msgstr "Toon Teks"
-
-#~ msgid "Show text starting with:"
-#~ msgstr "Toon Teks beginnende met:"
-
-#, fuzzy
-#~ msgid "Symbol"
-#~ msgstr "Simbole"
-
-#~ msgid "S_elect the schematics you want to save:"
-#~ msgstr "Kies die stroombaandiagramme wat jy wil bewaar:"
-
-#~ msgid "Save the changes to schematic \"%s\" before closing?"
-#~ msgstr ""
-#~ "Wil jy veranderinge aan stroombaandiagram \"%s\" bewaar voor jy afsluit?"
-
-#~ msgid ""
-#~ "There are %d schematics with unsaved changes. Save changes before closing?"
-#~ msgstr ""
-#~ "Daar is %d stroombaandiagramme met onbewaarde veranderinge.  Wil jy die "
-#~ "veranderinge bewaar voor jy afsluit?"
-
-#~ msgid "If you don't save, all your changes will be permanently lost."
-#~ msgstr ""
-#~ "As jy nie bewaar nie, sal al jou veranderinge permanent verloregaan."
-
-#, fuzzy
-#~ msgid "Close _without saving"
-#~ msgstr "Sluit sonder om te bewaar"
-
-#~ msgid ""
-#~ "<span weight=\"bold\" size=\"larger\">The input attribute \"%s\" is "
-#~ "invalid\n"
-#~ "Please correct in order to continue</span>\n"
-#~ "\n"
-#~ "The name and value must be non-empty.\n"
-#~ "The name cannot end with a space.\n"
-#~ "The value cannot start with a space."
-#~ msgstr ""
-#~ "<span weight=\"bold\" size=\"larger\">Die ingevoerde eienskap \"%s\" is "
-#~ "ongeldig\n"
-#~ "Verbeter asseblief om voort te gaan</span>\n"
-#~ "\n"
-#~ "Die naam en waarde mag nie leeg wees nie.\n"
-#~ "Die naam mag nie met 'n spasie eindig nie.\n"
-#~ "Die waarde mag nie met 'n spasie begin nie."
-
-#~ msgid "Invalid Attribute"
-#~ msgstr "Ongeldige Eienskap"
-
-#~ msgid "Schematics"
-#~ msgstr "Stroombaandiagramme"
-
-#~ msgid "Symbols"
-#~ msgstr "Simbole"
-
-#~ msgid "Schematics and symbols"
-#~ msgstr "Stroombaandiagramme en simbole"
-
-#~ msgid "All files"
-#~ msgstr "Alle lêers"
-
-#~ msgid "Save as..."
-#~ msgstr "Bewaar as..."
-
-#~ msgid "Overwrite file?"
-#~ msgstr "Vervang lêer?"
-
-#~ msgid "x_image_lowlevel: Unable to write %s file %s.\n"
-#~ msgstr "x_image_lowlevel: Kon nie %s-lêer %s skryf nie.\n"
-
-#~ msgid ""
-#~ "There was the following error when saving image with type %s to "
-#~ "filename:\n"
-#~ "%s\n"
-#~ "\n"
-#~ "%s.\n"
-#~ msgstr ""
-#~ "Die volgende fout het gebeur gedurende die bewaring van %s-lêer:\n"
-#~ "%s\n"
-#~ "\n"
-#~ "%s.\n"
-
-#~ msgid "Wrote color image to [%s] [%d x %d]\n"
-#~ msgstr "Het kleurafbeelding na [%s] [%d x %d] geskryf\n"
-
-#~ msgid "Wrote black and white image to [%s] [%d x %d]\n"
-#~ msgstr "Het swart-en-witafbeelding na [%s] [%d x %d] geskryf\n"
-
-#~ msgid "x_image_lowlevel: Unable to get pixbuf from gschem's window.\n"
-#~ msgstr "x_image_lowlevel: Kon nie pixbuf van gschem se venster kry nie.\n"
-
-#~ msgid "Width x Height"
-#~ msgstr "Wydte x Hoogte"
-
-#~ msgid "Write image..."
-#~ msgstr "Skryf afbeelding..."
-
-#~ msgid "Status"
-#~ msgstr "Stand"
-
-#, fuzzy
-#~ msgid "Add Net"
-#~ msgstr "/Voeg Net By"
-
-#~ msgid "Add Attribute"
-#~ msgstr "Voeg Eienskap By"
-
-#, fuzzy
-#~ msgid "Add Bus"
-#~ msgstr "/Voeg Bus By"
-
-#, fuzzy
-#~ msgid "Add Text"
-#~ msgstr "/Voeg Teks By"
-
-#, fuzzy
-#~ msgid "Zoom In"
-#~ msgstr "/Zoem In"
-
-#, fuzzy
-#~ msgid "Zoom Out"
-#~ msgstr "/Zoem Uit"
-
-#, fuzzy
-#~ msgid "Zoom Extents"
-#~ msgstr "/Zoem Uitmate"
-
-#~ msgid "Edit..."
-#~ msgstr "Bewerk..."
-
-#, fuzzy
-#~ msgid "Edit Pin Type..."
-#~ msgstr "Bewerk Vultipe"
-
-#, fuzzy
-#~ msgid "Down Schematic"
-#~ msgstr "/Stroombaandiagram Af"
-
-#, fuzzy
-#~ msgid "Down Symbol"
-#~ msgstr "/Simbool Af"
-
-#, fuzzy
-#~ msgid "Up"
-#~ msgstr "/Op"
-
-#~ msgid "Tried to set the sensitivity on non-existent menu item '%s'\n"
-#~ msgstr "Het probeer om gevoeligheid op nie-bestaande menu-artikel '%s'\n"
-
-#~ msgid "Attributes with empty name are not allowed. Please set a name."
-#~ msgstr "Eienskappe met 'n leë naam word verbied.  Kies asseblief 'n naam."
-
-#~ msgid "Show Value only"
-#~ msgstr "Toon slegs waarde"
-
-#~ msgid "Show Name only"
-#~ msgstr "Toon slegs naam"
-
-#~ msgid "Duplicate"
-#~ msgstr "Dupliseer"
-
-#~ msgid "Edit Attributes"
-#~ msgstr "Bewerk Eienskappe"
-
-#~ msgid "Vis?"
-#~ msgstr "Sig?"
-
-#~ msgid "N"
-#~ msgstr "N"
-
-#~ msgid "V"
-#~ msgstr "W"
-
-#, fuzzy
-#~ msgid "Edit Attributes - %s"
-#~ msgstr "Bewerk Eienskappe"
-
-#~ msgid "New Page"
-#~ msgstr "Nuwe Bladsy"
-
-#~ msgid "Open Page..."
-#~ msgstr "Maak Bladsy Oop..."
-
-#~ msgid "Save Page"
-#~ msgstr "Bewaar Bladsy"
-
-#~ msgid "Close Page"
-#~ msgstr "Sluit Bladsy"
-
-#~ msgid "Page Manager"
-#~ msgstr "Bladsybestuurder"
-
-#~ msgid "Filename"
-#~ msgstr "Lêernaam"
-
-#~ msgid "Right click on the filename for more options..."
-#~ msgstr "Regs-klik op die lêernaam vir meer opsies..."
-
-#, fuzzy
-#~ msgid "Failed to write PDF to '%s': %s\n"
-#~ msgstr "Kon nie afbeelding laai nie: %s"
-
-#~ msgid "Execute Script..."
-#~ msgstr "Voer Script Uit..."
-
-#~ msgid "Executing guile script [%s]\n"
-#~ msgstr "Voer guile script [%s] uit\n"
-
-#~ msgid "Couldn't allocate gc\n"
-#~ msgstr "Kon nie aanspraak maak op gc nie\n"
-
-#~ msgid "New"
-#~ msgstr "Nuwe"
-
-#~ msgid "New file"
-#~ msgstr "Nuwe lêer"
-
-#~ msgid "Open file..."
-#~ msgstr "Maak lêer oop..."
-
-#~ msgid "Save file"
-#~ msgstr "Bewaar lêer"
-
-#~ msgid "Undo"
-#~ msgstr "Maak Ongedaan"
-
-#~ msgid "Undo last operation"
-#~ msgstr "Maak laaste handeling ongedaan"
-
-#~ msgid "Redo"
-#~ msgstr "Herstel"
-
-#~ msgid "Redo last undo"
-#~ msgstr "Herhaal laas-ongedane handeling"
-
-#~ msgid "Text"
-#~ msgstr "Teks"
-
-#~ msgid "Add Text..."
-#~ msgstr "Voeg Teks By..."
-
-#~ msgid "Pick"
-#~ msgstr "Kies"
-
-#~ msgid "Repeat/none"
-#~ msgstr "Herhaal/geen"
-
-#~ msgid "Loading schematic [%s]\n"
-#~ msgstr "Laai stroombaandiagram [%s]\n"
-
-#~ msgid "Failed to load file"
-#~ msgstr "Misluk om lêer te laai"
-
-#~ msgid "New file [%s]\n"
-#~ msgstr "Nuwe lêer [%s]\n"
-
-#~ msgid "Could NOT save page [%s]\n"
-#~ msgstr "Kon nie bladsy [%s] bewaar nie\n"
-
-#~ msgid "Error while trying to save"
-#~ msgstr "Fout gedurende poging om te bewaar"
-
-#, fuzzy
-#~ msgid "Failed to save file"
-#~ msgstr "Misluk om lêer te laai"
-
-#~ msgid "Saved as [%s]\n"
-#~ msgstr "Bewaar as [%s]\n"
-
-#~ msgid "Saved [%s]\n"
-#~ msgstr "Bewaar [%s]\n"
-
-#~ msgid "Saved"
-#~ msgstr "Bewaar"
-
-#~ msgid "Discarding page [%s]\n"
-#~ msgstr "Werp bladsy [%s] weg\n"
-
-#~ msgid "Closing [%s]\n"
-#~ msgstr "Sluit [%s]\n"
-
-#~ msgid "gEDA Schematic Editor"
-#~ msgstr "gEDA Stroombaandiagram Bewerker"
-
-#~ msgid "Create and edit electrical schematics and symbols with gschem"
-#~ msgstr "Skep en bewerk stroombaandiagramme en simbole met gschem"
-
-#~ msgid "Save All"
-#~ msgstr "Bewaar Alles"
-
-#~ msgid "New Window"
-#~ msgstr "Nuwe Venster"
-
-#, fuzzy
-#~ msgid "_Close Window"
-#~ msgstr "Sluit Venster"
-
-#, fuzzy
-#~ msgid "Select All"
-#~ msgstr "Kies"
-
-#, fuzzy
-#~ msgid "Deselect"
-#~ msgstr "Kies"
-
-#~ msgid "Rotate 90 Mode"
-#~ msgstr "Roteer-90-modus"
-
-#~ msgid "Edit Text..."
-#~ msgstr "Bewerk Teks..."
-
-#~ msgid "Slot..."
-#~ msgstr "Gleuf..."
-
-#~ msgid "Color..."
-#~ msgstr "Kleur..."
-
-#~ msgid "Line Width & Type..."
-#~ msgstr "Lynwydte en -tipe..."
-
-#~ msgid "Fill Type..."
-#~ msgstr "Vultipe"
-
-#, fuzzy
-#~ msgid "Pin Type..."
-#~ msgstr "Vultipe"
-
-#~ msgid "Symbol Translate..."
-#~ msgstr "Simboolverskuiwing..."
-
-#~ msgid "Embed Component/Picture"
-#~ msgstr "Lê Komponent/Afbeelding In"
-
-# FIXME: too klunky!
-#~ msgid "Unembed Component/Picture"
-#~ msgstr "Ont-lê Komponent/Afbeelding In"
-
-#~ msgid "Update Component"
-#~ msgstr "Vernuwe Komponent"
-
-#~ msgid "Show/Hide Inv Text"
-#~ msgstr "Toon/Verberg Onsigbare Teks"
-
-#~ msgid "Copy into 1"
-#~ msgstr "Kopieer in 1 in"
-
-#~ msgid "Copy into 2"
-#~ msgstr "Kopieer in 2 in"
-
-#~ msgid "Copy into 3"
-#~ msgstr "Kopieer in 3 in"
-
-#~ msgid "Copy into 4"
-#~ msgstr "Kopieer in 4 in"
-
-#~ msgid "Copy into 5"
-#~ msgstr "Kopieer in 5 in"
-
-#~ msgid "Cut into 1"
-#~ msgstr "Sny in 1 in"
-
-#~ msgid "Cut into 2"
-#~ msgstr "Sny in 2 in"
-
-#~ msgid "Cut into 3"
-#~ msgstr "Sny in 3 in"
-
-#~ msgid "Cut into 4"
-#~ msgstr "Sny in 4 in"
-
-#~ msgid "Cut into 5"
-#~ msgstr "Sny in 5 in"
-
-#~ msgid "Paste from 1"
-#~ msgstr "Plak vanuit 1"
-
-#~ msgid "Paste from 2"
-#~ msgstr "Plak vanuit 2"
-
-#~ msgid "Paste from 3"
-#~ msgstr "Plak vanuit 3"
-
-#~ msgid "Paste from 4"
-#~ msgstr "Plak vanuit 4"
-
-#~ msgid "Paste from 5"
-#~ msgstr "Plak vanuit 5"
-
-#~ msgid "_File"
-#~ msgstr "Lêer"
-
-#~ msgid "_Edit"
-#~ msgstr "Bewerk"
-
-#~ msgid "_View"
-#~ msgstr "Aansig"
-
-#~ msgid "_Page"
-#~ msgstr "Bladsy"
-
-#~ msgid "_Add"
-#~ msgstr "Voeg By"
-
-#~ msgid "Hie_rarchy"
-#~ msgstr "Hierargie"
-
-#~ msgid "A_ttributes"
-#~ msgstr "Eienskappe"
-
-#~ msgid "_Options"
-#~ msgstr "Opsies"
-
-#~ msgid "_Help"
-#~ msgstr "Help"
-
-#, fuzzy
-#~ msgid "New File"
-#~ msgstr "Nuwe lêer"
-
-#, fuzzy
-#~ msgid "Print"
-#~ msgstr "Druk..."
-
-#, fuzzy
-#~ msgid "Close Window"
-#~ msgstr "Sluit Venster"
-
-#~ msgid "Edit Line Width & Type"
-#~ msgstr "Bewerk Lynwyddte & -styl"
-
-#~ msgid "Edit Fill Type"
-#~ msgstr "Bewerk Vultipe"
-
-#, fuzzy
-#~ msgid "Edit Pin Type"
-#~ msgstr "Bewerk Vultipe"
-
-#, fuzzy
-#~ msgid "Translate Symbol"
-#~ msgstr "Verskuif"
-
-#, fuzzy
-#~ msgid "Embed Component/Pictore"
-#~ msgstr "Lê Komponent/Afbeelding In"
-
-#, fuzzy
-#~ msgid "Show/Hide Invisible Text"
-#~ msgstr "Toon/Verberg Onsigbare Teks"
-
-#, fuzzy
-#~ msgid "Cut"
-#~ msgstr "Sny 2"
-
-#, fuzzy
-#~ msgid "Paste"
-#~ msgstr "Plak 2"
-
-#, fuzzy
-#~ msgid "Pan Left"
-#~ msgstr "Aansigskuifmodus"
-
-#, fuzzy
-#~ msgid "Pan Right"
-#~ msgstr "Regs Bo"
-
-#, fuzzy
-#~ msgid "Pan Down"
-#~ msgstr "Aansigskuifmodus"
-
-#, fuzzy
-#~ msgid "Zoom Full"
-#~ msgstr "/Zoem Uit"
-
-#, fuzzy
-#~ msgid "Revert Changes"
-#~ msgstr "Gaan Bladsy Terug"
-
-#, fuzzy
-#~ msgid "Previous Page"
-#~ msgstr "Sluit Bladsy"
-
-#, fuzzy
-#~ msgid "Next Page"
-#~ msgstr "Nuwe Bladsy"
-
-#, fuzzy
-#~ msgid "Add Line"
-#~ msgstr "Lyn"
-
-#, fuzzy
-#~ msgid "Add Path"
-#~ msgstr "/Voeg Net By"
-
-#, fuzzy
-#~ msgid "Add Box"
-#~ msgstr "/Voeg Bus By"
-
-#, fuzzy
-#~ msgid "Add Circle"
-#~ msgstr "Sirkel"
-
-#, fuzzy
-#~ msgid "Add Arc"
-#~ msgstr "Voeg Eienskap By"
-
-#, fuzzy
-#~ msgid "Add Picture"
-#~ msgstr "Afbeelding"
-
-#, fuzzy
-#~ msgid "Component Documentation"
-#~ msgstr "Komponentmodus"
-
-#, fuzzy
-#~ msgid "gEDA Manuals"
-#~ msgstr "Handleiding"
-
-#~ msgid "Function"
-#~ msgstr "Funksie"
-
-#~ msgid "/Add Attribute..."
-#~ msgstr "/Voeg Eienskap By"
-
-#~ msgid "/Zoom Box"
-#~ msgstr "/Zoem Reghoek"
-
-#~ msgid "/Select"
-#~ msgstr "/Kies"
-
-#~ msgid "/Edit..."
-#~ msgstr "/Bewerk"
-
-#~ msgid "/Copy"
-#~ msgstr "/Kopieer"
-
-#~ msgid "/Move"
-#~ msgstr "/Skuif"
-
-#~ msgid "/Delete"
-#~ msgstr "/Verwyder"
-
-#~ msgid "Popup_menu_item_factory doesn't exist!\n"
-#~ msgstr "popup_menu artikelfabriek bestaan nie!\n"
-
-#~ msgid "_Buffer"
-#~ msgstr "Buffer"
-
-#~ msgid "Invalid zoomfactor [%d] passed to %s\n"
-#~ msgstr "Ongeldige zoemmaat [%d] aan %s gegee\n"
-
-#~ msgid "Copy 2"
-#~ msgstr "Kopieer 2"
-
-#~ msgid "Copy 3"
-#~ msgstr "Kopieer 3"
-
-#~ msgid "Copy 4"
-#~ msgstr "Kopieer 4"
-
-#~ msgid "Copy 5"
-#~ msgstr "Kopieer 5"
-
-#~ msgid "Cut 3"
-#~ msgstr "Sny 3"
-
-#~ msgid "Cut 4"
-#~ msgstr "Sny 4"
-
-#~ msgid "Cut 5"
-#~ msgstr "Sny 5"
-
-#~ msgid "Paste 3"
-#~ msgstr "Plak 3"
-
-#~ msgid "Paste 4"
-#~ msgstr "Plak 4"
-
-#~ msgid "Paste 5"
-#~ msgstr "Plak 5"
-
-#~ msgid "Text Entry..."
-#~ msgstr "Teksaantekening..."
-
-#~ msgid "Upper Left"
-#~ msgstr "Links Bo"
-
-#~ msgid "Upper Middle"
-#~ msgstr "Middel Bo"
-
-#~ msgid "Middle Left"
-#~ msgstr "Middel Links"
-
-#~ msgid "Middle Middle"
-#~ msgstr "Middel Middel"
-
-#~ msgid "Middle Right"
-#~ msgstr "Middel Regs"
-
-#~ msgid "Lower Left"
-#~ msgstr "Links Onder"
-
-#~ msgid "Lower Middle"
-#~ msgstr "Middel Onder"
-
-#~ msgid "Lower Right"
-#~ msgstr "Regs Onder"
-
-#~ msgid "Edit Text Properties"
-#~ msgstr "Bewerk Tekseienskappe"
-
-#~ msgid "<b>Text Content</b>"
-#~ msgstr "<b>Teksinhoud</b>"
-
-#~ msgid "<b>Text Properties</b>"
-#~ msgstr "<b>Tekseienskappe</b>"
-
-#~ msgid "Color:"
-#~ msgstr "Kleur:"
-
-#~ msgid "Size:"
-#~ msgstr "Grootte:"
-
-#~ msgid "Alignment:"
-#~ msgstr "Sporing:"
-
-#~ msgid "Solid"
-#~ msgstr "Solied"
-
-#~ msgid "Dotted"
-#~ msgstr "Gestippeld"
-
-#~ msgid "Dashed"
-#~ msgstr "Gebroke"
-
-#~ msgid "Center"
-#~ msgstr "Sentreer"
-
-#~ msgid "Phantom"
-#~ msgstr "Spook"
-
-#~ msgid "Type:"
-#~ msgstr "Styl:"
-
-#~ msgid "Dash Length:"
-#~ msgstr "Streeplengte"
-
-#~ msgid "Dash Space:"
-#~ msgstr "Streepspasie"
-
-#~ msgid "Hollow"
-#~ msgstr "Hol"
-
-#~ msgid "Filled"
-#~ msgstr "Gevul"
-
-#~ msgid "Mesh"
-#~ msgstr "Rooster"
-
-#~ msgid "Hatch"
-#~ msgstr "Arseer"
-
-#~ msgid "Fill Type:"
-#~ msgstr "Vultipe:"
-
-#~ msgid "Line Width:"
-#~ msgstr "Lynwydte:"
-
-#~ msgid "Pitch 1:"
-#~ msgstr "Steek 1:"
-
-#~ msgid "Angle 2:"
-#~ msgstr "Hoek 2:"
-
-#~ msgid "Pitch 2:"
-#~ msgstr "Steek 2:"
-
-#~ msgid "Zoom box"
-#~ msgstr "Zoem Reghoek"
-
-#~ msgid "ERROR: NULL object in color_edit_dialog_apply!\n"
-#~ msgstr "FOUT: NULL voorwerp in color_edit_dialog_apply!\n"
-
-#~ msgid "Color Edit"
-#~ msgstr "Kleurbewerking"
-
-#~ msgid "Object color:"
-#~ msgstr "Voorwerpkleur:"
-
-#~ msgid "Discard Page"
-#~ msgstr "Werp Bladsy Weg"
-
-#~ msgid "Unknown end for line (%d)\n"
-#~ msgstr "Onbekende einde vir lyn (%d)\n"
-
-#~ msgid "Cannot find source [%s]\n"
-#~ msgstr "Kan nie bron [%s] vind nie\n"
-
-#~ msgid "Unknown type for box (fill)!\n"
-#~ msgstr "Onbekende tipe vir reghoek (vul)!\n"
-
-#~ msgid "Got an invalid which one in o_bus_draw_stretch\n"
-#~ msgstr "Het 'n ongeldige whichone in o_bus_draw_stretch gekry\n"
-
-#~ msgid "Unknown type for circle (fill)!\n"
-#~ msgstr "Onbekende tipe vir sirkel (vul)!\n"
-
-#~ msgid "Got an invalid which one in o_net_draw_stretch\n"
-#~ msgstr "Het 'n ongeldige whichone in o_net_draw_stretch gekry\n"
-
-#~ msgid "x_image_lowlevel: Unable to write eps file %s.\n"
-#~ msgstr "x_image_lowlevel: Kon nie eps-lêer %s skryf nie.\n"
-
-#~ msgid "Extents with margins"
-#~ msgstr "Uitmate met kantlyn"
-
-#~ msgid "Extents no margins"
-#~ msgstr "Uitmate sonder kantlyn"
-
-#~ msgid "Current Window"
-#~ msgstr "Huidige Venster"
-
-#~ msgid "Landscape"
-#~ msgstr "Landskap"
-
-#~ msgid "Portrait"
-#~ msgstr "Portret"
-
-#~ msgid "Settings"
-#~ msgstr "Instellinge"
-
-#~ msgid "Output paper size:"
-#~ msgstr "Uitset-papiergrootte:"
-
-#~ msgid "Orientation:"
-#~ msgstr "Orientasie"
-
-#~ msgid "File:"
-#~ msgstr "Lêer:"
-
-#~ msgid "Command:"
-#~ msgstr "Opdrag:"
-
-#~ msgid "No print destination specified\n"
-#~ msgstr "Geen drukbestemming aangegee nie\n"
-
-#~ msgid "Cannot print current schematic to [%s]\n"
-#~ msgstr "Kan nie huidige stroombaandiagram na [%s] druk nie\n"
-
-#~ msgid ""
-#~ "Error printing to file '%s'\n"
-#~ "Check the log window for more information"
-#~ msgstr ""
-#~ "Fout gedurende lêerdruk na '%s'\n"
-#~ "Ondersoek die log-venster vir meer inligting"
-
-#~ msgid "Printed current schematic to [%s]\n"
-#~ msgstr "Het lopende stroombaandiagram na [%s] gedruk\n"
-
-#~ msgid "Could not fork\n"
-#~ msgstr "Kon nie vertak nie\n"
-
-#~ msgid "Could not invoke %s\n"
-#~ msgstr "Kon nie %s oproep nie\n"
-
-#~ msgid "Documentation commands not supported under MinGW.\n"
-#~ msgstr "Dokumentasieopdragte werk nie onder MinGW nie.\n"
-
-#~ msgid "Documentation for [%s,%s,%s,%s]\n"
-#~ msgstr "Documentasie vir [%s,%s,%s,%s]\n"
-
-# FIXME: "aangeduide".
-#~ msgid ""
-#~ "This command retrieves the component documentation from the web, but "
-#~ "there is no component selected"
-#~ msgstr ""
-#~ "Hierdie opdrag haal die komponentdokumentasie van die web, maar daar is "
-#~ "geen aangeduide komponent nie"
-
-#~ msgid "Scheme directory NOT set!\n"
-#~ msgstr "Scheme-gids is NIE gestel nie!\n"
-
-#~ msgid "MakeVisible"
-#~ msgstr "MaakSigbaar"
-
-#~ msgid "Couldn't open file %s\n"
-#~ msgstr "Kon nie lêer %s oopmaak nie\n"
-
-#~ msgid "Clear"
-#~ msgstr "Maak Skoon"
-
-#~ msgid "Make Inv Text Vis"
-#~ msgstr "Maak Onsigbare Teks Sigbaar"
-
-#~ msgid "About..."
-#~ msgstr "Omtrent..."
-
-#~ msgid "<b>gEDA: GPL Electronic Design Automation</b>"
-#~ msgstr "<b>gEDA: GPL Elektroniese Ontwerp Outomatisering</b>"
-
-#~ msgid "<b>gschem version %s%s.%s</b>"
-#~ msgstr "<b>gschem uitgawe %s%s.%s</b>"
-
-#~ msgid ""
-#~ "Written by:\n"
-#~ "Ales Hvezda\n"
-#~ "ahvezda@geda.seul.org\n"
-#~ "And many others (See AUTHORS file)"
-#~ msgstr ""
-#~ "Geskryf deur:\n"
-#~ "Ales Hvezda\n"
-#~ "ahvezda@geda.seul.org\n"
-#~ "en vele andere (Sien AUTHORS lêer)"
-
-#~ msgid "Save Page As..."
-#~ msgstr "Bewaar Bladsy As..."
-
-#~ msgid "uggg! you tried to slot edit something that doesn't exist!\n"
-#~ msgstr ""
-#~ "uggg!  Jy het probeer om iets as 'n gleuf te bewerk, maar dit bestaan "
-#~ "nie!\n"
-
-#~ msgid "Recent files"
-#~ msgstr "Onlangse lêers"
-
-#~ msgid "Slot Chooser"
-#~ msgstr "Gleufkieser"
-
-#~ msgid "Draw slot %s which is in %s\n"
-#~ msgstr "Teken gleuf %s wat in %s is\n"
-
-#~ msgid "Invalid size [%f] passed to postscript-font-scale\n"
-#~ msgstr "Ongeldige grootte [%f] aan postscript-font-scale gegee\n"
-
-#~ msgid "Cut Buffer"
-#~ msgstr "Sny Buffer"
-
-#~ msgid "Copy Buffer"
-#~ msgstr "Kopieer Buffer"
-
-#~ msgid "Invalid color [%s] passed to %s\n"
-#~ msgstr "Ongeldige kleur [%s] aan %s gegee\n"
-
-#~ msgid "You must set the GEDADATA environment variable!\n"
-#~ msgstr "Jy moet die GEDADATA omgewingswaarde stel!\n"
-
-#~ msgid "Grid ON\n"
-#~ msgstr "Rooster AAN\n"
-
-#~ msgid "Unknown end for arc (%d)\n"
-#~ msgstr "Onbekende einde vir boog (%d)\n"
-
-#~ msgid "Unknown type for arc !\n"
-#~ msgstr "Onbekende tipe vir boog!\n"
-
-#~ msgid "Unknown end for box (%d)\n"
-#~ msgstr "Onbekende einde vir reghoek (%d)\n"
-
-#~ msgid "Unknown type for box !\n"
-#~ msgstr "Onbekende tipe vir reghoek!\n"
-
-#~ msgid "Got an invalid buffer_number [o_buffer_copy]\n"
-#~ msgstr "Het 'n ongeldige buffer_number gekry [o_buffer_copy]\n"
-
-#~ msgid "Got an invalid buffer_number [o_buffer_cut]\n"
-#~ msgstr "Het 'n ongeldige buffer_number gekry [o_buffer_cut]\n"
-
-#~ msgid "Unknown end for circle\n"
-#~ msgstr "Onbekende einde vir sirkel\n"
-
-#~ msgid "Unknown type for circle!\n"
-#~ msgstr "Onbekende tipe vir sirkel!\n"
-
-#~ msgid "Could not find the color %s!\n"
-#~ msgstr "Kon nie die kleur %s vind nie!\n"
-
-#~ msgid "Ack! Cannot allocate white!\n"
-#~ msgstr "Ag! Kon nie aanspraak maak op wit nie!\n"
-
-#~ msgid "Couldn't allocate xor_gc\n"
-#~ msgstr "Kon nie aanspraak maak op xor_gc nie\n"
-
-#~ msgid "Couldn't allocate outline_xor_gc\n"
-#~ msgstr "Kon nie aanspraak maak op outline_xor_gc nie\n"
-
-#~ msgid "Couldn't allocate bounding_xor_gc\n"
-#~ msgstr "Kon nie aanspraak maak op bounding_xor_gc nie\n"
-
-#~ msgid "Couldn't allocate bus_gc\n"
-#~ msgstr "Kon nie aanspraak maak op bus_gc nie\n"
-
-#~ msgid "Got NULL in o_attrib_toggle_visibility\n"
-#~ msgstr "Kry NULL in o_attrib_toggle_visibility\n"
-
-#~ msgid "Got NULL in o_attrib_toggle_show_name_value\n"
-#~ msgstr "Kry NULL in o_attrib_toggle_show_name_value\n"
-
-#~ msgid "Got an invalid buffer_number [o_buffer_paste_end]\n"
-#~ msgstr "Het 'n ongeldige buffer_number gekry [o_buffer_paste_end]\n"
-
-#~ msgid "ERROR: NULL object in o_copy_end!\n"
-#~ msgstr "FOUT: NULL voorwerp in o_copy_end!\n"
-
-#~ msgid "File"
-#~ msgstr "Lêer"
-
-#~ msgid "Buffer"
-#~ msgstr "Buffer"
-
-#~ msgid "Page"
-#~ msgstr "Bladsy"
-
-#~ msgid "Add"
-#~ msgstr "Voeg By"
-
-#~ msgid "Hierarchy"
-#~ msgstr "Hierargie"
-
-#~ msgid "Options"
-#~ msgstr "Opsies"
-
-#~ msgid "Help"
-#~ msgstr "Help"
-
-#, fuzzy
-#~ msgid "Unknown end for path (%d)\n"
-#~ msgstr "Onbekende einde vir boog (%d)\n"
-
-#, fuzzy
-#~ msgid "Unknown type for path !\n"
-#~ msgstr "Onbekende tipe vir boog!\n"
-
-#, fuzzy
-#~ msgid "Could not find complex in new component placement!\n"
-#~ msgstr "Kon nie kompleks in nuwe komponentplasing vind nie!\n"
+#~ msgid "Angle at which the label is rotated"
+#~ msgstr "Hoek waarteen die etiket roteer"

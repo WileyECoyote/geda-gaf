@@ -191,7 +191,7 @@ description=Multi Channel RS-232 Line Driver/Receiver
 T 100 5000 5 10 0 0 0 0 1
 numslots=0
 T 100 5200 5 10 0 0 0 0 1
-dist-license=GPL3
+dist-license=GPLv2
 T 100 5400 5 10 0 0 0 0 1
 use-license=unlimited
 T 100 4400 5 10 0 0 0 0 1

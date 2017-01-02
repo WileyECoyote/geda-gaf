@@ -572,7 +572,6 @@ i_vars_recall_user_settings(GschemToplevel *w_current)
  */
 void i_vars_set(GschemToplevel *w_current)
 {
-
   inline void i_set_rc(int *var, int rc) { if (rc != RC_NIL) *var = rc; };
 
   GedaToplevel *toplevel               = w_current->toplevel;
@@ -807,10 +806,12 @@ void i_vars_atexit_save_user_config (void * user_data)
   GError    *err = NULL;
 
   eda_config_save (cfg, &err);
+
   if (err != NULL) {
-    fprintf (stderr, _("Failed to save user configuration to '%s': %s."),
-                        eda_config_get_filename (cfg),
-                        err->message);
+
+    fprintf (stderr, "%s '%s': %s.", _("Failed to save user configuration to"),
+                                        eda_config_get_filename (cfg),
+                                        err->message);
     g_clear_error (&err);
   }
 }

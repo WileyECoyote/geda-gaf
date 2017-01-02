@@ -5,8 +5,8 @@
  * gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
  *
- * Copyright (C) 2013-2015 Wiley Edward Hill
- * Copyright (C) 2013-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2013-2016 Wiley Edward Hill
+ * Copyright (C) 2013-2016 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -50,7 +50,7 @@
 #define GEDA_TYPE_PAGE            (geda_page_get_type())
 #define GEDA_PAGE(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_PAGE, Page))
 #define GEDA_PAGE_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),  GEDA_TYPE_PAGE, PageClass))
-#define GEDA_IS_PAGE(obj)         (is_a_geda_page(obj))
+#define GEDA_IS_PAGE(obj)         (is_a_geda_page((Page*)(obj)))
 #define GEDA_IS_PAGE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),  GEDA_TYPE_PAGE))
 #define GEDA_PAGE_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_PAGE, PageClass))
 
@@ -63,8 +63,6 @@ struct _GedaPageClass {
 struct _GedaPage {
 
   GObject parent;
-
-  GedaPageType head_marker;            /* structure type signature */
 
   GedaToplevel *toplevel;
 
@@ -131,8 +129,6 @@ struct _GedaPage {
   GList *conns_changed_hooks;
 
   GList *weak_refs;               /* Weak references */
-
-  GedaPageType tail_marker;       /* structure type signature */
 };
 
 #ifdef __cplusplus
@@ -170,6 +166,7 @@ const char  *geda_page_get_filename      (Page *page) WARN_UNUSED;
 char        *geda_page_get_filename_dup  (Page *page) WARN_UNUSED;
 void         geda_page_set_filename      (Page *page, const char  *filename);
 
+int          geda_page_get_pid           (Page *page) GEDA_WARN_UNUSED_RESULT;
 GList       *geda_page_get_place_list    (Page *page) GEDA_WARN_UNUSED_RESULT;
 void         geda_page_set_place_list    (Page *page, GList *object_list);
 

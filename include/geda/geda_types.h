@@ -86,7 +86,7 @@ typedef unsigned int GedaType;
 #endif
 
 /* In older headers this does not happen, so fix here */
-# ifndef mode_t
+# ifndef OS_WIN32_NATIVE
 typedef __mode_t mode_t;
 # endif
 

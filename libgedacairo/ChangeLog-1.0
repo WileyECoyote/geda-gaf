@@ -1,3 +1,20 @@
+2016-12-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edarenderer.c: Add preprocesor conditional in eda_renderer_dispose
+      and call pango_context_set_font_map based on the PANGO version.
+
+2016-11-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edarenderer.c: Call pango_cairo_context_set_font_options and
+      pango_context_set_font_map on new pango context and pango_cairo_
+      context_set_font_options with NULL arguement before unreferencing
+      in eda_renderer_update_contexts.
+
+2016-11-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edarenderer.c: Replace g_return_if_reached with BUG_IMSG. Add setter
+      for cairo context. Add some local cairo_t pointers in various functions.
+
 2016-11-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/Makefile.am: Move WINDOWS_LIBTOOL_FLAGS to LIBTOOL flags.

@@ -6,7 +6,7 @@
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 3 of
+ * published by the Free Software Foundation; either version 2 of
  * the License, or (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -164,21 +164,14 @@ static void status_options_popup_clicked (GedaMenuItem *menuitem, void *user_dat
 
 /* -------------- Popup Menu for Mouse Middle Button Options  -------------- */
 
-/*!
- * \brief GschemStatusBar Show Coordinate Display Options Popup
- * \par Function Description
- *  This functions creates and displays a small pop-up menu on
- *  the coordinates display widget when the right mouse button
- *  is released on the widget.
- */
-static void coord_display_options_popup (GtkWidget      *event_box,
-                                         GdkEventButton *event,
-                                         void           *user_data)
+/*! Creates the context menu for the third button options */
+static GtkWidget*
+create_coord_display_options_popup(GschemStatusBar *status_bar)
 {
   GtkWidget *menu;
   int i;
 
-  /* create the context menu */
+  /* create the context menu coordinates display */
   menu = geda_menu_new();
 
   for (i = 0; coord_popup_items[i].text != NULL; i++) {
@@ -191,9 +184,34 @@ static void coord_display_options_popup (GtkWidget      *event_box,
                      (GCallback)coord_options_popup_clicked,
                       UINT_TO_POINTER(entry.signal));
 
-    GEDA_OBJECT_SET_DATA (popup_item, user_data, "status-bar");
+    GEDA_OBJECT_SET_DATA (popup_item, status_bar, "status-bar");
 
     geda_menu_shell_append (GEDA_MENU_SHELL (menu), popup_item);
+  }
+
+  status_bar->coord_popup = menu;
+
+  return menu;
+}
+
+/*!
+ * \brief GschemStatusBar Show Coordinate Display Options Popup
+ * \par Function Description
+ *  This functions creates and displays a small pop-up menu on
+ *  the coordinates display widget when the right mouse button
+ *  is released on the widget.
+ */
+static void coord_display_options_popup (GtkWidget       *event_box,
+                                         GdkEventButton  *event,
+                                         GschemStatusBar *status_bar)
+{
+  GtkWidget *menu;
+
+  if (!status_bar->coord_popup) {
+    menu = create_coord_display_options_popup (status_bar);
+  }
+  else {
+    menu = status_bar->coord_popup;
   }
 
   gtk_widget_show_all (menu);
@@ -215,13 +233,13 @@ static void coord_display_options_popup (GtkWidget      *event_box,
  */
 static bool coord_display_released (GtkWidget      *label,
                                     GdkEventButton *event,
-                                    void           *user_data)
+                                    void           *status_bar)
 {
   bool ret_val;
 
   if (event->button == 3) {
 
-    coord_display_options_popup(label, event, user_data);
+    coord_display_options_popup(label, event, status_bar);
 
     ret_val = TRUE;
   }
@@ -234,21 +252,14 @@ static bool coord_display_released (GtkWidget      *label,
 
 /* -------------- Popup Menu for Mouse Middle Button Options  -------------- */
 
-/*!
- * \brief GschemStatusBar Show Middle Mouse Options Popup
- * \par Function Description
- *  This functions creates and displays a small pop-up menu on
- *  the middle-button status widget when the right mouse button
- *  is released on the widget.
- */
-static void middle_button_options_popup (GtkWidget      *event_box,
-                                         GdkEventButton *event,
-                                         void           *user_data)
+/*! Creates the context menu for the middle button options */
+static GtkWidget*
+create_middle_button_options_popup(GschemStatusBar *status_bar)
 {
   GtkWidget *menu;
   int i;
 
-  /* create the context menu */
+  /* create the middle button context menu */
   menu = geda_menu_new();
 
   for (i = 0; middle_popup_items[i].text != NULL; i++) {
@@ -261,9 +272,33 @@ static void middle_button_options_popup (GtkWidget      *event_box,
                       (GCallback)status_options_popup_clicked,
                       (void*)(long)(entry.signal));
 
-    GEDA_OBJECT_SET_DATA (popup_item, user_data, "status-bar");
+    GEDA_OBJECT_SET_DATA (popup_item, status_bar, "status-bar");
 
     geda_menu_shell_append (GEDA_MENU_SHELL (menu), popup_item);
+  }
+  status_bar->middle_popup = menu;
+
+  return menu;
+}
+
+/*!
+ * \brief GschemStatusBar Show Middle Mouse Options Popup
+ * \par Function Description
+ *  This functions creates and displays a small pop-up menu on
+ *  the middle-button status widget when the right mouse button
+ *  is released on the widget.
+ */
+static void middle_button_options_popup (GtkWidget       *event_box,
+                                         GdkEventButton  *event,
+                                         GschemStatusBar *status_bar)
+{
+  GtkWidget *menu;
+
+  if (!status_bar->middle_popup) {
+    menu = create_middle_button_options_popup (status_bar);
+  }
+  else {
+    menu = status_bar->middle_popup;
   }
 
   gtk_widget_show_all (menu);
@@ -285,13 +320,13 @@ static void middle_button_options_popup (GtkWidget      *event_box,
  */
 static bool middle_button_released (GtkWidget      *label,
                                     GdkEventButton *event,
-                                    void           *user_data)
+                                    void           *status_bar)
 {
   bool ret_val;
 
   if (event->button == 3) {
 
-    middle_button_options_popup(label, event, user_data);
+    middle_button_options_popup(label, event, status_bar);
 
     ret_val = TRUE;
   }
@@ -304,16 +339,9 @@ static bool middle_button_released (GtkWidget      *label,
 
 /* --------------- Popup Menu for Mouse Third Button Options  -------------- */
 
-/*!
- * \brief GschemStatusBar Show Third Mouse Options Popup
- * \par Function Description
- *  This functions creates and displays a small pop-up menu on
- *  the third-button status widget when the right mouse button
- *  is released on the widget.
- */
-static void third_button_options_popup (GtkWidget      *event_box,
-                                        GdkEventButton *event,
-                                        void           *user_data)
+/*! Creates the context menu for the third button options */
+static GtkWidget*
+create_third_button_options_popup(GschemStatusBar *status_bar)
 {
   GtkWidget *menu;
   int i;
@@ -331,9 +359,34 @@ static void third_button_options_popup (GtkWidget      *event_box,
                      (GCallback)status_options_popup_clicked,
                      (void*)(long)(entry.signal));
 
-    GEDA_OBJECT_SET_DATA (popup_item, user_data, "status-bar");
+    GEDA_OBJECT_SET_DATA (popup_item, status_bar, "status-bar");
 
     geda_menu_shell_append (GEDA_MENU_SHELL (menu), popup_item);
+  }
+
+  status_bar->third_popup = menu;
+
+  return menu;
+}
+
+/*!
+ * \brief GschemStatusBar Show Third Mouse Options Popup
+ * \par Function Description
+ *  This functions creates and displays a small pop-up menu on
+ *  the third-button status widget when the right mouse button
+ *  is released on the widget.
+ */
+static void third_button_options_popup (GtkWidget       *event_box,
+                                        GdkEventButton  *event,
+                                        GschemStatusBar *status_bar)
+{
+  GtkWidget *menu;
+
+  if (!status_bar->third_popup) {
+    menu = create_third_button_options_popup (status_bar);
+  }
+  else {
+    menu = status_bar->third_popup;
   }
 
   gtk_widget_show_all (menu);
@@ -353,15 +406,15 @@ static void third_button_options_popup (GtkWidget      *event_box,
  *
  * \sa middle_button_options_popup
  */
-static bool third_button_released (GtkWidget      *label,
-                                    GdkEventButton *event,
-                                    void           *user_data)
+static bool third_button_released (GtkWidget       *label,
+                                   GdkEventButton  *event,
+                                   void            *status_bar)
 {
   bool ret_val;
 
   if (event->button == 3) {
 
-    third_button_options_popup(label, event, user_data);
+    third_button_options_popup(label, event, status_bar);
 
     ret_val = TRUE;
   }
@@ -387,6 +440,41 @@ static void gschem_status_bar_style_set (GtkWidget *widget, GtkStyle *previous)
   gtk_widget_style_get (GTK_WIDGET (widget), "height", &height, NULL);
 
   gschem_status_bar_set_height (widget, height);
+}
+
+static void destroy_popup(GtkWidget *widget)
+{
+  gtk_widget_destroy(widget);
+  g_object_ref_sink(widget);
+  g_object_unref(widget);
+}
+
+/*!
+ * \brief Dispose Reference of a  GschemStatusBar object
+ * \par Function Description
+ */
+static void dispose (GObject *object)
+{
+  GschemStatusBar *status_bar = GSCHEM_STATUS_BAR (object);
+
+  if (status_bar->coord_popup) {
+    destroy_popup(status_bar->coord_popup);
+    status_bar->coord_popup = NULL;
+  }
+
+  if (status_bar->middle_popup) {
+    destroy_popup(status_bar->middle_popup);
+    status_bar->middle_popup = NULL;
+  }
+
+  if (status_bar->third_popup) {
+    destroy_popup(status_bar->third_popup);
+    status_bar->third_popup = NULL;
+  }
+
+  /* lastly, chain up to the parent finalize */
+  g_return_if_fail (gschem_status_bar_parent_class != NULL);
+  gschem_status_bar_parent_class->dispose (object);
 }
 
 /*!
@@ -486,6 +574,7 @@ gschem_status_bar_class_init (void *class, void *class_data)
 
   bar_class->reformat_coordinates = gschem_status_bar_reformat_coordinates;
 
+  gobject_class->dispose          = dispose;
   gobject_class->finalize         = finalize;
 
   gobject_class->get_property     = get_property;
@@ -506,7 +595,7 @@ gschem_status_bar_class_init (void *class, void *class_data)
 
   pspec = g_param_spec_int ("grid-mode",
                           _("Grid Mode"),
-                          _("Sets the Gride Mode to display on the status bar"),
+                          _("Sets the Grid Mode to display on the status bar"),
                               GRID_NONE,
                               GRID_MESH,
                               GRID_NONE,
@@ -598,7 +687,7 @@ gschem_status_bar_class_init (void *class, void *class_data)
   */
   pspec = g_param_spec_int ("height",
                           _("Status Bar Height"),
-                          _("Sets or gets the height of the status bar"),
+                          _("Set or get the height of the status bar"),
                              0,
                              25,
                              2,
@@ -1080,7 +1169,7 @@ gschem_status_bar_setup_buffers (GschemStatusBar *widget)
 static void
 gschem_status_bar_instance_init (GTypeInstance *instance, void *g_class)
 {
-  GschemStatusBar *widget = (GschemStatusBar*)instance;
+  GschemStatusBar *bar = (GschemStatusBar*)instance;
   EdaConfig  *cfg;
 
   GtkWidget  *coord_event;
@@ -1100,11 +1189,11 @@ gschem_status_bar_instance_init (GTypeInstance *instance, void *g_class)
   left_label_tip   = _("Left pointer button assignment");
   middle_label_tip = _("Middle pointer button assignment, right click for options");
   right_label_tip  = _("Right pointer button assignment, right click for options");
-  grid_label_tip   = _("Indicates the current snap,grid units or states");
+  grid_label_tip   = _("Indicates the current snap, grid units or state");
   status_label_tip = _("Indicates the current command state");
   status_bar_tip   = _("Gschem status bar");
 
-  g_return_if_fail (widget != NULL);
+  g_return_if_fail (bar != NULL);
 
   const char *grp;
   const char *key;
@@ -1112,84 +1201,88 @@ gschem_status_bar_instance_init (GTypeInstance *instance, void *g_class)
   cfg = eda_config_get_user_context();
   grp = WIDGET_CONFIG_GROUP;
   key = "status-coord-mode";
-  i_var_restore_group_integer(cfg, grp, key, &widget->coord_mode, COORD_FORMAT_XY);
+  i_var_restore_group_integer(cfg, grp, key, &bar->coord_mode, COORD_FORMAT_XY);
 
-  widget->buffers = gschem_status_bar_setup_buffers (widget);
+  bar->coord_popup  = NULL;
+  bar->middle_popup = NULL;
+  bar->third_popup  = NULL;
+
+  bar->buffers = gschem_status_bar_setup_buffers (bar);
 
   gtk_widget_push_composite_child ();
 
-  widget->left_label = geda_visible_label_new (NULL);
-  gtk_misc_set_padding (GTK_MISC (widget->left_label), STATUS_XPAD, STATUS_YPAD);
-  gtk_box_pack_start (GTK_BOX (widget), widget->left_label, FALSE, FALSE, 0);
-  gtk_widget_set_tooltip_text (GTK_WIDGET(widget->left_label), left_label_tip);
+  bar->left_label = geda_visible_label_new (NULL);
+  gtk_misc_set_padding (GTK_MISC (bar->left_label), STATUS_XPAD, STATUS_YPAD);
+  gtk_box_pack_start (GTK_BOX (bar), bar->left_label, FALSE, FALSE, 0);
+  gtk_widget_set_tooltip_text (GTK_WIDGET(bar->left_label), left_label_tip);
 
   separator = geda_vseparator_new ();
   g_object_set (separator, "visible", TRUE, NULL);
-  gtk_box_pack_start (GTK_BOX (widget), separator, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (bar), separator, FALSE, FALSE, 0);
 
   middle_event = gtk_event_box_new();
   g_object_set (middle_event, "visible", TRUE, NULL);
-  gtk_box_pack_start (GTK_BOX (widget), middle_event, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (bar), middle_event, FALSE, FALSE, 0);
 
-  widget->middle_label = geda_visible_label_new (NULL);
-  gtk_misc_set_padding (GTK_MISC (widget->middle_label), STATUS_XPAD, STATUS_YPAD);
-  gtk_container_add(GTK_CONTAINER(middle_event), widget->middle_label);
-  gtk_widget_set_tooltip_text (GTK_WIDGET(widget->middle_label), middle_label_tip);
+  bar->middle_label = geda_visible_label_new (NULL);
+  gtk_misc_set_padding (GTK_MISC (bar->middle_label), STATUS_XPAD, STATUS_YPAD);
+  gtk_container_add(GTK_CONTAINER(middle_event), bar->middle_label);
+  gtk_widget_set_tooltip_text (GTK_WIDGET(bar->middle_label), middle_label_tip);
 
   separator = geda_vseparator_new ();
   g_object_set (separator, "visible", TRUE, NULL);
-  gtk_box_pack_start (GTK_BOX (widget), separator, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (bar), separator, FALSE, FALSE, 0);
 
   third_event = gtk_event_box_new();
   g_object_set (third_event, "visible", TRUE, NULL);
-  gtk_box_pack_start (GTK_BOX (widget), third_event, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (bar), third_event, FALSE, FALSE, 0);
 
-  widget->right_label = geda_visible_label_new (NULL);
-  gtk_misc_set_padding (GTK_MISC (widget->right_label), STATUS_XPAD, STATUS_YPAD);
-  gtk_container_add(GTK_CONTAINER(third_event), widget->right_label);
-  gtk_widget_set_tooltip_text (GTK_WIDGET(widget->right_label), right_label_tip);
-
-  separator = geda_vseparator_new ();
-  g_object_set (separator, "visible", TRUE, NULL);
-  gtk_box_pack_start (GTK_BOX (widget), separator, FALSE, FALSE, 0);
-
-  widget->grid_label = geda_visible_label_new (NULL);
-  gtk_misc_set_padding (GTK_MISC (widget->grid_label), STATUS_XPAD, STATUS_YPAD);
-  gtk_box_pack_start (GTK_BOX (widget), widget->grid_label, FALSE, FALSE, 0);
-  gtk_widget_set_tooltip_text (GTK_WIDGET(widget->grid_label), grid_label_tip);
+  bar->right_label = geda_visible_label_new (NULL);
+  gtk_misc_set_padding (GTK_MISC (bar->right_label), STATUS_XPAD, STATUS_YPAD);
+  gtk_container_add(GTK_CONTAINER(third_event), bar->right_label);
+  gtk_widget_set_tooltip_text (GTK_WIDGET(bar->right_label), right_label_tip);
 
   separator = geda_vseparator_new ();
   g_object_set (separator, "visible", TRUE, NULL);
-  gtk_box_pack_start (GTK_BOX (widget), separator, FALSE, FALSE, 1);
+  gtk_box_pack_start (GTK_BOX (bar), separator, FALSE, FALSE, 0);
+
+  bar->grid_label = geda_visible_label_new (NULL);
+  gtk_misc_set_padding (GTK_MISC (bar->grid_label), STATUS_XPAD, STATUS_YPAD);
+  gtk_box_pack_start (GTK_BOX (bar), bar->grid_label, FALSE, FALSE, 0);
+  gtk_widget_set_tooltip_text (GTK_WIDGET(bar->grid_label), grid_label_tip);
+
+  separator = geda_vseparator_new ();
+  g_object_set (separator, "visible", TRUE, NULL);
+  gtk_box_pack_start (GTK_BOX (bar), separator, FALSE, FALSE, 1);
 
   coord_event = gtk_event_box_new();
   g_object_set (coord_event, "visible", TRUE, NULL);
-  gtk_box_pack_start (GTK_BOX (widget), coord_event, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (bar), coord_event, FALSE, FALSE, 0);
 
-  widget->coord_label = geda_visible_label_new (_(COORD_DISPLAY_OFF));
-  gtk_misc_set_padding (GTK_MISC (widget->coord_label), STATUS_XPAD, STATUS_YPAD);
-  gtk_container_add(GTK_CONTAINER(coord_event), widget->coord_label);
-  gtk_widget_set_tooltip_text (GTK_WIDGET(widget->coord_label), coord_label_tip);
+  bar->coord_label = geda_visible_label_new (_(COORD_DISPLAY_OFF));
+  gtk_misc_set_padding (GTK_MISC (bar->coord_label), STATUS_XPAD, STATUS_YPAD);
+  gtk_container_add(GTK_CONTAINER(coord_event), bar->coord_label);
+  gtk_widget_set_tooltip_text (GTK_WIDGET(bar->coord_label), coord_label_tip);
 
   separator = geda_vseparator_new ();
   g_object_set (separator, "visible", TRUE, NULL);
-  gtk_box_pack_start (GTK_BOX (widget), separator, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (bar), separator, FALSE, FALSE, 0);
 
-  widget->status_label = geda_visible_label_new (NULL);
-  gtk_misc_set_padding (GTK_MISC (widget->status_label), STATUS_XPAD, STATUS_YPAD);
-  gtk_box_pack_end (GTK_BOX (widget), widget->status_label, FALSE, FALSE, 0);
-  gtk_widget_set_tooltip_text (GTK_WIDGET(widget->status_label), status_label_tip);
+  bar->status_label = geda_visible_label_new (NULL);
+  gtk_misc_set_padding (GTK_MISC (bar->status_label), STATUS_XPAD, STATUS_YPAD);
+  gtk_box_pack_end (GTK_BOX (bar), bar->status_label, FALSE, FALSE, 0);
+  gtk_widget_set_tooltip_text (GTK_WIDGET(bar->status_label), status_label_tip);
 
   {
     AtkObject *obj;
-    obj = gtk_widget_get_accessible(GTK_WIDGET(widget));
+    obj = gtk_widget_get_accessible(GTK_WIDGET(bar));
     atk_object_set_name (obj, status_bar_tip);
     atk_object_set_description(obj, status_bar_tip);
   }
 
   gtk_widget_pop_composite_child ();
 
-  g_signal_connect (widget, "notify::coord-mode",
+  g_signal_connect (bar, "notify::coord-mode",
                     G_CALLBACK (G_STRUCT_OFFSET (GschemStatusBarClass,
                                                  reformat_coordinates)),
                     NULL);
@@ -1205,15 +1298,15 @@ gschem_status_bar_instance_init (GTypeInstance *instance, void *g_class)
 
   g_signal_connect (coord_event, "button-release-event",
                     G_CALLBACK (coord_display_released),
-                    widget);
+                    bar);
 
   g_signal_connect (middle_event, "button-release-event",
                     G_CALLBACK (middle_button_released),
-                    widget);
+                    bar);
 
   g_signal_connect (third_event, "button-release-event",
                     G_CALLBACK (third_button_released),
-                    widget);
+                    bar);
 }
 
 /*!

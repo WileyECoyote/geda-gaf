@@ -49,7 +49,7 @@
 #define GEDA_TYPE_TOPLEVEL            (geda_toplevel_get_type())
 #define GEDA_TOPLEVEL(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_TOPLEVEL, GedaToplevel))
 #define GEDA_TOPLEVEL_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),  GEDA_TYPE_TOPLEVEL, GedaToplevelClass))
-#define GEDA_IS_TOPLEVEL(obj)         (is_a_geda_toplevel(obj))
+#define GEDA_IS_TOPLEVEL(obj)         (is_a_geda_toplevel((GedaToplevel*)(obj)))
 #define GEDA_IS_TOPLEVEL_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),  GEDA_TYPE_TOPLEVEL))
 #define GEDA_TOPLEVEL_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_TOPLEVEL, GedaToplevelClass))
 
@@ -63,8 +63,6 @@ struct _GedaToplevel {
 
   /* This is the GObject parent and has nothing to do with LibGeda */
   GObject parent;
-
-  GedaTopType head_marker;   /* structure type signature */
 
   int    open_flags;         /* Control flags for the geda_file_open function. Indexed by FOpenFlags */
   char  *untitled_name;      /* untitled sch basename */
@@ -200,8 +198,6 @@ struct _GedaToplevel {
   void *load_newer_backup_data;
 
   GList   *weak_refs;             /* Weak references */
-
-  GedaTopType tail_marker;       /* structure type signature */
 };
 
 #ifdef __cplusplus
@@ -229,6 +225,8 @@ Page         *geda_toplevel_get_page_by_id          (GedaToplevel *toplevel, int
 int           geda_toplevel_get_page_count          (GedaToplevel *toplevel);
 Page         *geda_toplevel_get_page_down           (GedaToplevel *toplevel);
 Page         *geda_toplevel_get_page_up             (GedaToplevel *toplevel);
+
+bool          geda_toplevel_is_current_page         (GedaToplevel *toplevel, Page *page);
 
 bool          geda_toplevel_move_page_down          (GedaToplevel *toplevel, Page *page);
 bool          geda_toplevel_move_page_up            (GedaToplevel *toplevel, Page *page);

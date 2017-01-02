@@ -77,7 +77,7 @@ Example: Set the visibility of all attributes except the pin labels to default v
 
     gsym-set-visibility.py -R -p
 
-Copyright (C) 2014-2015 by Wiley Edward Hill.  Released under GPL Version 3.
+Copyright (C) 2014-2015 by Wiley Edward Hill.  Released under GPL Version 2.
 
 """
 

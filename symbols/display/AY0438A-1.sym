@@ -459,6 +459,6 @@ symversion=0.1
 T 300 9700 5 10 0 0 0 0 1
 author=AutoTron
 T 300 9500 5 10 0 0 0 0 1
-dist-license=GPLv3
+dist-license=GPLv2
 T 300 9300 5 10 0 0 0 0 1
 use-license=unlimited

@@ -3,10 +3,14 @@ if ENABLE_GATTRIB
 GATTRIB_DIR=gattrib
 endif
 
+if HAVE_PYTHON
+GEDATHON_DIR=libgedathon
+endif
+
 CLEAN_DIRS = M4/*~
 
 SUBDIRS = bitmaps include intl libgeda libgedacolor libgedacairo \
-		  libgedadraw libgedauio libgedathon gaf ${GATTRIB_DIR} \
+		  libgedadraw libgedauio ${GEDATHON_DIR} gaf ${GATTRIB_DIR} \
 		  gschem gsymcheck gnetlist utils symbols docs examples
 
 # See doxygen below (in this same file) - these all have configs.dox

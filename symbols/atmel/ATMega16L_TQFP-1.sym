@@ -429,6 +429,6 @@ author=Matthijs ten Berge <tenbergemh@yahoo.com>
 T 400 8850 9 10 1 1 0 0 1
 value=ATmega16L
 T 900 1000 8 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 900 800 8 10 0 0 0 0 1
 use-license=unlimited

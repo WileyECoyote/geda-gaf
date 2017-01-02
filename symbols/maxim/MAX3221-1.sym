@@ -7,8 +7,6 @@ T 50 5300 5 10 0 0 0 0 1
 description=Maxim RS-232 transceiver with autoshutdown and ESD protection
 T 50 5600 5 10 0 0 0 0 1
 documentation=http://www.maxim-ic.com/quick_view2.cfm/qv_pk/1069
-T 50 6300 5 10 0 0 0 0 1
-author=Sam Fladung
 T 50 4250 5 10 0 0 0 0 1
 numslots=0
 T 300 3950 9 10 1 0 0 0 1
@@ -209,11 +207,13 @@ T 500 3700 9 10 1 0 0 0 1
 TTL
 T 1600 3700 9 10 1 0 0 0 1
 RS-232
-T 50 5850 5 10 0 0 0 0 1
-dist-license=GPL V3 or later
-T 50 6100 5 10 0 0 0 0 1
-use-license=unlimited
 T 50 5000 5 10 0 0 0 0 1
 symversion=1.1
 T 50 4750 5 10 0 0 0 0 1
 footprint=TSSOP16
+T 50 6300 5 10 0 0 0 0 1
+author=Sam Fladung
+T 50 5850 5 10 0 0 0 0 1
+dist-license=GPLv2
+T 50 6100 5 10 0 0 0 0 1
+use-license=unlimited

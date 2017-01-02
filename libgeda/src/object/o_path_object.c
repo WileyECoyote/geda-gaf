@@ -529,10 +529,9 @@ geda_path_object_copy (const GedaObject *o_current)
  *
  *  Depending on <B>*version</B>, the correct file format is considered.
  *  Currently two file format revisions are supported :
- *  <DL>
- *    <DT><DD>the file format used until 20010704 release.</DT>
- *    <DT><DD>the file format used for the releases after 20010704.</DT>
- *  </DL>
+ *
+ * \li the file format used until 20010704 release.
+ * \li the file format used for the releases after 20010704.
  *
  * \param [in]  first_line      Character string with path description.
  * \param [in]  tb              Text buffer containing the path string.

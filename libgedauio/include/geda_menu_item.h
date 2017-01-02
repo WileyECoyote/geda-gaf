@@ -53,8 +53,7 @@ typedef struct _GedaMenuItemPrivate GedaMenuItemPrivate;
 
 struct _GedaMenuItem
 {
-  GtkBin   bin;
-  GedaType instance_type;
+  GtkBin bin;
 
   /*< private >*/
   GedaMenuItemPrivate *priv;

@@ -45,7 +45,8 @@ void s_toplevel_close(PageDataSet *PageData) {
   s_table_destroy(PageData->component_table, PageData->comp_count, PageData->comp_attrib_count);
   s_table_destroy(PageData->net_table, PageData->net_count, PageData->net_attrib_count);
   s_table_destroy(PageData->pin_table , PageData->pin_count, PageData->pin_attrib_count);
-  s_sheet_data_reset(PageData);
+
+  s_sheet_data_free(PageData);
 
   if (pr_current->page_current != NULL) {
     geda_struct_page_delete (pr_current, pr_current->page_current, FALSE);
@@ -68,9 +69,6 @@ int s_toplevel_read_page(GedaToplevel *toplevel, char *filename)
 
   GError *err = NULL;
   int result;
-
-  /* Set the new filename */
-  toplevel->page_current->filename = geda_strdup(filename);
 
   /* Read in and fill out toplevel using geda_open_file and its callees */
   if(!geda_open_file (toplevel, toplevel->page_current, filename, &err)) {
@@ -291,8 +289,8 @@ void s_toplevel_delete_attrib_col(GtkSheet *sheet) {
 #ifdef DEBUG
   printf("%s: about to delete col in gtksheet.\n", __func__);
 #endif
-  /* Delete col on gtksheet  */
 
+  /* Delete col on gtksheet */
   gtk_sheet_delete_columns (sheet, sheet->range.col0, 1);
 
   sheet_head->CHANGED = TRUE;  /* Set changed flag so user is prompted when exiting */
@@ -485,9 +483,8 @@ STRING_LIST *s_toplevel_get_component_attribs_in_sheet(char *refdes)
   /* Sanity check */
   if (row == -1) {
 
-    /* we didn't find the item in the list */
-    fprintf(stderr,
-	    _("%s: did not find the refdes in the master list!\n"), __func__);
+    /* we did not find the item in the list */
+    fprintf(stderr, "%s: %s <%s>!",  __func__, _("did not find the refdes in the master list\n"), refdes);
     return NULL;
   }
 
@@ -523,7 +520,7 @@ STRING_LIST *s_toplevel_get_component_attribs_in_sheet(char *refdes)
     /* Sanity check */
     if (count != i+1) {
       /* for some reason, we have lost a name_value_pair somewhere . . .  */
-      fprintf(stderr, _("%s: count != i!  Exiting . . . .\n"), __func__);
+      fprintf(stderr, "%s: %s\n", __func__, _("count != i! Exiting ..."));
       return NULL;
     }
 
@@ -608,13 +605,13 @@ s_toplevel_update_component_attribs_in_toplevel (
       /* Else clause is suggestion from Ales */
       old_attrib_name = geda_utility_string_split(old_name_value_pair, '=', 0);
       if ((strcmp(old_attrib_name, "refdes") != 0) &&
-          (strcmp(old_attrib_name, "net") != 0) &&
-          (strcmp(old_attrib_name, "slot") != 0) &&
-          (s_attrib_name_in_list(new_comp_attrib_list, old_attrib_name) == FALSE))
-      {
-        s_string_list_add_item(complete_comp_attrib_list, &count, old_name_value_pair);
-      }
-      else {
+        (strcmp(old_attrib_name, "net") != 0) &&
+        (strcmp(old_attrib_name, "slot") != 0) &&
+        (s_attrib_name_in_list(new_comp_attrib_list, old_attrib_name) == FALSE))
+        {
+          s_string_list_add_item(complete_comp_attrib_list, &count, old_name_value_pair);
+        }
+        else {
 
           int status;
 
@@ -642,7 +639,7 @@ s_toplevel_update_component_attribs_in_toplevel (
 
 
   /*
-   *Now the main business of this function:  updating the attribs attached to this o_current.
+   * Now the main business of this function:  updating the attribs attached to this o_current.
    * Loop on name=value pairs held in complete_comp_attrib_list , and then use this to get the
    * name=value pairs out of new_comp_attrib_list and from o_current.
    */
@@ -702,84 +699,82 @@ s_toplevel_update_component_attribs_in_toplevel (
     else { /* we need a better place to get this info since the TABLE can be out of date */
       visibility = sheet_head->component_table[col][row].visibility;
       show_name_value = sheet_head->component_table[col][row].show_name_value;
-  }
+    }
 
-  GEDA_FREE(refdes);
+    GEDA_FREE(refdes);
 
 
-  /* -------  Four cases to consider: Case 1 ----- */
-  if ((old_attrib_value != NULL) && (new_attrib_value != NULL) &&
-    (strlen(new_attrib_value) != 0) )
-  {
-    /* simply write new attrib into place of old one. */
-
-#if DEBUG
-    printf("%s: replacing old attrib with name= %s, value= %s\n", __func__,
-           new_attrib_name, new_attrib_value);
-    printf("               visibility = %d, show_name_value = %d.\n",
-           visibility, show_name_value);
-#endif
-
-    s_object_replace_attrib_in_object(toplevel,
-                                      o_current,
-                                      new_attrib_name,
-                                      new_attrib_value,
-                                      visibility,
-                                      show_name_value);
-  }
-
-  /* -------  Four cases to consider: Case 2 ----- */
-  else if ( (old_attrib_value != NULL) && (new_attrib_value == NULL) ) {
-    /* remove attrib from component*/
+    /* -------  Four cases to consider: Case 1 ----- */
+    if ((old_attrib_value != NULL) && (new_attrib_value != NULL) &&
+      (strlen(new_attrib_value) != 0) )
+    {
+      /* simply write new attrib into place of old one. */
 
 #if DEBUG
-    printf("%s: about to remove old attrib with name= %s, value= %s\n",
-           __func__, old_attrib_name, old_attrib_value);
+      printf("%s: replacing old attrib with name= %s, value= %s\n", __func__,
+              new_attrib_name, new_attrib_value);
+      printf("               visibility = %d, show_name_value = %d.\n",
+              visibility, show_name_value);
 #endif
 
-    s_object_release_attrib_in_object (toplevel, o_current, old_attrib_name);
-  }
-
-  /* -------  Four cases to consider: Case 3 ----- */
-  else if ( (old_attrib_value == NULL) && (new_attrib_value != NULL) ) {
-    /* add new attrib to component. */
-
-#if DEBUG
-    printf("%s: about to add new attrib with name= %s, value= %s\n",
-           __func__, new_attrib_name, new_attrib_value);
-#endif
-
-    s_object_add_comp_attrib_to_object (toplevel,
+      s_object_replace_attrib_in_object(toplevel,
                                         o_current,
                                         new_attrib_name,
                                         new_attrib_value,
                                         visibility,
                                         show_name_value);
+    }
 
-    /* -------  Four cases to consider: Case 4 ----- */
-  }
-  else {
-
-    /* Do nothing. */
+    /* -------  Four cases to consider: Case 2 ----- */
+    else if ((old_attrib_value != NULL) && (new_attrib_value == NULL)) {
+      /* remove attrib from component*/
 
 #if DEBUG
-    printf("%s: nothing needs to be done.\n", __func__);
+      printf("%s: about to remove old attrib with name= %s, value= %s\n",
+      __func__, old_attrib_name, old_attrib_value);
 #endif
-  }
 
-  /* Toggle attribute visibility and name/value setting */
+      s_object_release_attrib_in_object (toplevel, o_current, old_attrib_name);
+    }
 
+    /* -------  Four cases to consider: Case 3 ----- */
+    else if ((old_attrib_value == NULL) && (new_attrib_value != NULL)) {
+      /* add new attrib to component. */
 
-  /* free everything and iterate */
-  GEDA_FREE(new_attrib_name);
-  GEDA_FREE(new_attrib_value);
-  GEDA_FREE(old_attrib_name);
-  GEDA_FREE(old_attrib_value);
-  local_list = local_list->next;
-}   /*   while (local_list != NULL)  */
+#if DEBUG
+      printf("%s: about to add new attrib with name= %s, value= %s\n",
+      __func__, new_attrib_name, new_attrib_value);
+#endif
+
+      s_object_add_comp_attrib_to_object (toplevel,
+                                          o_current,
+                                          new_attrib_name,
+                                          new_attrib_value,
+                                          visibility,
+                                          show_name_value);
+
+      /* -------  Four cases to consider: Case 4 ----- */
+    }
+    else {
+
+      /* Do nothing. */
+
+#if DEBUG
+      printf("%s: nothing needs to be done.\n", __func__);
+#endif
+    }
+
+    /* Toggle attribute visibility and name/value setting */
+
+    /* free everything and iterate */
+    GEDA_FREE(new_attrib_name);
+    GEDA_FREE(new_attrib_value);
+    GEDA_FREE(old_attrib_name);
+    GEDA_FREE(old_attrib_value);
+    local_list = local_list->next;
+  }   /*   while (local_list != NULL)  */
   return;
 }
-
 
 /*------------------------------------------------------------------*/
 /*!
@@ -791,18 +786,16 @@ STRING_LIST *s_toplevel_get_net_attribs_in_sheet(char *netname)
   return NULL;
 }
 
-
 /*------------------------------------------------------------------*/
 /*!
  * \todo Function doesn't do anything - candidate for removal?
  */
-void s_toplevel_update_net_attribs_in_toplevel(GedaObject *o_current,
-				   STRING_LIST *new_net_attrib_list)
+void s_toplevel_update_net_attribs_in_toplevel(GedaObject  *o_current,
+                                               STRING_LIST *net_attrib_list)
 {
   /* must be filled in */
   return;
 }
-
 
 /*------------------------------------------------------------------*/
 /*! \brief Get pin attributes
@@ -846,8 +839,7 @@ STRING_LIST *s_toplevel_get_pin_attribs_in_sheet(char *refdes, GedaObject *pin)
     row_label = geda_strconcat(refdes, ":", pinnumber, NULL);
   }
   else {
-    fprintf(stderr,
-            _("%s: either refdes or pinnumber of object missing!\n"), __func__);
+    fprintf(stderr, "%s: %s!\n", __func__, _("object missing either refdes or pinnumber"));
             return NULL;
   }
 
@@ -855,8 +847,8 @@ STRING_LIST *s_toplevel_get_pin_attribs_in_sheet(char *refdes, GedaObject *pin)
 
   /* Sanity check */
   if (row == -1) {
-    /* we didn't find the item in the list */
-    fprintf(stderr, "%s: didn't find the refdes:pin [%s]in the master list!\n", __func__, row_label );
+    /* The item was not found in the master pin list */
+    fprintf(stderr, "%s: %s [%s]!\n", __func__, _("didn't find the refdes:pin "), row_label);
     return NULL;
   }
 
@@ -887,7 +879,7 @@ STRING_LIST *s_toplevel_get_pin_attribs_in_sheet(char *refdes, GedaObject *pin)
     /* Sanity check */
     if (count != i+1) {
       /* for some reason, we have lost a name_value_pair somewhere . . .  */
-      fprintf(stderr, _("%s: count != i!  Exiting . . . .\n"), __func__);
+      fprintf(stderr, "%s: %s\n", __func__, _("count != i! Exiting ..."));
       return NULL;
     }
 
@@ -970,7 +962,7 @@ s_toplevel_update_pin_attribs_in_toplevel (GedaToplevel *toplevel,
     }
 
     /* -------  Four cases to consider: Case 2: old attrib exists, new one doesn't ----- */
-    else if ( (old_attrib_value != NULL) && (new_attrib_value == NULL) ) {
+    else if ((old_attrib_value != NULL) && (new_attrib_value == NULL)) {
       /* remove attrib from pin */
 #if DEBUG
       printf("%s: about to remove old attrib with name= %s, value= %s\n",
@@ -980,7 +972,7 @@ s_toplevel_update_pin_attribs_in_toplevel (GedaToplevel *toplevel,
     }
 
     /* -------  Four cases to consider: Case 3: No old attrib, new one exists. ----- */
-    else if ( (old_attrib_value == NULL) && (new_attrib_value != NULL) ) {
+    else if ((old_attrib_value == NULL) && (new_attrib_value != NULL)) {
       /* add new attrib to pin. */
 
 #if DEBUG
@@ -1027,5 +1019,4 @@ void s_toplevel_init_data_set(GedaToplevel *toplevel, PageDataSet *PageData) {
 
   /* ---------- Now verify correctness of entire design.  ---------- */
   s_toplevel_verify_design(toplevel);  /* pr_current is a global */
-
 }

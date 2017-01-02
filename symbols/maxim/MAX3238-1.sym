@@ -456,6 +456,6 @@ refdes=U?
 T 600 8500 8 10 0 0 0 0 1
 author=AutoTron
 T 600 8300 8 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 600 8100 8 10 0 0 0 0 1
 use-license=unlimited

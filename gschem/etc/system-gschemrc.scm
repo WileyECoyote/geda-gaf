@@ -1624,6 +1624,7 @@
 (map-keys "E N"        "edit-snap")
 (map-keys "E P"        "edit-extend")
 (map-keys "E R"        "edit-rotate-left")
+(map-keys "E T"        "edit-rotate-right")
 (map-keys "E O"        "edit-offset")
 (map-keys "E I"        "edit-mirror")
 (map-keys "E <Shift>C" "edit-color")
@@ -2058,20 +2059,20 @@
         (,(N_ "Save A_ll")         file-save-all        "gtk-save"            ,(N_ "Save all open documents"))
         (,(N_ "Save _Modified")    file-save-modified   "gtk-save"            ,(N_ "Save all modified documents"))
         (,(N_ "_Revert")           page-revert          "gtk-revert-to-saved" ,(N_ "Discard changes and reload the current document"))
-        (,(N_ "Re_vert All")       page-revert-all      "gtk-revert-to-saved" ,(N_ "Discard changes and reload the all documents"))
+        (,(N_ "Re_vert All")       page-revert-all      "gtk-revert-to-saved" ,(N_ "Discard changes and reload all open documents"))
 
         ("SEPARATOR"               #f                   #f            #f)
         (,(N_ "_Print...")         file-print           "gtk-print"           ,(N_ "Print the current document"))
         (,(N_ "_Export")           #f                   "gtk-save-as"         ,(N_ "Export options"))
         (,(N_ "Write p_df")        file-write-pdf            #f                    ,(N_ "Create PDF document"))
-        (,(N_ "Write _image...")   file-write-image     "geda-save-image"     ,(N_ "This is a dummy tip"))
+        (,(N_ "Write _image...")   file-write-image     "geda-save-image"     ,(N_ "Export image"))
 
         ("SEPARATOR"               #f                   #f            #f)
         (,(N_ "E_xecute Script...")file-run-script      "gtk-execute"         ,(N_ "Execute a script file"))
 
         ("SEPARATOR"               #f                   #f            #f)
         (,(N_ "_Close")            file-close           "gtk-close"           ,(N_ "Close the current document"))
-        (,(N_ "Close All")        file-close-all       "geda-close-all"      ,(N_ "Close all open documents"))
+        (,(N_ "Close All")         file-close-all       "geda-close-all"      ,(N_ "Close all open documents"))
         (,(N_ "_Quit")             file-quit            "gtk-quit"            ,(N_ "Quit gschem and exit"))
       )
 )
@@ -2096,11 +2097,11 @@
         (,(N_ "Mo_ve")              edit-move              "geda-move"        ,(N_ "Move selection"))
         (,(N_ "O_ffset")            edit-offset            #f                 ,(N_ "Offset the selected objects"))
         (,(N_ "Rotate _90")         edit-rotate-left       #f                 ,(N_ "Rotate the current selection about a point"))
-        (,(N_ "Snap to _grid")      edit-snap              "geda-snap"        ,(N_ "Snap selection to grid to current grid"))
+        (,(N_ "Snap to _grid")      edit-snap              "geda-snap"        ,(N_ "Snap selection to current grid"))
 
         ("SEPARATOR"               #f                     #f                       #f)
         (,(N_ "_Array")             edit-array            #f                  ,(N_ "Create and array of objects"))
-        (,(N_ "_Break")             edit-break            #f                  ,(N_ "Break a linear object into seperate objects"))
+        (,(N_ "_Break")             edit-break            #f                  ,(N_ "Break a linear object into separate objects"))
         (,(N_ "E_xtend")            edit-extend           #f                  ,(N_ "Project a linear objects to other objects"))
 
         ("SEPARATOR"               #f                     #f                       #f)
@@ -2145,7 +2146,7 @@
       )
 )
 
-;; If you prefer, the buffer menu items can be under a seperate top-level menu,
+;; If you prefer, the buffer menu items can be under a separate top-level menu,
 ;; to do this uncomment all of this section and, though not actually required,
 ;; comment-out the same items under select-menu-items and uncomment the "_Buffer"
 ;; top-level menu near the end of the menu section.
@@ -2195,7 +2196,7 @@
         ("SEPARATOR"                #f                      #f)
         (,(N_ "_Dark color scheme")  view-dark-colors       #f               ,(N_ "Set the color map to the Dark set"))
         (,(N_ "_Light color scheme") view-light-colors      #f               ,(N_ "Set the color map to the Light set"))
-        (,(N_ "B_W color scheme")    view-bw-colors         #f               ,(N_ "Set the color map to the Black and White"))
+        (,(N_ "B_W color scheme")    view-bw-colors         #f               ,(N_ "Set the color map to Black and White"))
       )
 )
 
@@ -2292,7 +2293,7 @@
 ;;      menu item name                    menu action            menu icon name            Menu Item Tooltip
 ;;
      `( (,(N_ "A_utonumber Text...")      tools-autonumber       #f                 ,(N_ "Open Auto Number dialog"))
-        (,(N_ "Show _Console Window...")  tools-show-console     #f                 ,(N_ "Display the console"))
+        (,(N_ "Show _Console Window...")  tools-show-console     #f                 ,(N_ "Display the console window"))
         (,(N_ "Show Coord _Window...")    tools-show-coordinates #f                 ,(N_ "Display coordinates"))
 
         ("SEPARATOR"                      #f                     #f)
@@ -2318,7 +2319,7 @@
 
         ("SEPARATOR"                     #f                        #f)
         (,(N_ "Toggle _Snap On-Off")      options-cycle-snap       #f ,(N_ "Toggle the object snap mode"))
-        (,(N_ "Toggle _Rubberband")       options-rubberband       #f ,(N_ "Toggle rubberband mode"))
+        (,(N_ "Toggle _Rubberband")       options-rubberband       #f ,(N_ "Toggle rubberband net mode"))
         (,(N_ "Toggle _Magnetic Net")     options-magneticnet      #f ,(N_ "Toggle magnetic net mode"))
         (,(N_ "Toggle _Drag Move")        options-dragcanmove      #f ,(N_ "Toggle Drag-can-Move mode"))
         (,(N_ "Toggle _Outline-Box")      options-action-feedback  #f ,(N_ "Toggle action feedback"))

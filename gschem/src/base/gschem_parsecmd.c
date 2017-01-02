@@ -6,7 +6,7 @@
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
  * License as published by the Free Software Foundation; either
- * version 3 of the License, or (at your option) any later version.
+ * version 2 of the License, or (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -126,7 +126,7 @@ static void version (void)
   if (!quiet_mode)
     printf(_(
       "gEDA/gschem %s (%s) (g%.7s)\n"
-      "Copyright (C) 1998-2016 gEDA developers\n"
+      "Copyright (C) 1998-2017 gEDA developers\n"
       "This is free software, and you are welcome to redistribute it under\n"
       "certain conditions. For details, see the file `COPYING', which is\n"
       "included in the gEDA distribution.\n"
@@ -241,7 +241,7 @@ int gschem_parse_commandline(int argc, char *argv[])
         err = NULL;
         str = geda_normalize_filename (optarg, &err);
         if (str == NULL) {
-          u_log_message(_("error parsing: <%s>: %s\n"), optarg, err->message);
+          u_log_message("%s <%s>: %s\n", _("error parsing"), optarg, err->message);
           g_clear_error(&err);
         }
         else {
@@ -273,27 +273,38 @@ int gschem_parse_commandline(int argc, char *argv[])
         version ();
         break;
 
-      case '?':
+      case '?': {
 
 #ifndef HAVE_GETOPT_LONG
 
+        const char *_ERROR = _("ERROR");
+
         if ((optopt != ':') && (strchr (GETOPT_OPTIONS, optopt) != NULL)) {
-          fprintf (stderr,
-                   "ERROR: -%c option requires an argument.\n\n",
-                   optopt);
+
+          const char *err_arg = _("option requires an argument");
+
+          fprintf (stderr, "%s: -%c %s.\n\n", _ERROR, optopt, err_arg);
         }
         else if (isprint (optopt)) {
-          fprintf (stderr, "ERROR: Unknown option -%c.\n\n", optopt);
+
+          const char *err_ukn = _("Unknown option");
+
+          fprintf (stderr, "%s: -%c.\n\n", _ERROR, err_ukn, optopt);
         }
         else {
-          fprintf (stderr, "ERROR: Unknown option character `\\x%x'.\n\n",
-                   optopt);
+
+          const char *err_ukn = _("Unknown option character");
+
+          fprintf (stderr, "%s: %s `\\x%x'.\n\n", _ERROR, err_ukn, optopt);
         }
 #endif
 
-        fprintf (stderr, "\nRun `%s --help' for more information.\n", argv[0]);
+        const char *err_info = _("--help for more information");
+
+        fprintf (stderr, "\n%s %s %s.\n", _("Run"), argv[0], err_info);
         exit (1);
         break;
+      }
 
       case 'x':
         /* Argument is a Scheme expression to be evaluated on gschem
@@ -309,7 +320,7 @@ int gschem_parse_commandline(int argc, char *argv[])
         break;
 
       default:
-        fprintf (stderr, "<parse_commandline> unhandler case for <%c>.\n", ch);
+        fprintf (stderr, "<%s> unhandler case for <%c>.\n", __func__, ch);
     }
   }
 

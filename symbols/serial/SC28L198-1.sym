@@ -941,7 +941,7 @@ description=Octal UART for 3.3 and 5V supply voltage for 8-bit microcontrollers
 T 400 9600 5 10 0 0 0 0 1
 author=Wojciech Zabolotny wzabATise.pw.edu.pl
 T 400 9400 5 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 400 9200 5 10 0 0 0 0 1
 use-license=unlimited
 T 400 8400 3 10 0 0 0 0 1

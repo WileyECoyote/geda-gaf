@@ -937,7 +937,7 @@ FUNCTION ( AddBox )
  *  and attaches the object to the given Page object. Bus objects are drawn
  *  as a line but represent a set of electrical paths, like cables. A bus is
  *  similar to a Net object but represent multiple wires, not just one.
- *  If the optional busname argument is given then a seperate text attribute
+ *  If the optional busname argument is given then a separate text attribute
  *  object will be created and attached to the Bus object with the value given
  *  by the string and the name "netname". The optional color argument applies
  *  to the the Bus object, the hidden netname attribute would be assigned the
@@ -1444,7 +1444,7 @@ FUNCTION(AddLine)
  * \par Function Description
  *  This function calls Geda API Library routines to create a new <b>PyGedaNetObject</b>
  *  and attaches the object to the given Page object. If the optional netname
- *  argument is given then a seperate text attribute object will be created
+ *  argument is given then a separate text attribute object will be created
  *  and attached to the Net object with the value given by the string and the
  *  name "netname". The optional color argument applies to the the Net object,
  *  the hidden netname attribute would be assigned the default attribute color.

@@ -1,7 +1,7 @@
 ## $Id$ indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4
 ## Process this file with automake to produce Makefile.in
 
-AUTOMAKE_OPTIONS = subdir-objects
+#AUTOMAKE_OPTIONS             = 1.6 subdir-objects
 
 # Build a libtool library for installation in libdir.
 INC_GEDA = -I$(top_srcdir) -I$(top_srcdir)/include -I$(top_srcdir)/intl

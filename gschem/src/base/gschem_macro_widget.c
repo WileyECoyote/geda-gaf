@@ -5,7 +5,7 @@
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 3 of
+ * published by the Free Software Foundation; either version 2 of
  * the License, or (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -230,9 +230,9 @@ gschem_macro_widget_class_init (void *class, void *class_data)
   g_object_class_install_property (G_OBJECT_CLASS (macro_class),
                                    PROP_LABEL_TEXT,
                                    g_param_spec_string ("label-text",
-                                                       _("Label Text"),
-                                                       _("Text to be displayed for the Macro label"),
-                                                       _("Macro:"),
+                                                      _("Label Text"),
+                                                      _("Text to be displayed for the Macro label"),
+                                                      _("Macro:"),
                                                         G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
   g_object_class_install_property (G_OBJECT_CLASS (macro_class),

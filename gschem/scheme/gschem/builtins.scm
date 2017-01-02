@@ -116,11 +116,14 @@
 (define-action-public (&edit-mirror #:label (_ "Mirror Mode") #:icon "geda-mirror")
   (%edit-mirror))
 
-(define-action-public (&edit-offset #:label (_ "Offest selection") #:icon "geda-offset")
+(define-action-public (&edit-offset #:label (_ "Offset selection") #:icon "geda-offset")
   (%edit-offset))
 
 (define-action-public (&edit-rotate-left #:label (_ "Rotate Mode") #:icon "geda-rotate")
   (%edit-rotate-left))
+
+(define-action-public (&edit-rotate-right #:label (_ "Rotate Mode") #:icon "geda-rotate")
+  (%edit-rotate-right))
 
 (define-action-public (&edit-snap #:label (_ "Snap to Grid") #:icon "geda-snap")
   (%edit-snap))

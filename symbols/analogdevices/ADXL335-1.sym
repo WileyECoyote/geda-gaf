@@ -204,7 +204,7 @@ description=3-Axis +/-3g Accelerometer,Low Power
 T 400 4600 5 10 0 0 0 0 1
 numslots=0
 T 400 5400 5 10 0 0 0 0 1
-dist-license=GPL (version 3 or later)
+dist-license=GPLv2
 T 400 5200 5 10 0 0 0 0 1
 use-license=unlimited
 T 700 200 5 8 0 0 0 0 1

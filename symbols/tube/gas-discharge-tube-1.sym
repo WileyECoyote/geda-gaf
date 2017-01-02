@@ -1,18 +1,12 @@
 v 20151122 2
+T 1100 900 9 10 0 1 0 0 1
+device=discharge-tube
+T 1250 650 8 14 1 1 0 3 1
+refdes=V?
 T 1100 1100 9 10 0 0 0 0 1
 footprint=gdt-3.fp
 T 1100 1300 9 10 0 0 0 0 1
 description=three terminal gas discharge tube
-T 1100 1500 9 10 0 0 0 0 1
-dist-license=GPL
-T 1100 1700 9 10 0 0 0 0 1
-use-license=unlimited
-T 1100 900 9 10 0 1 0 0 1
-device=discharge-tube
-T 1100 1875 9 10 0 0 0 0 1
-author=John Griessen
-T 550 -450 9 14 1 1 0 3 1
-refdes=V?
 V 600 700 350 3 12 0 0 -1 -1 0 -1 -1 -1 -1 -1
 V 800 700 75 3 0 0 0 -1 -1 1 -1 -1 -1 -1 -1
 L 200 700 530 700 3 0 0 0 -1 -1
@@ -156,3 +150,9 @@ pinseq=3
 T 350 250 5 8 0 1 0 0 1
 pintype=pas
 }
+T 1100 1875 9 10 0 0 0 0 1
+author=John Griessen
+T 1100 1500 9 10 0 0 0 0 1
+dist-license=GPLv2
+T 1100 1700 9 10 0 0 0 0 1
+use-license=unlimited

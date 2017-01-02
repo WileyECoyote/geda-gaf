@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-10-31 13:36-0500\n"
+"POT-Creation-Date: 2017-01-01 21:03-0600\n"
 "PO-Revision-Date: 2012-01-27 14:17+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Afrikaans <af@li.org>\n"
@@ -20,26 +20,26 @@ msgstr ""
 
 #: gattrib/data/geda-gattrib.desktop.in:3
 msgid "gEDA Attribute Editor"
-msgstr ""
+msgstr "Geda Kenmerk Redakteur"
 
 #: gattrib/data/geda-gattrib.desktop.in:4
 msgid "Manipulate component attributes with gattrib"
-msgstr ""
+msgstr "Manipuleer komponent eiendomme met gattrib"
 
 #: gattrib/src/f_export.c:81
-#, c-format
-msgid "%s: Could not open [%s]\n"
-msgstr ""
+#, fuzzy
+msgid "Could not open"
+msgstr "%s: Kon nie open lêer [%s]\n"
 
 #: gattrib/src/gattrib.c:178
 #, c-format
 msgid "Failed to save user configuration to '%s': %s."
-msgstr ""
+msgstr "Kan gebruiker opset wat nie red '%s': %s."
 
-#: gattrib/src/gattrib.c:349
-#, c-format
-msgid "Couldn not find file [%s]\n"
-msgstr ""
+#: gattrib/src/gattrib.c:371
+#, fuzzy
+msgid "Couldn not find file"
+msgstr "Kon nie vind lêer [% s]\n"
 
 #: gattrib/src/g_rc.c:51
 #, c-format
@@ -48,18 +48,21 @@ msgid ""
 "but you have a version [%s] gattribrc file.\n"
 "Please be sure that you have the latest rc file.\n"
 msgstr ""
+"gEDA/gaf sagteware weergawe [%s%s.%s],\n"
+"maar jy het 'n weergawe [%s] gattribrc lêer.\n"
+"Maak seker dat jy die nuutste RC lêer.\n"
 
 #: gattrib/src/i_basic.c:105
 msgid "The operating system is out of memory or resources."
-msgstr ""
+msgstr "Die bedryfstelsel is uit die geheue of hulpbronne."
 
 #: gattrib/src/i_basic.c:210
 #, c-format
-msgid "Check: path \"%s\"\n"
-msgstr ""
+msgid "Check path: \"%s\"\n"
+msgstr "Check pad: \"%s\"\n"
 
 #: gattrib/src/parsecmd.c:62
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "\n"
 "Gattrib:  The gEDA project's attribute editor.\n"
@@ -68,8 +71,8 @@ msgid ""
 "Usage: %s [OPTIONS] filename1 ... filenameN\n"
 "\n"
 "\t-h, --help      This help menu\n"
-"\t-q, --quiet     Quiet mode\n"
-"\t-v, --verbose   Verbose mode on\n"
+"\t-q, --quiet     Enable quiet mode\n"
+"\t-v, --verbose   Enable verbose mode\n"
 "\t-V, --version   Show version information.\n"
 "\n"
 "  FAQ:\n"
@@ -77,6 +80,21 @@ msgid ""
 "     The cell text colors indicate the visibility of the attribute.\n"
 "     "
 msgstr ""
+"\n"
+"Gattrib:  Die Geda projek se eienskappe redakteur.\n"
+"Bied skematiese eienskappe in maklik-om-te wysig sigblad formaat.\n"
+"\n"
+"Gebruik:% s [OPSIE] lêernaam1 ... lêernaamN\n"
+"\n"
+"\t-h, --help      uit te voer Dit help menu\n"
+"\t-q, --quiet     stille af\n"
+"\t-v, --verbose   verbose af\n"
+"\t-V, --version   Wys weergawe inligting.\n"
+"\n"
+"  FAQ:\n"
+"  *  Wat doen die kleure van die sel teks beteken?\n"
+"     Die sel teks kleure dui die sigbaarheid van die eienskap.\n"
+"     "
 
 #: gattrib/src/parsecmd.c:100
 #, c-format
@@ -88,6 +106,12 @@ msgid ""
 "included in the gEDA distribution.\n"
 "There is NO WARRANTY, to the extent permitted by law.\n"
 msgstr ""
+"gEDA/gattrib %s (%s) (g%.7s)\n"
+"Kopiereg (C) 1998-2016 gEDA ontwikkelaars\n"
+"Dit is gratis sagteware, en jy is welkom om dit te herverdeel onder\n"
+"sekere omstandighede. Vir meer besonderhede, sien die lêer `COPYING ', wat\n"
+"ingesluit is in die Geda verspreiding.\n"
+"Daar is geen waarborg, in die mate toegelaat deur die wet.\n"
 
 #: gattrib/src/s_misc.c:66
 #, c-format
@@ -95,26 +119,26 @@ msgid ""
 "\n"
 "DONE\n"
 msgstr ""
+"\n"
+"gedaan\n"
 
 #: gattrib/src/s_misc.c:68
 #, c-format
 msgid " DONE\n"
+msgstr " gedaan\n"
+
+#: gattrib/src/s_object.c:215
+msgid "failed to find attribute"
 msgstr ""
 
 #: gattrib/src/s_object.c:216
-#, c-format
-msgid "%s, we have failed to find the attrib %s on the component. Exiting...\n"
-msgstr ""
-
-#: gattrib/src/s_object.c:334
-#, c-format
-msgid "%s: trying to add attrib to non-complex or non-net!\n"
+msgid "Exiting..."
 msgstr ""
 
 #: gattrib/src/s_rename.c:98
 #, c-format
-msgid "Increase number of rename_pair sets in s_net.c\n"
-msgstr ""
+msgid "Increase MAX_SETS in %s\n"
+msgstr "Verhoog MAX_SETS %s\n"
 
 #: gattrib/src/s_rename.c:116
 #, c-format
@@ -123,7 +147,7 @@ msgstr ""
 
 #: gattrib/src/s_rename.c:120
 #, c-format
-msgid " -> Dest: _%s_\n"
+msgid " -> Destination: _%s_\n"
 msgstr ""
 
 #: gattrib/src/s_rename.c:151
@@ -135,91 +159,86 @@ msgid ""
 "This warning is okay if you have multiple levels of hierarchy!\n"
 msgstr ""
 
-#: gattrib/src/s_rename.c:219
+#: gattrib/src/s_rename.c:220
 #, c-format
-msgid "Increase number of rename_pairs (MAX_RENAME) in s_rename.c\n"
+msgid "Increase the number of rename_pairs (MAX_RENAME) in s_rename.c\n"
 msgstr ""
 
-#: gattrib/src/s_sheet_data.c:245
+#: gattrib/src/s_sheet_data.c:242
 #, c-format
 msgid "Starting master comp list creation.\n"
 msgstr ""
 
-#: gattrib/src/s_sheet_data.c:309
+#: gattrib/src/s_sheet_data.c:308
 #, c-format
 msgid "- Starting master comp attrib list creation.\n"
 msgstr ""
 
-#: gattrib/src/s_sheet_data.c:424
+#: gattrib/src/s_sheet_data.c:434
 #, c-format
 msgid "- Creating master pin list.\n"
 msgstr ""
 
-#: gattrib/src/s_sheet_data.c:464
-#, c-format
-msgid ""
-"In s_sheet_data_add_master_pin_list_items, found component pin with no "
-"pinnumber.\n"
+#: gattrib/src/s_sheet_data.c:484
+msgid "found component pin with no pinnumber."
 msgstr ""
 
-#: gattrib/src/s_sheet_data.c:521
+#: gattrib/src/s_sheet_data.c:545
 #, c-format
 msgid "- Starting master pin attrib list creation.\n"
 msgstr ""
 
-#: gattrib/src/s_string_list.c:131
-#, c-format
-msgid "In s_string_list_add_item, tried to add to a NULL list.\n"
+#: gattrib/src/s_string_list.c:142
+msgid "attempted to add to a NULL list.\n"
 msgstr ""
 
-#: gattrib/src/s_string_list.c:196
-#, c-format
-msgid "In s_string_list_delete_item, tried to remove item from empty list\n"
+#: gattrib/src/s_string_list.c:205
+msgid "attempted to remove item from an empty list\n"
 msgstr ""
 
-#: gattrib/src/s_string_list.c:272
-#, c-format
-msgid "In s_string_list_delete_item, couldn't delete item %s\n"
+#: gattrib/src/s_string_list.c:283
+msgid "could not delete item"
 msgstr ""
 
-#: gattrib/src/s_table.c:352 gattrib/src/s_table.c:415
+#: gattrib/src/s_table.c:355 gattrib/src/s_table.c:416
 #, c-format
 msgid "Component Error looking for row ref [%s]\n"
 msgstr ""
 
-#: gattrib/src/s_table.c:357 gattrib/src/s_table.c:419
+#: gattrib/src/s_table.c:358 gattrib/src/s_table.c:420
 #, c-format
 msgid "Component Error looking for column named [%s]\n"
 msgstr ""
 
-#: gattrib/src/s_table.c:567
+#: gattrib/src/s_table.c:570
 #, c-format
 msgid "- Starting internal pin TABLE creation\n"
 msgstr ""
 
-#: gattrib/src/s_table.c:630
+#: gattrib/src/s_table.c:633
 #, c-format
 msgid "Pin Error looking for row ref [%s]\n"
 msgstr ""
 
-#: gattrib/src/s_table.c:634
+#: gattrib/src/s_table.c:637
 #, c-format
 msgid "Pin Error looking for column named [%s]\n"
 msgstr ""
 
-#: gattrib/src/s_toplevel.c:490
-#, c-format
-msgid "%s: did not find the refdes in the master list!\n"
+#: gattrib/src/s_toplevel.c:487
+msgid "did not find the refdes in the master list\n"
 msgstr ""
 
-#: gattrib/src/s_toplevel.c:526 gattrib/src/s_toplevel.c:890
-#, c-format
-msgid "%s: count != i!  Exiting . . . .\n"
+#: gattrib/src/s_toplevel.c:523 gattrib/src/s_toplevel.c:882
+msgid "count != i! Exiting ..."
 msgstr ""
 
-#: gattrib/src/s_toplevel.c:850
-#, c-format
-msgid "%s: either refdes or pinnumber of object missing!\n"
+#: gattrib/src/s_toplevel.c:842
+msgid "object missing either refdes or pinnumber"
+msgstr ""
+
+#: gattrib/src/s_toplevel.c:851
+msgid "didn't find the refdes:pin "
 msgstr ""
 
 #: gattrib/src/x_dialog.c:111
@@ -353,35 +372,36 @@ msgstr ""
 msgid "Find next"
 msgstr ""
 
-#: gattrib/src/x_fileselect.c:112
-#, c-format
-msgid "Loading file [%s]\n"
+#: gattrib/src/x_fileselect.c:113
+msgid "Loading file"
 msgstr ""
 
-#: gattrib/src/x_fileselect.c:118
-#, c-format
-msgid "Could not load schematic [%s]\n"
+#: gattrib/src/x_fileselect.c:119
+msgid "Could not load schematic"
 msgstr ""
 
-#: gattrib/src/x_find.c:271
+#: gattrib/src/x_find.c:276
 msgid "Attribute"
 msgstr ""
 
-#: gattrib/src/x_find.c:308
+#: gattrib/src/x_find.c:313
 msgid "Designator"
 msgstr ""
 
-#: gattrib/src/x_menus.c:596
+#: gattrib/src/x_menus.c:645
 #, c-format
 msgid ""
 "Error loading %s:\n"
 "%s\n"
 msgstr ""
 
-#: gattrib/src/x_window.c:168
+#: gattrib/src/x_window.c:176
 msgid "Saving main window geometry and settings.\n"
 msgstr ""
 
-#: gattrib/src/x_window.c:205
+#: gattrib/src/x_window.c:213
 msgid "Retrieving main Window geometry and settings.\n"
 msgstr ""
+
+#~ msgid "failed to find the attribute %s on component. Exiting...\n"
+#~ msgstr "versuim het om die eienskap %s op komponent vind. Opwindende ...\n"

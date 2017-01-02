@@ -370,7 +370,7 @@ documentation=http://www.ti.com/lit/ds/symlink/pcm2707.pdf
 T 2100 1800 9 10 0 0 0 3 1
 symversion=0.1
 T 3300 5000 5 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 3300 4800 5 10 0 0 0 0 1
 use-license=unlimited
 L 3600 4000 600 4000 3 0 0 0 -1 -1

@@ -284,6 +284,6 @@ symversion=2.0
 T 25 5300 8 10 0 0 0 0 1
 author=AutoTron
 T 25 5000 5 8 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 25 4850 5 8 0 0 0 0 1
 use-license=unlimited

@@ -17,16 +17,16 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
-/*! \file geda_math_angle.c
- *
- *  \brief Functions for working with angles
+/*!
+ * \file m_angle.c
+ * \brief Functions for working with angles
  */
 
 #include <config.h>
 #include <math.h>
 #include <stdio.h>
 
-#include "libgeda_priv.h"
+#include "../../include/libgeda_priv.h"
 
 /*! \brief Checks if an angle is [0,360)
  *

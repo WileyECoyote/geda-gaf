@@ -1092,8 +1092,9 @@ int o_net_add_busrippers(GschemToplevel *w_current,
           geda_struct_page_append_object (toplevel->page_current, new_obj);
         }
         else {
-          u_log_message(_("Bus ripper symbol [%s] was not found in any component library\n"),
-                           name);
+          u_log_message("%s \"%s\"\n",
+                      _("Bus ripper symbol was not found in any component library"),
+                         name);
         }
       }
     }

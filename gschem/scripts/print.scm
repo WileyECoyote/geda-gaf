@@ -1,6 +1,6 @@
 ;; $Id$
 ;;
-;; This file may be used to print gschem schematics from the
+;; This file may be used to print geda schematics from the
 ;; command line.  Typical usage is:
 ;;
 ;;   gschem -p -o mysch.ps -r /path/to/this/file/print.scm mysch.sch

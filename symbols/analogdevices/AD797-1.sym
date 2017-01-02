@@ -4,9 +4,9 @@ author=AutoTron
 T 25 1950 8 10 0 0 0 0 1
 symversion=0.1
 T 25 1800 8 10 0 0 0 0 1
-dist-license=GPLv3
+dist-license=GPLv2
 T 25 1650 8 10 0 0 0 0 1
-use-license=GPLv3
+use-license=unlimited
 T 1050 800 5 10 1 1 0 0 1
 device=AD797
 T 1025 650 5 10 0 1 0 0 1

@@ -1,9 +1,9 @@
 # geda-python.m4                                      -*-Autoconf-*-
-# serial 1.0
+# serial 1.3
 
 dnl gEDA Prebuild Checks and Setup Options for Python
 dnl
-dnl Copyright (C) 2013-2014  Wiley Edward Hill <wileyhill@gmail.com>
+dnl Copyright (C) 2013-2016  Wiley Edward Hill <wileyhill@gmail.com>
 dnl
 dnl This program is free software; you can redistribute it and/or modify
 dnl it under the terms of the GNU General Public License as published by
@@ -102,10 +102,10 @@ AC_DEFUN([AX_CHECK_PYOBJECT],
 
 dnl copied and modified from gnome-python
 dnl
-dnl AM_CHECK_PYMOD(MODNAME [,VERSION, VERSION_MATCHER [,ACTION-IF-FOUND [,ACTION-IF-NOT-FOUND]]])
+dnl AX_CHECK_PYMOD(MODNAME [,VERSION, VERSION_MATCHER [,ACTION-IF-FOUND [,ACTION-IF-NOT-FOUND]]])
 dnl Check if a module of a particular version is visible to python.
 
-AC_DEFUN([AM_CHECK_PYMOD],
+AC_DEFUN([AX_CHECK_PYMOD],
   [AC_REQUIRE([AM_PATH_PYTHON])
   py_mod_var=`echo $1`
   AC_MSG_CHECKING(for python module $1 ifelse([$2],[],,[>= $2]))
@@ -186,11 +186,11 @@ AC_DEFUN([AX_CHECK_PYTHON],
 
             AM_PATH_PYTHON($PYTHON_MIN_VERSION)
             AX_PYTHON_MOD_PATH
-            AX_CHECK_PYTHON_HEADERS(with_python="yes",with_python="no")
+            AX_CHECK_PYTHON_HEADERS(have_python="yes",have_python="no")
             AX_CHECK_PYOBJECT
 
             echo "test for python ldflags"
-            if test "X$with_python" = Xyes; then
+            if test "X$have_python" = Xyes; then
 
                 dnl copied from the Redland RDF bindings, http://librdf.org/
                 if test `uname` = Darwin; then
@@ -212,19 +212,19 @@ AC_DEFUN([AX_CHECK_PYTHON],
                 AC_SUBST([PYTHON_CFLAGS])
 
                 dnl check for mutagen module >= $PYTHON_MUTAGEN_MIN_VERSION
-                AM_CHECK_PYMOD(mutagen,$PYTHON_MUTAGEN_MIN_VERSION,mutagen.version_string,,with_python=no)
-
+                dnl AX_CHECK_PYMOD(mutagen,$PYTHON_MUTAGEN_MIN_VERSION,mutagen.version_string,,have_python=no)
                 dnl this test should perhaps be re-enabled, but only produce a warning -- tmz
+
                 if test "X$have_gdkpixbuf" = "Xyes" -a "X$have_pygobject" = "Xyes"; then
                     dnl check for gtk module >= $PYTHON_GTK_MIN_VERSION
-                    AM_CHECK_PYMOD(gtk,$PYTHON_GTK_MIN_VERSION,'.'.join(map(str, gtk.ver)),,with_python=no)
+                    AX_CHECK_PYMOD(gtk,$PYTHON_GTK_MIN_VERSION,'.'.join(map(str, gtk.ver)),,have_python=no)
                 fi
             fi
         else
             AC_MSG_WARN(python not found.  try --with-python=/path/to/python)
-            with_python="no"
+            have_python="no"
         fi
     fi
-    AM_CONDITIONAL(HAVE_PYTHON, test x$with_python = xyes)
+    AM_CONDITIONAL(HAVE_PYTHON, test x$have_python = xyes)
   []dnl
 ])dnl

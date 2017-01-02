@@ -333,7 +333,7 @@ struct _GtkSheet
     char *title;
     char *description;         /* sheet description and further information for application use */
 
-    GtkSheetRow *row;
+    GtkSheetRow     *row;
     GtkSheetColumn **column;  /* flexible array of column pointers */
 
     int rows_resizable;
@@ -356,7 +356,7 @@ struct _GtkSheet
 
     /* active cell */
     GtkSheetCell active_cell;
-    GtkWidget *sheet_entry;
+    GtkWidget   *sheet_entry;
 
     GType entry_type;            /* wanted entry type */
     GType installed_entry_type;  /* installed entry type */
@@ -381,7 +381,7 @@ struct _GtkSheet
 
     /*the scrolling window and it's height and width to
      * make things a little speedier */
-    GdkWindow *sheet_window;
+    GdkWindow   *sheet_window;
     unsigned int sheet_window_width;
     unsigned int sheet_window_height;
 
@@ -402,13 +402,13 @@ struct _GtkSheet
 
     /* Column Titles */
     GdkRectangle column_title_area;
-    GdkWindow *column_title_window;
-    int column_titles_visible;
+    GdkWindow   *column_title_window;
+    int          column_titles_visible;
 
     /* Row Titles */
     GdkRectangle row_title_area;
-    GdkWindow *row_title_window;
-    int row_titles_visible;
+    GdkWindow   *row_title_window;
+    int          row_titles_visible;
 
     /*scrollbars*/
     GtkAdjustment *hadjustment;

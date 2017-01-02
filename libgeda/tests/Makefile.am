@@ -12,13 +12,15 @@ check_geda = \
 	test_bus \
 	test_circle \
 	test_complex \
+	test_keyfile \
 	test_line \
 	test_list \
 	test_net \
 	test_path  \
 	test_picture \
 	test_pin \
-	test_text
+	test_text \
+	test_toplevel
 
 check_object = \
 	test_arc_object \

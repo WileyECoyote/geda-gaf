@@ -103,7 +103,7 @@ documentation=http://www.irf.com/product-info/datasheets/data/irsm005-800mh.pdf
 T 3400 3800 5 10 0 1 0 0 1
 description=Half-Bridge,W/GATE-DRIVER,80A,40V
 T 3400 4200 5 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 3400 4400 5 10 0 0 0 0 1
 use-license=unlimited
 P 3900 3000 3600 3000 1 0 0

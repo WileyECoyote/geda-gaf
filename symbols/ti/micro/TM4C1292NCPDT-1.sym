@@ -1405,6 +1405,6 @@ pinlabel=VREF+
 T 1600 11800 9 10 0 0 0 0 1
 symversion=0.0.3
 T 1400 1900 5 10 0 0 0 0 1
-dist-license=GPL3
+dist-license=GPLv2
 T 1400 1700 5 10 0 0 0 0 1
 use-license=unlimited

@@ -189,7 +189,7 @@ documentation=
 T 400 5400 5 10 0 0 0 0 1
 description=L293E Push Pull four channel driver
 T 400 5600 5 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 400 5800 5 10 0 0 0 0 1
 use-license=unlimited
 P 4000 3500 3700 3500 1 0 0

@@ -344,7 +344,7 @@ g_rc_parse_user (const char *rcname, GError **err)
   rcname = (rcname != NULL) ? rcname : "gafrc";
 
   rcfile = g_build_filename (geda_user_config_path (), rcname, NULL);
-  status = g_rc_parse_file (rcfile, eda_config_get_user_context (), err);
+  status = g_rc_parse_file (rcfile, eda_config_get_user_context(), err);
 
   GEDA_FREE (rcfile);
   return status;

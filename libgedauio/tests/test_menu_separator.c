@@ -35,8 +35,10 @@
 #include <gtk/gtk.h>
 
 #include <geda/geda.h>
-#include <geda_menu_item.h>
-#include <geda_menu_separator.h>
+
+#include "../include/geda_bulb.h"
+#include "../include/geda_menu_item.h"
+#include "../include/geda_menu_separator.h"
 
 #include "test-suite.h"
 
@@ -53,7 +55,44 @@ int check_construction (void)
 {
   int result = 0;
 
+  unsigned int bad_address = 0x7FFF0;
+
+  /* Check instance identifier when no instances exist */
+
+  if (GEDA_IS_MENU_SEPERATOR(&bad_address)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
   GtkWidget *widget = geda_menu_separator_new();
+
+  /* Check instance identifier with NULL */
+
+  if (GEDA_IS_MENU_SEPERATOR(NULL)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  /* Check instance identifier with pointer to low memory location */
+
+  if (GEDA_IS_MENU_SEPERATOR(&bad_address)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  /* Check instance identifier with another type of object */
+
+  GtkWidget *bulb_widget = geda_bulb_new(NULL);
+
+  if (GEDA_IS_MENU_SEPERATOR(bulb_widget)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  g_object_ref_sink(bulb_widget); /* Sink reference to the tmp bulb */
+  g_object_unref(bulb_widget);    /* Destroy bulb widget */
+
+  /* Check instance identifier with a valid object */
 
   if (!GEDA_IS_MENU_SEPERATOR(widget)) {
     fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
@@ -61,12 +100,36 @@ int check_construction (void)
   }
   else {
 
+    GtkWidget *widget2 = geda_menu_separator_new();
+
+    /* Check instance identifier of parent class */
     if (!GEDA_IS_MENU_ITEM(widget)) {
       fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
       result++;
     }
 
-    g_object_ref_sink(widget); /* Sink reference to menu_item */
+    g_object_ref_sink(widget); /* Sink reference to menu_seperator */
+    g_object_unref(widget);    /* Does not destroy widget */
+
+    /* Check that child instance was destroyed */
+    if (GEDA_IS_MENU_SEPERATOR(widget)) {
+      fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+      result++;
+    }
+
+    /* Check that parent instance was destroyed */
+    if (GEDA_IS_MENU_ITEM(widget)) {
+      fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+      result++;
+    }
+
+    /* Check 2nd instance is still valid */
+    if (!GEDA_IS_MENU_ITEM(widget2)) {
+      fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+      result++;
+    }
+
+    g_object_ref_sink(widget); /* Sink reference to menu_seperator */
     g_object_unref(widget);    /* Does not destroy widget */
   }
 

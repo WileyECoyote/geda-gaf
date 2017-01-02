@@ -33,7 +33,9 @@
 
 #include <glib.h>
 
-static GMemVTable memvtable;
+#if !GLIB_CHECK_VERSION(2, 44, 0)
+static GMemVTable memvtable = {0};
+#endif
 
 #ifdef __linux__
 
@@ -41,7 +43,8 @@ static GMemVTable memvtable;
 
 #define BACK_TRACE_SIZE 20
 
-static void inline traceback(void)  /* "static" means don't export the symbol... */
+static void
+inline traceback(void)  /* "static" means don't export the symbol... */
 {
   int j, nptrs;
 
@@ -77,19 +80,90 @@ static void inline traceback(void)  /* "static" means don't export the symbol...
  * locate errent routines.
  *
  */
-void geda_utility_program_backtrace(void)
+void
+geda_utility_program_backtrace(void)
 {
   traceback();
 }
 
 #else
 
-void geda_utility_program_backtrace(void)
+void
+geda_utility_program_backtrace(void)
 {
   fprintf(stderr, "geda_utility_program_backtrace in only available for linux\n");
 }
 
 #endif
+
+void*
+geda_utility_program_mem_alloc (unsigned int amount)
+{
+  void *ptr_mem;
+
+  if (amount > 0) {
+
+#if !GLIB_CHECK_VERSION(2, 44, 0)
+
+    if (memvtable.malloc) {
+      ptr_mem = malloc(amount);
+    }
+    else {
+      ptr_mem = g_malloc(amount);
+    }
+
+#else
+
+    ptr_mem = malloc(amount);
+
+#endif
+
+  }
+  else {
+    fprintf(stderr, "%s: tried to allocate memory with size zero\n", __func__);
+    ptr_mem = NULL;
+  }
+
+  return ptr_mem;
+}
+
+void*
+geda_utility_program_mem_calloc (unsigned int amount)
+{
+  void *ptr_mem;
+
+  ptr_mem = geda_utility_program_mem_alloc(amount);
+
+  if (ptr_mem) {
+    return memset(ptr_mem, 0, amount);
+  }
+  return NULL;
+}
+
+void
+geda_utility_program_mem_free (void *ptr_mem)
+{
+  if (ptr_mem != NULL) {
+
+#if !GLIB_CHECK_VERSION(2, 44, 0)
+
+    if (memvtable.free) {
+      free (ptr_mem);
+    }
+    else {
+      g_free(ptr_mem);
+    }
+
+#else
+
+    free (ptr_mem);
+
+#endif
+  }
+  else {
+    fprintf(stderr, "%s: pointer to mem is NULL>\n", __func__);
+  }
+}
 
 /*! \brief Setup GLib Memory Table
  *
@@ -105,15 +179,23 @@ void geda_utility_program_backtrace(void)
  * and g_malloc, free and g_free can be freely mixed. Guile uses
  * GLIBC, and not GLIB.
  */
-void geda_utility_program_mem_set_vtable(void)
+void
+geda_utility_program_mem_set_vtable(void)
 {
+
+#if !GLIB_CHECK_VERSION(2, 44, 0)
+
    memvtable.malloc      = malloc;
    memvtable.realloc     = realloc;
    memvtable.free        = free;
    memvtable.calloc      = calloc;
    memvtable.try_malloc  = 0;
    memvtable.try_realloc = 0;
+
    g_mem_set_vtable (&memvtable);
+
+#endif
+
 }
 
 /* Virutal over-ride, because we set the vtable, glib incorrectly

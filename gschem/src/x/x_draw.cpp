@@ -476,7 +476,7 @@ x_draw_initialize(GschemToplevel *w_current)
 
   gschem_atexit(x_draw_shutdown, NULL);
 
-  v_log_message(_("done\n"));
+  v_log_message("%s\n", _("done"));
 }
 
 extern "C" void
@@ -484,5 +484,5 @@ x_draw_shutdown(void *user_data)
 {
   v_log_message(_("Shutting down: Graphics Renderer Adaptor..."));
   delete RenderAdaptor;
-  v_log_message(_("Done, renderer is down\n"));
+  v_log_message("%s\n", _("Done, renderer is down"));
 }

@@ -66,19 +66,35 @@ GtkSheet *x_gtksheet_get_current_sheet() {
   return GTK_SHEET(sheets[gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook))]);
 }
 
-/*! \brief Destroy All GtkSheets */
-void x_gtksheet_destroy_all(){
+/*!
+ * \brief Release GtkSheet related resources
+ * \par Function Description
+ *  Destroy All GtkSheets.
+ */
+void x_gtksheet_destroy_all() {
+
   int i;
-  for(i=0; i<NUM_SHEETS; i++){
+
+  for(i = 0; i < NUM_SHEETS; i++) {
+
     if (sheets[i] !=NULL) {
+
       if (GTK_IS_SHEET (sheets[i])) {
-        gtk_widget_destroy( (GtkWidget*) sheets[i]);
-        sheets[i]=NULL;
-      }
-      else {
-	fprintf(stderr, "ERROR: x_gtksheet_destroy_all: reference is not a SHEET!\n");
+        gtk_widget_destroy ((GtkWidget*)sheets[i]);
       }
     }
+  }
+
+  g_free(sheets);
+  sheets = NULL;
+
+  if (popup) {
+
+    /* Only occurs if user views the context menu without selecting
+     * an item, otherwise the callack would have destroyed the popup */
+    gtk_widget_destroy (GTK_WIDGET(popup));
+    g_object_unref (popup);
+    popup = NULL;
   }
 }
 
@@ -101,7 +117,7 @@ void x_gtksheet_reveal_columns(GtkSheet *sheet) {
  * This function calls the appropriate functions to process request
  * from the mouse menu that can be activated when not in editing mode.
  * Unlike the example in the testgtksheet program this function
- * receives a pointer to enumerated integer value rather than a string.
+ * receives a pointer to an enumerated integer value rather than a string.
  *
  *  \param [in] widget is button widget
  *  \param [in] selection pointer to enumerated menu selection
@@ -115,34 +131,47 @@ static int popup_activated(GtkWidget *widget, IDS_Popup_items *selection)
 
     switch ( WhichItem ) {
       case ToggleVisibility:
-        if(s_properties_get_visibility(sheet->active_cell.row, sheet->active_cell.col))
-          s_properties_set_invisible();
-        else
-          s_properties_set_visible();
+        if (!x_gtksheet_get_is_empty(sheet, sheet->active_cell.row,
+                                            sheet->active_cell.col))
+        {
+          if (s_properties_get_visibility(sheet->active_cell.row,
+                                          sheet->active_cell.col))
+            s_properties_set_invisible();
+          else
+            s_properties_set_visible();
+        }
         break;
+
       case AddAttribute:
         s_toplevel_add_new_attrib(-1);
         break;
+
       case InsertAttribute:
         s_toplevel_add_new_attrib(sheet->range.col0);
         break;
+
       case HideAttribute:
         gtk_sheet_column_set_visibility(sheet, sheet->range.col0, FALSE);
         break;
       case RevealAttribute:
         x_gtksheet_reveal_columns(sheet);
         break;
+
       case DeleteAttribute:
         s_toplevel_delete_attrib_col(sheet);
         break;
+
       case ClearAttributeData:
         gtk_sheet_range_clear(sheet, &sheet->range);
         break;
+
       default:
           geda_log ("%s: unknown button ID: %d\n", __func__, WhichItem);
     } /* End Switch WhichItem */
 
     gtk_widget_destroy(popup);
+    g_object_unref(popup);
+    popup = NULL;
     return (TRUE);
 }
 
@@ -166,7 +195,7 @@ static GtkWidget *build_popup_menu(GtkWidget *sheet)
   {
     GtkWidget *item = geda_menu_item_new_with_label(popup_items[i]);
 
-    GEDA_SIGNAL_CONNECT(item,"activate", popup_activated, (void*)(long) i);
+    GEDA_SIGNAL_CONNECT(item, "activate", popup_activated, (void*)(long) i);
 
     gtk_widget_set_sensitive(GTK_WIDGET(item), TRUE);
     gtk_widget_set_can_focus(GTK_WIDGET(item), TRUE);
@@ -242,15 +271,17 @@ static int on_mouse_button_press(GtkWidget *widget,
     gdk_window_get_pointer (gtk_widget_get_window(sheet), NULL, NULL, &mods);
 
     if (mods&GDK_BUTTON3_MASK) {
-        if (popup) {
-            gtk_object_destroy(GTK_OBJECT(popup));
-            popup = NULL;
-        }
 
-        popup = build_popup_menu(sheet);
-        /* Display the menu we just created */
-        geda_menu_popup(GEDA_MENU(popup), NULL, NULL, NULL, NULL,
-                        event->button, event->time);
+      if (popup) {
+        gtk_widget_destroy(GTK_WIDGET(popup));
+        g_object_unref(popup);
+        popup = NULL;
+      }
+
+      popup = build_popup_menu(sheet);
+      /* Display the menu we just created */
+      geda_menu_popup(GEDA_MENU(popup), NULL, NULL, NULL, NULL,
+                      event->button, event->time);
     }
     return (FALSE);
 }
@@ -401,7 +432,7 @@ static bool on_deactivate_cell(GtkWidget *widget, int row, int col,
   celltext = gtk_sheet_cell_get_text((GtkSheet*)widget, row, col);
   if (EditBuffer != NULL) { /* If NULL then we're loading data from file */
     if (celltext != NULL) { /* If NULL then cell was empty */
-      if ( strcmp(EditBuffer, celltext) != 0) {
+      if (strcmp(EditBuffer, celltext) != 0) {
         PageData->CHANGED = TRUE;
         x_window_update_title(pr_current, PageData);
       }
@@ -560,7 +591,7 @@ static int activate_sheet_cell(GtkWidget *widget, int row, int column, void * da
  *
  */
 
-void  x_gtksheet_reinititialize(PageDataSet *PageData)
+void x_gtksheet_reinititialize(PageDataSet *PageData)
 {
 
   void RedimensionSheet(GtkSheet *sheet, int nRows, int nCols) {
@@ -578,6 +609,7 @@ void  x_gtksheet_reinititialize(PageDataSet *PageData)
       }
       /* else they are the same size so do nothing */
     }
+
     if (nCols > 0) {
       if ( nCols > cCols) {
         gtk_sheet_add_column(sheet, nCols - cCols );
@@ -610,11 +642,10 @@ void  x_gtksheet_reinititialize(PageDataSet *PageData)
  */
 void x_gtksheet_init(PageDataSet *PageData)
 {
-  int i;
   char *SheetNames[]= { "Components",  "Nets", "Pins"};
-  GtkWidget *label;
 
   void CreateSheet(SheetId index, int nRow, int nCol) {
+
     if((sheets[index] != NULL) && (GTK_IS_SHEET (sheets[index]))) {
       fprintf(stderr, "ERROR: x_gtksheet_init: %s sheet already exist!\n", SheetNames[index]);
     }
@@ -629,12 +660,17 @@ void x_gtksheet_init(PageDataSet *PageData)
         gtk_sheet_set_locked(GTK_SHEET(sheets[index]), TRUE);   /* disallow editing */
       }
     }
+
     if(!GTK_IS_SHEET (sheets[index])) {
       fprintf(stderr, "ERROR: x_gtksheet_init: could not create %s sheet!\n", SheetNames[index]);
     }
   }
 
-  /* ---  Create three new sheets that were malloc'ed in x_window_init  --- */
+  /* Dynamically allocate storage for pointers  to sheet, this block
+   * is released in x_gtksheet_destroy_all */
+  sheets = GEDA_MEM_ALLOC0(NUM_SHEETS * sizeof(GtkWidget*));
+
+  /* ---  Create three new sheets  --- */
 
   /* -----  Components  ----- */
   CreateSheet(Components, PageData->comp_count, PageData->comp_attrib_count);
@@ -645,25 +681,29 @@ void x_gtksheet_init(PageDataSet *PageData)
   /* -----  Pins  ----- */
   CreateSheet(Pins, PageData->pin_count, PageData->pin_attrib_count);
 
+  int i;
+
   /* --- Finally stick labels on the notebooks holding the sheets. --- */
-  for(i=0; i<NUM_SHEETS; i++){
+  for (i = 0; i < NUM_SHEETS; i++) {
+
     if (sheets[i] != NULL) {  /* is this check needed?
       * Yes, it prevents us from segfaulting on empty nets sheet. */
-      scrolled_windows=(GtkWidget **)realloc(scrolled_windows, (i+1)*sizeof(GtkWidget *));
-      scrolled_windows[i]=gtk_scrolled_window_new(NULL, NULL);
+      scrolled_windows = (GtkWidget **)realloc(scrolled_windows, (i+1)*sizeof(GtkWidget*));
+      scrolled_windows[i] = gtk_scrolled_window_new(NULL, NULL);
 
       gtk_container_add( GTK_CONTAINER(scrolled_windows[i]), GTK_WIDGET(sheets[i]) );
 
       /* First remove old notebook page. Maybe should probably do some checking here. */
-      if (notebook != NULL)
+      if (notebook != NULL) {
         gtk_notebook_remove_page(GTK_NOTEBOOK(notebook), i);
+      }
 
       /* Then add new, updated notebook page */
-      label= gtk_label_new(_(SheetNames[i]));
+      GtkWidget *label= gtk_label_new(_(SheetNames[i]));
 
-      gtk_notebook_append_page(GTK_NOTEBOOK(notebook),
-                               GTK_WIDGET(scrolled_windows[i]),
-                               GTK_WIDGET(label) );
+      gtk_notebook_insert_page_menu (GTK_NOTEBOOK(notebook),
+                                     GTK_WIDGET(scrolled_windows[i]),
+                                     GTK_WIDGET(label), NULL, -1);
 
       sheets[i]->autoresize_columns = FALSE;
       sheets[i]->autoresize_rows = FALSE;
@@ -707,7 +747,6 @@ void x_gtksheet_init(PageDataSet *PageData)
   SetupCSheetHandlers(sheets[Components], PageData);
 
   sheets[Pins]->autoresize_columns=TRUE;
-  //sheets[Pins]->autoresize_rows=TRUE;
 }
 
 /*------------------------------------------------------------------*/
@@ -720,7 +759,7 @@ void x_gtksheet_init(PageDataSet *PageData)
  *  \param list_head Top of the string list
  */
 void x_gtksheet_add_row_labels(GtkSheet *sheet, int count,
-			       STRING_LIST *list_head)
+                               STRING_LIST *list_head)
 {
   STRING_LIST *string_list_item;
 
@@ -796,7 +835,9 @@ void x_gtksheet_add_col_labels(GtkSheet    *sheet,
     text  = string_list_item->data;
     width = strlen(text);
 
-    if (width < COLUMN_MIN_WIDTH) width = COLUMN_MIN_WIDTH;
+    if (width < COLUMN_MIN_WIDTH) {
+      width = COLUMN_MIN_WIDTH;
+    }
     gtk_sheet_set_column_width(sheet, j, char_width * width);
 
     gtk_sheet_column_button_add_label(sheet, j, text);
@@ -913,14 +954,23 @@ void x_gtksheet_add_cell_item(GtkSheet *sheet, int row, int col, char *text,
   int fgcolor;
 
   /* Auto resize up to limit */
-  if (( desired_width <= COLUMN_WIDTH_LIMIT) &&
-      ( desired_width > sheet->column[col]->width )) {
+  if ((desired_width <= COLUMN_WIDTH_LIMIT) &&
+      (desired_width > sheet->column[col]->width)) {
     gtk_sheet_set_column_width(sheet, col, desired_width);
   }
 
   gtk_sheet_set_cell(sheet, row, col, GTK_JUSTIFY_LEFT, text);
+
   fgcolor = s_properties_get_fgcolor_index(visibility, show_name_value, is_inherited);
+
   x_gtksheet_set_cell_fgcolor(sheet, row, col, fgcolor);
+}
+
+
+bool x_gtksheet_get_is_empty(GtkSheet *sheet, int row, int col)
+{
+  return gtk_sheet_cell_get_text(sheet, row, col) == NULL;
+
 }
 
 /*! \brief Get the first column selected in the GtkSheet

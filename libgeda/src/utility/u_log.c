@@ -1,7 +1,8 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2016 Ales Hvezda
- * Copyright (C) 1998-2016 gEDA Contributors (see ChangeLog for details)
+ *
+ * Copyright (C) 1998-2017 Ales Hvezda
+ * Copyright (C) 1998-2017 gEDA Contributors (see ChangeLog for details)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -358,24 +359,30 @@ void geda_utility_log_quite(const char *format, ...)
 {
   if (!quiet_mode) {
 
-    va_list args;
-    char   *buffer;
-    int     size;
+    if (format != NULL) {
 
-    va_start (args, format);
-    size = geda_utility_string_strsize(format, args) + 1;
-    va_end (args);
+      va_list args;
+      char   *buffer;
+      int     size;
 
-    buffer = malloc(size);
+      va_start (args, format);
+      size = geda_utility_string_strsize(format, args) + 1;
+      va_end (args);
 
-    va_start (args, format);
-    vsnprintf (buffer, size, format, args);
-    va_end (args);
+      buffer = malloc(size);
 
-    g_log (0, G_LOG_LEVEL_MESSAGE, "%s", buffer);
+      va_start (args, format);
+      vsnprintf (buffer, size, format, args);
+      va_end (args);
 
-    if (buffer)
-      free(buffer);
+      g_log (0, G_LOG_LEVEL_MESSAGE, "%s", buffer);
+
+      if (buffer)
+        free(buffer);
+    }
+    else {
+      BUG_MSG("format can not be NULL");
+    }
   }
 }
 
@@ -539,24 +546,30 @@ void geda_utility_log_verbose(const char *format, ...)
 {
   if (verbose_mode) {
 
-    va_list args;
-    char   *buffer;
-    int     size;
+    if (format != NULL) {
 
-    va_start (args, format);
-    size = geda_utility_string_strsize(format, args) + 1;
-    va_end (args);
+      va_list args;
+      char   *buffer;
+      int     size;
 
-    buffer = malloc(size);
+      va_start (args, format);
+      size = geda_utility_string_strsize(format, args) + 1;
+      va_end (args);
 
-    va_start (args, format);
-    vsnprintf (buffer, size, format, args);
-    va_end (args);
+      buffer = malloc(size);
 
-    g_log (0, G_LOG_LEVEL_MESSAGE, "%s", buffer);
+      va_start (args, format);
+      vsnprintf (buffer, size, format, args);
+      va_end (args);
 
-    if (buffer)
-      free(buffer);
+      g_log (0, G_LOG_LEVEL_MESSAGE, "%s", buffer);
+
+      if (buffer)
+        free(buffer);
+    }
+    else {
+      BUG_MSG("format can not be NULL");
+    }
   }
 }
 

@@ -6,6 +6,14 @@
 
 #include <libgedacolor.h>
 
+#define MESH_GRID_MAJOR_RED 0xB7
+#define MESH_GRID_MAJOR_GRN 0x13
+#define MESH_GRID_MAJOR_BLU 0xA7
+
+#define MESH_GRID_MINOR_RED 0xA6
+#define MESH_GRID_MINOR_GRN 0xA3
+#define MESH_GRID_MINOR_BLU 0x0D
+
 int check_dark_display_colors (void)
 {
   int result = 0;
@@ -40,10 +48,66 @@ int check_dark_display_colors (void)
       result++;
     }
 
+    index = geda_color_key_get_index("mesh-grid-major"); /* 18 */
+    if (index != 18) {
+      fprintf(stderr, "FAILED: %s mesh-grid-minor <%d>\n", __func__, index);
+      result++;
+    }
+    else {
+
+      GdkColor *color;
+
+      color = geda_color_x11_color_from_index(index);
+
+      if (!color) {
+        fprintf(stderr, "FAILED: %s color_from_index <%d>\n", __func__, index);
+        result++;
+      }
+      else {
+
+        if (color->red != MESH_GRID_MAJOR_RED) {
+          fprintf(stderr, "FAILED: %s MESH_GRID_MAJOR_RED <%u>\n", __func__, color->red);
+        }
+
+        if (color->red != MESH_GRID_MAJOR_GRN) {
+          fprintf(stderr, "FAILED: %s MESH_GRID_MAJOR_GRN <%u>\n", __func__, color->green);
+        }
+
+        if (color->red != MESH_GRID_MAJOR_BLU) {
+          fprintf(stderr, "FAILED: %s MESH_GRID_MAJOR_BLU <%u>\n", __func__, color->blue);
+        }
+      }
+    }
+
     index = geda_color_key_get_index("mesh-grid-minor"); /* 19 */
     if (index != 19) {
       fprintf(stderr, "FAILED: %s mesh-grid-minor <%d>\n", __func__, index);
       result++;
+    }
+    else {
+
+      GdkColor *color;
+
+      color = geda_color_x11_color_from_index(index);
+
+      if (!color) {
+        fprintf(stderr, "FAILED: %s color_from_index <%d>\n", __func__, index);
+        result++;
+      }
+      else {
+
+        if (color->red != MESH_GRID_MINOR_RED) {
+          fprintf(stderr, "FAILED: %s MESH_GRID_MINOR_RED <%u>\n", __func__, color->red);
+        }
+
+        if (color->red != MESH_GRID_MINOR_GRN) {
+          fprintf(stderr, "FAILED: %s MESH_GRID_MINOR_GRN <%u>\n", __func__, color->green);
+        }
+
+        if (color->red != MESH_GRID_MINOR_BLU) {
+          fprintf(stderr, "FAILED: %s MESH_GRID_MINOR_BLU <%u>\n", __func__, color->blue);
+        }
+      }
     }
 
     index = geda_color_key_get_index("freestyle9");      /* 29 */

@@ -12,9 +12,9 @@ documentation=http://www.irf.com/product-info/datasheets/data/irf9520n.pdf
 T 700 2600 5 8 0 0 0 0 1
 author=Kai-Martin Knaak, kmk@lilalaser.de
 T 700 2400 5 8 0 0 0 0 1
-dist-license=GPL 3, see http://www.gnu.org/licenses/gpl-3.0.txt
+dist-license=GPLv2
 T 700 2200 5 8 0 0 0 0 1
-use-license=free, no restrictions
+use-license=unlimited
 T 700 200 9 10 1 1 0 0 1
 footprint=TO220
 L 250 600 500 600 3 10 0 0 -1 -1

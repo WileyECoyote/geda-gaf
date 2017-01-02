@@ -89,8 +89,10 @@ static char *insert_thousands_seps(const char *cp)
       radix_cp += thousands_len;
     }
   }
+
   *radix_cp++ = '\0';
-    return(buf);
+
+  return(buf);
 }
 
 static char *remove_thousands_seps(const char *src)
@@ -128,7 +130,8 @@ static char *remove_thousands_seps(const char *src)
 
     while (i < len) {
 
-      if ((src[i] == thousands_c[0]) && (strncmp(&src[i], thousands_c, thousands_len) == 0))
+      if ((src[i] == thousands_c[0]) &&
+          (strncmp(&src[i], thousands_c, thousands_len) == 0))
       {
         i += thousands_len;
         found=TRUE;
@@ -212,22 +215,22 @@ char *gtk_data_format(const char *str, const char *dataformat)
     switch (dataformat[0])
     {
         case 'i':
-            if (strcmp(dataformat, "int8") == 0)
-            {
+            if (strcmp(dataformat, "int8") == 0) {
+
                 int i;
                 str = remove_thousands_seps(str);
                 if (sscanf(str, "%d", &i) == 1) return(format_int(i, 1));
                 return(INVALID_DATA);
             }
-            else if (strcmp(dataformat, "int16") == 0)
-            {
+            else if (strcmp(dataformat, "int16") == 0) {
+
                 int i;
                 str = remove_thousands_seps(str);
                 if (sscanf(str, "%d", &i) == 1) return(format_int(i, 2));
                 return(INVALID_DATA);
             }
-            else if (strcmp(dataformat, "int32") == 0)
-            {
+            else if (strcmp(dataformat, "int32") == 0) {
+
                 int i;
                 str = remove_thousands_seps(str);
                 if (sscanf(str, "%d", &i) == 1) return(format_int(i, 4));
@@ -236,8 +239,8 @@ char *gtk_data_format(const char *str, const char *dataformat)
             break;
 
         case 'm':
-            if (strcmp(dataformat, "money") == 0)
-            {
+            if (strcmp(dataformat, "money") == 0) {
+
                 double d;
 
                 str = remove_thousands_seps(str);
@@ -250,12 +253,12 @@ char *gtk_data_format(const char *str, const char *dataformat)
             break;
 
         case 'f':
-            if (strncmp(dataformat, "float,", 6) == 0)
-            {
+            if (strncmp(dataformat, "float,", 6) == 0) {
+
                 int precision;
 
-                if (sscanf(&dataformat[6], "%d", &precision) == 1)
-                {
+                if (sscanf(&dataformat[6], "%d", &precision) == 1) {
+
                     double d;
 
                     str = remove_thousands_seps(str);
@@ -269,8 +272,8 @@ char *gtk_data_format(const char *str, const char *dataformat)
             break;
 
         case 'b':
-            if (strcmp(dataformat, "bit") == 0)
-            {
+            if (strcmp(dataformat, "bit") == 0) {
+
                 if (strcmp(str, "1") == 0) return(format_int(1, 1));
                 else if (strcmp(str, "0") == 0) return(format_int(0, 1));
                 else if (strcmp(str, "true") == 0) return(format_int(1, 1));
@@ -302,34 +305,34 @@ char *gtk_data_format_remove(const char *str, const char *dataformat)
     switch (dataformat[0])
     {
         case 'i':
-            if (strcmp(dataformat, "int8") == 0)
-            {
-                str = remove_thousands_seps(str);
+            if (strcmp(dataformat, "int8") == 0) {
+
+              str = remove_thousands_seps(str);
             }
-            else if (strcmp(dataformat, "int16") == 0)
-            {
-                str = remove_thousands_seps(str);
+            else if (strcmp(dataformat, "int16") == 0) {
+
+              str = remove_thousands_seps(str);
             }
-            else if (strcmp(dataformat, "int32") == 0)
-            {
-                str = remove_thousands_seps(str);
+            else if (strcmp(dataformat, "int32") == 0) {
+
+              str = remove_thousands_seps(str);
             }
             break;
 
         case 'm':
-            if (strcmp(dataformat, "money") == 0)
-            {
-                str = remove_thousands_seps(str);
+            if (strcmp(dataformat, "money") == 0) {
+
+              str = remove_thousands_seps(str);
             }
             break;
 
         case 'f':
-            if (strncmp(dataformat, "float,", 6) == 0)
-            {
+            if (strncmp(dataformat, "float,", 6) == 0) {
+
                 int precision;
 
-                if (sscanf(&dataformat[6], "%d", &precision) == 1)
-                {
+                if (sscanf(&dataformat[6], "%d", &precision) == 1) {
+
                     str = remove_thousands_seps(str);
                 }
             }
@@ -339,4 +342,3 @@ char *gtk_data_format_remove(const char *str, const char *dataformat)
     }
     return((char *) str);
 }
-

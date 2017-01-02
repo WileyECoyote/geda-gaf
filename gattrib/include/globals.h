@@ -127,10 +127,10 @@ GtkWidget  *Attribute_Toolbar;
 GtkWidget  *notebook;
 GtkWidget  *popup;
 GtkWidget  *edit_box;
-GtkSheet  **sheets;              /*!< These are the spreadsheet widgets themselves */
-GtkWidget **scrolled_windows;
 GtkWidget  *entry;               /*!< Active Cell Edit Entry */
 GtkWidget  *location;
+GtkWidget **scrolled_windows;
+GtkSheet  **sheets;              /*!< These are the spreadsheet widgets themselves */
 
 GSList *ComponentMenuItems;
 GSList *ComponentToolbarButtons;

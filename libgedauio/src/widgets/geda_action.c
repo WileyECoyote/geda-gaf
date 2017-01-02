@@ -45,6 +45,7 @@
  *                | Revise geda_action_create_menu_item to use g_object_set
  *                | instead of gtk_activatable_set_use_action_appearance
  *                | to set the "use-action-appearance" property.
+ * WEH | 09/04/16 | Implement object identication system using a hash table.
  */
 
 #ifdef HAVE_CONFIG_H
@@ -82,11 +83,13 @@ enum {
 
 static void *geda_action_parent_class = NULL;
 
+static GHashTable *action_hash_table = NULL;
+
 /*! \brief GObject finalize handler
  *
  *  \par Function Description
- *  Called just before the GtkAction GObject is destroyed to free our
- *  allocated data, and then chain up to the parent's finalize handler.
+ *  Called just before the Action object is destroyed to release
+ *  resources. Chains up to the parent's finalize handler.
  *
  *  \param [in] object The GObject being finalized.
  */
@@ -94,11 +97,20 @@ static void geda_action_finalize (GObject *object)
 {
   GedaAction *action = GEDA_ACTION (object);
 
+  if (g_hash_table_remove (action_hash_table, object)) {
+    if (!g_hash_table_size (action_hash_table)) {
+      g_hash_table_destroy (action_hash_table);
+      action_hash_table = NULL;
+    }
+  }
+
   if (action->multikey_accel) {
     g_free (action->multikey_accel);
-    action->multikey_accel = NULL;
   }
-  g_free (action->icon_name);
+
+  if (action->icon_name) {
+    g_free (action->icon_name);
+  }
 
   G_OBJECT_CLASS (geda_action_parent_class)->finalize (object);
 }
@@ -277,10 +289,15 @@ static void
 geda_action_instance_init (GTypeInstance *instance, void *class)
 {
   GedaAction *action     = (GedaAction*)instance;
-  action->instance_type  = geda_action_get_type();
 
   action->multikey_accel = NULL;
   action->icon_name      = NULL;
+
+  if (!action_hash_table) {
+    action_hash_table = g_hash_table_new (g_direct_hash, NULL);
+  }
+
+  g_hash_table_add (action_hash_table, instance);
 }
 
 /*! \brief Function to retrieve GedaAction's Type identifier.
@@ -334,8 +351,8 @@ GedaType geda_action_get_type (void)
 bool
 is_a_geda_action (GedaAction *action)
 {
-  if (G_IS_OBJECT(action)) {
-    return (geda_action_get_type() == action->instance_type);
+  if ((action != NULL) && (action_hash_table != NULL)) {
+    return g_hash_table_lookup(action_hash_table, action) ? TRUE : FALSE;
   }
   return FALSE;
 }
@@ -345,9 +362,12 @@ is_a_geda_action (GedaAction *action)
  *  This function creates a geda menu item widget that proxies
  *  for the given action.
  *
+ *  As a convenience, this function also accepts GedaToggleAction
+ *  as the \a action argument but this may require a cast.
+ *
  * \param [in] action A GedaAction object
  *
- * \returns: GtkWidget pointer to a new action menu item.
+ * \returns GtkWidget pointer to a new action menu item.
  */
 GtkWidget *
 geda_action_create_menu_item (GedaAction *action)
@@ -419,19 +439,21 @@ GedaAction *geda_action_new (const char *name,
 
   g_return_val_if_fail (name != NULL, NULL);
 
-  if (multikey_accel != NULL)
+  if (multikey_accel != NULL) {
     action = g_object_new (GEDA_TYPE_ACTION, "name", name,
                                              "label", label,
                                              "tooltip", tooltip,
                                              "stock-id", icon_id,
                                              "multikey-accel", multikey_accel,
                                              NULL);
-  else
+  }
+  else {
     action = g_object_new (GEDA_TYPE_ACTION, "name", name,
                                              "label", label,
                                              "tooltip", tooltip,
                                              "stock-id", icon_id,
                                              NULL);
+  }
   return action;
 }
 
@@ -486,8 +508,9 @@ geda_action_set_icon_name (GedaAction *action, const char *icon_name)
 
   parent_action = (GtkAction*)action;
 
-  g_free (action->icon_name);
-  action->icon_name = NULL;
+  if (action->icon_name) {
+    g_free (action->icon_name);
+  }
 
   action->icon_name = geda_strdup (icon_name);
 

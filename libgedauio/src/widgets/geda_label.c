@@ -280,6 +280,10 @@ static void geda_label_buildable_custom_finished  (GtkBuildable      *buildable,
                                                    void              *user_data);
 
 static void connect_mnemonics_visible_notify      (GedaLabel         *label);
+static void label_mnemonics_visible_changed       (GtkWindow         *window,
+                                                   GParamSpec        *pspec,
+                                                   void              *data);
+static void label_shortcut_setting_changed        (GtkSettings       *settings);
 static bool separate_uline_pattern                (const char        *str,
                                                    unsigned int      *accel_key,
                                                    char             **new_str,
@@ -318,6 +322,40 @@ static void geda_label_emit_activate_link         (GedaLabel         *label,
 static void *geda_label_parent_class = NULL;
 
 static GtkBuildableIface *buildable_parent_iface = NULL;
+
+
+/* Table of pointers to GedaLabel instances */
+static GHashTable *label_hash_table = NULL;
+
+#ifdef DEBUG_GEDA_LABEL
+
+/*!
+ * \brief Report GedaLabel Instances
+ * \par Function Description
+ *  This function can be called after all libgedauio resources
+ *  have been released to print a list of pointers to GedaLabel
+ *  objects that are still alive or the NULL message if all of
+ *  the GedaLabels were released. This is particularly useful
+ *  for debugging/developing menu systems.
+ */
+void geda_label_get_report_instances (void)
+{
+  if (label_hash_table) {
+
+    void print_hash(GedaLabel *label, void *value, void *nothing) {
+      fprintf(stderr, "label,%p,text=<%s>\n", label, label->text);
+    }
+
+    g_hash_table_foreach (label_hash_table, (GHFunc)print_hash, NULL);
+    g_hash_table_destroy (label_hash_table);
+    label_hash_table = NULL;
+  }
+  else {
+    fprintf(stderr, "%s: the table of labels is NULL\n", __func__);
+  }
+}
+
+#endif /* DEBUG_GEDA_LABEL */
 
 static void
 add_move_binding (GtkBindingSet  *binding_set, unsigned int keyval,
@@ -785,7 +823,7 @@ static void geda_label_ensure_layout (GedaLabel *label)
     PangoContext  *context;
     bool           R2L;
 
-    //context = g_object_new (PANGO_TYPE_CONTEXT, NULL);
+    //context = pango_context_new (PANGO_TYPE_CONTEXT);
     context = gtk_widget_get_pango_context (widget);
 
     /* We Specify our own map to avoid memory leak in FontConfig */
@@ -926,47 +964,100 @@ static void geda_label_ensure_layout (GedaLabel *label)
 static void
 geda_label_destroy (GtkObject *object)
 {
-  GedaLabel *label = GEDA_LABEL (object);
+  GedaLabel   *label = GEDA_LABEL (object);
+  GtkSettings *settings;
+  GtkWidget   *toplevel;
+  bool         connected;
+
+  settings = gtk_widget_get_settings ((GtkWidget*)object);
+
+  connected = (int)(long)GEDA_OBJECT_GET_DATA (settings, "label-short-connected");
+
+  if (connected) {
+
+    g_signal_handlers_disconnect_by_func (settings, label_shortcut_setting_changed, NULL);
+
+    g_object_set_data (G_OBJECT (settings), "label-short-connected",
+                       (void*)(long)FALSE);
+  }
+
+  toplevel = gtk_widget_get_toplevel (GTK_WIDGET (label));
+
+  connected = (int)(long)GEDA_OBJECT_GET_DATA(toplevel, "label-mnemonics-connected");
+
+  if (connected) {
+
+    g_signal_handlers_disconnect_by_func (toplevel, label_mnemonics_visible_changed, label);
+
+    g_object_set_data (G_OBJECT (toplevel), "label-mnemonics-connected",
+                       (void*)(long)FALSE);
+  }
+
   geda_label_set_mnemonic_widget (label, NULL);
 
   GTK_OBJECT_CLASS (geda_label_parent_class)->destroy (object);
+}
+
+
+static void geda_label_dispose (GObject *object)
+{
+  GedaLabel   *label = GEDA_LABEL (object);
+
+  if (label->attrs) {
+    pango_attr_list_unref (label->attrs);
+    label->attrs = NULL;
+  }
+
+  if (label->markup_attrs) {
+    pango_attr_list_unref (label->markup_attrs);
+    label->markup_attrs = NULL;
+  }
+
+  if (label->layout) {
+    g_object_unref (label->layout);
+    label->layout = NULL;
+  }
+
+  if (label->priv->font_map) {
+    g_object_unref (label->priv->font_map);
+    label->priv->font_map = NULL;
+  }
+
+  if (label->priv->accessible){
+    atk_object_set_name (label->priv->accessible, "");
+    g_object_unref (label->priv->accessible);
+    label->priv->accessible = NULL;
+  }
+
+  G_OBJECT_CLASS (geda_label_parent_class)->dispose (object);
 }
 
 static void geda_label_finalize (GObject *object)
 {
   GedaLabel *label = GEDA_LABEL (object);
 
+  geda_label_clear_links (label);
+
+  if (g_hash_table_remove (label_hash_table, object)) {
+
+#ifndef DEBUG_GEDA_LABEL
+    if (!g_hash_table_size (label_hash_table)) {
+      g_hash_table_destroy (label_hash_table);
+      label_hash_table = NULL;
+    }
+#endif /* DEBUG_GEDA_LABEL */
+
+  }
+
   GEDA_FREE (label->label);
   GEDA_FREE (label->text);
 
-  if (label->layout) {
-    g_object_unref (label->layout);
-  }
-
-  if (label->attrs) {
-    pango_attr_list_unref (label->attrs);
-  }
-
-  if (label->markup_attrs) {
-    pango_attr_list_unref (label->markup_attrs);
-  }
-
-  geda_label_clear_links (label);
-
   GEDA_FREE (label->priv->select_info);
-
-  GEDA_UNREF (label->priv->font_map);
-
-  if (label->priv->accessible){
-    atk_object_set_name (label->priv->accessible, "");
-    GEDA_UNREF (label->priv->accessible);
-  }
 
   GEDA_FREE(label->priv);
 
   G_OBJECT_CLASS (geda_label_parent_class)->finalize (object);
 }
-
 
 static void
 geda_label_get_property (GObject *object, unsigned int  prop_id,
@@ -975,62 +1066,80 @@ geda_label_get_property (GObject *object, unsigned int  prop_id,
   GedaLabel     *label = GEDA_LABEL (object);
   GedaLabelData *priv  = label->priv;
 
-  switch (prop_id)
-    {
+  switch (prop_id) {
+
     case PROP_LABEL:
       g_value_set_string (value, label->label);
       break;
+
     case PROP_ATTRIBUTES:
       g_value_set_boxed (value, label->attrs);
       break;
+
     case PROP_USE_MARKUP:
       g_value_set_boolean (value, priv->use_markup);
       break;
+
     case PROP_USE_UNDERLINE:
       g_value_set_boolean (value, priv->use_underline);
       break;
+
     case PROP_JUSTIFY:
       g_value_set_enum (value, priv->jtype);
       break;
+
     case PROP_WRAP:
       g_value_set_boolean (value, priv->wrap);
       break;
+
     case PROP_WRAP_MODE:
       g_value_set_enum (value, priv->wrap_mode);
       break;
+
     case PROP_SELECTABLE:
       g_value_set_boolean (value, geda_label_get_selectable (label));
       break;
+
     case PROP_MNEMONIC_KEYVAL:
       g_value_set_uint (value, priv->mnemonic_keyval);
       break;
+
     case PROP_MNEMONIC_WIDGET:
       g_value_set_object (value, (GObject*) priv->mnemonic_widget);
       break;
+
     case PROP_CURSOR_POSITION:
       g_value_set_int (value, geda_label_get_cursor_position (label));
       break;
+
     case PROP_SEL_BOUND:
       g_value_set_int (value, geda_label_get_selection_bound (label));
       break;
+
     case PROP_ELLIPSIZE:
       g_value_set_enum (value, priv->ellipsize);
       break;
+
     case PROP_WIDTH_CHARS:
       g_value_set_int (value, geda_label_get_width_chars (label));
       break;
+
     case PROP_SINGLE_LINE_MODE:
       g_value_set_boolean (value, geda_label_get_single_line_mode (label));
       break;
+
     case PROP_ANGLE:
       g_value_set_double (value, geda_label_get_angle (label));
       break;
+
     case PROP_MAX_WIDTH:
       g_value_set_int (value, geda_label_get_max_width_chars (label));
       break;
+
     case PROP_TRACK_VISITED_LINKS:
       g_value_set_boolean (value, geda_label_get_track_visited_links (label));
       break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -1043,56 +1152,72 @@ geda_label_set_property (GObject *object,     unsigned int  prop_id,
 {
   GedaLabel *label = GEDA_LABEL (object);
 
-  switch (prop_id)
-  {
+  switch (prop_id) {
+
     case PROP_LABEL:
       geda_label_set_label (label, g_value_get_string (value));
       break;
+
     case PROP_ATTRIBUTES:
       geda_label_set_attributes (label, g_value_get_boxed (value));
       break;
+
     case PROP_USE_MARKUP:
       geda_label_set_use_markup (label, g_value_get_boolean (value));
       break;
+
     case PROP_USE_UNDERLINE:
       geda_label_set_use_underline (label, g_value_get_boolean (value));
       break;
+
     case PROP_JUSTIFY:
       geda_label_set_justify (label, g_value_get_enum (value));
       break;
+
     case PROP_PATTERN:
       geda_label_set_pattern (label, g_value_get_string (value));
       break;
+
     case PROP_WRAP:
       geda_label_set_line_wrap (label, g_value_get_boolean (value));
       break;
+
     case PROP_WRAP_MODE:
       geda_label_set_line_wrap_mode (label, g_value_get_enum (value));
       break;
+
     case PROP_SELECTABLE:
       geda_label_set_selectable (label, g_value_get_boolean (value));
       break;
+
     case PROP_MNEMONIC_WIDGET:
       geda_label_set_mnemonic_widget (label, (GtkWidget*) g_value_get_object (value));
       break;
+
     case PROP_ELLIPSIZE:
       geda_label_set_ellipsize (label, g_value_get_enum (value));
       break;
+
     case PROP_WIDTH_CHARS:
       geda_label_set_width_chars (label, g_value_get_int (value));
       break;
+
     case PROP_SINGLE_LINE_MODE:
       geda_label_set_single_line_mode (label, g_value_get_boolean (value));
       break;
+
     case PROP_ANGLE:
       geda_label_set_angle (label, g_value_get_double (value));
       break;
+
     case PROP_MAX_WIDTH:
       geda_label_set_max_width_chars (label, g_value_get_int (value));
       break;
+
     case PROP_TRACK_VISITED_LINKS:
       geda_label_set_track_visited_links (label, g_value_get_boolean (value));
       break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -1123,6 +1248,7 @@ geda_label_class_init  (void *class, void *class_data)
 
   gobject_class->set_property        = geda_label_set_property;
   gobject_class->get_property        = geda_label_get_property;
+  gobject_class->dispose             = geda_label_dispose;
   gobject_class->finalize            = geda_label_finalize;
 
   object_class->destroy              = geda_label_destroy;
@@ -1239,7 +1365,7 @@ geda_label_class_init  (void *class, void *class_data)
                    G_SIGNAL_RUN_LAST,
                    G_STRUCT_OFFSET (GedaLabelClass, populate_popup),
                    NULL, NULL,
-                   gtk_marshal_VOID__OBJECT,
+                   geda_marshal_VOID__OBJECT,
                    G_TYPE_NONE, 1,
                    GEDA_TYPE_MENU);
 
@@ -1275,24 +1401,13 @@ geda_label_class_init  (void *class, void *class_data)
    *
    * retval: %TRUE if the link has been activated
    */
-/*
-  signals[ACTIVATE_LINK] =
-  g_signal_new ("activate-link",
-                G_TYPE_FROM_CLASS (gobject_class),
-                G_SIGNAL_RUN_LAST,
-                G_STRUCT_OFFSET (GedaLabelClass, activate_link),
-                _gtk_boolean_handled_accumulator, NULL,
-                gtk_marshal_BOOLEAN__STRING,
-                G_TYPE_BOOLEAN, 1, G_TYPE_STRING);
-*/
-  signals[ACTIVATE_LINK] =
-  g_signal_new ("activate-link",
-                G_TYPE_FROM_CLASS (gobject_class),
-                G_SIGNAL_RUN_LAST,
-                G_STRUCT_OFFSET (GedaLabelClass, activate_link),
-                NULL, NULL,
-                gtk_marshal_BOOLEAN__POINTER,
-                G_TYPE_BOOLEAN, 1, G_TYPE_STRING);
+  signals[ACTIVATE_LINK] = g_signal_new ("activate-link",
+                                         G_TYPE_FROM_CLASS (gobject_class),
+                                         G_SIGNAL_RUN_LAST,
+                                         G_STRUCT_OFFSET (GedaLabelClass, activate_link),
+                                         NULL, NULL,
+                                         geda_marshal_BOOL__POINTER,
+                                         G_TYPE_BOOLEAN, 1, G_TYPE_STRING);
 
   params = g_param_spec_string ("label", _("Label"),
                               _("The text of the label"),
@@ -1302,7 +1417,7 @@ geda_label_class_init  (void *class, void *class_data)
   g_object_class_install_property (gobject_class, PROP_LABEL, params);
 
   params =  g_param_spec_boxed ("attributes", _("Attributes"),
-                              _("A list of style attributes to apply to the text of the label"),
+                              _("List of style attributes to apply to the text of the label"),
                                  PANGO_TYPE_ATTR_LIST,
                                  G_PARAM_READWRITE);
 
@@ -1352,7 +1467,7 @@ geda_label_class_init  (void *class, void *class_data)
    *
    */
   params = g_param_spec_enum ("wrap-mode", _("Line wrap mode"),
-                            _("If wrap is set, controls how linewrapping is done"),
+                            _("If wrap is set, controls how line wrapping is done"),
                                PANGO_TYPE_WRAP_MODE,
                                PANGO_WRAP_WORD,
                                G_PARAM_READWRITE);
@@ -1417,8 +1532,9 @@ geda_label_class_init  (void *class, void *class_data)
    * geda_label_set_width_chars().
    *
    */
-  params = g_param_spec_enum ("ellipsize", _("Ellipsize"),
-                            _("The preferred place to break the string, if ellipes needed"),
+  params = g_param_spec_enum ("ellipsize",
+                            _("Ellipsize"),
+                            _("The preferred place to break the string, if an ellipsis is needed"),
                                PANGO_TYPE_ELLIPSIZE_MODE,
                                PANGO_ELLIPSIZE_NONE,
                                G_PARAM_READWRITE);
@@ -1455,8 +1571,8 @@ geda_label_class_init  (void *class, void *class_data)
    * changes would be distracting, e.g. in a statusbar.
    *
    */
-  params = g_param_spec_boolean ("single-line-mode", _("Single Line Mode"),
-                               _("Whether the label is in single line mode"),
+  params = g_param_spec_boolean ("single-line-mode", _("Single-Line Mode"),
+                               _("Whether the label is in single-line mode"),
                                   FALSE,
                                   G_PARAM_READWRITE);
 
@@ -1472,7 +1588,7 @@ geda_label_class_init  (void *class, void *class_data)
    *
    */
   params = g_param_spec_double ("angle", _("Angle"),
-                              _("Angle at which the label is rotated"),
+                              _("Angle of rotation of the label"),
                                  0.0,
                                  360.0,
                                  0.0,
@@ -1491,7 +1607,8 @@ geda_label_class_init  (void *class, void *class_data)
    * wrapped labels.
    *
    */
-  params = g_param_spec_int ("max-width-chars", _("Maximum Width In Characters"),
+  params = g_param_spec_int ("max-width-chars",
+                           _("Maximum Width In Characters"),
                            _("The desired maximum width of the label, in characters"),
                              -1,
                               G_MAXINT,
@@ -1508,7 +1625,8 @@ geda_label_class_init  (void *class, void *class_data)
    * color, instead of link-color.
    *
    */
-  params = g_param_spec_boolean ("track-visited-links", _("Track visited links"),
+  params = g_param_spec_boolean ("track-visited-links",
+                               _("Track visited links"),
                                _("Whether visited links should be tracked"),
                                   FALSE,
                                   G_PARAM_READWRITE);
@@ -1630,11 +1748,10 @@ geda_label_instance_init(GTypeInstance *instance, void *g_class)
   label->priv = GEDA_MEM_ALLOC0 (sizeof(GedaLabelData));
   priv        = label->priv;
 
-  gtk_widget_set_has_window    (GTK_WIDGET (label), FALSE);
-  gtk_widget_set_app_paintable (GTK_WIDGET (label), TRUE);
-  gtk_widget_set_can_default   (GTK_WIDGET (label), FALSE);
+  gtk_widget_set_has_window    ((GtkWidget*)label, FALSE);
+  gtk_widget_set_app_paintable ((GtkWidget*)label, TRUE);
+  gtk_widget_set_can_default   ((GtkWidget*)label, FALSE);
 
-  label->instance_type    = geda_label_get_type();
   priv->font_map          = pango_cairo_font_map_new ();
 
   label->width_chars      = -1;
@@ -1661,9 +1778,15 @@ geda_label_instance_init(GTypeInstance *instance, void *g_class)
 
   priv->mnemonics_visible = TRUE;
 
+  if (!label_hash_table) {
+    label_hash_table = g_hash_table_new (g_direct_hash, NULL);
+  }
+
+  g_hash_table_add (label_hash_table, label);
+
   geda_label_set_text (label, "label");
 
-  accessible = gtk_widget_get_accessible(GTK_WIDGET(label));
+  accessible = gtk_widget_get_accessible((GtkWidget*)label);
 
   if (accessible) {
     priv->accessible = g_object_ref(accessible);
@@ -1744,8 +1867,8 @@ geda_label_get_type (void)
 bool
 is_a_geda_label (GedaLabel *label)
 {
-  if (G_IS_OBJECT(label)) {
-    return (geda_label_get_type() == label->instance_type);
+  if ((label != NULL) && (label_hash_table != NULL)) {
+    return g_hash_table_lookup(label_hash_table, label) ? TRUE : FALSE;
   }
   return FALSE;
 }
@@ -1785,7 +1908,6 @@ attribute_from_text (GtkBuilder *builder, const char *name,
         g_value_init (&val, G_TYPE_INT);
       }
       break;
-
 
     case PANGO_ATTR_STYLE: /* PangoAttrInt */
       if (gtk_builder_value_from_string_type (builder, PANGO_TYPE_STYLE, value, &val, error))
@@ -1851,12 +1973,10 @@ attribute_from_text (GtkBuilder *builder, const char *name,
       }
       break;
 
-
     case PANGO_ATTR_FAMILY: /* PangoAttrString */
       attribute = pango_attr_family_new (value);
       g_value_init (&val, G_TYPE_INT);
       break;
-
 
     case PANGO_ATTR_SIZE: /* PangoAttrSize */
       if (gtk_builder_value_from_string_type (builder, G_TYPE_INT,
@@ -1870,7 +1990,6 @@ attribute_from_text (GtkBuilder *builder, const char *name,
         attribute = pango_attr_size_new_absolute (g_value_get_int (&val));
       break;
 
-
     case PANGO_ATTR_FONT_DESC: /* PangoAttrFontDesc */
       if ((font_desc = pango_font_description_from_string (value)))
       {
@@ -1879,7 +1998,6 @@ attribute_from_text (GtkBuilder *builder, const char *name,
         g_value_init (&val, G_TYPE_INT);
       }
       break;
-
 
     case PANGO_ATTR_FOREGROUND: /* PangoAttrColor */
       if (gtk_builder_value_from_string_type (builder, GDK_TYPE_COLOR, value, &val, error))
@@ -2307,6 +2425,11 @@ geda_label_setup_mnemonic (GedaLabel *label, unsigned int last_key)
       menu_shell = gtk_widget_get_ancestor (widget, GEDA_TYPE_MENU_SHELL);
 
       if (menu_shell) {
+
+        /* Not sure if this ever works */
+        geda_menu_shell_add_mnemonic (GEDA_MENU_SHELL (menu_shell),
+                                      priv->mnemonic_keyval,
+                                      widget);
         mnemonic_menu = menu_shell;
       }
 
@@ -2324,17 +2447,16 @@ label_shortcut_setting_apply (GedaLabel *label)
 {
   geda_label_recalculate (label);
 
-  if (GEDA_IS_ACCEL_LABEL (label)) {
-    geda_accel_label_refetch (GEDA_ACCEL_LABEL (label));
-  }
-  else if (GTK_IS_ACCEL_LABEL (label)) {
+  if (GTK_IS_ACCEL_LABEL (label)) {
     gtk_accel_label_refetch (GTK_ACCEL_LABEL (label));
+  }
+  else {
+    g_object_notify (G_OBJECT (label), "label");
   }
 }
 
 static void
-label_shortcut_setting_traverse_container (GtkWidget *widget,
-                                           void *   data)
+label_shortcut_setting_traverse_container (GtkWidget *widget, void *data)
 {
   if (GEDA_IS_LABEL(widget)) {
     label_shortcut_setting_apply (GEDA_LABEL (widget));
@@ -2448,7 +2570,7 @@ geda_label_screen_changed (GtkWidget *widget, GdkScreen *old_screen)
                         (void*)(long)TRUE);
   }
 
-  label_shortcut_setting_apply (GEDA_LABEL (widget));
+  label_shortcut_setting_apply (GEDA_LABEL(widget));
 }
 
 /* Helper called by geda_label_set_mnemonic_widget */
@@ -3036,7 +3158,7 @@ start_element_handler (GMarkupParseContext *context,
       }
     }
 
-    link          = g_malloc0 (sizeof(GedaLabelLink));
+    link          = GEDA_MEM_ALLOC0(sizeof(GedaLabelLink));
     link->uri     = geda_strdup (uri);
     link->title   = geda_strdup (title);
     link->visited = visited;
@@ -3209,7 +3331,7 @@ parse_uri_markup (GedaLabel *label, const char *str, char **new_str,
 failed:
   g_markup_parse_context_free (context);
   g_string_free (pdata.new_str, TRUE);
-  g_list_foreach (pdata.links, (GFunc) link_free, NULL);
+  g_list_foreach (pdata.links, (GFunc)link_free, NULL);
   g_list_free (pdata.links);
   pdata.links = NULL;
   return FALSE;
@@ -3947,7 +4069,7 @@ void geda_label_widget_set_max_width_chars (GtkWidget *widget, int n_chars)
 static void
 geda_label_clear_layout (GedaLabel *label)
 {
-  if (label->layout){
+  if (label->layout) {
     g_object_unref (label->layout);
     label->layout = NULL;
   }
@@ -6550,7 +6672,7 @@ geda_label_clear_links (GedaLabel *label)
 
   if (info) {
 
-    g_list_foreach (info->links, (GFunc) link_free, NULL);
+    g_list_foreach (info->links, (GFunc)link_free, NULL);
     g_list_free (info->links);
     info->links = NULL;
     info->active_link = NULL;

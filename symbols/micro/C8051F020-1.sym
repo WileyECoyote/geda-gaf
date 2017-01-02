@@ -1117,7 +1117,7 @@ description=IC 8051 MCU 64K FLASH 100TQFP
 T 1450 6100 5 10 0 0 0 0 1
 numslots=0
 T 1450 6300 5 10 0 0 0 0 1
-dist-license=GPL3
+dist-license=GPLv2
 T 1450 6500 5 10 0 0 0 0 1
 use-license=unlimited
 T 100 100 5 8 0 0 0 0 1

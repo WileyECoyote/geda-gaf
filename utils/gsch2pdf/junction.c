@@ -20,7 +20,7 @@
 
 #include "../include/common.h"
 
-extern bool geda_pin_object_get_position (int *x, int *y, GedaObject *object);
+extern bool geda_pin_object_get_position (GedaObject *object, int *x, int *y);
 
 typedef struct st_sweep_event SWEEP_EVENT;
 typedef struct st_sweep_status SWEEP_STATUS;
@@ -87,7 +87,7 @@ void junction_locate(const GList *objects, GArray *junctions, GArray *unconnecte
     }
     else if (object->type == OBJ_PIN) {
       GedaPoint point;
-      geda_pin_object_get_position(&point.x, &point.y, object);
+      geda_pin_object_get_position(object, &point.x, &point.y);
       g_array_append_val(points, point);
     }
     else if ((object->type == OBJ_COMPLEX) || (object->type == OBJ_PLACEHOLDER)) {
@@ -96,7 +96,7 @@ void junction_locate(const GList *objects, GArray *junctions, GArray *unconnecte
         GedaObject *object2 = (GedaObject*) node2->data;
         if (object2->type == OBJ_PIN) {
           GedaPoint point2;
-          geda_pin_object_get_position(&point2.x, &point2.y, object2);
+          geda_pin_object_get_position(object2, &point2.x, &point2.y);
           g_array_append_val(points, point2);
         }
         node2 = g_list_next(node2);

@@ -5,12 +5,12 @@
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 2013-2015 Wiley Edward Hill
- * Copyright (C) 2013-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2013-2016 Wiley Edward Hill
+ * Copyright (C) 2013-2016 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 3 of
+ * published by the Free Software Foundation; either version 2 of
  * the License, or (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -369,16 +369,15 @@ const char *x_dnd_send_objects (GschemToplevel   *w_current,
     return DND_NIL;
 }
 
-/*! \brief When Received String filename with SYM suffix
- *
+/*!
+ * \brief When Received String filename with SYM suffix
  * \par Function Description
- * Called by x_dnd_receive_string after determining the recieved
- * string ends with ".sym".
+ *  Called by x_dnd_receive_string after determining the recieved
+ *  string ends with ".sym".
  *
- * \remark If the symbols are not in the library search path then
- *  symbols will be loaded as a new page and that maybe what the
- *  user wants.
-*/
+ * \remarks If the symbols are not in the library search path then symbols
+ *          will be loaded as a new page and that maybe what the user wants.
+ */
 static bool
 x_dnd_receive_string_sym (GschemToplevel *w_current, int x, int y,
                           const char *filename, int where)
@@ -433,11 +432,14 @@ x_dnd_receive_string_sym (GschemToplevel *w_current, int x, int y,
     }
     else {
       /* TODO: Should embed the symbol */
-      u_log_message(_("Could not locate symbol [%s] in library, try refreshing\n"), symbolfile);
+      const char *log_msg1 = _("Could not locate symbol");
+      const char *log_msg2 = _("in library, try refreshing");
+      u_log_message("%s \"%s\", %s\n", log_msg1, symbolfile, log_msg2);
     }
   }
   else { /* symbol file is not our library source path so load new page */
-    v_log_message(_("symbol [%s] not in library opening as page\n"), filename);
+    const char *log_msg = _("not in library, opening as page");
+    v_log_message("%s \"%s\" %s\n", _("symbol"), filename, log_msg);
     result = TRUE;
   }
   GEDA_FREE(path);
@@ -575,8 +577,13 @@ x_dnd_receive_objects(GschemToplevel  *w_current, int x, int y, const char *buff
                                                          buffer,
                                                          -1, "Drag & Drop", &err);
     if (err) {
-      char *errmsg = geda_sprintf ( _("An error occurred while dropping data: %s."), err->message);
-      titled_pango_error_dialog ( _("<b>Invalid Data.</b>"), errmsg, _("Drag & Drop failed") );
+
+      char *errmsg;
+
+      errmsg = geda_sprintf ("%s: %s.", _("An error occurred while receiving Drag & Drop data"), err->message);
+
+      titled_pango_error_dialog (_("<b>Invalid Data.</b>"), errmsg, _("Drag & Drop failed"));
+
       GEDA_FREE(errmsg);
       g_error_free(err);
       result = FALSE;
@@ -596,18 +603,17 @@ x_dnd_receive_objects(GschemToplevel  *w_current, int x, int y, const char *buff
 /** \defgroup Drag-N-Drop-Destination Signal Handlers
  *  @{ \par This sub-group contains routines to handle signals receivable by
  *          the Drawing Area as the destination
-*/
+ */
 
 
-/*! \brief When Drag Received from the Source
- *
- *  \par Function Description
- *
- * Called when the data has been received from the source. It should check
- * the GtkSelectionData sent by the source, and do something with it. Finally
- * it needs to finish the operation by calling gtk_drag_finish, which will emit
- * the "data-delete" signal if told to.
-*/
+/*!
+ * \brief When Drag Received from the Source
+ * \par Function Description
+ *  Called when the data has been received from the source. It should check
+ *  the GtkSelectionData sent by the source, and do something with it. Finally
+ *  it needs to finish the operation by calling gtk_drag_finish, which will emit
+ *  the "data-delete" signal if told to.
+ */
 static void
 x_dnd_drag_receive(GtkWidget *widget, GdkDragContext   *context, int x, int y,
                                       GtkSelectionData *selection_data,
@@ -697,10 +703,9 @@ x_dnd_drag_receive(GtkWidget *widget, GdkDragContext   *context, int x, int y,
 
 #if DEBUG  || DEBUG_DND_EVENTS
 
-/*! \brief When Drag Leaves the Destination
- *
- *  \par Function Description
- *
+/*!
+ * \brief When Drag Leaves the Destination
+ * \par Function Description
  *  Called when the drag leaves the destination.
  */
 static void x_dnd_drag_leave
@@ -712,10 +717,9 @@ static void x_dnd_drag_leave
 
 #endif
 
-/*! \brief When Drag Motion over the Destination
- *
- *  \par Function Description
- *
+/*!
+ * \brief When Drag Motion over the Destination
+ * \par Function Description
  *  Called when a drag is over the destination.
  *
  * \return FALSE if the operation should continue
@@ -744,15 +748,14 @@ drag_motion (GtkWidget *widget, GdkDragContext *context, gint x, gint y, guint t
 }
 */
 
-/*! \brief When Drag gets Dropped on the Drawing Area
- *
- *  \par Function Description
- *
+/*!
+ * \brief When Drag gets Dropped on the Drawing Area
+ * \par Function Description
  *  Called when the user releases (drops) the selection. We choose the
  *  target type we wish the source could send. We call gtk_drag_get_data
  *  which will emit "drag-data-get" on the source, passing along our wish.
  *
- *  \return TRUE if the operation should continue, otherwise FALSE
+ * \return TRUE if the operation should continue, otherwise FALSE
  */
 static bool x_dnd_drag_drop
 (GtkWidget *widget, GdkDragContext *context, int x, int y, guint time, GschemToplevel *w_current)
@@ -831,20 +834,19 @@ static bool x_dnd_drag_drop
  *          Source
 */
 
-/*! \brief When Destination Request Data from the Source
- *
- *  \par Function Description
- *
- * Called when the destination requests data from the source via
- * gtk_drag_get_data. We attempt to provide data in the form requested in
- * the target_type passed to us from the destination. If we cannot, then
- * default to a "safe" type, i.e. a string or text, even if only to print
- * an error. Then use gtk_selection_data_set to put the source data into
- * the allocated selection_data object, which will then be passed to the
- * destination. This will cause "drag-data-received" to be emitted on the
- * destination. GdkSelectionData is based on X's selection mechanism which,
- * via X properties, is only capable of storing data in blocks of 8, 16, or
- * 32 bit units.
+/*!
+ * \brief When Destination Request Data from the Source
+ * \par Function Description
+ *  Called when the destination requests data from the source via
+ *  gtk_drag_get_data. We attempt to provide data in the form requested in
+ *  the target_type passed to us from the destination. If we cannot, then
+ *  default to a "safe" type, i.e. a string or text, even if only to print
+ *  an error. Then use gtk_selection_data_set to put the source data into
+ *  the allocated selection_data object, which will then be passed to the
+ *  destination. This will cause "drag-data-received" to be emitted on the
+ *  destination. GdkSelectionData is based on X's selection mechanism which,
+ *  via X properties, is only capable of storing data in blocks of 8, 16, or
+ *  32 bit units.
  */
 static void x_dnd_drag_data_get
 (GtkWidget *widget, GdkDragContext *context, GtkSelectionData *selection_data,
@@ -933,10 +935,9 @@ x_dnd_drag_begin (GtkWidget *widget, GdkDragContext *context, GschemToplevel *w_
   w_current->dnd_state = SELECT;
 }
 
-/*! \brief When Pointer Leaves the Drawing Area
- *
- *  \par Function Description
- *
+/*!
+ * \brief When Pointer Leaves the Drawing Area
+ * \par Function Description
  *  Called when DnD ends to clean up leftover data. We have a couple of
  *  things to do here; first, free the event that was saved when the mouse
  *  button was pressed down to start the implicit Move action and secondly,
@@ -988,10 +989,9 @@ static void x_dnd_drag_end (GtkWidget *widget, GdkDragContext *context,
 }
 /** @} end-subgroup Drag-N-Drop-Source  */
 
-/*! \brief When Pointer Leaves the Drawing Area
- *
- *  \par Function Description
- *
+/*!
+ * \brief When Pointer Leaves the Drawing Area
+ * \par Function Description
  *  This gets called when the pointer cursor leaves the Drawing Area window.
  *  Unfortunately, with GTK the "leave_notify_event" does not translate to
  *  "moved beyond the boundary of". If the cursor is moved over any object,
@@ -1009,9 +1009,9 @@ static void x_dnd_drag_end (GtkWidget *widget, GdkDragContext *context,
  *  but drops can be completely out-side the current view. Other drawing
  *  programs, lacking D&D, also do this, an example is Inkscape]
  *
- *  \param [in] widget     is Drawing Area    = DrawingArea
- *  \param [in] event      GdkEventCrossing * = not what we want.
- *  \param [in] w_current  pointer to GschemToplevel data structure.
+ * \param [in] widget     is Drawing Area    = DrawingArea
+ * \param [in] event      GdkEventCrossing * = not what we want.
+ * \param [in] w_current  pointer to GschemToplevel data structure.
  */
 static bool
 x_dnd_source_leave (GtkWidget *widget, GdkEventCrossing *event, GschemToplevel *w_current)
@@ -1069,9 +1069,9 @@ x_dnd_source_leave (GtkWidget *widget, GdkEventCrossing *event, GschemToplevel *
   return FALSE;
 }
 
-/*! \brief Setup Drag-n-Drop Events for the Drawing Area
- *
- *  \par Function Description
+/*!
+ * \brief Setup Drag-n-Drop Events for the Drawing Area
+ * \par Function Description
  *  enough said!
  */
 void x_dnd_setup_event_handlers (GschemToplevel *w_current)

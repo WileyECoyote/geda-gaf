@@ -1,6 +1,6 @@
 ;; $Id$
 ;;
-;; This file may be used to produce png files from gschem schematics from the
+;; This file may be used to produce png files from geda schematics from the
 ;; command line.  Typical usage is:
 ;;
 ;;   gschem -p -o mysch.png -r /path/to/this/file/image.scm mysch.sch

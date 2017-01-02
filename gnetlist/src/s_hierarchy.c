@@ -83,8 +83,7 @@ s_hierarchy_traverse(GedaToplevel *pr_current,
     /* loop over all filenames */
     while (current_filename != NULL) {
 
-      u_log_message(_("Going to traverse source [%s]\n"),
-                    current_filename);
+      u_log_message("%s \"%s\"\n", _("Commence traversing source"), current_filename);
 
       /* guts here */
       /* guts for a single filename */
@@ -123,7 +122,7 @@ s_hierarchy_traverse(GedaToplevel *pr_current,
 
         netlist->composite_component = TRUE;
 
-        netlist->hierarchy_tag = geda_utility_string_strdup (netlist->component_uref);
+        netlist->hierarchy_tag = geda_strdup (netlist->component_uref);
 
         s_traverse_hierarchy_sheet (pr_current, netlist);
 
@@ -190,8 +189,6 @@ GList *s_hierarchy_remove_urefconn(NETLIST *head, char *uref_disable)
   NET      *n_current;
   GList    *removed;
 
-  char uref[80], pin[10];
-
   nl_current = head;
   removed    = NULL;
 
@@ -207,10 +204,24 @@ GList *s_hierarchy_remove_urefconn(NETLIST *head, char *uref_disable)
 
         if (n_current->connected_to != NULL) {
 
-          sscanf(n_current->connected_to, "%s %s", uref, pin);
+          char uref[80];
+
+          /* Copy the old "uref pin" pair to buffer */
+          strcpy(&uref[0], n_current->connected_to);
+
+          int i = 0;
+
+          /* Change the space to a null, do not the pin */
+          while (uref[i]){
+            if (uref[i] == ' ') {
+              uref[i] = '\0';
+              break;
+            }
+            i++;
+          }
 
 #if DEBUG
-          printf("  looking at : %s %s\n", uref, pin);
+          printf("  looking at : %s %s\n", uref, /*pin*/ uref[i+1]);
 #endif
 
           if (strcmp(uref_disable, uref) == 0) {
@@ -314,7 +325,7 @@ char *s_hierarchy_create_uref(GedaToplevel *pr_current, char *basename,
   }
   else {
     if (basename) {
-      return_value = geda_utility_string_strdup (basename);
+      return_value = geda_strdup (basename);
     }
     else {
       return_value = NULL;
@@ -553,7 +564,7 @@ char *s_hierarchy_create_netname(GedaToplevel *pr_current, char *basename,
   if (pr_current->hierarchy_netname_mangle == FALSE) {
 
     if (basename) {
-      return (geda_utility_string_strdup (basename));
+      return (geda_strdup (basename));
     }
     else {
       return (NULL);
@@ -602,7 +613,7 @@ char *s_hierarchy_create_netname(GedaToplevel *pr_current, char *basename,
   }
   else {
     if (basename) {
-      return_value = geda_utility_string_strdup (basename);
+      return_value = geda_strdup (basename);
     }
     else {
       return_value = NULL;
@@ -625,7 +636,7 @@ char *s_hierarchy_create_netattrib(GedaToplevel *pr_current, char *basename,
   if (pr_current->hierarchy_netattrib_mangle == FALSE) {
 
     if (basename) {
-      return (geda_utility_string_strdup (basename));
+      return (geda_strdup (basename));
     }
     else {
       return (NULL);
@@ -675,7 +686,7 @@ char *s_hierarchy_create_netattrib(GedaToplevel *pr_current, char *basename,
   else {
 
     if (basename) {
-      return_value = geda_utility_string_strdup (basename);
+      return_value = geda_strdup (basename);
     }
     else {
       return_value = NULL;
@@ -685,11 +696,12 @@ char *s_hierarchy_create_netattrib(GedaToplevel *pr_current, char *basename,
   return (return_value);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief Hierarchy Remove Mangling from Reference
- *  \par Function Description
- *
- *  \note Caller should release the returned character string.
+/*!
+ * \brief Hierarchy Remove Mangling from Reference
+ * \par Function Description
+ *  Removes the hierarchy prefix from reference desginator.
+ *  Example:
+ *           Sheets_18/J4 18 -> J4 18
  */
 void
 s_hierarchy_remove_uref_mangling(GedaToplevel *pr_current, NETLIST *head)
@@ -697,9 +709,7 @@ s_hierarchy_remove_uref_mangling(GedaToplevel *pr_current, NETLIST *head)
   NETLIST  *nl_current;
   CPINLIST *pl_current;
   NET      *n_current;
-  char uref[80], pin[10];
-  char *new_uref = NULL;
-  char *new_connected_to = NULL;
+  char     *new_uref = NULL;
 
   nl_current = head;
 
@@ -723,16 +733,37 @@ s_hierarchy_remove_uref_mangling(GedaToplevel *pr_current, NETLIST *head)
 
         if (n_current->connected_to) {
 
+          char *pin = NULL;
+          char  uref[80];
+
+          /* Copy the old "uref pin" pair to buffer */
+          strcpy(&uref[0], n_current->connected_to);
+
+          int i = 0;
+
+          /* Change the space to a null and get pointer to pin */
+          while (uref[i]){
+            if (uref[i] == ' ') {
+              pin = &uref[i + 1];
+              uref[i] = '\0';
+              break;
+            }
+            i++;
+          }
+
           verbose_print("U");
 
-          sscanf(n_current->connected_to, "%s %s", uref, pin);
+          /* Retrieve the new reference */
+          new_uref = s_hierarchy_return_baseuref(pr_current, uref);
 
-          new_uref         = s_hierarchy_return_baseuref(pr_current, uref);
-          new_connected_to = geda_sprintf("%s %s", new_uref, pin, NULL);
+          /* Build the new "uref pin" pair */
+          strcpy(&uref[0], new_uref);
+          strcat(&uref[0], " ");
+          strcat(&uref[0], pin);
 
           GEDA_FREE(new_uref);
           GEDA_FREE(n_current->connected_to);
-          n_current->connected_to = new_connected_to;
+          n_current->connected_to = geda_strdup(&uref[0]);
         }
         n_current = n_current->next;
       }
@@ -767,10 +798,10 @@ char *s_hierarchy_return_baseuref(GedaToplevel *pr_current, char *uref)
     char *start_of_base = strrchr(uref, '/');	/* separator is always '/' */
 
     if (start_of_base == NULL) {
-      return (geda_utility_string_strdup (uref));
+      return (geda_strdup (uref));
     }
 
-    return_value = geda_utility_string_strdup (start_of_base + 1);
+    return_value = geda_strdup (start_of_base + 1);
 
   }
   else if (pr_current->hierarchy_uref_order == PREPEND) {
@@ -778,10 +809,10 @@ char *s_hierarchy_return_baseuref(GedaToplevel *pr_current, char *uref)
     char *end_of_base = strchr(uref, '/');
 
     if (end_of_base == NULL) {
-      return (geda_utility_string_strdup (uref));
+      return (geda_strdup (uref));
     }
 
-    return_value = geda_utility_string_strndup(uref, end_of_base - uref);
+    return_value = geda_strndup(uref, end_of_base - uref);
   }
 
 #if DEBUG

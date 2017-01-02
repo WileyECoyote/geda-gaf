@@ -5,8 +5,8 @@
  * gEDA - GPL Electronic Design Automation
  * gsymcheck - gEDA Symbol Check
  *
- * Copyright (C) 1998-2015 Ales Hvezda
- * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2016 Ales Hvezda
+ * Copyright (C) 1998-2016 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -47,7 +47,8 @@ void g_register_funcs(void)
 
   /* gsymcheckrc functions */
   scm_c_define_gsubr ("gsymcheck-version", 1, 0, 0, g_rc_gsymcheck_version);
-  scm_c_define_gsubr ("valid-attributes",1, 0, 0, g_rc_valid_attributes);
+  scm_c_define_gsubr ("known-devices",     1, 0, 0, g_rc_known_devices);
+  scm_c_define_gsubr ("valid-attributes",  1, 0, 0, g_rc_valid_attributes);
 }
 
 /*! \brief SCM API terminated program

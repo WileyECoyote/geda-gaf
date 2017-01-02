@@ -68,7 +68,7 @@ void s_object_release_attrib_in_object (GedaToplevel *toplevel,
                                         GedaObject *o_current,
                                         char *new_attrib_name);
 
-bool s_object_attrib_add_attrib_in_object (GedaToplevel *toplevel,
+void s_object_attrib_add_attrib_in_object (GedaToplevel *toplevel,
                                            char         *text_string,
                                            int           visibility,
                                            int           show_name_value,
@@ -108,7 +108,8 @@ void s_rename_all(GedaToplevel *toplevel, NETLIST *netlist_head);
 
 /* ------------- s_sheet_data.c ------------- */
 SHEET_DATA *s_sheet_data_new();
-bool s_sheet_data_reset(PageDataSet *PageData);
+void s_sheet_data_free(PageDataSet *PageData);
+
 /*
 void s_sheet_data_add_comp(PageDataSet *PageData, char *component_str_name);
 void s_sheet_data_add_comp_attrib(PageDataSet *PageData, char *comp_attrib_str_name);
@@ -230,7 +231,7 @@ void  x_gtksheet_set_cell_fgcolor(GtkSheet *sheet, int row, int col, ColorId Col
 void  x_gtksheet_set_cell_bgcolor(GtkSheet *sheet, int row, int col, ColorId Color );
 void  x_gtksheet_add_cell_item(GtkSheet *sheet, int i, int j, char *text,
                               int visibility, int show_name_value, int is_inherited);
-
+bool  x_gtksheet_get_is_empty(GtkSheet *sheet, int row, int col);
 int   x_gtksheet_get_min_col(GtkSheet *sheet);
 int   x_gtksheet_get_max_col(GtkSheet *sheet);
 void  x_gtksheet_range_copy(GtkSheetRange *s_range, GtkSheetRange *t_range);
@@ -255,10 +256,12 @@ void  x_menus_set_sensitivities(GSList *ListMenuItems, int sensitive);
 void  x_menu_fix_gtk_recent_submenu();
 GtkActionGroup* x_menu_create_recent_action_group(void);
 GtkWidget* x_menu_create_menu(GtkWindow *window);
+void  x_menu_release_all(void);
 
 /* ------------- x_toolbars.c ------------- */
 void  x_toolbars_init(GtkWidget *parent_container);
 void  x_toolbar_set_sensitivities(GSList *ListToolBarItems, int sensitive);
+void  x_toolbar_release_all(void);
 
 /* ------------- x_window.c ------------- */
 void  x_window_update_title(GedaToplevel *toplevel, PageDataSet *PageData);
@@ -276,3 +279,4 @@ void  x_window_inherited_toggle(GtkToggleAction *action, GtkWindow *main_window)
 void  x_window_autoresize_toggle(GtkToggleAction *action, GtkWindow *window);
 void  x_window_autoscroll_toggle(GtkToggleAction *action, GtkWindow *window);
 void  x_window_grid_toggle(GtkToggleAction *action, GtkWindow *window);
+void  x_window_release_all(void);

@@ -5,8 +5,8 @@
  * gEDA - GPL Electronic Design Automation
  * gsymcheck - gEDA Symbol Check
  *
- * Copyright (C) 1998-2015 Ales Hvezda
- * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2016 Ales Hvezda
+ * Copyright (C) 1998-2016 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -80,7 +80,7 @@ static void main_prog(void *closure, int argc, char *argv[])
   g_rc_parse (argv[0], "gsymcheckrc", rc_filename);
 
   /* create log file right away even if logging is enabled */
-  geda_utility_log_set_update_func(s_log_update);
+  geda_set_log_update_func(s_log_update);
   geda_utility_log_init ("gsymcheck");
 
   pr_current = geda_toplevel_new ();
@@ -96,18 +96,22 @@ static void main_prog(void *closure, int argc, char *argv[])
     if (geda_file_get_is_path_absolute(argv[i])) {
 
       /* Path is already absolute so no need to do any concat of cwd */
-      filename = geda_utility_string_strdup (argv[i]);
+      filename = geda_strdup (argv[i]);
     }
     else {
       filename = g_build_filename (cwd, argv[i], NULL);
     }
 
     page = geda_struct_page_new (pr_current, filename);
+
     geda_struct_page_goto (page);
 
     if (!geda_open_file (pr_current, page, page->filename, &err)) {
 
       /* Not being able to load a file is apparently a fatal error */
+      GEDA_FREE(cwd);
+      geda_struct_page_delete_list(pr_current);
+      gsymcheck_quit();
       log_destiny = STDOUT_TTY;
       fprintf(stderr, "%s\n", err->message);
       g_error_free (err);

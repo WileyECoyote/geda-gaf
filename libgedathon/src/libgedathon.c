@@ -1291,7 +1291,7 @@ PyGeda_open_page( const char *filename )
          * occurs then we have to delete this page but geda_struct_page_delete is
          * going to free the name, the one passed to us as a constant, so
          * we have to make a copy here for the maybe future page */
-        page = geda_struct_page_new (toplevel, geda_utility_string_strdup (filename));
+        page = geda_struct_page_new (toplevel, geda_strdup (filename));
 
         /* Try to load the file */
         if (!geda_file_open (toplevel, page, (char *) filename, &err)) {
@@ -1393,58 +1393,35 @@ int
 PyGeda_close_page(int pid)
 {
   Page *page;
-  Page *new_current = NULL;
   int   new_pid;
 
   page = geda_toplevel_get_page_by_id(toplevel, pid);
 
-  if (page->pid == toplevel->page_current->pid) {
-
-    int up = page->hierarchy_up;
-
-    /* as this will delete current page, select new current page */
-    /* first look up in page hierarchy */
-    new_current = geda_struct_page_search_by_page_id (toplevel->pages, up);
-
-    if (new_current == NULL) {
-
-      /* no up in hierarchy, choice is prev, next, new page */
-      GList *iter = g_list_find( geda_list_get_glist(toplevel->pages), page);
-
-      if (g_list_previous( iter ) ) {
-        new_current = (Page *)g_list_previous( iter )->data;
-      }
-      else if (g_list_next (iter)) {
-        new_current = (Page *)g_list_next( iter )->data;
-      }
-      else {
-        /* need to add a new untitled page */
-        new_current = NULL;
-      }
-    }
-    /* new_current will be the new current page at the end of the function */
-  }
-
   /* remove page from toplevel list of page and free */
   geda_struct_page_delete (toplevel, page, TRUE);
 
+  page = geda_toplevel_get_current_page(toplevel);
+
   /* Switch to a different page if we just removed the current */
-  if (toplevel->page_current == NULL) {
+  if (!page) {
+
+    page = geda_toplevel_get_page_up(toplevel);
 
     /* If there is another page open then switch to it */
-    if (new_current != NULL) {
+    if (!page) {
+      new_pid = -1;
+    }
+    else {
 
       /* change to new_current */
-       if (geda_struct_page_set_current( toplevel, new_current ))
-         new_pid = toplevel->page_current->pid;
-       else
-         new_pid = -1;
+      if (geda_struct_page_set_current(toplevel, page))
+        new_pid = page->pid;
+      else
+        new_pid = -1;
     }
-    else
-      new_pid = -1;
   }
   else {
-      new_pid = toplevel->page_current->pid;
+    new_pid = geda_page_get_pid(page);
   }
 
   return new_pid;

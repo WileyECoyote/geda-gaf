@@ -1,3 +1,25 @@
+2016-12-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    src/: Replace square brackets with double quotes for the file names
+    and format in order to eliminate format specifiers in translatable
+    strings:
+
+          * src/g_rc.c         (func=g_rc_gnetlist_version)
+          * src/gnetlist.c     (func=main_prog)
+          * src/s_hierarchy.c  (func=s_hierarchy_traverse, revise text)
+          * src/s_traverse.c   (func=s_traverse_sheet)
+
+2016-11-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    src/s_hierarchy.c: Substitute geda_strdup for geda_utility_string_strdup.
+
+2016-11-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    src/s_hierarchy.c: Replace sscanf in s_hierarchy_remove_urefconn, reduce
+    scope of uref and eliminate pin array, replace sscanf and geda_sprintf
+    in s_hierarchy_remove_uref_mangling using a similar technique and add
+    comments. Valgrind backend exp-sgcheck is now reporting zero errors.
+
 2016-11-12 Wiley E. Hill <wileyhill@gmail.com>
 
     Revert "gnetlist/test: replace line endings crlf->lf"

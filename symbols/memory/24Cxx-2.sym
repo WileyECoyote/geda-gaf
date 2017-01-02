@@ -99,6 +99,6 @@ numslots=0
 T 0 1650 5 10 0 0 0 0 1
 footprint=SOT25
 T 0 1850 8 10 0 1 0 0 1
-dist-license=GPL2
+dist-license=GPLv2
 T 0 2050 8 10 0 0 0 0 1
 use-license=unlimited

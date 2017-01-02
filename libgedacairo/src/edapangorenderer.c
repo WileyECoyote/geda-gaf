@@ -546,7 +546,9 @@ eda_pango_parse_overbars (const char *overbar_text,  int    length,
 
     /* If we encounter a null character before we were expecting it,
      * give up anyway. */
-    if (*in_ptr == '\0') break;
+    if (*in_ptr == '\0') {
+      break;
+    }
   }
 
   return TRUE;

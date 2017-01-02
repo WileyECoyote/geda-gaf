@@ -10,7 +10,7 @@ documentation=http://focus.ti.com/docs/prod/folders/print/tlc556.html
 T 300 2600 5 10 0 0 0 0 1
 author=Bill Gatliff <bgat@billgatliff.com>
 T 300 2200 5 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 300 2400 5 10 0 0 0 0 1
 use-license=unlimited
 T 1550 900 5 10 0 0 0 0 1

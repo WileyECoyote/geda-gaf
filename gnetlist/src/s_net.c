@@ -311,7 +311,6 @@ char *s_net_name_search(GedaToplevel *pr_current, NET *net_head)
       }
       else if (strcmp(name, n_current->net_name) != 0) {
 
-
 #if DEBUG
         fprintf(stderr, "Found a net with two names!\n");
         fprintf(stderr, "Net called: [%s] and [%s]\n",

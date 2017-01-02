@@ -47,12 +47,12 @@
  * @{
  * \brief A widget used for an item in menus
  * \par
- * The #GedaMenuItem widget and the derived widgets are the only valid
- * children for menus. Their function is to correctly handle highlighting,
- * alignment, events and submenus.
+ * The #GedaMenuItem and derivative widgets are the only valid children
+ * for menus. Their function is to correctly handle alignment and events
+ * and display text and submenus.
  *
- * As a GedaMenuItem derives from GtkBin it can hold any valid child widget,
- * although only a few are really useful.
+ * A GedaMenuItem is derived from GtkBin and therfore can hold any valid
+ * child widget, although only a few are really useful.
  *
  * By default, a GedaMenuItem sets a #GedaAccelLabel as its child.
  * GedaMenuItem has direct functions to set the label and its mnemonic.
@@ -66,10 +66,10 @@
  * geda_accel_label_set_accel (GEDA_ACCEL_LABEL(child), GDK_KEY_1, 0);
  * \endcode
  *
- * # GedaMenuItem as GtkBuildable
+ * GedaMenuItem as GtkBuildable
  *
  * The GedaMenuItem implementation of the GtkBuildable interface supports
- * adding a submenu by specifying “submenu” as the “type” attribute of
+ * adding a submenu by specifying "submenu" as the "type" attribute of
  * a "child" element.
  *
  * An example of UI definition fragment with submenus:
@@ -81,10 +81,43 @@
  * </object>
  * \endcode
  *
+ * GedaMenuItem as GtkActivatable
+ *
+ * GedaMenuItem are typically created using geda_action_create_menu_item,
+ * as shown in this example:
+ * \code{.html}
+ * action = geda_action_new (action_name,     // Action name
+ *                           menu_item_name,  // Text
+ *                           menu_item_tip,   // Tooltip
+ *                           menu_icon_name,  // Icon stock ID
+ *                           action_keys);    // Accelerator string
+ * menu_item = geda_action_create_menu_item (action);
+ * \endcode
+ *
+ * As a GtkActivatable an action can be associated with GedaMenuItems
+ * using gtk_activatable_set_related_action or using the object properties
+ * as shown in this example:
+ * \code{.html}
+ * g_object_set (menu_item, "related-action", action, NULL);
+ * \endcode
+ *
+ * \note Associated actions are NOT referenced by GedaMenuItems but actions
+ *       ARE unreferenced when GedaMenuItems are destroyed. This is for the
+ *       convenience of applications, so that applications do not need to
+ *       keep a list of actions to be destroyed or iterating over menu items
+ *       in order to release actions. GedaMenuItems, #GedaAccelLabels and
+ *       #GedaActions will be destroyed when the applications containing
+ *       window is released. If for some reason an application needs to keep
+ *       the actions alive, wrap the actions with g_object_ref when passing
+ *       the action arguments as shown in this example:
+ * \code{.html}
+ * menu_item = geda_action_create_menu_item (g_object_ref(action));
+ * \endcode
+ *
  * \class GedaMenuBar geda_menu_item.h "include/geda_menu_item.h"
  * \implements GedaMenuShell
  *
- * \sa GtkBin, GedaMenuShell
+ * \sa GtkBin, GedaMenuShell, geda_action_create_menu_item
  */
 
 #define MENU_POPUP_DELAY     225
@@ -252,6 +285,9 @@ static unsigned int menu_item_signals[LAST_SIGNAL] = { 0 };
 
 static GtkBuildableIface *parent_buildable_iface;
 
+/* Table of pointers to GedaMenuItem instances */
+static GHashTable *menu_item_hash_table = NULL;
+
 static void *geda_menu_item_parent_class = NULL;
 
 static void
@@ -276,12 +312,11 @@ geda_menu_item_detacher (GtkWidget *widget, GedaMenu *menu)
   GedaMenuItem *menu_item = GEDA_MENU_ITEM(widget);
   GedaMenuItemPrivate *priv = menu_item->priv;
 
-  g_return_if_fail (priv->submenu == (GtkWidget*) menu);
+  g_return_if_fail (priv->submenu == (GtkWidget*)menu);
 
   g_signal_handlers_disconnect_by_func (menu,
                                         geda_menu_item_selection_done,
                                         menu_item);
-
   priv->submenu = NULL;
 }
 
@@ -359,10 +394,14 @@ static void
 geda_menu_item_destroy (GtkObject *object)
 {
   GedaMenuItem *menu_item = GEDA_MENU_ITEM(object);
-  GedaMenuItemPrivate *priv = menu_item->priv;
+  GtkWidget    *child;
 
-  if (priv->submenu) {
-    gtk_widget_destroy (priv->submenu);
+  child = geda_get_child_widget (GTK_BIN(menu_item));
+
+  if (child) {
+    if (GEDA_IS_LABEL(child)) {
+      gtk_container_remove (GTK_CONTAINER(menu_item), child);
+    }
   }
 
   GTK_OBJECT_CLASS (geda_menu_item_parent_class)->destroy (object);
@@ -374,10 +413,13 @@ static void
 geda_menu_item_destroy (GtkWidget *widget)
 {
   GedaMenuItem *menu_item = GEDA_MENU_ITEM(widget);
-  GedaMenuItemPrivate *priv = menu_item->priv;
 
-  if (priv->submenu) {
-    gtk_widget_destroy (priv->submenu);
+  child = geda_get_child_widget (GTK_BIN(menu_item));
+
+  if (child) {
+    if (GEDA_IS_LABEL(child)) {
+      gtk_container_remove (GTK_CONTAINER(menu_item), child);
+    }
   }
 
   GTK_WIDGET_CLASS (geda_menu_item_parent_class)->destroy (widget);
@@ -400,9 +442,15 @@ geda_menu_item_dispose (GObject *object)
   }
 
   if (priv->submenu) {
-    g_signal_handlers_disconnect_by_func (priv->submenu,
+
+    GedaMenu *menu = GEDA_MENU(priv->submenu);
+
+    g_signal_handlers_disconnect_by_func (menu,
                                           geda_menu_item_selection_done,
                                           menu_item);
+    geda_menu_set_accel_group (menu, NULL);
+    geda_menu_detach(menu);
+
     priv->submenu = NULL;
   }
 
@@ -412,6 +460,13 @@ geda_menu_item_dispose (GObject *object)
 static void geda_menu_item_finalize (GObject *object)
 {
   GedaMenuItem *menu_item = GEDA_MENU_ITEM(object);
+
+  if (g_hash_table_remove (menu_item_hash_table, object)) {
+    if (!g_hash_table_size (menu_item_hash_table)) {
+      g_hash_table_destroy (menu_item_hash_table);
+      menu_item_hash_table = NULL;
+    }
+  }
 
   g_free(menu_item->priv);
 
@@ -542,7 +597,7 @@ geda_menu_item_get_property (GObject     *object,
  * \param [in] class_data GedaMenuSeparator structure associated with the class
  */
 static void
-geda_menu_item_class_init  (void *class, void *class_data)
+geda_menu_item_class_init (void *class, void *class_data)
 {
   GObjectClass      *gobject_class   = (GObjectClass*)class;
   GtkWidgetClass    *widget_class    = (GtkWidgetClass*)class;
@@ -755,12 +810,18 @@ geda_menu_item_class_init  (void *class, void *class_data)
                                                          FALSE,
                                                          G_PARAM_READWRITE));
 
-  g_object_class_override_property (gobject_class, PROP_ACTIVATABLE_RELATED_ACTION, "related-action");
-  g_object_class_override_property (gobject_class, PROP_ACTIVATABLE_USE_ACTION_APPEARANCE, "use-action-appearance");
+  g_object_class_override_property (gobject_class,
+                                    PROP_ACTIVATABLE_RELATED_ACTION,
+                                    "related-action");
+
+  g_object_class_override_property (gobject_class,
+                                    PROP_ACTIVATABLE_USE_ACTION_APPEARANCE,
+                                    "use-action-appearance");
 
 #if GTK_MAJOR_VERSION == 3
 
   g_object_class_override_property (gobject_class, PROP_ACTION_NAME, "action-name");
+
   g_object_class_override_property (gobject_class, PROP_ACTION_TARGET, "action-target");
 
 #endif
@@ -858,8 +919,6 @@ geda_menu_item_instance_init(GTypeInstance *instance, void *class)
   priv            = g_malloc0 (sizeof(GedaMenuItemPrivate));
   menu_item->priv = priv;
 
-  menu_item->instance_type = geda_menu_item_get_type();
-
   priv->use_action_appearance = TRUE;
   priv->mnemonic              = (char)GDK_KEY_VoidSymbol;
 
@@ -880,6 +939,10 @@ geda_menu_item_instance_init(GTypeInstance *instance, void *class)
   gtk_style_context_add_class (context, GTK_STYLE_CLASS_MENUITEM);
 #endif
 
+  if (!menu_item_hash_table) {
+    menu_item_hash_table = g_hash_table_new (g_direct_hash, NULL);
+  }
+  g_hash_table_add (menu_item_hash_table, instance);
 }
 
 /*!
@@ -952,10 +1015,10 @@ geda_menu_item_get_type (void)
   return geda_menu_item_type;
 }
 
-bool is_a_geda_menu_item (GedaMenuItem  *menu_item)
+bool is_a_geda_menu_item (GedaMenuItem *menu_item)
 {
-  if (G_IS_OBJECT(menu_item)) {
-    return (geda_menu_item_get_type() == menu_item->instance_type);
+  if ((menu_item != NULL) && (menu_item_hash_table != NULL)) {
+    return g_hash_table_lookup(menu_item_hash_table, menu_item) ? TRUE : FALSE;
   }
   return FALSE;
 }
@@ -1330,9 +1393,10 @@ geda_menu_item_set_submenu (GedaMenuItem *menu_item, GtkWidget *submenu)
       geda_menu_detach (GEDA_MENU(priv->submenu));
     }
 
+    priv->submenu = submenu;
+
     if (submenu) {
 
-      priv->submenu = submenu;
       geda_menu_attach_to_widget (GEDA_MENU(submenu), widget,
                                   geda_menu_item_detacher);
 
@@ -3627,27 +3691,33 @@ geda_menu_item_ensure_label (GedaMenuItem *menu_item)
 bool
 geda_menu_item_is_selectable (GedaMenuItem  *menu_item)
 {
-  if ((!gtk_bin_get_child (GTK_BIN(menu_item)) &&
-    G_OBJECT_TYPE (menu_item) == GEDA_TYPE_MENU_ITEM) ||
-    GEDA_IS_MENU_SEPERATOR (menu_item) ||
-    !gtk_widget_is_sensitive (GTK_WIDGET(menu_item)) ||
-    !gtk_widget_get_visible (GTK_WIDGET(menu_item)))
-    return FALSE;
+  if (menu_item != NULL) {
+    if ((!gtk_bin_get_child (GTK_BIN(menu_item)) &&
+      G_OBJECT_TYPE (menu_item) == GEDA_TYPE_MENU_ITEM) ||
+      GEDA_IS_MENU_SEPERATOR (menu_item) ||
+      !gtk_widget_is_sensitive (GTK_WIDGET(menu_item)) ||
+      !gtk_widget_get_visible (GTK_WIDGET(menu_item)))
+      return FALSE;
 
-  return TRUE;
+    return TRUE;
+  }
+  return FALSE;
 }
 
 bool
 geda_menu_item_is_widget_selectable (GtkWidget *widget)
 {
-  if ((!gtk_bin_get_child (GTK_BIN(widget)) &&
-    G_OBJECT_TYPE (widget) == GEDA_TYPE_MENU_ITEM) ||
-    GEDA_IS_MENU_SEPERATOR (widget) ||
-    !gtk_widget_is_sensitive (widget) ||
-    !gtk_widget_get_visible (widget))
-    return FALSE;
+  if (widget != NULL) {
+    if ((!gtk_bin_get_child (GTK_BIN(widget)) &&
+      G_OBJECT_TYPE (widget) == GEDA_TYPE_MENU_ITEM) ||
+      GEDA_IS_MENU_SEPERATOR (widget) ||
+      !gtk_widget_is_sensitive (widget) ||
+      !gtk_widget_get_visible (widget))
+      return FALSE;
 
-  return TRUE;
+    return TRUE;
+  }
+  return FALSE;
 }
 
 /*!

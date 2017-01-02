@@ -2,19 +2,12 @@ v 20111231 2
 B 300 900 2400 2800 3 10 2 0 -1 -1 0 -1 -1 -1 -1 -1
 T 300 3800 8 10 1 1 0 0 1
 refdes=subsheet-foo-bar.sch
-#T 1500 1000 8 10 1 1 0 4 1
-#source=subsheet-foo-bar.sch
+T 1500 1000 8 10 1 1 0 4 1
+comment=source=subsheet-foo-bar.sch
 T 400 3400 8 20 1 1 0 1 1
 description=name
-B 300 400 2400 500 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 300 5300 5 8 0 0 0 0 1
-dist-license=GPL 3, see http://www.gnu.org/licenses/gpl-3.0.txt for details
 T 300 5700 5 8 0 0 0 0 1
 comment=template for subsheet, pin distance 400 units
-T 300 5500 5 8 0 0 0 0 1
-author=Kai-Martin Knaak, kmk@lilalaser.de
-T 300 5100 5 8 0 0 0 0 1
-use-license=free, no restrictions
 P 200 3000 300 3000 1 0 0
 {
 T 350 3000 9 10 1 1 0 1 1
@@ -191,9 +184,16 @@ pintype=pas
 T 2550 350 5 8 0 1 270 0 1
 pinseq=16
 }
+B 300 400 2400 500 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 600 100 9 10 0 0 0 0 1
 numslots=0
 T 600 100 9 10 0 0 0 0 1
 device=none
 T 600 100 9 10 0 0 0 0 1
 footprint=none
+T 300 5500 5 8 0 0 0 0 1
+author=Kai-Martin Knaak, kmk@lilalaser.de
+T 300 5300 5 8 0 0 0 0 1
+dist-license=GPLv2
+T 300 5100 5 8 0 0 0 0 1
+use-license=unlimited

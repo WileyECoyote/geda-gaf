@@ -367,7 +367,7 @@ description=Battery Level Gauge and Protection Enabled With Impedance Track
 T 200 5150 5 10 0 0 0 0 1
 numslots=0
 T 200 5950 5 10 0 0 0 0 1
-dist-license=GPL3
+dist-license=GPLv2
 T 200 6150 5 10 0 0 0 0 1
 use-license=unlimited
 P 100 1300 400 1300 1 0 0

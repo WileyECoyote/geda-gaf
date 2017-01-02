@@ -240,6 +240,6 @@ T 450 1600 5 8 0 1 0 2 1
 pintype=io
 }
 T 2200 4800 8 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 2200 4600 8 10 0 0 0 0 1
 use-license=unlimited

@@ -66,8 +66,6 @@ struct _GedaObject {
 
   GObject parent;
 
-  GedaObjectType head_marker;          /* structure type signature */
-
   char    type;                        /* Basic information */
   int     sid;                         /* sequence id ?? */
   char   *name;
@@ -126,8 +124,6 @@ struct _GedaObject {
   int conn_notify_pending;
 
   GList   *weak_refs;             /* Weak references */
-
-  GedaObjectType tail_marker;     /* structure type signature */
 };
 
 #ifdef __cplusplus
@@ -149,6 +145,7 @@ void          geda_object_remove_weak_ptr    (GedaObject *object, void *weak_poi
 int           geda_object_bounds             (ConstObject *object);
 const GList  *geda_object_get_attached       (ConstObject *object);
 int           geda_object_get_color          (ConstObject *object);
+const GList  *geda_object_get_conn_list      (ConstObject *object);
 Page         *geda_object_get_page           (ConstObject *object);
 int           geda_object_get_filltype       (ConstObject *object);
 

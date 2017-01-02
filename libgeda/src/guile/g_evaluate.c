@@ -321,9 +321,9 @@ bool g_evaluate_scheme_file (const char *filename, GError **err)
 
     char *file_directory;
 
-    data.stack = SCM_BOOL_F;
+    data.stack    = SCM_BOOL_F;
     data.filename = scm_from_utf8_string (filename);
-    data.err = NULL;
+    data.err      = NULL;
 
     /* Before we load the file, first cd into file's directory. */
     file_directory = geda_get_dirname (filename);
@@ -347,8 +347,7 @@ bool g_evaluate_scheme_file (const char *filename, GError **err)
         }
       }
       else {
-        free(saved_cwd);
-        saved_cwd = NULL;
+        GEDA_FREE(saved_cwd);
       }
 
       if (dir_okay) {
@@ -356,9 +355,9 @@ bool g_evaluate_scheme_file (const char *filename, GError **err)
         scm_dynwind_begin (SCM_F_DYNWIND_REWINDABLE);
 
         scm_c_catch (SCM_BOOL_T,
-                     (scm_t_catch_body)    g_evaluate_scheme_file__body, &data,
-                     (scm_t_catch_handler) g_evaluate_scheme_file__post_handler, &data,
-                     (scm_t_catch_handler) g_evaluate_scheme_file__pre_handler, &data);
+                    (scm_t_catch_body)    g_evaluate_scheme_file__body, &data,
+                    (scm_t_catch_handler) g_evaluate_scheme_file__post_handler, &data,
+                    (scm_t_catch_handler) g_evaluate_scheme_file__pre_handler, &data);
 
         scm_dynwind_end ();
 
@@ -374,12 +373,11 @@ bool g_evaluate_scheme_file (const char *filename, GError **err)
           if (chdir (saved_cwd)) {
             fprintf(stderr, err_dir, msg_restore, saved_cwd, strerror (errno));
           }
-          free(saved_cwd);
+          geda_free(saved_cwd);
         }
       }
-      free(file_directory);
+      geda_free(file_directory);
     }
   }
-
   return result;
 }

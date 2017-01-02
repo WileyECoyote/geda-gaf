@@ -15,7 +15,7 @@ documentation=http://www.ti.com/product/drv8313
 T 300 7200 5 10 0 1 0 0 1
 description=IC,MOTOR CONTROL,SPI,LDO
 T 300 8000 5 10 0 0 0 0 1
-dist-license=GPL3
+dist-license=GPLv2
 P 3200 4700 2900 4700 1 0 0
 {
 T 3000 4750 5 8 1 1 0 0 1

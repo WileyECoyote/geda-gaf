@@ -52,6 +52,7 @@ static struct BuiltinInfo builtins[] = {
   { "%edit-move",                 0, 0, 0, g_keys_edit_move },
   { "%edit-delete",               0, 0, 0, g_keys_edit_delete },
   { "%edit-rotate-left",          0, 0, 0, g_keys_edit_rotate_left },
+  { "%edit-rotate-right",         0, 0, 0, g_keys_edit_rotate_right },
   { "%edit-mirror",               0, 0, 0, g_keys_edit_mirror },
   { "%edit-slot",                 0, 0, 0, g_keys_edit_slot },
   { "%edit-color",                0, 0, 0, g_keys_edit_color },

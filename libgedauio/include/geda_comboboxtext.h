@@ -48,7 +48,7 @@ struct _GedaComboBoxText
 {
   /*< private >*/
   GedaComboBox  parent_instance;
-  GedaType      instance_type;
+
   GtkListStore *store;
   GtkWidget    *tree;
   GtkWidget    *button;
@@ -116,7 +116,6 @@ char        *geda_combo_box_text_get_active_text       (GedaComboBoxText   *comb
 
 bool         geda_combo_box_text_set_active_text       (GedaComboBoxText   *combo_box,
                                                         const char         *text);
-
 bool         geda_combo_box_text_get_activate_default  (GedaComboBoxText   *combo_box);
 
 void         geda_combo_box_text_set_activate_default  (GedaComboBoxText   *combo_box,
@@ -124,6 +123,8 @@ void         geda_combo_box_text_set_activate_default  (GedaComboBoxText   *comb
 GedaEntry   *geda_combo_box_text_get_entry             (GedaComboBoxText   *combo_box);
 
 GtkWidget   *geda_combo_box_text_get_entry_widget      (GedaComboBoxText   *combo_box);
+
+int          geda_combo_box_text_get_text_length       (GedaComboBoxText   *combo_box);
 
 /* Widget Receptors - it had better be a GedaComboBoxText widget */
 
@@ -145,6 +146,8 @@ char        *geda_combo_box_text_widget_get_active_text(GtkWidget          *widg
 
 bool         geda_combo_box_text_widget_set_active_text(GtkWidget          *widget,
                                                         const char         *text);
+int          geda_combo_box_text_widget_get_text_length(GtkWidget          *widget);
+
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
