@@ -33,7 +33,9 @@
 
 #include <glib.h>
 
+#if !GLIB_CHECK_VERSION(2, 44, 0)
 static GMemVTable memvtable = {0};
+#endif
 
 #ifdef __linux__
 

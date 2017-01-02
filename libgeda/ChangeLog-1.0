@@ -1,3 +1,11 @@
+2017-01-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/libgeda/geda_keyfile.h: Resolve size_t arguments to keyfile
+      function => unsigned int.
+
+    * src/utility/u_program.c: Wrap memvtable with connditional to not define if
+      glib >= 2.44.
+
 2016-12-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_file.c: Reduce scope of translatable strings in geda_file_open

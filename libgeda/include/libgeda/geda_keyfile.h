@@ -104,7 +104,7 @@ bool      geda_keyfile_load_from_file         (GedaKeyFile        *key_file,
                                                GError            **error);
 bool      geda_keyfile_load_from_data         (GedaKeyFile        *key_file,
                                                const char         *data,
-                                               size_t              length,
+                                               unsigned int        length,
                                                GedaKeyFileFlags    flags,
                                                GError            **error);
 bool      geda_keyfile_load_from_dirs         (GedaKeyFile        *key_file,
@@ -119,16 +119,16 @@ bool      geda_keyfile_load_from_data_dirs    (GedaKeyFile        *key_file,
                                                GedaKeyFileFlags    flags,
                                                GError            **error);
 char     *geda_keyfile_to_data                (GedaKeyFile        *key_file,
-                                               size_t             *length,
+                                               unsigned int       *length,
                                                GError            **error) G_GNUC_MALLOC;
 
 char     *geda_keyfile_get_start_group        (GedaKeyFile        *key_file) G_GNUC_MALLOC;
 char    **geda_keyfile_get_groups             (GedaKeyFile        *key_file,
-                                               size_t             *length) G_GNUC_MALLOC;
+                                               unsigned int       *length) G_GNUC_MALLOC;
 
 char    **geda_keyfile_get_keys               (GedaKeyFile        *key_file,
                                                const char         *group_name,
-                                               size_t             *length,
+                                               unsigned int       *length,
                                                GError            **error) G_GNUC_MALLOC;
 
 bool      geda_keyfile_has_group              (GedaKeyFile        *key_file,
@@ -211,60 +211,58 @@ void      geda_keyfile_set_double             (GedaKeyFile        *key_file,
 char    **geda_keyfile_get_string_list        (GedaKeyFile        *key_file,
                                                const char         *group_name,
                                                const char         *key,
-                                               size_t             *length,
+                                               unsigned int       *length,
                                                GError            **error) G_GNUC_MALLOC;
 void      geda_keyfile_set_string_list        (GedaKeyFile        *key_file,
                                                const char         *group_name,
                                                const char         *key,
-                                               const char * const  list[],
-                                               size_t              length);
+                                               const char  *const  list[],
+                                               unsigned int        length);
 char    **geda_keyfile_get_locale_string_list (GedaKeyFile        *key_file,
                                                const char         *group_name,
                                                const char         *key,
                                                const char         *locale,
-                                               size_t             *length,
+                                               unsigned int       *length,
                                                GError            **error) G_GNUC_MALLOC;
 void      geda_keyfile_set_locale_string_list (GedaKeyFile        *key_file,
                                                const char         *group_name,
                                                const char         *key,
                                                const char         *locale,
-                                               const char * const  list[],
-                                               size_t              length);
+                                               const char *const   list[],
+                                               unsigned int        length);
 
 bool     *geda_keyfile_get_boolean_list       (GedaKeyFile        *key_file,
                                                const char         *group_name,
                                                const char         *key,
-                                               size_t             *length,
+                                               unsigned int       *length,
                                                GError            **error) G_GNUC_MALLOC;
 
 void      geda_keyfile_set_boolean_list       (GedaKeyFile        *key_file,
                                                const char         *group_name,
                                                const char         *key,
                                                bool                list[],
-                                               size_t              length);
-
-int      *geda_keyfile_get_integer_list       (GedaKeyFile        *key_file,
-                                               const char         *group_name,
-                                               const char         *key,
-                                               size_t             *length,
-                                               GError            **error) G_GNUC_MALLOC;
+                                               unsigned int        length);
 
 void      geda_keyfile_set_double_list        (GedaKeyFile        *key_file,
                                                const char         *group_name,
                                                const char         *key,
                                                double              list[],
-                                               size_t              length);
+                                               unsigned int        length);
 double   *geda_keyfile_get_double_list        (GedaKeyFile        *key_file,
                                                const char         *group_name,
                                                const char         *key,
-                                               size_t             *length,
+                                               unsigned int      *length,
                                                GError            **error) G_GNUC_MALLOC;
-
+int      *geda_keyfile_get_integer_list       (GedaKeyFile        *key_file,
+                                               const char         *group_name,
+                                               const char         *key,
+                                               unsigned int       *length,
+                                               GError            **error) G_GNUC_MALLOC;
 void      geda_keyfile_set_integer_list       (GedaKeyFile        *key_file,
                                                const char         *group_name,
                                                const char         *key,
                                                int                 list[],
-                                               size_t              length);
+                                               unsigned int        length);
 
 bool      geda_keyfile_set_comment            (GedaKeyFile        *key_file,
                                                const char         *group_name,
