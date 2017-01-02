@@ -1199,7 +1199,7 @@ geda_menu_instance_init (GTypeInstance *instance, void *class)
     menu_hash_table = g_hash_table_new (g_direct_hash, NULL);
   }
 
-  g_hash_table_add (menu_hash_table, instance);
+  g_hash_table_replace (menu_hash_table, instance, instance);
 }
 
 /*!

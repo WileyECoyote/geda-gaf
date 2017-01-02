@@ -397,7 +397,7 @@ geda_combo_box_text_instance_init (GTypeInstance *instance, void *class)
     combo_text_box_hash = g_hash_table_new (g_direct_hash, NULL);
   }
 
-  g_hash_table_add (combo_text_box_hash, instance);
+  g_hash_table_replace (combo_text_box_hash, instance, instance);
 
   store = gtk_list_store_new (3, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
 

@@ -1624,7 +1624,7 @@ geda_menu_shell_instance_init(GTypeInstance *instance, void *class)
     shell_hash = g_hash_table_new (g_direct_hash, NULL);
   }
 
-  g_hash_table_add (shell_hash, instance);
+  g_hash_table_replace (shell_hash, instance, instance);
 }
 
 /*!

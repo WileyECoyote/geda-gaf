@@ -811,7 +811,7 @@ geda_bulb_instance_init (GTypeInstance *instance, void *class)
     bulb_hash_table = g_hash_table_new (g_direct_hash, NULL);
   }
 
-  g_hash_table_add (bulb_hash_table, instance);
+  g_hash_table_replace (bulb_hash_table, instance, instance);
 
   gtk_widget_set_receives_default (widget, FALSE);
 

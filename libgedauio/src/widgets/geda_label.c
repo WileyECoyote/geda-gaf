@@ -1782,7 +1782,7 @@ geda_label_instance_init(GTypeInstance *instance, void *g_class)
     label_hash_table = g_hash_table_new (g_direct_hash, NULL);
   }
 
-  g_hash_table_add (label_hash_table, label);
+  g_hash_table_replace (label_hash_table, label, instance);
 
   geda_label_set_text (label, "label");
 

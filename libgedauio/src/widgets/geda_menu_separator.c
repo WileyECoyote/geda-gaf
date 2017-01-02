@@ -90,7 +90,7 @@ geda_menu_separator_instance_init(GTypeInstance *instance, void *class)
     separator_hash_table = g_hash_table_new (g_direct_hash, NULL);
   }
 
-  g_hash_table_add (separator_hash_table, instance);
+  g_hash_table_replace (separator_hash_table, instance, instance);
 }
 
 /*! \brief Retrieve GedaMenuSeparator's Type identifier.

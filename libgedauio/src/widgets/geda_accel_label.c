@@ -650,7 +650,7 @@ geda_accel_label_instance_init (GTypeInstance *instance, void *g_class)
     accel_label_hash = g_hash_table_new (g_direct_hash, NULL);
   }
 
-  g_hash_table_add (accel_label_hash, instance);
+  g_hash_table_replace (accel_label_hash, instance, instance);
 }
 
 /*! \brief Function to retrieve GedaAccelLabel's Type identifier.

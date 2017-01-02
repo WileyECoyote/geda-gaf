@@ -2363,7 +2363,7 @@ geda_combo_box_instance_init(GTypeInstance *instance, void *class)
     combo_box_hash = g_hash_table_new (g_direct_hash, NULL);
   }
 
-  g_hash_table_add (combo_box_hash, instance);
+  g_hash_table_replace (combo_box_hash, instance, instance);
 
   geda_combo_box_check_appearance (combo_box);
 }

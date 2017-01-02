@@ -389,7 +389,7 @@ geda_check_menu_item_instance_init(GTypeInstance *instance, void *class)
     check_menu_item_hash = g_hash_table_new (g_direct_hash, NULL);
   }
 
-  g_hash_table_add (check_menu_item_hash, instance);
+  g_hash_table_replace (check_menu_item_hash, instance, instance);
 
   check_menu_item->active             = FALSE;
   check_menu_item->always_show_toggle = TRUE;
