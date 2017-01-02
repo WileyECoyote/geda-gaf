@@ -1,3 +1,7 @@
+2017-01-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/switchreg/LM5175-2.sym: Add symbol; alternate pin layout.
+
 2017-01-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * lineartech/LT1026-1.sym: Add symbol; voltage converter/doubler.
