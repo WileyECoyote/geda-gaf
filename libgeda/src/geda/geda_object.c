@@ -357,7 +357,7 @@ geda_object_instance_init(GTypeInstance *instance, void *g_class)
     object_hash_table = g_hash_table_new (NULL, NULL);
   }
 
-  g_hash_table_add (object_hash_table, object);
+  g_hash_table_replace(object_hash_table, instance, instance);
 
   /* Call hooks */
   g_list_foreach (new_object_hooks, call_new_object_hook, object);

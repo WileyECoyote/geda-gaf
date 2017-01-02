@@ -1811,10 +1811,9 @@ geda_keyfile_get_locale_string (GedaKeyFile *key_file,
                                 const char  *locale,
                                 GError      **error)
 {
-  char *candidate_key, *translated_value;
+  char   *candidate_key, *translated_value;
   GError *key_file_error;
-  char **languages;
-  bool free_languages = FALSE;
+  char  **languages;
   int i;
 
   g_return_val_if_fail (key_file != NULL, NULL);
@@ -1825,14 +1824,24 @@ geda_keyfile_get_locale_string (GedaKeyFile *key_file,
   translated_value = NULL;
   key_file_error = NULL;
 
-  if (locale) {
-    languages = g_get_locale_variants (locale);
-    free_languages = TRUE;
-  }
-  else {
+#if GLIB_CHECK_VERSION(2, 28, 0)
+
+  bool free_languages
+ 
+  if (!locale) {
     languages = (char **) g_get_language_names ();
     free_languages = FALSE;
   }
+  else {
+    languages = g_get_locale_variants (locale);
+    free_languages = TRUE;
+  }
+
+#else
+
+    languages = (char **) g_get_language_names ();
+
+#endif
 
   for (i = 0; languages[i]; i++) {
 
@@ -1861,9 +1870,11 @@ geda_keyfile_get_locale_string (GedaKeyFile *key_file,
       g_propagate_error (error, key_file_error);
   }
 
+#if GLIB_CHECK_VERSION(2, 28, 0)
   if (free_languages) {
     g_strfreev (languages);
   }
+#endif
 
   return translated_value;
 }
@@ -2912,7 +2923,7 @@ geda_keyfile_set_top_comment (GedaKeyFile *key_file,
   /* Note all keys must be comments at the top of
    * the file, so we can just free it all.
    */
-  g_list_free_full (group->key_value_pairs, (GDestroyNotify)geda_keyfile_pair_free);
+  geda_glist_free_full (group->key_value_pairs, (GDestroyNotify)geda_keyfile_pair_free);
   group->key_value_pairs = NULL;
 
   if (comment != NULL) {
