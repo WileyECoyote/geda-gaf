@@ -2,6 +2,8 @@
 
     * lineartech/LT1026-1.sym: Add symbol; voltage converter/doubler.
 
+    * lineartech/LT1054-1.sym: Add symbol; voltage converter, 100mA regulator.
+
 2016-12-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * analogdevices/LT317A-1.sym: Add symbol; adjustable positive voltage regulator.
