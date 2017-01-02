@@ -1826,8 +1826,8 @@ geda_keyfile_get_locale_string (GedaKeyFile *key_file,
 
 #if GLIB_CHECK_VERSION(2, 28, 0)
 
-  bool free_languages
- 
+  bool free_languages;
+
   if (!locale) {
     languages = (char **) g_get_language_names ();
     free_languages = FALSE;
