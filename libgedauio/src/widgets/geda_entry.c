@@ -151,6 +151,8 @@ static bool    have_auto_complete;
 
 static void *geda_entry_parent_class = NULL;
 
+static GHashTable *entry_hash_table = NULL;
+
 struct _GedaEntryPriv
 {
   GedaCompletion *command_completion;
@@ -210,6 +212,13 @@ geda_entry_finalize (GObject *object)
   GedaEntry *entry;
 
   entry = GEDA_ENTRY (object);
+
+  if (g_hash_table_remove (entry_hash_table, object)) {
+    if (!g_hash_table_size (entry_hash_table)) {
+      g_hash_table_destroy (entry_hash_table);
+      entry_hash_table = NULL;
+    }
+  }
 
   if (entry->priv->command_completion) {
     geda_completion_free (entry->priv->command_completion);
@@ -742,8 +751,6 @@ geda_entry_instance_init(GTypeInstance *instance, void *g_class)
   GedaEntryPriv *priv   = entry->priv;
   priv->font_map        = pango_cairo_font_map_get_default();
 
-  entry->instance_type  = geda_entry_get_type();
-
   entry->have_history   = have_history;
   entry->auto_complete  = have_auto_complete;
 
@@ -796,6 +803,12 @@ geda_entry_instance_init(GTypeInstance *instance, void *g_class)
 
   g_signal_connect_object (G_OBJECT (entry), "insert_text",
                            G_CALLBACK (geda_entry_validate_input), NULL, 0);
+
+  if (!entry_hash_table) {
+    entry_hash_table = g_hash_table_new (g_direct_hash, NULL);
+  }
+
+  g_hash_table_replace (entry_hash_table, instance, instance);
 }
 
 /*!
@@ -850,8 +863,8 @@ geda_entry_get_type (void)
 bool
 is_a_geda_entry (GedaEntry *entry)
 {
-  if (G_IS_OBJECT(entry)) {
-    return (geda_entry_get_type() == entry->instance_type);
+  if ((entry != NULL) && (entry_hash_table != NULL)) {
+    return g_hash_table_lookup(entry_hash_table, entry) ? TRUE : FALSE;
   }
   return FALSE;
 }

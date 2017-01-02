@@ -3,6 +3,9 @@
     * src/widgets/: Replace g_hash_table_add with g_hash_table_replace
       to allow builds with glib < 2.32.
 
+    * src/widgets/geda_entry.c: Replace object type identifier scheme for
+      GedaEntry objects with new hash table type identifier system.
+
 2016-12-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_bulb.c: Replace object type identifier scheme for

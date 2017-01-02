@@ -86,7 +86,7 @@ typedef enum {
 struct _GedaEntry
 {
     GtkEntry          parent;
-    GedaType          instance_type;
+
     GedaEntryAccept   validation_mode;
     volatile int      enable_drag_n_drop   : 1;
     volatile int      activates_default    : 1;
