@@ -1102,10 +1102,11 @@ SCM g_rc_component_dialog_attributes(SCM stringlist)
   SCM_ASSERT(scm_list_p(stringlist), stringlist, SCM_ARG1, "scm_is_list failed");
   length = scm_ilength(stringlist);
 
-  /* If the command is called multiple times, remove the old list before
-     recreating it */
-  g_list_foreach(default_component_select_attrlist, (GFunc)g_free, NULL);
-  g_list_free(default_component_select_attrlist);
+  if (default_component_select_attrlist) {
+    /* If keyword is used multiple times, release the old list before recreating */
+    g_list_foreach(default_component_select_attrlist, (GFunc)g_free, NULL);
+    g_list_free(default_component_select_attrlist);
+  }
 
   scm_dynwind_begin(0);
   scm_dynwind_unwind_handler(geda_gslist_free_all, (void*)&list, 0);

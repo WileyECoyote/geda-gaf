@@ -1,3 +1,7 @@
+2017-01-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/guile/g_rc.c: Conditionally free default_component_select_attrlist.
+
 2017-01-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/bg.po: Update Bulgarian translations.
