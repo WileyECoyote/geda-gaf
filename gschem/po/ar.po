@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-12-29 23:42-0600\n"
+"POT-Creation-Date: 2017-01-01 19:42-0600\n"
 "PO-Revision-Date: 2016-12-23 15:41-0600\n"
 "Last-Translator: عبدالله شلي (Abdellah Chelli) <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -269,7 +269,7 @@ msgid "Grid Mode"
 msgstr "وضع القوس"
 
 #: gschem/src/base/gschem_status_bar.c:598
-msgid "Sets the Gride Mode to display on the status bar"
+msgid "Sets the Grid Mode to display on the status bar"
 msgstr ""
 
 #: gschem/src/base/gschem_status_bar.c:607
@@ -366,7 +366,7 @@ msgid "Right pointer button assignment, right click for options"
 msgstr ""
 
 #: gschem/src/base/gschem_status_bar.c:1192
-msgid "Indicates the current snap,grid units or states"
+msgid "Indicates the current snap, grid units or state"
 msgstr ""
 
 #: gschem/src/base/gschem_status_bar.c:1193
@@ -545,8 +545,8 @@ msgid "New page created"
 msgstr "أنشئت صفحة جديدة"
 
 #: gschem/src/iface/i_command.c:751
-#, c-format
-msgid "New Window created [%s]\n"
+#, fuzzy
+msgid "New Window created"
 msgstr "أنشئت نافذة جديدة [‎%s‬]\n"
 
 #: gschem/src/iface/i_command.c:950
@@ -618,8 +618,8 @@ msgid "Confirm revert ALL documents"
 msgstr ""
 
 #: gschem/src/iface/i_command.c:2981
-#, c-format
-msgid "Searching for source [%s]\n"
+#, fuzzy
+msgid "Searching for source"
 msgstr "البحث عن المنبع [%s]\n"
 
 #: gschem/src/iface/i_command.c:3015
@@ -631,13 +631,12 @@ msgid "Hierarchy Error"
 msgstr "تسلسل هرمي"
 
 #: gschem/src/iface/i_command.c:3101
-#, c-format
-msgid "Searching for symbol [%s]\n"
-msgstr "البحث عن الرمز [%s]\n"
+msgid "Searching for symbol"
+msgstr "البحث عن الرمز"
 
 #: gschem/src/iface/i_command.c:3111
 msgid "Symbol is not a real file. Symbol cannot be loaded.\n"
-msgstr "الرمز ليس ملفا حقيقيا. يتعذر تحميل الرمز.\n"
+msgstr "عنصر رمز ليس ملف حقيقي ولا يمكن تحميلها.\n"
 
 #: gschem/src/iface/i_command.c:3159
 msgid "Cannot find any schematics above the current one!\n"
@@ -764,7 +763,7 @@ msgid "Warning relative file names detected in session"
 msgstr ""
 
 #: gschem/src/iface/i_sessions.c:346 gschem/src/iface/i_sessions.c:359
-#: gschem/src/x/x_sessions.c:232
+#: gschem/src/iface/i_sessions.c:931 gschem/src/x/x_sessions.c:232
 msgid "Session"
 msgstr "أظهر ال_اسم"
 
@@ -800,10 +799,6 @@ msgstr "عدم إزالة الدورة"
 #: gschem/src/iface/i_sessions.c:883
 msgid "<b>Could not remove session</b>"
 msgstr ""
-
-#: gschem/src/iface/i_sessions.c:931
-msgid "session"
-msgstr "أظهر ال_اسم"
 
 #: gschem/src/iface/i_sessions.c:932
 msgid "created with"
@@ -1117,9 +1112,9 @@ msgstr "﻿تحذير: بدء الشبكة خارج إحداثيات الشبي�
 msgid "Warning: Ending net off grid coordinate\n"
 msgstr "﻿تحذير: إنهاء الشبكة خارج إحداثيات الشبيكة\n"
 
-#: gschem/src/object/o_net.c:1095
-#, c-format
-msgid "Bus ripper symbol [%s] was not found in any component library\n"
+#: gschem/src/object/o_net.c:1096
+#, fuzzy
+msgid "Bus ripper symbol was not found in any component library"
 msgstr "﻿لم يتم العثور على رمز كسار الناقل [%s] في أي مكتبة مكون\n"
 
 #: gschem/src/object/o_picture.c:357
@@ -1984,7 +1979,7 @@ msgid "Initializing: Graphics Renderer Adaptor...."
 msgstr ""
 
 #: gschem/src/x/x_draw.cpp:508
-msgid "done\n"
+msgid "done"
 msgstr ""
 
 #: gschem/src/x/x_draw.cpp:514
@@ -1992,7 +1987,7 @@ msgid "Shutting down: Graphics Renderer Adaptor..."
 msgstr ""
 
 #: gschem/src/x/x_draw.cpp:516
-msgid "Done, renderer is down\n"
+msgid "Done, renderer is down"
 msgstr ""
 
 #: gschem/src/x/x_edit_attrib.c:209
@@ -2525,13 +2520,13 @@ msgstr "عرض × ارتفاع"
 msgid "Image type"
 msgstr "نوع الصورة"
 
-#: gschem/src/x/x_image.c:776
+#: gschem/src/x/x_image.c:777
 msgid "Enable to use the Print color map instead of the display color map"
 msgstr ""
 
-#: gschem/src/x/x_image.c:777
+#: gschem/src/x/x_image.c:780
 msgid ""
-"When enbled for reversed color images, only black and white will be reversed"
+"When enabled for reversed color images, only black and white will be reversed"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:86
@@ -3273,8 +3268,8 @@ msgstr ""
 msgid "Rename Session"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:140 gschem/src/x/x_sessions.c:819
-#: gschem/src/x/x_sessions.c:842
+#: gschem/src/x/x_sessions.c:140 gschem/src/x/x_sessions.c:830
+#: gschem/src/x/x_sessions.c:853
 msgid "Specify new name for Session:"
 msgstr ""
 
@@ -3286,73 +3281,73 @@ msgstr "انتق اسم ملف بوست-سكريبت..."
 msgid "exported to"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:413
+#: gschem/src/x/x_sessions.c:414
 #, fuzzy
 msgid "Load the selected session"
 msgstr "الكائنات المنتقاة"
 
-#: gschem/src/x/x_sessions.c:414
+#: gschem/src/x/x_sessions.c:415
 msgid ""
 "Show the Open Session dialog at start-up, over-rides auto-load-last feature"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:415
+#: gschem/src/x/x_sessions.c:416
 msgid "Add and remove files to the sessions automatically"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:420
+#: gschem/src/x/x_sessions.c:421
 msgid "Show at start-up"
 msgstr "أظهر النص البادئ بـ:"
 
-#: gschem/src/x/x_sessions.c:427
+#: gschem/src/x/x_sessions.c:428
 msgid "Auto update"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:524
+#: gschem/src/x/x_sessions.c:535
 msgid "Session Name"
 msgstr "أظهر ال_اسم"
 
-#: gschem/src/x/x_sessions.c:539
+#: gschem/src/x/x_sessions.c:550
 msgid "File Count"
 msgstr "ترتيب الملف"
 
-#: gschem/src/x/x_sessions.c:589
+#: gschem/src/x/x_sessions.c:600
 msgid "Rename the selected session"
 msgstr "النافذة الحالية"
 
-#: gschem/src/x/x_sessions.c:590
+#: gschem/src/x/x_sessions.c:601
 msgid "Delete the selected session"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:591
+#: gschem/src/x/x_sessions.c:602
 msgid "Export the selected session to a project file"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:593 gschem/scheme/gschem/builtins.scm:392
+#: gschem/src/x/x_sessions.c:604 gschem/scheme/gschem/builtins.scm:392
 msgid "Manage Sessions"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:628
+#: gschem/src/x/x_sessions.c:639
 msgid "_Rename"
 msgstr "اسم الملف"
 
-#: gschem/src/x/x_sessions.c:635 gschem/etc/system-gschemrc.scm:2091
+#: gschem/src/x/x_sessions.c:646 gschem/etc/system-gschemrc.scm:2091
 msgid "_Delete"
 msgstr "ا_حذف"
 
-#: gschem/src/x/x_sessions.c:642 gschem/etc/system-gschemrc.scm:2066
+#: gschem/src/x/x_sessions.c:653 gschem/etc/system-gschemrc.scm:2066
 msgid "_Export"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:757
+#: gschem/src/x/x_sessions.c:768
 msgid "Open Session"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:818
+#: gschem/src/x/x_sessions.c:829
 msgid "New Session"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:842 gschem/scheme/gschem/builtins.scm:389
+#: gschem/src/x/x_sessions.c:853 gschem/scheme/gschem/builtins.scm:389
 msgid "Save Session As"
 msgstr "احفظ الكل"
 
@@ -3623,7 +3618,7 @@ msgid "Re_vert All"
 msgstr "أعد الصفحة"
 
 #: gschem/etc/system-gschemrc.scm:2062
-msgid "Discard changes and reload the all documents"
+msgid "Discard changes and reload all open documents"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2065
@@ -5132,6 +5127,9 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
+
+#~ msgid "session"
+#~ msgstr "أظهر ال_اسم"
 
 #~ msgid "New page created [%s]\n"
 #~ msgstr "أنشئت صفحة جديدة [‎%s‬]\n"

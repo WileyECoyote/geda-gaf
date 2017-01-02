@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gschem\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-12-29 23:42-0600\n"
+"POT-Creation-Date: 2017-01-01 19:42-0600\n"
 "PO-Revision-Date: 2010-02-14 01:03+0000\n"
 "Last-Translator: Bernd Jendrissek <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -303,8 +303,9 @@ msgid "Grid Mode"
 msgstr "Boogmodus"
 
 #: gschem/src/base/gschem_status_bar.c:598
-msgid "Sets the Gride Mode to display on the status bar"
-msgstr ""
+#, fuzzy
+msgid "Sets the Grid Mode to display on the status bar"
+msgstr "Stel die grootte-modus word getoon op die status bar"
 
 #: gschem/src/base/gschem_status_bar.c:607
 msgid "Grid Size"
@@ -400,7 +401,7 @@ msgid "Right pointer button assignment, right click for options"
 msgstr "Reg wyser knoppie opdrag, regs kliek vir opsies"
 
 #: gschem/src/base/gschem_status_bar.c:1192
-msgid "Indicates the current snap,grid units or states"
+msgid "Indicates the current snap, grid units or state"
 msgstr "Dui die huidige snap, rooster eenhede of state"
 
 #: gschem/src/base/gschem_status_bar.c:1193
@@ -584,9 +585,8 @@ msgid "New page created"
 msgstr "Nuwe bladsy geskep"
 
 #: gschem/src/iface/i_command.c:751
-#, c-format
-msgid "New Window created [%s]\n"
-msgstr "Nuwe Venster geskep [%s]\n"
+msgid "New Window created"
+msgstr "Nuwe Venster geskep"
 
 #: gschem/src/iface/i_command.c:950
 msgid "Failed to Save All"
@@ -650,37 +650,35 @@ msgstr "Spesifiseer nuwe vergroting:"
 
 #: gschem/src/iface/i_command.c:2255
 msgid "No component selected\n"
-msgstr ""
+msgstr "Geen komponent gekies\n"
 
 #: gschem/src/iface/i_command.c:2800
 msgid "Confirm revert ALL documents"
 msgstr "Bevestig oplaai ALLE dokumente"
 
 #: gschem/src/iface/i_command.c:2981
-#, c-format
-msgid "Searching for source [%s]\n"
-msgstr "Soek vir bron [%s]\n"
+msgid "Searching for source"
+msgstr "Soek vir bron"
 
 #: gschem/src/iface/i_command.c:3015
 msgid "Failed to descend into"
-msgstr "Kon nie afbeelding laai nie: %s"
+msgstr "Kon nie afbeelding laai nie"
 
 #: gschem/src/iface/i_command.c:3024
 msgid "Hierarchy Error"
 msgstr "Hierargie"
 
 #: gschem/src/iface/i_command.c:3101
-#, c-format
-msgid "Searching for symbol [%s]\n"
-msgstr "Soek vir simbool [%s]\n"
+msgid "Searching for symbol"
+msgstr "Soek vir simbool"
 
 #: gschem/src/iface/i_command.c:3111
 msgid "Symbol is not a real file. Symbol cannot be loaded.\n"
-msgstr ""
+msgstr "Simbool is nie 'n ware lêer. Simbool kan nie gelaai word nie.\n"
 
 #: gschem/src/iface/i_command.c:3159
 msgid "Cannot find any schematics above the current one!\n"
-msgstr ""
+msgstr "Daar is geen stroombaandiagram Bo die aktiewe bladsy!\n"
 
 #: gschem/src/iface/i_command.c:3677
 msgid "Attribute is already attached\n"
@@ -786,7 +784,6 @@ msgid "Canceled Close all\n"
 msgstr ""
 
 #: gschem/src/iface/i_sessions.c:262
-#, fuzzy
 msgid "Could not open the session file"
 msgstr "Kon die sessie lêer nie oopmaak"
 
@@ -796,24 +793,24 @@ msgstr ""
 
 #: gschem/src/iface/i_sessions.c:272
 msgid "File"
-msgstr "Lêer:"
+msgstr "Lêer"
 
 #: gschem/src/iface/i_sessions.c:335
 msgid "Warning relative file names detected in session"
 msgstr ""
 
 #: gschem/src/iface/i_sessions.c:346 gschem/src/iface/i_sessions.c:359
-#: gschem/src/x/x_sessions.c:232
+#: gschem/src/iface/i_sessions.c:931 gschem/src/x/x_sessions.c:232
 msgid "Session"
 msgstr "Bewaar Alles"
 
 #: gschem/src/iface/i_sessions.c:347
 msgid "opening"
-msgstr ""
+msgstr "opening"
 
 #: gschem/src/iface/i_sessions.c:348
 msgid "of"
-msgstr ""
+msgstr "van"
 
 #: gschem/src/iface/i_sessions.c:349 gschem/src/iface/i_sessions.c:933
 #: gschem/src/iface/i_sessions.c:1107
@@ -822,7 +819,7 @@ msgstr "Komponentmodus"
 
 #: gschem/src/iface/i_sessions.c:358
 msgid "did not contain any accessible documents"
-msgstr ""
+msgstr "geen toeganklike dokumente bevat"
 
 #: gschem/src/iface/i_sessions.c:791
 msgid "Sessions"
@@ -834,24 +831,19 @@ msgstr "Bewaar Alles"
 
 #: gschem/src/iface/i_sessions.c:880
 msgid "Failed to remove session"
-msgstr "Kon nie afbeelding laai nie: %s"
+msgstr "Kon nie afbeelding laai nie"
 
 #: gschem/src/iface/i_sessions.c:883
 msgid "<b>Could not remove session</b>"
 msgstr ""
-
-#: gschem/src/iface/i_sessions.c:931
-msgid "session"
-msgstr "Bewaar Alles"
 
 #: gschem/src/iface/i_sessions.c:932
 msgid "created with"
 msgstr ""
 
 #: gschem/src/iface/i_sessions.c:940
-#, fuzzy
 msgid "An error occurred attempting to create session"
-msgstr "'N fout probeer sessie te spaar %s: %s."
+msgstr "'N fout probeer sessie te skep"
 
 #: gschem/src/iface/i_sessions.c:950 gschem/src/iface/i_sessions.c:1134
 msgid "<b>Session Error</b>"
@@ -875,7 +867,7 @@ msgstr ""
 
 #: gschem/src/iface/i_sessions.c:1068
 msgid "Failed to rename session"
-msgstr "Kon nie afbeelding laai nie: %s"
+msgstr "Kon nie herbenaam sessie"
 
 #: gschem/src/iface/i_sessions.c:1071
 msgid "<b>Could not rename session</b>"
@@ -916,7 +908,7 @@ msgstr "Toon Teks beginnende met\n"
 
 #: gschem/src/iface/i_sessions.c:1299
 msgid "Session system initialized!\n"
-msgstr ""
+msgstr "Sessie stelsel geïnisialiseer!\n"
 
 #: gschem/src/iface/i_status.c:134 gschem/etc/system-gschemrc.scm:2121
 msgid "Deselect Mode"
@@ -946,7 +938,7 @@ msgstr "Roteermodus"
 
 #: gschem/src/iface/i_status.c:149
 msgid "Side to offset?"
-msgstr ""
+msgstr "Kant te verreken?"
 
 #: gschem/src/iface/i_status.c:151 gschem/scheme/gschem/builtins.scm:116
 msgid "Mirror Mode"
@@ -1055,7 +1047,7 @@ msgstr "Inisialiseer verstek opset instellings\n"
 
 #: gschem/src/iface/i_vars.c:812
 msgid "Failed to save user configuration to"
-msgstr "Kon nie gebruiker opset red '%s': %s."
+msgstr "Kon nie gebruiker opset red"
 
 #: gschem/src/iface/i_window.c:104
 msgid "Closing Page\n"
@@ -1072,7 +1064,7 @@ msgstr ""
 
 #: gschem/src/iface/i_window.c:254
 msgid "An error occurred while processing request to revert"
-msgstr "'N Fout het voorgekom terwyl die ontvangs gedaal data %s."
+msgstr "'N fout tydens die verwerking van versoek om die data te herlaai"
 
 #: gschem/src/iface/i_window.c:258
 msgid "<b>File error.</b>"
@@ -1153,10 +1145,9 @@ msgstr ""
 msgid "Warning: Ending net off grid coordinate\n"
 msgstr ""
 
-#: gschem/src/object/o_net.c:1095
-#, c-format
-msgid "Bus ripper symbol [%s] was not found in any component library\n"
-msgstr "Busrippersimbool [%s] is nie in enige komponentbiblioteek gevind nie\n"
+#: gschem/src/object/o_net.c:1096
+msgid "Bus ripper symbol was not found in any component library"
+msgstr "Bus Ripper simbool is nie gevind in enige komponent biblioteek"
 
 #: gschem/src/object/o_picture.c:357
 msgid "Update All"
@@ -1229,37 +1220,35 @@ msgstr ""
 
 #: gschem/src/object/o_undo.c:117
 msgid "Gschem Undo System"
-msgstr ""
+msgstr "Gschem Ongedaan Stelsel"
 
 #: gschem/src/object/o_undo.c:252
-#, fuzzy
 msgid "Undo: encountered an error, file"
-msgstr "Fout plaasgevind, Slaan Kon"
+msgstr "Fout: plaasgevind, Slaan Kon"
 
 #: gschem/src/object/o_undo.c:253
 msgid "Undo: system error"
-msgstr ""
+msgstr "Ongedaan te maak: stelselfout"
 
 #: gschem/src/object/o_undo.c:254
 msgid "switching to MEMORY mode"
-msgstr ""
+msgstr "oor te skakel na Memory Mode"
 
 #: gschem/src/object/o_undo.c:460
 msgid "An error occurred during an UNDO disk operation"
-msgstr "'N fout tydens 'n lêer open werking: %s."
+msgstr "'N fout tydens 'n UNDO lêer open werking"
 
 #: gschem/src/object/o_undo.c:463
 msgid "Undo/Redo disabled\n"
-msgstr ""
+msgstr "Ongedaan / oordoen gestremde\n"
 
 #: gschem/src/object/o_undo.c:550
-#, fuzzy
 msgid "<b>Undo error.</b>"
-msgstr "<b>Bestek</b>"
+msgstr "<b>Ongedaan Fou.</b>"
 
 #: gschem/src/object/o_undo.c:550
 msgid "Undo failed"
-msgstr ""
+msgstr "Ongedaan misluk"
 
 #: gschem/src/x/x_autonumber.c:600
 msgid ""
@@ -1336,7 +1325,7 @@ msgstr ""
 
 #: gschem/src/x/x_clipboard.c:321
 msgid "An error occurred while inserting clipboard data"
-msgstr "'N Fout het voorgekom terwyl die ontvangs gedaal data %s."
+msgstr "'N fout tydens die inbring van knipbord data"
 
 #: gschem/src/x/x_clipboard.c:322
 msgid "Clipboard Insertion Failed"
@@ -1370,27 +1359,27 @@ msgstr "Waarde"
 
 #: gschem/src/x/x_compselect.c:2741 gschem/src/x/x_dialog.c:1756
 msgid "None"
-msgstr ""
+msgstr "Geen"
 
 #: gschem/src/x/x_compselect.c:2742
 msgid "Style 1"
-msgstr ""
+msgstr "styl 1"
 
 #: gschem/src/x/x_compselect.c:2743
 msgid "Style 2"
-msgstr ""
+msgstr "styl 2"
 
 #: gschem/src/x/x_compselect.c:2744
 msgid "Style 3"
-msgstr ""
+msgstr "styl 3"
 
 #: gschem/src/x/x_compselect.c:2745
 msgid "Style 4"
-msgstr ""
+msgstr "styl 4"
 
 #: gschem/src/x/x_compselect.c:2746
 msgid "Style 5"
-msgstr ""
+msgstr "styl 5"
 
 #: gschem/src/x/x_compselect.c:2747
 msgid "Style 6"
@@ -1398,11 +1387,11 @@ msgstr ""
 
 #: gschem/src/x/x_compselect.c:2748
 msgid "Style 7"
-msgstr ""
+msgstr "styl 7"
 
 #: gschem/src/x/x_compselect.c:2749
 msgid "Style 8"
-msgstr ""
+msgstr "styl 8"
 
 #: gschem/src/x/x_compselect.c:2750
 msgid "All"
@@ -1410,11 +1399,11 @@ msgstr "Alles"
 
 #: gschem/src/x/x_compselect.c:2786
 msgid "Enable all styles"
-msgstr ""
+msgstr "Aktiveer alle styles"
 
 #: gschem/src/x/x_compselect.c:2787
 msgid "Uncheck all styles"
-msgstr ""
+msgstr "Ontmerk alle styles"
 
 #: gschem/src/x/x_compselect.c:2811
 msgid "Reference"
@@ -1491,9 +1480,8 @@ msgid "Drag & Drop"
 msgstr ""
 
 #: gschem/src/x/x_coord.c:156 gschem/src/x/x_dnd.c:583
-#, fuzzy
 msgid "An error occurred while receiving Drag & Drop data"
-msgstr "'N Fout het voorgekom terwyl die ontvangs gedaal data %s."
+msgstr "'N Fout het voorgekom terwyl die ontvangs gedaal data"
 
 #: gschem/src/x/x_coord.c:157
 msgid "Data error"
@@ -1516,28 +1504,28 @@ msgid "World"
 msgstr "Wêreld"
 
 #: gschem/src/x/x_dialog.c:437
-#, fuzzy
 msgid "Could not load image file"
-msgstr "Kon nie open lêer"
+msgstr "Kon nie open beeld-lêer"
 
 #: gschem/src/x/x_dialog.c:443
-#, fuzzy
 msgid "gEDA: GPL Electronic Design Automation"
 msgstr "gEDA: GPL Elektroniese Ontwerp Outomatisering"
 
 #: gschem/src/x/x_dialog.c:444
 msgid "glibc"
-msgstr ""
+msgstr "glibc"
 
 #: gschem/src/x/x_dialog.c:445
 msgid "Guile"
-msgstr ""
+msgstr "Guile"
 
 #: gschem/src/x/x_dialog.c:455
 msgid ""
 "Copyright © 1998-2017 Ales Hvezda <ahvezda@geda.seul.org>\n"
 "Copyright © 1998-2017 gEDA Contributors (see ChangeLog for details)"
 msgstr ""
+"Kopiereg © 1998-2017 Ales Hvezda <ahvezda@geda.seul.org>\n"
+"Kopiereg © 1998-2017 gEDA Bydraers (sien ChangeLog vir meer inligting)"
 
 #: gschem/src/x/x_dialog.c:464 gschem/scheme/gschem/builtins.scm:565
 msgid "About gschem"
@@ -1985,10 +1973,6 @@ msgid ""
 "The name cannot end with a space.\n"
 "The value cannot start with a space"
 msgstr ""
-"<span weight=\"bold\" size=\"larger\">Die ingevoerde eienskap \"%s\" is "
-"ongeldig\n"
-"Verbeter asseblief om voort te gaan</span>\n"
-"\n"
 "Die naam en waarde mag nie leeg wees nie.\n"
 "Die naam mag nie met 'n spasie eindig nie.\n"
 "Die waarde mag nie met 'n spasie begin nie."
@@ -2022,7 +2006,7 @@ msgid "Initializing: Graphics Renderer Adaptor...."
 msgstr ""
 
 #: gschem/src/x/x_draw.cpp:508
-msgid "done\n"
+msgid "done"
 msgstr ""
 
 #: gschem/src/x/x_draw.cpp:514
@@ -2030,7 +2014,7 @@ msgid "Shutting down: Graphics Renderer Adaptor..."
 msgstr ""
 
 #: gschem/src/x/x_draw.cpp:516
-msgid "Done, renderer is down\n"
+msgid "Done, renderer is down"
 msgstr ""
 
 #: gschem/src/x/x_edit_attrib.c:209
@@ -2563,13 +2547,13 @@ msgstr "Wydte x Hoogte"
 msgid "Image type"
 msgstr "Afbeeldingsoort"
 
-#: gschem/src/x/x_image.c:776
+#: gschem/src/x/x_image.c:777
 msgid "Enable to use the Print color map instead of the display color map"
 msgstr ""
 
-#: gschem/src/x/x_image.c:777
+#: gschem/src/x/x_image.c:780
 msgid ""
-"When enbled for reversed color images, only black and white will be reversed"
+"When enabled for reversed color images, only black and white will be reversed"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:86
@@ -3289,7 +3273,7 @@ msgstr "Het lopende stroombaandiagram na gedruk"
 
 #: gschem/src/x/x_print.c:1109 gschem/src/x/x_print.c:1171
 msgid "Failed to write PDF to"
-msgstr "Kon nie afbeelding laai nie: %s"
+msgstr "Kon nie PDF skryf om"
 
 #: gschem/src/x/x_print.c:1224
 msgid "Error printing file"
@@ -3312,8 +3296,8 @@ msgstr ""
 msgid "Rename Session"
 msgstr "Herbenoem Sessie"
 
-#: gschem/src/x/x_sessions.c:140 gschem/src/x/x_sessions.c:819
-#: gschem/src/x/x_sessions.c:842
+#: gschem/src/x/x_sessions.c:140 gschem/src/x/x_sessions.c:830
+#: gschem/src/x/x_sessions.c:853
 msgid "Specify new name for Session:"
 msgstr "Spesifiseer nuwe naam vir Sessie:"
 
@@ -3325,73 +3309,73 @@ msgstr "Kies PostScript Lêernaam"
 msgid "exported to"
 msgstr "uitgevoer word na"
 
-#: gschem/src/x/x_sessions.c:413
+#: gschem/src/x/x_sessions.c:414
 msgid "Load the selected session"
 msgstr "Laai die gekose sessie"
 
-#: gschem/src/x/x_sessions.c:414
+#: gschem/src/x/x_sessions.c:415
 msgid ""
 "Show the Open Session dialog at start-up, over-rides auto-load-last feature"
 msgstr ""
 "Wys die oop sessie dialoog by die begin, oorheers motor-vrag-laaste funksie"
 
-#: gschem/src/x/x_sessions.c:415
+#: gschem/src/x/x_sessions.c:416
 msgid "Add and remove files to the sessions automatically"
 msgstr "Voeg en lêers te verwyder om die sessies outomaties"
 
-#: gschem/src/x/x_sessions.c:420
+#: gschem/src/x/x_sessions.c:421
 msgid "Show at start-up"
 msgstr "Toon Teks beginnende met"
 
-#: gschem/src/x/x_sessions.c:427
+#: gschem/src/x/x_sessions.c:428
 msgid "Auto update"
 msgstr "outomatiese update"
 
-#: gschem/src/x/x_sessions.c:524
+#: gschem/src/x/x_sessions.c:535
 msgid "Session Name"
 msgstr "Sessie Naam"
 
-#: gschem/src/x/x_sessions.c:539
+#: gschem/src/x/x_sessions.c:550
 msgid "File Count"
 msgstr "Lêerorde"
 
-#: gschem/src/x/x_sessions.c:589
+#: gschem/src/x/x_sessions.c:600
 msgid "Rename the selected session"
 msgstr "Herbenoem die gekose sessie"
 
-#: gschem/src/x/x_sessions.c:590
+#: gschem/src/x/x_sessions.c:601
 msgid "Delete the selected session"
 msgstr "Verwyder die gekose sessie"
 
-#: gschem/src/x/x_sessions.c:591
+#: gschem/src/x/x_sessions.c:602
 msgid "Export the selected session to a project file"
 msgstr "Uitvoer van die gekose sessie om 'n projek lêer"
 
-#: gschem/src/x/x_sessions.c:593 gschem/scheme/gschem/builtins.scm:392
+#: gschem/src/x/x_sessions.c:604 gschem/scheme/gschem/builtins.scm:392
 msgid "Manage Sessions"
 msgstr "bestuur sessies"
 
-#: gschem/src/x/x_sessions.c:628
+#: gschem/src/x/x_sessions.c:639
 msgid "_Rename"
 msgstr "Lêernaam"
 
-#: gschem/src/x/x_sessions.c:635 gschem/etc/system-gschemrc.scm:2091
+#: gschem/src/x/x_sessions.c:646 gschem/etc/system-gschemrc.scm:2091
 msgid "_Delete"
 msgstr "verwyder"
 
-#: gschem/src/x/x_sessions.c:642 gschem/etc/system-gschemrc.scm:2066
+#: gschem/src/x/x_sessions.c:653 gschem/etc/system-gschemrc.scm:2066
 msgid "_Export"
 msgstr "uitvoer"
 
-#: gschem/src/x/x_sessions.c:757
+#: gschem/src/x/x_sessions.c:768
 msgid "Open Session"
 msgstr "Oop sessie"
 
-#: gschem/src/x/x_sessions.c:818
+#: gschem/src/x/x_sessions.c:829
 msgid "New Session"
 msgstr "nuwe sessie"
 
-#: gschem/src/x/x_sessions.c:842 gschem/scheme/gschem/builtins.scm:389
+#: gschem/src/x/x_sessions.c:853 gschem/scheme/gschem/builtins.scm:389
 msgid "Save Session As"
 msgstr "Bewaar Alles"
 
@@ -3511,7 +3495,7 @@ msgstr "Waarskuwing, Nutsbalk konfigurasielêer toegang fout"
 
 #: gschem/src/x/x_toolbars.c:703
 msgid "Toolbar configuration not found"
-msgstr "Kon nie afbeelding laai nie: %s"
+msgstr "Toolbar opset wat nie gevind"
 
 #: gschem/src/x/x_window.c:105
 msgid "Could not allocate a graphics context"
@@ -3558,7 +3542,6 @@ msgid "Failed to load file"
 msgstr "Kon nie afbeelding laai nie"
 
 #: gschem/src/x/x_window.c:983
-#, fuzzy
 msgid "Creating new file"
 msgstr "Skep 'n nuwe leë lêer"
 
@@ -3663,8 +3646,9 @@ msgid "Re_vert All"
 msgstr "Gaan Bladsy Terug"
 
 #: gschem/etc/system-gschemrc.scm:2062
-msgid "Discard changes and reload the all documents"
-msgstr ""
+#, fuzzy
+msgid "Discard changes and reload all open documents"
+msgstr "Gooi veranderinge en die huidige dokumente herlaai"
 
 #: gschem/etc/system-gschemrc.scm:2065
 msgid "_Print..."
@@ -5173,6 +5157,3 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
-
-#~ msgid "New page created [%s]\n"
-#~ msgstr "Nuwe bladsy geskep [%s]\n"

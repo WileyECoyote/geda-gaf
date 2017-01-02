@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-12-31 01:32-0600\n"
+"POT-Creation-Date: 2017-01-01 19:42-0600\n"
 "PO-Revision-Date: 2015-07-29 00:24-0600\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -3728,7 +3728,8 @@ msgid "Re_vert All"
 msgstr "tralb bratebatte kar ban breachy"
 
 #: gschem/etc/system-gschemrc.scm:2062
-msgid "Discard changes and reload the all documents"
+#, fuzzy
+msgid "Discard changes and reload all open documents"
 msgstr "baohbng kar phlasa btaur ning kar phtok eksar bachchobban"
 
 #: gschem/etc/system-gschemrc.scm:2065

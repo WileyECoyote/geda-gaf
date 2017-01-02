@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr_FR\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-12-20 13:44-0600\n"
+"POT-Creation-Date: 2017-01-01 21:03-0600\n"
 "PO-Revision-Date: 2012-10-28 15:46+0000\n"
 "Last-Translator: Penegal <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -86,8 +86,7 @@ msgstr ""
 "Il n'y a AUCUNE GARANTIE autre que celles prévues par la loi.\n"
 
 #: utils/gschlas/gschlas.c:130
-#, c-format
-msgid "Loaded file [%s]\n"
+msgid "Loaded file"
 msgstr ""
 
 #: utils/gschlas/gschlas.c:138

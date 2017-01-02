@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-12-05 02:03-0600\n"
+"POT-Creation-Date: 2017-01-01 21:02-0600\n"
 "PO-Revision-Date: 2012-01-27 14:12+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -42,12 +42,26 @@ msgstr ""
 msgid "gEDA Schematic Symbol"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:97 libgeda/src/file/f_file.c:112
+#: libgeda/src/file/f_file.c:98 libgeda/src/file/f_file.c:113
 #, c-format
 msgid "Failed to stat [%s]: %s"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:176
+#: libgeda/src/file/f_file.c:180
+msgid "Error: Invalid page object"
+msgstr ""
+
+#: libgeda/src/file/f_file.c:197
+#, c-format
+msgid "Cannot find file %s: %s"
+msgstr "Kan inte hitta filen %s: %s"
+
+#: libgeda/src/file/f_file.c:214
+#, fuzzy, c-format
+msgid "<libgeda> ERROR: Could not change current directory to %s:%s"
+msgstr "Kan inte hitta filen %s: %s"
+
+#: libgeda/src/file/f_file.c:260
 #, fuzzy, c-format
 msgid ""
 "\n"
@@ -56,24 +70,24 @@ msgid ""
 "\n"
 msgstr "Kan inte hitta filen %s: %s"
 
-#: libgeda/src/file/f_file.c:177
+#: libgeda/src/file/f_file.c:261
 msgid ""
 "Could not detemine which file is newer, so you should do this manually.\n"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:178
+#: libgeda/src/file/f_file.c:262
 msgid ""
 "The backup copy is newer than the schematic, it seems you should load it "
 "instead of the original file.\n"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:179
+#: libgeda/src/file/f_file.c:263
 msgid ""
 "This situation may have occured when an application crashed or was forced to "
 "exit abruptly.\n"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:180
+#: libgeda/src/file/f_file.c:264
 msgid ""
 "\n"
 "Run the application to correct this situation or manually delete the backup "
@@ -81,61 +95,46 @@ msgid ""
 "\n"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:191
-msgid "Error: Invalid page object"
+#: libgeda/src/file/f_file.c:280
+msgid "Memory allocation error!"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:208
-#, c-format
-msgid "Cannot find file %s: %s"
-msgstr "Kan inte hitta filen %s: %s"
-
-#: libgeda/src/file/f_file.c:225
-#, fuzzy, c-format
-msgid "<libgeda> ERROR: Could not change current directory to %s:%s"
-msgstr "Kan inte hitta filen %s: %s"
-
-#: libgeda/src/file/f_file.c:283
-#, c-format
-msgid "%s: Memory allocation error!\n"
-msgstr ""
-
-#: libgeda/src/file/f_file.c:349
+#: libgeda/src/file/f_file.c:346
 #, fuzzy, c-format
 msgid "<libgeda> ERROR: Could not restore current directory to %s:%s"
 msgstr "Kan inte hitta filen %s: %s"
 
-#: libgeda/src/file/f_file.c:395
+#: libgeda/src/file/f_file.c:392
 #, c-format
 msgid "%s: Can not get the real filename of %s."
 msgstr ""
 
-#: libgeda/src/file/f_file.c:407
+#: libgeda/src/file/f_file.c:404
 #, fuzzy, c-format
 msgid "%s: Unable to delete backup file %s."
 msgstr "Kan inte hitta filen %s: %s"
 
-#: libgeda/src/file/f_file.c:455
+#: libgeda/src/file/f_file.c:452
 #, c-format
 msgid "Can't get the real filename of %s: %s"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:456
+#: libgeda/src/file/f_file.c:453
 #, c-format
 msgid "Could NOT save file: %s"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:457
+#: libgeda/src/file/f_file.c:454
 #, c-format
 msgid "File \"%s\" is read-only"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:459
+#: libgeda/src/file/f_file.c:456
 #, c-format
 msgid "Could not set previous backup file [%s] read-write:%s\n"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:460
+#: libgeda/src/file/f_file.c:457
 #, fuzzy, c-format
 msgid "Can not create backup file: %s: %s\n"
 msgstr "Kan inte hitta filen %s: %s"
@@ -1778,13 +1777,11 @@ msgid "Disabling auto save timer, no toplevel"
 msgstr ""
 
 #: libgeda/src/struct/s_page.c:742 libgeda/src/struct/s_page.c:786
-#, c-format
-msgid "Saved [%s]\n"
+msgid "Saved"
 msgstr ""
 
 #: libgeda/src/struct/s_page.c:748 libgeda/src/struct/s_page.c:793
-#, c-format
-msgid "Could NOT save [%s]\n"
+msgid "Could NOT save"
 msgstr ""
 
 #: libgeda/src/struct/s_slot.c:180
@@ -1804,7 +1801,7 @@ msgstr ""
 msgid "component missing pinseq= attribute\n"
 msgstr ""
 
-#: libgeda/src/utility/u_log.c:266
+#: libgeda/src/utility/u_log.c:267
 #, fuzzy, c-format
 msgid "Could not create log directory %s: %s\n"
 msgstr "Kan inte hitta filen %s: %s"

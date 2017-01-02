@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-12-20 13:44-0600\n"
+"POT-Creation-Date: 2017-01-01 21:03-0600\n"
 "PO-Revision-Date: 2010-02-06 22:10+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -27,8 +27,7 @@ msgid "Manipulate component attributes with gattrib"
 msgstr "Manipular atributos dos componentes com gattrib"
 
 #: gattrib/src/f_export.c:81
-#, c-format
-msgid "%s: Could not open [%s]\n"
+msgid "Could not open"
 msgstr ""
 
 #: gattrib/src/gattrib.c:178
@@ -37,8 +36,7 @@ msgid "Failed to save user configuration to '%s': %s."
 msgstr ""
 
 #: gattrib/src/gattrib.c:371
-#, c-format
-msgid "Couldn not find file [%s]\n"
+msgid "Couldn not find file"
 msgstr ""
 
 #: gattrib/src/g_rc.c:51
@@ -347,21 +345,19 @@ msgid "Find next"
 msgstr ""
 
 #: gattrib/src/x_fileselect.c:113
-#, c-format
-msgid "Loading file [%s]\n"
+msgid "Loading file"
 msgstr ""
 
 #: gattrib/src/x_fileselect.c:119
-#, c-format
-msgid "Could not load schematic [%s]\n"
+msgid "Could not load schematic"
 msgstr ""
 
-#: gattrib/src/x_find.c:271
+#: gattrib/src/x_find.c:276
 #, fuzzy
 msgid "Attribute"
 msgstr "Editor de Atributos gEDA"
 
-#: gattrib/src/x_find.c:308
+#: gattrib/src/x_find.c:313
 msgid "Designator"
 msgstr ""
 

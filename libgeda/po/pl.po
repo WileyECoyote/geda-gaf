@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-12-05 02:03-0600\n"
+"POT-Creation-Date: 2017-01-01 21:02-0600\n"
 "PO-Revision-Date: 2010-02-06 22:09+0000\n"
 "Last-Translator: Jarosław Ogrodnik <nobodythere@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -42,12 +42,26 @@ msgstr "Schemat Obwodu gEDA"
 msgid "gEDA Schematic Symbol"
 msgstr "Element Schematu gEDA"
 
-#: libgeda/src/file/f_file.c:97 libgeda/src/file/f_file.c:112
+#: libgeda/src/file/f_file.c:98 libgeda/src/file/f_file.c:113
 #, c-format
 msgid "Failed to stat [%s]: %s"
 msgstr "Błąd odczytu atrybutów [%s]: %s"
 
-#: libgeda/src/file/f_file.c:176
+#: libgeda/src/file/f_file.c:180
+msgid "Error: Invalid page object"
+msgstr ""
+
+#: libgeda/src/file/f_file.c:197
+#, c-format
+msgid "Cannot find file %s: %s"
+msgstr "Nie odnaleziono pliku %s: %s"
+
+#: libgeda/src/file/f_file.c:214
+#, fuzzy, c-format
+msgid "<libgeda> ERROR: Could not change current directory to %s:%s"
+msgstr "Nie można zapisać kopii zapasowej: %s."
+
+#: libgeda/src/file/f_file.c:260
 #, fuzzy, c-format
 msgid ""
 "\n"
@@ -60,14 +74,14 @@ msgstr ""
 "  %s.\n"
 "\n"
 
-#: libgeda/src/file/f_file.c:177
+#: libgeda/src/file/f_file.c:261
 #, fuzzy
 msgid ""
 "Could not detemine which file is newer, so you should do this manually.\n"
 msgstr ""
 "Nie można stwierdzić, czy kopia jest nowsza - musisz sprawdzić to ręcznie.\n"
 
-#: libgeda/src/file/f_file.c:178
+#: libgeda/src/file/f_file.c:262
 #, fuzzy
 msgid ""
 "The backup copy is newer than the schematic, it seems you should load it "
@@ -76,7 +90,7 @@ msgstr ""
 "Kopia zapasowa jest nowsza niż plik schematu, a więc powinieneś otworzyć "
 "kopię zamiast oryginalnego pliku.\n"
 
-#: libgeda/src/file/f_file.c:179
+#: libgeda/src/file/f_file.c:263
 #, fuzzy
 msgid ""
 "This situation may have occured when an application crashed or was forced to "
@@ -85,7 +99,7 @@ msgstr ""
 "Gschem tworzy kopie zapasowe automatycznie, a ta sytuacja może być wynikiem "
 "niepoprawnego zamknięcia programu, np. z powodu błędu.\n"
 
-#: libgeda/src/file/f_file.c:180
+#: libgeda/src/file/f_file.c:264
 msgid ""
 "\n"
 "Run the application to correct this situation or manually delete the backup "
@@ -93,61 +107,46 @@ msgid ""
 "\n"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:191
-msgid "Error: Invalid page object"
+#: libgeda/src/file/f_file.c:280
+msgid "Memory allocation error!"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:208
-#, c-format
-msgid "Cannot find file %s: %s"
-msgstr "Nie odnaleziono pliku %s: %s"
-
-#: libgeda/src/file/f_file.c:225
-#, fuzzy, c-format
-msgid "<libgeda> ERROR: Could not change current directory to %s:%s"
-msgstr "Nie można zapisać kopii zapasowej: %s."
-
-#: libgeda/src/file/f_file.c:283
-#, c-format
-msgid "%s: Memory allocation error!\n"
-msgstr ""
-
-#: libgeda/src/file/f_file.c:349
+#: libgeda/src/file/f_file.c:346
 #, fuzzy, c-format
 msgid "<libgeda> ERROR: Could not restore current directory to %s:%s"
 msgstr "Nie można zapisać kopii zapasowej: %s."
 
-#: libgeda/src/file/f_file.c:395
+#: libgeda/src/file/f_file.c:392
 #, fuzzy, c-format
 msgid "%s: Can not get the real filename of %s."
 msgstr "Nie można odczytać rzeczywistej nazwy %s."
 
-#: libgeda/src/file/f_file.c:407
+#: libgeda/src/file/f_file.c:404
 #, fuzzy, c-format
 msgid "%s: Unable to delete backup file %s."
 msgstr "s_page_delete: Nie można skasować kopii zapasowej %s."
 
-#: libgeda/src/file/f_file.c:455
+#: libgeda/src/file/f_file.c:452
 #, fuzzy, c-format
 msgid "Can't get the real filename of %s: %s"
 msgstr "Nie można odczytać rzeczywistej nazwy %s."
 
-#: libgeda/src/file/f_file.c:456
+#: libgeda/src/file/f_file.c:453
 #, fuzzy, c-format
 msgid "Could NOT save file: %s"
 msgstr "Nie można zapisać [%s]\n"
 
-#: libgeda/src/file/f_file.c:457
+#: libgeda/src/file/f_file.c:454
 #, c-format
 msgid "File \"%s\" is read-only"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:459
+#: libgeda/src/file/f_file.c:456
 #, fuzzy, c-format
 msgid "Could not set previous backup file [%s] read-write:%s\n"
 msgstr "Nie można ustawić pliku kopii zapasowej w tryb zapisu i odczytu [%s]\n"
 
-#: libgeda/src/file/f_file.c:460
+#: libgeda/src/file/f_file.c:457
 #, fuzzy, c-format
 msgid "Can not create backup file: %s: %s\n"
 msgstr "Nie można zapisać kopii zapasowej: %s."
@@ -1850,13 +1849,13 @@ msgid "Disabling auto save timer, no toplevel"
 msgstr ""
 
 #: libgeda/src/struct/s_page.c:742 libgeda/src/struct/s_page.c:786
-#, c-format
-msgid "Saved [%s]\n"
+#, fuzzy
+msgid "Saved"
 msgstr "Zapisano [%s]\n"
 
 #: libgeda/src/struct/s_page.c:748 libgeda/src/struct/s_page.c:793
-#, c-format
-msgid "Could NOT save [%s]\n"
+#, fuzzy
+msgid "Could NOT save"
 msgstr "Nie można zapisać [%s]\n"
 
 #: libgeda/src/struct/s_slot.c:180
@@ -1876,7 +1875,7 @@ msgstr "Nie odnaleziono atrybutu slotdef=#:#,#,#...\n"
 msgid "component missing pinseq= attribute\n"
 msgstr "komponent nie ma atrybutu pinseq=\n"
 
-#: libgeda/src/utility/u_log.c:266
+#: libgeda/src/utility/u_log.c:267
 #, fuzzy, c-format
 msgid "Could not create log directory %s: %s\n"
 msgstr "Nie można zapisać kopii zapasowej: %s."

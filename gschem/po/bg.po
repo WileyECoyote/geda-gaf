@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-12-30 16:15-0600\n"
+"POT-Creation-Date: 2017-01-01 19:42-0600\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -64,8 +64,8 @@ msgstr ""
 msgid "Failed to read scheme initialization file"
 msgstr ""
 
-#: gschem/src/base/gschem.c:384
 #  not fuzzy
+#: gschem/src/base/gschem.c:384
 msgid "version"
 msgstr "версията"
 
@@ -309,13 +309,12 @@ msgid "Set the string for the Right Button Text"
 msgstr ""
 
 #: gschem/src/base/gschem_status_bar.c:648
-#, fuzzy
 msgid "Snap Mode"
-msgstr "Копирен Режим"
+msgstr "Прилепване Режим"
 
 #: gschem/src/base/gschem_status_bar.c:649
 msgid "Sets the Snap Mode to display on the status bar"
-msgstr ""
+msgstr "Задава режим Snap показан в лентата на състоянието"
 
 #: gschem/src/base/gschem_status_bar.c:658 gschem/src/x/x_dialog.c:552
 msgid "Snap Size"
@@ -393,12 +392,10 @@ msgid "NONE"
 msgstr "нито един"
 
 #: gschem/src/guile/g_attrib.c:97
-#, scheme-format
 msgid "Object ~A is not included in the current gschem page."
 msgstr "Обект, ~А не е включена в текущата страница gschem."
 
 #: gschem/src/guile/g_attrib.c:117
-#, scheme-format
 msgid "Invalid text name/value visibility ~A."
 msgstr "Невалидно име/на текст видимост стойност ~A."
 
@@ -515,7 +512,6 @@ msgstr ""
 
 #: gschem/src/guile/g_select.c:84 gschem/src/guile/g_select.c:120
 #: gschem/src/guile/g_select.c:155
-#, scheme-format
 msgid "Object ~A is not directly included in a page."
 msgstr ""
 
@@ -524,7 +520,6 @@ msgid "Could not launch URI"
 msgstr ""
 
 #: gschem/src/guile/g_window.c:146
-#, scheme-format
 msgid "Found invalid gschem window smob ~S"
 msgstr ""
 
@@ -594,13 +589,12 @@ msgid "Empty buffer"
 msgstr ""
 
 #: gschem/src/iface/i_command.c:1621
-#, fuzzy
 msgid "Offset Mode"
-msgstr "Избери режим"
+msgstr "компенсира режим"
 
 #: gschem/src/iface/i_command.c:1622
 msgid "Specify offset distance:"
-msgstr ""
+msgstr "Посочете компенсира разстояние:"
 
 #: gschem/src/iface/i_command.c:2203
 msgid "Zoom Magnification"
@@ -640,7 +634,9 @@ msgstr "Символ не е истински файл. Символ не мож
 
 #: gschem/src/iface/i_command.c:3159
 msgid "Cannot find any schematics above the current one!\n"
-msgstr "Не можете да намерите всякаква електрическа схема над текущата една страница!\n"
+msgstr ""
+"Не можете да намерите всякаква електрическа схема над текущата една "
+"страница!\n"
 
 #: gschem/src/iface/i_command.c:3677
 msgid "Attribute is already attached\n"
@@ -896,69 +892,67 @@ msgstr "Копирайте да посоча"
 #: gschem/src/iface/i_status.c:147 gschem/scheme/gschem/builtins.scm:122
 #: gschem/scheme/gschem/builtins.scm:125
 msgid "Rotate Mode"
-msgstr ""
+msgstr "режим на "
 
 #: gschem/src/iface/i_status.c:149
 msgid "Side to offset?"
-msgstr ""
+msgstr "компенсира посока"
 
 #: gschem/src/iface/i_status.c:151 gschem/scheme/gschem/builtins.scm:116
 msgid "Mirror Mode"
-msgstr "Огледален Режим"
+msgstr "транспонират режим"
 
 #: gschem/src/iface/i_status.c:153
 msgid "Pan Mode"
-msgstr ""
+msgstr "Режим на тиган"
 
 #: gschem/src/iface/i_status.c:155
-#, fuzzy
 msgid "Choose component"
-msgstr "Обнови Компонент"
+msgstr "изберете компонент"
 
 #: gschem/src/iface/i_status.c:158
 msgid "Magnetic Net Mode"
-msgstr ""
+msgstr "Режим на автоматична връзка"
 
 #: gschem/src/iface/i_status.c:160
 msgid "Net Mode"
-msgstr ""
+msgstr "нетната режим"
 
 #: gschem/src/iface/i_status.c:162
 msgid "Pin Mode"
-msgstr ""
+msgstr "режим на щифт"
 
 #: gschem/src/iface/i_status.c:164
 msgid "Line Mode"
-msgstr ""
+msgstr "pежим на линия реми"
 
 #: gschem/src/iface/i_status.c:166
 msgid "Box Mode"
-msgstr ""
+msgstr "pежим на правоъгълник реми"
 
 #: gschem/src/iface/i_status.c:168
 msgid "Circle Mode"
-msgstr ""
+msgstr "режим на окръжност"
 
 #: gschem/src/iface/i_status.c:170
 msgid "Text Mode"
-msgstr ""
+msgstr "режим на текст"
 
 #: gschem/src/iface/i_status.c:172
 msgid "Arc Mode"
-msgstr ""
+msgstr "режим на дъга"
 
 #: gschem/src/iface/i_status.c:174
-#, fuzzy
 msgid "Path Mode"
-msgstr "Завърти 90 Режим"
+msgstr "режим на многоъгълник"
 
 #: gschem/src/iface/i_status.c:176
 msgid "Picture Mode"
-msgstr ""
+msgstr "режим на картината"
 
 #: gschem/src/iface/i_status.c:178
 msgid "Bus Mode"
-msgstr ""
+msgstr "режим на мулти-диригент"
 
 #: gschem/src/iface/i_status.c:180 gschem/scheme/gschem/builtins.scm:110
 msgid "Move Mode"
@@ -967,30 +961,27 @@ msgstr "Режим Местене"
 #: gschem/src/iface/i_status.c:183
 #, c-format
 msgid "Paste %d Mode"
-msgstr ""
+msgstr "поставете %d режим"
 
 #: gschem/src/iface/i_status.c:186
 msgid "First point?"
-msgstr ""
+msgstr "Първа точка?"
 
 #: gschem/src/iface/i_status.c:188
 msgid "Second point?"
-msgstr ""
+msgstr "Втора точка?"
 
 #: gschem/src/iface/i_status.c:190
-#, fuzzy
 msgid "Project Mode"
-msgstr "Избери режим"
+msgstr "разширение режим"
 
 #: gschem/src/iface/i_status.c:192
-#, fuzzy
 msgid "Select Projectiles"
-msgstr "Избери режим"
+msgstr "Избери линейни обект"
 
 #: gschem/src/iface/i_status.c:194
-#, fuzzy
 msgid "Select Object"
-msgstr "Избери режим"
+msgstr "Избери обект"
 
 #: gschem/src/iface/i_status.c:243
 msgid "Show Hidden"
@@ -1017,9 +1008,8 @@ msgid "Failed to save user configuration to"
 msgstr ""
 
 #: gschem/src/iface/i_window.c:104
-#, fuzzy
 msgid "Closing Page\n"
-msgstr "Затвори Страницата"
+msgstr "Затвори Страницата\n"
 
 #: gschem/src/iface/i_window.c:173
 #, c-format
@@ -1114,9 +1104,9 @@ msgid "Warning: Ending net off grid coordinate\n"
 msgstr ""
 
 #: gschem/src/object/o_net.c:1096
-#, fuzzy
 msgid "Bus ripper symbol was not found in any component library"
-msgstr "Поставете символ от компонент библиотека"
+msgstr ""
+"символ Bus Изкормвача не е намерена в който и да е компонент библиотека"
 
 #: gschem/src/object/o_picture.c:357
 msgid "Update All"
@@ -1460,17 +1450,16 @@ msgid "Drag & Drop failed"
 msgstr ""
 
 #: gschem/src/x/x_coord.c:472
-#, fuzzy
 msgid "Coordinates"
-msgstr "Завърти 90 Режим"
+msgstr "Координати"
 
 #: gschem/src/x/x_coord.c:487
 msgid "Screen"
-msgstr ""
+msgstr "растер"
 
 #: gschem/src/x/x_coord.c:497
 msgid "World"
-msgstr ""
+msgstr "свят"
 
 #: gschem/src/x/x_dialog.c:437
 msgid "Could not load image file"
@@ -1482,11 +1471,11 @@ msgstr ""
 
 #: gschem/src/x/x_dialog.c:444
 msgid "glibc"
-msgstr ""
+msgstr "glibc"
 
 #: gschem/src/x/x_dialog.c:445
 msgid "Guile"
-msgstr ""
+msgstr "Guile"
 
 #: gschem/src/x/x_dialog.c:455
 msgid ""
@@ -1553,9 +1542,8 @@ msgid "Background"
 msgstr ""
 
 #: gschem/src/x/x_dialog.c:1014
-#, fuzzy
 msgid "Pin"
-msgstr "Принтирай..."
+msgstr "щифт"
 
 #: gschem/src/x/x_dialog.c:1015
 msgid "Net endpoint"
@@ -1563,7 +1551,7 @@ msgstr ""
 
 #: gschem/src/x/x_dialog.c:1016
 msgid "Graphic"
-msgstr ""
+msgstr "графичен"
 
 #: gschem/src/x/x_dialog.c:1017 gschem/src/x/x_edit_pin.c:140
 #: gschem/src/x/x_menus.c:91
@@ -1579,28 +1567,25 @@ msgid "Logic bubble"
 msgstr ""
 
 #: gschem/src/x/x_dialog.c:1020
-#, fuzzy
 msgid "Grid point"
-msgstr "Огледален Режим"
+msgstr "Решетка точка"
 
 #: gschem/src/x/x_dialog.c:1021
 msgid "Detached attribute"
 msgstr ""
 
 #: gschem/src/x/x_dialog.c:1022 gschem/src/x/x_menus.c:95
-#, fuzzy
 msgid "Text"
-msgstr "Редактирай Текст..."
+msgstr "Текст"
 
 #: gschem/src/x/x_dialog.c:1023 gschem/src/x/x_edit_pin.c:141
 #: gschem/src/x/x_menus.c:94
 msgid "Bus"
-msgstr ""
+msgstr "мулти-диригент"
 
 #: gschem/src/x/x_dialog.c:1024 gschem/src/x/x_menus.c:105
-#, fuzzy
 msgid "Selection"
-msgstr "Избери режим"
+msgstr "избор"
 
 #: gschem/src/x/x_dialog.c:1025
 msgid "Bounding box"
@@ -1717,9 +1702,8 @@ msgid "Fill Type:"
 msgstr ""
 
 #: gschem/src/x/x_dialog.c:1628
-#, fuzzy
 msgid "Line Width:"
-msgstr "Широчина на Линията:"
+msgstr "ширина на линията:"
 
 #: gschem/src/x/x_dialog.c:1631
 msgid "Angle 1:"
@@ -1790,12 +1774,10 @@ msgid "Phantom"
 msgstr ""
 
 #: gschem/src/x/x_dialog.c:2183 gschem/scheme/gschem/builtins.scm:155
-#, fuzzy
 msgid "Edit Line Width & Type"
-msgstr "Широчина на Линията & Тип"
+msgstr "редактирам Широчина на Линията & Тип"
 
 #: gschem/src/x/x_dialog.c:2206
-#, fuzzy
 msgid "Line Type:"
 msgstr "Линията Тип:"
 
@@ -1843,10 +1825,10 @@ msgstr ""
 msgid "Descend into hierarchy"
 msgstr ""
 
+#  hard
 #: gschem/src/x/x_dialog.c:2508
-#, fuzzy
 msgid "Close on ascent"
-msgstr "Затвори Страницата"
+msgstr "затворите страницата, когато възходяща йерархия"
 
 #: gschem/src/x/x_dialog.c:2596
 msgid "Hide Text"
@@ -1902,9 +1884,8 @@ msgid "Icon"
 msgstr ""
 
 #: gschem/src/x/x_dialog.c:3297
-#, fuzzy
 msgid "Action"
-msgstr "Избери режим"
+msgstr "действие"
 
 #: gschem/src/x/x_dialog.c:3307
 msgid "Keystroke(s)"
@@ -1912,7 +1893,7 @@ msgstr ""
 
 #: gschem/src/x/x_dialog.c:3317
 msgid "Command"
-msgstr ""
+msgstr "директива"
 
 #: gschem/src/x/x_dialog.c:3553
 msgid "Major symbol changes detected."
@@ -1927,11 +1908,11 @@ msgstr ""
 
 #: gschem/src/x/x_dialog.c:3621
 msgid "Symbol"
-msgstr ""
+msgstr "символ"
 
 #: gschem/src/x/x_dialog.c:3668
 msgid "Dismiss this dialog"
-msgstr ""
+msgstr "Затворете този прозорец"
 
 #: gschem/src/x/x_dialog.c:3709
 msgid "Input attribute is invalid"
@@ -1977,7 +1958,7 @@ msgid "Initializing: Graphics Renderer Adaptor...."
 msgstr ""
 
 #: gschem/src/x/x_draw.cpp:508
-msgid "done\n"
+msgid "done"
 msgstr ""
 
 #: gschem/src/x/x_draw.cpp:514
@@ -1985,7 +1966,7 @@ msgid "Shutting down: Graphics Renderer Adaptor..."
 msgstr ""
 
 #: gschem/src/x/x_draw.cpp:516
-msgid "Done, renderer is down\n"
+msgid "Done, renderer is down"
 msgstr ""
 
 #: gschem/src/x/x_edit_attrib.c:209
@@ -3267,8 +3248,8 @@ msgstr ""
 msgid "Rename Session"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:140 gschem/src/x/x_sessions.c:822
-#: gschem/src/x/x_sessions.c:845
+#: gschem/src/x/x_sessions.c:140 gschem/src/x/x_sessions.c:830
+#: gschem/src/x/x_sessions.c:853
 msgid "Specify new name for Session:"
 msgstr ""
 
@@ -3280,72 +3261,72 @@ msgstr "Select export file"
 msgid "exported to"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:413
+#: gschem/src/x/x_sessions.c:414
 msgid "Load the selected session"
 msgstr "Load selected session"
 
-#: gschem/src/x/x_sessions.c:414
+#: gschem/src/x/x_sessions.c:415
 msgid ""
 "Show the Open Session dialog at start-up, over-rides auto-load-last feature"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:415
+#: gschem/src/x/x_sessions.c:416
 msgid "Add and remove files to the sessions automatically"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:420
+#: gschem/src/x/x_sessions.c:421
 msgid "Show at start-up"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:427
+#: gschem/src/x/x_sessions.c:428
 msgid "Auto update"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:527
+#: gschem/src/x/x_sessions.c:535
 msgid "Session Name"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:542
+#: gschem/src/x/x_sessions.c:550
 msgid "File Count"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:592
+#: gschem/src/x/x_sessions.c:600
 msgid "Rename the selected session"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:593
+#: gschem/src/x/x_sessions.c:601
 msgid "Delete the selected session"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:594
+#: gschem/src/x/x_sessions.c:602
 msgid "Export the selected session to a project file"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:596 gschem/scheme/gschem/builtins.scm:392
+#: gschem/src/x/x_sessions.c:604 gschem/scheme/gschem/builtins.scm:392
 msgid "Manage Sessions"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:631
+#: gschem/src/x/x_sessions.c:639
 msgid "_Rename"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:638 gschem/etc/system-gschemrc.scm:2091
+#: gschem/src/x/x_sessions.c:646 gschem/etc/system-gschemrc.scm:2091
 msgid "_Delete"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:645 gschem/etc/system-gschemrc.scm:2066
+#: gschem/src/x/x_sessions.c:653 gschem/etc/system-gschemrc.scm:2066
 msgid "_Export"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:760
+#: gschem/src/x/x_sessions.c:768
 msgid "Open Session"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:821
+#: gschem/src/x/x_sessions.c:829
 msgid "New Session"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:845 gschem/scheme/gschem/builtins.scm:389
+#: gschem/src/x/x_sessions.c:853 gschem/scheme/gschem/builtins.scm:389
 msgid "Save Session As"
 msgstr "Запазване на сесията като"
 
@@ -3623,7 +3604,7 @@ msgid "Re_vert All"
 msgstr "Съхрани Всичко"
 
 #: gschem/etc/system-gschemrc.scm:2062
-msgid "Discard changes and reload the all documents"
+msgid "Discard changes and reload all open documents"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2065
@@ -3773,28 +3754,24 @@ msgid "E_xtend"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2108
-#, fuzzy
 msgid "_Edit..."
 msgstr "Редактирай..."
 
 #: gschem/etc/system-gschemrc.scm:2109
-#, fuzzy
 msgid "E_dit Text..."
 msgstr "Редактирай Текст..."
 
 #: gschem/etc/system-gschemrc.scm:2109
 msgid "Open the Text Editor Dialog"
-msgstr ""
+msgstr "Отворете текстов редактор Dialog"
 
 #: gschem/etc/system-gschemrc.scm:2110
-#, fuzzy
 msgid "Co_lor..."
 msgstr "Цвят..."
 
 #: gschem/etc/system-gschemrc.scm:2111
-#, fuzzy
 msgid "Edit Pi_n..."
-msgstr "Редактирай Текст..."
+msgstr "Редактирай щифт..."
 
 #: gschem/etc/system-gschemrc.scm:2112
 msgid "Line _Width & Type..."
@@ -3805,18 +3782,16 @@ msgid "Open the Line Editor Dialog"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2113
-#, fuzzy
 msgid "Fill T_ype..."
-msgstr "stil na zapŭlvane..."
+msgstr "запълване тип..."
 
 #: gschem/etc/system-gschemrc.scm:2113
 msgid "Open the Fill Editor Dialog"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2114
-#, fuzzy
 msgid "Edit Component..."
-msgstr "Edit Komponent..."
+msgstr "редактирам Компонент..."
 
 #: gschem/etc/system-gschemrc.scm:2115
 msgid "_Slot..."
@@ -4396,18 +4371,17 @@ msgid "Open Auto Number dialog"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2296
-#, fuzzy
 msgid "Show _Console Window..."
-msgstr "Нов ПрозорецPokazhi Console Window..."
+msgstr "шоу конзола прозорец..."
 
 #: gschem/etc/system-gschemrc.scm:2296
-#, fuzzy
 msgid "Display the console window"
-msgstr "Нов Прозорец"
+msgstr "шоу на конзола прозорец"
 
+# show coordinates window
 #: gschem/etc/system-gschemrc.scm:2297
 msgid "Show Coord _Window..."
-msgstr ""
+msgstr "шоу координира прозорец"
 
 #: gschem/etc/system-gschemrc.scm:2297
 msgid "Display coordinates"
@@ -5025,8 +4999,8 @@ msgstr ""
 msgid "Turn Grid Off"
 msgstr ""
 
-#: gschem/scheme/gschem/builtins.scm:472
 # cycle grid lines, or решетъчни цикъл Режим
+#: gschem/scheme/gschem/builtins.scm:472
 msgid "Cycle Grid Mode"
 msgstr "цикъл решетъчни линии"
 
@@ -5050,8 +5024,8 @@ msgstr ""
 msgid "Turn Snap on"
 msgstr ""
 
-#: gschem/scheme/gschem/builtins.scm:490
 #  Cycle grid compiler
+#: gschem/scheme/gschem/builtins.scm:490
 msgid "Cycle Snap Mode"
 msgstr "Цикъл решетка съставител"
 
@@ -5146,8 +5120,8 @@ msgstr ""
 msgid "Export embed symbol"
 msgstr ""
 
-#: gschem/scheme/gschem/gschem-export-menu.scm:58
 #  Export embedded image
+#: gschem/scheme/gschem/gschem-export-menu.scm:58
 msgid "Export embed picture"
 msgstr "Export вграждане картина"
 
