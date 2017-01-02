@@ -6,6 +6,8 @@
 
     * serial/ST16C554-1.sym: Add symbol; quad UART, 16-Byte FIFO, PLCC-68.
 
+    * ti/SN65220DBV-1.sym: Add symbol; USB host transient suppressors.
+
 2016-12-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * analogdevices/LT317A-1.sym: Add symbol; adjustable positive voltage regulator.
