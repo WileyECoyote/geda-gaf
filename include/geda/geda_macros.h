@@ -90,12 +90,13 @@
 
 /*! \def GedaMutex
  * Macro to define an anonymous mutex, GStaticMutex < 2.32
- * cannot be initialized to NULL.
+ * cannot be initialized to NULL. The seecond member i, is
+ * padded 2 integers. 
  */
 #define GedaMutex(lv) \
   union { \
     void *p; \
-    unsigned int i[2]; \
+    unsigned int i[4]; \
   } lv;
 
 /*! \def GCC_DIAGNOSTIC_AWARE

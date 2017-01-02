@@ -1,4 +1,9 @@
-3017-01-01 Wiley E. Hill <wileyhill@gmail.com>
+2017-01-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda/geda_macros.h: Pad GedaMutex b y increasing the dimension
+      of the interger member by 2. This is for older versions of glibs.
+
+2017-01-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-gaf/NEWS: update news for release of 2.1.1.0.
 
