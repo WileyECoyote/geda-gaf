@@ -11,6 +11,23 @@
             * lineartech/switchreg/LT1073-5.sym
             * lineartech/switchreg/LT1073-12.sym
 
+    * ti/micro/: add 14 symbols for ti MS320F280x Motor Microcontrollers:
+
+            * ti/micro/TMS320F28020DA-1.sym
+            * ti/micro/TMS320F28020PT-1.sym
+            * ti/micro/TMS320F28020DA-1.sym
+            * ti/micro/TMS320F28020PT-1.sym
+            * ti/micro/TMS320F28021DA-1.sym
+            * ti/micro/TMS320F28021PT-1.sym
+            * ti/micro/TMS320F28022DA-1.sym
+            * ti/micro/TMS320F28022PT-1.sym
+            * ti/micro/TMS320F28023DA-1.sym
+            * ti/micro/TMS320F28023PT-1.sym
+            * ti/micro/TMS320F28026DA-1.sym
+            * ti/micro/TMS320F28026PT-1.sym
+            * ti/micro/TMS320F28027DA-1.sym
+            * ti/micro/TMS320F28027PT-1.sym
+
     * ti/ADS88*: add 12 symbols for ti ADS88 series A/D converters:
 
             * ti/ADS8860-1.sym
