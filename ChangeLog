@@ -1,3 +1,7 @@
+3017-01-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * geda-gaf/NEWS: update news for release of 2.1.1.0.
+
 2016-12-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * configure.ac: Bump mutation to 32, date version 20161203, libgeda
