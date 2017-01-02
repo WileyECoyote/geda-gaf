@@ -1,5 +1,8 @@
 2017-01-02 Wiley E. Hill <wileyhill@gmail.com>
 
+    * etc/system-gschemrc.scm: Update gschem-colormap -> display-colormap to
+      use the maps defined by libgedacolor.
+
     * src/guile/g_rc.c: Conditionally free default_component_select_attrlist.
 
 2017-01-01 Wiley E. Hill <wileyhill@gmail.com>

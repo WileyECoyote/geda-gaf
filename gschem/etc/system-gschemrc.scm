@@ -46,9 +46,9 @@
 ; background. The dark background is the original look.
 ;
 (primitive-load (build-path geda-rc-path "display-colormap-darkbg")) ; dark background
-;(primitive-load (build-path geda-rc-path "gschem-colormap-lightbg")) ; light background
-;(primitive-load (build-path geda-rc-path "gschem-colormap-bw")) ; light background, bw
-;(primitive-load (build-path geda-rc-path "gschem-colormap-custom"))
+;(primitive-load (build-path geda-rc-path "display-colormap-lightbg")) ; light background
+;(primitive-load (build-path geda-rc-path "display-colormap-bw")) ; light background, bw
+;(primitive-load (build-path geda-rc-path "display-colormap-custom"))
 
 ;; Load up a color scheme for printing optimized for a white background.
 ; Comment out the second line and comment in the first line for a
