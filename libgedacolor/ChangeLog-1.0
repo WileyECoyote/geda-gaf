@@ -1,3 +1,8 @@
+2017-01-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_color.c: Add checks for the individual values of the light
+      and b/w background colors.
+
 2017-01-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/display-colormap-darkbg: Fix incorrect color data for the mesh

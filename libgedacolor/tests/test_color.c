@@ -6,13 +6,18 @@
 
 #include <libgedacolor.h>
 
-#define MESH_GRID_MAJOR_RED 0xB7
-#define MESH_GRID_MAJOR_GRN 0x13
-#define MESH_GRID_MAJOR_BLU 0xA7
 
-#define MESH_GRID_MINOR_RED 0xA6
-#define MESH_GRID_MINOR_GRN 0xA3
-#define MESH_GRID_MINOR_BLU 0x0D
+#define LIGHT_BACKGROUND_RED 0xF0
+#define LIGHT_BACKGROUND_GRN 0xF0
+#define LIGHT_BACKGROUND_BLU 0xF0
+
+#define DARK_MESH_GRID_MAJOR_RED 0xB7
+#define DARK_MESH_GRID_MAJOR_GRN 0x13
+#define DARK_MESH_GRID_MAJOR_BLU 0xA7
+
+#define DARK_MESH_GRID_MINOR_RED 0xA6
+#define DARK_MESH_GRID_MINOR_GRN 0xA3
+#define DARK_MESH_GRID_MINOR_BLU 0x0D
 
 int check_dark_display_colors (void)
 {
@@ -65,17 +70,26 @@ int check_dark_display_colors (void)
       }
       else {
 
-        if (color->red != MESH_GRID_MAJOR_RED) {
-          fprintf(stderr, "FAILED: %s MESH_GRID_MAJOR_RED <%u>\n", __func__, color->red);
+        const char *msg = "value for the dark mesh grid MAJOR color";
+        uint8 value;
+
+        value = (uint8)color->red;
+        if (value != DARK_MESH_GRID_MAJOR_RED) {
+          fprintf(stderr, "FAILED: line %d, check the red %s %#x\n", __LINE__, msg, value);
+          result++;
         }
 
-        if (color->red != MESH_GRID_MAJOR_GRN) {
-          fprintf(stderr, "FAILED: %s MESH_GRID_MAJOR_GRN <%u>\n", __func__, color->green);
+        value = (uint8)color->green;
+        if (value != DARK_MESH_GRID_MAJOR_GRN) {
+          fprintf(stderr, "FAILED: line %d, check the green %s %#x\n", __LINE__, msg, value);
+          result++;
         }
 
-        if (color->red != MESH_GRID_MAJOR_BLU) {
-          fprintf(stderr, "FAILED: %s MESH_GRID_MAJOR_BLU <%u>\n", __func__, color->blue);
-        }
+        value = (uint8)color->blue;
+        if (value != DARK_MESH_GRID_MAJOR_BLU) {
+          fprintf(stderr, "FAILED: line %d, check the blue %s %#x\n", __LINE__, msg, value);
+          result++;
+         }
       }
     }
 
@@ -96,16 +110,26 @@ int check_dark_display_colors (void)
       }
       else {
 
-        if (color->red != MESH_GRID_MINOR_RED) {
-          fprintf(stderr, "FAILED: %s MESH_GRID_MINOR_RED <%u>\n", __func__, color->red);
+        const char *msg = "value for the dark mesh grid MINOR color";
+
+        uint8 value;
+
+        value = (uint8)color->red;
+        if (value != DARK_MESH_GRID_MINOR_RED) {
+          fprintf(stderr, "FAILED: line %d, check the red %s %#x\n", __LINE__, msg, value);
+          result++;
         }
 
-        if (color->red != MESH_GRID_MINOR_GRN) {
-          fprintf(stderr, "FAILED: %s MESH_GRID_MINOR_GRN <%u>\n", __func__, color->green);
+        value = (uint8)color->green;
+        if (value != DARK_MESH_GRID_MINOR_GRN) {
+          fprintf(stderr, "FAILED: line %d, check the green %s %#x\n", __LINE__, msg, value);
+          result++;
         }
 
-        if (color->red != MESH_GRID_MINOR_BLU) {
-          fprintf(stderr, "FAILED: %s MESH_GRID_MINOR_BLU <%u>\n", __func__, color->blue);
+        value = (uint8)color->blue;
+        if (value != DARK_MESH_GRID_MINOR_BLU) {
+          fprintf(stderr, "FAILED: line %d, check the red %s %#x\n", __LINE__, msg, value);
+          result++;
         }
       }
     }
@@ -121,6 +145,8 @@ int check_dark_display_colors (void)
       fprintf(stderr, "FAILED: %s background <%d>\n", __func__, index);
       result++;
     }
+
+
   }
 
   return result;
@@ -151,6 +177,49 @@ int check_light_display_colors (void)
       }
       g_free(name);
     }
+
+    int index;
+
+    index = geda_color_key_get_index("background");      /* 0 */
+    if (index != 0) {
+      fprintf(stderr, "FAILED: %s background <%d>\n", __func__, index);
+      result++;
+    }
+    else {
+
+      GdkColor *color;
+
+      color = geda_color_x11_color_from_index(index);
+
+      if (!color) {
+        fprintf(stderr, "FAILED: %s color_from_index <%d>\n", __func__, index);
+        result++;
+      }
+      else {
+
+        const char *msg = "value for the light BACKGROUND color";
+
+        uint8 value;
+
+        value = (uint8)color->red;
+        if (value != LIGHT_BACKGROUND_RED) {
+          fprintf(stderr, "FAILED: line %d, check the red %s %#x\n", __LINE__, msg, value);
+          result++;
+        }
+
+        value = (uint8)color->green;
+        if (value != LIGHT_BACKGROUND_GRN) {
+          fprintf(stderr, "FAILED: line %d, check the green %s %#x\n", __LINE__, msg, value);
+          result++;
+        }
+
+        value = (uint8)color->blue;
+        if (value != LIGHT_BACKGROUND_BLU) {
+          fprintf(stderr, "FAILED: line %d, check the blue %s %#x\n", __LINE__, msg, value);
+          result++;
+        }
+      }
+    }
   }
 
   return result;
@@ -180,6 +249,51 @@ int check_bw_display_colors (void)
         result++;
       }
       g_free(name);
+    }
+
+    int index;
+
+    index = geda_color_key_get_index("background");      /* 0 */
+    if (index != 0) {
+      fprintf(stderr, "FAILED: %s background <%d>\n", __func__, index);
+      result++;
+    }
+    else {
+
+      GdkColor *color;
+
+      color = geda_color_x11_color_from_index(index);
+
+      if (!color) {
+        fprintf(stderr, "FAILED: %s color_from_index <%d>\n", __func__, index);
+        result++;
+      }
+      else {
+
+        const char *msg = "value for the B/W BACKGROUND color";
+
+        /* Note that the BW background is the same as light background */
+
+        uint8 value;
+
+        value = (uint8)color->red;
+        if (value != LIGHT_BACKGROUND_RED) {
+          fprintf(stderr, "FAILED: line %d, check the red %s %#x\n", __LINE__, msg, value);
+          result++;
+        }
+
+        value = (uint8)color->green;
+        if (value != LIGHT_BACKGROUND_GRN) {
+          fprintf(stderr, "FAILED: line %d, check the green %s %#x\n", __LINE__, msg, value);
+          result++;
+        }
+
+        value = (uint8)color->blue;
+        if (value != LIGHT_BACKGROUND_BLU) {
+          fprintf(stderr, "FAILED: line %d, check the blue %s %#x\n", __LINE__, msg, value);
+          result++;
+        }
+      }
     }
   }
 
