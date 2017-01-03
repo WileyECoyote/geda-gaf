@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gschem\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-01 19:42-0600\n"
+"POT-Creation-Date: 2017-01-02 19:20-0600\n"
 "PO-Revision-Date: 2010-02-14 01:03+0000\n"
 "Last-Translator: Bernd Jendrissek <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -76,7 +76,7 @@ msgstr "Meld stelsel is afgeskakel\n"
 msgid "ERROR: Failed to load or evaluate startup script.\n"
 msgstr "Fout: kon nie laai of te evalueer opstart script.\n"
 
-#: gschem/src/base/gschem.c:521
+#: gschem/src/base/gschem.c:520
 msgid "Exiting normal\n"
 msgstr "normale beëindiging\n"
 
@@ -209,10 +209,10 @@ msgstr ""
 "gEDA tuisblad: <http://www.geda-project.org>\n"
 
 #: gschem/src/base/gschem_parsecmd.c:128
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "gEDA/gschem %s (%s) (g%.7s)\n"
-"Copyright (C) 1998-2016 gEDA developers\n"
+"Copyright (C) 1998-2017 gEDA developers\n"
 "This is free software, and you are welcome to redistribute it under\n"
 "certain conditions. For details, see the file `COPYING', which is\n"
 "included in the gEDA distribution.\n"
@@ -454,7 +454,7 @@ msgstr "inskrywing in RC lêer"
 msgid "Bad Value"
 msgstr "Waarde"
 
-#: gschem/src/guile/g_rc.c:126 gschem/src/guile/g_rc.c:2071
+#: gschem/src/guile/g_rc.c:126 gschem/src/guile/g_rc.c:2072
 msgid "check"
 msgstr "kontroleer"
 
@@ -505,8 +505,8 @@ msgstr ""
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
 msgstr "Ongeldige tipe opdrag, nagaan zoom-wins inskrywing in RC lêer\n"
 
-#: gschem/src/guile/g_rc.c:729 gschem/src/guile/g_rc.c:1274
-#: gschem/src/guile/g_rc.c:1426 gschem/src/guile/g_rc.c:2024
+#: gschem/src/guile/g_rc.c:729 gschem/src/guile/g_rc.c:1275
+#: gschem/src/guile/g_rc.c:1427 gschem/src/guile/g_rc.c:2025
 msgid "Continuing with default value"
 msgstr "Voort te gaan met standaard waarde"
 
@@ -515,30 +515,30 @@ msgstr "Voort te gaan met standaard waarde"
 msgid "Invalid type assignment, check logging entry in rc file\n"
 msgstr "Ongeldige tipe opdrag, gaan meld inskrywing in RC lêer\n"
 
-#: gschem/src/guile/g_rc.c:1268
+#: gschem/src/guile/g_rc.c:1269
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
 msgstr ""
 "Ongeldige waarde, snap-grootte kan nie nul wees, check inskrywing RC lêer\n"
 
-#: gschem/src/guile/g_rc.c:1273
+#: gschem/src/guile/g_rc.c:1274
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
 msgstr "Ongeldige tipe opdrag, gaan snap-grootte inskrywing in RC lêer\n"
 
-#: gschem/src/guile/g_rc.c:1420
+#: gschem/src/guile/g_rc.c:1421
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
 msgstr ""
 "Ongeldige waarde, kan die bus-Ripper-grootte nie nul wees, check inskrywing "
 "RC lêer\n"
 
-#: gschem/src/guile/g_rc.c:1425
+#: gschem/src/guile/g_rc.c:1426
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
 msgstr "Ongeldige tipe opdrag, gaan bus-Ripper-grootte inskrywing in RC lêer\n"
 
-#: gschem/src/guile/g_rc.c:2018
+#: gschem/src/guile/g_rc.c:2019
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
@@ -546,12 +546,12 @@ msgstr ""
 "Kan nie blaai 0 stappe, ongeldig scrollpan-stappe, kyk inskrywing in RC "
 "lêer\n"
 
-#: gschem/src/guile/g_rc.c:2023
+#: gschem/src/guile/g_rc.c:2024
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
 msgstr "Ongeldige tipe opdrag, nagaan scrollpan-stappe inskrywing in RC lêer\n"
 
-#: gschem/src/guile/g_rc.c:2069
+#: gschem/src/guile/g_rc.c:2070
 msgid "Invalid zoom factor"
 msgstr "Ongeldige zoemmaat faktor"
 
@@ -5001,9 +5001,10 @@ msgstr ""
 msgid "Show Console Window"
 msgstr "Sluit Venster"
 
+# Display Coordinates Window
 #: gschem/scheme/gschem/builtins.scm:439
-msgid "Show Coordinate Window"
-msgstr "Huidige Venster"
+msgid "Show Coordinates Window"
+msgstr "Wys Koördinate Venster"
 
 #: gschem/scheme/gschem/builtins.scm:442
 msgid "Guile Path"

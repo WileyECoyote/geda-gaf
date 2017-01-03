@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-01 19:42-0600\n"
+"POT-Creation-Date: 2017-01-02 19:20-0600\n"
 "PO-Revision-Date: 2015-07-29 00:24-0600\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -80,7 +80,7 @@ msgid "ERROR: Failed to load or evaluate startup script.\n"
 msgstr ""
 "kamhosa: ban breachy knong kar phtok ryy veayotamlei skrib pel chabphdaem.\n"
 
-#: gschem/src/base/gschem.c:521
+#: gschem/src/base/gschem.c:520
 msgid "Exiting normal\n"
 msgstr "kammovithi chenh thommotea\n"
 
@@ -216,10 +216,10 @@ msgstr ""
 "gEDA/gaf kehtompr: <http://www.geda-project.org/>\n"
 
 #: gschem/src/base/gschem_parsecmd.c:128
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "gEDA/gschem %s (%s) (g%.7s)\n"
-"Copyright (C) 1998-2016 gEDA developers\n"
+"Copyright (C) 1998-2017 gEDA developers\n"
 "This is free software, and you are welcome to redistribute it under\n"
 "certain conditions. For details, see the file `COPYING', which is\n"
 "included in the gEDA distribution.\n"
@@ -470,7 +470,7 @@ msgstr "tamlei knong eksar daoy rc"
 msgid "Bad Value"
 msgstr "koun tamlei"
 
-#: gschem/src/guile/g_rc.c:126 gschem/src/guile/g_rc.c:2071
+#: gschem/src/guile/g_rc.c:126 gschem/src/guile/g_rc.c:2072
 msgid "check"
 msgstr "pinityameul"
 
@@ -524,8 +524,8 @@ msgstr ""
 "karchattang braphet min troemotrauv , pinityameul theato pongrik kar "
 "kaenlaeng nowknong eksar daoy rc\n"
 
-#: gschem/src/guile/g_rc.c:729 gschem/src/guile/g_rc.c:1274
-#: gschem/src/guile/g_rc.c:1426 gschem/src/guile/g_rc.c:2024
+#: gschem/src/guile/g_rc.c:729 gschem/src/guile/g_rc.c:1275
+#: gschem/src/guile/g_rc.c:1427 gschem/src/guile/g_rc.c:2025
 msgid "Continuing with default value"
 msgstr "bant cheamuoy tamlei lomneadaem"
 
@@ -536,35 +536,35 @@ msgstr ""
 "karchattang braphet min troemotrauv , pinityameul theato kab chheu nowknong "
 "eksar daoy rc\n"
 
-#: gschem/src/guile/g_rc.c:1268
+#: gschem/src/guile/g_rc.c:1269
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
 msgstr ""
 "tamlei min troemotrauv , mean tomham khtasa min ach chea sauny , pinityameul "
 "eksar daoy rc theato\n"
 
-#: gschem/src/guile/g_rc.c:1273
+#: gschem/src/guile/g_rc.c:1274
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
 msgstr ""
 "karchattang braphet min troemotrauv , pinityameul tomham theato khtasa knong "
 "eksar daoy rc\n"
 
-#: gschem/src/guile/g_rc.c:1420
+#: gschem/src/guile/g_rc.c:1421
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
 msgstr ""
 "tamlei min troemotrauv , rth y nd krong - Ripper tomham min ach chea sauny "
 "pinity eksar daoy rc theato\n"
 
-#: gschem/src/guile/g_rc.c:1425
+#: gschem/src/guile/g_rc.c:1426
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
 msgstr ""
 "karchattang braphet min troemotrauv , pinityameul theato rth y nd krong - "
 "Ripper tomham nowknong eksar daoy rc\n"
 
-#: gschem/src/guile/g_rc.c:2018
+#: gschem/src/guile/g_rc.c:2019
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
@@ -572,14 +572,14 @@ msgstr ""
 "min ach rmour 0 chomhan scrollpan chomhan - min troemotrauv pinityameul "
 "theato nowknong eksar daoy rc\n"
 
-#: gschem/src/guile/g_rc.c:2023
+#: gschem/src/guile/g_rc.c:2024
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
 msgstr ""
 "karchattang braphet min troemotrauv , pinityameul scrollpan chaul knong "
 "chomhan eksar daoy rc\n"
 
-#: gschem/src/guile/g_rc.c:2069
+#: gschem/src/guile/g_rc.c:2070
 msgid "Invalid zoom factor"
 msgstr "katta pongrik min troemotrauv"
 
@@ -5093,8 +5093,9 @@ msgid "Show Console Window"
 msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:439
-msgid "Show Coordinate Window"
-msgstr ""
+#, fuzzy
+msgid "Show Coordinates Window"
+msgstr "rbieb kauardaone"
 
 #: gschem/scheme/gschem/builtins.scm:442
 msgid "Guile Path"
