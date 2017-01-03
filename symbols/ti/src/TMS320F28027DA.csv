@@ -1,0 +1,38 @@
+VDD	1	pwr		CPU and Logic Digital Power Pins.
+VSS	2	pwr		Digital Ground Pins
+\_VREGENZ\_	3	in	Internal VREG Enable/Disable	Pull low to enable the internal voltage regulator (it's an LDO)
+VDDIO	4	pwr		Digital I/O and Flash Power Pin - Single Supply source when VREG is enabled.
+GPIO2/EPWM2A	5	io	GPIO2/EPWM2A	Enhanced PWM2 Output A and HRPWM channel
+GPIO3/EPWM2B	6	io	GPIO3/EPWM2B/COMP2OUT	Enhanced PWM2 Output B, Direct output of Comparator 2 (Not on TSOP)
+GPIO4/EPWM3A	7	io	GPIO4/EPWM3A	Enhanced PWM3 output A and HRPWM channel
+GPIO5/EPWM3B/ECAP1	8	io	GPIO5/EPWM3B/ECAP1	Enhanced PWM3 output B,Enhanced Capture input/output 1
+GPIO6/EPWM4A/EPWMSYNCI/EPWMSYNCO	9	io	GPIO6/EPWM4A/EPWMSYNCI/EPWMSYNCO	Enhanced PWM4 output A and HRPWM channel, External ePWM sync pulse input/output
+GPIO7/EPWM4B/SCIRXDA	10	io	GPIO7/EPWM4B/SCIRXDA	Enhanced PWM4 output B, SCI-A receive data
+VDD	11	pwr		CPU and Logic Digital Power Pins.
+VSS	12	pwr		Digital Ground Pins
+GPIO12/\_TZ1\_/SCITXDA	13	io	GPIO12/\_TZ1\_/SCITXDA	Trip Zone input 1, SCI-A transmit data
+GPIO28/SCIRXDA/SDAA/\_TZ2\_	14	io	GPIO28/SCIRXDA/SDAA/\_TZ2\_	SCI-A receive data. I2C data open-drain bidirectional port, Trip zone input 2
+GPIO29/SCITXDA/SCLA/\_TZ3\_	15	io	GPIO29/SCITXDA/SCLA/\_TZ3\_	Trip Zone input 3, SCI-A transmit, I2C Clk
+\_TRST\_	16	in	\_TRST\_	JTAG Reset
+\_XRS\_	17	in	\_XRS\_	Device Reset
+ADCINA6/AIO6	18	in	ADCINA6/AIO6	ADC Group A, Channel 6 input
+ADCINA4/AIO4	19	in	ADCINA4/AIO4/COMP2A	ADC Group A, Channel 4 input (Comparator Input 2A on 48 pin device)
+ADCINA2/COMP1A/AIO2	20	in	ADCINA2/COMP1A/AIO2	ADC Group A, Channel 2 input, Comparator Input 1A
+ADCINA0/VREFHI	21	in	ADCINA0/VREFHI	ADC Group A, Channel 0 input,ADC External Reference - only used when in ADC external reference mode.
+VDDA	22	pwr		Analog Power Pin.
+VSSA/VREFLO	23	pwr	VSSA/VREFLO	Analog Ground Pin.
+ADCINB2/COMP1B/AIO10	24	in	ADCINB2/COMP1B/AIO10	ADC Group B, Channel 2 input
+ADCINB4/AIO12	25	in	ADCINB4/COMP2B/AIO12	ADC Group B, Channel 4 input (Comparator Input 2B on 48 pin device)
+ADCINB6/AIO14	26	in	ADCINB6/AIO14	ADC Group B, Channel 6 input
+GPIO34	27	io	GPIO34/COMP2OUT	Direct output of Comparator 2 on 48 pin device
+TDI/GPIO35	28	io	TDI/GPIO35	JTAG test data input (TDI) with internal pullup.
+TMS/GPIO36	29	io	TMS/GPIO36	JTAG test-mode select (TMS) with internal pullup.
+TDO/GPIO37	30	io	TDO/GPIO37	JTAG scan out, test data output (TDO).
+TCK/GPIO38/XCLKIN	31	io	TCK/GPIO38/XCLKIN	JTAG test clock with internal pullup, External Oscillator Input,
+GPIO18/SPICLKA/SCITXDA/XCLKOUT	32	io	GPIO18/SPICLKA/SCITXDA/XCLKOUT	SPI-A clock input/output, SCI-A transmit data, Output clock derived from SYSCLKOUT.
+GPIO19/\_SPISTEA\_/SCIRXDA/ECAP1/XCLKIN	33	io	GPIO19/\_SPISTEA\_/SCIRXDA/ECAP1/XCLKIN	External Oscillator Input, SPI-A slave transmit enable input/output, SCI-A receive, Enhanced Capture input/output 1
+GPIO17/SPISOMIA/\_TZ3\_	34	io	GPIO17/SPISOMIA/\_TZ3\_	SPI-A slave out, master in, Trip zone input 3
+GPIO16/SPISIMOA/\_TZ2\_	35	io	GPIO16/SPISIMOA/\_TZ2\_	SPI-A slave in, master out/Trip Zone input 2
+GPIO1/EPWM1B/COMP1OUT	36	io	GPIO1/EPWM1B/COMP1OUT	Enhanced PWM1 Output B, Direct output of Comparator 1
+GPIO0/EPWM1A	37	io	GPIO0/EPWM1A	Enhanced PWM1 Output A and HRPWM channel
+TEST	38	pas	TEST	Reserved for TI. Must be left unconnected.

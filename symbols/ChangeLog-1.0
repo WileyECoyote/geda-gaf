@@ -23,6 +23,9 @@
             * connector/terminal/terminal_block_9-3.sym
             * connector/terminal/terminal_block_10-3.sym
 
+    * ti/src/TMS320F28027*: Include spreadsheet data used to create TMS320F280x
+      symbols.
+
 2017-01-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/switchreg/LM5175-2.sym: Add symbol; alternate pin layout.

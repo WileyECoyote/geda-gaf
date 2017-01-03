@@ -1,0 +1,105 @@
+# This is the template file for creating symbols with tragesym						
+# every line starting with '#' is a comment line.						
+# save it as text file with tab separated cells and start tragesym						
+						
+[options]						
+# wordswap swaps labels if the pin is on the right side an looks like this:						
+"#   ""PB1 (CLK)"". That's useful for micro controller port labels"						
+# rotate_labels rotates the pintext of top and bottom pins						
+#   this is useful for large symbols like FPGAs with more than 100 pins						
+# sort_labels will sort the pins by it's labels						
+#   useful for address ports, busses, ...						
+wordswap	yes					
+rotate_labels	yes					
+sort_labels	no					
+generate_pinseq	no					
+sym_width	6200					
+pinwidthvertical	300					
+pinwidthhorizontal	300					
+						
+[geda_attr]						
+# name will be printed in the top of the symbol						
+# if you have a device with slots, you'll have to use slot= and slotdef=						
+# use comment= if there are special information you want to add						
+version	20161031 2					
+name	TMS320F28027					
+device	TMS320F28027					
+refdes	U?					
+footprint	TQFP-48-7					
+description	Microcontrollers, motor, Piccolo C28x DSP					
+documentation	http://www.ti.com/product/TMS320F28027					
+author	AutoTron					
+numslots	0					
+dist-license	GPLv2					
+use-license	unlimited					
+#slot	1					
+#slotdef	1:					
+#slotdef	2:					
+#slotdef	3:					
+#slotdef	4:					
+#comment						
+#comment						
+#comment						
+						
+[pins]						
+# tabseparated list of pin descriptions						
+#						
+# pinnr is the physical number of the pin						
+# seq is the pinseq= attribute, leave it blank if it doesn't matter						
+# type can be (in, out, io, oc, oe, pas, tp, tri, clk, pwr)						
+# style can be (line,dot,clk,dotclk,spacer,none). none if only want to add a net						
+# posit. can be (l,r,t,b) or empty for nets.						
+# net specifies the name of the net. Vcc or GND for example.						
+# label represents the pinlabel.						
+#	"negation lines can be added with ""\_"" example: \_enable\_ "					
+#	"if you want to write a ""\"" use ""\\"" as escape sequence"					
+#						
+#pinnr	seq	type	style	posit.	net	label
+1	1	io	line	l		GPIO29/SCITXDA/SCLA/\_TZ3\_
+2	2	in	line	l		\_TRST\_
+3	3	in	line	l		\_XRS\_
+4	4	in	line	l		ADCINA6/AIO6
+5	5	in	line	l		ADCINA4/AIO4/COMP2A
+6	6	in	line	l		ADCINA7/AIO7
+7	7	in	line	l		ADCINA3/AIO3
+8	8	in	line	l		ADCINA1/AIO1
+9	9	in	line	l		ADCINA2/COMP1A/AIO2
+10	10	in	line	l		ADCINA0/VREFHI
+11	11	pwr	line	l		VDDA
+12	12	pwr	line	l		VSSA/VREFLO
+13	13	in	line	l		ADCINB1
+14	14	in	line	l		ADCINB2/COMP1B/AIO10
+15	15	in	line	l		ADCINB3
+16	16	in	line	l		ADCINB4/COMP2B/AIO12
+17	17	in	line	l		ADCINB6/AIO14
+18	18	in	line	l		ADCINB7
+19	19	io	line	l		GPIO34/COMP2OUT
+20	20	io	line	l		TDI/GPIO35
+21	21	io	line	l		TMS/GPIO36
+22	22	io	line	l		TDO/GPIO37
+23	23	io	line	l		TCK/GPIO38/XCLKIN
+24	24	io	line	l		GPIO18/SPICLKA/SCITXDA/XCLKOUT
+48	48	io	line	r		GPIO28/SCIRXDA/SDAA/\_TZ2\_
+47	47	io	line	r		GPIO12/\_TZ1\_/SCITXDA
+46	46	out	line	r		X2
+45	45	in	line	r		X1
+44	44	pwr	line	r		VSS
+43	43	pwr	line	r		VDD
+42	42	io	line	r		GPIO7/EPWM4B/SCIRXDA
+41	41	io	line	r		GPIO6/EPWM4A/EPWMSYNCI/EPWMSYNCO
+40	40	io	line	r		GPIO5/EPWM3B/ECAP1
+39	39	io	line	r		GPIO4/EPWM3A
+38	38	io	line	r		GPIO3/EPWM2B
+37	37	io	line	r		GPIO2/EPWM2A
+36	36	io	line	r		GPIO33/SCLA/EPWMSYNCO/\_ADCSOCBO\_
+35	35	pwr	line	r		VDDIO
+34	34	in	line	r		\_VREGENZ\_
+33	33	pwr	line	r		VSS
+32	32	pwr	line	r		VDD
+31	31	io	line	r		GPIO32/SDAA/EPWMSYNCI/\_ADCSOCAO\_
+30	30	pas	line	r		TEST
+29	29	io	line	r		GPIO0/EPWM1A
+28	28	io	line	r		GPIO1/EPWM1B/COMP1OUT
+27	27	io	line	r		GPIO16/SPISIMOA/\_TZ2\_
+26	26	io	line	r		GPIO17/SPISOMIA/\_TZ3\_
+25	25	io	line	r		GPIO19/\_SPISTEA\_/SCIRXDA/ECAP1/XCLKIN
