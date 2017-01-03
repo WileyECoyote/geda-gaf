@@ -739,13 +739,13 @@ geda_struct_page_save_all (GedaToplevel *toplevel)
 
     if (geda_save_file (toplevel, p_current, p_current->filename, NULL)) {
 
-      u_log_message (_("Saved [%s]\n"), p_current->filename);
+      u_log_message ("%s \"%s\"\n", _("Saved"), p_current->filename);
 
       geda_page_set_changed (p_current, 0); /* reset CHANGED flag */
     }
     else {
 
-      u_log_message (_("Could NOT save [%s]\n"), p_current->filename);
+      u_log_message ("%s \"%s\"\n", _("Could NOT save"), p_current->filename);
 
       status++; /* increment the error counter */
     }
@@ -783,14 +783,14 @@ geda_struct_page_save_all_changed (GedaToplevel *toplevel)
 
       if (geda_save_file (toplevel, p_current, p_current->filename, NULL)) {
 
-        u_log_message (_("Saved [%s]\n"), p_current->filename);
+        u_log_message ("%s \"%s\"\n", _("Saved"), p_current->filename);
 
         geda_page_set_changed(p_current, 0); /* reset CHANGED flag */
 
       }
       else {
 
-        u_log_message (_("Could NOT save [%s]\n"), p_current->filename);
+        u_log_message ("%s \"%s\"\n", _("Could NOT save"), p_current->filename);
 
         status++; /* increment the error counter */
       }
