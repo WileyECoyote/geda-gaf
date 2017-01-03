@@ -1,3 +1,28 @@
+2017-01-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * connector/terminal/: Revise terminal block symbols; rename without "p"
+      standardize attributes properties; size, refdes, device, etc:
+
+            * connector/terminal/terminal_block_1-3.sym
+            * connector/terminal/terminal_block_2-1.sym
+            * connector/terminal/terminal_block_2-2.sym
+            * connector/terminal/terminal_block_2-3.sym
+            * connector/terminal/terminal_block_2-4.sym
+            * connector/terminal/terminal_block_3-1.sym
+            * connector/terminal/terminal_block_3-2.sym
+            * connector/terminal/terminal_block_3-3.sym
+            * connector/terminal/terminal_block_3-4.sym
+            * connector/terminal/terminal_block_4-2.sym
+            * connector/terminal/terminal_block_4-3.sym
+            * connector/terminal/terminal_block_4-5.sym
+            * connector/terminal/terminal_block_5-3.sym
+            * connector/terminal/terminal_block_6-3.sym
+            * connector/terminal/terminal_block_7-3.sym
+            * connector/terminal/terminal_block_8-3.sym
+            * connector/terminal/terminal_block_8-4.sym
+            * connector/terminal/terminal_block_9-3.sym
+            * connector/terminal/terminal_block_10-3.sym
+
 2017-01-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/switchreg/LM5175-2.sym: Add symbol; alternate pin layout.
