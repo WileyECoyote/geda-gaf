@@ -1,3 +1,8 @@
+2017-01-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_font_button.c: Replace object type identifier scheme for
+      GedaFontButton objects with new hash table type identifier system.
+
 2017-01-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/: Replace g_hash_table_add with g_hash_table_replace

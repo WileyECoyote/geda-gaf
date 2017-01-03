@@ -57,7 +57,6 @@ typedef struct _GedaFontButtonData  GedaFontButtonData;
 struct _GedaFontButton {
 
   GtkButton button;
-  GedaType  instance_type;
 
   /*< private >*/
   GedaFontButtonData    *priv;

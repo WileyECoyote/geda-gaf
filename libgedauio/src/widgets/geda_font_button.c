@@ -148,6 +148,8 @@ static unsigned int font_button_signals[LAST_SIGNAL] = { 0 };
 
 static void *geda_font_button_parent_class = NULL;
 
+static GHashTable *font_button_hash = NULL;
+
 static void
 clear_font_data (GedaFontButton *font_button)
 {
@@ -702,6 +704,13 @@ geda_font_button_finalize (GObject *object)
   GedaFontButton *font_button;
   font_button = GEDA_FONT_BUTTON (object);
 
+  if (g_hash_table_remove (font_button_hash, object)) {
+    if (!g_hash_table_size (font_button_hash)) {
+      g_hash_table_destroy (font_button_hash);
+      font_button_hash = NULL;
+    }
+  }
+
   if (font_button->priv->font_dialog != NULL) {
     gtk_widget_destroy (font_button->priv->font_dialog);
   }
@@ -881,7 +890,6 @@ static void geda_font_button_instance_init(GTypeInstance *instance, void *g_clas
   GedaFontButton *font_button = (GedaFontButton*)instance;
 
   font_button->priv           = GEDA_MEM_ALLOC0 (sizeof(GedaFontButtonData));
-  font_button->instance_type  = geda_font_button_get_type();
 
   GtkSettings *settings;
   const char  *fontbutton_tip;
@@ -915,6 +923,12 @@ static void geda_font_button_instance_init(GTypeInstance *instance, void *g_clas
   font_button->title              = geda_strdup ("Select Font");
   font_button->priv->preview_text = geda_strdup (DEFAULT_PREVIEW_TEXT);
 
+  if (!font_button_hash) {
+    font_button_hash = g_hash_table_new (g_direct_hash, NULL);
+  }
+
+  g_hash_table_replace (font_button_hash, instance, instance);
+
   geda_font_button_update_from_name (font_button);
 
   font_button->priv->inside = geda_font_button_create_widgets (font_button);
@@ -927,7 +941,6 @@ static void geda_font_button_instance_init(GTypeInstance *instance, void *g_clas
     atk_object_set_name (obj, _("Font button"));
     atk_object_set_description(obj,_(fontbutton_tip));
   }
-
 }
 
 /*! \brief Function to retrieve GedaFontButton's Type identifier.
@@ -981,8 +994,8 @@ GedaType geda_font_button_get_type (void)
 bool
 is_a_geda_font_button (GedaFontButton *font_button)
 {
-  if (G_IS_OBJECT(font_button)) {
-    return (geda_font_button_get_type() == font_button->instance_type);
+  if ((font_button != NULL) && (font_button_hash != NULL)) {
+    return g_hash_table_lookup(font_button_hash, font_button) ? TRUE : FALSE;
   }
   return FALSE;
 }
