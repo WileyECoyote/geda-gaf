@@ -436,7 +436,7 @@
 (define-action-public (&tools-show-console #:label (_ "Show Console Window"))
   (%tools-show-console))
 
-(define-action-public (&tools-show-coordinates #:label (_ "Show Coordinate Window"))
+(define-action-public (&tools-show-coordinates #:label (_ "Show Coordinates Window"))
   (%tools-show-coordinates))
 
 (define-action-public (&tools-guile-path #:label (_ "Guile Path"))
