@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-01 19:42-0600\n"
+"POT-Creation-Date: 2017-01-02 19:20-0600\n"
 "PO-Revision-Date: 2012-01-27 14:22+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -77,7 +77,7 @@ msgstr ""
 msgid "ERROR: Failed to load or evaluate startup script.\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:521
+#: gschem/src/base/gschem.c:520
 msgid "Exiting normal\n"
 msgstr ""
 
@@ -181,7 +181,7 @@ msgstr ""
 #, c-format
 msgid ""
 "gEDA/gschem %s (%s) (g%.7s)\n"
-"Copyright (C) 1998-2016 gEDA developers\n"
+"Copyright (C) 1998-2017 gEDA developers\n"
 "This is free software, and you are welcome to redistribute it under\n"
 "certain conditions. For details, see the file `COPYING', which is\n"
 "included in the gEDA distribution.\n"
@@ -426,7 +426,7 @@ msgstr ""
 msgid "Bad Value"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:126 gschem/src/guile/g_rc.c:2071
+#: gschem/src/guile/g_rc.c:126 gschem/src/guile/g_rc.c:2072
 msgid "check"
 msgstr ""
 
@@ -476,8 +476,8 @@ msgstr ""
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:729 gschem/src/guile/g_rc.c:1274
-#: gschem/src/guile/g_rc.c:1426 gschem/src/guile/g_rc.c:2024
+#: gschem/src/guile/g_rc.c:729 gschem/src/guile/g_rc.c:1275
+#: gschem/src/guile/g_rc.c:1427 gschem/src/guile/g_rc.c:2025
 msgid "Continuing with default value"
 msgstr ""
 
@@ -486,38 +486,38 @@ msgstr ""
 msgid "Invalid type assignment, check logging entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1268
+#: gschem/src/guile/g_rc.c:1269
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1273
+#: gschem/src/guile/g_rc.c:1274
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1420
+#: gschem/src/guile/g_rc.c:1421
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1425
+#: gschem/src/guile/g_rc.c:1426
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2018
+#: gschem/src/guile/g_rc.c:2019
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2023
+#: gschem/src/guile/g_rc.c:2024
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2069
+#: gschem/src/guile/g_rc.c:2070
 msgid "Invalid zoom factor"
 msgstr ""
 
@@ -546,15 +546,15 @@ msgstr ""
 msgid "while inside an action!\n"
 msgstr ""
 
+# New page created
 #: gschem/src/iface/i_command.c:713 gschem/src/iface/i_command.c:2714
-#, fuzzy
 msgid "New page created"
-msgstr "Yeni sayfa oluşturuldu [%s]\n"
+msgstr "Yeni sayfa oluşturuldu"
 
+# New window created
 #: gschem/src/iface/i_command.c:751
-#, fuzzy
 msgid "New Window created"
-msgstr "Yeni pencere oluşturuldu [%s]\n"
+msgstr "Yeni pencere oluşturuldu"
 
 #: gschem/src/iface/i_command.c:950
 msgid "Failed to Save All"
@@ -1733,20 +1733,20 @@ msgstr ""
 msgid "*varies*"
 msgstr ""
 
+# Edit Fill Type
 #: gschem/src/x/x_dialog.c:1603 gschem/scheme/gschem/builtins.scm:158
-#, fuzzy
 msgid "Edit Fill Type"
-msgstr "doldurma tipi.."
+msgstr "Dolgu Türü Düzenle"
 
+# Fill Type
 #: gschem/src/x/x_dialog.c:1625
-#, fuzzy
 msgid "Fill Type:"
-msgstr "doldurma tipi.."
+msgstr "Dolgu Türü:"
 
+# Line width
 #: gschem/src/x/x_dialog.c:1628
-#, fuzzy
 msgid "Line Width:"
-msgstr "Çizgi Kalınlığı & Tipi"
+msgstr "Hat genişliği:"
 
 #: gschem/src/x/x_dialog.c:1631
 msgid "Angle 1:"
@@ -1821,15 +1821,15 @@ msgstr ""
 msgid "Edit Line Width & Type"
 msgstr "Çizgi Kalınlığı & Tipi"
 
+# Line Type
 #: gschem/src/x/x_dialog.c:2206
-#, fuzzy
 msgid "Line Type:"
-msgstr "doldurma tipi.."
+msgstr "Hat Türü:"
 
+# End Type
 #: gschem/src/x/x_dialog.c:2209
-#, fuzzy
 msgid "End Type:"
-msgstr "Metni Düzenle"
+msgstr "Bitiş Türü:"
 
 #: gschem/src/x/x_dialog.c:2212
 msgid "Width:"
@@ -2120,10 +2120,10 @@ msgstr "Renk"
 msgid "Object color:"
 msgstr ""
 
+# Select a color for the selected objects.
 #: gschem/src/x/x_edit_color.c:182
-#, fuzzy
 msgid "Select a color for the selected objects."
-msgstr "Seçim Kipi"
+msgstr "Seçili nesneler için bir renk seçin."
 
 #: gschem/src/x/x_edit_cprop.c:267
 msgid "Symbol renamed, cannot be undone\n"
@@ -2198,10 +2198,10 @@ msgstr ""
 msgid "_Foot Print:"
 msgstr ""
 
+# Simulation Type
 #: gschem/src/x/x_edit_cprop.c:1384
-#, fuzzy
 msgid "Spice Type:"
-msgstr "doldurma tipi.."
+msgstr "Benzetim Türü:"
 
 #: gschem/src/x/x_edit_cprop.c:1395
 msgid "Model Name:"
@@ -2549,9 +2549,10 @@ msgstr ""
 msgid "Unable to get pixbuf from gschem's window.\n"
 msgstr ""
 
+# Write as image
 #: gschem/src/x/x_image.c:669
 msgid "Write image..."
-msgstr "imaj olarak yaz"
+msgstr "imaj olarak yaz..."
 
 #: gschem/src/x/x_image.c:699
 msgid "Width x Height"
@@ -2594,20 +2595,20 @@ msgstr "Bileşen Güncelle"
 msgid "Add net"
 msgstr "Metni Düzenle"
 
+# Attributes
 #: gschem/src/x/x_menus.c:92
-#, fuzzy
 msgid "Attribute..."
-msgstr "Öznitelikler"
+msgstr "Öznitelikler..."
 
 #: gschem/src/x/x_menus.c:92 gschem/etc/system-gschemrc.scm:2241
 #, fuzzy
 msgid "Add attribute"
 msgstr "Öznitelikler"
 
+# Component
 #: gschem/src/x/x_menus.c:93 gschem/src/x/x_menus.c:112
-#, fuzzy
 msgid "Component..."
-msgstr "Bileşen Güncelle"
+msgstr "Güncelle..."
 
 #: gschem/src/x/x_menus.c:93 gschem/etc/system-gschemrc.scm:2238
 msgid "Insert a symbol from the component library"
@@ -2709,10 +2710,10 @@ msgstr ""
 msgid "Open the Component Editor Dialog"
 msgstr ""
 
+# Pin Type
 #: gschem/src/x/x_menus.c:113
-#, fuzzy
 msgid "Pin type..."
-msgstr "doldurma tipi.."
+msgstr "Pin Tipi..."
 
 #: gschem/src/x/x_menus.c:113 gschem/etc/system-gschemrc.scm:2111
 msgid "Open the Pin Type Dialog"
@@ -3249,10 +3250,10 @@ msgstr ""
 msgid "Extents no margins"
 msgstr ""
 
+# Current Window
 #: gschem/src/x/x_print.c:184
-#, fuzzy
 msgid "Current Window"
-msgstr "Pencere kapatılıyor\n"
+msgstr "Geçerli Pencere"
 
 #: gschem/src/x/x_print.c:217
 msgid "Landscape"
@@ -3283,14 +3284,15 @@ msgstr ""
 msgid "Orientation:"
 msgstr ""
 
+# target
 #: gschem/src/x/x_print.c:535
 msgid "Destination"
-msgstr ""
+msgstr "hedef"
 
+# File
 #: gschem/src/x/x_print.c:548
-#, fuzzy
 msgid "File:"
-msgstr "Dosya"
+msgstr "Dosya:"
 
 #: gschem/src/x/x_print.c:578
 msgid "Command:"
@@ -3553,10 +3555,10 @@ msgstr ""
 msgid "Could not allocate a graphics context"
 msgstr ""
 
+# No current window
 #: gschem/src/x/x_window.c:110
-#, fuzzy
 msgid "there is no current window"
-msgstr "Pencere kapatılıyor\n"
+msgstr "Geçerli pencere yok"
 
 #: gschem/src/x/x_window.c:119
 msgid "Could not create a Cairo context, is window drawable?\n"
@@ -3880,28 +3882,28 @@ msgstr "Renk..."
 msgid "Edit Pi_n..."
 msgstr "Metin Düzenle..."
 
+# Line Thickness & Type
 #: gschem/etc/system-gschemrc.scm:2112
-#, fuzzy
 msgid "Line _Width & Type..."
-msgstr "Çizgi Kalınlığı & Tipi"
+msgstr "Çizgi Kalınlığı & Tipi..."
 
 #: gschem/etc/system-gschemrc.scm:2112
 msgid "Open the Line Editor Dialog"
 msgstr ""
 
+# Filling type
 #: gschem/etc/system-gschemrc.scm:2113
-#, fuzzy
 msgid "Fill T_ype..."
-msgstr "doldurma tipi.."
+msgstr "doldurma tipi..."
 
 #: gschem/etc/system-gschemrc.scm:2113
 msgid "Open the Fill Editor Dialog"
 msgstr ""
 
+# Edit Component
 #: gschem/etc/system-gschemrc.scm:2114
-#, fuzzy
 msgid "Edit Component..."
-msgstr "Bileşen Güncelle"
+msgstr "Bileşeni Düzenle..."
 
 #: gschem/etc/system-gschemrc.scm:2115
 #, fuzzy
@@ -4471,10 +4473,10 @@ msgstr ""
 msgid "Show a specific attribute"
 msgstr ""
 
+# Attributes
 #: gschem/etc/system-gschemrc.scm:2287
-#, fuzzy
 msgid "Attribute _Editor..."
-msgstr "Öznitelikler"
+msgstr "Öznitelikler..."
 
 #: gschem/etc/system-gschemrc.scm:2287
 msgid "Open the Attibutes Editor Dialog"
@@ -4488,15 +4490,15 @@ msgstr ""
 msgid "Open Auto Number dialog"
 msgstr ""
 
+# Show Console Window
 #: gschem/etc/system-gschemrc.scm:2296
-#, fuzzy
 msgid "Show _Console Window..."
-msgstr "Pencere kapatılıyor\n"
+msgstr "Konsol Penceresini Göster..."
 
+# Display the console window
 #: gschem/etc/system-gschemrc.scm:2296
-#, fuzzy
 msgid "Display the console window"
-msgstr "Pencere kapatılıyor\n"
+msgstr "Konsol penceresini görüntüleme"
 
 #: gschem/etc/system-gschemrc.scm:2297
 msgid "Show Coord _Window..."
@@ -4540,6 +4542,7 @@ msgstr "Bileşen/resim gömme"
 msgid "Unembed a component or image object"
 msgstr "Bileşen/resim gömme"
 
+# Update Component
 #: gschem/etc/system-gschemrc.scm:2307 gschem/scheme/gschem/builtins.scm:457
 msgid "Update Component"
 msgstr "Bileşen Güncelle"
@@ -4779,10 +4782,10 @@ msgstr ""
 msgid "New Window"
 msgstr "Yeni pencere"
 
+# Close the window
 #: gschem/scheme/gschem/builtins.scm:80 gschem/scheme/gschem/builtins.scm:83
-#, fuzzy
 msgid "Close Window"
-msgstr "Pencere kapatılıyor\n"
+msgstr "Pencereyi kapat"
 
 #: gschem/scheme/gschem/builtins.scm:86
 msgid "Quit"
@@ -5135,14 +5138,16 @@ msgstr "Öznitelikler"
 msgid "Autonumber Text"
 msgstr ""
 
+# View console window
 #: gschem/scheme/gschem/builtins.scm:436
-#, fuzzy
 msgid "Show Console Window"
-msgstr "Pencere kapatılıyor\n"
+msgstr "Konsol penceresini görüntüle"
 
+# Show Coordinates window
+# Show Coordinates window
 #: gschem/scheme/gschem/builtins.scm:439
-msgid "Show Coordinate Window"
-msgstr ""
+msgid "Show Coordinates Window"
+msgstr "Koordinatları Göster penceresi"
 
 #: gschem/scheme/gschem/builtins.scm:442
 msgid "Guile Path"
@@ -5305,9 +5310,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "session"
 #~ msgstr "Tümünü kaydet"
-
-#~ msgid "New page created [%s]\n"
-#~ msgstr "Yeni sayfa oluşturuldu [%s]\n"
 
 #, fuzzy
 #~ msgid "documents\n"
