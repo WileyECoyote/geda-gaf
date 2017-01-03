@@ -23,6 +23,8 @@
             * connector/terminal/terminal_block_9-3.sym
             * connector/terminal/terminal_block_10-3.sym
 
+    * lineartech/LT1763-1.sym: Update description attribute.
+
     * ti/src/TMS320F28027*: Include spreadsheet data used to create TMS320F280x
       symbols.
 
