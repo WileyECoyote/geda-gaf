@@ -50,7 +50,7 @@
                         "INDUCTOR" "DIODE" "PMOS_TRANSISTOR" "NMOS_TRANSISTOR"
                         "PNP_TRANSISTOR" "NPN_TRANSISTOR" "PFET_TRANSISTOR"
                         "NFET_TRANSISTOR" "MESFET_TRANSISTOR" "TESTPOINT"
-                        "VOLTAGE_SOURCE" "CURRENT_SOURCE" "ZENER"))
+                        "CONNECTOR" "VOLTAGE_SOURCE" "CURRENT_SOURCE" "ZENER"))
 
 
 ; valid-attributes stringlist
