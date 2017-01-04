@@ -145,7 +145,7 @@ x_rc_parse_gschem_error (GError **err, void *retry_flag)
   GEDA_FREE (msg2);
 }
 
-#define ConfigParseFunc void (*parser)(const char *, ConfigParseErrorFunc, void *)
+#define ConfigParseFunc void (*parser)(const char*, ConfigParseErrorFunc, void *)
 
 /*! \brief Load gschem configuration files and display error dialogs.
  * \par Function Description
@@ -186,7 +186,7 @@ x_rc_parse_gschem (GschemToplevel *w_current, const char *rcfile) {
       rc_processors[index].parser (rc_processors[index].arg,
                                    x_rc_parse_gschem_error, &retry);
       attempt++;
-    } while ( attempt < retry && attempt < MAX_RC_ATTEMPTS);
+    } while (attempt < retry && attempt < MAX_RC_ATTEMPTS);
   }
 }
 

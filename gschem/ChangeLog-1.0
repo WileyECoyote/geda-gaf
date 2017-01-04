@@ -8,6 +8,9 @@
       user; i_vars_atexit_save_user_config (relocate to i_vars_init), added
       leading new-line char to gschem.scm message.
 
+    * src/guile/g_rc.c: Added quotes for file names in message in function
+      g_rc_parse_gtkrc. Fix order of arguments in g_rc_gschem_version.
+
     * src/iface/i_vars.c Add setting i_vars_atexit_save_user_config _atexit
       if save_ui_settings is set, (relocated from gschem, seems appropriate).
 

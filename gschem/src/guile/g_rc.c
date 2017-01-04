@@ -82,23 +82,25 @@ void g_rc_parse_gtkrc()
 
   /* System */
   filename = g_build_filename (geda_sys_config_path (), "gschem-gtkrc", NULL);
+
   if (access(filename, R_OK) == 0) {
-    v_log_message("%s %s\n", _("Processing"), filename);
+    v_log_message("%s \"%s\"\n", _("Processing"), filename);
     gtk_rc_parse (filename);
   }
   else {
-    v_log_message("%s %s, %s\n", _("Skipping"), filename, strerror(errno));
+    v_log_message("%s \"%s\". %s\n", _("Skipping"), filename, strerror(errno));
   }
   GEDA_FREE (filename);
 
   /* User */
   filename = g_build_filename (geda_user_config_path (), "gschem-gtkrc", NULL);
+
   if (access(filename, R_OK) == 0) {
-    v_log_message("%s %s\n", _("Processing"), filename);
+    v_log_message("%s \"%s\"\n", _("Processing"), filename);
     gtk_rc_parse (filename);
   }
   else {
-    v_log_message("%s %s, %s\n", _("Skipping"), filename, strerror(errno));
+    v_log_message("%s \"%s\". %s\n", _("Skipping"), filename, strerror(errno));
   }
   GEDA_FREE (filename);
 }
@@ -203,8 +205,8 @@ SCM g_rc_gschem_version(SCM scm_version)
                                                 PACKAGE_DOTTED_VERSION,
                                                 PACKAGE_DATE_VERSION);
 
-    fprintf(stderr, "%s [%s] gschemrc %s:\n\"%s\"\n", have, _("file"),
-            version, sourcefile);
+    fprintf(stderr, "%s [%s] gschemrc %s \"%s\"\n",
+                    have, version, _("file"), sourcefile);
 
     fprintf(stderr, "%s.\n", please);
 
