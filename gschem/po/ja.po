@@ -375,135 +375,163 @@ msgstr ""
 msgid "Grid"
 msgstr "円弧モード"
 
+# off
 #: gschem/src/base/gschem_status_bar.c:1894
 #: gschem/src/base/gschem_status_bar.c:1915
 msgid "OFF"
-msgstr ""
+msgstr "オフ"
 
 #: gschem/src/base/gschem_status_bar.c:1907 gschem/src/object/o_picture.c:615
 #: gschem/src/object/o_picture.c:619
 msgid "Error"
 msgstr "反転"
 
+# None
 #: gschem/src/base/gschem_status_bar.c:1919
 msgid "NONE"
-msgstr ""
+msgstr "なし"
 
+# Object ~ A is not included in the current gschem page.
 #: gschem/src/guile/g_attrib.c:97
 msgid "Object ~A is not included in the current gschem page."
 msgstr "Object ~A は、現在のgschemページには含まれていません."
 
+# Invalid text name/value visibility ~ A.
 #: gschem/src/guile/g_attrib.c:117
 msgid "Invalid text name/value visibility ~A."
-msgstr ""
+msgstr "無効なテキストの名前/値の可視性〜A."
 
 #: gschem/src/guile/g_rc.c:86 gschem/src/guile/g_rc.c:97
 msgid "Processing"
 msgstr "閉じています"
 
+# Ignoring
 #: gschem/src/guile/g_rc.c:90 gschem/src/guile/g_rc.c:101
 msgid "Skipping"
-msgstr ""
+msgstr "無視する"
 
+# RC file entry
 #: gschem/src/guile/g_rc.c:121
 msgid "entry in rc file"
-msgstr ""
+msgstr "RCファイルエントリ"
 
+# Bad value
 #: gschem/src/guile/g_rc.c:125
 msgid "Bad Value"
-msgstr "値"
+msgstr "悪い値"
 
+# check
 #: gschem/src/guile/g_rc.c:126 gschem/src/guile/g_rc.c:2072
 msgid "check"
-msgstr ""
+msgstr "チェック"
 
+# or Scheme, using
 #: gschem/src/guile/g_rc.c:127
 msgid "or Scheme, continuing with"
-msgstr ""
+msgstr "またはスキーム、を使用して"
 
+# maximum value
 #: gschem/src/guile/g_rc.c:135
 msgid "maximum value"
-msgstr ""
+msgstr "最大値"
 
+# minimum value
 #: gschem/src/guile/g_rc.c:139
 msgid "minimum value"
-msgstr ""
+msgstr "最小値"
 
+# default value
 #: gschem/src/guile/g_rc.c:143
 msgid "default value"
-msgstr ""
+msgstr "デフォルト値"
 
+# Invalid type assignment, check
 #: gschem/src/guile/g_rc.c:157
 msgid "Invalid type assignment, check"
-msgstr ""
+msgstr "無効なタイプの割り当て、チェック"
 
+# This is gEDA/gschem version
 #: gschem/src/guile/g_rc.c:198
 msgid "This is gEDA/gschem version"
-msgstr ""
+msgstr "これは gEDA/gschem バージョンです"
 
+# You have a version
 #: gschem/src/guile/g_rc.c:199
 msgid "but you have a version"
-msgstr ""
+msgstr "あなたはバージョンがあります"
 
+# Please make sure you have the latest rc file
 #: gschem/src/guile/g_rc.c:200
 msgid "Please be sure that you have the latest rc file"
-msgstr ""
+msgstr "最新のrcファイルがあることを確認してください"
 
+# File
 #: gschem/src/guile/g_rc.c:206 gschem/src/x/x_image.c:481
 msgid "file"
-msgstr ""
+msgstr "ファイル"
 
+# Zoom gain can not be zero. Check zoom gain value of rc file
 #: gschem/src/guile/g_rc.c:723
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
-msgstr ""
+msgstr "ズームゲインをゼロにすることはできません。 rcファイルのズームゲイン値を確認する\n"
 
+# Invalid type assignment. Please check the zoom gain value of rc file.
 #: gschem/src/guile/g_rc.c:728
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
-msgstr ""
+msgstr "タイプの割り当てが無効です。rcファイルのズームゲインの値を確認してください。\n"
 
+# Continue with default value
 #: gschem/src/guile/g_rc.c:729 gschem/src/guile/g_rc.c:1275
 #: gschem/src/guile/g_rc.c:1427 gschem/src/guile/g_rc.c:2025
 msgid "Continuing with default value"
-msgstr ""
+msgstr "デフォルト値で続ける"
 
+# Invalid type assignment. Please check the logging value of rc file
 #: gschem/src/guile/g_rc.c:813
 #, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
-msgstr ""
+msgstr "タイプの割り当てが無効です。rcファイルのロギングの値を確認してください。\n"
 
+# The snap size can not be 0. Please check the snap size value of rc file
 #: gschem/src/guile/g_rc.c:1269
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
-msgstr ""
+msgstr "スナップサイズは0にはできません。rcファイルのスナップサイズ値を確認してください\n"
 
+# Invalid type assignment, check the value of snap-size in rc file
 #: gschem/src/guile/g_rc.c:1274
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
-msgstr ""
+msgstr "タイプの割り当てが無効です。rcファイルのsnap-sizeの値を確認してください。\n"
 
+# bus-ripper-size can not be 0. Check the bus-ripper-size value of the rc file
 #: gschem/src/guile/g_rc.c:1421
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
-msgstr ""
+msgstr "bus-ripper-sizeは0にはできません。rcファイルのbus-ripper-sizeの値を確認してください\n"
 
+# Invalid type assignment, check the value of bus-ripper-size in rc file
 #: gschem/src/guile/g_rc.c:1426
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
-msgstr ""
+msgstr "無効な型の割り当て、rcファイルのbus-ripper-sizeの値をチェックする\n"
 
+# Can not scroll 0 steps, check the value of scrollpan-steps in rc file
 #: gschem/src/guile/g_rc.c:2019
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
-msgstr ""
+msgstr "0ステップをスクロールできない、rcファイルのscrollpan-stepsの値をチェックする\n"
 
+# Invalid type assignment, check the value of scrollpan-steps in rc file
 #: gschem/src/guile/g_rc.c:2024
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
-msgstr ""
+msgstr "無効な型の割り当て、rcファイルのscrollpan-stepsの値をチェックする\n"
 
+# Invalid zoom factor
 #: gschem/src/guile/g_rc.c:2070
 msgid "Invalid zoom factor"
 msgstr "無効なズーム係数"
@@ -521,30 +549,35 @@ msgstr "URIを起動できませんでした"
 msgid "Found invalid gschem window smob ~S"
 msgstr "無効なgschemウィンドウのsmobが見つかりました ~S"
 
+# Process action
 #: gschem/src/iface/i_command.c:368
 msgid "Processing Action"
 msgstr "処理アクション"
 
+# Can not
 #: gschem/src/iface/i_command.c:475
 msgid "Cannot"
-msgstr ""
+msgstr "できない"
 
+# During an ongoing command!
 #: gschem/src/iface/i_command.c:475
 msgid "while inside an action!\n"
-msgstr ""
+msgstr "進行中のコマンド中に！\n"
 
+# A new page has been created
 #: gschem/src/iface/i_command.c:713 gschem/src/iface/i_command.c:2714
 msgid "New page created"
-msgstr ""
+msgstr "新しいページが作成されました"
 
+# New window
 #: gschem/src/iface/i_command.c:751
-#, fuzzy
 msgid "New Window created"
 msgstr "新規ウィンドウ"
 
+# All files could not be saved
 #: gschem/src/iface/i_command.c:950
 msgid "Failed to Save All"
-msgstr ""
+msgstr "すべてのファイルを保存できませんでした"
 
 #: gschem/src/iface/i_command.c:953 gschem/src/iface/i_command.c:970
 msgid "Saved All"
@@ -610,10 +643,10 @@ msgstr ""
 msgid "Confirm revert ALL documents"
 msgstr ""
 
+# Search Source
 #: gschem/src/iface/i_command.c:2981
-#, fuzzy
 msgid "Searching for source"
-msgstr "ソースの検索[%s]\n"
+msgstr "ソースの検索"
 
 #: gschem/src/iface/i_command.c:3015
 msgid "Failed to descend into"
@@ -623,10 +656,10 @@ msgstr "降下できなかった"
 msgid "Hierarchy Error"
 msgstr "階層"
 
+# Looking up symbols
 #: gschem/src/iface/i_command.c:3101
-#, fuzzy
 msgid "Searching for symbol"
-msgstr "シンボル検索中[%s]\n"
+msgstr "シンボル検索中"
 
 #: gschem/src/iface/i_command.c:3111
 msgid "Symbol is not a real file. Symbol cannot be loaded.\n"
@@ -4949,10 +4982,10 @@ msgstr "オートナンバーテキスト"
 msgid "Show Console Window"
 msgstr "コンソールウィンドウを表示する"
 
+# Display coordinate window
 #: gschem/scheme/gschem/builtins.scm:439
-#, fuzzy
 msgid "Show Coordinates Window"
-msgstr "現在のウィンドウ"
+msgstr "座標ウィンドウを表示する"
 
 #: gschem/scheme/gschem/builtins.scm:442
 msgid "Guile Path"
