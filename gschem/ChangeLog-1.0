@@ -14,6 +14,12 @@
     * src/iface/i_vars.c Add setting i_vars_atexit_save_user_config _atexit
       if save_ui_settings is set, (relocated from gschem, seems appropriate).
 
+    * src/x/x_compselect.c: Improve robustness of compselect_callback_refresh_
+      views; preset values to NULL before calling gtk_tree_model_get, do not
+      depend on gtk_tree_model_get to unset values (or gtk_tree_model to do any
+      thing right for that matter). Use libgeda geda_struct_clib_source_get_name
+      to retrieve the source names.
+
 2017-01-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/tr.po: Update Turkish translations.

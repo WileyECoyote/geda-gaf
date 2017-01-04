@@ -133,6 +133,7 @@ static char *popup_items[]={ "Open",
                              "Off",
                              NULL
 };
+
 static char *popup_tips[]={  "Expand one level",
                              "Expand all sub-folders",
                              "Close this folder",
@@ -1690,6 +1691,8 @@ compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
 
     if (is_symbol_record(model, &iter)) {
 
+      symbol = NULL;
+
       gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &symbol, -1);
 
       const char *ptr_sym_name = geda_struct_clib_symbol_get_name(symbol);
@@ -1709,12 +1712,19 @@ compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
       at_boundary  = TRUE;
     }
 
+    source = NULL;
+
     gtk_tree_model_get (model, &parent, LVC_ROW_DATA, &source, -1);
-    src_name = geda_utility_string_strdup(source->name);
+
+    const char *ptr_src_name = geda_struct_clib_source_get_name(source);
+
+    src_name = geda_utility_string_strdup(ptr_src_name);
 
     if (gtk_tree_model_iter_parent (model, &iter, &parent)) {
+      source = NULL;
       gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &source, -1);
-      gp_src_name = geda_utility_string_strdup(source->name);
+      ptr_src_name = geda_struct_clib_source_get_name(source);
+      gp_src_name = geda_utility_string_strdup(ptr_src_name);
     }
 
     do_restore = TRUE;
@@ -1749,11 +1759,13 @@ compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
 
         if (!is_symbol_record(model, &iter)) {
 
+          source = NULL;
+
           gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &source, -1);
 
-          const char *ptr_src_name = source->name;
+          const char *ptr_src_name = geda_struct_clib_source_get_name(source);
 
-          if (strcmp(ptr_src_name, gp_src_name) == 0) {
+          if (ptr_src_name && (strcmp(ptr_src_name, gp_src_name) == 0)) {
 
             /* found grand parent */
             path = gtk_tree_model_get_path (model, &iter);
@@ -1781,11 +1793,13 @@ compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
 
       if (!is_symbol_record(model, &iter)) {
 
+        source = NULL;
+
         gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &source, -1);
 
-        const char *ptr_src_name = source->name;
+        const char *ptr_src_name = geda_struct_clib_source_get_name(source);
 
-        if (strcmp(ptr_src_name, src_name) == 0) {
+        if (ptr_src_name && (strcmp(ptr_src_name, src_name) == 0)) {
 
           /* found the folder so check if was expanded and set cursor */
           path = gtk_tree_model_get_path (model, &iter);
@@ -1831,7 +1845,7 @@ compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
 
           const char *ptr_sym_name = geda_struct_clib_symbol_get_name(symbol);
 
-          if (strcmp(ptr_sym_name, sym_name) == 0) {
+          if (ptr_sym_name && (strcmp(ptr_sym_name, sym_name) == 0)) {
             path = gtk_tree_model_get_path (model, &iter);
             gtk_tree_view_expand_to_path(tree_view, path);
             gtk_tree_view_set_cursor (tree_view, path, NULL, FALSE);
