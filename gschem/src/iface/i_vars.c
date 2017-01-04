@@ -794,6 +794,10 @@ void i_vars_init(GschemToplevel *w_current)
 
   /* read additional RC files, which may over-ride the hard-coded defaults! */
   x_rc_parse_gschem (w_current, rc_filename);
+
+  if (w_current->save_ui_settings) {
+    gschem_atexit (i_vars_atexit_save_user_config, NULL);
+  }
 }
 
 /*! \brief Save user config on exit.

@@ -345,28 +345,24 @@ static void gschem( int argc, char *argv[])
   scm_tmp = scm_sys_search_load_path (scm_from_utf8_string ("gschem.scm"));
 
   if (scm_is_false (scm_tmp)) {
-    geda_log ("%s \"gschem.scm\"\n", _("Unable to locate scheme initialization file"));
+    geda_log ("\n%s \"gschem.scm\".\n", _("Unable to locate scheme initialization file"));
   }
   else {
 
     input_str = scm_to_utf8_string (scm_tmp);
 
     if (g_evaluate_scheme_file(input_str, NULL)) {
-      geda_log_v ("%s \"%s\"\n", _("Read scheme initialization file"), input_str);
+      geda_log_v ("\n%s \"%s\".\n", _("Read scheme initialization file"), input_str);
     }
     else {
-      geda_log ("%s \"%s\"\n", _("Failed to read scheme initialization file"), input_str);
+      geda_log ("\n%s \"%s\".\n", _("Failed to read scheme initialization file"), input_str);
     }
   }
   free (input_str); /* M'allocated by scm_to_utf8_string() */
   scm_remember_upto_here_1 (scm_tmp);
 
   /*! \internal Initialize default configuration Settings */
-  i_vars_init(w_current);         /* Set defaults */
-
-  if (w_current->save_ui_settings) {
-    gschem_atexit (i_vars_atexit_save_user_config, NULL);
-  }
+  i_vars_init(w_current);         /* Set defaults, calls x_rc_parse_gschem */
 
   /*! \internal Begin Setup Log & Console System */
   x_console_init_commands(w_current, run_mode);

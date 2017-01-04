@@ -4,6 +4,13 @@
 
     * po/sr.po: Update Serbian translations.
 
+    * src/base/gschem.c: Remove setting gschem_atexit hook for saving the
+      user; i_vars_atexit_save_user_config (relocate to i_vars_init), added
+      leading new-line char to gschem.scm message.
+
+    * src/iface/i_vars.c Add setting i_vars_atexit_save_user_config _atexit
+      if save_ui_settings is set, (relocated from gschem, seems appropriate).
+
 2017-01-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/tr.po: Update Turkish translations.
