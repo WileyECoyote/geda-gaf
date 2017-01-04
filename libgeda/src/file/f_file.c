@@ -193,8 +193,11 @@ geda_file_open(GedaToplevel *toplevel, Page *page, const char *filename, GError 
   full_filename = geda_file_sys_normalize_name (filename, &tmp_err);
 
   if (full_filename == NULL) {
-    g_set_error (err, EDA_ERROR, tmp_err->code,
-               _("Cannot find file %s: %s"), filename, tmp_err->message);
+
+    const char *msg = _("Cannot find file");
+
+    g_set_error (err, EDA_ERROR, tmp_err->code, "%s %s: %s",
+                 msg, filename, tmp_err->message);
     g_error_free(tmp_err);
     return geda_file_open_exit(0);
   }
@@ -210,9 +213,12 @@ geda_file_open(GedaToplevel *toplevel, Page *page, const char *filename, GError 
   if (file_directory) {
 
     if (chdir (file_directory)) {
+
       /* Error occurred with chdir */
-      fprintf(stderr, _("<libgeda> ERROR: Could not change current directory to %s:%s"),
-              file_directory, strerror (errno));
+      const char *msg = _("<libgeda> ERROR: Could not change current directory to");
+
+      fprintf(stderr, "%s %s: %s", msg, file_directory, strerror (errno));
+
       return geda_file_open_exit(0);
     }
 
@@ -277,7 +283,7 @@ geda_file_open(GedaToplevel *toplevel, Page *page, const char *filename, GError 
       message = malloc(mem_needed + 100);
 
       if(!message) { /* Should this be translated? */
-        fprintf(stderr, "%s: %s\n", __func__, _("Memory allocation error!"));
+        fprintf(stderr, "%s %s\n", __func__, _("Memory allocation error!"));
       }
       else {
 
@@ -343,8 +349,8 @@ geda_file_open(GedaToplevel *toplevel, Page *page, const char *filename, GError 
   /* Reset current directory to the orginal location */
   if (flags & F_OPEN_RESTORE_CWD) {
     if (chdir (saved_cwd)) {
-      fprintf(stderr, _("<libgeda> ERROR: Could not restore current directory to %s:%s"),
-              saved_cwd, strerror (errno));
+      const char *msg = _("<libgeda> ERROR: Could not restore current directory to");
+      fprintf(stderr, "%s %s: %s", msg,  saved_cwd, strerror (errno));
     }
   }
 

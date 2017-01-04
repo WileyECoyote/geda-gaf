@@ -1,3 +1,8 @@
+2017-01-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/file/f_file.c: Revise message formats in order to minimize
+      format specifiers in translatable string in geda_file_open.
+
 2017-01-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_page.c: Revise log message formats in order to minimize
