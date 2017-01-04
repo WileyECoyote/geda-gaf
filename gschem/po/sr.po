@@ -468,134 +468,170 @@ msgstr ""
 msgid "or Scheme, continuing with"
 msgstr ""
 
+# the maximum value
 #: gschem/src/guile/g_rc.c:135
 msgid "maximum value"
-msgstr ""
+msgstr "maksimalna вредност"
 
+# minimum value
 #: gschem/src/guile/g_rc.c:139
 msgid "minimum value"
-msgstr ""
+msgstr "минимална вредност"
 
+# the default value
 #: gschem/src/guile/g_rc.c:143
 msgid "default value"
-msgstr ""
+msgstr "предефинисана вредност"
 
+# Wrong data type, check
 #: gschem/src/guile/g_rc.c:157
 msgid "Invalid type assignment, check"
-msgstr ""
+msgstr "Погрешна врста података, проверите"
 
+# This is gEDA / gschem version
 #: gschem/src/guile/g_rc.c:198
 msgid "This is gEDA/gschem version"
-msgstr ""
+msgstr "Ово је гЕДА / гсцхем верзија"
 
+# your RC version is
 #: gschem/src/guile/g_rc.c:199
 msgid "but you have a version"
-msgstr ""
+msgstr "Ваш РЦ верзија је"
 
+# Please make sure you have the latest RC file
 #: gschem/src/guile/g_rc.c:200
 msgid "Please be sure that you have the latest rc file"
-msgstr ""
+msgstr "Молимо будите сигурни да имате најновију РЦ фајл"
 
+# file
 #: gschem/src/guile/g_rc.c:206 gschem/src/x/x_image.c:481
 msgid "file"
-msgstr ""
+msgstr "фајл"
 
+# zoom-gain can not be zero, check zoom-gain in the initialization file
 #: gschem/src/guile/g_rc.c:723
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
-msgstr ""
+msgstr "Зоом-добитак не може бити нула, проверити Зоом-добитак у датотеци са почетним\n"
 
+# got the wrong type, check the Zoom-gain in the initialization file
 #: gschem/src/guile/g_rc.c:728
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
-msgstr ""
+msgstr "добио погрешну врсту, проверите Зоом-добитак у датотеци са почетним\n"
 
+# Continuing with default values
 #: gschem/src/guile/g_rc.c:729 gschem/src/guile/g_rc.c:1275
 #: gschem/src/guile/g_rc.c:1427 gschem/src/guile/g_rc.c:2025
 msgid "Continuing with default value"
-msgstr ""
+msgstr "Настављајући са почетним вредности"
 
+# Incorrect data type, check the value of logging in the initialization file
 #: gschem/src/guile/g_rc.c:813
 #, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
-msgstr ""
+msgstr "Погрешан тип података, Провери вредност сјече у датотеци са почетним\n"
 
+# snap-size cannot be zero, check snap-size entry in initialization file
 #: gschem/src/guile/g_rc.c:1269
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
 msgstr ""
+"Снап-величина не може бити нула, цхецк снап-сизе у датотеци са почетним\n"
 
+# assigned an invalid type, check snap-size in initialization file
 #: gschem/src/guile/g_rc.c:1274
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
-msgstr ""
+msgstr "додељен неважећи тип, цхецк снап-сизе у датотеци са почетним\n"
 
+# bus-Ripper-size can not be zero, check the setting in the initialization file
 #: gschem/src/guile/g_rc.c:1421
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
 msgstr ""
+"аутобус-Риппер-величина не може бити нула, проверите поставке у датотеци са "
+"почетним\n"
 
+# assigned an invalid type, check bus-ripper-size in initialization file
 #: gschem/src/guile/g_rc.c:1426
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
 msgstr ""
+"додељен неважећи тип, провери аутобус-риппер-сизе у датотеци са почетним\n"
 
+# can scroll 0 steps, check value of scrollpane-steps in initialization file
 #: gschem/src/guile/g_rc.c:2019
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
 msgstr ""
+"могу да сцролл 0 корака, Провери вредност СцроллПане-корака у датотеци са "
+"почетним\n"
 
+# assigned an invalid type, check value of scrollpane-steps in initialization file
 #: gschem/src/guile/g_rc.c:2024
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
 msgstr ""
+"додељен неважећи тип, Провери вредност СцроллПане-корака у датотеци са "
+"почетним\n"
 
+# Invalid zoom factor
 #: gschem/src/guile/g_rc.c:2070
 msgid "Invalid zoom factor"
-msgstr ""
+msgstr "Неважећи зум фактор"
 
+# Object ~A is not directly included in a page.
 #: gschem/src/guile/g_select.c:84 gschem/src/guile/g_select.c:120
 #: gschem/src/guile/g_select.c:155
 msgid "Object ~A is not directly included in a page."
-msgstr ""
+msgstr "Објецт ~А није директно укључена у страна."
 
+# Unable to start URI
 #: gschem/src/guile/g_util.c:67
 msgid "Could not launch URI"
-msgstr ""
+msgstr "Није могуће покренути УРИ"
 
+# Found invalid gschem window smob ~S
 #: gschem/src/guile/g_window.c:146
 msgid "Found invalid gschem window smob ~S"
-msgstr ""
+msgstr "Пронађени неважећи гсцхем прозор смоб ~S"
 
+# processing Action
 #: gschem/src/iface/i_command.c:368
 msgid "Processing Action"
-msgstr ""
+msgstr "обрада Акција"
 
+# Cannot
 #: gschem/src/iface/i_command.c:475
 msgid "Cannot"
-msgstr ""
+msgstr "не могу"
 
+# while in action!
 #: gschem/src/iface/i_command.c:475
 msgid "while inside an action!\n"
-msgstr ""
+msgstr "док у акцији!\n"
 
+# New page created
 #: gschem/src/iface/i_command.c:713 gschem/src/iface/i_command.c:2714
 msgid "New page created"
-msgstr ""
+msgstr "Нова страница направљена"
 
+# New Window
 #: gschem/src/iface/i_command.c:751
-#, fuzzy
 msgid "New Window created"
 msgstr "Нови прозор"
 
+# Failed to save all
 #: gschem/src/iface/i_command.c:950
 msgid "Failed to Save All"
-msgstr ""
+msgstr "Није успела да спаси све"
 
+# All Saved
 #: gschem/src/iface/i_command.c:953 gschem/src/iface/i_command.c:970
 msgid "Saved All"
-msgstr ""
+msgstr "Сви Савед"
 
 #: gschem/src/iface/i_command.c:967
 msgid "Error encountered, Save Failed"
