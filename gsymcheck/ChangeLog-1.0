@@ -4,6 +4,9 @@
       May not go over well with spice backends, but those back-ends are out
       of date and need to be revised.
 
+    * gsymcheck/src/gsymcheck.c: Revise message formats in order to minimize
+      format specifiers in translatable string.
+
 2016-12-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gsymcheckrc.in: Add new keyword "known-devices" as a

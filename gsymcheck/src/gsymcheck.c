@@ -118,14 +118,14 @@ static void main_prog(void *closure, int argc, char *argv[])
       exit(2);
     }
     else {
-      g_message (_("Loaded file [%s]\n"), filename);
+      g_message ("%s \"%s\"\n", _("Loaded file"), filename);
     }
     i++;
     GEDA_FREE (filename);
   }
 
   if (argv[argv_index] == NULL) {
-    fprintf(stderr, _("\nERROR! You must specify at least one filename\n\n"));
+    fprintf(stderr, "\n%s\n\n", _("ERROR! You must specify at least one filename"));
     usage(argv[0]);
   }
 

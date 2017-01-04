@@ -51,7 +51,7 @@ SCM g_rc_gsymcheck_version(SCM scm_version)
   if (g_ascii_strcasecmp(version, PACKAGE_DATE_VERSION) != 0) {
     fprintf(stderr, _(
       "You are running gEDA/gaf version [%s%s.%s],\n"
-      "but you have a version [%s] gsymcheckrc file:\n[%s]\n"
+      "but you have a version [%s] gsymcheckrc file:\n\"%s\"\n"
       "Please be sure that you have the latest rc file.\n"),
       PREPEND_VERSION_STRING, PACKAGE_DOTTED_VERSION, PACKAGE_DATE_VERSION,
       version, rc_filename);
