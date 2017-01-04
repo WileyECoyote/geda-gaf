@@ -1,3 +1,10 @@
+2017-01-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/: Add file header information:
+
+        * include/geda_toolbar.h
+        * include/geda_separator.h
+
 2017-01-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_font_button.c: Replace object type identifier scheme for
