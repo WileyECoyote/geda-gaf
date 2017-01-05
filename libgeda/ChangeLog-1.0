@@ -1,3 +1,9 @@
+2017-01-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/file/f_get.c: Revise message formats in order to minimize format
+      specifiers in translatable string in geda_file_get_data_filespec and
+      geda_file_get_bitmap_filespec.
+
 2017-01-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_file.c: Revise message formats in order to minimize

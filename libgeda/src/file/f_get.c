@@ -1,7 +1,7 @@
-/* -*- C header file: f_get.c indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
+/* -*- C header file: f_get.c indent-tabs-mode: t; c-basic-offset: 2; tab-width: 2 -*-
  *
- * Copyright (C) 2013-2016 Wiley Edward Hill
- * Copyright (C) 2013-2016 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2013-2017 Wiley Edward Hill
+ * Copyright (C) 2013-2017 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -169,7 +169,8 @@ geda_file_get_bitmap_filespec (const char *filename)
         filespec = geda_strconcat (directory, seperator, filename, NULL);
       }
       else {
-        fprintf (stderr, "Path invalid[%s], %s\n", directory, strerror(errno));
+        const char *msg = _("Invalid path");
+        fprintf (stderr, "%s \"%s\", %s\n", msg, directory, strerror(errno));
       }
     }
 
@@ -510,7 +511,8 @@ geda_file_get_data_filespec (const char *filename)
 
     /* Look for file in current directory */
     if (!cwd) {
-      fprintf (stderr, "System error getting cwd: [%s]\n", strerror(errno));
+      const char *err_msg = _("System error reading the current directory");
+      fprintf (stderr, "%s: %s\n", err_msg, strerror(errno));
     }
     else {
 
