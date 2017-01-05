@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gschem\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-02 19:20-0600\n"
+"POT-Creation-Date: 2017-01-04 01:04-0600\n"
 "PO-Revision-Date: 2014-08-31 22:35+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -75,16 +75,16 @@ msgstr "Lees init scm bestand [%s]\n"
 msgid "Failed to read scheme initialization file"
 msgstr "Lees init scm bestand [%s]\n"
 
-#: gschem/src/base/gschem.c:384
+#: gschem/src/base/gschem.c:380
 #, fuzzy
 msgid "version"
 msgstr "Opslaan Als"
 
-#: gschem/src/base/gschem.c:389
+#: gschem/src/base/gschem.c:385
 msgid "Logging system is disabled\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:429
+#: gschem/src/base/gschem.c:425
 #, fuzzy, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
 msgstr ""
@@ -92,7 +92,7 @@ msgstr ""
 "\n"
 "Het gschem log kan meer informatie bevatten.\n"
 
-#: gschem/src/base/gschem.c:520
+#: gschem/src/base/gschem.c:516
 msgid "Exiting normal\n"
 msgstr ""
 
@@ -469,122 +469,122 @@ msgstr "Objekt ~A is niet bijgevoegd in de huidige gschem pagina."
 msgid "Invalid text name/value visibility ~A."
 msgstr "Ongeldige tekst naam/waarde zichtbaarheid ~A."
 
-#: gschem/src/guile/g_rc.c:86 gschem/src/guile/g_rc.c:97
+#: gschem/src/guile/g_rc.c:87 gschem/src/guile/g_rc.c:99
 #, fuzzy
 msgid "Processing"
 msgstr "Sluiten [%s]\n"
 
-#: gschem/src/guile/g_rc.c:90 gschem/src/guile/g_rc.c:101
+#: gschem/src/guile/g_rc.c:91 gschem/src/guile/g_rc.c:103
 msgid "Skipping"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:121
+#: gschem/src/guile/g_rc.c:123
 msgid "entry in rc file"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:125
+#: gschem/src/guile/g_rc.c:127
 #, fuzzy
 msgid "Bad Value"
 msgstr "Waarde"
 
-#: gschem/src/guile/g_rc.c:126 gschem/src/guile/g_rc.c:2072
+#: gschem/src/guile/g_rc.c:128 gschem/src/guile/g_rc.c:2074
 msgid "check"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:127
+#: gschem/src/guile/g_rc.c:129
 msgid "or Scheme, continuing with"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:135
+#: gschem/src/guile/g_rc.c:137
 msgid "maximum value"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:139
+#: gschem/src/guile/g_rc.c:141
 msgid "minimum value"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:143
+#: gschem/src/guile/g_rc.c:145
 msgid "default value"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:157
+#: gschem/src/guile/g_rc.c:159
 #, fuzzy
 msgid "Invalid type assignment, check"
 msgstr "Ongeldige tekst uitlijning ~A."
 
-#: gschem/src/guile/g_rc.c:198
+#: gschem/src/guile/g_rc.c:200
 #, fuzzy
 msgid "This is gEDA/gschem version"
 msgstr "U gebruikt gEDA/gaf versie [%s%s.%s],\n"
 
-#: gschem/src/guile/g_rc.c:199
+#: gschem/src/guile/g_rc.c:201
 #, fuzzy
 msgid "but you have a version"
 msgstr ""
 "maar U heeft een versie [%s] gschemrc bestand:\n"
 "[%s]\n"
 
-#: gschem/src/guile/g_rc.c:200
+#: gschem/src/guile/g_rc.c:202
 #, fuzzy
 msgid "Please be sure that you have the latest rc file"
 msgstr "Wees alstublieft zeker dat U het laatste rc bestand heeft.\n"
 
-#: gschem/src/guile/g_rc.c:206 gschem/src/x/x_image.c:481
+#: gschem/src/guile/g_rc.c:209 gschem/src/x/x_image.c:481
 msgid "file"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:723
+#: gschem/src/guile/g_rc.c:725
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:728
+#: gschem/src/guile/g_rc.c:730
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:729 gschem/src/guile/g_rc.c:1275
-#: gschem/src/guile/g_rc.c:1427 gschem/src/guile/g_rc.c:2025
+#: gschem/src/guile/g_rc.c:731 gschem/src/guile/g_rc.c:1277
+#: gschem/src/guile/g_rc.c:1429 gschem/src/guile/g_rc.c:2027
 msgid "Continuing with default value"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:813
+#: gschem/src/guile/g_rc.c:815
 #, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1269
+#: gschem/src/guile/g_rc.c:1271
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1274
+#: gschem/src/guile/g_rc.c:1276
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1421
+#: gschem/src/guile/g_rc.c:1423
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1426
+#: gschem/src/guile/g_rc.c:1428
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2019
+#: gschem/src/guile/g_rc.c:2021
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2024
+#: gschem/src/guile/g_rc.c:2026
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2070
+#: gschem/src/guile/g_rc.c:2072
 #, fuzzy
 msgid "Invalid zoom factor"
 msgstr "Ongeldige vergrotingsfactor [%d] overgedragen aan %s\n"
@@ -1132,7 +1132,7 @@ msgstr ""
 msgid "Initializing default configuration settings\n"
 msgstr ""
 
-#: gschem/src/iface/i_vars.c:812
+#: gschem/src/iface/i_vars.c:816
 #, fuzzy
 msgid "Failed to save user configuration to"
 msgstr "Faalde bij het afdalen in '%s': %s\n"
@@ -1457,128 +1457,128 @@ msgstr ""
 msgid "Clipboard Insertion Failed"
 msgstr "Klembord invoegen faalde"
 
-#: gschem/src/x/x_compselect.c:1256
+#: gschem/src/x/x_compselect.c:1257
 #, fuzzy
 msgid "Default is to reference the component"
 msgstr "Normaal gedrag - referentie component"
 
-#: gschem/src/x/x_compselect.c:1260
+#: gschem/src/x/x_compselect.c:1261
 msgid "Embed component in schematic"
 msgstr "Component insluiten in schema"
 
-#: gschem/src/x/x_compselect.c:1264
+#: gschem/src/x/x_compselect.c:1265
 msgid "Include component as individual objects"
 msgstr "Invoegen component als individuele objecten"
 
-#: gschem/src/x/x_compselect.c:2092 gschem/src/x/x_compselect.c:2470
+#: gschem/src/x/x_compselect.c:2106 gschem/src/x/x_compselect.c:2484
 msgid "Components"
 msgstr "Componenten"
 
-#: gschem/src/x/x_compselect.c:2547 gschem/src/x/x_multiattrib.c:1987
+#: gschem/src/x/x_compselect.c:2561 gschem/src/x/x_multiattrib.c:1987
 #: gschem/src/x/x_multiattrib.c:1993
 msgid "Name"
 msgstr "Naam"
 
-#: gschem/src/x/x_compselect.c:2559 gschem/src/x/x_multiattrib.c:1989
+#: gschem/src/x/x_compselect.c:2573 gschem/src/x/x_multiattrib.c:1989
 #: gschem/src/x/x_multiattrib.c:1995
 msgid "Value"
 msgstr "Waarde"
 
-#: gschem/src/x/x_compselect.c:2741 gschem/src/x/x_dialog.c:1756
+#: gschem/src/x/x_compselect.c:2755 gschem/src/x/x_dialog.c:1756
 msgid "None"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2742
+#: gschem/src/x/x_compselect.c:2756
 msgid "Style 1"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2743
+#: gschem/src/x/x_compselect.c:2757
 msgid "Style 2"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2744
+#: gschem/src/x/x_compselect.c:2758
 msgid "Style 3"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2745
+#: gschem/src/x/x_compselect.c:2759
 msgid "Style 4"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2746
+#: gschem/src/x/x_compselect.c:2760
 msgid "Style 5"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2747
+#: gschem/src/x/x_compselect.c:2761
 msgid "Style 6"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2748
+#: gschem/src/x/x_compselect.c:2762
 msgid "Style 7"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2749
+#: gschem/src/x/x_compselect.c:2763
 msgid "Style 8"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2750
+#: gschem/src/x/x_compselect.c:2764
 msgid "All"
 msgstr "Alle"
 
-#: gschem/src/x/x_compselect.c:2786
+#: gschem/src/x/x_compselect.c:2800
 msgid "Enable all styles"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2787
+#: gschem/src/x/x_compselect.c:2801
 msgid "Uncheck all styles"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2811
+#: gschem/src/x/x_compselect.c:2825
 msgid "Reference"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2812
+#: gschem/src/x/x_compselect.c:2826
 msgid "Embed"
 msgstr "Insluiten"
 
-#: gschem/src/x/x_compselect.c:2813
+#: gschem/src/x/x_compselect.c:2827
 msgid "Include"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3207
+#: gschem/src/x/x_compselect.c:3221
 msgid "active view"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3208
+#: gschem/src/x/x_compselect.c:3222
 msgid "Active sheet of the notebook"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3219
+#: gschem/src/x/x_compselect.c:3233
 msgid "Focus Filter"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3220
+#: gschem/src/x/x_compselect.c:3234
 msgid ""
 "When true, initial focus will be the filter entry, otherwise the Component "
 "Tree"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3323
+#: gschem/src/x/x_compselect.c:3337
 msgid "Rescan"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3331
+#: gschem/src/x/x_compselect.c:3345
 msgid "Rescan component libraries"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3333
+#: gschem/src/x/x_compselect.c:3347
 msgid "Set style filter"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3534 gschem/src/x/x_fileselect.c:123
+#: gschem/src/x/x_compselect.c:3548 gschem/src/x/x_fileselect.c:123
 msgid "Preview"
 msgstr "Vooraf zien"
 
-#: gschem/src/x/x_compselect.c:3570
+#: gschem/src/x/x_compselect.c:3584
 msgid "Attributes"
 msgstr "Attributen"
 
