@@ -191,7 +191,7 @@ eda_renderer_dispose (GObject *object)
     if (G_IS_OBJECT(renderer->priv->pc)) {
       pango_cairo_context_set_font_options (renderer->priv->pc, NULL);
 
-#if (PANGO_VERSION_MAJOR == 1) && (PANGO_VERSION_MINOR < 38)
+#if (PANGO_VERSION_MAJOR == 1) && (PANGO_VERSION_MINOR < 34)
       pango_context_set_font_map(renderer->priv->pc, NULL);
 #endif
 

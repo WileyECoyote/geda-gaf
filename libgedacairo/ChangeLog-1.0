@@ -1,3 +1,8 @@
+2017-01-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edarenderer.c: Change pango version in preprocesor conditional to
+      minor = 34.
+
 2016-12-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/edarenderer.c: Add preprocesor conditional in eda_renderer_dispose
