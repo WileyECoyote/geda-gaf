@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-02 19:20-0600\n"
+"POT-Creation-Date: 2017-01-04 01:04-0600\n"
 "PO-Revision-Date: 2010-02-11 03:18+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -63,21 +63,21 @@ msgstr ""
 msgid "Failed to read scheme initialization file"
 msgstr ""
 
-#: gschem/src/base/gschem.c:384
+#: gschem/src/base/gschem.c:380
 #, fuzzy
 msgid "version"
 msgstr "全部保存"
 
-#: gschem/src/base/gschem.c:389
+#: gschem/src/base/gschem.c:385
 msgid "Logging system is disabled\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:429
+#: gschem/src/base/gschem.c:425
 #, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:520
+#: gschem/src/base/gschem.c:516
 msgid "Exiting normal\n"
 msgstr ""
 
@@ -406,115 +406,115 @@ msgstr ""
 msgid "Invalid text name/value visibility ~A."
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:86 gschem/src/guile/g_rc.c:97
+#: gschem/src/guile/g_rc.c:87 gschem/src/guile/g_rc.c:99
 msgid "Processing"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:90 gschem/src/guile/g_rc.c:101
+#: gschem/src/guile/g_rc.c:91 gschem/src/guile/g_rc.c:103
 msgid "Skipping"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:121
+#: gschem/src/guile/g_rc.c:123
 msgid "entry in rc file"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:125
+#: gschem/src/guile/g_rc.c:127
 #, fuzzy
 msgid "Bad Value"
 msgstr "显示数值"
 
-#: gschem/src/guile/g_rc.c:126 gschem/src/guile/g_rc.c:2072
+#: gschem/src/guile/g_rc.c:128 gschem/src/guile/g_rc.c:2074
 msgid "check"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:127
+#: gschem/src/guile/g_rc.c:129
 msgid "or Scheme, continuing with"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:135
+#: gschem/src/guile/g_rc.c:137
 msgid "maximum value"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:139
+#: gschem/src/guile/g_rc.c:141
 msgid "minimum value"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:143
+#: gschem/src/guile/g_rc.c:145
 msgid "default value"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:157
+#: gschem/src/guile/g_rc.c:159
 msgid "Invalid type assignment, check"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:198
+#: gschem/src/guile/g_rc.c:200
 msgid "This is gEDA/gschem version"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:199
+#: gschem/src/guile/g_rc.c:201
 msgid "but you have a version"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:200
+#: gschem/src/guile/g_rc.c:202
 msgid "Please be sure that you have the latest rc file"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:206 gschem/src/x/x_image.c:481
+#: gschem/src/guile/g_rc.c:209 gschem/src/x/x_image.c:481
 msgid "file"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:723
+#: gschem/src/guile/g_rc.c:725
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:728
+#: gschem/src/guile/g_rc.c:730
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:729 gschem/src/guile/g_rc.c:1275
-#: gschem/src/guile/g_rc.c:1427 gschem/src/guile/g_rc.c:2025
+#: gschem/src/guile/g_rc.c:731 gschem/src/guile/g_rc.c:1277
+#: gschem/src/guile/g_rc.c:1429 gschem/src/guile/g_rc.c:2027
 msgid "Continuing with default value"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:813
+#: gschem/src/guile/g_rc.c:815
 #, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1269
+#: gschem/src/guile/g_rc.c:1271
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1274
+#: gschem/src/guile/g_rc.c:1276
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1421
+#: gschem/src/guile/g_rc.c:1423
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1426
+#: gschem/src/guile/g_rc.c:1428
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2019
+#: gschem/src/guile/g_rc.c:2021
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2024
+#: gschem/src/guile/g_rc.c:2026
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2070
+#: gschem/src/guile/g_rc.c:2072
 msgid "Invalid zoom factor"
 msgstr ""
 
@@ -1031,7 +1031,7 @@ msgstr ""
 msgid "Initializing default configuration settings\n"
 msgstr ""
 
-#: gschem/src/iface/i_vars.c:812
+#: gschem/src/iface/i_vars.c:816
 msgid "Failed to save user configuration to"
 msgstr ""
 
@@ -1321,127 +1321,127 @@ msgstr ""
 msgid "Clipboard Insertion Failed"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:1256
+#: gschem/src/x/x_compselect.c:1257
 msgid "Default is to reference the component"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:1260
+#: gschem/src/x/x_compselect.c:1261
 msgid "Embed component in schematic"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:1264
+#: gschem/src/x/x_compselect.c:1265
 msgid "Include component as individual objects"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2092 gschem/src/x/x_compselect.c:2470
+#: gschem/src/x/x_compselect.c:2106 gschem/src/x/x_compselect.c:2484
 msgid "Components"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2547 gschem/src/x/x_multiattrib.c:1987
+#: gschem/src/x/x_compselect.c:2561 gschem/src/x/x_multiattrib.c:1987
 #: gschem/src/x/x_multiattrib.c:1993
 msgid "Name"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2559 gschem/src/x/x_multiattrib.c:1989
+#: gschem/src/x/x_compselect.c:2573 gschem/src/x/x_multiattrib.c:1989
 #: gschem/src/x/x_multiattrib.c:1995
 msgid "Value"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2741 gschem/src/x/x_dialog.c:1756
+#: gschem/src/x/x_compselect.c:2755 gschem/src/x/x_dialog.c:1756
 msgid "None"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2742
+#: gschem/src/x/x_compselect.c:2756
 msgid "Style 1"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2743
+#: gschem/src/x/x_compselect.c:2757
 msgid "Style 2"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2744
+#: gschem/src/x/x_compselect.c:2758
 msgid "Style 3"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2745
+#: gschem/src/x/x_compselect.c:2759
 msgid "Style 4"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2746
+#: gschem/src/x/x_compselect.c:2760
 msgid "Style 5"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2747
+#: gschem/src/x/x_compselect.c:2761
 msgid "Style 6"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2748
+#: gschem/src/x/x_compselect.c:2762
 msgid "Style 7"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2749
+#: gschem/src/x/x_compselect.c:2763
 msgid "Style 8"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2750
+#: gschem/src/x/x_compselect.c:2764
 msgid "All"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2786
+#: gschem/src/x/x_compselect.c:2800
 msgid "Enable all styles"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2787
+#: gschem/src/x/x_compselect.c:2801
 msgid "Uncheck all styles"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2811
+#: gschem/src/x/x_compselect.c:2825
 msgid "Reference"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2812
+#: gschem/src/x/x_compselect.c:2826
 msgid "Embed"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2813
+#: gschem/src/x/x_compselect.c:2827
 msgid "Include"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3207
+#: gschem/src/x/x_compselect.c:3221
 msgid "active view"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3208
+#: gschem/src/x/x_compselect.c:3222
 msgid "Active sheet of the notebook"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3219
+#: gschem/src/x/x_compselect.c:3233
 msgid "Focus Filter"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3220
+#: gschem/src/x/x_compselect.c:3234
 msgid ""
 "When true, initial focus will be the filter entry, otherwise the Component "
 "Tree"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3323
+#: gschem/src/x/x_compselect.c:3337
 msgid "Rescan"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3331
+#: gschem/src/x/x_compselect.c:3345
 msgid "Rescan component libraries"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3333
+#: gschem/src/x/x_compselect.c:3347
 msgid "Set style filter"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3534 gschem/src/x/x_fileselect.c:123
+#: gschem/src/x/x_compselect.c:3548 gschem/src/x/x_fileselect.c:123
 msgid "Preview"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3570
+#: gschem/src/x/x_compselect.c:3584
 msgid "Attributes"
 msgstr "属性"
 
@@ -5079,164 +5079,178 @@ msgstr "新建页面"
 msgid "Print Page"
 msgstr "上一个"
 
+# Undo changes
 #: gschem/scheme/gschem/builtins.scm:314
 msgid "Revert Changes"
-msgstr ""
+msgstr "撤消更改"
 
+# Reload all
 #: gschem/scheme/gschem/builtins.scm:317
-#, fuzzy
 msgid "Revert All"
-msgstr "翻转页面"
+msgstr "重新加载所有"
 
+# Increase the circuit level
 #: gschem/scheme/gschem/builtins.scm:335
-#, fuzzy
 msgid "Up Hierarchy"
-msgstr "层次"
+msgstr "增加电路电平"
 
+# Add a component
 #: gschem/scheme/gschem/builtins.scm:341
-#, fuzzy
 msgid "Add Component"
 msgstr "更新组件"
 
+# Add a connection
 #: gschem/scheme/gschem/builtins.scm:344
 msgid "Add Net"
-msgstr ""
+msgstr "添加连接"
 
+# Add multi-conductor
 #: gschem/scheme/gschem/builtins.scm:347
 msgid "Add Bus"
-msgstr ""
+msgstr "添加多导体"
 
+# Add a line
 #: gschem/scheme/gschem/builtins.scm:353
-#, fuzzy
 msgid "Add Text"
-msgstr "编辑文本..."
+msgstr "编辑文本"
 
 #: gschem/scheme/gschem/builtins.scm:356
 msgid "Add Line"
-msgstr ""
+msgstr "添加线"
 
+# Add contact pin
 #: gschem/scheme/gschem/builtins.scm:359
 msgid "Add Pin"
-msgstr ""
+msgstr "添加接触针"
 
+# Add Rectangle
 #: gschem/scheme/gschem/builtins.scm:362
 msgid "Add Box"
-msgstr ""
+msgstr "添加矩形"
 
+# Add circles
 #: gschem/scheme/gschem/builtins.scm:365
-#, fuzzy
 msgid "Add Circle"
-msgstr "圆"
+msgstr "添加圈子"
 
+# Add an arc
 #: gschem/scheme/gschem/builtins.scm:368
 msgid "Add Arc"
-msgstr ""
+msgstr "添加弧"
 
+# add picture
 #: gschem/scheme/gschem/builtins.scm:374
-#, fuzzy
 msgid "Add Picture"
-msgstr "图片..."
+msgstr "添加图片"
 
+# Create a new session
 #: gschem/scheme/gschem/builtins.scm:380
-#, fuzzy
 msgid "Create New Session"
-msgstr "全部保存"
+msgstr "创建新会话"
 
+# Open a session
 #: gschem/scheme/gschem/builtins.scm:383
-#, fuzzy
 msgid "Open a Session"
-msgstr "全部保存"
+msgstr "打开会话"
 
+# Save the session
 #: gschem/scheme/gschem/builtins.scm:386
-#, fuzzy
 msgid "Save Session"
-msgstr "全部保存"
+msgstr "保存会话"
 
+# Connect Attributes
 #: gschem/scheme/gschem/builtins.scm:398
-#, fuzzy
 msgid "Attach Attributes"
-msgstr "属性"
+msgstr "连接属性"
 
+# Detach Attributes
 #: gschem/scheme/gschem/builtins.scm:401
-#, fuzzy
 msgid "Detach Attributes"
-msgstr "属性"
+msgstr "分离属性"
 
+# Reset all attribute locations
 #: gschem/scheme/gschem/builtins.scm:404
-#, fuzzy
 msgid "Reset Attribute Positions"
-msgstr "属性"
+msgstr "重置所有属性位置"
 
+# Show value
 #: gschem/scheme/gschem/builtins.scm:407
-#, fuzzy
 msgid "Show Attribute Value"
-msgstr "显示数值"
+msgstr "显示值"
 
-#: gschem/scheme/gschem/builtins.scm:410
-#, fuzzy
+# show name
+#: gschem/scheme/gschem/builtins.scm:41
 msgid "Show Attribute Name"
-msgstr "属性"
+msgstr "显示名称"
 
+# Toggle text visible
 #: gschem/scheme/gschem/builtins.scm:416
-#, fuzzy
 msgid "Toggle Text Visibility"
-msgstr "变换可见性"
+msgstr "切换文字的可见"
 
+# Find specific text
 #: gschem/scheme/gschem/builtins.scm:419
 msgid "Find Specific Text"
-msgstr ""
+msgstr "查找特定文本"
 
+# Hide specific text
 #: gschem/scheme/gschem/builtins.scm:422
 msgid "Hide Specific Text"
-msgstr ""
+msgstr "隐藏特定文本"
 
+# Display specific text
 #: gschem/scheme/gschem/builtins.scm:425
 msgid "Show Specific Text"
-msgstr ""
+msgstr "显示特定文本"
 
+# Property Editor
 #: gschem/scheme/gschem/builtins.scm:428
-#, fuzzy
 msgid "Open Attributes Editor"
-msgstr "属性..."
+msgstr "属性编辑器"
 
+# Automatic numbering
 #: gschem/scheme/gschem/builtins.scm:433
 msgid "Autonumber Text"
-msgstr ""
+msgstr "自动编号"
 
+# Console Window
 #: gschem/scheme/gschem/builtins.scm:436
-#, fuzzy
 msgid "Show Console Window"
-msgstr "关闭窗口"
+msgstr "控制台窗口"
 
+# Coordinates Window
 #: gschem/scheme/gschem/builtins.scm:439
-#, fuzzy
 msgid "Show Coordinates Window"
-msgstr "关闭窗口"
+msgstr "坐标窗口"
 
 #: gschem/scheme/gschem/builtins.scm:442
 msgid "Guile Path"
 msgstr ""
 
+# Translate object position
 #: gschem/scheme/gschem/builtins.scm:448
 msgid "Translate Symbol"
-msgstr ""
+msgstr "翻译对象位置"
 
+# Enables dot grid mode
 #: gschem/scheme/gschem/builtins.scm:463
 msgid "Dots Grid Style"
-msgstr ""
+msgstr "启用点网格模式"
 
+# Enables the mesh grid
 #: gschem/scheme/gschem/builtins.scm:466
 msgid "Mesh Grid Style"
-msgstr ""
+msgstr "启用网格网格"
 
+# Hide the grid
 #: gschem/scheme/gschem/builtins.scm:469
 msgid "Turn Grid Off"
-msgstr ""
+msgstr "隐藏网格"
 
+# Toggles grid mode
 #: gschem/scheme/gschem/builtins.scm:472
-#, fuzzy
 msgid "Cycle Grid Mode"
-msgstr "镜像模式"
+msgstr "切换网格模式"
 
 #: gschem/scheme/gschem/builtins.scm:475
 msgid "Increase Grid Spacing"
