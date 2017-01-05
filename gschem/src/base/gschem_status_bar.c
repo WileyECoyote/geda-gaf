@@ -1802,7 +1802,7 @@ gschem_status_bar_set_status_text_color (GtkWidget *widget, int index)
       }
     }
     else {
-      BUG_MSG("widget is not a ");
+      BUG_MSG("widget is not a GschemStatusBar");
     }
   }
 #endif
