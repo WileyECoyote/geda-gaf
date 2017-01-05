@@ -1,3 +1,18 @@
+2017-01-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * connector/terminal/: Add a set of terminal block symbols for style 1:
+
+            * connector/terminal/terminal_block_1-1.sym
+            * connector/terminal/terminal_block_2-1.sym (revise existing)
+            * connector/terminal/terminal_block_3-1.sym (revise existing)
+            * connector/terminal/terminal_block_4-1.sym
+            * connector/terminal/terminal_block_5-1.sym
+            * connector/terminal/terminal_block_6-1.sym
+            * connector/terminal/terminal_block_7-1.sym
+            * connector/terminal/terminal_block_8-1.sym
+            * connector/terminal/terminal_block_9-1.sym
+            * connector/terminal/terminal_block_10-1.sym
+
 2017-01-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/terminal/: Revise terminal block symbols; rename without "p"
