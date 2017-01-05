@@ -61,7 +61,6 @@ typedef struct _GedaFontDialogClass  GedaFontDialogClass;
 struct _GedaFontDialog
 {
   GtkDialog parent_instance;
-  GedaType  instance_type;
 
   GtkWidget *font_entry;
   GtkWidget *family_list;

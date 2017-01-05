@@ -84,6 +84,8 @@ static const unsigned int font_sizes[] = {
 
 static void *geda_font_dialog_parent_class = NULL;
 
+static GHashTable *font_dialog_hash = NULL;
+
 static PangoFontDescription*
 geda_font_dialog_get_font_description (GedaFontDialog *dialog)
 {
@@ -1439,9 +1441,14 @@ static void geda_font_dialog_finalize (GObject *object)
 {
   GedaFontDialog *dialog;
 
-  g_return_if_fail (GEDA_IS_FONT_DIALOG (object));
-
   G_OBJECT_CLASS (geda_font_dialog_parent_class)->finalize (object);
+
+  if (g_hash_table_remove (font_dialog_hash, object)) {
+    if (!g_hash_table_size (font_dialog_hash)) {
+      g_hash_table_destroy (font_dialog_hash);
+      font_dialog_hash = NULL;
+    }
+  }
 
   dialog = GEDA_FONT_DIALOG (object);
 
@@ -1575,7 +1582,11 @@ static void geda_font_dialog_instance_init(GTypeInstance *instance, void *g_clas
   GtkDialog      *Dialog     = GTK_DIALOG (dialog);
   GtkSettings    *settings;
 
-  dialog->instance_type = geda_font_dialog_get_type();
+  if (!font_dialog_hash) {
+    font_dialog_hash = g_hash_table_new (g_direct_hash, NULL);
+  }
+
+  g_hash_table_replace (font_dialog_hash, instance, instance);
 
   dialog->face          = NULL; /* Current face */
   dialog->family        = NULL; /* Current family */
@@ -1725,8 +1736,8 @@ GedaType geda_font_dialog_get_type (void)
 bool
 is_a_geda_font_dialog (GedaFontDialog *font_dialog)
 {
-  if (G_IS_OBJECT(font_dialog)) {
-    return (geda_font_dialog_get_type() == font_dialog->instance_type);
+  if ((font_dialog != NULL) && (font_dialog_hash != NULL)) {
+    return g_hash_table_lookup(font_dialog_hash, font_dialog) ? TRUE : FALSE;
   }
   return FALSE;
 }

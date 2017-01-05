@@ -1,3 +1,8 @@
+2017-01-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_font_dialog.c: Replace object type identifier scheme for
+      GedaFontDialog objects with new hash table type identifier system.
+
 2017-01-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/: Add file header information:
