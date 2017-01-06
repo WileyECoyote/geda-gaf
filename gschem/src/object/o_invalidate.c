@@ -198,7 +198,7 @@ o_invalidate_object (GschemToplevel *w_current, GedaObject *object)
   }
   else {
     if (geda_object_get_is_visible(object)) {
-      fprintf(stderr, "o_invalidate_object could not get bounds <%s>\n", object->name);
+      fprintf(stderr, "%s could not get bounds <%s>\n", __func__, object->name);
     }
   }
 }

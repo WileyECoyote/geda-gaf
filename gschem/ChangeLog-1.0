@@ -1,3 +1,11 @@
+2017-01-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_command.c: Revise output message format in order to
+      minimize format specifiers in translatable string.
+
+    * src/object/o_invalidate.c: Utilize __func__ in o_invalidate_object
+      error message.
+
 2017-01-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ar.po: Update Arabic translations.

@@ -129,7 +129,7 @@ static struct {
 #define GET_W(var)command_struc[cmd_##var].narg=w_current->var;
 
 #define SHOW_VARIABLE(name, type) GET_##type(name) \
-  geda_log("current value of <%s> is <%d>\n", #name, CMD_INTEGER(name));
+  geda_log("%s <%s> %s <%d>\n", _("current value of"), #name, _("is"), CMD_INTEGER(name));
 
 /* Anonymous Static Mutex */
 static GedaMutex (i_lock_last_command);
@@ -492,7 +492,8 @@ static inline void BlockThread (int index)
     g_usleep (TASK_WAIT_INTERVAL); /* sleep for Some time for action to complete. */
     deadman++;
     if (deadman == MAX_WAIT_FOR_TASK) {
-      fprintf (stderr, "Error: Command <%s> is not relinquishing status flag\n", command_struc[index].name);
+      fprintf (stderr, "Error: Command <%s> is not relinquishing status flag\n",
+               command_struc[index].name);
       return;
     }
   }
@@ -2244,7 +2245,7 @@ COMMAND (do_documentation)
         result = g_app_info_launch_default_for_uri(attrib_doc, NULL, &error);
 
         if (!result) {
-          geda_log("error: %s", error->message);
+          geda_log("%s: %s\n", _("error"), error->message);
           g_error_free (error);
         }
         GEDA_FREE(attrib_doc);
@@ -3108,8 +3109,7 @@ COMMAND (do_down_symbol)
       filename = geda_struct_clib_symbol_get_filename(sym);
 
       if (filename == NULL) {
-        geda_log(_("Symbol is not a real file."
-                        " Symbol cannot be loaded.\n"));
+        geda_log(_("Symbol is not a real file. Symbol cannot be loaded.\n"));
         return;
       }
       geda_free(filename);
@@ -4398,7 +4398,7 @@ COMMAND (do_toggle_dragcanmove)
     w_current->drag_can_move = 1;
     OnOff =_("On");
   }
-  geda_log_q(_("Drag-Can-Move is now %s\n"), OnOff);
+  geda_log_q("%s %s\n", _("Drag-Can-Move is now"), OnOff);
   x_menu_set_togglable(w_current, DRAG_CAN_MOVE, w_current->drag_can_move);
 }
 
@@ -4440,7 +4440,7 @@ COMMAND (do_toggle_auto_pan)
     w_current->auto_pan = 1;
     OnOff =_("On");
   }
-  geda_log_q(_("Auto-Pan is now %s\n"), OnOff);
+  geda_log_q("%s %s\n", _("Auto-Pan is now"), OnOff);
   x_menu_set_togglable(w_current, AUTO_PAN_TOGGLE, w_current->auto_pan);
 }
 
@@ -4492,7 +4492,7 @@ COMMAND (do_show_manual)
 
     if (!x_show_uri (pathname)) {
 
-      geda_log(_("Check: path \"%s\"\n"), pathname);
+      geda_log("%s \"%s\"\n", _("Check path:"), pathname);
 
     }
     GEDA_FREE(pathname);
@@ -4521,7 +4521,7 @@ COMMAND (do_show_faq)
 
     if (!x_show_uri (pathname)) {
 
-      geda_log(_("Check: path \"%s\"\n"), pathname);
+      geda_log("%s \"%s\"\n", _("Check path:"), pathname);
 
     }
     GEDA_FREE(pathname);
@@ -4541,7 +4541,7 @@ COMMAND (do_show_geda)
 
     if (!x_show_uri (pathname)) {
 
-      geda_log(_("Check: path \"%s\"\n"), pathname);
+      geda_log("%s \"%s\"\n", _("Check path:"), pathname);
 
     }
     GEDA_FREE(pathname);
@@ -4561,7 +4561,7 @@ COMMAND (do_show_wiki)
 
     if (!x_show_uri (pathname)) {
 
-      geda_log(_("Check: path \"%s\"\n"), pathname);
+      geda_log("%s \"%s\"\n", _("Check path:"), pathname);
 
     }
     GEDA_FREE(pathname);
@@ -5002,8 +5002,9 @@ COMMAND (text_marker_size) {
 }
 /** @brief i_cmd_text_marker_threshold in i_command_Variable_Handlers */
 COMMAND (text_marker_threshold) {
-  geda_log("current value of <%s> is <%.1f>\n", "text-marker-threshold",
-                w_current->cairo_renderer->text_marker_threshold);
+  const char *msg = _("current value of");
+  geda_log("%s <%s> %s <%.1f>\n", msg, "text-marker-threshold", _("is"),
+            w_current->cairo_renderer->text_marker_threshold);
 }
 /** @brief i_cmd_text_size in i_command_Variable_Handlers */
 COMMAND (text_size) {
