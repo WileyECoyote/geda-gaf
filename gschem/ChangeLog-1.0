@@ -6,6 +6,8 @@
 
     * po/sr.po: Update Serbian translations.
 
+    * po/zh_CN.po: Update Chinese simplified translations.
+
     * scheme/gschem/builtins.scm: Update edit-array hint string.
 
     * src/iface/i_command.c: Revise output message format in order to

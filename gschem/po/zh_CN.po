@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-04 01:04-0600\n"
+"POT-Creation-Date: 2017-01-06 00:28-0600\n"
 "PO-Revision-Date: 2010-02-11 03:18+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -531,6 +531,14 @@ msgstr ""
 msgid "Found invalid gschem window smob ~S"
 msgstr ""
 
+#: gschem/src/iface/i_command.c:132 gschem/src/iface/i_command.c:5025
+msgid "current value of"
+msgstr ""
+
+#: gschem/src/iface/i_command.c:132 gschem/src/iface/i_command.c:5026
+msgid "is"
+msgstr ""
+
 #: gschem/src/iface/i_command.c:368
 msgid "Processing Action"
 msgstr ""
@@ -543,105 +551,110 @@ msgstr ""
 msgid "while inside an action!\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:713 gschem/src/iface/i_command.c:2714
+#: gschem/src/iface/i_command.c:714 gschem/src/iface/i_command.c:2715
 msgid "New page created"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:751
+#: gschem/src/iface/i_command.c:752
 #, fuzzy
 msgid "New Window created"
 msgstr "新建窗口"
 
-#: gschem/src/iface/i_command.c:950
+#: gschem/src/iface/i_command.c:951
 msgid "Failed to Save All"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:953 gschem/src/iface/i_command.c:970
+#: gschem/src/iface/i_command.c:954 gschem/src/iface/i_command.c:971
 msgid "Saved All"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:967
+#: gschem/src/iface/i_command.c:968
 msgid "Error encountered, Save Failed"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1037 gschem/src/x/x_image.c:489
+#: gschem/src/iface/i_command.c:1038 gschem/src/x/x_image.c:489
 #, fuzzy
 msgid "Write Image"
 msgstr "写入图片..."
 
-#: gschem/src/iface/i_command.c:1059
+#: gschem/src/iface/i_command.c:1060
 msgid "Write PDF"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1155
+#: gschem/src/iface/i_command.c:1156
 msgid "Canceled close all\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1164 gschem/src/iface/i_sessions.c:193
+#: gschem/src/iface/i_command.c:1165 gschem/src/iface/i_sessions.c:193
 #, fuzzy
 msgid "Closing all documents\n"
 msgstr "关闭页面"
 
-#: gschem/src/iface/i_command.c:1187
+#: gschem/src/iface/i_command.c:1188
 msgid "gschem: starting shut-down\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1201
+#: gschem/src/iface/i_command.c:1202
 msgid "Symbol is not embeded, export anyway?"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1225
+#: gschem/src/iface/i_command.c:1226
 msgid "Picture is not embeded, export anyway?"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1359
+#: gschem/src/iface/i_command.c:1360
 msgid "Empty buffer"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1621
+#: gschem/src/iface/i_command.c:1622
 #, fuzzy
 msgid "Offset Mode"
 msgstr "选择模式"
 
-#: gschem/src/iface/i_command.c:1622
+#: gschem/src/iface/i_command.c:1623
 msgid "Specify offset distance:"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:2203
+#: gschem/src/iface/i_command.c:2204
 #, fuzzy
 msgid "Zoom Magnification"
 msgstr "放大"
 
-#: gschem/src/iface/i_command.c:2203
+#: gschem/src/iface/i_command.c:2204
 msgid "Specify new zoom:"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:2255
+#: gschem/src/iface/i_command.c:2248
+#, fuzzy
+msgid "error"
+msgstr "镜像模式"
+
+#: gschem/src/iface/i_command.c:2256
 msgid "No component selected\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:2800
+#: gschem/src/iface/i_command.c:2801
 msgid "Confirm revert ALL documents"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:2981
+#: gschem/src/iface/i_command.c:2982
 msgid "Searching for source"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3015
+#: gschem/src/iface/i_command.c:3016
 msgid "Failed to descend into"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3024
+#: gschem/src/iface/i_command.c:3025
 #, fuzzy
 msgid "Hierarchy Error"
 msgstr "层次"
 
-#: gschem/src/iface/i_command.c:3101
+#: gschem/src/iface/i_command.c:3102
 msgid "Searching for symbol"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3111
+#: gschem/src/iface/i_command.c:3112
 msgid "Symbol is not a real file. Symbol cannot be loaded.\n"
 msgstr ""
 
@@ -720,8 +733,7 @@ msgid "On"
 msgstr ""
 
 #: gschem/src/iface/i_command.c:4421
-#, c-format
-msgid "Drag-Can-Move is now %s\n"
+msgid "Drag-Can-Move is now"
 msgstr ""
 
 #: gschem/src/iface/i_command.c:4433
@@ -733,14 +745,12 @@ msgid "Action feedback mode set to BOUNDINGBOX\n"
 msgstr ""
 
 #: gschem/src/iface/i_command.c:4463
-#, c-format
-msgid "Auto-Pan is now %s\n"
+msgid "Auto-Pan is now"
 msgstr ""
 
 #: gschem/src/iface/i_command.c:4515 gschem/src/iface/i_command.c:4544
 #: gschem/src/iface/i_command.c:4564 gschem/src/iface/i_command.c:4584
-#, c-format
-msgid "Check: path \"%s\"\n"
+msgid "Check path:"
 msgstr ""
 
 #: gschem/src/iface/i_command.c:4684
@@ -1407,41 +1417,41 @@ msgstr ""
 msgid "Include"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3221
+#: gschem/src/x/x_compselect.c:3206
 msgid "active view"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3222
+#: gschem/src/x/x_compselect.c:3207
 msgid "Active sheet of the notebook"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3233
+#: gschem/src/x/x_compselect.c:3218
 msgid "Focus Filter"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3234
+#: gschem/src/x/x_compselect.c:3219
 msgid ""
 "When true, initial focus will be the filter entry, otherwise the Component "
 "Tree"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3337
+#: gschem/src/x/x_compselect.c:3322
 msgid "Rescan"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3345
+#: gschem/src/x/x_compselect.c:3330
 msgid "Rescan component libraries"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3347
+#: gschem/src/x/x_compselect.c:3332
 msgid "Set style filter"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3548 gschem/src/x/x_fileselect.c:123
+#: gschem/src/x/x_compselect.c:3533 gschem/src/x/x_fileselect.c:123
 msgid "Preview"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3584
+#: gschem/src/x/x_compselect.c:3569
 msgid "Attributes"
 msgstr "属性"
 
@@ -2388,7 +2398,7 @@ msgid "Number of slots:"
 msgstr ""
 
 #: gschem/src/x/x_edit_slot.c:199
-msgid "Edit slot number:"
+msgid "Slot number:"
 msgstr ""
 
 #: gschem/src/x/x_edit_text.c:234
@@ -4223,134 +4233,150 @@ msgstr ""
 msgid "Goto the first page"
 msgstr ""
 
+# Previous
 #: gschem/etc/system-gschemrc.scm:2213
-#, fuzzy
 msgid "_Previous"
 msgstr "上一个"
 
+# Switch to the previous page
 #: gschem/etc/system-gschemrc.scm:2213
 msgid "Switch to the previous page"
-msgstr ""
+msgstr "切换到上一页"
 
+# next
 #: gschem/etc/system-gschemrc.scm:2214
-#, fuzzy
 msgid "_Next"
 msgstr "下一个"
 
+# Switch to the next page
 #: gschem/etc/system-gschemrc.scm:2214
 msgid "Switch to the next page"
-msgstr ""
+msgstr "切换到下一页"
 
+# up
 #: gschem/etc/system-gschemrc.scm:2215
 msgid "_Up"
-msgstr ""
+msgstr "向上"
 
+# Page up
 #: gschem/etc/system-gschemrc.scm:2215
 msgid "Go up one page"
-msgstr ""
+msgstr "页向上"
 
+# Down
 #: gschem/etc/system-gschemrc.scm:2216
 msgid "_Down"
-msgstr ""
+msgstr "往下"
 
+# Page down
 #: gschem/etc/system-gschemrc.scm:2216
 msgid "Go down one page"
-msgstr ""
+msgstr "页往下"
 
+# Last
 #: gschem/etc/system-gschemrc.scm:2217
 msgid "_Last"
-msgstr ""
+msgstr "末"
 
+# Go to the last page
 #: gschem/etc/system-gschemrc.scm:2217
 msgid "Goto the last page"
-msgstr ""
+msgstr "转到最后一页"
 
+# New
 #: gschem/etc/system-gschemrc.scm:2218
-#, fuzzy
 msgid "Ne_w"
 msgstr "新建"
 
+# Create a new page
 #: gschem/etc/system-gschemrc.scm:2218
 msgid "Create a new Page"
-msgstr ""
+msgstr "创建新页面"
 
+# Close the current page
 #: gschem/etc/system-gschemrc.scm:2221
 msgid "Close the current page"
-msgstr ""
+msgstr "关闭当前页面"
 
+# Discard the changes and reload the current document
 #: gschem/etc/system-gschemrc.scm:2222
 msgid "Discard changes and reload the current documents"
-msgstr ""
+msgstr "放弃更改并重新加载当前文档"
 
+# Discard changes
 #: gschem/etc/system-gschemrc.scm:2223
-#, fuzzy
 msgid "D_iscard"
-msgstr "丢弃"
+msgstr "放弃更改"
 
+# Close the current page without saving
 #: gschem/etc/system-gschemrc.scm:2223
 msgid "Close the current page without saving"
-msgstr ""
+msgstr "关闭当前页面而不保存"
 
+# Print
 #: gschem/etc/system-gschemrc.scm:2224
-#, fuzzy
 msgid "Prin_t"
-msgstr "打印..."
+msgstr "打印"
 
+# Prints the current page
 #: gschem/etc/system-gschemrc.scm:2224
 msgid "Print the current page"
-msgstr ""
+msgstr "打印当前页面"
 
+# Into the circuit
 #: gschem/etc/system-gschemrc.scm:2227
 msgid "Down _Schematic"
-msgstr ""
+msgstr "进入电路"
 
+# Inside the symbol
 #: gschem/etc/system-gschemrc.scm:2228
 msgid "Down S_ymbol"
-msgstr ""
+msgstr "里面的符号"
 
+# Level up
 #: gschem/etc/system-gschemrc.scm:2229
-#, fuzzy
 msgid "_Hierarchy Up"
-msgstr "层次"
+msgstr "层次向上"
 
+# Find component documentation
 #: gschem/etc/system-gschemrc.scm:2230
-#, fuzzy
 msgid "Find component documentation"
-msgstr "文档"
+msgstr "查找组件文档"
 
+# Component
 #: gschem/etc/system-gschemrc.scm:2238
-#, fuzzy
 msgid "_Component..."
 msgstr "组件..."
 
+# net
 #: gschem/etc/system-gschemrc.scm:2239
-#, fuzzy
 msgid "_Net"
-msgstr "下一个"
+msgstr "网络"
 
+# Multi-conductor
 #: gschem/etc/system-gschemrc.scm:2240
-#, fuzzy
 msgid "B_us"
-msgstr "总线"
+msgstr "多导体"
 
+# Attributes
 #: gschem/etc/system-gschemrc.scm:2241
-#, fuzzy
 msgid "_Attribute..."
 msgstr "属性..."
 
+# Text
 #: gschem/etc/system-gschemrc.scm:2242
-#, fuzzy
 msgid "_Text..."
 msgstr "文本..."
 
+# Arc
 #: gschem/etc/system-gschemrc.scm:2245
-#, fuzzy
 msgid "A_rc"
 msgstr "弧线"
 
+# Create an arc
 #: gschem/etc/system-gschemrc.scm:2245
 msgid "Create arc"
-msgstr ""
+msgstr "创建弧"
 
 #: gschem/etc/system-gschemrc.scm:2246
 msgid "_Box"
@@ -4877,60 +4903,70 @@ msgstr "复制模式"
 msgid "Multiple Copy Mode"
 msgstr "多重复制模式"
 
+# Offset selection
 #: gschem/scheme/gschem/builtins.scm:119
-#, fuzzy
 msgid "Offset selection"
-msgstr "放大"
+msgstr "偏移选择"
 
-#: gschem/scheme/gschem/builtins.scm:128 gschem/scheme/gschem/builtins.scm:131
-#, fuzzy
+# Align the selection to the grid
+#: gschem/scheme/gschem/builtins.scm:128
 msgid "Snap to Grid"
 msgstr "复制模式"
 
+# Create Array
+#: gschem/scheme/gschem/builtins.scm:131
+msgid "Create Array"
+msgstr "创建弧"
+
+# Edit
 #: gschem/scheme/gschem/builtins.scm:134 gschem/scheme/gschem/builtins.scm:137
 msgid "Edit..."
 msgstr "编辑..."
 
+# Edit Arc
 #: gschem/scheme/gschem/builtins.scm:140
-#, fuzzy
 msgid "Edit Arc"
-msgstr "编辑"
+msgstr "编辑弧"
 
+# Edit the object
 #: gschem/scheme/gschem/builtins.scm:143
-#, fuzzy
 msgid "Edit Object"
-msgstr "属性"
+msgstr "编辑对象"
 
+# Edit Text
 #: gschem/scheme/gschem/builtins.scm:146
 msgid "Edit Text"
-msgstr ""
+msgstr "编辑文本"
 
+# Edit the color
 #: gschem/scheme/gschem/builtins.scm:149
 msgid "Edit Color"
-msgstr ""
+msgstr "编辑颜色"
 
+# Edit the pin type
 #: gschem/scheme/gschem/builtins.scm:152
 msgid "Edit Pin Type"
-msgstr ""
+msgstr "编辑引脚类型"
 
+# Select a segment
 #: gschem/scheme/gschem/builtins.scm:161 gschem/scheme/gschem/builtins.scm:164
 msgid "Choose Slot"
-msgstr ""
+msgstr "选择一个段"
 
+# Reverse selection
 #: gschem/scheme/gschem/builtins.scm:176
-#, fuzzy
 msgid "Invert Selection"
-msgstr "放大"
+msgstr "反转选择"
 
+# Select Last
 #: gschem/scheme/gschem/builtins.scm:179
-#, fuzzy
 msgid "Select Last"
-msgstr "选择模式"
+msgstr "选择最后"
 
+# Deselect mode
 #: gschem/scheme/gschem/builtins.scm:182
-#, fuzzy
 msgid "Deselect mode"
-msgstr "选择模式"
+msgstr "取消选择模式"
 
 #: gschem/scheme/gschem/builtins.scm:197
 #, fuzzy
@@ -5179,7 +5215,7 @@ msgid "Show Attribute Value"
 msgstr "显示值"
 
 # show name
-#: gschem/scheme/gschem/builtins.scm:41
+#: gschem/scheme/gschem/builtins.scm:410
 msgid "Show Attribute Name"
 msgstr "显示名称"
 

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gschem\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-04 01:04-0600\n"
+"POT-Creation-Date: 2017-01-06 00:28-0600\n"
 "PO-Revision-Date: 2010-02-14 01:03+0000\n"
 "Last-Translator: Bernd Jendrissek <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -568,6 +568,16 @@ msgstr "Kon nie %s oproep nie"
 msgid "Found invalid gschem window smob ~S"
 msgstr "gevind ongeldig gschem venster smob ~S"
 
+#: gschem/src/iface/i_command.c:132 gschem/src/iface/i_command.c:5025
+#, fuzzy
+msgid "current value of"
+msgstr "Lopende bladsy"
+
+#: gschem/src/iface/i_command.c:132 gschem/src/iface/i_command.c:5026
+#, fuzzy
+msgid "is"
+msgstr "Pen"
+
 #: gschem/src/iface/i_command.c:368
 msgid "Processing Action"
 msgstr "Verwerking bevel"
@@ -580,99 +590,104 @@ msgstr "kan nie"
 msgid "while inside an action!\n"
 msgstr "terwyl in 'n aksie!\n"
 
-#: gschem/src/iface/i_command.c:713 gschem/src/iface/i_command.c:2714
+#: gschem/src/iface/i_command.c:714 gschem/src/iface/i_command.c:2715
 msgid "New page created"
 msgstr "Nuwe bladsy geskep"
 
-#: gschem/src/iface/i_command.c:751
+#: gschem/src/iface/i_command.c:752
 msgid "New Window created"
 msgstr "Nuwe Venster geskep"
 
-#: gschem/src/iface/i_command.c:950
+#: gschem/src/iface/i_command.c:951
 msgid "Failed to Save All"
 msgstr "Misluk om alles te bewaar"
 
-#: gschem/src/iface/i_command.c:953 gschem/src/iface/i_command.c:970
+#: gschem/src/iface/i_command.c:954 gschem/src/iface/i_command.c:971
 msgid "Saved All"
 msgstr "Alles Bewaar"
 
-#: gschem/src/iface/i_command.c:967
+#: gschem/src/iface/i_command.c:968
 msgid "Error encountered, Save Failed"
 msgstr "Fout plaasgevind, Slaan Kon"
 
-#: gschem/src/iface/i_command.c:1037 gschem/src/x/x_image.c:489
+#: gschem/src/iface/i_command.c:1038 gschem/src/x/x_image.c:489
 msgid "Write Image"
 msgstr "Skryf afbeelding"
 
-#: gschem/src/iface/i_command.c:1059
+#: gschem/src/iface/i_command.c:1060
 msgid "Write PDF"
 msgstr "Skryf PDF"
 
-#: gschem/src/iface/i_command.c:1155
+#: gschem/src/iface/i_command.c:1156
 msgid "Canceled close all\n"
 msgstr "Gekanselleer naby alle\n"
 
-#: gschem/src/iface/i_command.c:1164 gschem/src/iface/i_sessions.c:193
+#: gschem/src/iface/i_command.c:1165 gschem/src/iface/i_sessions.c:193
 msgid "Closing all documents\n"
 msgstr "Sluit Bladsy\n"
 
-#: gschem/src/iface/i_command.c:1187
+#: gschem/src/iface/i_command.c:1188
 msgid "gschem: starting shut-down\n"
 msgstr "gschem: begin afsluit\n"
 
-#: gschem/src/iface/i_command.c:1201
+#: gschem/src/iface/i_command.c:1202
 msgid "Symbol is not embeded, export anyway?"
 msgstr "Simbool is nie embeded, uitvoer in elk geval?"
 
-#: gschem/src/iface/i_command.c:1225
+#: gschem/src/iface/i_command.c:1226
 msgid "Picture is not embeded, export anyway?"
 msgstr "Foto is nie embeded, uitvoer in elk geval?"
 
-#: gschem/src/iface/i_command.c:1359
+#: gschem/src/iface/i_command.c:1360
 msgid "Empty buffer"
 msgstr "Maak buffer leeg"
 
-#: gschem/src/iface/i_command.c:1621
+#: gschem/src/iface/i_command.c:1622
 msgid "Offset Mode"
 msgstr "Netmodus"
 
-#: gschem/src/iface/i_command.c:1622
+#: gschem/src/iface/i_command.c:1623
 msgid "Specify offset distance:"
 msgstr "Spesifiseer geneutraliseer afstand:"
 
-#: gschem/src/iface/i_command.c:2203
+#: gschem/src/iface/i_command.c:2204
 msgid "Zoom Magnification"
 msgstr "Stel Vergroting"
 
-#: gschem/src/iface/i_command.c:2203
+#: gschem/src/iface/i_command.c:2204
 msgid "Specify new zoom:"
 msgstr "Spesifiseer nuwe vergroting:"
 
-#: gschem/src/iface/i_command.c:2255
+#: gschem/src/iface/i_command.c:2248
+#, fuzzy
+msgid "error"
+msgstr "Weerkaats"
+
+#: gschem/src/iface/i_command.c:2256
 msgid "No component selected\n"
 msgstr "Geen komponent gekies\n"
 
-#: gschem/src/iface/i_command.c:2800
+#: gschem/src/iface/i_command.c:2801
 msgid "Confirm revert ALL documents"
 msgstr "Bevestig oplaai ALLE dokumente"
 
-#: gschem/src/iface/i_command.c:2981
+#: gschem/src/iface/i_command.c:2982
 msgid "Searching for source"
 msgstr "Soek vir bron"
 
-#: gschem/src/iface/i_command.c:3015
+#: gschem/src/iface/i_command.c:3016
 msgid "Failed to descend into"
 msgstr "Kon nie afbeelding laai nie"
 
-#: gschem/src/iface/i_command.c:3024
+#: gschem/src/iface/i_command.c:3025
 msgid "Hierarchy Error"
 msgstr "Hierargie"
 
-#: gschem/src/iface/i_command.c:3101
+#: gschem/src/iface/i_command.c:3102
 msgid "Searching for symbol"
 msgstr "Soek vir simbool"
 
-#: gschem/src/iface/i_command.c:3111
+#: gschem/src/iface/i_command.c:3112
 msgid "Symbol is not a real file. Symbol cannot be loaded.\n"
 msgstr "Simbool is nie 'n ware lêer. Simbool kan nie gelaai word nie.\n"
 
@@ -751,8 +766,7 @@ msgid "On"
 msgstr "Maak Oop"
 
 #: gschem/src/iface/i_command.c:4421
-#, c-format
-msgid "Drag-Can-Move is now %s\n"
+msgid "Drag-Can-Move is now"
 msgstr ""
 
 #: gschem/src/iface/i_command.c:4433
@@ -764,14 +778,12 @@ msgid "Action feedback mode set to BOUNDINGBOX\n"
 msgstr "Handelingsterugvoermodus na OMTREKREGHOEK\n"
 
 #: gschem/src/iface/i_command.c:4463
-#, c-format
-msgid "Auto-Pan is now %s\n"
+msgid "Auto-Pan is now"
 msgstr ""
 
 #: gschem/src/iface/i_command.c:4515 gschem/src/iface/i_command.c:4544
 #: gschem/src/iface/i_command.c:4564 gschem/src/iface/i_command.c:4584
-#, c-format
-msgid "Check: path \"%s\"\n"
+msgid "Check path:"
 msgstr ""
 
 #: gschem/src/iface/i_command.c:4684
@@ -1417,41 +1429,41 @@ msgstr "Lê In"
 msgid "Include"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3221
+#: gschem/src/x/x_compselect.c:3206
 msgid "active view"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3222
+#: gschem/src/x/x_compselect.c:3207
 msgid "Active sheet of the notebook"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3233
+#: gschem/src/x/x_compselect.c:3218
 msgid "Focus Filter"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3234
+#: gschem/src/x/x_compselect.c:3219
 msgid ""
 "When true, initial focus will be the filter entry, otherwise the Component "
 "Tree"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3337
+#: gschem/src/x/x_compselect.c:3322
 msgid "Rescan"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3345
+#: gschem/src/x/x_compselect.c:3330
 msgid "Rescan component libraries"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3347
+#: gschem/src/x/x_compselect.c:3332
 msgid "Set style filter"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3548 gschem/src/x/x_fileselect.c:123
+#: gschem/src/x/x_compselect.c:3533 gschem/src/x/x_fileselect.c:123
 msgid "Preview"
 msgstr "Voorskou"
 
-#: gschem/src/x/x_compselect.c:3584
+#: gschem/src/x/x_compselect.c:3569
 msgid "Attributes"
 msgstr "Eienskappe"
 
@@ -2371,7 +2383,8 @@ msgid "Number of slots:"
 msgstr ""
 
 #: gschem/src/x/x_edit_slot.c:199
-msgid "Edit slot number:"
+#, fuzzy
+msgid "Slot number:"
 msgstr "Bewerk gleufnommer:"
 
 #: gschem/src/x/x_edit_text.c:234
@@ -4717,9 +4730,13 @@ msgstr "Meervoudige Kopieermodus"
 msgid "Offset selection"
 msgstr "Kies"
 
-#: gschem/scheme/gschem/builtins.scm:128 gschem/scheme/gschem/builtins.scm:131
+#: gschem/scheme/gschem/builtins.scm:128
 msgid "Snap to Grid"
 msgstr "Aansigskuifmodus"
+
+#: gschem/scheme/gschem/builtins.scm:131
+msgid "Create Array"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:134 gschem/scheme/gschem/builtins.scm:137
 msgid "Edit..."

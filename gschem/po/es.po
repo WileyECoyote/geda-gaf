@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gschem VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-04 01:04-0600\n"
+"POT-Creation-Date: 2017-01-06 00:28-0600\n"
 "PO-Revision-Date: 2012-03-23 03:04+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitoschido@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -564,6 +564,15 @@ msgstr "No se puede abrir la URI"
 msgid "Found invalid gschem window smob ~S"
 msgstr "Se encontró `smob' de ventana de gschem inválido ~S"
 
+#: gschem/src/iface/i_command.c:132 gschem/src/iface/i_command.c:5025
+#, fuzzy
+msgid "current value of"
+msgstr "Hoja actual"
+
+#: gschem/src/iface/i_command.c:132 gschem/src/iface/i_command.c:5026
+msgid "is"
+msgstr ""
+
 #: gschem/src/iface/i_command.c:368
 #, fuzzy
 msgid "Processing Action"
@@ -577,103 +586,108 @@ msgstr ""
 msgid "while inside an action!\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:713 gschem/src/iface/i_command.c:2714
+#: gschem/src/iface/i_command.c:714 gschem/src/iface/i_command.c:2715
 #, fuzzy
 msgid "New page created"
 msgstr "Se ha creado una página nueva [%s]\n"
 
-#: gschem/src/iface/i_command.c:751
+#: gschem/src/iface/i_command.c:752
 #, fuzzy
 msgid "New Window created"
 msgstr "Se ha creado una nueva ventana [%s]\n"
 
-#: gschem/src/iface/i_command.c:950
+#: gschem/src/iface/i_command.c:951
 msgid "Failed to Save All"
 msgstr "No se ha podido guardar todo"
 
-#: gschem/src/iface/i_command.c:953 gschem/src/iface/i_command.c:970
+#: gschem/src/iface/i_command.c:954 gschem/src/iface/i_command.c:971
 msgid "Saved All"
 msgstr "Guardado todo"
 
-#: gschem/src/iface/i_command.c:967
+#: gschem/src/iface/i_command.c:968
 msgid "Error encountered, Save Failed"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1037 gschem/src/x/x_image.c:489
+#: gschem/src/iface/i_command.c:1038 gschem/src/x/x_image.c:489
 msgid "Write Image"
 msgstr "Guardar imagen..."
 
-#: gschem/src/iface/i_command.c:1059
+#: gschem/src/iface/i_command.c:1060
 msgid "Write PDF"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1155
+#: gschem/src/iface/i_command.c:1156
 msgid "Canceled close all\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1164 gschem/src/iface/i_sessions.c:193
+#: gschem/src/iface/i_command.c:1165 gschem/src/iface/i_sessions.c:193
 msgid "Closing all documents\n"
 msgstr "Cierre de todos los documentos\n"
 
-#: gschem/src/iface/i_command.c:1187
+#: gschem/src/iface/i_command.c:1188
 msgid "gschem: starting shut-down\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1201
+#: gschem/src/iface/i_command.c:1202
 msgid "Symbol is not embeded, export anyway?"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1225
+#: gschem/src/iface/i_command.c:1226
 msgid "Picture is not embeded, export anyway?"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1359
+#: gschem/src/iface/i_command.c:1360
 msgid "Empty buffer"
 msgstr "Buffer vacío"
 
-#: gschem/src/iface/i_command.c:1621
+#: gschem/src/iface/i_command.c:1622
 msgid "Offset Mode"
 msgstr "Modo Conexión"
 
-#: gschem/src/iface/i_command.c:1622
+#: gschem/src/iface/i_command.c:1623
 msgid "Specify offset distance:"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:2203
+#: gschem/src/iface/i_command.c:2204
 msgid "Zoom Magnification"
 msgstr "/Aumentar ampliación"
 
-#: gschem/src/iface/i_command.c:2203
+#: gschem/src/iface/i_command.c:2204
 msgid "Specify new zoom:"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:2255
+#: gschem/src/iface/i_command.c:2248
+#, fuzzy
+msgid "error"
+msgstr "Error"
+
+#: gschem/src/iface/i_command.c:2256
 msgid "No component selected\n"
 msgstr "Seleccionada rejilla de puntos\n"
 
-#: gschem/src/iface/i_command.c:2800
+#: gschem/src/iface/i_command.c:2801
 msgid "Confirm revert ALL documents"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:2981
+#: gschem/src/iface/i_command.c:2982
 #, fuzzy
 msgid "Searching for source"
 msgstr "Buscando origen [%s]\n"
 
-#: gschem/src/iface/i_command.c:3015
+#: gschem/src/iface/i_command.c:3016
 msgid "Failed to descend into"
 msgstr "Falló al reemplazar las imágenes: %s"
 
-#: gschem/src/iface/i_command.c:3024
+#: gschem/src/iface/i_command.c:3025
 msgid "Hierarchy Error"
 msgstr "Je_rarquía"
 
-#: gschem/src/iface/i_command.c:3101
+#: gschem/src/iface/i_command.c:3102
 #, fuzzy
 msgid "Searching for symbol"
 msgstr "Buscando símbolo [%s]\n"
 
-#: gschem/src/iface/i_command.c:3111
+#: gschem/src/iface/i_command.c:3112
 msgid "Symbol is not a real file. Symbol cannot be loaded.\n"
 msgstr "El símbolo no es un archivo físico. No se puede cargar el símbolo.\n"
 
@@ -757,9 +771,9 @@ msgid "On"
 msgstr "Abrir"
 
 #: gschem/src/iface/i_command.c:4421
-#, c-format
-msgid "Drag-Can-Move is now %s\n"
-msgstr ""
+#, fuzzy
+msgid "Drag-Can-Move is now"
+msgstr "Modo ayuda _magnética a la conexión"
 
 #: gschem/src/iface/i_command.c:4433
 msgid "Action feedback mode set to OUTLINE\n"
@@ -770,14 +784,12 @@ msgid "Action feedback mode set to BOUNDINGBOX\n"
 msgstr "Modo de realimentación seleccionado: CONTENEDOR\n"
 
 #: gschem/src/iface/i_command.c:4463
-#, c-format
-msgid "Auto-Pan is now %s\n"
+msgid "Auto-Pan is now"
 msgstr ""
 
 #: gschem/src/iface/i_command.c:4515 gschem/src/iface/i_command.c:4544
 #: gschem/src/iface/i_command.c:4564 gschem/src/iface/i_command.c:4584
-#, c-format
-msgid "Check: path \"%s\"\n"
+msgid "Check path:"
 msgstr ""
 
 #: gschem/src/iface/i_command.c:4684
@@ -1443,41 +1455,41 @@ msgstr "Incrustar"
 msgid "Include"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3221
+#: gschem/src/x/x_compselect.c:3206
 msgid "active view"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3222
+#: gschem/src/x/x_compselect.c:3207
 msgid "Active sheet of the notebook"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3233
+#: gschem/src/x/x_compselect.c:3218
 msgid "Focus Filter"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3234
+#: gschem/src/x/x_compselect.c:3219
 msgid ""
 "When true, initial focus will be the filter entry, otherwise the Component "
 "Tree"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3337
+#: gschem/src/x/x_compselect.c:3322
 msgid "Rescan"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3345
+#: gschem/src/x/x_compselect.c:3330
 msgid "Rescan component libraries"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3347
+#: gschem/src/x/x_compselect.c:3332
 msgid "Set style filter"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3548 gschem/src/x/x_fileselect.c:123
+#: gschem/src/x/x_compselect.c:3533 gschem/src/x/x_fileselect.c:123
 msgid "Preview"
 msgstr "Vista preliminar"
 
-#: gschem/src/x/x_compselect.c:3584
+#: gschem/src/x/x_compselect.c:3569
 msgid "Attributes"
 msgstr "Propiedades"
 
@@ -2411,7 +2423,8 @@ msgid "Number of slots:"
 msgstr ""
 
 #: gschem/src/x/x_edit_slot.c:199
-msgid "Edit slot number:"
+#, fuzzy
+msgid "Slot number:"
 msgstr "Editar número de elemento:"
 
 #: gschem/src/x/x_edit_text.c:234
@@ -4763,9 +4776,13 @@ msgstr "Modo de copia múltiple"
 msgid "Offset selection"
 msgstr "Selección"
 
-#: gschem/scheme/gschem/builtins.scm:128 gschem/scheme/gschem/builtins.scm:131
+#: gschem/scheme/gschem/builtins.scm:128
 msgid "Snap to Grid"
 msgstr "Modo Centrar"
+
+#: gschem/scheme/gschem/builtins.scm:131
+msgid "Create Array"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:134 gschem/scheme/gschem/builtins.scm:137
 msgid "Edit..."
