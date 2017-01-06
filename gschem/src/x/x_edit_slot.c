@@ -196,7 +196,7 @@ x_dialog_edit_slot (GschemToplevel *w_current, const char *slots, const char *sl
     gtk_widget_set_sensitive (GTK_WIDGET(textslots), FALSE);
 
     /* Slot Number */
-    label = geda_aligned_label_new (_("Edit slot number:"), 0, 0);
+    label = geda_aligned_label_new (_("Slot number:"), 0, 0);
     gtk_box_pack_start(GTK_BOX (vbox), label, FALSE, FALSE, 0);
 
     textentry = geda_entry_new_with_max_length(80);
