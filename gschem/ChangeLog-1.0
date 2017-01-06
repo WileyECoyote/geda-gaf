@@ -2,6 +2,8 @@
 
     * po/pt.po: Update Portuguese translations.
 
+    * po/pt_BR.po: Update Brazilian Portuguese translations.
+
     * scheme/gschem/builtins.scm: Update edit-array hint string.
 
     * src/iface/i_command.c: Revise output message format in order to
