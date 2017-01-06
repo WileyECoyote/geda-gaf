@@ -16,6 +16,12 @@
     * src/object/o_invalidate.c: Utilize __func__ in o_invalidate_object
       error message.
 
+    * src/x/x_compselect.c: Revise compselect_get_property to eliminate
+      switch/(active_tab)/case; use anonymous structure tab_lookup and
+      verify is_symbol_record before setting symbol or g_value_unset
+      so that x_compselect_callback_response does not return a "source"
+      to o_complex_prepare_place.
+
     * x_edit_slot.c: Remove the word "Edit" from the slot number label.
 
 2017-01-05 Wiley E. Hill <wileyhill@gmail.com>

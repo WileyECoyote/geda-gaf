@@ -3109,52 +3109,37 @@ compselect_get_property (GObject     *object,
         {
           GtkTreeModel *model;
           GtkTreeIter   iter;
-          CLibSymbol   *symbol = NULL;
-          int           valid  = TRUE;
+          CLibSymbol   *symbol    = NULL;
+          int           is_symbol = FALSE;
 
-          switch (compselect->active_tab) {
-          case IN_USE_TAB:
+          struct {
+            GtkTreeView *tree_view;
+            unsigned int column;
+          } tab_lookup [] = {
+            {compselect->inusetreeview, IU_DATA_COLUMN},
+            {compselect->stdtreeview,   LVC_ROW_DATA},
+            {compselect->mantreeview,   LVC_ROW_DATA},
+            {compselect->simtreeview,   LVC_ROW_DATA},
+            {compselect->localtreeview, LVC_ROW_DATA},
+          };
+
+          if (compselect->active_tab < 5) {
+            int active = compselect->active_tab;
             if (gtk_tree_selection_get_selected (
-                gtk_tree_view_get_selection (compselect->inusetreeview), &model, &iter))
+                gtk_tree_view_get_selection (tab_lookup[active].tree_view), &model, &iter))
             {
-              gtk_tree_model_get (model, &iter, IU_DATA_COLUMN, &symbol, -1);
+              if (is_symbol_record (model, &iter)) {
+                gtk_tree_model_get (model, &iter, tab_lookup[active].column, &symbol, -1);
+                is_symbol = TRUE;
+              }
             }
-            break;
-          case STD_TAB:
-            if (gtk_tree_selection_get_selected (
-                gtk_tree_view_get_selection (compselect->stdtreeview), &model, &iter))
-            {
-              gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &symbol, -1);
-            }
-            break;
-          case MAN_TAB:
-            if (gtk_tree_selection_get_selected (
-                gtk_tree_view_get_selection (compselect->mantreeview), &model, &iter))
-            {
-              gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &symbol, -1);
-            }
-            break;
-          case SIM_TAB:
-            if (gtk_tree_selection_get_selected (
-                gtk_tree_view_get_selection (compselect->simtreeview), &model, &iter))
-            {
-              gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &symbol, -1);
-            }
-            break;
-          case LOCAL_TAB:
-            if (gtk_tree_selection_get_selected (
-                gtk_tree_view_get_selection (compselect->localtreeview), &model, &iter))
-            {
-              gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &symbol, -1);
-            }
-            break;
-          default:
-            BUG_MSG("OOPS!: unknown Tab");
-            valid = FALSE;
-            break;
           }
-          if (valid) {
+
+          if (is_symbol) {
             g_value_set_pointer (value, symbol);
+          }
+          else {
+            g_value_unset (value);
           }
           break;
         }
