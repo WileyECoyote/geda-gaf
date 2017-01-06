@@ -1042,17 +1042,18 @@ const CLibSource *geda_struct_clib_add_command (const char *list_cmd,
   CLibSource *source;
   char *unique_name;
 
+  const char *msg1 = _("Cannot add library");
+
   if (name == NULL) {
-    u_log_message (_("Cannot add library: name not specified\n"));
+    u_log_message ("%s: %s\n", msg1, _("name not specified"));
     return NULL;
   }
 
   unique_name = get_unique_source_name (name);
 
   if (list_cmd == NULL || get_cmd == NULL) {
-    u_log_message (_("Cannot add library [%s]: both 'list' and "
-                     "'get' commands must be specified.\n"),
-                   unique_name);
+    const char *msg2 = _("both 'list' and 'get' commands must be specified");
+    u_log_message ("%s [%s]: %s.\n", msg1, msg2, unique_name);
   }
 
   source           = GEDA_MEM_ALLOC0 (sizeof(CLibSource));
@@ -1089,8 +1090,10 @@ const CLibSource *geda_struct_clib_add_scm (SCM listfunc, SCM getfunc, const cha
   CLibSource *source;
   char *unique_name;
 
+  const char *msg1 = _("Cannot add library");
+
   if (name == NULL) {
-    u_log_message (_("Cannot add library: name not specified\n"));
+    u_log_message ("%s: %s\n", msg1, _("name not specified"));
     return NULL;
   }
 
@@ -1099,8 +1102,8 @@ const CLibSource *geda_struct_clib_add_scm (SCM listfunc, SCM getfunc, const cha
   if (scm_is_false (scm_procedure_p (listfunc)) &&
       scm_is_false (scm_procedure_p (getfunc)))
   {
-    u_log_message (_("Cannot add Scheme-library [%s]: callbacks must be closures\n"),
-                   unique_name);
+    const char *msg2 = _("callbacks must be closures");
+    u_log_message ("%s [%s]: %s.\n", msg1, msg2, unique_name);
     return NULL;
   }
 
@@ -1148,7 +1151,6 @@ GList *geda_struct_clib_source_get_symbols (const CLibSource *source)
   if (source == NULL) return NULL;
   return g_list_copy(source->symbols);
 }
-
 
 /*! \brief Get the name of a symbol.
  *  \par Function Description
@@ -1225,8 +1227,8 @@ static char *get_data_directory (const CLibSymbol *symbol)
   geda_file_get_contents (filename, &data, NULL, &err);
 
   if (err != NULL) {
-    u_log_message (_("Failed to load symbol from file [%s]: %s\n"),
-                   filename, err->message);
+    const char *msg = _("Failed to load symbol from file");
+    u_log_message ("%s [%s]: %s\n", msg, filename, err->message);
     g_error_free (err);
   }
 
@@ -1255,7 +1257,7 @@ static char *get_data_command (const CLibSymbol *symbol)
 
   command = geda_sprintf ("%s %s", symbol->source->get_cmd, symbol->name);
 
-  result = run_source_command ( command );
+  result = run_source_command (command);
 
   GEDA_FREE (command);
 
@@ -1286,8 +1288,10 @@ static char *get_data_scm (const CLibSymbol *symbol)
                         scm_from_utf8_string (symbol->name));
 
   if (!scm_is_string (symdata)) {
-    u_log_message (_("Failed to load symbol data [%s] from source [%s]\n"),
-                   symbol->name, symbol->source->name);
+    const char *msg1 = _("Failed to load symbol data");
+    const char *msg2 = _("from source");
+    u_log_message ("%s [%s] %s [%s]\n", msg1, symbol->name,
+                                        msg2, symbol->source->name);
     return NULL;
   }
 
