@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-06 00:28-0600\n"
+"POT-Creation-Date: 2017-01-07 03:43-0600\n"
 "PO-Revision-Date: 2014-12-29 20:06+0300\n"
 "Last-Translator: Marco Ciampa <ciampix@libero.it>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -2393,10 +2393,10 @@ msgstr "Modifica numero slot"
 msgid "Number of slots:"
 msgstr ""
 
+# Slot number
 #: gschem/src/x/x_edit_slot.c:199
-#, fuzzy
 msgid "Slot number:"
-msgstr "Modifica numero slot:"
+msgstr "numero slot:"
 
 #: gschem/src/x/x_edit_text.c:234
 msgid "Upper Left"
@@ -3351,7 +3351,7 @@ msgid ""
 msgstr ""
 
 #: gschem/src/x/x_sessions.c:416
-msgid "Add and remove files to the sessions automatically"
+msgid "Automatically add and remove files from sessions"
 msgstr ""
 
 #: gschem/src/x/x_sessions.c:421
@@ -3517,12 +3517,12 @@ msgid "Toolbar configuration restored from"
 msgstr "la configurazione della barra degli strumenti restaurato"
 
 #: gschem/src/x/x_toolbars.c:679
-msgid "Warning, Error Restoring Toolbar configuration"
-msgstr "Attenzione, Errore ripristino della configurazione di Toolbar"
+msgid "Warning, error restoring toolbar configuration"
+msgstr "Attenzione, errore ripristino della configurazione di toolbar"
 
 #: gschem/src/x/x_toolbars.c:685
-msgid "Warning, Toolbar configuration file access error"
-msgstr "Attenzione, errore di accesso file di configurazione Toolbar"
+msgid "Warning, toolbar configuration file access error"
+msgstr "Attenzione, errore di accesso file di configurazione toolbar"
 
 #: gschem/src/x/x_toolbars.c:703
 msgid "Toolbar configuration not found"

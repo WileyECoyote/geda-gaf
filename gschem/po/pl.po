@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-06 00:28-0600\n"
+"POT-Creation-Date: 2017-01-07 03:43-0600\n"
 "PO-Revision-Date: 2012-02-04 00:18+0000\n"
 "Last-Translator: Krzysztof Kościuszkiewicz <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -2530,10 +2530,10 @@ msgstr "Kolor"
 msgid "Number of slots:"
 msgstr ""
 
+# Slot number
 #: gschem/src/x/x_edit_slot.c:199
-#, fuzzy
 msgid "Slot number:"
-msgstr "Kolor"
+msgstr "numer gniazda:"
 
 #: gschem/src/x/x_edit_text.c:234
 msgid "Upper Left"
@@ -3574,7 +3574,7 @@ msgid ""
 msgstr ""
 
 #: gschem/src/x/x_sessions.c:416
-msgid "Add and remove files to the sessions automatically"
+msgid "Automatically add and remove files from sessions"
 msgstr ""
 
 #: gschem/src/x/x_sessions.c:421
@@ -3752,22 +3752,22 @@ msgstr ""
 #: gschem/src/x/x_toolbars.c:674
 #, fuzzy
 msgid "Toolbar configuration restored from"
-msgstr "Błąd podczas wczytywania pliku inicjalizacji scm [%s]\n"
+msgstr "Błąd podczas wczytywania pliku inicjalizacji scm"
 
 #: gschem/src/x/x_toolbars.c:679
 #, fuzzy
-msgid "Warning, Error Restoring Toolbar configuration"
+msgid "Warning, error restoring toolbar configuration"
 msgstr "Nie można wczytać konfiguracji gschem."
 
 #: gschem/src/x/x_toolbars.c:685
 #, fuzzy
-msgid "Warning, Toolbar configuration file access error"
+msgid "Warning, toolbar configuration file access error"
 msgstr "Nie można wczytać konfiguracji gschem."
 
 #: gschem/src/x/x_toolbars.c:703
 #, fuzzy
 msgid "Toolbar configuration not found"
-msgstr "Błąd podczas wczytywania pliku inicjalizacji scm [%s]\n"
+msgstr "Błąd podczas wczytywania pliku inicjalizacji scm"
 
 #: gschem/src/x/x_window.c:105
 #, fuzzy
@@ -5417,37 +5417,31 @@ msgstr "Przełącz _widoczność"
 #: gschem/scheme/gschem/builtins.scm:419
 #, fuzzy
 msgid "Find Specific Text"
-msgstr "_Szukaj tekstu..."
+msgstr "Szukaj tekstu"
 
 #: gschem/scheme/gschem/builtins.scm:422
-#, fuzzy
 msgid "Hide Specific Text"
-msgstr "_Ukryj wybrany tekst..."
+msgstr "Ukryj wybrany tekst"
 
 #: gschem/scheme/gschem/builtins.scm:425
-#, fuzzy
 msgid "Show Specific Text"
-msgstr "_Pokazuj wybrany tekst..."
+msgstr "Pokazuj wybrany tekst"
 
 #: gschem/scheme/gschem/builtins.scm:428
-#, fuzzy
 msgid "Open Attributes Editor"
 msgstr "Edycja pojedyńczego atrybutu"
 
 #: gschem/scheme/gschem/builtins.scm:433
-#, fuzzy
 msgid "Autonumber Text"
 msgstr "Automatyczna numeracja"
 
 #: gschem/scheme/gschem/builtins.scm:436
-#, fuzzy
 msgid "Show Console Window"
-msgstr "Pokaż okno współrzędnych..."
+msgstr "Pokaż okno współrzędnych"
 
 #: gschem/scheme/gschem/builtins.scm:439
-#, fuzzy
 msgid "Show Coordinates Window"
-msgstr "Pokaż okno współrzędnych..."
+msgstr "Pokaż okno współrzędnych"
 
 #: gschem/scheme/gschem/builtins.scm:442
 msgid "Guile Path"

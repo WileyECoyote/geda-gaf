@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-06 00:28-0600\n"
+"POT-Creation-Date: 2017-01-07 03:43-0600\n"
 "PO-Revision-Date: 2016-12-23 15:41-0600\n"
 "Last-Translator: عبدالله شلي (Abdellah Chelli) <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -2357,10 +2357,10 @@ msgstr "﻿حرّر عدد الشقّ"
 msgid "Number of slots:"
 msgstr ""
 
+# Slot number
 #: gschem/src/x/x_edit_slot.c:199
-#, fuzzy
 msgid "Slot number:"
-msgstr "﻿تحرير عدد الشقّ:"
+msgstr "رقم الفتحة:"
 
 #: gschem/src/x/x_edit_text.c:234
 msgid "Upper Left"
@@ -3307,7 +3307,7 @@ msgid ""
 msgstr ""
 
 #: gschem/src/x/x_sessions.c:416
-msgid "Add and remove files to the sessions automatically"
+msgid "Automatically add and remove files from sessions"
 msgstr ""
 
 # Appears at startup
@@ -3475,12 +3475,12 @@ msgid "Toolbar configuration restored from"
 msgstr "استعادة إعدادات شريط الأدوات من"
 
 #: gschem/src/x/x_toolbars.c:679
-msgid "Warning, Error Restoring Toolbar configuration"
-msgstr ""
+msgid "Warning, error restoring toolbar configuration"
+msgstr "تحليل الأخطاء"
 
 #: gschem/src/x/x_toolbars.c:685
-msgid "Warning, Toolbar configuration file access error"
-msgstr ""
+msgid "Warning, toolbar configuration file access error"
+msgstr "خطأ، تكوين شريط الأدوات ملف مفتاح"
 
 #: gschem/src/x/x_toolbars.c:703
 msgid "Toolbar configuration not found"

@@ -14,6 +14,11 @@
 
     * po/zh_TW.po: Update chinese traditional translations.
 
+    * src/x/x_sessions.c: Rephrase update_tip in create_action_area.
+
+    * src/x/x_toolbars.c: Revise messages in x_toolbars_restore_state;
+      make "Error Restoring Toolbar" all lower case.
+
 2017-01-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/pt.po: Update Portuguese translations.

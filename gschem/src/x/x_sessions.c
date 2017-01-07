@@ -413,7 +413,7 @@ create_action_area (GschemDialog *ThisDialog, GtkWidget *parent)
 
   open_tip    = _("Load the selected session");
   startup_tip = _("Show the Open Session dialog at start-up, over-rides auto-load-last feature");
-  update_tip  = _("Add and remove files to the sessions automatically");
+  update_tip  = _("Automatically add and remove files from sessions");
 
   /* Create a Horizontal Box for everything to go into */
   NEW_HCONTROL_BOX(parent, action, DIALOG_H_SPACING);

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gschem\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-06 00:28-0600\n"
+"POT-Creation-Date: 2017-01-07 03:43-0600\n"
 "PO-Revision-Date: 2010-02-14 01:03+0000\n"
 "Last-Translator: Bernd Jendrissek <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -2383,7 +2383,6 @@ msgid "Number of slots:"
 msgstr ""
 
 #: gschem/src/x/x_edit_slot.c:199
-#, fuzzy
 msgid "Slot number:"
 msgstr "Bewerk gleufnommer:"
 
@@ -3332,8 +3331,9 @@ msgid ""
 msgstr ""
 "Wys die oop sessie dialoog by die begin, oorheers motor-vrag-laaste funksie"
 
+# Add and remove files to sessions automatically
 #: gschem/src/x/x_sessions.c:416
-msgid "Add and remove files to the sessions automatically"
+msgid "Automatically add and remove files from sessions"
 msgstr "Voeg en lêers te verwyder om die sessies outomaties"
 
 #: gschem/src/x/x_sessions.c:421
@@ -3499,12 +3499,12 @@ msgid "Toolbar configuration restored from"
 msgstr "Nutsbalkopstelling herstel van"
 
 #: gschem/src/x/x_toolbars.c:679
-msgid "Warning, Error Restoring Toolbar configuration"
-msgstr "Waarskuwing, Fout Herstel nutsbalkopstelling"
+msgid "Warning, error restoring toolbar configuration"
+msgstr "Waarskuwing, fout herstel nutsbalkopstelling"
 
 #: gschem/src/x/x_toolbars.c:685
-msgid "Warning, Toolbar configuration file access error"
-msgstr "Waarskuwing, Nutsbalk konfigurasielêer toegang fout"
+msgid "Warning, toolbar configuration file access error"
+msgstr "Waarskuwing, nutsbalk konfigurasielêer toegang fout"
 
 #: gschem/src/x/x_toolbars.c:703
 msgid "Toolbar configuration not found"

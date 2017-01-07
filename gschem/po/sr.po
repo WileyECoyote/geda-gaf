@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-06 00:28-0600\n"
+"POT-Creation-Date: 2017-01-07 03:43-0600\n"
 "PO-Revision-Date: 2012-01-27 14:18+0000\n"
 "Last-Translator:  Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: Serbian <sr@li.org>\n"
@@ -2441,9 +2441,10 @@ msgstr ""
 msgid "Number of slots:"
 msgstr ""
 
+# Slot number
 #: gschem/src/x/x_edit_slot.c:199
 msgid "Slot number:"
-msgstr ""
+msgstr "slot број:"
 
 #: gschem/src/x/x_edit_text.c:234
 msgid "Upper Left"
@@ -3401,9 +3402,11 @@ msgid ""
 "Show the Open Session dialog at start-up, over-rides auto-load-last feature"
 msgstr ""
 
+# Automatically add and remove files from the sessions
 #: gschem/src/x/x_sessions.c:416
-msgid "Add and remove files to the sessions automatically"
-msgstr ""
+#, fuzzy
+msgid "Automatically add and remove files from sessions"
+msgstr "Аутоматски додати и избацити фајлове са седница"
 
 #: gschem/src/x/x_sessions.c:421
 msgid "Show at start-up"
@@ -3571,11 +3574,11 @@ msgid "Toolbar configuration restored from"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:679
-msgid "Warning, Error Restoring Toolbar configuration"
-msgstr ""
+msgid "Warning, error restoring toolbar configuration"
+msgstr "greška u analizi"
 
 #: gschem/src/x/x_toolbars.c:685
-msgid "Warning, Toolbar configuration file access error"
+msgid "Warning, toolbar configuration file access error"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:703
@@ -3587,7 +3590,6 @@ msgid "Could not allocate a graphics context"
 msgstr ""
 
 #: gschem/src/x/x_window.c:110
-#, fuzzy
 msgid "there is no current window"
 msgstr "Нови прозор"
 

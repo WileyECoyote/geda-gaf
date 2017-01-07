@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-06 00:28-0600\n"
+"POT-Creation-Date: 2017-01-07 03:43-0600\n"
 "PO-Revision-Date: 2012-01-27 14:18+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Finnish <fi@li.org>\n"
@@ -2327,9 +2327,10 @@ msgstr ""
 msgid "Number of slots:"
 msgstr ""
 
+# Slot number
 #: gschem/src/x/x_edit_slot.c:199
 msgid "Slot number:"
-msgstr ""
+msgstr "Slot numero:"
 
 #: gschem/src/x/x_edit_text.c:234
 msgid "Upper Left"
@@ -3276,9 +3277,10 @@ msgstr ""
 "osoittavat Alku Session valintaikkuna käynnistettäessä, ohittaa auto-load-"
 "viimeinen ominaisuus"
 
+# Lisätä ja poistaa tiedostoja istuntoja automaattisesti
 #: gschem/src/x/x_sessions.c:416
-msgid "Add and remove files to the sessions automatically"
-msgstr "Lisätä ja poistaa tiedostoja istuntoja automaattisesti"
+msgid "Automatically add and remove files from sessions"
+msgstr "Automaattisesti lisätä ja poistaa tiedostoja istuntoja"
 
 #: gschem/src/x/x_sessions.c:421
 msgid "Show at start-up"
@@ -3443,11 +3445,11 @@ msgid "Toolbar configuration restored from"
 msgstr "Toolbar kokoonpano palautettu"
 
 #: gschem/src/x/x_toolbars.c:679
-msgid "Warning, Error Restoring Toolbar configuration"
+msgid "Warning, error restoring toolbar configuration"
 msgstr "Varoitus, error palauttaminen toolbar kokoonpano"
 
 #: gschem/src/x/x_toolbars.c:685
-msgid "Warning, Toolbar configuration file access error"
+msgid "Warning, toolbar configuration file access error"
 msgstr "Varoitus, toolbar asetustiedosto pääsy virhe"
 
 #: gschem/src/x/x_toolbars.c:703
@@ -3455,7 +3457,6 @@ msgid "Toolbar configuration not found"
 msgstr "Toolbar kokoonpano ei löytynyt"
 
 #: gschem/src/x/x_window.c:105
-#, fuzzy
 msgid "Could not allocate a graphics context"
 msgstr "Ei voitu jakaa graafinen konteksti"
 
@@ -4945,15 +4946,15 @@ msgstr "_Piilota"
 
 #: gschem/scheme/gschem/builtins.scm:425
 msgid "Show Specific Text"
-msgstr "_Näytä Maarite tekstillä..."
+msgstr "Näytä Maarite tekstillä"
 
 #: gschem/scheme/gschem/builtins.scm:428
 msgid "Open Attributes Editor"
-msgstr "_Määrite..."
+msgstr "Määrite"
 
 #: gschem/scheme/gschem/builtins.scm:433
 msgid "Autonumber Text"
-msgstr "A_utonumeroi määritteet tekstillä..."
+msgstr "A_utonumeroi määritteet tekstillä"
 
 # display console window
 #: gschem/scheme/gschem/builtins.scm:436

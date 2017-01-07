@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gschem\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-06 00:28-0600\n"
+"POT-Creation-Date: 2017-01-07 03:43-0600\n"
 "PO-Revision-Date: 2014-08-31 22:35+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -2573,10 +2573,10 @@ msgstr "Bewerk slot nummer"
 msgid "Number of slots:"
 msgstr ""
 
+# Slot number
 #: gschem/src/x/x_edit_slot.c:199
-#, fuzzy
 msgid "Slot number:"
-msgstr "Bewerk slot nummer:"
+msgstr "slot nummer:"
 
 #: gschem/src/x/x_edit_text.c:234
 msgid "Upper Left"
@@ -3629,7 +3629,7 @@ msgid ""
 msgstr ""
 
 #: gschem/src/x/x_sessions.c:416
-msgid "Add and remove files to the sessions automatically"
+msgid "Automatically add and remove files from sessions"
 msgstr ""
 
 #: gschem/src/x/x_sessions.c:421
@@ -3817,12 +3817,12 @@ msgstr "Faalde bij het afdalen in '%s': %s\n"
 
 #: gschem/src/x/x_toolbars.c:679
 #, fuzzy
-msgid "Warning, Error Restoring Toolbar configuration"
+msgid "Warning, error restoring toolbar configuration"
 msgstr "Kan geen gschem configuratie laden."
 
 #: gschem/src/x/x_toolbars.c:685
 #, fuzzy
-msgid "Warning, Toolbar configuration file access error"
+msgid "Warning, toolbar configuration file access error"
 msgstr "Kan geen gschem configuratie laden."
 
 #: gschem/src/x/x_toolbars.c:703
@@ -5444,7 +5444,6 @@ msgid "Show Specific Text"
 msgstr "Toon Specifieke Tekst"
 
 #: gschem/scheme/gschem/builtins.scm:428
-#, fuzzy
 msgid "Open Attributes Editor"
 msgstr "Enkelvoudige Attribuut Bewerking"
 
@@ -5453,12 +5452,10 @@ msgid "Autonumber Text"
 msgstr "Automatisch Tekst Nummeren"
 
 #: gschem/scheme/gschem/builtins.scm:436
-#, fuzzy
 msgid "Show Console Window"
 msgstr "Toon Coordinaten Venster"
 
 #: gschem/scheme/gschem/builtins.scm:439
-#, fuzzy
 msgid "Show Coordinates Window"
 msgstr "Toon Coordinaten Venster"
 

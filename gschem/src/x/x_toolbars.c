@@ -676,13 +676,13 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
         v_log_message("%s %s\n", log_msg, filename);
       }
       else {
-        const char *log_msg = _("Warning, Error Restoring Toolbar configuration");
+        const char *log_msg = _("Warning, error restoring toolbar configuration");
         u_log_message("%s, %s %s\n", log_msg, filename, err->message);
         g_clear_error (&err);
       }
     }
     else {
-      const char *log_msg = _("Warning, Toolbar configuration file access error");
+      const char *log_msg = _("Warning, toolbar configuration file access error");
       u_log_message("%s: %s %s\n", log_msg, filename, err->message);
     }
 
@@ -1212,7 +1212,7 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
   GEDA_PACK_TOOLBOX (toolbox_T1, w_current->standard_handlebox);
 
   /* toolbar will be horizontal, with both icons and text, and with
-   * 5pxl spaces between items and put it into our handlebox */
+   * 5 pixel spaced between items and put it into our handlebox */
 
   Standard_Toolbar = gtk_toolbar_new ();
 
