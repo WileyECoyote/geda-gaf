@@ -472,13 +472,11 @@ x_fileselect_load_backup(const char *message, GschemToplevel *w_current)
   const char *inquire;
   int result = FALSE;
 
-  inquire = _("\nIf you load the original file, the backup file will be overwritten in the next autosave timeout and it will be lost.\n\nDo you want to load the backup file?\n");
+  inquire = _("If you load the original file, the backup file will be overwritten in the next autosave timeout and will be lost.\n\nDo you want to load the backup file?");
 
-  string  = geda_strconcat(message, inquire, NULL);
+  string = geda_sprintf ("%s\n%s", message, inquire);
 
   window  = w_current ? GTK_WINDOW(w_current->main_window) : NULL;
-
-  gschem_threads_enter();
 
   dialog = gtk_message_dialog_new (window,
                                    GTK_DIALOG_MODAL,
@@ -507,7 +505,7 @@ x_fileselect_load_backup(const char *message, GschemToplevel *w_current)
   }
 
   gtk_widget_destroy(dialog);
-  gschem_threads_leave();
+
   GEDA_FREE(string);
 
   return result;
