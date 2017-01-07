@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-06 00:28-0600\n"
+"POT-Creation-Date: 2017-01-07 03:43-0600\n"
 "PO-Revision-Date: 2010-02-11 03:18+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -3390,7 +3390,7 @@ msgid ""
 msgstr ""
 
 #: gschem/src/x/x_sessions.c:416
-msgid "Add and remove files to the sessions automatically"
+msgid "Automatically add and remove files from sessions"
 msgstr ""
 
 #: gschem/src/x/x_sessions.c:421
@@ -3501,84 +3501,102 @@ msgstr ""
 msgid "Change settings and close but do not write settings to storage"
 msgstr ""
 
+# none
 #: gschem/src/x/x_status_bar.c:262 gschem/src/x/x_status_bar.c:273
 #: gschem/src/x/x_status_bar.c:288 gschem/src/x/x_status_bar.c:353
 #: gschem/src/x/x_status_bar.c:365
 msgid "none"
-msgstr ""
+msgstr "没有"
 
+# Menu/Cancel
 #: gschem/src/x/x_status_bar.c:311
 msgid "Menu/Cancel"
-msgstr ""
+msgstr "菜单/取消"
 
+# Pan/Cancel
 #: gschem/src/x/x_status_bar.c:314
 msgid "Pan/Cancel"
-msgstr ""
+msgstr "平移/取消"
 
+# Repeat/none
 #: gschem/src/x/x_status_bar.c:357
 msgid "Repeat/none"
-msgstr ""
+msgstr "重复"
 
+# Pick
 #: gschem/src/x/x_status_bar.c:378
 msgid "Pick"
-msgstr ""
+msgstr "重复/无"
 
+# Image file not found
 #: gschem/src/x/x_toolbars.c:332
 msgid "image file not found"
-msgstr ""
+msgstr "未找到图像文件"
 
+# Toolbar icon not found
 #: gschem/src/x/x_toolbars.c:407
 msgid "Toolbar icon not found"
-msgstr ""
+msgstr "找不到工具栏图标"
 
+# Creating new Toolbar configuration
 #: gschem/src/x/x_toolbars.c:534
 msgid "Creating new Toolbar configuration\n"
-msgstr ""
+msgstr "创建新的工具栏配置\n"
 
+# Saving Toolbar settings
 #: gschem/src/x/x_toolbars.c:543
 msgid "Saving Toolbar settings..."
-msgstr ""
+msgstr "正在保存工具欄設置..."
 
+# Data is saved to
 #: gschem/src/x/x_toolbars.c:562
 msgid "data saved to"
-msgstr ""
+msgstr "數據已保存到"
 
+# You can not save a toolbar configuration to
 #: gschem/src/x/x_toolbars.c:568
 msgid "Could not save Toolbar configuration to"
-msgstr ""
+msgstr "無法將工具欄配置保存到"
 
+# Error, toolbar configuration file
 #: gschem/src/x/x_toolbars.c:641
 msgid "Error, Toolbar configuration key file"
-msgstr ""
+msgstr "錯誤，工具欄配置文件"
 
+# Retrieving toolbar geometry
 #: gschem/src/x/x_toolbars.c:649
 msgid "Retrieving toolbar geometry\n"
-msgstr ""
+msgstr "检索工具栏几何\n"
 
+# Toolbar configuration has been restored from
 #: gschem/src/x/x_toolbars.c:674
 msgid "Toolbar configuration restored from"
-msgstr ""
+msgstr "已從中恢復工具欄配置"
 
+# Warning, an error occurred while retrieving the toolbar configuration
 #: gschem/src/x/x_toolbars.c:679
-msgid "Warning, Error Restoring Toolbar configuration"
-msgstr ""
+msgid "Warning, error restoring toolbar configuration"
+msgstr "警告，檢索工具欄配置時出錯"
 
+# Warning, Toolbar configuration file access error
 #: gschem/src/x/x_toolbars.c:685
-msgid "Warning, Toolbar configuration file access error"
-msgstr ""
+msgid "Warning, toolbar configuration file access error"
+msgstr "警告，工具欄配置文件訪問錯誤"
 
+# Toolbar configuration not found
 #: gschem/src/x/x_toolbars.c:703
 msgid "Toolbar configuration not found"
-msgstr ""
+msgstr "找不到工具欄配置"
 
+# Unable to allocate graphics context
 #: gschem/src/x/x_window.c:105
 msgid "Could not allocate a graphics context"
-msgstr ""
+msgstr "無法分配圖形上下文"
 
+# There is no current window
 #: gschem/src/x/x_window.c:110
-#, fuzzy
 msgid "there is no current window"
-msgstr "关闭窗口"
+msgstr "没有当前窗口"
 
 #: gschem/src/x/x_window.c:119
 msgid "Could not create a Cairo context, is window drawable?\n"
