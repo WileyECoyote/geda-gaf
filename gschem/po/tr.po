@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-06 00:28-0600\n"
+"POT-Creation-Date: 2017-01-07 03:43-0600\n"
 "PO-Revision-Date: 2012-01-27 14:22+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -2213,190 +2213,215 @@ msgstr ""
 msgid "Spice Type:"
 msgstr "Benzetim Türü:"
 
+# Model Name
 #: gschem/src/x/x_edit_cprop.c:1395
 msgid "Model Name:"
-msgstr ""
+msgstr "Model adı:"
 
+# input field for the symbol filename
 #: gschem/src/x/x_edit_cprop.c:1429
 msgid "File name entry of component symbol"
-msgstr ""
+msgstr "Sembol dosya adı girdi alanı"
 
+# input field for the device identifier
 #: gschem/src/x/x_edit_cprop.c:1436
 msgid "Device identifier entry"
-msgstr ""
+msgstr "Cihaz tanımlayıcısı için giriş alanı"
 
+# input field for the author
 #: gschem/src/x/x_edit_cprop.c:1442
 msgid "Entry for name of the author"
-msgstr ""
+msgstr "Yazar adı için girdi alanı"
 
+# input field for the symbol version
 #: gschem/src/x/x_edit_cprop.c:1448
 msgid "Entry for the version of this symbol"
-msgstr ""
+msgstr "Sembol versiyonu için giriş alanı"
 
+# Enable or disable version control for this component
 #: gschem/src/x/x_edit_cprop.c:1454
 msgid "Enable or Disable version checking of this component"
-msgstr ""
+msgstr "Bu bileşen için sürüm kontrolünü etkinleştirin veya devre dışı bırakın"
 
+# input field for the symbol user license
 #: gschem/src/x/x_edit_cprop.c:1461
 msgid "User license entry"
-msgstr ""
+msgstr "Simge kullanıcı lisansı için giriş alanı"
 
+# input field for the symbol distribution license
 #: gschem/src/x/x_edit_cprop.c:1468
 msgid "Entry for distribution license of the symbol"
-msgstr ""
+msgstr "Sembol dağıtım lisansı için giriş alanı"
 
+# Description of the component
 #: gschem/src/x/x_edit_cprop.c:1475
 msgid "Description of the component"
-msgstr ""
+msgstr "Bileşenin açıklaması"
 
+# Link to documentation for this device
 #: gschem/src/x/x_edit_cprop.c:1482
 msgid "Link to documentation for this device"
-msgstr ""
+msgstr "Bu cihazın belgelerine bağlantı"
 
+# input field for comments
 #: gschem/src/x/x_edit_cprop.c:1489
 msgid "Entry for comments"
-msgstr ""
+msgstr "Yorumlar için giriş alanı"
 
+# Check box to enable electrical properties
 #: gschem/src/x/x_edit_cprop.c:1496
 msgid "Checkbox to enable electrical properties"
-msgstr ""
+msgstr "Elektrik özelliklerini etkinleştirmek için onay kutusu"
 
+# Entry for component reference
 #: gschem/src/x/x_edit_cprop.c:1503
 msgid "Entry for reference designator"
-msgstr ""
+msgstr "Bileşen referansı girişi"
 
+# Slot number entry
 #: gschem/src/x/x_edit_cprop.c:1510
 msgid "Spinner with entry for number of slots"
-msgstr ""
+msgstr "Slot sayısı girişi"
 
+# Number of pins input
 #: gschem/src/x/x_edit_cprop.c:1517
 msgid "Spinner with entry for number of pins"
-msgstr ""
+msgstr "Iğne sayısı girişi"
 
+# Component value entry
 #: gschem/src/x/x_edit_cprop.c:1524
 msgid "Entry for the component value"
-msgstr ""
+msgstr "Bileşen değeri girişi"
 
+# Component foot print input
 #: gschem/src/x/x_edit_cprop.c:1531
 msgid "Entry for the component foot print"
-msgstr ""
+msgstr "Bileşen ayak baskısı girişi"
 
+# Spice type input
 #: gschem/src/x/x_edit_cprop.c:1538
 msgid "Entry for spice-type over-ride"
-msgstr ""
+msgstr "Baharat tipi girişi"
 
+# Model file name entry
 #: gschem/src/x/x_edit_cprop.c:1545
 msgid "Entry for model file name"
-msgstr ""
+msgstr "Model dosyası adı girişi"
 
 #: gschem/src/x/x_edit_pin.c:96
-#, fuzzy
 msgid "in"
-msgstr "Satır"
+msgstr "in"
 
 #: gschem/src/x/x_edit_pin.c:97
-#, fuzzy
 msgid "out"
-msgstr "1'e Kes"
+msgstr "out"
 
 #: gschem/src/x/x_edit_pin.c:98
 msgid "io"
-msgstr ""
+msgstr "io"
 
 #: gschem/src/x/x_edit_pin.c:99
-#, fuzzy
 msgid "oc"
-msgstr "Kilitle"
+msgstr "oc"
 
 #: gschem/src/x/x_edit_pin.c:100
-#, fuzzy
 msgid "oe"
-msgstr "Taşı"
+msgstr "oe"
 
 #: gschem/src/x/x_edit_pin.c:101
 msgid "pas"
-msgstr ""
+msgstr "pas"
 
 #: gschem/src/x/x_edit_pin.c:102
 msgid "tp"
-msgstr ""
+msgstr "tp"
 
 #: gschem/src/x/x_edit_pin.c:103
 msgid "tri"
-msgstr ""
+msgstr "tri"
 
 #: gschem/src/x/x_edit_pin.c:104
 msgid "clk"
-msgstr ""
+msgstr "clk"
 
 #: gschem/src/x/x_edit_pin.c:105
 msgid "pwr"
-msgstr ""
+msgstr "pwr"
 
 #: gschem/src/x/x_edit_pin.c:106 gschem/src/x/x_edit_pin.c:191
 #: gschem/src/x/x_edit_pin.c:205
 msgid "*missing*"
-msgstr ""
+msgstr "*Ayarlanmamış*"
 
+# Pin Properties
 #: gschem/src/x/x_edit_pin.c:281 gschem/src/x/x_edit_pin.c:293
 msgid "Pin Properties"
-msgstr ""
+msgstr "Pin Özellikleri"
 
+# Invalid Pin Node Type
 #: gschem/src/x/x_edit_pin.c:281
 msgid "Invalid Pin Node Type"
-msgstr ""
+msgstr "Geçersiz Pin Düğüm Türü"
 
+# Pin electrical type ignoring
 #: gschem/src/x/x_edit_pin.c:293
 msgid "Ignoring Pin electrical VOID"
-msgstr ""
+msgstr "Pin elektrik tipi yok sayma"
 
+# Pin Properties Editor
 #: gschem/src/x/x_edit_pin.c:801
 msgid "Pin Properties Editor"
-msgstr ""
+msgstr "Pin Özellikleri Düzenleyicisi"
 
+# assign
 #: gschem/src/x/x_edit_pin.c:879
-#, fuzzy
 msgid "Set"
-msgstr "Ağ"
+msgstr "Atamak"
 
+# Auto Sequence
 #: gschem/src/x/x_edit_pin.c:882
 msgid "Auto"
-msgstr ""
+msgstr "Otomatik dizi"
 
+# List of Attributes Type
 #: gschem/src/x/x_edit_pin.c:913
-#, fuzzy
 msgid "Attribute Type List"
-msgstr "Öznitelikler"
+msgstr "Öznitelikler Türü Listesi"
 
+# Text Alignment Option
 #: gschem/src/x/x_edit_pin.c:917
 msgid "Text Alignment Option"
-msgstr ""
+msgstr "Metin Hizalama Seçeneği"
 
+# Pin Number
 #: gschem/src/x/x_edit_pin.c:921
 msgid "Pin Number"
-msgstr ""
+msgstr "Pin numarası"
 
+# Sequence Number
 #: gschem/src/x/x_edit_pin.c:925
 msgid "Sequence Number"
-msgstr ""
+msgstr "Sıra numarası"
 
+# Pin Label
 #: gschem/src/x/x_edit_pin.c:929
 msgid "Pin Label"
-msgstr ""
+msgstr "Pin Etiketi"
 
+# Edit slot number
 #: gschem/src/x/x_edit_slot.c:162
-#, fuzzy
 msgid "Edit slot number"
-msgstr "Renk"
+msgstr "Yuva numarasını düzenle"
 
+# Number of slots
 #: gschem/src/x/x_edit_slot.c:185
 msgid "Number of slots:"
-msgstr ""
+msgstr "Yuva sayısı:"
 
+# Slot number
 #: gschem/src/x/x_edit_slot.c:199
-#, fuzzy
 msgid "Slot number:"
-msgstr "Renk"
+msgstr "Slot numarası:"
 
 #: gschem/src/x/x_edit_text.c:234
 msgid "Upper Left"
@@ -3383,7 +3408,7 @@ msgid ""
 msgstr ""
 
 #: gschem/src/x/x_sessions.c:416
-msgid "Add and remove files to the sessions automatically"
+msgid "Automatically add and remove files from sessions"
 msgstr ""
 
 #: gschem/src/x/x_sessions.c:421
@@ -3551,11 +3576,11 @@ msgid "Toolbar configuration restored from"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:679
-msgid "Warning, Error Restoring Toolbar configuration"
+msgid "Warning, error restoring toolbar configuration"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:685
-msgid "Warning, Toolbar configuration file access error"
+msgid "Warning, toolbar configuration file access error"
 msgstr ""
 
 #: gschem/src/x/x_toolbars.c:703
