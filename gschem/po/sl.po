@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-06 00:28-0600\n"
+"POT-Creation-Date: 2017-01-07 03:43-0600\n"
 "PO-Revision-Date: 2012-01-27 14:18+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
@@ -759,9 +759,8 @@ msgid "is not accessible"
 msgstr ""
 
 #: gschem/src/iface/i_sessions.c:272
-#, fuzzy
 msgid "File"
-msgstr "_Datoteka"
+msgstr "Datoteka"
 
 #: gschem/src/iface/i_sessions.c:335
 msgid "Warning relative file names detected in session"
@@ -769,9 +768,8 @@ msgstr ""
 
 #: gschem/src/iface/i_sessions.c:346 gschem/src/iface/i_sessions.c:359
 #: gschem/src/iface/i_sessions.c:931 gschem/src/x/x_sessions.c:232
-#, fuzzy
 msgid "Session"
-msgstr "Shrani vse"
+msgstr ""
 
 #: gschem/src/iface/i_sessions.c:347
 msgid "opening"
@@ -2345,9 +2343,10 @@ msgstr ""
 msgid "Number of slots:"
 msgstr ""
 
+# Slot number
 #: gschem/src/x/x_edit_slot.c:199
 msgid "Slot number:"
-msgstr ""
+msgstr "številka slot:"
 
 #: gschem/src/x/x_edit_text.c:234
 msgid "Upper Left"
@@ -3293,305 +3292,367 @@ msgstr ""
 msgid "exported to"
 msgstr ""
 
+# Download the selected session
 #: gschem/src/x/x_sessions.c:414
-#, fuzzy
 msgid "Load the selected session"
-msgstr "Shrani vse"
+msgstr "Naložite izbrano sejo"
 
+# Show the Open dialog session at startup overrides the auto-load last feature
 #: gschem/src/x/x_sessions.c:415
 msgid ""
 "Show the Open Session dialog at start-up, over-rides auto-load-last feature"
 msgstr ""
+"Pokaži Odprite pogovorno sejo ob zagonu, preglasi funkcijo auto-obremenitve, "
+"zadnji"
 
+# Automatically add and remove files from sessions
 #: gschem/src/x/x_sessions.c:416
-msgid "Add and remove files to the sessions automatically"
-msgstr ""
+msgid "Automatically add and remove files from sessions"
+msgstr "Samodejno dodajanje in odstranjevanje datotek iz sej"
 
+# Show at start-up
 #: gschem/src/x/x_sessions.c:421
 msgid "Show at start-up"
-msgstr ""
+msgstr "Pokaži ob zagonu"
 
+# automatically update
 #: gschem/src/x/x_sessions.c:428
 msgid "Auto update"
-msgstr ""
+msgstr "samodejno posodabljanje"
 
+# Session Name
 #: gschem/src/x/x_sessions.c:535
 msgid "Session Name"
-msgstr ""
+msgstr "Ime Session"
 
+# File Count
 #: gschem/src/x/x_sessions.c:550
 msgid "File Count"
-msgstr ""
+msgstr "Štetje datoteke"
 
+# Rename the selected session
 #: gschem/src/x/x_sessions.c:600
 msgid "Rename the selected session"
-msgstr ""
+msgstr "Preimenovati izbrano sejo"
 
+# Delete the selected session
 #: gschem/src/x/x_sessions.c:601
 msgid "Delete the selected session"
-msgstr ""
+msgstr "Zbriši izbrano sejo"
 
+# Export the selected session to a project file
 #: gschem/src/x/x_sessions.c:602
 msgid "Export the selected session to a project file"
-msgstr ""
+msgstr "Izvoziti izbran sejo k projekt datoteka"
 
+# Manage Sessions
 #: gschem/src/x/x_sessions.c:604 gschem/scheme/gschem/builtins.scm:392
 msgid "Manage Sessions"
-msgstr ""
+msgstr "upravljanje sej"
 
+# Rename
 #: gschem/src/x/x_sessions.c:639
 msgid "_Rename"
-msgstr ""
+msgstr "Preimenovanje"
 
+# Delete
 #: gschem/src/x/x_sessions.c:646 gschem/etc/system-gschemrc.scm:2091
 msgid "_Delete"
-msgstr ""
+msgstr "Brisanje"
 
+# Export
 #: gschem/src/x/x_sessions.c:653 gschem/etc/system-gschemrc.scm:2066
 msgid "_Export"
-msgstr ""
+msgstr "_izvažati"
 
+# Open Session
 #: gschem/src/x/x_sessions.c:768
 msgid "Open Session"
-msgstr ""
+msgstr "Odprte Seje"
 
+# New Session
 #: gschem/src/x/x_sessions.c:829
 msgid "New Session"
-msgstr ""
+msgstr "Nova Seja"
 
+# Save session as
 #: gschem/src/x/x_sessions.c:853 gschem/scheme/gschem/builtins.scm:389
-#, fuzzy
 msgid "Save Session As"
-msgstr "Shrani vse"
+msgstr "Prihranite sejo Kot"
 
+# Error opening
 #: gschem/src/x/x_settings.c:359
 msgid "error opening"
-msgstr ""
+msgstr "napaka pri odpiranju"
 
+# File name error! system
 #: gschem/src/x/x_settings.c:530
 msgid "File Name error! system"
-msgstr ""
+msgstr "Ime datoteke napako! sistem"
 
+# File open read-only error
 #: gschem/src/x/x_settings.c:539
 msgid "File open for read-only error"
-msgstr ""
+msgstr "Datoteka odprta samo za branje napak"
 
+# Error opening output
 #: gschem/src/x/x_settings.c:546
 msgid "Error, opening output"
-msgstr ""
+msgstr "Napaka, odpiranje izhod"
 
+# Wrote configuration to
 #: gschem/src/x/x_settings.c:604
 msgid "Wrote configuration to"
-msgstr ""
+msgstr "Napisal konfiguracijo za"
 
+# File error
 #: gschem/src/x/x_settings.c:607
 msgid "File error"
-msgstr ""
+msgstr "napaka datoteke"
 
+# Clear list and restore default filter list?
 #: gschem/src/x/x_settings_dialog.c:1074
 msgid "Clear attributes and restore default filter list?"
-msgstr ""
+msgstr "Počisti seznam in obnoviti privzeti seznam filter?"
 
+# Restore Defaults
 #: gschem/src/x/x_settings_dialog.c:1238
 msgid "Restore default"
-msgstr ""
+msgstr "Obnovi privzeto"
 
+# Close without changing any settings
 #: gschem/src/x/x_settings_dialog.c:2639
 msgid "Close without changing any settings"
-msgstr ""
+msgstr "Zapri brez spreminjanja nastavitev"
 
+# Save
 #: gschem/src/x/x_settings_dialog.c:2641 gschem/scheme/gschem/builtins.scm:56
 msgid "Save"
-msgstr ""
+msgstr "Shrani"
 
+# Close and write the settings to disk
 #: gschem/src/x/x_settings_dialog.c:2645
 msgid "Close and Write settings to disk"
-msgstr ""
+msgstr "blizu in napišite nastavitve na disk"
 
+# Change settings and close, do not write settings to a file
 #: gschem/src/x/x_settings_dialog.c:2651
 msgid "Change settings and close but do not write settings to storage"
-msgstr ""
+msgstr "Spremeni nastavitve in blizu, ne pišejo nastavitve v datoteko"
 
 #: gschem/src/x/x_status_bar.c:262 gschem/src/x/x_status_bar.c:273
 #: gschem/src/x/x_status_bar.c:288 gschem/src/x/x_status_bar.c:353
 #: gschem/src/x/x_status_bar.c:365
 msgid "none"
-msgstr ""
+msgstr "none"
 
 #: gschem/src/x/x_status_bar.c:311
 msgid "Menu/Cancel"
-msgstr ""
+msgstr "Meni:Prekliči"
 
 #: gschem/src/x/x_status_bar.c:314
 msgid "Pan/Cancel"
-msgstr ""
+msgstr "Pan:Prekliči"
 
 #: gschem/src/x/x_status_bar.c:357
 msgid "Repeat/none"
-msgstr ""
+msgstr "Ronoviti: ---"
 
 #: gschem/src/x/x_status_bar.c:378
 msgid "Pick"
-msgstr ""
+msgstr "Izbrati"
 
+# image file could not be found
 #: gschem/src/x/x_toolbars.c:332
 msgid "image file not found"
-msgstr ""
+msgstr "slikovne datoteke ni bilo mogoče najti"
 
+# Toolbar icon can not be found
 #: gschem/src/x/x_toolbars.c:407
 msgid "Toolbar icon not found"
-msgstr ""
+msgstr "icon Orodna vrstica ni bilo mogoče najti"
 
+# Create a new Toolbar settings
 #: gschem/src/x/x_toolbars.c:534
 msgid "Creating new Toolbar configuration\n"
-msgstr ""
+msgstr "Ustvarjanje nove nastavitve orodne vrstice\n"
 
+# Saving settings toolbar
 #: gschem/src/x/x_toolbars.c:543
 msgid "Saving Toolbar settings..."
-msgstr ""
+msgstr "Shranjevanje nastavitev orodne vrstice..."
 
+# data stored on
 #: gschem/src/x/x_toolbars.c:562
 msgid "data saved to"
-msgstr ""
+msgstr "podatki shranjeni na"
 
+# Could not save settings toolbar
 #: gschem/src/x/x_toolbars.c:568
 msgid "Could not save Toolbar configuration to"
-msgstr ""
+msgstr "ni bilo mogoče shraniti nastavitev orodne vrstice za"
 
+# Toolbar configuration file
 #: gschem/src/x/x_toolbars.c:641
 msgid "Error, Toolbar configuration key file"
-msgstr ""
+msgstr "Napaka, Orodna vrstica konfiguracijske datoteke"
 
+# Getting toolbar geometry
 #: gschem/src/x/x_toolbars.c:649
 msgid "Retrieving toolbar geometry\n"
-msgstr ""
+msgstr "Pridobivanje orodne vrstice geometrijo\n"
 
+# Toolbar configuration is restored from
 #: gschem/src/x/x_toolbars.c:674
 msgid "Toolbar configuration restored from"
-msgstr ""
+msgstr "Orodna vrstica konfiguracija obnovljena od"
 
+# Warning, Error getting configuration for toolbars
 #: gschem/src/x/x_toolbars.c:679
-msgid "Warning, Error Restoring Toolbar configuration"
-msgstr ""
+msgid "Warning, error restoring toolbar configuration"
+msgstr "Opozorilo, napaka pridobivanje konfiguracija Orodna vrstica"
 
+# Warning, Error accessing toolbar configuration file
 #: gschem/src/x/x_toolbars.c:685
-msgid "Warning, Toolbar configuration file access error"
+msgid "Warning, toolbar configuration file access error"
 msgstr ""
+"Opozorilo, Napaka pri dostopu do orodna vrstica konfiguracijske datoteke"
 
+# Toolbar configuration could not be found
 #: gschem/src/x/x_toolbars.c:703
 msgid "Toolbar configuration not found"
-msgstr ""
+msgstr "Toolbar konfiguracija ni bilo mogoče najti"
 
+# a graphics context could not be allocated
+# graphics context was not granted
 #: gschem/src/x/x_window.c:105
 msgid "Could not allocate a graphics context"
-msgstr ""
+msgstr "kontekst grafika ni bila dodeljena"
 
+# there is currently no window
 #: gschem/src/x/x_window.c:110
-#, fuzzy
 msgid "there is no current window"
-msgstr "Novo okno"
+msgstr "trenutno ni okno"
 
 #: gschem/src/x/x_window.c:119
 msgid "Could not create a Cairo context, is window drawable?\n"
-msgstr ""
+msgstr "Ni bilo mogoče ustvariti kontekst Cairo, je okno črpane?\n"
 
+# window is not valid
 #: gschem/src/x/x_window.c:126
 msgid "window is not valid"
-msgstr ""
+msgstr "Okno ni veljavno"
 
+# Saving the geometry of the main window and settings
 #: gschem/src/x/x_window.c:189
 msgid "Saving main window geometry and settings.\n"
-msgstr ""
+msgstr "Shranjevanje geometrijo glavnega okna in nastavitve.\n"
 
+# Getting window geometry and settings
 #: gschem/src/x/x_window.c:313
 msgid "Retrieving main Window geometry and settings.\n"
-msgstr ""
+msgstr "Pridobivanje geometrijo okna in nastavitve.\n"
 
+# cancel command
 #: gschem/src/x/x_window.c:675 gschem/src/x/x_window.c:1095
 msgid "Aborting action\n"
-msgstr ""
+msgstr "preklic ukaza\n"
 
 # Close Cancelled
 #: gschem/src/x/x_window.c:681
 msgid "Close Window canceled\n"
 msgstr "Zapri okno preklicana\n"
 
+# Retrieve files
 #: gschem/src/x/x_window.c:767
 msgid "Loading file"
-msgstr ""
+msgstr "Nalagan datoteke"
 
 # New file
 #: gschem/src/x/x_window.c:911
 msgid "New file"
 msgstr "Nova datoteka"
 
+# Error loading file
 #: gschem/src/x/x_window.c:953
 msgid "Failed to load file"
-msgstr ""
+msgstr "Napaka pri nalaganju datoteke"
 
+# Creating new file
 #: gschem/src/x/x_window.c:983
 msgid "Creating new file"
-msgstr ""
+msgstr "Ustvarjanje nove datoteke"
 
+# Path
 #: gschem/src/x/x_window.c:996
 msgid "Path"
-msgstr ""
+msgstr "Pot"
 
 #: gschem/src/x/x_window.c:999
 msgid ""
 "did not exist\n"
 "successfully created"
 msgstr ""
+"ni obstajala\n"
+"uspešno ustvarjena"
 
+# Discard Page
 #: gschem/src/x/x_window.c:1143
 msgid "Discarding page"
-msgstr ""
+msgstr "Zavržkov stran"
 
+# Closing
 #: gschem/src/x/x_window.c:1144
-#, fuzzy
 msgid "Closing"
-msgstr "_Zapri"
+msgstr "Zapiranje"
 
+# Could NOT save page
 #: gschem/src/x/x_window.c:1209
 msgid "Could NOT save page"
-msgstr ""
+msgstr "Ni bilo mogoče shraniti stran"
 
+# An error occurred while trying to save
 #: gschem/src/x/x_window.c:1211
 msgid "Error while trying to save"
-msgstr ""
+msgstr "Napaka pri poskusu shranjevanja"
 
+# Saved as
 #: gschem/src/x/x_window.c:1225
-#, fuzzy
 msgid "Saved as"
-msgstr "Shrani vse"
+msgstr "Shranjena kot"
 
 #: gschem/data/geda-gschem.desktop.in:3
 msgid "gEDA Schematic Editor"
-msgstr ""
+msgstr "gEDA Shematski Urejevalnik"
 
+# Create and edit electrical schematics and symbols with gschem
 #: gschem/data/geda-gschem.desktop.in:4
 msgid "Create and edit electrical schematics and symbols with gschem"
-msgstr ""
+msgstr "Ustvarjanje in urejanje električne shematičen in simbole z gschem"
 
 #: gschem/etc/system-gschemrc.scm:2051 gschem/etc/system-gschemrc.scm:2259
 msgid "_New"
 msgstr "_Nova"
 
+# Create a new blank file
 #: gschem/etc/system-gschemrc.scm:2051
 msgid "Create a new empty file"
-msgstr ""
+msgstr "Ustvari novo prazno datoteko"
 
+# Open
 #: gschem/etc/system-gschemrc.scm:2052 gschem/etc/system-gschemrc.scm:2260
 msgid "_Open..."
-msgstr "_Odpri ..."
+msgstr "_Odpri..."
 
+# Open Recent
 #: gschem/etc/system-gschemrc.scm:2053
 msgid "Open Recen_t"
-msgstr "Odpri nedav_no"
+msgstr "Odpri nedavn"
 
+# Open recently accessed schematic or symbol files
 #: gschem/etc/system-gschemrc.scm:2053
 msgid "Open recently accessed schematic or symbol files"
-msgstr ""
+msgstr "Odprite nedavno dostopali shematične ali simbole datotek"
 
 #: gschem/etc/system-gschemrc.scm:2057 gschem/etc/system-gschemrc.scm:2263
 msgid "_Save"
@@ -3599,20 +3660,22 @@ msgstr "_Shrani"
 
 #: gschem/etc/system-gschemrc.scm:2058 gschem/etc/system-gschemrc.scm:2264
 msgid "Save _As..."
-msgstr "Shrani _kot ..."
+msgstr "Shrani _kot..."
 
+# Save the current document to a new name or location
 #: gschem/etc/system-gschemrc.scm:2058
 msgid "Save the current document to a new name or location"
-msgstr ""
+msgstr "Shrani trenutni dokument na novo ime ali lokacijo"
 
+# Save All
 #: gschem/etc/system-gschemrc.scm:2059
-#, fuzzy
 msgid "Save A_ll"
 msgstr "Shrani vse"
 
+# Save all open documents
 #: gschem/etc/system-gschemrc.scm:2059
 msgid "Save all open documents"
-msgstr ""
+msgstr "Shranite vse odprte dokumente"
 
 #: gschem/etc/system-gschemrc.scm:2060
 msgid "Save _Modified"
@@ -4613,30 +4676,35 @@ msgstr ""
 msgid "Sessio_ns"
 msgstr ""
 
+# Properties
 #: gschem/etc/system-gschemrc.scm:2375
 msgid "Attri_butes"
-msgstr ""
+msgstr "Nepremičnine"
 
 #: gschem/etc/system-gschemrc.scm:2376
 msgid "_Tools"
-msgstr ""
+msgstr "Orodja"
 
+# Options
 #: gschem/etc/system-gschemrc.scm:2386
 msgid "_Options"
-msgstr ""
+msgstr "_Opcije"
 
+# Help
 #: gschem/etc/system-gschemrc.scm:2387
 msgid "_Help"
-msgstr ""
+msgstr "_Pomaga"
 
+# ~S is not a valid command.
 #: gschem/scheme/gschem/action.scm:45
 #, scheme-format
 msgid "~S is not a valid gschem action."
-msgstr ""
+msgstr "~S ni veljaven ukaz."
 
+# redo last action
 #: gschem/scheme/gschem/action.scm:158
 msgid "Repeat Last Action"
-msgstr ""
+msgstr "ponoviti zadnje dejanje"
 
 # New File
 #: gschem/scheme/gschem/builtins.scm:50
@@ -4666,76 +4734,90 @@ msgstr ""
 msgid "Print"
 msgstr "Natisni"
 
+# Export pictures
 #: gschem/scheme/gschem/builtins.scm:71
 msgid "Export Image"
-msgstr ""
+msgstr "Export slike"
 
+# execute script
 #: gschem/scheme/gschem/builtins.scm:74
 msgid "Run Script"
-msgstr ""
+msgstr "izvesti skript"
 
+# new window
 #: gschem/scheme/gschem/builtins.scm:77
 msgid "New Window"
 msgstr "Novo okno"
 
+# Close Window
 #: gschem/scheme/gschem/builtins.scm:80 gschem/scheme/gschem/builtins.scm:83
-#, fuzzy
 msgid "Close Window"
-msgstr "Novo okno"
+msgstr "Zapri okno"
 
+# End
 #: gschem/scheme/gschem/builtins.scm:86
-#, fuzzy
 msgid "Quit"
-msgstr "_Končaj"
+msgstr "Končaj"
 
+# export Symbol
 #: gschem/scheme/gschem/builtins.scm:89
 msgid "Export Symbol"
-msgstr ""
+msgstr "izvoz Simbol"
 
+# export image
 #: gschem/scheme/gschem/builtins.scm:92
 msgid "Export Picture"
-msgstr ""
+msgstr "izvoz slike"
 
+# Undo
 #: gschem/scheme/gschem/builtins.scm:98
 msgid "Undo"
-msgstr ""
+msgstr "Razveljavi"
 
+# redo
 #: gschem/scheme/gschem/builtins.scm:101
 msgid "Redo"
-msgstr ""
+msgstr "redo"
 
+# Copy Mode
 #: gschem/scheme/gschem/builtins.scm:107
 msgid "Copy Mode"
-msgstr ""
+msgstr "Način kopija"
 
+# Method of multiple copying
 #: gschem/scheme/gschem/builtins.scm:113
 msgid "Multiple Copy Mode"
-msgstr ""
+msgstr "Način večkratno kopiranje"
 
+# offset selection
 #: gschem/scheme/gschem/builtins.scm:119
 msgid "Offset selection"
-msgstr ""
+msgstr "odmik izbor"
 
+# Align to Grid
 #: gschem/scheme/gschem/builtins.scm:128
 msgid "Snap to Grid"
-msgstr ""
+msgstr "Poravnaj na mrežo"
 
+# Create an array
 #: gschem/scheme/gschem/builtins.scm:131
 msgid "Create Array"
-msgstr ""
+msgstr "Ustvari niz"
 
+# Edit
 #: gschem/scheme/gschem/builtins.scm:134 gschem/scheme/gschem/builtins.scm:137
 msgid "Edit..."
-msgstr ""
+msgstr "Uredi..."
 
+# Edit Arc
 #: gschem/scheme/gschem/builtins.scm:140
-#, fuzzy
 msgid "Edit Arc"
-msgstr "_Uredi"
+msgstr "Uredi lok"
 
+# Edit Object
 #: gschem/scheme/gschem/builtins.scm:143
 msgid "Edit Object"
-msgstr ""
+msgstr "Uredi Predmet"
 
 #: gschem/scheme/gschem/builtins.scm:146
 msgid "Edit Text"
