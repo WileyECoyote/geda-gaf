@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-06 00:28-0600\n"
+"POT-Creation-Date: 2017-01-07 03:43-0600\n"
 "PO-Revision-Date: 2012-01-31 12:08+0000\n"
 "Last-Translator: Antonio Augusto Todo Bom Neto <atodobom@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -2464,7 +2464,7 @@ msgstr "Pino"
 #: gschem/src/x/x_edit_pin.c:97
 #, fuzzy
 msgid "out"
-msgstr "Cor_tar"
+msgstr "Saída"
 
 #: gschem/src/x/x_edit_pin.c:98
 msgid "io"
@@ -3147,9 +3147,7 @@ msgstr ""
 #: gschem/src/x/x_menus.c:511
 #, fuzzy
 msgid "Error reading menu item"
-msgstr ""
-"Erro imprimindo arquivo:\n"
-"%s"
+msgstr "Erro imprimindo arquivo"
 
 #: gschem/src/x/x_menus.c:512
 msgid "Bad string"
@@ -3620,7 +3618,7 @@ msgid ""
 msgstr ""
 
 #: gschem/src/x/x_sessions.c:416
-msgid "Add and remove files to the sessions automatically"
+msgid "Automatically add and remove files from sessions"
 msgstr ""
 
 #: gschem/src/x/x_sessions.c:421
@@ -3753,7 +3751,6 @@ msgid "Menu/Cancel"
 msgstr "Menu/Cancelar"
 
 #: gschem/src/x/x_status_bar.c:314
-#, fuzzy
 msgid "Pan/Cancel"
 msgstr "Menu/Cancelar"
 
@@ -3765,61 +3762,66 @@ msgstr "Repetir/nenhum"
 msgid "Pick"
 msgstr "Pegar"
 
+# image file not found
 #: gschem/src/x/x_toolbars.c:332
 msgid "image file not found"
-msgstr ""
+msgstr "Não foi encontrado o arquivo de imagem"
 
+# Toolbar icon not found
 #: gschem/src/x/x_toolbars.c:407
 msgid "Toolbar icon not found"
-msgstr ""
+msgstr "Ícone da barra de ferramentas não encontrado"
 
+# Creating new Toolbar configuration
 #: gschem/src/x/x_toolbars.c:534
-#, fuzzy
 msgid "Creating new Toolbar configuration\n"
-msgstr "Impossível ler configuração do gschem."
+msgstr "A criação de novas ferramentas de configuração\n"
 
+# Saving Toolbar settings
 #: gschem/src/x/x_toolbars.c:543
-#, fuzzy
 msgid "Saving Toolbar settings..."
-msgstr "Impossível ler configuração do gschem."
+msgstr "Guardar definições da barra de ferramentas..."
 
+# data saved to
 #: gschem/src/x/x_toolbars.c:562
 msgid "data saved to"
-msgstr ""
+msgstr "os dados guardados"
 
+# Could not save Toolbar configuration to
 #: gschem/src/x/x_toolbars.c:568
-#, fuzzy
 msgid "Could not save Toolbar configuration to"
-msgstr "Falhou descendo em '%s': %s\n"
+msgstr "Não foi possível salvar a configuração da barra de ferramentas"
 
+# toolbar configuration file error
 #: gschem/src/x/x_toolbars.c:641
-#, fuzzy
 msgid "Error, Toolbar configuration key file"
-msgstr "Impossível ler configuração do gschem."
+msgstr "Erro no arquivo de configuração da barra de ferramentas"
 
+# Retrieving toolbar geometry
 #: gschem/src/x/x_toolbars.c:649
 msgid "Retrieving toolbar geometry\n"
-msgstr ""
+msgstr "Recuperando a geometria da barra de ferramentas\n"
 
+# Toolbar configuration restored from
 #: gschem/src/x/x_toolbars.c:674
-#, fuzzy
 msgid "Toolbar configuration restored from"
-msgstr "Falhou descendo em '%s': %s\n"
+msgstr "Configuração de ferramentas restaurado a partir de"
 
+# Warning, error restoring toolbar configuration
 #: gschem/src/x/x_toolbars.c:679
-#, fuzzy
-msgid "Warning, Error Restoring Toolbar configuration"
-msgstr "Impossível ler configuração do gschem."
+msgid "Warning, error restoring toolbar configuration"
+msgstr "Aviso, Erro ao restaurar a configuração da barra de ferramentas"
 
+# Warning, toolbar configuration file access error
 #: gschem/src/x/x_toolbars.c:685
-#, fuzzy
-msgid "Warning, Toolbar configuration file access error"
-msgstr "Impossível ler configuração do gschem."
+msgid "Warning, toolbar configuration file access error"
+msgstr ""
+"Aviso, Erro de acesso ao arquivo de configuração da barra de ferramentas"
 
+# Toolbar configuration not found
 #: gschem/src/x/x_toolbars.c:703
-#, fuzzy
 msgid "Toolbar configuration not found"
-msgstr "Falhou descendo em '%s': %s\n"
+msgstr "Configuração da barra de ferramentas não encontrado"
 
 #: gschem/src/x/x_window.c:105
 #, fuzzy
@@ -3891,17 +3893,17 @@ msgstr ""
 #: gschem/src/x/x_window.c:1143
 #, fuzzy
 msgid "Discarding page"
-msgstr "Descartando página [%s]\n"
+msgstr "Descartando página"
 
 #: gschem/src/x/x_window.c:1144
 #, fuzzy
 msgid "Closing"
 msgstr "Fechar página"
 
+# Impossible to save page
 #: gschem/src/x/x_window.c:1209
-#, fuzzy
 msgid "Could NOT save page"
-msgstr "Impossível salvar página [%s]\n"
+msgstr "Impossível salvar página"
 
 #: gschem/src/x/x_window.c:1211
 msgid "Error while trying to save"
@@ -3910,7 +3912,7 @@ msgstr "Erro tentando salvar"
 #: gschem/src/x/x_window.c:1225
 #, fuzzy
 msgid "Saved as"
-msgstr "Salvar _Tudo"
+msgstr "Salvar Tudo"
 
 #: gschem/data/geda-gschem.desktop.in:3
 msgid "gEDA Schematic Editor"
@@ -3934,11 +3936,12 @@ msgstr "_Abrir..."
 
 #: gschem/etc/system-gschemrc.scm:2053
 msgid "Open Recen_t"
-msgstr "Abrir Recent_e"
+msgstr "Abrir Recen_te"
 
+# Open recently accessed schematic or symbol files
 #: gschem/etc/system-gschemrc.scm:2053
 msgid "Open recently accessed schematic or symbol files"
-msgstr ""
+msgstr "Aberto recentemente acessada esquema ou arquivos de símbolo"
 
 #: gschem/etc/system-gschemrc.scm:2057 gschem/etc/system-gschemrc.scm:2263
 msgid "_Save"
@@ -3952,23 +3955,23 @@ msgstr "Salvar _Como..."
 msgid "Save the current document to a new name or location"
 msgstr ""
 
+# Save Everything
 #: gschem/etc/system-gschemrc.scm:2059
-#, fuzzy
 msgid "Save A_ll"
-msgstr "Salvar _Tudo"
+msgstr "Salvar Tudo"
 
+# Save Everything
 #: gschem/etc/system-gschemrc.scm:2059
 msgid "Save all open documents"
-msgstr ""
+msgstr "Salvar Tudo"
 
 #: gschem/etc/system-gschemrc.scm:2060
-#, fuzzy
 msgid "Save _Modified"
-msgstr "Modo de Movimentação"
+msgstr "Modo de _Movimentação"
 
 #: gschem/etc/system-gschemrc.scm:2060
 msgid "Save all modified documents"
-msgstr ""
+msgstr "Salve todos os documentos movimentação"
 
 #: gschem/etc/system-gschemrc.scm:2061 gschem/etc/system-gschemrc.scm:2222
 msgid "_Revert"
@@ -3979,9 +3982,8 @@ msgid "Discard changes and reload the current document"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2062
-#, fuzzy
 msgid "Re_vert All"
-msgstr "Reverter Página?"
+msgstr "Re_verter Página"
 
 #: gschem/etc/system-gschemrc.scm:2062
 msgid "Discard changes and reload all open documents"
@@ -4011,48 +4013,51 @@ msgstr ""
 msgid "Write _image..."
 msgstr "Salvar _imagem..."
 
+# Export image
 #: gschem/etc/system-gschemrc.scm:2068
-#, fuzzy
 msgid "Export image"
-msgstr "Embutir Componente/Imagem"
+msgstr "Exportar imagem"
 
 #: gschem/etc/system-gschemrc.scm:2071
-#, fuzzy
 msgid "E_xecute Script..."
 msgstr "Executar Script..."
 
 #: gschem/etc/system-gschemrc.scm:2071
-#, fuzzy
 msgid "Execute a script file"
-msgstr "Executar Script..."
+msgstr "Executar Script"
 
+# Close
 #: gschem/etc/system-gschemrc.scm:2074 gschem/etc/system-gschemrc.scm:2221
 msgid "_Close"
 msgstr "_Fechar"
 
+# Close the current document
 #: gschem/etc/system-gschemrc.scm:2074
 msgid "Close the current document"
-msgstr ""
+msgstr "Fechar o documento atual"
 
+# Close All
 #: gschem/etc/system-gschemrc.scm:2075
-#, fuzzy
 msgid "Close All"
-msgstr "_Fechar"
+msgstr "Fechar todos"
 
+# Close all open documents
 #: gschem/etc/system-gschemrc.scm:2075
 msgid "Close all open documents"
-msgstr ""
+msgstr "Feche todos os documentos abertos"
 
+# Quit
 #: gschem/etc/system-gschemrc.scm:2076
 msgid "_Quit"
 msgstr "_Sair"
 
+# Desapertar
 #: gschem/etc/system-gschemrc.scm:2084
 msgid "_Undo"
 msgstr "_Desfazer"
 
+# Undo the last operation
 #: gschem/etc/system-gschemrc.scm:2084
-#, fuzzy
 msgid "Undo the last action"
 msgstr "Desfazer última operação"
 
@@ -4758,38 +4763,40 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2283
 msgid "_Find Specific Text..."
-msgstr "Procurar um texto..."
+msgstr "_Procurar um texto..."
 
+# Search for Attribute
 #: gschem/etc/system-gschemrc.scm:2283
-#, fuzzy
 msgid "Find an attribute"
-msgstr "Inserir atributo"
+msgstr "Pesquisa para o Atributo"
 
+# Hide Specific Text
 #: gschem/etc/system-gschemrc.scm:2284
 msgid "_Hide Specific Text..."
 msgstr "Ocultar um texto..."
 
+# Hide selected attribute
 #: gschem/etc/system-gschemrc.scm:2284
-#, fuzzy
 msgid "Hide selected attribute"
-msgstr "Atributo livre"
+msgstr "Ocultar um Atributo"
 
+# Show Specific Text
 #: gschem/etc/system-gschemrc.scm:2285
 msgid "_Show Specific Text..."
 msgstr "Mostrar um texto..."
 
+# Show a specific attribute
 #: gschem/etc/system-gschemrc.scm:2285
-#, fuzzy
 msgid "Show a specific attribute"
 msgstr "Mostra atributos relativos"
 
+# Attribute Editor
 #: gschem/etc/system-gschemrc.scm:2287
-#, fuzzy
 msgid "Attribute _Editor..."
-msgstr "Editor de atributo único"
+msgstr "Editor de atributo único..."
 
+# single attribute editor
 #: gschem/etc/system-gschemrc.scm:2287
-#, fuzzy
 msgid "Open the Attibutes Editor Dialog"
 msgstr "Editor de atributo único"
 
@@ -4801,20 +4808,20 @@ msgstr "A_utonumerar textos..."
 msgid "Open Auto Number dialog"
 msgstr ""
 
+# Shows the console window
 #: gschem/etc/system-gschemrc.scm:2296
-#, fuzzy
 msgid "Show _Console Window..."
-msgstr "Mostra _Coordenadas"
+msgstr "Mostra Janela do console..."
 
 #: gschem/etc/system-gschemrc.scm:2296
 #, fuzzy
 msgid "Display the console window"
 msgstr "Mostra _Coordenadas"
 
+# Coordinate Shows
 #: gschem/etc/system-gschemrc.scm:2297
-#, fuzzy
 msgid "Show Coord _Window..."
-msgstr "Mostra _Coordenadas"
+msgstr "Mostra _Coordenadas..."
 
 #: gschem/etc/system-gschemrc.scm:2297
 msgid "Display coordinates"
@@ -4966,21 +4973,22 @@ msgid "Open the Preferences dialog"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2339
-#, fuzzy
 msgid "Gschem Guide"
-msgstr "_Guia de usuário..."
+msgstr "Guia de usuário"
 
 #: gschem/etc/system-gschemrc.scm:2340
 msgid "_Hotkeys..."
 msgstr "Atalhos..."
 
+# Questions and Answers
 #: gschem/etc/system-gschemrc.scm:2341
 msgid "gschem _FAQ..."
-msgstr "Perguntas e Respostas"
+msgstr "Perguntas e Respostas..."
 
+# Component Documentation
 #: gschem/etc/system-gschemrc.scm:2343
 msgid "Component D_ocumentation..."
-msgstr "_Documentação de componente"
+msgstr "D_ocumentação de componente..."
 
 #: gschem/etc/system-gschemrc.scm:2345
 msgid "gEDA Docu_mentation..."
@@ -4992,7 +5000,7 @@ msgstr "_Wiki gEDA..."
 
 #: gschem/etc/system-gschemrc.scm:2347
 msgid "_About..."
-msgstr "Sobre..."
+msgstr "_Sobre..."
 
 #: gschem/etc/system-gschemrc.scm:2355
 msgid "Draw objects before another object"
@@ -5012,14 +5020,14 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2367
 msgid "_File"
-msgstr "Arquivo"
+msgstr "_Arquivo"
 
 #: gschem/etc/system-gschemrc.scm:2368
 msgid "_Edit"
 msgstr "_Editar"
 
+# Select
 #: gschem/etc/system-gschemrc.scm:2369
-#, fuzzy
 msgid "_Select"
 msgstr "Selecionar"
 
@@ -5039,10 +5047,10 @@ msgstr "_Adicionar"
 msgid "Sessio_ns"
 msgstr ""
 
+# Attributes
 #: gschem/etc/system-gschemrc.scm:2375
-#, fuzzy
 msgid "Attri_butes"
-msgstr "Atributos"
+msgstr "Atri_butos"
 
 #: gschem/etc/system-gschemrc.scm:2376
 msgid "_Tools"
@@ -5203,20 +5211,20 @@ msgstr "Selecionar"
 msgid "Deselect mode"
 msgstr "Modo de Seleção"
 
+# Cut
 #: gschem/scheme/gschem/builtins.scm:197
-#, fuzzy
 msgid "Cut"
-msgstr "Cor_tar"
+msgstr "Cortar"
 
+# Paste
 #: gschem/scheme/gschem/builtins.scm:203
-#, fuzzy
 msgid "Paste"
-msgstr "Co_lar"
+msgstr "Colar"
 
+# Redraw
 #: gschem/scheme/gschem/builtins.scm:209
-#, fuzzy
 msgid "Redraw"
-msgstr "_Redesenhar"
+msgstr "Redesenhar"
 
 #: gschem/scheme/gschem/builtins.scm:212
 msgid "Pan"
@@ -5513,10 +5521,10 @@ msgstr "Símbolo de traduzir"
 msgid "Dots Grid Style"
 msgstr ""
 
+# Use the grid mesh
 #: gschem/scheme/gschem/builtins.scm:466
-#, fuzzy
 msgid "Mesh Grid Style"
-msgstr "Usar grade em malha\n"
+msgstr "Usar grade em malha"
 
 #: gschem/scheme/gschem/builtins.scm:469
 msgid "Turn Grid Off"
