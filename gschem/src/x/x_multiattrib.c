@@ -1296,6 +1296,7 @@ multiattrib_edit_cell(Multiattrib *ThisDialog, GdkEventButton *event)
                                      path, column, NULL, TRUE);
   }
 }
+
 /*! \brief  Multi-attribute Dialog Edit Cell on Double (left) click
  *  \par Function Description
  *  This is a niffy over-ride function. Normally, edit-focus by click is
@@ -1338,6 +1339,16 @@ multiattrib_callback_popup_menu(GtkWidget *widget, void *user_data)
   return TRUE;
 }
 
+/*! \internal A good riddance */
+static void
+multiattrib_destroy_popup(Multiattrib *ThisDialog)
+{
+  if (ThisDialog->popup) {
+    gtk_widget_destroy(ThisDialog->popup);
+    ThisDialog->popup = NULL;
+  }
+}
+
 /*! \brief Multi-attribute Dialog Display Popup Do Dupilcate Attributes
  *  \par Function Description
  *
@@ -1364,7 +1375,7 @@ multiattrib_callback_popup_duplicate(GedaMenuItem *menuitem, void *user_data)
 
   /* update the treeview contents */
   multiattrib_update (ThisDialog);
-
+  multiattrib_destroy_popup(ThisDialog);
   GEDA_UNREF (attr_list);
 }
 
@@ -1380,7 +1391,6 @@ multiattrib_callback_popup_promote (GedaMenuItem *menuitem, void *user_data)
   GtkTreeModel   *model;
   GtkTreeIter     iter;
   GedaList       *attr_list;
-
 
   if (gtk_tree_selection_get_selected (
       gtk_tree_view_get_selection (ThisDialog->treeview), &model, &iter))
@@ -1403,6 +1413,8 @@ multiattrib_callback_popup_promote (GedaMenuItem *menuitem, void *user_data)
 
     GEDA_UNREF (attr_list);
   }
+
+  multiattrib_destroy_popup(ThisDialog);
 }
 
 /*! \brief  Multi-attribute Dialog Display Popup Do Delete Attributes
@@ -1433,7 +1445,7 @@ multiattrib_callback_popup_delete(GedaMenuItem *menuitem, void *user_data)
 
   /* update the treeview contents */
   multiattrib_update (ThisDialog);
-
+  multiattrib_destroy_popup(ThisDialog);
   GEDA_UNREF (attr_list);
 }
 
@@ -1466,6 +1478,7 @@ multiattrib_callback_popup_copy_to_all (GedaMenuItem *menuitem,
 
   /* update the treeview contents */
   multiattrib_update (ThisDialog);
+  multiattrib_destroy_popup(ThisDialog);
 }
 
 /*! \brief  Multi-attribute Dialog Display Value Key Pressed
@@ -1664,8 +1677,8 @@ multiattrib_popup_menu(Multiattrib *ThisDialog, GdkEventButton *event)
   };
 
   struct menuitem_t menuitems_inherited[] = {
-    { N_("Promote"),   G_CALLBACK (multiattrib_callback_popup_promote)   },
-    { NULL,            NULL                                              }
+    { N_("Promote"),   G_CALLBACK (multiattrib_callback_popup_promote) },
+    { NULL,            NULL                                            }
   };
 
   struct menuitem_t menuitems_noninherited[] = {
@@ -1721,11 +1734,17 @@ multiattrib_popup_menu(Multiattrib *ThisDialog, GdkEventButton *event)
   }
   gtk_widget_show_all (menu);
 
+  if (ThisDialog->popup) {
+    gtk_widget_destroy(ThisDialog->popup);
+  }
+
+  /* Store a pointer to the popup for destruction */
+  ThisDialog->popup = menu;
+
   /* make menu a popup menu */
   geda_menu_popup (GEDA_MENU (menu), NULL, NULL, NULL, NULL,
                   (event != NULL) ? event->button : 0,
-                  gdk_event_get_time ((GdkEvent*)event));
-
+                   gdk_event_get_time ((GdkEvent*)event));
 }
 
 /*! \brief GschemDialog "geometry_save" class method handler
@@ -1744,13 +1763,12 @@ static void multiattrib_geometry_save (GschemDialog *dialog,
 {
   bool show_inherited;
 
-  /* Call the parent's geometry_save method */
+  /* Call the parent's GschemDialog::geometry_save method */
   GSCHEM_DIALOG_CLASS (multiattrib_parent_class)->geometry_save (dialog, cfg, group_name);
 
   show_inherited = GET_SWITCH_STATE(MULTIATTRIB (dialog)->ShowInheritedSwitch);
 
   eda_config_set_boolean (cfg, group_name, "show_inherited", show_inherited);
-
 }
 
 /*! \brief GschemDialog "geometry_restore" class method handler
@@ -1918,10 +1936,12 @@ disconnect_object_list (Multiattrib *ThisDialog)
 static void
 multiattrib_finalize (GObject *object)
 {
-  Multiattrib  *ThisDialog = MULTIATTRIB(object);
+  Multiattrib *ThisDialog = MULTIATTRIB(object);
 
   /* Clear the existing list of attributes */
   disconnect_object_list (ThisDialog);
+
+  multiattrib_destroy_popup(ThisDialog);
 
   G_OBJECT_CLASS (multiattrib_parent_class)->finalize (object);
 }
@@ -1940,7 +1960,7 @@ static void multiattrib_class_init(MultiattribClass *class)
   GschemDialogClass *gschem_dialog_class;
 
   gobject_class        = G_OBJECT_CLASS (class);
-  gschem_dialog_class  = (GschemDialogClass*) class;
+  gschem_dialog_class  = (GschemDialogClass*)class;
 
   gschem_dialog_class->geometry_save    = multiattrib_geometry_save;
   gschem_dialog_class->geometry_restore = multiattrib_geometry_restore;
@@ -2120,8 +2140,8 @@ static void multiattrib_init(Multiattrib *ThisDialog)
                    };
 
   /*  Add the columns to the treeview */
-  for ( i = 0; i < G_N_ELEMENTS(column_def); i++)
-  {
+  for ( i = 0; i < G_N_ELEMENTS(column_def); i++) {
+
     GtkCellRenderer   *renderer;
     GtkTreeViewColumn *column;
 
@@ -2470,6 +2490,7 @@ lone_attributes_to_model_rows (Multiattrib *ThisDialog)
   for (o_iter = ThisDialog->object_list == NULL ? NULL : geda_list_get_glist (ThisDialog->object_list);
        o_iter != NULL;
        o_iter = g_list_next (o_iter)) {
+
     GedaObject *object = o_iter->data;
     MODEL_ROW *m_row;
 

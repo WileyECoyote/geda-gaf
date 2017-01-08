@@ -70,6 +70,7 @@ struct _Multiattrib {
   GedaOptionMenu  *optionmenu_shownv;
   GtkWidget      *frame_attributes;
   GtkWidget      *frame_add;
+  GtkWidget      *popup;
 
   GdkColor       value_normal_text_color;   /* Workaround for lameness in GtkTextView */
   GdkColor       insensitive_text_color;
