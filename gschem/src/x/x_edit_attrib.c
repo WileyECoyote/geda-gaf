@@ -61,8 +61,9 @@ typedef enum
  * \param [in] w_current Pointer to a GschemToplevel object
  * \param [in] object    Pointer to a selected object or NULL
  */
-static void x_dialog_attrib_edit_update_selection (GschemToplevel *w_current,
-                                                   GedaObject     *object)
+static void
+x_dialog_attrib_edit_update_selection (GschemToplevel *w_current,
+                                       GedaObject     *object)
 {
   GtkWidget *ThisDialog = w_current->aewindow;
 
@@ -190,7 +191,7 @@ attrib_edit_dialog_ok(AttributeEditMode mode, GschemToplevel *w_current)
   else
     vis = INVISIBLE;
 
-  option_index = option_menu_get_history(GEDA_OPTION_MENU (show_options));
+  option_index = option_menu_get_history(GEDA_OPTION_MENU(show_options));
 
   switch(option_index) {
     case(0):
@@ -206,7 +207,7 @@ attrib_edit_dialog_ok(AttributeEditMode mode, GschemToplevel *w_current)
       break;
 
     default:
-      fprintf(stderr, _("Got invalid show option; defaulting to show both\n"));
+      fprintf(stderr, _("invalid show option; defaulting to show both\n"));
       show = SHOW_NAME_VALUE;
       break;
   }
@@ -261,8 +262,9 @@ attrib_edit_dialog_ok(AttributeEditMode mode, GschemToplevel *w_current)
  * \param [in] response  integer response associated with widget
  * \param [in] w_current Pointer to a GschemToplevel object
  */
-void attribute_edit_dialog_response(GtkWidget *widget, int response,
-                                    GschemToplevel *w_current)
+static void
+attribute_edit_dialog_response(GtkWidget *widget, int response,
+                               GschemToplevel *w_current)
 {
   GtkWidget *ThisDialog;
   ThisDialog = w_current->aewindow;
@@ -305,7 +307,7 @@ callback_attrib_entry_activate (GtkWidget *widget, GtkWidget *value_entry)
   }
 }
 
-GtkWidget *x_attrib_option_menu_new()
+static GtkWidget *x_attrib_option_menu_new(void)
 {
   GtkWidget  *options_menu;
   GtkWidget  *show_options_menu;
@@ -339,8 +341,8 @@ GtkWidget *x_attrib_option_menu_new()
   geda_menu_append (GEDA_MENU (show_options_menu), menuitem);
   gtk_widget_set_tooltip_text (GTK_WIDGET(menuitem), options_both_tip);
 
-  geda_option_menu_set_menu (GEDA_OPTION_MENU (options_menu), show_options_menu);
-  geda_option_menu_set_history (GEDA_OPTION_MENU (options_menu), 0);
+  geda_option_menu_set_menu (GEDA_OPTION_MENU(options_menu), show_options_menu);
+  geda_option_menu_set_history (GEDA_OPTION_MENU(options_menu), 0);
 
   return options_menu;
 }
@@ -357,8 +359,8 @@ GtkWidget *x_attrib_option_menu_new()
  * \param [in] object    Currently select object or NULL
  * \param [in] flag      Enumerated AttributeEditMode mode flag
  */
-static
-void attrib_edit_dialog (GschemToplevel *w_current, GedaObject *object, int flag)
+static void
+attrib_edit_dialog (GschemToplevel *w_current, GedaObject *object, int flag)
 {
   GtkWidget  *ThisDialog = w_current->aewindow;
 

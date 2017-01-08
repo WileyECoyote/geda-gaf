@@ -3,6 +3,12 @@
     * include/x_multiattrib.h: Add member popup to store pointer to destroy
       the pop-up menu if the menu is popped-up and then no item is selected.
 
+    * src/x/x_edit_attrib.c: Remove the word "Got" from error message in
+      attrib_edit_dialog_ok. Declare attribute_edit_dialog_response and
+      x_attrib_option_menu_new static.
+
+    * src/x/x_image.c: Fix spelling; occured -> occurred.
+
     * src/x/x_multiattrib.c: Add function multiattrib_destroy_popup and
       call from each popup callback and multiattrib_finalize so that each
       popup created is destroyed.

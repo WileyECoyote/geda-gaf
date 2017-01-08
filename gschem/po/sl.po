@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-07 03:43-0600\n"
+"POT-Creation-Date: 2017-01-08 12:19-0600\n"
 "PO-Revision-Date: 2012-01-27 14:18+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
@@ -81,20 +81,20 @@ msgstr ""
 msgid "Exiting normal\n"
 msgstr ""
 
-#: gschem/src/base/gschem_dialog.c:568
+#: gschem/src/base/gschem_dialog.c:563
 #, fuzzy
 msgid "Parent Window"
 msgstr "Novo okno"
 
-#: gschem/src/base/gschem_dialog.c:569
+#: gschem/src/base/gschem_dialog.c:564
 msgid "Parent window for this dialog"
 msgstr ""
 
-#: gschem/src/base/gschem_dialog.c:589
+#: gschem/src/base/gschem_dialog.c:584
 msgid "Title"
 msgstr ""
 
-#: gschem/src/base/gschem_dialog.c:590
+#: gschem/src/base/gschem_dialog.c:585
 msgid "Dialog window title"
 msgstr ""
 
@@ -1320,13 +1320,13 @@ msgstr ""
 msgid "Components"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2561 gschem/src/x/x_multiattrib.c:1987
-#: gschem/src/x/x_multiattrib.c:1993
+#: gschem/src/x/x_compselect.c:2561 gschem/src/x/x_multiattrib.c:2007
+#: gschem/src/x/x_multiattrib.c:2013
 msgid "Name"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2573 gschem/src/x/x_multiattrib.c:1989
-#: gschem/src/x/x_multiattrib.c:1995
+#: gschem/src/x/x_compselect.c:2573 gschem/src/x/x_multiattrib.c:2009
+#: gschem/src/x/x_multiattrib.c:2015
 msgid "Value"
 msgstr ""
 
@@ -1966,7 +1966,7 @@ msgstr ""
 msgid "not in library, opening as page"
 msgstr ""
 
-#: gschem/src/x/x_dnd.c:442 gschem/src/x/x_multiattrib.c:2585
+#: gschem/src/x/x_dnd.c:442 gschem/src/x/x_multiattrib.c:2606
 msgid "symbol"
 msgstr ""
 
@@ -1990,95 +1990,95 @@ msgstr ""
 msgid "Done, renderer is down"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:209
+#: gschem/src/x/x_edit_attrib.c:210
 #, c-format
-msgid "Got invalid show option; defaulting to show both\n"
-msgstr ""
-
-#: gschem/src/x/x_edit_attrib.c:319
-msgid "Select to choose an attribute visibility options"
-msgstr ""
-
-#: gschem/src/x/x_edit_attrib.c:320
-msgid "Show only the name of the attribute"
+msgid "invalid show option; defaulting to show both\n"
 msgstr ""
 
 #: gschem/src/x/x_edit_attrib.c:321
-msgid "Show only the value of the attribute"
+msgid "Select to choose an attribute visibility options"
 msgstr ""
 
 #: gschem/src/x/x_edit_attrib.c:322
+msgid "Show only the name of the attribute"
+msgstr ""
+
+#: gschem/src/x/x_edit_attrib.c:323
+msgid "Show only the value of the attribute"
+msgstr ""
+
+#: gschem/src/x/x_edit_attrib.c:324
 msgid "Show both the name and the value of the attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:330
+#: gschem/src/x/x_edit_attrib.c:332
 msgid "Show Value Only"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:334
+#: gschem/src/x/x_edit_attrib.c:336
 msgid "Show Name Only"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:338 gschem/src/x/x_multiattrib.c:1633
+#: gschem/src/x/x_edit_attrib.c:340 gschem/src/x/x_multiattrib.c:1646
 #: gschem/scheme/gschem/builtins.scm:413
 msgid "Show Name & Value"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:402
+#: gschem/src/x/x_edit_attrib.c:404
 msgid "Enter or type an attribute name"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:403
+#: gschem/src/x/x_edit_attrib.c:405
 msgid "<b>Add Attribute</b>"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:404
+#: gschem/src/x/x_edit_attrib.c:406
 msgid "<b>Edit Attribute</b>"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:406
+#: gschem/src/x/x_edit_attrib.c:408
 msgid "Select the name of the attribute to add"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:407
+#: gschem/src/x/x_edit_attrib.c:409
 msgid "Select the name of the attribute to edit"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:409
+#: gschem/src/x/x_edit_attrib.c:411
 msgid "Input a value for the new attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:410
+#: gschem/src/x/x_edit_attrib.c:412
 msgid "Input or edit the value of the attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:412
+#: gschem/src/x/x_edit_attrib.c:414
 msgid "Enable or disable visibility of the attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:429
+#: gschem/src/x/x_edit_attrib.c:431
 msgid "Single Attribute Editor"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:457 gschem/src/x/x_multiattrib.c:2196
+#: gschem/src/x/x_edit_attrib.c:459 gschem/src/x/x_multiattrib.c:2216
 msgid "Name:"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:474 gschem/src/x/x_multiattrib.c:2215
+#: gschem/src/x/x_edit_attrib.c:476 gschem/src/x/x_multiattrib.c:2235
 msgid "Value:"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:488 gschem/src/x/x_multiattrib.c:1991
-#: gschem/src/x/x_multiattrib.c:2271
+#: gschem/src/x/x_edit_attrib.c:490 gschem/src/x/x_multiattrib.c:2011
+#: gschem/src/x/x_multiattrib.c:2291
 msgid "Visible"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:517 gschem/src/x/x_edit_text.c:590
+#: gschem/src/x/x_edit_attrib.c:519 gschem/src/x/x_edit_text.c:590
 #: gschem/src/x/x_edit_text.c:602
 msgid "Atrribute Name List"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:521 gschem/src/x/x_edit_text.c:598
+#: gschem/src/x/x_edit_attrib.c:523 gschem/src/x/x_edit_text.c:598
 msgid "Attribute Value Entry"
 msgstr ""
 
@@ -2438,11 +2438,10 @@ msgstr ""
 
 #: gschem/src/x/x_fileselect.c:475
 msgid ""
-"\n"
 "If you load the original file, the backup file will be overwritten in the "
-"next autosave timeout and it will be lost.\n"
+"next autosave timeout and will be lost.\n"
 "\n"
-"Do you want to load the backup file?\n"
+"Do you want to load the backup file?"
 msgstr ""
 
 #: gschem/src/x/x_icons.c:251
@@ -2491,7 +2490,7 @@ msgid "Unable to write"
 msgstr ""
 
 #: gschem/src/x/x_image.c:477
-msgid "An error occured while saving image with type"
+msgid "An error occurred while saving image with type"
 msgstr ""
 
 #: gschem/src/x/x_image.c:478
@@ -2691,7 +2690,7 @@ msgstr ""
 msgid "Project a linear objects to other objects"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:120 gschem/src/x/x_multiattrib.c:1673
+#: gschem/src/x/x_menus.c:120 gschem/src/x/x_multiattrib.c:1686
 #: gschem/scheme/gschem/builtins.scm:104
 msgid "Delete"
 msgstr ""
@@ -3025,7 +3024,7 @@ msgstr ""
 msgid "falling back to"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:796 gschem/src/x/x_multiattrib.c:2739
+#: gschem/src/x/x_multiattrib.c:796 gschem/src/x/x_multiattrib.c:2760
 msgid "<various>"
 msgstr ""
 
@@ -3037,92 +3036,92 @@ msgstr ""
 msgid "Multi-Attribute Editor"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:1616
+#: gschem/src/x/x_multiattrib.c:1629
 msgid "Select an attribute to add"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:1635
+#: gschem/src/x/x_multiattrib.c:1648
 msgid "Show Value only"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:1637
+#: gschem/src/x/x_multiattrib.c:1650
 msgid "Show Name only"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:1641
+#: gschem/src/x/x_multiattrib.c:1654
 msgid "Select an attribute visibility option"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:1667
+#: gschem/src/x/x_multiattrib.c:1680
 msgid "Promote"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:1672
+#: gschem/src/x/x_multiattrib.c:1685
 msgid "Duplicate"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:1674
+#: gschem/src/x/x_multiattrib.c:1687
 msgid "Copy to all"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2037 gschem/src/x/x_multiattrib.c:2562
+#: gschem/src/x/x_multiattrib.c:2057 gschem/src/x/x_multiattrib.c:2583
 msgid "Edit Attributes"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2179 gschem/scheme/gschem/builtins.scm:350
+#: gschem/src/x/x_multiattrib.c:2199 gschem/scheme/gschem/builtins.scm:350
 msgid "Add Attribute"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2230
+#: gschem/src/x/x_multiattrib.c:2250
 msgid "Ctrl+Enter inserts new line; Ctrl+Tab inserts Tab"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2261
+#: gschem/src/x/x_multiattrib.c:2281
 msgid "Enter or type a value for the new attribute then press the Add button"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2276
+#: gschem/src/x/x_multiattrib.c:2296
 msgid "Enable or disable attribute visibility"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2291
+#: gschem/src/x/x_multiattrib.c:2311
 msgid "Add new attribute to component"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2581
+#: gschem/src/x/x_multiattrib.c:2602
 msgid "symbols"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2596
+#: gschem/src/x/x_multiattrib.c:2617
 msgid "pins"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2600
+#: gschem/src/x/x_multiattrib.c:2621
 #, fuzzy
 msgid "pin"
 msgstr "Na_tisni ..."
 
-#: gschem/src/x/x_multiattrib.c:2611
+#: gschem/src/x/x_multiattrib.c:2632
 msgid "nets"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2615
+#: gschem/src/x/x_multiattrib.c:2636
 msgid "net"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2626
+#: gschem/src/x/x_multiattrib.c:2647
 msgid "buses"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2630
+#: gschem/src/x/x_multiattrib.c:2651
 msgid "bus"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2641
+#: gschem/src/x/x_multiattrib.c:2662
 msgid "attributes"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2645
+#: gschem/src/x/x_multiattrib.c:2666
 msgid "attribute"
 msgstr ""
 

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr_FR\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-07 03:43-0600\n"
+"POT-Creation-Date: 2017-01-08 12:19-0600\n"
 "PO-Revision-Date: 2016-12-28 19:57-0600\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -86,20 +86,20 @@ msgstr "ERREUR: Impossible de charger ou d'évaluer le script de démarrage\n"
 msgid "Exiting normal\n"
 msgstr ""
 
-#: gschem/src/base/gschem_dialog.c:568
+#: gschem/src/base/gschem_dialog.c:563
 msgid "Parent Window"
 msgstr "Vue en cours"
 
-#: gschem/src/base/gschem_dialog.c:569
+#: gschem/src/base/gschem_dialog.c:564
 msgid "Parent window for this dialog"
 msgstr ""
 
-#: gschem/src/base/gschem_dialog.c:589
-#, fuzzy
+# Title
+#: gschem/src/base/gschem_dialog.c:584
 msgid "Title"
 msgstr "Titre"
 
-#: gschem/src/base/gschem_dialog.c:590
+#: gschem/src/base/gschem_dialog.c:585
 msgid "Dialog window title"
 msgstr ""
 
@@ -132,7 +132,7 @@ msgstr ""
 #: gschem/src/base/gschem_page_view.c:258
 #: gschem/src/base/gschem_page_view.c:259
 msgid "Page"
-msgstr "_Page"
+msgstr "Page"
 
 #: gschem/src/base/gschem_page_view.c:265
 #: gschem/src/base/gschem_page_view.c:266
@@ -205,7 +205,7 @@ msgstr ""
 "Page d'accueil gEDA/gaf: <http://www.geda-project.org/>\n"
 
 #: gschem/src/base/gschem_parsecmd.c:128
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "gEDA/gschem %s (%s) (g%.7s)\n"
 "Copyright (C) 1998-2017 gEDA developers\n"
@@ -215,7 +215,7 @@ msgid ""
 "There is NO WARRANTY, to the extent permitted by law.\n"
 msgstr ""
 "gEDA/gschem %s (%s) (g%.7s)\n"
-"Copyright (C) 1998-2012 gEDA developers\n"
+"Copyright (C) 1998-2017 gEDA developers\n"
 "Ceci est un logiciel libre, et vous êtes invité à le diffuser sous\n"
 "certaines conditions. Pour plus de détails, reportez-vous au fichier "
 "`COPYING',\n"
@@ -558,10 +558,10 @@ msgstr "Impossible de lancer l'URI"
 msgid "Found invalid gschem window smob ~S"
 msgstr ""
 
+# current value of
 #: gschem/src/iface/i_command.c:132 gschem/src/iface/i_command.c:5025
-#, fuzzy
 msgid "current value of"
-msgstr "la page en cours"
+msgstr "valeur actuelle de"
 
 #: gschem/src/iface/i_command.c:132 gschem/src/iface/i_command.c:5026
 msgid "is"
@@ -583,10 +583,10 @@ msgstr ""
 msgid "New page created"
 msgstr "Nouvelle page créée"
 
+# New Window created
 #: gschem/src/iface/i_command.c:752
-#, fuzzy
 msgid "New Window created"
-msgstr "Nouvelle création de fenêtre [%s]\n"
+msgstr "Nouvelle fenêtre créée"
 
 #: gschem/src/iface/i_command.c:951
 msgid "Failed to Save All"
@@ -648,10 +648,10 @@ msgstr "/Zoom avant"
 msgid "Specify new zoom:"
 msgstr ""
 
+# error
 #: gschem/src/iface/i_command.c:2248
-#, fuzzy
 msgid "error"
-msgstr "Miroir"
+msgstr "erreur"
 
 #: gschem/src/iface/i_command.c:2256
 msgid "No component selected\n"
@@ -661,8 +661,8 @@ msgstr "Aucun composant sélectionné\n"
 msgid "Confirm revert ALL documents"
 msgstr ""
 
+# Search for source
 #: gschem/src/iface/i_command.c:2982
-#, fuzzy
 msgid "Searching for source"
 msgstr "Recherche de source"
 
@@ -674,8 +674,8 @@ msgstr "Impossible de remplacer les image"
 msgid "Hierarchy Error"
 msgstr "Hié_rarchie"
 
+# Search for symbol
 #: gschem/src/iface/i_command.c:3102
-#, fuzzy
 msgid "Searching for symbol"
 msgstr "Recherche du symbole"
 
@@ -759,10 +759,10 @@ msgstr ""
 msgid "On"
 msgstr "Ouvrir"
 
+# drag-can-move is now
 #: gschem/src/iface/i_command.c:4421
-#, fuzzy
 msgid "Drag-Can-Move is now"
-msgstr "Piste _magnétique On/Off"
+msgstr "Drag-can-move est maintenant"
 
 #: gschem/src/iface/i_command.c:4433
 msgid "Action feedback mode set to OUTLINE\n"
@@ -772,9 +772,10 @@ msgstr "Mode de retour utilisateur positionné à OUTLINE\n"
 msgid "Action feedback mode set to BOUNDINGBOX\n"
 msgstr "Mode de retour utilisateur positionné à BOUNDINGBOX\n"
 
+# Auto Pan is now
 #: gschem/src/iface/i_command.c:4463
 msgid "Auto-Pan is now"
-msgstr ""
+msgstr "Le panoramique automatique est maintenant"
 
 #: gschem/src/iface/i_command.c:4515 gschem/src/iface/i_command.c:4544
 #: gschem/src/iface/i_command.c:4564 gschem/src/iface/i_command.c:4584
@@ -1156,11 +1157,10 @@ msgid "Warning: Ending net off grid coordinate\n"
 msgstr ""
 "Attention; Arrêt d'une liaison en-dehors des coordonnées de la grille\n"
 
+# Bus ripper symbol was not found in any component library
 #: gschem/src/object/o_net.c:1096
-#, fuzzy
 msgid "Bus ripper symbol was not found in any component library"
-msgstr ""
-"Bus ripper symbol [%s] n'a été trouvé dans aucune librairie de composants\n"
+msgstr "Bus ripper symbol n'a été trouvé dans aucune librairie de composants"
 
 #: gschem/src/object/o_picture.c:357
 msgid "Update All"
@@ -1172,11 +1172,11 @@ msgstr ""
 
 #: gschem/src/object/o_picture.c:397
 msgid "Failed to replace picture"
-msgstr "Impossible de remplacer les images: %s"
+msgstr "Impossible de remplacer les images"
 
 #: gschem/src/object/o_picture.c:400
 msgid "<b>Failed to replace picture</b>"
-msgstr "Impossible de remplacer les images: %s"
+msgstr "<b>Impossible de remplacer les images</b>"
 
 #: gschem/src/object/o_picture.c:425
 msgid "Orginal size"
@@ -1256,10 +1256,10 @@ msgstr "Une erreur s'est produite lors d'une opération de disque UNDO"
 msgid "Undo/Redo disabled\n"
 msgstr "Opérations Défaire/Refaire désactivées dans\n"
 
+# Undo error.
 #: gschem/src/object/o_undo.c:550
-#, fuzzy
 msgid "<b>Undo error.</b>"
-msgstr "<b>Portée</b>"
+msgstr "<b>Annuler Erreur.</b>"
 
 #: gschem/src/object/o_undo.c:550
 msgid "Undo failed"
@@ -1366,13 +1366,13 @@ msgstr "Éclater le composant en objets individuels"
 msgid "Components"
 msgstr "Composants"
 
-#: gschem/src/x/x_compselect.c:2561 gschem/src/x/x_multiattrib.c:1987
-#: gschem/src/x/x_multiattrib.c:1993
+#: gschem/src/x/x_compselect.c:2561 gschem/src/x/x_multiattrib.c:2007
+#: gschem/src/x/x_multiattrib.c:2013
 msgid "Name"
 msgstr "Nom"
 
-#: gschem/src/x/x_compselect.c:2573 gschem/src/x/x_multiattrib.c:1989
-#: gschem/src/x/x_multiattrib.c:1995
+#: gschem/src/x/x_compselect.c:2573 gschem/src/x/x_multiattrib.c:2009
+#: gschem/src/x/x_multiattrib.c:2015
 msgid "Value"
 msgstr "Valeur"
 
@@ -1524,10 +1524,10 @@ msgstr "Écran"
 msgid "World"
 msgstr "Monde"
 
+# Unable to load image file
 #: gschem/src/x/x_dialog.c:437
-#, fuzzy
 msgid "Could not load image file"
-msgstr "Impossible d'ouvrir le fichier"
+msgstr "Impossible de charger le fichier image"
 
 #: gschem/src/x/x_dialog.c:443
 msgid "gEDA: GPL Electronic Design Automation"
@@ -1542,13 +1542,12 @@ msgid "Guile"
 msgstr ""
 
 #: gschem/src/x/x_dialog.c:455
-#, fuzzy
 msgid ""
 "Copyright © 1998-2017 Ales Hvezda <ahvezda@geda.seul.org>\n"
 "Copyright © 1998-2017 gEDA Contributors (see ChangeLog for details)"
 msgstr ""
-"Copyright © 1998-2012 Ales Hvezda <ahvezda@geda.seul.org>\n"
-"Copyright © 1998-2012 gEDA Contributors (reportez-vous au fichier CHANGELOG "
+"Copyright © 1998-2017 Ales Hvezda <ahvezda@geda.seul.org>\n"
+"Copyright © 1998-2017 gEDA Contributors (reportez-vous au fichier CHANGELOG "
 "pour plus de détails)"
 
 #: gschem/src/x/x_dialog.c:464 gschem/scheme/gschem/builtins.scm:565
@@ -2020,7 +2019,7 @@ msgstr "Dans la bibliothèque, essayez de rafraîchir"
 msgid "not in library, opening as page"
 msgstr "Pas dans la bibliothèque, ouverture comme page"
 
-#: gschem/src/x/x_dnd.c:442 gschem/src/x/x_multiattrib.c:2585
+#: gschem/src/x/x_dnd.c:442 gschem/src/x/x_multiattrib.c:2606
 msgid "symbol"
 msgstr "sym - Symboles"
 
@@ -2044,97 +2043,97 @@ msgstr ""
 msgid "Done, renderer is down"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:209
-#, c-format
-msgid "Got invalid show option; defaulting to show both\n"
+#: gschem/src/x/x_edit_attrib.c:210
+#, fuzzy, c-format
+msgid "invalid show option; defaulting to show both\n"
 msgstr ""
 "Option d'affichage invalide ; changement pour affichage du nom et de la "
 "valeur\n"
 
-#: gschem/src/x/x_edit_attrib.c:319
+#: gschem/src/x/x_edit_attrib.c:321
 msgid "Select to choose an attribute visibility options"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:320
+#: gschem/src/x/x_edit_attrib.c:322
 msgid "Show only the name of the attribute"
 msgstr "Montrer les attributs hérités"
 
-#: gschem/src/x/x_edit_attrib.c:321
+#: gschem/src/x/x_edit_attrib.c:323
 msgid "Show only the value of the attribute"
 msgstr "Montrer les attributs hérités"
 
-#: gschem/src/x/x_edit_attrib.c:322
+#: gschem/src/x/x_edit_attrib.c:324
 msgid "Show both the name and the value of the attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:330
+#: gschem/src/x/x_edit_attrib.c:332
 msgid "Show Value Only"
 msgstr "Montrer seulement la valeur"
 
-#: gschem/src/x/x_edit_attrib.c:334
+#: gschem/src/x/x_edit_attrib.c:336
 msgid "Show Name Only"
 msgstr "Montrer seulement le nom"
 
-#: gschem/src/x/x_edit_attrib.c:338 gschem/src/x/x_multiattrib.c:1633
+#: gschem/src/x/x_edit_attrib.c:340 gschem/src/x/x_multiattrib.c:1646
 #: gschem/scheme/gschem/builtins.scm:413
 msgid "Show Name & Value"
 msgstr "Montrer le nom et la valeur"
 
-#: gschem/src/x/x_edit_attrib.c:402
+#: gschem/src/x/x_edit_attrib.c:404
 msgid "Enter or type an attribute name"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:403
+#: gschem/src/x/x_edit_attrib.c:405
 msgid "<b>Add Attribute</b>"
 msgstr "<b>Ajouter un attribut</b>"
 
-#: gschem/src/x/x_edit_attrib.c:404
+#: gschem/src/x/x_edit_attrib.c:406
 msgid "<b>Edit Attribute</b>"
 msgstr "<b>Éditer un attribut</b>"
 
-#: gschem/src/x/x_edit_attrib.c:406
+#: gschem/src/x/x_edit_attrib.c:408
 msgid "Select the name of the attribute to add"
 msgstr "Sélectionnez le nom de l'attribut à ajouter"
 
-#: gschem/src/x/x_edit_attrib.c:407
+#: gschem/src/x/x_edit_attrib.c:409
 msgid "Select the name of the attribute to edit"
 msgstr "Sélectionnez le nom de l'attribut à modifier"
 
-#: gschem/src/x/x_edit_attrib.c:409
+#: gschem/src/x/x_edit_attrib.c:411
 msgid "Input a value for the new attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:410
+#: gschem/src/x/x_edit_attrib.c:412
 msgid "Input or edit the value of the attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:412
+#: gschem/src/x/x_edit_attrib.c:414
 msgid "Enable or disable visibility of the attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:429
+#: gschem/src/x/x_edit_attrib.c:431
 msgid "Single Attribute Editor"
 msgstr "Éditeur d'attribut"
 
-#: gschem/src/x/x_edit_attrib.c:457 gschem/src/x/x_multiattrib.c:2196
+#: gschem/src/x/x_edit_attrib.c:459 gschem/src/x/x_multiattrib.c:2216
 msgid "Name:"
 msgstr "Nom:"
 
-#: gschem/src/x/x_edit_attrib.c:474 gschem/src/x/x_multiattrib.c:2215
+#: gschem/src/x/x_edit_attrib.c:476 gschem/src/x/x_multiattrib.c:2235
 msgid "Value:"
 msgstr "Valeur:"
 
-#: gschem/src/x/x_edit_attrib.c:488 gschem/src/x/x_multiattrib.c:1991
-#: gschem/src/x/x_multiattrib.c:2271
+#: gschem/src/x/x_edit_attrib.c:490 gschem/src/x/x_multiattrib.c:2011
+#: gschem/src/x/x_multiattrib.c:2291
 msgid "Visible"
 msgstr "Visible"
 
-#: gschem/src/x/x_edit_attrib.c:517 gschem/src/x/x_edit_text.c:590
+#: gschem/src/x/x_edit_attrib.c:519 gschem/src/x/x_edit_text.c:590
 #: gschem/src/x/x_edit_text.c:602
 msgid "Atrribute Name List"
 msgstr "Attributs"
 
-#: gschem/src/x/x_edit_attrib.c:521 gschem/src/x/x_edit_text.c:598
+#: gschem/src/x/x_edit_attrib.c:523 gschem/src/x/x_edit_text.c:598
 msgid "Attribute Value Entry"
 msgstr "Entrée de la valeur d'attribut"
 
@@ -2493,11 +2492,10 @@ msgstr "Sauvegarde annulée sur demande de l'utilisateur\n"
 
 #: gschem/src/x/x_fileselect.c:475
 msgid ""
-"\n"
 "If you load the original file, the backup file will be overwritten in the "
-"next autosave timeout and it will be lost.\n"
+"next autosave timeout and will be lost.\n"
 "\n"
-"Do you want to load the backup file?\n"
+"Do you want to load the backup file?"
 msgstr ""
 
 #: gschem/src/x/x_icons.c:251
@@ -2544,8 +2542,9 @@ msgstr "Fichier PDF généré"
 msgid "Unable to write"
 msgstr "Impossible d'écrire dans"
 
+# An error occurred while saving the image with the type
 #: gschem/src/x/x_image.c:477
-msgid "An error occured while saving image with type"
+msgid "An error occurred while saving image with type"
 msgstr ""
 "Une erreur s'est produite lors de l'enregistrement de l'image avec le type"
 
@@ -2745,7 +2744,7 @@ msgstr "/Agrandissement auto"
 msgid "Project a linear objects to other objects"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:120 gschem/src/x/x_multiattrib.c:1673
+#: gschem/src/x/x_menus.c:120 gschem/src/x/x_multiattrib.c:1686
 #: gschem/scheme/gschem/builtins.scm:104
 msgid "Delete"
 msgstr "Supprimer"
@@ -3077,7 +3076,7 @@ msgstr "Impossible de remplacer les images: %s"
 msgid "falling back to"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:796 gschem/src/x/x_multiattrib.c:2739
+#: gschem/src/x/x_multiattrib.c:796 gschem/src/x/x_multiattrib.c:2760
 msgid "<various>"
 msgstr ""
 
@@ -3089,91 +3088,91 @@ msgstr "Les attributs sans nom sont interdits. Donnez un nom."
 msgid "Multi-Attribute Editor"
 msgstr "Éditeur multi-attributs"
 
-#: gschem/src/x/x_multiattrib.c:1616
+#: gschem/src/x/x_multiattrib.c:1629
 msgid "Select an attribute to add"
 msgstr "Sélectionnez un attribut à ajouter"
 
-#: gschem/src/x/x_multiattrib.c:1635
+#: gschem/src/x/x_multiattrib.c:1648
 msgid "Show Value only"
 msgstr "Montrer seulement la valeur"
 
-#: gschem/src/x/x_multiattrib.c:1637
+#: gschem/src/x/x_multiattrib.c:1650
 msgid "Show Name only"
 msgstr "Montrer seulement le nom"
 
-#: gschem/src/x/x_multiattrib.c:1641
+#: gschem/src/x/x_multiattrib.c:1654
 msgid "Select an attribute visibility option"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:1667
+#: gschem/src/x/x_multiattrib.c:1680
 msgid "Promote"
 msgstr "Promouvoir"
 
-#: gschem/src/x/x_multiattrib.c:1672
+#: gschem/src/x/x_multiattrib.c:1685
 msgid "Duplicate"
 msgstr "Cloner"
 
-#: gschem/src/x/x_multiattrib.c:1674
+#: gschem/src/x/x_multiattrib.c:1687
 msgid "Copy to all"
 msgstr "Copier dans 1"
 
-#: gschem/src/x/x_multiattrib.c:2037 gschem/src/x/x_multiattrib.c:2562
+#: gschem/src/x/x_multiattrib.c:2057 gschem/src/x/x_multiattrib.c:2583
 msgid "Edit Attributes"
 msgstr "Éditeur d'attributs"
 
-#: gschem/src/x/x_multiattrib.c:2179 gschem/scheme/gschem/builtins.scm:350
+#: gschem/src/x/x_multiattrib.c:2199 gschem/scheme/gschem/builtins.scm:350
 msgid "Add Attribute"
 msgstr "Ajouter un attribut"
 
-#: gschem/src/x/x_multiattrib.c:2230
+#: gschem/src/x/x_multiattrib.c:2250
 msgid "Ctrl+Enter inserts new line; Ctrl+Tab inserts Tab"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2261
+#: gschem/src/x/x_multiattrib.c:2281
 msgid "Enter or type a value for the new attribute then press the Add button"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2276
+#: gschem/src/x/x_multiattrib.c:2296
 msgid "Enable or disable attribute visibility"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2291
+#: gschem/src/x/x_multiattrib.c:2311
 msgid "Add new attribute to component"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2581
+#: gschem/src/x/x_multiattrib.c:2602
 msgid "symbols"
 msgstr "sym - Symboles"
 
-#: gschem/src/x/x_multiattrib.c:2596
+#: gschem/src/x/x_multiattrib.c:2617
 msgid "pins"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2600
+#: gschem/src/x/x_multiattrib.c:2621
 msgid "pin"
 msgstr "Broche"
 
-#: gschem/src/x/x_multiattrib.c:2611
+#: gschem/src/x/x_multiattrib.c:2632
 msgid "nets"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2615
+#: gschem/src/x/x_multiattrib.c:2636
 msgid "net"
 msgstr "Piste"
 
-#: gschem/src/x/x_multiattrib.c:2626
+#: gschem/src/x/x_multiattrib.c:2647
 msgid "buses"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2630
+#: gschem/src/x/x_multiattrib.c:2651
 msgid "bus"
 msgstr "Bus"
 
-#: gschem/src/x/x_multiattrib.c:2641
+#: gschem/src/x/x_multiattrib.c:2662
 msgid "attributes"
 msgstr "Attributs"
 
-#: gschem/src/x/x_multiattrib.c:2645
+#: gschem/src/x/x_multiattrib.c:2666
 msgid "attribute"
 msgstr "Attributs"
 
@@ -3574,14 +3573,14 @@ msgstr "Nouveau fichier"
 msgid "Failed to load file"
 msgstr "Impossible de charger le fichier"
 
+# Creating a new file
 #: gschem/src/x/x_window.c:983
-#, fuzzy
 msgid "Creating new file"
-msgstr "Échec de l'insertion du contenu copié"
+msgstr "Création d'un nouveau fichier"
 
 #: gschem/src/x/x_window.c:996
 msgid "Path"
-msgstr "/Ajouter une piste"
+msgstr "Ajouter une piste"
 
 #: gschem/src/x/x_window.c:999
 msgid ""
@@ -5034,10 +5033,10 @@ msgstr "Annotation automatique"
 msgid "Show Console Window"
 msgstr "Afficher les _coordonnées"
 
+# Show Coordinates
 #: gschem/scheme/gschem/builtins.scm:439
-#, fuzzy
 msgid "Show Coordinates Window"
-msgstr "Afficher les _coordonnées"
+msgstr "Afficher les coordonnées"
 
 #: gschem/scheme/gschem/builtins.scm:442
 msgid "Guile Path"

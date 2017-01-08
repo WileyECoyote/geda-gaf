@@ -474,7 +474,7 @@ void x_image_lowlevel(GschemToplevel *w_current, const char *filename,
         if (!gdk_pixbuf_save(pixbuf, filename, filetype, &err, NULL)) {
 
           const char *log_msg1 = _("Unable to write");
-          const char *err_msg1  = _("An error occured while saving image with type");
+          const char *err_msg1  = _("An error occurred while saving image with type");
           const char *err_msg2  = _("to filename");
 
           /* Log the error */
