@@ -544,14 +544,15 @@ msgstr ""
 msgid "while inside an action!\n"
 msgstr ""
 
+# New page created
 #: gschem/src/iface/i_command.c:714 gschem/src/iface/i_command.c:2715
 msgid "New page created"
-msgstr ""
+msgstr "Нова страница, създадена"
 
+# New Window created
 #: gschem/src/iface/i_command.c:752
-#, fuzzy
 msgid "New Window created"
-msgstr "Нов Прозорец"
+msgstr "Нов Прозорец създаден"
 
 #: gschem/src/iface/i_command.c:951
 msgid "Failed to Save All"
@@ -597,24 +598,27 @@ msgstr ""
 msgid "Empty buffer"
 msgstr ""
 
+# offset mode
 #: gschem/src/iface/i_command.c:1622
 msgid "Offset Mode"
 msgstr "компенсира режим"
 
+# Specify the offset distance
 #: gschem/src/iface/i_command.c:1623
 msgid "Specify offset distance:"
 msgstr "Посочете компенсира разстояние:"
 
+# zoom magnification
 #: gschem/src/iface/i_command.c:2204
 msgid "Zoom Magnification"
-msgstr ""
+msgstr "варио увеличение"
 
 #: gschem/src/iface/i_command.c:2204
 msgid "Specify new zoom:"
 msgstr ""
 
+# error
 #: gschem/src/iface/i_command.c:2248
-#, fuzzy
 msgid "error"
 msgstr "грешка"
 
@@ -2249,9 +2253,8 @@ msgid "io"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:99
-#, fuzzy
 msgid "oc"
-msgstr "Заключване"
+msgstr "oc"
 
 #: gschem/src/x/x_edit_pin.c:100
 msgid "oe"
@@ -3462,10 +3465,10 @@ msgstr ""
 msgid "Could not allocate a graphics context"
 msgstr ""
 
+# there is no active window
 #: gschem/src/x/x_window.c:110
-#, fuzzy
 msgid "there is no current window"
-msgstr "Нов Прозорец"
+msgstr "няма активен прозорец"
 
 #: gschem/src/x/x_window.c:119
 msgid "Could not create a Cairo context, is window drawable?\n"
@@ -4391,53 +4394,61 @@ msgstr "шоу на конзола прозорец"
 # show coordinates window
 #: gschem/etc/system-gschemrc.scm:2297
 msgid "Show Coord _Window..."
-msgstr "шоу координира прозорец"
+msgstr "шоу координира прозорец..."
 
+# Display coordinates
 #: gschem/etc/system-gschemrc.scm:2297
 msgid "Display coordinates"
-msgstr ""
+msgstr "координати дисплея"
 
+# invoke macro
 #: gschem/etc/system-gschemrc.scm:2300 gschem/scheme/gschem/builtins.scm:445
 msgid "Invoke Macro"
-msgstr ""
+msgstr "позове макро"
 
+# invoke the macro
 #: gschem/etc/system-gschemrc.scm:2300
 msgid "Invoke a macro"
-msgstr ""
+msgstr "позове на макро"
 
 #: gschem/etc/system-gschemrc.scm:2301
 msgid "G_uile Path..."
-msgstr ""
+msgstr "G_uile пътека..."
 
+# View or manage guile path
 #: gschem/etc/system-gschemrc.scm:2301
 msgid "View or manage guile path"
-msgstr ""
+msgstr "Преглед или управляват guile пътека"
 
+# Integrated Component/Picture
 #: gschem/etc/system-gschemrc.scm:2305 gschem/scheme/gschem/builtins.scm:451
 msgid "Embed Component/Picture"
 msgstr "Вграден Компонент/Картина"
 
+# Integrate Component or image object
 #: gschem/etc/system-gschemrc.scm:2305
-#, fuzzy
 msgid "Embed a component or image object"
-msgstr "Вграден Компонент/Картина"
+msgstr "Вграден Компонент или изображение обект"
 
+# Not integrated Component/Picture
 #: gschem/etc/system-gschemrc.scm:2306 gschem/scheme/gschem/builtins.scm:454
 msgid "Unembed Component/Picture"
 msgstr "Невграден Компонент/Картина"
 
+# Not integrated Component  or image object
 #: gschem/etc/system-gschemrc.scm:2306
-#, fuzzy
 msgid "Unembed a component or image object"
-msgstr "Невграден Компонент/Картина"
+msgstr "Невграден Компонент или изображение обект"
 
+# Refresh Component
 #: gschem/etc/system-gschemrc.scm:2307 gschem/scheme/gschem/builtins.scm:457
 msgid "Update Component"
 msgstr "Обнови Компонент"
 
+# Reload definition of the selected component
 #: gschem/etc/system-gschemrc.scm:2307
 msgid "Reload definition of selected component"
-msgstr ""
+msgstr "Презареди определение на избрания компонент"
 
 #: gschem/etc/system-gschemrc.scm:2315
 msgid "Cycle _grid styles"
@@ -4583,10 +4594,10 @@ msgstr "Файл"
 msgid "_Edit"
 msgstr "Редактирай"
 
+# Select
 #: gschem/etc/system-gschemrc.scm:2369
-#, fuzzy
 msgid "_Select"
-msgstr "Избери режим"
+msgstr "Изберете"
 
 #: gschem/etc/system-gschemrc.scm:2371
 msgid "_View"

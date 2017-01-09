@@ -1,5 +1,7 @@
 2017-01-08 Wiley E. Hill <wileyhill@gmail.com>
 
+    * po/bg.po: Update Bulgarian translations.
+
     * include/x_multiattrib.h: Add member popup to store pointer to destroy
       the pop-up menu if the menu is popped-up and then no item is selected.
 
