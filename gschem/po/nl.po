@@ -1265,8 +1265,7 @@ msgstr "Waarschuwing: einde van draad niet op raster coordinaat\n"
 #: gschem/src/object/o_net.c:1096
 #, fuzzy
 msgid "Bus ripper symbol was not found in any component library"
-msgstr ""
-"Bus ripper symbool [%s] niet gevonden in een van de component bibliotheken\n"
+msgstr "Bus ripper symbool niet gevonden in een van de component bibliotheken"
 
 #: gschem/src/object/o_picture.c:357
 #, fuzzy
@@ -1280,12 +1279,12 @@ msgstr ""
 #: gschem/src/object/o_picture.c:397
 #, fuzzy
 msgid "Failed to replace picture"
-msgstr "Fout bij het vervangen van afbeeldingen: %s"
+msgstr "Fout bij het vervangen van afbeeldingen"
 
 #: gschem/src/object/o_picture.c:400
 #, fuzzy
 msgid "<b>Failed to replace picture</b>"
-msgstr "Fout bij het vervangen van afbeeldingen: %s"
+msgstr "<b>Fout bij het vervangen van afbeeldingen</b>"
 
 #: gschem/src/object/o_picture.c:425
 msgid "Orginal size"
@@ -2671,12 +2670,12 @@ msgid "Save canceled on user request\n"
 msgstr "Opslaan afgebroken op verzoek van de gebruiker\n"
 
 #: gschem/src/x/x_fileselect.c:475
+#, fuzzy
 msgid ""
-"\n"
 "If you load the original file, the backup file will be overwritten in the "
-"next autosave timeout and it will be lost.\n"
+"next autosave timeout and will be lost.\n"
 "\n"
-"Do you want to load the backup file?\n"
+"Do you want to load the backup file?"
 msgstr ""
 "\n"
 "Als je het orginele bestand laad, zal het reserve bestand overschreven "
@@ -2715,54 +2714,51 @@ msgstr ""
 msgid "Encapsulated Postscript"
 msgstr "Encapsulated Postscript"
 
+# Error: Unable to write eps file
 #: gschem/src/x/x_image.c:356
-#, fuzzy
 msgid "Error: Unable to write eps file"
-msgstr "x_image_lowlevel: Kan %s bestand %s niet schrijven.\n"
+msgstr "Fout: kan eps bestand te schrijven"
 
+# Schreef zwart-wit beeld te
 #: gschem/src/x/x_image.c:359 gschem/src/x/x_image.c:506
-#, fuzzy
 msgid "Wrote black and white image to"
-msgstr "Schreef zwart/wit afbeelding naar [%s] [%d x %d]\n"
+msgstr "Schreef zwart-wit beeld te"
 
+# Generated PDF file
 #: gschem/src/x/x_image.c:465
-#, fuzzy
 msgid "Generated PDF file"
-msgstr "Nieuw bestand [%s]\n"
+msgstr "Gegenereerde PDF-bestand"
 
+# Can not write
 #: gschem/src/x/x_image.c:476
-#, fuzzy
 msgid "Unable to write"
-msgstr "x_image_lowlevel: Kan %s bestand %s niet schrijven.\n"
+msgstr "Kan niet schrijven"
 
+# An error occurred while saving the image to type
 #: gschem/src/x/x_image.c:477
-#, fuzzy
-msgid "An error occured while saving image with type"
+msgid "An error occurred while saving image with type"
 msgstr ""
-"De volgende fout ontstond tijdens het opslaan van afbeelding met type %s "
-"naar bestandnaam:\n"
-"%s\n"
-"\n"
-"%s.\n"
+"Er is een fout opgetreden bij het opslaan van de afbeelding met het type"
 
+# to filename
 #: gschem/src/x/x_image.c:478
-#, fuzzy
 msgid "to filename"
-msgstr "Bestandsnaam"
+msgstr "naar bestandsnaam"
 
+# Error writing imaging
 #: gschem/src/x/x_image.c:489
 msgid "<b>Error Writing Imaging.</b>"
-msgstr ""
+msgstr "<b>Fout bij schrijven Imaging.</b>"
 
+# Wrote color image to
 #: gschem/src/x/x_image.c:502
-#, fuzzy
 msgid "Wrote color image to"
-msgstr "Schreef kleuren afbeelding naar [%s] [%d x %d]\n"
+msgstr "Schreef kleur afbeelding"
 
+# Unable to get pixbuf from gschem's window
 #: gschem/src/x/x_image.c:516
-#, fuzzy
 msgid "Unable to get pixbuf from gschem's window.\n"
-msgstr "x_image_lowlevel: Kan geen pixbuf krijgen van gschem's venster.\n"
+msgstr "Kan geen pixbuf uit raam gschem te krijgen..\n"
 
 #: gschem/src/x/x_image.c:669
 msgid "Write image..."
