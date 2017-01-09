@@ -655,10 +655,10 @@ msgstr "拡大(_I)"
 msgid "Specify new zoom:"
 msgstr ""
 
+# error
 #: gschem/src/iface/i_command.c:2248
-#, fuzzy
 msgid "error"
-msgstr "反転"
+msgstr "エラー"
 
 #: gschem/src/iface/i_command.c:2256
 msgid "No component selected\n"
@@ -2517,25 +2517,28 @@ msgstr "エラー：epsファイルを書き込めません"
 msgid "Wrote black and white image to"
 msgstr "白黒画像を書き込んだ"
 
+# Generated PDF file
 #: gschem/src/x/x_image.c:465
 msgid "Generated PDF file"
-msgstr ""
+msgstr "生成されたPDFファイル"
 
 #: gschem/src/x/x_image.c:476
 msgid "Unable to write"
 msgstr "書き込むことができません"
 
+# An error occurred while saving the image with type specified
 #: gschem/src/x/x_image.c:477
-msgid "An error occured while saving image with type"
-msgstr ""
+msgid "An error occurred while saving image with type"
+msgstr "タイプを指定して画像を保存中にエラーが発生しました"
 
 #: gschem/src/x/x_image.c:478
 msgid "to filename"
 msgstr "ファイル名"
 
+# Image write error
 #: gschem/src/x/x_image.c:489
 msgid "<b>Error Writing Imaging.</b>"
-msgstr ""
+msgstr "<b>画像書き込みエラー.</b>"
 
 #: gschem/src/x/x_image.c:502
 msgid "Wrote color image to"
@@ -5140,40 +5143,41 @@ msgstr ""
 msgid "View the front page of the gEDA wiki in a browser."
 msgstr ""
 
+# Invalid text alignment
 #: gschem/scheme/gschem/deprecated.scm:102
 #, scheme-format
 msgid "Invalid text alignment ~A."
-msgstr ""
+msgstr "無効なテキストの配置 ~A."
 
+# No documentation found
 #: gschem/scheme/gschem/gschemdoc.scm:241
 msgid "No documentation found"
-msgstr ""
+msgstr "ドキュメントが見つかりません"
 
+# Export embedded symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:57
 msgid "Export embed symbol"
-msgstr ""
+msgstr "埋め込みシンボルのエクスポート"
 
+# Export embedded picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
 msgid "Export embed picture"
-msgstr "画像・コンポーネントの埋め込み"
+msgstr "埋め込み画像の書き出し"
 
+# It is not a valid key combination
 #: gschem/scheme/gschem/keymap.scm:41
 #, scheme-format
 msgid "~S is not a valid key combination."
-msgstr ""
+msgstr "~S 有効なキーの組み合わせではありません."
 
+# is not a prefix key sequence
 #: gschem/scheme/gschem/keymap.scm:156
 #, scheme-format
 msgid "~S is not a prefix key sequence."
-msgstr ""
+msgstr "~S 接頭辞キーシーケンスではありません."
 
 #~ msgid "session"
 #~ msgstr "すべて保存"
-
-#~ msgid ""
-#~ "Could not allocate graphic context, w_current->window is not a valid "
-#~ "Window\n"
-#~ msgstr "指定できない色[%s]です!\n"
 
 #~ msgid "documents\n"
 #~ msgstr "部品モード"
