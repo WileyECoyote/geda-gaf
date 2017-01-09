@@ -558,10 +558,10 @@ msgstr "Impossibile avviare l'URI"
 msgid "Found invalid gschem window smob ~S"
 msgstr "Trovato smob finestra gschem non valido ~S"
 
+# current value of
 #: gschem/src/iface/i_command.c:132 gschem/src/iface/i_command.c:5025
-#, fuzzy
 msgid "current value of"
-msgstr "Pagina corrente"
+msgstr "valore corrente"
 
 #: gschem/src/iface/i_command.c:132 gschem/src/iface/i_command.c:5026
 msgid "is"
@@ -583,10 +583,10 @@ msgstr ""
 msgid "New page created"
 msgstr "Nuova pagina creata"
 
+# New Window created
 #: gschem/src/iface/i_command.c:752
-#, fuzzy
 msgid "New Window created"
-msgstr "Creata Nuova Finestra [%s]\n"
+msgstr "Nuova finestra creata"
 
 #: gschem/src/iface/i_command.c:951
 msgid "Failed to Save All"
@@ -648,10 +648,10 @@ msgstr "Zoom In"
 msgid "Specify new zoom:"
 msgstr ""
 
+# errore
 #: gschem/src/iface/i_command.c:2248
-#, fuzzy
 msgid "error"
-msgstr "Specchio"
+msgstr "errore"
 
 #: gschem/src/iface/i_command.c:2256
 msgid "No component selected\n"
@@ -661,10 +661,10 @@ msgstr "Selezionata griglia a punti\n"
 msgid "Confirm revert ALL documents"
 msgstr ""
 
+# Searching for source
 #: gschem/src/iface/i_command.c:2982
-#, fuzzy
 msgid "Searching for source"
-msgstr "Ricerca del sorgente [%s]\n"
+msgstr "Ricerca del sorgente"
 
 #: gschem/src/iface/i_command.c:3016
 msgid "Failed to descend into"
@@ -674,10 +674,10 @@ msgstr "Impossibile scendere in"
 msgid "Hierarchy Error"
 msgstr "Ge_rarchia"
 
+# symbol search
 #: gschem/src/iface/i_command.c:3102
-#, fuzzy
 msgid "Searching for symbol"
-msgstr "Ricerca del simbolo [%s]\n"
+msgstr "Ricerca del simbolo"
 
 #: gschem/src/iface/i_command.c:3112
 msgid "Symbol is not a real file. Symbol cannot be loaded.\n"
@@ -1154,10 +1154,10 @@ msgstr "Attenzione: una net inizia in un punto fuori griglia\n"
 msgid "Warning: Ending net off grid coordinate\n"
 msgstr "Attenzione: una net finisce in un punto fuori griglia\n"
 
+# Bus ripper symbol was not found in any component library
 #: gschem/src/object/o_net.c:1096
-#, fuzzy
 msgid "Bus ripper symbol was not found in any component library"
-msgstr "Simbolo bus ripper [%s] non trovato in alcuna libreria\n"
+msgstr "Simbolo bus ripper non trovato in alcuna libreria"
 
 #: gschem/src/object/o_picture.c:357
 msgid "Update All"
@@ -1169,11 +1169,11 @@ msgstr ""
 
 #: gschem/src/object/o_picture.c:397
 msgid "Failed to replace picture"
-msgstr "Fallito il rimpiazzo dei disegni: %s"
+msgstr "Fallito il rimpiazzo dei disegni"
 
 #: gschem/src/object/o_picture.c:400
 msgid "<b>Failed to replace picture</b>"
-msgstr "Fallito il rimpiazzo dei disegni: %s"
+msgstr "<b>Fallito il rimpiazzo dei disegni</b>"
 
 #: gschem/src/object/o_picture.c:425
 msgid "Orginal size"
@@ -1187,9 +1187,10 @@ msgstr ""
 msgid "An unknown error occurred"
 msgstr ""
 
+# Failed to load picture
 #: gschem/src/object/o_picture.c:622
 msgid "<b>Failed to load picture</b>"
-msgstr "Fallito il caricamento del disegno: %s"
+msgstr "<b>Impossibile caricare la foto</b>"
 
 #: gschem/src/object/o_picture.c:623
 msgid "Load failed"
@@ -5192,9 +5193,3 @@ msgstr "~S non è una combinazione di tasti valida."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S non è un prefisso di sequenza di tasti."
-
-#~ msgid "session"
-#~ msgstr "Mostra _Nome"
-
-#~ msgid "New page created [%s]\n"
-#~ msgstr "Nuova Pagina Creata [%s]\n"
