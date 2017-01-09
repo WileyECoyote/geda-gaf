@@ -233,7 +233,7 @@ geda_file_open(GedaToplevel *toplevel, Page *page, const char *filename, GError 
         if (!g_error_matches (tmp_err, EDA_ERROR, ENOENT) &&
             !g_error_matches (tmp_err, EDA_ERROR, EDA_ERROR_RC_TWICE))
         {
-          u_log_message ("%s\n", tmp_err->message);
+          geda_log ("%s\n", tmp_err->message);
         }
         g_error_free (tmp_err);
         tmp_err = NULL;
@@ -263,7 +263,7 @@ geda_file_open(GedaToplevel *toplevel, Page *page, const char *filename, GError 
       const char *str;
       char       *message;
 
-      log_auto_back  = _("\nWARNING: Found an autosave backup file:\n \"%s\".\n\n");
+      log_auto_back  = _("\nWARNING: Found an autosave backup file:\n\"%s\".\n\n");
       log_undetemine = _("Could not detemine which file is newer, so you should do this manually.\n");
       log_back_newer = _("The backup copy is newer than the schematic, it seems you should load it instead of the original file.\n");
       log_situation  = _("This situation may have occured when an application crashed or was forced to exit abruptly.\n");
@@ -280,7 +280,7 @@ geda_file_open(GedaToplevel *toplevel, Page *page, const char *filename, GError 
         mem_needed += strlen(str = log_back_newer);
       }
 
-      message = malloc(mem_needed + 100);
+      message = malloc(mem_needed + 1);
 
       if(!message) { /* Should this be translated? */
         fprintf(stderr, "%s %s\n", __func__, _("Memory allocation error!"));
@@ -310,8 +310,13 @@ geda_file_open(GedaToplevel *toplevel, Page *page, const char *filename, GError 
    * the RC file, it's time to read in the file. */
   if (load_backup_file == 1) {
 
+    const char *log_msg = _("Loading backup file");
+
+    geda_log ("%s \"%s\".\n", log_msg, backup_filename);
+
     /* Load the backup file */
     objects = geda_object_read (toplevel, NULL, backup_filename, &tmp_err);
+
   }
   else {
 
@@ -395,8 +400,8 @@ geda_file_remove_backup (const char *filename)
     real_filename = geda_file_sys_follow_symlinks (filename, NULL);
 
     if (real_filename == NULL) {
-      u_log_message (_("%s: Can not get the real filename of %s."),
-      __func__, filename);
+      const char *log_msg = _("Can not get the real filename of");
+      geda_log ("%s: %s %s.\n", __func__, log_msg, filename);
     }
     else {
 
@@ -407,8 +412,8 @@ geda_file_remove_backup (const char *filename)
          (!g_file_test(backup_filename, G_FILE_TEST_IS_DIR)))
       {
         if (unlink(backup_filename) != 0) {
-          u_log_message(_("%s: Unable to delete backup file %s."),
-          __func__, backup_filename);
+          const char *log_msg = _("Unable to delete backup file");
+          geda_log ("%s: %s %s.\n", __func__, log_msg, filename);
         }
       }
 
@@ -530,7 +535,7 @@ geda_file_save(GedaToplevel *toplevel, Page *page, const char *filename, GError 
            (!g_file_test (backup_filename, G_FILE_TEST_IS_DIR)))
         {
           if (chmod(backup_filename, S_IREAD|S_IWRITE) != 0) {
-            u_log_message (log_set_back, backup_filename, strerror (errno));
+            geda_log (log_set_back, backup_filename, strerror (errno));
           }
           else { /* delete backup from previous session */
             geda_file_sys_remove (backup_filename);
@@ -538,7 +543,7 @@ geda_file_save(GedaToplevel *toplevel, Page *page, const char *filename, GError 
         }
 
         if (geda_file_copy(real_filename, backup_filename) != 0) {
-          u_log_message (log_not_back, backup_filename, strerror (errno));
+          geda_log (log_not_back, backup_filename, strerror (errno));
         }
         else {
           /* Make backup readonly so a 'rm *' will ask user before deleting */
