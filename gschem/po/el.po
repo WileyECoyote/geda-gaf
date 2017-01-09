@@ -182,7 +182,7 @@ msgid ""
 msgstr ""
 
 #: gschem/src/base/gschem_parsecmd.c:128
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "gEDA/gschem %s (%s) (g%.7s)\n"
 "Copyright (C) 1998-2017 gEDA developers\n"
@@ -192,7 +192,7 @@ msgid ""
 "There is NO WARRANTY, to the extent permitted by law.\n"
 msgstr ""
 "gEDA/gschem %s (%s) (g%.7s)\n"
-"Πνευματικά δικαιώματα (C) 1998-2012 προγραμματιστές του gEDA\n"
+"Πνευματικά δικαιώματα (C) 1998-2017 προγραμματιστές του gEDA\n"
 "Αυτό είναι δωρεάν λογισμικό, και μπορείτε να το αναδιανείμετε ελεύθερα υπό\n"
 "συγκεκριμένους όρους. Για λεπτομέρειες, δείτε το αρχείο `COPYING', το οποίο\n"
 "συμπεριλαμβάνεται στη διανομή του gEDA.\n"
@@ -534,22 +534,24 @@ msgstr "Δεν θα μπορούσε να ανοίξει την ιστοσελί
 msgid "Found invalid gschem window smob ~S"
 msgstr ""
 
+# current value of
 #: gschem/src/iface/i_command.c:132 gschem/src/iface/i_command.c:5025
-#, fuzzy
 msgid "current value of"
-msgstr "Τρέχουσα σελίδα"
+msgstr "τρέχουσα αξία των"
 
+# is
 #: gschem/src/iface/i_command.c:132 gschem/src/iface/i_command.c:5026
 msgid "is"
-msgstr ""
+msgstr "είναι"
 
 #: gschem/src/iface/i_command.c:368
 msgid "Processing Action"
 msgstr "επεξεργασία Δράση"
 
+# Cannot
 #: gschem/src/iface/i_command.c:475
 msgid "Cannot"
-msgstr ""
+msgstr "δεν μπορώ"
 
 #: gschem/src/iface/i_command.c:475
 msgid "while inside an action!\n"
@@ -559,10 +561,10 @@ msgstr ""
 msgid "New page created"
 msgstr "Δημιουργήθηκε νέα σελίδα"
 
+# Created new window
 #: gschem/src/iface/i_command.c:752
-#, fuzzy
 msgid "New Window created"
-msgstr "Δημιουργήθηκε νέο παράθυρο [%s]\n"
+msgstr "Δημιουργήθηκε νέο παράθυρο"
 
 #: gschem/src/iface/i_command.c:951
 msgid "Failed to Save All"
@@ -624,10 +626,10 @@ msgstr "Επιλογή"
 msgid "Specify new zoom:"
 msgstr ""
 
+# error
 #: gschem/src/iface/i_command.c:2248
-#, fuzzy
 msgid "error"
-msgstr "Καθρεπτισμός"
+msgstr "λάθος"
 
 #: gschem/src/iface/i_command.c:2256
 msgid "No component selected\n"
@@ -732,10 +734,10 @@ msgstr ""
 msgid "On"
 msgstr "Άνοιγμα"
 
+# drag-can-move is now
 #: gschem/src/iface/i_command.c:4421
-#, fuzzy
 msgid "Drag-Can-Move is now"
-msgstr "Εναλλαγή _μαγνητικού δικτύου"
+msgstr "drag-να-κίνηση είναι τώρα"
 
 #: gschem/src/iface/i_command.c:4433
 msgid "Action feedback mode set to OUTLINE\n"
@@ -1125,9 +1127,10 @@ msgstr "Προειδοποίηση: Το δίκτυο ξεκινάει από σ
 msgid "Warning: Ending net off grid coordinate\n"
 msgstr "Προειδοποίηση: Το δίκτυο τελειώνει σε συντεταγμένη εκτός πλέγματος.\n"
 
+# BusRipper symbol was not found in any component library
 #: gschem/src/object/o_net.c:1096
 msgid "Bus ripper symbol was not found in any component library"
-msgstr ""
+msgstr "BusRipper σύμβολο δεν βρέθηκε σε καμία συνιστώσα βιβλιοθήκη"
 
 #: gschem/src/object/o_picture.c:357
 msgid "Update All"
@@ -1137,13 +1140,15 @@ msgstr "Ενημέρωση"
 msgid "Update all selected Picture images"
 msgstr ""
 
+# Failed to replace the image
 #: gschem/src/object/o_picture.c:397
 msgid "Failed to replace picture"
-msgstr "Αδυναμία αντικατάστασης εικόνων: %s"
+msgstr "Απέτυχε να αντικαταστήσει την εικόνα"
 
+# Failed to replace the image
 #: gschem/src/object/o_picture.c:400
 msgid "<b>Failed to replace picture</b>"
-msgstr "Αδυναμία αντικατάστασης εικόνων: %s"
+msgstr "<b>Απέτυχε να αντικαταστήσει την εικόνα</b>"
 
 #: gschem/src/object/o_picture.c:425
 msgid "Orginal size"
@@ -2002,11 +2007,12 @@ msgstr ""
 msgid "Done, renderer is down"
 msgstr ""
 
+# invalid display option; defaulting to show both
 #: gschem/src/x/x_edit_attrib.c:210
-#, fuzzy, c-format
+#, c-format
 msgid "invalid show option; defaulting to show both\n"
 msgstr ""
-"Λήφθηκε μη έγκυρη επιλογή εμφάνισης. Προεπιλεγμένη εμφάνιση και των δύο\n"
+"Λήφθηκε μη έγκυρη επιλογή εμφάνισης. υπερήμερους να δείξει τόσο\n"
 
 #: gschem/src/x/x_edit_attrib.c:321
 msgid "Select to choose an attribute visibility options"
@@ -2356,10 +2362,10 @@ msgstr "Επεξεργασία αριθμού υποδοχής"
 msgid "Number of slots:"
 msgstr ""
 
+# element number
 #: gschem/src/x/x_edit_slot.c:199
-#, fuzzy
 msgid "Slot number:"
-msgstr "Επεξεργασία αριθμού υποδοχής:"
+msgstr "στοιχείο αριθμός:"
 
 #: gschem/src/x/x_edit_text.c:234
 msgid "Upper Left"
@@ -2509,9 +2515,10 @@ msgstr "Παρουσιάστηκε σφάλμα κατά την αποθήκευ
 msgid "to filename"
 msgstr "Όνομα αρχείου"
 
+# Error Writing Imaging
 #: gschem/src/x/x_image.c:489
 msgid "<b>Error Writing Imaging.</b>"
-msgstr ""
+msgstr "<b>Σφάλμα απεικόνισης γραφής.</b>"
 
 #: gschem/src/x/x_image.c:502
 msgid "Wrote color image to"
@@ -2519,7 +2526,7 @@ msgstr "Έγραψε έγχρωμη εικόνα να"
 
 #: gschem/src/x/x_image.c:516
 msgid "Unable to get pixbuf from gschem's window.\n"
-msgstr "x_image_lowlevel: Αδυναμία λήψης pixbuf από το παράθυρο του gschem.\n"
+msgstr "Αδυναμία λήψης pixbuf από το παράθυρο του gschem.\n"
 
 #: gschem/src/x/x_image.c:669
 msgid "Write image..."
@@ -3528,25 +3535,31 @@ msgstr "Νέο αρχείο"
 msgid "Failed to load file"
 msgstr "Απέτυχε η φόρτωση του αρχείου"
 
+# Create a new file
 #: gschem/src/x/x_window.c:983
-#, fuzzy
 msgid "Creating new file"
-msgstr "Η εισαγωγή από το πρόχειρο απέτυχε"
+msgstr "Δημιουργία νέου αρχείου"
 
+# Path to
 #: gschem/src/x/x_window.c:996
 msgid "Path"
-msgstr "/Προσθήκη δικτύου"
+msgstr "διαδρομή προς"
 
+# did not exist\n successfully created
 #: gschem/src/x/x_window.c:999
 msgid ""
 "did not exist\n"
 "successfully created"
 msgstr ""
+"δεν υπήρχε\n"
+"δημιουργήθηκε με επιτυχία"
 
+# purging page
 #: gschem/src/x/x_window.c:1143
 msgid "Discarding page"
-msgstr ""
+msgstr "σελίδα καθαρισμού"
 
+# Close page
 #: gschem/src/x/x_window.c:1144
 msgid "Closing"
 msgstr "Κλείσιμο σελίδας"
