@@ -1177,9 +1177,8 @@ msgstr ""
 "rejilla\n"
 
 #: gschem/src/object/o_net.c:1096
-#, fuzzy
 msgid "Bus ripper symbol was not found in any component library"
-msgstr "No se ha encontrado el símbolo %s en ninguna librería de componentes\n"
+msgstr "No se ha encontrado el símbolo en ninguna librería de componentes"
 
 #: gschem/src/object/o_picture.c:357
 msgid "Update All"
@@ -1191,11 +1190,11 @@ msgstr ""
 
 #: gschem/src/object/o_picture.c:397
 msgid "Failed to replace picture"
-msgstr "Falló al reemplazar las imágenes: %s"
+msgstr "Falló al reemplazar las imágenes"
 
 #: gschem/src/object/o_picture.c:400
 msgid "<b>Failed to replace picture</b>"
-msgstr "Falló al reemplazar las imágenes: %s"
+msgstr "<b>Falló al reemplazar las imágenes</b>"
 
 #: gschem/src/object/o_picture.c:425
 msgid "Orginal size"
@@ -2618,11 +2617,11 @@ msgstr "Seleccionar"
 
 #: gschem/src/x/x_menus.c:90
 msgid "Add"
-msgstr "Aña_dir"
+msgstr "Añadir"
 
 #: gschem/src/x/x_menus.c:90
 msgid "Add modes"
-msgstr "Añadir componente..."
+msgstr "Añadir modos"
 
 #: gschem/src/x/x_menus.c:91 gschem/etc/system-gschemrc.scm:2239
 msgid "Add net"
@@ -2630,7 +2629,7 @@ msgstr "Añadir conexión..."
 
 #: gschem/src/x/x_menus.c:92
 msgid "Attribute..."
-msgstr "Propied_ad..."
+msgstr "Atributo..."
 
 #: gschem/src/x/x_menus.c:92 gschem/etc/system-gschemrc.scm:2241
 msgid "Add attribute"
@@ -2638,11 +2637,11 @@ msgstr "Añadir propiedad"
 
 #: gschem/src/x/x_menus.c:93 gschem/src/x/x_menus.c:112
 msgid "Component..."
-msgstr "_Componente..."
+msgstr "Componente..."
 
 #: gschem/src/x/x_menus.c:93 gschem/etc/system-gschemrc.scm:2238
 msgid "Insert a symbol from the component library"
-msgstr "No se ha encontrado el símbolo %s en ninguna librería de componentes"
+msgstr "Insertar un símbolo en la biblioteca de componentes"
 
 #: gschem/src/x/x_menus.c:94 gschem/etc/system-gschemrc.scm:2240
 msgid "Add bus"
@@ -2658,7 +2657,7 @@ msgstr "Aumentar ampliación"
 
 #: gschem/src/x/x_menus.c:99
 msgid "Add operations"
-msgstr "Línea"
+msgstr "Añadir Operaciones"
 
 #: gschem/src/x/x_menus.c:100 gschem/src/x/x_menus.c:152
 msgid "In"
