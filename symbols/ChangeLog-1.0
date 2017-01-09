@@ -1,3 +1,18 @@
+2017-01-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * connector/terminal/: Add a set of terminal block symbols for style 2:
+
+            * connector/terminal/terminal_block_1-2.sym
+            * connector/terminal/terminal_block_2-2.sym (revise existing)
+            * connector/terminal/terminal_block_3-2.sym (revise existing)
+            * connector/terminal/terminal_block_4-2.sym (revise existing)
+            * connector/terminal/terminal_block_5-2.sym
+            * connector/terminal/terminal_block_6-2.sym
+            * connector/terminal/terminal_block_7-2.sym
+            * connector/terminal/terminal_block_8-2.sym
+            * connector/terminal/terminal_block_9-2.sym
+            * connector/terminal/terminal_block_10-2.sym
+
 2017-01-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/terminal/: Add a set of terminal block symbols for style 1:
