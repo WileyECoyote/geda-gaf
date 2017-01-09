@@ -216,7 +216,7 @@ msgstr ""
 "gEDA/gaf kehtompr: <http://www.geda-project.org/>\n"
 
 #: gschem/src/base/gschem_parsecmd.c:128
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "gEDA/gschem %s (%s) (g%.7s)\n"
 "Copyright (C) 1998-2017 gEDA developers\n"
@@ -226,11 +226,11 @@ msgid ""
 "There is NO WARRANTY, to the extent permitted by law.\n"
 msgstr ""
 "gEDA/gschem %s (%s) (g%.7s)\n"
-"Roksaasetthi (C) 1998-2016 gEDA anak aphivodtho\n"
+"Roksaasetthi (C) 1998-2017 gEDA anak aphivodtho\n"
 "nih kuchea phnek tn seri haey anak ka ach chekchay vea now kraom\n"
 "lokkhakhand cheakleak. saum meul kar `COPYING' eksar samreab p tr\n"
 "mean lomet, del trauv ban ruom banhchoul nowknong karchekcheay gEDA.\n"
-"kmean karthanea , tomham del ban anounhnhat daoy chbab.\n"
+"kmean karthanea, tomham del ban anounhnhat daoy chbab.\n"
 
 #: gschem/src/base/gschem_parsecmd.c:244
 msgid "error parsing"
@@ -596,14 +596,15 @@ msgstr "min ach baek chea URI"
 msgid "Found invalid gschem window smob ~S"
 msgstr "smob bangauoch del gschem min troemotrauv del ban rk kheunh ~S"
 
+# Present value of
 #: gschem/src/iface/i_command.c:132 gschem/src/iface/i_command.c:5025
-#, fuzzy
 msgid "current value of"
-msgstr "tompr bachchobban"
+msgstr "tamlei bachchobbann nei kar"
 
+# is
 #: gschem/src/iface/i_command.c:132 gschem/src/iface/i_command.c:5026
 msgid "is"
-msgstr ""
+msgstr "ku"
 
 # processing directive
 #: gschem/src/iface/i_command.c:368
@@ -687,10 +688,10 @@ msgstr "pongrik pongrik"
 msgid "Specify new zoom:"
 msgstr "banhcheak pongrik thmei:"
 
+# error
 #: gschem/src/iface/i_command.c:2248
-#, fuzzy
 msgid "error"
-msgstr "kamhosa knong kar"
+msgstr "kamhos"
 
 #: gschem/src/iface/i_command.c:2256
 msgid "No component selected\n"
@@ -799,10 +800,10 @@ msgstr "Bet"
 msgid "On"
 msgstr "now thngaiti"
 
+# Drag-Can-Move is now
 #: gschem/src/iface/i_command.c:4421
-#, fuzzy
 msgid "Drag-Can-Move is now"
-msgstr "rbieb phlasati ausa ach pelnih ku %s ban\n"
+msgstr "ausa ach phlasati ku ilauv"
 
 #: gschem/src/iface/i_command.c:4433
 msgid "Action feedback mode set to OUTLINE\n"
@@ -812,16 +813,16 @@ msgstr "rbieb mte anak ban kamnt daembi krong sakammopheap\n"
 msgid "Action feedback mode set to BOUNDINGBOX\n"
 msgstr "rbieb mte anak ban kamnt daembi chtokaon sakammopheap chang\n"
 
+# Auto-Pan is now
 #: gschem/src/iface/i_command.c:4463
-#, fuzzy
 msgid "Auto-Pan is now"
-msgstr "rbieb phlasati ausa ach pelnih ku %s ban\n"
+msgstr "daoy svyobravotte ban ku ilauv"
 
+# Check path
 #: gschem/src/iface/i_command.c:4515 gschem/src/iface/i_command.c:4544
 #: gschem/src/iface/i_command.c:4564 gschem/src/iface/i_command.c:4584
-#, fuzzy
 msgid "Check path:"
-msgstr "saum pinityameul: chhmoh phlauv \"%s\"\n"
+msgstr "saum pinityameul phlauv:"
 
 #: gschem/src/iface/i_command.c:4684
 #, c-format
@@ -1286,9 +1287,10 @@ msgstr "brapnth minothveuvinh Gschem"
 msgid "Undo: encountered an error, file"
 msgstr "minothveuvinh nouv brapn kamhosa: eksar"
 
+# Undo: system error
 #: gschem/src/object/o_undo.c:253
 msgid "Undo: system error"
-msgstr ""
+msgstr "minothveuvinh:  kamhosa brapn"
 
 #: gschem/src/object/o_undo.c:254
 msgid "switching to MEMORY mode"
@@ -1390,11 +1392,11 @@ msgstr "<b>chomreus</b>"
 msgid "Invalid schematic on clipboard"
 msgstr "<b>tinnony min troemotrauv now leu kdarotambietakhtasa</b>"
 
+# An error occurred while inserting clipboard data
 #: gschem/src/x/x_clipboard.c:321
 msgid "An error occurred while inserting clipboard data"
 msgstr ""
-"kamhosa muoy ban kaetlaeng khn pel del kar banhchoul tinnony knong "
-"kdarotambietakhtasa: %s."
+"kamhosa muoy ban kaetlaeng khn pel banhchoul tinnony kdarotambietakhtasa"
 
 #: gschem/src/x/x_clipboard.c:322
 msgid "Clipboard Insertion Failed"
@@ -1506,6 +1508,7 @@ msgstr ""
 "nowpel del kar pit, kar phtao t arommo dambaung nung trauv ttuol "
 "theatotamrong nih bae min dauchneh te sameasapheak mektheang"
 
+# Rescan
 #: gschem/src/x/x_compselect.c:3322
 msgid "Rescan"
 msgstr "sken laengvinh"
@@ -1526,17 +1529,20 @@ msgstr "meul cheamoun"
 msgid "Attributes"
 msgstr "kounalokkhan"
 
+# destroying history
 #: gschem/src/x/x_console.c:136
 msgid "destroying history\n"
-msgstr ""
+msgstr "bamphlanh chea bravotte sa sr t\n"
 
+# commence data logging & Console System Configuration
 #: gschem/src/x/x_console.c:147
 msgid "Initializing Log & Console Systems configuration settings\n"
 msgstr ""
+"chabphdaem kar kab chheu tinnony & karkamnt rochneasampnth brapnth kongsaul\n"
 
 #: gschem/src/x/x_console.c:189 gschem/src/x/x_console.c:192
 msgid "Command interface: engaged using"
-msgstr "chamnochabratak peaky banhchea: ban chaulruom karobrae brasa (%s)"
+msgstr "chamnochabratak peaky banhchea: ban chaulruom kar brae"
 
 #: gschem/src/x/x_console.c:345
 msgid "** Invalid UTF-8 in log message. See stderr or gschem.log.\n"
@@ -1560,7 +1566,7 @@ msgstr ""
 
 #: gschem/src/x/x_coord.c:157
 msgid "Data error"
-msgstr "kamhosa tinnony."
+msgstr "kamhosa tinnony"
 
 #: gschem/src/x/x_coord.c:162 gschem/src/x/x_dnd.c:585
 msgid "Drag & Drop failed"
@@ -1599,8 +1605,8 @@ msgid ""
 "Copyright © 1998-2017 Ales Hvezda <ahvezda@geda.seul.org>\n"
 "Copyright © 1998-2017 gEDA Contributors (see ChangeLog for details)"
 msgstr ""
-"roksaa setth krobyeang © 1998-2015 Ales Hvezda <ahvezda@geda.seul.org>\n"
-"roksaa setth krobyeang © 1998-2015 gEDA anak chaulruom chamnek (meulkheunh "
+"roksaa setth krobyeang © 1998-2017 Ales Hvezda <ahvezda@geda.seul.org>\n"
+"roksaa setth krobyeang © 1998-2017 gEDA anak chaulruom chamnek (meulkheunh "
 "kar phlasa btaur kamntheto samreab sechakdei lomait)"
 
 #: gschem/src/x/x_dialog.c:464 gschem/scheme/gschem/builtins.scm:565
@@ -1627,9 +1633,10 @@ msgstr "tomham aksaar"
 msgid "Enter new text size:"
 msgstr "tomham atthabt thmei kar banhchoul:"
 
+# Set the default font size.
 #: gschem/src/x/x_dialog.c:700
 msgid "Sets the default text font size."
-msgstr ""
+msgstr "kamnt tomham poumpoaksaar lomneadaem."
 
 #: gschem/src/x/x_dialog.c:922
 msgid "Arc Parameters"
@@ -1647,9 +1654,10 @@ msgstr "kamnt kam nei thnou nih."
 msgid "Start Angle:"
 msgstr "kar chabphtaem moum:"
 
+# Sets the rotation of the arc.
 #: gschem/src/x/x_dialog.c:967
 msgid "Sets the rotation of the arc."
-msgstr ""
+msgstr "kamnt kar bangvil nei thnou nih."
 
 #: gschem/src/x/x_dialog.c:969
 msgid "Degrees of Sweep:"
@@ -1802,6 +1810,7 @@ msgstr "bratak"
 msgid "Hatch"
 msgstr "ha"
 
+# varies
 #: gschem/src/x/x_dialog.c:1196 gschem/src/x/x_dialog.c:1305
 #: gschem/src/x/x_dialog.c:1314 gschem/src/x/x_dialog.c:1323
 #: gschem/src/x/x_dialog.c:1332 gschem/src/x/x_dialog.c:1341
@@ -1813,7 +1822,7 @@ msgstr "ha"
 #: gschem/src/x/x_dialog.c:2045 gschem/src/x/x_dialog.c:2047
 #: gschem/src/x/x_dialog.c:2049
 msgid "*varies*"
-msgstr ""
+msgstr "*brebruol*"
 
 #: gschem/src/x/x_dialog.c:1603 gschem/scheme/gschem/builtins.scm:158
 msgid "Edit Fill Type"
@@ -1981,10 +1990,12 @@ msgstr ""
 "phlasati tossaatronich tow knong bangauoch choch daembi dak atthabat.\n"
 "boutong k ntal daembi bangvil khn pel del kar dak."
 
+# Adjust the view to extents after transformation
 #: gschem/src/x/x_dialog.c:2994
 msgid "Automatically zoom to the new extents after translation"
-msgstr ""
+msgstr "lei tamrouv tidthpheap knong kamrit banteabpi kar phlasa btau r"
 
+# Translate
 #: gschem/src/x/x_dialog.c:2996
 msgid "Translate"
 msgstr "bakabre"
@@ -1997,9 +2008,10 @@ msgstr ""
 "ohvaset daembi bakabre?\n"
 "(0 samreab braphp daem )"
 
+# Automatically adjust the zoom
 #: gschem/src/x/x_dialog.c:3026
 msgid "Auto Zoom Extents"
-msgstr ""
+msgstr "lei tamrouv daoy svyobravotte pongrik"
 
 #: gschem/src/x/x_dialog.c:3196
 msgid "Hotkeys"
@@ -2048,9 +2060,10 @@ msgstr "teatchaol braab nih"
 msgid "Input attribute is invalid"
 msgstr "numslots chattouk batkhluon"
 
+# Please correct before continuing
 #: gschem/src/x/x_dialog.c:3710
 msgid "Please correct in order to continue"
-msgstr ""
+msgstr "saum ke moun pel ban"
 
 #: gschem/src/x/x_dialog.c:3711
 msgid ""
@@ -2058,10 +2071,6 @@ msgid ""
 "The name cannot end with a space.\n"
 "The value cannot start with a space"
 msgstr ""
-"<span weight=\"bold\" size=\"larger\">kounalokkhan banhchoul \"%s\" min "
-"troemotrauv\n"
-"saum ke daembi b n</span>\n"
-"\n"
 "chhmoh nih trauvte mean ning tamlei min tte.\n"
 "chhmoh min ach banhchob daoy dakakhlea.\n"
 "tamlei del min ach chabphtaem cheamuoy chanloh."
@@ -2082,7 +2091,8 @@ msgstr "nowknong bannaly, pyeayeam sken laengvinh"
 msgid "not in library, opening as page"
 msgstr "min nowknong bannaly, kar baek chea tompr"
 
-#: gschem/src/x/x_dnd.c:442 gschem/src/x/x_multiattrib.c:2585
+# nimittaroub
+#: gschem/src/x/x_dnd.c:442 gschem/src/x/x_multiattrib.c:2606
 msgid "symbol"
 msgstr "nimittasanhnhea"
 
@@ -2222,7 +2232,7 @@ msgstr "kesamruol lokkhan sambotte sameasapheak"
 
 #: gschem/src/x/x_edit_cprop.c:1169
 msgid "_Symbol:"
-msgstr "Simittasanhnhea:"
+msgstr "_Nimittaroub:"
 
 #: gschem/src/x/x_edit_cprop.c:1180
 msgid "_Device:"
@@ -2340,9 +2350,10 @@ msgstr "braab thik nih daembi anounhnhat lokkhan sambotte akkisani"
 msgid "Entry for reference designator"
 msgstr "theato samreab chhmoh anaknipon"
 
+# Spinner with an entry for the number of slots
 #: gschem/src/x/x_edit_cprop.c:1510
 msgid "Spinner with entry for number of slots"
-msgstr ""
+msgstr "bradeab bangvil cheamuoy theato samreab chamnuon nei ron"
 
 #: gschem/src/x/x_edit_cprop.c:1517
 msgid "Spinner with entry for number of pins"
@@ -2425,85 +2436,103 @@ msgstr "min aepeu nung pin toukcheamokh akkisani"
 msgid "Pin Properties Editor"
 msgstr "kammovithi niponth lokkhan sambotte pin"
 
+# Set like define
 #: gschem/src/x/x_edit_pin.c:879
 msgid "Set"
-msgstr ""
+msgstr "kamnt"
 
+# automatically
 #: gschem/src/x/x_edit_pin.c:882
 msgid "Auto"
-msgstr ""
+msgstr "daoy svyobravotte"
 
+# Attribute Type List
 #: gschem/src/x/x_edit_pin.c:913
 msgid "Attribute Type List"
-msgstr ""
+msgstr "braphet kounalokkhan banhchi"
 
+# Text alignment options
 #: gschem/src/x/x_edit_pin.c:917
 msgid "Text Alignment Option"
-msgstr ""
+msgstr "chomreusa tamrum atthabat"
 
+# Pin Number
 #: gschem/src/x/x_edit_pin.c:921
 msgid "Pin Number"
-msgstr ""
+msgstr "lekh mchoul"
 
+# Order Number
 #: gschem/src/x/x_edit_pin.c:925
 msgid "Sequence Number"
-msgstr ""
+msgstr "lekh​ lomdab"
 
+# Pin Label
 #: gschem/src/x/x_edit_pin.c:929
 msgid "Pin Label"
-msgstr ""
+msgstr "slak mchoul"
 
+# Edit segment number
 #: gschem/src/x/x_edit_slot.c:162
 msgid "Edit slot number"
-msgstr ""
+msgstr "chamnuon kesamruol phnek"
 
+# The number of slots
 #: gschem/src/x/x_edit_slot.c:185
 msgid "Number of slots:"
-msgstr ""
+msgstr "chamnuon ron​:"
 
 #: gschem/src/x/x_edit_slot.c:199
 msgid "Slot number:"
-msgstr ""
+msgstr "ron​ lekh​:"
 
+# Upper left
 #: gschem/src/x/x_edit_text.c:234
 msgid "Upper Left"
-msgstr ""
+msgstr "khangochhveng khang"
 
+# Upper Middle
 #: gschem/src/x/x_edit_text.c:237
 msgid "Upper Middle"
-msgstr ""
+msgstr "phnek khangleu m chchhu m"
 
+# Upper Right
 #: gschem/src/x/x_edit_text.c:240
 msgid "Upper Right"
-msgstr ""
+msgstr "phnek khangleu khangosdam"
 
+# Middle Left
 #: gschem/src/x/x_edit_text.c:244
 msgid "Middle Left"
-msgstr ""
+msgstr "peak k nta l khangochhveng"
 
+# Middle Middle
 #: gschem/src/x/x_edit_text.c:247
 msgid "Middle Middle"
-msgstr ""
+msgstr "peak k nta l m chchhu m"
 
+# Middle Right
 #: gschem/src/x/x_edit_text.c:250
 msgid "Middle Right"
-msgstr ""
+msgstr "peak k nta l stam"
 
+# Lower Left
 #: gschem/src/x/x_edit_text.c:254
 msgid "Lower Left"
-msgstr ""
+msgstr "khangochhveng teab cheang"
 
 #: gschem/src/x/x_edit_text.c:257
 msgid "Lower Middle"
-msgstr ""
+msgstr "m chchhu m teab cheang"
 
+# Lower Right
 #: gschem/src/x/x_edit_text.c:260
 msgid "Lower Right"
-msgstr ""
+msgstr "khangokraom sdam"
 
+# Edit Text Properties
 #: gschem/src/x/x_edit_text.c:452
 msgid "Edit Text Properties"
-msgstr ""
+msgstr "kesamruol lokkhan sambotte atthabat"
 
 #: gschem/src/x/x_edit_text.c:469
 msgid "<b>Text Content</b>"
@@ -2521,9 +2550,10 @@ msgstr ""
 msgid "Text Rotation Angle Spinner Entry"
 msgstr ""
 
+# Large
 #: gschem/src/x/x_fileselect.c:144
 msgid "Large"
-msgstr ""
+msgstr "del mean tomham thom"
 
 #: gschem/src/x/x_fileselect.c:145
 msgid "Enable to enlagre the preview"
@@ -3350,9 +3380,10 @@ msgstr ""
 msgid "Cannot print current schematic to"
 msgstr ""
 
+# An error occurred while printing
 #: gschem/src/x/x_print.c:790 gschem/src/x/x_print.c:1226
 msgid "An error occurred while printing"
-msgstr "kamhosa muoy ban kaetlaeng khn pel kar tomleak kar tinnony: %s."
+msgstr "kamhosa muoy ban kaetlaeng khn pel baohpoum"
 
 #: gschem/src/x/x_print.c:794 gschem/src/x/x_rc.c:87
 msgid "The log may contain more information."
@@ -3488,11 +3519,10 @@ msgstr ""
 msgid "Error, opening output"
 msgstr "nhek kamhos"
 
+# Wrote configuration to
 #: gschem/src/x/x_settings.c:604
 msgid "Wrote configuration to"
-msgstr ""
-"breachy knong kar roksaatouk karkamnt rochneasampnth anak brae daembi '%s': "
-"%s."
+msgstr "sarser karkamnt rochneasampnth daembi"
 
 #: gschem/src/x/x_settings.c:607
 msgid "File error"
@@ -3568,30 +3598,37 @@ msgstr ""
 msgid "Could not save Toolbar configuration to"
 msgstr "breachy knong kar roksaatouk karkamnt rochneasampnth anak brae daembi"
 
+# Error, toolbar configuration file
 #: gschem/src/x/x_toolbars.c:641
 msgid "Error, Toolbar configuration key file"
-msgstr ""
+msgstr "kamhosa knong kar, eksar kamnt rochneasampnth rbar ubakar"
 
+# recall toolbar geometry
 #: gschem/src/x/x_toolbars.c:649
 msgid "Retrieving toolbar geometry\n"
-msgstr ""
+msgstr "thorneimatr rbar ubakar bramoul rothayon\n"
 
+# toolbar configuration restored from
 #: gschem/src/x/x_toolbars.c:674
 msgid "Toolbar configuration restored from"
-msgstr ""
+msgstr "karkamnt rochneasampnth rbar ubakar sta r laengvinh pi"
 
+# warning, Toolbar configuration error restoration
 #: gschem/src/x/x_toolbars.c:679
-#, fuzzy
 msgid "Warning, error restoring toolbar configuration"
-msgstr "nhek kamhos"
+msgstr "karopromean, karkamnt rochneasampnth rbar ubakar kamhosa kar sdar"
 
+# warning, toolbar configuration file access error
 #: gschem/src/x/x_toolbars.c:685
 msgid "Warning, toolbar configuration file access error"
 msgstr ""
+"karopromean, kamhosa knong kar chaul damnaerkar eksar kamnt rochneasampnth "
+"rbar ubakar"
 
+# toolbar configuration not found
 #: gschem/src/x/x_toolbars.c:703
 msgid "Toolbar configuration not found"
-msgstr ""
+msgstr "karkamnt rochneasampnth rbar ubakar del minban rk kheunh"
 
 #: gschem/src/x/x_window.c:105
 msgid "Could not allocate a graphics context"
@@ -3741,10 +3778,10 @@ msgstr "baohbng kar phlasa btaur ning kar phtok eksar bachchobban"
 msgid "Re_vert All"
 msgstr "tralb bratebatte kar ban breachy"
 
+# cancel changes and reload all open documents
 #: gschem/etc/system-gschemrc.scm:2062
-#, fuzzy
 msgid "Discard changes and reload all open documents"
-msgstr "baohbng kar phlasa btaur ning kar phtok eksar bachchobban"
+msgstr "baohbng kar phlasa btau r ning phtok eksar del ban baek teangoasa"
 
 #: gschem/etc/system-gschemrc.scm:2065
 msgid "_Print..."
@@ -5110,10 +5147,10 @@ msgstr ""
 msgid "Show Console Window"
 msgstr ""
 
+# Show coordinates window
 #: gschem/scheme/gschem/builtins.scm:439
-#, fuzzy
 msgid "Show Coordinates Window"
-msgstr "rbieb kauardaone"
+msgstr "bangheanh samrobasamruol bangauoch"
 
 #: gschem/scheme/gschem/builtins.scm:442
 msgid "Guile Path"
@@ -5272,29 +5309,3 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
-
-#~ msgid "session"
-#~ msgstr "breachy knong kar roksaatouk samyobrachoum"
-
-#~ msgid "New page created [%s]\n"
-#~ msgstr "tompr thmei del ban bangkeut laeng [%s]\n"
-
-#~ msgid "An error occurred while receiving drag-and-drop data"
-#~ msgstr ""
-#~ "kamhosa muoy ban kaetlaeng khn pel del ttuol ban thleakchoh tinnony: %s."
-
-#~ msgid "Close all canceled\n"
-#~ msgstr "loubchaol kar bet teangoasa\n"
-
-#~ msgid "An error occurred while dropping data"
-#~ msgstr ""
-#~ "kamhosa muoy ban kaetlaeng khn pel ttuol ban tinnony ausa ning tomleak"
-
-#~ msgid "Loading"
-#~ msgstr "kampoung phtok \"%s\"\n"
-
-#~ msgid "documents\n"
-#~ msgstr "eksar:"
-
-#~ msgid "Processing Action <%s>, at index %d\n"
-#~ msgstr "sakammopheap damnaerkar <%s>, nowknong santossaa %d\n"
