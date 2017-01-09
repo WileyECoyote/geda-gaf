@@ -282,11 +282,6 @@ static void unmap_handler (GtkWidget *widget)
                      cfg, group_name);
   }
 
-  /* Disconnect the update selection handler function
-  if (dialog->tracker != NULL) {
-    gd_disconnect_selection (dialog);
-  }
-  */
   /* Let GTK unmap the window */
   GTK_WIDGET_CLASS (gschem_dialog_parent_class)->unmap (widget);
 }
