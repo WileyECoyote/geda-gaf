@@ -16,6 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
 "X-Generator: Launchpad (build 16265)\n"
 
@@ -527,10 +528,10 @@ msgstr "URI konnte nicht gestartet werden"
 msgid "Found invalid gschem window smob ~S"
 msgstr ""
 
+# current value of
 #: gschem/src/iface/i_command.c:132 gschem/src/iface/i_command.c:5025
-#, fuzzy
 msgid "current value of"
-msgstr "Aktuelle Seite"
+msgstr "Aktueller Wert von"
 
 #: gschem/src/iface/i_command.c:132 gschem/src/iface/i_command.c:5026
 msgid "is"
@@ -552,10 +553,10 @@ msgstr ""
 msgid "New page created"
 msgstr "Neue Seite erzeugt"
 
+# New window created
 #: gschem/src/iface/i_command.c:752
-#, fuzzy
 msgid "New Window created"
-msgstr "Neues Fenster geöffnet [%s]\n"
+msgstr "Neues Fenster erstellt"
 
 #: gschem/src/iface/i_command.c:951
 msgid "Failed to Save All"
@@ -605,22 +606,25 @@ msgstr "Leerer Zwischenspeicher"
 msgid "Offset Mode"
 msgstr "Netzmodus"
 
+# Specify offset distance
 #: gschem/src/iface/i_command.c:1623
 msgid "Specify offset distance:"
-msgstr ""
+msgstr "Offsetabstand angeben:"
 
+# zoom magnification
 #: gschem/src/iface/i_command.c:2204
 msgid "Zoom Magnification"
-msgstr "/Vergrößern"
+msgstr "Zoomvergrößerung"
 
+# Specify new magnification
 #: gschem/src/iface/i_command.c:2204
 msgid "Specify new zoom:"
-msgstr ""
+msgstr "Geben Sie eine neue Vergrößerung an:"
 
+# error
 #: gschem/src/iface/i_command.c:2248
-#, fuzzy
 msgid "error"
-msgstr "Spiegeln"
+msgstr "fehler"
 
 #: gschem/src/iface/i_command.c:2256
 msgid "No component selected\n"
@@ -721,18 +725,20 @@ msgstr "Magnetischer Netzmodus: EIN\n"
 msgid "Magnetic net mode is OFF\n"
 msgstr "Magnetischer Netzmodus: AUS\n"
 
+# Switched off
 #: gschem/src/iface/i_command.c:4416 gschem/src/iface/i_command.c:4458
 msgid "Off"
-msgstr ""
+msgstr "Ausgeschaltet"
 
+# Switched on
 #: gschem/src/iface/i_command.c:4419 gschem/src/iface/i_command.c:4461
 msgid "On"
-msgstr "Öffnen"
+msgstr "Eingeschaltet"
 
+# Drag-can-move is now
 #: gschem/src/iface/i_command.c:4421
-#, fuzzy
 msgid "Drag-Can-Move is now"
-msgstr "_Magnetischen Netzmodus umschalten"
+msgstr "Drag-Can-Move ist jetzt"
 
 #: gschem/src/iface/i_command.c:4433
 msgid "Action feedback mode set to OUTLINE\n"
@@ -760,14 +766,15 @@ msgstr ""
 msgid "Canceled Close all\n"
 msgstr ""
 
+# The session file could not be opened
 #: gschem/src/iface/i_sessions.c:262
-#, fuzzy
 msgid "Could not open the session file"
-msgstr "Die init scm Datei wurde nicht gefunden"
+msgstr "Die Sitzungsdatei konnte nicht geöffnet werden"
 
+# is not accessible
 #: gschem/src/iface/i_sessions.c:268 gschem/src/x/x_window.c:1005
 msgid "is not accessible"
-msgstr ""
+msgstr "ist nicht zugänglich"
 
 #: gschem/src/iface/i_sessions.c:272
 msgid "File"
@@ -819,8 +826,8 @@ msgstr ""
 msgid "created with"
 msgstr ""
 
+# An error occurred while creating the session
 #: gschem/src/iface/i_sessions.c:940
-#, fuzzy
 msgid "An error occurred attempting to create session"
 msgstr "Beim Erstellen der Sitzung ist ein Fehler aufgetreten"
 
@@ -830,19 +837,21 @@ msgstr "<b>Suchbereich</b>"
 
 #: gschem/src/iface/i_sessions.c:950
 msgid "Creation failed"
-msgstr "Einfügen von der Ablage scheiterte."
+msgstr "Einfügen von der Ablage scheiterte"
 
+# Open session
 #: gschem/src/iface/i_sessions.c:994
 msgid "Opened session"
-msgstr "_Alles speichern"
+msgstr "Geöffnete Sitzung"
 
+# Rename session
 #: gschem/src/iface/i_sessions.c:1043
 msgid "Renaming session"
-msgstr "_Alles speichern"
+msgstr "Sitzung umbenennen"
 
 #: gschem/src/iface/i_sessions.c:1044
 msgid "to"
-msgstr ""
+msgstr "zu"
 
 #: gschem/src/iface/i_sessions.c:1068
 msgid "Failed to rename session"
@@ -1078,15 +1087,16 @@ msgid "Translating schematic"
 msgstr "Verschiebe Schaltplan"
 
 #: gschem/src/object/o_delete.c:87
-#, fuzzy, c-format
+#, c-format
 msgid "Delete locked object?"
 msgid_plural "Delete %u locked objects?"
 msgstr[0] "Ausgewählte Objekte"
-msgstr[1] "Ausgewählte Objekte"
+msgstr[1] "%u gesperrte Objekte löschen?"
 
+# Attributes have been hidden
 #: gschem/src/object/o_edit.c:517
 msgid "attributes were hidden"
-msgstr "Attribut"
+msgstr "Attribute wurden ausgeblendet"
 
 #: gschem/src/object/o_edit.c:521
 msgid "hidden attributes were revealed"
@@ -1125,10 +1135,10 @@ msgstr ""
 msgid "Warning: Ending net off grid coordinate\n"
 msgstr "Achtung: Das Ende des Netzes befindet sich nicht auf dem Raster\n"
 
+# The busripper symbol was not found in any component library
 #: gschem/src/object/o_net.c:1096
-#, fuzzy
 msgid "Bus ripper symbol was not found in any component library"
-msgstr "Das Busripper Symbol [%s] wurde in keiner Bauteilbibliothek gefunden\n"
+msgstr "Das Busripper Symbol wurde in keiner Bauteilbibliothek gefunden"
 
 #: gschem/src/object/o_picture.c:357
 msgid "Update All"
@@ -1211,9 +1221,10 @@ msgstr ""
 msgid "Undo: system error"
 msgstr ""
 
+# switching to memory mode
 #: gschem/src/object/o_undo.c:254
 msgid "switching to MEMORY mode"
-msgstr ""
+msgstr "Umschalten in den Speichermodus"
 
 #: gschem/src/object/o_undo.c:460
 msgid "An error occurred during an UNDO disk operation"
@@ -1223,10 +1234,10 @@ msgstr "Während einer UNDO-Datenträgeroperation ist ein Fehler aufgetreten"
 msgid "Undo/Redo disabled\n"
 msgstr "Rückgängig/Wiederherstellen deaktiviert\n"
 
+# Undo error
 #: gschem/src/object/o_undo.c:550
-#, fuzzy
 msgid "<b>Undo error.</b>"
-msgstr "<b>Suchbereich</b>"
+msgstr "<b>Fehler rückgängig.</b>"
 
 #: gschem/src/object/o_undo.c:550
 msgid "Undo failed"
@@ -1466,8 +1477,8 @@ msgstr ""
 msgid "Drag & Drop"
 msgstr ""
 
+# An error occurred while receiving drag-and-drop data
 #: gschem/src/x/x_coord.c:156 gschem/src/x/x_dnd.c:583
-#, fuzzy
 msgid "An error occurred while receiving Drag & Drop data"
 msgstr "Beim Empfangen von Drag & Drop-Daten ist ein Fehler aufgetreten"
 
@@ -1491,15 +1502,15 @@ msgstr "Bildschirm (Pixel)"
 msgid "World"
 msgstr "Weltkoordinaten"
 
+# Failed to load image file
 #: gschem/src/x/x_dialog.c:437
-#, fuzzy
 msgid "Could not load image file"
-msgstr "Konnte die Datei nicht öffnen"
+msgstr "Bilddatei konnte nicht geladen werden"
 
+# gEDA: GPL Electronic Design Automation
 #: gschem/src/x/x_dialog.c:443
-#, fuzzy
 msgid "gEDA: GPL Electronic Design Automation"
-msgstr "gEDA: GPL Electronic Design Automation"
+msgstr "gEDA: Elektronische Designautomatisierung"
 
 #: gschem/src/x/x_dialog.c:444
 msgid "glibc"
@@ -1510,7 +1521,6 @@ msgid "Guile"
 msgstr ""
 
 #: gschem/src/x/x_dialog.c:455
-#, fuzzy
 msgid ""
 "Copyright © 1998-2017 Ales Hvezda <ahvezda@geda.seul.org>\n"
 "Copyright © 1998-2017 gEDA Contributors (see ChangeLog for details)"
@@ -2011,95 +2021,96 @@ msgstr ""
 msgid "Done, renderer is down"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:209
+# invalid show option, setting to default  show both
+#: gschem/src/x/x_edit_attrib.c:210
 #, c-format
-msgid "Got invalid show option; defaulting to show both\n"
-msgstr "Ungültige Anzeigeoption; »Beide anzeigen« wird zur Vorgabe\n"
+msgid "invalid show option; defaulting to show both\n"
+msgstr "Ungültige Anzeigeoption; Einstellung auf Voreinstellung zeigen beide\n"
 
-#: gschem/src/x/x_edit_attrib.c:319
+#: gschem/src/x/x_edit_attrib.c:321
 msgid "Select to choose an attribute visibility options"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:320
+#: gschem/src/x/x_edit_attrib.c:322
 msgid "Show only the name of the attribute"
 msgstr "Geerbte Attribute anzeigen"
 
-#: gschem/src/x/x_edit_attrib.c:321
+#: gschem/src/x/x_edit_attrib.c:323
 msgid "Show only the value of the attribute"
 msgstr "Geerbte Attribute anzeigen"
 
-#: gschem/src/x/x_edit_attrib.c:322
+#: gschem/src/x/x_edit_attrib.c:324
 msgid "Show both the name and the value of the attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:330
+#: gschem/src/x/x_edit_attrib.c:332
 msgid "Show Value Only"
 msgstr "Nur Wert anzeigen"
 
-#: gschem/src/x/x_edit_attrib.c:334
+#: gschem/src/x/x_edit_attrib.c:336
 msgid "Show Name Only"
 msgstr "Nur Name anzeigen"
 
-#: gschem/src/x/x_edit_attrib.c:338 gschem/src/x/x_multiattrib.c:1633
+#: gschem/src/x/x_edit_attrib.c:340 gschem/src/x/x_multiattrib.c:1646
 #: gschem/scheme/gschem/builtins.scm:413
 msgid "Show Name & Value"
 msgstr "Name & Wert anzeigen"
 
-#: gschem/src/x/x_edit_attrib.c:402
+#: gschem/src/x/x_edit_attrib.c:404
 msgid "Enter or type an attribute name"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:403
+#: gschem/src/x/x_edit_attrib.c:405
 msgid "<b>Add Attribute</b>"
 msgstr "<b>Attribut hinzufügen</b>"
 
-#: gschem/src/x/x_edit_attrib.c:404
+#: gschem/src/x/x_edit_attrib.c:406
 msgid "<b>Edit Attribute</b>"
 msgstr "<b>Attribut bearbeiten</b>"
 
-#: gschem/src/x/x_edit_attrib.c:406
+#: gschem/src/x/x_edit_attrib.c:408
 msgid "Select the name of the attribute to add"
 msgstr "Wählen Sie den Namen des hinzuzufügenden Attributs aus"
 
-#: gschem/src/x/x_edit_attrib.c:407
+#: gschem/src/x/x_edit_attrib.c:409
 msgid "Select the name of the attribute to edit"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:409
+#: gschem/src/x/x_edit_attrib.c:411
 msgid "Input a value for the new attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:410
+#: gschem/src/x/x_edit_attrib.c:412
 msgid "Input or edit the value of the attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:412
+#: gschem/src/x/x_edit_attrib.c:414
 msgid "Enable or disable visibility of the attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:429
+#: gschem/src/x/x_edit_attrib.c:431
 msgid "Single Attribute Editor"
 msgstr "Einzel-Attributebearbeitung"
 
-#: gschem/src/x/x_edit_attrib.c:457 gschem/src/x/x_multiattrib.c:2196
+#: gschem/src/x/x_edit_attrib.c:459 gschem/src/x/x_multiattrib.c:2216
 msgid "Name:"
 msgstr "Name:"
 
-#: gschem/src/x/x_edit_attrib.c:474 gschem/src/x/x_multiattrib.c:2215
+#: gschem/src/x/x_edit_attrib.c:476 gschem/src/x/x_multiattrib.c:2235
 msgid "Value:"
 msgstr "Wert:"
 
-#: gschem/src/x/x_edit_attrib.c:488 gschem/src/x/x_multiattrib.c:1991
-#: gschem/src/x/x_multiattrib.c:2271
+#: gschem/src/x/x_edit_attrib.c:490 gschem/src/x/x_multiattrib.c:2011
+#: gschem/src/x/x_multiattrib.c:2291
 msgid "Visible"
 msgstr "Sichtbar"
 
-#: gschem/src/x/x_edit_attrib.c:517 gschem/src/x/x_edit_text.c:590
+#: gschem/src/x/x_edit_attrib.c:519 gschem/src/x/x_edit_text.c:590
 #: gschem/src/x/x_edit_text.c:602
 msgid "Atrribute Name List"
 msgstr "Attribut"
 
-#: gschem/src/x/x_edit_attrib.c:521 gschem/src/x/x_edit_text.c:598
+#: gschem/src/x/x_edit_attrib.c:523 gschem/src/x/x_edit_text.c:598
 msgid "Attribute Value Entry"
 msgstr "Attribut"
 
@@ -2360,14 +2371,15 @@ msgstr ""
 msgid "Edit slot number"
 msgstr "Slot-Nummer bearbeiten"
 
+# Number of slots
 #: gschem/src/x/x_edit_slot.c:185
 msgid "Number of slots:"
-msgstr ""
+msgstr "Anzahl der Steckplätze:"
 
+# Slot number
 #: gschem/src/x/x_edit_slot.c:199
-#, fuzzy
 msgid "Slot number:"
-msgstr "Slot-Nummer bearbeiten:"
+msgstr "Slot-Nummer:"
 
 #: gschem/src/x/x_edit_text.c:234
 msgid "Upper Left"
@@ -2510,16 +2522,18 @@ msgid "Unable to write"
 msgstr "Nicht schreiben können"
 
 #: gschem/src/x/x_image.c:477
-msgid "An error occured while saving image with type"
+msgid "An error occurred while saving image with type"
 msgstr "Beim Speichern des Bildes mit dem Typ ist ein Fehler aufgetreten"
 
+# to filename
 #: gschem/src/x/x_image.c:478
 msgid "to filename"
-msgstr "Dateiname"
+msgstr "zu filename"
 
+# Error Writing Imaging
 #: gschem/src/x/x_image.c:489
 msgid "<b>Error Writing Imaging.</b>"
-msgstr ""
+msgstr "<b>Fehler beim Schreiben von Imaging.</b>"
 
 #: gschem/src/x/x_image.c:502
 msgid "Wrote color image to"
@@ -3306,10 +3320,10 @@ msgstr "PostScript-Dateinamen auswählen"
 msgid "exported to"
 msgstr ""
 
+# Load the selected session
 #: gschem/src/x/x_sessions.c:414
-#, fuzzy
 msgid "Load the selected session"
-msgstr "Ausgewählte Objekte"
+msgstr "Laden Sie die ausgewählte Sitzung"
 
 #: gschem/src/x/x_sessions.c:415
 msgid ""
@@ -3526,10 +3540,10 @@ msgstr ""
 msgid "Close Window canceled\n"
 msgstr "Fenster s_chließen\n"
 
+# Loading file
 #: gschem/src/x/x_window.c:767
-#, fuzzy
 msgid "Loading file"
-msgstr "Lade Schaltplan"
+msgstr  "Datei wird geladen"
 
 #: gschem/src/x/x_window.c:911
 msgid "New file"
@@ -3539,10 +3553,10 @@ msgstr "Neue Datei"
 msgid "Failed to load file"
 msgstr "Fehler beim Laden der Datei"
 
+# Creating new file
 #: gschem/src/x/x_window.c:983
-#, fuzzy
 msgid "Creating new file"
-msgstr "Einfügen von der Ablage scheiterte."
+msgstr "Neue Datei erstellen"
 
 #: gschem/src/x/x_window.c:996
 msgid "Path"
@@ -3764,14 +3778,15 @@ msgstr "Drehen"
 msgid "Snap to _grid"
 msgstr "Ausschnittmodus"
 
+# Set the selection to the current grid
 #: gschem/etc/system-gschemrc.scm:2100
-#, fuzzy
 msgid "Snap selection to current grid"
-msgstr "Aktuelles Fenster"
+msgstr "Auswahl auf aktuelles Raster ausrichten"
 
+# _Array
 #: gschem/etc/system-gschemrc.scm:2103
 msgid "_Array"
-msgstr ""
+msgstr "_Array"
 
 #: gschem/etc/system-gschemrc.scm:2104
 msgid "_Break"
@@ -3781,9 +3796,10 @@ msgstr ""
 msgid "Break a linear object into separate objects"
 msgstr ""
 
+# Extend
 #: gschem/etc/system-gschemrc.scm:2105
 msgid "E_xtend"
-msgstr "/Automatisch"
+msgstr "Verlängern"
 
 #: gschem/etc/system-gschemrc.scm:2108
 msgid "_Edit..."
