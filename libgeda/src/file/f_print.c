@@ -98,7 +98,8 @@ static char *f_print_get_color_string(int index)
       }
     }
     else {
-      fprintf(stderr,_("Color index out of range <%d>"), index);
+      const char *log_msg = _("Color index out of range");
+      fprintf(stderr, "%s <%d>", log_msg, index);
     }
   }
   else {
@@ -174,7 +175,7 @@ int f_print_header(GedaToplevel *toplevel, Page *page, FILE *fp,
   /* Get Time of day for creation date */
   time_rc = time(&current_time);
   if(time_rc == (time_t)-1) {
-    u_log_message(_("Unable to get time of day in f_print_header()\n"));
+    geda_log(_("Unable to get time of day\n"));
     current_time=0; /* Just set it to 1970... */
   }
 
@@ -216,23 +217,26 @@ int f_print_header(GedaToplevel *toplevel, Page *page, FILE *fp,
   /* Check for prolog file */
   prologfile = geda_utility_string_strdup(toplevel->postscript_prolog);
 
-  if(access(prologfile, R_OK) != 0) {
+  if (access(prologfile, R_OK) != 0) {
     GEDA_FREE(prologfile);
     prologfile = geda_strconcat (geda_sys_data_path (), DIR_SEPARATOR_S,
                                  toplevel->postscript_prolog, NULL);
     if(access(prologfile, R_OK) != 0) {
-      u_log_message(_("f_print_header: Unable to locate prolog file [%s]\n"), prologfile);
+      const char *log_msg = _("Unable to locate prolog file");
+      geda_log("%s [%s]\n", log_msg, prologfile);
       goto f_print_header_fail;
     }
   }
   else {
-    u_log_message(_("f_print_header: using prolog file [%s]\n"), prologfile);
+    const char *log_msg = _("using prolog file");
+    geda_log_v("%s [%s]\n", log_msg, prologfile);
   }
 
   prolog = fopen(prologfile,"r");
 
-  if(prolog == NULL) {
-    u_log_message(_("f_print_header: Unable to open the prolog file \"%s\" for reading\n"), prologfile);
+  if (prolog == NULL) {
+    const char *log_msg = _("Unable to open the prolog file for reading");
+    geda_log("%s [%s]\n", log_msg, prologfile);
     goto f_print_header_fail;
   }
 
@@ -240,36 +244,42 @@ int f_print_header(GedaToplevel *toplevel, Page *page, FILE *fp,
    * back out to the supplied file handle
    */
   do {
+
     bytes = fread(buf, 1, PROLOG_BUFFER_SIZE, prolog);
-    if(ferror(prolog)) break;
+
+    if (ferror(prolog))
+      break;
+
     if (fwrite(buf, 1, bytes, fp) != bytes) {
       /* An error occurred  with fwrite */
-      u_log_message(_("f_print_header: Error while writing prolog \"%s\" \n"), prologfile);
+      const char *log_msg = _("Error while writing prolog");
+      geda_log("%s [%s] \n", log_msg, prologfile);
       goto f_print_header_fail;
     }
   } while (!feof(prolog) && !ferror(prolog) && !ferror(fp));
 
-  if(ferror(prolog)) {
-    u_log_message(_("f_print_header: Error reading prolog file \"%s\"\n"), prologfile);
+  if (ferror(prolog)) {
+    const char *log_msg = _("Error reading prolog file");
+    geda_log("%s [%s]\n", log_msg, prologfile);
     goto f_print_header_fail;
   }
 
   if(ferror(fp)) {
-    u_log_message(_("f_print_header: Error writing postscript output file\n"));
+    geda_log( _("Error writing postscript output file"));
     goto f_print_header_fail;
   }
 
   GEDA_FREE(buf);  /* If we got to here, the buffer was allocated. */
   GEDA_FREE(prologfile);
   fprintf(fp,"%%%%EndProlog\n"
-  "%%%%Page: 1 1\n");     /* Just name it `page 1' for now */
+             "%%%%Page: 1 1\n");     /* Just name it `page 1' for now */
 
   fclose (prolog);
   return 0;
 
 f_print_header_fail:
 
-  u_log_message (_("Giving up on printing\n"));
+  geda_log (_("Giving up on printing\n"));
 
   if (prolog != NULL)
     fclose (prolog);
@@ -440,7 +450,7 @@ geda_file_print_command (GedaToplevel *toplevel, Page *page, GArray *color_map, 
   /* check to see if it worked */
   if (fp == NULL) {
 
-      u_log_message(_("Could not execute command [%s] for printing\n"),
+      geda_log(_("Could not execute command [%s] for printing\n"),
                     command);
       result = -1;
   }
@@ -478,7 +488,7 @@ geda_file_print_file (GedaToplevel *toplevel, Page *page, GArray *color_map, con
 
   /* check to see if it worked */
   if (fp == NULL) {
-    u_log_message(_("Could not open [%s] for printing\n"), filename);
+    geda_log(_("Could not open [%s] for printing\n"), filename);
     result = -1;
   }
   else {
@@ -768,7 +778,7 @@ static int f_print_get_unicode_chars (GedaToplevel *toplevel,
                 if (count < 128)
                   table[count++] = current_char;
                 else
-                  u_log_message(_("Too many UTF-8 characters, cannot print\n"));
+                  geda_log(_("Too many UTF-8 characters, cannot print\n"));
               }
             }
             aux = g_utf8_find_next_char(aux, NULL);
