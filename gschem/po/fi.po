@@ -125,7 +125,7 @@ msgstr ""
 #: gschem/src/base/gschem_page_view.c:258
 #: gschem/src/base/gschem_page_view.c:259
 msgid "Page"
-msgstr "_Sivu"
+msgstr "Sivu"
 
 #: gschem/src/base/gschem_page_view.c:265
 #: gschem/src/base/gschem_page_view.c:266
@@ -236,7 +236,7 @@ msgstr ""
 
 #: gschem/src/base/gschem_preview.c:557
 msgid "Active"
-msgstr "_Lähennä"
+msgstr "Lähennä"
 
 #: gschem/src/base/gschem_preview.c:558
 msgid "Whether the preview widget is enabled or disabled"
@@ -250,9 +250,10 @@ msgstr ""
 msgid "Whether the preview widget should be large or small"
 msgstr ""
 
+# Coordinates Mode
 #: gschem/src/base/gschem_status_bar.c:587
 msgid "Coordinates Mode"
-msgstr "Näytä _Koordinaatti-ikkuna..."
+msgstr "koordinaatit tila"
 
 #: gschem/src/base/gschem_status_bar.c:588
 msgid "Sets the Format Mode used to display coordinates on the status bar"
@@ -411,7 +412,7 @@ msgstr ""
 
 #: gschem/src/guile/g_rc.c:127
 msgid "Bad Value"
-msgstr "Näytä _Arvo"
+msgstr "Näytä Arvo"
 
 #: gschem/src/guile/g_rc.c:128 gschem/src/guile/g_rc.c:2074
 msgid "check"
@@ -545,10 +546,10 @@ msgstr ""
 msgid "New page created"
 msgstr ""
 
+# New Window created
 #: gschem/src/iface/i_command.c:752
-#, fuzzy
 msgid "New Window created"
-msgstr "Uusi ikkuna"
+msgstr "Uusi ikkuna luotu"
 
 #: gschem/src/iface/i_command.c:951
 msgid "Failed to Save All"
@@ -562,9 +563,10 @@ msgstr ""
 msgid "Error encountered, Save Failed"
 msgstr ""
 
+# write image
 #: gschem/src/iface/i_command.c:1038 gschem/src/x/x_image.c:489
 msgid "Write Image"
-msgstr "_Vie kuvaksi..."
+msgstr "write kuva"
 
 #: gschem/src/iface/i_command.c:1060
 msgid "Write PDF"
@@ -1182,9 +1184,10 @@ msgstr ""
 msgid "<b>Auto switching Undo system to type Memory</b>\n"
 msgstr ""
 
+# gschem Undo System
 #: gschem/src/object/o_undo.c:117
 msgid "Gschem Undo System"
-msgstr "gschem _UKK..."
+msgstr "gschem Kumoa järjestelmä"
 
 #: gschem/src/object/o_undo.c:252
 msgid "Undo: encountered an error, file"
@@ -2472,17 +2475,19 @@ msgstr ""
 msgid "Unable to write"
 msgstr ""
 
+# Error saving image type
 #: gschem/src/x/x_image.c:477
-msgid "An error occured while saving image with type"
-msgstr ""
+msgid "An error occurred while saving image with type"
+msgstr "Virhe säästö kuvan tyypin"
 
 #: gschem/src/x/x_image.c:478
 msgid "to filename"
 msgstr ""
 
+# Error Writing Imaging
 #: gschem/src/x/x_image.c:489
 msgid "<b>Error Writing Imaging.</b>"
-msgstr ""
+msgstr "<b>Virhe kirjoitettaessa kuvantaminen</b>"
 
 #: gschem/src/x/x_image.c:502
 msgid "Wrote color image to"
