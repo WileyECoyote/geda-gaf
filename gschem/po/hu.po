@@ -522,35 +522,38 @@ msgstr "Nem sikerült elindítani URI"
 msgid "Found invalid gschem window smob ~S"
 msgstr ""
 
+# the present value
 #: gschem/src/iface/i_command.c:132 gschem/src/iface/i_command.c:5025
-#, fuzzy
 msgid "current value of"
-msgstr "Jelenlegi oldal"
+msgstr "jelenlegi értéke"
 
+# is
 #: gschem/src/iface/i_command.c:132 gschem/src/iface/i_command.c:5026
 msgid "is"
-msgstr ""
+msgstr "az"
 
 #: gschem/src/iface/i_command.c:368
 msgid "Processing Action"
 msgstr "feldolgozás Action"
 
+# Cannot
 #: gschem/src/iface/i_command.c:475
 msgid "Cannot"
-msgstr ""
+msgstr "Nem tud"
 
+# During operation, action!
 #: gschem/src/iface/i_command.c:475
 msgid "while inside an action!\n"
-msgstr ""
+msgstr "művelet során akció!\n"
 
 #: gschem/src/iface/i_command.c:714 gschem/src/iface/i_command.c:2715
 msgid "New page created"
 msgstr "Új oldal létrehozva"
 
+# Window created
 #: gschem/src/iface/i_command.c:752
-#, fuzzy
 msgid "New Window created"
-msgstr "[%s] ablak létrehozva\n"
+msgstr "ablak létrehozva"
 
 #: gschem/src/iface/i_command.c:951
 msgid "Failed to Save All"
@@ -612,10 +615,10 @@ msgstr "/Nagyítás"
 msgid "Specify new zoom:"
 msgstr ""
 
+# error
 #: gschem/src/iface/i_command.c:2248
-#, fuzzy
 msgid "error"
-msgstr "Tükrözés"
+msgstr "hiba"
 
 #: gschem/src/iface/i_command.c:2256
 msgid "No component selected\n"
@@ -625,10 +628,10 @@ msgstr ""
 msgid "Confirm revert ALL documents"
 msgstr ""
 
+# Find resources
 #: gschem/src/iface/i_command.c:2982
-#, fuzzy
 msgid "Searching for source"
-msgstr "[%s] forrás keresése\n"
+msgstr "forrás keresése"
 
 #: gschem/src/iface/i_command.c:3016
 msgid "Failed to descend into"
@@ -636,12 +639,12 @@ msgstr "Nem sikerült leereszkedni"
 
 #: gschem/src/iface/i_command.c:3025
 msgid "Hierarchy Error"
-msgstr "Hie_rarchia"
+msgstr "Hierarchia"
 
+# Find symbol
 #: gschem/src/iface/i_command.c:3102
-#, fuzzy
 msgid "Searching for symbol"
-msgstr "[%s] szimbólum keresése\n"
+msgstr "szimbólum keresése"
 
 #: gschem/src/iface/i_command.c:3112
 msgid "Symbol is not a real file. Symbol cannot be loaded.\n"
@@ -833,11 +836,12 @@ msgstr "Mind mentése"
 
 #: gschem/src/iface/i_sessions.c:1044
 msgid "to"
-msgstr ""
+msgstr "felé"
 
+# Could not rename the session
 #: gschem/src/iface/i_sessions.c:1068
 msgid "Failed to rename session"
-msgstr "Sikertelen a(z) %s kép betöltése"
+msgstr "Nem sikerült átnevezni a munkamenet"
 
 #: gschem/src/iface/i_sessions.c:1071
 msgid "<b>Could not rename session</b>"
@@ -1023,10 +1027,11 @@ msgstr "Nem lehet menteni a felhasználói konfiguráció"
 msgid "Closing Page\n"
 msgstr "Lap bezárása\n"
 
+# Set page <%s> Active
 #: gschem/src/iface/i_window.c:173
 #, c-format
 msgid "Set page <%s> active.\n"
-msgstr "Állítsa oldal <% s> aktív.\n"
+msgstr "Állítsa oldal <%s> aktív.\n"
 
 #: gschem/src/iface/i_window.c:198
 msgid "Really revert page?"
@@ -1127,13 +1132,15 @@ msgstr "Frissítés"
 msgid "Update all selected Picture images"
 msgstr ""
 
+# image replacement failed
 #: gschem/src/object/o_picture.c:397
 msgid "Failed to replace picture"
-msgstr "Sikertelen a(z) %s kép betöltése"
+msgstr "Kép lecserélése nem sikerült"
 
+# image replacement failed
 #: gschem/src/object/o_picture.c:400
 msgid "<b>Failed to replace picture</b>"
-msgstr "Sikertelen a(z) %s kép betöltése"
+msgstr "<b>Kép lecserélése nem sikerült</b>"
 
 #: gschem/src/object/o_picture.c:425
 msgid "Orginal size"
@@ -1147,9 +1154,10 @@ msgstr ""
 msgid "An unknown error occurred"
 msgstr ""
 
+# Could not load the image
 #: gschem/src/object/o_picture.c:622
 msgid "<b>Failed to load picture</b>"
-msgstr "Sikertelen a(z) %s kép betöltése"
+msgstr "<b>Nem sikerült betölteni a képet</b>"
 
 #: gschem/src/object/o_picture.c:623
 msgid "Load failed"
@@ -1473,10 +1481,10 @@ msgstr "Képernyő"
 msgid "World"
 msgstr "Világ"
 
+# Unable to load the image file
 #: gschem/src/x/x_dialog.c:437
-#, fuzzy
 msgid "Could not load image file"
-msgstr "Nem sikerült megnyitni ezt a fájlt"
+msgstr "Nem sikerült betölteni a képfájl"
 
 #: gschem/src/x/x_dialog.c:443
 msgid "gEDA: GPL Electronic Design Automation"
@@ -1786,6 +1794,7 @@ msgstr "Középre"
 msgid "Phantom"
 msgstr ""
 
+# Edit line thickness and type
 #: gschem/src/x/x_dialog.c:2183 gschem/scheme/gschem/builtins.scm:155
 msgid "Edit Line Width & Type"
 msgstr "Vonalvastagság és típus szerkesztése"
@@ -3507,18 +3516,19 @@ msgstr "fájl betöltése"
 msgid "New file"
 msgstr "Új fájl"
 
+# Could not load file
 #: gschem/src/x/x_window.c:953
 msgid "Failed to load file"
-msgstr "Sikertelen a(z) %s kép betöltése"
+msgstr "Nem sikerült betölteni a fájlt"
 
+# Creating new file
 #: gschem/src/x/x_window.c:983
-#, fuzzy
 msgid "Creating new file"
-msgstr "nem sikerült létrehozni"
+msgstr "teremt Új fájl"
 
 #: gschem/src/x/x_window.c:996
 msgid "Path"
-msgstr "/Összeköttetés hozzáadása"
+msgstr "Összeköttetés hozzáadása"
 
 #: gschem/src/x/x_window.c:999
 msgid ""
@@ -3776,6 +3786,7 @@ msgstr "Szín..."
 msgid "Edit Pi_n..."
 msgstr "Kitöltés szerkesztése..."
 
+# Line width and type
 #: gschem/etc/system-gschemrc.scm:2112
 msgid "Line _Width & Type..."
 msgstr "Vonalszélesség és típus..."
@@ -3786,7 +3797,7 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2113
 msgid "Fill T_ype..."
-msgstr "Kitöltés típusa..."
+msgstr "Kitöltés _típusa..."
 
 #: gschem/etc/system-gschemrc.scm:2113
 msgid "Open the Fill Editor Dialog"
@@ -4961,9 +4972,10 @@ msgstr "Szöveg elrejtése"
 msgid "Show Specific Text"
 msgstr "Szöveg mutatása"
 
+# Open Attributes Editor
 #: gschem/scheme/gschem/builtins.scm:428
 msgid "Open Attributes Editor"
-msgstr "_Attribútum"
+msgstr "Nyílt attribútumok szerkesztő"
 
 #: gschem/scheme/gschem/builtins.scm:433
 msgid "Autonumber Text"
@@ -4973,14 +4985,15 @@ msgstr "Automatikus számozás"
 msgid "Show Console Window"
 msgstr "Mutatása konzolt"
 
+# Show Coordinates window
 #: gschem/scheme/gschem/builtins.scm:439
-#, fuzzy
 msgid "Show Coordinates Window"
-msgstr "Jelenlegi nézet"
+msgstr "Mutatása Koordináták ablak"
 
+# Guile Search Path
 #: gschem/scheme/gschem/builtins.scm:442
 msgid "Guile Path"
-msgstr ""
+msgstr "Guile keresési útvonala"
 
 #: gschem/scheme/gschem/builtins.scm:448
 msgid "Translate Symbol"
