@@ -232,7 +232,7 @@ load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[]
 
   if (!page_loaded) { /* If no files have been loaded, then ... */
 
-    /*! \brief Sessions */
+    /*! \internal Sessions */
     if (start_session) { /* If session specified on command line */
       if (!i_sessions_open_session(w_current, start_session)) {
         geda_log_q("%s: %s\n", _("An error was encountered loading requested session"), start_session);
@@ -251,7 +251,7 @@ load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[]
 
       int load_last;
 
-      /*! \brief Auto-Load */
+      /*! \internal Auto-Load */
       /* Retrieve the setting for auto-load-last */
       auto_load_last = default_auto_load_last;
 
@@ -478,7 +478,7 @@ static void main_prog(void *closure, int argc, char *argv[])
   /* This should be equivalent to setlocale (LC_ALL, "") */
   gdk_set_locale();
 
-  /* This must be the same for all locales,  use decimal point instead
+  /* This must be the same for all locales, use decimal point instead
    * of comma, use "C" or "POSIX" */
   setlocale(LC_NUMERIC, "C");
 
@@ -488,6 +488,7 @@ static void main_prog(void *closure, int argc, char *argv[])
 
 # if DEBUG
 
+  fprintf(stderr, "Configured locale directory: %s\n", LOCALEDIR);
   fprintf(stderr, "Current locale settings: %s\n", setlocale(LC_ALL, NULL));
 
 # endif
