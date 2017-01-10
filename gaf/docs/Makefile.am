@@ -2,9 +2,6 @@
 
 EXTRA_DIST = $(html_man_files) gaf.1.in
 
-localedir  = @datadir@/locale
-DEFS       = -DLOCALEDIR=\"$(localedir)\" @DEFS@
-
 all:	$(MANS)
 
 .1.in.1:
