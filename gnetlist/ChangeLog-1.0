@@ -1,3 +1,7 @@
+2017-01-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    include/Makefile.am: Append local gettext.h to noinst_HEADERS.
+
 2016-12-30 Wiley E. Hill <wileyhill@gmail.com>
 
     src/: Replace square brackets with double quotes for the file names
