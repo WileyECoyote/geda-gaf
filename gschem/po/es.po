@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gschem VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-08 12:19-0600\n"
+"POT-Creation-Date: 2017-01-10 07:50-0600\n"
 "PO-Revision-Date: 2012-03-23 03:04+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitoschido@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -84,7 +84,7 @@ msgstr "Sistema de dictado está deshabilitado\n"
 msgid "ERROR: Failed to load or evaluate startup script.\n"
 msgstr "El log (registro) de gschem puede tener más información.\n"
 
-#: gschem/src/base/gschem.c:516
+#: gschem/src/base/gschem.c:517
 msgid "Exiting normal\n"
 msgstr "Terminación normal\n"
 

@@ -1,5 +1,7 @@
 2017-01-10 Wiley E. Hill <wileyhill@gmail.com>
 
+    * po/en_GB.po: add plural forms.
+
     * src/base/gschem.c: Add debug print configured locale directory,
       LOCALEDIR, change \brief blurbs to \internal comments.
 

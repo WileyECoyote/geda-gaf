@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-08 12:19-0600\n"
+"POT-Creation-Date: 2017-01-10 07:50-0600\n"
 "PO-Revision-Date: 2016-12-23 15:41-0600\n"
 "Last-Translator: عبدالله شلي (Abdellah Chelli) <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -82,7 +82,7 @@ msgstr "تم تعطيل نظام الإملاء\n"
 msgid "ERROR: Failed to load or evaluate startup script.\n"
 msgstr "خطأ: فشل في تحميل أو تقييم النصي لبدء التشغيل.\n"
 
-#: gschem/src/base/gschem.c:516
+#: gschem/src/base/gschem.c:517
 msgid "Exiting normal\n"
 msgstr "تخرج الطبيعي\n"
 
