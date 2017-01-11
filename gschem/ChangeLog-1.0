@@ -4,6 +4,8 @@
 
     * po/pt.po: Update Portuguese translations.
 
+    * po/pt_BR.po: Update Brazilian Portuguese translations.
+
     * src/base/gschem.c: Add debug print configured locale directory,
       LOCALEDIR, change \brief blurbs to \internal comments.
 
