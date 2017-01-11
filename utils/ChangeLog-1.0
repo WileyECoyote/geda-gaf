@@ -3,6 +3,15 @@
     * Makefile.am: Add rule for update-gmo to allow compiling translations
       from application folder.
 
+    * gsch2pcb/Makefile.am: Add @LIBINTL@ to LDADD so that gsch2pcb is
+      linked against libintl if required.
+
+    * gsch2pdf/Makefile.am: Add @LIBINTL@ to LDADD so that gsch2pdf is
+      linked against libintl if required.
+
+    * gschlas/Makefile.am: Add @LIBINTL@ to LDADD so that gschlas is linked
+      against libintl if required.
+
 2016-12-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * scripts/tragesym.py: Revise function writesym to allow file version 2

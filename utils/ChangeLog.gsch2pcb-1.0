@@ -3,6 +3,11 @@ gsch2pcb Changelog
 1.13.0
 ---------
 
+2017-01-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gsch2pcb/Makefile.am: Add @LIBINTL@ to LDADD so that ligeda tests are
+      linked against libintl if required.
+
 2016-10-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * gsch2pcb/gsch2pcb.c: Check quiet_mode for version command-line query and

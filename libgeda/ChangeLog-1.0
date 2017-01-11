@@ -3,6 +3,10 @@
     * Makefile.am: Add rule for update-gmo to allow compiling translations
       from application folder.
 
+    * tests/Makefile.am: Add @LIBINTL@ to LDADD so that ligeda tests are
+      linked against libintl if required. Is not really required by link
+      think so.
+
 2017-01-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_file.c: Replace u_log_message with  geda_log and revise

@@ -11,14 +11,14 @@ GEDA_INCLUDES 	= $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA)
 bin_PROGRAMS	= gsch2pcb
 
 AM_CFLAGS	= $(GEDA_INCLUDES) $(GCC_CFLAGS) $(MINGW_CFLAGS) \
-		  $(GLIB_CFLAGS)
+			  $(GLIB_CFLAGS)
 
 gsch2pcb_SOURCES   = gsch2pcb.c
 gsch2pcb_CPPFLAGS  = -DPCBDATADIR=\"$(PCBDATADIR)\" \
-		     -DPCBLIBPATH=\"$(PCBLIBPATH)\"
+					 -DPCBLIBPATH=\"$(PCBLIBPATH)\"
 gsch2pcb_CFLAGS    = $(AM_CFLAGS)
 gsch2pcb_LDFLAGS   = $(GLIB_LIBS)
-gsch2pcb_LDADD     = $(top_builddir)/libgeda/src/libgeda.la
+gsch2pcb_LDADD     = $(top_builddir)/libgeda/src/libgeda.la @LIBINTL@
 
 doxygen:
 # Change to the docs directory and 'make doxygen' for geda utilities

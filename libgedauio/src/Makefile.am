@@ -42,8 +42,7 @@ libgedauio_la_LDFLAGS        = $(DEBUGGING) $(LDFLAGS) $(AM_LDFLAGS)
 
 libgedauio_la_DEPENDENCIES   = $(top_builddir)/libgeda/src/libgeda.la
 
-libgedauio_la_LIBADD         = $(top_builddir)/libgeda/src/libgeda.la \
-								$(LIB_FILE_DIALOG)/libfileselector
+libgedauio_la_LIBADD         = $(top_builddir)/libgeda/src/libgeda.la
 
 LIBTOOL                      = @LIBTOOL@ --silent
 

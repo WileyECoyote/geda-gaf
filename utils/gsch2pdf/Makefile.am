@@ -36,7 +36,7 @@ gsch2pdf_CFLAGS      = $(AM_CFLAGS)         $(GCC_CFLAGS)  $(GLIB_CFLAGS) \
 
 gsch2pdf_LDFLAGS     = $(GLIB_LIBS) $(GUILE_LIBS) $(PANGOCAIRO_LIBS)
 
-gsch2pdf_LDADD       = $(top_builddir)/libgeda/src/libgeda.la
+gsch2pdf_LDADD       = $(top_builddir)/libgeda/src/libgeda.la @LIBINTL@
 
 MOSTLYCLEANFILES     = *.log core FILE *~
 CLEANFILES           = *.log core FILE *~

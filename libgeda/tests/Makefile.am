@@ -59,5 +59,5 @@ AM_LDFLAGS = \
 	$(MINGW_LDFLAGS) $(GUILE_LIBS) \
 	$(GLIB_LIBS) $(GDK_PIXBUF_LIBS) \
 	$(top_builddir)/libgedacairo/src/libgedacairo.la \
-	$(top_builddir)/libgeda/src/libgeda.la \
-	@LIBINTL@
+	$(top_builddir)/libgeda/src/libgeda.la @LIBINTL@
+

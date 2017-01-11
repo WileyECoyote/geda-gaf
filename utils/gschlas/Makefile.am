@@ -24,7 +24,7 @@ gschlas_CPPFLAGS     =
 gschlas_CFLAGS	     = $(AM_CFLAGS)    $(GCC_CFLAGS)    $(GLIB_CFLAGS) \
 					   $(GUILE_CFLAGS) $(MINGW_CFLAGS)
 gschlas_LDFLAGS	     = $(GLIB_LIBS)    $(GUILE_LIBS)
-gschlas_LDADD 	     = $(top_builddir)/libgeda/src/libgeda.la
+gschlas_LDADD 	     = $(top_builddir)/libgeda/src/libgeda.la @LIBINTL@
 
 MOSTLYCLEANFILES     = *.log core FILE *~
 CLEANFILES           = *.log core FILE *~

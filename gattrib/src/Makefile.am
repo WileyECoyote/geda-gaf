@@ -1,3 +1,4 @@
+## $Id$ indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4
 ## Process this file with automake to produce Makefile.in
 #AUTOMAKE_OPTIONS = 1.6 subdir-objects
 
@@ -50,14 +51,15 @@ AM_CFLAGS        = $(GEDA_INCLUDES) -I$(includedir)
 gattrib_CPPFLAGS =
 
 gattrib_CFLAGS   = $(AM_CFLAGS) $(GCC_CFLAGS) $(GLIB_CFLAGS) $(GTK_CFLAGS) \
-		   $(GTHREAD_CFLAGS) $(GUILE_CFLAGS) $(MINGW_CFLAGS)
+				   $(GTHREAD_CFLAGS) $(GUILE_CFLAGS) $(MINGW_CFLAGS)
 
 gattrib_LDFLAGS  = $(GLIB_LIBS)  $(GTK_LIBS) $(GTHREAD_LIBS) \
-		   $(GUILE_LIBS) $(MINGW_GUI_LDFLAGS)
+				   $(GUILE_LIBS) $(MINGW_GUI_LDFLAGS)
 
 gattrib_LDADD	 = $(LIB_GTKSHEET)/libgtksheet.a \
-		   $(top_builddir)/libgedauio/src/libgedauio.la \
-		   $(top_builddir)/libgeda/src/libgeda.la
+				   $(top_builddir)/libgedauio/src/libgedauio.la \
+				   $(top_builddir)/libgeda/src/libgeda.la \
+				   @LIBINTL@
 
 localedir        = @datadir@/locale
 DEFS             = -DLOCALEDIR=\"$(localedir)\" @DEFS@
