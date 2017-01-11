@@ -26,6 +26,10 @@
 
 #include <config.h>
 
+#ifdef HAVE_LOCALE_H
+#include <locale.h>
+#endif
+
 #include <libgeda/libgeda.h>
 
 #include "../include/struct.h"
@@ -161,6 +165,15 @@ static void main_prog(void *closure, int argc, char *argv[])
  */
 int main (int argc, char *argv[])
 {
+
+#if ENABLE_NLS
+  setlocale(LC_ALL, "");
+  setlocale(LC_NUMERIC, "C");
+  bindtextdomain("geda-gsymcheck", LOCALEDIR);
+  textdomain("geda-gsymcheck");
+  bind_textdomain_codeset("geda-gsymcheck", "UTF-8");
+#endif
+
   scm_boot_guile (argc, argv, main_prog, NULL);
   return 0;
 }
