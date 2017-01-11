@@ -1,3 +1,8 @@
+2017-01-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Makefile.am: Add rule for update-gmo to allow compiling translations
+      from application folder.
+
 2016-12-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/f_export.c: Replace square brackets with double quotes for the

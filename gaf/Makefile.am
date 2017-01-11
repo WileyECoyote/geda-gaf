@@ -11,6 +11,9 @@ ChangeLog: $(top_builddir)/stamp-git
 	) > $@
 endif HAVE_GIT_REPO
 
+update-gmo:
+	$(MAKE) -C po update-gmo || exit 1;
+
 update-po:
 	$(MAKE) -C po update-po || exit 1;
 

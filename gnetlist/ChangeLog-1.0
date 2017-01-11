@@ -1,5 +1,8 @@
 2017-01-11 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Makefile.am: Add rule for update-gmo to allow compiling translations
+      from application folder.
+
     * src/Makefile.am: Replace datadir/locale with localedir so that
       the second argument to bindtextdomain is the actual location
       where the compiled mo files are to be installed. Add @LIBINTL@
