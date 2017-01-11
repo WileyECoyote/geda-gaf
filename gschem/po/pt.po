@@ -940,30 +940,26 @@ msgstr "Guardado"
 msgid "documents to session"
 msgstr "Janela Actual"
 
+# An error occurred attempting to save session
 #: gschem/src/iface/i_sessions.c:1127
 #, fuzzy
 msgid "An error occurred attempting to save session"
-msgstr ""
-"Ocorreu o seguinte erro durante a gravação da imagem com o tipo %s no "
-"ficheiro com nome:\n"
-"%s\n"
-"\n"
-"%s.\n"
+msgstr "Ocorreu um erro ao tentar salvar sessão"
 
 #: gschem/src/iface/i_sessions.c:1135
 #, fuzzy
 msgid "Save session failed"
 msgstr "Gravar ficheiro"
 
+# Show Sessions at startup is now ENABLED
 #: gschem/src/iface/i_sessions.c:1226
-#, fuzzy
 msgid "Show Sessions at startup is now ENABLED\n"
-msgstr "Mostrar texto que comece por:"
+msgstr "Mostrar sessões na inicialização agora está habilitado\n"
 
+# Show Sessions at startup is now DISABLED
 #: gschem/src/iface/i_sessions.c:1229
-#, fuzzy
 msgid "Show Sessions at startup is now DISABLED\n"
-msgstr "Mostrar texto que comece por:"
+msgstr "Mostrar sessões na inicialização agora está desativado\n"
 
 #: gschem/src/iface/i_sessions.c:1299
 msgid "Session system initialized!\n"
@@ -1241,11 +1237,10 @@ msgid "Warning: Ending net off grid coordinate\n"
 msgstr "Aviso: A terminar ligação numa coordenada fora da grelha\n"
 
 #: gschem/src/object/o_net.c:1096
-#, fuzzy
 msgid "Bus ripper symbol was not found in any component library"
 msgstr ""
-"Símbolo de ligação ao barramento [%s] não foi encontrado em nenhuma "
-"biblioteca de componentes\n"
+"Símbolo de ligação ao barramento não foi encontrado em nenhuma biblioteca de "
+"componentes"
 
 #: gschem/src/object/o_picture.c:357
 #, fuzzy
@@ -1257,14 +1252,12 @@ msgid "Update all selected Picture images"
 msgstr ""
 
 #: gschem/src/object/o_picture.c:397
-#, fuzzy
 msgid "Failed to replace picture"
-msgstr "Falha ao carregar imagem: %s"
+msgstr "Falha ao carregar imagem"
 
 #: gschem/src/object/o_picture.c:400
-#, fuzzy
 msgid "<b>Failed to replace picture</b>"
-msgstr "Falha ao carregar imagem: %s"
+msgstr "<b>Falha ao carregar imagem</b>"
 
 #: gschem/src/object/o_picture.c:425
 msgid "Orginal size"
@@ -2697,56 +2690,50 @@ msgstr ""
 msgid "Encapsulated Postscript"
 msgstr "Encapsulated Postscript"
 
+# Error: Unable to write eps file
 #: gschem/src/x/x_image.c:356
-#, fuzzy
 msgid "Error: Unable to write eps file"
-msgstr "x_image_lowlevel: Não foi possível escrever %s no ficheiro %s.\n"
+msgstr "Erro: Não foi possível gravar o arquivo eps"
 
+# Wrote black and white image to
 #: gschem/src/x/x_image.c:359 gschem/src/x/x_image.c:506
-#, fuzzy
 msgid "Wrote black and white image to"
-msgstr "Escreveu-se imagem a preto e branco em [%s] [%d x %d]\n"
+msgstr "Escreveu a imagem a preto e branco"
 
+# Generated PDF file
 #: gschem/src/x/x_image.c:465
-#, fuzzy
 msgid "Generated PDF file"
-msgstr "Novo ficheiro [%s]\n"
+msgstr "Arquivo PDF gerado"
 
+# Unable to write
 #: gschem/src/x/x_image.c:476
-#, fuzzy
 msgid "Unable to write"
-msgstr "x_image_lowlevel: Não foi possível escrever %s no ficheiro %s.\n"
+msgstr "Não foi possível gravar"
 
+# An error occurred while saving image with type
 #: gschem/src/x/x_image.c:477
-#, fuzzy
 msgid "An error occurred while saving image with type"
-msgstr ""
-"Ocorreu o seguinte erro durante a gravação da imagem com o tipo %s no "
-"ficheiro com nome:\n"
-"%s\n"
-"\n"
-"%s.\n"
+msgstr "Ocorreu um erro ao salvar a imagem com o tipo"
 
+# to filename
 #: gschem/src/x/x_image.c:478
-#, fuzzy
 msgid "to filename"
-msgstr "Nome de ficheiro"
+msgstr "ao nome do arquivo"
 
+# Error Writing Imaging
 #: gschem/src/x/x_image.c:489
 msgid "<b>Error Writing Imaging.</b>"
-msgstr ""
+msgstr "<b>Erro ao gravar imagens</b>"
 
+# Wrote color image to
 #: gschem/src/x/x_image.c:502
-#, fuzzy
 msgid "Wrote color image to"
-msgstr "Escreveu-se imagem a cores em [%s] [%d x %d]\n"
+msgstr "Escreveu imagens a cores"
 
+# Unable to get pixbuf from gschem's window.
 #: gschem/src/x/x_image.c:516
-#, fuzzy
 msgid "Unable to get pixbuf from gschem's window.\n"
-msgstr ""
-"x_image_lowlevel: Não foi possível obter mapa de bits a partir janela do "
-"gschem.\n"
+msgstr "Não é possível obter a partir da janela gschem pixbuf.\n"
 
 #: gschem/src/x/x_image.c:669
 msgid "Write image..."
@@ -2781,22 +2768,22 @@ msgstr "Seleccionar modo"
 #: gschem/src/x/x_menus.c:90
 #, fuzzy
 msgid "Add"
-msgstr "_Adicionar"
+msgstr "Adicionar"
 
 #: gschem/src/x/x_menus.c:90
 #, fuzzy
 msgid "Add modes"
-msgstr "/Adicionar Componente..."
+msgstr "Adicionar Componente"
 
 #: gschem/src/x/x_menus.c:91 gschem/etc/system-gschemrc.scm:2239
 #, fuzzy
 msgid "Add net"
-msgstr "/Adicionar Ligação"
+msgstr "Adicionar Ligação"
 
 #: gschem/src/x/x_menus.c:92
 #, fuzzy
 msgid "Attribute..."
-msgstr "_Atributo"
+msgstr "Atributo..."
 
 # Add attribute
 #: gschem/src/x/x_menus.c:92 gschem/etc/system-gschemrc.scm:2241
@@ -2806,29 +2793,27 @@ msgstr "Adicionar atributo"
 #: gschem/src/x/x_menus.c:93 gschem/src/x/x_menus.c:112
 #, fuzzy
 msgid "Component..."
-msgstr "_Componente"
+msgstr "Componente..."
 
+# Insert a symbol from the component library
 #: gschem/src/x/x_menus.c:93 gschem/etc/system-gschemrc.scm:2238
-#, fuzzy
 msgid "Insert a symbol from the component library"
-msgstr ""
-"Símbolo de ligação ao barramento [%s] não foi encontrado em nenhuma "
-"biblioteca de componentes\n"
+msgstr "Inserir um símbolo a partir da biblioteca de componentes"
 
 #: gschem/src/x/x_menus.c:94 gschem/etc/system-gschemrc.scm:2240
 #, fuzzy
 msgid "Add bus"
-msgstr "/Adicionar Barramento"
+msgstr "Adicionar Barramento"
 
 #: gschem/src/x/x_menus.c:95 gschem/etc/system-gschemrc.scm:2242
 #, fuzzy
 msgid "Add text"
-msgstr "/Adicionar Texto"
+msgstr "Adicionar Texto"
 
 #: gschem/src/x/x_menus.c:99
 #, fuzzy
 msgid "Zoom"
-msgstr "/Ampliar"
+msgstr "Ampliar"
 
 #: gschem/src/x/x_menus.c:99
 #, fuzzy
@@ -2865,7 +2850,7 @@ msgstr ""
 #: gschem/src/x/x_menus.c:103 gschem/src/x/x_menus.c:154
 #, fuzzy
 msgid "Extents"
-msgstr "/Mostrar Tudo"
+msgstr "Mostrar Tudo"
 
 #: gschem/src/x/x_menus.c:103 gschem/src/x/x_menus.c:154
 #: gschem/etc/system-gschemrc.scm:2185
@@ -2917,10 +2902,11 @@ msgstr ""
 msgid "Open the Component Editor Dialog"
 msgstr "Editor de único atributo"
 
+# Type of inflation
 #: gschem/src/x/x_menus.c:113
 #, fuzzy
 msgid "Pin type..."
-msgstr "Tipo de Enchimento"
+msgstr "Tipo de Enchimento..."
 
 #: gschem/src/x/x_menus.c:113 gschem/etc/system-gschemrc.scm:2111
 msgid "Open the Pin Type Dialog"
@@ -3003,10 +2989,10 @@ msgstr "Rodar"
 msgid "Rotate the current selection about a point"
 msgstr ""
 
+# Adjust the grid connected
 #: gschem/src/x/x_menus.c:126
-#, fuzzy
 msgid "Snap"
-msgstr "Ajuste a grelha LIGADO\n"
+msgstr "Ajuste a grelha LIGADO"
 
 #: gschem/src/x/x_menus.c:126
 #, fuzzy
@@ -3016,7 +3002,7 @@ msgstr "Janela Actual"
 #: gschem/src/x/x_menus.c:132
 #, fuzzy
 msgid "Hierarchy"
-msgstr "Hie_rarquia"
+msgstr "Hierarquia"
 
 #: gschem/src/x/x_menus.c:132
 #, fuzzy
@@ -3026,7 +3012,7 @@ msgstr "Editar Propriedades do Texto"
 #: gschem/src/x/x_menus.c:133 gschem/scheme/gschem/builtins.scm:329
 #, fuzzy
 msgid "Down Schematic"
-msgstr "/Baixar Esquema"
+msgstr "Baixar Esquema"
 
 #: gschem/src/x/x_menus.c:133 gschem/etc/system-gschemrc.scm:2227
 #, fuzzy
@@ -3036,7 +3022,7 @@ msgstr "descender na hierarquia"
 #: gschem/src/x/x_menus.c:134 gschem/scheme/gschem/builtins.scm:332
 #, fuzzy
 msgid "Down Symbol"
-msgstr "/Baixar Símbolo"
+msgstr "Baixar Símbolo"
 
 #: gschem/src/x/x_menus.c:134 gschem/etc/system-gschemrc.scm:2228
 #, fuzzy
@@ -3046,7 +3032,7 @@ msgstr "descender na hierarquia"
 #: gschem/src/x/x_menus.c:135
 #, fuzzy
 msgid "Up"
-msgstr "/Acima"
+msgstr "Acima"
 
 #: gschem/src/x/x_menus.c:135 gschem/etc/system-gschemrc.scm:2229
 #, fuzzy
@@ -3220,10 +3206,10 @@ msgstr ""
 msgid "Toggle main context menu tooltips"
 msgstr ""
 
+# tried to define the sensitivity on a menu_item does not exist
 #: gschem/src/x/x_menus.c:1322
-#, fuzzy
 msgid "Tried to set the sensitivity on non-existent menu item"
-msgstr "Tentou-se definir a sensibilidade num menu_item não existente '%s'\n"
+msgstr "Tentou-se definir a sensibilidade num menu_item não existente"
 
 #: gschem/src/x/x_menus.c:1333
 msgid "Excessive errors"
@@ -3274,15 +3260,15 @@ msgstr ""
 msgid "Error: did not find path"
 msgstr ""
 
+# Could not open file
 #: gschem/src/x/x_menus.c:1769
-#, fuzzy
 msgid "Could not open file"
-msgstr "Não foi possível encontrar  ficheiro scm de inicialização [%s]\n"
+msgstr "Não foi possível abrir o arquivo"
 
+# Open
 #: gschem/src/x/x_menus.c:1870
-#, fuzzy
 msgid "Open"
-msgstr "Abrir..."
+msgstr "Abrir"
 
 #: gschem/src/x/x_menus.c:1879
 #, fuzzy
@@ -3302,11 +3288,11 @@ msgstr ""
 msgid "The operating system is out of memory or resources."
 msgstr ""
 
+# Failed to open
 #: gschem/src/x/x_misc.c:127 gschem/src/x/x_misc.c:145
 #: gschem/src/x/x_misc.c:159 gschem/src/x/x_settings.c:413
-#, fuzzy
 msgid "Failed to open"
-msgstr "Falha ao ler ficheiro de inicialização scm [%s]\n"
+msgstr "Falha ao abrir"
 
 #: gschem/src/x/x_misc.c:174
 msgid "falling back to"
@@ -3317,20 +3303,19 @@ msgid "<various>"
 msgstr ""
 
 #: gschem/src/x/x_multiattrib.c:918
-#, fuzzy
 msgid "Attribute name must not be empty. Please set a name."
 msgstr ""
 "Atributos com nome sem conteúdo não são permitidos. Por favor defina um nome."
 
+# multible attribute editor
 #: gschem/src/x/x_multiattrib.c:920
-#, fuzzy
 msgid "Multi-Attribute Editor"
-msgstr "Editor de único atributo"
+msgstr "Plugues editor de atributos"
 
+# Select an attribute to add
 #: gschem/src/x/x_multiattrib.c:1629
-#, fuzzy
 msgid "Select an attribute to add"
-msgstr "Atribuição de elemento mal especificado\n"
+msgstr "Selecione um Atributo para adicionar"
 
 #: gschem/src/x/x_multiattrib.c:1648
 msgid "Show Value only"
@@ -3472,8 +3457,8 @@ msgstr "Alterado"
 msgid "Right click on rows for more options..."
 msgstr "Use o botão direito sobre o nome do ficheiro para mais opções..."
 
+# Select the name of the PostScript file
 #: gschem/src/x/x_print.c:90
-#, fuzzy
 msgid "Select PostScript Filename..."
 msgstr "Seleccione nome do ficheiro PostScript..."
 
@@ -3497,10 +3482,10 @@ msgstr "Paisagem"
 msgid "Portrait"
 msgstr "Retrato"
 
+# Print
 #: gschem/src/x/x_print.c:484
-#, fuzzy
 msgid "Print..."
-msgstr "Im_primir..."
+msgstr "Imprimir..."
 
 #: gschem/src/x/x_print.c:492
 msgid "Settings"
@@ -3547,7 +3532,7 @@ msgstr "Ocorreu um erro durante a impressão"
 # Check the log window for more information
 #: gschem/src/x/x_print.c:794 gschem/src/x/x_rc.c:87
 msgid "The log may contain more information."
-msgstr "Verifique a janela de registo para mais informação"
+msgstr "Verifique a janela de registo para mais informação."
 
 # Print Error
 #: gschem/src/x/x_print.c:795 gschem/src/x/x_print.c:1229
@@ -3686,19 +3671,20 @@ msgstr ""
 msgid "File open for read-only error"
 msgstr ""
 
+# Error, opening output
 #: gschem/src/x/x_settings.c:546
 msgid "Error, opening output"
-msgstr ""
+msgstr "Erro ao abrir a saída"
 
+# Wrote configuration to
 #: gschem/src/x/x_settings.c:604
-#, fuzzy
 msgid "Wrote configuration to"
-msgstr "Falha ao ler ficheiro de inicialização scm [%s]\n"
+msgstr "Escreveu a configuração para"
 
+# File error
 #: gschem/src/x/x_settings.c:607
-#, fuzzy
 msgid "File error"
-msgstr "<b>Âmbito</b>"
+msgstr "Erro de arquivo"
 
 #: gschem/src/x/x_settings_dialog.c:1074
 msgid "Clear attributes and restore default filter list?"
@@ -3711,7 +3697,7 @@ msgstr ""
 #: gschem/src/x/x_settings_dialog.c:2639
 #, fuzzy
 msgid "Close without changing any settings"
-msgstr "_Fechar sem gravar"
+msgstr "Fechar sem gravar"
 
 #: gschem/src/x/x_settings_dialog.c:2641 gschem/scheme/gschem/builtins.scm:56
 msgid "Save"
@@ -3838,35 +3824,35 @@ msgstr ""
 msgid "Aborting action\n"
 msgstr ""
 
+# Close Window canceled
 #: gschem/src/x/x_window.c:681
-#, fuzzy
 msgid "Close Window canceled\n"
-msgstr "A Fechar janela\n"
+msgstr "Fechar Janela cancelada\n"
 
 #: gschem/src/x/x_window.c:767
 #, fuzzy
 msgid "Loading file"
-msgstr "A carregar esquema [%s]\n"
+msgstr "A carregar esquema"
 
+# New file
 #: gschem/src/x/x_window.c:911
-#, fuzzy
 msgid "New file"
 msgstr "Novo ficheiro"
 
+# Failed to load
 #: gschem/src/x/x_window.c:953
-#, fuzzy
 msgid "Failed to load file"
-msgstr "Falha ao carregar imagem: %s"
+msgstr "Falha ao carregar ficheiro"
 
+# Create new file
 #: gschem/src/x/x_window.c:983
-#, fuzzy
 msgid "Creating new file"
-msgstr "Desfazer/Refazer não activo no ficheiro rc\n"
+msgstr "Criar novo ficheiro"
 
 #: gschem/src/x/x_window.c:996
 #, fuzzy
 msgid "Path"
-msgstr "/Adicionar Ligação"
+msgstr "Adicionar Ligação"
 
 #: gschem/src/x/x_window.c:999
 msgid ""
@@ -3874,20 +3860,20 @@ msgid ""
 "successfully created"
 msgstr ""
 
+# Discarding page
 #: gschem/src/x/x_window.c:1143
-#, fuzzy
 msgid "Discarding page"
-msgstr "A anular página [%s]\n"
+msgstr "Página de devoluções"
 
+# Closing page
 #: gschem/src/x/x_window.c:1144
-#, fuzzy
 msgid "Closing"
 msgstr "Fechar Página"
 
+# Unable to write page
 #: gschem/src/x/x_window.c:1209
-#, fuzzy
 msgid "Could NOT save page"
-msgstr "NÃO foi possível gravar pagina [%s]\n"
+msgstr "NÃO foi possível gravar pagina"
 
 #: gschem/src/x/x_window.c:1211
 msgid "Error while trying to save"
@@ -4155,11 +4141,12 @@ msgstr "Editar tipo de pino..."
 # Thickness and Line Type
 #: gschem/etc/system-gschemrc.scm:2112
 msgid "Line _Width & Type..."
-msgstr "Espessura e Tipo de Linha"
+msgstr "Espessura e Tipo de Linha..."
 
+# Open the Line Editor Dialog
 #: gschem/etc/system-gschemrc.scm:2112
 msgid "Open the Line Editor Dialog"
-msgstr ""
+msgstr "Abra a caixa de diálogo Editor de Linha"
 
 # Fill Type
 #: gschem/etc/system-gschemrc.scm:2113
