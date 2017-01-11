@@ -1,6 +1,7 @@
 2017-01-10 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/Makefile.am: Hack localedir into DEFS as LOCALEDIR.
+    * src/Makefile.am: Hack localedir into DEFS as LOCALEDIR. Add rule for
+      update-gmo to allow compiling translations from application folder.
 
     * gsymcheck.c: Include locale.h, revise main to locale and bind to
       geda-gsymcheck domain.
