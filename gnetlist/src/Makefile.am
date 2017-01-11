@@ -1,3 +1,4 @@
+## $Id$ indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4
 ## Process this file with automake to produce Makefile.in
 
 INC_GEDA = -I$(top_srcdir) -I$(top_srcdir)/include -I$(top_srcdir)/intl
@@ -31,12 +32,11 @@ AM_CFLAGS            = $(GEDA_INCLUDES) -I$(includedir)
 
 gnetlist_CPPFLAGS    =
 gnetlist_CFLAGS      = $(AM_CFLAGS)    $(GLIB_CFLAGS)  $(GCC_CFLAGS) \
-		       $(MINGW_CFLAGS) $(GUILE_CFLAGS)
+					   $(MINGW_CFLAGS) $(GUILE_CFLAGS)
 
 gnetlist_LDFLAGS     = $(GLIB_LIBS) $(GUILE_LIBS)
-gnetlist_LDADD       = $(top_builddir)/libgeda/src/libgeda.la
 
-localedir            = @datadir@/locale
+localedir            = @localedir@/locale
 DEFS                 = -DLOCALEDIR=\"$(localedir)\" @DEFS@
 
 doxygen:

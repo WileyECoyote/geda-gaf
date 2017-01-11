@@ -1,5 +1,9 @@
 2017-01-11 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/Makefile.am: Replace datadir/locale with localedir so that
+      the second argument to bindtextdomain is the actual location
+      where the compiled mo files are to be installed.
+
     * src/gnetlist.c: Revise main to setup locale and bind translation
       text to the geda-gnetlist domain.
 
