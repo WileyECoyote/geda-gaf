@@ -3,6 +3,11 @@
     * Makefile.am: Add rule for update-gmo to allow compiling translations
       from application folder.
 
+    * src/Makefile.am: Replace datadir/locale with localedir. This is NOT the
+      same destination. Compiled mo files are installed to localedir and not
+      share/gEDA/locale or /opt/gEDA/share/gEDA/locale. The localedir is also
+      user configurable with --localedir=DIR option.
+
 2017-01-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/en_GB.po: add plural forms.

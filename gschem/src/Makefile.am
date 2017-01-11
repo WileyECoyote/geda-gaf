@@ -75,7 +75,7 @@ snarf_cpp_opts   = $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(AM_CFLAGS) \
 .c.x:
 	     @CPP="$(CPP)" $(GUILE_SNARF) -o $@ $< $(snarf_cpp_opts)
 
-localedir        = @datadir@/locale
+localedir        = @localedir@
 DEFS             = -DLOCALEDIR=\"$(localedir)\" @DEFS@
 
 doxygen:
