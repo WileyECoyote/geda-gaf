@@ -459,6 +459,7 @@ echo "
                           libdir:     ${EXPANDED_LIBDIR}
                       libexecdir:     ${EXPANDED_LIBEXECDIR}
                           bindir:     ${EXPANDED_BINDIR}
+                       localedir:     ${EXPANDED_LOCALEDIR}
 
                       RC scripts:     ${GEDARCDIR}		f_path_sys_config()
                             Data:     ${GEDADATADIR}		f_path_sys_data()

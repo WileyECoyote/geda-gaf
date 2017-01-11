@@ -1,3 +1,7 @@
+2017-01-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * configure.ac: Include localedir in configuration summary.
+
 2017-01-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda/geda_macros.h: Pad GedaMutex b y increasing the dimension

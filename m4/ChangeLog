@@ -1,3 +1,7 @@
+2017-01-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * m4/geda-directories.m4: Expand $localedir to EXPANDED_LOCALEDIR.
+
 2016-12-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-python.m4: Rename local function AM_CHECK_PYMOD->AX_CHECK_PYMOD,

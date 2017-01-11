@@ -195,7 +195,6 @@ m4_define([AX_RC_DIRS],
   []dnl
 ])dnl AX_RC_DIRS
 
-
 dnl In order to comply with the GNU & Linux FHS guidelines program
 dnl directories should make the package name. These are "guideline"
 dnl not mandates and generally be followed, But rules are made too
@@ -233,6 +232,7 @@ AC_DEFUN([AX_EXPAND_DIRS],
   AS_AC_EXPAND(EXPANDED_EXEPREFIX,  "$exec_prefix")
   AS_AC_EXPAND(EXPANDED_LIBDIR,     "$libdir")
   AS_AC_EXPAND(EXPANDED_LIBEXECDIR, "$libexecdir")
+  AS_AC_EXPAND(EXPANDED_LOCALEDIR,  "$localedir")
   AS_AC_EXPAND(EXPANDED_BINDIR,     "$bindir")
   AS_AC_EXPAND(EXPANDED_DATADIR,    "$GEDADATADIR")
   AS_AC_EXPAND(EXPANDED_DOCDIR,     "$GEDADOCDIR")
