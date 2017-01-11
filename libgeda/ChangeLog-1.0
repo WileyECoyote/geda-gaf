@@ -7,6 +7,9 @@
       linked against libintl if required. Is not really required by link
       think so.
 
+    * shell/Makefile.am: Replace datadir/locale with localedir, note that
+      the shell utilities not currently use gettext.
+
 2017-01-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_file.c: Replace u_log_message with  geda_log and revise

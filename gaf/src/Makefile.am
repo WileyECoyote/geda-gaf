@@ -38,7 +38,7 @@ gaf_LDADD     = $(top_builddir)/libgedacairo/src/libgedacairo.la \
 		$(top_builddir)/libgeda/src/libgeda.la \
 		@LIBINTL@
 
-localedir     = @datadir@/locale
+localedir     = @localedir@
 DEFS          = -DLOCALEDIR=\"$(localedir)\" @DEFS@
 
 # This is used to generate boilerplate for defining Scheme functions

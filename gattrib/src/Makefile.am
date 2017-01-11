@@ -61,7 +61,7 @@ gattrib_LDADD	 = $(LIB_GTKSHEET)/libgtksheet.a \
 				   $(top_builddir)/libgeda/src/libgeda.la \
 				   @LIBINTL@
 
-localedir        = @datadir@/locale
+localedir        = @localedir@
 DEFS             = -DLOCALEDIR=\"$(localedir)\" @DEFS@
 
 version.h:
