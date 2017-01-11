@@ -35,6 +35,7 @@ gnetlist_CFLAGS      = $(AM_CFLAGS)    $(GLIB_CFLAGS)  $(GCC_CFLAGS) \
 					   $(MINGW_CFLAGS) $(GUILE_CFLAGS)
 
 gnetlist_LDFLAGS     = $(GLIB_LIBS) $(GUILE_LIBS)
+gnetlist_LDADD       = $(top_builddir)/libgeda/src/libgeda.la @LIBINTL@
 
 localedir            = @localedir@/locale
 DEFS                 = -DLOCALEDIR=\"$(localedir)\" @DEFS@

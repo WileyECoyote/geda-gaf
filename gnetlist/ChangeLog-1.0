@@ -2,7 +2,8 @@
 
     * src/Makefile.am: Replace datadir/locale with localedir so that
       the second argument to bindtextdomain is the actual location
-      where the compiled mo files are to be installed.
+      where the compiled mo files are to be installed. Add @LIBINTL@
+      to LDADD so that gnetlist is linked against libintl if required.
 
     * src/gnetlist.c: Revise main to setup locale and bind translation
       text to the geda-gnetlist domain.
