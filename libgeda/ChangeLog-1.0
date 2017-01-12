@@ -1,3 +1,8 @@
+2017-01-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * shell/Makefile.am: Simplify setting of LOCALEDIR; eliminate local
+      localedir.
+
 2017-01-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * Makefile.am: Add rule for update-gmo to allow compiling translations

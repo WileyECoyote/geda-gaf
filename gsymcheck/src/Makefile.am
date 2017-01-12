@@ -32,8 +32,7 @@ gsymcheck_LDFLAGS    = $(GLIB_LIBS)    $(GTK_LIBS) \
 		       		   $(GTHREAD_LIBS) $(GUILE_LIBS)
 gsymcheck_LDADD      = $(top_builddir)/libgeda/src/libgeda.la @LIBINTL@
 
-localedir            = @localedir@
-DEFS                 = -DLOCALEDIR=\"$(localedir)\" @DEFS@
+DEFS                 = -DLOCALEDIR=\"$(localedir)\"  @DEFS@
 
 doxygen:
 # Change to the docs directory and 'make doxygen' for gsymcheck

@@ -28,7 +28,7 @@ gsch2pdf_SOURCES = main.c \
 
 AM_CFLAGS	     = $(GEDA_INCLUDES) -I$(includedir)
 
-gsch2pdf_CPPFLAGS    =
+gsch2pdf_CPPFLAGS    = -DLOCALEDIR=\"$(localedir)\"
 
 gsch2pdf_CFLAGS      = $(AM_CFLAGS)         $(GCC_CFLAGS)  $(GLIB_CFLAGS) \
 					   $(MINGW_CFLAGS)      $(GUILE_CFLAGS) \

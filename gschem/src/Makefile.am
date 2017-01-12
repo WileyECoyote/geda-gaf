@@ -49,8 +49,8 @@ EXTRA_DIST       = $(BUILT_SOURCES)
 AM_CFLAGS        = $(DEBUGGING) $(GEDA_INCLUDES)
 
 gschem_CFLAGS    = $(AM_CFLAGS)      $(GCC_CFLAGS)   $(LIBSTROKE_CFLAGS) \
-		   $(GLIB_CFLAGS)    $(GTK_CFLAGS)   $(GUILE_CFLAGS) \
-		   $(GTHREAD_CFLAGS) $(MINGW_CFLAGS) $(gschem_CXXFLAGS)
+				   $(GLIB_CFLAGS)    $(GTK_CFLAGS)   $(GUILE_CFLAGS) \
+				   $(GTHREAD_CFLAGS) $(MINGW_CFLAGS) $(gschem_CXXFLAGS)
 
 gschem_CPPFLAGS  = $(GEDA_INCLUDES) $(AM_CXXFLAGS) $(GLIB_CFLAGS) $(GTK_CFLAGS)
 
@@ -75,8 +75,7 @@ snarf_cpp_opts   = $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(AM_CFLAGS) \
 .c.x:
 	     @CPP="$(CPP)" $(GUILE_SNARF) -o $@ $< $(snarf_cpp_opts)
 
-localedir        = @localedir@
-DEFS             = -DLOCALEDIR=\"$(localedir)\" @DEFS@
+DEFS             = -DLOCALEDIR=\"$(localedir)\"  @DEFS@
 
 doxygen:
 # Change to the docs directory and 'make doxygen' for gschem

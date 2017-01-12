@@ -1,5 +1,8 @@
 2017-01-12 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/Makefile.am: Simplify setting of LOCALEDIR; eliminate local
+      localedir.
+
     * gsymcheck.c: Add debug print for LOCALEDIR and setlocale in main_prog.
 
 2017-01-10 Wiley E. Hill <wileyhill@gmail.com>

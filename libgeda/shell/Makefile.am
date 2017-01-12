@@ -20,8 +20,7 @@ geda_shell_LDFLAGS = $(GLIB_LIBS) $(GUILE_LIBS) $(MINGW_LDFLAGS)
 
 geda_shell_LDADD = ../src/libgeda.la @LIBINTL@
 
-localedir = @localedir@
-DEFS = -DLOCALEDIR=\"$(localedir)\" @DEFS@
+DEFS = -DLOCALEDIR=\"$(localedir)\"  @DEFS@
 
 # This is used to generate boilerplate for defining Scheme functions
 # in C.

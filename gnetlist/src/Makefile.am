@@ -37,8 +37,7 @@ gnetlist_CFLAGS      = $(AM_CFLAGS)    $(GLIB_CFLAGS)  $(GCC_CFLAGS) \
 gnetlist_LDFLAGS     = $(GLIB_LIBS) $(GUILE_LIBS)
 gnetlist_LDADD       = $(top_builddir)/libgeda/src/libgeda.la @LIBINTL@
 
-localedir			 = @localedir@
-DEFS                 = -DLOCALEDIR=\"$(localedir)\" @DEFS@
+DEFS                 = -DLOCALEDIR=\"$(localedir)\"  @DEFS@
 
 doxygen:
 # Change to the docs directory and 'make doxygen' for gnetlist

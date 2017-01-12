@@ -16,7 +16,7 @@ AM_CFLAGS	= $(GEDA_INCLUDES) $(GCC_CFLAGS) $(MINGW_CFLAGS) \
 gsch2pcb_SOURCES   = gsch2pcb.c
 gsch2pcb_CPPFLAGS  = -DPCBDATADIR=\"$(PCBDATADIR)\" \
 					 -DPCBLIBPATH=\"$(PCBLIBPATH)\"
-gsch2pcb_CFLAGS    = $(AM_CFLAGS)
+gsch2pcb_CFLAGS    = -DLOCALEDIR=\"$(localedir)\" $(AM_CFLAGS)
 gsch2pcb_LDFLAGS   = $(GLIB_LIBS)
 gsch2pcb_LDADD     = $(top_builddir)/libgeda/src/libgeda.la @LIBINTL@
 

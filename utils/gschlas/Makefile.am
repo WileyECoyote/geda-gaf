@@ -20,7 +20,7 @@ gschlas_SOURCES = \
 					s_util.c
 
 AM_CFLAGS            = $(GEDA_INCLUDES) -I$(includedir)
-gschlas_CPPFLAGS     =
+gschlas_CPPFLAGS     = -DLOCALEDIR=\"$(localedir)\"
 gschlas_CFLAGS	     = $(AM_CFLAGS)    $(GCC_CFLAGS)    $(GLIB_CFLAGS) \
 					   $(GUILE_CFLAGS) $(MINGW_CFLAGS)
 gschlas_LDFLAGS	     = $(GLIB_LIBS)    $(GUILE_LIBS)
