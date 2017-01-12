@@ -67,14 +67,19 @@ static void main_prog(void *closure, int argc, char *argv[])
 
   GedaToplevel *pr_current;
 
-  argv_index = parse_commandline(argc, argv);
-  cwd        = g_get_current_dir();
-
-  libgeda_init(argc, argv);
+#if ENABLE_NLS && DEBUG
+  fprintf(stderr, "Configured locale directory: %s\n", LOCALEDIR);
+  fprintf(stderr, "Current locale settings: %s\n", setlocale(LC_ALL, NULL));
+#endif
 
 #if defined(__MINGW32__) && defined(DEBUG)
   fprintf(stderr, "This is the MINGW32 port.\n");
 #endif
+
+  argv_index = parse_commandline(argc, argv);
+  cwd        = g_get_current_dir();
+
+  libgeda_init(argc, argv);
 
   log_destiny=-1; /* don't output to the screen for now */
 

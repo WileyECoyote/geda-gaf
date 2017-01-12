@@ -1,3 +1,7 @@
+2017-01-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gsymcheck.c: Add debug print for LOCALEDIR and setlocale in main_prog.
+
 2017-01-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * Makefile.am: Add rule for update-gmo to allow compiling translations
