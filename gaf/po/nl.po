@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gaf\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-12-03 00:56-0600\n"
+"POT-Creation-Date: 2017-01-12 01:57-0600\n"
 "PO-Revision-Date: 2014-08-31 20:24+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Poedit-Country: NETHERLANDS\n"
 
 #: gaf/src/gaf.c:69
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Usage: gaf [OPTION...] COMMAND [ARGS ...]\n"
 "\n"
@@ -51,23 +51,23 @@ msgstr ""
 "Rapporteer onvolkomenheden alstublieft aan %s.\n"
 
 #: gaf/src/gaf.c:89
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "gEDA/gaf %s (%s) (g%.7s)\n"
-"Copyright (C) 1998-2016 gEDA developers\n"
+"Copyright (C) 1998-2017 gEDA developers\n"
 "This is free software, and you are welcome to redistribute it under\n"
 "certain conditions. For details, see the file `COPYING', which is\n"
 "included in the gEDA distribution.\n"
 "There is NO WARRANTY, to the extent permitted by law.\n"
 msgstr ""
-"gEDA/gaf %s (g%.7s)\n"
-"Copyright (C) 1998-2012 gEDA developers\n"
+"gEDA/gaf %s (%s) (g%.7s)\n"
+"Copyright (C) 1998-2017 gEDA developers\n"
 "Dit is vrije software, en U bent welkom om deze te herdistribueren onder\n"
 "bepaalde condities. Voor details, zie het bestand `COPYING', welke in\n"
 "de gEDA distributie is bijgevoegd.\n"
 "Er is GEEN GARANTIE, voor zover toegelaten door de wet.\n"
 
-#: gaf/src/gaf.c:137
+#: gaf/src/gaf.c:138
 #, c-format
 msgid ""
 "\n"
@@ -76,7 +76,7 @@ msgstr ""
 "\n"
 "Voer `gaf --help' uit voor meer informatie.\n"
 
-#: gaf/src/gaf.c:149
+#: gaf/src/gaf.c:150
 #, c-format
 msgid ""
 "ERROR: You must specify a command to run.\n"
@@ -87,7 +87,7 @@ msgstr ""
 "\n"
 "Voer `gaf --help' uit voor meer informatie.\n"
 
-#: gaf/src/gaf.c:167
+#: gaf/src/gaf.c:168
 #, c-format
 msgid ""
 "ERROR: Unrecognised command `%s'.\n"
@@ -212,7 +212,7 @@ msgid "ERROR: Failed to change directory to '%s': %s\n"
 msgstr "Faalde om bestandenmap te wijzigen naar '%s': %s\n"
 
 #: gaf/src/export.c:1099
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Usage: gaf export [OPTION ...] -o OUTPUT [--] FILE ...\n"
 "\n"
@@ -269,7 +269,7 @@ msgid "ERROR: You must specify an output filename.\n"
 msgstr "FOUT: U moet een uitvoer bestandnaam specificeren.\n"
 
 #: gaf/src/shell.c:50
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Usage: gaf shell [OPTION ...]\n"
 "\n"

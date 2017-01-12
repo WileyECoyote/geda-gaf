@@ -60,20 +60,20 @@ msgstr ""
 "gschem kan geen lokatie vinden van de data bestanden. Je moet de GEDADATA\n"
 "omgevingsvariablele naar de juiste lokatie laten wijzen.\n"
 
+# Unable to locate scheme initialization file
 #: gschem/src/base/gschem.c:348
-#, fuzzy
 msgid "Unable to locate scheme initialization file"
-msgstr "Lees init scm bestand [%s]\n"
+msgstr "Kan geen scheme initialisatie bestand te zoeken"
 
+# Read scheme initialization file
 #: gschem/src/base/gschem.c:355
-#, fuzzy
 msgid "Read scheme initialization file"
-msgstr "Lees init scm bestand [%s]\n"
+msgstr "Lees scheme initialisatie bestand"
 
+# Failed to read scheme initialization file
 #: gschem/src/base/gschem.c:358
-#, fuzzy
 msgid "Failed to read scheme initialization file"
-msgstr "Lees init scm bestand [%s]\n"
+msgstr "Mislukt scheme initialization bestand te lezen"
 
 #: gschem/src/base/gschem.c:380
 #, fuzzy
@@ -92,7 +92,7 @@ msgstr ""
 "\n"
 "Het gschem log kan meer informatie bevatten.\n"
 
-#: gschem/src/base/gschem.c:516
+#: gschem/src/base/gschem.c:517
 msgid "Exiting normal\n"
 msgstr ""
 
@@ -219,7 +219,7 @@ msgstr ""
 "gEDA/gaf startpagina: <http://www.geda-project.org/>\n"
 
 #: gschem/src/base/gschem_parsecmd.c:128
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "gEDA/gschem %s (%s) (g%.7s)\n"
 "Copyright (C) 1998-2017 gEDA developers\n"
@@ -228,8 +228,8 @@ msgid ""
 "included in the gEDA distribution.\n"
 "There is NO WARRANTY, to the extent permitted by law.\n"
 msgstr ""
-"gEDA %s (g%.7s)\n"
-"Copyright (C) 1998-2012 gEDA developers\n"
+"gEDA/gschem %s (%s) (g%.7s)\n"
+"Copyright (C) 1998-2017 gEDA developers\n"
 "Dit is vrije software, en U bent welkom om deze te herdistribueren onder\n"
 "bepaalde condities. Voor details, zie het bestand `COPYING', welke is\n"
 "bijgevoegd in de gEDA distributie.\n"
@@ -239,11 +239,11 @@ msgstr ""
 msgid "error parsing"
 msgstr ""
 
+# ERROR
 #: gschem/src/base/gschem_parsecmd.c:280 gschem/src/x/x_rc.c:100
 #: gschem/src/x/x_rc.c:136
-#, fuzzy
 msgid "ERROR"
-msgstr "FOUT: %s\n"
+msgstr "FOUT"
 
 #: gschem/src/base/gschem_parsecmd.c:284
 msgid "option requires an argument"
@@ -258,13 +258,11 @@ msgstr "Onbekend"
 msgid "Unknown option character"
 msgstr ""
 
+# Help for more information
 #: gschem/src/base/gschem_parsecmd.c:302
 #, fuzzy
 msgid "--help for more information"
-msgstr ""
-"%s\n"
-"\n"
-"Het gschem log kan meer informatie bevatten."
+msgstr "--help voor meer informatie"
 
 #: gschem/src/base/gschem_parsecmd.c:304
 #, fuzzy
@@ -469,23 +467,25 @@ msgstr "Objekt ~A is niet bijgevoegd in de huidige gschem pagina."
 msgid "Invalid text name/value visibility ~A."
 msgstr "Ongeldige tekst naam/waarde zichtbaarheid ~A."
 
+# Processing
 #: gschem/src/guile/g_rc.c:87 gschem/src/guile/g_rc.c:99
-#, fuzzy
 msgid "Processing"
-msgstr "Sluiten [%s]\n"
+msgstr "Verwerking"
 
+# Skipping
 #: gschem/src/guile/g_rc.c:91 gschem/src/guile/g_rc.c:103
 msgid "Skipping"
-msgstr ""
+msgstr "Overslaan"
 
+# entry in rc file
 #: gschem/src/guile/g_rc.c:123
 msgid "entry in rc file"
-msgstr ""
+msgstr "vermelding in rc file"
 
+# Bad Value
 #: gschem/src/guile/g_rc.c:127
-#, fuzzy
 msgid "Bad Value"
-msgstr "Waarde"
+msgstr "Slechte Waarde"
 
 #: gschem/src/guile/g_rc.c:128 gschem/src/guile/g_rc.c:2074
 msgid "check"
@@ -712,25 +712,25 @@ msgstr "Punt raster geselecteerd\n"
 msgid "Confirm revert ALL documents"
 msgstr ""
 
+# Search for source
 #: gschem/src/iface/i_command.c:2982
-#, fuzzy
 msgid "Searching for source"
-msgstr "Zoek naar bron [%s]\n"
+msgstr "Zoek naar bron"
 
+# Failed when descending into
 #: gschem/src/iface/i_command.c:3016
-#, fuzzy
 msgid "Failed to descend into"
-msgstr "Faalde bij het afdalen in '%s': %s\n"
+msgstr "Faalde bij het afdalen in"
 
 #: gschem/src/iface/i_command.c:3025
 #, fuzzy
 msgid "Hierarchy Error"
 msgstr "Hie_rarchie"
 
+# Searching for symbol
 #: gschem/src/iface/i_command.c:3102
-#, fuzzy
 msgid "Searching for symbol"
-msgstr "Zoek naar symbool [%s]\n"
+msgstr "Zoek naar symbool"
 
 #: gschem/src/iface/i_command.c:3112
 msgid "Symbol is not a real file. Symbol cannot be loaded.\n"
@@ -768,13 +768,13 @@ msgstr ""
 msgid "Grid OFF\n"
 msgstr "Raster UIT\n"
 
+# Dot grid selected
 #: gschem/src/iface/i_command.c:4269
-#, fuzzy
 msgid "Dot grid activated\n"
 msgstr "Punt raster geselecteerd\n"
 
+# Mesh grid selected
 #: gschem/src/iface/i_command.c:4270
-#, fuzzy
 msgid "Mesh grid activated\n"
 msgstr "Maas raster geselecteerd\n"
 
@@ -790,13 +790,13 @@ msgstr "Snap AAN\n"
 msgid "Snap back to the grid (CAUTION!)\n"
 msgstr "Snap terug op raster (PAS OP!)\n"
 
+# Elastic band OFF
 #: gschem/src/iface/i_command.c:4382
-#, fuzzy
 msgid "Rubber band mode is OFF\n"
-msgstr "Elastiek band UIT \n"
+msgstr "Elastiek band UIT\n"
 
+# Elastic band ON
 #: gschem/src/iface/i_command.c:4385
-#, fuzzy
 msgid "Rubber band mode is ON\n"
 msgstr "Elastiek band AAN\n"
 
@@ -849,19 +849,19 @@ msgstr ""
 msgid "Canceled Close all\n"
 msgstr ""
 
+# Unable to open the session file
 #: gschem/src/iface/i_sessions.c:262
-#, fuzzy
 msgid "Could not open the session file"
-msgstr "Kan init scm bestand [%s]niet vinden\n"
+msgstr "Kan de sessie bestand niet openen"
 
 #: gschem/src/iface/i_sessions.c:268 gschem/src/x/x_window.c:1005
 msgid "is not accessible"
 msgstr ""
 
+# File
 #: gschem/src/iface/i_sessions.c:272
-#, fuzzy
 msgid "File"
-msgstr "Bestand:"
+msgstr "Bestand"
 
 #: gschem/src/iface/i_sessions.c:335
 msgid "Warning relative file names detected in session"
@@ -881,11 +881,11 @@ msgstr ""
 msgid "of"
 msgstr ""
 
+# documents
 #: gschem/src/iface/i_sessions.c:349 gschem/src/iface/i_sessions.c:933
 #: gschem/src/iface/i_sessions.c:1107
-#, fuzzy
 msgid "documents"
-msgstr "D_ocumentatie..."
+msgstr "documenten"
 
 #: gschem/src/iface/i_sessions.c:358
 msgid "did not contain any accessible documents"
@@ -894,17 +894,17 @@ msgstr ""
 #: gschem/src/iface/i_sessions.c:791
 #, fuzzy
 msgid "Sessions"
-msgstr "Toon _Naam"
+msgstr "Toon Naam"
 
 #: gschem/src/iface/i_sessions.c:855
 #, fuzzy
 msgid "Removing session"
 msgstr "Opslaan Als"
 
+# Failed to delete session
 #: gschem/src/iface/i_sessions.c:880
-#, fuzzy
 msgid "Failed to remove session"
-msgstr "Fout bij het vervangen van afbeeldingen: %s"
+msgstr "Mislukt sessie verwijderen"
 
 #: gschem/src/iface/i_sessions.c:883
 msgid "<b>Could not remove session</b>"
@@ -914,12 +914,10 @@ msgstr ""
 msgid "created with"
 msgstr ""
 
+# An error occurred while making session
 #: gschem/src/iface/i_sessions.c:940
-#, fuzzy
 msgid "An error occurred attempting to create session"
-msgstr ""
-"FOUT: Een onbekende fout trad op tijdens het ontleden van "
-"configuratiebestanden.\n"
+msgstr "Er is een fout opgetreden tijdens het maken sessie"
 
 #: gschem/src/iface/i_sessions.c:950 gschem/src/iface/i_sessions.c:1134
 msgid "<b>Session Error</b>"
@@ -945,10 +943,10 @@ msgstr "Opslaan Als"
 msgid "to"
 msgstr "Automatisch"
 
+# not be able to rename the session
 #: gschem/src/iface/i_sessions.c:1068
-#, fuzzy
 msgid "Failed to rename session"
-msgstr "Fout bij het vervangen van afbeeldingen: %s"
+msgstr "niet in staat om de sessie te hernoemen"
 
 #: gschem/src/iface/i_sessions.c:1071
 msgid "<b>Could not rename session</b>"
@@ -985,15 +983,15 @@ msgstr ""
 msgid "Save session failed"
 msgstr "Opslaan bestand"
 
+# show sessions at startup is now ENABLED
 #: gschem/src/iface/i_sessions.c:1226
-#, fuzzy
 msgid "Show Sessions at startup is now ENABLED\n"
-msgstr "Toon tekst beginnend met:"
+msgstr "toon sessies bij het opstarten is nu ingeschakeld\n"
 
+# show sessions at startup is now DISABLED
 #: gschem/src/iface/i_sessions.c:1229
-#, fuzzy
 msgid "Show Sessions at startup is now DISABLED\n"
-msgstr "Toon tekst beginnend met:"
+msgstr "toon sessies bij het opstarten is nu uitgeschakeld\n"
 
 #: gschem/src/iface/i_sessions.c:1299
 msgid "Session system initialized!\n"
@@ -1139,19 +1137,19 @@ msgstr "Hersnappen Aktief"
 msgid "Restoring user settings\n"
 msgstr ""
 
+# Initializing default configuration settings
 #: gschem/src/iface/i_vars.c:775
 msgid "Initializing default configuration settings\n"
-msgstr ""
+msgstr "Initialiseren van standaard configuratie-instellingen\n"
 
+# Failed to save user configuration to
 #: gschem/src/iface/i_vars.c:816
-#, fuzzy
 msgid "Failed to save user configuration to"
-msgstr "Faalde bij het afdalen in '%s': %s\n"
+msgstr "niet in staat om de gebruiker configuratie op te slaan naar"
 
 #: gschem/src/iface/i_window.c:104
-#, fuzzy
 msgid "Closing Page\n"
-msgstr "Sluit Pagina"
+msgstr "Sluit Pagina\n"
 
 #: gschem/src/iface/i_window.c:173
 #, c-format
@@ -1162,12 +1160,11 @@ msgstr ""
 msgid "Really revert page?"
 msgstr "Echt Terughalen pagina?"
 
+# An error occurred while processing the request to reload
 #: gschem/src/iface/i_window.c:254
-#, fuzzy
 msgid "An error occurred while processing request to revert"
 msgstr ""
-"FOUT: Een onbekende fout trad op tijdens het ontleden van "
-"configuratiebestanden.\n"
+"Er is een fout opgetreden bij het verwerken van het verzoek om te herladen"
 
 #: gschem/src/iface/i_window.c:258
 #, fuzzy
@@ -1179,17 +1176,15 @@ msgstr "<b>Omvang</b>"
 msgid "Revert failed"
 msgstr "Terughalen Wijzigingen"
 
+# Error encountered during file operation
 #: gschem/src/iface/i_window.c:265
-#, fuzzy
 msgid "Error encountered during file operation"
-msgstr ""
-"FOUT: Een onbekende fout trad op tijdens het ontleden van "
-"configuratiebestanden.\n"
+msgstr "Fout opgetreden tijdens de file operatie"
 
 #: gschem/src/iface/i_window.c:266
 #, fuzzy
 msgid "Recovery: undo last action\n"
-msgstr "Maak laatste bewerking ongedaan"
+msgstr "Maak laatste bewerking ongedaan\n"
 
 #: gschem/src/object/o_break.c:186 gschem/src/object/o_break.c:519
 #: gschem/src/object/o_break.c:842
@@ -1204,9 +1199,8 @@ msgid "Point 1 missed x=%d, y=%d\n"
 msgstr ""
 
 #: gschem/src/object/o_complex.c:248 gschem/src/object/o_complex.c:252
-#, fuzzy
 msgid "Translating schematic"
-msgstr "Vertaal schema [%d %d]\n"
+msgstr "Vertaal schema"
 
 #: gschem/src/object/o_delete.c:87
 #, c-format
@@ -1233,20 +1227,20 @@ msgstr "Verborgen tekst is nu zichtbaar\n"
 msgid "Hidden text is now invisible\n"
 msgstr "Verborgen tekst is nu onzichtbaar\n"
 
+# Could not find symbol
 #: gschem/src/object/o_edit.c:1121 gschem/src/x/x_edit_cprop.c:367
-#, fuzzy
 msgid "Could not find symbol"
-msgstr "Kan de kleur %s niet toewijzen!\n"
+msgstr "Kon het niet vinden symbool"
 
+# in the library. update failed
 #: gschem/src/object/o_edit.c:1122 gschem/src/x/x_edit_cprop.c:368
-#, fuzzy
 msgid "in library. Update failed"
-msgstr "Kan symbool [%s] niet in bibliotheek vinden. Vernieuwen faalde.\n"
+msgstr "in de bibliotheek. Update mislukt"
 
+# Updating symbol
 #: gschem/src/object/o_edit.c:1127
-#, fuzzy
 msgid "Updating symbol"
-msgstr "Zoek naar symbool [%s]\n"
+msgstr "Updaten symbool"
 
 #: gschem/src/object/o_move.c:524
 msgid "Could not resolve which end of pin to connect\n"
@@ -1298,10 +1292,10 @@ msgstr ""
 msgid "An unknown error occurred"
 msgstr ""
 
+# Failed to load photo
 #: gschem/src/object/o_picture.c:622
-#, fuzzy
 msgid "<b>Failed to load picture</b>"
-msgstr "Fout bij het lezen van afbeelding: %s"
+msgstr "<b>Kan foto te laden</b>"
 
 #: gschem/src/object/o_picture.c:623
 msgid "Load failed"
@@ -1324,9 +1318,9 @@ msgid "Slotting not allowed for this component\n"
 msgstr "Slots niet toegestaan voor deze component\n"
 
 #: gschem/src/object/o_slot.c:136
-#, fuzzy, c-format
+#, c-format
 msgid "New slot number [%d], is out of range\n"
-msgstr "Nieuw slotnummer buiten het bereik\n"
+msgstr "Nieuw slotnummer [%d], buiten het bereik\n"
 
 #: gschem/src/object/o_undo.c:70
 msgid "Undo: using temporary directory specified on command-line"
@@ -1356,12 +1350,10 @@ msgstr ""
 msgid "switching to MEMORY mode"
 msgstr ""
 
+# An error occurred during an UNDO disk operation
 #: gschem/src/object/o_undo.c:460
-#, fuzzy
 msgid "An error occurred during an UNDO disk operation"
-msgstr ""
-"FOUT: Een onbekende fout trad op tijdens het ontleden van "
-"configuratiebestanden.\n"
+msgstr "Er is een fout opgetreden tijdens een UNDO schijf operatie"
 
 #: gschem/src/object/o_undo.c:463
 #, fuzzy
@@ -1454,13 +1446,10 @@ msgstr "<b>Opties</b>"
 msgid "Invalid schematic on clipboard"
 msgstr ""
 
+# An error occurred while inserting clipboard data
 #: gschem/src/x/x_clipboard.c:321
-#, fuzzy
 msgid "An error occurred while inserting clipboard data"
-msgstr ""
-"<b>Ongeldig schema op klembord.</b>\n"
-"\n"
-"Er trad een fout op tijdens het invoegen van klembord data: %s."
+msgstr "Er is een fout opgetreden bij het invoegen van klembordgegevens"
 
 #: gschem/src/x/x_clipboard.c:322
 #, fuzzy
@@ -1616,12 +1605,10 @@ msgstr ""
 msgid "Drag & Drop"
 msgstr ""
 
+# An error occurred while receiving Drag & Drop data
 #: gschem/src/x/x_coord.c:156 gschem/src/x/x_dnd.c:583
-#, fuzzy
 msgid "An error occurred while receiving Drag & Drop data"
-msgstr ""
-"FOUT: Een onbekende fout trad op tijdens het ontleden van "
-"configuratiebestanden.\n"
+msgstr "Er is een fout opgetreden tijdens het ontvangen van Drag & Drop data"
 
 #: gschem/src/x/x_coord.c:157
 #, fuzzy
@@ -2683,12 +2670,10 @@ msgstr ""
 "\n"
 "Wil je het reserve bestand laden ?\n"
 
+# Warning, Error reading image file
 #: gschem/src/x/x_icons.c:251
-#, fuzzy
 msgid "Warning, Error reading image file"
-msgstr ""
-"Fout bij het afdrukken van bestand:\n"
-"%s"
+msgstr "Waarschuwing, Fout bij het lezen beeldbestand"
 
 #: gschem/src/x/x_icons.c:252
 msgid "Warning, Error accessing image file"
@@ -2696,7 +2681,7 @@ msgstr ""
 
 #: gschem/src/x/x_icons.c:424
 msgid "Shutting down icon factory\n"
-msgstr ""
+msgstr "Afsluiten icoon fabriek\n"
 
 #: gschem/src/x/x_icons.c:445
 msgid "Initializing icon factory\n"
@@ -2808,7 +2793,7 @@ msgstr "Voeg Draad Toe"
 #: gschem/src/x/x_menus.c:92
 #, fuzzy
 msgid "Attribute..."
-msgstr "_Attribuut..."
+msgstr "Attribuut..."
 
 #: gschem/src/x/x_menus.c:92 gschem/etc/system-gschemrc.scm:2241
 #, fuzzy
@@ -2820,11 +2805,11 @@ msgstr "Plaats Attribuut"
 msgid "Component..."
 msgstr "_Component..."
 
+# Place a symbol of the component library
 #: gschem/src/x/x_menus.c:93 gschem/etc/system-gschemrc.scm:2238
 #, fuzzy
 msgid "Insert a symbol from the component library"
-msgstr ""
-"Bus ripper symbool [%s] niet gevonden in een van de component bibliotheken\n"
+msgstr "Plaats een symbool van de component bibliotheek"
 
 #: gschem/src/x/x_menus.c:94 gschem/etc/system-gschemrc.scm:2240
 #, fuzzy
@@ -3012,10 +2997,10 @@ msgstr "Roteer"
 msgid "Rotate the current selection about a point"
 msgstr ""
 
+# Snap
 #: gschem/src/x/x_menus.c:126
-#, fuzzy
 msgid "Snap"
-msgstr "Snap AAN\n"
+msgstr "Snap"
 
 #: gschem/src/x/x_menus.c:126
 msgid "Snap objects to the current grid"
@@ -3024,7 +3009,7 @@ msgstr ""
 #: gschem/src/x/x_menus.c:132
 #, fuzzy
 msgid "Hierarchy"
-msgstr "Hie_rarchie"
+msgstr "Hierarchie"
 
 #: gschem/src/x/x_menus.c:132
 #, fuzzy
@@ -3148,12 +3133,10 @@ msgstr ""
 msgid "redraw the current window"
 msgstr "Huidige Venster"
 
+# Error reading menu item
 #: gschem/src/x/x_menus.c:511
-#, fuzzy
 msgid "Error reading menu item"
-msgstr ""
-"Fout bij het afdrukken van bestand:\n"
-"%s"
+msgstr "Fout menu lezing punt"
 
 #: gschem/src/x/x_menus.c:512
 msgid "Bad string"
@@ -3227,11 +3210,10 @@ msgstr ""
 msgid "Toggle main context menu tooltips"
 msgstr ""
 
+# Tried to set the sensitivity to a nonexistent menu_item
 #: gschem/src/x/x_menus.c:1322
-#, fuzzy
 msgid "Tried to set the sensitivity on non-existent menu item"
-msgstr ""
-"Probeerde de gevoeligheid in te stellen op een niet bestaand menu_item '%s'\n"
+msgstr "Probeerde de gevoeligheid in te stellen op een niet bestaand menu item"
 
 #: gschem/src/x/x_menus.c:1333
 msgid "Excessive errors"
@@ -3282,15 +3264,15 @@ msgstr ""
 msgid "Error: did not find path"
 msgstr ""
 
+# Could not open file
 #: gschem/src/x/x_menus.c:1769
-#, fuzzy
 msgid "Could not open file"
-msgstr "Kan de kleur %s niet toewijzen!\n"
+msgstr "Kon bestand niet openen"
 
+# Open
 #: gschem/src/x/x_menus.c:1870
-#, fuzzy
 msgid "Open"
-msgstr "Open..."
+msgstr "Openen"
 
 #: gschem/src/x/x_menus.c:1879
 #, fuzzy
@@ -3310,11 +3292,11 @@ msgstr ""
 msgid "The operating system is out of memory or resources."
 msgstr "Het besturingssysteem heeft niet meer geheugen of bronnen."
 
+# Failed to open
 #: gschem/src/x/x_misc.c:127 gschem/src/x/x_misc.c:145
 #: gschem/src/x/x_misc.c:159 gschem/src/x/x_settings.c:413
-#, fuzzy
 msgid "Failed to open"
-msgstr "Faalde bij het afdalen in '%s': %s\n"
+msgstr "Mislukt om te openen"
 
 #: gschem/src/x/x_misc.c:174
 msgid "falling back to"
@@ -3334,10 +3316,10 @@ msgstr "Attributen met een lege naam zijn niet toegestaan. Geef een naam."
 msgid "Multi-Attribute Editor"
 msgstr "Enkelvoudige Attribuut Bewerking"
 
+# Select to add an attribute
 #: gschem/src/x/x_multiattrib.c:1629
-#, fuzzy
 msgid "Select an attribute to add"
-msgstr "Slot attribuut misvormd\n"
+msgstr "Selecteer een kenmerk toe te voegen"
 
 #: gschem/src/x/x_multiattrib.c:1648
 msgid "Show Value only"
@@ -3539,47 +3521,40 @@ msgstr "Opdracht:"
 msgid "No print destination specified\n"
 msgstr "Geen afdruk bestemming opgegeven\n"
 
+# Cannot print current schematic to
 #: gschem/src/x/x_print.c:787
-#, fuzzy
 msgid "Cannot print current schematic to"
-msgstr "Kan huidige schema niet afdrukken op [%s]\n"
+msgstr "Kan huidige schema niet afdrukken op"
 
+# An error occurred while printing
 #: gschem/src/x/x_print.c:790 gschem/src/x/x_print.c:1226
-#, fuzzy
 msgid "An error occurred while printing"
-msgstr ""
-"FOUT: Een onbekende fout trad op tijdens het ontleden van "
-"configuratiebestanden.\n"
+msgstr "Er is een fout opgetreden tijdens het afdrukken"
 
+# The log may contain more information.
 #: gschem/src/x/x_print.c:794 gschem/src/x/x_rc.c:87
-#, fuzzy
 msgid "The log may contain more information."
-msgstr ""
-"%s\n"
-"\n"
-"Het gschem log kan meer informatie bevatten."
+msgstr "Het logboek kan meer informatie bevatten."
 
 #: gschem/src/x/x_print.c:795 gschem/src/x/x_print.c:1229
 #, fuzzy
 msgid "Print Error"
 msgstr "Afdrukken"
 
+# Current schematic printed on
 #: gschem/src/x/x_print.c:800
-#, fuzzy
 msgid "Printed current schematic to"
-msgstr "Huidig schema afgedrukt op [%s]\n"
+msgstr "Huidig schema afgedrukt op"
 
+# Failed to write to PDF
 #: gschem/src/x/x_print.c:1109 gschem/src/x/x_print.c:1171
-#, fuzzy
 msgid "Failed to write PDF to"
-msgstr "Faalde bij het schrijven van PDF naar '%s': %s\n"
+msgstr "Faalde bij het schrijven van PDF naar"
 
+# Error printing file
 #: gschem/src/x/x_print.c:1224
-#, fuzzy
 msgid "Error printing file"
-msgstr ""
-"Fout bij het afdrukken van bestand:\n"
-"%s"
+msgstr "Fout afdrukken file"
 
 #: gschem/src/x/x_rc.c:84
 msgid "<b>Error Processing Configuration.</b>"
@@ -3589,12 +3564,12 @@ msgstr ""
 msgid "gschem RC File Error"
 msgstr ""
 
+# An unknown error occurred while parsing configuration files.
 #: gschem/src/x/x_rc.c:86
-#, fuzzy
 msgid "An unknown error occurred while parsing configuration files."
 msgstr ""
-"FOUT: Een onbekende fout trad op tijdens het ontleden van "
-"configuratiebestanden.\n"
+"Er is een onbekende fout opgetreden tijdens het ontleden van "
+"configuratiebestanden."
 
 #: gschem/src/x/x_sessions.c:139
 msgid "Rename Session"
@@ -3605,10 +3580,10 @@ msgstr ""
 msgid "Specify new name for Session:"
 msgstr ""
 
+# Choose an export file
 #: gschem/src/x/x_sessions.c:228
-#, fuzzy
 msgid "Select export file"
-msgstr "Selecteer een afbeelding bestands..."
+msgstr "Kies een exportbestand"
 
 #: gschem/src/x/x_sessions.c:232
 msgid "exported to"
@@ -3692,11 +3667,8 @@ msgid "Save Session As"
 msgstr "Opslaan Als"
 
 #: gschem/src/x/x_settings.c:359
-#, fuzzy
 msgid "error opening"
-msgstr ""
-"Fout bij het afdrukken van bestand:\n"
-"%s"
+msgstr "error opening"
 
 #: gschem/src/x/x_settings.c:530
 msgid "File Name error! system"
@@ -3706,17 +3678,15 @@ msgstr ""
 msgid "File open for read-only error"
 msgstr ""
 
+# Error, opening output
 #: gschem/src/x/x_settings.c:546
-#, fuzzy
 msgid "Error, opening output"
-msgstr ""
-"Fout bij het afdrukken van bestand:\n"
-"%s"
+msgstr "Fout bij het openen uitgang"
 
+# Wrote configuration to
 #: gschem/src/x/x_settings.c:604
-#, fuzzy
 msgid "Wrote configuration to"
-msgstr "Faalde bij het afdalen in '%s': %s\n"
+msgstr "Schreef configuratie"
 
 #: gschem/src/x/x_settings.c:607
 #, fuzzy
@@ -3778,24 +3748,24 @@ msgstr ""
 msgid "Toolbar icon not found"
 msgstr ""
 
+# Creating new toolbar configuration
 #: gschem/src/x/x_toolbars.c:534
-#, fuzzy
 msgid "Creating new Toolbar configuration\n"
-msgstr "Kan geen gschem configuratie laden."
+msgstr "Het creëren van nieuwe werkbalk configuratie\n"
 
+# toolbar settings saving
 #: gschem/src/x/x_toolbars.c:543
-#, fuzzy
 msgid "Saving Toolbar settings..."
-msgstr "Kan geen gschem configuratie laden."
+msgstr "werkbalkinstellingen saving..."
 
 #: gschem/src/x/x_toolbars.c:562
 msgid "data saved to"
 msgstr ""
 
+# Could not save toolbar configuration to
 #: gschem/src/x/x_toolbars.c:568
-#, fuzzy
 msgid "Could not save Toolbar configuration to"
-msgstr "Faalde bij het afdalen in '%s': %s\n"
+msgstr "Kon werkbalk configuratie niet opslaan"
 
 #: gschem/src/x/x_toolbars.c:641
 #, fuzzy
@@ -3806,10 +3776,10 @@ msgstr "Kan geen gschem configuratie laden."
 msgid "Retrieving toolbar geometry\n"
 msgstr ""
 
+# Toolbar configuration restored from
 #: gschem/src/x/x_toolbars.c:674
-#, fuzzy
 msgid "Toolbar configuration restored from"
-msgstr "Faalde bij het afdalen in '%s': %s\n"
+msgstr "toolbar configuratie hersteld van"
 
 #: gschem/src/x/x_toolbars.c:679
 #, fuzzy
@@ -3821,15 +3791,15 @@ msgstr "Kan geen gschem configuratie laden."
 msgid "Warning, toolbar configuration file access error"
 msgstr "Kan geen gschem configuratie laden."
 
+# Toolbar configuration not found
 #: gschem/src/x/x_toolbars.c:703
-#, fuzzy
 msgid "Toolbar configuration not found"
-msgstr "Faalde bij het afdalen in '%s': %s\n"
+msgstr "Toolbar configuratie niet gevonden"
 
+# Can not assign a graphics context
 #: gschem/src/x/x_window.c:105
-#, fuzzy
 msgid "Could not allocate a graphics context"
-msgstr "Kan de kleur %s niet toewijzen!\n"
+msgstr "Kan niet toewijzen een grafische context"
 
 #: gschem/src/x/x_window.c:110
 #, fuzzy
@@ -3856,25 +3826,24 @@ msgstr ""
 msgid "Aborting action\n"
 msgstr ""
 
+# Close Window canceled
 #: gschem/src/x/x_window.c:681
-#, fuzzy
 msgid "Close Window canceled\n"
-msgstr "Sluit Venster"
+msgstr "Venster sluiten geannuleerd\n"
 
+# Loading file
 #: gschem/src/x/x_window.c:767
-#, fuzzy
 msgid "Loading file"
-msgstr "Sluiten [%s]\n"
+msgstr "Loading file"
 
 #: gschem/src/x/x_window.c:911
-#, fuzzy
 msgid "New file"
 msgstr "Nieuw Bestand"
 
+# Failed to load file
 #: gschem/src/x/x_window.c:953
-#, fuzzy
 msgid "Failed to load file"
-msgstr "Fout bij het lezen van afbeelding: %s"
+msgstr "Mislukt bestand te laden"
 
 #: gschem/src/x/x_window.c:983
 #, fuzzy
@@ -3892,20 +3861,20 @@ msgid ""
 "successfully created"
 msgstr ""
 
+# Discarding page
 #: gschem/src/x/x_window.c:1143
-#, fuzzy
 msgid "Discarding page"
-msgstr "Pagina [%s] wegdoen\n"
+msgstr "teruggooi pagina"
 
+# Close page
 #: gschem/src/x/x_window.c:1144
-#, fuzzy
 msgid "Closing"
 msgstr "Sluit Pagina"
 
+# page can not be saved
 #: gschem/src/x/x_window.c:1209
-#, fuzzy
 msgid "Could NOT save page"
-msgstr "Pagina [%s] kan NIET opgeslagen worden\n"
+msgstr "pagina kan niet worden opgeslagen"
 
 #: gschem/src/x/x_window.c:1211
 msgid "Error while trying to save"
@@ -3995,10 +3964,10 @@ msgstr ""
 msgid "_Print..."
 msgstr "Af_drukken..."
 
+# Print the current document
 #: gschem/etc/system-gschemrc.scm:2065
-#, fuzzy
 msgid "Print the current document"
-msgstr "Huidig schema afgedrukt op [%s]\n"
+msgstr "Het huidige document afdrukken"
 
 #: gschem/etc/system-gschemrc.scm:2066
 msgid "Export options"
@@ -4761,19 +4730,19 @@ msgstr ""
 msgid "_Find Specific Text..."
 msgstr "Vind Speci_fieke Tekst..."
 
+# Find an attribute
 #: gschem/etc/system-gschemrc.scm:2283
-#, fuzzy
 msgid "Find an attribute"
-msgstr "%i attribuut"
+msgstr "Zoek een attribuut"
 
 #: gschem/etc/system-gschemrc.scm:2284
 msgid "_Hide Specific Text..."
 msgstr "Verberg Specifieke Tekst..."
 
+# Hide selected attribute
 #: gschem/etc/system-gschemrc.scm:2284
-#, fuzzy
 msgid "Hide selected attribute"
-msgstr "%i attribuut"
+msgstr "Verberg geselecteerde attribuut"
 
 #: gschem/etc/system-gschemrc.scm:2285
 msgid "_Show Specific Text..."
@@ -4784,10 +4753,10 @@ msgstr "Toon _Specifieke Tekst..."
 msgid "Show a specific attribute"
 msgstr "Toon Attribuut Waarde"
 
+# Single Attribute Editing
 #: gschem/etc/system-gschemrc.scm:2287
-#, fuzzy
 msgid "Attribute _Editor..."
-msgstr "Enkelvoudige Attribuut Bewerking"
+msgstr "_Enkelvoudige Attribuut Bewerking..."
 
 #: gschem/etc/system-gschemrc.scm:2287
 #, fuzzy

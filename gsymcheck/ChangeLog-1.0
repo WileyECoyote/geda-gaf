@@ -1,5 +1,7 @@
 2017-01-12 Wiley E. Hill <wileyhill@gmail.com>
 
+    * po/nl.po: Update Dutch translations.
+
     * src/Makefile.am: Simplify setting of LOCALEDIR; eliminate local
       localedir.
 

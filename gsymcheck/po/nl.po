@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gsymcheck\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-01 21:03-0600\n"
+"POT-Creation-Date: 2017-01-12 02:00-0600\n"
 "PO-Revision-Date: 2012-12-09 15:10+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA Developers\n"
@@ -31,18 +31,15 @@ msgstr ""
 "[%s]\n"
 "Wees alstublieft zeker dat U het laatste rc bestand heeft.\n"
 
-#: gsymcheck/src/gsymcheck.c:121
-#, fuzzy
+# Loaded file
+#: gsymcheck/src/gsymcheck.c:130
 msgid "Loaded file"
-msgstr "Laadde bestand [%s]\n"
+msgstr "Laadde bestand"
 
-#: gsymcheck/src/gsymcheck.c:128
-#, fuzzy
+# ERROR! You must specify at least one file
+#: gsymcheck/src/gsymcheck.c:137
 msgid "ERROR! You must specify at least one filename"
-msgstr ""
-"\n"
-"FOUT! U moet tenminste een bestandsnaam specificeren\n"
-"\n"
+msgstr "FOUT! U moet tenminste een bestandsnaam specificeren"
 
 #: gsymcheck/src/parsecmd.c:70
 #, fuzzy, c-format
@@ -72,12 +69,18 @@ msgstr ""
 #, c-format
 msgid ""
 "gEDA/gsymcheck %s (%s) (g%.7s)\n"
-"Copyright (C) 1998-2016 gEDA developers\n"
+"Copyright (C) 1998-2017 gEDA developers\n"
 "This is free software, and you are welcome to redistribute it under\n"
 "certain conditions. For details, see the file `COPYING', which is\n"
 "included in the gEDA distribution.\n"
 "There is NO WARRANTY, to the extent permitted by law.\n"
 msgstr ""
+"gEDA/gsymcheck %s (%s) (g%.7s)\n"
+"Copyright (C) 1998-2017 gEDA developers\n"
+"Dit is vrije software, en U bent welkom om deze te herdistribueren onder\n"
+"bepaalde condities. Voor details, zie het bestand `COPYING', welke in\n"
+"de gEDA distributie is bijgevoegd.\n"
+"Er is GEEN GARANTIE, voor zover toegelaten door de wet.\n"
 
 #: gsymcheck/src/s_check.c:105
 #, fuzzy, c-format
@@ -119,15 +122,16 @@ msgstr "(gebruik -vv om details te zien)\n"
 msgid "No errors detected\n"
 msgstr "Geen fouten gevonden\n"
 
+# 1 fout gevonden
 #: gsymcheck/src/s_check.c:252
-#, fuzzy
 msgid "1 error found"
-msgstr "Geen fouten gevonden\n"
+msgstr "1 fout gevonden"
 
+# errors found
 #: gsymcheck/src/s_check.c:255
-#, fuzzy, c-format
+#, c-format
 msgid "%d errors found"
-msgstr "Geen fouten gevonden\n"
+msgstr "%d fouten gevonden"
 
 #: gsymcheck/src/s_check.c:259
 #, fuzzy

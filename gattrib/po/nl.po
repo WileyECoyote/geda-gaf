@@ -28,20 +28,20 @@ msgstr "gEDA Attribuut Editor"
 msgid "Manipulate component attributes with gattrib"
 msgstr "Manipuleer componenten attributen met gattrib"
 
+# Unable to open
 #: gattrib/src/f_export.c:81
-#, fuzzy
 msgid "Could not open"
-msgstr "o_save: Kan [%s] niet openen\n"
+msgstr "Kan niet openen"
 
 #: gattrib/src/gattrib.c:178
 #, c-format
 msgid "Failed to save user configuration to '%s': %s."
 msgstr ""
 
+# Can not find file
 #: gattrib/src/gattrib.c:371
-#, fuzzy
 msgid "Couldn not find file"
-msgstr "Kan bestand [%s] niet vinden\n"
+msgstr "Kan bestand niet vinden"
 
 #: gattrib/src/g_rc.c:51
 #, c-format
@@ -114,19 +114,19 @@ msgstr ""
 msgid " DONE\n"
 msgstr " GEDAAN\n"
 
+# unable to find attribute
 #: gattrib/src/s_object.c:215
-#, fuzzy
 msgid "failed to find attribute"
-msgstr "Verwijder attribuut"
+msgstr "niet staat om attributen te vinden"
 
 #: gattrib/src/s_object.c:216
 msgid "Exiting..."
 msgstr ""
 
 #: gattrib/src/s_rename.c:98
-#, fuzzy, c-format
+#, c-format
 msgid "Increase MAX_SETS in %s\n"
-msgstr "Verhoog het aantal rename_pair sets in s_net.c\n"
+msgstr "Verhoog het aantal rename_pair sets in %s\n"
 
 #: gattrib/src/s_rename.c:116
 #, c-format
@@ -134,7 +134,7 @@ msgid "%d) Source: _%s_"
 msgstr "%d) Bron: _%s_"
 
 #: gattrib/src/s_rename.c:120
-#, fuzzy, c-format
+#, c-format
 msgid " -> Destination: _%s_\n"
 msgstr " -> Best: _%s_\n"
 
@@ -171,12 +171,10 @@ msgstr "- Start het aanmaken van de hoofdattributenlijst.\n"
 msgid "- Creating master pin list.\n"
 msgstr "- Start het aanmaken van de hoofdpennenlijst.\n"
 
+# component pin without pin number found
 #: gattrib/src/s_sheet_data.c:484
-#, fuzzy
 msgid "found component pin with no pinnumber."
-msgstr ""
-"In s_sheet_data_add_master_pin_list_items, is een component pen zonder "
-"pennummer gevonden.\n"
+msgstr "component pen zonder pen nummer gevonden."
 
 #: gattrib/src/s_sheet_data.c:545
 #, c-format
@@ -233,24 +231,18 @@ msgstr ""
 "hoofdlijst!\n"
 
 #: gattrib/src/s_toplevel.c:523 gattrib/src/s_toplevel.c:882
-#, fuzzy
 msgid "count != i! Exiting ..."
-msgstr ""
-"In s_toplevel_get_pin_attribs_in_sheet, count != i!  Afsluiten . . . .\n"
+msgstr "count != i! Afsluiten ..."
 
+# either a refdes or a pin number is missing
 #: gattrib/src/s_toplevel.c:842
-#, fuzzy
 msgid "object missing either refdes or pinnumber"
-msgstr ""
-"In s_toplevel_get_pin_attribs_in_sheet, ofwel een refdes of een pennummer "
-"van het object ontbreken!\n"
+msgstr "ofwel een refdes of een pinnummer ontbreekt"
 
 #: gattrib/src/s_toplevel.c:851
 #, fuzzy
 msgid "didn't find the refdes:pin "
-msgstr ""
-"In s_toplevel_get_pin_attribs_in_sheet, is geen refdes:pin gevonden in de "
-"hoofdlijst!\n"
+msgstr "is geen refdes:pin gevonden "
 
 #: gattrib/src/x_dialog.c:111
 msgid "Add new attribute"
@@ -412,15 +404,15 @@ msgstr ""
 msgid "Find next"
 msgstr ""
 
+# Loading file
 #: gattrib/src/x_fileselect.c:113
-#, fuzzy
 msgid "Loading file"
-msgstr "Laad bestand [%s]\n"
+msgstr "Laad bestand"
 
+# Could not load schematic
 #: gattrib/src/x_fileselect.c:119
-#, fuzzy
 msgid "Could not load schematic"
-msgstr "Kon schema [%s] niet laden\n"
+msgstr "Kon niet schematische laden"
 
 #: gattrib/src/x_find.c:276
 #, fuzzy

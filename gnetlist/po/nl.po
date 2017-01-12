@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gnetlist\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-01 21:03-0600\n"
+"POT-Creation-Date: 2017-01-12 02:59-0600\n"
 "PO-Revision-Date: 2014-08-31 20:38+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA Developers\n"
@@ -54,15 +54,15 @@ msgid ""
 "\n"
 msgstr ""
 
+# Loading schematic
 #: gnetlist/src/gnetlist.c:277 gnetlist/src/gnetlist.c:278
-#, fuzzy
 msgid "Loading schematic"
-msgstr "Laden van schema [%s]\n"
+msgstr "Laden van schema"
 
+# Failed to load
 #: gnetlist/src/gnetlist.c:284
-#, fuzzy
 msgid "load failed"
-msgstr "FOUT: Faalde bij het laden van '%s': %s\n"
+msgstr "faalde bij het laden van"
 
 #: gnetlist/src/gnetlist.c:303 gnetlist/src/gnetlist.c:355
 #, fuzzy, c-format
@@ -155,7 +155,7 @@ msgstr ""
 #, fuzzy, c-format
 msgid ""
 "gEDA/gnetlist %s (%s) (g%.7s)\n"
-"Copyright (C) 1998-2016 gEDA developers\n"
+"Copyright (C) 1998-2017 gEDA developers\n"
 "This is free software, and you are welcome to redistribute it under\n"
 "certain conditions. For details, see the file `COPYING', which is\n"
 "included in the gEDA distribution.\n"
@@ -209,20 +209,21 @@ msgstr ""
 "\n"
 "Doe `%s --help' voor meer informatie.\n"
 
+# Go cross the source
 #: gnetlist/src/s_hierarchy.c:86
-#, fuzzy
 msgid "Commence traversing source"
-msgstr "Ga de bron doorkruisen [%s]\n"
+msgstr "Ga de bron doorkruisen"
 
 #: gnetlist/src/s_hierarchy.c:106
 #, c-format
 msgid "ERROR: Failed to load subcircuit '%s': %s\n"
 msgstr "FOUT: Faalde om subcircuit '%s': %s te laden\n"
 
+# is reserved for internal use
 #: gnetlist/src/s_netattrib.c:79
-#, fuzzy, c-format
+#, c-format
 msgid "ERROR: `%s' is reserved for internal use.\n"
-msgstr "FOUT: `%s' is gereserveerd voor intern gebruik."
+msgstr "FOUT: `%s' is gereserveerd voor intern gebruik.\n"
 
 #: gnetlist/src/s_netattrib.c:114
 #, c-format
@@ -367,11 +368,10 @@ msgid "- Starting internal netlist creation\n"
 msgstr ""
 
 #: gnetlist/src/s_traverse.c:222 gnetlist/src/s_traverse.c:355
-#, fuzzy
 msgid "WARNING: Found a placeholder/missing component, is symbol file missing"
 msgstr ""
 "WAARSCHUWING: Vond een plaatshouder/ontbrekend component, mist U een symbool "
-"bestand? [%s]\n"
+"bestand?"
 
 #: gnetlist/src/s_traverse.c:284
 #, fuzzy, c-format
