@@ -315,9 +315,10 @@ SCM g_rc_source_library(SCM path)
 
   /* invalid path? */
   if (!g_file_test (string, G_FILE_TEST_IS_DIR)) {
-    fprintf (stderr,
-           _("Invalid path [%s] passed to source-library\n"),
-             string);
+
+    const char *bad_path = _("Invalid path passed to source-library");
+
+    fprintf (stderr, "%s '%s'\n", bad_path, string);
     GEDA_FREE(string);
     return SCM_BOOL_F;
   }
@@ -366,8 +367,8 @@ SCM g_rc_source_library_search(SCM path)
   /* invalid path? */
   if (!g_file_test (string, G_FILE_TEST_IS_DIR)) {
 
-    fprintf (stderr, _("Invalid path [%s] passed to source-library-search\n"),
-             string);
+    const char *bad_path = _("Invalid path passed to source-library-search");
+    fprintf (stderr, "%s '%s'\n", bad_path, string);
     GEDA_FREE(string);
     return SCM_BOOL_F;
   }
@@ -375,9 +376,10 @@ SCM g_rc_source_library_search(SCM path)
   dir = g_dir_open (string, 0, NULL);
 
   if (dir == NULL) {
-    fprintf (stderr,
-           _("Invalid path [%s] passed to source-library-search\n"),
-             string);
+
+    const char *bad_path = _("Invalid path passed to source-library-search");
+
+    fprintf (stderr, "%s '%s'\n", bad_path, string);
     GEDA_FREE(string);
     return SCM_BOOL_F;
   }
@@ -986,7 +988,7 @@ SCM g_rc_bitmap_directory(SCM path)
 
   /* invalid path? */
   if (!g_file_test (string, G_FILE_TEST_IS_DIR)) {
-    fprintf (stderr, _("Path invalid[%s], %s\n"), string, strerror (errno));
+    fprintf (stderr, "%s \"%s\", %s\n", _("invalid path"), string, strerror(errno));
     GEDA_FREE(string);
     return SCM_BOOL_F;
   }
@@ -1025,7 +1027,7 @@ SCM g_rc_log_directory(SCM path)
 
   /* invalid path? */
   if (geda_create_path (string, 0777 /*octal*/ ) != NO_ERROR) {
-    fprintf (stderr, _("Path invalid[%s], %s\n"), string, strerror (errno));
+    fprintf (stderr, "%s \"%s\", %s\n", _("invalid path"), string, strerror (errno));
     GEDA_FREE(string);
     return SCM_BOOL_F;
   }

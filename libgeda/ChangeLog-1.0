@@ -10,6 +10,13 @@
     * shell/Makefile.am: Replace datadir/locale with localedir, note that
       the shell utilities not currently use gettext.
 
+    * src/guile/g_rc.c: Revise output message format in order to minimize
+      format specifiers in translatable string, replace brackets with quotes
+      path strings in error messages.
+
+    * src/guile/g_rc_parse.c: Revise output message format in order to
+      minimize format specifiers in translatable string.
+
 2017-01-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_file.c: Replace u_log_message with  geda_log and revise

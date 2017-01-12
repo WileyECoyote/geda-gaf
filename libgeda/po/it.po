@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-08 19:26-0600\n"
+"POT-Creation-Date: 2017-01-11 23:43-0600\n"
 "PO-Revision-Date: 2012-03-16 10:58+0000\n"
 "Last-Translator: simone.sandri <lexluxsox@hotmail.it>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -844,152 +844,156 @@ msgid "<error> libgeda could not %s directory to %s:%s"
 msgstr ""
 
 #: libgeda/src/guile/g_rc.c:319
-#, c-format
-msgid "Invalid path [%s] passed to source-library\n"
-msgstr ""
+#, fuzzy
+msgid "Invalid path passed to source-library"
+msgstr "Impossibile trovare il componente [%s] nella libreria componenti\n"
 
-#: libgeda/src/guile/g_rc.c:369 libgeda/src/guile/g_rc.c:379
-#, c-format
-msgid "Invalid path [%s] passed to source-library-search\n"
-msgstr ""
+#: libgeda/src/guile/g_rc.c:370 libgeda/src/guile/g_rc.c:380
+#, fuzzy
+msgid "Invalid path passed to source-library-search"
+msgstr "Impossibile trovare il componente [%s] nella libreria componenti\n"
 
-#: libgeda/src/guile/g_rc.c:487
+#: libgeda/src/guile/g_rc.c:489
 #, c-format
 msgid "Bad value [%d], check bus-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:488 libgeda/src/guile/g_rc.c:494
-#: libgeda/src/guile/g_rc.c:532 libgeda/src/guile/g_rc.c:538
-#: libgeda/src/guile/g_rc.c:576 libgeda/src/guile/g_rc.c:582
-#: libgeda/src/guile/g_rc.c:621 libgeda/src/guile/g_rc.c:627
-#: libgeda/src/guile/g_rc.c:655 libgeda/src/guile/g_rc.c:683
-#: libgeda/src/guile/g_rc.c:711 libgeda/src/guile/g_rc.c:739
-#: libgeda/src/guile/g_rc.c:767 libgeda/src/guile/g_rc.c:795
-#: libgeda/src/guile/g_rc.c:823 libgeda/src/guile/g_rc.c:851
+#: libgeda/src/guile/g_rc.c:490 libgeda/src/guile/g_rc.c:496
+#: libgeda/src/guile/g_rc.c:534 libgeda/src/guile/g_rc.c:540
+#: libgeda/src/guile/g_rc.c:578 libgeda/src/guile/g_rc.c:584
+#: libgeda/src/guile/g_rc.c:623 libgeda/src/guile/g_rc.c:629
+#: libgeda/src/guile/g_rc.c:657 libgeda/src/guile/g_rc.c:685
+#: libgeda/src/guile/g_rc.c:713 libgeda/src/guile/g_rc.c:741
+#: libgeda/src/guile/g_rc.c:769 libgeda/src/guile/g_rc.c:797
+#: libgeda/src/guile/g_rc.c:825 libgeda/src/guile/g_rc.c:853
 #, c-format
 msgid "Continuing with default value=[%d]\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:493
+#: libgeda/src/guile/g_rc.c:495
 #, c-format
 msgid "Invalid type assignment, check bus-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:531
+#: libgeda/src/guile/g_rc.c:533
 #, c-format
 msgid "Bad value [%d], check line-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:537
+#: libgeda/src/guile/g_rc.c:539
 #, c-format
 msgid "Invalid type assignment, check line-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:575
+#: libgeda/src/guile/g_rc.c:577
 #, c-format
 msgid "Bad value [%d], check net-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:581
+#: libgeda/src/guile/g_rc.c:583
 #, c-format
 msgid "Invalid type assignment, check net-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:620
+#: libgeda/src/guile/g_rc.c:622
 #, c-format
 msgid "Bad value [%d], check pin-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:626
+#: libgeda/src/guile/g_rc.c:628
 #, c-format
 msgid "Invalid type assignment, check pin-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:654
+#: libgeda/src/guile/g_rc.c:656
 #, c-format
 msgid "Invalid type assignment, check thick-bus-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:682
+#: libgeda/src/guile/g_rc.c:684
 #, c-format
 msgid "Invalid type assignment, check thick-line-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:710
+#: libgeda/src/guile/g_rc.c:712
 #, c-format
 msgid "Invalid type assignment, check thick-net-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:738
+#: libgeda/src/guile/g_rc.c:740
 #, c-format
 msgid "Invalid type assignment, check thick-pin-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:766
+#: libgeda/src/guile/g_rc.c:768
 #, c-format
 msgid "Invalid type assignment, check thin-bus-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:794
+#: libgeda/src/guile/g_rc.c:796
 #, c-format
 msgid "Invalid type assignment, check thin-line-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:822
+#: libgeda/src/guile/g_rc.c:824
 #, c-format
 msgid "Invalid type assignment, check thin-net-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:850
+#: libgeda/src/guile/g_rc.c:852
 #, c-format
 msgid "Invalid type assignment, check thin-pin-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:912
+#: libgeda/src/guile/g_rc.c:914
 msgid "always-promote-attribute: list element is not a string"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:989 libgeda/src/guile/g_rc.c:1028
-#, c-format
-msgid "Path invalid[%s], %s\n"
+#: libgeda/src/guile/g_rc.c:991 libgeda/src/guile/g_rc.c:1030
+msgid "invalid path"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:164
+#: libgeda/src/guile/g_rc_parse.c:117
+msgid "invalid value"
+msgstr ""
+
+#: libgeda/src/guile/g_rc_parse.c:167
 msgid "RC file already loaded"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:190
-#, fuzzy, c-format
-msgid "Failed to load configuration from '%s': %s\n"
+#: libgeda/src/guile/g_rc_parse.c:238
+#, fuzzy
+msgid "Failed to load configuration from"
 msgstr "Impossibile caricare l'immagine dal file [%s]: %s\n"
 
-#: libgeda/src/guile/g_rc_parse.c:191
-#, c-format
-msgid "Error encounted processing RC file [%s]: "
-msgstr ""
-
-#: libgeda/src/guile/g_rc_parse.c:192
-#, c-format
-msgid "Error accessing configuration %s, %s\n"
-msgstr ""
-
-#: libgeda/src/guile/g_rc_parse.c:270
-#, fuzzy, c-format
-msgid "libgeda: Loaded RC file [%s]\n"
+#: libgeda/src/guile/g_rc_parse.c:274
+#, fuzzy
+msgid "Loaded RC file"
 msgstr "Impossibile caricare l'immagine dal file [%s]: %s\n"
 
-#: libgeda/src/guile/g_rc_parse.c:426
-msgid "ERROR: An unknown error occurred while parsing configuration files."
+#: libgeda/src/guile/g_rc_parse.c:278
+#, fuzzy
+msgid "Error encounted processing RC file"
+msgstr "Impossibile trovare il file %s: %s"
+
+#: libgeda/src/guile/g_rc_parse.c:289
+msgid "accessing file"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:439 libgeda/src/guile/g_rc_parse.c:440
-#, c-format
-msgid "ERROR: %s\n"
+#: libgeda/src/guile/g_rc_parse.c:295
+msgid "Error accessing configuration"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:445
-#, c-format
-msgid "ERROR: The %s log may contain more information.\n"
+#: libgeda/src/guile/g_rc_parse.c:435
+msgid "ERROR"
+msgstr ""
+
+#: libgeda/src/guile/g_rc_parse.c:441
+msgid "An unknown error occurred while parsing configuration files."
+msgstr ""
+
+#: libgeda/src/guile/g_rc_parse.c:460
+msgid "The log may contain more information."
 msgstr ""
 
 #: libgeda/src/object/o_object.c:100
@@ -1926,10 +1930,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Failed to restore ownership on '%s': %s\n"
 #~ msgstr "Impossibile aprire la directory [%s]: %s\n"
-
-#, fuzzy
-#~ msgid "Invalid path [%s] passed to component-library\n"
-#~ msgstr "Impossibile trovare il componente [%s] nella libreria componenti\n"
 
 #~ msgid ""
 #~ "WARNING: using a string for 'always-promote-attributes' is deprecated. "

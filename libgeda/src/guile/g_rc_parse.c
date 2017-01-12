@@ -113,7 +113,10 @@ g_rc_parse_mode(SCM scmmode, const char *rc_name,      int *mode_var,
 
   /* no match? */
   if (index == table_size) {
-    fprintf(stderr, "Invalid mode [%s] passed to %s\n", mode, rc_name);
+
+    const char *log_msg = _("invalid value");
+
+    fprintf(stderr, "%s  %s [%s]\n", log_msg, rc_name, mode);
     ret_val = SCM_BOOL_F;
   }
   else {
@@ -187,10 +190,6 @@ g_rc_parse_file (const char *rcfile, EdaConfig *cfg, GError **err)
   char   *name_norm  = NULL;
   GError *tmp_err    = NULL;
 
-  const char *err_load_msg = _("Failed to load configuration from '%s': %s\n");
-  const char *err_process  = _("Error encounted processing RC file [%s]: ");
-  const char *err_access   = _("Error accessing configuration %s, %s\n");
-
   if (rcfile == NULL) {
     BUG_MSG("rcfile is NULL.");
     return FALSE;
@@ -231,9 +230,14 @@ g_rc_parse_file (const char *rcfile, EdaConfig *cfg, GError **err)
           rcfile = fig_file;
         }
       }
+
       if (tmp_err) {
+
         if (!g_error_matches (tmp_err, EDA_ERROR, ENOENT)) {
-          u_log_message ( err_load_msg, fig_file, tmp_err->message);
+
+          const char *err_load_msg = _("Failed to load configuration from");
+
+          geda_log ("%s '%s': %s\n", err_load_msg, fig_file, tmp_err->message);
         }
         g_clear_error (&tmp_err);
       }
@@ -267,22 +271,30 @@ g_rc_parse_file (const char *rcfile, EdaConfig *cfg, GError **err)
       if (status) {
         /* Typically apps need to read the rc file to know if logging is
          * is enabled or not, so verbose mode is used here */
-        geda_utility_log_verbose (_("libgeda: Loaded RC file [%s]\n"), name_norm);
+        geda_log_v ("libgeda: %s '%s'\n", _("Loaded RC file"), name_norm);
       }
       else {
 
+        const char *process_err  = _("Error encounted processing RC file");
+
         /* Copy tmp_err into err, with a prefixed message. */
-        g_propagate_prefixed_error (err, tmp_err, err_process, name_norm);
+        g_propagate_prefixed_error (err, tmp_err, "%s %s", process_err, name_norm);
         GEDA_FREE (name_norm); /* was not successful so not stored */
       }
     }
     else { /* Can not access name_norm for reading */
 
       if(err != NULL) {
-        g_set_error(err, EDA_ERROR, errno, "accessing file %s", name_norm);
+
+        const char *access_err = _("accessing file");
+
+        g_set_error(err, EDA_ERROR, errno, "%s %s", access_err, name_norm);
       }
       else {
-        fprintf(stderr, err_access, name_norm, strerror(errno));
+
+        const char *access_err = _("Error accessing configuration");
+
+        fprintf(stderr, "%s %s, %s\n", access_err, name_norm, strerror(errno));
       }
       GEDA_FREE (name_norm);
     }
@@ -418,15 +430,18 @@ static void
 g_rc_parse__process_error (GError **err, const char *pname)
 {
   const char *pbase;
+  const char *err_msg;
+
+  err_msg = _("ERROR");
 
   /* Take no chances; if err was not set for some reason, bail out. */
   if (*err == NULL) {
 
     const char *msg =
-      _("ERROR: An unknown error occurred while parsing configuration files.");
+      _("An unknown error occurred while parsing configuration files.");
 
-    u_log_message ("%s\n", msg);
-    fprintf(stderr, "%s\n", msg);
+    geda_log ("%s: %s\n", err_msg, msg);
+    fprintf(stderr, "%s: %s\n", err_msg, msg);
   }
   else {
 
@@ -436,14 +451,15 @@ g_rc_parse__process_error (GError **err, const char *pname)
       return;
     }
 
-    u_log_message (_("ERROR: %s\n"), (*err)->message);
-    fprintf (stderr, _("ERROR: %s\n"), (*err)->message);
+    geda_log ("%s: %s\n", err_msg, (*err)->message);
+    fprintf (stderr, "%s: %s\n", err_msg, (*err)->message);
   }
 
   pbase = geda_file_get_basename (pname);
 
-  fprintf (stderr, _("ERROR: The %s log may contain more information.\n"),
-           pbase);
+  const char *log_msg = _("The log may contain more information.");
+
+  fprintf (stderr, "%s %s: %s\n", pbase, err_msg, log_msg);
 
   exit (1);
 }
