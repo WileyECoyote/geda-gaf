@@ -58,8 +58,8 @@ void usage(char *cmd)
     printf("Usage: %s [OPTIONS] filename1 ... filenameN\n\n", cmd);
     printf("  -e, --embed       Embed all components/pictures\n");
     printf("  -u, --unembed     Unembed all components/pictures\n");
-    printf("  -q, --quiet       Quiet mode\n");
-    printf("  -v, --verbose     Verbose mode on\n");
+    printf("  -q, --quiet       Enable quiet mode\n");
+    printf("  -v, --verbose     Enable verbose mode\n");
     printf("  -h, --help        This message\n");
     printf("\n");
     exit(0);

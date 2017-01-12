@@ -3,6 +3,10 @@
     * gschlas/gschlas.c: Update copyright and revise output message format
       in order to minimize format specifiers in translatable string.
 
+    * gschlas/parsecmd.c: Revise help message info for quiet and verbose to
+      be consistent with other geda applications; -> Quiet mode -> Enable
+      quiet mode and Verbose -> Enable verbose mode.
+
 2017-01-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * Makefile.am: Add rule for update-gmo to allow compiling translations
