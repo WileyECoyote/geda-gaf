@@ -1,6 +1,10 @@
+2017-01-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * geda-libgedauio.m4: Add section for LIBGEDAUIO_GETTEXT_DOMAIN.
+
 2017-01-10 Wiley E. Hill <wileyhill@gmail.com>
 
-    * m4/geda-directories.m4: Expand $localedir to EXPANDED_LOCALEDIR.
+    * geda-directories.m4: Expand $localedir to EXPANDED_LOCALEDIR.
 
 2016-12-21 Wiley E. Hill <wileyhill@gmail.com>
 

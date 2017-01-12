@@ -66,6 +66,6 @@
    initializer for static 'char[]' or 'const char[]' variables.  */
 #define gettext_noop(String) String
 
-#define _(String) gettext(String)
+#define _(String) dgettext(LIBGEDAUIO_GETTEXT_DOMAIN, String)
 
 #endif /* _LIBGETTEXT_H */
