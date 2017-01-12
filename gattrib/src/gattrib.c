@@ -130,7 +130,7 @@
 #include "../include/gattrib.h"  /* include Gattrib specific headers  */
 
 #include <geda_keysyms.h>
-#include <geda_label.h>
+#include <libgedauio.h>
 #include <geda_debug.h>
 
 typedef struct {
@@ -331,6 +331,7 @@ void gattrib_main(void *closure, int argc, char *argv[])
 
   /* Initialize gEDA stuff */
   libgeda_init(argc, argv);
+  libgedauio_setup_locale();
 
   verbose_mode = FALSE;
   quiet_mode   = FALSE;

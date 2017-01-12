@@ -33,6 +33,7 @@ libgedauio_la_SOURCES        =
 include functions/Makefile_insert
 include dialogs/Makefile_insert
 include widgets/Makefile_insert
+include Makefile_insert
 
 libgedauio_la_CFLAGS         = $(DEBUGGING) $(GEDA_INCLUDES) $(AM_CFLAGS)
 

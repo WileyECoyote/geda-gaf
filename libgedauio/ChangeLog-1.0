@@ -1,7 +1,18 @@
 2017-01-12 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/Makefile.am: Apppend libgedauio.h to libgedauio_HEADERS.
+
+    * include/libgedauio.h: Add new file in order to declare the single
+      function; libgedauio_setup_locale, in libgedauio.c.
+
     * src/Makefile.am: Simplify setting of LOCALEDIR; eliminate local
-      localedir.
+      localedir, add include Makefile_insert.
+
+    * src/Makefile_insert: Add new file to include libgedauio.c in the
+      build.
+
+    * src/libgedauio.c: Add new source file with function to setup locale;
+      libgedauio_setup_locale.
 
 2017-01-11 Wiley E. Hill <wileyhill@gmail.com>
 

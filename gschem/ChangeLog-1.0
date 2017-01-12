@@ -5,6 +5,11 @@
     * src/Makefile.am: Simplify setting of LOCALEDIR; eliminate local
       localedir.
 
+    * include/gschem.h: Include libgedauio.h instead of including indivual
+      libgedauio headers.
+
+    * src/base/gschem.c: Call libgedauio_setup_locale in gschem.
+
 2017-01-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * Makefile.am: Add rule for update-gmo to allow compiling translations

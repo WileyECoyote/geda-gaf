@@ -5,6 +5,8 @@
     * src/Makefile.am: Simplify setting of LOCALEDIR; eliminate local
       localedir.
 
+    * src/gattrib.c: Include libgedauio.h and call libgedauio_setup_locale.
+
 2017-01-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * Makefile.am: Add rule for update-gmo to allow compiling translations

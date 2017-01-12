@@ -289,6 +289,7 @@ static void gschem( int argc, char *argv[])
 
   libgeda_init(argc, argv);
   libgedacolor_init(&argc, argv);
+  libgedauio_setup_locale();
 
 #if defined(__MINGW32__) && defined(DEBUG)
     printf("This is the MINGW32 port.\n");

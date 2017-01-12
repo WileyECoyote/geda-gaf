@@ -8,10 +8,7 @@
 #include <libgeda/libgedaguile.h>
 #include <libgedacairo.h>
 #include <libgedacolor.h>
-
-#include <geda_gtk_compat.h>
-#include <geda_uio_functions.h>
-#include <geda_widgets.h>
+#include <libgedauio.h>
 
 /* gschem headers */
 #include "gschem_event.h"
