@@ -80,7 +80,7 @@ main_prog(void *closure, int argc, char *argv[])
 
     if (!quiet_mode) {
       printf(_("gEDA/gschlas version %s (%s) (g%.7s)\n"
-               "Copyright (C) 1998-2013 gEDA developers\nThis is free "
+               "Copyright (C) 1998-2017 gEDA developers\nThis is free "
                "software, and you are welcome to redistribute it under\ncertain"
                " conditions. For details, see the file `COPYING', which is\n"
                "included in the gEDA distribution.\n"
@@ -127,7 +127,7 @@ main_prog(void *closure, int argc, char *argv[])
         exit(2);
       }
       else {
-        g_message (_("Loaded file [%s]\n"), filename);
+        g_message ("%s \"%s\"\n", _("Loaded file"), filename);
       }
 
       index++;
@@ -135,7 +135,10 @@ main_prog(void *closure, int argc, char *argv[])
     }
 
     if (argv[argv_index] == NULL) {
-      fprintf(stderr,_("\nERROR! You must specify at least one filename\n\n"));
+
+      const char *err_msg = _("ERROR! You must specify at least one filename");
+
+      fprintf(stderr,"\n%s\n\n", err_msg);
       usage(argv[0]);
     }
 
