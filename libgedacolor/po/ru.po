@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-12-03 00:56-0600\n"
+"POT-Creation-Date: 2017-01-12 02:57-0600\n"
 "PO-Revision-Date: 2014-06-06 16:40+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -100,12 +100,12 @@ msgstr ""
 msgid "Allocating color scheme: %s\n"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:252 libgedacolor/src/libgedacolor.c:120
+#: libgedacolor/src/x11/color_x11.c:252 libgedacolor/src/libgedacolor.c:134
 #, c-format
 msgid "Something went wrong, check:%s\n"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:257 libgedacolor/src/libgedacolor.c:125
+#: libgedacolor/src/x11/color_x11.c:257 libgedacolor/src/libgedacolor.c:139
 #, fuzzy, c-format
 msgid "%s: Could not locate file:%s\n"
 msgstr "Не удалось сохранить файл: %s"

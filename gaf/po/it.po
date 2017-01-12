@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gaf\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-12-03 00:56-0600\n"
+"POT-Creation-Date: 2017-01-12 01:57-0600\n"
 "PO-Revision-Date: 2014-12-28 22:09+0100\n"
 "Last-Translator: Marco Ciampa <ciampix@libero.it>\n"
 "Language-Team: Italian <it@li.org>\n"
@@ -54,7 +54,7 @@ msgstr ""
 #, fuzzy, c-format
 msgid ""
 "gEDA/gaf %s (%s) (g%.7s)\n"
-"Copyright (C) 1998-2016 gEDA developers\n"
+"Copyright (C) 1998-2017 gEDA developers\n"
 "This is free software, and you are welcome to redistribute it under\n"
 "certain conditions. For details, see the file `COPYING', which is\n"
 "included in the gEDA distribution.\n"
@@ -67,7 +67,7 @@ msgstr ""
 "nella distribuzione di gEDA.\n"
 "NON C'È ALCUNA GARANZIA, nei limiti della legislazione vigente.\n"
 
-#: gaf/src/gaf.c:137
+#: gaf/src/gaf.c:138
 #, c-format
 msgid ""
 "\n"
@@ -76,7 +76,7 @@ msgstr ""
 "\n"
 "Eseguire \"gaf --help\" per ulteriori informazioni.\n"
 
-#: gaf/src/gaf.c:149
+#: gaf/src/gaf.c:150
 #, c-format
 msgid ""
 "ERROR: You must specify a command to run.\n"
@@ -87,7 +87,7 @@ msgstr ""
 "\n"
 "Eseguire \"gaf --help\" per ulteriori informazioni.\n"
 
-#: gaf/src/gaf.c:167
+#: gaf/src/gaf.c:168
 #, c-format
 msgid ""
 "ERROR: Unrecognised command `%s'.\n"
