@@ -37,7 +37,7 @@
 
 #include <ctype.h>
 
-#define GSC2PCB_VERSION "1.13.0"
+#define GSC2PCB_VERSION "1.14.0"
 
 #define DEFAULT_PCB_INC    "pcb.inc"
 
@@ -190,7 +190,7 @@ build_and_run_command (const char *format, ...)
     int    status;
 
     if (verbose)
-      printf ("Running command:\n\t");
+      printf ("%s:\n\t", "Running command");
 
     args = GEDA_MEM_ALLOC0(sizeof(char*) * g_list_length (tmp) + 1);
 
@@ -229,7 +229,8 @@ build_and_run_command (const char *format, ...)
       }
     }
     else {
-      fprintf(stderr, "Failed to execute external program: %s\n", error->message);
+      const char *msg = _("Failed to execute external program");
+      fprintf(stderr, "%s: %s\n", msg, error->message);
       g_error_free(error);
     }
 
@@ -1039,7 +1040,7 @@ add_elements (char *pcb_file)
       p = search_element_directories (el);
 
       if (!p && verbose && is_m4 && force_element_files) {
-        printf ("\tNo file element found.\n");
+        printf ("\t%s.\n", _("No file element found"));
       }
 
       if (p && insert_element (f_out, p,
@@ -1049,18 +1050,18 @@ add_elements (char *pcb_file)
         is_m4 = FALSE;
         ++n_added_ef;
         if (verbose)
-          printf ("%s: added new file element for footprint %s (value=%s)\n",
+          printf (_("%s: added new file element for footprint %s (value=%s)\n"),
                   el->refdes, el->description, el->value);
       }
       else if (!is_m4) {
 
         fprintf (stderr,
-                 "%s: can't find PCB element for footprint %s (value=%s)\n",
+               _("%s: can't find PCB element for footprint %s (value=%s)\n"),
                  el->refdes, el->description, el->value);
 
         if (remove_unfound_elements && !fix_elements) {
           fprintf (stderr,
-                   "So device %s will not be in the layout.\n", el->refdes);
+                 _("So device %s will not be in the layout.\n"), el->refdes);
           ++n_PKG_removed_new;
         }
         else {
@@ -1075,7 +1076,7 @@ add_elements (char *pcb_file)
       fputs (buf, f_out);
       ++n_added_m4;
       if (verbose)
-        printf ("%s: added new m4 element for footprint   %s (value=%s)\n",
+        printf (_("%s: added new m4 element for footprint   %s (value=%s)\n"),
                 el->refdes, el->description, el->value);
     }
 
@@ -1118,7 +1119,7 @@ update_element_descriptions (char *pcb_file, char *bak)
   }
 
   if (!pcb_element_list || n_fixed == 0) {
-    fprintf (stderr, "Could not find any elements to fix.\n");
+    fprintf (stderr, _("Could not find any elements to fix.\n"));
     return;
   }
 
@@ -1141,14 +1142,16 @@ update_element_descriptions (char *pcb_file, char *bak)
           (el_exists = pcb_element_exists (el, FALSE)) != NULL &&
            el_exists->changed_description)
       {
+        const char *msg = _("updating element Description");
+
         fmt = el->quoted_flags ?
           "Element%c\"%s\" \"%s\" \"%s\" \"%s\" %s %s%s\n" :
           "Element%c%s \"%s\" \"%s\" \"%s\" %s %s%s\n";
 
         fprintf (f_out, fmt, el->res_char, el->flags, el_exists->changed_description,
                  el->refdes, el->value, el->x, el->y, el->tail);
-        printf ("%s: updating element Description: %s -> %s\n",
-                 el->refdes, el->description, el_exists->changed_description);
+        printf ("%s: %s: %s -> %s\n",
+                 el->refdes, msg, el->description, el_exists->changed_description);
         el_exists->still_exists = TRUE;
       }
       else {
@@ -1186,7 +1189,7 @@ prune_elements (char *pcb_file, char *bak)
       if (preserve) {
         ++n_preserved;
         fprintf (stderr,
-                 "Preserving PCB element not in the schematic:    %s (element   %s)\n",
+               _("Preserving PCB element not in the schematic:    %s (element   %s)\n"),
                  el->refdes, el->description);
       } else
         ++n_deleted;
@@ -1227,7 +1230,7 @@ prune_elements (char *pcb_file, char *bak)
         && !el_exists->still_exists && !preserve) {
       skipping = TRUE;
       if (verbose)
-        printf ("%s: deleted element %s (value=%s)\n",
+        printf (_("%s: deleted element %s (value=%s)\n"),
                 el->refdes, el->description, el->value);
       pcb_element_free (el);
       continue;
@@ -1241,7 +1244,7 @@ prune_elements (char *pcb_file, char *bak)
                el->res_char, el->flags, el->description, el->refdes,
                el_exists->changed_value, el->x, el->y, el->tail);
       if (verbose)
-        printf ("%s: changed element %s value: %s -> %s\n",
+        printf (_("%s: changed element %s value: %s -> %s\n"),
                 el->refdes, el->description,
                 el->value, el_exists->changed_value);
     }
@@ -1364,7 +1367,8 @@ add_multiple_schematics (char *sch)
     g_strfreev (args);
   }
   else {
-    fprintf (stderr, "invalid `schematics' option: %s\n", error->message);
+    const char *msg = _("invalid schematics option");
+    fprintf (stderr, "%s: %s\n", msg, error->message);
     g_error_free (error);
   }
 }
@@ -1426,9 +1430,11 @@ parse_config (char *config, char *arg)
 
     char *elements_dir = expand_dir (arg);
 
-    if (verbose > 1)
-      printf ("\tAdding directory to file element directory list: %s\n", elements_dir);
-      element_directory_list =
+    if (verbose > 1)  {
+      const char *msg = _("Adding directory to file element directory list");
+      printf ("\t%s: %s\n", msg, elements_dir);
+    }
+    element_directory_list =
       g_list_prepend (element_directory_list, elements_dir);
   }
   else if (!strcmp (config, "schematics")) {
@@ -1442,7 +1448,7 @@ parse_config (char *config, char *arg)
         add_m4_file (arg);
   }
   else if (!strcmp (config, "gnetlist")) {
-          extra_gnetlist_list = g_list_append (extra_gnetlist_list, geda_utility_string_strdup (arg));
+          extra_gnetlist_list = g_list_append (extra_gnetlist_list, geda_strdup(arg));
   }
   else if (!strcmp (config, "empty-footprint")) {
             empty_footprint_name = geda_utility_string_strdup (arg);
@@ -1476,8 +1482,10 @@ load_project (char *filename)
 
   if (!f)
     return;
-  if (verbose)
-    printf ("Reading project file: %s\n", filename);
+
+  if (verbose) {
+    printf ("%s: %s\n", _("Reading project file"), filename);
+  }
 
   while (fgets (buf, sizeof(buf), f)) {
 
@@ -1676,7 +1684,7 @@ get_args (int argc, char **argv)
         i += r;
         continue;
       }
-      printf ("gsch2pcb: bad or incomplete arg: %s\n", argv[i]);
+      printf ("gsch2pcb: %s %s\n", _("bad or incomplete arg:"), argv[i]);
       usage ();
     }
     else if (!g_str_has_suffix (argv[i], ".sch")) {
@@ -1752,7 +1760,7 @@ int main (int argc, char **argv)
     element_directory_list = g_list_append (element_directory_list, "packages");
 
   if (verbose)
-    printf ("Processing PCBLIBPATH=\"%s\"\n", PCBLIBPATH);
+    printf ("%s \"%s\"\n", _("Processing PCBLIBPATH="), PCBLIBPATH);
 
   path = geda_utility_string_strdup (PCBLIBPATH);
 
@@ -1760,7 +1768,7 @@ int main (int argc, char **argv)
   {
     if (g_file_test (p, G_FILE_TEST_IS_DIR)) {
       if (verbose) {
-        printf ("Adding %s to the newlib search path\n", p);
+        printf (_("Adding %s to the newlib search path\n"), p);
       }
       element_directory_list = g_list_append (element_directory_list,
                                               geda_utility_string_strdup (p));
@@ -1793,7 +1801,7 @@ int main (int argc, char **argv)
   if (!run_gnetlist (pins_file_name, net_file_name, pcb_new_file_name,
        sch_basename, schematics))
   {
-    fprintf(stderr, "Failed to run gnetlist\n");
+    fprintf(stderr, _("Failed to run gnetlist\n"));
     exit_code = 1;
   }
   else {
@@ -1803,7 +1811,7 @@ int main (int argc, char **argv)
     if (add_elements (pcb_new_file_name) == 0) {
       build_and_run_command ("rm %s", pcb_new_file_name);
       if (initial_pcb) {
-        printf ("No elements found, so nothing to do.\n");
+        printf (_("No elements found, so nothing to do.\n"));
       }
     }
     else {
@@ -1817,65 +1825,91 @@ int main (int argc, char **argv)
       if (verbose)
         printf ("\n");
       printf ("\n----------------------------------\n");
-      printf ("Done processing.  Work performed:\n");
+      printf (_("Done processing. Work performed:\n"));
 
       if (n_deleted > 0 || n_fixed > 0 || need_PKG_purge || n_changed_value > 0)
-        printf ("%s is backed up as %s.\n", pcb_file_name, bak_file_name);
+      {
+        const char *msg = _("is backed up as");
+        printf ("%s %s %s.\n", pcb_file_name, msg, bak_file_name);
+      }
 
-      if (pcb_element_list && n_deleted > 0)
-        printf ("%d elements deleted from %s.\n", n_deleted, pcb_file_name);
+      if (pcb_element_list && n_deleted > 0) {
+        const char *msg = _("elements deleted from");
+        printf ("%d %s %s.\n", n_deleted, msg, pcb_file_name);
+      }
 
       if (n_added_ef + n_added_m4 > 0) {
-        printf ("%d file elements and %d m4 elements added to %s.\n",
-        n_added_ef, n_added_m4, pcb_new_file_name);
+        const char *msg1 = _("file elements and");
+        const char *msg2 = _("elements added to");
+        printf ("%d %s %d m4 %s %s.\n",
+                n_added_ef, msg1, n_added_m4, msg2, pcb_new_file_name);
       }
       else if (n_not_found == 0) {
-        printf ("No elements to add so not creating %s\n", pcb_new_file_name);
+        const char *msg = _("No elements to add, not creating");
+        printf ("%s %s\n", msg, pcb_new_file_name);
         created_pcb_file = FALSE;
       }
 
       if (n_not_found > 0) {
-        printf ("%d not found elements added to %s.\n",
-        n_not_found, pcb_new_file_name);
+        const char *msg = _("not found elements added to");
+        printf ("%d %s %s.\n",
+        n_not_found, msg, pcb_new_file_name);
       }
 
-      if (n_unknown > 0)
-        printf ("%d components had no footprint attribute and are omitted.\n", n_unknown);
+      if (n_unknown > 0) {
+        const char *msg = _("components had no footprint attribute and are omitted");
+        printf ("%d %s.\n", n_unknown, msg);
+      }
 
-      if (n_none > 0)
-        printf ("%d components with footprint \"none\" omitted from %s.\n", n_none, pcb_new_file_name);
+      if (n_none > 0) {
+        const char *msg = _("components with footprint \"none\" omitted from");
+        printf ("%d %s %s.\n", n_none, msg, pcb_new_file_name);
+      }
 
       if (n_empty > 0){
-        printf ("%d components with empty footprint \"%s\" omitted from %s.\n",
-        n_empty, empty_footprint_name, pcb_new_file_name);
+        const char *msg1 = _("components with empty footprint");
+        const char *msg2 = _("omitted from");
+        printf ("%d %s \"%s\" %s %s.\n",
+        n_empty, msg1, empty_footprint_name, msg2, pcb_new_file_name);
       }
 
       if (n_changed_value > 0) {
-        printf ("%d elements had a value change in %s.\n", n_changed_value, pcb_file_name);
+        const char *msg = _("elements had a value change in");
+        printf ("%d %s %s.\n", n_changed_value, msg, pcb_file_name);
       }
 
-      if (n_fixed > 0)
-        printf ("%d elements fixed in %s.\n", n_fixed, pcb_file_name);
+      if (n_fixed > 0) {
+        const char *msg = _("elements fixed in");
+        printf ("%d %s %s.\n", n_fixed, msg, pcb_file_name);
+      }
 
       if (n_PKG_removed_old > 0) {
-        printf ("%d elements could not be found.", n_PKG_removed_old);
-        if (created_pcb_file)
-          printf ("  So %s is incomplete.\n", pcb_file_name);
-        else
+        const char *msg1 = _("elements could not be found");
+        printf ("%d %s.", n_PKG_removed_old, msg1);
+        if (created_pcb_file) {
+          const char *msg2 = _("is incomplete");
+          printf ("     %s %s.\n", pcb_file_name, msg2);
+        }
+        else {
           printf ("\n");
+        }
       }
 
       if (n_PKG_removed_new > 0) {
-        printf ("%d elements could not be found.", n_PKG_removed_new);
-        if (created_pcb_file)
-          printf ("  So %s is incomplete.\n", pcb_new_file_name);
-        else
+        const char *msg1 = _("elements could not be found");
+        printf ("%d %s.", n_PKG_removed_new, msg1);
+        if (created_pcb_file) {
+          const char *msg2 = _("is incomplete");
+          printf ("     %s %s.\n", pcb_new_file_name, msg2);
+        }
+        else {
           printf ("\n");
+        }
       }
 
       if (n_preserved > 0) {
-        printf ("%d elements not in the schematic preserved in %s.\n",
-        n_preserved, pcb_file_name);
+        const char *msg = _("elements not in the schematic preserved in");
+        printf ("%d %s %s.\n", n_preserved, msg, pcb_file_name);
       }
 
       /* Tell user what to do next */
@@ -1883,28 +1917,27 @@ int main (int argc, char **argv)
         printf ("\n");
 
       if (n_added_ef + n_added_m4 > 0) {
+          printf ("\n%s:\n",      _("Next step"));
+          printf ("1.  %s %s.\n", _("Run pcb on your file"), pcb_file_name);
         if (initial_pcb) {
-          printf ("\nNext step:\n");
-          printf ("1.  Run pcb on your file %s.\n", pcb_file_name);
-          printf ("    You will find all your footprints in a bundle ready for you to place\n");
-          printf ("    or disperse with \"Select -> Disperse all elements\" in PCB.\n\n");
-          printf ("2.  From within PCB, select \"File -> Load netlist file\" and select \n");
-          printf ("    %s to load the netlist.\n\n", net_file_name);
-          printf ("3.  From within PCB, enter\n\n");
+          printf ("    %s\n",     _("You will find all your footprints in a bundle ready for you to place"));
+          printf ("    %s.\n\n",  _("or disperse with \"Select -> Disperse all elements\" in PCB"));
+          printf ("2.  %s \n",    _("from within PCB, select \"File -> Load netlist file\" and select"));
+          printf ("    %s %s.\n\n", net_file_name, _("to load the netlist"));
+          printf ("3.  %s\n\n",   _("From within PCB, enter"));
           printf ("           :ExecuteFile(%s)\n\n", pins_file_name);
-          printf ("    to propagate the pin names of all footprints to the layout.\n\n");
+          printf ("    %s.\n\n",  _("to propagate the pin names of all footprints to the layout"));
         }
         else if (quiet_mode == FALSE) {
-          printf ("\nNext steps:\n");
-          printf ("1.  Run pcb on your file %s.\n", pcb_file_name);
-          printf ("2.  From within PCB, select \"File -> Load layout data to paste buffer\"\n");
-          printf ("    and select %s to load the new footprints into your existing layout.\n",
-          pcb_new_file_name);
-          printf ("3.  From within PCB, select \"File -> Load netlist file\" and select \n");
-          printf ("    %s to load the updated netlist.\n\n", net_file_name);
-          printf ("4.  From within PCB, enter\n\n");
+          printf ("2.  %s\n",     _("From within PCB, select \"File -> Load layout data to paste buffer\""));
+          printf ("    %s %s ",   _("    and select"), pcb_new_file_name);
+          printf (                _("to load the new footprints into your existing layout.\n"));
+          printf ("3.  %s\n",     _("From within PCB, select \"File -> Load netlist file\" and select"));
+          printf ("    %s %s.\n\n", net_file_name, _("to load the updated netlist"));
+
+          printf ("4.  %s\n\n",   _("From within PCB, enter"));
           printf ("           :ExecuteFile(%s)\n\n", pins_file_name);
-          printf ("    to update the pin names of all footprints.\n\n");
+          printf ("    %s.\n\n",  _("to update the pin names of all footprints"));
         }
       }
     }

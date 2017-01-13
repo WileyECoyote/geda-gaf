@@ -1,5 +1,14 @@
 gsch2pcb Changelog
 ------------------
+1.14.0
+---------
+
+    * gsch2pcb/gsch2pcb.c: Include locale.h and setup the locale and gettext
+      bindings in main. Convert some message outputs using gettext. gsch2pcb
+      now internationalized (and it only took 13 years!) Well almost, still
+      need some actual translations.
+
+------------------
 1.13.0
 ---------
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-12 02:59-0600\n"
+"POT-Creation-Date: 2017-01-13 01:30-0600\n"
 "PO-Revision-Date: 2012-01-27 14:22+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -17,6 +17,215 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
 "X-Generator: Launchpad (build 16265)\n"
+
+#: utils/gsch2pcb/gsch2pcb.c:232
+msgid "Failed to execute external program"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1043
+msgid "No file element found"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1053
+#, c-format
+msgid "%s: added new file element for footprint %s (value=%s)\n"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1059
+#, c-format
+msgid "%s: can't find PCB element for footprint %s (value=%s)\n"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1064
+#, c-format
+msgid "So device %s will not be in the layout.\n"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1079
+#, c-format
+msgid "%s: added new m4 element for footprint   %s (value=%s)\n"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1122
+#, c-format
+msgid "Could not find any elements to fix.\n"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1145
+msgid "updating element Description"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1192
+#, c-format
+msgid "Preserving PCB element not in the schematic:    %s (element   %s)\n"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1233
+#, c-format
+msgid "%s: deleted element %s (value=%s)\n"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1247
+#, c-format
+msgid "%s: changed element %s value: %s -> %s\n"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1370
+msgid "invalid schematics option"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1434
+msgid "Adding directory to file element directory list"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1487
+msgid "Reading project file"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1687
+msgid "bad or incomplete arg:"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1763
+msgid "Processing PCBLIBPATH="
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1771
+#, c-format
+msgid "Adding %s to the newlib search path\n"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1804
+#, c-format
+msgid "Failed to run gnetlist\n"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1814
+#, c-format
+msgid "No elements found, so nothing to do.\n"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1828
+#, c-format
+msgid "Done processing. Work performed:\n"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1832
+msgid "is backed up as"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1837
+msgid "elements deleted from"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1842
+msgid "file elements and"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1843
+msgid "elements added to"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1848
+msgid "No elements to add, not creating"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1854
+msgid "not found elements added to"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1860
+msgid "components had no footprint attribute and are omitted"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1865
+msgid "components with footprint \"none\" omitted from"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1870
+msgid "components with empty footprint"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1871
+msgid "omitted from"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1877
+msgid "elements had a value change in"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1882
+msgid "elements fixed in"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1887 utils/gsch2pcb/gsch2pcb.c:1899
+msgid "elements could not be found"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1890 utils/gsch2pcb/gsch2pcb.c:1902
+msgid "is incomplete"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1911
+msgid "elements not in the schematic preserved in"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1920
+msgid "Next step"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1921
+msgid "Run pcb on your file"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1923
+msgid "You will find all your footprints in a bundle ready for you to place"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1924
+msgid "or disperse with \"Select -> Disperse all elements\" in PCB"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1925
+msgid "from within PCB, select \"File -> Load netlist file\" and select"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1926
+msgid "to load the netlist"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1927 utils/gsch2pcb/gsch2pcb.c:1938
+msgid "From within PCB, enter"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1929
+msgid "to propagate the pin names of all footprints to the layout"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1932
+msgid "From within PCB, select \"File -> Load layout data to paste buffer\""
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1933
+msgid "    and select"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1934
+#, c-format
+msgid "to load the new footprints into your existing layout.\n"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1935
+msgid "From within PCB, select \"File -> Load netlist file\" and select"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1936
+msgid "to load the updated netlist"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1940
+msgid "to update the pin names of all footprints"
+msgstr ""
 
 #: utils/gsch2pdf/parsecmd.c:69
 #, c-format
@@ -57,35 +266,68 @@ msgid ""
 "[%s]\n"
 msgstr ""
 
-#: utils/gschlas/gschlas.c:82
-#, c-format
-msgid ""
-"gEDA/gschlas version %s (%s) (g%.7s)\n"
-"Copyright (C) 1998-2013 gEDA developers\n"
-"This is free software, and you are welcome to redistribute it under\n"
-"certain conditions. For details, see the file `COPYING', which is\n"
-"included in the gEDA distribution.\n"
-"There is NO WARRANTY, to the extent permitted by law.\n"
-msgstr ""
-
-#: utils/gschlas/gschlas.c:130
+#: utils/gschlas/gschlas.c:126
 msgid "Loaded file"
 msgstr ""
 
-#: utils/gschlas/gschlas.c:138
-#, c-format
-msgid ""
-"\n"
-"ERROR! You must specify at least one filename\n"
-"\n"
+#: utils/gschlas/gschlas.c:135
+msgid "ERROR! You must specify at least one filename"
 msgstr ""
 
-#: utils/gschlas/gschlas.c:166
+#: utils/gschlas/gschlas.c:165
 #, c-format
 msgid "Cannot specify both -e and -u at the same time\n"
 msgstr ""
 
-#: utils/gschlas/gschlas.c:169
+#: utils/gschlas/gschlas.c:168
 #, c-format
 msgid "Must specify whether to embed or unembed\n"
+msgstr ""
+
+#: utils/gschlas/parsecmd.c:59
+#, c-format
+msgid ""
+"Usage: %s [OPTIONS] filename1 ... filenameN\n"
+"\n"
+msgstr ""
+
+#: utils/gschlas/parsecmd.c:60
+#, c-format
+msgid "  -e, --embed       Embed all components/pictures\n"
+msgstr ""
+
+#: utils/gschlas/parsecmd.c:61
+#, c-format
+msgid "  -u, --unembed     Unembed all components/pictures\n"
+msgstr ""
+
+#: utils/gschlas/parsecmd.c:62
+#, c-format
+msgid "  -q, --quiet       Enable quiet mode\n"
+msgstr ""
+
+#: utils/gschlas/parsecmd.c:63
+#, c-format
+msgid "  -v, --verbose     Enable verbose mode\n"
+msgstr ""
+
+#: utils/gschlas/parsecmd.c:64
+#, c-format
+msgid "  -V, --version     Show version information.\n"
+msgstr ""
+
+#: utils/gschlas/parsecmd.c:65
+#, c-format
+msgid "  -h, --help        This message\n"
+msgstr ""
+
+#: utils/gschlas/parsecmd.c:80
+#, c-format
+msgid ""
+"gEDA/gschlas %s (%s) (g%.7s)\n"
+"Copyright (C) 1998-2017 gEDA developers\n"
+"This is free software, and you are welcome to redistribute it under\n"
+"certain conditions. For details, see the file `COPYING', which is\n"
+"included in the gEDA distribution.\n"
+"There is NO WARRANTY, to the extent permitted by law.\n"
 msgstr ""

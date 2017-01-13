@@ -10,7 +10,7 @@
       and gettext bindings.
 
     * gsch2pcb/gsch2pcb.c: Include locale.h and setup the locale and gettext
-      bindings in main.
+      bindings in main. Convert some message outputs using gettext.
 
 2017-01-12 Wiley E. Hill <wileyhill@gmail.com>
 
