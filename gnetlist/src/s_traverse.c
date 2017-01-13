@@ -112,7 +112,7 @@ static void s_traverse_init(void)
   graphical_netlist_head->nlid = -1;	/* head node */
 
   if (verbose_mode) {
-    printf(_("\n\n------------------------------------------------------\n"));
+    printf  ( "\n\n------------------------------------------------------\n");
     printf(_("Verbose mode legend\n\n"));
     printf(_("n : Found net\n"));
     printf(_("C : Found component (staring to traverse component)\n"));
@@ -123,7 +123,7 @@ static void s_traverse_init(void)
     printf(_("^ : Finished underlying source, going back up\n"));
     printf(_("u : Found a refdes which needs to be demangle\n"));
     printf(_("U : Found a connected_to refdes which needs to be demangle\n"));
-    printf(_("------------------------------------------------------\n\n"));
+    printf  ("------------------------------------------------------\n\n");
 
   }
 }

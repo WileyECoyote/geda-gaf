@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gnetlist\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-12 02:59-0600\n"
+"POT-Creation-Date: 2017-01-12 14:17-0600\n"
 "PO-Revision-Date: 2014-08-31 20:38+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA Developers\n"
@@ -152,7 +152,7 @@ msgstr ""
 "gEDA/gaf huispagina: <http://www.geda-project.org/>\n"
 
 #: gnetlist/src/parsecmd.c:112
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "gEDA/gnetlist %s (%s) (g%.7s)\n"
 "Copyright (C) 1998-2017 gEDA developers\n"
@@ -161,8 +161,8 @@ msgid ""
 "included in the gEDA distribution.\n"
 "There is NO WARRANTY, to the extent permitted by law.\n"
 msgstr ""
-"gEDA %s (g%.7s)\n"
-"Copyright (C) 1998-2012 gEDA developers\n"
+"gEDA/gnetlist %s (%s) (g%.7s)\n"
+"Copyright (C) 1998-2017 gEDA developers\n"
 "Dit is vrije software, en u bent welkom om deze te herdistribueren onder\n"
 "bepaalde condities. Voor details, zie het bestand `COPYING', welke is\n"
 "bijgesloten in de gEDA distributie.\n"
@@ -287,14 +287,6 @@ msgstr ""
 "Deze waarschuwing is in orde als je meervoudige niveaus van hiërarchie "
 "hebt!\n"
 
-#: gnetlist/src/s_traverse.c:115
-#, c-format
-msgid ""
-"\n"
-"\n"
-"------------------------------------------------------\n"
-msgstr ""
-
 #: gnetlist/src/s_traverse.c:116
 #, c-format
 msgid ""
@@ -345,13 +337,6 @@ msgstr ""
 #: gnetlist/src/s_traverse.c:125
 #, c-format
 msgid "U : Found a connected_to refdes which needs to be demangle\n"
-msgstr ""
-
-#: gnetlist/src/s_traverse.c:126
-#, c-format
-msgid ""
-"------------------------------------------------------\n"
-"\n"
 msgstr ""
 
 #: gnetlist/src/s_traverse.c:168
