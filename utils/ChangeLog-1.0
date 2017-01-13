@@ -3,6 +3,9 @@
     * gschlas/gschlas.c: Include locale.h and setup the locale and gettext
       bindings.
 
+    * gsch2pdf/main.c: Include and config.h and locale.h and setup locale
+      and gettext bindings.
+
 2017-01-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * gsch2pcb/Makefile.am: Simplify setting of LOCALEDIR; eliminate local

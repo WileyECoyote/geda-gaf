@@ -18,6 +18,12 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
+#include "../../config.h"
+
+#ifdef HAVE_LOCALE_H
+#include <locale.h>
+#endif
+
 #include <pango/pangocairo.h>
 #include <cairo-pdf.h>
 #include <math.h>
@@ -693,6 +699,17 @@ static void main2(void *closure, int argc, char *argv[])
 
 int main(int argc, char *argv[])
 {
+
+#if ENABLE_NLS
+
+  setlocale(LC_ALL, "");
+  setlocale(LC_NUMERIC, "C");
+  bindtextdomain("geda-utils", LOCALEDIR);
+  textdomain("geda-utils");
+  bind_textdomain_codeset("geda-utils", "UTF-8");
+
+#endif
+
     scm_boot_guile(argc, argv, main2, NULL);
 
     return EXIT_FAILURE;
