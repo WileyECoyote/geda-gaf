@@ -2,6 +2,11 @@
 
     * geda-libgedauio.m4: Add section for LIBGEDAUIO_GETTEXT_DOMAIN.
 
+    * geda-intl.m4: Add new file to check if with_local_libintl was passed
+      to configure; set USE_LOCAL_LIBINTL and substitute LOCAL_LIBINTL if
+      the local static library is to be built. The library would be built
+      if this option is enabled anyways.
+
 2017-01-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-directories.m4: Expand $localedir to EXPANDED_LOCALEDIR.

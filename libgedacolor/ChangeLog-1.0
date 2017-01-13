@@ -1,3 +1,8 @@
+2017-01-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/gettext_priv.h: Conditionally use local libintl.h header if
+      USE_LOCAL_LIBINTL is defined when ENABLE_NLS is set.
+
 2017-01-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/libgedacolor.c: Include locale.h, revise main to setup locale

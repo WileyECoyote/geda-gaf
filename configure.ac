@@ -97,6 +97,7 @@ AX_GEDA_STD_CHECKS
 AM_NLS
 AM_GNU_GETTEXT
 AM_GNU_GETTEXT_VERSION([0.18])dnl
+AX_LOCAL_LIBINTL
 AX_DESKTOP_I18N
 
 #####################################################################

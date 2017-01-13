@@ -23,9 +23,13 @@
 #if ENABLE_NLS
 
 /* Get declarations of GNU message catalog functions.  */
-# include <libintl.h>
-
+#if USE_LOCAL_LIBINTL
+# include "../../intl/libintl.h"
 #else
+# include <libintl.h>
+#endif
+
+#else /* ENABLE_NLS is not set*/
 
 /* Solaris /usr/include/locale.h includes /usr/include/libintl.h, which
    chokes if dcgettext is defined as a macro.  So include it now, to make

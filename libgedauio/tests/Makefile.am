@@ -50,9 +50,9 @@ noinst_PROGRAMS = \
 		test_file_chooser \
 		test_menus
 
-#bin_PROGRAMS=test_menus
-
-#test_menus_LDADD = $(AM_LDFLAGS)
+#bin_PROGRAMS = \
+#		test_file_chooser \
+#		test_menus
 
 EXTRA_DIST = \
     test-suite.h \
@@ -69,10 +69,17 @@ AM_CFLAGS = -DWOW \
 	$(GCC_CFLAGS) $(GTK_CFLAGS) $(MINGW_CFLAGS) $(GLIB_CFLAGS) $(GDK_PIXBUF_CFLAGS)
 
 AM_LDFLAGS = \
-	$(GLIB_LIBS) $(GTK_LIBS) $(GDK_PIXBUF_LIBS) $(MINGW_LDFLAGS) \
-	$(top_builddir)/libgedauio/src/libgedauio.la \
-	$(top_builddir)/libgeda/src/libgeda.la \
-	@LIBINTL@
+	$(GLIB_LIBS) $(GTK_LIBS) $(GDK_PIXBUF_LIBS) $(MINGW_LDFLAGS)
+
+if LOCAL_LIBINTL
+    LDFLAGS_NOINST = -Wl,--unresolved-symbols=ignore-in-shared-libs
+endif
+
+test_file_chooser_LDFLAGS = $(AM_LDFLAGS) $(LDFLAGS_NOINST)
+test_file_chooser_LDADD = $(top_builddir)/libgedauio/src/libgedauio.la @LIBINTL@
+
+test_menus_LDFLAGS = $(AM_LDFLAGS) $(LDFLAGS_NOINST)
+test_menus_LDADD = $(top_builddir)/libgedauio/src/libgedauio.la @LIBINTL@
 
 MOSTLYCLEANFILES     = *.log core FILE *~
 CLEANFILES           = *.log core FILE *~

@@ -1,3 +1,16 @@
+2017-01-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/gettext.h: Conditionally use local libintl.h header if
+      USE_LOCAL_LIBINTL is defined when ENABLE_NLS is set.
+
+    * tests/Makefile.am: Add conditional to append --unresolved-symbols to
+      the linker flags for test_file_chooser and test_menus if LOCAL_LIBINTL
+      is defined; these two noinst programs are linked with libgedauio, which
+      is linked to libgeda and libtool does not resolve to the static since
+      the programs are not "installed", and hence leaves undefined references
+      to functions in the local libintl. Presumably this is a flaw in the
+      distributed gettext package.
+
 2017-01-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/Makefile.am: Apppend libgedauio.h to libgedauio_HEADERS.
