@@ -20,6 +20,12 @@
 
 #include "../../config.h"
 
+#ifdef HAVE_LOCALE_H
+#include <locale.h>
+#endif
+
+#include "../../include/gettext.h"
+
 #define WITHOUT_GDK_PIX_BUFFER 1
 #define WITHOUT_GUILE 1
 
@@ -1703,6 +1709,16 @@ int main (int argc, char **argv)
 
   sch_basename = NULL;
   schematics   = NULL;
+
+#if ENABLE_NLS
+
+  setlocale(LC_ALL, "");
+  setlocale(LC_NUMERIC, "C");
+  bindtextdomain("geda-utils", LOCALEDIR);
+  textdomain("geda-utils");
+  bind_textdomain_codeset("geda-utils", "UTF-8");
+
+#endif
 
   pcbdata_path = getenv ("PCBDATA");  /* do not free return value */
 
