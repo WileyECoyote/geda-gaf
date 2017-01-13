@@ -3,6 +3,7 @@
 ## The configure script generates the actual Makefile from the Makefile.in.
 
 noinst_HEADERS = \
+		gettext.h                   \
 		gschem.h                    \
 		gschem_globals.h            \
 		gschem_dialog.h             \

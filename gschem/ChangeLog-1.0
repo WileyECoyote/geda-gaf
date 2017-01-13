@@ -1,3 +1,10 @@
+2017-01-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/gettext.h: Add local copy of gettext.h.
+
+    * include/gschem_globals.h: Reference local gettext.h header using
+      relative path, relocate N_ macros to new gettext.h.
+
 2017-01-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/nl.po: Update Dutch translations.

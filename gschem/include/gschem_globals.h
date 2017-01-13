@@ -74,17 +74,7 @@ extern GList *object_buffer[MAX_BUFFERS];
 extern SCM complex_place_list_changed_hook;
 
 /* Gettext translation */
-#include <gettext.h>
-
-#ifdef ENABLE_NLS
-# ifdef gettext_noop
-#  define N_(String) gettext_noop (String)
-# else
-#  define N_(String) (String)
-# endif
-#else
-# define N_(String) (String)
-#endif
+#include "gettext.h"
 
 typedef enum  { CAIRO_ADAPTOR, X11_ADAPTOR } RenderSystem;
 
