@@ -1,3 +1,8 @@
+2017-01-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gschlas/gschlas.c: Include locale.h and setup the locale and gettext
+      bindings.
+
 2017-01-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * gsch2pcb/Makefile.am: Simplify setting of LOCALEDIR; eliminate local

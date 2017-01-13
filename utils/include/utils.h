@@ -1,7 +1,7 @@
 /*!
  * \file utils.h
  *
- * \brief Global Declarations and References for gschlas Program
+ * \brief Global Declarations and References for utility programs
  *
  * <hr>
  *

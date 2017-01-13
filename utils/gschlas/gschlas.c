@@ -28,6 +28,12 @@
  * MA 02110-1301 USA
  */
 
+#include "../../config.h"
+
+#ifdef HAVE_LOCALE_H
+#include <locale.h>
+#endif
+
 #include "../include/common.h"
 
 /*! \brief Cleanup gschlas on exit.
@@ -185,6 +191,16 @@ main_prog(void *closure, int argc, char *argv[])
  */
 int main (int argc, char *argv[])
 {
+#if ENABLE_NLS
+
+  setlocale(LC_ALL, "");
+  setlocale(LC_NUMERIC, "C");
+  bindtextdomain("geda-utils", LOCALEDIR);
+  textdomain("geda-utils");
+  bind_textdomain_codeset("geda-utils", "UTF-8");
+
+#endif
+
   scm_boot_guile (argc, argv, main_prog, NULL);
   return 0;
 }
