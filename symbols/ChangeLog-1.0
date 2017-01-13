@@ -1,3 +1,8 @@
+2017-01-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * source/solor-cell-1.sym: Add symbol for generic solar cell, hard to believe
+      one wasn't already in the library.
+
 2017-01-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/terminal/: Add a set of terminal block symbols for style 2:
