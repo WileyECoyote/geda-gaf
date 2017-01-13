@@ -49,20 +49,44 @@ struct option long_options[] =
     {"unembed", 0, 0, 'u'},
     {"quiet",   0, 0, 'q'},
     {"verbose", 0, 0, 'v'},
+    {"version", 0, 0, 'V'},
     {"help",    0, 0, 'h'}
   };
 #endif
 
 void usage(char *cmd)
 {
-    printf("Usage: %s [OPTIONS] filename1 ... filenameN\n\n", cmd);
-    printf("  -e, --embed       Embed all components/pictures\n");
-    printf("  -u, --unembed     Unembed all components/pictures\n");
-    printf("  -q, --quiet       Enable quiet mode\n");
-    printf("  -v, --verbose     Enable verbose mode\n");
-    printf("  -h, --help        This message\n");
+    printf(_("Usage: %s [OPTIONS] filename1 ... filenameN\n\n"), cmd);
+    printf(_("  -e, --embed       Embed all components/pictures\n"));
+    printf(_("  -u, --unembed     Unembed all components/pictures\n"));
+    printf(_("  -q, --quiet       Enable quiet mode\n"));
+    printf(_("  -v, --verbose     Enable verbose mode\n"));
+    printf(_("  -V, --version     Show version information.\n"));
+    printf(_("  -h, --help        This message\n"));
     printf("\n");
     exit(0);
+}
+
+/*!
+ * \brief Print version info and exit.
+ * \par Function Description
+ * Print gEDA version, and copyright/warranty notices, and exit with
+ * exit status 0.
+ */
+static void version (void)
+{
+  if (!quiet_mode)
+    printf(_(
+      "gEDA/gschlas %s (%s) (g%.7s)\n"
+      "Copyright (C) 1998-2017 gEDA developers\n"
+      "This is free software, and you are welcome to redistribute it under\n"
+      "certain conditions. For details, see the file `COPYING', which is\n"
+      "included in the gEDA distribution.\n"
+      "There is NO WARRANTY, to the extent permitted by law.\n"),
+      PACKAGE_DOTTED_VERSION, PACKAGE_DATE_VERSION, PACKAGE_GIT_COMMIT);
+  else
+    printf("%s\n", PACKAGE_DOTTED_VERSION);
+  exit (0);
 }
 
 int parse_commandline(int argc, char *argv[])
@@ -77,21 +101,24 @@ int parse_commandline(int argc, char *argv[])
 
   {
     switch (ch) {
-
-      case 'v':
-        verbose_mode = TRUE;
-        break;
-
-      case 'q':
-        quiet_mode = TRUE;
-        break;
-
       case 'e':
         embed_mode = TRUE;
         break;
 
       case 'u':
         unembed_mode = TRUE;
+        break;
+
+      case 'q':
+        quiet_mode = TRUE;
+        break;
+
+      case 'v':
+        verbose_mode = TRUE;
+        break;
+
+      case 'V':
+        version ();
         break;
 
       case 'h':

@@ -84,16 +84,6 @@ main_prog(void *closure, int argc, char *argv[])
       fprintf(stderr, "This is the MINGW32 port.\n");
 #endif
 
-    if (!quiet_mode) {
-      printf(_("gEDA/gschlas version %s (%s) (g%.7s)\n"
-               "Copyright (C) 1998-2017 gEDA developers\nThis is free "
-               "software, and you are welcome to redistribute it under\ncertain"
-               " conditions. For details, see the file `COPYING', which is\n"
-               "included in the gEDA distribution.\n"
-               "There is NO WARRANTY, to the extent permitted by law.\n"),
-                PACKAGE_DOTTED_VERSION, PACKAGE_DATE_VERSION, PACKAGE_GIT_COMMIT);
-    }
-
     /* register guile (scheme) functions */
     g_register_funcs();
 

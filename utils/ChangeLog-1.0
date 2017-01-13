@@ -1,7 +1,10 @@
 2017-01-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * gschlas/gschlas.c: Include locale.h and setup the locale and gettext
-      bindings.
+      bindings, remove unprovoked copyright/version output.
+
+    * gschlas/parsecmd.c: Add version function and option using text removed
+      from main_prog, translate usage information.
 
     * gsch2pdf/main.c: Include and config.h and locale.h and setup locale
       and gettext bindings.
