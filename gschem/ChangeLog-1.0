@@ -8,6 +8,8 @@
 
     * po/nl.po: Update Dutch translations.
 
+    * po/pt.po: Update Portuguese translations.
+
 2017-01-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gettext.h: Add local copy of gettext.h.

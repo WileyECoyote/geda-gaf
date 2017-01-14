@@ -35,15 +35,10 @@ msgstr ""
 msgid "Assuming symbol file suffix for"
 msgstr ""
 
+# An error was encountered loading requested session
 #: gschem/src/base/gschem.c:238
-#, fuzzy
 msgid "An error was encountered loading requested session"
-msgstr ""
-"Ocorreu o seguinte erro durante a gravação da imagem com o tipo %s no "
-"ficheiro com nome:\n"
-"%s\n"
-"\n"
-"%s.\n"
+msgstr "Foi encontrado um erro ao carregar sessão solicitada"
 
 #: gschem/src/base/gschem.c:263
 msgid "Auto Load"
@@ -63,20 +58,20 @@ msgstr ""
 "Deverá definir a variável de ambiente GEDADATA a apontar para a \n"
 "correcta localização.\n"
 
+# Unable to locate scheme initialization file
 #: gschem/src/base/gschem.c:348
-#, fuzzy
 msgid "Unable to locate scheme initialization file"
-msgstr "Lido ficheiro de inicialização scm [%s]\n"
+msgstr "Não foi possível localizar o ficheiro de inicialização do sistema"
 
+# Read scheme initialization file
 #: gschem/src/base/gschem.c:355
-#, fuzzy
 msgid "Read scheme initialization file"
-msgstr "Lido ficheiro de inicialização scm [%s]\n"
+msgstr "Leia o ficheiro de inicialização do sistema"
 
+# Failed to read scheme initialization file
 #: gschem/src/base/gschem.c:358
-#, fuzzy
 msgid "Failed to read scheme initialization file"
-msgstr "Lido ficheiro de inicialização scm [%s]\n"
+msgstr "Falha ao ler o ficheiro de inicialização do sistema"
 
 #: gschem/src/base/gschem.c:380
 #, fuzzy
@@ -226,12 +221,10 @@ msgstr "Desconhecido"
 msgid "Unknown option character"
 msgstr ""
 
+# # for more information
 #: gschem/src/base/gschem_parsecmd.c:302
-#, fuzzy
 msgid "--help for more information"
-msgstr ""
-"Erro durante a impressão para ficheiro '%s'\n"
-"Verifique a janela de registo para mais informação"
+msgstr "--help para mais informação"
 
 #: gschem/src/base/gschem_parsecmd.c:304
 msgid "Run"
@@ -435,10 +428,10 @@ msgstr ""
 msgid "Invalid text name/value visibility ~A."
 msgstr ""
 
+# Processing
 #: gschem/src/guile/g_rc.c:87 gschem/src/guile/g_rc.c:99
-#, fuzzy
 msgid "Processing"
-msgstr "A Fechar [%s]\n"
+msgstr "Processando"
 
 #: gschem/src/guile/g_rc.c:91 gschem/src/guile/g_rc.c:103
 msgid "Skipping"
@@ -473,14 +466,15 @@ msgstr ""
 msgid "default value"
 msgstr ""
 
+# Invalid type assignment, verify
 #: gschem/src/guile/g_rc.c:159
 msgid "Invalid type assignment, check"
-msgstr ""
+msgstr "Tipo inválido atribuição, verificar"
 
+# This is gEDA/gschem version
 #: gschem/src/guile/g_rc.c:200
-#, fuzzy
 msgid "This is gEDA/gschem version"
-msgstr "gEDA/gschem versão %s%s.%s\n"
+msgstr "Esta é gEDA/gschem versão"
 
 #: gschem/src/guile/g_rc.c:201
 msgid "but you have a version"
@@ -545,20 +539,20 @@ msgstr ""
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
 msgstr ""
 
+# Magnification Factor is invalid
 #: gschem/src/guile/g_rc.c:2072
-#, fuzzy
 msgid "Invalid zoom factor"
-msgstr "Factor de ampliação inválido  [%d] passado a %s\n"
+msgstr "Factor de ampliação inválido"
 
 #: gschem/src/guile/g_select.c:84 gschem/src/guile/g_select.c:120
 #: gschem/src/guile/g_select.c:155
 msgid "Object ~A is not directly included in a page."
 msgstr ""
 
+# Could not launch URI
 #: gschem/src/guile/g_util.c:67
-#, fuzzy
 msgid "Could not launch URI"
-msgstr "Não foi possível atribuir a cor %s!\n"
+msgstr "Impossível lançar URI"
 
 #: gschem/src/guile/g_window.c:146
 msgid "Found invalid gschem window smob ~S"
@@ -573,10 +567,10 @@ msgstr "Página actual"
 msgid "is"
 msgstr ""
 
+# Processing Action
 #: gschem/src/iface/i_command.c:368
-#, fuzzy
 msgid "Processing Action"
-msgstr "A Fechar [%s]\n"
+msgstr "Acção Processando"
 
 #: gschem/src/iface/i_command.c:475
 msgid "Cannot"
@@ -586,15 +580,15 @@ msgstr ""
 msgid "while inside an action!\n"
 msgstr ""
 
+# New page created
 #: gschem/src/iface/i_command.c:714 gschem/src/iface/i_command.c:2715
-#, fuzzy
 msgid "New page created"
-msgstr "Nova pagina criada [%s]\n"
+msgstr "Nova pagina criada"
 
+# New Window created
 #: gschem/src/iface/i_command.c:752
-#, fuzzy
 msgid "New Window created"
-msgstr "Nova Janela criada [%s]\n"
+msgstr "Nova Janela criada"
 
 #: gschem/src/iface/i_command.c:951
 msgid "Failed to Save All"
@@ -674,25 +668,25 @@ msgstr "Seleccionada grelha de pontos\n"
 msgid "Confirm revert ALL documents"
 msgstr ""
 
+# Looking for source
 #: gschem/src/iface/i_command.c:2982
-#, fuzzy
 msgid "Searching for source"
-msgstr "A procura da fonte [%s]\n"
+msgstr "A procura da fonte"
 
+# Failed to descend into
 #: gschem/src/iface/i_command.c:3016
-#, fuzzy
 msgid "Failed to descend into"
-msgstr "Falha ao ler ficheiro de inicialização scm [%s]\n"
+msgstr "Falha ao descer em"
 
+# Hierarchy Error
 #: gschem/src/iface/i_command.c:3025
-#, fuzzy
 msgid "Hierarchy Error"
-msgstr "Hie_rarquia"
+msgstr "Erro Hierarquia"
 
+# Looking for symbol
 #: gschem/src/iface/i_command.c:3102
-#, fuzzy
 msgid "Searching for symbol"
-msgstr "A procurar por símbolo [%s]\n"
+msgstr "A procurar por símbolo"
 
 #: gschem/src/iface/i_command.c:3112
 msgid "Symbol is not a real file. Symbol cannot be loaded.\n"
@@ -813,29 +807,29 @@ msgstr ""
 msgid "Canceled Close all\n"
 msgstr ""
 
+# Unable to open the session file
 #: gschem/src/iface/i_sessions.c:262
-#, fuzzy
 msgid "Could not open the session file"
-msgstr "Não foi possível encontrar  ficheiro scm de inicialização [%s]\n"
+msgstr "Não foi possível abrir o ficheiro de sessão"
 
 #: gschem/src/iface/i_sessions.c:268 gschem/src/x/x_window.c:1005
 msgid "is not accessible"
 msgstr ""
 
+# File
 #: gschem/src/iface/i_sessions.c:272
-#, fuzzy
 msgid "File"
-msgstr "Ficheiro:"
+msgstr "Ficheiro"
 
 #: gschem/src/iface/i_sessions.c:335
 msgid "Warning relative file names detected in session"
 msgstr ""
 
+# Session
 #: gschem/src/iface/i_sessions.c:346 gschem/src/iface/i_sessions.c:359
 #: gschem/src/iface/i_sessions.c:931 gschem/src/x/x_sessions.c:232
-#, fuzzy
 msgid "Session"
-msgstr "Mostrar _Nome"
+msgstr "Sessão"
 
 #: gschem/src/iface/i_sessions.c:347
 msgid "opening"
@@ -847,28 +841,27 @@ msgstr ""
 
 #: gschem/src/iface/i_sessions.c:349 gschem/src/iface/i_sessions.c:933
 #: gschem/src/iface/i_sessions.c:1107
-#, fuzzy
 msgid "documents"
-msgstr "D_ocumentação..."
+msgstr "documentos"
 
 #: gschem/src/iface/i_sessions.c:358
 msgid "did not contain any accessible documents"
 msgstr ""
 
+# Sessions
 #: gschem/src/iface/i_sessions.c:791
-#, fuzzy
 msgid "Sessions"
-msgstr "Mostrar _Nome"
+msgstr "Sessões plenárias"
 
+# Removing session
 #: gschem/src/iface/i_sessions.c:855
-#, fuzzy
 msgid "Removing session"
-msgstr "Guardar Tudo"
+msgstr "Remoção de sessão"
 
+# Failed to remove session
 #: gschem/src/iface/i_sessions.c:880
-#, fuzzy
 msgid "Failed to remove session"
-msgstr "Falha ao carregar imagem: %s"
+msgstr "Falha ao remover a sessão"
 
 #: gschem/src/iface/i_sessions.c:883
 msgid "<b>Could not remove session</b>"
@@ -878,44 +871,39 @@ msgstr ""
 msgid "created with"
 msgstr ""
 
+# An error occurred attempting to create session
 #: gschem/src/iface/i_sessions.c:940
-#, fuzzy
 msgid "An error occurred attempting to create session"
-msgstr ""
-"Ocorreu o seguinte erro durante a gravação da imagem com o tipo %s no "
-"ficheiro com nome:\n"
-"%s\n"
-"\n"
-"%s.\n"
+msgstr "Ocorreu um erro ao tentar criar uma sessão"
 
 #: gschem/src/iface/i_sessions.c:950 gschem/src/iface/i_sessions.c:1134
 #, fuzzy
 msgid "<b>Session Error</b>"
 msgstr "<b>Âmbito</b>"
 
+# Creation failed
 #: gschem/src/iface/i_sessions.c:950
-#, fuzzy
 msgid "Creation failed"
-msgstr "Desfazer/Refazer não activo no ficheiro rc\n"
+msgstr "Criação falhou"
 
 #: gschem/src/iface/i_sessions.c:994
 #, fuzzy
 msgid "Opened session"
 msgstr "Guardar Tudo"
 
+# Renaming session
 #: gschem/src/iface/i_sessions.c:1043
-#, fuzzy
 msgid "Renaming session"
-msgstr "Guardar Tudo"
+msgstr "Renomeação de sessão"
 
 #: gschem/src/iface/i_sessions.c:1044
 msgid "to"
-msgstr ""
+msgstr "ao"
 
+# Failed to rename session
 #: gschem/src/iface/i_sessions.c:1068
-#, fuzzy
 msgid "Failed to rename session"
-msgstr "Falha ao carregar imagem: %s"
+msgstr "Falha ao renomear sessão"
 
 #: gschem/src/iface/i_sessions.c:1071
 msgid "<b>Could not rename session</b>"
@@ -1110,15 +1098,15 @@ msgstr ""
 msgid "Initializing default configuration settings\n"
 msgstr ""
 
+# Failed to save user configuration to
 #: gschem/src/iface/i_vars.c:816
-#, fuzzy
 msgid "Failed to save user configuration to"
-msgstr "Falha ao ler ficheiro de inicialização scm [%s]\n"
+msgstr "Falha ao salvar a configuração do usuário para"
 
+# Closing Page
 #: gschem/src/iface/i_window.c:104
-#, fuzzy
 msgid "Closing Page\n"
-msgstr "Fechar Página"
+msgstr "Fechar Página\n"
 
 #: gschem/src/iface/i_window.c:173
 #, c-format
@@ -1129,15 +1117,10 @@ msgstr ""
 msgid "Really revert page?"
 msgstr "Reverter pagina realmente?"
 
+# An error occurred while processing request to revert
 #: gschem/src/iface/i_window.c:254
-#, fuzzy
 msgid "An error occurred while processing request to revert"
-msgstr ""
-"Ocorreu o seguinte erro durante a gravação da imagem com o tipo %s no "
-"ficheiro com nome:\n"
-"%s\n"
-"\n"
-"%s.\n"
+msgstr "Ocorreu um erro durante o processamento da solicitação para reverter"
 
 #: gschem/src/iface/i_window.c:258
 #, fuzzy
@@ -1149,20 +1132,15 @@ msgstr "<b>Âmbito</b>"
 msgid "Revert failed"
 msgstr "Reverter pagina realmente?"
 
+# Error encountered during file operation
 #: gschem/src/iface/i_window.c:265
-#, fuzzy
 msgid "Error encountered during file operation"
-msgstr ""
-"Ocorreu o seguinte erro durante a gravação da imagem com o tipo %s no "
-"ficheiro com nome:\n"
-"%s\n"
-"\n"
-"%s.\n"
+msgstr "Erro encontrado durante a operação de arquivo"
 
+# # Recovery: Undo the last operation
 #: gschem/src/iface/i_window.c:266
-#, fuzzy
 msgid "Recovery: undo last action\n"
-msgstr "Desfazer a ultima operação"
+msgstr "Recuperação: Desfazer a ultima operação\n"
 
 #: gschem/src/object/o_break.c:186 gschem/src/object/o_break.c:519
 #: gschem/src/object/o_break.c:842
@@ -1177,9 +1155,8 @@ msgid "Point 1 missed x=%d, y=%d\n"
 msgstr ""
 
 #: gschem/src/object/o_complex.c:248 gschem/src/object/o_complex.c:252
-#, fuzzy
 msgid "Translating schematic"
-msgstr "A converter esquema [%d %d]\n"
+msgstr "A converter esquema"
 
 #: gschem/src/object/o_delete.c:87
 #, fuzzy, c-format
@@ -1188,10 +1165,10 @@ msgid_plural "Delete %u locked objects?"
 msgstr[0] "Objectos seleccionados"
 msgstr[1] "Objectos seleccionados"
 
+# attributes were hidden
 #: gschem/src/object/o_edit.c:517
-#, fuzzy
 msgid "attributes were hidden"
-msgstr "Atributos"
+msgstr "Atributos foram escondidos"
 
 #: gschem/src/object/o_edit.c:521
 #, fuzzy
@@ -1206,21 +1183,20 @@ msgstr "Texto escondido é agora visível\n"
 msgid "Hidden text is now invisible\n"
 msgstr "Texto escondido é agora invisível\n"
 
+# Could not find symbol
 #: gschem/src/object/o_edit.c:1121 gschem/src/x/x_edit_cprop.c:367
-#, fuzzy
 msgid "Could not find symbol"
-msgstr "Não foi possível encontrar  ficheiro scm de inicialização [%s]\n"
+msgstr "Não foi possível encontrar o símbolo"
 
+# in library. Update failed
 #: gschem/src/object/o_edit.c:1122 gschem/src/x/x_edit_cprop.c:368
-#, fuzzy
 msgid "in library. Update failed"
-msgstr ""
-"Não foi possível encontrar símbolo [%s] na biblioteca. Actualização falhou.\n"
+msgstr "na biblioteca. Actualização falhou"
 
+# Refresh symbol
 #: gschem/src/object/o_edit.c:1127
-#, fuzzy
 msgid "Updating symbol"
-msgstr "A procurar por símbolo [%s]\n"
+msgstr "Símbolo de actualização"
 
 #: gschem/src/object/o_move.c:524
 msgid "Could not resolve which end of pin to connect\n"
@@ -1330,30 +1306,25 @@ msgstr ""
 msgid "switching to MEMORY mode"
 msgstr ""
 
+# An error occurred during an UNDO disk operation
 #: gschem/src/object/o_undo.c:460
-#, fuzzy
 msgid "An error occurred during an UNDO disk operation"
-msgstr ""
-"Ocorreu o seguinte erro durante a gravação da imagem com o tipo %s no "
-"ficheiro com nome:\n"
-"%s\n"
-"\n"
-"%s.\n"
+msgstr "Ocorreu um erro durante uma operação do disco de desfazer"
 
+# Undo and Redo is disabled
 #: gschem/src/object/o_undo.c:463
-#, fuzzy
 msgid "Undo/Redo disabled\n"
-msgstr "Desfazer/Refazer não activo no ficheiro rc\n"
+msgstr "Desfazer/Refazer não activo\n"
 
 #: gschem/src/object/o_undo.c:550
 #, fuzzy
 msgid "<b>Undo error.</b>"
 msgstr "<b>Âmbito</b>"
 
+# Undo failed
 #: gschem/src/object/o_undo.c:550
-#, fuzzy
 msgid "Undo failed"
-msgstr "Desfazer/Refazer não activo no ficheiro rc\n"
+msgstr "Desfazer Falhou"
 
 #: gschem/src/x/x_autonumber.c:600
 msgid ""
@@ -1433,15 +1404,10 @@ msgstr "<b>Opções</b>"
 msgid "Invalid schematic on clipboard"
 msgstr ""
 
+# An error occurred while inserting clipboard data
 #: gschem/src/x/x_clipboard.c:321
-#, fuzzy
 msgid "An error occurred while inserting clipboard data"
-msgstr ""
-"Ocorreu o seguinte erro durante a gravação da imagem com o tipo %s no "
-"ficheiro com nome:\n"
-"%s\n"
-"\n"
-"%s.\n"
+msgstr "Ocorreu um erro ao inserir os dados da área de transferência"
 
 #: gschem/src/x/x_clipboard.c:322
 msgid "Clipboard Insertion Failed"
@@ -1596,25 +1562,20 @@ msgstr ""
 msgid "Drag & Drop"
 msgstr ""
 
+# An error occurred while receiving Drag & Drop data
 #: gschem/src/x/x_coord.c:156 gschem/src/x/x_dnd.c:583
-#, fuzzy
 msgid "An error occurred while receiving Drag & Drop data"
-msgstr ""
-"Ocorreu o seguinte erro durante a gravação da imagem com o tipo %s no "
-"ficheiro com nome:\n"
-"%s\n"
-"\n"
-"%s.\n"
+msgstr "Ocorreu um erro enquanto estiver recebendo dados de arrastar e soltar"
 
 #: gschem/src/x/x_coord.c:157
 #, fuzzy
 msgid "Data error"
 msgstr "<b>Âmbito</b>"
 
+# Drag & Drop failed
 #: gschem/src/x/x_coord.c:162 gschem/src/x/x_dnd.c:585
-#, fuzzy
 msgid "Drag & Drop failed"
-msgstr "Desfazer/Refazer não activo no ficheiro rc\n"
+msgstr "Arraste e largue falhou"
 
 #: gschem/src/x/x_coord.c:472
 #, fuzzy
@@ -1629,14 +1590,15 @@ msgstr "Ecrã"
 msgid "World"
 msgstr "Mundo"
 
+# Could not load image file
 #: gschem/src/x/x_dialog.c:437
-#, fuzzy
 msgid "Could not load image file"
-msgstr "Não foi possível encontrar  ficheiro scm de inicialização [%s]\n"
+msgstr "Não foi possível carregar o arquivo de imagem"
 
+# gEDA: GPL Electronic Design Automation
 #: gschem/src/x/x_dialog.c:443
 msgid "gEDA: GPL Electronic Design Automation"
-msgstr ""
+msgstr "gEDA: GPL Automação de Design Electrónico"
 
 #: gschem/src/x/x_dialog.c:444
 msgid "glibc"
@@ -1651,6 +1613,8 @@ msgid ""
 "Copyright © 1998-2017 Ales Hvezda <ahvezda@geda.seul.org>\n"
 "Copyright © 1998-2017 gEDA Contributors (see ChangeLog for details)"
 msgstr ""
+"Copyright © 1998-2017 Ales Hvezda <ahvezda@geda.seul.org>\n"
+"Copyright © 1998-2017 Contribuidores gEDA  (Consulte para obter detalhes de changelogs)"
 
 #: gschem/src/x/x_dialog.c:464 gschem/scheme/gschem/builtins.scm:565
 msgid "About gschem"
@@ -1877,9 +1841,10 @@ msgstr "Editar Tipo de Enchimento"
 msgid "Fill Type:"
 msgstr "Tipo de Enchimento:"
 
+# Line Thickness
 #: gschem/src/x/x_dialog.c:1628
 msgid "Line Width:"
-msgstr "Espessura de Linha"
+msgstr "Espessura de Linha:"
 
 #: gschem/src/x/x_dialog.c:1631
 msgid "Angle 1:"
@@ -1956,7 +1921,7 @@ msgstr "Editar Largura & Tipo de Linha"
 #: gschem/src/x/x_dialog.c:2206
 #, fuzzy
 msgid "Line Type:"
-msgstr "Tipo de Enchimento:"
+msgstr "Tipo de Linha:"
 
 #: gschem/src/x/x_dialog.c:2209
 #, fuzzy
@@ -1967,6 +1932,7 @@ msgstr "Tipo:"
 msgid "Width:"
 msgstr "Largura:"
 
+# Length of the Stroke
 #: gschem/src/x/x_dialog.c:2215
 msgid "Dash Length:"
 msgstr "Comprimento do Traço:"
@@ -2102,10 +2068,10 @@ msgstr "Símbolos"
 msgid "Dismiss this dialog"
 msgstr ""
 
+# Input attribute is invalid
 #: gschem/src/x/x_dialog.c:3709
-#, fuzzy
 msgid "Input attribute is invalid"
-msgstr "numslots atributo em falta\n"
+msgstr "Atributo de entrada é inválido"
 
 #: gschem/src/x/x_dialog.c:3710
 msgid "Please correct in order to continue"
@@ -2118,10 +2084,6 @@ msgid ""
 "The name cannot end with a space.\n"
 "The value cannot start with a space"
 msgstr ""
-"<span weight=\"bold\" size=\"larger\">O atributo de entrada \"%s\" é "
-"inválido\n"
-"Por favor corrija para continuar</span>\n"
-"\n"
 "O nome e valor têm de estar preenchidos.\n"
 "O nome não pode terminar com um espaço.\n"
 "O valor não pode começar com um espaço."
@@ -2130,25 +2092,24 @@ msgstr ""
 msgid "Invalid Attribute"
 msgstr "Atributo Inválido"
 
+# Could not locate symbol
 #: gschem/src/x/x_dnd.c:435
-#, fuzzy
 msgid "Could not locate symbol"
-msgstr "Não foi possível encontrar  ficheiro scm de inicialização [%s]\n"
+msgstr "Não foi possível localizar o símbolo"
 
+# in library, try refreshing
 #: gschem/src/x/x_dnd.c:436
-#, fuzzy
 msgid "in library, try refreshing"
-msgstr ""
-"Não foi possível encontrar símbolo [%s] na biblioteca. Actualização falhou.\n"
+msgstr "na biblioteca, experimente atualizar"
 
 #: gschem/src/x/x_dnd.c:441
 msgid "not in library, opening as page"
 msgstr ""
 
+# symbol
 #: gschem/src/x/x_dnd.c:442 gschem/src/x/x_multiattrib.c:2606
-#, fuzzy
 msgid "symbol"
-msgstr "Símbolos"
+msgstr "símbolo"
 
 #: gschem/src/x/x_dnd.c:585
 msgid "<b>Invalid Data.</b>"
@@ -2219,10 +2180,10 @@ msgstr "<b>Adicionar Atributo</b>"
 msgid "<b>Edit Attribute</b>"
 msgstr "<b>Editar Atributo</b>"
 
+# Select the name of the attribute to add
 #: gschem/src/x/x_edit_attrib.c:408
-#, fuzzy
 msgid "Select the name of the attribute to add"
-msgstr "Atribuição de elemento mal especificado\n"
+msgstr "Selecione o nome do atributo para adicionar"
 
 #: gschem/src/x/x_edit_attrib.c:409
 msgid "Select the name of the attribute to edit"
@@ -2276,10 +2237,10 @@ msgstr "Editar Cor"
 msgid "Object color:"
 msgstr "Cor do Objecto:"
 
+# Select a color for the selected objects
 #: gschem/src/x/x_edit_color.c:182
-#, fuzzy
 msgid "Select a color for the selected objects."
-msgstr "Objectos seleccionados"
+msgstr "Selecione uma cor para os objetos selecionados."
 
 #: gschem/src/x/x_edit_cprop.c:267
 msgid "Symbol renamed, cannot be undone\n"
@@ -2290,10 +2251,10 @@ msgstr ""
 msgid "Edit Component Properties"
 msgstr "Editar Propriedades do Texto"
 
+# Symbol
 #: gschem/src/x/x_edit_cprop.c:1169
-#, fuzzy
 msgid "_Symbol:"
-msgstr "Símbolos"
+msgstr "_Símbolo:"
 
 #: gschem/src/x/x_edit_cprop.c:1180
 msgid "_Device:"
@@ -2319,20 +2280,20 @@ msgstr ""
 msgid "dist-_license:"
 msgstr ""
 
+# Description
 #: gschem/src/x/x_edit_cprop.c:1250
-#, fuzzy
 msgid "Descr_iption:"
-msgstr "Destino"
+msgstr "Descr_ição:"
 
+# Documentation
 #: gschem/src/x/x_edit_cprop.c:1261
-#, fuzzy
 msgid "Documen_tation:"
-msgstr "D_ocumentação..."
+msgstr "Documen_tação:"
 
+# Comment
 #: gschem/src/x/x_edit_cprop.c:1272
-#, fuzzy
 msgid "_Comment:"
-msgstr "Comando:"
+msgstr "_Comentário:"
 
 #: gschem/src/x/x_edit_cprop.c:1297
 msgid "_Electrical:"
@@ -2350,19 +2311,19 @@ msgstr ""
 msgid "No. _Pins:"
 msgstr ""
 
+# Value
 #: gschem/src/x/x_edit_cprop.c:1359
-#, fuzzy
 msgid "_Value:"
-msgstr "Valor:"
+msgstr "_Valor:"
 
 #: gschem/src/x/x_edit_cprop.c:1373
 msgid "_Foot Print:"
 msgstr ""
 
+# Spice Type
 #: gschem/src/x/x_edit_cprop.c:1384
-#, fuzzy
 msgid "Spice Type:"
-msgstr "Tipo de Enchimento:"
+msgstr "Tipo de simulação:"
 
 #: gschem/src/x/x_edit_cprop.c:1395
 #, fuzzy
@@ -2407,12 +2368,10 @@ msgstr "Comportamento padrão - componente de referência"
 msgid "Link to documentation for this device"
 msgstr ""
 
+# Entry for comments
 #: gschem/src/x/x_edit_cprop.c:1489
-#, fuzzy
 msgid "Entry for comments"
-msgstr ""
-"Símbolo de ligação ao barramento [%s] não foi encontrado em nenhuma "
-"biblioteca de componentes\n"
+msgstr "A entrada para a apresentação de observações"
 
 #: gschem/src/x/x_edit_cprop.c:1496
 msgid "Checkbox to enable electrical properties"
@@ -2431,12 +2390,10 @@ msgstr ""
 msgid "Spinner with entry for number of pins"
 msgstr ""
 
+# Entry for the component value
 #: gschem/src/x/x_edit_cprop.c:1524
-#, fuzzy
 msgid "Entry for the component value"
-msgstr ""
-"Símbolo de ligação ao barramento [%s] não foi encontrado em nenhuma "
-"biblioteca de componentes\n"
+msgstr "Entrada para o valor do componente"
 
 #: gschem/src/x/x_edit_cprop.c:1531
 msgid "Entry for the component foot print"
