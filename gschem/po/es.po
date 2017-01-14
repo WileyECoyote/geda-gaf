@@ -586,15 +586,15 @@ msgstr ""
 msgid "while inside an action!\n"
 msgstr ""
 
+# New page created
 #: gschem/src/iface/i_command.c:714 gschem/src/iface/i_command.c:2715
-#, fuzzy
 msgid "New page created"
-msgstr "Se ha creado una página nueva [%s]\n"
+msgstr "Nueva página creada"
 
+# New Window created
 #: gschem/src/iface/i_command.c:752
-#, fuzzy
 msgid "New Window created"
-msgstr "Se ha creado una nueva ventana [%s]\n"
+msgstr "Nueva ventana creada"
 
 #: gschem/src/iface/i_command.c:951
 msgid "Failed to Save All"
@@ -656,10 +656,10 @@ msgstr "/Aumentar ampliación"
 msgid "Specify new zoom:"
 msgstr ""
 
+# error
 #: gschem/src/iface/i_command.c:2248
-#, fuzzy
 msgid "error"
-msgstr "Error"
+msgstr "error"
 
 #: gschem/src/iface/i_command.c:2256
 msgid "No component selected\n"
@@ -669,23 +669,25 @@ msgstr "Seleccionada rejilla de puntos\n"
 msgid "Confirm revert ALL documents"
 msgstr ""
 
+# Looking for source
 #: gschem/src/iface/i_command.c:2982
-#, fuzzy
 msgid "Searching for source"
-msgstr "Buscando origen [%s]\n"
+msgstr "Buscando fuente"
 
+# Failed to descend into
 #: gschem/src/iface/i_command.c:3016
 msgid "Failed to descend into"
-msgstr "Falló al reemplazar las imágenes: %s"
+msgstr "Error al descender a"
 
+# Hierarchy Error
 #: gschem/src/iface/i_command.c:3025
 msgid "Hierarchy Error"
-msgstr "Je_rarquía"
+msgstr "Error de Jerarquía"
 
+# Looking for symbol
 #: gschem/src/iface/i_command.c:3102
-#, fuzzy
 msgid "Searching for symbol"
-msgstr "Buscando símbolo [%s]\n"
+msgstr "Buscando símbolo"
 
 #: gschem/src/iface/i_command.c:3112
 msgid "Symbol is not a real file. Symbol cannot be loaded.\n"
@@ -801,10 +803,10 @@ msgstr ""
 msgid "Canceled Close all\n"
 msgstr ""
 
+# Could not open the session file
 #: gschem/src/iface/i_sessions.c:262
-#, fuzzy
 msgid "Could not open the session file"
-msgstr "No se ha podido encontrar el fichero de inicialización scm [%s]\n"
+msgstr "No se pudo abrir el archivo de sesión"
 
 #: gschem/src/iface/i_sessions.c:268 gschem/src/x/x_window.c:1005
 msgid "is not accessible"
@@ -821,7 +823,7 @@ msgstr ""
 #: gschem/src/iface/i_sessions.c:346 gschem/src/iface/i_sessions.c:359
 #: gschem/src/iface/i_sessions.c:931 gschem/src/x/x_sessions.c:232
 msgid "Session"
-msgstr "Mostrar _nombre"
+msgstr "Sesiones"
 
 #: gschem/src/iface/i_sessions.c:347
 msgid "opening"
@@ -1120,17 +1122,17 @@ msgstr ""
 msgid "Point 1 missed x=%d, y=%d\n"
 msgstr ""
 
+# Translating schematic
 #: gschem/src/object/o_complex.c:248 gschem/src/object/o_complex.c:252
-#, fuzzy
 msgid "Translating schematic"
-msgstr "Convirtiendo esquema\n"
+msgstr "Esquema de traducción"
 
 #: gschem/src/object/o_delete.c:87
-#, fuzzy, c-format
+#, c-format
 msgid "Delete locked object?"
 msgid_plural "Delete %u locked objects?"
-msgstr[0] "Objetos seleccionados"
-msgstr[1] "¿Eliminar %u objetos bloqueados?"
+msgstr[0] "Eliminar objeto bloqueado?"
+msgstr[1] "Eliminar %u objetos bloqueados?"
 
 #: gschem/src/object/o_edit.c:517
 msgid "attributes were hidden"
@@ -2214,7 +2216,7 @@ msgstr "Destino:"
 
 #: gschem/src/x/x_edit_cprop.c:1261
 msgid "Documen_tation:"
-msgstr "D_ocumentación:"
+msgstr "Documen_tación:"
 
 #: gschem/src/x/x_edit_cprop.c:1272
 msgid "_Comment:"
@@ -3553,19 +3555,20 @@ msgstr ""
 msgid "Toolbar configuration not found"
 msgstr "Configuración de la barra de herramientas no encontrada"
 
+# Could not allocate a graphics context
 #: gschem/src/x/x_window.c:105
-#, fuzzy
 msgid "Could not allocate a graphics context"
-msgstr "No se ha podido reservar memoria para la variable gc\n"
+msgstr "No se pudo asignar un contexto gráfico"
 
+# there is no current window
 #: gschem/src/x/x_window.c:110
-#, fuzzy
 msgid "there is no current window"
-msgstr "Ventana actual"
+msgstr "no hay ninguna ventana actual"
 
+# Could not create a Cairo context, is window drawable?
 #: gschem/src/x/x_window.c:119
 msgid "Could not create a Cairo context, is window drawable?\n"
-msgstr "No se ha podido reservar memoria para la variable gc\n"
+msgstr "No se pudo crear un contexto de El Cairo, es ventana dibujable?\n"
 
 #: gschem/src/x/x_window.c:126
 msgid "window is not valid"
