@@ -1,3 +1,7 @@
+2017-01-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/af.po: Update Afrikaan translations.
+
 2017-01-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gettext.h: Add local copy of gettext.h.

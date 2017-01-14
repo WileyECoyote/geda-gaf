@@ -50,18 +50,25 @@ msgid ""
 "gschem cannot locate some data files. Please ensure the GEDADATA\n"
 "environment variable points to the correct location.\n"
 msgstr ""
+"Jy moet die GEDADATA omgewing veranderlike stel!\n"
+"\n"
+"gschem kan nie vind 'n paar data lêers. Maak asseblief seker die GEDADATA\n"
+"omgewing veranderlike verwys na die regte plek.\n"
 
+# Unable to locate scheme initialization file
 #: gschem/src/base/gschem.c:348
 msgid "Unable to locate scheme initialization file"
-msgstr "Het scm-aanvangslêer gelees"
+msgstr "Kan nie skema inisialisering lêer op te spoor"
 
+# Read scheme initialization file
 #: gschem/src/base/gschem.c:355
 msgid "Read scheme initialization file"
-msgstr "Het scm-aanvangslêer gelees"
+msgstr "Lees skema inisialisering lêer"
 
+# unable to read scheme initialization file
 #: gschem/src/base/gschem.c:358
 msgid "Failed to read scheme initialization file"
-msgstr "Het scm-aanvangslêer gelees"
+msgstr "nie in staat is om skema inisialisering lêer lees"
 
 #: gschem/src/base/gschem.c:380
 msgid "version"
@@ -209,7 +216,7 @@ msgstr ""
 "gEDA tuisblad: <http://www.geda-project.org>\n"
 
 #: gschem/src/base/gschem_parsecmd.c:128
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "gEDA/gschem %s (%s) (g%.7s)\n"
 "Copyright (C) 1998-2017 gEDA developers\n"
@@ -219,7 +226,7 @@ msgid ""
 "There is NO WARRANTY, to the extent permitted by law.\n"
 msgstr ""
 "gEDA/gschem %s (%s) (g%.7s)\n"
-"Kopiereg (C) 1998-2016 gEDA ontwikkelaars\n"
+"Kopiereg (C) 1998-2017 gEDA ontwikkelaars\n"
 "Dit is gratis sagteware, en jy is welkom om dit te herverdeel onder\n"
 "sekere voorwaardes. Vir meer besonderhede, sien die lêer 'kopieer', wat\n"
 "ingesluit in die Geda verspreiding.\n"
@@ -252,7 +259,7 @@ msgstr "Kyk op die puntelys vir meer inligting"
 
 #: gschem/src/base/gschem_parsecmd.c:304
 msgid "Run"
-msgstr ""
+msgstr "Dra uit"
 
 #: gschem/src/base/gschem_preview.c:299
 msgid "Preview Buffer"
@@ -262,9 +269,10 @@ msgstr "voorskou Buffer"
 msgid "Filename"
 msgstr "Lêernaam"
 
+# name of the file to preview
 #: gschem/src/base/gschem_preview.c:542
 msgid "name of file to be previewed"
-msgstr "naam van die lêer te vore"
+msgstr "naam van die lêer om 'n voorbeeld"
 
 #: gschem/src/base/gschem_preview.c:549
 msgid "Object List"
@@ -278,34 +286,38 @@ msgstr "Die lys van voorwerpe wat sal vore"
 msgid "Active"
 msgstr "Handeling"
 
+# Whether the preview widget is enabled or disabled
 #: gschem/src/base/gschem_preview.c:558
 msgid "Whether the preview widget is enabled or disabled"
-msgstr ""
+msgstr "Of die voorskoudingesie geaktiveer of gedeaktiveer"
 
+# large size
 #: gschem/src/base/gschem_preview.c:565
 msgid "Large size"
-msgstr ""
+msgstr "groot grootte"
 
+# Whether the preview widget should be large or small
 #: gschem/src/base/gschem_preview.c:566
 msgid "Whether the preview widget should be large or small"
-msgstr ""
+msgstr "Of die voorskoudingesie groot of klein moet wees"
 
 #: gschem/src/base/gschem_status_bar.c:587
 msgid "Coordinates Mode"
 msgstr "Komponentmodus"
 
+# Sets the format used to display coordinates on the status bar
 #: gschem/src/base/gschem_status_bar.c:588
 msgid "Sets the Format Mode used to display coordinates on the status bar"
-msgstr ""
+msgstr "Stel die formaat wat gebruik word om mekaar koördinate op die status bar"
 
 #: gschem/src/base/gschem_status_bar.c:597
 msgid "Grid Mode"
 msgstr "Boogmodus"
 
+# Sets the Grid style to display on the status bar
 #: gschem/src/base/gschem_status_bar.c:598
-#, fuzzy
 msgid "Sets the Grid Mode to display on the status bar"
-msgstr "Stel die grootte-modus word getoon op die status bar"
+msgstr "Stel die rooster styl te vertoon op die statusbalk"
 
 #: gschem/src/base/gschem_status_bar.c:607
 msgid "Grid Size"
@@ -2029,10 +2041,11 @@ msgstr ""
 msgid "Done, renderer is down"
 msgstr ""
 
+# invalid show option; failed to show both
 #: gschem/src/x/x_edit_attrib.c:210
 #, c-format
 msgid "invalid show option; defaulting to show both\n"
-msgstr ""
+msgstr "ongeldig show opsie; in gebreke om beide te wys\n"
 
 #: gschem/src/x/x_edit_attrib.c:321
 msgid "Select to choose an attribute visibility options"
@@ -2346,9 +2359,10 @@ msgstr ""
 msgid "Pin Properties Editor"
 msgstr "Enkeleienskap-Bewerker"
 
+# Assign
 #: gschem/src/x/x_edit_pin.c:879
 msgid "Set"
-msgstr "Skakeling"
+msgstr "Toewys"
 
 #: gschem/src/x/x_edit_pin.c:882
 msgid "Auto"
