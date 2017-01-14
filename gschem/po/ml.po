@@ -1736,10 +1736,11 @@ msgstr ""
 msgid "Fill Type:"
 msgstr ""
 
+# Line Width
 #: gschem/src/x/x_dialog.c:1628
 #, fuzzy
 msgid "Line Width:"
-msgstr "ലൈന്‍ വീതിയും , തരവും"
+msgstr "ലൈൻ വീതി:"
 
 #: gschem/src/x/x_dialog.c:1631
 msgid "Angle 1:"
@@ -1809,15 +1810,15 @@ msgstr ""
 msgid "Phantom"
 msgstr ""
 
+# Set the Line Width & Type
 #: gschem/src/x/x_dialog.c:2183 gschem/scheme/gschem/builtins.scm:155
-#, fuzzy
 msgid "Edit Line Width & Type"
-msgstr "ലൈന്‍ വീതിയും , തരവും"
+msgstr "വരയുടെ വീതി & തരം സജ്ജമാക്കുക"
 
+# Line Type
 #: gschem/src/x/x_dialog.c:2206
-#, fuzzy
 msgid "Line Type:"
-msgstr "ലൈന്‍ വീതിയും , തരവും"
+msgstr "ലൈൻ തരം:"
 
 #: gschem/src/x/x_dialog.c:2209
 msgid "End Type:"
@@ -2109,10 +2110,10 @@ msgstr ""
 msgid "Object color:"
 msgstr ""
 
+# Select a color for the selected objects
 #: gschem/src/x/x_edit_color.c:182
-#, fuzzy
 msgid "Select a color for the selected objects."
-msgstr "പ്രവര്‍ത്തന രീതി നിര്‍ണയിക്കുക"
+msgstr "തിരഞ്ഞെടുത്ത വസ്തുക്കൾ ഒരു വർണ്ണ തിരഞ്ഞെടുക്കുക."
 
 #: gschem/src/x/x_edit_cprop.c:267
 msgid "Symbol renamed, cannot be undone\n"
@@ -2585,10 +2586,10 @@ msgstr ""
 msgid "Add attribute"
 msgstr ""
 
+# Component
 #: gschem/src/x/x_menus.c:93 gschem/src/x/x_menus.c:112
-#, fuzzy
-msgid "Component..."
-msgstr "സാധനത്തിലെ മാറ്റങ്ങള്‍ നടപ്പില്‍ വരുത്തുക"
+msgid "..."
+msgstr "ഘടകം..."
 
 #: gschem/src/x/x_menus.c:93 gschem/etc/system-gschemrc.scm:2238
 msgid "Insert a symbol from the component library"
@@ -2678,9 +2679,10 @@ msgstr ""
 msgid "Edit Object Attributes"
 msgstr ""
 
+# Colour
 #: gschem/src/x/x_menus.c:111
 msgid "Color..."
-msgstr "കളര്‍"
+msgstr "കളര്‍..."
 
 #: gschem/src/x/x_menus.c:111 gschem/etc/system-gschemrc.scm:2110
 msgid "Open the Color Editor Dialog"
@@ -2690,10 +2692,10 @@ msgstr ""
 msgid "Open the Component Editor Dialog"
 msgstr ""
 
+# Pin type
 #: gschem/src/x/x_menus.c:113
-#, fuzzy
 msgid "Pin type..."
-msgstr "ലൈന്‍ വീതിയും , തരവും"
+msgstr "പിൻ തരം..."
 
 #: gschem/src/x/x_menus.c:113 gschem/etc/system-gschemrc.scm:2111
 msgid "Open the Pin Type Dialog"
@@ -3185,10 +3187,10 @@ msgstr ""
 msgid "New Page"
 msgstr "പുതിയ പേജ്"
 
+# Open page
 #: gschem/src/x/x_pagesel.c:597
-#, fuzzy
 msgid "Open Page..."
-msgstr "പേജ് തുറക്കുക"
+msgstr "പേജ് തുറക്കുക..."
 
 #: gschem/src/x/x_pagesel.c:599
 msgid "Save Page"
@@ -3264,10 +3266,10 @@ msgstr ""
 msgid "Destination"
 msgstr ""
 
+# File
 #: gschem/src/x/x_print.c:548
-#, fuzzy
 msgid "File:"
-msgstr "ഫയല്‍"
+msgstr "ഫയല്‍:"
 
 #: gschem/src/x/x_print.c:578
 msgid "Command:"
@@ -3708,18 +3710,18 @@ msgstr ""
 msgid "Write _image..."
 msgstr ""
 
+# Export image
 #: gschem/etc/system-gschemrc.scm:2068
-#, fuzzy
 msgid "Export image"
-msgstr "പടം/സാധനം ഉള്ളടക്കം ചെയുക"
+msgstr "കയറ്റുമതി ചിത്രം"
 
+# Run the script
 #: gschem/etc/system-gschemrc.scm:2071
-#, fuzzy
 msgid "E_xecute Script..."
-msgstr "സ്ക്രിപ്റ്റ് പ്രവര്‍ത്തിപ്പിക്കുക"
+msgstr "സ്ക്രിപ്റ്റ് പ്രവര്‍ത്തിപ്പിക്കുക..."
 
+# Run the script
 #: gschem/etc/system-gschemrc.scm:2071
-#, fuzzy
 msgid "Execute a script file"
 msgstr "സ്ക്രിപ്റ്റ് പ്രവര്‍ത്തിപ്പിക്കുക"
 
@@ -3826,57 +3828,57 @@ msgstr ""
 msgid "Break a linear object into separate objects"
 msgstr ""
 
+# Extend
 #: gschem/etc/system-gschemrc.scm:2105
-#, fuzzy
 msgid "E_xtend"
-msgstr "വലുതാക്കി കാണിക്കുന്ന പെട്ടി"
+msgstr "നീട്ടുക"
 
+# Edit
 #: gschem/etc/system-gschemrc.scm:2108
-#, fuzzy
 msgid "_Edit..."
-msgstr "മാറ്റം വരുത്തുക..."
+msgstr "തിരുത്തുക..."
 
+# Edit Text
 #: gschem/etc/system-gschemrc.scm:2109
-#, fuzzy
 msgid "E_dit Text..."
-msgstr "മാറ്റം വരുത്തുക..."
+msgstr "ടെക്സ്റ്റ് എഡിറ്റ്..."
 
 #: gschem/etc/system-gschemrc.scm:2109
 msgid "Open the Text Editor Dialog"
 msgstr ""
 
+# Colour
 #: gschem/etc/system-gschemrc.scm:2110
-#, fuzzy
 msgid "Co_lor..."
-msgstr "കളര്‍"
+msgstr "കളര്‍..."
 
+# Edit Pin
 #: gschem/etc/system-gschemrc.scm:2111
-#, fuzzy
 msgid "Edit Pi_n..."
-msgstr "ലൈന്‍ വീതിയും , തരവും"
+msgstr "എഡിറ്റ് പിൻ..."
 
+# Line width and Line type
 #: gschem/etc/system-gschemrc.scm:2112
-#, fuzzy
 msgid "Line _Width & Type..."
-msgstr "ലൈന്‍ വീതിയും , തരവും"
+msgstr "ലൈൻ വിഡ്ത്ത്, ലൈൻ തരം..."
 
 #: gschem/etc/system-gschemrc.scm:2112
 msgid "Open the Line Editor Dialog"
 msgstr ""
 
+# Fill Type
 #: gschem/etc/system-gschemrc.scm:2113
-#, fuzzy
 msgid "Fill T_ype..."
-msgstr "ലൈന്‍ വീതിയും , തരവും"
+msgstr "ഇനം നിറയ്ക്കുക..."
 
 #: gschem/etc/system-gschemrc.scm:2113
 msgid "Open the Fill Editor Dialog"
 msgstr ""
 
+# Edit Component
 #: gschem/etc/system-gschemrc.scm:2114
-#, fuzzy
 msgid "Edit Component..."
-msgstr "സാധനത്തിലെ മാറ്റങ്ങള്‍ നടപ്പില്‍ വരുത്തുക"
+msgstr "ഘടക എഡിറ്റ്..."
 
 #: gschem/etc/system-gschemrc.scm:2115
 msgid "_Slot..."
@@ -4353,10 +4355,10 @@ msgstr ""
 msgid "Save the current Session to another name"
 msgstr ""
 
+# Manage
 #: gschem/etc/system-gschemrc.scm:2266
-#, fuzzy
 msgid "_Manage..."
-msgstr "പേജ് തുറക്കുക"
+msgstr "നിയന്ത്രിക്കുക..."
 
 #: gschem/etc/system-gschemrc.scm:2266
 msgid "Open the Session Manager dialog"
@@ -4458,15 +4460,15 @@ msgstr ""
 msgid "Open Auto Number dialog"
 msgstr ""
 
+# Show Console Window
 #: gschem/etc/system-gschemrc.scm:2296
-#, fuzzy
 msgid "Show _Console Window..."
-msgstr "പുതിയ ജാലകം"
+msgstr "കൺസോൾ വിൻഡോ കാണിക്കുക..."
 
+# Reveal the console window
 #: gschem/etc/system-gschemrc.scm:2296
-#, fuzzy
 msgid "Display the console window"
-msgstr "പുതിയ ജാലകം"
+msgstr "കൺസോൾ വിൻഡോ വെളിപ്പെടുത്തുക"
 
 #: gschem/etc/system-gschemrc.scm:2297
 msgid "Show Coord _Window..."

@@ -4,6 +4,8 @@
 
     * po/es.po: Update Spanish translations.
 
+    * po/ml.po: Update Malayalam translations.
+
 2017-01-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gettext.h: Add local copy of gettext.h.
