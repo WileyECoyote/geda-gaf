@@ -1,3 +1,7 @@
+2017-01-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gaf/src/gaf.c: make numeric translation native to host.
+
 2017-01-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gettext.h: Conditionally use local libintl.h header if

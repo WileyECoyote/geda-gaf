@@ -108,6 +108,7 @@ main (int argc, char **argv)
   /* Set up gettext */
 #if ENABLE_NLS
   setlocale (LC_ALL, "");
+  setlocale (LC_NUMERIC, "C");
   bindtextdomain ("geda-gaf", LOCALEDIR);
   textdomain ("geda-gaf");
   bind_textdomain_codeset ("geda-gaf", "UTF-8");
