@@ -122,7 +122,9 @@
 #include <string.h>
 #endif
 
+#ifdef HAVE_LOCALE_H
 #include <locale.h>
+#endif
 
 /*------------------------------------------------------------------
  * Gattrib specific includes -- stuff dealing with gattrib data structs.
