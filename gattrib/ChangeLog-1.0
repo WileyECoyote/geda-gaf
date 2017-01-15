@@ -2,6 +2,10 @@
 
     * src/s_table.c: Revise DEBUG output and error messages.
 
+    * src/s_toplevel.c: Revise DEBUG output and error messages. Do not translate
+      "insanity check" in s_toplevel_get_pin_attribs_in_sheet and s_toplevel_get_
+       component_attribs_in_sheet remove superfluous else do nothing crap.
+
 2017-01-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gattrib.c: Conditionally include locale.h.

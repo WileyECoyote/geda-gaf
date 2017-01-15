@@ -271,7 +271,7 @@ void s_toplevel_delete_attrib_col(GtkSheet *sheet) {
   attrib_name = geda_strdup(sheet->column[col]->title);
 
   /* Ask user to confirm deletion */
-  strcpy(msg_buffer, "Are you sure you want to\n delete the Attribute \"");
+  strcpy(msg_buffer, _("Are you sure you want to\n delete the Attribute \""));
   strcat(msg_buffer, attrib_name);
   strcat(msg_buffer, "\"?");
   if (!x_dialog_generic_confirm_dialog (msg_buffer, GTK_MESSAGE_WARNING))
@@ -520,7 +520,7 @@ STRING_LIST *s_toplevel_get_component_attribs_in_sheet(char *refdes)
     /* Sanity check */
     if (count != i+1) {
       /* for some reason, we have lost a name_value_pair somewhere . . .  */
-      fprintf(stderr, "%s: %s\n", __func__, _("count != i! Exiting ..."));
+      fprintf(stderr, "%s error: [%d] != [%d]\n", __func__, count, i);
       return NULL;
     }
 
@@ -755,14 +755,6 @@ s_toplevel_update_component_attribs_in_toplevel (
 
       /* -------  Four cases to consider: Case 4 ----- */
     }
-    else {
-
-      /* Do nothing. */
-
-#if DEBUG
-      printf("%s: nothing needs to be done.\n", __func__);
-#endif
-    }
 
     /* Toggle attribute visibility and name/value setting */
 
@@ -839,8 +831,8 @@ STRING_LIST *s_toplevel_get_pin_attribs_in_sheet(char *refdes, GedaObject *pin)
     row_label = geda_strconcat(refdes, ":", pinnumber, NULL);
   }
   else {
-    fprintf(stderr, "%s: %s!\n", __func__, _("object missing either refdes or pinnumber"));
-            return NULL;
+    fprintf(stderr, _("Error: object missing either refdes or pinnumber!"));
+    return NULL;
   }
 
   row = s_table_get_index(sheet_head->master_pin_list_head, row_label);
@@ -848,7 +840,8 @@ STRING_LIST *s_toplevel_get_pin_attribs_in_sheet(char *refdes, GedaObject *pin)
   /* Sanity check */
   if (row == -1) {
     /* The item was not found in the master pin list */
-    fprintf(stderr, "%s: %s [%s]!\n", __func__, _("didn't find the refdes:pin "), row_label);
+    const char *err_msg = _("did not find refdes:pin");
+    fprintf(stderr, "%s [%s]!\n", err_msg, row_label);
     return NULL;
   }
 
@@ -877,9 +870,9 @@ STRING_LIST *s_toplevel_get_pin_attribs_in_sheet(char *refdes, GedaObject *pin)
     GEDA_FREE(name_value_pair);
 
     /* Sanity check */
-    if (count != i+1) {
-      /* for some reason, we have lost a name_value_pair somewhere . . .  */
-      fprintf(stderr, "%s: %s\n", __func__, _("count != i! Exiting ..."));
+    if (count != i + 1) {
+      /* for some reason, we have lost a name_value_pair somewhere */
+      fprintf(stderr, "%s error: [%d] != [%d]\n", __func__, count, i);
       return NULL;
     }
 
@@ -934,7 +927,7 @@ s_toplevel_update_pin_attribs_in_toplevel (GedaToplevel *toplevel,
     new_name_value_pair = geda_strdup(local_list->data);
 
 #if DEBUG
-    printf("%s: handling entry in master list %s .\n", __func__, new_name_value_pair);
+    printf("\t%s: handling entry in master list %s .\n", __func__, new_name_value_pair);
 #endif
 
     new_attrib_name  = geda_utility_string_split(new_name_value_pair, '=', 0);
@@ -952,7 +945,7 @@ s_toplevel_update_pin_attribs_in_toplevel (GedaToplevel *toplevel,
     {
       /* simply write new attrib into place of old one. */
 #if DEBUG
-      printf("%s: about to replace old attrib with new one: name= %s, value= %s\n",
+      printf("\t%s: about to replace old attrib with new one: name= %s, value= %s\n",
              __func__, new_attrib_name, new_attrib_value);
 #endif
       s_object_replace_attrib_in_object(toplevel, o_pin, new_attrib_name,
@@ -965,7 +958,7 @@ s_toplevel_update_pin_attribs_in_toplevel (GedaToplevel *toplevel,
     else if ((old_attrib_value != NULL) && (new_attrib_value == NULL)) {
       /* remove attrib from pin */
 #if DEBUG
-      printf("%s: about to remove old attrib with name= %s, value= %s\n",
+      printf("\t%s: about to remove old attrib with name= %s, value= %s\n",
              __func__, new_attrib_name, old_attrib_value);
 #endif
       s_object_release_attrib_in_object (toplevel, o_pin, new_attrib_name);
@@ -976,7 +969,7 @@ s_toplevel_update_pin_attribs_in_toplevel (GedaToplevel *toplevel,
       /* add new attrib to pin. */
 
 #if DEBUG
-      printf("%s: about to add new attrib with name= %s, value= %s\n",
+      printf("\t%s: about to add new attrib with name= %s, value= %s\n",
              __func__, new_attrib_name, new_attrib_value);
 #endif
 
@@ -986,15 +979,6 @@ s_toplevel_update_pin_attribs_in_toplevel (GedaToplevel *toplevel,
                                          new_attrib_value);
 
       /* -------  Four cases to consider: Case 4 ----- */
-    }
-    else {
-
-      /* Do nothing. */
-
-#if DEBUG
-      printf("%s: nothing needs to be done.\n", __func__);
-#endif
-
     }
 
     /* free everything and iterate */
