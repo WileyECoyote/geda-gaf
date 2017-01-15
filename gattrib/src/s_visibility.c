@@ -176,45 +176,43 @@ void s_visibility_set_value_only() {
   g_return_if_fail (sheet != NULL);
   g_return_if_fail (GTK_IS_SHEET (sheet));
 
+#ifdef DEBUG
+  printf("%s: sheet->state [%s]\n", __func__, sheet->state);
+#endif
+
   switch (sheet->state) {
 
-  case GTK_SHEET_RANGE_SELECTED:
-  case GTK_SHEET_COLUMN_SELECTED:
-  case GTK_SHEET_ROW_SELECTED:
-#ifdef DEBUG
-    printf("In s_visibility_set_value_only, range/col/row selected.\n");
-#endif
-    row_start = sheet->range.row0;
-    row_end = sheet->range.rowi;
-    col_start = sheet->range.col0;
-    col_end = sheet->range.coli;
-    for (i=row_start; i<=row_end; i++) {
-      for (j=col_start; j<=col_end; j++) {
-	s_visibility_set_cell(cur_page, i, j, VISIBLE, SHOW_VALUE);
-	/* Color names are defined
-	 * in libgeda/include/geda_colors.h */
-      	x_gtksheet_set_cell_fgcolor(sheet, i, j, Black);
+    case GTK_SHEET_RANGE_SELECTED:
+    case GTK_SHEET_COLUMN_SELECTED:
+    case GTK_SHEET_ROW_SELECTED:
+
+      row_start = sheet->range.row0;
+      row_end = sheet->range.rowi;
+      col_start = sheet->range.col0;
+      col_end = sheet->range.coli;
+      for (i=row_start; i<=row_end; i++) {
+        for (j=col_start; j<=col_end; j++) {
+          s_visibility_set_cell(cur_page, i, j, VISIBLE, SHOW_VALUE);
+          /* Color names are defined in geda_colors.h */
+          x_gtksheet_set_cell_fgcolor(sheet, i, j, Black);
+        }
       }
-    }
-    /* Now return sheet to normal -- unselect range */
-    gtk_sheet_unselect_range (sheet);
+      /* Now return sheet to normal -- unselect range */
+      gtk_sheet_unselect_range (sheet);
 
-    break;
+      break;
 
-  case GTK_SHEET_NORMAL:
-#ifdef DEBUG
-    printf("In s_visibility_set_value_only, sheet normal selected.\n");
-#endif
-    s_visibility_set_cell(cur_page,
-			  sheet->active_cell.row,
-			  sheet->active_cell.col,
-			  VISIBLE, SHOW_VALUE);
+    case GTK_SHEET_NORMAL:
+      s_visibility_set_cell(cur_page,
+                            sheet->active_cell.row,
+                            sheet->active_cell.col,
+                            VISIBLE, SHOW_VALUE);
 
-    x_gtksheet_set_cell_fgcolor(sheet,
-				    sheet->active_cell.row,
-				    sheet->active_cell.col,
-				    Black);
-    break;
+      x_gtksheet_set_cell_fgcolor(sheet,
+                                  sheet->active_cell.row,
+                                  sheet->active_cell.col,
+                                  Black);
+      break;
 
   }
   x_window_update_title(pr_current, sheet_head);
@@ -230,7 +228,8 @@ void s_visibility_set_value_only() {
  * variable "sheet".
  *
  */
-void s_visibility_set_name_and_value() {
+void s_visibility_set_name_and_value(void)
+{
   int i, j;
   int row_start, row_end, col_start, col_end;
   GtkSheet *sheet;
@@ -244,38 +243,38 @@ void s_visibility_set_name_and_value() {
 
   switch (sheet->state) {
 
-  case GTK_SHEET_RANGE_SELECTED:
-  case GTK_SHEET_COLUMN_SELECTED:
-  case GTK_SHEET_ROW_SELECTED:
-    row_start = sheet->range.row0;
-    row_end = sheet->range.rowi;
-    col_start = sheet->range.col0;
-    col_end = sheet->range.coli;
-    for (i=row_start; i<=row_end; i++) {
-      for (j=col_start; j<=col_end; j++) {
-	s_visibility_set_cell(cur_page, i, j, VISIBLE, SHOW_NAME_VALUE);
-	/* Color names are defined
-	 * in libgeda/include/geda_colors.h */
-      	x_gtksheet_set_cell_fgcolor(sheet, i, j, Blue);
+    case GTK_SHEET_RANGE_SELECTED:
+    case GTK_SHEET_COLUMN_SELECTED:
+    case GTK_SHEET_ROW_SELECTED:
+      row_start = sheet->range.row0;
+      row_end = sheet->range.rowi;
+      col_start = sheet->range.col0;
+      col_end = sheet->range.coli;
+      for (i=row_start; i<=row_end; i++) {
+        for (j=col_start; j<=col_end; j++) {
+          s_visibility_set_cell(cur_page, i, j, VISIBLE, SHOW_NAME_VALUE);
+          /* Color names are defined
+           * in libgeda/include/geda_colors.h */
+          x_gtksheet_set_cell_fgcolor(sheet, i, j, Blue);
+        }
       }
-    }
-    /* Now return sheet to normal -- unselect range */
-    gtk_sheet_unselect_range (sheet);
+      /* Now return sheet to normal -- unselect range */
+      gtk_sheet_unselect_range (sheet);
 
-    break;
+      break;
 
-  case GTK_SHEET_NORMAL:
-    s_visibility_set_cell(cur_page,
-			  sheet->active_cell.row,
-			  sheet->active_cell.col,
-			  VISIBLE,
-			  SHOW_NAME_VALUE);
-    x_gtksheet_set_cell_fgcolor(sheet,
-				    sheet->active_cell.row,
-				    sheet->active_cell.col,
-				    Blue);
+    case GTK_SHEET_NORMAL:
+      s_visibility_set_cell(cur_page,
+                            sheet->active_cell.row,
+                            sheet->active_cell.col,
+                            VISIBLE,
+                            SHOW_NAME_VALUE);
+      x_gtksheet_set_cell_fgcolor(sheet,
+                                  sheet->active_cell.row,
+                                  sheet->active_cell.col,
+                                  Blue);
 
-    break;
+      break;
 
   }
   x_window_update_title(pr_current, sheet_head);
@@ -296,13 +295,13 @@ void s_visibility_set_name_and_value() {
  * \param show_name_value Name, Value visibility flag
  */
 void s_visibility_set_cell(int cur_page, int row, int col,
-			   int visibility,
-			   int show_name_value) {
+                           int visibility,
+                           int show_name_value)
+{
   TABLE **local_table = NULL;
 
 #ifdef DEBUG
-    printf("In s_visibility_set_cell, setting row = %d, col = %d.\n",
-	   row, col);
+    printf("In %s, setting row = %d, col = %d.\n", __func__, row, col);
 #endif
 
   switch (cur_page) {
@@ -330,7 +329,8 @@ void s_visibility_set_cell(int cur_page, int row, int col,
   }
 }
 
-bool s_visibility_get_cell(int cur_page, int row, int col) {
+bool s_visibility_get_cell(int cur_page, int row, int col)
+{
   TABLE **local_table = NULL;
 
   switch (cur_page) {
