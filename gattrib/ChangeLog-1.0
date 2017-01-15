@@ -1,3 +1,7 @@
+2017-01-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_table.c: Revise DEBUG output and error messages.
+
 2017-01-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gattrib.c: Conditionally include locale.h.

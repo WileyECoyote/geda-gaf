@@ -201,7 +201,7 @@ int s_table_get_index(STRING_LIST *local_list, char *local_string) {
   STRING_LIST *list_element;
 
 #ifdef DEBUG
-  printf("In s_table_get_index, examining %s to see if it is in the list.\n", local_string);
+  printf("%s: looking for %s in %p.\n", __func__, local_string, local_list);
 #endif
 
   list_element = local_list;
@@ -230,10 +230,10 @@ int s_table_get_index(STRING_LIST *local_list, char *local_string) {
  * \param num_attribs
  * \returns STRING_LIST of name=value pairs
  */
-STRING_LIST *s_table_create_attrib_pair(char *row_name,
-                                        TABLE **table,
+STRING_LIST *s_table_create_attrib_pair(char        *row_name,
+                                        TABLE      **table,
                                         STRING_LIST *row_list,
-                                        int num_attribs)
+                                        int          num_attribs)
 {
   STRING_LIST *attrib_pair_list;
 
@@ -351,11 +351,13 @@ void s_table_add_items_to_comp_table (const GList *obj_list) {
 
                 /* Sanity check */
                 if (row == -1) {
-                  /* we didn't find the item in the table */
-                  fprintf (stderr, _("Component Error looking for row ref [%s]\n"), temp_uref);
+                  /* did not find the item in the table */
+                  const char *err_msg = _("Component Error looking for row ref");
+                  fprintf (stderr, "%s [%s]\n", err_msg, temp_uref);
                 }
                 else if (col == -1) {
-                    fprintf (stderr, _("Component Error looking for column named [%s]\n"), attrib_name);
+                  const char *err_msg = _("Component Error looking for column");
+                  fprintf (stderr, "%s [%s]\n", err_msg, attrib_name);
                 }
                 else {
                     /* Is there a compelling reason to put this into a separate fcn? */
@@ -412,12 +414,14 @@ void s_table_add_items_to_comp_table (const GList *obj_list) {
 
                     /* Sanity check */
                     if (row == -1) {
-                      /* we didn't find the item in the table */
-                      fprintf (stderr, _("Component Error looking for row ref [%s]\n"), temp_uref);
+                      /* did not find the item in the table */
+                      const char *err_msg = _("Component Error looking for row ref");
+                      fprintf (stderr, "%s [%s]\n", err_msg, temp_uref);
                     }
                     else {
                       if (col == -1) {
-                        fprintf (stderr, _("Component Error looking for column named [%s]\n"), attrib_name);
+                        const char *err_msg = _("Component Error looking for column");
+                        fprintf (stderr, "%s [%s]\n", err_msg, attrib_name);
                       }
                       else {
                         /* Is there a compelling reason for me to put this into a separate fcn? */
@@ -567,11 +571,11 @@ void s_table_add_tems_to_pin_table (const GList *obj_list) {
   int          row, col;
 
   if (verbose_mode) {
-    printf(_("- Starting internal pin TABLE creation\n"));
+    printf(_("Creating pin table\n"));
   }
 
 #ifdef DEBUG
-  printf("=========== Just entered  s_table_add_tems_to_pin_table!  ==============\n");
+  printf("=========== Just entered %s!  ==============\n", __func__);
 #endif
 
   /* -----  Iterate through all objects found on page  ----- */
@@ -580,7 +584,7 @@ void s_table_add_tems_to_pin_table (const GList *obj_list) {
     GedaObject *o_current = o_iter->data;
 
 #ifdef DEBUG
-      printf("   ---> In s_table_add_tems_to_pin_table, examining o_current->name = %s\n", o_current->name);
+      printf("\t%s: examining o_current->name = %s\n", __func__, o_current->name);
 #endif
 
     /* -----  Now process objects found on page  ----- */
@@ -606,7 +610,7 @@ void s_table_add_tems_to_pin_table (const GList *obj_list) {
 	    row_label = geda_strconcat(temp_uref, ":", pinnumber, NULL);
 
 #if DEBUG
-        printf("      In s_table_add_tems_to_pin_table, examining pin %s\n", row_label);
+        printf("\t%s, examining pin %s\n",__func__, row_label);
 #endif
 
 	    a_iter = o_lower_current->attribs;
@@ -630,11 +634,13 @@ void s_table_add_tems_to_pin_table (const GList *obj_list) {
                   /* Sanity check */
                   if (row == -1) {
                     /* we didn't find the item in the table */
-                    fprintf (stderr, _("Pin Error looking for row ref [%s]\n"), row_label);
+                    const char *err_msg = _("Pin Error looking for row ref");
+                    fprintf (stderr, "%s [%s]\n", err_msg, row_label);
                   }
                   else {
                     if (col == -1) {
-                      fprintf (stderr, _("Pin Error looking for column named [%s]\n"), attrib_name);
+                      const char *err_msg = _("Pin Error looking for column");
+                      fprintf (stderr, "%s [%s]\n", err_msg, attrib_name);
                     }
                     else {
                       /* Is there a compelling reason for me to put this into a separate fcn? */
@@ -752,7 +758,7 @@ void s_table_gtksheet_to_all_tables() {
 
   /* now fill out new table */
 #ifdef DEBUG
-  printf("In s_table_gtksheet_to_all_tables, now about to fill out new component table.\n");
+  printf("%s: now about to fill out new component table.\n", __func__);
 #endif
 
   s_table_gtksheet_to_table(local_gtk_sheet, master_row_list,
@@ -852,7 +858,7 @@ void s_table_gtksheet_to_table(GtkSheet    *local_gtk_sheet,
 
     /* first handle attrib value in cell */
 #if DEBUG
-      printf("     Updating attrib_value %s\n", attrib_value);
+      printf("\tUpdating attrib_value %s\n", attrib_value);
 #endif
 
       GEDA_FREE (local_table[col][row].attrib_value);
@@ -866,7 +872,7 @@ void s_table_gtksheet_to_table(GtkSheet    *local_gtk_sheet,
 
       /* next handle name of row (also held in TABLE cell) */
 #ifdef DEBUG
-      printf("     Updating row_name %s\n", row_title);
+      printf("\tUpdating row_name %s\n", row_title);
 #endif
 
       GEDA_FREE (local_table[col][row].row_name);
@@ -880,7 +886,7 @@ void s_table_gtksheet_to_table(GtkSheet    *local_gtk_sheet,
 
       /* finally handle name of col */
 #ifdef DEBUG
-      printf("     Updating col_name %s\n", col_title);
+      printf("\tUpdating col_name %s\n", col_title);
 #endif
 
       GEDA_FREE(local_table[col][row].col_name);
