@@ -1,3 +1,26 @@
+2017-01-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * geda-clib.scm : Rename "onsemi/diodes" -> "onsemi/diode", add "vishay/diode".
+
+    * vishay/diode/: Add symbols for some vishay general purpose diodes:
+
+            * vishay/diode/1N5059-1.sym
+            * vishay/diode/1N5059-2.sym
+            * vishay/diode/1N5059-3.sym
+            * vishay/diode/1N5059-4.sym
+            * vishay/diode/1N5060-1.sym
+            * vishay/diode/1N5060-2.sym
+            * vishay/diode/1N5060-3.sym
+            * vishay/diode/1N5060-4.sym
+            * vishay/diode/1N5061-1.sym
+            * vishay/diode/1N5061-2.sym
+            * vishay/diode/1N5061-3.sym
+            * vishay/diode/1N5061-4.sym
+            * vishay/diode/1N5062-1.sym
+            * vishay/diode/1N5062-2.sym
+            * vishay/diode/1N5062-3.sym
+            * vishay/diode/1N5062-4.sym
+
 2017-01-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * source/solor-cell-1.sym: Add symbol for generic solar cell, hard to believe
