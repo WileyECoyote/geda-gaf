@@ -1,3 +1,8 @@
+2017-01-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_symstruct.c: Include gettext.h and translate prefix to messages
+      in s_symstruct_print, change informal "info" to "information".
+
 2017-01-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gettext.h: Conditionally use local libintl.h header if

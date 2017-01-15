@@ -31,6 +31,7 @@
 #include "../include/struct.h"
 #include "../include/globals.h"
 #include "../include/prototype.h"
+#include "../include/gettext.h"
 
 /*! \brief Create and initialize a new SYMCHECK structure
  *  \par Function Description
@@ -73,7 +74,7 @@ void s_symstruct_print(SYMCHECK *s_current)
 
       /* printf("found info: %s\n", msg); */
       if (msg) {
-        u_log_message("Info: %s", msg);
+        u_log_message("%s: %s", _("Information"), msg);
       }
 
       NEXT(list);
@@ -90,7 +91,7 @@ void s_symstruct_print(SYMCHECK *s_current)
 
       /* printf("found warning: %s\n", msg); */
       if (msg) {
-        u_log_message("Warning: %s", msg);
+        u_log_message("%s: %s", _("Warning"), msg);
       }
 
       NEXT(list);
@@ -107,7 +108,7 @@ void s_symstruct_print(SYMCHECK *s_current)
 
       /* printf("found error: %s\n", msg); */
       if (msg && verbose_mode) {
-        u_log_message("Error: %s", msg);
+        u_log_message("%s: %s", _("Error"), msg);
       }
 
       NEXT(list);
