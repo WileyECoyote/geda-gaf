@@ -73,8 +73,8 @@ usage(char *cmd)
     "  -q, --quiet       Quiet mode\n"
     "  -u, --suppress    Suppress \"No errors found\" when no errors\n"
     "  -v, --verbose     Verbose mode (cumulative: errors, warnings, info)\n"
-    "  -V, --version     Show version information.\n"
     "                    Use this to get the actual symbol error messages\n"
+    "  -V, --version     Show version information.\n"
     "\nfilename1 ... filenameN are the symbols to check\n"
     "\n"),
     cmd);
