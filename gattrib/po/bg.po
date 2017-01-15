@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-12 02:11-0600\n"
+"POT-Creation-Date: 2017-01-14 20:28-0600\n"
 "PO-Revision-Date: 2010-02-06 22:09+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -30,12 +30,12 @@ msgstr "Манипулирай атрибутите на компонента с
 msgid "Could not open"
 msgstr ""
 
-#: gattrib/src/gattrib.c:178
+#: gattrib/src/gattrib.c:180
 #, c-format
 msgid "Failed to save user configuration to '%s': %s."
 msgstr ""
 
-#: gattrib/src/gattrib.c:371
+#: gattrib/src/gattrib.c:374
 msgid "Couldn not find file"
 msgstr ""
 
@@ -172,45 +172,44 @@ msgstr ""
 msgid "could not delete item"
 msgstr ""
 
-#: gattrib/src/s_table.c:355 gattrib/src/s_table.c:416
-#, c-format
-msgid "Component Error looking for row ref [%s]\n"
+#: gattrib/src/s_table.c:355 gattrib/src/s_table.c:418
+msgid "Component Error looking for row ref"
 msgstr ""
 
-#: gattrib/src/s_table.c:358 gattrib/src/s_table.c:420
-#, c-format
-msgid "Component Error looking for column named [%s]\n"
+#: gattrib/src/s_table.c:359 gattrib/src/s_table.c:423
+msgid "Component Error looking for column"
 msgstr ""
 
-#: gattrib/src/s_table.c:570
+#: gattrib/src/s_table.c:574
 #, c-format
-msgid "- Starting internal pin TABLE creation\n"
-msgstr ""
-
-#: gattrib/src/s_table.c:633
-#, c-format
-msgid "Pin Error looking for row ref [%s]\n"
+msgid "Creating pin table\n"
 msgstr ""
 
 #: gattrib/src/s_table.c:637
-#, c-format
-msgid "Pin Error looking for column named [%s]\n"
+msgid "Pin Error looking for row ref"
+msgstr ""
+
+#: gattrib/src/s_table.c:642
+msgid "Pin Error looking for column"
+msgstr ""
+
+#: gattrib/src/s_toplevel.c:274
+msgid ""
+"Are you sure you want to\n"
+" delete the Attribute \""
 msgstr ""
 
 #: gattrib/src/s_toplevel.c:487
 msgid "did not find the refdes in the master list\n"
 msgstr ""
 
-#: gattrib/src/s_toplevel.c:523 gattrib/src/s_toplevel.c:882
-msgid "count != i! Exiting ..."
+#: gattrib/src/s_toplevel.c:834
+#, c-format
+msgid "Error: object missing either refdes or pinnumber!"
 msgstr ""
 
-#: gattrib/src/s_toplevel.c:842
-msgid "object missing either refdes or pinnumber"
-msgstr ""
-
-#: gattrib/src/s_toplevel.c:851
-msgid "didn't find the refdes:pin "
+#: gattrib/src/s_toplevel.c:843
+msgid "did not find refdes:pin"
 msgstr ""
 
 #: gattrib/src/x_dialog.c:111
@@ -352,12 +351,16 @@ msgstr ""
 msgid "Could not load schematic"
 msgstr ""
 
-#: gattrib/src/x_find.c:276
+#: gattrib/src/x_find.c:80
+msgid "not found!"
+msgstr ""
+
+#: gattrib/src/x_find.c:277
 #, fuzzy
 msgid "Attribute"
 msgstr "gEDA Едитор на атрибути"
 
-#: gattrib/src/x_find.c:313
+#: gattrib/src/x_find.c:314
 msgid "Designator"
 msgstr ""
 

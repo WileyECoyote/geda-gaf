@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-12 02:11-0600\n"
+"POT-Creation-Date: 2017-01-14 20:28-0600\n"
 "PO-Revision-Date: 2012-01-27 14:17+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Afrikaans <af@li.org>\n"
@@ -27,19 +27,18 @@ msgid "Manipulate component attributes with gattrib"
 msgstr "Manipuleer komponent eiendomme met gattrib"
 
 #: gattrib/src/f_export.c:81
-#, fuzzy
 msgid "Could not open"
-msgstr "%s: Kon nie open lêer [%s]\n"
+msgstr "Kon nie vind simbool"
 
-#: gattrib/src/gattrib.c:178
+#: gattrib/src/gattrib.c:180
 #, c-format
 msgid "Failed to save user configuration to '%s': %s."
 msgstr "Kan gebruiker opset wat nie red '%s': %s."
 
-#: gattrib/src/gattrib.c:371
-#, fuzzy
+# Could not find file
+#: gattrib/src/gattrib.c:374
 msgid "Couldn not find file"
-msgstr "Kon nie vind lêer [% s]\n"
+msgstr "Kon lêer nie vind"
 
 #: gattrib/src/g_rc.c:51
 #, c-format
@@ -62,7 +61,7 @@ msgid "Check path: \"%s\"\n"
 msgstr "Check pad: \"%s\"\n"
 
 #: gattrib/src/parsecmd.c:62
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "\n"
 "Gattrib:  The gEDA project's attribute editor.\n"
@@ -84,11 +83,11 @@ msgstr ""
 "Gattrib:  Die Geda projek se eienskappe redakteur.\n"
 "Bied skematiese eienskappe in maklik-om-te wysig sigblad formaat.\n"
 "\n"
-"Gebruik:% s [OPSIE] lêernaam1 ... lêernaamN\n"
+"Gebruik: %s [OPSIE] lêernaam1 ... lêernaamN\n"
 "\n"
 "\t-h, --help      uit te voer Dit help menu\n"
-"\t-q, --quiet     stille af\n"
-"\t-v, --verbose   verbose af\n"
+"\t-q, --quiet     Aktiveer stille modus\n"
+"\t-v, --verbose   Aktiveer uitgebreide modus\n"
 "\t-V, --version   Wys weergawe inligting.\n"
 "\n"
 "  FAQ:\n"
@@ -97,7 +96,7 @@ msgstr ""
 "     "
 
 #: gattrib/src/parsecmd.c:100
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "gEDA/gattrib %s (%s) (g%.7s)\n"
 "Copyright (C) 1998-2017 gEDA developers\n"
@@ -107,7 +106,7 @@ msgid ""
 "There is NO WARRANTY, to the extent permitted by law.\n"
 msgstr ""
 "gEDA/gattrib %s (%s) (g%.7s)\n"
-"Kopiereg (C) 1998-2016 gEDA ontwikkelaars\n"
+"Kopiereg (C) 1998-2017 gEDA ontwikkelaars\n"
 "Dit is gratis sagteware, en jy is welkom om dit te herverdeel onder\n"
 "sekere omstandighede. Vir meer besonderhede, sien die lêer `COPYING ', wat\n"
 "ingesluit is in die Geda verspreiding.\n"
@@ -200,46 +199,47 @@ msgstr ""
 msgid "could not delete item"
 msgstr ""
 
-#: gattrib/src/s_table.c:355 gattrib/src/s_table.c:416
-#, c-format
-msgid "Component Error looking for row ref [%s]\n"
+#: gattrib/src/s_table.c:355 gattrib/src/s_table.c:418
+msgid "Component Error looking for row ref"
 msgstr ""
 
-#: gattrib/src/s_table.c:358 gattrib/src/s_table.c:420
-#, c-format
-msgid "Component Error looking for column named [%s]\n"
+#: gattrib/src/s_table.c:359 gattrib/src/s_table.c:423
+msgid "Component Error looking for column"
 msgstr ""
 
-#: gattrib/src/s_table.c:570
+#: gattrib/src/s_table.c:574
 #, c-format
-msgid "- Starting internal pin TABLE creation\n"
-msgstr ""
-
-#: gattrib/src/s_table.c:633
-#, c-format
-msgid "Pin Error looking for row ref [%s]\n"
+msgid "Creating pin table\n"
 msgstr ""
 
 #: gattrib/src/s_table.c:637
-#, c-format
-msgid "Pin Error looking for column named [%s]\n"
+msgid "Pin Error looking for row ref"
+msgstr ""
+
+#: gattrib/src/s_table.c:642
+msgid "Pin Error looking for column"
+msgstr ""
+
+#: gattrib/src/s_toplevel.c:274
+msgid ""
+"Are you sure you want to\n"
+" delete the Attribute \""
 msgstr ""
 
 #: gattrib/src/s_toplevel.c:487
 msgid "did not find the refdes in the master list\n"
 msgstr ""
 
-#: gattrib/src/s_toplevel.c:523 gattrib/src/s_toplevel.c:882
-msgid "count != i! Exiting ..."
+#: gattrib/src/s_toplevel.c:834
+#, c-format
+msgid "Error: object missing either refdes or pinnumber!"
 msgstr ""
 
-#: gattrib/src/s_toplevel.c:842
-msgid "object missing either refdes or pinnumber"
-msgstr ""
-
-#: gattrib/src/s_toplevel.c:851
-msgid "didn't find the refdes:pin "
-msgstr ""
+# Could not find file
+#: gattrib/src/s_toplevel.c:843
+#, fuzzy
+msgid "did not find refdes:pin"
+msgstr "Kon lêer nie vind"
 
 #: gattrib/src/x_dialog.c:111
 msgid "Add new attribute"
@@ -380,11 +380,15 @@ msgstr ""
 msgid "Could not load schematic"
 msgstr ""
 
-#: gattrib/src/x_find.c:276
+#: gattrib/src/x_find.c:80
+msgid "not found!"
+msgstr ""
+
+#: gattrib/src/x_find.c:277
 msgid "Attribute"
 msgstr ""
 
-#: gattrib/src/x_find.c:313
+#: gattrib/src/x_find.c:314
 msgid "Designator"
 msgstr ""
 

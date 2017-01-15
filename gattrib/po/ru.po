@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gattrib\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-12 02:11-0600\n"
+"POT-Creation-Date: 2017-01-14 20:28-0600\n"
 "PO-Revision-Date: 2014-03-08 20:49+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -28,20 +28,20 @@ msgstr "Редактор атрибутов gEDA"
 msgid "Manipulate component attributes with gattrib"
 msgstr "Управление атрибутами компонента с помощью gattrib"
 
+# Could not open
 #: gattrib/src/f_export.c:81
-#, fuzzy
 msgid "Could not open"
-msgstr "o_save: Не удалось открыть «%s»\n"
+msgstr "Не удалось открыть"
 
-#: gattrib/src/gattrib.c:178
+#: gattrib/src/gattrib.c:180
 #, c-format
 msgid "Failed to save user configuration to '%s': %s."
 msgstr ""
 
-#: gattrib/src/gattrib.c:371
-#, fuzzy
+# Unable to find file
+#: gattrib/src/gattrib.c:374
 msgid "Couldn not find file"
-msgstr "Не удалось найти файл «%s»\n"
+msgstr "Не удалось найти файл"
 
 #: gattrib/src/g_rc.c:51
 #, c-format
@@ -165,12 +165,10 @@ msgstr "- Приступаем к созданию основного списк
 msgid "- Creating master pin list.\n"
 msgstr "- Приступаем к созданию основного списка выводов.\n"
 
+# found component pin with no pinnumber
 #: gattrib/src/s_sheet_data.c:484
-#, fuzzy
 msgid "found component pin with no pinnumber."
-msgstr ""
-"s_sheet_data_add_master_pin_list_items: обнаружен вывод компонента без "
-"атрибута pinnumber.\n"
+msgstr "нашли контактный компонент, без pinnumber."
 
 #: gattrib/src/s_sheet_data.c:545
 #, c-format
@@ -180,8 +178,7 @@ msgstr "- Приступаем к созданию основного списк
 #: gattrib/src/s_string_list.c:142
 #, fuzzy
 msgid "attempted to add to a NULL list.\n"
-msgstr ""
-"s_string_list_add_item: попытка добавления к списку со значением NULL.\n"
+msgstr "попытка добавления к списку со значением NULL.\n"
 
 #: gattrib/src/s_string_list.c:205
 #, fuzzy
@@ -193,56 +190,49 @@ msgstr ""
 msgid "could not delete item"
 msgstr ""
 
-#: gattrib/src/s_table.c:355 gattrib/src/s_table.c:416
-#, c-format
-msgid "Component Error looking for row ref [%s]\n"
+#: gattrib/src/s_table.c:355 gattrib/src/s_table.c:418
+msgid "Component Error looking for row ref"
 msgstr ""
 
-#: gattrib/src/s_table.c:358 gattrib/src/s_table.c:420
-#, c-format
-msgid "Component Error looking for column named [%s]\n"
+#: gattrib/src/s_table.c:359 gattrib/src/s_table.c:423
+msgid "Component Error looking for column"
 msgstr ""
 
-#: gattrib/src/s_table.c:570
+# Creating a pin-table
+#: gattrib/src/s_table.c:574
 #, c-format
-msgid "- Starting internal pin TABLE creation\n"
-msgstr "- Приступаем к созданию внутренней таблицы выводов\n"
-
-#: gattrib/src/s_table.c:633
-#, c-format
-msgid "Pin Error looking for row ref [%s]\n"
-msgstr ""
+msgid "Creating pin table\n"
+msgstr "Создание пин-таблицы\n"
 
 #: gattrib/src/s_table.c:637
-#, c-format
-msgid "Pin Error looking for column named [%s]\n"
+msgid "Pin Error looking for row ref"
 msgstr ""
 
+#: gattrib/src/s_table.c:642
+msgid "Pin Error looking for column"
+msgstr ""
+
+# Are you sure you want to remove this attribute
+#: gattrib/src/s_toplevel.c:274
+msgid ""
+"Are you sure you want to\n"
+" delete the Attribute \""
+msgstr "Вы уверены, что хотите удалить этот атрибут?"
+
+# could not find the «refdes» in the main list
 #: gattrib/src/s_toplevel.c:487
-#, fuzzy
 msgid "did not find the refdes in the master list\n"
-msgstr ""
-"s_toplevel_get_pin_attribs_in_sheet: не удалось найти нужную строку "
-"«refdes»:«pinnumber» в основном списке!\n"
+msgstr "не смог найти «refdes» в метку этого символа основного списка!\n"
 
-#: gattrib/src/s_toplevel.c:523 gattrib/src/s_toplevel.c:882
-#, fuzzy
-msgid "count != i! Exiting ..."
-msgstr "s_toplevel_get_pin_attribs_in_sheet: count != i!  Выход . . .\n"
+#: gattrib/src/s_toplevel.c:834
+#, c-format
+msgid "Error: object missing either refdes or pinnumber!"
+msgstr "отсутствует атрибут «refdes» или «pinnumber» у объекта!"
 
-#: gattrib/src/s_toplevel.c:842
-#, fuzzy
-msgid "object missing either refdes or pinnumber"
-msgstr ""
-"s_toplevel_get_pin_attribs_in_sheet: отсутствует атрибут «refdes» или "
-"«pinnumber» у объекта!\n"
-
-#: gattrib/src/s_toplevel.c:851
-#, fuzzy
-msgid "didn't find the refdes:pin "
-msgstr ""
-"s_toplevel_get_pin_attribs_in_sheet: не удалось найти нужную строку "
-"«refdes»:«pinnumber» в основном списке!\n"
+# did not find the refdes:pin
+#: gattrib/src/s_toplevel.c:843
+msgid "did not find refdes:pin"
+msgstr "не смог найти ««refdes»»:«pinnumber»"
 
 #: gattrib/src/x_dialog.c:111
 msgid "Add new attribute"
@@ -403,22 +393,26 @@ msgstr ""
 msgid "Find next"
 msgstr ""
 
+# Download file
 #: gattrib/src/x_fileselect.c:113
-#, fuzzy
 msgid "Loading file"
-msgstr "Загрузка файла «%s»\n"
+msgstr "Загрузка файла"
 
+# Failed to load schematic
 #: gattrib/src/x_fileselect.c:119
-#, fuzzy
 msgid "Could not load schematic"
-msgstr "Не удалось загрузить схему «%s»\n"
+msgstr "Не удалось загрузить схему"
 
-#: gattrib/src/x_find.c:276
-#, fuzzy
+#: gattrib/src/x_find.c:80
+msgid "not found!"
+msgstr ""
+
+# Attribute
+#: gattrib/src/x_find.c:277
 msgid "Attribute"
-msgstr "Добавление нового атрибута"
+msgstr "Дтрибут"
 
-#: gattrib/src/x_find.c:313
+#: gattrib/src/x_find.c:314
 msgid "Designator"
 msgstr ""
 
@@ -438,6 +432,13 @@ msgstr ""
 #: gattrib/src/x_window.c:213
 msgid "Retrieving main Window geometry and settings.\n"
 msgstr ""
+
+# count != i! Exiting
+#~ msgid "count != i! Exiting ..."
+#~ msgstr "count != i!  Выход ..."
+
+#~ msgid "- Starting internal pin TABLE creation\n"
+#~ msgstr "- Приступаем к созданию внутренней таблицы выводов\n"
 
 #, fuzzy
 #~ msgid "%s, failed to find the attribute %s on the component. Exiting...\n"

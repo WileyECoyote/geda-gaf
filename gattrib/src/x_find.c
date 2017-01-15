@@ -73,10 +73,11 @@ static void x_find_set_search_parameters()
  * called by x_find_attribute and x_find_refdes when the search
  * text was not found
  */
-static void x_find_notify_not_found(char* text)
+static void x_find_notify_not_found(char *text)
 {
   strcpy(search_string, text);
-  strcat(search_string, " not found!");
+  strcat(search_string, " ");
+  strcat(search_string, _("not found!"));
   x_dialog_generic_confirm_dialog (search_string, GTK_MESSAGE_INFO);
 }
 
@@ -85,7 +86,7 @@ static void x_find_notify_not_found(char* text)
  *  Performs search, either forward or backward over the active search
  *  range based on flags in SearchRecord.
  */
-bool x_find_main_search(char* text, char *replacement) {
+bool x_find_main_search(char *text, char *replacement) {
 
   int row, col;
   int srow, scol;

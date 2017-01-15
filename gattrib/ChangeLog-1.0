@@ -8,6 +8,9 @@
 
     * src/s_visibility.c: Revise DEBUG output messages.
 
+    * src/x_find.c: Revise x_find_notify_not_found to transfer the space into the
+      string sepertely and translate "not found!".
+
 2017-01-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gattrib.c: Conditionally include locale.h.

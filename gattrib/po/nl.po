@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-12 02:11-0600\n"
+"POT-Creation-Date: 2017-01-14 20:28-0600\n"
 "PO-Revision-Date: 2014-08-31 20:31+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -33,13 +33,13 @@ msgstr "Manipuleer componenten attributen met gattrib"
 msgid "Could not open"
 msgstr "Kan niet openen"
 
-#: gattrib/src/gattrib.c:178
+#: gattrib/src/gattrib.c:180
 #, c-format
 msgid "Failed to save user configuration to '%s': %s."
 msgstr ""
 
 # Can not find file
-#: gattrib/src/gattrib.c:371
+#: gattrib/src/gattrib.c:374
 msgid "Couldn not find file"
 msgstr "Kan bestand niet vinden"
 
@@ -198,30 +198,33 @@ msgstr ""
 msgid "could not delete item"
 msgstr ""
 
-#: gattrib/src/s_table.c:355 gattrib/src/s_table.c:416
-#, c-format
-msgid "Component Error looking for row ref [%s]\n"
+#: gattrib/src/s_table.c:355 gattrib/src/s_table.c:418
+msgid "Component Error looking for row ref"
 msgstr ""
 
-#: gattrib/src/s_table.c:358 gattrib/src/s_table.c:420
-#, c-format
-msgid "Component Error looking for column named [%s]\n"
+#: gattrib/src/s_table.c:359 gattrib/src/s_table.c:423
+msgid "Component Error looking for column"
 msgstr ""
 
-#: gattrib/src/s_table.c:570
-#, c-format
-msgid "- Starting internal pin TABLE creation\n"
-msgstr "- Start het aanmaken van de interne pennen TABEL.\n"
-
-#: gattrib/src/s_table.c:633
-#, c-format
-msgid "Pin Error looking for row ref [%s]\n"
-msgstr ""
+#: gattrib/src/s_table.c:574
+#, fuzzy, c-format
+msgid "Creating pin table\n"
+msgstr "- Start het aanmaken van de hoofdpennenlijst.\n"
 
 #: gattrib/src/s_table.c:637
-#, c-format
-msgid "Pin Error looking for column named [%s]\n"
+msgid "Pin Error looking for row ref"
 msgstr ""
+
+#: gattrib/src/s_table.c:642
+msgid "Pin Error looking for column"
+msgstr ""
+
+#: gattrib/src/s_toplevel.c:274
+#, fuzzy
+msgid ""
+"Are you sure you want to\n"
+" delete the Attribute \""
+msgstr "Bent U zeker dat U deze attribuut wil verwijderen?"
 
 #: gattrib/src/s_toplevel.c:487
 #, fuzzy
@@ -230,18 +233,15 @@ msgstr ""
 "In s_toplevel_get_pin_attribs_in_sheet, is geen refdes:pin gevonden in de "
 "hoofdlijst!\n"
 
-#: gattrib/src/s_toplevel.c:523 gattrib/src/s_toplevel.c:882
-msgid "count != i! Exiting ..."
-msgstr "count != i! Afsluiten ..."
-
 # either a refdes or a pin number is missing
-#: gattrib/src/s_toplevel.c:842
-msgid "object missing either refdes or pinnumber"
+#: gattrib/src/s_toplevel.c:834
+#, fuzzy, c-format
+msgid "Error: object missing either refdes or pinnumber!"
 msgstr "ofwel een refdes of een pinnummer ontbreekt"
 
-#: gattrib/src/s_toplevel.c:851
+#: gattrib/src/s_toplevel.c:843
 #, fuzzy
-msgid "didn't find the refdes:pin "
+msgid "did not find refdes:pin"
 msgstr "is geen refdes:pin gevonden "
 
 #: gattrib/src/x_dialog.c:111
@@ -414,12 +414,16 @@ msgstr "Laad bestand"
 msgid "Could not load schematic"
 msgstr "Kon niet schematische laden"
 
-#: gattrib/src/x_find.c:276
+#: gattrib/src/x_find.c:80
+msgid "not found!"
+msgstr ""
+
+#: gattrib/src/x_find.c:277
 #, fuzzy
 msgid "Attribute"
 msgstr "Voeg nieuwe attribuut toe"
 
-#: gattrib/src/x_find.c:313
+#: gattrib/src/x_find.c:314
 msgid "Designator"
 msgstr ""
 
@@ -439,6 +443,12 @@ msgstr ""
 #: gattrib/src/x_window.c:213
 msgid "Retrieving main Window geometry and settings.\n"
 msgstr ""
+
+#~ msgid "count != i! Exiting ..."
+#~ msgstr "count != i! Afsluiten ..."
+
+#~ msgid "- Starting internal pin TABLE creation\n"
+#~ msgstr "- Start het aanmaken van de interne pennen TABEL.\n"
 
 #, fuzzy
 #~ msgid "%s, failed to find the attribute %s on the component. Exiting...\n"
