@@ -1,3 +1,11 @@
+2017-01-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_image_menu_item.h: Remove instance_type member.
+
+    * src/widgets/geda_image_menu_item.c: Replace object type identifier
+      scheme for GedaImageMenuItem with new hash table type identifier
+      system.
+
 2017-01-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gettext.h: Conditionally use local libintl.h header if

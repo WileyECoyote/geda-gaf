@@ -46,7 +46,7 @@ typedef struct _GedaImageMenuItemData  GedaImageMenuItemData;
 struct _GedaImageMenuItem
 {
   GedaMenuItem  menu_item;
-  GedaType      instance_type;
+
   GtkWidget    *image;
 
   char         *label;

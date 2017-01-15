@@ -117,6 +117,8 @@ static GtkActivatableIface *parent_activatable_iface;
 
 static void *geda_image_menu_item_parent_class = NULL;
 
+static GHashTable *image_menu_item_hash = NULL;
+
 static bool
 activatable_update_stock_id (GedaImageMenuItem *image_menu_item, GtkAction *action)
 {
@@ -353,6 +355,13 @@ geda_image_menu_item_finalize (GObject *object)
 {
   GedaImageMenuItem *image_menu_item = (GedaImageMenuItem*)object;
 
+  if (g_hash_table_remove (image_menu_item_hash, object)) {
+    if (!g_hash_table_size (image_menu_item_hash)) {
+      g_hash_table_destroy (image_menu_item_hash);
+      image_menu_item_hash = NULL;
+    }
+  }
+
   GEDA_FREE (image_menu_item->label);
   GEDA_FREE (image_menu_item->priv);
 
@@ -465,13 +474,17 @@ geda_image_menu_item_init (GTypeInstance *instance, void *g_class)
 {
   GedaImageMenuItem *image_menu_item = (GedaImageMenuItem*)instance;
 
-  image_menu_item->instance_type     = geda_image_menu_item_get_type();
-
   /* Note data->initialization not required because memset 0 */
   image_menu_item->priv      = GEDA_MEM_ALLOC0(sizeof(GedaImageMenuItemData));
   image_menu_item->use_stock = FALSE;
   image_menu_item->label     = NULL;
   image_menu_item->image     = NULL;
+
+  if (!image_menu_item_hash) {
+    image_menu_item_hash = g_hash_table_new (g_direct_hash, NULL);
+  }
+
+  g_hash_table_replace (image_menu_item_hash, instance, instance);
 }
 
 /*! \brief Retrieve GedaImageMenuItem's Type identifier.
@@ -535,8 +548,8 @@ geda_image_menu_item_get_type (void)
 bool
 is_a_geda_image_menu_item (GedaImageMenuItem *image_menu_item)
 {
-  if (G_IS_OBJECT(image_menu_item)) {
-    return (geda_image_menu_item_get_type() == image_menu_item->instance_type);
+  if ((image_menu_item != NULL) && (image_menu_item_hash != NULL)) {
+    return g_hash_table_lookup(image_menu_item_hash, image_menu_item) ? TRUE : FALSE;
   }
   return FALSE;
 }
