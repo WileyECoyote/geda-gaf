@@ -1,5 +1,8 @@
 2017-01-15 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/s_check.c: Revise output messages and formats in order to minimize
+      format specifiers in translatable string and clarify meanings.
+
     * src/s_symstruct.c: Include gettext.h and translate prefix to messages
       in s_symstruct_print, change informal "info" to "information".
 
@@ -15,7 +18,7 @@
     * src/Makefile.am: Simplify setting of LOCALEDIR; eliminate local
       localedir.
 
-    * gsymcheck.c: Add debug print for LOCALEDIR and setlocale in main_prog.
+    * src/gsymcheck.c: Add debug print for LOCALEDIR and setlocale in main_prog.
 
 2017-01-10 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -25,7 +28,7 @@
     * src/Makefile.am: Hack localedir into DEFS as LOCALEDIR. Add rule for
       update-gmo to allow compiling translations from application folder.
 
-    * gsymcheck.c: Include locale.h, revise main to setup locale and bind
+    * src/gsymcheck.c: Include locale.h, revise main to setup locale and bind
       the geda-gsymcheck domain.
 
     * src/parsecmd.c: Update copyright dates in
@@ -36,7 +39,7 @@
       May not go over well with spice backends, but those back-ends are out
       of date and need to be revised.
 
-    * gsymcheck/src/gsymcheck.c: Revise message formats in order to minimize
+    * src/gsymcheck.c: Revise message formats in order to minimize
       format specifiers in translatable string.
 
 2016-12-21 Wiley E. Hill <wileyhill@gmail.com>
