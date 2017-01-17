@@ -23,7 +23,7 @@
 #if ENABLE_NLS
 
 #if USE_LOCAL_LIBINTL
-# include "../../intl/libintl.h"
+# include "../intl/libintl.h"
 #else
 /* Get declarations of GNU message catalog functions.  */
 # include <libintl.h>
