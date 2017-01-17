@@ -94,8 +94,8 @@ geda_file_has_active_autosave (const char *filename, GError **err)
     else {
 
       if (save_errno) {
-        g_set_error (err, EDA_ERROR, save_errno,
-                   _("Failed to stat [%s]: %s"),
+        g_set_error (err, EDA_ERROR, save_errno, "%s [%s]: %s",
+                   _("Failed to get file statistics"),
                      auto_filename, strerror (save_errno));
         result = TRUE;
       }
@@ -109,8 +109,8 @@ geda_file_has_active_autosave (const char *filename, GError **err)
 
           if (file_err) {
 
-            g_set_error (err, EDA_ERROR, file_err,
-                       _("Failed to stat [%s]: %s"),
+            g_set_error (err, EDA_ERROR, file_err, "%s [%s]: %s",
+                       _("Failed to get file statistics"),
                          auto_filename, strerror (file_err));
             result = TRUE;
           }
@@ -267,7 +267,7 @@ geda_file_open(GedaToplevel *toplevel, Page *page, const char *filename, GError 
       log_undetemine = _("Could not detemine which file is newer, so you should do this manually.\n");
       log_back_newer = _("The backup copy is newer than the schematic, it seems you should load it instead of the original file.\n");
       log_situation  = _("This situation may have occured when an application crashed or was forced to exit abruptly.\n");
-      err_corrective = _("\nRun the application to correct this situation or manually delete the backup file.\n\n");
+      err_corrective = _("Run the application to correct this situation or manually delete the backup file.");
 
       register unsigned int mem_needed = strlen(log_auto_back)
                                        + strlen(backup_filename)
@@ -291,7 +291,7 @@ geda_file_open(GedaToplevel *toplevel, Page *page, const char *filename, GError 
         strcat(strcat(message, str), log_situation);
 
         if (toplevel->load_newer_backup_func == NULL) {
-          fprintf (stderr, "%s%s", message, err_corrective);
+          fprintf (stderr, "%s\n%s\n\n", message, err_corrective);
         }
         else {
 
@@ -447,36 +447,22 @@ f_file_size(const char *filename)
 bool
 geda_file_save(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
 {
-  const char *err_not_real;
-  const char *err_not_saved;
-  const char *err_read_only;
-
-  const char *log_set_back;
-  const char *log_not_back;
-
-  char   *real_filename;
-
   GError *tmp_err;
-  struct  stat st_ActiveFile;
+  char   *real_filename;
   bool    success;
 
-  err_not_real  = _("Can't get the real filename of %s: %s");
-  err_not_saved = _("Could NOT save file: %s");
-  err_read_only = _("File \"%s\" is read-only");
-
-  log_set_back  = _("Could not set previous backup file [%s] read-write:%s\n");
-  log_not_back  = _("Can not create backup file: %s: %s\n");
-
-  tmp_err       = NULL;
-  success       = 1;
+  tmp_err = NULL;
+  success = 1;
 
   /* Get the real filename and file permissions */
   real_filename = geda_file_sys_follow_symlinks (filename, &tmp_err);
 
   if (real_filename == NULL) {
 
-    g_set_error (err, tmp_err->domain, tmp_err->code, err_not_real,
-                 filename, tmp_err->message);
+    const char *err_not_real = _("Cannot get the real filename of");
+
+    g_set_error (err, tmp_err->domain, tmp_err->code, "%s %s: %s",
+                 err_not_real, filename, tmp_err->message);
     g_error_free (tmp_err);
     success = 0;
   }
@@ -487,6 +473,9 @@ geda_file_save(GedaToplevel *toplevel, Page *page, const char *filename, GError 
     access(filename, W_OK);
 
     if (errno == EACCES) {
+
+      const char *err_read_only = _("File [%s] is read-only");
+
       g_set_error (err, EDA_ERROR, EACCES, err_read_only, filename);
       success = 0;
     }
@@ -502,6 +491,8 @@ geda_file_save(GedaToplevel *toplevel, Page *page, const char *filename, GError 
 
     const char *only_filename;
           char *dirname;
+
+    struct stat st_ActiveFile;
 
     /* Get the files original permissions */
     if (stat (real_filename, &st_ActiveFile) != 0) {
@@ -535,7 +526,11 @@ geda_file_save(GedaToplevel *toplevel, Page *page, const char *filename, GError 
            (!g_file_test (backup_filename, G_FILE_TEST_IS_DIR)))
         {
           if (chmod(backup_filename, S_IREAD|S_IWRITE) != 0) {
-            geda_log (log_set_back, backup_filename, strerror (errno));
+
+            const char *log_set_back = _("Could not set previous backup file");
+            const char *read_write   = _("read-write");
+
+            geda_log ("%s [%s] %s:%s\n", log_set_back, backup_filename, read_write, strerror (errno));
           }
           else { /* delete backup from previous session */
             geda_file_sys_remove (backup_filename);
@@ -543,7 +538,10 @@ geda_file_save(GedaToplevel *toplevel, Page *page, const char *filename, GError 
         }
 
         if (geda_file_copy(real_filename, backup_filename) != 0) {
-          geda_log (log_not_back, backup_filename, strerror (errno));
+
+          const char *log_not_back = _("Cannot create backup file");
+
+          geda_log ("%s: %s: %s\n", log_not_back, backup_filename, strerror (errno));
         }
         else {
           /* Make backup readonly so a 'rm *' will ask user before deleting */
@@ -587,9 +585,11 @@ geda_file_save(GedaToplevel *toplevel, Page *page, const char *filename, GError 
       success = 1;
     }
     else {
-      g_set_error (err, tmp_err->domain, tmp_err->code,
-                   err_not_saved,
-                   tmp_err->message);
+
+      const char *err_not_saved = _("Could NOT save file");
+
+      g_set_error (err, tmp_err->domain, tmp_err->code, "%s: %s",
+                   err_not_saved, tmp_err->message);
       g_clear_error (&tmp_err);
       GEDA_FREE (real_filename);
       success = 0;
