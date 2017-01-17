@@ -1602,16 +1602,22 @@ geda_box_object_read (const char buf[], unsigned int release_ver,
       g_set_error(err, EDA_ERROR, EDA_ERROR_PARSE, _("Failed to parse box object"));
       return NULL;
     }
+    /* TODO Should check line type and filling here! */
   }
 
   if (width == 0 || height == 0) {
-    geda_log_w (_("Found a zero width/height box [ %c %d %d %d %d %d ]\n"),
-                   type, x1, y1, width, height, color);
+    const char *msg = _("Found a box with zero width/height");
+    if (geda_object_show_buffer_err(msg, buf)) {
+      geda_log_w("%s: [%d x %d].\n", msg, width, height);
+    }
   }
 
   if (color < 0 || color > MAX_COLORS) {
-    geda_log_w (_("Found an invalid color [ %s ]\n"), buf);
-    geda_log_v (_("Setting color to default color\n"));
+    const char *msg = _("Found an invalid color");
+    if (geda_object_show_buffer_err(msg, buf)) {
+      geda_log_w("%s: %d.\n", msg, color);
+    }
+    geda_log_w (_("Setting color to default color\n"));
     color = DEFAULT_BOX_COLOR_INDEX;
   }
 
