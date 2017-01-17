@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-10 07:50-0600\n"
+"POT-Creation-Date: 2017-01-14 12:26-0600\n"
 "PO-Revision-Date: 2012-01-27 14:22+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -35,50 +35,50 @@ msgstr ""
 msgid "Assuming symbol file suffix for"
 msgstr ""
 
-#: gschem/src/base/gschem.c:238
+#: gschem/src/base/gschem.c:241
 msgid "An error was encountered loading requested session"
 msgstr ""
 
-#: gschem/src/base/gschem.c:263
+#: gschem/src/base/gschem.c:266
 msgid "Auto Load"
 msgstr ""
 
-#: gschem/src/base/gschem.c:312
+#: gschem/src/base/gschem.c:316
 msgid ""
-"You must set the GEDADATA environment variable!\n"
+"The GEDADATA environment variable must be set!\n"
 "\n"
 "gschem cannot locate some data files. Please ensure the GEDADATA\n"
 "environment variable points to the correct location.\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:348
+#: gschem/src/base/gschem.c:352
 msgid "Unable to locate scheme initialization file"
 msgstr ""
 
-#: gschem/src/base/gschem.c:355
+#: gschem/src/base/gschem.c:359
 msgid "Read scheme initialization file"
 msgstr ""
 
 # Unable to read the schema initialization file
-#: gschem/src/base/gschem.c:358
+#: gschem/src/base/gschem.c:362
 msgid "Failed to read scheme initialization file"
 msgstr "無法讀取方案初始化文件"
 
 # Version
-#: gschem/src/base/gschem.c:380
+#: gschem/src/base/gschem.c:384
 msgid "version"
 msgstr "版"
 
-#: gschem/src/base/gschem.c:385
+#: gschem/src/base/gschem.c:389
 msgid "Logging system is disabled\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:425
+#: gschem/src/base/gschem.c:429
 #, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:517
+#: gschem/src/base/gschem.c:521
 msgid "Exiting normal\n"
 msgstr ""
 
@@ -1504,27 +1504,29 @@ msgstr ""
 msgid "An error occurred while receiving Drag & Drop data"
 msgstr ""
 
+# Data error
 #: gschem/src/x/x_coord.c:157
-#, fuzzy
 msgid "Data error"
-msgstr "<b>選項</b>"
+msgstr "數據錯誤"
 
 #: gschem/src/x/x_coord.c:162 gschem/src/x/x_dnd.c:585
 msgid "Drag & Drop failed"
 msgstr ""
 
+# Coordinates
 #: gschem/src/x/x_coord.c:472
-#, fuzzy
 msgid "Coordinates"
-msgstr "元件模式"
+msgstr "坐標"
 
+# Screen
 #: gschem/src/x/x_coord.c:487
 msgid "Screen"
-msgstr ""
+msgstr "屏幕"
 
+# World
 #: gschem/src/x/x_coord.c:497
 msgid "World"
-msgstr ""
+msgstr "世界"
 
 # Unable to load image file
 #: gschem/src/x/x_dialog.c:437
@@ -1548,6 +1550,8 @@ msgid ""
 "Copyright © 1998-2017 Ales Hvezda <ahvezda@geda.seul.org>\n"
 "Copyright © 1998-2017 gEDA Contributors (see ChangeLog for details)"
 msgstr ""
+"版權 © 1998-2017 Ales Hvezda <ahvezda@geda.seul.org>\n"
+"版權 © 1998-2017 gEDA 貢獻者 (有關詳細信息，請參閱ChangeLog)"
 
 #: gschem/src/x/x_dialog.c:464 gschem/scheme/gschem/builtins.scm:565
 msgid "About gschem"
@@ -4567,13 +4571,15 @@ msgstr ""
 msgid "Show a specific attribute"
 msgstr ""
 
+# Property Editor
 #: gschem/etc/system-gschemrc.scm:2287
 msgid "Attribute _Editor..."
 msgstr "屬性編輯器..."
 
+# Open the attributes editor dialog
 #: gschem/etc/system-gschemrc.scm:2287
-msgid "Open the Attibutes Editor Dialog"
-msgstr ""
+msgid "Open the Attributes Editor Dialog"
+msgstr "打開屬性編輯器對話框"
 
 #: gschem/etc/system-gschemrc.scm:2295
 msgid "A_utonumber Text..."
