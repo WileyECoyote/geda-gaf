@@ -8,6 +8,8 @@
 
     * src/base/gschem.c: Revise GEDADATA; eliminate personal pronoun.
 
+    * src/guile/g_rc.c: Remove inclusion of locale.h.
+
 2017-01-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: Update Afrikaan translations.

@@ -61,10 +61,6 @@
  *                |  add g_rc_auto_pan and g_rc_auto_pan_step.
  */
 
-#ifdef HAVE_LOCALE_H
-#include <locale.h>
-#endif
-
 #include <gschem.h>
 
 #include <version.h>
