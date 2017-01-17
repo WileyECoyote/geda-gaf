@@ -1,5 +1,8 @@
 2017-01-17 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/prototype_priv.h: Add declaration for new function
+      geda_object_show_buffer_err.
+
     * src/file/f_file.c: Revise output messages and formats in order to
       minimize format specifiers in translatable string, reduce scope of
       pointer to translations to avoid calls to libintl when no errors.
@@ -18,6 +21,8 @@
 
     * src/geda/geda_keyfile.c: Revise output messages and formats in order
       to minimize format specifiers in translatable string.
+
+    * src/object/o_object.c: Add function geda_object_show_buffer_err.
 
 2017-01-13 Wiley E. Hill <wileyhill@gmail.com>
 

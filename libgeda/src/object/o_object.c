@@ -52,6 +52,26 @@
 
 #include <geda_diagnostics.h>
 
+/*
+ * Private function called by geda_xxx_object_read functions if the
+ * input buffer contains and errors. If verbose is enable the entire
+ * buffer and the passed message are written to the warning log and
+ * FALSE is returned to indicate the caller should not show the data
+ * buffer. When this function returns TRUE, the caller will display
+ * the erroneous portion of the buffer or just a message depending
+ * on the context.
+ */
+bool geda_object_show_buffer_err (const char *msg, const char *buf)
+{
+  if (geda_get_verbose_mode()) {
+    char *line = geda_remove_last_newline((char*)buf);
+    geda_log_w ("%s [ %s ]\n", msg, line);
+    return FALSE;
+  }
+
+  return TRUE;
+}
+
 /*!
  * \brief Read a memory buffer
  * \par Function Description
