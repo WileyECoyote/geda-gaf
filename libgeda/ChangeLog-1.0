@@ -16,6 +16,9 @@
       i.e. fprintf. Revise existing output messages and formats in order to
       minimize format specifiers in translatable string.
 
+    * src/geda/geda_keyfile.c: Revise output messages and formats in order
+      to minimize format specifiers in translatable string.
+
 2017-01-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gettext.h: Conditionally use local libintl.h header if

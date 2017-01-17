@@ -440,7 +440,7 @@ find_file_in_data_dirs (const char   *file,
     g_set_error_literal (error, GEDA_KEYFILE_ERROR,
                          GEDA_KEYFILE_ERROR_NOT_FOUND,
                          _("Valid key file could not be "
-                         "found in search dirs"));
+                           "found in search dirs"));
   }
 
   if (output_file != NULL && fd > 0)
@@ -871,7 +871,7 @@ geda_keyfile_parse_line (GedaKeyFile *key_file,
     g_set_error (error, GEDA_KEYFILE_ERROR,
                  GEDA_KEYFILE_ERROR_PARSE,
                  _("Key file contains line '%s' which is not "
-                 "a key-value pair, group, or comment"),
+                   "a key-value pair, group, or comment"),
                  line_utf8);
                  GEDA_FREE (line_utf8);
 
@@ -928,8 +928,8 @@ geda_keyfile_parse_group (GedaKeyFile *key_file,
   if (!geda_keyfile_is_group_name (group_name)) {
 
     g_set_error (error, GEDA_KEYFILE_ERROR,
-                 GEDA_KEYFILE_ERROR_PARSE,
-                 _("Invalid group name: %s"), group_name);
+                 GEDA_KEYFILE_ERROR_PARSE,  "%s '%s'",
+                 _("Invalid group name"), group_name);
                  GEDA_FREE (group_name);
                  return;
   }
@@ -976,8 +976,8 @@ geda_keyfile_parse_key_value_pair (GedaKeyFile *key_file,
   if (!geda_keyfile_is_key_name (key)) {
 
     g_set_error (error, GEDA_KEYFILE_ERROR,
-                 GEDA_KEYFILE_ERROR_PARSE,
-                 _("Invalid key name: %s"), key);
+                 GEDA_KEYFILE_ERROR_PARSE,  "%s '%s'",
+                 _("Invalid key name"), key);
     GEDA_FREE (key);
     return;
   }
@@ -1004,9 +1004,8 @@ geda_keyfile_parse_key_value_pair (GedaKeyFile *key_file,
       char *value_utf8 = geda_get_utf8 (value);
 
       g_set_error (error, GEDA_KEYFILE_ERROR,
-                   GEDA_KEYFILE_ERROR_UNKNOWN_ENCODING,
-                   _("Key file contains unsupported "
-                   "encoding '%s'"), value_utf8);
+                   GEDA_KEYFILE_ERROR_UNKNOWN_ENCODING,  "%s '%s'",
+                   _("Key file contains unsupported encoding"), value_utf8);
 
       GEDA_FREE (value_utf8);
       GEDA_FREE (key);
@@ -1252,8 +1251,8 @@ geda_keyfile_get_keys (GedaKeyFile  *key_file,
   if (!group) {
 
     g_set_error (error, GEDA_KEYFILE_ERROR,
-                 GEDA_KEYFILE_ERROR_GROUP_NOT_FOUND,
-               _("Key file does not have group '%s'"),
+                 GEDA_KEYFILE_ERROR_GROUP_NOT_FOUND, "%s '%s'",
+               _("Key file does not have group"),
                  group_name ? group_name : "(null)");
                  return NULL;
   }
@@ -1409,16 +1408,16 @@ geda_keyfile_get_value (GedaKeyFile *key_file,
     const char *msg;
 
     if (key_file == NULL) {
-      msg = _("libgeda <%s> ERROR: pointer to key file is NULL");
+      msg = _("ERROR: pointer to key file is NULL");
     }
     else if (group_name == NULL) {
-      msg = _("libgeda <%s> ERROR: pointer to group name is NULL");
+      msg = _("ERROR: pointer to group name is NULL");
     }
     else {
-      msg = _("libgeda <%s> ERROR: pointer to key is NULL");
+      msg = _("ERROR: pointer to key is NULL");
     }
 
-    g_set_error (error, EDA_ERROR, EDA_ERROR_NULL_POINTER, msg, __func__);
+    g_set_error (error, EDA_ERROR, EDA_ERROR_NULL_POINTER, "libgeda: %s", msg);
 
     return NULL;
   }
@@ -1428,9 +1427,9 @@ geda_keyfile_get_value (GedaKeyFile *key_file,
   if (!group) {
 
     g_set_error (error, GEDA_KEYFILE_ERROR,
-                 GEDA_KEYFILE_ERROR_GROUP_NOT_FOUND,
-               _("Key file does not have group '%s'"),
-                  group_name ? group_name : "(null)");
+                 GEDA_KEYFILE_ERROR_GROUP_NOT_FOUND, "%s '%s'",
+                 _("Key file does not have group"),
+                 group_name ? group_name : "(null)");
     return NULL;
   }
 
@@ -1441,8 +1440,8 @@ geda_keyfile_get_value (GedaKeyFile *key_file,
   }
   else {
     g_set_error (error, GEDA_KEYFILE_ERROR,
-                 GEDA_KEYFILE_ERROR_KEY_NOT_FOUND,
-                 _("Key file does not have key '%s'"), key);
+                 GEDA_KEYFILE_ERROR_KEY_NOT_FOUND, "%s '%s'",
+                 _("Key file does not have key"), key);
   }
 
   return value;
@@ -1549,7 +1548,7 @@ geda_keyfile_get_string (GedaKeyFile *key_file,
     g_set_error (error, GEDA_KEYFILE_ERROR,
                  GEDA_KEYFILE_ERROR_UNKNOWN_ENCODING,
                  _("Key file contains key '%s' with value '%s' "
-                 "which is not UTF-8"), key, value_utf8);
+                   "which is not UTF-8"), key, value_utf8);
                  GEDA_FREE (value_utf8);
                  GEDA_FREE (value);
 
@@ -1663,7 +1662,7 @@ geda_keyfile_get_string_list (GedaKeyFile *key_file,
     g_set_error (error, GEDA_KEYFILE_ERROR,
                  GEDA_KEYFILE_ERROR_UNKNOWN_ENCODING,
                  _("Key file contains key '%s' with value '%s' "
-                 "which is not UTF-8"), key, value_utf8);
+                   "which is not UTF-8"), key, value_utf8);
                  GEDA_FREE (value_utf8);
                  GEDA_FREE (value);
 
@@ -1683,7 +1682,7 @@ geda_keyfile_get_string_list (GedaKeyFile *key_file,
       g_set_error (error, GEDA_KEYFILE_ERROR,
                    GEDA_KEYFILE_ERROR_INVALID_VALUE,
                    _("Key file contains key '%s' "
-                   "which has a value that cannot be interpreted."),
+                     "which has a value that cannot be interpreted."),
                    key);
                    g_error_free (key_file_error);
     }
@@ -2059,7 +2058,7 @@ geda_keyfile_get_boolean (GedaKeyFile *key_file,
       g_set_error (error, GEDA_KEYFILE_ERROR,
                    GEDA_KEYFILE_ERROR_INVALID_VALUE,
                    _("Key file contains key '%s' "
-                   "which has a value that cannot be interpreted."),
+                     "which has a value that cannot be interpreted."),
                    key);
                    g_error_free (key_file_error);
     }
@@ -2275,7 +2274,7 @@ geda_keyfile_get_integer (GedaKeyFile *key_file,
       g_set_error (error, GEDA_KEYFILE_ERROR,
                    GEDA_KEYFILE_ERROR_INVALID_VALUE,
                    _("Key file contains key '%s' in group '%s' "
-                   "which has a value that cannot be interpreted."),
+                     "which has a value that cannot be interpreted."),
                    key, group_name);
                    g_error_free (key_file_error);
     }
@@ -2352,7 +2351,7 @@ geda_keyfile_get_int64 (GedaKeyFile *key_file,
 
     g_set_error (error, GEDA_KEYFILE_ERROR, GEDA_KEYFILE_ERROR_INVALID_VALUE,
                  _("Key '%s' in group '%s' has value '%s' "
-                 "where %s was expected"),
+                   "where %s was expected"),
                  key, group_name, s, "int64");
                  return 0;
   }
@@ -2642,7 +2641,7 @@ geda_keyfile_get_double  (GedaKeyFile *key_file,
       g_set_error (error, GEDA_KEYFILE_ERROR,
                    GEDA_KEYFILE_ERROR_INVALID_VALUE,
                    _("Key file contains key '%s' in group '%s' "
-                   "which has a value that cannot be interpreted."),
+                     "which has a value that cannot be interpreted."),
                    key, group_name);
                    g_error_free (key_file_error);
     }
@@ -2810,9 +2809,9 @@ geda_keyfile_set_key_comment (GedaKeyFile *key_file,
   if (!group) {
 
     g_set_error (error, GEDA_KEYFILE_ERROR,
-                 GEDA_KEYFILE_ERROR_GROUP_NOT_FOUND,
-                 _("Key file does not have group '%s'"),
-                   group_name ? group_name : "(null)");
+                 GEDA_KEYFILE_ERROR_GROUP_NOT_FOUND, "%s '%s'",
+                 _("Key file does not have group"),
+                 group_name ? group_name : "(null)");
 
                  return FALSE;
   }
@@ -2880,8 +2879,8 @@ geda_keyfile_set_group_comment (GedaKeyFile *key_file,
   if (!group) {
 
     g_set_error (error, GEDA_KEYFILE_ERROR,
-                 GEDA_KEYFILE_ERROR_GROUP_NOT_FOUND,
-                 _("Key file does not have group '%s'"),
+                 GEDA_KEYFILE_ERROR_GROUP_NOT_FOUND, "%s '%s'",
+                 _("Key file does not have group"),
                  group_name ? group_name : "(null)");
 
                  return FALSE;
@@ -3004,9 +3003,9 @@ geda_keyfile_get_key_comment (GedaKeyFile *key_file,
   if (!group) {
 
     g_set_error (error, GEDA_KEYFILE_ERROR,
-                 GEDA_KEYFILE_ERROR_GROUP_NOT_FOUND,
-                 _("Key file does not have group '%s'"),
-                   group_name ? group_name : "(null)");
+                 GEDA_KEYFILE_ERROR_GROUP_NOT_FOUND, "%s '%s'",
+                 _("Key file does not have group"),
+                 group_name ? group_name : "(null)");
 
                  return NULL;
   }
@@ -3144,8 +3143,8 @@ geda_keyfile_get_group_comment (GedaKeyFile *key_file,
   if (!group) {
 
     g_set_error (error, GEDA_KEYFILE_ERROR,
-                 GEDA_KEYFILE_ERROR_GROUP_NOT_FOUND,
-                 _("Key file does not have group '%s'"),
+                 GEDA_KEYFILE_ERROR_GROUP_NOT_FOUND, "%s '%s'",
+                 _("Key file does not have group"),
                    group_name ? group_name : "(null)");
 
                  return NULL;
@@ -3314,7 +3313,6 @@ geda_keyfile_has_key (GedaKeyFile *key_file,
                       const char  *key,
                       GError      **error)
 {
-  GError *temp_error = NULL;
   bool has_key;
 
   g_return_val_if_fail (key_file   != NULL, FALSE);
@@ -3328,8 +3326,8 @@ geda_keyfile_has_key (GedaKeyFile *key_file,
   if (!group) {
 
     g_set_error (error, GEDA_KEYFILE_ERROR,
-                 GEDA_KEYFILE_ERROR_GROUP_NOT_FOUND,
-                 _("Key file does not have group '%s'"),
+                 GEDA_KEYFILE_ERROR_GROUP_NOT_FOUND, "%s '%s'",
+                 _("Key file does not have group"),
                    group_name ? group_name : "(null)");
 
     return FALSE;
@@ -3341,6 +3339,7 @@ geda_keyfile_has_key (GedaKeyFile *key_file,
   }
   else
   {
+    GError *temp_error = NULL;
     g_propagate_error (error, temp_error);
     return FALSE;
   }
@@ -3520,9 +3519,8 @@ geda_keyfile_remove_group (GedaKeyFile *key_file,
   if (!group_node) {
 
     g_set_error (error, GEDA_KEYFILE_ERROR,
-                 GEDA_KEYFILE_ERROR_GROUP_NOT_FOUND,
-                 _("Key file does not have group '%s'"),
-                   group_name);
+                 GEDA_KEYFILE_ERROR_GROUP_NOT_FOUND, "%s '%s'",
+                 _("Key file does not have group"), group_name);
                  return FALSE;
   }
 
@@ -3587,8 +3585,8 @@ geda_keyfile_remove_key (GedaKeyFile *key_file,
   if (!group) {
 
     g_set_error (error, GEDA_KEYFILE_ERROR,
-                 GEDA_KEYFILE_ERROR_GROUP_NOT_FOUND,
-                 _("Key file does not have group '%s'"),
+                 GEDA_KEYFILE_ERROR_GROUP_NOT_FOUND, "%s '%s'",
+                 _("Key file does not have group"),
                    group_name ? group_name : "(null)");
                  return FALSE;
   }
@@ -3825,7 +3823,7 @@ geda_keyfile_parse_value_as_string (GedaKeyFile *key_file,
           g_set_error_literal (error, GEDA_KEYFILE_ERROR,
                                GEDA_KEYFILE_ERROR_INVALID_VALUE,
                                _("Key file contains escape character "
-                               "at end of line"));
+                                 "at end of line"));
           break;
 
         default:
@@ -3845,9 +3843,9 @@ geda_keyfile_parse_value_as_string (GedaKeyFile *key_file,
               sequence[2] = '\0';
 
               g_set_error (error, GEDA_KEYFILE_ERROR,
-                           GEDA_KEYFILE_ERROR_INVALID_VALUE,
-                           _("Key file contains invalid escape "
-                           "sequence '%s'"), sequence);
+                           GEDA_KEYFILE_ERROR_INVALID_VALUE, "%s '%s'",
+                           _("Key file contains invalid escape sequence"),
+                           sequence);
             }
           }
           break;
@@ -3987,8 +3985,7 @@ geda_keyfile_parse_value_as_integer (GedaKeyFile *key_file,
     char *value_utf8 = geda_get_utf8 (value);
     g_set_error (error, GEDA_KEYFILE_ERROR,
                  GEDA_KEYFILE_ERROR_INVALID_VALUE,
-                 _("Value '%s' cannot be interpreted "
-                 "as a number."), value_utf8);
+                 _("Value '%s' cannot be interpreted as a number."), value_utf8);
                  GEDA_FREE (value_utf8);
 
                  return 0;
@@ -4036,8 +4033,7 @@ geda_keyfile_parse_value_as_double  (GedaKeyFile *key_file,
 
     g_set_error (error, GEDA_KEYFILE_ERROR,
                  GEDA_KEYFILE_ERROR_INVALID_VALUE,
-                 _("Value '%s' cannot be interpreted "
-                 "as a float number."),
+                 _("Value '%s' cannot be interpreted as a float number."),
                  value_utf8);
                  GEDA_FREE (value_utf8);
   }
@@ -4062,8 +4058,7 @@ geda_keyfile_parse_value_as_boolean (GedaKeyFile *key_file,
   value_utf8 = geda_get_utf8 (value);
   g_set_error (error, GEDA_KEYFILE_ERROR,
                GEDA_KEYFILE_ERROR_INVALID_VALUE,
-               _("Value '%s' cannot be interpreted "
-               "as a boolean."), value_utf8);
+               _("Value '%s' cannot be interpreted as a boolean."), value_utf8);
                GEDA_FREE (value_utf8);
 
                return FALSE;
