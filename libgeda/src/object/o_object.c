@@ -115,22 +115,32 @@ geda_object_read_buffer (GedaToplevel *toplevel, GList    *object_list,
   const char *line;
   bool        is_ask;
 
+  /*! \internal Subfunction to set err when bad marker encountered */
+  void set_err_bad_marker(const char *msg1) {
+
+    const char *msg2 = _("in file");
+
+    g_set_error (err, EDA_ERROR, EDA_ERROR_PARSE,
+                 "%s <%d>, %s [%s] :\n>>\n%s<<\n",
+                 msg1, line_count, msg2, name, line); /* line = bad text */
+  }
+
   if (buffer == NULL) {
     g_set_error (err, EDA_ERROR, EDA_ERROR_NULL_POINTER,
-                 _("<%s> detected NULL pointer to buffer "), __func__);
+                 _("detected NULL pointer to buffer"));
     return NULL;
   }
 
   /* Check the buffer is valid UTF-8 */
   if (!g_utf8_validate (buffer, (size < 0) ? -1 : size, NULL)) {
     g_set_error (err, EDA_ERROR, EDA_ERROR_UNKNOWN_ENCODING,
-                 _("Schematic data was not valid UTF-8"));
+                 _("Schematic data is not valid UTF-8"));
     return NULL;
   }
 
   if (!GEDA_IS_TOPLEVEL(toplevel)) {
     g_set_error (err, EDA_ERROR, EINVAL,
-                 _("<%s> Invalid pointer to GedaToplevel"), __func__);
+                 _("Invalid pointer to GedaToplevel"));
     return NULL;
   }
 
@@ -285,9 +295,7 @@ geda_object_read_buffer (GedaToplevel *toplevel, GList    *object_list,
           new_obj = NULL;
         }
         else {
-          g_set_error (err, EDA_ERROR, EDA_ERROR_PARSE, _("Read unexpected attach "
-                                                          "symbol start marker on line <%d>, in [%s] :\n>>\n%s<<\n"),
-                       line_count, name, line);
+          set_err_bad_marker(_("Read unexpected attach symbol start marker on line"));
           goto error2;
         }
         break;
@@ -307,19 +315,12 @@ geda_object_read_buffer (GedaToplevel *toplevel, GList    *object_list,
             embedded_level++;
           }
           else {
-
-            g_set_error (err, EDA_ERROR, EDA_ERROR_PARSE,
-                         _("Read unexpected embedded "
-                           "symbol start marker on line <%d>, in [%s] :\n>>\n%s<<\n"),
-                            line_count, name, line);
-           goto error;
+            set_err_bad_marker(_("Read unexpected embedded symbol start marker on line"));
+            goto error2;
           }
         }
         else {
-          g_set_error (err, EDA_ERROR, EDA_ERROR_PARSE,
-                       _("Read unexpected embedded "
-                         "symbol start marker on line <%d>, in [%s] :\n>>\n%s<<\n"),
-                          line_count, name, line);
+          set_err_bad_marker(_("Read unexpected embedded symbol start marker on line"));
           goto error2;
         }
         break;
@@ -355,9 +356,7 @@ geda_object_read_buffer (GedaToplevel *toplevel, GList    *object_list,
           embedded_level--;
         }
         else {
-          g_set_error (err, EDA_ERROR, EDA_ERROR_PARSE, _("Read unexpected embedded "
-                                                          "symbol end marker on line <%d>, in [%s] :\n>>\n%s<<\n"),
-                       line_count, name, line);
+          set_err_bad_marker(_("Read unexpected embedded symbol end marker on line"));
           goto error2;
         }
         break;
@@ -393,8 +392,8 @@ geda_object_read_buffer (GedaToplevel *toplevel, GList    *object_list,
         }
 
         if (fileformat_ver == 0) {
-          geda_log (_("Read an old format sym/sch file!\n"
-                      "Please run g[sym|sch]update on:\n[%s]\n"), name);
+          geda_log ("%s:\n[%s]\n", _("Read an old format sym/sch file!\n"
+                                     "Please run g[sym|sch]update on"), name);
         }
 
         break;
@@ -410,14 +409,16 @@ geda_object_read_buffer (GedaToplevel *toplevel, GList    *object_list,
           if (!is_ask) break;
           ++ptr;
         }
-        if (is_ask)
-          g_set_error (err, EDA_ERROR, EDA_ERROR_PARSE,
-                       _("Read garbage line <%d> in [%s] :\n>>\n%s<<\n"),
-                       line_count, name, line);
-        else
-          g_set_error (err, EDA_ERROR, EDA_ERROR_PARSE,
-                       _("Read garbage line <%d> in [%s]"),
-                       line_count, name);
+        if (is_ask) {
+          set_err_bad_marker(_("Read garbage near line"));
+        }
+        else {
+          /* The line contains data unsuitable for display, leave off */
+          const char *msg1 = _("Read garbage near line");
+          const char *msg2 = _("in file");
+          g_set_error (err, EDA_ERROR, EDA_ERROR_PARSE, "%s <%d> %s [%s]",
+                       msg1, line_count, msg2, name);
+        }
         new_obj = NULL;
         goto error2;
     }
@@ -449,7 +450,7 @@ geda_object_read_buffer (GedaToplevel *toplevel, GList    *object_list,
 
 error:
 
-   g_prefix_error(err, _(" On or about line %d, "), line_count);
+   g_prefix_error(err, " %s %d, ", _("On or about line"), line_count);
 
 error2:
 

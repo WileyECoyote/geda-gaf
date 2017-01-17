@@ -22,7 +22,10 @@
     * src/geda/geda_keyfile.c: Revise output messages and formats in order
       to minimize format specifiers in translatable string.
 
-    * src/object/o_object.c: Add function geda_object_show_buffer_err.
+    * src/object/o_object.c: Add function geda_object_show_buffer_err. Add
+      subfunction set_err_bad_marker in geda_object_read_buffer and revise
+      existing output messages and formats in order to minimize specifiers
+      for translated strings.
 
 2017-01-13 Wiley E. Hill <wileyhill@gmail.com>
 
