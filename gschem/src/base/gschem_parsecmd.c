@@ -289,7 +289,7 @@ int gschem_parse_commandline(int argc, char *argv[])
 
           const char *err_ukn = _("Unknown option");
 
-          fprintf (stderr, "%s: -%c.\n\n", _ERROR, err_ukn, optopt);
+          fprintf (stderr, "%s: %s -%c.\n\n", _ERROR, err_ukn, optopt);
         }
         else {
 
@@ -303,8 +303,8 @@ int gschem_parse_commandline(int argc, char *argv[])
 
         fprintf (stderr, "\n%s %s %s.\n", _("Run"), argv[0], err_info);
         exit (1);
-        break;
       }
+      break;
 
       case 'x':
         /* Argument is a Scheme expression to be evaluated on gschem
