@@ -134,31 +134,40 @@ geda_complex_object_check_symbol_version(GedaToplevel *toplevel, GedaObject *obj
 
   const char *schematic;
   const char *refdes;
-  const char *match;
-  const char *newer;
-  const char *oddity;
-  const char *older;
-  const char *parse;
-
-  const char *clash_msg;
-  const char *major_msg;
-  const char *minor_msg;
-  const char *parse_msg;
-  const char *warn_msg;
-
-  match     = _("mismatch");
-  newer     = _("newer");
-  oddity    = _("oddity");
-  older     = _("older");
-  parse     = _("parse error");
-
-  clash_msg = _("\t<%s> Instantiated symbol <%s> is %s than the version in library\n");
-  major_msg = _("\tMAJOR VERSION CHANGE (instantiated %.3f, library %.3f, %s)!\n");
-  minor_msg = _("\tMinor version change (instantiated %.3f, library %.3f)\n");
-  parse_msg = _("\tCould not parse symbol file\n");
-  warn_msg  = _("WARNING: Symbol version %s on refdes %s:\n");
 
   Page *page;
+
+  void write_log_instantiated_msg (const char *str1) {
+
+    const char *str2 = _("instantiated");
+    const char *str3 = _("library");
+    const char *str4 = _("check");
+
+    geda_log_w ("\t%s (%s %.3f, %s %.3f, %s %s)!\n",
+                str1, str2, outside_value, str3, inside_value, str4, refdes);
+  }
+
+  /*
+   * "\t<schematic> Instantiated symbol <fname>
+   *  is older/newer than the version in library\n" */
+  void write_log_warn_clash (const char *str4) {
+
+    const char *str1 = _("Instantiated symbol");
+    const char *str2 = object->complex->filename;
+    const char *str3 = _("is");
+    const char *str5 = _("than the version in library");
+
+    geda_log_w ("\t<%s> %s <%s> %s %s %s\n",
+                schematic, str1, str2, str3, str4, str5);
+  }
+
+  void write_log_warn_msg (const char *str2) {
+
+    const char *str1 = _("WARNING: Symbol version");
+    const char *str3 = _("on refdes");
+
+    geda_log_w ("%s %s %s %s:\n", str1, str2, str3, refdes);
+  }
 
   if (!GEDA_IS_COMPLEX(object)) {
     geda_complex_object_error(__func__, object);
@@ -211,11 +220,12 @@ geda_complex_object_check_symbol_version(GedaToplevel *toplevel, GedaObject *obj
 
     if (inside_value == 0 && inside == err_check) {
 
-      geda_log_w(warn_msg, parse, refdes);
+      write_log_warn_msg(_("parse error"));
+
+      const char *parse_msg = _("Could not parse symbol file");
 
       if (g_utf8_validate(inside, -1, NULL)) {
-
-        geda_log_w ("\t%s symversion=%s\n", parse_msg, inside);
+        geda_log_w ("\t%s\nsymversion=%s\n", parse_msg, inside);
       }
       else {
         geda_log_w ("\t%s\n",parse_msg);
@@ -234,9 +244,8 @@ geda_complex_object_check_symbol_version(GedaToplevel *toplevel, GedaObject *obj
     outside_value = strtod(outside, &err_check);
 
     if (outside_value == 0 && outside == err_check) {
-
-      geda_log_w (warn_msg, parse, refdes);
-      geda_log_w (_("\tCould not parse attached symversion=%s\n"), outside);
+      write_log_warn_msg(_("parse error"));
+      geda_log_w ("\t%s symversion=%s\n", _("Could not parse attached"), outside);
       goto done;
 
     }
@@ -257,9 +266,10 @@ geda_complex_object_check_symbol_version(GedaToplevel *toplevel, GedaObject *obj
     /* No symversion inside, but a version is outside, is a weird case */
     if (!inside_present && outside_present) {
 
-      geda_log_w (warn_msg, oddity, refdes);
-      geda_log_w (_("\tsymversion=%s attached to instantiated symbol,"
-      " but version not found inside symbol file\n"), outside);
+      write_log_warn_msg(_("oddity"));
+      geda_log_w ("\tsymversion=%s %s\n", outside,
+                  _("attached to instantiated symbol,"
+                    " but version not found inside symbol file"));
 
     }
     else {
@@ -275,8 +285,8 @@ geda_complex_object_check_symbol_version(GedaToplevel *toplevel, GedaObject *obj
         double inside_major, inside_minor;
         double outside_major, outside_minor;
 
-        geda_log_w (warn_msg, match, refdes);
-        geda_log_w (clash_msg, schematic, object->complex->filename, older);
+        write_log_warn_msg(_("mismatch"));
+        write_log_warn_clash(_("older"));
 
         /* break up the version values into major.minor numbers */
         inside_major = floor(inside_value);
@@ -300,7 +310,7 @@ geda_complex_object_check_symbol_version(GedaToplevel *toplevel, GedaObject *obj
 
         if (inside_major > outside_major) {
 
-          geda_log_w (major_msg, outside_value, inside_value, refdes);
+          write_log_instantiated_msg (_("MAJOR VERSION CHANGE"));
 
           if (page) {
 
@@ -318,15 +328,15 @@ geda_complex_object_check_symbol_version(GedaToplevel *toplevel, GedaObject *obj
           /* don't bother checking minor changes if there are major ones*/
         }
         else if (inside_minor > outside_minor) {
-          geda_log (minor_msg,  outside_value, inside_value);
+          write_log_instantiated_msg (_("Minor version change"));
         }
       }
       else {
         /* outside value is greater than inside value, this is weird case */
         if ((inside_present && outside_present) && (outside_value > inside_value))
         {
-          geda_log_w (warn_msg, oddity, refdes);
-          geda_log_w (clash_msg, schematic, object->complex->filename, newer);
+          write_log_warn_msg(_("oddity"));
+          write_log_warn_clash(_("newer"));
         }
       }
     }
@@ -370,7 +380,7 @@ o_complex_create_placeholder(GedaToplevel *toplevel, GedaComplex *complex,
   complex->prim_objs = g_list_prepend (complex->prim_objs, new_prim_obj);
 
   /* Add some useful text */
-  not_found_text = geda_sprintf (_("Component not found:\n %s"), complex->filename);
+  not_found_text = geda_sprintf ("%s:\n %s", _("Component not found"), complex->filename);
 
   new_prim_obj = geda_text_object_new(DETACHED_ATTRIBUTE_COLOR,
                                       x + NOT_FOUND_TEXT_X,
@@ -882,7 +892,12 @@ GedaObject *geda_complex_object_new(GedaToplevel *toplevel,
     GError *err = NULL;
 
     /* add connections till translated */
-    complex->prim_objs = geda_object_read_buffer (toplevel, NULL, buffer, -1, complex->filename, &err);
+    complex->prim_objs = geda_object_read_buffer (toplevel,
+                                                  NULL,
+                                                  buffer,
+                                                  -1,
+                                                  complex->filename,
+                                                  &err);
 
     if (err) {
 
@@ -946,8 +961,12 @@ GedaObject *geda_complex_object_new(GedaToplevel *toplevel,
  *
  *  \return a new complex object
  */
-GedaObject *geda_complex_object_new_embedded(int x, int y, int angle, int mirror,
-                               const char *basename, int selectable)
+GedaObject *geda_complex_object_new_embedded(int x,
+                                             int y,
+                                             int angle,
+                                             int mirror,
+                                      const char *basename,
+                                             int selectable)
 {
   GedaObject  *new_obj;
   GedaComplex *complex;
@@ -985,7 +1004,8 @@ GedaObject *geda_complex_object_new_embedded(int x, int y, int angle, int mirror
  *
  *  \return A GList of promoted attributes.
  */
-GList *geda_complex_object_promote_attribs (GedaToplevel *toplevel, GedaObject *object)
+GList *geda_complex_object_promote_attribs (GedaToplevel *toplevel,
+                                            GedaObject   *object)
 {
   GList *promoted   = NULL;
   GList *promotable = NULL;

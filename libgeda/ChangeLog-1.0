@@ -4,6 +4,14 @@
       minimize format specifiers in translatable string, reduce scope of
       pointer to translations to avoid calls to libintl when no errors.
 
+    * src/object/o_complex_object.c: Redo output of messages in function
+      o_complex_create_placeholder and geda_complex_object_check_symbol_
+      version; add subfunctions:
+
+            * write_log_instantiated_msg
+            * write_log_warn_clash
+            * write_log_warn_msg
+
 2017-01-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gettext.h: Conditionally use local libintl.h header if
