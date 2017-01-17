@@ -1,3 +1,7 @@
+2017-01-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/nl.po: Update Dutch translations.
+
 2017-01-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_check.c: Revise output messages and formats in order to minimize
