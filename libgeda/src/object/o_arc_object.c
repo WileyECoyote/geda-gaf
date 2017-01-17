@@ -1468,23 +1468,28 @@ geda_arc_object_read (const char buf[], unsigned int release_ver,
 
   /* Error check */
   if (radius < 0) {
-
-    geda_log_w (_("Found arc with negative radius [ %c %d, %d, %d, %d, %d, %d ]\n"),
-                   type, x1, y1, radius, start_angle, arc_sweep, color);
+    const char *msg = _("Found arc with negative radius");
+    if (geda_object_show_buffer_err(msg, buf)) {
+      geda_log_w("%s: %d.\n", msg, radius);
+    }
     radius = abs(radius);
-    geda_log_w (_("Setting radius to %d\n"), radius);
+    geda_log_w ("%s %d\n", _("Setting radius to"), radius);
   }
   else if (radius == 0) {
-
-    geda_log_w (_("Found an arc with radius zero [ %c %d, %d, %d, %d, %d, %d ]\n"),
-                   type, x1, y1, radius, start_angle, arc_sweep, color);
+    const char *msg = _("Found an arc with radius zero");
+    if (geda_object_show_buffer_err(msg, buf)) {
+      geda_log_w("%s\n", msg);
+    }
     geda_log_w (_("Setting zero radius to 1000\n"));
     radius = 1000;
   }
 
   if (color < 0 || color > MAX_COLORS) {
-    geda_log_w (_("Found an invalid color [ %s ]\n"), buf);
-    geda_log_v (_("Setting color to default color\n"));
+    const char *msg = _("Found an invalid color");
+    if (geda_object_show_buffer_err(msg, buf)) {
+      geda_log_w("%s: %d.\n", msg, color);
+    }
+    geda_log_w (_("Setting color to default color\n"));
     color = DEFAULT_ARC_COLOR_INDEX;
   }
 

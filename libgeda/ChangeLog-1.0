@@ -27,6 +27,11 @@
       existing output messages and formats in order to minimize specifiers
       for translated strings.
 
+    * src/object/o_arc_object.c: Revise validations in geda_arc_object_read
+      to utilize geda_object_show_buffer_err and output reduced error messages
+      when geda_object_show_buffer_err returns TRUE so that the default is
+      to show only the erroneous portion of the data unless verbose is set.
+
 2017-01-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gettext.h: Conditionally use local libintl.h header if
