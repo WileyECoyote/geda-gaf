@@ -1,0 +1,458 @@
+# Italian translation for the gEDA gsymcheck package.
+# Copyright (C) 2014 gEDA Developers
+# This file is distributed under the same license as the gEDA gsymcheck package.
+# Marco Ciampa <ciampix@libero.it>, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: geda-gsymcheck\n"
+"Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
+"POT-Creation-Date: 2017-01-15 03:47-0600\n"
+"PO-Revision-Date: 2015-01-12 10:15+0300\n"
+"Last-Translator: Marco Ciampa <ciampix@libero.it>\n"
+"Language-Team: Italian <it@li.org>\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#: gsymcheck/src/g_rc.c:53
+#, c-format
+msgid ""
+"You are running gEDA/gsymcheck version [%s%s.%s],\n"
+"but you have a version [%s] gsymcheckrc file:\n"
+"\"%s\"\n"
+"Please be sure that you have the latest rc file.\n"
+msgstr ""
+"È in esecuzione gEDA/gaf versione [%s%s.%s],\n"
+"ma c'è la versione [%s] del file gsymcheckrc:\n"
+"\"%s\"\n"
+"Assicurarsi di usare l'ultima copia del file rc.\n"
+
+#: gsymcheck/src/gsymcheck.c:130
+msgid "Loaded file"
+msgstr "File caricato"
+
+#: gsymcheck/src/gsymcheck.c:137
+msgid "ERROR! You must specify at least one filename"
+msgstr "ERRORE! Devi specificare almeno un nomefile"
+
+#: gsymcheck/src/parsecmd.c:70
+#, c-format
+msgid ""
+"\n"
+"Usage: %s [OPTIONS] filename1 ... filenameN\n"
+"  -h, --help        Print usage\n"
+"  -q, --quiet       Quiet mode\n"
+"  -u, --suppress    Suppress \"No errors found\" when no errors\n"
+"  -v, --verbose     Verbose mode (cumulative: errors, warnings, info)\n"
+"                    Use this to get the actual symbol error messages\n"
+"  -V, --version     Show version information.\n"
+"\n"
+"filename1 ... filenameN are the symbols to check\n"
+"\n"
+msgstr ""
+"\n"
+"Uso: %s [OPZIONI] nomefile1 ... nomefileN\n"
+"  -h, --help        Stampa l'uso\n"
+"  -q, --quiet       Modalità silenziosa\n"
+"  -u, --suppress    Sopprimere \"Nessun errore trovato\" quando non ci sono "
+"errori\n"
+"  -v, --verbose     Modalità prolissa (cumulativo: errori, avvertimenti, "
+"info)\n"
+"                    Usarla per ottenere i messaggi di errore dei simboli "
+"correnti\n"
+"  -V, --version     Informazioni Mostra la versione.\n"
+"\n"
+"nomefile1 ... nomefileN sono i simboli da controllare\n"
+"\n"
+
+#: gsymcheck/src/parsecmd.c:94
+#, c-format
+msgid ""
+"gEDA/gsymcheck %s (%s) (g%.7s)\n"
+"Copyright (C) 1998-2017 gEDA developers\n"
+"This is free software, and you are welcome to redistribute it under\n"
+"certain conditions. For details, see the file `COPYING', which is\n"
+"included in the gEDA distribution.\n"
+"There is NO WARRANTY, to the extent permitted by law.\n"
+msgstr ""
+"gEDA/gschem %s (%s) (g%.7s)\n"
+"Copyright (C) 1998-2017 sviluppatori gEDA\n"
+"Questo è software libero, è possibile la sua ridistribuzione sotto\n"
+"certe condizioni. Per i dettagli, vedere il file `COPYING', incluso\n"
+"nella distribuzione di gEDA.\n"
+"Non c'è ALCUNA GARANZIA, nei limiti di legge.\n"
+
+#: gsymcheck/src/s_check.c:105
+msgid "Checking"
+msgstr "Controllo"
+
+#: gsymcheck/src/s_check.c:120
+msgid "No errors or warnings were detected.\n"
+msgstr "Non sono stati rilevati errori o avvisi.\n"
+
+#: gsymcheck/src/s_check.c:205
+msgid "File"
+msgstr "File"
+
+#: gsymcheck/src/s_check.c:214
+msgid "No warnings detected\n"
+msgstr "Nessun avviso rilevato\n"
+
+#: gsymcheck/src/s_check.c:220
+msgid "1 warning found"
+msgstr "1 avvertimento trovati"
+
+#: gsymcheck/src/s_check.c:223
+#, c-format
+msgid "%d warnings found"
+msgstr "%d avvertimenti trovati"
+
+#: gsymcheck/src/s_check.c:227
+msgid "use -vv to view details"
+msgstr "(usare -vv per visualizzare i dettagli)"
+
+#: gsymcheck/src/s_check.c:240
+msgid "No errors detected\n"
+msgstr "Nessun errore trovato\n"
+
+# No Fault Found
+#: gsymcheck/src/s_check.c:252
+msgid "1 error found"
+msgstr "Nessun errore trovato"
+
+#: gsymcheck/src/s_check.c:255
+#, c-format
+msgid "%d errors found"
+msgstr "%d errori trovati"
+
+#: gsymcheck/src/s_check.c:259
+msgid " (use -v to view details)\n"
+msgstr "(usare -v per visualizzare i dettagli)\n"
+
+#: gsymcheck/src/s_check.c:392
+#, c-format
+msgid "Found forbidden %s= attribute: [%s=%s]\n"
+msgstr "Trovato attributo %s= proibito: [%s=%s]\n"
+
+#: gsymcheck/src/s_check.c:397
+#, c-format
+msgid "Found obsolete %s= attribute: [%s=%s]\n"
+msgstr "Trovato attributo %s= obsoleto: [%s=%s]\n"
+
+# pin attribute misplaced Found
+#: gsymcheck/src/s_check.c:405
+msgid "Found misplaced pin attribute"
+msgstr "attributo pin fuori luogo Trovato"
+
+#: gsymcheck/src/s_check.c:411
+#, c-format
+msgid "Found unknown %s= attribute: [%s=%s]\n"
+msgstr "Trovato attributo %s= sconosciuto: [%s=%s]\n"
+
+# Found attached mistakenly attribute
+#: gsymcheck/src/s_check.c:416
+msgid "Found incorrectly attached attribute"
+msgstr "Trovato attributo allegato erroneamente"
+
+#: gsymcheck/src/s_check.c:422
+msgid "Found a simple text object with only SHOW_NAME or SHOW_VALUE set"
+msgstr ""
+"Trovato un oggetto di testo semplice con impostati solo SHOW_NAME o "
+"SHOW_VALUE"
+
+#: gsymcheck/src/s_check.c:491
+msgid "Found text with a '\\' in it: consider to escape it with"
+msgstr "Trovato testo con un '\\' in esso: considerate di farne l'escape con"
+
+#: gsymcheck/src/s_check.c:500
+msgid "Found text with a trailing '': consider to escape it with"
+msgstr "Trovato testo con un '' finale: considerate di farne l'escape con"
+
+#: gsymcheck/src/s_check.c:506
+msgid "Found text with unbalanced overbar markers"
+msgstr "Trovato testo con marcatori non bilanciati"
+
+#: gsymcheck/src/s_check.c:552
+msgid "Found a connection inside a symbol\n"
+msgstr "Trovata una connessione dentro un simbolo\n"
+
+#: gsymcheck/src/s_check.c:608
+msgid "Found description"
+msgstr "trovato descrizione"
+
+#: gsymcheck/src/s_check.c:615
+#, c-format
+msgid "Found duplicate description=%s attributes\n"
+msgstr "descrizione=%s attributi duplicati trovati\n"
+
+#: gsymcheck/src/s_check.c:626
+msgid "Missing description= attribute\n"
+msgstr "Descrizione= mancante attributo\n"
+
+#: gsymcheck/src/s_check.c:661
+msgid "Found device"
+msgstr "Trovato device"
+
+#: gsymcheck/src/s_check.c:668
+#, c-format
+msgid "Found duplicate device=%s attributes\n"
+msgstr "attributi trovato dispositivo duplicato=%s\n"
+
+#: gsymcheck/src/s_check.c:674 gsymcheck/src/s_check.c:682
+msgid "Found multiple device= attributes\n"
+msgstr "Trovati attributi multipli dispositivo=\n"
+
+#: gsymcheck/src/s_check.c:693
+msgid "Missing device= attribute\n"
+msgstr "Manca attributo device=\n"
+
+#: gsymcheck/src/s_check.c:704
+msgid "Found graphical symbol, device=none\n"
+msgstr "Trovato simbolo grafico, device=none\n"
+
+#: gsymcheck/src/s_check.c:710
+msgid "Found graphical symbol, device= should be set to none\n"
+msgstr "Trovato simbolo grafico, device= dovrebbe essere impostato a none\n"
+
+# symbol file name does not contain the device
+#: gsymcheck/src/s_check.c:723
+msgid "Device not found in symbol filename"
+msgstr "simbolo nome file non contiene il dispositivo"
+
+#: gsymcheck/src/s_check.c:765
+#, c-format
+msgid "Found net=%s attribute\n"
+msgstr "Trovato attributo net=%s\n"
+
+#: gsymcheck/src/s_check.c:771 gsymcheck/src/s_check.c:776
+#, c-format
+msgid "Bad net= attribute [net=%s]\n"
+msgstr "Attributo net= sbagliato [net=%s]\n"
+
+#: gsymcheck/src/s_check.c:786
+#, c-format
+msgid "Found pin number %s in net attribute\n"
+msgstr "Trovato numero di pin %s in attributo net\n"
+
+#: gsymcheck/src/s_check.c:803
+msgid "Found duplicate pin in net= attributes"
+msgstr "Trovato perno duplicato negli attributi net="
+
+#: gsymcheck/src/s_check.c:831
+msgid "Found pinnumber 0 in net= attribute\n"
+msgstr "Trovato pinnumber 0 in attributo net=\n"
+
+#: gsymcheck/src/s_check.c:838
+#, c-format
+msgid "Found multiple pinnumber=%s attributes on one pin\n"
+msgstr "Trovati attributi pinnumber=%s multipli su un pin\n"
+
+#: gsymcheck/src/s_check.c:846
+msgid "Missing pinnumber= attribute\n"
+msgstr "Attributo pinnumber= mancante\n"
+
+#: gsymcheck/src/s_check.c:862
+#, c-format
+msgid "Found duplicate pinnumber=%s attribute in the symbol\n"
+msgstr "Trovato attributo pinnumber=%s duplicato nel simbolo\n"
+
+#: gsymcheck/src/s_check.c:867
+msgid "Found pinnumber=0 attribute\n"
+msgstr "Trovato attributo pinnumber=0\n"
+
+#: gsymcheck/src/s_check.c:886
+msgid "Notice: net attribute using defined pin number"
+msgstr "Avviso: l'attributo la rete utilizzando il numero di pin definiti"
+
+#: gsymcheck/src/s_check.c:899
+#, c-format
+msgid "Found %d pins inside symbol\n"
+msgstr "Trovati %d pin dentro un simbolo\n"
+
+#: gsymcheck/src/s_check.c:949
+msgid "Missing pinseq= attribute\n"
+msgstr "Attributo mancante pinseq=\n"
+
+#: gsymcheck/src/s_check.c:956
+#, c-format
+msgid "Found pinseq=%s attribute\n"
+msgstr "Trovato attributo pinseq=%s\n"
+
+#: gsymcheck/src/s_check.c:962
+msgid "Found pinseq=0 attribute\n"
+msgstr "Trovato attributo pinseq=0\n"
+
+#: gsymcheck/src/s_check.c:968
+#, c-format
+msgid "Found multiple pinseq=%s attributes on one pin\n"
+msgstr "Trovati attributi multipli pinseq=%s su un pin\n"
+
+#: gsymcheck/src/s_check.c:1018
+#, c-format
+msgid "Found duplicate pinseq=%s attribute in the symbol\n"
+msgstr "Trovato attributo pinseq=%s duplicato nel simbolo\n"
+
+#: gsymcheck/src/s_check.c:1064
+#, c-format
+msgid "Found pintype=%s attribute\n"
+msgstr "Trovato attributo pintype=%s\n"
+
+#: gsymcheck/src/s_check.c:1068
+#, c-format
+msgid "Unknown pintype=%s attribute\n"
+msgstr "pintype=%s Unknown attributo\n"
+
+#: gsymcheck/src/s_check.c:1106
+#, c-format
+msgid "Found offgrid pin at location (x1=%d,y1=%d)\n"
+msgstr "Trovato pin fuori griglia alla posizione (x1=%d,y1=%d)\n"
+
+#: gsymcheck/src/s_check.c:1117
+#, c-format
+msgid "Found offgrid pin at location (x2=%d,y2=%d)\n"
+msgstr "Trovato pin fuori griglia alla posizione (x2=%d,y2=%d)\n"
+
+#: gsymcheck/src/s_check.c:1163
+#, c-format
+msgid "Found numslots=%s attribute\n"
+msgstr "Trovati attributi numslots=%s\n"
+
+#: gsymcheck/src/s_check.c:1168
+msgid "numslots set to zero, symbol does not have slots\n"
+msgstr "numslots impostato a zero, il simbolo non ha slots\n"
+
+#: gsymcheck/src/s_check.c:1188
+#, c-format
+msgid "Found %s slotdef= attributes. Expecting %s slotdef= attributes\n"
+msgstr "Trovati %s attributi slotdef=. Previsti %s attributi slotdef=\n"
+
+#: gsymcheck/src/s_check.c:1194
+#, c-format
+msgid "Found slotdef=%s attribute\n"
+msgstr "Trovato attributo slotdef=%s\n"
+
+#: gsymcheck/src/s_check.c:1201 gsymcheck/src/s_check.c:1230
+#: gsymcheck/src/s_check.c:1239 gsymcheck/src/s_check.c:1247
+#, c-format
+msgid "Invalid slotdef=%s attributes\n"
+msgstr "attributi non valido slotdef=%s\n"
+
+#: gsymcheck/src/s_check.c:1209
+msgid "Found a zero slot in slotdef"
+msgstr "Trovato uno zero slot in slotdef"
+
+#: gsymcheck/src/s_check.c:1221
+#, c-format
+msgid "Slot %s is larger then the maximum number of slots (%s)\n"
+msgstr "Slot %s è più grande del valore massimo di slot (%s)\n"
+
+#: gsymcheck/src/s_check.c:1257
+msgid "Duplicate slot number in slotdef"
+msgstr "Numero slot duplicato in slotdef"
+
+#: gsymcheck/src/s_check.c:1277
+#, c-format
+msgid "Not enough pins in slotdef=%s\n"
+msgstr "Non abbastanza pin in slotdef=%s\n"
+
+#: gsymcheck/src/s_check.c:1285
+#, c-format
+msgid "Too many pins in slotdef=%s\n"
+msgstr "Troppi pin in slotdef=%s\n"
+
+#: gsymcheck/src/s_check.c:1295
+#, c-format
+msgid "Found a zero pin in slotdef=%s\n"
+msgstr "Trovato uno zero pin in slotdef=%s\n"
+
+#: gsymcheck/src/s_check.c:1313
+#, c-format
+msgid "Missing slotdef= (there should be %s slotdef= attributes)\n"
+msgstr "Mancante slotdef= (dovrebbero esserci %s attributi slotdef=)\n"
+
+#: gsymcheck/src/s_check.c:1332
+msgid "Malformed slotdef= (the format is #:#,#,#,...)\n"
+msgstr "Malformato slotdef= (il formato è #:#,#,#,...)\n"
+
+#: gsymcheck/src/s_check.c:1377
+#, c-format
+msgid "Found %d distinct pins in slots\n"
+msgstr "Trovati %d pin distinti negli slot\n"
+
+#: gsymcheck/src/s_check.c:1453
+#, c-format
+msgid "Found old pin#=# attribute: %s\n"
+msgstr "Trovato vecchio attributo pin#=#: %s\n"
+
+#: gsymcheck/src/s_check.c:1516
+msgid "Found old slot#=# attribute"
+msgstr "Trovato vecchio attributo slot#=#"
+
+#: gsymcheck/src/s_check.c:1541
+#, c-format
+msgid "Missing %s= attribute\n"
+msgstr "Attributo %s= mancante\n"
+
+#: gsymcheck/src/s_check.c:1548
+#, c-format
+msgid "Found %s=%s attribute\n"
+msgstr "Trovato attributo %s=%s\n"
+
+#: gsymcheck/src/s_check.c:1558
+#, c-format
+msgid "Found multiple %s=%s attributes\n"
+msgstr "Trovati attributi %s=%s multipli\n"
+
+#: gsymcheck/src/s_check.c:1596
+msgid "Check pin number"
+msgstr "Controllare il numero pin"
+
+#: gsymcheck/src/s_check.c:1604
+msgid "Check pin sequence"
+msgstr "Controllare la sequenza pin"
+
+#: gsymcheck/src/s_check.c:1618 gsymcheck/src/s_check.c:1624
+#, c-format
+msgid "Found %s attribute\n"
+msgstr "Trovato attributo %s\n"
+
+#: gsymcheck/src/s_check.c:1632
+msgid "Missing footprint= attribute\n"
+msgstr "Attributo footprint= mancante\n"
+
+#: gsymcheck/src/s_check.c:1637
+msgid "Multiple footprint= attributes found\n"
+msgstr "Trovati multipli attributi footprint=\n"
+
+#: gsymcheck/src/s_check.c:1642
+msgid "Missing refdes= attribute\n"
+msgstr "Attributo refdes= mancante\n"
+
+#: gsymcheck/src/s_check.c:1647
+msgid "Multiple refdes= attributes found\n"
+msgstr "Trovati multipli attributi refdes=\n"
+
+#: gsymcheck/src/s_check.c:1668
+msgid "Found a net inside a symbol\n"
+msgstr "Trovata una net dentro un simbolo\n"
+
+#: gsymcheck/src/s_check.c:1675
+msgid "Found a bus inside a symbol\n"
+msgstr "Trovato un bus dentro un simbolo\n"
+
+#: gsymcheck/src/s_symstruct.c:77
+msgid "Information"
+msgstr "Informazioni"
+
+#: gsymcheck/src/s_symstruct.c:94
+msgid "Warning"
+msgstr "Avvertimento"
+
+#: gsymcheck/src/s_symstruct.c:111
+msgid "Error"
+msgstr "Errore"
