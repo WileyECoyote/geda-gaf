@@ -948,7 +948,7 @@ eda_config_load (EdaConfig *cfg, GError **error)
                   _("Undefined configuration filename"));
     }
     else {
-      fprintf(stderr, "Error loading configuration, file name is undefined\n");
+      fprintf(stderr, _("Error loading configuration, file name is undefined\n"));
     }
   }
   else {
@@ -1004,11 +1004,11 @@ eda_config_load (EdaConfig *cfg, GError **error)
 
         if(error != NULL) {
 
-          g_set_error(error, EDA_ERROR, errno,
-                     "accessing file %s", filename);
+          g_set_error(error, EDA_ERROR, errno, "%s '%s'",
+                     _("accessing file"), filename);
         }
         else {
-          fprintf(stderr, "Error loading configuration %s, %s\n",
+          fprintf(stderr, "%s %s, %s\n", _("Error loading configuration"),
                   filename, strerror(errno));
         }
       }
@@ -1065,7 +1065,7 @@ eda_config_save (EdaConfig *cfg, GError **error)
                  _("Undefined configuration filename"));
     }
     else {
-      fprintf(stderr, "Error saving configuration, file name is undefined\n");
+      fprintf(stderr, _("Error saving configuration, file name is undefined\n"));
     }
   }
   else {
@@ -1090,8 +1090,8 @@ eda_config_save (EdaConfig *cfg, GError **error)
       if (!g_file_test (filename, G_FILE_TEST_EXISTS)) {
         if (!g_file_test (dir, G_FILE_TEST_EXISTS)) {
           geda_create_path (dir, S_IRWXU | S_IRWXG);
-          g_set_error(error, EDA_ERROR, status,
-                      _("file <%s> %s"), filename, strerror(errno));
+          g_set_error(error, EDA_ERROR, status, "%s '%s' %s", _("file"),
+                      filename, strerror(errno));
         }
       }
 
@@ -1126,17 +1126,19 @@ eda_config_save (EdaConfig *cfg, GError **error)
           g_set_error(error, EDA_ERROR, errno, strerror(errno), filename);
         }
         else {
-          fprintf(stderr, "Error saving configuration to %s, %s\n",
-                  filename, strerror(errno));
+          const char *err_msg = _("Error saving configuration to");
+          fprintf(stderr, "%s %s, %s\n", err_msg, filename, strerror(errno));
         }
       }
     }
     else {
-      if(error != NULL) {
-        g_set_error(error, EDA_ERROR, errno, _("bad path in file %s"), filename);
+      if (error != NULL) {
+        const char *err_msg = _("bad path in file");
+        g_set_error(error, EDA_ERROR, errno, "%s %s", err_msg, filename);
       }
       else {
-        fprintf(stderr, "Error saving configuration, bad path in %s\n", filename);
+        const char *err_msg = _("Error saving configuration, bad path in");
+        fprintf(stderr, "%s %s\n", err_msg, filename);
       }
 
     }
@@ -1467,8 +1469,8 @@ eda_config_get_keys (EdaConfig *cfg, const char *group, unsigned *length,
   /* If the hashtable was never created, then no matching group was found. */
   if (key_table == NULL) {
     g_set_error (error, EDA_CONFIG_ERROR,
-                 EDA_CONFIG_ERROR_GROUP_NOT_FOUND,
-                 _("Configuration does not have group '%s'\n"),
+                 EDA_CONFIG_ERROR_GROUP_NOT_FOUND, "%s '%s'",
+                 _("Configuration does not have group"),
                  group ? group : "(null)");
     return NULL;
   }
@@ -1533,9 +1535,8 @@ eda_config_get_source (EdaConfig *cfg, const char *group,
 
   if (!eda_config_has_group (cfg, group)) {
     g_set_error (error, EDA_CONFIG_ERROR,
-                 EDA_CONFIG_ERROR_GROUP_NOT_FOUND,
-                 _("Configuration does not have group '%s'"),
-                 group);
+                 EDA_CONFIG_ERROR_GROUP_NOT_FOUND, "%s '%s'",
+                 _("Configuration does not have group"), group);
     return NULL;
   }
 
@@ -1548,9 +1549,8 @@ eda_config_get_source (EdaConfig *cfg, const char *group,
   }
 
   g_set_error (error, EDA_CONFIG_ERROR,
-               EDA_CONFIG_ERROR_KEY_NOT_FOUND,
-               _("Configuration does not have key '%s'"),
-               key);
+               EDA_CONFIG_ERROR_KEY_NOT_FOUND, "%s '%s'",
+               _("Configuration does not have key"), key);
   return NULL;
 }
 

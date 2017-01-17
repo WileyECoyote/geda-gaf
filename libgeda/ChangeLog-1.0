@@ -12,6 +12,10 @@
             * write_log_warn_clash
             * write_log_warn_msg
 
+    * src/geda/geda_config.c: Translate outputs when GError not available,
+      i.e. fprintf. Revise existing output messages and formats in order to
+      minimize format specifiers in translatable string.
+
 2017-01-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gettext.h: Conditionally use local libintl.h header if
