@@ -6,6 +6,8 @@
 
     * po/pl.po: Update Polish translations.
 
+    * src/base/gschem.c: Revise GEDADATA; eliminate personal pronoun.
+
 2017-01-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: Update Afrikaan translations.

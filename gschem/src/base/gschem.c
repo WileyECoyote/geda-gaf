@@ -234,7 +234,10 @@ load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[]
 
     /*! \internal Sessions */
     if (start_session) { /* If session specified on command line */
+
       if (!i_sessions_open_session(w_current, start_session)) {
+
+        /* There was an error loading the requested session */
         geda_log_q("%s: %s\n", _("An error was encountered loading requested session"), start_session);
 
         /* Open a blank document */
@@ -310,7 +313,7 @@ static void gschem( int argc, char *argv[])
 
   if (geda_sys_data_path () == NULL) {
     const char *message =
-      _("You must set the GEDADATA environment variable!\n\n"
+      _("The GEDADATA environment variable must be set!\n\n"
         "gschem cannot locate some data files. Please ensure the GEDADATA\n"
         "environment variable points to the correct location.\n");
 
