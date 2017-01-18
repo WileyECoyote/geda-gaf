@@ -221,7 +221,7 @@ GList *s_hierarchy_remove_urefconn(NETLIST *head, char *uref_disable)
           }
 
 #if DEBUG
-          printf("  looking at : %s %s\n", uref, /*pin*/ uref[i+1]);
+          printf("  looking at : %s %d\n", uref, /*pin*/ uref[i+1]);
 #endif
 
           if (strcmp(uref_disable, uref) == 0) {
