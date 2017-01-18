@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-14 12:26-0600\n"
+"POT-Creation-Date: 2017-01-18 14:12-0600\n"
 "PO-Revision-Date: 2012-02-04 00:18+0000\n"
 "Last-Translator: Krzysztof Kościuszkiewicz <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -433,117 +433,116 @@ msgid "Invalid text name/value visibility ~A."
 msgstr "Nieprawidłowe ustawienie widoczności tekstu: ~A."
 
 # Processing
-#: gschem/src/guile/g_rc.c:87 gschem/src/guile/g_rc.c:99
+#: gschem/src/guile/g_rc.c:83 gschem/src/guile/g_rc.c:95
 msgid "Processing"
 msgstr "Przetwarzanie"
 
-#: gschem/src/guile/g_rc.c:91 gschem/src/guile/g_rc.c:103
+#: gschem/src/guile/g_rc.c:87 gschem/src/guile/g_rc.c:99
 msgid "Skipping"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:123
+#: gschem/src/guile/g_rc.c:119
 msgid "entry in rc file"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:127
+#: gschem/src/guile/g_rc.c:123
 #, fuzzy
 msgid "Bad Value"
 msgstr "Wartość"
 
-#: gschem/src/guile/g_rc.c:128 gschem/src/guile/g_rc.c:2074
+#: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2070
 msgid "check"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:129
+#: gschem/src/guile/g_rc.c:125
 msgid "or Scheme, continuing with"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:137
+#: gschem/src/guile/g_rc.c:133
 msgid "maximum value"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:141
+#: gschem/src/guile/g_rc.c:137
 msgid "minimum value"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:145
+#: gschem/src/guile/g_rc.c:141
 msgid "default value"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:159
+#: gschem/src/guile/g_rc.c:155
 msgid "Invalid type assignment, check"
 msgstr ""
 
-
-#: gschem/src/guile/g_rc.c:200
+#: gschem/src/guile/g_rc.c:196
 msgid "This is gEDA/gschem version"
 msgstr "To jest gEDA/gschem, wersja"
 
-#: gschem/src/guile/g_rc.c:201
+#: gschem/src/guile/g_rc.c:197
 msgid "but you have a version"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:202
+#: gschem/src/guile/g_rc.c:198
 msgid "Please be sure that you have the latest rc file"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:209 gschem/src/x/x_image.c:481
+#: gschem/src/guile/g_rc.c:205 gschem/src/x/x_image.c:481
 msgid "file"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:725
+#: gschem/src/guile/g_rc.c:721
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:730
+#: gschem/src/guile/g_rc.c:726
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:731 gschem/src/guile/g_rc.c:1277
-#: gschem/src/guile/g_rc.c:1429 gschem/src/guile/g_rc.c:2027
+#: gschem/src/guile/g_rc.c:727 gschem/src/guile/g_rc.c:1273
+#: gschem/src/guile/g_rc.c:1425 gschem/src/guile/g_rc.c:2023
 msgid "Continuing with default value"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:815
+#: gschem/src/guile/g_rc.c:811
 #, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1271
+#: gschem/src/guile/g_rc.c:1267
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1276
+#: gschem/src/guile/g_rc.c:1272
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1423
+#: gschem/src/guile/g_rc.c:1419
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1428
+#: gschem/src/guile/g_rc.c:1424
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2021
+#: gschem/src/guile/g_rc.c:2017
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2026
+#: gschem/src/guile/g_rc.c:2022
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
 msgstr ""
 
 # Incorrect zoom factor
-#: gschem/src/guile/g_rc.c:2072
+#: gschem/src/guile/g_rc.c:2068
 msgid "Invalid zoom factor"
 msgstr "Nieprawidłowy współczynnik powiększenia"
 
@@ -1106,7 +1105,7 @@ msgstr "Nie udało zapisać konfigurację użytkownika do"
 # Closing Page
 #: gschem/src/iface/i_window.c:104
 msgid "Closing Page\n"
-msgstr "Zamknięcie Page\s"
+msgstr "Zamknięcie Page\n"
 
 #: gschem/src/iface/i_window.c:173
 #, c-format
@@ -1551,7 +1550,8 @@ msgid "Command interface: engaged using"
 msgstr ""
 
 #: gschem/src/x/x_console.c:345
-msgid "** Invalid UTF-8 in log message. See stderr or gschem.log.\n"
+#, fuzzy
+msgid "Invalid UTF-8 in log message. See stderr or gschem.log.\n"
 msgstr ""
 "** Nieprawidłowy znak UTF-8 w komunikacie. Zobacz standardowe wyjście błędów "
 "lub plik gschem.log.\n"
@@ -1598,7 +1598,6 @@ msgid "Could not load image file"
 msgstr "Nie można załadować pliku obrazu"
 
 #: gschem/src/x/x_dialog.c:443
-
 msgid "gEDA: GPL Electronic Design Automation"
 msgstr "gEDA: GPL Elektroniczne Automatyka Projektowanie"
 
@@ -2048,7 +2047,8 @@ msgstr "Klawisz(e)"
 
 # Dowództwo
 #: gschem/src/x/x_dialog.c:3317
-msgid "Command:"
+#, fuzzy
+msgid "Command"
 msgstr "Polecenie:"
 
 #: gschem/src/x/x_dialog.c:3553
@@ -3466,6 +3466,7 @@ msgstr "Lokalizacja docelowa"
 msgid "File:"
 msgstr "Plik:"
 
+# Dowództwo
 #: gschem/src/x/x_print.c:578
 msgid "Command:"
 msgstr "Polecenie:"
@@ -3712,35 +3713,35 @@ msgid "data saved to"
 msgstr ""
 
 # Could not save the toolbar configuration to
-#: gschem/src/x/x_toolbars.c:568
+#: gschem/src/x/x_toolbars.c:569
 msgid "Could not save Toolbar configuration to"
 msgstr "Nie udało się zapisać konfigurację pasku narzędzi, aby"
 
-#: gschem/src/x/x_toolbars.c:641
+#: gschem/src/x/x_toolbars.c:642
 #, fuzzy
 msgid "Error, Toolbar configuration key file"
 msgstr "Nie można wczytać konfiguracji gschem."
 
-#: gschem/src/x/x_toolbars.c:649
+#: gschem/src/x/x_toolbars.c:650
 msgid "Retrieving toolbar geometry\n"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:674
+#: gschem/src/x/x_toolbars.c:675
 #, fuzzy
 msgid "Toolbar configuration restored from"
 msgstr "Błąd podczas wczytywania pliku inicjalizacji scm"
 
-#: gschem/src/x/x_toolbars.c:679
+#: gschem/src/x/x_toolbars.c:680
 #, fuzzy
 msgid "Warning, error restoring toolbar configuration"
 msgstr "Nie można wczytać konfiguracji gschem."
 
-#: gschem/src/x/x_toolbars.c:685
+#: gschem/src/x/x_toolbars.c:686
 #, fuzzy
 msgid "Warning, toolbar configuration file access error"
 msgstr "Nie można wczytać konfiguracji gschem."
 
-#: gschem/src/x/x_toolbars.c:703
+#: gschem/src/x/x_toolbars.c:704
 #, fuzzy
 msgid "Toolbar configuration not found"
 msgstr "Błąd podczas wczytywania pliku inicjalizacji scm"
