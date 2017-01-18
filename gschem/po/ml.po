@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-10 07:50-0600\n"
+"POT-Creation-Date: 2017-01-18 14:12-0600\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -18,66 +18,78 @@ msgstr ""
 "X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
 "X-Generator: Launchpad (build 16265)\n"
 
+# Warning: <%s> did not expand
 #: gschem/src/base/gschem.c:159
 #, c-format
 msgid "Warning: <%s> did not expand\n"
-msgstr ""
+msgstr "മുന്നറിയിപ്പ്: <%s> വിപുലീകരിക്കുക ചെയ്തില്ല\n"
 
+# Command-line error: disabling auto-load-recent
 #: gschem/src/base/gschem.c:160
 msgid "Command-line error: disabling auto load last\n"
-msgstr ""
+msgstr "കമാൻഡ്-ലൈൻ പിശക്: ഓട്ടോ-ലോഡ്-സമീപകാല പ്രവർത്തനരഹിതമാക്കുകയാണ്\n"
 
+# Assuming 'sch' file suffix for
 #: gschem/src/base/gschem.c:193
 msgid "Assuming schematic file suffix for"
-msgstr ""
+msgstr "വേണ്ടി 'sch' ഫയൽ പ്രത്യയം കണക്കിലെടുത്താൽ"
 
+# Assuming 'sym' file suffix for
 #: gschem/src/base/gschem.c:207
 msgid "Assuming symbol file suffix for"
-msgstr ""
+msgstr "വേണ്ടി 'sym' ഫയൽ പ്രത്യയം കണക്കിലെടുത്താൽ"
 
-#: gschem/src/base/gschem.c:238
+# An error was encountered loading requested session
+#: gschem/src/base/gschem.c:241
 msgid "An error was encountered loading requested session"
-msgstr ""
+msgstr "ഒരു പിശക് അഭ്യർത്ഥിച്ച സെഷൻ ലോഡുചെയ്യുന്നതിൽ നേരിട്ടു"
 
-#: gschem/src/base/gschem.c:263
+#: gschem/src/base/gschem.c:266
 msgid "Auto Load"
-msgstr ""
+msgstr "ഓട്ടോ സമീപകാല ലോഡ്"
 
-#: gschem/src/base/gschem.c:312
+#: gschem/src/base/gschem.c:316
 msgid ""
-"You must set the GEDADATA environment variable!\n"
+"The GEDADATA environment variable must be set!\n"
 "\n"
 "gschem cannot locate some data files. Please ensure the GEDADATA\n"
 "environment variable points to the correct location.\n"
 msgstr ""
+"GEDADATA ഹോംപരിസരവേരിയബ്ള്സജ്ജീകരിച്ചിട്ടില്ല വേണം!\n"
+"\n"
+"gschem ചില ഡാറ്റ ഫയലുകൾ കണ്ടെത്താൻ കഴിയില്ല. GEDADATA ദയവായി ഉറപ്പുവരുത്തുക\n"
+"ശരിയായ ലൊക്കേഷനിലേക്ക് പരിസര വേരിയബിൾ പോയിന്റ്.\n"
 
-#: gschem/src/base/gschem.c:348
+# Unable to locate initialization file
+#: gschem/src/base/gschem.c:352
 msgid "Unable to locate scheme initialization file"
-msgstr ""
+msgstr "ഇനിഷ്യലൈസേഷൻ ഫയൽ scheme കണ്ടെത്താൻ കഴിയുന്നില്ല"
 
-#: gschem/src/base/gschem.c:355
+# Read initialization file
+#: gschem/src/base/gschem.c:359
 msgid "Read scheme initialization file"
-msgstr ""
+msgstr "പ്രാരംഭവില scheme ഫയൽ വായിക്കുക"
 
-#: gschem/src/base/gschem.c:358
+# Failed to read initialization file
+#: gschem/src/base/gschem.c:362
 msgid "Failed to read scheme initialization file"
-msgstr ""
+msgstr "ഇനിഷ്യലൈസേഷൻ scheme ഫയൽ വായിക്കാൻ പരാജയപ്പെട്ടു"
 
-#: gschem/src/base/gschem.c:380
-#, fuzzy
+# Edition
+#: gschem/src/base/gschem.c:384
 msgid "version"
-msgstr "എല്ലാം സേവ് ചെയുക"
+msgstr "പതിപ്പ്"
 
-#: gschem/src/base/gschem.c:385
+#: gschem/src/base/gschem.c:389
 msgid "Logging system is disabled\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:425
+#: gschem/src/base/gschem.c:429
 #, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:517
+#: gschem/src/base/gschem.c:521
 msgid "Exiting normal\n"
 msgstr ""
 
@@ -404,114 +416,114 @@ msgstr ""
 msgid "Invalid text name/value visibility ~A."
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:87 gschem/src/guile/g_rc.c:99
+#: gschem/src/guile/g_rc.c:83 gschem/src/guile/g_rc.c:95
 msgid "Processing"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:91 gschem/src/guile/g_rc.c:103
+#: gschem/src/guile/g_rc.c:87 gschem/src/guile/g_rc.c:99
 msgid "Skipping"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:123
+#: gschem/src/guile/g_rc.c:119
 msgid "entry in rc file"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:127
+#: gschem/src/guile/g_rc.c:123
 msgid "Bad Value"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:128 gschem/src/guile/g_rc.c:2074
+#: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2070
 msgid "check"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:129
+#: gschem/src/guile/g_rc.c:125
 msgid "or Scheme, continuing with"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:137
+#: gschem/src/guile/g_rc.c:133
 msgid "maximum value"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:141
+#: gschem/src/guile/g_rc.c:137
 msgid "minimum value"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:145
+#: gschem/src/guile/g_rc.c:141
 msgid "default value"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:159
+#: gschem/src/guile/g_rc.c:155
 msgid "Invalid type assignment, check"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:200
+#: gschem/src/guile/g_rc.c:196
 msgid "This is gEDA/gschem version"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:201
+#: gschem/src/guile/g_rc.c:197
 msgid "but you have a version"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:202
+#: gschem/src/guile/g_rc.c:198
 msgid "Please be sure that you have the latest rc file"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:209 gschem/src/x/x_image.c:481
+#: gschem/src/guile/g_rc.c:205 gschem/src/x/x_image.c:481
 msgid "file"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:725
+#: gschem/src/guile/g_rc.c:721
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:730
+#: gschem/src/guile/g_rc.c:726
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:731 gschem/src/guile/g_rc.c:1277
-#: gschem/src/guile/g_rc.c:1429 gschem/src/guile/g_rc.c:2027
+#: gschem/src/guile/g_rc.c:727 gschem/src/guile/g_rc.c:1273
+#: gschem/src/guile/g_rc.c:1425 gschem/src/guile/g_rc.c:2023
 msgid "Continuing with default value"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:815
+#: gschem/src/guile/g_rc.c:811
 #, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1271
+#: gschem/src/guile/g_rc.c:1267
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1276
+#: gschem/src/guile/g_rc.c:1272
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1423
+#: gschem/src/guile/g_rc.c:1419
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1428
+#: gschem/src/guile/g_rc.c:1424
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2021
+#: gschem/src/guile/g_rc.c:2017
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2026
+#: gschem/src/guile/g_rc.c:2022
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2072
+#: gschem/src/guile/g_rc.c:2068
 msgid "Invalid zoom factor"
 msgstr ""
 
@@ -540,79 +552,89 @@ msgstr ""
 msgid "Processing Action"
 msgstr ""
 
+# Cannot
 #: gschem/src/iface/i_command.c:475
 msgid "Cannot"
-msgstr ""
+msgstr "ഒന്നും കഴിയില്ല"
 
+# whilest a command is in progress
 #: gschem/src/iface/i_command.c:475
 msgid "while inside an action!\n"
-msgstr ""
+msgstr "ഒരു കമാൻഡ് പടർത്തുകയും പുരോഗമിക്കുന്നു\n"
 
+# A new page has been created
 #: gschem/src/iface/i_command.c:714 gschem/src/iface/i_command.c:2715
 msgid "New page created"
-msgstr ""
+msgstr "പുതിയ പേജ് സൃഷ്ടിച്ചു"
 
+# Created a new window
 #: gschem/src/iface/i_command.c:752
-#, fuzzy
 msgid "New Window created"
-msgstr "പുതിയ ജാലകം"
+msgstr "പുതിയ വിൻഡോ സൃഷ്ടിച്ചു"
 
+# Failed to Save All
 #: gschem/src/iface/i_command.c:951
 msgid "Failed to Save All"
-msgstr ""
+msgstr "എല്ലാം സംരക്ഷിക്കുക പരാജയപ്പെട്ടു"
 
+# all documents saved
 #: gschem/src/iface/i_command.c:954 gschem/src/iface/i_command.c:971
 msgid "Saved All"
-msgstr ""
+msgstr "എല്ലാ പ്രമാണങ്ങളും സംരക്ഷിച്ചു"
 
+# Error, failed to save
 #: gschem/src/iface/i_command.c:968
 msgid "Error encountered, Save Failed"
-msgstr ""
+msgstr "നേരിട്ടു പിശക്, സംരക്ഷിക്കുക പരാജയപ്പെട്ടു"
 
+# Write Image
 #: gschem/src/iface/i_command.c:1038 gschem/src/x/x_image.c:489
 msgid "Write Image"
-msgstr ""
+msgstr "ചിത്രം എഴുതുവാൻ"
 
+# Write PDF
 #: gschem/src/iface/i_command.c:1060
 msgid "Write PDF"
-msgstr ""
+msgstr "പീഡിയെഫ് എഴുതുക"
 
+# Canceled closing all
 #: gschem/src/iface/i_command.c:1156
 msgid "Canceled close all\n"
-msgstr ""
+msgstr "എല്ലാ റദ്ദാക്കി അടയ്ക്കൽ\n"
 
 #: gschem/src/iface/i_command.c:1165 gschem/src/iface/i_sessions.c:193
-#, fuzzy
 msgid "Closing all documents\n"
-msgstr "പേജ് അടയ്ക്കുക"
+msgstr "എല്ലാ പ്രമാണങ്ങളും അടച്ചതിനുശേഷം\n"
 
+# commencing shut-down
 #: gschem/src/iface/i_command.c:1188
 msgid "gschem: starting shut-down\n"
-msgstr ""
+msgstr "gschem: ഉത്ഭവിക്കൽ ഷട്ട് ഡൌണ്\n"
 
 #: gschem/src/iface/i_command.c:1202
 msgid "Symbol is not embeded, export anyway?"
-msgstr ""
+msgstr "പ്രതീക embeded അല്ല, ഏതുവിധേനയും കയറ്റുമതി?"
 
+# Picture is not embeded, export anyway
 #: gschem/src/iface/i_command.c:1226
 msgid "Picture is not embeded, export anyway?"
-msgstr ""
+msgstr "This picture is not embeded, ഏതുവിധേനയും കയറ്റുമതി?"
 
+# Empty buffer
 #: gschem/src/iface/i_command.c:1360
 msgid "Empty buffer"
-msgstr ""
+msgstr "ശൂന്യ ബഫർ"
 
+# Offset Mode
 #: gschem/src/iface/i_command.c:1622
-#, fuzzy
 msgid "Offset Mode"
-msgstr "പ്രവര്‍ത്തന രീതി നിര്‍ണയിക്കുക"
+msgstr "പ്രവര്‍ത്തന രീതി ഓഫ്സെറ്റ്"
 
 #: gschem/src/iface/i_command.c:1623
 msgid "Specify offset distance:"
 msgstr ""
 
 #: gschem/src/iface/i_command.c:2204
-#, fuzzy
 msgid "Zoom Magnification"
 msgstr "വലുതാക്കി കാണിക്കുന്ന പെട്ടി"
 
@@ -621,9 +643,8 @@ msgid "Specify new zoom:"
 msgstr ""
 
 #: gschem/src/iface/i_command.c:2248
-#, fuzzy
 msgid "error"
-msgstr "പ്രിന്‍റ് ചെയ്യുക..."
+msgstr "പിശക്"
 
 #: gschem/src/iface/i_command.c:2256
 msgid "No component selected\n"
@@ -765,8 +786,8 @@ msgstr ""
 msgid "is not accessible"
 msgstr ""
 
+# File
 #: gschem/src/iface/i_sessions.c:272
-#, fuzzy
 msgid "File"
 msgstr "ഫയല്‍"
 
@@ -776,9 +797,8 @@ msgstr ""
 
 #: gschem/src/iface/i_sessions.c:346 gschem/src/iface/i_sessions.c:359
 #: gschem/src/iface/i_sessions.c:931 gschem/src/x/x_sessions.c:232
-#, fuzzy
 msgid "Session"
-msgstr "എല്ലാം സേവ് ചെയുക"
+msgstr ""
 
 #: gschem/src/iface/i_sessions.c:347
 msgid "opening"
@@ -798,14 +818,12 @@ msgid "did not contain any accessible documents"
 msgstr ""
 
 #: gschem/src/iface/i_sessions.c:791
-#, fuzzy
 msgid "Sessions"
-msgstr "എല്ലാം സേവ് ചെയുക"
+msgstr ""
 
 #: gschem/src/iface/i_sessions.c:855
-#, fuzzy
 msgid "Removing session"
-msgstr "എല്ലാം സേവ് ചെയുക"
+msgstr ""
 
 #: gschem/src/iface/i_sessions.c:880
 msgid "Failed to remove session"
@@ -832,14 +850,12 @@ msgid "Creation failed"
 msgstr ""
 
 #: gschem/src/iface/i_sessions.c:994
-#, fuzzy
 msgid "Opened session"
-msgstr "എല്ലാം സേവ് ചെയുക"
+msgstr ""
 
 #: gschem/src/iface/i_sessions.c:1043
-#, fuzzy
 msgid "Renaming session"
-msgstr "എല്ലാം സേവ് ചെയുക"
+msgstr ""
 
 #: gschem/src/iface/i_sessions.c:1044
 msgid "to"
@@ -854,9 +870,8 @@ msgid "<b>Could not rename session</b>"
 msgstr ""
 
 #: gschem/src/iface/i_sessions.c:1105
-#, fuzzy
 msgid "Created session"
-msgstr "എല്ലാം സേവ് ചെയുക"
+msgstr ""
 
 #: gschem/src/iface/i_sessions.c:1106
 msgid "with"
@@ -1140,9 +1155,8 @@ msgid "Bus ripper symbol was not found in any component library"
 msgstr ""
 
 #: gschem/src/object/o_picture.c:357
-#, fuzzy
 msgid "Update All"
-msgstr "എല്ലാം സേവ് ചെയുക"
+msgstr ""
 
 #: gschem/src/object/o_picture.c:359
 msgid "Update all selected Picture images"
@@ -1458,7 +1472,7 @@ msgid "Command interface: engaged using"
 msgstr ""
 
 #: gschem/src/x/x_console.c:345
-msgid "** Invalid UTF-8 in log message. See stderr or gschem.log.\n"
+msgid "Invalid UTF-8 in log message. See stderr or gschem.log.\n"
 msgstr ""
 
 #: gschem/src/x/x_console.c:577
@@ -2586,10 +2600,11 @@ msgstr ""
 msgid "Add attribute"
 msgstr ""
 
-# Component
+# Edit Component
 #: gschem/src/x/x_menus.c:93 gschem/src/x/x_menus.c:112
-msgid "..."
-msgstr "ഘടകം..."
+#, fuzzy
+msgid "Component..."
+msgstr "ഘടക എഡിറ്റ്..."
 
 #: gschem/src/x/x_menus.c:93 gschem/etc/system-gschemrc.scm:2238
 msgid "Insert a symbol from the component library"
@@ -3405,9 +3420,8 @@ msgid "New Session"
 msgstr ""
 
 #: gschem/src/x/x_sessions.c:853 gschem/scheme/gschem/builtins.scm:389
-#, fuzzy
 msgid "Save Session As"
-msgstr "എല്ലാം സേവ് ചെയുക"
+msgstr ""
 
 #: gschem/src/x/x_settings.c:359
 msgid "error opening"
@@ -3499,31 +3513,31 @@ msgstr ""
 msgid "data saved to"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:568
+#: gschem/src/x/x_toolbars.c:569
 msgid "Could not save Toolbar configuration to"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:641
+#: gschem/src/x/x_toolbars.c:642
 msgid "Error, Toolbar configuration key file"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:649
+#: gschem/src/x/x_toolbars.c:650
 msgid "Retrieving toolbar geometry\n"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:674
+#: gschem/src/x/x_toolbars.c:675
 msgid "Toolbar configuration restored from"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:679
+#: gschem/src/x/x_toolbars.c:680
 msgid "Warning, error restoring toolbar configuration"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:685
+#: gschem/src/x/x_toolbars.c:686
 msgid "Warning, toolbar configuration file access error"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:703
+#: gschem/src/x/x_toolbars.c:704
 msgid "Toolbar configuration not found"
 msgstr ""
 
@@ -3607,9 +3621,8 @@ msgid "Error while trying to save"
 msgstr ""
 
 #: gschem/src/x/x_window.c:1225
-#, fuzzy
 msgid "Saved as"
-msgstr "എല്ലാം സേവ് ചെയുക"
+msgstr ""
 
 #: gschem/data/geda-gschem.desktop.in:3
 msgid "gEDA Schematic Editor"
@@ -3652,9 +3665,8 @@ msgid "Save the current document to a new name or location"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2059
-#, fuzzy
 msgid "Save A_ll"
-msgstr "എല്ലാം സേവ് ചെയുക"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2059
 msgid "Save all open documents"
@@ -3678,9 +3690,8 @@ msgid "Discard changes and reload the current document"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2062
-#, fuzzy
 msgid "Re_vert All"
-msgstr "എല്ലാം സേവ് ചെയുക"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2062
 msgid "Discard changes and reload all open documents"
@@ -4449,7 +4460,7 @@ msgid "Attribute _Editor..."
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2287
-msgid "Open the Attibutes Editor Dialog"
+msgid "Open the Attributes Editor Dialog"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2295
@@ -4720,13 +4731,12 @@ msgid "Open File"
 msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:59
-#, fuzzy
 msgid "Save As"
-msgstr "എല്ലാം സേവ് ചെയുക"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:62
 msgid "Save All"
-msgstr "എല്ലാം സേവ് ചെയുക"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:65
 #, fuzzy
@@ -4991,9 +5001,8 @@ msgid "Revert Changes"
 msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:317
-#, fuzzy
 msgid "Revert All"
-msgstr "എല്ലാം സേവ് ചെയുക"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:335
 msgid "Up Hierarchy"
@@ -5043,19 +5052,16 @@ msgid "Add Picture"
 msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:380
-#, fuzzy
 msgid "Create New Session"
-msgstr "എല്ലാം സേവ് ചെയുക"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:383
-#, fuzzy
 msgid "Open a Session"
-msgstr "എല്ലാം സേവ് ചെയുക"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:386
-#, fuzzy
 msgid "Save Session"
-msgstr "എല്ലാം സേവ് ചെയുക"
+msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:398
 msgid "Attach Attributes"
@@ -5266,9 +5272,9 @@ msgstr ""
 msgid "~S is not a prefix key sequence."
 msgstr ""
 
-#, fuzzy
-#~ msgid "session"
-#~ msgstr "എല്ലാം സേവ് ചെയുക"
+# Component
+#~ msgid "..."
+#~ msgstr "ഘടകം..."
 
 #, fuzzy
 #~ msgid "documents\n"
