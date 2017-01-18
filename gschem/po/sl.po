@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-10 07:50-0600\n"
+"POT-Creation-Date: 2017-01-18 14:12-0600\n"
 "PO-Revision-Date: 2012-01-27 14:18+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
@@ -35,49 +35,49 @@ msgstr ""
 msgid "Assuming symbol file suffix for"
 msgstr ""
 
-#: gschem/src/base/gschem.c:238
+#: gschem/src/base/gschem.c:241
 msgid "An error was encountered loading requested session"
 msgstr ""
 
-#: gschem/src/base/gschem.c:263
+#: gschem/src/base/gschem.c:266
 msgid "Auto Load"
 msgstr ""
 
-#: gschem/src/base/gschem.c:312
+#: gschem/src/base/gschem.c:316
 msgid ""
-"You must set the GEDADATA environment variable!\n"
+"The GEDADATA environment variable must be set!\n"
 "\n"
 "gschem cannot locate some data files. Please ensure the GEDADATA\n"
 "environment variable points to the correct location.\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:348
+#: gschem/src/base/gschem.c:352
 msgid "Unable to locate scheme initialization file"
 msgstr ""
 
-#: gschem/src/base/gschem.c:355
+#: gschem/src/base/gschem.c:359
 msgid "Read scheme initialization file"
 msgstr ""
 
-#: gschem/src/base/gschem.c:358
+#: gschem/src/base/gschem.c:362
 msgid "Failed to read scheme initialization file"
 msgstr ""
 
-#: gschem/src/base/gschem.c:380
+#: gschem/src/base/gschem.c:384
 #, fuzzy
 msgid "version"
 msgstr "Shrani vse"
 
-#: gschem/src/base/gschem.c:385
+#: gschem/src/base/gschem.c:389
 msgid "Logging system is disabled\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:425
+#: gschem/src/base/gschem.c:429
 #, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:517
+#: gschem/src/base/gschem.c:521
 msgid "Exiting normal\n"
 msgstr ""
 
@@ -400,158 +400,161 @@ msgstr ""
 msgid "Invalid text name/value visibility ~A."
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:87 gschem/src/guile/g_rc.c:99
+#: gschem/src/guile/g_rc.c:83 gschem/src/guile/g_rc.c:95
 msgid "Processing"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:91 gschem/src/guile/g_rc.c:103
+#: gschem/src/guile/g_rc.c:87 gschem/src/guile/g_rc.c:99
 msgid "Skipping"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:123
+#: gschem/src/guile/g_rc.c:119
 msgid "entry in rc file"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:127
+#: gschem/src/guile/g_rc.c:123
 msgid "Bad Value"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:128 gschem/src/guile/g_rc.c:2074
+#: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2070
 msgid "check"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:129
+#: gschem/src/guile/g_rc.c:125
 msgid "or Scheme, continuing with"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:137
+#: gschem/src/guile/g_rc.c:133
 msgid "maximum value"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:141
+#: gschem/src/guile/g_rc.c:137
 msgid "minimum value"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:145
+#: gschem/src/guile/g_rc.c:141
 msgid "default value"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:159
+# Invalid value type
+#: gschem/src/guile/g_rc.c:155
 msgid "Invalid type assignment, check"
-msgstr ""
+msgstr "Neveljavna vrsta vrednost, preveri"
 
-#: gschem/src/guile/g_rc.c:200
+#: gschem/src/guile/g_rc.c:196
 msgid "This is gEDA/gschem version"
-msgstr ""
+msgstr "To je gEDA/gschem različica"
 
-#: gschem/src/guile/g_rc.c:201
+# but you have a version
+#: gschem/src/guile/g_rc.c:197
 msgid "but you have a version"
-msgstr ""
+msgstr "vendar imate različico"
 
-#: gschem/src/guile/g_rc.c:202
+#: gschem/src/guile/g_rc.c:198
 msgid "Please be sure that you have the latest rc file"
-msgstr ""
+msgstr "Prepričajte se, da imate najnovejšo rc datoteko"
 
-#: gschem/src/guile/g_rc.c:209 gschem/src/x/x_image.c:481
+#: gschem/src/guile/g_rc.c:205 gschem/src/x/x_image.c:481
 msgid "file"
-msgstr ""
+msgstr "datoteke"
 
-#: gschem/src/guile/g_rc.c:725
+#: gschem/src/guile/g_rc.c:721
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
-msgstr ""
+msgstr "Neveljavna vrednost, zoom-gain ne more biti nič, preverite vpis v rc datoteke\n"
 
-#: gschem/src/guile/g_rc.c:730
+#: gschem/src/guile/g_rc.c:726
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
-msgstr ""
+msgstr "Neveljavna vrsta vrednost, preverite vnos zoom-gain v rc datoteke\n"
 
-#: gschem/src/guile/g_rc.c:731 gschem/src/guile/g_rc.c:1277
-#: gschem/src/guile/g_rc.c:1429 gschem/src/guile/g_rc.c:2027
+#: gschem/src/guile/g_rc.c:727 gschem/src/guile/g_rc.c:1273
+#: gschem/src/guile/g_rc.c:1425 gschem/src/guile/g_rc.c:2023
 msgid "Continuing with default value"
-msgstr ""
+msgstr "Nadaljevanje s privzeto vrednostjo"
 
-#: gschem/src/guile/g_rc.c:815
+#: gschem/src/guile/g_rc.c:811
 #, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
-msgstr ""
+msgstr "Neveljavna vrsta vrednost, preverite vnos sečnje v rc datoteke\n"
 
-#: gschem/src/guile/g_rc.c:1271
+#: gschem/src/guile/g_rc.c:1267
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
-msgstr ""
+msgstr "Neveljavna vrednost, snap-size ne more biti nič, preverite vnos rc datoteko\n"
 
-#: gschem/src/guile/g_rc.c:1276
+#: gschem/src/guile/g_rc.c:1272
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
-msgstr ""
+msgstr "Neveljavna vrsta vrednost, preverite vnos snap-size v rc datoteke\n"
 
-#: gschem/src/guile/g_rc.c:1423
+#: gschem/src/guile/g_rc.c:1419
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
-msgstr ""
+msgstr "Neveljavna vrednost, bus-ripper-size ne more biti nič, preverite vnos rc datoteko\n"
 
-#: gschem/src/guile/g_rc.c:1428
+#: gschem/src/guile/g_rc.c:1424
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
-msgstr ""
+msgstr "Neveljavna vrsta vrednost, preverite vnos bus-ripper-size v rc datoteke\n"
 
-#: gschem/src/guile/g_rc.c:2021
+#: gschem/src/guile/g_rc.c:2017
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
 msgstr ""
+"Ne morem se pomaknete 0 korake, neveljavni scrollpan-steps, preverite vpis v rc datoteke\n"
 
-#: gschem/src/guile/g_rc.c:2026
+#: gschem/src/guile/g_rc.c:2022
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
-msgstr ""
+msgstr "Neveljavna vrsta vrednost, preverite vnos scrollpan-steps v rc datoteke\n"
 
-#: gschem/src/guile/g_rc.c:2072
+#: gschem/src/guile/g_rc.c:2068
 msgid "Invalid zoom factor"
-msgstr ""
+msgstr "Neveljavna faktor povečave"
 
 #: gschem/src/guile/g_select.c:84 gschem/src/guile/g_select.c:120
 #: gschem/src/guile/g_select.c:155
 msgid "Object ~A is not directly included in a page."
-msgstr ""
+msgstr "Object ~A ni neposredno vključena v stran."
 
 #: gschem/src/guile/g_util.c:67
 msgid "Could not launch URI"
-msgstr ""
+msgstr "ni bilo mogoče zagnati URI"
 
 #: gschem/src/guile/g_window.c:146
 msgid "Found invalid gschem window smob ~S"
-msgstr ""
+msgstr "Najdeno neveljavna gschem okno smob ~S"
 
 #: gschem/src/iface/i_command.c:132 gschem/src/iface/i_command.c:5025
 msgid "current value of"
-msgstr ""
+msgstr "sedanja vrednost"
 
 #: gschem/src/iface/i_command.c:132 gschem/src/iface/i_command.c:5026
 msgid "is"
-msgstr ""
+msgstr "je"
 
+# Processing Action
 #: gschem/src/iface/i_command.c:368
 msgid "Processing Action"
-msgstr ""
+msgstr "Ukrep obdelava"
 
 #: gschem/src/iface/i_command.c:475
 msgid "Cannot"
-msgstr ""
+msgstr "ne more"
 
 #: gschem/src/iface/i_command.c:475
 msgid "while inside an action!\n"
-msgstr ""
+msgstr "medtem ko v notranjosti tožbe!\n"
 
 #: gschem/src/iface/i_command.c:714 gschem/src/iface/i_command.c:2715
 msgid "New page created"
-msgstr ""
+msgstr "Nova stran ustvarjena"
 
 #: gschem/src/iface/i_command.c:752
-#, fuzzy
 msgid "New Window created"
-msgstr "Novo okno"
+msgstr "Novo okno ustvarjen"
 
 #: gschem/src/iface/i_command.c:951
 msgid "Failed to Save All"
@@ -1441,7 +1444,7 @@ msgid "Command interface: engaged using"
 msgstr ""
 
 #: gschem/src/x/x_console.c:345
-msgid "** Invalid UTF-8 in log message. See stderr or gschem.log.\n"
+msgid "Invalid UTF-8 in log message. See stderr or gschem.log.\n"
 msgstr ""
 
 #: gschem/src/x/x_console.c:577
@@ -3487,38 +3490,38 @@ msgid "data saved to"
 msgstr "podatki shranjeni na"
 
 # Could not save settings toolbar
-#: gschem/src/x/x_toolbars.c:568
+#: gschem/src/x/x_toolbars.c:569
 msgid "Could not save Toolbar configuration to"
 msgstr "ni bilo mogoče shraniti nastavitev orodne vrstice za"
 
 # Toolbar configuration file
-#: gschem/src/x/x_toolbars.c:641
+#: gschem/src/x/x_toolbars.c:642
 msgid "Error, Toolbar configuration key file"
 msgstr "Napaka, Orodna vrstica konfiguracijske datoteke"
 
 # Getting toolbar geometry
-#: gschem/src/x/x_toolbars.c:649
+#: gschem/src/x/x_toolbars.c:650
 msgid "Retrieving toolbar geometry\n"
 msgstr "Pridobivanje orodne vrstice geometrijo\n"
 
 # Toolbar configuration is restored from
-#: gschem/src/x/x_toolbars.c:674
+#: gschem/src/x/x_toolbars.c:675
 msgid "Toolbar configuration restored from"
 msgstr "Orodna vrstica konfiguracija obnovljena od"
 
 # Warning, Error getting configuration for toolbars
-#: gschem/src/x/x_toolbars.c:679
+#: gschem/src/x/x_toolbars.c:680
 msgid "Warning, error restoring toolbar configuration"
 msgstr "Opozorilo, napaka pridobivanje konfiguracija Orodna vrstica"
 
 # Warning, Error accessing toolbar configuration file
-#: gschem/src/x/x_toolbars.c:685
+#: gschem/src/x/x_toolbars.c:686
 msgid "Warning, toolbar configuration file access error"
 msgstr ""
 "Opozorilo, Napaka pri dostopu do orodna vrstica konfiguracijske datoteke"
 
 # Toolbar configuration could not be found
-#: gschem/src/x/x_toolbars.c:703
+#: gschem/src/x/x_toolbars.c:704
 msgid "Toolbar configuration not found"
 msgstr "Toolbar konfiguracija ni bilo mogoče najti"
 
@@ -4442,7 +4445,7 @@ msgid "Attribute _Editor..."
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2287
-msgid "Open the Attibutes Editor Dialog"
+msgid "Open the Attributes Editor Dialog"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2295
