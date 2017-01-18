@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-10 07:50-0600\n"
+"POT-Creation-Date: 2017-01-18 14:12-0600\n"
 "PO-Revision-Date: 2012-01-27 14:18+0000\n"
 "Last-Translator:  Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: Serbian <sr@li.org>\n"
@@ -36,56 +36,68 @@ msgstr "Pod pretpostavkom da šematski fajl sufiks za"
 msgid "Assuming symbol file suffix for"
 msgstr "Pod pretpostavkom simbol fajl sufiks za"
 
-#: gschem/src/base/gschem.c:238
+# There was an error loading the requested session
+#: gschem/src/base/gschem.c:241
 msgid "An error was encountered loading requested session"
-msgstr ""
+msgstr "Дошло је до грешке учитавања тражену сесије"
 
-#: gschem/src/base/gschem.c:263
+# automatically load
+#: gschem/src/base/gschem.c:266
 msgid "Auto Load"
-msgstr "automatski Load"
+msgstr "automatski лоад"
 
-#: gschem/src/base/gschem.c:312
+# the GEDADATA environment variable must be set
+# gschem can not find some files with data,
+# Please ensure the GEDADATA environment variable points to the correct location
+#: gschem/src/base/gschem.c:316
+#, fuzzy
 msgid ""
-"You must set the GEDADATA environment variable!\n"
+"The GEDADATA environment variable must be set!\n"
 "\n"
 "gschem cannot locate some data files. Please ensure the GEDADATA\n"
 "environment variable points to the correct location.\n"
 msgstr ""
+"животна средина променљива ГЕДАДАТА мора бити постављен!\n"
+"\n"
+"гсцхем не може да пронађе неке датотеке са подацима. Уверите се да ГЕДАДАТА\n"
+"променљиве окружења указује на одговарајућој локацији.\n"
 
-#: gschem/src/base/gschem.c:348
+#: gschem/src/base/gschem.c:352
 msgid "Unable to locate scheme initialization file"
 msgstr "U nemogućnosti da pronađe šema initialization file"
 
-#: gschem/src/base/gschem.c:355
+# Read scheme initialization file
+#: gschem/src/base/gschem.c:359
 msgid "Read scheme initialization file"
-msgstr ""
+msgstr "Реад шема датотеци са почетним"
 
-#: gschem/src/base/gschem.c:358
+# Failed to process files with default
+#: gschem/src/base/gschem.c:362
 msgid "Failed to read scheme initialization file"
 msgstr "Nije uspela da obradi datoteke sa početnim"
 
-#: gschem/src/base/gschem.c:380
-#, fuzzy
+# version
+#: gschem/src/base/gschem.c:384
 msgid "version"
-msgstr "Сачувај све"
+msgstr "верзија"
 
-#: gschem/src/base/gschem.c:385
+#: gschem/src/base/gschem.c:389
 msgid "Logging system is disabled\n"
 msgstr "Sistem za snimanje je onemogućen\n"
 
-#: gschem/src/base/gschem.c:425
+#: gschem/src/base/gschem.c:429
 #, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
 msgstr "GREŠKA: Failed to load ili procenu skripte.\n"
 
-#: gschem/src/base/gschem.c:517
+#: gschem/src/base/gschem.c:521
 msgid "Exiting normal\n"
 msgstr "Normalno prestanak\n"
 
+# Parent Window
 #: gschem/src/base/gschem_dialog.c:563
-#, fuzzy
 msgid "Parent Window"
-msgstr "Нови прозор"
+msgstr "roditeljski прозор"
 
 #: gschem/src/base/gschem_dialog.c:564
 msgid "Parent window for this dialog"
@@ -222,7 +234,7 @@ msgid ""
 "There is NO WARRANTY, to the extent permitted by law.\n"
 msgstr ""
 "gEDA/gschem %s (%s) (g%.7s)\n"
-"Copyright (C) 1998-2016 gEDA developers\n"
+"Copyright (C) 1998-2017 gEDA developers\n"
 "Ovo je slobodan softver, a vi ste dobrodošli da released under\n"
 "određenim uslovima. Za detalje, pogledajte datoteku `KOPIRANJE', koji je\n"
 "uključen u distribuciju Geda.\n"
@@ -253,10 +265,12 @@ msgstr "Nepoznata opcija karakter"
 msgid "--help for more information"
 msgstr "pomoć za više informacija"
 
+# Perform
 #: gschem/src/base/gschem_parsecmd.c:304
 msgid "Run"
-msgstr ""
+msgstr "Извршити"
 
+# Viewing buffer
 #: gschem/src/base/gschem_preview.c:299
 msgid "Preview Buffer"
 msgstr "Pregled buffer"
@@ -297,6 +311,7 @@ msgstr "Da li je pregled vidžet treba da bude veliki ili mali"
 msgid "Coordinates Mode"
 msgstr "koordinate režim"
 
+# Sets the Format Mode used to display coordinates on the status bar
 #: gschem/src/base/gschem_status_bar.c:588
 msgid "Sets the Format Mode used to display coordinates on the status bar"
 msgstr ""
@@ -306,8 +321,8 @@ msgstr ""
 msgid "Grid Mode"
 msgstr "Mreža režim"
 
+# Grid Sets the mode to display on the status bar
 #: gschem/src/base/gschem_status_bar.c:598
-#, fuzzy
 msgid "Sets the Grid Mode to display on the status bar"
 msgstr "Postavlja Grid režim za prikaz na statusnoj traci"
 
@@ -351,34 +366,41 @@ msgstr "Desno dugme Tekst"
 msgid "Set the string for the Right Button Text"
 msgstr "Podesite niz za pravo dugme Tekst"
 
+# snap mode
 #: gschem/src/base/gschem_status_bar.c:648
 msgid "Snap Mode"
-msgstr ""
+msgstr "снап режим"
 
+# Sets Snap mode to display on the status bar
 #: gschem/src/base/gschem_status_bar.c:649
 msgid "Sets the Snap Mode to display on the status bar"
-msgstr ""
+msgstr "Поставља Снап режим за приказ на статусној траци"
 
+# Snap Size
 #: gschem/src/base/gschem_status_bar.c:658 gschem/src/x/x_dialog.c:552
 msgid "Snap Size"
-msgstr ""
+msgstr "снап величина"
 
+# Sets the size of the display mode on the status bar
 #: gschem/src/base/gschem_status_bar.c:659
 msgid "Sets the Size Mode to display on the status bar"
-msgstr ""
+msgstr "Поставља величину режим за приказ на статусној траци"
 
+# Text status
 #: gschem/src/base/gschem_status_bar.c:668
 msgid "Status Text"
-msgstr ""
+msgstr "статус Текст"
 
+# Set the string for the text on the Status Bar
 #: gschem/src/base/gschem_status_bar.c:669
 msgid "Set the string for the text on the Status Bar"
-msgstr ""
+msgstr "Подесите стринг за текст на статусној линији"
 
+# Status State
 #: gschem/src/base/gschem_status_bar.c:675
 #: gschem/src/base/gschem_status_bar.c:676
 msgid "Status State"
-msgstr ""
+msgstr "статус стање"
 
 # Status Bar Height
 #: gschem/src/base/gschem_status_bar.c:689
@@ -442,9 +464,10 @@ msgstr "искључен"
 msgid "Error"
 msgstr "greška"
 
+# None
 #: gschem/src/base/gschem_status_bar.c:1919
 msgid "NONE"
-msgstr "ни најмањи"
+msgstr "ниједан"
 
 # Object ~A is not included in the current gschem page.
 #: gschem/src/guile/g_attrib.c:97
@@ -457,77 +480,77 @@ msgid "Invalid text name/value visibility ~A."
 msgstr "Неважећи текст име / вредност видљивост ~А."
 
 # Processing
-#: gschem/src/guile/g_rc.c:87 gschem/src/guile/g_rc.c:99
+#: gschem/src/guile/g_rc.c:83 gschem/src/guile/g_rc.c:95
 msgid "Processing"
 msgstr "обрада"
 
 # ignoring
-#: gschem/src/guile/g_rc.c:91 gschem/src/guile/g_rc.c:103
+#: gschem/src/guile/g_rc.c:87 gschem/src/guile/g_rc.c:99
 msgid "Skipping"
 msgstr "игноришући"
 
 # value in the initialization file
-#: gschem/src/guile/g_rc.c:123
+#: gschem/src/guile/g_rc.c:119
 msgid "entry in rc file"
 msgstr "вредност у датотеци са почетним"
 
 # Bad Value
-#: gschem/src/guile/g_rc.c:127
+#: gschem/src/guile/g_rc.c:123
 msgid "Bad Value"
 msgstr "бад Вредност"
 
 # check
-#: gschem/src/guile/g_rc.c:128 gschem/src/guile/g_rc.c:2074
+#: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2070
 msgid "check"
 msgstr "проверити"
 
 # or Lisp, continuing with
-#: gschem/src/guile/g_rc.c:129
+#: gschem/src/guile/g_rc.c:125
 msgid "or Scheme, continuing with"
 msgstr "или Лисп, настављајући са"
 
 # the maximum value
-#: gschem/src/guile/g_rc.c:137
+#: gschem/src/guile/g_rc.c:133
 msgid "maximum value"
 msgstr "maksimalna вредност"
 
 # minimum value
-#: gschem/src/guile/g_rc.c:141
+#: gschem/src/guile/g_rc.c:137
 msgid "minimum value"
 msgstr "минимална вредност"
 
 # the default value
-#: gschem/src/guile/g_rc.c:145
+#: gschem/src/guile/g_rc.c:141
 msgid "default value"
 msgstr "предефинисана вредност"
 
 # Wrong data type, check
-#: gschem/src/guile/g_rc.c:159
+#: gschem/src/guile/g_rc.c:155
 msgid "Invalid type assignment, check"
 msgstr "Погрешна врста података, проверите"
 
 # This is gEDA / gschem version
-#: gschem/src/guile/g_rc.c:200
+#: gschem/src/guile/g_rc.c:196
 msgid "This is gEDA/gschem version"
 msgstr "Ово је гЕДА / гсцхем верзија"
 
 # your RC version is
-#: gschem/src/guile/g_rc.c:201
+#: gschem/src/guile/g_rc.c:197
 msgid "but you have a version"
 msgstr "Ваш РЦ верзија је"
 
 # Please make sure you have the latest RC file
-#: gschem/src/guile/g_rc.c:202
+#: gschem/src/guile/g_rc.c:198
 msgid "Please be sure that you have the latest rc file"
 msgstr "Молимо будите сигурни да имате најновију РЦ фајл"
 
 # file
-#: gschem/src/guile/g_rc.c:209 gschem/src/x/x_image.c:481
+#: gschem/src/guile/g_rc.c:205 gschem/src/x/x_image.c:481
 msgid "file"
 msgstr "фајл"
 
 # zoom-gain can not be zero, check zoom-gain in the initialization file
-#: gschem/src/guile/g_rc.c:725
+#: gschem/src/guile/g_rc.c:721
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
 msgstr ""
@@ -535,38 +558,38 @@ msgstr ""
 "почетним\n"
 
 # got the wrong type, check the Zoom-gain in the initialization file
-#: gschem/src/guile/g_rc.c:730
+#: gschem/src/guile/g_rc.c:726
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
 msgstr "добио погрешну врсту, проверите Зоом-добитак у датотеци са почетним\n"
 
 # Continuing with default values
-#: gschem/src/guile/g_rc.c:731 gschem/src/guile/g_rc.c:1277
-#: gschem/src/guile/g_rc.c:1429 gschem/src/guile/g_rc.c:2027
+#: gschem/src/guile/g_rc.c:727 gschem/src/guile/g_rc.c:1273
+#: gschem/src/guile/g_rc.c:1425 gschem/src/guile/g_rc.c:2023
 msgid "Continuing with default value"
 msgstr "Настављајући са почетним вредности"
 
 # Incorrect data type, check the value of logging in the initialization file
-#: gschem/src/guile/g_rc.c:815
+#: gschem/src/guile/g_rc.c:811
 #, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
 msgstr "Погрешан тип података, Провери вредност сјече у датотеци са почетним\n"
 
 # snap-size cannot be zero, check snap-size entry in initialization file
-#: gschem/src/guile/g_rc.c:1271
+#: gschem/src/guile/g_rc.c:1267
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
 msgstr ""
 "Снап-величина не може бити нула, цхецк снап-сизе у датотеци са почетним\n"
 
 # assigned an invalid type, check snap-size in initialization file
-#: gschem/src/guile/g_rc.c:1276
+#: gschem/src/guile/g_rc.c:1272
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
 msgstr "додељен неважећи тип, цхецк снап-сизе у датотеци са почетним\n"
 
 # bus-Ripper-size can not be zero, check the setting in the initialization file
-#: gschem/src/guile/g_rc.c:1423
+#: gschem/src/guile/g_rc.c:1419
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
 msgstr ""
@@ -574,14 +597,14 @@ msgstr ""
 "почетним\n"
 
 # assigned an invalid type, check bus-ripper-size in initialization file
-#: gschem/src/guile/g_rc.c:1428
+#: gschem/src/guile/g_rc.c:1424
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
 msgstr ""
 "додељен неважећи тип, провери аутобус-риппер-сизе у датотеци са почетним\n"
 
 # can scroll 0 steps, check value of scrollpane-steps in initialization file
-#: gschem/src/guile/g_rc.c:2021
+#: gschem/src/guile/g_rc.c:2017
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
@@ -590,7 +613,7 @@ msgstr ""
 "почетним\n"
 
 # assigned an invalid type, check value of scrollpane-steps in initialization file
-#: gschem/src/guile/g_rc.c:2026
+#: gschem/src/guile/g_rc.c:2022
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
 msgstr ""
@@ -598,7 +621,7 @@ msgstr ""
 "почетним\n"
 
 # Invalid zoom factor
-#: gschem/src/guile/g_rc.c:2072
+#: gschem/src/guile/g_rc.c:2068
 msgid "Invalid zoom factor"
 msgstr "Неважећи зум фактор"
 
@@ -618,13 +641,15 @@ msgstr "Није могуће покренути УРИ"
 msgid "Found invalid gschem window smob ~S"
 msgstr "Пронађени неважећи гсцхем прозор смоб ~S"
 
+# current value of
 #: gschem/src/iface/i_command.c:132 gschem/src/iface/i_command.c:5025
 msgid "current value of"
-msgstr ""
+msgstr "тренутна вредност од"
 
+# verb to be
 #: gschem/src/iface/i_command.c:132 gschem/src/iface/i_command.c:5026
 msgid "is"
-msgstr ""
+msgstr "је"
 
 # processing Action
 #: gschem/src/iface/i_command.c:368
@@ -859,20 +884,20 @@ msgstr ""
 msgid "is not accessible"
 msgstr ""
 
+# File
 #: gschem/src/iface/i_sessions.c:272
-#, fuzzy
 msgid "File"
-msgstr "Да_тотека:"
+msgstr "Датотека"
 
 #: gschem/src/iface/i_sessions.c:335
 msgid "Warning relative file names detected in session"
 msgstr ""
 
+# Session
 #: gschem/src/iface/i_sessions.c:346 gschem/src/iface/i_sessions.c:359
 #: gschem/src/iface/i_sessions.c:931 gschem/src/x/x_sessions.c:232
-#, fuzzy
 msgid "Session"
-msgstr "Сачувај све"
+msgstr "седница"
 
 #: gschem/src/iface/i_sessions.c:347
 msgid "opening"
@@ -891,15 +916,15 @@ msgstr ""
 msgid "did not contain any accessible documents"
 msgstr ""
 
+# Sessions, do not capitalize
 #: gschem/src/iface/i_sessions.c:791
-#, fuzzy
 msgid "Sessions"
-msgstr "Сачувај све"
+msgstr "сесије"
 
+# Removing session
 #: gschem/src/iface/i_sessions.c:855
-#, fuzzy
 msgid "Removing session"
-msgstr "Сачувај све"
+msgstr "Уклањање сесије"
 
 #: gschem/src/iface/i_sessions.c:880
 msgid "Failed to remove session"
@@ -925,15 +950,15 @@ msgstr ""
 msgid "Creation failed"
 msgstr ""
 
+# Opened session
 #: gschem/src/iface/i_sessions.c:994
-#, fuzzy
 msgid "Opened session"
-msgstr "Сачувај све"
+msgstr "otvoren сесија"
 
+# Renaming session
 #: gschem/src/iface/i_sessions.c:1043
-#, fuzzy
 msgid "Renaming session"
-msgstr "Сачувај све"
+msgstr "преименовање сесија"
 
 #: gschem/src/iface/i_sessions.c:1044
 msgid "to"
@@ -947,10 +972,10 @@ msgstr ""
 msgid "<b>Could not rename session</b>"
 msgstr ""
 
+# made session
 #: gschem/src/iface/i_sessions.c:1105
-#, fuzzy
 msgid "Created session"
-msgstr "Сачувај све"
+msgstr "направљена сесија"
 
 #: gschem/src/iface/i_sessions.c:1106
 msgid "with"
@@ -1225,10 +1250,10 @@ msgstr ""
 msgid "Bus ripper symbol was not found in any component library"
 msgstr ""
 
+# Update All
 #: gschem/src/object/o_picture.c:357
-#, fuzzy
 msgid "Update All"
-msgstr "Сачувај све"
+msgstr "Упдате Алл"
 
 #: gschem/src/object/o_picture.c:359
 msgid "Update all selected Picture images"
@@ -1544,36 +1569,42 @@ msgid "Command interface: engaged using"
 msgstr ""
 
 #: gschem/src/x/x_console.c:345
-msgid "** Invalid UTF-8 in log message. See stderr or gschem.log.\n"
+msgid "Invalid UTF-8 in log message. See stderr or gschem.log.\n"
 msgstr ""
 
 #: gschem/src/x/x_console.c:577
 msgid "gEDA Console"
-msgstr ""
+msgstr "gEDA конзола"
 
+# Drag & Drop
 #: gschem/src/x/x_coord.c:150
 msgid "Drag & Drop"
-msgstr ""
+msgstr "Драг & Дроп"
 
+# An error occurred while receiving Drag & Drop data
 #: gschem/src/x/x_coord.c:156 gschem/src/x/x_dnd.c:583
 msgid "An error occurred while receiving Drag & Drop data"
-msgstr ""
+msgstr "Дошло је до грешке приликом добијања Драг & Дроп податке"
 
+# Data error
 #: gschem/src/x/x_coord.c:157
 msgid "Data error"
-msgstr ""
+msgstr "data еррор"
 
+# Drag & Drop failed
 #: gschem/src/x/x_coord.c:162 gschem/src/x/x_dnd.c:585
 msgid "Drag & Drop failed"
-msgstr ""
+msgstr "Драг-дроп фаилед"
 
+# Coordinates
 #: gschem/src/x/x_coord.c:472
 msgid "Coordinates"
-msgstr ""
+msgstr "koordinate"
 
+# Screen
 #: gschem/src/x/x_coord.c:487
 msgid "Screen"
-msgstr ""
+msgstr "екран"
 
 #: gschem/src/x/x_coord.c:497
 msgid "World"
@@ -1820,9 +1851,10 @@ msgstr ""
 msgid "Fill Type:"
 msgstr ""
 
+# Line Width
 #: gschem/src/x/x_dialog.c:1628
 msgid "Line Width:"
-msgstr ""
+msgstr "Ширина линије:"
 
 #: gschem/src/x/x_dialog.c:1631
 msgid "Angle 1:"
@@ -2588,13 +2620,13 @@ msgid "Unable to write"
 msgstr ""
 
 #: gschem/src/x/x_image.c:477
-msgid "An error occured while saving image with type"
+msgid "An error occurred while saving image with type"
 msgstr ""
 
+# to filename
 #: gschem/src/x/x_image.c:478
-#, fuzzy
 msgid "to filename"
-msgstr "Naziv dokumenta"
+msgstr "до филенаме"
 
 #: gschem/src/x/x_image.c:489
 msgid "<b>Error Writing Imaging.</b>"
@@ -3319,10 +3351,10 @@ msgstr ""
 msgid "Destination"
 msgstr ""
 
+# File
 #: gschem/src/x/x_print.c:548
-#, fuzzy
 msgid "File:"
-msgstr "Да_тотека:"
+msgstr "Датотека:"
 
 #: gschem/src/x/x_print.c:578
 msgid "Command:"
@@ -3391,10 +3423,10 @@ msgstr ""
 msgid "exported to"
 msgstr ""
 
+# Load selected session
 #: gschem/src/x/x_sessions.c:414
-#, fuzzy
 msgid "Load the selected session"
-msgstr "Сачувај све"
+msgstr "Лоад изабрану сесију"
 
 #: gschem/src/x/x_sessions.c:415
 msgid ""
@@ -3459,10 +3491,10 @@ msgstr ""
 msgid "New Session"
 msgstr ""
 
+# Save session as
 #: gschem/src/x/x_sessions.c:853 gschem/scheme/gschem/builtins.scm:389
-#, fuzzy
 msgid "Save Session As"
-msgstr "Сачувај све"
+msgstr "Сачувај Седница као"
 
 #: gschem/src/x/x_settings.c:359
 #, fuzzy
@@ -3556,31 +3588,31 @@ msgstr ""
 msgid "data saved to"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:568
+#: gschem/src/x/x_toolbars.c:569
 msgid "Could not save Toolbar configuration to"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:641
+#: gschem/src/x/x_toolbars.c:642
 msgid "Error, Toolbar configuration key file"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:649
+#: gschem/src/x/x_toolbars.c:650
 msgid "Retrieving toolbar geometry\n"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:674
+#: gschem/src/x/x_toolbars.c:675
 msgid "Toolbar configuration restored from"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:679
+#: gschem/src/x/x_toolbars.c:680
 msgid "Warning, error restoring toolbar configuration"
 msgstr "greška u analizi"
 
-#: gschem/src/x/x_toolbars.c:685
+#: gschem/src/x/x_toolbars.c:686
 msgid "Warning, toolbar configuration file access error"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:703
+#: gschem/src/x/x_toolbars.c:704
 msgid "Toolbar configuration not found"
 msgstr ""
 
@@ -3612,19 +3644,19 @@ msgstr ""
 msgid "Aborting action\n"
 msgstr ""
 
+# Close Window canceled
 #: gschem/src/x/x_window.c:681
-#, fuzzy
 msgid "Close Window canceled\n"
-msgstr "Нови прозор"
+msgstr "Затвори прозор отказан\n"
 
 #: gschem/src/x/x_window.c:767
 msgid "Loading file"
 msgstr ""
 
+# New file
 #: gschem/src/x/x_window.c:911
-#, fuzzy
 msgid "New file"
-msgstr "Да_тотека"
+msgstr "Нова датотека"
 
 #: gschem/src/x/x_window.c:953
 msgid "Failed to load file"
@@ -3661,10 +3693,10 @@ msgstr ""
 msgid "Error while trying to save"
 msgstr ""
 
+# Saved as
 #: gschem/src/x/x_window.c:1225
-#, fuzzy
 msgid "Saved as"
-msgstr "Сачувај све"
+msgstr "Сачувај као"
 
 #: gschem/data/geda-gschem.desktop.in:3
 msgid "gEDA Schematic Editor"
@@ -3706,8 +3738,8 @@ msgstr ""
 msgid "Save the current document to a new name or location"
 msgstr ""
 
+# Save All
 #: gschem/etc/system-gschemrc.scm:2059
-#, fuzzy
 msgid "Save A_ll"
 msgstr "Сачувај све"
 
@@ -4480,7 +4512,7 @@ msgid "Attribute _Editor..."
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2287
-msgid "Open the Attibutes Editor Dialog"
+msgid "Open the Attributes Editor Dialog"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2295
@@ -4685,9 +4717,10 @@ msgstr ""
 msgid "Lower to bottom of the drawing order"
 msgstr ""
 
+# File
 #: gschem/etc/system-gschemrc.scm:2367
 msgid "_File"
-msgstr "Да_тотека"
+msgstr "Датотека"
 
 #: gschem/etc/system-gschemrc.scm:2368
 msgid "_Edit"
@@ -4709,9 +4742,10 @@ msgstr ""
 msgid "_Add"
 msgstr ""
 
+# Sessions
 #: gschem/etc/system-gschemrc.scm:2374
 msgid "Sessio_ns"
-msgstr ""
+msgstr "сесије"
 
 #: gschem/etc/system-gschemrc.scm:2375
 msgid "Attri_butes"
@@ -4738,19 +4772,19 @@ msgstr ""
 msgid "Repeat Last Action"
 msgstr ""
 
+# New File
 #: gschem/scheme/gschem/builtins.scm:50
-#, fuzzy
 msgid "New File"
-msgstr "Да_тотека"
+msgstr "Нова датотека"
 
 #: gschem/scheme/gschem/builtins.scm:53
 msgid "Open File"
 msgstr ""
 
+# Save As
 #: gschem/scheme/gschem/builtins.scm:59
-#, fuzzy
 msgid "Save As"
-msgstr "Сачувај све"
+msgstr "Сачувај као"
 
 #: gschem/scheme/gschem/builtins.scm:62
 msgid "Save All"
@@ -4760,10 +4794,10 @@ msgstr "Сачувај све"
 msgid "Save Modified"
 msgstr ""
 
+# Print
 #: gschem/scheme/gschem/builtins.scm:68
-#, fuzzy
 msgid "Print"
-msgstr "_Штампај..."
+msgstr "Штампај"
 
 #: gschem/scheme/gschem/builtins.scm:71
 msgid "Export Image"
@@ -5046,20 +5080,20 @@ msgstr ""
 msgid "Add Picture"
 msgstr ""
 
+# Create New Session
 #: gschem/scheme/gschem/builtins.scm:380
-#, fuzzy
 msgid "Create New Session"
-msgstr "Сачувај све"
+msgstr "Створити нову седницу"
 
+# Open a Session
 #: gschem/scheme/gschem/builtins.scm:383
-#, fuzzy
 msgid "Open a Session"
-msgstr "Сачувај све"
+msgstr "Отворите Сессион"
 
+# Save Session
 #: gschem/scheme/gschem/builtins.scm:386
-#, fuzzy
 msgid "Save Session"
-msgstr "Сачувај све"
+msgstr "Саве Сессион"
 
 #: gschem/scheme/gschem/builtins.scm:398
 msgid "Attach Attributes"
@@ -5267,7 +5301,3 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
-
-#, fuzzy
-#~ msgid "session"
-#~ msgstr "Сачувај све"
