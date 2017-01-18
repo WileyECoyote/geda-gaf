@@ -1,3 +1,9 @@
+2017-01-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_bus_object.c: Revise validations in geda_box_object_read
+      to utilize geda_object_show_buffer_err similar to the changes made in
+      o_arc_object::geda_arc_object_read.
+
 2017-01-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/prototype_priv.h: Add declaration for new function

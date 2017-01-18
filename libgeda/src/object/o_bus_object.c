@@ -579,25 +579,33 @@ geda_bus_object_read(const char     buf[],
     if (sscanf (buf, "%c %d %d %d %d %d %d\n", &type, &x1, &y1, &x2, &y2, &color,
       &ripper_dir) != 7) {
       g_set_error(err, EDA_ERROR, EDA_ERROR_PARSE, _("Failed to parse bus object"));
-    return NULL;
-      }
+      return NULL;
+    }
   }
 
   if (x1 == x2 && y1 == y2) {
-    geda_log_w (_("Found a zero length bus [ %c %d %d %d %d %d ]\n"),
-                   type, x1, y1, x2, y2, color);
-  }
-
-  if (color < 0 || color > MAX_COLORS) {
-    geda_log_w (_("Found an invalid color [ %s ]\n"), buf);
-    geda_log_v (_("Setting color to default color\n"));
-    color = DEFAULT_BUS_COLOR_INDEX;
+    const char *msg = _("Found a bus with zero length");
+    if (geda_object_show_buffer_err(msg, buf)) {
+      geda_log_w("%s: (%d, %d) (%d, %d).\n", msg, x1, y1, x2, y2);
+    }
   }
 
   if (ripper_dir < -1 || ripper_dir > 1) {
-    geda_log_w (_("Found an invalid bus ripper direction [ %s ]\n"), buf);
-    geda_log_v (_("Resetting direction to neutral (no direction)\n"));
+    const char *msg = _("Found an invalid bus ripper direction");
+    if (geda_object_show_buffer_err(msg, buf)) {
+      geda_log_w("%s: %d\n", msg, ripper_dir);
+    }
+    geda_log_w (_("Resetting direction to neutral (no direction)\n"));
     ripper_dir = 0;
+  }
+
+  if (color < 0 || color > MAX_COLORS) {
+    const char *msg = _("Found an invalid color");
+    if (geda_object_show_buffer_err(msg, buf)) {
+      geda_log_w("%s: %d.\n", msg, color);
+    }
+    geda_log_w (_("Setting color to default color\n"));
+    color = DEFAULT_BUS_COLOR_INDEX;
   }
 
   new_obj = geda_bus_object_new (color, x1, y1, x2, y2, ripper_dir);

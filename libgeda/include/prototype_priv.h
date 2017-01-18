@@ -201,6 +201,9 @@ char       *geda_net_object_to_buffer            (GedaObject *object);
 void        geda_object_notify_emit_pre_change   (GedaObject *object);
 void        geda_object_notify_emit_change       (GedaObject *object);
 
+/* o_object.c */
+bool        geda_object_show_buffer_err          (const char *msg, const char *buffer);
+
 /* o_path_object.c */
 bool        geda_path_object_get_position        (GedaObject *object, int *x, int *y);
 void        geda_path_object_print               (GedaToplevel *toplevel, FILE *fp, GedaObject *o_current, int origin_x, int origin_y);
