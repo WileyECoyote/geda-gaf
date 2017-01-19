@@ -8,6 +8,8 @@
 
     * po/zh_CN.po: Update Chinese simplified translations.
 
+    * po/zh_TW.po: Update Chinese traditional translations.
+
     * src/x/x_fileselect.c: Correct spelling enlagre->enlarge and adjust
       the "inquire" text message wrap in x_fileselect_load_backup.
 
