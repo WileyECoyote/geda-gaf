@@ -142,7 +142,7 @@ x_fileselect_add_preview (GedaFileChooser *filechooser)
   gtk_widget_show_all (frame);
 
   cb_size = gtk_check_button_new_with_label (_("Large"));
-  gtk_widget_set_tooltip_text(cb_size, _("Enable to enlagre the preview"));
+  gtk_widget_set_tooltip_text(cb_size, _("Enable to enlarge the preview"));
   gtk_toggle_button_set_active ((GtkToggleButton*)cb_size, FALSE);
   g_object_set (cb_size, "visible", TRUE, NULL);
 
@@ -472,7 +472,9 @@ x_fileselect_load_backup(const char *message, GschemToplevel *w_current)
   const char *inquire;
   int result = FALSE;
 
-  inquire = _("If you load the original file, the backup file will be overwritten in the next autosave timeout and will be lost.\n\nDo you want to load the backup file?");
+  inquire = _("If you load the original file, the backup file will be "
+              "overwritten in the next autosave timeout and will be lost.\n\n"
+              "Do you want to load the backup file?");
 
   string = geda_sprintf ("%s\n%s", message, inquire);
 
