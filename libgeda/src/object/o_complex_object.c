@@ -1138,31 +1138,22 @@ geda_complex_object_read (GedaToplevel *toplevel, const char   buf[],
     return NULL;
   }
 
-  switch(angle) {
-
-    case(0):
-    case(90):
-    case(180):
-    case(270):
-      break;
-
-    default:
-      geda_log_w (_("Found a component with an invalid rotation [ %c %d %d %d %d %d %s ]\n"), type, x1, y1, selectable, angle, mirror, basename);
-      geda_log_v (_("Setting angle to 0\n"));
-      angle = 0;
+  if (angle != 0 && angle != 90 && angle != 180 && angle != 270) {
+    const char *msg = _("Found a component with an invalid rotation");
+    if (geda_object_show_buffer_err(msg, buf)) {
+      geda_log_w("%s: %d.\n", msg, angle);
+    }
+    geda_log_w (_("Setting angle to 0\n"));
+    angle = 0;
   }
 
-  switch(mirror) {
-
-    case(0):
-    case(1):
-
-      break;
-
-    default:
-      geda_log_w (_("Found a component with an invalid mirror flag [ %c %d %d %d %d %d %s ]\n"), type, x1, y1, selectable, angle, mirror, basename);
-      geda_log_v (_("Setting mirror to 0\n"));
-      mirror = 0;
+  if (mirror != 0 && mirror != 1) {
+    const char *msg = _("Found a component with an invalid mirror flag");
+    if (geda_object_show_buffer_err(msg, buf)) {
+      geda_log_w("%s: %d.\n", msg, mirror);
+    }
+    geda_log_w (_("Setting mirror to 0\n"));
+    mirror = 0;
   }
 
   if (strncmp(basename, "EMBEDDED", 8) == 0) {

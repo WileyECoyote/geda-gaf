@@ -1,8 +1,12 @@
 2017-01-19 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/object/o_circel_object.c: Revise validations in geda_circle_object
+    * src/object/o_circle_object.c: Revise validations in geda_circle_object
       _read to utilize geda_object_show_buffer_err similar to the changes made
       in o_arc_object::geda_arc_object_read.
+
+    * src/object/o_complex_object.c: Replace switch/case angle and switch/case
+      mirror with compounded if`s and update validation messaging to utilize
+      geda_object_show_buffer_err in geda_complex_object_read.
 
 2017-01-18 Wiley E. Hill <wileyhill@gmail.com>
 
