@@ -1,6 +1,12 @@
+2017-01-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_circel_object.c: Revise validations in geda_circle_object
+      _read to utilize geda_object_show_buffer_err similar to the changes made
+      in o_arc_object::geda_arc_object_read.
+
 2017-01-18 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/object/o_bus_object.c: Revise validations in geda_box_object_read
+    * src/object/o_bus_object.c: Revise validations in geda_bus_object_read
       to utilize geda_object_show_buffer_err similar to the changes made in
       o_arc_object::geda_arc_object_read.
 
