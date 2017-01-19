@@ -424,7 +424,6 @@ int make_box(int fldcnt,char *pFields[])
 
   char name[100], device[100], name_pos[100];
   char uref[100], class[100];
-  char footprint[100];
 
   font_size = 10;
 
@@ -445,7 +444,8 @@ int make_box(int fldcnt,char *pFields[])
 
   if (fldcnt >= 8) {
 
-    int pincount;
+    int  pincount;
+    char footprint[100];
 
     strcpy (uref,pFields[5]);
     strcat (uref,"?");
