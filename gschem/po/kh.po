@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-10 07:50-0600\n"
+"POT-Creation-Date: 2017-01-19 02:00-0600\n"
 "PO-Revision-Date: 2015-07-29 00:24-0600\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -37,50 +37,55 @@ msgstr "sa nm t tha eksar koumnour bampruonh samreab bachchy"
 msgid "Assuming symbol file suffix for"
 msgstr "sa nm t tha eksar del chea nimittaroub samreab bachchy"
 
-#: gschem/src/base/gschem.c:238
+#: gschem/src/base/gschem.c:241
 msgid "An error was encountered loading requested session"
 msgstr ""
 "ban chuobabrateah kamhosa muoy knong kar phtok ban snae rsom samyobrachoum "
 
-#: gschem/src/base/gschem.c:263
+#: gschem/src/base/gschem.c:266
 msgid "Auto Load"
 msgstr "phtok daoy svyobravotte"
 
-#: gschem/src/base/gschem.c:312
+#: gschem/src/base/gschem.c:316
 msgid ""
-"You must set the GEDADATA environment variable!\n"
+"The GEDADATA environment variable must be set!\n"
 "\n"
 "gschem cannot locate some data files. Please ensure the GEDADATA\n"
 "environment variable points to the correct location.\n"
 msgstr ""
+"ather bristhean GEDADATA  trauvte trauv ban kamnt!\n"
+"\n"
+"gschem  min ach kamnt titeang eksar tinnony muoychamnuon. saum brakd "
+"GEDADATA  nih\n"
+"pintou ather bristhean tow titeang troemotrauv.\n"
 
-#: gschem/src/base/gschem.c:348
+#: gschem/src/base/gschem.c:352
 msgid "Unable to locate scheme initialization file"
 msgstr "min ach kamnt titeang eksar chabphdaem"
 
-#: gschem/src/base/gschem.c:355
+#: gschem/src/base/gschem.c:359
 msgid "Read scheme initialization file"
 msgstr "saum an eksar chabphdaem chamrouh"
 
-#: gschem/src/base/gschem.c:358
+#: gschem/src/base/gschem.c:362
 msgid "Failed to read scheme initialization file"
 msgstr "saum an eksar chabphdaem chamrouh"
 
-#: gschem/src/base/gschem.c:380
+#: gschem/src/base/gschem.c:384
 msgid "version"
 msgstr "Kamne:"
 
-#: gschem/src/base/gschem.c:385
+#: gschem/src/base/gschem.c:389
 msgid "Logging system is disabled\n"
 msgstr "samy del ban chabphtaem chea brapn\n"
 
-#: gschem/src/base/gschem.c:425
+#: gschem/src/base/gschem.c:429
 #, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
 msgstr ""
 "kamhosa: ban breachy knong kar phtok ryy veayotamlei skrib pel chabphdaem.\n"
 
-#: gschem/src/base/gschem.c:517
+#: gschem/src/base/gschem.c:521
 msgid "Exiting normal\n"
 msgstr "kammovithi chenh thommotea\n"
 
@@ -454,117 +459,117 @@ msgstr ""
 msgid "Invalid text name/value visibility ~A."
 msgstr "chhmoh atthabt min troemotrauv-tamlei pheap meulkheunh ~A."
 
-#: gschem/src/guile/g_rc.c:87 gschem/src/guile/g_rc.c:99
+#: gschem/src/guile/g_rc.c:83 gschem/src/guile/g_rc.c:95
 msgid "Processing"
 msgstr "damnaerkar"
 
-#: gschem/src/guile/g_rc.c:91 gschem/src/guile/g_rc.c:103
+#: gschem/src/guile/g_rc.c:87 gschem/src/guile/g_rc.c:99
 msgid "Skipping"
 msgstr "romlong"
 
-#: gschem/src/guile/g_rc.c:123
+#: gschem/src/guile/g_rc.c:119
 msgid "entry in rc file"
 msgstr "tamlei knong eksar daoy rc"
 
-#: gschem/src/guile/g_rc.c:127
+#: gschem/src/guile/g_rc.c:123
 msgid "Bad Value"
 msgstr "koun tamlei"
 
-#: gschem/src/guile/g_rc.c:128 gschem/src/guile/g_rc.c:2074
+#: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2070
 msgid "check"
 msgstr "pinityameul"
 
-#: gschem/src/guile/g_rc.c:129
+#: gschem/src/guile/g_rc.c:125
 msgid "or Scheme, continuing with"
 msgstr "ryy krongkar bant cheamuoy"
 
-#: gschem/src/guile/g_rc.c:137
+#: gschem/src/guile/g_rc.c:133
 msgid "maximum value"
 msgstr "tamlei atebarmea"
 
-#: gschem/src/guile/g_rc.c:141
+#: gschem/src/guile/g_rc.c:137
 msgid "minimum value"
 msgstr "tamlei abbabarmea"
 
-#: gschem/src/guile/g_rc.c:145
+#: gschem/src/guile/g_rc.c:141
 msgid "default value"
 msgstr "tamlei lomneadaem"
 
-#: gschem/src/guile/g_rc.c:159
+#: gschem/src/guile/g_rc.c:155
 msgid "Invalid type assignment, check"
 msgstr "kechchakar braphet min troemotrauv, kar truotpinit"
 
-#: gschem/src/guile/g_rc.c:200
+#: gschem/src/guile/g_rc.c:196
 msgid "This is gEDA/gschem version"
 msgstr "nih kuchea kamne gEDA/gschem"
 
-#: gschem/src/guile/g_rc.c:201
+#: gschem/src/guile/g_rc.c:197
 msgid "but you have a version"
 msgstr "bo nde anak mean kamne muoy"
 
-#: gschem/src/guile/g_rc.c:202
+#: gschem/src/guile/g_rc.c:198
 msgid "Please be sure that you have the latest rc file"
 msgstr "saum brakd tha anakmean chongokraoy bamphot del rc pi eksar"
 
-#: gschem/src/guile/g_rc.c:209 gschem/src/x/x_image.c:481
+#: gschem/src/guile/g_rc.c:205 gschem/src/x/x_image.c:481
 msgid "file"
 msgstr "eksar"
 
-#: gschem/src/guile/g_rc.c:725
+#: gschem/src/guile/g_rc.c:721
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
 msgstr ""
 "tamlei min troemotrauv , pongrik kar kaenlaeng min ach chea sauny , "
 "pinityameul theato nowknong eksar daoy rc\n"
 
-#: gschem/src/guile/g_rc.c:730
+#: gschem/src/guile/g_rc.c:726
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
 msgstr ""
 "karchattang braphet min troemotrauv , pinityameul theato pongrik kar "
 "kaenlaeng nowknong eksar daoy rc\n"
 
-#: gschem/src/guile/g_rc.c:731 gschem/src/guile/g_rc.c:1277
-#: gschem/src/guile/g_rc.c:1429 gschem/src/guile/g_rc.c:2027
+#: gschem/src/guile/g_rc.c:727 gschem/src/guile/g_rc.c:1273
+#: gschem/src/guile/g_rc.c:1425 gschem/src/guile/g_rc.c:2023
 msgid "Continuing with default value"
 msgstr "bant cheamuoy tamlei lomneadaem"
 
-#: gschem/src/guile/g_rc.c:815
+#: gschem/src/guile/g_rc.c:811
 #, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
 msgstr ""
 "karchattang braphet min troemotrauv , pinityameul theato kab chheu nowknong "
 "eksar daoy rc\n"
 
-#: gschem/src/guile/g_rc.c:1271
+#: gschem/src/guile/g_rc.c:1267
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
 msgstr ""
 "tamlei min troemotrauv , mean tomham khtasa min ach chea sauny , pinityameul "
 "eksar daoy rc theato\n"
 
-#: gschem/src/guile/g_rc.c:1276
+#: gschem/src/guile/g_rc.c:1272
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
 msgstr ""
 "karchattang braphet min troemotrauv , pinityameul tomham theato khtasa knong "
 "eksar daoy rc\n"
 
-#: gschem/src/guile/g_rc.c:1423
+#: gschem/src/guile/g_rc.c:1419
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
 msgstr ""
 "tamlei min troemotrauv , rth y nd krong - Ripper tomham min ach chea sauny "
 "pinity eksar daoy rc theato\n"
 
-#: gschem/src/guile/g_rc.c:1428
+#: gschem/src/guile/g_rc.c:1424
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
 msgstr ""
 "karchattang braphet min troemotrauv , pinityameul theato rth y nd krong - "
 "Ripper tomham nowknong eksar daoy rc\n"
 
-#: gschem/src/guile/g_rc.c:2021
+#: gschem/src/guile/g_rc.c:2017
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
@@ -572,14 +577,14 @@ msgstr ""
 "min ach rmour 0 chomhan scrollpan chomhan - min troemotrauv pinityameul "
 "theato nowknong eksar daoy rc\n"
 
-#: gschem/src/guile/g_rc.c:2026
+#: gschem/src/guile/g_rc.c:2022
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
 msgstr ""
 "karchattang braphet min troemotrauv , pinityameul scrollpan chaul knong "
 "chomhan eksar daoy rc\n"
 
-#: gschem/src/guile/g_rc.c:2072
+#: gschem/src/guile/g_rc.c:2068
 msgid "Invalid zoom factor"
 msgstr "katta pongrik min troemotrauv"
 
@@ -2116,12 +2121,13 @@ msgstr "banhchhob krahvek kammovithi bangheanh adabtr..."
 msgid "Done, renderer is down"
 msgstr "thveu ruoch ,brapnth bangheanh chea kar thleakchoh"
 
+# invalid show option; setting to show name and value
 #: gschem/src/x/x_edit_attrib.c:210
-#, fuzzy, c-format
+#, c-format
 msgid "invalid show option; defaulting to show both\n"
 msgstr ""
-"chomreusa bangheanh min troemotrauv ttuol bankar ! kar khakkhan tow "
-"bangheanh teangpir\n"
+"chomreusa bangheanh min troemotrauv; saamnom daembi bangheanh chhmoh ning "
+"tamlei\n"
 
 #: gschem/src/x/x_edit_attrib.c:321
 msgid "Select to choose an attribute visibility options"
@@ -2534,30 +2540,35 @@ msgstr "khangokraom sdam"
 msgid "Edit Text Properties"
 msgstr "kesamruol lokkhan sambotte atthabat"
 
+# Text Content
 #: gschem/src/x/x_edit_text.c:469
 msgid "<b>Text Content</b>"
-msgstr ""
+msgstr "<b>Meateka Atthabat</b>"
 
+# Text Properties
 #: gschem/src/x/x_edit_text.c:499
 msgid "<b>Text Properties</b>"
-msgstr ""
+msgstr "<b>lokkhan sambotte atthabat</b>"
 
+# Text Alignment Attribute
 #: gschem/src/x/x_edit_text.c:594
 msgid "Text Alignment Attribute"
-msgstr ""
+msgstr "kounalokkhan tamrum atthabat"
 
+# Text Rotation Angle Spinner Entry
 #: gschem/src/x/x_edit_text.c:606
 msgid "Text Rotation Angle Spinner Entry"
-msgstr ""
+msgstr "kar bangvil moum theato atthabt bangkeun banthoy"
 
 # Large
 #: gschem/src/x/x_fileselect.c:144
 msgid "Large"
 msgstr "del mean tomham thom"
 
+# Enable the expanded preview
 #: gschem/src/x/x_fileselect.c:145
-msgid "Enable to enlagre the preview"
-msgstr ""
+msgid "Enable to enlarge the preview"
+msgstr "anounhnhat aoy mean karopongrik kar meul cheamoun"
 
 #: gschem/src/x/x_fileselect.c:286
 msgid "Auto file Suffix"
@@ -2585,7 +2596,7 @@ msgstr ""
 
 #: gschem/src/x/x_fileselect.c:475
 msgid ""
-"If you load the original file, the backup file will be overwritten in the "
+"If you load the original file, the backup file will beoverwritten in the "
 "next autosave timeout and will be lost.\n"
 "\n"
 "Do you want to load the backup file?"
@@ -3594,39 +3605,39 @@ msgstr ""
 msgid "data saved to"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:568
+#: gschem/src/x/x_toolbars.c:569
 msgid "Could not save Toolbar configuration to"
 msgstr "breachy knong kar roksaatouk karkamnt rochneasampnth anak brae daembi"
 
 # Error, toolbar configuration file
-#: gschem/src/x/x_toolbars.c:641
+#: gschem/src/x/x_toolbars.c:642
 msgid "Error, Toolbar configuration key file"
 msgstr "kamhosa knong kar, eksar kamnt rochneasampnth rbar ubakar"
 
 # recall toolbar geometry
-#: gschem/src/x/x_toolbars.c:649
+#: gschem/src/x/x_toolbars.c:650
 msgid "Retrieving toolbar geometry\n"
 msgstr "thorneimatr rbar ubakar bramoul rothayon\n"
 
 # toolbar configuration restored from
-#: gschem/src/x/x_toolbars.c:674
+#: gschem/src/x/x_toolbars.c:675
 msgid "Toolbar configuration restored from"
 msgstr "karkamnt rochneasampnth rbar ubakar sta r laengvinh pi"
 
 # warning, Toolbar configuration error restoration
-#: gschem/src/x/x_toolbars.c:679
+#: gschem/src/x/x_toolbars.c:680
 msgid "Warning, error restoring toolbar configuration"
 msgstr "karopromean, karkamnt rochneasampnth rbar ubakar kamhosa kar sdar"
 
 # warning, toolbar configuration file access error
-#: gschem/src/x/x_toolbars.c:685
+#: gschem/src/x/x_toolbars.c:686
 msgid "Warning, toolbar configuration file access error"
 msgstr ""
 "karopromean, kamhosa knong kar chaul damnaerkar eksar kamnt rochneasampnth "
 "rbar ubakar"
 
 # toolbar configuration not found
-#: gschem/src/x/x_toolbars.c:703
+#: gschem/src/x/x_toolbars.c:704
 msgid "Toolbar configuration not found"
 msgstr "karkamnt rochneasampnth rbar ubakar del minban rk kheunh"
 
@@ -4519,9 +4530,10 @@ msgstr ""
 msgid "Attribute _Editor..."
 msgstr ""
 
+# Open the Attribute Editor Dialog
 #: gschem/etc/system-gschemrc.scm:2287
-msgid "Open the Attibutes Editor Dialog"
-msgstr ""
+msgid "Open the Attributes Editor Dialog"
+msgstr "baek braab kammovithi niponth kounalokkhan"
 
 #: gschem/etc/system-gschemrc.scm:2295
 msgid "A_utonumber Text..."

@@ -4,6 +4,8 @@
 
     * po/bg.po: Update Bulgarian translations.
 
+    * po/kh.po: Update Khmer translations.
+
     * src/x/x_fileselect.c: Correct spelling enlagre->enlarge and adjust
       the "inquire" text message wrap in x_fileselect_load_backup.
 
