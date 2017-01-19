@@ -1,3 +1,9 @@
+2017-01-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/it.po: Update Italian translations.
+
+    * po/ru.po: Update Russian translations.
+
 2017-01-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * gaf/src/gaf.c: make numeric translation native to host.

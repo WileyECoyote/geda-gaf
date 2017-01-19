@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: gaf/src/gaf.c:69
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Usage: gaf [OPTION...] COMMAND [ARGS ...]\n"
 "\n"
@@ -51,7 +51,7 @@ msgstr ""
 "Segnalare eventuali difetti a %s.\n"
 
 #: gaf/src/gaf.c:89
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "gEDA/gaf %s (%s) (g%.7s)\n"
 "Copyright (C) 1998-2017 gEDA developers\n"
@@ -60,8 +60,8 @@ msgid ""
 "included in the gEDA distribution.\n"
 "There is NO WARRANTY, to the extent permitted by law.\n"
 msgstr ""
-"gEDA/gaf %s (g%.7s)\n"
-"Copyright (C) 1998-2012 gli sviluppatori di gEDA\n"
+"gEDA/gaf %s (%s) (g%.7s)\n"
+"Copyright (C) 1998-2017 gli sviluppatori di gEDA\n"
 "Questo è software libero, e siete invitati a redistribuirlo sotto\n"
 "certe condizioni. Per i dettagli, vedere il file \"COPYING\", incluso\n"
 "nella distribuzione di gEDA.\n"
@@ -217,7 +217,7 @@ msgid "ERROR: Failed to change directory to '%s': %s\n"
 msgstr "ERRORE: fallito il cambiamento di cartella a \"%s\": %s\n"
 
 #: gaf/src/export.c:1099
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Usage: gaf export [OPTION ...] -o OUTPUT [--] FILE ...\n"
 "\n"
@@ -274,7 +274,7 @@ msgid "ERROR: You must specify an output filename.\n"
 msgstr "ERRORE: bisogna specificare un nome file in uscita.\n"
 
 #: gaf/src/shell.c:50
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Usage: gaf shell [OPTION ...]\n"
 "\n"
@@ -297,18 +297,19 @@ msgstr ""
 "\n"
 "Shell per l'elaborazione interattiva dei dati gEDA con Scheme.\n"
 "\n"
-"  -s FILE        carica il codice sorgente Scheme da FILE ed esce\n"
-"  -c EXPR        elabora l'espressione Scheme EXPR ed esce\n"
-"  --             blocca la scansione degli argomenti ed esegue "
+"  -e, --eval <EXPR>   elabora l'espressione Scheme EXPR ed esce\n"
+"  -h, --help          mostra le informazioni sull'uso ed esce\n"
+"  -l, --load <FILE>   carica il codice sorgente Scheme da FILE ed esce\n"
+"  -p, --path <DIR>    aggiungere DIR alla anteriore del percorso di carico "
+"Guile\n"
+"  -s, --scheme <FILE> carica il codice sorgente Scheme da FILE ed esce\n"
+"  --                  blocca la scansione degli argomenti ed esegue "
 "interattivamente\n"
 "\n"
-"L'opzione soprastante blocca l'elaborazione degli argomenti e passa tutti i\n"
-"rimanenti argomenti come valore di (command-line).\n"
+"-e e -s interruttori interrompere l'elaborazione argomento, e passano tutti "
+"gli\n"
+"argomenti rimanenti come valore (da riga di comando).\n"
 "\n"
-"  -L CARTELLA    aggiunge CARTELLA in cima al percorso di caricamento di "
-"Scheme\n"
-"  -l FILE        carica il codice sorgente Scheme da FILE\n"
-"  -h, --help     mostra le informazioni sull'uso ed esce\n"
 "\n"
 "Segnalare eventuali difetti a %s.\n"
 

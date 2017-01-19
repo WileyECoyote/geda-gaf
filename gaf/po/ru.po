@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: gaf/src/gaf.c:69
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Usage: gaf [OPTION...] COMMAND [ARGS ...]\n"
 "\n"
@@ -56,7 +56,7 @@ msgstr ""
 "Сообщайте об ошибках по адресу: %s\n"
 
 #: gaf/src/gaf.c:89
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "gEDA/gaf %s (%s) (g%.7s)\n"
 "Copyright (C) 1998-2017 gEDA developers\n"
@@ -65,8 +65,8 @@ msgid ""
 "included in the gEDA distribution.\n"
 "There is NO WARRANTY, to the extent permitted by law.\n"
 msgstr ""
-"gEDA/gaf %s (g%.7s)\n"
-"Copyright (C) 1998-2012 разработчики gEDA\n"
+"gEDA/gaf %s (%s) (g%.7s)\n"
+"Copyright (C) 1998-2017 разработчики gEDA\n"
 "Это свободное программное обеспечение, и вы можете его распространять\n"
 "на определённых условиях. Подробности см. в файле COPYING в дистрибутиве\n"
 "gEDA. Нет НИКАКИХ ГАРАНТИЙ в рамках, допустимых имеющимся "
@@ -215,7 +215,7 @@ msgid "ERROR: Failed to change directory to '%s': %s\n"
 msgstr "ОШИБКА: Не удалось изменить каталог на «%s»: %s.\n"
 
 #: gaf/src/export.c:1099
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Usage: gaf export [OPTION ...] -o OUTPUT [--] FILE ...\n"
 "\n"
@@ -276,7 +276,7 @@ msgid "ERROR: You must specify an output filename.\n"
 msgstr "ОШИБКА: необходимо задать имя выходного файла.\n"
 
 #: gaf/src/shell.c:50
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Usage: gaf shell [OPTION ...]\n"
 "\n"
@@ -300,18 +300,18 @@ msgstr ""
 "Командная оболочка интерпретатора Scheme для интерактивной работы\n"
 "с данными gEDA.\n"
 "\n"
-"  -s ФАЙЛ        загрузить исходный код Scheme из ФАЙЛА и выйти\n"
-"  -c ВЫРАЖЕНИЕ   вычислить ВЫРАЖЕНИЕ Scheme и выйти\n"
-"  --             прекратить сканирование аргументов; перейти в\n"
-"                 интерактивный режим\n"
 "\n"
-"При задании указанных выше ключей обработка аргументов\n"
-"прекращается, все оставшиеся аргументы передаются как значение\n"
-"в виде (строка-команды).\n"
+"  -e, --eval <EXPR>   вычислить ВЫРАЖЕНИЕ Scheme и выйти\n"
+"  -h, --help          вывести справку по использованию и выйти\n"
+"  -l, --load <FILE>   загрузить исходный код Scheme из ФАЙЛА\n"
+"  -p, --path <DIR>    добавить КАТАЛОГ в начало пути загрузки Scheme\n"
+"  -s, --scheme <FILE> загрузить исходный код Scheme из ФАЙЛА и выйти\n"
+"  --                  прекратить сканирование аргументов; перейти в "
+"интерактивный режим\n"
 "\n"
-"  -L КАТАЛОГ     добавить КАТАЛОГ в начало пути загрузки Scheme\n"
-"  -l ФАЙЛ        загрузить исходный код Scheme из ФАЙЛА\n"
-"  -h, --help     вывести справку по использованию и выйти\n"
+"-е и -s выше аргументы прекратить обработку ключа, все оставшиеся\n"
+"аргументы передаются как значение в виде (строка-команды).\n"
+"\n"
 "\n"
 "Отчёты об ошибках отправляйте по адресу %s.\n"
 
