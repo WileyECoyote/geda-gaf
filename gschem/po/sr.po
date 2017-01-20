@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-18 14:12-0600\n"
+"POT-Creation-Date: 2017-01-20 03:02-0600\n"
 "PO-Revision-Date: 2012-01-27 14:18+0000\n"
 "Last-Translator:  Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: Serbian <sr@li.org>\n"
@@ -50,7 +50,6 @@ msgstr "automatski лоад"
 # gschem can not find some files with data,
 # Please ensure the GEDADATA environment variable points to the correct location
 #: gschem/src/base/gschem.c:316
-#, fuzzy
 msgid ""
 "The GEDADATA environment variable must be set!\n"
 "\n"
@@ -1569,7 +1568,7 @@ msgid "Command interface: engaged using"
 msgstr ""
 
 #: gschem/src/x/x_console.c:345
-msgid "Invalid UTF-8 in log message. See stderr or gschem.log.\n"
+msgid "** Invalid UTF-8 in log message. See stderr or gschem.log.\n"
 msgstr ""
 
 #: gschem/src/x/x_console.c:577
@@ -2526,33 +2525,39 @@ msgstr ""
 msgid "<b>Text Properties</b>"
 msgstr ""
 
+# Text Alignment Attribute
 #: gschem/src/x/x_edit_text.c:594
 msgid "Text Alignment Attribute"
-msgstr ""
+msgstr "Поравнање текста Атрибут"
 
+# Text rotation angle Spinner input
 #: gschem/src/x/x_edit_text.c:606
 msgid "Text Rotation Angle Spinner Entry"
-msgstr ""
+msgstr "угао ротације текст Спиннер улаз"
 
 #: gschem/src/x/x_fileselect.c:144
 msgid "Large"
-msgstr ""
+msgstr "велики"
 
+# Enable to enlarge the preview
 #: gschem/src/x/x_fileselect.c:145
-msgid "Enable to enlagre the preview"
-msgstr ""
+msgid "Enable to enlarge the preview"
+msgstr "Омогућите за увећање преглед"
 
+# Auto file Suffix
 #: gschem/src/x/x_fileselect.c:286
 msgid "Auto file Suffix"
-msgstr ""
+msgstr "Ауто фајл Суфикс"
 
+# Automatically append the file extension
 #: gschem/src/x/x_fileselect.c:289
 msgid "Automatically append the file extension"
-msgstr ""
+msgstr "Аутоматски додати екстензију фајла"
 
+# already exists
 #: gschem/src/x/x_fileselect.c:333
 msgid "already exists"
-msgstr ""
+msgstr "већ постоји"
 
 #: gschem/src/x/x_fileselect.c:333
 msgid "Overwrite"
