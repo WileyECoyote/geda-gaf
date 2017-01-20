@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-10 07:50-0600\n"
+"POT-Creation-Date: 2017-01-19 02:00-0600\n"
 "PO-Revision-Date: 2012-04-12 22:09+0000\n"
 "Last-Translator: Dennis Baudys <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -37,17 +37,17 @@ msgstr ""
 msgid "Assuming symbol file suffix for"
 msgstr ""
 
-#: gschem/src/base/gschem.c:238
+#: gschem/src/base/gschem.c:241
 msgid "An error was encountered loading requested session"
 msgstr "FEHLER: Beim Einlesen der Konfigurationsdateien trat ein Fehler auf"
 
-#: gschem/src/base/gschem.c:263
+#: gschem/src/base/gschem.c:266
 msgid "Auto Load"
 msgstr ""
 
-#: gschem/src/base/gschem.c:312
+#: gschem/src/base/gschem.c:316
 msgid ""
-"You must set the GEDADATA environment variable!\n"
+"The GEDADATA environment variable must be set!\n"
 "\n"
 "gschem cannot locate some data files. Please ensure the GEDADATA\n"
 "environment variable points to the correct location.\n"
@@ -57,33 +57,33 @@ msgstr ""
 "gschem kann seine Datendateien nicht finden.\n"
 "GEDADATA muss auf das richtige Verzeichnis zeigen.\n"
 
-#: gschem/src/base/gschem.c:348
+#: gschem/src/base/gschem.c:352
 msgid "Unable to locate scheme initialization file"
 msgstr "Schema-Initialisierungsdatei konnte nicht gefunden werden"
 
-#: gschem/src/base/gschem.c:355
+#: gschem/src/base/gschem.c:359
 msgid "Read scheme initialization file"
 msgstr "Initialisierungsdatei lesen"
 
-#: gschem/src/base/gschem.c:358
+#: gschem/src/base/gschem.c:362
 msgid "Failed to read scheme initialization file"
 msgstr "Fehler beim Lesen der Schema-Initialisierungsdatei"
 
-#: gschem/src/base/gschem.c:380
+#: gschem/src/base/gschem.c:384
 msgid "version"
 msgstr "_Alles speichern"
 
-#: gschem/src/base/gschem.c:385
+#: gschem/src/base/gschem.c:389
 msgid "Logging system is disabled\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:425
+#: gschem/src/base/gschem.c:429
 #, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
 msgstr ""
 "FEHLER: Das Startskript konnte nicht geladen oder ausgewertet werden.\n"
 
-#: gschem/src/base/gschem.c:517
+#: gschem/src/base/gschem.c:521
 msgid "Exiting normal\n"
 msgstr ""
 
@@ -404,114 +404,114 @@ msgstr "Das Objekt ~A ist im aktuellen Schaltplan nicht enthalten."
 msgid "Invalid text name/value visibility ~A."
 msgstr "Ungültiger Wert für das Sichtbarkeitsattribut von  ~A."
 
-#: gschem/src/guile/g_rc.c:87 gschem/src/guile/g_rc.c:99
+#: gschem/src/guile/g_rc.c:83 gschem/src/guile/g_rc.c:95
 msgid "Processing"
 msgstr "Verarbeitung"
 
-#: gschem/src/guile/g_rc.c:91 gschem/src/guile/g_rc.c:103
+#: gschem/src/guile/g_rc.c:87 gschem/src/guile/g_rc.c:99
 msgid "Skipping"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:123
+#: gschem/src/guile/g_rc.c:119
 msgid "entry in rc file"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:127
+#: gschem/src/guile/g_rc.c:123
 msgid "Bad Value"
 msgstr "Wert"
 
-#: gschem/src/guile/g_rc.c:128 gschem/src/guile/g_rc.c:2074
+#: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2070
 msgid "check"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:129
+#: gschem/src/guile/g_rc.c:125
 msgid "or Scheme, continuing with"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:137
+#: gschem/src/guile/g_rc.c:133
 msgid "maximum value"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:141
+#: gschem/src/guile/g_rc.c:137
 msgid "minimum value"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:145
+#: gschem/src/guile/g_rc.c:141
 msgid "default value"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:159
+#: gschem/src/guile/g_rc.c:155
 msgid "Invalid type assignment, check"
 msgstr "Ungültige Typzuweisung, Prüfung"
 
-#: gschem/src/guile/g_rc.c:200
+#: gschem/src/guile/g_rc.c:196
 msgid "This is gEDA/gschem version"
 msgstr "Dies ist gEDA/gschem Version"
 
-#: gschem/src/guile/g_rc.c:201
+#: gschem/src/guile/g_rc.c:197
 msgid "but you have a version"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:202
+#: gschem/src/guile/g_rc.c:198
 msgid "Please be sure that you have the latest rc file"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:209 gschem/src/x/x_image.c:481
+#: gschem/src/guile/g_rc.c:205 gschem/src/x/x_image.c:481
 msgid "file"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:725
+#: gschem/src/guile/g_rc.c:721
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:730
+#: gschem/src/guile/g_rc.c:726
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:731 gschem/src/guile/g_rc.c:1277
-#: gschem/src/guile/g_rc.c:1429 gschem/src/guile/g_rc.c:2027
+#: gschem/src/guile/g_rc.c:727 gschem/src/guile/g_rc.c:1273
+#: gschem/src/guile/g_rc.c:1425 gschem/src/guile/g_rc.c:2023
 msgid "Continuing with default value"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:815
+#: gschem/src/guile/g_rc.c:811
 #, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1271
+#: gschem/src/guile/g_rc.c:1267
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1276
+#: gschem/src/guile/g_rc.c:1272
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1423
+#: gschem/src/guile/g_rc.c:1419
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1428
+#: gschem/src/guile/g_rc.c:1424
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2021
+#: gschem/src/guile/g_rc.c:2017
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2026
+#: gschem/src/guile/g_rc.c:2022
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2072
+#: gschem/src/guile/g_rc.c:2068
 msgid "Invalid zoom factor"
 msgstr "Ungültiger Zoomfaktor"
 
@@ -1484,7 +1484,7 @@ msgstr "Beim Empfangen von Drag & Drop-Daten ist ein Fehler aufgetreten"
 
 #: gschem/src/x/x_coord.c:157
 msgid "Data error"
-msgstr "<b>Suchbereich</b>"
+msgstr "Datenfehler"
 
 #: gschem/src/x/x_coord.c:162 gschem/src/x/x_dnd.c:585
 msgid "Drag & Drop failed"
@@ -2433,29 +2433,34 @@ msgstr "<b>Texteigenschaften</b>"
 msgid "Text Alignment Attribute"
 msgstr "Attribute bearbeiten"
 
+# Text rotation angle Spinner input
 #: gschem/src/x/x_edit_text.c:606
 msgid "Text Rotation Angle Spinner Entry"
-msgstr ""
+msgstr "Text Drehung Winkel Spinner Eintrag"
 
 #: gschem/src/x/x_fileselect.c:144
 msgid "Large"
-msgstr ""
+msgstr "Groß"
 
+# Enable the expanded preview
 #: gschem/src/x/x_fileselect.c:145
-msgid "Enable to enlagre the preview"
-msgstr ""
+msgid "Enable to enlarge the preview"
+msgstr "Aktivieren Sie die erweiterte Vorschau"
 
+# Auto file Suffix
 #: gschem/src/x/x_fileselect.c:286
 msgid "Auto file Suffix"
-msgstr ""
+msgstr "Automatisches Suffix"
 
+# Automatically append the file extension
 #: gschem/src/x/x_fileselect.c:289
 msgid "Automatically append the file extension"
-msgstr ""
+msgstr "Automatisch die Dateierweiterung anhängen"
 
+# already exists
 #: gschem/src/x/x_fileselect.c:333
 msgid "already exists"
-msgstr ""
+msgstr "ist bereits vorhanden"
 
 #: gschem/src/x/x_fileselect.c:333
 msgid "Overwrite"
@@ -2471,7 +2476,7 @@ msgstr "Das Speichern wurde durch den Anwender abgebrochen\n"
 
 #: gschem/src/x/x_fileselect.c:475
 msgid ""
-"If you load the original file, the backup file will be overwritten in the "
+"If you load the original file, the backup file will beoverwritten in the "
 "next autosave timeout and will be lost.\n"
 "\n"
 "Do you want to load the backup file?"
@@ -2528,7 +2533,7 @@ msgstr "Beim Speichern des Bildes mit dem Typ ist ein Fehler aufgetreten"
 # to filename
 #: gschem/src/x/x_image.c:478
 msgid "to filename"
-msgstr "zu filename"
+msgstr "zu dateiname"
 
 # Error Writing Imaging
 #: gschem/src/x/x_image.c:489
@@ -3480,31 +3485,31 @@ msgstr "Speichern der Symbolleisteneinstellungen..."
 msgid "data saved to"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:568
+#: gschem/src/x/x_toolbars.c:569
 msgid "Could not save Toolbar configuration to"
 msgstr "Die Symbolleistenkonfiguration konnte nicht gespeichert werden"
 
-#: gschem/src/x/x_toolbars.c:641
+#: gschem/src/x/x_toolbars.c:642
 msgid "Error, Toolbar configuration key file"
 msgstr "Konfigurationsdateien konnte nicht eingelesen werden."
 
-#: gschem/src/x/x_toolbars.c:649
+#: gschem/src/x/x_toolbars.c:650
 msgid "Retrieving toolbar geometry\n"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:674
+#: gschem/src/x/x_toolbars.c:675
 msgid "Toolbar configuration restored from"
 msgstr "Die Symbolleistenkonfiguration wurde wiederhergestellts"
 
-#: gschem/src/x/x_toolbars.c:679
+#: gschem/src/x/x_toolbars.c:680
 msgid "Warning, error restoring toolbar configuration"
 msgstr "Konfigurationsdateien konnte nicht eingelesen werden."
 
-#: gschem/src/x/x_toolbars.c:685
+#: gschem/src/x/x_toolbars.c:686
 msgid "Warning, toolbar configuration file access error"
 msgstr "Konfigurationsdateien konnte nicht eingelesen werden."
 
-#: gschem/src/x/x_toolbars.c:703
+#: gschem/src/x/x_toolbars.c:704
 msgid "Toolbar configuration not found"
 msgstr "Symbolleistenkonfiguration nicht gefunden"
 
@@ -3543,7 +3548,7 @@ msgstr "Fenster s_chließen\n"
 # Loading file
 #: gschem/src/x/x_window.c:767
 msgid "Loading file"
-msgstr  "Datei wird geladen"
+msgstr "Datei wird geladen"
 
 #: gschem/src/x/x_window.c:911
 msgid "New file"
@@ -4402,7 +4407,8 @@ msgid "Attribute _Editor..."
 msgstr "Einzel-Attributebearbeitung..."
 
 #: gschem/etc/system-gschemrc.scm:2287
-msgid "Open the Attibutes Editor Dialog"
+#, fuzzy
+msgid "Open the Attributes Editor Dialog"
 msgstr "aufrufen Einzel-Attributebearbeitung"
 
 #: gschem/etc/system-gschemrc.scm:2295
