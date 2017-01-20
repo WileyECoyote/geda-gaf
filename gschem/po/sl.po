@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-18 14:12-0600\n"
+"POT-Creation-Date: 2017-01-20 03:02-0600\n"
 "PO-Revision-Date: 2012-01-27 14:18+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
@@ -461,7 +461,9 @@ msgstr "datoteke"
 #: gschem/src/guile/g_rc.c:721
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
-msgstr "Neveljavna vrednost, zoom-gain ne more biti nič, preverite vpis v rc datoteke\n"
+msgstr ""
+"Neveljavna vrednost, zoom-gain ne more biti nič, preverite vpis v rc "
+"datoteke\n"
 
 #: gschem/src/guile/g_rc.c:726
 #, c-format
@@ -481,7 +483,8 @@ msgstr "Neveljavna vrsta vrednost, preverite vnos sečnje v rc datoteke\n"
 #: gschem/src/guile/g_rc.c:1267
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
-msgstr "Neveljavna vrednost, snap-size ne more biti nič, preverite vnos rc datoteko\n"
+msgstr ""
+"Neveljavna vrednost, snap-size ne more biti nič, preverite vnos rc datoteko\n"
 
 #: gschem/src/guile/g_rc.c:1272
 #, c-format
@@ -491,24 +494,29 @@ msgstr "Neveljavna vrsta vrednost, preverite vnos snap-size v rc datoteke\n"
 #: gschem/src/guile/g_rc.c:1419
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
-msgstr "Neveljavna vrednost, bus-ripper-size ne more biti nič, preverite vnos rc datoteko\n"
+msgstr ""
+"Neveljavna vrednost, bus-ripper-size ne more biti nič, preverite vnos rc "
+"datoteko\n"
 
 #: gschem/src/guile/g_rc.c:1424
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
-msgstr "Neveljavna vrsta vrednost, preverite vnos bus-ripper-size v rc datoteke\n"
+msgstr ""
+"Neveljavna vrsta vrednost, preverite vnos bus-ripper-size v rc datoteke\n"
 
 #: gschem/src/guile/g_rc.c:2017
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
 msgstr ""
-"Ne morem se pomaknete 0 korake, neveljavni scrollpan-steps, preverite vpis v rc datoteke\n"
+"Ne morem se pomaknete 0 korake, neveljavni scrollpan-steps, preverite vpis v "
+"rc datoteke\n"
 
 #: gschem/src/guile/g_rc.c:2022
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
-msgstr "Neveljavna vrsta vrednost, preverite vnos scrollpan-steps v rc datoteke\n"
+msgstr ""
+"Neveljavna vrsta vrednost, preverite vnos scrollpan-steps v rc datoteke\n"
 
 #: gschem/src/guile/g_rc.c:2068
 msgid "Invalid zoom factor"
@@ -1444,7 +1452,7 @@ msgid "Command interface: engaged using"
 msgstr ""
 
 #: gschem/src/x/x_console.c:345
-msgid "Invalid UTF-8 in log message. See stderr or gschem.log.\n"
+msgid "** Invalid UTF-8 in log message. See stderr or gschem.log.\n"
 msgstr ""
 
 #: gschem/src/x/x_console.c:577
@@ -2399,33 +2407,39 @@ msgstr ""
 msgid "<b>Text Properties</b>"
 msgstr ""
 
+# Text Alignment Attribute
 #: gschem/src/x/x_edit_text.c:594
 msgid "Text Alignment Attribute"
-msgstr ""
+msgstr "Besedilo Poravnava Lastnost"
 
+# Text rotation angle Spinner input
 #: gschem/src/x/x_edit_text.c:606
 msgid "Text Rotation Angle Spinner Entry"
-msgstr ""
+msgstr "vrtenje besedila kot Spinner vhod"
 
 #: gschem/src/x/x_fileselect.c:144
 msgid "Large"
-msgstr ""
+msgstr "velika"
 
+# Enable to enlarge the preview
 #: gschem/src/x/x_fileselect.c:145
-msgid "Enable to enlagre the preview"
-msgstr ""
+msgid "Enable to enlarge the preview"
+msgstr "Omogoči za povečavo predogled"
 
+# Auto file Suffix
 #: gschem/src/x/x_fileselect.c:286
 msgid "Auto file Suffix"
-msgstr ""
+msgstr "pripona Auto datoteka"
 
+# Automatically append the file extension
 #: gschem/src/x/x_fileselect.c:289
 msgid "Automatically append the file extension"
-msgstr ""
+msgstr "Samodejno dodajanje razširitev datoteke"
 
+# already exists
 #: gschem/src/x/x_fileselect.c:333
 msgid "already exists"
-msgstr ""
+msgstr "že obstaja"
 
 #: gschem/src/x/x_fileselect.c:333
 msgid "Overwrite"
