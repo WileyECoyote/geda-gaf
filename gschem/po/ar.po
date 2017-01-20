@@ -2429,34 +2429,38 @@ msgstr "<b>خصائص النص</b>"
 msgid "Text Alignment Attribute"
 msgstr "حرّر المواصفات"
 
+# Text rotation angle Spinner input
 #: gschem/src/x/x_edit_text.c:606
 msgid "Text Rotation Angle Spinner Entry"
-msgstr ""
+msgstr "زاوية دوران إدخال النص سبينر"
 
 #: gschem/src/x/x_fileselect.c:144
 msgid "Large"
-msgstr ""
+msgstr "كبير"
 
+# enable to enlarge the preview
 #: gschem/src/x/x_fileselect.c:145
-#, fuzzy
 msgid "Enable to enlarge the preview"
-msgstr "اسم الملف المراد معاينته"
+msgstr "تمكن من تكبير المعاينة"
 
+# Automatic Suffix Name
 #: gschem/src/x/x_fileselect.c:286
 msgid "Auto file Suffix"
-msgstr ""
+msgstr "التلقائي اسم لاحقة"
 
+# Automatically append the file extension
 #: gschem/src/x/x_fileselect.c:289
 msgid "Automatically append the file extension"
-msgstr ""
+msgstr "إلحاق تلقائيا ملحق الملف"
 
+# already exists
 #: gschem/src/x/x_fileselect.c:333
 msgid "already exists"
-msgstr ""
+msgstr "موجود أصلا"
 
 #: gschem/src/x/x_fileselect.c:333
 msgid "Overwrite"
-msgstr "اكتب على الملف؟"
+msgstr "الكتابة"
 
 #: gschem/src/x/x_fileselect.c:334
 msgid "Overwrite file?"
