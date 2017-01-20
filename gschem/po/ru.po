@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gschem ru\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-10 07:50-0600\n"
+"POT-Creation-Date: 2017-01-20 03:02-0600\n"
 "PO-Revision-Date: 2015-09-13 16:05+0300\n"
 "Last-Translator: Sergey Alyoshin <alyoshin.s@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -39,19 +39,19 @@ msgstr ""
 msgid "Assuming symbol file suffix for"
 msgstr ""
 
-#: gschem/src/base/gschem.c:238
+#: gschem/src/base/gschem.c:241
 #, fuzzy
 msgid "An error was encountered loading requested session"
 msgstr "ОШИБКА: неизвестная ошибка при анализе файлов настроек."
 
-#: gschem/src/base/gschem.c:263
+#: gschem/src/base/gschem.c:266
 msgid "Auto Load"
 msgstr ""
 
-#: gschem/src/base/gschem.c:312
+#: gschem/src/base/gschem.c:316
 #, fuzzy
 msgid ""
-"You must set the GEDADATA environment variable!\n"
+"The GEDADATA environment variable must be set!\n"
 "\n"
 "gschem cannot locate some data files. Please ensure the GEDADATA\n"
 "environment variable points to the correct location.\n"
@@ -61,37 +61,37 @@ msgstr ""
 "gschem не может найти свои файлы данных. Необходимо задать\n"
 "их местоположение в переменной окружения GEDADATA.\n"
 
-#: gschem/src/base/gschem.c:348
+#: gschem/src/base/gschem.c:352
 #, fuzzy
 msgid "Unable to locate scheme initialization file"
 msgstr "Чтение scm-файла инициализации"
 
-#: gschem/src/base/gschem.c:355
+#: gschem/src/base/gschem.c:359
 #, fuzzy
 msgid "Read scheme initialization file"
 msgstr "Чтение scm-файла инициализации"
 
-#: gschem/src/base/gschem.c:358
+#: gschem/src/base/gschem.c:362
 #, fuzzy
 msgid "Failed to read scheme initialization file"
 msgstr "Чтение scm-файла инициализации"
 
-#: gschem/src/base/gschem.c:380
+#: gschem/src/base/gschem.c:384
 #, fuzzy
 msgid "version"
 msgstr "Сохранить как"
 
-#: gschem/src/base/gschem.c:385
+#: gschem/src/base/gschem.c:389
 msgid "Logging system is disabled\n"
 msgstr ""
 
 # Error: Could not load or run the script when starting
-#: gschem/src/base/gschem.c:425
+#: gschem/src/base/gschem.c:429
 #, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
 msgstr "ОШИБКА: не удалось загрузить или выполнить скрипт при запуске.\n"
 
-#: gschem/src/base/gschem.c:517
+#: gschem/src/base/gschem.c:521
 msgid "Exiting normal\n"
 msgstr ""
 
@@ -465,120 +465,120 @@ msgid "Invalid text name/value visibility ~A."
 msgstr "Недопустимое сочетание видимости имени/значения ~A."
 
 # Processing
-#: gschem/src/guile/g_rc.c:87 gschem/src/guile/g_rc.c:99
+#: gschem/src/guile/g_rc.c:83 gschem/src/guile/g_rc.c:95
 msgid "Processing"
 msgstr "Закрытие"
 
-#: gschem/src/guile/g_rc.c:91 gschem/src/guile/g_rc.c:103
+#: gschem/src/guile/g_rc.c:87 gschem/src/guile/g_rc.c:99
 msgid "Skipping"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:123
+#: gschem/src/guile/g_rc.c:119
 msgid "entry in rc file"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:127
+#: gschem/src/guile/g_rc.c:123
 #, fuzzy
 msgid "Bad Value"
 msgstr "Значение"
 
-#: gschem/src/guile/g_rc.c:128 gschem/src/guile/g_rc.c:2074
+#: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2070
 msgid "check"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:129
+#: gschem/src/guile/g_rc.c:125
 msgid "or Scheme, continuing with"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:137
+#: gschem/src/guile/g_rc.c:133
 msgid "maximum value"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:141
+#: gschem/src/guile/g_rc.c:137
 msgid "minimum value"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:145
+#: gschem/src/guile/g_rc.c:141
 msgid "default value"
 msgstr ""
 
 # Invalid type assignment, check
-#: gschem/src/guile/g_rc.c:159
+#: gschem/src/guile/g_rc.c:155
 msgid "Invalid type assignment, check"
 msgstr "Недопустимый тип назначения, проверка"
 
 # You are working with the GEDA/gschem version
-#: gschem/src/guile/g_rc.c:200
+#: gschem/src/guile/g_rc.c:196
 msgid "This is gEDA/gschem version"
 msgstr "Вы работаете с лифтом для/gschem версии"
 
 # but you have a version
-#: gschem/src/guile/g_rc.c:201
+#: gschem/src/guile/g_rc.c:197
 msgid "but you have a version"
 msgstr "Но у Вас есть версия"
 
 # Make sure that you have the latest version of the settings file
-#: gschem/src/guile/g_rc.c:202
+#: gschem/src/guile/g_rc.c:198
 msgid "Please be sure that you have the latest rc file"
 msgstr "Удостоверьтесь, что у вас последняя версия файла настроек"
 
-#: gschem/src/guile/g_rc.c:209 gschem/src/x/x_image.c:481
+#: gschem/src/guile/g_rc.c:205 gschem/src/x/x_image.c:481
 msgid "file"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:725
+#: gschem/src/guile/g_rc.c:721
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:730
+#: gschem/src/guile/g_rc.c:726
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:731 gschem/src/guile/g_rc.c:1277
-#: gschem/src/guile/g_rc.c:1429 gschem/src/guile/g_rc.c:2027
+#: gschem/src/guile/g_rc.c:727 gschem/src/guile/g_rc.c:1273
+#: gschem/src/guile/g_rc.c:1425 gschem/src/guile/g_rc.c:2023
 msgid "Continuing with default value"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:815
+#: gschem/src/guile/g_rc.c:811
 #, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1271
+#: gschem/src/guile/g_rc.c:1267
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1276
+#: gschem/src/guile/g_rc.c:1272
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1423
+#: gschem/src/guile/g_rc.c:1419
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1428
+#: gschem/src/guile/g_rc.c:1424
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2021
+#: gschem/src/guile/g_rc.c:2017
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2026
+#: gschem/src/guile/g_rc.c:2022
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
 msgstr ""
 
 # Invalid zoom factor
-#: gschem/src/guile/g_rc.c:2072
+#: gschem/src/guile/g_rc.c:2068
 msgid "Invalid zoom factor"
 msgstr "Неверный коэффициент масштабирования"
 
@@ -1623,21 +1623,20 @@ msgstr ""
 msgid "An error occurred while receiving Drag & Drop data"
 msgstr "Произошла ошибка при получении Drag & Drop данных"
 
+# Data error
 #: gschem/src/x/x_coord.c:157
-#, fuzzy
 msgid "Data error"
-msgstr "<b>Текст</b>"
+msgstr "ошибка в данных"
 
 # Заголовок окна ошибки
 #: gschem/src/x/x_coord.c:162 gschem/src/x/x_dnd.c:585
-#, fuzzy
 msgid "Drag & Drop failed"
 msgstr "Ошибка вставки данных из буфера обмена"
 
+# Coordinates
 #: gschem/src/x/x_coord.c:472
-#, fuzzy
 msgid "Coordinates"
-msgstr "Координаты:"
+msgstr "Координаты"
 
 #: gschem/src/x/x_coord.c:487
 msgid "Screen"
@@ -1653,7 +1652,6 @@ msgid "Could not load image file"
 msgstr "Не удалось загрузить файл изображения"
 
 #: gschem/src/x/x_dialog.c:443
-#, fuzzy
 msgid "gEDA: GPL Electronic Design Automation"
 msgstr "gEDA: САПР электроники под лицензией GPL"
 
@@ -2624,9 +2622,8 @@ msgid "Lower Right"
 msgstr "справа снизу"
 
 #: gschem/src/x/x_edit_text.c:452
-#, fuzzy
 msgid "Edit Text Properties"
-msgstr "<b>Текст</b>"
+msgstr "<b>Свойства Редактирование текста</b>"
 
 #: gschem/src/x/x_edit_text.c:469
 msgid "<b>Text Content</b>"
@@ -2634,44 +2631,46 @@ msgstr "<b>Содержание текста</b>"
 
 #: gschem/src/x/x_edit_text.c:499
 msgid "<b>Text Properties</b>"
-msgstr "<b>Текст</b>"
+msgstr "<b>Свойства текста</b>"
 
+# Text Alignment Attribute
 #: gschem/src/x/x_edit_text.c:594
-#, fuzzy
 msgid "Text Alignment Attribute"
-msgstr "Правка атрибутов"
+msgstr "Выравнивание текста Атрибут"
 
+# Text rotation angle Spinner input
 #: gschem/src/x/x_edit_text.c:606
 msgid "Text Rotation Angle Spinner Entry"
-msgstr ""
+msgstr "Угол поворота Ввод текста Spinner"
 
 #: gschem/src/x/x_fileselect.c:144
 msgid "Large"
-msgstr ""
+msgstr "большой"
 
+# Enable to enlarge the preview
 #: gschem/src/x/x_fileselect.c:145
-msgid "Enable to enlagre the preview"
-msgstr ""
+msgid "Enable to enlarge the preview"
+msgstr "Включить предварительный просмотр, чтобы увеличить"
 
+# Auto file Suffix
 #: gschem/src/x/x_fileselect.c:286
 msgid "Auto file Suffix"
-msgstr ""
+msgstr "Автоматический суффикс файла"
 
+# Automatically add the file extension
 #: gschem/src/x/x_fileselect.c:289
 msgid "Automatically append the file extension"
-msgstr ""
+msgstr "Автоматически добавлять расширение файла"
 
+# already exists
 #: gschem/src/x/x_fileselect.c:333
 msgid "already exists"
 msgstr ""
 
-# Заголовок окна
 #: gschem/src/x/x_fileselect.c:333
-#, fuzzy
 msgid "Overwrite"
-msgstr "Перезаписать файл?"
+msgstr "Перезаписать"
 
-# Заголовок окна
 #: gschem/src/x/x_fileselect.c:334
 msgid "Overwrite file?"
 msgstr "Перезаписать файл?"
@@ -3810,35 +3809,35 @@ msgid "data saved to"
 msgstr "Данные сохраняются в"
 
 # Could not save Toolbar configuration to
-#: gschem/src/x/x_toolbars.c:568
+#: gschem/src/x/x_toolbars.c:569
 msgid "Could not save Toolbar configuration to"
 msgstr "Не удалось сохранить конфигурацию панели инструментов для"
 
 # Error, Toolbar configuration key file
-#: gschem/src/x/x_toolbars.c:641
+#: gschem/src/x/x_toolbars.c:642
 msgid "Error, Toolbar configuration key file"
 msgstr "Ошибка конфигурации на панели инструментов файл ключа"
 
-#: gschem/src/x/x_toolbars.c:649
+#: gschem/src/x/x_toolbars.c:650
 msgid "Retrieving toolbar geometry\n"
 msgstr ""
 
 # Toolbar configuration restored from
-#: gschem/src/x/x_toolbars.c:674
+#: gschem/src/x/x_toolbars.c:675
 msgid "Toolbar configuration restored from"
 msgstr "Конфигурация Панели инструментов восстановить из"
 
-#: gschem/src/x/x_toolbars.c:679
+#: gschem/src/x/x_toolbars.c:680
 msgid "Warning, error restoring toolbar configuration"
 msgstr "Не удалось загрузить файлы настроек gschem"
 
 # Warning, Toolbar configuration file access error
-#: gschem/src/x/x_toolbars.c:685
+#: gschem/src/x/x_toolbars.c:686
 msgid "Warning, toolbar configuration file access error"
 msgstr "Не удалось загрузить файлы настроек gschem"
 
 # Toolbar configuration not found
-#: gschem/src/x/x_toolbars.c:703
+#: gschem/src/x/x_toolbars.c:704
 msgid "Toolbar configuration not found"
 msgstr "Панель инструментов конфигурации не найден"
 
@@ -4803,13 +4802,13 @@ msgstr "Показать унаследованные атрибуты"
 
 # Attribute Editor
 #: gschem/etc/system-gschemrc.scm:2287
-#, fuzzy
 msgid "Attribute _Editor..."
 msgstr "Редактор атрибута..."
 
+# Open the attributes editor dialog
 #: gschem/etc/system-gschemrc.scm:2287
-msgid "Open the Attibutes Editor Dialog"
-msgstr "Редактор атрибута"
+msgid "Open the Attributes Editor Dialog"
+msgstr "Откройте диалоговое окно атрибутов редактора"
 
 #: gschem/etc/system-gschemrc.scm:2295
 msgid "A_utonumber Text..."
