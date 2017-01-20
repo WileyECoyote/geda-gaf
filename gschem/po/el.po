@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-19 02:00-0600\n"
+"POT-Creation-Date: 2017-01-20 03:02-0600\n"
 "PO-Revision-Date: 2012-09-01 20:41+0000\n"
 "Last-Translator: Panos Bouklis <panos@echidna-band.com>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -2462,7 +2462,7 @@ msgstr "Αποθήκευση ακυρώθηκε με αίτημα του χρή�
 
 #: gschem/src/x/x_fileselect.c:475
 msgid ""
-"If you load the original file, the backup file will beoverwritten in the "
+"If you load the original file, the backup file will be overwritten in the "
 "next autosave timeout and will be lost.\n"
 "\n"
 "Do you want to load the backup file?"
@@ -4392,9 +4392,8 @@ msgid "Attribute _Editor..."
 msgstr "Επεξεργαστής ενός γνωρίσματος..."
 
 #: gschem/etc/system-gschemrc.scm:2287
-#, fuzzy
 msgid "Open the Attributes Editor Dialog"
-msgstr "Επεξεργαστής ενός γνωρίσματος"
+msgstr "Ανοίξτε το παράθυρο διαλόγου Ιδιότητες συντάκτη"
 
 #: gschem/etc/system-gschemrc.scm:2295
 msgid "A_utonumber Text..."

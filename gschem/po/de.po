@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-19 02:00-0600\n"
+"POT-Creation-Date: 2017-01-20 03:02-0600\n"
 "PO-Revision-Date: 2012-04-12 22:09+0000\n"
 "Last-Translator: Dennis Baudys <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -2476,7 +2476,7 @@ msgstr "Das Speichern wurde durch den Anwender abgebrochen\n"
 
 #: gschem/src/x/x_fileselect.c:475
 msgid ""
-"If you load the original file, the backup file will beoverwritten in the "
+"If you load the original file, the backup file will be overwritten in the "
 "next autosave timeout and will be lost.\n"
 "\n"
 "Do you want to load the backup file?"
@@ -4407,9 +4407,8 @@ msgid "Attribute _Editor..."
 msgstr "Einzel-Attributebearbeitung..."
 
 #: gschem/etc/system-gschemrc.scm:2287
-#, fuzzy
 msgid "Open the Attributes Editor Dialog"
-msgstr "aufrufen Einzel-Attributebearbeitung"
+msgstr "Öffnen Sie den Dialog Attributes Editor"
 
 #: gschem/etc/system-gschemrc.scm:2295
 msgid "A_utonumber Text..."

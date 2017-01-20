@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-19 02:00-0600\n"
+"POT-Creation-Date: 2017-01-20 03:02-0600\n"
 "PO-Revision-Date: 2015-07-29 00:24-0600\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -2570,81 +2570,102 @@ msgstr "del mean tomham thom"
 msgid "Enable to enlarge the preview"
 msgstr "anounhnhat aoy mean karopongrik kar meul cheamoun"
 
+# Auto file Suffix => automatically append the file suffix
 #: gschem/src/x/x_fileselect.c:286
 msgid "Auto file Suffix"
-msgstr ""
+msgstr "bachchy eksar daoy svyobravotte"
 
+# Automatically append the file extension
 #: gschem/src/x/x_fileselect.c:289
 msgid "Automatically append the file extension"
-msgstr ""
+msgstr "banthem khangchong daoy svyobravotte kantouy eksar"
 
+# already exists
 #: gschem/src/x/x_fileselect.c:333
 msgid "already exists"
-msgstr ""
+msgstr "thleab​ mean​ ruochhaey"
 
+# Overwrite
 #: gschem/src/x/x_fileselect.c:333
 msgid "Overwrite"
-msgstr ""
+msgstr "sarser cheanleu"
 
+# Overwrite file
 #: gschem/src/x/x_fileselect.c:334
 msgid "Overwrite file?"
-msgstr ""
+msgstr "sarser cheanleu eksar?"
 
+# Save canceled on user request
 #: gschem/src/x/x_fileselect.c:336
 msgid "Save canceled on user request\n"
-msgstr ""
+msgstr "baohbng kar roksaatouk leu saamnae robsa anak brae\n"
 
 #: gschem/src/x/x_fileselect.c:475
 msgid ""
-"If you load the original file, the backup file will beoverwritten in the "
+"If you load the original file, the backup file will be overwritten in the "
 "next autosave timeout and will be lost.\n"
 "\n"
 "Do you want to load the backup file?"
 msgstr ""
+"brasenbae anak ban phtok eksar daem, eksar bamroungtouk nih nung trauv ban "
+"sarser cheanleu now asa pel roksaatouk svyobravotte banteab haeynung trauv "
+"ban batbng.\n"
+"\n"
+"tae anak chng phtok eksar bamroungtouk?"
 
+# Warning, Error reading image file
 #: gschem/src/x/x_icons.c:251
 msgid "Warning, Error reading image file"
-msgstr "nhek kamhos"
+msgstr "promean, kamhosa knong kar an eksar roubpheap"
 
+# Warning, Error accessing image file
 #: gschem/src/x/x_icons.c:252
 msgid "Warning, Error accessing image file"
-msgstr ""
+msgstr "promean, kamhosa knong kar chaul damnaerkar eksar roubpheap"
 
+# Shutting down icon factory
 #: gschem/src/x/x_icons.c:424
 msgid "Shutting down icon factory\n"
-msgstr ""
+msgstr "kar bet rongochakr roubtamnang\n"
 
+# Initializing icon factory
 #: gschem/src/x/x_icons.c:445
 msgid "Initializing icon factory\n"
-msgstr ""
+msgstr "chabphdaem rongochakr roubtamnang\n"
 
+# Click to select size of the image to be created
 #: gschem/src/x/x_image.c:114
 msgid "Click to select size of the image to be created"
-msgstr ""
+msgstr "choch daembi chreusa tomham roubpheap trauv ban bangkeut laeng"
 
+# Click to select the type of image to be created
 #: gschem/src/x/x_image.c:188
 msgid "Click to select the type of image to be created"
 msgstr ""
+"choch daembi chreusa braphet nei roubpheap del trauv ban bangkeut laeng"
 
 #: gschem/src/x/x_image.c:212
 msgid "Encapsulated Postscript"
-msgstr ""
+msgstr "encapsulation Postscript"
 
+# Error: Unable to write eps file
 #: gschem/src/x/x_image.c:356
 msgid "Error: Unable to write eps file"
-msgstr ""
+msgstr "kamhosa: min ach sarser eksar EPS"
 
+# Error: Can not write EPS files
 #: gschem/src/x/x_image.c:359 gschem/src/x/x_image.c:506
 msgid "Wrote black and white image to"
-msgstr ""
+msgstr "sarser roubpheap sa khmaw tow"
 
 #: gschem/src/x/x_image.c:465
 msgid "Generated PDF file"
 msgstr "eksar PDF del ban bangkeut"
 
+# Unable to write
 #: gschem/src/x/x_image.c:476
 msgid "Unable to write"
-msgstr "ban breachy knong kar choh chaul tow knong"
+msgstr "min ach sarser"
 
 # An error occurred while saving image
 #: gschem/src/x/x_image.c:477
@@ -2664,9 +2685,10 @@ msgstr "<b>kamhosa knong kar sarser roubpheap.</b>"
 msgid "Wrote color image to"
 msgstr "roubpheap sarser n tow"
 
+# Unable to get pixbuf from computer screen
 #: gschem/src/x/x_image.c:516
 msgid "Unable to get pixbuf from gschem's window.\n"
-msgstr ""
+msgstr "min ach ttuol ban pixbuf pi ekrang kompyoutr.\n"
 
 #: gschem/src/x/x_image.c:669
 msgid "Write image..."
