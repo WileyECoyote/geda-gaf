@@ -1,3 +1,14 @@
+2017-01-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_check.c: Fix remnant format specifiers in message strings in
+      s_check_slotdef.
+
+    * tests/output/: Regenerate test log outputs because the messages for
+
+          * tests/output/lots_of_errors.output
+          * tests/output/many_slotdefs.output
+          * tests/output/text_errors.output
+
 2017-01-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/it.po: Add Italian translations.

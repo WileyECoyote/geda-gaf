@@ -12,7 +12,7 @@
 
     * po/zh_TW.po: Update Chinese traditional translations.
 
-    * tests/logs/:: Regenerate test log outputs because the message for
+    * tests/logs/: Regenerate test log outputs because the message for
       "MAJOR VERSION CHANGE" changed; the word "check" was added before
       the refdes:
 

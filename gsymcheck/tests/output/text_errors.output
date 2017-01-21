@@ -3,7 +3,7 @@ Warning: Found unknown value_invisible= attribute: [value_invisible=value_invisi
 Warning: Found unknown name_invisible= attribute: [name_invisible=name_invisible]
 Warning: Found a simple text object with only SHOW_NAME or SHOW_VALUE set [text with value_invisible]
 Warning: Found a simple text object with only SHOW_NAME or SHOW_VALUE set [text with name_invisible]
-Warning: Found text with unbalanced overbar markers '\_' in it' [pinlabel=\_Reset]
+Warning: Found text with unbalanced overbar markers '\_' [pinlabel=\_Reset]
 Warning: Found text with a '\' in it: consider to escape it with '\\' [pinlabel=a\b]
 Warning: Found text with a '\' in it: consider to escape it with '\\' [pinlabel=ab\c\d\]
 Warning: Found text with a '\' in it: consider to escape it with '\\' [pinlabel=ab\c\d\]

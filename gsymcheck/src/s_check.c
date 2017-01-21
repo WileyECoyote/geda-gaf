@@ -1274,7 +1274,7 @@ static void s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
       temp = geda_utility_string_split(pins, ',', j);
 
       if (!temp && j < s_current->numpins) {
-        const char *msg = _("Not enough pins in slotdef=%s\n");
+        const char *msg = _("Not enough pins in slotdef");
         message = geda_sprintf ("%s=%s\n", msg, slotdef);
         ADD_ERROR_MESSAGE(message);
         s_current->slotting_errors++;
@@ -1282,7 +1282,7 @@ static void s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
       }
 
       if (j > s_current->numpins) {
-        const char *msg = _("Too many pins in slotdef=%s\n");
+        const char *msg = _("Too many pins in slotdef");
         message = geda_sprintf ("%s=%s\n", msg, slotdef);
         ADD_ERROR_MESSAGE(message);
         s_current->slotting_errors++;
@@ -1292,7 +1292,7 @@ static void s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
       }
 
       if (temp && strcmp(temp, "0") == 0) {
-        const char *msg = _("Found a zero pin in slotdef=%s\n");
+        const char *msg = _("Found a zero pin in slotdef");
         message = geda_sprintf ("%s=%s\n", msg, slotdef);
         ADD_ERROR_MESSAGE(message);
       }
