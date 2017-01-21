@@ -12,6 +12,14 @@
 
     * po/zh_TW.po: Update Chinese traditional translations.
 
+    * tests/logs/:: Regenerate test log outputs because the message for
+      "MAJOR VERSION CHANGE" changed; the word "check" was added before
+      the refdes:
+
+          * tests/logs/versionsym1.log
+          * tests/logs/versionsym2.log
+          * tests/logs/versionsym3.log
+
 2017-01-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ar.po: Update Arabic translations.
