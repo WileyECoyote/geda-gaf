@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-18 14:12-0600\n"
+"POT-Creation-Date: 2017-01-20 03:02-0600\n"
 "PO-Revision-Date: 2012-02-04 00:18+0000\n"
 "Last-Translator: Krzysztof Kościuszkiewicz <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -46,7 +46,6 @@ msgid "Auto Load"
 msgstr ""
 
 #: gschem/src/base/gschem.c:316
-#, fuzzy
 msgid ""
 "The GEDADATA environment variable must be set!\n"
 "\n"
@@ -1550,8 +1549,7 @@ msgid "Command interface: engaged using"
 msgstr ""
 
 #: gschem/src/x/x_console.c:345
-#, fuzzy
-msgid "Invalid UTF-8 in log message. See stderr or gschem.log.\n"
+msgid "** Invalid UTF-8 in log message. See stderr or gschem.log.\n"
 msgstr ""
 "** Nieprawidłowy znak UTF-8 w komunikacie. Zobacz standardowe wyjście błędów "
 "lub plik gschem.log.\n"
@@ -2529,9 +2527,8 @@ msgid "Upper Middle"
 msgstr "Na środku powyżej"
 
 #: gschem/src/x/x_edit_text.c:240
-#, fuzzy
 msgid "Upper Right"
-msgstr "Na dole po prawej"
+msgstr "Górny prawy"
 
 #: gschem/src/x/x_edit_text.c:244
 msgid "Middle Left"
@@ -2569,39 +2566,43 @@ msgstr "<b>Treść tekstu</b>"
 msgid "<b>Text Properties</b>"
 msgstr "<b>Właściwości tekstu</b>"
 
+# Text Alignment Attribute
 #: gschem/src/x/x_edit_text.c:594
-#, fuzzy
 msgid "Text Alignment Attribute"
-msgstr "Zmodyfikuj atrybuty"
+msgstr "Wyrównanie tekstu Atrybut"
 
+# Text rotation angle Spinner input
 #: gschem/src/x/x_edit_text.c:606
 msgid "Text Rotation Angle Spinner Entry"
-msgstr ""
+msgstr "kąt obrotu tekstu wejściowego Spinner"
 
 #: gschem/src/x/x_fileselect.c:144
 msgid "Large"
-msgstr ""
+msgstr "Duży"
 
+# Enable to enlarge the preview
 #: gschem/src/x/x_fileselect.c:145
-msgid "Enable to enlagre the preview"
-msgstr ""
+msgid "Enable to enlarge the preview"
+msgstr "Włącz, aby powiększyć podgląd"
 
+# Auto file Suffix
 #: gschem/src/x/x_fileselect.c:286
 msgid "Auto file Suffix"
-msgstr ""
+msgstr "Automatyczne sufiks pliku"
 
+# Automatically append the file extension
 #: gschem/src/x/x_fileselect.c:289
 msgid "Automatically append the file extension"
-msgstr ""
+msgstr "Automatycznie dodawaj rozszerzenie pliku"
 
+# already exists
 #: gschem/src/x/x_fileselect.c:333
 msgid "already exists"
-msgstr ""
+msgstr "już istnieje"
 
 #: gschem/src/x/x_fileselect.c:333
-#, fuzzy
 msgid "Overwrite"
-msgstr "Zastąpić plik?"
+msgstr "Sobrescrever"
 
 #: gschem/src/x/x_fileselect.c:334
 msgid "Overwrite file?"
@@ -2841,8 +2842,8 @@ msgstr "Edycja właściwości tekstu"
 msgid "Object..."
 msgstr ""
 
+# Modify Attributes
 #: gschem/src/x/x_menus.c:110 gschem/etc/system-gschemrc.scm:2108
-#, fuzzy
 msgid "Edit Object Attributes"
 msgstr "Zmodyfikuj atrybuty"
 
@@ -3298,6 +3299,7 @@ msgstr "Duplikuj"
 msgid "Copy to all"
 msgstr "Kopiuj do 1"
 
+# Modify Attributes
 #: gschem/src/x/x_multiattrib.c:2057 gschem/src/x/x_multiattrib.c:2583
 msgid "Edit Attributes"
 msgstr "Zmodyfikuj atrybuty"
@@ -5362,9 +5364,8 @@ msgid "Save Session"
 msgstr "Zapisz wszystkie"
 
 #: gschem/scheme/gschem/builtins.scm:398
-#, fuzzy
 msgid "Attach Attributes"
-msgstr "Zmodyfikuj atrybuty"
+msgstr "Attach atrybuty"
 
 #: gschem/scheme/gschem/builtins.scm:401
 #, fuzzy
