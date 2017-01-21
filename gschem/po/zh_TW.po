@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-19 02:00-0600\n"
+"POT-Creation-Date: 2017-01-20 03:02-0600\n"
 "PO-Revision-Date: 2012-01-27 14:22+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -2485,7 +2485,7 @@ msgstr "<b>文本屬性</b>"
 msgid "Text Alignment Attribute"
 msgstr "文本對齊屬性"
 
-# Spinner control for Text Rotation Angle
+# Text rotation angle Spinner input
 #: gschem/src/x/x_edit_text.c:606
 msgid "Text Rotation Angle Spinner Entry"
 msgstr "文本旋轉角度的微調框控件"
@@ -2494,30 +2494,33 @@ msgstr "文本旋轉角度的微調框控件"
 msgid "Large"
 msgstr "大"
 
+# Enable to enlarge the preview
 #: gschem/src/x/x_fileselect.c:145
 msgid "Enable to enlarge the preview"
-msgstr ""
+msgstr "啟用以放大預覽"
 
+# Automatic file suffix
 #: gschem/src/x/x_fileselect.c:286
 msgid "Auto file Suffix"
-msgstr ""
+msgstr "自動文件後綴"
 
+# Automatically append the file extension
 #: gschem/src/x/x_fileselect.c:289
 msgid "Automatically append the file extension"
-msgstr ""
+msgstr "自動附加文件擴展名"
 
+# already exists
 #: gschem/src/x/x_fileselect.c:333
 msgid "already exists"
-msgstr ""
+msgstr "已經存在"
 
 #: gschem/src/x/x_fileselect.c:333
-#, fuzzy
 msgid "Overwrite"
-msgstr "覆蓋檔案？"
+msgstr "覆蓋"
 
 #: gschem/src/x/x_fileselect.c:334
 msgid "Overwrite file?"
-msgstr "覆蓋檔案？"
+msgstr "覆蓋文件？"
 
 #: gschem/src/x/x_fileselect.c:336
 msgid "Save canceled on user request\n"
@@ -2525,7 +2528,7 @@ msgstr ""
 
 #: gschem/src/x/x_fileselect.c:475
 msgid ""
-"If you load the original file, the backup file will beoverwritten in the "
+"If you load the original file, the backup file will be overwritten in the "
 "next autosave timeout and will be lost.\n"
 "\n"
 "Do you want to load the backup file?"
