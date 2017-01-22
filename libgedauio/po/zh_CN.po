@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-12 02:57-0600\n"
+"POT-Creation-Date: 2017-01-22 02:36-0600\n"
 "PO-Revision-Date: 2010-02-11 03:18+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -30,39 +30,33 @@ msgstr ""
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:613
 #: libgedauio/src/dialogs/geda_image_chooser.c:1173
-#, fuzzy
 msgid "_Open"
-msgstr "打开页面..."
+msgstr "打开..."
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:614
 #: libgedauio/src/dialogs/geda_image_chooser.c:1174
-#, fuzzy
 msgid "Open..."
-msgstr "打开页面..."
+msgstr "打开..."
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:618
 #: libgedauio/src/dialogs/geda_image_chooser.c:1178
-#, fuzzy
 msgid "_Save"
-msgstr "全部保存"
+msgstr "保存"
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:619
 #: libgedauio/src/dialogs/geda_image_chooser.c:1179
-#, fuzzy
 msgid "Save As..."
-msgstr "页面保存为..."
+msgstr "另存为..."
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:623
 #: libgedauio/src/dialogs/geda_image_chooser.c:1183
-#, fuzzy
 msgid "_Select Folder..."
-msgstr "选择模式"
+msgstr "选择文件夹..."
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:624
 #: libgedauio/src/dialogs/geda_image_chooser.c:1184
-#, fuzzy
 msgid "Select Folder"
-msgstr "选择模式"
+msgstr "选择文件夹"
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:628
 #: libgedauio/src/dialogs/geda_image_chooser.c:1188
@@ -76,9 +70,8 @@ msgstr ""
 
 #: libgedauio/src/dialogs/geda_image_chooser.c:596
 #: libgedauio/src/dialogs/geda_image_chooser.c:780
-#, fuzzy
 msgid "Preview"
-msgstr "上一个"
+msgstr "预习"
 
 #: libgedauio/src/dialogs/geda_image_chooser.c:782
 msgid "Active to enable the preview pane"
@@ -133,9 +126,8 @@ msgid "The bulb button whose group this widget belongs to."
 msgstr ""
 
 #: libgedauio/src/widgets/geda_bulb.c:726
-#, fuzzy
 msgid "Show Button"
-msgstr "都显示"
+msgstr "显示按钮"
 
 #: libgedauio/src/widgets/geda_bulb.c:727
 msgid "Whether the draw the button during mouse over events"
@@ -510,9 +502,8 @@ msgid "Face"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_font_dialog.c:1360
-#, fuzzy
 msgid "_Preview:"
-msgstr "上一个"
+msgstr "上一个:"
 
 #: libgedauio/src/widgets/geda_font_dialog.c:1387
 msgid "Font scroll list"

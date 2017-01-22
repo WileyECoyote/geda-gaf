@@ -30,15 +30,13 @@ msgstr ""
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:613
 #: libgedauio/src/dialogs/geda_image_chooser.c:1173
-#, fuzzy
 msgid "_Open"
-msgstr "_Avaa…"
+msgstr "_Avata..."
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:614
 #: libgedauio/src/dialogs/geda_image_chooser.c:1174
-#, fuzzy
 msgid "Open..."
-msgstr "_Avaa…"
+msgstr "_Avata..."
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:618
 #: libgedauio/src/dialogs/geda_image_chooser.c:1178
@@ -47,21 +45,18 @@ msgstr "_Tallenna"
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:619
 #: libgedauio/src/dialogs/geda_image_chooser.c:1179
-#, fuzzy
 msgid "Save As..."
 msgstr "Tallenna _nimellä..."
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:623
 #: libgedauio/src/dialogs/geda_image_chooser.c:1183
-#, fuzzy
 msgid "_Select Folder..."
-msgstr "Valintatila"
+msgstr "Valitse kansio..."
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:624
 #: libgedauio/src/dialogs/geda_image_chooser.c:1184
-#, fuzzy
 msgid "Select Folder"
-msgstr "Valintatila"
+msgstr "Valitse kansio"
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:628
 #: libgedauio/src/dialogs/geda_image_chooser.c:1188
@@ -71,13 +66,12 @@ msgstr ""
 #: libgedauio/src/dialogs/geda_file_chooser.c:634
 #: libgedauio/src/dialogs/geda_image_chooser.c:1193
 msgid "_Cancel"
-msgstr ""
+msgstr "Peruuttaa"
 
 #: libgedauio/src/dialogs/geda_image_chooser.c:596
 #: libgedauio/src/dialogs/geda_image_chooser.c:780
-#, fuzzy
 msgid "Preview"
-msgstr "_Edellinen"
+msgstr "esikatselu"
 
 #: libgedauio/src/dialogs/geda_image_chooser.c:782
 msgid "Active to enable the preview pane"
@@ -132,9 +126,8 @@ msgid "The bulb button whose group this widget belongs to."
 msgstr ""
 
 #: libgedauio/src/widgets/geda_bulb.c:726
-#, fuzzy
 msgid "Show Button"
-msgstr "Näytä _Molemmat"
+msgstr "Näytä-painike"
 
 #: libgedauio/src/widgets/geda_bulb.c:727
 msgid "Whether the draw the button during mouse over events"
@@ -334,7 +327,7 @@ msgstr ""
 
 #: libgedauio/src/widgets/geda_entry.c:650
 msgid "Auto-Completion"
-msgstr ""
+msgstr "automaattisen täydennyksen"
 
 #: libgedauio/src/widgets/geda_entry.c:651
 msgid "Enable Auto-completion, if installed"
@@ -509,9 +502,8 @@ msgid "Face"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_font_dialog.c:1360
-#, fuzzy
 msgid "_Preview:"
-msgstr "_Edellinen"
+msgstr "_Edellinen:"
 
 #: libgedauio/src/widgets/geda_font_dialog.c:1387
 msgid "Font scroll list"

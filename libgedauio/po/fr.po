@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr_FR\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-12 02:57-0600\n"
+"POT-Creation-Date: 2017-01-22 02:36-0600\n"
 "PO-Revision-Date: 2012-10-28 15:46+0000\n"
 "Last-Translator: Penegal <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -33,14 +33,13 @@ msgstr ""
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:613
 #: libgedauio/src/dialogs/geda_image_chooser.c:1173
-#, fuzzy
 msgid "_Open"
-msgstr "_Ouvrir..."
+msgstr "_Ouvert..."
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:614
 #: libgedauio/src/dialogs/geda_image_chooser.c:1174
 msgid "Open..."
-msgstr "Ouvrir..."
+msgstr "Ouvert..."
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:618
 #: libgedauio/src/dialogs/geda_image_chooser.c:1178
@@ -49,21 +48,18 @@ msgstr "_Enregistrer"
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:619
 #: libgedauio/src/dialogs/geda_image_chooser.c:1179
-#, fuzzy
 msgid "Save As..."
-msgstr "Enregistrer _sous..."
+msgstr "Enregistrer sous..."
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:623
 #: libgedauio/src/dialogs/geda_image_chooser.c:1183
-#, fuzzy
 msgid "_Select Folder..."
-msgstr "Mode Sélection"
+msgstr "Sélectionner Dossier..."
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:624
 #: libgedauio/src/dialogs/geda_image_chooser.c:1184
-#, fuzzy
 msgid "Select Folder"
-msgstr "Mode Sélection"
+msgstr "Sélectionner Dossier"
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:628
 #: libgedauio/src/dialogs/geda_image_chooser.c:1188
@@ -72,13 +68,11 @@ msgstr ""
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:634
 #: libgedauio/src/dialogs/geda_image_chooser.c:1193
-#, fuzzy
 msgid "_Cancel"
-msgstr "Panoramique/Annuler"
+msgstr "Annuler"
 
 #: libgedauio/src/dialogs/geda_image_chooser.c:596
 #: libgedauio/src/dialogs/geda_image_chooser.c:780
-#, fuzzy
 msgid "Preview"
 msgstr "Prévisualisation"
 
@@ -135,9 +129,8 @@ msgid "The bulb button whose group this widget belongs to."
 msgstr ""
 
 #: libgedauio/src/widgets/geda_bulb.c:726
-#, fuzzy
 msgid "Show Button"
-msgstr "Afficher les _deux"
+msgstr "Afficher le bouton"
 
 #: libgedauio/src/widgets/geda_bulb.c:727
 msgid "Whether the draw the button during mouse over events"
@@ -517,9 +510,8 @@ msgid "Face"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_font_dialog.c:1360
-#, fuzzy
 msgid "_Preview:"
-msgstr "Prévisualisation"
+msgstr "_Prévisualisation:"
 
 #: libgedauio/src/widgets/geda_font_dialog.c:1387
 msgid "Font scroll list"

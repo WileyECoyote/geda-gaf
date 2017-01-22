@@ -31,37 +31,32 @@ msgstr ""
 #: libgedauio/src/dialogs/geda_file_chooser.c:613
 #: libgedauio/src/dialogs/geda_image_chooser.c:1173
 msgid "_Open"
-msgstr ""
+msgstr "باز کن"
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:614
 #: libgedauio/src/dialogs/geda_image_chooser.c:1174
-#, fuzzy
 msgid "Open..."
-msgstr "Open Page..."
+msgstr "باز کن..."
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:618
 #: libgedauio/src/dialogs/geda_image_chooser.c:1178
-#, fuzzy
 msgid "_Save"
-msgstr "Save All"
+msgstr "فروشگاه"
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:619
 #: libgedauio/src/dialogs/geda_image_chooser.c:1179
-#, fuzzy
 msgid "Save As..."
-msgstr "Save All"
+msgstr "ذخیره تمام..."
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:623
 #: libgedauio/src/dialogs/geda_image_chooser.c:1183
-#, fuzzy
 msgid "_Select Folder..."
-msgstr "Select Mode"
+msgstr "پوشه را انتخاب کنید..."
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:624
 #: libgedauio/src/dialogs/geda_image_chooser.c:1184
-#, fuzzy
 msgid "Select Folder"
-msgstr "Select Mode"
+msgstr "پوشه را انتخاب کنید..."
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:628
 #: libgedauio/src/dialogs/geda_image_chooser.c:1188
@@ -71,13 +66,12 @@ msgstr ""
 #: libgedauio/src/dialogs/geda_file_chooser.c:634
 #: libgedauio/src/dialogs/geda_image_chooser.c:1193
 msgid "_Cancel"
-msgstr ""
+msgstr "لغو کردن"
 
 #: libgedauio/src/dialogs/geda_image_chooser.c:596
 #: libgedauio/src/dialogs/geda_image_chooser.c:780
-#, fuzzy
 msgid "Preview"
-msgstr "Close Page"
+msgstr "پیش نمایش"
 
 #: libgedauio/src/dialogs/geda_image_chooser.c:782
 msgid "Active to enable the preview pane"
@@ -133,7 +127,7 @@ msgstr ""
 
 #: libgedauio/src/widgets/geda_bulb.c:726
 msgid "Show Button"
-msgstr ""
+msgstr "نمایش دکمه"
 
 #: libgedauio/src/widgets/geda_bulb.c:727
 msgid "Whether the draw the button during mouse over events"

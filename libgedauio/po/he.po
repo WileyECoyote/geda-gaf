@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-12 02:57-0600\n"
+"POT-Creation-Date: 2017-01-22 02:36-0600\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -31,37 +31,32 @@ msgstr ""
 #: libgedauio/src/dialogs/geda_file_chooser.c:613
 #: libgedauio/src/dialogs/geda_image_chooser.c:1173
 msgid "_Open"
-msgstr ""
+msgstr "לִפְתוֹחַ"
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:614
 #: libgedauio/src/dialogs/geda_image_chooser.c:1174
-#, fuzzy
 msgid "Open..."
-msgstr "פתח דף..."
+msgstr "לִפְתוֹחַ..."
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:618
 #: libgedauio/src/dialogs/geda_image_chooser.c:1178
-#, fuzzy
 msgid "_Save"
-msgstr "שמור הכל"
+msgstr "להציל"
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:619
 #: libgedauio/src/dialogs/geda_image_chooser.c:1179
-#, fuzzy
 msgid "Save As..."
-msgstr "שמור הכל"
+msgstr "שמור כ..."
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:623
 #: libgedauio/src/dialogs/geda_image_chooser.c:1183
-#, fuzzy
 msgid "_Select Folder..."
-msgstr "מצב בחירה"
+msgstr "בחר תיקייה..."
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:624
 #: libgedauio/src/dialogs/geda_image_chooser.c:1184
-#, fuzzy
 msgid "Select Folder"
-msgstr "מצב בחירה"
+msgstr "בחר תיקייה"
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:628
 #: libgedauio/src/dialogs/geda_image_chooser.c:1188
@@ -71,13 +66,12 @@ msgstr ""
 #: libgedauio/src/dialogs/geda_file_chooser.c:634
 #: libgedauio/src/dialogs/geda_image_chooser.c:1193
 msgid "_Cancel"
-msgstr ""
+msgstr "לְבַטֵל"
 
 #: libgedauio/src/dialogs/geda_image_chooser.c:596
 #: libgedauio/src/dialogs/geda_image_chooser.c:780
-#, fuzzy
 msgid "Preview"
-msgstr "סגור דף"
+msgstr "תצוגה מקדימה"
 
 #: libgedauio/src/dialogs/geda_image_chooser.c:782
 msgid "Active to enable the preview pane"
@@ -133,7 +127,7 @@ msgstr ""
 
 #: libgedauio/src/widgets/geda_bulb.c:726
 msgid "Show Button"
-msgstr ""
+msgstr "לחצן הצג"
 
 #: libgedauio/src/widgets/geda_bulb.c:727
 msgid "Whether the draw the button during mouse over events"

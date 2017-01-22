@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gsymcheck\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-15 03:47-0600\n"
+"POT-Creation-Date: 2017-01-22 02:36-0600\n"
 "PO-Revision-Date: 2015-01-12 10:15+0300\n"
 "Last-Translator: Marco Ciampa <ciampix@libero.it>\n"
 "Language-Team: Italian <it@li.org>\n"
@@ -356,19 +356,16 @@ msgid "Duplicate slot number in slotdef"
 msgstr "Numero slot duplicato in slotdef"
 
 #: gsymcheck/src/s_check.c:1277
-#, c-format
-msgid "Not enough pins in slotdef=%s\n"
-msgstr "Non abbastanza pin in slotdef=%s\n"
+msgid "Not enough pins in slotdef"
+msgstr "Non abbastanza pin in slotdef"
 
 #: gsymcheck/src/s_check.c:1285
-#, c-format
-msgid "Too many pins in slotdef=%s\n"
-msgstr "Troppi pin in slotdef=%s\n"
+msgid "Too many pins in slotdef"
+msgstr "Troppi pin in slotdef"
 
 #: gsymcheck/src/s_check.c:1295
-#, c-format
-msgid "Found a zero pin in slotdef=%s\n"
-msgstr "Trovato uno zero pin in slotdef=%s\n"
+msgid "Found a zero pin in slotdef"
+msgstr "Trovato uno zero pin in slotdef"
 
 #: gsymcheck/src/s_check.c:1313
 #, c-format

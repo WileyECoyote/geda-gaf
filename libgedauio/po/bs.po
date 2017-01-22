@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-12 02:57-0600\n"
+"POT-Creation-Date: 2017-01-22 02:36-0600\n"
 "PO-Revision-Date: 2012-01-27 14:18+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Bosnian <bs@li.org>\n"
@@ -30,15 +30,13 @@ msgstr ""
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:613
 #: libgedauio/src/dialogs/geda_image_chooser.c:1173
-#, fuzzy
 msgid "_Open"
-msgstr "_Otvori..."
+msgstr "_Otvori"
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:614
 #: libgedauio/src/dialogs/geda_image_chooser.c:1174
-#, fuzzy
 msgid "Open..."
-msgstr "_Otvori..."
+msgstr "Otvori..."
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:618
 #: libgedauio/src/dialogs/geda_image_chooser.c:1178
@@ -47,21 +45,18 @@ msgstr "_Snimi"
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:619
 #: libgedauio/src/dialogs/geda_image_chooser.c:1179
-#, fuzzy
 msgid "Save As..."
-msgstr "Snimi _kao..."
+msgstr "Snimi kao..."
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:623
 #: libgedauio/src/dialogs/geda_image_chooser.c:1183
-#, fuzzy
 msgid "_Select Folder..."
-msgstr "Režim izabiranja"
+msgstr "izaberite folder..."
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:624
 #: libgedauio/src/dialogs/geda_image_chooser.c:1184
-#, fuzzy
 msgid "Select Folder"
-msgstr "Režim izabiranja"
+msgstr "izaberite folder"
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:628
 #: libgedauio/src/dialogs/geda_image_chooser.c:1188
@@ -71,13 +66,12 @@ msgstr ""
 #: libgedauio/src/dialogs/geda_file_chooser.c:634
 #: libgedauio/src/dialogs/geda_image_chooser.c:1193
 msgid "_Cancel"
-msgstr ""
+msgstr "otkazati"
 
 #: libgedauio/src/dialogs/geda_image_chooser.c:596
 #: libgedauio/src/dialogs/geda_image_chooser.c:780
-#, fuzzy
 msgid "Preview"
-msgstr "_Prethodna"
+msgstr "Pregled"
 
 #: libgedauio/src/dialogs/geda_image_chooser.c:782
 msgid "Active to enable the preview pane"
@@ -133,7 +127,7 @@ msgstr ""
 
 #: libgedauio/src/widgets/geda_bulb.c:726
 msgid "Show Button"
-msgstr ""
+msgstr "Pokaži dugme"
 
 #: libgedauio/src/widgets/geda_bulb.c:727
 msgid "Whether the draw the button during mouse over events"
@@ -507,9 +501,8 @@ msgid "Face"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_font_dialog.c:1360
-#, fuzzy
 msgid "_Preview:"
-msgstr "_Prethodna"
+msgstr "_Pregled:"
 
 #: libgedauio/src/widgets/geda_font_dialog.c:1387
 msgid "Font scroll list"

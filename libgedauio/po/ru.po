@@ -1,7 +1,7 @@
 # Russian translation for gEDA gschem
 # This file is distributed under the same license as the gschem package.
 #
-# Copyright (C) 
+# Copyright (C)
 # Andy Shevchenko <andy@smile.org.ua>, 2003-2008.
 # Sergey Alyoshin <alyoshin.s@gmail.com>, 2009, 2012.
 # Vladimir Zhbanov <vzhbanov@gmail.com>, 2011.
@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gschem ru\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-12 02:57-0600\n"
+"POT-Creation-Date: 2017-01-22 02:36-0600\n"
 "PO-Revision-Date: 2012-12-04 01:55+0400\n"
 "Last-Translator: Sergey Alyoshin <alyoshin.s@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -33,15 +33,14 @@ msgstr ""
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:613
 #: libgedauio/src/dialogs/geda_image_chooser.c:1173
-#, fuzzy
 msgid "_Open"
-msgstr "_Открыть..."
+msgstr "_открыто"
 
 # Заголовок окна выбора файла при открывании существующего файла
 #: libgedauio/src/dialogs/geda_file_chooser.c:614
 #: libgedauio/src/dialogs/geda_image_chooser.c:1174
 msgid "Open..."
-msgstr "Выберите файл"
+msgstr "открыто..."
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:618
 #: libgedauio/src/dialogs/geda_image_chooser.c:1178
@@ -50,21 +49,18 @@ msgstr "_Сохранить"
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:619
 #: libgedauio/src/dialogs/geda_image_chooser.c:1179
-#, fuzzy
 msgid "Save As..."
-msgstr "Сохранить _как..."
+msgstr "Сохранить как..."
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:623
 #: libgedauio/src/dialogs/geda_image_chooser.c:1183
-#, fuzzy
 msgid "_Select Folder..."
-msgstr "Выделение"
+msgstr "Выберите папку..."
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:624
 #: libgedauio/src/dialogs/geda_image_chooser.c:1184
-#, fuzzy
 msgid "Select Folder"
-msgstr "Выделение"
+msgstr "Выберите папку"
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:628
 #: libgedauio/src/dialogs/geda_image_chooser.c:1188
@@ -73,14 +69,12 @@ msgstr ""
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:634
 #: libgedauio/src/dialogs/geda_image_chooser.c:1193
-#, fuzzy
 msgid "_Cancel"
-msgstr "Прокрутка/Отмена действия"
+msgstr "Отмена"
 
 # Можно "Предварительный просмотр", но занимает много места на экране
 #: libgedauio/src/dialogs/geda_image_chooser.c:596
 #: libgedauio/src/dialogs/geda_image_chooser.c:780
-#, fuzzy
 msgid "Preview"
 msgstr "Предпросмотр"
 
@@ -137,9 +131,8 @@ msgid "The bulb button whose group this widget belongs to."
 msgstr ""
 
 #: libgedauio/src/widgets/geda_bulb.c:726
-#, fuzzy
 msgid "Show Button"
-msgstr "По_казать имя и значение"
+msgstr "Показать кнопку"
 
 #: libgedauio/src/widgets/geda_bulb.c:727
 msgid "Whether the draw the button during mouse over events"
@@ -521,9 +514,8 @@ msgstr ""
 
 # Можно "Предварительный просмотр", но занимает много места на экране
 #: libgedauio/src/widgets/geda_font_dialog.c:1360
-#, fuzzy
 msgid "_Preview:"
-msgstr "Предпросмотр"
+msgstr "Предпросмотр:"
 
 #: libgedauio/src/widgets/geda_font_dialog.c:1387
 msgid "Font scroll list"
