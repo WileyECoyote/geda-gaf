@@ -22,14 +22,18 @@
 /* NLS can be disabled through the configure --disable-nls option.  */
 #if ENABLE_NLS
 
+/* Get declarations of GNU message catalog functions.  */
 #if USE_LOCAL_LIBINTL
-# include "../../intl/libintl.h"
+#  ifdef _LIBC
+#    include <libintl.h>
+#  else
+#    include "../../intl/libgnuintl.h"
+#  endif
 #else
-/* Get declarations of GNU message catalog functions. */
-# include <libintl.h>
+#  include <libintl.h>
 #endif
 
-#else
+#else /* ENABLE_NLS is not set*/
 
 /* Solaris /usr/include/locale.h includes /usr/include/libintl.h, which
    chokes if dcgettext is defined as a macro.  So include it now, to make

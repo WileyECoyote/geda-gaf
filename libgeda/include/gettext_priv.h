@@ -24,9 +24,13 @@
 
 /* Get declarations of GNU message catalog functions.  */
 #if USE_LOCAL_LIBINTL
-# include "../../intl/libintl.h"
+#  ifdef _LIBC
+#    include <libintl.h>
+#  else
+#    include "../../intl/libgnuintl.h"
+#  endif
 #else
-# include <libintl.h>
+#  include <libintl.h>
 #endif
 
 #else /* ENABLE_NLS is not set*/
