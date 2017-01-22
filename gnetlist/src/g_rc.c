@@ -18,8 +18,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-#include <config.h>
-#include <version.h>
+#include "../../config.h"
+#include "../../version.h"
+
 #include <gnetlist.h>
 #include "../include/i_vars.h"
 #include <geda_debug.h>

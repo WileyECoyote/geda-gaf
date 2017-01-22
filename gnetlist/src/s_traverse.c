@@ -27,7 +27,8 @@
 
 //#define PERFORMANCE 1
 
-#include <config.h>
+#include "../../config.h"
+
 #include <gnetlist.h>
 #include <gettext.h>
 

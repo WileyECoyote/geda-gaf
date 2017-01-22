@@ -27,7 +27,8 @@
 
 #define WITHOUT_GDK_PIX_BUFFER 1
 
-#include <config.h>
+#include "../../config.h"
+
 #include <version.h>
 #include <gnetlist.h>
 
