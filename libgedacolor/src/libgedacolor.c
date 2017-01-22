@@ -77,12 +77,9 @@ int libgedacolor_init(int *argc, char **argv)
 {
   int lame;
 
-#if ENABLE_NLS
+#ifdef ENABLE_NLS
 
-  setlocale (LC_ALL, "");
-  setlocale (LC_NUMERIC, "C"); /* This must be the same for all locales */
   bindtextdomain ("geda-libgedacolor", LOCALEDIR);
-  textdomain ("geda-libgedacolor");
   bind_textdomain_codeset("geda-libgedacolor", "UTF-8");
 
 #endif

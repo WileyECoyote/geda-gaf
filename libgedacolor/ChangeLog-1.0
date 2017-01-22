@@ -3,6 +3,9 @@
     * include/gettext.h: Add conditionals to use <libintl.h> if LIBC
       is defined build with local libintl, alse use intl/libgnuintl.h.
 
+    * src/libgedacolor.c: Remove redirecting text domain; clients can not
+      find translations.
+
 2017-01-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gettext_priv.h: Conditionally use local libintl.h header if
