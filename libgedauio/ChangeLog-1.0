@@ -3,6 +3,9 @@
     * include/gettext.h: Add conditionals to use <libintl.h> if LIBC
       is defined build with local libintl, alse use intl/libgnuintl.h.
 
+    * src/: Use relative path to config.h so that USE_LOCAL_LIBINTL is not
+      mysteriously defined during dist-check.
+
 2017-01-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_image_menu_item.h: Remove instance_type member.

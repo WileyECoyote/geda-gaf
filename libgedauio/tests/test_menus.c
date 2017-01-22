@@ -18,7 +18,8 @@
  * Boston, MA 02111-1307, USA.
  */
 
-#include "config.h"
+#include "../../config.h"
+
 #include <gtk/gtk.h>
 #include <geda/geda.h>
 #include <geda_menu.h>

@@ -27,7 +27,7 @@
  * Contributing Author: Wiley Edward Hill
  */
 
-#include "config.h"
+#include "../../config.h"
 
 #include <string.h>
 

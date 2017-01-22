@@ -3,6 +3,9 @@
     * include/gettext_priv.h: Add conditionals to use <libintl.h> if LIBC
       is defined build with local libintl, alse use intl/libgnuintl.h.
 
+    * src/: Use relative path to config.h so that USE_LOCAL_LIBINTL is not
+      mysteriously defined during dist-check.
+
 2017-01-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_circle_object.c: Revise validations in geda_circle_object
