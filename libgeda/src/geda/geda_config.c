@@ -36,7 +36,7 @@
  *
  * \class EdaConfig geda_config.h "include/libgeda/geda_config.h"
  */
-#include <config.h>
+#include "../../../config.h"
 
 #include <errno.h>
 #include <libgen.h>

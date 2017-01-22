@@ -23,7 +23,8 @@
  *  \brief functions for saving object data
  */
 
-#include <config.h>
+#include "../../../config.h"
+
 #include <stdio.h>
 
 #ifdef HAVE_ERRNO_H

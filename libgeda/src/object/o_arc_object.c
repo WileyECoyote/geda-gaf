@@ -22,7 +22,7 @@
  *  \brief functions for the arc object
  */
 
-#include <config.h>
+#include "../../../config.h"
 
 #include <stdio.h>
 #include <math.h>

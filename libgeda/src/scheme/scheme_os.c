@@ -23,7 +23,7 @@
  * \brief Scheme API functions for misc. OS-related stuff.
  */
 
-#include <config.h>
+#include "../../../config.h"
 
 #include <libgeda_priv.h>
 #include <libgedaguile_priv.h>

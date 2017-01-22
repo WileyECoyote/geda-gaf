@@ -42,7 +42,7 @@
  * \class GedaObject geda_object.h "include/libgeda/geda_object.h"
  */
 
-#include <config.h>
+#include "../../../config.h"
 
 #include <libgeda_priv.h>
 

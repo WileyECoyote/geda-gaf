@@ -23,7 +23,7 @@
  * Foundation, Inc., 51 Franklin Street, Boston, MA 02111-1301 USA
 */
 
-#include <config.h>
+#include "../../../config.h"
 
 #include <o_types.h>
 #include <geda_colors.h>

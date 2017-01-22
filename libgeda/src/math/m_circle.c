@@ -24,7 +24,8 @@
  *  \brief Low-level mathmatical functions for circles
  */
 
-#include <config.h>
+#include "../../../config.h"
+
 #include <math.h>
 #include <stdio.h>
 

@@ -22,7 +22,7 @@
  * \file scheme_init.c
  * \brief Scheme API initialization
  */
-#include <config.h>
+#include "../../../config.h"
 
 #include <libgeda_priv.h>
 #include <libgedaguile_priv.h>

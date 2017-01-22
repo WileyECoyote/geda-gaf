@@ -23,7 +23,8 @@
  *  \brief functions for the box object
  */
 
-#include <config.h>
+#include "../../../config.h"
+
 #include <math.h>
 #include <stdio.h>
 

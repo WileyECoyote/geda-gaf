@@ -26,7 +26,7 @@
  *  \brief utilility file functions
  */
 
-#include <config.h>
+#include "../../../config.h"
 
 #include <sys/file.h>
 

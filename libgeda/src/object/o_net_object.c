@@ -19,7 +19,8 @@
  * MA 02110-1301 USA
  */
 
-#include <config.h>
+#include "../../../config.h"
+
 #include <stdio.h>
 #include <libgeda_priv.h>
 

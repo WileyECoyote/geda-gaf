@@ -40,7 +40,7 @@
  *  and in o_select when selecting objects, select the attributes
  */
 
-#include <config.h>
+#include "../../../config.h"
 
 #include <stdio.h>
 #ifdef HAVE_STRING_H

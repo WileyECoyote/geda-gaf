@@ -23,7 +23,8 @@
  *  \brief Low-level mathmatical functions for boxes
  */
 
-#include <config.h>
+#include "../../../config.h"
+
 #include <math.h>
 #include <stdio.h>
 

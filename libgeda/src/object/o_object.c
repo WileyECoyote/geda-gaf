@@ -45,7 +45,8 @@
 
 //#define PERFORMANCE 1
 
-#include <config.h>
+#include "../../../config.h"
+
 #include <stdio.h>
 
 #include <libgeda_priv.h>

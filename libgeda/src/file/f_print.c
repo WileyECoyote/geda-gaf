@@ -23,8 +23,8 @@
  *  \brief functions to write postscript files
  */
 
-#include <config.h>
-#include <version.h>
+#include "../../../config.h"
+#include "../../../version.h"
 
 #include <stdio.h>
 

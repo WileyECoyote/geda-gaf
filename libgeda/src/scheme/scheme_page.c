@@ -25,7 +25,7 @@
  * \brief Scheme API page manipulation procedures.
  */
 
-#include <config.h>
+#include "../../../config.h"
 
 #include <libgeda_priv.h>
 #include <libgedaguile_priv.h>

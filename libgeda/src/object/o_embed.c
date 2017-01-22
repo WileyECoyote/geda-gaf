@@ -23,7 +23,7 @@
  *  \brief functions to embed and unembed symbols
  */
 
-#include <config.h>
+#include "../../../config.h"
 
 #include <stdio.h>
 

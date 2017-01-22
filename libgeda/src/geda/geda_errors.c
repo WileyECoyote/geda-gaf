@@ -18,7 +18,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA, <http://www.gnu.org/licenses/>.
  */
-#include <config.h>
+#include "../../../config.h"
 #include <libgeda_priv.h>
 
 /** \defgroup geda-errors Libgeda Error Module

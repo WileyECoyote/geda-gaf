@@ -22,7 +22,8 @@
  * \brief Functions for working with angles
  */
 
-#include <config.h>
+#include "../../../config.h"
+
 #include <math.h>
 #include <stdio.h>
 

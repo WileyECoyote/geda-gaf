@@ -22,7 +22,7 @@
  * \brief Scheme API logging support
  */
 
-#include <config.h>
+#include "../../../config.h"
 
 #include "../../include/libgeda_priv.h"
 #include "../../include/libgedaguile_priv.h"

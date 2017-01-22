@@ -23,7 +23,8 @@
  * Based heavily glib-2.32.4/glib/gkeyfile.c.
  */
 
-#include <config.h>
+#include "../../../config.h"
+
 #include <stdio.h>
 
 #include <libgeda_priv.h>

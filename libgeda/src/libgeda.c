@@ -20,7 +20,7 @@
  * 02110-1301 USA
  */
 #define GLIB_DISABLE_DEPRECATION_WARNINGS
-#include <config.h>
+#include "../../config.h"
 
 #ifdef HAVE_ERRNO_H
 #include <errno.h>

@@ -40,7 +40,7 @@
  * \class GedaPage geda_page.h "include/libgeda/geda_page.h"
  */
 
-#include <config.h>
+#include "../../../config.h"
 
 #include <libgeda_priv.h>
 

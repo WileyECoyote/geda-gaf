@@ -22,7 +22,7 @@
  * \file scheme_deprecated.c
  * \brief Deprecated Scheme API functions
  */
-#include <config.h>
+#include "../../../config.h"
 
 #include <libgeda_priv.h>
 #include <libgedaguile_priv.h>

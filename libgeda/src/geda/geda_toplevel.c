@@ -43,7 +43,8 @@
  * \class GedaToplevel geda_toplevel.h "include/libgeda/geda_toplevel.h"
  */
 
-#include <config.h>
+#include "../../../config.h"
+
 #include <stdio.h>
 
 #include <libgeda_priv.h>

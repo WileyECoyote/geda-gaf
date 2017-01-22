@@ -46,7 +46,7 @@
  * \class GedaNotifyList geda_notify.h "libgeda/geda_notify.h"
  */
 
-#include <config.h>
+#include "../../../config.h"
 
 #include <glib-object.h>
 #include <libgeda_priv.h>

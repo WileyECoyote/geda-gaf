@@ -42,7 +42,7 @@
  * \implements geda-object
  */
 
-#include <config.h>
+#include "../../../config.h"
 #include <math.h>
 #include <libgeda_priv.h>
 

@@ -22,7 +22,8 @@
  *  \brief functions for the circle object
  */
 
-#include <config.h>
+#include "../../../config.h"
+
 #include <stdio.h>
 #include <math.h>
 

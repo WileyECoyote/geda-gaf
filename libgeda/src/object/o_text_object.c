@@ -60,7 +60,7 @@
  *  collected from the font character objects.
  */
 
-#include <config.h>
+#include "../../../config.h"
 
 #include <math.h>          /* sqrt/hypot */
 
