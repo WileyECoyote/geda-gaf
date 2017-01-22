@@ -1,7 +1,7 @@
 # geda-intl
-# serial 1 (gettext-0.18)
+# serial 1.1 (gettext-0.18)
 dnl
-dnl Copyright (C) 2017  Wiley Edward Hill <wileyhill@gmail.com>
+dnl Copyright (C) 2017 Wiley Edward Hill <wileyhill@gmail.com>
 dnl
 dnl This program is free software; you can redistribute it and/or modify
 dnl it under the terms of the GNU General Public License version 2 as
@@ -45,8 +45,6 @@ AC_DEFUN([AX_LOCAL_LIBINTL],
 
   if test "X$with_local_libintl" = "Xyes"; then
     AC_DEFINE(USE_LOCAL_LIBINTL, 1, [Define to 0 when using the system libintl.])
-  else
-    AC_DEFINE(USE_LOCAL_LIBINTL, 0, [Define to 1 when using the local libintl.])
   fi
   []dnl
 ])dnl

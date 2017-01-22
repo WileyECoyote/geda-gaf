@@ -27,7 +27,7 @@
  * Contributing Author: Wiley Edward Hill
  */
 
-#include "config.h"
+#include "../../config.h"
 
 #include <string.h>
 
@@ -38,6 +38,7 @@
 
 #include <../include/geda_handlebox.h>
 #include <../include/geda_toolbar.h>
+#include <../include/geda_gtk_compat.h>
 
 #include "test-suite.h"
 
