@@ -358,71 +358,71 @@ void x_menus_set_sensitivities(GSList *ListMenuItems, int sensitive)
 static const GtkActionEntry actions[] = {
   /* name, stock-id, label, accelerator, tooltip, callback function */
   /* File menu */
-  { "file", NULL, "_File"},
-  { "file-open", GTK_STOCK_OPEN, "Open", "<Control>O", "", x_menu_file_open},
-  { "file-save", GTK_STOCK_SAVE, "Save", "<Control>S", "", x_menu_file_save},
-  { "file-save-as", GTK_STOCK_SAVE_AS, "Save As", "<Shift><Control>S", "", x_menu_file_save_as},
-  { "file-export-csv", GTK_STOCK_CONVERT, "Export CSV", "", "", x_menu_file_export_csv},
-  /* { "file-print", GTK_STOCK_PRINT, "Print", "<Control>P", "", x_dialog_unimplemented_feature}, */
-  { "file-quit", GTK_STOCK_QUIT, "Quit", "<Control>Q", "", G_CALLBACK(gattrib_really_quit)},
+  { "file",                 NULL,              N_("_File")},
+  { "file-open",            GTK_STOCK_OPEN,    N_("_Open"),      "<Control>O",        "", x_menu_file_open},
+  { "file-save",            GTK_STOCK_SAVE,    N_("_Save"),      "<Control>S",        "", x_menu_file_save},
+  { "file-save-as",         GTK_STOCK_SAVE_AS, N_("Save _As"),   "<Shift><Control>S", "", x_menu_file_save_as},
+  { "file-export-csv",      GTK_STOCK_CONVERT, N_("Export CSV"), "",                  "", x_menu_file_export_csv},
+  /* { "file-print",        GTK_STOCK_PRINT,   N_("Print"),      "<Control>P",        "", x_dialog_unimplemented_feature}, */
+  { "file-quit",            GTK_STOCK_QUIT,    N_("Quit"),       "<Control>Q",        "", G_CALLBACK(gattrib_really_quit)},
 
   /* Edit menu */
   { "edit", NULL, "_Edit"},
-  { "edit-clipboard-cut", GTK_STOCK_CUT, "Cut", "<Control>X", "", menu_edit_cut},
-  { "edit-clipboard-copy", GTK_STOCK_COPY, "Copy", "<Control>C", "", menu_edit_copy},
-  { "edit-clipboard-paste", GTK_STOCK_PASTE, "Paste", "<Control>V", "", menu_edit_paste},
+  { "edit-clipboard-cut",   GTK_STOCK_CUT,   N_("Cut"),   "<Control>X", "", menu_edit_cut},
+  { "edit-clipboard-copy",  GTK_STOCK_COPY,  N_("Copy"),  "<Control>C", "", menu_edit_copy},
+  { "edit-clipboard-paste", GTK_STOCK_PASTE, N_("Paste"), "<Control>V", "", menu_edit_paste},
 
-  { "edit-add-attrib",    GTK_STOCK_ADD, "_Add new Attribute", "", "", x_menu_edit_new_attrib},
-  { "edit-delete-attrib", GTK_STOCK_DELETE, "D_elete Attribute",  "", "", x_menu_edit_delete_attrib},
-  { "edit-promote-attrib", NULL, "_Promote Attribute", "", "Attach the selected attribute",  s_properties_promote_attribute},
-  { "edit-demote-attrib",  NULL, "_Demote Attribute",  "", "Dettach the selected attribute", s_properties_demote_attribute},
+  { "edit-add-attrib",      GTK_STOCK_ADD,    N_("_Add new Attribute"), "", "", x_menu_edit_new_attrib},
+  { "edit-delete-attrib",   GTK_STOCK_DELETE, N_("D_elete Attribute"),  "", "", x_menu_edit_delete_attrib},
+  { "edit-promote-attrib",  NULL,             N_("_Promote Attribute"), "", N_("Attach the selected attribute"),  s_properties_promote_attribute},
+  { "edit-demote-attrib",   NULL,             N_("_Demote Attribute"),  "", N_("Dettach the selected attribute"), s_properties_demote_attribute},
 
-  { "edit-find-value", GTK_STOCK_FIND, "Find Value", "<Control>F", "Find attribute value", x_find_attribute_value},
-  { "edit-search-replace-value", GTK_STOCK_FIND_AND_REPLACE, "Replace value", "<Control>R", "Search and Replace Attribute value", x_find_replace_attrib_value},
-  { "edit-locate-attrib", GTK_STOCK_FIND, "Locate Attribute", "", "Search for an attribute", x_find_attribute},
-  { "edit-locate-refdes", NULL, "Locate Reference", "", "Search for reference designator", x_find_refdes},
+  { "edit-find-value",           GTK_STOCK_FIND,             N_("Find Value"),       "<Control>F", N_("Find attribute value"),               x_find_attribute_value},
+  { "edit-search-replace-value", GTK_STOCK_FIND_AND_REPLACE, N_("Replace value"),    "<Control>R", N_("Search and Replace Attribute value"), x_find_replace_attrib_value},
+  { "edit-locate-attrib",        GTK_STOCK_FIND,             N_("Locate Attribute"), "",           N_("Search for an attribute"),            x_find_attribute},
+  { "edit-locate-refdes",        NULL,                       N_("Locate Reference"), "",           N_("Search for reference designator"),    x_find_refdes},
 
   /* View menu */
-  { "view", NULL, "_View"},
-  { "toolbar", NULL, "_Toolbar"},
-  { "view-toolbar-icons", NULL, "_Icons", NULL, "Display Icons on the toolbar", toolbar_icons_only},
-  { "view-toolbar-text", NULL,  "_Text",  NULL, "Display Text on the toolbar", toolbar_text_only},
-  { "view-toolbar-both", NULL,  "_Both",  NULL, "Display Icons and Text on the toolbar", toolbar_display_both},
+  { "view",               NULL,  N_("_View")},
+  { "toolbar",            NULL,  N_("_Toolbar")},
+  { "view-toolbar-icons", NULL,  N_("_Icons"), NULL, N_("Display Icons on the toolbar"), toolbar_icons_only},
+  { "view-toolbar-text",  NULL,  N_("_Text"),  NULL, N_("Display Text on the toolbar"), toolbar_text_only},
+  { "view-toolbar-both",  NULL,  N_("_Both"),  NULL, N_("Display Icons and Text on the toolbar"), toolbar_display_both},
 
   /* Visibility menu */
-  { "visibility", NULL, "_Visibility"},
-  { "visibility-invisible",  NULL, "Set selected invisible", "", "", s_properties_set_invisible},
-  { "visibility-visible",    NULL, "Set selected visible",   "", "", s_properties_set_visible},
-  { "visibility-name-only",  NULL, "Set selected name visible only",   "", "", s_properties_set_name_only},
-  { "visibility-value-only", NULL, "Set selected value visible only", "", "", s_properties_set_value_only},
-  { "visibility-name-value", NULL, "Set selected name and value visible", "", "", s_properties_set_name_and_value},
+  { "visibility",            NULL, N_("_Visibility")},
+  { "visibility-invisible",  NULL, N_("Set selected invisible"), "", "", s_properties_set_invisible},
+  { "visibility-visible",    NULL, N_("Set selected visible"),   "", "", s_properties_set_visible},
+  { "visibility-name-only",  NULL, N_("Set selected name visible only"),   "", "", s_properties_set_name_only},
+  { "visibility-value-only", NULL, N_("Set selected value visible only"), "", "", s_properties_set_value_only},
+  { "visibility-name-value", NULL, N_("Set selected name and value visible"), "", "", s_properties_set_name_and_value},
 
-  { "window", NULL, "_Window"},
+  { "window",             NULL,                  N_("_Window")},
   /* Help menu */
-  { "help", NULL, "_Help"},
-  { "help-show-manual",   GTK_STOCK_HELP,   "Gattrib Guide",          "", "", menu_help_manual},
-  { "help-show-faq",      GTK_STOCK_INFO ,  "Gattrib FAQ",            "", "", menu_help_faq},
-  { "help-show-geda",     GTK_STOCK_INFO ,  "gEDA Docu_mentation...", "", "", menu_help_geda},
-  { "help-show-wiki",     GTK_STOCK_INFO ,  "gEDA _Wiki...",          "", "", menu_help_wiki},
+  { "help",               NULL,                  N_("_Help")},
+  { "help-show-manual",   GTK_STOCK_HELP,        N_("Gattrib Guide"),          "", "", menu_help_manual},
+  { "help-show-faq",      GTK_STOCK_INFO,        N_("Gattrib FAQ"),            "", "", menu_help_faq},
+  { "help-show-geda",     GTK_STOCK_INFO,        N_("gEDA Docu_mentation..."), "", "", menu_help_geda},
+  { "help-show-wiki",     GTK_STOCK_INFO,        N_("gEDA _Wiki..."),          "", "", menu_help_wiki},
 
-  { "help-show-attribs",  GTK_STOCK_INDEX , "gEDA Attributes",        "", "", menu_help_attribs},
-  { "help-show-glossary", GTK_STOCK_SPELL_CHECK ,  "gEDA Glossary",          "", "", menu_help_glossary},
-  { "help-about",         GTK_STOCK_ABOUT,  "About",                  "", "", x_dialog_about_dialog},
+  { "help-show-attribs",  GTK_STOCK_INDEX,       N_("gEDA Attributes"),        "", "", menu_help_attribs},
+  { "help-show-glossary", GTK_STOCK_SPELL_CHECK, N_("gEDA Glossary"),          "", "", menu_help_glossary},
+  { "help-about",         GTK_STOCK_ABOUT,       N_("About"),                  "", "", x_dialog_about_dialog},
 };
 
   /* name, stock-id, label, accelerator, tooltip, callback function */
 /* Toggle items */
 static const GtkToggleActionEntry toggle_entries[] = {
 /* View menu */
-  { "view-editbar",           "", "_Edit bar", "",  "Display the Edit Status bar", G_CALLBACK(x_window_editbar_toggle), TRUE },
-  { "view-toolbar-standard",  "", "_Standard", "",  "Display Standard Toolbar", G_CALLBACK(x_window_standard_toolbar_toggle), TRUE },
-  { "view-toolbar-attribute", "", "A_ttribute", "", "Display Attribute Toolbar", G_CALLBACK(x_window_attribute_toolbar_toggle), TRUE },
-  { "view-attached-attribs",  "", "_Attached", "",  "Hide or unhide non-attached attributes", G_CALLBACK(x_window_attached_toggle), FALSE },
-  { "view-inherited-attribs", "", "_Inherited", "", "Hide or unhide inherited attributes", G_CALLBACK(x_window_inherited_toggle), TRUE},
+  { "view-editbar",           "", N_("_Edit bar"),   "", N_("Display the Edit Status bar"), G_CALLBACK(x_window_editbar_toggle), TRUE },
+  { "view-toolbar-standard",  "", N_("_Standard"),   "", N_("Display Standard Toolbar"), G_CALLBACK(x_window_standard_toolbar_toggle), TRUE },
+  { "view-toolbar-attribute", "", N_("A_ttribute"),  "", N_("Display Attribute Toolbar"), G_CALLBACK(x_window_attribute_toolbar_toggle), TRUE },
+  { "view-attached-attribs",  "", N_("_Attached"),   "", N_("Hide or unhide non-attached attributes"), G_CALLBACK(x_window_attached_toggle), FALSE },
+  { "view-inherited-attribs", "", N_("_Inherited"),  "", N_("Hide or unhide inherited attributes"), G_CALLBACK(x_window_inherited_toggle), TRUE},
 /* Window menu */
-  { "window-auto-resize", "", "_Autoresize", "", "Enable/Disable Auto resize columns", G_CALLBACK(x_window_autoresize_toggle), FALSE },
-  { "window-auto-scroll", "", "Auto_Scroll", "", "Enable/Disable AutoScroll", G_CALLBACK(x_window_autoscroll_toggle), TRUE },
-  { "window-show_grid",   "", "Show _Grid", "", "Toggle grid visibility", G_CALLBACK(x_window_grid_toggle), TRUE },
+  { "window-auto-resize",     "", N_("_Autoresize"), "", N_("Enable/Disable Auto resize columns"), G_CALLBACK(x_window_autoresize_toggle), FALSE },
+  { "window-auto-scroll",     "", N_("Auto_Scroll"), "", N_("Enable/Disable AutoScroll"), G_CALLBACK(x_window_autoscroll_toggle), TRUE },
+  { "window-show_grid",       "", N_("Show _Grid"),  "", N_("Toggle grid visibility"), G_CALLBACK(x_window_grid_toggle), TRUE },
 };
 
 /*! \brief Create geda file filter

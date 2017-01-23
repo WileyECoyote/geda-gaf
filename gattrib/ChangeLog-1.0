@@ -3,6 +3,8 @@
     * include/gettext.h: Add conditionals to use <libintl.h> if LIBC
       is defined build with local libintl, alse use intl/libgnuintl.h.
 
+    * src/x_menus.c: Tag GtkActionEntry menu text and tips as translatable.
+
 2017-01-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_table.c: Revise DEBUG output and error messages.
