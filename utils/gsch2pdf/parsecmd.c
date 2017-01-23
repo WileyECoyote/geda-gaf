@@ -23,7 +23,7 @@
  * MA 02111-1301 USA
  */
 
-#include <config.h>
+#include "../../config.h"
 
 
 #define WITHOUT_GDK_PIX_BUFFER 1

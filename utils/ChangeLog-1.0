@@ -1,3 +1,11 @@
+2017-01-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Use relative path to config.h and version.h:
+
+          * gsch2pdf/parsecmd.c
+          * gschlas/gschlas.c
+          * gschlas/parsecmd.c
+
 2017-01-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * gschlas/gschlas.c: Include locale.h and setup the locale and gettext
