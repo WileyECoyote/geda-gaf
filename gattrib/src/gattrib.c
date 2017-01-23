@@ -328,6 +328,28 @@ void gattrib_main(void *closure, int argc, char *argv[])
   }
 #endif
 
+#if ENABLE_NLS
+
+  /* This should be equivalent to setlocale (LC_ALL, "") */
+  gdk_set_locale();
+
+  /* This must be the same for all locales, use decimal point instead
+   * of comma, use "C" or "POSIX" */
+  setlocale(LC_NUMERIC, "C");
+
+  /* Prevent gtk_init() and gtk_init_check() from automatically
+   * calling setlocale (LC_ALL, "") which would undo our LC_NUMERIC. */
+  gtk_disable_setlocale();
+
+# if DEBUG
+
+  fprintf(stderr, "Configured locale directory: %s\n", LOCALEDIR);
+  fprintf(stderr, "Current locale settings: %s\n", setlocale(LC_ALL, NULL));
+
+# endif
+
+#endif
+
   /* This is called before libgeda_init so g_get_prgname returns "gattrib" */
   gtk_init(&argc, &argv);
 
@@ -428,9 +450,9 @@ int main(int argc, char *argv[])
 #if ENABLE_NLS
   setlocale(LC_ALL, "");
   setlocale(LC_NUMERIC, "C");
-  bindtextdomain("geda-gattrib", LOCALEDIR);
-  textdomain("geda-gattrib");
-  bind_textdomain_codeset("geda-gattrib", "UTF-8");
+  bindtextdomain(GATTRIB_GETTEXT_DOMAIN, LOCALEDIR);
+  textdomain(GATTRIB_GETTEXT_DOMAIN);
+  bind_textdomain_codeset(GATTRIB_GETTEXT_DOMAIN, "UTF-8");
 #endif
 
   /* Initialize the Guile Scheme interpreter. This function does not

@@ -4,6 +4,9 @@
 
     * include/globals.h: Remove no-op marcos.
 
+    * src/gattrib.c: Call gdk_set_locale, setlocale and gtk_disable_setlocale
+      in gattrib_main.
+
     * src/x_menus.c: Set action group translation domain in x_menu_create_menu,
       i.e. call gtk_action_group_set_translation_domain.
 
