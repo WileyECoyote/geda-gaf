@@ -33,6 +33,12 @@
 #  include <libintl.h>
 #endif
 
+#ifdef gettext_noop
+#  define N_(String) gettext_noop (String)
+#else
+#  define N_(String) (String)
+#endif
+
 #else /* ENABLE_NLS is not set*/
 
 /* Solaris /usr/include/locale.h includes /usr/include/libintl.h, which
@@ -75,5 +81,6 @@
 #define gettext_noop(String) String
 
 #define _(String) gettext(String)
+#define N_(String) (String)
 
 #endif /* _LIBGETTEXT_H */
