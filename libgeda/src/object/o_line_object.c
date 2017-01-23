@@ -1544,6 +1544,7 @@ geda_line_object_read (const char buf[], unsigned int release_ver,
       g_set_error(err, EDA_ERROR, EDA_ERROR_PARSE, _("Failed to parse line object"));
       return NULL;
     }
+    /* TODO Should check line type here! */
   }
 
   /*
@@ -1553,13 +1554,18 @@ geda_line_object_read (const char buf[], unsigned int release_ver,
    * It also checks is the required color is valid.
    */
   if (x1 == x2 && y1 == y2) {
-    geda_log_w (_("Found a zero length line [ %c %d %d %d %d %d ]\n"),
-                   type, x1, y1, x2, y2, color);
+    const char *msg = _("Found a line with zero length");
+    if (geda_object_show_buffer_err(msg, buf)) {
+      geda_log_w("%s: (%d, %d) (%d, %d).\n", msg, x1, y1, x2, y2);
+    }
   }
 
   if (color < 0 || color > MAX_COLORS) {
-    geda_log_w (_("Found an invalid color [ %s ]\n"), buf);
-    geda_log_v (_("Setting color to default color\n"));
+    const char *msg = _("Found an invalid color");
+    if (geda_object_show_buffer_err(msg, buf)) {
+      geda_log_w("%s: %d.\n", msg, color);
+    }
+    geda_log_w (_("Setting color to default color\n"));
     color = DEFAULT_LINE_COLOR_INDEX;
   }
 
