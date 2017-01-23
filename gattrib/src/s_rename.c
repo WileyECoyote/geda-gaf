@@ -95,7 +95,7 @@ void s_rename_destroy_all(void)
 void s_rename_next_set(void)
 {
   if (cur_set == MAX_SETS) {
-    fprintf(stderr, _("Increase MAX_SETS in %s\n"), __FILE__);
+    fprintf(stderr, "%s %s\n", _("Increase MAX_SETS in"), __FILE__);
     return;
   }
   cur_set++;
@@ -113,11 +113,11 @@ void s_rename_print(void)
     for (i = 0; i < MAX_SETS; i++) {
       for (j = 0; j < MAX_RENAME; j++) {
         if (rename_pairs[i][j].src) {
-          printf(_("%d) Source: _%s_"), i, rename_pairs[i][j].src);
+          printf("%d) %s: _%s_", i, _("Source"), rename_pairs[i][j].src);
         }
 
         if (rename_pairs[i][j].dest) {
-          printf(_(" -> Destination: _%s_\n"), rename_pairs[i][j].dest);
+          printf(" -> %s: _%s_\n", _("Destination"), rename_pairs[i][j].dest);
         }
       }
     }
@@ -216,8 +216,9 @@ void s_rename_add(char *src, char *dest)
     rename_counter++;
   }
   if (rename_counter == MAX_RENAME) {
-    fprintf(stderr,
-            _("Increase the number of rename_pairs (MAX_RENAME) in s_rename.c\n"));
+    fprintf(stderr, "%s %s\n",
+            _("Increase the number of rename_pairs (MAX_RENAME) in"),
+            __func__);
     return;
   }
 

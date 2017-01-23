@@ -61,15 +61,18 @@ void verbose_print(char *string)
  */
 void verbose_done(void)
 {
-    if (verbose_mode) {
-	if (char_index >= 70) {
-	    printf(_("\nDONE\n"));
-	} else {
-	    printf(_(" DONE\n"));
-	}
+  if (verbose_mode) {
 
-	char_index = 0;
+    const char *_Done =  _("DONE");
+
+    if (char_index >= 70) {
+      printf("\n%s\n",_Done);
+    } else {
+      printf(" %s\n", _Done);
     }
+
+    char_index = 0;
+  }
 }
 
 /*! \brief Reset the running character count

@@ -177,9 +177,8 @@ void gattrib_save_user_config (void)
   eda_config_save (cfg, &err);
 
   if (err != NULL) {
-    fprintf (stderr, _("Failed to save user configuration to '%s': %s."),
-                        eda_config_get_filename (cfg),
-                        err->message);
+    fprintf (stderr, "%s '%s': %s.", _("Failed to save user configuration to"),
+             eda_config_get_filename (cfg), err->message);
     g_clear_error (&err);
   }
 }

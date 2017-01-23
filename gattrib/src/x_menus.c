@@ -644,9 +644,10 @@ GtkWidget *x_menu_create_menu(GtkWindow *main_window)
   menu_file = g_build_filename(geda_sys_data_path (), "gattrib-menus.xml", NULL);
 
   gtk_ui_manager_add_ui_from_file(menu_manager, menu_file, &error);
-  if(error != NULL) {
+
+  if (error != NULL) {
     /* An error occured, terminate */
-    fprintf(stderr, _("Error loading %s:\n%s\n"), menu_file, error->message);
+    fprintf(stderr, "%s %s: %s\n", _("Error loading"), menu_file, error->message);
     exit(1);
   }
 
