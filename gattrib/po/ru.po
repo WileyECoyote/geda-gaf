@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gattrib\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-22 02:36-0600\n"
+"POT-Creation-Date: 2017-01-23 00:33-0600\n"
 "PO-Revision-Date: 2014-03-08 20:49+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -34,12 +34,11 @@ msgid "Could not open"
 msgstr "Не удалось открыть"
 
 #: gattrib/src/gattrib.c:180
-#, c-format
-msgid "Failed to save user configuration to '%s': %s."
+msgid "Failed to save user configuration to"
 msgstr ""
 
 # Unable to find file
-#: gattrib/src/gattrib.c:374
+#: gattrib/src/gattrib.c:395
 msgid "Couldn not find file"
 msgstr "Не удалось найти файл"
 
@@ -58,10 +57,14 @@ msgstr ""
 msgid "The operating system is out of memory or resources."
 msgstr ""
 
+# Could not open
+#: gattrib/src/i_basic.c:156
+msgid "Failed to open"
+msgstr "Не удалось открыть"
+
 #: gattrib/src/i_basic.c:210
-#, c-format
-msgid "Check path: \"%s\"\n"
-msgstr ""
+msgid "Check path"
+msgstr "Проверьте путь"
 
 #: gattrib/src/parsecmd.c:62
 #, c-format
@@ -95,42 +98,29 @@ msgid ""
 msgstr ""
 
 #: gattrib/src/s_misc.c:66
-#, c-format
-msgid ""
-"\n"
-"DONE\n"
-msgstr ""
-"\n"
-"ЗАВЕРШЕНО\n"
+msgid "DONE"
+msgstr "ЗАВЕРШЕНО"
 
-#: gattrib/src/s_misc.c:68
-#, c-format
-msgid " DONE\n"
-msgstr " ЗАВЕРШЕНО\n"
-
+# could not find the attribute
 #: gattrib/src/s_object.c:215
-#, fuzzy
 msgid "failed to find attribute"
-msgstr "Удаление атрибута"
+msgstr "не удалось найти атрибут"
 
 #: gattrib/src/s_object.c:216
 msgid "Exiting..."
 msgstr ""
 
 #: gattrib/src/s_rename.c:98
-#, fuzzy, c-format
-msgid "Increase MAX_SETS in %s\n"
-msgstr "Следует увеличить количество наборов rename_pair в s_net.c\n"
+msgid "Increase MAX_SETS in"
+msgstr "Увеличение MAX_SETS в"
 
 #: gattrib/src/s_rename.c:116
-#, c-format
-msgid "%d) Source: _%s_"
-msgstr "%d) Источник: _%s_"
+msgid "Source"
+msgstr ""
 
 #: gattrib/src/s_rename.c:120
-#, fuzzy, c-format
-msgid " -> Destination: _%s_\n"
-msgstr " -> Назначение: _%s_\n"
+msgid "Destination"
+msgstr "Назначение"
 
 #: gattrib/src/s_rename.c:151
 #, c-format
@@ -146,8 +136,8 @@ msgstr ""
 "Это предупреждение несущественно, если имеется несколько уровней иерархии!\n"
 
 #: gattrib/src/s_rename.c:220
-#, fuzzy, c-format
-msgid "Increase the number of rename_pairs (MAX_RENAME) in s_rename.c\n"
+#, fuzzy
+msgid "Increase the number of rename_pairs (MAX_RENAME) in"
 msgstr "Увеличьте количество пар переименования (MAX_RENAME) в s_rename.c\n"
 
 #: gattrib/src/s_sheet_data.c:242
@@ -238,6 +228,7 @@ msgstr "не смог найти ««refdes»»:«pinnumber»"
 msgid "Add new attribute"
 msgstr "Добавление нового атрибута"
 
+# Enter new attribute name
 #: gattrib/src/x_dialog.c:120
 msgid "Enter new attribute name"
 msgstr "Введите новое имя атрибута"
@@ -251,7 +242,6 @@ msgid "Delete attribute"
 msgstr "Удаление атрибута"
 
 #: gattrib/src/x_dialog.c:205
-#, fuzzy
 msgid ""
 "One or more components have been found with missing symbol files!\n"
 "\n"
@@ -353,7 +343,7 @@ msgstr ""
 msgid "About..."
 msgstr "О программе..."
 
-#: gattrib/src/x_dialog.c:394
+#: gattrib/src/x_dialog.c:394 gattrib/src/x_menus.c:365
 msgid "Export CSV"
 msgstr "Экспорт CSV"
 
@@ -377,7 +367,7 @@ msgstr ""
 msgid "Replace All and close dialog"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:833
+#: gattrib/src/x_dialog.c:833 gattrib/src/x_toolbars.c:37
 msgid "Replace"
 msgstr ""
 
@@ -385,7 +375,7 @@ msgstr ""
 msgid "Replace selected text and continue"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:841
+#: gattrib/src/x_dialog.c:841 gattrib/src/x_toolbars.c:36
 msgid "Find"
 msgstr ""
 
@@ -416,14 +406,371 @@ msgstr "Дтрибут"
 msgid "Designator"
 msgstr ""
 
-#: gattrib/src/x_menus.c:645
-#, c-format
-msgid ""
-"Error loading %s:\n"
-"%s\n"
+#: gattrib/src/x_menus.c:361
+msgid "_File"
 msgstr ""
-"Ошибка загрузки %s:\n"
-"%s\n"
+
+#: gattrib/src/x_menus.c:362
+msgid "_Open"
+msgstr ""
+
+#: gattrib/src/x_menus.c:363
+msgid "_Save"
+msgstr ""
+
+#: gattrib/src/x_menus.c:364
+msgid "Save _As"
+msgstr ""
+
+#: gattrib/src/x_menus.c:367
+msgid "Quit"
+msgstr ""
+
+#: gattrib/src/x_menus.c:371 gattrib/src/x_toolbars.c:33
+msgid "Cut"
+msgstr ""
+
+#: gattrib/src/x_menus.c:372 gattrib/src/x_toolbars.c:34
+msgid "Copy"
+msgstr ""
+
+#: gattrib/src/x_menus.c:373 gattrib/src/x_toolbars.c:35
+msgid "Paste"
+msgstr ""
+
+#: gattrib/src/x_menus.c:375
+#, fuzzy
+msgid "_Add new Attribute"
+msgstr "Добавление нового атрибута"
+
+#: gattrib/src/x_menus.c:376
+#, fuzzy
+msgid "D_elete Attribute"
+msgstr "Удаление атрибута"
+
+# Attribute
+#: gattrib/src/x_menus.c:377
+#, fuzzy
+msgid "_Promote Attribute"
+msgstr "Дтрибут"
+
+#: gattrib/src/x_menus.c:377 gattrib/src/x_toolbars.c:45
+#, fuzzy
+msgid "Attach the selected attribute"
+msgstr "Удаление атрибута"
+
+#: gattrib/src/x_menus.c:378
+#, fuzzy
+msgid "_Demote Attribute"
+msgstr "Удаление атрибута"
+
+# Dettach the selected attribute
+#: gattrib/src/x_menus.c:378 gattrib/src/x_toolbars.c:46
+msgid "Dettach the selected attribute"
+msgstr "Dettach выбранный атрибут"
+
+#: gattrib/src/x_menus.c:380
+msgid "Find Value"
+msgstr ""
+
+# Find attribute value
+#: gattrib/src/x_menus.c:380
+msgid "Find attribute value"
+msgstr "Найти значение атрибута"
+
+#: gattrib/src/x_menus.c:381
+msgid "Replace value"
+msgstr ""
+
+# Search and Replace Attribute value
+#: gattrib/src/x_menus.c:381
+msgid "Search and Replace Attribute value"
+msgstr "Поиск и замена значения атрибута"
+
+# Attribute
+#: gattrib/src/x_menus.c:382
+msgid "Locate Attribute"
+msgstr "Найдите Дтрибут"
+
+#: gattrib/src/x_menus.c:382
+msgid "Search for an attribute"
+msgstr "Поиск для атрибута"
+
+#: gattrib/src/x_menus.c:383
+msgid "Locate Reference"
+msgstr ""
+
+#: gattrib/src/x_menus.c:383
+msgid "Search for reference designator"
+msgstr ""
+
+#: gattrib/src/x_menus.c:386
+msgid "_View"
+msgstr ""
+
+#: gattrib/src/x_menus.c:387
+msgid "_Toolbar"
+msgstr ""
+
+#: gattrib/src/x_menus.c:388
+msgid "_Icons"
+msgstr ""
+
+#: gattrib/src/x_menus.c:388
+msgid "Display Icons on the toolbar"
+msgstr ""
+
+#: gattrib/src/x_menus.c:389
+msgid "_Text"
+msgstr ""
+
+#: gattrib/src/x_menus.c:389
+msgid "Display Text on the toolbar"
+msgstr ""
+
+#: gattrib/src/x_menus.c:390
+msgid "_Both"
+msgstr ""
+
+#: gattrib/src/x_menus.c:390
+msgid "Display Icons and Text on the toolbar"
+msgstr ""
+
+#: gattrib/src/x_menus.c:393
+msgid "_Visibility"
+msgstr ""
+
+#: gattrib/src/x_menus.c:394 gattrib/src/x_toolbars.c:42
+msgid "Set selected invisible"
+msgstr ""
+
+#: gattrib/src/x_menus.c:395 gattrib/src/x_toolbars.c:43
+msgid "Set selected visible"
+msgstr ""
+
+#: gattrib/src/x_menus.c:396 gattrib/src/x_toolbars.c:47
+msgid "Set selected name visible only"
+msgstr ""
+
+#: gattrib/src/x_menus.c:397 gattrib/src/x_toolbars.c:48
+msgid "Set selected value visible only"
+msgstr ""
+
+#: gattrib/src/x_menus.c:398 gattrib/src/x_toolbars.c:49
+msgid "Set selected name and value visible"
+msgstr ""
+
+#: gattrib/src/x_menus.c:400
+msgid "_Window"
+msgstr ""
+
+#: gattrib/src/x_menus.c:402
+msgid "_Help"
+msgstr ""
+
+# Attribute
+#: gattrib/src/x_menus.c:403
+#, fuzzy
+msgid "Gattrib Guide"
+msgstr "Дтрибут"
+
+#: gattrib/src/x_menus.c:404
+msgid "Gattrib FAQ"
+msgstr ""
+
+#: gattrib/src/x_menus.c:405
+msgid "gEDA Docu_mentation..."
+msgstr ""
+
+#: gattrib/src/x_menus.c:406
+msgid "gEDA _Wiki..."
+msgstr ""
+
+#: gattrib/src/x_menus.c:408
+msgid "gEDA Attributes"
+msgstr "атрибутов gEDA"
+
+#: gattrib/src/x_menus.c:409
+msgid "gEDA Glossary"
+msgstr ""
+
+# About the program
+#: gattrib/src/x_menus.c:410
+msgid "About"
+msgstr "О программе"
+
+#: gattrib/src/x_menus.c:417
+msgid "_Edit bar"
+msgstr ""
+
+#: gattrib/src/x_menus.c:417
+msgid "Display the Edit Status bar"
+msgstr ""
+
+#: gattrib/src/x_menus.c:418
+msgid "_Standard"
+msgstr ""
+
+#: gattrib/src/x_menus.c:418
+msgid "Display Standard Toolbar"
+msgstr ""
+
+# Attribute
+#: gattrib/src/x_menus.c:419
+#, fuzzy
+msgid "A_ttribute"
+msgstr "Дтрибут"
+
+#: gattrib/src/x_menus.c:419
+#, fuzzy
+msgid "Display Attribute Toolbar"
+msgstr "Редактор атрибутов gEDA"
+
+#: gattrib/src/x_menus.c:420
+msgid "_Attached"
+msgstr ""
+
+#: gattrib/src/x_menus.c:420
+msgid "Hide or unhide non-attached attributes"
+msgstr ""
+
+#: gattrib/src/x_menus.c:421
+msgid "_Inherited"
+msgstr ""
+
+#: gattrib/src/x_menus.c:421
+#, fuzzy
+msgid "Hide or unhide inherited attributes"
+msgstr "Удаление атрибута"
+
+#: gattrib/src/x_menus.c:423
+msgid "_Autoresize"
+msgstr ""
+
+#: gattrib/src/x_menus.c:423
+msgid "Enable/Disable Auto resize columns"
+msgstr ""
+
+#: gattrib/src/x_menus.c:424
+msgid "Auto_Scroll"
+msgstr ""
+
+#: gattrib/src/x_menus.c:424
+msgid "Enable/Disable AutoScroll"
+msgstr ""
+
+#: gattrib/src/x_menus.c:425
+msgid "Show _Grid"
+msgstr ""
+
+#: gattrib/src/x_menus.c:425
+msgid "Toggle grid visibility"
+msgstr ""
+
+#: gattrib/src/x_menus.c:650
+msgid "Error loading"
+msgstr "Ошибка загрузки"
+
+#: gattrib/src/x_toolbars.c:30
+msgid "Open"
+msgstr ""
+
+#: gattrib/src/x_toolbars.c:30
+msgid "Open file"
+msgstr ""
+
+#: gattrib/src/x_toolbars.c:31
+msgid "Save"
+msgstr ""
+
+#: gattrib/src/x_toolbars.c:31
+msgid "Save file"
+msgstr ""
+
+#: gattrib/src/x_toolbars.c:32
+msgid "Save As"
+msgstr ""
+
+#: gattrib/src/x_toolbars.c:32
+msgid "Save the file to different name or location"
+msgstr ""
+
+#: gattrib/src/x_toolbars.c:33
+msgid "Cut selection to the clipboard"
+msgstr ""
+
+#: gattrib/src/x_toolbars.c:34
+msgid "Copy selection to the clipboard"
+msgstr ""
+
+#: gattrib/src/x_toolbars.c:35
+msgid "Paste selection from the clipboard"
+msgstr ""
+
+# Search for attribute value
+#: gattrib/src/x_toolbars.c:36
+msgid "Search for attribute value"
+msgstr "Поиск значения атрибута"
+
+# Search and Replace attribute value
+#: gattrib/src/x_toolbars.c:37
+msgid "Search and Replace attribute value"
+msgstr "Поиск и замена значения атрибута"
+
+# Attribute
+#: gattrib/src/x_toolbars.c:38
+msgid "Attrib"
+msgstr "Дтрибут"
+
+# Locate attribute
+#: gattrib/src/x_toolbars.c:38
+msgid "Locate attribute"
+msgstr "Найдите Дтрибут"
+
+#: gattrib/src/x_toolbars.c:39
+msgid "Ref Des"
+msgstr ""
+
+#: gattrib/src/x_toolbars.c:39
+msgid "Locate Reference Designator"
+msgstr ""
+
+#: gattrib/src/x_toolbars.c:42
+msgid "invisible"
+msgstr ""
+
+#: gattrib/src/x_toolbars.c:43
+msgid "visible"
+msgstr ""
+
+#: gattrib/src/x_toolbars.c:44
+msgid "add"
+msgstr ""
+
+# Add a new attribute
+#: gattrib/src/x_toolbars.c:44
+msgid "Add a new attribute"
+msgstr "Добавление нового атрибута"
+
+#: gattrib/src/x_toolbars.c:45
+msgid "promote"
+msgstr ""
+
+#: gattrib/src/x_toolbars.c:46
+msgid "demote"
+msgstr ""
+
+#: gattrib/src/x_toolbars.c:47
+msgid "name"
+msgstr ""
+
+#: gattrib/src/x_toolbars.c:48
+msgid "value"
+msgstr ""
+
+#: gattrib/src/x_toolbars.c:49
+msgid "both"
+msgstr ""
 
 #: gattrib/src/x_window.c:176
 msgid "Saving main window geometry and settings.\n"
@@ -432,19 +779,3 @@ msgstr ""
 #: gattrib/src/x_window.c:213
 msgid "Retrieving main Window geometry and settings.\n"
 msgstr ""
-
-# count != i! Exiting
-#~ msgid "count != i! Exiting ..."
-#~ msgstr "count != i!  Выход ..."
-
-#~ msgid "- Starting internal pin TABLE creation\n"
-#~ msgstr "- Приступаем к созданию внутренней таблицы выводов\n"
-
-#, fuzzy
-#~ msgid "%s, failed to find the attribute %s on the component. Exiting...\n"
-#~ msgstr ""
-#~ "s_object_remove_attrib_in_object: не удалось найти атрибут «%s» для "
-#~ "компонента. Выход . . .\n"
-
-#~ msgid "In s_string_list_delete_item, couldn't delete item %s\n"
-#~ msgstr "s_string_list_delete_item: не удалось удалить элемент %s\n"

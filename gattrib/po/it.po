@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-22 02:36-0600\n"
+"POT-Creation-Date: 2017-01-23 00:33-0600\n"
 "PO-Revision-Date: 2010-02-06 22:09+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -31,11 +31,10 @@ msgid "Could not open"
 msgstr ""
 
 #: gattrib/src/gattrib.c:180
-#, c-format
-msgid "Failed to save user configuration to '%s': %s."
+msgid "Failed to save user configuration to"
 msgstr ""
 
-#: gattrib/src/gattrib.c:374
+#: gattrib/src/gattrib.c:395
 msgid "Couldn not find file"
 msgstr ""
 
@@ -51,9 +50,12 @@ msgstr ""
 msgid "The operating system is out of memory or resources."
 msgstr ""
 
+#: gattrib/src/i_basic.c:156
+msgid "Failed to open"
+msgstr ""
+
 #: gattrib/src/i_basic.c:210
-#, c-format
-msgid "Check path: \"%s\"\n"
+msgid "Check path"
 msgstr ""
 
 #: gattrib/src/parsecmd.c:62
@@ -88,15 +90,7 @@ msgid ""
 msgstr ""
 
 #: gattrib/src/s_misc.c:66
-#, c-format
-msgid ""
-"\n"
-"DONE\n"
-msgstr ""
-
-#: gattrib/src/s_misc.c:68
-#, c-format
-msgid " DONE\n"
+msgid "DONE"
 msgstr ""
 
 #: gattrib/src/s_object.c:215
@@ -108,18 +102,15 @@ msgid "Exiting..."
 msgstr ""
 
 #: gattrib/src/s_rename.c:98
-#, c-format
-msgid "Increase MAX_SETS in %s\n"
+msgid "Increase MAX_SETS in"
 msgstr ""
 
 #: gattrib/src/s_rename.c:116
-#, c-format
-msgid "%d) Source: _%s_"
+msgid "Source"
 msgstr ""
 
 #: gattrib/src/s_rename.c:120
-#, c-format
-msgid " -> Destination: _%s_\n"
+msgid "Destination"
 msgstr ""
 
 #: gattrib/src/s_rename.c:151
@@ -132,8 +123,7 @@ msgid ""
 msgstr ""
 
 #: gattrib/src/s_rename.c:220
-#, c-format
-msgid "Increase the number of rename_pairs (MAX_RENAME) in s_rename.c\n"
+msgid "Increase the number of rename_pairs (MAX_RENAME) in"
 msgstr ""
 
 #: gattrib/src/s_sheet_data.c:242
@@ -303,7 +293,7 @@ msgstr ""
 msgid "About..."
 msgstr ""
 
-#: gattrib/src/x_dialog.c:394
+#: gattrib/src/x_dialog.c:394 gattrib/src/x_menus.c:365
 msgid "Export CSV"
 msgstr ""
 
@@ -327,7 +317,7 @@ msgstr ""
 msgid "Replace All and close dialog"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:833
+#: gattrib/src/x_dialog.c:833 gattrib/src/x_toolbars.c:37
 msgid "Replace"
 msgstr ""
 
@@ -335,7 +325,7 @@ msgstr ""
 msgid "Replace selected text and continue"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:841
+#: gattrib/src/x_dialog.c:841 gattrib/src/x_toolbars.c:36
 msgid "Find"
 msgstr ""
 
@@ -364,11 +354,363 @@ msgstr "gEDA Editor Attributi"
 msgid "Designator"
 msgstr ""
 
-#: gattrib/src/x_menus.c:645
-#, c-format
-msgid ""
-"Error loading %s:\n"
-"%s\n"
+#: gattrib/src/x_menus.c:361
+msgid "_File"
+msgstr ""
+
+#: gattrib/src/x_menus.c:362
+msgid "_Open"
+msgstr ""
+
+#: gattrib/src/x_menus.c:363
+msgid "_Save"
+msgstr ""
+
+#: gattrib/src/x_menus.c:364
+msgid "Save _As"
+msgstr ""
+
+#: gattrib/src/x_menus.c:367
+msgid "Quit"
+msgstr ""
+
+#: gattrib/src/x_menus.c:371 gattrib/src/x_toolbars.c:33
+msgid "Cut"
+msgstr ""
+
+#: gattrib/src/x_menus.c:372 gattrib/src/x_toolbars.c:34
+msgid "Copy"
+msgstr ""
+
+#: gattrib/src/x_menus.c:373 gattrib/src/x_toolbars.c:35
+msgid "Paste"
+msgstr ""
+
+#: gattrib/src/x_menus.c:375
+#, fuzzy
+msgid "_Add new Attribute"
+msgstr "gEDA Editor Attributi"
+
+#: gattrib/src/x_menus.c:376
+#, fuzzy
+msgid "D_elete Attribute"
+msgstr "gEDA Editor Attributi"
+
+#: gattrib/src/x_menus.c:377
+#, fuzzy
+msgid "_Promote Attribute"
+msgstr "gEDA Editor Attributi"
+
+#: gattrib/src/x_menus.c:377 gattrib/src/x_toolbars.c:45
+#, fuzzy
+msgid "Attach the selected attribute"
+msgstr "gEDA Editor Attributi"
+
+#: gattrib/src/x_menus.c:378
+#, fuzzy
+msgid "_Demote Attribute"
+msgstr "gEDA Editor Attributi"
+
+#: gattrib/src/x_menus.c:378 gattrib/src/x_toolbars.c:46
+#, fuzzy
+msgid "Dettach the selected attribute"
+msgstr "gEDA Editor Attributi"
+
+#: gattrib/src/x_menus.c:380
+msgid "Find Value"
+msgstr ""
+
+#: gattrib/src/x_menus.c:380
+msgid "Find attribute value"
+msgstr ""
+
+#: gattrib/src/x_menus.c:381
+msgid "Replace value"
+msgstr ""
+
+#: gattrib/src/x_menus.c:381
+msgid "Search and Replace Attribute value"
+msgstr ""
+
+#: gattrib/src/x_menus.c:382
+#, fuzzy
+msgid "Locate Attribute"
+msgstr "gEDA Editor Attributi"
+
+#: gattrib/src/x_menus.c:382
+#, fuzzy
+msgid "Search for an attribute"
+msgstr "gEDA Editor Attributi"
+
+#: gattrib/src/x_menus.c:383
+msgid "Locate Reference"
+msgstr ""
+
+#: gattrib/src/x_menus.c:383
+msgid "Search for reference designator"
+msgstr ""
+
+#: gattrib/src/x_menus.c:386
+msgid "_View"
+msgstr ""
+
+#: gattrib/src/x_menus.c:387
+msgid "_Toolbar"
+msgstr ""
+
+#: gattrib/src/x_menus.c:388
+msgid "_Icons"
+msgstr ""
+
+#: gattrib/src/x_menus.c:388
+msgid "Display Icons on the toolbar"
+msgstr ""
+
+#: gattrib/src/x_menus.c:389
+msgid "_Text"
+msgstr ""
+
+#: gattrib/src/x_menus.c:389
+msgid "Display Text on the toolbar"
+msgstr ""
+
+#: gattrib/src/x_menus.c:390
+msgid "_Both"
+msgstr ""
+
+#: gattrib/src/x_menus.c:390
+msgid "Display Icons and Text on the toolbar"
+msgstr ""
+
+#: gattrib/src/x_menus.c:393
+msgid "_Visibility"
+msgstr ""
+
+#: gattrib/src/x_menus.c:394 gattrib/src/x_toolbars.c:42
+msgid "Set selected invisible"
+msgstr ""
+
+#: gattrib/src/x_menus.c:395 gattrib/src/x_toolbars.c:43
+msgid "Set selected visible"
+msgstr ""
+
+#: gattrib/src/x_menus.c:396 gattrib/src/x_toolbars.c:47
+msgid "Set selected name visible only"
+msgstr ""
+
+#: gattrib/src/x_menus.c:397 gattrib/src/x_toolbars.c:48
+msgid "Set selected value visible only"
+msgstr ""
+
+#: gattrib/src/x_menus.c:398 gattrib/src/x_toolbars.c:49
+msgid "Set selected name and value visible"
+msgstr ""
+
+#: gattrib/src/x_menus.c:400
+msgid "_Window"
+msgstr ""
+
+#: gattrib/src/x_menus.c:402
+msgid "_Help"
+msgstr ""
+
+#: gattrib/src/x_menus.c:403
+#, fuzzy
+msgid "Gattrib Guide"
+msgstr "gEDA Editor Attributi"
+
+#: gattrib/src/x_menus.c:404
+msgid "Gattrib FAQ"
+msgstr ""
+
+#: gattrib/src/x_menus.c:405
+msgid "gEDA Docu_mentation..."
+msgstr ""
+
+#: gattrib/src/x_menus.c:406
+msgid "gEDA _Wiki..."
+msgstr ""
+
+#: gattrib/src/x_menus.c:408
+#, fuzzy
+msgid "gEDA Attributes"
+msgstr "gEDA Editor Attributi"
+
+#: gattrib/src/x_menus.c:409
+msgid "gEDA Glossary"
+msgstr ""
+
+#: gattrib/src/x_menus.c:410
+msgid "About"
+msgstr ""
+
+#: gattrib/src/x_menus.c:417
+msgid "_Edit bar"
+msgstr ""
+
+#: gattrib/src/x_menus.c:417
+msgid "Display the Edit Status bar"
+msgstr ""
+
+#: gattrib/src/x_menus.c:418
+msgid "_Standard"
+msgstr ""
+
+#: gattrib/src/x_menus.c:418
+msgid "Display Standard Toolbar"
+msgstr ""
+
+#: gattrib/src/x_menus.c:419
+#, fuzzy
+msgid "A_ttribute"
+msgstr "gEDA Editor Attributi"
+
+#: gattrib/src/x_menus.c:419
+#, fuzzy
+msgid "Display Attribute Toolbar"
+msgstr "gEDA Editor Attributi"
+
+#: gattrib/src/x_menus.c:420
+msgid "_Attached"
+msgstr ""
+
+#: gattrib/src/x_menus.c:420
+msgid "Hide or unhide non-attached attributes"
+msgstr ""
+
+#: gattrib/src/x_menus.c:421
+msgid "_Inherited"
+msgstr ""
+
+#: gattrib/src/x_menus.c:421
+msgid "Hide or unhide inherited attributes"
+msgstr ""
+
+#: gattrib/src/x_menus.c:423
+msgid "_Autoresize"
+msgstr ""
+
+#: gattrib/src/x_menus.c:423
+msgid "Enable/Disable Auto resize columns"
+msgstr ""
+
+#: gattrib/src/x_menus.c:424
+msgid "Auto_Scroll"
+msgstr ""
+
+#: gattrib/src/x_menus.c:424
+msgid "Enable/Disable AutoScroll"
+msgstr ""
+
+#: gattrib/src/x_menus.c:425
+msgid "Show _Grid"
+msgstr ""
+
+#: gattrib/src/x_menus.c:425
+msgid "Toggle grid visibility"
+msgstr ""
+
+#: gattrib/src/x_menus.c:650
+msgid "Error loading"
+msgstr ""
+
+#: gattrib/src/x_toolbars.c:30
+msgid "Open"
+msgstr ""
+
+#: gattrib/src/x_toolbars.c:30
+msgid "Open file"
+msgstr ""
+
+#: gattrib/src/x_toolbars.c:31
+msgid "Save"
+msgstr ""
+
+#: gattrib/src/x_toolbars.c:31
+msgid "Save file"
+msgstr ""
+
+#: gattrib/src/x_toolbars.c:32
+msgid "Save As"
+msgstr ""
+
+#: gattrib/src/x_toolbars.c:32
+msgid "Save the file to different name or location"
+msgstr ""
+
+#: gattrib/src/x_toolbars.c:33
+msgid "Cut selection to the clipboard"
+msgstr ""
+
+#: gattrib/src/x_toolbars.c:34
+msgid "Copy selection to the clipboard"
+msgstr ""
+
+#: gattrib/src/x_toolbars.c:35
+msgid "Paste selection from the clipboard"
+msgstr ""
+
+#: gattrib/src/x_toolbars.c:36
+msgid "Search for attribute value"
+msgstr ""
+
+#: gattrib/src/x_toolbars.c:37
+msgid "Search and Replace attribute value"
+msgstr ""
+
+#: gattrib/src/x_toolbars.c:38
+#, fuzzy
+msgid "Attrib"
+msgstr "gEDA Editor Attributi"
+
+#: gattrib/src/x_toolbars.c:38
+#, fuzzy
+msgid "Locate attribute"
+msgstr "gEDA Editor Attributi"
+
+#: gattrib/src/x_toolbars.c:39
+msgid "Ref Des"
+msgstr ""
+
+#: gattrib/src/x_toolbars.c:39
+msgid "Locate Reference Designator"
+msgstr ""
+
+#: gattrib/src/x_toolbars.c:42
+msgid "invisible"
+msgstr ""
+
+#: gattrib/src/x_toolbars.c:43
+msgid "visible"
+msgstr ""
+
+#: gattrib/src/x_toolbars.c:44
+msgid "add"
+msgstr ""
+
+#: gattrib/src/x_toolbars.c:44
+#, fuzzy
+msgid "Add a new attribute"
+msgstr "gEDA Editor Attributi"
+
+#: gattrib/src/x_toolbars.c:45
+msgid "promote"
+msgstr ""
+
+#: gattrib/src/x_toolbars.c:46
+msgid "demote"
+msgstr ""
+
+#: gattrib/src/x_toolbars.c:47
+msgid "name"
+msgstr ""
+
+#: gattrib/src/x_toolbars.c:48
+msgid "value"
+msgstr ""
+
+#: gattrib/src/x_toolbars.c:49
+msgid "both"
 msgstr ""
 
 #: gattrib/src/x_window.c:176
