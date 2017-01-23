@@ -4,6 +4,8 @@
 
     * include/globals.h: Remove no-op marcos.
 
+    * src/x_toolbars.c: Tag ToolbarStringData text and tips as translatable.
+
 2017-01-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gettext.h: Add conditionals to use <libintl.h> if LIBC
