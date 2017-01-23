@@ -4,6 +4,9 @@
 
     * include/globals.h: Remove no-op marcos.
 
+    * src/x_menus.c: Set action group translation domain in x_menu_create_menu,
+      i.e. call gtk_action_group_set_translation_domain.
+
     * src/x_toolbars.c: Tag ToolbarStringData text and tips as translatable.
 
 2017-01-22 Wiley E. Hill <wileyhill@gmail.com>

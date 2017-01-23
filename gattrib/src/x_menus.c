@@ -626,6 +626,10 @@ GtkWidget *x_menu_create_menu(GtkWindow *main_window)
 
   /* Create and fill the action group object */
   action_group = gtk_action_group_new("MenuActions");
+
+  /* Must be set before adding actions or text is not translated */
+  gtk_action_group_set_translation_domain(action_group, GATTRIB_GETTEXT_DOMAIN);
+
   gtk_action_group_add_actions(action_group, actions, G_N_ELEMENTS(actions), NULL);
   gtk_action_group_add_toggle_actions (action_group, toggle_entries, G_N_ELEMENTS (toggle_entries), main_window);
 
