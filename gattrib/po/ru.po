@@ -136,14 +136,13 @@ msgstr ""
 "Это предупреждение несущественно, если имеется несколько уровней иерархии!\n"
 
 #: gattrib/src/s_rename.c:220
-#, fuzzy
 msgid "Increase the number of rename_pairs (MAX_RENAME) in"
-msgstr "Увеличьте количество пар переименования (MAX_RENAME) в s_rename.c\n"
+msgstr "Увеличьте количество пар переименования (MAX_RENAME) в"
 
 #: gattrib/src/s_sheet_data.c:242
-#, fuzzy, c-format
+#, c-format
 msgid "Starting master comp list creation.\n"
-msgstr "- Приступаем к созданию основного списка компонентов.\n"
+msgstr "Приступаем к созданию основного списка компонентов.\n"
 
 #: gattrib/src/s_sheet_data.c:308
 #, c-format
@@ -151,9 +150,9 @@ msgid "- Starting master comp attrib list creation.\n"
 msgstr "- Приступаем к созданию основного списка атрибутов компонентов.\n"
 
 #: gattrib/src/s_sheet_data.c:434
-#, fuzzy, c-format
+#, c-format
 msgid "- Creating master pin list.\n"
-msgstr "- Приступаем к созданию основного списка выводов.\n"
+msgstr "- Создание мастер-списка выводов.\n"
 
 # found component pin with no pinnumber
 #: gattrib/src/s_sheet_data.c:484
@@ -166,15 +165,12 @@ msgid "- Starting master pin attrib list creation.\n"
 msgstr "- Приступаем к созданию основного списка атрибутов выводов.\n"
 
 #: gattrib/src/s_string_list.c:142
-#, fuzzy
 msgid "attempted to add to a NULL list.\n"
 msgstr "попытка добавления к списку со значением NULL.\n"
 
 #: gattrib/src/s_string_list.c:205
-#, fuzzy
 msgid "attempted to remove item from an empty list\n"
-msgstr ""
-"s_string_list_delete_item: попытка удаления элемента из пустого списка\n"
+msgstr "попытка удаления элемента из пустого списка\n"
 
 #: gattrib/src/s_string_list.c:283
 msgid "could not delete item"
@@ -285,7 +281,6 @@ msgid "Close without saving"
 msgstr "Закрыть без сохранения"
 
 #: gattrib/src/x_dialog.c:318
-#, fuzzy
 msgid ""
 "Sorry -- you have chosen a feature which has not been\n"
 "implemented yet.\n"
@@ -439,30 +434,26 @@ msgid "Paste"
 msgstr ""
 
 #: gattrib/src/x_menus.c:375
-#, fuzzy
 msgid "_Add new Attribute"
 msgstr "Добавление нового атрибута"
 
 #: gattrib/src/x_menus.c:376
-#, fuzzy
 msgid "D_elete Attribute"
 msgstr "Удаление атрибута"
 
-# Attribute
+# Promote Attribute
 #: gattrib/src/x_menus.c:377
-#, fuzzy
 msgid "_Promote Attribute"
-msgstr "Дтрибут"
+msgstr "Продвижение Дтрибут"
 
 #: gattrib/src/x_menus.c:377 gattrib/src/x_toolbars.c:45
-#, fuzzy
 msgid "Attach the selected attribute"
-msgstr "Удаление атрибута"
+msgstr "Прикрепите выбранный атрибут"
 
+# demote Attribute
 #: gattrib/src/x_menus.c:378
-#, fuzzy
 msgid "_Demote Attribute"
-msgstr "Удаление атрибута"
+msgstr "разжаловать атрибута"
 
 # Dettach the selected attribute
 #: gattrib/src/x_menus.c:378 gattrib/src/x_toolbars.c:46
@@ -570,9 +561,8 @@ msgstr ""
 
 # Attribute
 #: gattrib/src/x_menus.c:403
-#, fuzzy
 msgid "Gattrib Guide"
-msgstr "Дтрибут"
+msgstr "Руководство Gattrib"
 
 #: gattrib/src/x_menus.c:404
 msgid "Gattrib FAQ"
@@ -617,14 +607,12 @@ msgstr ""
 
 # Attribute
 #: gattrib/src/x_menus.c:419
-#, fuzzy
 msgid "A_ttribute"
 msgstr "Дтрибут"
 
 #: gattrib/src/x_menus.c:419
-#, fuzzy
 msgid "Display Attribute Toolbar"
-msgstr "Редактор атрибутов gEDA"
+msgstr "Атрибуту Display панели инструментов"
 
 #: gattrib/src/x_menus.c:420
 msgid "_Attached"
@@ -639,9 +627,8 @@ msgid "_Inherited"
 msgstr ""
 
 #: gattrib/src/x_menus.c:421
-#, fuzzy
 msgid "Hide or unhide inherited attributes"
-msgstr "Удаление атрибута"
+msgstr "Ukrywanie lub pokazywanie dziedziczenie atrybutów"
 
 #: gattrib/src/x_menus.c:423
 msgid "_Autoresize"
