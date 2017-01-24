@@ -47,72 +47,26 @@
 #endif /* !G_ENABLE_DEBUG */
 
 
-/* BOOL:INT,INT,POINTER,POINTER (geda-marshal.list:1) */
+/* BOOL:BOXED (geda-marshal.list:1) */
 void
-geda_marshal_BOOLEAN__INT_INT_POINTER_POINTER (GClosure     *closure,
-                                               GValue       *return_value GEDA_UNUSED,
-                                               unsigned int  n_param_values,
-                                               const GValue *param_values,
-                                               void         *invocation_hint GEDA_UNUSED,
-                                               void         *marshal_data)
+geda_marshal_BOOLEAN__BOXED (GClosure     *closure,
+                             GValue       *return_value GEDA_UNUSED,
+                             unsigned int  n_param_values,
+                             const GValue *param_values,
+                             void         *invocation_hint GEDA_UNUSED,
+                             void         *marshal_data)
 {
-  typedef bool (*GMarshalFunc_BOOLEAN__INT_INT_POINTER_POINTER) (void    *data1,
-                                                                 int      arg_1,
-                                                                 int      arg_2,
-                                                                 void    *arg_3,
-                                                                 void    *arg_4,
-                                                                 void    *data2);
-  register GMarshalFunc_BOOLEAN__INT_INT_POINTER_POINTER callback;
+  typedef bool (*GMarshalFunc_BOOLEAN__BOXED) (void    *data1,
+                                               void    *arg_1,
+                                               void    *data2);
+  register GMarshalFunc_BOOLEAN__BOXED callback;
   register GCClosure *cc = (GCClosure*) closure;
   register void *data1;
   register void *data2;
   bool v_return;
 
   g_return_if_fail (return_value != NULL);
-  g_return_if_fail (n_param_values == 5);
-
-  if (G_CCLOSURE_SWAP_DATA (closure)) {
-
-    data1 = closure->data;
-    data2 = g_value_peek_pointer (param_values + 0);
-  }
-  else {
-    data1 = g_value_peek_pointer (param_values + 0);
-    data2 = closure->data;
-  }
-  callback = (GMarshalFunc_BOOLEAN__INT_INT_POINTER_POINTER) (marshal_data ? marshal_data : cc->callback);
-
-  v_return = callback (data1,
-                       g_marshal_value_peek_int (param_values + 1),
-                       g_marshal_value_peek_int (param_values + 2),
-                       g_marshal_value_peek_pointer (param_values + 3),
-                       g_marshal_value_peek_pointer (param_values + 4),
-                       data2);
-
-  g_value_set_boolean (return_value, v_return);
-}
-
-/* BOOL:BOXED,POINTER (geda-marshal.list:2) */
-void
-geda_marshal_BOOLEAN__BOXED_POINTER (GClosure     *closure,
-                                     GValue       *return_value GEDA_UNUSED,
-                                     unsigned int  n_param_values,
-                                     const GValue *param_values,
-                                     void         *invocation_hint GEDA_UNUSED,
-                                     void         *marshal_data)
-{
-  typedef bool (*GMarshalFunc_BOOLEAN__BOXED_POINTER) (void    *data1,
-                                                       void    *arg_1,
-                                                       void    *arg_2,
-                                                       void    *data2);
-  register GMarshalFunc_BOOLEAN__BOXED_POINTER callback;
-  register GCClosure *cc = (GCClosure*) closure;
-  register void *data1;
-  register void *data2;
-  bool v_return;
-
-  g_return_if_fail (return_value != NULL);
-  g_return_if_fail (n_param_values == 3);
+  g_return_if_fail (n_param_values == 2);
 
   if (G_CCLOSURE_SWAP_DATA (closure)) {
 
@@ -124,59 +78,16 @@ geda_marshal_BOOLEAN__BOXED_POINTER (GClosure     *closure,
     data1 = g_value_peek_pointer (param_values + 0);
     data2 = closure->data;
   }
-  callback = (GMarshalFunc_BOOLEAN__BOXED_POINTER) (marshal_data ? marshal_data : cc->callback);
+  callback = (GMarshalFunc_BOOLEAN__BOXED) (marshal_data ? marshal_data : cc->callback);
 
   v_return = callback (data1,
                        g_marshal_value_peek_boxed (param_values + 1),
-                       g_marshal_value_peek_pointer (param_values + 2),
                        data2);
 
   g_value_set_boolean (return_value, v_return);
 }
 
-/* BOOL:BOXED,STRING (geda-marshal.list:3) */
-void
-geda_marshal_BOOLEAN__BOXED_STRING (GClosure     *closure,
-                                    GValue       *return_value GEDA_UNUSED,
-                                    unsigned int  n_param_values,
-                                    const GValue *param_values,
-                                    void         *invocation_hint GEDA_UNUSED,
-                                    void         *marshal_data)
-{
-  typedef bool (*GMarshalFunc_BOOLEAN__BOXED_STRING) (void    *data1,
-                                                      void    *arg_1,
-                                                      void    *arg_2,
-                                                      void    *data2);
-  register GMarshalFunc_BOOLEAN__BOXED_STRING callback;
-  register GCClosure *cc = (GCClosure*) closure;
-  register void *data1;
-  register void *data2;
-  bool v_return;
-
-  g_return_if_fail (return_value != NULL);
-  g_return_if_fail (n_param_values == 3);
-
-  if (G_CCLOSURE_SWAP_DATA (closure)) {
-
-    data1 = closure->data;
-    data2 = g_value_peek_pointer (param_values + 0);
-  }
-  else {
-
-    data1 = g_value_peek_pointer (param_values + 0);
-    data2 = closure->data;
-  }
-  callback = (GMarshalFunc_BOOLEAN__BOXED_STRING) (marshal_data ? marshal_data : cc->callback);
-
-  v_return = callback (data1,
-                       g_marshal_value_peek_boxed (param_values + 1),
-                       g_marshal_value_peek_string (param_values + 2),
-                       data2);
-
-  g_value_set_boolean (return_value, v_return);
-}
-
-/* BOOL:BOXED,BOXED (geda-marshal.list:4) */
+/* BOOL:BOXED,BOXED (geda-marshal.list:2) */
 void
 geda_marshal_BOOLEAN__BOXED_BOXED (GClosure     *closure,
                                    GValue       *return_value GEDA_UNUSED,
@@ -218,7 +129,7 @@ geda_marshal_BOOLEAN__BOXED_BOXED (GClosure     *closure,
   g_value_set_boolean (return_value, v_return);
 }
 
-/* BOOL:BOXED,DOUBLE,DOUBLE (geda-marshal.list:5) */
+/* BOOL:BOXED,DOUBLE,DOUBLE (geda-marshal.list:3) */
 void
 geda_marshal_BOOLEAN__BOXED_DOUBLE_DOUBLE (GClosure     *closure,
                                            GValue       *return_value GEDA_UNUSED,
@@ -262,62 +173,20 @@ geda_marshal_BOOLEAN__BOXED_DOUBLE_DOUBLE (GClosure     *closure,
   g_value_set_boolean (return_value, v_return);
 }
 
-/* BOOL:POINTER,POINTER (geda-marshal.list:6) */
+/* BOOL:BOXED,POINTER (geda-marshal.list:4) */
 void
-geda_marshal_BOOLEAN__POINTER_POINTER (GClosure     *closure,
-                                       GValue       *return_value GEDA_UNUSED,
-                                       unsigned int  n_param_values,
-                                       const GValue *param_values,
-                                       void         *invocation_hint GEDA_UNUSED,
-                                       void         *marshal_data)
-{
-  typedef bool (*GMarshalFunc_BOOLEAN__POINTER_POINTER) (void    *data1,
-                                                         void    *arg_1,
-                                                         void    *arg_2,
-                                                         void    *data2);
-  register GMarshalFunc_BOOLEAN__POINTER_POINTER callback;
-  register GCClosure *cc = (GCClosure*) closure;
-  register void *data1;
-  register void *data2;
-  bool v_return;
-
-  g_return_if_fail (return_value != NULL);
-  g_return_if_fail (n_param_values == 3);
-
-  if (G_CCLOSURE_SWAP_DATA (closure)) {
-
-    data1 = closure->data;
-    data2 = g_value_peek_pointer (param_values + 0);
-  }
-  else {
-
-    data1 = g_value_peek_pointer (param_values + 0);
-    data2 = closure->data;
-  }
-  callback = (GMarshalFunc_BOOLEAN__POINTER_POINTER) (marshal_data ? marshal_data : cc->callback);
-
-  v_return = callback (data1,
-                       g_marshal_value_peek_pointer (param_values + 1),
-                       g_marshal_value_peek_pointer (param_values + 2),
-                       data2);
-
-  g_value_set_boolean (return_value, v_return);
-}
-
-/* BOOL:POINTER,BOXED (geda-marshal.list:7) */
-void
-geda_marshal_BOOLEAN__POINTER_BOXED (GClosure     *closure,
+geda_marshal_BOOLEAN__BOXED_POINTER (GClosure     *closure,
                                      GValue       *return_value GEDA_UNUSED,
                                      unsigned int  n_param_values,
                                      const GValue *param_values,
                                      void         *invocation_hint GEDA_UNUSED,
                                      void         *marshal_data)
 {
-  typedef bool (*GMarshalFunc_BOOLEAN__POINTER_BOXED) (void    *data1,
+  typedef bool (*GMarshalFunc_BOOLEAN__BOXED_POINTER) (void    *data1,
                                                        void    *arg_1,
                                                        void    *arg_2,
                                                        void    *data2);
-  register GMarshalFunc_BOOLEAN__POINTER_BOXED callback;
+  register GMarshalFunc_BOOLEAN__BOXED_POINTER callback;
   register GCClosure *cc = (GCClosure*) closure;
   register void *data1;
   register void *data2;
@@ -336,30 +205,30 @@ geda_marshal_BOOLEAN__POINTER_BOXED (GClosure     *closure,
     data1 = g_value_peek_pointer (param_values + 0);
     data2 = closure->data;
   }
-  callback = (GMarshalFunc_BOOLEAN__POINTER_BOXED) (marshal_data ? marshal_data : cc->callback);
+  callback = (GMarshalFunc_BOOLEAN__BOXED_POINTER) (marshal_data ? marshal_data : cc->callback);
 
   v_return = callback (data1,
-                       g_marshal_value_peek_pointer (param_values + 1),
-                       g_marshal_value_peek_boxed (param_values + 2),
+                       g_marshal_value_peek_boxed (param_values + 1),
+                       g_marshal_value_peek_pointer (param_values + 2),
                        data2);
 
   g_value_set_boolean (return_value, v_return);
 }
 
-/* BOOL:POINTER,STRING (geda-marshal.list:8) */
+/* BOOL:BOXED,STRING (geda-marshal.list:5) */
 void
-geda_marshal_BOOLEAN__POINTER_STRING (GClosure     *closure,
-                                      GValue       *return_value GEDA_UNUSED,
-                                      unsigned int  n_param_values,
-                                      const GValue *param_values,
-                                      void         *invocation_hint GEDA_UNUSED,
-                                      void         *marshal_data)
+geda_marshal_BOOLEAN__BOXED_STRING (GClosure     *closure,
+                                    GValue       *return_value GEDA_UNUSED,
+                                    unsigned int  n_param_values,
+                                    const GValue *param_values,
+                                    void         *invocation_hint GEDA_UNUSED,
+                                    void         *marshal_data)
 {
-  typedef bool (*GMarshalFunc_BOOLEAN__POINTER_STRING) (void    *data1,
-                                                        void    *arg_1,
-                                                        void    *arg_2,
-                                                        void    *data2);
-  register GMarshalFunc_BOOLEAN__POINTER_STRING callback;
+  typedef bool (*GMarshalFunc_BOOLEAN__BOXED_STRING) (void    *data1,
+                                                      void    *arg_1,
+                                                      void    *arg_2,
+                                                      void    *data2);
+  register GMarshalFunc_BOOLEAN__BOXED_STRING callback;
   register GCClosure *cc = (GCClosure*) closure;
   register void *data1;
   register void *data2;
@@ -378,11 +247,136 @@ geda_marshal_BOOLEAN__POINTER_STRING (GClosure     *closure,
     data1 = g_value_peek_pointer (param_values + 0);
     data2 = closure->data;
   }
-  callback = (GMarshalFunc_BOOLEAN__POINTER_STRING) (marshal_data ? marshal_data : cc->callback);
+  callback = (GMarshalFunc_BOOLEAN__BOXED_STRING) (marshal_data ? marshal_data : cc->callback);
 
   v_return = callback (data1,
-                       g_marshal_value_peek_pointer (param_values + 1),
+                       g_marshal_value_peek_boxed (param_values + 1),
                        g_marshal_value_peek_string (param_values + 2),
+                       data2);
+
+  g_value_set_boolean (return_value, v_return);
+}
+
+/* BOOL:INT (geda-marshal.list:6) */
+void
+geda_marshal_BOOLEAN__INT (GClosure     *closure,
+                           GValue       *return_value,
+                           unsigned int  n_param_values,
+                           const GValue *param_values,
+                           void         *invocation_hint,
+                           void         *marshal_data)
+{
+  typedef bool (*GMarshalFunc_BOOLEAN__INT) (void *data1,
+                                             int   arg_1,
+                                             void *data2);
+  register GMarshalFunc_BOOLEAN__INT callback;
+  register GCClosure *cc = (GCClosure*) closure;
+  register void *data1;
+  register void *data2;
+  bool     v_return;
+
+  g_return_if_fail (return_value != NULL);
+  g_return_if_fail (n_param_values == 2);
+
+  if (G_CCLOSURE_SWAP_DATA (closure)) {
+      data1 = closure->data;
+      data2 = g_value_peek_pointer (param_values + 0);
+  }
+  else {
+      data1 = g_value_peek_pointer (param_values + 0);
+      data2 = closure->data;
+  }
+  callback = (GMarshalFunc_BOOLEAN__INT) (marshal_data ? marshal_data : cc->callback);
+
+  v_return = callback (data1,
+                       g_marshal_value_peek_int (param_values + 1),
+                       data2);
+
+  g_value_set_boolean (return_value, v_return);
+}
+
+/* BOOL:INT,INT (geda-marshal.list:7) */
+void
+geda_marshal_BOOLEAN__INT_INT (GClosure     *closure,
+                               GValue       *return_value GEDA_UNUSED,
+                               unsigned int  n_param_values,
+                               const GValue *param_values,
+                               void         *invocation_hint GEDA_UNUSED,
+                               void         *marshal_data)
+{
+  typedef bool (*GMarshalFunc_BOOLEAN__INT_INT) (void    *data1,
+                                                 int      arg_1,
+                                                 int      arg_2,
+                                                 void    *data2);
+  register GMarshalFunc_BOOLEAN__INT_INT callback;
+  register GCClosure *cc = (GCClosure*) closure;
+  register void *data1;
+  register void *data2;
+  bool v_return;
+
+  g_return_if_fail (return_value != NULL);
+  g_return_if_fail (n_param_values == 3);
+
+  if (G_CCLOSURE_SWAP_DATA (closure)) {
+
+    data1 = closure->data;
+    data2 = g_value_peek_pointer (param_values + 0);
+  }
+  else {
+
+    data1 = g_value_peek_pointer (param_values + 0);
+    data2 = closure->data;
+  }
+  callback = (GMarshalFunc_BOOLEAN__INT_INT) (marshal_data ? marshal_data : cc->callback);
+
+  v_return = callback (data1,
+                       g_marshal_value_peek_int (param_values + 1),
+                       g_marshal_value_peek_int (param_values + 2),
+                       data2);
+
+  g_value_set_boolean (return_value, v_return);
+}
+
+/* BOOL:INT,INT,POINTER,POINTER (geda-marshal.list:8) */
+void
+geda_marshal_BOOLEAN__INT_INT_POINTER_POINTER (GClosure     *closure,
+                                               GValue       *return_value GEDA_UNUSED,
+                                               unsigned int  n_param_values,
+                                               const GValue *param_values,
+                                               void         *invocation_hint GEDA_UNUSED,
+                                               void         *marshal_data)
+{
+  typedef bool (*GMarshalFunc_BOOLEAN__INT_INT_POINTER_POINTER) (void    *data1,
+                                                                 int      arg_1,
+                                                                 int      arg_2,
+                                                                 void    *arg_3,
+                                                                 void    *arg_4,
+                                                                 void    *data2);
+  register GMarshalFunc_BOOLEAN__INT_INT_POINTER_POINTER callback;
+  register GCClosure *cc = (GCClosure*) closure;
+  register void *data1;
+  register void *data2;
+  bool v_return;
+
+  g_return_if_fail (return_value != NULL);
+  g_return_if_fail (n_param_values == 5);
+
+  if (G_CCLOSURE_SWAP_DATA (closure)) {
+
+    data1 = closure->data;
+    data2 = g_value_peek_pointer (param_values + 0);
+  }
+  else {
+    data1 = g_value_peek_pointer (param_values + 0);
+    data2 = closure->data;
+  }
+  callback = (GMarshalFunc_BOOLEAN__INT_INT_POINTER_POINTER) (marshal_data ? marshal_data : cc->callback);
+
+  v_return = callback (data1,
+                       g_marshal_value_peek_int (param_values + 1),
+                       g_marshal_value_peek_int (param_values + 2),
+                       g_marshal_value_peek_pointer (param_values + 3),
+                       g_marshal_value_peek_pointer (param_values + 4),
                        data2);
 
   g_value_set_boolean (return_value, v_return);
@@ -428,98 +422,20 @@ geda_marshal_BOOLEAN__POINTER (GClosure     *closure,
   g_value_set_boolean (return_value, v_return);
 }
 
-/* BOOL:BOXED (geda-marshal.list:10) */
+/* BOOL:POINTER,BOXED (geda-marshal.list:10) */
 void
-geda_marshal_BOOLEAN__BOXED (GClosure     *closure,
-                             GValue       *return_value GEDA_UNUSED,
-                             unsigned int  n_param_values,
-                             const GValue *param_values,
-                             void         *invocation_hint GEDA_UNUSED,
-                             void         *marshal_data)
+geda_marshal_BOOLEAN__POINTER_BOXED (GClosure     *closure,
+                                     GValue       *return_value GEDA_UNUSED,
+                                     unsigned int  n_param_values,
+                                     const GValue *param_values,
+                                     void         *invocation_hint GEDA_UNUSED,
+                                     void         *marshal_data)
 {
-  typedef bool (*GMarshalFunc_BOOLEAN__BOXED) (void    *data1,
-                                               void    *arg_1,
-                                               void    *data2);
-  register GMarshalFunc_BOOLEAN__BOXED callback;
-  register GCClosure *cc = (GCClosure*) closure;
-  register void *data1;
-  register void *data2;
-  bool v_return;
-
-  g_return_if_fail (return_value != NULL);
-  g_return_if_fail (n_param_values == 2);
-
-  if (G_CCLOSURE_SWAP_DATA (closure)) {
-
-    data1 = closure->data;
-    data2 = g_value_peek_pointer (param_values + 0);
-  }
-  else {
-
-    data1 = g_value_peek_pointer (param_values + 0);
-    data2 = closure->data;
-  }
-  callback = (GMarshalFunc_BOOLEAN__BOXED) (marshal_data ? marshal_data : cc->callback);
-
-  v_return = callback (data1,
-                       g_marshal_value_peek_boxed (param_values + 1),
-                       data2);
-
-  g_value_set_boolean (return_value, v_return);
-}
-
-/* BOOL:INT (geda-marshal.list:11) */
-void
-geda_marshal_BOOLEAN__INT (GClosure     *closure,
-                           GValue       *return_value,
-                           unsigned int  n_param_values,
-                           const GValue *param_values,
-                           void         *invocation_hint,
-                           void         *marshal_data)
-{
-  typedef bool (*GMarshalFunc_BOOLEAN__INT) (void *data1,
-                                             int   arg_1,
-                                             void *data2);
-  register GMarshalFunc_BOOLEAN__INT callback;
-  register GCClosure *cc = (GCClosure*) closure;
-  register void *data1;
-  register void *data2;
-  bool     v_return;
-
-  g_return_if_fail (return_value != NULL);
-  g_return_if_fail (n_param_values == 2);
-
-  if (G_CCLOSURE_SWAP_DATA (closure)) {
-      data1 = closure->data;
-      data2 = g_value_peek_pointer (param_values + 0);
-  }
-  else {
-      data1 = g_value_peek_pointer (param_values + 0);
-      data2 = closure->data;
-  }
-  callback = (GMarshalFunc_BOOLEAN__INT) (marshal_data ? marshal_data : cc->callback);
-
-  v_return = callback (data1,
-                       g_marshal_value_peek_int (param_values + 1),
-                       data2);
-
-  g_value_set_boolean (return_value, v_return);
-}
-
-/* BOOL:INT,INT (geda-marshal.list:12) */
-void
-geda_marshal_BOOLEAN__INT_INT (GClosure     *closure,
-                               GValue       *return_value GEDA_UNUSED,
-                               unsigned int  n_param_values,
-                               const GValue *param_values,
-                               void         *invocation_hint GEDA_UNUSED,
-                               void         *marshal_data)
-{
-  typedef bool (*GMarshalFunc_BOOLEAN__INT_INT) (void    *data1,
-                                                 int      arg_1,
-                                                 int      arg_2,
-                                                 void    *data2);
-  register GMarshalFunc_BOOLEAN__INT_INT callback;
+  typedef bool (*GMarshalFunc_BOOLEAN__POINTER_BOXED) (void    *data1,
+                                                       void    *arg_1,
+                                                       void    *arg_2,
+                                                       void    *data2);
+  register GMarshalFunc_BOOLEAN__POINTER_BOXED callback;
   register GCClosure *cc = (GCClosure*) closure;
   register void *data1;
   register void *data2;
@@ -538,11 +454,95 @@ geda_marshal_BOOLEAN__INT_INT (GClosure     *closure,
     data1 = g_value_peek_pointer (param_values + 0);
     data2 = closure->data;
   }
-  callback = (GMarshalFunc_BOOLEAN__INT_INT) (marshal_data ? marshal_data : cc->callback);
+  callback = (GMarshalFunc_BOOLEAN__POINTER_BOXED) (marshal_data ? marshal_data : cc->callback);
 
   v_return = callback (data1,
-                       g_marshal_value_peek_int (param_values + 1),
-                       g_marshal_value_peek_int (param_values + 2),
+                       g_marshal_value_peek_pointer (param_values + 1),
+                       g_marshal_value_peek_boxed (param_values + 2),
+                       data2);
+
+  g_value_set_boolean (return_value, v_return);
+}
+
+/* BOOL:POINTER,POINTER (geda-marshal.list:11) */
+void
+geda_marshal_BOOLEAN__POINTER_POINTER (GClosure     *closure,
+                                       GValue       *return_value GEDA_UNUSED,
+                                       unsigned int  n_param_values,
+                                       const GValue *param_values,
+                                       void         *invocation_hint GEDA_UNUSED,
+                                       void         *marshal_data)
+{
+  typedef bool (*GMarshalFunc_BOOLEAN__POINTER_POINTER) (void    *data1,
+                                                         void    *arg_1,
+                                                         void    *arg_2,
+                                                         void    *data2);
+  register GMarshalFunc_BOOLEAN__POINTER_POINTER callback;
+  register GCClosure *cc = (GCClosure*) closure;
+  register void *data1;
+  register void *data2;
+  bool v_return;
+
+  g_return_if_fail (return_value != NULL);
+  g_return_if_fail (n_param_values == 3);
+
+  if (G_CCLOSURE_SWAP_DATA (closure)) {
+
+    data1 = closure->data;
+    data2 = g_value_peek_pointer (param_values + 0);
+  }
+  else {
+
+    data1 = g_value_peek_pointer (param_values + 0);
+    data2 = closure->data;
+  }
+  callback = (GMarshalFunc_BOOLEAN__POINTER_POINTER) (marshal_data ? marshal_data : cc->callback);
+
+  v_return = callback (data1,
+                       g_marshal_value_peek_pointer (param_values + 1),
+                       g_marshal_value_peek_pointer (param_values + 2),
+                       data2);
+
+  g_value_set_boolean (return_value, v_return);
+}
+
+/* BOOL:POINTER,STRING (geda-marshal.list:12) */
+void
+geda_marshal_BOOLEAN__POINTER_STRING (GClosure     *closure,
+                                      GValue       *return_value GEDA_UNUSED,
+                                      unsigned int  n_param_values,
+                                      const GValue *param_values,
+                                      void         *invocation_hint GEDA_UNUSED,
+                                      void         *marshal_data)
+{
+  typedef bool (*GMarshalFunc_BOOLEAN__POINTER_STRING) (void    *data1,
+                                                        void    *arg_1,
+                                                        void    *arg_2,
+                                                        void    *data2);
+  register GMarshalFunc_BOOLEAN__POINTER_STRING callback;
+  register GCClosure *cc = (GCClosure*) closure;
+  register void *data1;
+  register void *data2;
+  bool v_return;
+
+  g_return_if_fail (return_value != NULL);
+  g_return_if_fail (n_param_values == 3);
+
+  if (G_CCLOSURE_SWAP_DATA (closure)) {
+
+    data1 = closure->data;
+    data2 = g_value_peek_pointer (param_values + 0);
+  }
+  else {
+
+    data1 = g_value_peek_pointer (param_values + 0);
+    data2 = closure->data;
+  }
+  callback = (GMarshalFunc_BOOLEAN__POINTER_STRING) (marshal_data ? marshal_data : cc->callback);
+
+  v_return = callback (data1,
+                       g_marshal_value_peek_pointer (param_values + 1),
+                       g_marshal_value_peek_string (param_values + 2),
                        data2);
 
   g_value_set_boolean (return_value, v_return);
@@ -670,275 +670,11 @@ geda_marshal_STRING__STRING (GClosure     *closure,
   g_value_take_string (return_value, v_return);
 }
 
-/* VOID:INT (geda-marshal.list:16) */
-void
-geda_marshal_VOID__INT (GClosure     *closure,
-                        GValue       *return_value GEDA_UNUSED,
-                        unsigned int  n_param_values,
-                        const GValue *param_values,
-                        void         *invocation_hint GEDA_UNUSED,
-                        void         *marshal_data)
-{
-  typedef void (*GMarshalFunc_VOID__INT) (void    *data1,
-                                          int      arg_1,
-                                          void    *data2);
+/* VOID:BOOL (geda-marshal.list:16) */
 
-  register GMarshalFunc_VOID__INT callback;
-  register GCClosure *cc = (GCClosure*) closure;
-  register void *data1;
-  register void *data2;
+/* VOID:BOXED (geda-marshal.list:17) */
 
-  g_return_if_fail (n_param_values == 2);
-
-  if (G_CCLOSURE_SWAP_DATA (closure)) {
-      data1 = closure->data;
-      data2 = g_value_peek_pointer (param_values + 0);
-  }
-  else {
-      data1 = g_value_peek_pointer (param_values + 0);
-      data2 = closure->data;
-  }
-  callback = (GMarshalFunc_VOID__INT) (marshal_data ? marshal_data : cc->callback);
-
-  callback (data1, g_marshal_value_peek_int (param_values + 1), data2);
-}
-
-/* VOID:INT,STRING (geda-marshal.list:17) */
-void
-geda_marshal_VOID__INT_STRING (GClosure     *closure,
-                               GValue       *return_value GEDA_UNUSED,
-                               unsigned int  n_param_values,
-                               const GValue *param_values,
-                               void         *invocation_hint GEDA_UNUSED,
-                               void         *marshal_data)
-{
-  typedef void (*GMarshalFunc_VOID__INT_STRING) (void    *data1,
-                                                 int      arg_1,
-                                                 void    *arg_2,
-                                                 void    *data2);
-  register GMarshalFunc_VOID__INT_STRING callback;
-  register GCClosure *cc = (GCClosure*) closure;
-  register void *data1;
-  register void *data2;
-
-  g_return_if_fail (n_param_values == 3);
-
-  if (G_CCLOSURE_SWAP_DATA (closure)) {
-
-    data1 = closure->data;
-    data2 = g_value_peek_pointer (param_values + 0);
-  }
-  else {
-
-    data1 = g_value_peek_pointer (param_values + 0);
-    data2 = closure->data;
-  }
-  callback = (GMarshalFunc_VOID__INT_STRING) (marshal_data ? marshal_data : cc->callback);
-
-  callback (data1,
-            g_marshal_value_peek_int (param_values + 1),
-            g_marshal_value_peek_string (param_values + 2),
-            data2);
-}
-
-/* VOID:BOXED (geda-marshal.list:18) */
-
-/* VOID:VOID (geda-marshal.list:19) */
-
-/* VOID:BOOL (geda-marshal.list:20) */
-
-/* VOID:POINTER (geda-marshal.list:21) */
-
-/* VOID:INT,INT (geda-marshal.list:22) */
-void
-geda_marshal_VOID__INT_INT (GClosure     *closure,
-                            GValue       *return_value GEDA_UNUSED,
-                            unsigned int  n_param_values,
-                            const GValue *param_values,
-                            void         *invocation_hint GEDA_UNUSED,
-                            void         *marshal_data)
-{
-  typedef void (*GMarshalFunc_VOID__INT_INT) (void    *data1,
-                                              int      arg_1,
-                                              int      arg_2,
-                                              void    *data2);
-  register GMarshalFunc_VOID__INT_INT callback;
-  register GCClosure *cc = (GCClosure*) closure;
-  register void *data1;
-  register void *data2;
-
-  g_return_if_fail (n_param_values == 3);
-
-  if (G_CCLOSURE_SWAP_DATA (closure)) {
-
-    data1 = closure->data;
-    data2 = g_value_peek_pointer (param_values + 0);
-  }
-  else {
-
-    data1 = g_value_peek_pointer (param_values + 0);
-    data2 = closure->data;
-  }
-  callback = (GMarshalFunc_VOID__INT_INT) (marshal_data ? marshal_data : cc->callback);
-
-  callback (data1,
-            g_marshal_value_peek_int (param_values + 1),
-            g_marshal_value_peek_int (param_values + 2),
-            data2);
-}
-
-/* VOID:INT,POINTER (geda-marshal.list:23) */
-void
-geda_marshal_VOID__INT_POINTER (GClosure     *closure,
-                                GValue       *return_value GEDA_UNUSED,
-                                unsigned int  n_param_values,
-                                const GValue *param_values,
-                                void         *invocation_hint GEDA_UNUSED,
-                                void         *marshal_data)
-{
-  typedef void (*GMarshalFunc_VOID__INT_POINTER) (void    *data1,
-                                                  int      arg_1,
-                                                  void    *arg_2,
-                                                  void    *data2);
-
-  register GMarshalFunc_VOID__INT_POINTER callback;
-  register GCClosure *cc = (GCClosure*) closure;
-  register void *data1;
-  register void *data2;
-
-  g_return_if_fail (n_param_values == 3);
-
-  if (G_CCLOSURE_SWAP_DATA (closure)) {
-
-    data1 = closure->data;
-    data2 = g_value_peek_pointer (param_values + 0);
-  }
-  else {
-
-    data1 = g_value_peek_pointer (param_values + 0);
-    data2 = closure->data;
-  }
-  callback = (GMarshalFunc_VOID__INT_POINTER) (marshal_data ? marshal_data : cc->callback);
-
-  callback (data1,
-            g_marshal_value_peek_int (param_values + 1),
-            g_marshal_value_peek_pointer (param_values + 2),
-            data2);
-}
-
-/* VOID:POINTER,POINTER (geda-marshal.list:24) */
-void
-geda_marshal_VOID__POINTER_POINTER (GClosure     *closure,
-                                    GValue       *return_value GEDA_UNUSED,
-                                    unsigned int  n_param_values,
-                                    const GValue *param_values,
-                                    void         *invocation_hint GEDA_UNUSED,
-                                    void         *marshal_data)
-{
-  typedef void (*GMarshalFunc_VOID__POINTER_POINTER) (void *data1,
-                                                      void *arg_1,
-                                                      void *arg_2,
-                                                      void *data2);
-  register GMarshalFunc_VOID__POINTER_POINTER callback;
-  register GCClosure *cc = (GCClosure*) closure;
-  register void *data1;
-  register void *data2;
-
-  g_return_if_fail (n_param_values == 3);
-
-  if (G_CCLOSURE_SWAP_DATA (closure)) {
-
-    data1 = closure->data;
-    data2 = g_value_peek_pointer (param_values + 0);
-  }
-  else {
-
-    data1 = g_value_peek_pointer (param_values + 0);
-    data2 = closure->data;
-  }
-  callback = (GMarshalFunc_VOID__POINTER_POINTER) (marshal_data ? marshal_data : cc->callback);
-
-  callback (data1,
-            g_marshal_value_peek_pointer (param_values + 1),
-            g_marshal_value_peek_pointer (param_values + 2),
-            data2);
-}
-
-/* VOID:POINTER,STRING (geda-marshal.list:25) */
-void
-geda_marshal_VOID__POINTER_STRING (GClosure     *closure,
-                                   GValue       *return_value,
-                                   unsigned int  n_param_values,
-                                   const GValue *param_values,
-                                   void         *invocation_hint,
-                                   void         *marshal_data)
-{
-  typedef void (*GMarshalFunc_VOID__POINTER_STRING) (void *data1,
-                                                     void *arg_1,
-                                                     void *arg_2,
-                                                     void *data2);
-  register GMarshalFunc_VOID__POINTER_STRING callback;
-  register GCClosure *cc = (GCClosure*) closure;
-  register void *data1;
-  register void *data2;
-
-  g_return_if_fail (n_param_values == 3);
-
-  if (G_CCLOSURE_SWAP_DATA (closure)) {
-    data1 = closure->data;
-    data2 = g_value_peek_pointer (param_values + 0);
-  } else {
-    data1 = g_value_peek_pointer (param_values + 0);
-    data2 = closure->data;
-  }
-  callback = (GMarshalFunc_VOID__POINTER_STRING) (marshal_data ? marshal_data : cc->callback);
-
-  callback (data1,
-            g_value_get_pointer (param_values + 1),
-            (char*)g_value_get_string (param_values + 2),
-            data2);
-}
-
-/* VOID:BOXED,POINTER (geda-marshal.list:26) */
-void
-geda_marshal_VOID__BOXED_POINTER (GClosure     *closure,
-                                  GValue       *return_value GEDA_UNUSED,
-                                  unsigned int  n_param_values,
-                                  const GValue *param_values,
-                                  void         *invocation_hint GEDA_UNUSED,
-                                  void         *marshal_data)
-{
-  typedef void (*GMarshalFunc_VOID__BOXED_POINTER) (void    *data1,
-                                                    void    *arg_1,
-                                                    void    *arg_2,
-                                                    void    *data2);
-  register GMarshalFunc_VOID__BOXED_POINTER callback;
-  register GCClosure *cc = (GCClosure*) closure;
-  register void *data1;
-  register void *data2;
-
-  g_return_if_fail (n_param_values == 3);
-
-  if (G_CCLOSURE_SWAP_DATA (closure)) {
-
-    data1 = closure->data;
-    data2 = g_value_peek_pointer (param_values + 0);
-  }
-  else {
-
-    data1 = g_value_peek_pointer (param_values + 0);
-    data2 = closure->data;
-  }
-
-  callback = (GMarshalFunc_VOID__BOXED_POINTER) (marshal_data ? marshal_data : cc->callback);
-
-  callback (data1,
-            g_marshal_value_peek_boxed (param_values + 1),
-            g_marshal_value_peek_pointer (param_values + 2),
-            data2);
-}
-
-/* VOID:BOXED,BOXED (geda-marshal.list:27) */
+/* VOID:BOXED,BOXED (geda-marshal.list:18) */
 void
 geda_marshal_VOID__BOXED_BOXED (GClosure     *closure,
                                 GValue       *return_value GEDA_UNUSED,
@@ -977,96 +713,20 @@ geda_marshal_VOID__BOXED_BOXED (GClosure     *closure,
             data2);
 }
 
-/* VOID:OBJECT,INT (geda-marshal.list:28) */
-void geda_marshal_VOID__OBJECT_INT (GClosure     *closure,
-                                    GValue       *return_value GEDA_UNUSED,
-                                    unsigned int  n_param_values,
-                                    const GValue *param_values,
-                                    void         *invocation_hint GEDA_UNUSED,
-                                    void         *marshal_data)
-
-{
-  typedef void (*GMarshalFunc_VOID__OBJECT_INT) (void *data1,
-                                                 void *arg_1,
-                                                 int   arg_2,
-                                                 void *data2);
-
-  register GMarshalFunc_VOID__OBJECT_INT callback;
-  register GCClosure *cc = (GCClosure*) closure;
-  register void *data1;
-  register void *data2;
-
-  g_return_if_fail (n_param_values == 3);
-
-  if (G_CCLOSURE_SWAP_DATA (closure)) {
-      data1 = closure->data;
-      data2 = g_value_peek_pointer (param_values + 0);
-  }
-  else {
-      data1 = g_value_peek_pointer (param_values + 0);
-      data2 = closure->data;
-  }
-
-  callback = (GMarshalFunc_VOID__OBJECT_INT) (marshal_data ? marshal_data : cc->callback);
-
-  callback (data1,
-            g_marshal_value_peek_object (param_values + 1),
-            g_marshal_value_peek_int (param_values + 2),
-            data2);
-}
-
-/* VOID:OBJECT,POINTER,INT (geda-marshal.list:29) */
+/* VOID:BOXED,POINTER (geda-marshal.list:19) */
 void
-geda_marshal_VOID__OBJECT_POINTER_INT (GClosure     *closure,
-                                       GValue       *return_value G_GNUC_UNUSED,
-                                       unsigned int  n_param_values,
-                                       const GValue *param_values,
-                                       void         *invocation_hint G_GNUC_UNUSED,
-                                       void         *marshal_data)
-{
-  typedef void (*GMarshalFunc_VOID__OBJECT_POINTER_INT) (void *data1,
-                                                         void *arg_1,
-                                                         void *arg_2,
-                                                         int   arg_3,
-                                                         void *data2);
-  register GMarshalFunc_VOID__OBJECT_POINTER_INT callback;
-  register GCClosure *cc = (GCClosure*) closure;
-  register void *data1;
-  register void *data2;
-
-  g_return_if_fail (n_param_values == 4);
-
-  if (G_CCLOSURE_SWAP_DATA (closure)) {
-      data1 = closure->data;
-      data2 = g_value_peek_pointer (param_values + 0);
-  }
-  else {
-      data1 = g_value_peek_pointer (param_values + 0);
-      data2 = closure->data;
-  }
-  callback = (GMarshalFunc_VOID__OBJECT_POINTER_INT) (marshal_data ? marshal_data : cc->callback);
-
-  callback (data1,
-            g_marshal_value_peek_object (param_values + 1),
-            g_marshal_value_peek_pointer (param_values + 2),
-            g_marshal_value_peek_int (param_values + 3),
-            data2);
-}
-
-/* VOID:OBJECT,OBJECT (geda-marshal.list:30) */
-void
-geda_marshal_VOID__OBJECT_OBJECT (GClosure     *closure,
+geda_marshal_VOID__BOXED_POINTER (GClosure     *closure,
                                   GValue       *return_value GEDA_UNUSED,
                                   unsigned int  n_param_values,
                                   const GValue *param_values,
                                   void         *invocation_hint GEDA_UNUSED,
                                   void         *marshal_data)
 {
-  typedef void (*GMarshalFunc_VOID__OBJECT_OBJECT) (void    *data1,
+  typedef void (*GMarshalFunc_VOID__BOXED_POINTER) (void    *data1,
                                                     void    *arg_1,
                                                     void    *arg_2,
                                                     void    *data2);
-  register GMarshalFunc_VOID__OBJECT_OBJECT callback;
+  register GMarshalFunc_VOID__BOXED_POINTER callback;
   register GCClosure *cc = (GCClosure*) closure;
   register void *data1;
   register void *data2;
@@ -1083,53 +743,16 @@ geda_marshal_VOID__OBJECT_OBJECT (GClosure     *closure,
     data1 = g_value_peek_pointer (param_values + 0);
     data2 = closure->data;
   }
-  callback = (GMarshalFunc_VOID__OBJECT_OBJECT) (marshal_data ? marshal_data : cc->callback);
+
+  callback = (GMarshalFunc_VOID__BOXED_POINTER) (marshal_data ? marshal_data : cc->callback);
 
   callback (data1,
-            g_marshal_value_peek_object (param_values + 1),
-            g_marshal_value_peek_object (param_values + 2),
+            g_marshal_value_peek_boxed (param_values + 1),
+            g_marshal_value_peek_pointer (param_values + 2),
             data2);
 }
 
-/* VOID:OBJECT,OBJECT,OBJECT (geda-marshal.list:31) */
-void
-geda_marshal_VOID__OBJECT_OBJECT_OBJECT (GClosure     *closure,
-                                         GValue       *return_value G_GNUC_UNUSED,
-                                         unsigned int  n_param_values,
-                                         const GValue *param_values,
-                                         void         *invocation_hint G_GNUC_UNUSED,
-                                         void         *marshal_data)
-{
-  typedef void (*GMarshalFunc_VOID__OBJECT_OBJECT_OBJECT) (void *data1,
-                                                           void *arg_1,
-                                                           void *arg_2,
-                                                           void *arg_3,
-                                                           void *data2);
-  register GMarshalFunc_VOID__OBJECT_OBJECT_OBJECT callback;
-  register GCClosure *cc = (GCClosure*) closure;
-  register void *data1;
-  register void *data2;
-
-  g_return_if_fail (n_param_values == 4);
-
-  if (G_CCLOSURE_SWAP_DATA (closure)) {
-      data1 = closure->data;
-      data2 = g_value_peek_pointer (param_values + 0);
-  }
-  else {
-      data1 = g_value_peek_pointer (param_values + 0);
-      data2 = closure->data;
-  }
-  callback = (GMarshalFunc_VOID__OBJECT_OBJECT_OBJECT) (marshal_data ? marshal_data : cc->callback);
-
-  callback (data1,
-            g_marshal_value_peek_object (param_values + 1),
-            g_marshal_value_peek_object (param_values + 2),
-            g_marshal_value_peek_object (param_values + 3),
-            data2);
-}
-
-/* VOID:DOUBLE,DOUBLE,DOUBLE,DOUBLE (geda-marshal.list:32) */
+/* VOID:DOUBLE,DOUBLE,DOUBLE,DOUBLE (geda-marshal.list:20) */
 void
 geda_marshal_VOID__DOUBLE_DOUBLE_DOUBLE_DOUBLE (GClosure     *closure,
                                                 GValue       *return_value GEDA_UNUSED,
@@ -1171,7 +794,388 @@ geda_marshal_VOID__DOUBLE_DOUBLE_DOUBLE_DOUBLE (GClosure     *closure,
             data2);
 }
 
-/* VOID:STRING,STRING (geda-marshal.list:33) */
+/* VOID:ENUM (geda-marshal.list:21) */
+
+/* VOID:INT (geda-marshal.list:22) */
+void
+geda_marshal_VOID__INT (GClosure     *closure,
+                        GValue       *return_value GEDA_UNUSED,
+                        unsigned int  n_param_values,
+                        const GValue *param_values,
+                        void         *invocation_hint GEDA_UNUSED,
+                        void         *marshal_data)
+{
+  typedef void (*GMarshalFunc_VOID__INT) (void    *data1,
+                                          int      arg_1,
+                                          void    *data2);
+
+  register GMarshalFunc_VOID__INT callback;
+  register GCClosure *cc = (GCClosure*) closure;
+  register void *data1;
+  register void *data2;
+
+  g_return_if_fail (n_param_values == 2);
+
+  if (G_CCLOSURE_SWAP_DATA (closure)) {
+      data1 = closure->data;
+      data2 = g_value_peek_pointer (param_values + 0);
+  }
+  else {
+      data1 = g_value_peek_pointer (param_values + 0);
+      data2 = closure->data;
+  }
+  callback = (GMarshalFunc_VOID__INT) (marshal_data ? marshal_data : cc->callback);
+
+  callback (data1, g_marshal_value_peek_int (param_values + 1), data2);
+}
+
+/* VOID:INT,INT (geda-marshal.list:23) */
+void
+geda_marshal_VOID__INT_INT (GClosure     *closure,
+                            GValue       *return_value GEDA_UNUSED,
+                            unsigned int  n_param_values,
+                            const GValue *param_values,
+                            void         *invocation_hint GEDA_UNUSED,
+                            void         *marshal_data)
+{
+  typedef void (*GMarshalFunc_VOID__INT_INT) (void    *data1,
+                                              int      arg_1,
+                                              int      arg_2,
+                                              void    *data2);
+  register GMarshalFunc_VOID__INT_INT callback;
+  register GCClosure *cc = (GCClosure*) closure;
+  register void *data1;
+  register void *data2;
+
+  g_return_if_fail (n_param_values == 3);
+
+  if (G_CCLOSURE_SWAP_DATA (closure)) {
+
+    data1 = closure->data;
+    data2 = g_value_peek_pointer (param_values + 0);
+  }
+  else {
+
+    data1 = g_value_peek_pointer (param_values + 0);
+    data2 = closure->data;
+  }
+  callback = (GMarshalFunc_VOID__INT_INT) (marshal_data ? marshal_data : cc->callback);
+
+  callback (data1,
+            g_marshal_value_peek_int (param_values + 1),
+            g_marshal_value_peek_int (param_values + 2),
+            data2);
+}
+
+/* VOID:INT,POINTER (geda-marshal.list:24) */
+void
+geda_marshal_VOID__INT_POINTER (GClosure     *closure,
+                                GValue       *return_value GEDA_UNUSED,
+                                unsigned int  n_param_values,
+                                const GValue *param_values,
+                                void         *invocation_hint GEDA_UNUSED,
+                                void         *marshal_data)
+{
+  typedef void (*GMarshalFunc_VOID__INT_POINTER) (void    *data1,
+                                                  int      arg_1,
+                                                  void    *arg_2,
+                                                  void    *data2);
+
+  register GMarshalFunc_VOID__INT_POINTER callback;
+  register GCClosure *cc = (GCClosure*) closure;
+  register void *data1;
+  register void *data2;
+
+  g_return_if_fail (n_param_values == 3);
+
+  if (G_CCLOSURE_SWAP_DATA (closure)) {
+
+    data1 = closure->data;
+    data2 = g_value_peek_pointer (param_values + 0);
+  }
+  else {
+
+    data1 = g_value_peek_pointer (param_values + 0);
+    data2 = closure->data;
+  }
+  callback = (GMarshalFunc_VOID__INT_POINTER) (marshal_data ? marshal_data : cc->callback);
+
+  callback (data1,
+            g_marshal_value_peek_int (param_values + 1),
+            g_marshal_value_peek_pointer (param_values + 2),
+            data2);
+}
+
+/* VOID:INT,STRING (geda-marshal.list:25) */
+void
+geda_marshal_VOID__INT_STRING (GClosure     *closure,
+                               GValue       *return_value GEDA_UNUSED,
+                               unsigned int  n_param_values,
+                               const GValue *param_values,
+                               void         *invocation_hint GEDA_UNUSED,
+                               void         *marshal_data)
+{
+  typedef void (*GMarshalFunc_VOID__INT_STRING) (void    *data1,
+                                                 int      arg_1,
+                                                 void    *arg_2,
+                                                 void    *data2);
+  register GMarshalFunc_VOID__INT_STRING callback;
+  register GCClosure *cc = (GCClosure*) closure;
+  register void *data1;
+  register void *data2;
+
+  g_return_if_fail (n_param_values == 3);
+
+  if (G_CCLOSURE_SWAP_DATA (closure)) {
+
+    data1 = closure->data;
+    data2 = g_value_peek_pointer (param_values + 0);
+  }
+  else {
+
+    data1 = g_value_peek_pointer (param_values + 0);
+    data2 = closure->data;
+  }
+  callback = (GMarshalFunc_VOID__INT_STRING) (marshal_data ? marshal_data : cc->callback);
+
+  callback (data1,
+            g_marshal_value_peek_int (param_values + 1),
+            g_marshal_value_peek_string (param_values + 2),
+            data2);
+}
+
+/* VOID:OBJECT (geda-marshal.list:36) */
+
+/* VOID:OBJECT,INT (geda-marshal.list:27) */
+void geda_marshal_VOID__OBJECT_INT (GClosure     *closure,
+                                    GValue       *return_value GEDA_UNUSED,
+                                    unsigned int  n_param_values,
+                                    const GValue *param_values,
+                                    void         *invocation_hint GEDA_UNUSED,
+                                    void         *marshal_data)
+
+{
+  typedef void (*GMarshalFunc_VOID__OBJECT_INT) (void *data1,
+                                                 void *arg_1,
+                                                 int   arg_2,
+                                                 void *data2);
+
+  register GMarshalFunc_VOID__OBJECT_INT callback;
+  register GCClosure *cc = (GCClosure*) closure;
+  register void *data1;
+  register void *data2;
+
+  g_return_if_fail (n_param_values == 3);
+
+  if (G_CCLOSURE_SWAP_DATA (closure)) {
+      data1 = closure->data;
+      data2 = g_value_peek_pointer (param_values + 0);
+  }
+  else {
+      data1 = g_value_peek_pointer (param_values + 0);
+      data2 = closure->data;
+  }
+
+  callback = (GMarshalFunc_VOID__OBJECT_INT) (marshal_data ? marshal_data : cc->callback);
+
+  callback (data1,
+            g_marshal_value_peek_object (param_values + 1),
+            g_marshal_value_peek_int (param_values + 2),
+            data2);
+}
+
+/* VOID:OBJECT,OBJECT (geda-marshal.list:28) */
+void
+geda_marshal_VOID__OBJECT_OBJECT (GClosure     *closure,
+                                  GValue       *return_value GEDA_UNUSED,
+                                  unsigned int  n_param_values,
+                                  const GValue *param_values,
+                                  void         *invocation_hint GEDA_UNUSED,
+                                  void         *marshal_data)
+{
+  typedef void (*GMarshalFunc_VOID__OBJECT_OBJECT) (void    *data1,
+                                                    void    *arg_1,
+                                                    void    *arg_2,
+                                                    void    *data2);
+  register GMarshalFunc_VOID__OBJECT_OBJECT callback;
+  register GCClosure *cc = (GCClosure*) closure;
+  register void *data1;
+  register void *data2;
+
+  g_return_if_fail (n_param_values == 3);
+
+  if (G_CCLOSURE_SWAP_DATA (closure)) {
+
+    data1 = closure->data;
+    data2 = g_value_peek_pointer (param_values + 0);
+  }
+  else {
+
+    data1 = g_value_peek_pointer (param_values + 0);
+    data2 = closure->data;
+  }
+  callback = (GMarshalFunc_VOID__OBJECT_OBJECT) (marshal_data ? marshal_data : cc->callback);
+
+  callback (data1,
+            g_marshal_value_peek_object (param_values + 1),
+            g_marshal_value_peek_object (param_values + 2),
+            data2);
+}
+
+/* VOID:OBJECT,OBJECT,OBJECT (geda-marshal.list:29) */
+void
+geda_marshal_VOID__OBJECT_OBJECT_OBJECT (GClosure     *closure,
+                                         GValue       *return_value G_GNUC_UNUSED,
+                                         unsigned int  n_param_values,
+                                         const GValue *param_values,
+                                         void         *invocation_hint G_GNUC_UNUSED,
+                                         void         *marshal_data)
+{
+  typedef void (*GMarshalFunc_VOID__OBJECT_OBJECT_OBJECT) (void *data1,
+                                                           void *arg_1,
+                                                           void *arg_2,
+                                                           void *arg_3,
+                                                           void *data2);
+  register GMarshalFunc_VOID__OBJECT_OBJECT_OBJECT callback;
+  register GCClosure *cc = (GCClosure*) closure;
+  register void *data1;
+  register void *data2;
+
+  g_return_if_fail (n_param_values == 4);
+
+  if (G_CCLOSURE_SWAP_DATA (closure)) {
+      data1 = closure->data;
+      data2 = g_value_peek_pointer (param_values + 0);
+  }
+  else {
+      data1 = g_value_peek_pointer (param_values + 0);
+      data2 = closure->data;
+  }
+  callback = (GMarshalFunc_VOID__OBJECT_OBJECT_OBJECT) (marshal_data ? marshal_data : cc->callback);
+
+  callback (data1,
+            g_marshal_value_peek_object (param_values + 1),
+            g_marshal_value_peek_object (param_values + 2),
+            g_marshal_value_peek_object (param_values + 3),
+            data2);
+}
+
+/* VOID:OBJECT,POINTER,INT (geda-marshal.list:30) */
+void
+geda_marshal_VOID__OBJECT_POINTER_INT (GClosure     *closure,
+                                       GValue       *return_value G_GNUC_UNUSED,
+                                       unsigned int  n_param_values,
+                                       const GValue *param_values,
+                                       void         *invocation_hint G_GNUC_UNUSED,
+                                       void         *marshal_data)
+{
+  typedef void (*GMarshalFunc_VOID__OBJECT_POINTER_INT) (void *data1,
+                                                         void *arg_1,
+                                                         void *arg_2,
+                                                         int   arg_3,
+                                                         void *data2);
+  register GMarshalFunc_VOID__OBJECT_POINTER_INT callback;
+  register GCClosure *cc = (GCClosure*) closure;
+  register void *data1;
+  register void *data2;
+
+  g_return_if_fail (n_param_values == 4);
+
+  if (G_CCLOSURE_SWAP_DATA (closure)) {
+      data1 = closure->data;
+      data2 = g_value_peek_pointer (param_values + 0);
+  }
+  else {
+      data1 = g_value_peek_pointer (param_values + 0);
+      data2 = closure->data;
+  }
+  callback = (GMarshalFunc_VOID__OBJECT_POINTER_INT) (marshal_data ? marshal_data : cc->callback);
+
+  callback (data1,
+            g_marshal_value_peek_object (param_values + 1),
+            g_marshal_value_peek_pointer (param_values + 2),
+            g_marshal_value_peek_int (param_values + 3),
+            data2);
+}
+
+/* VOID:POINTER (geda-marshal.list:31) */
+
+/* VOID:POINTER,POINTER (geda-marshal.list:32) */
+void
+geda_marshal_VOID__POINTER_POINTER (GClosure     *closure,
+                                    GValue       *return_value GEDA_UNUSED,
+                                    unsigned int  n_param_values,
+                                    const GValue *param_values,
+                                    void         *invocation_hint GEDA_UNUSED,
+                                    void         *marshal_data)
+{
+  typedef void (*GMarshalFunc_VOID__POINTER_POINTER) (void *data1,
+                                                      void *arg_1,
+                                                      void *arg_2,
+                                                      void *data2);
+  register GMarshalFunc_VOID__POINTER_POINTER callback;
+  register GCClosure *cc = (GCClosure*) closure;
+  register void *data1;
+  register void *data2;
+
+  g_return_if_fail (n_param_values == 3);
+
+  if (G_CCLOSURE_SWAP_DATA (closure)) {
+
+    data1 = closure->data;
+    data2 = g_value_peek_pointer (param_values + 0);
+  }
+  else {
+
+    data1 = g_value_peek_pointer (param_values + 0);
+    data2 = closure->data;
+  }
+  callback = (GMarshalFunc_VOID__POINTER_POINTER) (marshal_data ? marshal_data : cc->callback);
+
+  callback (data1,
+            g_marshal_value_peek_pointer (param_values + 1),
+            g_marshal_value_peek_pointer (param_values + 2),
+            data2);
+}
+
+/* VOID:POINTER,STRING (geda-marshal.list:33) */
+void
+geda_marshal_VOID__POINTER_STRING (GClosure     *closure,
+                                   GValue       *return_value,
+                                   unsigned int  n_param_values,
+                                   const GValue *param_values,
+                                   void         *invocation_hint,
+                                   void         *marshal_data)
+{
+  typedef void (*GMarshalFunc_VOID__POINTER_STRING) (void *data1,
+                                                     void *arg_1,
+                                                     void *arg_2,
+                                                     void *data2);
+  register GMarshalFunc_VOID__POINTER_STRING callback;
+  register GCClosure *cc = (GCClosure*) closure;
+  register void *data1;
+  register void *data2;
+
+  g_return_if_fail (n_param_values == 3);
+
+  if (G_CCLOSURE_SWAP_DATA (closure)) {
+    data1 = closure->data;
+    data2 = g_value_peek_pointer (param_values + 0);
+  } else {
+    data1 = g_value_peek_pointer (param_values + 0);
+    data2 = closure->data;
+  }
+  callback = (GMarshalFunc_VOID__POINTER_STRING) (marshal_data ? marshal_data : cc->callback);
+
+  callback (data1,
+            g_value_get_pointer (param_values + 1),
+            (char*)g_value_get_string (param_values + 2),
+            data2);
+}
+
+/* VOID:STRING (geda-marshal.list:34) */
+
+/* VOID:STRING,STRING (geda-marshal.list:35) */
 void
 geda_marshal_VOID__STRING_STRING (GClosure     *closure,
                                   GValue       *return_value G_GNUC_UNUSED,
@@ -1206,3 +1210,5 @@ geda_marshal_VOID__STRING_STRING (GClosure     *closure,
             g_marshal_value_peek_string (param_values + 2),
             data2);
 }
+
+/* VOID:VOID (geda-marshal.list:36) */

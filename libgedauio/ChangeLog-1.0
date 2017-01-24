@@ -1,3 +1,9 @@
+2017-01-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_marshal.h: Reorganize header file.
+
+    * src/functions/geda_marshal.c: Reorganize source file.
+
 2017-01-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gettext.h: Add conditionals to use <libintl.h> if LIBC
