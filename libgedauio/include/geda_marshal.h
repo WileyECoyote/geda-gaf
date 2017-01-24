@@ -240,7 +240,15 @@ extern void geda_marshal_VOID__INT_STRING (GClosure     *closure,
 /* VOID:OBJECT (geda-marshal.list:26) */
 #define geda_marshal_VOID__OBJECT g_cclosure_marshal_VOID__OBJECT
 
-/* VOID:OBJECT,INT (geda-marshal.list:27) */
+/* VOID:OBJECT,ENUM,BOXED (geda-marshal.list:27) */
+extern void geda_marshal_VOID__OBJECT_ENUM_BOXED (GClosure     *closure,
+                                                  GValue       *return_value,
+                                                  unsigned int  n_param_values,
+                                                  const GValue *param_values,
+                                                  void         *invocation_hint,
+                                                  void         *marshal_data);
+
+/* VOID:OBJECT,INT (geda-marshal.list:28) */
 extern void geda_marshal_VOID__OBJECT_INT (GClosure     *closure,
                                            GValue       *return_value GEDA_UNUSED,
                                            unsigned int  n_param_values,
@@ -248,9 +256,7 @@ extern void geda_marshal_VOID__OBJECT_INT (GClosure     *closure,
                                            void         *invocation_hint GEDA_UNUSED,
                                            void         *marshal_data);
 
-
-
-/* VOID:OBJECT,OBJECT (geda-marshal.list:28) */
+/* VOID:OBJECT,OBJECT (geda-marshal.list:29) */
 extern void geda_marshal_VOID__OBJECT_OBJECT (GClosure     *closure,
                                               GValue       *return_value GEDA_UNUSED,
                                               unsigned int  n_param_values,
@@ -258,7 +264,7 @@ extern void geda_marshal_VOID__OBJECT_OBJECT (GClosure     *closure,
                                               void         *invocation_hint GEDA_UNUSED,
                                               void         *marshal_data);
 
-/* VOID:OBJECT,OBJECT,OBJECT (geda-marshal.list:29) */
+/* VOID:OBJECT,OBJECT,OBJECT (geda-marshal.list:30) */
 extern void
 geda_marshal_VOID__OBJECT_OBJECT_OBJECT (GClosure     *closure,
                                           GValue       *return_value G_GNUC_UNUSED,
@@ -267,7 +273,7 @@ geda_marshal_VOID__OBJECT_OBJECT_OBJECT (GClosure     *closure,
                                           void         *invocation_hint G_GNUC_UNUSED,
                                           void         *marshal_data);
 
-/* VOID:OBJECT,OBJECT (geda-marshal.list:30) */
+/* VOID:OBJECT,OBJECT (geda-marshal.list:31) */
 extern
 void geda_marshal_VOID__OBJECT_POINTER_INT (GClosure     *closure,
                                             GValue       *return_value G_GNUC_UNUSED,
@@ -276,10 +282,10 @@ void geda_marshal_VOID__OBJECT_POINTER_INT (GClosure     *closure,
                                             void         *invocation_hint G_GNUC_UNUSED,
                                             void         *marshal_data);
 
-/* VOID:POINTER (geda-marshal.list:31) */
+/* VOID:POINTER (geda-marshal.list:32) */
 #define geda_marshal_VOID__POINTER  g_cclosure_marshal_VOID__POINTER
 
-/* VOID:POINTER,POINTER (geda-marshal.list:32) */
+/* VOID:POINTER,POINTER (geda-marshal.list:33) */
 extern void geda_marshal_VOID__POINTER_POINTER (GClosure     *closure,
                                                 GValue       *return_value,
                                                 unsigned int  n_param_values,
@@ -287,7 +293,7 @@ extern void geda_marshal_VOID__POINTER_POINTER (GClosure     *closure,
                                                 void         *invocation_hint,
                                                 void         *marshal_data);
 
-/* VOID:POINTER,STRING (geda-marshal.list:33) */
+/* VOID:POINTER,STRING (geda-marshal.list:34) */
 extern void geda_marshal_VOID__POINTER_STRING (GClosure     *closure,
                                                GValue       *return_value,
                                                unsigned int  n_param_values,
@@ -295,10 +301,10 @@ extern void geda_marshal_VOID__POINTER_STRING (GClosure     *closure,
                                                void         *invocation_hint,
                                                void         *marshal_data);
 
-/* VOID:STRING (geda-marshal.list:34) */
+/* VOID:STRING (geda-marshal.list:35) */
 #define geda_marshal_VOID__STRING g_cclosure_marshal_VOID__STRING
 
-/* VOID:STRING,STRING (geda-marshal.list:35) */
+/* VOID:STRING,STRING (geda-marshal.list:36) */
 extern void
 geda_marshal_VOID__STRING_STRING (GClosure     *closure,
                                   GValue       *return_value G_GNUC_UNUSED,
@@ -307,7 +313,7 @@ geda_marshal_VOID__STRING_STRING (GClosure     *closure,
                                   void         *invocation_hint G_GNUC_UNUSED,
                                   void         *marshal_data);
 
-/* VOID:VOID (geda-marshal.list:36) */
+/* VOID:VOID (geda-marshal.list:37) */
 #define geda_marshal_VOID__VOID g_cclosure_marshal_VOID__VOID
 
 #ifdef __cplusplus

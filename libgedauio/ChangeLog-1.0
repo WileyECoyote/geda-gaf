@@ -2,9 +2,11 @@
 
     * include/geda_menu_button.h: Remove instance_type member.
 
-    * include/geda_marshal.h: Reorganize header file.
+    * include/geda_marshal.h: Reorganize header file, add declaration for
+      geda_marshal_VOID__OBJECT_ENUM_BOXED.
 
-    * src/functions/geda_marshal.c: Reorganize source file.
+    * src/functions/geda_marshal.c: Reorganize source file, add marshal
+      function geda_marshal_VOID__OBJECT_ENUM_BOXED.
 
     * src/widgets/geda_menu_button.c: Replace object type identifier
       scheme for GedaImageMenuItem with new hash table type identifier
