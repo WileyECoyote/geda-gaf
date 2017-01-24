@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-23 00:33-0600\n"
+"POT-Creation-Date: 2017-01-24 02:38-0600\n"
 "PO-Revision-Date: 2010-01-29 16:46+0000\n"
 "Last-Translator: Werner Hoch <werner.ho@gmx.de>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: gattrib/data/geda-gattrib.desktop.in:3
 msgid "gEDA Attribute Editor"
-msgstr "gEDA Attributeditor"
+msgstr "gEDA Attribut editor"
 
 #: gattrib/data/geda-gattrib.desktop.in:4
 msgid "Manipulate component attributes with gattrib"
@@ -51,7 +51,7 @@ msgid "The operating system is out of memory or resources."
 msgstr ""
 
 #: gattrib/src/i_basic.c:156
-msgid "Failed to open"
+msgid "failed to open"
 msgstr ""
 
 #: gattrib/src/i_basic.c:210
@@ -185,20 +185,26 @@ msgstr ""
 
 #: gattrib/src/s_toplevel.c:274
 msgid ""
-"Are you sure you want to\n"
-" delete the Attribute \""
+"Are you sure you want to delete\n"
+"the"
 msgstr ""
+"Sind Sie sicher, dass Sie löschen möchten\n"
+"das"
 
-#: gattrib/src/s_toplevel.c:487
+#: gattrib/src/s_toplevel.c:278
+msgid "attribute"
+msgstr "attribut"
+
+#: gattrib/src/s_toplevel.c:491
 msgid "did not find the refdes in the master list\n"
 msgstr ""
 
-#: gattrib/src/s_toplevel.c:834
+#: gattrib/src/s_toplevel.c:838
 #, c-format
 msgid "Error: object missing either refdes or pinnumber!"
 msgstr ""
 
-#: gattrib/src/s_toplevel.c:843
+#: gattrib/src/s_toplevel.c:847
 msgid "did not find refdes:pin"
 msgstr ""
 
@@ -348,7 +354,7 @@ msgstr ""
 #: gattrib/src/x_find.c:277
 #, fuzzy
 msgid "Attribute"
-msgstr "gEDA Attributeditor"
+msgstr "gEDA Attribut editor"
 
 #: gattrib/src/x_find.c:314
 msgid "Designator"
@@ -389,32 +395,32 @@ msgstr ""
 #: gattrib/src/x_menus.c:375
 #, fuzzy
 msgid "_Add new Attribute"
-msgstr "gEDA Attributeditor"
+msgstr "gEDA Attribut editor"
 
 #: gattrib/src/x_menus.c:376
 #, fuzzy
 msgid "D_elete Attribute"
-msgstr "gEDA Attributeditor"
+msgstr "gEDA Attribut editor"
 
 #: gattrib/src/x_menus.c:377
 #, fuzzy
 msgid "_Promote Attribute"
-msgstr "gEDA Attributeditor"
+msgstr "gEDA Attribut editor"
 
 #: gattrib/src/x_menus.c:377 gattrib/src/x_toolbars.c:45
 #, fuzzy
 msgid "Attach the selected attribute"
-msgstr "gEDA Attributeditor"
+msgstr "gEDA Attribut editor"
 
 #: gattrib/src/x_menus.c:378
 #, fuzzy
 msgid "_Demote Attribute"
-msgstr "gEDA Attributeditor"
+msgstr "gEDA Attribut editor"
 
 #: gattrib/src/x_menus.c:378 gattrib/src/x_toolbars.c:46
 #, fuzzy
 msgid "Dettach the selected attribute"
-msgstr "gEDA Attributeditor"
+msgstr "gEDA Attribut editor"
 
 #: gattrib/src/x_menus.c:380
 msgid "Find Value"
@@ -435,12 +441,12 @@ msgstr ""
 #: gattrib/src/x_menus.c:382
 #, fuzzy
 msgid "Locate Attribute"
-msgstr "gEDA Attributeditor"
+msgstr "gEDA Attribut editor"
 
 #: gattrib/src/x_menus.c:382
 #, fuzzy
 msgid "Search for an attribute"
-msgstr "gEDA Attributeditor"
+msgstr "gEDA Attribut editor"
 
 #: gattrib/src/x_menus.c:383
 msgid "Locate Reference"
@@ -517,7 +523,7 @@ msgstr ""
 #: gattrib/src/x_menus.c:403
 #, fuzzy
 msgid "Gattrib Guide"
-msgstr "gEDA Attributeditor"
+msgstr "gEDA Attribut editor"
 
 #: gattrib/src/x_menus.c:404
 msgid "Gattrib FAQ"
@@ -534,7 +540,7 @@ msgstr ""
 #: gattrib/src/x_menus.c:408
 #, fuzzy
 msgid "gEDA Attributes"
-msgstr "gEDA Attributeditor"
+msgstr "gEDA Attribut editor"
 
 #: gattrib/src/x_menus.c:409
 msgid "gEDA Glossary"
@@ -563,12 +569,12 @@ msgstr ""
 #: gattrib/src/x_menus.c:419
 #, fuzzy
 msgid "A_ttribute"
-msgstr "gEDA Attributeditor"
+msgstr "gEDA Attribut editor"
 
 #: gattrib/src/x_menus.c:419
 #, fuzzy
 msgid "Display Attribute Toolbar"
-msgstr "gEDA Attributeditor"
+msgstr "gEDA Attribut editor"
 
 #: gattrib/src/x_menus.c:420
 msgid "_Attached"
@@ -661,12 +667,12 @@ msgstr ""
 #: gattrib/src/x_toolbars.c:38
 #, fuzzy
 msgid "Attrib"
-msgstr "gEDA Attributeditor"
+msgstr "gEDA Attribut editor"
 
 #: gattrib/src/x_toolbars.c:38
 #, fuzzy
 msgid "Locate attribute"
-msgstr "gEDA Attributeditor"
+msgstr "gEDA Attribut editor"
 
 #: gattrib/src/x_toolbars.c:39
 msgid "Ref Des"
@@ -691,7 +697,7 @@ msgstr ""
 #: gattrib/src/x_toolbars.c:44
 #, fuzzy
 msgid "Add a new attribute"
-msgstr "gEDA Attributeditor"
+msgstr "gEDA Attribut editor"
 
 #: gattrib/src/x_toolbars.c:45
 msgid "promote"

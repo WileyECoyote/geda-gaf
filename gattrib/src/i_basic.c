@@ -153,7 +153,7 @@ static bool i_basic_show_uri (const char *uri)
   result = g_app_info_launch_default_for_uri(uri, NULL, &error);
   if (!result) {
     if (verbose_mode) {
-      geda_log ("glib %s: %s\n", _("Failed to open"), uri, error->message);
+      geda_log ("glib %s %s: %s\n", _("failed to open"), uri, error->message);
     }
     g_error_free (error);
     error = NULL;

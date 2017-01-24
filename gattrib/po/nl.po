@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-23 00:33-0600\n"
+"POT-Creation-Date: 2017-01-24 02:38-0600\n"
 "PO-Revision-Date: 2014-08-31 20:31+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -59,7 +59,7 @@ msgstr ""
 
 # Unable to open
 #: gattrib/src/i_basic.c:156
-msgid "Failed to open"
+msgid "failed to open"
 msgstr "Kan niet openen"
 
 #: gattrib/src/i_basic.c:210
@@ -205,21 +205,27 @@ msgstr ""
 
 #: gattrib/src/s_toplevel.c:274
 msgid ""
-"Are you sure you want to\n"
-" delete the Attribute \""
-msgstr "Bent U zeker dat U deze attribuut wil verwijderen?"
+"Are you sure you want to delete\n"
+"the"
+msgstr ""
+"Weet je zeker dat je wilt verwijderen\n"
+"de"
 
-#: gattrib/src/s_toplevel.c:487
+#: gattrib/src/s_toplevel.c:278
+msgid "attribute"
+msgstr "attribuut"
+
+#: gattrib/src/s_toplevel.c:491
 msgid "did not find the refdes in the master list\n"
-msgstr "Niet vinden in refdes de hoofdlijst"
+msgstr "Niet vinden in refdes de hoofdlijst\n"
 
 # either a refdes or a pin number is missing
-#: gattrib/src/s_toplevel.c:834
+#: gattrib/src/s_toplevel.c:838
 #, c-format
 msgid "Error: object missing either refdes or pinnumber!"
 msgstr "ofwel een refdes of een pinnummer ontbreekt"
 
-#: gattrib/src/s_toplevel.c:843
+#: gattrib/src/s_toplevel.c:847
 msgid "did not find refdes:pin"
 msgstr "niet refdes vinden: pin"
 

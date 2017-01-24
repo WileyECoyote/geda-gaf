@@ -271,9 +271,13 @@ void s_toplevel_delete_attrib_col(GtkSheet *sheet) {
   attrib_name = geda_strdup(sheet->column[col]->title);
 
   /* Ask user to confirm deletion */
-  strcpy(msg_buffer, _("Are you sure you want to\n delete the Attribute \""));
+  strcpy(msg_buffer, _("Are you sure you want to delete\nthe"));
+  strcat(msg_buffer, " \"");
   strcat(msg_buffer, attrib_name);
-  strcat(msg_buffer, "\"?");
+  strcat(msg_buffer, "\" ");
+  strcat(msg_buffer,_("attribute"));
+  strcat(msg_buffer, "?");
+
   if (!x_dialog_generic_confirm_dialog (msg_buffer, GTK_MESSAGE_WARNING))
      return;
 

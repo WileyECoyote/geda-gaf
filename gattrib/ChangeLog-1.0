@@ -8,6 +8,10 @@
 
     * po/ru.po: Update Russian translations.
 
+    * gattrib/src/s_toplevel.c: Revise attribute delete confirmation message
+      to put the name of the attribute before the word attribute and adjust
+      the line wrap.
+
 2017-01-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gettext.h: Relocate gettext_noop macros from globals.h.

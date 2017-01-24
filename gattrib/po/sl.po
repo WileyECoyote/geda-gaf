@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-23 00:33-0600\n"
+"POT-Creation-Date: 2017-01-24 02:38-0600\n"
 "PO-Revision-Date: 2012-04-09 11:22+0000\n"
 "Last-Translator: Miha Gašperšič <mihec.gaspersic@gmail.com>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
@@ -51,7 +51,7 @@ msgid "The operating system is out of memory or resources."
 msgstr ""
 
 #: gattrib/src/i_basic.c:156
-msgid "Failed to open"
+msgid "failed to open"
 msgstr ""
 
 #: gattrib/src/i_basic.c:210
@@ -185,20 +185,26 @@ msgstr ""
 
 #: gattrib/src/s_toplevel.c:274
 msgid ""
-"Are you sure you want to\n"
-" delete the Attribute \""
+"Are you sure you want to delete\n"
+"the"
 msgstr ""
+"Ali ste prepričani, da želite izbrisati\n"
+"the"
 
-#: gattrib/src/s_toplevel.c:487
+#: gattrib/src/s_toplevel.c:278
+msgid "attribute"
+msgstr "atribut"
+
+#: gattrib/src/s_toplevel.c:491
 msgid "did not find the refdes in the master list\n"
 msgstr ""
 
-#: gattrib/src/s_toplevel.c:834
+#: gattrib/src/s_toplevel.c:838
 #, c-format
 msgid "Error: object missing either refdes or pinnumber!"
 msgstr ""
 
-#: gattrib/src/s_toplevel.c:843
+#: gattrib/src/s_toplevel.c:847
 msgid "did not find refdes:pin"
 msgstr ""
 
