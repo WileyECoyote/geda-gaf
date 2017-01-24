@@ -1,3 +1,7 @@
+2017-01-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/af.po: Update Afrikaan translations.
+
 2017-01-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gettext.h: Relocate gettext_noop macros from globals.h.

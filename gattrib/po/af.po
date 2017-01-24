@@ -31,9 +31,8 @@ msgid "Could not open"
 msgstr "Kon nie vind simbool"
 
 #: gattrib/src/gattrib.c:180
-#, fuzzy
 msgid "Failed to save user configuration to"
-msgstr "Kan gebruiker opset wat nie red '%s': %s."
+msgstr "Kon nie gebruiker opset red"
 
 # Could not find file
 #: gattrib/src/gattrib.c:395
@@ -56,14 +55,12 @@ msgid "The operating system is out of memory or resources."
 msgstr "Die bedryfstelsel is uit die geheue of hulpbronne."
 
 #: gattrib/src/i_basic.c:156
-#, fuzzy
 msgid "Failed to open"
 msgstr "Kon nie vind simbool"
 
 #: gattrib/src/i_basic.c:210
-#, fuzzy
 msgid "Check path"
-msgstr "Check pad: \"%s\"\n"
+msgstr "Check pad"
 
 #: gattrib/src/parsecmd.c:62
 #, c-format
@@ -118,11 +115,8 @@ msgstr ""
 "Daar is geen waarborg, in die mate toegelaat deur die wet.\n"
 
 #: gattrib/src/s_misc.c:66
-#, fuzzy
 msgid "DONE"
-msgstr ""
-"\n"
-"gedaan\n"
+msgstr "gedaan"
 
 #: gattrib/src/s_object.c:215
 msgid "failed to find attribute"
@@ -231,9 +225,8 @@ msgstr ""
 
 # Could not find file
 #: gattrib/src/s_toplevel.c:843
-#, fuzzy
 msgid "did not find refdes:pin"
-msgstr "Kon lêer nie vind"
+msgstr "nie refdes vind: pen"
 
 #: gattrib/src/x_dialog.c:111
 msgid "Add new attribute"
@@ -555,9 +548,8 @@ msgid "gEDA _Wiki..."
 msgstr ""
 
 #: gattrib/src/x_menus.c:408
-#, fuzzy
 msgid "gEDA Attributes"
-msgstr "Geda Kenmerk Redakteur"
+msgstr "gEDA Eienskappe"
 
 #: gattrib/src/x_menus.c:409
 msgid "gEDA Glossary"
@@ -584,14 +576,12 @@ msgid "Display Standard Toolbar"
 msgstr ""
 
 #: gattrib/src/x_menus.c:419
-#, fuzzy
 msgid "A_ttribute"
-msgstr "Geda Kenmerk Redakteur"
+msgstr "Eienskappe"
 
 #: gattrib/src/x_menus.c:419
-#, fuzzy
 msgid "Display Attribute Toolbar"
-msgstr "Geda Kenmerk Redakteur"
+msgstr "Wys Eienskappe Toolbar"
 
 #: gattrib/src/x_menus.c:420
 msgid "_Attached"
