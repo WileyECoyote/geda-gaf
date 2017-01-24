@@ -137,6 +137,8 @@ static void *geda_menu_button_parent_class = NULL;
 
 static GtkBuildableIface *parent_buildable_iface;
 
+static GHashTable *menu_button_hash = NULL;
+
 /* BEGIN ------+-------+-------^- GtkBuildable ^-------+-------+-------+-----*/
 
 static void
@@ -1002,6 +1004,13 @@ geda_menu_button_finalize (GObject *object)
 {
   GedaMenuButton *button = GEDA_MENU_BUTTON (object);
 
+  if (g_hash_table_remove (menu_button_hash, object)) {
+    if (!g_hash_table_size (menu_button_hash)) {
+      g_hash_table_destroy (menu_button_hash);
+      menu_button_hash = NULL;
+    }
+  }
+
   GEDA_FREE (button->label_text);
 
   GEDA_FREE(button->priv);
@@ -1074,8 +1083,6 @@ geda_menu_button_init (GTypeInstance *instance, void *class)
   button       = (GedaMenuButton*)instance;
   button->priv = GEDA_MEM_ALLOC0 (sizeof(GedaMenuButtonData));
 
-  button->instance_type = geda_menu_button_get_type();
-
   box          = gtk_hbox_new (FALSE, 0);
   main_button  = gtk_button_new ();
 
@@ -1109,6 +1116,12 @@ geda_menu_button_init (GTypeInstance *instance, void *class)
 
   g_signal_connect (main_button,  "pressed",  G_CALLBACK (geda_menu_main_button_pressed), button);
   g_signal_connect (main_button,  "released", G_CALLBACK (geda_menu_main_button_released), button);
+
+  if (!menu_button_hash) {
+    menu_button_hash = g_hash_table_new (g_direct_hash, NULL);
+  }
+
+  g_hash_table_replace (menu_button_hash, instance, instance);
 }
 
 /* END ------------------------- Constructors  ------------------------------*/
@@ -1438,8 +1451,8 @@ geda_menu_button_get_type (void)
 bool
 is_a_geda_menu_button (GedaMenuButton *menu_button)
 {
-  if (G_IS_OBJECT(menu_button)) {
-    return (geda_menu_button_get_type() == menu_button->instance_type);
+  if ((menu_button != NULL) && (menu_button_hash != NULL)) {
+    return g_hash_table_lookup(menu_button_hash, menu_button) ? TRUE : FALSE;
   }
   return FALSE;
 }

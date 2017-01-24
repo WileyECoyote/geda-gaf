@@ -53,7 +53,6 @@ typedef struct _GedaMenuButtonData  GedaMenuButtonData;
 struct _GedaMenuButton
 {
   GtkEventBox  parent;
-  GedaType     instance_type;
 
   GdkWindow   *event_window;
 

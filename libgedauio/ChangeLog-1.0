@@ -1,8 +1,14 @@
 2017-01-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/geda_menu_button.h: Remove instance_type member.
+
     * include/geda_marshal.h: Reorganize header file.
 
     * src/functions/geda_marshal.c: Reorganize source file.
+
+    * src/widgets/geda_menu_button.c: Replace object type identifier
+      scheme for GedaImageMenuItem with new hash table type identifier
+      system.
 
 2017-01-22 Wiley E. Hill <wileyhill@gmail.com>
 
