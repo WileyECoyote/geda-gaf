@@ -313,7 +313,16 @@ geda_marshal_VOID__STRING_STRING (GClosure     *closure,
                                   void         *invocation_hint G_GNUC_UNUSED,
                                   void         *marshal_data);
 
-/* VOID:VOID (geda-marshal.list:37) */
+/* VOID:UINT,UINT (geda-marshal.list:37) */
+extern void
+geda_marshal_VOID__UINT_UINT (GClosure     *closure,
+                              GValue       *return_value,
+                              unsigned int  n_param_values,
+                              const GValue *param_values,
+                              void         *invocation_hint,
+                              void         *marshal_data);
+
+/* VOID:VOID (geda-marshal.list:38) */
 #define geda_marshal_VOID__VOID g_cclosure_marshal_VOID__VOID
 
 #ifdef __cplusplus
