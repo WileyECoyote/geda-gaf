@@ -345,9 +345,8 @@ msgid "not found!"
 msgstr ""
 
 #: gattrib/src/x_find.c:277
-#, fuzzy
 msgid "Attribute"
-msgstr "محرّر السّمة ل‍ gEDA"
+msgstr "سمة النص"
 
 #: gattrib/src/x_find.c:314
 msgid "Designator"
@@ -386,34 +385,33 @@ msgid "Paste"
 msgstr ""
 
 #: gattrib/src/x_menus.c:375
-#, fuzzy
 msgid "_Add new Attribute"
-msgstr "محرّر السّمة ل‍ gEDA"
+msgstr "إضافة سمة جديدة"
 
+# Delete Attribute
 #: gattrib/src/x_menus.c:376
-#, fuzzy
 msgid "D_elete Attribute"
-msgstr "محرّر السّمة ل‍ gEDA"
+msgstr "حذف السمة"
 
+# Promote Attribute
 #: gattrib/src/x_menus.c:377
-#, fuzzy
 msgid "_Promote Attribute"
-msgstr "محرّر السّمة ل‍ gEDA"
+msgstr "تعزيز سمة"
 
+# Attach the selected attribute
 #: gattrib/src/x_menus.c:377 gattrib/src/x_toolbars.c:45
-#, fuzzy
 msgid "Attach the selected attribute"
-msgstr "محرّر السّمة ل‍ gEDA"
+msgstr "إرفاق السمة المحددة"
 
+# Demote Attribute
 #: gattrib/src/x_menus.c:378
-#, fuzzy
 msgid "_Demote Attribute"
-msgstr "محرّر السّمة ل‍ gEDA"
+msgstr "تخفيض سمة"
 
+# Dettach the selected attribute
 #: gattrib/src/x_menus.c:378 gattrib/src/x_toolbars.c:46
-#, fuzzy
 msgid "Dettach the selected attribute"
-msgstr "محرّر السّمة ل‍ gEDA"
+msgstr "Dettach السمة المحددة"
 
 #: gattrib/src/x_menus.c:380
 msgid "Find Value"
@@ -432,14 +430,12 @@ msgid "Search and Replace Attribute value"
 msgstr ""
 
 #: gattrib/src/x_menus.c:382
-#, fuzzy
 msgid "Locate Attribute"
-msgstr "محرّر السّمة ل‍ gEDA"
+msgstr "تحديد سمة"
 
 #: gattrib/src/x_menus.c:382
-#, fuzzy
 msgid "Search for an attribute"
-msgstr "محرّر السّمة ل‍ gEDA"
+msgstr "البحث عن سمة"
 
 #: gattrib/src/x_menus.c:383
 msgid "Locate Reference"
@@ -514,9 +510,8 @@ msgid "_Help"
 msgstr ""
 
 #: gattrib/src/x_menus.c:403
-#, fuzzy
 msgid "Gattrib Guide"
-msgstr "محرّر السّمة ل‍ gEDA"
+msgstr "دليل المستخدمين Gattrib"
 
 #: gattrib/src/x_menus.c:404
 msgid "Gattrib FAQ"
@@ -531,9 +526,8 @@ msgid "gEDA _Wiki..."
 msgstr ""
 
 #: gattrib/src/x_menus.c:408
-#, fuzzy
 msgid "gEDA Attributes"
-msgstr "محرّر السّمة ل‍ gEDA"
+msgstr "سمات GEDA"
 
 #: gattrib/src/x_menus.c:409
 msgid "gEDA Glossary"
@@ -560,14 +554,12 @@ msgid "Display Standard Toolbar"
 msgstr ""
 
 #: gattrib/src/x_menus.c:419
-#, fuzzy
 msgid "A_ttribute"
-msgstr "محرّر السّمة ل‍ gEDA"
+msgstr "السمة"
 
 #: gattrib/src/x_menus.c:419
-#, fuzzy
 msgid "Display Attribute Toolbar"
-msgstr "محرّر السّمة ل‍ gEDA"
+msgstr "شريط أدوات عرض السمة"
 
 #: gattrib/src/x_menus.c:420
 msgid "_Attached"
@@ -658,14 +650,12 @@ msgid "Search and Replace attribute value"
 msgstr ""
 
 #: gattrib/src/x_toolbars.c:38
-#, fuzzy
 msgid "Attrib"
-msgstr "محرّر السّمة ل‍ gEDA"
+msgstr "السمة"
 
 #: gattrib/src/x_toolbars.c:38
-#, fuzzy
 msgid "Locate attribute"
-msgstr "محرّر السّمة ل‍ gEDA"
+msgstr "تحديد سمة"
 
 #: gattrib/src/x_toolbars.c:39
 msgid "Ref Des"
@@ -688,9 +678,8 @@ msgid "add"
 msgstr ""
 
 #: gattrib/src/x_toolbars.c:44
-#, fuzzy
 msgid "Add a new attribute"
-msgstr "محرّر السّمة ل‍ gEDA"
+msgstr "إضافة سمة جديدة"
 
 #: gattrib/src/x_toolbars.c:45
 msgid "promote"
