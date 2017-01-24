@@ -104,11 +104,8 @@ msgstr ""
 "Er is GEEN GARANTIE, voor zover toegelaten door de wet.\n"
 
 #: gattrib/src/s_misc.c:66
-#, fuzzy
 msgid "DONE"
-msgstr ""
-"\n"
-"GEDAAN\n"
+msgstr "GEDAAN"
 
 # unable to find attribute
 #: gattrib/src/s_object.c:215
@@ -145,14 +142,13 @@ msgstr ""
 "Deze waarschuwing is in orde als U meervoudige hiërarchie niveaus heeft!\n"
 
 #: gattrib/src/s_rename.c:220
-#, fuzzy
 msgid "Increase the number of rename_pairs (MAX_RENAME) in"
-msgstr "Verhoog het aantal rename_pairs (MAX_RENAME) in s_rename.c\n"
+msgstr "Verhoog het aantal rename_pairs (MAX_RENAME) in"
 
 #: gattrib/src/s_sheet_data.c:242
-#, fuzzy, c-format
+#, c-format
 msgid "Starting master comp list creation.\n"
-msgstr "- Start het aanmaken van de hoofdcomponentenlijst.\n"
+msgstr "Start het aanmaken van de hoofdcomponentenlijst.\n"
 
 #: gattrib/src/s_sheet_data.c:308
 #, c-format
@@ -160,9 +156,9 @@ msgid "- Starting master comp attrib list creation.\n"
 msgstr "- Start het aanmaken van de hoofdattributenlijst.\n"
 
 #: gattrib/src/s_sheet_data.c:434
-#, fuzzy, c-format
+#, c-format
 msgid "- Creating master pin list.\n"
-msgstr "- Start het aanmaken van de hoofdpennenlijst.\n"
+msgstr "- Het creëren van master-pin lijst.\n"
 
 # component pin without pin number found
 #: gattrib/src/s_sheet_data.c:484
@@ -175,17 +171,12 @@ msgid "- Starting master pin attrib list creation.\n"
 msgstr "- Start het aanmaken van de hoofdpennenattributenlijst.\n"
 
 #: gattrib/src/s_string_list.c:142
-#, fuzzy
 msgid "attempted to add to a NULL list.\n"
-msgstr ""
-"In s_string_list_add_item, is geprobeerd toe te voegen aan een NULL lijst.\n"
+msgstr "geprobeerd toe te voegen aan een NULL lijst.\n"
 
 #: gattrib/src/s_string_list.c:205
-#, fuzzy
 msgid "attempted to remove item from an empty list\n"
-msgstr ""
-"In s_string_list_delete_item, is geprobeerd om een item te verwijderen van "
-"een lege lijst\n"
+msgstr "geprobeerd om een item te verwijderen van een lege lijst\n"
 
 #: gattrib/src/s_string_list.c:283
 msgid "could not delete item"
@@ -200,9 +191,9 @@ msgid "Component Error looking for column"
 msgstr ""
 
 #: gattrib/src/s_table.c:574
-#, fuzzy, c-format
+#, c-format
 msgid "Creating pin table\n"
-msgstr "- Start het aanmaken van de hoofdpennenlijst.\n"
+msgstr "Het creëren van pin tafel\n"
 
 #: gattrib/src/s_table.c:637
 msgid "Pin Error looking for row ref"
@@ -213,29 +204,24 @@ msgid "Pin Error looking for column"
 msgstr ""
 
 #: gattrib/src/s_toplevel.c:274
-#, fuzzy
 msgid ""
 "Are you sure you want to\n"
 " delete the Attribute \""
 msgstr "Bent U zeker dat U deze attribuut wil verwijderen?"
 
 #: gattrib/src/s_toplevel.c:487
-#, fuzzy
 msgid "did not find the refdes in the master list\n"
-msgstr ""
-"In s_toplevel_get_pin_attribs_in_sheet, is geen refdes:pin gevonden in de "
-"hoofdlijst!\n"
+msgstr "Niet vinden in refdes de hoofdlijst"
 
 # either a refdes or a pin number is missing
 #: gattrib/src/s_toplevel.c:834
-#, fuzzy, c-format
+#, c-format
 msgid "Error: object missing either refdes or pinnumber!"
 msgstr "ofwel een refdes of een pinnummer ontbreekt"
 
 #: gattrib/src/s_toplevel.c:843
-#, fuzzy
 msgid "did not find refdes:pin"
-msgstr "is geen refdes:pin gevonden "
+msgstr "niet refdes vinden: pin"
 
 #: gattrib/src/x_dialog.c:111
 msgid "Add new attribute"
@@ -254,7 +240,6 @@ msgid "Delete attribute"
 msgstr "Verwijder attribuut"
 
 #: gattrib/src/x_dialog.c:205
-#, fuzzy
 msgid ""
 "One or more components have been found with missing symbol files!\n"
 "\n"
@@ -298,7 +283,6 @@ msgid "Close without saving"
 msgstr "Afsluiten zonder opslaan"
 
 #: gattrib/src/x_dialog.c:318
-#, fuzzy
 msgid ""
 "Sorry -- you have chosen a feature which has not been\n"
 "implemented yet.\n"
@@ -453,29 +437,28 @@ msgstr "Plak"
 
 #: gattrib/src/x_menus.c:375
 msgid "_Add new Attribute"
-msgstr "Voeg nieuwe attribuut toe"
+msgstr "_Voeg nieuwe attribuut toe"
 
+# Delete Attribute
 #: gattrib/src/x_menus.c:376
 msgid "D_elete Attribute"
-msgstr "Verwijder attribuut"
+msgstr "V_erwijder attribuut"
 
 #: gattrib/src/x_menus.c:377
 msgid "_Promote Attribute"
 msgstr "Bevordering Attribuut"
 
 #: gattrib/src/x_menus.c:377 gattrib/src/x_toolbars.c:45
-#, fuzzy
 msgid "Attach the selected attribute"
-msgstr "Verwijder attribuut"
+msgstr "Bevestig de geselecteerde attribuut"
 
 #: gattrib/src/x_menus.c:378
 msgid "_Demote Attribute"
 msgstr "Degraderen attribuut"
 
 #: gattrib/src/x_menus.c:378 gattrib/src/x_toolbars.c:46
-#, fuzzy
 msgid "Dettach the selected attribute"
-msgstr "Verwijder attribuut"
+msgstr "Dettach de geselecteerde attribuut"
 
 #: gattrib/src/x_menus.c:380
 msgid "Find Value"
@@ -640,9 +623,8 @@ msgstr ""
 
 # unable to find attribute
 #: gattrib/src/x_menus.c:421
-#, fuzzy
 msgid "Hide or unhide inherited attributes"
-msgstr "niet staat om attributen te vinden"
+msgstr "Verbergen of Weergeven overgenomen attributen"
 
 #: gattrib/src/x_menus.c:423
 msgid "_Autoresize"
@@ -742,10 +724,9 @@ msgstr ""
 
 #: gattrib/src/x_toolbars.c:44
 msgid "add"
-msgstr ""
+msgstr "voeg"
 
 #: gattrib/src/x_toolbars.c:44
-#, fuzzy
 msgid "Add a new attribute"
 msgstr "Voeg nieuwe attribuut toe"
 
