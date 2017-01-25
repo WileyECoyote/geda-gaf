@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-22 02:36-0600\n"
+"POT-Creation-Date: 2017-01-25 04:45-0600\n"
 "PO-Revision-Date: 2012-01-27 14:12+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -18,161 +18,87 @@ msgstr ""
 "X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
 "X-Generator: Launchpad (build 16265)\n"
 
-#: libgedacolor/src/get/color_get.c:51
-#, c-format
-msgid "Color index out of range: %i\n"
-msgstr ""
-
-#: libgedacolor/src/get/color_get.c:180
+#: libgedacolor/src/get/color_get.c:63 libgedacolor/src/get/color_get.c:184
 #: libgedacolor/src/utility/color_utility.c:223
 #, c-format
 msgid "Color index out of range"
 msgstr ""
 
-#: libgedacolor/src/guile/color_guile.c:63
-#, fuzzy, c-format
-msgid "Error loading %s, %s\n"
+#: libgedacolor/src/guile/color_guile.c:68
+#, fuzzy
+msgid "Error loading"
 msgstr "無法找到檔案 %s: %s"
 
-#: libgedacolor/src/guile/color_guile.c:141
+#: libgedacolor/src/guile/color_guile.c:140
 msgid "Color map entry must be a two-element list"
 msgstr ""
 
-#: libgedacolor/src/guile/color_guile.c:150
+#: libgedacolor/src/guile/color_guile.c:149
 msgid "Key in color map entry must be an string"
 msgstr ""
 
-#: libgedacolor/src/guile/color_guile.c:179
+#: libgedacolor/src/guile/color_guile.c:160
+msgid "Invalid key in color map"
+msgstr ""
+
+#: libgedacolor/src/guile/color_guile.c:178
 msgid "Value in color map entry must be #f or a string"
 msgstr ""
 
+#: libgedacolor/src/guile/color_guile.c:190
+msgid "Invalid color map value"
+msgstr ""
+
 #: libgedacolor/src/x11/color_x11.c:57
-#, fuzzy, c-format
-msgid "Tried to get an invalid color: %d\n"
-msgstr "找尋到無效的顏色 [%s]\n"
+msgid "Tried to get an invalid color"
+msgstr "試圖獲得無效的顏色"
 
-#: libgedacolor/src/x11/color_x11.c:72
-#, fuzzy, c-format
-msgid "Could not allocate the color %s!\n"
-msgstr "無法儲存備份檔：%s."
+# Could not allocate
+#: libgedacolor/src/x11/color_x11.c:74
+msgid "Could not allocate"
+msgstr "無法分配"
 
-#: libgedacolor/src/x11/color_x11.c:73
-#, fuzzy, c-format
-msgid "Could not allocate %s color %i!\n"
-msgstr "無法儲存備份檔：%s."
+#: libgedacolor/src/x11/color_x11.c:75
+msgid "color"
+msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:77
+#: libgedacolor/src/x11/color_x11.c:83 libgedacolor/src/x11/color_x11.c:91
+msgid "Could not allocate the color"
+msgstr "無法分配顏色"
+
+#: libgedacolor/src/x11/color_x11.c:84
 msgid "black"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:84
+#: libgedacolor/src/x11/color_x11.c:92
 msgid "white"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:103
+#: libgedacolor/src/x11/color_x11.c:111
 msgid "display"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:120
+#: libgedacolor/src/x11/color_x11.c:128
 msgid "outline"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:247
-#, c-format
-msgid "Allocating color scheme: %s\n"
+#: libgedacolor/src/x11/color_x11.c:255
+msgid "Allocating color scheme"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:252 libgedacolor/src/libgedacolor.c:134
-#, c-format
-msgid "Something went wrong, check:%s\n"
+#: libgedacolor/src/x11/color_x11.c:260 libgedacolor/src/libgedacolor.c:131
+msgid "Something went wrong, check"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:257 libgedacolor/src/libgedacolor.c:139
-#, fuzzy, c-format
-msgid "%s: Could not locate file:%s\n"
-msgstr "無法儲存備份檔：%s."
+# Could not locate file
+#: libgedacolor/src/x11/color_x11.c:265 libgedacolor/src/libgedacolor.c:136
+msgid "Could not locate file"
+msgstr "無法找到文件"
+
+#: libgedacolor/src/libgedacolor.c:98
+msgid "FAILED"
+msgstr ""
 
 #, fuzzy
-#~ msgid ""
-#~ "\n"
-#~ "WARNING: Found an autosave backup file:\n"
-#~ " \"%s\".\n"
-#~ "\n"
+#~ msgid "Could not allocate %s color %i!\n"
 #~ msgstr "無法儲存備份檔：%s."
-
-#, fuzzy
-#~ msgid ""
-#~ "Could not detemine which file is newer, so you should do this manually.\n"
-#~ msgstr "我無法確定這個檔案是否比較新，你必須自己決定。\n"
-
-#~ msgid "Cannot find file %s: %s"
-#~ msgstr "無法找到檔案 %s: %s"
-
-#, fuzzy
-#~ msgid "Could not set previous backup file [%s] read-write:%s\n"
-#~ msgstr "無法設定備份檔[%s]為唯讀\n"
-
-#, fuzzy
-#~ msgid "Can not create backup file: %s: %s\n"
-#~ msgstr "無法儲存備份檔：%s."
-
-#~ msgid "%s: %s"
-#~ msgstr "%s: %s"
-
-#, fuzzy
-#~ msgid "Error reading file '%s': %s"
-#~ msgstr "無法找到檔案 %s: %s"
-
-#, fuzzy
-#~ msgid "Failed to open file '%s': %s"
-#~ msgstr "無法找到檔案 %s: %s"
-
-#, fuzzy
-#~ msgid "bad path in file %s"
-#~ msgstr "無法找到檔案 %s: %s"
-
-#, fuzzy
-#~ msgid "Failed to load configuration from '%s': %s\n"
-#~ msgstr "無法找到檔案 %s: %s"
-
-#~ msgid ""
-#~ "Component not found:\n"
-#~ " %s"
-#~ msgstr ""
-#~ "找不到以下元件：\n"
-#~ "        %s"
-
-#, fuzzy
-#~ msgid "Failed to export [%s]: %s\n"
-#~ msgstr "無法找到檔案 %s: %s"
-
-#, fuzzy
-#~ msgid "Could NOT set previous backup file [%s] read-write\n"
-#~ msgstr "無法設定備份檔[%s]為唯讀\n"
-
-#, fuzzy
-#~ msgid "Could NOT set backup file [%s] readonly\n"
-#~ msgstr "無法設定備份檔[%s]為唯讀\n"
-
-#, fuzzy
-#~ msgid "Could NOT save backup file [%s]: %s\n"
-#~ msgstr "無法儲存備份檔：%s."
-
-#, fuzzy
-#~ msgid "Failed to open [%s]: %s\n"
-#~ msgstr "無法找到檔案 %s: %s"
-
-#~ msgid "Saved [%s]\n"
-#~ msgstr "儲存 [%s]\n"
-
-#~ msgid "Could NOT save [%s]\n"
-#~ msgstr "無法儲存[%s]\n"
-
-#~ msgid ""
-#~ "\n"
-#~ "Run gschem and correct the situation.\n"
-#~ "\n"
-#~ msgstr ""
-#~ "\n"
-#~ "啟動 gschem 來修正這個問題。\n"
-#~ "\n"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-22 02:36-0600\n"
+"POT-Creation-Date: 2017-01-25 04:45-0600\n"
 "PO-Revision-Date: 2012-01-31 12:11+0000\n"
 "Last-Translator: Peter TB Brett <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -18,193 +18,84 @@ msgstr ""
 "X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
 "X-Generator: Launchpad (build 16265)\n"
 
-#: libgedacolor/src/get/color_get.c:51
-#, c-format
-msgid "Color index out of range: %i\n"
-msgstr ""
-
-#: libgedacolor/src/get/color_get.c:180
+#: libgedacolor/src/get/color_get.c:63 libgedacolor/src/get/color_get.c:184
 #: libgedacolor/src/utility/color_utility.c:223
 #, c-format
 msgid "Color index out of range"
 msgstr ""
 
-#: libgedacolor/src/guile/color_guile.c:63
-#, c-format
-msgid "Error loading %s, %s\n"
+#: libgedacolor/src/guile/color_guile.c:68
+msgid "Error loading"
 msgstr ""
 
-#: libgedacolor/src/guile/color_guile.c:141
+#: libgedacolor/src/guile/color_guile.c:140
 msgid "Color map entry must be a two-element list"
 msgstr ""
 
-#: libgedacolor/src/guile/color_guile.c:150
+#: libgedacolor/src/guile/color_guile.c:149
 msgid "Key in color map entry must be an string"
 msgstr ""
 
-#: libgedacolor/src/guile/color_guile.c:179
+#: libgedacolor/src/guile/color_guile.c:160
+msgid "Invalid key in color map"
+msgstr ""
+
+#: libgedacolor/src/guile/color_guile.c:178
 msgid "Value in color map entry must be #f or a string"
 msgstr ""
 
+#: libgedacolor/src/guile/color_guile.c:190
+msgid "Invalid color map value"
+msgstr ""
+
+# Tried to get an invalid color
 #: libgedacolor/src/x11/color_x11.c:57
-#, fuzzy, c-format
-msgid "Tried to get an invalid color: %d\n"
-msgstr "Geçersiz bir renk bulundu [ %s ]\n"
+msgid "Tried to get an invalid color"
+msgstr "Geçersiz bir renk elde etmeye çalışıldı"
 
-#: libgedacolor/src/x11/color_x11.c:72
-#, fuzzy, c-format
-msgid "Could not allocate the color %s!\n"
-msgstr "[%s] kaydedilemedi.\n"
+# Could not allocate
+#: libgedacolor/src/x11/color_x11.c:74
+msgid "Could not allocate"
+msgstr "Tahsis edilemedi"
 
-#: libgedacolor/src/x11/color_x11.c:73
-#, fuzzy, c-format
-msgid "Could not allocate %s color %i!\n"
-msgstr "[%s] yazdırma işlemi için açılamıyor\n"
+#: libgedacolor/src/x11/color_x11.c:75
+msgid "color"
+msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:77
+# Could not allocate the color
+#: libgedacolor/src/x11/color_x11.c:83 libgedacolor/src/x11/color_x11.c:91
+msgid "Could not allocate the color"
+msgstr "Rengi ayıramadı"
+
+#: libgedacolor/src/x11/color_x11.c:84
 msgid "black"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:84
+#: libgedacolor/src/x11/color_x11.c:92
 msgid "white"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:103
+#: libgedacolor/src/x11/color_x11.c:111
 msgid "display"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:120
+#: libgedacolor/src/x11/color_x11.c:128
 msgid "outline"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:247
-#, c-format
-msgid "Allocating color scheme: %s\n"
+#: libgedacolor/src/x11/color_x11.c:255
+msgid "Allocating color scheme"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:252 libgedacolor/src/libgedacolor.c:134
-#, c-format
-msgid "Something went wrong, check:%s\n"
+#: libgedacolor/src/x11/color_x11.c:260 libgedacolor/src/libgedacolor.c:131
+msgid "Something went wrong, check"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:257 libgedacolor/src/libgedacolor.c:139
-#, fuzzy, c-format
-msgid "%s: Could not locate file:%s\n"
-msgstr "[%s] kaydedilemedi.\n"
+# Could not locate file
+#: libgedacolor/src/x11/color_x11.c:265 libgedacolor/src/libgedacolor.c:136
+msgid "Could not locate file"
+msgstr "Dosya bulunamadı"
 
-#~ msgid "gEDA schematic symbol"
-#~ msgstr "gEDA şematik sembol"
-
-#~ msgid "gEDA gsch2pcb project"
-#~ msgstr "gEDA gsch2pcb projesi"
-
-#~ msgid "gEDA Gsch2pcb Project"
-#~ msgstr "gEDA Gsch2pcb Projesi"
-
-#~ msgid "gEDA Schematic Symbol"
-#~ msgstr "gEDA şematik sembol"
-
-#, fuzzy
-#~ msgid ""
-#~ "\n"
-#~ "WARNING: Found an autosave backup file:\n"
-#~ " \"%s\".\n"
-#~ "\n"
-#~ msgstr ""
-#~ "\n"
-#~ "UYARI: Otomatik kayıt yedek dosyası bulundu:\n"
-#~ "  %s.\n"
-#~ "\n"
-
-#, fuzzy
-#~ msgid ""
-#~ "Could not detemine which file is newer, so you should do this manually.\n"
-#~ msgstr "Yeniyse tahmin edemiyorum, bunu elle yapın.\n"
-
-#~ msgid ""
-#~ "The backup copy is newer than the schematic, so it seems you should load "
-#~ "it instead of the original file.\n"
-#~ msgstr ""
-#~ "Yedek kopyası şematikten yeni bu nedenle asıl dosya yerine onu "
-#~ "yükleyeceğiz gözküyor.\n"
-
-#, fuzzy
-#~ msgid "Could not set previous backup file [%s] read-write:%s\n"
-#~ msgstr "sadece okunabilir [%s] yedekleme dosyası oluşturulamadı\n"
-
-#, fuzzy
-#~ msgid "Can not create backup file: %s: %s\n"
-#~ msgstr "[%s] kaydedilemedi.\n"
-
-#~ msgid "Could not execute command [%s] for printing\n"
-#~ msgstr "yazdırmak için [%s] komutu çalıştırılamadı\n"
-
-#~ msgid "Too many UTF-8 characters, cannot print\n"
-#~ msgstr "çok fazla UTF-8 karakteri var, yazdırılamaz\n"
-
-#, fuzzy
-#~ msgid "libgeda: Loaded RC file [%s]\n"
-#~ msgstr "Kütüphane komutu başarısız [%s]<br>\n"
-
-#~ msgid ""
-#~ "Component not found:\n"
-#~ " %s"
-#~ msgstr ""
-#~ "bileşen bulanamadı:\n"
-#~ " %s"
-
-#, fuzzy
-#~ msgid "Could NOT set previous backup file [%s] read-write\n"
-#~ msgstr "sadece okunabilir [%s] yedekleme dosyası oluşturulamadı\n"
-
-#, fuzzy
-#~ msgid "Could NOT set backup file [%s] readonly\n"
-#~ msgstr "sadece okunabilir [%s] yedekleme dosyası oluşturulamadı\n"
-
-#, fuzzy
-#~ msgid "Could NOT save backup file [%s]: %s\n"
-#~ msgstr "[%s] kaydedilemedi.\n"
-
-#, fuzzy
-#~ msgid "%s: object %p has unknown type '%c'\n"
-#~ msgstr "o_save_objects: %p nesnesi bilinmeyen tip '%c'\n"
-
-#, fuzzy
-#~ msgid "Setting line length to default=%d\n"
-#~ msgstr "Geçersiz alan(boşluk) tanımlandı.100'e ayarlanıyor\n"
-
-#, fuzzy
-#~ msgid "Setting line space to default=%d\n"
-#~ msgstr "Geçersiz alan(boşluk) tanımlandı.100'e ayarlanıyor\n"
-
-#~ msgid "Found an unsupported text alignment [ %c %d %d %d %d %d %d %d %d ]\n"
-#~ msgstr ""
-#~ "Desteklenmeyen yazı hizlanması bulundu [ %c %d %d %d %d %d %d %d %d ]\n"
-
-#~ msgid "Library command failed [%s]\n"
-#~ msgstr "Kütüphane komutu başarısız [%s]<br>\n"
-
-#~ msgid "Library name [%s] already in use.  Using [%s].\n"
-#~ msgstr "Kütüphane adı [%s] zaten kullanımda.  [%s].\n"
-
-#~ msgid "Saved [%s]\n"
-#~ msgstr "[%s] kaydedildi\n"
-
-#~ msgid "Could NOT save [%s]\n"
-#~ msgstr "[%s] kaydedilemedi.\n"
-
-#, fuzzy
-#~ msgid "Invalid space specified, setting to  default=%d\n"
-#~ msgstr "Geçersiz alan(boşluk) tanımlandı.100'e ayarlanıyor\n"
-
-#~ msgid ""
-#~ "\n"
-#~ "Run gschem and correct the situation.\n"
-#~ "\n"
-#~ msgstr ""
-#~ "\n"
-#~ "gschem'i çalıştırın ve bu durumu düzeltin\n"
-#~ "\n"
-
-#~ msgid "Found an unsupported text angle [ %c %d %d %d %d %d %d %d %d ]\n"
-#~ msgstr "Desteklenmeyen yazı açısı bulundu [ %c %d %d %d %d %d %d %d %d ]\n"
+#: libgedacolor/src/libgedacolor.c:98
+msgid "FAILED"
+msgstr ""

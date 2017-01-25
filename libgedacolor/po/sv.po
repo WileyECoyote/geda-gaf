@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-22 02:36-0600\n"
+"POT-Creation-Date: 2017-01-25 04:45-0600\n"
 "PO-Revision-Date: 2012-01-27 14:12+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -18,119 +18,89 @@ msgstr ""
 "X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
 "X-Generator: Launchpad (build 16265)\n"
 
-#: libgedacolor/src/get/color_get.c:51
-#, c-format
-msgid "Color index out of range: %i\n"
-msgstr ""
-
-#: libgedacolor/src/get/color_get.c:180
+#: libgedacolor/src/get/color_get.c:63 libgedacolor/src/get/color_get.c:184
 #: libgedacolor/src/utility/color_utility.c:223
 #, c-format
 msgid "Color index out of range"
 msgstr ""
 
-#: libgedacolor/src/guile/color_guile.c:63
-#, fuzzy, c-format
-msgid "Error loading %s, %s\n"
+#: libgedacolor/src/guile/color_guile.c:68
+#, fuzzy
+msgid "Error loading"
 msgstr "Kan inte hitta filen %s: %s"
 
-#: libgedacolor/src/guile/color_guile.c:141
+#: libgedacolor/src/guile/color_guile.c:140
 msgid "Color map entry must be a two-element list"
 msgstr ""
 
-#: libgedacolor/src/guile/color_guile.c:150
+#: libgedacolor/src/guile/color_guile.c:149
 msgid "Key in color map entry must be an string"
 msgstr ""
 
-#: libgedacolor/src/guile/color_guile.c:179
+#: libgedacolor/src/guile/color_guile.c:160
+msgid "Invalid key in color map"
+msgstr ""
+
+#: libgedacolor/src/guile/color_guile.c:178
 msgid "Value in color map entry must be #f or a string"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:57
-#, c-format
-msgid "Tried to get an invalid color: %d\n"
+#: libgedacolor/src/guile/color_guile.c:190
+msgid "Invalid color map value"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:72
-#, fuzzy, c-format
-msgid "Could not allocate the color %s!\n"
-msgstr "Kan inte hitta filen %s: %s"
+# Tried to get an invalid color
+#: libgedacolor/src/x11/color_x11.c:57
+msgid "Tried to get an invalid color"
+msgstr "Försökt att få en ogiltig färg"
 
-#: libgedacolor/src/x11/color_x11.c:73
-#, fuzzy, c-format
-msgid "Could not allocate %s color %i!\n"
-msgstr "Kan inte hitta filen %s: %s"
+# Could not allocate
+#: libgedacolor/src/x11/color_x11.c:74
+msgid "Could not allocate"
+msgstr "Det gick inte att allokera"
 
-#: libgedacolor/src/x11/color_x11.c:77
+#: libgedacolor/src/x11/color_x11.c:75
+msgid "color"
+msgstr ""
+
+# Could not allocate the color
+#: libgedacolor/src/x11/color_x11.c:83 libgedacolor/src/x11/color_x11.c:91
+msgid "Could not allocate the color"
+msgstr "Det gick inte att allokera färgen"
+
+#: libgedacolor/src/x11/color_x11.c:84
 msgid "black"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:84
+#: libgedacolor/src/x11/color_x11.c:92
 msgid "white"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:103
+#: libgedacolor/src/x11/color_x11.c:111
 msgid "display"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:120
+#: libgedacolor/src/x11/color_x11.c:128
 msgid "outline"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:247
-#, c-format
-msgid "Allocating color scheme: %s\n"
+#: libgedacolor/src/x11/color_x11.c:255
+msgid "Allocating color scheme"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:252 libgedacolor/src/libgedacolor.c:134
-#, c-format
-msgid "Something went wrong, check:%s\n"
+#: libgedacolor/src/x11/color_x11.c:260 libgedacolor/src/libgedacolor.c:131
+msgid "Something went wrong, check"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:257 libgedacolor/src/libgedacolor.c:139
-#, fuzzy, c-format
-msgid "%s: Could not locate file:%s\n"
+#: libgedacolor/src/x11/color_x11.c:265 libgedacolor/src/libgedacolor.c:136
+#, fuzzy
+msgid "Could not locate file"
 msgstr "Kan inte hitta filen %s: %s"
 
-#, fuzzy
-#~ msgid ""
-#~ "\n"
-#~ "WARNING: Found an autosave backup file:\n"
-#~ " \"%s\".\n"
-#~ "\n"
-#~ msgstr "Kan inte hitta filen %s: %s"
-
-#~ msgid "Cannot find file %s: %s"
-#~ msgstr "Kan inte hitta filen %s: %s"
+#: libgedacolor/src/libgedacolor.c:98
+msgid "FAILED"
+msgstr ""
 
 #, fuzzy
-#~ msgid "Can not create backup file: %s: %s\n"
-#~ msgstr "Kan inte hitta filen %s: %s"
-
-#, fuzzy
-#~ msgid "Error reading file '%s': %s"
-#~ msgstr "Kan inte hitta filen %s: %s"
-
-#, fuzzy
-#~ msgid "Failed to open file '%s': %s"
-#~ msgstr "Kan inte hitta filen %s: %s"
-
-#, fuzzy
-#~ msgid "bad path in file %s"
-#~ msgstr "Kan inte hitta filen %s: %s"
-
-#, fuzzy
-#~ msgid "Failed to load configuration from '%s': %s\n"
-#~ msgstr "Kan inte hitta filen %s: %s"
-
-#, fuzzy
-#~ msgid "Failed to export [%s]: %s\n"
-#~ msgstr "Kan inte hitta filen %s: %s"
-
-#, fuzzy
-#~ msgid "Could NOT save backup file [%s]: %s\n"
-#~ msgstr "Kan inte hitta filen %s: %s"
-
-#, fuzzy
-#~ msgid "Failed to open [%s]: %s\n"
+#~ msgid "Could not allocate %s color %i!\n"
 #~ msgstr "Kan inte hitta filen %s: %s"
