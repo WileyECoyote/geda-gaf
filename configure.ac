@@ -293,6 +293,7 @@ AC_CONFIG_FILES([Makefile
 
                  libgedauio/Makefile
                  libgedauio/libgedauio.pc
+                 libgedauio/po/domain.mak
                  libgedauio/po/Makefile.in
                  libgedauio/docs/Makefile
                  libgedauio/docs/images/Makefile

@@ -3,6 +3,7 @@
 
 # Usually the message domain is the same as the package name.
 #DOMAIN = $(PACKAGE)
+
 # Unfortunately, we need to use message domains that match the current
 # version of libgeda. Even more unfortunately, the way that the
 # gettext m4 code merges Makevars into the Makefile precludes Makevars

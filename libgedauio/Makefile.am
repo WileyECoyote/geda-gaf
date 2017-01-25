@@ -1,7 +1,7 @@
 
 SUBDIRS = po docs include src tests
 
-EXTRA_DIST = README ChangeLog ChangeLog-1.0
+EXTRA_DIST = README ChangeLog ChangeLog-1.0 po/domain.mak.in
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = libgedauio.pc
@@ -32,7 +32,7 @@ update-po:
 
 MOSTLYCLEANFILES     = *.log core FILE ./*~
 CLEANFILES           = *.log core FILE ./*~
-DISTCLEANFILES       = *.log core FILE ./*~ libgedauio.pc
+DISTCLEANFILES       = *.log core FILE ./*~ libgedauio.pc po/domain.mak
 MAINTAINERCLEANFILES = *.log core FILE ./*~ Makefile.in libgedauio.pc ChangeLog
 
 

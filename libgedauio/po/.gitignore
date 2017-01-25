@@ -7,10 +7,11 @@ POTFILES
 *.mo
 *.sed
 *.sin
-libgedauio.pot
+libgedauio*.pot
 Rules-quot
 Makevars.template
 stamp-po
 stamp-it
 stamp-i18n
+domain.mak
 *~
