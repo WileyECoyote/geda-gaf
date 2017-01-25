@@ -135,7 +135,7 @@ msgstr ""
 
 #: libgedauio/src/widgets/geda_bulb.c:734
 msgid "Indicator Size"
-msgstr ""
+msgstr "indikaattori Koko"
 
 #: libgedauio/src/widgets/geda_bulb.c:735
 msgid "Size of check or radio indicator"

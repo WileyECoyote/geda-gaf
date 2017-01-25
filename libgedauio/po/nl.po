@@ -30,7 +30,7 @@ msgstr ""
 #: libgedauio/src/dialogs/geda_file_chooser.c:613
 #: libgedauio/src/dialogs/geda_image_chooser.c:1173
 msgid "_Open"
-msgstr "_Open..."
+msgstr "_Open"
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:614
 #: libgedauio/src/dialogs/geda_image_chooser.c:1174
@@ -65,7 +65,7 @@ msgstr ""
 #: libgedauio/src/dialogs/geda_file_chooser.c:634
 #: libgedauio/src/dialogs/geda_image_chooser.c:1193
 msgid "_Cancel"
-msgstr "Annuleren"
+msgstr "_Annuleren"
 
 #: libgedauio/src/dialogs/geda_image_chooser.c:596
 #: libgedauio/src/dialogs/geda_image_chooser.c:780
@@ -133,7 +133,6 @@ msgid "Whether to draw the button during mouse over events"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_bulb.c:734
-#, fuzzy
 msgid "Indicator Size"
 msgstr "Snap Grootte"
 

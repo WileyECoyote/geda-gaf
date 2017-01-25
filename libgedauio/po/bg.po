@@ -135,7 +135,7 @@ msgstr ""
 
 #: libgedauio/src/widgets/geda_bulb.c:734
 msgid "Indicator Size"
-msgstr ""
+msgstr "Индикатор Размер"
 
 #: libgedauio/src/widgets/geda_bulb.c:735
 msgid "Size of check or radio indicator"
@@ -365,10 +365,10 @@ msgstr ""
 msgid "0 = All, 1 Alphnumeric, 3 Numeric, 4 Number, 5 Integer, 6 Real"
 msgstr ""
 
+# Automatically complete
 #: libgedauio/src/widgets/geda_entry.c:1323
-#, fuzzy
 msgid "Auto Complete"
-msgstr "Обнови Компонент"
+msgstr "Автоматично пълна"
 
 #: libgedauio/src/widgets/geda_entry.c:1331
 msgid "On"
@@ -551,9 +551,8 @@ msgid "Whether the preview text entry is displayed"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_font_dialog.c:1670
-#, fuzzy
 msgid "_Select"
-msgstr "Избери режим"
+msgstr "Избери"
 
 #: libgedauio/src/widgets/geda_handlebox.c:1444
 #: libgedauio/src/widgets/geda_handlebox.c:1453
@@ -683,10 +682,10 @@ msgstr ""
 msgid "If wrap is set, controls how line wrapping is done"
 msgstr ""
 
+# Selectable
 #: libgedauio/src/widgets/geda_label.c:1477
-#, fuzzy
 msgid "Selectable"
-msgstr "Избери режим"
+msgstr "Избираеми"
 
 #: libgedauio/src/widgets/geda_label.c:1478
 msgid "Whether the label text can be selected with the mouse"

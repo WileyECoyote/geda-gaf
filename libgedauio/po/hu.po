@@ -35,7 +35,6 @@ msgstr "_Nyisd ki"
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:614
 #: libgedauio/src/dialogs/geda_image_chooser.c:1174
-#, fuzzy
 msgid "Open..."
 msgstr "Nyisd ki..."
 
@@ -136,7 +135,7 @@ msgstr ""
 
 #: libgedauio/src/widgets/geda_bulb.c:734
 msgid "Indicator Size"
-msgstr ""
+msgstr "indikátor Méret"
 
 #: libgedauio/src/widgets/geda_bulb.c:735
 msgid "Size of check or radio indicator"

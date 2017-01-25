@@ -135,7 +135,7 @@ msgstr ""
 
 #: libgedauio/src/widgets/geda_bulb.c:734
 msgid "Indicator Size"
-msgstr ""
+msgstr "kazalec Velikost"
 
 #: libgedauio/src/widgets/geda_bulb.c:735
 msgid "Size of check or radio indicator"
@@ -143,7 +143,7 @@ msgstr ""
 
 #: libgedauio/src/widgets/geda_bulb.c:744
 msgid "Indicator Spacing"
-msgstr ""
+msgstr "indikator Razmik"
 
 #: libgedauio/src/widgets/geda_bulb.c:745
 msgid "Spacing around check or radio indicator"
@@ -151,7 +151,7 @@ msgstr ""
 
 #: libgedauio/src/widgets/geda_combobox.c:2020
 msgid "ComboBox model"
-msgstr ""
+msgstr "Model kombinacija-box"
 
 #: libgedauio/src/widgets/geda_combobox.c:2021
 msgid "The model for the combo box"
@@ -159,7 +159,7 @@ msgstr ""
 
 #: libgedauio/src/widgets/geda_combobox.c:2035
 msgid "Wrap width"
-msgstr ""
+msgstr "Wrap širina"
 
 #: libgedauio/src/widgets/geda_combobox.c:2036
 msgid "Wrap width for laying out the items in a grid"

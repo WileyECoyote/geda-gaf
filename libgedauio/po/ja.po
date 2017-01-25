@@ -30,7 +30,6 @@ msgstr ""
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:613
 #: libgedauio/src/dialogs/geda_image_chooser.c:1173
-#, fuzzy
 msgid "_Open"
 msgstr "開く(O)"
 
@@ -136,7 +135,7 @@ msgstr ""
 
 #: libgedauio/src/widgets/geda_bulb.c:734
 msgid "Indicator Size"
-msgstr ""
+msgstr "インジケータサイズ"
 
 #: libgedauio/src/widgets/geda_bulb.c:735
 msgid "Size of check or radio indicator"

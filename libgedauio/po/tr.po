@@ -135,7 +135,7 @@ msgstr ""
 
 #: libgedauio/src/widgets/geda_bulb.c:734
 msgid "Indicator Size"
-msgstr ""
+msgstr "Gösterge Boyutu"
 
 #: libgedauio/src/widgets/geda_bulb.c:735
 msgid "Size of check or radio indicator"
@@ -365,10 +365,10 @@ msgstr ""
 msgid "0 = All, 1 Alphnumeric, 3 Numeric, 4 Number, 5 Integer, 6 Real"
 msgstr ""
 
+# Automatic Completion
 #: libgedauio/src/widgets/geda_entry.c:1323
-#, fuzzy
 msgid "Auto Complete"
-msgstr "Bileşen Güncelle"
+msgstr "Otomatik Tamamlama"
 
 #: libgedauio/src/widgets/geda_entry.c:1331
 msgid "On"

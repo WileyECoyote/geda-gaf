@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-25 01:25-0600\n"
+"POT-Creation-Date: 2017-01-25 01:50-0600\n"
 "PO-Revision-Date: 2012-01-27 14:22+0000\n"
 "Last-Translator: Sasan Jafarnejad <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -129,33 +129,40 @@ msgstr ""
 msgid "Show Button"
 msgstr "نمایش دکمه"
 
+# Whether to draw the button during mouse over events
 #: libgedauio/src/widgets/geda_bulb.c:727
-msgstr ""
 msgid "Whether to draw the button during mouse over events"
+msgstr "آیا به منظور جلب دکمه در طول ماوس بر حوادث"
 
+# Widget size
 #: libgedauio/src/widgets/geda_bulb.c:734
 msgid "Indicator Size"
-msgstr ""
+msgstr "اندازه ویجت"
 
+# Widget size
 #: libgedauio/src/widgets/geda_bulb.c:735
 msgid "Size of check or radio indicator"
-msgstr ""
+msgstr "اندازه ویجت"
 
 #: libgedauio/src/widgets/geda_bulb.c:744
 msgid "Indicator Spacing"
-msgstr ""
+msgstr "فاصله ویجت"
 
+# Spacing around widget
+# The distance around the widget
 #: libgedauio/src/widgets/geda_bulb.c:745
 msgid "Spacing around check or radio indicator"
-msgstr ""
+msgstr "فاصله در اطراف ویجت"
 
+# ComboBox model
 #: libgedauio/src/widgets/geda_combobox.c:2020
 msgid "ComboBox model"
-msgstr ""
+msgstr "مدل جعبهترکیب"
 
+# The model for the combo box
 #: libgedauio/src/widgets/geda_combobox.c:2021
 msgid "The model for the combo box"
-msgstr ""
+msgstr "مدل برای جعبه دسته کوچک موسیقی جاز"
 
 #: libgedauio/src/widgets/geda_combobox.c:2035
 msgid "Wrap width"

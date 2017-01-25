@@ -137,9 +137,8 @@ msgid "Whether to draw the button during mouse over events"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_bulb.c:734
-#, fuzzy
 msgid "Indicator Size"
-msgstr "Grille de snap"
+msgstr "Taille de l'indicateur"
 
 #: libgedauio/src/widgets/geda_bulb.c:735
 msgid "Size of check or radio indicator"
@@ -154,18 +153,16 @@ msgid "Spacing around check or radio indicator"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_combobox.c:2020
-#, fuzzy
 msgid "ComboBox model"
-msgstr "Mode Cadre"
+msgstr "Modèle ComboBox"
 
 #: libgedauio/src/widgets/geda_combobox.c:2021
 msgid "The model for the combo box"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_combobox.c:2035
-#, fuzzy
 msgid "Wrap width"
-msgstr "Largeur :"
+msgstr "Largeur d'enroulement"
 
 #: libgedauio/src/widgets/geda_combobox.c:2036
 msgid "Wrap width for laying out the items in a grid"
@@ -372,14 +369,12 @@ msgid "0 = All, 1 Alphnumeric, 3 Numeric, 4 Number, 5 Integer, 6 Real"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_entry.c:1323
-#, fuzzy
 msgid "Auto Complete"
-msgstr "/Ajouter un composant..."
+msgstr "Automatique"
 
 #: libgedauio/src/widgets/geda_entry.c:1331
-#, fuzzy
 msgid "On"
-msgstr "Ouvrir"
+msgstr "Sur"
 
 #: libgedauio/src/widgets/geda_entry.c:1336
 msgid "Off"

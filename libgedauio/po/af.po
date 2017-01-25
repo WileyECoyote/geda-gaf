@@ -29,14 +29,13 @@ msgstr ""
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:613
 #: libgedauio/src/dialogs/geda_image_chooser.c:1173
-#, fuzzy
 msgid "_Open"
-msgstr "Maak lêer oop..."
+msgstr "_Oop"
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:614
 #: libgedauio/src/dialogs/geda_image_chooser.c:1174
 msgid "Open..."
-msgstr "Open..."
+msgstr "Oop..."
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:618
 #: libgedauio/src/dialogs/geda_image_chooser.c:1178
@@ -50,13 +49,11 @@ msgstr "Slaan lêer as..."
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:623
 #: libgedauio/src/dialogs/geda_image_chooser.c:1183
-#, fuzzy
 msgid "_Select Folder..."
 msgstr "Kies gids..."
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:624
 #: libgedauio/src/dialogs/geda_image_chooser.c:1184
-#, fuzzy
 msgid "Select Folder"
 msgstr "Kies gids"
 
@@ -67,13 +64,11 @@ msgstr ""
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:634
 #: libgedauio/src/dialogs/geda_image_chooser.c:1193
-#, fuzzy
 msgid "_Cancel"
-msgstr "Menu/Kanselleer"
+msgstr "_Kanselleer"
 
 #: libgedauio/src/dialogs/geda_image_chooser.c:596
 #: libgedauio/src/dialogs/geda_image_chooser.c:780
-#, fuzzy
 msgid "Preview"
 msgstr "Voorskou"
 
@@ -130,9 +125,8 @@ msgid "The bulb button whose group this widget belongs to."
 msgstr ""
 
 #: libgedauio/src/widgets/geda_bulb.c:726
-#, fuzzy
 msgid "Show Button"
-msgstr "ToonB"
+msgstr "Wys knoppie"
 
 #: libgedauio/src/widgets/geda_bulb.c:727
 msgid "Whether to draw the button during mouse over events"
@@ -140,7 +134,7 @@ msgstr ""
 
 #: libgedauio/src/widgets/geda_bulb.c:734
 msgid "Indicator Size"
-msgstr ""
+msgstr "aanwyser Grootte"
 
 #: libgedauio/src/widgets/geda_bulb.c:735
 msgid "Size of check or radio indicator"
@@ -155,18 +149,16 @@ msgid "Spacing around check or radio indicator"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_combobox.c:2020
-#, fuzzy
 msgid "ComboBox model"
-msgstr "Reghoekmodus"
+msgstr "Kombinasie-box model"
 
 #: libgedauio/src/widgets/geda_combobox.c:2021
 msgid "The model for the combo box"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_combobox.c:2035
-#, fuzzy
 msgid "Wrap width"
-msgstr "Wydte:"
+msgstr "Vouwydte"
 
 #: libgedauio/src/widgets/geda_combobox.c:2036
 msgid "Wrap width for laying out the items in a grid"
@@ -282,9 +274,8 @@ msgid "The minimum size of the arrow in the combo box"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_combobox.c:2260
-#, fuzzy
 msgid "List View"
-msgstr "Aansig"
+msgstr "Lys skerm"
 
 #: libgedauio/src/widgets/geda_combobox.c:2261
 msgid ""
@@ -374,18 +365,16 @@ msgid "0 = All, 1 Alphnumeric, 3 Numeric, 4 Number, 5 Integer, 6 Real"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_entry.c:1323
-#, fuzzy
 msgid "Auto Complete"
-msgstr "/Voeg Komponent By"
+msgstr "outomaties volledige"
 
 #: libgedauio/src/widgets/geda_entry.c:1331
-#, fuzzy
 msgid "On"
-msgstr "Maak Oop"
+msgstr "op"
 
 #: libgedauio/src/widgets/geda_entry.c:1336
 msgid "Off"
-msgstr ""
+msgstr "af"
 
 #: libgedauio/src/widgets/geda_font_button.c:769
 #: libgedauio/src/widgets/geda_font_dialog.c:1507
@@ -802,10 +791,10 @@ msgstr ""
 msgid "Whether visited links should be tracked"
 msgstr "Of besoek skakels moet nagespoor"
 
+# Maak lêer oop
 #: libgedauio/src/widgets/geda_label.c:6609
-#, fuzzy
 msgid "_Open Link"
-msgstr "Maak lêer oop..."
+msgstr "oop Link"
 
 #: libgedauio/src/widgets/geda_label.c:6621
 msgid "Copy _Link Address"
@@ -816,7 +805,6 @@ msgid "Menu"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_menu_button.c:1179
-#, fuzzy
 msgid "The drop-down menu"
 msgstr "Die drop-down menu"
 

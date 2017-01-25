@@ -134,9 +134,8 @@ msgid "Whether to draw the button during mouse over events"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_bulb.c:734
-#, fuzzy
 msgid "Indicator Size"
-msgstr "Odległość przyciągania"
+msgstr "wskaźnik wielkości"
 
 #: libgedauio/src/widgets/geda_bulb.c:735
 msgid "Size of check or radio indicator"

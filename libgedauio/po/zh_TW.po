@@ -135,7 +135,7 @@ msgstr ""
 
 #: libgedauio/src/widgets/geda_bulb.c:734
 msgid "Indicator Size"
-msgstr ""
+msgstr "指示燈尺寸"
 
 #: libgedauio/src/widgets/geda_bulb.c:735
 msgid "Size of check or radio indicator"
@@ -150,9 +150,8 @@ msgid "Spacing around check or radio indicator"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_combobox.c:2020
-#, fuzzy
 msgid "ComboBox model"
-msgstr "矩形模式"
+msgstr "組合框模型"
 
 #: libgedauio/src/widgets/geda_combobox.c:2021
 msgid "The model for the combo box"
@@ -328,7 +327,7 @@ msgstr ""
 
 #: libgedauio/src/widgets/geda_entry.c:650
 msgid "Auto-Completion"
-msgstr ""
+msgstr "自動完成"
 
 #: libgedauio/src/widgets/geda_entry.c:651
 msgid "Enable Auto-completion, if installed"
@@ -367,9 +366,8 @@ msgid "0 = All, 1 Alphnumeric, 3 Numeric, 4 Number, 5 Integer, 6 Real"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_entry.c:1323
-#, fuzzy
 msgid "Auto Complete"
-msgstr "元件"
+msgstr "自動完成"
 
 #: libgedauio/src/widgets/geda_entry.c:1331
 msgid "On"
