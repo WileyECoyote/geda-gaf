@@ -724,7 +724,7 @@ geda_bulb_class_init(void *class, void *class_data)
    */
   params = g_param_spec_boolean ("show-button",
                                _("Show Button"),
-                               _("Whether the draw the button during mouse over events"),
+                               _("Whether to draw the button during mouse over events"),
                                   FALSE,
                                  (G_PARAM_READWRITE));
 
