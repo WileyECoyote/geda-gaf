@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gschem\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-22 02:36-0600\n"
+"POT-Creation-Date: 2017-01-25 01:50-0600\n"
 "PO-Revision-Date: 2012-12-01 01:41+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -129,7 +129,7 @@ msgid "Show Button"
 msgstr "Knop weergeven"
 
 #: libgedauio/src/widgets/geda_bulb.c:727
-msgid "Whether the draw the button during mouse over events"
+msgid "Whether to draw the button during mouse over events"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_bulb.c:734
