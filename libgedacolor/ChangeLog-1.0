@@ -3,6 +3,18 @@
     * src/libgedacolor.c: Replace domain strings with build variable,
       LIBGEDACOLOR_GETTEXT_DOMAIN.
 
+    * src/libgedacolor.c: Revise output message format in order to minimize
+      format specifiers in translatable string and replace __func__ with
+      untranslated "libgedacolor".
+
+    * src/get/color_get.c: Reduce scope of inval_index and reformat message.
+
+    * src/guile/color_guile.c: Reduce scope of err_load and reformat messages.
+
+    * src/x11/color_x11.c: Revise geda_color_x11_allocate; eliminate pre-
+      translated err_allocate_s1 and err_allocate_s1i1, add subfunction
+      log_allocation_error.
+
 2017-01-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gettext.h: Add conditionals to use <libintl.h> if LIBC

@@ -95,7 +95,7 @@ int libgedacolor_init(int *argc, char **argv)
     geda_color_x11_allocate();
   }
   else {
-    fprintf (stderr, "FAILED: gdk_init_check\n");
+    fprintf (stderr, "%s: gdk_init_check\n", _("FAILED"));
     return FALSE;
   }
   return TRUE;
@@ -128,12 +128,13 @@ int geda_color_load_print_scheme(char *scheme) {
       result = TRUE;
     }
     else {
-      u_log_message (_("Something went wrong, check:%s\n"), scheme);
+      u_log_message ("%s :%s\n", _("Something went wrong, check"), scheme);
       result = FALSE;
     }
   }
   else {
-    u_log_message (_("%s: Could not locate file:%s\n"), __func__,scheme);
+    const char *msg = _("Could not locate file");
+    u_log_message ("<libgedacolor> %s:%s\n", msg, scheme);
     result = FALSE;
   }
 

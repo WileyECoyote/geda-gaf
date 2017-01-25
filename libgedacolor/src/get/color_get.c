@@ -48,7 +48,7 @@ geda_color_get_color_name(int index, GArray *cmap, GError **err)
 {
   int limit;
 
-  const char *inval_index = _("Color index out of range: %i\n");
+
 
   if (cmap) {                       /* Find end of cmap */
     limit = cmap->len;
@@ -59,11 +59,15 @@ geda_color_get_color_name(int index, GArray *cmap, GError **err)
 
   /* Check if index is with bounds of print_colors */
   if ((index < 0) || (index >= limit)) {
+
+    const char *inval_index = _("Color index out of range");
+
     if (!err) {
-      fprintf (stderr, inval_index, index);
+      fprintf (stderr, "%s: %i\n", inval_index, index);
     }
     else {
-      g_set_error (err, EDA_ERROR, EDA_ERROR_NUM_ERRORS, inval_index, index);
+      g_set_error (err, EDA_ERROR, EDA_ERROR_NUM_ERRORS,
+                       "%s: %i\n", inval_index, index);
     }
   }
   else {

@@ -54,7 +54,7 @@ extern COLOR outline_colors[MAX_COLORS];
 
 static void inline x11_color_invalid_index(int index)
 {
-  u_log_message(_("Tried to get an invalid color: %d\n"), index);
+  u_log_message("%s: %d\n", _("Tried to get an invalid color"), index);
 }
 
 /*!
@@ -69,19 +69,27 @@ void geda_color_x11_allocate (void)
   int i;
   COLOR c;
 
-  const char *err_allocate_s1   = _("Could not allocate the color %s!\n");
-  const char *err_allocate_s1i1 = _("Could not allocate %s color %i!\n");
+  void log_allocation_error(const char *map) {
+
+    const char *_allocate = _("Could not allocate");
+    const char *_color    = _("color");
+
+    u_log_message ("%s %s %s %i!\n", _allocate, map, _color, i);
+  }
 
   gdk_color_parse ("black", &black);
+
   if (!gdk_colormap_alloc_color (x_colormap, &black, FALSE, TRUE)) {
-    fprintf (stderr, err_allocate_s1, _("black"));
+    const char *err_msg  = _("Could not allocate the color");
+    fprintf (stderr, "%s %s!\n", err_msg, _("black"));
     exit (-1);
   }
 
   gdk_color_parse ("white", &white);
 
   if (!gdk_colormap_alloc_color (x_colormap, &white, FALSE, TRUE)) {
-    fprintf (stderr, err_allocate_s1, _("white"));
+    const char *err_msg  = _("Could not allocate the color");
+    fprintf (stderr, "%s %s!\n", err_msg, _("white"));
     exit (-1);
   }
 
@@ -100,7 +108,7 @@ void geda_color_x11_allocate (void)
       error = gdk_color_alloc(x_colormap, x_display_colors[i]);
 
       if (error == FALSE) {
-        u_log_message (err_allocate_s1i1, _("display"), i);
+        log_allocation_error(_("display"));
       }
     }
 
@@ -117,7 +125,7 @@ void geda_color_x11_allocate (void)
       error = gdk_color_alloc(x_colormap, x_outline_colors[i]);
 
       if (error == FALSE) {
-        u_log_message (err_allocate_s1i1, _("outline"), i);
+        log_allocation_error(_("outline"));
       }
     }
   }
@@ -244,17 +252,18 @@ int geda_color_x11_load_scheme(char *scheme) {
 
     if (geda_color_guile_load_scheme(inputfile)) {
 
-      u_log_message(_("Allocating color scheme: %s\n"), scheme);
+      u_log_message("%s: %s\n", _("Allocating color scheme"), scheme);
       geda_color_x11_allocate();
       result = TRUE;
     }
     else {
-      u_log_message (_("Something went wrong, check:%s\n"), scheme);
+      u_log_message ("%s: %s\n", _("Something went wrong, check"), scheme);
       result = FALSE;
     }
   }
   else {
-    u_log_message (_("%s: Could not locate file:%s\n"), __func__,scheme);
+    const char *err_msg = _("Could not locate file");
+    u_log_message ("<libgedacolor> %s: %s\n", err_msg, scheme);
     result = FALSE;
   }
 

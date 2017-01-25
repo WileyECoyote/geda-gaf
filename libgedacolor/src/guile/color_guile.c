@@ -60,14 +60,13 @@ bool geda_color_guile_load_scheme (const char *inputfile)
 
   if (inputfile && (access (inputfile, R_OK)) == 0) {
 
-    const char *err_load = _("Error loading %s, %s\n");
-
     GError *err = NULL;
 
     result = g_evaluate_scheme_file (inputfile, &err);
 
     if(err != NULL) {
-      u_log_message(err_load, inputfile, strerror(errno));
+      const char *err_load = _("Error loading");
+      u_log_message("%s %s, %s\n", err_load, inputfile, strerror(errno));
       g_clear_error (&err);
     }
   }
@@ -158,7 +157,7 @@ geda_color_guile_map_from_scm (COLOR *map, SCM lst, const char *scheme_proc_name
     /* Check color index is within bounds.
      * If index is out of bounds warn & ignore it. */
     if (i < 0) {
-      fprintf (stderr, "Invalid key in color map: %s\n", key);
+      fprintf (stderr, "%s: %s\n", _("Invalid key in color map"), key);
     }
     else {
 
@@ -188,7 +187,7 @@ fprintf(stderr, "%s %s=%d <%s>\n",__func__, key, i, rgba);
 #endif
 
         if (!result) {
-          fprintf (stderr, "Invalid color map value: %s\n", rgba);
+          fprintf (stderr, "%s: %s\n", _("Invalid color map value"), rgba);
         }
         else {
           map[i] = c;
