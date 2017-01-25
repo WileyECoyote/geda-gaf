@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gschem\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-18 15:47-0600\n"
+"POT-Creation-Date: 2017-01-22 19:05-0600\n"
 "PO-Revision-Date: 2010-02-14 01:03+0000\n"
 "Last-Translator: Bernd Jendrissek <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1241,17 +1241,21 @@ msgstr "Gleuwe is nie toegelaat vir hierdie komponent nie\n"
 msgid "New slot number [%d], is out of range\n"
 msgstr "Nuwe gleufnommer [%d], buite bereik\n"
 
+# Undo: using temporary directory specified on command-line
 #: gschem/src/object/o_undo.c:70
 msgid "Undo: using temporary directory specified on command-line"
 msgstr ""
+"Ongedaan te maak: die gebruik van tydelike gids gespesifiseer opdrag-lyn"
 
+# Directory is not read/writable, check permissions
 #: gschem/src/object/o_undo.c:71
 msgid "Directory is not read/writable, check permissions"
-msgstr ""
+msgstr "Gids is nie lees/skryfbaar, tjek regte"
 
+# Auto switching Undo system to type Memory
 #: gschem/src/object/o_undo.c:72
 msgid "<b>Auto switching Undo system to type Memory</b>\n"
-msgstr ""
+msgstr "<b>Auto skakel ongedaan stelsel Memory tik</b>\n"
 
 #: gschem/src/object/o_undo.c:117
 msgid "Gschem Undo System"
@@ -1285,11 +1289,14 @@ msgstr "<b>Ongedaan Fou.</b>"
 msgid "Undo failed"
 msgstr "Ongedaan misluk"
 
+# slotted object without slot attribute may cause problems when autonumbering slots
 #: gschem/src/x/x_autonumber.c:600
 msgid ""
 "slotted object without slot attribute may cause problems when autonumbering "
 "slots\n"
 msgstr ""
+"gaatjieslepel voorwerp sonder slot attribuut mag probleme veroorsaak wanneer "
+"outomatiese nummering slots\n"
 
 #: gschem/src/x/x_autonumber.c:615
 #, c-format
@@ -2475,9 +2482,10 @@ msgstr ""
 msgid "Large"
 msgstr ""
 
+# Enable to enlarge the preview
 #: gschem/src/x/x_fileselect.c:145
-msgid "Enable to enlagre the preview"
-msgstr ""
+msgid "Enable to enlarge the preview"
+msgstr "Staat te stel om die voorskou te vergroot"
 
 #: gschem/src/x/x_fileselect.c:286
 msgid "Auto file Suffix"
@@ -4513,13 +4521,18 @@ msgstr ""
 msgid "Scale _up Grid Spacing"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2316 gschem/etc/system-gschemrc.scm:2317
+#: gschem/etc/system-gschemrc.scm:2316
 msgid "Increase the snap size"
 msgstr "Verhoog die snap grootte"
 
 #: gschem/etc/system-gschemrc.scm:2317
 msgid "Scale _down Grid Spacing"
 msgstr ""
+
+#: gschem/etc/system-gschemrc.scm:2317
+#, fuzzy
+msgid "Decrease the snap size"
+msgstr "Verhoog die snap grootte"
 
 #: gschem/etc/system-gschemrc.scm:2318
 msgid "S_nap Grid Spacing..."
