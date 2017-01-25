@@ -54,6 +54,21 @@
 
 static GObjectClass *geda_tree_view_parent_class = NULL;
 
+static GHashTable *tree_view_hash = NULL;
+
+static void
+geda_tree_view_finalize (GObject *object)
+{
+  if (g_hash_table_remove (tree_view_hash, object)) {
+    if (!g_hash_table_size (tree_view_hash)) {
+      g_hash_table_destroy (tree_view_hash);
+      tree_view_hash = NULL;
+    }
+  }
+
+  G_OBJECT_CLASS (geda_tree_view_parent_class)->finalize (object);
+}
+
 /*!
  * \brief GedaTreeView Class Initializer
  * \par Function Description
@@ -65,8 +80,11 @@ static GObjectClass *geda_tree_view_parent_class = NULL;
 static void
 geda_tree_view_class_init (void *class, void *data)
 {
-  //GObjectClass      *object_class    = G_OBJECT_CLASS (class);
+  GObjectClass      *object_class    = G_OBJECT_CLASS (class);
   //GedaTreeViewClass *tree_view_class = (GedaTreeViewClass)class;
+
+  object_class->finalize      = geda_tree_view_finalize;
+
   geda_tree_view_parent_class = g_type_class_peek_parent (class);
 }
 
@@ -82,8 +100,13 @@ geda_tree_view_class_init (void *class, void *data)
 static void
 geda_tree_view_instance_init (GTypeInstance *instance, void *class)
 {
-  GedaTreeView *tree_view  = (GedaTreeView*)instance;
-  tree_view->instance_type = geda_tree_view_get_type();
+  //GedaTreeView *tree_view  = (GedaTreeView*)instance;
+
+  if (!tree_view_hash) {
+    tree_view_hash = g_hash_table_new (g_direct_hash, NULL);
+  }
+
+  g_hash_table_replace (tree_view_hash, instance, instance);
 }
 
 /*!
@@ -139,8 +162,8 @@ GedaType geda_tree_view_get_type (void)
 bool
 is_a_geda_tree_view (GedaTreeView *tree_view)
 {
-  if (G_IS_OBJECT(tree_view)) {
-    return (geda_tree_view_get_type() == tree_view->instance_type);
+  if ((tree_view != NULL) && (tree_view_hash != NULL)) {
+    return g_hash_table_lookup(tree_view_hash, tree_view) ? TRUE : FALSE;
   }
   return FALSE;
 }

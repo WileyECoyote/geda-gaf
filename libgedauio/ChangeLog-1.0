@@ -7,6 +7,9 @@
     * po/domain.mak.in: Add file to capture LIBGEDAUIO_GETTEXT_DOMAIN
       in DOMAIN.
 
+    * src/widgets/geda_tree_view.c: Replace object type identifier scheme
+      for GedaTreeView with new hash table type identifier system.
+
 2017-01-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_menu_button.h: Remove instance_type member.

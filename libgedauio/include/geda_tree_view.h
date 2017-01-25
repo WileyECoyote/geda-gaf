@@ -48,7 +48,6 @@ typedef struct _GedaTreeViewClass   GedaTreeViewClass;
 struct _GedaTreeView
 {
   GtkTreeView parent_instance;
-  GedaType    instance_type;
 };
 
 struct _GedaTreeViewClass
