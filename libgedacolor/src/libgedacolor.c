@@ -79,8 +79,8 @@ int libgedacolor_init(int *argc, char **argv)
 
 #ifdef ENABLE_NLS
 
-  bindtextdomain ("geda-libgedacolor", LOCALEDIR);
-  bind_textdomain_codeset("geda-libgedacolor", "UTF-8");
+  bindtextdomain (LIBGEDACOLOR_GETTEXT_DOMAIN, LOCALEDIR);
+  bind_textdomain_codeset(LIBGEDACOLOR_GETTEXT_DOMAIN, "UTF-8");
 
 #endif
 
