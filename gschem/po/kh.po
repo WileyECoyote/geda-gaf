@@ -2825,7 +2825,7 @@ msgstr "kesamruol rbieb"
 
 #: gschem/src/x/x_menus.c:110
 msgid "Object..."
-msgstr "Vottho"
+msgstr "Vottho..."
 
 #: gschem/src/x/x_menus.c:110 gschem/etc/system-gschemrc.scm:2108
 msgid "Edit Object Attributes"

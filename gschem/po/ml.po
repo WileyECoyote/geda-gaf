@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-22 02:36-0600\n"
+"POT-Creation-Date: 2017-01-22 19:05-0600\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -138,7 +138,6 @@ msgstr ""
 
 #: gschem/src/base/gschem_page_view.c:258
 #: gschem/src/base/gschem_page_view.c:259
-#, fuzzy
 msgid "Page"
 msgstr "താള്"
 
@@ -242,18 +241,16 @@ msgid "name of file to be previewed"
 msgstr ""
 
 #: gschem/src/base/gschem_preview.c:549
-#, fuzzy
 msgid "Object List"
-msgstr "പ്രവര്‍ത്തന രീതി നിര്‍ണയിക്കുക"
+msgstr "ഒബ്ജക്റ്റ് പട്ടിക"
 
 #: gschem/src/base/gschem_preview.c:550
 msgid "List of objects to be previewed"
 msgstr ""
 
 #: gschem/src/base/gschem_preview.c:557
-#, fuzzy
 msgid "Active"
-msgstr "പ്രവര്‍ത്തന രീതി നിര്‍ണയിക്കുക"
+msgstr "സജീവമായ"
 
 #: gschem/src/base/gschem_preview.c:558
 msgid "Whether the preview widget is enabled or disabled"
@@ -324,9 +321,8 @@ msgid "Set the string for the Right Button Text"
 msgstr ""
 
 #: gschem/src/base/gschem_status_bar.c:648
-#, fuzzy
 msgid "Snap Mode"
-msgstr "പ്രവര്‍ത്തന രീതി നിര്‍ണയിക്കുക"
+msgstr "സ്നാപ്പ് മോഡ്"
 
 #: gschem/src/base/gschem_status_bar.c:649
 msgid "Sets the Snap Mode to display on the status bar"
@@ -400,9 +396,8 @@ msgstr ""
 
 #: gschem/src/base/gschem_status_bar.c:1907 gschem/src/object/o_picture.c:615
 #: gschem/src/object/o_picture.c:619
-#, fuzzy
 msgid "Error"
-msgstr "പ്രിന്‍റ് ചെയ്യുക..."
+msgstr "പിശക്"
 
 #: gschem/src/base/gschem_status_bar.c:1919
 msgid "NONE"
@@ -907,139 +902,139 @@ msgid "Session system initialized!\n"
 msgstr ""
 
 #: gschem/src/iface/i_status.c:134 gschem/etc/system-gschemrc.scm:2121
-#, fuzzy
 msgid "Deselect Mode"
-msgstr "പ്രവര്‍ത്തന രീതി നിര്‍ണയിക്കുക"
+msgstr "അൺ-തിരഞ്ഞെടുക്കാൻ മോഡ്"
 
+# Select Mode
 #: gschem/src/iface/i_status.c:138 gschem/src/x/x_status_bar.c:383
 #: gschem/etc/system-gschemrc.scm:2120 gschem/scheme/gschem/builtins.scm:170
 msgid "Select Mode"
-msgstr "പ്രവര്‍ത്തന രീതി നിര്‍ണയിക്കുക"
+msgstr "തെരഞ്ഞെടുക്കുക മോഡ്"
 
+# Select Box Mode
 #: gschem/src/iface/i_status.c:140
-#, fuzzy
 msgid "Select Box Mode"
-msgstr "പ്രവര്‍ത്തന രീതി നിര്‍ണയിക്കുക"
+msgstr "തെരഞ്ഞെടുക്കുക പെട്ടി മോഡ്"
 
 #: gschem/src/iface/i_status.c:142 gschem/scheme/gschem/builtins.scm:227
 msgid "Zoom Box"
 msgstr "വലുതാക്കി കാണിക്കുന്ന പെട്ടി"
 
+# Copy to point
 #: gschem/src/iface/i_status.c:145
-#, fuzzy
 msgid "Copy to point"
-msgstr "പകര്‍ത്തുക 1ലേക്ക്"
+msgstr "പോയിന്റ് പകർത്തുക"
 
 #: gschem/src/iface/i_status.c:147 gschem/scheme/gschem/builtins.scm:122
 #: gschem/scheme/gschem/builtins.scm:125
 msgid "Rotate Mode"
-msgstr ""
+msgstr "തിരിക്കുക മോഡ്"
 
 #: gschem/src/iface/i_status.c:149
 msgid "Side to offset?"
-msgstr ""
+msgstr "ഓഫ്സെറ്റ് സൈഡ്?"
 
 #: gschem/src/iface/i_status.c:151 gschem/scheme/gschem/builtins.scm:116
 msgid "Mirror Mode"
-msgstr ""
+msgstr "മിറർ മോഡ്"
 
 #: gschem/src/iface/i_status.c:153
 msgid "Pan Mode"
-msgstr ""
+msgstr "പാൻ മോഡ്"
 
 #: gschem/src/iface/i_status.c:155
-#, fuzzy
 msgid "Choose component"
-msgstr "സാധനത്തിലെ മാറ്റങ്ങള്‍ നടപ്പില്‍ വരുത്തുക"
+msgstr "ഘടകങ്ങൾ തെരഞ്ഞെടുക്കുക"
 
 #: gschem/src/iface/i_status.c:158
 msgid "Magnetic Net Mode"
-msgstr ""
+msgstr "മാഗ്നറ്റിക് നെറ്റ് മോഡ്"
 
 #: gschem/src/iface/i_status.c:160
 msgid "Net Mode"
-msgstr ""
+msgstr "നെറ്റ് മോഡ്"
 
 #: gschem/src/iface/i_status.c:162
 msgid "Pin Mode"
-msgstr ""
+msgstr "പിൻ മോഡ്"
 
 #: gschem/src/iface/i_status.c:164
 msgid "Line Mode"
-msgstr ""
+msgstr "ലൈൻ മോഡിൽ"
 
 #: gschem/src/iface/i_status.c:166
 msgid "Box Mode"
-msgstr ""
+msgstr "ബോക്സ് മോഡ്"
 
 #: gschem/src/iface/i_status.c:168
 msgid "Circle Mode"
-msgstr ""
+msgstr "സർക്കിൾ മോഡ്"
 
 #: gschem/src/iface/i_status.c:170
 msgid "Text Mode"
-msgstr ""
+msgstr "ടെക്സ്റ്റ് മോഡ്"
 
 #: gschem/src/iface/i_status.c:172
 msgid "Arc Mode"
-msgstr ""
+msgstr "ആർക് മോഡ്"
 
+# Polygon Mode
 #: gschem/src/iface/i_status.c:174
-#, fuzzy
 msgid "Path Mode"
-msgstr "പ്രവര്‍ത്തന രീതി നിര്‍ണയിക്കുക"
+msgstr "പോളിഗൺ മോഡ്"
 
 #: gschem/src/iface/i_status.c:176
 msgid "Picture Mode"
-msgstr ""
+msgstr "ചിത്രം മോഡ്"
 
 #: gschem/src/iface/i_status.c:178
 msgid "Bus Mode"
-msgstr ""
+msgstr "ബസ് മോഡ്"
 
 #: gschem/src/iface/i_status.c:180 gschem/scheme/gschem/builtins.scm:110
 msgid "Move Mode"
-msgstr ""
+msgstr "മോഡ് നീക്കു"
 
 #: gschem/src/iface/i_status.c:183
 #, c-format
 msgid "Paste %d Mode"
-msgstr ""
+msgstr "ഒട്ടിക്കുക %d മോഡ്"
 
 #: gschem/src/iface/i_status.c:186
 msgid "First point?"
-msgstr ""
+msgstr "ആദ്യത്തെ പോയിന്റ്?"
 
 #: gschem/src/iface/i_status.c:188
 msgid "Second point?"
-msgstr ""
+msgstr "രണ്ടാമത്തേത് പോയിന്റ്?"
 
+# Extend mode
 #: gschem/src/iface/i_status.c:190
-#, fuzzy
 msgid "Project Mode"
-msgstr "പ്രവര്‍ത്തന രീതി നിര്‍ണയിക്കുക"
+msgstr "മോഡ് വിപുലീകരിക്കു"
 
+# Select Object to extend
 #: gschem/src/iface/i_status.c:192
-#, fuzzy
 msgid "Select Projectiles"
-msgstr "പ്രവര്‍ത്തന രീതി നിര്‍ണയിക്കുക"
+msgstr "വ്യാപിപ്പിക്കാൻ ഒബ്ജക്റ്റ് തിരഞ്ഞെടുക്കു"
 
+# Select Object
 #: gschem/src/iface/i_status.c:194
-#, fuzzy
 msgid "Select Object"
-msgstr "പ്രവര്‍ത്തന രീതി നിര്‍ണയിക്കുക"
+msgstr "ഒബ്ജക്റ്റ് തിരഞ്ഞെടുക്കു"
 
 #: gschem/src/iface/i_status.c:243
 msgid "Show Hidden"
-msgstr ""
+msgstr "മറച്ചത് കാണിക്കുക"
 
+# disable snap
 #: gschem/src/iface/i_status.c:246
 msgid "Snap Off"
-msgstr ""
+msgstr "സ്നാപ്പ് അപ്രാപ്തമാക്കുകയോ"
 
 #: gschem/src/iface/i_status.c:248
 msgid "Resnap Active"
-msgstr ""
+msgstr "റീ-സ്നാപ്പ് സജീവ"
 
 #: gschem/src/iface/i_vars.c:386
 msgid "Restoring user settings\n"
@@ -1054,9 +1049,8 @@ msgid "Failed to save user configuration to"
 msgstr ""
 
 #: gschem/src/iface/i_window.c:104
-#, fuzzy
 msgid "Closing Page\n"
-msgstr "പേജ് അടയ്ക്കുക"
+msgstr "അടയ്ക്കുന്നു പേജ്\n"
 
 #: gschem/src/iface/i_window.c:173
 #, c-format
@@ -2744,7 +2738,7 @@ msgid "Extend"
 msgstr "വലുതാക്കി കാണിക്കുന്ന പെട്ടി"
 
 #: gschem/src/x/x_menus.c:119 gschem/etc/system-gschemrc.scm:2105
-msgid "Project a linear objects to other objects"
+msgid "Project linear objects to other objects"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:120 gschem/src/x/x_multiattrib.c:1686
@@ -4549,12 +4543,16 @@ msgstr ""
 msgid "Scale _up Grid Spacing"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2316 gschem/etc/system-gschemrc.scm:2317
+#: gschem/etc/system-gschemrc.scm:2316
 msgid "Increase the snap size"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2317
 msgid "Scale _down Grid Spacing"
+msgstr ""
+
+#: gschem/etc/system-gschemrc.scm:2317
+msgid "Decrease the snap size"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2318
@@ -5264,9 +5262,8 @@ msgid "Export embed symbol"
 msgstr ""
 
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "Export embed picture"
-msgstr "പടം/സാധനം ഉള്ളടക്കം ചെയുക"
+msgstr "കൂടുതൽ ഉൾപ്പെടുത്തിയ ചിത്രം കയറ്റുമതി എന്തു"
 
 #: gschem/scheme/gschem/keymap.scm:41
 #, scheme-format
@@ -5277,11 +5274,3 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
-
-# Component
-#~ msgid "..."
-#~ msgstr "ഘടകം..."
-
-#, fuzzy
-#~ msgid "documents\n"
-#~ msgstr "പേജ് അടയ്ക്കുക"
