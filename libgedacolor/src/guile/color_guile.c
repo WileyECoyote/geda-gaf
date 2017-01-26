@@ -137,7 +137,7 @@ geda_color_guile_map_from_scm (COLOR *map, SCM lst, const char *scheme_proc_name
         (scm_to_int (scm_length (scm_entry)) != 2))
     {
       scm_error_scm (wrong_type_arg_sym, proc_name,
-                     scm_from_utf8_string (_("Color map entry must be a two-element list")),
+                     scm_from_utf8_string (_("Color map entries must be a two-element list")),
                      SCM_EOL, scm_list_1 (scm_entry));
     }
 
@@ -146,7 +146,7 @@ geda_color_guile_map_from_scm (COLOR *map, SCM lst, const char *scheme_proc_name
 
     if (!scm_is_string (s)) {
       scm_error_scm (wrong_type_arg_sym, proc_name,
-                     scm_from_utf8_string (_("Key in color map entry must be an string")),
+                     scm_from_utf8_string (_("Key in color map entry must be a string")),
                      SCM_EOL, scm_list_1 (s));
     }
 

@@ -7,6 +7,8 @@
     * po/domain.mak.in: Add file to capture LIBGEDAUIO_GETTEXT_DOMAIN
       in DOMAIN.
 
+    * src/guile/color_guile.c: Make grammatical correction in messages.
+
 2017-01-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/libgedacolor.c: Replace domain strings with build variable,
