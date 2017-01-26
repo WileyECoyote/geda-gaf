@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-25 04:45-0600\n"
+"POT-Creation-Date: 2017-01-26 01:17-0600\n"
 "PO-Revision-Date: 2014-08-31 23:03+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -28,15 +28,14 @@ msgstr "Kleuren index buiten bereik"
 
 #: libgedacolor/src/guile/color_guile.c:68
 msgid "Error loading"
-msgstr "Fout bij het laden bestand"
+msgstr "Fout bij laden van bestand"
 
 #: libgedacolor/src/guile/color_guile.c:140
-msgid "Color map entry must be a two-element list"
-msgstr "Kleuren map invoer moet een twee-element lijst zijn"
+msgid "Color map entries must be a two-element list"
+msgstr "Kleurenkaart inzendingen moeten een twee-element lijst"
 
 #: libgedacolor/src/guile/color_guile.c:149
-#, fuzzy
-msgid "Key in color map entry must be an string"
+msgid "Key in color map entry must be a string"
 msgstr "Waarde in kleuren map invoer moet een #f of een string zijn"
 
 #: libgedacolor/src/guile/color_guile.c:160

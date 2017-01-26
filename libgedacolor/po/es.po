@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-25 04:45-0600\n"
+"POT-Creation-Date: 2017-01-26 01:17-0600\n"
 "PO-Revision-Date: 2012-02-20 00:09+0000\n"
 "Last-Translator: Carlos Nieves <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -19,6 +19,7 @@ msgstr ""
 "X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
 "X-Generator: Launchpad (build 16265)\n"
 
+# Color index out of range
 #: libgedacolor/src/get/color_get.c:63 libgedacolor/src/get/color_get.c:184
 #: libgedacolor/src/utility/color_utility.c:223
 #, c-format
@@ -26,17 +27,16 @@ msgid "Color index out of range"
 msgstr "Índice de color fuera de rango"
 
 #: libgedacolor/src/guile/color_guile.c:68
-#, fuzzy
 msgid "Error loading"
-msgstr "No se puede encontrar el archivo %s: %s"
+msgstr "Error al cargar el archivo"
 
 #: libgedacolor/src/guile/color_guile.c:140
-msgid "Color map entry must be a two-element list"
-msgstr "La entrada del mapa de colores debe ser una lista de dos elementos"
+msgid "Color map entries must be a two-element list"
+msgstr "Las entradas del mapa de colores debe ser una lista de dos elementos"
 
+# Key values in color map entry must be a string
 #: libgedacolor/src/guile/color_guile.c:149
-#, fuzzy
-msgid "Key in color map entry must be an string"
+msgid "Key in color map entry must be a string"
 msgstr "El valor en la entrada del mapa de colores debe ser #f o una cadena"
 
 #: libgedacolor/src/guile/color_guile.c:160

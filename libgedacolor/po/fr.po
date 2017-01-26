@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-25 04:45-0600\n"
+"POT-Creation-Date: 2017-01-26 01:17-0600\n"
 "PO-Revision-Date: 2012-10-22 13:10+0000\n"
 "Last-Translator: Patrick Fiquet <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -22,22 +22,20 @@ msgstr ""
 #: libgedacolor/src/utility/color_utility.c:223
 #, c-format
 msgid "Color index out of range"
-msgstr "Index de couleur hors de la plage"
+msgstr "Indice de couleur hors limites"
 
 #: libgedacolor/src/guile/color_guile.c:68
 msgid "Error loading"
 msgstr "Erreur lors du chargement du fichier"
 
 #: libgedacolor/src/guile/color_guile.c:140
-msgid "Color map entry must be a two-element list"
-msgstr "L'entrée de la carte de couleurs doit être une liste à deux entrées"
+msgid "Color map entries must be a two-element list"
+msgstr "Les entrées de la carte de couleurs doit être une liste à deux entrées"
 
+# Key values in color map must be a string
 #: libgedacolor/src/guile/color_guile.c:149
-#, fuzzy
-msgid "Key in color map entry must be an string"
-msgstr ""
-"La valeur du champ dans la carte couleur doit être ou une chaîne de "
-"caractères"
+msgid "Key in color map entry must be a string"
+msgstr "Les valeurs clés de la carte en couleurs doivent être une chaîne"
 
 #: libgedacolor/src/guile/color_guile.c:160
 msgid "Invalid key in color map"

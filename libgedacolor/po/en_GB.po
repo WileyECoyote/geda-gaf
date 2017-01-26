@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-25 04:45-0600\n"
+"POT-Creation-Date: 2017-01-26 01:17-0600\n"
 "PO-Revision-Date: 2012-01-31 12:15+0000\n"
 "Last-Translator: Peter TB Brett <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -30,16 +30,16 @@ msgid "Error loading"
 msgstr "Error loading"
 
 #: libgedacolor/src/guile/color_guile.c:140
-msgid "Color map entry must be a two-element list"
-msgstr "Colour map entry must be a two-element list"
+msgid "Color map entries must be a two-element list"
+msgstr "Colour map entries must be a two-element list"
 
 #: libgedacolor/src/guile/color_guile.c:149
-msgid "Key in color map entry must be an string"
-msgstr "Key in colour map entry must be an string"
+msgid "Key in color map entry must be a string"
+msgstr "Key in colour map entry must be a string"
 
 #: libgedacolor/src/guile/color_guile.c:160
 msgid "Invalid key in color map"
-msgstr ""
+msgstr "Invalid key in colour map"
 
 #: libgedacolor/src/guile/color_guile.c:178
 msgid "Value in color map entry must be #f or a string"

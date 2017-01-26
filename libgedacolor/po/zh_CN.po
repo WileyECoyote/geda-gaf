@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-25 04:45-0600\n"
+"POT-Creation-Date: 2017-01-26 01:17-0600\n"
 "PO-Revision-Date: 2010-02-06 22:10+0000\n"
 "Last-Translator: 冯超 <rainofchaos@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -18,23 +18,25 @@ msgstr ""
 "X-Launchpad-Export-Date: 2010-02-14 12:56+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
+# Color index out of range
 #: libgedacolor/src/get/color_get.c:63 libgedacolor/src/get/color_get.c:184
 #: libgedacolor/src/utility/color_utility.c:223
 #, c-format
 msgid "Color index out of range"
-msgstr ""
+msgstr "颜色索引超出范围"
 
+# Error loading
 #: libgedacolor/src/guile/color_guile.c:68
 msgid "Error loading"
-msgstr ""
+msgstr "错误加载"
 
 #: libgedacolor/src/guile/color_guile.c:140
-msgid "Color map entry must be a two-element list"
-msgstr ""
+msgid "Color map entries must be a two-element list"
+msgstr "颜色条目应该是两个元素的列表"
 
 #: libgedacolor/src/guile/color_guile.c:149
-msgid "Key in color map entry must be an string"
-msgstr ""
+msgid "Key in color map entry must be a string"
+msgstr "颜色映射中的键值必须是字符串"
 
 #: libgedacolor/src/guile/color_guile.c:160
 msgid "Invalid key in color map"

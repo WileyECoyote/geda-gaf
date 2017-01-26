@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-25 04:45-0600\n"
+"POT-Creation-Date: 2017-01-26 01:17-0600\n"
 "PO-Revision-Date: 2010-02-06 22:11+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -18,24 +18,26 @@ msgstr ""
 "X-Launchpad-Export-Date: 2010-02-14 12:56+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
+# Color index out of range
 #: libgedacolor/src/get/color_get.c:63 libgedacolor/src/get/color_get.c:184
 #: libgedacolor/src/utility/color_utility.c:223
 #, c-format
 msgid "Color index out of range"
-msgstr ""
+msgstr "Szín index a tartományon"
 
 #: libgedacolor/src/guile/color_guile.c:68
-#, fuzzy
 msgid "Error loading"
-msgstr "Nem találom a file-t %s: %s"
+msgstr "Error loading"
 
+# Color map entries must be a two-element list
 #: libgedacolor/src/guile/color_guile.c:140
-msgid "Color map entry must be a two-element list"
-msgstr ""
+msgid "Color map entries must be a two-element list"
+msgstr "Színes térkép bejegyzéseket kell egy két elemű lista"
 
+# Color map entries must be a two-element list
 #: libgedacolor/src/guile/color_guile.c:149
-msgid "Key in color map entry must be an string"
-msgstr ""
+msgid "Key in color map entry must be a string"
+msgstr "kulcs értékek a színes térkép kell egy húr"
 
 #: libgedacolor/src/guile/color_guile.c:160
 msgid "Invalid key in color map"

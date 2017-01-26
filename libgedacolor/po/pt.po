@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-25 04:45-0600\n"
+"POT-Creation-Date: 2017-01-26 01:17-0600\n"
 "PO-Revision-Date: 2012-01-27 14:12+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Portuguese <pt@li.org>\n"
@@ -25,19 +25,16 @@ msgid "Color index out of range"
 msgstr "Índice de cor fora do alcance"
 
 #: libgedacolor/src/guile/color_guile.c:68
-#, fuzzy
 msgid "Error loading"
-msgstr "Não é possível encontrar o ficheiro %s: %s"
+msgstr "Erro ao carregar ficheiro"
 
 #: libgedacolor/src/guile/color_guile.c:140
-msgid "Color map entry must be a two-element list"
-msgstr "Entrada do mapa de cor  tem de ser uma lista de dois elementos"
+msgid "Color map entries must be a two-element list"
+msgstr "Entradas do mapa de cor tem de ser uma lista de dois elementos"
 
 #: libgedacolor/src/guile/color_guile.c:149
-#, fuzzy
-msgid "Key in color map entry must be an string"
-msgstr ""
-"Valor na entrada do mapa de cor tem de ser #f ou uma faixa de caracteres"
+msgid "Key in color map entry must be a string"
+msgstr "Kernwaarden in de kleurenkaart moet een tekenreeks"
 
 #: libgedacolor/src/guile/color_guile.c:160
 msgid "Invalid key in color map"
@@ -95,15 +92,11 @@ msgstr ""
 msgid "Something went wrong, check"
 msgstr ""
 
+# Não é possível encontrar o ficheiro
 #: libgedacolor/src/x11/color_x11.c:265 libgedacolor/src/libgedacolor.c:136
-#, fuzzy
 msgid "Could not locate file"
-msgstr "Não é possível guardar o ficheiro de salvaguarda: %s."
+msgstr "Não é possível guardar o ficheiro de salvaguarda"
 
 #: libgedacolor/src/libgedacolor.c:98
 msgid "FAILED"
 msgstr ""
-
-#, fuzzy
-#~ msgid "Could not allocate %s color %i!\n"
-#~ msgstr "Não foi possível abrir [%s] para impressão\n"

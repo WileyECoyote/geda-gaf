@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-25 04:45-0600\n"
+"POT-Creation-Date: 2017-01-26 01:17-0600\n"
 "PO-Revision-Date: 2012-01-31 12:11+0000\n"
 "Last-Translator: Peter TB Brett <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -18,23 +18,27 @@ msgstr ""
 "X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
 "X-Generator: Launchpad (build 16265)\n"
 
+# Color index out of range
 #: libgedacolor/src/get/color_get.c:63 libgedacolor/src/get/color_get.c:184
 #: libgedacolor/src/utility/color_utility.c:223
 #, c-format
 msgid "Color index out of range"
-msgstr ""
+msgstr "Renk endeksi aralık dışı"
 
+# Error loading
 #: libgedacolor/src/guile/color_guile.c:68
 msgid "Error loading"
-msgstr ""
+msgstr "Yükleme hatası"
 
+# Color map entry must be a two-element list
 #: libgedacolor/src/guile/color_guile.c:140
-msgid "Color map entry must be a two-element list"
-msgstr ""
+msgid "Color map entries must be a two-element list"
+msgstr "Renkli harita girişi iki unsurlu bir liste olmalıdır"
 
+# Color map entry must be a two-element list
 #: libgedacolor/src/guile/color_guile.c:149
-msgid "Key in color map entry must be an string"
-msgstr ""
+msgid "Key in color map entry must be a string"
+msgstr "Renk haritasındaki anahtar değerler bir dize olmalıdır"
 
 #: libgedacolor/src/guile/color_guile.c:160
 msgid "Invalid key in color map"

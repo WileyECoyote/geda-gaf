@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-25 04:45-0600\n"
+"POT-Creation-Date: 2017-01-26 01:17-0600\n"
 "PO-Revision-Date: 2010-02-06 22:09+0000\n"
 "Last-Translator: Jarosław Ogrodnik <nobodythere@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -22,18 +22,18 @@ msgstr ""
 #: libgedacolor/src/utility/color_utility.c:223
 #, c-format
 msgid "Color index out of range"
-msgstr "Indeks koloru poza zakresem"
+msgstr "Indeks kolor poza zakresem"
 
 #: libgedacolor/src/guile/color_guile.c:68
 msgid "Error loading"
 msgstr "Błąd ładowania"
 
 #: libgedacolor/src/guile/color_guile.c:140
-msgid "Color map entry must be a two-element list"
+msgid "Color map entries must be a two-element list"
 msgstr "Wpis w mapie kolorów musi być dwuelementową listą"
 
 #: libgedacolor/src/guile/color_guile.c:149
-msgid "Key in color map entry must be an string"
+msgid "Key in color map entry must be a string"
 msgstr "Klucz w pozycji kolorów mapy musi być ciągiem"
 
 #: libgedacolor/src/guile/color_guile.c:160
