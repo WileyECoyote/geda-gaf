@@ -1,3 +1,7 @@
+2017-01-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/LINGUAS: Add Russian translations.
+
 2017-01-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gettext.h: Add conditionals to use <libintl.h> if LIBC
