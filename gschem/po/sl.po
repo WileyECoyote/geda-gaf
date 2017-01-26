@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-22 02:36-0600\n"
+"POT-Creation-Date: 2017-01-22 19:05-0600\n"
 "PO-Revision-Date: 2012-01-27 14:18+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
@@ -1134,9 +1134,8 @@ msgid "Bus ripper symbol was not found in any component library"
 msgstr ""
 
 #: gschem/src/object/o_picture.c:357
-#, fuzzy
 msgid "Update All"
-msgstr "Shrani vse"
+msgstr "posodobiti vse"
 
 #: gschem/src/object/o_picture.c:359
 msgid "Update all selected Picture images"
@@ -2606,123 +2605,124 @@ msgstr ""
 #: gschem/src/x/x_menus.c:100 gschem/src/x/x_menus.c:152
 #: gschem/etc/system-gschemrc.scm:2186
 msgid "Increase the Zoom magnification"
-msgstr ""
+msgstr "Povečajte povečavo Zoom"
 
 #: gschem/src/x/x_menus.c:101 gschem/src/x/x_menus.c:153
 msgid "Out"
 msgstr ""
 
+# Decrease the Zoom magnification
 #: gschem/src/x/x_menus.c:101 gschem/src/x/x_menus.c:153
 #: gschem/etc/system-gschemrc.scm:2187
 msgid "Decrease the Zoom magnification"
-msgstr ""
+msgstr "Zmanjšanje povečave Zoom"
 
+# Rectangle
 #: gschem/src/x/x_menus.c:102
 msgid "Box"
-msgstr ""
+msgstr "pravokotnik"
 
 #: gschem/src/x/x_menus.c:102 gschem/etc/system-gschemrc.scm:2184
 msgid "Zoom to a Windowed region"
-msgstr ""
+msgstr "Zoom na regijo okni"
 
 #: gschem/src/x/x_menus.c:103 gschem/src/x/x_menus.c:154
 msgid "Extents"
-msgstr ""
+msgstr "obsegi"
 
 #: gschem/src/x/x_menus.c:103 gschem/src/x/x_menus.c:154
 #: gschem/etc/system-gschemrc.scm:2185
 msgid "Zoom to the extents of the drawing"
-msgstr ""
+msgstr "Zoom v obsegu iz risbe"
 
 #: gschem/src/x/x_menus.c:104
 msgid "Mag"
-msgstr ""
+msgstr "povečava"
 
 #: gschem/src/x/x_menus.c:104 gschem/etc/system-gschemrc.scm:2188
 msgid "Zoom to a specified level"
-msgstr ""
+msgstr "Zoom na določeno raven"
 
 #: gschem/src/x/x_menus.c:105 gschem/etc/system-gschemrc.scm:2189
 msgid "Zoom to selected objects"
-msgstr ""
+msgstr "Zoom na izbranih predmetov"
 
 #: gschem/src/x/x_menus.c:109
-#, fuzzy
 msgid "Edit"
-msgstr "_Uredi"
+msgstr "Uredi"
 
 #: gschem/src/x/x_menus.c:109
 msgid "Edit modes"
-msgstr ""
+msgstr "Urejanje načini"
 
 #: gschem/src/x/x_menus.c:110
 msgid "Object..."
-msgstr ""
+msgstr "objektov"
 
 #: gschem/src/x/x_menus.c:110 gschem/etc/system-gschemrc.scm:2108
 msgid "Edit Object Attributes"
-msgstr ""
+msgstr "Urejanje objektov atributi"
 
 #: gschem/src/x/x_menus.c:111
 msgid "Color..."
-msgstr ""
+msgstr "barva..."
 
 #: gschem/src/x/x_menus.c:111 gschem/etc/system-gschemrc.scm:2110
 msgid "Open the Color Editor Dialog"
-msgstr ""
+msgstr "Odprite barve Editor pogovornega"
 
 #: gschem/src/x/x_menus.c:112 gschem/etc/system-gschemrc.scm:2114
 msgid "Open the Component Editor Dialog"
-msgstr ""
+msgstr "Odprite komponento urejevalnika pogovornega"
 
 #: gschem/src/x/x_menus.c:113
 msgid "Pin type..."
-msgstr ""
+msgstr "Pin tipa..."
 
 #: gschem/src/x/x_menus.c:113 gschem/etc/system-gschemrc.scm:2111
 msgid "Open the Pin Type Dialog"
-msgstr ""
+msgstr "Odprite tipa Pin pogovornega okna"
 
 #: gschem/src/x/x_menus.c:117
 msgid "Array"
-msgstr ""
+msgstr "Matrika"
 
 #: gschem/src/x/x_menus.c:117 gschem/etc/system-gschemrc.scm:2103
 msgid "Create and array of objects"
-msgstr ""
+msgstr "Ustvarjanje in paleto predmetov"
 
 #: gschem/src/x/x_menus.c:118
 msgid "Break"
-msgstr ""
+msgstr "prelom"
 
 #: gschem/src/x/x_menus.c:118
 msgid "Break an object into separate objects"
-msgstr ""
+msgstr "prekinil objekt v ločenih predmetov"
 
 #: gschem/src/x/x_menus.c:119
 msgid "Extend"
-msgstr ""
+msgstr "Podaljšajte"
 
 #: gschem/src/x/x_menus.c:119 gschem/etc/system-gschemrc.scm:2105
-msgid "Project a linear objects to other objects"
-msgstr ""
+msgid "Project linear objects to other objects"
+msgstr "Projekt poligona do drugih predmetov"
 
 #: gschem/src/x/x_menus.c:120 gschem/src/x/x_multiattrib.c:1686
 #: gschem/scheme/gschem/builtins.scm:104
 msgid "Delete"
-msgstr ""
+msgstr "Brisanje"
 
 #: gschem/src/x/x_menus.c:120 gschem/etc/system-gschemrc.scm:2091
 msgid "Delete the current selection"
-msgstr ""
+msgstr "Brisanje trenutni izbor"
 
 #: gschem/src/x/x_menus.c:121 gschem/scheme/gschem/builtins.scm:200
 msgid "Copy"
-msgstr ""
+msgstr "kopirati"
 
 #: gschem/src/x/x_menus.c:121 gschem/etc/system-gschemrc.scm:2094
 msgid "Copy selection"
-msgstr ""
+msgstr "Kopiraj izbor"
 
 #: gschem/src/x/x_menus.c:122
 msgid "MCopy"
@@ -4540,12 +4540,16 @@ msgstr ""
 msgid "Scale _up Grid Spacing"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2316 gschem/etc/system-gschemrc.scm:2317
+#: gschem/etc/system-gschemrc.scm:2316
 msgid "Increase the snap size"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2317
 msgid "Scale _down Grid Spacing"
+msgstr ""
+
+#: gschem/etc/system-gschemrc.scm:2317
+msgid "Decrease the snap size"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2318
@@ -5268,7 +5272,3 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
-
-#, fuzzy
-#~ msgid "session"
-#~ msgstr "Shrani vse"
