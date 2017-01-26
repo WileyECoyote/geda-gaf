@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-22 02:36-0600\n"
+"POT-Creation-Date: 2017-01-22 19:05-0600\n"
 "PO-Revision-Date: 2015-07-29 00:24-0600\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -2779,116 +2779,118 @@ msgstr "bangkeun karopongrik bangruom"
 msgid "Out"
 msgstr "Chenh"
 
+# Decrease the Zoom magnification
 #: gschem/src/x/x_menus.c:101 gschem/src/x/x_menus.c:153
 #: gschem/etc/system-gschemrc.scm:2187
 msgid "Decrease the Zoom magnification"
-msgstr ""
+msgstr "banthoy karopongrik bangruom"
 
+# Rectangle
 #: gschem/src/x/x_menus.c:102
 msgid "Box"
-msgstr ""
+msgstr "chtokaonkeng"
 
 #: gschem/src/x/x_menus.c:102 gschem/etc/system-gschemrc.scm:2184
 msgid "Zoom to a Windowed region"
-msgstr ""
+msgstr "pongrik towdl tambn muoy del mean brapnth bratebatte kar Windows"
 
 #: gschem/src/x/x_menus.c:103 gschem/src/x/x_menus.c:154
 msgid "Extents"
-msgstr ""
+msgstr "visaealpheap"
 
 #: gschem/src/x/x_menus.c:103 gschem/src/x/x_menus.c:154
 #: gschem/etc/system-gschemrc.scm:2185
 msgid "Zoom to the extents of the drawing"
-msgstr ""
+msgstr "pongrik tow nei koumnour"
 
 #: gschem/src/x/x_menus.c:104
 msgid "Mag"
-msgstr ""
+msgstr "pongrik"
 
 #: gschem/src/x/x_menus.c:104 gschem/etc/system-gschemrc.scm:2188
 msgid "Zoom to a specified level"
-msgstr ""
+msgstr "pongrik dlkamrit del ban banhcheak"
 
 #: gschem/src/x/x_menus.c:105 gschem/etc/system-gschemrc.scm:2189
 msgid "Zoom to selected objects"
-msgstr ""
+msgstr "pongrik tow vottho del ban chreus"
 
 #: gschem/src/x/x_menus.c:109
 msgid "Edit"
-msgstr ""
+msgstr "kesamruol"
 
 #: gschem/src/x/x_menus.c:109
 msgid "Edit modes"
-msgstr ""
+msgstr "kesamruol rbieb"
 
 #: gschem/src/x/x_menus.c:110
 msgid "Object..."
-msgstr ""
+msgstr "Vottho"
 
 #: gschem/src/x/x_menus.c:110 gschem/etc/system-gschemrc.scm:2108
 msgid "Edit Object Attributes"
-msgstr "kounalokkhan"
+msgstr "kounalokkhan kesamruol vottho"
 
 #: gschem/src/x/x_menus.c:111
 msgid "Color..."
-msgstr "..."
+msgstr "n..."
 
 #: gschem/src/x/x_menus.c:111 gschem/etc/system-gschemrc.scm:2110
 msgid "Open the Color Editor Dialog"
-msgstr ""
+msgstr "baek kammovithi niponth braab Color"
 
 #: gschem/src/x/x_menus.c:112 gschem/etc/system-gschemrc.scm:2114
 msgid "Open the Component Editor Dialog"
-msgstr ""
+msgstr "baek sameasapheak kammovithi niponth braab nih"
 
 #: gschem/src/x/x_menus.c:113
 msgid "Pin type..."
-msgstr "..."
+msgstr "mchoul tomneaktomnong..."
 
 #: gschem/src/x/x_menus.c:113 gschem/etc/system-gschemrc.scm:2111
 msgid "Open the Pin Type Dialog"
-msgstr ""
+msgstr "baek braab braphet mchoul"
 
 #: gschem/src/x/x_menus.c:117
 msgid "Array"
-msgstr ""
+msgstr "a re"
 
 #: gschem/src/x/x_menus.c:117 gschem/etc/system-gschemrc.scm:2103
 msgid "Create and array of objects"
-msgstr ""
+msgstr "bangkeut ning a re nei vottho"
 
 #: gschem/src/x/x_menus.c:118
 msgid "Break"
-msgstr ""
+msgstr "bambek"
 
 #: gschem/src/x/x_menus.c:118
 msgid "Break an object into separate objects"
-msgstr ""
+msgstr "bambek vottho dachdaoylek muoy del chaul tow knong vottho"
 
 #: gschem/src/x/x_menus.c:119
 msgid "Extend"
-msgstr ""
+msgstr "pongrik"
 
 #: gschem/src/x/x_menus.c:119 gschem/etc/system-gschemrc.scm:2105
-msgid "Project a linear objects to other objects"
-msgstr ""
+msgid "Project linear objects to other objects"
+msgstr "vottho lineaer komrong tow vottho phsaengtiet"
 
 #: gschem/src/x/x_menus.c:120 gschem/src/x/x_multiattrib.c:1686
 #: gschem/scheme/gschem/builtins.scm:104
 msgid "Delete"
-msgstr ""
+msgstr "loub"
 
 #: gschem/src/x/x_menus.c:120 gschem/etc/system-gschemrc.scm:2091
 msgid "Delete the current selection"
-msgstr ""
+msgstr "loub chomreusa bachchobban"
 
 #: gschem/src/x/x_menus.c:121 gschem/scheme/gschem/builtins.scm:200
 msgid "Copy"
-msgstr ""
+msgstr "chamlong"
 
 #: gschem/src/x/x_menus.c:121 gschem/etc/system-gschemrc.scm:2094
 msgid "Copy selection"
-msgstr ""
+msgstr "chreusa chbab chamlong"
 
 #: gschem/src/x/x_menus.c:122
 msgid "MCopy"
@@ -4633,12 +4635,16 @@ msgstr ""
 msgid "Scale _up Grid Spacing"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2316 gschem/etc/system-gschemrc.scm:2317
+#: gschem/etc/system-gschemrc.scm:2316
 msgid "Increase the snap size"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2317
 msgid "Scale _down Grid Spacing"
+msgstr ""
+
+#: gschem/etc/system-gschemrc.scm:2317
+msgid "Decrease the snap size"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2318
