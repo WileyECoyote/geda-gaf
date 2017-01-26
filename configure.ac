@@ -256,6 +256,7 @@ AC_CONFIG_FILES([Makefile
 
                  libgedacolor/Makefile
                  libgedacolor/libgedacolor.pc
+                 libgedacolor/po/domain.mak
                  libgedacolor/po/Makefile.in
                  libgedacolor/docs/Makefile
                  libgedacolor/docs/images/Makefile

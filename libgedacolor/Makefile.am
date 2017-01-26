@@ -1,7 +1,7 @@
 
 SUBDIRS = po docs include etc src tests
 
-EXTRA_DIST = BUGS README ChangeLog ChangeLog-1.0
+EXTRA_DIST = BUGS README ChangeLog ChangeLog-1.0 po/domain.mak
 
 pkgconfigdir         = $(libdir)/pkgconfig
 pkgconfig_DATA       = libgedacolor.pc
@@ -36,5 +36,5 @@ update-po:
 
 MOSTLYCLEANFILES     = *.log core FILE *~
 CLEANFILES           = *.log core FILE *~
-DISTCLEANFILES       = *.log core FILE *~ libgedacolor.pc
+DISTCLEANFILES       = *.log core FILE *~ libgedacolor.pc po/domain.mak
 MAINTAINERCLEANFILES = *.log core FILE *~ Makefile.in libgedacolor.pc ChangeLog

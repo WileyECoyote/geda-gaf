@@ -3,6 +3,13 @@
 # Usually the message domain is the same as the package name.
 DOMAIN = libgedacolor
 
+# Unfortunately, we need to use message domains that match the current
+# version of libgedauio. Even more unfortunately, the way that the
+# gettext m4 code merges Makevars into the Makefile precludes Makevars
+# from containing anything determined at configure time. So we have
+# *yet another* Makefile fragment.
+include domain.mak
+
 # These two variables depend on the location of this directory.
 subdir = libgedacolor/po
 top_builddir = ../..
