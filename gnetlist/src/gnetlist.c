@@ -107,7 +107,7 @@ gnetlist_backends (GedaToplevel *pr_current)
     /* Open directory */
     dptr = opendir (dir_name);
     if (dptr == NULL) {
-    fprintf (stderr, _("ERROR: Can not open directory [%s:] %s\n"),
+    fprintf (stderr, "%s [%s]: %s\n", _("ERROR: Can not open directory"),
              dir_name, strerror (errno));
       continue;
     }
@@ -144,7 +144,7 @@ gnetlist_backends (GedaToplevel *pr_current)
   /* Sort the list of backends */
   backend_names = g_list_sort (backend_names, (GCompareFunc) strcmp);
 
-  printf (_("List of available backends: \n\n"));
+  printf ("%s:\n\n", _("List of available backends"));
 
   for (iter = backend_names; iter != NULL; iter = g_list_next (iter)) {
     printf ("%s\n", (char *) iter->data);
@@ -223,8 +223,10 @@ void main_prog(void *closure, int argc, char *argv[])
   /* WEH: even if logging is not enabled */
   geda_utility_log_init ("gnetlist");
 
-  u_log_message("gEDA/gnetlist version %s%s.%s\n", PREPEND_VERSION_STRING,
-                PACKAGE_DOTTED_VERSION, PACKAGE_DATE_VERSION);
+  u_log_message("%s %s%s.%s\n", "gEDA/gnetlist version",
+                                 PREPEND_VERSION_STRING,
+                                 PACKAGE_DOTTED_VERSION,
+                                 PACKAGE_DATE_VERSION);
   u_log_message
   (_("gEDA/gnetlist comes with ABSOLUTELY NO WARRANTY; see COPYING for more details.\n"));
   u_log_message
@@ -281,7 +283,7 @@ void main_prog(void *closure, int argc, char *argv[])
     geda_struct_page_goto (geda_struct_page_new (pr_current, filename));
 
     if (!geda_open_file (pr_current, pr_current->page_current, filename, &err)) {
-      fprintf (stderr, "%s: \"%s\", %s\n", _("load failed"), filename, err->message);
+      fprintf (stderr, "%s: [%s], %s\n", _("load failed"), filename, err->message);
       g_error_free (err);
       GEDA_FREE (filename);
       GEDA_FREE(output_filename);
@@ -300,7 +302,8 @@ void main_prog(void *closure, int argc, char *argv[])
    * the current directory. Having the output go to a different directory
    * will confuse the user (confused me, at first). */
   if (chdir (cwd)) {
-    fprintf (stderr, _("ERROR: File System, could change to directory [%s:] %s\n"),
+    fprintf (stderr, "%s [%s]: %s\n",
+             _("ERROR: File System, could change to directory"),
              cwd, strerror (errno));
     GEDA_FREE(cwd);
     GEDA_FREE(output_filename);
@@ -352,7 +355,7 @@ void main_prog(void *closure, int argc, char *argv[])
      * changed the current working directory. */
     if (chdir (cwd)) {
       /* Error occured with chdir */
-      fprintf (stderr, _("ERROR: File System, could change to directory [%s:] %s\n"),
+      fprintf (stderr, "%s [%s]: %s\n", _("ERROR: File System, could change to directory"),
       cwd, strerror (errno));
       GEDA_FREE(cwd);
       GEDA_FREE(output_filename);
@@ -396,7 +399,7 @@ void main_prog(void *closure, int argc, char *argv[])
             }
           }
           else {
-            fprintf (stderr, _("ERROR: file [%s:] %s\n"), output_filename,
+            fprintf (stderr, "%s [%s]: %s\n", _("ERROR: file"), output_filename,
                      strerror (errno));
             GEDA_FREE(path);
             GEDA_FREE(cwd);
@@ -432,7 +435,7 @@ void main_prog(void *closure, int argc, char *argv[])
   if (access(output_filename, W_OK) == -1) {
 
     if (errno != ENOENT) {
-      fprintf(stderr,"ERROR: Could not create <%s>: %s\n", output_filename,
+      fprintf(stderr,"%s [%s]: %s\n", "ERROR: Could not create", output_filename,
               strerror (errno));
       GEDA_FREE(output_filename);
       exit(2);
