@@ -126,7 +126,7 @@ version ()
 static SCM
 catch_handler (void *data, SCM tag, SCM throw_args)
 {
-  fprintf (stderr, "\n%s:", _("Received an error; tag is"));
+  fprintf (stderr, "\n%s:\n", _("Received an error; tag is"));
   scm_display (tag, scm_current_output_port ());
   scm_newline (scm_current_output_port ());
   scm_newline (scm_current_output_port ());
