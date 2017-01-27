@@ -90,7 +90,7 @@ void usage(char *cmd)
     "  -V, --version   Show gnetlist or a backend version information.\n"
     "  --              Treat all remaining arguments as filenames.\n"
     "\n"
-    "  Note: Help and version arguments are positional relative to the.\n"
+    "  Note: Help and version arguments are positional relative to the\n"
     "  backend argument, when specified after the backend, details specific\n"
     "  to the backend will be displayed.\n"
     "\n"
