@@ -1,7 +1,9 @@
 2017-01-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gnetlist.c: Revise error message formats in order to minimize
-      format specifiers in translatable strings.
+      format specifiers in translatable strings. Add gnetlist_show_error
+      and gnetlist_show_strerror and re-factor error massage output for
+      systemic errors.
 
     * src/parsecmd.c: Revise error message formats in order to minimize
       format specifiers in translatable strings, tweak message in catch

@@ -74,6 +74,20 @@ void gnetlist_quit(void)
 
 }
 
+void
+gnetlist_show_error(const char *msg1, const char *msg2, const char *msg3)
+{
+  const char *_ERROR = _("ERROR");
+  fprintf (stderr, "%s: %s [%s]: %s\n", _ERROR, msg1, msg2, msg3);
+}
+
+void
+gnetlist_show_strerror(const char *msg1, const char *msg2)
+{
+  gnetlist_show_error (msg1, msg2, strerror (errno));
+}
+
+
 /*! \brief Print a list of available backends.
  *  \par Function Description
  * Prints a list of available gnetlist backends by searching for files
@@ -107,8 +121,7 @@ gnetlist_backends (GedaToplevel *pr_current)
     /* Open directory */
     dptr = opendir (dir_name);
     if (dptr == NULL) {
-    fprintf (stderr, "%s [%s]: %s\n", _("ERROR: Can not open directory"),
-             dir_name, strerror (errno));
+      gnetlist_show_strerror(_("Can not open directory"), dir_name);
       continue;
     }
     free (dir_name);
@@ -201,7 +214,7 @@ void main_prog(void *closure, int argc, char *argv[])
   libgeda_init(argc, argv);
 
 #if defined(__MINGW32__) && defined(DEBUG)
-    printf( "This is the MINGW32 port.\n\n");
+    printf("This is the MINGW32 port.\n\n");
 #endif
 
   /* register guile (scheme) functions */
@@ -283,7 +296,7 @@ void main_prog(void *closure, int argc, char *argv[])
     geda_struct_page_goto (geda_struct_page_new (pr_current, filename));
 
     if (!geda_open_file (pr_current, pr_current->page_current, filename, &err)) {
-      fprintf (stderr, "%s: [%s], %s\n", _("load failed"), filename, err->message);
+      gnetlist_show_error(_("load failed"), filename, err->message);
       g_error_free (err);
       GEDA_FREE (filename);
       GEDA_FREE(output_filename);
@@ -302,9 +315,7 @@ void main_prog(void *closure, int argc, char *argv[])
    * the current directory. Having the output go to a different directory
    * will confuse the user (confused me, at first). */
   if (chdir (cwd)) {
-    fprintf (stderr, "%s [%s]: %s\n",
-             _("ERROR: File System, could change to directory"),
-             cwd, strerror (errno));
+    gnetlist_show_strerror(_("System could not change to directory"), cwd);
     GEDA_FREE(cwd);
     GEDA_FREE(output_filename);
     exit(1);
@@ -329,11 +340,13 @@ void main_prog(void *closure, int argc, char *argv[])
 
     /* If it couldn't be found, fail. */
     if (scm_is_false (s_backend_path)) {
-      fprintf (stderr, _("ERROR: Could not find backend `%s' in load path.\n"),
-               guile_proc);
-      fprintf (stderr,
-             _("\nRun `%s --list-backends' for a full list of available backends.\n"),
-               argv[0]);
+
+      const char *msg1 = _("ERROR: Could not find backend");
+      const char *msg2 = _("for a full list of available backends");
+
+      fprintf (stderr,"%s \"%s\" %s\n", msg1, guile_proc, _("in load path"));
+      fprintf (stderr, "\n%s '%s --list-backends' %s.\n", _("Run"), argv[0], msg2);
+
       GEDA_FREE(cwd);
       GEDA_FREE(output_filename);
       exit (1);
@@ -355,8 +368,7 @@ void main_prog(void *closure, int argc, char *argv[])
      * changed the current working directory. */
     if (chdir (cwd)) {
       /* Error occured with chdir */
-      fprintf (stderr, "%s [%s]: %s\n", _("ERROR: File System, could change to directory"),
-      cwd, strerror (errno));
+      gnetlist_show_strerror(_("System could not change to directory"), cwd);
       GEDA_FREE(cwd);
       GEDA_FREE(output_filename);
       exit(1);
@@ -390,8 +402,12 @@ void main_prog(void *closure, int argc, char *argv[])
 
             /* attempt to create the directories */
             if (geda_create_path (path, S_IRWXU | S_IRWXG)) {
-              fprintf(stderr, "Path \"%s\": is not accessible: %s\n", path,
-                      strerror(errno));
+
+              const char *_Path = _("Path");
+              const char *msg   = _("is not accessible");
+
+              fprintf(stderr, "%s \"%s\" %s: %s\n",
+                              _Path, path, msg, strerror(errno));
               GEDA_FREE(path);
               GEDA_FREE(cwd);
               GEDA_FREE(output_filename);
@@ -399,8 +415,7 @@ void main_prog(void *closure, int argc, char *argv[])
             }
           }
           else {
-            fprintf (stderr, "%s [%s]: %s\n", _("ERROR: file"), output_filename,
-                     strerror (errno));
+            gnetlist_show_strerror(_("file"), output_filename);
             GEDA_FREE(path);
             GEDA_FREE(cwd);
             GEDA_FREE(output_filename);
@@ -415,8 +430,12 @@ void main_prog(void *closure, int argc, char *argv[])
 
           /* Does not exist so attempt to create the path */
           if (geda_create_path (path, S_IRWXU | S_IRWXG)) {
-            fprintf(stderr, "Path \"%s\": is not accessible: %s\n", path,
-                    strerror(errno));
+
+            const char *_Path = _("Path");
+            const char *msg   = _("is not accessible");
+
+            fprintf(stderr, "%s \"%s\" %s: %s\n",
+                            _Path, path, msg, strerror(errno));
             GEDA_FREE(path);
             GEDA_FREE(cwd);
             GEDA_FREE(output_filename);
@@ -435,8 +454,7 @@ void main_prog(void *closure, int argc, char *argv[])
   if (access(output_filename, W_OK) == -1) {
 
     if (errno != ENOENT) {
-      fprintf(stderr,"%s [%s]: %s\n", "ERROR: Could not create", output_filename,
-              strerror (errno));
+      gnetlist_show_strerror(_("Could not create"), output_filename);
       GEDA_FREE(output_filename);
       exit(2);
 
