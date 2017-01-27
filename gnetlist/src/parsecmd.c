@@ -126,7 +126,7 @@ version ()
 static SCM
 catch_handler (void *data, SCM tag, SCM throw_args)
 {
-  fprintf (stderr, "\nJust got an error; tag is\n        ");
+  fprintf (stderr, "\n%s:", _("Received an error; tag is"));
   scm_display (tag, scm_current_output_port ());
   scm_newline (scm_current_output_port ());
   scm_newline (scm_current_output_port ());
@@ -221,7 +221,8 @@ int parse_commandline (int argc, char *argv[], char **output_filename)
 
         case 'o':
            if (*output_filename) {
-             fprintf(stderr, _("WARNING: output already specified <%s>\n"), *output_filename);
+             fprintf(stderr, "%s <%s>\n", _("WARNING: output already specified"),
+                    *output_filename);
              g_free(*output_filename);
            }
           *output_filename = geda_utility_string_strdup(optarg);

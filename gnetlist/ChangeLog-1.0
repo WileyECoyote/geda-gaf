@@ -3,6 +3,10 @@
     * src/gnetlist.c: Revise error message formats in order to minimize
       format specifiers in translatable strings.
 
+    * src/parsecmd.c: Revise error message formats in order to minimize
+      format specifiers in translatable strings, tweak message in catch
+      handler.
+
 2017-01-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/LINGUAS: Add Russian translations.
