@@ -281,8 +281,8 @@ s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list)
 
           net_name = geda_attrib_search_object_by_name (o_current, "netname", 0);
 
-          fprintf(stderr,
-                  _("Did not find refdes or any special attributes on component!<%s>, <%s>\n"),
+          fprintf(stderr, "%s <%s>, <%s>\n",
+                  _("Did not find refdes or any special attributes on component!"),
                   o_current->complex->filename, net_name);
 
                   netlist->component_uref = geda_utility_string_strdup("U?");
@@ -353,8 +353,9 @@ s_traverse_hierarchy_sheet (GedaToplevel *pr_current, NETLIST *netlist)
     netlist = s_netlist_return_tail (netlist_head);
 
     if (o_current->type == OBJ_PLACEHOLDER) {
-      printf("%s \"%s\"?\n", _("WARNING: Found a placeholder/missing component, is symbol file missing"),
-                o_current->complex->filename);
+      printf("%s \"%s\"?\n",
+             _("WARNING: Found a placeholder/missing component, is symbol file missing"),
+             o_current->complex->filename);
     }
 
     if (o_current->type == OBJ_COMPLEX) {
@@ -424,8 +425,8 @@ s_traverse_hierarchy_sheet (GedaToplevel *pr_current, NETLIST *netlist)
 
           net_name = geda_attrib_search_object_by_name (o_current, "netname", 0);
 
-          fprintf(stderr,
-         _("Could not find refdes on component or any special attributes!<%s>, <%s>\n"),
+          fprintf(stderr, "%s <%s>, <%s>\n",
+         _("Could not find refdes on component or any special attributes!"),
             o_current->complex->filename, net_name);
 
           netlist->component_uref = geda_utility_string_strdup("U?");
