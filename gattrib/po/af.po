@@ -215,9 +215,8 @@ msgid ""
 msgstr ""
 
 #: gattrib/src/s_toplevel.c:278
-#, fuzzy
 msgid "attribute"
-msgstr "Eienskappe"
+msgstr "kenmerk"
 
 #: gattrib/src/s_toplevel.c:491
 msgid "did not find the refdes in the master list\n"
@@ -554,7 +553,7 @@ msgstr ""
 
 #: gattrib/src/x_menus.c:408
 msgid "gEDA Attributes"
-msgstr "gEDA Eienskappe"
+msgstr "gEDA kenmerk"
 
 #: gattrib/src/x_menus.c:409
 msgid "gEDA Glossary"
@@ -582,11 +581,11 @@ msgstr ""
 
 #: gattrib/src/x_menus.c:419
 msgid "A_ttribute"
-msgstr "Eienskappe"
+msgstr "kenmerk"
 
 #: gattrib/src/x_menus.c:419
 msgid "Display Attribute Toolbar"
-msgstr "Wys Eienskappe Toolbar"
+msgstr "Wys Kenmerk Toolbar"
 
 #: gattrib/src/x_menus.c:420
 msgid "_Attached"
@@ -735,6 +734,3 @@ msgstr ""
 #: gattrib/src/x_window.c:213
 msgid "Retrieving main Window geometry and settings.\n"
 msgstr ""
-
-#~ msgid " DONE\n"
-#~ msgstr " gedaan\n"
