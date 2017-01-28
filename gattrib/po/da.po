@@ -353,7 +353,7 @@ msgstr ""
 
 #: gattrib/src/x_find.c:277
 msgid "Attribute"
-msgstr ""
+msgstr "attribut"
 
 #: gattrib/src/x_find.c:314
 msgid "Designator"
@@ -393,63 +393,75 @@ msgstr ""
 
 #: gattrib/src/x_menus.c:375
 msgid "_Add new Attribute"
-msgstr ""
+msgstr "Tilføj ny Attribut"
 
+# Promote Attribute
 #: gattrib/src/x_menus.c:376
 msgid "D_elete Attribute"
-msgstr ""
+msgstr "Slet Attribut"
 
+# Promote Attribute
 #: gattrib/src/x_menus.c:377
 msgid "_Promote Attribute"
-msgstr ""
+msgstr "Fremme Attribut"
 
+# Attach the selected attribute
 #: gattrib/src/x_menus.c:377 gattrib/src/x_toolbars.c:45
 msgid "Attach the selected attribute"
-msgstr ""
+msgstr "Fastgør den valgte attribut"
 
+# Demote Attribute
 #: gattrib/src/x_menus.c:378
 msgid "_Demote Attribute"
-msgstr ""
+msgstr "degradere Attribut"
 
+# Dettach the selected attribute
 #: gattrib/src/x_menus.c:378 gattrib/src/x_toolbars.c:46
 msgid "Dettach the selected attribute"
-msgstr ""
+msgstr "Dettach den valgte attribut"
 
 #: gattrib/src/x_menus.c:380
 msgid "Find Value"
-msgstr ""
+msgstr "Find værdi"
 
+# Find attribute value
 #: gattrib/src/x_menus.c:380
 msgid "Find attribute value"
-msgstr ""
+msgstr "Find attribut værdi"
 
+# Replace value
 #: gattrib/src/x_menus.c:381
 msgid "Replace value"
-msgstr ""
+msgstr "Udskift værdi"
 
+# Search and Replace Attribute value
 #: gattrib/src/x_menus.c:381
 msgid "Search and Replace Attribute value"
-msgstr ""
+msgstr "Buscar i reemplaçar el valor de l'atribut"
 
+# Locate Attribute
 #: gattrib/src/x_menus.c:382
 msgid "Locate Attribute"
-msgstr ""
+msgstr "Find Attribut"
 
+# Search for an attribute
 #: gattrib/src/x_menus.c:382
 msgid "Search for an attribute"
-msgstr ""
+msgstr "Søg efter en attribut"
 
+# Locate Reference
 #: gattrib/src/x_menus.c:383
 msgid "Locate Reference"
-msgstr ""
+msgstr "Find reference"
 
+# Search for reference designator
 #: gattrib/src/x_menus.c:383
 msgid "Search for reference designator"
-msgstr ""
+msgstr "Søg efter henvisning designatorkode"
 
 #: gattrib/src/x_menus.c:386
 msgid "_View"
-msgstr ""
+msgstr "_Udsigt"
 
 #: gattrib/src/x_menus.c:387
 msgid "_Toolbar"
@@ -513,51 +525,53 @@ msgstr ""
 
 #: gattrib/src/x_menus.c:403
 msgid "Gattrib Guide"
-msgstr ""
+msgstr "Gattrib guide"
 
 #: gattrib/src/x_menus.c:404
 msgid "Gattrib FAQ"
 msgstr ""
 
+# gEDA Documentation
 #: gattrib/src/x_menus.c:405
 msgid "gEDA Docu_mentation..."
-msgstr ""
+msgstr "gEDA Dokumentation..."
 
 #: gattrib/src/x_menus.c:406
 msgid "gEDA _Wiki..."
-msgstr ""
+msgstr "gEDA _Wiki..."
 
 #: gattrib/src/x_menus.c:408
 msgid "gEDA Attributes"
-msgstr ""
+msgstr "Geda attributter"
 
 #: gattrib/src/x_menus.c:409
 msgid "gEDA Glossary"
-msgstr ""
+msgstr "gEDA Ordliste"
 
 #: gattrib/src/x_menus.c:410
 msgid "About"
-msgstr ""
+msgstr "Om"
 
 #: gattrib/src/x_menus.c:417
 msgid "_Edit bar"
-msgstr ""
+msgstr "Rediger bar"
 
+# Display the Edit Status bar
 #: gattrib/src/x_menus.c:417
 msgid "Display the Edit Status bar"
-msgstr ""
+msgstr "Viser Rediger statuslinjen"
 
 #: gattrib/src/x_menus.c:418
 msgid "_Standard"
-msgstr ""
+msgstr "_Standard"
 
 #: gattrib/src/x_menus.c:418
 msgid "Display Standard Toolbar"
-msgstr ""
+msgstr "Display Attribut Toolbar"
 
 #: gattrib/src/x_menus.c:419
 msgid "A_ttribute"
-msgstr ""
+msgstr "A_ttribut"
 
 #: gattrib/src/x_menus.c:419
 msgid "Display Attribute Toolbar"
@@ -653,19 +667,20 @@ msgstr ""
 
 #: gattrib/src/x_toolbars.c:38
 msgid "Attrib"
-msgstr ""
+msgstr "attribut"
 
+# Locate attribute
 #: gattrib/src/x_toolbars.c:38
 msgid "Locate attribute"
-msgstr ""
+msgstr "Find attribut"
 
 #: gattrib/src/x_toolbars.c:39
 msgid "Ref Des"
-msgstr ""
+msgstr "Ref Des"
 
 #: gattrib/src/x_toolbars.c:39
 msgid "Locate Reference Designator"
-msgstr ""
+msgstr "Find reference kendetegnskode"
 
 #: gattrib/src/x_toolbars.c:42
 msgid "invisible"
@@ -681,7 +696,7 @@ msgstr ""
 
 #: gattrib/src/x_toolbars.c:44
 msgid "Add a new attribute"
-msgstr ""
+msgstr "Tilføj ny Attribut"
 
 #: gattrib/src/x_toolbars.c:45
 msgid "promote"
