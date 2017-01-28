@@ -1,3 +1,7 @@
+2017-01-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/CC2531-1.sym: Add symbol; System-on-Chip for IEEE 802.15.4 and ZigBee.
+
 2017-01-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-clib.scm : Rename "onsemi/diodes" -> "onsemi/diode", add "vishay/diode".
