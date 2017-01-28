@@ -262,15 +262,14 @@ cmd_export_impl (void *data, int argc, char **argv)
     page = geda_struct_page_new (toplevel, tmp);
 
     if (!geda_open_file (toplevel, page, tmp, &err)) {
-      fprintf (stderr,
-               _("ERROR: Failed to load '%s': %s\n"), tmp,
-               err->message);
+      fprintf (stderr, "%s '%s': %s\n",
+               _("ERROR: Failed to load"), tmp, err->message);
       exit (1);
     }
 
     if (g_chdir (original_cwd) != 0) {
-      fprintf (stderr,
-               _("ERROR: Failed to change directory to '%s': %s\n"),
+      fprintf (stderr, "%s '%s': %s\n",
+               _("ERROR: Failed to change directory to"),
                original_cwd, strerror (errno));
       exit (1);
     }
@@ -379,7 +378,7 @@ static inline void
 export_cairo_check_error (cairo_status_t status)
 {
   if (status != CAIRO_STATUS_SUCCESS) {
-    fprintf (stderr, _("ERROR: %s.\n"), cairo_status_to_string (status));
+    fprintf (stderr, "%s: %s.\n", _("ERROR"), cairo_status_to_string (status));
     exit (1);
   }
 }

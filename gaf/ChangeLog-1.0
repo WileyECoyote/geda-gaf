@@ -1,3 +1,8 @@
+2017-01-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/export.c: Revise error message formats in order to minimize
+      format specifiers in translatable strings.
+
 2017-01-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gettext.h: Add conditionals to use <libintl.h> if LIBC
