@@ -419,41 +419,49 @@ msgstr "تخفيض سمة"
 msgid "Dettach the selected attribute"
 msgstr "Dettach السمة المحددة"
 
+# Find value
 #: gattrib/src/x_menus.c:380
 msgid "Find Value"
-msgstr ""
+msgstr "لبحث عن قيمة"
 
+# Find attribute value
 #: gattrib/src/x_menus.c:380
 msgid "Find attribute value"
-msgstr ""
+msgstr "البحث عن قيمة السمة"
 
+# Replace value
 #: gattrib/src/x_menus.c:381
 msgid "Replace value"
-msgstr ""
+msgstr "استبدال قيمة"
 
+# Search and Replace Attribute value
 #: gattrib/src/x_menus.c:381
 msgid "Search and Replace Attribute value"
-msgstr ""
+msgstr "بحث واستبدال قيمة السمة"
 
+# Locate Attribute
 #: gattrib/src/x_menus.c:382
 msgid "Locate Attribute"
 msgstr "تحديد سمة"
 
+# Search for an attribute
 #: gattrib/src/x_menus.c:382
 msgid "Search for an attribute"
 msgstr "البحث عن سمة"
 
+# Locate Reference
 #: gattrib/src/x_menus.c:383
 msgid "Locate Reference"
-msgstr ""
+msgstr "بحث عن مرجع"
 
+# Search for reference designator
 #: gattrib/src/x_menus.c:383
 msgid "Search for reference designator"
-msgstr ""
+msgstr "البحث عن التسمية"
 
 #: gattrib/src/x_menus.c:386
 msgid "_View"
-msgstr ""
+msgstr "مشاهد"
 
 #: gattrib/src/x_menus.c:387
 msgid "_Toolbar"
@@ -521,15 +529,16 @@ msgstr "دليل المستخدمين Gattrib"
 
 #: gattrib/src/x_menus.c:404
 msgid "Gattrib FAQ"
-msgstr ""
+msgstr "Gattrib FAQ"
 
+# gEDA Documentation
 #: gattrib/src/x_menus.c:405
 msgid "gEDA Docu_mentation..."
-msgstr ""
+msgstr "الوثائق GEDA"
 
 #: gattrib/src/x_menus.c:406
 msgid "gEDA _Wiki..."
-msgstr ""
+msgstr "gEDA _Wiki..."
 
 #: gattrib/src/x_menus.c:408
 msgid "gEDA Attributes"
@@ -537,27 +546,28 @@ msgstr "سمات GEDA"
 
 #: gattrib/src/x_menus.c:409
 msgid "gEDA Glossary"
-msgstr ""
+msgstr "GEDA مسرد"
 
 #: gattrib/src/x_menus.c:410
 msgid "About"
-msgstr ""
+msgstr "حول"
 
 #: gattrib/src/x_menus.c:417
 msgid "_Edit bar"
-msgstr ""
+msgstr "تحرير شريط الأدوات"
 
+# Display the Edit Status bar
 #: gattrib/src/x_menus.c:417
 msgid "Display the Edit Status bar"
-msgstr ""
+msgstr "عرض شريط تحرير الحالة"
 
 #: gattrib/src/x_menus.c:418
 msgid "_Standard"
-msgstr ""
+msgstr "اساسي"
 
 #: gattrib/src/x_menus.c:418
 msgid "Display Standard Toolbar"
-msgstr ""
+msgstr "عرض شريط الأدوات قياسي"
 
 #: gattrib/src/x_menus.c:419
 msgid "A_ttribute"
@@ -665,11 +675,12 @@ msgstr "تحديد سمة"
 
 #: gattrib/src/x_toolbars.c:39
 msgid "Ref Des"
-msgstr ""
+msgstr "Ref Des"
 
+# Find Reference Designator
 #: gattrib/src/x_toolbars.c:39
 msgid "Locate Reference Designator"
-msgstr ""
+msgstr "العثور على الدلالي المرجعي"
 
 #: gattrib/src/x_toolbars.c:42
 msgid "invisible"
@@ -681,7 +692,7 @@ msgstr ""
 
 #: gattrib/src/x_toolbars.c:44
 msgid "add"
-msgstr ""
+msgstr "إضافة"
 
 #: gattrib/src/x_toolbars.c:44
 msgid "Add a new attribute"
