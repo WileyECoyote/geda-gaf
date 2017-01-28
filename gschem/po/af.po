@@ -2784,11 +2784,11 @@ msgstr "seleksie kopie"
 
 #: gschem/src/x/x_menus.c:122
 msgid "MCopy"
-msgstr "Kopieer"
+msgstr "Meervoudige Kopieer"
 
 #: gschem/src/x/x_menus.c:122 gschem/etc/system-gschemrc.scm:2095
 msgid "Make multible copies of selection"
-msgstr ""
+msgstr "Maak multible afskrifte van seleksie"
 
 #: gschem/src/x/x_menus.c:123
 msgid "Move"
@@ -2804,7 +2804,7 @@ msgstr "Weerkaats"
 
 #: gschem/src/x/x_menus.c:124 gschem/etc/system-gschemrc.scm:2096
 msgid "Mirror an object about a point"
-msgstr ""
+msgstr "Spieël 'n voorwerp oor 'n punt"
 
 #: gschem/src/x/x_menus.c:125
 msgid "Rotate"
@@ -2812,7 +2812,7 @@ msgstr "Roteer"
 
 #: gschem/src/x/x_menus.c:125 gschem/etc/system-gschemrc.scm:2099
 msgid "Rotate the current selection about a point"
-msgstr ""
+msgstr "Draai die huidige seleksie om 'n punt"
 
 #: gschem/src/x/x_menus.c:126
 msgid "Snap"
@@ -2832,7 +2832,7 @@ msgstr "Bewerk Tekseienskappe"
 
 #: gschem/src/x/x_menus.c:133 gschem/scheme/gschem/builtins.scm:329
 msgid "Down Schematic"
-msgstr "/Stroombaandiagram Af"
+msgstr "Stroombaandiagram Af"
 
 #: gschem/src/x/x_menus.c:133 gschem/etc/system-gschemrc.scm:2227
 msgid "Descend down in the schematic hierarchy"
@@ -2840,7 +2840,7 @@ msgstr "daal in hierargie af"
 
 #: gschem/src/x/x_menus.c:134 gschem/scheme/gschem/builtins.scm:332
 msgid "Down Symbol"
-msgstr "/Simbool Af"
+msgstr "Simbool Af"
 
 #: gschem/src/x/x_menus.c:134 gschem/etc/system-gschemrc.scm:2228
 msgid "Descend down in the symbol hierarchy"
@@ -2848,7 +2848,7 @@ msgstr "daal in hierargie af"
 
 #: gschem/src/x/x_menus.c:135
 msgid "Up"
-msgstr "/Op"
+msgstr "Op"
 
 #: gschem/src/x/x_menus.c:135 gschem/etc/system-gschemrc.scm:2229
 msgid "ascend up in the schematic hierarchy"
@@ -2856,11 +2856,11 @@ msgstr "daal in hierargie af"
 
 #: gschem/src/x/x_menus.c:140
 msgid "Cut to Clipboard"
-msgstr ""
+msgstr "Sny na klembord"
 
 #: gschem/src/x/x_menus.c:140 gschem/etc/system-gschemrc.scm:2088
 msgid "Cut the current selection to the system clipboard"
-msgstr ""
+msgstr "Sny die huidige seleksie na die stelsel klipbord"
 
 #: gschem/src/x/x_menus.c:141
 msgid "Copy to Clipboard"
@@ -2868,7 +2868,7 @@ msgstr "Kopieer in 1 in"
 
 #: gschem/src/x/x_menus.c:141 gschem/etc/system-gschemrc.scm:2089
 msgid "Copy the current selection to the system clipboard"
-msgstr ""
+msgstr "Sny die huidige seleksie na die stelsel clipCopy die huidige seleksie na die stelsel clipboardboard"
 
 #: gschem/src/x/x_menus.c:142
 msgid "Paste Clipboard"
@@ -2876,7 +2876,7 @@ msgstr "Plak 1"
 
 #: gschem/src/x/x_menus.c:142 gschem/etc/system-gschemrc.scm:2090
 msgid "Paste the contents of the system clipboard"
-msgstr ""
+msgstr "Plak die inhoud van die stelsel klipbord"
 
 #: gschem/src/x/x_menus.c:148
 msgid "Close"
@@ -2888,7 +2888,7 @@ msgstr "Lopende bladsy"
 
 #: gschem/src/x/x_menus.c:149
 msgid "Done"
-msgstr ""
+msgstr "gedaan"
 
 #: gschem/src/x/x_menus.c:149
 msgid "Terminate the current path"
@@ -2896,15 +2896,15 @@ msgstr "Lopende bladsy"
 
 #: gschem/src/x/x_menus.c:150
 msgid "End"
-msgstr "/Zoem Uitmate"
+msgstr "Zoem Uitmate"
 
 #: gschem/src/x/x_menus.c:150
 msgid "End this path and exit path mode"
-msgstr ""
+msgstr "Eindig hierdie pad af weg en uitgang"
 
 #: gschem/src/x/x_menus.c:156
 msgid "Continue"
-msgstr ""
+msgstr "Aanhou"
 
 #: gschem/src/x/x_menus.c:156
 msgid "Resume input of the current path"
@@ -2917,19 +2917,19 @@ msgstr "Menu/Kanselleer"
 
 #: gschem/src/x/x_menus.c:157
 msgid "Cancel path mode"
-msgstr ""
+msgstr "Kanselleer pad af"
 
 #: gschem/src/x/x_menus.c:418 gschem/etc/system-gschemrc.scm:2052
 msgid "Open an existing schematic or symbol file"
-msgstr ""
+msgstr "Maak 'n bestaande skematiese of simbool lêer"
 
 #: gschem/src/x/x_menus.c:429 gschem/etc/system-gschemrc.scm:2057
 msgid "Save the current document"
-msgstr ""
+msgstr "Slaan die huidige dokument"
 
 #: gschem/src/x/x_menus.c:439 gschem/etc/system-gschemrc.scm:2076
 msgid "Quit gschem and exit"
-msgstr ""
+msgstr "Ophou gschem en uitgang"
 
 #: gschem/src/x/x_menus.c:472 gschem/etc/system-gschemrc.scm:2180
 msgid "redraw the current window"
