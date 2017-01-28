@@ -352,9 +352,8 @@ msgid "not found!"
 msgstr ""
 
 #: gattrib/src/x_find.c:277
-#, fuzzy
 msgid "Attribute"
-msgstr "gEDA Едитор на атрибути"
+msgstr "Атрибут"
 
 #: gattrib/src/x_find.c:314
 msgid "Designator"
@@ -393,72 +392,73 @@ msgid "Paste"
 msgstr ""
 
 #: gattrib/src/x_menus.c:375
-#, fuzzy
 msgid "_Add new Attribute"
-msgstr "gEDA Едитор на атрибути"
+msgstr "Добавяне на нов Умение"
 
 #: gattrib/src/x_menus.c:376
-#, fuzzy
 msgid "D_elete Attribute"
-msgstr "gEDA Едитор на атрибути"
+msgstr "Изтриване Умение"
 
 #: gattrib/src/x_menus.c:377
-#, fuzzy
 msgid "_Promote Attribute"
-msgstr "gEDA Едитор на атрибути"
+msgstr "Насърчаване Умение"
 
 #: gattrib/src/x_menus.c:377 gattrib/src/x_toolbars.c:45
-#, fuzzy
 msgid "Attach the selected attribute"
-msgstr "gEDA Едитор на атрибути"
+msgstr "Прикрепете избрания атрибут"
 
 #: gattrib/src/x_menus.c:378
-#, fuzzy
 msgid "_Demote Attribute"
-msgstr "gEDA Едитор на атрибути"
+msgstr "Понижаване Умение"
 
 #: gattrib/src/x_menus.c:378 gattrib/src/x_toolbars.c:46
-#, fuzzy
 msgid "Dettach the selected attribute"
-msgstr "gEDA Едитор на атрибути"
+msgstr "Dettach избрания атрибут"
 
+# Find value
 #: gattrib/src/x_menus.c:380
 msgid "Find Value"
-msgstr ""
+msgstr "Намери стойност"
 
+# Find attribute value
 #: gattrib/src/x_menus.c:380
 msgid "Find attribute value"
-msgstr ""
+msgstr "Намерете стойността на атрибута"
 
+# Replace value
 #: gattrib/src/x_menus.c:381
 msgid "Replace value"
-msgstr ""
+msgstr "Замяна на стойност"
 
+# Search and Replace Attribute value
 #: gattrib/src/x_menus.c:381
 msgid "Search and Replace Attribute value"
-msgstr ""
+msgstr "Търсене и Замяна Умение стойност"
 
+# Locate Attribute
 #: gattrib/src/x_menus.c:382
-#, fuzzy
 msgid "Locate Attribute"
-msgstr "gEDA Едитор на атрибути"
+msgstr "Намерете Умение"
 
+# Search for an attribute
 #: gattrib/src/x_menus.c:382
-#, fuzzy
 msgid "Search for an attribute"
-msgstr "gEDA Едитор на атрибути"
+msgstr "Търсене за атрибут"
 
+# Locate Reference
 #: gattrib/src/x_menus.c:383
 msgid "Locate Reference"
-msgstr ""
+msgstr "Намерете Референтен"
 
+# Search for reference designator
 #: gattrib/src/x_menus.c:383
 msgid "Search for reference designator"
-msgstr ""
+msgstr "Търсене на референтния обозначение"
 
+# View
 #: gattrib/src/x_menus.c:386
 msgid "_View"
-msgstr ""
+msgstr "изглед"
 
 #: gattrib/src/x_menus.c:387
 msgid "_Toolbar"
@@ -521,60 +521,59 @@ msgid "_Help"
 msgstr ""
 
 #: gattrib/src/x_menus.c:403
-#, fuzzy
 msgid "Gattrib Guide"
-msgstr "gEDA Едитор на атрибути"
+msgstr "Gattrib наръчник"
 
 #: gattrib/src/x_menus.c:404
 msgid "Gattrib FAQ"
-msgstr ""
+msgstr "Gattrib FAQ"
 
+# # gEDA Documentation
 #: gattrib/src/x_menus.c:405
 msgid "gEDA Docu_mentation..."
-msgstr ""
+msgstr "GEDA Документация"
 
 #: gattrib/src/x_menus.c:406
 msgid "gEDA _Wiki..."
-msgstr ""
+msgstr "gEDA _Wiki..."
 
 #: gattrib/src/x_menus.c:408
-#, fuzzy
 msgid "gEDA Attributes"
-msgstr "gEDA Едитор на атрибути"
+msgstr "gEDA Атрибути"
 
 #: gattrib/src/x_menus.c:409
 msgid "gEDA Glossary"
-msgstr ""
+msgstr "GEDA Речник"
 
 #: gattrib/src/x_menus.c:410
 msgid "About"
-msgstr ""
+msgstr "относно"
 
 #: gattrib/src/x_menus.c:417
 msgid "_Edit bar"
-msgstr ""
+msgstr "редактиране бар"
 
+# Display the edit Status bar
 #: gattrib/src/x_menus.c:417
 msgid "Display the Edit Status bar"
-msgstr ""
+msgstr "Посочете лентата за редактиране Status"
 
 #: gattrib/src/x_menus.c:418
 msgid "_Standard"
-msgstr ""
+msgstr "стандарт"
 
+# Display Standard Toolbar
 #: gattrib/src/x_menus.c:418
 msgid "Display Standard Toolbar"
-msgstr ""
+msgstr "Посочете Standard Toolbar"
 
 #: gattrib/src/x_menus.c:419
-#, fuzzy
 msgid "A_ttribute"
-msgstr "gEDA Едитор на атрибути"
+msgstr "А_трибути"
 
 #: gattrib/src/x_menus.c:419
-#, fuzzy
 msgid "Display Attribute Toolbar"
-msgstr "gEDA Едитор на атрибути"
+msgstr "Дисплей Умение Toolbar"
 
 #: gattrib/src/x_menus.c:420
 msgid "_Attached"
@@ -665,22 +664,21 @@ msgid "Search and Replace attribute value"
 msgstr ""
 
 #: gattrib/src/x_toolbars.c:38
-#, fuzzy
 msgid "Attrib"
-msgstr "gEDA Едитор на атрибути"
+msgstr "атрибут"
 
+# Locate attribute
 #: gattrib/src/x_toolbars.c:38
-#, fuzzy
 msgid "Locate attribute"
-msgstr "gEDA Едитор на атрибути"
+msgstr "Намерете атрибут"
 
 #: gattrib/src/x_toolbars.c:39
 msgid "Ref Des"
-msgstr ""
+msgstr "Ref Des"
 
 #: gattrib/src/x_toolbars.c:39
 msgid "Locate Reference Designator"
-msgstr ""
+msgstr "Намерете Референтен обозначаване"
 
 #: gattrib/src/x_toolbars.c:42
 msgid "invisible"
@@ -692,12 +690,11 @@ msgstr ""
 
 #: gattrib/src/x_toolbars.c:44
 msgid "add"
-msgstr ""
+msgstr "Добав"
 
 #: gattrib/src/x_toolbars.c:44
-#, fuzzy
 msgid "Add a new attribute"
-msgstr "gEDA Едитор на атрибути"
+msgstr "Добав на нов атрибут"
 
 #: gattrib/src/x_toolbars.c:45
 msgid "promote"
