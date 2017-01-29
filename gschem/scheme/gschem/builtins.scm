@@ -541,7 +541,7 @@ found, shows a dialog with an error message."
 
    (lambda (key subr msg args . rest)
      (gschem-msg (string-append
-                  (_ "Could not show documentation for selected component:\n\n")
+                  (_ "Could not show documentation for selected component\n")
                   (apply format #f msg args))))))
 
 (define-action-public
