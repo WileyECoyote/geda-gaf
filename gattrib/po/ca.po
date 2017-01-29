@@ -534,7 +534,7 @@ msgstr "Gattrib FAQ"
 # gEDA Documentation
 #: gattrib/src/x_menus.c:405
 msgid "gEDA Docu_mentation..."
-msgstr "gEDA documentació"
+msgstr "gEDA documentació..."
 
 #: gattrib/src/x_menus.c:406
 msgid "gEDA _Wiki..."
