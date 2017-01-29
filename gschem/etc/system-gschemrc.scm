@@ -2102,7 +2102,7 @@
         ("SEPARATOR"               #f                     #f                       #f)
         (,(N_ "_Array")             edit-array            #f                  ,(N_ "Create and array of objects"))
         (,(N_ "_Break")             edit-break            #f                  ,(N_ "Break a linear object into separate objects"))
-        (,(N_ "E_xtend")            edit-extend           #f                  ,(N_ "Project a linear objects to other objects"))
+        (,(N_ "E_xtend")            edit-extend           #f                  ,(N_ "Project linear objects to other objects"))
 
         ("SEPARATOR"               #f                     #f                       #f)
         (,(N_ "_Edit...")           edit-attributes       #f                  ,(N_ "Edit Object Attributes"))
