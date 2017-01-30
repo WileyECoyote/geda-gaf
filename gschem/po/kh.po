@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-22 19:05-0600\n"
+"POT-Creation-Date: 2017-01-28 23:56-0600\n"
 "PO-Revision-Date: 2015-07-29 00:24-0600\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -2894,35 +2894,36 @@ msgstr "chreusa chbab chamlong"
 
 #: gschem/src/x/x_menus.c:122
 msgid "MCopy"
-msgstr ""
+msgstr "chamlong chraen"
 
 #: gschem/src/x/x_menus.c:122 gschem/etc/system-gschemrc.scm:2095
 msgid "Make multible copies of selection"
-msgstr ""
+msgstr "saum chamlong multible nei kar chreusareus"
 
 #: gschem/src/x/x_menus.c:123
 msgid "Move"
-msgstr ""
+msgstr "phlasati"
 
 #: gschem/src/x/x_menus.c:123 gschem/etc/system-gschemrc.scm:2097
 msgid "Move selection"
-msgstr ""
+msgstr "kar phlasa btau r kar chreusareus"
 
 #: gschem/src/x/x_menus.c:124
 msgid "Mirror"
-msgstr ""
+msgstr "kanhchok"
 
 #: gschem/src/x/x_menus.c:124 gschem/etc/system-gschemrc.scm:2096
 msgid "Mirror an object about a point"
-msgstr ""
+msgstr "kanhchok vottho del ban pi chamnoch muoy"
 
 #: gschem/src/x/x_menus.c:125
 msgid "Rotate"
-msgstr ""
+msgstr "bangvil"
 
+# Rotate the current selection about a point
 #: gschem/src/x/x_menus.c:125 gschem/etc/system-gschemrc.scm:2099
 msgid "Rotate the current selection about a point"
-msgstr ""
+msgstr "bangvil chomreusa bachchobbann ampi chamnoch muoy"
 
 #: gschem/src/x/x_menus.c:126
 msgid "Snap"
@@ -2934,71 +2935,74 @@ msgstr "khtasa tow kraleachatrangk vottho nea pel bachchobbann nih"
 
 #: gschem/src/x/x_menus.c:132
 msgid "Hierarchy"
-msgstr ""
+msgstr "thananoukram"
 
 #: gschem/src/x/x_menus.c:132
 msgid "Edit operations"
-msgstr "..."
+msgstr "kar kesamruol brate b tde kar"
 
 #: gschem/src/x/x_menus.c:133 gschem/scheme/gschem/builtins.scm:329
 msgid "Down Schematic"
-msgstr ""
+msgstr "tompr koumnour bampruonh chohkraom"
 
+# go down in the schematic hierarchy
 #: gschem/src/x/x_menus.c:133 gschem/etc/system-gschemrc.scm:2227
 msgid "Descend down in the schematic hierarchy"
-msgstr ""
+msgstr "choh chaul tow knong thananoukram koumnour bampruonh nih"
 
+# Goto Symbol
 #: gschem/src/x/x_menus.c:134 gschem/scheme/gschem/builtins.scm:332
 msgid "Down Symbol"
-msgstr ""
+msgstr "nimittasanhnhea tow"
 
 #: gschem/src/x/x_menus.c:134 gschem/etc/system-gschemrc.scm:2228
 msgid "Descend down in the symbol hierarchy"
-msgstr ""
+msgstr "chaur tow choh nowknong thananoukram nimittasanhnhea"
 
 #: gschem/src/x/x_menus.c:135
 msgid "Up"
-msgstr ""
+msgstr "laeng"
 
 #: gschem/src/x/x_menus.c:135 gschem/etc/system-gschemrc.scm:2229
 msgid "ascend up in the schematic hierarchy"
-msgstr ""
+msgstr "tow laeng nowknong thananoukram koumnour bampruonh nih"
 
 #: gschem/src/x/x_menus.c:140
 msgid "Cut to Clipboard"
-msgstr ""
+msgstr "kat tow kdarotambietakhtasa"
 
 #: gschem/src/x/x_menus.c:140 gschem/etc/system-gschemrc.scm:2088
 msgid "Cut the current selection to the system clipboard"
-msgstr ""
+msgstr "kat kar chreusareusa bachchobbann tow kdarotambietakhtasa brapnth nih"
 
 #: gschem/src/x/x_menus.c:141
 msgid "Copy to Clipboard"
-msgstr ""
+msgstr "chamlong tow kdarotambietakhtasa"
 
 #: gschem/src/x/x_menus.c:141 gschem/etc/system-gschemrc.scm:2089
 msgid "Copy the current selection to the system clipboard"
-msgstr ""
+msgstr "chamlong kar chreusareusa bachchobbann tow kdarotambietakhtasa brapn"
 
 #: gschem/src/x/x_menus.c:142
 msgid "Paste Clipboard"
-msgstr ""
+msgstr "bet phcheab kta r tambiet khtasa"
 
 #: gschem/src/x/x_menus.c:142 gschem/etc/system-gschemrc.scm:2090
 msgid "Paste the contents of the system clipboard"
-msgstr ""
+msgstr "bet phcheab meateka nei kdarotambietakhtasa brapnth nih"
 
 #: gschem/src/x/x_menus.c:148
 msgid "Close"
-msgstr ""
+msgstr "bet"
 
+# Close the current polygon
 #: gschem/src/x/x_menus.c:148
 msgid "Close the current path"
-msgstr ""
+msgstr "bet phokaon bachchobban"
 
 #: gschem/src/x/x_menus.c:149
 msgid "Done"
-msgstr ""
+msgstr "thveu ruoch"
 
 #: gschem/src/x/x_menus.c:149
 msgid "Terminate the current path"
@@ -3006,44 +3010,46 @@ msgstr "baohpoump eksar bachchobban"
 
 #: gschem/src/x/x_menus.c:150
 msgid "End"
-msgstr ""
+msgstr "banhchob"
 
+# End this polygon and exit path mode
 #: gschem/src/x/x_menus.c:150
 msgid "End this path and exit path mode"
-msgstr ""
+msgstr "banhchob rbieb ning chenh phlauv phokaon nih"
 
 #: gschem/src/x/x_menus.c:156
 msgid "Continue"
-msgstr ""
+msgstr "ban"
 
 #: gschem/src/x/x_menus.c:156
 msgid "Resume input of the current path"
-msgstr ""
+msgstr "bant kar banhchoul phlauv bachchobban"
 
 #: gschem/src/x/x_menus.c:157 gschem/src/x/x_settings_dialog.c:1249
 #: gschem/scheme/gschem/builtins.scm:44
 msgid "Cancel"
-msgstr ""
+msgstr "baohbng"
 
+# Cancel polygon mode
 #: gschem/src/x/x_menus.c:157
 msgid "Cancel path mode"
-msgstr ""
+msgstr "baohbng rbieb phokaon"
 
 #: gschem/src/x/x_menus.c:418 gschem/etc/system-gschemrc.scm:2052
 msgid "Open an existing schematic or symbol file"
-msgstr ""
+msgstr "baek eksar ryy nimittasanhnhea del meanosrab koumnour bampruonh"
 
 #: gschem/src/x/x_menus.c:429 gschem/etc/system-gschemrc.scm:2057
 msgid "Save the current document"
-msgstr ""
+msgstr "roksaatouk eksar bachchobban"
 
 #: gschem/src/x/x_menus.c:439 gschem/etc/system-gschemrc.scm:2076
 msgid "Quit gschem and exit"
-msgstr ""
+msgstr "chhb gschem  haey chenh"
 
 #: gschem/src/x/x_menus.c:472 gschem/etc/system-gschemrc.scm:2180
 msgid "redraw the current window"
-msgstr ""
+msgstr "redraw  bangauoch bachchobban"
 
 #: gschem/src/x/x_menus.c:511
 msgid "Error reading menu item"
@@ -3053,57 +3059,58 @@ msgstr "nhek kamhos"
 msgid "Bad string"
 msgstr "khsae aksaar meakrau"
 
+# got a empty menu name
 #: gschem/src/x/x_menus.c:723
 msgid "Oops... got a NULL menu name"
-msgstr ""
+msgstr "aur!... ttuol ban chhmoh robsa meunouy tte"
 
 #: gschem/src/x/x_menus.c:844
 msgid "Toggle visibility of the Standard toolbar"
-msgstr ""
+msgstr "bet baek pheap meulkheunh nei rbar ubakar stangdar"
 
 #: gschem/src/x/x_menus.c:845
 msgid "Toggle visibility of the Selection toolbar"
-msgstr ""
+msgstr "pheap meulkheunh bet baek rbar ubakar kar chreusareus"
 
 #: gschem/src/x/x_menus.c:846
 msgid "Toggle visibility of the Page toolbar"
-msgstr ""
+msgstr "pheap meulkheunh bet baek rbar ubakar tompr"
 
 #: gschem/src/x/x_menus.c:847
 msgid "Toggle visibility of the Add toolbar"
-msgstr ""
+msgstr "pheap meulkheunh bet baek rbar ubakar banthem"
 
 #: gschem/src/x/x_menus.c:848
 msgid "Toggle visibility of the Zoom toolbar"
-msgstr ""
+msgstr "pheap meulkheunh nei kar bet baek rbar ubakar pongrik"
 
 #: gschem/src/x/x_menus.c:849
 msgid "Toggle visibility of the Edit toolbar"
-msgstr ""
+msgstr "pheap meulkheunh nei kar bet baek rbar ubakar kesamruol"
 
 #: gschem/src/x/x_menus.c:850
 msgid "Toggle visibility of the Attributes toolbar"
-msgstr ""
+msgstr "pheap meulkheunh nei kar bet baek rbar ubakar lokkhan"
 
 #: gschem/src/x/x_menus.c:851
 msgid "Toggle visibility of the Grid/Snap toolbar"
-msgstr ""
+msgstr "pheap meulkheunh nei kar bet baek rbar ubakar kraleachatrangk/khtasa"
 
 #: gschem/src/x/x_menus.c:906
 msgid "Display Icons on the toolbar"
-msgstr ""
+msgstr "bangheanh roubtamnang now leu rbar ubakar"
 
 #: gschem/src/x/x_menus.c:907
 msgid "Display Text on the toolbar"
-msgstr ""
+msgstr "bangheanh atthabt now leu rbar ubakar"
 
 #: gschem/src/x/x_menus.c:908
 msgid "Display Icons and Text vertically on the toolbar"
-msgstr ""
+msgstr "bangheanh roubtamnang ning atthabt banhchhor now leu rbar ubakar"
 
 #: gschem/src/x/x_menus.c:909
 msgid "Display Icons and Text horizontally on the toolbar"
-msgstr ""
+msgstr "bangheanh roubtamnang ning atthabt phdek now leu rbar ubakar"
 
 #: gschem/src/x/x_menus.c:973
 msgid "Toggle visibility of main menu icons"
@@ -5294,9 +5301,7 @@ msgid "View documentation for selected component"
 msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:544
-msgid ""
-"Could not show documentation for selected component:\n"
-"\n"
+msgid "Could not show documentation for selected component\n"
 msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:548
