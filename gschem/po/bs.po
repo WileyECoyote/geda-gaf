@@ -63,10 +63,9 @@ msgstr ""
 msgid "Failed to read scheme initialization file"
 msgstr ""
 
-#: gschem/src/base/gschem.c:380
-#, fuzzy
+#: gschem/src/base/gschem.c:384
 msgid "version"
-msgstr "Snimi sve"
+msgstr "verzija"
 
 #: gschem/src/base/gschem.c:389
 msgid "Logging system is disabled\n"
@@ -81,10 +80,10 @@ msgstr ""
 msgid "Exiting normal\n"
 msgstr ""
 
+# Parent Window
 #: gschem/src/base/gschem_dialog.c:563
-#, fuzzy
 msgid "Parent Window"
-msgstr "Novi prozor"
+msgstr "roditelj prozor"
 
 #: gschem/src/base/gschem_dialog.c:564
 msgid "Parent window for this dialog"
@@ -559,10 +558,10 @@ msgstr ""
 msgid "New page created"
 msgstr "Nova strana kreirana"
 
+# New Window created
 #: gschem/src/iface/i_command.c:752
-#, fuzzy
 msgid "New Window created"
-msgstr "Novi prozor keriran"
+msgstr "Novi prozor stvorio"
 
 #: gschem/src/iface/i_command.c:951
 msgid "Failed to Save All"
@@ -576,10 +575,10 @@ msgstr ""
 msgid "Error encountered, Save Failed"
 msgstr ""
 
+# Write image
 #: gschem/src/iface/i_command.c:1038 gschem/src/x/x_image.c:489
-#, fuzzy
 msgid "Write Image"
-msgstr "Piši sl_iku..."
+msgstr "Piši sliku"
 
 #: gschem/src/iface/i_command.c:1060
 msgid "Write PDF"
@@ -978,10 +977,10 @@ msgstr "Tekstualni režim"
 msgid "Arc Mode"
 msgstr ""
 
+# Polygon Mode
 #: gschem/src/iface/i_status.c:174
-#, fuzzy
 msgid "Path Mode"
-msgstr "Tekstualni režim"
+msgstr "Poligon režim"
 
 #: gschem/src/iface/i_status.c:176
 msgid "Picture Mode"
@@ -3272,10 +3271,10 @@ msgstr ""
 msgid "Extents no margins"
 msgstr ""
 
+# Current Window
 #: gschem/src/x/x_print.c:184
-#, fuzzy
 msgid "Current Window"
-msgstr "Novi prozor"
+msgstr "Trenutni prozor"
 
 #: gschem/src/x/x_print.c:217
 msgid "Landscape"
@@ -3285,10 +3284,10 @@ msgstr ""
 msgid "Portrait"
 msgstr ""
 
+# Print
 #: gschem/src/x/x_print.c:484
-#, fuzzy
 msgid "Print..."
-msgstr "_Štampaj..."
+msgstr "Štampaj..."
 
 #: gschem/src/x/x_print.c:492
 msgid "Settings"
@@ -3311,9 +3310,8 @@ msgid "Destination"
 msgstr ""
 
 #: gschem/src/x/x_print.c:548
-#, fuzzy
 msgid "File:"
-msgstr "_Datoteka:"
+msgstr "Datoteka:"
 
 #: gschem/src/x/x_print.c:578
 msgid "Command:"
@@ -3335,10 +3333,10 @@ msgstr ""
 msgid "The log may contain more information."
 msgstr ""
 
+# Print Error
 #: gschem/src/x/x_print.c:795 gschem/src/x/x_print.c:1229
-#, fuzzy
 msgid "Print Error"
-msgstr "_Štampaj..."
+msgstr "Štampaj Greška"
 
 #: gschem/src/x/x_print.c:800
 msgid "Printed current schematic to"
@@ -3576,10 +3574,10 @@ msgstr ""
 msgid "Could not allocate a graphics context"
 msgstr ""
 
+# no current window
 #: gschem/src/x/x_window.c:110
-#, fuzzy
 msgid "there is no current window"
-msgstr "Novi prozor"
+msgstr "nema trenutnog prozora"
 
 #: gschem/src/x/x_window.c:119
 msgid "Could not create a Cairo context, is window drawable?\n"
@@ -3601,33 +3599,32 @@ msgstr ""
 msgid "Aborting action\n"
 msgstr ""
 
+# Close window canceled
 #: gschem/src/x/x_window.c:681
-#, fuzzy
 msgid "Close Window canceled\n"
-msgstr "Novi prozor"
+msgstr "Zatvori prozor otkazan\n"
 
 #: gschem/src/x/x_window.c:767
 msgid "Loading file"
 msgstr ""
 
 #: gschem/src/x/x_window.c:911
-#, fuzzy
 msgid "New file"
-msgstr "_Datoteka"
+msgstr "Novi Datoteka"
 
 #: gschem/src/x/x_window.c:953
 msgid "Failed to load file"
 msgstr ""
 
+# Creating new file
 #: gschem/src/x/x_window.c:983
-#, fuzzy
 msgid "Creating new file"
-msgstr "ulazak u RC datoteku"
+msgstr "Stvaranje nove datoteke"
 
+# Polygon
 #: gschem/src/x/x_window.c:996
-#, fuzzy
 msgid "Path"
-msgstr "Tekstualni režim"
+msgstr "Poligon"
 
 #: gschem/src/x/x_window.c:999
 msgid ""
@@ -3837,8 +3834,8 @@ msgstr ""
 msgid "_Multiple Copy"
 msgstr "Višestruko kopiranje"
 
+# mirror
 #: gschem/etc/system-gschemrc.scm:2096
-#, fuzzy
 msgid "M_irror"
 msgstr "Ogledalo"
 
@@ -3846,24 +3843,23 @@ msgstr "Ogledalo"
 msgid "Mo_ve"
 msgstr ""
 
+# offset
 #: gschem/etc/system-gschemrc.scm:2098
-#, fuzzy
 msgid "O_ffset"
-msgstr "Tekstualni režim"
+msgstr "O_fset"
 
 #: gschem/etc/system-gschemrc.scm:2098
 msgid "Offset the selected objects"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2099
-#, fuzzy
 msgid "Rotate _90"
 msgstr "Rotiraj"
 
+# Snap to grid
 #: gschem/etc/system-gschemrc.scm:2100
-#, fuzzy
 msgid "Snap to _grid"
-msgstr "Režim kopiranja"
+msgstr "Snap u mrežu"
 
 #: gschem/etc/system-gschemrc.scm:2100
 msgid "Snap selection to current grid"
@@ -3881,18 +3877,16 @@ msgstr ""
 msgid "Break a linear object into separate objects"
 msgstr ""
 
+# Extend
 #: gschem/etc/system-gschemrc.scm:2105
-#, fuzzy
 msgid "E_xtend"
-msgstr "Okvir zooma"
+msgstr "produžiti"
 
 #: gschem/etc/system-gschemrc.scm:2108
-#, fuzzy
 msgid "_Edit..."
-msgstr "Izmijeni..."
+msgstr "_Izmijeni..."
 
 #: gschem/etc/system-gschemrc.scm:2109
-#, fuzzy
 msgid "E_dit Text..."
 msgstr "Izmijeni tekst..."
 
@@ -3901,28 +3895,27 @@ msgid "Open the Text Editor Dialog"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2110
-#, fuzzy
 msgid "Co_lor..."
 msgstr "Boja..."
 
+# Edit Pin
 #: gschem/etc/system-gschemrc.scm:2111
-#, fuzzy
 msgid "Edit Pi_n..."
-msgstr "Izmijeni tekst..."
+msgstr "Uredi pi_n..."
 
+# Line Width & Type
 #: gschem/etc/system-gschemrc.scm:2112
-#, fuzzy
 msgid "Line _Width & Type..."
-msgstr "Izmijeni tekst..."
+msgstr "Širina linije i tip..."
 
 #: gschem/etc/system-gschemrc.scm:2112
 msgid "Open the Line Editor Dialog"
 msgstr ""
 
+# fill type
 #: gschem/etc/system-gschemrc.scm:2113
-#, fuzzy
 msgid "Fill T_ype..."
-msgstr "Izmijeni tekst..."
+msgstr "popuniti tip..."
 
 #: gschem/etc/system-gschemrc.scm:2113
 msgid "Open the Fill Editor Dialog"
@@ -3933,9 +3926,8 @@ msgid "Edit Component..."
 msgstr "Uredi Komponenta..."
 
 #: gschem/etc/system-gschemrc.scm:2115
-#, fuzzy
 msgid "_Slot..."
-msgstr "Slot..."
+msgstr "Prorez..."
 
 #: gschem/etc/system-gschemrc.scm:2115
 msgid "Open the Slot Editor Dialog"
@@ -3949,10 +3941,10 @@ msgstr ""
 msgid "Select All"
 msgstr ""
 
+# Select all objects
 #: gschem/etc/system-gschemrc.scm:2122
-#, fuzzy
 msgid "Select all objects"
-msgstr "Režim izabiranja"
+msgstr "Odaberite sve objekte"
 
 #: gschem/etc/system-gschemrc.scm:2123 gschem/scheme/gschem/builtins.scm:185
 msgid "Deselect All"
@@ -4502,32 +4494,34 @@ msgstr ""
 msgid "Show a specific attribute"
 msgstr ""
 
+# Attribute Editor
 #: gschem/etc/system-gschemrc.scm:2287
-#, fuzzy
 msgid "Attribute _Editor..."
-msgstr "_Atribut..."
+msgstr "Atribut urednik..."
 
+# Open the Attributes Editor Dialog
 #: gschem/etc/system-gschemrc.scm:2287
-msgid "Open the Attibutes Editor Dialog"
-msgstr ""
+msgid "Open the Attributes Editor Dialog"
+msgstr "Otvorite dijalog urednik atribute"
 
+# Automatically number Text
 #: gschem/etc/system-gschemrc.scm:2295
 msgid "A_utonumber Text..."
-msgstr ""
+msgstr "Automatski broj Tekst..."
 
+# Open Automatic Number dialog
 #: gschem/etc/system-gschemrc.scm:2295
 msgid "Open Auto Number dialog"
-msgstr ""
+msgstr "Otvoreni dijalog Automatski Broj"
 
+# Show Console Window
 #: gschem/etc/system-gschemrc.scm:2296
-#, fuzzy
 msgid "Show _Console Window..."
-msgstr "Novi prozor..."
+msgstr "Pokaži Console Prozor..."
 
 #: gschem/etc/system-gschemrc.scm:2296
-#, fuzzy
 msgid "Display the console window"
-msgstr "Novi prozor"
+msgstr "Prikaz prozora konzole"
 
 #: gschem/etc/system-gschemrc.scm:2297
 msgid "Show Coord _Window..."
@@ -4772,33 +4766,34 @@ msgstr ""
 msgid "Repeat Last Action"
 msgstr ""
 
+# New File
 #: gschem/scheme/gschem/builtins.scm:50
-#, fuzzy
 msgid "New File"
-msgstr "_Datoteka"
+msgstr "Nova Datoteka"
 
 #: gschem/scheme/gschem/builtins.scm:53
 msgid "Open File"
 msgstr ""
 
+# Save As
 #: gschem/scheme/gschem/builtins.scm:59
-#, fuzzy
 msgid "Save As"
-msgstr "Snimi sve"
+msgstr "Spremi kao"
 
+# Save All
 #: gschem/scheme/gschem/builtins.scm:62
 msgid "Save All"
 msgstr "Snimi sve"
 
+# save Changes
 #: gschem/scheme/gschem/builtins.scm:65
-#, fuzzy
 msgid "Save Modified"
-msgstr "Režim pomjeranja"
+msgstr "Spasiti Promjena"
 
+# Print
 #: gschem/scheme/gschem/builtins.scm:68
-#, fuzzy
 msgid "Print"
-msgstr "_Štampaj..."
+msgstr "Štampaj"
 
 #: gschem/scheme/gschem/builtins.scm:71
 msgid "Export Image"
@@ -5182,19 +5177,19 @@ msgstr ""
 msgid "Show Specific Text"
 msgstr ""
 
+# Open Attributes Editor
 #: gschem/scheme/gschem/builtins.scm:428
-#, fuzzy
 msgid "Open Attributes Editor"
-msgstr "_Atribut..."
+msgstr "Open atributi Urednik"
 
 #: gschem/scheme/gschem/builtins.scm:433
 msgid "Autonumber Text"
 msgstr ""
 
+# Show Console Window
 #: gschem/scheme/gschem/builtins.scm:436
-#, fuzzy
 msgid "Show Console Window"
-msgstr "Novi prozor"
+msgstr "Pokaži Console Prozor"
 
 # Show Coordinates window
 #: gschem/scheme/gschem/builtins.scm:439
@@ -5205,10 +5200,10 @@ msgstr "Pokaži Koordinate prozora"
 msgid "Guile Path"
 msgstr ""
 
+# Translate Symbol
 #: gschem/scheme/gschem/builtins.scm:448
-#, fuzzy
 msgid "Translate Symbol"
-msgstr "Translacija"
+msgstr "Prevedi Simbol"
 
 #: gschem/scheme/gschem/builtins.scm:463
 msgid "Dots Grid Style"
@@ -5222,10 +5217,10 @@ msgstr ""
 msgid "Turn Grid Off"
 msgstr ""
 
+# Cycle grid mode
 #: gschem/scheme/gschem/builtins.scm:472
-#, fuzzy
 msgid "Cycle Grid Mode"
-msgstr "Režim ogledala"
+msgstr "ciklus rešetka način"
 
 #: gschem/scheme/gschem/builtins.scm:475
 msgid "Increase Grid Spacing"
