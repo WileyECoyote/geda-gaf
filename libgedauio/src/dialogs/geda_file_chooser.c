@@ -107,7 +107,7 @@ static void FixGtkCrap(GtkWidget *widget, void *self)
 
 static void get_filter_button(GedaFileChooser *chooser)
 {
-  GList   *children, *iter;
+  GList *children, *iter;
 
   /* Get all object inside the contents area of the dialog */
   children = gtk_container_get_children (GTK_CONTAINER (GTK_DIALOG (chooser)->vbox));
