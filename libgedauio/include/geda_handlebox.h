@@ -43,7 +43,6 @@ typedef struct _GedaHandleBoxData   GedaHandleBoxData;
 struct _GedaHandleBox
 {
   GtkBin bin;
-  GedaType       instance_type;
 
   GdkWindow     *bin_window;	/* parent window for children */
   GdkWindow     *float_window;
