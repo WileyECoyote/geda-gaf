@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-22 02:36-0600\n"
+"POT-Creation-Date: 2017-01-28 23:56-0600\n"
 "PO-Revision-Date: 2012-01-31 12:08+0000\n"
 "Last-Translator: Antonio Augusto Todo Bom Neto <atodobom@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -2927,7 +2927,7 @@ msgid "Extend"
 msgstr "/Zoom desenho"
 
 #: gschem/src/x/x_menus.c:119 gschem/etc/system-gschemrc.scm:2105
-msgid "Project a linear objects to other objects"
+msgid "Project linear objects to other objects"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:120 gschem/src/x/x_multiattrib.c:1686
@@ -4852,13 +4852,17 @@ msgstr ""
 msgid "Scale _up Grid Spacing"
 msgstr "A_umentar espaço de grade"
 
-#: gschem/etc/system-gschemrc.scm:2316 gschem/etc/system-gschemrc.scm:2317
+#: gschem/etc/system-gschemrc.scm:2316
 msgid "Increase the snap size"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2317
 msgid "Scale _down Grid Spacing"
 msgstr "_Diminuir espaço de grade"
+
+#: gschem/etc/system-gschemrc.scm:2317
+msgid "Decrease the snap size"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2318
 #, fuzzy
@@ -5589,9 +5593,7 @@ msgid "View documentation for selected component"
 msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:544
-msgid ""
-"Could not show documentation for selected component:\n"
-"\n"
+msgid "Could not show documentation for selected component\n"
 msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:548

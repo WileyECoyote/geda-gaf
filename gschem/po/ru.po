@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gschem ru\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-22 02:36-0600\n"
+"POT-Creation-Date: 2017-01-28 23:56-0600\n"
 "PO-Revision-Date: 2015-09-13 16:05+0300\n"
 "Last-Translator: Sergey Alyoshin <alyoshin.s@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -2965,7 +2965,7 @@ msgid "Extend"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:119 gschem/etc/system-gschemrc.scm:2105
-msgid "Project a linear objects to other objects"
+msgid "Project linear objects to other objects"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:120 gschem/src/x/x_multiattrib.c:1686
@@ -4894,13 +4894,17 @@ msgstr ""
 msgid "Scale _up Grid Spacing"
 msgstr "У_величить шаг сетки"
 
-#: gschem/etc/system-gschemrc.scm:2316 gschem/etc/system-gschemrc.scm:2317
+#: gschem/etc/system-gschemrc.scm:2316
 msgid "Increase the snap size"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2317
 msgid "Scale _down Grid Spacing"
 msgstr "Уме_ньшить шаг сетки"
+
+#: gschem/etc/system-gschemrc.scm:2317
+msgid "Decrease the snap size"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2318
 #, fuzzy
@@ -5579,9 +5583,8 @@ msgid "View documentation for selected component"
 msgstr "Просмотр документации для выбранного компонента"
 
 #: gschem/scheme/gschem/builtins.scm:544
-msgid ""
-"Could not show documentation for selected component:\n"
-"\n"
+#, fuzzy
+msgid "Could not show documentation for selected component\n"
 msgstr ""
 "Не удалось показать документацию для выбранного компонента:\n"
 "\n"
@@ -5637,39 +5640,3 @@ msgstr "Недопустимая комбинация клавиш ~S."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S не является префиксом клавишной последовательности."
-
-#, fuzzy
-#~ msgid "session"
-#~ msgstr "Показать _имя"
-
-#~ msgid "New page created [%s]\n"
-#~ msgstr "Создана новая страница «%s»\n"
-
-#, fuzzy
-#~ msgid "An error occurred while receiving drag-and-drop data"
-#~ msgstr "ОШИБКА: неизвестная ошибка при анализе файлов настроек.\n"
-
-#, fuzzy
-#~ msgid "check the log for more information"
-#~ msgstr ""
-#~ "%s\n"
-#~ "\n"
-#~ "В журнале gschem может быть больше информации."
-
-# Здесь я написал "Не удалось выделить цвет" вместо "назначить", так
-# как речь идёт о резервировании поля в colormap.
-# %s разместил по-другому, потому что будет выдаваться, например, "чёрный
-# цвет".
-#, fuzzy
-#~ msgid ""
-#~ "Could not allocate graphic context, w_current->window is not a valid "
-#~ "Window\n"
-#~ msgstr "Не удалось выделить %s цвет!\n"
-
-#, fuzzy
-#~ msgid "An error occurred while dropping data"
-#~ msgstr "ОШИБКА: неизвестная ошибка при анализе файлов настроек.\n"
-
-#, fuzzy
-#~ msgid "documents\n"
-#~ msgstr "_Документация"
