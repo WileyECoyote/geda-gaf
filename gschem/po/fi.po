@@ -261,7 +261,7 @@ msgstr ""
 
 #: gschem/src/base/gschem_status_bar.c:597
 msgid "Grid Mode"
-msgstr "Peilaa"
+msgstr "grid tila"
 
 #: gschem/src/base/gschem_status_bar.c:598
 msgid "Sets the Grid Mode to display on the status bar"
@@ -374,7 +374,7 @@ msgstr ""
 
 #: gschem/src/base/gschem_status_bar.c:1888
 msgid "Grid"
-msgstr "Peilaa"
+msgstr "Ristikko"
 
 #: gschem/src/base/gschem_status_bar.c:1894
 #: gschem/src/base/gschem_status_bar.c:1915
@@ -384,7 +384,7 @@ msgstr ""
 #: gschem/src/base/gschem_status_bar.c:1907 gschem/src/object/o_picture.c:615
 #: gschem/src/object/o_picture.c:619
 msgid "Error"
-msgstr "Peilaa"
+msgstr "Virhe"
 
 #: gschem/src/base/gschem_status_bar.c:1919
 msgid "NONE"
@@ -613,9 +613,8 @@ msgid "Specify new zoom:"
 msgstr ""
 
 #: gschem/src/iface/i_command.c:2248
-#, fuzzy
 msgid "error"
-msgstr "Peilaa"
+msgstr "virhe"
 
 #: gschem/src/iface/i_command.c:2256
 msgid "No component selected\n"
@@ -906,17 +905,19 @@ msgstr ""
 msgid "Side to offset?"
 msgstr ""
 
+# Mirror Mode
 #: gschem/src/iface/i_status.c:151 gschem/scheme/gschem/builtins.scm:116
 msgid "Mirror Mode"
-msgstr "Peilaa"
+msgstr "Peilaa tila"
 
 #: gschem/src/iface/i_status.c:153
 msgid "Pan Mode"
 msgstr ""
 
+# Choose component
 #: gschem/src/iface/i_status.c:155
 msgid "Choose component"
-msgstr "_komponentti..."
+msgstr "Valitse komponentti"
 
 #: gschem/src/iface/i_status.c:158
 msgid "Magnetic Net Mode"
@@ -1470,10 +1471,10 @@ msgstr ""
 msgid "World"
 msgstr ""
 
+# Unable to load image file
 #: gschem/src/x/x_dialog.c:437
-#, fuzzy
 msgid "Could not load image file"
-msgstr "Lataaminen epäonnistui tiedostoon"
+msgstr "Ei voitu ladata kuvatiedoston"
 
 #: gschem/src/x/x_dialog.c:443
 msgid "gEDA: GPL Electronic Design Automation"
@@ -1481,11 +1482,11 @@ msgstr ""
 
 #: gschem/src/x/x_dialog.c:444
 msgid "glibc"
-msgstr ""
+msgstr "glibc"
 
 #: gschem/src/x/x_dialog.c:445
 msgid "Guile"
-msgstr ""
+msgstr "Guile"
 
 #: gschem/src/x/x_dialog.c:455
 msgid ""
@@ -1570,19 +1571,21 @@ msgstr ""
 
 #: gschem/src/x/x_dialog.c:1018
 msgid "Attribute"
-msgstr "Määri_tteet..."
+msgstr "attribuutti"
 
 #: gschem/src/x/x_dialog.c:1019
 msgid "Logic bubble"
 msgstr ""
 
+# Grid point
 #: gschem/src/x/x_dialog.c:1020
 msgid "Grid point"
-msgstr "Peilaa"
+msgstr "Hilapisteelle"
 
+# Detached attribute
 #: gschem/src/x/x_dialog.c:1021
 msgid "Detached attribute"
-msgstr "Määri_tteet..."
+msgstr "Omakotitalo attribuutti"
 
 #: gschem/src/x/x_dialog.c:1022 gschem/src/x/x_menus.c:95
 msgid "Text"
@@ -3363,9 +3366,10 @@ msgstr "Virhe avattaessa ulostulo"
 msgid "Wrote configuration to"
 msgstr "Kirjoitti kokoonpano"
 
+# File error
 #: gschem/src/x/x_settings.c:607
 msgid "File error"
-msgstr "Peilaa"
+msgstr "Tiedostovirhe"
 
 #: gschem/src/x/x_settings_dialog.c:1074
 msgid "Clear attributes and restore default filter list?"
@@ -3493,6 +3497,7 @@ msgstr "Keskeytetään toiminta\n"
 msgid "Close Window canceled\n"
 msgstr "Uusi ikkuna\n"
 
+# Loading file
 #: gschem/src/x/x_window.c:767
 msgid "Loading file"
 msgstr "Ladataan tiedosto"
@@ -3501,14 +3506,14 @@ msgstr "Ladataan tiedosto"
 msgid "New file"
 msgstr "_Tiedosto"
 
+# Failed to load file
 #: gschem/src/x/x_window.c:953
 msgid "Failed to load file"
 msgstr "Lataaminen epäonnistui tiedostoon"
 
 #: gschem/src/x/x_window.c:983
-#, fuzzy
 msgid "Creating new file"
-msgstr "Ladataan tiedosto"
+msgstr "Luodaan uusi tiedosto"
 
 #: gschem/src/x/x_window.c:996
 msgid "Path"
@@ -3806,7 +3811,7 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2122
 msgid "Select all objects"
-msgstr "Valintatila"
+msgstr "Valitse kaikki objektit"
 
 #: gschem/etc/system-gschemrc.scm:2123 gschem/scheme/gschem/builtins.scm:185
 msgid "Deselect All"
@@ -4348,9 +4353,10 @@ msgstr "_Näytä Maarite tekstillä..."
 msgid "Attribute _Editor..."
 msgstr "_Määrite..."
 
+# Open the attributes editor dialog
 #: gschem/etc/system-gschemrc.scm:2287
-msgid "Open the Attibutes Editor Dialog"
-msgstr ""
+msgid "Open the Attributes Editor Dialog"
+msgstr "Avaa määritteet toimittaja dialogi"
 
 #: gschem/etc/system-gschemrc.scm:2295
 msgid "A_utonumber Text..."
@@ -4997,7 +5003,7 @@ msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:472
 msgid "Cycle Grid Mode"
-msgstr "Peilaa"
+msgstr "Cycle grid-tilassa"
 
 #: gschem/scheme/gschem/builtins.scm:475
 msgid "Increase Grid Spacing"
@@ -5043,49 +5049,55 @@ msgstr "Näytä _Liikutettaessa Komponentti/Neliö"
 msgid "Enable/Disable Auto Panning"
 msgstr ""
 
+# Set the default font size
 #: gschem/scheme/gschem/builtins.scm:508
 msgid "Set Default Text Size"
-msgstr ""
+msgstr "Aseta oletus Tekstin koko"
 
+# Open Preference Dialog
 #: gschem/scheme/gschem/builtins.scm:511
 msgid "Open Preference Dialog"
-msgstr ""
+msgstr "Open etusija dialogi"
 
+# gEDA Instructions
 #: gschem/scheme/gschem/builtins.scm:518
 msgid "gEDA Manuals"
-msgstr ""
+msgstr "gEDA Käyttöohjeet"
 
+# View the front page of the gEDA documentation in a browser
 #: gschem/scheme/gschem/builtins.scm:519
 msgid "View the front page of the gEDA documentation in a browser."
-msgstr ""
+msgstr "Tarkastele etusivulla GEDA asiakirjojen selaimessa."
 
 #: gschem/scheme/gschem/builtins.scm:522
 msgid "Show Hotkeys"
-msgstr "Näytä _Molemmat"
+msgstr "Näytä Molemmat"
 
 #: gschem/scheme/gschem/builtins.scm:526
 msgid "Component Documentation"
-msgstr "Komponentin D_okumentaatio..."
+msgstr "Komponentin Dokumentaatio"
 
+# View documentation for selected component
 #: gschem/scheme/gschem/builtins.scm:528
 msgid "View documentation for selected component"
-msgstr ""
+msgstr "Katso asiakirjat valitun komponentin"
 
+# Could not show documentation for selected component
 #: gschem/scheme/gschem/builtins.scm:544
 msgid "Could not show documentation for selected component\n"
-msgstr ""
+msgstr "Ei voitu osoittaa asiakirjat valitun komponentin\n"
 
 #: gschem/scheme/gschem/builtins.scm:548
 msgid "gschem User Guide"
-msgstr "gschem _UKK..."
+msgstr "gschem Käyttöohjeet"
 
 #: gschem/scheme/gschem/builtins.scm:549
 msgid "View the gschem User Guide in a browser."
-msgstr ""
+msgstr "Tarkastele gschem käyttöopas selaimessa."
 
 #: gschem/scheme/gschem/builtins.scm:554
 msgid "gschem FAQ"
-msgstr "gschem _UKK..."
+msgstr "gschem FAQ"
 
 #: gschem/scheme/gschem/builtins.scm:555
 msgid "Frequently Asked Questions about using gschem."
@@ -5093,7 +5105,7 @@ msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:560
 msgid "gEDA wiki"
-msgstr "gEDA _Wiki..."
+msgstr "gEDA Wiki"
 
 #: gschem/scheme/gschem/builtins.scm:561
 msgid "View the front page of the gEDA wiki in a browser."
