@@ -1,3 +1,9 @@
+2017-01-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_net_object.c: Revise validations in geda_net_object_read
+      to utilize geda_object_show_buffer_err similar to the changes made in
+      o_arc_object::geda_arc_object_read and other read functions.
+
 2017-01-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_line_object.c: Revise validations in geda_line_object_read

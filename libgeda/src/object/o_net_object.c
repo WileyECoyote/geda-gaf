@@ -692,10 +692,10 @@ geda_net_object_read (const char buf[],
                       GError **err)
 {
   GedaObject *new_obj;
-  char    type;
-  int     x1, y1;
-  int     x2, y2;
-  int     color;
+  char type;
+  int  x1, y1;
+  int  x2, y2;
+  int  color;
 
   if (sscanf (buf, "%c %d %d %d %d %d\n", &type, &x1, &y1, &x2, &y2, &color) != 6) {
         g_set_error(err, EDA_ERROR, EDA_ERROR_PARSE, _("Failed to parse net object"));
@@ -703,8 +703,10 @@ geda_net_object_read (const char buf[],
   }
 
   if (x1 == x2 && y1 == y2) {
-    geda_log_w (_("Found a zero length net [ %c %d %d %d %d %d ]\n"),
-                   type, x1, y1, x2, y2, color);
+    const char *msg = _("Found a net with zero length");
+    if (geda_object_show_buffer_err(msg, buf)) {
+      geda_log_w("%s: (%d, %d) (%d, %d).\n", msg, x1, y1, x2, y2);
+    }
   }
 
 /*
@@ -713,8 +715,11 @@ geda_net_object_read (const char buf[],
   }
 */
   if (color < 0 || color > MAX_COLORS) {
-    geda_log_w (_("Found an invalid color [ %s ]\n"), buf);
-    geda_log_v (_("Setting color to default color\n"));
+    const char *msg = _("Found an invalid color");
+    if (geda_object_show_buffer_err(msg, buf)) {
+      geda_log_w("%s: %d.\n", msg, color);
+    }
+    geda_log_w (_("Setting color to default color\n"));
     color = NET_COLOR;
   }
 
