@@ -1,4 +1,9 @@
-2017-01-25 Wiley E. Hill <wileyhill@gmail.com>
+017-01-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_button.c: Update DOxygen comments and add
+      missing function documentation.
+
+017-01-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/Makefile.am: Add po/domain.mak.in to EXTRA_DIST.
 

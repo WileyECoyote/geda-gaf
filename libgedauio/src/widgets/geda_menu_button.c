@@ -219,10 +219,12 @@ geda_menu_arrow_set_relief (GedaMenuButton *button, GtkReliefStyle new_relief)
 
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Get the GedaMenuButton Arrow Relief Property
+ * \par Function Description
+ *  Retrieves the GtkReliefStyle used by the GedaMenuButton object.
  *
+ * \return relief style setting
  */
 GtkReliefStyle
 geda_menu_arrow_get_relief (GedaMenuButton *button)
@@ -234,7 +236,7 @@ geda_menu_arrow_get_relief (GedaMenuButton *button)
 }
 
 /*!
- * \brief Set the Label Text on a GedaMenuButton.
+ * \brief Set the Label Text on a GedaMenuButton
  * \par Function Description
  *  Sets the text of the label of the button to value pointed to by
  *  label. This text is also used to select the stock item if
@@ -249,7 +251,7 @@ void geda_menu_button_set_label (GedaMenuButton *button, const char *label)
 }
 
 /*!
- * \brief Get the Label Text on a GedaMenuButton.
+ * \brief Get the Label Text on a GedaMenuButton
  * \par Function Description
  *  This function retrieves the text from the label of the button.
  *  If the label text has not been set the return value will be NULL.
@@ -266,7 +268,7 @@ const char *geda_menu_button_get_label (GedaMenuButton *button)
 }
 
 /*!
- * \brief Get the Label Text on a GedaMenuButton.
+ * \brief Get the Label Text on a GedaMenuButton
  * \par Function Description
  *  If true, an underline in the text of the button label indicates
  *  the next character should be used for the mnemonic accelerator key.
@@ -282,7 +284,7 @@ geda_menu_button_set_use_underline (GedaMenuButton *button, bool use_underline)
 }
 
 /*!
- * \brief Get GedaMenuButton Mnemonic Interpretation Setting.
+ * \brief Get GedaMenuButton Mnemonic Interpretation Setting
  * \par Function Description
  *  Returns whether an embedded underline in the button label indicates
  *  a mnemonic. See gtk_button_set_use_underline ().
@@ -300,7 +302,7 @@ geda_menu_button_get_use_underline (GedaMenuButton *button)
 }
 
 /*!
- * \brief Set a GedaMenuButton to use stock item set by label text.
+ * \brief Set a GedaMenuButton to use stock item set by label text
  * \par Function Description
  * If %TRUE, the label set on the button is used as a stock id to
  * select the stock item for the button.
@@ -312,7 +314,7 @@ void geda_menu_button_set_use_stock (GedaMenuButton *button, bool use_stock)
 }
 
 /*!
- * \brief Query to determine if GedaMenuButton uses stock item.
+ * \brief Query to determine if GedaMenuButton uses stock item
  * \par Function Description
  *   Returns whether the button label is a stock item.
  *
@@ -328,7 +330,7 @@ bool geda_menu_button_get_use_stock (GedaMenuButton *button)
 }
 
 /*!
- * \brief Sets whether the GedaMenuButton primary  button  will grap focus.
+ * \brief Sets whether the GedaMenuButton primary  button  will grap focus
  * \par Function Description
  * Sets whether the button will grab focus when it is clicked with the mouse.
  * Making mouse clicks not grab focus is useful in places like toolbars where
@@ -362,7 +364,7 @@ bool geda_menu_button_get_focus_on_click (GedaMenuButton *button)
 }
 
 /*!
- * \brief Sets the alignment of the child in a GedaMenuButton.
+ * \brief Sets the alignment of the child in a GedaMenuButton
  * \par Function Description
  * Sets the alignment of the child. This property has no effect unless
  * the child is a GtkMisc or a GtkAligment.
@@ -385,7 +387,7 @@ geda_menu_button_set_alignment (GedaMenuButton *button,
 }
 
 /*!
- * \brief  Gets the alignment of the child in a GedaMenuButton.
+ * \brief Gets the alignment of the child in a GedaMenuButton
  * \par Function Description
  *  Gets the alignment of the child in the button.
  *
@@ -406,7 +408,7 @@ geda_menu_button_get_alignment (GedaMenuButton *button,
 }
 
 /*!
- * \brief Sets the alignment of the child in a GedaMenuButton.
+ * \brief Sets the Image of the GedaMenuButton
  * \par Function Description
  * Set the image of button to the given widget. Note that
  * it depends on the GtkSettings:gtk-button-images setting whether the
@@ -424,7 +426,7 @@ geda_menu_button_set_image (GedaMenuButton *button, GtkWidget *image)
 }
 
 /*!
- * \brief Sets the alignment of the child in a GedaMenuButton.
+ * \brief Gets the GedaMenuButton Image object
  * \par Function Description
  * Gets the widget that is currenty set as the image of button.
  * This may have been explicitly set by gtk_button_set_image()
@@ -441,7 +443,7 @@ GtkWidget *geda_menu_button_get_image (GedaMenuButton *button)
 }
 
 /*!
- * \brief Sets the alignment of the child in a GedaMenuButton.
+ * \brief Sets the Image Position in a GedaMenuButton
  * \par Function Description
  *
  * Sets the position of the image relative to the text
@@ -455,7 +457,7 @@ geda_menu_button_set_image_position (GedaMenuButton *button, GtkPositionType pos
 }
 
 /*!
- * \brief Sets the alignment of the child in a GedaMenuButton.
+ * \brief Gets the GedaMenuButton Image Position
  * \par Function Description
  *  Gets the position of the image relative to the text
  *  inside the button.
@@ -470,7 +472,7 @@ geda_menu_button_get_image_position (GedaMenuButton *button)
 }
 
 /*!
- * \brief Sets the alignment of the child in a GedaMenuButton.
+ * \brief Gets the GedaMenuButton Event Window
  * \par Function Description
  * Returns the button's event window if it is realized, %NULL otherwise.
  * This function should be rarely needed.
@@ -491,7 +493,7 @@ geda_menu_button_get_event_window (GedaMenuButton *button)
 }
 
 /*!
- * \brief  Set Properties of a GedaMenuButton.
+ * \brief  Set Properties of a GedaMenuButton
  * \par Function Description
  *  This function handled the gobject properties setters.
  *
@@ -606,6 +608,7 @@ geda_menu_button_get_property (GObject     *object,
     case PROP_MENU_RELIEF:
       g_value_set_enum (value, button->menu_relief);
       break;
+
     case PROP_USE_UNDERLINE:
       g_value_set_boolean (value, butt->use_underline);
       break;
@@ -1633,10 +1636,11 @@ geda_menu_button_get_menu (GedaMenuButton *button)
 
 /* BEGIN ------+-------+-------^    Tooltips   ^-------+-------+-------+-----*/
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Set GedaMenuButton tooltip Text
+ * \par Function Description
+ *  Wrapper for gtk_widget_set_tooltip_text that accept a
+ *  GedaMenuButton as an argument.
  */
 void geda_menu_button_set_tooltip_text (GedaMenuButton *button,
                                         const char *tip_text)
@@ -1645,10 +1649,15 @@ void geda_menu_button_set_tooltip_text (GedaMenuButton *button,
   gtk_widget_set_tooltip_text((GtkWidget*) button,tip_text);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Set GedaMenuButton Arrow tooltip
+ * \par Function Description
+ *  Sets the tooltip for the arrow of the GedaMenuButton.
  *
+ * \param [in] button      A GedaMenuButton Object
+ * \param [in] tooltips    GtkTooltips object
+ * \param [in] tip_text    text to be used as tooltip text for the button
+ * \param [in] tip_private additional information that may be useful to the user
  */
 void
 geda_menu_button_set_arrow_tooltip (GedaMenuButton *button,
@@ -1661,10 +1670,14 @@ geda_menu_button_set_arrow_tooltip (GedaMenuButton *button,
                         tip_private);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Set GedaMenuButton Arrow tooltip Text
+ * \par Function Description
+ * Sets the tooltip text to be used as tooltip for the arrow button
+ * which pops up the menu.
  *
+ * \param [in] button  A GedaMenuButton Object
+ * \param [in] text    text to be used as tooltip text for the arrow button
  */
 void
 geda_menu_button_set_arrow_tooltip_text(GedaMenuButton *button,
@@ -1674,6 +1687,15 @@ geda_menu_button_set_arrow_tooltip_text(GedaMenuButton *button,
   gtk_widget_set_tooltip_text (button->priv->arrow_button, text);
 }
 
+/*!
+ * \brief Set GedaMenuButton Arrow tooltip Markup
+ * \par Function Description
+ * Sets the tooltip markup text to be used as tooltip for the arrow
+ * button which pops up the menu.
+ *
+ * \param [in] button  A GedaMenuButton Object
+ * \param [in] markup  text with markup to be used as tooltip text
+ */
 void
 geda_menu_button_set_arrow_tooltip_markup (GedaMenuButton *button,
                                            const char     *markup)
@@ -1686,10 +1708,15 @@ geda_menu_button_set_arrow_tooltip_markup (GedaMenuButton *button,
 
 /*-----+-------+-------+-------^-------+-------^-------+-------+-------+-----*/
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief New GedaMenuButton from Stock Id
+ * \par Function Description
+ * Creates a new GedaMenuButton. The new GedaMenuButton will contain
+ * an icon and label from the stock item indicated by \a stock_id.
  *
+ * \param [in] stock_id  Name of a stock item
+ *
+ * \returns the new GedaMenuButton as a Widget
  */
 GtkWidget*
 geda_menu_button_new_from_stock (const char *stock_id)
@@ -1705,10 +1732,13 @@ geda_menu_button_new_from_stock (const char *stock_id)
   return button;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief New GedaMenuButton with Icon and Label
+ * \par Function Description
+ *  Creates a new GedaMenuButton using \a icon_widget as the icon
+ *  and \a label as the label.
  *
+ * \returns the new GedaMenuButton as a Widget
  */
 GtkWidget*
 geda_menu_button_new(GtkWidget *icon_widget, const char *label)
@@ -1727,10 +1757,12 @@ geda_menu_button_new(GtkWidget *icon_widget, const char *label)
   return button;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief New GedaMenuButton with Mnemonic Label
+ * \par Function Description
+ *  Creates a new GedaMenuButton using \a label as the label.
  *
+ * \returns the new GedaMenuButton as a Widget
  */
 GtkWidget*
 geda_menu_button_new_with_mnemonic(const char *label)
