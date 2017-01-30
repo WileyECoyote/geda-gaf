@@ -756,12 +756,17 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     }
 
     geda_menu_item_set_submenu (GEDA_MENU_ITEM (root_menu), menu);
+
     g_object_set (root_menu, "visible", TRUE, NULL);
+
     /* Do not free *raw_menu_name */
   }
   scm_dynwind_end ();
 
+  /* Ensure File menu item exist, if not then create the item */
+
   menu_item = GEDA_OBJECT_GET_DATA (MENU_BAR, "_File/_Save");
+
   if (menu_item == NULL) {
 
     menu = create_file_menu();
@@ -773,6 +778,8 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     GEDA_OBJECT_SET_DATA(MENU_BAR, menu_item, "_File");
     geda_menu_bar_append (GEDA_MENU_BAR (MENU_BAR), menu_item);
   }
+
+  /* Ensure View menu item exist, if not then create the item */
 
   menu_item = GEDA_OBJECT_GET_DATA (MENU_BAR, "_View/_Redraw");
 
@@ -1353,7 +1360,7 @@ void x_menus_popup_sensitivity (GschemToplevel *w_current,
   menu_data = g_slist_nth_data (ui_list, w_current->ui_index);
 
   if (!POPUP_MAIN) {
-    fprintf(stderr, "Popup menu widget doesn't exist!\n");
+    fprintf(stderr, "Popup menu widget does not exist!\n");
   }
   else {
 
