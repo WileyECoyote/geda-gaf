@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr_FR\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-10 07:50-0600\n"
+"POT-Creation-Date: 2017-01-28 23:56-0600\n"
 "PO-Revision-Date: 2016-12-28 19:57-0600\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -41,48 +41,48 @@ msgstr ""
 msgid "Assuming symbol file suffix for"
 msgstr ""
 
-#: gschem/src/base/gschem.c:238
+#: gschem/src/base/gschem.c:241
 msgid "An error was encountered loading requested session"
 msgstr "Une erreur s'est produite lors du chargement de la session demandée"
 
-#: gschem/src/base/gschem.c:263
+#: gschem/src/base/gschem.c:266
 msgid "Auto Load"
 msgstr ""
 
-#: gschem/src/base/gschem.c:312
+#: gschem/src/base/gschem.c:316
 msgid ""
-"You must set the GEDADATA environment variable!\n"
+"The GEDADATA environment variable must be set!\n"
 "\n"
 "gschem cannot locate some data files. Please ensure the GEDADATA\n"
 "environment variable points to the correct location.\n"
 msgstr "Vous devez positionner la variable d'environnement GEDADATA!\n"
 
-#: gschem/src/base/gschem.c:348
+#: gschem/src/base/gschem.c:352
 msgid "Unable to locate scheme initialization file"
 msgstr "Impossible de localiser le fichier d'initialisation du schéma"
 
-#: gschem/src/base/gschem.c:355
+#: gschem/src/base/gschem.c:359
 msgid "Read scheme initialization file"
 msgstr "Lire le fichier d'initialisation du schéma"
 
-#: gschem/src/base/gschem.c:358
+#: gschem/src/base/gschem.c:362
 msgid "Failed to read scheme initialization file"
 msgstr "Échec de la lecture du fichier d'initialisation du schéma"
 
-#: gschem/src/base/gschem.c:380
+#: gschem/src/base/gschem.c:384
 msgid "version"
 msgstr "Enregistrer toutes les pages"
 
-#: gschem/src/base/gschem.c:385
+#: gschem/src/base/gschem.c:389
 msgid "Logging system is disabled\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:425
+#: gschem/src/base/gschem.c:429
 #, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
 msgstr "ERREUR: Impossible de charger ou d'évaluer le script de démarrage\n"
 
-#: gschem/src/base/gschem.c:517
+#: gschem/src/base/gschem.c:521
 msgid "Exiting normal\n"
 msgstr ""
 
@@ -434,114 +434,114 @@ msgstr "L'objet ~A n'est pas inclus dans la page gschem courante."
 msgid "Invalid text name/value visibility ~A."
 msgstr "Visibilité de nom/valeur de texte non valide ~A."
 
-#: gschem/src/guile/g_rc.c:87 gschem/src/guile/g_rc.c:99
+#: gschem/src/guile/g_rc.c:83 gschem/src/guile/g_rc.c:95
 msgid "Processing"
 msgstr "Traitement"
 
-#: gschem/src/guile/g_rc.c:91 gschem/src/guile/g_rc.c:103
+#: gschem/src/guile/g_rc.c:87 gschem/src/guile/g_rc.c:99
 msgid "Skipping"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:123
+#: gschem/src/guile/g_rc.c:119
 msgid "entry in rc file"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:127
+#: gschem/src/guile/g_rc.c:123
 msgid "Bad Value"
 msgstr "Valeur"
 
-#: gschem/src/guile/g_rc.c:128 gschem/src/guile/g_rc.c:2074
+#: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2070
 msgid "check"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:129
+#: gschem/src/guile/g_rc.c:125
 msgid "or Scheme, continuing with"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:137
+#: gschem/src/guile/g_rc.c:133
 msgid "maximum value"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:141
+#: gschem/src/guile/g_rc.c:137
 msgid "minimum value"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:145
+#: gschem/src/guile/g_rc.c:141
 msgid "default value"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:159
+#: gschem/src/guile/g_rc.c:155
 msgid "Invalid type assignment, check"
 msgstr "Attribution de type non valide, vérification"
 
-#: gschem/src/guile/g_rc.c:200
+#: gschem/src/guile/g_rc.c:196
 msgid "This is gEDA/gschem version"
 msgstr "C'est la version gEDA/gschem"
 
-#: gschem/src/guile/g_rc.c:201
+#: gschem/src/guile/g_rc.c:197
 msgid "but you have a version"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:202
+#: gschem/src/guile/g_rc.c:198
 msgid "Please be sure that you have the latest rc file"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:209 gschem/src/x/x_image.c:481
+#: gschem/src/guile/g_rc.c:205 gschem/src/x/x_image.c:481
 msgid "file"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:725
+#: gschem/src/guile/g_rc.c:721
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:730
+#: gschem/src/guile/g_rc.c:726
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:731 gschem/src/guile/g_rc.c:1277
-#: gschem/src/guile/g_rc.c:1429 gschem/src/guile/g_rc.c:2027
+#: gschem/src/guile/g_rc.c:727 gschem/src/guile/g_rc.c:1273
+#: gschem/src/guile/g_rc.c:1425 gschem/src/guile/g_rc.c:2023
 msgid "Continuing with default value"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:815
+#: gschem/src/guile/g_rc.c:811
 #, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1271
+#: gschem/src/guile/g_rc.c:1267
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1276
+#: gschem/src/guile/g_rc.c:1272
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1423
+#: gschem/src/guile/g_rc.c:1419
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1428
+#: gschem/src/guile/g_rc.c:1424
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2021
+#: gschem/src/guile/g_rc.c:2017
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2026
+#: gschem/src/guile/g_rc.c:2022
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2072
+#: gschem/src/guile/g_rc.c:2068
 msgid "Invalid zoom factor"
 msgstr "Facteur de zoom non valide"
 
@@ -1504,9 +1504,10 @@ msgid "An error occurred while receiving Drag & Drop data"
 msgstr ""
 "Une erreur s'est produite lors de la réception des données glisser-déposer"
 
+# Data error
 #: gschem/src/x/x_coord.c:157
 msgid "Data error"
-msgstr "<b>Portée</b>"
+msgstr "Erreur de donnée"
 
 #: gschem/src/x/x_coord.c:162 gschem/src/x/x_dnd.c:585
 msgid "Drag & Drop failed"
@@ -2043,12 +2044,11 @@ msgstr ""
 msgid "Done, renderer is down"
 msgstr ""
 
+# Invalid display option; Failure to show the two
 #: gschem/src/x/x_edit_attrib.c:210
-#, fuzzy, c-format
+#, c-format
 msgid "invalid show option; defaulting to show both\n"
-msgstr ""
-"Option d'affichage invalide ; changement pour affichage du nom et de la "
-"valeur\n"
+msgstr "Option d'affichage non valide; Défaut de montrer les deux\n"
 
 #: gschem/src/x/x_edit_attrib.c:321
 msgid "Select to choose an attribute visibility options"
@@ -2454,37 +2454,42 @@ msgstr "<b>Propriétés du texte</b>"
 msgid "Text Alignment Attribute"
 msgstr "Éditeur d'attributs"
 
+# Text rotation angle Spinner input
 #: gschem/src/x/x_edit_text.c:606
 msgid "Text Rotation Angle Spinner Entry"
-msgstr ""
+msgstr "Entrée de Spinner d'angle de rotation de texte"
 
 #: gschem/src/x/x_fileselect.c:144
 msgid "Large"
-msgstr ""
+msgstr "Grand"
 
+# Enable to enlarge the preview
 #: gschem/src/x/x_fileselect.c:145
-msgid "Enable to enlagre the preview"
-msgstr ""
+msgid "Enable to enlarge the preview"
+msgstr "Activer l'aperçu agrandi"
 
+# Auto file Suffix
 #: gschem/src/x/x_fileselect.c:286
 msgid "Auto file Suffix"
-msgstr ""
+msgstr "Suffixe de fichier automatique"
 
+# Automatically append the file extension
 #: gschem/src/x/x_fileselect.c:289
 msgid "Automatically append the file extension"
-msgstr ""
+msgstr "Ajout automatique de l'extension de fichier"
 
+# already exists
 #: gschem/src/x/x_fileselect.c:333
 msgid "already exists"
-msgstr ""
+msgstr "existe déjà"
 
 #: gschem/src/x/x_fileselect.c:333
 msgid "Overwrite"
-msgstr "Écraser le fichier ?"
+msgstr "Écraser"
 
 #: gschem/src/x/x_fileselect.c:334
 msgid "Overwrite file?"
-msgstr "Écraser le fichier ?"
+msgstr "Écraser le fichier?"
 
 #: gschem/src/x/x_fileselect.c:336
 msgid "Save canceled on user request\n"
@@ -2741,7 +2746,7 @@ msgid "Extend"
 msgstr "/Agrandissement auto"
 
 #: gschem/src/x/x_menus.c:119 gschem/etc/system-gschemrc.scm:2105
-msgid "Project a linear objects to other objects"
+msgid "Project linear objects to other objects"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:120 gschem/src/x/x_multiattrib.c:1686
@@ -3498,34 +3503,34 @@ msgstr "Enregistrement des paramètres de la barre d'outils..."
 msgid "data saved to"
 msgstr "Données sauvegardées"
 
-#: gschem/src/x/x_toolbars.c:568
+#: gschem/src/x/x_toolbars.c:569
 msgid "Could not save Toolbar configuration to"
 msgstr "Impossible d'enregistrer la configuration de la barre d'outils"
 
-#: gschem/src/x/x_toolbars.c:641
+#: gschem/src/x/x_toolbars.c:642
 msgid "Error, Toolbar configuration key file"
 msgstr "Erreur, fichier de clé de configuration de la barre d'outils"
 
-#: gschem/src/x/x_toolbars.c:649
+#: gschem/src/x/x_toolbars.c:650
 msgid "Retrieving toolbar geometry\n"
 msgstr "Récupération de la géométrie de la barre d'outils\n"
 
-#: gschem/src/x/x_toolbars.c:674
+#: gschem/src/x/x_toolbars.c:675
 msgid "Toolbar configuration restored from"
 msgstr "Configuration de la barre d'outils restaurée à partir de"
 
-#: gschem/src/x/x_toolbars.c:679
+#: gschem/src/x/x_toolbars.c:680
 msgid "Warning, error restoring toolbar configuration"
 msgstr ""
 "Avertissement, erreur restauration de la configuration de la barre d'outils"
 
-#: gschem/src/x/x_toolbars.c:685
+#: gschem/src/x/x_toolbars.c:686
 msgid "Warning, toolbar configuration file access error"
 msgstr ""
 "Avertissement, erreur d'accès au fichier de configuration de la barre "
 "d'outils"
 
-#: gschem/src/x/x_toolbars.c:703
+#: gschem/src/x/x_toolbars.c:704
 msgid "Toolbar configuration not found"
 msgstr "Configuration de la barre d'outils introuvable"
 
@@ -4416,9 +4421,10 @@ msgstr "Montrer les attributs hérités"
 msgid "Attribute _Editor..."
 msgstr "Éditeur d'attribut..."
 
+# Open the Attributes Editor Dialog
 #: gschem/etc/system-gschemrc.scm:2287
-msgid "Open the Attibutes Editor Dialog"
-msgstr "Éditeur d'attribut"
+msgid "Open the Attributes Editor Dialog"
+msgstr "Ouvrir la boîte de dialogue Editeur d'attributs"
 
 #: gschem/etc/system-gschemrc.scm:2295
 msgid "A_utonumber Text..."
@@ -4496,13 +4502,17 @@ msgstr ""
 msgid "Scale _up Grid Spacing"
 msgstr "_Augmenter l'espacement de la grille"
 
-#: gschem/etc/system-gschemrc.scm:2316 gschem/etc/system-gschemrc.scm:2317
+#: gschem/etc/system-gschemrc.scm:2316
 msgid "Increase the snap size"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2317
 msgid "Scale _down Grid Spacing"
 msgstr "_Diminuer l'espacement de la grile"
+
+#: gschem/etc/system-gschemrc.scm:2317
+msgid "Decrease the snap size"
+msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2318
 msgid "S_nap Grid Spacing..."
@@ -4895,11 +4905,11 @@ msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:290
 msgid "First Page"
-msgstr "_Précédent"
+msgstr "Première page"
 
 #: gschem/scheme/gschem/builtins.scm:293
 msgid "Previous Page"
-msgstr "_Précédent"
+msgstr "Précédent"
 
 #: gschem/scheme/gschem/builtins.scm:296
 msgid "Next Page"
@@ -4907,7 +4917,7 @@ msgstr "Nouvelle page"
 
 #: gschem/scheme/gschem/builtins.scm:299
 msgid "Page Up"
-msgstr "_Page"
+msgstr "Page précédente"
 
 #: gschem/scheme/gschem/builtins.scm:302
 msgid "Page Down"
@@ -4919,7 +4929,7 @@ msgstr "Nouvelle page"
 
 #: gschem/scheme/gschem/builtins.scm:311
 msgid "Print Page"
-msgstr "_Précédent"
+msgstr "Imprimer Page"
 
 #: gschem/scheme/gschem/builtins.scm:314
 msgid "Revert Changes"
@@ -4931,11 +4941,11 @@ msgstr "Abandonner les modifications ?"
 
 #: gschem/scheme/gschem/builtins.scm:335
 msgid "Up Hierarchy"
-msgstr "Hié_rarchie"
+msgstr "Hiérarchie"
 
 #: gschem/scheme/gschem/builtins.scm:341
 msgid "Add Component"
-msgstr "/Ajouter un composant..."
+msgstr "Ajouter un composant"
 
 #: gschem/scheme/gschem/builtins.scm:344
 msgid "Add Net"
@@ -4943,11 +4953,11 @@ msgstr "/Ajouter une piste"
 
 #: gschem/scheme/gschem/builtins.scm:347
 msgid "Add Bus"
-msgstr "/Ajouter un bus"
+msgstr "Ajouter un bus"
 
 #: gschem/scheme/gschem/builtins.scm:353
 msgid "Add Text"
-msgstr "/Ajouter du texte"
+msgstr "Ajouter du texte"
 
 #: gschem/scheme/gschem/builtins.scm:356
 msgid "Add Line"
@@ -4959,7 +4969,7 @@ msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:362
 msgid "Add Box"
-msgstr "/Ajouter un bus"
+msgstr "Ajouter un bus"
 
 #: gschem/scheme/gschem/builtins.scm:365
 msgid "Add Circle"
@@ -5007,7 +5017,7 @@ msgstr "Afficher le nom de l'attribut"
 
 #: gschem/scheme/gschem/builtins.scm:416
 msgid "Toggle Text Visibility"
-msgstr "_Inverser la visibilité"
+msgstr "Inverser la visibilité"
 
 #: gschem/scheme/gschem/builtins.scm:419
 msgid "Find Specific Text"
@@ -5029,9 +5039,10 @@ msgstr "Éditeur d'attribut"
 msgid "Autonumber Text"
 msgstr "Annotation automatique"
 
+# Show Console Window
 #: gschem/scheme/gschem/builtins.scm:436
 msgid "Show Console Window"
-msgstr "Afficher les _coordonnées"
+msgstr "Fenêtre Show Console"
 
 # Show Coordinates
 #: gschem/scheme/gschem/builtins.scm:439
@@ -5040,7 +5051,7 @@ msgstr "Afficher les coordonnées"
 
 #: gschem/scheme/gschem/builtins.scm:442
 msgid "Guile Path"
-msgstr ""
+msgstr "Chemin de Guile"
 
 #: gschem/scheme/gschem/builtins.scm:448
 msgid "Translate Symbol"
@@ -5048,7 +5059,7 @@ msgstr "Translater"
 
 #: gschem/scheme/gschem/builtins.scm:463
 msgid "Dots Grid Style"
-msgstr ""
+msgstr "Points Grille Style"
 
 #: gschem/scheme/gschem/builtins.scm:466
 msgid "Mesh Grid Style"
@@ -5056,7 +5067,7 @@ msgstr "Style de grille de maille"
 
 #: gschem/scheme/gschem/builtins.scm:469
 msgid "Turn Grid Off"
-msgstr ""
+msgstr "Désactiver la grille"
 
 #: gschem/scheme/gschem/builtins.scm:472
 msgid "Cycle Grid Mode"
@@ -5076,11 +5087,11 @@ msgstr "_Augmenter l'espacement de la grille"
 
 #: gschem/scheme/gschem/builtins.scm:484
 msgid "Turn Snap off"
-msgstr "Snap Off"
+msgstr "Désactiver Snap"
 
 #: gschem/scheme/gschem/builtins.scm:487
 msgid "Turn Snap on"
-msgstr ""
+msgstr "Activer Snap"
 
 #: gschem/scheme/gschem/builtins.scm:490
 msgid "Cycle Snap Mode"
@@ -5096,7 +5107,7 @@ msgstr "Piste _magnétique On/Off"
 
 #: gschem/scheme/gschem/builtins.scm:499
 msgid "Enable/Disable Drag move"
-msgstr ""
+msgstr "Activer/Désactiver déplacer déplacer"
 
 #: gschem/scheme/gschem/builtins.scm:502
 msgid "Toggle Outline Drawing"
@@ -5104,23 +5115,23 @@ msgstr "Basculer vers _Aperçu/Zone"
 
 #: gschem/scheme/gschem/builtins.scm:505
 msgid "Enable/Disable Auto Panning"
-msgstr ""
+msgstr "Activer/désactiver le panoramique automatique"
 
 #: gschem/scheme/gschem/builtins.scm:508
 msgid "Set Default Text Size"
-msgstr "Taille de texte :"
+msgstr "Défaut Taille de texte"
 
 #: gschem/scheme/gschem/builtins.scm:511
 msgid "Open Preference Dialog"
-msgstr ""
+msgstr "Ouvrir la boîte de dialogue des préférences"
 
 #: gschem/scheme/gschem/builtins.scm:518
 msgid "gEDA Manuals"
-msgstr ""
+msgstr "Manuels gEDA"
 
 #: gschem/scheme/gschem/builtins.scm:519
 msgid "View the front page of the gEDA documentation in a browser."
-msgstr ""
+msgstr "Afficher la première page de la documentation gEDA dans un navigateur."
 
 #: gschem/scheme/gschem/builtins.scm:522
 msgid "Show Hotkeys"
@@ -5132,13 +5143,11 @@ msgstr "Documentation du composant"
 
 #: gschem/scheme/gschem/builtins.scm:528
 msgid "View documentation for selected component"
-msgstr ""
+msgstr "Afficher la documentation du composant sélectionné"
 
 #: gschem/scheme/gschem/builtins.scm:544
-msgid ""
-"Could not show documentation for selected component:\n"
-"\n"
-msgstr ""
+msgid "Could not show documentation for selected component\n"
+msgstr "Impossible de montrer la documentation du composant sélectionné\n"
 
 #: gschem/scheme/gschem/builtins.scm:548
 msgid "gschem User Guide"
@@ -5146,23 +5155,23 @@ msgstr "gschem _FAQ..."
 
 #: gschem/scheme/gschem/builtins.scm:549
 msgid "View the gschem User Guide in a browser."
-msgstr ""
+msgstr "Afficher le guide de l'utilisateur gschem dans un navigateur."
 
 #: gschem/scheme/gschem/builtins.scm:554
 msgid "gschem FAQ"
-msgstr "gschem _FAQ..."
+msgstr "gschem FAQ"
 
 #: gschem/scheme/gschem/builtins.scm:555
 msgid "Frequently Asked Questions about using gschem."
-msgstr ""
+msgstr "Foire aux questions sur l'utilisation de gschem."
 
 #: gschem/scheme/gschem/builtins.scm:560
 msgid "gEDA wiki"
-msgstr "gEDA _Wiki..."
+msgstr "gEDA Wiki"
 
 #: gschem/scheme/gschem/builtins.scm:561
 msgid "View the front page of the gEDA wiki in a browser."
-msgstr ""
+msgstr "Afficher la page d'accueil du wiki gEDA dans un navigateur."
 
 #: gschem/scheme/gschem/deprecated.scm:102
 #, scheme-format
@@ -5175,11 +5184,11 @@ msgstr "Aucune documentation trouvée"
 
 #: gschem/scheme/gschem/gschem-export-menu.scm:57
 msgid "Export embed symbol"
-msgstr ""
+msgstr "Symbole d'intégration d'exportation"
 
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
 msgid "Export embed picture"
-msgstr "Embarquer le composant/l'image"
+msgstr "Exporter la photo intégrée"
 
 #: gschem/scheme/gschem/keymap.scm:41
 #, scheme-format
@@ -5190,33 +5199,3 @@ msgstr "~S n'est pas une combinaison de touches valide."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S n'est pas un préfixe valide."
-
-#~ msgid "session"
-#~ msgstr "Afficher le _nom"
-
-#~ msgid "New page created [%s]\n"
-#~ msgstr "Nouvelle page créée [%s]\n"
-
-#~ msgid "An error occurred while receiving drag-and-drop data"
-#~ msgstr ""
-#~ "Une erreur s'est produite lors de la réception des données de glisser-"
-#~ "déplacer"
-
-#~ msgid "check the log for more information"
-#~ msgstr ""
-#~ "%s\n"
-#~ "\n"
-#~ "Le journal gschem pourrait contenir plus d'informations."
-
-#~ msgid ""
-#~ "Could not allocate graphic context, w_current->window is not a valid "
-#~ "Window\n"
-#~ msgstr "Allocation gc impossible\n"
-
-#~ msgid "An error occurred while dropping data"
-#~ msgstr ""
-#~ "ERREUR: Une erreur inconnue a eu lieu lors du chargement des fichiers de "
-#~ "configuration.\n"
-
-#~ msgid "documents\n"
-#~ msgstr "D_ocumentation..."

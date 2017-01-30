@@ -1,5 +1,9 @@
 2017-01-28 Wiley E. Hill <wileyhill@gmail.com>
 
+    * po/fr_FR.po: Updated the French translation.
+
+2017-01-28 Wiley E. Hill <wileyhill@gmail.com>
+
     * po/af.po: Update Afrikaans translations.
 
     * po/kh.po: Update Khmer translations.
@@ -10492,7 +10496,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
         * po/nl_NL.po: Updated Dutch translation from Bert Timmerman. Thanks.
 
         * src/i_callbacks.c: Fixed update component to work again.
-        It broken during the transition from Ales' custom linked list
+        It broken during the transition from Ales custom linked list
         implementation for the selection lists to using GList for
         selection lists.  It seems that iterating over a list that is
         being change doesn`t work in the same way with GLists.        Fix for
@@ -10744,7 +10748,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
 
 2006-12-16 Ales Hvezda   <ahvezda@geda.seul.org>
 
-        Merged Carlos' glist work via Peter Brett`s patch sets to the trunk
+        Merged Carlos glist work via Peter Brett`s patch sets to the trunk
 
         2006-10-22 Carlos Nieves Onega <cnieves@iespana.es>
 
