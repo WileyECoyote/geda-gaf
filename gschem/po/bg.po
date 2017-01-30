@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-19 02:00-0600\n"
+"POT-Creation-Date: 2017-01-28 23:56-0600\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -2439,7 +2439,7 @@ msgstr ""
 
 #: gschem/src/x/x_fileselect.c:475
 msgid ""
-"If you load the original file, the backup file will beoverwritten in the "
+"If you load the original file, the backup file will be overwritten in the "
 "next autosave timeout and will be lost.\n"
 "\n"
 "Do you want to load the backup file?"
@@ -2686,7 +2686,7 @@ msgid "Extend"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:119 gschem/etc/system-gschemrc.scm:2105
-msgid "Project a linear objects to other objects"
+msgid "Project linear objects to other objects"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:120 gschem/src/x/x_multiattrib.c:1686
@@ -4471,7 +4471,7 @@ msgstr ""
 msgid "Scale _up Grid Spacing"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2316 gschem/etc/system-gschemrc.scm:2317
+#: gschem/etc/system-gschemrc.scm:2316
 msgid "Increase the snap size"
 msgstr ""
 
@@ -4479,65 +4479,77 @@ msgstr ""
 msgid "Scale _down Grid Spacing"
 msgstr ""
 
+# Reduce the amount of Snap
+#: gschem/etc/system-gschemrc.scm:2317
+msgid "Decrease the snap size"
+msgstr "Намаляване на размера на Прилепване"
+
+# Snap Grid Spacing
 #: gschem/etc/system-gschemrc.scm:2318
 msgid "S_nap Grid Spacing..."
-msgstr ""
+msgstr "Прилепване решетка разредка..."
 
 #: gschem/etc/system-gschemrc.scm:2318
 msgid "Adjust snap size"
-msgstr ""
+msgstr "Регулиране размер Прилепване"
 
 #: gschem/etc/system-gschemrc.scm:2321
 msgid "Toggle _Snap On-Off"
-msgstr ""
+msgstr "Превключване на режима на Прилепване"
 
+# Toggle the snap mode
 #: gschem/etc/system-gschemrc.scm:2321
 msgid "Toggle the object snap mode"
-msgstr ""
+msgstr "Превключване на режима на Прилепване"
 
 #: gschem/etc/system-gschemrc.scm:2322
 msgid "Toggle _Rubberband"
-msgstr ""
+msgstr "Превключване режим еластичен"
 
 #: gschem/etc/system-gschemrc.scm:2322
 msgid "Toggle rubberband net mode"
-msgstr ""
+msgstr "Превключване режим еластичен"
 
+# Switch magnetic net
 #: gschem/etc/system-gschemrc.scm:2323
 msgid "Toggle _Magnetic Net"
-msgstr ""
+msgstr "Превключване магнитен нетната"
 
+# Switching the magnetic net
 #: gschem/etc/system-gschemrc.scm:2323
 msgid "Toggle magnetic net mode"
-msgstr ""
+msgstr "Превключване на магнитен нетната"
 
+# Toggle Drag Move
 #: gschem/etc/system-gschemrc.scm:2324
 msgid "Toggle _Drag Move"
-msgstr ""
+msgstr "Превключване плъзгане ход"
 
 #: gschem/etc/system-gschemrc.scm:2324
 msgid "Toggle Drag-can-Move mode"
-msgstr ""
+msgstr "Превключване режим плъзгане ход"
 
 #: gschem/etc/system-gschemrc.scm:2325
 msgid "Toggle _Outline-Box"
-msgstr ""
+msgstr "превключване кутия контур"
 
+# Switching feedback action
 #: gschem/etc/system-gschemrc.scm:2325
 msgid "Toggle action feedback"
-msgstr ""
+msgstr "превключване на обратна връзка за действие"
 
+# toggle Automatic Pan
 #: gschem/etc/system-gschemrc.scm:2326
 msgid "Toggle _Auto-Pan"
-msgstr ""
+msgstr "превключване автоматично тиган"
 
 #: gschem/etc/system-gschemrc.scm:2326
 msgid "Toggle auto panning mode"
-msgstr ""
+msgstr "превключване автоматично тиган режим"
 
 #: gschem/etc/system-gschemrc.scm:2329
 msgid "_Text Size..."
-msgstr ""
+msgstr "Размер текста..."
 
 #: gschem/etc/system-gschemrc.scm:2329
 msgid "Open the Text Size settings"
@@ -5111,11 +5123,10 @@ msgstr ""
 msgid "View documentation for selected component"
 msgstr ""
 
+# Could not show documentation for selected component
 #: gschem/scheme/gschem/builtins.scm:544
-msgid ""
-"Could not show documentation for selected component:\n"
-"\n"
-msgstr ""
+msgid "Could not show documentation for selected component\n"
+msgstr "Не можа да покаже документи за избрания компонент\n"
 
 #: gschem/scheme/gschem/builtins.scm:548
 msgid "gschem User Guide"
