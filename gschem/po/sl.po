@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-22 19:05-0600\n"
+"POT-Creation-Date: 2017-01-28 23:56-0600\n"
 "PO-Revision-Date: 2012-01-27 14:18+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
@@ -2726,145 +2726,152 @@ msgstr "Kopiraj izbor"
 
 #: gschem/src/x/x_menus.c:122
 msgid "MCopy"
-msgstr ""
+msgstr "Večkratno kopiranje"
 
 #: gschem/src/x/x_menus.c:122 gschem/etc/system-gschemrc.scm:2095
 msgid "Make multible copies of selection"
-msgstr ""
+msgstr "Naredite multible kopije izbire"
 
 #: gschem/src/x/x_menus.c:123
 msgid "Move"
-msgstr ""
+msgstr "Premakni"
 
 #: gschem/src/x/x_menus.c:123 gschem/etc/system-gschemrc.scm:2097
 msgid "Move selection"
-msgstr ""
+msgstr "Premakni izbor"
 
 #: gschem/src/x/x_menus.c:124
 msgid "Mirror"
-msgstr ""
+msgstr "Ogledalo"
 
 #: gschem/src/x/x_menus.c:124 gschem/etc/system-gschemrc.scm:2096
 msgid "Mirror an object about a point"
-msgstr ""
+msgstr "Ogledalo predmeta okoli točke"
 
 #: gschem/src/x/x_menus.c:125
 msgid "Rotate"
-msgstr ""
+msgstr "Zavrti"
 
 #: gschem/src/x/x_menus.c:125 gschem/etc/system-gschemrc.scm:2099
 msgid "Rotate the current selection about a point"
-msgstr ""
+msgstr "Zavrtite trenutni izbor o točki"
 
+# Adjust objects
 #: gschem/src/x/x_menus.c:126
 msgid "Snap"
-msgstr ""
+msgstr "prilagodite predmetov"
 
+# Adjust objects to the current grid
 #: gschem/src/x/x_menus.c:126
 msgid "Snap objects to the current grid"
-msgstr ""
+msgstr "Prilagodite predmete na trenutno omrežje"
 
 #: gschem/src/x/x_menus.c:132
 msgid "Hierarchy"
-msgstr ""
+msgstr "hierarhija"
 
+# Editing operations
 #: gschem/src/x/x_menus.c:132
 msgid "Edit operations"
-msgstr ""
+msgstr "operacije urejanje"
 
 #: gschem/src/x/x_menus.c:133 gschem/scheme/gschem/builtins.scm:329
 msgid "Down Schematic"
-msgstr ""
+msgstr "dol shematski"
 
 #: gschem/src/x/x_menus.c:133 gschem/etc/system-gschemrc.scm:2227
 msgid "Descend down in the schematic hierarchy"
-msgstr ""
+msgstr "Spustimo v shematski hierarhiji"
 
 #: gschem/src/x/x_menus.c:134 gschem/scheme/gschem/builtins.scm:332
 msgid "Down Symbol"
-msgstr ""
+msgstr "navzdol Simbol"
 
 #: gschem/src/x/x_menus.c:134 gschem/etc/system-gschemrc.scm:2228
 msgid "Descend down in the symbol hierarchy"
-msgstr ""
+msgstr "Dol SymbDescend določa oznako hierarchyol"
 
 #: gschem/src/x/x_menus.c:135
 msgid "Up"
-msgstr ""
+msgstr "up"
 
 #: gschem/src/x/x_menus.c:135 gschem/etc/system-gschemrc.scm:2229
 msgid "ascend up in the schematic hierarchy"
-msgstr ""
+msgstr "vzpnemo v shematski hierarhiji"
 
 #: gschem/src/x/x_menus.c:140
 msgid "Cut to Clipboard"
-msgstr ""
+msgstr "Rez v odložišče"
 
 #: gschem/src/x/x_menus.c:140 gschem/etc/system-gschemrc.scm:2088
 msgid "Cut the current selection to the system clipboard"
-msgstr ""
+msgstr "Izreži trenuten izbor v odložišče sistema"
 
 #: gschem/src/x/x_menus.c:141
 msgid "Copy to Clipboard"
-msgstr ""
+msgstr "Kopirati v odložišče"
 
 #: gschem/src/x/x_menus.c:141 gschem/etc/system-gschemrc.scm:2089
 msgid "Copy the current selection to the system clipboard"
-msgstr ""
+msgstr "Kopiraj trenutni izbor v odložišče sistema"
 
 #: gschem/src/x/x_menus.c:142
 msgid "Paste Clipboard"
-msgstr ""
+msgstr "Prilepi odložišče"
 
 #: gschem/src/x/x_menus.c:142 gschem/etc/system-gschemrc.scm:2090
 msgid "Paste the contents of the system clipboard"
-msgstr ""
+msgstr "Prilepi vsebino odložišča sistema"
 
 #: gschem/src/x/x_menus.c:148
-#, fuzzy
 msgid "Close"
-msgstr "_Zapri"
+msgstr "Zapri"
 
+# Close the current polygon
 #: gschem/src/x/x_menus.c:148
 msgid "Close the current path"
-msgstr ""
+msgstr "Zapri trenutni poligon"
 
 #: gschem/src/x/x_menus.c:149
 msgid "Done"
-msgstr ""
+msgstr "Končano"
 
+# Terminate the current polygon
 #: gschem/src/x/x_menus.c:149
 msgid "Terminate the current path"
-msgstr ""
+msgstr "Prekine trenutni poligon"
 
 #: gschem/src/x/x_menus.c:150
 msgid "End"
-msgstr ""
+msgstr "konec"
 
+# End this path and exit polygon mode
 #: gschem/src/x/x_menus.c:150
 msgid "End this path and exit path mode"
-msgstr ""
+msgstr "Na koncu te poti in izhod način poligona"
 
 #: gschem/src/x/x_menus.c:156
 msgid "Continue"
-msgstr ""
+msgstr "Naprej"
 
+# Resume input of the current polygon
 #: gschem/src/x/x_menus.c:156
 msgid "Resume input of the current path"
-msgstr ""
+msgstr "Nadaljuj vnos trenutnega poligona"
 
 #: gschem/src/x/x_menus.c:157 gschem/src/x/x_settings_dialog.c:1249
 #: gschem/scheme/gschem/builtins.scm:44
 msgid "Cancel"
-msgstr ""
+msgstr "Prekliči"
 
+# Cancel polygon mode
 #: gschem/src/x/x_menus.c:157
 msgid "Cancel path mode"
-msgstr ""
+msgstr "Opusti način poligona"
 
 #: gschem/src/x/x_menus.c:418 gschem/etc/system-gschemrc.scm:2052
 msgid "Open an existing schematic or symbol file"
-msgstr ""
+msgstr "Odpri obstoječi shematični ali simbol datoteko"
 
 #: gschem/src/x/x_menus.c:429 gschem/etc/system-gschemrc.scm:2057
 msgid "Save the current document"
@@ -5217,9 +5224,7 @@ msgid "View documentation for selected component"
 msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:544
-msgid ""
-"Could not show documentation for selected component:\n"
-"\n"
+msgid "Could not show documentation for selected component\n"
 msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:548
