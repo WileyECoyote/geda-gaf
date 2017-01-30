@@ -93,10 +93,10 @@ msgstr ""
 msgid "Exiting normal\n"
 msgstr ""
 
+# Parent Window
 #: gschem/src/base/gschem_dialog.c:563
-#, fuzzy
 msgid "Parent Window"
-msgstr "പുതിയ ജാലകം"
+msgstr "രക്ഷാകർതൃ വിൻഡോ"
 
 #: gschem/src/base/gschem_dialog.c:564
 msgid "Parent window for this dialog"
@@ -3215,25 +3215,30 @@ msgstr "പേജ് സേവ് ചെയുക"
 msgid "Close Page"
 msgstr "പേജ് അടയ്ക്കുക"
 
+# Discard the page
 #: gschem/src/x/x_pagesel.c:601 gschem/scheme/gschem/builtins.scm:323
 msgid "Discard Page"
-msgstr ""
+msgstr "നിരാകരിക്കുക പേജ്"
 
+# Page Manager
 #: gschem/src/x/x_pagesel.c:1085 gschem/scheme/gschem/builtins.scm:287
 msgid "Page Manager"
-msgstr ""
+msgstr "പേജ് മാനേജർ"
 
+# Changed
 #: gschem/src/x/x_pagesel.c:1175
 msgid "Changed"
-msgstr ""
+msgstr "മാറി"
 
+# For more options, right-click the rows
 #: gschem/src/x/x_pagesel.c:1205
 msgid "Right click on rows for more options..."
-msgstr ""
+msgstr "കൂടുതൽ ഓപ്ഷനുകൾ വരികൾ റൈറ്റ് ക്ലിക്കിൽ..."
 
+# Select PostScript Filename
 #: gschem/src/x/x_print.c:90
 msgid "Select PostScript Filename..."
-msgstr ""
+msgstr "പോസ്റ്റ്സ്ക്രിപ്റ്റ്ദര്ശിനി ഫയല്നാമംതിരഞ്ഞെടുക്കുക..."
 
 #: gschem/src/x/x_print.c:175
 msgid "Extents with margins"
@@ -3243,10 +3248,10 @@ msgstr ""
 msgid "Extents no margins"
 msgstr ""
 
+# Current Window
 #: gschem/src/x/x_print.c:184
-#, fuzzy
 msgid "Current Window"
-msgstr "പുതിയ ജാലകം"
+msgstr "നിലവിൽ വിൻഡോ"
 
 #: gschem/src/x/x_print.c:217
 msgid "Landscape"
@@ -3546,9 +3551,8 @@ msgid "Could not allocate a graphics context"
 msgstr ""
 
 #: gschem/src/x/x_window.c:110
-#, fuzzy
 msgid "there is no current window"
-msgstr "പുതിയ ജാലകം"
+msgstr "അവിടെ ഇല്ല നിലവിൽ വിൻഡോ"
 
 #: gschem/src/x/x_window.c:119
 msgid "Could not create a Cairo context, is window drawable?\n"
@@ -3571,18 +3575,16 @@ msgid "Aborting action\n"
 msgstr ""
 
 #: gschem/src/x/x_window.c:681
-#, fuzzy
 msgid "Close Window canceled\n"
-msgstr "പുതിയ ജാലകം"
+msgstr "വിൻഡോ അടയ്ക്കുക റദ്ദാക്കി\n"
 
 #: gschem/src/x/x_window.c:767
 msgid "Loading file"
 msgstr ""
 
 #: gschem/src/x/x_window.c:911
-#, fuzzy
 msgid "New file"
-msgstr "പുതിയ പേജ്"
+msgstr "പുതി ഫയൽ"
 
 #: gschem/src/x/x_window.c:953
 msgid "Failed to load file"
@@ -4726,9 +4728,8 @@ msgid "Repeat Last Action"
 msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:50
-#, fuzzy
 msgid "New File"
-msgstr "പുതിയ പേജ്"
+msgstr "പുതിയ ഫയൽ"
 
 #: gschem/scheme/gschem/builtins.scm:53
 msgid "Open File"
@@ -4742,45 +4743,50 @@ msgstr ""
 msgid "Save All"
 msgstr ""
 
+# Save Modified
 #: gschem/scheme/gschem/builtins.scm:65
-#, fuzzy
 msgid "Save Modified"
-msgstr "പ്രവര്‍ത്തന രീതി നിര്‍ണയിക്കുക"
+msgstr "പരിഷ്കരിച്ച സംരക്ഷിക്കുക"
 
+# Print
 #: gschem/scheme/gschem/builtins.scm:68
-#, fuzzy
 msgid "Print"
-msgstr "പ്രിന്‍റ് ചെയ്യുക..."
+msgstr "അച്ചടിക്കുക"
 
+# Export photo
 #: gschem/scheme/gschem/builtins.scm:71
 msgid "Export Image"
-msgstr ""
+msgstr "കയറ്റുമതി ഫോട്ടോ"
 
+# execute Script
 #: gschem/scheme/gschem/builtins.scm:74
 msgid "Run Script"
-msgstr ""
+msgstr "എക്സിക്യൂട്ട് സ്ക്രിപ്റ്റ്പ്രവര്ത്തിപ്പിയ്ക്കു"
 
+# New Window
 #: gschem/scheme/gschem/builtins.scm:77
 msgid "New Window"
 msgstr "പുതിയ ജാലകം"
 
+# Close Window
 #: gschem/scheme/gschem/builtins.scm:80 gschem/scheme/gschem/builtins.scm:83
-#, fuzzy
 msgid "Close Window"
-msgstr "പുതിയ ജാലകം"
+msgstr "ഈ വിൻഡോ അടയ്ക്കുക"
 
+# Quit
 #: gschem/scheme/gschem/builtins.scm:86
 msgid "Quit"
-msgstr ""
+msgstr "ക്വിറ്റ്"
 
+# Export Symbol
 #: gschem/scheme/gschem/builtins.scm:89
 msgid "Export Symbol"
-msgstr ""
+msgstr "കയറ്റുമതി പ്രതീക"
 
+# Export Photo
 #: gschem/scheme/gschem/builtins.scm:92
-#, fuzzy
 msgid "Export Picture"
-msgstr "പടം/സാധനം ഉള്ളടക്കം ചെയുക"
+msgstr "കയറ്റുമതി ഫോട്ടോ"
 
 #: gschem/scheme/gschem/builtins.scm:98
 msgid "Undo"
@@ -4792,39 +4798,41 @@ msgstr "ആവര്‍ത്തിക്കുക"
 
 #: gschem/scheme/gschem/builtins.scm:107
 msgid "Copy Mode"
-msgstr ""
+msgstr "മോഡ് പകർത്തുക"
 
 #: gschem/scheme/gschem/builtins.scm:113
 msgid "Multiple Copy Mode"
-msgstr ""
+msgstr "ഒന്നിലധികം പകർത്തുക മോഡ്"
 
+# Offset the selected object
 #: gschem/scheme/gschem/builtins.scm:119
-#, fuzzy
 msgid "Offset selection"
-msgstr "പ്രവര്‍ത്തന രീതി നിര്‍ണയിക്കുക"
+msgstr "തിരഞ്ഞെടുത്ത ഒബ്ജക്റ്റ് ഓഫ്സെറ്റ്"
 
+# Snap to Grid
 #: gschem/scheme/gschem/builtins.scm:128
-#, fuzzy
 msgid "Snap to Grid"
-msgstr "പ്രവര്‍ത്തന രീതി നിര്‍ണയിക്കുക"
+msgstr "ഗ്രിഡിലേക്ക് സ്നാപ്പ്"
 
+# Create Array
 #: gschem/scheme/gschem/builtins.scm:131
 msgid "Create Array"
-msgstr ""
+msgstr "അറേ സൃഷ്ടിക്കുക"
 
+# Edit
 #: gschem/scheme/gschem/builtins.scm:134 gschem/scheme/gschem/builtins.scm:137
 msgid "Edit..."
-msgstr "മാറ്റം വരുത്തുക..."
+msgstr "തിരുത്തുക..."
 
+# Edit Arc
 #: gschem/scheme/gschem/builtins.scm:140
-#, fuzzy
 msgid "Edit Arc"
-msgstr "തിരുത്തിയെഴുതുക (Edit)"
+msgstr "ആർക് എഡിറ്റ്"
 
+# Edit Object
 #: gschem/scheme/gschem/builtins.scm:143
-#, fuzzy
 msgid "Edit Object"
-msgstr "പ്രവര്‍ത്തന രീതി നിര്‍ണയിക്കുക"
+msgstr "വസ്തുവോ എഡിറ്റ്"
 
 #: gschem/scheme/gschem/builtins.scm:146
 msgid "Edit Text"
@@ -5111,15 +5119,15 @@ msgstr ""
 msgid "Autonumber Text"
 msgstr ""
 
+# Show Console Window
 #: gschem/scheme/gschem/builtins.scm:436
-#, fuzzy
 msgid "Show Console Window"
-msgstr "പുതിയ ജാലകം"
+msgstr "കൺസോൾ വിൻഡോ കാണിക്കുക"
 
+# Display Coordinates Window
 #: gschem/scheme/gschem/builtins.scm:439
-#, fuzzy
 msgid "Show Coordinates Window"
-msgstr "പുതിയ ജാലകം"
+msgstr "കോർഡിനേറ്റുകൾ ജാലകം പ്രദർശിപ്പിക്കും"
 
 #: gschem/scheme/gschem/builtins.scm:442
 msgid "Guile Path"
