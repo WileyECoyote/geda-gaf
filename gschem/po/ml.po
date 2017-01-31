@@ -266,7 +266,7 @@ msgstr ""
 
 #: gschem/src/base/gschem_status_bar.c:587
 msgid "Coordinates Mode"
-msgstr ""
+msgstr "കോർഡിനേറ്റുകൾ മോഡ്"
 
 #: gschem/src/base/gschem_status_bar.c:588
 msgid "Sets the Format Mode used to display coordinates on the status bar"
@@ -2600,168 +2600,192 @@ msgstr ""
 msgid "Add attribute"
 msgstr ""
 
-# Edit Component
+# Component
 #: gschem/src/x/x_menus.c:93 gschem/src/x/x_menus.c:112
-#, fuzzy
 msgid "Component..."
-msgstr "ഘടക എഡിറ്റ്..."
+msgstr "ഘടക..."
 
+# Insert a symbol from the component library
 #: gschem/src/x/x_menus.c:93 gschem/etc/system-gschemrc.scm:2238
 msgid "Insert a symbol from the component library"
-msgstr ""
+msgstr "ഘടകം ലൈബ്രറിയിൽ നിന്ന് ഒരു ചിഹ്നം ഉൾപ്പെടുത്തുക"
 
+# add multi-conductor
 #: gschem/src/x/x_menus.c:94 gschem/etc/system-gschemrc.scm:2240
 msgid "Add bus"
-msgstr ""
+msgstr "മൾട്ടി-മേല്നോട്ടക്കാരി ചേർക്കുക"
 
+# Add text
 #: gschem/src/x/x_menus.c:95 gschem/etc/system-gschemrc.scm:2242
-#, fuzzy
 msgid "Add text"
-msgstr "രേഖ"
+msgstr "ടെക്സ്റ്റ് ചേർക്കുക"
 
+# Zoom
 #: gschem/src/x/x_menus.c:99
-#, fuzzy
 msgid "Zoom"
-msgstr "വലുതാക്കി കാണിക്കുന്ന പെട്ടി"
+msgstr "സൂം"
 
+# Add operations
 #: gschem/src/x/x_menus.c:99
-#, fuzzy
 msgid "Add operations"
-msgstr "രേഖ"
+msgstr "ഓപ്പറേഷൻസ് ചേർക്കുക"
 
 #: gschem/src/x/x_menus.c:100 gschem/src/x/x_menus.c:152
 msgid "In"
-msgstr ""
+msgstr "ൽ"
 
+# Increase the Zoom magnification
 #: gschem/src/x/x_menus.c:100 gschem/src/x/x_menus.c:152
 #: gschem/etc/system-gschemrc.scm:2186
 msgid "Increase the Zoom magnification"
-msgstr ""
+msgstr "സൂം മാഗ്നിഫിക്കേഷൻ വർദ്ധിപ്പിക്കുക"
 
+# Out
 #: gschem/src/x/x_menus.c:101 gschem/src/x/x_menus.c:153
-#, fuzzy
 msgid "Out"
-msgstr "കട്ട് ചെയുക  1 ലേക്ക്"
+msgstr "പുറത്ത്"
 
+# Reduce the zoom magnification
 #: gschem/src/x/x_menus.c:101 gschem/src/x/x_menus.c:153
 #: gschem/etc/system-gschemrc.scm:2187
 msgid "Decrease the Zoom magnification"
-msgstr ""
+msgstr "സൂം മാഗ്നിഫിക്കേഷൻ കുറയ്ക്കുക"
 
+# rectangle
 #: gschem/src/x/x_menus.c:102
 msgid "Box"
-msgstr "ബോക്സ്"
+msgstr "ചതുരം"
 
+# Zoom to a rectangular region
 #: gschem/src/x/x_menus.c:102 gschem/etc/system-gschemrc.scm:2184
 msgid "Zoom to a Windowed region"
-msgstr ""
+msgstr "ചതുരാകൃതിയിലുള്ള മേഖലയിൽ സൂം"
 
+# Extents (periphery)
 #: gschem/src/x/x_menus.c:103 gschem/src/x/x_menus.c:154
-#, fuzzy
 msgid "Extents"
-msgstr "വലുതാക്കി കാണിക്കുന്ന പെട്ടി"
+msgstr "പ്രാന്തപ്രദേശങ്ങളിലുള്ള"
 
+# Zoom to the periphery of the drawing
 #: gschem/src/x/x_menus.c:103 gschem/src/x/x_menus.c:154
 #: gschem/etc/system-gschemrc.scm:2185
 msgid "Zoom to the extents of the drawing"
-msgstr ""
+msgstr "ഡ്രോയിംഗ് പ്രാന്തപ്രദേശങ്ങളിലുള്ള സൂം"
 
+# Magnification
 #: gschem/src/x/x_menus.c:104
 msgid "Mag"
-msgstr ""
+msgstr "മാഗ്നിഫിക്കേഷൻ"
 
+# Zoom to a specified level
 #: gschem/src/x/x_menus.c:104 gschem/etc/system-gschemrc.scm:2188
 msgid "Zoom to a specified level"
-msgstr ""
+msgstr "ഒരു നിശ്ചിത തലത്തിലേക്ക് സൂം"
 
+# Zoom to selected objects
 #: gschem/src/x/x_menus.c:105 gschem/etc/system-gschemrc.scm:2189
 msgid "Zoom to selected objects"
-msgstr ""
+msgstr "തിരഞ്ഞെടുത്ത വസ്തുക്കൾ സൂം"
 
+# Edit
 #: gschem/src/x/x_menus.c:109
 msgid "Edit"
-msgstr "തിരുത്തിയെഴുതുക (Edit)"
+msgstr "തിരുത്തിയെഴുതുക"
 
+# Edit modes
 #: gschem/src/x/x_menus.c:109
 msgid "Edit modes"
-msgstr ""
+msgstr "മോഡുകൾ എഡിറ്റ്"
 
+# Object
 #: gschem/src/x/x_menus.c:110
 msgid "Object..."
-msgstr ""
+msgstr "ഒബ്ജക്റ്റ്..."
 
+# Edit Object Attributes
 #: gschem/src/x/x_menus.c:110 gschem/etc/system-gschemrc.scm:2108
 msgid "Edit Object Attributes"
-msgstr ""
+msgstr "എഡിറ്റ് ഒബ്ജക്റ്റ് വിശേഷണങ്ങൾ"
 
 # Colour
 #: gschem/src/x/x_menus.c:111
 msgid "Color..."
 msgstr "കളര്‍..."
 
+# Open Color Editor Dialog Box
 #: gschem/src/x/x_menus.c:111 gschem/etc/system-gschemrc.scm:2110
 msgid "Open the Color Editor Dialog"
-msgstr ""
+msgstr "തുറക്കുക കളർ എഡിറ്റർ ഡയലോഗ് ബോക്സ്"
 
+# Open Component Editor Dialog Box
 #: gschem/src/x/x_menus.c:112 gschem/etc/system-gschemrc.scm:2114
 msgid "Open the Component Editor Dialog"
-msgstr ""
+msgstr "തുറക്കുക ഘടക എഡിറ്റർ ഡയലോഗ് ബോക്സ്"
 
 # Pin type
 #: gschem/src/x/x_menus.c:113
 msgid "Pin type..."
 msgstr "പിൻ തരം..."
 
+# Open Pin Type Dialog box
 #: gschem/src/x/x_menus.c:113 gschem/etc/system-gschemrc.scm:2111
 msgid "Open the Pin Type Dialog"
-msgstr ""
+msgstr "തുറക്കുക പിൻ ഇനം ഡയലോഗ് ബോക്സ്"
 
+# Array
 #: gschem/src/x/x_menus.c:117
 msgid "Array"
-msgstr ""
+msgstr "അറേ"
 
+# Create and array of objects
 #: gschem/src/x/x_menus.c:117 gschem/etc/system-gschemrc.scm:2103
 msgid "Create and array of objects"
-msgstr ""
+msgstr "സൃഷ്ടിക്കുക വസ്തുക്കളുടെ അറേ"
 
+# Separate
 #: gschem/src/x/x_menus.c:118
 msgid "Break"
-msgstr ""
+msgstr "നീര്പോള്"
 
+# Separate a symbol into individual components
 #: gschem/src/x/x_menus.c:118
 msgid "Break an object into separate objects"
-msgstr ""
+msgstr "വ്യക്തിഗത ഘടകങ്ങള്ക്കായി പ്രതീകമായി വേർതിരിക്കുക"
 
+# Extend
 #: gschem/src/x/x_menus.c:119
-#, fuzzy
 msgid "Extend"
-msgstr "വലുതാക്കി കാണിക്കുന്ന പെട്ടി"
+msgstr "നീട്ടുക"
 
+# extend lines to another object
 #: gschem/src/x/x_menus.c:119 gschem/etc/system-gschemrc.scm:2105
 msgid "Project linear objects to other objects"
-msgstr ""
+msgstr "ഒബ്ജക്റ്റിലേക്ക് നീട്ടുവാൻ ലൈനുകൾ മറ്റൊരു"
 
 #: gschem/src/x/x_menus.c:120 gschem/src/x/x_multiattrib.c:1686
 #: gschem/scheme/gschem/builtins.scm:104
 msgid "Delete"
 msgstr "മായ്ക്കുക"
 
+# Delete the current selection
 #: gschem/src/x/x_menus.c:120 gschem/etc/system-gschemrc.scm:2091
 msgid "Delete the current selection"
-msgstr ""
+msgstr "നിലവിലെ തിരഞ്ഞെടുപ്പ് ഇല്ലാതാക്കുക"
 
+# Copy (is really duplicate)
 #: gschem/src/x/x_menus.c:121 gschem/scheme/gschem/builtins.scm:200
 msgid "Copy"
-msgstr ""
+msgstr "പകര്പ്പ്"
 
+# Copy the selection
 #: gschem/src/x/x_menus.c:121 gschem/etc/system-gschemrc.scm:2094
 msgid "Copy selection"
-msgstr ""
+msgstr "തിരഞ്ഞെടുപ്പ് പകർത്തുക"
 
+# Multible Copy
 #: gschem/src/x/x_menus.c:122
-#, fuzzy
 msgid "MCopy"
-msgstr "പകര്‍ത്തുക 1ലേക്ക്"
+msgstr "ഒന്നിലധികം പകർത്തുക"
 
 #: gschem/src/x/x_menus.c:122 gschem/etc/system-gschemrc.scm:2095
 msgid "Make multible copies of selection"
@@ -2769,12 +2793,12 @@ msgstr ""
 
 #: gschem/src/x/x_menus.c:123
 msgid "Move"
-msgstr ""
+msgstr "നീങ്ങുക"
 
+# Move selection
 #: gschem/src/x/x_menus.c:123 gschem/etc/system-gschemrc.scm:2097
-#, fuzzy
 msgid "Move selection"
-msgstr "പ്രവര്‍ത്തന രീതി നിര്‍ണയിക്കുക"
+msgstr "നിരക്കു നീക്കു"
 
 #: gschem/src/x/x_menus.c:124
 msgid "Mirror"
@@ -4511,19 +4535,20 @@ msgstr ""
 msgid "Embed Component/Picture"
 msgstr "പടം/സാധനം ഉള്ളടക്കം ചെയുക"
 
+# Embed an object or image element
 #: gschem/etc/system-gschemrc.scm:2305
-#, fuzzy
 msgid "Embed a component or image object"
-msgstr "പടം/സാധനം ഉള്ളടക്കം ചെയുക"
+msgstr "ഒരു വസ്തുവിനെ അല്ലെങ്കിൽ ഇമേജ് മൂലകം ഉൾച്ചേർക്കുക"
 
+# segregate Component/Picture
 #: gschem/etc/system-gschemrc.scm:2306 gschem/scheme/gschem/builtins.scm:454
 msgid "Unembed Component/Picture"
-msgstr "പടം/സാധനം ഉള്ളടക്കം വേണ്ടയെന്നു വെയ്ക്കുക"
+msgstr "ഘടക/ചിത്രം വേര്പെടുത്തുക"
 
+# segregate an embed object
 #: gschem/etc/system-gschemrc.scm:2306
-#, fuzzy
 msgid "Unembed a component or image object"
-msgstr "പടം/സാധനം ഉള്ളടക്കം വേണ്ടയെന്നു വെയ്ക്കുക"
+msgstr "ഒരു ഉൾച്ചേർത്ത ഒബ്ജക്റ്റ് തരംതിരിക്കാനും"
 
 #: gschem/etc/system-gschemrc.scm:2307 gschem/scheme/gschem/builtins.scm:457
 msgid "Update Component"
