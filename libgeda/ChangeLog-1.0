@@ -2,6 +2,9 @@
 
     * shell/shell.c: Include gettext_priv.h, update copyright.
 
+    * src/object/o_path_object.c: Revise validations in geda_path_object_read
+      to utilize geda_object_show_buffer_err.
+
 2017-01-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_net_object.c: Revise validations in geda_net_object_read

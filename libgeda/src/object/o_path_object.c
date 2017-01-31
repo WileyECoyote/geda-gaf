@@ -574,8 +574,11 @@ geda_path_object_read (const char *first_line,
 
   /* Checks if the required color is valid. */
   if (color < 0 || color > MAX_COLORS) {
-    geda_log_w (_("Found an invalid color [ %s ]\n"), first_line);
-    geda_log_v (_("Setting color to default color\n"));
+    const char *msg = _("Found an invalid color");
+    if (geda_object_show_buffer_err(msg, first_line)) {
+      geda_log_w("%s: %d.\n", msg, color);
+    }
+    geda_log_w (_("Setting color to default color\n"));
     color = DEFAULT_PATH_COLOR_INDEX;
   }
 
