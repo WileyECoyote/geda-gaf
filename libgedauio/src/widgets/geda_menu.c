@@ -38,7 +38,7 @@
  * #GedaMenu as well.
  *
  * Applications can display a #GedaMenu as a popup menu by calling the
- * geda_menu_popup() function.  The example below shows how an application
+ * geda_menu_popup function. The example below shows how an application
  * can pop up a menu when the 3rd mouse button is pressed.
  *
  * ## Connecting the popup signal handler.
@@ -1928,6 +1928,13 @@ geda_menu_popup (GedaMenu         *menu,
   geda_menu_shell_update_mnemonics (menu_shell);
 }
 
+/*!
+ * \brief Pop down a GedaMenu popup menu
+ * \par Function Description
+ * Removes the menu from the screen.
+ *
+ * \param[in] menu: a #GedaMenu
+ */
 void
 geda_menu_popdown (GedaMenu *menu)
 {
@@ -1951,8 +1958,9 @@ geda_menu_popdown (GedaMenu *menu)
 
   if (menu_shell->active_menu_item) {
 
-    if (menu->old_active_menu_item)
+    if (menu->old_active_menu_item) {
       g_object_unref (menu->old_active_menu_item);
+    }
     menu->old_active_menu_item = menu_shell->active_menu_item;
     g_object_ref (menu->old_active_menu_item);
   }
@@ -1961,8 +1969,10 @@ geda_menu_popdown (GedaMenu *menu)
 
   /* The X Grab, if present, will automatically be removed when we hide
    * the window */
-  gtk_widget_hide (menu->toplevel);
-  gtk_window_set_transient_for (GTK_WINDOW (menu->toplevel), NULL);
+  if (menu->toplevel) {
+    gtk_widget_hide (menu->toplevel);
+    gtk_window_set_transient_for (GTK_WINDOW (menu->toplevel), NULL);
+  }
 
   if (menu->torn_off) {
 
@@ -2445,7 +2455,6 @@ geda_menu_set_tearoff_state (GedaMenu *menu, bool torn_off)
 
       GdkWindow *window;
       int        width;
-      int        height;
 
       if (gtk_widget_get_visible (GTK_WIDGET (menu))) {
         geda_menu_popdown (menu);
@@ -2454,6 +2463,7 @@ geda_menu_set_tearoff_state (GedaMenu *menu, bool torn_off)
       if (!menu->tearoff_window) {
 
         GtkWidget *toplevel;
+        int        height;
 
         menu->tearoff_window = g_object_new (GTK_TYPE_WINDOW,
                                              "type", GTK_WINDOW_TOPLEVEL,
