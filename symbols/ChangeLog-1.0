@@ -42,6 +42,11 @@
             * vishay/zener/zener_91_1N4763A.sym
             * vishay/zener/zener_100_1N4764A.sym
 
+2017-01-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/micro/TMS320F241FN-1.sym: Add symbol 16 Bit Motor Microcontroller,
+      20MHz, 8k Flash.
+
 2017-01-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/CC2531-1.sym: Add symbol; System-on-Chip for IEEE 802.15.4 and ZigBee.
