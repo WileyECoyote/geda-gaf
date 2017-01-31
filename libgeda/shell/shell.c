@@ -29,6 +29,8 @@
 #include <libgeda/libgeda.h>
 #include <libgeda/libgedaguile.h>
 
+#include "../include/gettext_priv.h"
+
 #ifdef HAVE_GETOPT_H
 #include <getopt.h>
 #endif
@@ -209,7 +211,7 @@ shell_main (void *data, int argc, char **argv)
 
       printf (
         "gEDA " PACKAGE_GIT_VERSION "\n"
-        "Copyright (C) 1998-2015 gEDA developers\n"
+        "Copyright (C) 1998-2017 gEDA developers\n"
         "This is free software, and you are welcome to redistribute it under\n"
         "certain conditions. For details, see the file `COPYING', which is\n"
         "included in the gEDA distribution.\n"

@@ -1,3 +1,7 @@
+2017-01-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * shell/shell.c: Include gettext_priv.h, update copyright.
+
 2017-01-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_net_object.c: Revise validations in geda_net_object_read
