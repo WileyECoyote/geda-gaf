@@ -528,9 +528,8 @@ msgid "current value of"
 msgstr ""
 
 #: gschem/src/iface/i_command.c:132 gschem/src/iface/i_command.c:5026
-#, fuzzy
 msgid "is"
-msgstr "щифтове"
+msgstr "is"
 
 #: gschem/src/iface/i_command.c:368
 msgid "Processing Action"
@@ -2641,9 +2640,10 @@ msgstr ""
 msgid "Object..."
 msgstr ""
 
+# Edit Object Attributes
 #: gschem/src/x/x_menus.c:110 gschem/etc/system-gschemrc.scm:2108
 msgid "Edit Object Attributes"
-msgstr ""
+msgstr "редактиране атрибути на обектите"
 
 #: gschem/src/x/x_menus.c:111
 msgid "Color..."
@@ -3499,18 +3499,17 @@ msgid "Aborting action\n"
 msgstr ""
 
 #: gschem/src/x/x_window.c:681
-#, fuzzy
 msgid "Close Window canceled\n"
-msgstr "Нов Прозорец"
+msgstr "Затвори прозореца отменен\n"
 
 #: gschem/src/x/x_window.c:767
 msgid "Loading file"
 msgstr ""
 
+# New file
 #: gschem/src/x/x_window.c:911
-#, fuzzy
 msgid "New file"
-msgstr "Нова Страница"
+msgstr "Нова досие"
 
 #: gschem/src/x/x_window.c:953
 msgid "Failed to load file"
@@ -3520,10 +3519,10 @@ msgstr ""
 msgid "Creating new file"
 msgstr ""
 
+# Path
 #: gschem/src/x/x_window.c:996
-#, fuzzy
 msgid "Path"
-msgstr "Завърти 90 Режим"
+msgstr "пътека"
 
 #: gschem/src/x/x_window.c:999
 msgid ""
@@ -3535,10 +3534,10 @@ msgstr ""
 msgid "Discarding page"
 msgstr ""
 
+# Closing
 #: gschem/src/x/x_window.c:1144
-#, fuzzy
 msgid "Closing"
-msgstr "Затвори Страницата"
+msgstr "Закриване"
 
 #: gschem/src/x/x_window.c:1209
 msgid "Could NOT save page"
@@ -3548,14 +3547,14 @@ msgstr ""
 msgid "Error while trying to save"
 msgstr ""
 
+# Saved (recorded) as
 #: gschem/src/x/x_window.c:1225
-#, fuzzy
 msgid "Saved as"
-msgstr "Съхрани Всичко"
+msgstr "записан като"
 
 #: gschem/data/geda-gschem.desktop.in:3
 msgid "gEDA Schematic Editor"
-msgstr ""
+msgstr "gEDA Схематично Редактор"
 
 #: gschem/data/geda-gschem.desktop.in:4
 msgid "Create and edit electrical schematics and symbols with gschem"
@@ -3602,10 +3601,10 @@ msgstr "Съхрани Всичко"
 msgid "Save all open documents"
 msgstr ""
 
+# Save Modified
 #: gschem/etc/system-gschemrc.scm:2060
-#, fuzzy
 msgid "Save _Modified"
-msgstr "Режим Местене"
+msgstr "Запазване на променения"
 
 #: gschem/etc/system-gschemrc.scm:2060
 msgid "Save all modified documents"
@@ -3619,10 +3618,10 @@ msgstr ""
 msgid "Discard changes and reload the current document"
 msgstr ""
 
+# Revert All
 #: gschem/etc/system-gschemrc.scm:2062
-#, fuzzy
 msgid "Re_vert All"
-msgstr "Съхрани Всичко"
+msgstr "Зареди всички"
 
 #: gschem/etc/system-gschemrc.scm:2062
 msgid "Discard changes and reload all open documents"
@@ -3652,10 +3651,10 @@ msgstr ""
 msgid "Write _image..."
 msgstr ""
 
+# Export image
 #: gschem/etc/system-gschemrc.scm:2068
-#, fuzzy
 msgid "Export image"
-msgstr "Вграден Компонент/Картина"
+msgstr "износ на изображението"
 
 #: gschem/etc/system-gschemrc.scm:2071
 msgid "E_xecute Script..."
@@ -3673,26 +3672,28 @@ msgstr ""
 msgid "Close the current document"
 msgstr ""
 
+# Close all
 #: gschem/etc/system-gschemrc.scm:2075
-#, fuzzy
 msgid "Close All"
-msgstr "Затвори Страницата"
+msgstr "Затваряне на всички"
 
+# Close all documents
 #: gschem/etc/system-gschemrc.scm:2075
 msgid "Close all open documents"
-msgstr ""
+msgstr "Затваряне на всички документи,"
 
 #: gschem/etc/system-gschemrc.scm:2076
 msgid "_Quit"
-msgstr ""
+msgstr "откажат"
 
+# reverse
 #: gschem/etc/system-gschemrc.scm:2084
 msgid "_Undo"
-msgstr ""
+msgstr "обратен"
 
 #: gschem/etc/system-gschemrc.scm:2084
 msgid "Undo the last action"
-msgstr ""
+msgstr "отмените последното действие"
 
 #: gschem/etc/system-gschemrc.scm:2085
 msgid "_Redo"
@@ -3702,57 +3703,58 @@ msgstr ""
 msgid "redo the last un-done action"
 msgstr ""
 
+# Cut to clipboard
 #: gschem/etc/system-gschemrc.scm:2088
-#, fuzzy
 msgid "Cu_t clipboard"
-msgstr "Копирен Режим"
+msgstr "нарязани в клипборда"
 
+# Copy to clipboard
 #: gschem/etc/system-gschemrc.scm:2089
-#, fuzzy
 msgid "_Copy clipboard"
-msgstr "Копирен Режим"
+msgstr "копиране в клипборда"
 
+# paste from clipboard
 #: gschem/etc/system-gschemrc.scm:2090
-#, fuzzy
 msgid "_Paste clipboard"
-msgstr "Копирен Режим"
+msgstr "паста от клипборда"
 
+# Copy
 #: gschem/etc/system-gschemrc.scm:2094
 msgid "C_opy"
-msgstr ""
+msgstr "копие"
 
+# Multiple Copy
 #: gschem/etc/system-gschemrc.scm:2095
-#, fuzzy
 msgid "_Multiple Copy"
-msgstr "Многокопирен Режим"
+msgstr "множествена копие"
 
+# Mirror
 #: gschem/etc/system-gschemrc.scm:2096
-#, fuzzy
 msgid "M_irror"
-msgstr "Огледален Режим"
+msgstr "огледало"
 
+# Move
 #: gschem/etc/system-gschemrc.scm:2097
 msgid "Mo_ve"
-msgstr ""
+msgstr "Ход"
 
+# Offset
 #: gschem/etc/system-gschemrc.scm:2098
-#, fuzzy
 msgid "O_ffset"
-msgstr "Избери режим"
+msgstr "изместване"
 
 #: gschem/etc/system-gschemrc.scm:2098
 msgid "Offset the selected objects"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2099
-#, fuzzy
 msgid "Rotate _90"
-msgstr "Завърти 90 Режим"
+msgstr "Завърти 90"
 
+# Snap to grid
 #: gschem/etc/system-gschemrc.scm:2100
-#, fuzzy
 msgid "Snap to _grid"
-msgstr "Копирен Режим"
+msgstr "прилепване към мрежата"
 
 #: gschem/etc/system-gschemrc.scm:2100
 msgid "Snap selection to current grid"
