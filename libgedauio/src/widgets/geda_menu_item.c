@@ -105,8 +105,8 @@
  *       ARE unreferenced when GedaMenuItems are destroyed. This is for the
  *       convenience of applications, so that applications do not need to
  *       keep a list of actions to be destroyed or iterating over menu items
- *       in order to release actions. GedaMenuItems, #GedaAccelLabels and
- *       #GedaActions will be destroyed when the applications containing
+ *       in order to release actions. GedaMenuItems, #GedaAccelLabel and
+ *       #GedaAction widgets will be destroyed when the containing application
  *       window is released. If for some reason an application needs to keep
  *       the actions alive, wrap the actions with g_object_ref when passing
  *       the action arguments as shown in this example:
@@ -3565,7 +3565,7 @@ geda_menu_item_refresh_accel_path (GedaMenuItem  *menu_item,
  *
  * \param [in] menu_item  a GedaMenuItem
  * \param [in] accel_path accelerator path, corresponding to this menu
- *                        item’s functionality, or %NULL to unset the
+ *                        item's functionality,or %NULL to unset the
  *                        current path
  */
 void
