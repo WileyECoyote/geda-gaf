@@ -1,5 +1,8 @@
 2017-01-31 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_label.c: Reinstate chaining up in geda_label_
+      style_set.
+
     * src/widgets/geda_menu.c: Reduce scope of height in geda_menu_set_
       tearoff_state, add/edit comments.
 

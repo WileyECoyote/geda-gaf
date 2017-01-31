@@ -426,7 +426,7 @@ geda_label_style_set (GtkWidget *widget, GtkStyle *previous_style)
   geda_label_clear_layout (label);
   label->INVALIDATE_WRAP_WIDTH;
 
-  //GTK_WIDGET_CLASS (geda_label_parent_class)->style_set (widget, previous_style);
+  GTK_WIDGET_CLASS (geda_label_parent_class)->style_set (widget, previous_style);
 }
 
 /* called by: geda_label_expose
