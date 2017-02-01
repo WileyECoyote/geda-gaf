@@ -382,11 +382,11 @@ msgstr ""
 msgid "OFF"
 msgstr ""
 
+# Error
 #: gschem/src/base/gschem_status_bar.c:1907 gschem/src/object/o_picture.c:615
 #: gschem/src/object/o_picture.c:619
-#, fuzzy
 msgid "Error"
-msgstr "Na_tisni ..."
+msgstr "Napaka"
 
 #: gschem/src/base/gschem_status_bar.c:1919
 msgid "NONE"
@@ -624,10 +624,10 @@ msgstr ""
 msgid "Specify new zoom:"
 msgstr ""
 
+# error
 #: gschem/src/iface/i_command.c:2248
-#, fuzzy
 msgid "error"
-msgstr "Na_tisni ..."
+msgstr "napaka"
 
 #: gschem/src/iface/i_command.c:2256
 msgid "No component selected\n"
@@ -1566,10 +1566,10 @@ msgstr ""
 msgid "Background"
 msgstr ""
 
+# Pin
 #: gschem/src/x/x_dialog.c:1014
-#, fuzzy
 msgid "Pin"
-msgstr "Na_tisni ..."
+msgstr "bucika"
 
 #: gschem/src/x/x_dialog.c:1015
 msgid "Net endpoint"
@@ -3121,9 +3121,8 @@ msgid "pins"
 msgstr ""
 
 #: gschem/src/x/x_multiattrib.c:2621
-#, fuzzy
 msgid "pin"
-msgstr "Na_tisni ..."
+msgstr "bucika"
 
 #: gschem/src/x/x_multiattrib.c:2632
 msgid "nets"
@@ -3220,9 +3219,8 @@ msgid "Portrait"
 msgstr ""
 
 #: gschem/src/x/x_print.c:484
-#, fuzzy
 msgid "Print..."
-msgstr "Na_tisni ..."
+msgstr "Tiskanje..."
 
 #: gschem/src/x/x_print.c:492
 msgid "Settings"
@@ -3269,10 +3267,10 @@ msgstr ""
 msgid "The log may contain more information."
 msgstr ""
 
+# Print Error
 #: gschem/src/x/x_print.c:795 gschem/src/x/x_print.c:1229
-#, fuzzy
 msgid "Print Error"
-msgstr "Na_tisni ..."
+msgstr "napaka print"
 
 #: gschem/src/x/x_print.c:800
 msgid "Printed current schematic to"
@@ -3725,13 +3723,15 @@ msgstr "_Povrni"
 msgid "Discard changes and reload all open documents"
 msgstr ""
 
+# Print
 #: gschem/etc/system-gschemrc.scm:2065
 msgid "_Print..."
-msgstr "Na_tisni ..."
+msgstr "Tiskanje..."
 
+# Print the current document
 #: gschem/etc/system-gschemrc.scm:2065
 msgid "Print the current document"
-msgstr ""
+msgstr "Tiskanje trenutnega dokumenta"
 
 #: gschem/etc/system-gschemrc.scm:2066
 msgid "Export options"
@@ -3818,10 +3818,10 @@ msgstr ""
 msgid "_Multiple Copy"
 msgstr ""
 
+# Mirror
 #: gschem/etc/system-gschemrc.scm:2096
-#, fuzzy
 msgid "M_irror"
-msgstr "Na_tisni ..."
+msgstr "ogledalo"
 
 #: gschem/etc/system-gschemrc.scm:2097
 msgid "Mo_ve"
@@ -4248,10 +4248,10 @@ msgstr ""
 msgid "Close the current page without saving"
 msgstr ""
 
+# Print
 #: gschem/etc/system-gschemrc.scm:2224
-#, fuzzy
 msgid "Prin_t"
-msgstr "Na_tisni ..."
+msgstr "Tiskanje"
 
 #: gschem/etc/system-gschemrc.scm:2224
 msgid "Print the current page"
@@ -4826,10 +4826,10 @@ msgstr "odmik izbor"
 msgid "Snap to Grid"
 msgstr "Poravnaj na mrežo"
 
-# Create an array
+# Create a matrix
 #: gschem/scheme/gschem/builtins.scm:131
 msgid "Create Array"
-msgstr "Ustvari niz"
+msgstr "Ustvari matrika"
 
 # Edit
 #: gschem/scheme/gschem/builtins.scm:134 gschem/scheme/gschem/builtins.scm:137
@@ -4846,89 +4846,101 @@ msgstr "Uredi lok"
 msgid "Edit Object"
 msgstr "Uredi Predmet"
 
+# Edit Text
 #: gschem/scheme/gschem/builtins.scm:146
 msgid "Edit Text"
-msgstr ""
+msgstr "Uredi Besedilo"
 
+# Edit Color
 #: gschem/scheme/gschem/builtins.scm:149
 msgid "Edit Color"
-msgstr ""
+msgstr "Uredi barva"
 
+# Edit Pin Type
 #: gschem/scheme/gschem/builtins.scm:152
 msgid "Edit Pin Type"
-msgstr ""
+msgstr "Uredi Tip pin"
 
+# Choose slot
 #: gschem/scheme/gschem/builtins.scm:161 gschem/scheme/gschem/builtins.scm:164
 msgid "Choose Slot"
-msgstr ""
+msgstr "Izberite režo"
 
+# Invert Selection
 #: gschem/scheme/gschem/builtins.scm:176
 msgid "Invert Selection"
-msgstr ""
+msgstr "Obrni izbor"
 
+# Select Last
 #: gschem/scheme/gschem/builtins.scm:179
 msgid "Select Last"
-msgstr ""
+msgstr "Izberite zadnji"
 
+# unselect mode
 #: gschem/scheme/gschem/builtins.scm:182
 msgid "Deselect mode"
-msgstr ""
+msgstr "unselect način"
 
 #: gschem/scheme/gschem/builtins.scm:197
 msgid "Cut"
-msgstr ""
+msgstr "Cut"
 
 #: gschem/scheme/gschem/builtins.scm:203
 msgid "Paste"
-msgstr ""
+msgstr "Paste"
 
 #: gschem/scheme/gschem/builtins.scm:209
 msgid "Redraw"
-msgstr ""
+msgstr "regeneracijo"
 
 #: gschem/scheme/gschem/builtins.scm:212
 msgid "Pan"
-msgstr ""
+msgstr "Pan"
 
 #: gschem/scheme/gschem/builtins.scm:215
 msgid "Pan Left"
-msgstr ""
+msgstr "Pan levo"
 
 #: gschem/scheme/gschem/builtins.scm:218
 msgid "Pan Right"
-msgstr ""
+msgstr "Pan desno"
 
 #: gschem/scheme/gschem/builtins.scm:221
 msgid "Pan Up"
-msgstr ""
+msgstr "Pan Up"
 
 #: gschem/scheme/gschem/builtins.scm:224
 msgid "Pan Down"
-msgstr ""
+msgstr "Pan dol"
 
+# Zoom Selection
 #: gschem/scheme/gschem/builtins.scm:230
 msgid "Zoom Selection"
-msgstr ""
+msgstr "Zoom za izbor"
 
+# Zoom Extents
 #: gschem/scheme/gschem/builtins.scm:233
 msgid "Zoom Extents"
-msgstr ""
+msgstr "zoom obsegi"
 
+# Zoom In
 #: gschem/scheme/gschem/builtins.scm:236
 msgid "Zoom In"
-msgstr ""
+msgstr "Približaj"
 
+# Zoom Out
 #: gschem/scheme/gschem/builtins.scm:239
 msgid "Zoom Out"
-msgstr ""
+msgstr "Pomanjšanje"
 
+# Zoom All
 #: gschem/scheme/gschem/builtins.scm:242
 msgid "Zoom All"
-msgstr ""
+msgstr "Zoom Vse"
 
 #: gschem/scheme/gschem/builtins.scm:245
 msgid "Zoom to Mag"
-msgstr ""
+msgstr "zoom za povečavo"
 
 #: gschem/scheme/gschem/builtins.scm:248
 msgid "Documentation"
@@ -4974,45 +4986,50 @@ msgstr ""
 msgid "Draw Last"
 msgstr ""
 
+# First Page
 #: gschem/scheme/gschem/builtins.scm:290
-#, fuzzy
 msgid "First Page"
-msgstr "Na_tisni ..."
+msgstr "prva stran"
 
+# Previous Page
 #: gschem/scheme/gschem/builtins.scm:293
 msgid "Previous Page"
-msgstr ""
+msgstr "Prejšnja stran"
 
+# Next Page
 #: gschem/scheme/gschem/builtins.scm:296
 msgid "Next Page"
-msgstr ""
+msgstr "Naslednja stran"
 
+# Page Up
 #: gschem/scheme/gschem/builtins.scm:299
 msgid "Page Up"
-msgstr ""
+msgstr "Stran gor"
 
+# Page Down
 #: gschem/scheme/gschem/builtins.scm:302
 msgid "Page Down"
-msgstr ""
+msgstr "Stran navzdol"
 
+# Last Page
 #: gschem/scheme/gschem/builtins.scm:305
-#, fuzzy
 msgid "Last Page"
-msgstr "Na_tisni ..."
+msgstr "Zadnja stran"
 
+# Print Page
 #: gschem/scheme/gschem/builtins.scm:311
-#, fuzzy
 msgid "Print Page"
-msgstr "Na_tisni ..."
+msgstr "Natisni stran"
 
+# Revert Changes
 #: gschem/scheme/gschem/builtins.scm:314
 msgid "Revert Changes"
-msgstr ""
+msgstr "Povrni spremembe"
 
+# Restore all
 #: gschem/scheme/gschem/builtins.scm:317
-#, fuzzy
 msgid "Revert All"
-msgstr "_Povrni"
+msgstr "Povrni vse"
 
 #: gschem/scheme/gschem/builtins.scm:335
 msgid "Up Hierarchy"
