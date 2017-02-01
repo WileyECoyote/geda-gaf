@@ -1475,38 +1475,37 @@ geda_picture_object_read (const char  *first_line,
   }
 
   if (width == 0 || height == 0) {
-    geda_log_w(_("Found a zero width/height picture [ %c %d %d %d %d ]\n"),
-                  type, x1, y1, width, height);
+    const char *msg = _("Found a picture with zero width/height");
+    if (geda_object_show_buffer_err(msg, first_line)) {
+      geda_log_w("%s: [%d x %d].\n", msg, width, height);
+    }
   }
 
-  if ( (mirrored > 1) || (mirrored < 0)) {
-    geda_log_w(_("Found a picture with a wrong 'mirrored' parameter: %d.\n"),
-                  mirrored);
-    geda_log_v(_("Setting mirrored to 0\n"));
+  if (mirrored != 0 && mirrored != 1) {
+    const char *msg = _("Found a picture with an invalid 'mirrored' parameter");
+    if (geda_object_show_buffer_err(msg, first_line)) {
+      geda_log_w("%s: %d.\n", msg, mirrored);
+    }
+    geda_log_w(_("Setting mirrored to 0\n"));
     mirrored = 0;
   }
 
   if ( (embedded > 1) || (embedded < 0)) {
-    geda_log_w(_("Found a picture with a wrong 'embedded' parameter: %d.\n"),
-                  embedded);
-    geda_log_v(_("Setting embedded to 0\n"));
+    const char *msg = _("Found a picture with an invalid 'embedded' parameter");
+    if (geda_object_show_buffer_err(msg, first_line)) {
+      geda_log_w("%s: %d.\n", msg, embedded);
+    }
+    geda_log_w(_("Setting embedded to 0\n"));
     embedded = 0;
   }
 
-  switch(angle) {
-
-    case(0):
-    case(90):
-    case(180):
-    case(270):
-      break;
-
-    default:
-      geda_log_w(_("Found an unsupported picture angle [ %d ]\n"), angle);
-      geda_log_v(_("Setting angle to 0\n"));
-      angle=0;
-      break;
-
+  if (angle != 0 && angle != 90 && angle != 180 && angle != 270) {
+    const char *msg = _("Found an unsupported picture angle");
+    if (geda_object_show_buffer_err(msg, first_line)) {
+      geda_log_w("%s: %d.\n", msg, angle);
+    }
+    geda_log_w (_("Setting angle to 0\n"));
+    angle = 0;
   }
 
   tmpstr = geda_utility_string_strdup(geda_struct_textbuffer_next_line(tb));

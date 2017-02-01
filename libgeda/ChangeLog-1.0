@@ -1,5 +1,9 @@
 2017-02-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_picture_object.c: Revise validations in geda_picture_object
+      _read to utilize geda_object_show_buffer_err, eliminate switch angle;
+      replace with if.
+
     * src/utility/u_log.c: Translate messages in u_log_handler and geda_
       utility_log_init and revise message formats.
 
