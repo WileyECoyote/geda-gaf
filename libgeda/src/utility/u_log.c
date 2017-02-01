@@ -121,7 +121,7 @@ static void u_log_handler (const char    *log_domain,
   }
 
   if (status == -1) {
-    perror("Could not write message to log file\n");
+    perror(_("Could not write message to log file\n"));
   }
 
   if ((status == -1) || (log_level & PRINT_LOG_LEVELS)) {
@@ -264,8 +264,8 @@ void geda_utility_log_init (const char *prefix)
   if (geda_create_path (dir_path, 0777 /*octal*/ ) != 0) {
     /* It is okay to use the logging functions from here, because
      * there is already a default handler. */
-    fprintf(stderr, _("Could not create log directory %s: %s\n"), dir_path,
-            strerror (errno));
+    const char *msg = _("Could not create log directory");
+    fprintf(stderr, "%s %s: %s\n", msg, dir_path, strerror (errno));
   }
   else {
 
@@ -333,12 +333,12 @@ void geda_utility_log_init (const char *prefix)
        * because there is already a default handler.
        */
       if (errno == EEXIST) {
-        fprintf(stderr, "Could not create unique log filename in %s\n",
-                dir_path);
+        const char *msg = _("Could not create unique log filename in");
+        fprintf(stderr, "%s %s\n", msg, dir_path);
       }
       else {
-        fprintf(stderr, "Could not create log file in %s: %s\n", dir_path,
-                strerror (errno));
+        const char *msg = _("Could not create log file in");
+        fprintf(stderr, "%s  %s: %s\n", msg, dir_path, strerror (errno));
       }
     }
   }

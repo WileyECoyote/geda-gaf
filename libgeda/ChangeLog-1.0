@@ -1,3 +1,8 @@
+2017-02-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/utility/u_log.c: Translate messages in u_log_handler and geda_
+      utility_log_init and revise message formats.
+
 2017-01-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * shell/shell.c: Include gettext_priv.h, update copyright.
