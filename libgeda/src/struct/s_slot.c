@@ -5,8 +5,8 @@
  * gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's Library
  *
- * Copyright (C) 1998-2016 Ales Hvezda
- * Copyright (C) 1998-2016 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2017 Ales Hvezda
+ * Copyright (C) 1998-2017 gEDA Contributors (see ChangeLog for details)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -174,17 +174,20 @@ geda_struct_slot_update_object (GedaObject *object)
 
   if (slotdef == NULL) {
 
-    if (slot_string) /* only an error if there's a slot string */
+    if (slot_string) { /* only an error if there's a slot string */
+
+      const char *msg1 = _("Did not find");
+      const char *msg2 = _("attribute for slot");
 
       /* Note: slot_string is base Zero, tell user about missing slotdef */
-      u_log_message (_("Did not find slotdef=#:#,#,# attribute for slot <%d>\n"),
-                        slot_string + 1);
+      u_log_message ("%s slotdef=#:#,#,# %s <%d>\n", msg1, msg2, slot_string + 1);
+    }
     return;
   }
 
   if (!strstr (slotdef, ":")) {
     /* Didn't find proper slotdef=#:... put warning into log */
-    u_log_message (_("Improper slotdef syntax: missing \":\".\n"));
+    u_log_message ("%s \":\".\n", _("Improper slotdef syntax: missing"));
     GEDA_FREE (slotdef);
     return;
   }
@@ -199,7 +202,12 @@ geda_struct_slot_update_object (GedaObject *object)
   cptr++; /* skip colon */
 
   if (*cptr == '\0') {
-    u_log_message (_("Did not find proper slotdef=#:#,#,#... attribute\n"));
+
+    const char *msg1 = _("Did not find proper");
+    const char *msg2 = _("attribute");
+
+    u_log_message ("%s slotdef=#:#,#,#... %s\n", msg1, msg2);
+
     GEDA_FREE (slotdef);
     return;
   }

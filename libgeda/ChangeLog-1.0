@@ -5,6 +5,9 @@
       replace with if. Revise output messages and formats thru out the module
       in order to minimize format specifiers in translatable strings.
 
+    * libgeda/src/struct/s_slot.c: Revise output messages and formats in order
+      to minimize format specifiers in translatable strings, update copyright.
+
     * src/utility/u_log.c: Translate messages in u_log_handler and geda_
       utility_log_init and revise message formats.
 
