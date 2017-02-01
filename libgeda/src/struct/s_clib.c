@@ -1,6 +1,6 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2016 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2017 gEDA Contributors (see ChangeLog for details)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -418,10 +418,11 @@ static void cache_find_oldest (void *key,
 static char *run_source_command (const char *command)
 {
   char *standard_output = NULL;
-  char *standard_error = NULL;
+  char *standard_error  = NULL;
+  char *err_msg         = NULL;
   int exit_status;
 
-  GError *e    = NULL;
+  GError *err  = NULL;
   bool success = FALSE;
 
   g_return_val_if_fail((command != NULL), NULL);
@@ -430,34 +431,39 @@ static char *run_source_command (const char *command)
                              &standard_output,
                              &standard_error,
                              &exit_status,
-                             &e);
+                             &err);
 
-  if (e != NULL) {
-    u_log_message (_("Library command failed [%s]: %s\n"), command,
-                   e->message);
-    g_error_free (e);
-
+  if (err != NULL) {
+    err_msg = geda_sprintf("[%s]: %s", command, err->message);
+    g_error_free (err);
   }
   else if (WIFSIGNALED(exit_status)) {
-    u_log_message (_("Library command failed [%s]: Uncaught signal %i.\n"),
-                   command, WTERMSIG(exit_status));
-
-  } else if (WIFEXITED(exit_status) && WEXITSTATUS(exit_status)) {
-    u_log_message (_("Library command failed [%s]\n"), command);
-    u_log_message(_("Error output was:\n%s\n"), standard_error);
-
+    const char *msg = _("Uncaught signal");
+    err_msg = geda_sprintf("[%s]: %s %i", command, msg, WTERMSIG(exit_status));
+  }
+  else if (WIFEXITED(exit_status) && WEXITSTATUS(exit_status)) {
+    const char *msg = _("Error output was");
+    err_msg = geda_sprintf("[%s]: %s \n%s\n", command, msg, standard_error);
   }
   else {
     success = TRUE;
   }
 
   /* forward library command messages */
-  if (success && standard_error != NULL)
+  if (success && standard_error != NULL) {
     u_log_message ("%s", standard_error);
+  }
+  else {
+    const char *msg = _("Library command failed");
+    u_log_message ("%s %s\n", msg, err_msg);
+    GEDA_FREE (err_msg);
+  }
 
   GEDA_FREE (standard_error);
 
-  if (success) return standard_output;
+  if (success) {
+    return standard_output;
+  }
 
   GEDA_FREE (standard_output);
   return NULL;
@@ -532,7 +538,7 @@ static char *get_unique_source_name (const char *name)
     newname = geda_sprintf ("%s-%i", name, i);
   } while (geda_struct_clib_get_source_by_name (newname) != NULL);
 
-  u_log_message (_("Library name [%s] already in use.  Using [%s].\n"),
+  u_log_message (_("Library name [%s] already in use. Using [%s].\n"),
                  name, newname);
 
   return newname;
@@ -665,8 +671,10 @@ static void refresh_directory (CLibSource *source)
           source->symbols = g_list_prepend (source->symbols, symbol);
           }
           else {
-            u_log_message(_("Duplicate symbol: <%s>, location <%s>\n"),
-                           entry->d_name, source->directory);
+            const char *msg1 = _("Duplicate symbol");
+            const char *msg2 = _("location");
+            u_log_message("%s: <%s>, %s <%s>\n", msg1, entry->d_name,
+                                                 msg2, source->directory);
           }
         }
       }
@@ -674,7 +682,8 @@ static void refresh_directory (CLibSource *source)
     closedir (dirp);
   }
   else {
-    u_log_message (_("Failed to open [%s]: %s\n"), source->directory, strerror(errno));
+    u_log_message ("%s [%s]: %s\n", _("Failed to open"),
+                   source->directory, strerror(errno));
     return;
   }
 
@@ -773,8 +782,9 @@ static void refresh_scm (CLibSource *source)
   symlist = scm_call_0 (source->list_fn);
 
   if (SCM_NCONSP (symlist) && (symlist != SCM_EOL)) {
-    u_log_message (_("Failed to scan library [%s]: Scheme function returned non-list\n"),
-                   source->name);
+    const char *msg1 = _("Failed to scan library");
+    const char *msg2 = _("Scheme function returned non-list");
+    u_log_message ("%s [%s]: %s\n", msg1, source->name, msg2);
     return;
   }
 
@@ -783,8 +793,8 @@ static void refresh_scm (CLibSource *source)
     SCM symname = SCM_CAR (symlist);
 
     if (!scm_is_string (symname)) {
-      u_log_message (_("Non-string symbol name while scanning library [%s]\n"),
-                     source->name);
+      const char *msg = _("Non-string symbol name while scanning library");
+      u_log_message ("%s [%s]\n", msg, source->name);
     }
     else {
 
