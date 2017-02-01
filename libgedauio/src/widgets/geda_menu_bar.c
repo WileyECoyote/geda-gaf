@@ -134,6 +134,8 @@ static const char menu_bar_key[] = "menu-bar-list";
 
 static void *geda_menu_bar_parent_class = NULL;
 
+static GHashTable *menu_bar_hash = NULL;
+
 static void
 change_accel (GedaMenuBar *menubar)
 {
@@ -956,6 +958,13 @@ static void geda_menu_bar_finalize (GObject *object)
 {
   GedaMenuBar *menu_bar = GEDA_MENU_BAR (object);
 
+  if (g_hash_table_remove (menu_bar_hash, object)) {
+    if (!g_hash_table_size (menu_bar_hash)) {
+      g_hash_table_destroy (menu_bar_hash);
+      menu_bar_hash = NULL;
+    }
+  }
+
   if (menu_bar->priv->accel) {
     g_free(menu_bar->priv->accel);
   }
@@ -1146,7 +1155,12 @@ geda_menu_bar_instance_init (GTypeInstance *instance, void *class)
   GedaMenuBar *menu_bar = (GedaMenuBar*)instance;
 
   menu_bar->priv          = GEDA_MEM_ALLOC0 (sizeof(GedaMenuBarPrivate));
-  menu_bar->instance_type = geda_menu_bar_get_type();
+
+  if (!menu_bar_hash) {
+    menu_bar_hash = g_hash_table_new (g_direct_hash, NULL);
+  }
+
+  g_hash_table_replace (menu_bar_hash, instance, instance);
 
 #if GTK_MAJOR_VERSION == 3
 
@@ -1210,8 +1224,8 @@ geda_menu_bar_get_type (void)
  */
 bool is_a_geda_menu_bar (GedaMenuBar *menu_bar)
 {
-  if (G_IS_OBJECT(menu_bar)) {
-    return (geda_menu_bar_get_type() == menu_bar->instance_type);
+  if ((menu_bar != NULL) && (menu_bar_hash != NULL)) {
+    return g_hash_table_lookup(menu_bar_hash, menu_bar) ? TRUE : FALSE;
   }
   return FALSE;
 }
