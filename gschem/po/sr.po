@@ -4881,109 +4881,123 @@ msgstr ""
 msgid "Offset selection"
 msgstr ""
 
+# Snap to Grid
 #: gschem/scheme/gschem/builtins.scm:128
 msgid "Snap to Grid"
-msgstr ""
+msgstr "Снап то Грид"
 
+# Create Array
 #: gschem/scheme/gschem/builtins.scm:131
 msgid "Create Array"
-msgstr ""
+msgstr "створити Арраи"
 
+# Edit
 #: gschem/scheme/gschem/builtins.scm:134 gschem/scheme/gschem/builtins.scm:137
 msgid "Edit..."
-msgstr ""
+msgstr "Eдит..."
 
+# Edit Arc
 #: gschem/scheme/gschem/builtins.scm:140
 msgid "Edit Arc"
-msgstr ""
+msgstr "Eдит светлосни лук"
 
 #: gschem/scheme/gschem/builtins.scm:143
 msgid "Edit Object"
-msgstr ""
+msgstr "Eдит објекат"
 
+# Edit Text
 #: gschem/scheme/gschem/builtins.scm:146
 msgid "Edit Text"
-msgstr ""
+msgstr "Eдит Текст"
 
+# Edit Color
 #: gschem/scheme/gschem/builtins.scm:149
 msgid "Edit Color"
-msgstr ""
+msgstr "Eдит боја"
 
+# Edit Pin Type
 #: gschem/scheme/gschem/builtins.scm:152
 msgid "Edit Pin Type"
-msgstr ""
+msgstr "Eдит Пин Типе"
 
+# Choose slot
 #: gschem/scheme/gschem/builtins.scm:161 gschem/scheme/gschem/builtins.scm:164
 msgid "Choose Slot"
-msgstr ""
+msgstr "Изаберите Слот"
 
+# Invert Selection
 #: gschem/scheme/gschem/builtins.scm:176
 msgid "Invert Selection"
-msgstr ""
+msgstr "Обрни селекцију"
 
+# Select Last
 #: gschem/scheme/gschem/builtins.scm:179
 msgid "Select Last"
-msgstr ""
+msgstr "Изабери Ласт"
 
+# unselect mode
 #: gschem/scheme/gschem/builtins.scm:182
 msgid "Deselect mode"
-msgstr ""
+msgstr "унселецт режим"
 
 #: gschem/scheme/gschem/builtins.scm:197
 msgid "Cut"
-msgstr ""
+msgstr "рез"
 
 #: gschem/scheme/gschem/builtins.scm:203
 msgid "Paste"
-msgstr ""
+msgstr "Пасте"
 
 #: gschem/scheme/gschem/builtins.scm:209
 msgid "Redraw"
-msgstr ""
+msgstr "Редрав"
 
 #: gschem/scheme/gschem/builtins.scm:212
 msgid "Pan"
-msgstr ""
+msgstr "пан"
 
 #: gschem/scheme/gschem/builtins.scm:215
 msgid "Pan Left"
-msgstr ""
+msgstr "пан лево"
 
 #: gschem/scheme/gschem/builtins.scm:218
 msgid "Pan Right"
-msgstr ""
+msgstr "пан Право"
 
 #: gschem/scheme/gschem/builtins.scm:221
 msgid "Pan Up"
-msgstr ""
+msgstr "пан нагоре"
 
 #: gschem/scheme/gschem/builtins.scm:224
 msgid "Pan Down"
-msgstr ""
+msgstr "пан доле"
 
 #: gschem/scheme/gschem/builtins.scm:230
 msgid "Zoom Selection"
-msgstr ""
+msgstr "зоом Избор"
 
 #: gschem/scheme/gschem/builtins.scm:233
 msgid "Zoom Extents"
-msgstr ""
+msgstr "Зоом ектентс"
 
+# Zoom in
 #: gschem/scheme/gschem/builtins.scm:236
 msgid "Zoom In"
-msgstr ""
+msgstr "Увеличати"
 
+# Zoom Out
 #: gschem/scheme/gschem/builtins.scm:239
 msgid "Zoom Out"
-msgstr ""
+msgstr "Зоом Оут"
 
+# Zoom All
 #: gschem/scheme/gschem/builtins.scm:242
 msgid "Zoom All"
-msgstr ""
+msgstr "зоом све"
 
 #: gschem/scheme/gschem/builtins.scm:245
 msgid "Zoom to Mag"
-msgstr ""
+msgstr "Зоом то Увећање"
 
 #: gschem/scheme/gschem/builtins.scm:248
 msgid "Documentation"
