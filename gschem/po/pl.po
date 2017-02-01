@@ -73,30 +73,25 @@ msgid "Failed to read scheme initialization file"
 msgstr "Nie można odczytać pliku inicjalizacji scm"
 
 #: gschem/src/base/gschem.c:384
-#, fuzzy
 msgid "version"
-msgstr "Zapisz _wszystkie"
+msgstr "версия"
 
 #: gschem/src/base/gschem.c:389
 msgid "Logging system is disabled\n"
 msgstr ""
 
 #: gschem/src/base/gschem.c:429
-#, fuzzy, c-format
+#, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
 msgstr ""
-"%s\n"
-"\n"
-"Logi programu mogą zawierać dodatkowe informacje."
 
 #: gschem/src/base/gschem.c:521
 msgid "Exiting normal\n"
 msgstr ""
 
 #: gschem/src/base/gschem_dialog.c:563
-#, fuzzy
 msgid "Parent Window"
-msgstr "Bieżący widok"
+msgstr "Родительское окно"
 
 #: gschem/src/base/gschem_dialog.c:564
 msgid "Parent window for this dialog"
@@ -880,24 +875,24 @@ msgstr "Wystąpił błąd podczas próby utworzenia sesji"
 msgid "<b>Session Error</b>"
 msgstr "<b>Zakres</b>"
 
+# Creation failed
 #: gschem/src/iface/i_sessions.c:950
-#, fuzzy
 msgid "Creation failed"
-msgstr "Błąd podczas wklejania"
+msgstr "stworzenie powiodło"
 
+# Opened session
 #: gschem/src/iface/i_sessions.c:994
-#, fuzzy
 msgid "Opened session"
-msgstr "Zapisz _wszystkie"
+msgstr "Otwarty sesji"
 
+# Renaming session
 #: gschem/src/iface/i_sessions.c:1043
-#, fuzzy
 msgid "Renaming session"
-msgstr "Zapisz _wszystkie"
+msgstr "Zmiana nazwy sesji"
 
 #: gschem/src/iface/i_sessions.c:1044
 msgid "to"
-msgstr ""
+msgstr "do"
 
 # Failed to rename session
 #: gschem/src/iface/i_sessions.c:1068
@@ -1066,15 +1061,15 @@ msgstr "Koniec połączeni"
 msgid "Project Mode"
 msgstr "Tryb połączeń"
 
+# Select objects to extent
 #: gschem/src/iface/i_status.c:192
-#, fuzzy
 msgid "Select Projectiles"
-msgstr "Zaznaczonych elementach"
+msgstr "Wybierz obiekty do stopnia"
 
+# Select Object
 #: gschem/src/iface/i_status.c:194
-#, fuzzy
 msgid "Select Object"
-msgstr "Zaznaczonych elementach"
+msgstr "Wybierz obiekt"
 
 #: gschem/src/iface/i_status.c:243
 msgid "Show Hidden"
@@ -1340,7 +1335,6 @@ msgid ""
 msgstr ""
 
 #: gschem/src/x/x_autonumber.c:913
-#, fuzzy
 msgid "No search string given in autonumber text.\n"
 msgstr "Nie podano tekstu wyszukiwania.\n"
 
@@ -1369,13 +1363,12 @@ msgid "File order"
 msgstr "Kolejność plików"
 
 #: gschem/src/x/x_autonumber.c:1605
-#, fuzzy
 msgid "<b>Filter:</b>"
-msgstr "Filtr:"
+msgstr "<b>Filtr:</b>"
 
 #: gschem/src/x/x_autonumber.c:1646
 msgid "Selected objects"
-msgstr "Zaznaczonych elementach"
+msgstr "Wybrane obiekty"
 
 #: gschem/src/x/x_autonumber.c:1647
 msgid "Current page"
@@ -1406,15 +1399,15 @@ msgstr ""
 msgid "An error occurred while inserting clipboard data"
 msgstr "Wystąpił błąd podczas wklejania danych ze schowka"
 
+# Error when you paste
 #: gschem/src/x/x_clipboard.c:322
-#, fuzzy
 msgid "Clipboard Insertion Failed"
 msgstr "Błąd podczas wklejania"
 
+# Default - use references to the component
 #: gschem/src/x/x_compselect.c:1257
-#, fuzzy
 msgid "Default is to reference the component"
-msgstr "Domyślnie - użyj odniesiena do pliku elementu"
+msgstr "Domyślnie - użyj odniesiena do składnik"
 
 #: gschem/src/x/x_compselect.c:1261
 msgid "Embed component in schematic"
@@ -1572,10 +1565,10 @@ msgstr "Wystąpił błąd podczas odbierania danych Drag & Drop"
 msgid "Data error"
 msgstr "błąd danych"
 
+# Drag & Drop failed
 #: gschem/src/x/x_coord.c:162 gschem/src/x/x_dnd.c:585
-#, fuzzy
 msgid "Drag & Drop failed"
-msgstr "Błąd podczas wklejania"
+msgstr "przeciągnij i upuść zawiodły"
 
 #: gschem/src/x/x_coord.c:472
 #, fuzzy
@@ -2021,6 +2014,8 @@ msgid ""
 "Offset to translate?\n"
 "(0 for origin)"
 msgstr ""
+"Offsetowy do tłumaczyć?\n"
+"(0 dla pochodzenia)"
 
 # Automatically zoom to drawing extents
 #: gschem/src/x/x_dialog.c:3026
@@ -2819,24 +2814,24 @@ msgstr ""
 msgid "Mag"
 msgstr ""
 
+# Zoom to a specified level
 #: gschem/src/x/x_menus.c:104 gschem/etc/system-gschemrc.scm:2188
-#, fuzzy
 msgid "Zoom to a specified level"
-msgstr "Zaznaczonych elementach"
+msgstr "Powiększać do określonego poziomu"
 
+# Zoom to selected objects
 #: gschem/src/x/x_menus.c:105 gschem/etc/system-gschemrc.scm:2189
-#, fuzzy
 msgid "Zoom to selected objects"
-msgstr "Zaznaczonych elementach"
+msgstr "Przybliżyć do wybranych obiektów"
 
 #: gschem/src/x/x_menus.c:109
 msgid "Edit"
 msgstr "Edycja"
 
+# Edit modes
 #: gschem/src/x/x_menus.c:109
-#, fuzzy
 msgid "Edit modes"
-msgstr "Edycja właściwości tekstu"
+msgstr "Edycja tryby"
 
 #: gschem/src/x/x_menus.c:110
 msgid "Object..."
@@ -3542,10 +3537,10 @@ msgstr "Wybierz plik eksportu"
 msgid "exported to"
 msgstr ""
 
+# Load the selected session
 #: gschem/src/x/x_sessions.c:414
-#, fuzzy
 msgid "Load the selected session"
-msgstr "Zaznaczonych elementach"
+msgstr "Załadować wybraną sesję"
 
 #: gschem/src/x/x_sessions.c:415
 msgid ""
@@ -3800,9 +3795,8 @@ msgid "Failed to load file"
 msgstr "Nie udało się załadować pliku"
 
 #: gschem/src/x/x_window.c:983
-#, fuzzy
 msgid "Creating new file"
-msgstr "Błąd podczas wklejania"
+msgstr "Tworzenie nowego pliku"
 
 #: gschem/src/x/x_window.c:996
 #, fuzzy
@@ -3834,10 +3828,10 @@ msgstr "Zapisanie arkusza nie powiodło się"
 msgid "Error while trying to save"
 msgstr "Błąd podczas próby zapisania"
 
+# Saved as
 #: gschem/src/x/x_window.c:1225
-#, fuzzy
 msgid "Saved as"
-msgstr "Zapisz _wszystkie"
+msgstr "zapisywane jako"
 
 #: gschem/data/geda-gschem.desktop.in:3
 msgid "gEDA Schematic Editor"
@@ -3879,10 +3873,10 @@ msgstr "Zapisz j_ako..."
 msgid "Save the current document to a new name or location"
 msgstr ""
 
+# Save all
 #: gschem/etc/system-gschemrc.scm:2059
-#, fuzzy
 msgid "Save A_ll"
-msgstr "Zapisz _wszystkie"
+msgstr "Zapisz wszystkie"
 
 #: gschem/etc/system-gschemrc.scm:2059
 msgid "Save all open documents"
@@ -4026,15 +4020,15 @@ msgstr "Lustrzane odbicie"
 msgid "Mo_ve"
 msgstr ""
 
+# Offset
 #: gschem/etc/system-gschemrc.scm:2098
-#, fuzzy
 msgid "O_ffset"
-msgstr "Tryb połączeń"
+msgstr "Offsetowy"
 
+# Offset the selected objects
 #: gschem/etc/system-gschemrc.scm:2098
-#, fuzzy
 msgid "Offset the selected objects"
-msgstr "Zaznaczonych elementach"
+msgstr "Offsetowy wybranych obiektów"
 
 #: gschem/etc/system-gschemrc.scm:2099
 #, fuzzy
@@ -4133,10 +4127,10 @@ msgstr "Tryb zaznaczania"
 msgid "Select All"
 msgstr ""
 
+# Select all objects
 #: gschem/etc/system-gschemrc.scm:2122
-#, fuzzy
 msgid "Select all objects"
-msgstr "Zaznaczonych elementach"
+msgstr "Wybierz wszystkie obiekty"
 
 #: gschem/etc/system-gschemrc.scm:2123 gschem/scheme/gschem/builtins.scm:185
 #, fuzzy
@@ -4276,19 +4270,19 @@ msgstr "Wklej z 5"
 msgid "Insert contents of the fifth auxiliary buffer"
 msgstr ""
 
+# Lock selected objects
 #: gschem/etc/system-gschemrc.scm:2144
-#, fuzzy
 msgid "Lock selected objects"
-msgstr "Zaznaczonych elementach"
+msgstr "Blokowanie wybranych obiektów"
 
 #: gschem/etc/system-gschemrc.scm:2145 gschem/scheme/gschem/builtins.scm:191
 msgid "Unlock"
 msgstr "Odblokuj"
 
+# Unlock selected objects
 #: gschem/etc/system-gschemrc.scm:2145
-#, fuzzy
 msgid "Unlock selected objects"
-msgstr "Zaznaczonych elementach"
+msgstr "Odblokuj wybrane obiekty"
 
 #: gschem/etc/system-gschemrc.scm:2180
 msgid "_Redraw"
@@ -5075,9 +5069,8 @@ msgid "Multiple Copy Mode"
 msgstr "Duplikuj wielokrotnie"
 
 #: gschem/scheme/gschem/builtins.scm:119
-#, fuzzy
 msgid "Offset selection"
-msgstr "Zaznaczenie"
+msgstr "Offsetowy Zaznaczenie"
 
 #: gschem/scheme/gschem/builtins.scm:128
 #, fuzzy
