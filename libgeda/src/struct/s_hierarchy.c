@@ -1,7 +1,8 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2015 Ales Hvezda
- * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
+ *
+ * Copyright (C) 1998-2017 Ales Hvezda
+ * Copyright (C) 1998-2017 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -303,7 +304,7 @@ geda_struct_hierarchy_traverse_pages (GedaToplevel *toplevel, Page *p_current, i
                                             flags | HIERARCHY_INNERLOOP);
     }
     else {
-      u_log_message (_("Failed to descend hierarchy into '%s': %s\n"),
+      u_log_message ("%s '%s': %s\n", _("Failed to descend hierarchy into"),
                      filename, err->message);
       g_error_free (err);
     }
