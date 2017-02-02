@@ -79,12 +79,12 @@ msgstr "versão"
 
 #: gschem/src/base/gschem.c:389
 msgid "Logging system is disabled\n"
-msgstr ""
+msgstr "Sistema de registro em log está desativado\n"
 
 #: gschem/src/base/gschem.c:429
 #, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
-msgstr ""
+msgstr "Erro: Falha ao carregar ou avaliar o script de inicialização\n"
 
 #: gschem/src/base/gschem.c:521
 msgid "Exiting normal\n"
@@ -211,10 +211,10 @@ msgstr ""
 msgid "option requires an argument"
 msgstr ""
 
+# # Unknown option
 #: gschem/src/base/gschem_parsecmd.c:290
-#, fuzzy
 msgid "Unknown option"
-msgstr "Desconhecido"
+msgstr "Opção desconhecida"
 
 #: gschem/src/base/gschem_parsecmd.c:296
 msgid "Unknown option character"
@@ -241,19 +241,18 @@ msgstr "Nome de ficheiro"
 msgid "name of file to be previewed"
 msgstr ""
 
+# Object List
 #: gschem/src/base/gschem_preview.c:549
-#, fuzzy
 msgid "Object List"
-msgstr "Seleccionar"
+msgstr " Objeto Lista"
 
 #: gschem/src/base/gschem_preview.c:550
 msgid "List of objects to be previewed"
 msgstr ""
 
 #: gschem/src/base/gschem_preview.c:557
-#, fuzzy
 msgid "Active"
-msgstr "Acção"
+msgstr "Ativo"
 
 #: gschem/src/base/gschem_preview.c:558
 msgid "Whether the preview widget is enabled or disabled"
@@ -3536,19 +3535,19 @@ msgstr ""
 msgid "Specify new name for Session:"
 msgstr ""
 
+# Select export file
 #: gschem/src/x/x_sessions.c:228
-#, fuzzy
 msgid "Select export file"
-msgstr "Seleccione nome do ficheiro PostScript..."
+msgstr "Seleccione ficheiro de exportação"
 
 #: gschem/src/x/x_sessions.c:232
 msgid "exported to"
-msgstr ""
+msgstr "exportados para"
 
+# Load the selected session
 #: gschem/src/x/x_sessions.c:414
-#, fuzzy
 msgid "Load the selected session"
-msgstr "Objectos seleccionados"
+msgstr "Carregar a sessão selecionada"
 
 #: gschem/src/x/x_sessions.c:415
 msgid ""
@@ -3559,29 +3558,29 @@ msgstr ""
 msgid "Automatically add and remove files from sessions"
 msgstr ""
 
+# Show at start-up
 #: gschem/src/x/x_sessions.c:421
-#, fuzzy
 msgid "Show at start-up"
-msgstr "Mostrar texto que comece por:"
+msgstr "Mostrar no arranque"
 
 #: gschem/src/x/x_sessions.c:428
 msgid "Auto update"
 msgstr ""
 
+# Session Name
 #: gschem/src/x/x_sessions.c:535
-#, fuzzy
 msgid "Session Name"
-msgstr "Mostrar _Nome"
+msgstr "Sessão Nome"
 
+# File Count
 #: gschem/src/x/x_sessions.c:550
-#, fuzzy
 msgid "File Count"
-msgstr "Ordem de ficheiro"
+msgstr "Contagem de ficheiro"
 
+# Rename the selected session
 #: gschem/src/x/x_sessions.c:600
-#, fuzzy
 msgid "Rename the selected session"
-msgstr "Janela Actual"
+msgstr "Renomear a sessão selecionada"
 
 #: gschem/src/x/x_sessions.c:601
 msgid "Delete the selected session"
@@ -3595,10 +3594,10 @@ msgstr ""
 msgid "Manage Sessions"
 msgstr ""
 
+# Rename
 #: gschem/src/x/x_sessions.c:639
-#, fuzzy
 msgid "_Rename"
-msgstr "Nome de ficheiro"
+msgstr "_Renomear"
 
 #: gschem/src/x/x_sessions.c:646 gschem/etc/system-gschemrc.scm:2091
 msgid "_Delete"
@@ -3616,10 +3615,10 @@ msgstr ""
 msgid "New Session"
 msgstr ""
 
+# Save Session As
 #: gschem/src/x/x_sessions.c:853 gschem/scheme/gschem/builtins.scm:389
-#, fuzzy
 msgid "Save Session As"
-msgstr "Guardar Tudo"
+msgstr "Salvar sessão como"
 
 #: gschem/src/x/x_settings.c:359
 msgid "error opening"
@@ -3656,10 +3655,10 @@ msgstr ""
 msgid "Restore default"
 msgstr ""
 
+# Close without changing any settings
 #: gschem/src/x/x_settings_dialog.c:2639
-#, fuzzy
 msgid "Close without changing any settings"
-msgstr "Fechar sem gravar"
+msgstr "Fechar sem alterar quaisquer configurações"
 
 #: gschem/src/x/x_settings_dialog.c:2641 gschem/scheme/gschem/builtins.scm:56
 msgid "Save"
@@ -3758,17 +3757,17 @@ msgstr "Configuração da barra de ferramentas não encontrado"
 
 #: gschem/src/x/x_window.c:105
 msgid "Could not allocate a graphics context"
-msgstr "Não foi possível reservar memoria para a variável gc"
+msgstr "Não foi possível reservar memoria para a contexto de gráficos"
 
+# there is no current window
 #: gschem/src/x/x_window.c:110
-#, fuzzy
 msgid "there is no current window"
-msgstr "Janela Actual"
+msgstr "Não há nenhuma janela atual"
 
+# Could not create a Cairo context, is window drawable
 #: gschem/src/x/x_window.c:119
-#, fuzzy
 msgid "Could not create a Cairo context, is window drawable?\n"
-msgstr "Não foi possível reservar memoria para a variável gc\n"
+msgstr "Não foi possível criar uma janela de contexto é Cairo desenho\n"
 
 #: gschem/src/x/x_window.c:126
 msgid "window is not valid"
@@ -3791,10 +3790,10 @@ msgstr ""
 msgid "Close Window canceled\n"
 msgstr "Fechar Janela cancelada\n"
 
+# Loading file
 #: gschem/src/x/x_window.c:767
-#, fuzzy
 msgid "Loading file"
-msgstr "A carregar esquema"
+msgstr "Carregar ficheiro"
 
 # New file
 #: gschem/src/x/x_window.c:911
@@ -3811,10 +3810,10 @@ msgstr "Falha ao carregar ficheiro"
 msgid "Creating new file"
 msgstr "Criar novo ficheiro"
 
+# Path
 #: gschem/src/x/x_window.c:996
-#, fuzzy
 msgid "Path"
-msgstr "Adicionar Ligação"
+msgstr "Caminho"
 
 #: gschem/src/x/x_window.c:999
 msgid ""
@@ -3841,10 +3840,10 @@ msgstr "NÃO foi possível gravar pagina"
 msgid "Error while trying to save"
 msgstr "Erro ao tentar gravar"
 
+# Saved as
 #: gschem/src/x/x_window.c:1225
-#, fuzzy
 msgid "Saved as"
-msgstr "Guardar Tudo"
+msgstr "Guardado como"
 
 #: gschem/data/geda-gschem.desktop.in:3
 msgid "gEDA Schematic Editor"
@@ -3886,10 +3885,10 @@ msgstr "Gu_ardar como..."
 msgid "Save the current document to a new name or location"
 msgstr ""
 
+# Save All
 #: gschem/etc/system-gschemrc.scm:2059
-#, fuzzy
 msgid "Save A_ll"
-msgstr "Guardar Tudo"
+msgstr "Guardado todas as"
 
 #: gschem/etc/system-gschemrc.scm:2059
 msgid "Save all open documents"
@@ -3912,10 +3911,10 @@ msgstr "_Reverter"
 msgid "Discard changes and reload the current document"
 msgstr ""
 
+# Revert All
 #: gschem/etc/system-gschemrc.scm:2062
-#, fuzzy
 msgid "Re_vert All"
-msgstr "Reverter pagina realmente?"
+msgstr "Reverter todas"
 
 #: gschem/etc/system-gschemrc.scm:2062
 msgid "Discard changes and reload all open documents"
@@ -3925,10 +3924,10 @@ msgstr ""
 msgid "_Print..."
 msgstr "Im_primir..."
 
+# Print the current document
 #: gschem/etc/system-gschemrc.scm:2065
-#, fuzzy
 msgid "Print the current document"
-msgstr "Esquema actual impresso em"
+msgstr "Imprimir o documento atual"
 
 #: gschem/etc/system-gschemrc.scm:2066
 msgid "Export options"
@@ -3996,68 +3995,69 @@ msgstr "Desfazer a ultima operação"
 msgid "_Redo"
 msgstr "_Refazer"
 
+# redo the last un-done action
 #: gschem/etc/system-gschemrc.scm:2085
-#, fuzzy
 msgid "redo the last un-done action"
 msgstr "Desfazer a ultima operação"
 
+# Cut clipboard
 #: gschem/etc/system-gschemrc.scm:2088
-#, fuzzy
 msgid "Cu_t clipboard"
 msgstr "Cortar para a área de transferência"
 
+# Copy clipboard
 #: gschem/etc/system-gschemrc.scm:2089
-#, fuzzy
 msgid "_Copy clipboard"
 msgstr "Copiar para a área de transferência"
 
+# Paste clipboard
 #: gschem/etc/system-gschemrc.scm:2090
-#, fuzzy
 msgid "_Paste clipboard"
 msgstr "Colar da área de transferência"
 
+# # Copy
 #: gschem/etc/system-gschemrc.scm:2094
 msgid "C_opy"
-msgstr ""
+msgstr "Cópia"
 
+# Multiple Copy
 #: gschem/etc/system-gschemrc.scm:2095
-#, fuzzy
 msgid "_Multiple Copy"
 msgstr "Cópia Múltipla"
 
+# Mirror
 #: gschem/etc/system-gschemrc.scm:2096
-#, fuzzy
 msgid "M_irror"
 msgstr "Simetria"
 
+# Move
 #: gschem/etc/system-gschemrc.scm:2097
 msgid "Mo_ve"
-msgstr ""
+msgstr "Mover"
 
+# Offset
 #: gschem/etc/system-gschemrc.scm:2098
-#, fuzzy
 msgid "O_ffset"
-msgstr "Modo Ligação"
+msgstr "deslocado"
 
+# Offset the selected objects
 #: gschem/etc/system-gschemrc.scm:2098
-#, fuzzy
 msgid "Offset the selected objects"
-msgstr "Objectos seleccionados"
+msgstr "Deslocar os objetos selecionados"
 
 #: gschem/etc/system-gschemrc.scm:2099
-#, fuzzy
 msgid "Rotate _90"
-msgstr "Rodar"
+msgstr "Rodar _90"
 
+# Snap to grid
 #: gschem/etc/system-gschemrc.scm:2100
-#, fuzzy
 msgid "Snap to _grid"
-msgstr "Modo Centrar"
+msgstr "Encaixe a grade"
 
+# Snap selection to current grid
 #: gschem/etc/system-gschemrc.scm:2100
-#, fuzzy
 msgid "Snap selection to current grid"
-msgstr "Janela Actual"
+msgstr "Encaixe seleção para grade atual"
 
 #: gschem/etc/system-gschemrc.scm:2103
 msgid "_Array"
@@ -4071,34 +4071,34 @@ msgstr ""
 msgid "Break a linear object into separate objects"
 msgstr ""
 
+# Extend
 #: gschem/etc/system-gschemrc.scm:2105
-#, fuzzy
 msgid "E_xtend"
-msgstr "/Mostrar Tudo"
+msgstr "Estender"
 
+# Edit
 #: gschem/etc/system-gschemrc.scm:2108
-#, fuzzy
 msgid "_Edit..."
-msgstr "Editar..."
+msgstr "_Editar..."
 
+# Edit Text
 #: gschem/etc/system-gschemrc.scm:2109
-#, fuzzy
 msgid "E_dit Text..."
 msgstr "Editar Texto..."
 
+# Open the Text Editor Dialog
 #: gschem/etc/system-gschemrc.scm:2109
 msgid "Open the Text Editor Dialog"
-msgstr ""
+msgstr "Abra a caixa de diálogo Editor de Texto"
 
+# Color
 #: gschem/etc/system-gschemrc.scm:2110
-#, fuzzy
 msgid "Co_lor..."
 msgstr "Cor..."
 
 #: gschem/etc/system-gschemrc.scm:2111
-#, fuzzy
 msgid "Edit Pi_n..."
-msgstr "Editar tipo de pino..."
+msgstr "Editar de pino..."
 
 # Thickness and Line Type
 #: gschem/etc/system-gschemrc.scm:2112
