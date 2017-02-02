@@ -1,3 +1,9 @@
+2017-02-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_marshal.h: Add declarations for geda_marshal_BOOLEAN__VOID.
+
+    * src/functions/geda_marshal.c: Add marshal geda_marshal_BOOLEAN__VOID.
+
 2017-02-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_bar.c: Replace object type identifier scheme
