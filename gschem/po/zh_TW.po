@@ -5061,15 +5061,15 @@ msgstr ""
 msgid "Show/Hide net names"
 msgstr ""
 
+# Dark Color Scheme
 #: gschem/scheme/gschem/builtins.scm:260
-#, fuzzy
 msgid "Dark Color Scheme"
-msgstr "黑色背景"
+msgstr "暗色方案"
 
+# Light Color Scheme
 #: gschem/scheme/gschem/builtins.scm:263
-#, fuzzy
 msgid "Light Color Scheme"
-msgstr "白色背景"
+msgstr "光色方案"
 
 #: gschem/scheme/gschem/builtins.scm:266
 msgid "Monochrome Color Scheme"
@@ -5091,335 +5091,369 @@ msgstr ""
 msgid "Draw Last"
 msgstr ""
 
+# First Page
 #: gschem/scheme/gschem/builtins.scm:290
-#, fuzzy
 msgid "First Page"
-msgstr "上一個分頁"
+msgstr "第一頁"
 
+# Previous Page
 #: gschem/scheme/gschem/builtins.scm:293
-#, fuzzy
 msgid "Previous Page"
-msgstr "上一個分頁"
+msgstr "上一頁"
 
+# Next Page
 #: gschem/scheme/gschem/builtins.scm:296
-#, fuzzy
 msgid "Next Page"
-msgstr "新增分頁"
+msgstr "下一頁"
 
+# Page Up
 #: gschem/scheme/gschem/builtins.scm:299
-#, fuzzy
 msgid "Page Up"
-msgstr "分頁"
+msgstr "上一頁"
 
+# Page Down
 #: gschem/scheme/gschem/builtins.scm:302
-#, fuzzy
 msgid "Page Down"
-msgstr "分頁"
+msgstr "向下翻頁"
 
+# Last Page
 #: gschem/scheme/gschem/builtins.scm:305
-#, fuzzy
 msgid "Last Page"
-msgstr "新增分頁"
+msgstr "最後一頁"
 
+# Print Page
 #: gschem/scheme/gschem/builtins.scm:311
-#, fuzzy
 msgid "Print Page"
-msgstr "上一個分頁"
+msgstr "打印頁面"
 
+# Revert Changes
 #: gschem/scheme/gschem/builtins.scm:314
 msgid "Revert Changes"
-msgstr ""
+msgstr "還原更改"
 
+# Revert All
 #: gschem/scheme/gschem/builtins.scm:317
-#, fuzzy
 msgid "Revert All"
-msgstr "還原"
+msgstr "還原全部"
 
+# Up Hierarchy
 #: gschem/scheme/gschem/builtins.scm:335
 msgid "Up Hierarchy"
-msgstr ""
+msgstr "層次結構"
 
+# Add Component
 #: gschem/scheme/gschem/builtins.scm:341
-#, fuzzy
 msgid "Add Component"
-msgstr "元件"
+msgstr "添加組件"
 
+# Add Net
 #: gschem/scheme/gschem/builtins.scm:344
-#, fuzzy
 msgid "Add Net"
-msgstr "新增文字"
+msgstr "添加網絡"
 
+# Add multi conductor
 #: gschem/scheme/gschem/builtins.scm:347
 msgid "Add Bus"
-msgstr ""
+msgstr "添加多導體"
 
+# Add Text
 #: gschem/scheme/gschem/builtins.scm:353
-#, fuzzy
 msgid "Add Text"
 msgstr "新增文字"
 
+# Add Line
 #: gschem/scheme/gschem/builtins.scm:356
-#, fuzzy
 msgid "Add Line"
-msgstr "直線"
+msgstr "添加線"
 
+# Add contact pin
 #: gschem/scheme/gschem/builtins.scm:359
 msgid "Add Pin"
-msgstr ""
+msgstr "添加接觸針"
 
+# Add Box
 #: gschem/scheme/gschem/builtins.scm:362
 msgid "Add Box"
-msgstr ""
+msgstr "添加框"
 
+# Add Circle
 #: gschem/scheme/gschem/builtins.scm:365
-#, fuzzy
 msgid "Add Circle"
-msgstr "圓形"
+msgstr "添加圈子"
 
+# Add Arc
 #: gschem/scheme/gschem/builtins.scm:368
 msgid "Add Arc"
-msgstr ""
+msgstr "添加弧"
 
+# Add Picture
 #: gschem/scheme/gschem/builtins.scm:374
-#, fuzzy
 msgid "Add Picture"
-msgstr "圖片"
+msgstr "添加圖片"
 
+# Create New Session
 #: gschem/scheme/gschem/builtins.scm:380
-#, fuzzy
 msgid "Create New Session"
-msgstr "儲存全部"
+msgstr "創建新會話"
 
+# Open a Session
 #: gschem/scheme/gschem/builtins.scm:383
-#, fuzzy
 msgid "Open a Session"
-msgstr "儲存全部"
+msgstr "打開會話"
 
+# Save Session
 #: gschem/scheme/gschem/builtins.scm:386
-#, fuzzy
 msgid "Save Session"
-msgstr "儲存全部"
+msgstr "保存會議"
 
+# Attach Attributes
 #: gschem/scheme/gschem/builtins.scm:398
-#, fuzzy
 msgid "Attach Attributes"
-msgstr "屬性"
+msgstr "附加屬性"
 
+# Detach Attributes
 #: gschem/scheme/gschem/builtins.scm:401
-#, fuzzy
 msgid "Detach Attributes"
-msgstr "屬性"
+msgstr "分離屬性"
 
+# Reset Attribute Positions
 #: gschem/scheme/gschem/builtins.scm:404
-#, fuzzy
 msgid "Reset Attribute Positions"
-msgstr "屬性"
+msgstr "重置屬性位置"
 
+# Show Attribute Value
 #: gschem/scheme/gschem/builtins.scm:407
-#, fuzzy
 msgid "Show Attribute Value"
-msgstr "顯示名稱與數值"
+msgstr "顯示屬性值"
 
+# Show Attribute Name
 #: gschem/scheme/gschem/builtins.scm:410
-#, fuzzy
 msgid "Show Attribute Name"
-msgstr "屬性"
+msgstr "顯示屬性名稱"
 
+# Toggle Text Visibility
 #: gschem/scheme/gschem/builtins.scm:416
 msgid "Toggle Text Visibility"
-msgstr ""
+msgstr "切換文字的可見性"
 
+# Find Specific Text
 #: gschem/scheme/gschem/builtins.scm:419
 msgid "Find Specific Text"
-msgstr ""
+msgstr "查找特定文本"
 
+# Hide Specific Text
 #: gschem/scheme/gschem/builtins.scm:422
 msgid "Hide Specific Text"
-msgstr ""
+msgstr "隱藏特定文本"
 
+# Show Specific Text
 #: gschem/scheme/gschem/builtins.scm:425
 msgid "Show Specific Text"
-msgstr ""
+msgstr "顯示特定文本"
 
+# Open Attributes Editor
 #: gschem/scheme/gschem/builtins.scm:428
-#, fuzzy
 msgid "Open Attributes Editor"
-msgstr "屬性"
+msgstr "打開屬性編輯器"
 
+# Autonumber Text
 #: gschem/scheme/gschem/builtins.scm:433
 msgid "Autonumber Text"
-msgstr ""
+msgstr "自動編號文本"
 
+# Show Console Window
 #: gschem/scheme/gschem/builtins.scm:436
-#, fuzzy
 msgid "Show Console Window"
-msgstr "開新視窗"
+msgstr "顯示控制台窗口"
 
+# Show Coordinates Window
 #: gschem/scheme/gschem/builtins.scm:439
-#, fuzzy
 msgid "Show Coordinates Window"
-msgstr "開新視窗"
+msgstr "顯示坐標窗口"
 
+# Guile Path
 #: gschem/scheme/gschem/builtins.scm:442
 msgid "Guile Path"
-msgstr ""
+msgstr "Guile路徑"
 
+# Translate Symbol
 #: gschem/scheme/gschem/builtins.scm:448
 msgid "Translate Symbol"
-msgstr ""
+msgstr "翻譯符號"
 
+# Dots Grid Style
 #: gschem/scheme/gschem/builtins.scm:463
 msgid "Dots Grid Style"
-msgstr ""
+msgstr "點網格樣式"
 
+# Mesh Grid Style
 #: gschem/scheme/gschem/builtins.scm:466
 msgid "Mesh Grid Style"
-msgstr ""
+msgstr "網格樣式"
 
+# Turn Grid Off
 #: gschem/scheme/gschem/builtins.scm:469
 msgid "Turn Grid Off"
-msgstr ""
+msgstr "關閉網格"
 
+# Cycle Grid Mode
 #: gschem/scheme/gschem/builtins.scm:472
-#, fuzzy
 msgid "Cycle Grid Mode"
-msgstr "弧線模式"
+msgstr "循環網格模式"
 
+# Increase Grid Spacing
 #: gschem/scheme/gschem/builtins.scm:475
 msgid "Increase Grid Spacing"
-msgstr ""
+msgstr "增加網格間距"
 
+# Decrease Grid Spacing
 #: gschem/scheme/gschem/builtins.scm:478
 msgid "Decrease Grid Spacing"
-msgstr ""
+msgstr "減小網格間距"
 
+# Set Snap Spacing
 #: gschem/scheme/gschem/builtins.scm:481
 msgid "Set Snap Spacing"
-msgstr ""
+msgstr "設置捕捉間距"
 
+# Turn Snap-mode off
 #: gschem/scheme/gschem/builtins.scm:484
 msgid "Turn Snap off"
-msgstr ""
+msgstr "關閉捕捉模式"
 
+# Turn Capture-mode on
 #: gschem/scheme/gschem/builtins.scm:487
 msgid "Turn Snap on"
-msgstr ""
+msgstr "打開捕獲模式"
 
+# Cycle Snap Mode
 #: gschem/scheme/gschem/builtins.scm:490
-#, fuzzy
 msgid "Cycle Snap Mode"
-msgstr "複製模式"
+msgstr "循環捕捉模式"
 
+# Toggle Net Rubber Band
 #: gschem/scheme/gschem/builtins.scm:493
 msgid "Toggle Net Rubber Band"
-msgstr ""
+msgstr "切換網橡膠帶"
 
+# Toggle Magnetic Nets
 #: gschem/scheme/gschem/builtins.scm:496
 msgid "Toggle Magnetic Nets"
-msgstr ""
+msgstr "切換磁性網"
 
+# Enable/Disable Drag move
 #: gschem/scheme/gschem/builtins.scm:499
 msgid "Enable/Disable Drag move"
-msgstr ""
+msgstr "用/禁用拖動移動"
 
+# Toggle Outline Drawing
 #: gschem/scheme/gschem/builtins.scm:502
 msgid "Toggle Outline Drawing"
-msgstr ""
+msgstr "切換輪廓圖"
 
+# Enable/Disable Auto Panning
 #: gschem/scheme/gschem/builtins.scm:505
 msgid "Enable/Disable Auto Panning"
-msgstr ""
+msgstr "用/禁用自動搖移"
 
+# Set Default Text Size
 #: gschem/scheme/gschem/builtins.scm:508
 msgid "Set Default Text Size"
-msgstr ""
+msgstr "設置默認文本大小"
 
+# Open Preference Dialog
 #: gschem/scheme/gschem/builtins.scm:511
 msgid "Open Preference Dialog"
-msgstr ""
+msgstr "打開首選項對話框"
 
+# gEDA Manuals
 #: gschem/scheme/gschem/builtins.scm:518
 msgid "gEDA Manuals"
-msgstr ""
+msgstr "gEDA手冊"
 
+# View the front page of the gEDA documentation in a browser
 #: gschem/scheme/gschem/builtins.scm:519
 msgid "View the front page of the gEDA documentation in a browser."
-msgstr ""
+msgstr "在瀏覽器中查看gEDA文檔的首頁."
 
+# Show Hotkeys
 #: gschem/scheme/gschem/builtins.scm:522
-#, fuzzy
 msgid "Show Hotkeys"
-msgstr "熱鍵"
+msgstr "顯示熱鍵"
 
 #: gschem/scheme/gschem/builtins.scm:526
-#, fuzzy
 msgid "Component Documentation"
-msgstr "元件模式"
+msgstr "組件文檔"
 
+# View documentation for selected component
 #: gschem/scheme/gschem/builtins.scm:528
 msgid "View documentation for selected component"
-msgstr ""
+msgstr "查看所選組件的文檔"
 
+# Could not show documentation for selected component
 #: gschem/scheme/gschem/builtins.scm:544
 msgid "Could not show documentation for selected component\n"
-msgstr ""
+msgstr "無法顯示所選組件的文檔\n"
 
+# gschem User Guide
 #: gschem/scheme/gschem/builtins.scm:548
 msgid "gschem User Guide"
-msgstr ""
+msgstr "gschem用戶指南"
 
+# View the gschem User Guide in a browser
 #: gschem/scheme/gschem/builtins.scm:549
 msgid "View the gschem User Guide in a browser."
-msgstr ""
+msgstr "在瀏覽器中查看gschem用戶指南."
 
+# gschem FAQ
 #: gschem/scheme/gschem/builtins.scm:554
 msgid "gschem FAQ"
-msgstr ""
+msgstr "gschem常見問題"
 
+# Frequently Asked Questions about using gschem
 #: gschem/scheme/gschem/builtins.scm:555
 msgid "Frequently Asked Questions about using gschem."
-msgstr ""
+msgstr "有關使用gschem的常見問題."
 
+# gEDA wiki
 #: gschem/scheme/gschem/builtins.scm:560
 msgid "gEDA wiki"
-msgstr ""
+msgstr "gEDA wiki"
 
+# View the front page of the gEDA wiki in a browser
 #: gschem/scheme/gschem/builtins.scm:561
 msgid "View the front page of the gEDA wiki in a browser."
-msgstr ""
+msgstr "在瀏覽器中查看gEDA wiki的首頁."
 
+# Invalid text alignment
 #: gschem/scheme/gschem/deprecated.scm:102
 #, scheme-format
 msgid "Invalid text alignment ~A."
-msgstr ""
+msgstr "文本對齊無效 ~A."
 
+# No documentation found
 #: gschem/scheme/gschem/gschemdoc.scm:241
 msgid "No documentation found"
-msgstr ""
+msgstr "未找到文檔"
 
+# Export embed symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:57
 msgid "Export embed symbol"
-msgstr ""
+msgstr "導出嵌入符號"
 
+# Export embed picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "Export embed picture"
-msgstr "嵌入元件/圖片"
+msgstr "導出嵌入圖片"
 
+# is not a valid key combination
 #: gschem/scheme/gschem/keymap.scm:41
 #, scheme-format
 msgid "~S is not a valid key combination."
-msgstr ""
+msgstr "~S 不是有效的組合鍵."
 
+# is not a prefix key sequence
 #: gschem/scheme/gschem/keymap.scm:156
 #, scheme-format
 msgid "~S is not a prefix key sequence."
-msgstr ""
-
-#, fuzzy
-#~ msgid "session"
-#~ msgstr "儲存全部"
-
-#, fuzzy
-#~ msgid "documents\n"
-#~ msgstr "元件模式"
+msgstr "~S 不是前綴密鑰序列."
