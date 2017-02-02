@@ -329,10 +329,10 @@ msgstr "Od prawej do lewej"
 msgid "Set the string for the Right Button Text"
 msgstr ""
 
+# Snap Mode
 #: gschem/src/base/gschem_status_bar.c:648
-#, fuzzy
 msgid "Snap Mode"
-msgstr "Tryb przesuwania widoku"
+msgstr "Tryb Snap"
 
 #: gschem/src/base/gschem_status_bar.c:649
 msgid "Sets the Snap Mode to display on the status bar"
@@ -903,10 +903,10 @@ msgstr "Nie udało a zmienić nazwę sesji"
 msgid "<b>Could not rename session</b>"
 msgstr ""
 
+# Created session
 #: gschem/src/iface/i_sessions.c:1105
-#, fuzzy
 msgid "Created session"
-msgstr "Bieżący widok"
+msgstr "Utworzono sesji"
 
 #: gschem/src/iface/i_sessions.c:1106
 msgid "with"
@@ -918,57 +918,57 @@ msgid "Saved"
 msgstr "Zapisano"
 
 #: gschem/src/iface/i_sessions.c:1117
-#, fuzzy
 msgid "documents to session"
-msgstr "Bieżący widok"
+msgstr "dokumenty do sesji"
 
 # An error occurred attempting to save session
 #: gschem/src/iface/i_sessions.c:1127
 msgid "An error occurred attempting to save session"
 msgstr "Wystąpił błąd podczas próby zapisania sesji"
 
+# Save session failed
 #: gschem/src/iface/i_sessions.c:1135
-#, fuzzy
 msgid "Save session failed"
-msgstr "Zapisz plik"
+msgstr "Zapisz sesji nie powiodło"
 
+# Show Sessions at startup is now ENABLED
 #: gschem/src/iface/i_sessions.c:1226
-#, fuzzy
 msgid "Show Sessions at startup is now ENABLED\n"
-msgstr "Wyświetl tekst zaczynający się od:"
+msgstr "Pokaż Sesje przy starcie jest teraz włączone\n"
 
+# Show Sessions at startup is now DISABLED
 #: gschem/src/iface/i_sessions.c:1229
-#, fuzzy
 msgid "Show Sessions at startup is now DISABLED\n"
-msgstr "Wyświetl tekst zaczynający się od:"
+msgstr "Pokaż Sesje przy starcie jest teraz wyłączone\n"
 
 #: gschem/src/iface/i_sessions.c:1299
 msgid "Session system initialized!\n"
 msgstr ""
 
+# Deselect Mode=>uncheck mode
 #: gschem/src/iface/i_status.c:134 gschem/etc/system-gschemrc.scm:2121
-#, fuzzy
 msgid "Deselect Mode"
-msgstr "Tryb zaznaczania"
+msgstr "Odznacz tryb"
 
+# Select Mode
 #: gschem/src/iface/i_status.c:138 gschem/src/x/x_status_bar.c:383
 #: gschem/etc/system-gschemrc.scm:2120 gschem/scheme/gschem/builtins.scm:170
 msgid "Select Mode"
 msgstr "Tryb zaznaczania"
 
+# Select Box Mode
 #: gschem/src/iface/i_status.c:140
-#, fuzzy
 msgid "Select Box Mode"
-msgstr "Tryb zaznaczania"
+msgstr "Wybierz tryb Box"
 
 #: gschem/src/iface/i_status.c:142 gschem/scheme/gschem/builtins.scm:227
 msgid "Zoom Box"
 msgstr "Dopasuj do fragmentu"
 
+# Copy to point
 #: gschem/src/iface/i_status.c:145
-#, fuzzy
 msgid "Copy to point"
-msgstr "Kopiuj do schowka"
+msgstr "Kopiowanie do punktu"
 
 #: gschem/src/iface/i_status.c:147 gschem/scheme/gschem/builtins.scm:122
 #: gschem/scheme/gschem/builtins.scm:125
@@ -983,18 +983,19 @@ msgstr ""
 msgid "Mirror Mode"
 msgstr "Tryb odbijania"
 
+# Pan Mode
 #: gschem/src/iface/i_status.c:153
 msgid "Pan Mode"
-msgstr "Tryb przesuwania widoku"
+msgstr "Tryb Snap"
 
+# Choose component
 #: gschem/src/iface/i_status.c:155
-#, fuzzy
 msgid "Choose component"
-msgstr "Element"
+msgstr "Wybierz komponent"
 
 #: gschem/src/iface/i_status.c:158
 msgid "Magnetic Net Mode"
-msgstr "Tryb \"magnetycznych\" połączeń"
+msgstr "Tryb magnetycznych połączeń"
 
 #: gschem/src/iface/i_status.c:160
 msgid "Net Mode"
@@ -1024,10 +1025,10 @@ msgstr "Tryb tekstu"
 msgid "Arc Mode"
 msgstr "Tryb łuków"
 
+# Path Mode
 #: gschem/src/iface/i_status.c:174
-#, fuzzy
 msgid "Path Mode"
-msgstr "Tryb przesuwania widoku"
+msgstr "Tryb ścieżka"
 
 #: gschem/src/iface/i_status.c:176
 msgid "Picture Mode"
@@ -1037,29 +1038,30 @@ msgstr "Tryb obrazów"
 msgid "Bus Mode"
 msgstr "Tryb magistrali"
 
+# Move Mode
 #: gschem/src/iface/i_status.c:180 gschem/scheme/gschem/builtins.scm:110
 msgid "Move Mode"
-msgstr "Tryb przesuwania"
+msgstr "Tryb posunięcie"
 
 #: gschem/src/iface/i_status.c:183
 #, c-format
 msgid "Paste %d Mode"
 msgstr "Tryb wklejania z bufora %d"
 
+# First point
 #: gschem/src/iface/i_status.c:186
-#, fuzzy
 msgid "First point?"
-msgstr "Punkt siatki"
+msgstr "Pierwszy punkt?"
 
+# Second point
 #: gschem/src/iface/i_status.c:188
-#, fuzzy
 msgid "Second point?"
-msgstr "Koniec połączeni"
+msgstr "Drugi punkt?"
 
+# Extend Mode"
 #: gschem/src/iface/i_status.c:190
-#, fuzzy
 msgid "Project Mode"
-msgstr "Tryb połączeń"
+msgstr "rozciągać się Tryb"
 
 # Select objects to extent
 #: gschem/src/iface/i_status.c:192
@@ -3076,10 +3078,10 @@ msgstr ""
 msgid "Quit gschem and exit"
 msgstr ""
 
+# redraw the current window
 #: gschem/src/x/x_menus.c:472 gschem/etc/system-gschemrc.scm:2180
-#, fuzzy
 msgid "redraw the current window"
-msgstr "Bieżący widok"
+msgstr "przerysować bieżące okno"
 
 #: gschem/src/x/x_menus.c:511
 msgid "Error reading menu item"
@@ -3361,15 +3363,15 @@ msgstr "Atrybuty"
 msgid "attribute"
 msgstr "Atrybuty"
 
+# Move Up
 #: gschem/src/x/x_pagesel.c:592
-#, fuzzy
 msgid "Move Up"
-msgstr "Przesuń"
+msgstr "Ruszaj się W górę"
 
+# Move Down
 #: gschem/src/x/x_pagesel.c:593
-#, fuzzy
 msgid "Move Down"
-msgstr "Tryb przesuwania widoku"
+msgstr "Ruszaj się Na dół"
 
 #: gschem/src/x/x_pagesel.c:595
 msgid "New Blank"
@@ -3379,10 +3381,10 @@ msgstr ""
 msgid "New Page"
 msgstr "Nowy arkusz"
 
+# Open Page
 #: gschem/src/x/x_pagesel.c:597
-#, fuzzy
 msgid "Open Page..."
-msgstr "Otwórz plik..."
+msgstr "Otwórz stronę..."
 
 #: gschem/src/x/x_pagesel.c:599
 msgid "Save Page"
@@ -3404,15 +3406,15 @@ msgstr "Zarządzanie arkuszami"
 msgid "Changed"
 msgstr "Zmieniono"
 
+# Right click on rows for more options
 #: gschem/src/x/x_pagesel.c:1205
-#, fuzzy
 msgid "Right click on rows for more options..."
-msgstr "Kliknij prawym przyciskiem myszy na nazwie pliku aby zobaczyć opcje..."
+msgstr "Kliknij prawym przyciskiem na rzędach więcej opcji..."
 
+# Select PostScript Filename
 #: gschem/src/x/x_print.c:90
-#, fuzzy
 msgid "Select PostScript Filename..."
-msgstr "Wybierz nazwę pliku PostScript..."
+msgstr "Wybierz PostScript Infomacje..."
 
 #: gschem/src/x/x_print.c:175
 msgid "Extents with margins"
@@ -3422,9 +3424,10 @@ msgstr "Cały arkusz wraz z marginesami"
 msgid "Extents no margins"
 msgstr "Cały arkusz bez marginesów"
 
+# Current Window Bieżący widok
 #: gschem/src/x/x_print.c:184
 msgid "Current Window"
-msgstr "Bieżący widok"
+msgstr "Bieżące okno"
 
 #: gschem/src/x/x_print.c:217
 msgid "Landscape"
@@ -3502,17 +3505,19 @@ msgstr "Wydrukowano bieżący arkusz do"
 msgid "Failed to write PDF to"
 msgstr "Nie udało się zapisać PDF do"
 
+# Error printing file
 #: gschem/src/x/x_print.c:1224
 msgid "Error printing file"
-msgstr ""
+msgstr "Błąd drukowania pliku"
 
+# Error Processing Configuration
 #: gschem/src/x/x_rc.c:84
 msgid "<b>Error Processing Configuration.</b>"
-msgstr ""
+msgstr "<b>Konfiguracja błąd przetwarzania.</b>"
 
 #: gschem/src/x/x_rc.c:85
 msgid "gschem RC File Error"
-msgstr ""
+msgstr "gschem RC Błąd pliku"
 
 # An unknown error occurred while parsing configuration files
 #: gschem/src/x/x_rc.c:86
@@ -3560,20 +3565,20 @@ msgstr "Pokaż przy starcie"
 msgid "Auto update"
 msgstr ""
 
+# Session Name
 #: gschem/src/x/x_sessions.c:535
-#, fuzzy
 msgid "Session Name"
-msgstr "Pokazuj _nazwę"
+msgstr "sesja Nazwa"
 
+# File Count
 #: gschem/src/x/x_sessions.c:550
-#, fuzzy
 msgid "File Count"
-msgstr "Kolejność plików"
+msgstr "Ilość plików"
 
+# Rename the selected session
 #: gschem/src/x/x_sessions.c:600
-#, fuzzy
 msgid "Rename the selected session"
-msgstr "Bieżący widok"
+msgstr "Zmień nazwę wybraną sesję"
 
 #: gschem/src/x/x_sessions.c:601
 msgid "Delete the selected session"
@@ -3587,10 +3592,10 @@ msgstr ""
 msgid "Manage Sessions"
 msgstr ""
 
+# Rename
 #: gschem/src/x/x_sessions.c:639
-#, fuzzy
 msgid "_Rename"
-msgstr "Nazwa pliku"
+msgstr "Przemianować"
 
 #: gschem/src/x/x_sessions.c:646 gschem/etc/system-gschemrc.scm:2091
 msgid "_Delete"
@@ -3608,10 +3613,10 @@ msgstr ""
 msgid "New Session"
 msgstr ""
 
+# Save Session As
 #: gschem/src/x/x_sessions.c:853 gschem/scheme/gschem/builtins.scm:389
-#, fuzzy
 msgid "Save Session As"
-msgstr "Zapisz wszystkie"
+msgstr "Zapisz sesję jako"
 
 #: gschem/src/x/x_settings.c:359
 msgid "error opening"
@@ -3748,10 +3753,10 @@ msgstr "Błąd podczas wczytywania pliku inicjalizacji scm"
 msgid "Could not allocate a graphics context"
 msgstr "Błąd podczas alokacji kontekst grafika"
 
+# there is no current window
 #: gschem/src/x/x_window.c:110
-#, fuzzy
 msgid "there is no current window"
-msgstr "Bieżący widok"
+msgstr "nie ma bieżące okno"
 
 # Could not create a Cairo context, is window drawable?
 #: gschem/src/x/x_window.c:119
@@ -3876,16 +3881,16 @@ msgstr ""
 # Save all
 #: gschem/etc/system-gschemrc.scm:2059
 msgid "Save A_ll"
-msgstr "Zapisz wszystkie"
+msgstr "Zapisz wszystko"
 
 #: gschem/etc/system-gschemrc.scm:2059
 msgid "Save all open documents"
 msgstr ""
 
+# Save _Modified
 #: gschem/etc/system-gschemrc.scm:2060
-#, fuzzy
 msgid "Save _Modified"
-msgstr "Tryb przesuwania"
+msgstr "Zapisz zmodyfikowany"
 
 #: gschem/etc/system-gschemrc.scm:2060
 msgid "Save all modified documents"
@@ -4023,7 +4028,7 @@ msgstr ""
 # Offset
 #: gschem/etc/system-gschemrc.scm:2098
 msgid "O_ffset"
-msgstr "Offsetowy"
+msgstr "O_ffsetowy"
 
 # Offset the selected objects
 #: gschem/etc/system-gschemrc.scm:2098
@@ -4031,19 +4036,18 @@ msgid "Offset the selected objects"
 msgstr "Offsetowy wybranych obiektów"
 
 #: gschem/etc/system-gschemrc.scm:2099
-#, fuzzy
 msgid "Rotate _90"
-msgstr "Obróć"
+msgstr "Obróć _90"
 
+# Snap to grid
 #: gschem/etc/system-gschemrc.scm:2100
-#, fuzzy
 msgid "Snap to _grid"
-msgstr "Tryb przesuwania widoku"
+msgstr "Przyciągaj do siatki"
 
+# Snap selection to current grid
 #: gschem/etc/system-gschemrc.scm:2100
-#, fuzzy
 msgid "Snap selection to current grid"
-msgstr "Bieżący widok"
+msgstr "wyboru Przyciągaj do siatki bieżącym"
 
 #: gschem/etc/system-gschemrc.scm:2103
 msgid "_Array"
@@ -4428,10 +4432,10 @@ msgstr "W _górę"
 msgid "Go up one page"
 msgstr ""
 
+# Down
 #: gschem/etc/system-gschemrc.scm:2216
-#, fuzzy
 msgid "_Down"
-msgstr "Tryb przesuwania widoku"
+msgstr "na _dół"
 
 #: gschem/etc/system-gschemrc.scm:2216
 msgid "Go down one page"
@@ -4600,24 +4604,24 @@ msgstr ""
 msgid "Restore an existing Session"
 msgstr ""
 
+# Save the current Session
 #: gschem/etc/system-gschemrc.scm:2263
-#, fuzzy
 msgid "Save the current Session"
-msgstr "Bieżący widok"
+msgstr "Zapisanie bieżącej sesji"
 
 #: gschem/etc/system-gschemrc.scm:2264
 msgid "Save the current Session to another name"
 msgstr ""
 
+# Manage
 #: gschem/etc/system-gschemrc.scm:2266
-#, fuzzy
 msgid "_Manage..."
-msgstr "_Zarządzaj..."
+msgstr "_Zarządzanie..."
 
+# Open the Session Manager dialog
 #: gschem/etc/system-gschemrc.scm:2266
-#, fuzzy
 msgid "Open the Session Manager dialog"
-msgstr "Zarządzanie arkuszami"
+msgstr "Otwórz okno dialogowe Menedżer sesji"
 
 #: gschem/etc/system-gschemrc.scm:2274
 msgid "_Attach"
@@ -5010,13 +5014,13 @@ msgstr "Zapisz wszystkie"
 msgid "Save All"
 msgstr "Zapisz wszystkie"
 
+# Save Modified
 #: gschem/scheme/gschem/builtins.scm:65
-#, fuzzy
 msgid "Save Modified"
-msgstr "Tryb przesuwania"
+msgstr "Zapisz zmodyfikowany"
 
+# Print
 #: gschem/scheme/gschem/builtins.scm:68
-#, fuzzy
 msgid "Print"
 msgstr "Drukuj"
 
@@ -5072,10 +5076,10 @@ msgstr "Duplikuj wielokrotnie"
 msgid "Offset selection"
 msgstr "Offsetowy Zaznaczenie"
 
+# Snap to Grid
 #: gschem/scheme/gschem/builtins.scm:128
-#, fuzzy
 msgid "Snap to Grid"
-msgstr "Tryb przesuwania widoku"
+msgstr "Przyciągaj do siatki"
 
 #: gschem/scheme/gschem/builtins.scm:131
 msgid "Create Array"
@@ -5147,24 +5151,23 @@ msgstr "_Aktualizuj"
 msgid "Pan"
 msgstr "Przesuń widok"
 
+# Pan Left
 #: gschem/scheme/gschem/builtins.scm:215
-#, fuzzy
 msgid "Pan Left"
-msgstr "Tryb przesuwania widoku"
+msgstr "Pan Lewy"
 
+# Pan Right
 #: gschem/scheme/gschem/builtins.scm:218
-#, fuzzy
 msgid "Pan Right"
-msgstr "Na górze po prawej"
+msgstr "Pan prawo"
 
 #: gschem/scheme/gschem/builtins.scm:221
 msgid "Pan Up"
 msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:224
-#, fuzzy
 msgid "Pan Down"
-msgstr "Tryb przesuwania widoku"
+msgstr "Pan dół"
 
 #: gschem/scheme/gschem/builtins.scm:230
 #, fuzzy
@@ -5266,10 +5269,10 @@ msgstr "Nowy arkusz"
 msgid "Page Up"
 msgstr "Arkusz"
 
+# Page Down
 #: gschem/scheme/gschem/builtins.scm:302
-#, fuzzy
 msgid "Page Down"
-msgstr "Tryb przesuwania widoku"
+msgstr "Strona w dół"
 
 #: gschem/scheme/gschem/builtins.scm:305
 #, fuzzy
@@ -5345,10 +5348,10 @@ msgstr "Dodaj atrybut"
 msgid "Add Picture"
 msgstr "Obraz"
 
+# Create New Session
 #: gschem/scheme/gschem/builtins.scm:380
-#, fuzzy
 msgid "Create New Session"
-msgstr "Bieżący widok"
+msgstr "Utwórz nową sesję"
 
 #: gschem/scheme/gschem/builtins.scm:383
 #, fuzzy
@@ -5469,10 +5472,10 @@ msgstr "Wyłącz przyciąganie"
 msgid "Turn Snap on"
 msgstr ""
 
+# Cycle Snap Mode
 #: gschem/scheme/gschem/builtins.scm:490
-#, fuzzy
 msgid "Cycle Snap Mode"
-msgstr "Tryb przesuwania widoku"
+msgstr "Cykl Tryb Snap"
 
 #: gschem/scheme/gschem/builtins.scm:493
 #, fuzzy
