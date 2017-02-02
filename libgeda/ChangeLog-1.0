@@ -3,6 +3,9 @@
     * src/object/o_pin_object.c: Revise validations in geda_pin_object_read
       to utilize geda_object_show_buffer_err.
 
+    * src/object/o_text_object.c: Revise validations in geda_pin_object_read
+      to utilize geda_object_show_buffer_err.
+
     * src/struct/s_hierarchy.c: Revise output messages and formats in order to
       minimize format specifiers in translatable strings, update copyright.
 
