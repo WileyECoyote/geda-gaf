@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-28 23:56-0600\n"
+"POT-Creation-Date: 2017-02-02 03:47-0600\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -2955,140 +2955,140 @@ msgstr ""
 msgid "Oops... got a NULL menu name"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:844
+#: gschem/src/x/x_menus.c:851
 msgid "Toggle visibility of the Standard toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:845
+#: gschem/src/x/x_menus.c:852
 msgid "Toggle visibility of the Selection toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:846
+#: gschem/src/x/x_menus.c:853
 msgid "Toggle visibility of the Page toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:847
+#: gschem/src/x/x_menus.c:854
 msgid "Toggle visibility of the Add toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:848
+#: gschem/src/x/x_menus.c:855
 msgid "Toggle visibility of the Zoom toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:849
+#: gschem/src/x/x_menus.c:856
 msgid "Toggle visibility of the Edit toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:850
+#: gschem/src/x/x_menus.c:857
 msgid "Toggle visibility of the Attributes toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:851
+#: gschem/src/x/x_menus.c:858
 msgid "Toggle visibility of the Grid/Snap toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:906
+#: gschem/src/x/x_menus.c:913
 msgid "Display Icons on the toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:907
+#: gschem/src/x/x_menus.c:914
 msgid "Display Text on the toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:908
+#: gschem/src/x/x_menus.c:915
 msgid "Display Icons and Text vertically on the toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:909
+#: gschem/src/x/x_menus.c:916
 msgid "Display Icons and Text horizontally on the toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:973
+#: gschem/src/x/x_menus.c:980
 msgid "Toggle visibility of main menu icons"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:974
+#: gschem/src/x/x_menus.c:981
 msgid "Toggle main menu tooltips"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:975
+#: gschem/src/x/x_menus.c:982
 msgid "Toggle visibility of main context menu icons"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:976
+#: gschem/src/x/x_menus.c:983
 msgid "Toggle main context menu tooltips"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1322
+#: gschem/src/x/x_menus.c:1329
 msgid "Tried to set the sensitivity on non-existent menu item"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1333
+#: gschem/src/x/x_menus.c:1340
 msgid "Excessive errors"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1334
+#: gschem/src/x/x_menus.c:1341
 msgid "disabling sensitivity warnings"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1411
+#: gschem/src/x/x_menus.c:1418
 msgid "Saving menu toolbar options..."
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1421
+#: gschem/src/x/x_menus.c:1428
 msgid " done\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1424
+#: gschem/src/x/x_menus.c:1431
 #, c-format
 msgid " there were %d errors\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1469
+#: gschem/src/x/x_menus.c:1476
 msgid "gschem: Enabling menu icons\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1472
+#: gschem/src/x/x_menus.c:1479
 msgid "gschem: Disabling menu icons\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1535
+#: gschem/src/x/x_menus.c:1542
 msgid "Enabling menu tooltips\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1538
+#: gschem/src/x/x_menus.c:1545
 msgid "Disabling menu tooltips\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1579
+#: gschem/src/x/x_menus.c:1586
 msgid "Action not found"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1584
+#: gschem/src/x/x_menus.c:1591
 msgid "Menu path not found"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1666
+#: gschem/src/x/x_menus.c:1673
 msgid "Error: did not find path"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1769
+#: gschem/src/x/x_menus.c:1776
 msgid "Could not open file"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1870
+#: gschem/src/x/x_menus.c:1877
 msgid "Open"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1879
+#: gschem/src/x/x_menus.c:1886
 msgid "Remove"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1888
+#: gschem/src/x/x_menus.c:1895
 msgid "_Show path"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:2013
+#: gschem/src/x/x_menus.c:2020
 msgid "Clear"
 msgstr ""
 
@@ -4446,7 +4446,7 @@ msgid "_Toggle Visibility"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2280
-msgid "Toggle attribute visibilty"
+msgid "Toggle attribute visibility"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2281
