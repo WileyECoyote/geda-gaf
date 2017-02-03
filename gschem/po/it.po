@@ -206,7 +206,7 @@ msgstr ""
 "Homepage di gEDA/gaf: <http://www.geda-project.org/>\n"
 
 #: gschem/src/base/gschem_parsecmd.c:128
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "gEDA/gschem %s (%s) (g%.7s)\n"
 "Copyright (C) 1998-2017 gEDA developers\n"
@@ -216,7 +216,7 @@ msgid ""
 "There is NO WARRANTY, to the extent permitted by law.\n"
 msgstr ""
 "gEDA/gschem %s (%s) (g%.7s)\n"
-"Copyright (C) 1998-2012 sviluppatori gEDA\n"
+"Copyright (C) 1998-2017 sviluppatori gEDA\n"
 "Questo è software libero, è possibile la sua ridistribuzione sotto\n"
 "certe condizioni. Per i dettagli, vedere il file `COPYING', incluso\n"
 "nella distribuzione di gEDA.\n"
@@ -1499,9 +1499,10 @@ msgstr ""
 msgid "An error occurred while receiving Drag & Drop data"
 msgstr "Si è verificato un errore durante la ricezione di dati Drag & Drop"
 
+# Data error
 #: gschem/src/x/x_coord.c:157
 msgid "Data error"
-msgstr ""
+msgstr "errore dati"
 
 #: gschem/src/x/x_coord.c:162 gschem/src/x/x_dnd.c:585
 msgid "Drag & Drop failed"
@@ -2447,33 +2448,39 @@ msgstr "<b>Opzioni</b>"
 msgid "<b>Text Properties</b>"
 msgstr "<b>Opzioni</b>"
 
+# Text Alignment Attribute
 #: gschem/src/x/x_edit_text.c:594
 msgid "Text Alignment Attribute"
-msgstr "Modifica attributi"
+msgstr "Allineamento testo dell'attributo"
 
+# Text rotation angle Spinner input
 #: gschem/src/x/x_edit_text.c:606
 msgid "Text Rotation Angle Spinner Entry"
-msgstr ""
+msgstr "angolo di rotazione del testo di input Spinner"
 
 #: gschem/src/x/x_fileselect.c:144
 msgid "Large"
-msgstr ""
+msgstr "Grande"
 
+# Enable to enlarge the preview
 #: gschem/src/x/x_fileselect.c:145
-msgid "Enable to enlagre the preview"
+msgid "Enable to enlarge the preview"
 msgstr ""
 
+# Auto file Suffix
 #: gschem/src/x/x_fileselect.c:286
 msgid "Auto file Suffix"
-msgstr ""
+msgstr "Suffisso del file Auto"
 
+# Automatically append the file extension
 #: gschem/src/x/x_fileselect.c:289
 msgid "Automatically append the file extension"
-msgstr ""
+msgstr "aggiungerà automaticamente l'estensione del file"
 
+# already exists
 #: gschem/src/x/x_fileselect.c:333
 msgid "already exists"
-msgstr ""
+msgstr "esiste già"
 
 #: gschem/src/x/x_fileselect.c:333
 msgid "Overwrite"
@@ -2507,27 +2514,27 @@ msgstr "Attenzione, file immagine Errore durante la lettura"
 
 #: gschem/src/x/x_icons.c:252
 msgid "Warning, Error accessing image file"
-msgstr ""
+msgstr "Attenzione, Errore durante l'accesso file immagine"
 
 #: gschem/src/x/x_icons.c:424
 msgid "Shutting down icon factory\n"
-msgstr ""
+msgstr "Arresto icona di fabbrica\n"
 
 #: gschem/src/x/x_icons.c:445
 msgid "Initializing icon factory\n"
-msgstr ""
+msgstr "L'inizializzazione icona di fabbrica\n"
 
 #: gschem/src/x/x_image.c:114
 msgid "Click to select size of the image to be created"
-msgstr ""
+msgstr "Selezionare dimensione dell'immagine da creare"
 
 #: gschem/src/x/x_image.c:188
 msgid "Click to select the type of image to be created"
-msgstr ""
+msgstr "Fare clic per selezionare il tipo di immagine da creare"
 
 #: gschem/src/x/x_image.c:212
 msgid "Encapsulated Postscript"
-msgstr ""
+msgstr "Encapsulated PostScript"
 
 #: gschem/src/x/x_image.c:356
 msgid "Error: Unable to write eps file"
@@ -2555,7 +2562,7 @@ msgstr "Nome file"
 
 #: gschem/src/x/x_image.c:489
 msgid "<b>Error Writing Imaging.</b>"
-msgstr ""
+msgstr "<b>Errore di scrittura Imaging.</b>"
 
 #: gschem/src/x/x_image.c:502
 msgid "Wrote color image to"
@@ -2580,11 +2587,15 @@ msgstr "Tipo di immagine"
 #: gschem/src/x/x_image.c:777
 msgid "Enable to use the Print color map instead of the display color map"
 msgstr ""
+"Attiva per utilizzare la mappa a colori di stampa al posto del display a "
+"colori mappa"
 
 #: gschem/src/x/x_image.c:780
 msgid ""
 "When enabled for reversed color images, only black and white will be reversed"
 msgstr ""
+"Quando è abilitata per le immagini a colori invertiti, solo in bianco e nero "
+"saranno invertiti"
 
 #: gschem/src/x/x_menus.c:86
 msgid "Select"
@@ -2596,7 +2607,7 @@ msgstr "Modalità Selezione"
 
 #: gschem/src/x/x_menus.c:90
 msgid "Add"
-msgstr "_Aggiungi"
+msgstr "Aggiungi"
 
 #: gschem/src/x/x_menus.c:90
 msgid "Add modes"
@@ -2608,7 +2619,7 @@ msgstr "Aggiungi net"
 
 #: gschem/src/x/x_menus.c:92
 msgid "Attribute..."
-msgstr "_Attributo..."
+msgstr "Attributo..."
 
 #: gschem/src/x/x_menus.c:92 gschem/etc/system-gschemrc.scm:2241
 msgid "Add attribute"
@@ -2616,7 +2627,7 @@ msgstr "Aggiungi attributo"
 
 #: gschem/src/x/x_menus.c:93 gschem/src/x/x_menus.c:112
 msgid "Component..."
-msgstr "_Componente..."
+msgstr "Componente..."
 
 #: gschem/src/x/x_menus.c:93 gschem/etc/system-gschemrc.scm:2238
 msgid "Insert a symbol from the component library"
@@ -2632,7 +2643,7 @@ msgstr "Aggiungi testo"
 
 #: gschem/src/x/x_menus.c:99
 msgid "Zoom"
-msgstr "Zoom In"
+msgstr "Ingrandire"
 
 #: gschem/src/x/x_menus.c:99
 msgid "Add operations"
@@ -2640,12 +2651,12 @@ msgstr "Aggiungi pin"
 
 #: gschem/src/x/x_menus.c:100 gschem/src/x/x_menus.c:152
 msgid "In"
-msgstr ""
+msgstr "in"
 
 #: gschem/src/x/x_menus.c:100 gschem/src/x/x_menus.c:152
 #: gschem/etc/system-gschemrc.scm:2186
 msgid "Increase the Zoom magnification"
-msgstr ""
+msgstr "Aumentare l'ingrandimento dello zoom"
 
 #: gschem/src/x/x_menus.c:101 gschem/src/x/x_menus.c:153
 msgid "Out"
@@ -2654,7 +2665,7 @@ msgstr "Taglia"
 #: gschem/src/x/x_menus.c:101 gschem/src/x/x_menus.c:153
 #: gschem/etc/system-gschemrc.scm:2187
 msgid "Decrease the Zoom magnification"
-msgstr ""
+msgstr "Diminuire l'ingrandimento dello zoom"
 
 #: gschem/src/x/x_menus.c:102
 msgid "Box"
@@ -2662,24 +2673,24 @@ msgstr "Rettangolo"
 
 #: gschem/src/x/x_menus.c:102 gschem/etc/system-gschemrc.scm:2184
 msgid "Zoom to a Windowed region"
-msgstr ""
+msgstr "Zoom ad una regione con finestra"
 
 #: gschem/src/x/x_menus.c:103 gschem/src/x/x_menus.c:154
 msgid "Extents"
-msgstr "Zoom alla pagina"
+msgstr "Estensioni"
 
 #: gschem/src/x/x_menus.c:103 gschem/src/x/x_menus.c:154
 #: gschem/etc/system-gschemrc.scm:2185
 msgid "Zoom to the extents of the drawing"
-msgstr ""
+msgstr "Zoom to the extents of the drawing"
 
 #: gschem/src/x/x_menus.c:104
 msgid "Mag"
-msgstr ""
+msgstr "Ingrandimento"
 
 #: gschem/src/x/x_menus.c:104 gschem/etc/system-gschemrc.scm:2188
 msgid "Zoom to a specified level"
-msgstr ""
+msgstr "Zoom ad un determinato livello"
 
 #: gschem/src/x/x_menus.c:105 gschem/etc/system-gschemrc.scm:2189
 msgid "Zoom to selected objects"
@@ -2695,7 +2706,7 @@ msgstr "Modifica attributi"
 
 #: gschem/src/x/x_menus.c:110
 msgid "Object..."
-msgstr ""
+msgstr "Oggetto..."
 
 #: gschem/src/x/x_menus.c:110 gschem/etc/system-gschemrc.scm:2108
 msgid "Edit Object Attributes"
@@ -2707,11 +2718,11 @@ msgstr "Colore..."
 
 #: gschem/src/x/x_menus.c:111 gschem/etc/system-gschemrc.scm:2110
 msgid "Open the Color Editor Dialog"
-msgstr ""
+msgstr "Aprire l'Editor di dialogo Colore"
 
 #: gschem/src/x/x_menus.c:112 gschem/etc/system-gschemrc.scm:2114
 msgid "Open the Component Editor Dialog"
-msgstr ""
+msgstr "Aprire l'Editor di dialogo Componente"
 
 #: gschem/src/x/x_menus.c:113
 msgid "Pin type..."
@@ -2719,31 +2730,32 @@ msgstr "Tipo pin..."
 
 #: gschem/src/x/x_menus.c:113 gschem/etc/system-gschemrc.scm:2111
 msgid "Open the Pin Type Dialog"
-msgstr ""
+msgstr "Aprire la finestra di dialogo Tipo Pin"
 
 #: gschem/src/x/x_menus.c:117
 msgid "Array"
-msgstr ""
+msgstr "schieramento"
 
 #: gschem/src/x/x_menus.c:117 gschem/etc/system-gschemrc.scm:2103
 msgid "Create and array of objects"
-msgstr ""
+msgstr "Creare e array di oggetti"
 
 #: gschem/src/x/x_menus.c:118
 msgid "Break"
-msgstr ""
+msgstr "Rompere"
 
 #: gschem/src/x/x_menus.c:118
 msgid "Break an object into separate objects"
-msgstr ""
+msgstr "Rompere un oggetto in oggetti separati"
 
 #: gschem/src/x/x_menus.c:119
 msgid "Extend"
 msgstr "Zoom alla pagina"
 
+# Project linear objects to other objects
 #: gschem/src/x/x_menus.c:119 gschem/etc/system-gschemrc.scm:2105
 msgid "Project linear objects to other objects"
-msgstr ""
+msgstr "oggetti lineari progetto ad altri oggetti"
 
 #: gschem/src/x/x_menus.c:120 gschem/src/x/x_multiattrib.c:1686
 #: gschem/scheme/gschem/builtins.scm:104
@@ -2752,7 +2764,7 @@ msgstr "Cancella"
 
 #: gschem/src/x/x_menus.c:120 gschem/etc/system-gschemrc.scm:2091
 msgid "Delete the current selection"
-msgstr ""
+msgstr "Eliminare la selezione corrente"
 
 #: gschem/src/x/x_menus.c:121 gschem/scheme/gschem/builtins.scm:200
 msgid "Copy"
@@ -2760,15 +2772,15 @@ msgstr "Copia"
 
 #: gschem/src/x/x_menus.c:121 gschem/etc/system-gschemrc.scm:2094
 msgid "Copy selection"
-msgstr ""
+msgstr "selezione copia"
 
 #: gschem/src/x/x_menus.c:122
 msgid "MCopy"
-msgstr "Copia"
+msgstr "Più Copia"
 
 #: gschem/src/x/x_menus.c:122 gschem/etc/system-gschemrc.scm:2095
 msgid "Make multible copies of selection"
-msgstr ""
+msgstr "Creare copie multible di selezione"
 
 #: gschem/src/x/x_menus.c:123
 msgid "Move"
@@ -4378,7 +4390,7 @@ msgstr "Commu_ta Visibilità"
 
 #: gschem/etc/system-gschemrc.scm:2280
 msgid "Toggle attribute visibility"
-msgstr "Commuta la visibilità del testo"
+msgstr "Commuta la visibilità del attributo"
 
 #: gschem/etc/system-gschemrc.scm:2281
 msgid "_Reset Position"
@@ -4416,9 +4428,10 @@ msgstr "Mostra il valore dell'attributo"
 msgid "Attribute _Editor..."
 msgstr "Editor Singola Caratteristica..."
 
+# Open the Attributes Editor Dialog
 #: gschem/etc/system-gschemrc.scm:2287
-msgid "Open the Attibutes Editor Dialog"
-msgstr "Editor Singola Caratteristica"
+msgid "Open the Attributes Editor Dialog"
+msgstr "Aprire la finestra di editor di attributi"
 
 #: gschem/etc/system-gschemrc.scm:2295
 msgid "A_utonumber Text..."
@@ -5140,9 +5153,8 @@ msgid "View documentation for selected component"
 msgstr "Mostra la documentazione per il componente selezionato"
 
 #: gschem/scheme/gschem/builtins.scm:544
-msgid ""
-"Could not show documentation for selected component:\n"
-"\n"
+#, fuzzy
+msgid "Could not show documentation for selected component\n"
 msgstr ""
 "Impossibile mostrare la documentazione per i componenti selezionati:\n"
 "\n"
