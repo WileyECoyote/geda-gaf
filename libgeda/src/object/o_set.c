@@ -1,8 +1,8 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
  *
- * Copyright (C) 1998-2015 Ales Hvezda
- * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2017 Ales Hvezda
+ * Copyright (C) 1998-2017 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -164,7 +164,7 @@ void geda_set_object_line_options(GedaObject *object, LINE_OPTIONS *line_options
   bool modified    = FALSE;
 
   /* do some error checking / correcting */
-  switch(line_options->line_type) {
+  switch (line_options->line_type) {
 
     case(TYPE_DASHED):
     case(TYPE_CENTER):
@@ -173,7 +173,7 @@ void geda_set_object_line_options(GedaObject *object, LINE_OPTIONS *line_options
       if (line_length < 1) {
         if (o_property->line_length < 1) {
           line_length = default_line_length;
-          geda_log_w (_("Setting line length to default=%d\n"), line_length);
+          geda_log_w ("%s=%d\n", _("Setting line length to default"), line_length);
         }
         else { /* Use current value */
           line_length = o_property->line_length;
@@ -186,7 +186,7 @@ void geda_set_object_line_options(GedaObject *object, LINE_OPTIONS *line_options
 
         if (o_property->line_space < 1) {
           line_space = default_line_space;
-          geda_log_w (_("Setting line space to default=%d\n"), line_space);
+          geda_log_w ("%s=%d\n", _("Setting line space to default"), line_space);
         }
         else { /* Use current value */
           line_space = o_property->line_space;

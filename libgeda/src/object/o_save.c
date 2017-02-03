@@ -68,8 +68,7 @@ geda_object_save_auto_backup(GedaToplevel *toplevel)
       count++;
 
       if (real_filename == NULL) {
-        geda_log_s (_("%s: Can't get real filename of %s."),
-                       __func__, p_current->filename);
+        geda_log_s ("%s %s.", _("Cannot get real filename of"), p_current->filename);
       }
       else {
               GError *err;
@@ -135,7 +134,7 @@ geda_object_save_auto_backup(GedaToplevel *toplevel)
 
         if (geda_object_save (geda_struct_page_get_objects (p_current), backup_filename, &err)) {
 
-          geda_log_v (_("Automatic backup file saved [%s]\n"), backup_filename);
+          geda_log_v ("%s [%s]\n", _("Automatic backup file saved"), backup_filename);
 
           p_current->ops_since_last_backup = 0;
           p_current->do_autosave_backup = 0;
@@ -153,7 +152,7 @@ geda_object_save_auto_backup(GedaToplevel *toplevel)
           umask(saved_umask);
         }
         else {
-          geda_log_w (_("Could NOT save backup file [%s]: %s\n"),
+          geda_log_w ("%s [%s]: %s\n", _("Could NOT save backup file"),
                             backup_filename, err->message);
           g_clear_error (&err);
         }
@@ -312,7 +311,7 @@ geda_object_save_objects (const GList *object_list, bool save_attribs)
            *  the user's data as possible, in any case, failing gracefully
            *  is better than killing the program, which is what this used
            *  to do... */
-          g_critical (_("%s: object %p has unknown type '%c'\n"),
+          g_critical ("%s: object %p has unknown type '%c'\n",
                       __func__, o_current, o_current->type);
           continue;
       }
@@ -368,7 +367,7 @@ geda_object_save_buffer (const GList *object_list)
   acc    = GEDA_MEM_ALLOC(size + 1);
 
   if (!acc) {
-    geda_log_s (_("%s: Memory allocation error."), __func__);
+    geda_log_s ("%s: %s", __func__, _("Memory allocation error."));
     acc = NULL;
   }
   else {
@@ -402,8 +401,8 @@ geda_object_save (const GList *object_list, const char *filename, GError **err)
 
   /* Check to see if path is writable */
   if (access(path, W_OK) != 0) {
-    g_set_error (err, EDA_ERROR, errno, _("[%s]: because %s"),
-                 path, strerror(errno));
+    g_set_error (err, EDA_ERROR, errno, "[%s]: %s %s",
+                 path, _("because"), strerror(errno));
   }
   else {
 
@@ -413,7 +412,7 @@ geda_object_save (const GList *object_list, const char *filename, GError **err)
     output = fopen (filename, "w" );
 
     if (!output) {
-      g_set_error (err, EDA_ERROR, errno, "file <%s>: %s",
+      g_set_error (err, EDA_ERROR, errno, "%s <%s>: %s", _("file"),
                    filename, strerror(errno));
     }
     else {
