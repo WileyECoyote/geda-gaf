@@ -2277,7 +2277,7 @@
         (,(N_ "Show _Name")        attributes-show-name          #f            ,(N_ "Set selected name visible"))
         (,(N_ "Show _Both")        attributes-show-both          #f            ,(N_ "Set selected name and value visible"))
         ("SEPARATOR"                    #f                       #f)
-        (,(N_ "_Toggle Visibility")      attributes-visibility   #f            ,(N_ "Toggle attribute visibilty"))
+        (,(N_ "_Toggle Visibility")      attributes-visibility   #f            ,(N_ "Toggle attribute visibility"))
         (,(N_ "_Reset Position")         attributes-home         #f            ,(N_ "Restore attribute positions and orientation"))
 
         (,(N_ "_Find Specific Text...")  attributes-find-text    #f            ,(N_ "Find an attribute"))
