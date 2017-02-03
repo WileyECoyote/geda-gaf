@@ -679,7 +679,39 @@ check_get_midpoint(GedaObject *object)
 {
   int result = 0;
 
+  int x1 = geda_line_object_get_x1 (object);
+  int x2 = geda_line_object_get_x2 (object);
+  int y1 = geda_line_object_get_y1 (object);
+  int y2 = geda_line_object_get_y2 (object);
+
   /* === Function 09: geda_line_object_get_midpoint  === */
+
+  GedaPoint point;
+
+  if (geda_line_object_get_midpoint(NULL, &point)) {
+    fprintf(stderr, "FAILED: (O110900) %s midpoint NULL\n", TOBJECT);
+    result++;
+  }
+
+  if (!geda_line_object_get_midpoint(object, &point)) {
+    fprintf(stderr, "FAILED: (O110901) %s midpoint\n", TOBJECT);
+    result++;
+  }
+  else {
+
+    int mx = (x1 + x2) / 2;
+    int my = (y1 + y2) / 2;
+
+    if (point.x != mx ) {
+      fprintf(stderr, "FAILED: (O110901X) %s %d != %d\n", TOBJECT, point.x, mx);
+      result++;
+    }
+
+    if (point.y != my ) {
+      fprintf(stderr, "FAILED: (O110901Y) %s %d != %d\n", TOBJECT, point.y, my);
+      result++;
+    }
+  }
 
   return result;
 }

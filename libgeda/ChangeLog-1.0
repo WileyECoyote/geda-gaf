@@ -7,6 +7,8 @@
       geda_set_object_line_options in order to minimize format specifiers
       in translatable strings, update copyright.
 
+    * tests/test_line_object.c: Check geda_line_object_get_midpoint.
+
 2017-02-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_pin_object.c: Revise validations in geda_pin_object_read
