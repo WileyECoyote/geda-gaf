@@ -28,7 +28,7 @@
  *  \brief Utility functions for slotted components
  */
 
-#include <config.h>
+#include "../../../config.h"
 
 #include <math.h>
 

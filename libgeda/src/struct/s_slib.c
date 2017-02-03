@@ -29,7 +29,7 @@
  *   slib stands for source (project/schematic/hdl/model source) library
  */
 
-#include <config.h>
+#include "../../../config.h"
 
 #include <sys/types.h>
 #include <ctype.h>

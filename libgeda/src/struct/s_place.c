@@ -28,7 +28,7 @@
  *
  */
 
-#include <config.h>
+#include "../../../config.h"
 #include <libgeda_priv.h>
 
 /*! \brief Free Place List
