@@ -4132,36 +4132,40 @@ msgstr "Elemento..."
 msgid "Open the Slot Editor Dialog"
 msgstr ""
 
+# Activate Deselect mode
 #: gschem/etc/system-gschemrc.scm:2121
-#, fuzzy
 msgid "Activate Deselect mode"
-msgstr "Seleccionar modo"
+msgstr "Ativar o modo Desmarcar"
 
+# Select All
 #: gschem/etc/system-gschemrc.scm:2122 gschem/scheme/gschem/builtins.scm:173
 msgid "Select All"
-msgstr ""
+msgstr "Selecionar todas"
 
+# Select all objects
 #: gschem/etc/system-gschemrc.scm:2122
-#, fuzzy
 msgid "Select all objects"
-msgstr "Objectos seleccionados"
+msgstr "Objectos seleccionados tudo"
 
+# Deselect All
 #: gschem/etc/system-gschemrc.scm:2123 gschem/scheme/gschem/builtins.scm:185
 msgid "Deselect All"
-msgstr ""
+msgstr "Desmarcar todos"
 
+# Unselect everything
 #: gschem/etc/system-gschemrc.scm:2123
 msgid "Unselect everything"
-msgstr ""
+msgstr "Desmarcar tudo"
 
+# Invert Selection
 #: gschem/etc/system-gschemrc.scm:2124
-#, fuzzy
 msgid "_Invert Selection"
-msgstr "Selecção"
+msgstr "Inverter Seleção"
 
+# Invert the current selection set
 #: gschem/etc/system-gschemrc.scm:2124
 msgid "Invert the current selection set"
-msgstr ""
+msgstr "Inverter o actual conjunto de seleção"
 
 #: gschem/etc/system-gschemrc.scm:2127
 msgid "Copy into 1"
@@ -4283,19 +4287,19 @@ msgstr "Colar de 5"
 msgid "Insert contents of the fifth auxiliary buffer"
 msgstr ""
 
+# Lock selected objects
 #: gschem/etc/system-gschemrc.scm:2144
-#, fuzzy
 msgid "Lock selected objects"
-msgstr "Objectos seleccionados"
+msgstr "Bloqueio de objetos selecionados"
 
 #: gschem/etc/system-gschemrc.scm:2145 gschem/scheme/gschem/builtins.scm:191
 msgid "Unlock"
 msgstr "Destrancar"
 
+# Unlock selected objects
 #: gschem/etc/system-gschemrc.scm:2145
-#, fuzzy
 msgid "Unlock selected objects"
-msgstr "Objectos seleccionados"
+msgstr "Desbloquear objetos selecionados"
 
 #: gschem/etc/system-gschemrc.scm:2180
 msgid "_Redraw"
@@ -4309,10 +4313,10 @@ msgstr "Centrar no _Cursor"
 msgid "Activate Panning"
 msgstr ""
 
+# Zoom All
 #: gschem/etc/system-gschemrc.scm:2183
-#, fuzzy
 msgid "Zoom _All"
-msgstr "_Ver tudo"
+msgstr "Zoom _Todos"
 
 #: gschem/etc/system-gschemrc.scm:2183
 msgid "Zoom to the limits of the drawing area"
@@ -4334,15 +4338,14 @@ msgstr "_Ampliar"
 msgid "Zoom _Out"
 msgstr "_Reduzir"
 
+# Zoom Magnification
 #: gschem/etc/system-gschemrc.scm:2188
-#, fuzzy
 msgid "Zoom _Mag"
-msgstr "_Ampliar"
+msgstr "Ampliação do Zoom"
 
 #: gschem/etc/system-gschemrc.scm:2189
-#, fuzzy
 msgid "Zoom _Selection"
-msgstr "Selecção"
+msgstr "Zoom _Selecção"
 
 #: gschem/etc/system-gschemrc.scm:2192 gschem/etc/system-gschemrc.scm:2230
 msgid "D_ocumentation..."
@@ -4352,20 +4355,20 @@ msgstr "D_ocumentação..."
 msgid "Show/Hide Inv Text"
 msgstr "Mostrar/Esconder Texto Escondido"
 
+# Toggle hidden text attributes
 #: gschem/etc/system-gschemrc.scm:2193
-#, fuzzy
 msgid "Toggle hidden text attributes"
-msgstr "Mostrar atributos inerentes"
+msgstr "Alternar atributos de texto oculto"
 
+# Show/Hide Net Names
 #: gschem/etc/system-gschemrc.scm:2194
-#, fuzzy
 msgid "Show/Hide Net Names"
-msgstr "Mostrar/Esconder Texto Escondido"
+msgstr "Mostrar/ocultar nomes de rede"
 
+# Toggle hidden net name attributes
 #: gschem/etc/system-gschemrc.scm:2194
-#, fuzzy
 msgid "Toggle hidden net name attributes"
-msgstr "Mostrar atributos inerentes"
+msgstr "Alternar os atributos ocultos net name"
 
 #: gschem/etc/system-gschemrc.scm:2197
 msgid "_Dark color scheme"
@@ -4403,19 +4406,19 @@ msgstr ""
 msgid "_Manager..."
 msgstr "_Gerente..."
 
+# Open the Page Manager
 #: gschem/etc/system-gschemrc.scm:2211
-#, fuzzy
 msgid "Open the Page Manager"
-msgstr "Gestor de Pagina"
+msgstr "Abra a página Manager"
 
 #: gschem/etc/system-gschemrc.scm:2212
 msgid "_First"
 msgstr ""
 
+# Goto the first page
 #: gschem/etc/system-gschemrc.scm:2212
-#, fuzzy
 msgid "Goto the first page"
-msgstr "Página actual"
+msgstr "Ir para a primeira página"
 
 #: gschem/etc/system-gschemrc.scm:2213
 msgid "_Previous"
@@ -4441,10 +4444,10 @@ msgstr "_Acima"
 msgid "Go up one page"
 msgstr ""
 
+# Down
 #: gschem/etc/system-gschemrc.scm:2216
-#, fuzzy
 msgid "_Down"
-msgstr "Modo Centrar"
+msgstr "Para Baixo"
 
 #: gschem/etc/system-gschemrc.scm:2216
 msgid "Go down one page"
@@ -4454,10 +4457,10 @@ msgstr ""
 msgid "_Last"
 msgstr ""
 
+# Goto the last page
 #: gschem/etc/system-gschemrc.scm:2217
-#, fuzzy
 msgid "Goto the last page"
-msgstr "Desfazer a ultima operação"
+msgstr "Ir para a última página"
 
 #: gschem/etc/system-gschemrc.scm:2218
 msgid "Ne_w"
@@ -4467,54 +4470,49 @@ msgstr "_Novo"
 msgid "Create a new Page"
 msgstr ""
 
+# Close the current page
 #: gschem/etc/system-gschemrc.scm:2221
-#, fuzzy
 msgid "Close the current page"
-msgstr "Página actual"
+msgstr "Feche a página atual"
 
 #: gschem/etc/system-gschemrc.scm:2222
 msgid "Discard changes and reload the current documents"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2223
-#, fuzzy
 msgid "D_iscard"
-msgstr "_Desfazer"
+msgstr "_Descarte"
 
+# Close the current page without saving
 #: gschem/etc/system-gschemrc.scm:2223
-#, fuzzy
 msgid "Close the current page without saving"
-msgstr "_Fechar sem gravar"
+msgstr "Feche a página atual sem salvar"
 
 #: gschem/etc/system-gschemrc.scm:2224
-#, fuzzy
 msgid "Prin_t"
-msgstr "Imprimir..."
+msgstr "Imprimir"
 
+# Print the current page
 #: gschem/etc/system-gschemrc.scm:2224
-#, fuzzy
 msgid "Print the current page"
-msgstr "Página actual"
+msgstr "Imprimir a página atual"
 
+# Down _Schematic
 #: gschem/etc/system-gschemrc.scm:2227
-#, fuzzy
 msgid "Down _Schematic"
-msgstr "/Baixar Esquema"
+msgstr "Baixar Esquema"
 
 #: gschem/etc/system-gschemrc.scm:2228
-#, fuzzy
 msgid "Down S_ymbol"
-msgstr "/Baixar Símbolo"
+msgstr "Baixar Símbolo"
 
 #: gschem/etc/system-gschemrc.scm:2229
-#, fuzzy
 msgid "_Hierarchy Up"
-msgstr "Hie_rarquia"
+msgstr "_Hierarquia"
 
 #: gschem/etc/system-gschemrc.scm:2230
-#, fuzzy
 msgid "Find component documentation"
-msgstr "Documentação de _Componente..."
+msgstr "Localizar a documentação do componente"
 
 # Component
 #: gschem/etc/system-gschemrc.scm:2238
@@ -4550,28 +4548,28 @@ msgstr ""
 msgid "_Box"
 msgstr "Rectân_gulo"
 
+# Add box
 #: gschem/etc/system-gschemrc.scm:2246
-#, fuzzy
 msgid "Add box"
-msgstr "/Adicionar Barramento"
+msgstr "Adicionar rectângulo"
 
 #: gschem/etc/system-gschemrc.scm:2247
 msgid "C_ircle"
-msgstr "Círc_ulo"
-
-#: gschem/etc/system-gschemrc.scm:2247
-#, fuzzy
-msgid "Add circle"
 msgstr "Círculo"
+
+# Add circle
+#: gschem/etc/system-gschemrc.scm:2247
+msgid "Add circle"
+msgstr "Adicionar círculo"
 
 #: gschem/etc/system-gschemrc.scm:2248
 msgid "_Line"
-msgstr "Li_nha"
+msgstr "_Linha"
 
+# Add line
 #: gschem/etc/system-gschemrc.scm:2248
-#, fuzzy
 msgid "Add line"
-msgstr "Linha"
+msgstr "Adicionar linha"
 
 # polygon
 #: gschem/etc/system-gschemrc.scm:2249
@@ -4595,10 +4593,10 @@ msgstr ""
 msgid "_Pin"
 msgstr "_Pino"
 
+# Add pin
 #: gschem/etc/system-gschemrc.scm:2251
-#, fuzzy
 msgid "Add pin"
-msgstr "Linha"
+msgstr "Adicionar pino"
 
 #: gschem/etc/system-gschemrc.scm:2259
 msgid "Create a new session"
@@ -4616,24 +4614,23 @@ msgstr ""
 msgid "Restore an existing Session"
 msgstr ""
 
+# Save the current Session
 #: gschem/etc/system-gschemrc.scm:2263
-#, fuzzy
 msgid "Save the current Session"
-msgstr "Janela Actual"
+msgstr "Gravar a sessão atual"
 
 #: gschem/etc/system-gschemrc.scm:2264
 msgid "Save the current Session to another name"
 msgstr ""
 
+# Manage
 #: gschem/etc/system-gschemrc.scm:2266
-#, fuzzy
 msgid "_Manage..."
-msgstr "_Gerente..."
+msgstr "_Gerenciar..."
 
 #: gschem/etc/system-gschemrc.scm:2266
-#, fuzzy
 msgid "Open the Session Manager dialog"
-msgstr "Gestor de Pagina"
+msgstr "Abra a caixa de diálogo do Gerenciador de Sessão"
 
 #: gschem/etc/system-gschemrc.scm:2274
 msgid "_Attach"
@@ -4647,10 +4644,10 @@ msgstr ""
 msgid "_Detach"
 msgstr "_Retirar"
 
+# Dettach selected attributes from a symbol
 #: gschem/etc/system-gschemrc.scm:2275
-#, fuzzy
 msgid "Dettach selected attributes from a symbol"
-msgstr "Atributo Removido"
+msgstr "Dettach atributos selecionados a partir de um símbolo"
 
 #: gschem/etc/system-gschemrc.scm:2276
 msgid "Show _Value"
@@ -4680,15 +4677,15 @@ msgstr ""
 msgid "_Toggle Visibility"
 msgstr "Al_ternar Visibilidade"
 
+# Toggle attribute visibilty
 #: gschem/etc/system-gschemrc.scm:2280
-#, fuzzy
-msgstr "Al_ternar Visibilidade"
 msgid "Toggle attribute visibility"
+msgstr "Alternar a visibilidade de atributo"
 
+# Reset Position
 #: gschem/etc/system-gschemrc.scm:2281
-#, fuzzy
 msgid "_Reset Position"
-msgstr "Destino"
+msgstr "La posición de Reset"
 
 #: gschem/etc/system-gschemrc.scm:2281
 msgid "Restore attribute positions and orientation"
