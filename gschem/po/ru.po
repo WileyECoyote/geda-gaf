@@ -225,12 +225,11 @@ msgid ""
 "included in the gEDA distribution.\n"
 "There is NO WARRANTY, to the extent permitted by law.\n"
 msgstr ""
-"gEDA %s (g%.7s)\n"
-"Copyright (C) 1998-2012 gEDA developers\n"
-"Это свободное программное обеспечение, и его можно распространять при\n"
-"определённых условиях. Подробности см. в файле COPYING\n"
-"в дистрибутиве gEDA.\n"
-"Нет НИКАКИХ ГАРАНТИЙ в рамках, допустимых имеющимся\n"
+"gEDA/gschem %s (%s) (g%.7s)\n"
+"Copyright (C) 1998-2017 разработчики gEDA\n"
+"Это свободное программное обеспечение, и вы можете его распространять\n"
+"на определённых условиях. Подробности см. в файле COPYING в дистрибутиве\n"
+"gEDA. Нет НИКАКИХ ГАРАНТИЙ в рамках, допустимых имеющимся "
 "законодательством.\n"
 
 #: gschem/src/base/gschem_parsecmd.c:244
@@ -332,10 +331,10 @@ msgstr "Сетка:"
 msgid "Sets the Grid Size to display on the status bar"
 msgstr ""
 
+# height
 #: gschem/src/base/gschem_status_bar.c:617
-#, fuzzy
 msgid "height"
-msgstr "Ширина × высота"
+msgstr "высота"
 
 #: gschem/src/base/gschem_status_bar.c:618
 msgid "Sets the height of the status bar"
@@ -2983,39 +2982,39 @@ msgstr ""
 msgid "Copy"
 msgstr "Копирование"
 
+# Copy selection
 #: gschem/src/x/x_menus.c:121 gschem/etc/system-gschemrc.scm:2094
-#, fuzzy
 msgid "Copy selection"
-msgstr "Выделение"
+msgstr "выбор копирования"
 
-# Это используется только в функциях обновления строки состояния, поэтому
-# переводится как существительное, а не глагол, так как означает режим работы.
+# multiple copying
 #: gschem/src/x/x_menus.c:122
-#, fuzzy
 msgid "MCopy"
-msgstr "Копирование"
+msgstr "Многократное копирование"
 
+# Make multible copies of selection
 #: gschem/src/x/x_menus.c:122 gschem/etc/system-gschemrc.scm:2095
 msgid "Make multible copies of selection"
-msgstr ""
+msgstr "Многократное копирование из выбора"
 
 # См. примечание выше для "Copy"
 #: gschem/src/x/x_menus.c:123
 msgid "Move"
 msgstr "Перемещение"
 
+# Move selection
 #: gschem/src/x/x_menus.c:123 gschem/etc/system-gschemrc.scm:2097
-#, fuzzy
 msgid "Move selection"
-msgstr "Выделение"
+msgstr "Переместить выделение"
 
 #: gschem/src/x/x_menus.c:124
 msgid "Mirror"
 msgstr "Отражение"
 
+# Mirror an object about a point
 #: gschem/src/x/x_menus.c:124 gschem/etc/system-gschemrc.scm:2096
 msgid "Mirror an object about a point"
-msgstr ""
+msgstr "Зеркало объекта вокруг точки"
 
 #: gschem/src/x/x_menus.c:125
 msgid "Rotate"
@@ -4759,10 +4758,10 @@ msgstr ""
 msgid "_Toggle Visibility"
 msgstr "Переключить _видимость"
 
+# Toggle attribute visibility
 #: gschem/etc/system-gschemrc.scm:2280
-#, fuzzy
-msgstr "Переключить видимость текста"
 msgid "Toggle attribute visibility"
+msgstr "Переключить атрибут видимость"
 
 #: gschem/etc/system-gschemrc.scm:2281
 #, fuzzy
