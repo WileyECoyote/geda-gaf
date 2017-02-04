@@ -123,16 +123,17 @@ msgstr ""
 msgid "Horizontal adjustment"
 msgstr ""
 
+# Page
 #: gschem/src/base/gschem_page_view.c:258
 #: gschem/src/base/gschem_page_view.c:259
-#, fuzzy
 msgid "Page"
-msgstr "_Strana"
+msgstr "stranica"
 
+# Page Geometry
 #: gschem/src/base/gschem_page_view.c:265
 #: gschem/src/base/gschem_page_view.c:266
 msgid "Page Geometry"
-msgstr ""
+msgstr "Stranica Geometrija"
 
 #: gschem/src/base/gschem_page_view.c:273
 #: gschem/src/base/gschem_page_view.c:274
@@ -228,19 +229,20 @@ msgstr ""
 msgid "name of file to be previewed"
 msgstr ""
 
+# Object List
 #: gschem/src/base/gschem_preview.c:549
-#, fuzzy
 msgid "Object List"
-msgstr "Režim izabiranja"
+msgstr "objekt lista"
 
+# List of objects to be previewed
 #: gschem/src/base/gschem_preview.c:550
 msgid "List of objects to be previewed"
-msgstr ""
+msgstr "Popis objekata koji će se pregledati"
 
+# Active
 #: gschem/src/base/gschem_preview.c:557
-#, fuzzy
 msgid "Active"
-msgstr "Akcija"
+msgstr "Aktivan"
 
 #: gschem/src/base/gschem_preview.c:558
 msgid "Whether the preview widget is enabled or disabled"
@@ -255,18 +257,17 @@ msgid "Whether the preview widget should be large or small"
 msgstr ""
 
 #: gschem/src/base/gschem_status_bar.c:587
-#, fuzzy
 msgid "Coordinates Mode"
-msgstr "Režim rotacije 90 stepeni"
+msgstr "Koordinate Mode"
 
 #: gschem/src/base/gschem_status_bar.c:588
 msgid "Sets the Format Mode used to display coordinates on the status bar"
 msgstr ""
 
+# grid mode
 #: gschem/src/base/gschem_status_bar.c:597
-#, fuzzy
 msgid "Grid Mode"
-msgstr "Režim ogledala"
+msgstr "koordinatna mreža mode"
 
 #: gschem/src/base/gschem_status_bar.c:598
 msgid "Sets the Grid Mode to display on the status bar"
@@ -313,13 +314,13 @@ msgid "Set the string for the Right Button Text"
 msgstr ""
 
 #: gschem/src/base/gschem_status_bar.c:648
-#, fuzzy
 msgid "Snap Mode"
-msgstr "Režim kopiranja"
+msgstr "Snap Mode"
 
+# Sets the Snap Mode to display on the status bar
 #: gschem/src/base/gschem_status_bar.c:649
 msgid "Sets the Snap Mode to display on the status bar"
-msgstr ""
+msgstr "Postavlja Snap Mode za prikaz na statusnoj traci"
 
 #: gschem/src/base/gschem_status_bar.c:658 gschem/src/x/x_dialog.c:552
 msgid "Snap Size"
@@ -330,24 +331,23 @@ msgid "Sets the Size Mode to display on the status bar"
 msgstr ""
 
 #: gschem/src/base/gschem_status_bar.c:668
-#, fuzzy
 msgid "Status Text"
-msgstr "Izmijeni tekst"
+msgstr "Status Tekst"
 
 #: gschem/src/base/gschem_status_bar.c:669
 msgid "Set the string for the text on the Status Bar"
 msgstr ""
 
+# Status State
 #: gschem/src/base/gschem_status_bar.c:675
 #: gschem/src/base/gschem_status_bar.c:676
-#, fuzzy
 msgid "Status State"
-msgstr "Izmijeni tekst"
+msgstr "Status država"
 
+# Status Bar Height
 #: gschem/src/base/gschem_status_bar.c:689
-#, fuzzy
 msgid "Status Bar Height"
-msgstr "Izmijeni tekst"
+msgstr "Status Bar Visina"
 
 #: gschem/src/base/gschem_status_bar.c:690
 msgid "Set or get the height of the status bar"
@@ -381,21 +381,21 @@ msgstr ""
 msgid "Gschem status bar"
 msgstr ""
 
+# Grid
 #: gschem/src/base/gschem_status_bar.c:1888
-#, fuzzy
 msgid "Grid"
-msgstr "Režim ogledala"
+msgstr "koordinatna mreža"
 
 #: gschem/src/base/gschem_status_bar.c:1894
 #: gschem/src/base/gschem_status_bar.c:1915
 msgid "OFF"
 msgstr "ISKLJ"
 
+# Error
 #: gschem/src/base/gschem_status_bar.c:1907 gschem/src/object/o_picture.c:615
 #: gschem/src/object/o_picture.c:619
-#, fuzzy
 msgid "Error"
-msgstr "Ogledalo"
+msgstr "greška"
 
 #: gschem/src/base/gschem_status_bar.c:1919
 msgid "NONE"
@@ -4457,6 +4457,7 @@ msgstr ""
 msgid "_Toggle Visibility"
 msgstr "_Toggle Vidljivost"
 
+# oggle attribute visibility
 #: gschem/etc/system-gschemrc.scm:2280
 msgid "Toggle attribute visibility"
 msgstr "Toggle vidljivost atributa"
@@ -4473,10 +4474,10 @@ msgstr ""
 msgid "_Find Specific Text..."
 msgstr ""
 
+# Find attribute
 #: gschem/etc/system-gschemrc.scm:2283
-#, fuzzy
 msgid "Find an attribute"
-msgstr "Atribut"
+msgstr "Nađi atribut"
 
 #: gschem/etc/system-gschemrc.scm:2284
 msgid "_Hide Specific Text..."
@@ -4719,10 +4720,10 @@ msgstr "_Datoteka"
 msgid "_Edit"
 msgstr "_Izmijeni"
 
+# Select
 #: gschem/etc/system-gschemrc.scm:2369
-#, fuzzy
 msgid "_Select"
-msgstr "Režim izabiranja"
+msgstr "režim izabiranja"
 
 #: gschem/etc/system-gschemrc.scm:2371
 msgid "_View"
@@ -4741,14 +4742,15 @@ msgid "Sessio_ns"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2375
-#, fuzzy
 msgid "Attri_butes"
-msgstr "_Atribut..."
+msgstr "atri_buti"
 
+# Tools
 #: gschem/etc/system-gschemrc.scm:2376
 msgid "_Tools"
-msgstr ""
+msgstr "alat"
 
+# Options
 #: gschem/etc/system-gschemrc.scm:2386
 msgid "_Options"
 msgstr "_Opcije"
@@ -4757,23 +4759,26 @@ msgstr "_Opcije"
 msgid "_Help"
 msgstr "_Pomoć"
 
+# is not a valid gschem action
 #: gschem/scheme/gschem/action.scm:45
 #, scheme-format
 msgid "~S is not a valid gschem action."
-msgstr ""
+msgstr "~S nije važeći gschem akciju."
 
+# Repeat Last Action
 #: gschem/scheme/gschem/action.scm:158
 msgid "Repeat Last Action"
-msgstr ""
+msgstr "Ponovite posljednji akcija"
 
 # New File
 #: gschem/scheme/gschem/builtins.scm:50
 msgid "New File"
 msgstr "Nova Datoteka"
 
+# Open File
 #: gschem/scheme/gschem/builtins.scm:53
 msgid "Open File"
-msgstr ""
+msgstr "Otvori datoteku"
 
 # Save As
 #: gschem/scheme/gschem/builtins.scm:59
@@ -4795,9 +4800,10 @@ msgstr "Spasiti Promjena"
 msgid "Print"
 msgstr "Štampaj"
 
+# Export Image
 #: gschem/scheme/gschem/builtins.scm:71
 msgid "Export Image"
-msgstr ""
+msgstr "izvoz slika"
 
 #: gschem/scheme/gschem/builtins.scm:74
 msgid "Run Script"
@@ -4831,6 +4837,7 @@ msgstr "izvoz slika"
 msgid "Undo"
 msgstr "poništiti promjene"
 
+# Redo
 #: gschem/scheme/gschem/builtins.scm:101
 msgid "Redo"
 msgstr "ponovo uraditi"
@@ -4853,9 +4860,10 @@ msgstr "istup izbor"
 msgid "Snap to Grid"
 msgstr "prilagoditi koordinate na mrežu"
 
+# Create array
 #: gschem/scheme/gschem/builtins.scm:131
 msgid "Create Array"
-msgstr ""
+msgstr "stvoriti niz"
 
 #: gschem/scheme/gschem/builtins.scm:134 gschem/scheme/gschem/builtins.scm:137
 msgid "Edit..."
@@ -5067,124 +5075,126 @@ msgid "Revert Changes"
 msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:317
-#, fuzzy
 msgid "Revert All"
-msgstr "_Vrati"
+msgstr "Vratiti sve"
 
 #: gschem/scheme/gschem/builtins.scm:335
-#, fuzzy
 msgid "Up Hierarchy"
-msgstr "Hije_rarhija"
+msgstr "up Hijerarhija"
 
+# Add Component
 #: gschem/scheme/gschem/builtins.scm:341
-#, fuzzy
 msgid "Add Component"
-msgstr "Komponenta"
+msgstr "Dodaj Komponenta"
 
+# Add wire
 #: gschem/scheme/gschem/builtins.scm:344
 msgid "Add Net"
-msgstr ""
+msgstr "Dodaj žica"
 
+# Add multi conductor
 #: gschem/scheme/gschem/builtins.scm:347
 msgid "Add Bus"
-msgstr ""
+msgstr "Dodaj multi dirigent"
 
 #: gschem/scheme/gschem/builtins.scm:353
-#, fuzzy
 msgid "Add Text"
-msgstr "Izmijeni tekst"
+msgstr "Dodaj tekst"
 
 #: gschem/scheme/gschem/builtins.scm:356
-#, fuzzy
 msgid "Add Line"
-msgstr "Linija"
+msgstr "Dodaj Linija"
 
 #: gschem/scheme/gschem/builtins.scm:359
 msgid "Add Pin"
-msgstr ""
+msgstr "Dodaj igla"
 
 #: gschem/scheme/gschem/builtins.scm:362
 msgid "Add Box"
-msgstr ""
+msgstr "Dodaj kutija"
 
 #: gschem/scheme/gschem/builtins.scm:365
-#, fuzzy
 msgid "Add Circle"
-msgstr "Krug"
+msgstr "Dodaj Krug"
 
 #: gschem/scheme/gschem/builtins.scm:368
 msgid "Add Arc"
-msgstr ""
+msgstr "Dodaj Arc"
 
+# Add Photo
 #: gschem/scheme/gschem/builtins.scm:374
-#, fuzzy
 msgid "Add Picture"
-msgstr "Sli_ka..."
+msgstr "Dodaj Slika"
 
+# Create New Session
 #: gschem/scheme/gschem/builtins.scm:380
-#, fuzzy
 msgid "Create New Session"
-msgstr "Snimi sve"
+msgstr "Napravi novi Session"
 
+# Open a Session
 #: gschem/scheme/gschem/builtins.scm:383
-#, fuzzy
 msgid "Open a Session"
-msgstr "Snimi sve"
+msgstr "Otvorite Session"
 
+# Save Session
 #: gschem/scheme/gschem/builtins.scm:386
-#, fuzzy
 msgid "Save Session"
-msgstr "Snimi sve"
+msgstr "Sačuvaj sesiju"
 
+# Attach Attributes
 #: gschem/scheme/gschem/builtins.scm:398
-#, fuzzy
 msgid "Attach Attributes"
-msgstr "Atribut"
+msgstr "Pričvrstite atributi"
 
+# Detach Attributes => separate attributes
 #: gschem/scheme/gschem/builtins.scm:401
-#, fuzzy
 msgid "Detach Attributes"
-msgstr "Atribut"
+msgstr "odvojiti atributi"
 
+# Reset Attributes Positions
 #: gschem/scheme/gschem/builtins.scm:404
-#, fuzzy
 msgid "Reset Attribute Positions"
-msgstr "Atribut"
+msgstr "Resetirati Atributi Pozicije"
 
+# Show Attribute Value
 #: gschem/scheme/gschem/builtins.scm:407
-#, fuzzy
 msgid "Show Attribute Value"
-msgstr "Atribut"
+msgstr "Pokaži vrijednost atributa"
 
+# Show Attribute Name
 #: gschem/scheme/gschem/builtins.scm:410
-#, fuzzy
 msgid "Show Attribute Name"
-msgstr "Atribut"
+msgstr "Pokaži Atributi Ime"
 
+# Toggle => Change Text Visibility
 #: gschem/scheme/gschem/builtins.scm:416
 msgid "Toggle Text Visibility"
-msgstr ""
+msgstr "Promijeni Tekst Vidljivost"
 
+# Find Specific Text
 #: gschem/scheme/gschem/builtins.scm:419
 msgid "Find Specific Text"
-msgstr ""
+msgstr "Nađi određeni tekst"
 
+# Hide Specific Text
 #: gschem/scheme/gschem/builtins.scm:422
 msgid "Hide Specific Text"
-msgstr ""
+msgstr "Sakriti određeni tekst"
 
+# Show Specific Text
 #: gschem/scheme/gschem/builtins.scm:425
 msgid "Show Specific Text"
-msgstr ""
+msgstr "Pokaži određeni tekst"
 
 # Open Attributes Editor
 #: gschem/scheme/gschem/builtins.scm:428
 msgid "Open Attributes Editor"
 msgstr "Open atributi Urednik"
 
+# Autonumber Text
 #: gschem/scheme/gschem/builtins.scm:433
 msgid "Autonumber Text"
-msgstr ""
+msgstr "Automatski broj Tekst"
 
 # Show Console Window
 #: gschem/scheme/gschem/builtins.scm:436
@@ -5196,9 +5206,10 @@ msgstr "Pokaži Console Prozor"
 msgid "Show Coordinates Window"
 msgstr "Pokaži Koordinate prozora"
 
+# Guile Path
 #: gschem/scheme/gschem/builtins.scm:442
 msgid "Guile Path"
-msgstr ""
+msgstr "Guile Put"
 
 # Translate Symbol
 #: gschem/scheme/gschem/builtins.scm:448
@@ -5243,29 +5254,32 @@ msgid "Turn Snap on"
 msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:490
-#, fuzzy
 msgid "Cycle Snap Mode"
-msgstr "Režim kopiranja"
+msgstr "Ciklus naglo pomjeriti način"
 
 #: gschem/scheme/gschem/builtins.scm:493
 msgid "Toggle Net Rubber Band"
-msgstr ""
+msgstr "Obrnuti Net elastic"
 
+# Switch Magnetic Nets
 #: gschem/scheme/gschem/builtins.scm:496
 msgid "Toggle Magnetic Nets"
-msgstr ""
+msgstr "Obrnuti magnetski Nets"
 
+# Enable/Disable Drag move
 #: gschem/scheme/gschem/builtins.scm:499
 msgid "Enable/Disable Drag move"
-msgstr ""
+msgstr "omogućiti/onemogućiti kočnica potez"
 
+# Switch Outline Drawing
 #: gschem/scheme/gschem/builtins.scm:502
 msgid "Toggle Outline Drawing"
-msgstr ""
+msgstr "Obrnuti okvirni crtež"
 
+# enable/disable automatic panning
 #: gschem/scheme/gschem/builtins.scm:505
 msgid "Enable/Disable Auto Panning"
-msgstr ""
+msgstr "omogućiti/onemogućiti automatsko panning"
 
 #: gschem/scheme/gschem/builtins.scm:508
 msgid "Set Default Text Size"
@@ -5284,9 +5298,8 @@ msgid "View the front page of the gEDA documentation in a browser."
 msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:522
-#, fuzzy
 msgid "Show Hotkeys"
-msgstr "Prikaži skriveno"
+msgstr "Pokaži Hotkeys"
 
 #: gschem/scheme/gschem/builtins.scm:526
 msgid "Component Documentation"
@@ -5350,7 +5363,3 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
-
-#, fuzzy
-#~ msgid "New page created [%s]\n"
-#~ msgstr "Nova strana kreirana"
