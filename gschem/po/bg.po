@@ -2571,7 +2571,7 @@ msgstr ""
 
 #: gschem/src/x/x_menus.c:95 gschem/etc/system-gschemrc.scm:2242
 msgid "Add text"
-msgstr "Редактирай Текст"
+msgstr "Добавяне текст"
 
 #: gschem/src/x/x_menus.c:99
 msgid "Zoom"
@@ -3592,10 +3592,10 @@ msgstr ""
 msgid "Save the current document to a new name or location"
 msgstr ""
 
+# Save All
 #: gschem/etc/system-gschemrc.scm:2059
-#, fuzzy
 msgid "Save A_ll"
-msgstr "Съхрани Всичко"
+msgstr "Запази всичко"
 
 #: gschem/etc/system-gschemrc.scm:2059
 msgid "Save all open documents"
@@ -3606,71 +3606,84 @@ msgstr ""
 msgid "Save _Modified"
 msgstr "Запазване на променения"
 
+# Save all modified documents
 #: gschem/etc/system-gschemrc.scm:2060
 msgid "Save all modified documents"
-msgstr ""
+msgstr "Запазване на всички променени документи"
 
+# Revert
 #: gschem/etc/system-gschemrc.scm:2061 gschem/etc/system-gschemrc.scm:2222
 msgid "_Revert"
-msgstr ""
+msgstr "Заредете отново"
 
+# Discard changes and reload the current document
 #: gschem/etc/system-gschemrc.scm:2061
 msgid "Discard changes and reload the current document"
-msgstr ""
+msgstr "Отхвърляне на промените и презареждане на текущия документ"
 
 # Revert All
 #: gschem/etc/system-gschemrc.scm:2062
 msgid "Re_vert All"
-msgstr "Зареди всички"
+msgstr "Заредете отново всички"
 
+# Reject changes and reload all open documents
 #: gschem/etc/system-gschemrc.scm:2062
 msgid "Discard changes and reload all open documents"
-msgstr ""
+msgstr "Отхвърляне на промените и презареди всички отворени документи"
 
+# Print
 #: gschem/etc/system-gschemrc.scm:2065
 msgid "_Print..."
-msgstr ""
+msgstr "Печат..."
 
+# Print the current document
 #: gschem/etc/system-gschemrc.scm:2065
 msgid "Print the current document"
-msgstr ""
+msgstr "Отпечатване на текущия документ"
 
+# Export options
 #: gschem/etc/system-gschemrc.scm:2066
 msgid "Export options"
-msgstr ""
+msgstr "Опции за износ"
 
+# Write pdf
 #: gschem/etc/system-gschemrc.scm:2067
 msgid "Write p_df"
-msgstr ""
+msgstr "Напиши PDF"
 
+# Create PDF document
 #: gschem/etc/system-gschemrc.scm:2067
 msgid "Create PDF document"
-msgstr ""
+msgstr "Създаване на PDF документи"
 
+# Write image
 #: gschem/etc/system-gschemrc.scm:2068
 msgid "Write _image..."
-msgstr ""
+msgstr "Напиши изображение..."
 
 # Export image
 #: gschem/etc/system-gschemrc.scm:2068
 msgid "Export image"
 msgstr "износ на изображението"
 
+# Run script
 #: gschem/etc/system-gschemrc.scm:2071
 msgid "E_xecute Script..."
 msgstr "Изпълни Скрипт..."
 
+# # Run script file
 #: gschem/etc/system-gschemrc.scm:2071
 msgid "Execute a script file"
-msgstr "Изпълни Скрипт"
+msgstr "Изпълни Скрипт досие"
 
+# close
 #: gschem/etc/system-gschemrc.scm:2074 gschem/etc/system-gschemrc.scm:2221
 msgid "_Close"
-msgstr ""
+msgstr "Затворете"
 
 #: gschem/etc/system-gschemrc.scm:2074
 msgid "Close the current document"
-msgstr ""
+msgstr "Затваряне на текущия документ"
 
 # Close all
 #: gschem/etc/system-gschemrc.scm:2075
@@ -3682,6 +3695,7 @@ msgstr "Затваряне на всички"
 msgid "Close all open documents"
 msgstr "Затваряне на всички документи,"
 
+# Quit
 #: gschem/etc/system-gschemrc.scm:2076
 msgid "_Quit"
 msgstr "откажат"
@@ -3695,13 +3709,15 @@ msgstr "обратен"
 msgid "Undo the last action"
 msgstr "отмените последното действие"
 
+# Redo
 #: gschem/etc/system-gschemrc.scm:2085
 msgid "_Redo"
-msgstr ""
+msgstr "Направи отново"
 
+# redo the last un-done action
 #: gschem/etc/system-gschemrc.scm:2085
 msgid "redo the last un-done action"
-msgstr ""
+msgstr "Възстановяване на последната ООН направено действие"
 
 # Cut to clipboard
 #: gschem/etc/system-gschemrc.scm:2088
@@ -3832,10 +3848,10 @@ msgstr "Отмяна на избора на готовност"
 msgid "Select All"
 msgstr ""
 
+# Select all objects
 #: gschem/etc/system-gschemrc.scm:2122
-#, fuzzy
 msgid "Select all objects"
-msgstr "Избери режим"
+msgstr "Изберете всички предмети"
 
 #: gschem/etc/system-gschemrc.scm:2123 gschem/scheme/gschem/builtins.scm:185
 msgid "Deselect All"
@@ -4162,9 +4178,8 @@ msgid "Close the current page without saving"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2224
-#, fuzzy
 msgid "Prin_t"
-msgstr "Принтирай..."
+msgstr "Принтирай"
 
 #: gschem/etc/system-gschemrc.scm:2224
 msgid "Print the current page"
@@ -4216,29 +4231,29 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2246
 msgid "_Box"
-msgstr ""
+msgstr "_кутия"
 
+# Add box
 #: gschem/etc/system-gschemrc.scm:2246
-#, fuzzy
 msgid "Add box"
-msgstr "Редактирай Текст..."
+msgstr "Добавете кутия"
 
+# Circle
 #: gschem/etc/system-gschemrc.scm:2247
 msgid "C_ircle"
-msgstr ""
+msgstr "кръг"
 
 #: gschem/etc/system-gschemrc.scm:2247
 msgid "Add circle"
-msgstr ""
+msgstr "Добави кръг"
 
 #: gschem/etc/system-gschemrc.scm:2248
 msgid "_Line"
-msgstr ""
+msgstr "линия"
 
 #: gschem/etc/system-gschemrc.scm:2248
-#, fuzzy
 msgid "Add line"
-msgstr "Редактирай Текст..."
+msgstr "Добави линия"
 
 #: gschem/etc/system-gschemrc.scm:2249
 msgid "Pat_h"
@@ -4289,9 +4304,8 @@ msgid "Save the current Session to another name"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2266
-#, fuzzy
 msgid "_Manage..."
-msgstr "Отвори Страница..."
+msgstr "управлявам..."
 
 #: gschem/etc/system-gschemrc.scm:2266
 msgid "Open the Session Manager dialog"
@@ -4646,22 +4660,25 @@ msgstr ""
 msgid "_Tools"
 msgstr ""
 
+# Options
 #: gschem/etc/system-gschemrc.scm:2386
 msgid "_Options"
-msgstr ""
+msgstr "Опции"
 
 #: gschem/etc/system-gschemrc.scm:2387
 msgid "_Help"
-msgstr ""
+msgstr "pomoći"
 
+# is not a valid gschem action
 #: gschem/scheme/gschem/action.scm:45
 #, scheme-format
 msgid "~S is not a valid gschem action."
-msgstr ""
+msgstr "~S Не е валидно gschem действие."
 
+# Repeat Last Action
 #: gschem/scheme/gschem/action.scm:158
 msgid "Repeat Last Action"
-msgstr ""
+msgstr "Ponovite posljednji akcija"
 
 #: gschem/scheme/gschem/builtins.scm:50
 msgid "New File"
