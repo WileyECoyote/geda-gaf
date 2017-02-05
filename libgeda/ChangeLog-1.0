@@ -7,7 +7,8 @@
 
     * tests/test_keyfile.c: Include "test_parsecmd.h" and error messages in
       create_keyfile_data "Key file does not have group" message when verbose.
-      Utilize is_a_geda_keyfile to validate new keyfile object.
+      Utilize is_a_geda_keyfile to validate new keyfile object and reset err
+      to NULL between checks.
 
 2017-02-03 Wiley E. Hill <wileyhill@gmail.com>
 

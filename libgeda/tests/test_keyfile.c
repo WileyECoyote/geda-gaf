@@ -92,6 +92,8 @@ int create_keyfile_data (void)
       }
     }
 
+    err = NULL;
+
     /* geda_keyfile_set_key_comment non-existence group */
     if (geda_keyfile_set_comment (keyfile, "NoExist", "BadKey", __func__, &err)) {
       fprintf(stderr, "FAILED: (KF084202A) set non-existence key comment\n");
