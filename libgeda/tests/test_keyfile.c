@@ -26,6 +26,8 @@
 
 #include <libgeda.h>
 
+#include "test_parsecmd.h"
+
 #define TOBJECT "GedaKeyFile"
 #define KEY_FILENAME "./test_keyfile.ini"
 
@@ -79,7 +81,7 @@ int create_keyfile_data (void)
         result++;
       }
       else {
-        /* TODO: Verbose should probably print the error message */
+        vmessage("Message: (KF084201C) %s.\n", err->message);
         g_error_free (err);
       }
     }
@@ -95,7 +97,7 @@ int create_keyfile_data (void)
         result++;
       }
       else {
-        /* TODO: Verbose should probably print the error message */
+        vmessage("Message: (KF084202C) %s.\n", err->message);
         g_error_free (err);
       }
     }
@@ -138,6 +140,8 @@ int
 main (int argc, char *argv[])
 {
   int result = 0;
+
+  parse_commandline(argc, argv);
 
   /* Initialize gobject */
 #if (( GLIB_MAJOR_VERSION == 2 ) && ( GLIB_MINOR_VERSION < 36 ))
