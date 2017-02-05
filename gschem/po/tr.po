@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-28 23:56-0600\n"
+"POT-Creation-Date: 2017-02-02 03:47-0600\n"
 "PO-Revision-Date: 2012-01-27 14:22+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -4431,95 +4431,113 @@ msgstr ""
 msgid "Save the current Session to another name"
 msgstr ""
 
+# Manage
 #: gschem/etc/system-gschemrc.scm:2266
-#, fuzzy
 msgid "_Manage..."
-msgstr "Sayfa Aç..."
+msgstr "Yönet..."
 
+# Open the Session Manager dialog
 #: gschem/etc/system-gschemrc.scm:2266
 msgid "Open the Session Manager dialog"
-msgstr ""
+msgstr "Oturum Yöneticisi iletişim kutusunu açın"
 
+# Attach
 #: gschem/etc/system-gschemrc.scm:2274
 msgid "_Attach"
-msgstr ""
+msgstr "Ekle"
 
+# Attach selected attributes to symbol
 #: gschem/etc/system-gschemrc.scm:2274
 msgid "Attach selected attributes to symbol"
-msgstr ""
+msgstr "Seçilen nitelikleri sembole ekle"
 
+# Detach
 #: gschem/etc/system-gschemrc.scm:2275
 msgid "_Detach"
-msgstr ""
+msgstr "özel görevlendirmek"
 
+# Disconnect (seperate) selected attributes from a symbol
 #: gschem/etc/system-gschemrc.scm:2275
 msgid "Dettach selected attributes from a symbol"
-msgstr ""
+msgstr "Seçilen nitelikleri bir semboldan ayırın"
 
+# Show Value
 #: gschem/etc/system-gschemrc.scm:2276
 msgid "Show _Value"
-msgstr ""
+msgstr "Değeri Göster"
 
+# Set selected value visible
 #: gschem/etc/system-gschemrc.scm:2276
 msgid "Set selected value visible"
-msgstr ""
+msgstr "Seçilen değeri görünür olarak ayarla"
 
+# Show Name
 #: gschem/etc/system-gschemrc.scm:2277
 msgid "Show _Name"
-msgstr ""
+msgstr "Adı Göster"
 
 #: gschem/etc/system-gschemrc.scm:2277
 msgid "Set selected name visible"
-msgstr ""
+msgstr "Seçilen adı görünür kıl"
 
+# Show Both
 #: gschem/etc/system-gschemrc.scm:2278
 msgid "Show _Both"
-msgstr ""
+msgstr "Ikisini de göster"
 
+# Set selected name and value visible
 #: gschem/etc/system-gschemrc.scm:2278
 msgid "Set selected name and value visible"
-msgstr ""
+msgstr "Seçilen adı ve değeri görünür olarak ayarla"
 
+# Toggle Visibility
 #: gschem/etc/system-gschemrc.scm:2280
 msgid "_Toggle Visibility"
-msgstr ""
+msgstr "Görünürlüğü aç / kapat"
 
+# Toggle attribute visibility
 #: gschem/etc/system-gschemrc.scm:2280
-#, fuzzy
 msgid "Toggle attribute visibility"
-msgstr "Öznitelikler"
+msgstr "Geçiş özelliği görülebilirliği"
 
+# Reset Position
 #: gschem/etc/system-gschemrc.scm:2281
 msgid "_Reset Position"
-msgstr ""
+msgstr "Sıfırlama Konumu"
 
+# Restore attribute positions and orientation
 #: gschem/etc/system-gschemrc.scm:2281
 msgid "Restore attribute positions and orientation"
-msgstr ""
+msgstr "Özniteliği geri yükle pozisyon ve oryantasyon"
 
 #: gschem/etc/system-gschemrc.scm:2283
 msgid "_Find Specific Text..."
-msgstr ""
+msgstr "Belirli Metni Bul..."
 
+# Find an attribute
 #: gschem/etc/system-gschemrc.scm:2283
 msgid "Find an attribute"
-msgstr ""
+msgstr "Bir özniteyi bul"
 
+# Hide Specific Text
 #: gschem/etc/system-gschemrc.scm:2284
 msgid "_Hide Specific Text..."
-msgstr ""
+msgstr "Belirli Metinleri Gizle..."
 
+# Hide selected attribute
 #: gschem/etc/system-gschemrc.scm:2284
 msgid "Hide selected attribute"
-msgstr ""
+msgstr "Seçili özniteyi gizle"
 
+# Show Specific Text
 #: gschem/etc/system-gschemrc.scm:2285
 msgid "_Show Specific Text..."
-msgstr ""
+msgstr "Belirli Metinleri Göster..."
 
+# Show a specific attribute
 #: gschem/etc/system-gschemrc.scm:2285
 msgid "Show a specific attribute"
-msgstr ""
+msgstr "Belirli bir özelliği göster"
 
 # Attributes
 #: gschem/etc/system-gschemrc.scm:2287
@@ -4531,13 +4549,15 @@ msgstr "Öznitelikler..."
 msgid "Open the Attributes Editor Dialog"
 msgstr "Öznitelikler düzenleyici iletişim kutusunu açın"
 
+# Automatically number Text
 #: gschem/etc/system-gschemrc.scm:2295
 msgid "A_utonumber Text..."
-msgstr ""
+msgstr "Otomatik numara metin..."
 
+# Open Auto Number dialog
 #: gschem/etc/system-gschemrc.scm:2295
 msgid "Open Auto Number dialog"
-msgstr ""
+msgstr "Otomatik Numara iletişim kutusunu aç"
 
 # Show Console Window
 #: gschem/etc/system-gschemrc.scm:2296
@@ -5130,30 +5150,30 @@ msgstr ""
 msgid "Add Picture"
 msgstr ""
 
+# Create New Session
 #: gschem/scheme/gschem/builtins.scm:380
-#, fuzzy
 msgid "Create New Session"
-msgstr "Tümünü kaydet"
+msgstr "Yeni Oturum Oluştur"
 
+# Open a Session
 #: gschem/scheme/gschem/builtins.scm:383
-#, fuzzy
 msgid "Open a Session"
-msgstr "Tümünü kaydet"
+msgstr "Bir Oturumu Aç"
 
+# Save Session
 #: gschem/scheme/gschem/builtins.scm:386
-#, fuzzy
 msgid "Save Session"
-msgstr "Tümünü kaydet"
+msgstr "Oturumu Kaydet"
 
+# Attach Attributes
 #: gschem/scheme/gschem/builtins.scm:398
-#, fuzzy
 msgid "Attach Attributes"
-msgstr "Öznitelikler"
+msgstr "Öznitelikleri Ekle"
 
+# Seperate Attribute
 #: gschem/scheme/gschem/builtins.scm:401
-#, fuzzy
 msgid "Detach Attributes"
-msgstr "Öznitelikler"
+msgstr "Öznitelikleri ayırmak"
 
 #: gschem/scheme/gschem/builtins.scm:404
 #, fuzzy
