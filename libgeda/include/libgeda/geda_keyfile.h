@@ -30,6 +30,8 @@
 #ifndef __GEDA_KEYFILE_H__
 #define __GEDA_KEYFILE_H__
 
+#define GEDA_IS_KEYFILE(obj) (is_a_geda_keyfile((GedaKeyFile*)(obj)))
+
 /*! Domain for Errors originating in libgeda. */
 #define GEDA_KEYFILE_ERROR geda_keyfile_error ()
 
@@ -93,6 +95,7 @@ extern "C" {
 #endif
 
 GedaKeyFile *geda_keyfile_new                 (void);
+bool         is_a_geda_keyfile                (GedaKeyFile        *keyfile);
 GedaKeyFile *geda_keyfile_ref                 (GedaKeyFile        *key_file);
 void      geda_keyfile_unref                  (GedaKeyFile        *key_file);
 void      geda_keyfile_free                   (GedaKeyFile        *key_file);

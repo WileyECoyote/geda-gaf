@@ -275,6 +275,9 @@ static void   geda_keyfile_parse_data                 (GedaKeyFile           *ke
 static void   geda_keyfile_flush_parse_buffer         (GedaKeyFile           *key_file,
                                                        GError               **error);
 
+/* List of pointers to GedaKeyFile instances */
+static GList *list_of_keyfiles = NULL;
+
 GQuark
 geda_keyfile_error (void)
 {
@@ -328,6 +331,25 @@ geda_keyfile_clear (GedaKeyFile *key_file)
   }
 }
 
+/*!
+ * \brief Determine if object is Geda KeyFile Object.
+ * \par Function Description
+ *  Returns true if the argument is a GedaKeyFile object.
+ *  The function checks if the pointer is in the list of allocated
+ *  GedaKeyFile objects returns if the address is in the list,
+ *  otherwise FALSE.
+ *
+ * \param [in] keyfile  Pointer to GedaKeyFile Object
+ *
+ * \return boolean.
+ */
+bool is_a_geda_keyfile (GedaKeyFile *keyfile)
+{
+  if (keyfile) {
+    return g_list_find(list_of_keyfiles, keyfile) ? TRUE : FALSE;
+  }
+  return FALSE;
+}
 
 /*!
  * \brief Create a New Key File Object
@@ -347,6 +369,9 @@ geda_keyfile_new (void)
   key_file = GEDA_MEM_ALLOC0 (sizeof(GedaKeyFile));
   key_file->ref_count = 1;
   geda_keyfile_init (key_file);
+
+  /* Append key_file to list of valid key_file objects */
+  list_of_keyfiles = g_list_append(list_of_keyfiles, key_file);
 
   return key_file;
 }
@@ -795,18 +820,28 @@ geda_keyfile_free (GedaKeyFile *key_file)
  * \brief Unreference to Key File Object
  * \par Function Description
  * \param [in] key_file  a #GedaKeyFile object
- *
  * Decreases the reference count of \a key_file by 1. If the reference count
- * reaches zero, frees the key file and all its allocated memory.
+ * reaches zero, frees the key file and associated memory.
  */
 void
 geda_keyfile_unref (GedaKeyFile *key_file)
 {
-  g_return_if_fail (key_file != NULL);
+  g_return_if_fail (GEDA_IS_KEYFILE(key_file));
 
   if (g_atomic_int_dec_and_test (&key_file->ref_count)) {
+
     geda_keyfile_clear (key_file);
+
+    /* Remove from list of valid keyfile objects */
+    list_of_keyfiles = g_list_remove(list_of_keyfiles, key_file);
+
     GEDA_FREE (key_file);
+
+    /* Release list of valid keyfile objects if empty */
+    if (!g_list_length(list_of_keyfiles)) {
+      g_list_free(list_of_keyfiles);
+      list_of_keyfiles = NULL;
+    }
   }
 }
 
