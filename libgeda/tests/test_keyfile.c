@@ -116,7 +116,34 @@ int create_keyfile_data (void)
     GEDA_FREE(data);
   }
 
+  /* Add a reference to the object, cnt=2 */
+  geda_keyfile_ref(keyfile);
+
+  geda_keyfile_free(keyfile); /* cnt=1 */
+
+  if (!GEDA_IS_KEYFILE(keyfile)) {
+    fprintf(stderr, "FAILED: (KF080201) geda_keyfile_ref\n");
+    result++;
+  }
+
+  /* Add another reference to the object, cnt=2 */
+  geda_keyfile_ref(keyfile);
+
+  /* Remove reference, cnt=1  */
+  geda_keyfile_unref(keyfile);
+
+  if (!GEDA_IS_KEYFILE(keyfile)) {
+    fprintf(stderr, "FAILED: (KF080301) geda_keyfile_unref\n");
+    result++;
+  }
+
+  /* Remove reference, cnt=0 */
   geda_keyfile_free(keyfile);
+
+  if (GEDA_IS_KEYFILE(keyfile)) {
+    fprintf(stderr, "FAILED: (KF080401) geda_keyfile_free\n");
+    result++;
+  }
 
   return result;
 }
