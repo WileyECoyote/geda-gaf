@@ -45,7 +45,13 @@ int create_keyfile_data (void)
   GError *err;
   char   *data;
 
+  /* === Function 01: geda_keyfile_new  === */
   GedaKeyFile *keyfile = geda_keyfile_new ();
+
+  if (!GEDA_IS_KEYFILE(keyfile)) {
+    fprintf(stderr, "FAILED: (KF080101) geda_keyfile_new\n");
+    return 1;
+  }
 
   err = NULL;
 
