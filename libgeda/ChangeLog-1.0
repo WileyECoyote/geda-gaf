@@ -1,3 +1,7 @@
+2017-02-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_*.c: Close open Doxygen groups.
+
 2017-02-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_save.c: Revise output messages and formats in order to
@@ -6,6 +10,8 @@
     * src/object/o_set.c: Revise output messages and formats in function
       geda_set_object_line_options in order to minimize format specifiers
       in translatable strings, update copyright.
+
+    * src/struct/s_*: Use relative path to config in s_struct modules.
 
     * tests/test_line_object.c: Check geda_line_object_get_midpoint.
 

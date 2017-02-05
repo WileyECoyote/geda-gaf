@@ -132,6 +132,8 @@ int check_get_set (void)
   return result;
 }
 
+/** @} endgroup test-geda-keyfile */
+
 int
 main (int argc, char *argv[])
 {

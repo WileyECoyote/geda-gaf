@@ -951,6 +951,8 @@ check_transformer(void)
   return result;
 }
 
+/** @} endgroup test-object-geda-circle */
+
 int
 main (int argc, char *argv[])
 {

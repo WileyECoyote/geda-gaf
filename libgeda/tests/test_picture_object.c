@@ -236,6 +236,8 @@ check_construction (void)
   return result;
 }
 
+/** @} endgroup test-object-geda-picture */
+
 int
 main (int argc, char *argv[])
 {

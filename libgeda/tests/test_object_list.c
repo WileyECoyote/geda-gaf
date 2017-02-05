@@ -563,6 +563,8 @@ GedaToplevel *setup_new_toplevel(void)
   return toplevel;
 }
 
+/** @} endgroup test-object-list */
+
 int
 main (int argc, char *argv[])
 {

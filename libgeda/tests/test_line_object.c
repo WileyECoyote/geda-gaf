@@ -902,3 +902,5 @@ main (int argc, char *argv[])
 
   return result;
 }
+
+/** @} endgroup test-object-geda-line */

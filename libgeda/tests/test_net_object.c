@@ -586,6 +586,9 @@ check_transformer(void)
   return result;
 }
 
+
+/** @} endgroup test-object-geda-net */
+
 int
 main (int argc, char *argv[])
 {

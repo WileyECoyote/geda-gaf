@@ -632,6 +632,8 @@ check_transformer(void)
   return result;
 }
 
+/** @} endgroup test-object-geda-bus */
+
 int
 main (int argc, char *argv[])
 {
