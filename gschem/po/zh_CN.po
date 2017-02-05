@@ -4488,119 +4488,134 @@ msgstr ""
 msgid "Save the current Session to another name"
 msgstr ""
 
+# Manage
 #: gschem/etc/system-gschemrc.scm:2266
-#, fuzzy
 msgid "_Manage..."
-msgstr "打开页面..."
+msgstr "管理..."
 
+# Open the Session Manager dialog
 #: gschem/etc/system-gschemrc.scm:2266
 msgid "Open the Session Manager dialog"
-msgstr ""
+msgstr "打开会话管理器对话框"
 
+# Attach
 #: gschem/etc/system-gschemrc.scm:2274
-#, fuzzy
 msgid "_Attach"
 msgstr "连接"
 
+# Attach selected attributes to symbol
 #: gschem/etc/system-gschemrc.scm:2274
 msgid "Attach selected attributes to symbol"
-msgstr ""
+msgstr "将所选属性附加到符号"
 
+# Detachment
 #: gschem/etc/system-gschemrc.scm:2275
-#, fuzzy
 msgid "_Detach"
 msgstr "脱离"
 
+# Disconnect selected attributes from a symbol
 #: gschem/etc/system-gschemrc.scm:2275
 msgid "Dettach selected attributes from a symbol"
-msgstr ""
+msgstr "断开符号中选定的属性"
 
+# Show Value
 #: gschem/etc/system-gschemrc.scm:2276
-#, fuzzy
 msgid "Show _Value"
-msgstr "显示数值"
+msgstr "显示值"
 
+# Set selected value visible
 #: gschem/etc/system-gschemrc.scm:2276
 msgid "Set selected value visible"
-msgstr ""
+msgstr "将所选值设置为可见"
 
+# Show Name
 #: gschem/etc/system-gschemrc.scm:2277
-#, fuzzy
 msgid "Show _Name"
 msgstr "显示名称"
 
+# Set selected name visible
 #: gschem/etc/system-gschemrc.scm:2277
 msgid "Set selected name visible"
-msgstr ""
+msgstr "将所选名称设置为可见"
 
+# Show Both
 #: gschem/etc/system-gschemrc.scm:2278
-#, fuzzy
 msgid "Show _Both"
-msgstr "都显示"
+msgstr "显示两者"
 
+# Set selected name and value visible
 #: gschem/etc/system-gschemrc.scm:2278
 msgid "Set selected name and value visible"
-msgstr ""
+msgstr "将所选名称和值设置为可见"
 
+# Toggle Visibility
 #: gschem/etc/system-gschemrc.scm:2280
-#, fuzzy
 msgid "_Toggle Visibility"
-msgstr "变换可见性"
+msgstr "切换可见性"
 
+# Toggle attribute visibility
 #: gschem/etc/system-gschemrc.scm:2280
-#, fuzzy
-msgstr "变换可见性"
 msgid "Toggle attribute visibility"
+msgstr "切换属性可见性"
 
 #: gschem/etc/system-gschemrc.scm:2281
 msgid "_Reset Position"
-msgstr ""
+msgstr "重置位置"
 
+# Restore attribute positions and orientation
 #: gschem/etc/system-gschemrc.scm:2281
 msgid "Restore attribute positions and orientation"
-msgstr ""
+msgstr "恢复属性位置和方向"
 
+# Find Specific Text
 #: gschem/etc/system-gschemrc.scm:2283
 msgid "_Find Specific Text..."
-msgstr ""
+msgstr "查找特定文本..."
 
+# Find an attribute
 #: gschem/etc/system-gschemrc.scm:2283
 msgid "Find an attribute"
-msgstr ""
+msgstr "查找属性"
 
+# Hide Specific Text
 #: gschem/etc/system-gschemrc.scm:2284
 msgid "_Hide Specific Text..."
-msgstr ""
+msgstr "隐藏特定文本..."
 
+# Hide selected attribute
 #: gschem/etc/system-gschemrc.scm:2284
 msgid "Hide selected attribute"
-msgstr ""
+msgstr "隐藏所选属性"
 
+# Show Specific Text => Display Specific Text
 #: gschem/etc/system-gschemrc.scm:2285
 msgid "_Show Specific Text..."
-msgstr ""
+msgstr "显示特定文本..."
 
+# Show a specific attribute
 #: gschem/etc/system-gschemrc.scm:2285
 msgid "Show a specific attribute"
-msgstr ""
+msgstr "显示特定属性"
 
+# Attribute Editor
 #: gschem/etc/system-gschemrc.scm:2287
-#, fuzzy
 msgid "Attribute _Editor..."
-msgstr "属性..."
+msgstr "属性编辑器..."
 
 # Open the attributes editor dialog
 #: gschem/etc/system-gschemrc.scm:2287
 msgid "Open the Attributes Editor Dialog"
 msgstr "打开属性编辑器对话框"
 
+# Automaticaly number Text
 #: gschem/etc/system-gschemrc.scm:2295
 msgid "A_utonumber Text..."
-msgstr ""
+msgstr "自动数字文本..."
 
+# Open Auto Number dialog
 #: gschem/etc/system-gschemrc.scm:2295
 msgid "Open Auto Number dialog"
-msgstr ""
+msgstr "打开自动编号对话框"
 
 # Display the console window
 #: gschem/etc/system-gschemrc.scm:2296
@@ -5434,9 +5449,8 @@ msgid "Invalid text alignment ~A."
 msgstr ""
 
 #: gschem/scheme/gschem/gschemdoc.scm:241
-#, fuzzy
 msgid "No documentation found"
-msgstr "文档"
+msgstr "未找到文档"
 
 #: gschem/scheme/gschem/gschem-export-menu.scm:57
 msgid "Export embed symbol"
@@ -5444,7 +5458,7 @@ msgstr ""
 
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
 msgid "Export embed picture"
-msgstr ""
+msgstr "导出嵌入图片"
 
 #: gschem/scheme/gschem/keymap.scm:41
 #, scheme-format
@@ -5455,11 +5469,3 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
-
-#, fuzzy
-#~ msgid "session"
-#~ msgstr "显示名称"
-
-#, fuzzy
-#~ msgid "documents\n"
-#~ msgstr "文档"
