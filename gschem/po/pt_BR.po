@@ -4777,15 +4777,15 @@ msgstr ""
 msgid "Show _Console Window..."
 msgstr "Mostra Janela do console..."
 
+# Display the console window
 #: gschem/etc/system-gschemrc.scm:2296
-#, fuzzy
 msgid "Display the console window"
-msgstr "Mostra _Coordenadas"
+msgstr "Exibir a janela do console"
 
-# Coordinate Shows
+# Show Coordinates Window
 #: gschem/etc/system-gschemrc.scm:2297
 msgid "Show Coord _Window..."
-msgstr "Mostra _Coordenadas..."
+msgstr "Mostrar Janela de Coordenadas..."
 
 #: gschem/etc/system-gschemrc.scm:2297
 msgid "Display coordinates"
@@ -4795,8 +4795,8 @@ msgstr ""
 msgid "Invoke Macro"
 msgstr "Chamar Macro"
 
+# Call Macro
 #: gschem/etc/system-gschemrc.scm:2300
-#, fuzzy
 msgid "Invoke a macro"
 msgstr "Chamar Macro"
 
@@ -4812,19 +4812,19 @@ msgstr ""
 msgid "Embed Component/Picture"
 msgstr "Embutir Componente/Imagem"
 
+# Embed a component or image object
 #: gschem/etc/system-gschemrc.scm:2305
-#, fuzzy
 msgid "Embed a component or image object"
-msgstr "Embutir componente no diagrama"
+msgstr "Incorporar um componente ou um objeto de imagem"
 
 #: gschem/etc/system-gschemrc.scm:2306 gschem/scheme/gschem/builtins.scm:454
 msgid "Unembed Component/Picture"
 msgstr "Desembutir Componente/Imagem"
 
+# Unembed a component or image object
 #: gschem/etc/system-gschemrc.scm:2306
-#, fuzzy
 msgid "Unembed a component or image object"
-msgstr "Desembutir Componente/Imagem"
+msgstr "Unembed um componente ou objeto de imagem"
 
 #: gschem/etc/system-gschemrc.scm:2307 gschem/scheme/gschem/builtins.scm:457
 msgid "Update Component"
@@ -4859,22 +4859,21 @@ msgid "Decrease the snap size"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2318
-#, fuzzy
 msgid "S_nap Grid Spacing..."
 msgstr "Ta_manho de grade..."
 
+# Adjust snap size
 #: gschem/etc/system-gschemrc.scm:2318
 msgid "Adjust snap size"
-msgstr ""
+msgstr "Ajustar tamanho do snap"
 
 #: gschem/etc/system-gschemrc.scm:2321
-#, fuzzy
 msgid "Toggle _Snap On-Off"
 msgstr "Alternar Ajuste (_Snap)"
 
 #: gschem/etc/system-gschemrc.scm:2321
 msgid "Toggle the object snap mode"
-msgstr ""
+msgstr "Alternar o modo de snap de objeto"
 
 #: gschem/etc/system-gschemrc.scm:2322
 #, fuzzy
