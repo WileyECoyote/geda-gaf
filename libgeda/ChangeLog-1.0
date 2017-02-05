@@ -11,6 +11,8 @@
       to NULL between checks. Add checks for geda_keyfile_ref, geda_keyfile_
       free and geda_keyfile_unref.
 
+    * tests/test_line_object.c: Add check for geda_line_object_get_nearest_point.
+
 2017-02-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_save.c: Revise output messages and formats in order to

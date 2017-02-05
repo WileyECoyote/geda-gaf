@@ -70,7 +70,7 @@
  *      O1106    geda_line_object_get_line_type
  *      O1107    geda_line_object_get_line_width
  *      O1108    geda_line_object_get_intersection
- *               geda_line_object_get_midpoint
+ *      O1109    geda_line_object_get_midpoint
  *               geda_line_object_get_nearest_point
  *               geda_line_object_get_position
  *               geda_line_object_get_slope
@@ -674,6 +674,7 @@ check_get_intersection(GedaObject *object0)
   return result;
 }
 
+  /* === Function 09: geda_line_object_get_midpoint  === */
 int
 check_get_midpoint(GedaObject *object)
 {
@@ -683,8 +684,6 @@ check_get_midpoint(GedaObject *object)
   int x2 = geda_line_object_get_x2 (object);
   int y1 = geda_line_object_get_y1 (object);
   int y2 = geda_line_object_get_y2 (object);
-
-  /* === Function 09: geda_line_object_get_midpoint  === */
 
   GedaPoint point;
 
@@ -716,13 +715,69 @@ check_get_midpoint(GedaObject *object)
   return result;
 }
 
+/* === Function 10: geda_line_object_get_nearest_point  === */
 int
 check_get_nearest_point(GedaObject *object)
 {
   int result = 0;
 
-  /* === Function 10: geda_line_object_get_nearest_point  === */
+  double m;
 
+  /* When testing there always will be a slope */
+  if (geda_line_object_get_slope(object, &m)) {
+
+    int x1 = geda_line_object_get_x1 (object);
+    int x2 = geda_line_object_get_x2 (object);
+    int y1 = geda_line_object_get_y1 (object);
+    int y2 = geda_line_object_get_y2 (object);
+
+    double b = y1 - (m * x1);
+
+    int ax, ay;
+
+    if (x2 > x1) {
+      ax = x2;
+      ay = y2;
+    }
+    else {
+      ax = x1;
+      ay = y1;
+    }
+
+    int qx = ax + 100;
+    int qy = (m * qx) + b;
+
+    int nx, ny;
+
+    if (geda_line_object_get_nearest_point (NULL, qx, qy, NULL, NULL)) {
+      fprintf(stderr, "FAILED: (O111000A) %s nearest NULL\n", TOBJECT);
+      result++;
+    }
+
+    if (!geda_line_object_get_nearest_point (object, qx, qy, NULL, NULL)) {
+      fprintf(stderr, "FAILED: (O111000B) %s nearest NULL\n", TOBJECT);
+      result++;
+    }
+
+    if (!geda_line_object_get_nearest_point (object, qx, qy, &nx, &ny)) {
+      fprintf(stderr, "FAILED: (O111001) %s nearest\n", TOBJECT);
+      result++;
+    }
+    else {
+
+      if (nx != ax ) {
+        fprintf(stderr, "FAILED: (O111001X) %s %d != %d,", TOBJECT, nx, ax);
+        fprintf(stderr, " query point (%d,%d)\n", qx, qy);
+        result++;
+      }
+
+      if (ny != ay ) {
+        fprintf(stderr, "FAILED: (O111001Y) %s %d != %d,", TOBJECT, ny, ay);
+        fprintf(stderr, " query point (%d,%d)\n", qx, qy);
+        result++;
+      }
+    }
+  }
   return result;
 }
 
