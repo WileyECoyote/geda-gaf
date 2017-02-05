@@ -310,14 +310,14 @@ set_property (GObject *object, unsigned int  prop_id,
   }
 }
 
-/*! \brief Type class initializer for Box
- *
- *  \par Function Description
+/*!
+ * \brief Type class initializer for Box
+ * \par Function Description
  *  Class type initializer for Box. We override parent virtual
  *  class methods as needed and register our GObject signals.
  *
- *  \param [in]  klass      The Box class we are initializing
- *  \param [in]  class_data The Box structure associated with the class
+ * \param [in]  klass      The Box class we are initializing
+ * \param [in]  class_data The Box structure associated with the class
  */
 static void
 geda_box_class_init(void *klass, void *class_data)
@@ -543,10 +543,10 @@ geda_box_get_type (void)
 GedaObject *
 geda_box_new (void)
 {
-  GedaObject *box = g_object_new( GEDA_TYPE_BOX,
-                             "type", OBJ_BOX,
-                             "name", "box",
-                              NULL );
+  GedaObject *box = g_object_new(GEDA_TYPE_BOX,
+                                 "type", OBJ_BOX,
+                                 "name", "box",
+                                 NULL );
   return GEDA_OBJECT(box);
 }
 

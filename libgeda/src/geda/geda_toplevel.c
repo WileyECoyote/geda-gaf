@@ -340,10 +340,10 @@ GedaToplevel *geda_toplevel_new (void) {
 /*!
  * \brief Determine if object is Geda Toplevel Object.
  * \par Function Description
- *  Returns true if the argument is a GedaToplevel object.
- *  This function use signatures embed in the structure
- *  to verify the object type as the gobject system appears
- *  unreliable and can return false results.
+ *  Returns true if the argument is a GedaToplevel object. The
+ *  \a toplevel is verified by looking for the pointer in list
+ *  of GedaToplevels and returns false if not found. TRUE is
+ *  returned when the pointer is found in the list of toplevels.
  *
  * \param [in] toplevel  Pointer to GedaToplevel Object
  *
@@ -357,6 +357,18 @@ bool is_a_geda_toplevel (GedaToplevel *toplevel)
   return FALSE;
 }
 
+/*!
+ * \brief Set Bounds of Text Object using GedaToplevel Bound Function
+ * \par Function Description
+ *  If the rendered_text_bounds_func is set then rendered_text_bounds_func
+ *  is called to set the bounds. When unset the bounds of \a o_current is
+ *  set to zeros.
+ *
+ * \param [in]  toplevel   Pointer to GedaToplevel Object
+ * \param [out] o_current  Object for which the bound is to be determined.
+ *
+ * \TODO should be geda_toplevel_set_text_bounds?
+ */
 bool
 geda_toplevel_set_bounds(GedaToplevel *toplevel, GedaObject *o_current)
 {

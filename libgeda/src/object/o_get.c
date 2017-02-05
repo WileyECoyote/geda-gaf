@@ -36,11 +36,11 @@
 #include <geda_text.h>
 
 
-/*! \brief Get the Parent index an object is attached to
- *
+/*!
+ * \brief Get the Parent index an object is attached to
  * \par Function Description
- * If \a object is a attached to another #GedaObject, returns the
- * sid of the parent object. Otherwise, returns -1.
+ *  If \a object is a attached to another #GedaObject, returns the
+ *  sid of the parent object. Otherwise, returns -1.
  *
  * \param [in] object The GedaObject for which to get the parent index.
  *
@@ -60,22 +60,24 @@ geda_object_get_attached_parent_id (GedaObject *object)
   return sid;
 }
 
-/*! \brief Return the bounds of the given object
+/*!
+ * \brief Return the bounds of the given object
+ * \par Given an object, calculate the bounds coordinates.
  *
- *  \par Given an object, calculate the bounds coordinates.
+ * \param [in]  o_current The object to look the bounds for.
+ * \param [out] rleft     pointer to the left coordinate of the object.
+ * \param [out] rtop      pointer to the top coordinate of the object.
+ * \param [out] rright    pointer to the right coordinate of the object.
+ * \param [out] rbottom   pointer to the bottom coordinate of the object.
  *
- *  \param [in] o_current The object to look the bounds for.
- *  \param [out] rleft   pointer to the left coordinate of the object.
- *  \param [out] rtop    pointer to the top coordinate of the object.
- *  \param [out] rright  pointer to the right coordinate of the object.
- *  \param [out] rbottom pointer to the bottom coordinate of the object.
- *  \return If any bounds were found for the object
- *  \retval 0 No bound was found
- *  \retval 1 Bound was found
+ * \return If any bounds were found for the object
+ * \retval 0 No bound was found
+ * \retval 1 Bound was found
  */
 int
-geda_object_get_bounds(GedaObject *o_current, int *rleft,  int *rtop,
-                                    int *rright, int *rbottom)
+geda_object_get_bounds(GedaObject *o_current,
+                       int *rleft,  int *rtop,
+                       int *rright, int *rbottom)
 {
   int result = 0;
 
@@ -97,18 +99,18 @@ geda_object_get_bounds(GedaObject *o_current, int *rleft,  int *rtop,
   return result;
 }
 
-/*! \brief Return the bounds of the given GList of objects.
+/*!
+ * \brief Return the bounds of the given GList of objects.
+ * \par Given a list of objects, calculates the bounds coordinates.
  *
- *  \par Given a list of objects, calculates the bounds coordinates.
- *
- *  \param [in]  list   The list of objects to look the bounds for.
- *  \param [out] left   pointer to the left coordinate of the object.
- *  \param [out] top    pointer to the top coordinate of the object.
- *  \param [out] right  pointer to the right coordinate of the object.
- *  \param [out] bottom pointer to the bottom coordinate of the object.
- *  \return If any bounds were found for the list of objects
- *  \retval 0 No bounds were found
- *  \retval 1 Bound was found
+ * \param [in]  list   The list of objects to look the bounds for.
+ * \param [out] left   pointer to the left coordinate of the object.
+ * \param [out] top    pointer to the top coordinate of the object.
+ * \param [out] right  pointer to the right coordinate of the object.
+ * \param [out] bottom pointer to the bottom coordinate of the object.
+ * \return If any bounds were found for the list of objects
+ * \retval 0 No bounds were found
+ * \retval 1 Bound was found
  */
 int
 geda_object_get_bounds_list(const GList *list, int *left, int *top, int *right, int *bottom)
@@ -172,7 +174,6 @@ geda_object_get_capstyle (LINE_END end)
 }
 
 /*! \brief get #GedaObject's fill properties
- *
  *  \par Function Description
  *  This function get's the #GedaObject's fill options.
  *  See OBJECT_FILLING for information on valid fill types.
@@ -214,6 +215,11 @@ geda_object_get_fill_options(GedaObject *object,
   return answer;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 bool
 geda_object_get_has_slope (GedaObject *object)
 {
@@ -233,16 +239,16 @@ geda_object_get_has_slope (GedaObject *object)
   return answer;
 }
 
-/*! \brief Checks if an object is attached to something
- *
- *  \par Function Description
+/*!
+ * \brief Checks if an object is attached to something
+ * \par Function Description
  *  Noramally \a object would be a text attribute that is
  *  attached to another object but could be any type of
  *  GedaObject
  *
- *  \param object  The GedaObject to test
+ * \param object  The GedaObject to test
  *
- *  \return TRUE if attached to another object, other wise FALSE.
+ * \return TRUE if attached to another object, other wise FALSE.
  */
 bool
 geda_object_get_is_attached (GedaObject *object)
@@ -251,7 +257,6 @@ geda_object_get_is_attached (GedaObject *object)
 }
 
 /*! \brief Checks if an object is bus, or a bus pin
- *
  *  \par Function Description
  *  Checks if an object is a bus or a bus pin
  *
@@ -266,16 +271,16 @@ geda_object_get_bus_related (GedaObject *object)
           && object->pin->node_type == PIN_BUS_NODE));
 }
 
-/*! \brief Checks if an object is embedded
- *
- *  \par Function Description
+/*!
+ * \brief Checks if an object is embedded
+ * \par Function Description
  *  Checks if an object is embedded or not. If object is
  *  a Complex or Picture then object->embedded is returned
  *  otherwise FALSE is returned,
  *
- *  \param object  The GedaObject to test
+ * \param object  The GedaObject to test
  *
- *  \return TRUE if the object is embedded
+ * \return TRUE if the object is embedded
  */
 bool
 geda_object_get_is_embedded (GedaObject *object)
@@ -286,18 +291,19 @@ geda_object_get_is_embedded (GedaObject *object)
           (GEDA_IS_PICTURE(object) && (object->picture->is_embedded)));
 }
 
-/*! \brief Check if point is inside a region
- *  \par Function Description
+/*!
+ * \brief Check if point is inside a region
+ * \par Function Description
  *  This function takes a rectangular region and a point and checks
  *  if the point is located in the region or not.
  *
- *  \param [in] xmin    Smaller x coordinate of the region.
- *  \param [in] ymin    Smaller y coordinate of the region.
- *  \param [in] xmax    Larger x coordinate of the region.
- *  \param [in] ymax    Larger y coordinate of the region.
- *  \param [in] x       x coordinate of the point to check.
- *  \param [in] y       y coordinate of the point to check.
- *  \return 1 if the point is inside the region, 0 otherwise.
+ * \param [in] xmin    Smaller x coordinate of the region.
+ * \param [in] ymin    Smaller y coordinate of the region.
+ * \param [in] xmax    Larger x coordinate of the region.
+ * \param [in] ymax    Larger y coordinate of the region.
+ * \param [in] x       x coordinate of the point to check.
+ * \param [in] y       y coordinate of the point to check.
+ * \return 1 if the point is inside the region, 0 otherwise.
  */
 int
 geda_object_get_is_inside_region(int xmin, int ymin, int xmax, int ymax, int x, int y)
@@ -305,14 +311,14 @@ geda_object_get_is_inside_region(int xmin, int ymin, int xmax, int ymax, int x, 
   return ((x >= xmin && x <= xmax && y >= ymin && y <= ymax) ? 1 : 0);
 }
 
-/*! \brief Query if object is selectable
- *
- *  \par Function Description
+/*!
+ * \brief Query if object is selectable
+ * \par Function Description
  *  Attribute getter for the selectable field within the object.
  *
- *  \param object   The GedaObject structure to be queried
+ * \param object   The GedaObject structure to be queried
  *
- *  \return TRUE when VISIBLE, FALSE otherwise
+ * \return TRUE when VISIBLE, FALSE otherwise
  */
 bool
 geda_object_get_is_selectable (GedaObject *object)
@@ -320,14 +326,14 @@ geda_object_get_is_selectable (GedaObject *object)
   return GEDA_IS_OBJECT(object) && (object->selectable);
 }
 
-/*! \brief Query if object is selected
- *
- *  \par Function Description
+/*!
+ * \brief Query if object is selected
+ * \par Function Description
  *  Attribute getter for the selectable field within the object.
  *
- *  \param object   The GedaObject structure to be queried
+ * \param object   The GedaObject structure to be queried
  *
- *  \return TRUE when the object is selected, FALSE otherwise
+ * \return TRUE when the object is selected, FALSE otherwise
  */
 bool
 geda_object_get_is_selected (GedaObject *object)
@@ -335,15 +341,15 @@ geda_object_get_is_selected (GedaObject *object)
   return GEDA_IS_OBJECT(object) && (object->selected);
 }
 
-/*! \brief Checks if an text string is valid attribute format
+/*!
+ * \brief Checks if an text string is valid attribute format
+ * \par Function Description
+ *  Check for the presents of an ASCII_EQUAL_SIGN without adjacent
+ *  spaces characters in the text string.
  *
- *  \par Function Description
- *   Check for the presents of an ASCII_EQUAL_SIGN without adjacent
- *   spaces characters in the text string.
+ * \param object  Text Object to test
  *
- *  \param object  Text Object to test
- *
- *  \return TRUE if valid, otherwise FALSE.
+ * \return TRUE if valid, otherwise FALSE.
  */
 bool
 geda_object_get_is_valid_attribute (GedaObject *object)
@@ -375,14 +381,14 @@ geda_object_get_is_valid_attribute (GedaObject *object)
   return result;
 }
 
-/*! \brief Query visibility of the object
- *
- *  \par Function Description
+/*!
+ * \brief Query visibility of the object
+ * \par Function Description
  *  Attribute getter for the visible field within the object.
  *
- *  \param object   The GedaObject structure to be queried
+ * \param object   The GedaObject structure to be queried
  *
- *  \return TRUE when VISIBLE, FALSE otherwise
+ * \return TRUE when VISIBLE, FALSE otherwise
  */
 bool
 geda_object_get_is_visible (const GedaObject *object)
@@ -390,14 +396,14 @@ geda_object_get_is_visible (const GedaObject *object)
   return GEDA_IS_OBJECT(object) && (object->visibility > 0);
 }
 
-/*! \brief Get line end using capstyle value
- *
- *  \par Function Description
+/*!
+ * \brief Get line end using capstyle value
+ * \par Function Description
  *  This function gets the object's line end value based on capstyle value
  *  used for Postscript printing.
  *  See also information on 'output-capstyle' gschem configuration option.
  *
- *  \param [in]     capstyle
+ * \param [in] capstyle
  */
 LINE_END
 geda_object_get_line_cap_style (int capstyle)
@@ -410,21 +416,21 @@ geda_object_get_line_cap_style (int capstyle)
   }
 }
 
-/*! \brief get #GedaObject's line properties
- *
- *  \par Function Description
+/*!
+ * \brief get #GedaObject's line properties
+ * \par Function Description
  *  This function get's the #GedaObject's line options.
  *  See #LINE_END and #LINE_TYPE for information on valid
  *  object end and type values.
  *
- *  \param [in]   object    GedaObject to read the properties
- *  \param [out]  end       An #LINE_END.
- *  \param [out]  type      An #LINE_TYPE.
- *  \param [out]  width     Line width.
- *  \param [out]  length    Line length.
- *  \param [out]  space     Spacing between dashes/dots.
+ * \param [in]   object    GedaObject to read the properties
+ * \param [out]  end       An #LINE_END.
+ * \param [out]  type      An #LINE_TYPE.
+ * \param [out]  width     Line width.
+ * \param [out]  length    Line length.
+ * \param [out]  space     Spacing between dashes/dots.
  *
- *  \return TRUE on succes, FALSE otherwise
+ * \return TRUE on succes, FALSE otherwise
  */
 bool
 geda_object_get_line_options(GedaObject *object,
@@ -451,15 +457,16 @@ geda_object_get_line_options(GedaObject *object,
   return result;
 }
 
-/*! \brief Get the Point on an GedaObject Nearest a given Point
- *  \par Function Description
+/*!
+ * \brief Get the Point on an GedaObject Nearest a given Point
+ * \par Function Description
  *  This function ia a wrapper for the 0_xxx_get_nearest functions.
  *
- *  \param [in]  object  Pointer to the object of interest
- *  \param [in]  x       Integer x of point near or on the object
- *  \param [in]  y       Integer y of point near or on the object
- *  \param [out] nx      Integer pointer to resulting x value
- *  \param [out] ny      Integer pointer to resulting y value
+ * \param [in]  object  Pointer to the object of interest
+ * \param [in]  x       Integer x of point near or on the object
+ * \param [in]  y       Integer y of point near or on the object
+ * \param [out] nx      Integer pointer to resulting x value
+ * \param [out] ny      Integer pointer to resulting y value
  */
 bool
 geda_object_get_nearest_point(GedaObject *object, int x, int y, int *nx, int *ny)
@@ -490,15 +497,15 @@ geda_object_get_nearest_point(GedaObject *object, int x, int y, int *nx, int *ny
   return FALSE;
 }
 
-/*! \brief count the lines of a text string
- *
- *  \par Function Description
+/*!
+ * \brief count the lines of a text string
+ * \par Function Description
  *  This function just counts the number of lines that are
  *  in the \a string.
-
- *  \param [in] string  text string to count the lines
  *
- *  \return the number of lines
+ * \param [in] string  text string to count the lines
+ *
+ * \return the number of lines
  */
 int
 geda_object_get_num_text_lines(const char *string)
@@ -528,21 +535,21 @@ geda_object_get_num_text_lines(const char *string)
   return (line_count);
 }
 
-/*! \brief Get pointer to an GedaObject's Attribute Value given the name
+/*!
+ * \brief Get pointer to an GedaObject's Attribute Value given the name
+ * \par Function Description
+ *  Returns a pointer to the value of a named attribute belonging to object,
+ *  the string belongs to libgeda and must not be freed. The value returned
+ *  is for the first attribute found with the given \a name.
  *
- *  \par Function Description
- *   Returns a pointer to the value of a named attribute belonging to object,
- *   the string belongs to libgeda and must not be freed. The value returned
- *   is for the first attribute found with the given \a name.
+ * \param [in] object GedaObject whose attributes are to be searched
+ * \param [in] name   The name of the attribute to search for
  *
- *  \param [in] object GedaObject whose attributes are to be searched
- *  \param [in] name   The name of the attribute to search for
+ * \note Does not search attributes floating attributes, only attributes
+ *       directly attached, i.e. object->attribs.
  *
- *  \note Does not search attributes floating attributes, only attributes
- *        directly attached, i.e. object->attribs.
- *
- *  \return If objects is valid and has an attribute with a matching \a name
- *          then the value of the attribute is returned , otherwise NULL.
+ * \return If objects is valid and has an attribute with a matching \a name
+ *         then the value of the attribute is returned , otherwise NULL.
  */
 const char*
 geda_object_get_attrib_value (GedaObject *object, const char *name)
@@ -577,17 +584,17 @@ geda_object_get_attrib_value (GedaObject *object, const char *name)
   return value;
 }
 
-/*! \brief Get List of Objects in List by GedaObject Type.
- *
- *  \par Function Description
+/*!
+ * \brief Get List of Objects in List by GedaObject Type.
+ * \par Function Description
  *  Returns a glist of objects, that are members of the \a olist that match
  *  the given \a type. The returned glist must be freed with g_list_free.
  *
- *  \param [in] olist A GList of Objects to search
- *  \param [in] type  The object type to search for
+ * \param [in] olist A GList of Objects to search
+ * \param [in] type  The object type to search for
  *
- *  \return list of Objects if found, or %NULL if no member was the requested
- *          type or the input list was empty.
+ * \return list of Objects if found, or %NULL if no member was the requested
+ *         type or the input list was empty.
  */
 GList*
 geda_object_get_objects_by_type (const GList *olist, int type)
@@ -606,15 +613,15 @@ geda_object_get_objects_by_type (const GList *olist, int type)
   return objects;
 }
 
-/*! \brief Get an object's containing complex object.
- *
- *  \par Function Description
+/*!
+ * \brief Get an object's containing complex object.
+ * \par Function Description
  *  If \a object is part of a complex #GedaObject, returns that
  *  #GedaObject. Otherwise, returns %NULL.
  *
- *  \param [in] object    The GedaObject for which to get the containing GedaObject.
+ * \param [in] object    The GedaObject for which to get the containing GedaObject.
  *
- *  \return The complex Object which owns \a object, or %NULL.
+ * \return The complex Object which owns \a object, or %NULL.
  */
 GedaObject*
 geda_object_get_parent (GedaObject *object)
@@ -632,15 +639,15 @@ geda_object_get_parent (GedaObject *object)
   return parent;
 }
 
-/*! \brief Get an object's containing object index.
- *
- *  \par Function Description
+/*!
+ * \brief Get an object's containing object index.
+ * \par Function Description
  *  If \a object is a sub object of another #GedaObject, returns the
  *  sid of the parent object. Otherwise, returns -1.
  *
- *  \param [in] object    The GedaObject for which to get the containing GedaObject.
+ * \param [in] object    The GedaObject for which to get the containing GedaObject.
  *
- *  \return The complex Object which owns \a object, or %NULL.
+ * \return The complex Object which owns \a object, or %NULL.
  */
 int
 geda_object_get_parent_id (GedaObject *object)
@@ -659,7 +666,6 @@ geda_object_get_parent_id (GedaObject *object)
 
 /*!
  * \brief get the base position of an object
- *
  * \par Function Description
  *  This function gets the position of an object in world coordinates.
  *
@@ -697,18 +703,20 @@ geda_object_get_position (GedaObject *object, int *x, int *y )
   return FALSE;
 }
 
-/*! \brief Calculates the distance between the given point and the closest
- * point on the given object. Allows forcing objects to solid.
+/*!
+ * \brief Get the Shortest distance from point to Hatchable Object
+ * \par Function Description
+ *  Calculates the distance between the given point and the closest
+ *  point on the given object. Allows forcing objects to solid. If
+ *  the distance cannot be calculated or if an error occurs, this
+ *  function returns a really large number (G_MAXDOUBLE).
  *
- *  \param [in] object       The given object.
- *  \param [in] x            The x coordinate of the given point.
- *  \param [in] y            The y coordinate of the given point.
- *  \param [in] force_solid  If true, force treating the object as solid.
+ * \param [in] object       The given object.
+ * \param [in] x            The x coordinate of the given point.
+ * \param [in] y            The y coordinate of the given point.
+ * \param [in] force_solid  If true, force treating the object as solid.
  *
- *  \return The shortest distance from the object to the point. If the
- *  distance cannot be calculated, this function returns a really large
- *  number (G_MAXDOUBLE).  If an error occurs, this function returns
- *  G_MAXDOUBLE.
+ * \return The shortest distance from the object to the point.
  */
 double
 geda_object_get_shortest_distance_full (GedaObject *object, int x, int y, int force_solid)
@@ -747,18 +755,19 @@ geda_object_get_shortest_distance_full (GedaObject *object, int x, int y, int fo
   return shortest_distance;
 }
 
-/*! \brief Calculates the distance between the given point and the closest
- * point on the given object.
+/*!
+ * \brief Get the Shortest distance from point to Object
+ * \par Function Description
+ *  Calculates the distance between the given point and the closest
+ *  point on the given object. If the distance cannot be calculated,
+ *  this function returns a really large number (G_MAXDOUBLE). If an
+ *  error occurs, this function returns G_MAXDOUBLE.
  *
- *  \par Function Description
- *  If the distance cannot be calculated, this function returns a really large
- *  number (G_MAXDOUBLE).  If an error occurs, this function returns G_MAXDOUBLE.
+ * \param [in] object       The given object.
+ * \param [in] x            The x coordinate of the given point
+ * \param [in] y            The y coordinate of the given point
  *
- *  \param [in] object       The given object.
- *  \param [in] x            The x coordinate of the given point
- *  \param [in] y            The y coordinate of the given point
- *
- *  \return The shortest distance from the object to the point.
+ * \return The shortest distance from the object to the point.
  */
 double
 geda_object_get_shortest_distance (GedaObject *object, int x, int y)

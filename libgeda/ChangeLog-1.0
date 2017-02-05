@@ -1,7 +1,14 @@
 2017-02-05 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_box.c: Update Doxygen comment for geda_box_class_init.
+
     * src/geda/geda_keyfile.c: Add GedaKeyFile type identifier implemented
       by maintaining a glist of keyfile objects.
+
+    * src/geda/geda_toplevel.c: Update Doxygen comment for is_a_geda_toplevel
+      and add documentation for geda_toplevel_set_bounds.
+
+    * src/object/o_get.c: Reformat and update Doxygen comments.
 
     * tests/test_*.c: Close open Doxygen groups.
 
