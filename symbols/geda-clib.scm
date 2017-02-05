@@ -271,6 +271,7 @@
                      ("toshiba/pnp-small-4"            "Manufacturers/PNP Bipolar"       4)
                   ("vishay" "Manufacturers/Vishay")
                      ("vishay/diode"                   "Manufacturers/Diodes")
+                     ("vishay/zener"                   "Manufacturers/Zener Diodes")
                      ("vishay/nmosfet"                 "Manufacturers/N-Channel MOSFET")
                      ("vishay/pmosfet"                 "Manufacturers/P-Channel MOSFET")
                      ("vishay/dual_pmos"               "Manufacturers/Dual P-MOSFET")

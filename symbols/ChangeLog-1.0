@@ -1,3 +1,47 @@
+2017-02-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * geda-clib.scm : Add group "vishay/zener" as "Manufacturers/Zener Diodes".
+
+    * vishay/diode/: Add 38 symbols for some vishay zener diodes:
+
+            * vishay/zener/zener_3.3_1N4728A.sym
+            * vishay/zener/zener_3.6_1N4729A.sym
+            * vishay/zener/zener_3.9_1N4730A.sym
+            * vishay/zener/zener_4.3_1N4731A.sym
+            * vishay/zener/zener_4.7_1N4732A.sym
+            * vishay/zener/zener_5.1_1N4733A.sym
+            * vishay/zener/zener_5.6_1N4734A.sym
+            * vishay/zener/zener_6.2_1N4735A.sym
+            * vishay/zener/zener_6.8_1N4736A.sym
+            * vishay/zener/zener_7.5_1N4737A.sym
+            * vishay/zener/zener_8.2_1N4738A.sym
+            * vishay/zener/zener_9.1_1N4739A.sym
+            * vishay/zener/zener_10_1N4740A.sym
+            * vishay/zener/zener_11_1N4741A.sym
+            * vishay/zener/zener_12_1N4742A.sym
+            * vishay/zener/zener_13_1N4743A.sym
+            * vishay/zener/zener_15_1N4744A.sym
+            * vishay/zener/zener_16_1N4745A.sym
+            * vishay/zener/zener_18_1N4746A.sym
+            * vishay/zener/zener_20_1N4747A.sym
+            * vishay/zener/zener_22_1N4748A.sym
+            * vishay/zener/zener_24_1N4749A.sym
+            * vishay/zener/zener_27_1N4750A.sym
+            * vishay/zener/zener_30_1N4751A.sym
+            * vishay/zener/zener_33_1N4752A.sym
+            * vishay/zener/zener_36_1N4753A.sym
+            * vishay/zener/zener_39_1N4754A.sym
+            * vishay/zener/zener_43_1N4755A.sym
+            * vishay/zener/zener_47_1N4756A.sym
+            * vishay/zener/zener_51_1N4757A.sym
+            * vishay/zener/zener_56_1N4758A.sym
+            * vishay/zener/zener_62_1N4759A.sym
+            * vishay/zener/zener_68_1N4760A.sym
+            * vishay/zener/zener_75_1N4761A.sym
+            * vishay/zener/zener_82_1N4762A.sym
+            * vishay/zener/zener_91_1N4763A.sym
+            * vishay/zener/zener_100_1N4764A.sym
+
 2017-01-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/CC2531-1.sym: Add symbol; System-on-Chip for IEEE 802.15.4 and ZigBee.
