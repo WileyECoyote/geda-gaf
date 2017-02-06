@@ -3179,6 +3179,15 @@ get_group_comment (GedaKeyFile       *key_file,
     return g_string_free (string, FALSE);
   }
 
+  if (error) {
+
+    const char *group_name = group->name;
+
+    g_set_error (error, GEDA_KEYFILE_ERROR,
+                 GEDA_KEYFILE_ERROR_NO_COMMENT, "%s '%s'",
+                 _("Group does not have comment"),
+                   group_name ? group_name : "(null)");
+  }
   return NULL;
 }
 

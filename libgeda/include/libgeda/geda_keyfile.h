@@ -44,6 +44,7 @@
  * GEDA_KEYFILE_ERROR_KEY_NOT_FOUND: a requested key was not found
  * GEDA_KEYFILE_ERROR_GROUP_NOT_FOUND: a requested group was not found
  * GEDA_KEYFILE_ERROR_INVALID_VALUE: a value could not be parsed
+ * GEDA_KEYFILE_ERROR_NO_COMMENT: requested comment was not found
  *
  * Error codes returned by key file parsing.
  */
@@ -54,7 +55,8 @@ typedef enum
   GEDA_KEYFILE_ERROR_NOT_FOUND,
   GEDA_KEYFILE_ERROR_KEY_NOT_FOUND,
   GEDA_KEYFILE_ERROR_GROUP_NOT_FOUND,
-  GEDA_KEYFILE_ERROR_INVALID_VALUE
+  GEDA_KEYFILE_ERROR_INVALID_VALUE,
+  GEDA_KEYFILE_ERROR_NO_COMMENT
 } GedaKeyFileError;
 
 /*!
