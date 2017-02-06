@@ -403,6 +403,7 @@ geda_line_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, i
 {
   GedaLine *line;
   bool      result;
+  int       ax, ay;
 
   if (GEDA_IS_LINE(object)) {
 
@@ -413,16 +414,16 @@ geda_line_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, i
       int ymin = line->y[0] > line->y[1] ? line->y[1] : line->y[0];
       int ymax = line->y[0] > line->y[1] ? line->y[0] : line->y[1];
 
-      *nx = line->x[0];
+      ax = line->x[0];
 
       if (y >= ymax) {
-        *ny = ymax;
+        ay = ymax;
       }
       else if (y <= ymin) {
-        *ny = ymin;
+        ay = ymin;
       }
       else {
-        *ny = y;
+        ay = y;
       }
     }
     else if (line->y[0] == line->y[1]) {  /* The Line is horizontal */
@@ -430,16 +431,16 @@ geda_line_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, i
       int xmin = line->x[0] > line->x[1] ? line->x[1] : line->x[0];
       int xmax = line->x[0] > line->x[1] ? line->x[0] : line->x[1];
 
-      *ny = line->y[0];
+      ay = line->y[0];
 
       if (x >= xmax) {
-        *nx = xmax;
+        ax = xmax;
       }
       else if (x <= xmin) {
-        *nx = xmin;
+        ax = xmin;
       }
       else {
-        *nx = x;
+        ax = x;
       }
     }
     else { /* The line is on non-zero angle*/
@@ -472,13 +473,13 @@ geda_line_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, i
 #endif
 
       if (geda_math_line_includes_point(line, &point)) {
-       *nx = point.x;
-       *ny = point.y;
+       ax = point.x;
+       ay = point.y;
       }
       else {
         int index = geda_line_object_get_closest_endpoint(object, x, y);
-       *nx = line->x[index];
-       *ny = line->y[index];
+       ax = line->x[index];
+       ay = line->y[index];
       }
     }
     result = TRUE;
@@ -489,9 +490,18 @@ geda_line_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, i
   }
 
   if (!result) {
-    *nx = x;
-    *ny = y;
+    ax = x;
+    ay = y;
   }
+
+  if (nx) {
+    *nx = ax;
+  }
+
+  if (ny) {
+    *ny = ay;
+  }
+
   return result;
 }
 

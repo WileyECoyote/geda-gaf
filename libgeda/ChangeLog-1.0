@@ -3,12 +3,16 @@
     * include/libgeda/geda_keyfile.h: Add GEDA_KEYFILE_ERROR_NO_COMMENT
       enumeration.
 
-    * src/geda/geda_keyfile.c: Revise decendent of geda_keyfile_get_comment to
-      check error argument and only set when address is suppied, this effective
+    * src/geda/geda_keyfile.c: Revise decedent of geda_keyfile_get_comment to
+      check error argument and only set when address is supplied, this effective
       makes the error argument optional. Add setting error in get_group_comment
       when comment is not found, if callers do not want to clear the error then
       callers should not pass an error argument. Add geda_keyfile_not_valid for
       local error message output. Reduce scope in geda_keyfile_load_from_file.
+
+    * src/object/o_line_object.c: Revise geda_line_object_get_nearest_point to
+      use intermediate variables, ax, ay, and set values in callers locations
+      only if caller address is not null.
 
 2017-02-05 Wiley E. Hill <wileyhill@gmail.com>
 
