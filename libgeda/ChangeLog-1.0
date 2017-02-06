@@ -1,3 +1,9 @@
+2017-02-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_keyfile.c: Revise decendent of geda_keyfile_get_comment to
+      check error argument and only set when address is suppied, this effective
+      makes the error argument optional.
+
 2017-02-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_box.c: Update Doxygen comment for geda_box_class_init.

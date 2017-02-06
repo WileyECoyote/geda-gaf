@@ -566,7 +566,8 @@ geda_keyfile_load_from_file (GedaKeyFile       *key_file,
                              GError           **error)
 {
   GError *key_file_error = NULL;
-  int fd;
+  bool result;
+  int  fd;
 
   g_return_val_if_fail (key_file != NULL, FALSE);
   g_return_val_if_fail (file != NULL, FALSE);
@@ -578,15 +579,28 @@ geda_keyfile_load_from_file (GedaKeyFile       *key_file,
     return FALSE;
   }
 
-  geda_keyfile_load_from_fd (key_file, fd, flags, &key_file_error);
-  close (fd);
+    fd = g_open (file, O_RDONLY, 0);
 
-  if (key_file_error) {
-    g_propagate_error (error, key_file_error);
-    return FALSE;
+    if (fd == -1) {
+      g_set_error_literal (error, EDA_ERROR, errno, strerror (errno));
+      result = FALSE;
+    }
+    else {
+
+      GError *key_file_error = NULL;
+
+      geda_keyfile_load_from_fd (key_file, fd, flags, &key_file_error);
+      close (fd);
+
+      if (key_file_error) {
+        g_propagate_error (error, key_file_error);
+        return FALSE;
+      }
+
+      result = TRUE;
+    }
   }
-
-  return TRUE;
+  return result;
 }
 
 /*!
@@ -3038,12 +3052,14 @@ geda_keyfile_get_key_comment (GedaKeyFile *key_file,
 
   if (!group) {
 
-    g_set_error (error, GEDA_KEYFILE_ERROR,
-                 GEDA_KEYFILE_ERROR_GROUP_NOT_FOUND, "%s '%s'",
-                 _("Key file does not have group"),
-                 group_name ? group_name : "(null)");
+    if (error) {
 
-                 return NULL;
+      g_set_error (error, GEDA_KEYFILE_ERROR,
+                   GEDA_KEYFILE_ERROR_GROUP_NOT_FOUND, "%s '%s'",
+                   _("Key file does not have group"),
+                   group_name ? group_name : "(null)");
+    }
+    return NULL;
   }
 
   /* First find the key the comments are supposed to be
@@ -3117,7 +3133,7 @@ get_group_comment (GedaKeyFile       *key_file,
                    GError           **error)
 {
   GString *string;
-  GList *tmp;
+  GList   *tmp;
 
   string = NULL;
 
@@ -3146,7 +3162,7 @@ get_group_comment (GedaKeyFile       *key_file,
     GedaKeyFilePair *pair;
     char *comment;
 
-    pair = (GedaKeyFilePair *) tmp->data;
+    pair = (GedaKeyFilePair*) tmp->data;
 
     if (string == NULL) {
       string = g_string_sized_new (512);
@@ -3178,12 +3194,13 @@ geda_keyfile_get_group_comment (GedaKeyFile *key_file,
 
   if (!group) {
 
-    g_set_error (error, GEDA_KEYFILE_ERROR,
-                 GEDA_KEYFILE_ERROR_GROUP_NOT_FOUND, "%s '%s'",
-                 _("Key file does not have group"),
+    if (error) {
+      g_set_error (error, GEDA_KEYFILE_ERROR,
+                   GEDA_KEYFILE_ERROR_GROUP_NOT_FOUND, "%s '%s'",
+                   _("Key file does not have group"),
                    group_name ? group_name : "(null)");
-
-                 return NULL;
+    }
+    return NULL;
   }
 
   if (group->comment) {
@@ -3208,8 +3225,10 @@ geda_keyfile_get_top_comment (GedaKeyFile  *key_file,
    * group in the file
    */
   g_warn_if_fail (key_file->groups != NULL);
+
   group_node = g_list_last (key_file->groups);
   group      = (GedaKeyFileGroup *) group_node->data;
+
   g_warn_if_fail (group->name == NULL);
 
   return get_group_comment (key_file, group, error);
@@ -3225,8 +3244,8 @@ geda_keyfile_get_top_comment (GedaKeyFile  *key_file,
  *
  * \param [in]  key_file    a #GedaKeyFile object
  * \param [in]  group_name  a group name, or %NULL
- * \param [in]  key         Pointer key name
- * \param [out] error       Location for a GError
+ * \param [in]  key         Pointer key name, or %NULL
+ * \param [out] error       Optional location for a GError
  *
  * \returns a comment that should be freed with GEDA_FREE()
  */
