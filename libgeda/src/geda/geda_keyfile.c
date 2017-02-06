@@ -354,10 +354,13 @@ bool is_a_geda_keyfile (GedaKeyFile *keyfile)
 /*!
  * \brief Create a New Key File Object
  * \par Function Description
- *  Creates a new empty #GedaKeyFile object. Use
- *  geda_keyfile_load_from_file(), geda_keyfile_load_from_data(),
- *  geda_keyfile_load_from_dirs() or geda_keyfile_load_from_data_dirs()
- *  to read an existing key file.
+ *  Creates a new empty #GedaKeyFile object. To read an existing
+ *  key file use one of:
+ *
+ *    geda_keyfile_load_from_file,
+ *    geda_keyfile_load_from_data,
+ *    geda_keyfile_load_from_dirs,
+ *    geda_keyfile_load_from_data_dirs.
  *
  * \returns an empty #GedaKeyFile.
  */
