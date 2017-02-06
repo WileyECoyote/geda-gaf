@@ -14,6 +14,11 @@
       use intermediate variables, ax, ay, and set values in callers locations
       only if caller address is not null.
 
+    * tests/test_keyfile.c: Add two groups, G1 and G2 to test ini file. Add
+      comments, add checks for geda_keyfile_load_from_file and geda_keyfile_get
+      _comment, the later so that flags bapped to geda_keyfile_load_from_file
+      are checked.
+
 2017-02-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_box.c: Update Doxygen comment for geda_box_class_init.

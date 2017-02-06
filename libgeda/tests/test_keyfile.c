@@ -30,8 +30,9 @@
 
 #define TOBJECT "GedaKeyFile"
 #define KEY_FILENAME "./test_keyfile.ini"
+#define NOT_KEY_FILENAME "./test_Nofile.ini"
 
-const char key_data[] = "[Test]\nT1=A\nT2=B\nT3=C\n";
+const char key_data[] = "[G1]\nT1=A\n[G2]\nT1=B\nT2=C\nT3=D\n";
 
 /*! \file test_keyfile.c
  *  \brief Tests for geda_keyfile.c module
@@ -49,14 +50,15 @@ int create_keyfile_data (void)
   GedaKeyFile *keyfile = geda_keyfile_new ();
 
   if (!GEDA_IS_KEYFILE(keyfile)) {
-    fprintf(stderr, "FAILED: (KF080101) geda_keyfile_new\n");
+    fprintf(stderr, "FAILED: (KF080101A) geda_keyfile_new\n");
     return 1;
   }
 
   err = NULL;
 
+  /* === Function 07: geda_keyfile_load_from_data  === */
   result = !geda_keyfile_load_from_data (keyfile, &key_data[0], sizeof(key_data),
-                                        GEDA_KEYFILE_NONE, &err);
+                                         GEDA_KEYFILE_NONE, &err);
 
   if (result) {
     fprintf(stderr, "FAILED: (KF080701) geda_keyfile_load_from_data: <%s>\n", err->message);
@@ -64,16 +66,18 @@ int create_keyfile_data (void)
   }
   else {
 
+    /* === Function 42: geda_keyfile_set_comment varients === */
+
     /* geda_keyfile_set_top_comment */
     if (!geda_keyfile_set_comment (keyfile, NULL, NULL, "Toplevel Comment", NULL))
       fprintf(stderr, "%s: set top comments returned FALSE, expect failure\n", __func__);
 
     /* geda_keyfile_set_group_comment */
-    if (!geda_keyfile_set_comment (keyfile, "Test", NULL, "Group Comment", NULL))
+    if (!geda_keyfile_set_comment (keyfile, "G2", NULL, "Group Comment", NULL))
       fprintf(stderr, "%s: set group comments returned FALSE, expect failure\n", __func__);
 
     /* geda_keyfile_set_key_comment */
-    if (!geda_keyfile_set_comment (keyfile, "Test", "T1", "Key Comment", NULL))
+    if (!geda_keyfile_set_comment (keyfile, "G2", "T1", "Key Comment", NULL))
       fprintf(stderr, "%s: set key comments returned FALSE, expect failure\n", __func__);
 
     /* geda_keyfile_set_group_comment non-existence group */
@@ -110,7 +114,10 @@ int create_keyfile_data (void)
       }
     }
 
+    /* === Function 10: geda_keyfile_to_data === */
+
     data = geda_keyfile_to_data(keyfile, NULL, NULL);
+
     g_file_set_contents(KEY_FILENAME, data, -1, NULL);
 
     GEDA_FREE(data);
@@ -151,14 +158,125 @@ int create_keyfile_data (void)
 int check_load_keyfile (void)
 {
   int result = 0;
+  GError *err = NULL;
+
+  /* === Function 01: geda_keyfile_new  === */
+  GedaKeyFile *keyfile = geda_keyfile_new ();
+
+  if (!GEDA_IS_KEYFILE(keyfile)) {
+    fprintf(stderr, "FAILED: (KF080101B) geda_keyfile_new\n");
+    return 1;
+  }
+
+  if (geda_keyfile_load_from_file (NULL, NOT_KEY_FILENAME, 0, NULL))
+  {
+    fprintf(stderr, "FAILED: (KF080600A) NULL NOT_KEY_FILENAME NULL\n");
+    result++;
+  }
+
+  if (geda_keyfile_load_from_file (keyfile, NOT_KEY_FILENAME, 0, &err))
+  {
+    fprintf(stderr, "FAILED: (KF080600B) NOT_KEY_FILENAME NULL\n");
+    result++;
+  }
+  else if (!err) {
+      fprintf(stderr, "FAILED: (KF080600C) NULL NOT_KEY_FILENAME error is NULL\n");
+      result++;
+  }
+  else {
+      vmessage("Message: (KF080600D) %s.\n", err->message);
+      g_error_free (err);
+  }
 
   if (g_file_test (KEY_FILENAME, G_FILE_TEST_EXISTS)) {
 
+    err = NULL;
+
+    /* === Function 06: geda_keyfile_load_from_file === */
+
+    /* Actually Load the file, comments should be stripped */
+    if (!geda_keyfile_load_from_file (keyfile, KEY_FILENAME, GEDA_KEYFILE_NONE, &err))
+    {
+      if (!err) {
+        fprintf(stderr, "FAILED: (KF080601A) NULL NOT_KEY_FILENAME error is NULL\n");
+        result++;
+      }
+      else {
+        vmessage("Message: (KF080601B) %s.\n", err->message);
+        g_error_free (err);
+      }
+    }
+    else {
+
+      char *comment;
+
+      err = NULL;
+
+      /* === Function 43:  geda_keyfile_get_comment === */
+
+      comment = geda_keyfile_get_comment (keyfile, NULL, NULL, &err);
+
+      if (comment) {
+        /* Comment should not have been loaded so error goes against KF0806 */
+        fprintf(stderr, "FAILED: (KF080601C) comments without flags <%s>\n", comment);
+        result++;
+        g_free(comment);
+      }
+      else {
+        /* Error was supplied so is error if error is not set */
+        if (!err) {
+          fprintf(stderr, "FAILED: (KFKF084301A) NULL NOT_KEY_FILENAME error is NULL\n");
+          result++;
+        }
+        else {
+          vmessage("Message: (KF084301B) %s.\n", err->message);
+          g_error_free (err);
+        }
+      }
+
+      err = NULL;
+
+      /* ReLoad the file, without stripping comments */
+      if (!geda_keyfile_load_from_file (keyfile, KEY_FILENAME,
+                                        GEDA_KEYFILE_KEEP_COMMENTS, &err))
+      {
+        if (!err) {
+          fprintf(stderr, "FAILED: (KF080602A) NULL NOT_KEY_FILENAME error is NULL\n");
+          result++;
+        }
+        else {
+          vmessage("Message: (KF080602B) %s.\n", err->message);
+          g_error_free (err);
+        }
+      }
+      else {
+
+        comment = geda_keyfile_get_comment (keyfile, NULL, NULL, NULL);
+
+        if (!comment) {
+          /* Comment should have been loaded so error goes against KF0806 */
+          fprintf(stderr, "FAILED: (KF080602A) no comments with flags\n");
+          result++;
+        }
+        else {
+
+          /* Verify the comment string is correct */
+          if (strcmp(comment, "Toplevel Comment")) {
+            fprintf(stderr, "FAILED: (KF080602B) comments mismatched <%s>\n", comment);
+            result++;
+          }
+          g_free(comment);
+        }
+      }
+    }
   }
   else {
-    fprintf(stderr, "FAILED: (KF081001) key file not found: <%s>\n", KEY_FILENAME);
+    fprintf(stderr, "FAILED: (ERROR) key file not found: <%s>\n", KEY_FILENAME);
     result++;
   }
+
+  geda_keyfile_free(keyfile);
+
   return result;
 }
 
