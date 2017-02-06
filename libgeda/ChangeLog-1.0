@@ -7,7 +7,8 @@
       check error argument and only set when address is suppied, this effective
       makes the error argument optional. Add setting error in get_group_comment
       when comment is not found, if callers do not want to clear the error then
-      callers should not pass an error argument.
+      callers should not pass an error argument. Add geda_keyfile_not_valid for
+      local error message output. Reduce scope in geda_keyfile_load_from_file.
 
 2017-02-05 Wiley E. Hill <wileyhill@gmail.com>
 

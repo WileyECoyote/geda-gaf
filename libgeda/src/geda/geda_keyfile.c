@@ -285,6 +285,20 @@ geda_keyfile_error (void)
 }
 
 static void
+geda_keyfile_not_valid (const char *func, GedaKeyFile *key_file)
+{
+  fprintf(stderr, "libgeda <%s>: key_file ", func);
+
+  if (!key_file) {
+    fprintf(stderr, _("argument is NULL\n"));
+  }
+  else {
+    const char *msg = _("is not valid\n");
+    fprintf(stderr, "%s <%p>\n", msg, key_file);
+  }
+}
+
+static void
 geda_keyfile_init (GedaKeyFile *key_file)
 {
   key_file->current_group  = GEDA_MEM_ALLOC0 (sizeof(GedaKeyFileGroup));
@@ -568,19 +582,16 @@ geda_keyfile_load_from_file (GedaKeyFile       *key_file,
                              GedaKeyFileFlags   flags,
                              GError           **error)
 {
-  GError *key_file_error = NULL;
   bool result;
   int  fd;
 
-  g_return_val_if_fail (key_file != NULL, FALSE);
   g_return_val_if_fail (file != NULL, FALSE);
 
-  fd = g_open (file, O_RDONLY, 0);
-
-  if (fd == -1) {
-    g_set_error_literal (error, EDA_ERROR, errno, strerror (errno));
-    return FALSE;
+  if (!GEDA_IS_KEYFILE(key_file)) {
+    geda_keyfile_not_valid(__func__, key_file);
+    result = FALSE;
   }
+  else {
 
     fd = g_open (file, O_RDONLY, 0);
 
