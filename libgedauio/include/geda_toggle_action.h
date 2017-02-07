@@ -46,7 +46,7 @@ typedef struct _GedaToggleActionClass   GedaToggleActionClass;
 struct _GedaToggleAction
 {
   GtkToggleAction parent_instance;
-  GedaType        instance_type;
+
   char           *multikey_accel;
 };
 

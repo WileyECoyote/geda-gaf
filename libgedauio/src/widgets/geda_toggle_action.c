@@ -68,6 +68,8 @@ enum {
 //static char *ptr_multikey_accel = NULL;
 static GObjectClass *geda_toggle_action_parent_class = NULL;
 
+static GHashTable *toggle_action_hash = NULL;
+
 static void geda_toggle_action_set_property (GObject      *object,
                                              unsigned int  property_id,
                                              const GValue *value,
@@ -90,6 +92,13 @@ static void
 geda_toggle_action_finalize (GObject *object)
 {
   GedaToggleAction *action = GEDA_TOGGLE_ACTION (object);
+
+  if (g_hash_table_remove (toggle_action_hash, object)) {
+    if (!g_hash_table_size (toggle_action_hash)) {
+      g_hash_table_destroy (toggle_action_hash);
+      toggle_action_hash = NULL;
+    }
+  }
 
   if (action->multikey_accel) {
     g_free (action->multikey_accel);
@@ -114,9 +123,9 @@ geda_toggle_action_set_property (GObject *object,
                                  unsigned int property_id,
                                  const GValue *value, GParamSpec *pspec)
 {
-  GedaToggleAction *action = GEDA_TOGGLE_ACTION (object);
+  GedaToggleAction *action = GEDA_TOGGLE_ACTION(object);
 
-  if(property_id == PROP_MULTIKEY_ACCEL) {
+  if (property_id == PROP_MULTIKEY_ACCEL) {
     if (action->multikey_accel != NULL) {
       g_free (action->multikey_accel);
     }
@@ -142,8 +151,9 @@ geda_toggle_action_get_property (GObject *object, unsigned int property_id,
 {
   GedaToggleAction *action = GEDA_TOGGLE_ACTION (object);
 
-  if(property_id == PROP_MULTIKEY_ACCEL)
+  if(property_id == PROP_MULTIKEY_ACCEL) {
     g_value_set_string (value, action->multikey_accel);
+  }
 }
 
 static void
@@ -242,8 +252,13 @@ geda_toggle_action_class_init (void *class, void *data)
 static void
 geda_toggle_action_instance_init (GTypeInstance *instance, void *class)
 {
-  GedaToggleAction *action = (GedaToggleAction*)instance;
-  action->instance_type  = geda_toggle_action_get_type();
+  //GedaToggleAction *action = (GedaToggleAction*)instance;
+
+  if (!toggle_action_hash) {
+    toggle_action_hash = g_hash_table_new (g_direct_hash, NULL);
+  }
+
+  g_hash_table_replace (toggle_action_hash, instance, instance);
 }
 
 /*! \brief Function to retrieve GedaToggleAction's Type identifier.
@@ -288,8 +303,8 @@ GedaType geda_toggle_action_get_type (void)
 
 bool is_a_geda_toggle_action (GedaToggleAction *action)
 {
-  if (G_IS_OBJECT(action)) {
-    return (geda_toggle_action_get_type() == action->instance_type);
+  if ((action != NULL) && (toggle_action_hash != NULL)) {
+    return g_hash_table_lookup(toggle_action_hash, action) ? TRUE : FALSE;
   }
   return FALSE;
 }
