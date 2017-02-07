@@ -4825,42 +4825,43 @@ msgstr "_Diminuir Espaçamento da Grelha"
 msgid "Decrease the snap size"
 msgstr ""
 
+# Change Grid Spacing
 #: gschem/etc/system-gschemrc.scm:2318
-#, fuzzy
 msgid "S_nap Grid Spacing..."
 msgstr "Alterar Es_paçamento da grelha..."
 
+# Adjust snap size
 #: gschem/etc/system-gschemrc.scm:2318
 msgid "Adjust snap size"
-msgstr ""
+msgstr "Ajustar tamanho do snap"
 
+# Toggle Snap On-Off
 #: gschem/etc/system-gschemrc.scm:2321
-#, fuzzy
 msgid "Toggle _Snap On-Off"
-msgstr "Ajuste a _Grelha Lig/Des"
+msgstr "Ajuste a snap Lig/Des"
 
+# Toggle the object snap mode
 #: gschem/etc/system-gschemrc.scm:2321
 msgid "Toggle the object snap mode"
-msgstr ""
+msgstr "Alternar o modo de snap de objeto"
 
+# Toggle Keep Connections
 #: gschem/etc/system-gschemrc.scm:2322
-#, fuzzy
 msgid "Toggle _Rubberband"
 msgstr "Alternar Conservar _Ligações"
 
+# Toggle Keep Connections
 #: gschem/etc/system-gschemrc.scm:2322
-#, fuzzy
 msgid "Toggle rubberband net mode"
-msgstr "Alternar Conservar _Ligações"
+msgstr "Alternar Conservar _Ligações modo"
 
 #: gschem/etc/system-gschemrc.scm:2323
 msgid "Toggle _Magnetic Net"
 msgstr "Alternar Ligação _Magnética"
 
 #: gschem/etc/system-gschemrc.scm:2323
-#, fuzzy
 msgid "Toggle magnetic net mode"
-msgstr "Alternar Ligação _Magnética"
+msgstr "Alternar Ligação _Magnética modo"
 
 #: gschem/etc/system-gschemrc.scm:2324
 #, fuzzy
@@ -5451,102 +5452,109 @@ msgstr ""
 msgid "Translate Symbol"
 msgstr "Símbolo de traduzir"
 
+# Dots Grid Style
 #: gschem/scheme/gschem/builtins.scm:463
 msgid "Dots Grid Style"
-msgstr ""
+msgstr "Pontos de estilo de grade"
 
+# Mesh Grid Style
 #: gschem/scheme/gschem/builtins.scm:466
-#, fuzzy
 msgid "Mesh Grid Style"
-msgstr "Seleccionada grelha de traços"
+msgstr "Estilo de grade de malha"
 
+# Turn Grid Off
 #: gschem/scheme/gschem/builtins.scm:469
 msgid "Turn Grid Off"
-msgstr ""
+msgstr "Gire Grade Desligado"
 
+# Cycle Grid Mode
 #: gschem/scheme/gschem/builtins.scm:472
-#, fuzzy
 msgid "Cycle Grid Mode"
-msgstr "Modo de Arco"
+msgstr "Modo de Grade do ciclo"
 
+# Increase Grid Spacing
 #: gschem/scheme/gschem/builtins.scm:475
-#, fuzzy
 msgid "Increase Grid Spacing"
-msgstr "_Aumentar Espaçamento da Grelha"
+msgstr "Aumentar o espaçamento da Grade"
 
+# Decrease Grid Spacing
 #: gschem/scheme/gschem/builtins.scm:478
-#, fuzzy
 msgid "Decrease Grid Spacing"
-msgstr "_Aumentar Espaçamento da Grelha"
+msgstr "Diminuir o espaçamento da Grade"
 
+# Set Snap Spacing
 #: gschem/scheme/gschem/builtins.scm:481
-#, fuzzy
 msgid "Set Snap Spacing"
-msgstr "_Aumentar Espaçamento da Grelha"
+msgstr "Defina o espaçamento de encaixe"
 
+# Turn Snap off
 #: gschem/scheme/gschem/builtins.scm:484
-#, fuzzy
 msgid "Turn Snap off"
-msgstr "Desactivado o Ajuste à Grelha"
+msgstr "Gire o encaixe"
 
+# Turn Snap on
 #: gschem/scheme/gschem/builtins.scm:487
 msgid "Turn Snap on"
-msgstr ""
+msgstr "Gire o encaixe"
 
+# Cycle Snap Mode
 #: gschem/scheme/gschem/builtins.scm:490
-#, fuzzy
 msgid "Cycle Snap Mode"
-msgstr "Modo Centrar"
+msgstr "Gire o encaixe"
 
+# Toggle Net Rubber Band => Toggle elastic connection
 #: gschem/scheme/gschem/builtins.scm:493
-#, fuzzy
 msgid "Toggle Net Rubber Band"
-msgstr "Alternar Conservar _Ligações"
+msgstr "Alternar conexão elástica"
 
+# Toggle Net Magnetic Band => Toggle Magnetic connection
 #: gschem/scheme/gschem/builtins.scm:496
-#, fuzzy
 msgid "Toggle Magnetic Nets"
-msgstr "Alternar Ligação _Magnética"
+msgstr "Alternar Ligação Magnética"
 
+# => Enable/Disable Drag Motion
 #: gschem/scheme/gschem/builtins.scm:499
 msgid "Enable/Disable Drag move"
-msgstr ""
+msgstr "Ativar/Desativar Movimento de Arraste"
 
+# Toggle Outline Drawing
 #: gschem/scheme/gschem/builtins.scm:502
-#, fuzzy
 msgid "Toggle Outline Drawing"
-msgstr "Alternar _Contorno/Rectângulo"
+msgstr "Alternar desenho de contorno"
 
+# Enable/Disable Auto Panning
 #: gschem/scheme/gschem/builtins.scm:505
 msgid "Enable/Disable Auto Panning"
-msgstr ""
+msgstr "Habilitar/Desativar o Auto Panning"
 
+# Set Default Text Size
 #: gschem/scheme/gschem/builtins.scm:508
-#, fuzzy
 msgid "Set Default Text Size"
-msgstr "Tamanho do Texto"
+msgstr "Definir tamanho texto padrão"
 
+# Open Preference Dialog
 #: gschem/scheme/gschem/builtins.scm:511
 msgid "Open Preference Dialog"
-msgstr ""
+msgstr "Abrir caixa de diálogo Preferência"
 
 #: gschem/scheme/gschem/builtins.scm:518
 msgid "gEDA Manuals"
-msgstr ""
+msgstr "Manuais gEDA"
 
+# View the front page of the gEDA documentation in a browser
 #: gschem/scheme/gschem/builtins.scm:519
 msgid "View the front page of the gEDA documentation in a browser."
-msgstr ""
+msgstr "Visualizar a página frontal do gEDA documentação em um navegador."
 
+# Show Hotkeys
 #: gschem/scheme/gschem/builtins.scm:522
-#, fuzzy
 msgid "Show Hotkeys"
-msgstr "Teclas de Atalho"
+msgstr "Mostrar teclas atalho"
 
+# Component Documentation
 #: gschem/scheme/gschem/builtins.scm:526
-#, fuzzy
 msgid "Component Documentation"
-msgstr "Documentação de _Componente..."
+msgstr "Documentação Componente"
 
 #: gschem/scheme/gschem/builtins.scm:528
 msgid "View documentation for selected component"
