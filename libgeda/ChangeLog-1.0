@@ -1,5 +1,8 @@
 2017-02-07 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/file/f_sys.c: Revise output messages and formats in order to
+      minimize format specifiers in translatable strings, update copyright.
+
     * src/geda/geda_keyfile.c: Utilize geda_utility_string_remove_last_nl in
       geda_keyfile_get_key_comment and get_group_comment to remove the final
       line-ending from comments, works better. Revise geda_keyfile_get_key_

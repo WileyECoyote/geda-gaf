@@ -1,7 +1,7 @@
 /* -*- C header file: f_sys.c indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
  *
- * Copyright (C) 2013-2015 Wiley Edward Hill
- * Copyright (C) 2013-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2013-2017 Wiley Edward Hill
+ * Copyright (C) 2013-2017 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -81,12 +81,14 @@ geda_file_copy(const char *source, const char *target)
 #if defined(OS_LINUX)
 
   const char *err_lock = _("File lock error");
-  const char *err_sys  = _("%s: attempting to unlock file \"%s\"\n");
 
   void unlock_input(int input) {
     /* Unlock the input file */
     if (flock(input, LOCK_UN) == -1) {
-      geda_utility_log_system(err_sys, err_file, source);
+
+      const char *err_sys  = _("attempting to unlock file");
+
+      geda_utility_log_system("%s: %s \"%s\"\n", err_file, err_sys, source);
     }
   }
 
@@ -341,8 +343,8 @@ geda_file_sys_follow_symlinks (const char *filename, GError **err)
   }
 
   /* Too many symlinks */
-  g_set_error (err, EDA_ERROR, EDA_ERROR_LOOP,
-             _("%s: %s"), strerror (EMLINK), followed_filename);
+  g_set_error (err, EDA_ERROR, EDA_ERROR_LOOP, "%s: %s",
+               strerror (EMLINK), followed_filename);
   GEDA_FREE (followed_filename);
   return NULL;
 
@@ -428,6 +430,7 @@ geda_file_sys_normalize_name (const char *name, GError **error)
 #else
 
   if (!g_file_test(name, G_FILE_TEST_EXISTS)) {
+
     g_set_error (error, EDA_ERROR, ENOENT, "%s", strerror (ENOENT));
     return NULL;
   }
