@@ -17,7 +17,7 @@
     * tests/test_keyfile.c: Add two groups, G1 and G2 to test ini file. Add
       comments, add checks for geda_keyfile_load_from_file and geda_keyfile_get
       _comment, the later so that flags bapped to geda_keyfile_load_from_file
-      are checked.
+      are checked. Add Doxygen group test-geda-keyfile with list of functions.
 
 2017-02-05 Wiley E. Hill <wileyhill@gmail.com>
 

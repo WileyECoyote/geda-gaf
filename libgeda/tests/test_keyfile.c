@@ -40,6 +40,72 @@ const char key_data[] = "[G1]\nT1=A\n[G2]\nT1=B\nT2=C\nT3=D\n";
  *  This module provides basic unit tests for keyfile operations.
  */
 
+/** \defgroup test-geda-keyfile Test GEDA Keyfile Module
+ * @{
+ * \brief Group 8 src/geda/geda_keyfile.c geda_circle_object_
+ *  Group 8 == Module/File No.
+ * \par
+ *
+ *  Test Identifiers:  O  08  88  88
+ *                     ^   ^   ^   ^
+ *    group-code ______|   |   |   |
+ *                         |   |   |
+ *    Module/File No. _____|   |   |
+ *                             |   |
+ *    Function No._____________|   |
+ *                                 |
+ *    Tests Number ________________|
+ *
+ *  See tests/README for more details on the nomenclature for test identifiers.
+ *
+ *      KF0801    geda_keyfile_new
+ *      KF0802    geda_keyfile_ref
+ *      KF0803    geda_keyfile_unref
+ *      KF0804    geda_keyfile_free
+ *       KF0805    geda_keyfile_set_list_separator
+ *      KF0806    geda_keyfile_load_from_file
+ *      KF0807    geda_keyfile_load_from_data
+ *       KF0808    geda_keyfile_load_from_dirs
+ *       KF0809    geda_keyfile_load_from_data_dirs
+ *      KF0810    geda_keyfile_to_data
+ *       KF0811    geda_keyfile_get_start_group
+ *       KF0812    geda_keyfile_get_groups
+ *       KF0813    geda_keyfile_get_keys
+ *       KF0814    geda_keyfile_has_group
+ *       KF0815    geda_keyfile_has_key
+ *       KF0816    geda_keyfile_get_value
+ *       KF0817    geda_keyfile_set_value
+ *       KF0818    geda_keyfile_get_string
+ *       KF0819    geda_keyfile_set_string
+ *       KF0820    geda_keyfile_get_locale_string
+ *       KF0821    geda_keyfile_set_locale_string
+ *       KF0822    geda_keyfile_get_boolean
+ *       KF0823    geda_keyfile_set_boolean
+ *       KF0824    geda_keyfile_get_integer
+ *       KF0825    geda_keyfile_set_integer
+ *       KF0826    geda_keyfile_get_int64
+ *       KF0827    geda_keyfile_set_int64
+ *       KF0828    geda_keyfile_get_uint64
+ *       KF0829    geda_keyfile_set_uint64
+ *       KF0830    geda_keyfile_get_double
+ *       KF0831    geda_keyfile_set_double
+ *       KF0832    geda_keyfile_get_string_list
+ *       KF0833    geda_keyfile_set_string_list
+ *       KF0834    geda_keyfile_get_locale_string_list
+ *       KF0835    geda_keyfile_set_locale_string_list
+ *       KF0836    geda_keyfile_get_boolean_list
+ *       KF0837    geda_keyfile_set_boolean_list
+ *       KF0838    geda_keyfile_set_double_list
+ *       KF0839    geda_keyfile_get_double_list
+ *       KF0840    geda_keyfile_get_integer_list
+ *       KF0841    geda_keyfile_set_integer_list
+ *      KF0842    geda_keyfile_set_comment
+ *      KF0843    geda_keyfile_get_comment
+ *       KF0844    geda_keyfile_remove_comment
+ *       KF0845    geda_keyfile_remove_key
+ *       KF0846    geda_keyfile_remove_group
+ */
+
 int create_keyfile_data (void)
 {
   int result = 0;
