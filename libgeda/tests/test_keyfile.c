@@ -38,6 +38,7 @@
 #define KEY_COMMENTS_STR "Key Comment"
 
 const char key_data[] = "[G1]\nT1=A\n[G2]\nT1=B\nT2=C\nT3=D\n";
+//const char key_data[] = "[G2]\nT1=B\nT2=C\nT3=D\n";
 
 /*! \file test_keyfile.c
  *  \brief Tests for geda_keyfile.c module
@@ -339,6 +340,25 @@ int check_load_keyfile (void)
           }
           g_free(comment);
         }
+
+        /* Get the G2 Group comments */
+        comment = geda_keyfile_get_comment (keyfile, "G2", NULL, NULL);
+
+        if (!comment) {
+          /* Comment should have been loaded so error goes against KF0806 */
+          fprintf(stderr, "FAILED: (KF080603A) no comments with flags\n");
+          result++;
+        }
+        else {
+
+          /* Verify the comment string is correct */
+          if (strcmp(comment, GRP_COMMENTS_STR)) {
+            fprintf(stderr, "FAILED: (KF080603B) comments mismatched <%s>\n", comment);
+            result++;
+          }
+          g_free(comment);
+        }
+
       }
     }
   }

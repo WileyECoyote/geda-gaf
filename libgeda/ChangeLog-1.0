@@ -12,6 +12,9 @@
       and when traversing down for top level comments. Add comments.
 
     * tests/test_keyfile.c: Define constants for keyfile comment strings.
+      Add checks for geda_keyfile_get_group_comments in check_load_keyfile
+      to ensure top level comments are not mixed with comments for the first
+      group.
 
 2017-02-06 Wiley E. Hill <wileyhill@gmail.com>
 
