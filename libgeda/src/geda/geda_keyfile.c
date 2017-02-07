@@ -3138,7 +3138,7 @@ geda_keyfile_get_key_comment (GedaKeyFile *key_file,
     comment = NULL;
   }
 
-  return comment;
+  return geda_utility_string_remove_last_nl(string);
 }
 
 static char*
@@ -3190,7 +3190,7 @@ get_group_comment (GedaKeyFile       *key_file,
   }
 
   if (string != NULL) {
-    return g_string_free (string, FALSE);
+    return geda_utility_string_remove_last_nl(string);
   }
 
   if (error) {
