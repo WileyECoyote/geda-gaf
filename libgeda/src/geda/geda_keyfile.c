@@ -1261,7 +1261,7 @@ geda_keyfile_to_data (GedaKeyFile *key_file, unsigned int  *length, GError **err
 
       GedaKeyFilePair *pair;
 
-      pair = (GedaKeyFilePair *) key_file_node->data;
+      pair = (GedaKeyFilePair*) key_file_node->data;
 
       if (pair->key != NULL) {
         g_string_append_printf (data_string, "%s=%s\n", pair->key, pair->value);
@@ -2903,7 +2903,7 @@ geda_keyfile_set_key_comment (GedaKeyFile *key_file,
 
     GList *comment_node;
 
-    pair = (GedaKeyFilePair *) tmp->data;
+    pair = (GedaKeyFilePair*) tmp->data;
 
     if (pair->key != NULL)
       break;
@@ -3164,6 +3164,7 @@ geda_keyfile_get_key_comment (GedaKeyFile *key_file,
 static char*
 get_group_comment (GedaKeyFile       *key_file,
                    GedaKeyFileGroup  *group,
+                   bool               top,
                    GError           **error)
 {
   unsigned int size;
@@ -3180,6 +3181,16 @@ get_group_comment (GedaKeyFile       *key_file,
 
     pair = (GedaKeyFilePair*) tmp->data;
 
+    if (!top) {
+
+      char *comment;
+
+      comment = geda_keyfile_parse_value_as_comment (key_file, pair->value);
+
+      if (comment && (!strlen(comment))) {
+        break;
+      }
+    }
 
     if (pair->key != NULL) {
       tmp = tmp->prev;
@@ -3208,6 +3219,10 @@ get_group_comment (GedaKeyFile       *key_file,
     if (comment) {
 
       size_t len = strlen(comment);
+
+      if (top && !len) {
+        break;
+      }
 
       size = size + len;
 
@@ -3284,7 +3299,7 @@ geda_keyfile_get_group_comment (GedaKeyFile *key_file,
   group_node = group_node->next;
   group      = (GedaKeyFileGroup*)group_node->data;
 
-  return get_group_comment (key_file, group, error);
+  return get_group_comment (key_file, group, FALSE, error);
 }
 
 static char*
@@ -3304,7 +3319,7 @@ geda_keyfile_get_top_comment (GedaKeyFile  *key_file,
 
   g_warn_if_fail (group->name == NULL);
 
-  return get_group_comment (key_file, group, error);
+  return get_group_comment (key_file, group, TRUE, error);
 }
 
 /*!
@@ -3528,7 +3543,7 @@ geda_keyfile_remove_key_value_pair_node (GedaKeyFile      *key_file,
 {
   GedaKeyFilePair *pair;
 
-  pair = (GedaKeyFilePair *) pair_node->data;
+  pair = (GedaKeyFilePair*) pair_node->data;
 
   group->key_value_pairs = g_list_remove_link (group->key_value_pairs, pair_node);
 
@@ -3770,7 +3785,7 @@ geda_keyfile_lookup_key_value_pair_node (GedaKeyFile      *key_file,
   {
     GedaKeyFilePair *pair;
 
-    pair = (GedaKeyFilePair *) node->data;
+    pair = (GedaKeyFilePair*) node->data;
 
     if (pair->key && strcmp (pair->key, key) == 0)
       break;
@@ -3784,7 +3799,7 @@ geda_keyfile_lookup_key_value_pair (GedaKeyFile      *key_file,
                                     GedaKeyFileGroup *group,
                                     const char       *key)
 {
-  return (GedaKeyFilePair *) g_hash_table_lookup (group->lookup_map, key);
+  return (GedaKeyFilePair*) g_hash_table_lookup (group->lookup_map, key);
 }
 
 /* Lines starting with # or consisting entirely of whitespace are merely
