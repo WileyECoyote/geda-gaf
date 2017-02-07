@@ -96,6 +96,11 @@
  * \endcode
  *
  * Lines beginning with a '#' and blank lines are considered comments.
+ * Comments before the first group are referred to as "top level" comments.
+ * Top-level comments should not contain blank lines. If blanks lines are
+ * presents, only the line or lines before the break will be returned.
+ * This because a blank line is the only way to distinguish top level
+ * comments from group 1 comment and vice versa.
  *
  * Groups are started with a header line containing the group name enclosed
  * in '[' and ']', and ended implicitly by the start of the next group or
@@ -114,8 +119,8 @@
  * To use the list separator character in a value in a list, it has to
  * be escaped by prefixing it with a backslash.
  *
- * This syntax is obviously inspired by the .ini files found on older
- * Windows systems, but there are some important differences:
+ * This syntax is obviously inspired by the .ini files found on older Windows
+ * systems, but there are some important differences:
  * <DL>
  *   <DT>.ini files use the ';' character to begin comments,
  *     key files use the '#' character.</DT>
@@ -3158,9 +3163,14 @@ geda_keyfile_get_key_comment (GedaKeyFile *key_file,
     }
   }
 
+  /* Strip trailing line-ending from the returned string */
   return geda_utility_string_remove_last_nl(string);
 }
 
+/*! \internal Helper function for:
+ * geda_keyfile_get_top_comment   (top set)
+ * geda_keyfile_get_group_comment (top unset)
+ */
 static char*
 get_group_comment (GedaKeyFile       *key_file,
                    GedaKeyFileGroup  *group,
@@ -3171,10 +3181,9 @@ get_group_comment (GedaKeyFile       *key_file,
   char        *string;
   GList       *tmp;
 
-  string = NULL;
-
   tmp = group->key_value_pairs;
 
+  /* Traverse downward=up, break on first, end and blanks if not top */
   while (tmp) {
 
     GedaKeyFilePair *pair;
@@ -3183,6 +3192,8 @@ get_group_comment (GedaKeyFile       *key_file,
 
     if (!top) {
 
+      /* Looking for group comments so if blank line then stop so that
+       * top level comments, if present, are excluded */
       char *comment;
 
       comment = geda_keyfile_parse_value_as_comment (key_file, pair->value);
@@ -3220,6 +3231,8 @@ get_group_comment (GedaKeyFile       *key_file,
 
       size_t len = strlen(comment);
 
+      /* If looking for top comments and blank line then stop so that
+       * the first group comments, if present, are not included */
       if (top && !len) {
         break;
       }
@@ -3255,6 +3268,8 @@ get_group_comment (GedaKeyFile       *key_file,
   }
 
   if (string != NULL) {
+
+    /* Strip trailing line-ending from the returned string */
     return geda_utility_string_remove_last_nl(string);
   }
 

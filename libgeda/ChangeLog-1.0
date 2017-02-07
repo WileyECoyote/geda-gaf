@@ -9,7 +9,7 @@
       head then g_string_sized_new (512)/g_string_append/g_string_free. Add
       top argument to get_group_comment as flag to distinguish between group
       and top level comment; then skip blank when traversing up when groups
-      and when traversing down for top level comments.
+      and when traversing down for top level comments. Add comments.
 
 2017-02-06 Wiley E. Hill <wileyhill@gmail.com>
 
