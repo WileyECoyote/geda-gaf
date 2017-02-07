@@ -3166,8 +3166,9 @@ get_group_comment (GedaKeyFile       *key_file,
                    GedaKeyFileGroup  *group,
                    GError           **error)
 {
-  GString *string;
-  GList   *tmp;
+  unsigned int size;
+  char        *string;
+  GList       *tmp;
 
   string = NULL;
 
@@ -3177,7 +3178,8 @@ get_group_comment (GedaKeyFile       *key_file,
 
     GedaKeyFilePair *pair;
 
-    pair = (GedaKeyFilePair *) tmp->data;
+    pair = (GedaKeyFilePair*) tmp->data;
+
 
     if (pair->key != NULL) {
       tmp = tmp->prev;
@@ -3191,22 +3193,50 @@ get_group_comment (GedaKeyFile       *key_file,
     tmp = tmp->next;
   }
 
+  size   = 0;
+  string = NULL;
+
   while (tmp != NULL) {
 
     GedaKeyFilePair *pair;
-    char *comment;
+    char            *comment;
 
-    pair = (GedaKeyFilePair*) tmp->data;
-
-    if (string == NULL) {
-      string = g_string_sized_new (512);
-    }
+    pair = (GedaKeyFilePair*)tmp->data;
 
     comment = geda_keyfile_parse_value_as_comment (key_file, pair->value);
-    g_string_append (string, comment);
-    GEDA_FREE (comment);
 
-    tmp = tmp->prev;
+    if (comment) {
+
+      size_t len = strlen(comment);
+
+      size = size + len;
+
+      if (string == NULL) {
+        size++;
+        string = (char*)malloc(size);
+        strncpy(string, comment, len);
+        string[len] = '\0';
+      }
+      else {
+
+        char *buffer;
+
+        buffer = (char*)realloc(string, size);
+
+        if (!buffer)
+          break;
+
+        string = buffer;
+        strncat(string, comment, len);
+      }
+
+      GEDA_FREE (comment);
+
+      tmp = tmp->prev;
+    }
+    else {
+      tmp = NULL;
+    }
   }
 
   if (string != NULL) {
