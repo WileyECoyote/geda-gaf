@@ -11,6 +11,8 @@
       and top level comment; then skip blank when traversing up when groups
       and when traversing down for top level comments. Add comments.
 
+    * tests/test_keyfile.c: Define constants for keyfile comment strings.
+
 2017-02-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_keyfile.h: Add GEDA_KEYFILE_ERROR_NO_COMMENT

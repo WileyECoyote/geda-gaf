@@ -32,6 +32,11 @@
 #define KEY_FILENAME "./test_keyfile.ini"
 #define NOT_KEY_FILENAME "./test_Nofile.ini"
 
+/* Comment strings written to and read from KEY_FILENAME */
+#define TOP_COMMENTS_STR "Toplevel Comment\nline 2"
+#define GRP_COMMENTS_STR "Group Comment"
+#define KEY_COMMENTS_STR "Key Comment"
+
 const char key_data[] = "[G1]\nT1=A\n[G2]\nT1=B\nT2=C\nT3=D\n";
 
 /*! \file test_keyfile.c
@@ -135,15 +140,15 @@ int create_keyfile_data (void)
     /* === Function 42: geda_keyfile_set_comment varients === */
 
     /* geda_keyfile_set_top_comment */
-    if (!geda_keyfile_set_comment (keyfile, NULL, NULL, "Toplevel Comment", NULL))
+    if (!geda_keyfile_set_comment (keyfile, NULL, NULL, TOP_COMMENTS_STR, NULL))
       fprintf(stderr, "%s: set top comments returned FALSE, expect failure\n", __func__);
 
     /* geda_keyfile_set_group_comment */
-    if (!geda_keyfile_set_comment (keyfile, "G2", NULL, "Group Comment", NULL))
+    if (!geda_keyfile_set_comment (keyfile, "G2", NULL, GRP_COMMENTS_STR, NULL))
       fprintf(stderr, "%s: set group comments returned FALSE, expect failure\n", __func__);
 
     /* geda_keyfile_set_key_comment */
-    if (!geda_keyfile_set_comment (keyfile, "G2", "T1", "Key Comment", NULL))
+    if (!geda_keyfile_set_comment (keyfile, "G2", "T1", KEY_COMMENTS_STR, NULL))
       fprintf(stderr, "%s: set key comments returned FALSE, expect failure\n", __func__);
 
     /* geda_keyfile_set_group_comment non-existence group */
@@ -317,6 +322,7 @@ int check_load_keyfile (void)
       }
       else {
 
+        /* Get the top level comments */
         comment = geda_keyfile_get_comment (keyfile, NULL, NULL, NULL);
 
         if (!comment) {
@@ -327,7 +333,7 @@ int check_load_keyfile (void)
         else {
 
           /* Verify the comment string is correct */
-          if (strcmp(comment, "Toplevel Comment")) {
+          if (strcmp(comment, TOP_COMMENTS_STR)) {
             fprintf(stderr, "FAILED: (KF080602B) comments mismatched <%s>\n", comment);
             result++;
           }
