@@ -3055,10 +3055,10 @@ geda_keyfile_get_key_comment (GedaKeyFile *key_file,
 {
   GedaKeyFileGroup *group;
   GedaKeyFilePair  *pair;
-  GList   *key_node;
-  GList   *tmp;
-  GString *string;
-  char    *comment;
+  GList            *key_node;
+  GList            *tmp;
+  unsigned int      size;
+  char             *string;
 
   g_return_val_if_fail (geda_keyfile_is_group_name (group_name), NULL);
 
@@ -3098,14 +3098,14 @@ geda_keyfile_get_key_comment (GedaKeyFile *key_file,
   if (!key_node->next)
     return NULL;
 
-  pair = (GedaKeyFilePair *) tmp->data;
+  pair = (GedaKeyFilePair*) tmp->data;
 
   if (pair->key != NULL)
     return NULL;
 
   while (tmp->next) {
 
-    pair = (GedaKeyFilePair *) tmp->next->data;
+    pair = (GedaKeyFilePair*) tmp->next->data;
 
     if (pair->key != NULL)
       break;
@@ -3113,29 +3113,49 @@ geda_keyfile_get_key_comment (GedaKeyFile *key_file,
     tmp = tmp->next;
   }
 
+  size   = 0;
   string = NULL;
 
-  while (tmp != key_node) {
+  while (tmp != key_node) { /* Not exactly correct */
 
-    pair = (GedaKeyFilePair *) tmp->data;
+    char *comment;
 
-    if (string == NULL)
-      string = g_string_sized_new (512);
+    pair = (GedaKeyFilePair*) tmp->data;
 
     comment = geda_keyfile_parse_value_as_comment (key_file, pair->value);
-    g_string_append (string, comment);
-    GEDA_FREE (comment);
 
-    tmp = tmp->prev;
-  }
+    if (comment) {
 
-  if (string != NULL) {
+      size_t len = strlen(comment);
 
-    comment = string->str;
-    g_string_free (string, FALSE);
-  }
-  else {
-    comment = NULL;
+      size = size + len;
+
+      if (string == NULL) {
+        size++;
+        string = (char*)malloc(size);
+        strncpy(string, comment, len);
+        string[len] = '\0';
+      }
+      else {
+
+        char *buffer;
+
+        buffer = (char*)realloc(string, size);
+
+        if (!buffer)
+          break;
+
+        string = buffer;
+        strncat(string, comment, len);
+      }
+
+      GEDA_FREE (comment);
+
+      tmp = tmp->prev;
+    }
+    else {
+      break;
+    }
   }
 
   return geda_utility_string_remove_last_nl(string);
