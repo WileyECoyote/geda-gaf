@@ -4875,69 +4875,74 @@ msgstr "Alternar Ajuste (_Snap)"
 msgid "Toggle the object snap mode"
 msgstr "Alternar o modo de snap de objeto"
 
+# Toggle elastic connection
 #: gschem/etc/system-gschemrc.scm:2322
-#, fuzzy
 msgid "Toggle _Rubberband"
 msgstr "Alterna_r conexão elástica"
 
+# # Toggle elastic connection mode
 #: gschem/etc/system-gschemrc.scm:2322
-#, fuzzy
 msgid "Toggle rubberband net mode"
-msgstr "Alterna_r conexão elástica"
+msgstr "Alternar o modo conexão elástica"
 
 #: gschem/etc/system-gschemrc.scm:2323
 msgid "Toggle _Magnetic Net"
 msgstr "Alternar conexão _Magnética"
 
+# Toggle Magnetic Connection Mode
 #: gschem/etc/system-gschemrc.scm:2323
-#, fuzzy
 msgid "Toggle magnetic net mode"
-msgstr "Alternar conexão _Magnética"
+msgstr "Alternar o modo conexão Magnética"
 
+# Toggle Dragging
 #: gschem/etc/system-gschemrc.scm:2324
-#, fuzzy
 msgid "Toggle _Drag Move"
-msgstr "Alternar conexão _Magnética"
+msgstr "Alternar arrastar"
 
+# Toggle Drag-can-Move mode
 #: gschem/etc/system-gschemrc.scm:2324
-#, fuzzy
 msgid "Toggle Drag-can-Move mode"
-msgstr "Alternar conexão _Magnética"
+msgstr "Alternar o modo arrastar-pode-mover"
 
+# Toggle Outline-Box => Toggle Limit Box
 #: gschem/etc/system-gschemrc.scm:2325
-#, fuzzy
 msgid "Toggle _Outline-Box"
 msgstr "Alternar _Caixa limite"
 
+# Toggle action feedback
 #: gschem/etc/system-gschemrc.scm:2325
 msgid "Toggle action feedback"
-msgstr ""
+msgstr "Alternar feedback de ação"
 
+# Toggle Auto-Pan
 #: gschem/etc/system-gschemrc.scm:2326
-#, fuzzy
 msgid "Toggle _Auto-Pan"
-msgstr "Alterna_r conexão elástica"
+msgstr "Alternar Pan _Automático"
 
+# Toggle auto panning mode
 #: gschem/etc/system-gschemrc.scm:2326
-#, fuzzy
 msgid "Toggle auto panning mode"
-msgstr "Alternar conexão _Magnética"
+msgstr "Alternar o modo de panning automático"
 
+# Text Size
 #: gschem/etc/system-gschemrc.scm:2329
 msgid "_Text Size..."
-msgstr "Tamanho do _Texto..."
+msgstr "Tamanho do Texto..."
 
+# Open the Text Size settings
 #: gschem/etc/system-gschemrc.scm:2329
 msgid "Open the Text Size settings"
-msgstr ""
+msgstr "Abra as configurações de Tamanho do Texto"
 
+# Preferences
 #: gschem/etc/system-gschemrc.scm:2330
 msgid "_Preferences..."
-msgstr ""
+msgstr "_Preferências..."
 
+# Open the Preferences dialog
 #: gschem/etc/system-gschemrc.scm:2330
 msgid "Open the Preferences dialog"
-msgstr ""
+msgstr "Abra a caixa de diálogo Preferências"
 
 #: gschem/etc/system-gschemrc.scm:2339
 msgid "Gschem Guide"
@@ -5497,123 +5502,127 @@ msgid "Turn Grid Off"
 msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:472
-#, fuzzy
 msgid "Cycle Grid Mode"
-msgstr "Modo de Arco"
+msgstr "Modo de Grade de Ciclo"
 
+# Increase Grid Spacing
 #: gschem/scheme/gschem/builtins.scm:475
-#, fuzzy
 msgid "Increase Grid Spacing"
-msgstr "A_umentar espaço de grade"
+msgstr "Aumentar espaçamento de grade"
 
+# Decrease Grid Spacing
 #: gschem/scheme/gschem/builtins.scm:478
-#, fuzzy
 msgid "Decrease Grid Spacing"
-msgstr "A_umentar espaço de grade"
+msgstr "Diminuir espaçamento de grade"
 
+# Set Snap Spacing
 #: gschem/scheme/gschem/builtins.scm:481
-#, fuzzy
 msgid "Set Snap Spacing"
-msgstr "A_umentar espaço de grade"
+msgstr "Definir espaçamento de encaixe"
 
+# Turn Snap off
 #: gschem/scheme/gschem/builtins.scm:484
-#, fuzzy
 msgid "Turn Snap off"
-msgstr "Ajuste desligado"
+msgstr "Ajuste Desativar Snap"
 
 #: gschem/scheme/gschem/builtins.scm:487
 msgid "Turn Snap on"
 msgstr ""
 
+# Cycle Center Mode
 #: gschem/scheme/gschem/builtins.scm:490
-#, fuzzy
 msgid "Cycle Snap Mode"
-msgstr "Modo Centrar"
+msgstr "Modo Centrar Ciclo"
 
+# Toggle elastic connection
 #: gschem/scheme/gschem/builtins.scm:493
-#, fuzzy
 msgid "Toggle Net Rubber Band"
-msgstr "Alterna_r conexão elástica"
+msgstr "Alternar conexão elástica"
 
+# Toggle Magnetic connection
 #: gschem/scheme/gschem/builtins.scm:496
-#, fuzzy
 msgid "Toggle Magnetic Nets"
-msgstr "Alternar conexão _Magnética"
+msgstr "Alternar conexão Magnética"
 
 #: gschem/scheme/gschem/builtins.scm:499
 msgid "Enable/Disable Drag move"
 msgstr ""
 
+# Toggle Outline Drawing
 #: gschem/scheme/gschem/builtins.scm:502
-#, fuzzy
 msgid "Toggle Outline Drawing"
-msgstr "Alternar _Caixa limite"
+msgstr "Alternar desenho de contorno"
 
+# Enable/Disable Auto Panning
 #: gschem/scheme/gschem/builtins.scm:505
 msgid "Enable/Disable Auto Panning"
-msgstr ""
+msgstr "Ativar/Desativar o Panning Automático"
 
+# Set Default Text Size
 #: gschem/scheme/gschem/builtins.scm:508
-#, fuzzy
 msgid "Set Default Text Size"
-msgstr "Tamanho do Texto"
+msgstr "Definir tamanho de texto padrão"
 
+# Open Preference Dialog
 #: gschem/scheme/gschem/builtins.scm:511
 msgid "Open Preference Dialog"
-msgstr ""
+msgstr "Caixa diálogo Abrir preferência"
 
 #: gschem/scheme/gschem/builtins.scm:518
 msgid "gEDA Manuals"
-msgstr ""
+msgstr "Manuais do GEDA"
 
+# View the front page of the gEDA documentation in a browser
 #: gschem/scheme/gschem/builtins.scm:519
 msgid "View the front page of the gEDA documentation in a browser."
-msgstr ""
+msgstr "Visualizar a primeira página da documentação do gEDA em um navegador"
 
+# Show Hotkeys
 #: gschem/scheme/gschem/builtins.scm:522
-#, fuzzy
 msgid "Show Hotkeys"
-msgstr "Atalhos"
+msgstr "Mostrar teclas de atalho"
 
 #: gschem/scheme/gschem/builtins.scm:526
-#, fuzzy
 msgid "Component Documentation"
-msgstr "_Documentação de componente"
+msgstr "Documentação componente"
 
+# View documentation for selected component
 #: gschem/scheme/gschem/builtins.scm:528
 msgid "View documentation for selected component"
-msgstr ""
+msgstr "Exibir documentação para o componente selecionado"
 
+# Could not show documentation for selected component
 #: gschem/scheme/gschem/builtins.scm:544
 msgid "Could not show documentation for selected component\n"
-msgstr ""
+msgstr "Não foi possível mostrar a documentação do componente selecionado\n"
 
+# User Guide
 #: gschem/scheme/gschem/builtins.scm:548
-#, fuzzy
 msgid "gschem User Guide"
-msgstr "_Guia de usuário..."
+msgstr "Guia de usuário"
 
+# View the gschem User Guide in a browser
 #: gschem/scheme/gschem/builtins.scm:549
 msgid "View the gschem User Guide in a browser."
-msgstr ""
+msgstr "Exibir o Guia do Usuário do gschem em um navegador."
 
+# Questions and answers
 #: gschem/scheme/gschem/builtins.scm:554
-#, fuzzy
 msgid "gschem FAQ"
 msgstr "Perguntas e Respostas"
 
+# Frequently Asked Questions about using gschem
 #: gschem/scheme/gschem/builtins.scm:555
 msgid "Frequently Asked Questions about using gschem."
-msgstr ""
+msgstr "Perguntas freqüentes sobre o uso do gschem."
 
 #: gschem/scheme/gschem/builtins.scm:560
-#, fuzzy
 msgid "gEDA wiki"
-msgstr "_Wiki gEDA..."
+msgstr "Wiki gEDA"
 
 #: gschem/scheme/gschem/builtins.scm:561
 msgid "View the front page of the gEDA wiki in a browser."
-msgstr ""
+msgstr "Veja a página inicial do wiki do gEDA em um navegador."
 
 #: gschem/scheme/gschem/deprecated.scm:102
 #, scheme-format
