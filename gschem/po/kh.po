@@ -3114,19 +3114,19 @@ msgstr "bangheanh roubtamnang ning atthabt phdek now leu rbar ubakar"
 
 #: gschem/src/x/x_menus.c:980
 msgid "Toggle visibility of main menu icons"
-msgstr ""
+msgstr "roubtamnang bet baek pheap meulkheunh meunouy"
 
 #: gschem/src/x/x_menus.c:981
 msgid "Toggle main menu tooltips"
-msgstr ""
+msgstr "bet baek kar chomnuoy meunouy me"
 
 #: gschem/src/x/x_menus.c:982
 msgid "Toggle visibility of main context menu icons"
-msgstr ""
+msgstr "kanleasa saamkhan del ach meulkheunh meunouy bribt robsa roubtamnang"
 
 #: gschem/src/x/x_menus.c:983
 msgid "Toggle main context menu tooltips"
-msgstr ""
+msgstr "bet baek meunouy bribt chambong chomnuoy"
 
 #: gschem/src/x/x_menus.c:1329
 msgid "Tried to set the sensitivity on non-existent menu item"
@@ -4513,17 +4513,20 @@ msgstr ""
 msgid "Show _Both"
 msgstr ""
 
+# Show the selected name and value
 #: gschem/etc/system-gschemrc.scm:2278
 msgid "Set selected name and value visible"
-msgstr ""
+msgstr "bangheanh chhmoh del ban chreusa ning ban tm lei"
 
+# Toggle Visibility
 #: gschem/etc/system-gschemrc.scm:2280
 msgid "_Toggle Visibility"
-msgstr ""
+msgstr "bet baek pheap meulkheunh"
 
+# Toggle visibility attribute
 #: gschem/etc/system-gschemrc.scm:2280
-msgstr ""
 msgid "Toggle attribute visibility"
+msgstr "bet baek pheap meulkheunh kounalokkhan"
 
 #: gschem/etc/system-gschemrc.scm:2281
 msgid "_Reset Position"
@@ -4535,7 +4538,7 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2283
 msgid "_Find Specific Text..."
-msgstr ""
+msgstr "rk atthabt cheakleak..."
 
 #: gschem/etc/system-gschemrc.scm:2283
 msgid "Find an attribute"
@@ -5172,7 +5175,7 @@ msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:419
 msgid "Find Specific Text"
-msgstr ""
+msgstr "rk atthabt cheakleak"
 
 #: gschem/scheme/gschem/builtins.scm:422
 msgid "Hide Specific Text"
