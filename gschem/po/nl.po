@@ -1073,29 +1073,26 @@ msgid "Paste %d Mode"
 msgstr "Plak %d Mode"
 
 #: gschem/src/iface/i_status.c:186
-#, fuzzy
 msgid "First point?"
-msgstr "Rasterpunt"
+msgstr "Eerste punt?"
 
 #: gschem/src/iface/i_status.c:188
-#, fuzzy
 msgid "Second point?"
-msgstr "Draad eindpunt"
+msgstr "Tweede punt?"
 
+# Project Mode => Stretch Mode
 #: gschem/src/iface/i_status.c:190
-#, fuzzy
 msgid "Project Mode"
-msgstr "Draad Mode"
+msgstr "stretch-modus"
 
+# Select lines to extend
 #: gschem/src/iface/i_status.c:192
-#, fuzzy
 msgid "Select Projectiles"
-msgstr "Geselecteerde objecten"
+msgstr "Selecteren lijnen te breiden"
 
 #: gschem/src/iface/i_status.c:194
-#, fuzzy
 msgid "Select Object"
-msgstr "Geselecteerde objecten"
+msgstr "Object selecteren"
 
 #: gschem/src/iface/i_status.c:243
 msgid "Show Hidden"
@@ -2928,6 +2925,7 @@ msgstr "Maak multible kopieën van selectie"
 #: gschem/src/x/x_menus.c:123
 msgid "Move"
 msgstr "Verplaats"
+
 # Move selection
 #: gschem/src/x/x_menus.c:123 gschem/etc/system-gschemrc.scm:2097
 msgid "Move selection"
@@ -3180,7 +3178,7 @@ msgstr ""
 
 #: gschem/src/x/x_menus.c:1428
 msgid " done\n"
-msgstr ""
+msgstr " gedaan\n"
 
 #: gschem/src/x/x_menus.c:1431
 #, c-format
@@ -3225,10 +3223,10 @@ msgstr "Kon bestand niet openen"
 msgid "Open"
 msgstr "Openen"
 
+# Remove
 #: gschem/src/x/x_menus.c:1886
-#, fuzzy
 msgid "Remove"
-msgstr "Verwijder nummers"
+msgstr "Verwijder"
 
 #: gschem/src/x/x_menus.c:1895
 #, fuzzy
@@ -3487,8 +3485,8 @@ msgstr "Er is een fout opgetreden tijdens het afdrukken"
 msgid "The log may contain more information."
 msgstr "Het logboek kan meer informatie bevatten."
 
+# Print Error
 #: gschem/src/x/x_print.c:795 gschem/src/x/x_print.c:1229
-#, fuzzy
 msgid "Print Error"
 msgstr "Afdrukken"
 
@@ -3540,10 +3538,10 @@ msgstr "Kies een exportbestand"
 msgid "exported to"
 msgstr ""
 
+# Load the selected session
 #: gschem/src/x/x_sessions.c:414
-#, fuzzy
 msgid "Load the selected session"
-msgstr "Geselecteerde objecten"
+msgstr "Het geselecteerde sessie"
 
 #: gschem/src/x/x_sessions.c:415
 msgid ""
@@ -3554,25 +3552,24 @@ msgstr ""
 msgid "Automatically add and remove files from sessions"
 msgstr ""
 
+# Show at start-up
 #: gschem/src/x/x_sessions.c:421
-#, fuzzy
 msgid "Show at start-up"
-msgstr "Toon tekst beginnend met:"
+msgstr "Toon bij starten"
 
 #: gschem/src/x/x_sessions.c:428
-#, fuzzy
 msgid "Auto update"
-msgstr "Automatisch"
+msgstr "Automatisch update"
 
+# Session Name
 #: gschem/src/x/x_sessions.c:535
-#, fuzzy
 msgid "Session Name"
-msgstr "Toon _Naam"
+msgstr "Sessienaam"
 
+# File Count
 #: gschem/src/x/x_sessions.c:550
-#, fuzzy
 msgid "File Count"
-msgstr "Bestand volgorde"
+msgstr "Aantal bestanden"
 
 #: gschem/src/x/x_sessions.c:600
 msgid "Rename the selected session"
@@ -4649,13 +4646,12 @@ msgstr "Schakel Zich_tbaarheid"
 
 #: gschem/etc/system-gschemrc.scm:2280
 msgid "Toggle attribute visibility"
-#, fuzzy
-msgstr "Schakel Tekst Zichtbaarheid"
+msgstr "Schakel attribuut Zichtbaarheid"
 
+# Reset Position
 #: gschem/etc/system-gschemrc.scm:2281
-#, fuzzy
 msgid "_Reset Position"
-msgstr "Bestemming"
+msgstr "resetstand"
 
 #: gschem/etc/system-gschemrc.scm:2281
 msgid "Restore attribute positions and orientation"
