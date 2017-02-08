@@ -79,19 +79,20 @@ static char *user_config_path = NULL;
 
   #endif
 
-/*! \brief Make a Directory
- *  \par Function description
+/*!
+ * \brief Make a Directory
+ * \par Function description
  *  This is an internal function used by the geda_file_path_create below.
  *  This function creates a new non-nested directory entry with the
  *  given permission attribute.
  *
- *  \Author Jonathan Leffler
- *  \copyright (C) JLSS 1990-2012
+ * \Author Jonathan Leffler
+ * \copyright (C) JLSS 1990-2012
  *
- *  \param path Pointer to string path to be created
- *  \param mode is valid mode_t permission integer
+ * \param path Pointer to string path to be created
+ * \param mode is valid mode_t permission integer
  *
- *  \retval NO_ERROR on success or -1 if and error was encountered
+ * \retval NO_ERROR on success or -1 if and error was encountered
  */
 static int f_create_dir(const char *path, mode_t mode)
 {
@@ -111,23 +112,24 @@ static int f_create_dir(const char *path, mode_t mode)
     return (status);
 }
 
-/*! \brief Create a Directory Path
- *  \par Function description
+/*!
+ * \brief Create a Directory Path
+ * \par Function description
  *  Ensure all directories in path exist, these algorithm takes the
  *  pessimistic view and works top-down to ensure each directory in
  *  path exists, rather than optimistically creating the last element
  *  and working backwards.
  *
- *  \Author Jonathan Leffler
- *  \copyright (C) JLSS 1990-2012
+ * \Author Jonathan Leffler
+ * \copyright (C) JLSS 1990-2012
  *
- *  \param path Pointer to string path to be created
- *  \param mode valid mode_t integer permission attribute
+ * \param path Pointer to string path to be created
+ * \param mode valid mode_t integer permission attribute
  *
- *  \retval NO_ERROR on success or -1 if and error was encountered,
- *          if \a path is NULL then NO_ERROR is returned.
+ * \retval NO_ERROR on success or -1 if and error was encountered,
+ *         if \a path is NULL then NO_ERROR is returned.
  *
- *  \remark WEH Tweeked for libgeda
+ * \remark WEH Tweeked for libgeda
  */
 int geda_file_path_create(const char *path, mode_t mode)
 {
@@ -178,8 +180,9 @@ int geda_file_path_create(const char *path, mode_t mode)
 
 #endif
 
-/*! \brief Free memory used by Libgeda Path Module.
- *  \par Function Description
+/*!
+ * \brief Free memory used by Libgeda Path Module.
+ * \par Function Description
  *  This function is public so that programs can use libgeda's path
  *  module without calling libgeda_init. Programs that do so should
  *  call this function before exiting.
@@ -191,16 +194,17 @@ void geda_file_path_free (void) {
   GEDA_FREE(user_config_path);
 }
 
-/*! \brief Gets Directory Component of a File Name
- *  \par Function Description
- *   Returns directory portion of \a filepath. If \a filepath is
+/*! alias geda_get_dirname
+ * \brief Gets Directory Component of a File Name
+ * \par Function Description
+ *  Returns directory portion of \a filepath. If \a filepath is
  *  a directory a copy of \a filepath is returned. If \a filepath
  *  has no directory components "." is returned. The returned
  *  string should be freed when no longer needed.
  *
- *  \param [in] filepath The filepath to search.
+ * \param [in] filepath The filepath to search.
  *
- *  \returns directory components of \a filepath.
+ * \returns directory components of \a filepath.
  */
 char *geda_file_path_get_dirname (const char *filepath)
 {
@@ -396,8 +400,9 @@ const char *geda_file_path_sys_data (void) {
   return sys_data_path;
 }
 
-/*! \brief Get the directory with the gEDA system doc.
- *  \par Function description
+/*!
+ * \brief Get the directory with the gEDA system doc.
+ * \par Function description
  *  Returns the path to be searched for gEDA doc shared between all
  *  users. If the GEDADATA environment variable is set, returns its
  *  value; otherwise, uses a compiled-in path.
@@ -406,10 +411,10 @@ const char *geda_file_path_sys_data (void) {
  *  useful directories. On Windows, the compiled in path is *not* used,
  *  as it might not match the path where the user has installed gEDA.
  *
- *  \remark The returned string is owned by libgeda and should not be
+ * \remark The returned string is owned by libgeda and should not be
  *  modified or free'd.
  *
- *  \return the gEDA shared doc path, or NULL if none could be found.
+ * \return the gEDA shared doc path, or NULL if none could be found.
  */
 const char *geda_file_path_sys_doc (void) {
 
@@ -429,23 +434,23 @@ const char *geda_file_path_sys_doc (void) {
   return sys_doc_path;
 }
 
-/*! \brief Get the directory with the gEDA system configuration.
- *  \par Function description
+/*!
+ * \brief Get the directory with the gEDA system configuration.
+ * \par Function description
  *  Returns the path to be searched for gEDA configuration shared
  *  between all users. If the GEDADATARC environment variable is set,
  *  returns its value; otherwise, use the XDG or a compiled-in path.
  *  Finally fallback to using the system data path.
  *
- *  \remark The returned string is owned by libgeda and should not be
+ * \remark The returned string is owned by libgeda and should not be
  *  modified or free'd. Path strings are automatically freed when the
  *  library is released or by calling geda_file_path_free().
  *
- *  \note On UNIX platforms the XDG Base Directory may or may not
+ * \note On UNIX platforms the XDG Base Directory may or may not
  *        return useful directories. We only use for Windows which
  *        returns stable results.
  *
- *  \return the gEDA shared config path, or NULL if none could be
- *  found.
+ * \return the gEDA shared config path, or NULL if none could be found.
  */
 const char *geda_file_path_sys_config (void) {
 
@@ -482,18 +487,19 @@ const char *geda_file_path_sys_config (void) {
   return sys_config_path;
 }
 
-/*! \brief Get the directory with the gEDA user configuration.
- *  \par Function description
+/*!
+ * \brief Get the directory with the gEDA user configuration.
+ * \par Function description
  *  Returns the path to be searched for the current user's gEDA
  *  configuration. Currently defaults to a directory ".gEDA" in the
  *  user's home directory.
  *
- *  \note On UNIX platforms the XDG Base Directory may or may not
- *        return useful directories. We only use for Windows which
- *        returns stable results.
+ * \note On UNIX platforms the XDG Base Directory may or may not
+ *       return useful directories. We only use for Windows which
+ *       returns stable results.
  *
- *  \warning The returned string is owned by libgeda and should not be
- *  modified or free'd.
+ * \warning The returned string is owned by libgeda and should not be
+ *          modified or free'd.
  *
  */
 const char *geda_file_path_user_config (void) {
