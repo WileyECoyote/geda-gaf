@@ -170,7 +170,7 @@ geda_file_get_bitmap_filespec (const char *filename)
       }
       else {
         const char *msg = _("Invalid path");
-        fprintf (stderr, "%s \"%s\", %s\n", msg, directory, strerror(errno));
+        fprintf (stderr, "%s '%s', %s\n", msg, directory, strerror(errno));
       }
     }
 
@@ -232,10 +232,10 @@ get_contents_stdio (const char *filename, FILE *f, char **contents,
 
       if (tmp == NULL) {
         g_free (str);
-        g_set_error (err, EDA_ERROR, ENOMEM,
-                   _("Could not allocate %lu bytes to read file \"%s\""),
-                    (unsigned long)total_allocated,
-                    filename);
+        const char *msg1 = _("Could not allocate");
+        const char *msg2 = _("bytes to read file");
+        g_set_error (err, EDA_ERROR, ENOMEM, "%s %lu %s '%s'",
+                     msg1, (unsigned long)total_allocated, msg2, filename);
         goto error;
       }
 
@@ -243,8 +243,8 @@ get_contents_stdio (const char *filename, FILE *f, char **contents,
     }
 
     if (ferror (f)) {
-      g_set_error (err, EDA_ERROR, save_errno,
-                 _("Error reading file '%s': %s"),
+      g_set_error (err, EDA_ERROR, save_errno, "%s '%s': %s",
+                 _("Error reading file"),
                    filename,
                    strerror(save_errno));
       g_free (str);
@@ -255,8 +255,7 @@ get_contents_stdio (const char *filename, FILE *f, char **contents,
 
     if (total_bytes + bytes < total_bytes) {
       g_set_error (err, EDA_ERROR, ENOMEM,
-                   _("File \"%s\" is too large"),
-                   filename);
+                   _("File '%s' is too large"), filename);
       g_free (str);
       goto error;
     }
@@ -309,11 +308,10 @@ get_contents_regfile (const char   *filename,
   buf = g_try_malloc (alloc_size);
 
   if (buf == NULL) {
-
-    g_set_error (err, EDA_ERROR, ENOMEM,
-               _("Could not allocate %ld byte to read file \"%s\""),
-                (unsigned long int) alloc_size,
-                 filename);
+    const char *msg1 = _("Could not allocate");
+    const char *msg2 = _("bytes to read file");
+    g_set_error (err, EDA_ERROR, ENOMEM, "%s %ld %s '%s'",
+                 msg1, (unsigned long int)alloc_size, msg2, filename);
   }
   else {
 
@@ -332,10 +330,9 @@ get_contents_regfile (const char   *filename,
 
         if (errno != EINTR) {
 
-          g_set_error (err, EDA_ERROR, errno,
-                     _("Failed to read from file '%s': %s"),
-                        filename,
-                        strerror(errno));
+          g_set_error (err, EDA_ERROR, errno, "%s '%s': %s",
+                     _("Failed to read from file"),
+                        filename, strerror(errno));
           g_free (buf); /* This could modify errno */
           goto error;
         }
@@ -419,17 +416,19 @@ geda_file_get_contents(const char  *filename,
 #endif
 
     {
-      g_set_error (err, EDA_ERROR, errno,
-                 _("Failed to open file '%s': %s"), filename, strerror (errno));
+      g_set_error (err, EDA_ERROR, errno, "%s '%s': %s",
+                 _("Failed to open file"), filename, strerror (errno));
     }
 
 #if !defined (OS_WIN32_NATIVE) && !defined(__MINGW32__)
 
     else if (fstat (fd, &stat_buf) < 0) {
 
-      g_set_error (err, EDA_ERROR, errno,
-                 _("Failed to get attributes of file '%s': fstat() failed: %s"),
-                    filename, strerror (errno));
+      const char *msg1 = _("Failed to get attributes of file");
+      const char *msg2 = _("fstat failure");
+
+      g_set_error (err, EDA_ERROR, errno, "%s '%s': %s %s",
+                   msg1, filename, msg2, strerror (errno));
       close (fd);
     }
     else if (stat_buf.st_size > 0 && S_ISREG (stat_buf.st_mode)) {
@@ -445,10 +444,10 @@ geda_file_get_contents(const char  *filename,
       file = fdopen (fd, "r");
 
       if (file == NULL) {
-
-        g_set_error (err, EDA_ERROR, errno,
-                   _("Failed to open file '%s': fdopen() failed: %s"),
-                      filename, strerror (errno));
+        const char *msg1 = _("Failed to open file");
+        const char *msg2 = _("fdopen failure");
+        g_set_error (err, EDA_ERROR, errno, "%s '%s': %s %s",
+                     msg1, filename, msg2, strerror (errno));
       }
 
 #endif
@@ -468,12 +467,13 @@ geda_file_get_contents(const char  *filename,
     const char *msg;
 
     if (filename == NULL) {
-      msg = _("libgeda <%s> ERROR: pointer to filename is NULL");
+      msg = _("ERROR: pointer to filename is NULL");
     }
     else {
-      msg = _("libgeda <%s> ERROR: pointer to a buffer is NULL");
+      msg = _("ERROR: pointer to a buffer is NULL");
     }
-    g_set_error (err, EDA_ERROR, EDA_ERROR_NULL_POINTER, msg, __func__);
+    g_set_error (err, EDA_ERROR, EDA_ERROR_NULL_POINTER,
+                 "libgeda <%s> %s.\n", msg, __func__);
   }
 
   return retval;
@@ -511,8 +511,7 @@ geda_file_get_data_filespec (const char *filename)
 
     /* Look for file in current directory */
     if (!cwd) {
-      const char *err_msg = _("System error reading the current directory");
-      fprintf (stderr, "%s: %s\n", err_msg, strerror(errno));
+      perror (_("System error reading the current directory"));
     }
     else {
 
@@ -577,9 +576,11 @@ geda_file_get_dir_list_files(char *path, char *filter, GError **err)
   if (!path) {
 
     if (err) {
-      const char *msg = _("libgeda <%s> ERROR: pointer to path is NULL.\n");
 
-      g_set_error (err, EDA_ERROR, EDA_ERROR_NULL_POINTER, msg, __func__);
+      const char *msg = _("ERROR: pointer to path is NULL");
+
+      g_set_error (err, EDA_ERROR, EDA_ERROR_NULL_POINTER,
+                   "libgeda <%s> %s.\n",__func__,  msg);
     }
   }
   else {
@@ -623,9 +624,10 @@ geda_file_get_dir_list_files(char *path, char *filter, GError **err)
 
       if (err) {
 
-        const char *msg = _("error accessing '%s': %s\n");
+        const char *msg = _("error accessing");
 
-        g_set_error (err, EDA_ERROR, errno, msg, path, strerror (errno));
+        g_set_error (err, EDA_ERROR, errno, "%s '%s': %s\n",
+                     msg, path, strerror (errno));
       }
     }
   }
