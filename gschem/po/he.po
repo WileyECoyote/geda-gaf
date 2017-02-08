@@ -264,10 +264,10 @@ msgstr "מצב קואורדינטות"
 msgid "Sets the Format Mode used to display coordinates on the status bar"
 msgstr ""
 
+# network status
 #: gschem/src/base/gschem_status_bar.c:597
-#, fuzzy
 msgid "Grid Mode"
-msgstr "מצב ראי"
+msgstr "מצב רשת"
 
 #: gschem/src/base/gschem_status_bar.c:598
 msgid "Sets the Grid Mode to display on the status bar"
@@ -313,10 +313,10 @@ msgstr ""
 msgid "Set the string for the Right Button Text"
 msgstr ""
 
+# Snap Mode
 #: gschem/src/base/gschem_status_bar.c:648
-#, fuzzy
 msgid "Snap Mode"
-msgstr "מצב העתקה"
+msgstr "הצמד מצב"
 
 #: gschem/src/base/gschem_status_bar.c:649
 msgid "Sets the Snap Mode to display on the status bar"
@@ -380,20 +380,19 @@ msgid "Gschem status bar"
 msgstr ""
 
 #: gschem/src/base/gschem_status_bar.c:1888
-#, fuzzy
 msgid "Grid"
-msgstr "מצב ראי"
+msgstr "Grid"
 
 #: gschem/src/base/gschem_status_bar.c:1894
 #: gschem/src/base/gschem_status_bar.c:1915
 msgid "OFF"
 msgstr ""
 
+# Error
 #: gschem/src/base/gschem_status_bar.c:1907 gschem/src/object/o_picture.c:615
 #: gschem/src/object/o_picture.c:619
-#, fuzzy
 msgid "Error"
-msgstr "מצב ראי"
+msgstr "שְׁגִיאָה"
 
 #: gschem/src/base/gschem_status_bar.c:1919
 msgid "NONE"
@@ -616,18 +615,17 @@ msgid "Specify offset distance:"
 msgstr ""
 
 #: gschem/src/iface/i_command.c:2204
-#, fuzzy
 msgid "Zoom Magnification"
-msgstr "תיבת תקריב"
+msgstr "ההגדלה"
 
 #: gschem/src/iface/i_command.c:2204
 msgid "Specify new zoom:"
 msgstr ""
 
+# error
 #: gschem/src/iface/i_command.c:2248
-#, fuzzy
 msgid "error"
-msgstr "מצב ראי"
+msgstr "שְׁגִיאָה"
 
 #: gschem/src/iface/i_command.c:2256
 msgid "No component selected\n"
@@ -896,29 +894,29 @@ msgstr ""
 msgid "Session system initialized!\n"
 msgstr ""
 
+# Deselect Mode => Unfollow
 #: gschem/src/iface/i_status.c:134 gschem/etc/system-gschemrc.scm:2121
-#, fuzzy
 msgid "Deselect Mode"
-msgstr "מצב בחירה"
+msgstr "בטל את מצב"
 
 #: gschem/src/iface/i_status.c:138 gschem/src/x/x_status_bar.c:383
 #: gschem/etc/system-gschemrc.scm:2120 gschem/scheme/gschem/builtins.scm:170
 msgid "Select Mode"
 msgstr "מצב בחירה"
 
+# Select Box Mode
 #: gschem/src/iface/i_status.c:140
-#, fuzzy
 msgid "Select Box Mode"
-msgstr "מצב בחירה"
+msgstr "בחר קופסא מצב"
 
 #: gschem/src/iface/i_status.c:142 gschem/scheme/gschem/builtins.scm:227
 msgid "Zoom Box"
 msgstr "תיבת תקריב"
 
+# Copy to point
 #: gschem/src/iface/i_status.c:145
-#, fuzzy
 msgid "Copy to point"
-msgstr "העתק אל 1"
+msgstr "העתק להצביע"
 
 #: gschem/src/iface/i_status.c:147 gschem/scheme/gschem/builtins.scm:122
 #: gschem/scheme/gschem/builtins.scm:125
@@ -929,9 +927,10 @@ msgstr ""
 msgid "Side to offset?"
 msgstr ""
 
+# Reflect Mode
 #: gschem/src/iface/i_status.c:151 gschem/scheme/gschem/builtins.scm:116
 msgid "Mirror Mode"
-msgstr "מצב ראי"
+msgstr "לשקף מצב"
 
 #: gschem/src/iface/i_status.c:153
 msgid "Pan Mode"
@@ -974,10 +973,10 @@ msgstr ""
 msgid "Arc Mode"
 msgstr ""
 
+# Path Mode
 #: gschem/src/iface/i_status.c:174
-#, fuzzy
 msgid "Path Mode"
-msgstr "מצב סיבוב 90"
+msgstr "מצב נתיב"
 
 #: gschem/src/iface/i_status.c:176
 msgid "Picture Mode"
@@ -1004,20 +1003,20 @@ msgstr ""
 msgid "Second point?"
 msgstr ""
 
+# stretch mode
 #: gschem/src/iface/i_status.c:190
-#, fuzzy
 msgid "Project Mode"
-msgstr "מצב בחירה"
+msgstr "מצב מתיחה"
 
+# Select Projectiles => Select lines to extend
 #: gschem/src/iface/i_status.c:192
-#, fuzzy
 msgid "Select Projectiles"
-msgstr "מצב בחירה"
+msgstr "קווים בוחרים להאריך"
 
+# Select Object => Choose Object
 #: gschem/src/iface/i_status.c:194
-#, fuzzy
 msgid "Select Object"
-msgstr "מצב בחירה"
+msgstr "אובייקט בחר"
 
 #: gschem/src/iface/i_status.c:243
 msgid "Show Hidden"
@@ -4432,9 +4431,10 @@ msgstr ""
 msgid "_Toggle Visibility"
 msgstr ""
 
+# Toggle attribute visibility
 #: gschem/etc/system-gschemrc.scm:2280
-msgstr ""
 msgid "Toggle attribute visibility"
+msgstr "הנראות תכונה לעבור"
 
 #: gschem/etc/system-gschemrc.scm:2281
 msgid "_Reset Position"
