@@ -17,6 +17,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Launchpad-Export-Date: 2010-02-14 12:56+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
+"X-Language: C\n"
+"X-Source-Language: C\n"
 
 #: gschem/src/base/gschem.c:159
 #, c-format
@@ -720,25 +722,27 @@ msgstr "Daar is geen stroombaandiagram Bo die aktiewe bladsy!\n"
 
 #: gschem/src/iface/i_command.c:3677
 msgid "Attribute is already attached\n"
-msgstr ""
+msgstr "Eienskappe is reeds aangeheg\n"
 
 #: gschem/src/iface/i_command.c:4065
 msgid "WARNING: Do not translate with snap off!\n"
-msgstr ""
+msgstr "WAARSKUWING: Moenie vertaal met snap af!\n"
 
 #: gschem/src/iface/i_command.c:4066
 msgid "WARNING: Turning snap on and continuing with translate.\n"
-msgstr ""
+msgstr "WAARSKUWING: Draai snap op en voort te gaan met vertaal.\n"
 
 #: gschem/src/iface/i_command.c:4072
 msgid "WARNING: Snap grid size is not equal to 100!\n"
-msgstr ""
+msgstr "WAARSKUWING: Snap rooster grootte is nie gelyk aan 100!\n"
 
 #: gschem/src/iface/i_command.c:4073
 msgid ""
 "WARNING: If you are translating a symbol to the origin, the snap grid size "
 "should be set to 100\n"
 msgstr ""
+"WAARSKUWING: As jy die vertaling van 'n simbool aan die oorsprong, moet die grootte snap rooster "
+"opgestel word tot 100\n"
 
 #: gschem/src/iface/i_command.c:4268
 msgid "Grid OFF\n"
@@ -746,51 +750,51 @@ msgstr "Rooster AF\n"
 
 #: gschem/src/iface/i_command.c:4269
 msgid "Dot grid activated\n"
-msgstr ""
+msgstr "Dot rooster geaktiveer\n"
 
 #: gschem/src/iface/i_command.c:4270
 msgid "Mesh grid activated\n"
-msgstr ""
+msgstr "Mesh rooster geaktiveer\n"
 
 #: gschem/src/iface/i_command.c:4349
 msgid "Snap OFF (CAUTION!)\n"
-msgstr ""
+msgstr "Snap AF (VERSIGTIG!)\n"
 
 #: gschem/src/iface/i_command.c:4354
 msgid "Snap ON\n"
-msgstr ""
+msgstr "Snap Op\n"
 
 #: gschem/src/iface/i_command.c:4358
 msgid "Snap back to the grid (CAUTION!)\n"
-msgstr ""
+msgstr "Snap terug na die rooster (VERSIGTIG!)\n"
 
 #: gschem/src/iface/i_command.c:4382
 msgid "Rubber band mode is OFF\n"
-msgstr "Rubberband AF \n"
+msgstr "Rekkie is AF\n"
 
 #: gschem/src/iface/i_command.c:4385
 msgid "Rubber band mode is ON\n"
-msgstr "Rubberband AAN\n"
+msgstr "Rekkie is AAN\n"
 
 #: gschem/src/iface/i_command.c:4396
 msgid "Magnetic net mode is ON\n"
-msgstr ""
+msgstr "Magnetiese netto modus is OP\n"
 
 #: gschem/src/iface/i_command.c:4399
 msgid "Magnetic net mode is OFF\n"
-msgstr ""
+msgstr "Magnetiese netto modus is off\n"
 
 #: gschem/src/iface/i_command.c:4416 gschem/src/iface/i_command.c:4458
 msgid "Off"
-msgstr ""
+msgstr "af"
 
 #: gschem/src/iface/i_command.c:4419 gschem/src/iface/i_command.c:4461
 msgid "On"
-msgstr "Maak Oop"
+msgstr "op"
 
 #: gschem/src/iface/i_command.c:4421
 msgid "Drag-Can-Move is now"
-msgstr ""
+msgstr "Sleep-Can-Move is nou"
 
 #: gschem/src/iface/i_command.c:4433
 msgid "Action feedback mode set to OUTLINE\n"
@@ -802,21 +806,22 @@ msgstr "Handelingsterugvoermodus na OMTREKREGHOEK\n"
 
 #: gschem/src/iface/i_command.c:4463
 msgid "Auto-Pan is now"
-msgstr ""
+msgstr "Outomatiese pan is nou"
 
 #: gschem/src/iface/i_command.c:4515 gschem/src/iface/i_command.c:4544
 #: gschem/src/iface/i_command.c:4564 gschem/src/iface/i_command.c:4584
 msgid "Check path:"
-msgstr ""
+msgstr "Gaan pad:"
 
 #: gschem/src/iface/i_command.c:4684
 #, c-format
 msgid "(read only) width=%d, height=%d\n"
-msgstr ""
+msgstr "(Lees net) width =%d, hoogte =%d\n"
 
+# Close all has been Canceled
 #: gschem/src/iface/i_sessions.c:184
 msgid "Canceled Close all\n"
-msgstr ""
+msgstr "Sluit al gekanselleer\n"
 
 #: gschem/src/iface/i_sessions.c:262
 msgid "Could not open the session file"
@@ -824,7 +829,7 @@ msgstr "Kon die sessie lêer nie oopmaak"
 
 #: gschem/src/iface/i_sessions.c:268 gschem/src/x/x_window.c:1005
 msgid "is not accessible"
-msgstr ""
+msgstr "is nie toeganklik"
 
 #: gschem/src/iface/i_sessions.c:272
 msgid "File"
@@ -870,11 +875,11 @@ msgstr "Kon nie afbeelding laai nie"
 
 #: gschem/src/iface/i_sessions.c:883
 msgid "<b>Could not remove session</b>"
-msgstr ""
+msgstr "<b>Kan sessie nie verwyder</b>"
 
 #: gschem/src/iface/i_sessions.c:932
 msgid "created with"
-msgstr ""
+msgstr "geskep met"
 
 #: gschem/src/iface/i_sessions.c:940
 msgid "An error occurred attempting to create session"
@@ -886,7 +891,7 @@ msgstr "<b>Bestek</b>"
 
 #: gschem/src/iface/i_sessions.c:950
 msgid "Creation failed"
-msgstr ""
+msgstr "het misluk"
 
 #: gschem/src/iface/i_sessions.c:994
 msgid "Opened session"
@@ -898,7 +903,7 @@ msgstr "Bewaar Alles"
 
 #: gschem/src/iface/i_sessions.c:1044
 msgid "to"
-msgstr ""
+msgstr "om"
 
 #: gschem/src/iface/i_sessions.c:1068
 msgid "Failed to rename session"
@@ -906,7 +911,7 @@ msgstr "Kon nie herbenaam sessie"
 
 #: gschem/src/iface/i_sessions.c:1071
 msgid "<b>Could not rename session</b>"
-msgstr ""
+msgstr "<b>Kon nie herbenaam sessie</b>"
 
 #: gschem/src/iface/i_sessions.c:1105
 msgid "Created session"
@@ -914,7 +919,7 @@ msgstr "Huidige Venster"
 
 #: gschem/src/iface/i_sessions.c:1106
 msgid "with"
-msgstr ""
+msgstr "met"
 
 #: gschem/src/iface/i_sessions.c:1116 gschem/src/x/x_window.c:1228
 #: gschem/src/x/x_window.c:1231
@@ -1042,11 +1047,11 @@ msgstr "Plak %d Modus"
 
 #: gschem/src/iface/i_status.c:186
 msgid "First point?"
-msgstr ""
+msgstr "Eerste punt?"
 
 #: gschem/src/iface/i_status.c:188
 msgid "Second point?"
-msgstr ""
+msgstr "Tweede punt?"
 
 #: gschem/src/iface/i_status.c:190
 msgid "Project Mode"
@@ -1066,15 +1071,15 @@ msgstr "Toon Verskuilde"
 
 #: gschem/src/iface/i_status.c:246
 msgid "Snap Off"
-msgstr ""
+msgstr "snap Af"
 
 #: gschem/src/iface/i_status.c:248
 msgid "Resnap Active"
-msgstr ""
+msgstr "Resnap aktiewe"
 
 #: gschem/src/iface/i_vars.c:386
 msgid "Restoring user settings\n"
-msgstr ""
+msgstr "Restoring user settings\n"
 
 #: gschem/src/iface/i_vars.c:775
 msgid "Initializing default configuration settings\n"
@@ -1121,13 +1126,13 @@ msgstr "Maak laaste handeling ongedaan\n"
 #: gschem/src/object/o_break.c:842
 #, c-format
 msgid "Point 2 missed x=%d, y=%d\n"
-msgstr ""
+msgstr "Punt 2 gemis x=%d, y=%d\n"
 
 #: gschem/src/object/o_break.c:189 gschem/src/object/o_break.c:522
 #: gschem/src/object/o_break.c:845
 #, c-format
 msgid "Point 1 missed x=%d, y=%d\n"
-msgstr ""
+msgstr "Punt 1 gemis x=%d, y=%d\n"
 
 #: gschem/src/object/o_complex.c:248 gschem/src/object/o_complex.c:252
 msgid "Translating schematic"
@@ -2868,7 +2873,9 @@ msgstr "Kopieer in 1 in"
 
 #: gschem/src/x/x_menus.c:141 gschem/etc/system-gschemrc.scm:2089
 msgid "Copy the current selection to the system clipboard"
-msgstr "Sny die huidige seleksie na die stelsel clipCopy die huidige seleksie na die stelsel clipboardboard"
+msgstr ""
+"Sny die huidige seleksie na die stelsel clipCopy die huidige seleksie na die "
+"stelsel clipboardboard"
 
 #: gschem/src/x/x_menus.c:142
 msgid "Paste Clipboard"
@@ -4398,9 +4405,10 @@ msgstr ""
 msgid "_Toggle Visibility"
 msgstr ""
 
+# Toggle attribute visibility
 #: gschem/etc/system-gschemrc.scm:2280
 msgid "Toggle attribute visibility"
-msgstr "Enkeleienskap-Bewerker"
+msgstr "Skakel eienskappe sigbaarheid"
 
 #: gschem/etc/system-gschemrc.scm:2281
 msgid "_Reset Position"
@@ -4408,11 +4416,11 @@ msgstr "Bestemming"
 
 #: gschem/etc/system-gschemrc.scm:2281
 msgid "Restore attribute positions and orientation"
-msgstr ""
+msgstr "Herstel eienskappe posisies en oriëntering"
 
 #: gschem/etc/system-gschemrc.scm:2283
 msgid "_Find Specific Text..."
-msgstr ""
+msgstr "Vind Spesifieke teks..."
 
 #: gschem/etc/system-gschemrc.scm:2283
 msgid "Find an attribute"
@@ -4420,7 +4428,7 @@ msgstr "Voeg Eienskap By"
 
 #: gschem/etc/system-gschemrc.scm:2284
 msgid "_Hide Specific Text..."
-msgstr ""
+msgstr "Steek Spesifieke teks..."
 
 #: gschem/etc/system-gschemrc.scm:2284
 msgid "Hide selected attribute"
@@ -4530,10 +4538,10 @@ msgstr "Verhoog die snap grootte"
 msgid "Scale _down Grid Spacing"
 msgstr ""
 
+# Decrease the snap size
 #: gschem/etc/system-gschemrc.scm:2317
-#, fuzzy
 msgid "Decrease the snap size"
-msgstr "Verhoog die snap grootte"
+msgstr "Verminder die snap grootte"
 
 #: gschem/etc/system-gschemrc.scm:2318
 msgid "S_nap Grid Spacing..."
