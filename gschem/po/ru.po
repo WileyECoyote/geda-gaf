@@ -787,38 +787,40 @@ msgstr "Привязка включена\n"
 msgid "Snap back to the grid (CAUTION!)\n"
 msgstr "ВНИМАНИЕ! Включите привязку к сетке!\n"
 
+# "Rubber" mode connections is disabled
 #: gschem/src/iface/i_command.c:4382
-#, fuzzy
 msgid "Rubber band mode is OFF\n"
 msgstr "Режим «резиновых» соединений отключён\n"
 
+# "Rubber" mode connections enabled
 #: gschem/src/iface/i_command.c:4385
-#, fuzzy
 msgid "Rubber band mode is ON\n"
 msgstr "Режим «резиновых» соединений включён\n"
 
+# "Magnetic" mode connections enabled
 #: gschem/src/iface/i_command.c:4396
-#, fuzzy
 msgid "Magnetic net mode is ON\n"
 msgstr "Режим «магнитных» соединений включён\n"
 
+# "Magnetic" mode connections is disabled
 #: gschem/src/iface/i_command.c:4399
-#, fuzzy
 msgid "Magnetic net mode is OFF\n"
 msgstr "Режим «магнитных» соединений отключён\n"
 
+# Off
 #: gschem/src/iface/i_command.c:4416 gschem/src/iface/i_command.c:4458
 msgid "Off"
-msgstr "Откл."
+msgstr "Откл"
 
+# On
 #: gschem/src/iface/i_command.c:4419 gschem/src/iface/i_command.c:4461
-#, fuzzy
 msgid "On"
-msgstr "Открыть"
+msgstr "на"
 
+# Drag-Can-Move is now
 #: gschem/src/iface/i_command.c:4421
 msgid "Drag-Can-Move is now"
-msgstr ""
+msgstr "перетащить может-ход в настоящее время"
 
 #: gschem/src/iface/i_command.c:4433
 msgid "Action feedback mode set to OUTLINE\n"
@@ -855,20 +857,20 @@ msgstr "Не удалось открыть файл сеанса"
 msgid "is not accessible"
 msgstr ""
 
+# File
 #: gschem/src/iface/i_sessions.c:272
-#, fuzzy
 msgid "File"
-msgstr "_Файл"
+msgstr "Файл"
 
 #: gschem/src/iface/i_sessions.c:335
 msgid "Warning relative file names detected in session"
 msgstr ""
 
+# Session
 #: gschem/src/iface/i_sessions.c:346 gschem/src/iface/i_sessions.c:359
 #: gschem/src/iface/i_sessions.c:931 gschem/src/x/x_sessions.c:232
-#, fuzzy
 msgid "Session"
-msgstr "Показать имя"
+msgstr "сессия"
 
 #: gschem/src/iface/i_sessions.c:347
 msgid "opening"
@@ -878,25 +880,25 @@ msgstr ""
 msgid "of"
 msgstr ""
 
+# documents
 #: gschem/src/iface/i_sessions.c:349 gschem/src/iface/i_sessions.c:933
 #: gschem/src/iface/i_sessions.c:1107
-#, fuzzy
 msgid "documents"
-msgstr "Документация"
+msgstr "Документы"
 
 #: gschem/src/iface/i_sessions.c:358
 msgid "did not contain any accessible documents"
 msgstr ""
 
+# Sessions
 #: gschem/src/iface/i_sessions.c:791
-#, fuzzy
 msgid "Sessions"
-msgstr "Показать имя"
+msgstr "сессий"
 
+# Removing session
 #: gschem/src/iface/i_sessions.c:855
-#, fuzzy
 msgid "Removing session"
-msgstr "Сохранить как"
+msgstr "Извлечение сессии"
 
 # Failed to remove session
 #: gschem/src/iface/i_sessions.c:880
@@ -916,45 +918,43 @@ msgstr ""
 msgid "An error occurred attempting to create session"
 msgstr "Произошла ошибка при попытке создать сессию"
 
+# Session Error
 #: gschem/src/iface/i_sessions.c:950 gschem/src/iface/i_sessions.c:1134
-#, fuzzy
 msgid "<b>Session Error</b>"
-msgstr "<b>Вывод</b>"
+msgstr "<b>Ошибка сеанса</b>"
 
-# Заголовок окна ошибки
+# Creation failed => Could not create
 #: gschem/src/iface/i_sessions.c:950
-#, fuzzy
 msgid "Creation failed"
-msgstr "Ошибка вставки данных из буфера обмена"
+msgstr "Не удалось создать"
 
+# Opened session
 #: gschem/src/iface/i_sessions.c:994
-#, fuzzy
 msgid "Opened session"
-msgstr "Сохранить как"
+msgstr "Открытая сессия"
 
+# Renaming session
 #: gschem/src/iface/i_sessions.c:1043
-#, fuzzy
 msgid "Renaming session"
-msgstr "Сохранить как"
+msgstr "Переименование сессии"
 
 #: gschem/src/iface/i_sessions.c:1044
 msgid "to"
 msgstr ""
 
-# Квадратные скобки добавлены для единообразия
+# Failed to rename session
 #: gschem/src/iface/i_sessions.c:1068
-#, fuzzy
 msgid "Failed to rename session"
-msgstr "Не удалось заменить изображение: «%s»"
+msgstr "Не удалось переименовать сеанс"
 
 #: gschem/src/iface/i_sessions.c:1071
 msgid "<b>Could not rename session</b>"
 msgstr ""
 
+# Created session
 #: gschem/src/iface/i_sessions.c:1105
-#, fuzzy
 msgid "Created session"
-msgstr "Сохранить как"
+msgstr "Дата создания сеанса"
 
 #: gschem/src/iface/i_sessions.c:1106
 msgid "with"
@@ -965,10 +965,10 @@ msgstr ""
 msgid "Saved"
 msgstr "Файл сохранён"
 
+# documents to session
 #: gschem/src/iface/i_sessions.c:1117
-#, fuzzy
 msgid "documents to session"
-msgstr "_Документация"
+msgstr "Документы к сессии"
 
 # An error occurred attempting to save session
 #: gschem/src/iface/i_sessions.c:1127
@@ -994,10 +994,10 @@ msgstr "Показать Сессии при запуске теперь отк�
 msgid "Session system initialized!\n"
 msgstr ""
 
+# Unselect objects
 #: gschem/src/iface/i_status.c:134 gschem/etc/system-gschemrc.scm:2121
-#, fuzzy
 msgid "Deselect Mode"
-msgstr "Выделение"
+msgstr "Отменить выбор объектов"
 
 #: gschem/src/iface/i_status.c:138 gschem/src/x/x_status_bar.c:383
 #: gschem/etc/system-gschemrc.scm:2120 gschem/scheme/gschem/builtins.scm:170
@@ -1012,10 +1012,10 @@ msgstr "Выделение рамкой"
 msgid "Zoom Box"
 msgstr "Масштаб на область"
 
+# Copy to point
 #: gschem/src/iface/i_status.c:145
-#, fuzzy
 msgid "Copy to point"
-msgstr "Копирование в буфер"
+msgstr "Скопировать в точку"
 
 #: gschem/src/iface/i_status.c:147 gschem/scheme/gschem/builtins.scm:122
 #: gschem/scheme/gschem/builtins.scm:125
@@ -1378,7 +1378,8 @@ msgstr ""
 msgid ""
 "duplicate slot may cause problems: [symbol name=%s, number=%d, slot=%d]\n"
 msgstr ""
-"Дублирование секций может вызвать проблемы: [symbolname=%s, number=%d, slot=%d]\n"
+"Дублирование секций может вызвать проблемы: [symbolname=%s, number=%d, slot="
+"%d]\n"
 
 #: gschem/src/x/x_autonumber.c:913
 msgid "No search string given in autonumber text.\n"
@@ -1616,10 +1617,10 @@ msgstr "Произошла ошибка при получении Drag & Drop д
 msgid "Data error"
 msgstr "ошибка в данных"
 
-# Заголовок окна ошибки
+# Drag & Drop failed
 #: gschem/src/x/x_coord.c:162 gschem/src/x/x_dnd.c:585
 msgid "Drag & Drop failed"
-msgstr "Ошибка вставки данных из буфера обмена"
+msgstr "перетащить и падение не удалось"
 
 # Coordinates
 #: gschem/src/x/x_coord.c:472
@@ -2174,7 +2175,8 @@ msgstr ""
 #, c-format
 msgid "invalid show option; defaulting to show both\n"
 msgstr ""
-"Выбран недопустимый способ отображения, установка отображения имени и значения\n"
+"Выбран недопустимый способ отображения, установка отображения имени и "
+"значения\n"
 
 #: gschem/src/x/x_edit_attrib.c:321
 msgid "Select to choose an attribute visibility options"
