@@ -813,8 +813,7 @@ geda_combo_box_text_get_active_text (GedaComboBoxText *combo_box)
 
     return text;
   }
-  else
-    return NULL;
+  return NULL;
 }
 
 bool
