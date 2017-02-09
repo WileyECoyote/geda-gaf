@@ -1872,10 +1872,10 @@ msgstr ""
 msgid "Descend into hierarchy"
 msgstr ""
 
+# Close when ascending hierarchy
 #: gschem/src/x/x_dialog.c:2508
-#, fuzzy
 msgid "Close on ascent"
-msgstr "പേജ് അടയ്ക്കുക"
+msgstr "ചിട്ടപ്പെടുത്തിയ ആരോഹണ പുലർത്തുക"
 
 #: gschem/src/x/x_dialog.c:2596
 msgid "Hide Text"
@@ -2860,34 +2860,31 @@ msgstr ""
 
 #: gschem/src/x/x_menus.c:140
 msgid "Cut to Clipboard"
-msgstr ""
+msgstr "ക്ലിപ്പ്ബോർഡിലേക്ക് മുറിക്കുക"
 
 #: gschem/src/x/x_menus.c:140 gschem/etc/system-gschemrc.scm:2088
 msgid "Cut the current selection to the system clipboard"
-msgstr ""
+msgstr "സിസ്റ്റം ക്ലിപ്പ്ബോർഡിലേക്ക് നിലവിലെ തിരഞ്ഞെടുപ്പ് മുറിക്കുക"
 
 #: gschem/src/x/x_menus.c:141
-#, fuzzy
 msgid "Copy to Clipboard"
-msgstr "പകര്‍ത്തുക 1ലേക്ക്"
+msgstr "ക്ലിപ്പ്ബോർഡിലേയ്ക്ക് പകർത്തുക"
 
 #: gschem/src/x/x_menus.c:141 gschem/etc/system-gschemrc.scm:2089
 msgid "Copy the current selection to the system clipboard"
-msgstr ""
+msgstr "സിസ്റ്റം ക്ലിപ്പ്ബോർഡിലേക്ക് നിലവിലെ തിരഞ്ഞെടുപ്പ് പകർത്തുക"
 
 #: gschem/src/x/x_menus.c:142
-#, fuzzy
 msgid "Paste Clipboard"
-msgstr "പകര്‍ത്തി എടുക്കുക 1 ല്‍ നിന്നും"
+msgstr "ഒട്ടിക്കുക ക്ലിപ്ബോർഡ്"
 
 #: gschem/src/x/x_menus.c:142 gschem/etc/system-gschemrc.scm:2090
 msgid "Paste the contents of the system clipboard"
-msgstr ""
+msgstr "സിസ്റ്റം ക്ലിപ്പ്ബോർഡിലേക്ക് ഉളളടക്കം ഒട്ടിക്കുക"
 
 #: gschem/src/x/x_menus.c:148
-#, fuzzy
 msgid "Close"
-msgstr "പേജ് അടയ്ക്കുക"
+msgstr "അടയ്ക്കുക"
 
 #: gschem/src/x/x_menus.c:148
 msgid "Close the current path"
@@ -2901,18 +2898,19 @@ msgstr ""
 msgid "Terminate the current path"
 msgstr ""
 
+# End
 #: gschem/src/x/x_menus.c:150
-#, fuzzy
 msgid "End"
-msgstr "വലുതാക്കി കാണിക്കുന്ന പെട്ടി"
+msgstr "അവസാനിക്കുന്നു"
 
+# End this polygon and exit mode
 #: gschem/src/x/x_menus.c:150
 msgid "End this path and exit path mode"
-msgstr ""
+msgstr "ഈ പോളിഗോൺ ആൻഡ് എക്സിറ്റ് മോഡ് അവസാനിപ്പിക്കണമെന്ന്"
 
 #: gschem/src/x/x_menus.c:156
 msgid "Continue"
-msgstr ""
+msgstr "തുടരുക"
 
 #: gschem/src/x/x_menus.c:156
 msgid "Resume input of the current path"
@@ -3633,10 +3631,10 @@ msgstr ""
 msgid "Discarding page"
 msgstr ""
 
+# Closing
 #: gschem/src/x/x_window.c:1144
-#, fuzzy
 msgid "Closing"
-msgstr "പേജ് അടയ്ക്കുക"
+msgstr "അടയ്ക്കുന്നതിൽ"
 
 #: gschem/src/x/x_window.c:1209
 msgid "Could NOT save page"
@@ -3770,10 +3768,10 @@ msgstr ""
 msgid "Close the current document"
 msgstr ""
 
+# Close All
 #: gschem/etc/system-gschemrc.scm:2075
-#, fuzzy
 msgid "Close All"
-msgstr "പേജ് അടയ്ക്കുക"
+msgstr "എല്ലാം അടയ്ക്കുക"
 
 #: gschem/etc/system-gschemrc.scm:2075
 msgid "Close all open documents"
@@ -4707,9 +4705,8 @@ msgid "_Edit"
 msgstr "തിരുത്തിയെഴുതുക (_Edit)"
 
 #: gschem/etc/system-gschemrc.scm:2369
-#, fuzzy
 msgid "_Select"
-msgstr "പ്രവര്‍ത്തന രീതി നിര്‍ണയിക്കുക"
+msgstr "തെരഞ്ഞെടുക്കുക"
 
 #: gschem/etc/system-gschemrc.scm:2371
 msgid "_View"
@@ -4875,30 +4872,30 @@ msgstr ""
 msgid "Choose Slot"
 msgstr ""
 
+# Invert Selection
 #: gschem/scheme/gschem/builtins.scm:176
-#, fuzzy
 msgid "Invert Selection"
-msgstr "പ്രവര്‍ത്തന രീതി നിര്‍ണയിക്കുക"
+msgstr "വിപരീതം തിരഞ്ഞെടുക്കൽ"
 
+# Select Last
 #: gschem/scheme/gschem/builtins.scm:179
-#, fuzzy
 msgid "Select Last"
-msgstr "പ്രവര്‍ത്തന രീതി നിര്‍ണയിക്കുക"
+msgstr "സമീപകാലത്തെ തിരഞ്ഞെടുക്കുക"
 
+# Change the selection mode
 #: gschem/scheme/gschem/builtins.scm:182
-#, fuzzy
 msgid "Deselect mode"
-msgstr "പ്രവര്‍ത്തന രീതി നിര്‍ണയിക്കുക"
+msgstr "മോഡ് തിരഞ്ഞെടുത്തത് മാറ്റുക"
 
+# Cut
 #: gschem/scheme/gschem/builtins.scm:197
-#, fuzzy
 msgid "Cut"
-msgstr "കട്ട് ചെയുക  1 ലേക്ക്"
+msgstr "മുറിക്കുക"
 
+# Paste
 #: gschem/scheme/gschem/builtins.scm:203
-#, fuzzy
 msgid "Paste"
-msgstr "പകര്‍ത്തി എടുക്കുക 1 ല്‍ നിന്നും"
+msgstr "പേസ്റ്റ്"
 
 #: gschem/scheme/gschem/builtins.scm:209
 msgid "Redraw"
@@ -4924,35 +4921,35 @@ msgstr ""
 msgid "Pan Down"
 msgstr ""
 
+# zoom to Selection
 #: gschem/scheme/gschem/builtins.scm:230
-#, fuzzy
 msgid "Zoom Selection"
-msgstr "പ്രവര്‍ത്തന രീതി നിര്‍ണയിക്കുക"
+msgstr "സൂം തിരഞ്ഞെടുക്കൽ"
 
+# Zoom to periphery
 #: gschem/scheme/gschem/builtins.scm:233
-#, fuzzy
 msgid "Zoom Extents"
-msgstr "വലുതാക്കി കാണിക്കുന്ന പെട്ടി"
+msgstr "പ്രാന്തപ്രദേശങ്ങളിലുള്ള സൂം"
 
+# Zoom In
 #: gschem/scheme/gschem/builtins.scm:236
-#, fuzzy
 msgid "Zoom In"
-msgstr "വലുതാക്കി കാണിക്കുന്ന പെട്ടി"
+msgstr "വലുതാക്കുക"
 
+# Zoom Out
 #: gschem/scheme/gschem/builtins.scm:239
-#, fuzzy
 msgid "Zoom Out"
-msgstr "വലുതാക്കി കാണിക്കുന്ന പെട്ടി"
+msgstr "സൂം ഔട്ട്"
 
+# Zoom All
 #: gschem/scheme/gschem/builtins.scm:242
-#, fuzzy
 msgid "Zoom All"
-msgstr "വലുതാക്കി കാണിക്കുന്ന പെട്ടി"
+msgstr "സൂം എല്ലാ"
 
+# Zoom to Magnification
 #: gschem/scheme/gschem/builtins.scm:245
-#, fuzzy
 msgid "Zoom to Mag"
-msgstr "വലുതാക്കി കാണിക്കുന്ന പെട്ടി"
+msgstr "മാഗ്നിഫിക്കേഷൻ സൂം"
 
 #: gschem/scheme/gschem/builtins.scm:248
 msgid "Documentation"
@@ -4998,40 +4995,40 @@ msgstr ""
 msgid "Draw Last"
 msgstr ""
 
+# First Page
 #: gschem/scheme/gschem/builtins.scm:290
-#, fuzzy
 msgid "First Page"
-msgstr "പേജ് അടയ്ക്കുക"
+msgstr "ആദ്യ പേജ്"
 
+# Previous Page
 #: gschem/scheme/gschem/builtins.scm:293
-#, fuzzy
 msgid "Previous Page"
-msgstr "പേജ് അടയ്ക്കുക"
+msgstr "മുൻപത്തെ താൾ"
 
+# Next Page
 #: gschem/scheme/gschem/builtins.scm:296
-#, fuzzy
 msgid "Next Page"
-msgstr "പുതിയ പേജ്"
+msgstr "അടുത്ത പേജ്"
 
+# Page Up
 #: gschem/scheme/gschem/builtins.scm:299
-#, fuzzy
 msgid "Page Up"
-msgstr "താള്"
+msgstr "പേജ് മുകളിലേയ്ക്ക്"
 
+# Page Down
 #: gschem/scheme/gschem/builtins.scm:302
-#, fuzzy
 msgid "Page Down"
-msgstr "താള്"
+msgstr "പേജ് ഡൗൺ"
 
+# Last Page
 #: gschem/scheme/gschem/builtins.scm:305
-#, fuzzy
 msgid "Last Page"
-msgstr "പുതിയ പേജ്"
+msgstr "അവസാന പേജ്"
 
+# Print Page
 #: gschem/scheme/gschem/builtins.scm:311
-#, fuzzy
 msgid "Print Page"
-msgstr "പേജ് അടയ്ക്കുക"
+msgstr "പ്രിന്റ് പേജ്"
 
 #: gschem/scheme/gschem/builtins.scm:314
 msgid "Revert Changes"
@@ -5045,10 +5042,10 @@ msgstr ""
 msgid "Up Hierarchy"
 msgstr ""
 
+# Add Component
 #: gschem/scheme/gschem/builtins.scm:341
-#, fuzzy
 msgid "Add Component"
-msgstr "സാധനത്തിലെ മാറ്റങ്ങള്‍ നടപ്പില്‍ വരുത്തുക"
+msgstr "ഘടക ചേർക്കുക"
 
 #: gschem/scheme/gschem/builtins.scm:344
 msgid "Add Net"
@@ -5062,23 +5059,24 @@ msgstr ""
 msgid "Add Text"
 msgstr ""
 
+# Add Line
 #: gschem/scheme/gschem/builtins.scm:356
-#, fuzzy
 msgid "Add Line"
-msgstr "രേഖ"
+msgstr "ചേർക്കുക വര"
 
+# Add Pin
 #: gschem/scheme/gschem/builtins.scm:359
 msgid "Add Pin"
-msgstr ""
+msgstr "പിൻ ചേർക്കുക"
 
 #: gschem/scheme/gschem/builtins.scm:362
 msgid "Add Box"
 msgstr ""
 
+# Add Circle
 #: gschem/scheme/gschem/builtins.scm:365
-#, fuzzy
 msgid "Add Circle"
-msgstr "വൃത്തം"
+msgstr "ചേർക്കുക വലയം"
 
 #: gschem/scheme/gschem/builtins.scm:368
 msgid "Add Arc"
