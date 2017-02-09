@@ -107,6 +107,8 @@ static unsigned int  geda_tearoff_signals[ LAST_SIGNAL ] = { 0 };
 
 static void *geda_tearoff_menu_item_parent_class = NULL;
 
+static GHashTable *tearoff_item_hash = NULL;
+
 #if GTK_MAJOR_VERSION < 3
 
 static void
@@ -227,7 +229,7 @@ geda_tearoff_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
         x1 = right_max - x;
         x2 = MAX (right_max - x - TEAR_LENGTH, 0);
       }
-
+      /* What is this? */
       gtk_paint_hline (widget->style, widget->window, GTK_STATE_NORMAL,
                        NULL, widget, "tearoffmenuitem",
                        x1, x2, y + (height - widget->style->ythickness) / 2);
@@ -477,6 +479,13 @@ geda_tearoff_menu_finalize (GObject *object)
 {
   GedaTearoffMenuItem *menu = GEDA_TEAROFF_MENU_ITEM (object);
 
+  if (g_hash_table_remove (tearoff_item_hash, object)) {
+    if (!g_hash_table_size (tearoff_item_hash)) {
+      g_hash_table_destroy (tearoff_item_hash);
+      tearoff_item_hash = NULL;
+    }
+  }
+
   g_free(menu->priv);
 
   G_OBJECT_CLASS (geda_tearoff_menu_item_parent_class)->finalize (object);
@@ -548,10 +557,15 @@ geda_tearoff_menu_item_instance_init (GTypeInstance *instance, void *class)
 {
   GedaTearoffMenuItem *tearoff_menu_item = (GedaTearoffMenuItem*)instance;
 
-  tearoff_menu_item->instance_type = geda_tearoff_menu_item_get_type();
+  if (!tearoff_item_hash) {
+    tearoff_item_hash = g_hash_table_new (g_direct_hash, NULL);
+  }
+
+  g_hash_table_replace (tearoff_item_hash, instance, instance);
 
   tearoff_menu_item->priv = g_malloc0 (sizeof(GedaTearoffMenuItemData));
 }
+
 /*!
  * \brief Retrieve GedaTearoffMenuItem's Type identifier.
  * \par Function Description
@@ -605,8 +619,8 @@ geda_tearoff_menu_item_get_type (void)
 bool
 is_a_geda_tearoff_menu_item (GedaTearoffMenuItem *menu_item)
 {
-  if (G_IS_OBJECT(menu_item)) {
-    return (geda_tearoff_menu_item_get_type() == menu_item->instance_type);
+  if ((menu_item != NULL) && (tearoff_item_hash != NULL)) {
+    return g_hash_table_lookup(tearoff_item_hash, menu_item) ? TRUE : FALSE;
   }
   return FALSE;
 }
