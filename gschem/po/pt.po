@@ -266,73 +266,71 @@ msgstr ""
 msgid "Whether the preview widget should be large or small"
 msgstr ""
 
+# Coordinates Mode
 #: gschem/src/base/gschem_status_bar.c:587
-#, fuzzy
 msgid "Coordinates Mode"
-msgstr "Modo Componente"
+msgstr "Modo Coordenadas"
 
 #: gschem/src/base/gschem_status_bar.c:588
 msgid "Sets the Format Mode used to display coordinates on the status bar"
 msgstr ""
 
+# Grid Mode
 #: gschem/src/base/gschem_status_bar.c:597
-#, fuzzy
 msgid "Grid Mode"
-msgstr "Modo de Arco"
+msgstr "Modo grade"
 
 #: gschem/src/base/gschem_status_bar.c:598
 msgid "Sets the Grid Mode to display on the status bar"
 msgstr ""
 
+# Grid Size
 #: gschem/src/base/gschem_status_bar.c:607
-#, fuzzy
 msgid "Grid Size"
-msgstr "Ponto da grelha"
+msgstr "Tamanho Grade"
 
 #: gschem/src/base/gschem_status_bar.c:608
 msgid "Sets the Grid Size to display on the status bar"
 msgstr ""
 
 #: gschem/src/base/gschem_status_bar.c:617
-#, fuzzy
 msgid "height"
-msgstr "Largura x Altura"
+msgstr "Altura"
 
 #: gschem/src/base/gschem_status_bar.c:618
 msgid "Sets the height of the status bar"
 msgstr ""
 
+# Left Button Text
 #: gschem/src/base/gschem_status_bar.c:627
-#, fuzzy
 msgid "Left Button Text"
-msgstr "Da esquerda para a direita"
+msgstr "Texto do Botão Esquerdo"
 
 #: gschem/src/base/gschem_status_bar.c:628
 msgid "Set the string for the Left Button Text"
 msgstr ""
 
+# Middle Button Text
 #: gschem/src/base/gschem_status_bar.c:634
-#, fuzzy
 msgid "Middle Button Text"
-msgstr "Centro Esquerda"
+msgstr "Texto do Botão médio"
 
 #: gschem/src/base/gschem_status_bar.c:635
 msgid "Set the string for the Middle Button Text"
 msgstr ""
 
+# Right Button Text
 #: gschem/src/base/gschem_status_bar.c:641
-#, fuzzy
 msgid "Right Button Text"
-msgstr "Da direita para a esquerda"
+msgstr "Texto do Botão Direito"
 
 #: gschem/src/base/gschem_status_bar.c:642
 msgid "Set the string for the Right Button Text"
 msgstr ""
 
 #: gschem/src/base/gschem_status_bar.c:648
-#, fuzzy
 msgid "Snap Mode"
-msgstr "Modo Centrar"
+msgstr "O modo atrair"
 
 #: gschem/src/base/gschem_status_bar.c:649
 msgid "Sets the Snap Mode to display on the status bar"
@@ -346,8 +344,8 @@ msgstr "Tamanho da Grelha"
 msgid "Sets the Size Mode to display on the status bar"
 msgstr ""
 
+# Status Text
 #: gschem/src/base/gschem_status_bar.c:668
-#, fuzzy
 msgid "Status Text"
 msgstr "Estado"
 
@@ -355,16 +353,16 @@ msgstr "Estado"
 msgid "Set the string for the text on the Status Bar"
 msgstr ""
 
+# Status State
 #: gschem/src/base/gschem_status_bar.c:675
 #: gschem/src/base/gschem_status_bar.c:676
-#, fuzzy
 msgid "Status State"
-msgstr "Estado"
+msgstr "Estado de Status"
 
+# Status Bar Height
 #: gschem/src/base/gschem_status_bar.c:689
-#, fuzzy
 msgid "Status Bar Height"
-msgstr "Estado"
+msgstr "A altura da barra de status"
 
 #: gschem/src/base/gschem_status_bar.c:690
 msgid "Set or get the height of the status bar"
@@ -398,21 +396,21 @@ msgstr ""
 msgid "Gschem status bar"
 msgstr ""
 
+# Grid
 #: gschem/src/base/gschem_status_bar.c:1888
-#, fuzzy
 msgid "Grid"
-msgstr "Modo de Arco"
+msgstr "Grade"
 
 #: gschem/src/base/gschem_status_bar.c:1894
 #: gschem/src/base/gschem_status_bar.c:1915
 msgid "OFF"
 msgstr "DESLIGADO"
 
+# Error
 #: gschem/src/base/gschem_status_bar.c:1907 gschem/src/object/o_picture.c:615
 #: gschem/src/object/o_picture.c:619
-#, fuzzy
 msgid "Error"
-msgstr "Simetria"
+msgstr "Erro"
 
 #: gschem/src/base/gschem_status_bar.c:1919
 msgid "NONE"
@@ -440,9 +438,8 @@ msgid "entry in rc file"
 msgstr ""
 
 #: gschem/src/guile/g_rc.c:123
-#, fuzzy
 msgid "Bad Value"
-msgstr "Valor"
+msgstr "Valor inválido"
 
 #: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2070
 msgid "check"
@@ -556,10 +553,10 @@ msgstr "Impossível lançar URI"
 msgid "Found invalid gschem window smob ~S"
 msgstr ""
 
+# current value of
 #: gschem/src/iface/i_command.c:132 gschem/src/iface/i_command.c:5025
-#, fuzzy
 msgid "current value of"
-msgstr "Página actual"
+msgstr "Valor actual do"
 
 #: gschem/src/iface/i_command.c:132 gschem/src/iface/i_command.c:5026
 msgid "is"
@@ -600,23 +597,22 @@ msgstr "Tudo Gravado"
 msgid "Error encountered, Save Failed"
 msgstr ""
 
+# Write Image
 #: gschem/src/iface/i_command.c:1038 gschem/src/x/x_image.c:489
-#, fuzzy
 msgid "Write Image"
-msgstr "Escrever Imagem..."
+msgstr "Gravar a Imagem"
 
 #: gschem/src/iface/i_command.c:1060
 msgid "Write PDF"
-msgstr ""
+msgstr "Escrever PDF"
 
 #: gschem/src/iface/i_command.c:1156
 msgid "Canceled close all\n"
 msgstr ""
 
 #: gschem/src/iface/i_command.c:1165 gschem/src/iface/i_sessions.c:193
-#, fuzzy
 msgid "Closing all documents\n"
-msgstr "Fechar Página"
+msgstr "Fechar todos os documentos\n"
 
 #: gschem/src/iface/i_command.c:1188
 msgid "gschem: starting shut-down\n"
@@ -635,32 +631,28 @@ msgid "Empty buffer"
 msgstr "Buffer vazio"
 
 #: gschem/src/iface/i_command.c:1622
-#, fuzzy
 msgid "Offset Mode"
-msgstr "Modo Ligação"
+msgstr "O modo de deslocamento"
 
 #: gschem/src/iface/i_command.c:1623
 msgid "Specify offset distance:"
 msgstr ""
 
 #: gschem/src/iface/i_command.c:2204
-#, fuzzy
 msgid "Zoom Magnification"
-msgstr "/Ampliar"
+msgstr "Ampliação do Zoom"
 
 #: gschem/src/iface/i_command.c:2204
 msgid "Specify new zoom:"
-msgstr ""
+msgstr "Especificar o novo zoom:"
 
 #: gschem/src/iface/i_command.c:2248
-#, fuzzy
 msgid "error"
-msgstr "Simetria"
+msgstr "Erro"
 
 #: gschem/src/iface/i_command.c:2256
-#, fuzzy
 msgid "No component selected\n"
-msgstr "Seleccionada grelha de pontos\n"
+msgstr "Nenhum componente selecionado\n"
 
 #: gschem/src/iface/i_command.c:2801
 msgid "Confirm revert ALL documents"
@@ -724,14 +716,12 @@ msgid "Grid OFF\n"
 msgstr "Grelha Desligada\n"
 
 #: gschem/src/iface/i_command.c:4269
-#, fuzzy
 msgid "Dot grid activated\n"
-msgstr "Seleccionada grelha de pontos\n"
+msgstr "Grelha de pontos ativado\n"
 
 #: gschem/src/iface/i_command.c:4270
-#, fuzzy
 msgid "Mesh grid activated\n"
-msgstr "Seleccionada grelha de traços\n"
+msgstr "Grade de malha ativado\n"
 
 #: gschem/src/iface/i_command.c:4349
 msgid "Snap OFF (CAUTION!)\n"
@@ -834,7 +824,7 @@ msgstr ""
 
 #: gschem/src/iface/i_sessions.c:348
 msgid "of"
-msgstr ""
+msgstr "do"
 
 #: gschem/src/iface/i_sessions.c:349 gschem/src/iface/i_sessions.c:933
 #: gschem/src/iface/i_sessions.c:1107
@@ -5556,106 +5546,66 @@ msgstr "Mostrar teclas atalho"
 msgid "Component Documentation"
 msgstr "Documentação Componente"
 
+# View documentation for selected component
 #: gschem/scheme/gschem/builtins.scm:528
 msgid "View documentation for selected component"
-msgstr ""
+msgstr "Exibir a documentação para o componente selecionado"
 
+# Could not show documentation for selected component
 #: gschem/scheme/gschem/builtins.scm:544
 msgid "Could not show documentation for selected component\n"
-msgstr ""
+msgstr "Não poderia mostrar documentação para o componente selecionado\n"
 
+# gschem User Guide
 #: gschem/scheme/gschem/builtins.scm:548
-#, fuzzy
 msgid "gschem User Guide"
-msgstr "gschem _Perguntas Frequentes..."
+msgstr "Guia do Usuário gschem"
 
+# View the gschem User Guide in a browser
 #: gschem/scheme/gschem/builtins.scm:549
 msgid "View the gschem User Guide in a browser."
-msgstr ""
+msgstr "Visualizar o Guia do Usuário gschem em um navegador."
 
+# gschem Questions and answers
 #: gschem/scheme/gschem/builtins.scm:554
-#, fuzzy
 msgid "gschem FAQ"
-msgstr "gschem _Perguntas Frequentes..."
+msgstr "gschem Perguntas Frequentes"
 
 #: gschem/scheme/gschem/builtins.scm:555
 msgid "Frequently Asked Questions about using gschem."
 msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:560
-#, fuzzy
 msgid "gEDA wiki"
-msgstr "gEDA _Wiki..."
+msgstr "gEDA Wiki"
 
 #: gschem/scheme/gschem/builtins.scm:561
 msgid "View the front page of the gEDA wiki in a browser."
-msgstr ""
+msgstr "Visualizar a página frontal do gEDA wiki em um navegador."
 
 #: gschem/scheme/gschem/deprecated.scm:102
 #, scheme-format
 msgid "Invalid text alignment ~A."
-msgstr ""
+msgstr "Alinhamento de texto inválido ~A."
 
 #: gschem/scheme/gschem/gschemdoc.scm:241
 msgid "No documentation found"
-msgstr ""
+msgstr "Nenhuma documentação encontrada"
 
 #: gschem/scheme/gschem/gschem-export-menu.scm:57
 msgid "Export embed symbol"
-msgstr ""
+msgstr "Incorporar o símbolo Exportar"
 
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "Export embed picture"
-msgstr "Componente/Imagem Embutida"
+msgstr "Incorporar a imagem de exportação"
 
 #: gschem/scheme/gschem/keymap.scm:41
 #, scheme-format
 msgid "~S is not a valid key combination."
-msgstr ""
+msgstr "~S não é uma combinação de chave válido."
 
 #: gschem/scheme/gschem/keymap.scm:156
 #, scheme-format
 msgid "~S is not a prefix key sequence."
-msgstr ""
-
-#, fuzzy
-#~ msgid "session"
-#~ msgstr "Mostrar _Nome"
-
-#~ msgid "New page created [%s]\n"
-#~ msgstr "Nova pagina criada [%s]\n"
-
-#, fuzzy
-#~ msgid "An error occurred while receiving drag-and-drop data"
-#~ msgstr ""
-#~ "Ocorreu o seguinte erro durante a gravação da imagem com o tipo %s no "
-#~ "ficheiro com nome:\n"
-#~ "%s\n"
-#~ "\n"
-#~ "%s.\n"
-
-#, fuzzy
-#~ msgid "check the log for more information"
-#~ msgstr ""
-#~ "Erro durante a impressão para ficheiro '%s'\n"
-#~ "Verifique a janela de registo para mais informação"
-
-#, fuzzy
-#~ msgid ""
-#~ "Could not allocate graphic context, w_current->window is not a valid "
-#~ "Window\n"
-#~ msgstr "Não foi possível reservar memoria para a variável gc\n"
-
-#, fuzzy
-#~ msgid "An error occurred while dropping data"
-#~ msgstr ""
-#~ "Ocorreu o seguinte erro durante a gravação da imagem com o tipo %s no "
-#~ "ficheiro com nome:\n"
-#~ "%s\n"
-#~ "\n"
-#~ "%s.\n"
-
-#, fuzzy
-#~ msgid "documents\n"
-#~ msgstr "D_ocumentação..."
+msgstr "~S não é uma seqüência de chave de prefixo."
