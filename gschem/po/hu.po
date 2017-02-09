@@ -981,11 +981,11 @@ msgstr "Beillesztés %d üzemmód"
 
 #: gschem/src/iface/i_status.c:186
 msgid "First point?"
-msgstr ""
+msgstr "Első pont?"
 
 #: gschem/src/iface/i_status.c:188
 msgid "Second point?"
-msgstr ""
+msgstr "Második pont?"
 
 #: gschem/src/iface/i_status.c:190
 msgid "Project Mode"
@@ -1005,7 +1005,7 @@ msgstr "Rejtett megjelenítése"
 
 #: gschem/src/iface/i_status.c:246
 msgid "Snap Off"
-msgstr ""
+msgstr "lepattinthatóvá"
 
 #: gschem/src/iface/i_status.c:248
 msgid "Resnap Active"
@@ -1061,13 +1061,13 @@ msgstr "Utolsó művelet visszavonása\n"
 #: gschem/src/object/o_break.c:842
 #, c-format
 msgid "Point 2 missed x=%d, y=%d\n"
-msgstr ""
+msgstr "2 pont hiányzott x=%d, y=%d\n"
 
 #: gschem/src/object/o_break.c:189 gschem/src/object/o_break.c:522
 #: gschem/src/object/o_break.c:845
 #, c-format
 msgid "Point 1 missed x=%d, y=%d\n"
-msgstr ""
+msgstr "1 pont hiányzott x=%d, y=%d\n"
 
 #: gschem/src/object/o_complex.c:248 gschem/src/object/o_complex.c:252
 msgid "Translating schematic"
@@ -1090,11 +1090,11 @@ msgstr "Meglevő attribútumok cseréje"
 
 #: gschem/src/object/o_edit.c:717
 msgid "Hidden text is now visible\n"
-msgstr ""
+msgstr "Rejtett szöveg most már látható\n"
 
 #: gschem/src/object/o_edit.c:720
 msgid "Hidden text is now invisible\n"
-msgstr ""
+msgstr "Rejtett szöveg most láthatatlan\n"
 
 #: gschem/src/object/o_edit.c:1121 gschem/src/x/x_edit_cprop.c:367
 msgid "Could not find symbol"
@@ -1108,13 +1108,15 @@ msgstr "a könyvtárban. Frissítés sikertelen"
 msgid "Updating symbol"
 msgstr "frissítése szimbólum"
 
+# Could not figure out which end of the pin to connect
 #: gschem/src/object/o_move.c:524
 msgid "Could not resolve which end of pin to connect\n"
-msgstr ""
+msgstr "tudta kitalálni, melyik vége a pin csatlakozni\n"
 
+# Warning: net off the grid coordinates
 #: gschem/src/object/o_net.c:76
 msgid "Warning: Starting net off grid coordinate\n"
-msgstr ""
+msgstr "Figyelmeztetés: rajtrácson koordináta net off\n"
 
 #: gschem/src/object/o_net.c:485
 msgid "Warning: Ending net off grid coordinate\n"
@@ -4331,11 +4333,12 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2280
 msgid "_Toggle Visibility"
-msgstr "Lá_thatóság váltása"
+msgstr "Láthatóság váltása"
 
+# Change attribute visibility
 #: gschem/etc/system-gschemrc.scm:2280
 msgid "Toggle attribute visibility"
-msgstr "Lá_thatóság váltása"
+msgstr "váltása attribútum láthatóság"
 
 #: gschem/etc/system-gschemrc.scm:2281
 msgid "_Reset Position"
