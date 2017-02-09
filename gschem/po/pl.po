@@ -5469,6 +5469,7 @@ msgstr "Obrócić tryb Snap na"
 msgid "Cycle Snap Mode"
 msgstr "Cykl Tryb Snap"
 
+# Toggle Net stay connected
 #: gschem/scheme/gschem/builtins.scm:493
 #, fuzzy
 msgid "Toggle Net Rubber Band"
@@ -5484,18 +5485,18 @@ msgid "Enable/Disable Drag move"
 msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:502
-#, fuzzy
 msgid "Toggle Outline Drawing"
-msgstr "Przełącz wyświetlanie _konturów"
+msgstr "Przełącz wyświetlanie konturów"
 
+# Enable / disable the automatic panning
 #: gschem/scheme/gschem/builtins.scm:505
 msgid "Enable/Disable Auto Panning"
-msgstr ""
+msgstr "Włączanie/wyłączanie automatycznego panoramowania"
 
+# Set Default Text Size
 #: gschem/scheme/gschem/builtins.scm:508
-#, fuzzy
 msgid "Set Default Text Size"
-msgstr "Rozmiar czcionki"
+msgstr "Ustaw domyślny rozmiar tekstu"
 
 #: gschem/scheme/gschem/builtins.scm:511
 msgid "Open Preference Dialog"
@@ -5509,15 +5510,15 @@ msgstr ""
 msgid "View the front page of the gEDA documentation in a browser."
 msgstr ""
 
+# shortcut keys
 #: gschem/scheme/gschem/builtins.scm:522
-#, fuzzy
 msgid "Show Hotkeys"
 msgstr "Klawisze skrótów"
 
+# Component Documentation
 #: gschem/scheme/gschem/builtins.scm:526
-#, fuzzy
 msgid "Component Documentation"
-msgstr "Dokumentacja _elementu..."
+msgstr "Dokumentacja Komponent"
 
 #: gschem/scheme/gschem/builtins.scm:528
 msgid "View documentation for selected component"
@@ -5527,10 +5528,10 @@ msgstr ""
 msgid "Could not show documentation for selected component\n"
 msgstr ""
 
+# gschem user instructions
 #: gschem/scheme/gschem/builtins.scm:548
-#, fuzzy
 msgid "gschem User Guide"
-msgstr "_FAQ gschem..."
+msgstr "Instrukcja obsługi gschem"
 
 #: gschem/scheme/gschem/builtins.scm:549
 msgid "View the gschem User Guide in a browser."
