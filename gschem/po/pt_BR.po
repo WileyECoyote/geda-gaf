@@ -295,73 +295,71 @@ msgstr ""
 msgid "Whether the preview widget should be large or small"
 msgstr ""
 
+# Coordinates Mode
 #: gschem/src/base/gschem_status_bar.c:587
-#, fuzzy
 msgid "Coordinates Mode"
-msgstr "Modo de Componente"
+msgstr "Modo de Coordenadas"
 
 #: gschem/src/base/gschem_status_bar.c:588
 msgid "Sets the Format Mode used to display coordinates on the status bar"
 msgstr ""
 
+# Grid Mode
 #: gschem/src/base/gschem_status_bar.c:597
-#, fuzzy
 msgid "Grid Mode"
-msgstr "Modo de Arco"
+msgstr "Modo Grade"
 
 #: gschem/src/base/gschem_status_bar.c:598
 msgid "Sets the Grid Mode to display on the status bar"
 msgstr ""
 
+# Grid Size
 #: gschem/src/base/gschem_status_bar.c:607
-#, fuzzy
 msgid "Grid Size"
-msgstr "Ponto de grade"
+msgstr "Tamanho da grade"
 
 #: gschem/src/base/gschem_status_bar.c:608
 msgid "Sets the Grid Size to display on the status bar"
 msgstr ""
 
 #: gschem/src/base/gschem_status_bar.c:617
-#, fuzzy
 msgid "height"
-msgstr "Largura x Altura"
+msgstr "Altura"
 
 #: gschem/src/base/gschem_status_bar.c:618
 msgid "Sets the height of the status bar"
 msgstr ""
 
+# Left Button Text
 #: gschem/src/base/gschem_status_bar.c:627
-#, fuzzy
 msgid "Left Button Text"
-msgstr "Da esquerda para direita"
+msgstr "Texto do botão esquerdo"
 
 #: gschem/src/base/gschem_status_bar.c:628
 msgid "Set the string for the Left Button Text"
 msgstr ""
 
+# Middle Button Text
 #: gschem/src/base/gschem_status_bar.c:634
-#, fuzzy
 msgid "Middle Button Text"
-msgstr "Esq Centro"
+msgstr "Texto do botão central"
 
 #: gschem/src/base/gschem_status_bar.c:635
 msgid "Set the string for the Middle Button Text"
 msgstr ""
 
+# Right Button Text
 #: gschem/src/base/gschem_status_bar.c:641
-#, fuzzy
 msgid "Right Button Text"
-msgstr "Da direita para a esquerda"
+msgstr "Texto do botão direito"
 
 #: gschem/src/base/gschem_status_bar.c:642
 msgid "Set the string for the Right Button Text"
 msgstr ""
 
 #: gschem/src/base/gschem_status_bar.c:648
-#, fuzzy
 msgid "Snap Mode"
-msgstr "Modo Centrar"
+msgstr "Modo de Snap"
 
 #: gschem/src/base/gschem_status_bar.c:649
 msgid "Sets the Snap Mode to display on the status bar"
@@ -375,10 +373,10 @@ msgstr "Tamanho do Ajuste"
 msgid "Sets the Size Mode to display on the status bar"
 msgstr ""
 
+# Status Text
 #: gschem/src/base/gschem_status_bar.c:668
-#, fuzzy
 msgid "Status Text"
-msgstr "Status"
+msgstr "Texto de status"
 
 #: gschem/src/base/gschem_status_bar.c:669
 msgid "Set the string for the text on the Status Bar"
@@ -386,14 +384,13 @@ msgstr ""
 
 #: gschem/src/base/gschem_status_bar.c:675
 #: gschem/src/base/gschem_status_bar.c:676
-#, fuzzy
 msgid "Status State"
-msgstr "Status"
+msgstr "Estado de Status"
 
+# Status Bar Height
 #: gschem/src/base/gschem_status_bar.c:689
-#, fuzzy
 msgid "Status Bar Height"
-msgstr "Status"
+msgstr "Altura da barra de status"
 
 #: gschem/src/base/gschem_status_bar.c:690
 msgid "Set or get the height of the status bar"
@@ -428,9 +425,8 @@ msgid "Gschem status bar"
 msgstr ""
 
 #: gschem/src/base/gschem_status_bar.c:1888
-#, fuzzy
 msgid "Grid"
-msgstr "Modo de Arco"
+msgstr "Grade"
 
 #: gschem/src/base/gschem_status_bar.c:1894
 #: gschem/src/base/gschem_status_bar.c:1915
@@ -439,9 +435,8 @@ msgstr "DESLIGADO"
 
 #: gschem/src/base/gschem_status_bar.c:1907 gschem/src/object/o_picture.c:615
 #: gschem/src/object/o_picture.c:619
-#, fuzzy
 msgid "Error"
-msgstr "Espelhar"
+msgstr "Erro"
 
 #: gschem/src/base/gschem_status_bar.c:1919
 msgid "NONE"
@@ -469,9 +464,8 @@ msgid "entry in rc file"
 msgstr ""
 
 #: gschem/src/guile/g_rc.c:123
-#, fuzzy
 msgid "Bad Value"
-msgstr "Valor"
+msgstr "Valor ruim"
 
 #: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2070
 msgid "check"
@@ -585,10 +579,10 @@ msgstr "Impossível lançar URI"
 msgid "Found invalid gschem window smob ~S"
 msgstr ""
 
+# current value of
 #: gschem/src/iface/i_command.c:132 gschem/src/iface/i_command.c:5025
-#, fuzzy
 msgid "current value of"
-msgstr "Página Atual"
+msgstr "Valor atual de"
 
 #: gschem/src/iface/i_command.c:132 gschem/src/iface/i_command.c:5026
 msgid "is"
@@ -636,16 +630,16 @@ msgstr "Gravar imagem"
 
 #: gschem/src/iface/i_command.c:1060
 msgid "Write PDF"
-msgstr ""
+msgstr "Gravar PDF"
 
 #: gschem/src/iface/i_command.c:1156
 msgid "Canceled close all\n"
-msgstr ""
+msgstr "Cancelado fechar todos\n"
 
+# Closing all documents
 #: gschem/src/iface/i_command.c:1165 gschem/src/iface/i_sessions.c:193
-#, fuzzy
 msgid "Closing all documents\n"
-msgstr "Fechar página"
+msgstr "Fechar todos os documentos\n"
 
 #: gschem/src/iface/i_command.c:1188
 msgid "gschem: starting shut-down\n"
@@ -663,33 +657,31 @@ msgstr ""
 msgid "Empty buffer"
 msgstr "Buffer vazio"
 
+# offset Mode
 #: gschem/src/iface/i_command.c:1622
-#, fuzzy
 msgid "Offset Mode"
-msgstr "Modo de Conexão (NET)"
+msgstr "Modo de deslocamento"
 
 #: gschem/src/iface/i_command.c:1623
 msgid "Specify offset distance:"
 msgstr ""
 
 #: gschem/src/iface/i_command.c:2204
-#, fuzzy
 msgid "Zoom Magnification"
-msgstr "Zoom maior"
+msgstr "Ampliação do zoom"
 
 #: gschem/src/iface/i_command.c:2204
 msgid "Specify new zoom:"
-msgstr ""
+msgstr "Especificar novo zoom:"
 
 #: gschem/src/iface/i_command.c:2248
-#, fuzzy
 msgid "error"
-msgstr "Espelhar"
+msgstr "erro"
 
+# No component selected
 #: gschem/src/iface/i_command.c:2256
-#, fuzzy
 msgid "No component selected\n"
-msgstr "Usar grade de pontos\n"
+msgstr "Nenhum componente selecionado\n"
 
 #: gschem/src/iface/i_command.c:2801
 msgid "Confirm revert ALL documents"
@@ -750,12 +742,10 @@ msgid "Grid OFF\n"
 msgstr "Grade DESLIGADA\n"
 
 #: gschem/src/iface/i_command.c:4269
-#, fuzzy
 msgid "Dot grid activated\n"
-msgstr "Usar grade de pontos\n"
+msgstr "Rede de pontos ativada\n"
 
 #: gschem/src/iface/i_command.c:4270
-#, fuzzy
 msgid "Mesh grid activated\n"
 msgstr "Usar grade em malha\n"
 
@@ -771,15 +761,15 @@ msgstr "Ajuste ligado\n"
 msgid "Snap back to the grid (CAUTION!)\n"
 msgstr "Reajuste à grade (CUIDADO!)\n"
 
+# Rubberband mode is OFF
 #: gschem/src/iface/i_command.c:4382
-#, fuzzy
 msgid "Rubber band mode is OFF\n"
-msgstr "Elástico desligado \n"
+msgstr "O modo Rubberband está desativado\n"
 
+# Rubber band mode is ON
 #: gschem/src/iface/i_command.c:4385
-#, fuzzy
 msgid "Rubber band mode is ON\n"
-msgstr "Elástico ligado\n"
+msgstr "O modo de banda de borracha está ligado\n"
 
 # Magnetic net mode is ON
 #: gschem/src/iface/i_command.c:4396
@@ -852,7 +842,6 @@ msgstr ""
 
 #: gschem/src/iface/i_sessions.c:346 gschem/src/iface/i_sessions.c:359
 #: gschem/src/iface/i_sessions.c:931 gschem/src/x/x_sessions.c:232
-#, fuzzy
 msgid "Session"
 msgstr "Sessão"
 
@@ -863,7 +852,7 @@ msgstr "abertura"
 
 #: gschem/src/iface/i_sessions.c:348
 msgid "of"
-msgstr ""
+msgstr "do"
 
 #: gschem/src/iface/i_sessions.c:349 gschem/src/iface/i_sessions.c:933
 #: gschem/src/iface/i_sessions.c:1107
@@ -5575,7 +5564,7 @@ msgstr "Manuais do GEDA"
 # View the front page of the gEDA documentation in a browser
 #: gschem/scheme/gschem/builtins.scm:519
 msgid "View the front page of the gEDA documentation in a browser."
-msgstr "Visualizar a primeira página da documentação do gEDA em um navegador"
+msgstr "Visualizar a primeira página da documentação do gEDA em um navegador."
 
 # Show Hotkeys
 #: gschem/scheme/gschem/builtins.scm:522
@@ -5635,12 +5624,11 @@ msgstr "Documento não encontrado"
 
 #: gschem/scheme/gschem/gschem-export-menu.scm:57
 msgid "Export embed symbol"
-msgstr ""
+msgstr "Símbolo de inserção de exportação"
 
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "Export embed picture"
-msgstr "Embutir Componente/Imagem"
+msgstr "Exportar imagem embed"
 
 #: gschem/scheme/gschem/keymap.scm:41
 #, scheme-format
@@ -5651,31 +5639,3 @@ msgstr "~S não é uma combinação válida."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S não é uma sequência de prefixo."
-
-#, fuzzy
-#~ msgid "session"
-#~ msgstr "Mostrar _Nome"
-
-#~ msgid "New page created [%s]\n"
-#~ msgstr "Criada Nova Página [%s]\n"
-
-#, fuzzy
-#~ msgid "An error occurred while receiving drag-and-drop data"
-#~ msgstr "ERRO: Erro desconhecido ao analisar arquivos de configuração"
-
-# msgid "in library, try refreshing"
-# msgstr "Impossível encontrar simbolo [%s] na biblioteca. Atualização falhou"
-#, fuzzy
-#~ msgid "check the log for more information"
-#~ msgstr ""
-#~ "%s\n"
-#~ "\n"
-#~ "O arquivo de log pode conter mais informações."
-
-#, fuzzy
-#~ msgid "An error occurred while dropping data"
-#~ msgstr "ERRO: Erro desconhecido ao analisar arquivos de configuração"
-
-#, fuzzy
-#~ msgid "documents\n"
-#~ msgstr "D_ocumentação..."
