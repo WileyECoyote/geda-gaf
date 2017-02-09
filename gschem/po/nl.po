@@ -122,21 +122,21 @@ msgstr ""
 msgid "Macro String"
 msgstr ""
 
+# Evaluate
 #: gschem/src/base/gschem_macro_widget.c:357
-#, fuzzy
 msgid "Evaluate"
-msgstr "Evalueer:"
+msgstr "Evalueer"
 
 #: gschem/src/base/gschem_page_view.c:250
 #: gschem/src/base/gschem_page_view.c:251
 msgid "Horizontal adjustment"
 msgstr ""
 
+# Page
 #: gschem/src/base/gschem_page_view.c:258
 #: gschem/src/base/gschem_page_view.c:259
-#, fuzzy
 msgid "Page"
-msgstr "_Pagina"
+msgstr "Pagina"
 
 #: gschem/src/base/gschem_page_view.c:265
 #: gschem/src/base/gschem_page_view.c:266
@@ -149,7 +149,7 @@ msgid "Vertical adjustment"
 msgstr ""
 
 #: gschem/src/base/gschem_parsecmd.c:85
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Usage: %s [OPTION ...] [--] [FILE ...]\n"
 "\n"
@@ -192,17 +192,25 @@ msgstr ""
 "schema.\n"
 "\n"
 "Opties:\n"
-"  -q, --quiet              Stille mode.\n"
-"  -v, --verbose            Verbale mode.\n"
-"  -r, --config-file=FILE   Additioneel configuratie bestand laden.\n"
-"  -L DIR                   Voeg DIR toe aan Scheme zoekpad.\n"
-"  -c EXPR                  Scheme expressie uitvoeren tijdens opstarten.\n"
-"  -s FILE                  Scheme script uitvoeren tijdens opstarten.\n"
-"  -o, --output=FILE        Uitvoer bestandsnaam (voor afdrukken).\n"
-"  -p                       Automatisch geplaatst in het venster.\n"
-"  -V, --version            Toon versie informatie.\n"
-"  -h, --help               Help; dit bericht.\n"
-"  --                       Behandel alle overblijvende argumenten als "
+"  -a, --render-adaptor <DRV> Geef aan welke maken adapter, Cario of X11 gebruike\n"
+"  -c, --config-file <FILE>   Additioneel configuratie bestand laden.\n"
+"  -g, --guile <DIR>          Voeg DIR toe aan Scheme zoekpad (pre-config).\n"
+"  -f, --font <NAME>          set lettertype familienaam\n"
+"  -h, --help                 Help; dit bericht.\n"
+"  -m, --safe-mode            Veilige modus.\n"
+"  -n, --no-auto              Geen automatische load laatste document.\n"
+"  -o, --output <FILE>        Uitvoer bestandsnaam (voor afdrukken).\n"
+"  -p, --place                Automatisch geplaatst in het venster.\n"
+"  -q, --quiet                Stille mode.\n"
+"  -r, --run <FILE>           Scheme script uitvoeren tijdens opstarten.\n"
+"  -s, --start <name>         Opstarten met behulp van de opgegeven naam sessie.\n"
+"  -t, --title-block <FILE>   Start a new drawing using the specified title-block.\n"
+"  -u, --undo-dir <DIR>       Geef een tijdelijke map voor het ongedaan maken van bestanden.\n"
+"  -v, --verbose              Verbale mode.\n"
+"  -V, --version              Toon versie informatie.\n"
+"  -x (EXPR)                  Scheme expressie uitvoeren tijdens opstarten.\n"
+"  -z, --minimized            Hide the main window, used for scripting\n"
+"  --                         Behandel alle overblijvende argumenten als "
 "bestandnamen.\n"
 "\n"
 "Rapporteer fouten aan <https://bugs.launchpad.net/geda>\n"
@@ -239,10 +247,10 @@ msgstr "FOUT"
 msgid "option requires an argument"
 msgstr ""
 
+# Unknown option
 #: gschem/src/base/gschem_parsecmd.c:290
-#, fuzzy
 msgid "Unknown option"
-msgstr "Onbekend"
+msgstr "onbekende optie"
 
 #: gschem/src/base/gschem_parsecmd.c:296
 msgid "Unknown option character"
@@ -250,7 +258,6 @@ msgstr ""
 
 # Help for more information
 #: gschem/src/base/gschem_parsecmd.c:302
-#, fuzzy
 msgid "--help for more information"
 msgstr "--help voor meer informatie"
 
@@ -271,19 +278,18 @@ msgstr "Bestandsnaam"
 msgid "name of file to be previewed"
 msgstr ""
 
+# Object List
 #: gschem/src/base/gschem_preview.c:549
-#, fuzzy
 msgid "Object List"
-msgstr "Selecteer"
+msgstr "Objectlijst"
 
 #: gschem/src/base/gschem_preview.c:550
 msgid "List of objects to be previewed"
 msgstr ""
 
 #: gschem/src/base/gschem_preview.c:557
-#, fuzzy
 msgid "Active"
-msgstr "Aktie"
+msgstr "Actief"
 
 #: gschem/src/base/gschem_preview.c:558
 msgid "Whether the preview widget is enabled or disabled"
@@ -297,73 +303,72 @@ msgstr ""
 msgid "Whether the preview widget should be large or small"
 msgstr ""
 
+# Coordinates Mode
 #: gschem/src/base/gschem_status_bar.c:587
-#, fuzzy
 msgid "Coordinates Mode"
-msgstr "Component Mode"
+msgstr "Coördinaten Mode"
 
 #: gschem/src/base/gschem_status_bar.c:588
 msgid "Sets the Format Mode used to display coordinates on the status bar"
 msgstr ""
 
+# Grid mode
 #: gschem/src/base/gschem_status_bar.c:597
-#, fuzzy
 msgid "Grid Mode"
-msgstr "Boog Mode"
+msgstr "raster modus"
 
 #: gschem/src/base/gschem_status_bar.c:598
 msgid "Sets the Grid Mode to display on the status bar"
 msgstr ""
 
+# Grid Size
 #: gschem/src/base/gschem_status_bar.c:607
-#, fuzzy
 msgid "Grid Size"
-msgstr "Rasterpunt"
+msgstr "Rastergrootte"
 
 #: gschem/src/base/gschem_status_bar.c:608
 msgid "Sets the Grid Size to display on the status bar"
 msgstr ""
 
+# height
 #: gschem/src/base/gschem_status_bar.c:617
-#, fuzzy
 msgid "height"
-msgstr "Breedte x Hoogte"
+msgstr "Hoogte"
 
 #: gschem/src/base/gschem_status_bar.c:618
 msgid "Sets the height of the status bar"
 msgstr ""
 
+# Left Button Text
 #: gschem/src/base/gschem_status_bar.c:627
-#, fuzzy
 msgid "Left Button Text"
-msgstr "Van links naar rechts"
+msgstr "links Knoptekst"
 
 #: gschem/src/base/gschem_status_bar.c:628
 msgid "Set the string for the Left Button Text"
 msgstr ""
 
 #: gschem/src/base/gschem_status_bar.c:634
-#, fuzzy
 msgid "Middle Button Text"
-msgstr "Midden Links"
+msgstr "Middelste knop tekst"
 
 #: gschem/src/base/gschem_status_bar.c:635
 msgid "Set the string for the Middle Button Text"
 msgstr ""
 
+# Right Button Text
 #: gschem/src/base/gschem_status_bar.c:641
-#, fuzzy
 msgid "Right Button Text"
-msgstr "Van rechts naar links"
+msgstr "Rechter knop Tekst"
 
 #: gschem/src/base/gschem_status_bar.c:642
 msgid "Set the string for the Right Button Text"
 msgstr ""
 
+# Snap Mode
 #: gschem/src/base/gschem_status_bar.c:648
-#, fuzzy
 msgid "Snap Mode"
-msgstr "Schakel Snap Modus"
+msgstr "Snap Modus"
 
 #: gschem/src/base/gschem_status_bar.c:649
 msgid "Sets the Snap Mode to display on the status bar"
@@ -377,10 +382,10 @@ msgstr "Snap Grootte"
 msgid "Sets the Size Mode to display on the status bar"
 msgstr ""
 
+# Status Text
 #: gschem/src/base/gschem_status_bar.c:668
-#, fuzzy
 msgid "Status Text"
-msgstr "Status"
+msgstr "Status Tekst"
 
 #: gschem/src/base/gschem_status_bar.c:669
 msgid "Set the string for the text on the Status Bar"
@@ -388,14 +393,12 @@ msgstr ""
 
 #: gschem/src/base/gschem_status_bar.c:675
 #: gschem/src/base/gschem_status_bar.c:676
-#, fuzzy
 msgid "Status State"
-msgstr "Status"
+msgstr "Status State"
 
 #: gschem/src/base/gschem_status_bar.c:689
-#, fuzzy
 msgid "Status Bar Height"
-msgstr "Status"
+msgstr "Statusbalk hoogte"
 
 #: gschem/src/base/gschem_status_bar.c:690
 msgid "Set or get the height of the status bar"
@@ -1424,13 +1427,13 @@ msgstr ""
 msgid "An error occurred while inserting clipboard data"
 msgstr "Er is een fout opgetreden bij het invoegen van klembordgegevens"
 
+# Clipboard Insertion Failed
 #: gschem/src/x/x_clipboard.c:322
-#, fuzzy
 msgid "Clipboard Insertion Failed"
 msgstr "Klembord invoegen faalde"
 
+# Normal behavior - reference component
 #: gschem/src/x/x_compselect.c:1257
-#, fuzzy
 msgid "Default is to reference the component"
 msgstr "Normaal gedrag - referentie component"
 
@@ -1588,15 +1591,15 @@ msgstr "Er is een fout opgetreden tijdens het ontvangen van Drag & Drop data"
 msgid "Data error"
 msgstr "gegevensfout"
 
+# Drag & Drop failed
 #: gschem/src/x/x_coord.c:162 gschem/src/x/x_dnd.c:585
-#, fuzzy
 msgid "Drag & Drop failed"
-msgstr "Klembord invoegen faalde"
+msgstr "Drag & Drop mislukt"
 
+# Coordinates
 #: gschem/src/x/x_coord.c:472
-#, fuzzy
 msgid "Coordinates"
-msgstr "Component Mode"
+msgstr "Coördinaten"
 
 #: gschem/src/x/x_coord.c:487
 msgid "Screen"
@@ -3587,32 +3590,34 @@ msgstr ""
 msgid "Manage Sessions"
 msgstr ""
 
+# Rename
 #: gschem/src/x/x_sessions.c:639
-#, fuzzy
 msgid "_Rename"
-msgstr "Bestandsnaam"
+msgstr "_Verdopen"
 
 #: gschem/src/x/x_sessions.c:646 gschem/etc/system-gschemrc.scm:2091
 msgid "_Delete"
 msgstr "Verwij_der"
 
+# Export
 #: gschem/src/x/x_sessions.c:653 gschem/etc/system-gschemrc.scm:2066
-#, fuzzy
 msgid "_Export"
-msgstr "Exporteer Afbeelding"
+msgstr "_Exporteer"
 
+# Open Session
 #: gschem/src/x/x_sessions.c:768
 msgid "Open Session"
-msgstr ""
+msgstr "Sessie openen"
 
+# New Session
 #: gschem/src/x/x_sessions.c:829
 msgid "New Session"
-msgstr ""
+msgstr "Nieuwe sessie"
 
+# Save Session As
 #: gschem/src/x/x_sessions.c:853 gschem/scheme/gschem/builtins.scm:389
-#, fuzzy
 msgid "Save Session As"
-msgstr "Opslaan Als"
+msgstr "Sessie Opslaan Als"
 
 #: gschem/src/x/x_settings.c:359
 msgid "error opening"
@@ -3636,10 +3641,10 @@ msgstr "Fout bij het openen uitgang"
 msgid "Wrote configuration to"
 msgstr "Schreef configuratie"
 
+# File error
 #: gschem/src/x/x_settings.c:607
-#, fuzzy
 msgid "File error"
-msgstr "<b>Omvang</b>"
+msgstr "Bestandsfout"
 
 #: gschem/src/x/x_settings_dialog.c:1074
 msgid "Clear attributes and restore default filter list?"
@@ -3649,10 +3654,10 @@ msgstr ""
 msgid "Restore default"
 msgstr ""
 
+# Close without changing any settings
 #: gschem/src/x/x_settings_dialog.c:2639
-#, fuzzy
 msgid "Close without changing any settings"
-msgstr "Afsluiten zonder opslaan"
+msgstr "Sluiten zonder het wijzigen van instellingen"
 
 #: gschem/src/x/x_settings_dialog.c:2641 gschem/scheme/gschem/builtins.scm:56
 msgid "Save"
@@ -3715,10 +3720,10 @@ msgstr ""
 msgid "Could not save Toolbar configuration to"
 msgstr "Kon werkbalk configuratie niet opslaan"
 
+# Error, Toolbar configuration key file
 #: gschem/src/x/x_toolbars.c:642
-#, fuzzy
 msgid "Error, Toolbar configuration key file"
-msgstr "Kan geen gschem configuratie laden."
+msgstr "Fout, werkbalk toets configuratie bestand"
 
 #: gschem/src/x/x_toolbars.c:650
 msgid "Retrieving toolbar geometry\n"
@@ -3729,15 +3734,15 @@ msgstr ""
 msgid "Toolbar configuration restored from"
 msgstr "toolbar configuratie hersteld van"
 
+# Warning, error restoring toolbar configuration
 #: gschem/src/x/x_toolbars.c:680
-#, fuzzy
 msgid "Warning, error restoring toolbar configuration"
-msgstr "Kan geen gschem configuratie laden."
+msgstr "Waarschuwing, Fout herstellen werkbalk configureren"
 
+# Warning, toolbar configuration file access error
 #: gschem/src/x/x_toolbars.c:686
-#, fuzzy
 msgid "Warning, toolbar configuration file access error"
-msgstr "Kan geen gschem configuratie laden."
+msgstr "Waarschuwing, werkbalk configuratiebestand toegangsfout"
 
 # Toolbar configuration not found
 #: gschem/src/x/x_toolbars.c:704
@@ -3749,10 +3754,10 @@ msgstr "Toolbar configuratie niet gevonden"
 msgid "Could not allocate a graphics context"
 msgstr "Kan niet toewijzen een grafische context"
 
+# there is no current window
 #: gschem/src/x/x_window.c:110
-#, fuzzy
 msgid "there is no current window"
-msgstr "Huidige Venster"
+msgstr "Er is geen huidige venster"
 
 #: gschem/src/x/x_window.c:119
 msgid "Could not create a Cairo context, is window drawable?\n"
@@ -3793,15 +3798,15 @@ msgstr "Nieuw Bestand"
 msgid "Failed to load file"
 msgstr "Mislukt bestand te laden"
 
+# Creating new file
 #: gschem/src/x/x_window.c:983
-#, fuzzy
 msgid "Creating new file"
-msgstr "Klembord invoegen faalde"
+msgstr "Nieuwe bestand"
 
+# Path
 #: gschem/src/x/x_window.c:996
-#, fuzzy
 msgid "Path"
-msgstr "Voeg Pad Toe"
+msgstr "Pad"
 
 #: gschem/src/x/x_window.c:999
 msgid ""
