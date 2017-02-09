@@ -335,13 +335,15 @@ msgstr ""
 msgid "Status State"
 msgstr ""
 
+# Status Bar Height
 #: gschem/src/base/gschem_status_bar.c:689
 msgid "Status Bar Height"
-msgstr ""
+msgstr "نوار وضعیت ارتفاع"
 
+# Set or get the height of the status bar
 #: gschem/src/base/gschem_status_bar.c:690
 msgid "Set or get the height of the status bar"
-msgstr ""
+msgstr "گرفتن یا اینکه تنظیم، نوار وضعیت"
 
 #: gschem/src/base/gschem_status_bar.c:1188
 msgid "Coordinate display, right click for format options"
@@ -545,10 +547,10 @@ msgstr ""
 msgid "New page created"
 msgstr ""
 
+# Created new window
 #: gschem/src/iface/i_command.c:752
-#, fuzzy
 msgid "New Window created"
-msgstr "New Window"
+msgstr "پنجره جدید ایجاد شده"
 
 #: gschem/src/iface/i_command.c:951
 msgid "Failed to Save All"
@@ -576,7 +578,7 @@ msgstr ""
 
 #: gschem/src/iface/i_command.c:1165 gschem/src/iface/i_sessions.c:193
 msgid "Closing all documents\n"
-msgstr "Close all pages\n"
+msgstr "همه اسناد\n"
 
 #: gschem/src/iface/i_command.c:1188
 msgid "gschem: starting shut-down\n"
@@ -610,10 +612,10 @@ msgstr "Zoom Box"
 msgid "Specify new zoom:"
 msgstr ""
 
+# error
 #: gschem/src/iface/i_command.c:2248
-#, fuzzy
 msgid "error"
-msgstr "Mirror Mode"
+msgstr "خطا"
 
 #: gschem/src/iface/i_command.c:2256
 msgid "No component selected\n"
@@ -779,7 +781,7 @@ msgstr ""
 #: gschem/src/iface/i_sessions.c:349 gschem/src/iface/i_sessions.c:933
 #: gschem/src/iface/i_sessions.c:1107
 msgid "documents"
-msgstr ""
+msgstr "اسناد"
 
 #: gschem/src/iface/i_sessions.c:358
 msgid "did not contain any accessible documents"
@@ -1703,10 +1705,10 @@ msgstr ""
 msgid "Edit Fill Type"
 msgstr "Fill Type..."
 
+# Fill Type
 #: gschem/src/x/x_dialog.c:1625
-#, fuzzy
 msgid "Fill Type:"
-msgstr "Fill Type:"
+msgstr "نوع پر:"
 
 #: gschem/src/x/x_dialog.c:1628
 msgid "Line Width:"
@@ -3265,10 +3267,10 @@ msgstr "Select Mode"
 msgid "exported to"
 msgstr ""
 
+# Load selected session
 #: gschem/src/x/x_sessions.c:414
-#, fuzzy
 msgid "Load the selected session"
-msgstr "Select Mode"
+msgstr "جلسه انتخاب شده را بارگیری کنید"
 
 #: gschem/src/x/x_sessions.c:415
 msgid ""
@@ -3457,10 +3459,10 @@ msgstr ""
 msgid "Could not allocate a graphics context"
 msgstr ""
 
+# There is no current window
 #: gschem/src/x/x_window.c:110
-#, fuzzy
 msgid "there is no current window"
-msgstr "New Window"
+msgstr "پنجره فعلی وجود ندارد."
 
 #: gschem/src/x/x_window.c:119
 msgid "Could not create a Cairo context, is window drawable?\n"
@@ -3650,15 +3652,15 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2075
 msgid "Close All"
-msgstr "Close Page"
+msgstr "بستن تمام"
 
 #: gschem/etc/system-gschemrc.scm:2075
 msgid "Close all open documents"
-msgstr ""
+msgstr "بستن همه سند های باز"
 
 #: gschem/etc/system-gschemrc.scm:2076
 msgid "_Quit"
-msgstr ""
+msgstr "ترک"
 
 #: gschem/etc/system-gschemrc.scm:2084
 msgid "_Undo"
@@ -4340,10 +4342,10 @@ msgstr ""
 msgid "Attribute _Editor..."
 msgstr "Attributes..."
 
+# Characteristics editor box opens
 #: gschem/etc/system-gschemrc.scm:2287
-#, fuzzy
 msgid "Open the Attributes Editor Dialog"
-msgstr "Attributes"
+msgstr "کادر ویرایشگر صفات باز شود"
 
 #: gschem/etc/system-gschemrc.scm:2295
 msgid "A_utonumber Text..."
