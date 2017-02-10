@@ -1,5 +1,9 @@
 2017-02-10 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_radio_menu_item.c: Replace object type identifier
+      scheme for GedaRadioMenuItem with new hash table type identifier
+      system.
+
     * src/widgets/geda_separator.c: Replace object type identifier scheme
       for GedaSeparator with new hash table type identifier system.
 

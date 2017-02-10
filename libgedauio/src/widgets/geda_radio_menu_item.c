@@ -65,6 +65,8 @@ static unsigned int group_changed_signal = 0;
 
 static void *geda_radio_menu_item_parent_class = NULL;
 
+static GHashTable *radio_menu_hash = NULL;
+
 /* menu_item_class->activate */
 static void
 geda_radio_menu_item_activate (GedaMenuItem *menu_item)
@@ -214,6 +216,21 @@ geda_radio_menu_item_destroy (GtkObject *object)
   GTK_OBJECT_CLASS (geda_radio_menu_item_parent_class)->destroy (object);
 }
 
+static void
+geda_radio_menu_item_finalize (GObject *object)
+{
+  //GedaRadioMenuItem *radio_menu_item = GEDA_RADIO_MENU_ITEM (object);
+
+  if (g_hash_table_remove (radio_menu_hash, object)) {
+    if (!g_hash_table_size (radio_menu_hash)) {
+      g_hash_table_destroy (radio_menu_hash);
+      radio_menu_hash = NULL;
+    }
+  }
+
+  G_OBJECT_CLASS (geda_radio_menu_item_parent_class)->finalize (object);
+}
+
 /*!
  * \brief GedaRadioMenuItem Type Class Initializer
  * \par Function Description
@@ -235,6 +252,7 @@ geda_radio_menu_item_class_init(void *class, void *class_data)
   object_class    = GTK_OBJECT_CLASS (class);
   menu_item_class = GEDA_MENU_ITEM_CLASS (class);
 
+  gobject_class->finalize     = geda_radio_menu_item_finalize;
   gobject_class->set_property = geda_radio_menu_item_set_property;
   gobject_class->get_property = geda_radio_menu_item_get_property;
 
@@ -288,10 +306,15 @@ geda_radio_menu_item_instance_init(GTypeInstance *instance, void *class)
 {
   GedaRadioMenuItem *radio_menu_item = (GedaRadioMenuItem*)instance;
 
-  radio_menu_item->instance_type = geda_radio_menu_item_get_type();
-
   radio_menu_item->group = g_slist_prepend (NULL, radio_menu_item);
-  geda_check_menu_item_set_draw_as_radio (GEDA_CHECK_MENU_ITEM (radio_menu_item), TRUE);
+
+  if (!radio_menu_hash) {
+    radio_menu_hash = g_hash_table_new (g_direct_hash, NULL);
+  }
+
+  g_hash_table_replace (radio_menu_hash, instance, instance);
+
+  geda_check_menu_item_set_draw_as_radio ((GedaCheckMenuItem*)radio_menu_item, TRUE);
 }
 
 /*!
@@ -347,8 +370,8 @@ geda_radio_menu_item_get_type (void)
 bool
 is_a_geda_radio_menu_item (GedaRadioMenuItem *radio_menu_item)
 {
-  if (G_IS_OBJECT(radio_menu_item)) {
-    return (geda_radio_menu_item_get_type() == radio_menu_item->instance_type);
+  if ((radio_menu_item != NULL) && (radio_menu_hash != NULL)) {
+    return g_hash_table_lookup(radio_menu_hash, radio_menu_item) ? TRUE : FALSE;
   }
   return FALSE;
 }
