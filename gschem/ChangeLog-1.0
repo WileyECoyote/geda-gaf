@@ -4,6 +4,8 @@
 
     * po/it.po: Update Italian translations.
 
+    * po/ja.po: Update Japanese translations.
+
     * src/x/x_pagesel.c: Add/edit Doxygen comments.
 
 2017-02-09 Wiley E. Hill <wileyhill@gmail.com>

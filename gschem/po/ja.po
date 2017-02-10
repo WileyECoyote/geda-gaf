@@ -4313,91 +4313,108 @@ msgstr "ページマネージャ"
 
 #: gschem/etc/system-gschemrc.scm:2274
 msgid "_Attach"
-msgstr ""
+msgstr "アタッチ"
 
 #: gschem/etc/system-gschemrc.scm:2274
 msgid "Attach selected attributes to symbol"
-msgstr ""
+msgstr "選択した属性をシンボルにアタッチする"
 
+# Disconnect
 #: gschem/etc/system-gschemrc.scm:2275
 msgid "_Detach"
-msgstr ""
+msgstr "切断する"
 
+# Disconnect selected attributes from a symbol
 #: gschem/etc/system-gschemrc.scm:2275
 msgid "Dettach selected attributes from a symbol"
-msgstr ""
+msgstr "選択した属性をシンボルから切断する"
 
+# Show Value
 #: gschem/etc/system-gschemrc.scm:2276
 msgid "Show _Value"
-msgstr ""
+msgstr "値を表示"
 
+# Set selected value visible
 #: gschem/etc/system-gschemrc.scm:2276
 msgid "Set selected value visible"
-msgstr ""
+msgstr "選択した値を表示する"
 
+# Show Name
 #: gschem/etc/system-gschemrc.scm:2277
 msgid "Show _Name"
-msgstr ""
+msgstr "ショー名"
 
+# Set selected name visible
 #: gschem/etc/system-gschemrc.scm:2277
 msgid "Set selected name visible"
-msgstr ""
+msgstr "選択した名前を表示するように設定する"
 
+# Show Both
 #: gschem/etc/system-gschemrc.scm:2278
 msgid "Show _Both"
-msgstr ""
+msgstr "両方を表示"
 
+# Set selected name and value visible
 #: gschem/etc/system-gschemrc.scm:2278
 msgid "Set selected name and value visible"
-msgstr ""
+msgstr "選択した名前と値を表示する"
 
 #: gschem/etc/system-gschemrc.scm:2280
 msgid "_Toggle Visibility"
 msgstr ""
 
+# Toggle attribute visibility
 #: gschem/etc/system-gschemrc.scm:2280
-msgstr "シングルアトルビュートエディタ"
 msgid "Toggle attribute visibility"
+msgstr "属性の可視性を切り替える"
 
+# Reset Position
 #: gschem/etc/system-gschemrc.scm:2281
 msgid "_Reset Position"
-msgstr ""
+msgstr "リセット位置"
 
+# Restore attribute positions and orientation
 #: gschem/etc/system-gschemrc.scm:2281
 msgid "Restore attribute positions and orientation"
-msgstr ""
+msgstr "属性の位置と方向を復元する"
 
+# Find Specific Text
 #: gschem/etc/system-gschemrc.scm:2283
 msgid "_Find Specific Text..."
-msgstr ""
+msgstr "特定のテキストを検索する..."
 
 #: gschem/etc/system-gschemrc.scm:2283
 msgid "Find an attribute"
 msgstr "アトリビュート編集"
 
+# Hide Specific Text
 #: gschem/etc/system-gschemrc.scm:2284
 msgid "_Hide Specific Text..."
-msgstr ""
+msgstr "特定のテキストを隠す..."
 
+# Hide selected attribute
 #: gschem/etc/system-gschemrc.scm:2284
 msgid "Hide selected attribute"
-msgstr ""
+msgstr "選択した属性を非表示"
 
+# Show Specific Text
 #: gschem/etc/system-gschemrc.scm:2285
 msgid "_Show Specific Text..."
-msgstr ""
+msgstr "特定のテキストを表示する..."
 
+# Show a specific attribute
 #: gschem/etc/system-gschemrc.scm:2285
 msgid "Show a specific attribute"
-msgstr ""
+msgstr "特定の属性を表示する"
 
 #: gschem/etc/system-gschemrc.scm:2287
 msgid "Attribute _Editor..."
 msgstr "シングルアトルビュートエディタ..."
 
+# Open the Attributes Editor Dialog
 #: gschem/etc/system-gschemrc.scm:2287
-msgid "Open the Attibutes Editor Dialog"
-msgstr "シングルアトルビュートエディタ"
+msgid "Open the Attributes Editor Dialog"
+msgstr "アトリビュートエディタダイアログを開く"
 
 #: gschem/etc/system-gschemrc.scm:2295
 msgid "A_utonumber Text..."
@@ -5113,15 +5130,15 @@ msgstr "隠しテキスト表示"
 msgid "Component Documentation"
 msgstr "部品モード"
 
+# View documentation for selected component
 #: gschem/scheme/gschem/builtins.scm:528
 msgid "View documentation for selected component"
-msgstr ""
+msgstr "選択したコンポーネントのドキュメントを表示する"
 
+# View documentation for selected component
 #: gschem/scheme/gschem/builtins.scm:544
-msgid ""
-"Could not show documentation for selected component:\n"
-"\n"
-msgstr ""
+msgid "Could not show documentation for selected component\n"
+msgstr "選択したコンポーネントのドキュメントを表示する\n"
 
 #: gschem/scheme/gschem/builtins.scm:548
 msgid "gschem User Guide"
@@ -5141,11 +5158,11 @@ msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:560
 msgid "gEDA wiki"
-msgstr ""
+msgstr "gEDA wiki"
 
 #: gschem/scheme/gschem/builtins.scm:561
 msgid "View the front page of the gEDA wiki in a browser."
-msgstr ""
+msgstr "gEDA wikiのフロントページをブラウザで見る."
 
 # Invalid text alignment
 #: gschem/scheme/gschem/deprecated.scm:102
