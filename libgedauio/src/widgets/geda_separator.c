@@ -69,7 +69,7 @@ static bool geda_separator_expose       (GtkWidget      *widget,
 static void *geda_separator_parent_class = NULL;
 
 /* Table of pointers to GedaSeparator instances */
-static GHashTable *separator_hash_table = NULL;
+static GHashTable *separator_hash = NULL;
 
 #if GTK_MAJOR_VERSION < 3
 
@@ -139,8 +139,7 @@ geda_separator_expose (GtkWidget *widget, GdkEventExpose *event)
 }
 
 static void
-geda_separator_size_request (GtkWidget      *widget,
-                             GtkRequisition *requisition)
+geda_separator_size_request (GtkWidget *widget, GtkRequisition *requisition)
 {
   GedaSeparator *separator = GEDA_SEPARATOR (widget);
   bool wide_separators;
@@ -214,8 +213,8 @@ geda_separator_get_preferred_width (GtkWidget *widget,
 
 static void
 geda_separator_get_preferred_height (GtkWidget *widget,
-                                    int       *minimum,
-                                    int       *natural)
+                                    int        *minimum,
+                                    int        *natural)
 {
   geda_separator_get_preferred_size (widget, 1 /* VERTICAL*/ , minimum, natural);
 }
@@ -285,10 +284,10 @@ geda_separator_finalize (GObject *object)
 {
 #ifndef DEBUG_GEDA_SEPARATOR
 
-  if (g_hash_table_remove (separator_hash_table, object)) {
-    if (!g_hash_table_size (separator_hash_table)) {
-      g_hash_table_destroy (separator_hash_table);
-      separator_hash_table = NULL;
+  if (g_hash_table_remove (separator_hash, object)) {
+    if (!g_hash_table_size (separator_hash)) {
+      g_hash_table_destroy (separator_hash);
+      separator_hash = NULL;
     }
   }
 
@@ -382,8 +381,6 @@ geda_separator_instance_init(GTypeInstance *instance, void *g_class)
   GedaSeparator *separator = (GedaSeparator*)instance;
   GtkWidget     *widget    = GTK_WIDGET (instance);
 
-  separator->instance_type = geda_separator_get_type();
-
   gtk_widget_set_has_window (GTK_WIDGET (instance), FALSE);
 
   separator->orientation = 0;
@@ -391,11 +388,11 @@ geda_separator_instance_init(GTypeInstance *instance, void *g_class)
   widget->requisition.width  = 1;
   widget->requisition.height = widget->style->ythickness;
 
-  if (!separator_hash_table) {
-    separator_hash_table = g_hash_table_new (g_direct_hash, NULL);
+  if (!separator_hash) {
+    separator_hash = g_hash_table_new (g_direct_hash, NULL);
   }
 
-  g_hash_table_replace (separator_hash_table, instance, instance);
+  g_hash_table_replace (separator_hash, instance, instance);
 }
 
 /*!
@@ -449,8 +446,8 @@ GedaType geda_separator_get_type (void)
 bool
 is_a_geda_separator (GedaSeparator *separator)
 {
-  if ((separator != NULL) && (separator_hash_table != NULL)) {
-    return g_hash_table_lookup(separator_hash_table, separator) ? TRUE : FALSE;
+  if ((separator != NULL) && (separator_hash != NULL)) {
+    return g_hash_table_lookup(separator_hash, separator) ? TRUE : FALSE;
   }
   return FALSE;
 }

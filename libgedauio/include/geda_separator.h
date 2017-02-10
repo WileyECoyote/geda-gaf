@@ -43,7 +43,6 @@ typedef struct _GedaSeparatorClass  GedaSeparatorClass;
 struct _GedaSeparator
 {
   GtkWidget widget;
-  GedaType  instance_type;
   int       orientation;
 };
 

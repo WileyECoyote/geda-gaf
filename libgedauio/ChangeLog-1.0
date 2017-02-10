@@ -1,5 +1,10 @@
 2017-02-08 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_separator.c: Replace object type identifier scheme
+      for GedaTearoffMenuItem with new hash table type identifier system.
+
+2017-02-08 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/widgets/geda_tearoff_menu_item.c: Replace object type identifier
       scheme for GedaTearoffMenuItem with new hash table type identifier
       system.
