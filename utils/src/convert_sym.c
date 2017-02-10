@@ -63,14 +63,14 @@ extern int optind;
 #define MAX_NODES        1024
 #define MAX_POINTS       1024
 
-/* Viewdraw Colours
+/* Viewdraw Colors
  *
  * 0  Black   |  4  Red       |   8  Gray       |  12  Lt. Red
  * 1  Blue    |  5  Magenta   |   9  Lt. Blue   |  13  Lt. Magenta
  * 2  Green   |  6  Brown     |  10  Lt. Green  |  14  Yellow
  * 3  Cyan    |  7  Lt. Gray  |  11  Lt. Cyan   |  15  White
  *
- * Geda Colours:
+ * Geda Colors:
  *
  * 0  BLACK   |  1  WHITE     |   2  RED        |   3  GREEN
  * 4  BLUE    |  5  YELLOW    |   6  CYAN       |   7  GREY
