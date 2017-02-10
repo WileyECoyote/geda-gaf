@@ -1015,11 +1015,11 @@ msgstr "Modalità %d Incolla"
 
 #: gschem/src/iface/i_status.c:186
 msgid "First point?"
-msgstr ""
+msgstr "Primo punto?"
 
 #: gschem/src/iface/i_status.c:188
 msgid "Second point?"
-msgstr ""
+msgstr "Secondo punto?"
 
 #: gschem/src/iface/i_status.c:190
 msgid "Project Mode"
@@ -1520,26 +1520,24 @@ msgstr "Schermo"
 msgid "World"
 msgstr "Mondo"
 
+# Could not load image file
 #: gschem/src/x/x_dialog.c:437
-#, fuzzy
 msgid "Could not load image file"
-msgstr "Impossibile aprire il file"
+msgstr "Impossibile caricare il file immagine"
 
 #: gschem/src/x/x_dialog.c:443
-#, fuzzy
 msgid "gEDA: GPL Electronic Design Automation"
 msgstr "gEDA: GPL Electronic Design Automation"
 
 #: gschem/src/x/x_dialog.c:444
 msgid "glibc"
-msgstr ""
+msgstr "glibc"
 
 #: gschem/src/x/x_dialog.c:445
 msgid "Guile"
-msgstr ""
+msgstr "Guile"
 
 #: gschem/src/x/x_dialog.c:455
-#, fuzzy
 msgid ""
 "Copyright © 1998-2017 Ales Hvezda <ahvezda@geda.seul.org>\n"
 "Copyright © 1998-2017 gEDA Contributors (see ChangeLog for details)"
@@ -2043,9 +2041,9 @@ msgid "Done, renderer is down"
 msgstr ""
 
 #: gschem/src/x/x_edit_attrib.c:210
-#, fuzzy, c-format
+#, c-format
 msgid "invalid show option; defaulting to show both\n"
-msgstr "Ottenuta opzione mostra non valida; ritorno a mostra entrambi\n"
+msgstr "opzione mostra non valida; ritorno a mostra entrambi\n"
 
 #: gschem/src/x/x_edit_attrib.c:321
 msgid "Select to choose an attribute visibility options"
@@ -2495,7 +2493,6 @@ msgid "Save canceled on user request\n"
 msgstr "Salvataggio annullato su richiesta utente.\n"
 
 #: gschem/src/x/x_fileselect.c:475
-#, fuzzy
 msgid ""
 "If you load the original file, the backup file will be overwritten in the "
 "next autosave timeout and will be lost.\n"
@@ -2506,7 +2503,7 @@ msgstr ""
 "Se si carica il file originale, il file di backup verrà sovrascritto alla "
 "scadenza del prossimo autosalvataggio e verrà perso.\n"
 "\n"
-"Caricare il file di backup?\n"
+"Vuoi caricare il file di backup?\n"
 
 #: gschem/src/x/x_icons.c:251
 msgid "Warning, Error reading image file"
@@ -3585,10 +3582,10 @@ msgstr "Nuovo file"
 msgid "Failed to load file"
 msgstr "Fallito il caricamento del disegno"
 
+# Creating new file
 #: gschem/src/x/x_window.c:983
-#, fuzzy
 msgid "Creating new file"
-msgstr "Inserimento appunti fallito"
+msgstr "Creazione nuovo file"
 
 #: gschem/src/x/x_window.c:996
 msgid "Path"
@@ -5048,10 +5045,9 @@ msgstr "Testo di autonumerazione"
 
 #: gschem/scheme/gschem/builtins.scm:436
 msgid "Show Console Window"
-msgstr "Mostra la finestra coordinate"
+msgstr "Mostra finestra Console"
 
 #: gschem/scheme/gschem/builtins.scm:439
-#, fuzzy
 msgid "Show Coordinates Window"
 msgstr "Mostra la finestra coordinate"
 
@@ -5152,12 +5148,10 @@ msgstr "Documentazione componente"
 msgid "View documentation for selected component"
 msgstr "Mostra la documentazione per il componente selezionato"
 
+# Could not show documentation for selected component
 #: gschem/scheme/gschem/builtins.scm:544
-#, fuzzy
 msgid "Could not show documentation for selected component\n"
-msgstr ""
-"Impossibile mostrare la documentazione per i componenti selezionati:\n"
-"\n"
+msgstr "non ha potuto mostrare la documentazione per il componente selezionato\n"
 
 #: gschem/scheme/gschem/builtins.scm:548
 msgid "gschem User Guide"
