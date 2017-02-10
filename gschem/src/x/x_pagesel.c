@@ -421,7 +421,10 @@ pagesel_callback_selection_changed (GtkTreeSelection *selection,
  *  This function is called when the user clicks a mouse button when
  *  the pointer is over a treeview row. If the event was a "right-
  *  click" then the pagesel_popup_menu function is called to present
- *  a menu of options.
+ *  a menu of options. If the event was a middle-mouse click then the
+ *  main window is raised to the foreground and this is convenient for
+ *  users usiing the Pagesel dialog to switch between pages while other
+ *  application windows are present.
  */
 static bool
 pagesel_callback_button_pressed (GtkWidget      *widget,
@@ -569,6 +572,12 @@ DEFINE_POPUP_CALLBACK (save_page,    ACTION(FILE_SAVE))
 DEFINE_POPUP_CALLBACK (close_page,   ACTION(PAGE_CLOSE))
 DEFINE_POPUP_CALLBACK (discard_page, ACTION(PAGE_DISCARD))
 
+/*! \internal Creates the context pop-up menu displayed when the
+ *   user right-clicks on the tree, which also actives the item
+ *   (if not already active), and consequently the page (on the
+ *   canvas). The pop-up widget is retained in pagesel->popup and
+ *   re-used until the dialog is closed.
+ */
 static GtkWidget*
 pagesel_create_popup_menu (Pagesel *pagesel)
 {
@@ -932,7 +941,7 @@ pagesel_callback_query_tooltip(GtkWidget  *widget, int x, int y,
 
 /*! \brief Geda Box Object Finalization Function
  *  \par Function Description
- *   Save the user preference to configuration system.
+ *   Save user preferences to the configuration system.
  */
 static void
 pagesel_finalize(GObject *object)
