@@ -39,6 +39,7 @@
 #include <../include/geda_image_menu_item.h>
 #include <../include/geda_bulb.h>
 
+#include "print_xpm.h"
 #include "test-suite.h"
 
 /*! \def MUT Module Under Tests */
@@ -127,6 +128,64 @@ int check_construction (void)
 }
 
 int
+check_accessors ()
+{
+  int result = 0;
+
+  GtkWidget *widget;
+
+  widget = geda_image_menu_item_new_with_label ("Gammaridea");
+
+  if (!GEDA_IS_IMAGE_MENU_ITEM(widget)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+  else {
+
+    GedaImageMenuItem *image_menu_item = (GedaImageMenuItem*)widget;
+
+    /* geda_image_menu_item_get_show_image */
+
+    /* The default is FALSE */
+    if (geda_image_menu_item_get_show_image (image_menu_item)) {
+      fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+      result++;
+    }
+
+    geda_image_menu_item_set_show_image(image_menu_item, TRUE);
+
+    if (!geda_image_menu_item_get_show_image (image_menu_item)) {
+      fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+      result++;
+    }
+
+    GdkPixbuf *print_pixbuf;
+    GtkWidget *print_image;
+
+    print_pixbuf = gdk_pixbuf_new_from_xpm_data (print_xpm);
+    print_image  = gtk_image_new_from_pixbuf (print_pixbuf);
+
+    /* geda_image_menu_item_set_image */
+
+    geda_image_menu_item_set_image(image_menu_item, print_image);
+
+    /* geda_image_menu_item_get_image */
+
+    GtkWidget *image = geda_image_menu_item_get_image(image_menu_item);
+
+    if (image != print_image) {
+      fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+      result++;
+    }
+
+    g_object_ref_sink(widget); /* Sink reference to the widget */
+    g_object_unref(widget);    /* Destroy the widget */
+  }
+
+  return result;
+}
+
+int
 main (int argc, char *argv[])
 {
   int result = 0;
@@ -146,6 +205,18 @@ main (int argc, char *argv[])
     else {
       fprintf(stderr, "Caught signal checking constructors in %s\n\n", MUT);
       result++;
+    }
+
+
+    if (!result) {
+
+      if (setjmp(point) == 0) {
+        result = check_accessors();
+      }
+      else {
+        fprintf(stderr, "Caught signal checking accessors in %s\n\n", MUT);
+        return 1;
+      }
     }
   }
   return result;

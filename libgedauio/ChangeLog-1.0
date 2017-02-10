@@ -1,7 +1,17 @@
-2017-02-08 Wiley E. Hill <wileyhill@gmail.com>
+2017-02-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_separator.c: Replace object type identifier scheme
-      for GedaTearoffMenuItem with new hash table type identifier system.
+      for GedaSeparator with new hash table type identifier system.
+
+    * tests/print_xpm.h: Add XPM image data for tests.
+
+    * tests/test_image_menu_item.c: Add check_accessors and include checks
+      for:
+
+        * geda_image_menu_item_get_show_image
+        * geda_image_menu_item_set_show_image
+        * geda_image_menu_item_set_image
+        * geda_image_menu_item_get_image
 
 2017-02-08 Wiley E. Hill <wileyhill@gmail.com>
 
