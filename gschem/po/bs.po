@@ -2182,9 +2182,8 @@ msgid "Documen_tation:"
 msgstr ""
 
 #: gschem/src/x/x_edit_cprop.c:1272
-#, fuzzy
 msgid "_Comment:"
-msgstr "_Kmponenta:"
+msgstr "_komentar:"
 
 #: gschem/src/x/x_edit_cprop.c:1297
 msgid "_Electrical:"
@@ -2210,10 +2209,10 @@ msgstr ""
 msgid "_Foot Print:"
 msgstr ""
 
+# Simulation Type
 #: gschem/src/x/x_edit_cprop.c:1384
-#, fuzzy
 msgid "Spice Type:"
-msgstr "Izmijeni simuliranje tekst:"
+msgstr "simulacija Tip:"
 
 #: gschem/src/x/x_edit_cprop.c:1395
 msgid "Model Name:"
@@ -2292,53 +2291,49 @@ msgid "Entry for model file name"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:96
-#, fuzzy
 msgid "in"
-msgstr "Pin"
+msgstr "in"
 
 #: gschem/src/x/x_edit_pin.c:97
-#, fuzzy
 msgid "out"
-msgstr "_Isijeci"
+msgstr "out"
 
 #: gschem/src/x/x_edit_pin.c:98
 msgid "io"
-msgstr ""
+msgstr "io"
 
 #: gschem/src/x/x_edit_pin.c:99
-#, fuzzy
-msgid "oc"
-msgstr "Zaključaj"
+msgid "io"
+msgstr "io"
 
 #: gschem/src/x/x_edit_pin.c:100
-#, fuzzy
 msgid "oe"
-msgstr "Premjesti"
+msgstr "oe"
 
 #: gschem/src/x/x_edit_pin.c:101
 msgid "pas"
-msgstr ""
+msgstr "pas"
 
 #: gschem/src/x/x_edit_pin.c:102
 msgid "tp"
-msgstr ""
+msgstr "tp"
 
 #: gschem/src/x/x_edit_pin.c:103
 msgid "tri"
-msgstr ""
+msgstr "tri"
 
 #: gschem/src/x/x_edit_pin.c:104
 msgid "clk"
-msgstr ""
+msgstr "clk"
 
 #: gschem/src/x/x_edit_pin.c:105
 msgid "pwr"
-msgstr ""
+msgstr "pwr"
 
 #: gschem/src/x/x_edit_pin.c:106 gschem/src/x/x_edit_pin.c:191
 #: gschem/src/x/x_edit_pin.c:205
 msgid "*missing*"
-msgstr ""
+msgstr "*nestao*"
 
 #: gschem/src/x/x_edit_pin.c:281 gschem/src/x/x_edit_pin.c:293
 msgid "Pin Properties"

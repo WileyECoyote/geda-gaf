@@ -1,5 +1,7 @@
 2017-02-10 Wiley E. Hill <wileyhill@gmail.com>
 
+    * po/bs.po: Update Bosnian translations.
+
     * src/x/x_pagesel.c: Add/edit Doxygen comments.
 
 2017-02-09 Wiley E. Hill <wileyhill@gmail.com>
