@@ -4756,9 +4756,8 @@ msgid "Toggle auto panning mode"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2329
-#, fuzzy
 msgid "_Text Size..."
-msgstr "文本..."
+msgstr "字体大小..."
 
 #: gschem/etc/system-gschemrc.scm:2329
 msgid "Open the Text Size settings"
@@ -4798,10 +4797,10 @@ msgstr "gEDA 文档..."
 msgid "gEDA _Wiki..."
 msgstr ""
 
+# About
 #: gschem/etc/system-gschemrc.scm:2347
-#, fuzzy
 msgid "_About..."
-msgstr "属性..."
+msgstr "关于..."
 
 #: gschem/etc/system-gschemrc.scm:2355
 msgid "Draw objects before another object"
@@ -4819,42 +4818,42 @@ msgstr ""
 msgid "Lower to bottom of the drawing order"
 msgstr ""
 
+# File
 #: gschem/etc/system-gschemrc.scm:2367
-#, fuzzy
 msgid "_File"
 msgstr "文件"
 
+# Edit
 #: gschem/etc/system-gschemrc.scm:2368
-#, fuzzy
 msgid "_Edit"
 msgstr "编辑"
 
+# Select
 #: gschem/etc/system-gschemrc.scm:2369
-#, fuzzy
 msgid "_Select"
-msgstr "选择模式"
+msgstr "选择"
 
+# View
 #: gschem/etc/system-gschemrc.scm:2371
-#, fuzzy
 msgid "_View"
-msgstr "查看"
+msgstr "视图"
 
+# Page
 #: gschem/etc/system-gschemrc.scm:2372
-#, fuzzy
 msgid "_Page"
-msgstr "页面"
+msgstr "页"
 
+# Add
 #: gschem/etc/system-gschemrc.scm:2373
-#, fuzzy
 msgid "_Add"
-msgstr "添加"
+msgstr "加"
 
 #: gschem/etc/system-gschemrc.scm:2374
 msgid "Sessio_ns"
 msgstr ""
 
+# Attributes
 #: gschem/etc/system-gschemrc.scm:2375
-#, fuzzy
 msgid "Attri_butes"
 msgstr "属性"
 
@@ -4879,34 +4878,35 @@ msgstr ""
 msgid "Repeat Last Action"
 msgstr ""
 
+# New File
 #: gschem/scheme/gschem/builtins.scm:50
-#, fuzzy
 msgid "New File"
-msgstr "文件"
+msgstr "新文件"
 
+# Open File
 #: gschem/scheme/gschem/builtins.scm:53
-#, fuzzy
 msgid "Open File"
-msgstr "文件"
+msgstr "打开文件"
 
+# Save As
 #: gschem/scheme/gschem/builtins.scm:59
-#, fuzzy
 msgid "Save As"
-msgstr "全部保存"
+msgstr "另存为"
 
+# Save All
 #: gschem/scheme/gschem/builtins.scm:62
 msgid "Save All"
 msgstr "全部保存"
 
+# Save Modified
 #: gschem/scheme/gschem/builtins.scm:65
-#, fuzzy
 msgid "Save Modified"
-msgstr "移动模式"
+msgstr "保存修改"
 
+# Print
 #: gschem/scheme/gschem/builtins.scm:68
-#, fuzzy
 msgid "Print"
-msgstr "打印..."
+msgstr "打印"
 
 #: gschem/scheme/gschem/builtins.scm:71
 msgid "Export Image"

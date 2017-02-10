@@ -2303,8 +2303,8 @@ msgid "io"
 msgstr "io"
 
 #: gschem/src/x/x_edit_pin.c:99
-msgid "io"
-msgstr "io"
+msgid "oc"
+msgstr "oc"
 
 #: gschem/src/x/x_edit_pin.c:100
 msgid "oe"
