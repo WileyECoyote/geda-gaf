@@ -194,10 +194,12 @@ geda_file_open(GedaToplevel *toplevel, Page *page, const char *filename, GError 
 
   if (full_filename == NULL) {
 
-    const char *msg = _("Cannot find file");
+    /*const char *msg = _("Cannot find file");
 
     g_set_error (err, EDA_ERROR, tmp_err->code, "%s %s: %s",
-                 msg, filename, tmp_err->message);
+                 msg, filename, tmp_err->message);*/
+
+    g_set_error (err, EDA_ERROR, tmp_err->code, "%s", tmp_err->message);
     g_error_free(tmp_err);
     return geda_file_open_exit(0);
   }
@@ -215,9 +217,9 @@ geda_file_open(GedaToplevel *toplevel, Page *page, const char *filename, GError 
     if (chdir (file_directory)) {
 
       /* Error occurred with chdir */
-      const char *msg = _("<libgeda> ERROR: Could not change current directory to");
+      const char *msg = _("ERROR: Could not change current directory to");
 
-      fprintf(stderr, "%s %s: %s", msg, file_directory, strerror (errno));
+      fprintf(stderr, "<libgeda> %s %s: %s", msg, file_directory, strerror (errno));
 
       return geda_file_open_exit(0);
     }
@@ -354,8 +356,8 @@ geda_file_open(GedaToplevel *toplevel, Page *page, const char *filename, GError 
   /* Reset current directory to the orginal location */
   if (flags & F_OPEN_RESTORE_CWD) {
     if (chdir (saved_cwd)) {
-      const char *msg = _("<libgeda> ERROR: Could not restore current directory to");
-      fprintf(stderr, "%s %s: %s", msg,  saved_cwd, strerror (errno));
+      const char *msg = _("ERROR: Could not restore current directory to");
+      fprintf(stderr, "<libgeda> %s %s: %s", msg,  saved_cwd, strerror (errno));
     }
   }
 
@@ -400,7 +402,7 @@ geda_file_remove_backup (const char *filename)
     real_filename = geda_file_sys_follow_symlinks (filename, NULL);
 
     if (real_filename == NULL) {
-      const char *log_msg = _("Can not get the real filename of");
+      const char *log_msg = _("Cannot get the real filename of");
       geda_log ("%s: %s %s.\n", __func__, log_msg, filename);
     }
     else {
