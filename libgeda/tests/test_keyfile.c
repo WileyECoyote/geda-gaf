@@ -77,8 +77,8 @@ const char key_data[] = "[G1]\nT1=A\n[G2]\nT1=B\nT2=C\nT3=D\n";
  *      KF0811    geda_keyfile_get_start_group
  *      KF0812    geda_keyfile_get_groups
  *      KF0813    geda_keyfile_get_group_list
- *       KF0814    geda_keyfile_get_keys
- *       KF0815    geda_keyfile_has_group
+ *      KF0814    geda_keyfile_get_keys
+ *      KF0815    geda_keyfile_has_group
  *       KF0816    geda_keyfile_has_key
  *       KF0817    geda_keyfile_get_value
  *       KF0818    geda_keyfile_set_value
@@ -510,12 +510,66 @@ int check_groups (void)
         result++;
       }
 
-      GList *iter;
-      for (iter = group_list; iter; iter=iter->next) {
-        char *name = iter->data;
-        fprintf(stderr, "(Self check) group name=%s\n", name);
-      }
       geda_glist_free_all(group_list);
+    }
+
+
+    /* === Function 14: geda_keyfile_get_keys === */
+
+    char **keys;
+
+    err = NULL;
+
+    /* Non existent group */
+    keys = geda_keyfile_get_keys(keyfile, "G0", &length, &err);
+
+    if (!err) {
+      fprintf(stderr, "FAILED: (KF081401A) non-existent, error is NULL\n");
+      result++;
+    }
+    else {
+      vmessage("Message: (KF081401A) %s.\n", err->message);
+      g_error_free (err);
+    }
+
+    /* Group 1 */
+    keys = geda_keyfile_get_keys(keyfile, "G1", &length, NULL);
+
+    if (length != 1) {
+      fprintf(stderr, "FAILED: (KF0814102A) get_keys length=%d\n", length);
+      result++;
+    }
+
+    /* Group 2 */
+    keys = geda_keyfile_get_keys(keyfile, "G2", &length, NULL);
+
+    if (length != 3) {
+      fprintf(stderr, "FAILED: (KF0814103A) get_keys length=%d\n", length);
+      result++;
+    }
+    else if (!keys) {
+      fprintf(stderr, "FAILED: (KF0814103B) get_keys\n");
+      result++;
+    }
+    else {
+
+      /* Verify the keys strings are correct in group 2 */
+      if (keys[0] != NULL) {
+        if (strcmp(keys[0], "T1")) {
+          fprintf(stderr, "FAILED: (KF081201C) group <%s>\n", keys[0]);
+          result++;
+        }
+        g_free(keys[0]);
+      }
+
+      if (keys[1] != NULL) {
+        if (strcmp(keys[1], "T2")) {
+          fprintf(stderr, "FAILED: (KF081201D) group <%s>\n", keys[0]);
+          result++;
+        }
+        g_free(keys[1]);
+      }
+      g_free(keys);
     }
   }
   geda_keyfile_free(keyfile);

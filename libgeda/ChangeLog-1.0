@@ -9,7 +9,8 @@
 
             * geda_keyfile_get_start_group,
             * geda_keyfile_get_groups,
-            * geda_keyfile_get_group_list.
+            * geda_keyfile_get_group_list,
+            * geda_keyfile_get_keys.
 
 2017-02-10 Wiley E. Hill <wileyhill@gmail.com>
 
