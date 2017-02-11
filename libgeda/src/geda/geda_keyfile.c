@@ -1444,6 +1444,43 @@ geda_keyfile_get_groups (GedaKeyFile *key_file, unsigned int  *length)
 }
 
 /*!
+ * \brief Get a List of Groups in a Key File
+ * \par Function Description
+ *  Returns a list of all the groups in the key file \a key_file.
+ *  The list should be freed with geda_glist_free_all.
+ *
+ * \param [in] key_file a #GedaKeyFile object
+ *
+ * \returns list of groups in the GedaKeyFile.
+ */
+GList*
+geda_keyfile_get_group_list (GedaKeyFile *key_file)
+{
+  if (GEDA_IS_KEYFILE(key_file)) {
+
+    GList *groups = NULL;
+    GList *iter = g_list_last (key_file->groups);
+
+    while (iter) {
+
+      GedaKeyFileGroup *group;
+
+      group = (GedaKeyFileGroup*)iter->data;
+
+      if (group->name) {
+        groups = g_list_append(groups, geda_strdup (group->name));
+      }
+      iter = iter->prev;
+    }
+
+    return groups;
+  }
+  geda_keyfile_not_valid(__func__, key_file);
+  return NULL;
+}
+
+
+/*!
  * \brief Retrieve the Value of a Key in a Kay File
  * \par Function Description
  * Returns the raw value associated with \a key under \a group_name.

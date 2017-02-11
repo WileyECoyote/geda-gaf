@@ -1,5 +1,8 @@
 2017-02-11 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_keyfile.c: Add geda_keyfile_get_group_list, GList seems
+      more consistent with libgeda API.
+
     * tests/test_keyfile.c: Rename check_load_keyfile -> check_keyfile_comments
       and add check for retrieving and removing key comments. Rename check_get_set
       to check_groups and add check for:
