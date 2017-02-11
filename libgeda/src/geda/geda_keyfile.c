@@ -1367,19 +1367,21 @@ geda_keyfile_get_keys (GedaKeyFile  *key_file,
 /*!
  * \brief Get the Start Group in a Key File
  * \par Function Description
- *  Returns the name of the start group of the file.
+ *  Returns the name of the start group of the file. The returned
+ *  string should be freed when no long needed.
  *
- * \param [in] key_file    a #GedaKeyFile object
+ * \param [in] key_file  a #GedaKeyFile object
  *
  * \returns The start group of the key file.
  */
-char *
+char*
 geda_keyfile_get_start_group (GedaKeyFile *key_file)
 {
   g_return_val_if_fail (key_file != NULL, NULL);
 
-  if (key_file->start_group)
+  if (key_file->start_group) {
     return geda_strdup (key_file->start_group->name);
+  }
 
   return NULL;
 }
@@ -1387,15 +1389,16 @@ geda_keyfile_get_start_group (GedaKeyFile *key_file)
 /*!
  * \brief Get the Groups in a Key File
  * \par Function Description
- *  Returns all groups in the key file loaded with \a key_file.
- *  The array of returned groups will be %NULL-terminated, so \a length
- *  may optionally be %NULL.
+ *  Returns all groups in the key file loaded with \a key_file. The array
+ *  of returned groups will be %NULL-terminated, so \a length may optionally
+ *  be %NULL. The returned pointer should be freed using g_strfreev when no
+ *  long needed. Optionally, each group name and the pointer to the array
+ *  can be freed using g_free
  *
  * \param [in] key_file a #GedaKeyFile object
  * \param [in] length   return location for the number of returned groups, or %NULL
  *
  * \returns a newly-allocated %NULL-terminated array of strings.
- *          Use g_strfreev() to free it.
  */
 char **
 geda_keyfile_get_groups (GedaKeyFile *key_file, unsigned int  *length)
@@ -1412,12 +1415,11 @@ geda_keyfile_get_groups (GedaKeyFile *key_file, unsigned int  *length)
 
   group_node = g_list_last (key_file->groups);
 
-  g_return_val_if_fail (((GedaKeyFileGroup *) group_node->data)->name == NULL, NULL);
+  g_return_val_if_fail (((GedaKeyFileGroup*)group_node->data)->name == NULL, NULL);
 
-  /* Only need num_groups instead of num_groups + 1
-   * because the first group of the file (last in the
-   * list) is always the comment group at the top,
-   * which we skip
+  /* Only need num_groups instead of num_groups + 1 because the
+   * first group of the file (last in the list) is always the
+   * comment group at the top, which we skip.
    */
   groups = GEDA_MEM_ALLOC (sizeof(char*) * num_groups);
 
