@@ -75,7 +75,7 @@ const char key_data[] = "[G1]\nT1=A\n[G2]\nT1=B\nT2=C\nT3=D\n";
  *       KF0809    geda_keyfile_load_from_data_dirs
  *      KF0810    geda_keyfile_to_data
  *      KF0811    geda_keyfile_get_start_group
- *       KF0812    geda_keyfile_get_groups
+ *      KF0812    geda_keyfile_get_groups
  *       KF0813    geda_keyfile_get_keys
  *       KF0814    geda_keyfile_has_group
  *       KF0815    geda_keyfile_has_key
@@ -443,12 +443,46 @@ int check_groups (void)
       result++;
     }
     else {
-      /* Verify the comment string is correct */
+      /* Verify the group string is correct */
       if (strcmp(start_group, "G1")) {
         fprintf(stderr, "FAILED: (KF081101B) group mismatched <%s>\n", start_group);
         result++;
       }
       g_free(start_group);
+    }
+
+    unsigned int length;
+    char **groups;
+
+    groups = geda_keyfile_get_groups(keyfile, &length);
+
+    if (length != 2) {
+      fprintf(stderr, "FAILED: (KF0812101A) get_groups length=%d\n", length);
+      result++;
+    }
+    else if (!groups) {
+      fprintf(stderr, "FAILED: (KF0812101B) get_groups\n");
+      result++;
+    }
+    else {
+
+      /* Verify the comment strings are correct */
+      if (groups[0] != NULL) {
+        if (strcmp(groups[0], "G1")) {
+          fprintf(stderr, "FAILED: (KF081201C) group <%s>\n", groups[0]);
+          result++;
+        }
+        g_free(groups[0]);
+      }
+
+      if (groups[1] != NULL) {
+        if (strcmp(groups[1], "G2")) {
+          fprintf(stderr, "FAILED: (KF081201D) group <%s>\n", groups[0]);
+          result++;
+        }
+        g_free(groups[1]);
+      }
+      g_free(groups);
     }
   }
   geda_keyfile_free(keyfile);
