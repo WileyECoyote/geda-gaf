@@ -107,7 +107,7 @@ const char key_data[] = "[G1]\nT1=A\n[G2]\nT1=B\nT2=C\nT3=D\n";
  *       KF0841    geda_keyfile_set_integer_list
  *      KF0842    geda_keyfile_set_comment
  *      KF0843    geda_keyfile_get_comment
- *       KF0844    geda_keyfile_remove_comment
+ *      KF0844    geda_keyfile_remove_comment
  *       KF0845    geda_keyfile_remove_key
  *       KF0846    geda_keyfile_remove_group
  */
@@ -377,6 +377,19 @@ int check_keyfile_comments (void)
           g_free(comment);
         }
 
+        geda_keyfile_remove_comment(keyfile, "G2", "T1", NULL);
+
+        /* Try and et the T2 Group comments */
+        comment = geda_keyfile_get_comment (keyfile, "G2", "T1", NULL);
+
+        if (comment) {
+          fprintf(stderr, "FAILED: (KF084401) comments not removed <%s>\n", comment);
+          g_free(comment);
+          result++;
+        }
+        else {
+          vmessage("PASS: (KF084400) geda_keyfile_remove_comment\n");
+        }
       }
     }
   }
