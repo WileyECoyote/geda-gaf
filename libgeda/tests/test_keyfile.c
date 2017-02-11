@@ -76,40 +76,41 @@ const char key_data[] = "[G1]\nT1=A\n[G2]\nT1=B\nT2=C\nT3=D\n";
  *      KF0810    geda_keyfile_to_data
  *      KF0811    geda_keyfile_get_start_group
  *      KF0812    geda_keyfile_get_groups
- *       KF0813    geda_keyfile_get_keys
- *       KF0814    geda_keyfile_has_group
- *       KF0815    geda_keyfile_has_key
- *       KF0816    geda_keyfile_get_value
- *       KF0817    geda_keyfile_set_value
- *       KF0818    geda_keyfile_get_string
- *       KF0819    geda_keyfile_set_string
- *       KF0820    geda_keyfile_get_locale_string
- *       KF0821    geda_keyfile_set_locale_string
- *       KF0822    geda_keyfile_get_boolean
- *       KF0823    geda_keyfile_set_boolean
- *       KF0824    geda_keyfile_get_integer
- *       KF0825    geda_keyfile_set_integer
- *       KF0826    geda_keyfile_get_int64
- *       KF0827    geda_keyfile_set_int64
- *       KF0828    geda_keyfile_get_uint64
- *       KF0829    geda_keyfile_set_uint64
- *       KF0830    geda_keyfile_get_double
- *       KF0831    geda_keyfile_set_double
- *       KF0832    geda_keyfile_get_string_list
- *       KF0833    geda_keyfile_set_string_list
- *       KF0834    geda_keyfile_get_locale_string_list
- *       KF0835    geda_keyfile_set_locale_string_list
- *       KF0836    geda_keyfile_get_boolean_list
- *       KF0837    geda_keyfile_set_boolean_list
- *       KF0838    geda_keyfile_set_double_list
- *       KF0839    geda_keyfile_get_double_list
- *       KF0840    geda_keyfile_get_integer_list
- *       KF0841    geda_keyfile_set_integer_list
- *      KF0842    geda_keyfile_set_comment
- *      KF0843    geda_keyfile_get_comment
- *      KF0844    geda_keyfile_remove_comment
- *       KF0845    geda_keyfile_remove_key
- *       KF0846    geda_keyfile_remove_group
+ *      KF0813    geda_keyfile_get_group_list
+ *       KF0814    geda_keyfile_get_keys
+ *       KF0815    geda_keyfile_has_group
+ *       KF0816    geda_keyfile_has_key
+ *       KF0817    geda_keyfile_get_value
+ *       KF0818    geda_keyfile_set_value
+ *       KF0819    geda_keyfile_get_string
+ *       KF0820    geda_keyfile_set_string
+ *       KF0821    geda_keyfile_get_locale_string
+ *       KF0822    geda_keyfile_set_locale_string
+ *       KF0823    geda_keyfile_get_boolean
+ *       KF0824    geda_keyfile_set_boolean
+ *       KF0825    geda_keyfile_get_integer
+ *       KF0826    geda_keyfile_set_integer
+ *       KF0827    geda_keyfile_get_int64
+ *       KF0828    geda_keyfile_set_int64
+ *       KF0829    geda_keyfile_get_uint64
+ *       KF0830    geda_keyfile_set_uint64
+ *       KF0831    geda_keyfile_get_double
+ *       KF0832    geda_keyfile_set_double
+ *       KF0833    geda_keyfile_get_string_list
+ *       KF0834    geda_keyfile_set_string_list
+ *       KF0835    geda_keyfile_get_locale_string_list
+ *       KF0836    geda_keyfile_set_locale_string_list
+ *       KF0837    geda_keyfile_get_boolean_list
+ *       KF0838    geda_keyfile_set_boolean_list
+ *       KF0839    geda_keyfile_set_double_list
+ *       KF0840    geda_keyfile_get_double_list
+ *       KF0841    geda_keyfile_get_integer_list
+ *       KF084    geda_keyfile_set_integer_list
+ *      KF0843    geda_keyfile_set_comment
+ *      KF0844    geda_keyfile_get_comment
+ *      KF0845    geda_keyfile_remove_comment
+ *       KF0846    geda_keyfile_remove_key
+ *       KF0847    geda_keyfile_remove_group
  */
 
 int create_keyfile_data (void)
@@ -154,16 +155,16 @@ int create_keyfile_data (void)
 
     /* geda_keyfile_set_group_comment non-existence group */
     if (geda_keyfile_set_comment (keyfile, "NoExist", NULL, __func__, &err)) {
-      fprintf(stderr, "FAILED: (KF084201A) set non-existence group comment\n");
+      fprintf(stderr, "FAILED: (KF084301A) set non-existence group comment\n");
       result++;
     }
     else {
       if (!err) {
-        fprintf(stderr, "FAILED: (KF084201B) set group comment error is NULL\n");
+        fprintf(stderr, "FAILED: (KF084301B) set group comment error is NULL\n");
         result++;
       }
       else {
-        vmessage("Message: (KF084201C) %s.\n", err->message);
+        vmessage("Message: (KF084301C) %s.\n", err->message);
         g_error_free (err);
       }
     }
@@ -172,16 +173,16 @@ int create_keyfile_data (void)
 
     /* geda_keyfile_set_key_comment non-existence group */
     if (geda_keyfile_set_comment (keyfile, "NoExist", "BadKey", __func__, &err)) {
-      fprintf(stderr, "FAILED: (KF084202A) set non-existence key comment\n");
+      fprintf(stderr, "FAILED: (KF084302A) set non-existence key comment\n");
       result++;
     }
     else {
       if (!err) {
-        fprintf(stderr, "FAILED: (KF084202B) set group comment error is NULL\n");
+        fprintf(stderr, "FAILED: (KF084302B) set group comment error is NULL\n");
         result++;
       }
       else {
-        vmessage("Message: (KF084202C) %s.\n", err->message);
+        vmessage("Message: (KF084302C) %s.\n", err->message);
         g_error_free (err);
       }
     }
@@ -297,11 +298,11 @@ int check_keyfile_comments (void)
       else {
         /* Error was supplied so is error if error is not set */
         if (!err) {
-          fprintf(stderr, "FAILED: (KFKF084301A) NULL NOT_KEY_FILENAME error is NULL\n");
+          fprintf(stderr, "FAILED: (KFKF084401A) NULL NOT_KEY_FILENAME error is NULL\n");
           result++;
         }
         else {
-          vmessage("Message: (KF084301B) %s.\n", err->message);
+          vmessage("Message: (KF084401B) %s.\n", err->message);
           g_error_free (err);
         }
       }
@@ -383,12 +384,12 @@ int check_keyfile_comments (void)
         comment = geda_keyfile_get_comment (keyfile, "G2", "T1", NULL);
 
         if (comment) {
-          fprintf(stderr, "FAILED: (KF084401) comments not removed <%s>\n", comment);
+          fprintf(stderr, "FAILED: (KF084501) comments not removed <%s>\n", comment);
           g_free(comment);
           result++;
         }
         else {
-          vmessage("PASS: (KF084400) geda_keyfile_remove_comment\n");
+          vmessage("PASS: (KF084500) geda_keyfile_remove_comment\n");
         }
       }
     }
@@ -436,6 +437,8 @@ int check_groups (void)
 
     char *start_group;
 
+    /* === Function 11: geda_keyfile_get_start_group === */
+
     start_group = geda_keyfile_get_start_group(keyfile);
 
     if (!start_group) {
@@ -453,6 +456,8 @@ int check_groups (void)
 
     unsigned int length;
     char **groups;
+
+    /* === Function 12: geda_keyfile_get_groups === */
 
     groups = geda_keyfile_get_groups(keyfile, &length);
 
@@ -483,6 +488,34 @@ int check_groups (void)
         g_free(groups[1]);
       }
       g_free(groups);
+    }
+
+    GList *group_list;
+
+    /* === Function 13: geda_keyfile_get_groups === */
+
+    group_list = geda_keyfile_get_group_list(keyfile);
+
+    if (!group_list) {
+      fprintf(stderr, "FAILED: (KF081301A) get_group_list\n");
+      result++;
+    }
+    else {
+
+      unsigned int list_len = g_list_length(group_list);
+
+      /* Verify the comment strings are correct */
+      if (list_len != length) {
+        fprintf(stderr, "FAILED: (KF081301B) group list length=%d\n", list_len);
+        result++;
+      }
+
+      GList *iter;
+      for (iter = group_list; iter; iter=iter->next) {
+        char *name = iter->data;
+        fprintf(stderr, "(Self check) group name=%s\n", name);
+      }
+      geda_glist_free_all(group_list);
     }
   }
   geda_keyfile_free(keyfile);

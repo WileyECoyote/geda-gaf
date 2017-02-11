@@ -5,10 +5,11 @@
 
     * tests/test_keyfile.c: Rename check_load_keyfile -> check_keyfile_comments
       and add check for retrieving and removing key comments. Rename check_get_set
-      to check_groups and add check for:
+      to check_groups and add checks for:
 
             * geda_keyfile_get_start_group,
-            * geda_keyfile_get_groups.
+            * geda_keyfile_get_groups,
+            * geda_keyfile_get_group_list.
 
 2017-02-10 Wiley E. Hill <wileyhill@gmail.com>
 
