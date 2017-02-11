@@ -74,7 +74,7 @@ const char key_data[] = "[G1]\nT1=A\n[G2]\nT1=B\nT2=C\nT3=D\n";
  *       KF0808    geda_keyfile_load_from_dirs
  *       KF0809    geda_keyfile_load_from_data_dirs
  *      KF0810    geda_keyfile_to_data
- *       KF0811    geda_keyfile_get_start_group
+ *      KF0811    geda_keyfile_get_start_group
  *       KF0812    geda_keyfile_get_groups
  *       KF0813    geda_keyfile_get_keys
  *       KF0814    geda_keyfile_has_group
@@ -403,10 +403,55 @@ int check_keyfile_comments (void)
   return result;
 }
 
-int check_get_set (void)
+int check_groups (void)
 {
   int result = 0;
+  GError *err = NULL;
 
+  /* === Function 01: geda_keyfile_new  === */
+  GedaKeyFile *keyfile = geda_keyfile_new ();
+
+  if (!GEDA_IS_KEYFILE(keyfile)) {
+    fprintf(stderr, "FAILED: (KF080101B) geda_keyfile_new\n");
+    return 1;
+  }
+
+  err = NULL;
+
+  /* === Function 06: geda_keyfile_load_from_file === */
+
+  /* Actually Load the file, comments should be stripped */
+  if (!geda_keyfile_load_from_file (keyfile, KEY_FILENAME, GEDA_KEYFILE_KEEP_COMMENTS, &err))
+  {
+    if (!err) {
+      fprintf(stderr, "FAILED: (KF080603B) KEYFILE_KEEP_COMMENTS error is NULL\n");
+      result++;
+    }
+    else {
+      vmessage("Message: (KF080603B) %s.\n", err->message);
+      g_error_free (err);
+    }
+  }
+  else {
+
+    char *start_group;
+
+    start_group = geda_keyfile_get_start_group(keyfile);
+
+    if (!start_group) {
+      fprintf(stderr, "FAILED: (KF081101A) get_start_group\n");
+      result++;
+    }
+    else {
+      /* Verify the comment string is correct */
+      if (strcmp(start_group, "G1")) {
+        fprintf(stderr, "FAILED: (KF081101B) group mismatched <%s>\n", start_group);
+        result++;
+      }
+      g_free(start_group);
+    }
+  }
+  geda_keyfile_free(keyfile);
   return result;
 }
 
@@ -428,7 +473,7 @@ main (int argc, char *argv[])
 
   result += check_keyfile_comments();
 
-  result += check_get_set();
+  result += check_groups();
 
   if (result) {
     fprintf(stderr, "Check module geda_keyfile.c");
