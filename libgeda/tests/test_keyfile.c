@@ -227,7 +227,7 @@ int create_keyfile_data (void)
   return result;
 }
 
-int check_load_keyfile (void)
+int check_keyfile_comments (void)
 {
   int result = 0;
   GError *err = NULL;
@@ -270,7 +270,7 @@ int check_load_keyfile (void)
     if (!geda_keyfile_load_from_file (keyfile, KEY_FILENAME, GEDA_KEYFILE_NONE, &err))
     {
       if (!err) {
-        fprintf(stderr, "FAILED: (KF080601A) NULL NOT_KEY_FILENAME error is NULL\n");
+        fprintf(stderr, "FAILED: (KF080601A) NOT_KEY_FILENAME error is NULL\n");
         result++;
       }
       else {
@@ -313,7 +313,7 @@ int check_load_keyfile (void)
                                         GEDA_KEYFILE_KEEP_COMMENTS, &err))
       {
         if (!err) {
-          fprintf(stderr, "FAILED: (KF080602A) NULL NOT_KEY_FILENAME error is NULL\n");
+          fprintf(stderr, "FAILED: (KF080602A) KEEP_COMMENTS error is NULL\n");
           result++;
         }
         else {
@@ -359,6 +359,24 @@ int check_load_keyfile (void)
           g_free(comment);
         }
 
+        /* Get the T2 Group comments */
+        comment = geda_keyfile_get_comment (keyfile, "G2", "T1", NULL);
+
+        if (!comment) {
+          /* Comment should have been loaded so error goes against KF0806 */
+          fprintf(stderr, "FAILED: (KF080604A) no comments with flags\n");
+          result++;
+        }
+        else {
+
+          /* Verify the comment string is correct */
+          if (strcmp(comment, KEY_COMMENTS_STR)) {
+            fprintf(stderr, "FAILED: (KF080604B) comments mismatched <%s>\n", comment);
+            result++;
+          }
+          g_free(comment);
+        }
+
       }
     }
   }
@@ -395,7 +413,7 @@ main (int argc, char *argv[])
 
   result  = create_keyfile_data();
 
-  result += check_load_keyfile();
+  result += check_keyfile_comments();
 
   result += check_get_set();
 
