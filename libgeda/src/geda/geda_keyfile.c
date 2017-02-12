@@ -1227,8 +1227,8 @@ geda_keyfile_flush_parse_buffer (GedaKeyFile *key_file, GError **error)
  *
  * \returns a newly allocated string holding the contents of the GedaKeyFile
  */
-char *
-geda_keyfile_to_data (GedaKeyFile *key_file, unsigned int  *length, GError **error)
+char*
+geda_keyfile_to_data (GedaKeyFile *key_file, unsigned int *length, GError **error)
 {
   GString *data_string;
   GList   *group_node;
@@ -1262,7 +1262,7 @@ geda_keyfile_to_data (GedaKeyFile *key_file, unsigned int  *length, GError **err
 
     for (key_file_node = g_list_last (group->key_value_pairs);
          key_file_node != NULL;
-    key_file_node = key_file_node->prev)  {
+         key_file_node = key_file_node->prev)  {
 
       GedaKeyFilePair *pair;
 
@@ -1287,11 +1287,10 @@ geda_keyfile_to_data (GedaKeyFile *key_file, unsigned int  *length, GError **err
 /*!
  * \brief Retrieves the Keys from a Key File Object
  * \par Function Description
- * Returns all keys for the group name \a group_name.  The array of
- * returned keys will be %NULL-terminated, so \a length may
- * optionally be %NULL. In the event that the \a group_name cannot
- * be found, %NULL is returned and \a error is set to
- * #GEDA_KEYFILE_ERROR_GROUP_NOT_FOUND.
+ * Returns all keys for the group name \a group_name. The array of returned
+ * keys will be %NULL-terminated, so \a length may optionally be %NULL. In
+ * the event that the \a group_name cannot be found, %NULL is returned and
+ * \a error is set to #GEDA_KEYFILE_ERROR_GROUP_NOT_FOUND.
  *
  * \param [in]  key_file    a #GedaKeyFile object
  * \param [in]  group_name  Pointer to a group name
