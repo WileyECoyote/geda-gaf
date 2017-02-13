@@ -513,10 +513,68 @@ int check_groups (void)
       geda_glist_free_all(group_list);
     }
 
+    /* === Function 15: geda_keyfile_has_group === */
+
+    if (!geda_keyfile_has_group(keyfile, "G1")) {
+      fprintf(stderr, "FAILED: (KF081501) has_group\n");
+      result++;
+    }
+
+    /* === Function 47: geda_keyfile_remove_group === */
+
+    if (!geda_keyfile_remove_group(keyfile, "G1", &err)) {
+      fprintf(stderr, "FAILED: (KF084701A) remove_group\n");
+    }
+    else {
+      vmessage("Message: (KF084701B) removed group G1\n");
+      fprintf(stderr, "%s it's gone\n",__func__);
+    }
+
+    /* See if the group was removed */
+    if (geda_keyfile_has_group(keyfile, "G1")) {
+      fprintf(stderr, "FAILED: (KF081502) has_group\n");
+      result++;
+    }
+  }
+  geda_keyfile_free(keyfile);
+  return result;
+}
+
+int check_keys (void)
+{
+  int result = 0;
+  GError *err = NULL;
+
+  /* === Function 01: geda_keyfile_new  === */
+  GedaKeyFile *keyfile = geda_keyfile_new ();
+
+  if (!GEDA_IS_KEYFILE(keyfile)) {
+    fprintf(stderr, "FAILED: (KF080104) geda_keyfile_new\n");
+    return 1;
+  }
+
+  err = NULL;
+
+  /* === Function 06: geda_keyfile_load_from_file === */
+
+  /* Actually Load the file, comments should be stripped */
+  if (!geda_keyfile_load_from_file (keyfile, KEY_FILENAME, GEDA_KEYFILE_KEEP_COMMENTS, &err))
+  {
+    if (!err) {
+      fprintf(stderr, "FAILED: (KF080604A) KEYFILE_KEEP_COMMENTS error is NULL\n");
+      result++;
+    }
+    else {
+      vmessage("Message: (KF080604B) %s.\n", err->message);
+      g_error_free (err);
+    }
+  }
+  else {
+
+    unsigned int length;
+    char **keys;
 
     /* === Function 14: geda_keyfile_get_keys === */
-
-    char **keys;
 
     err = NULL;
 
@@ -571,34 +629,10 @@ int check_groups (void)
       }
       g_free(keys);
     }
-
-    /* === Function 15: geda_keyfile_has_group === */
-
-    if (!geda_keyfile_has_group(keyfile, "G1")) {
-      fprintf(stderr, "FAILED: (KF081501) has_group\n");
-      result++;
-    }
-
-    /* === Function 47: geda_keyfile_remove_group === */
-
-    if (!geda_keyfile_remove_group(keyfile, "G1", &err)) {
-      fprintf(stderr, "FAILED: (KF084701A) remove_group\n");
-    }
-    else {
-      vmessage("Message: (KF084701B) removed group G1\n");
-      fprintf(stderr, "%s it's gone\n",__func__);
-    }
-
-    /* See if the group was removed */
-    if (geda_keyfile_has_group(keyfile, "G1")) {
-      fprintf(stderr, "FAILED: (KF081502) has_group\n");
-      result++;
-    }
   }
   geda_keyfile_free(keyfile);
   return result;
 }
-
 /** @} endgroup test-geda-keyfile */
 
 int
@@ -618,6 +652,8 @@ main (int argc, char *argv[])
   result += check_keyfile_comments();
 
   result += check_groups();
+
+  result += check_keys();
 
   if (result) {
     fprintf(stderr, "Check module geda_keyfile.c");
