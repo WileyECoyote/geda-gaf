@@ -761,7 +761,7 @@ author=AutoTron
 T 400 11300 5 10 0 0 0 0 1
 documentation=http://www.ti.com/lit/ds/symlink/tms320f241.pdf
 T 400 11500 5 10 0 0 0 0 1
-description=Piccolo Microcontroller, 90MHz
+description=Microcontroller,Motor,16 Bit,20MHz,8k Flash
 T 2300 300 5 10 0 0 0 0 1
 numslots=0
 T 400 11900 5 10 0 0 0 0 1

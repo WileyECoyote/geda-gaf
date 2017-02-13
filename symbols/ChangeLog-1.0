@@ -1,3 +1,10 @@
+2017-02-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * lineartech/LT1054L-1.sym: Add symbol; LT1054L 125mA Voltage Converter
+      Regulator combo.
+
+    * ti/micro/TMS320F241FN-1.sym: Update description, is not 90 MHz chip.
+
 2017-02-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-clib.scm : Add group "vishay/zener" as "Manufacturers/Zener Diodes".
