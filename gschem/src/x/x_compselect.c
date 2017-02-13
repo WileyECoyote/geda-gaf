@@ -2370,9 +2370,11 @@ compselect_view_popup_menu (GtkWidget      *treeview,
 {
   if (GEDA_IS_MENU(tree_view_popup_menu)) {
     gtk_widget_destroy(GTK_WIDGET(tree_view_popup_menu));
+    g_object_ref_sink(tree_view_popup_menu);
     g_object_unref(tree_view_popup_menu);
     tree_view_popup_menu = NULL;
   }
+
 
   tree_view_popup_menu = compselect_build_view_menu(compselect, treeview);
 
