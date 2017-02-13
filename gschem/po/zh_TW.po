@@ -82,10 +82,10 @@ msgstr ""
 msgid "Exiting normal\n"
 msgstr ""
 
+# Parent Window
 #: gschem/src/base/gschem_dialog.c:563
-#, fuzzy
 msgid "Parent Window"
-msgstr "開新視窗"
+msgstr "父窗口"
 
 #: gschem/src/base/gschem_dialog.c:564
 msgid "Parent window for this dialog"
@@ -230,19 +230,20 @@ msgstr ""
 msgid "name of file to be previewed"
 msgstr ""
 
+# Object List
 #: gschem/src/base/gschem_preview.c:549
-#, fuzzy
 msgid "Object List"
-msgstr "選擇"
+msgstr "對象列表"
 
+# List of objects to be previewed
 #: gschem/src/base/gschem_preview.c:550
 msgid "List of objects to be previewed"
-msgstr ""
+msgstr "要預覽的對象列表"
 
+# Active
 #: gschem/src/base/gschem_preview.c:557
-#, fuzzy
 msgid "Active"
-msgstr "選擇"
+msgstr "活性"
 
 #: gschem/src/base/gschem_preview.c:558
 msgid "Whether the preview widget is enabled or disabled"
@@ -256,19 +257,19 @@ msgstr ""
 msgid "Whether the preview widget should be large or small"
 msgstr ""
 
+# Coordinates Mode
 #: gschem/src/base/gschem_status_bar.c:587
-#, fuzzy
 msgid "Coordinates Mode"
-msgstr "元件模式"
+msgstr "坐標模式"
 
 #: gschem/src/base/gschem_status_bar.c:588
 msgid "Sets the Format Mode used to display coordinates on the status bar"
 msgstr ""
 
+# Grid Mode
 #: gschem/src/base/gschem_status_bar.c:597
-#, fuzzy
 msgid "Grid Mode"
-msgstr "弧線模式"
+msgstr "網格模式"
 
 #: gschem/src/base/gschem_status_bar.c:598
 msgid "Sets the Grid Mode to display on the status bar"
@@ -282,10 +283,10 @@ msgstr ""
 msgid "Sets the Grid Size to display on the status bar"
 msgstr ""
 
+# height
 #: gschem/src/base/gschem_status_bar.c:617
-#, fuzzy
 msgid "height"
-msgstr "寬度 x 高度"
+msgstr "高度"
 
 #: gschem/src/base/gschem_status_bar.c:618
 msgid "Sets the height of the status bar"
@@ -315,10 +316,10 @@ msgstr ""
 msgid "Set the string for the Right Button Text"
 msgstr ""
 
+# Snap Mode
 #: gschem/src/base/gschem_status_bar.c:648
-#, fuzzy
 msgid "Snap Mode"
-msgstr "複製模式"
+msgstr "捕捉模式"
 
 #: gschem/src/base/gschem_status_bar.c:649
 msgid "Sets the Snap Mode to display on the status bar"
@@ -384,21 +385,21 @@ msgstr ""
 msgid "Gschem status bar"
 msgstr ""
 
+# Grid
 #: gschem/src/base/gschem_status_bar.c:1888
-#, fuzzy
 msgid "Grid"
-msgstr "弧線模式"
+msgstr "格"
 
 #: gschem/src/base/gschem_status_bar.c:1894
 #: gschem/src/base/gschem_status_bar.c:1915
 msgid "OFF"
 msgstr ""
 
+# Error
 #: gschem/src/base/gschem_status_bar.c:1907 gschem/src/object/o_picture.c:615
 #: gschem/src/object/o_picture.c:619
-#, fuzzy
 msgid "Error"
-msgstr "水平鏡射"
+msgstr "錯誤"
 
 #: gschem/src/base/gschem_status_bar.c:1919
 msgid "NONE"
@@ -563,10 +564,10 @@ msgstr ""
 msgid "New page created"
 msgstr ""
 
+# New Window created
 #: gschem/src/iface/i_command.c:752
-#, fuzzy
 msgid "New Window created"
-msgstr "開新視窗"
+msgstr "新窗口創建"
 
 #: gschem/src/iface/i_command.c:951
 msgid "Failed to Save All"
@@ -580,10 +581,10 @@ msgstr "儲存全部"
 msgid "Error encountered, Save Failed"
 msgstr ""
 
+# Write Image
 #: gschem/src/iface/i_command.c:1038 gschem/src/x/x_image.c:489
-#, fuzzy
 msgid "Write Image"
-msgstr "匯出成圖片"
+msgstr "寫圖像"
 
 #: gschem/src/iface/i_command.c:1060
 msgid "Write PDF"
@@ -593,10 +594,10 @@ msgstr ""
 msgid "Canceled close all\n"
 msgstr ""
 
+# Closing all documents
 #: gschem/src/iface/i_command.c:1165 gschem/src/iface/i_sessions.c:193
-#, fuzzy
 msgid "Closing all documents\n"
-msgstr "關閉檔案"
+msgstr "關閉所有文檔\n"
 
 #: gschem/src/iface/i_command.c:1188
 msgid "gschem: starting shut-down\n"
@@ -4767,7 +4768,7 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2329
 msgid "_Text Size..."
-msgstr ""
+msgstr "字體大小..."
 
 #: gschem/etc/system-gschemrc.scm:2329
 msgid "Open the Text Size settings"
@@ -4833,8 +4834,8 @@ msgstr "檔案"
 msgid "_Edit"
 msgstr "編輯"
 
+# Select
 #: gschem/etc/system-gschemrc.scm:2369
-#, fuzzy
 msgid "_Select"
 msgstr "選擇"
 

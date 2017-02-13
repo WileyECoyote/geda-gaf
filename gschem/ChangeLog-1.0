@@ -2,6 +2,8 @@
 
     * po/zh_CN.po: Update Chinese simplified translations.
 
+    * po/zh_TW.po: Update Chinese traditional translations.
+
     * src/x/x_edit_text.c: Update Atk objects names in x_dialog_edit_text.
 
 2017-02-12 Wiley E. Hill <wileyhill@gmail.com>
