@@ -3138,9 +3138,7 @@ compselect_get_property (GObject     *object,
           if (is_symbol) {
             g_value_set_pointer (value, symbol);
           }
-          else {
-            g_value_unset (value);
-          }
+
           break;
         }
       case PROP_BEHAVIOR:

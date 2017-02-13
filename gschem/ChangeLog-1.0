@@ -2,6 +2,9 @@
 
     * po/bs.po: Update Bosnian translations.
 
+    * src/x/x_compselect.c: Remove "unsetting" the symbol with g_value_unset
+      in compselect_get_property. This seg faults on 32 and 64 bit machines.
+
 2017-02-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/bs.po: Update Bosnian translations.
