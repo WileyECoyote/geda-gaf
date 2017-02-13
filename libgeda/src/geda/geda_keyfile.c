@@ -3520,12 +3520,12 @@ geda_keyfile_has_key (GedaKeyFile *key_file,
   group = geda_keyfile_lookup_group (key_file, group_name);
 
   if (!group) {
-
-    g_set_error (error, GEDA_KEYFILE_ERROR,
-                 GEDA_KEYFILE_ERROR_GROUP_NOT_FOUND, "%s '%s'",
-                 _("Key file does not have group"),
+    if (error) {
+      g_set_error (error, GEDA_KEYFILE_ERROR,
+                   GEDA_KEYFILE_ERROR_GROUP_NOT_FOUND, "%s '%s'",
+                   _("Key file does not have group"),
                    group_name ? group_name : "(null)");
-
+    }
     return FALSE;
   }
 
@@ -3535,8 +3535,10 @@ geda_keyfile_has_key (GedaKeyFile *key_file,
   }
   else
   {
-    GError *temp_error = NULL;
-    g_propagate_error (error, temp_error);
+    if (error) {
+      GError *temp_error = NULL;
+      g_propagate_error (error, temp_error);
+    }
     return FALSE;
   }
 }

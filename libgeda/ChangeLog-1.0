@@ -1,3 +1,8 @@
+2017-02-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_keyfile.c: Revise geda_keyfile_has_key to check if a error
+      address was passed before attempting to set or propagate.
+
 2017-02-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_keyfile.c: Add check_keys and relocate tests for KF0814, fix
