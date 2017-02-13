@@ -587,19 +587,19 @@ void x_dialog_edit_text (GschemToplevel *w_current, GedaObject *text_object)
     atk_rotate_obj = atk_widget_linked_label_new (rotate_label, RotationSpin);
 
     if (atk_text_obj) {
-      atk_object_set_name        (atk_text_obj,    _("Atrribute Name List"));
+      atk_object_set_name        (atk_text_obj,    _("Text input field"));
       atk_object_set_description (atk_text_obj,       text_entry_tip);
     }
     if (atk_align_obj) {
-      atk_object_set_name        (atk_align_obj,   _("Text Alignment Attribute"));
+      atk_object_set_name        (atk_align_obj,   _("Text alignment combobox"));
       atk_object_set_description (atk_align_obj,      text_align_tip);
     }
     if (atk_color_obj) {
-      atk_object_set_name        (atk_color_obj,   _("Attribute Value Entry"));
+      atk_object_set_name        (atk_color_obj,   _("Color options menu"));
       atk_object_set_description (atk_color_obj,      color_menu_tip);
     }
     if (atk_font_obj) {
-      atk_object_set_name        (atk_font_obj,    _("Atrribute Name List"));
+      atk_object_set_name        (atk_font_obj,    _("Font selector button"));
       atk_object_set_description (atk_font_obj,       font_button_tip);
     }
     if (atk_rotate_obj) {
