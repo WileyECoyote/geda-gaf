@@ -3,6 +3,7 @@
     * tests/test_keyfile.c: Add checks for:
 
             * geda_keyfile_remove_group
+            * geda_keyfile_has_group
 
 2017-02-11 Wiley E. Hill <wileyhill@gmail.com>
 

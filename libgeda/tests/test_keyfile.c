@@ -575,7 +575,7 @@ int check_groups (void)
     /* === Function 15: geda_keyfile_has_group === */
 
     if (!geda_keyfile_has_group(keyfile, "G1")) {
-      fprintf(stderr, "FAILED: (KF081501A) has_group\n");
+      fprintf(stderr, "FAILED: (KF081501) has_group\n");
       result++;
     }
 
@@ -587,6 +587,12 @@ int check_groups (void)
     else {
       vmessage("Message: (KF084701B) removed group G1\n");
       fprintf(stderr, "%s it's gone\n",__func__);
+    }
+
+    /* See if the group was removed */
+    if (geda_keyfile_has_group(keyfile, "G1")) {
+      fprintf(stderr, "FAILED: (KF081502) has_group\n");
+      result++;
     }
   }
   geda_keyfile_free(keyfile);
