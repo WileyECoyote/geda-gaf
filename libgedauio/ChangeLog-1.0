@@ -1,5 +1,10 @@
 2017-02-10 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_option_menu.c: Replace object type identifier scheme
+      for GedaOptionMenu with new hash table type identifier system.
+
+2017-02-10 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/widgets/geda_radio_menu_item.c: Replace object type identifier
       scheme for GedaRadioMenuItem with new hash table type identifier
       system.

@@ -33,7 +33,6 @@ typedef struct _GedaOptionMenuClass  GedaOptionMenuClass;
 struct _GedaOptionMenu
 {
   GtkButton button;
-  GedaType  instance_type;
 
   GtkWidget *menu;
   GtkWidget *menu_item;

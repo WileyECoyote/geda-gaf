@@ -113,10 +113,27 @@ static unsigned int signals[LAST_SIGNAL] = { 0 };
 
 static void *geda_option_menu_parent_class = NULL;
 
+static GHashTable *option_menu_hash = NULL;
+
 static GType
 geda_option_menu_child_type (GtkContainer *container)
 {
   return G_TYPE_NONE;
+}
+
+static void
+geda_option_menu_item_finalize (GObject *object)
+{
+  //GedaOptionMenu *option_menu_item = GEDA_OPTION_MENU (object);
+
+  if (g_hash_table_remove (option_menu_hash, object)) {
+    if (!g_hash_table_size (option_menu_hash)) {
+      g_hash_table_destroy (option_menu_hash);
+      option_menu_hash = NULL;
+    }
+  }
+
+  G_OBJECT_CLASS (geda_option_menu_parent_class)->finalize (object);
 }
 
 /*! \brief GedaOptionMenu Type Class Initializer
@@ -152,6 +169,7 @@ geda_option_menu_class_init(void *class, void *class_data)
                   geda_marshal_VOID__VOID,
                   G_TYPE_NONE, 0);
 
+  gobject_class->finalize          = geda_option_menu_item_finalize;
   gobject_class->set_property      = geda_option_menu_set_property;
   gobject_class->get_property      = geda_option_menu_get_property;
   object_class->destroy            = geda_option_menu_destroy;
@@ -218,12 +236,16 @@ geda_option_menu_instance_init(GTypeInstance *instance, void *class)
   gtk_widget_set_can_default (widget, FALSE);
   gtk_widget_set_receives_default (widget, FALSE);
 
-  option_menu->instance_type = geda_option_menu_get_type();
-
   option_menu->menu      = NULL;
   option_menu->menu_item = NULL;
   option_menu->width     = 0;
   option_menu->height    = 0;
+
+  if (!option_menu_hash) {
+    option_menu_hash = g_hash_table_new (g_direct_hash, NULL);
+  }
+
+  g_hash_table_replace (option_menu_hash, instance, instance);
 }
 
 /*! \brief Retrieve GedaOptionMenu's Type identifier.
@@ -267,11 +289,10 @@ GedaType geda_option_menu_get_type (void)
   return geda_option_menu_type;
 }
 
-
 bool is_a_geda_option_menu (GedaOptionMenu *option_menu)
 {
-  if (G_IS_OBJECT(option_menu)) {
-    return (geda_option_menu_get_type() == option_menu->instance_type);
+  if ((option_menu != NULL) && (option_menu_hash != NULL)) {
+    return g_hash_table_lookup(option_menu_hash, option_menu) ? TRUE : FALSE;
   }
   return FALSE;
 }
@@ -357,6 +378,7 @@ geda_option_menu_destroy (GtkObject *object)
 
   if (option_menu->menu) {
     gtk_widget_destroy (option_menu->menu);
+    option_menu->menu = NULL;
   }
 
   GTK_OBJECT_CLASS (geda_option_menu_parent_class)->destroy (object);
@@ -628,13 +650,14 @@ geda_option_menu_key_press (GtkWidget *widget, GdkEventKey *event)
     case GDK_space:
       geda_option_menu_remove_contents (option_menu);
       geda_menu_popup (GEDA_MENU (option_menu->menu), NULL, NULL,
-              geda_option_menu_position, option_menu,
-              0, event->time);
+                       geda_option_menu_position, option_menu,
+                       0, event->time);
       menu_item = geda_menu_widget_get_active (option_menu->menu);
       if (menu_item)
-    geda_menu_shell_select_item (GEDA_MENU_SHELL (option_menu->menu), menu_item);
+        geda_menu_shell_select_item (GEDA_MENU_SHELL(option_menu->menu),
+                                     menu_item);
       return TRUE;
-    }
+  }
 
   return FALSE;
 }
