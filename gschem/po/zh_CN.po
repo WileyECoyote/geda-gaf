@@ -81,10 +81,10 @@ msgstr ""
 msgid "Exiting normal\n"
 msgstr ""
 
+# Parent Window
 #: gschem/src/base/gschem_dialog.c:563
-#, fuzzy
 msgid "Parent Window"
-msgstr "新建窗口"
+msgstr "父窗口"
 
 #: gschem/src/base/gschem_dialog.c:564
 msgid "Parent window for this dialog"
@@ -228,19 +228,20 @@ msgstr ""
 msgid "name of file to be previewed"
 msgstr ""
 
+# Object List
 #: gschem/src/base/gschem_preview.c:549
-#, fuzzy
 msgid "Object List"
-msgstr "选择模式"
+msgstr "对象列表"
 
+# List of objects to be previewed
 #: gschem/src/base/gschem_preview.c:550
 msgid "List of objects to be previewed"
-msgstr ""
+msgstr "要预览的对象列表"
 
+# Active
 #: gschem/src/base/gschem_preview.c:557
-#, fuzzy
 msgid "Active"
-msgstr "放大"
+msgstr "活性"
 
 #: gschem/src/base/gschem_preview.c:558
 msgid "Whether the preview widget is enabled or disabled"
@@ -254,19 +255,19 @@ msgstr ""
 msgid "Whether the preview widget should be large or small"
 msgstr ""
 
+# Coordinates Mode
 #: gschem/src/base/gschem_status_bar.c:587
-#, fuzzy
 msgid "Coordinates Mode"
-msgstr "旋转 90 度"
+msgstr "坐标模式"
 
 #: gschem/src/base/gschem_status_bar.c:588
 msgid "Sets the Format Mode used to display coordinates on the status bar"
 msgstr ""
 
+# Grid Mode
 #: gschem/src/base/gschem_status_bar.c:597
-#, fuzzy
 msgid "Grid Mode"
-msgstr "镜像模式"
+msgstr "网格模式"
 
 #: gschem/src/base/gschem_status_bar.c:598
 msgid "Sets the Grid Mode to display on the status bar"
@@ -280,9 +281,10 @@ msgstr ""
 msgid "Sets the Grid Size to display on the status bar"
 msgstr ""
 
+# height
 #: gschem/src/base/gschem_status_bar.c:617
 msgid "height"
-msgstr ""
+msgstr "高度"
 
 #: gschem/src/base/gschem_status_bar.c:618
 msgid "Sets the height of the status bar"
@@ -312,10 +314,10 @@ msgstr ""
 msgid "Set the string for the Right Button Text"
 msgstr ""
 
+# Snap Mode => Capture mode
 #: gschem/src/base/gschem_status_bar.c:648
-#, fuzzy
 msgid "Snap Mode"
-msgstr "复制模式"
+msgstr "捕捉模式"
 
 #: gschem/src/base/gschem_status_bar.c:649
 msgid "Sets the Snap Mode to display on the status bar"
@@ -378,21 +380,21 @@ msgstr ""
 msgid "Gschem status bar"
 msgstr ""
 
+# Grid
 #: gschem/src/base/gschem_status_bar.c:1888
-#, fuzzy
 msgid "Grid"
-msgstr "镜像模式"
+msgstr "格"
 
 #: gschem/src/base/gschem_status_bar.c:1894
 #: gschem/src/base/gschem_status_bar.c:1915
 msgid "OFF"
 msgstr ""
 
+# Error
 #: gschem/src/base/gschem_status_bar.c:1907 gschem/src/object/o_picture.c:615
 #: gschem/src/object/o_picture.c:619
-#, fuzzy
 msgid "Error"
-msgstr "镜像模式"
+msgstr "错误"
 
 #: gschem/src/base/gschem_status_bar.c:1919
 msgid "NONE"
@@ -418,10 +420,10 @@ msgstr ""
 msgid "entry in rc file"
 msgstr ""
 
+# Bad Value
 #: gschem/src/guile/g_rc.c:123
-#, fuzzy
 msgid "Bad Value"
-msgstr "显示数值"
+msgstr "坏值"
 
 #: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2070
 msgid "check"
@@ -555,10 +557,10 @@ msgstr ""
 msgid "New page created"
 msgstr ""
 
+# New Window created
 #: gschem/src/iface/i_command.c:752
-#, fuzzy
 msgid "New Window created"
-msgstr "新建窗口"
+msgstr "新窗口创建"
 
 #: gschem/src/iface/i_command.c:951
 msgid "Failed to Save All"
@@ -572,10 +574,10 @@ msgstr ""
 msgid "Error encountered, Save Failed"
 msgstr ""
 
+# Write Image
 #: gschem/src/iface/i_command.c:1038 gschem/src/x/x_image.c:489
-#, fuzzy
 msgid "Write Image"
-msgstr "写入图片..."
+msgstr "写图像"
 
 #: gschem/src/iface/i_command.c:1060
 msgid "Write PDF"
@@ -585,10 +587,10 @@ msgstr ""
 msgid "Canceled close all\n"
 msgstr ""
 
+# Closing all documents
 #: gschem/src/iface/i_command.c:1165 gschem/src/iface/i_sessions.c:193
-#, fuzzy
 msgid "Closing all documents\n"
-msgstr "关闭页面"
+msgstr "关闭所有文档\n"
 
 #: gschem/src/iface/i_command.c:1188
 msgid "gschem: starting shut-down\n"
