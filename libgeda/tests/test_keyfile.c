@@ -79,7 +79,7 @@ const char key_data[] = "[G1]\nT1=A\n[G2]\nT1=B\nT2=C\nT3=D\n";
  *      KF0813    geda_keyfile_get_group_list
  *      KF0814    geda_keyfile_get_keys
  *      KF0815    geda_keyfile_has_group
- *       KF0816    geda_keyfile_has_key
+ *      KF0816    geda_keyfile_has_key
  *       KF0817    geda_keyfile_get_value
  *       KF0818    geda_keyfile_set_value
  *       KF0819    geda_keyfile_get_string
@@ -524,7 +524,6 @@ int check_groups (void)
     }
     else {
       vmessage("Message: (KF084701B) removed group G1\n");
-      fprintf(stderr, "%s it's gone\n",__func__);
     }
 
     /* See if the group was removed */
@@ -626,6 +625,29 @@ int check_keys (void)
       }
       g_free(keys);
     }
+
+    /* === Function 16: geda_keyfile_has_key === */
+
+    err = NULL;
+
+    if (!geda_keyfile_has_key(keyfile, "G2", "T1", &err)) {
+      fprintf(stderr, "FAILED: (KF081601) has_key\n");
+      result++;
+    }
+
+    if (geda_keyfile_has_key(keyfile, "G2", "NOT", &err)) {
+      fprintf(stderr, "FAILED: (KF081602A) has_key NOT\n");
+      result++;
+    }
+    else {
+      /* Not found should not generate an error when group exist */
+      if (err) {
+        fprintf(stderr, "FAILED: (KF081602B) non-existent, error is NULL\n");
+        result++;
+        g_error_free (err);
+      }
+    }
+
   }
   geda_keyfile_free(keyfile);
   return result;

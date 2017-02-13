@@ -5,6 +5,8 @@
 
     * tests/test_file.c: Check that geda_get_format_header returns something.
 
+    * tests/test_keyfile.c: Add checks for geda_keyfile_has_key.
+
 2017-02-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_keyfile.c: Add check_keys and relocate tests for KF0814, fix
