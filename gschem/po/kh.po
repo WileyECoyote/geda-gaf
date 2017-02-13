@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-02-02 03:47-0600\n"
+"POT-Creation-Date: 2017-02-13 11:22-0600\n"
 "PO-Revision-Date: 2015-07-29 00:24-0600\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1419,77 +1419,77 @@ msgstr "sameasapheak del ban bangkob knong koumnour bampruonh"
 msgid "Include component as individual objects"
 msgstr "ruom banhchoul teang sameasapheak chea vottho bokkol"
 
-#: gschem/src/x/x_compselect.c:2106 gschem/src/x/x_compselect.c:2484
+#: gschem/src/x/x_compselect.c:2106 gschem/src/x/x_compselect.c:2486
 msgid "Components"
 msgstr "sameasapheak"
 
-#: gschem/src/x/x_compselect.c:2561 gschem/src/x/x_multiattrib.c:2007
+#: gschem/src/x/x_compselect.c:2563 gschem/src/x/x_multiattrib.c:2007
 #: gschem/src/x/x_multiattrib.c:2013
 msgid "Name"
 msgstr "chhmoh"
 
-#: gschem/src/x/x_compselect.c:2573 gschem/src/x/x_multiattrib.c:2009
+#: gschem/src/x/x_compselect.c:2575 gschem/src/x/x_multiattrib.c:2009
 #: gschem/src/x/x_multiattrib.c:2015
 msgid "Value"
 msgstr "koun tamlei"
 
-#: gschem/src/x/x_compselect.c:2755 gschem/src/x/x_dialog.c:1756
+#: gschem/src/x/x_compselect.c:2757 gschem/src/x/x_dialog.c:1756
 msgid "None"
 msgstr "kmean"
 
-#: gschem/src/x/x_compselect.c:2756
+#: gschem/src/x/x_compselect.c:2758
 msgid "Style 1"
 msgstr "rochneabtm 1"
 
-#: gschem/src/x/x_compselect.c:2757
+#: gschem/src/x/x_compselect.c:2759
 msgid "Style 2"
 msgstr "rochneabtm 2"
 
-#: gschem/src/x/x_compselect.c:2758
+#: gschem/src/x/x_compselect.c:2760
 msgid "Style 3"
 msgstr "rochneabtm 3"
 
-#: gschem/src/x/x_compselect.c:2759
+#: gschem/src/x/x_compselect.c:2761
 msgid "Style 4"
 msgstr "rochneabtm 4"
 
-#: gschem/src/x/x_compselect.c:2760
+#: gschem/src/x/x_compselect.c:2762
 msgid "Style 5"
 msgstr "rochneabtm 5"
 
-#: gschem/src/x/x_compselect.c:2761
+#: gschem/src/x/x_compselect.c:2763
 msgid "Style 6"
 msgstr "rochneabtm 6"
 
-#: gschem/src/x/x_compselect.c:2762
+#: gschem/src/x/x_compselect.c:2764
 msgid "Style 7"
 msgstr "rochneabtm 7"
 
-#: gschem/src/x/x_compselect.c:2763
+#: gschem/src/x/x_compselect.c:2765
 msgid "Style 8"
 msgstr "rochneabtm 8"
 
-#: gschem/src/x/x_compselect.c:2764
+#: gschem/src/x/x_compselect.c:2766
 msgid "All"
 msgstr "teangoasa"
 
-#: gschem/src/x/x_compselect.c:2800
+#: gschem/src/x/x_compselect.c:2802
 msgid "Enable all styles"
 msgstr "anounhnhat rochneabtm teangoasa"
 
-#: gschem/src/x/x_compselect.c:2801
+#: gschem/src/x/x_compselect.c:2803
 msgid "Uncheck all styles"
 msgstr "daoh thik rochneabtm teangoasa"
 
-#: gschem/src/x/x_compselect.c:2825
+#: gschem/src/x/x_compselect.c:2827
 msgid "Reference"
 msgstr "sechaktei yong"
 
-#: gschem/src/x/x_compselect.c:2826
+#: gschem/src/x/x_compselect.c:2828
 msgid "Embed"
 msgstr "banhchoul"
 
-#: gschem/src/x/x_compselect.c:2827
+#: gschem/src/x/x_compselect.c:2829
 msgid "Include"
 msgstr "banhchoul"
 
@@ -2207,12 +2207,11 @@ msgstr "Tamlei:"
 msgid "Visible"
 msgstr "del ach meulkheunh"
 
-#: gschem/src/x/x_edit_attrib.c:519 gschem/src/x/x_edit_text.c:590
-#: gschem/src/x/x_edit_text.c:602
-msgid "Atrribute Name List"
+#: gschem/src/x/x_edit_attrib.c:519
+msgid "Attribute Name List"
 msgstr "banhchi chhmoh kounalokkhan"
 
-#: gschem/src/x/x_edit_attrib.c:523 gschem/src/x/x_edit_text.c:598
+#: gschem/src/x/x_edit_attrib.c:523
 msgid "Attribute Value Entry"
 msgstr "tamlei kounalokkhan theato"
 
@@ -2550,10 +2549,24 @@ msgstr "<b>Meateka Atthabat</b>"
 msgid "<b>Text Properties</b>"
 msgstr "<b>lokkhan sambotte atthabat</b>"
 
-# Text Alignment Attribute
+#: gschem/src/x/x_edit_text.c:590
+#, fuzzy
+msgid "Text input field"
+msgstr "atthabt del trauv rok:"
+
+# Text alignment options
 #: gschem/src/x/x_edit_text.c:594
-msgid "Text Alignment Attribute"
-msgstr "kounalokkhan tamrum atthabat"
+#, fuzzy
+msgid "Text alignment combobox"
+msgstr "chomreusa tamrum atthabat"
+
+#: gschem/src/x/x_edit_text.c:598
+msgid "Color options menu"
+msgstr ""
+
+#: gschem/src/x/x_edit_text.c:602
+msgid "Font selector button"
+msgstr ""
 
 # Text Rotation Angle Spinner Entry
 #: gschem/src/x/x_edit_text.c:606
@@ -5357,3 +5370,7 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
+
+# Text Alignment Attribute
+#~ msgid "Text Alignment Attribute"
+#~ msgstr "kounalokkhan tamrum atthabat"

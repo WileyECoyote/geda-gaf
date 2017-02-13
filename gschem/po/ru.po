@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gschem ru\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-02-02 03:47-0600\n"
+"POT-Creation-Date: 2017-02-13 11:22-0600\n"
 "PO-Revision-Date: 2015-09-13 16:05+0300\n"
 "Last-Translator: Sergey Alyoshin <alyoshin.s@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -1467,73 +1467,73 @@ msgstr "Внедрить в схему"
 msgid "Include component as individual objects"
 msgstr "Вставить как отдельные объекты"
 
-#: gschem/src/x/x_compselect.c:2106 gschem/src/x/x_compselect.c:2484
+#: gschem/src/x/x_compselect.c:2106 gschem/src/x/x_compselect.c:2486
 msgid "Components"
 msgstr "Компоненты"
 
-#: gschem/src/x/x_compselect.c:2561 gschem/src/x/x_multiattrib.c:2007
+#: gschem/src/x/x_compselect.c:2563 gschem/src/x/x_multiattrib.c:2007
 #: gschem/src/x/x_multiattrib.c:2013
 msgid "Name"
 msgstr "Имя"
 
-#: gschem/src/x/x_compselect.c:2573 gschem/src/x/x_multiattrib.c:2009
+#: gschem/src/x/x_compselect.c:2575 gschem/src/x/x_multiattrib.c:2009
 #: gschem/src/x/x_multiattrib.c:2015
 msgid "Value"
 msgstr "Значение"
 
-#: gschem/src/x/x_compselect.c:2755 gschem/src/x/x_dialog.c:1756
+#: gschem/src/x/x_compselect.c:2757 gschem/src/x/x_dialog.c:1756
 msgid "None"
 msgstr "Никто"
 
-#: gschem/src/x/x_compselect.c:2756
+#: gschem/src/x/x_compselect.c:2758
 msgid "Style 1"
 msgstr "Стиль 1"
 
-#: gschem/src/x/x_compselect.c:2757
+#: gschem/src/x/x_compselect.c:2759
 msgid "Style 2"
 msgstr "Стиль 2"
 
-#: gschem/src/x/x_compselect.c:2758
+#: gschem/src/x/x_compselect.c:2760
 msgid "Style 3"
 msgstr "Стиль"
 
-#: gschem/src/x/x_compselect.c:2759
+#: gschem/src/x/x_compselect.c:2761
 msgid "Style 4"
 msgstr "Стиль 4"
 
-#: gschem/src/x/x_compselect.c:2760
+#: gschem/src/x/x_compselect.c:2762
 msgid "Style 5"
 msgstr "Стиль 5"
 
-#: gschem/src/x/x_compselect.c:2761
+#: gschem/src/x/x_compselect.c:2763
 msgid "Style 6"
 msgstr "Стиль 6"
 
-#: gschem/src/x/x_compselect.c:2762
+#: gschem/src/x/x_compselect.c:2764
 msgid "Style 7"
 msgstr "Стиль 7"
 
-#: gschem/src/x/x_compselect.c:2763
+#: gschem/src/x/x_compselect.c:2765
 msgid "Style 8"
 msgstr "Стиль 8"
 
-#: gschem/src/x/x_compselect.c:2764
+#: gschem/src/x/x_compselect.c:2766
 msgid "All"
 msgstr "Все"
 
-#: gschem/src/x/x_compselect.c:2800
+#: gschem/src/x/x_compselect.c:2802
 msgid "Enable all styles"
 msgstr "Включить все стили"
 
-#: gschem/src/x/x_compselect.c:2801
+#: gschem/src/x/x_compselect.c:2803
 msgid "Uncheck all styles"
 msgstr "Отмените все стили"
 
-#: gschem/src/x/x_compselect.c:2825
+#: gschem/src/x/x_compselect.c:2827
 msgid "Reference"
 msgstr "Справка"
 
-#: gschem/src/x/x_compselect.c:2826
+#: gschem/src/x/x_compselect.c:2828
 msgid "Embed"
 msgstr "Внедрение"
 
@@ -2616,10 +2616,25 @@ msgstr "<b>Содержание текста</b>"
 msgid "<b>Text Properties</b>"
 msgstr "<b>Свойства текста</b>"
 
+# Text to find
+#: gschem/src/x/x_edit_text.c:590
+#, fuzzy
+msgid "Text input field"
+msgstr "Текст для поиска:"
+
 # Text Alignment Attribute
 #: gschem/src/x/x_edit_text.c:594
-msgid "Text Alignment Attribute"
+#, fuzzy
+msgid "Text alignment combobox"
 msgstr "Выравнивание текста Атрибут"
+
+#: gschem/src/x/x_edit_text.c:598
+msgid "Color options menu"
+msgstr ""
+
+#: gschem/src/x/x_edit_text.c:602
+msgid "Font selector button"
+msgstr ""
 
 # Text rotation angle Spinner input
 #: gschem/src/x/x_edit_text.c:606

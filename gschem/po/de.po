@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-02-02 03:47-0600\n"
+"POT-Creation-Date: 2017-02-13 11:22-0600\n"
 "PO-Revision-Date: 2012-04-12 22:09+0000\n"
 "Last-Translator: Dennis Baudys <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1339,77 +1339,77 @@ msgstr "Bauteil in den Schaltplan einbetten"
 msgid "Include component as individual objects"
 msgstr "Bauteil als Einzelkomponenten einfügen"
 
-#: gschem/src/x/x_compselect.c:2106 gschem/src/x/x_compselect.c:2484
+#: gschem/src/x/x_compselect.c:2106 gschem/src/x/x_compselect.c:2486
 msgid "Components"
 msgstr "Bauteile"
 
-#: gschem/src/x/x_compselect.c:2561 gschem/src/x/x_multiattrib.c:2007
+#: gschem/src/x/x_compselect.c:2563 gschem/src/x/x_multiattrib.c:2007
 #: gschem/src/x/x_multiattrib.c:2013
 msgid "Name"
 msgstr "Name"
 
-#: gschem/src/x/x_compselect.c:2573 gschem/src/x/x_multiattrib.c:2009
+#: gschem/src/x/x_compselect.c:2575 gschem/src/x/x_multiattrib.c:2009
 #: gschem/src/x/x_multiattrib.c:2015
 msgid "Value"
 msgstr "Wert"
 
-#: gschem/src/x/x_compselect.c:2755 gschem/src/x/x_dialog.c:1756
+#: gschem/src/x/x_compselect.c:2757 gschem/src/x/x_dialog.c:1756
 msgid "None"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2756
+#: gschem/src/x/x_compselect.c:2758
 msgid "Style 1"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2757
+#: gschem/src/x/x_compselect.c:2759
 msgid "Style 2"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2758
+#: gschem/src/x/x_compselect.c:2760
 msgid "Style 3"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2759
+#: gschem/src/x/x_compselect.c:2761
 msgid "Style 4"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2760
+#: gschem/src/x/x_compselect.c:2762
 msgid "Style 5"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2761
+#: gschem/src/x/x_compselect.c:2763
 msgid "Style 6"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2762
+#: gschem/src/x/x_compselect.c:2764
 msgid "Style 7"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2763
+#: gschem/src/x/x_compselect.c:2765
 msgid "Style 8"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2764
+#: gschem/src/x/x_compselect.c:2766
 msgid "All"
 msgstr "Alle"
 
-#: gschem/src/x/x_compselect.c:2800
+#: gschem/src/x/x_compselect.c:2802
 msgid "Enable all styles"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2801
+#: gschem/src/x/x_compselect.c:2803
 msgid "Uncheck all styles"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2825
+#: gschem/src/x/x_compselect.c:2827
 msgid "Reference"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2826
+#: gschem/src/x/x_compselect.c:2828
 msgid "Embed"
 msgstr "Einbetten"
 
-#: gschem/src/x/x_compselect.c:2827
+#: gschem/src/x/x_compselect.c:2829
 msgid "Include"
 msgstr ""
 
@@ -2105,12 +2105,11 @@ msgstr "Wert:"
 msgid "Visible"
 msgstr "Sichtbar"
 
-#: gschem/src/x/x_edit_attrib.c:519 gschem/src/x/x_edit_text.c:590
-#: gschem/src/x/x_edit_text.c:602
-msgid "Atrribute Name List"
+#: gschem/src/x/x_edit_attrib.c:519
+msgid "Attribute Name List"
 msgstr "Attribut"
 
-#: gschem/src/x/x_edit_attrib.c:523 gschem/src/x/x_edit_text.c:598
+#: gschem/src/x/x_edit_attrib.c:523
 msgid "Attribute Value Entry"
 msgstr "Attribut"
 
@@ -2429,9 +2428,23 @@ msgstr "<b>Textinhalt</b>"
 msgid "<b>Text Properties</b>"
 msgstr "<b>Texteigenschaften</b>"
 
+#: gschem/src/x/x_edit_text.c:590
+#, fuzzy
+msgid "Text input field"
+msgstr "Zu suchender Text:"
+
 #: gschem/src/x/x_edit_text.c:594
-msgid "Text Alignment Attribute"
+#, fuzzy
+msgid "Text alignment combobox"
 msgstr "Attribute bearbeiten"
+
+#: gschem/src/x/x_edit_text.c:598
+msgid "Color options menu"
+msgstr ""
+
+#: gschem/src/x/x_edit_text.c:602
+msgid "Font selector button"
+msgstr ""
 
 # Text rotation angle Spinner input
 #: gschem/src/x/x_edit_text.c:606
