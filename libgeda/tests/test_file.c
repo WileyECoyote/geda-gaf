@@ -714,6 +714,15 @@ int test_get (void)
 
   /* === Function 09: geda_get_format_header    geda_file_get_format_header === */
 
+  const char *header;
+
+  header = geda_file_get_format_header();
+
+  if (!header) {
+    fprintf(stderr, "FAILED: (F020901) header is NULL\n");
+    result++;
+  }
+
   /* === Function 10: geda_file_get_name === */
 
   static const struct _TestData filename_10[] =
