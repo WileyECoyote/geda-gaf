@@ -4,6 +4,8 @@
 
     * src/x/x_compselect.c: Remove "unsetting" the symbol with g_value_unset
       in compselect_get_property. This seg faults on 32 and 64 bit machines.
+      Sink reference to tree_view_popup_menu using g_object_ref_sink, what a
+      lame library.
 
 2017-02-10 Wiley E. Hill <wileyhill@gmail.com>
 
