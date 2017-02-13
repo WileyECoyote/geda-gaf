@@ -2352,18 +2352,17 @@ msgid "Pin Properties Editor"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:879
-#, fuzzy
 msgid "Set"
-msgstr "Mreža"
+msgstr "Set"
 
 #: gschem/src/x/x_edit_pin.c:882
 msgid "Auto"
 msgstr ""
 
+# Attribute Type List
 #: gschem/src/x/x_edit_pin.c:913
-#, fuzzy
 msgid "Attribute Type List"
-msgstr "Atribut"
+msgstr "Atributi Tip List"
 
 #: gschem/src/x/x_edit_pin.c:917
 msgid "Text Alignment Option"
@@ -2381,10 +2380,10 @@ msgstr ""
 msgid "Pin Label"
 msgstr ""
 
+# Edit slot number
 #: gschem/src/x/x_edit_slot.c:162
-#, fuzzy
 msgid "Edit slot number"
-msgstr "Boja"
+msgstr "Uredi broj otvora"
 
 #: gschem/src/x/x_edit_slot.c:185
 msgid "Number of slots:"
@@ -2431,10 +2430,10 @@ msgstr ""
 msgid "Lower Right"
 msgstr ""
 
+# Edit Text Properties
 #: gschem/src/x/x_edit_text.c:452
-#, fuzzy
 msgid "Edit Text Properties"
-msgstr "Izmijeni tekst"
+msgstr "Uredi tekst svojstva"
 
 #: gschem/src/x/x_edit_text.c:469
 msgid "<b>Text Content</b>"
@@ -2581,40 +2580,38 @@ msgstr ""
 msgid "Select"
 msgstr ""
 
+# Activate Select mode
 #: gschem/src/x/x_menus.c:86 gschem/etc/system-gschemrc.scm:2120
-#, fuzzy
 msgid "Activate Select mode"
-msgstr "Režim izabiranja"
+msgstr "Aktiviranje Odaberite mod"
 
+# Add
 #: gschem/src/x/x_menus.c:90
-#, fuzzy
 msgid "Add"
-msgstr "_Dodaj"
+msgstr "Dodati"
 
+# Add modes
 #: gschem/src/x/x_menus.c:90
-#, fuzzy
 msgid "Add modes"
-msgstr "Komponenta"
+msgstr "Dodaj prikaza"
 
+# Add net
 #: gschem/src/x/x_menus.c:91 gschem/etc/system-gschemrc.scm:2239
-#, fuzzy
 msgid "Add net"
-msgstr "Izmijeni tekst"
+msgstr "Dodaj neto"
 
+# Attribute
 #: gschem/src/x/x_menus.c:92
-#, fuzzy
 msgid "Attribute..."
-msgstr "_Atribut..."
+msgstr "Atribut..."
 
 #: gschem/src/x/x_menus.c:92 gschem/etc/system-gschemrc.scm:2241
-#, fuzzy
 msgid "Add attribute"
-msgstr "Atribut"
+msgstr "Dodaj Atribut"
 
 #: gschem/src/x/x_menus.c:93 gschem/src/x/x_menus.c:112
-#, fuzzy
 msgid "Component..."
-msgstr "_Kmponenta..."
+msgstr "Komponenta..."
 
 #: gschem/src/x/x_menus.c:93 gschem/etc/system-gschemrc.scm:2238
 msgid "Insert a symbol from the component library"
