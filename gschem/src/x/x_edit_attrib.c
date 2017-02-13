@@ -516,7 +516,7 @@ attrib_edit_dialog (GschemToplevel *w_current, GedaObject *object, int flag)
     atk_value_obj = atk_widget_linked_label_new (value_label, value_entry );
 
     if ( atk_name_obj ) {
-      atk_object_set_name        (atk_name_obj,  _("Atrribute Name List"));
+      atk_object_set_name        (atk_name_obj,  _("Attribute Name List"));
       atk_object_set_description (atk_name_obj,     name_list_tip );
     }
     if ( atk_value_obj ) {
