@@ -1307,9 +1307,9 @@ geda_keyfile_get_keys (GedaKeyFile  *key_file,
                        GError       **error)
 {
   GedaKeyFileGroup *group;
-  GList *tmp;
-  char **keys;
-  unsigned int  i, num_keys;
+  GList            *tmp;
+  char            **keys;
+  unsigned int      i, num_keys;
 
   g_return_val_if_fail (key_file != NULL, NULL);
   g_return_val_if_fail (group_name != NULL, NULL);
@@ -1318,11 +1318,13 @@ geda_keyfile_get_keys (GedaKeyFile  *key_file,
 
   if (!group) {
 
-    g_set_error (error, GEDA_KEYFILE_ERROR,
-                 GEDA_KEYFILE_ERROR_GROUP_NOT_FOUND, "%s '%s'",
-               _("Key file does not have group"),
-                 group_name ? group_name : "(null)");
-                 return NULL;
+    if (error) {
+      g_set_error (error, GEDA_KEYFILE_ERROR,
+                   GEDA_KEYFILE_ERROR_GROUP_NOT_FOUND, "%s '%s'",
+                   _("Key file does not have group"),
+                   group_name ? group_name : "(null)");
+    }
+    return NULL;
   }
 
   num_keys = 0;
