@@ -899,9 +899,11 @@ msgstr ""
 msgid "Session system initialized!\n"
 msgstr ""
 
+# mode Unselecting
 #: gschem/src/iface/i_status.c:134 gschem/etc/system-gschemrc.scm:2121
-msgid "Deselect moda"
-msgstr "un-odabrati moda"
+#, fuzzy
+msgid "Deselect Mode"
+msgstr "režim Deselektiranjem"
 
 #: gschem/src/iface/i_status.c:138 gschem/src/x/x_status_bar.c:383
 #: gschem/etc/system-gschemrc.scm:2120 gschem/scheme/gschem/builtins.scm:170
@@ -2624,112 +2626,124 @@ msgstr "Dodaj Atribut"
 msgid "Component..."
 msgstr "Komponenta..."
 
+# Insert a symbol from the component library
 #: gschem/src/x/x_menus.c:93 gschem/etc/system-gschemrc.scm:2238
 msgid "Insert a symbol from the component library"
-msgstr ""
+msgstr "Ubacite simbol iz komponentu knjižnica"
 
+# Add multi-conductor
 #: gschem/src/x/x_menus.c:94 gschem/etc/system-gschemrc.scm:2240
 msgid "Add bus"
-msgstr ""
+msgstr "Dodaj multi-dirigent"
 
+# Add text
 #: gschem/src/x/x_menus.c:95 gschem/etc/system-gschemrc.scm:2242
-#, fuzzy
 msgid "Add text"
-msgstr "Izmijeni tekst"
+msgstr "Dodaj tekst"
 
 #: gschem/src/x/x_menus.c:99
-#, fuzzy
 msgid "Zoom"
-msgstr "_Uvećaj"
+msgstr "Zumirati"
 
 #: gschem/src/x/x_menus.c:99
-#, fuzzy
 msgid "Add operations"
-msgstr "Linija"
+msgstr "Dodaj operacije"
 
 #: gschem/src/x/x_menus.c:100 gschem/src/x/x_menus.c:152
 msgid "In"
-msgstr ""
+msgstr "unutrašnjost"
 
+# Increase magnification
 #: gschem/src/x/x_menus.c:100 gschem/src/x/x_menus.c:152
 #: gschem/etc/system-gschemrc.scm:2186
 msgid "Increase the Zoom magnification"
-msgstr ""
+msgstr "Povećati uvećanja"
 
+# outward
 #: gschem/src/x/x_menus.c:101 gschem/src/x/x_menus.c:153
-#, fuzzy
 msgid "Out"
-msgstr "_Isijeci"
+msgstr "spolja"
 
+# Reduce the magnification
 #: gschem/src/x/x_menus.c:101 gschem/src/x/x_menus.c:153
 #: gschem/etc/system-gschemrc.scm:2187
 msgid "Decrease the Zoom magnification"
-msgstr ""
+msgstr "Smanjite uvećanja"
 
 #: gschem/src/x/x_menus.c:102
 msgid "Box"
 msgstr "Okvir"
 
+# Zoom to a Windowed region; Okvir zooma
 #: gschem/src/x/x_menus.c:102 gschem/etc/system-gschemrc.scm:2184
 msgid "Zoom to a Windowed region"
-msgstr ""
+msgstr "Zoom na prozorima regiona"
 
+# Periphery
 #: gschem/src/x/x_menus.c:103 gschem/src/x/x_menus.c:154
-#, fuzzy
 msgid "Extents"
-msgstr "Okvir zooma"
+msgstr "Periferija"
 
+# Zoom to the extent of drawing
 #: gschem/src/x/x_menus.c:103 gschem/src/x/x_menus.c:154
 #: gschem/etc/system-gschemrc.scm:2185
 msgid "Zoom to the extents of the drawing"
-msgstr ""
+msgstr "Zoom na razmjere crteža"
 
+# Magnification
 #: gschem/src/x/x_menus.c:104
 msgid "Mag"
-msgstr ""
+msgstr "Uveličavanje"
 
+# Zoom to a specified level
 #: gschem/src/x/x_menus.c:104 gschem/etc/system-gschemrc.scm:2188
 msgid "Zoom to a specified level"
-msgstr ""
+msgstr "Zoom na određeni nivo"
 
+# Zoom to selected objects
 #: gschem/src/x/x_menus.c:105 gschem/etc/system-gschemrc.scm:2189
 msgid "Zoom to selected objects"
-msgstr ""
+msgstr "Zoom u odabrane objekte"
 
+# Edit
 #: gschem/src/x/x_menus.c:109
 msgid "Edit"
 msgstr "Izmijeni"
 
+# Edit modes
 #: gschem/src/x/x_menus.c:109
-#, fuzzy
 msgid "Edit modes"
-msgstr "Izmijeni tekst"
+msgstr "Uredi režima"
 
+# Object
 #: gschem/src/x/x_menus.c:110
 msgid "Object..."
-msgstr ""
+msgstr "objekt..."
 
+# Edit Object Attributes
 #: gschem/src/x/x_menus.c:110 gschem/etc/system-gschemrc.scm:2108
-#, fuzzy
 msgid "Edit Object Attributes"
-msgstr "Atribut"
+msgstr "atributi uredi objekt"
 
+# Color
 #: gschem/src/x/x_menus.c:111
 msgid "Color..."
 msgstr "Boja..."
 
+# Open the Color Editor Dialog
 #: gschem/src/x/x_menus.c:111 gschem/etc/system-gschemrc.scm:2110
 msgid "Open the Color Editor Dialog"
-msgstr ""
+msgstr "Otvorite dijalog urednik boja"
 
+# Open the component editor dialog
 #: gschem/src/x/x_menus.c:112 gschem/etc/system-gschemrc.scm:2114
 msgid "Open the Component Editor Dialog"
-msgstr ""
+msgstr "Otvorite dijalog urednik komponenta"
 
+# Pin type
 #: gschem/src/x/x_menus.c:113
-#, fuzzy
 msgid "Pin type..."
-msgstr "Izmijeni tekst..."
+msgstr "Pinski..."
 
 #: gschem/src/x/x_menus.c:113 gschem/etc/system-gschemrc.scm:2111
 msgid "Open the Pin Type Dialog"
@@ -5365,3 +5379,6 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
+
+#~ msgid "Deselect moda"
+#~ msgstr "un-odabrati moda"
