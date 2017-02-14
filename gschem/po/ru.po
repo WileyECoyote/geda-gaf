@@ -1537,17 +1537,20 @@ msgstr "Справка"
 msgid "Embed"
 msgstr "Внедрение"
 
-#: gschem/src/x/x_compselect.c:2827
+# Include
+#: gschem/src/x/x_compselect.c:2829
 msgid "Include"
-msgstr ""
+msgstr "Включают в себя"
 
+# active view
 #: gschem/src/x/x_compselect.c:3206
 msgid "active view"
-msgstr ""
+msgstr "Активный вид"
 
+# Active notebook tab
 #: gschem/src/x/x_compselect.c:3207
 msgid "Active sheet of the notebook"
-msgstr ""
+msgstr "Активный вкладке блокнота"
 
 # Filter
 #: gschem/src/x/x_compselect.c:3218
@@ -1559,18 +1562,23 @@ msgid ""
 "When true, initial focus will be the filter entry, otherwise the Component "
 "Tree"
 msgstr ""
+"Когда правда, первоначальный акцент будет элемент фильтра, в противном "
+"случае дерево компонентов"
 
+# Rescan
 #: gschem/src/x/x_compselect.c:3322
 msgid "Rescan"
-msgstr ""
+msgstr "Пересканировать"
 
+# Rescan component libraries
 #: gschem/src/x/x_compselect.c:3330
 msgid "Rescan component libraries"
-msgstr ""
+msgstr "Пересканировать библиотеки компонентов"
 
+# Set style filter
 #: gschem/src/x/x_compselect.c:3332
 msgid "Set style filter"
-msgstr ""
+msgstr "Установить фильтр стиль"
 
 # Можно "Предварительный просмотр", но занимает много места на экране
 #: gschem/src/x/x_compselect.c:3533 gschem/src/x/x_fileselect.c:123
@@ -2265,13 +2273,11 @@ msgstr "Значение:"
 msgid "Visible"
 msgstr "Отображать"
 
-#: gschem/src/x/x_edit_attrib.c:519 gschem/src/x/x_edit_text.c:590
-#: gschem/src/x/x_edit_text.c:602
-#, fuzzy
-msgid "Atrribute Name List"
-msgstr "Показать имя атрибута"
+#: gschem/src/x/x_edit_attrib.c:519
+msgid "Attribute Name List"
+msgstr "Имя атрибута List"
 
-#: gschem/src/x/x_edit_attrib.c:523 gschem/src/x/x_edit_text.c:598
+#: gschem/src/x/x_edit_attrib.c:523
 #, fuzzy
 msgid "Attribute Value Entry"
 msgstr "Показать значение атрибута"
@@ -4806,9 +4812,10 @@ msgstr "Откройте диалоговое окно атрибутов ред
 msgid "A_utonumber Text..."
 msgstr "_Автонумерация..."
 
+# Open Auto-number dialog
 #: gschem/etc/system-gschemrc.scm:2295
 msgid "Open Auto Number dialog"
-msgstr ""
+msgstr "Открыть диалог Авто-номер"
 
 # Show Console Window
 #: gschem/etc/system-gschemrc.scm:2296
@@ -4842,11 +4849,11 @@ msgstr "Выполнить макрос"
 
 #: gschem/etc/system-gschemrc.scm:2301
 msgid "G_uile Path..."
-msgstr ""
+msgstr "G_uile Дорожка..."
 
 #: gschem/etc/system-gschemrc.scm:2301
 msgid "View or manage guile path"
-msgstr ""
+msgstr "Просмотр и управление Guile путь"
 
 #: gschem/etc/system-gschemrc.scm:2305 gschem/scheme/gschem/builtins.scm:451
 msgid "Embed Component/Picture"
@@ -4891,7 +4898,7 @@ msgstr "У_величить шаг сетки"
 
 #: gschem/etc/system-gschemrc.scm:2316
 msgid "Increase the snap size"
-msgstr ""
+msgstr "Увеличение размер сетки привязки"
 
 #: gschem/etc/system-gschemrc.scm:2317
 msgid "Scale _down Grid Spacing"
@@ -4901,17 +4908,17 @@ msgstr "Уме_ньшить шаг сетки"
 msgid "Decrease the snap size"
 msgstr ""
 
+# Snap Grid Spacing
 #: gschem/etc/system-gschemrc.scm:2318
-#, fuzzy
 msgid "S_nap Grid Spacing..."
 msgstr "_Шаг сетки привязки..."
 
 #: gschem/etc/system-gschemrc.scm:2318
 msgid "Adjust snap size"
-msgstr ""
+msgstr "Отрегулируйте привязку размер"
 
+# Toggle snapping
 #: gschem/etc/system-gschemrc.scm:2321
-#, fuzzy
 msgid "Toggle _Snap On-Off"
 msgstr "Переключить _привязку"
 
@@ -4919,52 +4926,49 @@ msgstr "Переключить _привязку"
 msgid "Toggle the object snap mode"
 msgstr ""
 
+# Toggle scretching connections
 #: gschem/etc/system-gschemrc.scm:2322
-#, fuzzy
 msgid "Toggle _Rubberband"
-msgstr "_Резиновое соединение вкл/откл"
+msgstr "Переключить валентных связей"
 
 #: gschem/etc/system-gschemrc.scm:2322
-#, fuzzy
 msgid "Toggle rubberband net mode"
-msgstr "_Резиновое соединение вкл/откл"
+msgstr "Переключение scretching соединения мод"
 
 #: gschem/etc/system-gschemrc.scm:2323
 msgid "Toggle _Magnetic Net"
 msgstr "_Магнитное соединение вкл/откл"
 
 #: gschem/etc/system-gschemrc.scm:2323
-#, fuzzy
 msgid "Toggle magnetic net mode"
-msgstr "_Магнитное соединение вкл/откл"
+msgstr "Магнитное соединение вкл/откл"
 
+# Toggle Dragging
 #: gschem/etc/system-gschemrc.scm:2324
-#, fuzzy
 msgid "Toggle _Drag Move"
-msgstr "_Магнитное соединение вкл/откл"
+msgstr "Переключить Перетаскивание"
 
 #: gschem/etc/system-gschemrc.scm:2324
 msgid "Toggle Drag-can-Move mode"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2325
-#, fuzzy
 msgid "Toggle _Outline-Box"
-msgstr "_Внешние контуры/рамка"
+msgstr "Внешние контуры/рамка вкл/откл"
 
 #: gschem/etc/system-gschemrc.scm:2325
 msgid "Toggle action feedback"
 msgstr ""
 
+# Toggle Auto-Pan
 #: gschem/etc/system-gschemrc.scm:2326
-#, fuzzy
 msgid "Toggle _Auto-Pan"
-msgstr "_Резиновое соединение вкл/откл"
+msgstr "Переключить автопанорамированием"
 
+# Toggle auto panning mode
 #: gschem/etc/system-gschemrc.scm:2326
-#, fuzzy
 msgid "Toggle auto panning mode"
-msgstr "_Магнитное соединение вкл/откл"
+msgstr "Переключить автопанорамированием мод"
 
 #: gschem/etc/system-gschemrc.scm:2329
 msgid "_Text Size..."
@@ -4982,8 +4986,8 @@ msgstr ""
 msgid "Open the Preferences dialog"
 msgstr ""
 
+# User Guide gschem
 #: gschem/etc/system-gschemrc.scm:2339
-#, fuzzy
 msgid "Gschem Guide"
 msgstr "Руководство пользователя gschem"
 
@@ -5035,10 +5039,10 @@ msgstr "_Файл"
 msgid "_Edit"
 msgstr "_Правка"
 
+# Select=>Choose
 #: gschem/etc/system-gschemrc.scm:2369
-#, fuzzy
 msgid "_Select"
-msgstr "Выделение"
+msgstr "Выбрать"
 
 #: gschem/etc/system-gschemrc.scm:2371
 msgid "_View"
@@ -5056,14 +5060,15 @@ msgstr "_Добавить"
 msgid "Sessio_ns"
 msgstr ""
 
+# Attributes
 #: gschem/etc/system-gschemrc.scm:2375
-#, fuzzy
 msgid "Attri_butes"
 msgstr "Атрибуты"
 
+# Tools=>utilities
 #: gschem/etc/system-gschemrc.scm:2376
 msgid "_Tools"
-msgstr ""
+msgstr "коммунальные"
 
 #: gschem/etc/system-gschemrc.scm:2386
 msgid "_Options"
@@ -5127,15 +5132,15 @@ msgstr "Закрыть окно"
 msgid "Quit"
 msgstr "Выход"
 
+# Export Symbol
 #: gschem/scheme/gschem/builtins.scm:89
-#, fuzzy
 msgid "Export Symbol"
-msgstr "Войти в символ"
+msgstr "Экспорт Символ"
 
+# Export Picture
 #: gschem/scheme/gschem/builtins.scm:92
-#, fuzzy
 msgid "Export Picture"
-msgstr "Внедрить компонент/изображение"
+msgstr "Экспорт фото"
 
 #: gschem/scheme/gschem/builtins.scm:98
 msgid "Undo"
