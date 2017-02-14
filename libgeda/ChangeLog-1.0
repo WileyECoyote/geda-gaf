@@ -4,6 +4,8 @@
       address was passed before attempting to set or propagate. Replace g_new
       with GEDA_MEM_ALLOC.
 
+    * tests/test_keyfile.c: Add check for geda_keyfile_remove_key.
+
 2017-02-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_keyfile.c: Revise geda_keyfile_has_key to check if a error
@@ -11,7 +13,7 @@
 
     * tests/test_file.c: Check that geda_get_format_header returns something.
 
-    * tests/test_keyfile.c: Add checks for geda_keyfile_has_key.
+    * tests/test_keyfile.c: Add check for geda_keyfile_has_key.
 
 2017-02-12 Wiley E. Hill <wileyhill@gmail.com>
 

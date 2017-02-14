@@ -109,7 +109,7 @@ const char key_data[] = "[G1]\nT1=A\n[G2]\nT1=B\nT2=C\nT3=D\n";
  *      KF0843    geda_keyfile_set_comment
  *      KF0844    geda_keyfile_get_comment
  *      KF0845    geda_keyfile_remove_comment
- *       KF0846    geda_keyfile_remove_key
+ *      KF0846    geda_keyfile_remove_key
  *      KF0847    geda_keyfile_remove_group
  */
 
@@ -623,7 +623,16 @@ int check_keys (void)
         }
         g_free(keys[1]);
       }
-      g_free(keys);
+
+      if (keys[2] != NULL) {
+        if (strcmp(keys[2], "T3")) {
+          fprintf(stderr, "FAILED: (KF081401E) group <%s>\n", keys[0]);
+          result++;
+        }
+        g_free(keys[2]);
+      }
+
+      g_free(keys); /* Free array of pointers */
     }
 
     /* === Function 16: geda_keyfile_has_key === */
@@ -635,6 +644,7 @@ int check_keys (void)
       result++;
     }
 
+    /* Non existent key */
     if (geda_keyfile_has_key(keyfile, "G2", "NOT", &err)) {
       fprintf(stderr, "FAILED: (KF081602A) has_key NOT\n");
       result++;
@@ -648,6 +658,23 @@ int check_keys (void)
       }
     }
 
+    /* === Function 16: geda_keyfile_remove_key === */
+
+    /* Try to remove non-existent key*/
+    if (geda_keyfile_remove_key(keyfile, "G2", "NOT", &err)) {
+      fprintf(stderr, "FAILED: (KF084601A) remove_key NOT\n");
+      result++;
+    }
+    else {
+      if (!err) {
+        fprintf(stderr, "FAILED: (KF084601B) remove_key NOT error is NULL\n");
+        result++;
+      }
+      else {
+        vmessage("Message: (KF084601C) %s.\n", err->message);
+        g_error_free (err);
+      }
+    }
   }
   geda_keyfile_free(keyfile);
   return result;
