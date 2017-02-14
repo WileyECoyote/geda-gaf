@@ -675,6 +675,17 @@ int check_keys (void)
         g_error_free (err);
       }
     }
+
+    if (!geda_keyfile_remove_key(keyfile, "G2", "T2", NULL)) {
+      fprintf(stderr, "FAILED: (KF084602A) remove_key NOT\n");
+      result++;
+    }
+
+    /* Verify that the key has been removed */
+    if (geda_keyfile_has_key(keyfile, "G2", "T2", NULL)) {
+      fprintf(stderr, "FAILED: (KF084602B) has_key\n");
+      result++;
+    }
   }
   geda_keyfile_free(keyfile);
   return result;
