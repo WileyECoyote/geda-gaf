@@ -192,7 +192,8 @@ msgstr ""
 "schema.\n"
 "\n"
 "Opties:\n"
-"  -a, --render-adaptor <DRV> Geef aan welke maken adapter, Cario of X11 gebruike\n"
+"  -a, --render-adaptor <DRV> Geef aan welke maken adapter, Cario of X11 "
+"gebruike\n"
 "  -c, --config-file <FILE>   Additioneel configuratie bestand laden.\n"
 "  -g, --guile <DIR>          Voeg DIR toe aan Scheme zoekpad (pre-config).\n"
 "  -f, --font <NAME>          set lettertype familienaam\n"
@@ -203,9 +204,12 @@ msgstr ""
 "  -p, --place                Automatisch geplaatst in het venster.\n"
 "  -q, --quiet                Stille mode.\n"
 "  -r, --run <FILE>           Scheme script uitvoeren tijdens opstarten.\n"
-"  -s, --start <name>         Opstarten met behulp van de opgegeven naam sessie.\n"
-"  -t, --title-block <FILE>   Start a new drawing using the specified title-block.\n"
-"  -u, --undo-dir <DIR>       Geef een tijdelijke map voor het ongedaan maken van bestanden.\n"
+"  -s, --start <name>         Opstarten met behulp van de opgegeven naam "
+"sessie.\n"
+"  -t, --title-block <FILE>   Start a new drawing using the specified title-"
+"block.\n"
+"  -u, --undo-dir <DIR>       Geef een tijdelijke map voor het ongedaan maken "
+"van bestanden.\n"
 "  -v, --verbose              Verbale mode.\n"
 "  -V, --version              Toon versie informatie.\n"
 "  -x (EXPR)                  Scheme expressie uitvoeren tijdens opstarten.\n"
@@ -433,9 +437,8 @@ msgid "Gschem status bar"
 msgstr ""
 
 #: gschem/src/base/gschem_status_bar.c:1888
-#, fuzzy
 msgid "Grid"
-msgstr "Boog Mode"
+msgstr "Raster"
 
 #: gschem/src/base/gschem_status_bar.c:1894
 #: gschem/src/base/gschem_status_bar.c:1915
@@ -444,9 +447,8 @@ msgstr "UIT"
 
 #: gschem/src/base/gschem_status_bar.c:1907 gschem/src/object/o_picture.c:615
 #: gschem/src/object/o_picture.c:619
-#, fuzzy
 msgid "Error"
-msgstr "Spiegel"
+msgstr "Fout"
 
 #: gschem/src/base/gschem_status_bar.c:1919
 msgid "NONE"
@@ -673,32 +675,29 @@ msgid "Empty buffer"
 msgstr "Maak buffer leeg"
 
 #: gschem/src/iface/i_command.c:1622
-#, fuzzy
 msgid "Offset Mode"
-msgstr "Draad Mode"
+msgstr "Verschuivingsmodus"
 
 #: gschem/src/iface/i_command.c:1623
 msgid "Specify offset distance:"
 msgstr ""
 
 #: gschem/src/iface/i_command.c:2204
-#, fuzzy
 msgid "Zoom Magnification"
-msgstr "Vergroot"
+msgstr "Zoomvergroting"
 
 #: gschem/src/iface/i_command.c:2204
 msgid "Specify new zoom:"
 msgstr ""
 
 #: gschem/src/iface/i_command.c:2248
-#, fuzzy
 msgid "error"
-msgstr "Spiegel"
+msgstr "fout"
 
+# No component selected
 #: gschem/src/iface/i_command.c:2256
-#, fuzzy
 msgid "No component selected\n"
-msgstr "Punt raster geselecteerd\n"
+msgstr "Geen component geselecteerd\n"
 
 #: gschem/src/iface/i_command.c:2801
 msgid "Confirm revert ALL documents"
@@ -976,29 +975,28 @@ msgstr "toon sessies bij het opstarten is nu uitgeschakeld\n"
 msgid "Session system initialized!\n"
 msgstr ""
 
+# Deselect Mode
 #: gschem/src/iface/i_status.c:134 gschem/etc/system-gschemrc.scm:2121
-#, fuzzy
 msgid "Deselect Mode"
-msgstr "Selectie Mode"
+msgstr "Hef de selectie van Mode"
 
 #: gschem/src/iface/i_status.c:138 gschem/src/x/x_status_bar.c:383
 #: gschem/etc/system-gschemrc.scm:2120 gschem/scheme/gschem/builtins.scm:170
 msgid "Select Mode"
 msgstr "Selectie Mode"
 
+# Rectangle Selection Mode
 #: gschem/src/iface/i_status.c:140
-#, fuzzy
 msgid "Select Box Mode"
-msgstr "Selectie Mode"
+msgstr "Selectie Rechthoek Mode"
 
 #: gschem/src/iface/i_status.c:142 gschem/scheme/gschem/builtins.scm:227
 msgid "Zoom Box"
 msgstr "Vergroot Venster"
 
 #: gschem/src/iface/i_status.c:145
-#, fuzzy
 msgid "Copy to point"
-msgstr "Kopieer naar klembord"
+msgstr "Kopiëren naar punt"
 
 #: gschem/src/iface/i_status.c:147 gschem/scheme/gschem/builtins.scm:122
 #: gschem/scheme/gschem/builtins.scm:125
@@ -1017,10 +1015,10 @@ msgstr "Spiegel Mode"
 msgid "Pan Mode"
 msgstr "Schuif Mode"
 
+# Choose component
 #: gschem/src/iface/i_status.c:155
-#, fuzzy
 msgid "Choose component"
-msgstr "Component"
+msgstr "Kies component"
 
 #: gschem/src/iface/i_status.c:158
 msgid "Magnetic Net Mode"
@@ -1130,7 +1128,7 @@ msgstr "Sluit Pagina\n"
 #: gschem/src/iface/i_window.c:173
 #, c-format
 msgid "Set page <%s> active.\n"
-msgstr ""
+msgstr "Stel pagina <%s> actief.\n"
 
 #: gschem/src/iface/i_window.c:198
 msgid "Really revert page?"
@@ -1143,22 +1141,21 @@ msgstr ""
 "Er is een fout opgetreden bij het verwerken van het verzoek om te herladen"
 
 #: gschem/src/iface/i_window.c:258
-#, fuzzy
 msgid "<b>File error.</b>"
-msgstr "<b>Omvang</b>"
+msgstr "<b>Bestandsfout.</b>"
 
+# Terug mislukt
 #: gschem/src/iface/i_window.c:258
-#, fuzzy
 msgid "Revert failed"
-msgstr "Terughalen Wijzigingen"
+msgstr "Terughalen Wijzigingen mislukt"
 
 # Error encountered during file operation
 #: gschem/src/iface/i_window.c:265
 msgid "Error encountered during file operation"
 msgstr "Fout opgetreden tijdens de file operatie"
 
+# Take last editing action
 #: gschem/src/iface/i_window.c:266
-#, fuzzy
 msgid "Recovery: undo last action\n"
 msgstr "Maak laatste bewerking ongedaan\n"
 
@@ -1185,15 +1182,15 @@ msgid_plural "Delete %u locked objects?"
 msgstr[0] "Verwijder vergrendeld object?"
 msgstr[1] "Verwijder %u vergrendelde objecten?"
 
+# attributes were hidden
 #: gschem/src/object/o_edit.c:517
-#, fuzzy
 msgid "attributes were hidden"
-msgstr "Attributen"
+msgstr "attributen waren verborgen"
 
+# Toon verborgen attributen
 #: gschem/src/object/o_edit.c:521
-#, fuzzy
 msgid "hidden attributes were revealed"
-msgstr "Toon geërfde attributen"
+msgstr "verborgen attributen werden geopenbaard"
 
 #: gschem/src/object/o_edit.c:717
 msgid "Hidden text is now visible\n"
@@ -1223,36 +1220,32 @@ msgid "Could not resolve which end of pin to connect\n"
 msgstr ""
 
 #: gschem/src/object/o_net.c:76
-#, fuzzy
 msgid "Warning: Starting net off grid coordinate\n"
 msgstr "Waarschuwing: begin van draad niet op raster coordinaat\n"
 
 #: gschem/src/object/o_net.c:485
-#, fuzzy
 msgid "Warning: Ending net off grid coordinate\n"
 msgstr "Waarschuwing: einde van draad niet op raster coordinaat\n"
 
 #: gschem/src/object/o_net.c:1096
-#, fuzzy
 msgid "Bus ripper symbol was not found in any component library"
 msgstr "Bus ripper symbool niet gevonden in een van de component bibliotheken"
 
 #: gschem/src/object/o_picture.c:357
-#, fuzzy
 msgid "Update All"
-msgstr "Vernieuw"
+msgstr "Update alles"
 
 #: gschem/src/object/o_picture.c:359
 msgid "Update all selected Picture images"
 msgstr ""
 
+# Not replace photo
 #: gschem/src/object/o_picture.c:397
-#, fuzzy
 msgid "Failed to replace picture"
-msgstr "Fout bij het vervangen van afbeeldingen"
+msgstr "Niet vervangen foto"
 
+# Error replacing images
 #: gschem/src/object/o_picture.c:400
-#, fuzzy
 msgid "<b>Failed to replace picture</b>"
 msgstr "<b>Fout bij het vervangen van afbeeldingen</b>"
 
@@ -2042,7 +2035,7 @@ msgstr ""
 # Auto Zoom Extents
 #: gschem/src/x/x_dialog.c:3026
 msgid "Auto Zoom Extents"
-msgstr "Automatisch Alles zoomen"
+msgstr "Automatisch Zoom Omvang"
 
 #: gschem/src/x/x_dialog.c:3196
 msgid "Hotkeys"
@@ -3847,9 +3840,8 @@ msgid "Error while trying to save"
 msgstr "Fout tijdens het opslaan"
 
 #: gschem/src/x/x_window.c:1225
-#, fuzzy
 msgid "Saved as"
-msgstr "Opslaan Als"
+msgstr "Opgeslagen als"
 
 #: gschem/data/geda-gschem.desktop.in:3
 msgid "gEDA Schematic Editor"
