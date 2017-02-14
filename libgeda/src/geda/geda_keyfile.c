@@ -1340,7 +1340,8 @@ geda_keyfile_get_keys (GedaKeyFile  *key_file,
     }
   }
 
-  keys = g_new (char *, num_keys + 1);
+  /* Allocate array of pointers + 1 for sentinel NULL */
+  keys = GEDA_MEM_ALLOC (sizeof(char*) * (num_keys + 1));
 
   i = num_keys - 1;
 
@@ -1802,16 +1803,20 @@ geda_keyfile_get_string_list (GedaKeyFile *key_file,
     return NULL;
   }
 
-  len = g_slist_length (pieces);
-  values = g_new (char *, len + 1);
-  for (p = pieces, i = 0; p; p = p->next)
+  len    = g_slist_length (pieces);
+  values = GEDA_MEM_ALLOC (sizeof(char*) * (len + 1));
+
+  for (p = pieces, i = 0; p; p = p->next) {
     values[i++] = p->data;
+  }
+
   values[len] = NULL;
 
   g_slist_free (pieces);
 
-  if (length)
+  if (length) {
     *length = len;
+  }
 
   return values;
 }
@@ -1947,7 +1952,7 @@ geda_keyfile_get_locale_string (GedaKeyFile *key_file,
 
 #else
 
-    languages = (char **) g_get_language_names ();
+    languages = (char**) g_get_language_names ();
 
 #endif
 
@@ -2258,7 +2263,7 @@ geda_keyfile_get_boolean_list (GedaKeyFile  *key_file,
     return NULL;
   }
 
-  bool_values = g_new (bool, num_bools);
+  bool_values = GEDA_MEM_ALLOC (sizeof(bool) * (num_bools));
 
   for (i = 0; i < num_bools; i++) {
 
@@ -2625,7 +2630,7 @@ geda_keyfile_get_integer_list (GedaKeyFile  *key_file,
     return NULL;
   }
 
-  int_values = g_new (int, num_ints);
+  int_values = GEDA_MEM_ALLOC (sizeof(int) * (num_ints));
 
   for (i = 0; i < num_ints; i++) {
 
