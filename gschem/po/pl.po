@@ -105,10 +105,10 @@ msgstr ""
 msgid "Dialog window title"
 msgstr ""
 
+# Label Text
 #: gschem/src/base/gschem_macro_widget.c:233
-#, fuzzy
 msgid "Label Text"
-msgstr "Ukryj tekst"
+msgstr "etykieta tekst"
 
 #: gschem/src/base/gschem_macro_widget.c:234
 msgid "Text to be displayed for the Macro label"
@@ -4740,18 +4740,18 @@ msgstr "A_utomatycznie numeruj..."
 msgid "Open Auto Number dialog"
 msgstr ""
 
+# Show _Console Window
 #: gschem/etc/system-gschemrc.scm:2296
-#, fuzzy
 msgid "Show _Console Window..."
-msgstr "Pokaż okno współrzędnych..."
+msgstr "Pokaż okno konsoli..."
 
+# Display the console window
 #: gschem/etc/system-gschemrc.scm:2296
-#, fuzzy
 msgid "Display the console window"
-msgstr "Pokaż okno współrzędnych..."
+msgstr "Wyświetla okno konsoli"
 
+# Show the window coordinates
 #: gschem/etc/system-gschemrc.scm:2297
-#, fuzzy
 msgid "Show Coord _Window..."
 msgstr "Pokaż okno _współrzędnych..."
 
@@ -4763,8 +4763,8 @@ msgstr ""
 msgid "Invoke Macro"
 msgstr "Wykonaj makro"
 
+# Perform macro
 #: gschem/etc/system-gschemrc.scm:2300
-#, fuzzy
 msgid "Invoke a macro"
 msgstr "Wykonaj makro"
 
@@ -4972,18 +4972,20 @@ msgstr "_Arkusz"
 msgid "_Add"
 msgstr "_Dodaj"
 
+# Sessions
 #: gschem/etc/system-gschemrc.scm:2374
 msgid "Sessio_ns"
-msgstr ""
+msgstr "Sesje"
 
 # Attributes
 #: gschem/etc/system-gschemrc.scm:2375
 msgid "Attri_butes"
 msgstr "Atry_buty"
 
+# Tools
 #: gschem/etc/system-gschemrc.scm:2376
 msgid "_Tools"
-msgstr ""
+msgstr "_Przybory"
 
 #: gschem/etc/system-gschemrc.scm:2386
 msgid "_Options"
@@ -4998,9 +5000,10 @@ msgstr "Pomoc"
 msgid "~S is not a valid gschem action."
 msgstr "~S nie jest to ważne działanie gschem."
 
+# Repeat Last Action
 #: gschem/scheme/gschem/action.scm:158
 msgid "Repeat Last Action"
-msgstr ""
+msgstr "Powtarzanie ostatniej akcji"
 
 # New File
 #: gschem/scheme/gschem/builtins.scm:50
@@ -5034,11 +5037,12 @@ msgstr "Drukuj"
 
 #: gschem/scheme/gschem/builtins.scm:71
 msgid "Export Image"
-msgstr ""
+msgstr "Eksport obrazu"
 
+# Run script
 #: gschem/scheme/gschem/builtins.scm:74
 msgid "Run Script"
-msgstr ""
+msgstr "uruchom skrypt"
 
 #: gschem/scheme/gschem/builtins.scm:77
 msgid "New Window"
@@ -5089,9 +5093,10 @@ msgstr "Offsetowy Zaznaczenie"
 msgid "Snap to Grid"
 msgstr "Przyciągaj do siatki"
 
+# Create Array
 #: gschem/scheme/gschem/builtins.scm:131
 msgid "Create Array"
-msgstr ""
+msgstr "Tworzenie tablicy"
 
 #: gschem/scheme/gschem/builtins.scm:134 gschem/scheme/gschem/builtins.scm:137
 msgid "Edit..."
@@ -5124,7 +5129,7 @@ msgstr "Edytuj rodzaj pinu"
 
 #: gschem/scheme/gschem/builtins.scm:161 gschem/scheme/gschem/builtins.scm:164
 msgid "Choose Slot"
-msgstr ""
+msgstr "Wybierz element"
 
 #: gschem/scheme/gschem/builtins.scm:176
 msgid "Invert Selection"
@@ -5167,9 +5172,10 @@ msgstr "Pan Lewy"
 msgid "Pan Right"
 msgstr "Pan prawo"
 
+# Pan Up
 #: gschem/scheme/gschem/builtins.scm:221
 msgid "Pan Up"
-msgstr ""
+msgstr "Pan w górę"
 
 #: gschem/scheme/gschem/builtins.scm:224
 msgid "Pan Down"
@@ -5484,14 +5490,12 @@ msgstr "Cykl Tryb Snap"
 
 # Toggle Net stay connected
 #: gschem/scheme/gschem/builtins.scm:493
-#, fuzzy
 msgid "Toggle Net Rubber Band"
-msgstr "Przełącz _rozciąganie połączeń"
+msgstr "Przełącz rozciąganie połączeń"
 
 #: gschem/scheme/gschem/builtins.scm:496
-#, fuzzy
 msgid "Toggle Magnetic Nets"
-msgstr "Przełącz \"_magnes\" połączeń"
+msgstr "Przełącz magnes połączeń"
 
 #: gschem/scheme/gschem/builtins.scm:499
 msgid "Enable/Disable Drag move"
@@ -5550,19 +5554,18 @@ msgstr "Instrukcja obsługi gschem"
 msgid "View the gschem User Guide in a browser."
 msgstr ""
 
+# Questions and answers
 #: gschem/scheme/gschem/builtins.scm:554
-#, fuzzy
 msgid "gschem FAQ"
-msgstr "_FAQ gschem..."
+msgstr "gschem Pytania i odpowiedzi"
 
 #: gschem/scheme/gschem/builtins.scm:555
 msgid "Frequently Asked Questions about using gschem."
 msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:560
-#, fuzzy
 msgid "gEDA wiki"
-msgstr "_Wiki gEDA..."
+msgstr "gEDA wiki"
 
 #: gschem/scheme/gschem/builtins.scm:561
 msgid "View the front page of the gEDA wiki in a browser."
@@ -5581,10 +5584,10 @@ msgstr ""
 msgid "Export embed symbol"
 msgstr ""
 
+# Export embed picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "Export embed picture"
-msgstr "Osadź element/obraz"
+msgstr "Obraz osadzić eksport"
 
 #: gschem/scheme/gschem/keymap.scm:41
 #, scheme-format
@@ -5596,38 +5599,16 @@ msgstr ""
 msgid "~S is not a prefix key sequence."
 msgstr ""
 
-#, fuzzy
-#~ msgid "session"
-#~ msgstr "Pokazuj _nazwę"
-
 #~ msgid "New page created [%s]\n"
 #~ msgstr "Utworzono nowy arkusz [%s]\n"
 
-#, fuzzy
-#~ msgid "An error occurred while receiving drag-and-drop data"
-#~ msgstr ""
-#~ "BŁĄD: Wystąpił nieznany błąd podczas przetwarzania plików "
-#~ "konfiguracyjnych.\n"
-
-#, fuzzy
 #~ msgid "check the log for more information"
-#~ msgstr ""
-#~ "%s\n"
-#~ "\n"
-#~ "Logi programu mogą zawierać dodatkowe informacje."
+#~ msgstr "Logi programu mogą zawierać dodatkowe informacje."
 
-#, fuzzy
 #~ msgid ""
 #~ "Could not allocate graphic context, w_current->window is not a valid "
 #~ "Window\n"
 #~ msgstr "Błąd podczas alokacji kontekstu graficznego \"gc\"\n"
 
-#, fuzzy
-#~ msgid "An error occurred while dropping data"
-#~ msgstr ""
-#~ "BŁĄD: Wystąpił nieznany błąd podczas przetwarzania plików "
-#~ "konfiguracyjnych.\n"
-
-#, fuzzy
 #~ msgid "documents\n"
-#~ msgstr "Do_kumentacja..."
+#~ msgstr "Dokumentacja..."
