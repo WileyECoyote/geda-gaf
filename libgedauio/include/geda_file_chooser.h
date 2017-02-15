@@ -63,7 +63,7 @@ typedef enum
 #define GEDA_TYPE_FILE_CHOOSER            (geda_file_chooser_get_type ())
 #define GEDA_FILE_CHOOSER(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_FILE_CHOOSER, GedaFileChooser))
 #define GEDA_FILE_CHOOSER_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),   GEDA_TYPE_FILE_CHOOSER, GedaFileChooserClass))
-#define GEDA_IS_FILE_CHOOSER(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GEDA_TYPE_FILE_CHOOSER))
+#define GEDA_IS_FILE_CHOOSER(obj)         (is_a_geda_file_chooser((GedaFileChooser*)(obj)))
 #define GEDA_IS_FILE_CHOOSER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass),  GEDA_TYPE_FILE_CHOOSER))
 #define GEDA_FILE_CHOOSER_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj),  GEDA_TYPE_FILE_CHOOSER, GedaFileChooserClass))
 
@@ -93,12 +93,14 @@ extern "C" {
 #endif
 
 GedaType      geda_file_chooser_get_type         (void) GEDA_CONST;
+bool          is_a_geda_file_chooser             (GedaFileChooser   *chooser);
+
 GtkWidget    *geda_file_chooser_new              (GtkWidget         *parent,
                                                   FileChooserAction  action);
-GtkWidget    *geda_file_chooser_dialog_new_full  (const char       *title,
-                                                  GtkWindow        *parent,
-                                                  FileChooserAction action,
-                                                  const char       *first_button_text,
+GtkWidget    *geda_file_chooser_dialog_new_full  (const char        *title,
+                                                  GtkWindow         *parent,
+                                                  FileChooserAction  action,
+                                                  const char        *first_button_text,
                                                   ...);
 
 GtkEntry     *geda_file_chooser_get_entry          (GtkWidget *chooser);

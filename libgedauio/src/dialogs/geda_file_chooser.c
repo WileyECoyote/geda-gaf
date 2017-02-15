@@ -69,6 +69,9 @@ static unsigned int chooser_signals[LAST_SIGNAL] = { 0 };
 
 static GtkFileChooserDialogClass *geda_file_chooser_parent_class = NULL;
 
+/* List of pointers to GedaFileChooser instances */
+static GList *list_of_choosers = NULL;
+
 static GtkEntry *chooser_entry;
 
 static GedaFileFilterDataDef filter_data[] = {
@@ -249,6 +252,13 @@ geda_file_chooser_constructor (GType                  type,
  */
 static void geda_file_chooser_finalize (GObject *object)
 {
+
+  list_of_choosers = g_list_remove(list_of_choosers, object);
+
+  if (!g_list_length(list_of_choosers)) {
+    g_list_free(list_of_choosers);
+    list_of_choosers = NULL;
+  }
 
   chooser_entry = NULL;
 
@@ -530,6 +540,9 @@ geda_file_chooser_instance_init (GTypeInstance *instance, void *class)
 
   chooser_entry       = NULL;
   self->filter_button = NULL;
+
+  /* Append instance to list of valid GedaFileChooser objects */
+  list_of_choosers = g_list_append(list_of_choosers, instance);
 }
 
     /*! \brief Function to retrieve GedaFileChooser's Type identifier.
@@ -572,6 +585,24 @@ GedaType geda_file_chooser_get_type (void)
   }
 
   return geda_file_chooser_type;
+}
+
+
+/*!
+ * \brief Check if an object is a GedaFileChooser
+ * \par Function Description
+ *  Ensures \a chooser is a valid G_Object and compares signature
+ *  to GedaFileChooser type.
+ *
+ * \return TRUE if \a chooser is a valid GedaFileChooser
+ */
+bool
+is_a_geda_file_chooser (GedaFileChooser *chooser)
+{
+  if (chooser && list_of_choosers) {
+    return g_list_find(list_of_choosers, chooser) ? TRUE : FALSE;
+  }
+  return FALSE;
 }
 
 /*! \brief Instantiate a New Geda File Chooser Dialog
