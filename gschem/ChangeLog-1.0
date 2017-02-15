@@ -8,6 +8,8 @@
 
     * po/pt.po: Update Portuguese translations.
 
+    * po/pt_BR.po: Update Brazilian Portuguese translations.
+
     * src/x/x_icons.c: Unset the icon theme search path when shutting
       down, i.e. in x_icons_shutdown_factory.
 
