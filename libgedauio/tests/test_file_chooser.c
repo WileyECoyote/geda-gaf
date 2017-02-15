@@ -29,10 +29,12 @@
 
 #include "../../config.h"
 
+#include <errno.h>
 #include <string.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <time.h>
 
 #ifdef HAVE_UNISTD_H
@@ -43,6 +45,7 @@
 #include <gtk/gtk.h>
 #include <geda/geda.h>
 #include <geda_file_chooser.h>
+#include "../include/gettext.h"
 
 #define TDIALOG "GedaFileChooser"
 
@@ -172,15 +175,11 @@ format_size (int64_t size)
   return g_strdup_printf ("%.1f G", size / (1024.*1024.*1024.));
 }
 
-#include <stdio.h>
-#include <errno.h>
-#define _(s) (s)
-
 static void
 size_prepared_cb (GdkPixbufLoader *loader,
-          int              width,
-          int              height,
-          int             *data)
+                  int              width,
+                  int              height,
+                  int             *data)
 {
     int des_width = data[0];
     int des_height = data[1];
@@ -428,8 +427,7 @@ unmap_and_remap_cb (GtkButton *button, GtkFileChooser *chooser)
 static void
 kill_dependent (GtkWindow *win, GtkObject *dep)
 {
-  gtk_object_destroy (dep);
-  g_object_unref (dep);
+  gtk_widget_destroy (GTK_WIDGET(dep));
 }
 
 static void
