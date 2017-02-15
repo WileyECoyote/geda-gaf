@@ -226,8 +226,8 @@ void x_icons_add_search_path (const char *path)
   g_return_if_fail (geda_sys_data_path () != NULL);
 
   icon_path = g_build_filename (geda_sys_data_path(), path, NULL);
-  gtk_icon_theme_append_search_path (gtk_icon_theme_get_default(),
-                                     icon_path);
+
+  gtk_icon_theme_append_search_path (gtk_icon_theme_get_default(), icon_path);
 
   GEDA_FREE (icon_path);
 }
@@ -430,6 +430,8 @@ static void x_icons_shutdown_factory(void * user_data)
     gtk_icon_factory_remove_default(gschem_factory);
 
     GEDA_UNREF(gschem_factory);
+
+    gtk_icon_theme_set_search_path (gtk_icon_theme_get_default(), NULL, 0);
   }
 }
 
