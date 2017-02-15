@@ -897,34 +897,32 @@ msgid "<b>Could not rename session</b>"
 msgstr ""
 
 #: gschem/src/iface/i_sessions.c:1105
-#, fuzzy
 msgid "Created session"
-msgstr "Janela Actual"
+msgstr "Sessão Criada"
 
 #: gschem/src/iface/i_sessions.c:1106
 msgid "with"
-msgstr ""
+msgstr "com"
 
 #: gschem/src/iface/i_sessions.c:1116 gschem/src/x/x_window.c:1228
 #: gschem/src/x/x_window.c:1231
 msgid "Saved"
 msgstr "Guardado"
 
+# documents to session
 #: gschem/src/iface/i_sessions.c:1117
-#, fuzzy
 msgid "documents to session"
-msgstr "Janela Actual"
+msgstr "documentos de sessão"
 
 # An error occurred attempting to save session
 #: gschem/src/iface/i_sessions.c:1127
-#, fuzzy
 msgid "An error occurred attempting to save session"
 msgstr "Ocorreu um erro ao tentar salvar sessão"
 
+# Save session failed
 #: gschem/src/iface/i_sessions.c:1135
-#, fuzzy
 msgid "Save session failed"
-msgstr "Gravar ficheiro"
+msgstr "Salvar sessão falhou"
 
 # Show Sessions at startup is now ENABLED
 #: gschem/src/iface/i_sessions.c:1226
@@ -940,29 +938,30 @@ msgstr "Mostrar sessões na inicialização agora está desativado\n"
 msgid "Session system initialized!\n"
 msgstr ""
 
+# Deselect Mode
 #: gschem/src/iface/i_status.c:134 gschem/etc/system-gschemrc.scm:2121
-#, fuzzy
 msgid "Deselect Mode"
-msgstr "Modo de Selecção"
+msgstr "Modo anular"
 
+# Select Mode
 #: gschem/src/iface/i_status.c:138 gschem/src/x/x_status_bar.c:383
 #: gschem/etc/system-gschemrc.scm:2120 gschem/scheme/gschem/builtins.scm:170
 msgid "Select Mode"
 msgstr "Modo de Selecção"
 
+# Rectangle Selection Mode
 #: gschem/src/iface/i_status.c:140
-#, fuzzy
 msgid "Select Box Mode"
-msgstr "Modo de Selecção"
+msgstr "Modo de seleção de retângulo"
 
 #: gschem/src/iface/i_status.c:142 gschem/scheme/gschem/builtins.scm:227
 msgid "Zoom Box"
 msgstr "Zona de Ampliação"
 
+# Copy to point
 #: gschem/src/iface/i_status.c:145
-#, fuzzy
 msgid "Copy to point"
-msgstr "Copiar para a área de transferência"
+msgstr "Ponto de cópia"
 
 #: gschem/src/iface/i_status.c:147 gschem/scheme/gschem/builtins.scm:122
 #: gschem/scheme/gschem/builtins.scm:125
@@ -981,10 +980,10 @@ msgstr "Modo simetria"
 msgid "Pan Mode"
 msgstr "Modo Centrar"
 
+# Choose component
 #: gschem/src/iface/i_status.c:155
-#, fuzzy
 msgid "Choose component"
-msgstr "Componente"
+msgstr "Selecione o componente"
 
 #: gschem/src/iface/i_status.c:158
 msgid "Magnetic Net Mode"
@@ -1018,10 +1017,10 @@ msgstr "Modo de texto"
 msgid "Arc Mode"
 msgstr "Modo de Arco"
 
+# Path Mode
 #: gschem/src/iface/i_status.c:174
-#, fuzzy
 msgid "Path Mode"
-msgstr "Modo Centrar"
+msgstr "Modo de caminho"
 
 #: gschem/src/iface/i_status.c:176
 msgid "Picture Mode"
@@ -1692,15 +1691,15 @@ msgstr "Atributos"
 msgid "Logic bubble"
 msgstr "Negação lógica"
 
+# Grid point
 #: gschem/src/x/x_dialog.c:1020
-#, fuzzy
 msgid "Grid point"
 msgstr "Ponto da grelha"
 
+# Detached attribute
 #: gschem/src/x/x_dialog.c:1021
-#, fuzzy
 msgid "Detached attribute"
-msgstr "Atributo Removido"
+msgstr "Atributo separado"
 
 #: gschem/src/x/x_dialog.c:1022 gschem/src/x/x_menus.c:95
 msgid "Text"
@@ -1711,10 +1710,10 @@ msgstr "Texto"
 msgid "Bus"
 msgstr "Barramento"
 
+# Selection
 #: gschem/src/x/x_dialog.c:1024 gschem/src/x/x_menus.c:105
-#, fuzzy
 msgid "Selection"
-msgstr "Seleccionar"
+msgstr "Selecção"
 
 #: gschem/src/x/x_dialog.c:1025
 msgid "Bounding box"
