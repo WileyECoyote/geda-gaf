@@ -51,44 +51,55 @@ msgid ""
 "gschem cannot locate some data files. Please ensure the GEDADATA\n"
 "environment variable points to the correct location.\n"
 msgstr ""
+"променлива GEDADATA среда трябва да се настрои!\n"
+"\n"
+"gschem не може да намери някои файлове с данни. Моля, уверете GEDADATA\n"
+"променлива среда точки на правилното място.\n"
 
+# Unable to locate scheme initialization file
 #: gschem/src/base/gschem.c:352
 msgid "Unable to locate scheme initialization file"
-msgstr ""
+msgstr "Не може да се намери схема за инициализация файл"
 
+# Read scheme initialization file
 #: gschem/src/base/gschem.c:359
 msgid "Read scheme initialization file"
-msgstr ""
+msgstr "Прочетете схема инициализация файл"
 
+# Failed to read scheme initialization file
 #: gschem/src/base/gschem.c:362
 msgid "Failed to read scheme initialization file"
-msgstr ""
+msgstr "Не може да се чете схема инициализация файл"
 
 #  not fuzzy
 #: gschem/src/base/gschem.c:384
 msgid "version"
 msgstr "версията"
 
+# Log system is disabled
 #: gschem/src/base/gschem.c:389
 msgid "Logging system is disabled\n"
-msgstr ""
+msgstr "Вход система е хора с увреждания"
 
+# ERROR: Could not load or evaluation startup script
 #: gschem/src/base/gschem.c:429
 #, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
-msgstr ""
+msgstr "ГРЕШКА: Не може да се зареди или оценка стартиране скрипт.\n"
 
+# Exiting normal
 #: gschem/src/base/gschem.c:521
 msgid "Exiting normal\n"
-msgstr ""
+msgstr "Излизане нормално\n"
 
 #: gschem/src/base/gschem_dialog.c:563
 msgid "Parent Window"
 msgstr "прозорец майка"
 
+# Parent window for this dialog
 #: gschem/src/base/gschem_dialog.c:564
 msgid "Parent window for this dialog"
-msgstr ""
+msgstr "Родител прозорец за този диалогов"
 
 #: gschem/src/base/gschem_dialog.c:584
 msgid "Title"
@@ -1591,9 +1602,10 @@ msgstr ""
 msgid "Grid point"
 msgstr "Решетка точка"
 
+# Detached attribute => independent attribute
 #: gschem/src/x/x_dialog.c:1021
 msgid "Detached attribute"
-msgstr ""
+msgstr "Самостоятелна атрибут"
 
 #: gschem/src/x/x_dialog.c:1022 gschem/src/x/x_menus.c:95
 msgid "Text"
@@ -2396,29 +2408,31 @@ msgstr ""
 
 #: gschem/src/x/x_edit_text.c:590
 msgid "Text input field"
-msgstr ""
+msgstr "поле за въвеждане на текст"
 
 #: gschem/src/x/x_edit_text.c:594
 msgid "Text alignment combobox"
-msgstr ""
+msgstr "Текст ComboBox подравняване"
 
-# Export options
+# Color options menu
 #: gschem/src/x/x_edit_text.c:598
-#, fuzzy
 msgid "Color options menu"
-msgstr "Опции за износ"
+msgstr "меню опции за цвят"
 
+# font selector button
 #: gschem/src/x/x_edit_text.c:602
 msgid "Font selector button"
-msgstr ""
+msgstr "шрифта Бутон за избор"
 
+# text rotation angle spinner entry
 #: gschem/src/x/x_edit_text.c:606
 msgid "Text Rotation Angle Spinner Entry"
-msgstr ""
+msgstr "текст въртене влизане ъгъл стругар"
 
+# Large
 #: gschem/src/x/x_fileselect.c:144
 msgid "Large"
-msgstr ""
+msgstr "Голям"
 
 # Enable to enlarge the preview -> Activating enlargement visualization
 #: gschem/src/x/x_fileselect.c:145

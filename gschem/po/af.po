@@ -2202,12 +2202,12 @@ msgstr "Aktiveer"
 
 #: gschem/src/x/x_edit_cprop.c:1228
 msgid "_use-license:"
-msgstr "gebruik-lisensie"
+msgstr "gebruik-lisensie:"
 
 # dist-license
 #: gschem/src/x/x_edit_cprop.c:1239
 msgid "dist-_license:"
-msgstr "dist-lisensie"
+msgstr "dist-lisensie:"
 
 #: gschem/src/x/x_edit_cprop.c:1250
 msgid "Descr_iption:"

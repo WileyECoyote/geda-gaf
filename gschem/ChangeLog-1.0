@@ -4,6 +4,8 @@
 
     * po/ar.po: Update Arabic translations.
 
+    * po/bg.po: Updated Bulgarian translation.
+
     * src/x/x_icons.c: Unset the icon theme search path when shutting
       down, i.e. in x_icons_shutdown_factory.
 
