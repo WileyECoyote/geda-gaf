@@ -2122,9 +2122,10 @@ msgstr "لون الكائن:"
 msgid "Select a color for the selected objects."
 msgstr "الكائنات المنتقاة."
 
+# Symbol renamed, cannot be undone
 #: gschem/src/x/x_edit_cprop.c:267
 msgid "Symbol renamed, cannot be undone\n"
-msgstr ""
+msgstr "رمز اعادة تسميته, ولا يمكن التراجع عنه\n"
 
 #: gschem/src/x/x_edit_cprop.c:1154
 msgid "Edit Component Properties"
@@ -2136,27 +2137,28 @@ msgstr "رموز:"
 
 #: gschem/src/x/x_edit_cprop.c:1180
 msgid "_Device:"
-msgstr ""
+msgstr "جهاز:"
 
 #: gschem/src/x/x_edit_cprop.c:1191
 msgid "_Author:"
-msgstr ""
+msgstr "مؤلف:"
 
 #: gschem/src/x/x_edit_cprop.c:1202
 msgid "_Version:"
-msgstr ""
+msgstr "الإصدار:"
 
 #: gschem/src/x/x_edit_cprop.c:1220
 msgid "_Enable"
-msgstr ""
+msgstr "تمكين"
 
 #: gschem/src/x/x_edit_cprop.c:1228
 msgid "_use-license:"
-msgstr ""
+msgstr "استخدام رخصة:"
 
+# dist-license
 #: gschem/src/x/x_edit_cprop.c:1239
 msgid "dist-_license:"
-msgstr ""
+msgstr "شعبة نظم ترخيص:"
 
 #: gschem/src/x/x_edit_cprop.c:1250
 msgid "Descr_iption:"
@@ -2172,19 +2174,22 @@ msgstr "الأمر:"
 
 #: gschem/src/x/x_edit_cprop.c:1297
 msgid "_Electrical:"
-msgstr ""
+msgstr "الكهرباء:"
 
+# Reference Designator
 #: gschem/src/x/x_edit_cprop.c:1325
 msgid "_Ref Des:"
-msgstr ""
+msgstr "المرجع الدلالي:"
 
+# No. of Slots
 #: gschem/src/x/x_edit_cprop.c:1338
 msgid "_No. Slot:"
-msgstr ""
+msgstr "عدد فتحات:"
 
+# No. of Pins
 #: gschem/src/x/x_edit_cprop.c:1349
 msgid "No. _Pins:"
-msgstr ""
+msgstr "عدد دبابيس:"
 
 #: gschem/src/x/x_edit_cprop.c:1359
 msgid "_Value:"
@@ -2202,9 +2207,10 @@ msgstr "نوع الملء:"
 msgid "Model Name:"
 msgstr "الاسم:"
 
+# The symbol filename
 #: gschem/src/x/x_edit_cprop.c:1429
 msgid "File name entry of component symbol"
-msgstr ""
+msgstr "اسم الملف رمز"
 
 #: gschem/src/x/x_edit_cprop.c:1436
 msgid "Device identifier entry"
@@ -2424,23 +2430,25 @@ msgstr "<b>محتوى النص</b>"
 msgid "<b>Text Properties</b>"
 msgstr "<b>خصائص النص</b>"
 
+# Text input field
 #: gschem/src/x/x_edit_text.c:590
-#, fuzzy
 msgid "Text input field"
-msgstr "النص المطلوب:"
+msgstr "حقل إدخال النص"
 
+# Text alignment combobox
 #: gschem/src/x/x_edit_text.c:594
-#, fuzzy
 msgid "Text alignment combobox"
-msgstr "حرّر المواصفات"
+msgstr "محاذاة النص منسدل"
 
+# Color options menu
 #: gschem/src/x/x_edit_text.c:598
 msgid "Color options menu"
-msgstr ""
+msgstr "القائمة خيارات الألوان"
 
+# Font select button => Select the font button
 #: gschem/src/x/x_edit_text.c:602
 msgid "Font selector button"
-msgstr ""
+msgstr "زر حدد الخط"
 
 # Text rotation angle Spinner input
 #: gschem/src/x/x_edit_text.c:606
