@@ -51,7 +51,6 @@ typedef struct _GedaRadioMenuItemClass  GedaRadioMenuItemClass;
 struct _GedaRadioMenuItem
 {
   GedaCheckMenuItem check_menu_item;
-  GedaType          instance_type;
 
   GSList           *group;
 };

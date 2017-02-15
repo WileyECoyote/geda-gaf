@@ -51,7 +51,6 @@ typedef struct _GedaMenuBarClass    GedaMenuBarClass;
 struct _GedaMenuBar
 {
   GedaMenuShell menu_shell;
-  GedaType      instance_type;
 
   /*< private >*/
   GedaMenuBarPrivate *priv;
