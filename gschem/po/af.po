@@ -741,8 +741,8 @@ msgid ""
 "WARNING: If you are translating a symbol to the origin, the snap grid size "
 "should be set to 100\n"
 msgstr ""
-"WAARSKUWING: As jy die vertaling van 'n simbool aan die oorsprong, moet die grootte snap rooster "
-"opgestel word tot 100\n"
+"WAARSKUWING: As jy die vertaling van 'n simbool aan die oorsprong, moet die "
+"grootte snap rooster opgestel word tot 100\n"
 
 #: gschem/src/iface/i_command.c:4268
 msgid "Grid OFF\n"
@@ -2186,27 +2186,28 @@ msgstr "Simbole:"
 
 #: gschem/src/x/x_edit_cprop.c:1180
 msgid "_Device:"
-msgstr ""
+msgstr "toestel:"
 
 #: gschem/src/x/x_edit_cprop.c:1191
 msgid "_Author:"
-msgstr ""
+msgstr "skrywer:"
 
 #: gschem/src/x/x_edit_cprop.c:1202
 msgid "_Version:"
-msgstr ""
+msgstr "weergawe:"
 
 #: gschem/src/x/x_edit_cprop.c:1220
 msgid "_Enable"
-msgstr ""
+msgstr "Aktiveer"
 
 #: gschem/src/x/x_edit_cprop.c:1228
 msgid "_use-license:"
-msgstr ""
+msgstr "gebruik-lisensie"
 
+# dist-license
 #: gschem/src/x/x_edit_cprop.c:1239
 msgid "dist-_license:"
-msgstr ""
+msgstr "dist-lisensie"
 
 #: gschem/src/x/x_edit_cprop.c:1250
 msgid "Descr_iption:"
@@ -2222,11 +2223,11 @@ msgstr "Opdrag:"
 
 #: gschem/src/x/x_edit_cprop.c:1297
 msgid "_Electrical:"
-msgstr ""
+msgstr "Elektriese:"
 
 #: gschem/src/x/x_edit_cprop.c:1325
 msgid "_Ref Des:"
-msgstr ""
+msgstr "Verwysing Designator:"
 
 #: gschem/src/x/x_edit_cprop.c:1338
 msgid "_No. Slot:"
@@ -2240,9 +2241,10 @@ msgstr "nommer pen:"
 msgid "_Value:"
 msgstr "Waarde:"
 
+# foot print
 #: gschem/src/x/x_edit_cprop.c:1373
 msgid "_Foot Print:"
-msgstr ""
+msgstr "voet druk:"
 
 #: gschem/src/x/x_edit_cprop.c:1384
 msgid "Spice Type:"
@@ -2474,32 +2476,35 @@ msgstr "<b>Teksinhoud</b>"
 msgid "<b>Text Properties</b>"
 msgstr "<b>Tekseienskappe</b>"
 
+# Text input field
 #: gschem/src/x/x_edit_text.c:590
-#, fuzzy
 msgid "Text input field"
-msgstr "Teks om te vind:"
+msgstr "Teks invoer veld"
 
+# Text alignment combobox
 #: gschem/src/x/x_edit_text.c:594
-#, fuzzy
 msgid "Text alignment combobox"
-msgstr "Bewerk Eienskappe"
+msgstr "Teks belyning comboboks"
 
+# Color options menu
 #: gschem/src/x/x_edit_text.c:598
-#, fuzzy
 msgid "Color options menu"
-msgstr "opsies uitvoer"
+msgstr "spyskaart kleur opsies"
 
+# Font selector button
 #: gschem/src/x/x_edit_text.c:602
 msgid "Font selector button"
-msgstr ""
+msgstr "Font selector knoppie"
 
+# Text rotation angle input
 #: gschem/src/x/x_edit_text.c:606
 msgid "Text Rotation Angle Spinner Entry"
-msgstr ""
+msgstr "Teks rotasie hoek insette"
 
+# Large
 #: gschem/src/x/x_fileselect.c:144
 msgid "Large"
-msgstr ""
+msgstr "groot"
 
 # Enable to enlarge the preview
 #: gschem/src/x/x_fileselect.c:145

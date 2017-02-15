@@ -1,5 +1,7 @@
 2017-02-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * po/af.po: Update Afrikaans translations.
+
     * src/x/x_icons.c: Unset the icon theme search path when shutting
       down, i.e. in x_icons_shutdown_factory.
 
