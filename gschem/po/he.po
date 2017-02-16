@@ -1042,10 +1042,10 @@ msgstr ""
 msgid "Failed to save user configuration to"
 msgstr ""
 
+# Closing Page
 #: gschem/src/iface/i_window.c:104
-#, fuzzy
 msgid "Closing Page\n"
-msgstr "סגור דף"
+msgstr "דף סגירה\n"
 
 #: gschem/src/iface/i_window.c:173
 #, c-format
@@ -1099,15 +1099,15 @@ msgid_plural "Delete %u locked objects?"
 msgstr[0] ""
 msgstr[1] ""
 
+# attributes were hidden
 #: gschem/src/object/o_edit.c:517
-#, fuzzy
 msgid "attributes were hidden"
-msgstr "מאפיינים"
+msgstr "תכונות הוסתרו"
 
+# hidden attributes were revealed
 #: gschem/src/object/o_edit.c:521
-#, fuzzy
 msgid "hidden attributes were revealed"
-msgstr "מאפיינים"
+msgstr "תכונות נסתרות נחשפו"
 
 #: gschem/src/object/o_edit.c:717
 msgid "Hidden text is now visible\n"
@@ -1581,8 +1581,8 @@ msgstr ""
 msgid "Background"
 msgstr ""
 
+# Pin
 #: gschem/src/x/x_dialog.c:1014
-#, fuzzy
 msgid "Pin"
 msgstr "פין"
 
@@ -1599,48 +1599,49 @@ msgstr ""
 msgid "Net"
 msgstr "חיבור"
 
+# Attribute
 #: gschem/src/x/x_dialog.c:1018
-#, fuzzy
 msgid "Attribute"
-msgstr "מאפיינים"
+msgstr "תְכוּנָה"
 
+# Logic bubble
 #: gschem/src/x/x_dialog.c:1019
 msgid "Logic bubble"
-msgstr ""
+msgstr "בועת היגיון"
 
+# Grid point
 #: gschem/src/x/x_dialog.c:1020
-#, fuzzy
 msgid "Grid point"
-msgstr "מצב ראי"
+msgstr "נקודת רשת"
 
+# Detached attribute => Seperated attribute
 #: gschem/src/x/x_dialog.c:1021
-#, fuzzy
 msgid "Detached attribute"
-msgstr "מאפיינים"
+msgstr "מופרדי תכונה"
 
+# Text
 #: gschem/src/x/x_dialog.c:1022 gschem/src/x/x_menus.c:95
-#, fuzzy
 msgid "Text"
-msgstr "ערוך טקסט"
+msgstr "טֶקסט"
 
 #: gschem/src/x/x_dialog.c:1023 gschem/src/x/x_edit_pin.c:141
 #: gschem/src/x/x_menus.c:94
 msgid "Bus"
 msgstr "אפיק"
 
+# Selection
 #: gschem/src/x/x_dialog.c:1024 gschem/src/x/x_menus.c:105
-#, fuzzy
 msgid "Selection"
-msgstr "מצב בחירה"
+msgstr "בְּחִירָה"
 
 #: gschem/src/x/x_dialog.c:1025
 msgid "Bounding box"
 msgstr ""
 
+# Zoom Box => Zoom Window
 #: gschem/src/x/x_dialog.c:1026
-#, fuzzy
 msgid "Zoom box"
-msgstr "תיבת תקריב"
+msgstr "חלון זום"
 
 #: gschem/src/x/x_dialog.c:1027
 msgid "Stroke"
@@ -1867,19 +1868,19 @@ msgstr ""
 msgid "Text to find:"
 msgstr ""
 
+# Search hidden attributes
 #: gschem/src/x/x_dialog.c:2497
-#, fuzzy
 msgid "Search hidden attributes"
-msgstr "מאפיינים"
+msgstr "תכונות חיפוש מוסתרות"
 
 #: gschem/src/x/x_dialog.c:2500
 msgid "Descend into hierarchy"
 msgstr ""
 
+# Close on ascent => Close on rise
 #: gschem/src/x/x_dialog.c:2508
-#, fuzzy
 msgid "Close on ascent"
-msgstr "סגור דף"
+msgstr "סגור על עלייה"
 
 #: gschem/src/x/x_dialog.c:2596
 msgid "Hide Text"
@@ -1922,10 +1923,10 @@ msgid ""
 "(0 for origin)"
 msgstr ""
 
+# Auto Zoom Extents
 #: gschem/src/x/x_dialog.c:3026
-#, fuzzy
 msgid "Auto Zoom Extents"
-msgstr "תיבת תקריב"
+msgstr "זום אוטומטי ובמידות"
 
 #: gschem/src/x/x_dialog.c:3196
 msgid "Hotkeys"
@@ -1967,10 +1968,10 @@ msgstr ""
 msgid "Dismiss this dialog"
 msgstr ""
 
+# Input attribute is invalid
 #: gschem/src/x/x_dialog.c:3709
-#, fuzzy
 msgid "Input attribute is invalid"
-msgstr "מאפיינים"
+msgstr "תכונת קלט לא חוקית"
 
 #: gschem/src/x/x_dialog.c:3710
 msgid "Please correct in order to continue"
@@ -2106,10 +2107,10 @@ msgstr ""
 msgid "Visible"
 msgstr ""
 
+# Attribute Name List
 #: gschem/src/x/x_edit_attrib.c:519
-#, fuzzy
 msgid "Attribute Name List"
-msgstr "מאפיינים"
+msgstr "תכונת רשימה שם"
 
 #: gschem/src/x/x_edit_attrib.c:523
 msgid "Attribute Value Entry"
@@ -2282,52 +2283,49 @@ msgid "Entry for model file name"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:96
-#, fuzzy
 msgid "in"
-msgstr "פין"
+msgstr "in"
 
 #: gschem/src/x/x_edit_pin.c:97
-#, fuzzy
 msgid "out"
-msgstr "גזור אל 1"
+msgstr "out"
 
 #: gschem/src/x/x_edit_pin.c:98
 msgid "io"
-msgstr ""
+msgstr "io"
 
 #: gschem/src/x/x_edit_pin.c:99
-#, fuzzy
 msgid "oc"
-msgstr "נעילה"
+msgstr "oc"
 
 #: gschem/src/x/x_edit_pin.c:100
 msgid "oe"
-msgstr ""
+msgstr "oe"
 
 #: gschem/src/x/x_edit_pin.c:101
 msgid "pas"
-msgstr ""
+msgstr "pas"
 
 #: gschem/src/x/x_edit_pin.c:102
 msgid "tp"
-msgstr ""
+msgstr "tp"
 
 #: gschem/src/x/x_edit_pin.c:103
 msgid "tri"
-msgstr ""
+msgstr "tri"
 
 #: gschem/src/x/x_edit_pin.c:104
 msgid "clk"
-msgstr ""
+msgstr "clk"
 
 #: gschem/src/x/x_edit_pin.c:105
 msgid "pwr"
-msgstr ""
+msgstr "pwr"
 
 #: gschem/src/x/x_edit_pin.c:106 gschem/src/x/x_edit_pin.c:191
 #: gschem/src/x/x_edit_pin.c:205
 msgid "*missing*"
-msgstr ""
+msgstr "*חָסֵר*"
 
 #: gschem/src/x/x_edit_pin.c:281 gschem/src/x/x_edit_pin.c:293
 msgid "Pin Properties"
@@ -2345,19 +2343,19 @@ msgstr ""
 msgid "Pin Properties Editor"
 msgstr ""
 
+# Set
 #: gschem/src/x/x_edit_pin.c:879
-#, fuzzy
 msgid "Set"
-msgstr "חיבור"
+msgstr "מַעֲרֶכֶת"
 
 #: gschem/src/x/x_edit_pin.c:882
 msgid "Auto"
 msgstr ""
 
+# Attribute Type List
 #: gschem/src/x/x_edit_pin.c:913
-#, fuzzy
 msgid "Attribute Type List"
-msgstr "מאפיינים"
+msgstr "תכונת רשימת סוג"
 
 #: gschem/src/x/x_edit_pin.c:917
 msgid "Text Alignment Option"
@@ -2625,34 +2623,35 @@ msgstr ""
 msgid "Add bus"
 msgstr ""
 
+# Add text
 #: gschem/src/x/x_menus.c:95 gschem/etc/system-gschemrc.scm:2242
-#, fuzzy
 msgid "Add text"
-msgstr "ערוך טקסט"
+msgstr "הוסף טקסט"
 
 #: gschem/src/x/x_menus.c:99
-#, fuzzy
 msgid "Zoom"
-msgstr "תיבת תקריב"
+msgstr "זום"
 
+# Add operations
 #: gschem/src/x/x_menus.c:99
-#, fuzzy
 msgid "Add operations"
-msgstr "קו"
+msgstr "להוסיף פעולות"
 
+# In
 #: gschem/src/x/x_menus.c:100 gschem/src/x/x_menus.c:152
 msgid "In"
-msgstr ""
+msgstr "ב"
 
+# Increase the Zoom magnification
 #: gschem/src/x/x_menus.c:100 gschem/src/x/x_menus.c:152
 #: gschem/etc/system-gschemrc.scm:2186
 msgid "Increase the Zoom magnification"
-msgstr ""
+msgstr "הגדל את הגדלת זום"
 
+# Out
 #: gschem/src/x/x_menus.c:101 gschem/src/x/x_menus.c:153
-#, fuzzy
 msgid "Out"
-msgstr "גזור אל 1"
+msgstr "הַחוּצָה"
 
 #: gschem/src/x/x_menus.c:101 gschem/src/x/x_menus.c:153
 #: gschem/etc/system-gschemrc.scm:2187
@@ -2667,10 +2666,10 @@ msgstr "מרובע"
 msgid "Zoom to a Windowed region"
 msgstr ""
 
+# Extents
 #: gschem/src/x/x_menus.c:103 gschem/src/x/x_menus.c:154
-#, fuzzy
 msgid "Extents"
-msgstr "תיבת תקריב"
+msgstr "ובמידות"
 
 #: gschem/src/x/x_menus.c:103 gschem/src/x/x_menus.c:154
 #: gschem/etc/system-gschemrc.scm:2185
@@ -2804,19 +2803,19 @@ msgstr "לְסוֹבֵב"
 msgid "Rotate the current selection about a point"
 msgstr ""
 
+# auto-align
 #: gschem/src/x/x_menus.c:126
-#, fuzzy
 msgid "Snap"
-msgstr "מצב העתקה"
+msgstr "ישר באופן אוטומטי"
 
 #: gschem/src/x/x_menus.c:126
 msgid "Snap objects to the current grid"
 msgstr ""
 
+# Hierarchy
 #: gschem/src/x/x_menus.c:132
-#, fuzzy
 msgid "Hierarchy"
-msgstr "היררכיה"
+msgstr "הִיֵרַרכִיָה"
 
 # Edits
 #: gschem/src/x/x_menus.c:132
@@ -2855,28 +2854,28 @@ msgstr ""
 msgid "Cut the current selection to the system clipboard"
 msgstr ""
 
+# Copy to Clipboard
 #: gschem/src/x/x_menus.c:141
-#, fuzzy
 msgid "Copy to Clipboard"
-msgstr "העתק אל 1"
+msgstr "העתק ללוח"
 
 #: gschem/src/x/x_menus.c:141 gschem/etc/system-gschemrc.scm:2089
 msgid "Copy the current selection to the system clipboard"
 msgstr ""
 
+# Paste Clipboard => Insert Clipboard
 #: gschem/src/x/x_menus.c:142
-#, fuzzy
 msgid "Paste Clipboard"
-msgstr "הדבק מ-1"
+msgstr "הכנס ללוח"
 
 #: gschem/src/x/x_menus.c:142 gschem/etc/system-gschemrc.scm:2090
 msgid "Paste the contents of the system clipboard"
 msgstr ""
 
+# Close
 #: gschem/src/x/x_menus.c:148
-#, fuzzy
 msgid "Close"
-msgstr "סגור דף"
+msgstr "לִסְגוֹר"
 
 #: gschem/src/x/x_menus.c:148
 msgid "Close the current path"
@@ -2890,10 +2889,10 @@ msgstr ""
 msgid "Terminate the current path"
 msgstr ""
 
+# End
 #: gschem/src/x/x_menus.c:150
-#, fuzzy
 msgid "End"
-msgstr "תיבת תקריב"
+msgstr "סוֹף"
 
 #: gschem/src/x/x_menus.c:150
 msgid "End this path and exit path mode"
@@ -3167,8 +3166,8 @@ msgstr ""
 msgid "pins"
 msgstr ""
 
+# pin
 #: gschem/src/x/x_multiattrib.c:2621
-#, fuzzy
 msgid "pin"
 msgstr "פין"
 
