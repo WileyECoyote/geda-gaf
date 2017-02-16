@@ -770,111 +770,124 @@ msgstr ""
 msgid "Session"
 msgstr "Save All"
 
+# opening
 #: gschem/src/iface/i_sessions.c:347
 msgid "opening"
-msgstr ""
+msgstr "افتتاح"
 
 #: gschem/src/iface/i_sessions.c:348
 msgid "of"
-msgstr ""
+msgstr "از"
 
 #: gschem/src/iface/i_sessions.c:349 gschem/src/iface/i_sessions.c:933
 #: gschem/src/iface/i_sessions.c:1107
 msgid "documents"
 msgstr "اسناد"
 
+# did not contain any accessible documents
 #: gschem/src/iface/i_sessions.c:358
 msgid "did not contain any accessible documents"
-msgstr ""
+msgstr "فاقد اسناد در دسترس نیست"
 
 #: gschem/src/iface/i_sessions.c:791
 msgid "Sessions"
-msgstr "Save All"
+msgstr "جلسات در حال ویرایش"
 
+# Removing session
 #: gschem/src/iface/i_sessions.c:855
 msgid "Removing session"
-msgstr "Save All"
+msgstr "از بین بردن جلسه"
 
+# Failed to remove session
 #: gschem/src/iface/i_sessions.c:880
 msgid "Failed to remove session"
-msgstr ""
+msgstr "به حذف جلسه شکست خورده"
 
+# Could not remove session
 #: gschem/src/iface/i_sessions.c:883
 msgid "<b>Could not remove session</b>"
-msgstr ""
+msgstr "<b>می تواند جلسه را حذف کنید</b>"
 
+# created with
 #: gschem/src/iface/i_sessions.c:932
 msgid "created with"
-msgstr ""
+msgstr "ایجاد شده با"
 
+# An error occurred attempting to create session
 #: gschem/src/iface/i_sessions.c:940
 msgid "An error occurred attempting to create session"
-msgstr ""
+msgstr "خطایی رخ داده است تلاش برای ایجاد جلسه"
 
+# Session Error
 #: gschem/src/iface/i_sessions.c:950 gschem/src/iface/i_sessions.c:1134
 msgid "<b>Session Error</b>"
-msgstr ""
+msgstr "<b>خطا جلسه</b>"
 
+# Creation failed => Unsuccessful
 #: gschem/src/iface/i_sessions.c:950
 msgid "Creation failed"
-msgstr ""
+msgstr "ناموفق"
 
+# Opened session
 #: gschem/src/iface/i_sessions.c:994
 msgid "Opened session"
-msgstr "Save All"
+msgstr "جلسه باز"
 
+# Renaming session
 #: gschem/src/iface/i_sessions.c:1043
 msgid "Renaming session"
-msgstr "Save All"
+msgstr "تغییر نام را وارد نمایید"
 
 #: gschem/src/iface/i_sessions.c:1044
 msgid "to"
-msgstr ""
+msgstr "به"
 
+# Failed to rename session
 #: gschem/src/iface/i_sessions.c:1068
 msgid "Failed to rename session"
-msgstr ""
+msgstr "برای تغییر نام جلسه شکست خورده"
 
 #: gschem/src/iface/i_sessions.c:1071
 msgid "<b>Could not rename session</b>"
-msgstr ""
+msgstr "<b>می تواند جلسه تغییر نام نیست</b>"
 
 #: gschem/src/iface/i_sessions.c:1105
 msgid "Created session"
-msgstr "Save All"
+msgstr "جلسه ایجاد"
 
 #: gschem/src/iface/i_sessions.c:1106
 msgid "with"
-msgstr ""
+msgstr "با"
 
 #: gschem/src/iface/i_sessions.c:1116 gschem/src/x/x_window.c:1228
 #: gschem/src/x/x_window.c:1231
 msgid "Saved"
-msgstr ""
+msgstr "ذخیره"
 
+# save 3 documents to session
 #: gschem/src/iface/i_sessions.c:1117
 msgid "documents to session"
-msgstr ""
+msgstr "اسناد به جلسه"
 
 #: gschem/src/iface/i_sessions.c:1127
 msgid "An error occurred attempting to save session"
-msgstr ""
+msgstr "خطایی رخ داده است تلاش برای صرفه جویی در جلسه"
 
 #: gschem/src/iface/i_sessions.c:1135
 msgid "Save session failed"
-msgstr ""
+msgstr "صرفه جویی در جلسه شکست خورده"
 
 #: gschem/src/iface/i_sessions.c:1226
 msgid "Show Sessions at startup is now ENABLED\n"
-msgstr ""
+msgstr "جلسات نمایش در هنگام راه اندازی در حال حاضر فعال\n"
 
 #: gschem/src/iface/i_sessions.c:1229
 msgid "Show Sessions at startup is now DISABLED\n"
-msgstr ""
+msgstr "جلسات نمایش در هنگام راه اندازی اکنون غیر فعال است\n"
 
 #: gschem/src/iface/i_sessions.c:1299
 msgid "Session system initialized!\n"
-msgstr ""
+msgstr "سیستم جلسه مقداردهی اولیه!\n"
 
 #: gschem/src/iface/i_status.c:134 gschem/etc/system-gschemrc.scm:2121
 msgid "Deselect Mode"
