@@ -43,7 +43,7 @@ typedef struct _GedaToolbarClass  GedaToolbarClass;
 struct _GedaToolbar
 {
   GtkToolbar parent;
-  GedaType   instance_type;
+
   int        orientation;
 };
 

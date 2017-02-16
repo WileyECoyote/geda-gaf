@@ -63,6 +63,8 @@ static void geda_toolbar_get_property (GObject        *object,
 
 static void *geda_toolbar_parent_class = NULL;
 
+static GHashTable *toolbar_hash_table = NULL;
+
 static void
 geda_toolbar_get_property (GObject     *object,
                            unsigned int prop_id,
@@ -101,12 +103,27 @@ geda_toolbar_set_property (GObject      *object,
 }
 
 static void
+geda_toolbar_finalize (GObject *object)
+{
+  //GedaToolbar *toolbar = GEDA_TOOLBAR (object);
+
+  if (g_hash_table_remove (toolbar_hash_table, object)) {
+    if (!g_hash_table_size (toolbar_hash_table)) {
+      g_hash_table_destroy (toolbar_hash_table);
+      toolbar_hash_table = NULL;
+    }
+  }
+
+  G_OBJECT_CLASS (geda_toolbar_parent_class)->finalize (object);
+}
+
 geda_toolbar_class_init(void *class, void *class_data)
 {
   /*  (GedaToolbarClass *class) */
   GObjectClass *object_class = G_OBJECT_CLASS (class);
   GParamSpec   *params;
 
+  object_class->finalize     = geda_toolbar_finalize;
   object_class->set_property = geda_toolbar_set_property;
   object_class->get_property = geda_toolbar_get_property;
 
@@ -129,8 +146,13 @@ geda_toolbar_instance_init(GTypeInstance *instance, void *g_class)
 {
   GedaToolbar *toolbar = (GedaToolbar*)instance;
 
-  toolbar->instance_type = geda_toolbar_get_type();
+  if (!toolbar_hash_table) {
+    toolbar_hash_table = g_hash_table_new (g_direct_hash, NULL);
+  }
 
+  toolbar->children = NULL;
+
+  g_hash_table_replace (toolbar_hash_table, instance, instance);
 }
 
 /*!
@@ -185,8 +207,8 @@ GedaType geda_toolbar_get_type (void)
 bool
 is_a_geda_toolbar (GedaToolbar *toolbar)
 {
-  if (G_IS_OBJECT(toolbar)) {
-    return (geda_toolbar_get_type() == toolbar->instance_type);
+  if ((toolbar != NULL) && (toolbar_hash_table != NULL)) {
+    return g_hash_table_lookup(toolbar_hash_table, toolbar) ? TRUE : FALSE;
   }
   return FALSE;
 }
