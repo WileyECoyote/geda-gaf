@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
 "POT-Creation-Date: 2017-02-13 11:22-0600\n"
 "PO-Revision-Date: 2012-01-27 14:22+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 #: gschem/src/base/gschem.c:159
 #, c-format
 msgid "Warning: <%s> did not expand\n"
-msgstr ""
+msgstr "Uyarı: <%s> genişlemedi\n"
 
 #: gschem/src/base/gschem.c:160
 msgid "Command-line error: disabling auto load last\n"
@@ -63,10 +63,10 @@ msgstr ""
 msgid "Failed to read scheme initialization file"
 msgstr ""
 
+# version
 #: gschem/src/base/gschem.c:384
-#, fuzzy
 msgid "version"
-msgstr "Tümünü kaydet"
+msgstr "Versiyon"
 
 #: gschem/src/base/gschem.c:389
 msgid "Logging system is disabled\n"
@@ -81,10 +81,10 @@ msgstr ""
 msgid "Exiting normal\n"
 msgstr ""
 
+# Parent Window
 #: gschem/src/base/gschem_dialog.c:563
-#, fuzzy
 msgid "Parent Window"
-msgstr "Yeni pencere"
+msgstr "Ebeveyn Pencere"
 
 #: gschem/src/base/gschem_dialog.c:564
 msgid "Parent window for this dialog"
@@ -774,50 +774,53 @@ msgid "is not accessible"
 msgstr ""
 
 #: gschem/src/iface/i_sessions.c:272
-#, fuzzy
 msgid "File"
 msgstr "Dosya"
 
+# Warning relative file names detected in session
 #: gschem/src/iface/i_sessions.c:335
 msgid "Warning relative file names detected in session"
-msgstr ""
+msgstr "Oturumda görülen uyarı göreli dosya isimleri"
 
+# Session
 #: gschem/src/iface/i_sessions.c:346 gschem/src/iface/i_sessions.c:359
 #: gschem/src/iface/i_sessions.c:931 gschem/src/x/x_sessions.c:232
-#, fuzzy
 msgid "Session"
-msgstr "Tümünü kaydet"
+msgstr "Сесия"
 
+# opening
 #: gschem/src/iface/i_sessions.c:347
 msgid "opening"
-msgstr ""
+msgstr "Açma"
 
 #: gschem/src/iface/i_sessions.c:348
 msgid "of"
-msgstr ""
+msgstr "Of"
 
+# documents
 #: gschem/src/iface/i_sessions.c:349 gschem/src/iface/i_sessions.c:933
 #: gschem/src/iface/i_sessions.c:1107
 msgid "documents"
-msgstr ""
+msgstr "belgeler"
 
 #: gschem/src/iface/i_sessions.c:358
 msgid "did not contain any accessible documents"
-msgstr ""
+msgstr "Erişilebilir herhangi bir belge içermedi"
 
+# Sessions
 #: gschem/src/iface/i_sessions.c:791
-#, fuzzy
 msgid "Sessions"
-msgstr "Tümünü kaydet"
+msgstr "Oturumlar"
 
+# Removing session
 #: gschem/src/iface/i_sessions.c:855
-#, fuzzy
 msgid "Removing session"
-msgstr "Tümünü kaydet"
+msgstr "Oturumu kaldırma"
 
+# Failed to delete session
 #: gschem/src/iface/i_sessions.c:880
 msgid "Failed to remove session"
-msgstr ""
+msgstr "Oturum silinemedi"
 
 #: gschem/src/iface/i_sessions.c:883
 msgid "<b>Could not remove session</b>"
@@ -839,32 +842,32 @@ msgstr ""
 msgid "Creation failed"
 msgstr ""
 
+# Opened session
 #: gschem/src/iface/i_sessions.c:994
-#, fuzzy
 msgid "Opened session"
-msgstr "Tümünü kaydet"
+msgstr "Açılan oturum"
 
+# Renaming session
 #: gschem/src/iface/i_sessions.c:1043
-#, fuzzy
 msgid "Renaming session"
-msgstr "Tümünü kaydet"
+msgstr "Oturumu yeniden adlandırma"
 
 #: gschem/src/iface/i_sessions.c:1044
 msgid "to"
-msgstr ""
+msgstr "Için"
 
 #: gschem/src/iface/i_sessions.c:1068
 msgid "Failed to rename session"
-msgstr ""
+msgstr "Oturumun adı yeniden adlandırılamadı"
 
 #: gschem/src/iface/i_sessions.c:1071
 msgid "<b>Could not rename session</b>"
-msgstr ""
+msgstr "<b>Session name could not be renamed</b>"
 
+# Created session
 #: gschem/src/iface/i_sessions.c:1105
-#, fuzzy
 msgid "Created session"
-msgstr "Tümünü kaydet"
+msgstr "Oturum oluşturuldu"
 
 #: gschem/src/iface/i_sessions.c:1106
 msgid "with"
@@ -899,29 +902,29 @@ msgstr ""
 msgid "Session system initialized!\n"
 msgstr ""
 
+# Remove Mode Selection
 #: gschem/src/iface/i_status.c:134 gschem/etc/system-gschemrc.scm:2121
-#, fuzzy
 msgid "Deselect Mode"
-msgstr "Seçim Kipi"
+msgstr "Mod Seçimini Kaldır"
 
 #: gschem/src/iface/i_status.c:138 gschem/src/x/x_status_bar.c:383
 #: gschem/etc/system-gschemrc.scm:2120 gschem/scheme/gschem/builtins.scm:170
 msgid "Select Mode"
 msgstr "Seçim Kipi"
 
+# Select Box Mode
 #: gschem/src/iface/i_status.c:140
-#, fuzzy
 msgid "Select Box Mode"
-msgstr "Seçim Kipi"
+msgstr "Kutu Modunu Seç"
 
 #: gschem/src/iface/i_status.c:142 gschem/scheme/gschem/builtins.scm:227
 msgid "Zoom Box"
 msgstr ""
 
+# Copy to point
 #: gschem/src/iface/i_status.c:145
-#, fuzzy
 msgid "Copy to point"
-msgstr "1'e kopyala"
+msgstr "Noktaya kopyala"
 
 #: gschem/src/iface/i_status.c:147 gschem/scheme/gschem/builtins.scm:122
 #: gschem/scheme/gschem/builtins.scm:125
@@ -940,10 +943,10 @@ msgstr "Ayna modu"
 msgid "Pan Mode"
 msgstr ""
 
+# Choose component
 #: gschem/src/iface/i_status.c:155
-#, fuzzy
 msgid "Choose component"
-msgstr "Bileşen Güncelle"
+msgstr "Bileşeni seçin"
 
 #: gschem/src/iface/i_status.c:158
 msgid "Magnetic Net Mode"
@@ -977,10 +980,10 @@ msgstr "Metin kipi"
 msgid "Arc Mode"
 msgstr ""
 
+# Path Mode
 #: gschem/src/iface/i_status.c:174
-#, fuzzy
 msgid "Path Mode"
-msgstr "Döndürme kipi"
+msgstr "Yol Modu"
 
 #: gschem/src/iface/i_status.c:176
 msgid "Picture Mode"
@@ -1007,20 +1010,20 @@ msgstr ""
 msgid "Second point?"
 msgstr ""
 
+# Project Mode
 #: gschem/src/iface/i_status.c:190
-#, fuzzy
 msgid "Project Mode"
-msgstr "Seçim Kipi"
+msgstr "Proje Modu"
 
+# Select lines to extend
 #: gschem/src/iface/i_status.c:192
-#, fuzzy
 msgid "Select Projectiles"
-msgstr "Seçim Kipi"
+msgstr "Genişletmek için satırları seçin"
 
+# Select Object
 #: gschem/src/iface/i_status.c:194
-#, fuzzy
 msgid "Select Object"
-msgstr "Seçim Kipi"
+msgstr "Nesne Seç"
 
 #: gschem/src/iface/i_status.c:243
 msgid "Show Hidden"
@@ -1046,10 +1049,10 @@ msgstr ""
 msgid "Failed to save user configuration to"
 msgstr ""
 
+# Closing Page
 #: gschem/src/iface/i_window.c:104
-#, fuzzy
 msgid "Closing Page\n"
-msgstr "Sayfayı Kapat"
+msgstr "Kapanış Sayfası\n"
 
 #: gschem/src/iface/i_window.c:173
 #, c-format
@@ -1092,10 +1095,10 @@ msgstr ""
 msgid "Point 1 missed x=%d, y=%d\n"
 msgstr ""
 
+# Translating schematic
 #: gschem/src/object/o_complex.c:248 gschem/src/object/o_complex.c:252
-#, fuzzy
 msgid "Translating schematic"
-msgstr "Çevir"
+msgstr "Şema çevirme"
 
 #: gschem/src/object/o_delete.c:87
 #, c-format
@@ -1104,15 +1107,15 @@ msgid_plural "Delete %u locked objects?"
 msgstr[0] ""
 msgstr[1] ""
 
+# attributes were hidden
 #: gschem/src/object/o_edit.c:517
-#, fuzzy
 msgid "attributes were hidden"
-msgstr "Öznitelikler"
+msgstr "Nitelikler gizlendi"
 
+# hidden attributes were revealed
 #: gschem/src/object/o_edit.c:521
-#, fuzzy
 msgid "hidden attributes were revealed"
-msgstr "Öznitelikler"
+msgstr "Gizli nitelikler ortaya çıktı"
 
 #: gschem/src/object/o_edit.c:717
 msgid "Hidden text is now visible\n"
@@ -1150,10 +1153,10 @@ msgstr ""
 msgid "Bus ripper symbol was not found in any component library"
 msgstr ""
 
+# Update All
 #: gschem/src/object/o_picture.c:357
-#, fuzzy
 msgid "Update All"
-msgstr "Güncelle"
+msgstr "Tümünü Güncelle"
 
 #: gschem/src/object/o_picture.c:359
 msgid "Update all selected Picture images"
@@ -3486,10 +3489,10 @@ msgstr ""
 msgid "New Session"
 msgstr ""
 
+# Save Session As
 #: gschem/src/x/x_sessions.c:853 gschem/scheme/gschem/builtins.scm:389
-#, fuzzy
 msgid "Save Session As"
-msgstr "Tümünü kaydet"
+msgstr "Oturumu Farklı Kaydet"
 
 #: gschem/src/x/x_settings.c:359
 msgid "error opening"
@@ -3676,10 +3679,10 @@ msgstr ""
 msgid "Discarding page"
 msgstr ""
 
+# Closing
 #: gschem/src/x/x_window.c:1144
-#, fuzzy
 msgid "Closing"
-msgstr "Sayfayı Kapat"
+msgstr "Kapanış"
 
 #: gschem/src/x/x_window.c:1209
 msgid "Could NOT save page"
@@ -3689,10 +3692,10 @@ msgstr ""
 msgid "Error while trying to save"
 msgstr ""
 
+# Saved as
 #: gschem/src/x/x_window.c:1225
-#, fuzzy
 msgid "Saved as"
-msgstr "Tümünü kaydet"
+msgstr "Olarak kaydedildi"
 
 #: gschem/data/geda-gschem.desktop.in:3
 msgid "gEDA Schematic Editor"
@@ -3734,19 +3737,19 @@ msgstr ""
 msgid "Save the current document to a new name or location"
 msgstr ""
 
+# Save All
 #: gschem/etc/system-gschemrc.scm:2059
-#, fuzzy
 msgid "Save A_ll"
-msgstr "Tümünü kaydet"
+msgstr "Hepsini kaydet"
 
 #: gschem/etc/system-gschemrc.scm:2059
 msgid "Save all open documents"
 msgstr ""
 
+# Save Modified
 #: gschem/etc/system-gschemrc.scm:2060
-#, fuzzy
 msgid "Save _Modified"
-msgstr "Taşıma Kipi"
+msgstr "Değişikliği Kaydet"
 
 #: gschem/etc/system-gschemrc.scm:2060
 msgid "Save all modified documents"
@@ -3760,10 +3763,10 @@ msgstr ""
 msgid "Discard changes and reload the current document"
 msgstr ""
 
+# Revert All
 #: gschem/etc/system-gschemrc.scm:2062
-#, fuzzy
 msgid "Re_vert All"
-msgstr "Tümünü kaydet"
+msgstr "Tümünü Geri Al"
 
 #: gschem/etc/system-gschemrc.scm:2062
 msgid "Discard changes and reload all open documents"
@@ -4827,33 +4830,34 @@ msgstr ""
 msgid "Repeat Last Action"
 msgstr ""
 
+# New File
 #: gschem/scheme/gschem/builtins.scm:50
-#, fuzzy
 msgid "New File"
-msgstr "Yeni Sayfa"
+msgstr "Yeni dosya"
 
 #: gschem/scheme/gschem/builtins.scm:53
 msgid "Open File"
 msgstr ""
 
+# Save As
 #: gschem/scheme/gschem/builtins.scm:59
-#, fuzzy
 msgid "Save As"
-msgstr "Tümünü kaydet"
+msgstr "Farklı kaydet"
 
+# Save All
 #: gschem/scheme/gschem/builtins.scm:62
 msgid "Save All"
 msgstr "Tümünü kaydet"
 
+# Save Modified
 #: gschem/scheme/gschem/builtins.scm:65
-#, fuzzy
 msgid "Save Modified"
-msgstr "Taşıma Kipi"
+msgstr "Değişikliği Kaydet"
 
+# Print
 #: gschem/scheme/gschem/builtins.scm:68
-#, fuzzy
 msgid "Print"
-msgstr "Yazdır..."
+msgstr "Yazdır"
 
 #: gschem/scheme/gschem/builtins.scm:71
 msgid "Export Image"
@@ -4876,15 +4880,15 @@ msgstr "Pencereyi kapat"
 msgid "Quit"
 msgstr ""
 
+# Export Symbol
 #: gschem/scheme/gschem/builtins.scm:89
-#, fuzzy
 msgid "Export Symbol"
-msgstr "Çevir"
+msgstr "İhracat Simgesi"
 
+# Export Picture
 #: gschem/scheme/gschem/builtins.scm:92
-#, fuzzy
 msgid "Export Picture"
-msgstr "Bileşen/Resim göm"
+msgstr "Resmi Dışa Aktar"
 
 #: gschem/scheme/gschem/builtins.scm:98
 msgid "Undo"
@@ -5284,10 +5288,10 @@ msgstr ""
 msgid "Turn Snap on"
 msgstr ""
 
+# Cycle Snap Mode
 #: gschem/scheme/gschem/builtins.scm:490
-#, fuzzy
 msgid "Cycle Snap Mode"
-msgstr "Kopyalama Kipi"
+msgstr "Çevrim Snap Modu"
 
 #: gschem/scheme/gschem/builtins.scm:493
 msgid "Toggle Net Rubber Band"
@@ -5325,10 +5329,10 @@ msgstr ""
 msgid "View the front page of the gEDA documentation in a browser."
 msgstr ""
 
+# Show Shortcuts
 #: gschem/scheme/gschem/builtins.scm:522
-#, fuzzy
 msgid "Show Hotkeys"
-msgstr "Kısayollar"
+msgstr "Göstermek Kısayollar"
 
 #: gschem/scheme/gschem/builtins.scm:526
 msgid "Component Documentation"
@@ -5393,6 +5397,10 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
+
+# Text Alignment Attribute
+#~ msgid "Text Alignment Attribute"
+#~ msgstr "Metin Hizalama Öznitelik"
 
 #, fuzzy
 #~ msgid "session"
