@@ -2104,9 +2104,8 @@ msgid "not in library, opening as page"
 msgstr ""
 
 #: gschem/src/x/x_dnd.c:442 gschem/src/x/x_multiattrib.c:2606
-#, fuzzy
 msgid "symbol"
-msgstr "Symbole"
+msgstr "symbole"
 
 #: gschem/src/x/x_dnd.c:585
 msgid "<b>Invalid Data.</b>"
@@ -2128,26 +2127,25 @@ msgstr ""
 msgid "Done, renderer is down"
 msgstr ""
 
+# invalid show option; defaulting to show both
 #: gschem/src/x/x_edit_attrib.c:210
-#, fuzzy, c-format
+#, c-format
 msgid "invalid show option; defaulting to show both\n"
-msgstr ""
-"Nieprawidłowa opcja; przyjmuję domyślną wartość \"wyświetlaj nazwę i wartość"
-"\"\n"
+msgstr "niepoprawna opcja pokaz; zalegających pokazać zarówno\n"
 
 #: gschem/src/x/x_edit_attrib.c:321
 msgid "Select to choose an attribute visibility options"
 msgstr ""
 
+# Show only the name of the attribute
 #: gschem/src/x/x_edit_attrib.c:322
-#, fuzzy
 msgid "Show only the name of the attribute"
-msgstr "Pokaż odziedziczone atrybuty"
+msgstr "Pokaż tylko nazwę atrybutu"
 
+# Show only the value of the attribute
 #: gschem/src/x/x_edit_attrib.c:323
-#, fuzzy
 msgid "Show only the value of the attribute"
-msgstr "Pokaż odziedziczone atrybuty"
+msgstr "Pokaż tylko wartość atrybutu"
 
 #: gschem/src/x/x_edit_attrib.c:324
 msgid "Show both the name and the value of the attribute"
@@ -2216,15 +2214,15 @@ msgstr "Wartość:"
 msgid "Visible"
 msgstr "Widoczny"
 
+# Attribute Name List
 #: gschem/src/x/x_edit_attrib.c:519
-#, fuzzy
 msgid "Attribute Name List"
-msgstr "Atrybuty"
+msgstr "Atrybut nazwa listy"
 
+# Attribute Value Entry
 #: gschem/src/x/x_edit_attrib.c:523
-#, fuzzy
 msgid "Attribute Value Entry"
-msgstr "Atrybut"
+msgstr "Atrybut wpisu Wartość"
 
 #: gschem/src/x/x_edit_color.c:155
 msgid "Color Edit"
@@ -2243,10 +2241,10 @@ msgstr "Wybierz kolor dla wybranych obiektów."
 msgid "Symbol renamed, cannot be undone\n"
 msgstr ""
 
+# Edit Component Properties
 #: gschem/src/x/x_edit_cprop.c:1154
-#, fuzzy
 msgid "Edit Component Properties"
-msgstr "Edycja właściwości tekstu"
+msgstr "Edytuj właściwości komponentów"
 
 # Symbol
 #: gschem/src/x/x_edit_cprop.c:1169
@@ -2287,10 +2285,10 @@ msgstr "Opis:"
 msgid "Documen_tation:"
 msgstr "Dokumen_tacja:"
 
+# Comment
 #: gschem/src/x/x_edit_cprop.c:1272
-#, fuzzy
 msgid "_Comment:"
-msgstr "Polecenie:"
+msgstr "Komentarz:"
 
 #: gschem/src/x/x_edit_cprop.c:1297
 msgid "_Electrical:"
@@ -2316,15 +2314,15 @@ msgstr "Wartość:"
 msgid "_Foot Print:"
 msgstr ""
 
+# Spice Type => Simulation Type
 #: gschem/src/x/x_edit_cprop.c:1384
-#, fuzzy
 msgid "Spice Type:"
-msgstr "Typ wypełnienia:"
+msgstr "Symulacja Rodzaj:"
 
+# Model Name
 #: gschem/src/x/x_edit_cprop.c:1395
-#, fuzzy
 msgid "Model Name:"
-msgstr "Nazwa:"
+msgstr "Nazwa modelu:"
 
 #: gschem/src/x/x_edit_cprop.c:1429
 msgid "File name entry of component symbol"
@@ -2334,10 +2332,10 @@ msgstr ""
 msgid "Device identifier entry"
 msgstr ""
 
+# Entry for name of the autho
 #: gschem/src/x/x_edit_cprop.c:1442
-#, fuzzy
 msgid "Entry for name of the author"
-msgstr "Pokaż odziedziczone atrybuty"
+msgstr "Wejście dla imienia autho"
 
 #: gschem/src/x/x_edit_cprop.c:1448
 msgid "Entry for the version of this symbol"
@@ -2355,10 +2353,10 @@ msgstr ""
 msgid "Entry for distribution license of the symbol"
 msgstr ""
 
+# Description of the component
 #: gschem/src/x/x_edit_cprop.c:1475
-#, fuzzy
 msgid "Description of the component"
-msgstr "Domyślnie - użyj odniesiena do pliku elementu"
+msgstr "Opis składnika składnik"
 
 #: gschem/src/x/x_edit_cprop.c:1482
 msgid "Link to documentation for this device"
@@ -2372,10 +2370,10 @@ msgstr ""
 msgid "Checkbox to enable electrical properties"
 msgstr ""
 
+# Entry for reference designator
 #: gschem/src/x/x_edit_cprop.c:1503
-#, fuzzy
 msgid "Entry for reference designator"
-msgstr "Pokaż odziedziczone atrybuty"
+msgstr "Wejście dla desygnatora referencyjnej"
 
 #: gschem/src/x/x_edit_cprop.c:1510
 msgid "Spinner with entry for number of slots"
@@ -2397,34 +2395,30 @@ msgstr ""
 msgid "Entry for spice-type over-ride"
 msgstr ""
 
+# Entry for model file name
 #: gschem/src/x/x_edit_cprop.c:1545
-#, fuzzy
 msgid "Entry for model file name"
-msgstr "Pokaż odziedziczone atrybuty"
+msgstr "Wejście do nazwy pliku modelu"
 
 #: gschem/src/x/x_edit_pin.c:96
-#, fuzzy
 msgid "in"
-msgstr "Pin"
+msgstr "in"
 
 #: gschem/src/x/x_edit_pin.c:97
-#, fuzzy
 msgid "out"
-msgstr "Wy_tnij"
+msgstr "out"
 
 #: gschem/src/x/x_edit_pin.c:98
 msgid "io"
-msgstr ""
+msgstr "io"
 
 #: gschem/src/x/x_edit_pin.c:99
-#, fuzzy
 msgid "oc"
-msgstr "Zablokuj"
+msgstr "oc"
 
 #: gschem/src/x/x_edit_pin.c:100
-#, fuzzy
 msgid "oe"
-msgstr "Przesuń"
+msgstr "oe"
 
 #: gschem/src/x/x_edit_pin.c:101
 msgid "pas"
@@ -2451,10 +2445,10 @@ msgstr ""
 msgid "*missing*"
 msgstr ""
 
+# Pin Properties
 #: gschem/src/x/x_edit_pin.c:281 gschem/src/x/x_edit_pin.c:293
-#, fuzzy
 msgid "Pin Properties"
-msgstr "Edycja właściwości tekstu"
+msgstr "Właściwości pin"
 
 #: gschem/src/x/x_edit_pin.c:281
 msgid "Invalid Pin Node Type"
@@ -2464,50 +2458,53 @@ msgstr ""
 msgid "Ignoring Pin electrical VOID"
 msgstr ""
 
+# Pin Properties Editor
 #: gschem/src/x/x_edit_pin.c:801
-#, fuzzy
 msgid "Pin Properties Editor"
-msgstr "Edycja pojedyńczego atrybutu"
+msgstr "Pin właściwości edytora"
 
+# Set
 #: gschem/src/x/x_edit_pin.c:879
-#, fuzzy
 msgid "Set"
-msgstr "Połączenie"
+msgstr "Zestaw"
 
 #: gschem/src/x/x_edit_pin.c:882
 msgid "Auto"
 msgstr ""
 
+# Attribute Type List
 #: gschem/src/x/x_edit_pin.c:913
-#, fuzzy
 msgid "Attribute Type List"
-msgstr "Atrybuty"
+msgstr "Atrybut listę typów"
 
 #: gschem/src/x/x_edit_pin.c:917
 msgid "Text Alignment Option"
 msgstr ""
 
+# Pin Number
 #: gschem/src/x/x_edit_pin.c:921
-#, fuzzy
 msgid "Pin Number"
-msgstr "Numer początkowy"
+msgstr "Kod PIN"
 
+# Sequence Number
 #: gschem/src/x/x_edit_pin.c:925
 msgid "Sequence Number"
-msgstr ""
+msgstr "Numer sekwencji"
 
+# Pin Label
 #: gschem/src/x/x_edit_pin.c:929
 msgid "Pin Label"
-msgstr ""
+msgstr "etykieta pin"
 
+# Edit slot number
 #: gschem/src/x/x_edit_slot.c:162
-#, fuzzy
 msgid "Edit slot number"
-msgstr "Kolor"
+msgstr "Edytuj numer gniazdo"
 
+# Number of slots
 #: gschem/src/x/x_edit_slot.c:185
 msgid "Number of slots:"
-msgstr ""
+msgstr "Ilość gniazd:"
 
 # Slot number
 #: gschem/src/x/x_edit_slot.c:199
