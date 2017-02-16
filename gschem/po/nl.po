@@ -4745,42 +4745,40 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2301
 msgid "View or manage guile path"
-msgstr ""
+msgstr "Bekijken of beheren guile pad"
 
 #: gschem/etc/system-gschemrc.scm:2305 gschem/scheme/gschem/builtins.scm:451
 msgid "Embed Component/Picture"
 msgstr "Component/Afbeelding Insluiten"
 
 #: gschem/etc/system-gschemrc.scm:2305
-#, fuzzy
 msgid "Embed a component or image object"
-msgstr "Component insluiten in schema"
+msgstr "Embed onderdeel of een afbeelding object"
 
 #: gschem/etc/system-gschemrc.scm:2306 gschem/scheme/gschem/builtins.scm:454
 msgid "Unembed Component/Picture"
 msgstr "Component/Afbeelding Uitsluiten"
 
 #: gschem/etc/system-gschemrc.scm:2306
-#, fuzzy
 msgid "Unembed a component or image object"
-msgstr "Component/Afbeelding Uitsluiten"
+msgstr "Unembed een component of beeldobject"
 
 #: gschem/etc/system-gschemrc.scm:2307 gschem/scheme/gschem/builtins.scm:457
 msgid "Update Component"
 msgstr "Hernieuw Component"
 
 #: gschem/etc/system-gschemrc.scm:2307
-#, fuzzy
 msgid "Reload definition of selected component"
-msgstr "Toon documentatie voor geselecteerde component"
+msgstr "Reload definitie van de geselecteerde component"
 
 #: gschem/etc/system-gschemrc.scm:2315
 msgid "Cycle _grid styles"
 msgstr "Schakel r_aster stijlen"
 
+# Toggle grid between dot, mesh and off
 #: gschem/etc/system-gschemrc.scm:2315
 msgid "Toggle grid between Dot, Mesh and Off"
-msgstr ""
+msgstr "Schakelen rooster tussen dot, gaas en off"
 
 #: gschem/etc/system-gschemrc.scm:2316
 msgid "Scale _up Grid Spacing"
@@ -4788,7 +4786,7 @@ msgstr "Omhoog schalen Raster A_fstand"
 
 #: gschem/etc/system-gschemrc.scm:2316
 msgid "Increase the snap size"
-msgstr ""
+msgstr "Verhoging van de snap formaat"
 
 #: gschem/etc/system-gschemrc.scm:2317
 msgid "Scale _down Grid Spacing"
@@ -4798,17 +4796,16 @@ msgstr "Omlaag schalen Snap Raster Afstan_d"
 msgid "Decrease the snap size"
 msgstr ""
 
+# Snap Grid Spacing
 #: gschem/etc/system-gschemrc.scm:2318
-#, fuzzy
 msgid "S_nap Grid Spacing..."
-msgstr "Sna_p Raster Afstand..."
+msgstr "Snap Rasterafstand..."
 
 #: gschem/etc/system-gschemrc.scm:2318
 msgid "Adjust snap size"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2321
-#, fuzzy
 msgid "Toggle _Snap On-Off"
 msgstr "Schakel _Snap Aan/Uit"
 
