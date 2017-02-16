@@ -22,27 +22,31 @@ msgstr ""
 #: gschem/src/base/gschem.c:159
 #, c-format
 msgid "Warning: <%s> did not expand\n"
-msgstr ""
+msgstr "Внимание: <%s> не се разширява\n"
 
+# Command-line error: disabling auto load last
 #: gschem/src/base/gschem.c:160
 msgid "Command-line error: disabling auto load last\n"
-msgstr ""
+msgstr "Командния ред грешка: деактивиране автоматично натоварване последно\n"
 
+# Assuming schematic file suffix
 #: gschem/src/base/gschem.c:193
 msgid "Assuming schematic file suffix for"
-msgstr ""
+msgstr "Ако приемем, схематични файл наставка за"
 
 #: gschem/src/base/gschem.c:207
 msgid "Assuming symbol file suffix for"
 msgstr ""
 
+# Error loading requests session
 #: gschem/src/base/gschem.c:241
 msgid "An error was encountered loading requested session"
-msgstr ""
+msgstr "Възникна грешка товарене искания на сесията"
 
+# Auto Load
 #: gschem/src/base/gschem.c:266
 msgid "Auto Load"
-msgstr ""
+msgstr "Автоматично зареждане"
 
 #: gschem/src/base/gschem.c:316
 msgid ""
@@ -71,7 +75,7 @@ msgstr "Прочетете схема инициализация файл"
 msgid "Failed to read scheme initialization file"
 msgstr "Не може да се чете схема инициализация файл"
 
-#  not fuzzy
+# not fuzzy
 #: gschem/src/base/gschem.c:384
 msgid "version"
 msgstr "версията"
@@ -79,7 +83,7 @@ msgstr "версията"
 # Log system is disabled
 #: gschem/src/base/gschem.c:389
 msgid "Logging system is disabled\n"
-msgstr "Вход система е хора с увреждания"
+msgstr "Вход система е хора с увреждания\n"
 
 # ERROR: Could not load or evaluation startup script
 #: gschem/src/base/gschem.c:429
@@ -101,54 +105,64 @@ msgstr "прозорец майка"
 msgid "Parent window for this dialog"
 msgstr "Родител прозорец за този диалогов"
 
+# Title
 #: gschem/src/base/gschem_dialog.c:584
 msgid "Title"
-msgstr ""
+msgstr "Заглавие"
 
+# Dialog window title
 #: gschem/src/base/gschem_dialog.c:585
 msgid "Dialog window title"
-msgstr ""
+msgstr "Dialog заглавието прозорец"
 
+# Label Text
 #: gschem/src/base/gschem_macro_widget.c:233
 msgid "Label Text"
-msgstr ""
+msgstr "етикет Текст"
 
 #: gschem/src/base/gschem_macro_widget.c:234
 msgid "Text to be displayed for the Macro label"
-msgstr ""
+msgstr "Текст, което да се показва на етикета на Macro"
 
+# Macro
 #: gschem/src/base/gschem_macro_widget.c:235
 msgid "Macro:"
-msgstr ""
+msgstr "макро:"
 
+# Macro String
 #: gschem/src/base/gschem_macro_widget.c:241
 #: gschem/src/base/gschem_macro_widget.c:242
 msgid "Macro String"
-msgstr ""
+msgstr "макро низ"
 
+# Evaluate
 #: gschem/src/base/gschem_macro_widget.c:357
 msgid "Evaluate"
-msgstr ""
+msgstr "Оценява"
 
+# Horizontal adjustment
 #: gschem/src/base/gschem_page_view.c:250
 #: gschem/src/base/gschem_page_view.c:251
 msgid "Horizontal adjustment"
-msgstr ""
+msgstr "Хоризонтална настройка"
 
+# Page
 #: gschem/src/base/gschem_page_view.c:258
 #: gschem/src/base/gschem_page_view.c:259
 msgid "Page"
 msgstr "страница"
 
+# Page Geometry
 #: gschem/src/base/gschem_page_view.c:265
 #: gschem/src/base/gschem_page_view.c:266
 msgid "Page Geometry"
 msgstr "страница геометрия"
 
+# Vertical adjustment
 #: gschem/src/base/gschem_page_view.c:273
 #: gschem/src/base/gschem_page_view.c:274
 msgid "Vertical adjustment"
-msgstr ""
+msgstr "Вертикална корекция"
 
 #: gschem/src/base/gschem_parsecmd.c:85
 #, c-format
@@ -186,6 +200,38 @@ msgid ""
 "Report bugs at <https://bugs.launchpad.net/geda>\n"
 "gEDA homepage: <http://www.geda-project.org>\n"
 msgstr ""
+"употреба: %s [ВАРИАНТ ...] [--] [досие ...]\n"
+"\n"
+"Интерактивно редактиране GEDA схеми или символи. Ако един или повече файлове\n"
+"са определени, отвори ги за редактиране; в противен случай, се създаде нова, празна\n"
+"схематичен.\n"
+"\n"
+"Настроики:\n"
+"  -a, --render-adaptor <DRV> Посочете които правят адаптер за използване, Карио или "
+"X11.\n"
+"  -c, --config-file <FILE>   Допълнителна конфигурационен файл, за да се зареди.\n"
+"  -g, --guile <DIR>          Добави DIR до пътя Guile (предварително довереник).\n"
+"  -f, --font <NAME>          зададете име на шрифт семейство\n"
+"  -h, --help                 Помогне; това съобщение.\n"
+"  -m, --safe-mode            Безопасен режим.\n"
+"  -n, --no-auto              Не авто натоварване последния документ.\n"
+"  -o, --output <FILE>        продукция името на файла (за печат и на изхода на "
+"изображението).\n"
+"  -p, --place                Автоматично пускане на прозореца.\n"
+"  -q, --quiet                Тих режим.\n"
+"  -r, --run <FILE>           Схема скрипт, за да се изпълнят при стартиране.\n"
+"  -s, --start <name>         Започвам използване дал името на сесията.\n"
+"  -t, --title-block <FILE>   Започване на нов чертеж с помощта на посочения в заглавието "
+"блок.\n"
+"  -u, --undo-dir <DIR>       Посочете временна директория за Отмяна на файлове.\n"
+"  -v, --verbose              Подробен режим.\n"
+"  -V, --version              информация Покажи версия.\n"
+"  -x (EXPR)                  Схема израз да се изпълнят при стартиране.\n"
+"  -z, --minimized            Скриване на главния прозорец, използван за скриптове\n"
+"  --                         Отнасяйте всички останали аргументи като имена на файлове.\n"
+"\n"
+"Съобщи за грешки в <https://bugs.launchpad.net/geda>\n"
+"GEDA страница: <http://www.geda-project.org>\n"
 
 #: gschem/src/base/gschem_parsecmd.c:128
 #, c-format
@@ -197,6 +243,12 @@ msgid ""
 "included in the gEDA distribution.\n"
 "There is NO WARRANTY, to the extent permitted by law.\n"
 msgstr ""
+"gEDA/gschem %s (%s) (g%.7s)\n"
+"Авторско право (C) 1998-2017 gEDA разработчици\n"
+"Това е свободен софтуер, и вие сте добре дошли да я разпространявате при\n"
+"определени условия. За подробности вижте файла 'копиране', което е\n"
+"включени в разпределението GEDA.\n"
+"Има НИКАКВА ГАРАНЦИЯ, до степента, позволена от закона.\n"
 
 #: gschem/src/base/gschem_parsecmd.c:244
 msgid "error parsing"
