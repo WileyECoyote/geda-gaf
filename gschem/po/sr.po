@@ -223,7 +223,7 @@ msgstr ""
 "gEDA stranica: <http://www.geda-project.org>\n"
 
 #: gschem/src/base/gschem_parsecmd.c:128
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "gEDA/gschem %s (%s) (g%.7s)\n"
 "Copyright (C) 1998-2017 gEDA developers\n"
@@ -233,9 +233,9 @@ msgid ""
 "There is NO WARRANTY, to the extent permitted by law.\n"
 msgstr ""
 "gEDA/gschem %s (%s) (g%.7s)\n"
-"Copyright (C) 1998-2017 gEDA developers\n"
-"Ovo je slobodan softver, a vi ste dobrodošli da released under\n"
-"određenim uslovima. Za detalje, pogledajte datoteku `KOPIRANJE', koji je\n"
+"Ауторско право (C) 1998-2017 gEDA програмери\n"
+"Ово је слободан софтвер, а ви сте добродошли да релеасед под\n"
+"одређеним условима. За детаље, погледајте датотеку \"копирање\", која је\n"
 "uključen u distribuciju Geda.\n"
 "Postoji garancija, u meri u kojoj to dopušta zakon.\n"
 
@@ -817,7 +817,9 @@ msgstr "УПОЗОРЕЊЕ: Снап величина мрежа није јед
 msgid ""
 "WARNING: If you are translating a symbol to the origin, the snap grid size "
 "should be set to 100\n"
-msgstr "УПОЗОРЕЊЕ: If you are translating a symbol of the origin, Снап величина треба да буде подешена на 100\n"
+msgstr ""
+"УПОЗОРЕЊЕ: If you are translating a symbol of the origin, Снап величина "
+"треба да буде подешена на 100\n"
 
 # Grid is off
 #: gschem/src/iface/i_command.c:4268
@@ -949,29 +951,34 @@ msgstr "сесије"
 msgid "Removing session"
 msgstr "Уклањање сесије"
 
+# Failed to remove session
 #: gschem/src/iface/i_sessions.c:880
 msgid "Failed to remove session"
-msgstr ""
+msgstr "Фаилед то ремове сесије"
 
 #: gschem/src/iface/i_sessions.c:883
 msgid "<b>Could not remove session</b>"
-msgstr ""
+msgstr "<b>Није могуће уклонити сесију</b>"
 
+# created with
 #: gschem/src/iface/i_sessions.c:932
 msgid "created with"
-msgstr ""
+msgstr "цреатед витх"
 
+# An error occurred attempting to create session
 #: gschem/src/iface/i_sessions.c:940
 msgid "An error occurred attempting to create session"
-msgstr ""
+msgstr "Дошло је до грешке покушава да створи сесије"
 
+# Session Error
 #: gschem/src/iface/i_sessions.c:950 gschem/src/iface/i_sessions.c:1134
 msgid "<b>Session Error</b>"
-msgstr ""
+msgstr "<b>сессион Грешка</b>"
 
+# Creation failed
 #: gschem/src/iface/i_sessions.c:950
 msgid "Creation failed"
-msgstr ""
+msgstr "цреатион фаилед"
 
 # Opened session
 #: gschem/src/iface/i_sessions.c:994
@@ -985,11 +992,12 @@ msgstr "преименовање сесија"
 
 #: gschem/src/iface/i_sessions.c:1044
 msgid "to"
-msgstr ""
+msgstr "до"
 
+# Failed to rename session
 #: gschem/src/iface/i_sessions.c:1068
 msgid "Failed to rename session"
-msgstr ""
+msgstr "Фаилед то ренаме сесије"
 
 #: gschem/src/iface/i_sessions.c:1071
 msgid "<b>Could not rename session</b>"
@@ -1193,10 +1201,10 @@ msgstr ""
 msgid "<b>File error.</b>"
 msgstr ""
 
+# Revert failed
 #: gschem/src/iface/i_window.c:258
-#, fuzzy
 msgid "Revert failed"
-msgstr "_Врати"
+msgstr "Врати фаилед"
 
 #: gschem/src/iface/i_window.c:265
 msgid "Error encountered during file operation"
@@ -1713,10 +1721,10 @@ msgstr ""
 msgid "Background"
 msgstr ""
 
+# Pin
 #: gschem/src/x/x_dialog.c:1014
-#, fuzzy
 msgid "Pin"
-msgstr "_Штампај..."
+msgstr "игла"
 
 #: gschem/src/x/x_dialog.c:1015
 msgid "Net endpoint"
@@ -2188,10 +2196,10 @@ msgstr ""
 msgid "<b>Edit Attribute</b>"
 msgstr ""
 
+# Select the name of the attribute to add
 #: gschem/src/x/x_edit_attrib.c:408
-#, fuzzy
 msgid "Select the name of the attribute to add"
-msgstr "Postavlja visinu statusnoj traci"
+msgstr "Изаберите име атрибута за додавање"
 
 #: gschem/src/x/x_edit_attrib.c:409
 msgid "Select the name of the attribute to edit"
@@ -2552,11 +2560,10 @@ msgstr ""
 msgid "Text input field"
 msgstr ""
 
-# Text Alignment Attribute
+# Text Alignment combobox
 #: gschem/src/x/x_edit_text.c:594
-#, fuzzy
 msgid "Text alignment combobox"
-msgstr "Поравнање текста Атрибут"
+msgstr "Поравнање текста цомбобок"
 
 #: gschem/src/x/x_edit_text.c:598
 msgid "Color options menu"
@@ -2615,10 +2622,10 @@ msgid ""
 "Do you want to load the backup file?"
 msgstr ""
 
+# Warning, Error reading image file
 #: gschem/src/x/x_icons.c:251
-#, fuzzy
 msgid "Warning, Error reading image file"
-msgstr "greška u analizi"
+msgstr "Упозорење, Грешка при читању датотека слике"
 
 #: gschem/src/x/x_icons.c:252
 msgid "Warning, Error accessing image file"
@@ -3031,15 +3038,15 @@ msgstr ""
 msgid "redraw the current window"
 msgstr ""
 
+# Error reading menu item
 #: gschem/src/x/x_menus.c:511
-#, fuzzy
 msgid "Error reading menu item"
-msgstr "greška u analizi"
+msgstr "Грешка при читању мени ставка"
 
+# Bad string
 #: gschem/src/x/x_menus.c:512
-#, fuzzy
 msgid "Bad string"
-msgstr "Makro Sadržaj"
+msgstr "бад низ"
 
 #: gschem/src/x/x_menus.c:723
 msgid "Oops... got a NULL menu name"
@@ -3166,10 +3173,10 @@ msgstr ""
 msgid "Could not open file"
 msgstr ""
 
+# Open
 #: gschem/src/x/x_menus.c:1877
-#, fuzzy
 msgid "Open"
-msgstr "Отв_ори..."
+msgstr "Отвори"
 
 #: gschem/src/x/x_menus.c:1886
 msgid "Remove"
@@ -4564,19 +4571,20 @@ msgstr ""
 msgid "Open Auto Number dialog"
 msgstr ""
 
+# Show _Console Window
 #: gschem/etc/system-gschemrc.scm:2296
-#, fuzzy
 msgid "Show _Console Window..."
-msgstr "Нови прозор..."
+msgstr "_Схов конзола Прозор..."
 
+# Display the console window
 #: gschem/etc/system-gschemrc.scm:2296
-#, fuzzy
 msgid "Display the console window"
-msgstr "Нови прозор"
+msgstr "Отвара прозор за конзоле"
 
+# Show Coordinates Window
 #: gschem/etc/system-gschemrc.scm:2297
 msgid "Show Coord _Window..."
-msgstr ""
+msgstr "Схов тачака Прозор..."
 
 #: gschem/etc/system-gschemrc.scm:2297
 msgid "Display coordinates"
@@ -5055,10 +5063,10 @@ msgstr ""
 msgid "Draw Last"
 msgstr ""
 
+# First Page
 #: gschem/scheme/gschem/builtins.scm:290
-#, fuzzy
 msgid "First Page"
-msgstr "_Штампај..."
+msgstr "Прва страна"
 
 #: gschem/scheme/gschem/builtins.scm:293
 msgid "Previous Page"
@@ -5076,24 +5084,24 @@ msgstr ""
 msgid "Page Down"
 msgstr ""
 
+# Last Page
 #: gschem/scheme/gschem/builtins.scm:305
-#, fuzzy
 msgid "Last Page"
-msgstr "_Штампај..."
+msgstr "Последња страна"
 
+# Print Page
 #: gschem/scheme/gschem/builtins.scm:311
-#, fuzzy
 msgid "Print Page"
-msgstr "_Штампај..."
+msgstr "принт Страница"
 
 #: gschem/scheme/gschem/builtins.scm:314
 msgid "Revert Changes"
 msgstr ""
 
+# Revert All
 #: gschem/scheme/gschem/builtins.scm:317
-#, fuzzy
 msgid "Revert All"
-msgstr "_Врати"
+msgstr "Врати Алл"
 
 #: gschem/scheme/gschem/builtins.scm:335
 msgid "Up Hierarchy"
@@ -5198,15 +5206,15 @@ msgstr ""
 msgid "Autonumber Text"
 msgstr ""
 
+# Show Console Window
 #: gschem/scheme/gschem/builtins.scm:436
-#, fuzzy
 msgid "Show Console Window"
-msgstr "Нови прозор"
+msgstr "Схов конзола Прозор"
 
+# Show Coordinates Window
 #: gschem/scheme/gschem/builtins.scm:439
-#, fuzzy
 msgid "Show Coordinates Window"
-msgstr "Нови прозор"
+msgstr "Схов тачака Прозор"
 
 #: gschem/scheme/gschem/builtins.scm:442
 msgid "Guile Path"
