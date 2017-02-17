@@ -148,14 +148,14 @@ check_accessors ()
 
     /* The default is FALSE */
     if (geda_image_menu_item_get_show_image (image_menu_item)) {
-      fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+      fprintf(stderr, "FAILED: line <%d> get_show_image %s\n", __LINE__, TWIDGET);
       result++;
     }
 
     geda_image_menu_item_set_show_image(image_menu_item, TRUE);
 
     if (!geda_image_menu_item_get_show_image (image_menu_item)) {
-      fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+      fprintf(stderr, "FAILED: line <%d> set_show_image %s\n", __LINE__, TWIDGET);
       result++;
     }
 
@@ -174,7 +174,7 @@ check_accessors ()
     GtkWidget *image = geda_image_menu_item_get_image(image_menu_item);
 
     if (image != print_image) {
-      fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+      fprintf(stderr, "FAILED: line <%d> get_image %s\n", __LINE__, TWIDGET);
       result++;
     }
 
