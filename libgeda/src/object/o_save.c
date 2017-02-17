@@ -68,7 +68,7 @@ geda_object_save_auto_backup(GedaToplevel *toplevel)
       count++;
 
       if (real_filename == NULL) {
-        geda_log_s ("%s %s.", _("Cannot get real filename of"), p_current->filename);
+        geda_log_s ("%s %s.", _("Cannot get the real filename of"), p_current->filename);
       }
       else {
               GError *err;
