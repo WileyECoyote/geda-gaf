@@ -1,3 +1,8 @@
+2017-02-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_image_menu_item.c: Check geda_image_menu_item_get_use_stock
+      and geda_image_menu_item_set_use_stock.
+
 2017-02-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_toolbar.c: Replace object type identifier scheme for

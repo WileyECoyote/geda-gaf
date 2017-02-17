@@ -178,6 +178,18 @@ check_accessors ()
       result++;
     }
 
+    if (geda_image_menu_item_get_use_stock(image_menu_item)) {
+      fprintf(stderr, "FAILED: line <%d> get_use_stock %s\n", __LINE__, TWIDGET);
+      result++;
+    }
+
+    geda_image_menu_item_set_use_stock(image_menu_item, TRUE);
+
+    if (!geda_image_menu_item_get_use_stock(image_menu_item)) {
+      fprintf(stderr, "FAILED: line <%d> set_use_stock %s\n", __LINE__, TWIDGET);
+      result++;
+    }
+
     g_object_ref_sink(widget); /* Sink reference to the widget */
     g_object_unref(widget);    /* Destroy the widget */
   }
