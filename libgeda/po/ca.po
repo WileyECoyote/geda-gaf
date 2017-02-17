@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-02-17 01:11-0600\n"
+"POT-Creation-Date: 2017-02-17 01:51-0600\n"
 "PO-Revision-Date: 2012-01-27 14:12+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Catalan <ca@li.org>\n"
@@ -102,6 +102,7 @@ msgstr "Error: No es pot restaurar el directori actual per"
 
 # Cannot get the real filename of
 #: libgeda/src/file/f_file.c:405 libgeda/src/file/f_file.c:464
+#: libgeda/src/object/o_save.c:71
 msgid "Cannot get the real filename of"
 msgstr "No es pot obtenir el veritable nom de fitxer"
 
@@ -1439,10 +1440,6 @@ msgstr "Trobat un invàlid 'whichend' valor assignat a un passador"
 #: libgeda/src/object/o_pin_object.c:184
 msgid "Setting to zero\n"
 msgstr "Ajust a zero\n"
-
-#: libgeda/src/object/o_save.c:71
-msgid "Cannot get real filename of"
-msgstr ""
 
 #: libgeda/src/object/o_save.c:127
 #, c-format

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-02-17 01:11-0600\n"
+"POT-Creation-Date: 2017-02-17 01:51-0600\n"
 "PO-Revision-Date: 2012-01-31 12:11+0000\n"
 "Last-Translator: Peter TB Brett <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -111,6 +111,7 @@ msgstr "خطأ: لا يمكن استعادة الدليل الحالي ل"
 
 # Cannot get the real filename of
 #: libgeda/src/file/f_file.c:405 libgeda/src/file/f_file.c:464
+#: libgeda/src/object/o_save.c:71
 msgid "Cannot get the real filename of"
 msgstr "لا يمكن الحصول على اسم الحقيقي لل"
 
@@ -1457,10 +1458,6 @@ msgstr "وجدت غير صالحة 'whichend' القيمة التي تم تعي�
 msgid "Setting to zero\n"
 msgstr "وضع إلى الصفر\n"
 
-#: libgeda/src/object/o_save.c:71
-msgid "Cannot get real filename of"
-msgstr "‏يتعذر الحصول على الاسم الحقيقي للملف"
-
 #: libgeda/src/object/o_save.c:127
 #, c-format
 msgid "Could NOT set previous backup file [%s] read-write\n"
@@ -1867,6 +1864,9 @@ msgstr "لا يمكن إنشاء ملف سجل في"
 #, scheme-format
 msgid "Object ~A is not part of a page"
 msgstr ""
+
+#~ msgid "Cannot get real filename of"
+#~ msgstr "‏يتعذر الحصول على الاسم الحقيقي للملف"
 
 # Cannot find file
 #~ msgid "Cannot find file"
