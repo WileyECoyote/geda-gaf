@@ -2,6 +2,8 @@
 
     * po/ar.po: Update Arabic translations.
 
+    * po/ca.po: Update Catalan translations.
+
 2017-02-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_keyfile.c: Revise geda_keyfile_get_keys to check if a error
