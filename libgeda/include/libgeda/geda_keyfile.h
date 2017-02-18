@@ -130,7 +130,7 @@ char     *geda_keyfile_to_data                (GedaKeyFile        *key_file,
 char     *geda_keyfile_get_start_group        (GedaKeyFile        *key_file) G_GNUC_MALLOC;
 char    **geda_keyfile_get_groups             (GedaKeyFile        *key_file,
                                                unsigned int       *length) G_GNUC_MALLOC;
-
+GList    *geda_keyfile_get_group_list         (GedaKeyFile        *key_file);
 char    **geda_keyfile_get_keys               (GedaKeyFile        *key_file,
                                                const char         *group_name,
                                                unsigned int       *length,

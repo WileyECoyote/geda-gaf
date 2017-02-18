@@ -1,3 +1,18 @@
+2017-02-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_keyfile.c: Utilize GEDA_IS_KEYFILE in functions:
+
+            * geda_keyfile_set_value
+            * geda_keyfile_get_string
+            * geda_keyfile_set_string
+            * geda_keyfile_get_string_list
+            * geda_keyfile_set_string_list
+            * geda_keyfile_set_locale_string
+            * geda_keyfile_get_locale_string
+            * geda_keyfile_set_locale_string_list
+            * geda_keyfile_get_boolean
+            * geda_keyfile_set_boolean
+
 2017-02-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ar.po: Update Arabic translations.

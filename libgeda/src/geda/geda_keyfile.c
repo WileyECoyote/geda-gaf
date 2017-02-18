@@ -149,8 +149,8 @@ typedef struct _GedaKeyFileGroup GedaKeyFileGroup;
 /*!
  * GedaKeyFile:
  *
- * The GedaKeyFile struct contains only private data and should not
- * be accessed directly.
+ * The GedaKeyFile struct contains private data and should not be accessed
+ * directly.
  */
 struct _GedaKeyFile
 {
@@ -1577,34 +1577,39 @@ geda_keyfile_set_value (GedaKeyFile *key_file,
                         const char  *key,
                         const char  *value)
 {
-  GedaKeyFileGroup *group;
-
-  g_return_if_fail (key_file != NULL);
   g_return_if_fail (geda_keyfile_is_group_name (group_name));
   g_return_if_fail (geda_keyfile_is_key_name (key));
   g_return_if_fail (value != NULL);
 
-  group = geda_keyfile_lookup_group (key_file, group_name);
-
-  if (!group) {
-
-    geda_keyfile_add_group (key_file, group_name);
-    group = (GedaKeyFileGroup *) key_file->groups->data;
-
-    geda_keyfile_add_key (key_file, group, key, value);
+  if (!GEDA_IS_KEYFILE(key_file)) {
+    geda_keyfile_not_valid(__func__, key_file);
   }
   else {
 
-    GedaKeyFilePair  *pair;
+    GedaKeyFileGroup *group;
 
-    pair = geda_keyfile_lookup_key_value_pair (key_file, group, key);
+    group = geda_keyfile_lookup_group (key_file, group_name);
 
-    if (!pair) {
+    if (!group) {
+
+      geda_keyfile_add_group (key_file, group_name);
+      group = (GedaKeyFileGroup *) key_file->groups->data;
+
       geda_keyfile_add_key (key_file, group, key, value);
     }
     else {
-      GEDA_FREE (pair->value);
-      pair->value = geda_strdup (value);
+
+      GedaKeyFilePair  *pair;
+
+      pair = geda_keyfile_lookup_key_value_pair (key_file, group, key);
+
+      if (!pair) {
+        geda_keyfile_add_key (key_file, group, key, value);
+      }
+      else {
+        GEDA_FREE (pair->value);
+        pair->value = geda_strdup (value);
+      }
     }
   }
 }
@@ -1629,7 +1634,7 @@ geda_keyfile_set_value (GedaKeyFile *key_file,
  * \returns a newly allocated string or %NULL if the specified
  *          key cannot be found.
  */
-char *
+char*
 geda_keyfile_get_string (GedaKeyFile *key_file,
                          const char  *group_name,
                          const char  *key,
@@ -1639,9 +1644,13 @@ geda_keyfile_get_string (GedaKeyFile *key_file,
   char   *string_value;
   GError *key_file_error;
 
-  g_return_val_if_fail (key_file != NULL, NULL);
   g_return_val_if_fail (group_name != NULL, NULL);
   g_return_val_if_fail (key != NULL, NULL);
+
+  if (!GEDA_IS_KEYFILE(key_file)) {
+    geda_keyfile_not_valid(__func__, key_file);
+    return NULL;
+  }
 
   key_file_error = NULL;
 
@@ -1710,14 +1719,21 @@ geda_keyfile_set_string (GedaKeyFile *key_file,
                          const char  *key,
                          const char  *string)
 {
-  char *value;
+  if (!GEDA_IS_KEYFILE(key_file)) {
+    geda_keyfile_not_valid(__func__, key_file);
+  }
+  else {
 
-  g_return_if_fail (key_file != NULL);
-  g_return_if_fail (string != NULL);
+    char *value;
 
-  value = geda_keyfile_parse_string_as_value (key_file, string, FALSE);
-  geda_keyfile_set_value (key_file, group_name, key, value);
-  GEDA_FREE (value);
+    g_return_if_fail (string != NULL);
+
+    value = geda_keyfile_parse_string_as_value (key_file, string, FALSE);
+
+    geda_keyfile_set_value (key_file, group_name, key, value);
+
+    GEDA_FREE (value);
+  }
 }
 
 /*!
@@ -1739,24 +1755,32 @@ geda_keyfile_set_string (GedaKeyFile *key_file,
  * \returns a %NULL-terminated string array or %NULL if the specified
  *          key cannot be found. The array should be freed with g_strfreev().
  */
-char **
-geda_keyfile_get_string_list (GedaKeyFile *key_file,
-                              const char  *group_name,
-                              const char  *key,
-                              unsigned int   *length,
+char**
+geda_keyfile_get_string_list (GedaKeyFile  *key_file,
+                              const char   *group_name,
+                              const char   *key,
+                              unsigned int *length,
                               GError      **error)
 {
-  GError *key_file_error = NULL;
-  char *value, *string_value, **values;
-  int i, len;
-  GSList *p, *pieces = NULL;
+  GError *key_file_error;
+  GSList *p;
+  GSList *pieces;
+  char   *value, *string_value, **values;
+  int     i, len;
 
-  g_return_val_if_fail (key_file != NULL, NULL);
   g_return_val_if_fail (group_name != NULL, NULL);
   g_return_val_if_fail (key != NULL, NULL);
 
-  if (length)
+  if (!GEDA_IS_KEYFILE(key_file)) {
+    geda_keyfile_not_valid(__func__, key_file);
+    return NULL;
+  }
+
+  if (length) {
     *length = 0;
+  }
+
+  key_file_error = NULL;
 
   value = geda_keyfile_get_value (key_file, group_name, key, &key_file_error);
 
@@ -1779,26 +1803,34 @@ geda_keyfile_get_string_list (GedaKeyFile *key_file,
                  return NULL;
   }
 
+  pieces = NULL;
+
   string_value = geda_keyfile_parse_value_as_string (key_file, value, &pieces, &key_file_error);
   GEDA_FREE (value);
   GEDA_FREE (string_value);
 
-  if (key_file_error)
-  {
-    if (g_error_matches (key_file_error,
-      GEDA_KEYFILE_ERROR,
-      GEDA_KEYFILE_ERROR_INVALID_VALUE))
-    {
-      g_set_error (error, GEDA_KEYFILE_ERROR,
-                   GEDA_KEYFILE_ERROR_INVALID_VALUE,
-                   _("Key file contains key '%s' "
+  if (key_file_error) {
+    if (error) {
+      if (g_error_matches (key_file_error,
+        GEDA_KEYFILE_ERROR,
+        GEDA_KEYFILE_ERROR_INVALID_VALUE))
+      {
+        g_set_error (error, GEDA_KEYFILE_ERROR,
+                     GEDA_KEYFILE_ERROR_INVALID_VALUE,
+                     _("Key file contains key '%s' "
                      "which has a value that cannot be interpreted."),
-                   key);
-                   g_error_free (key_file_error);
+                     key);
+                     g_error_free (key_file_error);
+      }
+      else {
+        g_propagate_error (error, key_file_error);
+      }
     }
-    else
-      g_propagate_error (error, key_file_error);
-
+    else {
+      /* Clear the error set by geda_keyfile_parse_value_as_string
+       * because no error argument was supplied */
+      g_error_free (key_file_error);
+    }
     geda_gslist_free_all (pieces);
     return NULL;
   }
@@ -1835,32 +1867,38 @@ geda_keyfile_get_string_list (GedaKeyFile *key_file,
  * \param [in] length      number of string values in \a list
  */
 void
-geda_keyfile_set_string_list (GedaKeyFile       *key_file,
-                              const char        *group_name,
-                              const char        *key,
-                              const char * const list[],
-                              unsigned int       length)
+geda_keyfile_set_string_list (GedaKeyFile  *key_file,
+                              const char   *group_name,
+                              const char   *key,
+                              const char   *const list[],
+                              unsigned int  length)
 {
-  GString *value_list;
-  unsigned int  i;
-
-  g_return_if_fail (key_file != NULL);
   g_return_if_fail (list != NULL || length == 0);
 
-  value_list = g_string_sized_new (length * 128);
-  for (i = 0; i < length && list[i] != NULL; i++)
-  {
-    char *value;
-
-    value = geda_keyfile_parse_string_as_value (key_file, list[i], TRUE);
-    g_string_append (value_list, value);
-    g_string_append_c (value_list, key_file->list_separator);
-
-    GEDA_FREE (value);
+  if (!GEDA_IS_KEYFILE(key_file)) {
+    geda_keyfile_not_valid(__func__, key_file);
   }
+  else {
 
-  geda_keyfile_set_value (key_file, group_name, key, value_list->str);
-  g_string_free (value_list, TRUE);
+    GString *value_list;
+    unsigned int  i;
+
+    value_list = g_string_sized_new (length * 128);
+
+    for (i = 0; i < length && list[i] != NULL; i++) {
+
+      char *value;
+
+      value = geda_keyfile_parse_string_as_value (key_file, list[i], TRUE);
+      g_string_append (value_list, value);
+      g_string_append_c (value_list, key_file->list_separator);
+
+      GEDA_FREE (value);
+    }
+
+    geda_keyfile_set_value (key_file, group_name, key, value_list->str);
+    g_string_free (value_list, TRUE);
+  }
 }
 
 /*!
@@ -1882,18 +1920,25 @@ geda_keyfile_set_locale_string (GedaKeyFile *key_file,
                                 const char  *locale,
                                 const char  *string)
 {
-  char *full_key, *value;
+  if (!GEDA_IS_KEYFILE(key_file)) {
+    geda_keyfile_not_valid(__func__, key_file);
+  }
+  else {
 
-  g_return_if_fail (key_file != NULL);
-  g_return_if_fail (key != NULL);
-  g_return_if_fail (locale != NULL);
-  g_return_if_fail (string != NULL);
+    char *full_key, *value;
 
-  value = geda_keyfile_parse_string_as_value (key_file, string, FALSE);
-  full_key = geda_sprintf ("%s[%s]", key, locale);
-  geda_keyfile_set_value (key_file, group_name, full_key, value);
-  GEDA_FREE (full_key);
-  GEDA_FREE (value);
+    g_return_if_fail (key != NULL);
+    g_return_if_fail (locale != NULL);
+    g_return_if_fail (string != NULL);
+
+    value    = geda_keyfile_parse_string_as_value (key_file, string, FALSE);
+    full_key = geda_sprintf ("%s[%s]", key, locale);
+
+    geda_keyfile_set_value (key_file, group_name, full_key, value);
+
+    GEDA_FREE (full_key);
+    GEDA_FREE (value);
+  }
 }
 
 /*!
@@ -1917,25 +1962,27 @@ geda_keyfile_set_locale_string (GedaKeyFile *key_file,
  * \returns a newly allocated string or %NULL if the specified
  *          key cannot be found.
  */
-char *
+char*
 geda_keyfile_get_locale_string (GedaKeyFile *key_file,
                                 const char  *group_name,
                                 const char  *key,
                                 const char  *locale,
                                 GError      **error)
 {
-  char   *candidate_key, *translated_value;
-  GError *key_file_error;
-  char  **languages;
-  int i;
+  char *candidate_key, *translated_value;
+  char **languages;
+  int    i;
 
-  g_return_val_if_fail (key_file != NULL, NULL);
+  if (!GEDA_IS_KEYFILE(key_file)) {
+    geda_keyfile_not_valid(__func__, key_file);
+    return NULL;
+  }
+
   g_return_val_if_fail (group_name != NULL, NULL);
   g_return_val_if_fail (key != NULL, NULL);
 
   candidate_key = NULL;
   translated_value = NULL;
-  key_file_error = NULL;
 
 #if GLIB_CHECK_VERSION(2, 28, 0)
 
@@ -2017,20 +2064,25 @@ geda_keyfile_get_locale_string (GedaKeyFile *key_file,
  *          if the key isn't found. The string array should be freed
  *          with g_strfreev().
  */
-char **
-geda_keyfile_get_locale_string_list (GedaKeyFile *key_file,
-                                     const char  *group_name,
-                                     const char  *key,
-                                     const char  *locale,
-                                     unsigned int   *length,
+char**
+geda_keyfile_get_locale_string_list (GedaKeyFile  *key_file,
+                                     const char   *group_name,
+                                     const char   *key,
+                                     const char   *locale,
+                                     unsigned int *length,
                                      GError      **error)
 {
-  GError *key_file_error;
-  char **values, *value;
-  char list_separator[2];
+  GError  *key_file_error;
+  char   **values, *value;
+  char     list_separator[2];
+
   unsigned int  len;
 
-  g_return_val_if_fail (key_file != NULL, NULL);
+  if (!GEDA_IS_KEYFILE(key_file)) {
+    geda_keyfile_not_valid(__func__, key_file);
+    return NULL;
+  }
+
   g_return_val_if_fail (group_name != NULL, NULL);
   g_return_val_if_fail (key != NULL, NULL);
 
@@ -2052,8 +2104,10 @@ geda_keyfile_get_locale_string_list (GedaKeyFile *key_file,
   }
 
   len = strlen (value);
-  if (value[len - 1] == key_file->list_separator)
+
+  if (value[len - 1] == key_file->list_separator) {
     value[len - 1] = '\0';
+  }
 
   list_separator[0] = key_file->list_separator;
   list_separator[1] = '\0';
@@ -2092,31 +2146,37 @@ geda_keyfile_set_locale_string_list (GedaKeyFile        *key_file,
                                      const char * const  list[],
                                      unsigned int         length)
 {
-  GString *value_list;
-  char    *full_key;
-  unsigned int  i;
-
-  g_return_if_fail (key_file != NULL);
   g_return_if_fail (key != NULL);
   g_return_if_fail (locale != NULL);
   g_return_if_fail (length != 0);
 
-  value_list = g_string_sized_new (length * 128);
-  for (i = 0; i < length && list[i] != NULL; i++) {
-
-    char *value;
-
-    value = geda_keyfile_parse_string_as_value (key_file, list[i], TRUE);
-    g_string_append (value_list, value);
-    g_string_append_c (value_list, key_file->list_separator);
-
-    GEDA_FREE (value);
+  if (!GEDA_IS_KEYFILE(key_file)) {
+    geda_keyfile_not_valid(__func__, key_file);
   }
+  else {
 
-  full_key = geda_sprintf ("%s[%s]", key, locale);
-  geda_keyfile_set_value (key_file, group_name, full_key, value_list->str);
-  GEDA_FREE (full_key);
-  g_string_free (value_list, TRUE);
+    GString *value_list;
+    char    *full_key;
+    unsigned int  i;
+
+    value_list = g_string_sized_new (length * 128);
+
+    for (i = 0; i < length && list[i] != NULL; i++) {
+
+      char *value;
+
+      value = geda_keyfile_parse_string_as_value (key_file, list[i], TRUE);
+      g_string_append (value_list, value);
+      g_string_append_c (value_list, key_file->list_separator);
+
+      GEDA_FREE (value);
+    }
+
+    full_key = geda_sprintf ("%s[%s]", key, locale);
+    geda_keyfile_set_value (key_file, group_name, full_key, value_list->str);
+    GEDA_FREE (full_key);
+    g_string_free (value_list, TRUE);
+  }
 }
 
 /*!
@@ -2144,13 +2204,19 @@ geda_keyfile_get_boolean (GedaKeyFile *key_file,
                           const char  *key,
                           GError      **error)
 {
-  GError *key_file_error = NULL;
-  char *value;
-  bool bool_value;
+  GError *key_file_error;
+  char   *value;
+  bool    bool_value;
 
-  g_return_val_if_fail (key_file != NULL, FALSE);
   g_return_val_if_fail (group_name != NULL, FALSE);
   g_return_val_if_fail (key != NULL, FALSE);
+
+  if (!GEDA_IS_KEYFILE(key_file)) {
+    geda_keyfile_not_valid(__func__, key_file);
+    return FALSE;
+  }
+
+  key_file_error = NULL;
 
   value = geda_keyfile_get_value (key_file, group_name, key, &key_file_error);
 
@@ -2201,13 +2267,19 @@ geda_keyfile_set_boolean (GedaKeyFile *key_file,
                           const char  *key,
                           bool         value)
 {
-  char *result;
+  if (!GEDA_IS_KEYFILE(key_file)) {
+    geda_keyfile_not_valid(__func__, key_file);
+  }
+  else {
 
-  g_return_if_fail (key_file != NULL);
+    char *result;
 
-  result = geda_keyfile_parse_boolean_as_value (key_file, value);
-  geda_keyfile_set_value (key_file, group_name, key, result);
-  GEDA_FREE (result);
+    result = geda_keyfile_parse_boolean_as_value (key_file, value);
+
+    geda_keyfile_set_value (key_file, group_name, key, result);
+
+    GEDA_FREE (result);
+  }
 }
 
 /*!
@@ -2231,7 +2303,7 @@ geda_keyfile_set_boolean (GedaKeyFile *key_file,
  *          if the key was not found or could not be parsed. The returned list
  *          of booleans should be freed with GEDA_FREE() when no longer needed.
  */
-bool *
+bool*
 geda_keyfile_get_boolean_list (GedaKeyFile  *key_file,
                                const char   *group_name,
                                const char   *key,
