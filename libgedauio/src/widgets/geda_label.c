@@ -3455,7 +3455,7 @@ geda_label_set_markup_internal (GedaLabel  *label,
  * g_free (markup);
  * ]|
  * \endcode>
-
+ *
  * \param [in] label  The GedaLabel object
  * \param [in] str    a markup string
  *
@@ -3487,6 +3487,16 @@ void geda_label_set_markup (GedaLabel *label, const char *str)
  *
  *  The mnemonic key can be used to activate another widget, chosen
  *  automatically, or explicitly using geda_label_set_mnemonic_widget().
+ *
+ * \code
+ * |[
+ * char *markup;
+ *
+ * markup = g_strdup_printf ("&lt;span style=\"italic\"&gt;%s&lt;/span&gt;", str);
+ * geda_label_set_markup_with_mnemonic (GEDA_LABEL (label), markup);
+ * g_free (markup);
+ * ]|
+ * \endcode>
  *
  *  \param [in] label  The GedaLabel object
  *  \param [in] str    The a markup string
