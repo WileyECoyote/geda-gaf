@@ -201,6 +201,27 @@ check_accessors ()
 
   geda_label_set_attributes (label, attrs);
 
+  /* -------------------- set_markup property -------------------- */
+
+  const char *gnu = "gnu";
+  char *markup;
+
+  markup = g_strdup_printf ("<span font=\"14\" color=\"red\">"
+                            "<b>\tRed: %s</b>"
+                            "</span>", gnu);
+
+  geda_label_set_markup(label, NULL);
+
+  geda_label_set_markup (GEDA_LABEL (label), markup);
+  g_free (markup);
+
+  text = geda_label_get_label(label);
+
+  if (!strstr(text, "Red: gnu")) {
+    fprintf(stderr, "FAILED: line <%d> set_markup <%s>\n", __LINE__, text);
+    result++;
+  }
+
   /* -------------------- use_markup property -------------------- */
 
   geda_label_widget_set_use_markup (widget, FALSE);

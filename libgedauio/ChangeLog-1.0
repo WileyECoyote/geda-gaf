@@ -3,6 +3,8 @@
     * src/widgets/geda_label.c: Replace example with a "working" example in
       comments.
 
+    * tests/test_label.c: Add check for geda_label_set_markup.
+
 2017-02-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_image_menu_item.c: Check geda_image_menu_item_get_use_stock
