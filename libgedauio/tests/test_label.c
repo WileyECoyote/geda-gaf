@@ -203,7 +203,7 @@ check_accessors ()
 
   /* -------------------- set_markup property -------------------- */
 
-  const char *gnu = "gnu";
+  const char *gnu = "Gnu";
   char *markup;
 
   markup = g_strdup_printf ("<span font=\"14\" color=\"red\">"
@@ -212,12 +212,12 @@ check_accessors ()
 
   geda_label_set_markup(label, NULL);
 
-  geda_label_set_markup (GEDA_LABEL (label), markup);
+  geda_label_set_markup (label, markup);
   g_free (markup);
 
   text = geda_label_get_label(label);
 
-  if (!strstr(text, "Red: gnu")) {
+  if (!strstr(text, "Red: Gnu")) {
     fprintf(stderr, "FAILED: line <%d> set_markup <%s>\n", __LINE__, text);
     result++;
   }
@@ -275,7 +275,9 @@ check_accessors ()
 
   /* geda_label_set_markup_with_mnemonic */
 
-  geda_label_set_markup_with_mnemonic(label, "_Gnu");
+  markup = g_strdup_printf ("&lt;span style=\"italic\"&gt;_%s&lt;/span&gt;", gnu);
+
+  geda_label_set_markup_with_mnemonic(label, markup);
 
   mnemonic_keyval = geda_label_get_mnemonic_keyval(label);
 
@@ -524,7 +526,7 @@ check_accessors ()
     fprintf(stderr, "FAILED: %s line <%d> select start %d\n", TWIDGET, __LINE__, start);
     result++;
   }
-  else if (end - 3) {
+  else if (end - 4) {
     fprintf(stderr, "FAILED: %s line <%d> select end %d\n", TWIDGET, __LINE__, end);
     result++;
   }
