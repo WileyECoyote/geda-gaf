@@ -2265,7 +2265,7 @@ GtkWidget* geda_label_new (const char *str)
  *
  * \return the new #GedaLabel
  */
-GtkWidget* geda_mnemonic_label_new (const char *str)
+GtkWidget *geda_mnemonic_label_new (const char *str)
 {
   GedaLabel *label;
 
@@ -3450,7 +3450,7 @@ geda_label_set_markup_internal (GedaLabel  *label,
  * |[
  * char *markup;
  *
- * markup = g_markup_printf_escaped ("&lt;span style=\"italic\"&gt;&percnt;s&lt;/span&gt;", str);
+ * markup = g_strdup_printf ("<span font=\"14\" color=\"red\"> <b>\tRed: %s</b> </span>", str);
  * geda_label_set_markup (GEDA_LABEL (label), markup);
  * g_free (markup);
  * ]|
