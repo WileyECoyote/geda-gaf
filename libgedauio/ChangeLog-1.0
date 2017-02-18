@@ -4,7 +4,8 @@
       comments and add similar example for geda_label_set_markup_with_mnemonic.
 
     * tests/test_label.c: Add check for geda_label_set_markup. Revise checks
-      for geda_label_set_markup_with_mnemonic to use an actual "markup".
+      for geda_label_set_markup_with_mnemonic to use an actual "markup". Add
+      check for geda_label_set_mnemonic_text.
 
 2017-02-17 Wiley E. Hill <wileyhill@gmail.com>
 

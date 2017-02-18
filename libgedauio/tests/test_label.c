@@ -302,6 +302,17 @@ check_accessors ()
     result++;
   }
 
+  /* geda_label_set_mnemonic_text */
+
+  geda_label_set_mnemonic_text(label, "_Rhinoceros");
+
+  mnemonic_keyval = geda_label_get_mnemonic_keyval(label);
+
+  if (mnemonic_keyval != 114) { /* Lower case "R" */
+    fprintf(stderr, "FAILED: %s get_mnemonic_keyval <%d>\n", TWIDGET, mnemonic_keyval);
+    result++;
+  }
+
   /* -------------------- alignment -------------------- */
 
   float x_align;
