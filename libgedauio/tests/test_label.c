@@ -35,7 +35,9 @@
 #include <gtk/gtk.h>
 
 #include <geda/geda.h>
-#include <geda_label.h>
+
+#include <../include/geda_entry.h>
+#include <../include/geda_label.h>
 
 #include "test-suite.h"
 
@@ -310,6 +312,38 @@ check_accessors ()
 
   if (mnemonic_keyval != 114) { /* Lower case "R" */
     fprintf(stderr, "FAILED: %s get_mnemonic_keyval <%d>\n", TWIDGET, mnemonic_keyval);
+    result++;
+  }
+
+  /* ----------------- mnemonic_widget ----------------- */
+
+  GtkWidget *mw;
+
+  mw = geda_label_get_mnemonic_widget(label);
+
+  if (mw) {
+    fprintf(stderr, "FAILED: %s line <%d> get_mnemonic_widget\n", TWIDGET, __LINE__);
+    result++;
+  }
+
+  mw = geda_entry_new ();
+
+  geda_label_set_mnemonic_widget(label, mw);
+
+  if (geda_label_get_mnemonic_widget(label) != mw) {
+    fprintf(stderr, "FAILED: %s line <%d> set_mnemonic_widget\n", TWIDGET, __LINE__);
+    result++;
+  }
+
+  geda_label_set_mnemonic_widget(label, NULL);
+
+  g_object_ref_sink(mw); /* Sink reference to entry widget */
+  g_object_unref(mw);    /* Destroy the widget */
+
+  mw = geda_label_get_mnemonic_widget(label);
+
+  if (mw) {
+    fprintf(stderr, "FAILED: %s line <%d> get_mnemonic_widget\n", TWIDGET, __LINE__);
     result++;
   }
 
