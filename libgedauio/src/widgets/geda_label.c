@@ -2699,15 +2699,14 @@ geda_label_get_mnemonic_widget (GedaLabel *label)
 /*!
  * \brief geda_label_set_mnemonic_widget
  * \par Function Description
- * If the label has been set so that it has an mnemonic key (using
- * i.e. geda_label_set_markup_with_mnemonic(),
- * geda_label_set_mnemonic_text(), geda_mnemonic_label_new()
- * or the "use_underline" property) the label can be associated with a
- * widget that is the target of the mnemonic. When the label is inside
- * a widget (like a GtkButton or a GtkNotebook tab) it is
- * automatically associated with the correct widget, but sometimes
- * (i.e. when the target is a GtkEntry next to the label) you need to
- * set it explicitly using this function.
+ * If the label has been set so that it has an mnemonic key (using i.e.
+ * geda_label_set_markup_with_mnemonic(), geda_label_set_mnemonic_text(),
+ * geda_mnemonic_label_new() or the "use_underline" property) the label
+ * can be associated with a widget that is the target of the mnemonic.
+ * When the label is inside of a widget (like a GtkButton or a GtkNotebook
+ * tab) it is automatically associated with the correct widget, but some
+ * times the target needs to be set explicitly using this function (i.e.
+ * when the target is a GedaEntry next to the label).
  *
  * The target widget will be accelerated by emitting the
  * GtkWidget::mnemonic-activate signal on it. The default handler for
@@ -2978,8 +2977,7 @@ geda_label_widget_set_alignment (GtkWidget *widget, float xalign, float yalign)
  * geda_label_set_attributes(), if any. This function does
  * not reflect attributes that come from the labels markup
  * (see geda_label_set_markup()). If you want to get the
- * effective attributes for the label, use
- * pango_layout_get_attribute (geda_label_get_layout (label)).
+ * effective attributes use geda_label_get_effective_attributes.
  *
  * \param [in] label  The GedaLabel object
  *
@@ -3031,6 +3029,14 @@ geda_label_set_attributes (GedaLabel *label, PangoAttrList *attrs)
   g_object_notify (G_OBJECT (label), "attributes");
 }
 
+
+PangoAttrList *geda_label_get_effective_attributes (GedaLabel *label)
+{
+  g_return_val_if_fail (GEDA_IS_LABEL(label), NULL);
+
+  return pango_layout_get_attributes (geda_label_get_layout (label));
+}
+
 /*!
  * \brief geda_label_set_label
  * \par Function Description
@@ -3069,7 +3075,7 @@ geda_label_set_label (GedaLabel *label, const char *str)
  * \returns the text of the label widget. This string is owned
  *          by the widget and must not be modified or freed.
  */
-const char *
+const char*
 geda_label_get_label (GedaLabel *label)
 {
   g_return_val_if_fail (GEDA_IS_LABEL(label), NULL);
@@ -5878,7 +5884,7 @@ geda_label_get_selection_bounds (GedaLabel  *label, int *start, int *end)
  *
  * \returns the PangoLayout for this label
  */
-PangoLayout* geda_label_get_layout (GedaLabel *label)
+PangoLayout *geda_label_get_layout (GedaLabel *label)
 {
   g_return_val_if_fail (GEDA_IS_LABEL(label), NULL);
 

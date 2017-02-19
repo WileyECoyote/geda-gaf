@@ -139,6 +139,7 @@ void           geda_label_widget_set_alignment      (GtkWidget      *widget,
 PangoAttrList *geda_label_get_attributes            (GedaLabel      *label);
 void           geda_label_set_attributes            (GedaLabel      *label,
                                                      PangoAttrList  *attrs);
+PangoAttrList *geda_label_get_effective_attributes  (GedaLabel      *label);
 
 void           geda_label_set_label                 (GedaLabel      *label,
                                                      const char     *str);
