@@ -1,6 +1,8 @@
 2017-02-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_label.c: Add geda_label_get_effective_attributes.
+      Add function documentation for geda_label_mnemonics_visible_apply_
+      recursively.
 
     * tests/test_label.c: Add minimalist checks for geda_label_set_pattern
       and geda_label_get_effective_attributes.

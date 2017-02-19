@@ -2512,6 +2512,20 @@ label_mnemonics_visible_traverse_container (GtkWidget *widget,
   geda_label_mnemonics_visible_apply_recursively (widget, mnemonics_visible);
 }
 
+/*!
+ * \brief Get the Mnemonic Character from the GedaLabel Text
+ * \par Function Description
+ *  Applies the visibility setting given by \a mnemonics_visible to
+ *  the label widget if \a widget is a label. If the widget object is
+ *  a container then the setting is applied to all sub-object of
+ *  \a widget.
+ *
+ * \param [in] label             Pointer to a GedaLabel object
+ * \param [in] mnemonics_visible Visible if TRUE, otherwise FALSE
+ *
+ * \internal
+ * Called by geda_menu_shell_update_mnemonics()
+ */
 void
 geda_label_mnemonics_visible_apply_recursively (GtkWidget *widget,
                                                 bool       mnemonics_visible)
