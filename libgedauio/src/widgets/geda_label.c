@@ -2692,6 +2692,23 @@ geda_label_set_mnemonic_text (GedaLabel *label, const char *str)
 }
 
 /*!
+ * \brief Retrieve the GedaLabel mnemonic_visible property
+ * \par Function Description
+ *  Retrieves the current mnemonic_visible setting.
+ *
+ * \param [in] label The GedaLabel object
+ *
+ * \returns Boolean value if the mnemonic visible setting.
+ */
+bool
+geda_label_get_mnemonic_visible (GedaLabel *label)
+{
+  g_return_val_if_fail (GEDA_IS_LABEL(label), 0);
+
+  return label->priv->mnemonics_visible;
+}
+
+/*!
  * \brief geda_label_get_mnemonic_widget
  * \par Function Description
  *  Retrieves the target of the mnemonic (keyboard shortcut) of this
