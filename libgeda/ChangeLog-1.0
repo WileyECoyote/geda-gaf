@@ -1,5 +1,7 @@
 2017-02-18 Wiley E. Hill <wileyhill@gmail.com>
 
+    * po/es.po: Update Spanish translations.
+
     * src/geda/geda_keyfile.c: Utilize GEDA_IS_KEYFILE in functions:
 
             * geda_keyfile_set_value
