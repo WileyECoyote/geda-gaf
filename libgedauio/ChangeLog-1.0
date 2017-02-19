@@ -2,6 +2,9 @@
 
     * src/widgets/geda_label.c: Add geda_label_get_effective_attributes.
 
+    * tests/test_label.c: Add minimalist checks for geda_label_set_pattern
+      and geda_label_get_effective_attributes.
+
 2017-02-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_label.c: Replace example with a "working" example in

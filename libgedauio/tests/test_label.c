@@ -509,7 +509,7 @@ check_accessors ()
   wrap_mode = geda_label_get_line_wrap_mode (label);
 
   if (wrap_mode != PANGO_WRAP_WORD) { /* Default value is PANGO_WRAP_WORD */
-    fprintf(stderr, "FAILED:  %s line <%d> default wrap mode %d\n", TWIDGET, __LINE__, wrap_mode);
+    fprintf(stderr, "FAILED: %s line <%d> default wrap mode %d\n", TWIDGET, __LINE__, wrap_mode);
     result++;
   }
 
@@ -518,21 +518,34 @@ check_accessors ()
   wrap_mode = geda_label_get_line_wrap_mode (label);
 
   if (wrap_mode != PANGO_WRAP_CHAR) {
-    fprintf(stderr, "FAILED:  %s line <%d> set wrap mode %d\n", TWIDGET, __LINE__, wrap_mode);
+    fprintf(stderr, "FAILED: %s line <%d> set wrap mode %d\n", TWIDGET, __LINE__, wrap_mode);
+    result++;
+  }
+
+  /* -------------------- set_pattern -------------------- */
+
+  geda_label_set_label(label, "FooBarBaz");
+
+  geda_label_set_pattern(label, "___   ___");
+
+  attrs = geda_label_get_effective_attributes (label);
+
+  if (!attrs) {
+    fprintf(stderr, "FAILED: %s line <%d> set_pattern\n", TWIDGET, __LINE__);
     result++;
   }
 
   /* -------------------- selectable -------------------- */
 
   if (geda_label_widget_get_selectable (widget)) { /* Default value is FALSE */
-    fprintf(stderr, "FAILED:  %s line <%d> default selectable\n", TWIDGET, __LINE__);
+    fprintf(stderr, "FAILED: %s line <%d> default selectable\n", TWIDGET, __LINE__);
     result++;
   }
 
   geda_label_widget_set_selectable (widget, TRUE);
 
   if (!geda_label_widget_get_selectable (widget)) {
-    fprintf(stderr, "FAILED:  %s line <%d> set selectable\n", TWIDGET, __LINE__);
+    fprintf(stderr, "FAILED: %s line <%d> set selectable\n", TWIDGET, __LINE__);
     result++;
   }
 
