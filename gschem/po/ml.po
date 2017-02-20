@@ -3186,52 +3186,55 @@ msgstr ""
 
 #: gschem/src/x/x_multiattrib.c:2617
 msgid "pins"
-msgstr ""
+msgstr "കുറ്റി"
 
 #: gschem/src/x/x_multiattrib.c:2621
-#, fuzzy
 msgid "pin"
-msgstr "പിന്‍"
+msgstr "മൊട്ടുസൂചി"
 
 #: gschem/src/x/x_multiattrib.c:2632
 msgid "nets"
 msgstr ""
 
 #: gschem/src/x/x_multiattrib.c:2636
-#, fuzzy
 msgid "net"
-msgstr "നെറ്റ്"
+msgstr "വല"
 
 #: gschem/src/x/x_multiattrib.c:2647
 msgid "buses"
 msgstr ""
 
+# multi-conductor
 #: gschem/src/x/x_multiattrib.c:2651
-#, fuzzy
 msgid "bus"
-msgstr "ബസ്"
+msgstr "മൾട്ടി-കണ്ടക്ടർ"
 
+# attributes
 #: gschem/src/x/x_multiattrib.c:2662
 msgid "attributes"
-msgstr ""
+msgstr "ഗുണവിശേഷങ്ങൾ"
 
+# attribute
 #: gschem/src/x/x_multiattrib.c:2666
 msgid "attribute"
-msgstr ""
+msgstr "ആട്രിബ്യൂട്ട്"
 
+# Move Up
 #: gschem/src/x/x_pagesel.c:592
 msgid "Move Up"
-msgstr ""
+msgstr "സ്ഥിതി മെച്ചപ്പെടുത്തുക"
 
+# Move Down
 #: gschem/src/x/x_pagesel.c:593
-#, fuzzy
 msgid "Move Down"
-msgstr "താള്"
+msgstr "താഴേക്ക് നീക്കുക"
 
+# New Blank
 #: gschem/src/x/x_pagesel.c:595
 msgid "New Blank"
-msgstr ""
+msgstr "പുതിയ ശൂന്യമായ"
 
+# New Page
 #: gschem/src/x/x_pagesel.c:596 gschem/scheme/gschem/builtins.scm:308
 msgid "New Page"
 msgstr "പുതിയ പേജ്"
@@ -5042,13 +5045,15 @@ msgstr "അവസാന പേജ്"
 msgid "Print Page"
 msgstr "പ്രിന്റ് പേജ്"
 
+# Revert Changes
 #: gschem/scheme/gschem/builtins.scm:314
 msgid "Revert Changes"
 msgstr ""
 
+# Restore All
 #: gschem/scheme/gschem/builtins.scm:317
 msgid "Revert All"
-msgstr ""
+msgstr "എല്ലാ പുനഃസ്ഥാപിക്കുക"
 
 #: gschem/scheme/gschem/builtins.scm:335
 msgid "Up Hierarchy"
