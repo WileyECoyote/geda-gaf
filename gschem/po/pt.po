@@ -1040,29 +1040,27 @@ msgid "Paste %d Mode"
 msgstr "Modo pegar %d"
 
 #: gschem/src/iface/i_status.c:186
-#, fuzzy
 msgid "First point?"
-msgstr "Ponto da grelha"
+msgstr "Primeiro ponto?"
 
 #: gschem/src/iface/i_status.c:188
-#, fuzzy
 msgid "Second point?"
-msgstr "Destino da ligação"
+msgstr "Segundo ponto?"
 
+# Project Mode
 #: gschem/src/iface/i_status.c:190
-#, fuzzy
 msgid "Project Mode"
-msgstr "Modo Ligação"
+msgstr "Modo de projeto"
 
+# Select lines to extend
 #: gschem/src/iface/i_status.c:192
-#, fuzzy
 msgid "Select Projectiles"
-msgstr "Objectos seleccionados"
+msgstr "Selecione as linhas a serem estendidas"
 
+# Select Object
 #: gschem/src/iface/i_status.c:194
-#, fuzzy
 msgid "Select Object"
-msgstr "Objectos seleccionados"
+msgstr "Selecionar Objeto"
 
 #: gschem/src/iface/i_status.c:243
 msgid "Show Hidden"
@@ -1097,7 +1095,7 @@ msgstr "Fechar Página\n"
 #: gschem/src/iface/i_window.c:173
 #, c-format
 msgid "Set page <%s> active.\n"
-msgstr ""
+msgstr "Definir página <%s> ativa.\n"
 
 #: gschem/src/iface/i_window.c:198
 msgid "Really revert page?"
@@ -1109,14 +1107,13 @@ msgid "An error occurred while processing request to revert"
 msgstr "Ocorreu um erro durante o processamento da solicitação para reverter"
 
 #: gschem/src/iface/i_window.c:258
-#, fuzzy
 msgid "<b>File error.</b>"
-msgstr "<b>Âmbito</b>"
+msgstr "<b>Erro de arquivo.</b>"
 
+# Revert failed
 #: gschem/src/iface/i_window.c:258
-#, fuzzy
 msgid "Revert failed"
-msgstr "Reverter pagina realmente?"
+msgstr "Reverter falhou"
 
 # Error encountered during file operation
 #: gschem/src/iface/i_window.c:265
