@@ -688,6 +688,40 @@ check_accessors ()
 }
 
 int
+check_methods ()
+{
+  const char *func;
+
+  int result = 0;
+
+  GtkWidget *widget = geda_mnemonic_label_new("Horses");
+  GedaLabel *label  = GEDA_LABEL(widget);
+
+  /* -------  mnemonics_visible_apply_recursively ------ */
+
+  func = "mnemonics_visible_apply_recursively";
+
+  geda_label_mnemonics_visible_apply_recursively(widget, FALSE);
+
+  if (geda_label_get_mnemonic_visible(label)) {
+    fprintf(stderr, "FAILED: %s line <%d> %s\n", TWIDGET, __LINE__, func);
+    result++;
+  }
+
+  geda_label_mnemonics_visible_apply_recursively(widget, TRUE);
+
+  if (!geda_label_get_mnemonic_visible(label)) {
+    fprintf(stderr, "FAILED: %s line <%d> %s\n", TWIDGET, __LINE__, func);
+    result++;
+  }
+
+  g_object_ref_sink(widget); /* Sink reference to entry widget */
+  g_object_unref(widget);    /* Destroy the widget */
+
+  return result;
+}
+
+int
 main (int argc, char *argv[])
 {
   int result = 0;
@@ -709,13 +743,21 @@ main (int argc, char *argv[])
       result++;
     }
 
-   if (!result) {
+    if (!result) {
 
       if (setjmp(point) == 0) {
         result = check_accessors();
       }
       else {
         fprintf(stderr, "Caught signal checking accessors in %s\n\n", MUT);
+        return 1;
+      }
+
+      if (setjmp(point) == 0) {
+        result = check_methods();
+      }
+      else {
+        fprintf(stderr, "Caught signal checking methods in %s\n\n", MUT);
         return 1;
       }
     }
