@@ -301,10 +301,10 @@ msgstr ""
 msgid "Grid Mode"
 msgstr "Modo de cuadrícula"
 
+# Sets the Grid Mode to display on the status bar
 #: gschem/src/base/gschem_status_bar.c:598
-#, fuzzy
 msgid "Sets the Grid Mode to display on the status bar"
-msgstr "Establece el modo Gride para que aparezca en la barra de estado"
+msgstr "Establece el modo de cuadrícula para mostrar en la barra de estado"
 
 #: gschem/src/base/gschem_status_bar.c:607
 msgid "Grid Size"
@@ -565,19 +565,19 @@ msgstr "No se puede abrir la URI"
 msgid "Found invalid gschem window smob ~S"
 msgstr "Se encontró `smob' de ventana de gschem inválido ~S"
 
+# current value of
 #: gschem/src/iface/i_command.c:132 gschem/src/iface/i_command.c:5025
-#, fuzzy
 msgid "current value of"
-msgstr "Hoja actual"
+msgstr "valor actual de"
 
 #: gschem/src/iface/i_command.c:132 gschem/src/iface/i_command.c:5026
 msgid "is"
 msgstr ""
 
+# Processing Action
 #: gschem/src/iface/i_command.c:368
-#, fuzzy
 msgid "Processing Action"
-msgstr "transformación"
+msgstr "Acción de procesamiento"
 
 #: gschem/src/iface/i_command.c:475
 msgid "Cannot"
@@ -773,10 +773,10 @@ msgstr ""
 msgid "On"
 msgstr "Abrir"
 
+# Drag-Can-Move is now
 #: gschem/src/iface/i_command.c:4421
-#, fuzzy
 msgid "Drag-Can-Move is now"
-msgstr "Modo ayuda _magnética a la conexión"
+msgstr "arrastrar puede moverse ahora"
 
 #: gschem/src/iface/i_command.c:4433
 msgid "Action feedback mode set to OUTLINE\n"
@@ -1274,9 +1274,8 @@ msgid "Undo/Redo disabled\n"
 msgstr "¡Deshacer/Rehacer deshabilitado en el fichero rc!\n"
 
 #: gschem/src/object/o_undo.c:550
-#, fuzzy
 msgid "<b>Undo error.</b>"
-msgstr "<b>Ámbito</b>"
+msgstr "<b>Deshacer error</b>"
 
 #: gschem/src/object/o_undo.c:550
 msgid "Undo failed"
@@ -1542,34 +1541,31 @@ msgstr "Pantalla"
 msgid "World"
 msgstr "Mundo"
 
+# Could not load image file
 #: gschem/src/x/x_dialog.c:437
-#, fuzzy
 msgid "Could not load image file"
-msgstr "No se pudo abrir el archivo"
+msgstr "No se pudo cargar el archivo de imagen"
 
 #: gschem/src/x/x_dialog.c:443
-#, fuzzy
 msgid "gEDA: GPL Electronic Design Automation"
 msgstr "gEDA: Automatización de Diseño Electrónico GPL"
 
 #: gschem/src/x/x_dialog.c:444
 msgid "glibc"
-msgstr ""
+msgstr "glibc"
 
 #: gschem/src/x/x_dialog.c:445
 msgid "Guile"
-msgstr ""
+msgstr "Guile"
 
 #: gschem/src/x/x_dialog.c:455
-#, fuzzy
 msgid ""
 "Copyright © 1998-2017 Ales Hvezda <ahvezda@geda.seul.org>\n"
 "Copyright © 1998-2017 gEDA Contributors (see ChangeLog for details)"
 msgstr ""
-"\n"
-"Todos los derechos reservados © 1998-2016 Ales Hvezda <ahvezda@geda.seul."
+"Todos los derechos reservados © 1998-2017 Ales Hvezda <ahvezda@geda.seul."
 "org>\n"
-"Todos los derechos reservados © 1998-2016 Contribuyentes de gEDA (revisar el "
+"Todos los derechos reservados © 1998-2017 Contribuyentes de gEDA (revisar el "
 "ChangeLog para más detalles)"
 
 #: gschem/src/x/x_dialog.c:464 gschem/scheme/gschem/builtins.scm:565
@@ -2067,14 +2063,15 @@ msgid "Done, renderer is down"
 msgstr ""
 
 #: gschem/src/x/x_edit_attrib.c:210
-#, fuzzy, c-format
+#, c-format
 msgid "invalid show option; defaulting to show both\n"
 msgstr ""
 "Se ha recibido una opción de mostrar no válida; mostrando ambos por defecto\n"
 
+# Select to choose an attribute visibility options
 #: gschem/src/x/x_edit_attrib.c:321
 msgid "Select to choose an attribute visibility options"
-msgstr ""
+msgstr "Seleccione para elegir las opciones de visibilidad de un atributo"
 
 #: gschem/src/x/x_edit_attrib.c:322
 msgid "Show only the name of the attribute"
@@ -2420,9 +2417,8 @@ msgid "Number of slots:"
 msgstr ""
 
 #: gschem/src/x/x_edit_slot.c:199
-#, fuzzy
 msgid "Slot number:"
-msgstr "Editar número de elemento:"
+msgstr "número de elemento:"
 
 #: gschem/src/x/x_edit_text.c:234
 msgid "Upper Left"
@@ -2472,16 +2468,15 @@ msgstr "<b>Contenido del texto</b>"
 msgid "<b>Text Properties</b>"
 msgstr "<b>Propiedades del texto</b>"
 
+# Text input field
 #: gschem/src/x/x_edit_text.c:590
-#, fuzzy
 msgid "Text input field"
-msgstr "Texto a encontrar:"
+msgstr "Campo de entrada de texto"
 
-# Text Alignment Attribute
+# Text alignment combobox
 #: gschem/src/x/x_edit_text.c:594
-#, fuzzy
 msgid "Text alignment combobox"
-msgstr "Atributo de alineación de texto"
+msgstr "Combinación de alineación de texto"
 
 #: gschem/src/x/x_edit_text.c:598
 msgid "Color options menu"
@@ -3379,10 +3374,10 @@ msgstr "Seleccionar archivo PostScript..."
 msgid "exported to"
 msgstr ""
 
+# Load the selected session
 #: gschem/src/x/x_sessions.c:414
-#, fuzzy
 msgid "Load the selected session"
-msgstr "Objetos seleccionados"
+msgstr "Cargar la sesión seleccionada"
 
 #: gschem/src/x/x_sessions.c:415
 msgid ""
@@ -3606,10 +3601,10 @@ msgstr ""
 msgid "Close Window canceled\n"
 msgstr "_Cerrar ventana\n"
 
+# Loading file
 #: gschem/src/x/x_window.c:767
-#, fuzzy
 msgid "Loading file"
-msgstr "Cargando esquema"
+msgstr "Cargando archivo"
 
 #: gschem/src/x/x_window.c:911
 msgid "New file"
@@ -3619,10 +3614,10 @@ msgstr "Nuevo archivo"
 msgid "Failed to load file"
 msgstr "Error al cargar el archivo"
 
+# Creating new file
 #: gschem/src/x/x_window.c:983
-#, fuzzy
 msgid "Creating new file"
-msgstr "Fallo al insertar el contenido del portapapeles"
+msgstr "Crear nuevo archivo"
 
 #: gschem/src/x/x_window.c:996
 msgid "Path"
@@ -3722,10 +3717,10 @@ msgstr ""
 msgid "Re_vert All"
 msgstr "¿Seguro que quiere recargar la página?"
 
+# Discard changes and reload all open documents
 #: gschem/etc/system-gschemrc.scm:2062
-#, fuzzy
 msgid "Discard changes and reload all open documents"
-msgstr "Descartar los cambios y volver a cargar los documentos actuales"
+msgstr "Descartar los cambios y volver a cargar todos los documentos abiertos"
 
 #: gschem/etc/system-gschemrc.scm:2065
 msgid "_Print..."
@@ -3843,10 +3838,10 @@ msgstr "Rotar"
 msgid "Snap to _grid"
 msgstr "Modo Centrar"
 
+# Snap selection to current grid
 #: gschem/etc/system-gschemrc.scm:2100
-#, fuzzy
 msgid "Snap selection to current grid"
-msgstr "Ajustar objetos a la cuadrícula actual"
+msgstr "Ajustar a cuadrícula de selección actual"
 
 #: gschem/etc/system-gschemrc.scm:2103
 msgid "_Array"
@@ -4426,7 +4421,7 @@ msgstr "Cambiar v_isibilidad"
 
 #: gschem/etc/system-gschemrc.scm:2280
 msgid "Toggle attribute visibility"
-msgstr "Cambiar v_isibilidad"
+msgstr "Alternar la visibilidad de atributos"
 
 #: gschem/etc/system-gschemrc.scm:2281
 msgid "_Reset Position"
