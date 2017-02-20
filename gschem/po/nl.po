@@ -4819,30 +4819,27 @@ msgid "Toggle _Rubberband"
 msgstr "Schakel D_raad Elastiekband"
 
 #: gschem/etc/system-gschemrc.scm:2322
-#, fuzzy
 msgid "Toggle rubberband net mode"
-msgstr "Schakel D_raad Elastiekband"
+msgstr "Toggle elastisch netbinding"
 
 #: gschem/etc/system-gschemrc.scm:2323
 msgid "Toggle _Magnetic Net"
-msgstr "Schakel _Magnetische Draad Mode"
+msgstr "Schakel _Magnetische Draad"
 
 #: gschem/etc/system-gschemrc.scm:2323
-#, fuzzy
 msgid "Toggle magnetic net mode"
 msgstr "Schakel _Magnetische Draad Mode"
 
+# Toggle Dragging Moves
 #: gschem/etc/system-gschemrc.scm:2324
-#, fuzzy
 msgid "Toggle _Drag Move"
-msgstr "Schakel _Magnetische Draad Mode"
+msgstr "Schakel Slepen"
 
 #: gschem/etc/system-gschemrc.scm:2324
 msgid "Toggle Drag-can-Move mode"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2325
-#, fuzzy
 msgid "Toggle _Outline-Box"
 msgstr "Schakel C_ontour/Rechthoek"
 
@@ -4851,14 +4848,12 @@ msgid "Toggle action feedback"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2326
-#, fuzzy
 msgid "Toggle _Auto-Pan"
-msgstr "Schakel D_raad Elastiekband"
+msgstr "Schakel Automatische panning"
 
 #: gschem/etc/system-gschemrc.scm:2326
-#, fuzzy
 msgid "Toggle auto panning mode"
-msgstr "Schakel _Magnetische Draad Mode"
+msgstr "Schakel Automatische panning mode"
 
 #: gschem/etc/system-gschemrc.scm:2329
 msgid "_Text Size..."
@@ -4877,7 +4872,6 @@ msgid "Open the Preferences dialog"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2339
-#, fuzzy
 msgid "Gschem Guide"
 msgstr "gschem Gebruikers Gids"
 
@@ -4930,9 +4924,8 @@ msgid "_Edit"
 msgstr "B_ewerk"
 
 #: gschem/etc/system-gschemrc.scm:2369
-#, fuzzy
 msgid "_Select"
-msgstr "Selecteer"
+msgstr "_Selecteer"
 
 #: gschem/etc/system-gschemrc.scm:2371
 msgid "_View"
@@ -4951,9 +4944,8 @@ msgid "Sessio_ns"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2375
-#, fuzzy
 msgid "Attri_butes"
-msgstr "Attributen"
+msgstr "Attri_buten"
 
 #: gschem/etc/system-gschemrc.scm:2376
 msgid "_Tools"
@@ -4992,10 +4984,10 @@ msgstr "Opslaan Als"
 msgid "Save All"
 msgstr "Alles Opslaan"
 
+# Save Modified
 #: gschem/scheme/gschem/builtins.scm:65
-#, fuzzy
 msgid "Save Modified"
-msgstr "Verplaats Mode"
+msgstr "Opslaan gewijzigd"
 
 #: gschem/scheme/gschem/builtins.scm:68
 msgid "Print"
@@ -5022,14 +5014,12 @@ msgid "Quit"
 msgstr "Stoppen"
 
 #: gschem/scheme/gschem/builtins.scm:89
-#, fuzzy
 msgid "Export Symbol"
-msgstr "Naar Symbool"
+msgstr "Export Symbool"
 
 #: gschem/scheme/gschem/builtins.scm:92
-#, fuzzy
 msgid "Export Picture"
-msgstr "Component/Afbeelding Insluiten"
+msgstr "export picture"
 
 #: gschem/scheme/gschem/builtins.scm:98
 msgid "Undo"
@@ -5047,15 +5037,15 @@ msgstr "Kopieer Mode"
 msgid "Multiple Copy Mode"
 msgstr "Meervoudige Kopieer Mode"
 
+# Offset selection
 #: gschem/scheme/gschem/builtins.scm:119
-#, fuzzy
 msgid "Offset selection"
-msgstr "Selectie"
+msgstr "compenseren Selectie"
 
+# Snap to Grid => Align to Grid
 #: gschem/scheme/gschem/builtins.scm:128
-#, fuzzy
 msgid "Snap to Grid"
-msgstr "Schakel Snap Modus"
+msgstr "Uitlijnen op raster"
 
 #: gschem/scheme/gschem/builtins.scm:131
 msgid "Create Array"
@@ -5066,14 +5056,12 @@ msgid "Edit..."
 msgstr "Bewerk..."
 
 #: gschem/scheme/gschem/builtins.scm:140
-#, fuzzy
 msgid "Edit Arc"
-msgstr "Bewerk Kleur"
+msgstr "Bewerk Arc"
 
 #: gschem/scheme/gschem/builtins.scm:143
-#, fuzzy
 msgid "Edit Object"
-msgstr "Bewerk Tekst"
+msgstr "Objectbewerking"
 
 #: gschem/scheme/gschem/builtins.scm:146
 msgid "Edit Text"
@@ -5091,20 +5079,19 @@ msgstr "Bewerk Pen Type"
 msgid "Choose Slot"
 msgstr "Kies Slot"
 
+# Invert Selection
 #: gschem/scheme/gschem/builtins.scm:176
-#, fuzzy
 msgid "Invert Selection"
-msgstr "Selectie"
+msgstr "Omkeren Selectie"
 
 #: gschem/scheme/gschem/builtins.scm:179
-#, fuzzy
 msgid "Select Last"
-msgstr "Selecteer"
+msgstr "Selecteer Laatste"
 
+# Deselect mode
 #: gschem/scheme/gschem/builtins.scm:182
-#, fuzzy
 msgid "Deselect mode"
-msgstr "Selectie Mode"
+msgstr "Hef de selectie mode"
 
 #: gschem/scheme/gschem/builtins.scm:197
 msgid "Cut"
