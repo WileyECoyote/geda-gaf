@@ -2449,23 +2449,25 @@ msgstr "<b>Texte</b>"
 msgid "<b>Text Properties</b>"
 msgstr "<b>Propriétés du texte</b>"
 
+# Text input field
 #: gschem/src/x/x_edit_text.c:590
-#, fuzzy
 msgid "Text input field"
-msgstr "Texte à rechercher :"
+msgstr "Champ de saisie du texte"
 
+# Text alignment combobox
 #: gschem/src/x/x_edit_text.c:594
-#, fuzzy
 msgid "Text alignment combobox"
-msgstr "Éditeur d'attributs"
+msgstr "Combinaison d'alignement de texte"
 
+# Color options menu
 #: gschem/src/x/x_edit_text.c:598
 msgid "Color options menu"
-msgstr ""
+msgstr "Menu des options de couleur"
 
+# Font selector button
 #: gschem/src/x/x_edit_text.c:602
 msgid "Font selector button"
-msgstr ""
+msgstr "Bouton Sélecteur de polices"
 
 # Text rotation angle Spinner input
 #: gschem/src/x/x_edit_text.c:606
@@ -2515,30 +2517,40 @@ msgid ""
 "\n"
 "Do you want to load the backup file?"
 msgstr ""
+"Si vous chargez le fichier d'origine, le fichier de sauvegarde sera écrasé  "
+"au prochain délai d'attente automatique et sera perdu.\n"
+"\n"
+"Voulez-vous charger le fichier de sauvegarde?"
 
+# Warning, Error reading image file
 #: gschem/src/x/x_icons.c:251
 msgid "Warning, Error reading image file"
-msgstr ""
+msgstr "Avertissement, Erreur lors de la lecture du fichier image"
 
+# Warning, Error accessing image file
 #: gschem/src/x/x_icons.c:252
 msgid "Warning, Error accessing image file"
-msgstr ""
+msgstr "Avertissement, Erreur lors de l'accès au fichier image"
 
+# Shutting down icon factory
 #: gschem/src/x/x_icons.c:424
 msgid "Shutting down icon factory\n"
-msgstr ""
+msgstr "Fermeture usine icône\n"
 
+# Initializing icon factory
 #: gschem/src/x/x_icons.c:445
 msgid "Initializing icon factory\n"
-msgstr ""
+msgstr "Initialisation icône usine\n"
 
+# Click to select size of the image to be created
 #: gschem/src/x/x_image.c:114
 msgid "Click to select size of the image to be created"
-msgstr ""
+msgstr "Cliquez pour sélectionner la taille de l'image à créer"
 
+# Click to select the type of image to be created
 #: gschem/src/x/x_image.c:188
 msgid "Click to select the type of image to be created"
-msgstr ""
+msgstr "Cliquez pour sélectionner le type d'image à créer"
 
 #: gschem/src/x/x_image.c:212
 msgid "Encapsulated Postscript"
@@ -2683,7 +2695,7 @@ msgstr ""
 
 #: gschem/src/x/x_menus.c:103 gschem/src/x/x_menus.c:154
 msgid "Extents"
-msgstr "/Agrandissement auto"
+msgstr "Agrandissement auto"
 
 #: gschem/src/x/x_menus.c:103 gschem/src/x/x_menus.c:154
 #: gschem/etc/system-gschemrc.scm:2185
@@ -4370,25 +4382,28 @@ msgstr "Attribut détaché"
 msgid "Show _Value"
 msgstr "Afficher la _valeur"
 
+# Set selected value visible
 #: gschem/etc/system-gschemrc.scm:2276
 msgid "Set selected value visible"
-msgstr ""
+msgstr "Définir la valeur sélectionnée"
 
 #: gschem/etc/system-gschemrc.scm:2277
 msgid "Show _Name"
 msgstr "Afficher le _nom"
 
+# Set selected name visible
 #: gschem/etc/system-gschemrc.scm:2277
 msgid "Set selected name visible"
-msgstr ""
+msgstr "Définir le nom sélectionné visible"
 
 #: gschem/etc/system-gschemrc.scm:2278
 msgid "Show _Both"
 msgstr "Afficher les _deux"
 
+# Set selected name and value visible
 #: gschem/etc/system-gschemrc.scm:2278
 msgid "Set selected name and value visible"
-msgstr ""
+msgstr "Définir le nom et la valeur sélectionnés visibles"
 
 #: gschem/etc/system-gschemrc.scm:2280
 msgid "_Toggle Visibility"
@@ -4396,15 +4411,16 @@ msgstr "_Inverser la visibilité"
 
 #: gschem/etc/system-gschemrc.scm:2280
 msgid "Toggle attribute visibility"
-msgstr "_Inverser la visibilité"
+msgstr "Basculer la visibilité des attributs"
 
 #: gschem/etc/system-gschemrc.scm:2281
 msgid "_Reset Position"
 msgstr "Destination"
 
+# Restore attribute positions and orientation
 #: gschem/etc/system-gschemrc.scm:2281
 msgid "Restore attribute positions and orientation"
-msgstr ""
+msgstr "Restaurer les positions et l'orientation des attributs"
 
 #: gschem/etc/system-gschemrc.scm:2283
 msgid "_Find Specific Text..."
@@ -4473,11 +4489,12 @@ msgstr "Lancer une Macro"
 
 #: gschem/etc/system-gschemrc.scm:2301
 msgid "G_uile Path..."
-msgstr ""
+msgstr "G_uile chemin..."
 
+# View or manage Guile path
 #: gschem/etc/system-gschemrc.scm:2301
 msgid "View or manage guile path"
-msgstr ""
+msgstr "Afficher ou gérer le chemin Guile"
 
 #: gschem/etc/system-gschemrc.scm:2305 gschem/scheme/gschem/builtins.scm:451
 msgid "Embed Component/Picture"
@@ -4499,49 +4516,55 @@ msgstr "Débarquer le composant/l'image"
 msgid "Update Component"
 msgstr "Mise à jour du composant"
 
+# Reload definition of selected component
 #: gschem/etc/system-gschemrc.scm:2307
 msgid "Reload definition of selected component"
-msgstr ""
+msgstr "Recharger la définition du composant sélectionné"
 
 #: gschem/etc/system-gschemrc.scm:2315
 msgid "Cycle _grid styles"
 msgstr "Cycle styles de _grilles"
 
+# Toggle grid between Dot, Mesh and Off
 #: gschem/etc/system-gschemrc.scm:2315
 msgid "Toggle grid between Dot, Mesh and Off"
-msgstr ""
+msgstr "Toggle grid entre Dot, Mesh et Off"
 
 #: gschem/etc/system-gschemrc.scm:2316
 msgid "Scale _up Grid Spacing"
 msgstr "_Augmenter l'espacement de la grille"
 
+# Increase the snap size
 #: gschem/etc/system-gschemrc.scm:2316
 msgid "Increase the snap size"
-msgstr ""
+msgstr "Augmenter la taille du snap"
 
 #: gschem/etc/system-gschemrc.scm:2317
 msgid "Scale _down Grid Spacing"
 msgstr "_Diminuer l'espacement de la grile"
 
+# Decrease the snap size
 #: gschem/etc/system-gschemrc.scm:2317
 msgid "Decrease the snap size"
-msgstr ""
+msgstr "Diminuer la taille du snap"
 
 #: gschem/etc/system-gschemrc.scm:2318
 msgid "S_nap Grid Spacing..."
 msgstr "Espacement de le grille de Snap..."
 
+# Adjust snap size
 #: gschem/etc/system-gschemrc.scm:2318
 msgid "Adjust snap size"
-msgstr ""
+msgstr "Ajuster la taille du snap"
 
 #: gschem/etc/system-gschemrc.scm:2321
 msgid "Toggle _Snap On-Off"
 msgstr "Basculer _Snap On/Off"
 
+# Toggle the object snap mode
 #: gschem/etc/system-gschemrc.scm:2321
 msgid "Toggle the object snap mode"
-msgstr ""
+msgstr "Basculer le mode d'accrochage d'objets"
 
 #: gschem/etc/system-gschemrc.scm:2322
 msgid "Toggle _Rubberband"
