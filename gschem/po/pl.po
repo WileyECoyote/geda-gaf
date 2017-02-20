@@ -2559,24 +2559,25 @@ msgstr "<b>Treść tekstu</b>"
 msgid "<b>Text Properties</b>"
 msgstr "<b>Właściwości tekstu</b>"
 
+# Text input field
 #: gschem/src/x/x_edit_text.c:590
-#, fuzzy
 msgid "Text input field"
-msgstr "Szukany tekst:"
+msgstr "pole wprowadzania tekstu"
 
-# Text Alignment Attribute
+# Text Alignment combobox
 #: gschem/src/x/x_edit_text.c:594
-#, fuzzy
 msgid "Text alignment combobox"
-msgstr "Wyrównanie tekstu Atrybut"
+msgstr "Tekst wyrównanie combobox"
 
+# Color options menu
 #: gschem/src/x/x_edit_text.c:598
 msgid "Color options menu"
-msgstr ""
+msgstr "Menu Opcje kolorów"
 
+# Font selector button
 #: gschem/src/x/x_edit_text.c:602
 msgid "Font selector button"
-msgstr ""
+msgstr "Przycisk czcionki selektor"
 
 # Text rotation angle Spinner input
 #: gschem/src/x/x_edit_text.c:606
@@ -2615,10 +2616,10 @@ msgstr "Sobrescrever"
 msgid "Overwrite file?"
 msgstr "Zastąpić plik?"
 
+# Save canceled on user request
 #: gschem/src/x/x_fileselect.c:336
-#, fuzzy
 msgid "Save canceled on user request\n"
-msgstr "Zapis anulowany na życzenie użytkownika\n"
+msgstr "Zapisz anulowana na żądanie użytkownika\n"
 
 #: gschem/src/x/x_fileselect.c:475
 msgid ""
@@ -2726,64 +2727,63 @@ msgstr ""
 msgid "Select"
 msgstr "Zaznaczanie"
 
+# Activate Select mode
 #: gschem/src/x/x_menus.c:86 gschem/etc/system-gschemrc.scm:2120
-#, fuzzy
 msgid "Activate Select mode"
-msgstr "Tryb zaznaczania"
+msgstr "Aktywuj Tryb zaznaczania"
 
+# Add
 #: gschem/src/x/x_menus.c:90
-#, fuzzy
 msgid "Add"
-msgstr "_Dodaj"
+msgstr "Dodaj"
 
+# Add modes
 #: gschem/src/x/x_menus.c:90
-#, fuzzy
 msgid "Add modes"
-msgstr "Dodaj element..."
+msgstr "Dodaj tryby"
 
+# Add net
 #: gschem/src/x/x_menus.c:91 gschem/etc/system-gschemrc.scm:2239
-#, fuzzy
 msgid "Add net"
-msgstr "Dodaj połączenie"
+msgstr "Dodaj netto"
 
+# Attribute
 #: gschem/src/x/x_menus.c:92
-#, fuzzy
 msgid "Attribute..."
-msgstr "_Atrybut..."
+msgstr "Atrybut..."
 
+# Add attribute
 #: gschem/src/x/x_menus.c:92 gschem/etc/system-gschemrc.scm:2241
-#, fuzzy
 msgid "Add attribute"
 msgstr "Dodaj atrybut"
 
+# Component
 #: gschem/src/x/x_menus.c:93 gschem/src/x/x_menus.c:112
-#, fuzzy
 msgid "Component..."
-msgstr "_Element..."
+msgstr "Składnik..."
 
 #: gschem/src/x/x_menus.c:93 gschem/etc/system-gschemrc.scm:2238
 msgid "Insert a symbol from the component library"
 msgstr ""
 
+# Add multi-conductor
 #: gschem/src/x/x_menus.c:94 gschem/etc/system-gschemrc.scm:2240
-#, fuzzy
 msgid "Add bus"
-msgstr "Dodaj magistralę"
+msgstr "Dodaj wielożyłowy"
 
+# Add text
 #: gschem/src/x/x_menus.c:95 gschem/etc/system-gschemrc.scm:2242
-#, fuzzy
 msgid "Add text"
 msgstr "Dodaj tekst"
 
 #: gschem/src/x/x_menus.c:99
-#, fuzzy
 msgid "Zoom"
 msgstr "Powiększ"
 
+# Add operations
 #: gschem/src/x/x_menus.c:99
-#, fuzzy
 msgid "Add operations"
-msgstr "Linię"
+msgstr "Dodaj operacji"
 
 #: gschem/src/x/x_menus.c:100 gschem/src/x/x_menus.c:152
 msgid "In"
@@ -2795,9 +2795,8 @@ msgid "Increase the Zoom magnification"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:101 gschem/src/x/x_menus.c:153
-#, fuzzy
 msgid "Out"
-msgstr "Wy_tnij"
+msgstr "Na zewnątrz"
 
 #: gschem/src/x/x_menus.c:101 gschem/src/x/x_menus.c:153
 #: gschem/etc/system-gschemrc.scm:2187
@@ -2862,15 +2861,14 @@ msgstr "Kolor..."
 msgid "Open the Color Editor Dialog"
 msgstr ""
 
+# Open the Component Editor Dialog
 #: gschem/src/x/x_menus.c:112 gschem/etc/system-gschemrc.scm:2114
-#, fuzzy
 msgid "Open the Component Editor Dialog"
-msgstr "Edycja pojedyńczego atrybutu"
+msgstr "Otworzyć okno edytora komponent"
 
 #: gschem/src/x/x_menus.c:113
-#, fuzzy
 msgid "Pin type..."
-msgstr "Styl wypełnienia..."
+msgstr "Typ pin..."
 
 #: gschem/src/x/x_menus.c:113 gschem/etc/system-gschemrc.scm:2111
 msgid "Open the Pin Type Dialog"
