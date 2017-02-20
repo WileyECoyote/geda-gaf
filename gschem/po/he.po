@@ -3129,10 +3129,10 @@ msgstr ""
 msgid "Duplicate"
 msgstr ""
 
+# Copy to all
 #: gschem/src/x/x_multiattrib.c:1687
-#, fuzzy
 msgid "Copy to all"
-msgstr "העתק אל 1"
+msgstr "העתק לכל"
 
 #: gschem/src/x/x_multiattrib.c:2057 gschem/src/x/x_multiattrib.c:2583
 msgid "Edit Attributes"
@@ -3175,39 +3175,40 @@ msgstr "פין"
 msgid "nets"
 msgstr ""
 
+# net
 #: gschem/src/x/x_multiattrib.c:2636
-#, fuzzy
 msgid "net"
-msgstr "חיבור"
+msgstr "נֶטוֹ"
 
+# Multi-Conductor
 #: gschem/src/x/x_multiattrib.c:2647
 msgid "buses"
-msgstr ""
+msgstr "רב-מוליכים"
 
+# bus
 #: gschem/src/x/x_multiattrib.c:2651
-#, fuzzy
 msgid "bus"
-msgstr "אפיק"
+msgstr "רב-מוליך"
 
+# Characteristics
 #: gschem/src/x/x_multiattrib.c:2662
-#, fuzzy
 msgid "attributes"
-msgstr "מאפיינים"
+msgstr "תכונות"
 
+# attribute
 #: gschem/src/x/x_multiattrib.c:2666
-#, fuzzy
 msgid "attribute"
-msgstr "מאפיינים"
+msgstr "תְכוּנָה"
 
+# Move Up
 #: gschem/src/x/x_pagesel.c:592
-#, fuzzy
 msgid "Move Up"
-msgstr "מצב הזזה"
+msgstr "הזז למעלה"
 
+# Move Down
 #: gschem/src/x/x_pagesel.c:593
-#, fuzzy
 msgid "Move Down"
-msgstr "דף"
+msgstr "לרדת"
 
 #: gschem/src/x/x_pagesel.c:595
 msgid "New Blank"
@@ -3217,8 +3218,8 @@ msgstr ""
 msgid "New Page"
 msgstr "דף חדש"
 
+# Open Page
 #: gschem/src/x/x_pagesel.c:597
-#, fuzzy
 msgid "Open Page..."
 msgstr "פתח דף..."
 
@@ -3259,9 +3260,8 @@ msgid "Extents no margins"
 msgstr ""
 
 #: gschem/src/x/x_print.c:184
-#, fuzzy
 msgid "Current Window"
-msgstr "חלון חדש"
+msgstr "חלון נוכחי"
 
 #: gschem/src/x/x_print.c:217
 msgid "Landscape"
@@ -3319,10 +3319,10 @@ msgstr ""
 msgid "The log may contain more information."
 msgstr ""
 
+# Print Error
 #: gschem/src/x/x_print.c:795 gschem/src/x/x_print.c:1229
-#, fuzzy
 msgid "Print Error"
-msgstr "הדפס..."
+msgstr "שגיאתהדפסה"
 
 #: gschem/src/x/x_print.c:800
 msgid "Printed current schematic to"
@@ -3357,19 +3357,19 @@ msgstr ""
 msgid "Specify new name for Session:"
 msgstr ""
 
+# Select export file
 #: gschem/src/x/x_sessions.c:228
-#, fuzzy
 msgid "Select export file"
-msgstr "מצב בחירה"
+msgstr "קובץ הייצוא בחר"
 
 #: gschem/src/x/x_sessions.c:232
 msgid "exported to"
 msgstr ""
 
+# Load the selected session
 #: gschem/src/x/x_sessions.c:414
-#, fuzzy
 msgid "Load the selected session"
-msgstr "מצב בחירה"
+msgstr "טענת את הפגישה שנבחרה"
 
 #: gschem/src/x/x_sessions.c:415
 msgid ""
@@ -3432,10 +3432,10 @@ msgstr ""
 msgid "New Session"
 msgstr ""
 
+# Save Session As
 #: gschem/src/x/x_sessions.c:853 gschem/scheme/gschem/builtins.scm:389
-#, fuzzy
 msgid "Save Session As"
-msgstr "שמור הכל"
+msgstr "שמור מושב כפי"
 
 #: gschem/src/x/x_settings.c:359
 msgid "error opening"
@@ -3560,10 +3560,10 @@ msgstr ""
 msgid "Could not allocate a graphics context"
 msgstr ""
 
+# there is no current window
 #: gschem/src/x/x_window.c:110
-#, fuzzy
 msgid "there is no current window"
-msgstr "חלון חדש"
+msgstr "אין חלון נוכחי"
 
 #: gschem/src/x/x_window.c:119
 msgid "Could not create a Cairo context, is window drawable?\n"
@@ -3585,19 +3585,19 @@ msgstr ""
 msgid "Aborting action\n"
 msgstr ""
 
+# Close Window canceled
 #: gschem/src/x/x_window.c:681
-#, fuzzy
 msgid "Close Window canceled\n"
-msgstr "חלון חדש"
+msgstr "סגור חלון בוטל\n"
 
 #: gschem/src/x/x_window.c:767
 msgid "Loading file"
 msgstr ""
 
+# New file
 #: gschem/src/x/x_window.c:911
-#, fuzzy
 msgid "New file"
-msgstr "דף חדש"
+msgstr "קובץ חדש"
 
 #: gschem/src/x/x_window.c:953
 msgid "Failed to load file"
@@ -3607,10 +3607,10 @@ msgstr ""
 msgid "Creating new file"
 msgstr ""
 
+# Path
 #: gschem/src/x/x_window.c:996
-#, fuzzy
 msgid "Path"
-msgstr "מצב סיבוב 90"
+msgstr "נָתִיב"
 
 #: gschem/src/x/x_window.c:999
 msgid ""
@@ -3622,10 +3622,10 @@ msgstr ""
 msgid "Discarding page"
 msgstr ""
 
+# Closing
 #: gschem/src/x/x_window.c:1144
-#, fuzzy
 msgid "Closing"
-msgstr "סגור דף"
+msgstr "סְגִירָה"
 
 #: gschem/src/x/x_window.c:1209
 msgid "Could NOT save page"
@@ -3635,10 +3635,10 @@ msgstr ""
 msgid "Error while trying to save"
 msgstr ""
 
+# Saved as
 #: gschem/src/x/x_window.c:1225
-#, fuzzy
 msgid "Saved as"
-msgstr "שמור הכל"
+msgstr "לשמור כמו"
 
 #: gschem/data/geda-gschem.desktop.in:3
 msgid "gEDA Schematic Editor"
@@ -3680,8 +3680,8 @@ msgstr ""
 msgid "Save the current document to a new name or location"
 msgstr ""
 
+# Save All
 #: gschem/etc/system-gschemrc.scm:2059
-#, fuzzy
 msgid "Save A_ll"
 msgstr "שמור הכל"
 
@@ -3690,9 +3690,8 @@ msgid "Save all open documents"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2060
-#, fuzzy
 msgid "Save _Modified"
-msgstr "מצב הזזה"
+msgstr "שמור השתנה"
 
 #: gschem/etc/system-gschemrc.scm:2060
 msgid "Save all modified documents"
@@ -3706,10 +3705,10 @@ msgstr ""
 msgid "Discard changes and reload the current document"
 msgstr ""
 
+# Revert All -> Restore All
 #: gschem/etc/system-gschemrc.scm:2062
-#, fuzzy
 msgid "Re_vert All"
-msgstr "שמור הכל"
+msgstr "שחזר הכל"
 
 #: gschem/etc/system-gschemrc.scm:2062
 msgid "Discard changes and reload all open documents"
