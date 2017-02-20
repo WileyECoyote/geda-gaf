@@ -715,8 +715,56 @@ check_methods ()
     result++;
   }
 
-  g_object_ref_sink(widget); /* Sink reference to entry widget */
-  g_object_unref(widget);    /* Destroy the widget */
+  /* recursively */
+
+  GtkWidget *container = gtk_vbox_new (0,0);
+
+  GtkWidget *widget1 = geda_mnemonic_label_new("Clydesdale");
+  GtkWidget *widget2 = geda_mnemonic_label_new("Mustang");
+  GtkWidget *widget3 = geda_mnemonic_label_new("Thoroughbred");
+
+  gtk_container_add (GTK_CONTAINER(container), widget1);
+  gtk_container_add (GTK_CONTAINER(container), widget2);
+  gtk_container_add (GTK_CONTAINER(container), widget3);
+
+  geda_label_mnemonics_visible_apply_recursively(container, FALSE);
+
+  if (geda_label_get_mnemonic_visible((GedaLabel*)widget1)) {
+    fprintf(stderr, "FAILED: %s line <%d> %s\n", TWIDGET, __LINE__, func);
+    result++;
+  }
+
+  if (geda_label_get_mnemonic_visible((GedaLabel*)widget2)) {
+    fprintf(stderr, "FAILED: %s line <%d> %s\n", TWIDGET, __LINE__, func);
+    result++;
+  }
+
+  if (geda_label_get_mnemonic_visible((GedaLabel*)widget3)) {
+    fprintf(stderr, "FAILED: %s line <%d> %s\n", TWIDGET, __LINE__, func);
+    result++;
+  }
+
+    geda_label_mnemonics_visible_apply_recursively(container, TRUE);
+
+  if (!geda_label_get_mnemonic_visible((GedaLabel*)widget1)) {
+    fprintf(stderr, "FAILED: %s line <%d> %s\n", TWIDGET, __LINE__, func);
+    result++;
+  }
+
+  if (!geda_label_get_mnemonic_visible((GedaLabel*)widget2)) {
+    fprintf(stderr, "FAILED: %s line <%d> %s\n", TWIDGET, __LINE__, func);
+    result++;
+  }
+
+  if (!geda_label_get_mnemonic_visible((GedaLabel*)widget3)) {
+    fprintf(stderr, "FAILED: %s line <%d> %s\n", TWIDGET, __LINE__, func);
+    result++;
+  }
+
+  g_object_ref_sink(widget);    /* Sink reference to entry widget */
+  g_object_ref_sink(container); /* Sink reference to entry container */
+  g_object_unref(widget);       /* Destroy the widget */
+  g_object_unref(container);    /* Destroy the container */
 
   return result;
 }
