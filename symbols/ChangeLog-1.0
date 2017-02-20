@@ -1,3 +1,8 @@
+2017-02-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * microchip/memory/93LC56C-I-ST-1.sym: Add 93LC56C-I-SN symbol; 2K EEPROM,
+      8/16 Bit Serial, 2.5-5.5Volt, +125C.
+
 2017-02-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * lineartech/LT1054L-1.sym: Add symbol; LT1054L 125mA Voltage Converter
