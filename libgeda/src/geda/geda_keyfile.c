@@ -3860,23 +3860,25 @@ geda_keyfile_remove_key (GedaKeyFile *key_file,
   group = geda_keyfile_lookup_group (key_file, group_name);
 
   if (!group) {
-
-    g_set_error (error, GEDA_KEYFILE_ERROR,
-                 GEDA_KEYFILE_ERROR_GROUP_NOT_FOUND, "%s '%s'",
-                 _("Key file does not have group"),
+    if (error) {
+      g_set_error (error, GEDA_KEYFILE_ERROR,
+                   GEDA_KEYFILE_ERROR_GROUP_NOT_FOUND, "%s '%s'",
+                   _("Key file does not have group"),
                    group_name ? group_name : "(null)");
-                 return FALSE;
+    }
+    return FALSE;
   }
 
   pair = geda_keyfile_lookup_key_value_pair (key_file, group, key);
 
   if (!pair) {
-
-    g_set_error (error, GEDA_KEYFILE_ERROR,
-                 GEDA_KEYFILE_ERROR_KEY_NOT_FOUND,
-                 _("Key file does not have key '%s' in group '%s'"),
+    if (error) {
+      g_set_error (error, GEDA_KEYFILE_ERROR,
+                   GEDA_KEYFILE_ERROR_KEY_NOT_FOUND,
+                   _("Key file does not have key '%s' in group '%s'"),
                    key, group->name);
-                 return FALSE;
+    }
+    return FALSE;
   }
 
   group->key_value_pairs = g_list_remove (group->key_value_pairs, pair);
