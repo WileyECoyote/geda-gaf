@@ -4,8 +4,12 @@
       and geda_label_get_mnemonic_visible Add function documentation for
       geda_label_mnemonics_visible_apply_recursively.
 
-    * tests/test_label.c: Add minimalist checks for geda_label_set_pattern
-      and geda_label_get_effective_attributes.
+    * tests/test_label.c: Add minimalist checks for:
+
+        * geda_label_set_pattern
+        * geda_label_get_effective_attributes.
+        * geda_label_get_mnemonic_visible
+        * geda_label_get_current_uri
 
 2017-02-18 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -315,6 +315,13 @@ check_accessors ()
     result++;
   }
 
+  /* ----------------- mnemonic_visible ---------------- */
+
+  if (!geda_label_get_mnemonic_visible(label)) {
+    fprintf(stderr, "FAILED: %s line <%d> mnemonic_visible\n", TWIDGET, __LINE__);
+    result++;
+  }
+
   /* ----------------- mnemonic_widget ----------------- */
 
   GtkWidget *mw;
@@ -628,10 +635,21 @@ check_accessors ()
 
   if (!geda_label_get_single_line_mode (label)) {
     fprintf(stderr, "FAILED: %s line <%d> single_line_mode\n", TWIDGET, __LINE__);
+
+  }
+
+  /* ----------------------- uri ----------------------- */
+
+  const char *uri;
+
+  uri = geda_label_get_current_uri (label);
+
+  if (uri) {
+    fprintf(stderr, "FAILED: %s line <%d> uri=%s\n", TWIDGET, __LINE__, uri);
     result++;
   }
 
-  /* -------------------- track_links -------------------- */
+  /* ------------------- track_links ------------------- */
 
   geda_label_set_track_visited_links (label, FALSE);
 
