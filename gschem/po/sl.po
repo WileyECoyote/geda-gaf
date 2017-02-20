@@ -799,15 +799,15 @@ msgstr ""
 msgid "did not contain any accessible documents"
 msgstr ""
 
+# Sessions
 #: gschem/src/iface/i_sessions.c:791
-#, fuzzy
 msgid "Sessions"
-msgstr "Shrani vse"
+msgstr "seje"
 
+# Removing session
 #: gschem/src/iface/i_sessions.c:855
-#, fuzzy
 msgid "Removing session"
-msgstr "Shrani vse"
+msgstr "odstranjevanje sejo"
 
 #: gschem/src/iface/i_sessions.c:880
 msgid "Failed to remove session"
@@ -833,15 +833,15 @@ msgstr ""
 msgid "Creation failed"
 msgstr ""
 
+# Opened session
 #: gschem/src/iface/i_sessions.c:994
-#, fuzzy
 msgid "Opened session"
-msgstr "Shrani vse"
+msgstr "odprl zasedanje"
 
+# Renaming session
 #: gschem/src/iface/i_sessions.c:1043
-#, fuzzy
 msgid "Renaming session"
-msgstr "Shrani vse"
+msgstr "Preimenovanje seje"
 
 #: gschem/src/iface/i_sessions.c:1044
 msgid "to"
@@ -855,10 +855,10 @@ msgstr ""
 msgid "<b>Could not rename session</b>"
 msgstr ""
 
+# Created session
 #: gschem/src/iface/i_sessions.c:1105
-#, fuzzy
 msgid "Created session"
-msgstr "Shrani vse"
+msgstr "ustvaril seje"
 
 #: gschem/src/iface/i_sessions.c:1106
 msgid "with"
@@ -1053,10 +1053,10 @@ msgstr ""
 msgid "<b>File error.</b>"
 msgstr ""
 
+# Revert failed
 #: gschem/src/iface/i_window.c:258
-#, fuzzy
 msgid "Revert failed"
-msgstr "_Povrni"
+msgstr "Povrni ni uspelo"
 
 #: gschem/src/iface/i_window.c:265
 msgid "Error encountered during file operation"
@@ -2409,11 +2409,10 @@ msgstr ""
 msgid "Text input field"
 msgstr ""
 
-# Text Alignment Attribute
+# Text Alignment combobox
 #: gschem/src/x/x_edit_text.c:594
-#, fuzzy
 msgid "Text alignment combobox"
-msgstr "Besedilo Poravnava Lastnost"
+msgstr "Besedilo poravnavo kombinacijsko polje"
 
 #: gschem/src/x/x_edit_text.c:598
 msgid "Color options menu"
@@ -3030,10 +3029,10 @@ msgstr ""
 msgid "Could not open file"
 msgstr ""
 
+# Open
 #: gschem/src/x/x_menus.c:1877
-#, fuzzy
 msgid "Open"
-msgstr "_Odpri ..."
+msgstr "Odprto"
 
 #: gschem/src/x/x_menus.c:1886
 msgid "Remove"
@@ -3176,10 +3175,10 @@ msgstr ""
 msgid "New Page"
 msgstr ""
 
+# Open Page
 #: gschem/src/x/x_pagesel.c:597
-#, fuzzy
 msgid "Open Page..."
-msgstr "_Odpri ..."
+msgstr "Odpri stran..."
 
 #: gschem/src/x/x_pagesel.c:599
 msgid "Save Page"
@@ -3217,10 +3216,10 @@ msgstr ""
 msgid "Extents no margins"
 msgstr ""
 
+# Current Window
 #: gschem/src/x/x_print.c:184
-#, fuzzy
 msgid "Current Window"
-msgstr "Novo okno"
+msgstr "Trenutni okno"
 
 #: gschem/src/x/x_print.c:217
 msgid "Landscape"
@@ -3726,10 +3725,10 @@ msgstr "_Povrni"
 msgid "Discard changes and reload the current document"
 msgstr ""
 
+# Revert All => Restore All
 #: gschem/etc/system-gschemrc.scm:2062
-#, fuzzy
 msgid "Re_vert All"
-msgstr "_Povrni"
+msgstr "Povrni vse"
 
 #: gschem/etc/system-gschemrc.scm:2062
 msgid "Discard changes and reload all open documents"
@@ -3781,10 +3780,10 @@ msgstr "_Zapri"
 msgid "Close the current document"
 msgstr ""
 
+# Close All
 #: gschem/etc/system-gschemrc.scm:2075
-#, fuzzy
 msgid "Close All"
-msgstr "_Zapri"
+msgstr "Zapri vse"
 
 #: gschem/etc/system-gschemrc.scm:2075
 msgid "Close all open documents"
@@ -5087,20 +5086,20 @@ msgstr ""
 msgid "Add Picture"
 msgstr ""
 
+# Create New Session
 #: gschem/scheme/gschem/builtins.scm:380
-#, fuzzy
 msgid "Create New Session"
-msgstr "Shrani vse"
+msgstr "Ustvari novo sejo"
 
+# Open a Session
 #: gschem/scheme/gschem/builtins.scm:383
-#, fuzzy
 msgid "Open a Session"
-msgstr "Shrani vse"
+msgstr "Odprite sejo"
 
+# Save Session
 #: gschem/scheme/gschem/builtins.scm:386
-#, fuzzy
 msgid "Save Session"
-msgstr "Shrani vse"
+msgstr "Shrani sejo"
 
 #: gschem/scheme/gschem/builtins.scm:398
 msgid "Attach Attributes"
