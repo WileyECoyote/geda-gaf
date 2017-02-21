@@ -2698,7 +2698,9 @@ geda_label_set_mnemonic_text (GedaLabel *label, const char *str)
  *
  * \param [in] label The GedaLabel object
  *
- * \returns Boolean value if the mnemonic visible setting.
+ * \returns Boolean value of the mnemonic visible setting.
+ *
+ * \sa geda_label_mnemonics_visible_apply_recursively
  */
 bool
 geda_label_get_mnemonic_visible (GedaLabel *label)
