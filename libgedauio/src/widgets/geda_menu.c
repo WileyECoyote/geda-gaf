@@ -2241,23 +2241,6 @@ geda_menu_widget_set_accel_path (GtkWidget *menu, const char *accel_path)
   geda_menu_set_accel_path ((GedaMenu*)menu, accel_path);
 }
 
-static bool
-geda_menu_real_can_activate_accel (GtkWidget *widget, unsigned int signal_id)
-{
-  /* Menu items chain here to figure whether they can activate their
-   * accelerators.  Unlike ordinary widgets, menus allow accel
-   * activation even if invisible since that's the usual case for
-   * submenus/popup-menus. however, the state of the attach widget
-   * affects the "activeness" of the menu.
-   */
-  GtkWidget *awidget = geda_menu_get_attach_widget (GEDA_MENU (widget));
-
-  if (awidget)
-    return gtk_widget_can_activate_accel (awidget, signal_id);
-  else
-    return gtk_widget_is_sensitive (widget);
-}
-
 /*!
  * \brief Get the accelerator path
  * \par Function Description
@@ -2659,6 +2642,34 @@ geda_menu_set_title (GedaMenu *menu, const char *title)
   g_object_notify (G_OBJECT (menu), "tearoff-title");
 }
 
+
+GtkWidget*
+geda_menu_get_toplevel (GedaMenu *menu)
+{
+  GtkWidget *attach;
+  GtkWidget *toplevel;
+
+  attach = geda_menu_get_attach_widget (GEDA_MENU (menu));
+
+  if (GEDA_IS_MENU_ITEM (attach)) {
+    attach = attach->parent;
+  }
+
+  if (GEDA_IS_MENU (attach)) {
+    return geda_menu_get_toplevel (GEDA_MENU (attach));
+  }
+  else if (GTK_IS_WIDGET (attach)) {
+
+    toplevel = gtk_widget_get_toplevel (attach);
+
+    if (gtk_widget_is_toplevel (toplevel)) {
+      return toplevel;
+    }
+  }
+
+  return NULL;
+}
+
 /*!
  * \brief Get GedaMenu parent
  * \par Function Description
@@ -2689,33 +2700,6 @@ geda_menu_reorder_child (GedaMenu  *menu, GtkWidget *child, int position)
 
       menu_queue_resize (menu);
     }
-}
-
-
-GtkWidget*
-geda_menu_get_toplevel (GedaMenu *menu)
-{
-  GtkWidget *attach;
-  GtkWidget *toplevel;
-
-  attach = geda_menu_get_attach_widget (GEDA_MENU (menu));
-
-  if (GEDA_IS_MENU_ITEM (attach)) {
-    attach = attach->parent;
-  }
-
-  if (GEDA_IS_MENU (attach)) {
-    return geda_menu_get_toplevel (GEDA_MENU (attach));
-  }
-  else if (GTK_IS_WIDGET (attach)) {
-
-    toplevel = gtk_widget_get_toplevel (attach);
-    if (gtk_widget_is_toplevel (toplevel)) {
-      return toplevel;
-    }
-  }
-
-  return NULL;
 }
 
 static void
@@ -3551,6 +3535,23 @@ geda_menu_button_release (GtkWidget *widget, GdkEventButton *event)
   }
 
   return GTK_WIDGET_CLASS (geda_menu_parent_class)->button_release_event (widget, event);
+}
+
+static bool
+geda_menu_real_can_activate_accel (GtkWidget *widget, unsigned int signal_id)
+{
+  /* Menu items chain here to figure whether they can activate their
+   * accelerators.  Unlike ordinary widgets, menus allow accel
+   * activation even if invisible since that's the usual case for
+   * submenus/popup-menus. however, the state of the attach widget
+   * affects the "activeness" of the menu.
+   */
+  GtkWidget *awidget = geda_menu_get_attach_widget (GEDA_MENU (widget));
+
+  if (awidget)
+    return gtk_widget_can_activate_accel (awidget, signal_id);
+  else
+    return gtk_widget_is_sensitive (widget);
 }
 
 static bool
