@@ -2210,6 +2210,37 @@ geda_menu_widget_set_accel_group (GtkWidget *menu, GtkAccelGroup *accel_group)
   geda_menu_set_accel_group ((GedaMenu*)menu, accel_group);
 }
 
+/*!
+ * \brief Get the GedaMenu Widget accelerator path
+ * \par Function Description
+ *  Retrieves the accelerator path set on the menu widget.
+ *
+ * \param[in] menu: a valid #GedaMenu
+ *
+ * \returns accelerator path set on the menu.
+ */
+const char *
+geda_menu_widget_get_accel_path (GtkWidget *menu)
+{
+  return geda_menu_get_accel_path ((GedaMenu*)menu);
+}
+
+/*!
+ * \brief Sets the GedaMenu Widget accelerator path
+ * \par Function Description
+ *  Sets an accelerator path for this menu from which accelerator paths
+ *  for its immediate children, its menu items, can be constructed.
+ * \see geda_menu_set_accel_path.
+ *
+ * \param[in] menu        a valid #GedaMenu
+ * \param[in] accel_path  a valid accelerator path
+ */
+void
+geda_menu_widget_set_accel_path (GtkWidget *menu, const char *accel_path)
+{
+  geda_menu_set_accel_path ((GedaMenu*)menu, accel_path);
+}
+
 static bool
 geda_menu_real_can_activate_accel (GtkWidget *widget, unsigned int signal_id)
 {
