@@ -2642,7 +2642,15 @@ geda_menu_set_title (GedaMenu *menu, const char *title)
   g_object_notify (G_OBJECT (menu), "tearoff-title");
 }
 
-
+/*!
+ * \brief Get the Toplevel from a GedaMenu Object
+ * \par Function Description
+ *  Recursively ascends the menu structure until a non-menu
+ *  container is found and returns gtk_widget_get_toplevel
+ *  if this is a toplevel or NULL if no toplevel is found.
+ *
+ * \param[in] menu  GedaMenu
+ */
 GtkWidget*
 geda_menu_get_toplevel (GedaMenu *menu)
 {

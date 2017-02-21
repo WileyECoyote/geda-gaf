@@ -2,6 +2,7 @@
 
     * src/widgets/geda_menu.c: Add widget version for accel_path; geda_menu
       _widget_get_accel_path and accel_path geda_menu_widget_set_accel_path.
+      Minor organize module. Add Doxygen comments for geda_menu_get_toplevel.
 
     * tests/test_menu.c: Check widget versions of get/set accel_path instead
       of menu version. Make top_Window static to the module and add check for
