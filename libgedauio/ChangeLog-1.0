@@ -4,7 +4,8 @@
       _widget_get_accel_path and accel_path geda_menu_widget_set_accel_path.
 
     * tests/test_menu.c: Check widget versions of get/set accel_path instead
-      of menu version.
+      of menu version. Make top_Window static to the module and add check for
+      geda_menu_get_toplevel.
 
 2017-02-19 Wiley E. Hill <wileyhill@gmail.com>
 

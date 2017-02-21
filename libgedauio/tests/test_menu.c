@@ -89,23 +89,24 @@ int check_construction (void)
   return result;
 }
 
+static GtkWidget *top_Window;
+
 static GtkWidget *main_window()
 {
   GtkWidget *vbox;
-  GtkWidget *window;
   GtkWidget *menubar;
 
-  window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  top_Window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 
   vbox = gtk_vbox_new (FALSE, 0);
-  gtk_container_add (GTK_CONTAINER (window), vbox);
+  gtk_container_add (GTK_CONTAINER (top_Window), vbox);
   gtk_widget_show (vbox);
 
   menubar = geda_menu_bar_new ();
   gtk_box_pack_start (GTK_BOX (vbox), menubar, FALSE, TRUE, 0);
 
   gtk_widget_show (menubar);
-  gtk_widget_show (window);
+  gtk_widget_show (top_Window);
 
   return menubar;
 }
@@ -207,6 +208,19 @@ check_accessors ()
 
   if (strcmp(accel_path, "<trees>/Fruit")) {
     fprintf(stderr, "FAILED: line <%d> accel_path %s\n", __LINE__, accel_path);
+    result++;
+  }
+
+  GtkWidget *toplevel;
+
+  toplevel = geda_menu_get_toplevel(GEDA_MENU(menu));
+
+  if (!toplevel) {
+    fprintf(stderr, "FAILED: %s line <%d>\n", TWIDGET, __LINE__);
+    result++;
+  }
+  else if (toplevel != top_Window) {
+    fprintf(stderr, "FAILED: %s line <%d> <%p>\n", TWIDGET, __LINE__, toplevel);
     result++;
   }
 
