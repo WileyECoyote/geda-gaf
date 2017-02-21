@@ -3,6 +3,9 @@
     * src/widgets/geda_menu.c: Add widget version for accel_path; geda_menu
       _widget_get_accel_path and accel_path geda_menu_widget_set_accel_path.
 
+    * tests/test_menu.c: Check widget versions of get/set accel_path instead
+      of menu version.
+
 2017-02-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_label.c: Add geda_label_get_effective_attributes

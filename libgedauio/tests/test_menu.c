@@ -192,7 +192,7 @@ check_accessors ()
   const char *accel_path;
 
   /* Sets accelerator path on sub-menu items */
-  geda_menu_set_accel_path (GEDA_MENU(menu), "<trees>/Fruit");
+  geda_menu_widget_set_accel_path (menu, "<trees>/Fruit");
 
   /* Get the path from an item under the menu */
   accel_path = geda_menu_item_get_accel_path (GEDA_MENU_ITEM(widget1));
@@ -203,7 +203,7 @@ check_accessors ()
   }
 
   /* Get the path from the menu */
-  accel_path = geda_menu_get_accel_path (GEDA_MENU(menu));
+  accel_path = geda_menu_widget_get_accel_path (menu);
 
   if (strcmp(accel_path, "<trees>/Fruit")) {
     fprintf(stderr, "FAILED: line <%d> accel_path %s\n", __LINE__, accel_path);
