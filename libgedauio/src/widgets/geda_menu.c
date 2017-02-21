@@ -2259,13 +2259,13 @@ geda_menu_real_can_activate_accel (GtkWidget *widget, unsigned int signal_id)
 }
 
 /*!
- * \brief get the Tear-Off state
+ * \brief Get the accelerator path
  * \par Function Description
  *  Retrieves the accelerator path set on the menu.
  *
  * \param[in] menu: a valid #GedaMenu
  *
- * \returns: the accelerator path set on the menu.
+ * \returns accelerator path set on the menu.
  */
 const char *
 geda_menu_get_accel_path (GedaMenu *menu)
