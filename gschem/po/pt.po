@@ -15,6 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
 "X-Generator: Launchpad (build 16265)\n"
 
@@ -1142,21 +1143,21 @@ msgid "Translating schematic"
 msgstr "A converter esquema"
 
 #: gschem/src/object/o_delete.c:87
-#, fuzzy, c-format
+#, c-format
 msgid "Delete locked object?"
 msgid_plural "Delete %u locked objects?"
-msgstr[0] "Objectos seleccionados"
-msgstr[1] "Objectos seleccionados"
+msgstr[0] "Excluir objeto bloqueado?"
+msgstr[1] "Excluir %u trancado objetos?"
 
 # attributes were hidden
 #: gschem/src/object/o_edit.c:517
 msgid "attributes were hidden"
 msgstr "Atributos foram escondidos"
 
+# hidden attributes were revealed
 #: gschem/src/object/o_edit.c:521
-#, fuzzy
 msgid "hidden attributes were revealed"
-msgstr "Mostrar atributos inerentes"
+msgstr "Os atributos ocultos foram revelados"
 
 #: gschem/src/object/o_edit.c:717
 msgid "Hidden text is now visible\n"
@@ -1186,12 +1187,10 @@ msgid "Could not resolve which end of pin to connect\n"
 msgstr ""
 
 #: gschem/src/object/o_net.c:76
-#, fuzzy
 msgid "Warning: Starting net off grid coordinate\n"
 msgstr "Aviso: A iniciar ligação numa coordenada fora da grelha\n"
 
 #: gschem/src/object/o_net.c:485
-#, fuzzy
 msgid "Warning: Ending net off grid coordinate\n"
 msgstr "Aviso: A terminar ligação numa coordenada fora da grelha\n"
 
@@ -1201,14 +1200,15 @@ msgstr ""
 "Símbolo de ligação ao barramento não foi encontrado em nenhuma biblioteca de "
 "componentes"
 
+# Update All
 #: gschem/src/object/o_picture.c:357
-#, fuzzy
 msgid "Update All"
-msgstr "Actualizar"
+msgstr "Atualizar todos os"
 
+# Update all selected Picture images
 #: gschem/src/object/o_picture.c:359
 msgid "Update all selected Picture images"
-msgstr ""
+msgstr "Atualizar todas as imagens de imagem seleccionado"
 
 #: gschem/src/object/o_picture.c:397
 msgid "Failed to replace picture"
@@ -1231,9 +1231,8 @@ msgid "An unknown error occurred"
 msgstr ""
 
 #: gschem/src/object/o_picture.c:622
-#, fuzzy
 msgid "<b>Failed to load picture</b>"
-msgstr "Falha ao carregar imagem: %s"
+msgstr "<b>Falha ao carregar imagem</b>"
 
 #: gschem/src/object/o_picture.c:623
 msgid "Load failed"
@@ -1256,9 +1255,9 @@ msgid "Slotting not allowed for this component\n"
 msgstr "Não são permitidos múltiplos elementos para este componente\n"
 
 #: gschem/src/object/o_slot.c:136
-#, fuzzy, c-format
+#, c-format
 msgid "New slot number [%d], is out of range\n"
-msgstr "Novo numero de elemento fora de alcance\n"
+msgstr "Novo número de slot [%d], está fora do intervalo\n"
 
 #: gschem/src/object/o_undo.c:70
 msgid "Undo: using temporary directory specified on command-line"
@@ -1273,9 +1272,8 @@ msgid "<b>Auto switching Undo system to type Memory</b>\n"
 msgstr ""
 
 #: gschem/src/object/o_undo.c:117
-#, fuzzy
 msgid "Gschem Undo System"
-msgstr "gschem _Perguntas Frequentes..."
+msgstr "Gschem Sistema Voltar"
 
 #: gschem/src/object/o_undo.c:252
 msgid "Undo: encountered an error, file"
@@ -1300,9 +1298,8 @@ msgid "Undo/Redo disabled\n"
 msgstr "Desfazer/Refazer não activo\n"
 
 #: gschem/src/object/o_undo.c:550
-#, fuzzy
 msgid "<b>Undo error.</b>"
-msgstr "<b>Âmbito</b>"
+msgstr "<b>Desapertar erro.</b>"
 
 # Undo failed
 #: gschem/src/object/o_undo.c:550
@@ -1318,7 +1315,7 @@ msgstr ""
 "numeração de elementos\n"
 
 #: gschem/src/x/x_autonumber.c:615
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "duplicate slot may cause problems: [symbol name=%s, number=%d, slot=%d]\n"
 msgstr ""
@@ -1326,7 +1323,6 @@ msgstr ""
 "slot=%d]\n"
 
 #: gschem/src/x/x_autonumber.c:913
-#, fuzzy
 msgid "No search string given in autonumber text.\n"
 msgstr "Nenhuma frase de procura dada no texto de auto-numeração.\n"
 
@@ -1355,9 +1351,8 @@ msgid "File order"
 msgstr "Ordem de ficheiro"
 
 #: gschem/src/x/x_autonumber.c:1605
-#, fuzzy
 msgid "<b>Filter:</b>"
-msgstr "Filtro:"
+msgstr "<b>Filtro:</b>"
 
 #: gschem/src/x/x_autonumber.c:1646
 msgid "Selected objects"
@@ -1397,7 +1392,6 @@ msgid "Clipboard Insertion Failed"
 msgstr ""
 
 #: gschem/src/x/x_compselect.c:1257
-#, fuzzy
 msgid "Default is to reference the component"
 msgstr "Comportamento padrão - componente de referência"
 
@@ -1629,7 +1623,6 @@ msgid "Sets the default text font size."
 msgstr ""
 
 #: gschem/src/x/x_dialog.c:922
-#, fuzzy
 msgid "Arc Parameters"
 msgstr "Parâmetros do Arco"
 
@@ -1662,12 +1655,11 @@ msgid "Background"
 msgstr "Plano de fundo"
 
 #: gschem/src/x/x_dialog.c:1014
-#, fuzzy
 msgid "Pin"
-msgstr "_Pino"
+msgstr "Pino"
 
+# Connection destination
 #: gschem/src/x/x_dialog.c:1015
-#, fuzzy
 msgid "Net endpoint"
 msgstr "Destino da ligação"
 
