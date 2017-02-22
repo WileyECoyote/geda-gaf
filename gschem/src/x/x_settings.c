@@ -543,7 +543,7 @@ int generate_rc(GschemToplevel *w_current, const char *rcname)
   }
   else if ((output = fopen (outputfile, "w" )) == NULL) {
 
-    const char *log_msg = _("Error, opening output");
+    const char *log_msg = _("Error opening output");
 
     geda_log("%s: \"%s\", %s\n", log_msg, inputfile, strerror(errno));
     fclose(input);

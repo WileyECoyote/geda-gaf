@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-02-13 11:22-0600\n"
+"POT-Creation-Date: 2017-02-22 02:20-0600\n"
 "PO-Revision-Date: 2012-01-27 14:18+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
@@ -3429,7 +3429,7 @@ msgstr "Datoteka odprta samo za branje napak"
 
 # Error opening output
 #: gschem/src/x/x_settings.c:546
-msgid "Error, opening output"
+msgid "Error opening output"
 msgstr "Napaka, odpiranje izhod"
 
 # Wrote configuration to

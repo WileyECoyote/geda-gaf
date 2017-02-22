@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-02-13 11:22-0600\n"
+"POT-Creation-Date: 2017-02-22 02:20-0600\n"
 "PO-Revision-Date: 2012-01-31 12:08+0000\n"
 "Last-Translator: Antonio Augusto Todo Bom Neto <atodobom@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -3662,7 +3662,7 @@ msgstr ""
 
 # Error opening output
 #: gschem/src/x/x_settings.c:546
-msgid "Error, opening output"
+msgid "Error opening output"
 msgstr "Erro ao abrir a saída"
 
 # Wrote configuration to

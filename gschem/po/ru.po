@@ -3719,9 +3719,9 @@ msgstr ""
 msgid "File open for read-only error"
 msgstr ""
 
-# Error, opening output
+# Error opening output
 #: gschem/src/x/x_settings.c:546
-msgid "Error, opening output"
+msgid "Error opening output"
 msgstr "Ошибка при открытии выходной"
 
 # Wrote configuration to

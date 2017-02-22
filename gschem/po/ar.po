@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-02-13 11:22-0600\n"
+"POT-Creation-Date: 2017-02-22 02:20-0600\n"
 "PO-Revision-Date: 2016-12-23 15:41-0600\n"
 "Last-Translator: عبدالله شلي (Abdellah Chelli) <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -3428,7 +3428,7 @@ msgid "File open for read-only error"
 msgstr ""
 
 #: gschem/src/x/x_settings.c:546
-msgid "Error, opening output"
+msgid "Error opening output"
 msgstr "تحليل الأخطاء"
 
 #: gschem/src/x/x_settings.c:604
