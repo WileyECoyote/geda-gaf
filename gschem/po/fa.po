@@ -80,9 +80,10 @@ msgstr ""
 msgid "Exiting normal\n"
 msgstr ""
 
+# Parent Window
 #: gschem/src/base/gschem_dialog.c:563
 msgid "Parent Window"
-msgstr "New Window"
+msgstr "پنجره پدر و مادر"
 
 #: gschem/src/base/gschem_dialog.c:564
 msgid "Parent window for this dialog"
@@ -3124,79 +3125,96 @@ msgstr "Bus"
 
 #: gschem/src/x/x_multiattrib.c:2662
 msgid "attributes"
-msgstr "Attributes"
+msgstr "ویژگی های"
 
 #: gschem/src/x/x_multiattrib.c:2666
 msgid "attribute"
-msgstr "Attributes"
+msgstr "صفت"
 
+# Move Up
 #: gschem/src/x/x_pagesel.c:592
 msgid "Move Up"
-msgstr "Move Mode"
+msgstr "حرکت به بالا"
 
+# Move Down
 #: gschem/src/x/x_pagesel.c:593
 msgid "Move Down"
-msgstr "New Page"
+msgstr "حرکت به پایین"
 
+# New Blank => Empty new
 #: gschem/src/x/x_pagesel.c:595
 msgid "New Blank"
-msgstr ""
+msgstr "جدید خالی"
 
+# New Page
 #: gschem/src/x/x_pagesel.c:596 gschem/scheme/gschem/builtins.scm:308
 msgid "New Page"
-msgstr "New Page"
+msgstr "صفحه جدید"
 
+# Open Page
 #: gschem/src/x/x_pagesel.c:597
 msgid "Open Page..."
-msgstr "Open Page..."
+msgstr "باز کردن صفحه..."
 
+# Save Page
 #: gschem/src/x/x_pagesel.c:599
 msgid "Save Page"
-msgstr "Save Page"
+msgstr "صفحه را ذخیره کن"
 
+# Close Page
 #: gschem/src/x/x_pagesel.c:600 gschem/scheme/gschem/builtins.scm:320
 msgid "Close Page"
-msgstr "Close Page"
+msgstr "بستن صفحه"
 
+# Discard Page
 #: gschem/src/x/x_pagesel.c:601 gschem/scheme/gschem/builtins.scm:323
 msgid "Discard Page"
-msgstr ""
+msgstr "دور انداختن صفحه"
 
+# Page Management
 #: gschem/src/x/x_pagesel.c:1085 gschem/scheme/gschem/builtins.scm:287
 msgid "Page Manager"
-msgstr ""
+msgstr "صفحه مدیریت"
 
+# Changed
 #: gschem/src/x/x_pagesel.c:1175
 msgid "Changed"
-msgstr ""
+msgstr "تغییر کرد"
 
+# Select PostScript Filename.
 #: gschem/src/x/x_pagesel.c:1205
-msgid "Right click on rows for more options..."
-msgstr ""
+msgid "Select PostScript Filename...."
+msgstr "کلیک راست بر روی ردیف برای گزینه های بیشتر..."
 
+# Select PostScript Filename.
 #: gschem/src/x/x_print.c:90
 msgid "Select PostScript Filename..."
-msgstr ""
+msgstr "انتخاب کنید پستاسکریپت نام فایل..."
 
+# Extents with margins => Bounds with margins
 #: gschem/src/x/x_print.c:175
 msgid "Extents with margins"
-msgstr ""
+msgstr "مرزهای با حاشیه"
 
+# Extents no margins => Bounds no margins
 #: gschem/src/x/x_print.c:179
 msgid "Extents no margins"
-msgstr ""
+msgstr "مرزهای بدون حاشیه"
 
+# Current Window
 #: gschem/src/x/x_print.c:184
 msgid "Current Window"
-msgstr "New Window"
+msgstr "پنجره فعلی"
 
+# Landscape
 #: gschem/src/x/x_print.c:217
 msgid "Landscape"
-msgstr ""
+msgstr "چشم انداز"
 
+# Portrait
 #: gschem/src/x/x_print.c:223
 msgid "Portrait"
-msgstr ""
+msgstr "پرتره"
 
 #: gschem/src/x/x_print.c:484
 msgid "Print..."
@@ -4660,13 +4678,15 @@ msgstr ""
 msgid "Run Script"
 msgstr ""
 
+# New Window
 #: gschem/scheme/gschem/builtins.scm:77
 msgid "New Window"
-msgstr "New Window"
+msgstr "پنجره جدید"
 
+# Close Window
 #: gschem/scheme/gschem/builtins.scm:80 gschem/scheme/gschem/builtins.scm:83
 msgid "Close Window"
-msgstr "New Window"
+msgstr "پنجره بسته"
 
 #: gschem/scheme/gschem/builtins.scm:86
 msgid "Quit"
