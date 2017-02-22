@@ -1,3 +1,7 @@
+2017-02-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/es.po: Update Spanish translations.
+
 2017-02-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_keyfile.c: Revise geda_keyfile_remove_key to check

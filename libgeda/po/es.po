@@ -52,10 +52,10 @@ msgstr "No se pudo obtener estadísticas de archivos"
 msgid "Error: Invalid page object"
 msgstr ""
 
+# ERROR: Could not change current directory to
 #: libgeda/src/file/f_file.c:220
-#, fuzzy
 msgid "ERROR: Could not change current directory to"
-msgstr "No se puede guardar la copia de seguridad: %s"
+msgstr "ERROR: No se pudo cambiar el directorio actual a"
 
 #: libgeda/src/file/f_file.c:268
 #, c-format
@@ -128,32 +128,37 @@ msgstr "Fichero [%s] es de solo lectura"
 # Could not set previous backup file
 #: libgeda/src/file/f_file.c:532
 msgid "Could not set previous backup file"
-msgstr ""
+msgstr "No pudo establecer el archivo de copia de seguridad anterior"
 
+# read-write
 #: libgeda/src/file/f_file.c:533
 msgid "read-write"
-msgstr ""
+msgstr "Lectura y escritura"
 
 # cannot save the backup
 #: libgeda/src/file/f_file.c:544
 msgid "Cannot create backup file"
 msgstr "No se puede guardar la copia de seguridad"
 
+# Could NOT save file
 #: libgeda/src/file/f_file.c:591
 msgid "Could NOT save file"
 msgstr "No se pudo guardar el fichero"
 
+# Invalid path
 #: libgeda/src/file/f_get.c:172
 msgid "Invalid path"
-msgstr ""
+msgstr "Ruta no válida"
 
+# Could not allocate
 #: libgeda/src/file/f_get.c:235 libgeda/src/file/f_get.c:311
 msgid "Could not allocate"
-msgstr ""
+msgstr "No se pudo asignar"
 
+# bytes to read file
 #: libgeda/src/file/f_get.c:236 libgeda/src/file/f_get.c:312
 msgid "bytes to read file"
-msgstr ""
+msgstr "Bytes para leer el archivo"
 
 # Error reading file
 #: libgeda/src/file/f_get.c:247
@@ -180,13 +185,15 @@ msgstr "Error al abrir el archivo"
 msgid "Failed to get attributes of file"
 msgstr "Error al obtener los atributos del archivo"
 
+# fstat failure
 #: libgeda/src/file/f_get.c:428
 msgid "fstat failure"
-msgstr ""
+msgstr "fstat fracaso"
 
+# fdopen failure
 #: libgeda/src/file/f_get.c:448
 msgid "fdopen failure"
-msgstr ""
+msgstr "fdopen fracaso"
 
 #: libgeda/src/file/f_get.c:470
 msgid "ERROR: pointer to filename is NULL"
@@ -204,10 +211,10 @@ msgstr ""
 msgid "ERROR: pointer to path is NULL"
 msgstr ""
 
+# error accessing
 #: libgeda/src/file/f_get.c:627
-#, fuzzy
 msgid "error accessing"
-msgstr "No se puede encontrar el archivo"
+msgstr "Error de acceso"
 
 #: libgeda/src/file/f_print.c:101
 msgid "Color index out of range"
@@ -542,11 +549,10 @@ msgstr ""
 msgid "argument is NULL\n"
 msgstr ""
 
-# Did not find
+# is not valid
 #: libgeda/src/geda/geda_keyfile.c:301
-#, fuzzy
 msgid "is not valid\n"
-msgstr "No se ha encontrado"
+msgstr "no es válido\n"
 
 #: libgeda/src/geda/geda_keyfile.c:490
 msgid "Valid key file could not be found in search dirs"
@@ -1812,10 +1818,10 @@ msgstr ""
 msgid "There are no schematics above the current one!\n"
 msgstr "¡No hay más esquemas en un nivel de jerarquía superior al actual!\n"
 
+# Failed to descend hierarchy into
 #: libgeda/src/struct/s_hierarchy.c:307
-#, fuzzy
 msgid "Failed to descend hierarchy into"
-msgstr "Error al abrir la carpeta"
+msgstr "Error al descender jerarquía en"
 
 #: libgeda/src/struct/s_page.c:251
 msgid "Disabling auto save timer, no toplevel"
@@ -1858,26 +1864,25 @@ msgstr "Atributo"
 msgid "component missing pinseq= attribute\n"
 msgstr "El componente no tiene el atributo pinseq\n"
 
-# Could not parse symbol file
+# Could not write message to log file
 #: libgeda/src/utility/u_log.c:124
-#, fuzzy
 msgid "Could not write message to log file\n"
-msgstr "No se pudo analizar el archivo de símbolos"
+msgstr "No se pudo escribir en el archivo de registro de mensajes\m"
 
+# Could not create log directory
 #: libgeda/src/utility/u_log.c:267
-#, fuzzy
 msgid "Could not create log directory"
-msgstr "No se puede guardar la copia de seguridad"
+msgstr "No se pudo crear el directorio de registro"
 
+# Could not create unique log filename in
 #: libgeda/src/utility/u_log.c:336
-#, fuzzy
 msgid "Could not create unique log filename in"
-msgstr "No se puede guardar la copia de seguridad"
+msgstr "No se pudo crear el archivo de registro único en"
 
+# Could not create log file in
 #: libgeda/src/utility/u_log.c:340
-#, fuzzy
 msgid "Could not create log file in"
-msgstr "No se puede guardar la copia de seguridad"
+msgstr "No se pudo crear el archivo de registro en"
 
 #: libgeda/scheme/geda/attrib.scm:65
 #, scheme-format
@@ -1916,10 +1921,6 @@ msgstr "El objeto ~A no es parte de una página"
 
 #~ msgid "Library command failed [%s]: Uncaught signal %i.\n"
 #~ msgstr "Un comando de librería ha fallado [%s]: Señal no manejada %i.\n"
-
-#, fuzzy
-#~ msgid "Could not allocate %ld byte to read file '%s'"
-#~ msgstr "No se puede guardar la copia de seguridad: %s"
 
 #~ msgid "Failed to open file '%s': fdopen() failed: %s"
 #~ msgstr "Error al cargar imagen desde el archivo [%s]: %s\n"
