@@ -24,27 +24,32 @@ msgstr ""
 #: gschem/src/base/gschem.c:159
 #, c-format
 msgid "Warning: <%s> did not expand\n"
-msgstr ""
+msgstr "Attenzione: <%s> non si è espanso\n"
 
+# Command-line error: disabling auto load last
 #: gschem/src/base/gschem.c:160
 msgid "Command-line error: disabling auto load last\n"
 msgstr ""
+"Errore di riga di comando: caricamento automatico disabilitando scorso\n"
 
+# Assuming schematic file suffix for
 #: gschem/src/base/gschem.c:193
 msgid "Assuming schematic file suffix for"
-msgstr ""
+msgstr "Supponendo suffisso del file schema per"
 
+# Assuming symbol file suffix for
 #: gschem/src/base/gschem.c:207
 msgid "Assuming symbol file suffix for"
-msgstr ""
+msgstr "Supponendo che il suffisso file di simboli per"
 
 #: gschem/src/base/gschem.c:241
 msgid "An error was encountered loading requested session"
 msgstr "È verificato un errore di caricamento richiesto sessione"
 
+# Automatically load
 #: gschem/src/base/gschem.c:266
 msgid "Auto Load"
-msgstr ""
+msgstr "carica automaticamente"
 
 #: gschem/src/base/gschem.c:316
 msgid ""
@@ -75,9 +80,10 @@ msgstr "Impossibile leggere il file di inizializzazione schema"
 msgid "version"
 msgstr "Salva come"
 
+# Logging system is disabled
 #: gschem/src/base/gschem.c:389
 msgid "Logging system is disabled\n"
-msgstr ""
+msgstr "sistema di registrazione è disabilitata\n"
 
 #: gschem/src/base/gschem.c:429
 #, c-format
@@ -85,51 +91,58 @@ msgid "ERROR: Failed to load or evaluate startup script.\n"
 msgstr ""
 "ERRORE: fallito il caricamento o l'elaborazione dello script di partenza.\n"
 
+# Exiting normal
 #: gschem/src/base/gschem.c:521
 msgid "Exiting normal\n"
-msgstr ""
+msgstr "Uscita normale\n"
 
+# Parent Window
 #: gschem/src/base/gschem_dialog.c:563
 msgid "Parent Window"
 msgstr "Nuova finestra"
 
+# Parent window for this dialog
 #: gschem/src/base/gschem_dialog.c:564
 msgid "Parent window for this dialog"
-msgstr ""
+msgstr "finestra principale per questa finestra"
 
+# Title
 #: gschem/src/base/gschem_dialog.c:584
 msgid "Title"
 msgstr "senzanome"
 
+# Dialog window title
 #: gschem/src/base/gschem_dialog.c:585
 msgid "Dialog window title"
-msgstr ""
+msgstr "titolo della finestra di dialogo"
 
 #: gschem/src/base/gschem_macro_widget.c:233
 msgid "Label Text"
 msgstr "Nascondi testo"
 
+# Text to be displayed for the Macro label
 #: gschem/src/base/gschem_macro_widget.c:234
 msgid "Text to be displayed for the Macro label"
-msgstr ""
+msgstr "Testo da visualizzare per l'etichetta Macro"
 
 #: gschem/src/base/gschem_macro_widget.c:235
 msgid "Macro:"
-msgstr ""
+msgstr "macro:"
 
 #: gschem/src/base/gschem_macro_widget.c:241
 #: gschem/src/base/gschem_macro_widget.c:242
 msgid "Macro String"
-msgstr ""
+msgstr "String macro"
 
 #: gschem/src/base/gschem_macro_widget.c:357
 msgid "Evaluate"
-msgstr ""
+msgstr "Valutare"
 
+# Horizontal adjustment
 #: gschem/src/base/gschem_page_view.c:250
 #: gschem/src/base/gschem_page_view.c:251
 msgid "Horizontal adjustment"
-msgstr ""
+msgstr "regolazione orizzontale"
 
 #: gschem/src/base/gschem_page_view.c:258
 #: gschem/src/base/gschem_page_view.c:259
@@ -139,12 +152,13 @@ msgstr "_Pagina"
 #: gschem/src/base/gschem_page_view.c:265
 #: gschem/src/base/gschem_page_view.c:266
 msgid "Page Geometry"
-msgstr ""
+msgstr "Geometria pagina"
 
+# Vertical adjustment
 #: gschem/src/base/gschem_page_view.c:273
 #: gschem/src/base/gschem_page_view.c:274
 msgid "Vertical adjustment"
-msgstr ""
+msgstr "regolazione verticale"
 
 #: gschem/src/base/gschem_parsecmd.c:85
 #, c-format
@@ -189,18 +203,31 @@ msgstr ""
 "schema vuoto.\n"
 "\n"
 "Opzioni:\n"
-"  -q, --quiet              Modalità silenziosa.\n"
-"  -v, --verbose            Modalità prolissa.\n"
-"  -r, --config-file=FILE   File di configurazione aggiuntivi da caricare.\n"
-"  -L DIR                   Aggiunge DIR ai percorsi di ricerca Scheme.\n"
-"  -c EXPR                  Espressione Scheme da eseguire all'avvio.\n"
-"  -s FILE                  Script Scheme da eseguire all'avvio.\n"
-"  -o, --output=FILE        File di uscita (per la stampa).\n"
-"  -p                       Piazza automaticamente la finestra.\n"
-"  -V, --version            Mostra le informazioni di versione.\n"
-"  -h, --help               Aiuto; questo messaggio.\n"
-"  --                       Tratta tutti gli argomenti successivi come \n"
-"                           nomi di file.\n"
+"  -a, --render-adaptor <DRV> Specificare che rendono adattatore per "
+"utilizzare, Cario o X11.\n"
+"  -c, --config-file <FILE>   File di configurazione aggiuntivi da caricare.\n"
+"  -g, --guile <DIR>          Aggiunge DIR ai percorsi di ricerca Scheme.\n"
+"  -f, --font <NAME>          impostare il nome famiglia di caratteri\n"
+"  -h, --help                 Aiuto; questo messaggio.\n"
+"  -m, --safe-mode            Modalità sicura.\n"
+"  -n, --no-auto              No caricamento automatico ultimo documento.\n"
+"  -o, --output <FILE>        il nome del file di output (per la stampa e "
+"l'output di immagini).\n"
+"  -p, --place                Piazza automaticamente la finestra.\n"
+"  -q, --quiet                Modalità silenziosa.\n"
+"  -r, --run <FILE>           Script Scheme da eseguire all'avvio.\n"
+"  -s, --start <name>         Avvio con il nome di battesimo della sessione.\n"
+"  -t, --title-block <FILE>   Iniziare un nuovo disegno usando il titolo "
+"specificato-blocco.\n"
+"  -u, --undo-dir <DIR>       Specificare una directory temporanea per i file "
+"undo.\n"
+"  -v, --verbose              Modalità prolissa.\n"
+"  -V, --version              Mostra le informazioni di versione.\n"
+"  -x (EXPR)                  Espressione Scheme da eseguire all'avvio.\n"
+"  -z, --minimized            Nascondere la finestra principale, utilizzato "
+"per lo scripting\n"
+"  --                         Tratta tutti gli argomenti successivi come \n"
+"                             nomi di file.\n"
 "\n"
 "Riportare eventuali difetti su <https://bugs.launchpad.net/geda>\n"
 "Homepage di gEDA/gaf: <http://www.geda-project.org/>\n"
@@ -222,9 +249,10 @@ msgstr ""
 "nella distribuzione di gEDA.\n"
 "Non c'è ALCUNA GARANZIA, nei limiti di legge.\n"
 
+# error parsing
 #: gschem/src/base/gschem_parsecmd.c:244
 msgid "error parsing"
-msgstr ""
+msgstr "errore durante l'analisi"
 
 #: gschem/src/base/gschem_parsecmd.c:280 gschem/src/x/x_rc.c:100
 #: gschem/src/x/x_rc.c:136
@@ -1543,7 +1571,8 @@ msgid ""
 "Copyright © 1998-2017 gEDA Contributors (see ChangeLog for details)"
 msgstr ""
 "Copyright © 1998-2017 Ales Hvezda <ahvezda@geda.seul.org>\n"
-"Copyright © 1998-2017 collaboratori di gEDA (vedere il ChangeLog per i dettagli)"
+"Copyright © 1998-2017 collaboratori di gEDA (vedere il ChangeLog per i "
+"dettagli)"
 
 #: gschem/src/x/x_dialog.c:464 gschem/scheme/gschem/builtins.scm:565
 msgid "About gschem"
@@ -5161,7 +5190,8 @@ msgstr "Mostra la documentazione per il componente selezionato"
 # Could not show documentation for selected component
 #: gschem/scheme/gschem/builtins.scm:544
 msgid "Could not show documentation for selected component\n"
-msgstr "non ha potuto mostrare la documentazione per il componente selezionato\n"
+msgstr ""
+"non ha potuto mostrare la documentazione per il componente selezionato\n"
 
 #: gschem/scheme/gschem/builtins.scm:548
 msgid "gschem User Guide"
