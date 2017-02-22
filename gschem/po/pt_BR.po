@@ -1180,10 +1180,10 @@ msgstr[1] "Apagar %u objetos bloqueados?"
 msgid "attributes were hidden"
 msgstr "Atributos foram escondidos"
 
+# hidden attributes were revealed
 #: gschem/src/object/o_edit.c:521
-#, fuzzy
 msgid "hidden attributes were revealed"
-msgstr "Mostra atributos relativos"
+msgstr "Atributos ocultos foram revelados"
 
 #: gschem/src/object/o_edit.c:717
 msgid "Hidden text is now visible\n"
@@ -1210,12 +1210,10 @@ msgid "Could not resolve which end of pin to connect\n"
 msgstr ""
 
 #: gschem/src/object/o_net.c:76
-#, fuzzy
 msgid "Warning: Starting net off grid coordinate\n"
 msgstr "Aviso: Iniciando uma NET fora de grade\n"
 
 #: gschem/src/object/o_net.c:485
-#, fuzzy
 msgid "Warning: Ending net off grid coordinate\n"
 msgstr "Aviso: Fim de NET fora de grade\n"
 
@@ -1224,14 +1222,15 @@ msgstr "Aviso: Fim de NET fora de grade\n"
 msgid "Bus ripper symbol was not found in any component library"
 msgstr "Símbolo de entrada de barramento não encontrado nas bibliotecas"
 
+# Update All
 #: gschem/src/object/o_picture.c:357
-#, fuzzy
 msgid "Update All"
-msgstr "Atualizar"
+msgstr "Atualize tudo"
 
+# Update all selected Picture images
 #: gschem/src/object/o_picture.c:359
 msgid "Update all selected Picture images"
-msgstr ""
+msgstr "Atualizar todas as imagens selecionadas"
 
 #: gschem/src/object/o_picture.c:397
 msgid "Failed to replace picture"
@@ -1254,9 +1253,8 @@ msgid "An unknown error occurred"
 msgstr ""
 
 #: gschem/src/object/o_picture.c:622
-#, fuzzy
 msgid "<b>Failed to load picture</b>"
-msgstr "Falha ao substituir imagem: %s"
+msgstr "<b>Falha ao substituir imagem</b>"
 
 #: gschem/src/object/o_picture.c:623
 msgid "Load failed"
@@ -1279,9 +1277,9 @@ msgid "Slotting not allowed for this component\n"
 msgstr "Slots não disponível para este componente\n"
 
 #: gschem/src/object/o_slot.c:136
-#, fuzzy, c-format
+#, c-format
 msgid "New slot number [%d], is out of range\n"
-msgstr "Número de slot fora dos limites\n"
+msgstr "Novo número de slot [%d], está fora do intervalo\n"
 
 #: gschem/src/object/o_undo.c:70
 msgid "Undo: using temporary directory specified on command-line"
@@ -1296,9 +1294,8 @@ msgid "<b>Auto switching Undo system to type Memory</b>\n"
 msgstr ""
 
 #: gschem/src/object/o_undo.c:117
-#, fuzzy
 msgid "Gschem Undo System"
-msgstr "_Guia de usuário..."
+msgstr "Sistema Desfazer Gschem"
 
 #: gschem/src/object/o_undo.c:252
 msgid "Undo: encountered an error, file"
@@ -1341,14 +1338,13 @@ msgstr ""
 "autonumeraçãode slots\n"
 
 #: gschem/src/x/x_autonumber.c:615
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "duplicate slot may cause problems: [symbol name=%s, number=%d, slot=%d]\n"
 msgstr ""
 "Slots duplicados podem causar problemas: [símbolo=%s, número=%d, slot=%d]\n"
 
 #: gschem/src/x/x_autonumber.c:913
-#, fuzzy
 msgid "No search string given in autonumber text.\n"
 msgstr "Sem chave de pesquisa na autonumeração.\n"
 
@@ -1377,9 +1373,8 @@ msgid "File order"
 msgstr "Ordem dos arquivos"
 
 #: gschem/src/x/x_autonumber.c:1605
-#, fuzzy
 msgid "<b>Filter:</b>"
-msgstr "Filtro:"
+msgstr "<b>Filtro:</b>"
 
 #: gschem/src/x/x_autonumber.c:1646
 msgid "Selected objects"
@@ -1415,14 +1410,12 @@ msgid "An error occurred while inserting clipboard data"
 msgstr "Um erro ocorreu inserindo dados da área de transferência"
 
 #: gschem/src/x/x_clipboard.c:322
-#, fuzzy
 msgid "Clipboard Insertion Failed"
 msgstr "Inserção da área de tranferência falhou"
 
 #: gschem/src/x/x_compselect.c:1257
-#, fuzzy
 msgid "Default is to reference the component"
-msgstr "Apenas referenciar (uso padrão)"
+msgstr "O padrão é referenciar o componente"
 
 #: gschem/src/x/x_compselect.c:1261
 msgid "Embed component in schematic"
@@ -1649,7 +1642,6 @@ msgid "Sets the default text font size."
 msgstr ""
 
 #: gschem/src/x/x_dialog.c:922
-#, fuzzy
 msgid "Arc Parameters"
 msgstr "Parametros do Arco"
 
@@ -1682,12 +1674,11 @@ msgid "Background"
 msgstr "Fundo"
 
 #: gschem/src/x/x_dialog.c:1014
-#, fuzzy
 msgid "Pin"
-msgstr "_Pino"
+msgstr "Pino"
 
+# End of connection
 #: gschem/src/x/x_dialog.c:1015
-#, fuzzy
 msgid "Net endpoint"
 msgstr "Fim da conexão"
 
