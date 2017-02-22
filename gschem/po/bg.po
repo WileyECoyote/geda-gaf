@@ -202,33 +202,41 @@ msgid ""
 msgstr ""
 "употреба: %s [ВАРИАНТ ...] [--] [досие ...]\n"
 "\n"
-"Интерактивно редактиране GEDA схеми или символи. Ако един или повече файлове\n"
-"са определени, отвори ги за редактиране; в противен случай, се създаде нова, празна\n"
+"Интерактивно редактиране GEDA схеми или символи. Ако един или повече "
+"файлове\n"
+"са определени, отвори ги за редактиране; в противен случай, се създаде нова, "
+"празна\n"
 "схематичен.\n"
 "\n"
 "Настроики:\n"
-"  -a, --render-adaptor <DRV> Посочете които правят адаптер за използване, Карио или "
-"X11.\n"
-"  -c, --config-file <FILE>   Допълнителна конфигурационен файл, за да се зареди.\n"
-"  -g, --guile <DIR>          Добави DIR до пътя Guile (предварително довереник).\n"
+"  -a, --render-adaptor <DRV> Посочете които правят адаптер за използване, "
+"Карио или X11.\n"
+"  -c, --config-file <FILE>   Допълнителна конфигурационен файл, за да се "
+"зареди.\n"
+"  -g, --guile <DIR>          Добави DIR до пътя Guile (предварително "
+"довереник).\n"
 "  -f, --font <NAME>          зададете име на шрифт семейство\n"
 "  -h, --help                 Помогне; това съобщение.\n"
 "  -m, --safe-mode            Безопасен режим.\n"
 "  -n, --no-auto              Не авто натоварване последния документ.\n"
-"  -o, --output <FILE>        продукция името на файла (за печат и на изхода на "
-"изображението).\n"
+"  -o, --output <FILE>        продукция името на файла (за печат и на изхода "
+"на изображението).\n"
 "  -p, --place                Автоматично пускане на прозореца.\n"
 "  -q, --quiet                Тих режим.\n"
-"  -r, --run <FILE>           Схема скрипт, за да се изпълнят при стартиране.\n"
+"  -r, --run <FILE>           Схема скрипт, за да се изпълнят при "
+"стартиране.\n"
 "  -s, --start <name>         Започвам използване дал името на сесията.\n"
-"  -t, --title-block <FILE>   Започване на нов чертеж с помощта на посочения в заглавието "
-"блок.\n"
-"  -u, --undo-dir <DIR>       Посочете временна директория за Отмяна на файлове.\n"
+"  -t, --title-block <FILE>   Започване на нов чертеж с помощта на посочения "
+"в заглавието блок.\n"
+"  -u, --undo-dir <DIR>       Посочете временна директория за Отмяна на "
+"файлове.\n"
 "  -v, --verbose              Подробен режим.\n"
 "  -V, --version              информация Покажи версия.\n"
 "  -x (EXPR)                  Схема израз да се изпълнят при стартиране.\n"
-"  -z, --minimized            Скриване на главния прозорец, използван за скриптове\n"
-"  --                         Отнасяйте всички останали аргументи като имена на файлове.\n"
+"  -z, --minimized            Скриване на главния прозорец, използван за "
+"скриптове\n"
+"  --                         Отнасяйте всички останали аргументи като имена "
+"на файлове.\n"
 "\n"
 "Съобщи за грешки в <https://bugs.launchpad.net/geda>\n"
 "GEDA страница: <http://www.geda-project.org>\n"
@@ -250,42 +258,50 @@ msgstr ""
 "включени в разпределението GEDA.\n"
 "Има НИКАКВА ГАРАНЦИЯ, до степента, позволена от закона.\n"
 
+# error parsing
 #: gschem/src/base/gschem_parsecmd.c:244
 msgid "error parsing"
-msgstr ""
+msgstr "разбор грешка"
 
+# ERROR
 #: gschem/src/base/gschem_parsecmd.c:280 gschem/src/x/x_rc.c:100
 #: gschem/src/x/x_rc.c:136
 msgid "ERROR"
-msgstr ""
+msgstr "ГРЕШКА"
 
+# option requires an argument
 #: gschem/src/base/gschem_parsecmd.c:284
 msgid "option requires an argument"
-msgstr ""
+msgstr "опция изисква аргумент"
 
+# Unknown option
 #: gschem/src/base/gschem_parsecmd.c:290
 msgid "Unknown option"
-msgstr ""
+msgstr "Неизвестна опция"
 
+# Unknown option character
 #: gschem/src/base/gschem_parsecmd.c:296
 msgid "Unknown option character"
-msgstr ""
+msgstr "Неизвестна опция характер"
 
 #: gschem/src/base/gschem_parsecmd.c:302
 msgid "--help for more information"
 msgstr ""
 
+# Run
 #: gschem/src/base/gschem_parsecmd.c:304
 msgid "Run"
-msgstr ""
+msgstr "тичам"
 
+# Preview Buffer
 #: gschem/src/base/gschem_preview.c:299
 msgid "Preview Buffer"
-msgstr ""
+msgstr "Преглед Buffer"
 
+# Filename
 #: gschem/src/base/gschem_preview.c:541 gschem/src/x/x_pagesel.c:1146
 msgid "Filename"
-msgstr ""
+msgstr "Име на файл"
 
 #: gschem/src/base/gschem_preview.c:542
 msgid "name of file to be previewed"
