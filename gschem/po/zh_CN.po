@@ -608,28 +608,28 @@ msgstr ""
 msgid "Empty buffer"
 msgstr ""
 
+# Offset Mode
 #: gschem/src/iface/i_command.c:1622
-#, fuzzy
 msgid "Offset Mode"
-msgstr "选择模式"
+msgstr "偏移模式"
 
 #: gschem/src/iface/i_command.c:1623
 msgid "Specify offset distance:"
 msgstr ""
 
+# Zoom Magnification
 #: gschem/src/iface/i_command.c:2204
-#, fuzzy
 msgid "Zoom Magnification"
-msgstr "放大"
+msgstr "缩放倍率"
 
 #: gschem/src/iface/i_command.c:2204
 msgid "Specify new zoom:"
 msgstr ""
 
+# error
 #: gschem/src/iface/i_command.c:2248
-#, fuzzy
 msgid "error"
-msgstr "镜像模式"
+msgstr "错误"
 
 #: gschem/src/iface/i_command.c:2256
 msgid "No component selected\n"
@@ -647,10 +647,10 @@ msgstr ""
 msgid "Failed to descend into"
 msgstr ""
 
+# Hierarchy Error
 #: gschem/src/iface/i_command.c:3025
-#, fuzzy
 msgid "Hierarchy Error"
-msgstr "层次"
+msgstr "层次错误"
 
 #: gschem/src/iface/i_command.c:3102
 msgid "Searching for symbol"
@@ -772,8 +772,8 @@ msgstr ""
 msgid "is not accessible"
 msgstr ""
 
+# File
 #: gschem/src/iface/i_sessions.c:272
-#, fuzzy
 msgid "File"
 msgstr "文件"
 
@@ -781,11 +781,11 @@ msgstr "文件"
 msgid "Warning relative file names detected in session"
 msgstr ""
 
+# Session
 #: gschem/src/iface/i_sessions.c:346 gschem/src/iface/i_sessions.c:359
 #: gschem/src/iface/i_sessions.c:931 gschem/src/x/x_sessions.c:232
-#, fuzzy
 msgid "Session"
-msgstr "显示名称"
+msgstr "会话"
 
 #: gschem/src/iface/i_sessions.c:347
 msgid "opening"
@@ -795,25 +795,25 @@ msgstr ""
 msgid "of"
 msgstr ""
 
+# documents
 #: gschem/src/iface/i_sessions.c:349 gschem/src/iface/i_sessions.c:933
 #: gschem/src/iface/i_sessions.c:1107
-#, fuzzy
 msgid "documents"
-msgstr "文档"
+msgstr "文件"
 
 #: gschem/src/iface/i_sessions.c:358
 msgid "did not contain any accessible documents"
 msgstr ""
 
+# Sessions
 #: gschem/src/iface/i_sessions.c:791
-#, fuzzy
 msgid "Sessions"
-msgstr "显示名称"
+msgstr "会话"
 
+# Removing session
 #: gschem/src/iface/i_sessions.c:855
-#, fuzzy
 msgid "Removing session"
-msgstr "全部保存"
+msgstr "删除会话"
 
 #: gschem/src/iface/i_sessions.c:880
 msgid "Failed to remove session"
@@ -839,15 +839,15 @@ msgstr ""
 msgid "Creation failed"
 msgstr ""
 
+# Opened session
 #: gschem/src/iface/i_sessions.c:994
-#, fuzzy
 msgid "Opened session"
-msgstr "全部保存"
+msgstr "已打开会话"
 
+# Renaming session
 #: gschem/src/iface/i_sessions.c:1043
-#, fuzzy
 msgid "Renaming session"
-msgstr "全部保存"
+msgstr "重命名会话"
 
 #: gschem/src/iface/i_sessions.c:1044
 msgid "to"
@@ -861,10 +861,10 @@ msgstr ""
 msgid "<b>Could not rename session</b>"
 msgstr ""
 
+# Created session
 #: gschem/src/iface/i_sessions.c:1105
-#, fuzzy
 msgid "Created session"
-msgstr "全部保存"
+msgstr "创建会话"
 
 #: gschem/src/iface/i_sessions.c:1106
 msgid "with"
@@ -875,18 +875,19 @@ msgstr ""
 msgid "Saved"
 msgstr ""
 
+# documents to session
 #: gschem/src/iface/i_sessions.c:1117
-#, fuzzy
 msgid "documents to session"
-msgstr "文档"
+msgstr "文件到会话"
 
 #: gschem/src/iface/i_sessions.c:1127
 msgid "An error occurred attempting to save session"
 msgstr ""
 
+# Save session failed
 #: gschem/src/iface/i_sessions.c:1135
 msgid "Save session failed"
-msgstr ""
+msgstr "保存会话失败"
 
 #: gschem/src/iface/i_sessions.c:1226
 msgid "Show Sessions at startup is now ENABLED\n"
@@ -900,29 +901,30 @@ msgstr ""
 msgid "Session system initialized!\n"
 msgstr ""
 
+# Deselect Mode
 #: gschem/src/iface/i_status.c:134 gschem/etc/system-gschemrc.scm:2121
-#, fuzzy
 msgid "Deselect Mode"
-msgstr "选择模式"
+msgstr "取消选择模式"
 
 #: gschem/src/iface/i_status.c:138 gschem/src/x/x_status_bar.c:383
 #: gschem/etc/system-gschemrc.scm:2120 gschem/scheme/gschem/builtins.scm:170
 msgid "Select Mode"
 msgstr "选择模式"
 
+# Select Box Mode
 #: gschem/src/iface/i_status.c:140
-#, fuzzy
 msgid "Select Box Mode"
-msgstr "选择模式"
+msgstr "选择框模式"
 
+# Zoom Box
 #: gschem/src/iface/i_status.c:142 gschem/scheme/gschem/builtins.scm:227
 msgid "Zoom Box"
-msgstr ""
+msgstr "缩放框"
 
+# Copy to point
 #: gschem/src/iface/i_status.c:145
-#, fuzzy
 msgid "Copy to point"
-msgstr "复制到 1"
+msgstr "复制到点"
 
 #: gschem/src/iface/i_status.c:147 gschem/scheme/gschem/builtins.scm:122
 #: gschem/scheme/gschem/builtins.scm:125
@@ -941,10 +943,10 @@ msgstr "镜像模式"
 msgid "Pan Mode"
 msgstr ""
 
+# Choose component
 #: gschem/src/iface/i_status.c:155
-#, fuzzy
 msgid "Choose component"
-msgstr "组件..."
+msgstr "选择组件"
 
 #: gschem/src/iface/i_status.c:158
 msgid "Magnetic Net Mode"
