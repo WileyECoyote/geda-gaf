@@ -2,6 +2,9 @@
 
     * src/widgets/geda_menu.c: Reorganize module.
 
+    * src/widgets/geda_menu.c: Add functions geda_menu_widget_get_tearoff_state
+      and geda_menu_widget_set_tearoff_state.
+
 2017-02-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Relocate object_class->destroy and widget_class

@@ -5905,4 +5905,34 @@ geda_menu_get_reserve_toggle_size (GedaMenu *menu)
   return !priv->no_toggle_size;
 }
 
+/*!
+ * \brief Get GedaMenu widget Tear-Off state Property
+ * \par Function Description
+ *  Programmatically set whether the menu is torn off.
+ * \sa  geda_menu_get_tearoff_state ().
+ *
+ * \param[in] menu      Pointer to a #GedaMenu
+ * \param[in] torn_off  whether menu is to be torn off.
+ */
+bool
+geda_menu_widget_get_tearoff_state (GtkWidget *menu)
+{
+  return geda_menu_get_tearoff_state ((GedaMenu*)menu);
+}
+
+/*!
+ * \brief Set GedaMenu widget Tear-Off state Property
+ * \par Function Description
+ *  Programmatically set whether the menu is torn off.
+ * \sa  geda_menu_get_tearoff_state ().
+ *
+ * \param[in] menu      Pointer to a #GedaMenu
+ * \param[in] torn_off  whether menu is to be torn off.
+ */
+void
+geda_menu_widget_set_tearoff_state (GtkWidget *menu, bool torn_off)
+{
+  geda_menu_set_tearoff_state ((GedaMenu*)menu, torn_off);
+}
+
 /** @} geda-menu */
