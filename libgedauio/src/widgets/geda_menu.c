@@ -4599,7 +4599,7 @@ tearoff_window_destroyed (GtkWidget *widget, GedaMenu *menu)
 /*!
  * \brief Set the Tear-Off state Property
  * \par Function Description
- *  Pogrammactically set whether the menu is torn off.
+ *  Programmatically set whether the menu is torn off.
  * \sa  geda_menu_get_tearoff_state ().
  *
  * \param[in] menu      Pointer to a #GedaMenu
