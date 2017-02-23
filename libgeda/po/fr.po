@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-02-17 01:51-0600\n"
+"POT-Creation-Date: 2017-02-23 01:08-0600\n"
 "PO-Revision-Date: 2012-10-22 13:10+0000\n"
 "Last-Translator: Patrick Fiquet <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -51,10 +51,10 @@ msgstr "Impossible d'obtenir des statistiques sur les fichiers"
 msgid "Error: Invalid page object"
 msgstr ""
 
+# ERROR: Could not change current directory to
 #: libgeda/src/file/f_file.c:220
-#, fuzzy
 msgid "ERROR: Could not change current directory to"
-msgstr "Impossible de sauvegarder le fichier de sauvegarde: %s."
+msgstr "ERREUR: Impossible de modifier le répertoire courant"
 
 #: libgeda/src/file/f_file.c:268
 #, c-format
@@ -107,10 +107,10 @@ msgstr ""
 msgid "Loading backup file"
 msgstr ""
 
+# ERROR: Could not restore current directory to
 #: libgeda/src/file/f_file.c:359
-#, fuzzy
 msgid "ERROR: Could not restore current directory to"
-msgstr "Impossible de sauvegarder le fichier de sauvegarde"
+msgstr "ERREUR: Impossible de restaurer le répertoire courant"
 
 #: libgeda/src/file/f_file.c:405 libgeda/src/file/f_file.c:464
 #: libgeda/src/object/o_save.c:71
@@ -204,10 +204,10 @@ msgstr ""
 msgid "ERROR: pointer to path is NULL"
 msgstr ""
 
+# error accessing
 #: libgeda/src/file/f_get.c:627
-#, fuzzy
 msgid "error accessing"
-msgstr "Impossible de trouver le fichier"
+msgstr "Erreur d'accès"
 
 #: libgeda/src/file/f_print.c:101
 msgid "Color index out of range"
@@ -546,11 +546,10 @@ msgstr ""
 msgid "argument is NULL\n"
 msgstr ""
 
-# Unable to find
+# is not valid
 #: libgeda/src/geda/geda_keyfile.c:301
-#, fuzzy
 msgid "is not valid\n"
-msgstr "Impossible de trouver"
+msgstr "n'est pas valide\n"
 
 #: libgeda/src/geda/geda_keyfile.c:490
 msgid "Valid key file could not be found in search dirs"
@@ -583,10 +582,10 @@ msgid "Key file contains unsupported encoding"
 msgstr ""
 
 #: libgeda/src/geda/geda_keyfile.c:1324 libgeda/src/geda/geda_keyfile.c:1541
-#: libgeda/src/geda/geda_keyfile.c:2957 libgeda/src/geda/geda_keyfile.c:3027
-#: libgeda/src/geda/geda_keyfile.c:3153 libgeda/src/geda/geda_keyfile.c:3378
-#: libgeda/src/geda/geda_keyfile.c:3563 libgeda/src/geda/geda_keyfile.c:3759
-#: libgeda/src/geda/geda_keyfile.c:3827
+#: libgeda/src/geda/geda_keyfile.c:3024 libgeda/src/geda/geda_keyfile.c:3094
+#: libgeda/src/geda/geda_keyfile.c:3220 libgeda/src/geda/geda_keyfile.c:3445
+#: libgeda/src/geda/geda_keyfile.c:3630 libgeda/src/geda/geda_keyfile.c:3826
+#: libgeda/src/geda/geda_keyfile.c:3894
 msgid "Key file does not have group"
 msgstr ""
 
@@ -606,64 +605,64 @@ msgstr ""
 msgid "Key file does not have key"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:1662 libgeda/src/geda/geda_keyfile.c:1784
+#: libgeda/src/geda/geda_keyfile.c:1671 libgeda/src/geda/geda_keyfile.c:1809
 #, c-format
 msgid "Key file contains key '%s' with value '%s' which is not UTF-8"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:1683 libgeda/src/geda/geda_keyfile.c:1804
-#: libgeda/src/geda/geda_keyfile.c:2204
+#: libgeda/src/geda/geda_keyfile.c:1693 libgeda/src/geda/geda_keyfile.c:1831
+#: libgeda/src/geda/geda_keyfile.c:2265
 #, c-format
 msgid ""
 "Key file contains key '%s' which has a value that cannot be interpreted."
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:2420 libgeda/src/geda/geda_keyfile.c:2787
+#: libgeda/src/geda/geda_keyfile.c:2487 libgeda/src/geda/geda_keyfile.c:2854
 #, c-format
 msgid ""
 "Key file contains key '%s' in group '%s' which has a value that cannot be "
 "interpreted."
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:2497 libgeda/src/geda/geda_keyfile.c:2573
+#: libgeda/src/geda/geda_keyfile.c:2564 libgeda/src/geda/geda_keyfile.c:2640
 #, c-format
 msgid "Key '%s' in group '%s' has value '%s' where %s was expected"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:2972 libgeda/src/geda/geda_keyfile.c:3168
-#: libgeda/src/geda/geda_keyfile.c:3839
+#: libgeda/src/geda/geda_keyfile.c:3039 libgeda/src/geda/geda_keyfile.c:3235
+#: libgeda/src/geda/geda_keyfile.c:3906
 #, c-format
 msgid "Key file does not have key '%s' in group '%s'"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:3357
+#: libgeda/src/geda/geda_keyfile.c:3424
 msgid "Group does not have comment"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:4065
+#: libgeda/src/geda/geda_keyfile.c:4132
 msgid "Key file contains escape character at end of line"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:4087
+#: libgeda/src/geda/geda_keyfile.c:4154
 msgid "Key file contains invalid escape sequence"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:4228
+#: libgeda/src/geda/geda_keyfile.c:4295
 #, c-format
 msgid "Value '%s' cannot be interpreted as a number."
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:4243
+#: libgeda/src/geda/geda_keyfile.c:4310
 #, c-format
 msgid "Integer value '%s' out of range"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:4276
+#: libgeda/src/geda/geda_keyfile.c:4343
 #, c-format
 msgid "Value '%s' cannot be interpreted as a float number."
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:4301
+#: libgeda/src/geda/geda_keyfile.c:4368
 #, c-format
 msgid "Value '%s' cannot be interpreted as a boolean."
 msgstr ""
@@ -1799,10 +1798,10 @@ msgstr ""
 msgid "There are no schematics above the current one!\n"
 msgstr "Il n'y a pas de schéma au-dessus de celui-ci!\n"
 
+# Failed to descend hierarchy into
 #: libgeda/src/struct/s_hierarchy.c:307
-#, fuzzy
 msgid "Failed to descend hierarchy into"
-msgstr "Échec de l'ouverture du répertoire"
+msgstr "Impossible de descendre la hiérarchie en"
 
 #: libgeda/src/struct/s_page.c:251
 msgid "Disabling auto save timer, no toplevel"
@@ -1845,26 +1844,25 @@ msgstr "Attribut"
 msgid "component missing pinseq= attribute\n"
 msgstr "manque l'attribut de composant pinseq=\n"
 
-# Could not parse symbol file
+# Could not write message to log file
 #: libgeda/src/utility/u_log.c:124
-#, fuzzy
 msgid "Could not write message to log file\n"
-msgstr "Impossible d'analyser le fichier de symboles"
+msgstr "Impossible d'écrire le message dans le fichier journal\n"
 
+# Could not create log directory
 #: libgeda/src/utility/u_log.c:267
-#, fuzzy
 msgid "Could not create log directory"
-msgstr "Impossible de sauvegarder le fichier de sauvegarde"
+msgstr "Impossible de créer un répertoire de journaux"
 
+# Could not create unique log filename in
 #: libgeda/src/utility/u_log.c:336
-#, fuzzy
 msgid "Could not create unique log filename in"
-msgstr "Impossible de sauvegarder le fichier de sauvegarde"
+msgstr "Impossible de créer un nom de fichier journal unique dans"
 
+# Could not create log file in
 #: libgeda/src/utility/u_log.c:340
-#, fuzzy
 msgid "Could not create log file in"
-msgstr "Impossible de sauvegarder le fichier de sauvegarde"
+msgstr "Impossible de créer un fichier journal"
 
 #: libgeda/scheme/geda/attrib.scm:65
 #, scheme-format
@@ -1891,9 +1889,6 @@ msgstr ""
 
 #~ msgid "%s: object %p has unknown type '%c'\n"
 #~ msgstr "o_save_objects: l'objet %p a un type '%c' inconnu\n"
-
-#~ msgid "Failed to open [%s]: %s\n"
-#~ msgstr "Échec de l'ouverture du répertoire [%s]: %s\n"
 
 #~ msgid "Library command failed [%s]: %s\n"
 #~ msgstr "Échec de la commande de bibliothèque [%s]: %s\n"
@@ -1984,12 +1979,6 @@ msgstr ""
 #~ "\n"
 #~ "Lancez gschem et corrigez le problème.\n"
 #~ "\n"
-
-#~ msgid "Failed to restore permissions on '%s': %s\n"
-#~ msgstr "Échec de l'ouverture du répertoire [%s]: %s\n"
-
-#~ msgid "Failed to restore ownership on '%s': %s\n"
-#~ msgstr "Échec de l'ouverture du répertoire [%s]: %s\n"
 
 #~ msgid ""
 #~ "WARNING: using a string for 'always-promote-attributes' is deprecated. "
