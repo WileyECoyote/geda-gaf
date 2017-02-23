@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-02-17 01:51-0600\n"
+"POT-Creation-Date: 2017-02-23 01:08-0600\n"
 "PO-Revision-Date: 2010-01-31 13:00+0000\n"
 "Last-Translator: Werner Hoch <werner.ho@gmx.de>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -579,10 +579,10 @@ msgid "Key file contains unsupported encoding"
 msgstr ""
 
 #: libgeda/src/geda/geda_keyfile.c:1324 libgeda/src/geda/geda_keyfile.c:1541
-#: libgeda/src/geda/geda_keyfile.c:2957 libgeda/src/geda/geda_keyfile.c:3027
-#: libgeda/src/geda/geda_keyfile.c:3153 libgeda/src/geda/geda_keyfile.c:3378
-#: libgeda/src/geda/geda_keyfile.c:3563 libgeda/src/geda/geda_keyfile.c:3759
-#: libgeda/src/geda/geda_keyfile.c:3827
+#: libgeda/src/geda/geda_keyfile.c:3024 libgeda/src/geda/geda_keyfile.c:3094
+#: libgeda/src/geda/geda_keyfile.c:3220 libgeda/src/geda/geda_keyfile.c:3445
+#: libgeda/src/geda/geda_keyfile.c:3630 libgeda/src/geda/geda_keyfile.c:3826
+#: libgeda/src/geda/geda_keyfile.c:3894
 msgid "Key file does not have group"
 msgstr ""
 
@@ -602,64 +602,64 @@ msgstr ""
 msgid "Key file does not have key"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:1662 libgeda/src/geda/geda_keyfile.c:1784
+#: libgeda/src/geda/geda_keyfile.c:1671 libgeda/src/geda/geda_keyfile.c:1809
 #, c-format
 msgid "Key file contains key '%s' with value '%s' which is not UTF-8"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:1683 libgeda/src/geda/geda_keyfile.c:1804
-#: libgeda/src/geda/geda_keyfile.c:2204
+#: libgeda/src/geda/geda_keyfile.c:1693 libgeda/src/geda/geda_keyfile.c:1831
+#: libgeda/src/geda/geda_keyfile.c:2265
 #, c-format
 msgid ""
 "Key file contains key '%s' which has a value that cannot be interpreted."
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:2420 libgeda/src/geda/geda_keyfile.c:2787
+#: libgeda/src/geda/geda_keyfile.c:2487 libgeda/src/geda/geda_keyfile.c:2854
 #, c-format
 msgid ""
 "Key file contains key '%s' in group '%s' which has a value that cannot be "
 "interpreted."
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:2497 libgeda/src/geda/geda_keyfile.c:2573
+#: libgeda/src/geda/geda_keyfile.c:2564 libgeda/src/geda/geda_keyfile.c:2640
 #, c-format
 msgid "Key '%s' in group '%s' has value '%s' where %s was expected"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:2972 libgeda/src/geda/geda_keyfile.c:3168
-#: libgeda/src/geda/geda_keyfile.c:3839
+#: libgeda/src/geda/geda_keyfile.c:3039 libgeda/src/geda/geda_keyfile.c:3235
+#: libgeda/src/geda/geda_keyfile.c:3906
 #, c-format
 msgid "Key file does not have key '%s' in group '%s'"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:3357
+#: libgeda/src/geda/geda_keyfile.c:3424
 msgid "Group does not have comment"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:4065
+#: libgeda/src/geda/geda_keyfile.c:4132
 msgid "Key file contains escape character at end of line"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:4087
+#: libgeda/src/geda/geda_keyfile.c:4154
 msgid "Key file contains invalid escape sequence"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:4228
+#: libgeda/src/geda/geda_keyfile.c:4295
 #, c-format
 msgid "Value '%s' cannot be interpreted as a number."
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:4243
+#: libgeda/src/geda/geda_keyfile.c:4310
 #, c-format
 msgid "Integer value '%s' out of range"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:4276
+#: libgeda/src/geda/geda_keyfile.c:4343
 #, c-format
 msgid "Value '%s' cannot be interpreted as a float number."
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:4301
+#: libgeda/src/geda/geda_keyfile.c:4368
 #, c-format
 msgid "Value '%s' cannot be interpreted as a boolean."
 msgstr ""
