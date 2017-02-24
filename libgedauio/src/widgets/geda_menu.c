@@ -148,6 +148,8 @@ struct _GedaMenuPriv
   int  y;
   bool  initially_pushed_in;
 
+  unsigned int settings_signal_id;
+
   /* info used for the table */
   unsigned int *heights;
   int           heights_length;
@@ -175,6 +177,7 @@ struct _GedaMenuPriv
   unsigned int have_position         : 1;
   unsigned int ignore_button_release : 1;
   unsigned int no_toggle_size        : 1;
+  unsigned int touchscreen_mode      : 1;
 };
 
 enum {
@@ -325,6 +328,78 @@ static unsigned int menu_signals[LAST_SIGNAL] = { 0 };
 static GHashTable *menu_hash_table = NULL;
 
 static void *geda_menu_parent_class = NULL;
+
+static void
+change_touchscreen_mode (GedaMenu *menu)
+{
+  GedaMenuPriv *priv;
+  GtkSettings  *settings;
+  unsigned int  touchscreen_mode;
+
+  touchscreen_mode = 0;
+
+  priv = menu->priv;
+
+  settings = gtk_widget_get_settings (GTK_WIDGET(menu));
+
+  g_object_get (settings, "gtk-touchscreen-mode", &touchscreen_mode, NULL);
+
+  priv->touchscreen_mode = touchscreen_mode;
+
+}
+
+/* Callback used when a GtkSettings value changes */
+static void
+settings_notify_cb (GObject    *object,
+                    GParamSpec *pspec,
+                    GedaMenu   *menu)
+{
+  const char *name;
+
+  name = g_param_spec_get_name (pspec);
+
+  /* Check if touchscreen-mode is what was changed */
+  if (!strcmp (name, "gtk-touchscreen-mode")) {
+    change_touchscreen_mode (menu);
+  }
+}
+
+static void
+connect_settings_signal(GedaMenu *menu)
+{
+  GedaMenuPriv *priv = menu->priv;
+
+  if (!priv->settings_signal_id) {
+
+    GtkSettings *settings;
+    GdkScreen   *screen;
+
+    screen   = gtk_widget_get_screen (GTK_WIDGET (menu));
+    settings = gtk_settings_get_for_screen (screen);
+
+    priv->settings_signal_id = g_signal_connect (settings, "notify",
+                                                 G_CALLBACK(settings_notify_cb),
+                                                 menu);
+  }
+}
+
+/* Removes the settings signal handler. It's safe to call multiple times */
+static void
+remove_settings_signal (GedaMenu *menu, GdkScreen *screen)
+{
+  GedaMenuPriv *priv = menu->priv;
+
+  if (priv->settings_signal_id) {
+
+    GtkSettings *settings;
+
+    settings = gtk_settings_get_for_screen (screen);
+
+    g_signal_handler_disconnect (settings, priv->settings_signal_id);
+
+    priv->settings_signal_id = 0;
+  }
+}
 
 static void
 menu_queue_resize (GedaMenu *menu)
@@ -675,9 +750,7 @@ geda_menu_handle_scrolling (GedaMenu *menu,
 
   menu_shell = GEDA_MENU_SHELL (menu);
 
-  g_object_get (gtk_widget_get_settings (GTK_WIDGET (menu)),
-                "gtk-touchscreen-mode", &touchscreen_mode,
-                NULL);
+  touchscreen_mode = priv->touchscreen_mode;
 
   gdk_window_get_position (menu->toplevel->window, &top_x, &top_y);
   x -= top_x;
@@ -695,8 +768,9 @@ geda_menu_handle_scrolling (GedaMenu *menu,
     in_arrow = TRUE;
   }
 
-  if (touchscreen_mode)
+  if (touchscreen_mode) {
     menu->upper_arrow_prelight = in_arrow;
+  }
 
   if (priv->upper_arrow_state != GTK_STATE_INSENSITIVE) {
 
@@ -925,19 +999,15 @@ geda_menu_button_scroll (GedaMenu *menu, GdkEventButton *event)
 {
   if (menu->upper_arrow_prelight || menu->lower_arrow_prelight) {
 
-    bool  touchscreen_mode;
+    if (menu->priv->touchscreen_mode) {
 
-    g_object_get (gtk_widget_get_settings (GTK_WIDGET (menu)),
-                  "gtk-touchscreen-mode", &touchscreen_mode,
-                  NULL);
-
-    if (touchscreen_mode)
       geda_menu_handle_scrolling (menu,
                                   event->x_root, event->y_root,
                                   event->type == GDK_BUTTON_PRESS,
                                   FALSE);
+    }
 
-      return TRUE;
+    return TRUE;
   }
 
   return FALSE;
@@ -1885,6 +1955,8 @@ geda_menu_realize (GtkWidget *widget)
 
   gdk_window_show (menu->bin_window);
   gdk_window_show (menu->view_window);
+
+  connect_settings_signal(menu);
 }
 
 static void
@@ -2315,6 +2387,9 @@ static void
 geda_menu_unrealize (GtkWidget *widget)
 {
   GedaMenu *menu = GEDA_MENU (widget);
+
+  /* Disconnect the settings Monitor */
+  remove_settings_signal(menu, gtk_widget_get_screen (GTK_WIDGET (menu)));
 
   menu_grab_transfer_window_destroy (menu);
 
@@ -4042,11 +4117,7 @@ geda_menu_popup (GedaMenu         *menu,
   /* if no item is selected, select the first one */
   if (!menu_shell->active_menu_item) {
 
-    bool  touchscreen_mode;
-
-    g_object_get (gtk_widget_get_settings (GTK_WIDGET (menu)),
-                  "gtk-touchscreen-mode", &touchscreen_mode,
-                  NULL);
+    bool touchscreen_mode = menu->priv->touchscreen_mode;
 
     if (touchscreen_mode) {
       geda_menu_shell_select_first (menu_shell, TRUE);
@@ -4937,9 +5008,7 @@ geda_menu_scroll_timeout (void *data)
 
   menu = GEDA_MENU (data);
 
-  g_object_get (gtk_widget_get_settings (GTK_WIDGET (menu)),
-                "gtk-touchscreen-mode", &touchscreen_mode,
-                NULL);
+  touchscreen_mode = menu->priv->touchscreen_mode;
 
   geda_menu_do_timeout_scroll (menu, touchscreen_mode);
 
@@ -4957,8 +5026,9 @@ geda_menu_scroll_timeout_initial (void *data)
 
   g_object_get (gtk_widget_get_settings (GTK_WIDGET (menu)),
                 "gtk-timeout-repeat", &timeout,
-                "gtk-touchscreen-mode", &touchscreen_mode,
                 NULL);
+
+  touchscreen_mode = menu->priv->touchscreen_mode;
 
   geda_menu_do_timeout_scroll (menu, touchscreen_mode);
 
@@ -4979,8 +5049,9 @@ geda_menu_start_scrolling (GedaMenu *menu)
 
   g_object_get (gtk_widget_get_settings (GTK_WIDGET (menu)),
                 "gtk-timeout-repeat", &timeout,
-                "gtk-touchscreen-mode", &touchscreen_mode,
                 NULL);
+
+  touchscreen_mode = menu->priv->touchscreen_mode;
 
   geda_menu_do_timeout_scroll (menu, touchscreen_mode);
 
@@ -5454,15 +5525,9 @@ geda_menu_remove_scroll_timeout (GedaMenu *menu)
 static void
 geda_menu_stop_scrolling (GedaMenu *menu)
 {
-  bool  touchscreen_mode;
-
   geda_menu_remove_scroll_timeout (menu);
 
-  g_object_get (gtk_widget_get_settings (GTK_WIDGET (menu)),
-               "gtk-touchscreen-mode", &touchscreen_mode,
-        NULL);
-
-  if (!touchscreen_mode) {
+  if (!menu->priv->touchscreen_mode) {
 
       menu->upper_arrow_prelight = FALSE;
       menu->lower_arrow_prelight = FALSE;

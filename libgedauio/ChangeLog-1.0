@@ -2,7 +2,12 @@
 
     * src/widgets/geda_menu.c: Revise geda_menu_set_tearoff_state to verify
       menu window pointer exist, otherwise use menu requisition height for
-      the tearoff_adjustment page increment.
+      the tearoff_adjustment page increment. : Revise module to monitor
+      GtkSettings and update the "gtk-touchscreen-mode" setting if the value
+      changes rather the fetching the value each time time the value is required
+      Add functions; change_accel, settings_notify_cb, connect_settings_signal,
+      remove_settings_signal. Connect in geda_menu_realize and disconnect in
+      geda_menu_unrealize.
 
 2017-02-23 Wiley E. Hill <wileyhill@gmail.com>
 
