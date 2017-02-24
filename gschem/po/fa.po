@@ -3181,10 +3181,9 @@ msgstr "صفحه مدیریت"
 msgid "Changed"
 msgstr "تغییر کرد"
 
-# Select PostScript Filename.
 #: gschem/src/x/x_pagesel.c:1205
-msgid "Select PostScript Filename...."
-msgstr "کلیک راست بر روی ردیف برای گزینه های بیشتر..."
+msgid "Right click on rows for more options..."
+msgstr ""
 
 # Select PostScript Filename.
 #: gschem/src/x/x_print.c:90
@@ -4646,37 +4645,45 @@ msgstr ""
 msgid "Repeat Last Action"
 msgstr ""
 
+# New File
 #: gschem/scheme/gschem/builtins.scm:50
 msgid "New File"
-msgstr "New Page"
+msgstr "فایل جدید"
 
+# Open File
 #: gschem/scheme/gschem/builtins.scm:53
 msgid "Open File"
-msgstr ""
+msgstr "باز کردن فایل"
 
+# Save As
 #: gschem/scheme/gschem/builtins.scm:59
 msgid "Save As"
-msgstr "Save All"
+msgstr "ذخیره به عنوان"
 
+# Save All
 #: gschem/scheme/gschem/builtins.scm:62
 msgid "Save All"
-msgstr "Save All"
+msgstr "همه را ذخیره کن"
 
+# Save Modified => Save Changes
 #: gschem/scheme/gschem/builtins.scm:65
 msgid "Save Modified"
-msgstr "Move Mode"
+msgstr "ذخیره تغییرات"
 
+# Print
 #: gschem/scheme/gschem/builtins.scm:68
 msgid "Print"
-msgstr "Print..."
+msgstr "چاپ"
 
+# Export Image
 #: gschem/scheme/gschem/builtins.scm:71
 msgid "Export Image"
-msgstr ""
+msgstr "صادرات تصویر"
 
+# Run Script
 #: gschem/scheme/gschem/builtins.scm:74
 msgid "Run Script"
-msgstr ""
+msgstr "اجرای اسکریپت"
 
 # New Window
 #: gschem/scheme/gschem/builtins.scm:77
@@ -4688,41 +4695,50 @@ msgstr "پنجره جدید"
 msgid "Close Window"
 msgstr "پنجره بسته"
 
+# Quit
 #: gschem/scheme/gschem/builtins.scm:86
 msgid "Quit"
-msgstr ""
+msgstr "ترک"
 
+# Export Symbol
 #: gschem/scheme/gschem/builtins.scm:89
 msgid "Export Symbol"
-msgstr ""
+msgstr "صادرات نماد"
 
+# Export Picture
 #: gschem/scheme/gschem/builtins.scm:92
 msgid "Export Picture"
-msgstr "Embed Component/Picture"
+msgstr "صادرات تصویر"
 
+# Undo
 #: gschem/scheme/gschem/builtins.scm:98
 msgid "Undo"
-msgstr "Undo"
+msgstr "باطل کردن"
 
+# Redo
 #: gschem/scheme/gschem/builtins.scm:101
 msgid "Redo"
-msgstr "Redo"
+msgstr "ازنو"
 
+# Copy Mode
 #: gschem/scheme/gschem/builtins.scm:107
 msgid "Copy Mode"
-msgstr "Copy Mode"
+msgstr "حالت کپی"
 
+# Multiple Copy Mode
 #: gschem/scheme/gschem/builtins.scm:113
 msgid "Multiple Copy Mode"
-msgstr "Multiple Copy Mode"
+msgstr "حالت چندگانه کپی"
 
+# Offset selection
 #: gschem/scheme/gschem/builtins.scm:119
 msgid "Offset selection"
-msgstr "Select Mode"
+msgstr "انتخاب افست"
 
+# Snap to Grid
 #: gschem/scheme/gschem/builtins.scm:128
 msgid "Snap to Grid"
-msgstr "Copy Mode"
+msgstr "بچسب به خطوط"
 
 #: gschem/scheme/gschem/builtins.scm:131
 msgid "Create Array"
@@ -5164,6 +5180,10 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
+
+# Select PostScript Filename.
+#~ msgid "Select PostScript Filename...."
+#~ msgstr "کلیک راست بر روی ردیف برای گزینه های بیشتر..."
 
 #~ msgid "session"
 #~ msgstr "Save All"
