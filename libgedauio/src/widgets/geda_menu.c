@@ -4650,6 +4650,7 @@ geda_menu_set_tearoff_state (GedaMenu *menu, bool torn_off)
         gtk_widget_realize (menu->tearoff_window);
 
         toplevel = geda_menu_get_toplevel (menu);
+
         if (toplevel != NULL) {
           gtk_window_set_transient_for (GTK_WINDOW (menu->tearoff_window),
                                         GTK_WINDOW (toplevel));
@@ -4660,15 +4661,21 @@ geda_menu_set_tearoff_state (GedaMenu *menu, bool torn_off)
 
         window = geda_get_widget_window(menu);
 
+        if (window) {
+
 #ifdef HAVE_GDK_WINDOW_GET_WIDTH
 
-        height = gdk_window_get_height (window);
+          height = gdk_window_get_height (window);
 
 #else
 
-        gdk_drawable_get_size(window, &width, &height);
+          gdk_drawable_get_size(window, &width, &height);
 
 #endif
+        }
+        else {
+          height = GTK_WIDGET (menu)->requisition.height;
+        }
 
         menu->tearoff_adjustment =
         GTK_ADJUSTMENT (gtk_adjustment_new (0,
@@ -4687,8 +4694,9 @@ geda_menu_set_tearoff_state (GedaMenu *menu, bool torn_off)
                           menu->tearoff_scrollbar,
                           FALSE, FALSE, 0);
 
-        if (menu->tearoff_adjustment->upper > height)
+        if (menu->tearoff_adjustment->upper > height) {
           gtk_widget_show (menu->tearoff_scrollbar);
+        }
 
         gtk_widget_show (menu->tearoff_hbox);
       }
@@ -4713,6 +4721,7 @@ geda_menu_set_tearoff_state (GedaMenu *menu, bool torn_off)
       geda_menu_set_tearoff_hints (menu, width);
 
       gtk_widget_realize (menu->tearoff_window);
+
       geda_menu_position (menu, TRUE);
 
       gtk_widget_show (GTK_WIDGET (menu));
@@ -4940,9 +4949,9 @@ geda_menu_scroll_timeout (void *data)
 static bool
 geda_menu_scroll_timeout_initial (void *data)
 {
-  GedaMenu  *menu;
-  unsigned int     timeout;
-  bool   touchscreen_mode;
+  GedaMenu    *menu;
+  unsigned int timeout;
+  bool         touchscreen_mode;
 
   menu = GEDA_MENU (data);
 
@@ -4965,8 +4974,8 @@ geda_menu_scroll_timeout_initial (void *data)
 static void
 geda_menu_start_scrolling (GedaMenu *menu)
 {
-  unsigned int    timeout;
-  bool  touchscreen_mode;
+  unsigned int timeout;
+  bool touchscreen_mode;
 
   g_object_get (gtk_widget_get_settings (GTK_WIDGET (menu)),
                 "gtk-timeout-repeat", &timeout,
