@@ -104,19 +104,19 @@ msgstr "Новое окно"
 msgid "Parent window for this dialog"
 msgstr ""
 
+# Title
 #: gschem/src/base/gschem_dialog.c:584
-#, fuzzy
 msgid "Title"
-msgstr "безымянный"
+msgstr "заглавие"
 
 #: gschem/src/base/gschem_dialog.c:585
 msgid "Dialog window title"
 msgstr ""
 
+# Label Text
 #: gschem/src/base/gschem_macro_widget.c:233
-#, fuzzy
 msgid "Label Text"
-msgstr "Поиск"
+msgstr "Текст метки"
 
 #: gschem/src/base/gschem_macro_widget.c:234
 msgid "Text to be displayed for the Macro label"
@@ -2277,10 +2277,10 @@ msgstr "Отображать"
 msgid "Attribute Name List"
 msgstr "Имя атрибута List"
 
+# Attribute Value Entry => Attribute record value
 #: gschem/src/x/x_edit_attrib.c:523
-#, fuzzy
 msgid "Attribute Value Entry"
-msgstr "Показать значение атрибута"
+msgstr "Атрибут Значение записи"
 
 # Edit Color
 #: gschem/src/x/x_edit_color.c:155
@@ -2301,10 +2301,10 @@ msgstr "Выбор цвета для выбранных объектов."
 msgid "Symbol renamed, cannot be undone\n"
 msgstr ""
 
+# Edit Component Properties
 #: gschem/src/x/x_edit_cprop.c:1154
-#, fuzzy
 msgid "Edit Component Properties"
-msgstr "Внедрить компонент/изображение"
+msgstr "Изменение свойств компонентов"
 
 # Symbol
 #: gschem/src/x/x_edit_cprop.c:1169
@@ -2323,10 +2323,10 @@ msgstr ""
 msgid "_Version:"
 msgstr ""
 
+# Enable
 #: gschem/src/x/x_edit_cprop.c:1220
-#, fuzzy
 msgid "_Enable"
-msgstr "Включено"
+msgstr "включить"
 
 #: gschem/src/x/x_edit_cprop.c:1228
 msgid "_use-license:"
@@ -2340,8 +2340,8 @@ msgstr ""
 msgid "Descr_iption:"
 msgstr ""
 
+# Documentation
 #: gschem/src/x/x_edit_cprop.c:1261
-#, fuzzy
 msgid "Documen_tation:"
 msgstr "Докумен_тация:"
 
@@ -2358,8 +2358,8 @@ msgstr ""
 msgid "_Ref Des:"
 msgstr ""
 
+# No. Slot => Number of sections
 #: gschem/src/x/x_edit_cprop.c:1338
-#, fuzzy
 msgid "_No. Slot:"
 msgstr "Количество секций:"
 
@@ -2367,8 +2367,8 @@ msgstr "Количество секций:"
 msgid "No. _Pins:"
 msgstr ""
 
+# Value
 #: gschem/src/x/x_edit_cprop.c:1359
-#, fuzzy
 msgid "_Value:"
 msgstr "Значение:"
 
@@ -2376,15 +2376,15 @@ msgstr "Значение:"
 msgid "_Foot Print:"
 msgstr ""
 
+# Spice Type => output Type
 #: gschem/src/x/x_edit_cprop.c:1384
-#, fuzzy
 msgid "Spice Type:"
 msgstr "Тип вывода:"
 
+# Model Name
 #: gschem/src/x/x_edit_cprop.c:1395
-#, fuzzy
 msgid "Model Name:"
-msgstr "Имя:"
+msgstr "Название модели:"
 
 #: gschem/src/x/x_edit_cprop.c:1429
 msgid "File name entry of component symbol"
@@ -2414,15 +2414,15 @@ msgstr ""
 msgid "Entry for distribution license of the symbol"
 msgstr ""
 
+# Description of the component
 #: gschem/src/x/x_edit_cprop.c:1475
-#, fuzzy
 msgid "Description of the component"
-msgstr "Просмотр документации для выбранного компонента"
+msgstr "Описание компонента"
 
+# Link to documentation for this device
 #: gschem/src/x/x_edit_cprop.c:1482
-#, fuzzy
 msgid "Link to documentation for this device"
-msgstr "Документация не найдена"
+msgstr "Ссылка на документацию для данного устройства"
 
 #: gschem/src/x/x_edit_cprop.c:1489
 msgid "Entry for comments"
@@ -2461,60 +2461,54 @@ msgid "Entry for model file name"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:96
-#, fuzzy
 msgid "in"
-msgstr "Вывод"
+msgstr "вin"
 
 #: gschem/src/x/x_edit_pin.c:97
-#, fuzzy
 msgid "out"
-msgstr "Вырезать"
+msgstr "out"
 
 #: gschem/src/x/x_edit_pin.c:98
 msgid "io"
-msgstr ""
+msgstr "io"
 
 #: gschem/src/x/x_edit_pin.c:99
-#, fuzzy
 msgid "oc"
-msgstr "Блокировка"
+msgstr "oc"
 
-# Эта строка выводится в режиме ввода жестов, когда библиотека жестов не
-# подключена.
 #: gschem/src/x/x_edit_pin.c:100
-#, fuzzy
 msgid "oe"
-msgstr "---"
+msgstr "oe"
 
 #: gschem/src/x/x_edit_pin.c:101
 msgid "pas"
-msgstr ""
+msgstr "pas"
 
 #: gschem/src/x/x_edit_pin.c:102
 msgid "tp"
-msgstr ""
+msgstr "tp"
 
 #: gschem/src/x/x_edit_pin.c:103
 msgid "tri"
-msgstr ""
+msgstr "tri"
 
 #: gschem/src/x/x_edit_pin.c:104
 msgid "clk"
-msgstr ""
+msgstr "clk"
 
 #: gschem/src/x/x_edit_pin.c:105
 msgid "pwr"
-msgstr ""
+msgstr "pwr"
 
 #: gschem/src/x/x_edit_pin.c:106 gschem/src/x/x_edit_pin.c:191
 #: gschem/src/x/x_edit_pin.c:205
 msgid "*missing*"
 msgstr ""
 
+# Pin Properties => Contact properties
 #: gschem/src/x/x_edit_pin.c:281 gschem/src/x/x_edit_pin.c:293
-#, fuzzy
 msgid "Pin Properties"
-msgstr "<b>Вывод</b>"
+msgstr "Контакт свойства"
 
 # Invalid Pin Node Type
 #: gschem/src/x/x_edit_pin.c:281
@@ -2525,33 +2519,33 @@ msgstr "Неверный PIN-код типа узла"
 msgid "Ignoring Pin electrical VOID"
 msgstr ""
 
+# Pin Properties Editor
 #: gschem/src/x/x_edit_pin.c:801
-#, fuzzy
 msgid "Pin Properties Editor"
-msgstr "Редактор атрибута"
+msgstr "Контакт редактор свойств"
 
+# Set
 #: gschem/src/x/x_edit_pin.c:879
-#, fuzzy
 msgid "Set"
-msgstr "Соединение"
+msgstr "Задавать"
 
 #: gschem/src/x/x_edit_pin.c:882
 msgid "Auto"
 msgstr ""
 
+# Attribute Type List
 #: gschem/src/x/x_edit_pin.c:913
-#, fuzzy
 msgid "Attribute Type List"
-msgstr "Атрибуты"
+msgstr "Атрибут Тип списка"
 
 #: gschem/src/x/x_edit_pin.c:917
 msgid "Text Alignment Option"
 msgstr ""
 
+# Pin Number
 #: gschem/src/x/x_edit_pin.c:921
-#, fuzzy
 msgid "Pin Number"
-msgstr "Номер секции:"
+msgstr "Пин код:"
 
 #: gschem/src/x/x_edit_pin.c:925
 msgid "Sequence Number"
@@ -2565,8 +2559,8 @@ msgstr ""
 msgid "Edit slot number"
 msgstr "Правка номера секции"
 
+# Number of slots => Number of sections
 #: gschem/src/x/x_edit_slot.c:185
-#, fuzzy
 msgid "Number of slots:"
 msgstr "Количество секций:"
 
