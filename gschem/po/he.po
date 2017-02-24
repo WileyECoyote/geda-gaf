@@ -3738,33 +3738,35 @@ msgstr ""
 msgid "Write _image..."
 msgstr ""
 
+# Export image
 #: gschem/etc/system-gschemrc.scm:2068
-#, fuzzy
 msgid "Export image"
-msgstr "שבץ רכיב/תמונה"
+msgstr "תמונת יצוא"
 
+# Execute Script
 #: gschem/etc/system-gschemrc.scm:2071
-#, fuzzy
 msgid "E_xecute Script..."
-msgstr "בצע תסריט..."
+msgstr "לביצוע סקריפט..."
 
+# Execute a script file => Execute a script
 #: gschem/etc/system-gschemrc.scm:2071
-#, fuzzy
 msgid "Execute a script file"
-msgstr "בצע תסריט..."
+msgstr "להפעיל קובץ סקריפט..."
 
+# Close
 #: gschem/etc/system-gschemrc.scm:2074 gschem/etc/system-gschemrc.scm:2221
 msgid "_Close"
-msgstr ""
+msgstr "לִסְגוֹר"
 
+# Close the current document
 #: gschem/etc/system-gschemrc.scm:2074
 msgid "Close the current document"
-msgstr ""
+msgstr "סגור את המסמך הנוכחי"
 
+# Close All
 #: gschem/etc/system-gschemrc.scm:2075
-#, fuzzy
 msgid "Close All"
-msgstr "סגור דף"
+msgstr "סגור הכל"
 
 #: gschem/etc/system-gschemrc.scm:2075
 msgid "Close all open documents"
@@ -3790,29 +3792,30 @@ msgstr ""
 msgid "redo the last un-done action"
 msgstr ""
 
+# Cut clipboard => Send Clipboard
 #: gschem/etc/system-gschemrc.scm:2088
-#, fuzzy
 msgid "Cu_t clipboard"
-msgstr "העתק אל 1"
+msgstr "לשלוח ללוח"
 
+# Copy clipboard
 #: gschem/etc/system-gschemrc.scm:2089
-#, fuzzy
 msgid "_Copy clipboard"
-msgstr "העתק אל 1"
+msgstr "העתק ללוח"
 
+# insert from memory
 #: gschem/etc/system-gschemrc.scm:2090
-#, fuzzy
 msgid "_Paste clipboard"
-msgstr "הדבק מ-1"
+msgstr "הכנס מזיכרון"
 
+# Copy
 #: gschem/etc/system-gschemrc.scm:2094
 msgid "C_opy"
-msgstr ""
+msgstr "עותק"
 
+# Multiple Copy
 #: gschem/etc/system-gschemrc.scm:2095
-#, fuzzy
 msgid "_Multiple Copy"
-msgstr "מצב העתקה מרובה"
+msgstr "העתק מרובה"
 
 # Mirror
 #: gschem/etc/system-gschemrc.scm:2096
@@ -3824,24 +3827,25 @@ msgstr "מַרְאָה"
 msgid "Mo_ve"
 msgstr "לעבור"
 
+# Offset
 #: gschem/etc/system-gschemrc.scm:2098
-#, fuzzy
 msgid "O_ffset"
-msgstr "מצב בחירה"
+msgstr "לְקַזֵז"
 
+# Offset the selected objects
 #: gschem/etc/system-gschemrc.scm:2098
 msgid "Offset the selected objects"
-msgstr ""
+msgstr "לקזז את האובייקטים שנבחרו"
 
+# Rotate 90
 #: gschem/etc/system-gschemrc.scm:2099
-#, fuzzy
 msgid "Rotate _90"
-msgstr "מצב סיבוב 90"
+msgstr "סובב 90"
 
+# Snap to grid
 #: gschem/etc/system-gschemrc.scm:2100
-#, fuzzy
 msgid "Snap to _grid"
-msgstr "מצב העתקה"
+msgstr "הצמד לרשת"
 
 #: gschem/etc/system-gschemrc.scm:2100
 msgid "Snap selection to current grid"
