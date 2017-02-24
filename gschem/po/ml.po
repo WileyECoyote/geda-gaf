@@ -3623,28 +3623,33 @@ msgstr ""
 msgid "New file"
 msgstr "പുതി ഫയൽ"
 
+# Failed to load file
 #: gschem/src/x/x_window.c:953
 msgid "Failed to load file"
-msgstr ""
+msgstr "ഫയല്ലഭ്യമാക്കുന്നതില്പരാജയം"
 
+# Creating new file
 #: gschem/src/x/x_window.c:983
 msgid "Creating new file"
-msgstr ""
+msgstr "പുതിയ ഫയൽ സൃഷ്ടിക്കുന്നു"
 
+# Path
 #: gschem/src/x/x_window.c:996
-#, fuzzy
 msgid "Path"
-msgstr "പ്രവര്‍ത്തന രീതി നിര്‍ണയിക്കുക"
+msgstr "പാത"
 
 #: gschem/src/x/x_window.c:999
 msgid ""
 "did not exist\n"
 "successfully created"
 msgstr ""
+"നിലവിലുണ്ടായിരുന്നില്ല\n"
+"വിജയകരമായി സൃഷ്ടിച്ചു"
 
+# Discarding page
 #: gschem/src/x/x_window.c:1143
 msgid "Discarding page"
-msgstr ""
+msgstr "ഉപേക്ഷിക്കുന്നു പേജ്"
 
 # Closing
 #: gschem/src/x/x_window.c:1144
@@ -3711,14 +3716,15 @@ msgstr ""
 msgid "Save all open documents"
 msgstr ""
 
+# Save Modified
 #: gschem/etc/system-gschemrc.scm:2060
-#, fuzzy
 msgid "Save _Modified"
-msgstr "പ്രവര്‍ത്തന രീതി നിര്‍ണയിക്കുക"
+msgstr "പരിഷ്കരിച്ച സംരക്ഷിക്കു"
 
+# Save all modified documents
 #: gschem/etc/system-gschemrc.scm:2060
 msgid "Save all modified documents"
-msgstr ""
+msgstr "പരിഷ്കരിച്ച പ്രമാണങ്ങൾ സംരക്ഷിക്കുക"
 
 #: gschem/etc/system-gschemrc.scm:2061 gschem/etc/system-gschemrc.scm:2222
 msgid "_Revert"
@@ -3812,20 +3818,20 @@ msgstr ""
 msgid "redo the last un-done action"
 msgstr ""
 
+# Cut to clipboard
 #: gschem/etc/system-gschemrc.scm:2088
-#, fuzzy
 msgid "Cu_t clipboard"
-msgstr "പകര്‍ത്തുക 1ലേക്ക്"
+msgstr "ക്ലിപ്പ്ബോർഡിലേക്ക് മുറിക്കുക"
 
+# Copy to clipboard
 #: gschem/etc/system-gschemrc.scm:2089
-#, fuzzy
 msgid "_Copy clipboard"
-msgstr "പകര്‍ത്തുക 1ലേക്ക്"
+msgstr "ക്ലിപ്പ്ബോർഡിലേയ്ക്ക് പകർത്തുക"
 
+# Paste from clipboard
 #: gschem/etc/system-gschemrc.scm:2090
-#, fuzzy
 msgid "_Paste clipboard"
-msgstr "പകര്‍ത്തി എടുക്കുക 1 ല്‍ നിന്നും"
+msgstr "ക്ലിപ്പ്ബോർഡിൽ നിന്നും ഒട്ടിക്കുക"
 
 #: gschem/etc/system-gschemrc.scm:2094
 msgid "C_opy"
@@ -3835,19 +3841,19 @@ msgstr ""
 msgid "_Multiple Copy"
 msgstr ""
 
+# Mirror
 #: gschem/etc/system-gschemrc.scm:2096
-#, fuzzy
 msgid "M_irror"
-msgstr "പ്രിന്‍റ് ചെയ്യുക..."
+msgstr "കണ്ണാടി"
 
 #: gschem/etc/system-gschemrc.scm:2097
 msgid "Mo_ve"
 msgstr ""
 
+# Offset
 #: gschem/etc/system-gschemrc.scm:2098
-#, fuzzy
 msgid "O_ffset"
-msgstr "പ്രവര്‍ത്തന രീതി നിര്‍ണയിക്കുക"
+msgstr "ഓഫ്സെറ്റ്"
 
 #: gschem/etc/system-gschemrc.scm:2098
 msgid "Offset the selected objects"
@@ -3857,10 +3863,10 @@ msgstr ""
 msgid "Rotate _90"
 msgstr ""
 
+# Snap to grid
 #: gschem/etc/system-gschemrc.scm:2100
-#, fuzzy
 msgid "Snap to _grid"
-msgstr "പ്രവര്‍ത്തന രീതി നിര്‍ണയിക്കുക"
+msgstr "ഗ്രിഡിലേക്ക് സ്നാപ്പ്"
 
 #: gschem/etc/system-gschemrc.scm:2100
 msgid "Snap selection to current grid"
@@ -3946,10 +3952,10 @@ msgstr ""
 msgid "Select All"
 msgstr ""
 
+# Select all objects
 #: gschem/etc/system-gschemrc.scm:2122
-#, fuzzy
 msgid "Select all objects"
-msgstr "പ്രവര്‍ത്തന രീതി നിര്‍ണയിക്കുക"
+msgstr "എല്ലാ വസ്തുക്കൾ തിരഞ്ഞെടുക്കുക"
 
 #: gschem/etc/system-gschemrc.scm:2123 gschem/scheme/gschem/builtins.scm:185
 msgid "Deselect All"
@@ -4111,10 +4117,10 @@ msgstr ""
 msgid "Activate Panning"
 msgstr ""
 
+# Zoom All
 #: gschem/etc/system-gschemrc.scm:2183
-#, fuzzy
 msgid "Zoom _All"
-msgstr "വലുതാക്കി കാണിക്കുന്ന പെട്ടി"
+msgstr "സൂം എല്ലാ"
 
 #: gschem/etc/system-gschemrc.scm:2183
 msgid "Zoom to the limits of the drawing area"
@@ -4136,10 +4142,10 @@ msgstr ""
 msgid "Zoom _Out"
 msgstr ""
 
+# Zoom to specified level
 #: gschem/etc/system-gschemrc.scm:2188
-#, fuzzy
 msgid "Zoom _Mag"
-msgstr "വലുതാക്കി കാണിക്കുന്ന പെട്ടി"
+msgstr "വ്യക്തമാക്കിയ തലത്തിലേക്ക് സൂം"
 
 #: gschem/etc/system-gschemrc.scm:2189
 msgid "Zoom _Selection"
@@ -4277,14 +4283,15 @@ msgstr ""
 msgid "Close the current page without saving"
 msgstr ""
 
+# Print
 #: gschem/etc/system-gschemrc.scm:2224
-#, fuzzy
 msgid "Prin_t"
-msgstr "പ്രിന്‍റ് ചെയ്യുക..."
+msgstr "അച്ചടിക്കുക"
 
+# Print the current page
 #: gschem/etc/system-gschemrc.scm:2224
 msgid "Print the current page"
-msgstr ""
+msgstr "നിലവിലെ പേജ് പ്രിന്റ്"
 
 #: gschem/etc/system-gschemrc.scm:2227
 msgid "Down _Schematic"
@@ -4342,19 +4349,20 @@ msgstr ""
 msgid "C_ircle"
 msgstr ""
 
+# Add circle
 #: gschem/etc/system-gschemrc.scm:2247
-#, fuzzy
 msgid "Add circle"
-msgstr "വൃത്തം"
+msgstr "സർക്കിൾ ചേർക്കുക"
 
+# Line
 #: gschem/etc/system-gschemrc.scm:2248
 msgid "_Line"
-msgstr ""
+msgstr "വര"
 
+# Add line
 #: gschem/etc/system-gschemrc.scm:2248
-#, fuzzy
 msgid "Add line"
-msgstr "രേഖ"
+msgstr "ലൈൻ ചേർക്കുക"
 
 #: gschem/etc/system-gschemrc.scm:2249
 msgid "Pat_h"
