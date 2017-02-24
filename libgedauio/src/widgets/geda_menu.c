@@ -4124,7 +4124,7 @@ geda_menu_popdown (GedaMenu *menu)
     gtk_window_set_transient_for (GTK_WINDOW (menu->toplevel), NULL);
   }
 
-  if (menu->torn_off) {
+  if (menu->torn_off && menu->tearoff_window) {
 
     gtk_widget_set_size_request (menu->tearoff_window, -1, -1);
 

@@ -1,6 +1,8 @@
 2017-02-23 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/widgets/geda_menu.c: Reorganize module.
+    * src/widgets/geda_menu.c: Reorganize module. Revise geda_menu_popdown to
+      check for pointer to menu->tearoff_window if menu->torn_off so that
+      resize does not fail when programmatically tearing off the menu.
 
     * src/widgets/geda_menu.c: Add functions geda_menu_widget_get_tearoff_state
       and geda_menu_widget_set_tearoff_state.
