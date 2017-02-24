@@ -63,10 +63,10 @@ msgstr ""
 msgid "Failed to read scheme initialization file"
 msgstr ""
 
+# version
 #: gschem/src/base/gschem.c:384
-#, fuzzy
 msgid "version"
-msgstr "Shrani vse"
+msgstr "verzija"
 
 #: gschem/src/base/gschem.c:389
 msgid "Logging system is disabled\n"
@@ -81,10 +81,10 @@ msgstr ""
 msgid "Exiting normal\n"
 msgstr ""
 
+# Parent Window
 #: gschem/src/base/gschem_dialog.c:563
-#, fuzzy
 msgid "Parent Window"
-msgstr "Novo okno"
+msgstr "matično okno"
 
 #: gschem/src/base/gschem_dialog.c:564
 msgid "Parent window for this dialog"
@@ -5145,43 +5145,49 @@ msgstr ""
 msgid "Autonumber Text"
 msgstr ""
 
+# Show Console Window
 #: gschem/scheme/gschem/builtins.scm:436
-#, fuzzy
 msgid "Show Console Window"
-msgstr "Novo okno"
+msgstr "Prikaži okno konzole"
 
+# Show Coordinates Window
 #: gschem/scheme/gschem/builtins.scm:439
-#, fuzzy
 msgid "Show Coordinates Window"
-msgstr "Novo okno"
+msgstr "Pokaži koordinate okno"
 
 #: gschem/scheme/gschem/builtins.scm:442
 msgid "Guile Path"
-msgstr ""
+msgstr "pot Guile"
 
+# Translate Symbol
 #: gschem/scheme/gschem/builtins.scm:448
 msgid "Translate Symbol"
-msgstr ""
+msgstr "Prevedi Simbol"
 
+# Dot Grid Style
 #: gschem/scheme/gschem/builtins.scm:463
 msgid "Dots Grid Style"
-msgstr ""
+msgstr "pike mreža stil"
 
+# Mesh Grid Style
 #: gschem/scheme/gschem/builtins.scm:466
 msgid "Mesh Grid Style"
-msgstr ""
+msgstr "matrica mreža stil"
 
+# Turn Grid Off
 #: gschem/scheme/gschem/builtins.scm:469
 msgid "Turn Grid Off"
-msgstr ""
+msgstr "vklopite omrežje off"
 
+# Cycle Grid Mode
 #: gschem/scheme/gschem/builtins.scm:472
 msgid "Cycle Grid Mode"
-msgstr ""
+msgstr "Način Mreža cikel"
 
+# Increase Grid Spacing
 #: gschem/scheme/gschem/builtins.scm:475
 msgid "Increase Grid Spacing"
-msgstr ""
+msgstr "Povečanje Mreža razmik"
 
 #: gschem/scheme/gschem/builtins.scm:478
 msgid "Decrease Grid Spacing"
