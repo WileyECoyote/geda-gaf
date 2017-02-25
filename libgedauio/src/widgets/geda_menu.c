@@ -4823,13 +4823,14 @@ geda_menu_set_tearoff_state (GedaMenu *menu, bool torn_off)
 /*!
  * \brief Retrieve the menu title
  * \par Function Description
- *  Returns the title of the menu. \sa geda_menu_set_title().
+ *  Returns the title of the menu. The string is owned by the widget
+ *  and should not be modified or freed.
  *
- * \param[in] menu: a #GedaMenu
+ * \param[in] menu a #GedaMenu
  *
- * \return title of the menu, or %NULL if the menu has no title has
- *         be set. This string is owned by the widget and should
- *         not be modified or freed.
+ * \return menu title or %NULL if the menu has no title has be set.
+ *
+ * \sa geda_menu_set_title().
  */
 const char*
 geda_menu_get_title (GedaMenu *menu)
@@ -4846,10 +4847,10 @@ geda_menu_get_title (GedaMenu *menu)
 /*!
  * \brief Set the Title for the Menu
  * \par Function Description
- * Sets the title string for the menu.  The title is displayed when the menu
- * is shown as a tearoff menu.  If \a title is %NULL, the menu will see if it is
- * attached to a parent menu item, and if so it will try to use the same text as
- * that menu item's label.
+ * Sets the title string for the menu. The title is displayed when the menu is
+ * shown as a tearoff menu. If \a title is %NULL, the menu will see if it is
+ * attached to a parent menu item, and if so it will try to use the same text
+ * as that menu item's label.
  *
  * \param[in] menu  GedaMenu
  * \param[in] title string containing the title for the menu.
@@ -5982,11 +5983,9 @@ geda_menu_get_reserve_toggle_size (GedaMenu *menu)
 /*!
  * \brief Get GedaMenu widget Tear-Off state Property
  * \par Function Description
- *  Programmatically set whether the menu is torn off.
- * \sa  geda_menu_get_tearoff_state ().
+ *  Retrives the current tearoff state.
  *
- * \param[in] menu      Pointer to a #GedaMenu
- * \param[in] torn_off  whether menu is to be torn off.
+ * \param[in] menu Pointer to a #GedaMenu
  */
 bool
 geda_menu_widget_get_tearoff_state (GtkWidget *menu)

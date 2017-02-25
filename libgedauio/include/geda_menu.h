@@ -124,6 +124,7 @@ struct _GedaMenu
   int saved_scroll_offset;
   int scroll_step;
 
+  unsigned int settings_signal_id;
   unsigned int timeout_id;
 
   /* When a submenu of this menu is popped up, motion in this
@@ -133,14 +134,15 @@ struct _GedaMenu
   unsigned int  navigation_timeout;
 
   unsigned int  needs_destruction_ref_count : 1;
-  unsigned int  torn_off : 1;
-
-  /* The tearoff is active when it is torn off and the not-torn-off
-   * menu is not popped up.
-   */
-  unsigned int  tearoff_active : 1;
 
   unsigned int  scroll_fast : 1;
+
+  /* The tearoff is active when it is torn off and the
+   * not-torn-off menu is not popped up.
+   */
+  unsigned int  tearoff_active : 1;
+  unsigned int  touchscreen_mode : 1;
+  unsigned int  torn_off : 1;
 
   unsigned int  upper_arrow_visible  : 1;
   unsigned int  lower_arrow_visible  : 1;
@@ -263,8 +265,8 @@ const char *geda_menu_widget_get_accel_path      (GtkWidget        *widget);
 void        geda_menu_widget_set_accel_path      (GtkWidget        *widget,
                                                   const char       *accel_path);
 
-bool        geda_menu_widget_get_tearoff_state   (GtkWidget        *menu);
-void        geda_menu_widget_set_tearoff_state   (GtkWidget        *menu,
+bool        geda_menu_widget_get_tearoff_state   (GtkWidget        *widget);
+void        geda_menu_widget_set_tearoff_state   (GtkWidget        *widget,
                                                   bool              torn_off);
 
 #define geda_menu_append(menu,child)     geda_menu_shell_append  ((GedaMenuShell *)(menu),(child))
