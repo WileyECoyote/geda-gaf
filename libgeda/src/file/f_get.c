@@ -673,10 +673,10 @@ geda_file_get_format_header(void)
 {
   static char *header = NULL;
 
-  if (header == NULL)
+  if (header == NULL) {
     header = geda_sprintf("v %s %u\n", PACKAGE_DATE_VERSION,
                                        FILEFORMAT_VERSION);
-
+  }
   return header;
 }
 
