@@ -1928,18 +1928,20 @@ msgstr ""
 msgid "Auto Zoom Extents"
 msgstr "זום אוטומטי ובמידות"
 
+# Hotkeys
 #: gschem/src/x/x_dialog.c:3196
 msgid "Hotkeys"
-msgstr ""
+msgstr "מקשי קיצור"
 
+# Icon
 #: gschem/src/x/x_dialog.c:3283
 msgid "Icon"
-msgstr ""
+msgstr "אייקון"
 
+# Action
 #: gschem/src/x/x_dialog.c:3297
-#, fuzzy
 msgid "Action"
-msgstr "מצב בחירה"
+msgstr "פעולה"
 
 #: gschem/src/x/x_dialog.c:3307
 msgid "Keystroke(s)"
@@ -3676,67 +3678,78 @@ msgstr ""
 msgid "Save _As..."
 msgstr ""
 
+# Save the current document to a new name or location
 #: gschem/etc/system-gschemrc.scm:2058
 msgid "Save the current document to a new name or location"
-msgstr ""
+msgstr "שמור את המסמך הנוכחי עד שם או מיקום חדש"
 
 # Save All
 #: gschem/etc/system-gschemrc.scm:2059
 msgid "Save A_ll"
 msgstr "שמור הכל"
 
+# Save all open documents
 #: gschem/etc/system-gschemrc.scm:2059
 msgid "Save all open documents"
-msgstr ""
+msgstr "שמור את כל המסמכים הפתוחים"
 
 #: gschem/etc/system-gschemrc.scm:2060
 msgid "Save _Modified"
 msgstr "שמור השתנה"
 
+# Save all modified documents
 #: gschem/etc/system-gschemrc.scm:2060
 msgid "Save all modified documents"
-msgstr ""
+msgstr "שמור את כל המסמכים השונים"
 
+# Revert
 #: gschem/etc/system-gschemrc.scm:2061 gschem/etc/system-gschemrc.scm:2222
 msgid "_Revert"
-msgstr ""
+msgstr "לַחֲזוֹר"
 
+# Discard changes and reload the current document
 #: gschem/etc/system-gschemrc.scm:2061
 msgid "Discard changes and reload the current document"
-msgstr ""
+msgstr "למחוק את השינויים לטעון מחדש את המסמך הנוכחי"
 
 # Revert All -> Restore All
 #: gschem/etc/system-gschemrc.scm:2062
 msgid "Re_vert All"
 msgstr "שחזר הכל"
 
+# Discard changes and reload all open documents
 #: gschem/etc/system-gschemrc.scm:2062
 msgid "Discard changes and reload all open documents"
-msgstr ""
+msgstr "בטל שינויים וטען מחדש כל המסמכים הפתוחים"
 
 #: gschem/etc/system-gschemrc.scm:2065
 msgid "_Print..."
-msgstr ""
+msgstr "הדפס..."
 
+# Print the current document
 #: gschem/etc/system-gschemrc.scm:2065
 msgid "Print the current document"
-msgstr ""
+msgstr "הדפסתהמסמךהנוכחי"
 
+# Export options
 #: gschem/etc/system-gschemrc.scm:2066
 msgid "Export options"
-msgstr ""
+msgstr "אפשרויות ייצוא"
 
+# Write pdf
 #: gschem/etc/system-gschemrc.scm:2067
 msgid "Write p_df"
-msgstr ""
+msgstr "pdf הכתוב"
 
+# Create PDF document
 #: gschem/etc/system-gschemrc.scm:2067
 msgid "Create PDF document"
-msgstr ""
+msgstr "יצירת מסמך PDF"
 
+# Write image
 #: gschem/etc/system-gschemrc.scm:2068
 msgid "Write _image..."
-msgstr ""
+msgstr "תמונה כתובה..."
 
 # Export image
 #: gschem/etc/system-gschemrc.scm:2068
@@ -3768,29 +3781,35 @@ msgstr "סגור את המסמך הנוכחי"
 msgid "Close All"
 msgstr "סגור הכל"
 
+# Close all open documents
 #: gschem/etc/system-gschemrc.scm:2075
 msgid "Close all open documents"
-msgstr ""
+msgstr "סגור את כל המסמכים הפתוחים"
 
+# Quit
 #: gschem/etc/system-gschemrc.scm:2076
 msgid "_Quit"
-msgstr ""
+msgstr "לְהַפְסִיק"
 
+# Undo
 #: gschem/etc/system-gschemrc.scm:2084
 msgid "_Undo"
-msgstr ""
+msgstr "לבטל"
 
+# Undo the last action
 #: gschem/etc/system-gschemrc.scm:2084
 msgid "Undo the last action"
-msgstr ""
+msgstr "בטל את הפעולה האחרונה"
 
+# Redo
 #: gschem/etc/system-gschemrc.scm:2085
 msgid "_Redo"
-msgstr ""
+msgstr "לַעֲשׂוֹת שׁוּב"
 
+# redo the last un-done action
 #: gschem/etc/system-gschemrc.scm:2085
 msgid "redo the last un-done action"
-msgstr ""
+msgstr "לעשות שוב את לבטל פעולה זו הפעולה האחרונה"
 
 # Cut clipboard => Send Clipboard
 #: gschem/etc/system-gschemrc.scm:2088
@@ -4094,10 +4113,10 @@ msgstr ""
 msgid "Activate Panning"
 msgstr ""
 
+# Zoom _All
 #: gschem/etc/system-gschemrc.scm:2183
-#, fuzzy
 msgid "Zoom _All"
-msgstr "תיבת תקריב"
+msgstr "זום _ כל"
 
 #: gschem/etc/system-gschemrc.scm:2183
 msgid "Zoom to the limits of the drawing area"
@@ -4119,10 +4138,10 @@ msgstr ""
 msgid "Zoom _Out"
 msgstr ""
 
+# Zoom Magnification
 #: gschem/etc/system-gschemrc.scm:2188
-#, fuzzy
 msgid "Zoom _Mag"
-msgstr "תיבת תקריב"
+msgstr "זום הגדלה"
 
 #: gschem/etc/system-gschemrc.scm:2189
 msgid "Zoom _Selection"
@@ -4140,10 +4159,10 @@ msgstr "הראה/הסתר טקסט חבוי"
 msgid "Toggle hidden text attributes"
 msgstr ""
 
+# Show/Hide Net Names
 #: gschem/etc/system-gschemrc.scm:2194
-#, fuzzy
 msgid "Show/Hide Net Names"
-msgstr "הראה/הסתר טקסט חבוי"
+msgstr "הצג/הסתר נטו שמות"
 
 #: gschem/etc/system-gschemrc.scm:2194
 msgid "Toggle hidden net name attributes"
@@ -4261,10 +4280,10 @@ msgstr ""
 msgid "Close the current page without saving"
 msgstr ""
 
+# Print
 #: gschem/etc/system-gschemrc.scm:2224
-#, fuzzy
 msgid "Prin_t"
-msgstr "הדפס..."
+msgstr "הדפס"
 
 #: gschem/etc/system-gschemrc.scm:2224
 msgid "Print the current page"
@@ -4278,10 +4297,10 @@ msgstr ""
 msgid "Down S_ymbol"
 msgstr ""
 
+# Hierarchy Up
 #: gschem/etc/system-gschemrc.scm:2229
-#, fuzzy
 msgid "_Hierarchy Up"
-msgstr "היררכיה"
+msgstr "עד היררכית"
 
 #: gschem/etc/system-gschemrc.scm:2230
 msgid "Find component documentation"
@@ -4319,28 +4338,28 @@ msgstr ""
 msgid "_Box"
 msgstr ""
 
+# Add box
 #: gschem/etc/system-gschemrc.scm:2246
-#, fuzzy
 msgid "Add box"
-msgstr "ערוך טקסט"
+msgstr "להוסיף תיבה"
 
 #: gschem/etc/system-gschemrc.scm:2247
 msgid "C_ircle"
 msgstr ""
 
+# Add circle
 #: gschem/etc/system-gschemrc.scm:2247
-#, fuzzy
 msgid "Add circle"
-msgstr "מעגל"
+msgstr "הוסף מעגל"
 
 #: gschem/etc/system-gschemrc.scm:2248
 msgid "_Line"
 msgstr ""
 
+# Add line
 #: gschem/etc/system-gschemrc.scm:2248
-#, fuzzy
 msgid "Add line"
-msgstr "קו"
+msgstr "הוספת קו"
 
 #: gschem/etc/system-gschemrc.scm:2249
 msgid "Pat_h"
@@ -4362,10 +4381,10 @@ msgstr ""
 msgid "_Pin"
 msgstr ""
 
+# Add pin
 #: gschem/etc/system-gschemrc.scm:2251
-#, fuzzy
 msgid "Add pin"
-msgstr "קו"
+msgstr "להוסיף סיכה"
 
 #: gschem/etc/system-gschemrc.scm:2259
 msgid "Create a new session"
