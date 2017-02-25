@@ -1168,10 +1168,10 @@ msgstr ""
 msgid "Bus ripper symbol was not found in any component library"
 msgstr ""
 
+# Update All
 #: gschem/src/object/o_picture.c:357
-#, fuzzy
 msgid "Update All"
-msgstr "更新"
+msgstr "全部更新"
 
 #: gschem/src/object/o_picture.c:359
 msgid "Update all selected Picture images"
@@ -1265,10 +1265,10 @@ msgstr ""
 msgid "Undo/Redo disabled\n"
 msgstr ""
 
+# Undo error
 #: gschem/src/object/o_undo.c:550
-#, fuzzy
 msgid "<b>Undo error.</b>"
-msgstr "<b>選項</b>"
+msgstr "<b>撤消錯誤</b>"
 
 #: gschem/src/object/o_undo.c:550
 msgid "Undo failed"
@@ -1632,8 +1632,8 @@ msgstr ""
 msgid "Net"
 msgstr ""
 
+# Attribute
 #: gschem/src/x/x_dialog.c:1018
-#, fuzzy
 msgid "Attribute"
 msgstr "屬性"
 
@@ -1641,28 +1641,28 @@ msgstr "屬性"
 msgid "Logic bubble"
 msgstr ""
 
+# Grid point
 #: gschem/src/x/x_dialog.c:1020
-#, fuzzy
 msgid "Grid point"
-msgstr "弧線模式"
+msgstr "網格點"
 
+# Detached attribute
 #: gschem/src/x/x_dialog.c:1021
-#, fuzzy
 msgid "Detached attribute"
-msgstr "屬性"
+msgstr "分離的屬性"
 
+# Text
 #: gschem/src/x/x_dialog.c:1022 gschem/src/x/x_menus.c:95
-#, fuzzy
 msgid "Text"
-msgstr "新增文字"
+msgstr "文本"
 
 #: gschem/src/x/x_dialog.c:1023 gschem/src/x/x_edit_pin.c:141
 #: gschem/src/x/x_menus.c:94
 msgid "Bus"
 msgstr ""
 
+# Selection
 #: gschem/src/x/x_dialog.c:1024 gschem/src/x/x_menus.c:105
-#, fuzzy
 msgid "Selection"
 msgstr "選擇"
 
@@ -1670,10 +1670,10 @@ msgstr "選擇"
 msgid "Bounding box"
 msgstr ""
 
+# Zoom box
 #: gschem/src/x/x_dialog.c:1026
-#, fuzzy
 msgid "Zoom box"
-msgstr "放大檢視"
+msgstr "縮放框"
 
 #: gschem/src/x/x_dialog.c:1027
 msgid "Stroke"
@@ -1858,12 +1858,12 @@ msgstr ""
 
 #: gschem/src/x/x_dialog.c:2183 gschem/scheme/gschem/builtins.scm:155
 msgid "Edit Line Width & Type"
-msgstr ""
+msgstr "編輯線寬和類型"
 
-# Line style
+# Line Type
 #: gschem/src/x/x_dialog.c:2206
 msgid "Line Type:"
-msgstr "線條樣式:"
+msgstr "線型:"
 
 # Line endpoint style
 #: gschem/src/x/x_dialog.c:2209
@@ -1903,19 +1903,19 @@ msgstr ""
 msgid "Text to find:"
 msgstr ""
 
+# Search hidden attributes
 #: gschem/src/x/x_dialog.c:2497
-#, fuzzy
 msgid "Search hidden attributes"
-msgstr "屬性"
+msgstr "搜索隱藏的屬性"
 
 #: gschem/src/x/x_dialog.c:2500
 msgid "Descend into hierarchy"
 msgstr ""
 
+# Close on ascent
 #: gschem/src/x/x_dialog.c:2508
-#, fuzzy
 msgid "Close on ascent"
-msgstr "關閉檔案"
+msgstr "關閉上升"
 
 #: gschem/src/x/x_dialog.c:2596
 msgid "Hide Text"
@@ -1933,10 +1933,10 @@ msgstr ""
 msgid "Show text starting with:"
 msgstr ""
 
-# 文本輸入
+# Text input
 #: gschem/src/x/x_dialog.c:2849
 msgid "Text Entry..."
-msgstr "Text input..."
+msgstr "文本輸入..."
 
 #: gschem/src/x/x_dialog.c:2874
 msgid ""
@@ -1959,32 +1959,34 @@ msgid ""
 "(0 for origin)"
 msgstr ""
 
+# Auto Zoom Extents => Automatic zoom range
 #: gschem/src/x/x_dialog.c:3026
-#, fuzzy
 msgid "Auto Zoom Extents"
-msgstr "放大檢視"
+msgstr "自動縮放範圍"
 
+# Hotkeys
 #: gschem/src/x/x_dialog.c:3196
 msgid "Hotkeys"
 msgstr "熱鍵"
 
+# Icon
 #: gschem/src/x/x_dialog.c:3283
 msgid "Icon"
-msgstr ""
+msgstr "圖標"
 
+# Action
 #: gschem/src/x/x_dialog.c:3297
-#, fuzzy
 msgid "Action"
-msgstr "選擇"
+msgstr "行動"
 
 #: gschem/src/x/x_dialog.c:3307
 msgid "Keystroke(s)"
 msgstr ""
 
+# Command
 #: gschem/src/x/x_dialog.c:3317
-#, fuzzy
 msgid "Command"
-msgstr "元件"
+msgstr "命令"
 
 #: gschem/src/x/x_dialog.c:3553
 msgid "Major symbol changes detected."
