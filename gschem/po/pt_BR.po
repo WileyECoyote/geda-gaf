@@ -892,14 +892,12 @@ msgid "An error occurred attempting to create session"
 msgstr "Ocorreu um erro ao tentar criar uma sessão"
 
 #: gschem/src/iface/i_sessions.c:950 gschem/src/iface/i_sessions.c:1134
-#, fuzzy
 msgid "<b>Session Error</b>"
-msgstr "<b>Escopo</b>"
+msgstr "<b>Erro de sessão</b>"
 
 #: gschem/src/iface/i_sessions.c:950
-#, fuzzy
 msgid "Creation failed"
-msgstr "Inserção da área de tranferência falhou"
+msgstr "A criação falhou"
 
 # Opened session
 #: gschem/src/iface/i_sessions.c:994
@@ -920,9 +918,10 @@ msgstr "ao"
 msgid "Failed to rename session"
 msgstr "Falhou ao mudar o nome de sessão"
 
+# Could not rename session<
 #: gschem/src/iface/i_sessions.c:1071
 msgid "<b>Could not rename session</b>"
-msgstr ""
+msgstr "Não foi possível renomear a sessão"
 
 #: gschem/src/iface/i_sessions.c:1105
 msgid "Created session"
@@ -962,9 +961,10 @@ msgstr "Mostrar sessões na inicialização agora está habilitado\n"
 msgid "Show Sessions at startup is now DISABLED\n"
 msgstr "Mostrar sessões na inicialização agora está desativado\n"
 
+# Session system initialized!
 #: gschem/src/iface/i_sessions.c:1299
 msgid "Session system initialized!\n"
-msgstr ""
+msgstr "Sistema de sessão inicializado!\n"
 
 # Deselect Mode
 #: gschem/src/iface/i_status.c:134 gschem/etc/system-gschemrc.scm:2121
@@ -998,7 +998,7 @@ msgstr "Modo de Rotação"
 
 #: gschem/src/iface/i_status.c:149
 msgid "Side to offset?"
-msgstr ""
+msgstr "Lado a compensar?"
 
 #: gschem/src/iface/i_status.c:151 gschem/scheme/gschem/builtins.scm:116
 msgid "Mirror Mode"
@@ -1104,11 +1104,11 @@ msgstr "Reajuste Ativo"
 
 #: gschem/src/iface/i_vars.c:386
 msgid "Restoring user settings\n"
-msgstr ""
+msgstr "Restaurando configurações do usuário\n"
 
 #: gschem/src/iface/i_vars.c:775
 msgid "Initializing default configuration settings\n"
-msgstr ""
+msgstr "Inicializando as configurações padrão\n"
 
 # Failed to save user configuration to
 #: gschem/src/iface/i_vars.c:816
@@ -1743,10 +1743,10 @@ msgstr "Bloquear"
 msgid "Output background"
 msgstr "Plano de fundo de saída"
 
+# Net junction
 #: gschem/src/x/x_dialog.c:1030
-#, fuzzy
 msgid "Net junction"
-msgstr "Função"
+msgstr "Junção da rede"
 
 #: gschem/src/x/x_dialog.c:1031
 msgid "Mesh grid major"
@@ -1857,10 +1857,10 @@ msgstr "Ângulo 2:"
 msgid "Pitch 2:"
 msgstr "Passo 2:"
 
+# Select fill pattern
 #: gschem/src/x/x_dialog.c:1647
-#, fuzzy
 msgid "Select fill pattern"
-msgstr "Selecionar Tudo"
+msgstr "Selecionar padrão de preenchimento"
 
 #: gschem/src/x/x_dialog.c:1652
 msgid "Set the width of the filler lines"
@@ -1915,14 +1915,12 @@ msgid "Edit Line Width & Type"
 msgstr "Editar Largura e Tipo de Linha"
 
 #: gschem/src/x/x_dialog.c:2206
-#, fuzzy
 msgid "Line Type:"
 msgstr "Tipo de Linha:"
 
 #: gschem/src/x/x_dialog.c:2209
-#, fuzzy
 msgid "End Type:"
-msgstr "Tipo:"
+msgstr "Tipo de final:"
 
 #: gschem/src/x/x_dialog.c:2212
 msgid "Width:"
@@ -1957,20 +1955,20 @@ msgstr "Localizar Texto"
 msgid "Text to find:"
 msgstr "Loc. Texto:"
 
+# Search hidden attributes
 #: gschem/src/x/x_dialog.c:2497
-#, fuzzy
 msgid "Search hidden attributes"
-msgstr "Mostra atributos relativos"
+msgstr "Pesquisar atributos ocultos"
 
+# Descend into hierarchy
 #: gschem/src/x/x_dialog.c:2500
-#, fuzzy
 msgid "Descend into hierarchy"
-msgstr "Desce à hierarquia"
+msgstr "Descer para hierarquia"
 
+# Close on ascent
 #: gschem/src/x/x_dialog.c:2508
-#, fuzzy
 msgid "Close on ascent"
-msgstr "Fechar página"
+msgstr "Fechar na subida"
 
 #: gschem/src/x/x_dialog.c:2596
 msgid "Hide Text"
@@ -2020,9 +2018,8 @@ msgstr ""
 "(0 para origem)"
 
 #: gschem/src/x/x_dialog.c:3026
-#, fuzzy
 msgid "Auto Zoom Extents"
-msgstr "/Zoom desenho"
+msgstr "Extensões de zoom automático"
 
 #: gschem/src/x/x_dialog.c:3196
 msgid "Hotkeys"
@@ -2030,7 +2027,7 @@ msgstr "Atalhos"
 
 #: gschem/src/x/x_dialog.c:3283
 msgid "Icon"
-msgstr ""
+msgstr "Ícone"
 
 #: gschem/src/x/x_dialog.c:3297
 msgid "Action"
@@ -2041,9 +2038,8 @@ msgid "Keystroke(s)"
 msgstr "Arranjos de tecla"
 
 #: gschem/src/x/x_dialog.c:3317
-#, fuzzy
 msgid "Command"
-msgstr "_Componente..."
+msgstr "Comando"
 
 #: gschem/src/x/x_dialog.c:3553
 msgid "Major symbol changes detected."
@@ -2130,7 +2126,7 @@ msgid "Done, renderer is down"
 msgstr ""
 
 #: gschem/src/x/x_edit_attrib.c:210
-#, fuzzy, c-format
+#, c-format
 msgid "invalid show option; defaulting to show both\n"
 msgstr "Opção Visualização inválida; redefinindo para Ambos\n"
 
@@ -2138,19 +2134,20 @@ msgstr "Opção Visualização inválida; redefinindo para Ambos\n"
 msgid "Select to choose an attribute visibility options"
 msgstr ""
 
+# Show only the name of the attribute
 #: gschem/src/x/x_edit_attrib.c:322
-#, fuzzy
 msgid "Show only the name of the attribute"
-msgstr "Mostra atributos relativos"
+msgstr "Mostrar apenas o nome do atributo"
 
+# Show only the value of the attribute
 #: gschem/src/x/x_edit_attrib.c:323
-#, fuzzy
 msgid "Show only the value of the attribute"
-msgstr "Mostra atributos relativos"
+msgstr "Mostrar apenas o valor do atributo"
 
+# Show both the name and the value of the attribute
 #: gschem/src/x/x_edit_attrib.c:324
 msgid "Show both the name and the value of the attribute"
-msgstr ""
+msgstr "Mostrar tanto o nome eo valor do atributo"
 
 #: gschem/src/x/x_edit_attrib.c:332
 msgid "Show Value Only"
@@ -2400,34 +2397,30 @@ msgstr ""
 msgid "Entry for spice-type over-ride"
 msgstr ""
 
+# Entry for model file name
 #: gschem/src/x/x_edit_cprop.c:1545
-#, fuzzy
 msgid "Entry for model file name"
-msgstr "Mostra atributos relativos"
+msgstr "Entrada para o nome do arquivo do modelo"
 
 #: gschem/src/x/x_edit_pin.c:96
-#, fuzzy
 msgid "in"
-msgstr "Pino"
+msgstr "in"
 
 #: gschem/src/x/x_edit_pin.c:97
-#, fuzzy
 msgid "out"
-msgstr "Saída"
+msgstr "out"
 
 #: gschem/src/x/x_edit_pin.c:98
 msgid "io"
-msgstr ""
+msgstr "io"
 
 #: gschem/src/x/x_edit_pin.c:99
-#, fuzzy
 msgid "oc"
-msgstr "Bloquear"
+msgstr "oc"
 
 #: gschem/src/x/x_edit_pin.c:100
-#, fuzzy
 msgid "oe"
-msgstr "Mover"
+msgstr "oe"
 
 #: gschem/src/x/x_edit_pin.c:101
 msgid "pas"
