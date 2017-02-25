@@ -4858,13 +4858,15 @@ msgstr "саве Модифиед"
 msgid "Print"
 msgstr "Штампај"
 
+# Export Image
 #: gschem/scheme/gschem/builtins.scm:71
 msgid "Export Image"
-msgstr ""
+msgstr "Извоз Слика"
 
+# Run Script
 #: gschem/scheme/gschem/builtins.scm:74
 msgid "Run Script"
-msgstr ""
+msgstr "рун skripta"
 
 # New Window
 #: gschem/scheme/gschem/builtins.scm:77
@@ -4876,37 +4878,44 @@ msgstr "Нови прозор"
 msgid "Close Window"
 msgstr "Затвори прозор"
 
+# Quit
 #: gschem/scheme/gschem/builtins.scm:86
 msgid "Quit"
-msgstr ""
+msgstr "Одустати"
 
+# Export Symbol
 #: gschem/scheme/gschem/builtins.scm:89
 msgid "Export Symbol"
-msgstr ""
+msgstr "Извоз Симбол"
 
+# Export Picture
 #: gschem/scheme/gschem/builtins.scm:92
 msgid "Export Picture"
-msgstr ""
+msgstr "Извоз Слика"
 
+# Undo
 #: gschem/scheme/gschem/builtins.scm:98
 msgid "Undo"
-msgstr ""
+msgstr "расплести"
 
 #: gschem/scheme/gschem/builtins.scm:101
 msgid "Redo"
-msgstr ""
+msgstr "преправити"
 
+# Copy Mode
 #: gschem/scheme/gschem/builtins.scm:107
 msgid "Copy Mode"
-msgstr ""
+msgstr "цопи режим"
 
+# Multiple Copy Mode
 #: gschem/scheme/gschem/builtins.scm:113
 msgid "Multiple Copy Mode"
-msgstr ""
+msgstr "Вишеструко копирање режим"
 
+# Offset selection
 #: gschem/scheme/gschem/builtins.scm:119
 msgid "Offset selection"
-msgstr ""
+msgstr "оффсет избор"
 
 # Snap to Grid
 #: gschem/scheme/gschem/builtins.scm:128
