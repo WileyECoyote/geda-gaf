@@ -1,3 +1,10 @@
+2017-02-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_menu.c: Add checks for:
+
+        * geda_menu_widget_get_tearoff_state
+        * geda_menu_widget_set_tearoff_state.
+
 2017-02-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Revise geda_menu_set_tearoff_state to verify
@@ -42,7 +49,7 @@
     * tests/test_label.c: Add minimalist checks for:
 
         * geda_label_set_pattern
-        * geda_label_get_effective_attributes.
+        * geda_label_get_effective_attributes
         * geda_label_get_mnemonic_visible
         * geda_label_get_current_uri
 

@@ -39,6 +39,7 @@
 #include <geda_menu_bar.h>
 #include <geda_menu_item.h>
 #include <geda_menu_shell.h>
+#include <geda_tearoff_menu_item.h>
 
 #include "test-suite.h"
 
@@ -222,6 +223,59 @@ check_accessors ()
   else if (toplevel != top_Window) {
     fprintf(stderr, "FAILED: %s line <%d> <%p>\n", TWIDGET, __LINE__, toplevel);
     result++;
+  }
+
+    if (item != widget1) {
+    fprintf(stderr, "FAILED: line <%d> get_active %p\n", __LINE__, item);
+    result++;
+  }
+
+  /* ------------------- tearoff_state ----------------- */
+
+  GtkWidget *tearoff_item;
+
+  /* The menu is not a tear-off menu item */
+  if (geda_menu_widget_get_tearoff_state(menu)) {
+    fprintf(stderr, "FAILED: %s line <%d> get_tearoff_state\n", TWIDGET, __LINE__);
+    result++;
+  }
+
+  tearoff_item = geda_tearoff_menu_item_new ();
+
+  if (!GEDA_IS_TEAROFF_MENU_ITEM(tearoff_item)) {
+    fprintf(stderr, "FAILED: %s line <%d> tearoff_menu_item\n", TWIDGET, __LINE__);
+    result++;
+  }
+  else {
+
+    GtkWidget *submenu;
+    GtkWidget *widget4;
+
+    submenu  = geda_menu_new ();
+
+    geda_menu_item_set_submenu (GEDA_MENU_ITEM (tearoff_item), submenu);
+    geda_menu_shell_append (GEDA_MENU_SHELL (menu_bar), tearoff_item);
+
+    gtk_widget_show (tearoff_item);
+    gtk_widget_show (submenu);
+
+    widget4  = geda_menu_item_new_with_mnemonic("_Tomato");
+    geda_menu_shell_append (GEDA_MENU_SHELL (submenu), widget4);
+    gtk_widget_show (widget4);
+
+    geda_menu_widget_set_tearoff_state(submenu, TRUE);
+
+    if (!geda_menu_widget_get_tearoff_state(submenu)) {
+      fprintf(stderr, "FAILED: %s line <%d> set torn\n", TWIDGET, __LINE__);
+      result++;
+    }
+
+    geda_menu_widget_set_tearoff_state(submenu, FALSE);
+
+    if (geda_menu_widget_get_tearoff_state(submenu)) {
+      fprintf(stderr, "FAILED: %s line <%d> set not torn\n", TWIDGET, __LINE__);
+      result++;
+    }
   }
 
   gtk_widget_destroy(gtk_widget_get_toplevel(widget0));
