@@ -865,19 +865,18 @@ msgid "An error occurred attempting to create session"
 msgstr "Ocorreu um erro ao tentar criar uma sessão"
 
 #: gschem/src/iface/i_sessions.c:950 gschem/src/iface/i_sessions.c:1134
-#, fuzzy
 msgid "<b>Session Error</b>"
-msgstr "<b>Âmbito</b>"
+msgstr "<b>Erro de sessão</b>"
 
 # Creation failed
 #: gschem/src/iface/i_sessions.c:950
 msgid "Creation failed"
 msgstr "Criação falhou"
 
+# Opened session
 #: gschem/src/iface/i_sessions.c:994
-#, fuzzy
 msgid "Opened session"
-msgstr "Guardar Tudo"
+msgstr "Sessão de Abertura"
 
 # Renaming session
 #: gschem/src/iface/i_sessions.c:1043
@@ -935,9 +934,10 @@ msgstr "Mostrar sessões na inicialização agora está habilitado\n"
 msgid "Show Sessions at startup is now DISABLED\n"
 msgstr "Mostrar sessões na inicialização agora está desativado\n"
 
+# Session system initialized
 #: gschem/src/iface/i_sessions.c:1299
 msgid "Session system initialized!\n"
-msgstr ""
+msgstr "Sistema de sessão inicializado!\n"
 
 # Deselect Mode
 #: gschem/src/iface/i_status.c:134 gschem/etc/system-gschemrc.scm:2121
@@ -971,7 +971,7 @@ msgstr "Modo de Rotação"
 
 #: gschem/src/iface/i_status.c:149
 msgid "Side to offset?"
-msgstr ""
+msgstr "De um lado para compensar?"
 
 #: gschem/src/iface/i_status.c:151 gschem/scheme/gschem/builtins.scm:116
 msgid "Mirror Mode"
@@ -1077,11 +1077,11 @@ msgstr "Reajuste a Grelha Activo"
 
 #: gschem/src/iface/i_vars.c:386
 msgid "Restoring user settings\n"
-msgstr ""
+msgstr "Restaurar as configurações do usuário\n"
 
 #: gschem/src/iface/i_vars.c:775
 msgid "Initializing default configuration settings\n"
-msgstr ""
+msgstr "Inicializando parâmetros predefinidos de configuração\n"
 
 # Failed to save user configuration to
 #: gschem/src/iface/i_vars.c:816
@@ -1895,13 +1895,12 @@ msgstr "Fantasma"
 msgid "Edit Line Width & Type"
 msgstr "Editar Largura & Tipo de Linha"
 
+# Line Type
 #: gschem/src/x/x_dialog.c:2206
-#, fuzzy
 msgid "Line Type:"
-msgstr "Tipo de Linha:"
+msgstr "Tipo de linha:"
 
 #: gschem/src/x/x_dialog.c:2209
-#, fuzzy
 msgid "End Type:"
 msgstr "Tipo:"
 
@@ -1938,20 +1937,20 @@ msgstr "Procurar Texto"
 msgid "Text to find:"
 msgstr "Texto a procurar:"
 
+# Search hidden attributes
 #: gschem/src/x/x_dialog.c:2497
-#, fuzzy
 msgid "Search hidden attributes"
-msgstr "Mostrar atributos inerentes"
+msgstr "Pesquisar atributos ocultos"
 
+# Descend into hierarchy
 #: gschem/src/x/x_dialog.c:2500
-#, fuzzy
 msgid "Descend into hierarchy"
-msgstr "descender na hierarquia"
+msgstr "Descer na hierarquia"
 
+# Close on ascent
 #: gschem/src/x/x_dialog.c:2508
-#, fuzzy
 msgid "Close on ascent"
-msgstr "Fechar Página"
+msgstr "Fechar na subida"
 
 #: gschem/src/x/x_dialog.c:2596
 msgid "Hide Text"
@@ -2000,9 +1999,8 @@ msgstr ""
 "(0 para a origem)"
 
 #: gschem/src/x/x_dialog.c:3026
-#, fuzzy
 msgid "Auto Zoom Extents"
-msgstr "/Mostrar Tudo"
+msgstr "Extensões de zoom automático"
 
 #: gschem/src/x/x_dialog.c:3196
 msgid "Hotkeys"
@@ -2010,7 +2008,7 @@ msgstr "Teclas de Atalho"
 
 #: gschem/src/x/x_dialog.c:3283
 msgid "Icon"
-msgstr ""
+msgstr "Ícone"
 
 #: gschem/src/x/x_dialog.c:3297
 msgid "Action"
@@ -2021,9 +2019,8 @@ msgid "Keystroke(s)"
 msgstr "Premir de tecla(s)"
 
 #: gschem/src/x/x_dialog.c:3317
-#, fuzzy
 msgid "Command"
-msgstr "Comando:"
+msgstr "Comando"
 
 #: gschem/src/x/x_dialog.c:3553
 msgid "Major symbol changes detected."
@@ -2037,9 +2034,8 @@ msgid ""
 msgstr ""
 
 #: gschem/src/x/x_dialog.c:3621
-#, fuzzy
 msgid "Symbol"
-msgstr "Símbolos"
+msgstr "Símbolo"
 
 #: gschem/src/x/x_dialog.c:3668
 msgid "Dismiss this dialog"
@@ -2055,7 +2051,6 @@ msgid "Please correct in order to continue"
 msgstr ""
 
 #: gschem/src/x/x_dialog.c:3711
-#, fuzzy
 msgid ""
 "The name and value must be non-empty.\n"
 "The name cannot end with a space.\n"
@@ -2109,7 +2104,7 @@ msgid "Done, renderer is down"
 msgstr ""
 
 #: gschem/src/x/x_edit_attrib.c:210
-#, fuzzy, c-format
+#, c-format
 msgid "invalid show option; defaulting to show both\n"
 msgstr ""
 "Obtida opção de visualização inválida; A alterar para visualizar ambos\n"
@@ -2118,19 +2113,20 @@ msgstr ""
 msgid "Select to choose an attribute visibility options"
 msgstr ""
 
+# Show only the name of the attribute
 #: gschem/src/x/x_edit_attrib.c:322
-#, fuzzy
 msgid "Show only the name of the attribute"
-msgstr "Mostrar atributos inerentes"
+msgstr "Mostrar apenas o nome do atributo"
 
+# Show only the value of the attribute
 #: gschem/src/x/x_edit_attrib.c:323
-#, fuzzy
 msgid "Show only the value of the attribute"
-msgstr "Mostrar atributos inerentes"
+msgstr "Mostrar apenas o valor do atributo"
 
+# Show both the name and the value of the attribute
 #: gschem/src/x/x_edit_attrib.c:324
 msgid "Show both the name and the value of the attribute"
-msgstr ""
+msgstr "Mostrar tanto o nome e o valor do atributo"
 
 #: gschem/src/x/x_edit_attrib.c:332
 msgid "Show Value Only"
