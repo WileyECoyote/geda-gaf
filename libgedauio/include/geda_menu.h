@@ -243,7 +243,7 @@ bool        geda_menu_get_reserve_toggle_size    (GedaMenu         *menu);
 void        geda_menu_set_reserve_toggle_size    (GedaMenu         *menu,
                                                   bool              size);
 
-GtkWidget  *geda_menu_get_parent                 (GedaMenu         *menu);
+GtkWidget  *geda_menu_get_parent_item            (GedaMenu         *menu);
 
 void        geda_menu_reorder_child              (GedaMenu         *menu,
                                                   GtkWidget        *child,

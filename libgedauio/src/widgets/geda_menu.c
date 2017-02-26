@@ -4922,7 +4922,7 @@ geda_menu_get_toplevel (GedaMenu *menu)
  *
  * \param [in] menu #GedaMenu Object whose parent is to be retrieved
  */
-GtkWidget *geda_menu_get_parent (GedaMenu *menu)
+GtkWidget *geda_menu_get_parent_item (GedaMenu *menu)
 {
   g_return_val_if_fail (GEDA_IS_MENU (menu), NULL);
   return menu->parent_menu_item;
