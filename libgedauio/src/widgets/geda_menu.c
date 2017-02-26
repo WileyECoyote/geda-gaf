@@ -3703,9 +3703,14 @@ geda_menu_attach_to_widget (GedaMenu       *menu,
   data = g_object_get_data (G_OBJECT (menu), attached_data_key);
 
   if (data) {
-      g_warning ("geda_menu_attach_to_widget(): menu already attached to %s",
-         g_type_name (G_TYPE_FROM_INSTANCE (data->attach_widget)));
-     return;
+
+    const char *type_name;
+
+    type_name = g_type_name (G_TYPE_FROM_INSTANCE (data->attach_widget));
+
+    g_warning ("%s: menu already attached to %s", __func__, type_name);
+
+    return;
   }
 
   g_object_ref_sink (menu);
