@@ -1750,9 +1750,9 @@ static void x_menu_clear_recent_file_list(void *data)
    x_menu_update_recent_files();
 }
 
-static void x_menu_free_recent_file_record (void *data)
+static void x_menu_free_recent_file_record (RecentMenuData *menu_data)
 {
-  GEDA_FREE (data);
+  GEDA_FREE (menu_data);
 }
 
 /*! \brief Recent Menu item Clicked
@@ -1760,13 +1760,13 @@ static void x_menu_free_recent_file_record (void *data)
  *  Called with user clicks on a menu item on the recent files menu or when
  *  the user select "open" from the popup menu on the recent file submenu.
  */
-static void x_menu_recent_file_clicked (GedaMenuItem *menuitem, void *user_data)
+static void x_menu_recent_file_clicked (GedaMenuItem *menuitem, void *menu_data)
 {
-   FILE *fp;
-   Page *page;
-   RecentMenuData *data      = (RecentMenuData*) user_data;
+   FILE           *fp;
+   Page           *page;
+   RecentMenuData *data      = (RecentMenuData*)menu_data;
    GschemToplevel *w_current = data->w_current;
-   char *filename            = data->filename;
+   char           *filename  = data->filename;
 
    /* Check if the file exists */
    fp = fopen((char*) filename, "r");
@@ -1866,7 +1866,7 @@ static void x_menu_recent_file_remove (GedaMenuItem *menuitem, void *user_data)
  */
 static void x_menu_recent_show_popup (GedaMenuItem   *menu_widget,
                                       GdkEventButton *event,
-                                      void           *user_data)
+                                      RecentMenuData *menu_data)
 {
   GtkWidget *menu;
   GtkWidget *popup_item;
@@ -1877,7 +1877,7 @@ static void x_menu_recent_show_popup (GedaMenuItem   *menu_widget,
   popup_item = geda_menu_item_new_with_label (_("Open"));
 
   g_signal_connect_data (GTK_OBJECT(popup_item), "activate",
-                        (GCallback) x_menu_recent_file_clicked, user_data,
+                        (GCallback) x_menu_recent_file_clicked, menu_data,
                         (GClosureNotify) x_menu_free_recent_file_record,
                          0);
 
@@ -1886,7 +1886,7 @@ static void x_menu_recent_show_popup (GedaMenuItem   *menu_widget,
   popup_item = geda_menu_item_new_with_label (_("Remove"));
 
   g_signal_connect_data (GTK_OBJECT(popup_item), "activate",
-                        (GCallback) x_menu_recent_file_remove, user_data,
+                        (GCallback) x_menu_recent_file_remove, menu_data,
                         (GClosureNotify) x_menu_free_recent_file_record,
                          0);
 
@@ -1897,7 +1897,7 @@ static void x_menu_recent_show_popup (GedaMenuItem   *menu_widget,
 
   g_signal_connect (G_OBJECT(popup_item), "toggled",
                     G_CALLBACK(x_menu_toggle_recent_path),
-                    user_data);
+                    menu_data);
 
   geda_menu_shell_append (GEDA_MENU_SHELL (menu), popup_item);
 
@@ -1917,15 +1917,15 @@ static void x_menu_recent_show_popup (GedaMenuItem   *menu_widget,
  *
  *  \sa x_menu_recent_show_popup
  */
-static bool x_menu_recent_button_released (GedaMenuItem    *menu_item,
+static bool x_menu_recent_button_released (GedaMenuItem   *menu_item,
                                            GdkEventButton *event,
-                                           void           *user_data)
+                                           RecentMenuData *menu_data)
 {
   bool ret_val;
 
   if (event->button == 3) {
 
-    x_menu_recent_show_popup(menu_item, event, user_data);
+    x_menu_recent_show_popup(menu_item, event, menu_data);
 
     ret_val = TRUE;
   }

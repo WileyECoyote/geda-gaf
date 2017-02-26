@@ -1,3 +1,7 @@
+2017-02-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_menus.c: Rename recent user_data arguments to menu_data.
+
 2017-02-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/he.po: Update Hebrew translations.
