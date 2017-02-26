@@ -276,6 +276,26 @@ check_accessors ()
       fprintf(stderr, "FAILED: %s line <%d> set not torn\n", TWIDGET, __LINE__);
       result++;
     }
+
+    /* ----------------------- parent --------------------- */
+
+    GtkWidget *parent_item;
+
+    parent_item = geda_menu_get_parent_item(GEDA_MENU(submenu));
+
+    if (parent_item != tearoff_item) {
+      fprintf(stderr, "FAILED: %s line <%d> get_parent\n", TWIDGET, __LINE__);
+      result++;
+    }
+
+    geda_menu_set_parent_item(GEDA_MENU(submenu), NULL);
+
+    if (geda_menu_get_parent_item(GEDA_MENU(submenu))) {
+      fprintf(stderr, "FAILED: %s line <%d> set_parent\n", TWIDGET, __LINE__);
+      result++;
+    }
+  }
+
   }
 
   gtk_widget_destroy(gtk_widget_get_toplevel(widget0));

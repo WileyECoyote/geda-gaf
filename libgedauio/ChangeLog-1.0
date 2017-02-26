@@ -9,6 +9,11 @@
         * geda_menu_widget_get_title
         * geda_menu_widget_set_title
 
+    * tests/test_menu.c: Add check for:
+
+        * geda_menu_widget_get_tearoff_state
+        * geda_menu_widget_set_tearoff_state.
+
 2017-02-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_menu.c: Add checks for:
