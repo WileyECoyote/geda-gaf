@@ -45,8 +45,8 @@
  *
  * \code{.c}
  *   /<!---->* connect our handler which will popup the menu *<!---->/
- *   g_signal_connect_swapped (window, "button_press_event",
- *   G_CALLBACK (my_popup_handler), menu);
+ *   g_signal_connect_swapped (window, "button-press-event",
+ *                             G_CALLBACK (my_popup_handler), menu);
  * \endcode
  *
  * ## Signal handler which displays a popup menu.
@@ -55,7 +55,7 @@
  * static int
  * my_popup_handler (GtkWidget *widget, GdkEvent *event)
  * {
- *   GedaMenu *menu;
+ *   GedaMenu       *menu;
  *   GdkEventButton *event_button;
  *
  *   /<!---->* The "widget" is the menu that was supplied when
@@ -4943,13 +4943,13 @@ geda_menu_reorder_child (GedaMenu  *menu, GtkWidget *child, int position)
 
   menu_shell = GEDA_MENU_SHELL (menu);
 
-  if (g_list_find (menu_shell->children, child))
-    {
+  if (g_list_find (menu_shell->children, child)) {
+
       menu_shell->children = g_list_remove (menu_shell->children, child);
       menu_shell->children = g_list_insert (menu_shell->children, child, position);
 
       menu_queue_resize (menu);
-    }
+  }
 }
 
 /* \sa notes in geda_menu_popup() for information about the
@@ -5092,7 +5092,7 @@ geda_menu_stop_navigating_submenu (GedaMenu *menu)
  * and the menuitem under the pointer (if any) is selected.
  */
 static bool
-geda_menu_stop_navigating_submenu_cb (void * user_data)
+geda_menu_stop_navigating_submenu_cb (void *user_data)
 {
   GedaMenu *menu = user_data;
 
