@@ -107,10 +107,10 @@
 
 #include <geda_debug.h>
 
-#define DEFAULT_POPUP_DELAY     225
+#define DEFAULT_POPUP_DELAY    225
 #define DEFAULT_POPDOWN_DELAY  1000
 
-#define MAX_OFFSET_PADDING      250
+#define MAX_OFFSET_PADDING     250
 
 /*! \def NAVIGATION_REGION_OVERSHOOT
  * How much the navigation region extends below the submenu */
@@ -3735,6 +3735,10 @@ geda_menu_attach_to_widget (GedaMenu       *menu,
     gtk_widget_set_state (GTK_WIDGET (menu), GTK_STATE_NORMAL);
   }
 
+  if (GEDA_IS_MENU_ITEM(attach_widget)) {
+    menu->parent_menu_item = attach_widget;
+  }
+
   /* we don't need to set the style here, since we are a toplevel widget. */
 
   /* Fallback title for menu comes from attach widget */
@@ -3817,6 +3821,8 @@ geda_menu_detach (GedaMenu *menu)
   }
 
   free (data);
+
+  menu->parent_menu_item = NULL;
 
   /* Fallback title for menu comes from attach widget */
   geda_menu_update_title (menu);
