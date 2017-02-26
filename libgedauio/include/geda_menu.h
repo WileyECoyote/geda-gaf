@@ -271,6 +271,10 @@ bool        geda_menu_widget_get_tearoff_state   (GtkWidget        *widget);
 void        geda_menu_widget_set_tearoff_state   (GtkWidget        *widget,
                                                   bool              torn_off);
 
+const char *geda_menu_widget_get_title           (GtkWidget        *widget);
+void        geda_menu_widget_set_title           (GtkWidget        *widget,
+                                                  const char       *title);
+
 #define geda_menu_append(menu,child)     geda_menu_shell_append  ((GedaMenuShell *)(menu),(child))
 #define geda_menu_prepend(menu,child)    geda_menu_shell_prepend ((GedaMenuShell *)(menu),(child))
 #define geda_menu_insert(menu,child,pos) geda_menu_shell_insert ((GedaMenuShell *)(menu),(child),(pos))

@@ -6014,7 +6014,7 @@ geda_menu_widget_get_tearoff_state (GtkWidget *menu)
  * \brief Set GedaMenu widget Tear-Off state Property
  * \par Function Description
  *  Programmatically set whether the menu is torn off.
- * \sa  geda_menu_get_tearoff_state ().
+ * \sa  geda_menu_get_tearoff_state.
  *
  * \param[in] menu      Pointer to a #GedaMenu
  * \param[in] torn_off  whether menu is to be torn off.
@@ -6023,6 +6023,35 @@ void
 geda_menu_widget_set_tearoff_state (GtkWidget *menu, bool torn_off)
 {
   geda_menu_set_tearoff_state ((GedaMenu*)menu, torn_off);
+}
+
+/*!
+ * \brief Get GedaMenu widget Title Property
+ * \par Function Description
+ *  Returns the title of the menu, do not free the returned string.
+ * \sa  geda_menu_get_title ().
+ *
+ * \param[in] menu      Pointer to a #GedaMenu
+ */
+const char*
+geda_menu_widget_get_title (GtkWidget *menu)
+{
+  return geda_menu_get_title ((GedaMenu*)menu);
+}
+
+/*!
+ * \brief Set GedaMenu widget Title Property
+ * \par Function Description
+ *  Sets the title string for the menu.
+ * \sa  geda_menu_set_title.
+ *
+ * \param[in] menu   Pointer to a #GedaMenu
+ * \param[in] title  string containing the title for the menu or NULL.
+ */
+void
+geda_menu_widget_set_title (GtkWidget *menu, const char *title)
+{
+  geda_menu_set_title ((GedaMenu*)menu, title);
 }
 
 /** @} geda-menu */
