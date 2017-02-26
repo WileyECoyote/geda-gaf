@@ -4933,6 +4933,12 @@ GtkWidget *geda_menu_get_parent_item (GedaMenu *menu)
   return menu->parent_menu_item;
 }
 
+void geda_menu_set_parent_item (GedaMenu *menu, GtkWidget *parent)
+{
+  g_return_if_fail (GEDA_IS_MENU (menu));
+  menu->parent_menu_item = parent;
+}
+
 void
 geda_menu_reorder_child (GedaMenu  *menu, GtkWidget *child, int position)
 {

@@ -3,7 +3,9 @@
     * src/widgets/geda_menu.c: Revise geda_menu_attach_to_widget to set the
       parent menu item, do not really do much but geda_menu_get_parent_item
       return NULL even when the menu has a parent. Rename geda_menu_get_parent
-      to geda_menu_get_parent_item.
+      to geda_menu_get_parent_item. Add function:
+
+        * geda_menu_set_parent_item
 
 2017-02-25 Wiley E. Hill <wileyhill@gmail.com>
 

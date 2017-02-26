@@ -244,6 +244,8 @@ void        geda_menu_set_reserve_toggle_size    (GedaMenu         *menu,
                                                   bool              size);
 
 GtkWidget  *geda_menu_get_parent_item            (GedaMenu         *menu);
+void        geda_menu_set_parent_item            (GedaMenu         *menu,
+                                                  GtkWidget        *parent);
 
 void        geda_menu_reorder_child              (GedaMenu         *menu,
                                                   GtkWidget        *child,
