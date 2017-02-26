@@ -1383,7 +1383,7 @@ geda_menu_item_set_submenu (GedaMenuItem *menu_item, GtkWidget *submenu)
   GedaMenuItemPrivate *priv = menu_item->priv;
 
   g_return_if_fail (GEDA_IS_MENU_ITEM(menu_item));
-  g_return_if_fail (submenu == NULL || GEDA_IS_MENU(submenu));
+  g_return_if_fail (GEDA_IS_MENU(submenu));
 
   if (priv->submenu != submenu) {
 

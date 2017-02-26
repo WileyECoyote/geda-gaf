@@ -9,6 +9,9 @@
         * geda_menu_widget_get_title
         * geda_menu_widget_set_title
 
+    * src/widgets/geda_menu_item.c: Remove superfluous checking if submenu is
+      NULL before validating if a is GedaMenu.
+
     * tests/test_menu.c: Add check for:
 
         * geda_menu_widget_get_tearoff_state
