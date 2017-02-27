@@ -14,6 +14,10 @@
         * geda_menu_widget_get_title
         * geda_menu_widget_set_title.
 
+    * tests/test_menu_bar.c: Add group/function check_methods and checks for:
+
+        * geda_menu_bar_cycle_focus
+
 2017-02-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Revise geda_menu_attach_to_widget to set the

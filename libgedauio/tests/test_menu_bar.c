@@ -35,7 +35,9 @@
 #include <gtk/gtk.h>
 
 #include <geda/geda.h>
+#include <geda_menu.h>
 #include <geda_menu_bar.h>
+#include <geda_menu_item.h>
 #include <geda_menu_shell.h>
 
 #include "test-suite.h"
@@ -176,6 +178,106 @@ check_accessors ()
 }
 
 int
+check_methods ()
+{
+  const char *func;
+
+  int result = 0;
+
+  GtkWidget    *widget00;
+  GtkWidget    *widget01;
+  GtkWidget    *widget02;
+  GtkWidget    *widget03;
+  GtkWidget    *menu;
+  GtkWidget    *menu_bar1;
+  GtkWindow    *window;
+  GedaMenuItem *menu_item;
+
+  menu_bar1 = geda_menu_bar_new ();
+  window    = main_window(menu_bar1);
+
+  widget00  = geda_menu_item_new_with_mnemonic("_Clemens");
+  menu_item = GEDA_MENU_ITEM(widget00);
+  menu      = geda_menu_new ();
+
+  geda_menu_item_set_submenu (GEDA_MENU_ITEM (menu_item), menu);
+  geda_menu_shell_append (GEDA_MENU_SHELL (menu_bar1), widget00);
+  gtk_widget_set_can_focus (widget00, TRUE);
+  gtk_widget_show (widget00);
+
+  widget01   = geda_menu_item_new_with_mnemonic("_Pamela");
+  geda_menu_shell_append (GEDA_MENU_SHELL (menu), widget01);
+  gtk_widget_show (widget01);
+
+  widget02   = geda_menu_item_new_with_mnemonic("_Benjamin");
+  geda_menu_shell_append (GEDA_MENU_SHELL (menu), widget02);
+  gtk_widget_show (widget02);
+
+  widget03   = geda_menu_item_new_with_mnemonic("_Margaret");
+  geda_menu_shell_append (GEDA_MENU_SHELL (menu), widget03);
+  gtk_widget_show (widget03);
+
+  gtk_widget_show (menu);
+
+  GtkWidget    *widget10;
+  GtkWidget    *widget11;
+  GtkWidget    *widget12;
+  GtkWidget    *widget13;
+  GtkWidget    *menu_bar2;
+  GtkWidget    *vbox;
+
+  menu_bar2 = geda_menu_bar_new ();
+  vbox      = GTK_BIN(window)->child;
+
+  gtk_box_pack_start (GTK_BOX (vbox), menu_bar2, FALSE, TRUE, 0);
+  gtk_widget_show (menu_bar2);
+
+  widget10  = geda_menu_item_new_with_mnemonic("_Hemingway");
+  menu_item = GEDA_MENU_ITEM(widget10);
+  menu      = geda_menu_new ();
+
+  geda_menu_item_set_submenu (GEDA_MENU_ITEM (menu_item), menu);
+  geda_menu_shell_append (GEDA_MENU_SHELL (menu_bar2), widget10);
+  gtk_widget_set_can_focus (widget10, TRUE);
+  gtk_widget_show (widget10);
+
+  widget11   = geda_menu_item_new_with_mnemonic("_Clarence");
+  geda_menu_shell_append (GEDA_MENU_SHELL (menu), widget11);
+  gtk_widget_show (widget11);
+
+  widget12   = geda_menu_item_new_with_mnemonic("_Marcelline");
+  geda_menu_shell_append (GEDA_MENU_SHELL (menu), widget12);
+  gtk_widget_show (widget12);
+
+  widget13   = geda_menu_item_new_with_mnemonic("_Sunny");
+  geda_menu_shell_append (GEDA_MENU_SHELL (menu), widget13);
+  gtk_widget_show (widget13);
+
+  gtk_widget_show (menu);
+
+  /* -------------------- cycle_focus ------------------ */
+
+  func = "geda_menu_bar_cycle_focus";
+
+  gtk_widget_grab_focus(widget00);
+
+  geda_menu_bar_cycle_focus((GedaMenuBar*)menu_bar1, GTK_DIR_TAB_FORWARD);
+
+  if (gtk_widget_has_focus(widget00)) {
+    fprintf(stderr, "FAILED: %s line <%d> %s\n", TWIDGET, __LINE__, func);
+    result++;
+  }
+  else if (geda_menu_widget_get_active(menu) != widget11) {
+    fprintf(stderr, "FAILED: %s line <%d> %s\n", TWIDGET, __LINE__, func);
+    result++;
+  }
+
+  gtk_widget_destroy(GTK_WIDGET(window));
+
+  return result;
+}
+
+int
 main (int argc, char *argv[])
 {
   int result = 0;
@@ -204,6 +306,14 @@ main (int argc, char *argv[])
       }
       else {
         fprintf(stderr, "Caught signal checking accessors in %s\n\n", MUT);
+        return 1;
+      }
+
+      if (setjmp(point) == 0) {
+        result = check_methods();
+      }
+      else {
+        fprintf(stderr, "Caught signal checking methods in %s\n\n", MUT);
         return 1;
       }
     }
