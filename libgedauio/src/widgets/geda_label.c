@@ -2711,6 +2711,24 @@ geda_label_get_mnemonic_visible (GedaLabel *label)
 }
 
 /*!
+ * \brief Set the GedaLabel mnemonic_visible property
+ * \par Function Description
+ *  Sets the mnemonic_visible setting of the given \a label.
+ *
+ * \param [in] label The GedaLabel object
+ * \param [in] state Boolean value of the mnemonic visible setting.
+ *
+ * \sa geda_label_mnemonics_visible_apply_recursively
+ */
+void
+geda_label_set_mnemonic_visible (GedaLabel *label, bool state)
+{
+  g_return_if_fail (GEDA_IS_LABEL(label));
+
+  mnemonics_visible_apply ((GtkWidget*)label, state);
+}
+
+/*!
  * \brief geda_label_get_mnemonic_widget
  * \par Function Description
  *  Retrieves the target of the mnemonic (keyboard shortcut) of this

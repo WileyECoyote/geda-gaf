@@ -3,6 +3,8 @@
     * src/functions/geda_container.c: Add iter variable in geda_container_focus
       _sort and iterate the children backwards so that the list is not reversed.
 
+    * src/widgets/geda_label.c: Add function geda_label_set_mnemonic_visible.
+
     * src/widgets/geda_menu_bar.c: Revise function add_to_window to append
       new GedaMenuBar bars to global list of menu bars, prepends may be more
       efficient but put the list in the wrong order. Revise remove_from_window

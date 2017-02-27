@@ -169,6 +169,8 @@ char           geda_label_get_mnemonic_lower        (GedaLabel      *label);
 void           geda_label_set_mnemonic_text         (GedaLabel      *label,
                                                      const char     *str);
 bool           geda_label_get_mnemonic_visible      (GedaLabel      *label);
+void           geda_label_set_mnemonic_visible      (GedaLabel      *label,
+                                                     bool            visible);
 GtkWidget     *geda_label_get_mnemonic_widget       (GedaLabel      *label);
 void           geda_label_set_mnemonic_widget       (GedaLabel      *label,
                                                      GtkWidget      *widget);
