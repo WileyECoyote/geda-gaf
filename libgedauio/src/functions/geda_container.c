@@ -257,8 +257,9 @@ gtk_container_focus_sort_up_down (GtkContainer     *container,
   compare.container = container;
   compare.reverse = (direction == GTK_DIR_UP);
 
-  if (!old_focus)
+  if (!old_focus) {
     old_focus = find_old_focus (container, children);
+  }
 
   if (old_focus && get_allocation_coords (container, old_focus, &old_allocation))
   {
@@ -353,18 +354,20 @@ tab_compare (const void*a, const void*b, void*data)
   int y1 = child1->allocation.y + child1->allocation.height / 2;
   int y2 = child2->allocation.y + child2->allocation.height / 2;
 
-  if (y1 == y2)
-    {
-      int x1 = child1->allocation.x + child1->allocation.width / 2;
-      int x2 = child2->allocation.x + child2->allocation.width / 2;
+  if (y1 == y2) {
 
-      if (text_direction == GTK_TEXT_DIR_RTL)
-    return (x1 < x2) ? 1 : ((x1 == x2) ? 0 : -1);
-      else
-    return (x1 < x2) ? -1 : ((x1 == x2) ? 0 : 1);
+    int x1 = child1->allocation.x + child1->allocation.width / 2;
+    int x2 = child2->allocation.x + child2->allocation.width / 2;
+
+    if (text_direction == GTK_TEXT_DIR_RTL) {
+      return (x1 < x2) ? 1 : ((x1 == x2) ? 0 : -1);
     }
-  else
-    return (y1 < y2) ? -1 : 1;
+    else {
+      return (x1 < x2) ? -1 : ((x1 == x2) ? 0 : 1);
+    }
+  }
+
+  return (y1 < y2) ? -1 : 1;
 }
 
 static GList*
@@ -374,13 +377,15 @@ gtk_container_focus_sort_tab (GtkContainer     *container,
                               GtkWidget        *old_focus)
 {
   GtkTextDirection text_direction = gtk_widget_get_direction (GTK_WIDGET (container));
+
   children = g_list_sort_with_data (children, tab_compare, GINT_TO_POINTER (text_direction));
 
   /* if we are going backwards then reverse the order
    *  of the children.
    */
-  if (direction == GTK_DIR_TAB_BACKWARD)
+  if (direction == GTK_DIR_TAB_BACKWARD) {
     children = g_list_reverse (children);
+  }
 
   return children;
 }
@@ -412,12 +417,15 @@ geda_container_focus_sort (GtkContainer     *container,
                            GtkWidget        *old_focus)
 {
   GList *visible_children = NULL;
+  GList *iter;
 
-  while (children) {
-    if (gtk_widget_get_realized (children->data)) {
-      visible_children = g_list_prepend (visible_children, children->data);
+  iter = g_list_last(children);
+
+  while (iter) {
+    if (gtk_widget_get_realized (iter->data)) {
+      visible_children = g_list_prepend (visible_children, iter->data);
     }
-    children = children->next;
+    iter = iter->prev;
   }
 
   switch (direction) {
