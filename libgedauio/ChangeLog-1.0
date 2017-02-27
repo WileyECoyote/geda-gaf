@@ -2,7 +2,8 @@
 
     * src/widgets/geda_menu_bar.c: Revise function add_to_window to append
       new GedaMenuBar bars to global list of menu bars, prepends may be more
-      efficient but put the list in the wrong order.
+      efficient but put the list in the wrong order. Revise remove_from_window
+      to verify the accel_group is not NULL before attempting to unreference.
 
     * src/widgets/geda_menu_item.c: Revise geda_menu_item_select to use accessors
       gtk_widget_get_parent and geda_menu_get_parent_item instead of accessing

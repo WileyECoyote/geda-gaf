@@ -1351,8 +1351,11 @@ remove_from_window (GtkWindow *window, GedaMenuBar *menubar)
 
   if (!menubars) {
 
-    g_object_unref(menubar->priv->accel_group);
-    menubar->priv->accel_group = NULL;
+    if (menubar->priv->accel_group) {
+      g_object_unref(menubar->priv->accel_group);
+      menubar->priv->accel_group = NULL;
+    }
+
     g_signal_handlers_disconnect_by_func (window,
                                           geda_menu_bar_window_key_press_handler,
                                           NULL);
