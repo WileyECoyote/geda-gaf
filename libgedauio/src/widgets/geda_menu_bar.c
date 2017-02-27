@@ -1339,7 +1339,7 @@ add_to_window (GtkWindow *window, GedaMenuBar *menubar)
                         (GtkCallback)accelerate_children,
                          menubar->priv->accel_group);
 
-  set_menu_bars (window, g_list_prepend (menubars, menubar));
+  set_menu_bars (window, g_list_append (menubars, menubar));
 }
 
 static void
@@ -1588,9 +1588,9 @@ geda_menu_bar_cycle_focus (GedaMenuBar *menubar, GtkDirectionType  dir)
 
   geda_menu_shell_cancel (GEDA_MENU_SHELL (menubar));
 
-  if (to_activate)
-    g_signal_emit_by_name (to_activate, "activate_item");
-
+  if (to_activate) {
+    g_signal_emit_by_name (to_activate, "activate-item");
+  }
 }
 
 static int
@@ -1805,7 +1805,7 @@ geda_menu_bar_get_viewable_menu_bars (GtkWindow *window)
   GList *menu_bars;
   GList *viewable_menu_bars = NULL;
 
-  for (menu_bars = get_menu_bars (window); menu_bars; menu_bars = menu_bars->next)
+  for (menu_bars = get_menu_bars(window); menu_bars; menu_bars = menu_bars->next)
   {
     GtkWidget *widget = menu_bars->data;
     bool viewable = TRUE;
