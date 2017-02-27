@@ -7,7 +7,10 @@
 
     * src/widgets/geda_menu_item.c: Revise geda_menu_item_select to use accessors
       gtk_widget_get_parent and geda_menu_get_parent_item instead of accessing
-      members directly.
+      members directly. Changed underscore to dash for signal ACTIVATE_ITEM
+      because geda_real_menu_item_activate_item was not being called when
+      "activate-item" was emitted on the item in geda_menu_bar_cycle_focus with
+      commit 06123041/
 
     * tests/test_menu.c: Add check for:
 
