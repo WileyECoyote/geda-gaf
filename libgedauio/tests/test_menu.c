@@ -212,6 +212,8 @@ check_accessors ()
     result++;
   }
 
+  /* --------------------- toplevel -------------------- */
+
   GtkWidget *toplevel;
 
   toplevel = geda_menu_get_toplevel(GEDA_MENU(menu));
@@ -296,6 +298,30 @@ check_accessors ()
     }
   }
 
+  /* ----------------------- title --------------------- */
+
+  const char *title;
+
+  title = geda_menu_widget_get_title(menu);
+
+  if (title) {
+    fprintf(stderr, "FAILED: %s line <%d> title <%p>\n", TWIDGET, __LINE__, title);
+    result++;
+  }
+
+  geda_menu_widget_set_title(menu, "title");
+
+  title = geda_menu_widget_get_title(menu);
+
+  if (!title) {
+    fprintf(stderr, "FAILED: %s line <%d> title <%p>\n", TWIDGET, __LINE__, title);
+    result++;
+  }
+  else {
+    if (strcmp(title, "title") != 0) {
+      fprintf(stderr, "FAILED: %s line <%d> title <%p>\n", TWIDGET, __LINE__, title);
+      result++;
+    }
   }
 
   gtk_widget_destroy(gtk_widget_get_toplevel(widget0));
@@ -317,10 +343,7 @@ main (int argc, char *argv[])
 
   if (argc > 1) {
 
-     if (strcmp(argv[1], "-m") ==0) {
-       fprintf(stderr, "%s: The Yahoos are comming!", argv[0]);
-     }
-     else {
+     if (strcmp(argv[1], "-m") != 0) {
        fprintf(stderr, "%s: unknown option: <%s>", argv[0], argv[1]);
        result++;
      }

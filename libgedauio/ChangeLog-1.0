@@ -8,6 +8,11 @@
       gtk_widget_get_parent and geda_menu_get_parent_item instead of accessing
       members directly.
 
+    * tests/test_menu.c: Add check for:
+
+        * geda_menu_widget_get_title
+        * geda_menu_widget_set_title.
+
 2017-02-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Revise geda_menu_attach_to_widget to set the
