@@ -1488,18 +1488,25 @@ geda_menu_item_set_submenu_placement (GedaMenuItem    *menu_item,
 void
 geda_menu_item_select (GedaMenuItem *menu_item)
 {
+  GtkWidget *parent;
+
   g_return_if_fail (GEDA_IS_MENU_ITEM(menu_item));
 
   g_signal_emit (menu_item, menu_item_signals[SELECT], 0);
 
   /* Enable themeing of the parent menu item depending on whether
    * something is selected in its submenu - test this? */
-  if (GEDA_IS_MENU (GTK_WIDGET (menu_item)->parent)) {
 
-    GedaMenu *menu = GEDA_MENU (GTK_WIDGET (menu_item)->parent);
+  parent = gtk_widget_get_parent(GTK_WIDGET (menu_item));
 
-    if (menu->parent_menu_item) {
-      gtk_widget_queue_draw (GTK_WIDGET (menu->parent_menu_item));
+  if (GEDA_IS_MENU (parent)) {
+
+    GtkWidget *child_item;
+
+    child_item = geda_menu_get_parent_item(GEDA_MENU (parent));
+
+    if (child_item) {
+      gtk_widget_queue_draw (child_item);
     }
   }
 }
@@ -2596,6 +2603,7 @@ geda_menu_item_activate_action (GedaMenuItem *menu_item)
   }
 }
 
+/* menu_item_class->activate_item */
 static void
 geda_real_menu_item_activate_item (GedaMenuItem *menu_item)
 {
@@ -3078,7 +3086,7 @@ geda_menu_item_position_menu (GedaMenu  *menu,
         GtkWidget  *menu_parent;
 
         parent_menu = GEDA_MENU(widget->parent);
-        menu_parent = geda_menu_get_parent (parent_menu);
+        menu_parent = geda_menu_get_parent_item (parent_menu);
 
         if (GEDA_IS_MENU_ITEM(menu_parent)) {
           parent_menu_item = GEDA_MENU_ITEM(menu_parent);
