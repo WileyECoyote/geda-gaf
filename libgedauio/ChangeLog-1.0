@@ -5,6 +5,11 @@
     * src/widgets/geda_menu_bar.c: Replace geda_menu_bar_set_label_pattern with
       geda_menu_bar_set_label_mnemonic_visible.
 
+    * tests/test_menu_bar.c: Add checks for:
+
+        * geda_menu_bar_hide_mnemonics
+        * geda_menu_bar_show_mnemonics.
+
 2017-02-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/functions/geda_container.c: Add iter variable in geda_container_focus

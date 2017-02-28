@@ -293,6 +293,42 @@ check_methods ()
     result++;
   }
 
+  /* ---------------- show/hide mnemonics -------------- */
+
+  GtkWidget *label;
+
+  func = "geda_menu_bar_hide_mnemonics";
+
+  geda_menu_bar_hide_mnemonics ((GedaMenuBar*)menu_bar1);
+
+  label = geda_menu_item_get_label_widget ((GedaMenuItem*)widget00);
+
+  if (geda_label_get_mnemonic_visible(GEDA_LABEL(label))) {
+    fprintf(stderr, "FAILED: %s line <%d> %s\n", TWIDGET, __LINE__, func);
+    result++;
+  }
+
+  label = geda_menu_item_get_label_widget ((GedaMenuItem*)widget10);
+
+  if (!geda_label_get_mnemonic_visible(GEDA_LABEL(label))) {
+    fprintf(stderr, "FAILED: %s line <%d> %s\n", TWIDGET, __LINE__, func);
+    result++;
+  }
+
+  /* Reverse the visibility of mnemonics */
+  geda_menu_bar_show_mnemonics ((GedaMenuBar*)menu_bar1);
+  geda_menu_bar_hide_mnemonics ((GedaMenuBar*)menu_bar2);
+
+  label = geda_menu_item_get_label_widget ((GedaMenuItem*)widget00);
+
+  if (!geda_label_get_mnemonic_visible(GEDA_LABEL(label))) {
+    fprintf(stderr, "FAILED: %s line <%d> %s\n", TWIDGET, __LINE__, func);
+    result++;
+  }
+
+  label = geda_menu_item_get_label_widget ((GedaMenuItem*)widget10);
+
+  if (geda_label_get_mnemonic_visible(GEDA_LABEL(label))) {
     fprintf(stderr, "FAILED: %s line <%d> %s\n", TWIDGET, __LINE__, func);
     result++;
   }
