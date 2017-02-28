@@ -2,6 +2,9 @@
 
     * src/widgets/geda_label.c: Add function geda_menu_item_get_label_widget.
 
+    * src/widgets/geda_menu_bar.c: Replace geda_menu_bar_set_label_pattern with
+      geda_menu_bar_set_label_mnemonic_visible.
+
 2017-02-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/functions/geda_container.c: Add iter variable in geda_container_focus

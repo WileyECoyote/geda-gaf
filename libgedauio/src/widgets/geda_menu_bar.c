@@ -1830,7 +1830,7 @@ geda_menu_bar_get_viewable_menu_bars (GtkWindow *window)
 }
 
 static void
-geda_menu_bar_set_label_pattern (GedaMenuBar *menubar, const char *pattern)
+geda_menu_bar_set_label_pattern (GedaMenuBar *menubar, bool state)
 {
   if (GEDA_IS_MENU_SHELL(menubar)) {
 
@@ -1850,7 +1850,7 @@ geda_menu_bar_set_label_pattern (GedaMenuBar *menubar, const char *pattern)
           child = gtk_bin_get_child (GTK_BIN(menu_item));
 
           if (GEDA_IS_LABEL(child)) {
-            geda_label_set_pattern (GEDA_LABEL(child), pattern);
+            geda_label_set_mnemonic_visible (GEDA_LABEL(child), state);
           }
         }
       }
@@ -1861,13 +1861,13 @@ geda_menu_bar_set_label_pattern (GedaMenuBar *menubar, const char *pattern)
 void
 geda_menu_bar_hide_mnemonics (GedaMenuBar *menubar)
 {
-   geda_menu_bar_set_label_pattern (menubar, "");
+   geda_menu_bar_set_label_pattern (menubar, FALSE);
 }
 
 void
 geda_menu_bar_show_mnemonics (GedaMenuBar *menubar)
 {
-   geda_menu_bar_set_label_pattern (menubar, NULL);
+   geda_menu_bar_set_label_pattern (menubar, TRUE);
 }
 
 /** @} geda-menu-bar */
