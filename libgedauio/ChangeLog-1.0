@@ -8,6 +8,9 @@
     * src/widgets/geda_menu_bar.c: Replace geda_menu_bar_set_label_pattern with
       geda_menu_bar_set_label_mnemonic_visible.
 
+    * src/widgets/geda_tearoff_menu_item.c: Revise geda_tearoff_menu_item_parent_set
+      to reduce scope of priv and eliminate intermediate menu variable.
+
     * tests/test_menu_bar.c: Add checks for:
 
         * geda_menu_bar_hide_mnemonics

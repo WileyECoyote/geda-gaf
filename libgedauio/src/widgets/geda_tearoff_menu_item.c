@@ -438,13 +438,8 @@ tearoff_state_changed (GedaMenu *menu, GParamSpec *pspec, void *data)
 static void
 geda_tearoff_menu_item_parent_set (GtkWidget *widget, GtkWidget *previous)
 {
-  GedaTearoffMenuItem     *tearoff_menu_item = GEDA_TEAROFF_MENU_ITEM (widget);
-  GedaTearoffMenuItemData *priv              = tearoff_menu_item->priv;
-  GedaMenu                *menu;
-  GtkWidget               *parent;
-
-  parent = gtk_widget_get_parent (widget);
-  menu   = GEDA_IS_MENU (parent) ? GEDA_MENU (parent) : NULL;
+  GedaTearoffMenuItem *tearoff_menu_item = GEDA_TEAROFF_MENU_ITEM (widget);
+  GtkWidget *parent = gtk_widget_get_parent (widget);
 
   if (previous) {
     g_signal_handlers_disconnect_by_func (previous,
@@ -452,10 +447,12 @@ geda_tearoff_menu_item_parent_set (GtkWidget *widget, GtkWidget *previous)
                                           tearoff_menu_item);
   }
 
-  if (menu) {
+  if (GEDA_IS_MENU (parent)) {
 
-    priv->torn_off = geda_menu_get_tearoff_state (menu);
-    g_signal_connect (menu, "notify::tearoff-state",
+    GedaTearoffMenuItemData *priv = tearoff_menu_item->priv;
+
+    priv->torn_off = geda_menu_get_tearoff_state ((GedaMenu*)parent);
+    g_signal_connect (parent, "notify::tearoff-state",
                       G_CALLBACK (tearoff_state_changed),
                       tearoff_menu_item);
   }

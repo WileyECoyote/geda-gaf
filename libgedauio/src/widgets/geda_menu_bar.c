@@ -1830,7 +1830,7 @@ geda_menu_bar_get_viewable_menu_bars (GtkWindow *window)
 }
 
 static void
-geda_menu_bar_set_label_pattern (GedaMenuBar *menubar, bool state)
+geda_menu_bar_set_label_mnemonic_visible (GedaMenuBar *menubar, bool state)
 {
   if (GEDA_IS_MENU_SHELL(menubar)) {
 
@@ -1861,13 +1861,13 @@ geda_menu_bar_set_label_pattern (GedaMenuBar *menubar, bool state)
 void
 geda_menu_bar_hide_mnemonics (GedaMenuBar *menubar)
 {
-   geda_menu_bar_set_label_pattern (menubar, FALSE);
+   geda_menu_bar_set_label_mnemonic_visible (menubar, FALSE);
 }
 
 void
 geda_menu_bar_show_mnemonics (GedaMenuBar *menubar)
 {
-   geda_menu_bar_set_label_pattern (menubar, TRUE);
+   geda_menu_bar_set_label_mnemonic_visible (menubar, TRUE);
 }
 
 /** @} geda-menu-bar */
