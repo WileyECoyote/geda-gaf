@@ -296,6 +296,15 @@ check_accessors ()
       fprintf(stderr, "FAILED: %s line <%d> set_parent\n", TWIDGET, __LINE__);
       result++;
     }
+
+    /* ----------------- attach_widget ----------------- */
+
+    parent_item = geda_menu_get_attach_widget(GEDA_MENU(submenu));
+
+    if (parent_item != tearoff_item) {
+      fprintf(stderr, "FAILED: %s line <%d> get_parent\n", TWIDGET, __LINE__);
+      result++;
+    }
   }
 
   /* ----------------------- title --------------------- */

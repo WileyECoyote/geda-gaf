@@ -11,6 +11,10 @@
     * src/widgets/geda_tearoff_menu_item.c: Revise geda_tearoff_menu_item_parent_set
       to reduce scope of priv and eliminate intermediate menu variable.
 
+    * tests/test_menu.c: Add check for:
+
+        * geda_menu_get_attach_widget
+
     * tests/test_menu_bar.c: Add checks for:
 
         * geda_menu_bar_hide_mnemonics
