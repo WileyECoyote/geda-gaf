@@ -3795,6 +3795,25 @@ geda_menu_item_get_label (GedaMenuItem *menu_item)
 }
 
 /*!
+ * \brief Retrieve menu item label Widget
+ * \par Function Description
+ *  Gets \a menu_item GedaLabel widget.
+ *
+ * \param [in] menu_item a GedaMenuItem
+ *
+ * \returns GedaLabel object.
+ */
+GtkWidget*
+geda_menu_item_get_label_widget (GedaMenuItem *menu_item)
+{
+  g_return_val_if_fail (GEDA_IS_MENU_ITEM(menu_item), NULL);
+
+  geda_menu_item_ensure_label (menu_item);
+
+  return gtk_bin_get_child (GTK_BIN(menu_item));
+}
+
+/*!
  * \brief Set whether menu item should use underline
  * \par Function Description
  * If true, an underline in the text indicates the next character

@@ -171,6 +171,8 @@ void        geda_menu_item_set_label             (GedaMenuItem  *menu_item,
 
 const char   *geda_menu_item_get_label                (GedaMenuItem     *menu_item);
 
+GtkWidget    *geda_menu_item_get_label_widget         (GedaMenuItem     *menu_item);
+
 unsigned int  geda_menu_item_get_submenu_direction    (GedaMenuItem     *menu_item);
 
 SubmenuPlacement
