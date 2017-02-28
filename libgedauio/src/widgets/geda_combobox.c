@@ -6635,8 +6635,8 @@ geda_combo_box_update_title (GedaComboBox *combo_box)
 
   if (combo_box->priv->popup_widget) {
     if (GEDA_IS_MENU (combo_box->priv->popup_widget)) {
-      geda_menu_set_title (GEDA_MENU (combo_box->priv->popup_widget),
-                          combo_box->priv->tearoff_title);
+      geda_menu_widget_set_title (combo_box->priv->popup_widget,
+                                  combo_box->priv->tearoff_title);
     }
   }
 }

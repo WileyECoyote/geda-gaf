@@ -1,5 +1,8 @@
 2017-02-28 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_combobox.c: Replace geda_menu_set_title with
+      geda_menu_widget_set_title and remove unneeded case.
+
     * src/widgets/geda_label.c: Add function geda_menu_item_get_label_widget.
 
     * src/widgets/geda_menu_bar.c: Replace geda_menu_bar_set_label_pattern with
