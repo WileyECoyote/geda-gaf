@@ -5,6 +5,10 @@
       _recursively -> geda_label_set_mnemonics_visible_recursive. Add
       Doxygen comments.
 
+    * tests/test_menu.c: Add check for:
+
+        * geda_menu_get_for_attach_widget
+
 2017-02-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Replace geda_menu_set_title with

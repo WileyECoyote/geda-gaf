@@ -305,6 +305,23 @@ check_accessors ()
       fprintf(stderr, "FAILED: %s line <%d> get_parent\n", TWIDGET, __LINE__);
       result++;
     }
+
+    /* ------------------- for_attach_ ----------------- */
+
+    GList *attached;
+
+    attached = geda_menu_get_for_attach_widget(tearoff_item);
+
+    if (!attached) {
+      fprintf(stderr, "FAILED: %s line <%d> get_for_attach\n", TWIDGET, __LINE__);
+      result++;
+    }
+    else if (attached->data != submenu) {
+      fprintf(stderr, "FAILED: %s line <%d> get_for_attach\n", TWIDGET, __LINE__);
+      result++;
+    }
+  }
+
   }
 
   /* ----------------------- title --------------------- */
