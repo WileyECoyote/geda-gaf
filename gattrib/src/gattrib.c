@@ -241,7 +241,7 @@ int gattrib_quit(int return_code)
 
 #if DEBUG_GEDA_LABEL
   /* This can be helpful in identifying unreleased resources */
-  geda_label_get_report_instances();
+  geda_label_report_instances();
 #endif
 
   exit(return_code);

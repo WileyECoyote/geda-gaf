@@ -251,7 +251,7 @@ void geda_label_mnemonics_visible_apply_recursively (GtkWidget *widget,
 int            geda_label_get_cursor_position       (GedaLabel *label);
 int            geda_label_get_selection_bound       (GedaLabel *label);
 
-void           geda_label_get_report_instances      (void);
+void           geda_label_report_instances          (void);
 
 #ifdef __cplusplus
 }

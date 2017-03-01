@@ -338,7 +338,7 @@ static GHashTable *label_hash_table = NULL;
  *  the GedaLabels were released. This is particularly useful
  *  for debugging/developing menu systems.
  */
-void geda_label_get_report_instances (void)
+void geda_label_report_instances (void)
 {
   if (label_hash_table) {
 
