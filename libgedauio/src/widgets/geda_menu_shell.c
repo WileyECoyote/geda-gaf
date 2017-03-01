@@ -357,8 +357,7 @@ geda_menu_shell_activate_mnemonic (GedaMenuShell *menu_shell,
         char mnemonic = geda_menu_item_get_mnemonic(menu_item);
         char key_char = (char)event->keyval;
 
-        if (((mnemonic >> 5) & 1) ^ 1)
-        {
+        if (((mnemonic >> 5) & 1) ^ 1) {
           mnemonic = tolower(mnemonic);
         }
 
@@ -1265,11 +1264,11 @@ geda_menu_shell_realize (GtkWidget *widget)
   attributes.colormap = gtk_widget_get_colormap (widget);
   attributes.event_mask = gtk_widget_get_events (widget);
   attributes.event_mask |= (GDK_EXPOSURE_MASK |
-                GDK_BUTTON_PRESS_MASK |
-                GDK_BUTTON_RELEASE_MASK |
-                GDK_KEY_PRESS_MASK |
-                GDK_ENTER_NOTIFY_MASK |
-                GDK_LEAVE_NOTIFY_MASK);
+                            GDK_BUTTON_PRESS_MASK |
+                            GDK_BUTTON_RELEASE_MASK |
+                            GDK_KEY_PRESS_MASK |
+                            GDK_ENTER_NOTIFY_MASK |
+                            GDK_LEAVE_NOTIFY_MASK);
 
   attributes_mask = GDK_WA_X | GDK_WA_Y | GDK_WA_VISUAL | GDK_WA_COLORMAP;
   widget->window = gdk_window_new (gtk_widget_get_parent_window (widget), &attributes, attributes_mask);
@@ -1319,7 +1318,7 @@ geda_menu_shell_finalize (GObject *object)
     geda_key_hash_free (priv->key_hash);
   }
 
-  g_list_foreach(menu_shell->children, (GFunc)g_object_unref, NULL);
+  g_list_foreach(menu_shell->children, (GFunc)gtk_widget_destroy, NULL);
 
   g_list_free(menu_shell->children);
 
@@ -2194,7 +2193,7 @@ geda_menu_shell_update_mnemonics (GedaMenuShell *menu_shell)
 
       gtk_window_set_mnemonics_visible (GTK_WINDOW (toplevel), FALSE);
 
-      geda_label_mnemonics_visible_apply_recursively (GTK_WIDGET (target),
+      geda_label_set_mnemonics_visible_recursive (GTK_WIDGET (target),
                                                       mnemonics_visible);
     }
     else {
