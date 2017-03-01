@@ -2219,14 +2219,14 @@ geda_label_buildable_custom_finished (GtkBuildable *buildable,
 /*!
  * \brief Create a New Geda Label Object
  * \par Function Description
- *  Creates a new label with the given text inside it. You can
- *  pass %NULL to get an empty label widget.
+ *  Creates a new label with the given text string. If \a str is
+ *  %NULL an empty label widget is created.
  *
- * \param [in] str The text of the label
+ * \param [in] str The text of the label, can be NULL.
  *
  * \return the new #GedaLabel
  */
-GtkWidget* geda_label_new (const char *str)
+GtkWidget *geda_label_new (const char *str)
 {
   GedaLabel *label;
 
@@ -2240,30 +2240,27 @@ GtkWidget* geda_label_new (const char *str)
 }
 
 /*!
- * \brief geda_mnemonic_label_new
+ * \brief Create a New Geda Label Object with Mnemonic text
  * \par Function Description
+ *  Creates a new #GedaLabel, containing the text in str. The characters
+ *  in str are preceded by an underscore are underlined. If a literal
+ *  underscore character in a label is needed, use '__' (two underscores).
+ *  The first underlined character represents a keyboard accelerator called
+ *  a mnemonic. The mnemonic key can be used to activate another widget,
+ *  chosen automatically, or explicitly using geda_label_set_mnemonic_widget().
  *
- * Creates a new #GedaLabel, containing the text in str.
+ *  If geda_label_set_mnemonic_widget() is not called, then the first
+ *  activatable ancestor of the #GedaLabel will be chosen as the mnemonic
+ *  widget. For instance, if the label is inside a button or menu item,
+ *  the button or menu item will automatically become the mnemonic widget
+ *  and be activated by the mnemonic.
  *
- * If characters in str are preceded by an underscore, they are
- * underlined. If you need a literal underscore character in a label, use
- * '__' (two underscores). The first underlined character represents a
- * keyboard accelerator called a mnemonic. The mnemonic key can be used
- * to activate another widget, chosen automatically, or explicitly using
- * geda_label_set_mnemonic_widget().
- *
- * If geda_label_set_mnemonic_widget() is not called, then the first
- * activatable ancestor of the #GedaLabel will be chosen as the mnemonic
- * widget. For instance, if the label is inside a button or menu item,
- * the button or menu item will automatically become the mnemonic widget
- * and be activated by the mnemonic.
- *
- * The string should contain the text of the label, with an underscore in
- * front of the mnemonic character.
+ *  The string should contain the text of the label, with an underscore in
+ *  front of the mnemonic character.
  *
  * \param [in] str Mnemonic for new label
  *
- * \return the new #GedaLabel
+ * \return new #GedaLabel
  */
 GtkWidget *geda_mnemonic_label_new (const char *str)
 {
@@ -2278,6 +2275,16 @@ GtkWidget *geda_mnemonic_label_new (const char *str)
   return GTK_WIDGET (label);
 }
 
+/*!
+ * \brief Create a New Visible Geda Label Object
+ * \par Function Description
+ *  This is the same as geda_label_new except that the GedaLabel
+ *  is set visible.
+ *
+ * \param [in] str The text of the label, can be NULL.
+ *
+ * \return new #GedaLabel with visible property set true
+ */
 GtkWidget *geda_visible_label_new (const char *str)
 {
   GtkWidget *label;
@@ -2289,6 +2296,16 @@ GtkWidget *geda_visible_label_new (const char *str)
   return label;
 }
 
+/*!
+ * \brief Create a New Visible Geda Label Object with Mnemonic
+ * \par Function Description
+ *  This is the same as geda_mnemonic_label_new except that the
+ *  GedaLabel is set visible.
+ *
+ * \param [in] str The text of the label, can be NULL.
+ *
+ * \return new #GedaLabel with "visible" and "use-underline" property set.
+ */
 GtkWidget *geda_visible_mnemonic_label_new (const char *str)
 {
   GtkWidget *label;
@@ -2300,6 +2317,15 @@ GtkWidget *geda_visible_mnemonic_label_new (const char *str)
   return label;
 }
 
+/*!
+ * \brief Create a New Aligned Geda Label Object
+ * \par Function Description
+ *  This is the same as geda_label_new with alignments.
+ *
+ * \param [in] str The text of the label, can be NULL.
+ *
+ * \return new #GedaLabel with alignment set.
+ */
 GtkWidget *geda_aligned_label_new (const char *str, float x, float y)
 {
   GtkWidget *label;
@@ -2311,6 +2337,16 @@ GtkWidget *geda_aligned_label_new (const char *str, float x, float y)
   return label;
 }
 
+/*!
+ * \brief Create a New Aligned Geda Label Object
+ * \par Function Description
+ *  This is the same as geda_aligned_label_new except that the
+ *  GedaLabel is set visible.
+ *
+ * \param [in] str The text of the label, can be NULL.
+ *
+ * \return new #GedaLabel with alignment and visible property set true.
+ */
 GtkWidget *geda_aligned_visible_label_new (const char *str, float x, float y)
 {
   GtkWidget *label;
@@ -2324,6 +2360,15 @@ GtkWidget *geda_aligned_visible_label_new (const char *str, float x, float y)
   return label;
 }
 
+/*!
+ * \brief Create a New Aligned Geda Label Object with Mnemonic
+ * \par Function Description
+ *  This is the same as geda_mnemonic_label_new with alignment.
+ *
+ * \param [in] str The text of the label with undescore or can be NULL.
+ *
+ * \return new #GedaLabel with alignment and mnemonic label
+ */
 GtkWidget *geda_aligned_mnemonic_label_new (const char *str, float x, float y)
 {
   GtkWidget *label;
@@ -2335,6 +2380,16 @@ GtkWidget *geda_aligned_mnemonic_label_new (const char *str, float x, float y)
   return label;
 }
 
+/*!
+ * \brief Create a New Aligned Visible Geda Label Object with Mnemonic
+ * \par Function Description
+ *  This is the same as geda_mnemonic_label_new with alignment except
+ *  that the GedaLabel is set visible..
+ *
+ * \param [in] str The text of the label with undescore or can be NULL.
+ *
+ * \return new #GedaLabel with alignment and mnemonic label annd visible set.
+ */
 GtkWidget *geda_aligned_visible_mnemonic_label_new (const char *str,
                                                     float x, float y)
 {
@@ -2348,6 +2403,7 @@ GtkWidget *geda_aligned_visible_mnemonic_label_new (const char *str,
 
   return label;
 }
+
 
 static bool
 geda_label_mnemonic_activate (GtkWidget *widget, bool group_cycling)

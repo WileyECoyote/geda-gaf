@@ -1,7 +1,7 @@
 2017-03-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_label.c: Rename geda_label_get_report_instances ->
-      geda_label_report_instances.
+      geda_label_report_instances. Add Doxygen comments.
 
 2017-02-28 Wiley E. Hill <wileyhill@gmail.com>
 
