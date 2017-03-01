@@ -322,6 +322,26 @@ check_accessors ()
     }
   }
 
+  /* ---------------- reserve_toggle_size -------------- */
+
+  /* The default is yes */
+  if (!geda_menu_get_reserve_toggle_size((GedaMenu*)menu)) {
+    fprintf(stderr, "FAILED: %s line <%d> reserve_toggle_size\n", TWIDGET, __LINE__);
+    result++;
+  }
+
+  geda_menu_set_reserve_toggle_size((GedaMenu*)menu, FALSE);
+
+  if (geda_menu_get_reserve_toggle_size((GedaMenu*)menu)) {
+    fprintf(stderr, "FAILED: %s line <%d> reserve_toggle_size\n", TWIDGET, __LINE__);
+    result++;
+  }
+
+  geda_menu_set_reserve_toggle_size((GedaMenu*)menu, TRUE);
+
+  if (!geda_menu_get_reserve_toggle_size((GedaMenu*)menu)) {
+    fprintf(stderr, "FAILED: %s line <%d> reserve_toggle_size\n", TWIDGET, __LINE__);
+    result++;
   }
 
   /* ----------------------- title --------------------- */
