@@ -2565,7 +2565,7 @@ label_mnemonics_visible_traverse_container (GtkWidget *widget,
 {
   bool mnemonics_visible = (int)(long)data;
 
-  geda_label_mnemonics_visible_apply_recursively (widget, mnemonics_visible);
+  geda_label_set_mnemonics_visible_recursive (widget, mnemonics_visible);
 }
 
 /*!
@@ -2583,7 +2583,7 @@ label_mnemonics_visible_traverse_container (GtkWidget *widget,
  * Called by geda_menu_shell_update_mnemonics()
  */
 void
-geda_label_mnemonics_visible_apply_recursively (GtkWidget *widget,
+geda_label_set_mnemonics_visible_recursive (GtkWidget *widget,
                                                 bool       mnemonics_visible)
 {
   if (GEDA_IS_LABEL(widget)) {
@@ -2756,7 +2756,7 @@ geda_label_set_mnemonic_text (GedaLabel *label, const char *str)
  *
  * \returns Boolean value of the mnemonic visible setting.
  *
- * \sa geda_label_mnemonics_visible_apply_recursively
+ * \sa geda_label_set_mnemonics_visible_recursive
  */
 bool
 geda_label_get_mnemonic_visible (GedaLabel *label)
@@ -2774,7 +2774,7 @@ geda_label_get_mnemonic_visible (GedaLabel *label)
  * \param [in] label The GedaLabel object
  * \param [in] state Boolean value of the mnemonic visible setting.
  *
- * \sa geda_label_mnemonics_visible_apply_recursively
+ * \sa geda_label_set_mnemonics_visible_recursive
  */
 void
 geda_label_set_mnemonic_visible (GedaLabel *label, bool state)

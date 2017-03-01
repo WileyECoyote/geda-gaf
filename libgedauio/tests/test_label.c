@@ -701,14 +701,14 @@ check_methods ()
 
   func = "mnemonics_visible_apply_recursively";
 
-  geda_label_mnemonics_visible_apply_recursively(widget, FALSE);
+  geda_label_set_mnemonics_visible_recursive(widget, FALSE);
 
   if (geda_label_get_mnemonic_visible(label)) {
     fprintf(stderr, "FAILED: %s line <%d> %s\n", TWIDGET, __LINE__, func);
     result++;
   }
 
-  geda_label_mnemonics_visible_apply_recursively(widget, TRUE);
+  geda_label_set_mnemonics_visible_recursive(widget, TRUE);
 
   if (!geda_label_get_mnemonic_visible(label)) {
     fprintf(stderr, "FAILED: %s line <%d> %s\n", TWIDGET, __LINE__, func);
@@ -727,7 +727,7 @@ check_methods ()
   gtk_container_add (GTK_CONTAINER(container), widget2);
   gtk_container_add (GTK_CONTAINER(container), widget3);
 
-  geda_label_mnemonics_visible_apply_recursively(container, FALSE);
+  geda_label_set_mnemonics_visible_recursive(container, FALSE);
 
   if (geda_label_get_mnemonic_visible((GedaLabel*)widget1)) {
     fprintf(stderr, "FAILED: %s line <%d> %s\n", TWIDGET, __LINE__, func);
@@ -744,7 +744,7 @@ check_methods ()
     result++;
   }
 
-    geda_label_mnemonics_visible_apply_recursively(container, TRUE);
+    geda_label_set_mnemonics_visible_recursive(container, TRUE);
 
   if (!geda_label_get_mnemonic_visible((GedaLabel*)widget1)) {
     fprintf(stderr, "FAILED: %s line <%d> %s\n", TWIDGET, __LINE__, func);
