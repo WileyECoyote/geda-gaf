@@ -1,3 +1,8 @@
+2017-03-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/base/gschem_macro_widget.c: Replace geda_label_get_text with
+      geda_label_widget_get_text.
+
 2017-02-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_menus.c: Rename recent user_data arguments to menu_data.

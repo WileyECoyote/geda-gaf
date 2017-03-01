@@ -859,7 +859,7 @@ const char*
 gschem_status_bar_get_left_button_text (GtkWidget *widget)
 {
 #if defined (G_DISABLE_ASSERT)
-  return geda_label_get_text ((GedaLabel*)gsb->left_label);
+  return geda_label_widget_get_text (gsb->left_label);
 #else
   const char *ret_val = NULL;
 
@@ -895,7 +895,7 @@ const char*
 gschem_status_bar_get_middle_button_text (GtkWidget *widget)
 {
 #if defined (G_DISABLE_ASSERT)
-  return geda_label_get_text ((GedaLabel*)gsb->middle_label);
+  return geda_label_widget_get_text (gsb->middle_label);
 #else
   const char *ret_val = NULL;
 
@@ -933,7 +933,7 @@ gschem_status_bar_get_right_button_text( GtkWidget *widget)
 {
 
 #if defined (G_DISABLE_ASSERT)
-  return geda_label_get_text ((GedaLabel*)gsb->right_label);
+  return geda_label_widget_get_text (gsb->right_label);
 #else
   const char *ret_val = NULL;
 
@@ -1053,7 +1053,7 @@ const char*
 gschem_status_bar_get_status_text (GtkWidget *widget)
 {
 #if defined (G_DISABLE_ASSERT)
-  return geda_label_get_text ((GedaLabel*)gsb->status_label);
+  return geda_label_widget_get_text (gsb->status_label);
 #else
   const char *ret_val = NULL;
 
@@ -1520,7 +1520,7 @@ void
 gschem_status_bar_set_right_button_text (GtkWidget *widget, const char *text)
 {
 #if defined (G_DISABLE_ASSERT)
-  geda_label_set_text ((GedaLabel*)(GSCHEM_STATUS_BAR(widget))->right_label, text);
+  geda_label_widget_set_text ((GSCHEM_STATUS_BAR(widget))->right_label, text);
 #else
   if (widget == NULL) {
     BUG_MSG("widget is NULL");
@@ -1704,7 +1704,7 @@ gschem_status_bar_set_coordinates (GtkWidget *widget, int x0, int y0, int x1, in
 
   status_bar = GSCHEM_STATUS_BAR(widget);
   text       = get_coordinates_text(status_bar->coord_mode);
-  geda_label_set_text ((GedaLabel*)status_bar->coord_label, text);
+  geda_label_widget_set_text (status_bar->coord_label, text);
   save_coordinates();
 
 #else
