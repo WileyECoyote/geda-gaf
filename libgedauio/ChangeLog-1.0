@@ -1,3 +1,11 @@
+2017-03-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_label.h: Reorganize header.
+
+    * src/widgets/geda_label.c: Reorganize module.
+
+    * tests/test_entry.c: Add check geda_entry_get_text_length.
+
 2017-03-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_label.c: Rename geda_label_get_report_instances ->

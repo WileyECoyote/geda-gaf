@@ -509,6 +509,14 @@ check_accessors ()
     result++;
   }
 
+  int length = geda_entry_get_text_length ((GedaEntry*)widget);
+
+  if (length - 8) {
+    fprintf(stderr, "FAILED: %s line <%d> length <%d\n", TWIDGET, __LINE__, length);
+    result++;
+  }
+
+
   /* Check get/set valid input */
 
   value = geda_entry_widget_get_valid_input(widget);
