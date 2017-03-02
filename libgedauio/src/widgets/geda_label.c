@@ -6892,6 +6892,40 @@ void geda_label_widget_set_justify (GtkWidget *widget, GtkJustification jtype)
 }
 
 /*!
+ * \brief Get the GedaLabel widget label
+ * \par Function Description
+ *  Fetches the text from a label widget including any embedded
+ *  underlines indicating mnemonics and Pango markup.
+ *
+ * \param [in] label The GedaLabel object
+ *
+ * \returns the text of the label widget.
+ *
+ * \sa geda_label_get_label
+ */
+const char*
+geda_label_widget_get_label (GtkWidget *label)
+{
+  return geda_label_get_label((GedaLabel*)label);
+}
+
+/*!
+ * \brief Set the GedaLabel widget label
+ * \par Function Description
+ * Sets the text of the label.
+ *
+ * \param [in] label  The GedaLabel object
+ * \param [in] str    New text to set for the label
+ *
+ * \sa geda_label_get_label
+ */
+void
+geda_label_widget_set_label (GtkWidget *label, const char *str)
+{
+  return geda_label_set_label((GedaLabel*)label, str);
+}
+
+/*!
  * \brief Retrieves the Maximum Width of Characters for a GedaLabel Widget
  * \par Function Description
  *  Wrapper to retrieves the desired maximum width of label, in characters

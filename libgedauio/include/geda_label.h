@@ -137,9 +137,9 @@ int                geda_label_get_cursor_position   (GedaLabel *label);
 GtkJustification   geda_label_get_justify           (GedaLabel      *label);
 void               geda_label_set_justify           (GedaLabel      *label,
                                                      GtkJustification jtype);
+const char    *geda_label_get_label                 (GedaLabel      *label);
 void           geda_label_set_label                 (GedaLabel      *label,
                                                      const char     *str);
-const char*    geda_label_get_label                 (GedaLabel      *label);
 PangoLayout   *geda_label_get_layout                (GedaLabel      *label);
 void           geda_label_get_layout_offsets        (GedaLabel      *label,
                                                      int            *x,
@@ -179,7 +179,7 @@ void           geda_label_select_region             (GedaLabel      *label,
                                                      int             start_offset,
                                                      int             end_offset);
 int            geda_label_get_selection_bound       (GedaLabel      *label);
-bool           geda_label_set_selection_bounds      (GedaLabel      *label,
+bool           geda_label_get_selection_bounds      (GedaLabel      *label,
                                                      int            *start,
                                                      int            *end);
 bool           geda_label_get_single_line_mode      (GedaLabel      *label);
@@ -187,7 +187,7 @@ void           geda_label_set_single_line_mode      (GedaLabel      *label,
                                                      bool            single_line_mode);
 void           geda_label_set_text                  (GedaLabel      *label,
                                                      const char     *str);
-const char*    geda_label_get_text                  (GedaLabel      *label);
+const char    *geda_label_get_text                  (GedaLabel      *label);
 bool           geda_label_get_track_visited_links   (GedaLabel      *label);
 void           geda_label_set_track_visited_links   (GedaLabel      *label,
                                                      bool            track_links);
@@ -222,7 +222,9 @@ void               geda_label_widget_set_ellipsize  (GtkWidget      *widget,
 GtkJustification   geda_label_widget_get_justify    (GtkWidget      *widget);
 void               geda_label_widget_set_justify    (GtkWidget      *widget,
                                                      GtkJustification jtype);
-
+const char   *geda_label_widget_get_label           (GtkWidget      *widget);
+void          geda_label_widget_set_label           (GtkWidget      *widget,
+                                                     const char     *str);
 int           geda_label_widget_get_max_width_chars (GtkWidget      *widget);
 void          geda_label_widget_set_max_width_chars (GtkWidget      *widget,
                                                      int             n_chars);
