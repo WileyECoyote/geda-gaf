@@ -323,39 +323,8 @@ static void *geda_label_parent_class = NULL;
 
 static GtkBuildableIface *buildable_parent_iface = NULL;
 
-
 /* Table of pointers to GedaLabel instances */
 static GHashTable *label_hash_table = NULL;
-
-#ifdef DEBUG_GEDA_LABEL
-
-/*!
- * \brief Report GedaLabel Instances
- * \par Function Description
- *  This function can be called after all libgedauio resources
- *  have been released to print a list of pointers to GedaLabel
- *  objects that are still alive or the NULL message if all of
- *  the GedaLabels were released. This is particularly useful
- *  for debugging/developing menu systems.
- */
-void geda_label_report_instances (void)
-{
-  if (label_hash_table) {
-
-    void print_hash(GedaLabel *label, void *value, void *nothing) {
-      fprintf(stderr, "label,%p,text=<%s>\n", label, label->text);
-    }
-
-    g_hash_table_foreach (label_hash_table, (GHFunc)print_hash, NULL);
-    g_hash_table_destroy (label_hash_table);
-    label_hash_table = NULL;
-  }
-  else {
-    fprintf(stderr, "%s: the table of labels is NULL\n", __func__);
-  }
-}
-
-#endif /* DEBUG_GEDA_LABEL */
 
 static void
 add_move_binding (GtkBindingSet  *binding_set, unsigned int keyval,
@@ -2568,34 +2537,6 @@ label_mnemonics_visible_traverse_container (GtkWidget *widget,
   geda_label_set_mnemonics_visible_recursive (widget, mnemonics_visible);
 }
 
-/*!
- * \brief Get the Mnemonic Character from the GedaLabel Text
- * \par Function Description
- *  Applies the visibility setting given by \a mnemonics_visible to
- *  the label widget if \a widget is a label. If the widget object is
- *  a container then the setting is applied to all sub-object of
- *  \a widget.
- *
- * \param [in] label             Pointer to a GedaLabel object
- * \param [in] mnemonics_visible Visible if TRUE, otherwise FALSE
- *
- * \internal
- * Called by geda_menu_shell_update_mnemonics()
- */
-void
-geda_label_set_mnemonics_visible_recursive (GtkWidget *widget,
-                                                bool       mnemonics_visible)
-{
-  if (GEDA_IS_LABEL(widget)) {
-    mnemonics_visible_apply (widget, mnemonics_visible);
-  }
-  else if (GTK_IS_CONTAINER (widget)) {
-    gtk_container_forall (GTK_CONTAINER (widget),
-                          label_mnemonics_visible_traverse_container,
-                          (void*)(long) (mnemonics_visible));
-  }
-}
-
 static void
 label_mnemonics_visible_changed (GtkWindow  *window,
                                  GParamSpec *pspec,
@@ -2651,209 +2592,6 @@ label_mnemonic_widget_weak_notify (void *data, GObject *where_the_object_was)
   GedaLabelData *priv  = label->priv;
 
   priv->mnemonic_widget = NULL;
-
-  g_object_notify (G_OBJECT (label), "mnemonic-widget");
-}
-
-/*!
- * \brief Get the Mnemonic Character from the GedaLabel Text
- * \par Function Description
- *  Retrieves the character after the underscore in the label text.
- *  If an underscore is not present, or if \a label is not a valid
- *  GedaLabel object then this functions returns 0xFF.
- *
- * \param [in] label Pointer to a GedaLabel object
- *
- * \returns mnemonic character or 0xFF.
- */
-char
-geda_label_get_mnemonic_char (GedaLabel *label)
-{
-  if (GEDA_IS_LABEL(label)) {
-
-    char *str = strstr(label->label, "_");
-
-    if (str) {
-      return (char)*(str + 1);
-    }
-  }
-  return 0xFF;
-}
-
-/*!
- * \brief Get the Lower case Mnemonic Character
- * \par Function Description
- *  Retrieves the lower case character represented by the key code
- *  value, which could also be the actual mnemonic. For example, if
- *  the label text is "_Gnu", this function returns "g", because the
- *  mnemonic character "G" is (normally) key-code 104, which is the
- *  "g" key plus the SHIFT key modifier.
- *
- * \param [in] label Pointer to a GedaLabel object
- *
- * \returns mnemonic character or 0xFF (GDK_KEY_VoidSymbol).
- */
-char
-geda_label_get_mnemonic_lower (GedaLabel *label)
-{
-  return (char)geda_label_get_mnemonic_keyval(label);
-}
-
-/*!
- * \brief geda_label_get_mnemonic_keyval
- * \par Function Description
- *  If the label has been set so that it has an mnemonic key this function
- *  returns the keyval used for the mnemonic accelerator. If there is no
- *  mnemonic set up it returns .
- *
- * \param [in] label   The GedaLabel object
- *
- * \returns GDK keyval usable for accelerators
- */
-unsigned int
-geda_label_get_mnemonic_keyval (GedaLabel *label)
-{
-  g_return_val_if_fail (GEDA_IS_LABEL(label), GDK_KEY_VoidSymbol);
-
-  return label->priv->mnemonic_keyval;
-}
-
-/*!
- * \brief geda_label_set_mnemonic_text
- * \par Function Description
- *  Sets the label's text from the string str. If characters in str is
- *  preceded by an underscore, they are underlined indicating that they
- *  represent a keyboard accelerator called a mnemonic. The mnemonic key
- *  can be used to activate another widget, chosen  automatically, or
- *  explicitly using geda_label_set_mnemonic_widget().
- *
- * \param [in] label The GedaLabel object
- * \param [in] str   Pointer to a string
- */
-void
-geda_label_set_mnemonic_text (GedaLabel *label, const char *str)
-{
-  g_return_if_fail (GEDA_IS_LABEL(label));
-  g_return_if_fail (str != NULL);
-
-  g_object_freeze_notify (G_OBJECT (label));
-
-  geda_label_set_label_internal (label, geda_strdup (str ? str : ""));
-  geda_label_set_use_markup_internal (label, FALSE);
-  geda_label_set_use_underline_internal (label, TRUE);
-
-  geda_label_recalculate (label);
-
-  g_object_thaw_notify (G_OBJECT (label));
-}
-
-/*!
- * \brief Retrieve the GedaLabel mnemonic_visible property
- * \par Function Description
- *  Retrieves the current mnemonic_visible setting.
- *
- * \param [in] label The GedaLabel object
- *
- * \returns Boolean value of the mnemonic visible setting.
- *
- * \sa geda_label_set_mnemonics_visible_recursive
- */
-bool
-geda_label_get_mnemonic_visible (GedaLabel *label)
-{
-  g_return_val_if_fail (GEDA_IS_LABEL(label), 0);
-
-  return label->priv->mnemonics_visible;
-}
-
-/*!
- * \brief Set the GedaLabel mnemonic_visible property
- * \par Function Description
- *  Sets the mnemonic_visible setting of the given \a label.
- *
- * \param [in] label The GedaLabel object
- * \param [in] state Boolean value of the mnemonic visible setting.
- *
- * \sa geda_label_set_mnemonics_visible_recursive
- */
-void
-geda_label_set_mnemonic_visible (GedaLabel *label, bool state)
-{
-  g_return_if_fail (GEDA_IS_LABEL(label));
-
-  mnemonics_visible_apply ((GtkWidget*)label, state);
-}
-
-/*!
- * \brief geda_label_get_mnemonic_widget
- * \par Function Description
- *  Retrieves the target of the mnemonic (keyboard shortcut) of this
- *  label. See geda_label_set_mnemonic_widget().
- *
- * \param [in] label    The GedaLabel object
- *
- * \returns Target of the label's mnemonic, or %NULL if none has been set
- *          and the default algorithm will be used.
- */
-GtkWidget *
-geda_label_get_mnemonic_widget (GedaLabel *label)
-{
-  g_return_val_if_fail (GEDA_IS_LABEL(label), NULL);
-
-  return label->priv->mnemonic_widget;
-}
-
-/*!
- * \brief geda_label_set_mnemonic_widget
- * \par Function Description
- * If the label has been set so that it has an mnemonic key (using i.e.
- * geda_label_set_markup_with_mnemonic(), geda_label_set_mnemonic_text(),
- * geda_mnemonic_label_new() or the "use_underline" property) the label
- * can be associated with a widget that is the target of the mnemonic.
- * When the label is inside of a widget (like a GtkButton or a GtkNotebook
- * tab) it is automatically associated with the correct widget, but some
- * times the target needs to be set explicitly using this function (i.e.
- * when the target is a GedaEntry next to the label).
- *
- * The target widget will be accelerated by emitting the
- * GtkWidget::mnemonic-activate signal on it. The default handler for
- * this signal will activate the widget if there are no mnemonic collisions
- * and toggle focus between the colliding widgets otherwise.
- *
- *  \param [in] label    The GedaLabel object
- *  \param [in] widget   Target GtkWidget
- */
-void
-geda_label_set_mnemonic_widget (GedaLabel *label, GtkWidget *widget)
-{
-  GedaLabelData *priv;
-
-  g_return_if_fail (GEDA_IS_LABEL(label));
-
-  priv = label->priv;
-
-  if (widget) {
-    g_return_if_fail (GTK_IS_WIDGET (widget));
-  }
-
-  if (priv->mnemonic_widget) {
-
-    gtk_widget_remove_mnemonic_label (priv->mnemonic_widget,
-                                      GTK_WIDGET (label));
-    g_object_weak_unref (G_OBJECT (priv->mnemonic_widget),
-                         label_mnemonic_widget_weak_notify,
-                         label);
-  }
-
-  priv->mnemonic_widget = widget;
-
-  if (priv->mnemonic_widget) {
-
-    g_object_weak_ref (G_OBJECT (priv->mnemonic_widget),
-                       label_mnemonic_widget_weak_notify,
-                       label);
-    gtk_widget_add_mnemonic_label (priv->mnemonic_widget, GTK_WIDGET (label));
-  }
 
   g_object_notify (G_OBJECT (label), "mnemonic-widget");
 }
@@ -2956,238 +2694,6 @@ static void geda_label_recalculate (GedaLabel *label)
   geda_label_clear_layout (label);
   geda_label_clear_select_info (label);
   gtk_widget_queue_resize (GTK_WIDGET (label));
-}
-
-/*!
- * \brief Set the GedaLabel Text
- * \par Function Description
- *  Sets the text within the #GedaLabel widget. It overwrites any text that
- *  was there before.
- *
- * \note This will also clear any previously set mnemonic accelerators.
- *
- * \param [in] label  The GedaLabel object
- * \param [in] str    The text to be set
- */
-void
-geda_label_set_text (GedaLabel *label, const char *str)
-{
-  g_return_if_fail (GEDA_IS_LABEL(label));
-
-  g_object_freeze_notify (G_OBJECT (label));
-
-  geda_label_set_label_internal (label, geda_strdup (str ? str : ""));
-  geda_label_set_use_markup_internal (label, FALSE);
-  geda_label_set_use_underline_internal (label, FALSE);
-
-  geda_label_recalculate (label);
-
-  g_object_thaw_notify (G_OBJECT (label));
-}
-
-/*!
- * \brief Set the GedaLabel Text cast to a Widget
- * \par Function Description
- *  Sets the text within the #GedaLabel widget.
- *
- * \param [in] widget  The GedaLabel widget
- * \param [in] str    The text to be set
- *
- * \sa geda_label_set_text
- */
-void
-geda_label_widget_set_text (GtkWidget *widget, const char *str)
-{
-  geda_label_set_text((GedaLabel*)widget,str);
-}
-
-/*!
- * \brief Get the GedaLabel Text Alignment
- * \par Function Description
- *  Retrieves the text within the #GedaLabel widget.
- *
- * \param [in]  label  The GedaLabel object
- * \param [out] xalign Pointer to float to store the horizontal alignment
- * \param [out] yalign Pointer to float to store the vertical alignment
- *
- * \sa geda_label_set_alignment
- */
-void
-geda_label_get_alignment (GedaLabel *label, float *xalign, float *yalign)
-{
-  g_return_if_fail (GEDA_IS_LABEL(label));
-
-  gtk_misc_get_alignment (GTK_MISC(label), xalign, yalign);
-}
-
-/*!
- * \brief Set the GedaLabel Text Alignment
- * \par Function Description
- *  Set the text alignment property of the #GedaLabel widget.
- *
- * \param [in] label  The GedaLabel object
- * \param [in] xalign horizontal alignment, from 0 (left) to 1 (right)
- * \param [in] yalign vertical alignment, from 0 (top) to 1 (bottom)
- *
- * \sa geda_label_get_alignment
- */
-void
-geda_label_set_alignment (GedaLabel *label, float xalign, float yalign)
-{
-  g_return_if_fail (GEDA_IS_LABEL(label));
-
-  gtk_misc_set_alignment (GTK_MISC(label), xalign, yalign);
-}
-
-/*!
- * \brief Get the Text Alignment of a GedaLabel Widget
- * \par Function Description
- *  Retrieves the text alignment property of the #GedaLabel widget.
- *
- * \param [in] widget  The GedaLabel widget
- * \param [out] xalign Pointer to float to store the horizontal alignment
- * \param [out] yalign Pointer to float to store the vertical alignment
- *
- * \sa geda_label_get_alignment
- */
-void
-geda_label_widget_get_alignment (GtkWidget *widget, float *xalign, float *yalign)
-{
-  g_return_if_fail (GEDA_IS_LABEL(widget));
-
-  gtk_misc_get_alignment (GTK_MISC(widget), xalign, yalign);
-}
-
-/*!
- * \brief Set the Text Alignment of a GedaLabel Widget
- * \par Function Description
- *  Set the text alignment property of the #GedaLabel widget.
- *
- * \param [in] widget The GedaLabel widget
- * \param [in] xalign horizontal alignment, from 0 (left) to 1 (right)
- * \param [in] yalign vertical alignment, from 0 (top) to 1 (bottom)
- *
- * \sa geda_label_set_alignment
- */
-void
-geda_label_widget_set_alignment (GtkWidget *widget, float xalign, float yalign)
-{
-  g_return_if_fail (GEDA_IS_LABEL(widget));
-
-  gtk_misc_set_alignment (GTK_MISC(widget), xalign, yalign);
-}
-
-/*!
- * \brief Retrieve PangoAttrList for GedaLabel
- * \par Function Description
- * Gets the attribute list that was set on the label using
- * geda_label_set_attributes(), if any. This function does
- * not reflect attributes that come from the labels markup
- * (see geda_label_set_markup()). If you want to get the
- * effective attributes use geda_label_get_effective_attributes.
- *
- * \param [in] label  The GedaLabel object
- *
- * \returns the attribute list, or %NULL if none was set.
- */
-PangoAttrList *geda_label_get_attributes (GedaLabel *label)
-{
-  g_return_val_if_fail (GEDA_IS_LABEL(label), NULL);
-
-  return label->attrs;
-}
-
-/*!
- * \brief geda_label_set_attributes
- * \par Function Description
- *
- * Sets a PangoAttrList; the attributes in the list are applied to the
- * label text.
- *
- * \note The attributes set with this function will be applied and merged
- * with any other attributes previously effected by way of the #GedaLabel:
- * use-underline or #GedaLabel:use-markup properties. While it is not
- * recommended to mix markup strings with manually set attributes, if you
- * must; know that the attributes will be applied to the label after the
- * markup string is parsed.
- *
- * \param [in] label  The GedaLabel object
- * \param [in] attrs  PangoAttrList structure
- */
-void
-geda_label_set_attributes (GedaLabel *label, PangoAttrList *attrs)
-{
-  g_return_if_fail (GEDA_IS_LABEL(label));
-
-  if (attrs) {
-    pango_attr_list_ref (attrs);
-  }
-
-  if (label->attrs) {
-    pango_attr_list_unref (label->attrs);
-  }
-
-  label->attrs = attrs;
-
-  geda_label_clear_layout (label);
-
-  gtk_widget_queue_resize (GTK_WIDGET (label));
-
-  g_object_notify (G_OBJECT (label), "attributes");
-}
-
-
-PangoAttrList *geda_label_get_effective_attributes (GedaLabel *label)
-{
-  g_return_val_if_fail (GEDA_IS_LABEL(label), NULL);
-
-  return pango_layout_get_attributes (geda_label_get_layout (label));
-}
-
-/*!
- * \brief geda_label_set_label
- * \par Function Description
- *
- * Sets the text of the label. The label is interpreted as
- * including embedded underlines and/or Pango markup depending
- * on the values of the GedaLabel::use-underline" and
- * GedaLabel::use-markup properties.
- *
- * \param [in] label  The GedaLabel object
- * \param [in] str    New text to set for the label
- */
-void
-geda_label_set_label (GedaLabel *label, const char *str)
-{
-  g_return_if_fail (GEDA_IS_LABEL(label));
-
-  g_object_freeze_notify (G_OBJECT (label));
-
-  geda_label_set_label_internal (label, geda_strdup (str ? str : ""));
-
-  geda_label_recalculate (label);
-
-  g_object_thaw_notify (G_OBJECT (label));
-}
-
-/*!
- * \brief geda_label_get_label
- * \par Function Description
- *  Fetches the text from a label widget including any embedded
- *  underlines indicating mnemonics and Pango markup. (See
- *  geda_label_get_text()).
- *
- * \param [in] label  The GedaLabel object
- *
- * \returns the text of the label widget. This string is owned
- *          by the widget and must not be modified or freed.
- */
-const char*
-geda_label_get_label (GedaLabel *label)
-{
-  g_return_val_if_fail (GEDA_IS_LABEL(label), NULL);
-
-  return label->label;
 }
 
 typedef struct
@@ -3553,84 +3059,6 @@ geda_label_set_markup_internal (GedaLabel  *label,
   }
 }
 
-/*!
- * \brief geda_label_set_markup
- * \par Function Description
- *  Parses str which is marked up with the Pango text markup language, setting
- *  the label's text and attribute list based on the parse results. If the str
- *  is external data, you may need to escape it with g_markup_escape_text() or
- * \code
- * |[
- * char *markup;
- *
- * markup = g_strdup_printf ("<span font=\"14\" color=\"red\"> <b>\tRed: %s</b> </span>", str);
- * geda_label_set_markup (GEDA_LABEL (label), markup);
- * g_free (markup);
- * ]|
- * \endcode>
- *
- * \param [in] label  The GedaLabel object
- * \param [in] str    a markup string
- *
- */
-void geda_label_set_markup (GedaLabel *label, const char *str)
-{
-  g_return_if_fail (GEDA_IS_LABEL(label));
-
-  g_object_freeze_notify (G_OBJECT (label));
-
-  geda_label_set_label_internal (label, geda_strdup (str ? str : ""));
-
-  geda_label_set_use_markup_internal (label, TRUE);
-
-  geda_label_set_use_underline_internal (label, FALSE);
-
-  geda_label_recalculate (label);
-
-  g_object_thaw_notify (G_OBJECT (label));
-}
-
-/*!
- * \brief geda_label_set_markup_with_mnemonic
- * \par Function Description
- *  Parses str which is marked up with the Pango text markup language,
- *  setting the label's text and attribute list based on the parse results.
- *  If characters in str are preceded by an underscore, they are underlined
- *  indicating that they represent a keyboard accelerator called a mnemonic.
- *
- *  The mnemonic key can be used to activate another widget, chosen
- *  automatically, or explicitly using geda_label_set_mnemonic_widget().
- *
- * \code
- * |[
- * char *markup;
- *
- * markup = g_strdup_printf ("&lt;span style=\"italic\"&gt;%s&lt;/span&gt;", str);
- * geda_label_set_markup_with_mnemonic (GEDA_LABEL (label), markup);
- * g_free (markup);
- * ]|
- * \endcode>
- *
- *  \param [in] label  The GedaLabel object
- *  \param [in] str    The a markup string
- */
-void
-geda_label_set_markup_with_mnemonic (GedaLabel *label, const char *str)
-{
-  g_return_if_fail (GEDA_IS_LABEL(label));
-
-  g_object_freeze_notify (G_OBJECT (label));
-
-  geda_label_set_label_internal (label, geda_strdup (str ? str : ""));
-
-  geda_label_set_use_markup_internal (label, TRUE);
-
-  geda_label_set_use_underline_internal (label, TRUE);
-
-  geda_label_recalculate (label);
-
-  g_object_thaw_notify (G_OBJECT (label));
-}
 
 /*!
  * \brief geda_label_get_text
@@ -3649,15 +3077,6 @@ const char *geda_label_get_text (GedaLabel *label)
   g_return_val_if_fail (GEDA_IS_LABEL(label), NULL);
 
   return label->text;
-}
-
-/*! \todo Finish function documentation
- *  \brief
- *  \par Function Description
- */
-const char *geda_label_widget_get_text (GtkWidget *widget)
-{
-  return geda_label_get_text((GedaLabel*) widget);
 }
 
 static PangoAttrList *
@@ -3743,450 +3162,6 @@ geda_label_set_pattern_internal (GedaLabel  *label,
   }
 
   label->markup_attrs = attrs;
-}
-
-/*!
- * \brief geda_label_set_pattern
- * \par Function Description
- * The pattern of underlines you want under the existing text within the
- * #GedaLabel widget.  For example if the current text of the label says
- * "FooBarBaz" passing a pattern of "___   ___" will underline "Foo" and
- * "Baz" but not "Bar". If \a pattern is NULL then the current will be
- *  removed.
- *
- * \param [in] label   The GedaLabel object
- * \param [in] pattern Pattern as described above or NULL.
- */
-void geda_label_set_pattern (GedaLabel *label, const char *pattern)
-{
-
-  g_return_if_fail (GEDA_IS_LABEL(label));
-
-  label->priv->pattern_set = FALSE;
-
-  if (pattern) {
-
-      geda_label_set_pattern_internal (label, pattern, FALSE);
-      label->priv->pattern_set = TRUE;
-  }
-  else {
-    geda_label_recalculate (label);
-  }
-
-  geda_label_clear_layout (label);
-
-  gtk_widget_queue_resize (GTK_WIDGET (label));
-
-  g_object_notify (G_OBJECT (label), "pattern");
-}
-
-/********************* Justification Property *********************/
-/*!
- * \brief geda_label_get_justify
- * \par Function Description
- *  Returns the justification of the label.
- *
- * \param [in] label The GedaLabel object
- *
- * \returns GtkJustification
- *
- * \sa geda_label_set_alignment
- */
-GtkJustification geda_label_get_justify (GedaLabel *label)
-{
-  g_return_val_if_fail (GEDA_IS_LABEL(label), 0);
-  return label->priv->jtype;
-}
-
-/*!
- * \brief geda_label_set_justify
- * \par Function Description
- *  Sets the alignment of the lines in the text of the label relative to
- *  each other. %GTK_JUSTIFY_LEFT is the default value when the widget
- *  is first created with geda_label_new(). If you instead want to set
- *  the alignment of the label as a whole, use gtk_misc_set_alignment
- *  instead.
- *
- * \note geda_label_set_justify has no effect on labels containing
- *       only a single line.
- *
- * \param [in] label  The GedaLabel object
- * \param [in] jtype  The GedaLabel object
- *
- * \sa geda_label_set_justify
- */
-void geda_label_set_justify (GedaLabel *label, GtkJustification jtype)
-{
-  g_return_if_fail (GEDA_IS_LABEL(label));
-  g_return_if_fail (jtype >= GTK_JUSTIFY_LEFT && jtype <= GTK_JUSTIFY_FILL);
-
-  if ((GtkJustification) label->priv->jtype != jtype) {
-
-    label->priv->jtype = jtype;
-
-    /* No real need to be this drastic, but easier than duplicating the code */
-    geda_label_clear_layout (label);
-
-    gtk_widget_queue_resize (GTK_WIDGET (label));
-
-    g_object_notify (G_OBJECT (label), "justify");
-  }
-}
-
-/*!
- * \brief get justification
- * \par Function Description
- *  Returns the justification of the label.
- *
- * \param [in] widget The GedaLabel widget
- *
- * \returns GtkJustification
- *
- * \sa geda_label_set_justify
- */
-GtkJustification geda_label_widget_get_justify (GtkWidget *widget)
-{
-  return geda_label_get_justify ((GedaLabel*)widget);
-}
-
-/*!
- * \brief geda_label_set_justify
- * \par Function Description
- *  Sets the alignment of the lines in the text of the label relative to
- *  each other. %GTK_JUSTIFY_LEFT is the default value when the widget
- *  is first created with geda_label_new(). If you instead want to set
- *  the alignment of the label as a whole, use gtk_misc_set_alignment
- *  instead.
- *
- * \note geda_label_set_justify has no effect on labels containing
- *       only a single line.
- *
- * \param [in] widget The GedaLabel widget
- * \param [in] jtype  The GedaLabel object
- *
- * \sa geda_label_set_justify
- */
-void geda_label_widget_set_justify (GtkWidget *widget, GtkJustification jtype)
-{
-  geda_label_set_justify ((GedaLabel*) widget, jtype);
-}
-
-/************************ Line Wrap Property **********************/
-
-/*!
- * \brief geda_label_get_line_wrap
- * \par Function Description
- *  Returns whether lines in the label are automatically wrapped.
- *
- * \param [in] label  The GedaLabel object
- *
- * \retval  %TRUE if the lines of the label are automatically wrapped.
- *
- * \sa geda_label_set_line_wrap
- */
-bool geda_label_get_line_wrap (GedaLabel *label)
-{
-  g_return_val_if_fail (GEDA_IS_LABEL(label), FALSE);
-
-  return label->priv->wrap;
-}
-
-/*!
- * \brief geda_label_set_line_wrap
- * \par Function Description
- *  Toggles line wrapping within the #GedaLabel widget. %TRUE makes it break
- *  lines if text exceeds the widget's size. %FALSE lets the text get cut off
- *  by the edge of the widget if it exceeds the widget size.
- *
- *  Note that setting line wrapping to %TRUE does not make the label
- *  wrap at its parent container's width, because GTK+ widgets
- *  conceptually can't make their requisition depend on the parent
- *  container's size. For a label that wraps at a specific position,
- *  set the label's width using gtk_widget_set_size_request().
- *
- *  \param [in] label  The GedaLabel object
- *  \param [in] wrap   The desired setting
- */
-void
-geda_label_set_line_wrap (GedaLabel *label, bool wrap)
-{
-  g_return_if_fail (GEDA_IS_LABEL(label));
-
-  wrap = wrap != FALSE;
-
-  if (label->priv->wrap != wrap) {
-
-    label->priv->wrap = wrap;
-
-    geda_label_clear_layout (label);
-
-    gtk_widget_queue_resize (GTK_WIDGET(label));
-
-    g_object_notify (G_OBJECT (label), "wrap");
-  }
-}
-
-/*!
- * \brief geda_label_get_line_wrap_mode
- * \par Function Description
- *  Returns line wrap mode used by the label.
- *
- * \param [in] label  The GedaLabel object
- *
- * \retval %TRUE if the lines of the label are automatically wrapped.
- *
- * \sa geda_label_set_line_wrap_mode
- */
-PangoWrapMode
-geda_label_get_line_wrap_mode (GedaLabel *label)
-{
-  g_return_val_if_fail (GEDA_IS_LABEL(label), FALSE);
-
-  return label->priv->wrap_mode;
-}
-
-/*!
- * \brief geda_label_set_line_wrap_mode
- * \par Function Description
- * If line wrapping is on the this controls how the line wrapping is
- * performed. The default is %PANGO_WRAP_WORD which means wrap on word
- * boundaries.
- *
- * \param [in] label     The GedaLabel object
- * \param [in] wrap_mode The line wrap_mode setting
- *
- * \sa geda_label_set_line_wrap
- */
-void
-geda_label_set_line_wrap_mode (GedaLabel *label, PangoWrapMode wrap_mode)
-{
-  g_return_if_fail (GEDA_IS_LABEL(label));
-
-  if (label->priv->wrap_mode != wrap_mode) {
-
-    label->priv->wrap_mode = wrap_mode;
-
-    gtk_widget_queue_resize (GTK_WIDGET (label));
-
-    g_object_notify (G_OBJECT (label), "wrap-mode");
-  }
-}
-
-/************************ Ellipsize Property **********************/
-/*!
- * \brief Get the ellipsize property of a GedaLabel
- * \par Function Description
- *  Returns the ellipsizing position of the label. See geda_label_set_ellipsize().
- *
- * \param [in] label  The GedaLabel object
- *
- * \returns PangoEllipsizeMode
- */
-PangoEllipsizeMode geda_label_get_ellipsize (GedaLabel *label)
-{
-  g_return_val_if_fail (GEDA_IS_LABEL(label), PANGO_ELLIPSIZE_NONE);
-  return label->priv->ellipsize;
-}
-
-/*!
- * \brief Set the ellipsize property of a GedaLabel
- * \par Function Description
- *  Sets the mode used to ellipsize (add an ellipsis: "...") to the
- *  text if there is not enough space to render the entire string.
- *
- * \param [in] label  The GedaLabel object
- * \param [in] mode   a PangoEllipsizeMode
- */
-void geda_label_set_ellipsize (GedaLabel *label, PangoEllipsizeMode mode)
-{
-  g_return_if_fail (GEDA_IS_LABEL(label));
-  g_return_if_fail (mode >= PANGO_ELLIPSIZE_NONE && mode <= PANGO_ELLIPSIZE_END);
-
-  if ((PangoEllipsizeMode) label->priv->ellipsize != mode) {
-
-    label->priv->ellipsize = mode;
-
-    /* No real need to be this drastic, but easier than duplicating the code */
-    geda_label_clear_layout (label);
-
-    gtk_widget_queue_resize (GTK_WIDGET (label));
-
-    g_object_notify (G_OBJECT (label), "ellipsize");
-  }
-}
-
-/*!
- * \brief Get the ellipsize property of a GedaLabel Widget
- * \par Function Description
- *  Returns the ellipsizing position of the label. See geda_label_set_ellipsize().
- *
- * \param [in] widget The GedaLabel object
- *
- * \returns PangoEllipsizeMode
- *
- * \sa geda_label_get_ellipsize
- */
-PangoEllipsizeMode geda_label_widget_get_ellipsize (GtkWidget *widget)
-{
-  return geda_label_get_ellipsize ( (GedaLabel*) widget);
-}
-
-/*!
- * \brief Set the ellipsize property of a GedaLabel Widget
- * \par Function Description
- *  Sets the mode used to ellipsize (add an ellipsis: "...") to the
- *  text if there is not enough space to render the entire string.
- *
- * \param [in] widget The GedaLabel object
- * \param [in] mode   a PangoEllipsizeMode
- *
- * \sa geda_label_set_ellipsize
- */
-void
-geda_label_widget_set_ellipsize (GtkWidget *widget, PangoEllipsizeMode mode)
-{
-  geda_label_set_ellipsize ( (GedaLabel*) widget, mode);
-}
-
-/********************** Width Chars Property **********************/
-
-/*!
- * \brief Get the Width of GedaLabel Characters
- * \par Function Description
- *  Retrieves the desired width of label, in characters.
- *
- * \param [in] label  The GedaLabel object
- *
- * \returns the width of the label in characters.
- *
- * \sa geda_label_set_width_chars
- */
-int geda_label_get_width_chars (GedaLabel *label)
-{
-  g_return_val_if_fail (GEDA_IS_LABEL(label), -1);
-
-  return label->width_chars;
-}
-
-/*!
- * \brief Set the Width of Characters for a GedaLabel object
- * \par Function Description
- * Sets the desired width in characters of label to n_chars.
- *
- *  \param [in] label   The GedaLabel object
- *  \param [in] n_chars New desired width, in characters.
- */
-void geda_label_set_width_chars (GedaLabel *label, int n_chars)
-{
-  g_return_if_fail (GEDA_IS_LABEL(label));
-
-  if (label->width_chars != n_chars) {
-
-    label->width_chars = n_chars;
-
-    gtk_widget_queue_resize (GTK_WIDGET (label));
-
-    g_object_notify (G_OBJECT (label), "width-chars");
-  }
-}
-
-/*!
- * \brief Get the Width of Characters from a GedaLabel widget
- * \par Function Description
- *  Wrapper for geda_label_get_width_chars that accepts a pointer
- *  to a GtkWidget for the GedaLabel object.
- *
- *  \param [in] widget The GedaLabel widget
- */
-int geda_label_widget_get_width_chars (GtkWidget *widget)
-{
-  return geda_label_get_width_chars ((GedaLabel*)widget);
-}
-
-/*!
- * \brief Set the Width of Characters for a GedaLabel widget
- * \par Function Description
- *  Sets the desired width in characters of label to n_chars.
- *
- *  \param [in] widget The GedaLabel widget
- *  \param [in] n_chars New desired width, in characters.
- */
-void geda_label_widget_set_width_chars (GtkWidget *widget, int n_chars)
-{
-  geda_label_set_width_chars ((GedaLabel*)widget, n_chars);
-}
-
-/********************* Max Width Chars Property *******************/
-/*!
- * \brief Retrieves the Maximum Width of Characters for a GedaLabel
- * \par Function Description
- *  Retrieves the desired maximum width of label, in characters. See
- *  geda_label_set_width_chars().
- *
- * \param [in] label  The GedaLabel object
- *
- * \returns the maximum width of the label in characters.
- *
- */
-int geda_label_get_max_width_chars (GedaLabel *label)
-{
-  g_return_val_if_fail (GEDA_IS_LABEL(label), -1);
-
-  return label->max_width_chars;
-}
-
-/*!
- * \brief Set the Maximum Width of Characters of a GedaLabel
- * \par Function Description
- *  Sets the desired maximum width in characters of label to n_chars.
- *
- * \param [in] label    The GedaLabel object
- * \param [in] n_chars  New desired maximum width, in characters.
- */
-void geda_label_set_max_width_chars (GedaLabel *label, int n_chars)
-{
-  g_return_if_fail (GEDA_IS_LABEL(label));
-
-  if (label->max_width_chars != n_chars) {
-
-    label->max_width_chars = n_chars;
-
-    gtk_widget_queue_resize (GTK_WIDGET (label));
-
-    g_object_notify (G_OBJECT (label), "max-width-chars");
-  }
-}
-
-/*!
- * \brief Retrieves the Maximum Width of Characters for a GedaLabel Widget
- * \par Function Description
- *  Wrapper to retrieves the desired maximum width of label, in characters
- *  casting the GedaLabel to Widget.
- *
- * \param [in] widget The GedaLabel widget
- *
- * \returns the maximum width of the label in characters.
- *
- * \sa geda_label_get_max_width_chars
- */
-int geda_label_widget_get_max_width_chars (GtkWidget *widget)
-{
-  return geda_label_get_max_width_chars ((GedaLabel*)widget);
-}
-
-/*!
- * \brief Set the Maximum Width of Characters of a GedaLabel Widget
- * \par Function Description
- *  Wrapper for geda_label_set_max_width_chars.
- *
- * \param [in] widget  The GedaLabel widget
- * \param [in] n_chars New desired maximum width, in characters.
- *
- * \sa geda_label_set_max_width_chars
- */
-void geda_label_widget_set_max_width_chars (GtkWidget *widget, int n_chars)
-{
-  geda_label_set_max_width_chars ((GedaLabel*)widget, n_chars);
 }
 
 static void
@@ -4961,7 +3936,8 @@ geda_label_focus (GtkWidget *widget, GtkDirectionType direction)
   return FALSE;
 }
 
-bool geda_event_triggers_context_menu (GdkEventButton *event)
+static bool
+geda_event_triggers_context_menu (GdkEventButton *event)
 {
   if (event->type == GDK_BUTTON_PRESS) {
 
@@ -5586,164 +4562,6 @@ geda_label_clear_select_info (GedaLabel *label)
   }
 }
 
-/*********************** Selectable Property **********************/
-
-/*!
- * \brief geda_label_get_selectable
- * \par Function Description
- *  Gets the value set by geda_label_set_selectable().
- *
- * \param [in] label  The GedaLabel object
- *
- * \retval %TRUE if the user can copy text from the label
- */
-bool geda_label_get_selectable (GedaLabel *label)
-{
-  SelectionInfo *info;
-  g_return_val_if_fail (GEDA_IS_LABEL(label), FALSE);
-  info = label->priv->select_info;
-  return info && info->selectable;
-}
-
-/*! \todo Finish function documentation
- *  \brief
- *  \par Function Description
- */
-bool geda_label_widget_get_selectable (GtkWidget *widget)
-{
-  return geda_label_get_selectable ( (GedaLabel*) widget);
-}
-
-/*!
- * \brief geda_label_set_selectable
- * \par Function Description
- *  Selectable labels allow the user to select text from the label, for
- *  copy-and-paste.
- *
- * \param [in] label   The GedaLabel object
- * \param [in] setting: %TRUE to allow selecting text in the label
- */
-void geda_label_set_selectable (GedaLabel *label, bool setting)
-{
-  GedaLabelData *priv;
-  bool old_setting;
-
-  g_return_if_fail (GEDA_IS_LABEL(label));
-
-  priv = label->priv;
-
-  setting = setting != FALSE;
-  old_setting = priv->select_info && priv->select_info->selectable;
-
-  if (setting) {
-    geda_label_ensure_select_info (label);
-    priv->select_info->selectable = TRUE;
-    geda_label_update_cursor (label);
-  }
-  else if (old_setting) {
-    /* unselect, to give up the selection */
-    geda_label_select_region (label, 0, 0);
-
-    priv->select_info->selectable = FALSE;
-    geda_label_clear_select_info (label);
-    geda_label_update_cursor (label);
-  }
-
-  if (setting != old_setting) {
-    g_object_freeze_notify (G_OBJECT (label));
-    g_object_notify (G_OBJECT (label), "selectable");
-    g_object_notify (G_OBJECT (label), "cursor-position");
-    g_object_notify (G_OBJECT (label), "selection-bound");
-    g_object_thaw_notify (G_OBJECT (label));
-    gtk_widget_queue_draw (GTK_WIDGET (label));
-  }
-}
-
-/*! \todo Finish function documentation
- *  \brief
- *  \par Function Description
- */
-void geda_label_widget_set_selectable (GtkWidget *widget, bool setting)
-{
-  geda_label_set_selectable ((GedaLabel*)widget, setting);
-}
-
-/************************** Angle Property ************************/
-
-/*!
- * \brief geda_label_get_angle
- * \par Function Description
- *  Gets the angle of rotation for the label.
- *
- * \param [in] label The GedaLabel object
- *
- * \returns the angle of rotation for the label
- *
- * \sa geda_label_set_angle
- */
-double geda_label_get_angle  (GedaLabel *label)
-{
-  g_return_val_if_fail (GEDA_IS_LABEL(label), 0.0);
-  return label->angle;
-}
-
-/*! \todo Finish function documentation
- *  \brief
- *  \par Function Description
- */
-double geda_label_widget_get_angle (GtkWidget *widget)
-{
-  return geda_label_get_angle ((GedaLabel*)widget);
-}
-
-/*!
- * \brief geda_label_set_angle
- * \par Function Description
- *  Sets the angle of rotation for the label. An angle of 90 reads from
- *  from bottom to top, an angle of 270, from top to bottom. The angle
- *  setting for the label is ignored if the label is selectable,
- *  wrapped, or ellipsized.
- *
- *  The angle is from the baseline of the label from horizontal, in
- *  degrees, measured counterclockwise.
- *
- * \param [in] label   The GedaLabel object
- * \param [in] angle   The label angle
- */
-void
-geda_label_set_angle (GedaLabel *label, double angle)
-{
-  g_return_if_fail (GEDA_IS_LABEL(label));
-
-  /* Canonicalize to [0,360]. We don't canonicalize 360 to 0, because
-   * double property ranges are inclusive, and changing 360 to 0 would
-   * make a property editor behave strangely.
-   */
-  if (angle < 0 || angle > 360.0) {
-    angle = angle - 360. * floor (angle / 360.);
-  }
-
-  if (label->angle != angle) {
-
-    label->angle = angle;
-
-    geda_label_clear_layout (label);
-
-    gtk_widget_queue_resize (GTK_WIDGET (label));
-
-    g_object_notify (G_OBJECT (label), "angle");
-  }
-}
-
-/*! \todo Finish function documentation
- *  \brief
- *  \par Function Description
- */
-void geda_label_widget_set_angle (GtkWidget *widget, double angle)
-{
-  geda_label_set_angle ( (GedaLabel*) widget, angle);
-}
-
 static void
 geda_label_set_selection_text (GedaLabel *label,
                                GtkSelectionData *selection_data)
@@ -5871,335 +4689,6 @@ static void geda_label_select_region_index (GedaLabel *label,
 
     g_object_thaw_notify (G_OBJECT (label));
   }
-}
-
-/*! \brief geda_label_select_region
- *
- *  \par Function Description
- *
- * Selects a range of characters in the label, if the label is selectable.
- * See geda_label_set_selectable(). If the label is not selectable,
- * this function has no effect. If start_offset or
- * end_offset are -1, then the end of the label will be substituted.
- *
- * \param [in] label        The GedaLabel object
- * \param [in] start_offset The start offset (in characters not bytes)
- * \param [in] end_offset   The end offset (in characters not bytes)
- *
- */
-void
-geda_label_select_region (GedaLabel *label, int start_offset, int end_offset)
-{
-  g_return_if_fail (GEDA_IS_LABEL(label));
-
-  if (label->text && label->priv->select_info) {
-
-    if (start_offset < 0)
-      start_offset = g_utf8_strlen (label->text, -1);
-
-    if (end_offset < 0)
-      end_offset = g_utf8_strlen (label->text, -1);
-
-    geda_label_select_region_index (label,
-                                    g_utf8_offset_to_pointer (label->text, start_offset) - label->text,
-                                    g_utf8_offset_to_pointer (label->text, end_offset) - label->text);
-  }
-}
-
-/*!
- * \brief geda_label_get_selection_bounds
- * \par Function Description
- *  Gets the selected range of characters in the label, returning %TRUE
- *  if there's a selection.
- *
- * \param [in] label  The GedaLabel object
- *
- * \param [out] start location for start of selection, as a character offset
- * \param [out] end   location for end of selection, as a character offset
- *
- * \retval %TRUE if selection is non-empty
- */
-bool
-geda_label_get_selection_bounds (GedaLabel  *label, int *start, int *end)
-{
-  SelectionInfo *info;
-
-  g_return_val_if_fail (GEDA_IS_LABEL(label), FALSE);
-
-  info = label->priv->select_info;
-
-  if ( info == NULL) {
-
-    /* not a selectable label */
-    if (start)
-      *start = 0;
-
-    if (end)
-      *end = 0;
-
-    return FALSE;
-  }
-  else {
-
-    int start_index, end_index;
-    int start_offset, end_offset;
-    int len;
-
-    start_index = MIN ( info->selection_anchor, info->selection_end);
-    end_index   = MAX ( info->selection_anchor, info->selection_end);
-
-    len = strlen (label->text);
-
-    if (end_index > len)
-      end_index = len;
-
-    if (start_index > len)
-      start_index = len;
-
-    start_offset = g_utf8_strlen (label->text, start_index);
-    end_offset   = g_utf8_strlen (label->text, end_index);
-
-    if (start_offset > end_offset) {
-
-      int tmp = start_offset;
-      start_offset = end_offset;
-      end_offset = tmp;
-
-    }
-
-    if (start)
-      *start = start_offset;
-
-    if (end)
-      *end = end_offset;
-
-    return start_offset != end_offset;
-  }
-}
-
-/*!
- * \brief geda_label_get_layout
- * \par Function Description
- * Gets the PangoLayout used to display the label.
- * The layout is useful to e.g. convert text positions to
- * pixel positions, in combination with geda_label_get_layout_offsets().
- * The returned layout is owned by the label and should not be
- * freed by the caller. The label is free to recreate its layout at
- * any time, so it should be considered read-only.
- *
- * \param [in] label  The GedaLabel object
- *
- * \returns the PangoLayout for this label
- */
-PangoLayout *geda_label_get_layout (GedaLabel *label)
-{
-  g_return_val_if_fail (GEDA_IS_LABEL(label), NULL);
-
-  geda_label_ensure_layout (label);
-
-  return label->layout;
-}
-
-/*!
- * \brief geda_label_get_layout_offsets
- * \par Function Description
- * Obtains the coordinates where the label will draw the PangoLayout
- * representing the text in the label; useful to convert mouse events
- * into coordinates inside the PangoLayout, e.g. to take some action
- * if some part of the label is clicked. Of course you will need to
- * create a GtkEventBox to receive the events, and pack the label
- * inside it, since labels are a GTK_NO_WINDOW widget. Remember
- * when using the PangoLayout functions you need to convert to
- * and from pixels using PANGO_PIXELS() or PANGO_SCALE.
- *
- * \param [in] label  The GedaLabel object
- * \param [out] x     location to store X offset of layout, or %NULL
- * \param [out] y     location to store Y offset of layout, or %NULL
- */
-void
-geda_label_get_layout_offsets (GedaLabel *label, int *x, int *y)
-{
-  g_return_if_fail (GEDA_IS_LABEL(label));
-
-  geda_label_ensure_layout (label);
-
-  get_layout_location (label, x, y);
-}
-
-/*!
- * \brief geda_label_set_use_markup
- * \par Function Description
- *
- * Sets whether the text of the label contains markup in Pango's text markup
- * language. See geda_label_set_markup().
- *
- * \param [in] label   The GedaLabel object
- * \param [in] setting %TRUE if the label's text should be parsed for markup.
- */
-void geda_label_set_use_markup (GedaLabel *label, bool setting)
-{
-  g_return_if_fail (GEDA_IS_LABEL(label));
-
-  g_object_freeze_notify (G_OBJECT (label));
-
-  geda_label_set_use_markup_internal (label, setting);
-
-  geda_label_recalculate (label);
-
-  g_object_thaw_notify (G_OBJECT (label));
-
-}
-
-/*!
- * \brief geda_label_get_use_markup
- * \par Function Description
- *  Returns whether the label's text is interpreted as marked up with
- *  the Pango text markup language. See geda_label_set_use_markup ().
- *
- * \param [in] label   The GedaLabel object
- *
- * \retval %TRUE if the label's text will be parsed for markup.
- */
-bool geda_label_get_use_markup (GedaLabel *label)
-{
-  g_return_val_if_fail (GEDA_IS_LABEL(label), FALSE);
-
-  return label->priv->use_markup;
-}
-
-/*! \brief Widget Convenience Versions of label set_use_markup */
-void geda_label_widget_set_use_markup (GtkWidget *widget, bool setting)
-{
-  geda_label_set_use_markup ((GedaLabel*)widget, setting);
-}
-
-/*! \brief Widget Convenience Versions of label get_use_markup */
-bool geda_label_widget_get_use_markup (GtkWidget *widget)
-{
-  g_return_val_if_fail (GEDA_IS_LABEL(widget), FALSE);
-
-  return geda_label_get_use_markup ((GedaLabel*)widget);
-}
-
-/*!
- * \brief geda_label_get_use_underline
- * \par Function Description
- *  Returns whether an embedded underline in the label indicates a
- *  mnemonic. See geda_label_set_use_underline().
- *
- * \param [in] label   The GedaLabel object
- *
- * \retval %TRUE whether an embedded underline in the label indicates
- *          the mnemonic accelerator keys.
- */
-bool geda_label_get_use_underline (GedaLabel *label)
-{
-  g_return_val_if_fail (GEDA_IS_LABEL(label), FALSE);
-
-  return label->priv->use_underline;
-}
-
-/*!
- * \brief geda_label_set_use_underline
- * \par Function Description
- *  If true, an underline in the text indicates the next character should
- *  be used for the mnemonic accelerator key.
- *
- * \param [in] label   The GedaLabel object
- * \param [in] setting %TRUE if underlines in the text indicate mnemonics.
- */
-void geda_label_set_use_underline (GedaLabel *label, bool setting)
-{
-  g_return_if_fail (GEDA_IS_LABEL(label));
-
-  g_object_freeze_notify (G_OBJECT(label));
-
-  geda_label_set_use_underline_internal(label, setting);
-
-  geda_label_recalculate (label);
-
-  g_object_thaw_notify (G_OBJECT(label));
-
-}
-
-/*!
- * \brief Widget Wrapper for geda_label_get_use_underline
- * \par Function Description
- *  See geda_label_get_use_underline.
- *
- * \param [in] widget The GedaLabel widget
- *
- * \retval %TRUE whether an embedded underline in the label indicates
- *               the mnemonic accelerator keys.
- */
-bool geda_label_widget_get_use_underline (GtkWidget *widget)
-{
-  g_return_val_if_fail (GEDA_IS_LABEL(widget), FALSE);
-
-  return geda_label_get_use_underline ((GedaLabel*)widget);
-}
-
-/*!
- * \brief Widget Wrapper for geda_label_set_use_underline
- * \par Function Description
- *  If true, an underline in the text indicates the next character should
- *  be used for the mnemonic accelerator key.
- *
- * \param [in] widget  The GedaLabel widget
- * \param [in] setting %TRUE if underlines in the text indicate mnemonics.
- */
-void geda_label_widget_set_use_underline (GtkWidget *widget, bool setting)
-{
-  g_return_if_fail (GEDA_IS_LABEL(widget));
-
-  geda_label_set_use_underline ((GedaLabel*)widget, setting);
-
-}
-
-/*!
- * \brief geda_label_set_single_line_mode
- * \par Function Description
- * Sets whether the label is in single line mode. Set %TRUE if the label
- * should be in single line mode
- *
- * \param [in] label              The GedaLabel object
- * \param [in] single_line_mode   Desired setting
- */
-void
-geda_label_set_single_line_mode (GedaLabel *label,
-                                 bool single_line_mode)
-{
-  g_return_if_fail (GEDA_IS_LABEL(label));
-
-  single_line_mode = single_line_mode != FALSE;
-
-  if (label->priv->single_line_mode != single_line_mode) {
-
-    label->priv->single_line_mode = single_line_mode;
-
-    geda_label_clear_layout (label);
-
-    gtk_widget_queue_resize (GTK_WIDGET (label));
-
-    g_object_notify (G_OBJECT (label), "single-line-mode");
-  }
-}
-
-/*!
- * \brief geda_label_get_single_line_mode
- * \par Function Description
- *  Returns whether the label is in single line mode.
- *
- * \param [in] label The GedaLabel object
- *
- * \retval %TRUE when the label is in single line mode.
- *
- */
-bool geda_label_get_single_line_mode  (GedaLabel *label)
-{
-  g_return_val_if_fail (GEDA_IS_LABEL(label), FALSE);
-
-  return label->priv->single_line_mode;
 }
 
 /* Compute the X position for an offset that corresponds to the "more important
@@ -6363,7 +4852,6 @@ geda_label_move_forward_word (GedaLabel *label, int start)
 
   return g_utf8_offset_to_pointer (label->text, new_pos) - label->text;
 }
-
 
 static int geda_label_move_backward_word (GedaLabel *label, int start)
 {
@@ -6887,6 +5375,163 @@ static void geda_label_activate_current_link (GedaLabel *label)
   }
 }
 
+/* Begin Public Accessors */
+
+/*!
+ * \brief Get the GedaLabel Text Alignment
+ * \par Function Description
+ *  Retrieves the text within the #GedaLabel widget.
+ *
+ * \param [in]  label  The GedaLabel object
+ * \param [out] xalign Pointer to float to store the horizontal alignment
+ * \param [out] yalign Pointer to float to store the vertical alignment
+ *
+ * \sa geda_label_set_alignment
+ */
+void
+geda_label_get_alignment (GedaLabel *label, float *xalign, float *yalign)
+{
+  g_return_if_fail (GEDA_IS_LABEL(label));
+
+  gtk_misc_get_alignment (GTK_MISC(label), xalign, yalign);
+}
+
+/*!
+ * \brief Set the GedaLabel Text Alignment
+ * \par Function Description
+ *  Set the text alignment property of the #GedaLabel widget.
+ *
+ * \param [in] label  The GedaLabel object
+ * \param [in] xalign horizontal alignment, from 0 (left) to 1 (right)
+ * \param [in] yalign vertical alignment, from 0 (top) to 1 (bottom)
+ *
+ * \sa geda_label_get_alignment
+ */
+void
+geda_label_set_alignment (GedaLabel *label, float xalign, float yalign)
+{
+  g_return_if_fail (GEDA_IS_LABEL(label));
+
+  gtk_misc_set_alignment (GTK_MISC(label), xalign, yalign);
+}
+
+/************************** Angle Property ************************/
+
+/*!
+ * \brief geda_label_get_angle
+ * \par Function Description
+ *  Gets the angle of rotation for the label.
+ *
+ * \param [in] label The GedaLabel object
+ *
+ * \returns the angle of rotation for the label
+ *
+ * \sa geda_label_set_angle
+ */
+double geda_label_get_angle  (GedaLabel *label)
+{
+  g_return_val_if_fail (GEDA_IS_LABEL(label), 0.0);
+  return label->angle;
+}
+
+/*!
+ * \brief geda_label_set_angle
+ * \par Function Description
+ *  Sets the angle of rotation for the label. An angle of 90 reads from
+ *  from bottom to top, an angle of 270, from top to bottom. The angle
+ *  setting for the label is ignored if the label is selectable,
+ *  wrapped, or ellipsized.
+ *
+ *  The angle is from the baseline of the label from horizontal, in
+ *  degrees, measured counterclockwise.
+ *
+ * \param [in] label   The GedaLabel object
+ * \param [in] angle   The label angle
+ */
+void
+geda_label_set_angle (GedaLabel *label, double angle)
+{
+  g_return_if_fail (GEDA_IS_LABEL(label));
+
+  /* Canonicalize to [0,360]. We don't canonicalize 360 to 0, because
+   * double property ranges are inclusive, and changing 360 to 0 would
+   * make a property editor behave strangely.
+   */
+  if (angle < 0 || angle > 360.0) {
+    angle = angle - 360. * floor (angle / 360.);
+  }
+
+  if (label->angle != angle) {
+
+    label->angle = angle;
+
+    geda_label_clear_layout (label);
+
+    gtk_widget_queue_resize (GTK_WIDGET (label));
+
+    g_object_notify (G_OBJECT (label), "angle");
+  }
+}
+
+/*!
+ * \brief Retrieve PangoAttrList for GedaLabel
+ * \par Function Description
+ * Gets the attribute list that was set on the label using
+ * geda_label_set_attributes(), if any. This function does
+ * not reflect attributes that come from the labels markup
+ * (see geda_label_set_markup()). If you want to get the
+ * effective attributes use geda_label_get_effective_attributes.
+ *
+ * \param [in] label  The GedaLabel object
+ *
+ * \returns the attribute list, or %NULL if none was set.
+ */
+PangoAttrList *geda_label_get_attributes (GedaLabel *label)
+{
+  g_return_val_if_fail (GEDA_IS_LABEL(label), NULL);
+
+  return label->attrs;
+}
+
+/*!
+ * \brief geda_label_set_attributes
+ * \par Function Description
+ *
+ * Sets a PangoAttrList; the attributes in the list are applied to the
+ * label text.
+ *
+ * \note The attributes set with this function will be applied and merged
+ * with any other attributes previously effected by way of the #GedaLabel:
+ * use-underline or #GedaLabel:use-markup properties. While it is not
+ * recommended to mix markup strings with manually set attributes, if you
+ * must; know that the attributes will be applied to the label after the
+ * markup string is parsed.
+ *
+ * \param [in] label  The GedaLabel object
+ * \param [in] attrs  PangoAttrList structure
+ */
+void
+geda_label_set_attributes (GedaLabel *label, PangoAttrList *attrs)
+{
+  g_return_if_fail (GEDA_IS_LABEL(label));
+
+  if (attrs) {
+    pango_attr_list_ref (attrs);
+  }
+
+  if (label->attrs) {
+    pango_attr_list_unref (label->attrs);
+  }
+
+  label->attrs = attrs;
+
+  geda_label_clear_layout (label);
+
+  gtk_widget_queue_resize (GTK_WIDGET (label));
+
+  g_object_notify (G_OBJECT (label), "attributes");
+}
+
 /*!
  * \brief geda_label_get_current_uri
  * \par Function Description
@@ -6921,6 +5566,981 @@ geda_label_get_current_uri (GedaLabel *label)
 }
 
 /*!
+ * \brief Get cursor position
+ * \par Function Description
+ * Returns offset of cursor index position within the label text.
+ *
+ * \param [in] label The GedaLabel object
+ *
+ * \returns Offset of text index within the label text
+ */
+int
+geda_label_get_cursor_position (GedaLabel *label)
+{
+  if (GEDA_IS_LABEL(label)) {
+
+    GedaLabelData *priv = label->priv;
+
+    if (priv->select_info && priv->select_info->selectable) {
+      return g_utf8_pointer_to_offset (label->text,
+                                       label->text + priv->select_info->selection_end);
+    }
+  }
+  return 0;
+}
+
+PangoAttrList *geda_label_get_effective_attributes (GedaLabel *label)
+{
+  g_return_val_if_fail (GEDA_IS_LABEL(label), NULL);
+
+  return pango_layout_get_attributes (geda_label_get_layout (label));
+}
+
+/************************ Ellipsize Property **********************/
+
+/*!
+ * \brief Get the ellipsize property of a GedaLabel
+ * \par Function Description
+ *  Returns the ellipsizing position of the label. See geda_label_set_ellipsize().
+ *
+ * \param [in] label  The GedaLabel object
+ *
+ * \returns PangoEllipsizeMode
+ */
+PangoEllipsizeMode geda_label_get_ellipsize (GedaLabel *label)
+{
+  g_return_val_if_fail (GEDA_IS_LABEL(label), PANGO_ELLIPSIZE_NONE);
+  return label->priv->ellipsize;
+}
+
+/*!
+ * \brief Set the ellipsize property of a GedaLabel
+ * \par Function Description
+ *  Sets the mode used to ellipsize (add an ellipsis: "...") to the
+ *  text if there is not enough space to render the entire string.
+ *
+ * \param [in] label  The GedaLabel object
+ * \param [in] mode   a PangoEllipsizeMode
+ */
+void geda_label_set_ellipsize (GedaLabel *label, PangoEllipsizeMode mode)
+{
+  g_return_if_fail (GEDA_IS_LABEL(label));
+  g_return_if_fail (mode >= PANGO_ELLIPSIZE_NONE && mode <= PANGO_ELLIPSIZE_END);
+
+  if ((PangoEllipsizeMode) label->priv->ellipsize != mode) {
+
+    label->priv->ellipsize = mode;
+
+    /* No real need to be this drastic, but easier than duplicating the code */
+    geda_label_clear_layout (label);
+
+    gtk_widget_queue_resize (GTK_WIDGET (label));
+
+    g_object_notify (G_OBJECT (label), "ellipsize");
+  }
+}
+
+/********************* Justification Property *********************/
+
+/*!
+ * \brief geda_label_get_justify
+ * \par Function Description
+ *  Returns the justification of the label.
+ *
+ * \param [in] label The GedaLabel object
+ *
+ * \returns GtkJustification
+ *
+ * \sa geda_label_set_alignment
+ */
+GtkJustification geda_label_get_justify (GedaLabel *label)
+{
+  g_return_val_if_fail (GEDA_IS_LABEL(label), 0);
+  return label->priv->jtype;
+}
+
+/*!
+ * \brief geda_label_set_justify
+ * \par Function Description
+ *  Sets the alignment of the lines in the text of the label relative to
+ *  each other. %GTK_JUSTIFY_LEFT is the default value when the widget
+ *  is first created with geda_label_new(). If you instead want to set
+ *  the alignment of the label as a whole, use gtk_misc_set_alignment
+ *  instead.
+ *
+ * \note geda_label_set_justify has no effect on labels containing
+ *       only a single line.
+ *
+ * \param [in] label  The GedaLabel object
+ * \param [in] jtype  The GedaLabel object
+ *
+ * \sa geda_label_set_justify
+ */
+void geda_label_set_justify (GedaLabel *label, GtkJustification jtype)
+{
+  g_return_if_fail (GEDA_IS_LABEL(label));
+  g_return_if_fail (jtype >= GTK_JUSTIFY_LEFT && jtype <= GTK_JUSTIFY_FILL);
+
+  if ((GtkJustification) label->priv->jtype != jtype) {
+
+    label->priv->jtype = jtype;
+
+    /* No real need to be this drastic, but easier than duplicating the code */
+    geda_label_clear_layout (label);
+
+    gtk_widget_queue_resize (GTK_WIDGET (label));
+
+    g_object_notify (G_OBJECT (label), "justify");
+  }
+}
+
+/*!
+ * \brief geda_label_get_label
+ * \par Function Description
+ *  Fetches the text from a label widget including any embedded
+ *  underlines indicating mnemonics and Pango markup. (See
+ *  geda_label_get_text()).
+ *
+ * \param [in] label  The GedaLabel object
+ *
+ * \returns the text of the label widget. This string is owned
+ *          by the widget and must not be modified or freed.
+ */
+const char*
+geda_label_get_label (GedaLabel *label)
+{
+  g_return_val_if_fail (GEDA_IS_LABEL(label), NULL);
+
+  return label->label;
+}
+
+
+/*!
+ * \brief geda_label_set_label
+ * \par Function Description
+ *
+ * Sets the text of the label. The label is interpreted as
+ * including embedded underlines and/or Pango markup depending
+ * on the values of the GedaLabel::use-underline" and
+ * GedaLabel::use-markup properties.
+ *
+ * \param [in] label  The GedaLabel object
+ * \param [in] str    New text to set for the label
+ */
+void
+geda_label_set_label (GedaLabel *label, const char *str)
+{
+  g_return_if_fail (GEDA_IS_LABEL(label));
+
+  g_object_freeze_notify (G_OBJECT (label));
+
+  geda_label_set_label_internal (label, geda_strdup (str ? str : ""));
+
+  geda_label_recalculate (label);
+
+  g_object_thaw_notify (G_OBJECT (label));
+}
+
+/*!
+ * \brief geda_label_get_layout
+ * \par Function Description
+ * Gets the PangoLayout used to display the label.
+ * The layout is useful to e.g. convert text positions to
+ * pixel positions, in combination with geda_label_get_layout_offsets().
+ * The returned layout is owned by the label and should not be
+ * freed by the caller. The label is free to recreate its layout at
+ * any time, so it should be considered read-only.
+ *
+ * \param [in] label  The GedaLabel object
+ *
+ * \returns the PangoLayout for this label
+ */
+PangoLayout *geda_label_get_layout (GedaLabel *label)
+{
+  g_return_val_if_fail (GEDA_IS_LABEL(label), NULL);
+
+  geda_label_ensure_layout (label);
+
+  return label->layout;
+}
+
+/*!
+ * \brief geda_label_get_layout_offsets
+ * \par Function Description
+ * Obtains the coordinates where the label will draw the PangoLayout
+ * representing the text in the label; useful to convert mouse events
+ * into coordinates inside the PangoLayout, e.g. to take some action
+ * if some part of the label is clicked. Of course you will need to
+ * create a GtkEventBox to receive the events, and pack the label
+ * inside it, since labels are a GTK_NO_WINDOW widget. Remember
+ * when using the PangoLayout functions you need to convert to
+ * and from pixels using PANGO_PIXELS() or PANGO_SCALE.
+ *
+ * \param [in] label  The GedaLabel object
+ * \param [out] x     location to store X offset of layout, or %NULL
+ * \param [out] y     location to store Y offset of layout, or %NULL
+ */
+void
+geda_label_get_layout_offsets (GedaLabel *label, int *x, int *y)
+{
+  g_return_if_fail (GEDA_IS_LABEL(label));
+
+  geda_label_ensure_layout (label);
+
+  get_layout_location (label, x, y);
+}
+
+/************************ Line Wrap Property **********************/
+
+/*!
+ * \brief geda_label_get_line_wrap
+ * \par Function Description
+ *  Returns whether lines in the label are automatically wrapped.
+ *
+ * \param [in] label  The GedaLabel object
+ *
+ * \retval  %TRUE if the lines of the label are automatically wrapped.
+ *
+ * \sa geda_label_set_line_wrap
+ */
+bool geda_label_get_line_wrap (GedaLabel *label)
+{
+  g_return_val_if_fail (GEDA_IS_LABEL(label), FALSE);
+
+  return label->priv->wrap;
+}
+
+/*!
+ * \brief geda_label_set_line_wrap
+ * \par Function Description
+ *  Toggles line wrapping within the #GedaLabel widget. %TRUE makes it break
+ *  lines if text exceeds the widget's size. %FALSE lets the text get cut off
+ *  by the edge of the widget if it exceeds the widget size.
+ *
+ *  Note that setting line wrapping to %TRUE does not make the label
+ *  wrap at its parent container's width, because GTK+ widgets
+ *  conceptually can't make their requisition depend on the parent
+ *  container's size. For a label that wraps at a specific position,
+ *  set the label's width using gtk_widget_set_size_request().
+ *
+ *  \param [in] label  The GedaLabel object
+ *  \param [in] wrap   The desired setting
+ */
+void
+geda_label_set_line_wrap (GedaLabel *label, bool wrap)
+{
+  g_return_if_fail (GEDA_IS_LABEL(label));
+
+  wrap = wrap != FALSE;
+
+  if (label->priv->wrap != wrap) {
+
+    label->priv->wrap = wrap;
+
+    geda_label_clear_layout (label);
+
+    gtk_widget_queue_resize (GTK_WIDGET(label));
+
+    g_object_notify (G_OBJECT (label), "wrap");
+  }
+}
+
+/*!
+ * \brief geda_label_get_line_wrap_mode
+ * \par Function Description
+ *  Returns line wrap mode used by the label.
+ *
+ * \param [in] label  The GedaLabel object
+ *
+ * \retval %TRUE if the lines of the label are automatically wrapped.
+ *
+ * \sa geda_label_set_line_wrap_mode
+ */
+PangoWrapMode
+geda_label_get_line_wrap_mode (GedaLabel *label)
+{
+  g_return_val_if_fail (GEDA_IS_LABEL(label), FALSE);
+
+  return label->priv->wrap_mode;
+}
+
+/*!
+ * \brief geda_label_set_line_wrap_mode
+ * \par Function Description
+ * If line wrapping is on the this controls how the line wrapping is
+ * performed. The default is %PANGO_WRAP_WORD which means wrap on word
+ * boundaries.
+ *
+ * \param [in] label     The GedaLabel object
+ * \param [in] wrap_mode The line wrap_mode setting
+ *
+ * \sa geda_label_set_line_wrap
+ */
+void
+geda_label_set_line_wrap_mode (GedaLabel *label, PangoWrapMode wrap_mode)
+{
+  g_return_if_fail (GEDA_IS_LABEL(label));
+
+  if (label->priv->wrap_mode != wrap_mode) {
+
+    label->priv->wrap_mode = wrap_mode;
+
+    gtk_widget_queue_resize (GTK_WIDGET (label));
+
+    g_object_notify (G_OBJECT (label), "wrap-mode");
+  }
+}
+
+/*!
+ * \brief geda_label_set_markup
+ * \par Function Description
+ *  Parses str which is marked up with the Pango text markup language, setting
+ *  the label's text and attribute list based on the parse results. If the str
+ *  is external data, you may need to escape it with g_markup_escape_text() or
+ * \code
+ * |[
+ * char *markup;
+ *
+ * markup = g_strdup_printf ("<span font=\"14\" color=\"red\"> <b>\tRed: %s</b> </span>", str);
+ * geda_label_set_markup (GEDA_LABEL (label), markup);
+ * g_free (markup);
+ * ]|
+ * \endcode>
+ *
+ * \param [in] label  The GedaLabel object
+ * \param [in] str    a markup string
+ *
+ */
+void geda_label_set_markup (GedaLabel *label, const char *str)
+{
+  g_return_if_fail (GEDA_IS_LABEL(label));
+
+  g_object_freeze_notify (G_OBJECT (label));
+
+  geda_label_set_label_internal (label, geda_strdup (str ? str : ""));
+
+  geda_label_set_use_markup_internal (label, TRUE);
+
+  geda_label_set_use_underline_internal (label, FALSE);
+
+  geda_label_recalculate (label);
+
+  g_object_thaw_notify (G_OBJECT (label));
+}
+
+/*!
+ * \brief geda_label_set_markup_with_mnemonic
+ * \par Function Description
+ *  Parses str which is marked up with the Pango text markup language,
+ *  setting the label's text and attribute list based on the parse results.
+ *  If characters in str are preceded by an underscore, they are underlined
+ *  indicating that they represent a keyboard accelerator called a mnemonic.
+ *
+ *  The mnemonic key can be used to activate another widget, chosen
+ *  automatically, or explicitly using geda_label_set_mnemonic_widget().
+ *
+ * \code
+ * |[
+ * char *markup;
+ *
+ * markup = g_strdup_printf ("&lt;span style=\"italic\"&gt;%s&lt;/span&gt;", str);
+ * geda_label_set_markup_with_mnemonic (GEDA_LABEL (label), markup);
+ * g_free (markup);
+ * ]|
+ * \endcode>
+ *
+ *  \param [in] label  The GedaLabel object
+ *  \param [in] str    The a markup string
+ */
+void
+geda_label_set_markup_with_mnemonic (GedaLabel *label, const char *str)
+{
+  g_return_if_fail (GEDA_IS_LABEL(label));
+
+  g_object_freeze_notify (G_OBJECT (label));
+
+  geda_label_set_label_internal (label, geda_strdup (str ? str : ""));
+
+  geda_label_set_use_markup_internal (label, TRUE);
+
+  geda_label_set_use_underline_internal (label, TRUE);
+
+  geda_label_recalculate (label);
+
+  g_object_thaw_notify (G_OBJECT (label));
+}
+
+/********************* Max Width Chars Property *******************/
+
+/*!
+ * \brief Retrieves the Maximum Width of Characters for a GedaLabel
+ * \par Function Description
+ *  Retrieves the desired maximum width of label, in characters. See
+ *  geda_label_set_width_chars().
+ *
+ * \param [in] label  The GedaLabel object
+ *
+ * \returns the maximum width of the label in characters.
+ *
+ */
+int geda_label_get_max_width_chars (GedaLabel *label)
+{
+  g_return_val_if_fail (GEDA_IS_LABEL(label), -1);
+
+  return label->max_width_chars;
+}
+
+/*!
+ * \brief Set the Maximum Width of Characters of a GedaLabel
+ * \par Function Description
+ *  Sets the desired maximum width in characters of label to n_chars.
+ *
+ * \param [in] label    The GedaLabel object
+ * \param [in] n_chars  New desired maximum width, in characters.
+ */
+void geda_label_set_max_width_chars (GedaLabel *label, int n_chars)
+{
+  g_return_if_fail (GEDA_IS_LABEL(label));
+
+  if (label->max_width_chars != n_chars) {
+
+    label->max_width_chars = n_chars;
+
+    gtk_widget_queue_resize (GTK_WIDGET (label));
+
+    g_object_notify (G_OBJECT (label), "max-width-chars");
+  }
+}
+
+/*********************** Mnemonic Properties **********************/
+
+/*!
+ * \brief Get the Mnemonic Character from the GedaLabel Text
+ * \par Function Description
+ *  Retrieves the character after the underscore in the label text.
+ *  If an underscore is not present, or if \a label is not a valid
+ *  GedaLabel object then this functions returns 0xFF.
+ *
+ * \param [in] label Pointer to a GedaLabel object
+ *
+ * \returns mnemonic character or 0xFF.
+ */
+char
+geda_label_get_mnemonic_char (GedaLabel *label)
+{
+  if (GEDA_IS_LABEL(label)) {
+
+    char *str = strstr(label->label, "_");
+
+    if (str) {
+      return (char)*(str + 1);
+    }
+  }
+  return 0xFF;
+}
+
+/*!
+ * \brief geda_label_set_mnemonic_text
+ * \par Function Description
+ *  Sets the label's text from the string str. If characters in str is
+ *  preceded by an underscore, they are underlined indicating that they
+ *  represent a keyboard accelerator called a mnemonic. The mnemonic key
+ *  can be used to activate another widget, chosen  automatically, or
+ *  explicitly using geda_label_set_mnemonic_widget().
+ *
+ * \param [in] label The GedaLabel object
+ * \param [in] str   Pointer to a string
+ */
+void
+geda_label_set_mnemonic_text (GedaLabel *label, const char *str)
+{
+  g_return_if_fail (GEDA_IS_LABEL(label));
+  g_return_if_fail (str != NULL);
+
+  g_object_freeze_notify (G_OBJECT (label));
+
+  geda_label_set_label_internal (label, geda_strdup (str ? str : ""));
+  geda_label_set_use_markup_internal (label, FALSE);
+  geda_label_set_use_underline_internal (label, TRUE);
+
+  geda_label_recalculate (label);
+
+  g_object_thaw_notify (G_OBJECT (label));
+}
+
+/*!
+ * \brief geda_label_get_mnemonic_keyval
+ * \par Function Description
+ *  If the label has been set so that it has an mnemonic key this function
+ *  returns the keyval used for the mnemonic accelerator. If there is no
+ *  mnemonic set up it returns .
+ *
+ * \param [in] label   The GedaLabel object
+ *
+ * \returns GDK keyval usable for accelerators
+ */
+unsigned int
+geda_label_get_mnemonic_keyval (GedaLabel *label)
+{
+  g_return_val_if_fail (GEDA_IS_LABEL(label), GDK_KEY_VoidSymbol);
+
+  return label->priv->mnemonic_keyval;
+}
+
+/*!
+ * \brief Get the Lower case Mnemonic Character
+ * \par Function Description
+ *  Retrieves the lower case character represented by the key code
+ *  value, which could also be the actual mnemonic. For example, if
+ *  the label text is "_Gnu", this function returns "g", because the
+ *  mnemonic character "G" is (normally) key-code 104, which is the
+ *  "g" key plus the SHIFT key modifier.
+ *
+ * \param [in] label Pointer to a GedaLabel object
+ *
+ * \returns mnemonic character or 0xFF (GDK_KEY_VoidSymbol).
+ */
+char
+geda_label_get_mnemonic_lower (GedaLabel *label)
+{
+  return (char)geda_label_get_mnemonic_keyval(label);
+}
+
+/*!
+ * \brief Retrieve the GedaLabel mnemonic_visible property
+ * \par Function Description
+ *  Retrieves the current mnemonic_visible setting.
+ *
+ * \param [in] label The GedaLabel object
+ *
+ * \returns Boolean value of the mnemonic visible setting.
+ *
+ * \sa geda_label_set_mnemonics_visible_recursive
+ */
+bool
+geda_label_get_mnemonic_visible (GedaLabel *label)
+{
+  g_return_val_if_fail (GEDA_IS_LABEL(label), 0);
+
+  return label->priv->mnemonics_visible;
+}
+
+/*!
+ * \brief Set the GedaLabel mnemonic_visible property
+ * \par Function Description
+ *  Sets the mnemonic_visible setting of the given \a label.
+ *
+ * \param [in] label The GedaLabel object
+ * \param [in] state Boolean value of the mnemonic visible setting.
+ *
+ * \sa geda_label_set_mnemonics_visible_recursive
+ */
+void
+geda_label_set_mnemonic_visible (GedaLabel *label, bool state)
+{
+  g_return_if_fail (GEDA_IS_LABEL(label));
+
+  mnemonics_visible_apply ((GtkWidget*)label, state);
+}
+
+/*!
+ * \brief Get the Mnemonic Character from the GedaLabel Text
+ * \par Function Description
+ *  Applies the visibility setting given by \a mnemonics_visible to
+ *  the label widget if \a widget is a label. If the widget object is
+ *  a container then the setting is applied to all sub-object of
+ *  \a widget.
+ *
+ * \param [in] label             Pointer to a GedaLabel object
+ * \param [in] mnemonics_visible Visible if TRUE, otherwise FALSE
+ *
+ * \internal
+ * Called by geda_menu_shell_update_mnemonics()
+ */
+void
+geda_label_set_mnemonics_visible_recursive (GtkWidget *widget,
+                                                bool       mnemonics_visible)
+{
+  if (GEDA_IS_LABEL(widget)) {
+    mnemonics_visible_apply (widget, mnemonics_visible);
+  }
+  else if (GTK_IS_CONTAINER (widget)) {
+    gtk_container_forall (GTK_CONTAINER (widget),
+                          label_mnemonics_visible_traverse_container,
+                          (void*)(long) (mnemonics_visible));
+  }
+}
+
+/******************** mnemonic_widget Property ********************/
+
+/*!
+ * \brief geda_label_get_mnemonic_widget
+ * \par Function Description
+ *  Retrieves the target of the mnemonic (keyboard shortcut) of this
+ *  label. See geda_label_set_mnemonic_widget().
+ *
+ * \param [in] label    The GedaLabel object
+ *
+ * \returns Target of the label's mnemonic, or %NULL if none has been set
+ *          and the default algorithm will be used.
+ */
+GtkWidget *
+geda_label_get_mnemonic_widget (GedaLabel *label)
+{
+  g_return_val_if_fail (GEDA_IS_LABEL(label), NULL);
+
+  return label->priv->mnemonic_widget;
+}
+
+/*!
+ * \brief geda_label_set_mnemonic_widget
+ * \par Function Description
+ * If the label has been set so that it has an mnemonic key (using i.e.
+ * geda_label_set_markup_with_mnemonic(), geda_label_set_mnemonic_text(),
+ * geda_mnemonic_label_new() or the "use_underline" property) the label
+ * can be associated with a widget that is the target of the mnemonic.
+ * When the label is inside of a widget (like a GtkButton or a GtkNotebook
+ * tab) it is automatically associated with the correct widget, but some
+ * times the target needs to be set explicitly using this function (i.e.
+ * when the target is a GedaEntry next to the label).
+ *
+ * The target widget will be accelerated by emitting the
+ * GtkWidget::mnemonic-activate signal on it. The default handler for
+ * this signal will activate the widget if there are no mnemonic collisions
+ * and toggle focus between the colliding widgets otherwise.
+ *
+ *  \param [in] label    The GedaLabel object
+ *  \param [in] widget   Target GtkWidget
+ */
+void
+geda_label_set_mnemonic_widget (GedaLabel *label, GtkWidget *widget)
+{
+  GedaLabelData *priv;
+
+  g_return_if_fail (GEDA_IS_LABEL(label));
+
+  priv = label->priv;
+
+  if (widget) {
+    g_return_if_fail (GTK_IS_WIDGET (widget));
+  }
+
+  if (priv->mnemonic_widget) {
+
+    gtk_widget_remove_mnemonic_label (priv->mnemonic_widget,
+                                      GTK_WIDGET (label));
+    g_object_weak_unref (G_OBJECT (priv->mnemonic_widget),
+                         label_mnemonic_widget_weak_notify,
+                         label);
+  }
+
+  priv->mnemonic_widget = widget;
+
+  if (priv->mnemonic_widget) {
+
+    g_object_weak_ref (G_OBJECT (priv->mnemonic_widget),
+                       label_mnemonic_widget_weak_notify,
+                       label);
+    gtk_widget_add_mnemonic_label (priv->mnemonic_widget, GTK_WIDGET (label));
+  }
+
+  g_object_notify (G_OBJECT (label), "mnemonic-widget");
+}
+
+/*!
+ * \brief geda_label_set_pattern
+ * \par Function Description
+ * The pattern of underlines you want under the existing text within the
+ * #GedaLabel widget.  For example if the current text of the label says
+ * "FooBarBaz" passing a pattern of "___   ___" will underline "Foo" and
+ * "Baz" but not "Bar". If \a pattern is NULL then the current will be
+ *  removed.
+ *
+ * \param [in] label   The GedaLabel object
+ * \param [in] pattern Pattern as described above or NULL.
+ */
+void geda_label_set_pattern (GedaLabel *label, const char *pattern)
+{
+
+  g_return_if_fail (GEDA_IS_LABEL(label));
+
+  label->priv->pattern_set = FALSE;
+
+  if (pattern) {
+
+      geda_label_set_pattern_internal (label, pattern, FALSE);
+      label->priv->pattern_set = TRUE;
+  }
+  else {
+    geda_label_recalculate (label);
+  }
+
+  geda_label_clear_layout (label);
+
+  gtk_widget_queue_resize (GTK_WIDGET (label));
+
+  g_object_notify (G_OBJECT (label), "pattern");
+}
+
+/*********************** Selectable Property **********************/
+
+/*!
+ * \brief geda_label_get_selectable
+ * \par Function Description
+ *  Gets the value set by geda_label_set_selectable().
+ *
+ * \param [in] label  The GedaLabel object
+ *
+ * \retval %TRUE if the user can copy text from the label
+ */
+bool geda_label_get_selectable (GedaLabel *label)
+{
+  SelectionInfo *info;
+  g_return_val_if_fail (GEDA_IS_LABEL(label), FALSE);
+  info = label->priv->select_info;
+  return info && info->selectable;
+}
+
+/*!
+ * \brief geda_label_set_selectable
+ * \par Function Description
+ *  Selectable labels allow the user to select text from the label, for
+ *  copy-and-paste.
+ *
+ * \param [in] label   The GedaLabel object
+ * \param [in] setting: %TRUE to allow selecting text in the label
+ */
+void geda_label_set_selectable (GedaLabel *label, bool setting)
+{
+  GedaLabelData *priv;
+  bool old_setting;
+
+  g_return_if_fail (GEDA_IS_LABEL(label));
+
+  priv = label->priv;
+
+  setting = setting != FALSE;
+  old_setting = priv->select_info && priv->select_info->selectable;
+
+  if (setting) {
+    geda_label_ensure_select_info (label);
+    priv->select_info->selectable = TRUE;
+    geda_label_update_cursor (label);
+  }
+  else if (old_setting) {
+    /* unselect, to give up the selection */
+    geda_label_select_region (label, 0, 0);
+
+    priv->select_info->selectable = FALSE;
+    geda_label_clear_select_info (label);
+    geda_label_update_cursor (label);
+  }
+
+  if (setting != old_setting) {
+    g_object_freeze_notify (G_OBJECT (label));
+    g_object_notify (G_OBJECT (label), "selectable");
+    g_object_notify (G_OBJECT (label), "cursor-position");
+    g_object_notify (G_OBJECT (label), "selection-bound");
+    g_object_thaw_notify (G_OBJECT (label));
+    gtk_widget_queue_draw (GTK_WIDGET (label));
+  }
+}
+
+/******************** selection_bound Property ********************/
+
+/*!
+ * \brief Get selection Bounds
+ * \par Function Description
+ *  Returns offset of the label text selection anchor.
+ *
+ * \param [in] label The GedaLabel object
+ *
+ * \returns Offset of the label text selection
+ */
+int
+geda_label_get_selection_bound (GedaLabel *label)
+{
+  if (GEDA_IS_LABEL(label)) {
+
+    GedaLabelData *priv = label->priv;
+
+    if (priv->select_info && priv->select_info->selectable) {
+      return g_utf8_pointer_to_offset (label->text,
+                                       label->text + priv->select_info->selection_anchor);
+    }
+  }
+
+  return 0;
+}
+
+/*!
+ * \brief geda_label_get_selection_bounds
+ * \par Function Description
+ *  Gets the selected range of characters in the label, returning %TRUE
+ *  if there's a selection.
+ *
+ * \param [in] label  The GedaLabel object
+ *
+ * \param [out] start location for start of selection, as a character offset
+ * \param [out] end   location for end of selection, as a character offset
+ *
+ * \retval %TRUE if selection is non-empty
+ */
+bool
+geda_label_get_selection_bounds (GedaLabel  *label, int *start, int *end)
+{
+  SelectionInfo *info;
+
+  g_return_val_if_fail (GEDA_IS_LABEL(label), FALSE);
+
+  info = label->priv->select_info;
+
+  if ( info == NULL) {
+
+    /* not a selectable label */
+    if (start)
+      *start = 0;
+
+    if (end)
+      *end = 0;
+
+    return FALSE;
+  }
+  else {
+
+    int start_index, end_index;
+    int start_offset, end_offset;
+    int len;
+
+    start_index = MIN ( info->selection_anchor, info->selection_end);
+    end_index   = MAX ( info->selection_anchor, info->selection_end);
+
+    len = strlen (label->text);
+
+    if (end_index > len)
+      end_index = len;
+
+    if (start_index > len)
+      start_index = len;
+
+    start_offset = g_utf8_strlen (label->text, start_index);
+    end_offset   = g_utf8_strlen (label->text, end_index);
+
+    if (start_offset > end_offset) {
+
+      int tmp = start_offset;
+      start_offset = end_offset;
+      end_offset = tmp;
+
+    }
+
+    if (start)
+      *start = start_offset;
+
+    if (end)
+      *end = end_offset;
+
+    return start_offset != end_offset;
+  }
+}
+
+/******************* single_line_mode Property ********************/
+
+/*!
+ * \brief geda_label_get_single_line_mode
+ * \par Function Description
+ *  Returns whether the label is in single line mode.
+ *
+ * \param [in] label The GedaLabel object
+ *
+ * \retval %TRUE when the label is in single line mode.
+ *
+ */
+bool geda_label_get_single_line_mode  (GedaLabel *label)
+{
+  g_return_val_if_fail (GEDA_IS_LABEL(label), FALSE);
+
+  return label->priv->single_line_mode;
+}
+
+/*!
+ * \brief geda_label_set_single_line_mode
+ * \par Function Description
+ * Sets whether the label is in single line mode. Set %TRUE if the label
+ * should be in single line mode
+ *
+ * \param [in] label              The GedaLabel object
+ * \param [in] single_line_mode   Desired setting
+ */
+void
+geda_label_set_single_line_mode (GedaLabel *label,
+                                 bool single_line_mode)
+{
+  g_return_if_fail (GEDA_IS_LABEL(label));
+
+  single_line_mode = single_line_mode != FALSE;
+
+  if (label->priv->single_line_mode != single_line_mode) {
+
+    label->priv->single_line_mode = single_line_mode;
+
+    geda_label_clear_layout (label);
+
+    gtk_widget_queue_resize (GTK_WIDGET (label));
+
+    g_object_notify (G_OBJECT (label), "single-line-mode");
+  }
+}
+
+/************************* text Property **************************/
+
+/*!
+ * \brief Set the GedaLabel Text
+ * \par Function Description
+ *  Sets the text within the #GedaLabel widget. It overwrites any text that
+ *  was there before.
+ *
+ * \note This will also clear any previously set mnemonic accelerators.
+ *
+ * \param [in] label  The GedaLabel object
+ * \param [in] str    The text to be set
+ */
+void
+geda_label_set_text (GedaLabel *label, const char *str)
+{
+  g_return_if_fail (GEDA_IS_LABEL(label));
+
+  g_object_freeze_notify (G_OBJECT (label));
+
+  geda_label_set_label_internal (label, geda_strdup (str ? str : ""));
+  geda_label_set_use_markup_internal (label, FALSE);
+  geda_label_set_use_underline_internal (label, FALSE);
+
+  geda_label_recalculate (label);
+
+  g_object_thaw_notify (G_OBJECT (label));
+}
+
+/****************** track_visited_links Property ******************/
+
+/*!
+ * \brief Get whether visited links are tracked
+ * \par Function Description
+ *
+ * Returns whether the label is currently keeping track
+ * of clicked links.
+ *
+ * \param [in] label The GedaLabel object
+ *
+ * \returns %TRUE if clicked links are remembered
+ */
+bool geda_label_get_track_visited_links (GedaLabel *label)
+{
+  g_return_val_if_fail (GEDA_IS_LABEL(label), FALSE);
+  return label->priv->track_links;
+}
+
+/*!
  * \brief Set whether visited links are tracked
  * \par Function Description
  *
@@ -6951,70 +6571,474 @@ geda_label_set_track_visited_links (GedaLabel *label, bool track_links)
   }
 }
 
+/********************** use_markup Property ***********************/
+
 /*!
- * \brief Get whether visited links are tracked
+ * \brief geda_label_get_use_markup
  * \par Function Description
+ *  Returns whether the label's text is interpreted as marked up with
+ *  the Pango text markup language. See geda_label_set_use_markup ().
  *
- * Returns whether the label is currently keeping track
- * of clicked links.
+ * \param [in] label   The GedaLabel object
  *
- * \param [in] label The GedaLabel object
- *
- * \returns %TRUE if clicked links are remembered
+ * \retval %TRUE if the label's text will be parsed for markup.
  */
-bool geda_label_get_track_visited_links (GedaLabel *label)
+bool geda_label_get_use_markup (GedaLabel *label)
 {
   g_return_val_if_fail (GEDA_IS_LABEL(label), FALSE);
-  return label->priv->track_links;
+
+  return label->priv->use_markup;
 }
 
 /*!
- * \brief Get cursor position
+ * \brief geda_label_set_use_markup
  * \par Function Description
- * Returns offset of cursor index position within the label text.
  *
- * \param [in] label The GedaLabel object
+ * Sets whether the text of the label contains markup in Pango's text markup
+ * language. See geda_label_set_markup().
  *
- * \returns Offset of text index within the label text
+ * \param [in] label   The GedaLabel object
+ * \param [in] setting %TRUE if the label's text should be parsed for markup.
  */
-int
-geda_label_get_cursor_position (GedaLabel *label)
+void geda_label_set_use_markup (GedaLabel *label, bool setting)
 {
-  if (GEDA_IS_LABEL(label)) {
+  g_return_if_fail (GEDA_IS_LABEL(label));
 
-    GedaLabelData *priv = label->priv;
+  g_object_freeze_notify (G_OBJECT (label));
 
-    if (priv->select_info && priv->select_info->selectable) {
-      return g_utf8_pointer_to_offset (label->text,
-                                       label->text + priv->select_info->selection_end);
-    }
-  }
-  return 0;
+  geda_label_set_use_markup_internal (label, setting);
+
+  geda_label_recalculate (label);
+
+  g_object_thaw_notify (G_OBJECT (label));
+
+}
+
+/********************* use_underline Property *********************/
+
+/*!
+ * \brief geda_label_get_use_underline
+ * \par Function Description
+ *  Returns whether an embedded underline in the label indicates a
+ *  mnemonic. See geda_label_set_use_underline().
+ *
+ * \param [in] label   The GedaLabel object
+ *
+ * \retval %TRUE whether an embedded underline in the label indicates
+ *          the mnemonic accelerator keys.
+ */
+bool geda_label_get_use_underline (GedaLabel *label)
+{
+  g_return_val_if_fail (GEDA_IS_LABEL(label), FALSE);
+
+  return label->priv->use_underline;
 }
 
 /*!
- * \brief Get selection Bounds
+ * \brief geda_label_set_use_underline
  * \par Function Description
- *  Returns offset of the label text selection anchor.
+ *  If true, an underline in the text indicates the next character should
+ *  be used for the mnemonic accelerator key.
  *
- * \param [in] label The GedaLabel object
- *
- * \returns Offset of the label text selection
+ * \param [in] label   The GedaLabel object
+ * \param [in] setting %TRUE if underlines in the text indicate mnemonics.
  */
-int
-geda_label_get_selection_bound (GedaLabel *label)
+void geda_label_set_use_underline (GedaLabel *label, bool setting)
 {
-  if (GEDA_IS_LABEL(label)) {
+  g_return_if_fail (GEDA_IS_LABEL(label));
 
-    GedaLabelData *priv = label->priv;
+  g_object_freeze_notify (G_OBJECT(label));
 
-    if (priv->select_info && priv->select_info->selectable) {
-      return g_utf8_pointer_to_offset (label->text,
-                                       label->text + priv->select_info->selection_anchor);
-    }
-  }
+  geda_label_set_use_underline_internal(label, setting);
 
-  return 0;
+  geda_label_recalculate (label);
+
+  g_object_thaw_notify (G_OBJECT(label));
 }
+
+/********************** Width Chars Property **********************/
+
+/*!
+ * \brief Get the Width of GedaLabel Characters
+ * \par Function Description
+ *  Retrieves the desired width of label, in characters.
+ *
+ * \param [in] label  The GedaLabel object
+ *
+ * \returns the width of the label in characters.
+ *
+ * \sa geda_label_set_width_chars
+ */
+int geda_label_get_width_chars (GedaLabel *label)
+{
+  g_return_val_if_fail (GEDA_IS_LABEL(label), -1);
+
+  return label->width_chars;
+}
+
+/*!
+ * \brief Set the Width of Characters for a GedaLabel object
+ * \par Function Description
+ * Sets the desired width in characters of label to n_chars.
+ *
+ *  \param [in] label   The GedaLabel object
+ *  \param [in] n_chars New desired width, in characters.
+ */
+void geda_label_set_width_chars (GedaLabel *label, int n_chars)
+{
+  g_return_if_fail (GEDA_IS_LABEL(label));
+
+  if (label->width_chars != n_chars) {
+
+    label->width_chars = n_chars;
+
+    gtk_widget_queue_resize (GTK_WIDGET (label));
+
+    g_object_notify (G_OBJECT (label), "width-chars");
+  }
+}
+
+#ifdef DEBUG_GEDA_LABEL
+
+/*!
+ * \brief Report GedaLabel Instances
+ * \par Function Description
+ *  This function can be called after all libgedauio resources
+ *  have been released to print a list of pointers to GedaLabel
+ *  objects that are still alive or the NULL message if all of
+ *  the GedaLabels were released. This is particularly useful
+ *  for debugging/developing menu systems.
+ */
+void geda_label_report_instances (void)
+{
+  if (label_hash_table) {
+
+    void print_hash(GedaLabel *label, void *value, void *nothing) {
+      fprintf(stderr, "label,%p,text=<%s>\n", label, label->text);
+    }
+
+    g_hash_table_foreach (label_hash_table, (GHFunc)print_hash, NULL);
+    g_hash_table_destroy (label_hash_table);
+    label_hash_table = NULL;
+  }
+  else {
+    fprintf(stderr, "%s: the table of labels is NULL\n", __func__);
+  }
+}
+
+#endif /* DEBUG_GEDA_LABEL */
+
+/*! \brief geda_label_select_region
+ *
+ *  \par Function Description
+ *
+ * Selects a range of characters in the label, if the label is selectable.
+ * See geda_label_set_selectable(). If the label is not selectable,
+ * this function has no effect. If start_offset or
+ * end_offset are -1, then the end of the label will be substituted.
+ *
+ * \param [in] label        The GedaLabel object
+ * \param [in] start_offset The start offset (in characters not bytes)
+ * \param [in] end_offset   The end offset (in characters not bytes)
+ *
+ */
+void
+geda_label_select_region (GedaLabel *label, int start_offset, int end_offset)
+{
+  g_return_if_fail (GEDA_IS_LABEL(label));
+
+  if (label->text && label->priv->select_info) {
+
+    if (start_offset < 0)
+      start_offset = g_utf8_strlen (label->text, -1);
+
+    if (end_offset < 0)
+      end_offset = g_utf8_strlen (label->text, -1);
+
+    geda_label_select_region_index (label,
+                                    g_utf8_offset_to_pointer (label->text, start_offset) - label->text,
+                                    g_utf8_offset_to_pointer (label->text, end_offset) - label->text);
+  }
+}
+
+/* Begin Widget Versions */
+
+/*!
+ * \brief Get the Text Alignment of a GedaLabel Widget
+ * \par Function Description
+ *  Retrieves the text alignment property of the #GedaLabel widget.
+ *
+ * \param [in] widget  The GedaLabel widget
+ * \param [out] xalign Pointer to float to store the horizontal alignment
+ * \param [out] yalign Pointer to float to store the vertical alignment
+ *
+ * \sa geda_label_get_alignment
+ */
+void
+geda_label_widget_get_alignment (GtkWidget *widget, float *xalign, float *yalign)
+{
+  g_return_if_fail (GEDA_IS_LABEL(widget));
+
+  gtk_misc_get_alignment (GTK_MISC(widget), xalign, yalign);
+}
+
+/*!
+ * \brief Set the Text Alignment of a GedaLabel Widget
+ * \par Function Description
+ *  Set the text alignment property of the #GedaLabel widget.
+ *
+ * \param [in] widget The GedaLabel widget
+ * \param [in] xalign horizontal alignment, from 0 (left) to 1 (right)
+ * \param [in] yalign vertical alignment, from 0 (top) to 1 (bottom)
+ *
+ * \sa geda_label_set_alignment
+ */
+void
+geda_label_widget_set_alignment (GtkWidget *widget, float xalign, float yalign)
+{
+  g_return_if_fail (GEDA_IS_LABEL(widget));
+
+  gtk_misc_set_alignment (GTK_MISC(widget), xalign, yalign);
+}
+
+/*! \todo Finish function documentation
+ *  \brief
+ *  \par Function Description
+ */
+double geda_label_widget_get_angle (GtkWidget *widget)
+{
+  return geda_label_get_angle ((GedaLabel*)widget);
+}
+
+/*! \todo Finish function documentation
+ *  \brief
+ *  \par Function Description
+ */
+void geda_label_widget_set_angle (GtkWidget *widget, double angle)
+{
+  geda_label_set_angle ( (GedaLabel*) widget, angle);
+}
+
+/*!
+ * \brief Get the ellipsize property of a GedaLabel Widget
+ * \par Function Description
+ *  Returns the ellipsizing position of the label. See geda_label_set_ellipsize().
+ *
+ * \param [in] widget The GedaLabel object
+ *
+ * \returns PangoEllipsizeMode
+ *
+ * \sa geda_label_get_ellipsize
+ */
+PangoEllipsizeMode
+geda_label_widget_get_ellipsize (GtkWidget *widget)
+{
+  return geda_label_get_ellipsize ( (GedaLabel*) widget);
+}
+
+/*!
+ * \brief Set the ellipsize property of a GedaLabel Widget
+ * \par Function Description
+ *  Sets the mode used to ellipsize (add an ellipsis: "...") to the
+ *  text if there is not enough space to render the entire string.
+ *
+ * \param [in] widget The GedaLabel object
+ * \param [in] mode   a PangoEllipsizeMode
+ *
+ * \sa geda_label_set_ellipsize
+ */
+void
+geda_label_widget_set_ellipsize (GtkWidget *widget, PangoEllipsizeMode mode)
+{
+  geda_label_set_ellipsize ( (GedaLabel*) widget, mode);
+}
+
+/*!
+ * \brief get label widget justification
+ * \par Function Description
+ *  Returns the justification of the label.
+ *
+ * \param [in] widget The GedaLabel widget
+ *
+ * \returns GtkJustification
+ *
+ * \sa geda_label_set_justify
+ */
+GtkJustification geda_label_widget_get_justify (GtkWidget *widget)
+{
+  return geda_label_get_justify ((GedaLabel*)widget);
+}
+
+/*!
+ * \brief geda_label_set_justify
+ * \par Function Description
+ *  Sets the alignment of the lines in the text of the label relative to
+ *  each other. %GTK_JUSTIFY_LEFT is the default value when the widget
+ *  is first created with geda_label_new(). If you instead want to set
+ *  the alignment of the label as a whole, use gtk_misc_set_alignment
+ *  instead.
+ *
+ * \note geda_label_set_justify has no effect on labels containing
+ *       only a single line.
+ *
+ * \param [in] widget The GedaLabel widget
+ * \param [in] jtype  The GedaLabel object
+ *
+ * \sa geda_label_set_justify
+ */
+void geda_label_widget_set_justify (GtkWidget *widget, GtkJustification jtype)
+{
+  geda_label_set_justify ((GedaLabel*) widget, jtype);
+}
+
+/*!
+ * \brief Retrieves the Maximum Width of Characters for a GedaLabel Widget
+ * \par Function Description
+ *  Wrapper to retrieves the desired maximum width of label, in characters
+ *  casting the GedaLabel to Widget.
+ *
+ * \param [in] widget The GedaLabel widget
+ *
+ * \returns the maximum width of the label in characters.
+ *
+ * \sa geda_label_get_max_width_chars
+ */
+int geda_label_widget_get_max_width_chars (GtkWidget *widget)
+{
+  return geda_label_get_max_width_chars ((GedaLabel*)widget);
+}
+
+/*!
+ * \brief Set the Maximum Width of Characters of a GedaLabel Widget
+ * \par Function Description
+ *  Wrapper for geda_label_set_max_width_chars.
+ *
+ * \param [in] widget  The GedaLabel widget
+ * \param [in] n_chars New desired maximum width, in characters.
+ *
+ * \sa geda_label_set_max_width_chars
+ */
+void geda_label_widget_set_max_width_chars (GtkWidget *widget, int n_chars)
+{
+  geda_label_set_max_width_chars ((GedaLabel*)widget, n_chars);
+}
+
+/*! \todo Finish function documentation
+ *  \brief
+ *  \par Function Description
+ */
+bool geda_label_widget_get_selectable (GtkWidget *widget)
+{
+  return geda_label_get_selectable ( (GedaLabel*) widget);
+}
+
+/*! \todo Finish function documentation
+ *  \brief
+ *  \par Function Description
+ */
+void geda_label_widget_set_selectable (GtkWidget *widget, bool setting)
+{
+  geda_label_set_selectable ((GedaLabel*)widget, setting);
+}
+
+/*! \todo Finish function documentation
+ *  \brief
+ *  \par Function Description
+ */
+const char *geda_label_widget_get_text (GtkWidget *widget)
+{
+  return geda_label_get_text((GedaLabel*) widget);
+}
+
+/*!
+ * \brief Set the GedaLabel Text cast to a Widget
+ * \par Function Description
+ *  Sets the text within the #GedaLabel widget.
+ *
+ * \param [in] widget  The GedaLabel widget
+ * \param [in] str    The text to be set
+ *
+ * \sa geda_label_set_text
+ */
+void
+geda_label_widget_set_text (GtkWidget *widget, const char *str)
+{
+  geda_label_set_text((GedaLabel*)widget,str);
+}
+
+/*! \brief Widget Convenience Versions of label set_use_markup */
+void geda_label_widget_set_use_markup (GtkWidget *widget, bool setting)
+{
+  geda_label_set_use_markup ((GedaLabel*)widget, setting);
+}
+
+/*! \brief Widget Convenience Versions of label get_use_markup */
+bool geda_label_widget_get_use_markup (GtkWidget *widget)
+{
+  g_return_val_if_fail (GEDA_IS_LABEL(widget), FALSE);
+
+  return geda_label_get_use_markup ((GedaLabel*)widget);
+}
+
+/*!
+ * \brief Widget Wrapper for geda_label_get_use_underline
+ * \par Function Description
+ *  See geda_label_get_use_underline.
+ *
+ * \param [in] widget The GedaLabel widget
+ *
+ * \retval %TRUE whether an embedded underline in the label indicates
+ *               the mnemonic accelerator keys.
+ */
+bool geda_label_widget_get_use_underline (GtkWidget *widget)
+{
+  g_return_val_if_fail (GEDA_IS_LABEL(widget), FALSE);
+
+  return geda_label_get_use_underline ((GedaLabel*)widget);
+}
+
+/*!
+ * \brief Widget Wrapper for geda_label_set_use_underline
+ * \par Function Description
+ *  If true, an underline in the text indicates the next character should
+ *  be used for the mnemonic accelerator key.
+ *
+ * \param [in] widget  The GedaLabel widget
+ * \param [in] setting %TRUE if underlines in the text indicate mnemonics.
+ */
+void geda_label_widget_set_use_underline (GtkWidget *widget, bool setting)
+{
+  g_return_if_fail (GEDA_IS_LABEL(widget));
+
+  geda_label_set_use_underline ((GedaLabel*)widget, setting);
+
+}
+
+/*!
+ * \brief Get the Width of Characters from a GedaLabel widget
+ * \par Function Description
+ *  Wrapper for geda_label_get_width_chars that accepts a pointer
+ *  to a GtkWidget for the GedaLabel object.
+ *
+ *  \param [in] widget The GedaLabel widget
+ */
+int geda_label_widget_get_width_chars (GtkWidget *widget)
+{
+  return geda_label_get_width_chars ((GedaLabel*)widget);
+}
+
+/*!
+ * \brief Set the Width of Characters for a GedaLabel widget
+ * \par Function Description
+ *  Sets the desired width in characters of label to n_chars.
+ *
+ *  \param [in] widget The GedaLabel widget
+ *  \param [in] n_chars New desired width, in characters.
+ */
+void geda_label_widget_set_width_chars (GtkWidget *widget, int n_chars)
+{
+  geda_label_set_width_chars ((GedaLabel*)widget, n_chars);
+}
+
 #undef PangoFontDescr
 /** @} end group GedaLabel */
