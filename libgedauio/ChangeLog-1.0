@@ -2,10 +2,13 @@
 
     * include/geda_label.h: Reorganize header.
 
-    * src/widgets/geda_label.c: Reorganize module, ad widget versions;
+    * src/widgets/geda_label.c: Reorganize module, add widget versions;
       geda_label_widget_get_label and geda_label_widget_set_label.
 
     * tests/test_entry.c: Add check geda_entry_get_text_length.
+
+    * tests/test_label.c: Update checks for geda_label_widget_get_label
+      and geda_label_widget_set_label.
 
 2017-03-01 Wiley E. Hill <wileyhill@gmail.com>
 

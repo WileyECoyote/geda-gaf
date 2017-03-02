@@ -181,10 +181,10 @@ check_accessors ()
   }
 
   /* geda_label_set_label */
-  geda_label_set_label(label, "Rhinoceros");
+  geda_label_widget_set_label(widget, "Rhinoceros");
 
   /* geda_label_get_label */
-  text = geda_label_get_label(label);
+  text = geda_label_widget_get_label(widget);
 
   if (!text) {
     fprintf(stderr, "FAILED: line <%d> set label %s\n", __LINE__, TWIDGET);
