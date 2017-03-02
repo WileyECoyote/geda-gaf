@@ -115,9 +115,6 @@ GtkWidget  *geda_aligned_mnemonic_label_new         (const char     *str, float 
 GtkWidget  *geda_aligned_visible_mnemonic_label_new (const char     *str, float x, float y) __attribute__((warn_unused_result));
 
 /* Properties */
-void           geda_label_set_text                  (GedaLabel      *label,
-                                                     const char     *str);
-const char*    geda_label_get_text                  (GedaLabel      *label);
 
 void           geda_label_get_alignment             (GedaLabel      *label,
                                                      float          *xalign,
@@ -125,97 +122,94 @@ void           geda_label_get_alignment             (GedaLabel      *label,
 void           geda_label_set_alignment             (GedaLabel      *label,
                                                      float           xalign,
                                                      float           yalign);
-void           geda_label_widget_get_alignment      (GtkWidget      *widget,
-                                                     float          *xalign,
-                                                     float          *yalign);
-void           geda_label_widget_set_alignment      (GtkWidget      *widget,
-                                                     float           xalign,
-                                                     float           yalign);
-
+double         geda_label_get_angle                 (GedaLabel      *label);
+void           geda_label_set_angle                 (GedaLabel      *label,
+                                                     double          angle);
 PangoAttrList *geda_label_get_attributes            (GedaLabel      *label);
 void           geda_label_set_attributes            (GedaLabel      *label,
                                                      PangoAttrList  *attrs);
+const char    *geda_label_get_current_uri           (GedaLabel      *label);
 PangoAttrList *geda_label_get_effective_attributes  (GedaLabel      *label);
-
-void           geda_label_set_label                 (GedaLabel      *label,
-                                                     const char     *str);
-const char*    geda_label_get_label                 (GedaLabel      *label);
-void           geda_label_set_markup                (GedaLabel      *label,
-                                                     const char     *str);
-bool           geda_label_get_use_markup            (GedaLabel      *label);
-void           geda_label_set_use_markup            (GedaLabel      *label,
-                                                     bool            setting);
-
-bool           geda_label_get_use_underline         (GedaLabel      *label);
-void           geda_label_set_use_underline         (GedaLabel      *label,
-                                                     bool            setting);
-
-void           geda_label_set_markup_with_mnemonic  (GedaLabel      *label,
-                                                     const char     *str);
-char           geda_label_get_mnemonic_char         (GedaLabel      *label);
-unsigned int   geda_label_get_mnemonic_keyval       (GedaLabel      *label);
-char           geda_label_get_mnemonic_lower        (GedaLabel      *label);
-void           geda_label_set_mnemonic_text         (GedaLabel      *label,
-                                                     const char     *str);
-bool           geda_label_get_mnemonic_visible      (GedaLabel      *label);
-void           geda_label_set_mnemonic_visible      (GedaLabel      *label,
-                                                     bool            visible);
-GtkWidget     *geda_label_get_mnemonic_widget       (GedaLabel      *label);
-void           geda_label_set_mnemonic_widget       (GedaLabel      *label,
-                                                     GtkWidget      *widget);
+PangoEllipsizeMode geda_label_get_ellipsize         (GedaLabel      *label);
+void               geda_label_set_ellipsize         (GedaLabel      *label,
+                                                     PangoEllipsizeMode mode);
+int                geda_label_get_cursor_position   (GedaLabel *label);
 GtkJustification   geda_label_get_justify           (GedaLabel      *label);
 void               geda_label_set_justify           (GedaLabel      *label,
                                                      GtkJustification jtype);
+void           geda_label_set_label                 (GedaLabel      *label,
+                                                     const char     *str);
+const char*    geda_label_get_label                 (GedaLabel      *label);
+PangoLayout   *geda_label_get_layout                (GedaLabel      *label);
+void           geda_label_get_layout_offsets        (GedaLabel      *label,
+                                                     int            *x,
+                                                     int            *y);
 bool           geda_label_get_line_wrap             (GedaLabel      *label);
 void           geda_label_set_line_wrap             (GedaLabel      *label,
                                                      bool            wrap);
 PangoWrapMode  geda_label_get_line_wrap_mode        (GedaLabel      *label);
 void           geda_label_set_line_wrap_mode        (GedaLabel      *label,
                                                      PangoWrapMode   wrap_mode);
-PangoEllipsizeMode geda_label_get_ellipsize         (GedaLabel      *label);
-void               geda_label_set_ellipsize         (GedaLabel      *label,
-                                                     PangoEllipsizeMode mode);
-int            geda_label_get_width_chars           (GedaLabel      *label);
-void           geda_label_set_width_chars           (GedaLabel      *label,
-                                                     int             n_chars);
+void           geda_label_set_markup                (GedaLabel      *label,
+                                                     const char     *str);
+void           geda_label_set_markup_with_mnemonic  (GedaLabel      *label,
+                                                     const char     *str);
 int            geda_label_get_max_width_chars       (GedaLabel      *label);
 void           geda_label_set_max_width_chars       (GedaLabel      *label,
                                                      int             n_chars);
+char           geda_label_get_mnemonic_char         (GedaLabel      *label);
+void           geda_label_set_mnemonic_text         (GedaLabel      *label,
+                                                     const char     *str);
+unsigned int   geda_label_get_mnemonic_keyval       (GedaLabel      *label);
+char           geda_label_get_mnemonic_lower        (GedaLabel      *label);
+bool           geda_label_get_mnemonic_visible      (GedaLabel      *label);
+void           geda_label_set_mnemonic_visible      (GedaLabel      *label,
+                                                     bool            visible);
+void     geda_label_set_mnemonics_visible_recursive (GtkWidget      *widget,
+                                                     bool            mnemonics_visible);
+GtkWidget     *geda_label_get_mnemonic_widget       (GedaLabel      *label);
+void           geda_label_set_mnemonic_widget       (GedaLabel      *label,
+                                                     GtkWidget      *widget);
 void           geda_label_set_pattern               (GedaLabel      *label,
                                                      const char     *pattern);
 bool           geda_label_get_selectable            (GedaLabel      *label);
 void           geda_label_set_selectable            (GedaLabel      *label,
                                                      bool            setting);
-double         geda_label_get_angle                 (GedaLabel      *label);
-void           geda_label_set_angle                 (GedaLabel      *label,
-                                                     double          angle);
 void           geda_label_select_region             (GedaLabel      *label,
                                                      int             start_offset,
                                                      int             end_offset);
-bool           geda_label_get_selection_bounds      (GedaLabel      *label,
+int            geda_label_get_selection_bound       (GedaLabel      *label);
+bool           geda_label_set_selection_bounds      (GedaLabel      *label,
                                                      int            *start,
                                                      int            *end);
-PangoLayout   *geda_label_get_layout                (GedaLabel      *label);
-void           geda_label_get_layout_offsets        (GedaLabel      *label,
-                                                     int            *x,
-                                                     int            *y);
 bool           geda_label_get_single_line_mode      (GedaLabel      *label);
 void           geda_label_set_single_line_mode      (GedaLabel      *label,
                                                      bool            single_line_mode);
-
-const char    *geda_label_get_current_uri           (GedaLabel      *label);
+void           geda_label_set_text                  (GedaLabel      *label,
+                                                     const char     *str);
+const char*    geda_label_get_text                  (GedaLabel      *label);
 bool           geda_label_get_track_visited_links   (GedaLabel      *label);
 void           geda_label_set_track_visited_links   (GedaLabel      *label,
                                                      bool            track_links);
-
-void     geda_label_set_mnemonics_visible_recursive (GtkWidget *widget,
-                                                     bool       mnemonics_visible);
-int            geda_label_get_cursor_position       (GedaLabel *label);
-int            geda_label_get_selection_bound       (GedaLabel *label);
-
+bool           geda_label_get_use_markup            (GedaLabel      *label);
+void           geda_label_set_use_markup            (GedaLabel      *label,
+                                                     bool            setting);
+bool           geda_label_get_use_underline         (GedaLabel      *label);
+void           geda_label_set_use_underline         (GedaLabel      *label,
+                                                     bool            setting);
+int            geda_label_get_width_chars           (GedaLabel      *label);
+void           geda_label_set_width_chars           (GedaLabel      *label,
+                                                     int             n_chars);
 void           geda_label_report_instances          (void);
 
 /* Widget Versions */
+
+void           geda_label_widget_get_alignment      (GtkWidget      *widget,
+                                                     float          *xalign,
+                                                     float          *yalign);
+void           geda_label_widget_set_alignment      (GtkWidget      *widget,
+                                                     float           xalign,
+                                                     float           yalign);
 
 double         geda_label_widget_get_angle          (GtkWidget      *widget);
 void           geda_label_widget_set_angle          (GtkWidget      *widget,
@@ -237,7 +231,7 @@ bool           geda_label_widget_get_selectable     (GtkWidget      *widget);
 void           geda_label_widget_set_selectable     (GtkWidget      *widget,
                                                      bool            setting);
 
-const char*    geda_label_widget_get_text           (GtkWidget      *widget);
+const char    *geda_label_widget_get_text           (GtkWidget      *widget);
 void           geda_label_widget_set_text           (GtkWidget      *widget,
                                                      const char     *str);
 bool           geda_label_widget_get_use_markup     (GtkWidget      *widget);
