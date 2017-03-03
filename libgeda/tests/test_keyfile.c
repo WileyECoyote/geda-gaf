@@ -640,8 +640,16 @@ int check_keys (void)
     err = NULL;
 
     if (!geda_keyfile_has_key(keyfile, "G2", "T1", &err)) {
-      fprintf(stderr, "FAILED: (KF081601) has_key\n");
+      fprintf(stderr, "FAILED: (KF081601A) has_key\n");
       result++;
+    }
+    else {
+      /* Found should NOT generate an error */
+      if (err) {
+        fprintf(stderr, "FAILED: (KF081601B) existent, error NOT NULL\n");
+        result++;
+        g_error_free (err);
+      }
     }
 
     /* Non existent key */
@@ -650,10 +658,28 @@ int check_keys (void)
       result++;
     }
     else {
-      /* Not found should not generate an error when group exist */
+      /* Not found should NOT generate an error when group exist */
       if (err) {
         fprintf(stderr, "FAILED: (KF081602B) non-existent, error is NULL\n");
         result++;
+        g_error_free (err);
+      }
+    }
+
+    /* Non existent Group */
+    if (geda_keyfile_has_key(keyfile, "G6", "NOT", &err)) {
+      fprintf(stderr, "FAILED: (KF081603A) has_key group NOT\n");
+      result++;
+    }
+    else {
+      /* Should generate an error when group exist */
+      if (!err) {
+        fprintf(stderr, "FAILED: (KF081603B) non-existent, error is NULL\n");
+        result++;
+
+      }
+      else {
+        vmessage("Message: (KF081603C) %s.\n", err->message);
         g_error_free (err);
       }
     }
