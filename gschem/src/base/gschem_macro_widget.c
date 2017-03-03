@@ -286,7 +286,7 @@ gschem_macro_widget_get_label_text (GtkWidget *widget)
   else {
    if (GSCHEM_IS_MACRO_WIDGET(widget)) {
      GschemMacroWidget *gmw = (GschemMacroWidget*)widget;
-     ret_val = geda_label_get_text (GEDA_LABEL (gmw->label));
+     ret_val = geda_label_widget_get_text (gmw->label);
    }
    else {
      BUG_MSG("widget is not a GschemMacroWidget");
@@ -442,7 +442,7 @@ gschem_macro_widget_set_label_text (GtkWidget *widget, const char *text)
   else {
    if (GSCHEM_IS_MACRO_WIDGET(widget)) {
      GschemMacroWidget *gmw = (GschemMacroWidget*)widget;
-     geda_label_set_text (GEDA_LABEL (gmw->label), text);
+     geda_label_widget_set_text (gmw->label, text);
      g_object_notify (G_OBJECT (widget), "label-text");
    }
    else {
