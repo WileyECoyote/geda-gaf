@@ -4410,10 +4410,10 @@ msgstr ""
 msgid "Save the current Session to another name"
 msgstr ""
 
+# Manage
 #: gschem/etc/system-gschemrc.scm:2266
-#, fuzzy
 msgid "_Manage..."
-msgstr "פתח דף..."
+msgstr "לנהל..."
 
 #: gschem/etc/system-gschemrc.scm:2266
 msgid "Open the Session Manager dialog"
@@ -4725,10 +4725,10 @@ msgstr "קובץ"
 msgid "_Edit"
 msgstr "עריכה"
 
+# Select
 #: gschem/etc/system-gschemrc.scm:2369
-#, fuzzy
 msgid "_Select"
-msgstr "מצב בחירה"
+msgstr "בחר"
 
 #: gschem/etc/system-gschemrc.scm:2371
 msgid "_View"
@@ -4772,33 +4772,33 @@ msgstr ""
 msgid "Repeat Last Action"
 msgstr ""
 
+# New File
 #: gschem/scheme/gschem/builtins.scm:50
-#, fuzzy
 msgid "New File"
-msgstr "דף חדש"
+msgstr "קובץ חדש"
 
 #: gschem/scheme/gschem/builtins.scm:53
 msgid "Open File"
-msgstr ""
+msgstr "קובץ פתוח"
 
+# Save As
 #: gschem/scheme/gschem/builtins.scm:59
-#, fuzzy
 msgid "Save As"
-msgstr "שמור הכל"
+msgstr "שמור כ"
 
 #: gschem/scheme/gschem/builtins.scm:62
 msgid "Save All"
 msgstr "שמור הכל"
 
+# Save Modified
 #: gschem/scheme/gschem/builtins.scm:65
-#, fuzzy
 msgid "Save Modified"
-msgstr "מצב הזזה"
+msgstr "שמור השתנה"
 
+# Print
 #: gschem/scheme/gschem/builtins.scm:68
-#, fuzzy
 msgid "Print"
-msgstr "הדפס..."
+msgstr "הדפס"
 
 #: gschem/scheme/gschem/builtins.scm:71
 msgid "Export Image"
@@ -4812,10 +4812,10 @@ msgstr ""
 msgid "New Window"
 msgstr "חלון חדש"
 
+# Close Window
 #: gschem/scheme/gschem/builtins.scm:80 gschem/scheme/gschem/builtins.scm:83
-#, fuzzy
 msgid "Close Window"
-msgstr "חלון חדש"
+msgstr "חלון סגור"
 
 #: gschem/scheme/gschem/builtins.scm:86
 msgid "Quit"
@@ -4825,10 +4825,10 @@ msgstr ""
 msgid "Export Symbol"
 msgstr ""
 
+# Export Picture
 #: gschem/scheme/gschem/builtins.scm:92
-#, fuzzy
 msgid "Export Picture"
-msgstr "שבץ רכיב/תמונה"
+msgstr "תמונת יצוא"
 
 #: gschem/scheme/gschem/builtins.scm:98
 msgid "Undo"
@@ -4846,15 +4846,15 @@ msgstr "מצב העתקה"
 msgid "Multiple Copy Mode"
 msgstr "מצב העתקה מרובה"
 
+# Offset selection
 #: gschem/scheme/gschem/builtins.scm:119
-#, fuzzy
 msgid "Offset selection"
-msgstr "מצב בחירה"
+msgstr "מבחר אופסט"
 
+# Snap to Grid
 #: gschem/scheme/gschem/builtins.scm:128
-#, fuzzy
 msgid "Snap to Grid"
-msgstr "מצב העתקה"
+msgstr "הצמד לרשת"
 
 #: gschem/scheme/gschem/builtins.scm:131
 msgid "Create Array"
@@ -4864,56 +4864,59 @@ msgstr ""
 msgid "Edit..."
 msgstr "ערוך..."
 
+# Edit Arc
 #: gschem/scheme/gschem/builtins.scm:140
-#, fuzzy
 msgid "Edit Arc"
-msgstr "עריכה"
+msgstr "קֶשֶׁת הערוך"
 
+# Edit Object
 #: gschem/scheme/gschem/builtins.scm:143
-#, fuzzy
 msgid "Edit Object"
-msgstr "מאפיינים"
+msgstr "ערוך אובייקט"
 
+# Edit Text
 #: gschem/scheme/gschem/builtins.scm:146
 msgid "Edit Text"
-msgstr ""
+msgstr "ערוך טקסט"
 
+# Edit Color
 #: gschem/scheme/gschem/builtins.scm:149
 msgid "Edit Color"
-msgstr ""
+msgstr "צבע ערוך"
 
 #: gschem/scheme/gschem/builtins.scm:152
 msgid "Edit Pin Type"
 msgstr ""
 
+# Choose Slot
 #: gschem/scheme/gschem/builtins.scm:161 gschem/scheme/gschem/builtins.scm:164
 msgid "Choose Slot"
-msgstr ""
+msgstr "בחר חריץ"
 
+# Invert Selection
 #: gschem/scheme/gschem/builtins.scm:176
-#, fuzzy
 msgid "Invert Selection"
-msgstr "מצב בחירה"
+msgstr "בחירה הפוך"
 
+# Select Last
 #: gschem/scheme/gschem/builtins.scm:179
-#, fuzzy
 msgid "Select Last"
-msgstr "מצב בחירה"
+msgstr "בחר אחרון"
 
+# Deselect mode
 #: gschem/scheme/gschem/builtins.scm:182
-#, fuzzy
 msgid "Deselect mode"
-msgstr "מצב בחירה"
+msgstr "בטל את הבחירה במצב"
 
+# Cut
 #: gschem/scheme/gschem/builtins.scm:197
-#, fuzzy
 msgid "Cut"
-msgstr "גזור אל 1"
+msgstr "גזור"
 
+# Paste
 #: gschem/scheme/gschem/builtins.scm:203
-#, fuzzy
 msgid "Paste"
-msgstr "הדבק מ-1"
+msgstr "הדבק"
 
 #: gschem/scheme/gschem/builtins.scm:209
 msgid "Redraw"
@@ -4939,25 +4942,24 @@ msgstr ""
 msgid "Pan Down"
 msgstr ""
 
+# Zoom Selection
 #: gschem/scheme/gschem/builtins.scm:230
-#, fuzzy
 msgid "Zoom Selection"
-msgstr "מצב בחירה"
+msgstr "בחירת זום"
 
+# Zoom Extents
 #: gschem/scheme/gschem/builtins.scm:233
-#, fuzzy
 msgid "Zoom Extents"
-msgstr "תיבת תקריב"
+msgstr "זום ובמידות"
 
+# Zoom In
 #: gschem/scheme/gschem/builtins.scm:236
-#, fuzzy
 msgid "Zoom In"
-msgstr "תיבת תקריב"
+msgstr "לְהִתְמַקֵד"
 
 #: gschem/scheme/gschem/builtins.scm:239
-#, fuzzy
 msgid "Zoom Out"
-msgstr "תיבת תקריב"
+msgstr "להקטין את התצוגה"
 
 #: gschem/scheme/gschem/builtins.scm:242
 #, fuzzy

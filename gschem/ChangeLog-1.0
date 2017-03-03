@@ -2,6 +2,8 @@
 
     * po/bs.po: Update Bosnian translations.
 
+    * po/he.po: Update Hebrew translations.
+
 2017-03-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_macro_widget.c: Replace geda_label_get_text with
