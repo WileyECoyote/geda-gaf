@@ -4,6 +4,8 @@
 
     * po/he.po: Update Hebrew translations.
 
+    * po/pl.po: Update Polish translations.
+
 2017-03-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_macro_widget.c: Replace geda_label_get_text with
