@@ -3566,12 +3566,8 @@ geda_keyfile_has_key_full (GedaKeyFile *key_file,
  * \brief Determine if a Key exist in the Key File
  * \par Function Description
  *  Checks whether the key file has the key \a key in the group \a group_name.
- *
- * \note This function does not follow the rules for GError strictly;
- *  the return value both carries meaning and signals an error. To use
- *  this function, you must pass a GError pointer in \a error, and check
- *  whether it is not %NULL to see if an error occurred.
- *
+ *  The Error pointer is optional and is only set if \a group_name does not
+ *  exist.
  *  Language bindings should use geda_keyfile_get_value() to test whether
  *  or not a key exists.
  *
@@ -3612,14 +3608,8 @@ geda_keyfile_has_key (GedaKeyFile *key_file,
   {
     return has_key;
   }
-  else
-  {
-    if (error) {
-      GError *temp_error = NULL;
-      g_propagate_error (error, temp_error);
-    }
-    return FALSE;
-  }
+
+  return FALSE;
 }
 
 static void
