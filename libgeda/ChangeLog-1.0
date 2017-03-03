@@ -2,6 +2,8 @@
 
     * po/tr.po: Update Turkish translations.
 
+    * src/geda/geda_keyfile.c: Update Doxygen comments.
+
 2017-03-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/sl.po: Update Serbian translations.

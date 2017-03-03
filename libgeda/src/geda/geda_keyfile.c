@@ -1485,7 +1485,7 @@ geda_keyfile_get_group_list (GedaKeyFile *key_file)
 
 
 /*!
- * \brief Retrieve the Value of a Key in a Kay File
+ * \brief Retrieve the Value of a Key in a Key File
  * \par Function Description
  * Returns the raw value associated with \a key under \a group_name.
  * Use geda_keyfile_get_string() to retrieve an unescaped UTF-8 string.
@@ -1503,7 +1503,7 @@ geda_keyfile_get_group_list (GedaKeyFile *key_file)
  * \returns a newly allocated string or %NULL if the specified
  *          key cannot be found.
  */
-char *
+char*
 geda_keyfile_get_value (GedaKeyFile *key_file,
                         const char  *group_name,
                         const char  *key,
@@ -3488,7 +3488,7 @@ geda_keyfile_get_comment (GedaKeyFile *key_file,
 }
 
 /*!
- * \brief Retrieve the Group comment in a Kay File
+ * \brief Retrieve the Group comment in a Key File
  * \par Function Description
  *  Removes a comment above \a key from \a group_name.
  *  If \a key is %NULL then comment will be removed above \a group_name.
@@ -3522,9 +3522,9 @@ geda_keyfile_remove_comment (GedaKeyFile *key_file,
 }
 
 /*!
- * \brief Retrieve the Value of a Key in a Kay File
+ * \brief Determine if Key File contains Group
  * \par Function Description
- *  Looks whether the key file has the group \a group_name.
+ *  Checks whether the key file has the group \a group_name.
  *
  * \param [in] key_file    a #GedaKeyFile object
  * \param [in] group_name  Pointer to a group name
@@ -3563,12 +3563,12 @@ geda_keyfile_has_key_full (GedaKeyFile *key_file,
 }
 
 /*!
- * \brief Retrieve the Value of a Key in a Kay File
+ * \brief Determine if a Key exist in the Key File
  * \par Function Description
  *  Checks whether the key file has the key \a key in the group \a group_name.
  *
  * \note This function does not follow the rules for GError strictly;
- *  the return value both carries meaning and signals an error.  To use
+ *  the return value both carries meaning and signals an error. To use
  *  this function, you must pass a GError pointer in \a error, and check
  *  whether it is not %NULL to see if an error occurred.
  *
@@ -3771,7 +3771,7 @@ geda_keyfile_remove_group_node (GedaKeyFile *key_file, GList *group_node)
 }
 
 /*!
- * \brief Retrieve the Value of a Key in a Kay File
+ * \brief Remove Group from a Key File
  * \par Function Description
  *  Removes the specified group, \a group_name, from the key file.
  *
@@ -3831,7 +3831,7 @@ geda_keyfile_add_key (GedaKeyFile      *key_file,
 }
 
 /*!
- * \brief Retrieve the Value of a Key in a Kay File
+ * \brief Remove a Key from in a Key File
  * \par Function Description
  *  Removes \a key in \a group_name from the key file.
  *
