@@ -5418,7 +5418,7 @@ geda_label_set_alignment (GedaLabel *label, float xalign, float yalign)
 /************************** Angle Property ************************/
 
 /*!
- * \brief geda_label_get_angle
+ * \brief Get GedaLabel angle property
  * \par Function Description
  *  Gets the angle of rotation for the label.
  *
@@ -5435,7 +5435,7 @@ double geda_label_get_angle  (GedaLabel *label)
 }
 
 /*!
- * \brief geda_label_set_angle
+ * \brief set GedaLabel angle property
  * \par Function Description
  *  Sets the angle of rotation for the label. An angle of 90 reads from
  *  from bottom to top, an angle of 270, from top to bottom. The angle
@@ -6285,7 +6285,7 @@ void geda_label_set_pattern (GedaLabel *label, const char *pattern)
 /*********************** Selectable Property **********************/
 
 /*!
- * \brief geda_label_get_selectable
+ * \brief Determine if GedaLabel is selectable
  * \par Function Description
  *  Gets the value set by geda_label_set_selectable().
  *
@@ -6302,7 +6302,7 @@ bool geda_label_get_selectable (GedaLabel *label)
 }
 
 /*!
- * \brief geda_label_set_selectable
+ * \brief Set if a GedaLabel Widget can be selected
  * \par Function Description
  *  Selectable labels allow the user to select text from the label, for
  *  copy-and-paste.
@@ -6801,18 +6801,21 @@ geda_label_widget_set_alignment (GtkWidget *widget, float xalign, float yalign)
   gtk_misc_set_alignment (GTK_MISC(widget), xalign, yalign);
 }
 
-/*! \todo Finish function documentation
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Get GedaLabel widget angle property
+ * \par Function Description
+ * \returns the angle of rotation for the label
+ * \sa geda_label_get_angle
  */
 double geda_label_widget_get_angle (GtkWidget *widget)
 {
   return geda_label_get_angle ((GedaLabel*)widget);
 }
 
-/*! \todo Finish function documentation
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Set GedaLabel widget angle property
+ * \par Function Description
+ * \sa geda_label_set_angle
  */
 void geda_label_widget_set_angle (GtkWidget *widget, double angle)
 {
@@ -6931,15 +6934,15 @@ geda_label_widget_set_label (GtkWidget *label, const char *str)
  *  Wrapper to retrieves the desired maximum width of label, in characters
  *  casting the GedaLabel to Widget.
  *
- * \param [in] widget The GedaLabel widget
+ * \param [in] label The GedaLabel widget
  *
  * \returns the maximum width of the label in characters.
  *
  * \sa geda_label_get_max_width_chars
  */
-int geda_label_widget_get_max_width_chars (GtkWidget *widget)
+int geda_label_widget_get_max_width_chars (GtkWidget *label)
 {
-  return geda_label_get_max_width_chars ((GedaLabel*)widget);
+  return geda_label_get_max_width_chars ((GedaLabel*)label);
 }
 
 /*!
@@ -6947,32 +6950,39 @@ int geda_label_widget_get_max_width_chars (GtkWidget *widget)
  * \par Function Description
  *  Wrapper for geda_label_set_max_width_chars.
  *
- * \param [in] widget  The GedaLabel widget
+ * \param [in] label   The GedaLabel widget
  * \param [in] n_chars New desired maximum width, in characters.
  *
  * \sa geda_label_set_max_width_chars
  */
-void geda_label_widget_set_max_width_chars (GtkWidget *widget, int n_chars)
+void geda_label_widget_set_max_width_chars (GtkWidget *label, int n_chars)
 {
-  geda_label_set_max_width_chars ((GedaLabel*)widget, n_chars);
+  geda_label_set_max_width_chars ((GedaLabel*)label, n_chars);
 }
 
-/*! \todo Finish function documentation
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Determine if a GedaLabel Widget is selectable
+ * \par Function Description
+ * \param [in] label  The GedaLabel object
+ *
+ * \retval %TRUE if the user can copy text from the label
+ * \sa geda_label_get_selectable
  */
-bool geda_label_widget_get_selectable (GtkWidget *widget)
+bool geda_label_widget_get_selectable (GtkWidget *label)
 {
-  return geda_label_get_selectable ( (GedaLabel*) widget);
+  return geda_label_get_selectable ((GedaLabel*)label);
 }
 
-/*! \todo Finish function documentation
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Set if a GedaLabel Widget can be selected
+ * \par Function Description
+ * \param [in] label   The GedaLabel object
+ * \param [in] setting %TRUE to allow selecting text in the label
+ * \sa geda_label_set_selectable
  */
-void geda_label_widget_set_selectable (GtkWidget *widget, bool setting)
+void geda_label_widget_set_selectable (GtkWidget *label, bool setting)
 {
-  geda_label_set_selectable ((GedaLabel*)widget, setting);
+  geda_label_set_selectable ((GedaLabel*)label, setting);
 }
 
 /*! \todo Finish function documentation

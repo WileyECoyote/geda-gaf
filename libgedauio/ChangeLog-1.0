@@ -3,7 +3,8 @@
     * include/geda_label.h: Reorganize header.
 
     * src/widgets/geda_label.c: Reorganize module, add widget versions;
-      geda_label_widget_get_label and geda_label_widget_set_label.
+      geda_label_widget_get_label and geda_label_widget_set_label, change
+      widget arguemnts to label and add Doxygen comments.
 
     * tests/test_entry.c: Add check geda_entry_get_text_length.
 
