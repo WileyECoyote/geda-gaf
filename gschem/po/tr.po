@@ -4906,76 +4906,78 @@ msgstr "Kopyalama Kipi"
 msgid "Multiple Copy Mode"
 msgstr "Çoklu Kopyalama Kipi"
 
+# Offset selection
 #: gschem/scheme/gschem/builtins.scm:119
-#, fuzzy
 msgid "Offset selection"
-msgstr "Seçim Kipi"
+msgstr "Ofset seçimi"
 
+# Snap to Grid
 #: gschem/scheme/gschem/builtins.scm:128
-#, fuzzy
 msgid "Snap to Grid"
-msgstr "Kopyalama Kipi"
+msgstr "Izgaraya Yapış"
 
+# Create Array
 #: gschem/scheme/gschem/builtins.scm:131
 msgid "Create Array"
-msgstr ""
+msgstr "Dizi Oluştur"
 
 #: gschem/scheme/gschem/builtins.scm:134 gschem/scheme/gschem/builtins.scm:137
 msgid "Edit..."
 msgstr "Düzenle..."
 
+# Edit Arc (as in Noah's ark)
 #: gschem/scheme/gschem/builtins.scm:140
-#, fuzzy
 msgid "Edit Arc"
-msgstr "Renk"
+msgstr "Arkı Düzenle"
 
+# Edit Object
 #: gschem/scheme/gschem/builtins.scm:143
-#, fuzzy
 msgid "Edit Object"
-msgstr "Metni Düzenle"
+msgstr "Nesne Düzenle"
 
 #: gschem/scheme/gschem/builtins.scm:146
 msgid "Edit Text"
 msgstr "Metni Düzenle"
 
+# Edit Color
 #: gschem/scheme/gschem/builtins.scm:149
-#, fuzzy
 msgid "Edit Color"
-msgstr "Renk"
+msgstr "Renk Düzenle"
 
+# Edit Pin Type
 #: gschem/scheme/gschem/builtins.scm:152
-#, fuzzy
 msgid "Edit Pin Type"
-msgstr "Metni Düzenle"
+msgstr "Pin Tipini Düzenle"
 
+# Choose Slot
 #: gschem/scheme/gschem/builtins.scm:161 gschem/scheme/gschem/builtins.scm:164
 msgid "Choose Slot"
-msgstr ""
+msgstr "Yuva seçin"
 
+# Invert Selection
 #: gschem/scheme/gschem/builtins.scm:176
-#, fuzzy
 msgid "Invert Selection"
-msgstr "Seçim Kipi"
+msgstr "Zıt seçim"
 
+# Select Last
 #: gschem/scheme/gschem/builtins.scm:179
-#, fuzzy
 msgid "Select Last"
-msgstr "Seçim Kipi"
+msgstr "Son'u seçin"
 
+# Deselect mode
 #: gschem/scheme/gschem/builtins.scm:182
-#, fuzzy
 msgid "Deselect mode"
-msgstr "Seçim Kipi"
+msgstr "Modun seçimini kaldır"
 
+# Cut
 #: gschem/scheme/gschem/builtins.scm:197
-#, fuzzy
 msgid "Cut"
-msgstr "1'e Kes"
+msgstr "Kes"
 
+# Paste
 #: gschem/scheme/gschem/builtins.scm:203
-#, fuzzy
 msgid "Paste"
-msgstr "1'den yapıştır"
+msgstr "yapıştır"
 
 #: gschem/scheme/gschem/builtins.scm:209
 msgid "Redraw"
@@ -5001,10 +5003,10 @@ msgstr ""
 msgid "Pan Down"
 msgstr ""
 
+# Zoom Selection
 #: gschem/scheme/gschem/builtins.scm:230
-#, fuzzy
 msgid "Zoom Selection"
-msgstr "Seçim Kipi"
+msgstr "Zum Seçimi"
 
 #: gschem/scheme/gschem/builtins.scm:233
 msgid "Zoom Extents"
@@ -5030,20 +5032,20 @@ msgstr ""
 msgid "Documentation"
 msgstr ""
 
+# Show/Hide Invisible Text
 #: gschem/scheme/gschem/builtins.scm:251
-#, fuzzy
 msgid "Show/Hide Invisible Text"
-msgstr "Metni Göster/Gizle"
+msgstr "Görünmez Metni Göster/Gizle"
 
+# Show/Hide Inherited Attributes
 #: gschem/scheme/gschem/builtins.scm:254
-#, fuzzy
 msgid "Show/Hide Inherited Attributes"
-msgstr "Metni Göster/Gizle"
+msgstr "Devralınan Nitelikleri Göster/Gizle"
 
+# Show/Hide net names
 #: gschem/scheme/gschem/builtins.scm:257
-#, fuzzy
 msgid "Show/Hide net names"
-msgstr "Metni Göster/Gizle"
+msgstr "Ağ adlarını göster / gizle"
 
 #: gschem/scheme/gschem/builtins.scm:260
 msgid "Dark Color Scheme"
