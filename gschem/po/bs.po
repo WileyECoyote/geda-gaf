@@ -450,7 +450,6 @@ msgid "Invalid type assignment, check"
 msgstr ""
 
 #: gschem/src/guile/g_rc.c:196
-#, fuzzy
 msgid "This is gEDA/gschem version"
 msgstr "Ovo je gEDA/gschem verzija"
 
@@ -1068,10 +1067,10 @@ msgstr ""
 msgid "<b>File error.</b>"
 msgstr ""
 
+# Revert failed
 #: gschem/src/iface/i_window.c:258
-#, fuzzy
 msgid "Revert failed"
-msgstr "_Vrati"
+msgstr "Vrati nije"
 
 #: gschem/src/iface/i_window.c:265
 msgid "Error encountered during file operation"
@@ -1093,10 +1092,10 @@ msgstr ""
 msgid "Point 1 missed x=%d, y=%d\n"
 msgstr ""
 
+# Translating schematic
 #: gschem/src/object/o_complex.c:248 gschem/src/object/o_complex.c:252
-#, fuzzy
 msgid "Translating schematic"
-msgstr "Translacija"
+msgstr "prijevodi shematski"
 
 #: gschem/src/object/o_delete.c:87
 #, c-format
@@ -1105,15 +1104,15 @@ msgid_plural "Delete %u locked objects?"
 msgstr[0] ""
 msgstr[1] ""
 
+# attributes were hidden
 #: gschem/src/object/o_edit.c:517
-#, fuzzy
 msgid "attributes were hidden"
-msgstr "_Atribut..."
+msgstr "atributi su skriveni"
 
+# hidden attributes were revealed
 #: gschem/src/object/o_edit.c:521
-#, fuzzy
 msgid "hidden attributes were revealed"
-msgstr "Atribut"
+msgstr "skriveni atributi su otkrivena"
 
 #: gschem/src/object/o_edit.c:717
 msgid "Hidden text is now visible\n"
@@ -1151,10 +1150,10 @@ msgstr ""
 msgid "Bus ripper symbol was not found in any component library"
 msgstr ""
 
+# Update All
 #: gschem/src/object/o_picture.c:357
-#, fuzzy
 msgid "Update All"
-msgstr "Ažuriraj"
+msgstr "Ažuriraj Sve"
 
 #: gschem/src/object/o_picture.c:359
 msgid "Update all selected Picture images"
@@ -1494,9 +1493,8 @@ msgid "Drag & Drop failed"
 msgstr ""
 
 #: gschem/src/x/x_coord.c:472
-#, fuzzy
 msgid "Coordinates"
-msgstr "Režim rotacije 90 stepeni"
+msgstr "koordinata"
 
 #: gschem/src/x/x_coord.c:487
 msgid "Screen"
@@ -1516,17 +1514,19 @@ msgstr ""
 
 #: gschem/src/x/x_dialog.c:444
 msgid "glibc"
-msgstr ""
+msgstr "glibc"
 
 #: gschem/src/x/x_dialog.c:445
 msgid "Guile"
-msgstr ""
+msgstr "Guile"
 
 #: gschem/src/x/x_dialog.c:455
 msgid ""
 "Copyright © 1998-2017 Ales Hvezda <ahvezda@geda.seul.org>\n"
 "Copyright © 1998-2017 gEDA Contributors (see ChangeLog for details)"
 msgstr ""
+"autorsko pravo © 1998-2017 Ales Hvezda <ahvezda@geda.seul.org>\n"
+"autorsko pravo © 1998-2017 gEDA saradnici (vidi ChangeLog za detalje)"
 
 #: gschem/src/x/x_dialog.c:464 gschem/scheme/gschem/builtins.scm:565
 msgid "About gschem"
@@ -1586,10 +1586,10 @@ msgstr ""
 msgid "Background"
 msgstr ""
 
+# Pin
 #: gschem/src/x/x_dialog.c:1014
-#, fuzzy
 msgid "Pin"
-msgstr "_Pin"
+msgstr "igla"
 
 #: gschem/src/x/x_dialog.c:1015
 msgid "Net endpoint"
@@ -1604,48 +1604,47 @@ msgstr ""
 msgid "Net"
 msgstr "Mreža"
 
+# Attribute
 #: gschem/src/x/x_dialog.c:1018
-#, fuzzy
 msgid "Attribute"
-msgstr "_Atribut..."
+msgstr "atribut"
 
 #: gschem/src/x/x_dialog.c:1019
 msgid "Logic bubble"
 msgstr ""
 
 #: gschem/src/x/x_dialog.c:1020
-#, fuzzy
 msgid "Grid point"
-msgstr "Režim ogledala"
+msgstr "Grid point"
 
+# Detached attribute
 #: gschem/src/x/x_dialog.c:1021
-#, fuzzy
 msgid "Detached attribute"
-msgstr "Atribut"
+msgstr "samostojeća atribut"
 
+# Text
 #: gschem/src/x/x_dialog.c:1022 gschem/src/x/x_menus.c:95
-#, fuzzy
 msgid "Text"
-msgstr "Izmijeni tekst"
+msgstr "tekst"
 
 #: gschem/src/x/x_dialog.c:1023 gschem/src/x/x_edit_pin.c:141
 #: gschem/src/x/x_menus.c:94
 msgid "Bus"
 msgstr "Sabirnica"
 
+# Selection
 #: gschem/src/x/x_dialog.c:1024 gschem/src/x/x_menus.c:105
-#, fuzzy
 msgid "Selection"
-msgstr "_Uvećaj"
+msgstr "izbor"
 
 #: gschem/src/x/x_dialog.c:1025
 msgid "Bounding box"
 msgstr ""
 
+# Zoom box
 #: gschem/src/x/x_dialog.c:1026
-#, fuzzy
 msgid "Zoom box"
-msgstr "Okvir zooma"
+msgstr "zooma kutija"
 
 #: gschem/src/x/x_dialog.c:1027
 msgid "Stroke"
