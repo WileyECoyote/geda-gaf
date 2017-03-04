@@ -134,14 +134,13 @@ msgstr ""
 
 #: gschem/src/base/gschem_page_view.c:258
 #: gschem/src/base/gschem_page_view.c:259
-#, fuzzy
 msgid "Page"
-msgstr "_Arkusz"
+msgstr "Strona"
 
 #: gschem/src/base/gschem_page_view.c:265
 #: gschem/src/base/gschem_page_view.c:266
 msgid "Page Geometry"
-msgstr ""
+msgstr "Strona Geometria"
 
 #: gschem/src/base/gschem_page_view.c:273
 #: gschem/src/base/gschem_page_view.c:274
@@ -240,19 +239,19 @@ msgstr "Nazwa pliku"
 msgid "name of file to be previewed"
 msgstr ""
 
+# Object List
 #: gschem/src/base/gschem_preview.c:549
-#, fuzzy
 msgid "Object List"
-msgstr "Zaznaczanie"
+msgstr "lista obiektów"
 
 #: gschem/src/base/gschem_preview.c:550
 msgid "List of objects to be previewed"
 msgstr ""
 
+# Active
 #: gschem/src/base/gschem_preview.c:557
-#, fuzzy
 msgid "Active"
-msgstr "Czynność"
+msgstr "Aktywny"
 
 #: gschem/src/base/gschem_preview.c:558
 msgid "Whether the preview widget is enabled or disabled"
@@ -266,64 +265,63 @@ msgstr ""
 msgid "Whether the preview widget should be large or small"
 msgstr ""
 
+# Coordinates Mode
 #: gschem/src/base/gschem_status_bar.c:587
-#, fuzzy
 msgid "Coordinates Mode"
-msgstr "Tryb elementów"
+msgstr "Tryb współrzędne"
 
 #: gschem/src/base/gschem_status_bar.c:588
 msgid "Sets the Format Mode used to display coordinates on the status bar"
 msgstr ""
 
+# Grid Mode
 #: gschem/src/base/gschem_status_bar.c:597
-#, fuzzy
 msgid "Grid Mode"
-msgstr "Tryb łuków"
+msgstr "Tryb Siatka"
 
 #: gschem/src/base/gschem_status_bar.c:598
 msgid "Sets the Grid Mode to display on the status bar"
 msgstr ""
 
+# Grid Size
 #: gschem/src/base/gschem_status_bar.c:607
-#, fuzzy
 msgid "Grid Size"
-msgstr "Punkt siatki"
+msgstr "Wielkość kratownicy"
 
 #: gschem/src/base/gschem_status_bar.c:608
 msgid "Sets the Grid Size to display on the status bar"
 msgstr ""
 
 #: gschem/src/base/gschem_status_bar.c:617
-#, fuzzy
 msgid "height"
-msgstr "Szerokość x Wysokość"
+msgstr "wysokość"
 
 #: gschem/src/base/gschem_status_bar.c:618
 msgid "Sets the height of the status bar"
 msgstr ""
 
+# Left Button Text
 #: gschem/src/base/gschem_status_bar.c:627
-#, fuzzy
 msgid "Left Button Text"
-msgstr "Od lewej do prawej"
+msgstr "Lewy przycisk Tekst"
 
 #: gschem/src/base/gschem_status_bar.c:628
 msgid "Set the string for the Left Button Text"
 msgstr ""
 
+# Middle Button Text
 #: gschem/src/base/gschem_status_bar.c:634
-#, fuzzy
 msgid "Middle Button Text"
-msgstr "Na środku po lewej"
+msgstr "Środkowy przycisk Tekst"
 
 #: gschem/src/base/gschem_status_bar.c:635
 msgid "Set the string for the Middle Button Text"
 msgstr ""
 
+# Right Button Text
 #: gschem/src/base/gschem_status_bar.c:641
-#, fuzzy
 msgid "Right Button Text"
-msgstr "Od prawej do lewej"
+msgstr "Prawy przycisk Tekst"
 
 #: gschem/src/base/gschem_status_bar.c:642
 msgid "Set the string for the Right Button Text"
@@ -346,25 +344,25 @@ msgstr "Odległość przyciągania"
 msgid "Sets the Size Mode to display on the status bar"
 msgstr ""
 
+# Status Text
 #: gschem/src/base/gschem_status_bar.c:668
-#, fuzzy
 msgid "Status Text"
-msgstr "Stan"
+msgstr "tekst stanu"
 
 #: gschem/src/base/gschem_status_bar.c:669
 msgid "Set the string for the text on the Status Bar"
 msgstr ""
 
+# Status State
 #: gschem/src/base/gschem_status_bar.c:675
 #: gschem/src/base/gschem_status_bar.c:676
-#, fuzzy
 msgid "Status State"
-msgstr "Stan"
+msgstr "stan cywilny"
 
+# Status Bar Height
 #: gschem/src/base/gschem_status_bar.c:689
-#, fuzzy
 msgid "Status Bar Height"
-msgstr "Stan"
+msgstr "Pasek stanu Wysokość"
 
 #: gschem/src/base/gschem_status_bar.c:690
 msgid "Set or get the height of the status bar"
@@ -398,10 +396,10 @@ msgstr ""
 msgid "Gschem status bar"
 msgstr ""
 
+# Grid
 #: gschem/src/base/gschem_status_bar.c:1888
-#, fuzzy
 msgid "Grid"
-msgstr "Tryb łuków"
+msgstr "Krata"
 
 #: gschem/src/base/gschem_status_bar.c:1894
 #: gschem/src/base/gschem_status_bar.c:1915
@@ -439,10 +437,10 @@ msgstr ""
 msgid "entry in rc file"
 msgstr ""
 
+# Bad Value
 #: gschem/src/guile/g_rc.c:123
-#, fuzzy
 msgid "Bad Value"
-msgstr "Wartość"
+msgstr "zła jakość"
 
 #: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2070
 msgid "check"
@@ -554,10 +552,10 @@ msgstr "Nie można otworzyć adresu URI"
 msgid "Found invalid gschem window smob ~S"
 msgstr "Nieprawidłowy obiekt reprezentujący okno gschem: ~S"
 
+# current value of
 #: gschem/src/iface/i_command.c:132 gschem/src/iface/i_command.c:5025
-#, fuzzy
 msgid "current value of"
-msgstr "Bieżącej stronie"
+msgstr "Aktualna wartość"
 
 #: gschem/src/iface/i_command.c:132 gschem/src/iface/i_command.c:5026
 msgid "is"
@@ -4834,9 +4832,10 @@ msgstr ""
 msgid "Toggle _Snap On-Off"
 msgstr "Przełączać snap on off"
 
+# Toggle the object snap mode
 #: gschem/etc/system-gschemrc.scm:2321
 msgid "Toggle the object snap mode"
-msgstr ""
+msgstr "Przełącz tryb przyciągania obiektu"
 
 #: gschem/etc/system-gschemrc.scm:2322
 msgid "Toggle _Rubberband"
