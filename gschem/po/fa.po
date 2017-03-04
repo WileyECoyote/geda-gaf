@@ -4740,81 +4740,98 @@ msgstr "انتخاب افست"
 msgid "Snap to Grid"
 msgstr "بچسب به خطوط"
 
+# Create Array
 #: gschem/scheme/gschem/builtins.scm:131
 msgid "Create Array"
-msgstr ""
+msgstr "ايجاد كردنآرایه"
 
+# Edit
 #: gschem/scheme/gschem/builtins.scm:134 gschem/scheme/gschem/builtins.scm:137
 msgid "Edit..."
-msgstr "Edit..."
+msgstr "ویرایش..."
 
+# Edit Arc
 #: gschem/scheme/gschem/builtins.scm:140
 msgid "Edit Arc"
-msgstr "Edit"
+msgstr "ویرایشقوس"
 
+# Edit Object
 #: gschem/scheme/gschem/builtins.scm:143
 msgid "Edit Object"
-msgstr "Attributes"
+msgstr "ویرایش شی"
 
+# Edit Text
 #: gschem/scheme/gschem/builtins.scm:146
 msgid "Edit Text"
-msgstr ""
+msgstr "ویرایش متن"
 
+# Edit Color
 #: gschem/scheme/gschem/builtins.scm:149
 msgid "Edit Color"
-msgstr ""
+msgstr "ویرایش رنگ"
 
+# Edit Pin Type
 #: gschem/scheme/gschem/builtins.scm:152
 msgid "Edit Pin Type"
-msgstr ""
+msgstr "ویرایش نوع پین"
 
+# Choose Slot => Choose element
 #: gschem/scheme/gschem/builtins.scm:161 gschem/scheme/gschem/builtins.scm:164
 msgid "Choose Slot"
-msgstr ""
+msgstr "انتخاب عنصر"
 
+# Invert Selection
 #: gschem/scheme/gschem/builtins.scm:176
 msgid "Invert Selection"
-msgstr "Select Mode"
+msgstr "انتخاب معکوس"
 
+# Select Mode
 #: gschem/scheme/gschem/builtins.scm:179
 msgid "Select Last"
-msgstr "Select Mode"
+msgstr "انتخاب حالت"
 
+# Deselect mode
 #: gschem/scheme/gschem/builtins.scm:182
 msgid "Deselect mode"
-msgstr "Select Mode"
+msgstr "حالت از حالت انتخاب خارج"
 
+# Cut
 #: gschem/scheme/gschem/builtins.scm:197
 msgid "Cut"
-msgstr "Cut into 1"
+msgstr "برش"
 
+# Paste
 #: gschem/scheme/gschem/builtins.scm:203
 msgid "Paste"
-msgstr "Paste from 1"
+msgstr "خمیر"
 
+# Redraw
 #: gschem/scheme/gschem/builtins.scm:209
 msgid "Redraw"
-msgstr ""
+msgstr "مجددا،"
 
+# Pan
 #: gschem/scheme/gschem/builtins.scm:212
 msgid "Pan"
-msgstr "Pan"
+msgstr "ماهی تابه"
 
+# Pan Left
 #: gschem/scheme/gschem/builtins.scm:215
 msgid "Pan Left"
-msgstr ""
+msgstr "حرکت به سمت چپ"
 
+# Pan Right
 #: gschem/scheme/gschem/builtins.scm:218
 msgid "Pan Right"
-msgstr ""
+msgstr "حرکت به سمت راست"
 
 #: gschem/scheme/gschem/builtins.scm:221
 msgid "Pan Up"
-msgstr ""
+msgstr "حرکت به سمت بالا"
 
 #: gschem/scheme/gschem/builtins.scm:224
 msgid "Pan Down"
-msgstr ""
+msgstr "حرکت به پایین"
 
 #: gschem/scheme/gschem/builtins.scm:230
 msgid "Zoom Selection"
