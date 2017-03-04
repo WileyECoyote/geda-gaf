@@ -2191,15 +2191,15 @@ msgstr "Valor:"
 msgid "Visible"
 msgstr "Visível"
 
+# Attribute Name List
 #: gschem/src/x/x_edit_attrib.c:519
-#, fuzzy
 msgid "Attribute Name List"
-msgstr "Atributos"
+msgstr "O nome do atributo Lista"
 
+# Attribute Value Entry
 #: gschem/src/x/x_edit_attrib.c:523
-#, fuzzy
 msgid "Attribute Value Entry"
-msgstr "Atributo"
+msgstr "A entrada de valor de atributo"
 
 #: gschem/src/x/x_edit_color.c:155
 msgid "Color Edit"
@@ -2218,10 +2218,10 @@ msgstr "Selecione uma cor para os objetos selecionados."
 msgid "Symbol renamed, cannot be undone\n"
 msgstr ""
 
+# Edit Component Properties
 #: gschem/src/x/x_edit_cprop.c:1154
-#, fuzzy
 msgid "Edit Component Properties"
-msgstr "Editar Propriedades do Texto"
+msgstr "Editar Propriedades do Componente"
 
 # Symbol
 #: gschem/src/x/x_edit_cprop.c:1169
@@ -2298,9 +2298,8 @@ msgid "Spice Type:"
 msgstr "Tipo de simulação:"
 
 #: gschem/src/x/x_edit_cprop.c:1395
-#, fuzzy
 msgid "Model Name:"
-msgstr "Nome:"
+msgstr "Nome do modelo:"
 
 #: gschem/src/x/x_edit_cprop.c:1429
 msgid "File name entry of component symbol"
@@ -2311,9 +2310,8 @@ msgid "Device identifier entry"
 msgstr ""
 
 #: gschem/src/x/x_edit_cprop.c:1442
-#, fuzzy
 msgid "Entry for name of the author"
-msgstr "Mostrar atributos inerentes"
+msgstr "A entrada para o nome do autor"
 
 #: gschem/src/x/x_edit_cprop.c:1448
 msgid "Entry for the version of this symbol"
@@ -2332,13 +2330,12 @@ msgid "Entry for distribution license of the symbol"
 msgstr ""
 
 #: gschem/src/x/x_edit_cprop.c:1475
-#, fuzzy
 msgid "Description of the component"
-msgstr "Comportamento padrão - componente de referência"
+msgstr "Descrição do componente"
 
 #: gschem/src/x/x_edit_cprop.c:1482
 msgid "Link to documentation for this device"
-msgstr ""
+msgstr "Link para a documentação para este dispositivo"
 
 # Entry for comments
 #: gschem/src/x/x_edit_cprop.c:1489
@@ -2350,9 +2347,8 @@ msgid "Checkbox to enable electrical properties"
 msgstr ""
 
 #: gschem/src/x/x_edit_cprop.c:1503
-#, fuzzy
 msgid "Entry for reference designator"
-msgstr "Mostrar atributos inerentes"
+msgstr "Entrada para designação de referência"
 
 #: gschem/src/x/x_edit_cprop.c:1510
 msgid "Spinner with entry for number of slots"
@@ -2376,33 +2372,28 @@ msgid "Entry for spice-type over-ride"
 msgstr ""
 
 #: gschem/src/x/x_edit_cprop.c:1545
-#, fuzzy
 msgid "Entry for model file name"
-msgstr "Mostrar atributos inerentes"
+msgstr "A entrada para o nome do ficheiro do modelo"
 
 #: gschem/src/x/x_edit_pin.c:96
-#, fuzzy
 msgid "in"
-msgstr "Pino"
+msgstr "in"
 
 #: gschem/src/x/x_edit_pin.c:97
-#, fuzzy
 msgid "out"
-msgstr "Cor_tar"
+msgstr "out"
 
 #: gschem/src/x/x_edit_pin.c:98
 msgid "io"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:99
-#, fuzzy
 msgid "oc"
-msgstr "Trancar"
+msgstr "oc"
 
 #: gschem/src/x/x_edit_pin.c:100
-#, fuzzy
 msgid "oe"
-msgstr "Mover"
+msgstr "oe"
 
 #: gschem/src/x/x_edit_pin.c:101
 msgid "pas"
@@ -2430,9 +2421,8 @@ msgid "*missing*"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:281 gschem/src/x/x_edit_pin.c:293
-#, fuzzy
 msgid "Pin Properties"
-msgstr "Editar Propriedades do Texto"
+msgstr "Sociedade Anônima do Pino"
 
 #: gschem/src/x/x_edit_pin.c:281
 msgid "Invalid Pin Node Type"
@@ -2443,23 +2433,21 @@ msgid "Ignoring Pin electrical VOID"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:801
-#, fuzzy
 msgid "Pin Properties Editor"
-msgstr "Editor de único atributo"
+msgstr "Pino Editor de Propriedades"
 
 #: gschem/src/x/x_edit_pin.c:879
-#, fuzzy
 msgid "Set"
-msgstr "Ligação"
+msgstr "Definir"
 
 #: gschem/src/x/x_edit_pin.c:882
 msgid "Auto"
 msgstr ""
 
+# Attribute Type List
 #: gschem/src/x/x_edit_pin.c:913
-#, fuzzy
 msgid "Attribute Type List"
-msgstr "Atributos"
+msgstr "Na lista Tipo de atributo"
 
 #: gschem/src/x/x_edit_pin.c:917
 msgid "Text Alignment Option"
@@ -2479,7 +2467,6 @@ msgid "Pin Label"
 msgstr ""
 
 #: gschem/src/x/x_edit_slot.c:162
-#, fuzzy
 msgid "Edit slot number"
 msgstr "numero de elemento"
 
@@ -2500,9 +2487,8 @@ msgid "Upper Middle"
 msgstr "Superior, ao Meio"
 
 #: gschem/src/x/x_edit_text.c:240
-#, fuzzy
 msgid "Upper Right"
-msgstr "Inferior Direito"
+msgstr "Canto superior direito"
 
 #: gschem/src/x/x_edit_text.c:244
 msgid "Middle Left"
