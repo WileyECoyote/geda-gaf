@@ -2226,7 +2226,7 @@ msgstr "Zichtbaar"
 
 #: gschem/src/x/x_edit_attrib.c:519
 msgid "Attribute Name List"
-msgstr "Atrribute Namenlijst"
+msgstr "Lijst kenmerknamen"
 
 #: gschem/src/x/x_edit_attrib.c:523
 msgid "Attribute Value Entry"
@@ -4712,19 +4712,16 @@ msgid "Open Auto Number dialog"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2296
-#, fuzzy
 msgid "Show _Console Window..."
-msgstr "Toon _Coordinaten venster..."
+msgstr "Toon _Console venster..."
 
 #: gschem/etc/system-gschemrc.scm:2296
-#, fuzzy
 msgid "Display the console window"
-msgstr "Toon Coordinaten Venster"
+msgstr "Geef het console venster"
 
 #: gschem/etc/system-gschemrc.scm:2297
-#, fuzzy
 msgid "Show Coord _Window..."
-msgstr "Toon _Coordinaten venster..."
+msgstr "Toon Coordinaten venster..."
 
 #: gschem/etc/system-gschemrc.scm:2297
 msgid "Display coordinates"
@@ -4735,7 +4732,6 @@ msgid "Invoke Macro"
 msgstr "Macro Aanroepen"
 
 #: gschem/etc/system-gschemrc.scm:2300
-#, fuzzy
 msgid "Invoke a macro"
 msgstr "Macro Aanroepen"
 
@@ -4803,24 +4799,24 @@ msgstr "Snap Rasterafstand..."
 
 #: gschem/etc/system-gschemrc.scm:2318
 msgid "Adjust snap size"
-msgstr ""
+msgstr "Pas snap maat"
 
 #: gschem/etc/system-gschemrc.scm:2321
 msgid "Toggle _Snap On-Off"
 msgstr "Schakel _Snap Aan/Uit"
 
+# Toggle the object snap mode
 #: gschem/etc/system-gschemrc.scm:2321
 msgid "Toggle the object snap mode"
-msgstr ""
+msgstr "Schakel de objectmagneetmenu modus"
 
 #: gschem/etc/system-gschemrc.scm:2322
-#, fuzzy
 msgid "Toggle _Rubberband"
-msgstr "Schakel D_raad Elastiekband"
+msgstr "Schakel Houd Aansluitingen"
 
 #: gschem/etc/system-gschemrc.scm:2322
 msgid "Toggle rubberband net mode"
-msgstr "Toggle elastisch netbinding"
+msgstr "Schakel elastisch netbinding modus"
 
 #: gschem/etc/system-gschemrc.scm:2323
 msgid "Toggle _Magnetic Net"
@@ -4828,7 +4824,7 @@ msgstr "Schakel _Magnetische Draad"
 
 #: gschem/etc/system-gschemrc.scm:2323
 msgid "Toggle magnetic net mode"
-msgstr "Schakel _Magnetische Draad Mode"
+msgstr "Schakel _Magnetische Draad Modus"
 
 # Toggle Dragging Moves
 #: gschem/etc/system-gschemrc.scm:2324
@@ -4837,15 +4833,16 @@ msgstr "Schakel Slepen"
 
 #: gschem/etc/system-gschemrc.scm:2324
 msgid "Toggle Drag-can-Move mode"
-msgstr ""
+msgstr "Schakel sleep-kan-move-modus"
 
 #: gschem/etc/system-gschemrc.scm:2325
 msgid "Toggle _Outline-Box"
 msgstr "Schakel C_ontour/Rechthoek"
 
+# Toggle action feedback
 #: gschem/etc/system-gschemrc.scm:2325
 msgid "Toggle action feedback"
-msgstr ""
+msgstr "Schakel Aktie terugkoppel"
 
 #: gschem/etc/system-gschemrc.scm:2326
 msgid "Toggle _Auto-Pan"
@@ -4859,17 +4856,20 @@ msgstr "Schakel Automatische panning mode"
 msgid "_Text Size..."
 msgstr "_Tekst Hoogte..."
 
+# Open the Text Size settings
 #: gschem/etc/system-gschemrc.scm:2329
 msgid "Open the Text Size settings"
-msgstr ""
+msgstr "Open de Tekstgrootte instellingen"
 
+# Preferences
 #: gschem/etc/system-gschemrc.scm:2330
 msgid "_Preferences..."
-msgstr ""
+msgstr "_Voorkeuren..."
 
+# Open the Preferences dialog
 #: gschem/etc/system-gschemrc.scm:2330
 msgid "Open the Preferences dialog"
-msgstr ""
+msgstr "Open het dialoogvenster Voorkeuren"
 
 #: gschem/etc/system-gschemrc.scm:2339
 msgid "Gschem Guide"
@@ -4899,21 +4899,25 @@ msgstr "gEDA _Wiki..."
 msgid "_About..."
 msgstr "Om_trent..."
 
+# Draw objects before another object
 #: gschem/etc/system-gschemrc.scm:2355
 msgid "Draw objects before another object"
-msgstr ""
+msgstr "Teken objecten voor een ander object"
 
+# Draw object after another object
 #: gschem/etc/system-gschemrc.scm:2356
 msgid "Draw object after another object"
-msgstr ""
+msgstr "Teken object na het andere object"
 
+# Raise objects to top of drawing order
 #: gschem/etc/system-gschemrc.scm:2358
 msgid "Raise objects to top of drawing order"
-msgstr ""
+msgstr "Raise voorwerpen naar boven of tekening orde"
 
+# Lower to bottom of the drawing order
 #: gschem/etc/system-gschemrc.scm:2359
 msgid "Lower to bottom of the drawing order"
-msgstr ""
+msgstr "Lagere tot de onderkant van de tekening orde"
 
 #: gschem/etc/system-gschemrc.scm:2367
 msgid "_File"
@@ -4941,15 +4945,16 @@ msgstr "Toe_voegen"
 
 #: gschem/etc/system-gschemrc.scm:2374
 msgid "Sessio_ns"
-msgstr ""
+msgstr "Sessie"
 
 #: gschem/etc/system-gschemrc.scm:2375
 msgid "Attri_butes"
 msgstr "Attri_buten"
 
+# Tools
 #: gschem/etc/system-gschemrc.scm:2376
 msgid "_Tools"
-msgstr ""
+msgstr "gereedschap"
 
 #: gschem/etc/system-gschemrc.scm:2386
 msgid "_Options"
@@ -5049,7 +5054,7 @@ msgstr "Uitlijnen op raster"
 
 #: gschem/scheme/gschem/builtins.scm:131
 msgid "Create Array"
-msgstr ""
+msgstr "Array maken"
 
 #: gschem/scheme/gschem/builtins.scm:134 gschem/scheme/gschem/builtins.scm:137
 msgid "Edit..."
@@ -5284,20 +5289,20 @@ msgstr "Voeg Boog Toe"
 msgid "Add Picture"
 msgstr "Voeg Afbeelding Toe"
 
+# Create New Session
 #: gschem/scheme/gschem/builtins.scm:380
-#, fuzzy
 msgid "Create New Session"
-msgstr "Opslaan Als"
+msgstr "Nieuwe sessie"
 
+# Open a Session
 #: gschem/scheme/gschem/builtins.scm:383
-#, fuzzy
 msgid "Open a Session"
-msgstr "Opslaan Als"
+msgstr "Open een sessie"
 
+# Save Session
 #: gschem/scheme/gschem/builtins.scm:386
-#, fuzzy
 msgid "Save Session"
-msgstr "Opslaan Als"
+msgstr "Sessie opslaan"
 
 #: gschem/scheme/gschem/builtins.scm:398
 msgid "Attach Attributes"
@@ -5307,10 +5312,10 @@ msgstr "Bevestig Attributen"
 msgid "Detach Attributes"
 msgstr "Maak Attributen Los"
 
+# Reset Attribute Positions
 #: gschem/scheme/gschem/builtins.scm:404
-#, fuzzy
 msgid "Reset Attribute Positions"
-msgstr "Bestemming"
+msgstr "Reset Attribute Posities"
 
 #: gschem/scheme/gschem/builtins.scm:407
 msgid "Show Attribute Value"
@@ -5360,24 +5365,24 @@ msgstr ""
 msgid "Translate Symbol"
 msgstr "Verschuif Symbool"
 
+# Dots Grid Style
 #: gschem/scheme/gschem/builtins.scm:463
-#, fuzzy
 msgid "Dots Grid Style"
-msgstr "Schakel Raster Stijl"
+msgstr "stippen rasterstijl"
 
+# Mesh Grid Style
 #: gschem/scheme/gschem/builtins.scm:466
-#, fuzzy
 msgid "Mesh Grid Style"
-msgstr "Schakel Raster Stijl"
+msgstr "rooster stijl"
 
 #: gschem/scheme/gschem/builtins.scm:469
 msgid "Turn Grid Off"
 msgstr ""
 
+# Cycle Grid Mode
 #: gschem/scheme/gschem/builtins.scm:472
-#, fuzzy
 msgid "Cycle Grid Mode"
-msgstr "Boog Mode"
+msgstr "cyclus raster mode"
 
 #: gschem/scheme/gschem/builtins.scm:475
 msgid "Increase Grid Spacing"
@@ -5387,22 +5392,21 @@ msgstr "Verhoog Raster Afstand"
 msgid "Decrease Grid Spacing"
 msgstr "Verlaag schalen Raster Afstand"
 
+# Set Snap Spacing
 #: gschem/scheme/gschem/builtins.scm:481
-#, fuzzy
 msgid "Set Snap Spacing"
-msgstr "Ste Raster Afstand In"
+msgstr "Stel Snap Tussenruimte"
 
 #: gschem/scheme/gschem/builtins.scm:484
-#, fuzzy
 msgid "Turn Snap off"
-msgstr "Snap Aan"
+msgstr "zet los te breken"
 
 #: gschem/scheme/gschem/builtins.scm:487
 msgid "Turn Snap on"
 msgstr ""
 
+# Cycle Snap Mode
 #: gschem/scheme/gschem/builtins.scm:490
-#, fuzzy
 msgid "Cycle Snap Mode"
 msgstr "Schakel Snap Modus"
 
@@ -5439,7 +5443,6 @@ msgid "gEDA Manuals"
 msgstr "gEDA Handleidingen"
 
 #: gschem/scheme/gschem/builtins.scm:519
-#, fuzzy
 msgid "View the front page of the gEDA documentation in a browser."
 msgstr "Toon de voorpagina van de gEDA documentatie in een browser."
 
@@ -5456,11 +5459,8 @@ msgid "View documentation for selected component"
 msgstr "Toon documentatie voor geselecteerde component"
 
 #: gschem/scheme/gschem/builtins.scm:544
-#, fuzzy
 msgid "Could not show documentation for selected component\n"
-msgstr ""
-"Kan geen documentatie tonen voor de geselecteerde component:\n"
-"\n"
+msgstr "Kan geen documentatie tonen voor de geselecteerde component\n"
 
 #: gschem/scheme/gschem/builtins.scm:548
 msgid "gschem User Guide"
@@ -5499,10 +5499,10 @@ msgstr "Geen documentatie gevonden"
 msgid "Export embed symbol"
 msgstr ""
 
+# Export embedded picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "Export embed picture"
-msgstr "Component/Afbeelding Insluiten"
+msgstr "Export ingesloten afbeelding"
 
 #: gschem/scheme/gschem/keymap.scm:41
 #, scheme-format
@@ -5514,38 +5514,5 @@ msgstr "~S is geen geldige toetsencombinatie."
 msgid "~S is not a prefix key sequence."
 msgstr "~S is geen voorafgaande toetsen combinatie."
 
-#, fuzzy
-#~ msgid "session"
-#~ msgstr "Toon _Naam"
-
 #~ msgid "New page created [%s]\n"
 #~ msgstr "Nieuwe pagina gemaakt [%s]\n"
-
-#, fuzzy
-#~ msgid "An error occurred while receiving drag-and-drop data"
-#~ msgstr ""
-#~ "FOUT: Een onbekende fout trad op tijdens het ontleden van "
-#~ "configuratiebestanden.\n"
-
-#, fuzzy
-#~ msgid "check the log for more information"
-#~ msgstr ""
-#~ "%s\n"
-#~ "\n"
-#~ "Het gschem log kan meer informatie bevatten."
-
-#, fuzzy
-#~ msgid ""
-#~ "Could not allocate graphic context, w_current->window is not a valid "
-#~ "Window\n"
-#~ msgstr "Kan de kleur %s niet toewijzen!\n"
-
-#, fuzzy
-#~ msgid "An error occurred while dropping data"
-#~ msgstr ""
-#~ "FOUT: Een onbekende fout trad op tijdens het ontleden van "
-#~ "configuratiebestanden.\n"
-
-#, fuzzy
-#~ msgid "documents\n"
-#~ msgstr "D_ocumentatie..."
