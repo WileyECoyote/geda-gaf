@@ -21,27 +21,27 @@ msgstr ""
 #: gschem/src/base/gschem.c:159
 #, c-format
 msgid "Warning: <%s> did not expand\n"
-msgstr ""
+msgstr "Opozorilo: <%s> ne razširi\n"
 
 #: gschem/src/base/gschem.c:160
 msgid "Command-line error: disabling auto load last\n"
-msgstr ""
+msgstr "Napaka v ukazni vrstici: onemogočiti samodejno obremenitev zadnje\n"
 
 #: gschem/src/base/gschem.c:193
 msgid "Assuming schematic file suffix for"
-msgstr ""
+msgstr "Ob predpostavki, shematično datoteko končnice za"
 
 #: gschem/src/base/gschem.c:207
 msgid "Assuming symbol file suffix for"
-msgstr ""
+msgstr "Ob predpostavki, da pripona simbol datoteka za"
 
 #: gschem/src/base/gschem.c:241
 msgid "An error was encountered loading requested session"
-msgstr ""
+msgstr "Prišlo je do napake nakladanje zahtevala sejo"
 
 #: gschem/src/base/gschem.c:266
 msgid "Auto Load"
-msgstr ""
+msgstr "samodejno naložite"
 
 #: gschem/src/base/gschem.c:316
 msgid ""
@@ -50,18 +50,23 @@ msgid ""
 "gschem cannot locate some data files. Please ensure the GEDADATA\n"
 "environment variable points to the correct location.\n"
 msgstr ""
+"Spremenljivka okolja GEDADATA mora biti nastavljen!\n"
+"\n"
+"gschem ni mogoče najti nekatere podatkovne datoteke. Prosimo, da se zagotovi "
+"GEDADATA\n"
+"spremenljivka okolja opozarja na pravem mestu.\n"
 
 #: gschem/src/base/gschem.c:352
 msgid "Unable to locate scheme initialization file"
-msgstr ""
+msgstr "Ne najdem shema inicializacijo datoteko"
 
 #: gschem/src/base/gschem.c:359
 msgid "Read scheme initialization file"
-msgstr ""
+msgstr "Preberite shemo inicializacijo datoteke"
 
 #: gschem/src/base/gschem.c:362
 msgid "Failed to read scheme initialization file"
-msgstr ""
+msgstr "Ni mogoče prebrati shema inicializacijo datoteke"
 
 # version
 #: gschem/src/base/gschem.c:384
@@ -70,16 +75,16 @@ msgstr "verzija"
 
 #: gschem/src/base/gschem.c:389
 msgid "Logging system is disabled\n"
-msgstr ""
+msgstr "Beleženje je onemogočena\n"
 
 #: gschem/src/base/gschem.c:429
 #, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
-msgstr ""
+msgstr "NAPAKA: Ni mogoče naložiti ali oceniti zagonski skript.\n"
 
 #: gschem/src/base/gschem.c:521
 msgid "Exiting normal\n"
-msgstr ""
+msgstr "Izhod normalno\n"
 
 # Parent Window
 #: gschem/src/base/gschem_dialog.c:563
@@ -88,15 +93,15 @@ msgstr "matično okno"
 
 #: gschem/src/base/gschem_dialog.c:564
 msgid "Parent window for this dialog"
-msgstr ""
+msgstr "Matično okno za tem pogovornem oknu"
 
 #: gschem/src/base/gschem_dialog.c:584
 msgid "Title"
-msgstr ""
+msgstr "Naslov"
 
 #: gschem/src/base/gschem_dialog.c:585
 msgid "Dialog window title"
-msgstr ""
+msgstr "Dialog naslov okna"
 
 #: gschem/src/base/gschem_macro_widget.c:233
 msgid "Label Text"
