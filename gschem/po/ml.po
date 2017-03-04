@@ -2122,14 +2122,15 @@ msgstr ""
 msgid "Select a color for the selected objects."
 msgstr "തിരഞ്ഞെടുത്ത വസ്തുക്കൾ ഒരു വർണ്ണ തിരഞ്ഞെടുക്കുക."
 
+# Symbol renamed, cannot be undone
 #: gschem/src/x/x_edit_cprop.c:267
 msgid "Symbol renamed, cannot be undone\n"
-msgstr ""
+msgstr "പുനർനാമകരണം പ്രതീക, പൂർവ്വാവസ്ഥയിലാക്കാൻ കഴിയില്ല\n"
 
+# Edit Component Properties
 #: gschem/src/x/x_edit_cprop.c:1154
-#, fuzzy
 msgid "Edit Component Properties"
-msgstr "സാധനത്തിലെ മാറ്റങ്ങള്‍ നടപ്പില്‍ വരുത്തുക"
+msgstr "ഘടക ന്റെഗുണവിശേഷങ്ങളിലെതിരുത്ത്"
 
 #: gschem/src/x/x_edit_cprop.c:1169
 msgid "_Symbol:"
@@ -2276,52 +2277,49 @@ msgid "Entry for model file name"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:96
-#, fuzzy
 msgid "in"
-msgstr "പിന്‍"
+msgstr "in"
 
 #: gschem/src/x/x_edit_pin.c:97
-#, fuzzy
 msgid "out"
-msgstr "കട്ട് ചെയുക  1 ലേക്ക്"
+msgstr "out"
 
 #: gschem/src/x/x_edit_pin.c:98
 msgid "io"
-msgstr ""
+msgstr "io"
 
 #: gschem/src/x/x_edit_pin.c:99
-#, fuzzy
 msgid "oc"
-msgstr "പൂട്ടുക"
+msgstr "oc"
 
 #: gschem/src/x/x_edit_pin.c:100
 msgid "oe"
-msgstr ""
+msgstr "oe"
 
 #: gschem/src/x/x_edit_pin.c:101
 msgid "pas"
-msgstr ""
+msgstr "oe"
 
 #: gschem/src/x/x_edit_pin.c:102
 msgid "tp"
-msgstr ""
+msgstr "oe"
 
 #: gschem/src/x/x_edit_pin.c:103
 msgid "tri"
-msgstr ""
+msgstr "tri"
 
 #: gschem/src/x/x_edit_pin.c:104
 msgid "clk"
-msgstr ""
+msgstr "clk"
 
 #: gschem/src/x/x_edit_pin.c:105
 msgid "pwr"
-msgstr ""
+msgstr "pwr"
 
 #: gschem/src/x/x_edit_pin.c:106 gschem/src/x/x_edit_pin.c:191
 #: gschem/src/x/x_edit_pin.c:205
 msgid "*missing*"
-msgstr ""
+msgstr "*കാണാതായ*"
 
 #: gschem/src/x/x_edit_pin.c:281 gschem/src/x/x_edit_pin.c:293
 msgid "Pin Properties"
@@ -2339,10 +2337,10 @@ msgstr ""
 msgid "Pin Properties Editor"
 msgstr ""
 
+# Set
 #: gschem/src/x/x_edit_pin.c:879
-#, fuzzy
 msgid "Set"
-msgstr "നെറ്റ്"
+msgstr "ഗണം"
 
 #: gschem/src/x/x_edit_pin.c:882
 msgid "Auto"
@@ -2432,11 +2430,10 @@ msgstr ""
 msgid "Text input field"
 msgstr ""
 
-# Text Alignment Attribute
+# Text Alignment Selector
 #: gschem/src/x/x_edit_text.c:594
-#, fuzzy
 msgid "Text alignment combobox"
-msgstr "ടെക്സ്റ്റ് വിന്യാസം ആട്രിബ്യൂട്ട്"
+msgstr "ടെക്സ്റ്റ് വിന്യാസം സെലക്ടർ"
 
 #: gschem/src/x/x_edit_text.c:598
 msgid "Color options menu"
@@ -2584,25 +2581,25 @@ msgstr ""
 msgid "Select"
 msgstr ""
 
+# Activate Select mode
 #: gschem/src/x/x_menus.c:86 gschem/etc/system-gschemrc.scm:2120
-#, fuzzy
 msgid "Activate Select mode"
-msgstr "പ്രവര്‍ത്തന രീതി നിര്‍ണയിക്കുക"
+msgstr "മോഡ് തിരഞ്ഞെടുക്കുക സജീവമാക്കുക"
 
+# Add
 #: gschem/src/x/x_menus.c:90
-#, fuzzy
 msgid "Add"
-msgstr "കൂട്ടിച്ചേര്‍ക്കുക"
+msgstr "ചേർക്കുക"
 
+# Add modes
 #: gschem/src/x/x_menus.c:90
-#, fuzzy
 msgid "Add modes"
-msgstr "സാധനത്തിലെ മാറ്റങ്ങള്‍ നടപ്പില്‍ വരുത്തുക"
+msgstr "മോഡുകൾ ചേർക്കുക"
 
+# Add net => Add wire
 #: gschem/src/x/x_menus.c:91 gschem/etc/system-gschemrc.scm:2239
-#, fuzzy
 msgid "Add net"
-msgstr "രേഖ"
+msgstr "വയർ ചേർക്കുക"
 
 #: gschem/src/x/x_menus.c:92
 msgid "Attribute..."
