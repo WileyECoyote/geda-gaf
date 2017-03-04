@@ -1988,10 +1988,10 @@ msgstr ""
 msgid "Dismiss this dialog"
 msgstr ""
 
+# Input attribute is invalid
 #: gschem/src/x/x_dialog.c:3709
-#, fuzzy
 msgid "Input attribute is invalid"
-msgstr "属性"
+msgstr "输入属性无效"
 
 #: gschem/src/x/x_dialog.c:3710
 msgid "Please correct in order to continue"
@@ -2127,22 +2127,25 @@ msgstr ""
 msgid "Visible"
 msgstr ""
 
+# Attribute Name List
 #: gschem/src/x/x_edit_attrib.c:519
-#, fuzzy
 msgid "Attribute Name List"
-msgstr "属性"
+msgstr "属性名称列表"
 
+# Attribute Value Entry
 #: gschem/src/x/x_edit_attrib.c:523
 msgid "Attribute Value Entry"
-msgstr ""
+msgstr "属性值输入"
 
+# Color Edit
 #: gschem/src/x/x_edit_color.c:155
 msgid "Color Edit"
-msgstr ""
+msgstr "颜色编辑"
 
+# Object color
 #: gschem/src/x/x_edit_color.c:176
 msgid "Object color:"
-msgstr ""
+msgstr "Object color:"
 
 # Select a color for the selected objects.
 #: gschem/src/x/x_edit_color.c:182
@@ -2153,10 +2156,10 @@ msgstr "选择所选对象的颜色."
 msgid "Symbol renamed, cannot be undone\n"
 msgstr ""
 
+# Edit Component Properties
 #: gschem/src/x/x_edit_cprop.c:1154
-#, fuzzy
 msgid "Edit Component Properties"
-msgstr "更新组件"
+msgstr "编辑组件属性"
 
 #: gschem/src/x/x_edit_cprop.c:1169
 msgid "_Symbol:"
@@ -2267,10 +2270,10 @@ msgstr ""
 msgid "Description of the component"
 msgstr ""
 
+# Link to documentation for this device
 #: gschem/src/x/x_edit_cprop.c:1482
-#, fuzzy
 msgid "Link to documentation for this device"
-msgstr "文档"
+msgstr "链接到此设备的文档"
 
 #: gschem/src/x/x_edit_cprop.c:1489
 msgid "Entry for comments"
@@ -2308,23 +2311,23 @@ msgstr ""
 msgid "Entry for model file name"
 msgstr ""
 
+# in
 #: gschem/src/x/x_edit_pin.c:96
 msgid "in"
-msgstr ""
+msgstr "在"
 
+# out
 #: gschem/src/x/x_edit_pin.c:97
-#, fuzzy
 msgid "out"
-msgstr "剪切"
+msgstr "出来"
 
 #: gschem/src/x/x_edit_pin.c:98
 msgid "io"
-msgstr ""
+msgstr "io"
 
 #: gschem/src/x/x_edit_pin.c:99
-#, fuzzy
 msgid "oc"
-msgstr "锁定"
+msgstr "oc"
 
 #: gschem/src/x/x_edit_pin.c:100
 msgid "oe"
@@ -2332,28 +2335,28 @@ msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:101
 msgid "pas"
-msgstr ""
+msgstr "pas"
 
 #: gschem/src/x/x_edit_pin.c:102
 msgid "tp"
-msgstr ""
+msgstr "tp"
 
 #: gschem/src/x/x_edit_pin.c:103
 msgid "tri"
-msgstr ""
+msgstr "tri"
 
 #: gschem/src/x/x_edit_pin.c:104
 msgid "clk"
-msgstr ""
+msgstr "clk"
 
 #: gschem/src/x/x_edit_pin.c:105
 msgid "pwr"
-msgstr ""
+msgstr "pwr"
 
 #: gschem/src/x/x_edit_pin.c:106 gschem/src/x/x_edit_pin.c:191
 #: gschem/src/x/x_edit_pin.c:205
 msgid "*missing*"
-msgstr ""
+msgstr "*失踪*"
 
 #: gschem/src/x/x_edit_pin.c:281 gschem/src/x/x_edit_pin.c:293
 msgid "Pin Properties"
@@ -2371,18 +2374,19 @@ msgstr ""
 msgid "Pin Properties Editor"
 msgstr ""
 
+# Set
 #: gschem/src/x/x_edit_pin.c:879
 msgid "Set"
-msgstr ""
+msgstr "组"
 
 #: gschem/src/x/x_edit_pin.c:882
 msgid "Auto"
 msgstr ""
 
+# Attribute Type List
 #: gschem/src/x/x_edit_pin.c:913
-#, fuzzy
 msgid "Attribute Type List"
-msgstr "属性"
+msgstr "属性类型列表"
 
 #: gschem/src/x/x_edit_pin.c:917
 msgid "Text Alignment Option"
@@ -2467,19 +2471,20 @@ msgstr "<b>文本属性</b>"
 msgid "Text input field"
 msgstr ""
 
-# Text Alignment Attribute
+# Text alignment combobox
 #: gschem/src/x/x_edit_text.c:594
-#, fuzzy
 msgid "Text alignment combobox"
-msgstr "文本对齐属性"
+msgstr "文本对齐组合框"
 
+# Color options menu
 #: gschem/src/x/x_edit_text.c:598
 msgid "Color options menu"
-msgstr ""
+msgstr "颜色选项菜单"
 
+# Font selector button
 #: gschem/src/x/x_edit_text.c:602
 msgid "Font selector button"
-msgstr ""
+msgstr "字体选择器按钮"
 
 # Text rotation angle Spinner input
 #: gschem/src/x/x_edit_text.c:606
@@ -2619,39 +2624,40 @@ msgstr ""
 msgid "Select"
 msgstr ""
 
+# Activate Select mode
 #: gschem/src/x/x_menus.c:86 gschem/etc/system-gschemrc.scm:2120
-#, fuzzy
 msgid "Activate Select mode"
-msgstr "选择模式"
+msgstr "激活选择模式"
 
+# Add => add to
 #: gschem/src/x/x_menus.c:90
 msgid "Add"
 msgstr "添加"
 
+# Add modes
 #: gschem/src/x/x_menus.c:90
-#, fuzzy
 msgid "Add modes"
-msgstr "更新组件"
+msgstr "添加模式"
 
+# Add net => add wire
 #: gschem/src/x/x_menus.c:91 gschem/etc/system-gschemrc.scm:2239
-#, fuzzy
 msgid "Add net"
-msgstr "编辑文本..."
+msgstr "添加电线"
 
+# Attribute
 #: gschem/src/x/x_menus.c:92
-#, fuzzy
 msgid "Attribute..."
 msgstr "属性..."
 
+# Add attribute
 #: gschem/src/x/x_menus.c:92 gschem/etc/system-gschemrc.scm:2241
-#, fuzzy
 msgid "Add attribute"
-msgstr "属性"
+msgstr "添加属性"
 
+# Component
 #: gschem/src/x/x_menus.c:93 gschem/src/x/x_menus.c:112
-#, fuzzy
 msgid "Component..."
-msgstr "组件..."
+msgstr "零件..."
 
 #: gschem/src/x/x_menus.c:93 gschem/etc/system-gschemrc.scm:2238
 msgid "Insert a symbol from the component library"
@@ -2661,20 +2667,20 @@ msgstr ""
 msgid "Add bus"
 msgstr ""
 
+# Add text
 #: gschem/src/x/x_menus.c:95 gschem/etc/system-gschemrc.scm:2242
-#, fuzzy
 msgid "Add text"
-msgstr "编辑文本..."
+msgstr "添加文字"
 
+# Zoom
 #: gschem/src/x/x_menus.c:99
-#, fuzzy
 msgid "Zoom"
 msgstr "放大"
 
+# Add operations
 #: gschem/src/x/x_menus.c:99
-#, fuzzy
 msgid "Add operations"
-msgstr "更新组件"
+msgstr "添加操作"
 
 #: gschem/src/x/x_menus.c:100 gschem/src/x/x_menus.c:152
 msgid "In"
@@ -2685,10 +2691,10 @@ msgstr ""
 msgid "Increase the Zoom magnification"
 msgstr ""
 
+# Out
 #: gschem/src/x/x_menus.c:101 gschem/src/x/x_menus.c:153
-#, fuzzy
 msgid "Out"
-msgstr "剪切"
+msgstr "出"
 
 #: gschem/src/x/x_menus.c:101 gschem/src/x/x_menus.c:153
 #: gschem/etc/system-gschemrc.scm:2187
