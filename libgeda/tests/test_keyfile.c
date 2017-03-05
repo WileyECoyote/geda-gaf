@@ -539,7 +539,7 @@ int check_groups (void)
 int check_keys (void)
 {
   int result = 0;
-  GError *err = NULL;
+  GError *err;
 
   /* === Function 01: geda_keyfile_new  === */
   GedaKeyFile *keyfile = geda_keyfile_new ();
@@ -652,6 +652,8 @@ int check_keys (void)
       }
     }
 
+    err = NULL;
+
     /* Non existent key */
     if (geda_keyfile_has_key(keyfile, "G2", "NOT", &err)) {
       fprintf(stderr, "FAILED: (KF081702A) has_key NOT\n");
@@ -665,6 +667,8 @@ int check_keys (void)
         g_error_free (err);
       }
     }
+
+    err = NULL;
 
     /* Non existent Group */
     if (geda_keyfile_has_key(keyfile, "G6", "NOT", &err)) {
@@ -683,6 +687,8 @@ int check_keys (void)
         g_error_free (err);
       }
     }
+
+    err = NULL;
 
     /* === Function 16: geda_keyfile_remove_key === */
 

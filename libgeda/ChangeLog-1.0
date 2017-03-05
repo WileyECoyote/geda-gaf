@@ -4,6 +4,8 @@
 
     * tests/test_file.c: Add test_path group and check geda_file_path_create.
 
+    * tests/test_keyfile.c: Re-sequence functions, set err NULL between checks.
+
 2017-03-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/tr.po: Update Turkish translations.
