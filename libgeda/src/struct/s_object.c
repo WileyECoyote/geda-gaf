@@ -101,9 +101,7 @@ geda_struct_object_release(GedaObject *o_current)
       o_current->complex->prim_objs = NULL;
     }
 
-    geda_object_weakref_notify(o_current);
     geda_object_unref(o_current);
-
   }
 }
 

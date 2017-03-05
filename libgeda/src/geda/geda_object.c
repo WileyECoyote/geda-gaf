@@ -374,13 +374,6 @@ static void geda_object_finalize(GObject *gobject)
 {
   GedaObject *object = (GedaObject*)(gobject);
 
-  if (g_hash_table_remove (object_hash_table, object)) {
-    if (!g_hash_table_size (object_hash_table)) {
-      g_hash_table_destroy (object_hash_table);
-      object_hash_table = NULL;
-    }
-  }
-
   if (object->name) {
     GEDA_FREE(object->name);
   }
@@ -397,14 +390,14 @@ static void geda_object_finalize(GObject *gobject)
   }
 
   if (object->weak_refs) {
+     geda_object_weakref_notify(object);
+  }
 
-    GList *iter;
-
-    for (iter = object->weak_refs; iter != NULL; iter = g_list_next (iter)) {
-      g_free (iter->data);
+  if (g_hash_table_remove (object_hash_table, object)) {
+    if (!g_hash_table_size (object_hash_table)) {
+      g_hash_table_destroy (object_hash_table);
+      object_hash_table = NULL;
     }
-    g_list_free (object->weak_refs);
-    object->weak_refs = NULL;
   }
 
   G_OBJECT_CLASS(geda_object_parent_class)->finalize(gobject);

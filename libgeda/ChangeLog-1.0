@@ -1,6 +1,12 @@
 2017-03-05 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_object.c: Remove freeing of weak_refs and call geda_object_
+      weakref_notify before removing object from hash table in geda_object_finalize.
+
     * src/object/o_complex_object.c: Add function geda_complex_object_get_filename.
+
+    * src/struct/s_object.c: Removed calling geda_object_weakref_notify from
+      geda_struct_object_release, this is now done in geda_object_finalize.
 
     * tests/test_file.c: Add test_path group and check geda_file_path_create.
 
