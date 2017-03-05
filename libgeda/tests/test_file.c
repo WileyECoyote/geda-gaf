@@ -816,6 +816,56 @@ int test_path (void)
 {
   int result = 0;
 
+  char *cwd_sav;
+  char *path;
+
+  cwd_sav = getcwd(0,0);
+
+  /* This is only needed for distcheck VPATH builds */
+  char *src_dir = getenv ("srcdir");
+
+  /* === Function 01: geda_file_path_create === */
+
+  if (src_dir) {
+    path = g_build_filename(src_dir, "one/two/three", NULL);
+  }
+  else {
+    path = geda_strdup("./one/two/three");
+  }
+
+  if (geda_create_path(path, S_IRWXU | S_IRWXG |S_IRWXO)) {
+    fprintf(stderr, "FAILED: (F030101) geda_file_path_create\n");
+    result++;
+  }
+
+  char *path2;
+
+  if (src_dir) {
+    path2 = g_build_filename(src_dir, "one", NULL);
+  }
+  else {
+    path2 = geda_strdup("./one");
+  }
+
+  char *command = geda_strconcat("rm -rf ", path2, NULL);
+
+  if (system(command));
+
+  free(command);
+  free(path);
+  free(path2);
+
+  /* === Function 02: geda_free_path geda_file_path_free === */
+  /* === Function 03: geda_get_dirname geda_file_path_get_dirname === */
+  /* === Function 04: geda_sys_data_path geda_file_path_sys_data === */
+  /* === Function 05: geda_sys_doc_path geda_file_path_sys_doc === */
+  /* === Function 06: geda_sys_config_path geda_file_path_sys_config === */
+  /* === Function 07: geda_user_config_path geda_file_path_user_config === */
+  /* ensure directory is restored, regardless of what happened above */
+
+  if (!chdir(cwd_sav));
+  free(cwd_sav);
+
   return result;
 }
 

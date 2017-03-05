@@ -2,6 +2,8 @@
 
     * src/object/o_complex_object.c: Add function geda_complex_object_get_filename.
 
+    * tests/test_file.c: Add test_path group and check geda_file_path_create.
+
 2017-03-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/tr.po: Update Turkish translations.
