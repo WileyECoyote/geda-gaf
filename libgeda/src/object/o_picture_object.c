@@ -620,7 +620,7 @@ geda_picture_object_get_fallback_pixbuf (void)
  *
  * \return the filename associated with \a object
  */
-const char *
+const char*
 geda_picture_object_get_filename (GedaObject *object)
 {
   g_return_val_if_fail (GEDA_IS_PICTURE(object), NULL);
@@ -767,7 +767,7 @@ geda_picture_object_get_nearest_point(GedaObject *object, int x, int y, int *nx,
  *
  * \return A GdkPixbuf for the picture.
  */
-GdkPixbuf *
+GdkPixbuf*
 geda_picture_object_get_pixbuf (GedaObject *object)
 {
   g_return_val_if_fail (GEDA_IS_PICTURE (object), NULL);
@@ -811,7 +811,7 @@ geda_picture_object_get_pixbuf (GedaObject *object)
  *
  * \sa geda_picture_object_export_object
  */
-GdkPixbuf *
+GdkPixbuf*
 geda_picture_object_get_pixbuf_fit (GedaObject *object, int interp)
 {
   g_return_val_if_fail (GEDA_IS_PICTURE (object), NULL);
