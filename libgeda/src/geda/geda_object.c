@@ -703,7 +703,7 @@ void geda_object_weak_unref (GedaObject *object, WeakNotifyFunc notify_func, voi
 void geda_object_add_weak_ptr (GedaObject *object, void *weak_pointer_loc)
 {
   g_return_if_fail (GEDA_IS_OBJECT(object));
-  g_object_add_weak_pointer ((GObject*)object, weak_pointer_loc);
+  object->weak_refs = s_weakref_add_ptr (object->weak_refs, weak_pointer_loc);
 }
 
 /*!
@@ -719,7 +719,8 @@ void geda_object_add_weak_ptr (GedaObject *object, void *weak_pointer_loc)
 void geda_object_remove_weak_ptr (GedaObject *object, void *weak_pointer_loc)
 {
   g_return_if_fail (GEDA_IS_OBJECT(object));
-  g_object_remove_weak_pointer ((GObject*)object, weak_pointer_loc);
+  object->weak_refs = s_weakref_remove_ptr (object->weak_refs,
+                                            weak_pointer_loc);
 }
 
 /*!
