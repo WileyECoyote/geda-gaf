@@ -722,6 +722,65 @@ int check_keys (void)
   geda_keyfile_free(keyfile);
   return result;
 }
+
+int check_data (void)
+{
+  int result = 0;
+  GError *err = NULL;
+
+  /* === Function 01: geda_keyfile_new  === */
+  GedaKeyFile *keyfile = geda_keyfile_new ();
+
+  if (!GEDA_IS_KEYFILE(keyfile)) {
+    fprintf(stderr, "FAILED: (KF080104) geda_keyfile_new\n");
+    return 1;
+  }
+
+  err = NULL;
+
+  /* === Function 06: geda_keyfile_load_from_file === */
+
+  /* Actually Load the file, comments should be stripped */
+  if (!geda_keyfile_load_from_file (keyfile, KEY_FILENAME, GEDA_KEYFILE_KEEP_COMMENTS, &err))
+  {
+    if (!err) {
+      fprintf(stderr, "FAILED: (KF080604A) KEYFILE_KEEP_COMMENTS error is NULL\n");
+      result++;
+    }
+    else {
+      vmessage("Message: (KF080604B) %s.\n", err->message);
+      g_error_free (err);
+    }
+  }
+  else {
+
+    /* === Function 18: geda_keyfile_get_value === */
+
+    char *string;
+
+    string = geda_keyfile_get_value (keyfile, "G1", "T1", &err);
+
+    if (!string) {
+      fprintf(stderr, "FAILED: (KF081801A) get_value, no value\n");
+      result++;
+    }
+    else if (strcmp(string, "A")) {
+      fprintf(stderr, "FAILED: (KF081801B) get_value, value=%s\n", string);
+      result++;
+    }
+
+    if (err) {
+      g_error_free (err);
+    }
+
+    /* === Function 19: geda_keyfile_set_value === */
+
+  }
+
+  geda_keyfile_free(keyfile);
+  return result;
+}
+
 /** @} endgroup test-geda-keyfile */
 
 int
@@ -743,6 +802,8 @@ main (int argc, char *argv[])
   result += check_groups();
 
   result += check_keys();
+
+  result += check_data();
 
   if (result) {
     fprintf(stderr, "Check module geda_keyfile.c");
