@@ -465,6 +465,23 @@ geda_complex_object_get_bounds(GedaObject *object)
   return FALSE;
 }
 
+/*!
+ * \brief Get the file name Associated with a Complex GedaObject
+ * \par Function Description
+ *  Returns the filename associated with the GedaComplex \a object.
+ *
+ * \param object   The GedaComplex object to inspect
+ *
+ * \return the filename associated with \a object
+ */
+const char*
+geda_complex_object_get_filename (GedaObject *object)
+{
+  g_return_val_if_fail (GEDA_IS_COMPLEX(object), NULL);
+
+  return object->complex->filename;
+}
+
 /*! \brief Get Point on a GedaComplex Nearest a Given Point
  *  \par Function Description
  *  Recursively calls geda_object_get_nearest_point on the closest sub-object of
