@@ -1,6 +1,19 @@
-2017-03-05 Wiley E. Hill <wileyhill@gmail.com>
+2017-03-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/generic: Changed device= to CONNECTOR without the underscrore.
+
+    * connector/DB: Replace dash 2 D-Shell symbols:
+
+            * connector/DB/DB9F-2.sym
+            * connector/DB/DB9M-2.sym
+            * connector/DB/DB15F-2.sym
+            * connector/DB/DB15M-2.sym
+            * connector/DB/DB25F-2.sym
+            * connector/DB/DB25M-2.sym
+            * connector/DB/DB31F-2.sym
+            * connector/DB/DB31M-2.sym
+            * connector/DB/DB37F-2.sym
+            * connector/DB/DB37M-2.sym
 
 2017-03-05 Wiley E. Hill <wileyhill@gmail.com>
 
