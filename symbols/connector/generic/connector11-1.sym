@@ -2,11 +2,9 @@ v 20130214 2
 T 100 3600 8 10 1 1 0 0 1
 refdes=J?
 T 700 3900 8 10 0 0 0 0 1
-device=CONNECTOR_20
+device=CONNECTOR
 T 700 3700 8 10 0 0 0 0 1
 pins=18
-T 700 3500 8 10 0 0 0 0 1
-author=AutoTron
 B 0 0 500 3500 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 600 -1900 9 10 0 0 0 0 1
 numslots=0
@@ -144,3 +142,5 @@ T 300 3250 5 8 1 1 0 0 1
 pinnumber=1
 }
 L 700 3300 500 3300 3 0 0 0 -1 -1
+T 700 3500 8 10 0 0 0 0 1
+author=AutoTron

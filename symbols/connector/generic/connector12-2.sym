@@ -2,11 +2,9 @@ v 20041228 1
 T 700 5300 8 10 1 1 0 6 1
 refdes=CONN?
 T 300 5250 5 10 0 0 0 0 1
-device=CONNECTOR_12
+device=CONNECTOR
 T 300 5450 5 10 0 0 0 0 1
 footprint=SIP12N
-T 300 5650 5 10 0 0 0 0 1
-author=Leon Kos
 T 300 5850 5 10 0 0 0 0 1
 description=generic connector
 T 300 6050 5 10 0 0 0 0 1
@@ -156,3 +154,5 @@ pintype=pas
 }
 V 250 400 50 6 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 B 300 0 400 5200 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 300 5650 5 10 0 0 0 0 1
+author=Leon Kos

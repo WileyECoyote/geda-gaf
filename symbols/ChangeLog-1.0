@@ -1,5 +1,9 @@
 2017-03-05 Wiley E. Hill <wileyhill@gmail.com>
 
+    * connector/generic: Changed device= to CONNECTOR without the underscrore.
+
+2017-03-05 Wiley E. Hill <wileyhill@gmail.com>
+
     * connector/DB: Redo dash 1 D-Shell symbols; rename DB31-1->
       DB31-4, replace DBx with DBxM and DBxF:
 

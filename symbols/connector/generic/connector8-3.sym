@@ -2,11 +2,9 @@ v 20091004 2
 T 700 2000 8 10 1 1 0 6 1
 refdes=CONN?
 T 100 2250 5 10 0 0 0 0 1
-device=CONNECTOR_8
+device=CONNECTOR
 T 100 2450 5 10 0 0 0 0 1
 footprint=SIP8N
-T 100 2650 5 10 0 0 0 0 1
-author=Cory Cross
 T 100 2850 5 10 0 0 0 0 1
 description=generic connector 8-pin Molex numbering
 T 100 3050 5 10 0 0 0 0 1
@@ -108,3 +106,5 @@ T 650 300 5 8 0 1 0 8 1
 pintype=pas
 }
 V 750 300 50 6 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 100 2650 5 10 0 0 0 0 1
+author=Cory Cross

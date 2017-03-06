@@ -2,7 +2,7 @@ v 20151031 2
 T 100 1500 8 10 1 1 0 0 1
 refdes=J?
 T 100 1700 8 10 0 0 0 0 1
-device=CONNECTOR_4
+device=CONNECTOR
 T 100 1900 8 10 0 0 0 0 1
 author=AutoTron
 B 0 0 500 1400 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
