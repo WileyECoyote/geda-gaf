@@ -15,6 +15,9 @@
             * connector/DB/DB37F-2.sym
             * connector/DB/DB37M-2.sym
 
+            * connector/generic/connector1-1.sym: Remove extra pin, add description
+              attribute.
+
 2017-03-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/DB: Redo dash 1 D-Shell symbols; rename DB31-1->
