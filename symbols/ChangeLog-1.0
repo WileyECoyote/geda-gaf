@@ -1,6 +1,7 @@
 2017-03-06 Wiley E. Hill <wileyhill@gmail.com>
 
-    * connector/generic: Changed device= to CONNECTOR without the underscrore.
+    * connector/generic: Changed device= to CONNECTOR without the underscrore,
+      add description attribute for 3-1 thru 9-1.
 
     * connector/DB: Replace dash 2 D-Shell symbols:
 
