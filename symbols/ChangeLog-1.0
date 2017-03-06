@@ -18,6 +18,9 @@
             * connector/generic/connector1-1.sym: Remove extra pin, add description
               attribute.
 
+            * connector/generic/connector2-1.sym: Replace symbol, the old version
+              was inconsistence with the dash-1 style.
+
 2017-03-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/DB: Redo dash 1 D-Shell symbols; rename DB31-1->
