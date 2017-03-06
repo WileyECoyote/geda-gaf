@@ -1,3 +1,19 @@
+2017-03-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * connector/DB: Redo dash 1 D-Shell symbols; rename DB31-1->
+      DB31-4, replace DBx with DBxM and DBxF:
+
+            * connector/DB/DB9F-1.sym
+            * connector/DB/DB9M-1.sym
+            * connector/DB/DB15F-1.sym
+            * connector/DB/DB15M-1.sym
+            * connector/DB/DB25F-1.sym
+            * connector/DB/DB25M-1.sym
+            * connector/DB/DB31F-1.sym
+            * connector/DB/DB31M-1.sym
+            * connector/DB/DB37F-1.sym
+            * connector/DB/DB37M-1.sym
+
 2017-02-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * microchip/memory/93LC56C-I-ST-1.sym: Add 93LC56C-I-SN symbol; 2K EEPROM,

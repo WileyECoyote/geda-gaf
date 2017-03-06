@@ -1,4 +1,10 @@
 v 20121031 2
+T 100 8000 8 10 1 1 0 0 1
+refdes=CONN?
+T 100 8400 5 10 0 1 0 0 1
+device=CONNECTOR
+T 100 8600 5 10 0 1 0 0 1
+description=D-Sub DB25 male connector
 L 0 300 0 7500 3 0 0 0 -1 -1
 A 750 150 150 250 110 3 0 0 0 -1 -1
 A 75 300 75 180 60 3 0 0 0 -1 -1
@@ -307,13 +313,9 @@ pintype=pas
 }
 L 39 234 703 8 3 0 0 0 -1 -1
 L 701 7832 38 7566 3 0 0 0 -1 -1
-T 100 8600 5 10 0 0 0 0 1
-device=DB25
-T 100 8000 8 10 1 1 0 0 1
-refdes=CONN?
-T 100 8200 8 10 0 1 0 0 1
-footprint=DB-25M
-T 100 8400 8 10 0 0 0 0 1
+T 100 8800 5 10 0 0 0 0 1
 numslots=0
-T 100 8800 8 10 0 1 0 0 1
-description=D-Sub DB25 male connector
+T 100 8200 9 10 0 1 0 0 1
+footprint=DB-25M
+T 1000 7800 5 10 0 1 0 0 1
+value=DB-25M
