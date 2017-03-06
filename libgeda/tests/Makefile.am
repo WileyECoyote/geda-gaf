@@ -7,6 +7,7 @@ check_file = \
 	test_file
 
 check_geda = \
+	test_object \
 	test_arc \
 	test_box \
 	test_bus \

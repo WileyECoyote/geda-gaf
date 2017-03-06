@@ -19,6 +19,8 @@
 
             * geda_keyfile_get_value
 
+    * tests/test_object.c: Add new test module for GedaObject base class.
+
 2017-03-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/tr.po: Update Turkish translations.
