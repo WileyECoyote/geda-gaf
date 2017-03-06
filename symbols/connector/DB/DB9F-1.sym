@@ -1,10 +1,10 @@
 v 20130214 2
 T 100 3200 8 10 1 1 0 0 1
 refdes=CONN?
-T 100 3800 5 10 0 1 0 0 1
-device=CONNECTOR
 T 100 3600 5 10 0 1 0 0 1
-description=D-Sub DE9 female connector
+device=CONNECTOR
+T 100 3800 5 10 0 1 0 0 1
+description=D-Sub DE-9 female connector
 L 900 300 900 2700 3 0 0 0 -1 -1
 A 150 150 150 290 -110 3 0 0 0 -1 -1
 A 825 300 75 0 -60 3 0 0 0 -1 -1

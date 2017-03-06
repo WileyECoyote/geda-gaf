@@ -4,7 +4,7 @@ refdes=CONN?
 T 100 5400 5 10 0 1 0 0 1
 device=CONNECTOR
 T 100 5600 5 10 0 1 0 0 1
-description=D-Sub DA15 female connector
+description=D-Sub DA-15 female connector
 L 900 300 900 4500 3 0 0 0 -1 -1
 A 150 150 150 290 -110 3 0 0 0 -1 -1
 A 825 300 75 0 -60 3 0 0 0 -1 -1

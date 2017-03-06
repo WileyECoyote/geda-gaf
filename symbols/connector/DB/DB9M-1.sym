@@ -1,10 +1,10 @@
 v 20130214 2
 T 100 3200 8 10 1 1 0 0 1
 refdes=CONN?
-T 100 3800 5 10 0 1 0 0 1
-device=CONNECTOR
 T 100 3600 5 10 0 1 0 0 1
-description=D-Sub DE9 male connector
+device=CONNECTOR
+T 100 3800 5 10 0 1 0 0 1
+description=D-Sub DE-9 male connector
 L 0 300 0 2700 3 0 0 0 -1 -1
 A 750 150 150 250 110 3 0 0 0 -1 -1
 A 75 300 75 180 60 3 0 0 0 -1 -1

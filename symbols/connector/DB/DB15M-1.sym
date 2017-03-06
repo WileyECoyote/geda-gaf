@@ -4,7 +4,7 @@ refdes=CONN?
 T 100 5400 5 10 0 1 0 0 1
 device=CONNECTOR
 T 100 5600 5 10 0 1 0 0 1
-description=D-Sub DA15 male connector
+description=D-Sub DA-15 male connector
 L 0 300 0 4500 3 0 0 0 -1 -1
 A 750 150 150 250 110 3 0 0 0 -1 -1
 A 75 300 75 180 60 3 0 0 0 -1 -1
