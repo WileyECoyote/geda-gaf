@@ -39,7 +39,21 @@ void weak_notify_func(void *obj, void *user_data)
 {
   unsigned *notified = user_data;
 
-  *notified = 1;
+  *notified += 1;
+}
+
+void weak_notify_func2(void *obj, void *user_data)
+{
+  unsigned *notified = user_data;
+
+  *notified += 2;
+}
+
+void weak_notify_func3(void *obj, void *user_data)
+{
+  unsigned *notified = user_data;
+
+  *notified += 3;
 }
 
 int check_object (void)
@@ -331,12 +345,16 @@ int check_object (void)
   }
 
   geda_object_weak_ref (object, weak_notify_func, &notified);
+  geda_object_weak_ref (object, weak_notify_func2, &notified);
+  geda_object_weak_ref (object, weak_notify_func3, &notified);
+
+  geda_object_weak_unref(object, weak_notify_func2, &notified);
 
   notified = 0;
 
   geda_object_unref(object);
 
-  if (!notified) {
+  if (notified - 4) {
     fprintf(stderr, "Failed: %s to notify GedaText <%d>\n", TOBJECT, __LINE__);
     result++;
   }

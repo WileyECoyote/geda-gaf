@@ -2,6 +2,8 @@
 
     * po/uk.po: Update Ukrainian translations.
 
+    * tests/test_object.c: Add check for geda_object_weak_unref.
+
 2017-03-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_object.c: Remove freeing of weak_refs and call geda_object_
