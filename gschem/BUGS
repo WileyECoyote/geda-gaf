@@ -2,9 +2,11 @@
 Bugs (no particular order):
 ----------------------
 
-	Prioritize this list!
+    Vectors are not displayed if first coordinate has 0 for the X value
 
-	When copying components, be sure to preserve locked bit.
+	When copying components, the locked bit is not preserved.
+
+Archived:
 
 FIXED	Text direction on rotated fast text line is wrong.
 
