@@ -1,3 +1,7 @@
+2017-03-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/uk.po: Update Ukrainian translations.
+
 2017-03-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_object.c: Remove freeing of weak_refs and call geda_object_
