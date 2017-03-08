@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-02-23 01:08-0600\n"
+"POT-Creation-Date: 2017-03-07 11:17-0600\n"
 "PO-Revision-Date: 2010-02-06 22:09+0000\n"
 "Last-Translator: Jarosław Ogrodnik <nobodythere@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -578,8 +578,8 @@ msgstr ""
 #: libgeda/src/geda/geda_keyfile.c:1324 libgeda/src/geda/geda_keyfile.c:1541
 #: libgeda/src/geda/geda_keyfile.c:3024 libgeda/src/geda/geda_keyfile.c:3094
 #: libgeda/src/geda/geda_keyfile.c:3220 libgeda/src/geda/geda_keyfile.c:3445
-#: libgeda/src/geda/geda_keyfile.c:3630 libgeda/src/geda/geda_keyfile.c:3826
-#: libgeda/src/geda/geda_keyfile.c:3894
+#: libgeda/src/geda/geda_keyfile.c:3626 libgeda/src/geda/geda_keyfile.c:3816
+#: libgeda/src/geda/geda_keyfile.c:3884
 msgid "Key file does not have group"
 msgstr ""
 
@@ -624,7 +624,7 @@ msgid "Key '%s' in group '%s' has value '%s' where %s was expected"
 msgstr ""
 
 #: libgeda/src/geda/geda_keyfile.c:3039 libgeda/src/geda/geda_keyfile.c:3235
-#: libgeda/src/geda/geda_keyfile.c:3906
+#: libgeda/src/geda/geda_keyfile.c:3896
 #, c-format
 msgid "Key file does not have key '%s' in group '%s'"
 msgstr ""
@@ -633,30 +633,30 @@ msgstr ""
 msgid "Group does not have comment"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:4132
+#: libgeda/src/geda/geda_keyfile.c:4122
 msgid "Key file contains escape character at end of line"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:4154
+#: libgeda/src/geda/geda_keyfile.c:4144
 msgid "Key file contains invalid escape sequence"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:4295
+#: libgeda/src/geda/geda_keyfile.c:4285
 #, c-format
 msgid "Value '%s' cannot be interpreted as a number."
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:4310
+#: libgeda/src/geda/geda_keyfile.c:4300
 #, c-format
 msgid "Integer value '%s' out of range"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:4343
+#: libgeda/src/geda/geda_keyfile.c:4333
 #, c-format
 msgid "Value '%s' cannot be interpreted as a float number."
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:4368
+#: libgeda/src/geda/geda_keyfile.c:4358
 #, c-format
 msgid "Value '%s' cannot be interpreted as a boolean."
 msgstr ""
@@ -693,75 +693,75 @@ msgstr ""
 msgid "Y coordinate of the second point"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:442
+#: libgeda/src/geda/geda_object.c:435
 msgid "object-type"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:443
+#: libgeda/src/geda/geda_object.c:436
 msgid "Character identifier corresponding to the type of object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:452
+#: libgeda/src/geda/geda_object.c:445
 msgid "sequence-identification"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:453
+#: libgeda/src/geda/geda_object.c:446
 msgid "Sequence identifier created during object construction"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:460
+#: libgeda/src/geda/geda_object.c:453
 msgid "object-name"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:461
+#: libgeda/src/geda/geda_object.c:454
 msgid "Unique name of this object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:467
+#: libgeda/src/geda/geda_object.c:460
 msgid "Parent"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:468
+#: libgeda/src/geda/geda_object.c:461
 msgid "Pointer to parent object - a Page or a Complex"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:473
+#: libgeda/src/geda/geda_object.c:466
 msgid "Selectable"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:474
+#: libgeda/src/geda/geda_object.c:467
 msgid "Whether the label text can be selected with the mouse"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:480
+#: libgeda/src/geda/geda_object.c:473
 msgid "Redraw"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:481
+#: libgeda/src/geda/geda_object.c:474
 msgid "Whether the object redrawn, used for temporary objects"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:487
+#: libgeda/src/geda/geda_object.c:480
 msgid "Selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:488
+#: libgeda/src/geda/geda_object.c:481
 msgid "Whether the object is currently selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:495
+#: libgeda/src/geda/geda_object.c:488
 msgid "Show-Name-Value-flag"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:496
+#: libgeda/src/geda/geda_object.c:489
 msgid "Flag to indicate whether to show the name, value or both"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:504
+#: libgeda/src/geda/geda_object.c:497
 msgid "Visible"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:505
+#: libgeda/src/geda/geda_object.c:498
 msgid "Whether the object is displayed, normaly text attributes"
 msgstr ""
 
@@ -1245,25 +1245,25 @@ msgstr ""
 msgid "Component not found"
 msgstr "Nie odnaleziono komponentu"
 
-#: libgeda/src/object/o_complex_object.c:1138
+#: libgeda/src/object/o_complex_object.c:1155
 msgid "Failed to parse complex object"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:1143
+#: libgeda/src/object/o_complex_object.c:1160
 msgid "Found a component with an invalid rotation"
 msgstr "Napotkano komponent o błędnej specyfikacji rotacji"
 
-#: libgeda/src/object/o_complex_object.c:1147
+#: libgeda/src/object/o_complex_object.c:1164
 #: libgeda/src/object/o_picture_object.c:1509
 msgid "Setting angle to 0\n"
 msgstr "Użyję nachylenia równego 0\n"
 
-#: libgeda/src/object/o_complex_object.c:1152
+#: libgeda/src/object/o_complex_object.c:1169
 msgid "Found a component with an invalid mirror flag"
 msgstr ""
 "Napotkano komponent z nieprawidłową wartością flagi odbicia lustrzanego"
 
-#: libgeda/src/object/o_complex_object.c:1156
+#: libgeda/src/object/o_complex_object.c:1173
 msgid "Setting mirror to 0\n"
 msgstr "Przyjmuję 'odbity' równe 0\n"
 
