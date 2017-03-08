@@ -152,7 +152,13 @@ int check_object (void)
     result++;
   }
 
+  GedaBus *bus = (GedaBus*)object->bus;
+
+  geda_object_add_weak_ptr (object, (void*)&bus);
+
   geda_object_weak_ref (object, weak_notify_func, &notified);
+
+  geda_object_remove_weak_ptr (object, &bus);
 
   notified = 0;
 
@@ -160,6 +166,11 @@ int check_object (void)
 
   if (!notified) {
     fprintf(stderr, "Failed: %s to notify GedaBus <%d>\n", TOBJECT, __LINE__);
+    result++;
+  }
+
+  if (!bus) {
+    fprintf(stderr, "Failed: %s remove_weak_ptr <%d>\n", TOBJECT, __LINE__);
     result++;
   }
 
