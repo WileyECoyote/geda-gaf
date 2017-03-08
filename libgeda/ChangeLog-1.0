@@ -4,6 +4,8 @@
 
     * po/zh_TW.po: Update Chinese traditional translations.
 
+    * tests/test_keyfile.c: Add check for geda_keyfile_set_value.
+
 2017-03-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/uk.po: Update Ukrainian translations.

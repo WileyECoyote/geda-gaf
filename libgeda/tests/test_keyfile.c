@@ -80,8 +80,8 @@ const char key_data[] = "[G1]\nT1=A\n[G2]\nT1=B\nT2=C\nT3=D\n";
  *      KF0814    geda_keyfile_get_keys
  *      KF0816    geda_keyfile_has_group
  *      KF0817    geda_keyfile_has_key
- *       KF0818    geda_keyfile_get_value
- *       KF0819    geda_keyfile_set_value
+ *      KF0818    geda_keyfile_get_value
+ *      KF0819    geda_keyfile_set_value
  *       KF0820    geda_keyfile_get_string
  *       KF0821    geda_keyfile_set_string
  *       KF0822    geda_keyfile_get_locale_string
@@ -771,10 +771,28 @@ int check_data (void)
 
     if (err) {
       g_error_free (err);
+      err = NULL;
     }
 
     /* === Function 19: geda_keyfile_set_value === */
 
+    geda_keyfile_set_value (keyfile,"G1", "T1", "E");
+
+    string = geda_keyfile_get_value (keyfile, "G1", "T1", &err);
+
+    if (!string) {
+      fprintf(stderr, "FAILED: (KF081901A) get_value, no value\n");
+      result++;
+    }
+    else if (strcmp(string, "E")) {
+      fprintf(stderr, "FAILED: (KF081901B) get_value, value=%s\n", string);
+      result++;
+    }
+
+    if (err) {
+      g_error_free (err);
+      err = NULL;
+    }
   }
 
   geda_keyfile_free(keyfile);
