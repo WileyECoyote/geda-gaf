@@ -793,6 +793,26 @@ int check_data (void)
       g_error_free (err);
       err = NULL;
     }
+
+    /* === Function 20: geda_keyfile_get_string === */
+
+    string = geda_keyfile_get_string(keyfile, "G1", "T1", &err);
+
+    if (!string) {
+      fprintf(stderr, "FAILED: (KF082001A) get_value, no value\n");
+      result++;
+    }
+    else if (strcmp(string, "E")) {
+      fprintf(stderr, "FAILED: (KF082001B) get_value, value=%s\n", string);
+      result++;
+    }
+
+    g_free (string);
+
+    if (err) {
+      g_error_free (err);
+      err = NULL;
+    }
   }
 
   geda_keyfile_free(keyfile);
