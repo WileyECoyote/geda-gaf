@@ -647,9 +647,6 @@ geda_object_weakref_notify (GedaObject *object)
  *  When \a GedaObject is destroyed, the \a notify_func will be called
  *  with two arguments: the \a GedaObject, and the \a user_data.
  *
- * \note This function is for legacy purposes; since GedaObject is
- *       now a GObject, just use g_object_weak_ref instead!
- *
  * \sa object_weak_unref
  *
  * \param [in,out] object     GedaObject  to weak-reference.
@@ -669,9 +666,6 @@ void geda_object_weak_ref (GedaObject *object, WeakNotifyFunc notify_func, void 
  * \brief Remove a weak reference watcher from a GedaObject.
  * \par Function Description
  *  Removes the weak reference callback \a notify_func from \a GedaObject.
- *
- * \note This function is for legacy purposes; since GedaObject is
- *       now a GObject, just use g_object_weak_unref instead!
  *
  * \param [in,out] object      GedaObject to remove weak-reference function.
  * \param [in]     notify_func Notify function to search for.
