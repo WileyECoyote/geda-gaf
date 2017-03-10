@@ -82,8 +82,8 @@ const char key_data[] = "[G1]\nT1=A\n[G2]\nT1=B\nT2=C\nT3=D\n";
  *      KF0817    geda_keyfile_has_key
  *      KF0818    geda_keyfile_get_value
  *      KF0819    geda_keyfile_set_value
- *       KF0820    geda_keyfile_get_string
- *       KF0821    geda_keyfile_set_string
+ *      KF0820    geda_keyfile_get_string
+ *      KF0821    geda_keyfile_set_string
  *       KF0822    geda_keyfile_get_locale_string
  *       KF0823    geda_keyfile_set_locale_string
  *       KF0824    geda_keyfile_get_boolean
@@ -816,7 +816,7 @@ int check_data (void)
 
     /* === Function 21: geda_keyfile_set_string === */
 
-    geda_keyfile_set_string (keyfile,"G1", "T1", "F");
+    geda_keyfile_set_string (keyfile,"G1", "T1", "dog");
 
     string = geda_keyfile_get_string (keyfile, "G1", "T1", &err);
 
@@ -824,7 +824,7 @@ int check_data (void)
       fprintf(stderr, "FAILED: (KF082101A) get_value, no value\n");
       result++;
     }
-    else if (strcmp(string, "F")) {
+    else if (strcmp(string, "dog")) {
       fprintf(stderr, "FAILED: (KF082101B) get_value, value=%s\n", string);
       result++;
     }
@@ -832,6 +832,46 @@ int check_data (void)
     if (err) {
       g_error_free (err);
       err = NULL;
+    }
+
+    /* === Function 22: geda_keyfile_set_string === */
+
+    string = geda_keyfile_get_locale_string (keyfile,"G1", "T1", "en", &err);
+
+    if (!string) {
+      fprintf(stderr, "FAILED: (KF082201A) get_value, no value\n");
+      result++;
+    }
+    else if (strcmp(string, "dog")) {
+      fprintf(stderr, "FAILED: (KF082201B) get_value, value=%s\n", string);
+      result++;
+    }
+
+    string = geda_keyfile_get_locale_string (keyfile,"G1", "T1", "X1", &err);
+
+    if (!string) {
+      fprintf(stderr, "FAILED: (KF082201A) get_value, no value\n");
+      result++;
+    }
+    else if (strcmp(string, "dog")) {
+      fprintf(stderr, "FAILED: (KF082201B) get_value, value=%s\n", string);
+      result++;
+    }
+
+    string = geda_keyfile_get_locale_string (keyfile,"G1", "T1", "X1", NULL);
+
+    if (err) {
+      g_error_free (err);
+      err = NULL;
+    }
+
+    if (!string) {
+      fprintf(stderr, "FAILED: (KF082201A) get_value, no value\n");
+      result++;
+    }
+    else if (strcmp(string, "dog")) {
+      fprintf(stderr, "FAILED: (KF082201B) get_value, value=%s\n", string);
+      result++;
     }
 
   }
