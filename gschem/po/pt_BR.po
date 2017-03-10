@@ -2546,16 +2546,15 @@ msgstr "<b>Conteúdo do Texto</b>"
 msgid "<b>Text Properties</b>"
 msgstr "<b>Propriedades do Texto</b>"
 
+# Text input field
 #: gschem/src/x/x_edit_text.c:590
-#, fuzzy
 msgid "Text input field"
-msgstr "Loc. Texto:"
+msgstr "Campo de entrada de texto"
 
-# Text Alignment Attribute
+# Text Alignment combobox
 #: gschem/src/x/x_edit_text.c:594
-#, fuzzy
 msgid "Text alignment combobox"
-msgstr "O atributo de Alinhamento de Texto"
+msgstr "Combinação de alinhamento de texto"
 
 #: gschem/src/x/x_edit_text.c:598
 msgid "Color options menu"
@@ -2609,7 +2608,6 @@ msgid "Save canceled on user request\n"
 msgstr "Salvar cancelado a pedido do usuário\n"
 
 #: gschem/src/x/x_fileselect.c:475
-#, fuzzy
 msgid ""
 "If you load the original file, the backup file will be overwritten in the "
 "next autosave timeout and will be lost.\n"
@@ -2720,37 +2718,30 @@ msgid "Select"
 msgstr "Selecionar"
 
 #: gschem/src/x/x_menus.c:86 gschem/etc/system-gschemrc.scm:2120
-#, fuzzy
 msgid "Activate Select mode"
 msgstr "Modo de Seleção"
 
 #: gschem/src/x/x_menus.c:90
-#, fuzzy
 msgid "Add"
-msgstr "_Adicionar"
+msgstr "Adicionar"
 
 #: gschem/src/x/x_menus.c:90
-#, fuzzy
 msgid "Add modes"
-msgstr "/Inserir Componente..."
+msgstr "Adicionar modos"
 
 #: gschem/src/x/x_menus.c:91 gschem/etc/system-gschemrc.scm:2239
-#, fuzzy
 msgid "Add net"
-msgstr "/Inserir Conexão"
+msgstr "Adicionar fios"
 
 #: gschem/src/x/x_menus.c:92
-#, fuzzy
 msgid "Attribute..."
 msgstr "Atributo..."
 
 #: gschem/src/x/x_menus.c:92 gschem/etc/system-gschemrc.scm:2241
-#, fuzzy
 msgid "Add attribute"
-msgstr "Inserir atributo"
+msgstr "Adicionar atributo"
 
 #: gschem/src/x/x_menus.c:93 gschem/src/x/x_menus.c:112
-#, fuzzy
 msgid "Component..."
 msgstr "Componente..."
 
@@ -2760,14 +2751,12 @@ msgid "Insert a symbol from the component library"
 msgstr "Inserir um símbolo a partir da biblioteca de componentes"
 
 #: gschem/src/x/x_menus.c:94 gschem/etc/system-gschemrc.scm:2240
-#, fuzzy
 msgid "Add bus"
-msgstr "Inserir Barramento"
+msgstr "Adicionar Barramento"
 
 #: gschem/src/x/x_menus.c:95 gschem/etc/system-gschemrc.scm:2242
-#, fuzzy
 msgid "Add text"
-msgstr "Inserir Texto"
+msgstr "Adicionar Texto"
 
 #: gschem/src/x/x_menus.c:99
 #, fuzzy
