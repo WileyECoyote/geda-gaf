@@ -2526,16 +2526,15 @@ msgstr "<b>Conteúdo do texto</b>"
 msgid "<b>Text Properties</b>"
 msgstr "<b>Propriedades do Texto</b>"
 
+# Text input field
 #: gschem/src/x/x_edit_text.c:590
-#, fuzzy
 msgid "Text input field"
-msgstr "Texto a procurar:"
+msgstr "Campo de entrada de texto"
 
-# Text Alignment Attribute
+# Text Alignment combobox
 #: gschem/src/x/x_edit_text.c:594
-#, fuzzy
 msgid "Text alignment combobox"
-msgstr "O atributo de Alinhamento de Texto"
+msgstr "Alinhamento de Texto combobox"
 
 #: gschem/src/x/x_edit_text.c:598
 msgid "Color options menu"
@@ -2584,9 +2583,8 @@ msgid "Overwrite file?"
 msgstr "Sobrepor de arquivo?"
 
 #: gschem/src/x/x_fileselect.c:336
-#, fuzzy
 msgid "Save canceled on user request\n"
-msgstr "Gravação cancelada a pedido do utilizador\n"
+msgstr "Salvar cancelada a pedido do utilizador\n"
 
 #: gschem/src/x/x_fileselect.c:475
 msgid ""
@@ -2695,27 +2693,22 @@ msgid "Select"
 msgstr "Seleccionar"
 
 #: gschem/src/x/x_menus.c:86 gschem/etc/system-gschemrc.scm:2120
-#, fuzzy
 msgid "Activate Select mode"
 msgstr "Seleccionar modo"
 
 #: gschem/src/x/x_menus.c:90
-#, fuzzy
 msgid "Add"
 msgstr "Adicionar"
 
 #: gschem/src/x/x_menus.c:90
-#, fuzzy
 msgid "Add modes"
-msgstr "Adicionar Componente"
+msgstr "Adicionar modos"
 
 #: gschem/src/x/x_menus.c:91 gschem/etc/system-gschemrc.scm:2239
-#, fuzzy
 msgid "Add net"
-msgstr "Adicionar Ligação"
+msgstr "Adicionar fios"
 
 #: gschem/src/x/x_menus.c:92
-#, fuzzy
 msgid "Attribute..."
 msgstr "Atributo..."
 
@@ -2725,7 +2718,6 @@ msgid "Add attribute"
 msgstr "Adicionar atributo"
 
 #: gschem/src/x/x_menus.c:93 gschem/src/x/x_menus.c:112
-#, fuzzy
 msgid "Component..."
 msgstr "Componente..."
 
@@ -2735,12 +2727,10 @@ msgid "Insert a symbol from the component library"
 msgstr "Inserir um símbolo a partir da biblioteca de componentes"
 
 #: gschem/src/x/x_menus.c:94 gschem/etc/system-gschemrc.scm:2240
-#, fuzzy
 msgid "Add bus"
 msgstr "Adicionar Barramento"
 
 #: gschem/src/x/x_menus.c:95 gschem/etc/system-gschemrc.scm:2242
-#, fuzzy
 msgid "Add text"
 msgstr "Adicionar Texto"
 
