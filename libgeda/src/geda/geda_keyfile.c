@@ -2019,15 +2019,23 @@ geda_keyfile_get_locale_string (GedaKeyFile *key_file,
     translated_value = NULL;
   }
 
-  /* Fallback to untranslated key
-   */
+  /* Fallback to untranslated key */
   if (!translated_value) {
 
-    translated_value = geda_keyfile_get_string (key_file, group_name, key,
-                                                &key_file_error);
+    if (error) {
 
-    if (!translated_value)
-      g_propagate_error (error, key_file_error);
+      GError *key_file_error = NULL;
+
+      translated_value = geda_keyfile_get_string (key_file, group_name, key,
+                                                  &key_file_error);
+
+      if (!translated_value) {
+        g_propagate_error (error, key_file_error);
+      }
+    }
+    else {
+      translated_value = geda_keyfile_get_string (key_file,group_name, key, NULL);
+    }
   }
 
 #if GLIB_CHECK_VERSION(2, 28, 0)
