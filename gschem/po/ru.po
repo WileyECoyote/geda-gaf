@@ -2616,17 +2616,15 @@ msgstr "<b>Содержание текста</b>"
 msgid "<b>Text Properties</b>"
 msgstr "<b>Свойства текста</b>"
 
-# Text to find
+# Text input field
 #: gschem/src/x/x_edit_text.c:590
-#, fuzzy
 msgid "Text input field"
-msgstr "Текст для поиска:"
+msgstr "Поле ввода текста"
 
-# Text Alignment Attribute
+# Text Alignment combobox
 #: gschem/src/x/x_edit_text.c:594
-#, fuzzy
 msgid "Text alignment combobox"
-msgstr "Выравнивание текста Атрибут"
+msgstr "Выравнивание текста Поле со списком"
 
 #: gschem/src/x/x_edit_text.c:598
 msgid "Color options menu"
@@ -2673,24 +2671,22 @@ msgstr "Перезаписать"
 msgid "Overwrite file?"
 msgstr "Перезаписать файл?"
 
+# Saving is canceled by the user's command
 #: gschem/src/x/x_fileselect.c:336
-#, fuzzy
 msgid "Save canceled on user request\n"
 msgstr "Сохранение отменено по команде пользователя\n"
 
 #: gschem/src/x/x_fileselect.c:475
-#, fuzzy
 msgid ""
 "If you load the original file, the backup file will be overwritten in the "
 "next autosave timeout and will be lost.\n"
 "\n"
 "Do you want to load the backup file?"
 msgstr ""
-"\n"
 "Если загрузить оригинальный файл, файл резервной копии будет перезаписан при "
 "следующем автоматическом сохранении и будет утрачен.\n"
 "\n"
-"Загрузить файл резервной копии?\n"
+"Загрузить файл резервной копии?"
 
 # Warning, Error reading image file
 #: gschem/src/x/x_icons.c:251
@@ -2791,34 +2787,29 @@ msgstr ""
 msgid "Select"
 msgstr "Выделение"
 
+# Activate Select mode
 #: gschem/src/x/x_menus.c:86 gschem/etc/system-gschemrc.scm:2120
-#, fuzzy
 msgid "Activate Select mode"
-msgstr "Режим выделения"
+msgstr "Активировать режим выбора"
 
 #: gschem/src/x/x_menus.c:90
-#, fuzzy
 msgid "Add"
 msgstr "Добавить"
 
 #: gschem/src/x/x_menus.c:90
-#, fuzzy
 msgid "Add modes"
-msgstr "Добавить компонент"
+msgstr "Добавить режим"
 
 # Контекстное меню, вызываемое по правой кнопке в основном окне.
 #: gschem/src/x/x_menus.c:91 gschem/etc/system-gschemrc.scm:2239
-#, fuzzy
 msgid "Add net"
 msgstr "Добавить соединение"
 
 #: gschem/src/x/x_menus.c:92
-#, fuzzy
 msgid "Attribute..."
 msgstr "Атрибут..."
 
 #: gschem/src/x/x_menus.c:92 gschem/etc/system-gschemrc.scm:2241
-#, fuzzy
 msgid "Add attribute"
 msgstr "Добавить атрибут"
 
@@ -2833,24 +2824,20 @@ msgid "Insert a symbol from the component library"
 msgstr "Вставить символ из библиотека компонентов"
 
 #: gschem/src/x/x_menus.c:94 gschem/etc/system-gschemrc.scm:2240
-#, fuzzy
 msgid "Add bus"
 msgstr "Добавить шину"
 
 #: gschem/src/x/x_menus.c:95 gschem/etc/system-gschemrc.scm:2242
-#, fuzzy
 msgid "Add text"
 msgstr "Добавить текст"
 
 #: gschem/src/x/x_menus.c:99
-#, fuzzy
 msgid "Zoom"
 msgstr "Увеличить"
 
 #: gschem/src/x/x_menus.c:99
-#, fuzzy
 msgid "Add operations"
-msgstr "Добавить вывод"
+msgstr "Добавить операции"
 
 #: gschem/src/x/x_menus.c:100 gschem/src/x/x_menus.c:152
 msgid "In"
@@ -2862,9 +2849,8 @@ msgid "Increase the Zoom magnification"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:101 gschem/src/x/x_menus.c:153
-#, fuzzy
 msgid "Out"
-msgstr "Вырезать"
+msgstr "Вне"
 
 #: gschem/src/x/x_menus.c:101 gschem/src/x/x_menus.c:153
 #: gschem/etc/system-gschemrc.scm:2187
@@ -2880,9 +2866,8 @@ msgid "Zoom to a Windowed region"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:103 gschem/src/x/x_menus.c:154
-#, fuzzy
 msgid "Extents"
-msgstr "Уместить в окне"
+msgstr "Уместить"
 
 #: gschem/src/x/x_menus.c:103 gschem/src/x/x_menus.c:154
 #: gschem/etc/system-gschemrc.scm:2185
@@ -2898,28 +2883,26 @@ msgid "Zoom to a specified level"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:105 gschem/etc/system-gschemrc.scm:2189
-#, fuzzy
 msgid "Zoom to selected objects"
-msgstr "Выделенные объекты"
+msgstr "Увеличить масштаб до выбранных объектов"
 
 #: gschem/src/x/x_menus.c:109
 msgid "Edit"
 msgstr "Правка"
 
 #: gschem/src/x/x_menus.c:109
-#, fuzzy
 msgid "Edit modes"
-msgstr "<b>Вывод</b>"
+msgstr "Режимы редактирования"
 
 # Object
 #: gschem/src/x/x_menus.c:110
 msgid "Object..."
 msgstr "Объект..."
 
+# Edit Object Attributes
 #: gschem/src/x/x_menus.c:110 gschem/etc/system-gschemrc.scm:2108
-#, fuzzy
 msgid "Edit Object Attributes"
-msgstr "Правка атрибутов"
+msgstr "Редактирование атрибутов объектов"
 
 #: gschem/src/x/x_menus.c:111
 msgid "Color..."
@@ -2934,9 +2917,8 @@ msgid "Open the Component Editor Dialog"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:113
-#, fuzzy
 msgid "Pin type..."
-msgstr "Тип вывода..."
+msgstr "Тип контакта..."
 
 #: gschem/src/x/x_menus.c:113 gschem/etc/system-gschemrc.scm:2111
 msgid "Open the Pin Type Dialog"
