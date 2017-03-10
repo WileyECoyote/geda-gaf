@@ -1,3 +1,10 @@
+2017-03-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_keyfile.c: Add check for:
+
+            * geda_keyfile_get_string
+            * geda_keyfile_set_string
+
 2017-03-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/zh_CN.po: Update Chinese simplified translations.

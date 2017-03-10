@@ -813,6 +813,27 @@ int check_data (void)
       g_error_free (err);
       err = NULL;
     }
+
+    /* === Function 21: geda_keyfile_set_string === */
+
+    geda_keyfile_set_string (keyfile,"G1", "T1", "F");
+
+    string = geda_keyfile_get_string (keyfile, "G1", "T1", &err);
+
+    if (!string) {
+      fprintf(stderr, "FAILED: (KF082101A) get_value, no value\n");
+      result++;
+    }
+    else if (strcmp(string, "F")) {
+      fprintf(stderr, "FAILED: (KF082101B) get_value, value=%s\n", string);
+      result++;
+    }
+
+    if (err) {
+      g_error_free (err);
+      err = NULL;
+    }
+
   }
 
   geda_keyfile_free(keyfile);
