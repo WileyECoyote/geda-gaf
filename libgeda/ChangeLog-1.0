@@ -1,3 +1,7 @@
+2017-03-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_keyfile.c: Add check for geda_keyfile_set_boolean.
+
 2017-03-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_keyfile.c: Revise geda_keyfile_get_locale_string to

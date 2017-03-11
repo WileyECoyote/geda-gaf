@@ -933,6 +933,21 @@ int check_data (void)
       fprintf(stderr, "FAILED: (KF082204B) set_locale_string, value=%s\n", string);
       result++;
     }
+
+    /* === Function 25: geda_keyfile_set_boolean === */
+
+    geda_keyfile_set_boolean (keyfile,"G3", "B0", TRUE);
+
+    if (!geda_keyfile_has_group(keyfile, "G3")) {
+      fprintf(stderr, "FAILED: (KF082501A) set_boolean, value=%s\n", string);
+      result++;
+    }
+
+    char *data;
+
+    data = geda_keyfile_to_data(keyfile, NULL, NULL);
+
+    g_file_set_contents(KEY_FILENAME, data, -1, NULL);
   }
 
   geda_keyfile_free(keyfile);
