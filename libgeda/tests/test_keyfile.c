@@ -781,11 +781,11 @@ int check_data (void)
     string = geda_keyfile_get_value (keyfile, "G1", "T1", &err);
 
     if (!string) {
-      fprintf(stderr, "FAILED: (KF081901A) get_value, no value\n");
+      fprintf(stderr, "FAILED: (KF081901A) set_value, no value\n");
       result++;
     }
     else if (strcmp(string, "E")) {
-      fprintf(stderr, "FAILED: (KF081901B) get_value, value=%s\n", string);
+      fprintf(stderr, "FAILED: (KF081901B) set_value, value=%s\n", string);
       result++;
     }
 
@@ -799,11 +799,11 @@ int check_data (void)
     string = geda_keyfile_get_string(keyfile, "G1", "T1", &err);
 
     if (!string) {
-      fprintf(stderr, "FAILED: (KF082001A) get_value, no value\n");
+      fprintf(stderr, "FAILED: (KF082001A) get_string, no value\n");
       result++;
     }
     else if (strcmp(string, "E")) {
-      fprintf(stderr, "FAILED: (KF082001B) get_value, value=%s\n", string);
+      fprintf(stderr, "FAILED: (KF082001B) get_string, value=%s\n", string);
       result++;
     }
 
@@ -821,11 +821,11 @@ int check_data (void)
     string = geda_keyfile_get_string (keyfile, "G1", "T1", &err);
 
     if (!string) {
-      fprintf(stderr, "FAILED: (KF082101A) get_value, no value\n");
+      fprintf(stderr, "FAILED: (KF082101A) set_string, no value\n");
       result++;
     }
     else if (strcmp(string, "dog")) {
-      fprintf(stderr, "FAILED: (KF082101B) get_value, value=%s\n", string);
+      fprintf(stderr, "FAILED: (KF082101B) set_string, value=%s\n", string);
       result++;
     }
 
@@ -839,11 +839,11 @@ int check_data (void)
     string = geda_keyfile_get_locale_string (keyfile,"G1", "T1", "en", &err);
 
     if (!string) {
-      fprintf(stderr, "FAILED: (KF082201A) get_value, no value\n");
+      fprintf(stderr, "FAILED: (KF082201A) get_locale_string, no value\n");
       result++;
     }
     else if (strcmp(string, "dog")) {
-      fprintf(stderr, "FAILED: (KF082201B) get_value, value=%s\n", string);
+      fprintf(stderr, "FAILED: (KF082201B) get_locale_string, value=%s\n", string);
       result++;
     }
 
@@ -855,11 +855,11 @@ int check_data (void)
     string = geda_keyfile_get_locale_string (keyfile,"G1", "T1", "X1", &err);
 
     if (!string) {
-      fprintf(stderr, "FAILED: (KF0822012A) get_value, no value\n");
+      fprintf(stderr, "FAILED: (KF0822012A) get_locale_string, no value\n");
       result++;
     }
     else if (strcmp(string, "dog")) {
-      fprintf(stderr, "FAILED: (KF082202B) get_value, value=%s\n", string);
+      fprintf(stderr, "FAILED: (KF082202B) get_locale_string, value=%s\n", string);
       result++;
     }
 
@@ -876,11 +876,11 @@ int check_data (void)
     }
 
     if (!string) {
-      fprintf(stderr, "FAILED: (KF082203A) get_value, no value\n");
+      fprintf(stderr, "FAILED: (KF082203A) get_locale_string, no value\n");
       result++;
     }
     else if (strcmp(string, "dog")) {
-      fprintf(stderr, "FAILED: (KF082203B) get_value, value=%s\n", string);
+      fprintf(stderr, "FAILED: (KF082203B) get_locale_string, value=%s\n", string);
       result++;
     }
 
@@ -893,44 +893,44 @@ int check_data (void)
     string = geda_keyfile_get_locale_string (keyfile,"G1", "T1", "en", NULL);
 
     if (!string) {
-      fprintf(stderr, "FAILED: (KF082301A) get_value, no value\n");
+      fprintf(stderr, "FAILED: (KF082301A) set_locale_string, no value\n");
       result++;
     }
     else if (strcmp(string, "dog")) {
-      fprintf(stderr, "FAILED: (KF082301B) get_value, value=%s\n", string);
+      fprintf(stderr, "FAILED: (KF082301B) set_locale_string, value=%s\n", string);
       result++;
     }
 
     string = geda_keyfile_get_locale_string (keyfile,"G1", "T1", "X1", NULL);
 
     if (!string) {
-      fprintf(stderr, "FAILED: (KF082202A) get_value, no value\n");
+      fprintf(stderr, "FAILED: (KF082202A) set_locale_string, no value\n");
       result++;
     }
     else if (strcmp(string, "bark")) {
-      fprintf(stderr, "FAILED: (KF082202B) get_value, value=%s\n", string);
+      fprintf(stderr, "FAILED: (KF082202B) set_locale_string, value=%s\n", string);
       result++;
     }
 
     string = geda_keyfile_get_locale_string (keyfile,"G1", "T1", "X2", NULL);
 
     if (!string) {
-      fprintf(stderr, "FAILED: (KF082203A) get_value, no value\n");
+      fprintf(stderr, "FAILED: (KF082203A) set_locale_string, no value\n");
       result++;
     }
     else if (strcmp(string, "sniff")) {
-      fprintf(stderr, "FAILED: (KF082203B) get_value, value=%s\n", string);
+      fprintf(stderr, "FAILED: (KF082203B) set_locale_string, value=%s\n", string);
       result++;
     }
 
     string = geda_keyfile_get_locale_string (keyfile,"G1", "T1", "X3", NULL);
 
     if (!string) {
-      fprintf(stderr, "FAILED: (KF082204A) get_value, no value\n");
+      fprintf(stderr, "FAILED: (KF082204A) set_locale_string, no value\n");
       result++;
     }
     else if (strcmp(string, "wag")) {
-      fprintf(stderr, "FAILED: (KF082204B) get_value, value=%s\n", string);
+      fprintf(stderr, "FAILED: (KF082204B) set_locale_string, value=%s\n", string);
       result++;
     }
   }
