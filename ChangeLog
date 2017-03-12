@@ -2,6 +2,10 @@
 
     * Makefile.am: Add "without-libintl-prefix" to DISTCHECK_CONFIGURE_FLAGS.
 
+    * geda-gaf/NEWS: update news for release of 2.1.1.1.
+
+    * configure.ac: Bump mutation to 1, date version 20170312
+
 2017-01-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * configure.ac: Add libgedacolor/po/domain.mak.

@@ -7,6 +7,10 @@ Copyright (C) 1998-2017 gEDA Developers
 This file documents important user-visible changes in gEDA/gaf.  For
 more information, please consult the `ChangeLog' file.
 
+Notable changes in gEDA/gaf gEDA 2.1.1.1 - 03/03/12 Rampage Edition
+
+* Additional support for internationalization (i18n).
+
 Notable changes in gEDA/gaf gEDA 2.1.1.0 - 01/01/17 Rampage Edition
 
 * Improvements were made to both the build system and source code to ensure
@@ -20,7 +24,7 @@ Notable changes in gEDA/gaf gEDA 2.1.1.0 - 01/01/17 Rampage Edition
   now includes command-line utilities.
 
 * Extensive revisions have been made to improve performance of gEDA application.
-  This is particular noticeable in gschem.
+  This is particularly noticeable in gschem.
 
 * A new library, libgedacolor, now unifies color management for the gEDA suite.
   Color-maps are still configured using scheme files, but the use of "friendly-
