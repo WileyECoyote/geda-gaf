@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gaf\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-27 22:12-0600\n"
+"POT-Creation-Date: 2017-03-12 01:09-0600\n"
 "PO-Revision-Date: 2014-08-31 20:24+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers\n"
@@ -212,6 +212,7 @@ msgstr "Faalde om bestandenmap te wijzigen naar"
 #: gaf/src/export.c:381
 msgid "ERROR"
 msgstr "FOUT"
+
 #: gaf/src/export.c:1098
 #, c-format
 msgid ""

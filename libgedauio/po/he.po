@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-01-25 01:50-0600\n"
+"POT-Creation-Date: 2017-03-12 01:09-0600\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -18,52 +18,52 @@ msgstr ""
 "X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
 "X-Generator: Launchpad (build 16265)\n"
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:449
+#: libgedauio/src/dialogs/geda_file_chooser.c:459
 #: libgedauio/src/dialogs/geda_image_chooser.c:1025
 msgid "Set or retrieve index of the filter combo"
 msgstr ""
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:450
+#: libgedauio/src/dialogs/geda_file_chooser.c:460
 #: libgedauio/src/dialogs/geda_image_chooser.c:1026
 msgid "IDE_FILTER"
 msgstr ""
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:613
+#: libgedauio/src/dialogs/geda_file_chooser.c:644
 #: libgedauio/src/dialogs/geda_image_chooser.c:1173
 msgid "_Open"
 msgstr "לִפְתוֹחַ"
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:614
+#: libgedauio/src/dialogs/geda_file_chooser.c:645
 #: libgedauio/src/dialogs/geda_image_chooser.c:1174
 msgid "Open..."
 msgstr "לִפְתוֹחַ..."
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:618
+#: libgedauio/src/dialogs/geda_file_chooser.c:649
 #: libgedauio/src/dialogs/geda_image_chooser.c:1178
 msgid "_Save"
 msgstr "להציל"
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:619
+#: libgedauio/src/dialogs/geda_file_chooser.c:650
 #: libgedauio/src/dialogs/geda_image_chooser.c:1179
 msgid "Save As..."
 msgstr "שמור כ..."
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:623
+#: libgedauio/src/dialogs/geda_file_chooser.c:654
 #: libgedauio/src/dialogs/geda_image_chooser.c:1183
 msgid "_Select Folder..."
 msgstr "בחר תיקייה..."
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:624
+#: libgedauio/src/dialogs/geda_file_chooser.c:655
 #: libgedauio/src/dialogs/geda_image_chooser.c:1184
 msgid "Select Folder"
 msgstr "בחר תיקייה"
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:628
+#: libgedauio/src/dialogs/geda_file_chooser.c:659
 #: libgedauio/src/dialogs/geda_image_chooser.c:1188
 msgid "OOPS"
 msgstr ""
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:634
+#: libgedauio/src/dialogs/geda_file_chooser.c:665
 #: libgedauio/src/dialogs/geda_image_chooser.c:1193
 msgid "_Cancel"
 msgstr "לְבַטֵל"
@@ -206,7 +206,7 @@ msgid "Whether the combo box draws a frame around the child"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_combobox.c:2139
-#: libgedauio/src/widgets/geda_menu_button.c:1201
+#: libgedauio/src/widgets/geda_menu_button.c:1204
 msgid "Focus on click"
 msgstr ""
 
@@ -317,7 +317,7 @@ msgid "Whether to activate the default widget when Enter is pressed"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_entry.c:642
-#: libgedauio/src/widgets/geda_label.c:1419
+#: libgedauio/src/widgets/geda_label.c:1388
 msgid "Attributes"
 msgstr "מאפיינים"
 
@@ -581,7 +581,7 @@ msgid "Boolean value indicating whether the toolbar is attached or detached."
 msgstr ""
 
 #: libgedauio/src/widgets/geda_image_menu_item.c:413
-#: libgedauio/src/widgets/geda_menu_button.c:1228
+#: libgedauio/src/widgets/geda_menu_button.c:1231
 msgid "Image widget"
 msgstr ""
 
@@ -590,7 +590,7 @@ msgid "Child widget to appear next to the menu text"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_image_menu_item.c:426
-#: libgedauio/src/widgets/geda_menu_button.c:1193
+#: libgedauio/src/widgets/geda_menu_button.c:1196
 msgid "Use stock"
 msgstr ""
 
@@ -614,249 +614,249 @@ msgstr ""
 msgid "The Accel Group to use for stock accelerator keys"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1412
-#: libgedauio/src/widgets/geda_label.c:1793
-#: libgedauio/src/widgets/geda_menu_button.c:1185
+#: libgedauio/src/widgets/geda_label.c:1381
+#: libgedauio/src/widgets/geda_label.c:1762
+#: libgedauio/src/widgets/geda_menu_button.c:1188
 msgid "Label"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1413
+#: libgedauio/src/widgets/geda_label.c:1382
 msgid "The text of the label"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1420
+#: libgedauio/src/widgets/geda_label.c:1389
 msgid "List of style attributes to apply to the text of the label"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1426
+#: libgedauio/src/widgets/geda_label.c:1395
 msgid "Use markup"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1427
+#: libgedauio/src/widgets/geda_label.c:1396
 msgid "The text of the label includes XML markup. See pango_parse_markup()"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1433
+#: libgedauio/src/widgets/geda_label.c:1402
 msgid "Use underline"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1434
+#: libgedauio/src/widgets/geda_label.c:1403
 msgid ""
 "If set, underline in text indicates the next character is mnemonic for "
 "accelerator key"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1439
+#: libgedauio/src/widgets/geda_label.c:1408
 msgid "Justification"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1440
+#: libgedauio/src/widgets/geda_label.c:1409
 msgid ""
 "The alignment of the lines in the text of the label relative to each other. "
 "This does NOT affect the alignment of the label within its allocation. See "
 "GtkMisc::xalign for that"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1447
+#: libgedauio/src/widgets/geda_label.c:1416
 msgid "Pattern"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1448
+#: libgedauio/src/widgets/geda_label.c:1417
 msgid ""
 "A string with _ characters in positions correspond to characters in the text "
 "to underline"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1454
+#: libgedauio/src/widgets/geda_label.c:1423
 #, fuzzy
 msgid "Line wrap"
 msgstr "קו"
 
-#: libgedauio/src/widgets/geda_label.c:1455
+#: libgedauio/src/widgets/geda_label.c:1424
 msgid "If set, wrap lines if the text becomes too wide"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1469
+#: libgedauio/src/widgets/geda_label.c:1438
 msgid "Line wrap mode"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1470
+#: libgedauio/src/widgets/geda_label.c:1439
 msgid "If wrap is set, controls how line wrapping is done"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1477
+#: libgedauio/src/widgets/geda_label.c:1446
 #, fuzzy
 msgid "Selectable"
 msgstr "מצב בחירה"
 
-#: libgedauio/src/widgets/geda_label.c:1478
+#: libgedauio/src/widgets/geda_label.c:1447
 msgid "Whether the label text can be selected with the mouse"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1484
+#: libgedauio/src/widgets/geda_label.c:1453
 msgid "Mnemonic key"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1485
+#: libgedauio/src/widgets/geda_label.c:1454
 msgid "The mnemonic accelerator key for this label"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1493
+#: libgedauio/src/widgets/geda_label.c:1462
 msgid "Mnemonic widget"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1494
+#: libgedauio/src/widgets/geda_label.c:1463
 msgid "The widget to be activated when the label's mnemonic key is pressed"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1501
+#: libgedauio/src/widgets/geda_label.c:1470
 msgid "Cursor Position"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1502
+#: libgedauio/src/widgets/geda_label.c:1471
 msgid "The current position of the insertion cursor in chars"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1510
+#: libgedauio/src/widgets/geda_label.c:1479
 #, fuzzy
 msgid "Selection Bound"
 msgstr "מצב בחירה"
 
-#: libgedauio/src/widgets/geda_label.c:1511
+#: libgedauio/src/widgets/geda_label.c:1480
 msgid ""
 "The position of the opposite end of the selection from the cursor in chars"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1536
+#: libgedauio/src/widgets/geda_label.c:1505
 msgid "Ellipsize"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1537
+#: libgedauio/src/widgets/geda_label.c:1506
 msgid "The preferred place to break the string, if an ellipsis is needed"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1555
+#: libgedauio/src/widgets/geda_label.c:1524
 msgid "Width In Characters"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1556
+#: libgedauio/src/widgets/geda_label.c:1525
 msgid "The desired width of the label, in characters"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1574
+#: libgedauio/src/widgets/geda_label.c:1543
 msgid "Single-Line Mode"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1575
+#: libgedauio/src/widgets/geda_label.c:1544
 msgid "Whether the label is in single-line mode"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1590
+#: libgedauio/src/widgets/geda_label.c:1559
 msgid "Angle"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1591
+#: libgedauio/src/widgets/geda_label.c:1560
 msgid "Angle of rotation of the label"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1611
+#: libgedauio/src/widgets/geda_label.c:1580
 msgid "Maximum Width In Characters"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1612
+#: libgedauio/src/widgets/geda_label.c:1581
 msgid "The desired maximum width of the label, in characters"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1629
+#: libgedauio/src/widgets/geda_label.c:1598
 msgid "Track visited links"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1630
+#: libgedauio/src/widgets/geda_label.c:1599
 msgid "Whether visited links should be tracked"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:6609
+#: libgedauio/src/widgets/geda_label.c:5228
 msgid "_Open Link"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:6621
+#: libgedauio/src/widgets/geda_label.c:5240
 msgid "Copy _Link Address"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1178
+#: libgedauio/src/widgets/geda_menu_button.c:1181
 msgid "Menu"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1179
+#: libgedauio/src/widgets/geda_menu_button.c:1182
 msgid "The drop-down menu"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1186
+#: libgedauio/src/widgets/geda_menu_button.c:1189
 msgid ""
 "Text of the label widget inside the button, if the button contains a label "
 "widget"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1194
+#: libgedauio/src/widgets/geda_menu_button.c:1197
 msgid ""
 "If set, the label is used to pick a stock item instead of being displayed"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1202
+#: libgedauio/src/widgets/geda_menu_button.c:1205
 msgid "Whether the button grabs focus when it is clicked with the mouse"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1209
+#: libgedauio/src/widgets/geda_menu_button.c:1212
 msgid "Border relief"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1210
+#: libgedauio/src/widgets/geda_menu_button.c:1213
 msgid "The border relief style"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1218
+#: libgedauio/src/widgets/geda_menu_button.c:1221
 msgid "Arrow Border relief"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1219
+#: libgedauio/src/widgets/geda_menu_button.c:1222
 msgid "The arrow border relief style"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1229
+#: libgedauio/src/widgets/geda_menu_button.c:1232
 msgid "Child widget to appear next to the button text"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1237
+#: libgedauio/src/widgets/geda_menu_button.c:1240
 msgid "Image position"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1238
+#: libgedauio/src/widgets/geda_menu_button.c:1241
 msgid "The position of the image relative to the text"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1252
+#: libgedauio/src/widgets/geda_menu_button.c:1255
 msgid "Default Spacing"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1253
+#: libgedauio/src/widgets/geda_menu_button.c:1256
 msgid "Extra space to add for GTK_CAN_DEFAULT buttons"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1266
+#: libgedauio/src/widgets/geda_menu_button.c:1269
 msgid "Default Outside Spacing"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1267
+#: libgedauio/src/widgets/geda_menu_button.c:1270
 msgid ""
 "Extra space to add for GTK_CAN_DEFAULT buttons that is always drawn outside "
 "the border"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1277
+#: libgedauio/src/widgets/geda_menu_button.c:1280
 msgid "Inner Border"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1278
+#: libgedauio/src/widgets/geda_menu_button.c:1281
 msgid "Border between button edges and child."
 msgstr ""
 
@@ -873,4 +873,13 @@ msgstr ""
 #: libgedauio/src/widgets/geda_toggle_action.c:234
 #: libgedauio/src/widgets/geda_toggle_action.c:235
 msgid "Multikey Accelerator"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_toolbar.c:207
+#, fuzzy
+msgid "Font Size"
+msgstr "גודל מחוון"
+
+#: libgedauio/src/widgets/geda_toolbar.c:208
+msgid "Set point size of the font for child widgets"
 msgstr ""
