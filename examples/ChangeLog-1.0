@@ -1,3 +1,11 @@
+2017-03-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gTAG/sch: Updated connectors and regenerated BOM and test outputs.
+
+        * gTAG/sch/gTAG-consio.sch: Updated CONN2 (connector4-1.sym) position.
+
+        * gTAG/sch/gTAG-jtagio.sch: Updated CONN4 (connector8-1.sym) position.
+
 2016-09-29 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * gTAG/sch/gTAG-jtagio.sch: WEH: Modified per commit to Master branch
