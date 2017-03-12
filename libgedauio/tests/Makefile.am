@@ -56,7 +56,7 @@ noinst_PROGRAMS = \
 
 EXTRA_DIST = \
     test-suite.h \
-	print_xpm.h
+	print_xpm.h \
 	prop-editor.h \
 	file-chooser-test-dir/empty \
 	file-chooser-test-dir/text.txt

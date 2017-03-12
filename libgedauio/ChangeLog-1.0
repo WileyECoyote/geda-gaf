@@ -1,3 +1,7 @@
+2017-03-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/Makefile.am: Fixed missing line continuation.
+
 2017-03-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_label.h: Reorganize header.
