@@ -300,6 +300,7 @@ check_methods ()
   func = "geda_menu_bar_hide_mnemonics";
 
   geda_menu_bar_hide_mnemonics ((GedaMenuBar*)menu_bar1);
+  geda_menu_bar_show_mnemonics ((GedaMenuBar*)menu_bar2);
 
   label = geda_menu_item_get_label_widget ((GedaMenuItem*)widget00);
 

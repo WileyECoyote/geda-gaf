@@ -5,6 +5,9 @@
 
     * tests/Makefile.am: Fixed missing line continuation.
 
+    * tests/test_menu_bar.c: Revise checks for show/hide mnemonics to ensure
+      mnemonics on the second bar are in a known state.
+
 2017-03-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_label.h: Reorganize header.
