@@ -2292,6 +2292,8 @@ GtkWidget *geda_visible_mnemonic_label_new (const char *str)
  *  This is the same as geda_label_new with alignments.
  *
  * \param [in] str The text of the label, can be NULL.
+ * \param [in] x   Horizontal alignment factor, from 0 (left) to 1 (right).
+ * \param [in] y   Vertical alignment factor, from 0 (top) to 1 (bottom).
  *
  * \return new #GedaLabel with alignment set.
  */
@@ -2313,6 +2315,8 @@ GtkWidget *geda_aligned_label_new (const char *str, float x, float y)
  *  GedaLabel is set visible.
  *
  * \param [in] str The text of the label, can be NULL.
+ * \param [in] x   Horizontal alignment factor, from 0 (left) to 1 (right).
+ * \param [in] y   Vertical alignment factor, from 0 (top) to 1 (bottom).
  *
  * \return new #GedaLabel with alignment and visible property set true.
  */
@@ -2335,6 +2339,8 @@ GtkWidget *geda_aligned_visible_label_new (const char *str, float x, float y)
  *  This is the same as geda_mnemonic_label_new with alignment.
  *
  * \param [in] str The text of the label with undescore or can be NULL.
+ * \param [in] x   Horizontal alignment factor, from 0 (left) to 1 (right).
+ * \param [in] y   Vertical alignment factor, from 0 (top) to 1 (bottom).
  *
  * \return new #GedaLabel with alignment and mnemonic label
  */
@@ -2356,6 +2362,8 @@ GtkWidget *geda_aligned_mnemonic_label_new (const char *str, float x, float y)
  *  that the GedaLabel is set visible..
  *
  * \param [in] str The text of the label with undescore or can be NULL.
+ * \param [in] x   Horizontal alignment factor, from 0 (left) to 1 (right).
+ * \param [in] y   Vertical alignment factor, from 0 (top) to 1 (bottom).
  *
  * \return new #GedaLabel with alignment and mnemonic label annd visible set.
  */
@@ -6151,7 +6159,7 @@ geda_label_set_mnemonic_visible (GedaLabel *label, bool state)
  *  a container then the setting is applied to all sub-object of
  *  \a widget.
  *
- * \param [in] label             Pointer to a GedaLabel object
+ * \param [in] widget            Pointer to a GedaLabel object
  * \param [in] mnemonics_visible Visible if TRUE, otherwise FALSE
  *
  * \internal
@@ -6159,7 +6167,7 @@ geda_label_set_mnemonic_visible (GedaLabel *label, bool state)
  */
 void
 geda_label_set_mnemonics_visible_recursive (GtkWidget *widget,
-                                                bool       mnemonics_visible)
+                                            bool       mnemonics_visible)
 {
   if (GEDA_IS_LABEL(widget)) {
     mnemonics_visible_apply (widget, mnemonics_visible);
@@ -6179,7 +6187,7 @@ geda_label_set_mnemonics_visible_recursive (GtkWidget *widget,
  *  Retrieves the target of the mnemonic (keyboard shortcut) of this
  *  label. See geda_label_set_mnemonic_widget().
  *
- * \param [in] label    The GedaLabel object
+ * \param [in] label  The GedaLabel object
  *
  * \returns Target of the label's mnemonic, or %NULL if none has been set
  *          and the default algorithm will be used.

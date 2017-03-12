@@ -1,5 +1,8 @@
 2017-03-12 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_label.c: Update Doxygen documentation for function
+      arguments.
+
     * tests/Makefile.am: Fixed missing line continuation.
 
 2017-03-02 Wiley E. Hill <wileyhill@gmail.com>
