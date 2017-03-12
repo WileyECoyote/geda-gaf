@@ -1,3 +1,7 @@
+2017-03-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Makefile.am: Add "without-libintl-prefix" to DISTCHECK_CONFIGURE_FLAGS.
+
 2017-01-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * configure.ac: Add libgedacolor/po/domain.mak.

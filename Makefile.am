@@ -30,7 +30,9 @@ false=/bin/sh -c '! :'
 DISTCHECK_CONFIGURE_FLAGS = \
 				GIT="$(false)" \
 				GROFF="$(false)" \
-				--disable-update-xdg-database
+				--disable-update-xdg-database \
+                --without-libintl-prefix \
+				--without-included-gettext
 
 BUILT_SOURCES = version.h
 
