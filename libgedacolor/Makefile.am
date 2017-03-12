@@ -1,7 +1,7 @@
 
 SUBDIRS = po docs include etc src tests
 
-EXTRA_DIST = BUGS README ChangeLog ChangeLog-1.0 po/domain.mak
+EXTRA_DIST = BUGS README ChangeLog ChangeLog-1.0 po/domain.mak.in
 
 pkgconfigdir         = $(libdir)/pkgconfig
 pkgconfig_DATA       = libgedacolor.pc
