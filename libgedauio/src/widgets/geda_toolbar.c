@@ -117,16 +117,30 @@ geda_toolbar_finalize (GObject *object)
   G_OBJECT_CLASS (geda_toolbar_parent_class)->finalize (object);
 }
 
+/* widget_class->realize */
+static void
+geda_toolbar_box_realize (GtkWidget *widget)
+{
+  GTK_WIDGET_CLASS (geda_toolbar_parent_class)->realize (widget);
+  gdk_window_set_type_hint (widget->window, GDK_WINDOW_TYPE_HINT_TOOLBAR);
+}
+
 static void
 geda_toolbar_class_init(void *class, void *class_data)
 {
   /*  (GedaToolbarClass *class) */
-  GObjectClass *object_class = G_OBJECT_CLASS (class);
-  GParamSpec   *params;
+  GObjectClass   *object_class;
+  GtkWidgetClass *widget_class;
+  GParamSpec     *params;
+
+  object_class = (GObjectClass*)class;
+  widget_class = (GtkWidgetClass*)class;
 
   object_class->finalize     = geda_toolbar_finalize;
   object_class->set_property = geda_toolbar_set_property;
   object_class->get_property = geda_toolbar_get_property;
+
+  widget_class->realize      = geda_toolbar_box_realize;
 
   geda_toolbar_parent_class = g_type_class_peek_parent (class);
 

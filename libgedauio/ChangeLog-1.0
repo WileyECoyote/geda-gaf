@@ -1,3 +1,8 @@
+2017-03-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_toolbar.c: Over-ride widget-realize and set window
+      type hint GDK_WINDOW_TYPE_HINT_TOOLBAR.
+
 2017-03-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_label.c: Update Doxygen documentation for function
