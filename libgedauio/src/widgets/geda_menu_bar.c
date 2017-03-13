@@ -1154,7 +1154,7 @@ geda_menu_bar_instance_init (GTypeInstance *instance, void *class)
 {
   GedaMenuBar *menu_bar = (GedaMenuBar*)instance;
 
-  menu_bar->priv          = GEDA_MEM_ALLOC0 (sizeof(GedaMenuBarPrivate));
+  menu_bar->priv = GEDA_MEM_ALLOC0 (sizeof(GedaMenuBarPrivate));
 
   if (!menu_bar_hash) {
     menu_bar_hash = g_hash_table_new (g_direct_hash, NULL);
