@@ -55,6 +55,9 @@
 
 #endif  /* G_OS_WIN23 */
 
+/*! Size of input buffer when reading files */
+#define KF_BUFFER_SIZE 128
+
 /** \defgroup geda-keyfile GedaKeyFile
  * @{
  * \brief Implmentation module for #GedaKeyFile
@@ -154,13 +157,14 @@ typedef struct _GedaKeyFileGroup GedaKeyFileGroup;
  */
 struct _GedaKeyFile
 {
-  GList *groups;
+  GList      *groups;
   GHashTable *group_hash;
 
   GedaKeyFileGroup *start_group;
   GedaKeyFileGroup *current_group;
 
-  GString *parse_buffer; /* Holds up to one line of not-yet-parsed data */
+  char *parse_buffer; /* Holds up to one line of not-yet-parsed data */
+  size_t buffer_size;
 
   char list_separator;
 
@@ -310,7 +314,8 @@ geda_keyfile_init (GedaKeyFile *key_file)
   key_file->groups         = g_list_prepend (NULL, key_file->current_group);
   key_file->group_hash     = g_hash_table_new (g_str_hash, g_str_equal);
   key_file->start_group    = NULL;
-  key_file->parse_buffer   = g_string_sized_new (128);
+  key_file->parse_buffer   = GEDA_MEM_ALLOC0 (KF_BUFFER_SIZE);
+  key_file->buffer_size    = KF_BUFFER_SIZE;
   key_file->list_separator = ';';
   key_file->flags = 0;
   key_file->locales = g_strdupv ((char **)g_get_language_names ());
@@ -327,10 +332,8 @@ geda_keyfile_clear (GedaKeyFile *key_file)
     key_file->locales = NULL;
   }
 
-  if (key_file->parse_buffer) {
-    g_string_free (key_file->parse_buffer, TRUE);
-    key_file->parse_buffer = NULL;
-  }
+  GEDA_FREE (key_file->parse_buffer);
+  key_file->buffer_size= 0;
 
   tmp = key_file->groups;
 
@@ -1126,37 +1129,39 @@ key_get_locale (const char *key)
 }
 
 static void
-geda_keyfile_parse_data (GedaKeyFile *key_file,
-                         const char  *data,
+geda_keyfile_parse_data (GedaKeyFile  *key_file,
+                         const char   *data,
                          unsigned int  length,
-                         GError     **error)
+                         GError      **error)
 {
-  GError *parse_error;
   unsigned int  i;
 
   g_return_if_fail (key_file != NULL);
   g_return_if_fail (data != NULL || length == 0);
-
-  parse_error = NULL;
 
   i = 0;
   while (i < length) {
 
     if (data[i] == '\n') {
 
-      if (key_file->parse_buffer->len > 0 &&
-         (key_file->parse_buffer->str[key_file->parse_buffer->len - 1] == '\r'))
-      {
-        g_string_erase (key_file->parse_buffer,
-                        key_file->parse_buffer->len - 1,
-                        1);
+      GError *parse_error;
+      char   *buffer;
+
+      buffer      = key_file->parse_buffer;
+      parse_error = NULL;
+      size_t len  = strlen(buffer);
+
+      if (len > 0 && (buffer[len - 1] == '\r')) {
+        buffer[len - 1] = '\0';
       }
+
+      len = strlen(buffer);
 
       /* When a newline is encountered flush the parse buffer so that the
        * line can be parsed.  Note that completely blank lines won't show
        * up in the parse buffer, so they get parsed directly.
        */
-      if (key_file->parse_buffer->len > 0) {
+      if (len > 0) {
         geda_keyfile_flush_parse_buffer (key_file, &parse_error);
       }
       else {
@@ -1171,8 +1176,8 @@ geda_keyfile_parse_data (GedaKeyFile *key_file,
     }
     else {
 
-      const char *start_of_line;
-      const char *end_of_line;
+      const char   *start_of_line;
+      const char   *end_of_line;
       unsigned int  line_length;
 
       start_of_line = data + i;
@@ -1184,7 +1189,19 @@ geda_keyfile_parse_data (GedaKeyFile *key_file,
 
       line_length = end_of_line - start_of_line;
 
-      g_string_append_len (key_file->parse_buffer, start_of_line, line_length);
+      if (line_length > key_file->buffer_size) {
+
+        char *buffer = (char*)realloc(key_file->parse_buffer, line_length);
+
+        if (buffer) {
+          key_file->parse_buffer = buffer;
+          key_file->buffer_size = line_length;
+        }
+        else {
+          line_length = key_file->buffer_size - 1; /* Out of Memory */
+        }
+      }
+      strncpy(key_file->parse_buffer, start_of_line, line_length);
       i += line_length;
     }
   }
@@ -1197,12 +1214,13 @@ geda_keyfile_flush_parse_buffer (GedaKeyFile *key_file, GError **error)
 
   file_error = NULL;
 
-  if (key_file->parse_buffer->len > 0) {
+  if (key_file->parse_buffer && *key_file->parse_buffer) {
 
-    geda_keyfile_parse_line (key_file, key_file->parse_buffer->str,
-                             key_file->parse_buffer->len,
+    geda_keyfile_parse_line (key_file, key_file->parse_buffer,
+                             strlen(key_file->parse_buffer),
                              &file_error);
-    g_string_erase (key_file->parse_buffer, 0, -1);
+
+    memset(key_file->parse_buffer, 0, key_file->buffer_size);
 
     if (file_error) {
       g_propagate_error (error, file_error);
