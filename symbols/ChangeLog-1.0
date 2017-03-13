@@ -1,3 +1,11 @@
+2017-03-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/opamps/LMV931MF-N-1.sym: Add LMV931 symbol; 1.8 Volt RRIO Operational
+      Amplifier in SOT26 package.
+
+    * ti/opamps/LMV931MF-N-2.sym: Add alternate LMV931 symbol with reversed input
+      orientation.
+
 2017-03-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/generic: Add description attribute for 10-1 thru 19-1.
