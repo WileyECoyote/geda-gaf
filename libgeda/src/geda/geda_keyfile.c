@@ -1195,8 +1195,6 @@ geda_keyfile_flush_parse_buffer (GedaKeyFile *key_file, GError **error)
 {
   GError *file_error = NULL;
 
-  g_return_if_fail (key_file != NULL);
-
   file_error = NULL;
 
   if (key_file->parse_buffer->len > 0) {
