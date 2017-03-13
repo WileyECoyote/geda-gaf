@@ -1,5 +1,7 @@
 2017-03-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/geda_widgets.h: Include geda_toolbar.h.
+
     * src/widgets/geda_menu_shell.c: Revise geda_menu_shell_update_mnemonics
       to not use gtk_widget_get_toplevel; set the state of the mnemonics on
       bars more directly with geda_menu_bar_show/hide_mnemonics, otherwise
