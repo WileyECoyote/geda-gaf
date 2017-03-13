@@ -458,6 +458,7 @@ geda_real_menu_shell_deactivate (GedaMenuShell *menu_shell)
       menu_shell->have_grab = FALSE;
       gtk_grab_remove (GTK_WIDGET (menu_shell));
     }
+
     if (menu_shell->have_xgrab) {
 
       GdkDisplay *display = gtk_widget_get_display (GTK_WIDGET (menu_shell));
@@ -2158,11 +2159,8 @@ geda_menu_shell_update_mnemonics (GedaMenuShell *menu_shell)
   while (target) {
 
     GedaMenuShellPriv *priv = target->priv;
-    GtkWidget         *toplevel;
 
     bool mnemonics_visible;
-
-    toplevel = gtk_widget_get_toplevel (GTK_WIDGET (target));
 
     /* The idea with keyboard mode is that once you start using
      * the keyboard to navigate the menus, we show mnemonics
@@ -2190,14 +2188,22 @@ geda_menu_shell_update_mnemonics (GedaMenuShell *menu_shell)
      * not in the entire window.
      */
     if (GEDA_IS_MENU_BAR (target)) {
-
-      gtk_window_set_mnemonics_visible (GTK_WINDOW (toplevel), FALSE);
-
+      if (mnemonics_visible) {
+        geda_menu_bar_hide_mnemonics  (GEDA_MENU_BAR (target));
+      }
+      else {
+        geda_menu_bar_show_mnemonics (GEDA_MENU_BAR (target));
+      }
       geda_label_set_mnemonics_visible_recursive (GTK_WIDGET (target),
-                                                      mnemonics_visible);
+                                                  mnemonics_visible);
     }
-    else {
-      gtk_window_set_mnemonics_visible (GTK_WINDOW (toplevel), mnemonics_visible);
+    else if (GEDA_IS_MENU (target)) {
+
+      GtkWidget *toplevel = geda_menu_get_toplevel (GEDA_MENU (target));
+
+      if (GTK_IS_WINDOW (toplevel)) {
+        gtk_window_set_mnemonics_visible (GTK_WINDOW (toplevel), mnemonics_visible);
+      }
     }
 
     if (target->active_menu_item || priv->in_unselectable_item)

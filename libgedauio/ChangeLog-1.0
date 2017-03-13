@@ -1,5 +1,10 @@
 2017-03-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_menu_shell.c: Revise geda_menu_shell_update_mnemonics
+      to not use gtk_widget_get_toplevel; set the state of the mnemonics on
+      bars more directly with geda_menu_bar_show/hide_mnemonics, otherwise
+      use geda_menu_get_toplevel if target is a menu.
+
     * src/widgets/geda_toolbar.c: Over-ride widget-realize and set window
       type hint GDK_WINDOW_TYPE_HINT_TOOLBAR.
 
