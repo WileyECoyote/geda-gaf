@@ -2,7 +2,7 @@
 
     * src/geda/geda_keyfile.c: Remove superfluous check for NULL pointer
       to keyfile object in static function. Replace GString with simple
-      dynamic allocation.
+      dynamic allocation. Reduce scope of fd in geda_keyfile_load_from_file.
 
 2017-03-11 Wiley E. Hill <wileyhill@gmail.com>
 

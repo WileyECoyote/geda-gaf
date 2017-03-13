@@ -591,7 +591,6 @@ geda_keyfile_load_from_file (GedaKeyFile       *key_file,
                              GError           **error)
 {
   bool result;
-  int  fd;
 
   g_return_val_if_fail (file != NULL, FALSE);
 
@@ -600,6 +599,8 @@ geda_keyfile_load_from_file (GedaKeyFile       *key_file,
     result = FALSE;
   }
   else {
+
+    int  fd;
 
     fd = g_open (file, O_RDONLY, 0);
 
