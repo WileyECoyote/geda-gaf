@@ -150,7 +150,7 @@ geda_toolbar_class_init(void *class, void *class_data)
                            _("Set point size of the font for child widgets"), /* hint / blurb */
                               6,  /* Min value */
                               96, /* Max value */
-                              8,  /* default_value */
+                              10,  /* default_value */
                              (G_PARAM_READWRITE));
 
   gtk_widget_class_install_style_property (widget_class, params);
