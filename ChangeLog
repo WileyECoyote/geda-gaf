@@ -1,3 +1,9 @@
+2017-03-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda/geda_toolbars.h: Switch macros ENUM_TOOLBAR_BUTTON,
+      GEDA_TOOLBAR_BUTTON, and TOOLBAR_GSCHEM_RADIO_ELEMENT to use
+      GedaToolbar API.
+
 2017-03-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * Makefile.am: Add "without-libintl-prefix" to DISTCHECK_CONFIGURE_FLAGS.

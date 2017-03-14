@@ -191,7 +191,7 @@ typedef struct
 /* --------------------------- 3rd Level -------------------------------- */
 #define ENUM_TOOLBAR_BUTTON(bar, icon, button, txt, tip, priv, func, data) \
    g_object_set (icon, "visible", TRUE, NULL); \
-   button = gtk_toolbar_append_item( GTK_TOOLBAR(bar), txt, \
+   button = geda_toolbar_append_item(GEDA_TOOLBAR(bar), txt, \
                                      tip, priv, \
                                      GTK_WIDGET(icon), /* GtkWidget */ \
                                      GTK_SIGNAL_FUNC(func), \
@@ -199,7 +199,7 @@ typedef struct
 
 #define GEDA_TOOLBAR_BUTTON(bar, icon, button, txt, tip, priv, func, data) \
    g_object_set (icon, "visible", TRUE, NULL); \
-   button = gtk_toolbar_append_item( GTK_TOOLBAR(bar), txt, \
+   button = geda_toolbar_append_item(GEDA_TOOLBAR(bar), txt, \
                                      tip, priv, \
                                      GTK_WIDGET(icon), /* GtkWidget */ \
                                      GTK_SIGNAL_FUNC(func), \
@@ -219,9 +219,9 @@ typedef struct
    TOOLBAR_GSCHEM_RADIO_ELEMENT ( bar##_Toolbar, name##_ICN, var, grp, name, func, data)
 
 #define TOOLBAR_GSCHEM_RADIO_ELEMENT( bar, icon, var, grp, name, func, data) \
-   var = gtk_toolbar_append_element(GTK_TOOLBAR(bar), \
-                                    GTK_TOOLBAR_CHILD_RADIOBUTTON, \
-                                    grp, \
+   var = geda_toolbar_append_element(GEDA_TOOLBAR(bar), \
+                                     GTK_TOOLBAR_CHILD_RADIOBUTTON, \
+                                     grp, \
                                    _(TB_LABEL (name)), \
                                    _(TB_TOOLTIP (name)), \
                                      TB_ACTION(name), \
