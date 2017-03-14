@@ -144,16 +144,15 @@ geda_toolbar_class_init(void *class, void *class_data)
 
   geda_toolbar_parent_class = g_type_class_peek_parent (class);
 
+  params = g_param_spec_int ("font-size",
+                           _("Font Size"), /* nick name */
+                           _("Set point size of the font for child widgets"), /* hint / blurb */
+                              6,  /* Min value */
+                              96, /* Max value */
+                              8,  /* default_value */
+                             (G_PARAM_READWRITE));
 
-  params = g_param_spec_int ("orientation",
-                             "orientation",
-                             "either horizontal or vertical",
-                              0,
-                              1,
-                              1,
-                              G_PARAM_READWRITE);
-
-   g_object_class_install_property (object_class, PROP_ORIENTATION, params);
+  gtk_widget_class_install_style_property (widget_class, params);
 }
 
 static void
