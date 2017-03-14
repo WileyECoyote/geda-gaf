@@ -1,7 +1,12 @@
 2017-03-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_toolbar.c: Remove orientation property. Add widget
-      style property "font-size" and include gettext.h for hint/blurb.
+      style property "font-size" and include gettext.h for hint/blurb. Add
+      functions:
+
+        * geda_toolbar_append_element
+        * geda_toolbar_append_item
+        * geda_toolbar_append_widget
 
 2017-03-13 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -228,6 +228,68 @@ is_a_geda_toolbar (GedaToolbar *toolbar)
   return FALSE;
 }
 
+/* Any element type */
+GtkWidget*
+geda_toolbar_append_element (GedaToolbar        *toolbar,
+                             GtkToolbarChildType type,
+                             GtkWidget          *widget,
+                             const char         *text,
+                             const char         *tooltip_text,
+                             const char         *tooltip_private_text,
+                             GtkWidget          *icon,
+                             GCallback           callback,
+                             void               *user_data)
+{
+  GtkWidget *element;
+
+  element = gtk_toolbar_append_element(GTK_TOOLBAR(toolbar), type,
+                                       widget,
+                                       text,
+                                       tooltip_text,
+                                       tooltip_private_text,
+                                       GTK_WIDGET(icon), \
+                                       (GtkSignalFunc) callback,
+                                       user_data);
+
+  return element;
+}
+
+/* Simple button items */
+GtkWidget*
+geda_toolbar_append_item (GedaToolbar     *toolbar,
+                          const char      *text,
+                          const char      *tooltip_text,
+                          const char      *tooltip_private_text,
+                          GtkWidget       *icon,
+                          GCallback        callback,
+                          void            *user_data)
+{
+  GtkWidget *button;
+
+  button = gtk_toolbar_append_item (GTK_TOOLBAR(toolbar), text,
+                                    tooltip_text, tooltip_private_text,
+                                    GTK_WIDGET(icon),
+                                    GTK_SIGNAL_FUNC(callback),
+                                    user_data);
+
+  return button;
+}
+
+/* Generic Widgets */
+void
+geda_toolbar_append_widget (GedaToolbar *bar,
+                            GtkWidget   *widget,
+                            const char  *tip_text,
+                            const char  *tip_private)
+{
+  if (GTK_IS_WIDGET(widget)) {
+
+    bar->children = g_list_append(bar->children, widget);
+
+    gtk_toolbar_append_widget (GTK_TOOLBAR(bar), widget, tip_text, tip_private);
+  }
+}
+
 /*!
  * \brief Create New GedaToolbar
  * \par Function Description
