@@ -1214,9 +1214,7 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
   /* toolbar will be horizontal, with both icons and text, and with
    * 5 pixel spaced between items and put it into our handlebox */
 
-  Standard_Toolbar = gtk_toolbar_new ();
-
-  SET_TOOLBAR_ORIENTATION (Standard_Toolbar, HORIZONTAL);
+  Standard_Toolbar = geda_toolbar_new (GTK_ORIENTATION_HORIZONTAL);
 
   gtk_container_set_border_width (GTK_CONTAINER  (Standard_Toolbar), 0);
   gtk_container_add              (GTK_CONTAINER  (w_current->standard_handlebox), Standard_Toolbar);
@@ -1263,9 +1261,7 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
   w_current->page_handlebox = x_toolbars_get_box_container(w_current);
   GEDA_PACK_TOOLBOX (toolbox_T1, w_current->page_handlebox);
 
-  Page_Toolbar = gtk_toolbar_new ();
-
-  SET_TOOLBAR_ORIENTATION (Page_Toolbar, HORIZONTAL);
+  Page_Toolbar = geda_toolbar_new (GTK_ORIENTATION_HORIZONTAL);
 
   gtk_container_set_border_width (GTK_CONTAINER  (Page_Toolbar), 0);
   gtk_container_add              (GTK_CONTAINER  (w_current->page_handlebox), Page_Toolbar);
@@ -1320,9 +1316,7 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
   w_current->add_handlebox = x_toolbars_get_box_container(w_current);
   GEDA_PACK_TOOLBOX (toolbox_T2, w_current->add_handlebox);
 
-  Add_Toolbar = gtk_toolbar_new ();
-
-  SET_TOOLBAR_ORIENTATION (Add_Toolbar, HORIZONTAL);
+  Add_Toolbar = geda_toolbar_new (GTK_ORIENTATION_HORIZONTAL);
 
   gtk_container_set_border_width (GTK_CONTAINER  (Add_Toolbar), 0);
   gtk_container_add              (GTK_CONTAINER  (w_current->add_handlebox), Add_Toolbar);
@@ -1384,9 +1378,7 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
   /* toolbar will be horizontal, with both icons and text, and with
    * 5pxl spaces between items and put it into our handlebox */
 
-  Select_Toolbar = gtk_toolbar_new ();
-
-  SET_TOOLBAR_ORIENTATION (Select_Toolbar, HORIZONTAL);
+  Select_Toolbar = geda_toolbar_new (GTK_ORIENTATION_HORIZONTAL);
 
   gtk_container_set_border_width (GTK_CONTAINER  (Select_Toolbar), 0);
   gtk_container_add              (GTK_CONTAINER  (w_current->select_handlebox), Select_Toolbar);
@@ -1405,21 +1397,19 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
   w_current->zoom_handlebox = x_toolbars_get_box_container(w_current);
   GEDA_PACK_TOOLBOX (toolbox_T2, w_current->zoom_handlebox);
 
-  Zoom_Toolbar = gtk_toolbar_new ();
-
-  SET_TOOLBAR_ORIENTATION (Zoom_Toolbar, HORIZONTAL);
+  Zoom_Toolbar = geda_toolbar_new (GTK_ORIENTATION_HORIZONTAL);
 
   gtk_container_set_border_width (GTK_CONTAINER (Zoom_Toolbar), 0);
   gtk_container_add              (GTK_CONTAINER (w_current->zoom_handlebox), Zoom_Toolbar);
 
-  GSCHEM_TOOLBAR_BUTTON( Zoom, etb_view_redraw);
-  GSCHEM_TOOLBAR_BUTTON( Zoom, etb_zoom_pan);
-  GSCHEM_TOOLBAR_BUTTON( Zoom, etb_zoom_box);
-  GSCHEM_TOOLBAR_BUTTON( Zoom, etb_zoom_select);
-  GSCHEM_TOOLBAR_BUTTON( Zoom, etb_zoom_extents);
-  GSCHEM_TOOLBAR_BUTTON( Zoom, etb_zoom_in);
-  GSCHEM_TOOLBAR_BUTTON( Zoom, etb_zoom_out);
-  GSCHEM_TOOLBAR_BUTTON( Zoom, etb_zoom_all);
+  GSCHEM_TOOLBAR_BUTTON (Zoom, etb_view_redraw);
+  GSCHEM_TOOLBAR_BUTTON (Zoom, etb_zoom_pan);
+  GSCHEM_TOOLBAR_BUTTON (Zoom, etb_zoom_box);
+  GSCHEM_TOOLBAR_BUTTON (Zoom, etb_zoom_select);
+  GSCHEM_TOOLBAR_BUTTON (Zoom, etb_zoom_extents);
+  GSCHEM_TOOLBAR_BUTTON (Zoom, etb_zoom_in);
+  GSCHEM_TOOLBAR_BUTTON (Zoom, etb_zoom_out);
+  GSCHEM_TOOLBAR_BUTTON (Zoom, etb_zoom_all);
 
   g_object_set (Zoom_Toolbar, "visible", TRUE, NULL);
 
@@ -1463,36 +1453,34 @@ x_toolbars_init_left(GschemToplevel *w_current, GtkWidget *parent_container)
   w_current->edit_handlebox = x_toolbars_get_box_container(w_current);
   GEDA_PACK_TOOLBOX (toolbox_L1, w_current->edit_handlebox);
 
-  Edit_Toolbar = gtk_toolbar_new ();
-
-  SET_TOOLBAR_ORIENTATION (Edit_Toolbar, VERTICAL);
+  Edit_Toolbar = geda_toolbar_new (GTK_ORIENTATION_VERTICAL);
 
   gtk_container_set_border_width (GTK_CONTAINER  (Edit_Toolbar), 0);
   gtk_container_add              (GTK_CONTAINER  (w_current->edit_handlebox), Edit_Toolbar);
 
-  GSCHEM_TOOLBAR_BUTTON( Edit, etb_edit_copy);
-  GSCHEM_TOOLBAR_BUTTON( Edit, etb_multi_copy);
-  GSCHEM_TOOLBAR_BUTTON( Edit, etb_move);
-  GSCHEM_TOOLBAR_BUTTON( Edit, etb_mirror);
-  GSCHEM_TOOLBAR_BUTTON( Edit, etb_rotate);
+  GSCHEM_TOOLBAR_BUTTON (Edit, etb_edit_copy);
+  GSCHEM_TOOLBAR_BUTTON (Edit, etb_multi_copy);
+  GSCHEM_TOOLBAR_BUTTON (Edit, etb_move);
+  GSCHEM_TOOLBAR_BUTTON (Edit, etb_mirror);
+  GSCHEM_TOOLBAR_BUTTON (Edit, etb_rotate);
 
   gtk_toolbar_append_space (GTK_TOOLBAR(Edit_Toolbar));
 
-  GSCHEM_TOOLBAR_BUTTON( Edit, etb_edit_butes);
-  GSCHEM_TOOLBAR_BUTTON( Edit, etb_edit_color);
+  GSCHEM_TOOLBAR_BUTTON (Edit, etb_edit_butes);
+  GSCHEM_TOOLBAR_BUTTON (Edit, etb_edit_color);
 
   gtk_toolbar_append_space (GTK_TOOLBAR(Edit_Toolbar));
 
-  GSCHEM_TOOLBAR_BUTTON( Edit, etb_edit_text);
-  GSCHEM_TOOLBAR_BUTTON( Edit, etb_edit_slot);
-  GSCHEM_TOOLBAR_BUTTON( Edit, etb_edit_pin);
-  GSCHEM_TOOLBAR_BUTTON( Edit, etb_edit_line);
-  GSCHEM_TOOLBAR_BUTTON( Edit, etb_edit_fill);
-  GSCHEM_TOOLBAR_BUTTON( Edit, etb_edit_arc);
-  GSCHEM_TOOLBAR_BUTTON( Edit, etb_translate);
-  GSCHEM_TOOLBAR_BUTTON( Edit, etb_lock);
-  GSCHEM_TOOLBAR_BUTTON( Edit, etb_unlock);
-  GSCHEM_TOOLBAR_BUTTON( Edit, etb_update);
+  GSCHEM_TOOLBAR_BUTTON (Edit, etb_edit_text);
+  GSCHEM_TOOLBAR_BUTTON (Edit, etb_edit_slot);
+  GSCHEM_TOOLBAR_BUTTON (Edit, etb_edit_pin);
+  GSCHEM_TOOLBAR_BUTTON (Edit, etb_edit_line);
+  GSCHEM_TOOLBAR_BUTTON (Edit, etb_edit_fill);
+  GSCHEM_TOOLBAR_BUTTON (Edit, etb_edit_arc);
+  GSCHEM_TOOLBAR_BUTTON (Edit, etb_translate);
+  GSCHEM_TOOLBAR_BUTTON (Edit, etb_lock);
+  GSCHEM_TOOLBAR_BUTTON (Edit, etb_unlock);
+  GSCHEM_TOOLBAR_BUTTON (Edit, etb_update);
 
   ANY_OBJECT_LIST   = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_edit_copy  ));
   ANY_OBJECT_LIST   = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_multi_copy ));
@@ -1554,9 +1542,7 @@ x_toolbars_init_bottom(GschemToplevel *w_current, GtkWidget *parent_container)
   w_current->attribute_handlebox = x_toolbars_get_box_container(w_current);
   GEDA_PACK_TOOLBOX (toolbox_B1,  w_current->attribute_handlebox);
 
-  Attribute_Toolbar = gtk_toolbar_new ();
-
-  SET_TOOLBAR_ORIENTATION (Attribute_Toolbar, HORIZONTAL);
+  Attribute_Toolbar = geda_toolbar_new (GTK_ORIENTATION_HORIZONTAL);
 
   gtk_container_set_border_width (GTK_CONTAINER  (Attribute_Toolbar), 0);
   gtk_container_add              (GTK_CONTAINER  (w_current->attribute_handlebox), Attribute_Toolbar);
@@ -1600,9 +1586,7 @@ x_toolbars_init_bottom(GschemToplevel *w_current, GtkWidget *parent_container)
   w_current->grid_snap_handlebox = x_toolbars_get_box_container(w_current);
   GEDA_PACK_TOOLBOX (toolbox_B1, w_current->grid_snap_handlebox);
 
-  GripSnap_Toolbar = gtk_toolbar_new ();
-
-  SET_TOOLBAR_ORIENTATION (GripSnap_Toolbar, HORIZONTAL);
+  GripSnap_Toolbar = geda_toolbar_new (GTK_ORIENTATION_HORIZONTAL);
 
   gtk_container_set_border_width (GTK_CONTAINER  (GripSnap_Toolbar), 0);
   gtk_container_add              (GTK_CONTAINER  (w_current->grid_snap_handlebox), GripSnap_Toolbar);
