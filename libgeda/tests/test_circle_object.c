@@ -664,7 +664,9 @@ check_serialization (void)
       g_object_unref (object1);
 
       if (strcmp (buffer0, buffer1)) {
-        fprintf(stderr, "FAILED: (O052201B) %s buffer mismatch\n", TOBJECT);
+        fprintf(stderr, "FAILED: (O062201B) %s buffer mismatch\n", TOBJECT);
+        fprintf(stderr, "buffer0=%s\n", buffer0);
+        fprintf(stderr, "buffer1=%s\n", buffer1);
         result++;
         break;
       }

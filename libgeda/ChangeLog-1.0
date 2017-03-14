@@ -1,3 +1,13 @@
+2017-03-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests: Revise check_serialization to show buffers when mismatched:
+
+            * tests/test_arc_object.c
+            * tests/test_box_object.c
+            * tests/test_bus_object.c
+            * tests/test_circle_object.c
+            * tests/test_line_object.c
+
 2017-03-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_keyfile.c: Remove superfluous check for NULL pointer

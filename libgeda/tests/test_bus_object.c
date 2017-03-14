@@ -480,6 +480,8 @@ check_serialization (void)
 
       if (strcmp (buffer0, buffer1)) {
         fprintf(stderr, "FAILED: (O052201B) %s buffer mismatch\n", TOBJECT);
+        fprintf(stderr, "buffer0=%s\n", buffer0);
+        fprintf(stderr, "buffer1=%s\n", buffer1);
         result++;
         break;
       }
