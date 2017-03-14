@@ -37,6 +37,7 @@
 #include <geda/geda_standard.h>
 
 #include "../../include/geda_toolbar.h"
+#include "../../include/gettext.h"
 
 /**
  * \brief GedaToolbar - A Seperator for Menus and Toolbars

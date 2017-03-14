@@ -1,7 +1,7 @@
 2017-03-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_toolbar.c: Remove orientation property. Add widget
-      style property "font-size".
+      style property "font-size" and include gettext.h for hint/blurb.
 
 2017-03-13 Wiley E. Hill <wileyhill@gmail.com>
 
