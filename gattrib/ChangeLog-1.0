@@ -1,3 +1,7 @@
+2017-03-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_toolbars.c: Replace gtk_toolbar with geda_toolbar.
+
 2017-01-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: Update Afrikaans translations.
@@ -20,7 +24,7 @@
 
     * po/ru.po: Update Russian translations.
 
-    * gattrib/src/s_toplevel.c: Revise attribute delete confirmation message
+    * src/s_toplevel.c: Revise attribute delete confirmation message
       to put the name of the attribute before the word attribute and adjust
       the line wrap.
 

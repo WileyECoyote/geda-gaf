@@ -22,6 +22,7 @@
 
 #include <gtk/gtk.h>
 
+#include <geda_toolbar.h>
 #include <geda/geda_toolbars.h>
 #include <geda_debug.h>
 
@@ -182,10 +183,7 @@ void x_toolbars_init(GtkWidget *parent_container) {
 
   /* toolbar will be horizontal, with both icons and text, and with
    * 5pxl spaces between items and put it into our handlebox */
-
-  Standard_Toolbar = gtk_toolbar_new ();
-
-  SET_TOOLBAR_ORIENTATION (Standard_Toolbar, HORIZONTAL);
+  Standard_Toolbar = geda_toolbar_new (GTK_ORIENTATION_HORIZONTAL);
 
   gtk_toolbar_set_style (GTK_TOOLBAR (Standard_Toolbar), GTK_TOOLBAR_BOTH);
   gtk_container_set_border_width (GTK_CONTAINER (Standard_Toolbar), 0);
@@ -230,10 +228,7 @@ void x_toolbars_init(GtkWidget *parent_container) {
 
   /* toolbar will be horizontal, with both icons and text, and with
    * 5pxl spaces between items and put it into our handlebox */
-
-  Attribute_Toolbar = gtk_toolbar_new ();
-
-  SET_TOOLBAR_ORIENTATION (Attribute_Toolbar, HORIZONTAL);
+  Attribute_Toolbar = geda_toolbar_new (GTK_ORIENTATION_HORIZONTAL);
 
   gtk_toolbar_set_style (GTK_TOOLBAR (Attribute_Toolbar), GTK_TOOLBAR_BOTH);
   gtk_container_set_border_width (GTK_CONTAINER (Attribute_Toolbar), 0);
