@@ -275,7 +275,7 @@ s_check_symbol (SYMCHECK *s_current, const GList *obj_list)
  *
  * \returns TRUE if a string matching \a item is found in \a list
  */
-static bool s_check_list_has_item(char **list , const char *item)
+static bool s_check_list_has_item(char **list, const char *item)
 {
   int cur;
   for (cur = 0; list[cur] != NULL; cur++) {
@@ -295,7 +295,8 @@ static bool s_check_list_has_item(char **list , const char *item)
  *  values containing the character sequence "SPICE" are not
  *  expected to be in the file name.
  *
- * \param [in] device Attribute string to be checked
+ * \param [in] device    Attribute string to be checked
+ * \param [in] s_current Pointer to current s_symcheck data structure
  *
  * \returns TRUE if device value is known
  */
