@@ -11,18 +11,18 @@
 
 ########## styles definitions:
 
-#style "default"
-#{
-#   font = "fixed"
-#   font_name = "sans 8"
-#}
+style "default"
+{
+   font = "fixed"
+   font_name = "sans 8"
+}
 #widget_class "*" style "default"
 
 #old way commented out, still works, but use the above block.
-#style "defaultfont"
-#{
-#  font = "fixed"
-#}
+style "defaultfont"
+{
+  font = "fixed"
+}
 
 style "small"
 {
@@ -82,8 +82,6 @@ style "gschem"
    GschemStatusBar::height      = 4
 
    GtkScale::slider-length      = 23
-   GtkToolButton::icon-spacing  = 4
-
 }
 widget_class "*" style "gschem"
 
@@ -125,8 +123,13 @@ style "scrollbar" {
 ##################
 #    TOOLBARS    #
 ##################
+style "Toolbars"
+{
+  GedaToolbar::font-size = 8
 
-gtk-toolbar   = GTK_TOOLBAR_ICONS
+  GtkToolbar::internal-padding = 0
+}
+gtk-toolbar = GTK_TOOLBAR_ICONS
 
 ###############################################################################
 # The following part of the gtkrc applies the different styles to the widgets.
@@ -134,7 +137,6 @@ gtk-toolbar   = GTK_TOOLBAR_ICONS
 
 # The default style is applied to every widget
 # common default
-#class "GtkWidget"    style "default"
 #class "GtkWidget"    style "defaultfont"
 
 class "GtkFrame"      style "small"
@@ -150,3 +152,4 @@ class "GtkSeparator"  style "wide"
 #class "GtkHScrollbar" style "scrollbar"
 #class "GtkVScrollbar" style "scrollbar"
 
+class "GtkToolbar"  style "Toolbars"
