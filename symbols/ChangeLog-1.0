@@ -1,3 +1,23 @@
+2017-03-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * connector/generic/connectorx-1.sym: Add description attribute for 16-1
+      thru 29-1, reset pin spacing be consistent with dash-2 style:
+
+            * connector/generic/connector16-1.sym
+            * connector/generic/connector17-1.sym
+            * connector/generic/connector18-1.sym
+            * connector/generic/connector19-1.sym
+            * connector/generic/connector20-1.sym
+            * connector/generic/connector21-1.sym
+            * connector/generic/connector22-1.sym
+            * connector/generic/connector23-1.sym
+            * connector/generic/connector24-1.sym
+            * connector/generic/connector25-1.sym
+            * connector/generic/connector26-1.sym
+            * connector/generic/connector27-1.sym
+            * connector/generic/connector28-1.sym
+            * connector/generic/connector29-1.sym
+
 2017-03-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/opamps/LMV931MF-N-1.sym: Add LMV931 symbol; 1.8 Volt RRIO Operational
