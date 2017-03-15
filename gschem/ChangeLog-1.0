@@ -4,6 +4,10 @@
 
     * po/pt_BR.po: Update Brazilian Portuguese translations.
 
+    * src/x/x_toolbars.c: Rename "Component" button to "Library" because
+      lame Gtk equalize the with all other button on the toolbar for the
+      two extra characters and the terminology is consistent with PCB.
+
 2017-03-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_toolbars.c: Replace gtk_toolbar with geda_toolbar.

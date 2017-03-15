@@ -164,7 +164,7 @@ static ToolbarStringData ToolbarStrings[] = {
 
   { ACTION(EDIT_SELECT_ALL),    "Select All", TBTS_EDIT_SELECT_ALL,    "gschem-select-all", TB_ICON_BITMAP, NULL},
   { ACTION(EDIT_INVERT),        "Invert Sel", TBTS_EDIT_INVERT,        "gschem-invert",     TB_ICON_BITMAP, NULL},
-  { ACTION(ADD_COMPONENT),      "Component",  TBTS_ADD_COMPONENT,      "gschem-transistor",  TB_ICON_BITMAP, NULL},
+  { ACTION(ADD_COMPONENT),      "Library",    TBTS_ADD_COMPONENT,      "gschem-transistor",  TB_ICON_BITMAP, NULL},
   { ACTION(ADD_NET),            "Nets",       TBTS_ADD_NET,            "geda-net",          TB_ICON_STOCK, NULL},
   { ACTION(ADD_BUS),            "Bus",        TBTS_ADD_BUS,            "geda-bus",          TB_ICON_STOCK, NULL},
   { ACTION(ADD_ATTRIB),         "Attrib",     TBTS_ADD_ATTRIB,         "insert-attribute",  TB_ICON_STOCK, NULL},
