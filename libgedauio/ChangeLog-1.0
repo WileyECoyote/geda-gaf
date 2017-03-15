@@ -1,3 +1,8 @@
+2017-03-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_toolbar.c: Add function geda_toolbar_setup_label to
+      apply the font size style to toolbar dweller.
+
 2017-03-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_toolbar.c: Remove orientation property. Add widget

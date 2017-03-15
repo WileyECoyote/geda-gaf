@@ -127,6 +127,14 @@ geda_toolbar_box_realize (GtkWidget *widget)
 }
 
 static void
+geda_toolbar_size_request (GtkWidget *widget, GtkRequisition *requisition)
+{
+  //GedaToolbar *toolbar = (GedaToolbar*)widget;
+
+  GTK_WIDGET_CLASS (geda_toolbar_parent_class)->size_request(widget, requisition);
+}
+
+static void
 geda_toolbar_class_init(void *class, void *class_data)
 {
   /*  (GedaToolbarClass *class) */
@@ -142,6 +150,7 @@ geda_toolbar_class_init(void *class, void *class_data)
   object_class->get_property = geda_toolbar_get_property;
 
   widget_class->realize      = geda_toolbar_box_realize;
+  widget_class->size_request = geda_toolbar_size_request;
 
   geda_toolbar_parent_class = g_type_class_peek_parent (class);
 
@@ -211,6 +220,41 @@ GedaType geda_toolbar_get_type (void)
   return geda_toolbar_type;
 }
 
+static void
+geda_toolbar_setup_label(GtkWidget *widget, GedaToolbar *bar)
+{
+  GtkWidget *box;
+  GList *children;
+
+  box = gtk_bin_get_child (GTK_BIN(widget));
+  children = gtk_container_get_children (GTK_CONTAINER(box));
+
+  while (children) {
+
+    GtkWidget *child = children->data;
+
+    if (GTK_IS_LABEL(child)) {
+
+      PangoFontDescription *font_desc;
+      GtkStyle *style;
+      int bar_font_size;
+
+      gtk_widget_style_get (GTK_WIDGET (bar),
+                            "font-size", &bar_font_size,
+                            NULL);
+
+      style     = gtk_widget_get_style(child);
+      font_desc = style->font_desc;
+
+      pango_font_description_set_size (font_desc, bar_font_size * PANGO_SCALE);
+      gtk_widget_modify_font(child, font_desc);
+      gtk_widget_queue_resize_no_redraw(widget);
+      break;
+    }
+    children = children->next;
+  }
+}
+
 /*!
  * \brief Check if an object is a GedaToolbar
  * \par Function Description
@@ -251,6 +295,8 @@ geda_toolbar_append_element (GedaToolbar        *toolbar,
                                        (GtkSignalFunc) callback,
                                        user_data);
 
+  geda_toolbar_setup_label(element, toolbar);
+
   return element;
 }
 
@@ -272,6 +318,8 @@ geda_toolbar_append_item (GedaToolbar     *toolbar,
                                     GTK_SIGNAL_FUNC(callback),
                                     user_data);
 
+  geda_toolbar_setup_label(button, toolbar);
+
   return button;
 }
 
@@ -285,6 +333,8 @@ geda_toolbar_append_widget (GedaToolbar *bar,
   if (GTK_IS_WIDGET(widget)) {
 
     bar->children = g_list_append(bar->children, widget);
+
+    geda_toolbar_setup_label(widget, bar);
 
     gtk_toolbar_append_widget (GTK_TOOLBAR(bar), widget, tip_text, tip_private);
   }
