@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-02-22 02:20-0600\n"
+"POT-Creation-Date: 2017-03-12 01:09-0600\n"
 "PO-Revision-Date: 2012-01-31 12:08+0000\n"
 "Last-Translator: Antonio Augusto Todo Bom Neto <atodobom@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -2759,14 +2759,12 @@ msgid "Add text"
 msgstr "Adicionar Texto"
 
 #: gschem/src/x/x_menus.c:99
-#, fuzzy
 msgid "Zoom"
-msgstr "Zoom maior"
+msgstr "Zoom"
 
 #: gschem/src/x/x_menus.c:99
-#, fuzzy
 msgid "Add operations"
-msgstr "Linha"
+msgstr "Adicionar operações"
 
 #: gschem/src/x/x_menus.c:100 gschem/src/x/x_menus.c:152
 msgid "In"
@@ -2778,9 +2776,8 @@ msgid "Increase the Zoom magnification"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:101 gschem/src/x/x_menus.c:153
-#, fuzzy
 msgid "Out"
-msgstr "Cortar"
+msgstr "Out"
 
 #: gschem/src/x/x_menus.c:101 gschem/src/x/x_menus.c:153
 #: gschem/etc/system-gschemrc.scm:2187
@@ -2796,9 +2793,8 @@ msgid "Zoom to a Windowed region"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:103 gschem/src/x/x_menus.c:154
-#, fuzzy
 msgid "Extents"
-msgstr "/Zoom desenho"
+msgstr "Extensões"
 
 #: gschem/src/x/x_menus.c:103 gschem/src/x/x_menus.c:154
 #: gschem/etc/system-gschemrc.scm:2185
@@ -2810,32 +2806,28 @@ msgid "Mag"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:104 gschem/etc/system-gschemrc.scm:2188
-#, fuzzy
 msgid "Zoom to a specified level"
-msgstr "Selecionar Objetos"
+msgstr "Ampliar para um nível especificado"
 
 #: gschem/src/x/x_menus.c:105 gschem/etc/system-gschemrc.scm:2189
-#, fuzzy
 msgid "Zoom to selected objects"
-msgstr "Selecionar Objetos"
+msgstr "Zoom nos objetos selecionados"
 
 #: gschem/src/x/x_menus.c:109
 msgid "Edit"
 msgstr "Editar"
 
 #: gschem/src/x/x_menus.c:109
-#, fuzzy
 msgid "Edit modes"
-msgstr "Editar Propriedades do Texto"
+msgstr "Modos de edição"
 
 #: gschem/src/x/x_menus.c:110
 msgid "Object..."
 msgstr ""
 
 #: gschem/src/x/x_menus.c:110 gschem/etc/system-gschemrc.scm:2108
-#, fuzzy
 msgid "Edit Object Attributes"
-msgstr "Editar Atributos"
+msgstr "Editar Atributos de Objeto"
 
 #: gschem/src/x/x_menus.c:111
 msgid "Color..."
@@ -2846,14 +2838,12 @@ msgid "Open the Color Editor Dialog"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:112 gschem/etc/system-gschemrc.scm:2114
-#, fuzzy
 msgid "Open the Component Editor Dialog"
-msgstr "Editor de atributo único"
+msgstr "Abra a caixa de diálogo Editor de componentes"
 
 #: gschem/src/x/x_menus.c:113
-#, fuzzy
 msgid "Pin type..."
-msgstr "Preenchimento..."
+msgstr "Tipo de pino..."
 
 #: gschem/src/x/x_menus.c:113 gschem/etc/system-gschemrc.scm:2111
 msgid "Open the Pin Type Dialog"
@@ -2876,9 +2866,8 @@ msgid "Break an object into separate objects"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:119
-#, fuzzy
 msgid "Extend"
-msgstr "/Zoom desenho"
+msgstr "Estender"
 
 #: gschem/src/x/x_menus.c:119 gschem/etc/system-gschemrc.scm:2105
 msgid "Project linear objects to other objects"
@@ -2898,14 +2887,12 @@ msgid "Copy"
 msgstr "Copiar"
 
 #: gschem/src/x/x_menus.c:121 gschem/etc/system-gschemrc.scm:2094
-#, fuzzy
 msgid "Copy selection"
-msgstr "Seleção"
+msgstr "Copiar seleção"
 
 #: gschem/src/x/x_menus.c:122
-#, fuzzy
 msgid "MCopy"
-msgstr "Copiar"
+msgstr "Cópia múltipla"
 
 #: gschem/src/x/x_menus.c:122 gschem/etc/system-gschemrc.scm:2095
 msgid "Make multible copies of selection"
@@ -2916,9 +2903,8 @@ msgid "Move"
 msgstr "Mover"
 
 #: gschem/src/x/x_menus.c:123 gschem/etc/system-gschemrc.scm:2097
-#, fuzzy
 msgid "Move selection"
-msgstr "Seleção"
+msgstr "Mover a seleção"
 
 #: gschem/src/x/x_menus.c:124
 msgid "Mirror"
