@@ -18,6 +18,9 @@
             * connector/generic/connector28-1.sym
             * connector/generic/connector29-1.sym
 
+    * ti/CSD18533Q5A-1.sym: Rename symbol CSD18533QA->CSD18533Q5A and adjust
+      attribute positions.
+
 2017-03-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/opamps/LMV931MF-N-1.sym: Add LMV931 symbol; 1.8 Volt RRIO Operational
