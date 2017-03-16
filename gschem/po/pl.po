@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-02-22 02:20-0600\n"
+"POT-Creation-Date: 2017-03-12 01:09-0600\n"
 "PO-Revision-Date: 2012-02-04 00:18+0000\n"
 "Last-Translator: Krzysztof Kościuszkiewicz <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -630,33 +630,34 @@ msgstr ""
 msgid "Empty buffer"
 msgstr "Schowek jest pusty"
 
+# Offset Mode
 #: gschem/src/iface/i_command.c:1622
-#, fuzzy
 msgid "Offset Mode"
-msgstr "Tryb połączeń"
+msgstr "Tryb niezależny"
 
 #: gschem/src/iface/i_command.c:1623
 msgid "Specify offset distance:"
 msgstr ""
 
+# Zoom Magnification
 #: gschem/src/iface/i_command.c:2204
-#, fuzzy
 msgid "Zoom Magnification"
-msgstr "Powiększ"
+msgstr "Powiększenie"
 
+# Specify new zoom
 #: gschem/src/iface/i_command.c:2204
 msgid "Specify new zoom:"
-msgstr ""
+msgstr "Podać nowy zoom:"
 
+# error
 #: gschem/src/iface/i_command.c:2248
-#, fuzzy
 msgid "error"
-msgstr "Lustrzane odbicie"
+msgstr "Błąd"
 
+# No component selected
 #: gschem/src/iface/i_command.c:2256
-#, fuzzy
 msgid "No component selected\n"
-msgstr "Siatka kropkowana\n"
+msgstr "Nr wybranego podzespołu\n"
 
 #: gschem/src/iface/i_command.c:2801
 msgid "Confirm revert ALL documents"
@@ -672,10 +673,10 @@ msgstr "Szukam źródła"
 msgid "Failed to descend into"
 msgstr "Nie udało się zejść do"
 
+# Hierarchy Error
 #: gschem/src/iface/i_command.c:3025
-#, fuzzy
 msgid "Hierarchy Error"
-msgstr "Hierarchia"
+msgstr "Błąd hierarchii"
 
 # Seeking symbol
 #: gschem/src/iface/i_command.c:3102
@@ -716,15 +717,14 @@ msgstr ""
 msgid "Grid OFF\n"
 msgstr "Siatka: włączona\n"
 
+# Dot grid activated
 #: gschem/src/iface/i_command.c:4269
-#, fuzzy
 msgid "Dot grid activated\n"
-msgstr "Siatka kropkowana\n"
+msgstr "Dot siatki aktywna\n"
 
 #: gschem/src/iface/i_command.c:4270
-#, fuzzy
 msgid "Mesh grid activated\n"
-msgstr "Siatka z linii\n"
+msgstr "Oczka siatki aktywna\n"
 
 #: gschem/src/iface/i_command.c:4349
 msgid "Snap OFF (CAUTION!)\n"
@@ -739,14 +739,12 @@ msgid "Snap back to the grid (CAUTION!)\n"
 msgstr ""
 
 #: gschem/src/iface/i_command.c:4382
-#, fuzzy
 msgid "Rubber band mode is OFF\n"
-msgstr "Uzupełnianie połączeń przy przesuwaniu: włączone \n"
+msgstr "Uzupełnianie połączeń przy przesuwaniu: Wyłączone\n"
 
 #: gschem/src/iface/i_command.c:4385
-#, fuzzy
 msgid "Rubber band mode is ON\n"
-msgstr "Uzupełnianie połączeń przy przesuwaniu: wyłączone\n"
+msgstr "Uzupełnianie połączeń przy przesuwaniu: Włączona\n"
 
 #: gschem/src/iface/i_command.c:4396
 #, fuzzy
