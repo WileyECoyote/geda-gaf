@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gschem\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-02-22 02:20-0600\n"
+"POT-Creation-Date: 2017-03-12 01:09-0600\n"
 "PO-Revision-Date: 2014-08-31 22:35+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -2311,24 +2311,22 @@ msgstr ""
 msgid "No. _Pins:"
 msgstr ""
 
+# Value
 #: gschem/src/x/x_edit_cprop.c:1359
-#, fuzzy
 msgid "_Value:"
 msgstr "Waarde:"
 
 #: gschem/src/x/x_edit_cprop.c:1373
 msgid "_Foot Print:"
-msgstr ""
+msgstr "voetspoor:"
 
 #: gschem/src/x/x_edit_cprop.c:1384
-#, fuzzy
 msgid "Spice Type:"
-msgstr "Arcering Type:"
+msgstr "Simulatie Type:"
 
 #: gschem/src/x/x_edit_cprop.c:1395
-#, fuzzy
 msgid "Model Name:"
-msgstr "Naam:"
+msgstr "Modelnaam:"
 
 #: gschem/src/x/x_edit_cprop.c:1429
 msgid "File name entry of component symbol"
@@ -2358,15 +2356,15 @@ msgstr ""
 msgid "Entry for distribution license of the symbol"
 msgstr ""
 
+# Description of the component
 #: gschem/src/x/x_edit_cprop.c:1475
-#, fuzzy
 msgid "Description of the component"
-msgstr "Toon documentatie voor geselecteerde component"
+msgstr "Beschrijving van de component"
 
+# Link to documentation for this device
 #: gschem/src/x/x_edit_cprop.c:1482
-#, fuzzy
 msgid "Link to documentation for this device"
-msgstr "Geen documentatie gevonden"
+msgstr "Link naar de documentatie voor dit apparaat"
 
 #: gschem/src/x/x_edit_cprop.c:1489
 msgid "Entry for comments"
@@ -2454,9 +2452,8 @@ msgid "*missing*"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:281 gschem/src/x/x_edit_pin.c:293
-#, fuzzy
 msgid "Pin Properties"
-msgstr "Bewerk Tekst Eigenschappen"
+msgstr "pin woningen"
 
 # Invalid Pin Node Type
 #: gschem/src/x/x_edit_pin.c:281
@@ -2468,37 +2465,32 @@ msgid "Ignoring Pin electrical VOID"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:801
-#, fuzzy
 msgid "Pin Properties Editor"
-msgstr "Enkelvoudige Attribuut Bewerking"
+msgstr "pin eigenschappen editor"
 
 #: gschem/src/x/x_edit_pin.c:879
-#, fuzzy
 msgid "Set"
-msgstr "Draad"
+msgstr "set"
 
 #: gschem/src/x/x_edit_pin.c:882
-#, fuzzy
 msgid "Auto"
 msgstr "Automatisch"
 
 #: gschem/src/x/x_edit_pin.c:913
-#, fuzzy
 msgid "Attribute Type List"
-msgstr "Attributen"
+msgstr "Toeschrijven Lijsttype"
 
 #: gschem/src/x/x_edit_pin.c:917
 msgid "Text Alignment Option"
-msgstr ""
+msgstr "tekstuitlijning optie"
 
 #: gschem/src/x/x_edit_pin.c:921
-#, fuzzy
 msgid "Pin Number"
-msgstr "Start nummer:"
+msgstr "Pin Aantal:"
 
 #: gschem/src/x/x_edit_pin.c:925
 msgid "Sequence Number"
-msgstr ""
+msgstr "volgorde aantal"
 
 #: gschem/src/x/x_edit_pin.c:929
 msgid "Pin Label"
@@ -2506,7 +2498,7 @@ msgstr ""
 
 #: gschem/src/x/x_edit_slot.c:162
 msgid "Edit slot number"
-msgstr "Bewerk slot nummer"
+msgstr "Bewerk slot aantal"
 
 #: gschem/src/x/x_edit_slot.c:185
 msgid "Number of slots:"
@@ -2566,15 +2558,13 @@ msgid "<b>Text Properties</b>"
 msgstr "<b>Tekst Eigenschappen</b>"
 
 #: gschem/src/x/x_edit_text.c:590
-#, fuzzy
 msgid "Text input field"
-msgstr "Te vinden tekst:"
+msgstr "Tekstinvoerveld"
 
-# Text Alignment Attribute
+# Text Alignment combobox
 #: gschem/src/x/x_edit_text.c:594
-#, fuzzy
 msgid "Text alignment combobox"
-msgstr "Tekstuitlijning Attribute"
+msgstr "Tekstuitlijning combobox"
 
 #: gschem/src/x/x_edit_text.c:598
 msgid "Color options menu"
@@ -2622,23 +2612,20 @@ msgid "Overwrite file?"
 msgstr "Overschrijf bestand?"
 
 #: gschem/src/x/x_fileselect.c:336
-#, fuzzy
 msgid "Save canceled on user request\n"
 msgstr "Opslaan afgebroken op verzoek van de gebruiker\n"
 
 #: gschem/src/x/x_fileselect.c:475
-#, fuzzy
 msgid ""
 "If you load the original file, the backup file will be overwritten in the "
 "next autosave timeout and will be lost.\n"
 "\n"
 "Do you want to load the backup file?"
 msgstr ""
-"\n"
 "Als je het orginele bestand laad, zal het reserve bestand overschreven "
 "worden in de volgende autosave interval en zal verloren gaan.\n"
 "\n"
-"Wil je het reserve bestand laden ?\n"
+"Wil je het reserve bestand laden ?"
 
 # Warning, Error reading image file
 #: gschem/src/x/x_icons.c:251
