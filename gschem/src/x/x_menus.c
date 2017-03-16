@@ -160,7 +160,8 @@ static PopupEntry path_popup_items[] = {
 
 /* These must be in the same order as ID_GSCHEM_Toolbar in x_toolbars.c */
 const char *IDS_Menu_Toolbar_Toggles[] = {
-  "_Add", "A_ttribute", "_Edit", "_Grid Snap", "_Page", "Se_lect", "_Standard", "_Zoom", /* ToolBar Menu Strings */
+  "_Add", "A_ttribute", "_Edit", "_Grid Snap", "_Page",
+  "Se_lect", "_Standard", "Symbol", "_Zoom", /* ToolBar Menu Strings */
   NULL
 };
 
@@ -816,6 +817,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
       GtkWidget *pagebar_toggle  = geda_check_menu_item_new_with_mnemonic ("_Page");
       GtkWidget *addbar_toggle   = geda_check_menu_item_new_with_mnemonic ("_Add");
       GtkWidget *zoombar_toggle  = geda_check_menu_item_new_with_mnemonic ("_Zoom");
+      GtkWidget *symbar_toggle   = geda_check_menu_item_new_with_mnemonic ("Sym_bol");
       GtkWidget *editbar_toggle  = geda_check_menu_item_new_with_mnemonic ("_Edit");
       GtkWidget *attribar_toggle = geda_check_menu_item_new_with_mnemonic ("Attrib_ute");
       GtkWidget *gridbar_toggle  = geda_check_menu_item_new_with_mnemonic ("_Grid Snap");
@@ -825,6 +827,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
       geda_check_menu_item_set_active((GedaCheckMenuItem*)pagebar_toggle,  TRUE);
       geda_check_menu_item_set_active((GedaCheckMenuItem*)addbar_toggle,   TRUE);
       geda_check_menu_item_set_active((GedaCheckMenuItem*)zoombar_toggle,  TRUE);
+      geda_check_menu_item_set_active((GedaCheckMenuItem*)symbar_toggle,   TRUE);
       geda_check_menu_item_set_active((GedaCheckMenuItem*)editbar_toggle,  TRUE);
       geda_check_menu_item_set_active((GedaCheckMenuItem*)attribar_toggle, TRUE);
       geda_check_menu_item_set_active((GedaCheckMenuItem*)gridbar_toggle,  TRUE);
@@ -835,6 +838,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
       GEDA_OBJECT_SET_DATA(MENU_BAR, pagebar_toggle,  OPT_PageBAR_MENU_PATH);
       GEDA_OBJECT_SET_DATA(MENU_BAR, addbar_toggle,   OPT_ADDBAR_MENU_PATH);
       GEDA_OBJECT_SET_DATA(MENU_BAR, zoombar_toggle,  OPT_ZOOMBAR_MENU_PATH);
+      GEDA_OBJECT_SET_DATA(MENU_BAR, symbar_toggle,   OPT_SYMBAR_MENU_PATH);
       GEDA_OBJECT_SET_DATA(MENU_BAR, editbar_toggle,  OPT_EDITBAR_MENU_PATH);
       GEDA_OBJECT_SET_DATA(MENU_BAR, attribar_toggle, OPT_ATTRBAR_MENU_PATH);
       GEDA_OBJECT_SET_DATA(MENU_BAR, gridbar_toggle,  OPT_GRIDBAR_MENU_PATH);
@@ -844,6 +848,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
       gtk_container_add (GTK_CONTAINER (toggle_menu), pagebar_toggle);
       gtk_container_add (GTK_CONTAINER (toggle_menu), addbar_toggle);
       gtk_container_add (GTK_CONTAINER (toggle_menu), zoombar_toggle);
+      gtk_container_add (GTK_CONTAINER (toggle_menu), symbar_toggle);
       gtk_container_add (GTK_CONTAINER (toggle_menu), editbar_toggle);
       gtk_container_add (GTK_CONTAINER (toggle_menu), attribar_toggle);
       gtk_container_add (GTK_CONTAINER (toggle_menu), gridbar_toggle);
@@ -853,6 +858,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
       gtk_widget_set_tooltip_text(pagebar_toggle, _("Toggle visibility of the Page toolbar"));
       gtk_widget_set_tooltip_text(addbar_toggle,  _("Toggle visibility of the Add toolbar"));
       gtk_widget_set_tooltip_text(zoombar_toggle,  _("Toggle visibility of the Zoom toolbar"));
+      gtk_widget_set_tooltip_text(symbar_toggle,   _("Toggle visibility of the Symbol toolbar"));
       gtk_widget_set_tooltip_text(editbar_toggle,  _("Toggle visibility of the Edit toolbar"));
       gtk_widget_set_tooltip_text(attribar_toggle,  _("Toggle visibility of the Attributes toolbar"));
       gtk_widget_set_tooltip_text(gridbar_toggle,   _("Toggle visibility of the Grid/Snap toolbar"));
@@ -931,6 +937,9 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
                                        w_current);
       g_signal_connect (G_OBJECT(zoombar_toggle), "toggled",
                                        G_CALLBACK(x_window_zoom_toolbar_toggle),
+                                       w_current);
+      g_signal_connect (G_OBJECT(symbar_toggle), "toggled",
+                                       G_CALLBACK(x_window_symbol_toolbar_toggle),
                                        w_current);
       g_signal_connect (G_OBJECT(editbar_toggle), "toggled",
                                        G_CALLBACK(x_window_edit_toolbar_toggle),

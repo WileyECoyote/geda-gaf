@@ -10,6 +10,25 @@
 
     * po/pl.po: Update Polish translations.
 
+    * include/gschem_toplevel.h: Add member symbol_handlebox.
+
+    * include/prototype.h: Declare new func x_window_symbol_toolbar_toggle.
+
+    * include/x_menus.h: Define string menu path OPT_SYMBAR_MENU_PATH.
+
+    * include/x_toolbars.h: Add tb_Symbol to ID_GSCHEM_Toolbar enumeration.
+
+    * src/x/x_menus.c: Add menu string "Symbol" to IDS_Menu_Toolbar_Toggles, and
+      symbar_toggle menu toggle widget.
+
+    * src/x/x_toolbars.c: Break-off translate, lock, unlock, and update actions
+      from the Edit toolbar to a new Symbol toolbar. This reduces the height of
+      the Edit toolbar so the pane fits "lab-top" displays better when both the
+      icon and text is displayed.
+
+    * src/x/x_window.c: Add menu responder x_window_symbol_toolbar_toggle to
+      toggle visibility of the Symbol toolbar.
+
 2017-03-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/gschem-gtkrc: Tweak fonts, add style "Toolbars", mainly to set

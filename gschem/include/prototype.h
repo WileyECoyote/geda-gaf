@@ -958,6 +958,7 @@ void       x_window_edit_toolbar_toggle      (GtkWidget *widget, GschemToplevel 
 void       x_window_page_toolbar_toggle      (GtkWidget *widget, GschemToplevel *w_current);
 void       x_window_standard_toolbar_toggle  (GtkWidget *widget, GschemToplevel *w_current);
 void       x_window_select_toolbar_toggle    (GtkWidget *widget, GschemToplevel *w_current);
+void       x_window_symbol_toolbar_toggle    (GtkWidget *widget, GschemToplevel *w_current);
 void       x_window_zoom_toolbar_toggle      (GtkWidget *widget, GschemToplevel *w_current);
 
 END_DECLS

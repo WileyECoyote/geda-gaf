@@ -62,8 +62,8 @@
    GEDA_TOOLBAR_BUTTON_ATK(bar##_Toolbar, name##_button, TB_TOOLTIP (name), TB_ACTION(name)) \
    g_object_set (name##_button, "visible", TRUE, NULL);
 
-typedef enum { tb_Add,  tb_Attribute, tb_Edit,      tb_Grid_Snap,
-               tb_Page, tb_Select,    tb_Standard,  tb_Zoom
+typedef enum { tb_Add,    tb_Attribute, tb_Edit,   tb_Grid_Snap,  tb_Page,
+               tb_Select, tb_Standard,  tb_Symbol, tb_Zoom
 
 } ID_GSCHEM_Toolbar;
 

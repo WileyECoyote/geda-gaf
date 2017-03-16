@@ -122,7 +122,7 @@ typedef enum  { etb_new, etb_open, etb_save, etb_save_as, etb_close,
 
 /* Important: See IDS_Menu_Toolbar_Toggles in x_menu.c */
 const char* IDS_Toolbar_Names[] = {  /* ToolBar Name Strings */
-  "add-bar", "Attribute", "Edit", "GridSnap", "Page", "Select", "Standard", "Zoom",
+  "add-bar", "Attribute", "Edit", "GridSnap", "Page", "Select", "Standard", "Symbol", "Zoom",
   NULL
 };
 
@@ -754,6 +754,7 @@ x_toolbars_finialize (GschemToplevel *w_current) {
     g_signal_emit_by_name(w_current->page_handlebox,      "child-attached");
     g_signal_emit_by_name(w_current->select_handlebox,    "child-attached");
     g_signal_emit_by_name(w_current->standard_handlebox,  "child-attached");
+    g_signal_emit_by_name(w_current->symbol_handlebox,    "child-attached");
     g_signal_emit_by_name(w_current->zoom_handlebox,      "child-attached");
   }
 
@@ -1441,15 +1442,44 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
 void
 x_toolbars_init_left(GschemToplevel *w_current, GtkWidget *parent_container)
 {
-  GtkWidget *Edit_Toolbar;
+  GtkWidget      *Edit_Toolbar;
+  GtkWidget      *Symbol_Toolbar;
   ToolBarWidgets *bar_widgets;
 
   bar_widgets = g_slist_nth_data (ui_list, w_current->ui_index);
 
-  GtkWidget *toolbox_L1 = gtk_vbox_new (FALSE, 0);
+  GtkWidget *toolbox_L1 = gtk_hbox_new (FALSE, 0);
   GEDA_PACK_TOOLBOX (parent_container, toolbox_L1);
 
+  /* --------- Create and Populate the Symbol Toolbar -------- */
+
+  w_current->symbol_handlebox = x_toolbars_get_box_container(w_current);
+  GEDA_PACK_TOOLBOX (toolbox_L1, w_current->symbol_handlebox);
+
+  Symbol_Toolbar = geda_toolbar_new (GTK_ORIENTATION_VERTICAL);
+
+  gtk_container_set_border_width (GTK_CONTAINER  (Symbol_Toolbar), 0);
+  gtk_container_add              (GTK_CONTAINER  (w_current->symbol_handlebox), Symbol_Toolbar);
+
+  GSCHEM_TOOLBAR_BUTTON (Symbol, etb_translate);
+  GSCHEM_TOOLBAR_BUTTON (Symbol, etb_lock);
+  GSCHEM_TOOLBAR_BUTTON (Symbol, etb_unlock);
+  GSCHEM_TOOLBAR_BUTTON (Symbol, etb_update);
+
+  ANY_OBJECT_LIST   = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_lock   ));
+  ANY_OBJECT_LIST   = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_unlock ));
+  ANY_OBJECT_LIST   = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_update ));
+
+  g_object_set (Symbol_Toolbar, "visible", TRUE, NULL);
+
+  SET_TOOLBAR_ID  (w_current->symbol_handlebox, tb_Symbol);
+  SET_TOOLBAR_WC  (w_current->symbol_handlebox, w_current);
+  x_toolbars_add_closer(w_current, w_current->symbol_handlebox, Symbol_Toolbar);
+
+  TheToolBars = g_slist_append (TheToolBars, Symbol_Toolbar);
+
   /* --------- Create and Populate the Edit Toolbar -------- */
+
   w_current->edit_handlebox = x_toolbars_get_box_container(w_current);
   GEDA_PACK_TOOLBOX (toolbox_L1, w_current->edit_handlebox);
 
@@ -1477,10 +1507,6 @@ x_toolbars_init_left(GschemToplevel *w_current, GtkWidget *parent_container)
   GSCHEM_TOOLBAR_BUTTON (Edit, etb_edit_line);
   GSCHEM_TOOLBAR_BUTTON (Edit, etb_edit_fill);
   GSCHEM_TOOLBAR_BUTTON (Edit, etb_edit_arc);
-  GSCHEM_TOOLBAR_BUTTON (Edit, etb_translate);
-  GSCHEM_TOOLBAR_BUTTON (Edit, etb_lock);
-  GSCHEM_TOOLBAR_BUTTON (Edit, etb_unlock);
-  GSCHEM_TOOLBAR_BUTTON (Edit, etb_update);
 
   ANY_OBJECT_LIST   = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_edit_copy  ));
   ANY_OBJECT_LIST   = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_multi_copy ));
@@ -1499,17 +1525,13 @@ x_toolbars_init_left(GschemToplevel *w_current, GtkWidget *parent_container)
   CAN_HATCH_LIST    = g_slist_append (CAN_HATCH_LIST,  TB_BUTTON ( etb_edit_fill ));
   ANY_OBJECT_LIST   = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_edit_arc  ));
 
-  ANY_OBJECT_LIST   = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_lock   ));
-  ANY_OBJECT_LIST   = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_unlock ));
-  ANY_OBJECT_LIST   = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_update ));
-
   g_object_set (Edit_Toolbar, "visible", TRUE, NULL);
 
   SET_TOOLBAR_ID (w_current->edit_handlebox, tb_Edit);
   SET_TOOLBAR_WC (w_current->edit_handlebox, w_current);
 
-  x_toolbars_add_closer (w_current, w_current->edit_handlebox, Edit_Toolbar );
-  TheToolBars = g_slist_append ( TheToolBars, Edit_Toolbar);
+  x_toolbars_add_closer (w_current, w_current->edit_handlebox, Edit_Toolbar);
+  TheToolBars = g_slist_append (TheToolBars, Edit_Toolbar);
 }
 
 /*!

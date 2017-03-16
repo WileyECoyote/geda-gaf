@@ -75,6 +75,7 @@ struct _GschemToplevel {
   GtkWidget *page_handlebox;
   GtkWidget *select_handlebox;
   GtkWidget *standard_handlebox;
+  GtkWidget *symbol_handlebox;
   GtkWidget *zoom_handlebox;
 
   GSList    *toolbar_mode_grp;   /* Single-linked list of MENU toolbar radios */

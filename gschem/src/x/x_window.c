@@ -1545,6 +1545,22 @@ x_window_select_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 }
 
 /*!
+ * \brief View toggle Symbol toolbar
+ * \par Function Description
+ * This function toggles the visibility of the Symbol toobar.
+ * Note the function actually toggle visibility of the handlebox
+ * containing the toolbar.
+ */
+void
+x_window_symbol_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
+{
+  if (geda_check_menu_item_get_active(GEDA_CHECK_MENU_ITEM(widget)))
+    gtk_widget_show(w_current->symbol_handlebox);
+  else
+    gtk_widget_hide(w_current->symbol_handlebox);
+}
+
+/*!
  * \brief View toogle Zoom toolbar
  * \par Function Description
  * This function toggles the visibility of the Zoom toobar.

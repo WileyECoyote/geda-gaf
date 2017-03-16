@@ -37,6 +37,7 @@
 #define OPT_PageBAR_MENU_PATH  "_View/_Toolbars/_Page"
 #define OPT_ADDBAR_MENU_PATH   "_View/_Toolbars/_Add"
 #define OPT_ZOOMBAR_MENU_PATH  "_View/_Toolbars/_Zoom"
+#define OPT_SYMBAR_MENU_PATH   "_View/_Toolbars/Sym_bol"
 #define OPT_EDITBAR_MENU_PATH  "_View/_Toolbars/_Edit"
 #define OPT_ATTRBAR_MENU_PATH  "_View/_Toolbars/A_ttribute"
 #define OPT_GRIDBAR_MENU_PATH  "_View/_Toolbars/_Grid Snap"
