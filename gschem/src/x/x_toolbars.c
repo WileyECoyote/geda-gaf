@@ -1801,9 +1801,11 @@ x_toolbar_display_horiz(GtkWidget *widget, GschemToplevel *w_current)
 }
 
 /*!
- * \brief Set All Toolbar Radios InActive
+ * \brief Set All Toolbar Radios inactive
  * \par Function Description
- *  This function completes the final configuration of the toolbar setup
+ *  This function completes the final configuration of the toolbar setup.
+ *  The hidden toolbar_none radio button (etb_none) is set active, which
+ *  deactivates all of the visible buttons.
  *
  * \param [in] w_current pointer to top-level data structure
  */
