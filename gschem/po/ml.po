@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-02-22 02:20-0600\n"
+"POT-Creation-Date: 2017-03-12 01:09-0600\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1581,10 +1581,10 @@ msgstr ""
 msgid "Background"
 msgstr ""
 
+# Pin
 #: gschem/src/x/x_dialog.c:1014
-#, fuzzy
 msgid "Pin"
-msgstr "പിന്‍"
+msgstr "മൊട്ടുസൂചി"
 
 #: gschem/src/x/x_dialog.c:1015
 msgid "Net endpoint"
@@ -1624,19 +1624,19 @@ msgstr ""
 msgid "Bus"
 msgstr "ബസ്"
 
+# Selection
 #: gschem/src/x/x_dialog.c:1024 gschem/src/x/x_menus.c:105
-#, fuzzy
 msgid "Selection"
-msgstr "പ്രവര്‍ത്തന രീതി നിര്‍ണയിക്കുക"
+msgstr "തിരഞ്ഞെടുക്കൽ"
 
 #: gschem/src/x/x_dialog.c:1025
 msgid "Bounding box"
 msgstr ""
 
+# Zoom box
 #: gschem/src/x/x_dialog.c:1026
-#, fuzzy
 msgid "Zoom box"
-msgstr "വലുതാക്കി കാണിക്കുന്ന പെട്ടി"
+msgstr "സൂം ബോക്സ്"
 
 #: gschem/src/x/x_dialog.c:1027
 msgid "Stroke"
@@ -2825,10 +2825,10 @@ msgstr ""
 msgid "Rotate the current selection about a point"
 msgstr ""
 
+# Snap
 #: gschem/src/x/x_menus.c:126
-#, fuzzy
 msgid "Snap"
-msgstr "പ്രവര്‍ത്തന രീതി നിര്‍ണയിക്കുക"
+msgstr "സ്നാപ്പ്"
 
 #: gschem/src/x/x_menus.c:126
 msgid "Snap objects to the current grid"
@@ -2838,10 +2838,10 @@ msgstr ""
 msgid "Hierarchy"
 msgstr ""
 
+# Edit operations
 #: gschem/src/x/x_menus.c:132
-#, fuzzy
 msgid "Edit operations"
-msgstr "സാധനത്തിലെ മാറ്റങ്ങള്‍ നടപ്പില്‍ വരുത്തുക"
+msgstr "ഓപ്പറേഷൻസ് എഡിറ്റ്"
 
 #: gschem/src/x/x_menus.c:133 gschem/scheme/gschem/builtins.scm:329
 msgid "Down Schematic"
@@ -3148,10 +3148,10 @@ msgstr ""
 msgid "Duplicate"
 msgstr ""
 
+# Copy to all
 #: gschem/src/x/x_multiattrib.c:1687
-#, fuzzy
 msgid "Copy to all"
-msgstr "പകര്‍ത്തുക 1ലേക്ക്"
+msgstr "എല്ലാ പകർത്തുക"
 
 #: gschem/src/x/x_multiattrib.c:2057 gschem/src/x/x_multiattrib.c:2583
 msgid "Edit Attributes"
@@ -3295,10 +3295,10 @@ msgstr ""
 msgid "Portrait"
 msgstr ""
 
+# Print
 #: gschem/src/x/x_print.c:484
-#, fuzzy
 msgid "Print..."
-msgstr "പ്രിന്‍റ് ചെയ്യുക..."
+msgstr "അച്ചടിക്കുക..."
 
 #: gschem/src/x/x_print.c:492
 msgid "Settings"
@@ -3345,57 +3345,66 @@ msgstr ""
 msgid "The log may contain more information."
 msgstr ""
 
+# Print Error
 #: gschem/src/x/x_print.c:795 gschem/src/x/x_print.c:1229
-#, fuzzy
 msgid "Print Error"
-msgstr "പ്രിന്‍റ് ചെയ്യുക..."
+msgstr "പ്രിന്റ് പിശക്"
 
+# Printed current schematic to
 #: gschem/src/x/x_print.c:800
 msgid "Printed current schematic to"
-msgstr ""
+msgstr "അച്ചടിച്ച നിലവിലെ രേഖാ ലേക്ക്"
 
+# Failed to write PDF to
 #: gschem/src/x/x_print.c:1109 gschem/src/x/x_print.c:1171
 msgid "Failed to write PDF to"
-msgstr ""
+msgstr "PDF ൽ എഴുതുന്നത് പരാജയപ്പെട്ടു"
 
+# Error printing file
 #: gschem/src/x/x_print.c:1224
 msgid "Error printing file"
-msgstr ""
+msgstr "പ്രിന്റിംഗ് ഫയൽ പിശക്"
 
+# Error Processing Configuration
 #: gschem/src/x/x_rc.c:84
 msgid "<b>Error Processing Configuration.</b>"
-msgstr ""
+msgstr "<b>പ്രോസസിങ് കോൺഫിഗറേഷൻ പിശക്.</b>"
 
+# Configuration File Error
 #: gschem/src/x/x_rc.c:85
 msgid "gschem RC File Error"
-msgstr ""
+msgstr "gschem കോൺഫിഗറേഷൻ ഫയൽ പിശക്"
 
+# An unknown error occurred while parsing configuration files
 #: gschem/src/x/x_rc.c:86
 msgid "An unknown error occurred while parsing configuration files."
-msgstr ""
+msgstr "ക്രമീകരണ ഫയൽ പാർസുചെയ്യുമ്പോൾ ഒരു അജ്ഞാത പിശക് സംഭവിച്ചു."
 
+# Rename Session
 #: gschem/src/x/x_sessions.c:139
 msgid "Rename Session"
-msgstr ""
+msgstr "സെഷൻ പുനർനാമകരണം"
 
+# Specify new name for Session
 #: gschem/src/x/x_sessions.c:140 gschem/src/x/x_sessions.c:830
 #: gschem/src/x/x_sessions.c:853
 msgid "Specify new name for Session:"
-msgstr ""
+msgstr "സെഷൻ പുതിയ പേര് വ്യക്തമാക്കുക:"
 
+# Select export file
 #: gschem/src/x/x_sessions.c:228
-#, fuzzy
 msgid "Select export file"
-msgstr "പ്രവര്‍ത്തന രീതി നിര്‍ണയിക്കുക"
+msgstr "കയറ്റുമതി ഫയൽ തിരഞ്ഞെടുക്കുക"
 
+# exported to
 #: gschem/src/x/x_sessions.c:232
 msgid "exported to"
-msgstr ""
+msgstr "കയറ്റുമതി"
 
+# Load the selected session
 #: gschem/src/x/x_sessions.c:414
-#, fuzzy
 msgid "Load the selected session"
-msgstr "പ്രവര്‍ത്തന രീതി നിര്‍ണയിക്കുക"
+msgstr "തിരഞ്ഞെടുത്ത സെഷൻ ലോഡ്"
 
 #: gschem/src/x/x_sessions.c:415
 msgid ""
@@ -4381,10 +4390,10 @@ msgstr ""
 msgid "_Pin"
 msgstr ""
 
+# Add pin
 #: gschem/etc/system-gschemrc.scm:2251
-#, fuzzy
 msgid "Add pin"
-msgstr "രേഖ"
+msgstr "പിൻ ചേർക്കുക"
 
 #: gschem/etc/system-gschemrc.scm:2259
 msgid "Create a new session"
@@ -5218,10 +5227,10 @@ msgstr ""
 msgid "Turn Snap on"
 msgstr ""
 
+# Cycle Snap Mode
 #: gschem/scheme/gschem/builtins.scm:490
-#, fuzzy
 msgid "Cycle Snap Mode"
-msgstr "പ്രവര്‍ത്തന രീതി നിര്‍ണയിക്കുക"
+msgstr "സൈക്കിൾ സ്നാപ്പ് മോഡ്"
 
 #: gschem/scheme/gschem/builtins.scm:493
 msgid "Toggle Net Rubber Band"
