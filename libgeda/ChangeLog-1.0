@@ -1,3 +1,7 @@
+2017-03-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_keyfile.c: Add check for geda_keyfile_get_boolean.
+
 2017-03-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests: Revise check_serialization to show buffers when mismatched:

@@ -86,8 +86,8 @@ const char key_data[] = "[G1]\nT1=A\n[G2]\nT1=B\nT2=C\nT3=D\n";
  *      KF0821    geda_keyfile_set_string
  *      KF0822    geda_keyfile_get_locale_string
  *      KF0823    geda_keyfile_set_locale_string
- *       KF0824    geda_keyfile_get_boolean
- *       KF0825    geda_keyfile_set_boolean
+ *      KF0824    geda_keyfile_get_boolean
+ *      KF0825    geda_keyfile_set_boolean
  *       KF0826    geda_keyfile_get_integer
  *       KF0827    geda_keyfile_set_integer
  *       KF0828    geda_keyfile_get_int64
@@ -939,14 +939,42 @@ int check_data (void)
     geda_keyfile_set_boolean (keyfile,"G3", "B0", TRUE);
 
     if (!geda_keyfile_has_group(keyfile, "G3")) {
-      fprintf(stderr, "FAILED: (KF082501A) set_boolean, value=%s\n", string);
+      fprintf(stderr, "FAILED: (KF082501) set_boolean, value=%s\n", string);
       result++;
     }
 
+    /* === Function 24: geda_keyfile_get_boolean === */
+
+    if (geda_keyfile_get_boolean(keyfile, "G3", "NB0", &err)) {
+      fprintf(stderr, "FAILED: (KF082401A) get_boolean, value=%s\n", string);
+      result++;
+    }
+    else if (!err) {
+      /* Error should be set since key does not exist */
+      fprintf(stderr, "FAILED: (KF082401B) get_boolean, value=%s\n", string);
+      result++;
+    }
+
+    if (err) {
+      g_error_free (err);
+      err = NULL;
+    }
+
+    if (!geda_keyfile_get_boolean(keyfile, "G3", "B0", &err)) {
+      fprintf(stderr, "FAILED: (KF082401C) get_boolean, value=%s\n", string);
+      result++;
+    }
+
+    if (err) {
+      /* Error should NOT be set since key does exist */
+      fprintf(stderr, "FAILED: (KF082401B) get_boolean, value=%s\n", string);
+      result++;
+      g_error_free (err);
+      err = NULL;
+    }
+
     char *data;
-
     data = geda_keyfile_to_data(keyfile, NULL, NULL);
-
     g_file_set_contents(KEY_FILENAME, data, -1, NULL);
   }
 
