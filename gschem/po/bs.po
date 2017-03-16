@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-02-22 02:20-0600\n"
+"POT-Creation-Date: 2017-03-12 01:09-0600\n"
 "PO-Revision-Date: 2012-01-27 14:18+0000\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: Bosnian <bs@li.org>\n"
@@ -2790,10 +2790,10 @@ msgstr "Kopiraj"
 msgid "Copy selection"
 msgstr ""
 
+# multiple copy
 #: gschem/src/x/x_menus.c:122
-#, fuzzy
 msgid "MCopy"
-msgstr "Kopiraj"
+msgstr "višestruko kopiranje"
 
 #: gschem/src/x/x_menus.c:122 gschem/etc/system-gschemrc.scm:2095
 msgid "Make multible copies of selection"
@@ -2803,10 +2803,10 @@ msgstr ""
 msgid "Move"
 msgstr "Premjesti"
 
+# Move selection
 #: gschem/src/x/x_menus.c:123 gschem/etc/system-gschemrc.scm:2097
-#, fuzzy
 msgid "Move selection"
-msgstr "_Uvećaj"
+msgstr "izbor potez"
 
 #: gschem/src/x/x_menus.c:124
 msgid "Mirror"
@@ -2824,54 +2824,53 @@ msgstr "Rotiraj"
 msgid "Rotate the current selection about a point"
 msgstr ""
 
+# Snap
 #: gschem/src/x/x_menus.c:126
-#, fuzzy
 msgid "Snap"
-msgstr "Režim kopiranja"
+msgstr "puckanje"
 
 #: gschem/src/x/x_menus.c:126
 msgid "Snap objects to the current grid"
 msgstr ""
 
+# Hierarchy
 #: gschem/src/x/x_menus.c:132
-#, fuzzy
 msgid "Hierarchy"
-msgstr "Hije_rarhija"
+msgstr "hijerarhija"
 
+# Edit operations
 #: gschem/src/x/x_menus.c:132
-#, fuzzy
 msgid "Edit operations"
-msgstr "Izmijeni tekst"
+msgstr "Uredi operacije"
 
 #: gschem/src/x/x_menus.c:133 gschem/scheme/gschem/builtins.scm:329
-#, fuzzy
 msgid "Down Schematic"
-msgstr "_Dolje Shemu"
+msgstr "Dolje Shematski"
 
 #: gschem/src/x/x_menus.c:133 gschem/etc/system-gschemrc.scm:2227
 msgid "Descend down in the schematic hierarchy"
 msgstr ""
 
+# Down Symbol
 #: gschem/src/x/x_menus.c:134 gschem/scheme/gschem/builtins.scm:332
-#, fuzzy
 msgid "Down Symbol"
-msgstr "Doljen _Simbol"
+msgstr "Dolje Simbol"
 
 #: gschem/src/x/x_menus.c:134 gschem/etc/system-gschemrc.scm:2228
 msgid "Descend down in the symbol hierarchy"
 msgstr ""
 
+# Up
 #: gschem/src/x/x_menus.c:135
-#, fuzzy
 msgid "Up"
-msgstr "_Gore"
+msgstr "Gore"
 
 #: gschem/src/x/x_menus.c:135 gschem/etc/system-gschemrc.scm:2229
 msgid "ascend up in the schematic hierarchy"
 msgstr ""
 
+# Cut to Clipboard
 #: gschem/src/x/x_menus.c:140
-#, fuzzy
 msgid "Cut to Clipboard"
 msgstr "Isijeci u međuspremnik"
 
@@ -2879,8 +2878,8 @@ msgstr "Isijeci u međuspremnik"
 msgid "Cut the current selection to the system clipboard"
 msgstr ""
 
+# Copy to Clipboard
 #: gschem/src/x/x_menus.c:141
-#, fuzzy
 msgid "Copy to Clipboard"
 msgstr "Kopiraj na međuspremnik"
 
@@ -2888,8 +2887,8 @@ msgstr "Kopiraj na međuspremnik"
 msgid "Copy the current selection to the system clipboard"
 msgstr ""
 
+# Paste Clipboard
 #: gschem/src/x/x_menus.c:142
-#, fuzzy
 msgid "Paste Clipboard"
 msgstr "Umetni iz međuspremnika"
 
@@ -2897,10 +2896,10 @@ msgstr "Umetni iz međuspremnika"
 msgid "Paste the contents of the system clipboard"
 msgstr ""
 
+# Close
 #: gschem/src/x/x_menus.c:148
-#, fuzzy
 msgid "Close"
-msgstr "_Zatvori"
+msgstr "Zatvori"
 
 #: gschem/src/x/x_menus.c:148
 msgid "Close the current path"
@@ -2914,10 +2913,10 @@ msgstr ""
 msgid "Terminate the current path"
 msgstr ""
 
+# End
 #: gschem/src/x/x_menus.c:150
-#, fuzzy
 msgid "End"
-msgstr "Okvir zooma"
+msgstr "Kraj"
 
 #: gschem/src/x/x_menus.c:150
 msgid "End this path and exit path mode"
