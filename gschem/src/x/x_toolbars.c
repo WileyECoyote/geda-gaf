@@ -1208,6 +1208,7 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
   GEDA_PACK_TOOLBOX (parent_container, toolbox_T1)
 
   /* --------- Create and Populate the Standard Toolbar -------- */
+
   /* Standard Toolbar*/
   w_current->standard_handlebox = x_toolbars_get_box_container(w_current);
   GEDA_PACK_TOOLBOX (toolbox_T1, w_current->standard_handlebox);
@@ -1249,7 +1250,7 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
 
   SET_TOOLBAR_ID  (w_current->standard_handlebox, tb_Standard);
   SET_TOOLBAR_WC  (w_current->standard_handlebox, w_current);
-  x_toolbars_add_closer(w_current, w_current->standard_handlebox, Standard_Toolbar );
+  x_toolbars_add_closer(w_current, w_current->standard_handlebox, Standard_Toolbar);
 
   CAN_PASTE_LIST  = g_slist_append ( CAN_PASTE_LIST,   TB_BUTTON (etb_paste));
   ANY_OBJECT_LIST = g_slist_append ( ANY_OBJECT_LIST,  TB_BUTTON (etb_cut  ));
@@ -1303,7 +1304,7 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
 
   SET_TOOLBAR_ID       (w_current->page_handlebox, tb_Page);
   SET_TOOLBAR_WC       (w_current->page_handlebox, w_current);
-  x_toolbars_add_closer(w_current, w_current->page_handlebox, Page_Toolbar );
+  x_toolbars_add_closer(w_current, w_current->page_handlebox, Page_Toolbar);
 
 #if DEBUG_TOOLBARS
   fprintf(stderr, "what happen to [%s]\n", GAF_SEE_NOTES_BITMAP ); /* can fill in missing icon */
@@ -1314,6 +1315,7 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
   GEDA_PACK_TOOLBOX (parent_container, toolbox_T2);
 
   /* --------- Create and Populate the Add Toolbar -------- */
+
   w_current->add_handlebox = x_toolbars_get_box_container(w_current);
   GEDA_PACK_TOOLBOX (toolbox_T2, w_current->add_handlebox);
 
@@ -1368,7 +1370,7 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
 
   SET_TOOLBAR_ID       (w_current->add_handlebox, tb_Add);
   SET_TOOLBAR_WC       (w_current->add_handlebox, w_current);
-  x_toolbars_add_closer(w_current, w_current->add_handlebox, Add_Toolbar );
+  x_toolbars_add_closer(w_current, w_current->add_handlebox, Add_Toolbar);
 
   /* ------ Create and Populate the Selection Toolbar ------ */
 
@@ -1392,9 +1394,10 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
 
   SET_TOOLBAR_ID       (w_current->select_handlebox, tb_Select);
   SET_TOOLBAR_WC       (w_current->select_handlebox, w_current);
-  x_toolbars_add_closer(w_current, w_current->select_handlebox, Select_Toolbar );
+  x_toolbars_add_closer(w_current, w_current->select_handlebox, Select_Toolbar);
 
   /* --------- Create and Populate the Zoom Toolbar -------- */
+
   w_current->zoom_handlebox = x_toolbars_get_box_container(w_current);
   GEDA_PACK_TOOLBOX (toolbox_T2, w_current->zoom_handlebox);
 
@@ -1416,13 +1419,13 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
 
   SET_TOOLBAR_ID       (w_current->zoom_handlebox, tb_Zoom);
   SET_TOOLBAR_WC       (w_current->zoom_handlebox, w_current);
-  x_toolbars_add_closer(w_current, w_current->zoom_handlebox, Zoom_Toolbar );
+  x_toolbars_add_closer(w_current, w_current->zoom_handlebox, Zoom_Toolbar);
 
-  TheToolBars = g_slist_append ( TheToolBars, Add_Toolbar);
-  TheToolBars = g_slist_append ( TheToolBars, Page_Toolbar);
-  TheToolBars = g_slist_append ( TheToolBars, Select_Toolbar);
-  TheToolBars = g_slist_append ( TheToolBars, Standard_Toolbar);
-  TheToolBars = g_slist_append ( TheToolBars, Zoom_Toolbar);
+  TheToolBars = g_slist_append (TheToolBars, Add_Toolbar);
+  TheToolBars = g_slist_append (TheToolBars, Page_Toolbar);
+  TheToolBars = g_slist_append (TheToolBars, Select_Toolbar);
+  TheToolBars = g_slist_append (TheToolBars, Standard_Toolbar);
+  TheToolBars = g_slist_append (TheToolBars, Zoom_Toolbar);
 
 #if DEBUG_TOOLBARS
    fprintf(stderr, "init_top exit\n");
@@ -1466,9 +1469,9 @@ x_toolbars_init_left(GschemToplevel *w_current, GtkWidget *parent_container)
   GSCHEM_TOOLBAR_BUTTON (Symbol, etb_unlock);
   GSCHEM_TOOLBAR_BUTTON (Symbol, etb_update);
 
-  ANY_OBJECT_LIST   = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_lock   ));
-  ANY_OBJECT_LIST   = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_unlock ));
-  ANY_OBJECT_LIST   = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_update ));
+  ANY_OBJECT_LIST = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_lock   ));
+  ANY_OBJECT_LIST = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_unlock ));
+  ANY_OBJECT_LIST = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_update ));
 
   g_object_set (Symbol_Toolbar, "visible", TRUE, NULL);
 
@@ -1600,11 +1603,12 @@ x_toolbars_init_bottom(GschemToplevel *w_current, GtkWidget *parent_container)
 
   SET_TOOLBAR_ID       (w_current->attribute_handlebox, tb_Attribute);
   SET_TOOLBAR_WC       (w_current->attribute_handlebox, w_current);
-  x_toolbars_add_closer(w_current, w_current->attribute_handlebox, Attribute_Toolbar );
+  x_toolbars_add_closer(w_current, w_current->attribute_handlebox, Attribute_Toolbar);
 
-  TheToolBars = g_slist_append ( TheToolBars, Attribute_Toolbar);
+  TheToolBars = g_slist_append (TheToolBars, Attribute_Toolbar);
 
   /* -------- Create and Populate the GridSnap Toolbar -------- */
+
   w_current->grid_snap_handlebox = x_toolbars_get_box_container(w_current);
   GEDA_PACK_TOOLBOX (toolbox_B1, w_current->grid_snap_handlebox);
 
@@ -1642,7 +1646,7 @@ x_toolbars_init_bottom(GschemToplevel *w_current, GtkWidget *parent_container)
 
   SET_TOOLBAR_ID       (w_current->grid_snap_handlebox, tb_Grid_Snap);
   SET_TOOLBAR_WC       (w_current->grid_snap_handlebox, w_current);
-  x_toolbars_add_closer(w_current, w_current->grid_snap_handlebox, GripSnap_Toolbar );
+  x_toolbars_add_closer(w_current, w_current->grid_snap_handlebox, GripSnap_Toolbar);
 
   TheToolBars = g_slist_append (TheToolBars, GripSnap_Toolbar);
 }
