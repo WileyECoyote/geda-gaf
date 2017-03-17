@@ -1262,7 +1262,6 @@ geda_handle_box_size_request (GtkWidget      *widget,
 
   if (handlebox->child_detached) {
 
-    /* FIXME: This doesn't work currently */
     if (!handlebox->shrink_on_detach) {
 
       if (handle_position == GTK_POS_LEFT || handle_position == GTK_POS_RIGHT)
@@ -1278,11 +1277,13 @@ geda_handle_box_size_request (GtkWidget      *widget,
 
       if (handle_position == GTK_POS_LEFT || handle_position == GTK_POS_RIGHT)
       {
-        requisition->height += widget->style->ythickness;
+        requisition->width  = 0;
+        requisition->height = 1;
       }
       else
       {
-        requisition->width += widget->style->xthickness;
+        requisition->width  = 1;
+        requisition->height = 0;
       }
     }
   }
