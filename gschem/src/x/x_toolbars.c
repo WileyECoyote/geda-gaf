@@ -107,14 +107,13 @@ typedef enum  { etb_new, etb_open, etb_save, etb_save_as, etb_close,
                 etb_view_document, etb_view_nets, etb_view_redraw, etb_zoom_pan,
                 etb_zoom_box, etb_zoom_select, etb_zoom_extents, etb_zoom_in,
                 etb_zoom_out, etb_zoom_all,
+                etb_translate, etb_lock, etb_unlock, etb_update,
                 etb_edit_copy, etb_multi_copy, etb_move, etb_rotate, etb_mirror,
                 etb_edit_butes, etb_edit_color, etb_edit_text, etb_edit_slot,
                 etb_edit_pin, etb_edit_line, etb_edit_fill, etb_edit_arc,
-                etb_lock, etb_unlock,
                 etb_attach, etb_detach, etb_show_value, etb_show_name,
                 etb_show_both, etb_visibilty, etb_show_hidden, etb_show_inherited,
-                etb_find_text, etb_hide_text, etb_show_specific,
-                etb_auto_number, etb_translate, etb_update,
+                etb_find_text, etb_hide_text, etb_show_specific, etb_auto_number,
                 etb_grid_dot, etb_grid_mesh, etb_grid_off,
                 etb_snap_up, etb_snap_down, etb_snap_set, etb_snap_off,
                 etb_snap_on, etb_configure, etb_last
@@ -206,6 +205,12 @@ static ToolbarStringData ToolbarStrings[] = {
   { ACTION(VIEW_ZOOM_OUT),      "Out",        TBTS_VIEW_ZOOM_OUT,      "zoom-out",             TB_ICON_STOCK,  NULL},
   { ACTION(VIEW_ZOOM_ALL),      "All",        TBTS_VIEW_ZOOM_ALL,      GEDA_MAP(ZOOM_LIMITS),  TB_ICON_BITMAP, NULL},
 
+  /* Symbol Toolbar */
+  { ACTION(TOOLS_TRANSLATE),    "Translate",  TBTS_TOOLS_TRANSLATE,    GEDA_MAP(TRANSLATE),    TB_ICON_BITMAP, NULL},
+  { ACTION(EDIT_LOCK),          "Lock",       TBTS_SELECT_LOCK,        "Private",              TB_ICON_BITMAP, NULL},
+  { ACTION(EDIT_UNLOCK),        "Unlock",     TBTS_SELECT_UNLOCK,      "Private",              TB_ICON_BITMAP, NULL},
+  { ACTION(TOOLS_UPDATE),       "Update",     TBTS_TOOLS_UPDATE,       "Private",              TB_ICON_BITMAP, NULL},
+
   /* Edit Toolbar */
   { ACTION(EDIT_COPY),          "Copy",       TBTS_EDIT_COPY,          "Private",        TB_ICON_BITMAP, NULL},
   { ACTION(EDIT_MCOPY),         "Multi",      TBTS_EDIT_MCOPY,         "Private",        TB_ICON_BITMAP, NULL},
@@ -223,9 +228,6 @@ static ToolbarStringData ToolbarStrings[] = {
   { ACTION(EDIT_FILL),          "Fill",       TBTS_EDIT_FILL,           GEDA_MAP(MESH),  TB_ICON_BITMAP, NULL},
   { ACTION(EDIT_ARC),           "Arcs",       TBTS_EDIT_ARC,           "geda-arc-edit",  TB_ICON_BITMAP, NULL},
 
-  { ACTION(EDIT_LOCK),          "Lock",       TBTS_EDIT_LOCK,          "Private",        TB_ICON_BITMAP, NULL},
-  { ACTION(EDIT_UNLOCK),        "Unlock",     TBTS_EDIT_UNLOCK,        "Private",        TB_ICON_BITMAP, NULL},
-
   /* Attribute Toolbar */
   { ACTION(ATTRIB_ATTACH),      "Promote",    TBTS_ATTRIB_ATTACH,      "Private",                   TB_ICON_BITMAP, NULL},
   { ACTION(ATTRIB_DETACH),      "Demote",     TBTS_ATTRIB_DETACH,      "Private",                   TB_ICON_BITMAP, NULL},
@@ -240,8 +242,6 @@ static ToolbarStringData ToolbarStrings[] = {
   { ACTION(ATTRIB_SHOW),        "Show",       TBTS_ATTRIB_SHOW,         GEDA_MAP(LOCATE_REFERENCE), TB_ICON_BITMAP, NULL},
 
   { ACTION(TOOLS_AUTONUM),      "Auto #",     TBTS_TOOLS_AUTONUM,      "geda-autonum-blue.png",   TB_ICON_BITMAP, NULL},
-  { ACTION(TOOLS_TRANSLATE),    "Translate",  TBTS_TOOLS_TRANSLATE,     GEDA_MAP(TRANSLATE),      TB_ICON_BITMAP, NULL},
-  { ACTION(TOOLS_UPDATE),       "Update",     TBTS_TOOLS_UPDATE,        "Private",                TB_ICON_BITMAP, NULL},
 
   { ACTION(OPT_GRID_DOT),       "Dots",       TBTS_OPT_GRID_DOT,       "geda-grid-dot",     TB_ICON_BITMAP, NULL},
   { ACTION(OPT_GRID_MESH),      "Mesh",       TBTS_OPT_GRID_MESH,      "geda-grid-mesh",    TB_ICON_BITMAP, NULL},
