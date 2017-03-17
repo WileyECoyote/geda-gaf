@@ -90,6 +90,8 @@ void            geda_handle_box_set_shadow_type      (GedaHandleBox *handlebox, 
 GtkShadowType   geda_handle_box_get_shadow_type      (GedaHandleBox *handlebox);
 void            geda_handle_box_set_handle_position  (GedaHandleBox *handlebox, GtkPositionType  position);
 GtkPositionType geda_handle_box_get_handle_position  (GedaHandleBox *handlebox);
+void            geda_handle_box_set_shrink_on_detach (GedaHandleBox *handlebox, bool shrink);
+bool            geda_handle_box_get_shrink_on_detach (GedaHandleBox *handlebox);
 void            geda_handle_box_set_snap_edge        (GedaHandleBox *handlebox, GtkPositionType  edge);
 GtkPositionType geda_handle_box_get_snap_edge        (GedaHandleBox *handlebox);
 GtkToolbar     *geda_handle_box_get_toolbar          (GedaHandleBox *handlebox);

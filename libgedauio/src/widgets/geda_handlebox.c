@@ -86,13 +86,14 @@ enum {
   PROP_SHADOW,
   PROP_SHADOW_TYPE,
   PROP_HANDLE_POSITION,
+  PROP_SHRINK_DETACHED,
   PROP_SNAP_EDGE,
   PROP_SNAP_EDGE_SET,
   PROP_CHILD_DETACHED
 };
 
 #define DRAG_HANDLE_SIZE 10
-#define CHILDLESS_SIZE	25
+#define CHILDLESS_SIZE   25
 #define GHOST_HEIGHT 3
 #define TOLERANCE 5
 
@@ -1342,6 +1343,10 @@ geda_handle_box_get_property (GObject        *object,
       g_value_set_enum (value, handle_box->handle_position);
       break;
 
+    case PROP_SHRINK_DETACHED:
+      g_value_set_boolean (value, handle_box->shrink_on_detach);
+      break;
+
     case PROP_SNAP_EDGE:
       g_value_set_enum (value,
                         (handle_box->snap_edge == -1 ?
@@ -1378,8 +1383,12 @@ geda_handle_box_set_property (GObject  *object, unsigned int prop_id,
       geda_handle_box_set_handle_position (handle_box, g_value_get_enum (value));
       break;
 
+    case PROP_SHRINK_DETACHED:
+      geda_handle_box_set_shrink_on_detach (handle_box, g_value_get_enum (value));
+      break;
+
     case PROP_SNAP_EDGE:
-      geda_handle_box_set_snap_edge (handle_box, g_value_get_enum (value));
+      geda_handle_box_set_snap_edge (handle_box, g_value_get_boolean (value));
       break;
 
     case PROP_SNAP_EDGE_SET:
@@ -1466,6 +1475,14 @@ geda_handle_box_class_init(void *g_class, void *class_data)
                                G_PARAM_READWRITE);
 
   g_object_class_install_property (object_class, PROP_HANDLE_POSITION, params);
+
+  params = g_param_spec_boolean ("shrink",
+                               _("Shrink"),
+                               _("Shrink when toolbar is detached."),
+                                  TRUE,
+                                  G_PARAM_READWRITE);
+
+  g_object_class_install_property (object_class, PROP_SHRINK_DETACHED, params);
 
   params = g_param_spec_enum ("snap-edge",
                                NULL,
@@ -1765,6 +1782,45 @@ geda_handle_box_get_handle_position (GedaHandleBox *handle_box)
   g_return_val_if_fail (GEDA_IS_HANDLE_BOX (handle_box), GTK_POS_LEFT);
 
   return handle_box->handle_position;
+}
+
+/*!
+ * \brief Get GedaHandleBox shrink-on-detach Property
+ * \par Function Description
+ *  Gets the shrink-on-detach property.
+ *
+ * \param [in] handle_box The #GedaHandleBox object
+ *
+ * \returns shrink-on-detach property or FALSE.
+ */
+bool
+geda_handle_box_get_shrink_on_detach (GedaHandleBox *handle_box)
+{
+  g_return_val_if_fail (GEDA_IS_HANDLE_BOX (handle_box), FALSE);
+
+  return handle_box->shrink_on_detach;
+}
+
+/*!
+ * \brief Set GedaHandleBox shrink-on-detach Property
+ * \par Function Description
+ *  Sets the shrink-on-detach property. When set, the size of the
+ *  handlebox will be reduced to a single pixel whenever the child
+ *  widget is detached from the handlebox. While not impossible,
+ *  realignment is more challenging to manually re-dock siblings to
+ *  the handlebox but removes the unsightly "narrow box" from the
+ *  users screen. A child of a GedaHandleBox can easily be docked
+ *  by double-clicking on the child handle.
+ *
+ * \param [in] handle_box The #GedaHandleBox object
+ * \param [in] shrink     Whether the handle should shrink or not.
+ */
+void
+geda_handle_box_set_shrink_on_detach (GedaHandleBox *handle_box, bool shrink)
+{
+  g_return_if_fail (GEDA_IS_HANDLE_BOX (handle_box));
+
+  handle_box->shrink_on_detach = shrink ? TRUE : FALSE;
 }
 
 /*!
