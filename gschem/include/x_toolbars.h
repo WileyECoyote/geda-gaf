@@ -177,6 +177,12 @@ typedef struct {
 #define TBTS_VIEW_ZOOM_OUT      "Zoom Out"
 #define TBTS_VIEW_ZOOM_ALL      "Zoom to Limits"
 
+  /* Symbol Toolbar */
+#define TBTS_TOOLS_TRANSLATE    "Translate component positions"
+#define TBTS_SELECT_LOCK        "Lock Objects"
+#define TBTS_SELECT_UNLOCK      "Unlock Objects"
+#define TBTS_TOOLS_UPDATE       "Reload Component from library"
+
   /* Edit Toolbar */
 #define TBTS_EDIT_COPY          "Copy selection"
 #define TBTS_EDIT_MCOPY         "Make multible copies of selection"
@@ -193,9 +199,6 @@ typedef struct {
 #define TBTS_EDIT_LINE          "Edit line type"
 #define TBTS_EDIT_FILL          "Edit Hatch pattern"
 #define TBTS_EDIT_ARC           "Edit Arc parameters"
-
-#define TBTS_EDIT_LOCK          "Lock Objects"
-#define TBTS_EDIT_UNLOCK        "Unlock Objects"
 
   /* Attribute Toolbar */
 #define TBTS_ATTRIB_ATTACH      "Attach selected attribute"
@@ -223,7 +226,5 @@ typedef struct {
 #define TBTS_OPT_SETTINGS       "Set configuration preferences"
 
 #define TBTS_TOOLS_AUTONUM      "Open Auto Number dialog"
-#define TBTS_TOOLS_TRANSLATE    "Translate component positions"
-#define TBTS_TOOLS_UPDATE       "Reload Component from library"
 
 #endif /* __X_TOOLBARS_H__ */

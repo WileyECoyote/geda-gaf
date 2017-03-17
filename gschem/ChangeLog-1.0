@@ -1,3 +1,8 @@
+2017-03-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/x_toolbars.h: Rename and regroup tooltip strings for the Symbol
+      Toolbar.
+
 2017-03-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/bs.po: Update Bosnian translations.
