@@ -7,6 +7,7 @@
 
     * src/x/x_toolbars.c: Resequence etb_translate, etb_lock, etb_unlock, and
       etb_update in IDE_GSCHEM_Toolbar and ToolbarStrings, update strings.
+      Save and restore the symbol toolbar settings.
 
 2017-03-16 Wiley E. Hill <wileyhill@gmail.com>
 

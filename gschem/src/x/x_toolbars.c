@@ -521,6 +521,7 @@ x_toolbars_save_state(GschemToplevel *w_current)
     SaveBarProperties(w_current->page_handlebox);
     SaveBarProperties(w_current->select_handlebox);
     SaveBarProperties(w_current->standard_handlebox);
+    SaveBarProperties(w_current->symbol_handlebox);
     SaveBarProperties(w_current->zoom_handlebox);
   }
 
@@ -654,6 +655,7 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
       RestoreBarProperties(w_current->page_handlebox);
       RestoreBarProperties(w_current->select_handlebox);
       RestoreBarProperties(w_current->standard_handlebox);
+      RestoreBarProperties(w_current->symbol_handlebox);
       RestoreBarProperties(w_current->zoom_handlebox);
     }
   }
