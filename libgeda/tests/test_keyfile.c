@@ -939,19 +939,19 @@ int check_data (void)
     geda_keyfile_set_boolean (keyfile,"G3", "B0", TRUE);
 
     if (!geda_keyfile_has_group(keyfile, "G3")) {
-      fprintf(stderr, "FAILED: (KF082501) set_boolean, value=%s\n", string);
+      fprintf(stderr, "FAILED: (KF082501) set_boolean !G3\n");
       result++;
     }
 
     /* === Function 24: geda_keyfile_get_boolean === */
 
     if (geda_keyfile_get_boolean(keyfile, "G3", "NB0", &err)) {
-      fprintf(stderr, "FAILED: (KF082401A) get_boolean, value=%s\n", string);
+      fprintf(stderr, "FAILED: (KF082401A) get_boolean NB0\n");
       result++;
     }
     else if (!err) {
       /* Error should be set since key does not exist */
-      fprintf(stderr, "FAILED: (KF082401B) get_boolean, value=%s\n", string);
+      fprintf(stderr, "FAILED: (KF082401B) get_boolean, no error\n");
       result++;
     }
 
@@ -961,13 +961,13 @@ int check_data (void)
     }
 
     if (!geda_keyfile_get_boolean(keyfile, "G3", "B0", &err)) {
-      fprintf(stderr, "FAILED: (KF082401C) get_boolean, value=%s\n", string);
+      fprintf(stderr, "FAILED: (KF082401C) get_boolean, !B0\n");
       result++;
     }
 
     if (err) {
       /* Error should NOT be set since key does exist */
-      fprintf(stderr, "FAILED: (KF082401B) get_boolean, value=%s\n", string);
+      fprintf(stderr, "FAILED: (KF082401B) get_boolean, err set\n");
       result++;
       g_error_free (err);
       err = NULL;
