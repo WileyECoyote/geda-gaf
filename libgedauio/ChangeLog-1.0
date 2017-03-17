@@ -1,3 +1,10 @@
+2017-03-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_handlebox.c: Add functions:
+
+        * geda_handle_box_set_toolbar
+        * geda_handle_box_widget_set_toolbar
+
 2017-03-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_toolbar.c: Add function geda_toolbar_setup_label to

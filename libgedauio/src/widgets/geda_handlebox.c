@@ -1844,6 +1844,25 @@ geda_handle_box_get_toolbar (GedaHandleBox *handle_box)
   return NULL;
 }
 
+void
+geda_handle_box_set_toolbar (GedaHandleBox *handlebox, GtkWidget *toolbar)
+{
+  if (GEDA_IS_HANDLE_BOX (handlebox)) {
+
+      /* Can only have one child, check already have one */
+      GtkWidget *current = gtk_bin_get_child(GTK_BIN(handlebox));
+
+      if (current) {
+        geda_handle_box_remove (GTK_CONTAINER (handlebox), current);
+      }
+
+    geda_handle_box_add (GTK_CONTAINER (handlebox), toolbar);
+  }
+  else {
+    BUG_MSG ("Operative is not a GedaHandleBox");
+  }
+}
+
 /*!
  * \brief geda_handle_box_get_child_detached
  * \par Function Description
@@ -1860,6 +1879,12 @@ geda_handle_box_get_child_detached (GedaHandleBox *handle_box)
   g_return_val_if_fail (GEDA_IS_HANDLE_BOX (handle_box), FALSE);
 
   return handle_box->child_detached;
+}
+
+void
+geda_handle_box_widget_set_toolbar (GtkWidget *handlebox, GtkWidget *toolbar)
+{
+  geda_handle_box_set_toolbar ((GedaHandleBox*)handlebox, toolbar);
 }
 
 /** @} end group GedaHandleBoxFunctions */

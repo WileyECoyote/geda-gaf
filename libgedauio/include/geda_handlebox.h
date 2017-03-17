@@ -93,8 +93,11 @@ GtkPositionType geda_handle_box_get_handle_position  (GedaHandleBox *handlebox);
 void            geda_handle_box_set_snap_edge        (GedaHandleBox *handlebox, GtkPositionType  edge);
 GtkPositionType geda_handle_box_get_snap_edge        (GedaHandleBox *handlebox);
 GtkToolbar     *geda_handle_box_get_toolbar          (GedaHandleBox *handlebox);
+void            geda_handle_box_set_toolbar          (GedaHandleBox *handlebox, GtkWidget *toolbar);
 
 bool            geda_handle_box_get_child_detached   (GedaHandleBox *handlebox);
+
+void            geda_handle_box_widget_set_toolbar   (GtkWidget     *widget, GtkWidget *toolbar);
 
 #ifdef __cplusplus
 }
