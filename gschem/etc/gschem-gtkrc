@@ -125,9 +125,11 @@ style "scrollbar" {
 ##################
 style "Toolbars"
 {
-  GedaToolbar::font-size = 8
+  GtkToolButton::icon-spacing  = 2
 
+  GedaToolbar::font-size       = 8
   GtkToolbar::internal-padding = 0
+  GtkToolbar::space-size       = 6
 }
 gtk-toolbar = GTK_TOOLBAR_ICONS
 
