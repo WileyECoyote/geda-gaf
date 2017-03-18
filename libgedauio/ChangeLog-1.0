@@ -1,8 +1,18 @@
+2017-03-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_handlebox.c: Add "handle-size" property and monitor
+      settings. Add functions:
+
+        * change_handle_size
+        * settings_notify_cb
+        * connect_settings_signal
+        * remove_settings_signal
+
 2017-03-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_handlebox.c: Fix shrink_on_detach property; reduce
       requisition to bear minimum when child not attached. Add PROP_SHRINK_
-      DETACHED and make shrink-on-detach a g_object property, add functions:
+      DETACHED and make shrink-on-detach a g_object property.Add functions:
 
         * geda_handle_box_set_toolbar
         * geda_handle_box_widget_set_toolbar

@@ -77,6 +77,7 @@
 
 struct _GedaHandleBoxData
 {
+  unsigned int settings_signal_id;
   int orig_x;
   int orig_y;
 };
@@ -93,6 +94,7 @@ enum {
 };
 
 #define DRAG_HANDLE_SIZE 10
+#define MAX_HANDLE_SIZE  DRAG_HANDLE_SIZE * 4
 #define CHILDLESS_SIZE   25
 #define GHOST_HEIGHT 3
 #define TOLERANCE 5
@@ -161,6 +163,16 @@ enum {
  *                | Reduce scope of variables in geda_handle_box_button_press.
  *                | Add call gtk_container_propagate_expose in geda_handle_box
  *                | _expose so internals are painted properly.
+ * ------------------------------------------------------------------
+ * WEH | 03/17/17 | Fix shrink_on_detach property; reduce requisition to bear
+ *                | minimum when child not attached. Add PROP_SHRINK_DETACHED
+ *                | and make shrink-on-detach a g_object property, add functions;
+ *                | geda_handle_box_set_toolbar,
+ *                | geda_handle_box_get_shrink_on_detach
+ *                | geda_handle_box_set_shrink_on_detach
+ * ------------------------------------------------------------------
+ * WEH | 03/17/18 | Add "handle-size" property and monitor settings.
+ *                | Reorganize functions.
  *
 */
 
@@ -210,6 +222,75 @@ static void *geda_handle_box_parent_class = NULL;
 
 /* Table of pointers to GedaHandleBox instances */
 static GHashTable *handlebox_hash = NULL;
+
+static void
+change_handle_size (GedaHandleBox *handlebox)
+{
+  int size;
+
+  gtk_widget_style_get (GTK_WIDGET(handlebox), "handle-size", &size, NULL);
+
+  if (size > 0) {
+    handlebox->handle_size = size;
+  }
+  else {
+    handlebox->handle_size = DRAG_HANDLE_SIZE;
+  }
+}
+
+/* Callback used when a GtkSettings value changes */
+static void
+settings_notify_cb (GObject       *object,
+                    GParamSpec    *pspec,
+                    GedaHandleBox *handlebox)
+{
+  const char *name;
+
+  name = g_param_spec_get_name (pspec);
+
+  /* Check if menu-bar-accel is what was changed */
+  if (!strcmp (name, "handle-size")) {
+    change_handle_size (handlebox);
+  }
+}
+
+static void
+connect_settings_signal(GedaHandleBox *handlebox)
+{
+  GedaHandleBoxData *priv = handlebox->priv;
+
+  if (!priv->settings_signal_id) {
+
+    GtkSettings *settings;
+    GdkScreen   *screen;
+
+    screen   = gtk_widget_get_screen (GTK_WIDGET (handlebox));
+    settings = gtk_settings_get_for_screen (screen);
+
+    priv->settings_signal_id = g_signal_connect (settings, "notify",
+                                                 G_CALLBACK(settings_notify_cb),
+                                                 handlebox);
+  }
+}
+
+/* Removes the settings signal handler. It's safe to call multiple times */
+static void
+remove_settings_signal (GedaHandleBox *handlebox, GdkScreen *screen)
+{
+  GedaHandleBoxData *priv = handlebox->priv;
+
+  if (priv->settings_signal_id) {
+
+    GtkSettings *settings;
+
+    settings = gtk_settings_get_for_screen (screen);
+
+    g_signal_handler_disconnect (settings, priv->settings_signal_id);
+
+    priv->settings_signal_id = 0;
+  }
+}
+
 
 static int
 effective_handle_position (GedaHandleBox *handlebox)
@@ -461,9 +542,9 @@ geda_handle_box_motion (GtkWidget *widget, GdkEventMotion *event)
       height = child_requisition.height + border_2x;
 
       if (handle_position == GTK_POS_LEFT || handle_position == GTK_POS_RIGHT)
-        width += DRAG_HANDLE_SIZE;
+        width += handlebox->handle_size;
       else
-        height += DRAG_HANDLE_SIZE;
+        height += handlebox->handle_size;
 
       gdk_window_move_resize (handlebox->float_window, new_x, new_y, width, height);
       gdk_window_reparent (handlebox->bin_window, handlebox->float_window, 0, 0);
@@ -620,10 +701,10 @@ geda_handle_box_button_press (GtkWidget *widget, GdkEventButton *event)
       switch (handle_position) {
 
         case GTK_POS_LEFT:
-          in_handle = event->x < DRAG_HANDLE_SIZE;
+          in_handle = event->x < handlebox->handle_size;
           break;
         case GTK_POS_TOP:
-          in_handle = event->y < DRAG_HANDLE_SIZE;
+          in_handle = event->y < handlebox->handle_size;
           break;
         case GTK_POS_RIGHT:
           in_handle = event->x > border_widthx2 + child_allocation.width;
@@ -763,17 +844,17 @@ geda_handle_box_draw_ghost (GedaHandleBox *handlebox)
   if (handle_position == GTK_POS_LEFT ||
       handle_position == GTK_POS_RIGHT)
   {
-    x = handle_position == GTK_POS_LEFT ? 0 : widget->allocation.width - DRAG_HANDLE_SIZE;
+    x = handle_position == GTK_POS_LEFT ? 0 : widget->allocation.width - handlebox->handle_size;
     y = 0;
-    width = DRAG_HANDLE_SIZE;
+    width = handlebox->handle_size;
     height = widget->allocation.height;
   }
   else
   {
     x = 0;
-    y = handle_position == GTK_POS_TOP ? 0 : widget->allocation.height - DRAG_HANDLE_SIZE;
+    y = handle_position == GTK_POS_TOP ? 0 : widget->allocation.height - handlebox->handle_size;
     width = widget->allocation.width;
-    height = DRAG_HANDLE_SIZE;
+    height = handlebox->handle_size;
   }
   gtk_paint_shadow (widget->style,
                     widget->window,
@@ -792,12 +873,12 @@ geda_handle_box_draw_ghost (GedaHandleBox *handlebox)
     int x2;
 
     if (handle_position == GTK_POS_LEFT) {
-      x1 = DRAG_HANDLE_SIZE;
+      x1 = handlebox->handle_size;
       x2 = widget->allocation.width;
     }
     else {
       x1 = 0;
-      x2 = widget->allocation.width - DRAG_HANDLE_SIZE;
+      x2 = widget->allocation.width - handlebox->handle_size;
     }
 
     gtk_paint_hline (widget->style,
@@ -812,12 +893,12 @@ geda_handle_box_draw_ghost (GedaHandleBox *handlebox)
     int y2;
 
     if (handle_position == GTK_POS_TOP) {
-      y1 = DRAG_HANDLE_SIZE;
+      y1 = handlebox->handle_size;
       y2 = widget->allocation.height;
     }
     else {
       y1 = 0;
-      y2 = widget->allocation.height - DRAG_HANDLE_SIZE;
+      y2 = widget->allocation.height - handlebox->handle_size;
     }
 
     gtk_paint_vline (widget->style,
@@ -864,8 +945,8 @@ geda_handle_box_paint (GtkWidget *widget, GdkEventExpose *event)
    * drawn _above_ the relief of the handlebox. The handle could
    * also be drawn on the same level...
    *
-   * handlebox->handle_position == GTK_POS_LEFT ? DRAG_HANDLE_SIZE : 0,
-   * handlebox->handle_position == GTK_POS_TOP ? DRAG_HANDLE_SIZE : 0,
+   * handlebox->handle_position == GTK_POS_LEFT ? handlebox->handle_size : 0,
+   * handlebox->handle_position == GTK_POS_TOP ? handlebox->handle_size : 0,
    * width,
    * height);
    */
@@ -875,15 +956,15 @@ geda_handle_box_paint (GtkWidget *widget, GdkEventExpose *event)
     case GTK_POS_LEFT:
       rect.x             = 0;
       rect.y             = 0;
-      rect.width         = DRAG_HANDLE_SIZE;
+      rect.width         = handlebox->handle_size;
       rect.height        = height;
       handle_orientation = GTK_ORIENTATION_VERTICAL;
       break;
 
     case GTK_POS_RIGHT:
-      rect.x             = width - DRAG_HANDLE_SIZE;
+      rect.x             = width - handlebox->handle_size;
       rect.y             = 0;
-      rect.width         = DRAG_HANDLE_SIZE;
+      rect.width         = handlebox->handle_size;
       rect.height        = height;
       handle_orientation = GTK_ORIENTATION_VERTICAL;
       break;
@@ -892,15 +973,15 @@ geda_handle_box_paint (GtkWidget *widget, GdkEventExpose *event)
       rect.x             = 0;
       rect.y             = 0;
       rect.width         = width;
-      rect.height        = DRAG_HANDLE_SIZE;
+      rect.height        = handlebox->handle_size;
       handle_orientation = GTK_ORIENTATION_HORIZONTAL;
       break;
 
     case GTK_POS_BOTTOM:
       rect.x             = 0;
-      rect.y             = height - DRAG_HANDLE_SIZE;
+      rect.y             = height - handlebox->handle_size;
       rect.width         = width;
-      rect.height        = DRAG_HANDLE_SIZE;
+      rect.height        = handlebox->handle_size;
       handle_orientation = GTK_ORIENTATION_HORIZONTAL;
       break;
 
@@ -1087,6 +1168,9 @@ geda_handle_box_realize (GtkWidget *widget)
   gtk_style_set_background (widget->style, handlebox->bin_window, gtk_widget_get_state (widget));
   gtk_style_set_background (widget->style, handlebox->float_window, gtk_widget_get_state (widget));
   gdk_window_set_back_pixmap (widget->window, NULL, TRUE);
+
+  connect_settings_signal(handlebox);
+
 }
 
 /* widget_class->unrealize */
@@ -1094,6 +1178,9 @@ static void
 geda_handle_box_unrealize (GtkWidget *widget)
 {
   GedaHandleBox *handlebox = GEDA_HANDLE_BOX (widget);
+
+  /* Disconnect the settings Monitor */
+  remove_settings_signal(handlebox, gtk_widget_get_screen (GTK_WIDGET (handlebox)));
 
   gdk_window_set_user_data (handlebox->bin_window, NULL);
   gdk_window_destroy (handlebox->bin_window);
@@ -1156,10 +1243,10 @@ geda_handle_box_size_allocate (GtkWidget     *widget,
     child_allocation->y = border_width;
 
     if (handle_position == GTK_POS_LEFT) {
-      child_allocation->x += DRAG_HANDLE_SIZE;
+      child_allocation->x += handlebox->handle_size;
     }
     else if (handle_position == GTK_POS_TOP) {
-      child_allocation->y += DRAG_HANDLE_SIZE;
+      child_allocation->y += handlebox->handle_size;
     }
 
     if (handlebox->child_detached) {
@@ -1176,10 +1263,10 @@ geda_handle_box_size_allocate (GtkWidget     *widget,
       if (handle_position == GTK_POS_LEFT ||
           handle_position == GTK_POS_RIGHT)
       {
-        float_width += DRAG_HANDLE_SIZE;
+        float_width += handlebox->handle_size;
       }
       else {
-        float_height += DRAG_HANDLE_SIZE;
+        float_height += handlebox->handle_size;
       }
 
       if (gtk_widget_get_realized (widget)) {
@@ -1208,9 +1295,9 @@ geda_handle_box_size_allocate (GtkWidget     *widget,
 
       if (handle_position == GTK_POS_LEFT ||
         handle_position == GTK_POS_RIGHT)
-        child_allocation->width -= DRAG_HANDLE_SIZE;
+        child_allocation->width -= handlebox->handle_size;
       else
-        child_allocation->height -= DRAG_HANDLE_SIZE;
+        child_allocation->height -= handlebox->handle_size;
 
       if (gtk_widget_get_realized (widget))
         gdk_window_move_resize (handlebox->bin_window,
@@ -1241,13 +1328,13 @@ geda_handle_box_size_request (GtkWidget      *widget,
 
   if (handle_position == GTK_POS_LEFT || handle_position == GTK_POS_RIGHT)
   {
-    requisition->width = DRAG_HANDLE_SIZE;
+    requisition->width = handlebox->handle_size;
     requisition->height = 0;
   }
   else
   {
     requisition->width = 0;
-    requisition->height = DRAG_HANDLE_SIZE;
+    requisition->height = handlebox->handle_size;
   }
 
   /* if our child is not visible, we still request its size, since we
@@ -1321,6 +1408,8 @@ geda_handle_box_style_set (GtkWidget *widget, GtkStyle *previous_style)
     gtk_style_set_background (widget->style, handlebox->bin_window, widget->state);
     gtk_style_set_background (widget->style, handlebox->float_window, widget->state);
   }
+
+  change_handle_size(handlebox);
 }
 
 /* gobject_class->get_property */
@@ -1563,6 +1652,16 @@ geda_handle_box_class_init(void *g_class, void *class_data)
                    geda_marshal_VOID__POINTER,
                    G_TYPE_NONE, 1,
                    G_TYPE_POINTER);
+
+  params = g_param_spec_int ("handle-size",
+                           _("Handle Size"),
+                           _("Size of the drag handle in pixels."),
+                             0,
+                             MAX_HANDLE_SIZE,
+                             DRAG_HANDLE_SIZE,
+                             G_PARAM_READWRITE);
+
+  gtk_widget_class_install_style_property (widget_class, params);
 }
 
 /*!
@@ -1587,6 +1686,7 @@ geda_handle_box_instance_init(GTypeInstance *instance, void *g_class)
   handle_box->float_window        = NULL;
   handle_box->shadow_type         = GTK_SHADOW_OUT;
   handle_box->handle_position     = GTK_POS_LEFT;
+  handle_box->handle_size         = DRAG_HANDLE_SIZE;
   handle_box->float_window_mapped = FALSE;
   handle_box->child_detached      = FALSE;
   handle_box->in_drag             = FALSE;

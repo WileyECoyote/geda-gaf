@@ -47,6 +47,7 @@ struct _GedaHandleBox
   GdkWindow     *bin_window;	/* parent window for children */
   GdkWindow     *float_window;
   GtkShadowType  shadow_type;
+  int            handle_size;
   unsigned int   handle_position : 2;
   unsigned int   float_window_mapped : 1;
   unsigned int   child_detached : 1;
