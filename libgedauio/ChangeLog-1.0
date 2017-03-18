@@ -7,6 +7,10 @@
         * settings_notify_cb
         * connect_settings_signal
         * remove_settings_signal
+        * geda_handle_widget_set_handle_position,
+        * geda_handle_widget_set_shadow_type
+        * geda_handle_widget_set_snap_edge
+        * geda_handle_widget_set_toolbar
 
 2017-03-17 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -15,7 +19,6 @@
       DETACHED and make shrink-on-detach a g_object property.Add functions:
 
         * geda_handle_box_set_toolbar
-        * geda_handle_box_widget_set_toolbar
         * geda_handle_box_get_shrink_on_detach
         * geda_handle_box_set_shrink_on_detach
 

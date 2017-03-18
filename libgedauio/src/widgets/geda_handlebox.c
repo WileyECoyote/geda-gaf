@@ -172,8 +172,11 @@ enum {
  *                | geda_handle_box_set_shrink_on_detach
  * ------------------------------------------------------------------
  * WEH | 03/17/18 | Add "handle-size" property and monitor settings.
- *                | Reorganize functions.
- *
+ *                | Reorganize functions, add functions;
+ *                | geda_handle_widget_set_handle_position,
+ *                | geda_handle_widget_set_shadow_type
+ *                | geda_handle_widget_set_snap_edge
+ *                | geda_handle_widget_set_toolbar
 */
 
 static void geda_handle_box_map           (GtkWidget      *widget);
@@ -1789,6 +1792,24 @@ geda_handle_box_dock (GedaHandleBox *handlebox) {
 }
 
 /*!
+ * \brief geda_handle_box_get_child_detached
+ * \par Function Description
+ *
+ * Whether the handlebox's child is currently detached.
+ *
+ * \param [in] handle_box    The #GedaHandleBox object
+ *
+ * \returns %TRUE if the child is currently detached, otherwise %FALSE
+ */
+bool
+geda_handle_box_get_child_detached (GedaHandleBox *handle_box)
+{
+  g_return_val_if_fail (GEDA_IS_HANDLE_BOX (handle_box), FALSE);
+
+  return handle_box->child_detached;
+}
+
+/*!
  * \brief Sets the Handle Position of a GedaHandleBox
  * \par Function Description
  * Sets the side of the handlebox where the handle is drawn.
@@ -2019,26 +2040,27 @@ geda_handle_box_set_toolbar (GedaHandleBox *handlebox, GtkWidget *toolbar)
   }
 }
 
-/*!
- * \brief geda_handle_box_get_child_detached
- * \par Function Description
- *
- * Whether the handlebox's child is currently detached.
- *
- * \param [in] handle_box    The #GedaHandleBox object
- *
- * \returns %TRUE if the child is currently detached, otherwise %FALSE
- */
-bool
-geda_handle_box_get_child_detached (GedaHandleBox *handle_box)
+void
+geda_handle_widget_set_handle_position (GtkWidget       *handlebox,
+                                        GtkPositionType  position)
 {
-  g_return_val_if_fail (GEDA_IS_HANDLE_BOX (handle_box), FALSE);
-
-  return handle_box->child_detached;
+  geda_handle_box_set_handle_position ((GedaHandleBox*)handlebox, position);
 }
 
 void
-geda_handle_box_widget_set_toolbar (GtkWidget *handlebox, GtkWidget *toolbar)
+geda_handle_widget_set_shadow_type (GtkWidget *handlebox, GtkShadowType type)
+{
+  geda_handle_box_set_shadow_type ((GedaHandleBox*)handlebox, type);
+}
+
+void
+geda_handle_widget_set_snap_edge (GtkWidget *handlebox, GtkPositionType edge)
+{
+  geda_handle_box_set_snap_edge ((GedaHandleBox*)handlebox, edge);
+}
+
+void
+geda_handle_widget_set_toolbar (GtkWidget *handlebox, GtkWidget *toolbar)
 {
   geda_handle_box_set_toolbar ((GedaHandleBox*)handlebox, toolbar);
 }
