@@ -212,21 +212,21 @@ static ToolbarStringData ToolbarStrings[] = {
   { ACTION(TOOLS_UPDATE),       "Update",     TBTS_TOOLS_UPDATE,       "Private",              TB_ICON_BITMAP, NULL},
 
   /* Edit Toolbar */
-  { ACTION(EDIT_COPY),          "Copy",       TBTS_EDIT_COPY,          "Private",        TB_ICON_BITMAP, NULL},
-  { ACTION(EDIT_MCOPY),         "Multi",      TBTS_EDIT_MCOPY,         "Private",        TB_ICON_BITMAP, NULL},
-  { ACTION(EDIT_MOVE),          "Move",       TBTS_EDIT_MOVE,          "geda-move",      TB_ICON_BITMAP, NULL},
-  { ACTION(EDIT_ROTATE_LEFT),   "Rotate",     TBTS_EDIT_ROTATE_LEFT,   "Private",        TB_ICON_BITMAP, NULL},
-  { ACTION(EDIT_MIRROR),        "Mirror",     TBTS_EDIT_MIRROR,        "Private",        TB_ICON_BITMAP, NULL},
+  { ACTION(EDIT_COPY),          "Copy",      TBTS_EDIT_COPY,          "Private",        TB_ICON_BITMAP, NULL},
+  { ACTION(EDIT_MCOPY),         "Multi",     TBTS_EDIT_MCOPY,         "Private",        TB_ICON_BITMAP, NULL},
+  { ACTION(EDIT_MOVE),          "Move",      TBTS_EDIT_MOVE,          "geda-move",      TB_ICON_BITMAP, NULL},
+  { ACTION(EDIT_ROTATE_LEFT),   "Rotate",    TBTS_EDIT_ROTATE_LEFT,   "Private",        TB_ICON_BITMAP, NULL},
+  { ACTION(EDIT_MIRROR),        "Mirror",    TBTS_EDIT_MIRROR,        "Private",        TB_ICON_BITMAP, NULL},
 
-  { ACTION(EDIT_ATTRIB),        "Attributes", TBTS_EDIT_ATTRIB,        "Private",        TB_ICON_BITMAP, NULL},
-  { ACTION(EDIT_COLOR),         "Color",      TBTS_EDIT_COLOR,         "Private",        TB_ICON_BITMAP, NULL},
+  { ACTION(EDIT_ATTRIB),        "Edit",      TBTS_EDIT_ATTRIB,        "Private",        TB_ICON_BITMAP, NULL},
+  { ACTION(EDIT_COLOR),         "Color",     TBTS_EDIT_COLOR,         "Private",        TB_ICON_BITMAP, NULL},
 
-  { ACTION(EDIT_TEXT),          "Text",       TBTS_EDIT_TEXT,          "Private",        TB_ICON_BITMAP, NULL},
-  { ACTION(EDIT_SLOT),          "Slots",      TBTS_EDIT_SLOT,          "geda-slot",      TB_ICON_BITMAP, NULL},
-  { ACTION(EDIT_PIN),           "Pins",       TBTS_EDIT_PIN,           "geda-pin-type",  TB_ICON_BITMAP, NULL},
-  { ACTION(EDIT_LINE),          "Line",       TBTS_EDIT_LINE,          "Private",        TB_ICON_BITMAP, NULL},
-  { ACTION(EDIT_FILL),          "Fill",       TBTS_EDIT_FILL,           GEDA_MAP(MESH),  TB_ICON_BITMAP, NULL},
-  { ACTION(EDIT_ARC),           "Arcs",       TBTS_EDIT_ARC,           "geda-arc-edit",  TB_ICON_BITMAP, NULL},
+  { ACTION(EDIT_TEXT),          "Text",      TBTS_EDIT_TEXT,          "Private",        TB_ICON_BITMAP, NULL},
+  { ACTION(EDIT_SLOT),          "Slots",     TBTS_EDIT_SLOT,          "geda-slot",      TB_ICON_BITMAP, NULL},
+  { ACTION(EDIT_PIN),           "Pins",      TBTS_EDIT_PIN,           "geda-pin-type",  TB_ICON_BITMAP, NULL},
+  { ACTION(EDIT_LINE),          "Line",      TBTS_EDIT_LINE,          "Private",        TB_ICON_BITMAP, NULL},
+  { ACTION(EDIT_FILL),          "Fill",      TBTS_EDIT_FILL,           GEDA_MAP(MESH),  TB_ICON_BITMAP, NULL},
+  { ACTION(EDIT_ARC),           "Arcs",      TBTS_EDIT_ARC,           "geda-arc-edit",  TB_ICON_BITMAP, NULL},
 
   /* Attribute Toolbar */
   { ACTION(ATTRIB_ATTACH),      "Promote",    TBTS_ATTRIB_ATTACH,      "Private",                   TB_ICON_BITMAP, NULL},
