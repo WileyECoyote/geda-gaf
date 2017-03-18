@@ -1689,54 +1689,6 @@ geda_handle_box_dock (GedaHandleBox *handlebox) {
 }
 
 /*!
- * \brief Sets the Shadow Type of a GedaHandleBox
- * \par Function Description
- *  Sets the type of shadow to be drawn around the border of the handle box.
- *
- * \param [in] handle_box The #GedaHandleBox object
- * \param [in] type       Enumerated ShadowType:
- *
- *  <DL>
- *    <DT>GTK_SHADOW_NONE</DT>
- *    <DT>GTK_SHADOW_IN</DT>
- *    <DT>GTK_SHADOW_OUT</DT>
- *    <DT>GTK_SHADOW_ETCHED_IN</DT>
- *    <DT>GTK_SHADOW_ETCHED_OUT</DT>
- *  </DL>
- */
-void
-geda_handle_box_set_shadow_type (GedaHandleBox *handle_box, GtkShadowType type)
-{
-  g_return_if_fail (GEDA_IS_HANDLE_BOX (handle_box));
-
-  if ((GtkShadowType) handle_box->shadow_type != type) {
-
-    handle_box->shadow_type = type;
-    g_object_notify (G_OBJECT (handle_box), "shadow-type");
-    gtk_widget_queue_resize (GTK_WIDGET (handle_box));
-  }
-}
-
-/*!
- * \brief Get the Shadow Type of a GedaHandleBox
- * \par Function Description
- *
- * Gets the type of shadow drawn around the handle box. See
- * geda_handle_box_set_shadow_type().
- *
- * \param [in] handle_box   The #GedaHandleBox object
- *
- * \returns the type of shadow currently drawn around the handle box.
- */
-GtkShadowType
-geda_handle_box_get_shadow_type (GedaHandleBox *handle_box)
-{
-  g_return_val_if_fail (GEDA_IS_HANDLE_BOX (handle_box), GTK_SHADOW_ETCHED_OUT);
-
-  return handle_box->shadow_type;
-}
-
-/*!
  * \brief Sets the Handle Position of a GedaHandleBox
  * \par Function Description
  * Sets the side of the handlebox where the handle is drawn.
@@ -1782,6 +1734,54 @@ geda_handle_box_get_handle_position (GedaHandleBox *handle_box)
   g_return_val_if_fail (GEDA_IS_HANDLE_BOX (handle_box), GTK_POS_LEFT);
 
   return handle_box->handle_position;
+}
+
+/*!
+ * \brief Sets the Shadow Type of a GedaHandleBox
+ * \par Function Description
+ *  Sets the type of shadow to be drawn around the border of the handle box.
+ *
+ * \param [in] handle_box The #GedaHandleBox object
+ * \param [in] type       Enumerated ShadowType:
+ *
+ *  <DL>
+ *    <DT>GTK_SHADOW_NONE</DT>
+ *    <DT>GTK_SHADOW_IN</DT>
+ *    <DT>GTK_SHADOW_OUT</DT>
+ *    <DT>GTK_SHADOW_ETCHED_IN</DT>
+ *    <DT>GTK_SHADOW_ETCHED_OUT</DT>
+ *  </DL>
+ */
+void
+geda_handle_box_set_shadow_type (GedaHandleBox *handle_box, GtkShadowType type)
+{
+  g_return_if_fail (GEDA_IS_HANDLE_BOX (handle_box));
+
+  if ((GtkShadowType) handle_box->shadow_type != type) {
+
+    handle_box->shadow_type = type;
+    g_object_notify (G_OBJECT (handle_box), "shadow-type");
+    gtk_widget_queue_resize (GTK_WIDGET (handle_box));
+  }
+}
+
+/*!
+ * \brief Get the Shadow Type of a GedaHandleBox
+ * \par Function Description
+ *
+ * Gets the type of shadow drawn around the handle box. See
+ * geda_handle_box_set_shadow_type().
+ *
+ * \param [in] handle_box   The #GedaHandleBox object
+ *
+ * \returns the type of shadow currently drawn around the handle box.
+ */
+GtkShadowType
+geda_handle_box_get_shadow_type (GedaHandleBox *handle_box)
+{
+  g_return_val_if_fail (GEDA_IS_HANDLE_BOX (handle_box), GTK_SHADOW_ETCHED_OUT);
+
+  return handle_box->shadow_type;
 }
 
 /*!
@@ -1845,8 +1845,7 @@ geda_handle_box_set_shrink_on_detach (GedaHandleBox *handle_box, bool shrink)
  *  </DL>
  */
 void
-geda_handle_box_set_snap_edge (GedaHandleBox   *handle_box,
-                              GtkPositionType  edge)
+geda_handle_box_set_snap_edge (GedaHandleBox *handle_box, GtkPositionType edge)
 {
   g_return_if_fail (GEDA_IS_HANDLE_BOX (handle_box));
 
@@ -1906,12 +1905,12 @@ geda_handle_box_set_toolbar (GedaHandleBox *handlebox, GtkWidget *toolbar)
 {
   if (GEDA_IS_HANDLE_BOX (handlebox)) {
 
-      /* Can only have one child, check already have one */
-      GtkWidget *current = gtk_bin_get_child(GTK_BIN(handlebox));
+    /* Can only have one child, check already have one */
+    GtkWidget *current = gtk_bin_get_child(GTK_BIN(handlebox));
 
-      if (current) {
-        geda_handle_box_remove (GTK_CONTAINER (handlebox), current);
-      }
+    if (current) {
+      geda_handle_box_remove (GTK_CONTAINER (handlebox), current);
+    }
 
     geda_handle_box_add (GTK_CONTAINER (handlebox), toolbar);
   }
