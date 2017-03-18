@@ -139,27 +139,27 @@ typedef enum
 
 static ToolbarStringData ToolbarStrings[] = {
    /* Standard Toolbar*/
-  { ACTION(FILE_NEW),           "New",        TBTS_FILE_NEW,            GSCHEM_MAP(NEW),           TB_ICON_BITMAP, NULL},
-  { ACTION(FILE_OPEN),          "Open",       TBTS_FILE_OPEN,           GSCHEM_MAP(OPEN),          TB_ICON_BITMAP, NULL},
-  { ACTION(FILE_SAVE),          "Save",       TBTS_FILE_SAVE,           GSCHEM_MAP(SAVE),          TB_ICON_BITMAP, NULL},
-  { ACTION(FILE_SAVE_AS),       "Save As",    TBTS_FILE_SAVE_AS,       "gschem-save-as",           TB_ICON_STOCK, NULL},
-  { ACTION(FILE_CLOSE),         "Close",      TBTS_FILE_CLOSE,          GSCHEM_MAP(PROJECT_CLOSE), TB_ICON_BITMAP, NULL},
+  { ACTION(FILE_NEW),           "New",       TBTS_FILE_NEW,            GSCHEM_MAP(NEW),           TB_ICON_BITMAP, NULL},
+  { ACTION(FILE_OPEN),          "Open",      TBTS_FILE_OPEN,           GSCHEM_MAP(OPEN),          TB_ICON_BITMAP, NULL},
+  { ACTION(FILE_SAVE),          "Save",      TBTS_FILE_SAVE,           GSCHEM_MAP(SAVE),          TB_ICON_BITMAP, NULL},
+  { ACTION(FILE_SAVE_AS),       "Save As",   TBTS_FILE_SAVE_AS,       "gschem-save-as",           TB_ICON_STOCK, NULL},
+  { ACTION(FILE_CLOSE),         "Close",     TBTS_FILE_CLOSE,          GSCHEM_MAP(PROJECT_CLOSE), TB_ICON_BITMAP, NULL},
 
-  { ACTION(FILE_PRINT),         "Print",      TBTS_FILE_PRINT,         "gschem-print-document",    TB_ICON_STOCK,  NULL},
-  { ACTION(FILE_WRITE_PDF),     "Write PDF",  TBTS_FILE_WRITE_PDF,      GAF_PDF_BITMAP,            TB_ICON_BITMAP, NULL},
+  { ACTION(FILE_PRINT),         "Print",     TBTS_FILE_PRINT,         "gschem-print-document",    TB_ICON_STOCK,  NULL},
+  { ACTION(FILE_WRITE_PDF),     "PDF",       TBTS_FILE_WRITE_PDF,      GAF_PDF_BITMAP,            TB_ICON_BITMAP, NULL},
 
-  { ACTION(EDIT_CB_CUT),        "Cut",        TBTS_EDIT_CB_CUT,        "gtk-cut",           TB_ICON_STOCK,  NULL},
-  { ACTION(EDIT_CB_COPY),       "Copy",       TBTS_EDIT_CB_COPY,       "gtk-copy",          TB_ICON_STOCK,  NULL},
-  { ACTION(EDIT_CB_PASTE),      "Paste",      TBTS_EDIT_CB_PASTE,      "gtk-paste",         TB_ICON_STOCK,  NULL},
+  { ACTION(EDIT_CB_CUT),        "Cut",       TBTS_EDIT_CB_CUT,        "gtk-cut",           TB_ICON_STOCK,  NULL},
+  { ACTION(EDIT_CB_COPY),       "Copy",      TBTS_EDIT_CB_COPY,       "gtk-copy",          TB_ICON_STOCK,  NULL},
+  { ACTION(EDIT_CB_PASTE),      "Paste",     TBTS_EDIT_CB_PASTE,      "gtk-paste",         TB_ICON_STOCK,  NULL},
 
-  { ACTION(EDIT_UNDO),          "Undo",       TBTS_EDIT_UNDO,           GSCHEM_MAP(UNDO),   TB_ICON_BITMAP, NULL},
-  { ACTION(EDIT_REDO),          "Redo",       TBTS_EDIT_REDO,           GSCHEM_MAP(REDO),   TB_ICON_BITMAP, NULL},
+  { ACTION(EDIT_UNDO),          "Undo",      TBTS_EDIT_UNDO,           GSCHEM_MAP(UNDO),   TB_ICON_BITMAP, NULL},
+  { ACTION(EDIT_REDO),          "Redo",      TBTS_EDIT_REDO,           GSCHEM_MAP(REDO),   TB_ICON_BITMAP, NULL},
 
-  { ACTION(EDIT_SELECT),        "Select",     TBTS_EDIT_SELECT,        "gschem-select",     TB_ICON_STOCK, NULL},
-  { ACTION(EDIT_DESELECT),      "Deselect",   TBTS_EDIT_DESELECT,      "gschem-unselect",   TB_ICON_STOCK, NULL},
-  { ACTION(EDIT_DESELECT_ALL),  "Unselect",   TBTS_EDIT_DESELECT_ALL,  "unselect-all",      TB_ICON_STOCK, NULL},
+  { ACTION(EDIT_SELECT),        "Select",    TBTS_EDIT_SELECT,        "gschem-select",     TB_ICON_STOCK, NULL},
+  { ACTION(EDIT_DESELECT),      "Deselect",  TBTS_EDIT_DESELECT,      "gschem-unselect",   TB_ICON_STOCK, NULL},
+  { ACTION(EDIT_DESELECT_ALL),  "Unselect",  TBTS_EDIT_DESELECT_ALL,  "unselect-all",      TB_ICON_STOCK, NULL},
 
-  { "nil",                      "nil",        "nil",                   "gtk-no", 0, 0}, /* dummy corresponding to etb_none */
+  { "nil",                      "nil",        "nil",                  "gtk-no", 0, 0}, /* dummy corresponding to etb_none */
 
   { ACTION(EDIT_SELECT_ALL),    "Select All", TBTS_EDIT_SELECT_ALL,    "gschem-select-all", TB_ICON_BITMAP, NULL},
   { ACTION(EDIT_INVERT),        "Invert Sel", TBTS_EDIT_INVERT,        "gschem-invert",     TB_ICON_BITMAP, NULL},
