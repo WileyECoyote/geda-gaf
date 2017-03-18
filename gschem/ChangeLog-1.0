@@ -3,7 +3,8 @@
     * src/x/x_toolbars.c: Remove "all" from "Unselect All" to reduce the
       toolbar buttons, change Attributes->Edit, technically more accurate,
       Use geda_handle_box_widget_set_toolbar instead of gtk_container_add
-      to put the Symbol_Toolbar in the symbol_handlebox.
+      to put the Symbol_Toolbar in the symbol_handlebox. Set Symbol_Toolbar
+      and Edit_Toolbar handle position to the top of the box.
 
 2017-03-17 Wiley E. Hill <wileyhill@gmail.com>
 
