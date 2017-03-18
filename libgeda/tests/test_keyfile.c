@@ -973,6 +973,32 @@ int check_data (void)
       err = NULL;
     }
 
+    /* === Function 27: geda_keyfile_set_integer === */
+
+    geda_keyfile_set_integer (keyfile,"G4", "I0", TRUE);
+
+    if (!geda_keyfile_has_group(keyfile, "G4")) {
+      fprintf(stderr, "FAILED: (KF082701) set_integer, G4\n");
+      result++;
+    }
+
+    /* === Function 26: geda_keyfile_get_integer === */
+
+    if (geda_keyfile_get_boolean(keyfile, "G3", "NI0", &err)) {
+      fprintf(stderr, "FAILED: (KF082601A) get_integer NI0\n");
+      result++;
+    }
+    else if (!err) {
+      /* Error should be set since key does not exist */
+      fprintf(stderr, "FAILED: (KF082601B) get_integer, no error\n");
+      result++;
+    }
+
+    if (err) {
+      g_error_free (err);
+      err = NULL;
+    }
+
     char *data;
     data = geda_keyfile_to_data(keyfile, NULL, NULL);
     g_file_set_contents(KEY_FILENAME, data, -1, NULL);
