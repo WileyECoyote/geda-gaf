@@ -1464,7 +1464,7 @@ x_toolbars_init_left(GschemToplevel *w_current, GtkWidget *parent_container)
   Symbol_Toolbar = geda_toolbar_new (GTK_ORIENTATION_VERTICAL);
 
   gtk_container_set_border_width (GTK_CONTAINER  (Symbol_Toolbar), 0);
-  gtk_container_add              (GTK_CONTAINER  (w_current->symbol_handlebox), Symbol_Toolbar);
+  geda_handle_box_widget_set_toolbar(w_current->symbol_handlebox, Symbol_Toolbar);
 
   GSCHEM_TOOLBAR_BUTTON (Symbol, etb_translate);
   GSCHEM_TOOLBAR_BUTTON (Symbol, etb_lock);
