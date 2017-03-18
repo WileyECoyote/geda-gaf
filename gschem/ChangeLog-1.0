@@ -1,3 +1,8 @@
+2017-03-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_toolbars.c: Remove "all" from "Unselect All" to reduce the
+      toolbar buttons.
+
 2017-03-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/gschem-gtkrc: Add GtkToolbar::space-size = 6 in style "Toolbars".
