@@ -85,7 +85,7 @@ static WidgetStringData DialogTabData[] = {
         { "StylesTab",         "Styles",       "Styles"},
         { "TextTab",           "Text",         "Text options"},
         { "AttributesTab",     "Attributes",   "Attributes"},
-        { "LibraryTab",        "Library",      "Library related perferences"},
+        { "LibraryTab",        "Library",      "Library related preferences"},
 };
 
 WidgetStringData DialogStrings[] = {
