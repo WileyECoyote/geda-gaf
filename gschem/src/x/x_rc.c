@@ -106,6 +106,7 @@ x_rc_parse_gschem_error (GError **err, void *retry_flag)
 
     const char *unbound_msg;      /* As received Unbound */
     const char *unbound_needle  = "Unbound variable:";
+    int len;
 
     /* Config files are allowed to be missing or skipped; check for this. */
     if (g_error_matches (*err, EDA_ERROR, ENOENT) ||
@@ -114,8 +115,16 @@ x_rc_parse_gschem_error (GError **err, void *retry_flag)
     }
 
     /* Check if this was an "Unbound variable:" message */
-    unbound_msg = geda_utility_string_istr ((*err)->message, unbound_needle) + 18;
-    int len     = strlen(unbound_msg);
+    unbound_msg = geda_utility_string_istr ((*err)->message, unbound_needle);
+
+    if (unbound_msg != NULL) {
+      unbound_msg = unbound_msg + 18;
+      len = strlen(unbound_msg);
+    }
+    else {
+      len = 0;
+    }
+
     if (len > 0) { /* True if geda_utility_string_istr found "Unbound variable:" */
 
       char *unbound_sym;      /* Unbound Symbol name */

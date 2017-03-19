@@ -1,3 +1,9 @@
+2017-03-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gschem/src/x/x_rc.c: Revise x_rc_parse_gschem_error to refrain from
+      augmenting the unbound_msg pointer until after checking the pointer
+      returned from geda_utility_string_istr was not NULL, duh.
+
 2017-03-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_toolbars.c: Remove "all" from "Unselect All", change Attributes
