@@ -2054,6 +2054,12 @@ geda_handle_widget_set_shadow_type (GtkWidget *handlebox, GtkShadowType type)
 }
 
 void
+geda_handle_widget_set_shrink_on_detach (GtkWidget *handlebox, bool shrink)
+{
+  geda_handle_box_set_shrink_on_detach ((GedaHandleBox*)handlebox, shrink);
+}
+
+void
 geda_handle_widget_set_snap_edge (GtkWidget *handlebox, GtkPositionType edge)
 {
   geda_handle_box_set_snap_edge ((GedaHandleBox*)handlebox, edge);

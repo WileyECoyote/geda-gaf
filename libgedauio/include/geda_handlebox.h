@@ -101,6 +101,7 @@ void            geda_handle_box_set_toolbar          (GedaHandleBox *handlebox, 
 
 void            geda_handle_widget_set_handle_position  (GtkWidget *widget, GtkPositionType  position);
 void            geda_handle_widget_set_shadow_type      (GtkWidget *widget, GtkShadowType    type);
+void            geda_handle_widget_set_shrink_on_detach (GtkWidget *widget, bool shrink);
 void            geda_handle_widget_set_snap_edge        (GtkWidget *widget, GtkPositionType  edge);
 void            geda_handle_widget_set_toolbar          (GtkWidget *widget, GtkWidget *toolbar);
 
