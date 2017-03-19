@@ -5507,174 +5507,6 @@ geda_combo_box_new_with_model_and_entry (GtkTreeModel *model)
 }
 
 /*!
- * \brief Get #GedaComboBox Wrap Width
- * \par Function Description
- *  Returns the wrap width which is used to determine the number of columns
- *  for the popup menu. If the wrap width is larger than 1, the combo box
- *  is in table mode.
- *
- * \param [in] combo_box
- *
- * \returns the wrap width.
- *
- * \sa geda_combo_widget_get_wrap_width
- */
-int
-geda_combo_box_get_wrap_width (GedaComboBox *combo_box)
-{
-  g_return_val_if_fail (GEDA_IS_COMBO_BOX (combo_box), -1);
-
-  return combo_box->priv->wrap_width;
-}
-
-/*!
- * \brief Set #GedaComboBox Wrap Width
- * \par Function Description
- *  Sets the wrap width of \a combo_box to be \a width. The wrap width is
- *  basically the preferred number of columns when you want the popup to
- *  be layed out in a table.
- *
- * \param [in] combo_box A #GedaComboBox
- * \param [in] width     Preferred number of columns
- *
- * \sa geda_combo_widget_set_wrap_width
- */
-void
-geda_combo_box_set_wrap_width (GedaComboBox *combo_box,
-                               int           width)
-{
-  GedaComboBoxData *priv;
-
-  g_return_if_fail (GEDA_IS_COMBO_BOX (combo_box));
-
-  if (width < 0) {
-    width = GEDA_COMBO_DEFAULT_WRAP;
-  }
-
-  priv = combo_box->priv;
-
-  if (width != priv->wrap_width) {
-
-    priv->wrap_width = width;
-
-    geda_combo_box_check_appearance (combo_box);
-    geda_combo_box_relayout (combo_box);
-
-    g_object_notify (G_OBJECT (combo_box), "wrap-width");
-  }
-}
-
-/*!
- * \brief Get #GedaComboBox Row Span
- * \par Function Description
- *  Returns the column with row span information for \a combo_box.
- *
- * \param [in] combo_box A #GedaComboBox
- *
- * \returns the row span column.
- *
- * \sa geda_combo_widget_get_row_span_column
- */
-int geda_combo_box_get_row_span_column (GedaComboBox *combo_box)
-{
-  g_return_val_if_fail (GEDA_IS_COMBO_BOX (combo_box), -1);
-
-  return combo_box->priv->row_column;
-}
-
-/*!
- * \brief Set #GedaComboBox Row Span
- * \par Function Description
- *  Sets the column with row span information for \a combo_box to
- *  be \a row_span. The row span column contains integers which
- *  indicate how many rows an item should span.
- *
- * \param [in] combo_box A #GedaComboBox.
- * \param [in] row_span  A column in the model passed during construction.
- *
- * \sa geda_combo_widget_set_row_span_column
- */
-void geda_combo_box_set_row_span_column (GedaComboBox *combo_box,
-                                         int           row_span)
-{
-  GedaComboBoxData *priv;
-  int col;
-
-  g_return_if_fail (GEDA_IS_COMBO_BOX (combo_box));
-
-  priv = combo_box->priv;
-
-  col = gtk_tree_model_get_n_columns (priv->model);
-
-  g_return_if_fail (row_span >= -1 && row_span < col);
-
-  if (row_span != priv->row_column) {
-
-    priv->row_column = row_span;
-
-    geda_combo_box_relayout (combo_box);
-
-    g_object_notify (G_OBJECT (combo_box), "row-span-column");
-  }
-}
-
-/*!
- * \brief Get #GedaComboBox Column Span
- * \par Function Description
- *  Returns the column with column span information for \a combo_box.
- *
- * \param [in] combo_box  A #GedaComboBox.
- *
- * \returns the column span column.
- *
- * \sa geda_combo_widget_get_column_span_column
- */
-int
-geda_combo_box_get_column_span_column (GedaComboBox *combo_box)
-{
-  g_return_val_if_fail (GEDA_IS_COMBO_BOX (combo_box), -1);
-
-  return combo_box->priv->col_column;
-}
-
-/*!
- * \brief Set #GedaComboBox Column Span
- * \par Function Description
- *  Sets the column with column span information for \a combo_box to be
- *  \a column_span. The column span column contains integers which indicate
- *  how many columns an item should span.
- *
- * \param [in] combo_box   A #GedaComboBox
- * \param [in] column_span A column in the model passed during construction
- *
- * \sa geda_combo_widget_set_column_span_column
- */
-void
-geda_combo_box_set_column_span_column (GedaComboBox *combo_box,
-                                       int           column_span)
-{
-  GedaComboBoxData *priv;
-  int col;
-
-  g_return_if_fail (GEDA_IS_COMBO_BOX (combo_box));
-
-  priv = combo_box->priv;
-
-  col = gtk_tree_model_get_n_columns (priv->model);
-
-  g_return_if_fail (column_span >= -1 && column_span <= col);
-
-  if (column_span != priv->col_column) {
-
-    priv->col_column = column_span;
-
-    geda_combo_box_relayout (combo_box);
-
-    g_object_notify (G_OBJECT (combo_box), "column-span-column");
-  }
-}
-
-/*!
  * \brief Get Active #GedaComboBox item
  * \par Function Description
  *  Returns the index of the currently active item, or -1 if there's no
@@ -6607,6 +6439,166 @@ geda_combo_box_set_add_tearoffs (GedaComboBox *combo_box, bool add_tearoffs)
 }
 
 /*!
+ * \brief Get #GedaComboBox Column Span
+ * \par Function Description
+ *  Returns the column with column span information for \a combo_box.
+ *
+ * \param [in] combo_box  A #GedaComboBox.
+ *
+ * \returns the column span column.
+ *
+ * \sa geda_combo_widget_get_column_span_column
+ */
+int
+geda_combo_box_get_column_span_column (GedaComboBox *combo_box)
+{
+  g_return_val_if_fail (GEDA_IS_COMBO_BOX (combo_box), -1);
+
+  return combo_box->priv->col_column;
+}
+
+/*!
+ * \brief Set #GedaComboBox Column Span
+ * \par Function Description
+ *  Sets the column with column span information for \a combo_box to be
+ *  \a column_span. The column span column contains integers which indicate
+ *  how many columns an item should span.
+ *
+ * \param [in] combo_box   A #GedaComboBox
+ * \param [in] column_span A column in the model passed during construction
+ *
+ * \sa geda_combo_widget_set_column_span_column
+ */
+void
+geda_combo_box_set_column_span_column (GedaComboBox *combo_box,
+                                       int           column_span)
+{
+  GedaComboBoxData *priv;
+  int col;
+
+  g_return_if_fail (GEDA_IS_COMBO_BOX (combo_box));
+
+  priv = combo_box->priv;
+
+  col = gtk_tree_model_get_n_columns (priv->model);
+
+  g_return_if_fail (column_span >= -1 && column_span <= col);
+
+  if (column_span != priv->col_column) {
+
+    priv->col_column = column_span;
+
+    geda_combo_box_relayout (combo_box);
+
+    g_object_notify (G_OBJECT (combo_box), "column-span-column");
+  }
+}
+
+/*!
+ * \brief Get GedaComboBox Focus on Click
+ * \par Function Description
+ *  Returns whether the combo box grabs focus when it is clicked
+ *  with the mouse, \see geda_combo_box_set_focus_on_click().
+ *
+ * \param [in] combo  Pointer to a #GedaComboBox
+ *
+ * \retval %TRUE if the combo box grabs focus when it is clicked
+ *         with the mouse.
+ */
+bool
+geda_combo_box_get_focus_on_click (GedaComboBox *combo)
+{
+  g_return_val_if_fail (GEDA_IS_COMBO_BOX (combo), FALSE);
+
+  return combo->priv->focus_on_click;
+}
+
+/*!
+ * \brief Set GedaComboBox Focus on Click
+ * \par Function Description
+ *  Sets whether the combo box will grab focus when it is clicked with
+ *  the mouse. Making mouse clicks not grab focus is useful in places
+ *  like toolbars where you do not want the keyboard focus removed from
+ *  the main area of the application.
+ *
+ * \param [in] combo_box       Pointer to a #GedaComboBox
+ * \param [in] focus_on_click  whether the combo box grabs focus when clicked
+ *                             with the mouse
+ */
+void
+geda_combo_box_set_focus_on_click (GedaComboBox *combo_box, bool focus_on_click)
+{
+  g_return_if_fail (GEDA_IS_COMBO_BOX (combo_box));
+
+  focus_on_click = focus_on_click != FALSE;
+
+  if (combo_box->priv->focus_on_click != focus_on_click) {
+
+    combo_box->priv->focus_on_click = focus_on_click;
+
+    if (combo_box->priv->button) {
+      gtk_button_set_focus_on_click (GTK_BUTTON (combo_box->priv->button),
+                                     focus_on_click);
+    }
+    g_object_notify (G_OBJECT (combo_box), "focus-on-click");
+  }
+}
+
+/*!
+ * \brief Get #GedaComboBox Row Span
+ * \par Function Description
+ *  Returns the column with row span information for \a combo_box.
+ *
+ * \param [in] combo_box A #GedaComboBox
+ *
+ * \returns the row span column.
+ *
+ * \sa geda_combo_widget_get_row_span_column
+ */
+int geda_combo_box_get_row_span_column (GedaComboBox *combo_box)
+{
+  g_return_val_if_fail (GEDA_IS_COMBO_BOX (combo_box), -1);
+
+  return combo_box->priv->row_column;
+}
+
+/*!
+ * \brief Set #GedaComboBox Row Span
+ * \par Function Description
+ *  Sets the column with row span information for \a combo_box to
+ *  be \a row_span. The row span column contains integers which
+ *  indicate how many rows an item should span.
+ *
+ * \param [in] combo_box A #GedaComboBox.
+ * \param [in] row_span  A column in the model passed during construction.
+ *
+ * \sa geda_combo_widget_set_row_span_column
+ */
+void geda_combo_box_set_row_span_column (GedaComboBox *combo_box,
+                                         int           row_span)
+{
+  GedaComboBoxData *priv;
+  int col;
+
+  g_return_if_fail (GEDA_IS_COMBO_BOX (combo_box));
+
+  priv = combo_box->priv;
+
+  col = gtk_tree_model_get_n_columns (priv->model);
+
+  g_return_if_fail (row_span >= -1 && row_span < col);
+
+  if (row_span != priv->row_column) {
+
+    priv->row_column = row_span;
+
+    geda_combo_box_relayout (combo_box);
+
+    g_object_notify (G_OBJECT (combo_box), "row-span-column");
+  }
+}
+
+/*!
  * \brief Get Title GedaComboBox Property
  * \par Function Description
  *  Gets the current title of the menu in tearoff mode/
@@ -6628,6 +6620,10 @@ geda_combo_box_get_title (GedaComboBox *combo_box)
   return combo_box->priv->tearoff_title;
 }
 
+/*! \internal Called by
+ * geda_combo_box_set_title
+ * geda_combo_box_menu_setup
+ */
 static void
 geda_combo_box_update_title (GedaComboBox *combo_box)
 {
@@ -6673,6 +6669,95 @@ geda_combo_box_set_title (GedaComboBox *combo_box, const char *title)
     geda_combo_box_update_title (combo_box);
 
     g_object_notify (G_OBJECT (combo_box), "tearoff-title");
+  }
+}
+
+/*!
+ * \brief Set GedaComboBox Tool Tip Column
+ * \par Function Description
+ *  This function can be used when the the tree-view model contains text-
+ *  only tooltips on full rows. \a column should be set to the column in
+ *  tree-view’s model containing the tooltip texts, or -1 to disable
+ *  this feature.
+ *
+ *  When enabled, GtkWidget:has-tooltip will be set to %TRUE and
+ *  tree_view will connect a GtkWidget::query-tooltip signal handler.
+ *
+ * Note that the signal handler sets the text with gtk_tooltip_set_markup(),
+ * so &, <, etc have to be escaped in the text.
+ *
+ * \param [in] combo   Pointer to a #GedaComboBox
+ * \param [in] column  Valid integer column number for tree model
+ */
+void
+geda_combo_box_set_tooltip_column (GedaComboBox *combo, int column)
+{
+  GedaComboBoxData *priv;
+
+  g_return_if_fail (GEDA_IS_COMBO_BOX (combo));
+
+  combo->tip_column = column;
+  priv = combo->priv;
+
+  gtk_tree_view_set_tooltip_column (GTK_TREE_VIEW(priv->tree_view),
+                                    combo->tip_column);
+}
+
+/*!
+ * \brief Get #GedaComboBox Wrap Width
+ * \par Function Description
+ *  Returns the wrap width which is used to determine the number of columns
+ *  for the popup menu. If the wrap width is larger than 1, the combo box
+ *  is in table mode.
+ *
+ * \param [in] combo_box
+ *
+ * \returns the wrap width.
+ *
+ * \sa geda_combo_widget_get_wrap_width
+ */
+int
+geda_combo_box_get_wrap_width (GedaComboBox *combo_box)
+{
+  g_return_val_if_fail (GEDA_IS_COMBO_BOX (combo_box), -1);
+
+  return combo_box->priv->wrap_width;
+}
+
+/*!
+ * \brief Set #GedaComboBox Wrap Width
+ * \par Function Description
+ *  Sets the wrap width of \a combo_box to be \a width. The wrap width is
+ *  basically the preferred number of columns when you want the popup to
+ *  be layed out in a table.
+ *
+ * \param [in] combo_box A #GedaComboBox
+ * \param [in] width     Preferred number of columns
+ *
+ * \sa geda_combo_widget_set_wrap_width
+ */
+void
+geda_combo_box_set_wrap_width (GedaComboBox *combo_box,
+                               int           width)
+{
+  GedaComboBoxData *priv;
+
+  g_return_if_fail (GEDA_IS_COMBO_BOX (combo_box));
+
+  if (width < 0) {
+    width = GEDA_COMBO_DEFAULT_WRAP;
+  }
+
+  priv = combo_box->priv;
+
+  if (width != priv->wrap_width) {
+
+    priv->wrap_width = width;
+
+    geda_combo_box_check_appearance (combo_box);
+    geda_combo_box_relayout (combo_box);
+
+    g_object_notify (G_OBJECT (combo_box), "wrap-width");
   }
 }
 
@@ -6936,87 +7021,6 @@ geda_combo_box_set_entry_text_column (GedaComboBox *combo_box, int text_column)
   }
 }
 
-/*!
- * \brief Get GedaComboBox Focus on Click
- * \par Function Description
- *  Returns whether the combo box grabs focus when it is clicked
- *  with the mouse, \see geda_combo_box_set_focus_on_click().
- *
- * \param [in] combo  Pointer to a #GedaComboBox
- *
- * \retval %TRUE if the combo box grabs focus when it is clicked
- *         with the mouse.
- */
-bool
-geda_combo_box_get_focus_on_click (GedaComboBox *combo)
-{
-  g_return_val_if_fail (GEDA_IS_COMBO_BOX (combo), FALSE);
-
-  return combo->priv->focus_on_click;
-}
-
-/*!
- * \brief Set GedaComboBox Focus on Click
- * \par Function Description
- *  Sets whether the combo box will grab focus when it is clicked with
- *  the mouse. Making mouse clicks not grab focus is useful in places
- *  like toolbars where you do not want the keyboard focus removed from
- *  the main area of the application.
- *
- * \param [in] combo_box       Pointer to a #GedaComboBox
- * \param [in] focus_on_click  whether the combo box grabs focus when clicked
- *                             with the mouse
- */
-void
-geda_combo_box_set_focus_on_click (GedaComboBox *combo_box, bool focus_on_click)
-{
-  g_return_if_fail (GEDA_IS_COMBO_BOX (combo_box));
-
-  focus_on_click = focus_on_click != FALSE;
-
-  if (combo_box->priv->focus_on_click != focus_on_click) {
-
-    combo_box->priv->focus_on_click = focus_on_click;
-
-    if (combo_box->priv->button) {
-      gtk_button_set_focus_on_click (GTK_BUTTON (combo_box->priv->button),
-                                     focus_on_click);
-    }
-    g_object_notify (G_OBJECT (combo_box), "focus-on-click");
-  }
-}
-
-/*!
- * \brief Set GedaComboBox Tool Tip Column
- * \par Function Description
- *  This function can be used when the the tree-view model contains text-
- *  only tooltips on full rows. \a column should be set to the column in
- *  tree-view’s model containing the tooltip texts, or -1 to disable
- *  this feature.
- *
- *  When enabled, GtkWidget:has-tooltip will be set to %TRUE and
- *  tree_view will connect a GtkWidget::query-tooltip signal handler.
- *
- * Note that the signal handler sets the text with gtk_tooltip_set_markup(),
- * so &, <, etc have to be escaped in the text.
- *
- * \param [in] combo   Pointer to a #GedaComboBox
- * \param [in] column  Valid integer column number for tree model
- */
-void
-geda_combo_box_set_tooltip_column (GedaComboBox *combo, int column)
-{
-  GedaComboBoxData *priv;
-
-  g_return_if_fail (GEDA_IS_COMBO_BOX (combo));
-
-  combo->tip_column = column;
-  priv = combo->priv;
-
-  gtk_tree_view_set_tooltip_column (GTK_TREE_VIEW(priv->tree_view),
-                                    combo->tip_column);
-}
-
 /* ------------------------ Widget Versions ------------------------ */
 
 /** \defgroup GedaComboBox-widget GedaComboBox Widget Operatives
@@ -7024,78 +7028,39 @@ geda_combo_box_set_tooltip_column (GedaComboBox *combo, int column)
  */
 
 /*!
- * \brief Get #GedaComboBox Widget Wrap Width
+ * \brief Get GedaComboBox Widget Add Tearoff Property
  * \par Function Description
- *  Returns the wrap width which is used to determine the number of columns
- *  for the popup menu. If the wrap width is larger than 1, the combo box
- *  is in table mode.
+ *  Gets the current value of the :add-tearoffs property.
  *
- * \param [in] combo_box
+ * \param [in] combo_box a #GedaComboBox
  *
- * \returns the wrap width.
+ * \returns current value of the add-tearoffs property.
  *
- * \sa geda_combo_box_get_wrap_width
+ * \sa geda_combo_widget_get_add_tearoffs
  */
-int
-geda_combo_widget_get_wrap_width (GtkWidget *combo_box) {
-  if (GEDA_IS_COMBO_BOX (combo_box))
-    return ((GedaComboBox*)combo_box)->priv->wrap_width;
+bool
+geda_combo_widget_get_add_tearoffs (GtkWidget *combo_box) {
+  if (GEDA_IS_COMBO_BOX (combo_box)) {
+    return ((GedaComboBox*)combo_box)->priv->add_tearoffs;
+  }
   BUG_MSG ("Operative is not a GedaComboBox");
-  return -1;
+  return FALSE;
 }
 
 /*!
- * \brief Set #GedaComboBox Widget Wrap Width
+ * \brief Set GedaComboBox Widget Add Tearoff Property
  * \par Function Description
- *  Sets the wrap width of \a combo_box to be \a width. The wrap width is
- *  basically the preferred number of columns when you want the popup to
- *  be layed out in a table.
+ *  Sets whether the popup menu should have a tearoff menu item.
  *
- * \param [in] combo_box A #GedaComboBox
- * \param [in] width     Preferred number of columns
+ * \param [in] combo        a #GedaComboBox
+ * \param [in] add_tearoffs %TRUE to add tearoff menu items
  *
- * \sa geda_combo_box_set_wrap_width
+ * \sa geda_combo_box_set_add_tearoffs
  */
 void
-geda_combo_widget_set_wrap_width (GtkWidget *combo_box, int width) {
-  return geda_combo_box_set_wrap_width((GedaComboBox*)combo_box, width);
-}
-
-/*!
- * \brief Get #GedaComboBox Widget Row Span
- * \par Function Description
- *  Returns the column with row span information for \a combo_box.
- *
- * \param [in] combo_box A #GedaComboBox
- *
- * \returns the row span column.
- *
- * \sa geda_combo_box_get_row_span_column
- */
-int
-geda_combo_widget_get_row_span_column (GtkWidget *combo_box) {
-  if (GEDA_IS_COMBO_BOX (combo_box))
-    return ((GedaComboBox*)combo_box)->priv->row_column;
-  BUG_MSG ("Operative is not a GedaComboBox");
-  return -1;
-}
-
-/*!
- * \brief Set #GedaComboBox Widget Row Span
- * \par Function Description
- *  Sets the column with row span information for \a combo_box to
- *  be \a row_span. The row span column contains integers which
- *  indicate how many rows an item should span.
- *
- * \param [in] combo     A #GedaComboBox.
- * \param [in] row_span  A column in the model passed during construction.
- *
- * \sa geda_combo_box_set_row_span_column
- */
-void
-geda_combo_widget_set_row_span_column (GtkWidget *combo, int row_span)
+geda_combo_widget_set_add_tearoffs (GtkWidget *combo, bool add_tearoffs)
 {
-  return geda_combo_box_set_row_span_column((GedaComboBox*)combo, row_span);
+  return geda_combo_box_set_add_tearoffs((GedaComboBox*)combo, add_tearoffs);
 }
 
 /*!
@@ -7136,39 +7101,40 @@ geda_combo_widget_set_column_span_column (GtkWidget *combo, int column_span)
 }
 
 /*!
- * \brief Get GedaComboBox Widget Add Tearoff Property
+ * \brief Get #GedaComboBox Widget Row Span
  * \par Function Description
- *  Gets the current value of the :add-tearoffs property.
+ *  Returns the column with row span information for \a combo_box.
  *
- * \param [in] combo_box a #GedaComboBox
+ * \param [in] combo_box A #GedaComboBox
  *
- * \returns current value of the add-tearoffs property.
+ * \returns the row span column.
  *
- * \sa geda_combo_widget_get_add_tearoffs
+ * \sa geda_combo_box_get_row_span_column
  */
-bool
-geda_combo_widget_get_add_tearoffs (GtkWidget *combo_box) {
-  if (GEDA_IS_COMBO_BOX (combo_box)) {
-    return ((GedaComboBox*)combo_box)->priv->add_tearoffs;
-  }
+int
+geda_combo_widget_get_row_span_column (GtkWidget *combo_box) {
+  if (GEDA_IS_COMBO_BOX (combo_box))
+    return ((GedaComboBox*)combo_box)->priv->row_column;
   BUG_MSG ("Operative is not a GedaComboBox");
-  return FALSE;
+  return -1;
 }
 
 /*!
- * \brief Set GedaComboBox Widget Add Tearoff Property
+ * \brief Set #GedaComboBox Widget Row Span
  * \par Function Description
- *  Sets whether the popup menu should have a tearoff menu item.
+ *  Sets the column with row span information for \a combo_box to
+ *  be \a row_span. The row span column contains integers which
+ *  indicate how many rows an item should span.
  *
- * \param [in] combo        a #GedaComboBox
- * \param [in] add_tearoffs %TRUE to add tearoff menu items
+ * \param [in] combo     A #GedaComboBox.
+ * \param [in] row_span  A column in the model passed during construction.
  *
- * \sa geda_combo_box_set_add_tearoffs
+ * \sa geda_combo_box_set_row_span_column
  */
 void
-geda_combo_widget_set_add_tearoffs (GtkWidget *combo, bool add_tearoffs)
+geda_combo_widget_set_row_span_column (GtkWidget *combo, int row_span)
 {
-  return geda_combo_box_set_add_tearoffs((GedaComboBox*)combo, add_tearoffs);
+  return geda_combo_box_set_row_span_column((GedaComboBox*)combo, row_span);
 }
 
 /*!
@@ -7208,45 +7174,8 @@ geda_combo_widget_set_title (GtkWidget *combo_box, const char  *title) {
   return geda_combo_box_set_title((GedaComboBox*)combo_box, title);
 }
 
-/*!
- * \brief Get GedaComboBox Widget Focus on Click
- * \par Function Description
- *  Returns whether the combo box grabs focus when it is clicked
- *  with the mouse. See geda_combo_box_set_focus_on_click().
- *
- * \param [in] combo_box  Pointer to a #GedaComboBox
- *
- * \retval %TRUE if the combo box grabs focus when it is clicked
- *         with the mouse.
- *
- * \sa geda_combo_box_get_focus_on_click
- */
-bool
-geda_combo_widget_get_focus_on_click (GtkWidget *combo_box) {
-  if (GEDA_IS_COMBO_BOX (combo_box))
-    return ((GedaComboBox*)combo_box)->priv->focus_on_click;
-  BUG_MSG ("Operative is not a GedaComboBox");
-  return FALSE;
-}
-
-/*!
- * \brief Set GedaComboBox Focus on Click
- * \par Function Description
- *  Sets whether the combo box will grab focus when it is clicked with
- *  the mouse, \see geda_combo_box_set_focus_on_click.
- *
- * \param [in] combo           Pointer to a #GedaComboBox
- * \param [in] focus_on_click  whether the combo box grabs focus when clicked
- *                             with the mouse
- */
-void
-geda_combo_widget_set_focus_on_click (GtkWidget *combo, bool focus_on_click)
-{
-  return geda_combo_box_set_focus_on_click((GedaComboBox*)combo, focus_on_click);
-}
-
 /*! \todo Finish function documentation!!!
- *  \brief
+ *  \brief Set the Tool Tip Column on the Combo Widget
  *  \par Function Description
  *
  */
@@ -7256,6 +7185,44 @@ geda_combo_widget_set_tooltip_column (GtkWidget *combo_box, int column) {
     ((GedaComboBox*)combo_box)->tip_column = column;
   else
     BUG_MSG ("Operative is not a GedaComboBox");
+}
+
+/*!
+ * \brief Get #GedaComboBox Widget Wrap Width
+ * \par Function Description
+ *  Returns the wrap width which is used to determine the number of columns
+ *  for the popup menu. If the wrap width is larger than 1, the combo box
+ *  is in table mode.
+ *
+ * \param [in] combo_box
+ *
+ * \returns the wrap width.
+ *
+ * \sa geda_combo_box_get_wrap_width
+ */
+int
+geda_combo_widget_get_wrap_width (GtkWidget *combo_box) {
+  if (GEDA_IS_COMBO_BOX (combo_box))
+    return ((GedaComboBox*)combo_box)->priv->wrap_width;
+  BUG_MSG ("Operative is not a GedaComboBox");
+  return -1;
+}
+
+/*!
+ * \brief Set #GedaComboBox Widget Wrap Width
+ * \par Function Description
+ *  Sets the wrap width of \a combo_box to be \a width. The wrap width is
+ *  basically the preferred number of columns when you want the popup to
+ *  be layed out in a table.
+ *
+ * \param [in] combo_box A #GedaComboBox
+ * \param [in] width     Preferred number of columns
+ *
+ * \sa geda_combo_box_set_wrap_width
+ */
+void
+geda_combo_widget_set_wrap_width (GtkWidget *combo_box, int width) {
+  return geda_combo_box_set_wrap_width((GedaComboBox*)combo_box, width);
 }
 
 /** \defgroup GedaComboBox-widget-active GedaComboBox Widget get/set active item
@@ -7314,33 +7281,46 @@ geda_combo_widget_set_active_iter(GtkWidget *combo, GtkTreeIter *iter) {
  *
  */
 int
-geda_combo_widget_box_get_count(GtkWidget *widget)
+geda_combo_widget_get_count(GtkWidget *widget)
 {
   return geda_combo_box_get_count((GedaComboBox*)widget);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Get GedaComboBox Widget Focus on Click
+ * \par Function Description
+ *  Returns whether the combo box grabs focus when it is clicked
+ *  with the mouse. See geda_combo_box_set_focus_on_click().
  *
+ * \param [in] combo_box  Pointer to a #GedaComboBox
+ *
+ * \retval %TRUE if the combo box grabs focus when it is clicked
+ *         with the mouse.
+ *
+ * \sa geda_combo_box_get_focus_on_click
  */
-GtkTreeModel*
-geda_combo_widget_get_model (GtkWidget *combo_box) {
+bool
+geda_combo_widget_get_focus_on_click (GtkWidget *combo_box) {
   if (GEDA_IS_COMBO_BOX (combo_box))
-    return ((GedaComboBox*)combo_box)->priv->model;
+    return ((GedaComboBox*)combo_box)->priv->focus_on_click;
   BUG_MSG ("Operative is not a GedaComboBox");
-  return NULL;
+  return FALSE;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Set GedaComboBox Focus on Click
+ * \par Function Description
+ *  Sets whether the combo box will grab focus when it is clicked with
+ *  the mouse, \see geda_combo_box_set_focus_on_click.
  *
+ * \param [in] combo           Pointer to a #GedaComboBox
+ * \param [in] focus_on_click  whether the combo box grabs focus when clicked
+ *                             with the mouse
  */
 void
-geda_combo_widget_set_model (GtkWidget *combo_box, GtkTreeModel *model)
+geda_combo_widget_set_focus_on_click (GtkWidget *combo, bool focus_on_click)
 {
-  return geda_combo_box_set_model((GedaComboBox*)combo_box, model);
+  return geda_combo_box_set_focus_on_click((GedaComboBox*)combo, focus_on_click);
 }
 
 /*! \todo Finish function documentation!!!
@@ -7428,7 +7408,6 @@ geda_combo_widget_get_entry_text_column (GtkWidget *combo_box) {
   return 0;
 }
 
-
 /*!
  * \brief Set GedaComboBox Widget Entry Text Column
  * \par Function Description
@@ -7444,6 +7423,30 @@ geda_combo_widget_get_entry_text_column (GtkWidget *combo_box) {
 void
 geda_combo_widget_set_entry_text_column (GtkWidget *combo, int text_column) {
  return geda_combo_box_set_entry_text_column((GedaComboBox*)combo, text_column);
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+GtkTreeModel*
+geda_combo_widget_get_model (GtkWidget *combo_box) {
+  if (GEDA_IS_COMBO_BOX (combo_box))
+    return ((GedaComboBox*)combo_box)->priv->model;
+  BUG_MSG ("Operative is not a GedaComboBox");
+  return NULL;
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+void
+geda_combo_widget_set_model (GtkWidget *combo_box, GtkTreeModel *model)
+{
+  return geda_combo_box_set_model((GedaComboBox*)combo_box, model);
 }
 
 /** @} endgroup GedaComboBox-widget-getters-setters */

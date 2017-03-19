@@ -91,30 +91,26 @@ GtkWidget    *geda_combo_box_new_with_model           (GtkTreeModel *model);
 GtkWidget    *geda_combo_box_new_with_model_and_entry (GtkTreeModel *model);
 
 /* grids */
-int           geda_combo_box_get_wrap_width         (GedaComboBox *combo_box);
-void          geda_combo_box_set_wrap_width         (GedaComboBox *combo_box,
-                                                     int           width);
-int           geda_combo_box_get_row_span_column    (GedaComboBox *combo_box);
-void          geda_combo_box_set_row_span_column    (GedaComboBox *combo_box,
-                                                     int           row_span);
-int           geda_combo_box_get_column_span_column (GedaComboBox *combo_box);
-void          geda_combo_box_set_column_span_column (GedaComboBox *combo_box,
-                                                     int           column_span);
-
 bool          geda_combo_box_get_add_tearoffs       (GedaComboBox *combo_box);
 void          geda_combo_box_set_add_tearoffs       (GedaComboBox *combo_box,
                                                      bool          add_tearoffs);
-
-const char   *geda_combo_box_get_title              (GedaComboBox *combo_box);
-void          geda_combo_box_set_title              (GedaComboBox *combo_box,
-                                                     const char   *title);
-
+int           geda_combo_box_get_column_span_column (GedaComboBox *combo_box);
+void          geda_combo_box_set_column_span_column (GedaComboBox *combo_box,
+                                                     int           column_span);
 bool          geda_combo_box_get_focus_on_click     (GedaComboBox *combo);
 void          geda_combo_box_set_focus_on_click     (GedaComboBox *combo,
                                                      bool          focus_on_click);
-
+int           geda_combo_box_get_row_span_column    (GedaComboBox *combo_box);
+void          geda_combo_box_set_row_span_column    (GedaComboBox *combo_box,
+                                                     int           row_span);
+const char   *geda_combo_box_get_title              (GedaComboBox *combo_box);
+void          geda_combo_box_set_title              (GedaComboBox *combo_box,
+                                                     const char   *title);
 void          geda_combo_box_set_tooltip_column     (GedaComboBox *combo,
                                                      int           column);
+int           geda_combo_box_get_wrap_width         (GedaComboBox *combo_box);
+void          geda_combo_box_set_wrap_width         (GedaComboBox *combo_box,
+                                                     int           width);
 
 /* get/set active item */
 int           geda_combo_box_get_active             (GedaComboBox   *combo_box);
@@ -174,30 +170,24 @@ AtkObject    *geda_combo_box_get_popup_accessible     (GedaComboBox   *combo_box
 /* ------------------------ Widget Versions ------------------------ */
 
 /* grids */
-int           geda_combo_widget_get_wrap_width         (GtkWidget   *combo_box);
-void          geda_combo_widget_set_wrap_width         (GtkWidget   *combo_box,
-                                                        int          width);
-int           geda_combo_widget_get_row_span_column    (GtkWidget   *combo_box);
-void          geda_combo_widget_set_row_span_column    (GtkWidget   *combo_box,
-                                                        int          row_span);
-int           geda_combo_widget_get_column_span_column (GtkWidget   *combo_box);
-void          geda_combo_widget_set_column_span_column (GtkWidget   *combo_box,
-                                                        int          column_span);
-
 bool          geda_combo_widget_get_add_tearoffs       (GtkWidget   *combo_box);
 void          geda_combo_widget_set_add_tearoffs       (GtkWidget   *combo_box,
                                                         bool         add_tearoffs);
-
+int           geda_combo_widget_get_column_span_column (GtkWidget   *combo_box);
+void          geda_combo_widget_set_column_span_column (GtkWidget   *combo_box,
+                                                        int          column_span);
+int           geda_combo_widget_get_row_span_column    (GtkWidget   *combo_box);
+void          geda_combo_widget_set_row_span_column    (GtkWidget   *combo_box,
+                                                        int          row_span);
 const char   *geda_combo_widget_get_title              (GtkWidget   *combo_box);
 void          geda_combo_widget_set_title              (GtkWidget   *combo_box,
                                                         const char  *title);
-
-bool          geda_combo_widget_get_focus_on_click     (GtkWidget   *combo);
-void          geda_combo_widget_set_focus_on_click     (GtkWidget   *combo,
-                                                        bool         focus_on_click);
-
 void          geda_combo_widget_set_tooltip_column     (GtkWidget   *combo,
                                                         int          column);
+int           geda_combo_widget_get_wrap_width         (GtkWidget   *combo_box);
+void          geda_combo_widget_set_wrap_width         (GtkWidget   *combo_box,
+                                                        int          width);
+
 /* get/set active item */
 int           geda_combo_widget_get_active             (GtkWidget   *combo_box);
 void          geda_combo_widget_set_active             (GtkWidget   *combo_box,
@@ -208,21 +198,23 @@ void          geda_combo_widget_set_active_iter        (GtkWidget   *combo_box,
                                                         GtkTreeIter *iter);
 
 /* getters and setters */
+int           geda_combo_widget_get_count              (GtkWidget   *combo_box);
 
-int           geda_combo_widget_box_get_count          (GtkWidget   *combo_box);
-
-GtkTreeModel *geda_combo_widget_get_model              (GtkWidget    *combo_box);
-void          geda_combo_widget_set_model              (GtkWidget    *combo_box,
-                                                        GtkTreeModel *model);
-
+bool          geda_combo_widget_get_focus_on_click     (GtkWidget   *combo);
+void          geda_combo_widget_set_focus_on_click     (GtkWidget   *combo,
+                                                        bool         focus_on_click);
 bool          geda_combo_widget_get_has_entry          (GtkWidget   *combo_box);
 
 GedaEntry    *geda_combo_widget_get_entry              (GtkWidget   *combo_box);
 GtkWidget    *geda_combo_widget_get_entry_widget       (GtkWidget   *combo_box);
 
+int           geda_combo_widget_get_entry_text_column  (GtkWidget   *combo_box);
 void          geda_combo_widget_set_entry_text_column  (GtkWidget   *combo_box,
                                                         int          text_column);
-int           geda_combo_widget_get_entry_text_column  (GtkWidget   *combo_box);
+
+GtkTreeModel *geda_combo_widget_get_model              (GtkWidget    *combo_box);
+void          geda_combo_widget_set_model              (GtkWidget    *combo_box,
+                                                        GtkTreeModel *model);
 
 /* programmatic control */
 void          geda_combo_widget_popup                  (GtkWidget   *combo_box);
