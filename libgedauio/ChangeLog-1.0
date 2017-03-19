@@ -1,6 +1,7 @@
 2017-03-19 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/widgets/geda_combobox.c: Partially reorganize module.
+    * src/widgets/geda_combobox.c: Rename geda_combo_widget_box_get_count->
+      geda_combo_widget_get_count. Partially reorganize module.
 
     * src/widgets/geda_handlebox.c: Add function:
 

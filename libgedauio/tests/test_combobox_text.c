@@ -199,7 +199,7 @@ debug_print(GtkWidget *widget) {
 
   int old_index = geda_combo_box_text_widget_get_active(widget);
 
-  int i, count = geda_combo_widget_box_get_count(widget);
+  int i, count = geda_combo_widget_get_count(widget);
 
   for (i =0; i< count; i++ ) {
 
@@ -473,7 +473,7 @@ check_methods ()
 
   geda_combo_box_text_remove_all_text(combo_text);
 
-  int count = geda_combo_widget_box_get_count(widget);
+  int count = geda_combo_widget_get_count(widget);
 
   if (count) {
     fprintf(stderr, "FAILED: %s at <%d>; remove_all_text: count=%d\n", TWIDGET, __LINE__, count);
@@ -486,7 +486,7 @@ check_methods ()
     result++;
   }
 
-  count = geda_combo_widget_box_get_count(widget);
+  count = geda_combo_widget_get_count(widget);
 
   if (count - 1) {
     fprintf(stderr, "FAILED: %s at <%d>; remove_all_text: count=%d\n", TWIDGET, __LINE__, count);
@@ -495,7 +495,7 @@ check_methods ()
 
   geda_combo_box_text_widget_remove_all(widget);
 
-  count = geda_combo_widget_box_get_count(widget);
+  count = geda_combo_widget_get_count(widget);
 
   if (count) {
     fprintf(stderr, "FAILED: %s at <%d>; remove_all_text: count=%d\n", TWIDGET, __LINE__, count);

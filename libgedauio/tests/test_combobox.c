@@ -413,7 +413,7 @@ check_accessors ()
 
     /* The model should contain "1", "2", "3" */
 
-    int count = geda_combo_widget_box_get_count (widget);
+    int count = geda_combo_widget_get_count (widget);
 
     if (count != 3) {
       fprintf(stderr, "FAILED: %s line <%d> count %d != 3\n", TWIDGET, __LINE__, count);
