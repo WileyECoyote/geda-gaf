@@ -4,6 +4,10 @@
       augmenting the unbound_msg pointer until after checking the pointer
       returned from geda_utility_string_istr was not NULL, duh.
 
+    * src/x/x_toolbars.c: Remove "Select" from "Select All" and "Sel" from
+      "Invert Sel" in order to further reduce the width buttons on the toolbar,
+      adjust column/spacing in ToolbarStrings.
+
 2017-03-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_toolbars.c: Remove "all" from "Unselect All", change Attributes
