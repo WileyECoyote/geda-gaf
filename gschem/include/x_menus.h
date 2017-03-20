@@ -31,16 +31,28 @@
 #ifndef __GSCHEM_X_MENU_H__
 #define __GSCHEM_X_MENU_H__
 
+#define IDS_MENU_VIEW_TOOLBARS "_View/_Toolbars"
+
+#define IDS_MENU_TB_ADD        "_Add"
+#define IDS_MENU_TB_ATTRIB     "Attrib_ute"
+#define IDS_MENU_TB_EDIT       "_Edit"
+#define IDS_MENU_TB_GRID_SNAP  "_Grid Snap"
+#define IDS_MENU_TB_PAGE       "_Page"
+#define IDS_MENU_TB_SELECT     "Se_lect"
+#define IDS_MENU_TB_STANDARD   "_Standard"
+#define IDS_MENU_TB_SYMBOL     "Sym_bol"
+#define IDS_MENU_TB_ZOOM       "_Zoom"
+
  /* Menu Paths */
-#define OPT_STDBAR_MENU_PATH   "_View/_Toolbars/_Standard"
-#define OPT_SELBAR_MENU_PATH   "_View/_Toolbars/Se_lect"
-#define OPT_PageBAR_MENU_PATH  "_View/_Toolbars/_Page"
-#define OPT_ADDBAR_MENU_PATH   "_View/_Toolbars/_Add"
-#define OPT_ZOOMBAR_MENU_PATH  "_View/_Toolbars/_Zoom"
-#define OPT_SYMBAR_MENU_PATH   "_View/_Toolbars/Sym_bol"
-#define OPT_EDITBAR_MENU_PATH  "_View/_Toolbars/_Edit"
-#define OPT_ATTRBAR_MENU_PATH  "_View/_Toolbars/A_ttribute"
-#define OPT_GRIDBAR_MENU_PATH  "_View/_Toolbars/_Grid Snap"
+#define OPT_STDBAR_MENU_PATH   IDS_MENU_VIEW_TOOLBARS "/" IDS_MENU_TB_STANDARD
+#define OPT_SELBAR_MENU_PATH   IDS_MENU_VIEW_TOOLBARS "/" IDS_MENU_TB_SELECT
+#define OPT_PageBAR_MENU_PATH  IDS_MENU_VIEW_TOOLBARS "/" IDS_MENU_TB_PAGE
+#define OPT_ADDBAR_MENU_PATH   IDS_MENU_VIEW_TOOLBARS "/" IDS_MENU_TB_ADD
+#define OPT_ZOOMBAR_MENU_PATH  IDS_MENU_VIEW_TOOLBARS "/" IDS_MENU_TB_ZOOM
+#define OPT_SYMBAR_MENU_PATH   IDS_MENU_VIEW_TOOLBARS "/" IDS_MENU_TB_SYMBOL
+#define OPT_EDITBAR_MENU_PATH  IDS_MENU_VIEW_TOOLBARS "/" IDS_MENU_TB_EDIT
+#define OPT_ATTRBAR_MENU_PATH  IDS_MENU_VIEW_TOOLBARS "/" IDS_MENU_TB_ATTRIB
+#define OPT_GRIDBAR_MENU_PATH  IDS_MENU_VIEW_TOOLBARS "/" IDS_MENU_TB_GRID_SNAP
 
 #define OPT_BAR_ICON_MENU_PATH "_View/_Toolbars/_Icons"
 #define OPT_BAR_TEXT_MENU_PATH "_View/_Toolbars/_Text"

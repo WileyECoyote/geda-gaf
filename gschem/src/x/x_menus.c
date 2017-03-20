@@ -158,11 +158,19 @@ static PopupEntry path_popup_items[] = {
   {NULL} /* sentinel */
 };
 
-/* These must be in the same order as ID_GSCHEM_Toolbar in x_toolbars.c */
+/*! ToolBar Menu Strings, these must be in the same order
+ *  as ID_GSCHEM_Toolbar in x_toolbars.h */
 const char *IDS_Menu_Toolbar_Toggles[] = {
-  "_Add", "A_ttribute", "_Edit", "_Grid Snap", "_Page",
-  "Se_lect", "_Standard", "Symbol", "_Zoom", /* ToolBar Menu Strings */
-  NULL
+            IDS_MENU_TB_ADD,
+            IDS_MENU_TB_ATTRIB,
+            IDS_MENU_TB_EDIT,
+            IDS_MENU_TB_GRID_SNAP,
+            IDS_MENU_TB_PAGE,
+            IDS_MENU_TB_SELECT,
+            IDS_MENU_TB_STANDARD,
+            IDS_MENU_TB_SYMBOL,
+            IDS_MENU_TB_ZOOM,
+            NULL
 };
 
 const char *IDS_Menu_Toggles[] = { /* temp Menu Toggle Strings*/
@@ -809,18 +817,18 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
       menu_item   = geda_menu_item_new_with_mnemonic("_Toolbars");
       toggle_menu = geda_menu_new();
 
-      geda_menu_item_set_submenu (GEDA_MENU_ITEM (menu_item) , toggle_menu);
-      GEDA_OBJECT_SET_DATA(MENU_BAR, menu_item, "_View/_Toolbars");
+      geda_menu_item_set_submenu (GEDA_MENU_ITEM (menu_item), toggle_menu);
+      GEDA_OBJECT_SET_DATA(MENU_BAR, menu_item, IDS_MENU_VIEW_TOOLBARS);
 
-      GtkWidget *stdbar_toggle   = geda_check_menu_item_new_with_mnemonic ("_Standard");
-      GtkWidget *selbar_toggle   = geda_check_menu_item_new_with_mnemonic ("Se_lect");
-      GtkWidget *pagebar_toggle  = geda_check_menu_item_new_with_mnemonic ("_Page");
-      GtkWidget *addbar_toggle   = geda_check_menu_item_new_with_mnemonic ("_Add");
-      GtkWidget *zoombar_toggle  = geda_check_menu_item_new_with_mnemonic ("_Zoom");
-      GtkWidget *symbar_toggle   = geda_check_menu_item_new_with_mnemonic ("Sym_bol");
-      GtkWidget *editbar_toggle  = geda_check_menu_item_new_with_mnemonic ("_Edit");
-      GtkWidget *attribar_toggle = geda_check_menu_item_new_with_mnemonic ("Attrib_ute");
-      GtkWidget *gridbar_toggle  = geda_check_menu_item_new_with_mnemonic ("_Grid Snap");
+      GtkWidget *stdbar_toggle   = geda_check_menu_item_new_with_mnemonic (IDS_MENU_TB_STANDARD);
+      GtkWidget *selbar_toggle   = geda_check_menu_item_new_with_mnemonic (IDS_MENU_TB_SELECT);
+      GtkWidget *pagebar_toggle  = geda_check_menu_item_new_with_mnemonic (IDS_MENU_TB_PAGE);
+      GtkWidget *addbar_toggle   = geda_check_menu_item_new_with_mnemonic (IDS_MENU_TB_ADD);
+      GtkWidget *zoombar_toggle  = geda_check_menu_item_new_with_mnemonic (IDS_MENU_TB_ZOOM);
+      GtkWidget *symbar_toggle   = geda_check_menu_item_new_with_mnemonic (IDS_MENU_TB_SYMBOL);
+      GtkWidget *editbar_toggle  = geda_check_menu_item_new_with_mnemonic (IDS_MENU_TB_EDIT);
+      GtkWidget *attribar_toggle = geda_check_menu_item_new_with_mnemonic (IDS_MENU_TB_ATTRIB);
+      GtkWidget *gridbar_toggle  = geda_check_menu_item_new_with_mnemonic (IDS_MENU_TB_GRID_SNAP);
 
       geda_check_menu_item_set_active((GedaCheckMenuItem*)stdbar_toggle,   TRUE);
       geda_check_menu_item_set_active((GedaCheckMenuItem*)selbar_toggle,   TRUE);
@@ -1665,7 +1673,7 @@ void x_menu_set_togglable(GschemToplevel *w_current, int toggle_id, bool state)
  */
 void x_menu_set_toolbar_toggle(GschemToplevel *w_current, int toggle_id, bool state)
 {
-  char  menu_name[36] = "_View/_Toolbars/";
+  char  menu_name[36] = IDS_MENU_VIEW_TOOLBARS "/";
   char *menu_path;
 
   GtkWidget *menu_bar;
