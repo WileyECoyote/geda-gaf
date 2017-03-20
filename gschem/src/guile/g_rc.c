@@ -291,8 +291,7 @@ SCM g_rc_anti_aliasing(SCM mode)
     {CAIRO_ANTIALIAS_BEST,     RC_STR_ANTIALIAS_BEST}
   };
 
-  RETURN_G_RC_MODE("anti-aliasing",
-            default_anti_aliasing, mode_table);
+  RETURN_G_RC_MODE("anti-aliasing", default_anti_aliasing, mode_table);
 }
 
 /*! \brief This function processes the draw-grips RC entry.
@@ -308,8 +307,7 @@ SCM g_rc_draw_grips(SCM mode)
     {FALSE, RC_STR_DISABLED},
   };
 
-  RETURN_G_RC_MODE("draw-grips",
-            default_draw_grips, mode_table);
+  RETURN_G_RC_MODE("draw-grips", default_draw_grips, mode_table);
 }
 
 /*! \brief This function processes the grip-size RC entry.
@@ -339,8 +337,7 @@ SCM g_rc_grid_mode(SCM mode)
     {GRID_MESH, RC_STR_MESH}
   };
 
-  RETURN_G_RC_MODE("grid-mode",
-            default_grid_mode, mode_table);
+  RETURN_G_RC_MODE("grid-mode", default_grid_mode, mode_table);
 }
 
 /*! \brief This function processes the dots-grid-minor-color RC entry.
@@ -425,8 +422,7 @@ SCM g_rc_dots_grid_mode (SCM mode)
     {DOTS_GRID_FIXED_MODE,    RC_STR_DOTS_MODE_FIXED }
   };
 
-  RETURN_G_RC_MODE ("dots-grid-mode",
-             default_dots_grid_mode, mode_table);
+  RETURN_G_RC_MODE ("dots-grid-mode", default_dots_grid_mode, mode_table);
 }
 
 /*! \brief This function processes the dots-grid-threshold RC entry.
@@ -617,8 +613,7 @@ SCM g_rc_object_clipping(SCM mode)
     {FALSE, RC_STR_DISABLED}
   };
 
-  RETURN_G_RC_MODE("object-clipping",
-            default_object_clipping, mode_table);
+  RETURN_G_RC_MODE("object-clipping", default_object_clipping, mode_table);
 }
 
 /*! \brief This function processes the warp_cursor RC entry.
@@ -633,8 +628,7 @@ SCM g_rc_warp_cursor(SCM mode)
     {FALSE, RC_STR_DISABLED},
   };
 
-  RETURN_G_RC_MODE("warp-cursor",
-            default_warp_cursor, mode_table);
+  RETURN_G_RC_MODE("warp-cursor", default_warp_cursor, mode_table);
 }
 
 /*! \brief This function processes the window-size RC entry.
@@ -746,8 +740,7 @@ SCM g_rc_zoom_with_pan(SCM mode)
     {FALSE, RC_STR_DISABLED}
   };
 
-  RETURN_G_RC_MODE("zoom-with-pan",
-            default_zoom_with_pan, mode_table);
+  RETURN_G_RC_MODE("zoom-with-pan", default_zoom_with_pan, mode_table);
 }
 
 /* ----- Image Related ----- */
@@ -763,8 +756,7 @@ SCM g_rc_image_color(SCM mode)
     {FALSE, RC_STR_DISABLED},
   };
 
-  RETURN_G_RC_MODE("image-color",
-            default_image_color, mode_table);
+  RETURN_G_RC_MODE("image-color", default_image_color, mode_table);
 }
 /*! \brief This function processes the image-color RC entry.
  *  \par Function Description
@@ -778,8 +770,7 @@ SCM g_rc_invert_images(SCM mode)
     {FALSE, RC_STR_DISABLED},
   };
 
-  RETURN_G_RC_MODE("invert-images",
-            default_invert_images, mode_table);
+  RETURN_G_RC_MODE("invert-images", default_invert_images, mode_table);
 }
 /* ----- Log related ----- */
 /*! \brief This function processes log-enable information RC entry.
@@ -797,8 +788,7 @@ SCM g_rc_logging(SCM mode)
       {FALSE, RC_STR_DISABLED},
     };
 
-    RETURN_G_RC_MODE("logging",
-              default_logging, mode_table);
+    RETURN_G_RC_MODE("logging", default_logging, mode_table);
   }
   else {
     if (scm_is_integer(mode)) {
@@ -828,8 +818,7 @@ SCM g_rc_log_destiny(SCM mode)
     {BOTH_CONWIN_STDOUT , RC_STR_DESTINY_BOTH }
   };
 
-  RETURN_G_RC_MODE("log-destiny",
-            default_log_destiny, mode_table);
+  RETURN_G_RC_MODE("log-destiny", default_log_destiny, mode_table);
 }
 /*! \brief This function processes the console-window RC entry.
  *  \par Function Description
@@ -846,8 +835,7 @@ SCM g_rc_console_window(SCM mode)
     {MAP_LATER     , RC_STR_DISABLED }
   };
 
-  RETURN_G_RC_MODE("console-window",
-            default_console_window, mode_table);
+  RETURN_G_RC_MODE("console-window", default_console_window, mode_table);
 }
 /*! \brief This function processes the console-window-type RC entry.
  *  \par Function Description
@@ -862,8 +850,7 @@ SCM g_rc_console_window_type(SCM mode)
     {DECORATED, RC_STR_CONWIN_DECORATED }
   };
 
-  RETURN_G_RC_MODE("console-window-type",
-            default_console_window_type, mode_table);
+  RETURN_G_RC_MODE("console-window-type", default_console_window_type, mode_table);
 }
 /* ----- Miscellaneous ----- */
 /*! \brief This function processes the action-feedback-mode RC entry.
@@ -878,8 +865,7 @@ SCM g_rc_action_feedback_mode(SCM mode)
     {BOUNDINGBOX, RC_STR_FEEDBACK_BOUNDBOX }
   };
 
-  RETURN_G_RC_MODE("action-feedback-mode",
-            default_action_feedback_mode, mode_table);
+  RETURN_G_RC_MODE("action-feedback-mode", default_action_feedback_mode, mode_table);
 }
 /*! \brief This function processes the add-attribute-offset RC entry.
  *  \par Function Description
@@ -909,6 +895,7 @@ SCM g_rc_add_menu(SCM scm_menu_name, SCM scm_menu_items)
   menu_name = scm_to_utf8_string (scm_menu_name);
 
   geda_iface_menu_add_entry(menu_name, scm_menu_items);
+
   free (menu_name);
 
   return SCM_BOOL_T;
@@ -1009,8 +996,7 @@ SCM g_rc_auto_load_last(SCM mode)
     {FALSE, RC_STR_DISABLED},
   };
 
-  RETURN_G_RC_MODE("auto-load-last",
-            default_auto_load_last, mode_table);
+  RETURN_G_RC_MODE("auto-load-last", default_auto_load_last, mode_table);
 }
 
 /*! \brief This function processes the auto-pan RC entry.
@@ -1025,8 +1011,7 @@ SCM g_rc_auto_pan(SCM mode)
     {FALSE, RC_STR_DISABLED},
   };
 
-  RETURN_G_RC_MODE("auto-pan",
-            default_auto_pan, mode_table);
+  RETURN_G_RC_MODE("auto-pan", default_auto_pan, mode_table);
 }
 
 /*! \brief This function processes the auto-pan-step RC entry.
@@ -1144,7 +1129,7 @@ SCM g_rc_continue_component_place(SCM mode)
   };
 
   RETURN_G_RC_MODE("continue-component-place",
-            default_continue_component_place, mode_table);
+                    default_continue_component_place, mode_table);
 }
 /*! \brief This function processes the embed-components RC entry.
  *  \par Function Description
@@ -1158,8 +1143,7 @@ SCM g_rc_embed_components(SCM mode)
     {FALSE, RC_STR_DISABLED}
   };
 
-  RETURN_G_RC_MODE("embed-components",
-            default_embed_components, mode_table);
+  RETURN_G_RC_MODE("embed-components", default_embed_components, mode_table);
 }
 /*! \brief This function processes the enforce-hierarchy RC entry.
  *  \par Function Description
@@ -1173,8 +1157,7 @@ SCM g_rc_enforce_hierarchy(SCM mode)
     {FALSE, RC_STR_DISABLED},
   };
 
-  RETURN_G_RC_MODE("enforce-hierarchy",
-            default_enforce_hierarchy, mode_table);
+  RETURN_G_RC_MODE("enforce-hierarchy", default_enforce_hierarchy, mode_table);
 }
 
 /*! \brief This function processes the force_boundingbox RC entry.
@@ -1189,8 +1172,7 @@ SCM g_rc_force_boundingbox(SCM mode)
     {FALSE, RC_STR_DISABLED  }
   };
 
-  RETURN_G_RC_MODE("force-boundingbox",
-            default_force_boundingbox, mode_table);
+  RETURN_G_RC_MODE("force-boundingbox", default_force_boundingbox, mode_table);
 }
 
 /*! \brief This function is for setting the keyboardpan_gain.
@@ -1218,8 +1200,7 @@ SCM g_rc_magnetic_net_mode(SCM mode)
     {FALSE, RC_STR_DISABLED},
   };
 
-  RETURN_G_RC_MODE("magnetic-net-mode",
-            default_magnetic_net_mode, mode_table);
+  RETURN_G_RC_MODE("magnetic-net-mode", default_magnetic_net_mode, mode_table);
 }
 /*! \brief This function processes the netconn-rubberband RC entry.
  *  \par Function Description
@@ -1233,8 +1214,7 @@ SCM g_rc_netconn_rubberband(SCM mode)
     {FALSE, RC_STR_DISABLED},
   };
 
-  RETURN_G_RC_MODE("netconn-rubberband",
-            default_netconn_rubberband, mode_table);
+  RETURN_G_RC_MODE("netconn-rubberband", default_netconn_rubberband, mode_table);
 }
 
 /*! \brief This function processes the select-slack-pixels RC entry.
@@ -1292,7 +1272,7 @@ SCM g_rc_sort_component_library(SCM mode)
   };
 
   RETURN_G_RC_MODE("sort_component_library",
-            default_sort_component_library, mode_table);
+                    default_sort_component_library, mode_table);
 }
 
 /* ----- Nets and Routing ----- */
@@ -1308,8 +1288,7 @@ SCM g_rc_net_consolidate(SCM mode)
     {FALSE, RC_STR_DISABLED},
   };
 
-  RETURN_G_RC_MODE("net-consolidate",
-            default_net_consolidate, mode_table);
+  RETURN_G_RC_MODE("net-consolidate", default_net_consolidate, mode_table);
 }
 
 /*! \brief This function processes the net-endpoint-mode RC entry.
@@ -1325,8 +1304,7 @@ SCM g_rc_net_endpoint_mode(SCM mode)
     {FILLED_BOX, RC_STR_FILLED_BOX}
   };
 
-  RETURN_G_RC_MODE("net-endpoint-mode",
-            default_net_endpoint_mode, mode_table);
+  RETURN_G_RC_MODE("net-endpoint-mode", default_net_endpoint_mode, mode_table);
 }
 
 /*! \brief This function processes the net-midpoint-mode RC entry.
@@ -1344,8 +1322,7 @@ SCM g_rc_net_midpoint_mode(SCM mode)
 
   };
 
-  RETURN_G_RC_MODE("net-midpoint-mode",
-            default_net_midpoint_mode, mode_table);
+  RETURN_G_RC_MODE("net-midpoint-mode", default_net_midpoint_mode, mode_table);
 }
 
 /*! \brief This function processes the net-direction-mode RC entry.
@@ -1360,8 +1337,7 @@ SCM g_rc_net_direction_mode(SCM mode)
     {FALSE, RC_STR_DISABLED}
   };
 
-  RETURN_G_RC_MODE("net-direction-mode",
-            default_net_direction_mode, mode_table);
+  RETURN_G_RC_MODE("net-direction-mode", default_net_direction_mode, mode_table);
 }
 
 /*! \brief This function processes the net-selection_mode RC entry.
@@ -1380,8 +1356,7 @@ SCM g_rc_net_selection_mode(SCM mode)
     {NET_SELECT_ALL,  RC_STR_NET_ALL}    /* = "all" */
   };
 
-  RETURN_G_RC_MODE("net-selection-mode",
-            default_net_selection_mode, mode_table);
+  RETURN_G_RC_MODE("net-selection-mode", default_net_selection_mode, mode_table);
 }
 
 /* Net Ripper */
@@ -1398,8 +1373,7 @@ SCM g_rc_bus_ripper_rotation(SCM mode)
     {NON_SYMMETRIC, RC_STR_RIP_NON_SYMMETRIC  }
   };
 
-  RETURN_G_RC_MODE("bus-ripper-rotation",
-            default_bus_ripper_rotation, mode_table);
+  RETURN_G_RC_MODE("bus-ripper-rotation", default_bus_ripper_rotation, mode_table);
 }
 
 /*! \brief This function processes the bus-ripper-size RC entry.
@@ -1443,8 +1417,7 @@ SCM g_rc_bus_ripper_type(SCM mode)
     {NET_BUS_RIPPER,  RC_STR_RIP_NET }
   };
 
-  RETURN_G_RC_MODE("bus-ripper-type",
-            default_bus_ripper_type, mode_table);
+  RETURN_G_RC_MODE("bus-ripper-type", default_bus_ripper_type, mode_table);
 }
 
 /*! \brief This function processes the bus-ripper-symname RC entry.
@@ -1488,8 +1461,7 @@ SCM g_rc_fast_mousepan(SCM mode)
     {FALSE, RC_STR_DISABLED},
   };
 
-  RETURN_G_RC_MODE("fast-mousepan",
-            default_fast_mousepan, mode_table);
+  RETURN_G_RC_MODE("fast-mousepan", default_fast_mousepan, mode_table);
 }
 
 /*! \brief This function processes the drag-can-move RC entry.
@@ -1505,8 +1477,7 @@ SCM g_rc_drag_can_move(SCM mode)
     {FALSE, RC_STR_DISABLED  }
   };
 
-  RETURN_G_RC_MODE("drag-can-move",
-            default_drag_can_move, mode_table);
+  RETURN_G_RC_MODE("drag-can-move", default_drag_can_move, mode_table);
 }
 
 /*! \brief This function processes the middle-button RC entry.
@@ -1524,8 +1495,7 @@ SCM g_rc_middle_button(SCM mode)
     {MOUSE_MIDDLE_PAN,    RC_STR_MID_MOUSEPAN},
   };
 
-  RETURN_G_RC_MODE("middle-button",
-            default_middle_button, mode_table);
+  RETURN_G_RC_MODE("middle-button", default_middle_button, mode_table);
 }
 
 /*! \brief This function processes the mousepan-gain RC entry.
@@ -1545,7 +1515,6 @@ SCM g_rc_mousepan_gain(SCM gain)
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the scroll-wheel RC entry.
- * Depreciate!
  */
 /* Who |   When   |  What (Why)
  * ------------------------------------------------------------------
@@ -1560,15 +1529,13 @@ SCM g_rc_scroll_wheel(SCM mode)
     {SCROLL_WHEEL_CLASSIC, RC_STR_SCROLL_CLASSIC}
   };
 
-  RETURN_G_RC_MODE("scroll-wheel",
-            default_scroll_wheel, mode_table);
+  RETURN_G_RC_MODE("scroll-wheel", default_scroll_wheel, mode_table);
 }
 
 /*! \brief This function processes the pointer-hscroll RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the pointer-hscroll RC entry.
- * Depreciate!
  */
 SCM g_rc_pointer_hscroll(SCM mode)
 {
@@ -1577,15 +1544,13 @@ SCM g_rc_pointer_hscroll(SCM mode)
     {FALSE, RC_STR_DISABLED},
   };
 
-  RETURN_G_RC_MODE("pointer_hscroll",
-            default_pointer_hscroll, mode_table);
+  RETURN_G_RC_MODE("pointer_hscroll", default_pointer_hscroll, mode_table);
 }
 
 /*! \brief This function processes the third-button RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the third-button RC entry.
- * Depreciate!
  */
 SCM g_rc_third_button(SCM mode)
 {
@@ -1594,8 +1559,7 @@ SCM g_rc_third_button(SCM mode)
     {MOUSEPAN_ENABLED, RC_STR_3RD_PAN},
   };
 
-  RETURN_G_RC_MODE("third-button",
-            default_third_button, mode_table);
+  RETURN_G_RC_MODE("third-button", default_third_button, mode_table);
 }
 
 /*! \brief Verify if the third button cancel mode is set in the RC
@@ -1620,7 +1584,7 @@ SCM g_rc_third_button_cancel(SCM mode)
   };
 
   RETURN_G_RC_MODE("third-button-cancel",
-            default_third_button_cancel, mode_table);
+                    default_third_button_cancel, mode_table);
 }
 
 /* ----- Print Related ----- */
@@ -1747,8 +1711,7 @@ SCM g_rc_output_type(SCM mode)
     {EXTENTS_NOMARGINS, "extents no margins" },
   };
 
-  RETURN_G_RC_MODE("output-type",
-            default_print_output_type, mode_table);
+  RETURN_G_RC_MODE("output-type", default_print_output_type, mode_table);
 }
 
 /*! \brief This function processes the output-orientation RC entry.
@@ -1765,8 +1728,7 @@ SCM g_rc_output_orientation(SCM mode)
     {LANDSCAPE, "landscape"},
   };
 
-  RETURN_G_RC_MODE("output-orientation",
-            default_print_orientation, mode_table);
+  RETURN_G_RC_MODE("output-orientation", default_print_orientation, mode_table);
 }
 
 /*! \brief This function processes the output-color RC entry.
@@ -1783,8 +1745,7 @@ SCM g_rc_output_color(SCM mode)
   };
 
   /* this variable is inconsistantly named with the rest */
-  RETURN_G_RC_MODE("output-color",
-                   default_print_color, mode_table);
+  RETURN_G_RC_MODE("output-color", default_print_color, mode_table);
 }
 
 /*! \brief This function processes the output-capstyle RC entry.
@@ -1800,8 +1761,7 @@ SCM g_rc_output_capstyle(SCM mode)
     {SQUARE_CAP, "square"},
   };
 
-  RETURN_G_RC_MODE("output-capstyle",
-      default_print_output_capstyle, mode_table);
+  RETURN_G_RC_MODE("output-capstyle", default_print_output_capstyle, mode_table);
 }
 
 /*! \brief This function processes the setpagedevice-orientation RC entry.
@@ -1817,7 +1777,7 @@ SCM g_rc_setpagedevice_orientation(SCM mode)
   };
 
   RETURN_G_RC_MODE("setpagedevice-orientation",
-            default_setpagedevice_orientation, mode_table);
+                    default_setpagedevice_orientation, mode_table);
 }
 
 /*! \brief This function processes the setpagedevice-pagesize RC entry.
@@ -1833,7 +1793,7 @@ SCM g_rc_setpagedevice_pagesize(SCM mode)
   };
 
   RETURN_G_RC_MODE("setpagedevice-pagesize",
-            default_setpagedevice_pagesize, mode_table);
+                    default_setpagedevice_pagesize, mode_table);
 }
 
 /* ----------------- System -----------------*/
@@ -1858,14 +1818,12 @@ SCM g_rc_file_preview(SCM mode)
   };
 
   /* this variable is inconsistantly named with the rest */
-  RETURN_G_RC_MODE("file-preview",
-            default_file_preview, mode_table);
+  RETURN_G_RC_MODE("file-preview", default_file_preview, mode_table);
 }
 
-/*! \brief This function processes the handleboxes RC entry.
+/*! \brief Process the handleboxes RC entry.
  *  \par Function Description
- *       C function to dynamically convert lisp variable while
- *       processing configuration data for the handleboxes RC entry.
+ *       Enables or disables use of handleboxes based on RC entry.
  */
 SCM g_rc_handleboxes(SCM mode)
 {
@@ -1874,8 +1832,7 @@ SCM g_rc_handleboxes(SCM mode)
     {FALSE, RC_STR_DISABLED},
   };
 
-  RETURN_G_RC_MODE("handleboxes",
-            default_handleboxes, mode_table);
+  RETURN_G_RC_MODE("handleboxes", default_handleboxes, mode_table);
 }
 
 /*! \brief This function processes the raise-dialog-boxes-on-expose RC entry.
@@ -1891,7 +1848,7 @@ SCM g_rc_raise_dialog_boxes_on_expose(SCM mode)
   };
 
   RETURN_G_RC_MODE("raise-dialog-boxes-on-expose",
-            default_raise_dialog_boxes, mode_table);
+                    default_raise_dialog_boxes, mode_table);
 }
 
 /*! \brief This function processes the save-ui-settings RC entry.
@@ -1906,8 +1863,7 @@ SCM g_rc_save_ui_settings(SCM mode)
     {FALSE, RC_STR_DISABLED},
   };
 
-  RETURN_G_RC_MODE("save-ui-settings",
-            default_save_ui_settings, mode_table);
+  RETURN_G_RC_MODE("save-ui-settings", default_save_ui_settings, mode_table);
 }
 
 /*! \brief This function processes the toolbars RC entry.
@@ -1922,8 +1878,7 @@ SCM g_rc_toolbars(SCM mode)
     {FALSE, RC_STR_DISABLED},
   };
 
-  RETURN_G_RC_MODE("toolbars",
-            default_toolbars, mode_table);
+  RETURN_G_RC_MODE("toolbars", default_toolbars, mode_table);
 }
 
 /*! \brief This function processes the toolbars-mode RC entry.
@@ -1941,8 +1896,7 @@ SCM g_rc_toolbars_mode(SCM mode)
     {TOOLBAR_RETENTION,  RC_STR_TB_LAST  }
   };
 
-  RETURN_G_RC_MODE("toolbars-mode",
-            default_toolbars_mode, mode_table);
+  RETURN_G_RC_MODE("toolbars-mode", default_toolbars_mode, mode_table);
 }
 
 /* --------------- Scrollbar ----------------*/
@@ -1963,8 +1917,7 @@ SCM g_rc_scrollbars(SCM mode)
     {FALSE, RC_STR_DISABLED},
   };
 
-  RETURN_G_RC_MODE("scrollbars",
-            default_scrollbars, mode_table);
+  RETURN_G_RC_MODE("scrollbars", default_scrollbars, mode_table);
 }
 
 /*! \brief This function processes the scrollbar-update RC entry.
@@ -1979,8 +1932,7 @@ SCM g_rc_scrollbar_update(SCM mode)
     {DISPLAY_DELAYED,    RC_STR_BARS_DELAYED }
   };
 
- RETURN_G_RC_MODE("scrollbar-update",
-           default_scrollbar_update, mode_table);
+ RETURN_G_RC_MODE("scrollbar-update", default_scrollbar_update, mode_table);
 }
 
 /*! \brief This function processes the scrollbars-visible RC entry.
@@ -1995,8 +1947,7 @@ SCM g_rc_scrollbars_visible(SCM mode)
     {FALSE, RC_STR_DISABLED},
   };
 
-  RETURN_G_RC_MODE("scrollbars-visible",
-            default_scrollbars_visible, mode_table);
+  RETURN_G_RC_MODE("scrollbars-visible", default_scrollbars_visible, mode_table);
 }
 
 /*! \brief This function processes the scrollpan_steps RC entry.
@@ -2045,8 +1996,7 @@ SCM g_rc_text_case(SCM mode)
     {BOTH_CASES, RC_STR_TEXT_BOTH }
   };
 
-  RETURN_G_RC_MODE("text-case",
-            default_text_case, mode_table);
+  RETURN_G_RC_MODE("text-case", default_text_case, mode_table);
 }
 
 /*! \brief This function processes the text-display_zoom factor RC entry.
@@ -2088,8 +2038,7 @@ SCM g_rc_text_feedback(SCM mode)
     {ALWAYS_FEEDBACK,    RC_STR_TXT_ALWAYS  }
   };
 
-  RETURN_G_RC_MODE("text-feedback",
-            default_text_feedback, mode_table);
+  RETURN_G_RC_MODE("text-feedback", default_text_feedback, mode_table);
 }
 
 /*! \brief This function processes the text-origin-marker RC entry.
@@ -2104,8 +2053,7 @@ SCM g_rc_text_origin_marker(SCM mode)
     {FALSE, RC_STR_DISABLED},
   };
 
-  RETURN_G_RC_MODE("text-origin-marker",
-            default_text_origin_marker, mode_table);
+  RETURN_G_RC_MODE("text-origin-marker", default_text_origin_marker, mode_table);
 }
 
 /*! \brief This function processes the text-marker-size RC entry.
@@ -2166,8 +2114,7 @@ SCM g_rc_undo_control(SCM mode)
     {FALSE, RC_STR_DISABLED},
   };
 
-  RETURN_G_RC_MODE("undo-control",
-            default_undo_control, mode_table);
+  RETURN_G_RC_MODE("undo-control", default_undo_control, mode_table);
 }
 
 /*! \brief This function processes the undo-levels RC entry.
@@ -2177,8 +2124,8 @@ SCM g_rc_undo_control(SCM mode)
  */
 SCM g_rc_undo_levels(SCM levels)
 {
-  default_undo_levels = ICHECK(levels, 0, -1, DEFAULT_UNDO_LEVELS,
-                         "undo-levels");
+  default_undo_levels =
+  ICHECK(levels, 0, -1, DEFAULT_UNDO_LEVELS, "undo-levels");
   return SCM_BOOL_T;
 }
 
@@ -2194,8 +2141,7 @@ SCM g_rc_undo_panzoom(SCM mode)
     {FALSE, RC_STR_DISABLED}
   };
 
-  RETURN_G_RC_MODE("undo-panzoom",
-            default_undo_panzoom, mode_table);
+  RETURN_G_RC_MODE("undo-panzoom", default_undo_panzoom, mode_table);
 }
 
 /*! \brief This function processes the undo-preserve RC entry.
@@ -2210,8 +2156,7 @@ SCM g_rc_undo_preserve(SCM mode)
     {FALSE, RC_STR_DISABLED}
   };
 
-  RETURN_G_RC_MODE("undo-preserve",
-            default_undo_preserve, mode_table);
+  RETURN_G_RC_MODE("undo-preserve", default_undo_preserve, mode_table);
 }
 
 /*! \brief This function processes the undo-type RC entry.
@@ -2227,8 +2172,7 @@ SCM g_rc_undo_type(SCM mode)
     {UNDO_MEMORY, RC_STR_UNDO_MEMORY}
   };
 
-  RETURN_G_RC_MODE("undo-type",
-            default_undo_type, mode_table);
+  RETURN_G_RC_MODE("undo-type", default_undo_type, mode_table);
 }
 
 /** @} end group System-User-RC-Options */
