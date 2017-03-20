@@ -826,14 +826,14 @@ int test_path (void)
 
   /* === Function 01: geda_file_path_create === */
 
-  if (src_dir) {
-    path = g_build_filename(src_dir, "one/two/three", NULL);
-  }
-  else {
+  if (src_dir && strlen(src_dir) > 1) { /* VPATH builds */
     path = geda_strdup("./one/two/three");
   }
+  else {
+    path = g_build_filename(src_dir, "one/two/three", NULL);
+  }
 
-  if (geda_create_path(path, S_IRWXU | S_IRWXG |S_IRWXO)) {
+  if (geda_create_path(path, S_IRWXU | S_IRWXG | S_IRWXO)) {
     fprintf(stderr, "FAILED: (F030101) geda_file_path_create\n");
     result++;
   }
