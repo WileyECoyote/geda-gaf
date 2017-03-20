@@ -1,3 +1,9 @@
+2017-01-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * geda-gaf/NEWS: update news for release of 2.1.1.0 20170318.
+
+    * configure.ac: Bump date version 20170318.
+
 2017-03-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda/geda_toolbars.h: Switch macros ENUM_TOOLBAR_BUTTON,

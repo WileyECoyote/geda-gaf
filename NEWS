@@ -11,6 +11,13 @@ Notable changes in gEDA/gaf gEDA 2.1.1.1 - 03/03/12 Rampage Edition
 
 * Additional support for internationalization (i18n).
 
+* The build system now support using the --with-included-gettext option to
+  configure the suite to build and use an in-source international library.
+
+* Font-sizes for widgets on GedaToolbars can now be specified in RC files.
+
+* The toolbar layout in gschem has been improved to better support labels.
+
 Notable changes in gEDA/gaf gEDA 2.1.1.0 - 01/01/17 Rampage Edition
 
 * Improvements were made to both the build system and source code to ensure
@@ -45,7 +52,7 @@ Notable changes in gEDA/gaf gEDA 2.1.1.0 - 01/01/17 Rampage Edition
   local gafrc files. This allows logs to be organized on a per project basis.
   The location for logs can also be set using a new GEDALOGS environment variable.
 
-* A new libgeda keyword "log-time" can be use to enable or disable prefixes of
+* A new libgeda keyword "log-time" can be use to enable or disable prefixing
   log entries with the time of day.
 
 * The Multi-Attribute Editor Dialog entry now has attribute "word" completion
@@ -69,16 +76,24 @@ Notable changes in gEDA/gaf gEDA 2.1.1.0 - 01/01/17 Rampage Edition
 * The height of the status bar in Gschem can now be set in the gschem-gtkrc
 
 * HotKey dialog now includes actions icon and a column to display the actual
-  binding string. User can enable or disable viewing the action column and
-  the setting is retained between session.
+  binding string. User can enable or disable viewing the action column with
+  the setting being retained between session.
 
 * The Slot Editor Dialog now displays the total number of slots per component.
 
+* New features have been added to the Page Select Dialog:
+
+      Accept drag-and-drop of schematic or symbol files.
+      Opened pages can be re-ordered either up or down.
+      Auto scrolls to selection.
+      Shows long filename as tooltip when showing short names.
+      Optionally adjust height of dialog automatically.
+
 * Exchange image file now retains the user preference to update all selected
-  image between session. Previously the user preference was only retained for
+  images between session. Previously the user preference was only retained for
   current session.
 
-* Additional preferences variables have been incorporated in new configuration
+* Additional preference variables have been incorporated in new the configuration
   system allow retention of changes using the Preferences dialog:
 
       continue-component-place
@@ -106,7 +121,7 @@ Notable changes in gEDA/gaf gEDA 2.1.1.0 - 01/01/17 Rampage Edition
 * gsymcheck now supports the standard command-line version options.
 
 * Programs in the geda-gaf suite now support quite mode in conjunction with the version
-  option to assist extraction of dotted version information.
+  option to assist with extraction of dotted version information.
 
 * New Scheme API have been added:
 
@@ -134,8 +149,8 @@ Notable changes in gEDA/gaf gEDA 2.1.1.0 - 01/01/17 Rampage Edition
 
 * Context menus in gschem now have tool-tips.
 
-* A new option has been added to the translate dialog to allows users to disable the
-  zoom afterwards when translating components.
+* A new option has been added to the translate dialog to allows users to disable
+  the zoom afterwards when translating components.
 
 * Symbol for basic flow-charting have been added to the symbol library!
 
@@ -152,7 +167,7 @@ Notable changes in gEDA/gaf gEDA 2.1.1.0 - 01/01/17 Rampage Edition
 * Attaching an attribute to an object now updates the Multi-attribute Dialog if
   the dialog is open.
 
-* Add Log and Console window settings are now saved in the new configuration system.
+* Log and Console window settings are now saved in the new configuration system.
 
 * The menu toolbar radio togglers in Gschem are now set at startup when the tool-bar
   styles are uniform.
@@ -164,7 +179,7 @@ Notable changes in gEDA/gaf gEDA 2.1.1.0 - 01/01/17 Rampage Edition
 * Utilities to check symbol libraries can now check the validity of URL referenced
   by documentation attributes.
 
-* gattrib now saves and restore the main window size and position.
+* gattrib now saves and restores the main window size and position.
 
 * gattrib's search function now auto fills in selected text.
 
@@ -172,8 +187,8 @@ Notable changes in gEDA/gaf gEDA 2.1.1.0 - 01/01/17 Rampage Edition
 
 * gsch2pcb is now XDG compliant if this option was compiled into geda-gaf.
 
-* Fixed errors in Libgedathon when processing pin objects with missing
-  label and or pinnumber attributes.
+* Fixed errors in Libgedathon when processing pin objects with missing a
+  label and or pinnumber attribute.
 
 * gschem now zooms to a small grid area when the schematic is empty and the
   zoom extents function is used. Previously zoom extents would zoom to the
@@ -196,7 +211,7 @@ Notable changes in gEDA/gaf gEDA 2.1.1.0 - 01/01/17 Rampage Edition
 * New pins are drawn orthogonal in gschem, this make adding pins easier.
 
 * Issues with the Pin dialog selection tracking have been resolved. This issues
-  also effect the Line Type and Slot Editor dialogs.
+  also effected the Line Type and Slot Editor dialogs.
 
 * Icon states on the pop-up menu in gschem are now displayed at start-up if
   the setting is enabled.
@@ -212,8 +227,8 @@ Notable changes in gEDA/gaf gEDA 2.1.1.0 - 01/01/17 Rampage Edition
 * libgeda has improved handling of embedded picture filenames without a path
   in the name.
 
-* libgeda now automatically create pin type attributes when value are set and
-  the attributes did not previously exist.
+* libgeda now automatically creates pin type attributes when values are set
+  and the attributes did not previously exist.
 
 * Gtk no longer writes errors messages to the console when the "print" button
   is click on the Print Dialog.
@@ -228,7 +243,7 @@ Notable changes in gEDA/gaf gEDA 2.1.1.0 - 01/01/17 Rampage Edition
 * The command-line option for the layout now works correctly with the gaf utility.
 
 * gsymfix has been improved to add missing pin attributes if any attribute is
-  present not just the label.
+  not present not just the label.
 
 Notable changes in gEDA/gaf 2.1.0.0 - 04/01/15 Rampage Edition
 
