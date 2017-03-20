@@ -277,6 +277,6 @@
  *  \todo This macro probably does not belong in this file
  */
 #define RETURN_G_RC_MODE(rc, var, mt) \
-  return g_rc_parse_mode(mode, (rc), &(var), mt, sizeof((mt)))
+  return g_rc_parse_mode(mode, (rc), &(var), mt, (G_N_ELEMENTS(mt)))
 
 #endif /* !_DEFINES_H_INCL */
