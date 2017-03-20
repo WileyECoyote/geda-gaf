@@ -47,6 +47,8 @@ style "gschem"
    GedaComboBox::shadow-type    = 0
    GedaComboBox::appear-as-list = 1       # Make GedaCombo's show Treeview by default
 
+   GedaHandleBox::handle-size   = 9
+
    # Comment this line to enble selecting image files on remote
    # system, only recommended if remote images are to be embeded
    GedaImageChooser::local-only = 1
