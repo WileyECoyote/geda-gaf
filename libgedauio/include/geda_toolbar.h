@@ -44,6 +44,8 @@ struct _GedaToolbar
 {
   GtkToolbar parent;
 
+  GList     *children;
+
   int        orientation;
 };
 

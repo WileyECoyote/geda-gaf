@@ -1,3 +1,8 @@
+2017-03-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_toolbar.c: Keep a pointer to sibling widgets in
+      GedaToolbar->children
+
 2017-03-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Rename geda_combo_widget_box_get_count->

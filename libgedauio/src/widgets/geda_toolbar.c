@@ -106,7 +106,10 @@ geda_toolbar_set_property (GObject      *object,
 static void
 geda_toolbar_finalize (GObject *object)
 {
-  //GedaToolbar *toolbar = GEDA_TOOLBAR (object);
+  GedaToolbar *bar = GEDA_TOOLBAR (object);
+
+  g_list_free(bar->children);
+  bar->children = NULL;
 
   if (g_hash_table_remove (toolbar_hash_table, object)) {
     if (!g_hash_table_size (toolbar_hash_table)) {
@@ -253,6 +256,8 @@ geda_toolbar_setup_label(GtkWidget *widget, GedaToolbar *bar)
     }
     children = children->next;
   }
+
+  bar->children = g_list_append(bar->children, widget);
 }
 
 /*!
@@ -331,8 +336,6 @@ geda_toolbar_append_widget (GedaToolbar *bar,
                             const char  *tip_private)
 {
   if (GTK_IS_WIDGET(widget)) {
-
-    bar->children = g_list_append(bar->children, widget);
 
     geda_toolbar_setup_label(widget, bar);
 
