@@ -3,6 +3,10 @@
     * include/libgeda/defines.h: Fix RETURN_G_RC_MODE macro; sizeof->
       G_N_ELEMENTS.
 
+    * src/guile/g_rc_parse.c: Add space between c and scheme error
+      message in vstbl_lookup_str in g_propagate_prefixed_error format
+      string.
+
 2017-03-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_keyfile.c: Add check for geda_keyfile_set_integer.

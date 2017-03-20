@@ -65,7 +65,7 @@ int vstbl_lookup_str(const vstbl_entry *table, int size, const char *str)
   int i;
 
   for(i = 0; i < size; i++) {
-    if(strcmp(table[i].m_str, str) == 0) {
+    if (strcmp(table[i].m_str, str) == 0) {
       break;
     }
   }
@@ -278,7 +278,7 @@ g_rc_parse_file (const char *rcfile, EdaConfig *cfg, GError **err)
         const char *process_err  = _("Error encounted processing RC file");
 
         /* Copy tmp_err into err, with a prefixed message. */
-        g_propagate_prefixed_error (err, tmp_err, "%s %s", process_err, name_norm);
+        g_propagate_prefixed_error (err, tmp_err, "%s %s: ", process_err, name_norm);
         GEDA_FREE (name_norm); /* was not successful so not stored */
       }
     }
