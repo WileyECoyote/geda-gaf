@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr_FR\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-02-22 02:20-0600\n"
+"POT-Creation-Date: 2017-03-19 20:48-0500\n"
 "PO-Revision-Date: 2016-12-28 19:57-0600\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -227,7 +227,7 @@ msgid "error parsing"
 msgstr ""
 
 #: gschem/src/base/gschem_parsecmd.c:280 gschem/src/x/x_rc.c:100
-#: gschem/src/x/x_rc.c:136
+#: gschem/src/x/x_rc.c:145
 msgid "ERROR"
 msgstr "ERREUR"
 
@@ -450,7 +450,7 @@ msgstr ""
 msgid "Bad Value"
 msgstr "Valeur"
 
-#: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2070
+#: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2069
 msgid "check"
 msgstr ""
 
@@ -490,58 +490,58 @@ msgstr ""
 msgid "file"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:721
+#: gschem/src/guile/g_rc.c:720
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:726
+#: gschem/src/guile/g_rc.c:725
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:727 gschem/src/guile/g_rc.c:1273
-#: gschem/src/guile/g_rc.c:1425 gschem/src/guile/g_rc.c:2023
+#: gschem/src/guile/g_rc.c:726 gschem/src/guile/g_rc.c:1272
+#: gschem/src/guile/g_rc.c:1424 gschem/src/guile/g_rc.c:2022
 msgid "Continuing with default value"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:811
+#: gschem/src/guile/g_rc.c:810
 #, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1267
+#: gschem/src/guile/g_rc.c:1266
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1272
+#: gschem/src/guile/g_rc.c:1271
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1419
+#: gschem/src/guile/g_rc.c:1418
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1424
+#: gschem/src/guile/g_rc.c:1423
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2017
+#: gschem/src/guile/g_rc.c:2016
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2022
+#: gschem/src/guile/g_rc.c:2021
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2068
+#: gschem/src/guile/g_rc.c:2067
 msgid "Invalid zoom factor"
 msgstr "Facteur de zoom non valide"
 
@@ -2928,168 +2928,172 @@ msgstr "Panoramique/Annuler"
 msgid "Cancel path mode"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:418 gschem/etc/system-gschemrc.scm:2052
+#: gschem/src/x/x_menus.c:427 gschem/etc/system-gschemrc.scm:2052
 msgid "Open an existing schematic or symbol file"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:429 gschem/etc/system-gschemrc.scm:2057
+#: gschem/src/x/x_menus.c:438 gschem/etc/system-gschemrc.scm:2057
 msgid "Save the current document"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:439 gschem/etc/system-gschemrc.scm:2076
+#: gschem/src/x/x_menus.c:448 gschem/etc/system-gschemrc.scm:2076
 msgid "Quit gschem and exit"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:472 gschem/etc/system-gschemrc.scm:2180
+#: gschem/src/x/x_menus.c:481 gschem/etc/system-gschemrc.scm:2180
 msgid "redraw the current window"
 msgstr "Vue en cours"
 
-#: gschem/src/x/x_menus.c:511
+#: gschem/src/x/x_menus.c:520
 msgid "Error reading menu item"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:512
+#: gschem/src/x/x_menus.c:521
 msgid "Bad string"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:723
+#: gschem/src/x/x_menus.c:732
 msgid "Oops... got a NULL menu name"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:851
+#: gschem/src/x/x_menus.c:864
 msgid "Toggle visibility of the Standard toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:852
+#: gschem/src/x/x_menus.c:865
 msgid "Toggle visibility of the Selection toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:853
+#: gschem/src/x/x_menus.c:866
 msgid "Toggle visibility of the Page toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:854
+#: gschem/src/x/x_menus.c:867
 msgid "Toggle visibility of the Add toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:855
+#: gschem/src/x/x_menus.c:868
 msgid "Toggle visibility of the Zoom toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:856
+#: gschem/src/x/x_menus.c:869
+msgid "Toggle visibility of the Symbol toolbar"
+msgstr ""
+
+#: gschem/src/x/x_menus.c:870
 msgid "Toggle visibility of the Edit toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:857
+#: gschem/src/x/x_menus.c:871
 msgid "Toggle visibility of the Attributes toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:858
+#: gschem/src/x/x_menus.c:872
 msgid "Toggle visibility of the Grid/Snap toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:913
+#: gschem/src/x/x_menus.c:927
 msgid "Display Icons on the toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:914
+#: gschem/src/x/x_menus.c:928
 msgid "Display Text on the toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:915
+#: gschem/src/x/x_menus.c:929
 msgid "Display Icons and Text vertically on the toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:916
+#: gschem/src/x/x_menus.c:930
 msgid "Display Icons and Text horizontally on the toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:980
+#: gschem/src/x/x_menus.c:997
 msgid "Toggle visibility of main menu icons"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:981
+#: gschem/src/x/x_menus.c:998
 msgid "Toggle main menu tooltips"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:982
+#: gschem/src/x/x_menus.c:999
 msgid "Toggle visibility of main context menu icons"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:983
+#: gschem/src/x/x_menus.c:1000
 msgid "Toggle main context menu tooltips"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1329
+#: gschem/src/x/x_menus.c:1346
 msgid "Tried to set the sensitivity on non-existent menu item"
 msgstr "Essayé de régler la sensibilité sur un élément de menu inexistant"
 
-#: gschem/src/x/x_menus.c:1340
+#: gschem/src/x/x_menus.c:1357
 msgid "Excessive errors"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1341
+#: gschem/src/x/x_menus.c:1358
 msgid "disabling sensitivity warnings"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1418
+#: gschem/src/x/x_menus.c:1435
 msgid "Saving menu toolbar options..."
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1428
+#: gschem/src/x/x_menus.c:1445
 msgid " done\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1431
+#: gschem/src/x/x_menus.c:1448
 #, c-format
 msgid " there were %d errors\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1476
+#: gschem/src/x/x_menus.c:1493
 msgid "gschem: Enabling menu icons\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1479
+#: gschem/src/x/x_menus.c:1496
 msgid "gschem: Disabling menu icons\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1542
+#: gschem/src/x/x_menus.c:1559
 msgid "Enabling menu tooltips\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1545
+#: gschem/src/x/x_menus.c:1562
 msgid "Disabling menu tooltips\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1586
+#: gschem/src/x/x_menus.c:1603
 msgid "Action not found"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1591
+#: gschem/src/x/x_menus.c:1608
 msgid "Menu path not found"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1673
+#: gschem/src/x/x_menus.c:1690
 msgid "Error: did not find path"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1776
+#: gschem/src/x/x_menus.c:1793
 msgid "Could not open file"
 msgstr "Impossible d'ouvrir le fichier"
 
-#: gschem/src/x/x_menus.c:1877
+#: gschem/src/x/x_menus.c:1894
 msgid "Open"
 msgstr "Ouvrir"
 
-#: gschem/src/x/x_menus.c:1886
+#: gschem/src/x/x_menus.c:1903
 msgid "Remove"
 msgstr "Dissiper"
 
-#: gschem/src/x/x_menus.c:1895
+#: gschem/src/x/x_menus.c:1912
 msgid "_Show path"
 msgstr "Afficher les _deux"
 
-#: gschem/src/x/x_menus.c:2020
+#: gschem/src/x/x_menus.c:2037
 msgid "Clear"
 msgstr ""
 
@@ -3516,46 +3520,46 @@ msgstr "Image non trouvée"
 msgid "Toolbar icon not found"
 msgstr "Icône de la barre d'outils introuvable"
 
-#: gschem/src/x/x_toolbars.c:534
+#: gschem/src/x/x_toolbars.c:535
 msgid "Creating new Toolbar configuration\n"
 msgstr "Créer une nouvelle configuration de barre d'outils\n"
 
-#: gschem/src/x/x_toolbars.c:543
+#: gschem/src/x/x_toolbars.c:544
 msgid "Saving Toolbar settings..."
 msgstr "Enregistrement des paramètres de la barre d'outils..."
 
-#: gschem/src/x/x_toolbars.c:562
+#: gschem/src/x/x_toolbars.c:563
 msgid "data saved to"
 msgstr "Données sauvegardées"
 
-#: gschem/src/x/x_toolbars.c:569
+#: gschem/src/x/x_toolbars.c:570
 msgid "Could not save Toolbar configuration to"
 msgstr "Impossible d'enregistrer la configuration de la barre d'outils"
 
-#: gschem/src/x/x_toolbars.c:642
+#: gschem/src/x/x_toolbars.c:643
 msgid "Error, Toolbar configuration key file"
 msgstr "Erreur, fichier de clé de configuration de la barre d'outils"
 
-#: gschem/src/x/x_toolbars.c:650
+#: gschem/src/x/x_toolbars.c:651
 msgid "Retrieving toolbar geometry\n"
 msgstr "Récupération de la géométrie de la barre d'outils\n"
 
-#: gschem/src/x/x_toolbars.c:675
+#: gschem/src/x/x_toolbars.c:677
 msgid "Toolbar configuration restored from"
 msgstr "Configuration de la barre d'outils restaurée à partir de"
 
-#: gschem/src/x/x_toolbars.c:680
+#: gschem/src/x/x_toolbars.c:682
 msgid "Warning, error restoring toolbar configuration"
 msgstr ""
 "Avertissement, erreur restauration de la configuration de la barre d'outils"
 
-#: gschem/src/x/x_toolbars.c:686
+#: gschem/src/x/x_toolbars.c:688
 msgid "Warning, toolbar configuration file access error"
 msgstr ""
 "Avertissement, erreur d'accès au fichier de configuration de la barre "
 "d'outils"
 
-#: gschem/src/x/x_toolbars.c:704
+#: gschem/src/x/x_toolbars.c:706
 msgid "Toolbar configuration not found"
 msgstr "Configuration de la barre d'outils introuvable"
 

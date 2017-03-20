@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-03-12 01:09-0600\n"
+"POT-Creation-Date: 2017-03-19 03:51-0500\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -555,29 +555,46 @@ msgstr ""
 msgid "_Select"
 msgstr "מצב בחירה"
 
-#: libgedauio/src/widgets/geda_handlebox.c:1444
-#: libgedauio/src/widgets/geda_handlebox.c:1453
+#: libgedauio/src/widgets/geda_handlebox.c:1546
+#: libgedauio/src/widgets/geda_handlebox.c:1555
 msgid "Appearance of the shadow that surrounds the container"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_handlebox.c:1462
+#: libgedauio/src/widgets/geda_handlebox.c:1564
 msgid "Position of the handle relative to the child toolbar"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_handlebox.c:1471
+#: libgedauio/src/widgets/geda_handlebox.c:1572
+msgid "Shrink"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_handlebox.c:1573
+msgid "Shrink when toolbar is detached."
+msgstr ""
+
+#: libgedauio/src/widgets/geda_handlebox.c:1581
 msgid ""
 "Side of the handlebox that is lined up with the docking point to dock the "
 "handlebox"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_handlebox.c:1480
+#: libgedauio/src/widgets/geda_handlebox.c:1590
 msgid ""
 "Whether to use the value from the snap_edge property or a value derived from "
 "handle_position"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_handlebox.c:1488
+#: libgedauio/src/widgets/geda_handlebox.c:1598
 msgid "Boolean value indicating whether the toolbar is attached or detached."
+msgstr ""
+
+#: libgedauio/src/widgets/geda_handlebox.c:1660
+#, fuzzy
+msgid "Handle Size"
+msgstr "גודל מחוון"
+
+#: libgedauio/src/widgets/geda_handlebox.c:1661
+msgid "Size of the drag handle in pixels."
 msgstr ""
 
 #: libgedauio/src/widgets/geda_image_menu_item.c:413
@@ -875,11 +892,11 @@ msgstr ""
 msgid "Multikey Accelerator"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_toolbar.c:207
+#: libgedauio/src/widgets/geda_toolbar.c:158
 #, fuzzy
 msgid "Font Size"
 msgstr "גודל מחוון"
 
-#: libgedauio/src/widgets/geda_toolbar.c:208
+#: libgedauio/src/widgets/geda_toolbar.c:159
 msgid "Set point size of the font for child widgets"
 msgstr ""
