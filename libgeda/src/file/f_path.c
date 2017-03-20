@@ -133,14 +133,15 @@ static int f_create_dir(const char *path, mode_t mode)
  */
 int geda_file_path_create(const char *path, mode_t mode)
 {
-  char           *pp;
-  char           *sp;
-  int             status;
-  char           *copypath;
+  int status;
 
   status = NO_ERROR;
 
   if (path) {
+
+    char *copypath;
+    char *pp;
+    char *sp;
 
     copypath = geda_strdup(path);
     pp       = copypath;

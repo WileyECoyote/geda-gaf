@@ -7,6 +7,8 @@
       message in vstbl_lookup_str in g_propagate_prefixed_error format
       string.
 
+    * src/file/f_file.c: Reduce scope of variables in geda_file_path_create.
+
     * tests/test_file.c: Change location for creating directories when
       vpath builds. i.e. distchecks.
 
