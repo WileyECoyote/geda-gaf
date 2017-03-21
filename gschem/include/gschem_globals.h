@@ -42,7 +42,6 @@ extern GdkColor black;
 
 /* command line options */
 
-
 extern int  auto_place_mode;
 extern int  auto_load_last;
 extern int  iconify_main_window;
