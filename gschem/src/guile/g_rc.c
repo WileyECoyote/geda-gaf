@@ -158,9 +158,9 @@ int check_and_convert_scm_integer( SCM val2chk, int min_value, int max_value,
   return val;
 }
 
-/*! \brief This function processes the RC version information
+/*! \brief Process RC version information
  *  \par Function Description
- *       This function processes the version string in the rc and
+ *       Process version string in the rc and
  *       compares the value to the current program version.
  *
  *  \returns SCM_TRUE if versions match else FALSE
@@ -217,7 +217,7 @@ SCM g_rc_gschem_version(SCM scm_version)
 
 /* Color Related */
 
-/*! \brief This function processes the display-color-map RC entry.
+/*! \brief Process display-color-map RC entry.
  *  \par Function Description
  *   This keyword is handled by libgedacolor and is defunct in gschem.
  */
@@ -227,7 +227,7 @@ SCM g_rc_display_color_map (SCM scm_map)
   return SCM_BOOL_T;
 }
 
-/*! \brief This function processes the display-outline-color-map RC entry.
+/*! \brief Process display-outline-color-map RC entry.
  *  \par Function Description
  *   C function to dynamically convert lisp variable while
  *   processing configuration data for the display-outline-color-map
@@ -244,7 +244,7 @@ SCM g_rc_display_outline_color_map (SCM scm_map)
 
 /*! (category "Display")
  *  (sub-category "Render")
- *  \brief This function processes the render-adaptor RC entry.
+ *  \brief Process render-adaptor RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the render-adaptor RC entry.
@@ -261,7 +261,7 @@ SCM g_rc_render_adaptor(SCM mode)
 }
 
 /*! (category "Display")
- *  \brief This function processes the action-color RC entry.
+ *  \brief Process action-color RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the action-color RC entry.
@@ -274,7 +274,7 @@ SCM g_rc_action_color(SCM color)
 }
 
 /*! (sub-category "Cario")
- *  \brief This function processes the anti-aliasing RC entry.
+ *  \brief Process anti-aliasing RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the anti-aliasing RC entry.
@@ -294,7 +294,7 @@ SCM g_rc_anti_aliasing(SCM mode)
   RETURN_G_RC_MODE("anti-aliasing", default_anti_aliasing, mode_table);
 }
 
-/*! \brief This function processes the draw-grips RC entry.
+/*! \brief Process draw-grips RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for draw-grips RC entry.
@@ -310,7 +310,7 @@ SCM g_rc_draw_grips(SCM mode)
   RETURN_G_RC_MODE("draw-grips", default_draw_grips, mode_table);
 }
 
-/*! \brief This function processes the grip-size RC entry.
+/*! \brief Process grip-size RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the grip-size RC entry.
@@ -324,7 +324,7 @@ SCM g_rc_grips_pixel_size (SCM size)
 
 /*! (category "Display")
  *  (sub-category "Grid")
- *  \brief This function processes the grid-mode RC entry.
+ *  \brief Process grid-mode RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the grid-mode RC entry.
@@ -340,7 +340,7 @@ SCM g_rc_grid_mode(SCM mode)
   RETURN_G_RC_MODE("grid-mode", default_grid_mode, mode_table);
 }
 
-/*! \brief This function processes the dots-grid-minor-color RC entry.
+/*! \brief Process dots-grid-minor-color RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variables while
  *       processing configuration data for the dots-grid-minor-color RC
@@ -369,7 +369,7 @@ SCM g_rc_dots_grid_minor_color (SCM red, SCM green, SCM blue)
   return SCM_BOOL_T;
 }
 
-/*! \brief This function processes the dots-grid-major-color RC entry.
+/*! \brief Process dots-grid-major-color RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variables while
  *       processing configuration data for the dots-grid-major-color RC
@@ -398,7 +398,7 @@ SCM g_rc_dots_grid_major_color (SCM red, SCM green, SCM blue)
   return SCM_BOOL_T;
 }
 
-/*! \brief This function processes the dots-grid-dot-size RC entry.
+/*! \brief Process dots-grid-dot-size RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the dots-grid-dot-size RC entry.
@@ -410,7 +410,7 @@ SCM g_rc_dots_grid_dot_size (SCM dotsize)
   return SCM_BOOL_T;
 }
 
-/*! \brief This function processes the dots_grid_mode RC entry.
+/*! \brief Process dots_grid_mode RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the dots_grid_mode RC entry.
@@ -425,7 +425,7 @@ SCM g_rc_dots_grid_mode (SCM mode)
   RETURN_G_RC_MODE ("dots-grid-mode", default_dots_grid_mode, mode_table);
 }
 
-/*! \brief This function processes the dots-grid-threshold RC entry.
+/*! \brief Process dots-grid-threshold RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the dots-grid-threshold RC
@@ -442,7 +442,7 @@ SCM g_rc_dots_grid_threshold (SCM threshold)
   return SCM_BOOL_T;
 }
 
-/*! \brief This function processes the dots-grid-minor-alpha RC entry.
+/*! \brief Process dots-grid-minor-alpha RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variables while
  *       processing configuration data for the dots-grid-minor-alpha RC
@@ -459,7 +459,7 @@ SCM g_rc_dots_grid_minor_alpha (SCM percent)
   return SCM_BOOL_T;
 }
 
-/*! \brief This function processes the dots-grid-major-alpha RC entry.
+/*! \brief Process dots-grid-major-alpha RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variables while
  *       processing configuration data for the dots-grid-minor-alpha RC
@@ -476,7 +476,7 @@ SCM g_rc_dots_grid_major_alpha (SCM percent)
   return SCM_BOOL_T;
 }
 
-/*! \brief This function processes the mesh-grid-threshold RC entry.
+/*! \brief Process mesh-grid-threshold RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the mesh-grid-threshold RC
@@ -492,7 +492,7 @@ SCM g_rc_mesh_grid_threshold (SCM threshold)
   return SCM_BOOL_T;
 }
 
-/*! \brief This function processes the mesh-line-width-factor RC entry.
+/*! \brief Process mesh-line-width-factor RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the mesh-line-width-factor RC
@@ -509,7 +509,7 @@ SCM g_rc_mesh_line_width_factor (SCM width)
   return SCM_BOOL_T;
 }
 
-/*! \brief This function processes the mesh-grid-minor-alpha RC entry.
+/*! \brief Process mesh-grid-minor-alpha RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variables while
  *       processing configuration data for the mesh-grid-minor-alpha RC
@@ -526,7 +526,7 @@ SCM g_rc_mesh_grid_minor_alpha (SCM percent)
   return SCM_BOOL_T;
 }
 
-/*! \brief This function processes the mesh-grid-major-alpha RC entry.
+/*! \brief Process mesh-grid-major-alpha RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variables while
  *       processing configuration data for the mesh-grid-minor-alpha RC
@@ -543,7 +543,7 @@ SCM g_rc_mesh_grid_major_alpha (SCM percent)
   return SCM_BOOL_T;
 }
 
-/*! \brief This function processes the mesh-grid-minor-color RC entry.
+/*! \brief Process mesh-grid-minor-color RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variables while
  *       processing configuration data for the mesh-grid-minor-color RC
@@ -572,7 +572,7 @@ SCM g_rc_mesh_grid_minor_color (SCM red, SCM green, SCM blue)
   return SCM_BOOL_T;
 }
 
-/*! \brief This function processes the mesh-grid-major-color RC entry.
+/*! \brief Process mesh-grid-major-color RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variables while
  *       processing configuration data for the mesh-grid-minor-color RC
@@ -601,7 +601,7 @@ SCM g_rc_mesh_grid_major_color (SCM red, SCM green, SCM blue)
   return SCM_BOOL_T;
 }
 
-/*! \brief This function processes the object-clipping RC entry.
+/*! \brief Process object-clipping RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the object-clipping RC entry.
@@ -616,7 +616,7 @@ SCM g_rc_object_clipping(SCM mode)
   RETURN_G_RC_MODE("object-clipping", default_object_clipping, mode_table);
 }
 
-/*! \brief This function processes the warp_cursor RC entry.
+/*! \brief Process warp_cursor RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the warp_cursor RC entry.
@@ -631,7 +631,7 @@ SCM g_rc_warp_cursor(SCM mode)
   RETURN_G_RC_MODE("warp-cursor", default_warp_cursor, mode_table);
 }
 
-/*! \brief This function processes the window-size RC entry.
+/*! \brief Process window-size RC entry.
  *  \par Function Description
  *       function to dynamically process configuration data
  *       for the window-size RC entry. This sets the Windows
@@ -653,7 +653,7 @@ SCM g_rc_window_size(SCM width, SCM height)
   return SCM_BOOL_T;
 }
 
-/*! \brief This function processes the world-size RC entry.
+/*! \brief Process world-size RC entry.
  *  \par Function Description
  *       function to dynamically process configuration data
  *       for the world-size RC entry. This sets the World
@@ -697,7 +697,7 @@ SCM g_rc_world_size(SCM width, SCM height, SCM border)
 }
 #undef FUNC_NAME
 
-/*! \brief This function processes the zoom-gain RC entry.
+/*! \brief Process zoom-gain RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the zoom-gain RC entry.
@@ -727,7 +727,7 @@ SCM g_rc_zoom_gain(SCM gain)
   return SCM_BOOL_T;
 }
 
-/*! \brief This function processes the zoom-with-pan RC entry.
+/*! \brief Process zoom-with-pan RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the zoom-with-pan RC entry.
@@ -744,7 +744,7 @@ SCM g_rc_zoom_with_pan(SCM mode)
 }
 
 /* ----- Image Related ----- */
-/*! \brief This function processes the image-color RC entry.
+/*! \brief Process image-color RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for image-color RC entry.
@@ -758,7 +758,7 @@ SCM g_rc_image_color(SCM mode)
 
   RETURN_G_RC_MODE("image-color", default_image_color, mode_table);
 }
-/*! \brief This function processes the image-color RC entry.
+/*! \brief Process image-color RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for invert-images RC entry.
@@ -775,7 +775,7 @@ SCM g_rc_invert_images(SCM mode)
 /* ----- Log related ----- */
 /*! \brief This function processes log-enable information RC entry.
  * \par Function Description
- *       This function processes the entry for the log-enable
+ *       Process entry for the log-enable
  *       string in the initialization rc file. This function accepts
  *       either string or integer type arguments.
  *
@@ -805,7 +805,7 @@ SCM g_rc_logging(SCM mode)
 /*! \brief This function processes log-destiny information
  *
  *  \par Function Description
- *       This function processes the entry for the log-destiny
+ *       Process entry for the log-destiny
  *       string in the initialization rc file
  *
  */
@@ -820,7 +820,7 @@ SCM g_rc_log_destiny(SCM mode)
 
   RETURN_G_RC_MODE("log-destiny", default_log_destiny, mode_table);
 }
-/*! \brief This function processes the console-window RC entry.
+/*! \brief Process console-window RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the console-window
@@ -837,7 +837,7 @@ SCM g_rc_console_window(SCM mode)
 
   RETURN_G_RC_MODE("console-window", default_console_window, mode_table);
 }
-/*! \brief This function processes the console-window-type RC entry.
+/*! \brief Process console-window-type RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the console-window-type
@@ -853,7 +853,7 @@ SCM g_rc_console_window_type(SCM mode)
   RETURN_G_RC_MODE("console-window-type", default_console_window_type, mode_table);
 }
 /* ----- Miscellaneous ----- */
-/*! \brief This function processes the action-feedback-mode RC entry.
+/*! \brief Process action-feedback-mode RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the action-feedback-mode RC entry.
@@ -867,7 +867,7 @@ SCM g_rc_action_feedback_mode(SCM mode)
 
   RETURN_G_RC_MODE("action-feedback-mode", default_action_feedback_mode, mode_table);
 }
-/*! \brief This function processes the add-attribute-offset RC entry.
+/*! \brief Process add-attribute-offset RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the add-attribute-offset RC entry.
@@ -879,7 +879,7 @@ SCM g_rc_add_attribute_offset(SCM offset)
                                   "add-attribute-offset");
   return SCM_BOOL_T;
 }
-/*! \brief This function processes the add-menu RC entry.
+/*! \brief Process add-menu RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the add-menu items.
@@ -901,7 +901,7 @@ SCM g_rc_add_menu(SCM scm_menu_name, SCM scm_menu_items)
   return SCM_BOOL_T;
 }
 
-/*! \brief This function processes the map-icon RC entry.
+/*! \brief Process map-icon RC entry.
  *  \par Function Description
  *       This procedure is used to load icon id string to the i_command
  *       table stucture via i_command_map_icon.
@@ -930,7 +930,7 @@ SCM g_rc_map_icon(SCM s_icon, SCM s_action)
   return SCM_BOOL_T;
 
 }
-/*! \brief This function processes the map-keys RC entry.
+/*! \brief Process map-keys RC entry.
  *  \par Function Description
  *       This procedure is functionally equivalent to the
  *       global-set-key function but uses a slightly different
@@ -965,7 +965,7 @@ SCM g_rc_map_keys(SCM keys, SCM action)
 
 }
 
-/*! \brief This function processes the autoplace-attributes-grid RC entry.
+/*! \brief Process autoplace-attributes-grid RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the autoplacement-grid  RC entry.
@@ -984,7 +984,7 @@ SCM g_rc_attribute_placement_grid(SCM offset)
   return SCM_BOOL_T;
 }
 
-/*! \brief This function processes the auto-load-last RC entry.
+/*! \brief Process auto-load-last RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the auto-load-last RC entry.
@@ -999,7 +999,7 @@ SCM g_rc_auto_load_last(SCM mode)
   RETURN_G_RC_MODE("auto-load-last", default_auto_load_last, mode_table);
 }
 
-/*! \brief This function processes the auto-pan RC entry.
+/*! \brief Process auto-pan RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the auto-pan RC entry.
@@ -1014,7 +1014,7 @@ SCM g_rc_auto_pan(SCM mode)
   RETURN_G_RC_MODE("auto-pan", default_auto_pan, mode_table);
 }
 
-/*! \brief This function processes the auto-pan-step RC entry.
+/*! \brief Process auto-pan-step RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the auto-pan-step RC entry.
@@ -1031,7 +1031,7 @@ SCM g_rc_auto_pan_step(SCM step)
   return SCM_BOOL_T;
 }
 
-/*! \brief This function processes the auto-save-interval RC entry.
+/*! \brief Process auto-save-interval RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the auto-save-interval RC entry.
@@ -1043,7 +1043,7 @@ SCM g_rc_auto_save_interval(SCM seconds)
                                "auto_save_interval");
   return SCM_BOOL_T;
 }
-/*! \brief This function processes the attribute-name RC entry.
+/*! \brief Process attribute-name RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the attribute-name RC entry.
@@ -1071,7 +1071,7 @@ SCM g_rc_attribute_name(SCM scm_path)
   return ret;
 }
 
-/*! \brief This function processes the component dialog RC entry.
+/*! \brief Process component dialog RC entry.
  *  \par Function Description
  *  This function reads the string list from the component-dialog-attributes
  *  configuration parameter and converts the list into a GList.
@@ -1116,7 +1116,7 @@ SCM g_rc_component_dialog_attributes(SCM stringlist)
   return SCM_BOOL_T;
 
 }
-/*! \brief This function processes the continue-component-place RC entry.
+/*! \brief Process continue-component-place RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the continue-component-place RC entry.
@@ -1131,7 +1131,7 @@ SCM g_rc_continue_component_place(SCM mode)
   RETURN_G_RC_MODE("continue-component-place",
                     default_continue_component_place, mode_table);
 }
-/*! \brief This function processes the embed-components RC entry.
+/*! \brief Process embed-components RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the embed-components RC entry.
@@ -1145,7 +1145,7 @@ SCM g_rc_embed_components(SCM mode)
 
   RETURN_G_RC_MODE("embed-components", default_embed_components, mode_table);
 }
-/*! \brief This function processes the enforce-hierarchy RC entry.
+/*! \brief Process enforce-hierarchy RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the enforce-hierarchy RC entry.
@@ -1160,7 +1160,7 @@ SCM g_rc_enforce_hierarchy(SCM mode)
   RETURN_G_RC_MODE("enforce-hierarchy", default_enforce_hierarchy, mode_table);
 }
 
-/*! \brief This function processes the force_boundingbox RC entry.
+/*! \brief Process force_boundingbox RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for force_boundingbox RC entry.
@@ -1188,7 +1188,7 @@ SCM g_rc_keyboardpan_gain(SCM gain)
                                      "keyboardpan_gain");
   return SCM_BOOL_T;
 }
-/*! \brief This function processes the magnetic-net-mode RC entry.
+/*! \brief Process magnetic-net-mode RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the magnetic-net-mode RC entry.
@@ -1202,7 +1202,7 @@ SCM g_rc_magnetic_net_mode(SCM mode)
 
   RETURN_G_RC_MODE("magnetic-net-mode", default_magnetic_net_mode, mode_table);
 }
-/*! \brief This function processes the netconn-rubberband RC entry.
+/*! \brief Process netconn-rubberband RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the netconn-rubberband RC entry.
@@ -1217,7 +1217,7 @@ SCM g_rc_netconn_rubberband(SCM mode)
   RETURN_G_RC_MODE("netconn-rubberband", default_netconn_rubberband, mode_table);
 }
 
-/*! \brief This function processes the select-slack-pixels RC entry.
+/*! \brief Process select-slack-pixels RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the select-slack-pixels RC entry.
@@ -1230,7 +1230,7 @@ SCM g_rc_select_slack_pixels(SCM pixels)
   return SCM_BOOL_T;
 }
 
-/*! \brief This function processes the snap-size RC entry.
+/*! \brief Process snap-size RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the snap-size RC entry.
@@ -1259,7 +1259,7 @@ SCM g_rc_snap_size(SCM size)
   return SCM_BOOL_T;
 }
 
-/*! \brief This function processes the sort-component-library RC entry.
+/*! \brief Process sort-component-library RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the sort-component-library RC entry.
@@ -1276,7 +1276,7 @@ SCM g_rc_sort_component_library(SCM mode)
 }
 
 /* ----- Nets and Routing ----- */
-/*! \brief This function processes the net-consolidate RC entry.
+/*! \brief Process net-consolidate RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the net-consolidate RC entry.
@@ -1291,7 +1291,7 @@ SCM g_rc_net_consolidate(SCM mode)
   RETURN_G_RC_MODE("net-consolidate", default_net_consolidate, mode_table);
 }
 
-/*! \brief This function processes the net-endpoint-mode RC entry.
+/*! \brief Process net-endpoint-mode RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the net-endpoint-mode RC entry.
@@ -1307,7 +1307,7 @@ SCM g_rc_net_endpoint_mode(SCM mode)
   RETURN_G_RC_MODE("net-endpoint-mode", default_net_endpoint_mode, mode_table);
 }
 
-/*! \brief This function processes the net-midpoint-mode RC entry.
+/*! \brief Process net-midpoint-mode RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the net-midpoint-mode RC entry.
@@ -1325,7 +1325,7 @@ SCM g_rc_net_midpoint_mode(SCM mode)
   RETURN_G_RC_MODE("net-midpoint-mode", default_net_midpoint_mode, mode_table);
 }
 
-/*! \brief This function processes the net-direction-mode RC entry.
+/*! \brief Process net-direction-mode RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the net-direction-mode RC entry.
@@ -1340,7 +1340,7 @@ SCM g_rc_net_direction_mode(SCM mode)
   RETURN_G_RC_MODE("net-direction-mode", default_net_direction_mode, mode_table);
 }
 
-/*! \brief This function processes the net-selection_mode RC entry.
+/*! \brief Process net-selection_mode RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the net-selection_mode RC entry.
@@ -1361,7 +1361,7 @@ SCM g_rc_net_selection_mode(SCM mode)
 
 /* Net Ripper */
 
-/*! \brief This function processes the bus-ripper-rotation RC entry.
+/*! \brief Process bus-ripper-rotation RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the bus-ripper-rotation RC entry.
@@ -1376,7 +1376,7 @@ SCM g_rc_bus_ripper_rotation(SCM mode)
   RETURN_G_RC_MODE("bus-ripper-rotation", default_bus_ripper_rotation, mode_table);
 }
 
-/*! \brief This function processes the bus-ripper-size RC entry.
+/*! \brief Process bus-ripper-size RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the bus-ripper-size RC entry.
@@ -1405,7 +1405,7 @@ SCM g_rc_bus_ripper_size(SCM size)
   return SCM_BOOL_T;
 }
 
-/*! \brief This function processes the bus-ripper-type RC entry.
+/*! \brief Process bus-ripper-type RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the bus-ripper-type RC entry.
@@ -1420,7 +1420,7 @@ SCM g_rc_bus_ripper_type(SCM mode)
   RETURN_G_RC_MODE("bus-ripper-type", default_bus_ripper_type, mode_table);
 }
 
-/*! \brief This function processes the bus-ripper-symname RC entry.
+/*! \brief Process bus-ripper-symname RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the bus-ripper-symname RC entry.
@@ -1448,7 +1448,7 @@ SCM g_rc_bus_ripper_symname(SCM scmsymname)
 
 /* Pointer Device, aka Mouse stuff */
 
-/*! \brief This function processes the fast-mousepan RC entry.
+/*! \brief Process fast-mousepan RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the fast-mousepan RC entry.
@@ -1464,7 +1464,7 @@ SCM g_rc_fast_mousepan(SCM mode)
   RETURN_G_RC_MODE("fast-mousepan", default_fast_mousepan, mode_table);
 }
 
-/*! \brief This function processes the drag-can-move RC entry.
+/*! \brief Process drag-can-move RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the drag-can-move RC entry.
@@ -1480,7 +1480,7 @@ SCM g_rc_drag_can_move(SCM mode)
   RETURN_G_RC_MODE("drag-can-move", default_drag_can_move, mode_table);
 }
 
-/*! \brief This function processes the middle-button RC entry.
+/*! \brief Process middle-button RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the middle-button RC entry.
@@ -1498,7 +1498,7 @@ SCM g_rc_middle_button(SCM mode)
   RETURN_G_RC_MODE("middle-button", default_middle_button, mode_table);
 }
 
-/*! \brief This function processes the mousepan-gain RC entry.
+/*! \brief Process mousepan-gain RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the mousepan-gain RC entry.
@@ -1511,7 +1511,7 @@ SCM g_rc_mousepan_gain(SCM gain)
   return SCM_BOOL_T;
 }
 
-/*! \brief This function processes the scroll-wheel RC entry.
+/*! \brief Process scroll-wheel RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the scroll-wheel RC entry.
@@ -1532,7 +1532,7 @@ SCM g_rc_scroll_wheel(SCM mode)
   RETURN_G_RC_MODE("scroll-wheel", default_scroll_wheel, mode_table);
 }
 
-/*! \brief This function processes the pointer-hscroll RC entry.
+/*! \brief Process pointer-hscroll RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the pointer-hscroll RC entry.
@@ -1547,7 +1547,7 @@ SCM g_rc_pointer_hscroll(SCM mode)
   RETURN_G_RC_MODE("pointer_hscroll", default_pointer_hscroll, mode_table);
 }
 
-/*! \brief This function processes the third-button RC entry.
+/*! \brief Process third-button RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the third-button RC entry.
@@ -1589,7 +1589,7 @@ SCM g_rc_third_button_cancel(SCM mode)
 
 /* ----- Print Related ----- */
 
-/*! \brief This function processes the image-size RC entry.
+/*! \brief Process image-size RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the image-size RC entry.
@@ -1609,7 +1609,7 @@ SCM g_rc_image_size(SCM width, SCM height)
   return SCM_BOOL_T;
 }
 
-/*! \brief This function processes the paper-size RC entry.
+/*! \brief Process paper-size RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the paper-size RC entry.
@@ -1630,7 +1630,7 @@ SCM g_rc_paper_size(SCM width, SCM height)
 }
 #undef FUNC_NAME
 
-/*! \brief This function processes the paper-sizes RC entry.
+/*! \brief Process paper-sizes RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the paper-sizes RC entry. Note this
@@ -1668,7 +1668,7 @@ SCM g_rc_paper_sizes(SCM scm_papername, SCM scm_width, SCM scm_height)
 }
 
 #undef FUNC_NAME
-/*! \brief This function processes the print-command RC entry.
+/*! \brief Process print-command RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the print-command RC entry.
@@ -1695,7 +1695,7 @@ SCM g_rc_print_command(SCM scm_command)
 
 #undef FUNC_NAME
 
-/*! \brief This function processes the output-type RC entry.
+/*! \brief Process output-type RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the output-type RC entry.
@@ -1714,7 +1714,7 @@ SCM g_rc_output_type(SCM mode)
   RETURN_G_RC_MODE("output-type", default_print_output_type, mode_table);
 }
 
-/*! \brief This function processes the output-orientation RC entry.
+/*! \brief Process output-orientation RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the output-orientation RC entry.
@@ -1731,7 +1731,7 @@ SCM g_rc_output_orientation(SCM mode)
   RETURN_G_RC_MODE("output-orientation", default_print_orientation, mode_table);
 }
 
-/*! \brief This function processes the output-color RC entry.
+/*! \brief Process output-color RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the output-color RC entry.
@@ -1748,7 +1748,7 @@ SCM g_rc_output_color(SCM mode)
   RETURN_G_RC_MODE("output-color", default_print_color, mode_table);
 }
 
-/*! \brief This function processes the output-capstyle RC entry.
+/*! \brief Process output-capstyle RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the output-capstyle RC entry.
@@ -1764,7 +1764,7 @@ SCM g_rc_output_capstyle(SCM mode)
   RETURN_G_RC_MODE("output-capstyle", default_print_output_capstyle, mode_table);
 }
 
-/*! \brief This function processes the setpagedevice-orientation RC entry.
+/*! \brief Process setpagedevice-orientation RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the setpagedevice-orientation RC entry.
@@ -1780,7 +1780,7 @@ SCM g_rc_setpagedevice_orientation(SCM mode)
                     default_setpagedevice_orientation, mode_table);
 }
 
-/*! \brief This function processes the setpagedevice-pagesize RC entry.
+/*! \brief Process setpagedevice-pagesize RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the setpagedevice-pagesize RC entry.
@@ -1805,7 +1805,7 @@ SCM g_rc_setpagedevice_pagesize(SCM mode)
  *      when processing RC files.
  */
 
-/*! \brief This function processes the file-preview RC entry.
+/*! \brief Process file-preview RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the file-preview RC entry.
@@ -1835,7 +1835,7 @@ SCM g_rc_handleboxes(SCM mode)
   RETURN_G_RC_MODE("handleboxes", default_handleboxes, mode_table);
 }
 
-/*! \brief This function processes the raise-dialog-boxes-on-expose RC entry.
+/*! \brief Process raise-dialog-boxes-on-expose RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the raise-dialog-boxes-on-expose RC entry.
@@ -1851,7 +1851,7 @@ SCM g_rc_raise_dialog_boxes_on_expose(SCM mode)
                     default_raise_dialog_boxes, mode_table);
 }
 
-/*! \brief This function processes the save-ui-settings RC entry.
+/*! \brief Process save-ui-settings RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the save_settings RC entry.
@@ -1866,7 +1866,7 @@ SCM g_rc_save_ui_settings(SCM mode)
   RETURN_G_RC_MODE("save-ui-settings", default_save_ui_settings, mode_table);
 }
 
-/*! \brief This function processes the toolbars RC entry.
+/*! \brief Process toolbars RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the toolbars RC entry.
@@ -1881,7 +1881,7 @@ SCM g_rc_toolbars(SCM mode)
   RETURN_G_RC_MODE("toolbars", default_toolbars, mode_table);
 }
 
-/*! \brief This function processes the toolbars-mode RC entry.
+/*! \brief Process toolbars-mode RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the toolbars-mode RC entry.
@@ -1905,7 +1905,7 @@ SCM g_rc_toolbars_mode(SCM mode)
  *  @{
  */
 
-/*! \brief This function processes the scrollbars RC entry.
+/*! \brief Process scrollbars RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the scrollbars RC entry.
@@ -1920,7 +1920,7 @@ SCM g_rc_scrollbars(SCM mode)
   RETURN_G_RC_MODE("scrollbars", default_scrollbars, mode_table);
 }
 
-/*! \brief This function processes the scrollbar-update RC entry.
+/*! \brief Process scrollbar-update RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the scrollbar-update RC entry.
@@ -1935,7 +1935,7 @@ SCM g_rc_scrollbar_update(SCM mode)
  RETURN_G_RC_MODE("scrollbar-update", default_scrollbar_update, mode_table);
 }
 
-/*! \brief This function processes the scrollbars-visible RC entry.
+/*! \brief Process scrollbars-visible RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the scrollbars-visible RC entry.
@@ -1950,7 +1950,7 @@ SCM g_rc_scrollbars_visible(SCM mode)
   RETURN_G_RC_MODE("scrollbars-visible", default_scrollbars_visible, mode_table);
 }
 
-/*! \brief This function processes the scrollpan_steps RC entry.
+/*! \brief Process scrollpan_steps RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the scrollpan_steps RC entry.
@@ -1983,7 +1983,7 @@ SCM g_rc_scrollpan_steps(SCM steps)
 /** @} END Group RC-Scrollbar-Options Functions */
 
 /* ----- Text Related ----- */
-/*! \brief This function processes the text-case RC entry.
+/*! \brief Process text-case RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the text-case RC entry.
@@ -1999,7 +1999,7 @@ SCM g_rc_text_case(SCM mode)
   RETURN_G_RC_MODE("text-case", default_text_case, mode_table);
 }
 
-/*! \brief This function processes the text-display_zoom factor RC entry.
+/*! \brief Process text-display_zoom factor RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while processing
  *       configuration data for the text_display_zoom factor RC entry.
@@ -2026,7 +2026,7 @@ SCM g_rc_text_display_zoomfactor(SCM zoomfactor)
   return SCM_BOOL_T;
 }
 
-/*! \brief This function processes the text-feedback RC entry.
+/*! \brief Process text-feedback RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the text_feedback RC entry.
@@ -2041,7 +2041,7 @@ SCM g_rc_text_feedback(SCM mode)
   RETURN_G_RC_MODE("text-feedback", default_text_feedback, mode_table);
 }
 
-/*! \brief This function processes the text-origin-marker RC entry.
+/*! \brief Process text-origin-marker RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the text_origin_marker RC entry.
@@ -2056,7 +2056,7 @@ SCM g_rc_text_origin_marker(SCM mode)
   RETURN_G_RC_MODE("text-origin-marker", default_text_origin_marker, mode_table);
 }
 
-/*! \brief This function processes the text-marker-size RC entry.
+/*! \brief Process text-marker-size RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the text-marker-size RC entry.
@@ -2071,7 +2071,7 @@ SCM g_rc_text_marker_size(SCM size)
   return SCM_BOOL_T;
 }
 
-/*! \brief This function processes the text-marker-threshold RC entry.
+/*! \brief Process text-marker-threshold RC entry.
  *  \par Function Description
  *   Processing configuration data for the text_marker_threshold RC entry.
  */
@@ -2087,7 +2087,7 @@ SCM g_rc_text_marker_threshold(SCM mode)
   return SCM_BOOL_T;
 }
 
-/*! \brief This function processes the text-size RC entry.
+/*! \brief Process text-size RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the text-size RC entry.
@@ -2102,7 +2102,7 @@ SCM g_rc_text_size(SCM size)
 
 /* ----- Undo System ----- */
 
-/*! \brief This function processes the undo-control RC entry.
+/*! \brief Process undo-control RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the undo-control RC entry.
@@ -2117,7 +2117,7 @@ SCM g_rc_undo_control(SCM mode)
   RETURN_G_RC_MODE("undo-control", default_undo_control, mode_table);
 }
 
-/*! \brief This function processes the undo-levels RC entry.
+/*! \brief Process undo-levels RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the undo-levels RC entry.
@@ -2129,7 +2129,7 @@ SCM g_rc_undo_levels(SCM levels)
   return SCM_BOOL_T;
 }
 
-/*! \brief This function processes the undo-panzoom RC entry.
+/*! \brief Process undo-panzoom RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the undo-panzoom RC entry.
@@ -2144,7 +2144,7 @@ SCM g_rc_undo_panzoom(SCM mode)
   RETURN_G_RC_MODE("undo-panzoom", default_undo_panzoom, mode_table);
 }
 
-/*! \brief This function processes the undo-preserve RC entry.
+/*! \brief Process undo-preserve RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the undo-preserve RC entry.
@@ -2159,7 +2159,7 @@ SCM g_rc_undo_preserve(SCM mode)
   RETURN_G_RC_MODE("undo-preserve", default_undo_preserve, mode_table);
 }
 
-/*! \brief This function processes the undo-type RC entry.
+/*! \brief Process undo-type RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the undo-type RC entry.
