@@ -94,6 +94,9 @@ desktopdir=$(xdgdatadir)/applications
 desktop_in_files = geda-gschem.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
+registrydir=$(xdgdatadir)/application-registry
+registry_DATA=gschem.applications
+
 DOMAIN=geda-gschem
 
 @DESKTOP_I18N_LANGS_RULE@

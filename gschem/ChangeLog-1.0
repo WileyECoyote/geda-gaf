@@ -1,6 +1,9 @@
 2017-03-21 Wiley E. Hill <wileyhill@gmail.com>
 
-    * data/Makefile.am: Clean cleaning options; put EXTRA_DIST before clean.
+    * data/Makefile.am: Clean cleaning options; put EXTRA_DIST before clean,
+      install gschem.applications to xdgdatadir/application-registry.
+
+    * data/gschem.applications: Add basic application registry file.
 
 2017-03-20 Wiley E. Hill <wileyhill@gmail.com>
 
