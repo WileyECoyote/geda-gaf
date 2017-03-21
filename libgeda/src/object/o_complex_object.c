@@ -55,7 +55,8 @@ geda_complex_object_error(const char *func, const void *object)
  *
  *  \return a new COMPLEX object
  */
-GedaObject *geda_complex_object_copy(GedaObject *o_current)
+GedaObject*
+geda_complex_object_copy(GedaObject *o_current)
 {
   if (GEDA_IS_COMPLEX(o_current)) {
 
@@ -608,7 +609,8 @@ geda_complex_object_get_position (GedaObject *object, int *x, int *y)
  *
  *  \returns GList of subobjects belonging to the complex.
  */
-GList *geda_complex_object_get_prim_objs (GedaObject *object)
+GList *
+geda_complex_object_get_prim_objs (GedaObject *object)
 {
   if (!GEDA_IS_COMPLEX(object)) {
     geda_complex_object_error(__func__, object);
@@ -806,7 +808,8 @@ o_complex_is_eligible_attribute (GedaToplevel *toplevel, GedaObject *object)
  *
  *  \return 1 if embedded, 0 otherwise
  */
-int geda_complex_object_is_embedded(GedaObject *object)
+int
+geda_complex_object_is_embedded(GedaObject *object)
 {
   if (GEDA_IS_COMPLEX(object)) {
     return object->complex->is_embedded;
@@ -825,7 +828,8 @@ int geda_complex_object_is_embedded(GedaObject *object)
  *  \param [in]     center_x  Origin x coordinate
  *  \param [in]     center_y  Origin y coordinate
  */
-void geda_complex_object_mirror(GedaObject *object, int center_x, int center_y)
+void
+geda_complex_object_mirror(GedaObject *object, int center_x, int center_y)
 {
   if (GEDA_IS_COMPLEX(object)) {
 
@@ -1022,8 +1026,9 @@ GedaObject *geda_complex_object_new_embedded(int x,
  *
  *  \return A GList of promoted attributes.
  */
-GList *geda_complex_object_promote_attribs (GedaToplevel *toplevel,
-                                            GedaObject   *object)
+GList *
+geda_complex_object_promote_attribs (GedaToplevel *toplevel,
+                                     GedaObject   *object)
 {
   GList *promoted   = NULL;
   GList *promotable = NULL;
@@ -1203,7 +1208,8 @@ geda_complex_object_read (GedaToplevel *toplevel, const char   buf[],
  *
  *  \param [in] object      The complex containing text objects
  */
-void geda_complex_object_reset_refdes(GedaObject *object)
+void
+geda_complex_object_reset_refdes(GedaObject *object)
 {
   if (GEDA_IS_COMPLEX(object)) {
 
@@ -1280,7 +1286,8 @@ geda_complex_object_rotate(GedaObject *object, int center_x, int center_y, int a
  *
  * \return the string representation of the complex Object
  */
-char *geda_complex_object_to_buffer(GedaObject *object)
+char*
+geda_complex_object_to_buffer(GedaObject *object)
 {
   if (GEDA_IS_COMPLEX(object)) {
 
@@ -1397,7 +1404,8 @@ geda_complex_object_shortest_distance(GedaObject *object, int x, int y, int forc
  * \param [in]     dx      The x-distance to move the object
  * \param [in]     dy      The y-distance to move the object
  */
-void geda_complex_object_translate(GedaObject *object, int dx, int dy)
+void
+geda_complex_object_translate(GedaObject *object, int dx, int dy)
 {
   if (GEDA_IS_COMPLEX(object)) {
 
