@@ -295,7 +295,7 @@ enum {
  *  @{
  */
 
-/**************** Maros for Writing RC_BOOLEAN ****************/
+/**************** Macros for Writing RC_BOOLEAN ****************/
 
 /* \defgroup KEYWORD_RC_MAC_BOOLEAN Macros to Output Boolean Variables to RC Files
  *  @{
