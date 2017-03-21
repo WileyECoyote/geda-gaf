@@ -1,3 +1,10 @@
+2017-03-21 Wiley E. Hill <wileyhill@gmail.com>
+
+   ** o_complex_object.c: Revise geda_complex_object_read to compare
+      the file name of the current page to the complex being read and
+      return with error set if strings match so that symbols are not
+      read recursively. This resolves launchpad bug #732326.
+
 2017-03-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/defines.h: Fix RETURN_G_RC_MODE macro; sizeof->

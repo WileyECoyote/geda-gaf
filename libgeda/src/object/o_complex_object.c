@@ -1147,13 +1147,13 @@ geda_complex_object_read (GedaToplevel *toplevel, const char   buf[],
 {
   GedaObject *new_obj;
   char type;
-  int x1, y1;
+
   int angle;
+  int mirror;
+  int selectable;
+  int x1, y1;
 
   char *basename = GEDA_MEM_ALLOC (1 + strlen (buf));
-
-  int selectable;
-  int mirror;
 
   if (sscanf(buf, "%c %d %d %d %d %d %s\n",
     &type, &x1, &y1, &selectable, &angle, &mirror, basename) != 7) {
@@ -1179,10 +1179,26 @@ geda_complex_object_read (GedaToplevel *toplevel, const char   buf[],
     mirror = 0;
   }
 
+  /* Do not load symbol recursively, resolves bug 732326 */
+  char *current_file;
+  Page *current_page;
+
+  current_page = geda_toplevel_get_current_page(toplevel);
+  current_file = geda_page_get_filename_dup(current_page);
+
+  if (strcmp(basename, geda_get_basename(current_file)) == 0) {
+    fprintf(stderr, "libgeda: refusing to recursively read <%s>\n", basename);
+    g_set_error(err, EDA_ERROR, EDA_ERROR_LOOP, _("Invalid complex object"));
+    GEDA_FREE (current_file);
+    return NULL;
+  }
+
+  GEDA_FREE (current_file);
+
   if (strncmp(basename, "EMBEDDED", 8) == 0) {
 
     new_obj = geda_complex_object_new_embedded(x1, y1, angle, mirror, basename + 8,
-                                     selectable);
+                                               selectable);
   }
   else {
 
