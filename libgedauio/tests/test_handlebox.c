@@ -186,8 +186,42 @@ check_integration ()
     }
   }
 
-  g_object_ref_sink(widget); /* Sink reference to the widget */
-  g_object_unref(widget);    /* Destroy the widget */
+  GtkWidget *vbox;
+  GtkWidget *window;
+
+  window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+
+  vbox = gtk_vbox_new (FALSE, 0);
+  gtk_container_add (GTK_CONTAINER (window), vbox);
+  gtk_widget_show (vbox);
+
+  gtk_box_pack_start (GTK_BOX (vbox), widget, FALSE, TRUE, 0);
+
+  /* If not visible then color not updated */
+  gtk_widget_show (bar_widget);
+  gtk_widget_show (widget);
+  gtk_widget_show (window);
+
+  if (geda_handle_box_get_child_detached((GedaHandleBox*)widget)) {
+    fprintf(stderr, "FAILED: line <%d> %s get_child_detached\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  GdkWindow *bar_win = geda_get_widget_window(bar_widget);
+
+  gdk_window_move (bar_win, 0, 100);
+
+  ((GedaHandleBox*)widget)->child_detached = 1;
+
+  g_signal_emit_by_name(widget, "child-detached", bar_win);
+
+  if (!geda_handle_box_get_child_detached((GedaHandleBox*)widget)) {
+    fprintf(stderr, "FAILED: line <%d> %s get_child_detached\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  gtk_widget_destroy(window);
+
   return result;
 }
 
