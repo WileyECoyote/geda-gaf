@@ -4128,8 +4128,8 @@ COMMAND (do_unembed)
       GedaObject *o_current = (GedaObject*) s_current->data;
 
       if (o_current != NULL) {
-        if ( (o_current->type == OBJ_COMPLEX) ||
-             (o_current->type == OBJ_PICTURE)) {
+        if ((o_current->type == OBJ_COMPLEX) ||
+            (o_current->type == OBJ_PICTURE)) {
 
           int result;
 
