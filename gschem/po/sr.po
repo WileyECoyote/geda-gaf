@@ -835,53 +835,65 @@ msgstr "Дот Грид активиран\n"
 msgid "Mesh grid activated\n"
 msgstr "Месх Грид активира\n"
 
+# Snap is OFF (CAUTION!)
 #: gschem/src/iface/i_command.c:4349
 msgid "Snap OFF (CAUTION!)\n"
-msgstr ""
+msgstr "Снап ис ОФФ (ОПРЕЗ!)\n"
 
+# Snap ON
 #: gschem/src/iface/i_command.c:4354
 msgid "Snap ON\n"
-msgstr ""
+msgstr "snap Он\n"
 
+# Snap back to the grid (CAUTION!)
 #: gschem/src/iface/i_command.c:4358
 msgid "Snap back to the grid (CAUTION!)\n"
-msgstr ""
+msgstr "Снап назад на мрежу (ОПРЕЗ!)\n"
 
+# Rubber mode connections is disabled
 #: gschem/src/iface/i_command.c:4382
 msgid "Rubber band mode is OFF\n"
-msgstr ""
+msgstr "Гума режим везе је онемогућено\n"
 
+# "Rubber" mode connections enabled
 #: gschem/src/iface/i_command.c:4385
 msgid "Rubber band mode is ON\n"
-msgstr ""
+msgstr "Гума режим везе омогућено\n"
 
+# "Magnetic" mode connections enabled
 #: gschem/src/iface/i_command.c:4396
 msgid "Magnetic net mode is ON\n"
-msgstr ""
+msgstr "Магнетиц режим везе омогућено\n"
 
+# "Magnetic" mode connections is disabled
 #: gschem/src/iface/i_command.c:4399
 msgid "Magnetic net mode is OFF\n"
-msgstr ""
+msgstr "Магнетиц режим везе је онемогућено\n"
 
+# Off
 #: gschem/src/iface/i_command.c:4416 gschem/src/iface/i_command.c:4458
 msgid "Off"
-msgstr ""
+msgstr "Ван"
 
+# On
 #: gschem/src/iface/i_command.c:4419 gschem/src/iface/i_command.c:4461
 msgid "On"
-msgstr ""
+msgstr "на"
 
+# Drag mode is now
 #: gschem/src/iface/i_command.c:4421
 msgid "Drag-Can-Move is now"
-msgstr ""
+msgstr "Драг режим је сада"
 
+# Action feedback mode is OUT-LINE
 #: gschem/src/iface/i_command.c:4433
 msgid "Action feedback mode set to OUTLINE\n"
-msgstr ""
+msgstr "Ацтион повратна информација Моде је ОУТ-ЛИНЕ\n"
 
+# Action feedback mode is BOUNDING-BOX =>BORDER FRAME
 #: gschem/src/iface/i_command.c:4437
 msgid "Action feedback mode set to BOUNDINGBOX\n"
-msgstr ""
+msgstr "Ацтион повратна информација Моде је ГРАНИЧНИ ОКВИР\n"
 
 #: gschem/src/iface/i_command.c:4463
 msgid "Auto-Pan is now"
@@ -3005,13 +3017,15 @@ msgstr ""
 msgid "End this path and exit path mode"
 msgstr ""
 
+# Continue
 #: gschem/src/x/x_menus.c:156
 msgid "Continue"
-msgstr ""
+msgstr "Настави"
 
+# Resume polygon
 #: gschem/src/x/x_menus.c:156
 msgid "Resume input of the current path"
-msgstr ""
+msgstr "ресуме полигон"
 
 #: gschem/src/x/x_menus.c:157 gschem/src/x/x_settings_dialog.c:1249
 #: gschem/scheme/gschem/builtins.scm:44
