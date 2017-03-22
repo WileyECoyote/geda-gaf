@@ -1,3 +1,7 @@
+2017-03-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/ru.po: Update Russian translations.
+
 2017-03-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * data/Makefile.am: Clean cleaning options; put EXTRA_DIST before clean,
