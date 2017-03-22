@@ -52,6 +52,21 @@ geda_struct_textbuffer_free (TextBuffer *tb)
 }
 
 /*!
+ * \brief Get the line count from the text buffer
+ * \par Function description
+ *  Returns the number of calls to geda_struct_textbuffer_next,
+ *  which would include geda_struct_textbuffer_next_line. The
+ *  return value is not accurate if geda_struct_textbuffer_seek
+ *  has been called!
+ */
+int
+geda_struct_textbuffer_get_line_count (TextBuffer *tb)
+{
+  if (tb == NULL) return 0;
+  return tb->line_count;
+}
+
+/*!
  * \brief Create a new managed text buffer.
  * \par Function description
  *  Allocates and initialises a new TextBuffer to manage the given
@@ -80,13 +95,12 @@ geda_struct_textbuffer_new (const char *data, const int size)
 
   tb = GEDA_MEM_ALLOC0 (sizeof(TextBuffer));
 
-  tb->buffer = data;
-  tb->size = realsize;
-
-  tb->linesize = TEXT_BUFFER_LINE_SIZE;
-  tb->line = GEDA_MEM_ALLOC(tb->linesize);
-  tb->offset = 0;
-
+  tb->buffer     = data;
+  tb->size       = realsize;
+  tb->linesize   = TEXT_BUFFER_LINE_SIZE;
+  tb->line       = GEDA_MEM_ALLOC(tb->linesize);
+  tb->offset     = 0;
+  tb->line_count = 0;
   return tb;
 }
 
@@ -111,7 +125,7 @@ geda_struct_textbuffer_new (const char *data, const int size)
  *
  * \returns Character array, or NULL if no characters left.
  */
-const char *
+const char*
 geda_struct_textbuffer_next (TextBuffer *tb, const int count)
 {
   bool eol = FALSE;
@@ -165,6 +179,7 @@ geda_struct_textbuffer_next (TextBuffer *tb, const int count)
   *dest = 0;
   tb->offset = src - tb->buffer;
 
+  tb->line_count++;
   return tb->line;
 }
 
@@ -183,7 +198,7 @@ geda_struct_textbuffer_next (TextBuffer *tb, const int count)
  *
  * \returns     Character array, or NULL if no characters left.
  */
-const char *
+const char*
 geda_struct_textbuffer_next_line (TextBuffer *tb)
 {
   return geda_struct_textbuffer_next (tb, -1);

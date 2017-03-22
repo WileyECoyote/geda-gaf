@@ -277,13 +277,14 @@ struct st_color_element {
  *------------------------------------------------------------------*/
 struct st_TextBuffer
 {
-  const char *buffer;
-  unsigned int size;
+  const char   *buffer;
+  unsigned int  size;
 
-  char *line;
-  unsigned int linesize;
+  char         *line;
+  unsigned int  linesize;
 
-  unsigned int offset;
+  unsigned int  offset;
+  unsigned int  line_count; /* line counter for error reporting */
 };
 #define TEXT_BUFFER_LINE_SIZE 1024
 

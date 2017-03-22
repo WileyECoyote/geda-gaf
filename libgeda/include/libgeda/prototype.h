@@ -731,6 +731,7 @@ const CLibSymbol *geda_struct_clib_get_symbol_by_name      (const char *name);
 /* s_textbuffer.c */
    TextBuffer   *geda_struct_textbuffer_new                (const char *data, const int size)WARN_UNUSED;
    TextBuffer   *geda_struct_textbuffer_free               (TextBuffer *tb);
+          int    geda_struct_textbuffer_get_line_count     (TextBuffer *tb)WARN_UNUSED;
    const char   *geda_struct_textbuffer_next               (TextBuffer *tb, const int count);
    const char   *geda_struct_textbuffer_next_line          (TextBuffer *tb);
          void    geda_struct_textbuffer_seek               (TextBuffer *tb, int offset);

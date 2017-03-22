@@ -1,3 +1,12 @@
+2017-03-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/libgeda/s_struct.h: Add member line_count to st_TextBuffer.
+
+    * src/struct/s_textbuffer.c: Initialize line_count in function
+      geda_struct_textbuffer_new, increment in geda_struct_textbuffer_next
+      and return member line_count in new function geda_struct_textbuffer_
+      get_line_count.
+
 2017-03-21 Wiley E. Hill <wileyhill@gmail.com>
 
    ** o_complex_object.c: Revise geda_complex_object_read to compare
