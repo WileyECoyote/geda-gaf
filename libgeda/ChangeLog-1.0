@@ -7,6 +7,11 @@
       and return member line_count in new function geda_struct_textbuffer_
       get_line_count.
 
+    * src/object/o_object.c: Revise geda_object_read_buffer to utilize
+      geda_struct_textbuffer_get_line_count when reporting errors.
+      Initial testing looks promising; all line numbers being reported
+      are exactly where the errors were induced.
+
 2017-03-21 Wiley E. Hill <wileyhill@gmail.com>
 
    ** o_complex_object.c: Revise geda_complex_object_read to compare

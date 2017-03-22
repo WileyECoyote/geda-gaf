@@ -93,7 +93,7 @@ bool geda_object_show_buffer_err (const char *msg, const char *buf)
  *
  * \return GList of objects if successful read, or NULL on error.
  */
-GList *
+GList*
 geda_object_read_buffer (GedaToplevel *toplevel, GList    *object_list,
                          const char   *buffer,   const int size,
                          const char   *name,     GError  **err)
@@ -108,7 +108,6 @@ geda_object_read_buffer (GedaToplevel *toplevel, GList    *object_list,
   int pin_count                = 0;
   int itemsread                = 0;
   int embedded_level           = 0;
-  int line_count               = 0;
   GedaObject *last_complex     = NULL;
   GedaObject *new_obj          = NULL;
 
@@ -120,6 +119,8 @@ geda_object_read_buffer (GedaToplevel *toplevel, GList    *object_list,
   void set_err_bad_marker(const char *msg1) {
 
     const char *msg2 = _("in file");
+
+    int line_count = geda_struct_textbuffer_get_line_count(tb);
 
     g_set_error (err, EDA_ERROR, EDA_ERROR_PARSE,
                  "%s <%d>, %s [%s] :\n>>\n%s<<\n",
@@ -154,8 +155,6 @@ geda_object_read_buffer (GedaToplevel *toplevel, GList    *object_list,
     char objtype;
 
     const char *ptr = line;
-
-    ++line_count;
 
     /* Skip over leading spaces */
     while ((*ptr == SPACE) && (*ptr != ASCII_CR) && (*ptr != ASCII_NUL)) { ++ptr; }
@@ -417,6 +416,7 @@ geda_object_read_buffer (GedaToplevel *toplevel, GList    *object_list,
           /* The line contains data unsuitable for display, leave off */
           const char *msg1 = _("Read garbage near line");
           const char *msg2 = _("in file");
+          int line_count   = geda_struct_textbuffer_get_line_count(tb);
           g_set_error (err, EDA_ERROR, EDA_ERROR_PARSE, "%s <%d> %s [%s]",
                        msg1, line_count, msg2, name);
         }
@@ -441,17 +441,18 @@ geda_object_read_buffer (GedaToplevel *toplevel, GList    *object_list,
     }
   }
 
-  tb              = geda_struct_textbuffer_free(tb);
+  tb = geda_struct_textbuffer_free(tb);
 
   new_object_list = g_list_reverse(new_object_list);
 
-  object_list     = geda_glist_concat (object_list, new_object_list);
+  object_list = geda_glist_concat (object_list, new_object_list);
 
   return(object_list);
 
 error:
 
-   g_prefix_error(err, " %s %d, ", _("On or about line"), line_count);
+   g_prefix_error(err, " %s %d, ", _("On or about line"),
+                  geda_struct_textbuffer_get_line_count(tb));
 
 error2:
 
