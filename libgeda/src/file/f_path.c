@@ -86,7 +86,7 @@ static char *user_config_path = NULL;
  *  This function creates a new non-nested directory entry with the
  *  given permission attribute.
  *
- * \Author Jonathan Leffler
+ * \author Jonathan Leffler
  * \copyright (C) JLSS 1990-2012
  *
  * \param path Pointer to string path to be created
@@ -120,7 +120,7 @@ static int f_create_dir(const char *path, mode_t mode)
  *  path exists, rather than optimistically creating the last element
  *  and working backwards.
  *
- * \Author Jonathan Leffler
+ * \author Jonathan Leffler
  * \copyright (C) JLSS 1990-2012
  *
  * \param path Pointer to string path to be created
