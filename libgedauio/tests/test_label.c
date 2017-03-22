@@ -217,6 +217,11 @@ check_accessors ()
   geda_label_set_markup (label, markup);
   g_free (markup);
 
+  if (!geda_label_get_use_markup (label)) {
+    fprintf(stderr, "FAILED: %s line <%d> set markup\n", TWIDGET, __LINE__);
+    result++;
+  }
+
   text = geda_label_get_label(label);
 
   if (!strstr(text, "Red: Gnu")) {

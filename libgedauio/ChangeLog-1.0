@@ -1,3 +1,8 @@
+2017-03-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_label.c: Add check to verify geda_label_set_markup set the
+      "use-markup" property.
+
 2017-03-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_handlebox.c: Add check for geda_handle_box_get_child_detached.
@@ -5,7 +10,7 @@
 2017-03-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_toolbar.c: Keep a pointer to sibling widgets in
-      GedaToolbar->children
+      GedaToolbar->children.
 
 2017-03-19 Wiley E. Hill <wileyhill@gmail.com>
 
