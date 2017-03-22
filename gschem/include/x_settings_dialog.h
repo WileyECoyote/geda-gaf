@@ -287,7 +287,7 @@ WidgetStringData DialogStrings[] = {
         { "ZoomPanSwitch",              "       Zoom Pan:",     "Sets the zoom in and zoom out functions to pan the display and then zoom. Basically zoom in / out where the mouse pointer sits on the display."},
     /* View Controls */
         { "PotentialAttributesView",    "Potential Attributes", "Add these to the list on the right"},
-        { "SelectedAttributesView",     "Seclected Attributes", "Display these on the Add Components Dialog"},
+        { "SelectedAttributesView",     "Selected Attributes", "Display these on the Add Components Dialog"},
         { NULL, NULL, NULL},
 };
 
