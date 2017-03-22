@@ -192,8 +192,8 @@ static ToolbarStringData ToolbarStrings[] = {
   { ACTION(DOWN_SYMBOL),        "Down",      TBTS_DOWN_SYMBOL,        GEDA_DEMOTE_SYM_BITMAP, TB_ICON_BITMAP, NULL},
   { ACTION(HIERARCHY_UP),       "Up",        TBTS_HIERARCHY_UP,       GEDA_PROMOTE_BITMAP,    TB_ICON_BITMAP, NULL},
 
-  { ACTION(VIEW_DOCUMENT),      "Spec",       TBTS_VIEW_DOCUMENT,      "gaf-see-notes",        TB_ICON_BITMAP, NULL},
-  { ACTION(VIEW_NETS),          "Net Names",  TBTS_VIEW_NETNAMES,      "geda-show-nets",       TB_ICON_STOCK,  NULL},
+  { ACTION(VIEW_DOCUMENT),      "Spec",      TBTS_VIEW_DOCUMENT,      "gaf-see-notes",        TB_ICON_BITMAP, NULL},
+  { ACTION(VIEW_NETS),          "Netnames",  TBTS_VIEW_NETNAMES,      "geda-show-nets",       TB_ICON_STOCK,  NULL},
 
   /* Zoom Toolbar */
   { ACTION(VIEW_REDRAW),        "Redraw",    TBTS_VIEW_REDRAW,        GEDA_MAP(VIEW_REDRAW),  TB_ICON_BITMAP, NULL},
