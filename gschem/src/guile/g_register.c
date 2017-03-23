@@ -150,6 +150,7 @@ static struct gsubr_t gschem_rc_funcs[] = {
   { "save-ui-settings",          1, 0, 0, g_rc_save_ui_settings },
   { "toolbars",                  1, 0, 0, g_rc_toolbars },
   { "toolbars-mode",             1, 0, 0, g_rc_toolbars_mode },
+  { "show-toolbar-tips",         1, 0, 0, g_rc_show_toolbar_tips },
 
   /* Scrollbar Options */
   { "scrollbars",                1, 0, 0, g_rc_scrollbars },

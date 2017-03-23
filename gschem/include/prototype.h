@@ -212,6 +212,7 @@ SCM   g_rc_raise_dialog_boxes_on_expose(SCM mode);
 SCM   g_rc_save_ui_settings            (SCM mode);
 SCM   g_rc_toolbars                    (SCM mode);
 SCM   g_rc_toolbars_mode               (SCM mode);
+SCM   g_rc_show_toolbar_tips           (SCM mode);
 
 /* Scrollbar Options */
 SCM   g_rc_scrollbars                  (SCM mode);

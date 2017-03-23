@@ -133,7 +133,7 @@ extern int default_raise_dialog_boxes;
 extern int default_save_ui_settings;
 extern int default_toolbars;
 extern int default_toolbars_mode;
-extern int default_show_toolbars_tips;
+extern int default_show_toolbar_tips;
 
 /* Text Related Stuff */
 extern int default_text_case;

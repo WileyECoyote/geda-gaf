@@ -1048,6 +1048,13 @@
 ;(toolbars-mode "show-both-horiz")
 (toolbars-mode "retention")
 
+; show-toolbar-tips string
+;
+; Controls if tooltips are displayed for toolbars items.
+;
+(show-toolbar-tips "enabled")
+;(show-toolbar-tips "disabled")
+
 ; untitled-name string
 ;
 ; Specify the default untitled basename (usually only used a startup time)

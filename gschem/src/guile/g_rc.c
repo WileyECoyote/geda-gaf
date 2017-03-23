@@ -1899,6 +1899,22 @@ SCM g_rc_toolbars_mode(SCM mode)
   RETURN_G_RC_MODE("toolbars-mode", default_toolbars_mode, mode_table);
 }
 
+
+/*! \brief Process show-toolbar-tips RC entry.
+ *  \par Function Description
+ *       C function to dynamically convert lisp variable while
+ *       processing configuration data for the "toolbar-tips" RC entry.
+ */
+SCM g_rc_show_toolbar_tips(SCM mode)
+{
+  static const vstbl_entry mode_table[] = {
+    {TRUE , RC_STR_ENABLED },
+    {FALSE, RC_STR_DISABLED},
+  };
+
+  RETURN_G_RC_MODE("show-toolbar-tips", default_show_toolbar_tips, mode_table);
+}
+
 /* --------------- Scrollbar ----------------*/
 
 /** \defgroup RC-Scrollbar-Options Scrollbar Options RC Functions
