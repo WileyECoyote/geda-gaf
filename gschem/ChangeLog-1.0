@@ -3,6 +3,9 @@
     * src/object/o_undo.c: Reduce scope of translated string constants
       msg_cl_tmp, msg_not_rw, msg_use_mem.
 
+    * src/x/x_edit_text.c: Replace geda_aligned_label_new and geda_
+      label_set_use_markup with geda_aligned_bold_label_new.
+
 2017-03-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ru.po: Update Russian translations.

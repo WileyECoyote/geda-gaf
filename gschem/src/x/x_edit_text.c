@@ -466,8 +466,7 @@ void x_dialog_edit_text (GschemToplevel *w_current, GedaObject *text_object)
     vbox = GTK_DIALOG(ThisDialog)->vbox;
 
     /* Text Contents Label */
-    text_label = geda_aligned_label_new (_("<b>Text Content</b>"), 0, 0);
-    geda_label_set_use_markup (GEDA_LABEL (text_label), TRUE);
+    text_label = geda_aligned_bold_label_new (_("Text Content"), 0, 0);
     gtk_box_pack_start(GTK_BOX(vbox), text_label, FALSE, FALSE, 0);
 
     /* Alignment Widget - Not Text Alignment property */
@@ -496,7 +495,7 @@ void x_dialog_edit_text (GschemToplevel *w_current, GedaObject *text_object)
     gtk_widget_grab_focus(textentry);
 
     /* Text Properties Label */
-    label = geda_aligned_label_new(_("<b>Text Properties</b>"), 0, 0);
+    label = geda_aligned_bold_label_new(_("Text Properties"), 0, 0);
     geda_label_set_use_markup(GEDA_LABEL(label), TRUE);
     gtk_box_pack_start(GTK_BOX(vbox), label, FALSE, FALSE, 0);
 
