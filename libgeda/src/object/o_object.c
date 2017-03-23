@@ -451,12 +451,15 @@ geda_object_read_buffer (GedaToplevel *toplevel, GList    *object_list,
 
 error:
 
+   /* Note that the text buffer has not been released */
    g_prefix_error(err, " %s %d, ", _("On or about line"),
                   geda_struct_textbuffer_get_line_count(tb));
 
 error2:
 
   geda_struct_object_release_objects(new_object_list);
+
+  tb = geda_struct_textbuffer_free(tb);
 
   return NULL;
 }
