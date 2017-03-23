@@ -1,7 +1,12 @@
 2017-03-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_label.c: Add space in error message in function
-      geda_label_set_markup_internal.
+      geda_label_set_markup_internal.  Add functions
+
+        * geda_bold_label_new
+        * geda_visible_bold_label_new
+        * geda_aligned_bold_label_new
+        * geda_aligned_visible_bold_label_new
 
 2017-03-22 Wiley E. Hill <wileyhill@gmail.com>
 

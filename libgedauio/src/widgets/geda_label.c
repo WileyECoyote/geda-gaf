@@ -2208,6 +2208,39 @@ GtkWidget *geda_label_new (const char *str)
   return GTK_WIDGET (label);
 }
 
+
+/*!
+ * \brief Create a New Bold Geda Label Object
+ * \par Function Description
+ *  Creates a new label widget with the text marked up as bold. This allows
+ *  applications to have bold labels without having to pass markup characters
+ *  to I18N handlers. For example:
+ * \code
+ * |[
+ * GtkWidget *label;
+ * label = geda_bold_label_new (_(TranslateMe), 0.5, 0.5);
+ * ]|
+ * \endcode>
+ * \param [in] str The text of the label, which should not be NULL.
+ *
+ * \return new #GedaLabel with alignment and use-markup property set true.
+ */
+GtkWidget *geda_bold_label_new (const char *str)
+{
+  GtkWidget     *widget;
+  char          *markup;
+
+  widget = geda_label_new (str);
+
+  markup = g_strdup_printf ("<span weight=\"bold\">%s</span>", str);
+
+  geda_label_set_markup ((GedaLabel*)widget, markup);
+
+  g_free (markup);
+
+  return widget;
+}
+
 /*!
  * \brief Create a New Geda Label Object with Mnemonic text
  * \par Function Description
@@ -2266,6 +2299,27 @@ GtkWidget *geda_visible_label_new (const char *str)
 }
 
 /*!
+ * \brief Create a New Visible Geda Label Object with Bold text
+ * \par Function Description
+ *  This is the same as geda_bold_label_new except that the GedaLabel
+ *  is set visible.
+ *
+ * \param [in] str The text of the label, which should not be NULL.
+ *
+ * \return new #GedaLabel with visible property set true and bold text
+ */
+GtkWidget *geda_visible_bold_label_new (const char *str)
+{
+  GtkWidget *label;
+
+  label = geda_bold_label_new (str);
+
+  g_object_set (label, "visible", TRUE, NULL);
+
+  return label;
+}
+
+/*!
  * \brief Create a New Visible Geda Label Object with Mnemonic
  * \par Function Description
  *  This is the same as geda_mnemonic_label_new except that the
@@ -2311,6 +2365,35 @@ GtkWidget *geda_aligned_label_new (const char *str, float x, float y)
 /*!
  * \brief Create a New Aligned Geda Label Object
  * \par Function Description
+ *  Creates a new aligned label widget with the text marked up as bold.
+ *  This allows applications to have bold label without having to pass
+ *  markup characters to I18N handlers. For example:
+ * \code
+ * |[
+ * GtkWidget *label;
+ * label = geda_aligned_bold_label_new (_(TranslateMe), 0.5, 0.5);
+ * ]|
+ * \endcode>
+ * \param [in] str The text of the label, which should not be NULL.
+ * \param [in] x   Horizontal alignment factor, from 0 (left) to 1 (right).
+ * \param [in] y   Vertical alignment factor, from 0 (top) to 1 (bottom).
+ *
+ * \return new #GedaLabel with alignment and use-markup property set true.
+ */
+GtkWidget *geda_aligned_bold_label_new (const char *str, float x, float y)
+{
+  GtkWidget *widget;
+
+  widget = geda_bold_label_new (str);
+
+  gtk_misc_set_alignment(GTK_MISC(widget), x, y);
+
+  return widget;
+}
+
+/*!
+ * \brief Create a New Aligned Geda Label Object
+ * \par Function Description
  *  This is the same as geda_aligned_label_new except that the
  *  GedaLabel is set visible.
  *
@@ -2325,6 +2408,32 @@ GtkWidget *geda_aligned_visible_label_new (const char *str, float x, float y)
   GtkWidget *label;
 
   label = geda_label_new (str);
+
+  gtk_misc_set_alignment(GTK_MISC(label), x, y);
+
+  g_object_set (label, "visible", TRUE, NULL);
+
+  return label;
+}
+
+
+/*!
+ * \brief Create a New Aligned Geda Label Object
+ * \par Function Description
+ *  This is the same as geda_aligned_bold_label_new except that the
+ *  GedaLabel is set visible.
+ *
+ * \param [in] str The text of the label, which should not be NULL.
+ * \param [in] x   Horizontal alignment factor, from 0 (left) to 1 (right).
+ * \param [in] y   Vertical alignment factor, from 0 (top) to 1 (bottom).
+ *
+ * \return new #GedaLabel with alignment and visible property set true.
+ */
+GtkWidget *geda_aligned_visible_bold_label_new (const char *str, float x, float y)
+{
+  GtkWidget *label;
+
+  label = geda_bold_label_new (str);
 
   gtk_misc_set_alignment(GTK_MISC(label), x, y);
 

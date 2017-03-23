@@ -105,12 +105,15 @@ GedaType    geda_label_get_type                     (void) GEDA_CONST;
 bool        is_a_geda_label                         (GedaLabel      *label);
 
 GtkWidget  *geda_label_new                          (const char     *str) __attribute__((warn_unused_result));
+GtkWidget  *geda_bold_label_new                     (const char     *str) __attribute__((warn_unused_result));
 GtkWidget  *geda_mnemonic_label_new                 (const char     *str) __attribute__((warn_unused_result));
-
 GtkWidget  *geda_visible_label_new                  (const char     *str) __attribute__((warn_unused_result));
+GtkWidget  *geda_visible_bold_label_new             (const char     *str) __attribute__((warn_unused_result));
 GtkWidget  *geda_visible_mnemonic_label_new         (const char     *str) __attribute__((warn_unused_result));
 GtkWidget  *geda_aligned_label_new                  (const char     *str, float x, float y) __attribute__((warn_unused_result));
+GtkWidget  *geda_aligned_bold_label_new             (const char     *str, float x, float y) __attribute__((warn_unused_result));
 GtkWidget  *geda_aligned_visible_label_new          (const char     *str, float x, float y) __attribute__((warn_unused_result));
+GtkWidget  *geda_aligned_visible_bold_label_new     (const char     *str, float x, float y) __attribute__((warn_unused_result));
 GtkWidget  *geda_aligned_mnemonic_label_new         (const char     *str, float x, float y) __attribute__((warn_unused_result));
 GtkWidget  *geda_aligned_visible_mnemonic_label_new (const char     *str, float x, float y) __attribute__((warn_unused_result));
 
