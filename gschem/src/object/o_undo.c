@@ -63,14 +63,6 @@ void o_undo_init(GschemToplevel *w_current)
 {
   EdaConfig  *cfg = eda_config_get_user_context ();
 
-  const char *msg_cl_tmp;
-  const char *msg_not_rw;
-  const char *msg_use_mem;
-
-  msg_cl_tmp  = _("Undo: using temporary directory specified on command-line");
-  msg_not_rw  = _("Directory is not read/writable, check permissions");
-  msg_use_mem = _("<b>Auto switching Undo system to type Memory</b>\n");
-
   prog_pid = getpid();
 
   i_var_restore_global_boolean(cfg, "undo-control",  &w_current->undo_control,  TRUE);
@@ -80,6 +72,11 @@ void o_undo_init(GschemToplevel *w_current)
   i_var_restore_global_integer(cfg, "undo-type",     &w_current->undo_type,     UNDO_DISK);
 
   if (tmp_directory != NULL) {
+
+    const char *msg_cl_tmp;
+
+    msg_cl_tmp  = _("Undo: using temporary directory specified on command-line");
+
     tmp_path = tmp_directory;
     geda_log_v("%s: <%s>\n", msg_cl_tmp, tmp_path);
   }
@@ -111,11 +108,27 @@ void o_undo_init(GschemToplevel *w_current)
       tmp_path = geda_utility_string_strdup(g_get_tmp_dir());
     }
   }
+
   if (w_current->undo_type == UNDO_DISK) {
+
     if ((access(tmp_path, R_OK) != 0) || (access(tmp_path, W_OK) != 0)) {
-      char *errmsg = geda_sprintf ("%s: %s\n", msg_not_rw, tmp_path);
+
+      const char *msg_not_rw;
+      const char *msg_use_mem;
+            char *errmsg;
+            char *title;
+
+      msg_not_rw  = _("Directory is not read/writable, check permissions");
+      msg_use_mem = _("Auto switching Undo system to type Memory");
+
+      title  = geda_sprintf ("<b>%s</b>\n", msg_use_mem);
+      errmsg = geda_sprintf ("%s: %s\n", msg_not_rw, tmp_path);
+
       titled_pango_warning_dialog (msg_use_mem,  errmsg, _("Gschem Undo System"));
+
       GEDA_FREE(errmsg);
+      GEDA_FREE(title);
+
       w_current->undo_type = UNDO_MEMORY;
     }
   }
@@ -546,9 +559,11 @@ void o_undo_callback(GschemToplevel *w_current, int type)
       restored = TRUE;
     }
     else {
+      char *title  = geda_sprintf ("<b>%s.</b>.", _("Undo error"));
       char *errmsg = geda_sprintf ("%s: %s.", disk_err_msg, err->message);
-      titled_pango_error_dialog(_("<b>Undo error.</b>"), errmsg, _("Undo failed"));
+      titled_pango_error_dialog(title, errmsg, _("Undo failed"));
       GEDA_FREE(errmsg);
+      GEDA_FREE(title);
       g_error_free(err);
       return;
     }

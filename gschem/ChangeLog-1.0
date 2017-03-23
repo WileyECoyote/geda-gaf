@@ -1,3 +1,8 @@
+2017-03-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_undo.c: Reduce scope of translated string constants
+      msg_cl_tmp, msg_not_rw, msg_use_mem.
+
 2017-03-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ru.po: Update Russian translations.
