@@ -184,7 +184,7 @@ load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[]
           /* Check if file name is valid if ".sch" is added */
           strcpy(tmpfilename, filename);
 
-          if (access( strcat(tmpfilename, SCHEMATIC_FILE_DOT_SUFFIX), F_OK ) != -1 ) {
+          if (access(strcat(tmpfilename, SCHEMATIC_FILE_DOT_SUFFIX), F_OK ) != -1 ) {
 
             filename = tmpfilename;
 
