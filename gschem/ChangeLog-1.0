@@ -6,6 +6,9 @@
     * src/x/x_edit_text.c: Replace geda_aligned_label_new and geda_
       label_set_use_markup with geda_aligned_bold_label_new.
 
+    * src/x/x_rc.c: No need to recalculate strlen(unbound_msg), reuse
+      len variable.
+
 2017-03-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ru.po: Update Russian translations.
