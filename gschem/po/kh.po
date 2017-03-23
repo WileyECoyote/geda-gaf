@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-03-19 20:48-0500\n"
+"POT-Creation-Date: 2017-03-22 03:33-0500\n"
 "PO-Revision-Date: 2015-07-29 00:24-0600\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -475,7 +475,7 @@ msgstr "tamlei knong eksar daoy rc"
 msgid "Bad Value"
 msgstr "koun tamlei"
 
-#: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2069
+#: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2020
 msgid "check"
 msgstr "pinityameul"
 
@@ -515,61 +515,61 @@ msgstr "saum brakd tha anakmean chongokraoy bamphot del rc pi eksar"
 msgid "file"
 msgstr "eksar"
 
-#: gschem/src/guile/g_rc.c:720
+#: gschem/src/guile/g_rc.c:715
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
 msgstr ""
 "tamlei min troemotrauv , pongrik kar kaenlaeng min ach chea sauny , "
 "pinityameul theato nowknong eksar daoy rc\n"
 
-#: gschem/src/guile/g_rc.c:725
+#: gschem/src/guile/g_rc.c:720
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
 msgstr ""
 "karchattang braphet min troemotrauv , pinityameul theato pongrik kar "
 "kaenlaeng nowknong eksar daoy rc\n"
 
-#: gschem/src/guile/g_rc.c:726 gschem/src/guile/g_rc.c:1272
-#: gschem/src/guile/g_rc.c:1424 gschem/src/guile/g_rc.c:2022
+#: gschem/src/guile/g_rc.c:721 gschem/src/guile/g_rc.c:1253
+#: gschem/src/guile/g_rc.c:1399 gschem/src/guile/g_rc.c:1974
 msgid "Continuing with default value"
 msgstr "bant cheamuoy tamlei lomneadaem"
 
-#: gschem/src/guile/g_rc.c:810
+#: gschem/src/guile/g_rc.c:801
 #, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
 msgstr ""
 "karchattang braphet min troemotrauv , pinityameul theato kab chheu nowknong "
 "eksar daoy rc\n"
 
-#: gschem/src/guile/g_rc.c:1266
+#: gschem/src/guile/g_rc.c:1247
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
 msgstr ""
 "tamlei min troemotrauv , mean tomham khtasa min ach chea sauny , pinityameul "
 "eksar daoy rc theato\n"
 
-#: gschem/src/guile/g_rc.c:1271
+#: gschem/src/guile/g_rc.c:1252
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
 msgstr ""
 "karchattang braphet min troemotrauv , pinityameul tomham theato khtasa knong "
 "eksar daoy rc\n"
 
-#: gschem/src/guile/g_rc.c:1418
+#: gschem/src/guile/g_rc.c:1393
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
 msgstr ""
 "tamlei min troemotrauv , rth y nd krong - Ripper tomham min ach chea sauny "
 "pinity eksar daoy rc theato\n"
 
-#: gschem/src/guile/g_rc.c:1423
+#: gschem/src/guile/g_rc.c:1398
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
 msgstr ""
 "karchattang braphet min troemotrauv , pinityameul theato rth y nd krong - "
 "Ripper tomham nowknong eksar daoy rc\n"
 
-#: gschem/src/guile/g_rc.c:2016
+#: gschem/src/guile/g_rc.c:1968
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
@@ -577,14 +577,14 @@ msgstr ""
 "min ach rmour 0 chomhan scrollpan chomhan - min troemotrauv pinityameul "
 "theato nowknong eksar daoy rc\n"
 
-#: gschem/src/guile/g_rc.c:2021
+#: gschem/src/guile/g_rc.c:1973
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
 msgstr ""
 "karchattang braphet min troemotrauv , pinityameul scrollpan chaul knong "
 "chomhan eksar daoy rc\n"
 
-#: gschem/src/guile/g_rc.c:2067
+#: gschem/src/guile/g_rc.c:2018
 msgid "Invalid zoom factor"
 msgstr "katta pongrik min troemotrauv"
 
@@ -1268,54 +1268,53 @@ msgid "New slot number [%d], is out of range\n"
 msgstr "chamnuon anak ronth daot thmei [%d] trauv ku chenhpi chuor\n"
 
 # Undo: Using temporary directory is specified on the command line
-#: gschem/src/object/o_undo.c:70
+#: gschem/src/object/o_undo.c:78
 msgid "Undo: using temporary directory specified on command-line"
 msgstr ""
 "minothveuvinh: kar brae tht bandaohasann ban banhcheak now leu banteat peaky "
 "banhchea"
 
-#: gschem/src/object/o_undo.c:71
+#: gschem/src/object/o_undo.c:121
 msgid "Directory is not read/writable, check permissions"
 msgstr "that min trauv ban an / sarser ban, setthi pinit"
 
-#: gschem/src/object/o_undo.c:72
-msgid "<b>Auto switching Undo system to type Memory</b>\n"
+#: gschem/src/object/o_undo.c:122
+msgid "Auto switching Undo system to type Memory"
 msgstr ""
-"<b>kar phlasa btaur brapnth del minothveuvinh daoy svyobravotte daembi veay "
-"sate</b>\n"
+"kar phlasa btaur brapnth del minothveuvinh daoy svyobravotte daembi veay sate"
 
-#: gschem/src/object/o_undo.c:117
+#: gschem/src/object/o_undo.c:127
 msgid "Gschem Undo System"
 msgstr "brapnth minothveuvinh Gschem"
 
-#: gschem/src/object/o_undo.c:252
+#: gschem/src/object/o_undo.c:265
 msgid "Undo: encountered an error, file"
 msgstr "minothveuvinh nouv brapn kamhosa: eksar"
 
 # Undo: system error
-#: gschem/src/object/o_undo.c:253
+#: gschem/src/object/o_undo.c:266
 msgid "Undo: system error"
 msgstr "minothveuvinh:  kamhosa brapn"
 
-#: gschem/src/object/o_undo.c:254
+#: gschem/src/object/o_undo.c:267
 msgid "switching to MEMORY mode"
 msgstr "bdaur tow rbieb kar changcham"
 
-#: gschem/src/object/o_undo.c:460
+#: gschem/src/object/o_undo.c:473
 msgid "An error occurred during an UNDO disk operation"
 msgstr ""
 "kamhosa muoy ban kaetlaeng kamlong pel bratebatte kar robsa tha sa "
 "minothveuvinh"
 
-#: gschem/src/object/o_undo.c:463
+#: gschem/src/object/o_undo.c:476
 msgid "Undo/Redo disabled\n"
 msgstr "minothveuvinh / thveuvinh chn pikear\n"
 
-#: gschem/src/object/o_undo.c:550
-msgid "<b>Undo error.</b>"
-msgstr "<b>minothveuvinh kamhos.</b>"
+#: gschem/src/object/o_undo.c:562
+msgid "Undo error"
+msgstr "minothveuvinh kamhos"
 
-#: gschem/src/object/o_undo.c:550
+#: gschem/src/object/o_undo.c:564
 msgid "Undo failed"
 msgstr "minothveuvinh ban breachy"
 
@@ -2541,35 +2540,35 @@ msgstr "kesamruol lokkhan sambotte atthabat"
 
 # Text Content
 #: gschem/src/x/x_edit_text.c:469
-msgid "<b>Text Content</b>"
-msgstr "<b>Meateka Atthabat</b>"
+msgid "Text Content"
+msgstr "Meateka Atthabat"
 
 # Text Properties
-#: gschem/src/x/x_edit_text.c:499
-msgid "<b>Text Properties</b>"
-msgstr "<b>lokkhan sambotte atthabat</b>"
+#: gschem/src/x/x_edit_text.c:498
+msgid "Text Properties"
+msgstr "lokkhan sambotte atthabat"
 
-#: gschem/src/x/x_edit_text.c:590
+#: gschem/src/x/x_edit_text.c:589
 #, fuzzy
 msgid "Text input field"
 msgstr "atthabt del trauv rok:"
 
 # Text alignment options
-#: gschem/src/x/x_edit_text.c:594
+#: gschem/src/x/x_edit_text.c:593
 #, fuzzy
 msgid "Text alignment combobox"
 msgstr "chomreusa tamrum atthabat"
 
-#: gschem/src/x/x_edit_text.c:598
+#: gschem/src/x/x_edit_text.c:597
 msgid "Color options menu"
 msgstr ""
 
-#: gschem/src/x/x_edit_text.c:602
+#: gschem/src/x/x_edit_text.c:601
 msgid "Font selector button"
 msgstr ""
 
 # Text Rotation Angle Spinner Entry
-#: gschem/src/x/x_edit_text.c:606
+#: gschem/src/x/x_edit_text.c:605
 msgid "Text Rotation Angle Spinner Entry"
 msgstr "kar bangvil moum theato atthabt bangkeun banthoy"
 

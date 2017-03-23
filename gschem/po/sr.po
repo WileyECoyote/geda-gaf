@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-03-19 20:48-0500\n"
+"POT-Creation-Date: 2017-03-22 03:33-0500\n"
 "PO-Revision-Date: 2012-01-27 14:18+0000\n"
 "Last-Translator:  Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: Serbian <sr@li.org>\n"
@@ -499,7 +499,7 @@ msgid "Bad Value"
 msgstr "бад Вредност"
 
 # check
-#: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2069
+#: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2020
 msgid "check"
 msgstr "проверити"
 
@@ -549,7 +549,7 @@ msgid "file"
 msgstr "фајл"
 
 # zoom-gain can not be zero, check zoom-gain in the initialization file
-#: gschem/src/guile/g_rc.c:720
+#: gschem/src/guile/g_rc.c:715
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
 msgstr ""
@@ -557,38 +557,38 @@ msgstr ""
 "почетним\n"
 
 # got the wrong type, check the Zoom-gain in the initialization file
-#: gschem/src/guile/g_rc.c:725
+#: gschem/src/guile/g_rc.c:720
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
 msgstr "добио погрешну врсту, проверите Зоом-добитак у датотеци са почетним\n"
 
 # Continuing with default values
-#: gschem/src/guile/g_rc.c:726 gschem/src/guile/g_rc.c:1272
-#: gschem/src/guile/g_rc.c:1424 gschem/src/guile/g_rc.c:2022
+#: gschem/src/guile/g_rc.c:721 gschem/src/guile/g_rc.c:1253
+#: gschem/src/guile/g_rc.c:1399 gschem/src/guile/g_rc.c:1974
 msgid "Continuing with default value"
 msgstr "Настављајући са почетним вредности"
 
 # Incorrect data type, check the value of logging in the initialization file
-#: gschem/src/guile/g_rc.c:810
+#: gschem/src/guile/g_rc.c:801
 #, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
 msgstr "Погрешан тип података, Провери вредност сјече у датотеци са почетним\n"
 
 # snap-size cannot be zero, check snap-size entry in initialization file
-#: gschem/src/guile/g_rc.c:1266
+#: gschem/src/guile/g_rc.c:1247
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
 msgstr ""
 "Снап-величина не може бити нула, цхецк снап-сизе у датотеци са почетним\n"
 
 # assigned an invalid type, check snap-size in initialization file
-#: gschem/src/guile/g_rc.c:1271
+#: gschem/src/guile/g_rc.c:1252
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
 msgstr "додељен неважећи тип, цхецк снап-сизе у датотеци са почетним\n"
 
 # bus-Ripper-size can not be zero, check the setting in the initialization file
-#: gschem/src/guile/g_rc.c:1418
+#: gschem/src/guile/g_rc.c:1393
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
 msgstr ""
@@ -596,14 +596,14 @@ msgstr ""
 "почетним\n"
 
 # assigned an invalid type, check bus-ripper-size in initialization file
-#: gschem/src/guile/g_rc.c:1423
+#: gschem/src/guile/g_rc.c:1398
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
 msgstr ""
 "додељен неважећи тип, провери аутобус-риппер-сизе у датотеци са почетним\n"
 
 # can scroll 0 steps, check value of scrollpane-steps in initialization file
-#: gschem/src/guile/g_rc.c:2016
+#: gschem/src/guile/g_rc.c:1968
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
@@ -612,7 +612,7 @@ msgstr ""
 "почетним\n"
 
 # assigned an invalid type, check value of scrollpane-steps in initialization file
-#: gschem/src/guile/g_rc.c:2021
+#: gschem/src/guile/g_rc.c:1973
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
 msgstr ""
@@ -620,7 +620,7 @@ msgstr ""
 "почетним\n"
 
 # Invalid zoom factor
-#: gschem/src/guile/g_rc.c:2067
+#: gschem/src/guile/g_rc.c:2018
 msgid "Invalid zoom factor"
 msgstr "Неважећи зум фактор"
 
@@ -1351,47 +1351,47 @@ msgstr ""
 msgid "New slot number [%d], is out of range\n"
 msgstr ""
 
-#: gschem/src/object/o_undo.c:70
+#: gschem/src/object/o_undo.c:78
 msgid "Undo: using temporary directory specified on command-line"
 msgstr ""
 
-#: gschem/src/object/o_undo.c:71
+#: gschem/src/object/o_undo.c:121
 msgid "Directory is not read/writable, check permissions"
 msgstr ""
 
-#: gschem/src/object/o_undo.c:72
-msgid "<b>Auto switching Undo system to type Memory</b>\n"
+#: gschem/src/object/o_undo.c:122
+msgid "Auto switching Undo system to type Memory"
 msgstr ""
 
-#: gschem/src/object/o_undo.c:117
+#: gschem/src/object/o_undo.c:127
 msgid "Gschem Undo System"
 msgstr ""
 
-#: gschem/src/object/o_undo.c:252
+#: gschem/src/object/o_undo.c:265
 msgid "Undo: encountered an error, file"
 msgstr ""
 
-#: gschem/src/object/o_undo.c:253
+#: gschem/src/object/o_undo.c:266
 msgid "Undo: system error"
 msgstr ""
 
-#: gschem/src/object/o_undo.c:254
+#: gschem/src/object/o_undo.c:267
 msgid "switching to MEMORY mode"
 msgstr ""
 
-#: gschem/src/object/o_undo.c:460
+#: gschem/src/object/o_undo.c:473
 msgid "An error occurred during an UNDO disk operation"
 msgstr ""
 
-#: gschem/src/object/o_undo.c:463
+#: gschem/src/object/o_undo.c:476
 msgid "Undo/Redo disabled\n"
 msgstr ""
 
-#: gschem/src/object/o_undo.c:550
-msgid "<b>Undo error.</b>"
+#: gschem/src/object/o_undo.c:562
+msgid "Undo error"
 msgstr ""
 
-#: gschem/src/object/o_undo.c:550
+#: gschem/src/object/o_undo.c:564
 msgid "Undo failed"
 msgstr ""
 
@@ -2561,32 +2561,32 @@ msgid "Edit Text Properties"
 msgstr ""
 
 #: gschem/src/x/x_edit_text.c:469
-msgid "<b>Text Content</b>"
+msgid "Text Content"
 msgstr ""
 
-#: gschem/src/x/x_edit_text.c:499
-msgid "<b>Text Properties</b>"
+#: gschem/src/x/x_edit_text.c:498
+msgid "Text Properties"
 msgstr ""
 
-#: gschem/src/x/x_edit_text.c:590
+#: gschem/src/x/x_edit_text.c:589
 msgid "Text input field"
 msgstr ""
 
 # Text Alignment combobox
-#: gschem/src/x/x_edit_text.c:594
+#: gschem/src/x/x_edit_text.c:593
 msgid "Text alignment combobox"
 msgstr "Поравнање текста цомбобок"
 
-#: gschem/src/x/x_edit_text.c:598
+#: gschem/src/x/x_edit_text.c:597
 msgid "Color options menu"
 msgstr ""
 
-#: gschem/src/x/x_edit_text.c:602
+#: gschem/src/x/x_edit_text.c:601
 msgid "Font selector button"
 msgstr ""
 
 # Text rotation angle Spinner input
-#: gschem/src/x/x_edit_text.c:606
+#: gschem/src/x/x_edit_text.c:605
 msgid "Text Rotation Angle Spinner Entry"
 msgstr "угао ротације текст Спиннер улаз"
 

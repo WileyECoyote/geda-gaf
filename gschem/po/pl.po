@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-03-19 20:48-0500\n"
+"POT-Creation-Date: 2017-03-22 03:33-0500\n"
 "PO-Revision-Date: 2012-02-04 00:18+0000\n"
 "Last-Translator: Krzysztof Kościuszkiewicz <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -442,7 +442,7 @@ msgstr ""
 msgid "Bad Value"
 msgstr "zła jakość"
 
-#: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2069
+#: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2020
 msgid "check"
 msgstr ""
 
@@ -482,59 +482,59 @@ msgstr ""
 msgid "file"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:720
+#: gschem/src/guile/g_rc.c:715
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:725
+#: gschem/src/guile/g_rc.c:720
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:726 gschem/src/guile/g_rc.c:1272
-#: gschem/src/guile/g_rc.c:1424 gschem/src/guile/g_rc.c:2022
+#: gschem/src/guile/g_rc.c:721 gschem/src/guile/g_rc.c:1253
+#: gschem/src/guile/g_rc.c:1399 gschem/src/guile/g_rc.c:1974
 msgid "Continuing with default value"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:810
+#: gschem/src/guile/g_rc.c:801
 #, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1266
+#: gschem/src/guile/g_rc.c:1247
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1271
+#: gschem/src/guile/g_rc.c:1252
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1418
+#: gschem/src/guile/g_rc.c:1393
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1423
+#: gschem/src/guile/g_rc.c:1398
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2016
+#: gschem/src/guile/g_rc.c:1968
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2021
+#: gschem/src/guile/g_rc.c:1973
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
 msgstr ""
 
 # Incorrect zoom factor
-#: gschem/src/guile/g_rc.c:2067
+#: gschem/src/guile/g_rc.c:2018
 msgid "Invalid zoom factor"
 msgstr "Nieprawidłowy współczynnik powiększenia"
 
@@ -1271,52 +1271,52 @@ msgstr ""
 msgid "New slot number [%d], is out of range\n"
 msgstr ""
 
-#: gschem/src/object/o_undo.c:70
+#: gschem/src/object/o_undo.c:78
 msgid "Undo: using temporary directory specified on command-line"
 msgstr ""
 
-#: gschem/src/object/o_undo.c:71
+#: gschem/src/object/o_undo.c:121
 msgid "Directory is not read/writable, check permissions"
 msgstr ""
 
-#: gschem/src/object/o_undo.c:72
-msgid "<b>Auto switching Undo system to type Memory</b>\n"
+#: gschem/src/object/o_undo.c:122
+msgid "Auto switching Undo system to type Memory"
 msgstr ""
 
 # Gschem Undo System
-#: gschem/src/object/o_undo.c:117
+#: gschem/src/object/o_undo.c:127
 msgid "Gschem Undo System"
 msgstr "Gschem Cofnij systemu"
 
-#: gschem/src/object/o_undo.c:252
+#: gschem/src/object/o_undo.c:265
 msgid "Undo: encountered an error, file"
 msgstr ""
 
-#: gschem/src/object/o_undo.c:253
+#: gschem/src/object/o_undo.c:266
 msgid "Undo: system error"
 msgstr ""
 
-#: gschem/src/object/o_undo.c:254
+#: gschem/src/object/o_undo.c:267
 msgid "switching to MEMORY mode"
 msgstr ""
 
 # An error occurred during the operation disk UNDO
-#: gschem/src/object/o_undo.c:460
+#: gschem/src/object/o_undo.c:473
 msgid "An error occurred during an UNDO disk operation"
 msgstr "Wystąpił błąd podczas operacji dysku UNDO"
 
 # Undo / Redo Disabled
-#: gschem/src/object/o_undo.c:463
+#: gschem/src/object/o_undo.c:476
 msgid "Undo/Redo disabled\n"
 msgstr "Undo / Redo niepełnosprawnych\n"
 
 # Undo error
-#: gschem/src/object/o_undo.c:550
-msgid "<b>Undo error.</b>"
-msgstr "<b>Cofanie błąd.</b>"
+#: gschem/src/object/o_undo.c:562
+msgid "Undo error"
+msgstr "Cofanie błąd"
 
 # Undo failed
-#: gschem/src/object/o_undo.c:550
+#: gschem/src/object/o_undo.c:564
 msgid "Undo failed"
 msgstr "Cofanie zawiodły"
 
@@ -2548,35 +2548,35 @@ msgid "Edit Text Properties"
 msgstr "Edycja właściwości tekstu"
 
 #: gschem/src/x/x_edit_text.c:469
-msgid "<b>Text Content</b>"
-msgstr "<b>Treść tekstu</b>"
+msgid "Text Content"
+msgstr "Treść tekstu"
 
-#: gschem/src/x/x_edit_text.c:499
-msgid "<b>Text Properties</b>"
-msgstr "<b>Właściwości tekstu</b>"
+#: gschem/src/x/x_edit_text.c:498
+msgid "Text Properties"
+msgstr "Właściwości tekstu"
 
 # Text input field
-#: gschem/src/x/x_edit_text.c:590
+#: gschem/src/x/x_edit_text.c:589
 msgid "Text input field"
 msgstr "pole wprowadzania tekstu"
 
 # Text Alignment combobox
-#: gschem/src/x/x_edit_text.c:594
+#: gschem/src/x/x_edit_text.c:593
 msgid "Text alignment combobox"
 msgstr "Tekst wyrównanie combobox"
 
 # Color options menu
-#: gschem/src/x/x_edit_text.c:598
+#: gschem/src/x/x_edit_text.c:597
 msgid "Color options menu"
 msgstr "Menu Opcje kolorów"
 
 # Font selector button
-#: gschem/src/x/x_edit_text.c:602
+#: gschem/src/x/x_edit_text.c:601
 msgid "Font selector button"
 msgstr "Przycisk czcionki selektor"
 
 # Text rotation angle Spinner input
-#: gschem/src/x/x_edit_text.c:606
+#: gschem/src/x/x_edit_text.c:605
 msgid "Text Rotation Angle Spinner Entry"
 msgstr "kąt obrotu tekstu wejściowego Spinner"
 

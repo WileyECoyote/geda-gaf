@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gschem\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-03-19 20:48-0500\n"
+"POT-Creation-Date: 2017-03-22 03:33-0500\n"
 "PO-Revision-Date: 2010-02-14 01:03+0000\n"
 "Last-Translator: Bernd Jendrissek <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -479,7 +479,7 @@ msgstr "inskrywing in RC lêer"
 msgid "Bad Value"
 msgstr "Waarde"
 
-#: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2069
+#: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2020
 msgid "check"
 msgstr "kontroleer"
 
@@ -519,51 +519,51 @@ msgstr "Maak seker dat jy die nuutste RC lêer"
 msgid "file"
 msgstr "lêer"
 
-#: gschem/src/guile/g_rc.c:720
+#: gschem/src/guile/g_rc.c:715
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
 msgstr ""
 "Ongeldige waarde, kan zoom-wins nie nul wees, check inskrywing in RC lêer\n"
 
-#: gschem/src/guile/g_rc.c:725
+#: gschem/src/guile/g_rc.c:720
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
 msgstr "Ongeldige tipe opdrag, nagaan zoom-wins inskrywing in RC lêer\n"
 
-#: gschem/src/guile/g_rc.c:726 gschem/src/guile/g_rc.c:1272
-#: gschem/src/guile/g_rc.c:1424 gschem/src/guile/g_rc.c:2022
+#: gschem/src/guile/g_rc.c:721 gschem/src/guile/g_rc.c:1253
+#: gschem/src/guile/g_rc.c:1399 gschem/src/guile/g_rc.c:1974
 msgid "Continuing with default value"
 msgstr "Voort te gaan met standaard waarde"
 
-#: gschem/src/guile/g_rc.c:810
+#: gschem/src/guile/g_rc.c:801
 #, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
 msgstr "Ongeldige tipe opdrag, gaan meld inskrywing in RC lêer\n"
 
-#: gschem/src/guile/g_rc.c:1266
+#: gschem/src/guile/g_rc.c:1247
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
 msgstr ""
 "Ongeldige waarde, snap-grootte kan nie nul wees, check inskrywing RC lêer\n"
 
-#: gschem/src/guile/g_rc.c:1271
+#: gschem/src/guile/g_rc.c:1252
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
 msgstr "Ongeldige tipe opdrag, gaan snap-grootte inskrywing in RC lêer\n"
 
-#: gschem/src/guile/g_rc.c:1418
+#: gschem/src/guile/g_rc.c:1393
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
 msgstr ""
 "Ongeldige waarde, kan die bus-Ripper-grootte nie nul wees, check inskrywing "
 "RC lêer\n"
 
-#: gschem/src/guile/g_rc.c:1423
+#: gschem/src/guile/g_rc.c:1398
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
 msgstr "Ongeldige tipe opdrag, gaan bus-Ripper-grootte inskrywing in RC lêer\n"
 
-#: gschem/src/guile/g_rc.c:2016
+#: gschem/src/guile/g_rc.c:1968
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
@@ -571,12 +571,12 @@ msgstr ""
 "Kan nie blaai 0 stappe, ongeldig scrollpan-stappe, kyk inskrywing in RC "
 "lêer\n"
 
-#: gschem/src/guile/g_rc.c:2021
+#: gschem/src/guile/g_rc.c:1973
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
 msgstr "Ongeldige tipe opdrag, nagaan scrollpan-stappe inskrywing in RC lêer\n"
 
-#: gschem/src/guile/g_rc.c:2067
+#: gschem/src/guile/g_rc.c:2018
 msgid "Invalid zoom factor"
 msgstr "Ongeldige zoemmaat faktor"
 
@@ -1247,50 +1247,50 @@ msgid "New slot number [%d], is out of range\n"
 msgstr "Nuwe gleufnommer [%d], buite bereik\n"
 
 # Undo: using temporary directory specified on command-line
-#: gschem/src/object/o_undo.c:70
+#: gschem/src/object/o_undo.c:78
 msgid "Undo: using temporary directory specified on command-line"
 msgstr ""
 "Ongedaan te maak: die gebruik van tydelike gids gespesifiseer opdrag-lyn"
 
 # Directory is not read/writable, check permissions
-#: gschem/src/object/o_undo.c:71
+#: gschem/src/object/o_undo.c:121
 msgid "Directory is not read/writable, check permissions"
 msgstr "Gids is nie lees/skryfbaar, tjek regte"
 
 # Auto switching Undo system to type Memory
-#: gschem/src/object/o_undo.c:72
-msgid "<b>Auto switching Undo system to type Memory</b>\n"
-msgstr "<b>Auto skakel ongedaan stelsel Memory tik</b>\n"
+#: gschem/src/object/o_undo.c:122
+msgid "Auto switching Undo system to type Memory"
+msgstr "Auto skakel ongedaan stelsel Memory tik"
 
-#: gschem/src/object/o_undo.c:117
+#: gschem/src/object/o_undo.c:127
 msgid "Gschem Undo System"
 msgstr "Gschem Ongedaan Stelsel"
 
-#: gschem/src/object/o_undo.c:252
+#: gschem/src/object/o_undo.c:265
 msgid "Undo: encountered an error, file"
 msgstr "Fout: plaasgevind, Slaan Kon"
 
-#: gschem/src/object/o_undo.c:253
+#: gschem/src/object/o_undo.c:266
 msgid "Undo: system error"
 msgstr "Ongedaan te maak: stelselfout"
 
-#: gschem/src/object/o_undo.c:254
+#: gschem/src/object/o_undo.c:267
 msgid "switching to MEMORY mode"
 msgstr "oor te skakel na Memory Mode"
 
-#: gschem/src/object/o_undo.c:460
+#: gschem/src/object/o_undo.c:473
 msgid "An error occurred during an UNDO disk operation"
 msgstr "'N fout tydens 'n UNDO lêer open werking"
 
-#: gschem/src/object/o_undo.c:463
+#: gschem/src/object/o_undo.c:476
 msgid "Undo/Redo disabled\n"
 msgstr "Ongedaan / oordoen gestremde\n"
 
-#: gschem/src/object/o_undo.c:550
-msgid "<b>Undo error.</b>"
-msgstr "<b>Ongedaan Fou.</b>"
+#: gschem/src/object/o_undo.c:562
+msgid "Undo error"
+msgstr "Ongedaan Fou"
 
-#: gschem/src/object/o_undo.c:550
+#: gschem/src/object/o_undo.c:564
 msgid "Undo failed"
 msgstr "Ongedaan misluk"
 
@@ -2469,35 +2469,35 @@ msgid "Edit Text Properties"
 msgstr "Bewerk Tekseienskappe"
 
 #: gschem/src/x/x_edit_text.c:469
-msgid "<b>Text Content</b>"
-msgstr "<b>Teksinhoud</b>"
+msgid "Text Content"
+msgstr "Teksinhoud"
 
-#: gschem/src/x/x_edit_text.c:499
-msgid "<b>Text Properties</b>"
-msgstr "<b>Tekseienskappe</b>"
+#: gschem/src/x/x_edit_text.c:498
+msgid "Text Properties"
+msgstr "Tekseienskappe"
 
 # Text input field
-#: gschem/src/x/x_edit_text.c:590
+#: gschem/src/x/x_edit_text.c:589
 msgid "Text input field"
 msgstr "Teks invoer veld"
 
 # Text alignment combobox
-#: gschem/src/x/x_edit_text.c:594
+#: gschem/src/x/x_edit_text.c:593
 msgid "Text alignment combobox"
 msgstr "Teks belyning comboboks"
 
 # Color options menu
-#: gschem/src/x/x_edit_text.c:598
+#: gschem/src/x/x_edit_text.c:597
 msgid "Color options menu"
 msgstr "spyskaart kleur opsies"
 
 # Font selector button
-#: gschem/src/x/x_edit_text.c:602
+#: gschem/src/x/x_edit_text.c:601
 msgid "Font selector button"
 msgstr "Font selector knoppie"
 
 # Text rotation angle input
-#: gschem/src/x/x_edit_text.c:606
+#: gschem/src/x/x_edit_text.c:605
 msgid "Text Rotation Angle Spinner Entry"
 msgstr "Teks rotasie hoek insette"
 
