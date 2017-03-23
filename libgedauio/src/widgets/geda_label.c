@@ -3040,7 +3040,7 @@ geda_label_set_markup_internal (GedaLabel  *label,
                           &text, with_uline ? &accel : NULL, &error))
   {
     fprintf(stderr, "Failed to set text from markup due to error");
-    fprintf(stderr, "parsing markup: %s", error->message);
+    fprintf(stderr, " parsing markup: %s", error->message);
     g_free (new_str);
     g_error_free (error);
     return;
