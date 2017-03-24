@@ -359,4 +359,29 @@ GtkWidget *geda_toolbar_new (int orientation)
                        NULL);
 }
 
+bool
+geda_toolbar_get_tooltips (GedaToolbar *toolbar)
+{
+  bool enabled;
+  g_object_get (toolbar,"tooltips", &enabled, NULL);
+  return enabled;
+}
+
+void
+geda_toolbar_set_tooltips (GedaToolbar *toolbar, bool enable)
+{
+  /* Set GtkToolbar property, which does nothing */
+  g_object_set (toolbar, "tooltips", enable, NULL);
+
+  if (GEDA_TOOLBAR(toolbar)) {
+
+    GList *iter;
+    /* Loop thru children and set widget "has-tooltip" property */
+    for (iter = toolbar->children; iter; iter = iter->next) {
+      GtkWidget *widget = iter->data;
+      gtk_widget_set_has_tooltip (widget, enable);
+    }
+  }
+}
+
 /** @} endgroup GedaToolbar */

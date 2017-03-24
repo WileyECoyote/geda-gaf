@@ -58,36 +58,41 @@ struct _GedaToolbarClass
 extern "C" {
 #endif
 
-GedaType   geda_toolbar_get_type (void) GEDA_CONST;
-bool       is_a_geda_toolbar     (GedaToolbar *toolbar);
+GedaType        geda_toolbar_get_type            (void) GEDA_CONST;
+bool            is_a_geda_toolbar                (GedaToolbar *toolbar);
 
-GtkWidget *geda_toolbar_new      (int orientation);
+GtkWidget      *geda_toolbar_new                 (int orientation);
 
 /* Any element type */
-GtkWidget *geda_toolbar_append_element (GedaToolbar        *toolbar,
-                                         GtkToolbarChildType type,
-                                         GtkWidget          *widget,
-                                         const char         *text,
-                                         const char         *tooltip_text,
-                                         const char         *tooltip_private_text,
-                                         GtkWidget          *icon,
-                                         GCallback           callback,
-                                         void               *user_data);
+GtkWidget      *geda_toolbar_append_element      (GedaToolbar        *toolbar,
+                                                  GtkToolbarChildType type,
+                                                  GtkWidget          *widget,
+                                                  const char         *text,
+                                                  const char         *tooltip_text,
+                                                  const char         *tooltip_private_text,
+                                                  GtkWidget          *icon,
+                                                  GCallback           callback,
+                                                  void               *user_data);
 
 /* Simple button items */
-GtkWidget *geda_toolbar_append_item    (GedaToolbar     *toolbar,
-                                        const char      *text,
-                                        const char      *tooltip_text,
-                                        const char      *tooltip_private_text,
-                                        GtkWidget       *icon,
-                                        GCallback        callback,
-                                        void            *user_data);
+GtkWidget      *geda_toolbar_append_item         (GedaToolbar     *toolbar,
+                                                  const char      *text,
+                                                  const char      *tooltip_text,
+                                                  const char      *tooltip_private_text,
+                                                  GtkWidget       *icon,
+                                                  GCallback        callback,
+                                                  void            *user_data);
 
 /* Generic Widgets */
-void       geda_toolbar_append_widget  (GedaToolbar   *toolbar,
-                                        GtkWidget     *widget,
-                                        const char    *tooltip_text,
-                                        const char    *tooltip_private_text);
+void            geda_toolbar_append_widget       (GedaToolbar     *toolbar,
+                                                  GtkWidget       *widget,
+                                                  const char      *tooltip_text,
+                                                  const char      *tooltip_private_text);
+
+bool            geda_toolbar_get_tooltips        (GedaToolbar     *toolbar);
+void            geda_toolbar_set_tooltips        (GedaToolbar     *toolbar,
+                                                  bool             enable);
+
 
 #ifdef __cplusplus
 }
