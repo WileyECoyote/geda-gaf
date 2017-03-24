@@ -1,7 +1,14 @@
 2017-03-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/x_menus.h: Define OPT_BAR_TIPS_MENU_PATH string.
+
+    * src/x/x_menus.c: Add toggle widget to toggle visibility of toolbar
+      tool-tips.
+
     * src/x/x_toolbars.c: Set visibility of tool-tips based on toplevel
       settings.
+
+    * src/x/x_window.c: Add menu call back x_window_toolbar_tips_toggle.
 
 2017-03-23 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -874,6 +874,25 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
       GtkWidget *tb_separator  = geda_menu_item_new();
       gtk_container_add (GTK_CONTAINER (toggle_menu), tb_separator);
 
+      GtkWidget *tb_tips_toggle = geda_check_menu_item_new_with_mnemonic ("_Display tips");
+
+      g_object_set (G_OBJECT(tb_tips_toggle), "draw-as-radio", TRUE,  NULL);
+
+      geda_check_menu_item_set_active((GedaCheckMenuItem*)tb_tips_toggle, w_current->show_toolbar_tips);
+
+      GEDA_OBJECT_SET_DATA(MENU_BAR, tb_tips_toggle, OPT_BAR_TIPS_MENU_PATH);
+
+      gtk_container_add (GTK_CONTAINER (toggle_menu), tb_tips_toggle);
+
+      gtk_widget_set_tooltip_text(tb_tips_toggle, _("Toggle visibility of tooltips on toolbars"));
+
+      g_signal_connect (G_OBJECT(tb_tips_toggle), "toggled",
+                        G_CALLBACK(x_window_toolbar_tips_toggle),
+                        w_current);
+
+      tb_separator  = geda_menu_item_new();
+      gtk_container_add (GTK_CONTAINER (toggle_menu), tb_separator);
+
       /* Start Toolbar Mode Radios */
       GtkWidget *tb_icons_bulb = geda_check_menu_item_new_with_mnemonic ("_Icons");
       GtkWidget *tb_text_bulb  = geda_check_menu_item_new_with_mnemonic ("_Text");
