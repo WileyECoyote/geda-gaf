@@ -89,6 +89,10 @@ void            geda_toolbar_append_widget       (GedaToolbar     *toolbar,
                                                   const char      *tooltip_text,
                                                   const char      *tooltip_private_text);
 
+GtkToolbarStyle geda_toolbar_get_style           (GedaToolbar     *toolbar);
+void            geda_toolbar_set_style           (GedaToolbar     *toolbar,
+                                                  GtkToolbarStyle  style);
+
 bool            geda_toolbar_get_tooltips        (GedaToolbar     *toolbar);
 void            geda_toolbar_set_tooltips        (GedaToolbar     *toolbar,
                                                   bool             enable);

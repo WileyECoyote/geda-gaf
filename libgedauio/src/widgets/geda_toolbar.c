@@ -359,6 +359,21 @@ GtkWidget *geda_toolbar_new (int orientation)
                        NULL);
 }
 
+GtkToolbarStyle
+geda_toolbar_get_style (GedaToolbar *toolbar)
+{
+  int style;
+  g_object_get (toolbar, "toolbar-style", &style, NULL);
+  return style;
+}
+
+void
+geda_toolbar_set_style (GedaToolbar *toolbar, GtkToolbarStyle style)
+{
+  /* Set GtkToolbar style property */
+  g_object_set (toolbar, "toolbar-style", style, NULL);
+}
+
 bool
 geda_toolbar_get_tooltips (GedaToolbar *toolbar)
 {
