@@ -36,6 +36,7 @@
 #define TOOLBAR_STYLE w_current->toolbars_mode           /* per window style variable  */
 #define TOOLBAR_TIPS  w_current->show_toolbar_tips       /* per window toolbar tips */
 #define DEFAULT_TOOLBAR_STYLE TOOLBAR_SHOW_ICONS         /* default style */
+#define DEFAULT_TOOLBAR_TIPS  TRUE                       /* default style */
 #define TheToolBars  bar_widgets->toolbar_slist          /* convenience macro */
 
 #define TOOLBAR_RADIO_VARIABLE(symbol) bar_widgets->toolbar_##symbol
@@ -491,10 +492,12 @@ x_toolbars_save_state(GschemToplevel *w_current)
 
   void SaveBarProperties(GtkWidget *handlebox) {
 
+    GtkToolbar *toolbar;
     const char *group_name;
     int   bar_id;
     int   visible;
     int   style;
+    int   tooltips;
 
     bar_id     = GET_TOOLBAR_ID(handlebox);
     group_name = IDS_Toolbar_Names[bar_id];
@@ -503,15 +506,20 @@ x_toolbars_save_state(GschemToplevel *w_current)
     g_key_file_set_integer (key_file, group_name, "visible", visible);
 
     if (w_current->handleboxes) {
-      style = gtk_toolbar_get_style (GTK_TOOLBAR (GTK_BIN (handlebox)->child));
+      toolbar  = GTK_TOOLBAR (GTK_BIN (handlebox)->child);
+      style    = gtk_toolbar_get_style (toolbar);
+      tooltips = gtk_toolbar_get_tooltips (toolbar);
     }
     else {
       GList *list;
-      list  = gtk_container_get_children (GTK_CONTAINER (handlebox));
-      style = gtk_toolbar_get_style (GTK_TOOLBAR (list->data));
+      list     = gtk_container_get_children (GTK_CONTAINER (handlebox));
+      toolbar  = GTK_TOOLBAR (list->data);
+      style    = gtk_toolbar_get_style (toolbar);
+      tooltips = gtk_toolbar_get_tooltips (toolbar);
     }
 
     g_key_file_set_integer (key_file, group_name, "style", style);
+    g_key_file_set_integer (key_file, group_name, "tooltips", tooltips);
   }
 
   void SaveAllBars() {
@@ -586,6 +594,7 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
   GKeyFile *key_file;
   char     *filename;
   int       global_style;
+  int       global_tooltips;
 
   void RestoreBarProperties(GtkWidget *handlebox) {
 
@@ -599,8 +608,9 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
 
       GtkWidget *toolbar;
 
-      int     style;
-      int     visible;
+      int style;
+      int visible;
+      int tooltips;
 
       err     = NULL;
       visible = g_key_file_get_integer (key_file, group_name, "visible", &err);
@@ -637,6 +647,24 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
           global_style += DEFAULT_TOOLBAR_STYLE;
         }
         g_clear_error (&err);
+        err = NULL;
+      }
+
+      tooltips = g_key_file_get_integer (key_file, group_name, "tooltips", &err);
+
+      if (!err) {
+        gtk_toolbar_set_tooltips(GTK_TOOLBAR (toolbar), tooltips);
+        if (visible) {
+          global_tooltips += tooltips;
+        }
+      }
+      else {
+        gtk_toolbar_set_tooltips(GTK_TOOLBAR (toolbar), DEFAULT_TOOLBAR_TIPS);
+        if (visible) {
+          global_tooltips += DEFAULT_TOOLBAR_TIPS;
+        }
+        g_clear_error (&err);
+        err = NULL;
       }
     }
     else {

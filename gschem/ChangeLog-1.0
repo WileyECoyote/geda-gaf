@@ -6,7 +6,8 @@
       tool-tips.
 
     * src/x/x_toolbars.c: Set visibility of tool-tips based on toplevel
-      settings.
+      settings. Save and restore toolbar tool-tips preferences with
+      toolbar settings.
 
     * src/x/x_window.c: Add menu call back x_window_toolbar_tips_toggle.
 
