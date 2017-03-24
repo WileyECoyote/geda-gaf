@@ -615,16 +615,46 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
       err     = NULL;
       visible = g_key_file_get_integer (key_file, group_name, "visible", &err);
 
-      if (!err) {
-        gtk_widget_set_visible(handlebox, visible);
-        x_menu_set_toolbar_toggle(w_current, bar_id, visible);
-      }
-      else {
-        gtk_widget_set_visible(handlebox, TRUE);
+      if (err) {
         g_clear_error (&err);
+        err     = NULL;
+        visible = TRUE;
       }
 
+      gtk_widget_set_visible(handlebox, visible);
+      x_menu_set_toolbar_toggle(w_current, bar_id, visible);
+
       style = g_key_file_get_integer (key_file, group_name, "style", &err);
+
+      if (!err) {
+        if (visible) {
+          global_style += style;
+        }
+      }
+      else {
+        if (visible) {
+          global_style += DEFAULT_TOOLBAR_STYLE;
+        }
+        g_clear_error (&err);
+        err   = NULL;
+        style = DEFAULT_TOOLBAR_STYLE;
+      }
+
+      tooltips = g_key_file_get_integer (key_file, group_name, "tooltips", &err);
+
+      if (!err) {
+        if (visible) {
+          global_tooltips += tooltips;
+        }
+      }
+      else {
+        if (visible) {
+          global_tooltips += DEFAULT_TOOLBAR_TIPS;
+        }
+        g_clear_error (&err);
+        err = NULL;
+        tooltips = DEFAULT_TOOLBAR_TIPS;
+      }
 
       if (w_current->handleboxes) {
         toolbar = GTK_BIN (handlebox)->child;
@@ -635,37 +665,8 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
         toolbar = list->data;
       }
 
-      if (!err) {
-        geda_toolbar_widget_set_style(toolbar, style);
-        if (visible) {
-          global_style += style;
-        }
-      }
-      else {
-        geda_toolbar_widget_set_style(toolbar, DEFAULT_TOOLBAR_STYLE);
-        if (visible) {
-          global_style += DEFAULT_TOOLBAR_STYLE;
-        }
-        g_clear_error (&err);
-        err = NULL;
-      }
-
-      tooltips = g_key_file_get_integer (key_file, group_name, "tooltips", &err);
-
-      if (!err) {
-        geda_toolbar_widget_set_tooltips(toolbar, tooltips);
-        if (visible) {
-          global_tooltips += tooltips;
-        }
-      }
-      else {
-        geda_toolbar_widget_set_tooltips(toolbar, DEFAULT_TOOLBAR_TIPS);
-        if (visible) {
-          global_tooltips += DEFAULT_TOOLBAR_TIPS;
-        }
-        g_clear_error (&err);
-        err = NULL;
-      }
+      geda_toolbar_widget_set_style(toolbar, style);
+      geda_toolbar_widget_set_tooltips(toolbar, tooltips);
     }
     else {
       const char *log_msg = _("Error, Toolbar configuration key file");
@@ -725,10 +726,10 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
         (global_style == TOOLBAR_SHOW_TEXT)  ||
         (global_style == TOOLBAR_SHOW_BOTH)  ||
         (global_style == TOOLBAR_SHOW_HORIZ))
-      {
-        x_toolbars_turn_on_radio ((RadioMenuData*) g_slist_nth_data (w_current->toolbar_mode_grp,
-                                                                     global_style));
-      }
+    {
+      x_toolbars_turn_on_radio ((RadioMenuData*)g_slist_nth_data (w_current->toolbar_mode_grp,
+                                                                  global_style));
+    }
   }
   else {
     const char *log_msg = _("Toolbar configuration not found");
