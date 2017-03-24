@@ -492,8 +492,8 @@ x_toolbars_save_state(GschemToplevel *w_current)
 
   void SaveBarProperties(GtkWidget *handlebox) {
 
-    GtkToolbar *toolbar;
-    const char *group_name;
+    GtkWidget   *toolbar;
+    const char  *group_name;
     int   bar_id;
     int   visible;
     int   style;
@@ -506,17 +506,16 @@ x_toolbars_save_state(GschemToplevel *w_current)
     g_key_file_set_integer (key_file, group_name, "visible", visible);
 
     if (w_current->handleboxes) {
-      toolbar  = GTK_TOOLBAR (GTK_BIN (handlebox)->child);
-      style    = gtk_toolbar_get_style (toolbar);
-      tooltips = gtk_toolbar_get_tooltips (toolbar);
+      toolbar  = GTK_BIN (handlebox)->child;
     }
     else {
       GList *list;
       list     = gtk_container_get_children (GTK_CONTAINER (handlebox));
-      toolbar  = GTK_TOOLBAR (list->data);
-      style    = gtk_toolbar_get_style (toolbar);
-      tooltips = gtk_toolbar_get_tooltips (toolbar);
+      toolbar  = list->data;
     }
+
+    style    = geda_toolbar_widget_get_style (toolbar);
+    tooltips = geda_toolbar_widget_get_tooltips (toolbar);
 
     g_key_file_set_integer (key_file, group_name, "style", style);
     g_key_file_set_integer (key_file, group_name, "tooltips", tooltips);
@@ -575,6 +574,7 @@ x_toolbars_save_state(GschemToplevel *w_current)
     g_key_file_free(key_file);
   }
   else {
+    /* Could not save the toolbar configuration to */
     const char *log_msg = _("Could not save Toolbar configuration to");
     u_log_message("%s %s\n", log_msg, filename);
   }
@@ -636,13 +636,13 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
       }
 
       if (!err) {
-        gtk_toolbar_set_style(GTK_TOOLBAR (toolbar), style);
+        geda_toolbar_widget_set_style(toolbar, style);
         if (visible) {
           global_style += style;
         }
       }
       else {
-        gtk_toolbar_set_style(GTK_TOOLBAR (toolbar), DEFAULT_TOOLBAR_STYLE);
+        geda_toolbar_widget_set_style(toolbar, DEFAULT_TOOLBAR_STYLE);
         if (visible) {
           global_style += DEFAULT_TOOLBAR_STYLE;
         }
@@ -653,13 +653,13 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
       tooltips = g_key_file_get_integer (key_file, group_name, "tooltips", &err);
 
       if (!err) {
-        gtk_toolbar_set_tooltips(GTK_TOOLBAR (toolbar), tooltips);
+        geda_toolbar_widget_set_tooltips(toolbar, tooltips);
         if (visible) {
           global_tooltips += tooltips;
         }
       }
       else {
-        gtk_toolbar_set_tooltips(GTK_TOOLBAR (toolbar), DEFAULT_TOOLBAR_TIPS);
+        geda_toolbar_widget_set_tooltips(toolbar, DEFAULT_TOOLBAR_TIPS);
         if (visible) {
           global_tooltips += DEFAULT_TOOLBAR_TIPS;
         }
@@ -769,8 +769,8 @@ x_toolbars_finialize (GschemToplevel *w_current) {
     else { /* use rc value */
 
       lambda (GtkWidget *bar) {
-        gtk_toolbar_set_style (GTK_TOOLBAR (bar), TOOLBAR_STYLE);
-        gtk_toolbar_set_tooltips (GTK_TOOLBAR (bar), TOOLBAR_TIPS);
+        geda_toolbar_widget_set_style (bar, TOOLBAR_STYLE);
+        geda_toolbar_widget_set_tooltips (bar, TOOLBAR_TIPS);
         return FALSE;
       }
       mapcar(TheToolBars);
