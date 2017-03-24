@@ -6,6 +6,10 @@
         * geda_toolbar_set_tooltips
         * geda_toolbar_get_style
         * geda_toolbar_set_style
+        * geda_toolbar_widget_get_tooltips
+        * geda_toolbar_widget_set_tooltips
+        * geda_toolbar_widget_get_style
+        * geda_toolbar_widget_set_style
 
 2017-03-23 Wiley E. Hill <wileyhill@gmail.com>
 

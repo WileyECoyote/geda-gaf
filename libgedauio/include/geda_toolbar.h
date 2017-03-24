@@ -97,6 +97,32 @@ bool            geda_toolbar_get_tooltips        (GedaToolbar     *toolbar);
 void            geda_toolbar_set_tooltips        (GedaToolbar     *toolbar,
                                                   bool             enable);
 
+/* ---------- inline Widget version ---------- */
+
+inline bool
+geda_toolbar_widget_get_tooltips (GtkWidget *toolbar)
+{
+  return geda_toolbar_get_tooltips((GedaToolbar*)toolbar);
+}
+
+inline void
+geda_toolbar_widget_set_tooltips (GtkWidget *toolbar, bool enable)
+{
+  geda_toolbar_set_tooltips((GedaToolbar*)toolbar, enable);
+}
+
+inline GtkToolbarStyle
+geda_toolbar_widget_get_style (GtkWidget *toolbar)
+{
+  return geda_toolbar_get_style((GedaToolbar*)toolbar);
+}
+
+inline void
+geda_toolbar_widget_set_style (GtkWidget *toolbar, GtkToolbarStyle  style)
+{
+  geda_toolbar_set_style((GedaToolbar*)toolbar, style);
+}
+
 
 #ifdef __cplusplus
 }
