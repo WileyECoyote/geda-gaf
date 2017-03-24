@@ -34,6 +34,7 @@
 #include <geda_handlebox.h>
 
 #define TOOLBAR_STYLE w_current->toolbars_mode           /* per window style variable  */
+#define TOOLBAR_TIPS  w_current->show_toolbar_tips       /* per window toolbar tips */
 #define DEFAULT_TOOLBAR_STYLE TOOLBAR_SHOW_ICONS         /* default style */
 #define TheToolBars  bar_widgets->toolbar_slist          /* convenience macro */
 
@@ -741,13 +742,13 @@ x_toolbars_finialize (GschemToplevel *w_current) {
 
       lambda (GtkWidget *bar) {
         gtk_toolbar_set_style (GTK_TOOLBAR (bar), TOOLBAR_STYLE);
+        gtk_toolbar_set_tooltips (GTK_TOOLBAR (bar), TOOLBAR_TIPS);
         return FALSE;
       }
       mapcar(TheToolBars);
     }
   }
 
-  /* gtk_toolbar_set_tooltips (GTK_TOOLBAR (data), GTK_TOGGLE_BUTTON (widget)->active ); */
   if (w_current->handleboxes) {
     g_signal_emit_by_name(w_current->add_handlebox,       "child-attached");
     g_signal_emit_by_name(w_current->attribute_handlebox, "child-attached");
@@ -1733,6 +1734,21 @@ x_toolbars_set_sensitivities(GschemToplevel *w_current,
   }
 }
 
+void
+x_toolbars_set_show_tooltips (GschemToplevel *w_current, bool show_tips)
+{
+  ToolBarWidgets *bar_widgets;
+  bar_widgets = g_slist_nth_data (ui_list, w_current->ui_index);
+
+  lambda (GedaToolbar *toolbar){
+    geda_toolbar_set_tooltips (toolbar, show_tips);
+    return FALSE;
+  }
+  mapcar(TheToolBars)
+
+  w_current->show_toolbar_tips = show_tips;
+}
+
 /*!
  * \brief View Toolbar Icons
  * \par Function Description
@@ -1748,7 +1764,7 @@ x_toolbar_icons_only(GtkWidget *widget, GschemToplevel *w_current)
   ToolBarWidgets *bar_widgets;
   bar_widgets = g_slist_nth_data (ui_list, w_current->ui_index);
 
-  lambda (GtkToolbar* toolbar){
+  lambda (GtkToolbar *toolbar){
     gtk_toolbar_set_style (toolbar, TOOLBAR_SHOW_ICONS);
     return FALSE;
   }

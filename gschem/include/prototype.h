@@ -925,6 +925,7 @@ void       x_toolbars_init_top              (GschemToplevel *w_current, GtkWidge
 void       x_toolbars_init_left             (GschemToplevel *w_current, GtkWidget *parent_container);
 void       x_toolbars_init_bottom           (GschemToplevel *w_current, GtkWidget *parent_container);
 void       x_toolbars_set_sensitivities     (GschemToplevel *w_current, EID_SENITIVITY_MODE mode, bool state);
+void       x_toolbars_set_show_tooltips     (GschemToplevel *w_current, bool show_tips);
 void       x_toolbar_icons_only             (GtkWidget *widget, GschemToplevel *w_current);
 void       x_toolbar_text_only              (GtkWidget *widget, GschemToplevel *w_current);
 void       x_toolbar_display_both           (GtkWidget *widget, GschemToplevel *w_current);
