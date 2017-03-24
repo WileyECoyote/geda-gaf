@@ -871,8 +871,8 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
       gtk_widget_set_tooltip_text(attribar_toggle,  _("Toggle visibility of the Attributes toolbar"));
       gtk_widget_set_tooltip_text(gridbar_toggle,   _("Toggle visibility of the Grid/Snap toolbar"));
 
-      GtkWidget* tb_separator_1  = geda_menu_item_new();
-      gtk_container_add (GTK_CONTAINER (toggle_menu), tb_separator_1);
+      GtkWidget *tb_separator  = geda_menu_item_new();
+      gtk_container_add (GTK_CONTAINER (toggle_menu), tb_separator);
 
       /* Start Toolbar Mode Radios */
       GtkWidget *tb_icons_bulb = geda_check_menu_item_new_with_mnemonic ("_Icons");
