@@ -7,6 +7,7 @@
     * src/x/x_toolbars.c: Revise x_toolbars_restore_state; add visible_count
       and only consider the style and tooltips of visible toolbars when
       determining the state for associated menu toggle items, add comments.
+      Release the lists of children (child box).
 
 2017-03-24 Wiley E. Hill <wileyhill@gmail.com>
 

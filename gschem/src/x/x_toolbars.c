@@ -512,6 +512,7 @@ x_toolbars_save_state(GschemToplevel *w_current)
       GList *list;
       list     = gtk_container_get_children (GTK_CONTAINER (handlebox));
       toolbar  = list->data;
+      g_list_free(list);
     }
 
     style    = geda_toolbar_widget_get_style (toolbar);
@@ -658,6 +659,7 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
           GList *list;
           list    = gtk_container_get_children (GTK_CONTAINER (handlebox));
           toolbar = list->data;
+          g_list_free(list);
         }
 
         /* Set the toolbar style and tooltips properties */
