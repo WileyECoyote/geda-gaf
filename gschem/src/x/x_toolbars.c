@@ -593,6 +593,7 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
   GError   *err;
   GKeyFile *key_file;
   char     *filename;
+  int       visible_count;   /* For counting visible toolbars */
   int       global_style;
   int       global_tooltips;
 
@@ -607,10 +608,7 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
     if (key_file) {
 
       GtkWidget *toolbar;
-
-      int style;
       int visible;
-      int tooltips;
 
       err     = NULL;
       visible = g_key_file_get_integer (key_file, group_name, "visible", &err);
@@ -621,52 +619,55 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
         visible = TRUE;
       }
 
+      /* Set visibility based on ini file */
       gtk_widget_set_visible(handlebox, visible);
       x_menu_set_toolbar_toggle(w_current, bar_id, visible);
 
-      style = g_key_file_get_integer (key_file, group_name, "style", &err);
+      if (visible) {
 
-      if (!err) {
-        if (visible) {
-          global_style += style;
+        int style;
+        int tooltips;
+
+        /* Retrieve the style from ini file for this toolbar */
+        style = g_key_file_get_integer (key_file, group_name, "style", &err);
+
+        if (err) {
+          g_clear_error (&err);
+          err   = NULL;
+          style = DEFAULT_TOOLBAR_STYLE;
         }
+
+        global_style += style;
+
+        /* Retrieve the tooltips setting from ini file for this toolbar */
+        tooltips = g_key_file_get_integer (key_file, group_name, "tooltips", &err);
+
+        if (err) {
+          g_clear_error (&err);
+          err = NULL;
+          tooltips = DEFAULT_TOOLBAR_TIPS;
+        }
+
+        global_tooltips += tooltips;
+
+        /* Get pointer to toolbar */
+        if (w_current->handleboxes) {
+          toolbar = GTK_BIN (handlebox)->child;
+        }
+        else {
+          GList *list;
+          list    = gtk_container_get_children (GTK_CONTAINER (handlebox));
+          toolbar = list->data;
+        }
+
+        /* Set the toolbar style and tooltips properties */
+        geda_toolbar_widget_set_style(toolbar, style);
+        geda_toolbar_widget_set_tooltips(toolbar, tooltips);
       }
       else {
-        if (visible) {
-          global_style += DEFAULT_TOOLBAR_STYLE;
-        }
-        g_clear_error (&err);
-        err   = NULL;
-        style = DEFAULT_TOOLBAR_STYLE;
+        /* The bar was off, i.e. is not visible*/
+        visible_count--;
       }
-
-      tooltips = g_key_file_get_integer (key_file, group_name, "tooltips", &err);
-
-      if (!err) {
-        if (visible) {
-          global_tooltips += tooltips;
-        }
-      }
-      else {
-        if (visible) {
-          global_tooltips += DEFAULT_TOOLBAR_TIPS;
-        }
-        g_clear_error (&err);
-        err = NULL;
-        tooltips = DEFAULT_TOOLBAR_TIPS;
-      }
-
-      if (w_current->handleboxes) {
-        toolbar = GTK_BIN (handlebox)->child;
-      }
-      else {
-        GList *list;
-        list    = gtk_container_get_children (GTK_CONTAINER (handlebox));
-        toolbar = list->data;
-      }
-
-      geda_toolbar_widget_set_style(toolbar, style);
-      geda_toolbar_widget_set_tooltips(toolbar, tooltips);
     }
     else {
       const char *log_msg = _("Error, Toolbar configuration key file");
@@ -690,8 +691,10 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
     }
   }
 
-  global_style = 0;
-  key_file     = NULL;
+  global_style    = 0;
+  global_tooltips = 0;
+  visible_count   = tb_Zoom + 1; /* Initialize to total bar count */
+  key_file        = NULL;
 
   filename = g_build_filename(geda_user_config_path (), TOOLBAR_CONFIG_STORE, NULL);
 
@@ -718,9 +721,9 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
       u_log_message("%s: %s %s\n", log_msg, filename, err->message);
     }
 
-    /* Check if toolbars styles are uniform and set radio in menu
-     * if all the same style */
-    global_style = global_style / (tb_Zoom + 1);
+    /* Check if the style of visible toolbars is uniform and set radio
+     * in menu if all the same style */
+    global_style = global_style / visible_count;
 
     if ((global_style == TOOLBAR_SHOW_ICONS) ||
         (global_style == TOOLBAR_SHOW_TEXT)  ||
@@ -730,6 +733,10 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
       x_toolbars_turn_on_radio ((RadioMenuData*)g_slist_nth_data (w_current->toolbar_mode_grp,
                                                                   global_style));
     }
+
+    /* Set menu toggle if all visible toolbars have the same setting */
+    x_menu_set_toolbar_toggle_tips(w_current, (global_tooltips == visible_count));
+
   }
   else {
     const char *log_msg = _("Toolbar configuration not found");
