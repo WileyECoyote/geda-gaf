@@ -1,3 +1,8 @@
+2017-03-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_toolbar.c: Abandon useless GtkToolbar "tooltips"
+      property, use "has-tooltip" widget property instead.
+
 2017-03-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_toolbar.c: Add functions:

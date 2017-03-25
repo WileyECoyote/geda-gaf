@@ -377,16 +377,16 @@ geda_toolbar_set_style (GedaToolbar *toolbar, GtkToolbarStyle style)
 bool
 geda_toolbar_get_tooltips (GedaToolbar *toolbar)
 {
-  bool enabled;
-  g_object_get (toolbar,"tooltips", &enabled, NULL);
-  return enabled;
+  bool has_tooltip;
+  g_object_get (toolbar, "has-tooltip", &has_tooltip, NULL);
+  return has_tooltip;
 }
 
 void
 geda_toolbar_set_tooltips (GedaToolbar *toolbar, bool enable)
 {
-  /* Set GtkToolbar property, which does nothing */
-  g_object_set (toolbar, "tooltips", enable, NULL);
+  /* Set GedaToolbar property, which does nothing */
+  g_object_set (toolbar, "has-tooltip", enable, NULL);
 
   if (GEDA_TOOLBAR(toolbar)) {
 
