@@ -874,7 +874,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
       GtkWidget *tb_separator  = geda_menu_item_new();
       gtk_container_add (GTK_CONTAINER (toggle_menu), tb_separator);
 
-      GtkWidget *tb_tips_toggle = geda_check_menu_item_new_with_mnemonic ("_Display tips");
+      GtkWidget *tb_tips_toggle = geda_check_menu_item_new_with_mnemonic (IDS_MENU_TB_TIPS);
 
       g_object_set (G_OBJECT(tb_tips_toggle), "draw-as-radio", TRUE,  NULL);
 
@@ -1560,7 +1560,7 @@ static void x_menu_toggle_icons(GtkWidget *widget, GSList* list)
  * is a glist of all menu items or all pop-menu items.
  *
  */
-static void x_menu_toggle_tips(GtkWidget *widget, GSList* list)
+static void x_menu_toggle_tips(GtkWidget *widget, GSList *list)
 {
   int state;
 
@@ -1710,6 +1710,27 @@ void x_menu_set_toolbar_toggle(GschemToplevel *w_current, int toggle_id, bool st
   }
 
   GEDA_FREE(menu_path);
+  return;
+}
+
+void x_menu_set_toolbar_toggle_tips(GschemToplevel *w_current, bool state)
+{
+  const char *menu_path;
+
+  GtkWidget *menu_bar;
+  GtkWidget *menu_item;
+
+  menu_bar  = x_menu_get_main_menu(w_current);
+  menu_path = OPT_BAR_TIPS_MENU_PATH;
+  menu_item = GEDA_OBJECT_GET_DATA (menu_bar, menu_path);
+
+  if (menu_item != NULL) {
+    geda_check_menu_item_set_active((GedaCheckMenuItem*)menu_item, state);
+  }
+  else {
+    u_log_message("%s \"%s\"\n", _("Error: did not find path"), menu_path);
+  }
+
   return;
 }
 

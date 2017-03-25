@@ -852,6 +852,7 @@ const char *x_menu_get_buffer_menu          (GschemToplevel *w_current);
 void        x_menu_set_icon_visibility      (GschemToplevel *w_current, bool state);
 void        x_menu_set_togglable            (GschemToplevel *w_current, int toggle_id, bool state);
 void        x_menu_set_toolbar_toggle       (GschemToplevel *w_current, int toggle_id, bool state);
+void        x_menu_set_toolbar_toggle_tips  (GschemToplevel *w_current, bool state);
 void        x_menu_attach_recent_submenu    (GschemToplevel *w_current);
 void        x_menu_recent_files_load        (void);
 void        x_menu_recent_files_save        (void       *user_data);
