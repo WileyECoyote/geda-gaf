@@ -92,7 +92,7 @@ static int query_dots_grid_spacing (GschemToplevel *w_current)
     if (w_current->dots_grid_mode == DOTS_GRID_VARIABLE_MODE) {
 
       /* In the variable mode around every (DOTS_VARIABLE_MODE_SPACING)'th
-       * screenpixel will be grid-point. Adding 0.1 for correct cast*/
+       * screenpixel will be grid-point. Adding 0.1 for correct cast */
       incr = m_round_5_2_1 (page->to_world_x_constant *
                             DOTS_VARIABLE_MODE_SPACING) + 0.1;
 

@@ -161,7 +161,7 @@ struct st_toggle_menu_data {
   char           *menu_item_name; /* String for the label in the menu */
   char           *menu_path;      /* String path used to locate widget programmatically setting */
   int             toggle_id;      /* Index in st_menu_data.menu_togglers list */
-  char           *toggle_name;   /* Menu string DOES NOT APPEAR TO BE SET */
+  char           *toggle_name;    /* Menu string DOES NOT APPEAR TO BE SET */
 };
 
 struct st_menu_radio_data {

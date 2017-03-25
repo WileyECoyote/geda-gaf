@@ -14,6 +14,7 @@
       _VIEW_TOOLBARS to obtain items under the View/Menu and View/ Toolbar
       respectively so that tips for all menu items are toggled by IDS_MENU_
       VIEW_MENU/menu_tips_toggle. Release the lists of children (child box).
+      Add/revise comments.
 
 2017-03-24 Wiley E. Hill <wileyhill@gmail.com>
 

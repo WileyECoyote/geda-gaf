@@ -236,8 +236,8 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
                     (double) Current_Page->to_screen_x_constant, 0, 0,
                    -(double) Current_Page->to_screen_y_constant,
                    -(double) Current_Page->to_screen_x_constant * Current_Page->left,
-                    (double) Current_Page->to_screen_y_constant * Current_Page->top + w_current->screen_height
-  );
+                    (double) Current_Page->to_screen_y_constant * Current_Page->top +
+                                                                  w_current->screen_height);
 
   cairo_set_matrix (w_current->cr, &render_mtx);
 

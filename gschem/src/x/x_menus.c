@@ -1491,7 +1491,7 @@ char *x_menu_get_buffer_menu (GschemToplevel *w_current)
  */
 static void x_menu_lowlevel_set_icon_visibility (GSList* list, bool state)
 {
-  lambda (GObject* menu_item) {
+  lambda (GObject *menu_item) {
 
     if (GEDA_IS_IMAGE_MENU_ITEM(menu_item)) {
       g_object_set(menu_item, "show-image", state, NULL);
@@ -1553,12 +1553,13 @@ static void x_menu_toggle_icons(GtkWidget *widget, GSList* list)
   x_menu_lowlevel_set_icon_visibility(list, state);
 }
 
-/*! \brief Enable Disable Menu Tool Tips
- *  \par Function Description
- *   Callback function turns menu tips on or off based on the state of
- * the toggle menu item pointed to by widget. This is a callback for
- * the toggle tips menu option so widget is the toggle item. The list
- * is a glist of all menu items or all pop-menu items.
+/*!
+ * \brief Enable Disable Menu Tool Tips
+ * \par Function Description
+ *  Callback function turns menu tips on or off based on the state of
+ *  the toggle menu item pointed to by widget. This is a callback for
+ *  the toggle tips menu option so widget is the toggle item. The list
+ *  is a glist of all menu items or all pop-menu items.
  *
  */
 static void x_menu_toggle_tips(GtkWidget *widget, GSList *list)
@@ -1567,7 +1568,7 @@ static void x_menu_toggle_tips(GtkWidget *widget, GSList *list)
 
   state = geda_check_menu_item_get_active ((GedaCheckMenuItem*)widget);
 
-  lambda (GObject* menu_item) {
+  lambda (GObject *menu_item) {
     g_object_set (menu_item, "has-tooltip", state, NULL);
     return FALSE;
   }
@@ -1643,7 +1644,7 @@ static void x_menu_toggle_main_tips(GtkWidget *widget, GschemToplevel *w_current
 /** \defgroup menu-toggle-action Menu Toggle Action Support Functions
  *
  *  \par
- *     The Menu toggles buttons need the "activate" signal blocked
+ *   The Menu toggles buttons need the "activate" signal blocked
  *   temporily so we don't have recursion with callbacks.
  */
 
@@ -1712,9 +1713,10 @@ void x_menu_set_togglable(GschemToplevel *w_current, int toggle_id, bool state)
   MenuData *menu_data = g_slist_nth_data (ui_list, w_current->ui_index);
 
   void set_toggler(int index, bool value) {
-    toggler_data = (ToggleMenuData*) g_slist_nth_data (TOGGLERS_LIST, index);
-    if(toggler_data)
+    toggler_data = (ToggleMenuData*)g_slist_nth_data (TOGGLERS_LIST, index);
+    if(toggler_data) {
       x_menu_set_toggler(toggler_data, value);
+    }
   }
 
   number_of_togglers = g_slist_length(TOGGLERS_LIST);
@@ -1771,6 +1773,17 @@ void x_menu_set_toolbar_toggle(GschemToplevel *w_current, int toggle_id, bool st
   return;
 }
 
+/*! \brief Set State of ToolBar Tooltips Toggle Menu item
+ * \par Function Description
+ *  This function sets the active state of the "Display Tips" under the
+ *  Toolbar submenu and has nothing to do with tooltip displayed in the
+ *  menus.
+ *
+ * \param w_current Gschem toplevel object
+ * \param state     is int value to set, either TRUE (check) or FALSE (uncheck).
+ *
+ * \sa x_menu_set_togglable x_menu_toggle_main_tips
+ */
 void x_menu_set_toolbar_toggle_tips(GschemToplevel *w_current, bool state)
 {
   const char *menu_path;
