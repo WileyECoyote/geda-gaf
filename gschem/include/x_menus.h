@@ -63,6 +63,8 @@
 #define OPT_BAR_VERT_MENU_PATH "_View/_Toolbars/Both _Vertical"
 #define OPT_BAR_HOZI_MENU_PATH "_View/_Toolbars/Both _Horizontal"
 
+#define IDS_MENU_VIEW_MENU     "_View/_Menu"
+
 #define OPT_ICON_MENU_PATH     "_View/_Menu/_Icons"
 #define OPT_TIPS_MENU_PATH     "_View/_Menu/_ToolTips"
 #define OPT_POPCONS_MENU_PATH  "_View/_Menu/_Context Icons"

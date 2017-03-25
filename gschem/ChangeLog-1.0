@@ -1,6 +1,6 @@
 2017-03-25 Wiley E. Hill <wileyhill@gmail.com>
 
-    * include/x_menus.h: Define IDS_MENU_TB_TIPS string.
+    * include/x_menus.h: Define strings IDS_MENU_TB_TIPS and IDS_MENU_VIEW_MENU.
 
     * src/x/x_menus.c: Add x_menu_set_toolbar_toggle_tips.
 

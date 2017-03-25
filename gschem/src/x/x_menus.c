@@ -986,7 +986,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     toggle_menu = geda_menu_new();
 
     geda_menu_item_set_submenu (GEDA_MENU_ITEM (menu_item) , toggle_menu);
-    GEDA_OBJECT_SET_DATA(MENU_BAR, menu_item, "_View/_Menu");
+    GEDA_OBJECT_SET_DATA(MENU_BAR, menu_item, IDS_MENU_VIEW_MENU);
 
     GtkWidget *menu_icons_toggle   = geda_check_menu_item_new_with_mnemonic ("_Icons");
     GtkWidget *menu_tips_toggle    = geda_check_menu_item_new_with_mnemonic ("_ToolTips");
