@@ -359,6 +359,14 @@ GtkWidget *geda_toolbar_new (int orientation)
                        NULL);
 }
 
+/*!
+ * \brief Get the GedaToolbar Style of property
+ * \par Function Description
+ *  Retrieves the current value of the "toolbar-style"  property
+ *  of the GedaToolbar.
+ *
+ * \param [in] toolbar Pointer to GedaToolbar object
+ */
 GtkToolbarStyle
 geda_toolbar_get_style (GedaToolbar *toolbar)
 {
@@ -367,6 +375,22 @@ geda_toolbar_get_style (GedaToolbar *toolbar)
   return style;
 }
 
+/*!
+ * \brief Set the GedaToolbar Style of property
+ * \par Function Description
+ *  Sets the "toolbar-style" property of the GedaToolbar, which
+ *  controls visibility and arrangement of text and icons of the
+ *  children. The style should be one of
+ *  <DL>
+ *    <DT>GTK_TOOLBAR_ICONS</DT>
+ *    <DT>GTK_TOOLBAR_TEXT</DT>
+ *    <DT>GTK_TOOLBAR_BOTH</DT>
+ *    <DT>GTK_TOOLBAR_BOTH_HORIZ</DT>
+ *  </DL>
+ *
+ * \param [in] toolbar Pointer to GedaToolbar object
+ * \param [in] style   New toolbar style, see text
+ */
 void
 geda_toolbar_set_style (GedaToolbar *toolbar, GtkToolbarStyle style)
 {
@@ -374,6 +398,14 @@ geda_toolbar_set_style (GedaToolbar *toolbar, GtkToolbarStyle style)
   g_object_set (toolbar, "toolbar-style", style, NULL);
 }
 
+/*!
+ * \brief Get Visibility of GedaToolbar tooltips
+ * \par Function Description
+ *  Retrieves the current value of the "has-tooltip" property
+ *  of the GedaToolbar.
+ *
+ * \param [in] toolbar Pointer to GedaToolbar object
+ */
 bool
 geda_toolbar_get_tooltips (GedaToolbar *toolbar)
 {
@@ -382,6 +414,16 @@ geda_toolbar_get_tooltips (GedaToolbar *toolbar)
   return has_tooltip;
 }
 
+/*!
+ * \brief Set Visibility of GedaToolbar tooltips
+ * \par Function Description
+ *  Sets the "has-tooltip" property of the GedaToolbar and
+ *  all children of the toolbar, which controls visibility
+ *  of the tooltips.
+ *
+ * \param [in] toolbar Pointer to GedaToolbar object
+ * \param [in] enable  visibility of tooltips
+ */
 void
 geda_toolbar_set_tooltips (GedaToolbar *toolbar, bool enable)
 {
