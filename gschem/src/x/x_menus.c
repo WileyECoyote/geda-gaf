@@ -184,6 +184,7 @@ static GSList *ui_list      = NULL;
 
 static void x_menu_toggle_icons        (GtkWidget *widget, GSList *list);
 static void x_menu_toggle_tips         (GtkWidget *widget, GSList *list);
+static void x_menu_toggle_main_tips    (GtkWidget *widget, GschemToplevel *w_current);
 static void x_menu_update_recent_files (void);
 
 /*! \brief Execute Main Menu Selection
@@ -1025,8 +1026,8 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
                       MENU_ITEMS_LIST);
 
     g_signal_connect (G_OBJECT(menu_tips_toggle), "toggled",
-                      G_CALLBACK(x_menu_toggle_tips),
-                      MENU_ITEMS_LIST);
+                      G_CALLBACK(x_menu_toggle_main_tips),
+                      w_current);
 
     gtk_widget_show_all(menu_item);
   }
@@ -1580,6 +1581,63 @@ static void x_menu_toggle_tips(GtkWidget *widget, GSList *list)
   else {
     v_log_message(_("Disabling menu tooltips\n"));
   }
+}
+
+static void x_menu_toggle_main_tips(GtkWidget *widget, GschemToplevel *w_current)
+{
+  GtkWidget *menubar;
+  GtkWidget *menu_item;
+  MenuData  *menu_data;
+  char      *menu_path;
+  int state;
+
+  menu_data = g_slist_nth_data (ui_list, w_current->ui_index);
+
+  /* Set visibility of tip for all non-toggle main menu items */
+  x_menu_toggle_tips(widget, MENU_ITEMS_LIST);
+
+  /* Get the state of the "Show menu tips" toggle widget */
+  state = geda_check_menu_item_get_active ((GedaCheckMenuItem*)widget);
+
+  /* Set visibility of tips for option menu toggle items */
+
+  menubar = x_menu_get_main_menu(w_current);
+
+  lambda (ToggleMenuData *toggler_data) {
+
+    menu_path = toggler_data->menu_path;
+
+    menu_item  = GEDA_OBJECT_GET_DATA (menubar, menu_path);
+
+    g_object_set (menu_item, "has-tooltip", state, NULL);
+
+    return FALSE;
+  }
+  mapcar(TOGGLERS_LIST)
+
+  GtkWidget   *submenu;
+  const GList *list, *iter;
+
+  /* Set visibility of tips for _View/_Menu toggle items */
+  menu_item = GEDA_OBJECT_GET_DATA(MENU_BAR, IDS_MENU_VIEW_MENU);
+  submenu   = geda_menu_item_get_submenu ((GedaMenuItem*)menu_item);
+  list      = geda_menu_shell_get_children(GEDA_MENU_SHELL(submenu));
+
+  for (iter = list; iter; iter=iter->next) {
+    menu_item = iter->data;
+    g_object_set (menu_item, "has-tooltip", state, NULL);
+  }
+
+  /* Set visibility of tips for _View/_Toolbars toggle items */
+  menu_item = GEDA_OBJECT_GET_DATA(MENU_BAR, IDS_MENU_VIEW_TOOLBARS);
+  submenu   = geda_menu_item_get_submenu ((GedaMenuItem*)menu_item);
+  list      = geda_menu_shell_get_children(GEDA_MENU_SHELL(submenu));
+
+  for (iter = list; iter; iter=iter->next) {
+    menu_item = iter->data;
+    g_object_set (menu_item, "has-tooltip", state, NULL);
+  }
+
 }
 
 /** \defgroup menu-toggle-action Menu Toggle Action Support Functions

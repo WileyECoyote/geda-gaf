@@ -7,7 +7,13 @@
     * src/x/x_toolbars.c: Revise x_toolbars_restore_state; add visible_count
       and only consider the style and tooltips of visible toolbars when
       determining the state for associated menu toggle items, add comments.
-      Release the lists of children (child box).
+      Add x_menu_toggle_main_tips and replace x_menu_toggle_main as the call
+      back for menu_tips_toggle and call x_menu_toggle_main to toggle tips for
+      all the non-toggle RC menu items and use TOGGLERS_LIST to set has-tips
+      for toggles under the Options menu, use IDS_MENU_VIEW_MENU and IDS_MENU
+      _VIEW_TOOLBARS to obtain items under the View/Menu and View/ Toolbar
+      respectively so that tips for all menu items are toggled by IDS_MENU_
+      VIEW_MENU/menu_tips_toggle. Release the lists of children (child box).
 
 2017-03-24 Wiley E. Hill <wileyhill@gmail.com>
 
