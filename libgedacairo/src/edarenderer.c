@@ -956,7 +956,7 @@ eda_renderer_get_font_descent (EdaRenderer *renderer,
 
 /* Calculate position to draw text relative to text origin marker, in
  * world coordinates. */
-static void
+static inline void
 eda_renderer_calc_text_position (EdaRenderer         *renderer,
                                  const GedaObject    *object,
                                  int descent, double *x, double *y)
@@ -979,9 +979,9 @@ eda_renderer_calc_text_position (EdaRenderer         *renderer,
    *        middle and upper alignment is based upon the inked extents of the
    *        entire text block.
    */
-  y_upper  = -inked_rect.y;                     /* Top of inked extents */
-  y_middle = y_upper - inked_rect.height / 2.;  /* Middle of inked extents */
-  y_lower  = descent - logical_rect.height;     /* Baseline of bottom line */
+  y_upper  = -inked_rect.y;                      /* Top of inked extents */
+  y_middle = y_upper - inked_rect.height / 2.0;  /* Middle of inked extents */
+  y_lower  = descent - logical_rect.height;      /* Baseline of bottom line */
 
   /* Special case flips attachment point to opposite corner when
    * the text is rotated to 180 degrees, since the drawing code
@@ -996,22 +996,22 @@ eda_renderer_calc_text_position (EdaRenderer         *renderer,
   switch (object->text->alignment) {
     default:
       /* Fall through to LOWER_left case */
-    case LOWER_LEFT:    *y = y_lower;  *x = x_left;   break;
-    case MIDDLE_LEFT:   *y = y_middle; *x = x_left;   break;
-    case UPPER_LEFT:    *y = y_upper;  *x = x_left;   break;
-    case LOWER_MIDDLE:  *y = y_lower;  *x = x_middle; break;
-    case MIDDLE_MIDDLE: *y = y_middle; *x = x_middle; break;
-    case UPPER_MIDDLE:  *y = y_upper;  *x = x_middle; break;
-    case LOWER_RIGHT:   *y = y_lower;  *x = x_right;  break;
-    case MIDDLE_RIGHT:  *y = y_middle; *x = x_right;  break;
-    case UPPER_RIGHT:   *y = y_upper;  *x = x_right;  break;
+    case LOWER_LEFT:   /* 0 */ *y = y_lower;  *x = x_left;   break;
+    case MIDDLE_LEFT:  /* 1 */ *y = y_middle; *x = x_left;   break;
+    case UPPER_LEFT:   /* 2 */ *y = y_upper;  *x = x_left;   break;
+    case LOWER_MIDDLE: /* 3 */ *y = y_lower;  *x = x_middle; break;
+    case MIDDLE_MIDDLE:/* 4 */ *y = y_middle; *x = x_middle; break;
+    case UPPER_MIDDLE: /* 5 */ *y = y_upper;  *x = x_middle; break;
+    case LOWER_RIGHT:  /* 6 */ *y = y_lower;  *x = x_right;  break;
+    case MIDDLE_RIGHT: /* 7 */ *y = y_middle; *x = x_right;  break;
+    case UPPER_RIGHT:  /* 8 */ *y = y_upper;  *x = x_right;  break;
   }
 
   *x /= PANGO_SCALE;
   *y /= PANGO_SCALE;
 }
 
-static int
+static inline int
 eda_renderer_prepare_text (EdaRenderer *renderer, const GedaObject *object)
 {
   int    pango_size;
