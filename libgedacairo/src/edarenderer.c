@@ -168,9 +168,10 @@ static int eda_renderer_default_get_user_bounds (EdaRenderer      *renderer,
 
 static GObjectClass *eda_renderer_parent_class = NULL;
 
-static GObject *eda_renderer_constructor(GType type,
-                                         unsigned int n_construct_properties,
-                                         GObjectConstructParam *construct_params)
+static GObject*
+eda_renderer_constructor(GType type,
+                         unsigned int n_construct_properties,
+                         GObjectConstructParam *construct_params)
 {
   GObject *object;
   GObjectClass *parent_object_class;
@@ -2139,7 +2140,8 @@ eda_renderer_get_hinting_enabled (EdaRenderer *renderer)
  *  \par Function Description
  *  Function to retrieve the current color-map Array.
  */
-GArray * eda_renderer_get_color_map (EdaRenderer *renderer)
+GArray*
+eda_renderer_get_color_map (EdaRenderer *renderer)
 {
   GArray *map = NULL;
   g_return_val_if_fail (EDA_IS_RENDERER (renderer), NULL);
@@ -2162,7 +2164,8 @@ eda_renderer_set_color_map (EdaRenderer *renderer, GArray *map)
  *  \par Function Description
  *  Function to retrieve the current font-name property.
  */
-const char *eda_renderer_get_font_name(EdaRenderer *renderer)
+const char*
+eda_renderer_get_font_name(EdaRenderer *renderer)
 {
   return (renderer->priv->font_name);
 }
@@ -2171,7 +2174,8 @@ const char *eda_renderer_get_font_name(EdaRenderer *renderer)
  *  \par Function Description
  *  Sets the font-name property.
  */
-void eda_renderer_set_font_name(EdaRenderer *renderer, const char *font_name)
+void
+eda_renderer_set_font_name(EdaRenderer *renderer, const char *font_name)
 {
   GEDA_FREE(renderer->priv->font_name);
   renderer->priv->font_name = geda_utility_string_strdup (font_name);
@@ -2181,7 +2185,8 @@ void eda_renderer_set_font_name(EdaRenderer *renderer, const char *font_name)
  *  \par Function Description
  *  Function to set the EdaRenderer flags.
  */
-bool eda_renderer_set_flags (EdaRenderer *renderer, int flags)
+bool
+eda_renderer_set_flags (EdaRenderer *renderer, int flags)
 {
   if (EDA_IS_RENDERER (renderer))
     renderer->priv->flags = flags;
@@ -2194,7 +2199,8 @@ bool eda_renderer_set_flags (EdaRenderer *renderer, int flags)
  *  \par Function Description
  *  Function to check whether a flag bit is set.
  */
-bool eda_renderer_mask_flags (EdaRenderer *renderer, int flags)
+bool
+eda_renderer_mask_flags (EdaRenderer *renderer, int flags)
 {
   if (EDA_IS_RENDERER (renderer))
     renderer->priv->flags |= flags;
@@ -2207,7 +2213,8 @@ bool eda_renderer_mask_flags (EdaRenderer *renderer, int flags)
  *  \par Function Description
  *  Function to retrieve the current EdaRenderer Flags
  */
-int eda_renderer_get_flags (EdaRenderer *renderer)
+int
+eda_renderer_get_flags (EdaRenderer *renderer)
 {
   g_return_val_if_fail (EDA_IS_RENDERER (renderer), -1);
   return renderer->priv->flags;
@@ -2217,7 +2224,8 @@ int eda_renderer_get_flags (EdaRenderer *renderer)
  *  \par Function Description
  *  Function to retrieve the current Cairo Flags.
  */
-int eda_renderer_get_cairo_flags (EdaRenderer *renderer)
+int
+eda_renderer_get_cairo_flags (EdaRenderer *renderer)
 {
   g_return_val_if_fail (EDA_IS_RENDERER (renderer), 0);
   return EDA_RENDERER_CAIRO_FLAGS (renderer);
@@ -2227,7 +2235,8 @@ int eda_renderer_get_cairo_flags (EdaRenderer *renderer)
  *  \par Function Description
  *  Function to retrieve the current override-color property.
  */
-int eda_renderer_get_override_color_index (EdaRenderer *renderer)
+int
+eda_renderer_get_override_color_index (EdaRenderer *renderer)
 {
   return renderer->priv->override_color;
 }
@@ -2246,7 +2255,8 @@ eda_renderer_set_override_color_index (EdaRenderer *renderer, int color_index)
  *  \par Function Description
  *  Function to retrieve the current circle-grip-quadrant property.
  */
-int eda_renderer_get_circle_grip_quad (EdaRenderer *renderer)
+int
+eda_renderer_get_circle_grip_quad (EdaRenderer *renderer)
 {
   g_return_val_if_fail (EDA_IS_RENDERER (renderer), -1);
   return EDAR_CIRCLE_GRIP_QUAD;
@@ -2256,7 +2266,8 @@ int eda_renderer_get_circle_grip_quad (EdaRenderer *renderer)
  *  \par Function Description
  *  Sets the circle-grip-quadrant property.
  */
-void eda_renderer_set_circle_grip_quad (EdaRenderer *renderer, int quad)
+void
+eda_renderer_set_circle_grip_quad (EdaRenderer *renderer, int quad)
 {
   g_return_if_fail (EDA_IS_RENDERER (renderer));
   if (quad > 0 && quad < 5) {
@@ -2268,7 +2279,8 @@ void eda_renderer_set_circle_grip_quad (EdaRenderer *renderer, int quad)
  *  \par Function Description
  *  Function to retrieve the current grip-size property.
  */
-double eda_renderer_get_grips_size (EdaRenderer *renderer)
+double
+eda_renderer_get_grips_size (EdaRenderer *renderer)
 {
   g_return_val_if_fail (EDA_IS_RENDERER (renderer), -1);
   return EDAR_GRIP_SIZE;
@@ -2278,7 +2290,8 @@ double eda_renderer_get_grips_size (EdaRenderer *renderer)
  *  \par Function Description
  *  Sets the grip-size property.
  */
-void eda_renderer_set_grips_size (EdaRenderer *renderer, double new_size)
+void
+eda_renderer_set_grips_size (EdaRenderer *renderer, double new_size)
 {
   g_return_if_fail (EDA_IS_RENDERER (renderer));
   g_object_set (G_OBJECT (renderer), "grip-size", new_size, NULL);
@@ -2288,8 +2301,8 @@ void eda_renderer_set_grips_size (EdaRenderer *renderer, double new_size)
  *  \par Function Description
  *  Function to retrieve the current grips-stroke-color property.
  */
-const
-GdkColor *eda_renderer_get_grips_stroke_color (EdaRenderer *renderer)
+const GdkColor*
+eda_renderer_get_grips_stroke_color (EdaRenderer *renderer)
 {
   g_return_val_if_fail (EDA_IS_RENDERER (renderer), NULL);
   return (const GdkColor*) &EDAR_GRIP_STROKE_COLOR;
@@ -2314,8 +2327,8 @@ eda_renderer_set_grips_stroke_color (EdaRenderer *renderer, GdkColor* color)
  *  \par Function Description
  *  Function to retrieve the current grips-fill-color property.
  */
-const
-GdkColor *eda_renderer_get_grips_fill_color (EdaRenderer *renderer)
+const GdkColor*
+eda_renderer_get_grips_fill_color (EdaRenderer *renderer)
 {
   g_return_val_if_fail (EDA_IS_RENDERER (renderer), NULL);
   return (const GdkColor*) &EDAR_GRIP_FILL_COLOR;
@@ -2340,8 +2353,8 @@ eda_renderer_set_grips_fill_color (EdaRenderer *renderer, GdkColor* color)
  *  \par Function Description
  *  Function to retrieve the current junction-color property.
  */
-const
-GdkColor *eda_renderer_get_junction_color (EdaRenderer *renderer)
+const GdkColor*
+eda_renderer_get_junction_color (EdaRenderer *renderer)
 {
   g_return_val_if_fail (EDA_IS_RENDERER (renderer), NULL);
   return (const GdkColor*) &EDAR_JUNCTION_COLOR;
@@ -2366,7 +2379,8 @@ eda_renderer_set_junction_color (EdaRenderer *renderer, GdkColor* color)
  *  \par Function Description
  *  Function to retrieve the current junction-size property.
  */
-int eda_renderer_get_junction_size (EdaRenderer *renderer)
+int
+eda_renderer_get_junction_size (EdaRenderer *renderer)
 {
   g_return_val_if_fail (EDA_IS_RENDERER (renderer), -1);
   return EDAR_JUNCTION_SIZE;
@@ -2376,7 +2390,8 @@ int eda_renderer_get_junction_size (EdaRenderer *renderer)
  *  \par Function Description
  *  Sets the junction-size property.
  */
-void eda_renderer_set_junction_size (EdaRenderer *renderer, int new_size)
+void
+eda_renderer_set_junction_size (EdaRenderer *renderer, int new_size)
 {
   g_return_if_fail (EDA_IS_RENDERER (renderer));
   g_object_set (G_OBJECT (renderer), "junction-size", new_size, NULL);
@@ -2386,7 +2401,8 @@ void eda_renderer_set_junction_size (EdaRenderer *renderer, int new_size)
  *  \par Function Description
  *  Function to retrieve the current text-marker-threshold property.
  */
-double eda_renderer_get_marker_threshold (EdaRenderer *renderer)
+double
+eda_renderer_get_marker_threshold (EdaRenderer *renderer)
 {
   g_return_val_if_fail (EDA_IS_RENDERER (renderer), -1);
   return EDAR_MARKER_THRESHOLD;
@@ -2396,7 +2412,8 @@ double eda_renderer_get_marker_threshold (EdaRenderer *renderer)
  *  \par Function Description
  *  Sets the text-marker-threshold property.
  */
-void eda_renderer_set_marker_threshold (EdaRenderer *renderer, double threshold)
+void
+eda_renderer_set_marker_threshold (EdaRenderer *renderer, double threshold)
 {
   g_return_if_fail (EDA_IS_RENDERER (renderer));
   g_object_set (G_OBJECT (renderer), "text-marker-threshold", threshold, NULL);
@@ -2406,8 +2423,8 @@ void eda_renderer_set_marker_threshold (EdaRenderer *renderer, double threshold)
  *  \par Function Description
  *  Function to retrieve the current net-endpoint-color property.
  */
-const
-GdkColor *eda_renderer_get_net_endpoint_color (EdaRenderer *renderer)
+const GdkColor*
+eda_renderer_get_net_endpoint_color (EdaRenderer *renderer)
 {
   g_return_val_if_fail (EDA_IS_RENDERER (renderer), NULL);
   return (const GdkColor*) &EDAR_NET_ENDPOINT_COLOR;
@@ -2432,8 +2449,8 @@ eda_renderer_set_net_endpoint_color (EdaRenderer *renderer, GdkColor* color)
  *  \par Function Description
  *  Function to retrieve the current text marker color property.
  */
-const
-GdkColor *eda_renderer_get_text_marker_color (EdaRenderer *renderer)
+const GdkColor*
+eda_renderer_get_text_marker_color (EdaRenderer *renderer)
 {
   g_return_val_if_fail (EDA_IS_RENDERER (renderer), NULL);
   return (const GdkColor*) &EDAR_TEXT_MARKER_COLOR;
@@ -2458,7 +2475,8 @@ eda_renderer_set_text_marker_color (EdaRenderer *renderer, GdkColor* color)
  *  \par Function Description
  *  Function to retrieve the current text-marker-size property.
  */
-int eda_renderer_get_text_marker_size (EdaRenderer *renderer)
+int
+eda_renderer_get_text_marker_size (EdaRenderer *renderer)
 {
   g_return_val_if_fail (EDA_IS_RENDERER (renderer), -1);
   return EDAR_TEXT_MARKER_SIZE;
@@ -2468,7 +2486,8 @@ int eda_renderer_get_text_marker_size (EdaRenderer *renderer)
  *  \par Function Description
  *  Sets the text-marker-size property.
  */
-void eda_renderer_set_text_marker_size (EdaRenderer *renderer, int new_size)
+void
+eda_renderer_set_text_marker_size (EdaRenderer *renderer, int new_size)
 {
   g_return_if_fail (EDA_IS_RENDERER (renderer));
   g_object_set (G_OBJECT (renderer), "text-marker-size", new_size, NULL);
