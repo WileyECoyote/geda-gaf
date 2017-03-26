@@ -63,19 +63,6 @@
 #define COMMAND(symbol, repeat, aflag,  func) [ cmd_##func ] = \
 { ACTION(symbol), repeat, 0, aflag, i_cmd_##func, 0, {0, 0}, 0, 0, 0},
 
-/*! \brief Enumerated Performance Diagnostics Directives
- *  \par Description
- *  Performance Diagnostics directives are include in the build if
- *  the PERFORMANCE options is defined. These enumerator are for
- *  dialog responses to the Diagnostics dialog, which is accessible
- *  by typing "debug" in the command console.
- */
-typedef enum { CLOSE_PERFORMANCE, /* = 0, means not compiled in */
-               TOGGLE_RUSAGE_DATA,
-               RUN_REDRAW_TESTS,
-               RUN_UNDO_TESTS,
-} EID_PERFORMANCE;
-
 #ifdef PERFORMANCE
 static bool performance_diagnostics = FALSE;
 #endif /*PERFORMANCE */
