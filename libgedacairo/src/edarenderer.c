@@ -1798,11 +1798,6 @@ eda_renderer_get_text_user_bounds (EdaRenderer      *renderer,
     }
   }
 
-#ifdef DEBUG_RENDER_TEXT
-  else
-    fprintf(stderr, "skippping %s\n", object->text->disp_string);
-#endif
-
   return ret_val;
 }
 
