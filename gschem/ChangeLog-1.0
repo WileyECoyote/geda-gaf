@@ -5,6 +5,9 @@
     * src/iface/i_diagnostics.c: Relocate EID_PERFORMANCE enumeration from
       i_command.c.
 
+    * src/object/o_invalidate.c: Revise o_invalidate_rectangle to shift bloat
+      left instead of multiplying bloat by 2.
+
 2017-03-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/x_menus.h: Define strings IDS_MENU_TB_TIPS and IDS_MENU_VIEW_MENU.

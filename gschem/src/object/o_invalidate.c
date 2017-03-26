@@ -134,7 +134,7 @@ o_invalidate_rectangle (GschemToplevel *w_current,
 #endif
 
   /* Ensure we only invalidate GdkWindows - probably wasting time here */
-  if (GDK_IS_WINDOW( w_current->window )) {
+  if (GDK_IS_WINDOW(w_current->window)) {
 
     int grip_half_size;
     int cue_half_size;
@@ -149,10 +149,11 @@ o_invalidate_rectangle (GschemToplevel *w_current,
 
     rect.x = MIN(x1, x2) - bloat;
     rect.y = MIN(y1, y2) - bloat;
-    rect.width  = 1 + abs( x1 - x2 ) + 2 * bloat;
-    rect.height = 1 + abs( y1 - y2 ) + 2 * bloat;
 
-    gdk_window_invalidate_rect( w_current->window, &rect, FALSE );
+    rect.width  = 1 + abs( x1 - x2 ) + (bloat << 1);
+    rect.height = 1 + abs( y1 - y2 ) + (bloat << 1);
+
+    gdk_window_invalidate_rect (w_current->window, &rect, FALSE);
   }
 }
 
