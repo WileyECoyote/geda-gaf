@@ -1,5 +1,7 @@
 2017-03-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/gschem_diagnostics.h: Relocate test defines from i_command.c.
+
     * src/iface/i_diagnostics.c: Relocate EID_PERFORMANCE enumeration from
       i_command.c.
 

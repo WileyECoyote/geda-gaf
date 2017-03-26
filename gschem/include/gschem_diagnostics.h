@@ -32,6 +32,9 @@
 # include <sys/resource.h>
 # include "rusage/tlpi_hdr.h"
 
+#define NUMBER_REDRAW_TEST      100
+#define NUMBER_UNDO_TEST         15
+
 #ifndef DECLARE_RUSAGE_DATA
 #define DECLARE_RUSAGE_DATA \
   struct rusage before; \

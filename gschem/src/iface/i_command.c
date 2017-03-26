@@ -45,9 +45,6 @@
 
 #define LAST_ACTION cmd_do_show_about
 
-#define NUMBER_REDRAW_TEST      100
-#define NUMBER_UNDO_TEST         15
-
 #define USE_POSIX
 #define MAX_THREADS              12
 #define MAX_THREADS_UNUSED        2
