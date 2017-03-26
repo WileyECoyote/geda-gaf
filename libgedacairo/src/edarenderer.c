@@ -1767,22 +1767,26 @@ eda_renderer_get_text_user_bounds (EdaRenderer      *renderer,
           if (object->visibility != 1) {
 
             double offset = EDAR_TEXT_MARKER_SIZE + 5;
+            unsigned int alignment = object->text->alignment;
 
-            if ((object->text->alignment == LOWER_LEFT) ||
-                (object->text->alignment == LOWER_MIDDLE) ||
-                (object->text->alignment == LOWER_RIGHT))
+            if ((alignment == LOWER_LEFT) ||
+                (alignment == LOWER_MIDDLE) ||
+                (alignment == LOWER_RIGHT))
             {
               *bottom = *bottom - offset;
             }
 
             /* someday, MIDDLE_MIDDLE UPPER_MIDDLE MIDDLE_LEFT UPPER_LEFT */
-            if ((object->text->alignment == UPPER_RIGHT) ||
-                (object->text->alignment == MIDDLE_RIGHT) ||
-                (object->text->alignment == LOWER_RIGHT))
+            if ((alignment == UPPER_RIGHT) ||
+                (alignment == MIDDLE_RIGHT) ||
+                (alignment == LOWER_RIGHT))
             {
-              int    size       = object->text->size;
-              double adjustment = 1.5 * size  + (2 * offset / 3);
-              *right = *right + adjustment;
+              int    size;
+              double adjustment;
+
+              size       = object->text->size;
+              adjustment = 1.5 * size  + (2 * offset / 3);
+              *right     = *right + adjustment;
             }
           }
           ret_val = TRUE;

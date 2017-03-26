@@ -1,3 +1,8 @@
+2017-03-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edarenderer.c: Revise eda_renderer_get_text_user_bounds to use a
+      local variable for alignment instead of object->text->alignment.
+
 2017-01-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/edarenderer.c: Change pango version in preprocesor conditional to
