@@ -171,8 +171,6 @@ o_invalidate_all (GschemToplevel *w_current)
   if (w_current && GDK_IS_WINDOW(w_current->window)) {
     gdk_window_invalidate_rect (w_current->window, NULL, FALSE);
   }
-  else
-    BUG_MSG("w_current->window no bueno")
 }
 
 /*!

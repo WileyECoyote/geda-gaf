@@ -6,7 +6,7 @@
       i_command.c.
 
     * src/object/o_invalidate.c: Revise o_invalidate_rectangle to shift bloat
-      left instead of multiplying bloat by 2.
+      left instead of multiplying bloat by 2. Remove BUG_MSG in o_invalidate_all.
 
 2017-03-25 Wiley E. Hill <wileyhill@gmail.com>
 
