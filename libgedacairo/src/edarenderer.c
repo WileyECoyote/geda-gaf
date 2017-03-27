@@ -538,19 +538,18 @@ eda_renderer_default_draw (EdaRenderer *renderer, GedaObject *object)
     if (!eda_renderer_is_drawable (renderer, object)) return;
 
     switch (object->type) {
-      case OBJ_LINE:        draw_func = eda_renderer_draw_line; break;
-      case OBJ_NET:         draw_func = eda_renderer_draw_net; break;
-      case OBJ_BUS:         draw_func = eda_renderer_draw_bus; break;
-      case OBJ_PIN:         draw_func = eda_renderer_draw_pin; break;
-      case OBJ_BOX:         draw_func = eda_renderer_draw_box; break;
-      case OBJ_ARC:         draw_func = eda_renderer_draw_arc; break;
-      case OBJ_CIRCLE:      draw_func = eda_renderer_draw_circle; break;
-      case OBJ_PATH:        draw_func = eda_renderer_draw_path; break;
       case OBJ_TEXT:        draw_func = eda_renderer_draw_text; break;
-      case OBJ_PICTURE:     draw_func = eda_renderer_draw_picture; break;
-
       case OBJ_COMPLEX:
       case OBJ_PLACEHOLDER: draw_func = eda_renderer_draw_complex; break;
+      case OBJ_PIN:         draw_func = eda_renderer_draw_pin; break;
+      case OBJ_NET:         draw_func = eda_renderer_draw_net; break;
+      case OBJ_BOX:         draw_func = eda_renderer_draw_box; break;
+      case OBJ_CIRCLE:      draw_func = eda_renderer_draw_circle; break;
+      case OBJ_LINE:        draw_func = eda_renderer_draw_line; break;
+      case OBJ_ARC:         draw_func = eda_renderer_draw_arc; break;
+      case OBJ_PATH:        draw_func = eda_renderer_draw_path; break;
+      case OBJ_BUS:         draw_func = eda_renderer_draw_bus; break;
+      case OBJ_PICTURE:     draw_func = eda_renderer_draw_picture; break;
 
       default:
         BUG_IMSG("unhandled case <%c>", object->type);
