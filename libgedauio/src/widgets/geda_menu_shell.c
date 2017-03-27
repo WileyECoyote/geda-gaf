@@ -1835,6 +1835,13 @@ geda_menu_shell_deselect (GedaMenuShell *menu_shell)
   }
 }
 
+const GList*
+geda_menu_shell_get_children (GedaMenuShell *menu_shell)
+{
+  g_return_val_if_fail (GEDA_IS_MENU_SHELL (menu_shell), NULL);
+  return menu_shell->children;
+}
+
 bool
 geda_menu_shell_get_keyboard_mode (GedaMenuShell *menu_shell)
 {

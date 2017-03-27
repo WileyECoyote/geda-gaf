@@ -121,6 +121,8 @@ void       geda_menu_shell_cancel            (GedaMenuShell *menu_shell);
 void       geda_menu_shell_deactivate        (GedaMenuShell *menu_shell);
 
 void       geda_menu_shell_deselect          (GedaMenuShell *menu_shell);
+const
+GList     *geda_menu_shell_get_children      (GedaMenuShell *menu_shell);
 
 bool       geda_menu_shell_get_keyboard_mode (GedaMenuShell *menu_shell);
 
@@ -137,7 +139,6 @@ void       geda_menu_shell_insert            (GedaMenuShell *menu_shell,
                                               int            position);
 
 void       geda_menu_shell_prepend           (GedaMenuShell *menu_shell,
-
                                               GtkWidget     *child);
 
 void       geda_menu_shell_remove_mnemonic   (GedaMenuShell *menu_shell,
