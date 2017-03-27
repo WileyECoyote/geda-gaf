@@ -1,3 +1,8 @@
+2017-03-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edarenderer.c: Revise eda_renderer_get_text_user_bounds to bypass
+      pango_layout_get_size and use pango_layout_get_extents directly.
+
 2017-03-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/edarenderer.c: Revise eda_renderer_get_text_user_bounds to use a

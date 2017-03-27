@@ -384,12 +384,14 @@ eda_pango_renderer_show_layout (EdaPangoRenderer *renderer, PangoLayout *pl)
   g_return_if_fail (EDA_IS_PANGO_RENDERER (renderer));
   g_return_if_fail (PANGO_IS_LAYOUT (pl));
 
+  PangoRectangle logical_rect;
   int width;
   int height;
 
-  pango_layout_get_size (pl, &width, &height);
-  width  = width / PANGO_SCALE;
-  height = height / PANGO_SCALE;
+  pango_layout_get_extents (pl, NULL, &logical_rect);
+
+  width  = logical_rect.width / PANGO_SCALE;
+  height = logical_rect.height / PANGO_SCALE;
 
   pango_renderer_draw_layout (PANGO_RENDERER (renderer), pl, width, height);
 }
