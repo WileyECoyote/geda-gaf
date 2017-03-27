@@ -5,6 +5,9 @@
       declare eda_renderer_calc_text_position and eda_renderer_prepare_text
       inline.
 
+    * src/edapangorenderer.c: Remove superfluous g_return_if_fail in
+      eda_pango_renderer_show_layout.
+
 2017-01-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/edarenderer.c: Change pango version in preprocesor conditional to
