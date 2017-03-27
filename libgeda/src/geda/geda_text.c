@@ -68,11 +68,8 @@ static GObjectClass *geda_text_parent_class = NULL;
 static int
 geda_text_bounds(GedaObject *o_current)
 {
-  g_return_val_if_fail(GEDA_IS_TEXT(o_current), FALSE);
-
-  GedaToplevel *toplevel;
-  GedaText     *text;
-  Page         *page;
+  /* Static was assigned by geda_text_class_init */
+  GedaText *text = (GedaText*)o_current;
 
   int left   = 0;
   int top    = 0;
@@ -80,11 +77,8 @@ geda_text_bounds(GedaObject *o_current)
   int bottom = 0;
   int result = 0;
 
-  text = GEDA_TEXT(o_current);
-
   /* First check the text if Text object has a func */
   if (text->rendered_text_bounds_func != NULL) {
-
     result =
     text->rendered_text_bounds_func (o_current->text->rendered_text_bounds_data,
                                      o_current, &left, &top, &right, &bottom);
@@ -94,7 +88,7 @@ geda_text_bounds(GedaObject *o_current)
     /* Text object must be associated with page */
     if (GEDA_IS_PAGE(o_current->page)) {
 
-      page = o_current->page;
+      Page *page = o_current->page;
 
       /* Check if page level render func is set */
       if (page->rendered_text_bounds_func != NULL) {
@@ -112,7 +106,7 @@ geda_text_bounds(GedaObject *o_current)
 
         g_return_val_if_fail(GEDA_IS_TOPLEVEL(page->toplevel), FALSE);
 
-        toplevel = page->toplevel;
+        GedaToplevel *toplevel = page->toplevel;
 
         /* Check if toplevel render func is set */
         if (toplevel->rendered_text_bounds_func != NULL) {
@@ -135,6 +129,7 @@ geda_text_bounds(GedaObject *o_current)
     o_current->right  = right;
     o_current->bottom = bottom;
   }
+
   return result;
 }
 

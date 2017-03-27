@@ -1,6 +1,10 @@
 2017-03-27 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/geda/geda_text.c: Add accessor functions:
+    * src/geda/geda_text.c: Revise geda_text_bounds; eliminate validation
+      using g_return_val_if_fail since the static function is assigned by
+      geda_text_class_init and use direct cast instead of GEDA_TEXT macro,
+      Reduce scope of Page and GedaToplevel pointers, add basic accessor
+      functions:
 
           * geda_text_get_alignment
           * geda_text_get_angle
