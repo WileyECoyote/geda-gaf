@@ -1728,7 +1728,9 @@ eda_renderer_get_text_user_bounds (EdaRenderer      *renderer,
     /* Also, check that we actually need to display a string */
     if (object->text->disp_string != NULL) {
 
-      cairo_save (renderer->priv->cr);
+      cairo_t *cr = renderer->priv->cr;
+
+      cairo_save (cr);
 
       /* Set up the text and check it worked. */
       if (eda_renderer_prepare_text (renderer, object)) {
@@ -1748,13 +1750,13 @@ eda_renderer_get_text_user_bounds (EdaRenderer      *renderer,
 
           /* Does it does make sense to describe bounds in terms of 14
            * decimal places? Or even 2 decimal place? */
-          cairo_user_to_device (renderer->priv->cr, &dleft,  &dtop);
-          cairo_user_to_device (renderer->priv->cr, &dright, &dbottom);
+          cairo_user_to_device (cr, &dleft,  &dtop);
+          cairo_user_to_device (cr, &dright, &dbottom);
 
-          cairo_restore (renderer->priv->cr);
+          cairo_restore (cr);
 
-          cairo_device_to_user (renderer->priv->cr, &dleft,  &dtop);
-          cairo_device_to_user (renderer->priv->cr, &dright, &dbottom);
+          cairo_device_to_user (cr, &dleft,  &dtop);
+          cairo_device_to_user (cr, &dright, &dbottom);
 
           /* Gid rid of all the zeros Cairo just passed on the stack */
           *left   = lrint(dleft);

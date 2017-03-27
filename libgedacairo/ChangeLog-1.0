@@ -1,10 +1,14 @@
 2017-03-27 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/edarenderer.c: Revise eda_renderer_get_text_user_bounds to bypass
-      pango_layout_get_size and use pango_layout_get_extents directly and
-      revise switch cases in eda_renderer_default_draw so that the cases
-      for OBJ_TEXT is first and OBJ_COMPLEX is second, others as a guess;
-      may require further optimization requiring statistical analysis.
+    * src/edapangorenderer.c Revise eda_pango_renderer_show_layout to
+      bypass pango_layout_get_size and use pango_layout_get_extents
+      directly.
+
+    * src/edarenderer.c: Revise switch cases in eda_renderer_default_draw
+      so that the cases for OBJ_TEXT is first and OBJ_COMPLEX is second,
+      others are a guess; i.e. may require further optimization based on
+      statistical analysis. Add local cairo_t pointer in eda_renderer_get
+      _text_user_bounds and reference instead of passing renderer->priv->cr.
 
 2017-03-26 Wiley E. Hill <wileyhill@gmail.com>
 
