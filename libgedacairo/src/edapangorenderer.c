@@ -373,10 +373,14 @@ void eda_pango_renderer_update (EdaPangoRenderer *renderer, cairo_t *cr)
   g_object_set (G_OBJECT (renderer), "cairo-context", cr, NULL);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief Hierarchy Post Process
- *  \par Function Description
+/*!
+ * \brief Show the Pango Layout
+ * \par Function Description
+ *  Draws layout given by \a pl using the PangoRenderer pointed
+ *  to in the EdaPangoRenderer.
  *
+ *  \param [in] renderer EdaPangoRenderer object.
+ *  \param [in] pl       PangoLayout to be drawn.
  */
 void
 eda_pango_renderer_show_layout (EdaPangoRenderer *renderer, PangoLayout *pl)
@@ -388,8 +392,10 @@ eda_pango_renderer_show_layout (EdaPangoRenderer *renderer, PangoLayout *pl)
   int width;
   int height;
 
+  /* Get XY of the left baseline edge from layout coordinates */
   pango_layout_get_extents (pl, NULL, &logical_rect);
 
+  /* Convert USC to Pango units? */
   width  = logical_rect.width / PANGO_SCALE;
   height = logical_rect.height / PANGO_SCALE;
 

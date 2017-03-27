@@ -2,7 +2,7 @@
 
     * src/edapangorenderer.c Revise eda_pango_renderer_show_layout to
       bypass pango_layout_get_size and use pango_layout_get_extents
-      directly.
+      directly, update Doxygen block and add comments.
 
     * src/edarenderer.c: Revise switch cases in eda_renderer_default_draw
       so that the cases for OBJ_TEXT is first and OBJ_COMPLEX is second,
