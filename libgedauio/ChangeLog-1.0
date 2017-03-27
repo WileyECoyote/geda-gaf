@@ -1,3 +1,14 @@
+2017-03-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu.c: Call change_touchscreen_mode in function
+      geda_menu_style_set to force initialization of the touchscreen_mode
+      settings property.
+
+2017-03-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_shell.c: Add accessor geda_menu_shell_get_
+      children.
+
 2017-03-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_toolbar.c: Abandon useless GtkToolbar "tooltips"
