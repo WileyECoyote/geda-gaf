@@ -1,5 +1,8 @@
 2017-03-27 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_object.c: Revise geda_object_finalize to set the class
+      bounds pointer to NULL and the object type to 0;
+
     * src/geda/geda_text.c: Revise geda_text_bounds; eliminate validation
       using g_return_val_if_fail since the static function is assigned by
       geda_text_class_init and use direct cast instead of GEDA_TEXT macro,
