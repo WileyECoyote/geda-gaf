@@ -190,10 +190,10 @@ geda_text_dispose(GObject *object)
  */
 static void geda_text_finalize(GObject *object)
 {
-  GedaObject *obj  = GEDA_OBJECT(object);
+  GedaObject *obj = GEDA_OBJECT(object);
 
   /* The object is no longer a GedaText */
-  obj->text    = NULL;
+  obj->text = NULL;
 
   /* Finialize the parent GedaObject Class */
   GEDA_OBJECT_CLASS(geda_text_parent_class)->finalize(object);
@@ -290,4 +290,105 @@ bool is_a_geda_text (const GedaText *txt)
 {
   return GEDA_IS_OBJECT(txt) && (((GedaObject*)txt)->type == OBJ_TEXT);
 }
+
+/*!
+ * \brief Retrieve GedaText Alignment Property
+ * \par Function Description
+ *  Returns the value of \a txt alignment if and only if \a txt is
+ *  a valid GedaText object.
+ *
+ * \return integer value of text alignment or LOWER_LEFT if \a txt is invalid.
+ */
+int
+geda_text_get_alignment (const GedaText *txt)
+{
+  return is_a_geda_text(txt) ? txt->alignment : LOWER_LEFT;
+}
+
+/*!
+ * \brief Retrieve GedaText Angle Property
+ * \par Function Description
+ *  Returns the value of \a txt angle if and only if \a txt is
+ *  a valid GedaText object.
+ *
+ * \return integer value of text angle or -0 if \a txt is invalid.
+ */
+int
+geda_text_get_angle (const GedaText *txt)
+{
+  return is_a_geda_text(txt) ? txt->angle : -0;
+}
+
+/*!
+ * \brief Retrieve the GedaText Display String Property
+ * \par Function Description
+ *  Returns the value of \a txt string to be displayed if and only
+ *  if \a txt is a valid GedaText object. The returned string is
+ *  owned by the object and should not be freed.
+ *
+ * \return string or the NULL if \a txt is invalid.
+ */
+const char*
+geda_text_get_disp_string (const GedaText *txt)
+{
+  return is_a_geda_text(txt) ? txt->disp_string : NULL;
+}
+
+/*!
+ * \brief Retrieve GedaText Size Property
+ * \par Function Description
+ *  Returns the value of \a txt size if and only if \a txt is
+ *  a valid GedaText object.
+ *
+ * \return integer value of text size or the default size if \a txt is invalid.
+ */
+int
+geda_text_get_size (const GedaText *txt)
+{
+  return is_a_geda_text(txt) ? txt->size : DEFAULT_TEXT_SIZE;
+}
+
+/*!
+ * \brief Retrieve the GedaText String Property
+ * \par Function Description
+ *  Returns the value of \a txt string if and only if \a txt is
+ *  a valid GedaText object. The returned string is owned by the
+ *  object and should not be freed.
+ *
+ * \return string or the NULL if \a txt is invalid.
+ */
+const char*
+geda_text_get_string (const GedaText *txt)
+{
+  return is_a_geda_text(txt) ? txt->string : NULL;
+}
+
+/*!
+ * \brief Retrieve the GedaText X Coordinate
+ * \par Function Description
+ *  Returns the current X coordinate value of \a txt if and only
+ *  if \a txt is a valid GedaText object.
+ *
+ * \return integer value of X or -0 if \a txt is invalid.
+ */
+int
+geda_text_get_x (const GedaText *txt)
+{
+  return is_a_geda_text(txt) ? txt->x : -0;
+}
+
+/*!
+ * \brief Retrieve the GedaText Y Coordinate
+ * \par Function Description
+ *  Returns the current Y coordinate value of \a txt if and only
+ *  if \a txt is a valid GedaText object.
+ *
+ * \return integer value of Y or -0 if \a txt is invalid.
+ */
+int
+geda_text_get_y (const GedaText *txt)
+{
+  return is_a_geda_text(txt) ? txt->y : -0;
+}
+
 /** @} endgroup geda-text-object */

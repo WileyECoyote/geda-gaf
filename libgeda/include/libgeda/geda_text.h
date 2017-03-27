@@ -89,6 +89,14 @@ bool         is_a_geda_text            (const GedaText *text);
 
 GedaObject  *geda_text_new             (void);
 
+int          geda_text_get_alignment      (const GedaText *text) WARN_UNUSED;
+int          geda_text_get_angle          (const GedaText *text) WARN_UNUSED;
+const char  *geda_text_get_disp_string    (const GedaText *text);
+int          geda_text_get_size           (const GedaText *text) WARN_UNUSED;
+const char  *geda_text_get_string         (const GedaText *text);
+int          geda_text_get_x              (const GedaText *text) WARN_UNUSED;
+int          geda_text_get_y              (const GedaText *text) WARN_UNUSED;
+
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
