@@ -3,6 +3,9 @@
     * src/object/o_place.c: Utilize geda_page_get_place_list in o_place_motion
       and remove Current_PlaceList.
 
+    * tests/sort/multiline1.sch: Fix incorrect pointer location for middle-
+      middle.
+
 2017-03-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_diagnostics.h: Relocate test defines from i_command.c.
