@@ -224,12 +224,13 @@ void o_place_motion (GschemToplevel *w_current, int w_x, int w_y)
  */
 void o_place_invalidate_rubber (GschemToplevel *w_current, int drawing)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
+  GedaToplevel *toplevel   = w_current->toplevel;
+  GList        *place_list = geda_page_get_place_list(toplevel->page_current);
 
   int left,     top,   bottom,   right;
   int s_left, s_top, s_bottom, s_right;
 
-  if (toplevel->page_current->place_list != NULL) {
+  if (place_list != NULL) {
 
     int diff_x, diff_y;
 
@@ -265,7 +266,7 @@ void o_place_invalidate_rubber (GschemToplevel *w_current, int drawing)
     }
 
     /* Get bounds of the drawing to be done */
-    if (geda_object_get_bounds_list (Current_PlaceList, &left, &top, &right, &bottom))
+    if (geda_object_get_bounds_list (place_list, &left, &top, &right, &bottom))
     {
       WORLDtoSCREEN (w_current, left  + diff_x, top    + diff_y, &s_left, &s_top);
       WORLDtoSCREEN (w_current, right + diff_x, bottom + diff_y, &s_right, &s_bottom);
@@ -278,20 +279,20 @@ void o_place_invalidate_rubber (GschemToplevel *w_current, int drawing)
 
 #if DEBUG
 
-      if (toplevel->page_current->place_list != NULL) {
+      if (place_list != NULL) {
         GList *iter;
-        int len = g_list_length(Current_PlaceList);
-        fprintf(stderr, "Current_PlaceList=%p contains <%d> objects",Current_PlaceList, len);
+        int len = g_list_length(place_list);
+        fprintf(stderr, "place_list=%p contains <%d> objects", place_list, len);
 
         if (len > 0) {
-          for (iter = Current_PlaceList; iter != NULL; NEXT(iter)) {
+          for (iter = place_list; iter != NULL; NEXT(iter)) {
             GedaObject *o_current = iter->data;  /* Get pointer to object */
             geda_utility_print_object(o_current);
           }
         }
       }
       else {
-        BUG_MSG("page_current->place_list is NULL");
+        BUG_MSG("place list is NULL");
       }
 
 #endif
