@@ -431,7 +431,7 @@ static void x_dialog_edit_properties_ok(GtkWidget     *dialog,
             geda_struct_object_release (obj);
           }
 
-          /* Replace old Object with newGedaObject */
+          /* Replace old Object with new Object */
           geda_struct_page_replace_object (p_current, o_current, o_new);
 
           geda_struct_object_release (o_current);
@@ -445,7 +445,7 @@ static void x_dialog_edit_properties_ok(GtkWidget     *dialog,
             geda_text_object_recreate(attrib);
           }
 
-          /* Select newGedaObject */
+          /* Select the new Object */
           geda_object_selection_add (Current_Selection, o_new);
 
           changed = TRUE;
@@ -709,7 +709,7 @@ static void x_dialog_ep_component_change(GschemToplevel *w_current,
 
   if (geda_find_attrib_by_name (all_butes, "graphical", 0)) {
 
-    /* Then this is a Graphical object */
+    /* Then this is a graphical object */
     if (GetToggleState(properties->electrical_cb)) {
       SetToggleState(properties->electrical_cb, FALSE);
     }
@@ -726,7 +726,7 @@ static void x_dialog_ep_component_change(GschemToplevel *w_current,
     SetSpinValue(properties->slots_spin, 0);
     SetSpinValue(properties->pins_spin, 0);
   }
-  else { /* This is a Non-Graphical object */
+  else { /* This is a non-graphical object */
 
     int        pin_count;
 
@@ -811,6 +811,7 @@ static void x_dialog_ep_no_selection(GschemToplevel *w_current,
   SetToggleState(properties->electrical_cb, FALSE);
 
 }
+
 /*! \brief Component Properties Dialog Check-box Callback
  *   Enable or disabled sensitivities of widgets within the electrical
  *   frame depending on the state of the check-box.
@@ -838,6 +839,7 @@ static void x_dialog_ep_set_sensitive (property_data *properties, bool state)
   gtk_container_foreach (GTK_CONTAINER (properties->elect_table),
                          set_sensitive, NULL);
 }
+
 /*! \brief Handle selection change event for x_dialog_edit_properties
  *  \par Function Description
  *  Called when the selection changes. The functions calls
@@ -1318,7 +1320,7 @@ GtkWidget* x_dialog_edit_properties_constructor (GschemToplevel *w_current)
   gtk_table_set_col_spacings(GTK_TABLE(table), DIALOG_H_SPACING);
   gtk_container_add (GTK_CONTAINER (alignment), table);
 
-  /* Save a reference tothe table*/
+  /* Save a reference to the table */
   properties->elect_table = table;
 
   /* Row 1 Col 1 = Reference Designator */
