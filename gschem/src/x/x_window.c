@@ -1433,7 +1433,7 @@ x_window_update_title(GschemToplevel *w_current)
 
 /* --------------------- Main Window Toolbar Processors -------------------- */
 /*!
- * \brief View toogle Add toolbar
+ * \brief View toggle Add toolbar
  * \par Function Description
  *  This function toggles the visibility of the Add toobar.
  *  Note the function actually toggle visibility of the handlebox
@@ -1449,7 +1449,7 @@ x_window_add_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 }
 
 /*!
- * \brief View toogle Attribute toolbar
+ * \brief View toggle Attribute toolbar
  * \par Function Description
  *  This function toggles the visibility of the Attribute toobar.
  *  Note: the function actually toggles visibility of the handlebox
@@ -1465,7 +1465,7 @@ x_window_attribute_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 }
 
 /*!
- * \brief View toogle Grid/Snap toolbar
+ * \brief View toggle Grid/Snap toolbar
  * \par Function Description
  * This function toggles the visibility of the Grid/Snap toobar.
  * Note: the function actually toggles visibility of the handlebox
@@ -1481,7 +1481,7 @@ x_window_gridsnap_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 }
 
 /*!
- * \brief View toogle Edit toolbar
+ * \brief View toggle Edit toolbar
  * \par Function Description
  * This function toggles the visibility of the Edit toobar.
  * Note the function actually toggle visibility of the handlebox
@@ -1497,7 +1497,7 @@ x_window_edit_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 }
 
 /*!
- * \brief View toogle Page toolbar
+ * \brief View toggle Page toolbar
  * \par Function Description
  * This function toggles the visibility of the Page toobar.
  * Note the function actually toggle visibility of the handlebox
@@ -1513,7 +1513,7 @@ x_window_page_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 }
 
 /*!
- * \brief View toogle standard toolbar
+ * \brief View toggle standard toolbar
  * \par Function Description
  * This function toggles the visibility of the Standard toobar.
  * Note the function actually toggle visibility of the handlebox
@@ -1529,7 +1529,7 @@ x_window_standard_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 }
 
 /*!
- * \brief View toogle selection toolbar
+ * \brief View toggle selection toolbar
  * \par Function Description
  * This function toggles the visibility of the Select toobar.
  * Note the function actually toggle visibility of the handlebox
@@ -1561,7 +1561,7 @@ x_window_symbol_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 }
 
 /*!
- * \brief View toogle Zoom toolbar
+ * \brief View toggle Zoom toolbar
  * \par Function Description
  * This function toggles the visibility of the Zoom toobar.
  * Note the function actually toggle visibility of the handlebox
