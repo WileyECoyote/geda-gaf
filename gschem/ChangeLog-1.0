@@ -1,5 +1,8 @@
 2017-03-28 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_invalidate.c: Shift grip_size instead of dividing by 2 in
+      o_invalidate_rectangle.
+
     * src/object/o_place.c: Utilize geda_page_get_place_list in o_place_motion
       and remove Current_PlaceList.
 
