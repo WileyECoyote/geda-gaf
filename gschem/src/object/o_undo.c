@@ -250,8 +250,9 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
       /* This is where the net consolidation call would have been
        * triggered before it was removed from geda_object_save_buffer().
        */
-      if (toplevel->net_consolidate == TRUE)
+      if (toplevel->net_consolidate == TRUE) {
         geda_net_object_consolidate (toplevel, p_current);
+      }
     }
 
     if (w_current->undo_type == UNDO_DISK && flag == UNDO_ALL) {

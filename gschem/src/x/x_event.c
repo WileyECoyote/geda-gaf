@@ -644,13 +644,15 @@ static bool x_event_raise_dialogs(void *user_data)
   if (w_current->raise_dialog_boxes) {
     x_dialog_raise_all(w_current);
   }
+
   return (w_current->raise_dialog_boxes != 0);
 }
 
 void x_event_governor(GschemToplevel *w_current)
 {
-  if (w_current->raise_dialog_boxes > 0)
-  g_timeout_add (w_current->raise_dialog_boxes, x_event_raise_dialogs, w_current);
+  if (w_current->raise_dialog_boxes > 0) {
+    g_timeout_add (w_current->raise_dialog_boxes, x_event_raise_dialogs, w_current);
+  }
 }
 
 /*! \brief Get a snapped pointer position in world coordinates
