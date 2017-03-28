@@ -68,6 +68,28 @@ UNDO *geda_struct_undo_add (UNDO *head, int type, char *filename, GList *object_
 }
 
 /*!
+ * \brief Real Release List of Objects
+ * \par Function Description
+ *  Releasing all objects in \a object_list.
+ */
+void geda_struct_undo_release_list(GList *object_list)
+{
+  GList *ptr = g_list_last(object_list);
+
+  /* Do the delete backwards */
+  while (ptr != NULL) {
+
+    GedaObject *o_current = GEDA_OBJECT(ptr->data);
+
+    geda_object_unref(o_current);
+
+    ptr = g_list_previous (ptr);
+  }
+
+  g_list_free(object_list);
+}
+
+/*!
  * \brief Creates and Returns a New Disk Type Undo record
  * \par Function Description
  *  Allocates an Undo structure and poplates values with data
@@ -202,7 +224,7 @@ void geda_struct_undo_destroy_all(UNDO *head)
     GEDA_FREE(u_current->filename);
 
     if (u_current->object_list) {
-      geda_struct_object_release_objects (u_current->object_list);
+      geda_struct_undo_release_list(u_current->object_list);
       u_current->object_list = NULL;
     }
 
@@ -341,7 +363,7 @@ void geda_struct_undo_remove(UNDO *head, UNDO *u_tos)
       GEDA_FREE(u_current->filename);
 
       if (u_current->object_list) {
-        geda_struct_object_release_objects (u_current->object_list);
+        geda_struct_undo_release_list (u_current->object_list);
         u_current->object_list = NULL;
       }
 
@@ -375,7 +397,7 @@ void geda_struct_undo_remove_rest(UNDO *head)
     }
 
     if (u_current->object_list) {
-      geda_struct_object_release_objects (u_current->object_list);
+      geda_struct_undo_release_list(u_current->object_list);
       u_current->object_list = NULL;
     }
 

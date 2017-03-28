@@ -5,6 +5,11 @@
       does not ccopy this property and color property is not changed because
       object are selected.
 
+    * src/struct/s_undo.c: Add function geda_struct_undo_release_list and
+      utilize to release objects instead of using geda_struct_object_release_
+      objects so that object in undo buffers are not invalidated in gschem
+      when the buffers are destroyed.
+
 2017-03-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_object.c: Revise geda_object_finalize to set the class
