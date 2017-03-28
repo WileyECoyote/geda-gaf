@@ -1,3 +1,10 @@
+2017-03-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_list.c: Revise geda_object_list_copy_all to not bother
+      messy with save and restoring the "selected" property; geda_object_copy
+      does not ccopy this property and color property is not changed because
+      object are selected.
+
 2017-03-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_object.c: Revise geda_object_finalize to set the class

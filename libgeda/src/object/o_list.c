@@ -62,18 +62,7 @@ geda_object_list_copy_all (const GList *src_list, GList *dest_list)
 
     if (GEDA_IS_OBJECT(src_object) && (src_object->type != OBJ_TEXT)) {
 
-      if (src_object->selected) {
-
-        /* Unselect the object before the copy */
-        geda_object_selection_unselect (src_object);
-
-        dst_object = geda_object_copy (src_object);
-
-        geda_object_selection_select (src_object);
-      }
-      else {
-        dst_object = geda_object_copy (src_object);
-      }
+      dst_object = geda_object_copy (src_object);
 
       dest = g_list_prepend (dest, dst_object);
     }
@@ -89,18 +78,7 @@ geda_object_list_copy_all (const GList *src_list, GList *dest_list)
 
     if (GEDA_IS_OBJECT(src_object) && (src_object->type == OBJ_TEXT)) {
 
-      if (src_object->selected) {
-
-        /* unselect the object before the copy */
-        geda_object_selection_unselect (src_object);
-
-        dst_object = geda_object_copy (src_object);
-
-        geda_object_selection_select (src_object);
-      }
-      else {
-        dst_object = geda_object_copy (src_object);
-      }
+      dst_object = geda_object_copy (src_object);
 
       dest = g_list_prepend (dest, dst_object);
 
