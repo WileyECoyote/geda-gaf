@@ -125,7 +125,7 @@ static void eda_renderer_update_contexts (EdaRenderer *renderer, cairo_t *new_cr
                                           PangoContext *new_pc);
 
 static void eda_renderer_set_color    (EdaRenderer *renderer, int color);
-static int  eda_renderer_is_drawable_color (EdaRenderer *renderer, int color, int use_override);
+static int  eda_renderer_is_colorable (EdaRenderer *renderer, int color);
 static int  eda_renderer_is_drawable  (EdaRenderer *renderer, GedaObject *object);
 static int  eda_renderer_draw_hatch   (EdaRenderer *renderer, GedaObject *object);
 
@@ -590,17 +590,16 @@ eda_renderer_set_color (EdaRenderer *renderer, int color)
 }
 
 static int
-eda_renderer_is_drawable_color (EdaRenderer *renderer, int color,
-                                                       int use_override)
+eda_renderer_is_colorable (EdaRenderer *renderer, int color)
 {
   GArray *map = renderer->priv->color_map;
 
   /* Check for override color */
-  if ((renderer->priv->override_color >= 0) && use_override) {
+  if (renderer->priv->override_color >= 0) {
     color = renderer->priv->override_color;
   }
 
-  /* If color index out of color map bounds, don't draw */
+  /* Do not draw if color index out of bounds of the color map */
   g_return_val_if_fail ((map != NULL), FALSE);
   g_return_val_if_fail ((color >= 0) || (color < map->len), FALSE);
 
@@ -616,7 +615,7 @@ eda_renderer_is_drawable (EdaRenderer *renderer, GedaObject *object)
   if ((object->type == OBJ_COMPLEX) || (object->type == OBJ_PLACEHOLDER)) {
     return TRUE;
   }
-  return eda_renderer_is_drawable_color (renderer, color, TRUE);
+  return eda_renderer_is_colorable (renderer, color);
 }
 
 static int
@@ -1500,11 +1499,7 @@ static void
 eda_renderer_draw_junction_cue (EdaRenderer *renderer, int x, int y, double width)
 {
   double radius = width / 2.0;
-/*
-  if (!eda_renderer_is_drawable_color (renderer, EDAR_JUNCTION_COLOR, 1)) {
-    return;
-  }
-*/
+
   eda_cairo_center_arc (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                         width, -1, x, y, radius, 0, 360);
 
