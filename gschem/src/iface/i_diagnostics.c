@@ -38,7 +38,6 @@
  *  by typing "debug" in the command console.
  */
 typedef enum { CLOSE_PERFORMANCE, /* = 0, means not compiled in */
-               TOGGLE_RUSAGE_DATA,
                RUN_REDRAW_TESTS,
                RUN_THREAD_TESTS,
                RUN_UNDO_TESTS,
@@ -96,6 +95,13 @@ o_diagnostics_notify_attribute (GschemToplevel *w_current, GedaObject *object)
 }
 */
 static float test_draw_time(GschemToplevel *w_current, int attempts)
+
+static void
+i_diagnostics_toggle_rusage(GschemToplevel *w_current)
+{
+  performance_diagnostics = performance_diagnostics ? FALSE : TRUE;
+  printf ("toggled performance_diagnostics: state=<%d>\n", performance_diagnostics);
+}
 {
 
   GdkDisplay   *display;
@@ -231,7 +237,6 @@ int gschem_diagnostics_dialog (GschemToplevel *w_current)
   dialog =  gtk_dialog_new_with_buttons ("GSCHEM Internal Diagnostics",
                                          (GtkWindow*) w_current->main_window,
                                          GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-                                         "Toggle rusage", TOGGLE_RUSAGE_DATA,
                                          "Redraw Tests", RUN_REDRAW_TESTS,
                                          "Undo Tests", RUN_UNDO_TESTS,
                                          GTK_STOCK_CLOSE,  CLOSE_PERFORMANCE,
@@ -387,16 +392,20 @@ int gschem_diagnostics_dialog (GschemToplevel *w_current)
   gtk_table_set_col_spacings(GTK_TABLE(table), DIALOG_H_SPACING);
   gtk_container_add (GTK_CONTAINER (alignment), table);
 
+  widget = gtk_button_new_with_label ("Toggle rusage");
+  gtk_table_attach(GTK_TABLE(table), widget, 1,2,2,3, GTK_FILL,0,0,0);
+  g_signal_connect(widget, "clicked", G_CALLBACK(i_diagnostics_toggle_rusage), w_current);
+
   widget = gtk_button_new_with_label ("Print Page Info");
-  gtk_table_attach(GTK_TABLE(table), widget, 0,1,0,1, GTK_FILL,0,0,0);
+  gtk_table_attach(GTK_TABLE(table), widget, 2,3,0,1, GTK_FILL,0,0,0);
   g_signal_connect(widget, "clicked", G_CALLBACK(print_page_info), w_current);
 
   widget = gtk_button_new_with_label ("Add Notify Funcs");
-  gtk_table_attach(GTK_TABLE(table), widget, 0,1,1,2, GTK_FILL,0,0,0);
+  gtk_table_attach(GTK_TABLE(table), widget, 2,3,1,2, GTK_FILL,0,0,0);
   g_signal_connect(widget, "clicked", G_CALLBACK(add_page_object_notifiers), w_current);
 
   widget = gtk_button_new_with_label ("Remove Notify Funcs");
-  gtk_table_attach(GTK_TABLE(table), widget, 0,1,2,3, GTK_FILL,0,0,0);
+  gtk_table_attach(GTK_TABLE(table), widget, 2,3,2,3, GTK_FILL,0,0,0);
   g_signal_connect(widget, "clicked", G_CALLBACK(remove_page_object_notifiers), w_current);
 
   gtk_widget_show_all (dialog);

@@ -550,7 +550,7 @@ COMMAND (do_debug)
   const char *msg;
   const char *normal   = "exiting performance diagnostic, resumming normal mode\n";
   const char *complete = "Test complete, resumming normal mode\n";
-  const char *linefeed = "\n";
+  //const char *linefeed = "\n";
 
   gtk_window_resize (GTK_WINDOW(w_current->main_window), 1092, 924);
 
@@ -573,10 +573,6 @@ COMMAND (do_debug)
       msg = normal;
       break;
 
-    case TOGGLE_RUSAGE_DATA:
-      performance_diagnostics = performance_diagnostics ? FALSE : TRUE;
-      printf ("toggled performance_diagnostics: state=<%d>", performance_diagnostics);
-      msg = linefeed;
       break;
 
     case RUN_REDRAW_TESTS:
@@ -603,7 +599,7 @@ COMMAND (do_debug)
         printf ("file=%s, has %d objects before testing\n", p_current->filename, count);
         printf ("undo system type: %s, ", (w_current->undo_type == UNDO_DISK) ? "DISK" : "MEMORY");
         printf ("undo capacity (levels): %d, undo pan-zoom setting: %d\n", w_current->undo_levels,
-                                                                           w_current->undo_panzoom);
+                w_current->undo_panzoom);
         printf ("Running Undo tests, 10 cycles x %d Undo per cycle\n", NUMBER_UNDO_TEST);
         for (cycle = 0; cycle < 10; cycle++) {
           test_undo_randomly_delete (w_current, NUMBER_UNDO_TEST);

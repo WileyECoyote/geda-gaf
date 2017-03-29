@@ -1,3 +1,12 @@
+2017-03-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_command.c: Remove case TOGGLE_RUSAGE_DATA from switch
+      in i_cmd_do_debug.
+
+    * src/iface/i_diagnostics.c: Add function i_diagnostics_toggle_rusage
+      and button in table so that rusage can be enable/disabled without
+      the dialog closing.
+
 2017-03-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_invalidate.c: Shift grip_size instead of dividing by 2 in
