@@ -373,7 +373,6 @@ geda_object_instance_init(GTypeInstance *instance, void *g_class)
 static void geda_object_finalize(GObject *gobject)
 {
   GedaObject *object = (GedaObject*)(gobject);
-  GedaObjectClass *class = GEDA_OBJECT_GET_CLASS(gobject);
 
   if (object->name) {
     GEDA_FREE(object->name);
@@ -400,9 +399,6 @@ static void geda_object_finalize(GObject *gobject)
       object_hash_table = NULL;
     }
   }
-
-  class->bounds = NULL;
-  object->type  = 0;
 
   G_OBJECT_CLASS(geda_object_parent_class)->finalize(gobject);
 
