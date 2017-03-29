@@ -529,7 +529,6 @@ eda_renderer_default_draw (EdaRenderer *renderer, GedaObject *object)
 {
   g_return_if_fail (object != NULL);
   g_return_if_fail (renderer->priv->cr != NULL);
-  g_return_if_fail (renderer->priv->pl != NULL);
 
   if (renderer->priv->color_map != NULL) {
 
@@ -835,6 +834,8 @@ eda_renderer_draw_text (EdaRenderer *renderer, GedaObject *object)
   cairo_t *cr = renderer->priv->cr;
   double dummy = 0;
   double marker_dist = EDAR_TEXT_MARKER_SIZE;
+
+  g_return_if_fail (renderer->priv->pl != NULL);
 
   void text_as_outline_box () {
 

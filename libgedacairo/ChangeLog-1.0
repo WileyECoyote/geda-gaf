@@ -1,8 +1,13 @@
-2017-03-28 Wiley E. Hill <wileyhill@gmail.com>
+2017-03-29 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/edarenderer.c: Remove third to eda_renderer_is_drawable_color,
-      use_override, which is always TRUE, applications are responsible
-      for setting the property to the desire value before calling library.
+    * src/edarenderer.c: Remove third argument to eda_renderer_is_drawable
+      _color, use_override, which is always TRUE, applications are responsible
+      for setting the property to the desired value before calling the library.
+      Move check for renderer->priv->pl down one level, to eda_renderer_draw_
+      text, so that the validation is only performed if requested to draw a
+      text object. The Pango layout is not required for drawing other object
+      types, and more importantly, it is inefficient to check for something
+      that is not going to be used.
 
 2017-03-27 Wiley E. Hill <wileyhill@gmail.com>
 
