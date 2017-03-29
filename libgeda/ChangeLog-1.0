@@ -1,3 +1,8 @@
+2017-03-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/struct/s_undo.c: Access _object_list directly in geda_struct
+      _undo_add_memory, the rest of the function does.
+
 2017-03-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_list.c: Revise geda_object_list_copy_all to not bother

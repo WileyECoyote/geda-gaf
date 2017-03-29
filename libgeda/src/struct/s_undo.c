@@ -176,7 +176,7 @@ UNDO *geda_struct_undo_add_memory (int type, Page *page)
 
   u_new->filename     = NULL;
 
-  u_new->object_list  = geda_copy_list (geda_struct_page_get_objects (page), NULL);
+  u_new->object_list  = geda_copy_list (page->_object_list, NULL);
 
   u_new->type         = type;
   u_new->modified     = page->CHANGED;
