@@ -76,7 +76,7 @@ static void object_added (Page *page, GedaObject *object)
 
 }
 
-/* Called just before removing an GedaObject from a Page. */
+/* Called just before removing an Object from a Page. */
 static void
 pre_object_removed (Page *page, GedaObject *object)
 {
