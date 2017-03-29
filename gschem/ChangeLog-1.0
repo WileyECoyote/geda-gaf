@@ -1,5 +1,10 @@
 2017-03-29 Wiley E. Hill <wileyhill@gmail.com>
 
+    * etc/system-gschemrc.scm: Add toolbar-tips keyword comments and
+      comment out  enabling so that toolbars-mode "retention" is active.
+
+    * etc/user-gschemrc.scm: Same as system-gschemrc.scm.
+
     * src/iface/i_command.c: Remove case TOGGLE_RUSAGE_DATA from switch
       in i_cmd_do_debug.
 

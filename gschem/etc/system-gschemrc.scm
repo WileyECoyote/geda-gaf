@@ -401,7 +401,7 @@
 ;       later   - NOT opened up when gschem starts
 ;                 (can be opened by Options/Show console Window)
 ;
-;(console-window "enabled")
+(console-window "enabled")
 ;(console-window "disabled")
 
 ; console-window-type string
@@ -1050,9 +1050,13 @@
 
 ; show-toolbar-tips string
 ;
-; Controls if tooltips are displayed for toolbars items.
+; Controls if tooltips are displayed for toolbars items. Tooltips on toolbars
+; is also controlled by the toolbars-mode "retention" but can be over-ridden
+; here by explicitly enabling or disabled. When over-ridden , the setting can
+; still be changed in the menu for the current session but will revert to the
+; choice here with each startup.
 ;
-(show-toolbar-tips "enabled")
+;(show-toolbar-tips "enabled")
 ;(show-toolbar-tips "disabled")
 
 ; untitled-name string
