@@ -94,7 +94,6 @@ o_diagnostics_notify_attribute (GschemToplevel *w_current, GedaObject *object)
     printf( "%s object is NULL\n", __func__);
 }
 */
-static float test_draw_time(GschemToplevel *w_current, int attempts)
 
 static void
 i_diagnostics_toggle_rusage(GschemToplevel *w_current)
@@ -104,6 +103,8 @@ i_diagnostics_toggle_rusage(GschemToplevel *w_current)
 }
 {
 
+static float i_diagnostics_test_draw_time(GschemToplevel *w_current, int attempts)
+{
   GdkDisplay   *display;
   struct rusage before;
   struct rusage after;

@@ -482,6 +482,7 @@ static inline void BlockThread (int index)
     }
   }
 }
+
 static inline char *tokenizer( int index, int *argc, char **argv[])
 {
   char *arg;
@@ -523,7 +524,9 @@ static inline char *tokenizer( int index, int *argc, char **argv[])
 #define HOT_ACTION(symbol) (((CMD_WHO(symbol)==ID_ORIGIN_KEYBOARD) || (CMD_WHO(symbol)==ID_ORIGIN_MOUSE)) && (CMD_Y(symbol) != 0))
 
 #ifdef PERFORMANCE
+
 #  include "i_diagnostics.c"
+
 #else
 int gschem_diagnostics_dialog (GschemToplevel *w_current)
 {
@@ -558,11 +561,11 @@ COMMAND (do_debug)
   p_current  = gschem_toplevel_get_current_page(w_current);
 
   i_zoom_world_extents (w_current, geda_struct_page_get_objects(p_current), I_PAN_REDRAW);
-/*
-  geda_attrib_append_changed_hook (p_current,
-                                         (AttribsChangedFunc) o_diagnostics_notify_attribute,
-                                          w_current);
-*/
+  /*
+   * geda_attrib_append_changed_hook (p_current,
+   *                                        (AttribsChangedFunc) o_diagnostics_notify_attribute,
+   *                                         w_current);
+   */
   int test = gschem_diagnostics_dialog(w_current);
 
   old_page_state = geda_page_get_changed(p_current);
@@ -578,7 +581,7 @@ COMMAND (do_debug)
     case RUN_REDRAW_TESTS:
       printf ("Running Redraw tests, 10 cycles x %d redraws per cycle\n", NUMBER_REDRAW_TEST);
       for (cycle = 0; cycle < 10; cycle++) {
-        cpu_time[cycle] = test_draw_time(w_current, NUMBER_REDRAW_TEST);
+        cpu_time[cycle] = i_diagnostics_test_draw_time(w_current, NUMBER_REDRAW_TEST);
         total = total + cpu_time[cycle];
       }
       average = total / 10;

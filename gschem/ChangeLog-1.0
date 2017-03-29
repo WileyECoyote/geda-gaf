@@ -5,7 +5,8 @@
 
     * src/iface/i_diagnostics.c: Add function i_diagnostics_toggle_rusage
       and button in table so that rusage can be enable/disabled without
-      the dialog closing.
+      the dialog closing, rename test_draw_time->i_diagnostics_test_draw_
+      time.
 
 2017-03-28 Wiley E. Hill <wileyhill@gmail.com>
 
