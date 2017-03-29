@@ -29,6 +29,7 @@
 
 #include <x_dialog.h>
 #include <geda_widgets.h>
+#include <valgrind/callgrind.h>
 
 /*! \brief Enumerated Performance Diagnostics Directives
  *  \par Description
@@ -38,6 +39,7 @@
  *  by typing "debug" in the command console.
  */
 typedef enum { CLOSE_PERFORMANCE, /* = 0, means not compiled in */
+               REDRAW_DUMP_GRIND,
                RUN_REDRAW_TESTS,
                RUN_THREAD_TESTS,
                RUN_UNDO_TESTS,
@@ -101,7 +103,30 @@ i_diagnostics_toggle_rusage(GschemToplevel *w_current)
   performance_diagnostics = performance_diagnostics ? FALSE : TRUE;
   printf ("toggled performance_diagnostics: state=<%d>\n", performance_diagnostics);
 }
+
+static void i_diagnostics_grind_dump_redraw(GschemToplevel *w_current)
 {
+  GdkWindow *window;
+
+  gtk_window_present (GTK_WINDOW(w_current->main_window));
+  gdk_display_flush(gdk_display_get_default());
+
+  window = geda_get_widget_window(w_current->main_window);
+  gdk_window_process_updates(window, TRUE);
+
+  gdk_window_process_updates(w_current->window, FALSE);
+
+  g_usleep (500);
+
+  CALLGRIND_START_INSTRUMENTATION;
+
+    gdk_window_invalidate_rect (w_current->window, NULL, FALSE);
+    gdk_window_process_updates(w_current->window, FALSE);
+
+  CALLGRIND_STOP_INSTRUMENTATION;
+
+  CALLGRIND_DUMP_STATS;
+}
 
 static float i_diagnostics_test_draw_time(GschemToplevel *w_current, int attempts)
 {
@@ -240,6 +265,7 @@ int gschem_diagnostics_dialog (GschemToplevel *w_current)
                                          GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
                                          "Redraw Tests", RUN_REDRAW_TESTS,
                                          "Undo Tests", RUN_UNDO_TESTS,
+                                         "Grind Redraw", REDRAW_DUMP_GRIND,
                                          GTK_STOCK_CLOSE,  CLOSE_PERFORMANCE,
                                          NULL);
 

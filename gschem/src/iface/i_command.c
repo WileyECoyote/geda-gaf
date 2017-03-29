@@ -576,6 +576,9 @@ COMMAND (do_debug)
       msg = normal;
       break;
 
+    case REDRAW_DUMP_GRIND:
+      i_diagnostics_grind_dump_redraw(w_current);
+      msg = "Redraw dump complete\n";
       break;
 
     case RUN_REDRAW_TESTS:
