@@ -253,7 +253,7 @@ geda_text_object_get_size (const GedaObject *object)
  * \brief Return font size of a text object in postscript points.
  * \par Function Description
  *  gEDA fonts are specified in a non-standard unit. This
- *  function applies an appopriate scaling to return the
+ *  function applies an appropriate scaling to return the
  *  font size in postscript points.
  *
  * \param [in] object  The text Object whos font size to return
