@@ -135,7 +135,7 @@ static void geda_line_finalize(GObject *object)
 
   /* Finialize the parent GedaObject Class */
   GEDA_OBJECT_CLASS(geda_line_parent_class)->finalize(object);
-  /* Possible return to line, net, or pin finalizer */
+  /* Possibly return to net or pin finalizer */
 }
 
 static void
@@ -414,10 +414,11 @@ GedaObjectType geda_line_get_type (void)
  */
 GedaObject *geda_line_new (void)
 {
-  GedaObject *line = g_object_new( GEDA_TYPE_LINE,
-                              "type", OBJ_LINE,
-                              "name", "line",
-                               NULL);
+  GedaObject *line = g_object_new (GEDA_TYPE_LINE,
+                                   "type", OBJ_LINE,
+                                   "name", "line",
+                                   NULL);
+
   return GEDA_OBJECT(line);
 }
 

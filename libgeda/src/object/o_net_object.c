@@ -197,7 +197,7 @@ geda_net_object_consolidate_segments (GedaObject *object)
   g_return_val_if_fail ((object != NULL), 0);
   g_return_val_if_fail ((object->type == OBJ_NET), 0);
 
-  /* It's meaningless to do anything here if the object isn't in a page. */
+  /* Is meaningless to do anything here if the object is not on a page. */
   page = geda_object_get_page (object);
 
   if (page == NULL) {
