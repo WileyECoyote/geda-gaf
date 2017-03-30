@@ -1,3 +1,8 @@
+2017-03-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edarenderer.c: Move validation of GedaObject from eda_renderer_
+      default_draw to eda_renderer_draw.
+
 2017-03-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/edarenderer.c: Remove third argument to eda_renderer_is_drawable

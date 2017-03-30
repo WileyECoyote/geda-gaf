@@ -521,13 +521,13 @@ void
 eda_renderer_draw (EdaRenderer *renderer, GedaObject *object)
 {
   g_return_if_fail (EDA_IS_RENDERER(renderer));
+  g_return_if_fail (object != NULL);
   EDA_RENDERER_GET_CLASS (renderer)->draw (renderer, object);
 }
 
 static void
 eda_renderer_default_draw (EdaRenderer *renderer, GedaObject *object)
 {
-  g_return_if_fail (object != NULL);
   g_return_if_fail (renderer->priv->cr != NULL);
 
   if (renderer->priv->color_map != NULL) {
