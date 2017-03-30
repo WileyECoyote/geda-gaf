@@ -3,6 +3,10 @@
     * src/object/o_net_object.cc: Access page directly in geda_net_object
       _consolidate_segments.
 
+    * src/struct/s_page.c: Simplify getter, remove unnecessary g_return_val_
+      if_fail.
+
+
 2017-03-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_undo.c: Access _object_list directly in geda_struct

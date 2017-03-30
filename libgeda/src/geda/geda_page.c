@@ -112,20 +112,20 @@ GedaObject *geda_page_get_object(Page *page, int sid)
 {
   const GList *iter;
 
-  g_return_val_if_fail(GEDA_IS_PAGE(page), NULL);
+  if (GEDA_IS_PAGE(page) {
 
-  iter = g_list_first(page->_object_list);
+    iter = g_list_first(page->_object_list);
 
-  while (iter != NULL) {
+    while (iter != NULL) {
 
-    GedaObject *object = (GedaObject *)iter->data;
+      GedaObject *object = (GedaObject *)iter->data;
 
-    if (object->sid == sid) {
-      return object;
+      if (object->sid == sid) {
+        return object;
+      }
+      NEXT(iter);
     }
-    NEXT(iter);
   }
-
   return NULL;
 }
 
@@ -499,8 +499,9 @@ void geda_page_weak_unref (Page *page, WeakNotifyFunc notify_func, void *user_da
  */
 void geda_page_add_weak_ptr (Page *page, void *weak_pointer_loc)
 {
-  g_return_if_fail (GEDA_IS_PAGE(page));
-  g_object_add_weak_pointer ((GObject*)page, weak_pointer_loc);
+  if (GEDA_IS_PAGE(page) {
+    g_object_add_weak_pointer ((GObject*)page, weak_pointer_loc);
+  }
 }
 
 /*! \brief Remove a weak pointer from an Page.
@@ -561,19 +562,17 @@ void geda_page_set_toplevel (Page *page, GedaToplevel *toplevel)
 {
   g_return_if_fail (GEDA_IS_PAGE(page));
   g_return_if_fail (GEDA_IS_TOPLEVEL(toplevel));
-  page->toplevel =  g_object_ref (toplevel);
+  page->toplevel = g_object_ref (toplevel);
 }
 
 GedaToplevel *geda_page_get_toplevel (Page *page)
 {
-  g_return_val_if_fail (GEDA_IS_PAGE(page), NULL);
-  return page->toplevel;
+  return GEDA_IS_PAGE(page) ? page->toplevel : NULL;
 }
 
 int geda_page_get_changed (Page *page)
 {
-  g_return_val_if_fail (GEDA_IS_PAGE(page), -1);
-  return page->CHANGED;
+  return GEDA_IS_PAGE(page) ? page->CHANGED : -1;
 }
 
 void geda_page_set_changed (Page *page, int changed)
@@ -585,14 +584,12 @@ void geda_page_set_changed (Page *page, int changed)
 
 const char *geda_page_get_filename (Page *page)
 {
-  g_return_val_if_fail (GEDA_IS_PAGE(page), NULL);
-  return page->filename;
+  return GEDA_IS_PAGE(page) ? page->filename : NULL;
 }
 
 char *geda_page_get_filename_dup (Page *page)
 {
-  g_return_val_if_fail (GEDA_IS_PAGE(page), NULL);
-  return geda_strdup(page->filename);
+  return GEDA_IS_PAGE(page) ? geda_strdup(page->filename) : NULL;
 }
 
 void geda_page_set_filename (Page *page, const char *filename)
@@ -607,16 +604,12 @@ void geda_page_set_filename (Page *page, const char *filename)
 
 int geda_page_get_pid (Page *page)
 {
-  if (GEDA_IS_PAGE(page)) {
-    return page->pid;
-  }
-  return -1;
+  return GEDA_IS_PAGE(page) ?  page->pid : -1;
 }
 
 GList *geda_page_get_place_list (Page *page)
 {
-  g_return_val_if_fail (GEDA_IS_PAGE(page), NULL);
-  return page->place_list;
+  return GEDA_IS_PAGE(page) ? page->place_list : NULL;
 }
 
 void geda_page_set_place_list (Page *page, GList *object_list)
