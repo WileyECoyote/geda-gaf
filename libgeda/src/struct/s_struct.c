@@ -44,8 +44,8 @@ geda_struct_print_forw (GList *list)
   while (iter != NULL) {
 
     GedaObject *o_current = (GedaObject *)iter->data;
-
-    printf("Name: %s\n", o_current->name);
+    printf("Address: %p\n", o_current);
+    printf("Name: %s \n", o_current->name);
     printf("Type: %d\n", o_current->type);
     printf("Sid: %d\n",  o_current->sid);
 

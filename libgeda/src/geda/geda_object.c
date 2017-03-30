@@ -115,7 +115,7 @@ void geda_object_append_new_hook (NewObjectFunc func, void *data)
 
 int geda_object_no_bounds (GedaObject *o)
 {
-  fprintf(stderr, "ERROR: <%s> bounds function not set <%s>\n", __func__, o->name);
+  fprintf(stderr, "ERROR: <%s> bounds function not set <%s><%p>\n", __func__, o->name, o);
   return FALSE;
 }
 

@@ -1,11 +1,15 @@
 2017-03-30 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/object/o_net_object.cc: Access page directly in geda_net_object
-      _consolidate_segments.
-
-    * src/struct/s_page.c: Simplify getter, remove unnecessary g_return_val_
+    * src/geda/geda_page.c: Simplify getter, remove unnecessary g_return_val_
       if_fail.
 
+    * src/geda/geda_object.c: Add pointer address to bounds function message.
+
+    * src/object/o_net_object.c: Access page directly in geda_net_object
+      _consolidate_segments.
+
+    * src/struct/s_struct.c: Add pointer address to geda_struct_print_forw
+      messages output.
 
 2017-03-29 Wiley E. Hill <wileyhill@gmail.com>
 
