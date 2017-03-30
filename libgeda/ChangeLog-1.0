@@ -11,6 +11,9 @@
     * src/struct/s_struct.c: Add pointer address to geda_struct_print_forw
       messages output.
 
+    * src/struct/s_page.c: Simplify geda_struct_page_get_selection and
+      geda_struct_page_get_objects, remove extra spaces.
+
 2017-03-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_undo.c: Access _object_list directly in geda_struct

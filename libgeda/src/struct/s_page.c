@@ -152,7 +152,7 @@ geda_struct_page_new_common(GedaToplevel *toplevel, Page *page)
  *  Initializes the <B>filename</B> to given value \a <B>filename</B>. The
  *  <B>toplevel</B>'s current page is not changed by this function.
  */
-Page *
+Page*
 geda_struct_page_new (GedaToplevel *toplevel, const char *filename)
 {
   Page *page;
@@ -261,7 +261,7 @@ geda_struct_page_autosave (GedaToplevel *toplevel)
 
       for ( iter = geda_toplevel_get_pages(toplevel); iter != NULL; NEXT(iter))
       {
-        Page  *p_current = (Page *)iter->data;
+        Page *p_current = (Page*)iter->data;
 
         if (geda_page_get_changed (p_current) > 0) {
 
@@ -340,7 +340,6 @@ geda_struct_page_clear_changed (PageList *list)
 void
 geda_struct_page_delete (GedaToplevel *toplevel, Page *page, int previous)
 {
-
   g_return_if_fail (GEDA_IS_TOPLEVEL(toplevel));
 
   /* We need to temporarily make the page being deleted current because
@@ -506,7 +505,7 @@ geda_struct_page_delete_list (GedaToplevel *toplevel)
 *
 * \param [in,out] toplevel This toplevel
 */
-Page *
+Page*
 geda_struct_page_get_current (GedaToplevel *toplevel)
 {
   return geda_toplevel_get_current_page(toplevel);
@@ -543,7 +542,7 @@ geda_struct_page_set_current (GedaToplevel *toplevel, Page *page)
  *
  * \sa geda_struct_page_is_symbol_file
  */
-const char *
+const char*
 geda_struct_page_get_file_extension (Page *page)
 {
   if (page != NULL && page->filename != NULL) {
@@ -562,13 +561,10 @@ geda_struct_page_get_file_extension (Page *page)
  *
  * \returns Pointer to selection GedaList of the page
  */
-SELECTION *
+SELECTION*
 geda_struct_page_get_selection (Page *page)
 {
-  if (GEDA_IS_PAGE(page)) {
-    return page->selection_list;
-  }
-  return NULL;
+  return GEDA_IS_PAGE(page) ? page->selection_list : NULL;
 }
 
 /*!
@@ -680,7 +676,7 @@ geda_struct_page_print_all (GedaToplevel *toplevel)
 
   for (iter = geda_toplevel_get_pages(toplevel); iter; iter = iter->next)
   {
-    Page *page = (Page *)iter->data;
+    Page *page = (Page*)iter->data;
     printf ("FILENAME: %s\n", page->filename);
     geda_struct_print_forw (page->_object_list);
   }
@@ -735,7 +731,7 @@ geda_struct_page_save_all (GedaToplevel *toplevel)
 
     Page *p_current;
 
-    p_current = (Page *)iter->data;
+    p_current = (Page*)iter->data;
 
     if (geda_save_file (toplevel, p_current, p_current->filename, NULL)) {
 
@@ -777,7 +773,7 @@ geda_struct_page_save_all_changed (GedaToplevel *toplevel)
 
     Page *p_current;
 
-    p_current = (Page *)iter->data;
+    p_current = (Page*)iter->data;
 
     if (p_current && p_current->CHANGED) {
 
@@ -811,7 +807,7 @@ geda_struct_page_save_all_changed (GedaToplevel *toplevel)
  *
  * \return Page pointer to a matching page, NULL otherwise.
  */
-Page *
+Page*
 geda_struct_page_search (GedaToplevel *toplevel, const char *filename)
 {
   if (filename) {
@@ -823,7 +819,7 @@ geda_struct_page_search (GedaToplevel *toplevel, const char *filename)
 
     for (iter = list; iter; iter = iter->next)   {
 
-      Page *page = (Page *)iter->data;
+      Page *page = (Page*)iter->data;
 
       if (g_ascii_strcasecmp (page->filename, filename) == 0)
         return page;
@@ -851,7 +847,7 @@ geda_struct_page_search_by_page_id (PageList *list, int pid)
 
   for ( iter = geda_list_get_glist (list); iter != NULL; NEXT(iter))
   {
-    Page *page = (Page *)iter->data;
+    Page *page = (Page*)iter->data;
 
     if (page->pid == pid) {
       return page;
@@ -1079,13 +1075,10 @@ geda_struct_page_get_object (Page *page, int sid)
  *
  * \returns a pointer to the Page's GList of objects
  */
-GList *
+GList*
 geda_struct_page_get_objects (Page *page)
 {
-  if (GEDA_IS_PAGE(page)) {
-    return page->_object_list;
-  }
-  return NULL;
+  return GEDA_IS_PAGE(page) ? page->_object_list : NULL;
 }
 
 /*!
