@@ -1,5 +1,8 @@
 2017-03-31 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_get.c: Revise switch cases in geda_object_get_position
+      so that the cases for OBJ_TEXT is first and OBJ_COMPLEX is second.
+
     * src/object/o_selection.c: Revise conditional in geda_object_selection_
       remove remove, BUG_PMSG.
 
