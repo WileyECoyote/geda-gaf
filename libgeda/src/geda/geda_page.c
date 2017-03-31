@@ -112,7 +112,7 @@ GedaObject *geda_page_get_object(Page *page, int sid)
 {
   const GList *iter;
 
-  if (GEDA_IS_PAGE(page) {
+  if (GEDA_IS_PAGE(page)) {
 
     iter = g_list_first(page->_object_list);
 
@@ -499,7 +499,7 @@ void geda_page_weak_unref (Page *page, WeakNotifyFunc notify_func, void *user_da
  */
 void geda_page_add_weak_ptr (Page *page, void *weak_pointer_loc)
 {
-  if (GEDA_IS_PAGE(page) {
+  if (GEDA_IS_PAGE(page)) {
     g_object_add_weak_pointer ((GObject*)page, weak_pointer_loc);
   }
 }

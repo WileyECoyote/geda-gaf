@@ -92,21 +92,17 @@ int geda_object_selection_remove (SELECTION *selection, GedaObject *object)
 
   if (object != NULL) {
 
-    if (g_list_find( geda_list_get_glist(selection), object ) != NULL) {
+    if (g_list_find(geda_list_get_glist(selection), object) != NULL) {
 
       result = geda_object_selection_unselect (object);
 
-      geda_list_remove( (GedaList *)selection, object );
+      geda_list_remove ((GedaList*)selection, object);
 
     }
     else {
 
-      if (GEDA_IS_OBJECT(object)) {
-        result = 0;
-      }
-      else {
-        result = -1;
-      }
+      result = GEDA_IS_OBJECT(object) ? 0 : -1;
+
     }
   }
   else {
@@ -169,7 +165,6 @@ int geda_object_selection_select(GedaObject *object)
     }
   }
   else {
-    BUG_PMSG("Not a gEDA GedaObject: <%p>", object);
     result = -1;
   }
 
