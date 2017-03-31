@@ -2742,19 +2742,19 @@ msgstr ""
 msgid "Edit"
 msgstr "Düzenle"
 
+# Edit modes
 #: gschem/src/x/x_menus.c:109
-#, fuzzy
 msgid "Edit modes"
-msgstr "Metni Düzenle"
+msgstr "Modları düzenle"
 
 #: gschem/src/x/x_menus.c:110
 msgid "Object..."
 msgstr ""
 
+# Edit Object Attributes
 #: gschem/src/x/x_menus.c:110 gschem/etc/system-gschemrc.scm:2119
-#, fuzzy
 msgid "Edit Object Attributes"
-msgstr "Öznitelikler"
+msgstr "Nesne Özniteliklerini Düzenle"
 
 #: gschem/src/x/x_menus.c:111
 msgid "Color..."
@@ -2819,31 +2819,30 @@ msgid "Copy selection"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:122
-#, fuzzy
 msgid "MCopy"
-msgstr "Kopyala"
+msgstr "Çoklu Kopyala"
 
+# Perform multible copies of selection
 #: gschem/src/x/x_menus.c:122 gschem/etc/system-gschemrc.scm:2106
 msgid "Make multible copies of selection"
-msgstr ""
+msgstr "Seçimin çok sayıda kopyasını yapın"
 
 #: gschem/src/x/x_menus.c:123
 msgid "Move"
 msgstr "Taşı"
 
 #: gschem/src/x/x_menus.c:123 gschem/etc/system-gschemrc.scm:2108
-#, fuzzy
 msgid "Move selection"
-msgstr "Seçim Kipi"
+msgstr "Seçim Modu"
 
+# Mirror => Reflect
 #: gschem/src/x/x_menus.c:124
-#, fuzzy
 msgid "Mirror"
-msgstr "Ayna modu"
+msgstr "Yansıtmak"
 
 #: gschem/src/x/x_menus.c:124 gschem/etc/system-gschemrc.scm:2107
 msgid "Mirror an object about a point"
-msgstr ""
+msgstr "Bir noktada nesneyi yansıtmak"
 
 #: gschem/src/x/x_menus.c:125
 msgid "Rotate"
@@ -2854,28 +2853,27 @@ msgid "Rotate the current selection about a point"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:126
-#, fuzzy
 msgid "Snap"
-msgstr "Kopyalama Kipi"
+msgstr "sığdır"
 
 #: gschem/src/x/x_menus.c:126
 msgid "Snap objects to the current grid"
-msgstr ""
+msgstr "Nesneleri geçerli ızgaraya sığdır"
 
+# Hierarchy
 #: gschem/src/x/x_menus.c:132
-#, fuzzy
 msgid "Hierarchy"
 msgstr "Hiyerarşi"
 
+# Edit operations
 #: gschem/src/x/x_menus.c:132
-#, fuzzy
 msgid "Edit operations"
-msgstr "Metni Düzenle"
+msgstr "operasyonlar düzenle"
 
+# Down Schematic => Descend Schematic
 #: gschem/src/x/x_menus.c:133 gschem/scheme/gschem/builtins.scm:329
-#, fuzzy
 msgid "Down Schematic"
-msgstr "gEDA Şematik Editörü"
+msgstr "Descend Şematik"
 
 #: gschem/src/x/x_menus.c:133 gschem/etc/system-gschemrc.scm:2238
 msgid "Descend down in the schematic hierarchy"
@@ -3418,19 +3416,19 @@ msgstr ""
 msgid "Specify new name for Session:"
 msgstr ""
 
+# Select export file
 #: gschem/src/x/x_sessions.c:228
-#, fuzzy
 msgid "Select export file"
-msgstr "Seçim Kipi"
+msgstr "Dışa aktarma dosyasını seçin"
 
 #: gschem/src/x/x_sessions.c:232
 msgid "exported to"
 msgstr ""
 
+# Upload selected session
 #: gschem/src/x/x_sessions.c:414
-#, fuzzy
 msgid "Load the selected session"
-msgstr "Seçim Kipi"
+msgstr "Seçilen oturumu yükle"
 
 #: gschem/src/x/x_sessions.c:415
 msgid ""
@@ -3972,7 +3970,6 @@ msgid "Edit Component..."
 msgstr "Bileşeni Düzenle..."
 
 #: gschem/etc/system-gschemrc.scm:2126
-#, fuzzy
 msgid "_Slot..."
 msgstr "Yuva..."
 
@@ -3988,10 +3985,10 @@ msgstr ""
 msgid "Select All"
 msgstr ""
 
+# Select all objects
 #: gschem/etc/system-gschemrc.scm:2133
-#, fuzzy
 msgid "Select all objects"
-msgstr "Seçim Kipi"
+msgstr "Tüm nesneleri seçin"
 
 #: gschem/etc/system-gschemrc.scm:2134 gschem/scheme/gschem/builtins.scm:185
 msgid "Deselect All"
@@ -4787,10 +4784,10 @@ msgstr "Dosya"
 msgid "_Edit"
 msgstr "Düzenle"
 
+# Select
 #: gschem/etc/system-gschemrc.scm:2380
-#, fuzzy
 msgid "_Select"
-msgstr "Seçim Kipi"
+msgstr "_Seç"
 
 #: gschem/etc/system-gschemrc.scm:2382
 msgid "_View"
