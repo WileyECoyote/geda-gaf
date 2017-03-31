@@ -1,5 +1,11 @@
 2017-03-30 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/edarenderer.c: Adjust order of cases in eda_renderer_default_draw
+      again, move || OBJ_PLACEHOLDER to last place since technically this is
+      and error condition and should not normally occur.
+
+2017-03-30 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/edarenderer.c: Move validation of GedaObject from eda_renderer_
       default_draw to eda_renderer_draw.
 

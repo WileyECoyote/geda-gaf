@@ -538,8 +538,7 @@ eda_renderer_default_draw (EdaRenderer *renderer, GedaObject *object)
 
     switch (object->type) {
       case OBJ_TEXT:        draw_func = eda_renderer_draw_text; break;
-      case OBJ_COMPLEX:
-      case OBJ_PLACEHOLDER: draw_func = eda_renderer_draw_complex; break;
+      case OBJ_COMPLEX:     draw_func = eda_renderer_draw_complex; break;
       case OBJ_PIN:         draw_func = eda_renderer_draw_pin; break;
       case OBJ_NET:         draw_func = eda_renderer_draw_net; break;
       case OBJ_BOX:         draw_func = eda_renderer_draw_box; break;
@@ -549,7 +548,7 @@ eda_renderer_default_draw (EdaRenderer *renderer, GedaObject *object)
       case OBJ_PATH:        draw_func = eda_renderer_draw_path; break;
       case OBJ_BUS:         draw_func = eda_renderer_draw_bus; break;
       case OBJ_PICTURE:     draw_func = eda_renderer_draw_picture; break;
-
+      case OBJ_PLACEHOLDER: draw_func = eda_renderer_draw_complex; break;
       default:
         BUG_IMSG("unhandled case <%c>", object->type);
         return;
