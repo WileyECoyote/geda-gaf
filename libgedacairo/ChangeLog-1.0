@@ -1,8 +1,19 @@
-2017-03-30 Wiley E. Hill <wileyhill@gmail.com>
+2017-03-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/edarenderer.c: Adjust order of cases in eda_renderer_default_draw
       again, move || OBJ_PLACEHOLDER to last place since technically this is
-      and error condition and should not normally occur.
+      and error condition and should not normally occur. Add pointers to
+      LINE_OPTIONS in functions:
+
+            * eda_renderer_draw_complex
+            * eda_renderer_draw_net
+            * eda_renderer_draw_bus
+            * eda_renderer_draw_pin
+            * eda_renderer_draw_arc
+            * eda_renderer_draw_box
+            * eda_renderer_draw_circle
+            * eda_renderer_draw_path
+            * eda_renderer_draw_text
 
 2017-03-30 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -576,6 +576,7 @@ eda_renderer_set_color (EdaRenderer *renderer, int color)
   if (renderer->priv->override_color != -1) {
     color = renderer->priv->override_color;
   }
+
   if (color == -1) {
     BUG_IMSG("color = %d\n", color);
   }
@@ -676,32 +677,34 @@ static void
 eda_renderer_draw_line (EdaRenderer *renderer, GedaObject *object)
 {
   GedaLine *line = GEDA_LINE(object);
+  LINE_OPTIONS *line_options = &line->line_options;
 
   eda_cairo_line (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
-                  object->line_options->line_end, object->line_options->line_width,
+                  line_options->line_end, line_options->line_width,
                   line->x[0], line->y[0], line->x[1], line->y[1]);
 
   eda_cairo_stroke (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
-                    object->line_options->line_type,
-                    object->line_options->line_end,
-                    EDA_RENDERER_STROKE_WIDTH (renderer, object->line_options->line_width),
-                                                         object->line_options->line_length,
-                                                         object->line_options->line_space);
+                    line_options->line_type,
+                    line_options->line_end,
+                    EDA_RENDERER_STROKE_WIDTH (renderer, line_options->line_width),
+                                                         line_options->line_length,
+                                                         line_options->line_space);
 }
 
 static void
 eda_renderer_draw_net (EdaRenderer *renderer, GedaObject *object)
 {
   GedaLine *line = GEDA_LINE(object);
+  LINE_OPTIONS *line_options = &line->line_options;
 
   eda_cairo_line (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
-                  END_SQUARE, object->line_options->line_width,
+                  END_SQUARE, line_options->line_width,
                   line->x[0], line->y[0], line->x[1], line->y[1]);
 
   eda_cairo_stroke (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                     TYPE_SOLID, END_SQUARE,
                     EDA_RENDERER_STROKE_WIDTH (renderer,
-                                               object->line_options->line_width),
+                                               line_options->line_width),
                     -1, -1);
 }
 
@@ -709,15 +712,16 @@ static void
 eda_renderer_draw_bus (EdaRenderer *renderer, GedaObject *object)
 {
   GedaLine *line = GEDA_LINE(object);
+  LINE_OPTIONS *line_options = &line->line_options;
 
   eda_cairo_line (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
-                  END_SQUARE, object->line_options->line_width,
+                  END_SQUARE, line_options->line_width,
                   line->x[0], line->y[0], line->x[1], line->y[1]);
 
   eda_cairo_stroke (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                     TYPE_SOLID, END_SQUARE,
                     EDA_RENDERER_STROKE_WIDTH (renderer,
-                                               object->line_options->line_width),
+                                               line_options->line_width),
                     -1, -1);
 }
 
@@ -725,23 +729,26 @@ static void
 eda_renderer_draw_pin (EdaRenderer *renderer, GedaObject *object)
 {
   GedaLine *line = GEDA_LINE(object);
+  LINE_OPTIONS *line_options = &line->line_options;
 
   eda_cairo_line (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
-                  END_SQUARE, object->line_options->line_width,
+                  END_SQUARE, line_options->line_width,
                   line->x[0], line->y[0], line->x[1], line->y[1]);
 
   eda_cairo_stroke (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                     TYPE_SOLID, END_SQUARE,
                     EDA_RENDERER_STROKE_WIDTH (renderer,
-                                               object->line_options->line_width),
+                                               line_options->line_width),
                     -1, -1);
 }
 
 static void
 eda_renderer_draw_arc (EdaRenderer *renderer, GedaObject *object)
 {
+  LINE_OPTIONS *line_options = object->line_options;
+
   eda_cairo_arc (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
-                 object->line_options->line_width,
+                 line_options->line_width,
                  object->arc->x,
                  object->arc->y,
                  object->arc->radius,
@@ -749,24 +756,25 @@ eda_renderer_draw_arc (EdaRenderer *renderer, GedaObject *object)
                  object->arc->arc_sweep);
 
   eda_cairo_stroke (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
-                    object->line_options->line_type,
-                    object->line_options->line_end,
-                    EDA_RENDERER_STROKE_WIDTH (renderer, object->line_options->line_width),
-                    object->line_options->line_length,
-                    object->line_options->line_space);
+                    line_options->line_type,
+                    line_options->line_end,
+                    EDA_RENDERER_STROKE_WIDTH (renderer, line_options->line_width),
+                    line_options->line_length,
+                    line_options->line_space);
 }
 
 static void
 eda_renderer_draw_box (EdaRenderer *renderer, GedaObject *object)
 {
   cairo_t *cr = renderer->priv->cr;
+  LINE_OPTIONS *line_options = object->line_options;
 
   /* Hatch box */
   int fill_solid = eda_renderer_draw_hatch (renderer, object);
 
   /* Draw outline of box */
   eda_cairo_box (cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
-                 object->line_options->line_width,
+                 line_options->line_width,
                  object->box->lower_x, object->box->lower_y,
                  object->box->upper_x, object->box->upper_y);
 
@@ -775,22 +783,23 @@ eda_renderer_draw_box (EdaRenderer *renderer, GedaObject *object)
   }
 
   eda_cairo_stroke (cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
-                    object->line_options->line_type, object->line_options->line_end,
-                    EDA_RENDERER_STROKE_WIDTH (renderer, object->line_options->line_width),
-                    object->line_options->line_length, object->line_options->line_space);
+                    line_options->line_type, line_options->line_end,
+                    EDA_RENDERER_STROKE_WIDTH (renderer, line_options->line_width),
+                    line_options->line_length, line_options->line_space);
 }
 
 static void
 eda_renderer_draw_circle (EdaRenderer *renderer, GedaObject *object)
 {
   cairo_t *cr = renderer->priv->cr;
+  LINE_OPTIONS *line_options = object->line_options;
 
   /* Hatch circle */
   int fill_solid = eda_renderer_draw_hatch (renderer, object);
 
   /* Draw outline of circle */
   eda_cairo_arc (cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
-                 object->line_options->line_width,
+                 line_options->line_width,
                  object->circle->center_x, object->circle->center_y,
                  object->circle->radius, 0, 360);
 
@@ -799,22 +808,23 @@ eda_renderer_draw_circle (EdaRenderer *renderer, GedaObject *object)
   }
 
   eda_cairo_stroke (cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
-                    object->line_options->line_type, object->line_options->line_end,
-                    EDA_RENDERER_STROKE_WIDTH (renderer, object->line_options->line_width),
-                    object->line_options->line_length, object->line_options->line_space);
+                    line_options->line_type, line_options->line_end,
+                    EDA_RENDERER_STROKE_WIDTH (renderer, line_options->line_width),
+                    line_options->line_length, line_options->line_space);
 }
 
 static void
 eda_renderer_draw_path (EdaRenderer *renderer, GedaObject *object)
 {
   cairo_t *cr = renderer->priv->cr;
+  LINE_OPTIONS *line_options = object->line_options;
 
   /* Hatch path */
   int fill_solid = eda_renderer_draw_hatch (renderer, object);
 
   /* Draw outline of path */
   eda_cairo_path (cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
-                  object->line_options->line_width, object->path->num_sections,
+                  line_options->line_width, object->path->num_sections,
                   object->path->sections);
 
   if (fill_solid) {
@@ -822,9 +832,9 @@ eda_renderer_draw_path (EdaRenderer *renderer, GedaObject *object)
   }
 
   eda_cairo_stroke (cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
-                    object->line_options->line_type, object->line_options->line_end,
-                    EDA_RENDERER_STROKE_WIDTH (renderer, object->line_options->line_width),
-                    object->line_options->line_length, object->line_options->line_space);
+                    line_options->line_type, line_options->line_end,
+                    EDA_RENDERER_STROKE_WIDTH (renderer, line_options->line_width),
+                    line_options->line_length, line_options->line_space);
 }
 
 static void
