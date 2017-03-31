@@ -1,18 +1,18 @@
 \subsubsection*{Coordinate systems}
 
 
-  An important concept to understand when using an EdaRenderer is the distinction between Cairo's ``device coordinates'' and ``user coordinates''. (Yes, go and look it up now). 
+  An important concept to understand when using EdaRenderer is the distinction between Cairo's ``device coordinates'' and ``user coordinates''. (Yes, go and look it up now).
 
 
-  Before calling any libgedacairo drawing functions, Cairo context's transformation matrix must be setup so that the user coordinates match coordinates on the schematic or symbol page. 
+  Before calling any libgedacairo drawing functions, Cairo context's transformation matrix must be setup so that the user coordinates match coordinates on the schematic or symbol page.
 
 
- 
+
 \subsubsection*{The EdaRenderer class}
- The EdaRenderer class is the main interface to the library. The EdaRenderer class uses information from libgeda OBJECT structures to draw various schematic elements, control grips, and cues. 
+ The EdaRenderer class is the main interface to the library. The EdaRenderer class uses information from libgeda OBJECT structures to draw various schematic elements, control grips, and cues.
 
   EdaRenderer is a GObject class, with several properties that control its behaviour: \begin{verbatim}
-	
+
   "cairo-context"  [pointer]
       The `cairo_t' drawing context which the renderer draws to.
 
@@ -39,13 +39,13 @@
 
   "render-flags"  [EdaRendererFlags]
       Flags that control various rendering options.
-   
+
 \end{verbatim}
 
 
 
   A EdaRendererFlags value can include any of these flags: \begin{verbatim}
-	
+
   EDA_RENDERER_FLAG_HINTING
       Enable line hinting.  Set this flag if you are rendering to
       screen or to a raster image file, because it makes things look
@@ -63,10 +63,10 @@
   EDA_RENDERER_FLAG_TEXT_ORIGIN
       Draw small "X" markers indicating where text objects are
       anchored.
-  
+
 \end{verbatim}
  To actually draw things, EdaRenderer has three methods: \begin{verbatim}
-	
+
   eda_renderer_draw()
       This does basic drawing of an OBJECT.
 
@@ -76,27 +76,27 @@
   eda_renderer_draw_cues()
       Draw cues for an object (e.g. at the unconnected ends of pins and
       nets, and at junctions in nets and buses).
-  
+
 \end{verbatim}
  Sometimes, it is useful to obtain the rendered bounding box of an OBJECT (for example, a text OBJECT's bounding box is determined by the font). \begin{verbatim}
-	
+
   eda_renderer_get_user_bounds()
       Obtain the user bounds (which should be the same as world
       bounds) for an OBJECT.
-  
+
 \end{verbatim}
- These four methods all can be overridden from subclasses. 
+ These four methods all can be overridden from subclasses.
 \subsubsection*{Lower-level drawing}
- Sometimes EdaRenderer is not enough! libgedacairo provides a bunch of functions for doing lower-level drawing. 
+ Sometimes EdaRenderer is not enough! libgedacairo provides a bunch of functions for doing lower-level drawing.
 
-  Several of these drawing functions take a `flags' argument. At the moment, the only flag that may be applied is `EDA\_CAIRO\_ENABLE\_HINTS'. If you have an EdaRenderer and you wish to obtain the same EdaCairoFlags value as used internally by the renderer, you can call eda\_renderer\_get\_cairo\_flags(). 
+  Several of these drawing functions take a `flags' argument. At the moment, the only flag that may be applied is `EDA\_CAIRO\_ENABLE\_HINTS'. If you have an EdaRenderer and you wish to obtain the same EdaCairoFlags value as used internally by the renderer, you can call eda\_renderer\_get\_cairo\_flags().
 
 
-  The `center' variants of the drawing functions should be used to draw shapes that need to be symmetrically centred on a particular point. The `center\_width' arguments that these functions accept specify the width of the line that they are to be centred on, if applicable. The distinction is required in order to make sure line hinting takes place correctly. 
+  The `center' variants of the drawing functions should be used to draw shapes that need to be symmetrically centred on a particular point. The `center\_width' arguments that these functions accept specify the width of the line that they are to be centred on, if applicable. The distinction is required in order to make sure line hinting takes place correctly.
 
 
   The available shape drawing functions are: \begin{verbatim}
-	
+
   eda_cairo_line()
       Draw a straight line segment.
 
@@ -108,10 +108,10 @@
 
   eda_cairo_path()
       Draw a path made up of straight line and Bézier curve segments.
-  
+
 \end{verbatim}
  To actually do the drawing, there are two additional functions: \begin{verbatim}
-	
+
   eda_cairo_set_source_color()
       Use a colour map index and a GArray of COLOR structures to set
       the current Cairo drawing colour.
@@ -119,6 +119,6 @@
   eda_cairo_stroke()
       Stroke the current Cairo path, with libgeda-compatible stroke
       parameters.
-  
+
 \end{verbatim}
 
