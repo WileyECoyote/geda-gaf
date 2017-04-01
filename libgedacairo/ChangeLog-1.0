@@ -1,3 +1,8 @@
+2017-04-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edarenderer.c: Reduce the scope of marker_dist and dummy in
+      eda_renderer_draw_text.
+
 2017-03-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/edarenderer.c: Adjust order of cases in eda_renderer_default_draw

@@ -841,8 +841,6 @@ static void
 eda_renderer_draw_text (EdaRenderer *renderer, GedaObject *object)
 {
   cairo_t *cr = renderer->priv->cr;
-  double dummy = 0;
-  double marker_dist = EDAR_TEXT_MARKER_SIZE;
 
   g_return_if_fail (renderer->priv->pl != NULL);
 
@@ -889,12 +887,17 @@ eda_renderer_draw_text (EdaRenderer *renderer, GedaObject *object)
   /* Note: we must access visibility flag directly */
   if (object->visibility != 1) { /* If not normally visible text */
 
-    /*  We are showing hidden text so draw a little "I". */
+    /* Hidden text so check if showing a little "I". */
 
-    /* If the text marker is too tiny, don't draw it. */
     if (EDA_RENDERER_CHECK_FLAG (renderer, FLAG_HINTING)) {
 
+      double marker_dist = EDAR_TEXT_MARKER_SIZE; /* Get User setting */
+      double dummy = 0;
+
+      /* Translate to marker distance to device distance. */
       cairo_user_to_device_distance (cr, &marker_dist, &dummy);
+
+      /* If the marker distance is too small do not draw the marker. */
 
       if (marker_dist > EDAR_MARKER_THRESHOLD) {
 
