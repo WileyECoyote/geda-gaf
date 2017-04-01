@@ -85,7 +85,7 @@ static bool get_selected_pages (GtkTreeModel *model,
   Page *page;
   bool  save;
 
-  gtk_tree_model_get (model, iter,COLUMN_SAVE, &save, COLUMN_Page, &page, -1);
+  gtk_tree_model_get (model, iter,COLUMN_SAVE, &save, COLUMN_PAGE, &page, -1);
 
   if (save) {
     if (page != NULL) {
@@ -170,7 +170,7 @@ static char *get_page_name (GtkTreeModel *model, GtkTreeIter *piter)
     iter = *piter;
   }
 
-  gtk_tree_model_get (model, &iter, COLUMN_Page, &page, -1);
+  gtk_tree_model_get (model, &iter, COLUMN_PAGE, &page, -1);
 
   return geda_file_get_basename_dup (page->filename);
 }
@@ -349,7 +349,7 @@ confirm_close_dialog_set_property (GObject      *object,
         gtk_list_store_set (dialog->store_unsaved_pages,
                             &iter,
                             COLUMN_SAVE, TRUE,
-                            COLUMN_Page, data,
+                            COLUMN_PAGE, data,
                             -1);
       }
       break;
@@ -363,7 +363,7 @@ confirm_close_dialog_set_property (GObject      *object,
         gtk_list_store_set (dialog->store_unsaved_pages,
                             &iter,
                             COLUMN_SAVE, TRUE,
-                            COLUMN_Page, p_current->data,
+                            COLUMN_PAGE, p_current->data,
                             -1);
       }
       break;

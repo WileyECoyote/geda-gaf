@@ -68,7 +68,7 @@ enum {
 
 enum {
   COLUMN_SAVE,
-  COLUMN_Page,
+  COLUMN_PAGE,
   NUM_COLUMNS
 };
 
