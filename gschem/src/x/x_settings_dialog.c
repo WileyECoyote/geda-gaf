@@ -1212,6 +1212,16 @@ color_button_popup_menu_callback (GedaMenuItem *item, void * data)
   gtk_widget_destroy(popup_menu);
 }
 
+bool
+color_button_popup_destroy(GtkWidget *widget, void *data)
+{
+  if (GEDA_IS_MENU(popup_menu)) {
+    gtk_object_destroy(GTK_OBJECT(popup_menu));
+    popup_menu = NULL;
+  }
+  return FALSE;
+}
+
 /*! \brief Restore Default Color Setting - Display Menu
  *  \par Function Description
  *   We need used to be able to restore default colors, since the Color
@@ -1257,6 +1267,7 @@ static void default_color_button_popup (GtkColorButton *button, GdkEventButton *
 
   geda_menu_popup(GEDA_MENU(popup_menu), NULL, NULL, NULL, NULL, event->button, event->time);
 
+  g_timeout_add_seconds (5, (GSourceFunc)color_button_popup_destroy, NULL);
 }
 
 /*! \brief Restore Default Color Setting - Check button events

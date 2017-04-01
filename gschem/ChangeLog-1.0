@@ -1,3 +1,10 @@
+2017-04-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_settings_dialog.c: Add function color_button_popup_destroy
+      and g_timeout_add_seconds in default_color_button_popup to insure
+      the popup is destroyed even when users look at the popop without
+      selecting an item.
+
 2017-03-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/tr.po: Update Turkish translations.
