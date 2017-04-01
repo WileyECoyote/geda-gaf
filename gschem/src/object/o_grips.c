@@ -780,7 +780,6 @@ o_grips_start_arc(GschemToplevel *w_current, GedaObject *o_current, int x, int y
   w_current->second_wy = o_current->arc->arc_sweep;
 
   /* draw the first temporary arc */
-  /* o_arc_invalidate_rubber (w_current); */
   w_current->rubber_visible = 1;
 }
 
@@ -841,7 +840,6 @@ o_grips_start_box(GschemToplevel *w_current, GedaObject *o_current, int x, int y
   }
 
   /* draw the first temporary box */
-  /* o_box_invalidate_rubber (w_current); */
   w_current->rubber_visible = 1;
 }
 
@@ -911,7 +909,6 @@ o_grips_start_path(GschemToplevel *w_current, GedaObject *o_current, int x, int 
   w_current->first_wy = w_current->second_wy = gy;
 
   /* draw the first temporary path */
-  /* o_path_invalidate_rubber_grips (w_current); */
   w_current->rubber_visible = 1;
 
 }
@@ -1020,7 +1017,6 @@ o_grips_start_circle(GschemToplevel *w_current, GedaObject *o_current, int x, in
   w_current->distance = o_current->circle->radius;
 
   /* draw the first temporary circle */
-  /* o_circle_invalidate_rubber (w_current); */
   w_current->rubber_visible = 1;
 }
 
