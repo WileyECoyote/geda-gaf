@@ -681,8 +681,9 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
           }
         }
 
-        if (menu_item_tip) { /* If tip not NULL then attach tip to menu widget */
-          gtk_widget_set_tooltip_text(menu_item, _(menu_item_tip));
+        /* If tip not NULL then attach tip to menu widget */
+        if (menu_item_tip) {
+          gtk_widget_set_tooltip_text(menu_item, menu_item_tip);
           g_object_set (menu_item, "has-tooltip", show_menu_tips, NULL);
           free(menu_item_tip);
         }
