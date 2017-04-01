@@ -162,6 +162,9 @@ int geda_file_path_create(const char *path, mode_t mode)
     }
     GEDA_FREE(copypath);
   }
+  else {
+    errno = status = EINVAL;
+  }
 
   return (status);
 }
