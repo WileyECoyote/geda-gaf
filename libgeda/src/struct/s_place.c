@@ -88,9 +88,9 @@ GList *geda_struct_place_get_place_list(GedaToplevel *toplevel)
  *  \par Function Description
  *   This functions can be used to either set or clear the place list
  *   associated with the given GedaToplevel object. If new_place_list
- *   references data, geda_struct_place_free_place_list is called to release the
- *   current list before adding new objects. No error is generated if
- *   the new place list is NULL.
+ *   references data, geda_struct_place_free_place_list is called to
+ *   release the current list before adding new objects. No error is
+ *   generated if the new place list is NULL.
  *
  *  \param [in] toplevel       pointer to GedaToplevel object
  *  \param [in] new_place_list Glist of objects to append or NULL to clear
