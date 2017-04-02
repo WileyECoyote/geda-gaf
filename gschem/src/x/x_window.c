@@ -1317,8 +1317,9 @@ void
 x_window_setup_page(GschemToplevel *w_current, Page *page,
                     int xmin, int xmax, int ymin, int ymax)
 {
-  double fs,f0,f1;
-  double fw0,fw1,fw;
+  double f_width, f_height;
+  double f_left, f_right;
+  double f_top, f_bottom;
 
   page->left   = xmin;
   page->right  = xmax;
@@ -1327,29 +1328,25 @@ x_window_setup_page(GschemToplevel *w_current, Page *page,
 
   /* now do the constant setups */
 
+  f_left   = xmin;
+  f_right  = xmax;
+  f_top    = ymin;
+  f_bottom = ymax;
+
+  f_width  = w_current->screen_width;
+  f_height = w_current->screen_height;
+
   /* pix_x */
-  f0 = page->left;
-  f1 = page->right;
-  fs = w_current->screen_width;
-  page->to_screen_x_constant = fs / (f1 - f0);
+  page->to_screen_x_constant = f_width / (f_right - f_left);
 
   /* pix_y */
-  f0 = page->top;
-  f1 = page->bottom;
-  fs = w_current->screen_height;
-  page->to_screen_y_constant = fs / (f1 - f0);
+  page->to_screen_y_constant = f_height / (f_bottom - f_top);
 
   /* mil_x */
-  fw1 = page->right;
-  fw0 = page->left;
-  fw  = w_current->screen_width;
-  page->to_world_x_constant = (fw1 - fw0) / fw;
+  page->to_world_x_constant = (f_right - f_left) / f_width;
 
   /* mil_y */
-  fw1 = page->bottom;
-  fw0 = page->top;
-  fw  = w_current->screen_height;
-  page->to_world_y_constant = (fw1 - fw0) / fw;
+  page->to_world_y_constant = (f_bottom - f_top) / f_height;
 }
 
 /*! \brief Set filename as gschem window title

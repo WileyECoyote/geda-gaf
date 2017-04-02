@@ -1,3 +1,8 @@
+2017-04-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_window.csrc/x/x_window.c: Remove redundant reference to
+      the same location in x_window_setup_page and rename variables.
+
 2017-04-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_settings_dialog.c: Add function color_button_popup_destroy
