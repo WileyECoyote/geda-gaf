@@ -188,7 +188,7 @@ void i_pan_world_general (GschemToplevel *w_current,
                           double          relative_zoom_factor,
                           int             flags)
 {
-  /* think it's better that the zoomfactor is defined as pix/mills
+  /* think it's better that the zoomfactor is defined as pix/mils
    * this will be the same as page->to_screen_x/y_constant */
   double zx, zy, zoom_old, zoom_new, zoom_min;
 

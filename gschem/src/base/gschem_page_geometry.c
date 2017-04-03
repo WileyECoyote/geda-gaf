@@ -362,7 +362,7 @@ gschem_page_geometry_pan_general(GschemPageGeometry *geometry,
   /*if the borders should be ignored always, remove, outcomment or changes
     the flags in the function-calls*/
   /*	flags |= I_PAN_IGNORE_BORDERS; */
-  /* think it's better that the zoomfactor is defined as pix/mills
+  /* think it's better that the zoomfactor is defined as pix/mils
      this will be the same as w_current->page_current->to_screen_x/y_constant*/
 
 

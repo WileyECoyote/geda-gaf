@@ -307,7 +307,7 @@ void       i_event_stop_action_handler      (GschemToplevel *w_current);
 /* i_pan_world.c */
 void       i_pan_auto                       (GschemToplevel *w_current, GdkEventCrossing *event);
 void       i_pan_warp_cursor                (GtkWidget *widget, int x, int y);
-void       i_pan_world_general              (GschemToplevel *w_current, double world_cx, double world_cy,
+void       i_pan_world_general              (GschemToplevel *w_current, Page *page, double world_cx, double world_cy,
                                              double relativ_zoom_factor, int flags);
 void       i_pan_world                      (GschemToplevel *w_current, int x, int y);
 void       i_pan_world_mouse                (GschemToplevel *w_current, int diff_x, int diff_y);
