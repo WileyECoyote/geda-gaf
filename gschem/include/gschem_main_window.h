@@ -73,6 +73,8 @@ void               gschem_main_window_set_size   (GtkWidget *main_window,
                                                   int        width,
                                                   int        height);
 
+void               gschem_main_window_update     (GtkWidget *main_window);
+
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */

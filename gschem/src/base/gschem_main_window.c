@@ -316,7 +316,6 @@ GtkStyle *gschem_main_window_get_style (GtkWidget *main_window)
  * \param [in] width       New widget width.
  * \param [in] height      New widget height.
  */
-
 void
 gschem_main_window_set_size (GtkWidget *main_window, int width, int height)
 {
@@ -330,8 +329,53 @@ gschem_main_window_set_size (GtkWidget *main_window, int width, int height)
   gtk_window_resize(GTK_WINDOW(main_window), width, height);
 
   display = gdk_drawable_get_display (window);
+}
 
-  gdk_display_sync (display);
+/*!
+ * \brief Update the GschemMainWindow widget
+ * \par Function Description
+ *  This function attempts to force the under-lining GtkWindow to
+ *  actually call gtk_window_move_resize by emitting "check-resize"
+ *  on the window so that info->resize_width & info->resize_height
+ *  get applied to the allocation. Gtk normally delays making the
+ *  changes and emitting configure until applications are idle to
+ *  avoid performance degradation if "multiple" resizing occur.
+ *  But "configure-event" is going to fire and the event and the
+ *  allocation will NOT have the final geometry unless GtkWindow
+ *  applies the values that were saved in the GtkWindowGeometryInfo
+ *  structure. Note that gtk_window_get_size() will return the
+ *  info->resize_width/height even before the values are applied.
+ *
+ * \param [in] main_window GschemMainWindow widget,
+ *
+ * \remark It is pointless to call this function before the window
+ *         is shown, see gtk_window_check_resize().
+ */
+void
+gschem_main_window_update (GtkWidget *main_window)
+{
+  GdkWindow *window;
+
+  window = geda_get_widget_window(main_window);
+
+  gdk_window_process_updates(window, TRUE);
+
+  gdk_display_sync (gdk_drawable_get_display (window));
+
+  g_signal_emit_by_name(main_window, "check-resize", window);
+
+#if DEBUG_MAIN_WINDOW
+
+  int x, y, width, height;
+
+  gtk_window_get_position ((GtkWindow*)main_window, &x, &y);
+
+  gtk_window_get_size ((GtkWindow*)main_window, &width, &height);
+
+  fprintf(stderr, "%s exit x=%d, y=%d\n", __func__, x, y);
+
+#endif
+
 }
 
 /** @} endgroup Gschem-Main-Window */
