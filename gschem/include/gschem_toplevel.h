@@ -390,8 +390,26 @@ bool            gschem_toplevel_move_page_up          (GschemToplevel *w_current
 
 bool            gschem_toplevel_set_current_page      (GschemToplevel *w_current,
                                                        Page           *page);
+void            gschem_toplevel_set_grips_size        (GschemToplevel *w_current,
+                                                       int             pixels);
 void            gschem_toplevel_set_last_image_path   (GschemToplevel *w_current,
                                                        char           *path);
+
+
+inline int      gschem_toplevel_get_grips_size        (GschemToplevel *w_current)
+{
+  return w_current->grip_size;
+};
+
+inline int      gschem_toplevel_get_grips_half_size   (GschemToplevel *w_current)
+{
+  return w_current->grip_size >> 1;
+};
+
+inline double   gschem_toplevel_get_double_world_size (GschemToplevel *w_current, int grip_size)
+{
+  return ((double) grip_size) * Current_Page->to_world_x_constant;
+};
 
 #ifdef __cplusplus
 }

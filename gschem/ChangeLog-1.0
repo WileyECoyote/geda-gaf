@@ -1,5 +1,12 @@
 2017-04-03 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/gschem_toplevel.h: Add functions gschem_toplevel_get_grips_size
+      and gschem_toplevel_get_double_world_size as inline grips_size accessors,
+      declare gschem_toplevel_set_grips_size.
+
+    * src/base/gschem_toplevel.c: Add gschem_toplevel_set_grips_size as setter
+      that strips the first bit so only even-numbered grips_size are stored.
+
     * src/x/x_event.c: Remove storing pointer to w_current->drawable in
       x_event_configure (WTH?).
 

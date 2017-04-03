@@ -583,6 +583,20 @@ gschem_toplevel_set_current_page (GschemToplevel *w_current, Page *page)
 /*!
  * \brief Set the last_image_path in the GschemToplevel
  * \par Function Description
+ *  Set the grip size in \a w_current.
+ *
+ * \param [in] w_current This GschemToplevel
+ * \param [in] pixels    New string for last_image_path.
+ */
+void
+gschem_toplevel_set_grips_size (GschemToplevel *w_current, int pixels)
+{
+  w_current->grip_size = pixels & ~1;
+}
+
+/*!
+ * \brief Set the last_image_path in the GschemToplevel
+ * \par Function Description
  *  Set the last_image_path in \a w_current, which can be NULL. If \a w_current
  *  is not NULL then last_image_path will be set to \a path if \a path is also
  *  no NULL. The previous last_image_path is released if the pointer is retained
