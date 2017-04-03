@@ -496,39 +496,41 @@ bool x_event_configure (GtkWidget         *widget,
 {
   GedaToplevel *toplevel = w_current->toplevel;
 
+  int old_screen_width,  old_screen_height;
+  int new_screen_width,  new_screen_height;
+
   if (toplevel == NULL) {
     BUG_MSG ("toplevel == NULL");
     return FALSE;
   }
 
+  old_screen_width  = w_current->screen_width;
+  old_screen_height = w_current->screen_height;
+  new_screen_width  = event->width;
+  new_screen_height = event->height;
+
+  if (new_screen_width == old_screen_width &&
+      new_screen_height == old_screen_height)
+  {
+    /* the size of the drawing area has not changed */
+    /* nothing to do here */
+    return FALSE;
+  }
+
+  /* update the GschemToplevel with new size of drawing area */
+  w_current->screen_width  = new_screen_width;
+  w_current->screen_height = new_screen_height;
+
   /* if the current page has been setup */
   if (toplevel->page_current != NULL) {
 
+
     GList *iter;
     GList *pages;
-    Page  *old_page_current;
-    int    old_screen_width,  old_screen_height;
-    int    new_screen_width,  new_screen_height;
+
     double relative_zoom_factor = 1.0;
 
-    old_screen_width  = w_current->screen_width;
-    old_screen_height = w_current->screen_height;
-    new_screen_width  = event->width;
-    new_screen_height = event->height;
-
-    if (old_screen_width  == new_screen_width &&
-        old_screen_height == new_screen_height)
-    {
-      /* the size of the drawing area has not changed */
-      /* nothing to do here */
-      return FALSE;
-    }
-
-
     GdkWindow *window = geda_get_widget_window(w_current->main_window);
-    /* update the GschemToplevel with new size of drawing area */
-    w_current->screen_width  = new_screen_width;
-    w_current->screen_height = new_screen_height;
 
     /* in the case the user has maximised the window (hence the */
     /* configure event) fit the view by playing with zoom level */

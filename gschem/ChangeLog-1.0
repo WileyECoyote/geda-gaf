@@ -14,7 +14,9 @@
       that strips the first bit so only even-numbered grips_size are stored.
 
     * src/x/x_event.c: Remove storing pointer to w_current->drawable in
-      x_event_configure (WTH?).
+      x_event_configure (WTH?), move comparison and setting of old and new
+      screen values before the check for page_current so that w_current is
+      updated regardless of whether there is a active page or not.
 
     * src/x/x_window.c: Make x_window_reset_page_geometry non-static.
 
