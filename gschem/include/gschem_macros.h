@@ -52,3 +52,6 @@
 
 #define GET_PICTURE_HEIGHT(w) (w)->CONTROLKEY && (w)->pixbuf_wh_ratio != 0 ? \
                                    GET_CONFINED_HEIGHT(w) : GET_BOX_HEIGHT(w)
+
+/* Grips Related */
+#define GET_GRIP_SIZE(w)           gschem_toplevel_get_grips_size(w)

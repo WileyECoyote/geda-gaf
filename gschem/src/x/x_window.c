@@ -243,7 +243,7 @@ x_window_save_settings(GschemToplevel *w_current)
 
   /* Grips Settings */
   eda_config_set_boolean (cfg, win_group, "draw-grips",      CairoRenderer->draw_grips);
-  eda_config_set_integer (cfg, win_group, "grip-size",       w_current->grip_size);
+  eda_config_set_integer (cfg, win_group, "grip-size",       GET_GRIP_SIZE (w_current));
 
   array[0] = CairoRenderer->grip_stroke_color.pixel;
   array[1] = CairoRenderer->grip_stroke_color.red;

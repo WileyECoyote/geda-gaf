@@ -1,5 +1,11 @@
 2017-04-03 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/gschem_idefines.h: Change MIN_GRIP_SIZE to 6 and MAX_GRIP_SIZE
+      to 32, remove unused define GRIP_PIXEL_SIZE.
+
+    * include/gschem_macros.h: Define GET_GRIP_SIZE as gschem_toplevel_get_
+      grips_size alias.
+
     * include/gschem_toplevel.h: Add functions gschem_toplevel_get_grips_size
       and gschem_toplevel_get_double_world_size as inline grips_size accessors,
       declare gschem_toplevel_set_grips_size.
