@@ -769,7 +769,7 @@ x_window_idle_thread_post_load_file (void *filename)
   return FALSE;
 }
 
-static void
+void
 x_window_reset_page_geometry(GschemToplevel *w_current, Page *page)
 {
   const GList *list = geda_struct_page_get_objects(page);

@@ -16,6 +16,8 @@
     * src/x/x_event.c: Remove storing pointer to w_current->drawable in
       x_event_configure (WTH?).
 
+    * src/x/x_window.c: Make x_window_reset_page_geometry non-static.
+
 2017-04-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_pan_world.c: Revise i_pan_world_general to use local
