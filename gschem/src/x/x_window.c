@@ -30,6 +30,7 @@
 #include <libgen.h>        /* dirname */
 
 #include "../../include/gschem.h"
+#include "../../include/gschem_macros.h"
 #include "../../include/x_menus.h"
 #include "../../include/x_window.h"
 
@@ -176,29 +177,18 @@ x_window_create_drawing_area (GschemToplevel *w_current, GtkWidget *window)
 void
 x_window_save_settings(GschemToplevel *w_current)
 {
-  GtkWindow  *window;
   EdaConfig  *cfg;
   const char *win_group     = WINDOW_CONFIG_GROUP;
   const char *global_group  = IVAR_CONFIG_GROUP;
   const char *chooser_group = FILE_CHOOSER_CONFIG_GROUP;
   const char *chooser_key   = FILE_CHOOSER_CONFIG_FILTER;
 
-  int x, y, width, height;
   int array[4];
 
-  geda_log_v(_("Saving main window geometry and settings.\n"));
+  geda_log_v(_("Saving main window settings.\n"));
 
   /* Get the Window Geometry - Restored by x_window_restore_settings */
-  window = GTK_WINDOW(MainWindow);
   cfg    = eda_config_get_user_context ();
-  gtk_window_get_position (window, &x, &y);
-  gtk_window_get_size (window, &width, &height);
-
-  /* Save the Window Geometry data */
-  eda_config_set_integer (cfg, win_group, "window-x-position", x);
-  eda_config_set_integer (cfg, win_group, "window-y-position", y);
-  eda_config_set_integer (cfg, win_group, "window-width",      width);
-  eda_config_set_integer (cfg, win_group, "window-height",     height);
 
   /* All settings from here down are restored by i_vars_recall_user_settings */
 
@@ -302,60 +292,7 @@ x_window_save_settings(GschemToplevel *w_current)
 void
 x_window_restore_settings(GschemToplevel *w_current)
 {
-  GtkWindow *window;
-  EdaConfig  *cfg;
-  GError     *err        = NULL;
-  const char *group_name = WINDOW_CONFIG_GROUP;
-  bool        xy_error   = FALSE;
-
-  int x, y, width, height;
-
-  geda_log_v(_("Retrieving main Window geometry and settings.\n"));
-
-  window = GTK_WINDOW(MainWindow);
-  cfg    = eda_config_get_user_context ();
-
-  x = eda_config_get_integer (cfg, group_name, "window-x-position", &err);
-  if (err != NULL) {
-    geda_utility_log_verbose("%s\n", err->message);
-    g_clear_error (&err);
-    xy_error = TRUE;
-  }
-  y = eda_config_get_integer (cfg, group_name, "window-y-position", &err);
-  if (err != NULL) {
-    g_clear_error (&err);
-    xy_error = TRUE;
-  }
-
-  width  = eda_config_get_integer (cfg, group_name, "window-width", &err);
-  if (err != NULL) {
-    g_clear_error (&err);
-    width = DEFAULT_WINDOW_WIDTH;
-  }
-  height = eda_config_get_integer (cfg, group_name, "window-height", &err);
-  if (err != NULL) {
-    g_clear_error (&err);
-    height = DEFAULT_WINDOW_HEIGHT;
-  }
-
-  if (xy_error)
-    gtk_window_set_position(window, GTK_WIN_POS_CENTER);
-  else
-    gtk_window_move (window, x, y);
-
-  /* If, for any reason, we pass a zero value to gtk_window_resize an error
-   * will be generated. We double check these as fail safe because the above
-   * conditionals only set default values if an error occurred retrieving
-   * settings, so...*/
-  if (width == 0 ) {
-    width = DEFAULT_WINDOW_WIDTH;
-  }
-  if (height == 0) {
-    height = DEFAULT_WINDOW_HEIGHT;
-  }
-
-  /* Results in a "configure_event" being generated */
-  gschem_main_window_set_size(MainWindow, width, height);
+  geda_log_v(_("Retrieving main Window settings.\n"));
 
   /* Restore Cursor/Pointer setting */
   int pointer_id = x_settings_lookup_cursor(w_current->drawing_pointer);
@@ -592,6 +529,8 @@ x_window_create_main(GschemToplevel *w_current)
   w_current->window = DrawingArea->window;
   w_current->drawable = w_current->window;
   x_window_setup_context(w_current);
+
+  gschem_main_window_update(MainWindow);
 }
 
 /*! \brief Close All Edit Dialogs

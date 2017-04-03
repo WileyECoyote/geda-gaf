@@ -39,6 +39,13 @@
  *  This module implements the main window in gschem.
  */
 
+enum {
+  GEOMETRY_SAVE,
+  GEOMETRY_RESTORE,
+  RESTORE_POSITION,
+  LAST_SIGNAL
+};
+
 /* Function Prototypes */
 
 static void
@@ -54,6 +61,8 @@ static void
 set_property (GObject *object, unsigned int param_id, const GValue *value, GParamSpec *pspec);
 
 static void *gschem_main_window_parent_class = NULL;
+
+static unsigned int main_window_signals[LAST_SIGNAL] = { 0 };
 
 /*!
  * \brief Get a property
@@ -85,6 +94,10 @@ static void
 gschem_main_window_map (GtkWidget *widget)
 {
   gtk_widget_set_name (widget, "gschem");
+
+  g_signal_emit (GSCHEM_MAIN_WINDOW (widget),
+                 main_window_signals[ GEOMETRY_RESTORE ], 0);
+
   GTK_WIDGET_CLASS (gschem_main_window_parent_class)->map (widget);
 }
 
@@ -100,6 +113,9 @@ gschem_main_window_map (GtkWidget *widget)
 static void
 gschem_main_window_unmap (GtkWidget *widget)
 {
+  g_signal_emit (GSCHEM_MAIN_WINDOW (widget),
+                 main_window_signals[ GEOMETRY_SAVE ], 0);
+
   gtk_widget_set_name (widget, NULL);
   GTK_WIDGET_CLASS (gschem_main_window_parent_class)->unmap (widget);
 }
@@ -107,9 +123,9 @@ gschem_main_window_unmap (GtkWidget *widget)
 static void
 gschem_window_size_request (GtkWidget *widget, GtkRequisition *requisition)
 {
-  GtkBin      *bin;
-  GtkWindow   *window;
-  unsigned int border;
+  GtkBin           *bin;
+  GtkWindow        *window;
+  unsigned int      border;
 
   window = (GtkWindow*)widget;
   bin    = (GtkBin*)window;
@@ -131,12 +147,13 @@ gschem_window_size_request (GtkWidget *widget, GtkRequisition *requisition)
 static void
 gschem_window_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
 {
-  GtkWindow    *window;
-  GtkAllocation child_allocation;
-  unsigned int  border_2x;
-  unsigned int  need_resize;
+  GtkWindow     *window;
+  GtkAllocation  child_allocation;
+  unsigned int   border_2x;
+  unsigned int   need_resize;
 
-  window             = GTK_WINDOW (widget);
+  window = (GtkWindow*)widget;
+
   widget->allocation = *allocation;
 
   border_2x = gtk_container_get_border_width (GTK_CONTAINER (window)) << 1;
@@ -172,13 +189,14 @@ gschem_window_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
  *
  *  \par Function Description
  *  Before the Dialog widget is shown, restore previously saved
- *  position and size.
+ *  position and size. Order is import here; RESTORE_POSITION is
+ *  emitted after the would-be size has been applied or Gtk might
+ *  bound the window to the edge of the screen.
  *
  *  \param [in] widget  The GtkWidget being shown.
  */
 static void gschem_main_show (GtkWidget *widget)
 {
-  /* Hack to fix BUG in GtkFileChooserDialog */
   gtk_window_set_resizable (GTK_WINDOW(widget), FALSE);
 
   /* Let Gtk show the window */
@@ -186,7 +204,143 @@ static void gschem_main_show (GtkWidget *widget)
 
   gtk_window_set_resizable (GTK_WINDOW(widget), TRUE);
 
-  //g_signal_emit (GEDA_FILE_CHOOSER (widget), chooser_signals[GEOMETRY_RESTORE], 0, group);
+  g_signal_emit (GSCHEM_MAIN_WINDOW (widget),
+                 main_window_signals[ RESTORE_POSITION ], 0);
+}
+
+/*! \brief GschemMainWindow "restore_position" class method handler
+ *  \par Function Description
+ *  Restore main window's last position.
+ *
+ *  \param [in] main_window The #GschemMainWindow to restore position.
+ */
+static void
+gschem_main_window_restore_position (GschemMainWindow *main_window)
+{
+  EdaConfig  *cfg;
+  GError     *err;
+  GtkWindow  *window;
+  const char *group;
+
+  int  x, y;
+  bool xy_error;
+
+  cfg      = eda_config_get_user_context();
+  err      = NULL;
+  group    = WINDOW_CONFIG_GROUP;
+  window   = GTK_WINDOW(main_window);
+  xy_error = FALSE;
+
+  geda_log_v(_("Retrieving main window position.\n"));
+
+  x = eda_config_get_integer (cfg, group, "window-x-position", &err);
+  if (err != NULL) {
+    geda_utility_log_verbose("%s\n", err->message);
+    g_clear_error (&err);
+    xy_error = TRUE;
+  }
+
+  y = eda_config_get_integer (cfg, group, "window-y-position", &err);
+  if (err != NULL) {
+    g_clear_error (&err);
+    xy_error = TRUE;
+  }
+
+  if (xy_error) {
+    gtk_window_set_position(window, GTK_WIN_POS_CENTER);
+  }
+  else {
+    gtk_window_move (window, x, y);
+  }
+
+#if DEBUG_MAIN_WINDOW
+  fprintf(stderr, "%s x=%d, y=%d\n", __func__, x, y);
+#endif
+
+}
+
+/*! \brief GschemMainWindow "geometry_restore" class method handler
+ *  \par Function Description
+ *  Restore main window's last size.
+ *
+ *  \param [in] main_window  The #GschemMainWindow to restore geometry.
+ */
+static void
+gschem_main_window_geometry_restore (GschemMainWindow *main_window)
+{
+  EdaConfig  *cfg;
+  GError     *err;
+  const char *group;
+
+  int  width, height;
+
+  cfg      = eda_config_get_user_context();
+  err      = NULL;
+  group    = WINDOW_CONFIG_GROUP;
+
+  geda_log_v(_("Retrieving main window geometry.\n"));
+
+  width  = eda_config_get_integer (cfg, group, "window-width", &err);
+  if (err != NULL) {
+    g_clear_error (&err);
+    width = DEFAULT_WINDOW_WIDTH;
+  }
+
+  height = eda_config_get_integer (cfg, group, "window-height", &err);
+  if (err != NULL) {
+    g_clear_error (&err);
+    height = DEFAULT_WINDOW_HEIGHT;
+  }
+
+  /* If, for any reason, we pass a zero value to gtk_window_resize an error
+   * will be generated. We double check these as fail safe because the above
+   * conditionals only set default values if an error occurred retrieving
+   * settings, so...*/
+  if (width == 0 ) {
+    width = DEFAULT_WINDOW_WIDTH;
+  }
+  if (height == 0) {
+    height = DEFAULT_WINDOW_HEIGHT;
+  }
+
+  gschem_main_window_set_size((GtkWidget*)main_window, width, height);
+
+#if DEBUG_MAIN_WINDOW
+  fprintf(stderr, "%s width=%d, height=%d\n", __func__, width, height);
+#endif
+}
+
+/*! \brief GschemMainWindow "geometry_save" class method handler
+ *  \par Function Description
+ *  Save the dialog's current position and size to the passed GKeyFile
+ *
+ *  \param [in] main_window The #GschemMainWindow Dialog to save the geometry.
+ */
+static void
+gschem_main_window_geometry_save (GschemMainWindow *main_window)
+{
+  EdaConfig *cfg;
+  char      *group;
+  GtkWindow *window;
+  int x, y, width, height;
+
+  cfg    = eda_config_get_user_context ();
+  group  = WINDOW_CONFIG_GROUP;
+  window = GTK_WINDOW(main_window);
+
+  gtk_window_get_position (window, &x, &y);
+  gtk_window_get_size (window, &width, &height);
+
+  /* Save the Window Geometry data */
+  eda_config_set_integer (cfg, group, "window-x-position", x);
+  eda_config_set_integer (cfg, group, "window-y-position", y);
+  eda_config_set_integer (cfg, group, "window-width",      width);
+  eda_config_set_integer (cfg, group, "window-height",     height);
+
+#if DEBUG_MAIN_WINDOW
+  fprintf(stderr, "%s x=%d, y=%d width=%d, height=%d\n", __func__, x, y, width, height);
+#endif
+
 }
 
 /*!
@@ -198,8 +352,9 @@ static void gschem_main_show (GtkWidget *widget)
 static void
 gschem_main_window_class_init (void *class, void *class_data)
 {
-  GObjectClass   *gobject_class   = G_OBJECT_CLASS (class);
-  GtkWidgetClass *widget_class    = GTK_WIDGET_CLASS (class);
+  GObjectClass          *gobject_class = G_OBJECT_CLASS (class);
+  GtkWidgetClass        *widget_class  = GTK_WIDGET_CLASS (class);
+  GschemMainWindowClass *win_class     = (GschemMainWindowClass*)class;
 
   gobject_class->get_property     = get_property;
   gobject_class->set_property     = set_property;
@@ -210,7 +365,70 @@ gschem_main_window_class_init (void *class, void *class_data)
   widget_class->size_request      = gschem_window_size_request;
   widget_class->size_allocate     = gschem_window_size_allocate;
 
+  win_class->restore_position     = gschem_main_window_restore_position;
+  win_class->geometry_restore     = gschem_main_window_geometry_restore;
+  win_class->geometry_save        = gschem_main_window_geometry_save;
+
   gschem_main_window_parent_class = g_type_class_peek_parent (class);
+
+  GedaType type = gschem_main_window_get_type();
+
+  /*!
+   * \brief GschemMainWindow::geometry-restore:
+   * \par
+   *  The GschemMainWindow::geometry-restore signal cause the dialog to restore
+   *  the dialog size when the signal is emitted on the dialog.
+   *
+   * param [in] chooser the object which received the signal.
+   */
+  main_window_signals[ GEOMETRY_RESTORE ] = g_signal_new ("geometry-restore", type,
+                                                      G_SIGNAL_RUN_FIRST,     /*signal_flags */
+                                                      G_STRUCT_OFFSET (GschemMainWindowClass,
+                                                                       geometry_restore ),
+                                                      NULL, /* accumulator */
+                                                      NULL, /* accu_data */
+                                                      g_cclosure_marshal_VOID__VOID,
+                                                      G_TYPE_NONE,
+                                                      1,    /* n_params */
+                                                      G_TYPE_STRING);
+
+  /*!
+   * \brief GschemMainWindow::geometry-save:
+   * \par
+   *  The GschemMainWindow::geometry-save signal cause the dialog to save
+   *  the dialog size and position with the signal is emitted on the dialog.
+   *
+   * param [in] chooser the object which received the signal.
+   */
+  main_window_signals[ GEOMETRY_SAVE ]    = g_signal_new ("geometry-save", type,
+                                                      G_SIGNAL_RUN_FIRST,     /*signal_flags */
+                                                      G_STRUCT_OFFSET (GschemMainWindowClass,
+                                                                       geometry_save ),
+                                                      NULL, /* accumulator */
+                                                      NULL, /* accu_data */
+                                                      g_cclosure_marshal_VOID__VOID,
+                                                      G_TYPE_NONE,
+                                                      1,    /* n_params */
+                                                      G_TYPE_STRING);
+
+  /*!
+   * \brief GschemMainWindow::restore-position:
+   * \par
+   *  The GschemMainWindow::restore-position signal cause the dialog to restore
+   *  the dialog position when the signal is emitted on the dialog.
+   *
+   * param [in] chooser the object which received the signal.
+   */
+  main_window_signals[ RESTORE_POSITION ] = g_signal_new ("restore-position", type,
+                                                      G_SIGNAL_RUN_FIRST,     /*signal_flags */
+                                                      G_STRUCT_OFFSET (GschemMainWindowClass,
+                                                                       restore_position ),
+                                                      NULL, /* accumulator */
+                                                      NULL, /* accu_data */
+                                                      g_cclosure_marshal_VOID__VOID,
+                                                      G_TYPE_NONE,
+                                                      1,    /* n_params */
+                                                      G_TYPE_STRING);
 }
 
 /*!
@@ -222,7 +440,7 @@ gschem_main_window_class_init (void *class, void *class_data)
 static void
 gschem_main_window_instance_init (GTypeInstance *instance, void *class)
 {
- /* GschemMainWindow *window = (GschemMainWindow*)class*/
+ /* GschemMainWindow *window = (GschemMainWindow*)class */
 }
 
 /*!

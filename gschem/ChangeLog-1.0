@@ -14,13 +14,21 @@
       that strips the first bit so only even-numbered grips_size are stored.
 
     * src/base/gschem_main_window.c: Add function gschem_main_window_update.
+      Add signals GEOMETRY_SAVE, GEOMETRY_RESTORE and RESTORE_POSITION with
+      handlers gschem_main_window_geometry_save, gschem_main_window_restore_
+      position, gschem_main_window_geometry_restore. Changing the size in
+      "show" does not work, nor does changing the position in "map", hence
+      seperate signals for size and position. In retropect, Gtk declaring
+      gtk_window_move_resize static and not puplic was major "blowing it".
 
     * src/x/x_event.c: Remove storing pointer to w_current->drawable in
       x_event_configure (WTH?), move comparison and setting of old and new
       screen values before the check for page_current so that w_current is
       updated regardless of whether there is a active page or not.
 
-    * src/x/x_window.c: Make x_window_reset_page_geometry non-static.
+    * src/x/x_window.c: Make x_window_reset_page_geometry non-static, remove
+      saving and restoring of the main window geometry and call gschem_main_
+      window_update near the end of x_window_create_main.
 
 2017-04-02 Wiley E. Hill <wileyhill@gmail.com>
 

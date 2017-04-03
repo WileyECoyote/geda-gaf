@@ -47,6 +47,11 @@ typedef struct _GschemMainWindow GschemMainWindow;
 struct _GschemMainWindowClass
 {
   GtkWindowClass parent_class;
+
+  /* Main Window signals */
+  void (* geometry_restore) (GschemMainWindow *main_window);
+  void (* geometry_save)    (GschemMainWindow *main_window);
+  void (* restore_position) (GschemMainWindow *main_window);
 };
 
 struct _GschemMainWindow
