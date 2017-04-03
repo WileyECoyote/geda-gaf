@@ -551,9 +551,6 @@ bool x_event_configure (GtkWidget         *widget,
       }
     }
 
-    /* save current page */
-    old_page_current = toplevel->page_current;
-
     pages = geda_toplevel_get_pages(toplevel);
 
     /* re-pan each page of the GedaToplevel */
@@ -567,14 +564,8 @@ bool x_event_configure (GtkWidget         *widget,
       cx = ((double)(p_current->left + p_current->right))  / 2;
       cy = ((double)(p_current->top  + p_current->bottom)) / 2;
 
-      geda_struct_page_goto (p_current);
-
-      i_pan_world_general (w_current, cx, cy, relative_zoom_factor, I_PAN_DONT_REDRAW);
       i_pan_world_general (w_current, p_current, cx, cy, relative_zoom_factor, I_PAN_DONT_REDRAW);
     }
-
-    /* restore current page to saved value */
-    geda_struct_page_goto (old_page_current);
 
     /* redraw the current page and update UI */
     o_invalidate_all (w_current);
