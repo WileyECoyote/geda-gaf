@@ -473,7 +473,7 @@ static void x_toolbars_snap_toggle(GtkWidget *widget, GschemToplevel *w_current)
   g_object_set (button, "visible", TRUE, NULL);
 
 #if DEBUG_TOOLBARS
-  fprintf(stderr, "x_toolbars_execute: action=%s\n",action);
+  fprintf(stderr, "%s: action=%s\n", __func__, action);
 #endif
   i_command_process(w_current, action, 0, NULL, ID_ORIGIN_TOOLBAR);
 }
