@@ -60,7 +60,8 @@ void i_zoom_world(GschemToplevel *w_current, EID_ZOOM_DIRECTIVE dir,
                                              EID_ACTION_ORIGIN  selected_from,
                                              EID_PAN_DIRECTIVES pan_flags)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
+  Page *page;
+
   double world_pan_center_x;
   double world_pan_center_y;
   double relative_zoom_factor;
@@ -83,6 +84,8 @@ void i_zoom_world(GschemToplevel *w_current, EID_ZOOM_DIRECTIVE dir,
     break;
   }
 
+  page = geda_toplevel_get_current_page(w_current->toplevel);
+
   /* calc center: either "mouse_to_world" or center=center or a
      virtual center if warp_cursor is disabled */
   if (w_current->zoom_with_pan == TRUE &&
@@ -100,13 +103,13 @@ void i_zoom_world(GschemToplevel *w_current, EID_ZOOM_DIRECTIVE dir,
 
       double top, bottom, right, left;
 
-      left = ((toplevel->page_current->left - start_x)
+      left = ((page->left - start_x)
               * (1/relative_zoom_factor) + start_x);
-      right = ((toplevel->page_current->right - start_x)
+      right = ((page->right - start_x)
                * (1/relative_zoom_factor) + start_x);
-      top = ((toplevel->page_current->top - start_y)
+      top = ((page->top - start_y)
              * (1/relative_zoom_factor) + start_y);
-      bottom = ((toplevel->page_current->bottom - start_y)
+      bottom = ((page->bottom - start_y)
                 * (1/relative_zoom_factor) + start_y);
 
       world_pan_center_x = (right + left) / 2;
@@ -114,10 +117,10 @@ void i_zoom_world(GschemToplevel *w_current, EID_ZOOM_DIRECTIVE dir,
     }
   }
   else {
-    world_pan_center_x = (double) (toplevel->page_current->left +
-                                   toplevel->page_current->right ) / 2;
-    world_pan_center_y = (double) (toplevel->page_current->top +
-                                   toplevel->page_current->bottom ) / 2;
+    world_pan_center_x = (double) (page->left +
+                                   page->right ) / 2;
+    world_pan_center_y = (double) (page->top +
+                                   page->bottom ) / 2;
   }
 
 #if DEBUG
@@ -195,7 +198,7 @@ i_zoom_world_extents (GschemToplevel *w_current, const GList *list, int pan_flag
          __func_, lleft, lright, ltop, lbottom);
 #endif
 
-  page = gschem_toplevel_get_current_page(w_current);
+  page = geda_toplevel_get_current_page(w_current->toplevel);
 
   /* Calculate the necessary zoom factor to show everything
    * Start with the windows width and height (minus a small padding in pixels),
@@ -229,10 +232,12 @@ i_zoom_world_extents (GschemToplevel *w_current, const GList *list, int pan_flag
 void i_zoom_world_specify (GschemToplevel *w_current, double zoom_new, int x, int y,
                            EID_ACTION_ORIGIN  specified_from)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
+  Page *page;
 
   double zoom_old, relative_zoom_factor;
   double world_pan_center_x, world_pan_center_y;
+
+  page = geda_toplevel_get_current_page(w_current->toplevel);
 
   /* calc center: either "cursor_to_world" or center=center or center  */
   if ((specified_from == ID_ORIGIN_KEYBOARD) ||
@@ -245,20 +250,20 @@ void i_zoom_world_specify (GschemToplevel *w_current, double zoom_new, int x, in
 
     double top, bottom, right, left;
 
-    top    = toplevel->page_current->top;
-    bottom = toplevel->page_current->bottom;
-    right  = toplevel->page_current->right;
-    left   = toplevel->page_current->left;
+    top    = page->top;
+    bottom = page->bottom;
+    right  = page->right;
+    left   = page->left;
 
     world_pan_center_x = (double) (left + right ) / 2;
     world_pan_center_y = (double) (top + bottom ) / 2;
   }
 
-  zoom_old = toplevel->page_current->to_screen_y_constant;
+  zoom_old = page->to_screen_y_constant;
 
   relative_zoom_factor = 1 / ( zoom_new * zoom_old);
 
-  i_pan_world_general(w_current, world_pan_center_x, world_pan_center_y,
+  i_pan_world_general(w_current, page, world_pan_center_x, world_pan_center_y,
                       relative_zoom_factor, 0);
 }
 
@@ -269,7 +274,8 @@ void i_zoom_world_specify (GschemToplevel *w_current, double zoom_new, int x, in
  */
 void i_zoom_world_box(GschemToplevel *w_current, int pan_flags)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
+  Page *page;
+
   double zx, zy, relative_zoom_factor;
   double world_pan_center_x, world_pan_center_y;
 
@@ -279,10 +285,12 @@ void i_zoom_world_box(GschemToplevel *w_current, int pan_flags)
     return;
   }
 
+  page = geda_toplevel_get_current_page(w_current->toplevel);
+
   /*calc new zoomfactors and choose the smaller one*/
-  zx = (double) abs(toplevel->page_current->left - toplevel->page_current->right) /
+  zx = (double) abs(page->left - page->right) /
                 abs(w_current->first_wx - w_current->second_wx);
-  zy = (double) abs(toplevel->page_current->top - toplevel->page_current->bottom) /
+  zy = (double) abs(page->top - page->bottom) /
                 abs(w_current->first_wy - w_current->second_wy);
 
   relative_zoom_factor = (zx < zy ? zx : zy);
