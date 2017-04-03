@@ -1,3 +1,7 @@
+2017-04-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/struct/s_toplevel.c: Add accessor geda_toplevel_get_page_list.
+
 2017-04-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_path.c: Revise geda_file_path_create to set errno = status

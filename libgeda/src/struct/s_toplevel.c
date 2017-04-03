@@ -77,6 +77,23 @@ geda_toplevel_struct_get_symbols (const GedaToplevel *toplevel)
 }
 
 /*!
+ * \brief Get list of Pages in GedaToplevel object.
+ * \par Function Description
+ *  Retrieves the list of all loaded pages from the toplevel object.
+ *
+ * \param toplevel #GedaToplevel structure.
+ *
+ * \return GList of Page objects.
+ */
+GList*
+geda_toplevel_struct_get_pages (const GedaToplevel *toplevel)
+{
+  g_return_val_if_fail ((toplevel != NULL), NULL);
+
+  return geda_list_get_glist(toplevel->pages);
+}
+
+/*!
  * \brief Releases resource associated with GedaToplevel object
  * \par Function Description
  *  Decrements the reference count of the toplevel object by one.

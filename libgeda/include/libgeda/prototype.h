@@ -743,6 +743,7 @@ const CLibSymbol *geda_struct_clib_get_symbol_by_name      (const char *name);
 /* s_toplevel.c */
         GList   *geda_toplevel_struct_get_selection        (GedaToplevel *toplevel);
         GList   *geda_toplevel_struct_get_symbols          (const GedaToplevel *toplevel);
+        GList   *geda_toplevel_struct_get_pages            (const GedaToplevel *toplevel);
          void    geda_toplevel_struct_release              (GedaToplevel *toplevel);
          void    geda_toplevel_struct_set_rbounds_func     (GedaToplevel *toplevel, RenderedBoundsFunc func, void *user_data);
 
