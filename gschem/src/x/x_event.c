@@ -526,16 +526,15 @@ bool x_event_configure (GtkWidget         *widget,
 
     w_current->drawable = w_current->window;
 
+    GdkWindow *window = geda_get_widget_window(w_current->main_window);
     /* update the GschemToplevel with new size of drawing area */
     w_current->screen_width  = new_screen_width;
     w_current->screen_height = new_screen_height;
 
     /* in the case the user has maximised the window (hence the */
     /* configure event) fit the view by playing with zoom level */
-    if (gdk_window_get_state (
-       (gtk_widget_get_toplevel (
-        widget))->window) & GDK_WINDOW_STATE_MAXIMIZED)
-    {
+    if (gdk_window_get_state (window) & GDK_WINDOW_STATE_MAXIMIZED) {
+
       double width_ratio, height_ratio;
 
       /* tweak relative_zoom to better fit page in maximized window */

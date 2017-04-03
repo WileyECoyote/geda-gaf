@@ -13,7 +13,9 @@
 
     * src/x/x_event.c Revise x_event_configure; eliminate save of the
       current page and use of geda_struct_page_goto, which is no longer
-      required since the page is passed to i_pan_world_general.
+      required since the page is passed to i_pan_world_general, reference
+      w_current->main_window->window instead of gtk_widget_get_toplevel
+      since the toplevel is known.
 
     * src/x/x_window.csrc/x/x_window.c: Remove redundant reference to
       the same location in x_window_setup_page and rename variables.
