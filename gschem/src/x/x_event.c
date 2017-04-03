@@ -524,7 +524,6 @@ bool x_event_configure (GtkWidget         *widget,
       return FALSE;
     }
 
-    w_current->drawable = w_current->window;
 
     GdkWindow *window = geda_get_widget_window(w_current->main_window);
     /* update the GschemToplevel with new size of drawing area */
