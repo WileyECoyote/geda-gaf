@@ -229,10 +229,10 @@ void i_pan_world_general (GschemToplevel *w_current,
   }
 
   /* calculate the new visible area; adding 0.5 to round */
-  page->left   = world_cx - (double) w_current->screen_width / 2 / zoom_new + 0.5;
-  page->right  = world_cx + (double) w_current->screen_width / 2 / zoom_new + 0.5;
-  page->top    = world_cy - (double) w_current->screen_height / 2 / zoom_new + 0.5;
-  page->bottom = world_cy + (double) w_current->screen_height / 2 / zoom_new + 0.5;
+  int page_left   = world_cx - (double) w_current->screen_width / 2 / zoom_new + 0.5;
+  int page_right  = world_cx + (double) w_current->screen_width / 2 / zoom_new + 0.5;
+  int page_top    = world_cy - (double) w_current->screen_height / 2 / zoom_new + 0.5;
+  int page_bottom = world_cy + (double) w_current->screen_height / 2 / zoom_new + 0.5;
 
   /* and put it back to the borders */
   if (!(flags & I_PAN_IGNORE_BORDERS)) {
@@ -240,59 +240,58 @@ void i_pan_world_general (GschemToplevel *w_current,
     int diff;
 
     /* check right border */
-    if (page->right > w_current->world_right) {
-        page->left += w_current->world_right - page->right;
-        page->right = w_current->world_right;
+    if (page_right > w_current->world_right) {
+        page_left += w_current->world_right - page_right;
+        page_right = w_current->world_right;
     }
 
     /* check left border */
-    if (page->left < w_current->world_left) {
-        page->right += w_current->world_left - page->left;
-        page->left   = w_current->world_left;
+    if (page_left < w_current->world_left) {
+        page_right += w_current->world_left - page_left;
+        page_left   = w_current->world_left;
     }
 
     /* If there is any slack, center the view */
-    diff = (page->right - page->left) - (w_current->world_right - w_current->world_left);
+    diff = (page_right - page_left) - (w_current->world_right - w_current->world_left);
 
     if (diff > 0) {
-        page->left  -= diff >> 1;  /* Divide by 2 */
-        page->right -= diff >> 1;
+        page_left  -= diff >> 1;  /* Divide by 2 */
+        page_right -= diff >> 1;
     }
 
     /* check bottom border */
-    if (page->bottom > w_current->world_bottom) {
-        page->top   += w_current->world_bottom - page->bottom;
-        page->bottom = w_current->world_bottom;
+    if (page_bottom > w_current->world_bottom) {
+        page_top   += w_current->world_bottom - page_bottom;
+        page_bottom = w_current->world_bottom;
     }
 
     /* check top border */
-    if (page->top < w_current->world_top) {
-        page->bottom += w_current->world_top - page->top;
-        page->top     = w_current->world_top;
+    if (page_top < w_current->world_top) {
+        page_bottom += w_current->world_top - page_top;
+        page_top     = w_current->world_top;
     }
 
       /* If there is any slack, center the view */
-    diff = (page->bottom - page->top) - (w_current->world_bottom - w_current->world_top);
+    diff = (page_bottom - page_top) - (w_current->world_bottom - w_current->world_top);
     if (diff > 0) {
-        page->top    -= diff >> 1;  /* Divide by 2 */
-        page->bottom -= diff >> 1;
+        page_top    -= diff >> 1;  /* Divide by 2 */
+        page_bottom -= diff >> 1;
     }
   }
 
 #if DEBUG
   printf("zoom_old: %f, zoom_new: %f \n ",zoom_old, zoom_new);
   printf("left: %d, right: %d, top: %d, bottom: %d\n",
-         page->left, page->right, page->top, page->bottom);
-  printf("aspect: %f\n", (float) fabs(page->right - page->left) /
-         (float) fabs(page->bottom - page->top ));
+         page_left, page_right, page_top, page_bottom);
+  printf("aspect: %f\n", (float) fabs(page_right - page_left) /
+         (float) fabs(page_bottom - page_top ));
 #endif
 
-  /* x_window_setup_page */
   x_window_setup_page(w_current, page,
-                                 page->left,
-                                 page->right,
-                                 page->top,
-                                 page->bottom);
+                                 page_left,
+                                 page_right,
+                                 page_top,
+                                 page_bottom);
 
   /* update the status bar if the zoom changed */
   if (zoom_new != zoom_old && w_current->status_bar) {

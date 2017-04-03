@@ -1,5 +1,8 @@
 2017-04-02 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/iface/i_pan_world.c: Revise i_pan_world_general to use local
+      variables for page geometry.
+
     * src/x/x_window.csrc/x/x_window.c: Remove redundant reference to
       the same location in x_window_setup_page and rename variables.
 
