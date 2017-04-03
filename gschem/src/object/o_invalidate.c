@@ -141,7 +141,6 @@ o_invalidate_rectangle (GschemToplevel *w_current,
     int bloat;
 
     grip_half_size = w_current->grip_size >> 1;
-    //grip_half_size = o_grips_half_size (w_current, NULL);
 
     cue_half_size  = SCREENabs (w_current, CUE_BOX_SIZE);
 

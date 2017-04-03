@@ -161,8 +161,6 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
 
   grip_half_size = w_current->grip_size / 2;
 
-  /* grip_half_size = o_grips_half_size (w_current, NULL); */
-
   cue_half_size = SCREENabs (w_current, CUE_BOX_SIZE);
   bloat = MAX (grip_half_size, cue_half_size);
 
@@ -172,11 +170,6 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
   obj_list = geda_struct_page_objects_in_regions (toplevel->page_current, &world_rect, 1);
 
   render_flags = EDA_RENDERER_FLAG_HINTING;
-
-  /* Set up renderer based on configuration in w_current and list - or not */
-  /* if (toplevel->page_current->show_hidden_text) {
-   *   render_flags |= EDA_RENDERER_FLAG_TEXT_HIDDEN;
-  }*/
 
   is_only_text = TRUE;
   iter = g_list_first(obj_list);
@@ -287,9 +280,6 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
         eda_renderer_draw_cues (renderer, o_current);
 
         if (CairoRenderer->draw_grips ) {
-          /* get the dynamic size of the grip */
-          //grip_half_size = o_grips_half_size (w_current, o_current);
-          //g_object_set (G_OBJECT (renderer), "grip-size",((double) grip_half_size * toplevel->page_current->to_world_x_constant), NULL);
           eda_renderer_draw_grips (renderer, o_current);
         }
       }
