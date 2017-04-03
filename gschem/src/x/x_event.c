@@ -570,6 +570,7 @@ bool x_event_configure (GtkWidget         *widget,
       geda_struct_page_goto (p_current);
 
       i_pan_world_general (w_current, cx, cy, relative_zoom_factor, I_PAN_DONT_REDRAW);
+      i_pan_world_general (w_current, p_current, cx, cy, relative_zoom_factor, I_PAN_DONT_REDRAW);
     }
 
     /* restore current page to saved value */

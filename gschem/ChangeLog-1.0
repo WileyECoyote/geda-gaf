@@ -1,11 +1,15 @@
 2017-04-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_pan_world.c: Revise i_pan_world_general to use local
-      variables for page geometry.
+      variables for page geometry and pass the page as argument 2.
 
     * src/iface/i_zoom_world.c: Revise i_zoom_world, i_zoom_world_extents
       i_zoom_world_specify and i_zoom_world_box to use local pointer to
-      the Page object obtained from geda_toplevel_get_current_page.
+      the Page object obtained from geda_toplevel_get_current_page and
+      pass a page argument to i_pan_world_general.
+
+    * src/object/o_edit.c: Revise o_edit_find_text to pass the page to
+      i_pan_world_general.
 
     * src/x/x_window.csrc/x/x_window.c: Remove redundant reference to
       the same location in x_window_setup_page and rename variables.

@@ -182,13 +182,12 @@ void i_pan_warp_cursor (GtkWidget* widget, int x, int y)
  * \param [in] flags                Enumerated #EID_PAN_DIRECTIVES
  */
 void i_pan_world_general (GschemToplevel *w_current,
+                          Page           *page,
                           double          world_cx,
                           double          world_cy,
                           double          relative_zoom_factor,
                           int             flags)
 {
-  Page *page = gschem_toplevel_get_current_page(w_current);
-
   /* think it's better that the zoomfactor is defined as pix/mills
    * this will be the same as page->to_screen_x/y_constant */
   double zx, zy, zoom_old, zoom_new, zoom_min;
@@ -318,7 +317,7 @@ void i_pan_world(GschemToplevel *w_current, int w_x, int w_y)
   /* make mouse to the new world-center;
    *    attention: there are information looses because of type cast in mil_x */
 
-  i_pan_world_general(w_current, w_x, w_y, 1, 0);
+  i_pan_world_general(w_current, Current_Page, w_x, w_y, 1, 0);
 
   /*! \bug FIXME? This call will trigger a motion event (x_event_motion()),
    * even if the user doesn't move the mouse
@@ -357,5 +356,5 @@ void i_pan_world_mouse(GschemToplevel *w_current, int diff_x, int diff_y)
      world_cx, world_cy);
 #endif
 
-  i_pan_world_general(w_current, world_cx, world_cy, 1, 0);
+  i_pan_world_general(w_current, toplevel->page_current, world_cx, world_cy, 1, 0);
 }

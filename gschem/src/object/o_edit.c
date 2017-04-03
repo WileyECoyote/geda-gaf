@@ -868,7 +868,7 @@ int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
               text_screen_height = SCREENabs (w_current, y2 - y1);
             }
 
-            i_pan_world_general(w_current, o_current->text->x, o_current->text->y, 1, 0);
+            i_pan_world_general(w_current, page, o_current->text->x, o_current->text->y, 1, 0);
 
             last_o = o_current;
             if (!visible) {
