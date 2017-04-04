@@ -2947,57 +2947,57 @@ msgstr ""
 msgid "Rotate"
 msgstr "Roteer"
 
-#: gschem/src/x/x_menus.c:125 gschem/etc/system-gschemrc.scm:2099
+# Rotate the current selection about a point
+#: gschem/src/x/x_menus.c:126 gschem/etc/system-gschemrc.scm:2110
 msgid "Rotate the current selection about a point"
-msgstr ""
+msgstr "Draai de huidige selectie om een ​​punt"
 
 # Snap
 #: gschem/src/x/x_menus.c:127
 msgid "Snap"
 msgstr "Snap"
 
-#: gschem/src/x/x_menus.c:126
+# Snap objects to the current grid
+#: gschem/src/x/x_menus.c:127
 msgid "Snap objects to the current grid"
-msgstr ""
+msgstr "Snap bezwaar tegen het huidige roosterpunt"
 
-#: gschem/src/x/x_menus.c:132
-#, fuzzy
+#: gschem/src/x/x_menus.c:133
 msgid "Hierarchy"
 msgstr "Hierarchie"
 
-#: gschem/src/x/x_menus.c:132
-#, fuzzy
+#: gschem/src/x/x_menus.c:133
 msgid "Edit operations"
-msgstr "Bewerk Tekst Eigenschappen"
+msgstr "operaties bewerken"
 
 #: gschem/src/x/x_menus.c:134 gschem/scheme/gschem/builtins.scm:329
 msgid "Down Schematic"
 msgstr "Naar Schema"
 
-#, fuzzy
+# descend in schematic hierarchy
 #: gschem/src/x/x_menus.c:134 gschem/etc/system-gschemrc.scm:2238
 msgid "Descend down in the schematic hierarchy"
-msgstr "afdalen in hierarchie"
+msgstr "afdalen in schematisch hierarchie"
 
 #: gschem/src/x/x_menus.c:135 gschem/scheme/gschem/builtins.scm:332
 msgid "Down Symbol"
 msgstr "Naar Symbool"
 
-#, fuzzy
+# descend in Symbol hierarchy
 #: gschem/src/x/x_menus.c:135 gschem/etc/system-gschemrc.scm:2239
 msgid "Descend down in the symbol hierarchy"
-msgstr "afdalen in hierarchie"
+msgstr "afdalen in Symbool hierarchie"
 
 #: gschem/src/x/x_menus.c:136
 msgid "Up"
 msgstr "Omhoog"
 
-#, fuzzy
+# ascend up in the schematic hierarchy
 #: gschem/src/x/x_menus.c:136 gschem/etc/system-gschemrc.scm:2240
 msgid "ascend up in the schematic hierarchy"
-msgstr "afdalen in hierarchie"
+msgstr "opvoer in het schematisch hiërarchie"
 
-#, fuzzy
+# Cut to Clipboard
 #: gschem/src/x/x_menus.c:141
 msgid "Cut to Clipboard"
 msgstr "Knip naar klembord"
@@ -3006,7 +3006,7 @@ msgstr "Knip naar klembord"
 msgid "Cut the current selection to the system clipboard"
 msgstr ""
 
-#, fuzzy
+# Copy to Clipboard
 #: gschem/src/x/x_menus.c:142
 msgid "Copy to Clipboard"
 msgstr "Kopieer naar klembord"
@@ -3015,7 +3015,7 @@ msgstr "Kopieer naar klembord"
 msgid "Copy the current selection to the system clipboard"
 msgstr ""
 
-#, fuzzy
+# Paste from Clipboard
 #: gschem/src/x/x_menus.c:143
 msgid "Paste Clipboard"
 msgstr "Plak van klembord"
@@ -3024,42 +3024,43 @@ msgstr "Plak van klembord"
 msgid "Paste the contents of the system clipboard"
 msgstr ""
 
-#, fuzzy
+# Close
 #: gschem/src/x/x_menus.c:149
 msgid "Close"
-msgstr "S_luit"
+msgstr "Sluit"
 
-#, fuzzy
+# Close the current polygon
 #: gschem/src/x/x_menus.c:149
 msgid "Close the current path"
-msgstr "Huidig blad"
+msgstr "Sluit het huidige veelhoek"
 
 #: gschem/src/x/x_menus.c:150
 msgid "Done"
-msgstr ""
+msgstr "Gedaan"
 
-#, fuzzy
+# Terminate the current polygon
 #: gschem/src/x/x_menus.c:150
 msgid "Terminate the current path"
-msgstr "Huidig blad"
+msgstr "Sluit het actuele veelhoek"
 
 # End
 #: gschem/src/x/x_menus.c:151
 msgid "End"
 msgstr "Einde"
 
+# End and exit polygon mode
 #: gschem/src/x/x_menus.c:151
 msgid "End this path and exit path mode"
-msgstr ""
+msgstr "End and exit polygon mode"
 
 #: gschem/src/x/x_menus.c:157
 msgid "Continue"
 msgstr ""
 
-#, fuzzy
+# Resume drawing polygon
 #: gschem/src/x/x_menus.c:157
 msgid "Resume input of the current path"
-msgstr "Huidig blad"
+msgstr "Hervatten tekening veelhoek"
 
 #: gschem/src/x/x_menus.c:158 gschem/src/x/x_settings_dialog.c:1259
 #: gschem/scheme/gschem/builtins.scm:44
@@ -3776,12 +3777,14 @@ msgstr ""
 msgid "window is not valid"
 msgstr ""
 
-msgid "Saving main window geometry and settings.\n"
-msgstr ""
+# toolbar settings saving
 #: gschem/src/x/x_window.c:193
+#, fuzzy
+msgid "Saving main window settings.\n"
+msgstr "werkbalkinstellingen saving..."
 
-msgid "Retrieving main Window geometry and settings.\n"
 #: gschem/src/x/x_window.c:300
+msgid "Retrieving main Window settings.\n"
 msgstr ""
 
 #: gschem/src/x/x_window.c:619 gschem/src/x/x_window.c:1039

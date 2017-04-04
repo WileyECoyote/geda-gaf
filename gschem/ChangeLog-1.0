@@ -1,5 +1,7 @@
 2017-04-04 Wiley E. Hill <wileyhill@gmail.com>
 
+    * po/nl.po: Update Dutch translations.
+
     * src/x/x_autonumber.c: Replace geda_aligned_visible_label_new with
       geda_aligned_visible_bold_label_new in autonumber_create_dialog.
 
