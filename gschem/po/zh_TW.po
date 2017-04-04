@@ -1350,8 +1350,8 @@ msgid "<b>Scope</b>"
 msgstr ""
 
 #: gschem/src/x/x_autonumber.c:1790
-msgid "<b>Options</b>"
-msgstr "<b>選項</b>"
+msgid "Options"
+msgstr "選項"
 
 #: gschem/src/x/x_clipboard.c:320
 msgid "Invalid schematic on clipboard"
@@ -3151,22 +3151,23 @@ msgid "Error: did not find path"
 msgstr ""
 
 # Unable to open file
-#: gschem/src/x/x_menus.c:1904
+#: gschem/src/x/x_menus.c:1916
 msgid "Could not open file"
 msgstr "無法打開文件"
 
-#: gschem/src/x/x_menus.c:2005
-#, fuzzy
+# Open
+#: gschem/src/x/x_menus.c:2017
 msgid "Open"
-msgstr "開啟舊檔"
+msgstr "打開"
 
-#: gschem/src/x/x_menus.c:2014
+#: gschem/src/x/x_menus.c:2026
 msgid "Remove"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:2023
+# Show path
+#: gschem/src/x/x_menus.c:2035
 msgid "_Show path"
-msgstr ""
+msgstr "顯示路徑"
 
 #: gschem/src/x/x_menus.c:2160
 msgid "Clear"
@@ -3194,10 +3195,10 @@ msgstr ""
 msgid "Attribute name must not be empty. Please set a name."
 msgstr ""
 
+# Multi-attribute editor
 #: gschem/src/x/x_multiattrib.c:920
-#, fuzzy
 msgid "Multi-Attribute Editor"
-msgstr "屬性"
+msgstr "多屬性編輯器"
 
 #: gschem/src/x/x_multiattrib.c:1629
 msgid "Select an attribute to add"
@@ -3223,10 +3224,10 @@ msgstr ""
 msgid "Duplicate"
 msgstr ""
 
+# Copy to all
 #: gschem/src/x/x_multiattrib.c:1687
-#, fuzzy
 msgid "Copy to all"
-msgstr "複製到 緩衝區1"
+msgstr "複製到所有"
 
 #: gschem/src/x/x_multiattrib.c:2057 gschem/src/x/x_multiattrib.c:2583
 msgid "Edit Attributes"
@@ -3260,47 +3261,48 @@ msgstr ""
 msgid "pins"
 msgstr ""
 
+# pin
 #: gschem/src/x/x_multiattrib.c:2621
-#, fuzzy
 msgid "pin"
-msgstr "直線"
+msgstr "接觸針"
 
 #: gschem/src/x/x_multiattrib.c:2632
 msgid "nets"
 msgstr ""
 
+# net
 #: gschem/src/x/x_multiattrib.c:2636
-#, fuzzy
 msgid "net"
-msgstr "選擇"
+msgstr "淨"
 
 #: gschem/src/x/x_multiattrib.c:2647
 msgid "buses"
 msgstr ""
 
+# bus
 #: gschem/src/x/x_multiattrib.c:2651
 msgid "bus"
-msgstr ""
+msgstr "總線"
 
+# attributes
 #: gschem/src/x/x_multiattrib.c:2662
-#, fuzzy
 msgid "attributes"
 msgstr "屬性"
 
+# attribute
 #: gschem/src/x/x_multiattrib.c:2666
-#, fuzzy
 msgid "attribute"
 msgstr "屬性"
 
+# Move Up => Move Upward
 #: gschem/src/x/x_pagesel.c:592
-#, fuzzy
 msgid "Move Up"
-msgstr "搬移"
+msgstr "向上移動"
 
+# # Move Down => Move Downward
 #: gschem/src/x/x_pagesel.c:593
-#, fuzzy
 msgid "Move Down"
-msgstr "分頁"
+msgstr "向下移動"
 
 #: gschem/src/x/x_pagesel.c:595
 msgid "New Blank"
@@ -3323,10 +3325,10 @@ msgstr "儲存檔案"
 msgid "Close Page"
 msgstr "關閉檔案"
 
+# Discard Page
 #: gschem/src/x/x_pagesel.c:601 gschem/scheme/gschem/builtins.scm:323
-#, fuzzy
 msgid "Discard Page"
-msgstr "捨棄分頁"
+msgstr "捨棄頁"
 
 #: gschem/src/x/x_pagesel.c:1085 gschem/scheme/gschem/builtins.scm:287
 msgid "Page Manager"
