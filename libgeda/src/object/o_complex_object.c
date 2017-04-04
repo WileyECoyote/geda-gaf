@@ -1180,20 +1180,23 @@ geda_complex_object_read (GedaToplevel *toplevel, const char   buf[],
   }
 
   /* Do not load symbol recursively, resolves bug 732326 */
-  char *current_file;
   Page *current_page;
 
   current_page = geda_toplevel_get_current_page(toplevel);
-  current_file = geda_page_get_filename_dup(current_page);
 
-  if (strcmp(basename, geda_get_basename(current_file)) == 0) {
-    fprintf(stderr, "libgeda: refusing to recursively read <%s>\n", basename);
-    g_set_error(err, EDA_ERROR, EDA_ERROR_LOOP, _("Invalid complex object"));
+  if (current_page != NULL) {
+
+    char *current_file = geda_page_get_filename_dup(current_page);
+
+    if (strcmp(basename, geda_get_basename(current_file)) == 0) {
+      fprintf(stderr, "libgeda: refusing to recursively read <%s>\n", basename);
+      g_set_error(err, EDA_ERROR, EDA_ERROR_LOOP, _("Invalid complex object"));
+      GEDA_FREE (current_file);
+      return NULL;
+    }
+
     GEDA_FREE (current_file);
-    return NULL;
   }
-
-  GEDA_FREE (current_file);
 
   if (strncmp(basename, "EMBEDDED", 8) == 0) {
 

@@ -1,3 +1,9 @@
+2017-04-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_complex_object.c: Revise geda_complex_object_read to
+      only compare the page file name to the complex file if the current
+      page is set.
+
 2017-04-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_toplevel.c: Add accessor geda_toplevel_get_page_list.
