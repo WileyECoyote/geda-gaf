@@ -1799,10 +1799,11 @@ SCM g_rc_setpagedevice_pagesize(SCM mode)
 /* ----------------- System -----------------*/
 
 /** \defgroup System-User-RC-Options RC keywork Handler Functions
- *  @{ \par
- *      These function are registered with Guile and are
- *      called when ever a System type key-word is encountered
- *      when processing RC files.
+ *  @{
+ * \brief Scheme Registered Subroutines for Keywords
+ * \par
+ *  These function are registered with Guile and are called whenever
+ *  a System type key-word is encountered when processing RC files.
  */
 
 /*! \brief Process file-preview RC entry.

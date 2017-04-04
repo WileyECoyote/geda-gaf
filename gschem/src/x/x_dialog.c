@@ -3058,6 +3058,7 @@ void x_dialog_translate (GschemToplevel *w_current)
 
 /** \defgroup Hotkeys-Dialog  Hotkeys Dialog
  *  @{ \memberof Systemic-Dialogs
+ *     \brief Functions to create and support the Hotkeys Dialog
 */
 
 /*! \brief Response function for the hotkey dialog
@@ -3415,8 +3416,9 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
 
 /** @} endgroup Hotkeys-Dialog */
 
-/** \defgroup Raise-All-Dialog Utility Function
+/** \defgroup Raise-All-Dialogs Raise All Dialogs
  *  @{ \memberof Systemic-Dialogs
+ *     \brief Raise all dialogs utility function
 */
 
 /***************** Start of misc helper dialog boxes **************/
@@ -3500,10 +3502,11 @@ void x_dialog_raise_all(GschemToplevel *w_current)
   }
 }
 
-/** @} endgroup Raise-All-Dialog */
+/** @} endgroup Raise-All-Dialogs */
 
 /** \defgroup Symbol-Changed-Dialog Symbol Changed Dialog
  *  @{ \memberof Systemic-Dialogs
+ *     \brief Functions to create and support the Symbol Changed Dialog
 */
 
 /*! \brief Populate the the Symbol Change Dialog
@@ -3687,6 +3690,7 @@ void x_dialog_symbol_changed(GschemToplevel *w_current)
 
 /** \defgroup Invalid-Dialog Invalid attribute Dialog
  *  @{ \memberof Systemic-Dialogs
+ *     \brief Creates the Invalid attribute Dialog
 */
 
 /*! \brief Validate the input attribute
@@ -3740,7 +3744,7 @@ int x_dialog_validate_attribute(GtkWindow *parent, char *attribute)
 */
 
 /*! \brief General Purpose Confirmation Dialog
- *  \remarks TODO: derive this from gschem dialog class
+ *  \todo: derive this from gschem dialog class
  */
 int x_dialog_confirmation (const char *msg, IDE_MESSAGE_TYPE context, bool thread)
 {

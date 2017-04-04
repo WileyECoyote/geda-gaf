@@ -65,7 +65,9 @@
 /****************************** Drag-N-Drop **********************************/
 
 /** \defgroup Drag-N-Drop Gschem Drag and Drop Module
- *  @{ \par
+ *  @{
+ *  \brief This group contains functions and data to support Drag-N-Drop events
+ *  \par
  *   This module contains functions and data to support Drag-N-Drop events
  *   Other modules supporting Drag&Drop may use portions of this module
  *

@@ -41,7 +41,8 @@
 extern int iconify_main_window;
 
 /** \defgroup main-window Main Window Module
- *  @{ \par
+ *  @{
+ *  \brief Contains functions to create and support the Main Window
 */
 
 /*! \brief Setup the Graphical User Interface

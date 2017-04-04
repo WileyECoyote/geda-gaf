@@ -520,7 +520,12 @@ static int i_sessions_save(GschemToplevel *w_current, GError *err)
 }
 
 /** \defgroup sessions-menu Sessions Menu Support Functions
- *  @{ \remark
+ *  @{ \brief Menu support functions for the Sessions system
+ *  \par
+ *  The Sessions sub-menu is a dynamic object not created by the
+ *  regular menu system and is a fly-out sub-menu under the Restore
+ *  menu item, containing the names of saved sessions, which users
+ *  can recall by selecting the menu items.
  */
 
 /*!

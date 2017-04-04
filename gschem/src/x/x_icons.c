@@ -57,11 +57,13 @@
 
 #define ACTION_ICON_THEME_22_PATH "icons/hicolor/22x22/actions"
 
-/** \defgroup Gschem-Icons Gschem-Icons
+/** \defgroup Gschem-Icons Gschem Icons
  *  @{
- *  \par This module contains routines for icons images
- *  in support of Gschem's GUI subsystems such as menus and toolbars.
- *  This support primarily consist of a Gtk icon factory.
+ *  \brief Gschem icon module
+ *  \par
+ *  This module contains routines for icons images in support of
+ *  Gschem's GUI subsystems such as menus and toolbars. The support
+ *  primarily consist of a Gtk icon factory.
  */
 
 static GtkIconFactory *gschem_factory;

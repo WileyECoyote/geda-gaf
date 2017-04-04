@@ -1042,7 +1042,9 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
   return MENU_BAR;
 }
 
-/** \defgroup Path-Context-Menu Path Context Menu Functions */
+/** \defgroup Path-Context-Menu Path Context Menu Functions
+ *  \brief Contains functions to create and support the Path Popup Mouse Menu
+ */
 
 /*!
  * \brief Create and Setup Popup Mouse Menu for Path mode
@@ -1131,7 +1133,9 @@ x_menu_display_path_popup (GschemToplevel *w_current, GdkEventButton *event)
 
 /** @} END Group Path-Context-Menu */
 
-/** \defgroup Main-Context-Menu Mouse Menu Functions */
+/** \defgroup Main-Context-Menu Main Context Popup Menu
+ *  \brief Contains functions to create and support the Main Popup Mouse Menu
+ */
 
 static bool strhashcmp (const void *a, const void *b)
 {
@@ -1333,10 +1337,12 @@ x_menu_display_main_popup (GschemToplevel *w_current, GdkEventButton *event)
 
 /** @} END Group Main-Context-Menu (the main popup menu) */
 
-/** \defgroup Main-Menu-Support Functions to support the Main Menu
- *  @{ \par
- *         The functions in this group, mostly callbacks, support
- *         main menu.
+/** \defgroup Main-Menu-Support Main Menu Support Functions
+ *  @{
+ * \ingroup (menu-module)
+ * \brief Functions to support the Main Menu
+ * \par
+ * Functions in this group, mostly callbacks, support the main menu.
  */
 
 static int sensitivity_errors = 0;
@@ -1643,11 +1649,13 @@ static void x_menu_toggle_main_tips(GtkWidget *widget, GschemToplevel *w_current
 
 }
 
-/** \defgroup menu-toggle-action Menu Toggle Action Support Functions
- *
- *  \par
- *   The Menu toggles buttons need the "activate" signal blocked
- *   temporily so we don't have recursion with callbacks.
+/** \defgroup menu-toggle-action Menu Toggle Action
+ *  @{
+ * \ingroup (main-menu-support)
+ * \brief Menu Toggle Action Support Functions
+ * \par
+ *  The Menu toggles buttons need the "activate" signal blocked
+ *  temporily so we don't have recursion with callbacks.
  */
 
 /*! \brief Set State of Menu Toggle Items - Low LeveL
@@ -1812,17 +1820,18 @@ void x_menu_set_toolbar_toggle_tips(GschemToplevel *w_current, bool state)
 /* ---------------- Recent Files Menu ---------------- */
 
 /** \defgroup recent-file-menu Recent Files Menu Support Functions
+ *  @{
+ *  \par
+ *  This is the old method, as oppose to the GTK Recent Chooser Manger
+ *  version. This method seems to work better on Debian machines and
+ *  derivatives (which is likely to be the majority) due to default
+ *  security policies, which results in ALL the links to recent files
+ *  being erased when ever ANY recent file link is accessed by any one
+ *  having "administrative" privileges.
  *
- *  @{ \remark This is the old method, as oppose to the GTK Recent
- *  Chooser Manger version. This method seems to work better on Debian
- *  machines and derivatives (which is likely to be the majority) due to
- *  default security policies, which results in ALL the links to recent
- *  files being erased when ever ANY recent file link is accessed by any
- *  one having "administrative" privileges.
- *
- * TODO: The Recent files menu-item is a dynamic object not created by
- *       the regular menu systems, consequenty, no icons is assigned.
- *       The section should assign an icon.
+ * \todo: The Recent files menu-item is a dynamic object not created by
+ *        the regular menu systems, consequenty, no icons is assigned.
+ *        The section should assign an icon.
  */
 
 /** \defgroup recent-file-internal Recent Files Internal Functions
