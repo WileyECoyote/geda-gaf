@@ -1787,8 +1787,7 @@ GtkWidget *autonumber_create_dialog(GschemToplevel  *w_current,
   frame = GTK_WIDGET (g_object_new (GTK_TYPE_FRAME, "label", "", NULL));
   gtk_box_pack_start(GTK_BOX(main_vbox), frame, FALSE, FALSE, DEFAULT_WIDGET_SPACING);
 
-  label = geda_aligned_visible_label_new(_("<b>Options</b>"), 0, 0);
-  geda_label_widget_set_use_markup(label, TRUE);
+  label = geda_aligned_visible_bold_label_new (_("Options"), 0, 0);
   gtk_frame_set_label_widget (GTK_FRAME(frame), label);
 
   alignment = gtk_alignment_new (0, 0, 1, 1);
