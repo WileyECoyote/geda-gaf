@@ -43,7 +43,7 @@
 #include <geda_debug.h>
 
 /** \defgroup Gschem-Thread-System Thread Module
- *  @{ \par This Group contains core Routines for Thread.
+ *  @{ \par This group contains core Routines for Thread.
 */
 
 /*! Non-zero if the gschem threads has been initialised. */

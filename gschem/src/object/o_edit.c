@@ -38,7 +38,7 @@
 /** \defgroup Editing-Operations Editing Operations
  *  @{
  *
- *  \par This Group contains routines for basic editing operations.
+ *  \par This group contains routines for basic editing operations.
  */
 
 /*! \brief Add a Title-Block symbol to a Page

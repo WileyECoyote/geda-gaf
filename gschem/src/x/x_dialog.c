@@ -42,16 +42,16 @@ const char *IDS_MESSEAGE_TITLES[] = {
 
 
 /**   \defgroup Dialog-Utilities Common Dialog Utlities
- *  @{\par This Group contains utilities used by various Gschem dialogs
+ *  @{\par This group contains utilities used by various Gschem dialogs
  */
 
 /**   \defgroup General-Dialog-Utilities General Dialog Utilities
- *  @{\par This Group contains utility functions used by various dialogs
+ *  @{\par This group contains utility functions used by various dialogs
  *    \ingroup (Dialog-Utilities)
  */
 
 /**   \defgroup Atk-Dialog-Utilities Atk Dialog Utilities
- *  @{\par This Group contains utility functions used by various dialogs
+ *  @{\par This group contains utility functions used by various dialogs
  *    \ingroup (General-Dialog-Utilities)
  */
 
@@ -378,7 +378,7 @@ text_view_calculate_real_tab_width(GtkTextView *textview, int tab_size)
 
 /** \defgroup Standard-Dialogs Standard Program Dialogs
  *  @{
- *  \brief This Group contains Functions for Standard Dialogs
+ *  \brief This group contains functions for Standard Dialogs
 */
 
 /* Enumerate Control IDs */
@@ -721,7 +721,7 @@ void text_size_dialog (GschemToplevel *w_current)
 
 /** \defgroup Editing-Dialogs X-Dialogs for Editing Schematics
  *  @{
- *  \brief This Group contains Dialogs routines for Editing Objects
+ *  \brief This group contains Dialogs routines for Editing Objects
  *  \details
  *  This section contains a collection of Mode-less Dialogs derived
  * from type GschemDialog and use the PROP_SELECTION_TRACKER property.
@@ -3052,7 +3052,8 @@ void x_dialog_translate (GschemToplevel *w_current)
 /** @} endgroup Editing-Dialogs */
 
 /** \defgroup Systemic-Dialogs System Related Dialog
- *  @{ \par This Group contains Functions for System Level Dialogs
+ *  @{
+ * \brief This group contains functions for System Level Dialogs
 */
 
 /** \defgroup Hotkeys-Dialog  Hotkeys Dialog
@@ -3731,7 +3732,7 @@ int x_dialog_validate_attribute(GtkWindow *parent, char *attribute)
 /** @} endgroup Systemic-Dialogs */
 
 /** \defgroup Gschem-General-Dialogs General Dialogs
- *  @{ \par This Group contains General Utility Dialogs
+ *  @{ \par This group contains General Utility Dialogs
 */
 
 /** \defgroup Confirmation-Dialog Confirmation Dialogs

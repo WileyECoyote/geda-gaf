@@ -166,7 +166,7 @@
  *  @{
  *  \ingroup (Settings-Dialogs)
  *
- *  \par This Group contains routines for the Preferences dialog.
+ *  \par This group contains routines for the Preferences dialog.
  *
  *  \image html preferences_dialog.png
  *  \image latex preferences_dialog.png

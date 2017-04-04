@@ -63,13 +63,13 @@ static char *advance2char(const char *string)
 }
 
 /** \defgroup Gschem-Session-System Sessions System
- *  @{ \par This Group contains core Routines for Sessions.
+ *  @{ \brief This group contains core Routines for Sessions.
 */
 
 static GArray *sessions;
 
 /** \defgroup sessions-internal Sessions Internal Functions
- *  @{ \par This Group contains core Routine for Sessions.
+ *  @{ \brief This group contains core Routine for Sessions.
 */
 
 /*!
@@ -830,7 +830,7 @@ static void i_sessions_destroy_sessions(void)
 /** @} endgroup sessions-internal */
 
 /** \defgroup sessions-global-functions Sessions Global Functions
- *  @{ \par This Group contains global routines for Sessions System
+ *  @{ \par This group contains global routines for Sessions System
  */
 
 /*!

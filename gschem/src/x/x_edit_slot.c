@@ -37,7 +37,7 @@
  *  \ingroup (Editing-Dialogs)
  *  \image html slot_dialog.png
  *  \image latex slot_dialog.png
- *  \par This Group contains routines for the Edit Slots Dialog.
+ *  \par This group contains routines for the Edit Slots Dialog.
  */
 
 /*! \brief response function for the slot edit dialog

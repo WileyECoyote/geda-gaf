@@ -38,7 +38,7 @@
  *  @{
  *  \ingroup (Editing-Dialogs)
  *
- *  \par This Group contains routines for the Edit Pin dialog.
+ *  \par This group contains routines for the Edit Pin dialog.
  */
 
 /** @brief Enumerate Control IDs. */

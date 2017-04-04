@@ -38,8 +38,9 @@
 #include <geda_debug.h>
 
 /** \defgroup Menu-Module Menu Module
- *  @{\brief This group contains Menu related functions
- *    \ingroup (main-window)
+ *  @{
+ * \brief This group contains Menu related functions
+ * \ingroup (main-window)
  */
 
 static void x_menu_main_popup_execute(GtkObject *widget, int action_id);
@@ -1825,7 +1826,8 @@ void x_menu_set_toolbar_toggle_tips(GschemToplevel *w_current, bool state)
  */
 
 /** \defgroup recent-file-internal Recent Files Internal Functions
- *  @{ \par This Group contains core Routine for Menus.
+ *  @{
+ * \brief This group contains core Routine for the Recent Files Menu.
 */
 
 /*! \brief Update Recent Files Menus

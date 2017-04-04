@@ -29,7 +29,7 @@
 /** \defgroup gnetlist-SCM-API C Based API for Scheme Routines
  *  @{
  *
- *  \par This Group contains SCM-API functions.
+ *  \par This group contains SCM-API functions.
  */
 
 /*! \brief Get unique list of all packages

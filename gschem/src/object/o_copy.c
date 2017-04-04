@@ -29,7 +29,7 @@
  *  @{
  *  \ingroup (Editing-Operations)
  *
- *  \par This Group contains routines for Copy Objects.
+ *  \par This group contains routines for Copy Objects.
  */
 
 #include <gschem.h>

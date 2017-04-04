@@ -42,7 +42,7 @@ static SCM scheme_rc_config_fluid = SCM_UNDEFINED;
  */
 
 /**   \defgroup Libgeda-RC-Utilities Libgeda RC Utilities
- *  @{\par This Group contains utility functions used by various dialogs
+ *  @{\par This group contains utility functions used by various dialogs
  *    \ingroup (Libgeda-RC-Handlers)
  */
 

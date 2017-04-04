@@ -38,7 +38,7 @@
  *  @{
  *  \ingroup (Editing-Dialogs)
  *
- *  \par This Group contains routines for the Single-Attribute Editor dialog.
+ *  \par This group contains routines for the Single-Attribute Editor dialog.
  *
  *  \remarks The Single Attribute dialog doubles as the Add Attribute Dialog
  *           based on a flag passed to the constructor.

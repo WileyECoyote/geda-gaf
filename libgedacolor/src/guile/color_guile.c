@@ -75,7 +75,7 @@ bool geda_color_guile_load_scheme (const char *inputfile)
 
 /**   \defgroup Libgeda-RC-Color Libgeda RC Color
  *  @{\par
- *     This Group contains utility functions used when processing
+ *     This group contains utility functions used when processing
  *     color map data in RC files.
  *    \ingroup (Libgeda-RC-Utilities)
  */

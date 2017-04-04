@@ -54,7 +54,7 @@
  *  \defgroup Auto-Number-Dialog-Module Auto Number Dialog Module
  *  @{
  *  \ingroup (Auto-Number-Dialog)
- *  \par This Group contains routines for the Auto Number dialog.
+ *  \par This group contains routines for the Auto Number dialog.
  */
 
 /*! \def AUTONUM_HISTORY_LENGTH

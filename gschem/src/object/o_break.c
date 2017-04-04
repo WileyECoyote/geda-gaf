@@ -37,7 +37,7 @@
 /** \defgroup Break-Operations Break Operations
  *  @{
  *  \ingroup (Editing-Operations)
- *  \par This Group contains routines for Breaking Breakable objects.
+ *  \par This group contains routines for Breaking Breakable objects.
  *  \image html break.png
  *  \image latex break.png
  */

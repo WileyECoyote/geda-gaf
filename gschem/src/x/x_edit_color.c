@@ -36,7 +36,7 @@
  *  @{
  *  \ingroup (Editing-Dialogs)
  *
- *  \par This Group contains routines for the Edit Color dialog.
+ *  \par This group contains routines for the Edit Color dialog.
  */
 
 /*! \brief Handle selection change event for x_dialog_edit_color

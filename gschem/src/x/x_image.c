@@ -43,7 +43,7 @@
  *  @{
  *  \ingroup (Standard-Dialogs)
  *
- *  \par This Group contains routines for the Write Image dialog.
+ *  \par This group contains routines for the Write Image dialog.
  *
  *  \image html write_image_dialog.png
  *  \image latex write_image_dialog.png

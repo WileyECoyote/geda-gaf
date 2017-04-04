@@ -30,7 +30,7 @@
  *  @{
  *  \ingroup (Editing-Operations)
  *
- *  \par This Group contains routines for manipulating Slot Attributes.
+ *  \par This group contains routines for manipulating Slot Attributes.
  */
 
 #include <gschem.h>

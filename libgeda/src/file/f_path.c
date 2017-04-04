@@ -58,7 +58,7 @@ static char *user_config_path = NULL;
 /* ------------------ Directory Utility Functions --------------- */
 
 /** \defgroup libgeda-dir-utilities Libgeda Directory Utilities
- *  @{ \par This Group contains utilities to manipulate directories.
+ *  @{ \par This group contains utilities to manipulate directories.
 */
 
 #if defined (HAVE_MKDIR) || defined (HAVE__MKDIR)

@@ -37,7 +37,7 @@
 /** \defgroup Extend-Operations Extend Operations
  *  @{
  *  \ingroup (Editing-Operations)
- *  \par This Group contains routines for extending projectables.
+ *  \par This group contains routines for extending projectables.
  *  \image html projections.png
  *  \image latex projections.png
  */

@@ -37,7 +37,7 @@
 #include <geda_debug.h>
 
 /** \defgroup gschem-undo-module Undo Module
- *  @{ \par This Group contains Routines for Undo and Redo.
+ *  @{ \par This group contains Routines for Undo and Redo.
  */
 
 static int undo_file_index=0;

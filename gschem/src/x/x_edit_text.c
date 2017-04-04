@@ -38,7 +38,7 @@
  *  @{
  *  \ingroup (Editing-Dialogs)
  *
- *  \par This Group contains Routines for the Edit Text dialog.
+ *  \par This group contains Routines for the Edit Text dialog.
  */
 
 /** @brief Enumerate Control IDs. */

@@ -29,7 +29,7 @@
  *  @{
  *  \ingroup (Editing-Operations)
  *
- *  \par This Group contains routines for Moving Objects.
+ *  \par This group contains routines for Moving Objects.
  */
 
 #include <gschem.h>

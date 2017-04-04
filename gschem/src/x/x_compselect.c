@@ -44,7 +44,7 @@
  *  @{
  *  \ingroup (Component-Dialog Editing-Dialogs)
  *  \par
- *  This Group contains routines for the Component Select dialog. The
+ *  This group contains routines for the Component Select dialog. The
  *  Component Select Dialog implements Component Select Dialog Class
  *  and is used to select symbols to be inserted into schematics.
  */

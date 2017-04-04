@@ -29,7 +29,7 @@
  *  @{
  *  \ingroup (Editing-Operations)
  *
- *  \par This Group contains routines for Placing Operations.
+ *  \par This group contains routines for Placing Operations.
  */
 
 #include <gschem.h>
