@@ -1,3 +1,11 @@
+2017-04-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_bar.c: Revise accelerate_children to validate
+      that the value returned from geda_menu_item_get_mnemonic are > 0,
+      and that the value returned from gdk_keyval_from_name is not
+      GDK_KEY_VoidSymbol, otherwise skip adding an accelerate to the
+      widget.
+
 2017-03-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Call change_touchscreen_mode in function

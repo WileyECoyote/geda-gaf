@@ -1279,20 +1279,28 @@ accelerate_children(GedaMenuItem *menu_item, GtkAccelGroup *accel_group)
     char mnemonic[2];
     unsigned int keyval;
 
-    mnemonic[0] = toupper(geda_menu_item_get_mnemonic(menu_item));
-    mnemonic[1] = 0;
+    mnemonic[0] = geda_menu_item_get_mnemonic(menu_item);
 
-    keyval = gdk_keyval_from_name(&mnemonic[0]);
+    if (mnemonic[0] > 0) {
 
-    gtk_widget_add_accelerator(GTK_WIDGET (menu_item),
-                               "activate",
-                               accel_group,
-                               keyval,
-                               GDK_MOD1_MASK,
-                               0);
+      mnemonic[0] = toupper(mnemonic[0]);
+      mnemonic[1] = 0;
 
-    g_signal_connect(G_OBJECT(menu_item),"activate",
-                     G_CALLBACK(activate_child),NULL);
+      keyval = gdk_keyval_from_name(&mnemonic[0]);
+
+      if (keyval != GDK_KEY_VoidSymbol) {
+
+        gtk_widget_add_accelerator(GTK_WIDGET (menu_item),
+                                   "activate",
+                                   accel_group,
+                                   keyval,
+                                   GDK_MOD1_MASK,
+                                   0);
+
+        g_signal_connect(G_OBJECT(menu_item),"activate",
+                                  G_CALLBACK(activate_child),NULL);
+      }
+    }
   }
 }
 
