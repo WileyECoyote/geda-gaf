@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gschem VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-04-04 03:28-0500\n"
+"POT-Creation-Date: 2017-04-05 02:13-0500\n"
 "PO-Revision-Date: 2012-03-23 03:04+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitoschido@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1222,7 +1222,7 @@ msgstr "<b>Error al cargar la imagen</b>"
 msgid "Load failed"
 msgstr ""
 
-#: gschem/src/object/o_place.c:73
+#: gschem/src/object/o_place.c:74
 msgid "Buffer is empty, nothing to place\n"
 msgstr ""
 
@@ -1497,25 +1497,25 @@ msgstr "Vista preliminar"
 msgid "Attributes"
 msgstr "Propiedades"
 
-#: gschem/src/x/x_console.c:136
+#: gschem/src/x/x_console.c:135
 msgid "destroying history\n"
 msgstr ""
 
-#: gschem/src/x/x_console.c:147
+#: gschem/src/x/x_console.c:151
 msgid "Initializing Log & Console Systems configuration settings\n"
 msgstr ""
 
-#: gschem/src/x/x_console.c:189 gschem/src/x/x_console.c:192
+#: gschem/src/x/x_console.c:193 gschem/src/x/x_console.c:196
 msgid "Command interface: engaged using"
 msgstr ""
 
-#: gschem/src/x/x_console.c:345
+#: gschem/src/x/x_console.c:347
 msgid "** Invalid UTF-8 in log message. See stderr or gschem.log.\n"
 msgstr ""
 "** mensaje sin codificación UTF-8 en la ventana de registro. Véase la "
 "ventana de registro de gschem o la salida de errores.\n"
 
-#: gschem/src/x/x_console.c:577
+#: gschem/src/x/x_console.c:583
 msgid "gEDA Console"
 msgstr ""
 
@@ -1646,7 +1646,7 @@ msgstr "Punto final de conexión"
 msgid "Graphic"
 msgstr "Gráfico"
 
-#: gschem/src/x/x_dialog.c:1017 gschem/src/x/x_edit_pin.c:140
+#: gschem/src/x/x_dialog.c:1017 gschem/src/x/x_edit_pin.c:141
 #: gschem/src/x/x_menus.c:92
 msgid "Net"
 msgstr "Conexión"
@@ -1671,7 +1671,7 @@ msgstr "Desvincular propiedad"
 msgid "Text"
 msgstr "Texto"
 
-#: gschem/src/x/x_dialog.c:1023 gschem/src/x/x_edit_pin.c:141
+#: gschem/src/x/x_dialog.c:1023 gschem/src/x/x_edit_pin.c:142
 #: gschem/src/x/x_menus.c:95
 msgid "Bus"
 msgstr "Bus"
@@ -2327,92 +2327,92 @@ msgstr ""
 msgid "Entry for model file name"
 msgstr "Mostrar propiedades heredadas"
 
-#: gschem/src/x/x_edit_pin.c:96
+#: gschem/src/x/x_edit_pin.c:97
 msgid "in"
 msgstr "Pin"
 
-#: gschem/src/x/x_edit_pin.c:97
+#: gschem/src/x/x_edit_pin.c:98
 msgid "out"
 msgstr "Cor_tar"
 
-#: gschem/src/x/x_edit_pin.c:98
+#: gschem/src/x/x_edit_pin.c:99
 msgid "io"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:99
+#: gschem/src/x/x_edit_pin.c:100
 msgid "oc"
 msgstr "Fijar"
 
-#: gschem/src/x/x_edit_pin.c:100
+#: gschem/src/x/x_edit_pin.c:101
 msgid "oe"
 msgstr "Mover"
 
-#: gschem/src/x/x_edit_pin.c:101
+#: gschem/src/x/x_edit_pin.c:102
 msgid "pas"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:102
+#: gschem/src/x/x_edit_pin.c:103
 msgid "tp"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:103
+#: gschem/src/x/x_edit_pin.c:104
 msgid "tri"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:104
+#: gschem/src/x/x_edit_pin.c:105
 msgid "clk"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:105
+#: gschem/src/x/x_edit_pin.c:106
 msgid "pwr"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:106 gschem/src/x/x_edit_pin.c:191
-#: gschem/src/x/x_edit_pin.c:205
+#: gschem/src/x/x_edit_pin.c:107 gschem/src/x/x_edit_pin.c:192
+#: gschem/src/x/x_edit_pin.c:206
 msgid "*missing*"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:281 gschem/src/x/x_edit_pin.c:293
+#: gschem/src/x/x_edit_pin.c:282 gschem/src/x/x_edit_pin.c:294
 msgid "Pin Properties"
 msgstr "Editar las propiedades del texto"
 
-#: gschem/src/x/x_edit_pin.c:281
+#: gschem/src/x/x_edit_pin.c:282
 msgid "Invalid Pin Node Type"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:293
+#: gschem/src/x/x_edit_pin.c:294
 msgid "Ignoring Pin electrical VOID"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:801
+#: gschem/src/x/x_edit_pin.c:802
 msgid "Pin Properties Editor"
 msgstr "Editor de una única propiedad"
 
-#: gschem/src/x/x_edit_pin.c:879
+#: gschem/src/x/x_edit_pin.c:880
 msgid "Set"
 msgstr "Conexión"
 
-#: gschem/src/x/x_edit_pin.c:882
+#: gschem/src/x/x_edit_pin.c:883
 msgid "Auto"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:913
+#: gschem/src/x/x_edit_pin.c:914
 msgid "Attribute Type List"
 msgstr "Propiedades"
 
-#: gschem/src/x/x_edit_pin.c:917
+#: gschem/src/x/x_edit_pin.c:918
 msgid "Text Alignment Option"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:921
+#: gschem/src/x/x_edit_pin.c:922
 msgid "Pin Number"
 msgstr "Número inicial:"
 
-#: gschem/src/x/x_edit_pin.c:925
+#: gschem/src/x/x_edit_pin.c:926
 msgid "Sequence Number"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:929
+#: gschem/src/x/x_edit_pin.c:930
 msgid "Pin Label"
 msgstr ""
 
@@ -3041,76 +3041,76 @@ msgstr ""
 msgid "Toggle main context menu tooltips"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1374
+#: gschem/src/x/x_menus.c:1378
 msgid "Tried to set the sensitivity on non-existent menu item"
 msgstr "Intentado ajustar la sensibilidad en el elemento inexistente del menú"
 
-#: gschem/src/x/x_menus.c:1385
+#: gschem/src/x/x_menus.c:1389
 msgid "Excessive errors"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1386
+#: gschem/src/x/x_menus.c:1390
 msgid "disabling sensitivity warnings"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1463
+#: gschem/src/x/x_menus.c:1467
 msgid "Saving menu toolbar options..."
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1473
+#: gschem/src/x/x_menus.c:1477
 msgid " done\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1476
+#: gschem/src/x/x_menus.c:1480
 #, c-format
 msgid " there were %d errors\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1521
+#: gschem/src/x/x_menus.c:1525
 msgid "gschem: Enabling menu icons\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1524
+#: gschem/src/x/x_menus.c:1528
 msgid "gschem: Disabling menu icons\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1588
+#: gschem/src/x/x_menus.c:1592
 msgid "Enabling menu tooltips\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1591
+#: gschem/src/x/x_menus.c:1595
 msgid "Disabling menu tooltips\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1691
+#: gschem/src/x/x_menus.c:1695
 msgid "Action not found"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1696
+#: gschem/src/x/x_menus.c:1700
 msgid "Menu path not found"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1779 gschem/src/x/x_menus.c:1812
+#: gschem/src/x/x_menus.c:1783 gschem/src/x/x_menus.c:1816
 msgid "Error: did not find path"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1916
+#: gschem/src/x/x_menus.c:1921
 msgid "Could not open file"
 msgstr "No se pudo abrir el archivo"
 
-#: gschem/src/x/x_menus.c:2017
+#: gschem/src/x/x_menus.c:2022
 msgid "Open"
 msgstr "Abrir..."
 
-#: gschem/src/x/x_menus.c:2026
+#: gschem/src/x/x_menus.c:2031
 msgid "Remove"
 msgstr "Borrar los números"
 
-#: gschem/src/x/x_menus.c:2035
+#: gschem/src/x/x_menus.c:2040
 msgid "_Show path"
 msgstr "Mostrar am_bos"
 
-#: gschem/src/x/x_menus.c:2160
+#: gschem/src/x/x_menus.c:2165
 msgid "Clear"
 msgstr ""
 
@@ -3602,9 +3602,8 @@ msgid "window is not valid"
 msgstr ""
 
 #: gschem/src/x/x_window.c:193
-#, fuzzy
 msgid "Saving main window settings.\n"
-msgstr "Guardar la configuración de la barra de herramientas..."
+msgstr "Guardando los ajustes de la ventana principal.\n"
 
 #: gschem/src/x/x_window.c:300
 msgid "Retrieving main Window settings.\n"
