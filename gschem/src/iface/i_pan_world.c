@@ -176,6 +176,7 @@ void i_pan_warp_cursor (GtkWidget* widget, int x, int y)
  *  inhibit include I_PAN_DONT_REDRAW in the \a flags.
  *
  * \param [in] w_current            The GschemToplevel object
+ * \param [in] page                 Page for which panning is to be performed
  * \param [in] world_cx             world value of X center point
  * \param [in] world_cy             world value of Y center point
  * \param [in] relative_zoom_factor Unit-less scale factor
