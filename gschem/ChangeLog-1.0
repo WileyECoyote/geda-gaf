@@ -1,3 +1,7 @@
+2017-04-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_path.c: Include paths.png image in Doxygen output.
+
 2017-04-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/nl.po: Update Dutch translations.

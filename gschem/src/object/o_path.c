@@ -24,6 +24,8 @@
 /*!
  * \file o_path.c
  * \brief Low-level module for manipulating Path objects
+ * \image html paths.png
+ * \image latex paths.png
  */
 #include <gschem.h>
 #include <geda_debug.h>
