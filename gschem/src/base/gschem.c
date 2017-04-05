@@ -19,7 +19,8 @@
  * MA 02110-1301 USA
  */
 
-#include <gschem.h>
+#include "../../include/gschem.h"
+
 #include <version.h>
 
 #include <X11/Xlib.h>

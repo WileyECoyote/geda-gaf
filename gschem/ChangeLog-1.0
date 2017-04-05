@@ -6,6 +6,8 @@
 
     * po/zh_TW.po: Update Chinese traditional translations.
 
+    * src/base/gschem.c: Use relative path to gschem.h.
+
     * src/x/x_autonumber.c: Replace geda_aligned_visible_label_new with
       geda_aligned_visible_bold_label_new in autonumber_create_dialog.
 
