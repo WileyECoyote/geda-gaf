@@ -225,9 +225,9 @@ void SCREENtoWORLD (GschemToplevel *w_current, int mx, int my, int *x, int *y)
   *y = mil_y (w_current, my);
 }
 
-/*! \brief Find the closest grid coordinate
+/*! \brief Snap input value to the closest grid coordinate
  *  \par Function Description
- *   This function snaps the current input coordinate to the
+ *   This function snaps the input coordinate to the
  *   closest grid coordinate.
  *
  *  \param [in] w_current  The GschemToplevel object
