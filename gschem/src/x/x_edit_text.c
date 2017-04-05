@@ -61,7 +61,7 @@ typedef enum {
  *  { "Hook-Up-String", "Label", "Tooltip string"},
  */
 static WidgetStringData DialogStrings[] = {
-  { "text_string",     "Text Tring",     "Enter or edit the text string"},
+  { "text_string",     "Text String:",   "Enter or edit the text string"},
   { "text_align",      "A_lignment:",    "Select the text alignment attribute"},
   { "text_color",      "_Color:",        "Select color attribute"},
   { "fontbutton",      "_Size:",         "Open font selection dialog"},
