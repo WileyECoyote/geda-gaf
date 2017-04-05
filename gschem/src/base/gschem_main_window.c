@@ -536,16 +536,15 @@ GtkStyle *gschem_main_window_get_style (GtkWidget *main_window)
 void
 gschem_main_window_set_size (GtkWidget *main_window, int width, int height)
 {
-  GdkDisplay *display;
-  GdkWindow  *window;
+  GdkWindow *window;
 
   window = geda_get_widget_window(main_window);
 
-  gdk_window_flush(window);
-
   gtk_window_resize(GTK_WINDOW(main_window), width, height);
 
-  display = gdk_drawable_get_display (window);
+  gdk_window_process_updates (window, TRUE);
+
+  gdk_display_sync (gdk_drawable_get_display (window));
 }
 
 /*!

@@ -1,5 +1,8 @@
 2017-04-05 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/base/gschem_main_window.c: Eliminate display variable and
+      pass return of gdk_drawable_get_display directly on the stack.
+
     * src/object/o_path.c: Include paths.png image in Doxygen output.
 
 2017-04-04 Wiley E. Hill <wileyhill@gmail.com>
