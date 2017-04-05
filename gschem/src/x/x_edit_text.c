@@ -3,8 +3,8 @@
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 1998-2015 Ales Hvezda
- * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2017 Ales Hvezda
+ * Copyright (C) 1998-2017 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -61,11 +61,11 @@ typedef enum {
  *  { "Hook-Up-String", "Label", "Tooltip string"},
  */
 static WidgetStringData DialogStrings[] = {
-  { "text_string",     "Text String:",   "Enter or edit the text string"},
-  { "text_align",      "A_lignment:",    "Select the text alignment attribute"},
-  { "text_color",      "_Color:",        "Select color attribute"},
-  { "fontbutton",      "_Size:",         "Open font selection dialog"},
-  { "rotation",        "_Rotation:",     "Set the text rotation angle"},
+  { "text_string", N_("Text String"),   N_("Enter or edit the text string")},
+  { "text_align",  N_("A_lignment:"),   N_("Select the text alignment attribute")},
+  { "text_color",  N_("_Color:"),       N_("Select color attribute")},
+  { "fontbutton",  N_("_Size:"),        N_("Open font selection dialog")},
+  { "rotation",    N_("_Rotation:"),    N_("Set the text rotation angle")},
   { NULL, NULL, NULL},
 };
 
