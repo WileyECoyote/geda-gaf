@@ -1043,7 +1043,9 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 }
 
 /** \defgroup Path-Context-Menu Path Context Menu Functions
+ *  @{
  *  \brief Contains functions to create and support the Path Popup Mouse Menu
+ *  \ingroup (menu-module)
  */
 
 /*!
@@ -1134,7 +1136,9 @@ x_menu_display_path_popup (GschemToplevel *w_current, GdkEventButton *event)
 /** @} END Group Path-Context-Menu */
 
 /** \defgroup Main-Context-Menu Main Context Popup Menu
+ *  @{
  *  \brief Contains functions to create and support the Main Popup Mouse Menu
+ *  \ingroup (menu-module)
  */
 
 static bool strhashcmp (const void *a, const void *b)
@@ -1819,8 +1823,9 @@ void x_menu_set_toolbar_toggle_tips(GschemToplevel *w_current, bool state)
 
 /* ---------------- Recent Files Menu ---------------- */
 
-/** \defgroup recent-file-menu Recent Files Menu Support Functions
+/** \defgroup recent-file-menu Recent Files Menu Functions
  *  @{
+ *  \ingroup (menu-module)
  *  \par
  *  This is the old method, as oppose to the GTK Recent Chooser Manger
  *  version. This method seems to work better on Debian machines and
@@ -1834,7 +1839,7 @@ void x_menu_set_toolbar_toggle_tips(GschemToplevel *w_current, bool state)
  *        The section should assign an icon.
  */
 
-/** \defgroup recent-file-internal Recent Files Internal Functions
+/** \defgroup recent-file-internal Recent Files Functions
  *  @{
  * \brief This group contains core Routine for the Recent Files Menu.
 */
@@ -1950,7 +1955,7 @@ static void x_menu_recent_files_create_empty(void)
    GEDA_FREE(file);
 }
 
-/** \defgroup recent-Popup-Menu Recent Files Popup Menu
+/** \defgroup recent-popup-menu Recent Files Popup Menu
  *  @{
  */
 
@@ -2076,8 +2081,8 @@ static bool x_menu_recent_button_released (GedaMenuItem   *menu_item,
   return ret_val;
 }
 
-/** @} endgroup recent-Popup-Menu*/
-/** @} endgroup recent-file-internal*/
+/** @} endgroup recent-popup-menu */
+/** @} endgroup recent-file-internal */
 
 /*! \brief Attach a submenu with filenames to the 'Open Recent'
  *         menu item.
