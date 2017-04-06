@@ -723,12 +723,12 @@ void text_size_dialog (GschemToplevel *w_current)
  *  @{
  *  \brief This group contains Dialogs routines for Editing Objects
  *  \details
- *  This section contains a collection of Mode-less Dialogs derived
- * from type GschemDialog and use the PROP_SELECTION_TRACKER property.
- * These dialog register a callback function to be called when the
- * selection is changed so that the contents of the Dialog can be
- * updated based on the current selection. This allows the Dialogs
- * to stay open while other editing is performed.
+ *  This section contains a collection of Mode-less Dialogs derived from
+ * type GschemDialog and use the PROP_SELECTION_TRACKER property, where
+ * as each dialog registers a callback function to be called when the
+ * selection is changed so that the Dialog content can be updated based
+ * on the current selection. This allows the Dialogs to stay open while
+ * other editing is performed.
  */
 
 static      GtkWidget *create_linetype_menu (GschemToplevel *w_current);
