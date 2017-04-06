@@ -602,10 +602,10 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
           }
         }
         else {
-                 char *action_name;
-                 char *action_keys;
-          const  char *menu_icon_name;
-                 bool  is_a_toggle;
+                char *action_name;
+                char *action_keys;
+          const char *menu_icon_name;
+                bool  is_a_toggle;
 
           action_name = scm_to_utf8_string (scm_symbol_to_string (scm_item_func));
           action_keys = g_keys_find_key(action_name);
@@ -613,9 +613,8 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
           if (!menu_data->buffer_menu_name) {
 
             if (strcmp(action_name, "buffer-copy1") == 0) {
-
-              /* Save a copy of the string for x_menu_get_buffer_menu*/
-              menu_data->buffer_menu_name = menu_name; /* Not a copy! */;
+              /* Save a copy of the raw string for x_menu_get_buffer_menu*/
+              menu_data->buffer_menu_name = geda_strdup(*raw_menu_name);
             }
           }
 
@@ -638,7 +637,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
             toggler_data->menu_path      = geda_strconcat (*raw_menu_name, "/", raw_menu_item_name, NULL);
             menu_item_name = menu_item_name + 7;  /* is just for label */
 
-            /* TODO: Tooltip don't work here, we will fix them later*/
+            /* TODO: Tooltips do not work here, we will fix them later*/
             action = (GedaAction*)
             geda_toggle_action_new (action_name,       /* Action name */
                                     menu_item_name,    /* Text */
@@ -1371,7 +1370,7 @@ void x_menus_sensitivity (GschemToplevel *w_current, const char *buf, int flag)
 
     if (item && GEDA_IS_MENU_ITEM(item)) {
       gtk_widget_set_sensitive(GTK_WIDGET(item), flag);
-      /* item = pointer to menu widget -- don't free here */
+      /* item = pointer to menu widget -- do not free here */
     }
     else {
 
@@ -1659,7 +1658,7 @@ static void x_menu_toggle_main_tips(GtkWidget *widget, GschemToplevel *w_current
  * \brief Menu Toggle Action Support Functions
  * \par
  *  The Menu toggles buttons need the "activate" signal blocked
- *  temporily so we don't have recursion with callbacks.
+ *  temporily to prevent recursion with callbacks.
  */
 
 /*! \brief Set State of Menu Toggle Items - Low LeveL

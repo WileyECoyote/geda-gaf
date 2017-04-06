@@ -6,6 +6,10 @@
 
     * src/object/o_place.c: Include buffers.png image in Doxygen output.
 
+    * src/x/x_menus.c: Revise x_menu_setup_ui to store a copy of the raw
+      menu name containing the buffers instead of a pointer to translated
+      menu strings, revise comments.
+
 2017-04-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_main_window.c: Eliminate display variable and
