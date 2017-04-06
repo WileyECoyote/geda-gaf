@@ -71,13 +71,13 @@ query_grid_fixed_spacing (GschemToplevel *w_current, int *threshold)
 }
 
 /*! \brief Query the spacing in world coordinates at which the dots grid is drawn.
- *
  *  \par Function Description
  *  Returns the world spacing of the rendered grid, taking into account where
  *  the grid drawing code may drop elelments which are too densly packed for a
  *  given zoom level.
  *
  *  \param [in] w_current  The GschemToplevel.
+ *
  *  \returns The grid spacing in world units of the grid as rendered, or -1
  *           if there are no items drawn.
  */
@@ -113,13 +113,13 @@ static int query_dots_grid_spacing (GschemToplevel *w_current)
 }
 
 /*! \brief Query the spacing in world coordinates at which the mesh grid is drawn.
- *
  *  \par Function Description
  *  Returns the world spacing of the rendered grid, taking into account where
  *  the grid drawing code may drop elelments which are too densly packed for a
  *  given zoom level.
  *
  *  \param [in] w_current  The GschemToplevel.
+ *
  *  \returns The grid spacing in world units of the grid as rendered, or -1
  *           if there are no items drawn.
  */
@@ -131,7 +131,6 @@ static int query_mesh_grid_spacing (GschemToplevel *w_current)
 /*************************** Dots Grid ****************************/
 
 /*! \brief Draw an area of the screen with a dotted grid pattern
- *
  *  \par Function Description
  *  Draws the dotted grid pattern over a given region of the screen.
  *
@@ -199,7 +198,6 @@ draw_dots (GschemToplevel *w_current,
 }
 
 /*! \brief Draw an area of the screen with a dotted grid pattern
- *
  *  \par Function Description
  *  Draws the dotted grid pattern over a given region of the screen.
  *
@@ -333,7 +331,6 @@ draw_mesh (GschemToplevel *w_current, int x_start, int y_start,
 }
 
 /*! \brief Draw an area of the screen with a mesh grid pattern
- *
  *  \par Function Description
  *  Draws the mesh grid pattern over a given region of the screen.
  *
@@ -389,7 +386,6 @@ x_grid_draw_mesh_region (GschemToplevel *w_current, GdkRectangle *rectangle)
 }
 
 /*! \brief Draw an area of the screen with the current grid pattern.
- *
  *  \par Function Description
  *  Draws the desired grid pattern over a given region of the screen.
  *
@@ -536,7 +532,6 @@ void x_grid_configure_variables (GschemToplevel *w_current)
 }
 
 /*! \brief Query the spacing in world coordinates at which the grid is drawn.
- *
  *  \par Function Description
  *  Returns the world spacing of the rendered grid, taking into account where
  *  the grid drawing code may drop elelments which are too densly packed for a
@@ -578,7 +573,6 @@ x_grid_repaint_background (GschemToplevel *w_current, GdkRectangle *r)
 }
 
 /*! \brief Draw tile grid pattern
- *
  *  \par Function Description
  *  Draws the tile grid pattern over the screen area.
  *
