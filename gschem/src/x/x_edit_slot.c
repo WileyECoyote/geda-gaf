@@ -32,12 +32,12 @@
 #include <geda_widgets.h>
 #include <geda_debug.h>
 
-/** \defgroup Edit-Slots-Dialog Slots Editing-Dialogs
+/** \defgroup Edit-Slots-Dialog Edit Slots Dialog
  *  @{
  *  \ingroup (Editing-Dialogs)
+ *  \par This group contains routines for the Edit Slots Dialog.
  *  \image html slot_dialog.png
  *  \image latex slot_dialog.png
- *  \par This group contains routines for the Edit Slots Dialog.
  */
 
 /*! \brief response function for the slot edit dialog
