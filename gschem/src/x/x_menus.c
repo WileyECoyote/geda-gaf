@@ -560,7 +560,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
       menu_item_name = gettext(raw_menu_item_name);
 
-      if (strcmp(menu_item_name, "SEPARATOR") == 0) {
+      if (strncmp(raw_menu_item_name, "SEPARATOR", 9) == 0) {
         menu_item = geda_menu_item_new();
       }
       else {

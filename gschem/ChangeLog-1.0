@@ -8,7 +8,8 @@
 
     * src/x/x_menus.c: Revise x_menu_setup_ui to store a copy of the raw
       menu name containing the buffers instead of a pointer to translated
-      menu strings, revise comments.
+      menu strings, revise comments. Replace strcmp with strncmp to check
+      if the raw menu string is for a separator.
 
 2017-04-05 Wiley E. Hill <wileyhill@gmail.com>
 
