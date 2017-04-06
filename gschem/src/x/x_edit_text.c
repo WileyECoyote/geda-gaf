@@ -41,7 +41,7 @@
  *  \par This group contains Routines for the Edit Text dialog.
  */
 
-/** @brief Enumerate Control IDs. */
+/*! \brief Enumerated Text Dialog Control IDs. */
 typedef enum {
 /* Combo Entry */
   TheText,
@@ -57,7 +57,7 @@ typedef enum {
 
 } ControlID;
 
-/** @brief String Arrays for Dialog Contrls.
+/*! \brief String Arrays for Dialog Contrls.
  *  { "Hook-Up-String", "Label", "Tooltip string"},
  */
 static WidgetStringData DialogStrings[] = {
@@ -70,12 +70,11 @@ static WidgetStringData DialogStrings[] = {
 };
 
 /*!
- * \brief Callback for Editing Text Properties
+ * \brief Callback for Edit Text Dialog selection
  * \par Function Description
  *  This function updates widgets on the text_edit dialog with the text
  *  properties of the passed object. If multible objects are selected
  *  the text editing field is set to NULL.
- *
  */
 static void x_dialog_text_edit_update_selection (GschemToplevel *w_current,
                                                  GedaObject     *object)
@@ -361,7 +360,6 @@ void x_dialog_edit_text_ok(GschemToplevel *w_current, GedaObject *object)
  * \par Function Description
  *  This function receives the user response of the text property dialog.
  *  The response is either <b>OK</b>, <b>Cancel</b> or delete.
- *
  */
 void
 x_dialog_edit_text_response(GtkWidget *Dialog, int response, GedaObject *object)
@@ -389,7 +387,6 @@ x_dialog_edit_text_response(GtkWidget *Dialog, int response, GedaObject *object)
  * \par Function Description
  *  This function changes the wrap property to indicate that the
  *  user has enter a value.
- *
  */
 static void
 widget_value_modified (GtkWidget *widget, void * user_data)
