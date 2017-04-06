@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-04-05 02:13-0500\n"
+"POT-Creation-Date: 2017-04-06 00:03-0500\n"
 "PO-Revision-Date: 2015-07-29 00:24-0600\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -2499,86 +2499,132 @@ msgstr "chamnuon ron​:"
 msgid "Slot number:"
 msgstr "ron​ lekh​:"
 
+# Text Content
+#: gschem/src/x/x_edit_text.c:64 gschem/src/x/x_edit_text.c:466
+msgid "Text Content"
+msgstr "Meateka Atthabat"
+
+#: gschem/src/x/x_edit_text.c:64
+#, fuzzy
+msgid "Enter or edit the text string"
+msgstr "tomham atthabt thmei kar banhchoul:"
+
+#: gschem/src/x/x_edit_text.c:65
+#, fuzzy
+msgid "A_lignment:"
+msgstr "sechaktei athibbeay:"
+
+# Text Alignment Attribute
+#: gschem/src/x/x_edit_text.c:65
+#, fuzzy
+msgid "Select the text alignment attribute"
+msgstr "kounalokkhan tamrum atthabat"
+
+#: gschem/src/x/x_edit_text.c:66
+#, fuzzy
+msgid "_Color:"
+msgstr "n..."
+
+#: gschem/src/x/x_edit_text.c:66
+#, fuzzy
+msgid "Select color attribute"
+msgstr "kounalokkhan del ban phdach"
+
+#: gschem/src/x/x_edit_text.c:67
+msgid "_Size:"
+msgstr ""
+
+#: gschem/src/x/x_edit_text.c:67
+#, fuzzy
+msgid "Open font selection dialog"
+msgstr "baek braab kammovithi krobkrong samy"
+
+#: gschem/src/x/x_edit_text.c:68
+#, fuzzy
+msgid "_Rotation:"
+msgstr "eksar:"
+
+# Sets the rotation of the arc.
+#: gschem/src/x/x_edit_text.c:68
+#, fuzzy
+msgid "Set the text rotation angle"
+msgstr "kamnt kar bangvil nei thnou nih."
+
 # Upper left
-#: gschem/src/x/x_edit_text.c:234
+#: gschem/src/x/x_edit_text.c:233
 msgid "Upper Left"
 msgstr "khangochhveng khang"
 
 # Upper Middle
-#: gschem/src/x/x_edit_text.c:237
+#: gschem/src/x/x_edit_text.c:236
 msgid "Upper Middle"
 msgstr "phnek khangleu m chchhu m"
 
 # Upper Right
-#: gschem/src/x/x_edit_text.c:240
+#: gschem/src/x/x_edit_text.c:239
 msgid "Upper Right"
 msgstr "phnek khangleu khangosdam"
 
 # Middle Left
-#: gschem/src/x/x_edit_text.c:244
+#: gschem/src/x/x_edit_text.c:243
 msgid "Middle Left"
 msgstr "peak k nta l khangochhveng"
 
 # Middle Middle
-#: gschem/src/x/x_edit_text.c:247
+#: gschem/src/x/x_edit_text.c:246
 msgid "Middle Middle"
 msgstr "peak k nta l m chchhu m"
 
 # Middle Right
-#: gschem/src/x/x_edit_text.c:250
+#: gschem/src/x/x_edit_text.c:249
 msgid "Middle Right"
 msgstr "peak k nta l stam"
 
 # Lower Left
-#: gschem/src/x/x_edit_text.c:254
+#: gschem/src/x/x_edit_text.c:253
 msgid "Lower Left"
 msgstr "khangochhveng teab cheang"
 
-#: gschem/src/x/x_edit_text.c:257
+#: gschem/src/x/x_edit_text.c:256
 msgid "Lower Middle"
 msgstr "m chchhu m teab cheang"
 
 # Lower Right
-#: gschem/src/x/x_edit_text.c:260
+#: gschem/src/x/x_edit_text.c:259
 msgid "Lower Right"
 msgstr "khangokraom sdam"
 
 # Edit Text Properties
-#: gschem/src/x/x_edit_text.c:452
+#: gschem/src/x/x_edit_text.c:449
 msgid "Edit Text Properties"
 msgstr "kesamruol lokkhan sambotte atthabat"
 
-# Text Content
-#: gschem/src/x/x_edit_text.c:469
-msgid "Text Content"
-msgstr "Meateka Atthabat"
-
 # Text Properties
-#: gschem/src/x/x_edit_text.c:498
+#: gschem/src/x/x_edit_text.c:495
 msgid "Text Properties"
 msgstr "lokkhan sambotte atthabat"
 
-#: gschem/src/x/x_edit_text.c:589
+#: gschem/src/x/x_edit_text.c:586
 #, fuzzy
 msgid "Text input field"
 msgstr "atthabt del trauv rok:"
 
 # Text alignment options
-#: gschem/src/x/x_edit_text.c:593
+#: gschem/src/x/x_edit_text.c:590
 #, fuzzy
 msgid "Text alignment combobox"
 msgstr "chomreusa tamrum atthabat"
 
-#: gschem/src/x/x_edit_text.c:597
+#: gschem/src/x/x_edit_text.c:594
 msgid "Color options menu"
 msgstr ""
 
-#: gschem/src/x/x_edit_text.c:601
+#: gschem/src/x/x_edit_text.c:598
 msgid "Font selector button"
 msgstr ""
 
 # Text Rotation Angle Spinner Entry
-#: gschem/src/x/x_edit_text.c:605
+#: gschem/src/x/x_edit_text.c:602
 msgid "Text Rotation Angle Spinner Entry"
 msgstr "kar bangvil moum theato atthabt bangkeun banthoy"
 
@@ -3082,154 +3128,154 @@ msgid "Bad string"
 msgstr "khsae aksaar meakrau"
 
 # got a empty menu name
-#: gschem/src/x/x_menus.c:735
+#: gschem/src/x/x_menus.c:734
 msgid "Oops... got a NULL menu name"
 msgstr "aur!... ttuol ban chhmoh robsa meunouy tte"
 
-#: gschem/src/x/x_menus.c:867
+#: gschem/src/x/x_menus.c:866
 msgid "Toggle visibility of the Standard toolbar"
 msgstr "bet baek pheap meulkheunh nei rbar ubakar stangdar"
 
-#: gschem/src/x/x_menus.c:868
+#: gschem/src/x/x_menus.c:867
 msgid "Toggle visibility of the Selection toolbar"
 msgstr "pheap meulkheunh bet baek rbar ubakar kar chreusareus"
 
-#: gschem/src/x/x_menus.c:869
+#: gschem/src/x/x_menus.c:868
 msgid "Toggle visibility of the Page toolbar"
 msgstr "pheap meulkheunh bet baek rbar ubakar tompr"
 
-#: gschem/src/x/x_menus.c:870
+#: gschem/src/x/x_menus.c:869
 msgid "Toggle visibility of the Add toolbar"
 msgstr "pheap meulkheunh bet baek rbar ubakar banthem"
 
-#: gschem/src/x/x_menus.c:871
+#: gschem/src/x/x_menus.c:870
 msgid "Toggle visibility of the Zoom toolbar"
 msgstr "pheap meulkheunh nei kar bet baek rbar ubakar pongrik"
 
-#: gschem/src/x/x_menus.c:872
+#: gschem/src/x/x_menus.c:871
 #, fuzzy
 msgid "Toggle visibility of the Symbol toolbar"
 msgstr "pheap meulkheunh nei kar bet baek rbar ubakar pongrik"
 
-#: gschem/src/x/x_menus.c:873
+#: gschem/src/x/x_menus.c:872
 msgid "Toggle visibility of the Edit toolbar"
 msgstr "pheap meulkheunh nei kar bet baek rbar ubakar kesamruol"
 
-#: gschem/src/x/x_menus.c:874
+#: gschem/src/x/x_menus.c:873
 msgid "Toggle visibility of the Attributes toolbar"
 msgstr "pheap meulkheunh nei kar bet baek rbar ubakar lokkhan"
 
-#: gschem/src/x/x_menus.c:875
+#: gschem/src/x/x_menus.c:874
 msgid "Toggle visibility of the Grid/Snap toolbar"
 msgstr "pheap meulkheunh nei kar bet baek rbar ubakar kraleachatrangk/khtasa"
 
-#: gschem/src/x/x_menus.c:890
+#: gschem/src/x/x_menus.c:889
 #, fuzzy
 msgid "Toggle visibility of tooltips on toolbars"
 msgstr "pheap meulkheunh bet baek rbar ubakar kar chreusareus"
 
-#: gschem/src/x/x_menus.c:949
+#: gschem/src/x/x_menus.c:948
 msgid "Display Icons on the toolbar"
 msgstr "bangheanh roubtamnang now leu rbar ubakar"
 
-#: gschem/src/x/x_menus.c:950
+#: gschem/src/x/x_menus.c:949
 msgid "Display Text on the toolbar"
 msgstr "bangheanh atthabt now leu rbar ubakar"
 
-#: gschem/src/x/x_menus.c:951
+#: gschem/src/x/x_menus.c:950
 msgid "Display Icons and Text vertically on the toolbar"
 msgstr "bangheanh roubtamnang ning atthabt banhchhor now leu rbar ubakar"
 
-#: gschem/src/x/x_menus.c:952
+#: gschem/src/x/x_menus.c:951
 msgid "Display Icons and Text horizontally on the toolbar"
 msgstr "bangheanh roubtamnang ning atthabt phdek now leu rbar ubakar"
 
-#: gschem/src/x/x_menus.c:1019
+#: gschem/src/x/x_menus.c:1018
 msgid "Toggle visibility of main menu icons"
 msgstr "roubtamnang bet baek pheap meulkheunh meunouy"
 
-#: gschem/src/x/x_menus.c:1020
+#: gschem/src/x/x_menus.c:1019
 msgid "Toggle main menu tooltips"
 msgstr "bet baek kar chomnuoy meunouy me"
 
-#: gschem/src/x/x_menus.c:1021
+#: gschem/src/x/x_menus.c:1020
 msgid "Toggle visibility of main context menu icons"
 msgstr "kanleasa saamkhan del ach meulkheunh meunouy bribt robsa roubtamnang"
 
-#: gschem/src/x/x_menus.c:1022
+#: gschem/src/x/x_menus.c:1021
 msgid "Toggle main context menu tooltips"
 msgstr "bet baek meunouy bribt chambong chomnuoy"
 
-#: gschem/src/x/x_menus.c:1378
+#: gschem/src/x/x_menus.c:1377
 msgid "Tried to set the sensitivity on non-existent menu item"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1389
+#: gschem/src/x/x_menus.c:1388
 msgid "Excessive errors"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1390
+#: gschem/src/x/x_menus.c:1389
 msgid "disabling sensitivity warnings"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1467
+#: gschem/src/x/x_menus.c:1466
 msgid "Saving menu toolbar options..."
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1477
+#: gschem/src/x/x_menus.c:1476
 msgid " done\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1480
+#: gschem/src/x/x_menus.c:1479
 #, c-format
 msgid " there were %d errors\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1525
+#: gschem/src/x/x_menus.c:1524
 msgid "gschem: Enabling menu icons\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1528
+#: gschem/src/x/x_menus.c:1527
 msgid "gschem: Disabling menu icons\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1592
+#: gschem/src/x/x_menus.c:1591
 msgid "Enabling menu tooltips\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1595
+#: gschem/src/x/x_menus.c:1594
 msgid "Disabling menu tooltips\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1695
+#: gschem/src/x/x_menus.c:1694
 msgid "Action not found"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1700
+#: gschem/src/x/x_menus.c:1699
 msgid "Menu path not found"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1783 gschem/src/x/x_menus.c:1816
+#: gschem/src/x/x_menus.c:1782 gschem/src/x/x_menus.c:1815
 msgid "Error: did not find path"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1921
+#: gschem/src/x/x_menus.c:1920
 msgid "Could not open file"
 msgstr "min ach baek eksar samyobrachoum"
 
-#: gschem/src/x/x_menus.c:2022
+#: gschem/src/x/x_menus.c:2021
 msgid "Open"
 msgstr "..."
 
-#: gschem/src/x/x_menus.c:2031
+#: gschem/src/x/x_menus.c:2030
 msgid "Remove"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:2040
+#: gschem/src/x/x_menus.c:2039
 msgid "_Show path"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:2165
+#: gschem/src/x/x_menus.c:2164
 msgid "Clear"
 msgstr ""
 
@@ -5390,7 +5436,3 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
-
-# Text Alignment Attribute
-#~ msgid "Text Alignment Attribute"
-#~ msgstr "kounalokkhan tamrum atthabat"
