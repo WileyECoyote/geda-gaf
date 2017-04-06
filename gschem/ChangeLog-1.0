@@ -1,3 +1,9 @@
+2017-04-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_status.c: Revise i_status_idle_update_sensitivities to
+      not while loop back to the seperator and leave length set to where
+      the NULL should be added, at the end of the menu bar forward slash.
+
 2017-04-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_main_window.c: Eliminate display variable and

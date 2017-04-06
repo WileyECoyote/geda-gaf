@@ -574,6 +574,7 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
        menu_string[index] = '0';
     }
 
+    /* Retrieve the path string to menu containing buffers */
     buffer_menu = x_menu_get_buffer_menu (w_current);
 
     if (buffer_menu)  {
@@ -586,12 +587,12 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
       buffer = strcpy(&menu_string[0], buffer_menu);
       length = strlen(buffer);
 
-      menu_string[length++] = '/';
-      menu_string[length]   = '\0';
+      menu_string[length++] = '/';   /* Add path seperator */
+      menu_string[length]   = '\0';  /* terminate string */
 
       buffer = strcat(buffer, "Paste from 1");
       x_menus_sensitivity(w_current, buffer, (object_buffer[1] != NULL));
-      index = length + 11;         /* set index to where the number is */
+      index = strlen(buffer) - 1; /* set index to where the number is */
       menu_string[index] = '2';
       x_menus_sensitivity(w_current, buffer, (object_buffer[2] != NULL));
       menu_string[index] = '3';
@@ -603,12 +604,10 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
 
       if (state != last_state) {
 
-        while (menu_string[length] != '/')length--;
-
-        menu_string[++length]   = '\0';
+        menu_string[length] = '\0';
         buffer = strcat(buffer, "Copy into 1");
         x_menus_sensitivity(w_current, buffer, state);
-        index  = length + 10;       /* set index to where the number is */
+        index = strlen(buffer) - 1; /* set index to where the number is */
         menu_string[index] = '2';
         x_menus_sensitivity(w_current, buffer, state);
         menu_string[index] = '3';
@@ -619,10 +618,10 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
         x_menus_sensitivity(w_current, buffer, state);
 
         /* Incrementing to the leave "C" */
-        menu_string[++length]   = '\0';
-        buffer = strcat(buffer, "ut into 1");
+        menu_string[length] = '\0';
+        buffer = strcat(buffer, "Cut into 1");
         x_menus_sensitivity(w_current, buffer, state);
-        index  = length + 8;
+        index = strlen(buffer) - 1;
         menu_string[index] = '2';
         x_menus_sensitivity(w_current, buffer, state);
         menu_string[index] = '3';
