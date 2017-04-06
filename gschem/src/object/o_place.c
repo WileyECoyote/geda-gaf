@@ -28,8 +28,9 @@
 /** \defgroup Place-Operations Place Operations
  *  @{
  *  \ingroup (Editing-Operations)
- *
  *  \par This group contains routines for Placing Operations.
+ *  \image html buffers.png
+ *  \image latex buffers.png
  */
 
 #include <gschem.h>
