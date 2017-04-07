@@ -6,6 +6,8 @@
     * src/x/x_menus.c: Replace menu_item_name with raw_menu_item_name for
       nested menu items.
 
+    * src/x/x_edit_text.c: Change string "Text String" to "Text Content".
+
     * src/x/x_toolbars.c: Reduce scope of toolbar variable in x_toolbars_
       restore_state.
 
