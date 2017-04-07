@@ -42,7 +42,7 @@
  *  \image latex pin_dialog.png
  */
 
-/** @brief Enumerate Control IDs. */
+/*! \brief Enumerated Pin Dialog Control IDs. */
 typedef enum {
 
 /* Combo Chooser */
@@ -64,7 +64,7 @@ typedef enum {
 
 } ControlID;
 
-/** @brief String Arrays for Dialog Contrls.
+/*! \brief String Arrays for Dialog Contrls.
  *  { "Hook-Up-String", "Label", "Tooltip string"},
  */
 static WidgetStringData DialogStrings[] = {
