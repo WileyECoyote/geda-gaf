@@ -4,7 +4,8 @@
       translate pin dialog strings in DialogStrings structure.
 
     * src/x/x_menus.c: Replace menu_item_name with raw_menu_item_name for
-      nested menu items.
+      nested menu items. Reduce the scope of menu_name, menu_item_name and
+      menu_path in x_menu_setup_ui.
 
     * src/x/x_edit_text.c: Change string "Text String" to "Text Content".
 

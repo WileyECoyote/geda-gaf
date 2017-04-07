@@ -368,11 +368,9 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
   SCM scm_item_stock;
   SCM scm_index;
 
-  char *menu_name;
   char *dummy = NULL;
 
   const char  *group = MENU_CONFIG_GROUP;
-  const char  *menu_item_name;
         char  *menu_item_tip;
         char  *menu_item_stock;
         char  *raw_menu_item_name;
@@ -726,7 +724,8 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
   for (i = 0 ; i < geda_iface_menu_return_num(); i++) {
 
     GtkWidget *root_menu = NULL;
-    int scm_items_len;
+    char      *menu_name;
+    int        scm_items_len;
 
     scm_items = geda_iface_menu_return_entry(i, raw_menu_name);
 
@@ -1600,7 +1599,6 @@ static void x_menu_toggle_main_tips(GtkWidget *widget, GschemToplevel *w_current
   GtkWidget *menubar;
   GtkWidget *menu_item;
   MenuData  *menu_data;
-  char      *menu_path;
   int state;
 
   menu_data = g_slist_nth_data (ui_list, w_current->ui_index);
@@ -1617,9 +1615,10 @@ static void x_menu_toggle_main_tips(GtkWidget *widget, GschemToplevel *w_current
 
   lambda (ToggleMenuData *toggler_data) {
 
-    menu_path = toggler_data->menu_path;
+    char *menu_path;
 
-    menu_item  = GEDA_OBJECT_GET_DATA (menubar, menu_path);
+    menu_path = toggler_data->menu_path;
+    menu_item = GEDA_OBJECT_GET_DATA (menubar, menu_path);
 
     g_object_set (menu_item, "has-tooltip", state, NULL);
 
