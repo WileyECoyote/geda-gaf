@@ -797,7 +797,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
     menu = create_View_menu();
 
-    menu_item = geda_menu_item_new_with_label ("View");
+    menu_item = geda_menu_item_new_with_label (_("_View"));
     g_object_set (menu_item, "visible", TRUE, NULL);;
 
     geda_menu_item_set_submenu (GEDA_MENU_ITEM (menu_item) , menu);
@@ -815,7 +815,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     if (w_current->toolbars == TRUE) {
 
       /* Toolbar Options*/
-      menu_item   = geda_menu_item_new_with_mnemonic("_Toolbars");
+      menu_item   = geda_menu_item_new_with_mnemonic(_("_Toolbars"));
       toggle_menu = geda_menu_new();
 
       geda_menu_item_set_submenu (GEDA_MENU_ITEM (menu_item), toggle_menu);
