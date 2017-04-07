@@ -575,7 +575,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
              * and _Restore, these are actionless items.
              */
 
-            menu_item = geda_image_menu_item_new_with_mnemonic(menu_item_name);
+            menu_item = geda_image_menu_item_new_with_mnemonic(raw_menu_item_name);
 
             image = gtk_image_new_from_icon_name (menu_item_stock, GTK_ICON_SIZE_MENU);
 
@@ -594,7 +594,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
           }
           else {
             /* Note: Currently there are no non-stock, non-action items */
-            menu_item = geda_menu_item_new_with_mnemonic(menu_item_name);
+            menu_item = geda_menu_item_new_with_mnemonic(raw_menu_item_name);
           }
 
           if (menu_item) {
