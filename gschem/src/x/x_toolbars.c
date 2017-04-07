@@ -608,7 +608,6 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
 
     if (key_file) {
 
-      GtkWidget *toolbar;
       int visible;
 
       err     = NULL;
@@ -625,6 +624,8 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
       x_menu_set_toolbar_toggle(w_current, bar_id, visible);
 
       if (visible) {
+
+        GtkWidget *toolbar;
 
         int style;
         int tooltips;

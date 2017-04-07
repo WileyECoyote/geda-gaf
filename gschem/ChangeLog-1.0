@@ -3,6 +3,9 @@
     * src/x/x_edit_pin.c: Include pin_dialog.png image in Doxygen output,
       translate pin dialog strings in DialogStrings structure.
 
+    * src/x/x_toolbars.c: Reduce scope of toolbar variable in x_toolbars_
+      restore_state.
+
 2017-04-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_status.c: Revise i_status_idle_update_sensitivities to
