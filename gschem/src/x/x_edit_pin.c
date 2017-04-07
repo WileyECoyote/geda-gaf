@@ -68,17 +68,17 @@ typedef enum {
  *  { "Hook-Up-String", "Label", "Tooltip string"},
  */
 static WidgetStringData DialogStrings[] = {
-  {"pin-type",            "_Type:",          "Select the pin type"},
-  {"pin-attribute",       "_Attributes:",    "Set the pin attrbutes"},
-  {"pin-number",          "_Number:",        "Set the pin number, or the starting pin number if auto numbering"},
-  {"pin-sequence",        "_Sequence:",      "Set the sequence number"},
-  {"pin-label",           "_Label:",         "Enter pin name or description"},
+  {"pin-type",         N_("_Type:"),          N_("Select the pin type")},
+  {"pin-attribute",    N_("_Attributes:"),    N_("Set the pin attrbutes")},
+  {"pin-number",       N_("_Number:"),        N_("Set the pin number, or the starting pin number if auto numbering")},
+  {"pin-sequence",     N_("_Sequence:"),      N_("Set the sequence number")},
+  {"pin-label",        N_("_Label:"),         N_("Enter pin name or description")},
 
-  {"SetPinNodeTypeSwitch",    "      Type:", "Enable to set all selected attributes to the prescribed type"},
-  {"SetElectricalSwitch", "Attributes:",     "Enable to set all selected attributes to the prescribed value"},
+  {"SetPinNodeTypeSwitch", N_("      Type:"), N_("Enable to set all selected attributes to the prescribed type")},
+  {"SetElectricalSwitch",  N_("Attributes:"), N_("Enable to set all selected attributes to the prescribed value")},
 
-  {"AutoNumberSwitch",    "Number:", "Enable or disable renumbering pin numbers, Number will be the starting pin number"},
-  {"AutoSequenceSwitch",  "Sequence:", "Enable or disable re-sequencing pins\n, this only changes the sequence number, not the actual sequence in the symbol file"},
+  {"AutoNumberSwitch",     N_("Number:"),     N_("Enable or disable renumbering pin numbers, Number will be the starting pin number")},
+  {"AutoSequenceSwitch",   N_("Sequence:"),   N_("Enable or disable re-sequencing pins\n, this only changes the sequence number, not the actual sequence in the symbol file")},
 
   { NULL, NULL, NULL},
 };
