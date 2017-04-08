@@ -3,6 +3,9 @@
     * src/struct/s_toplevel.c: Declare geda_toplevel_struct_get_selection
       GedaToplevel argument const.
 
+    * tests/test_file.c: Check with geda_create_path with NULL path argument,
+      and reuse path variable.
+
 2017-04-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_complex_object.c: Revise geda_complex_object_read to

@@ -826,6 +826,11 @@ int test_path (void)
 
   /* === Function 01: geda_file_path_create === */
 
+  if (!geda_create_path(NULL, S_IRWXU | S_IRWXG | S_IRWXO)) {
+    fprintf(stderr, "FAILED: (F030100) geda_file_path_create\n");
+    result++;
+  }
+
   if (src_dir && strlen(src_dir) > 1) { /* VPATH builds */
     path = geda_strdup("./one/two/three");
   }
@@ -838,22 +843,21 @@ int test_path (void)
     result++;
   }
 
-  char *path2;
+  free(path);
 
   if (src_dir) {
-    path2 = g_build_filename(src_dir, "one", NULL);
+    path = g_build_filename(src_dir, "one", NULL);
   }
   else {
-    path2 = geda_strdup("./one");
+    path = geda_strdup("./one");
   }
 
-  char *command = geda_strconcat("rm -rf ", path2, NULL);
+  char *command = geda_strconcat("rm -rf ", path, NULL);
 
   if (system(command));
 
   free(command);
   free(path);
-  free(path2);
 
   /* === Function 02: geda_free_path geda_file_path_free === */
   /* === Function 03: geda_get_dirname geda_file_path_get_dirname === */
