@@ -55,10 +55,10 @@
  * \param selected_from #EID_ACTION_ORIGIN flag indicating where action originated
  * \param pan_flags     #EID_PAN_DIRECTIVES
  */
-
-void i_zoom_world(GschemToplevel *w_current, EID_ZOOM_DIRECTIVE dir,
-                                             EID_ACTION_ORIGIN  selected_from,
-                                             EID_PAN_DIRECTIVES pan_flags)
+void
+i_zoom_world(GschemToplevel *w_current, EID_ZOOM_DIRECTIVE dir,
+                                        EID_ACTION_ORIGIN  selected_from,
+                                        EID_PAN_DIRECTIVES pan_flags)
 {
   Page *page;
 
@@ -230,8 +230,9 @@ i_zoom_world_extents (GschemToplevel *w_current, const GList *list, int pan_flag
  *  or mouse.
  *
  */
-void i_zoom_world_specify (GschemToplevel *w_current, double zoom_new, int x, int y,
-                           EID_ACTION_ORIGIN  specified_from)
+void
+i_zoom_world_specify (GschemToplevel *w_current, double zoom_new, int x, int y,
+                      EID_ACTION_ORIGIN  specified_from)
 {
   Page *page;
 
@@ -273,7 +274,8 @@ void i_zoom_world_specify (GschemToplevel *w_current, double zoom_new, int x, in
  *  \par Function Description
  *
  */
-void i_zoom_world_box(GschemToplevel *w_current, int pan_flags)
+void
+i_zoom_world_box(GschemToplevel *w_current, int pan_flags)
 {
   Page *page;
 
@@ -310,7 +312,8 @@ void i_zoom_world_box(GschemToplevel *w_current, int pan_flags)
  *  \par Function Description
  *
  */
-void i_zoom_world_box_start(GschemToplevel *w_current, int w_x, int w_y)
+void
+i_zoom_world_box_start(GschemToplevel *w_current, int w_x, int w_y)
 {
   w_current->first_wx = w_current->second_wx = w_x;
   w_current->first_wy = w_current->second_wy = w_y;
@@ -322,7 +325,8 @@ void i_zoom_world_box_start(GschemToplevel *w_current, int w_x, int w_y)
  *  \par Function Description
  *
  */
-void i_zoom_world_box_end(GschemToplevel *w_current, int x, int y)
+void
+i_zoom_world_box_end(GschemToplevel *w_current, int x, int y)
 {
   if (w_current->inside_action) {
 
@@ -352,7 +356,8 @@ void i_zoom_world_box_end(GschemToplevel *w_current, int x, int y)
  *  \param [in] w_x        Current x coordinate of pointer in world units.
  *  \param [in] w_y        Current y coordinate of pointer in world units.
  */
-void i_zoom_world_box_motion (GschemToplevel *w_current, int w_x, int w_y)
+void
+i_zoom_world_box_motion (GschemToplevel *w_current, int w_x, int w_y)
 {
   if ( w_current->inside_action != 0 ) {
 
@@ -373,7 +378,8 @@ void i_zoom_world_box_motion (GschemToplevel *w_current, int w_x, int w_y)
  *  \brief
  *  \par Function Description
  */
-void i_zoom_world_box_invalidate_rubber (GschemToplevel *w_current)
+void
+i_zoom_world_box_invalidate_rubber (GschemToplevel *w_current)
 {
   int x1, y1, x2, y2;
 
@@ -391,7 +397,8 @@ void i_zoom_world_box_invalidate_rubber (GschemToplevel *w_current)
  *  \par Function Description
  *
  */
-void i_zoom_world_box_draw_rubber (GschemToplevel *w_current)
+void
+i_zoom_world_box_draw_rubber (GschemToplevel *w_current)
 {
   double wwidth     = 0;
   cairo_t *cr       = eda_renderer_get_cairo_context (CairoRenderer);
