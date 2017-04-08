@@ -6,6 +6,10 @@
       items so that the word "Toggle", which is used to indicate a toogle
       item, is not in the menu or translation.
 
+   ** src/iface/i_zoom_world.c: Add double reciprocal_factor and perform
+      1 / relative_zoom_factor division once in i_zoom_world, instead of
+      4 times, adjust function wrap in module.
+
     * src/x/x_menus.c: Revise x_menu_setup_ui to get translation of menu
       items seperately for toggle items so that "Toggle" is skipped over.
 

@@ -102,25 +102,23 @@ i_zoom_world(GschemToplevel *w_current, EID_ZOOM_DIRECTIVE dir,
     else {
 
       double top, bottom, right, left;
+      double reciprocal_factor;
 
-      left = ((page->left - start_x)
-              * (1/relative_zoom_factor) + start_x);
-      right = ((page->right - start_x)
-               * (1/relative_zoom_factor) + start_x);
-      top = ((page->top - start_y)
-             * (1/relative_zoom_factor) + start_y);
-      bottom = ((page->bottom - start_y)
-                * (1/relative_zoom_factor) + start_y);
+      reciprocal_factor = 1 / relative_zoom_factor;
+
+      left = ((page->left - start_x) * reciprocal_factor + start_x);
+      right = ((page->right - start_x) * reciprocal_factor + start_x);
+
+      top = ((page->top - start_y) * reciprocal_factor + start_y);
+      bottom = ((page->bottom - start_y) * reciprocal_factor + start_y);
 
       world_pan_center_x = (right + left) / 2;
       world_pan_center_y = (top + bottom) / 2;
     }
   }
   else {
-    world_pan_center_x = (double) (page->left +
-                                   page->right ) / 2;
-    world_pan_center_y = (double) (page->top +
-                                   page->bottom ) / 2;
+    world_pan_center_x = (double) (page->left + page->right) / 2;
+    world_pan_center_y = (double) (page->top + page->bottom ) / 2;
   }
 
 #if DEBUG
