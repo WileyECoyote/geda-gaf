@@ -2050,6 +2050,10 @@
 (or (defined? 'define-syntax)
     (use-modules (ice-9 syncase)))
 
+(define T_
+  (lambda (text)
+    (string-append "Toggle " text)))
+
 ;; Define a no-op macro for flagging strings as translatable.
 (define-syntax N_
   (syntax-rules ()
@@ -2329,12 +2333,12 @@
         (,(N_ "S_nap Grid Spacing...")    options-snap-size        #f ,(N_ "Adjust snap size"))
 
         ("SEPARATOR"                     #f                        #f)
-        (,(N_ "Toggle _Snap On-Off")      options-cycle-snap       #f ,(N_ "Toggle the object snap mode"))
-        (,(N_ "Toggle _Rubberband")       options-rubberband       #f ,(N_ "Toggle rubberband net mode"))
-        (,(N_ "Toggle _Magnetic Net")     options-magneticnet      #f ,(N_ "Toggle magnetic net mode"))
-        (,(N_ "Toggle _Drag Move")        options-dragcanmove      #f ,(N_ "Toggle Drag-can-Move mode"))
-        (,(N_ "Toggle _Outline-Box")      options-action-feedback  #f ,(N_ "Toggle action feedback"))
-        (,(N_ "Toggle _Auto-Pan")         options-auto-pan         #f ,(N_ "Toggle auto panning mode"))
+        (,(T_ (N_ "_Snap On-Off"))        options-cycle-snap       #f ,(N_ "Toggle the object snap mode"))
+        (,(T_ (N_ "_Rubberband"))         options-rubberband       #f ,(N_ "Toggle rubberband net mode"))
+        (,(T_ (N_ "_Magnetic Net"))       options-magneticnet      #f ,(N_ "Toggle magnetic net mode"))
+        (,(T_ (N_ "_Drag Move"))          options-dragcanmove      #f ,(N_ "Toggle Drag-can-Move mode"))
+        (,(T_ (N_ "_Outline-Box"))        options-action-feedback  #f ,(N_ "Toggle action feedback"))
+        (,(T_ (N_ "_Auto-Pan"))           options-auto-pan         #f ,(N_ "Toggle auto panning mode"))
 
         ("SEPARATOR"                     #f                        #f)
         (,(N_ "_Text Size...")            options-show-text-size   #f                ,(N_ "Open the Text Size settings"))

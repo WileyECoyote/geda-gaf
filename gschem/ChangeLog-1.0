@@ -2,6 +2,10 @@
 
     * data/Makefile.am: Include gschem.applications in EXTRA_DIST.
 
+    * etc/system-gschemrc.scm: Define T_ and implement for toggle menu
+      items so that the word "Toggle", which is used to indicate a toogle
+      item, is not in the menu or translation.
+
 2017-04-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_edit_pin.c: Include pin_dialog.png image in Doxygen output,
