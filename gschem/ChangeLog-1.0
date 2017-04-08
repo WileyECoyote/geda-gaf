@@ -1,3 +1,7 @@
+2017-04-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * data/Makefile.am: Include gschem.applications in EXTRA_DIST.
+
 2017-04-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_edit_pin.c: Include pin_dialog.png image in Doxygen output,

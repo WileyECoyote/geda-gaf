@@ -143,8 +143,8 @@ EXTRA_DIST           =	$(iconsvg)           \
 			$(action_icon_files) \
 			$(app_icon_files)    \
 			$(desktop_in_files)  \
-			$(desktop_DATA)
-
+			$(desktop_DATA)      \
+			$(registry_DATA)
 
 MOSTLYCLEANFILES     = *.log *~
 CLEANFILES           = *.log *~
