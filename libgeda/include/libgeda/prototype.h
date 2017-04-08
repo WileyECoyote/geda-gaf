@@ -741,7 +741,7 @@ const CLibSymbol *geda_struct_clib_get_symbol_by_name      (const char *name);
          GList  *geda_struct_tile_get_objectlists          (Page *p_current, int world_x1, int world_y1, int world_x2, int world_y2);
 
 /* s_toplevel.c */
-        GList   *geda_toplevel_struct_get_selection        (GedaToplevel *toplevel);
+        GList   *geda_toplevel_struct_get_selection        (const GedaToplevel *toplevel);
         GList   *geda_toplevel_struct_get_symbols          (const GedaToplevel *toplevel);
         GList   *geda_toplevel_struct_get_pages            (const GedaToplevel *toplevel);
          void    geda_toplevel_struct_release              (GedaToplevel *toplevel);

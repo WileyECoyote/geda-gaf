@@ -37,12 +37,12 @@
  * \sa geda_struct_page_get_selection
  */
 GList*
-geda_toplevel_struct_get_selection (GedaToplevel *toplevel)
+geda_toplevel_struct_get_selection (const GedaToplevel *toplevel)
 {
   Page      *page;
   SELECTION *selection;
+  page = geda_toplevel_get_current_page ((GedaToplevel*)toplevel);
 
-  page = geda_toplevel_get_current_page (toplevel);
   if (!page)
     return NULL;
 
