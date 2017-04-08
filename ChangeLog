@@ -1,7 +1,9 @@
 2017-04-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * .travis.yml: Export XVFBARGS in order to enable the RANDR extensions
-      on the virtual frame buffer before starting Xvfb.
+      on the virtual frame buffer before starting Xvfb. After second failure,
+      see https://travis-ci.org/WileyECoyote/geda-gaf/builds/219969048, try
+      restarting Xvfb.
 
 2017-01-01 Wiley E. Hill <wileyhill@gmail.com>
 
