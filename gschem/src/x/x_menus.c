@@ -556,8 +556,6 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
       scm_dynwind_free(raw_menu_item_name);
 
-      menu_item_name = gettext(raw_menu_item_name);
-
       if (strncmp(raw_menu_item_name, "SEPARATOR", 9) == 0) {
         menu_item = geda_menu_item_new();
       }
@@ -603,6 +601,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
                 char *action_name;
                 char *action_keys;
           const char *menu_icon_name;
+          const char *menu_item_name;
                 bool  is_a_toggle;
 
           action_name = scm_to_utf8_string (scm_symbol_to_string (scm_item_func));
@@ -626,14 +625,17 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
           is_a_toggle = FALSE;
 
-          if (strncmp (menu_item_name, "Toggle", 6) == 0 ) {
+          if (strncmp (raw_menu_item_name, "Toggle", 6) == 0 ) {
+
+            /* Skip over the word "Toggle" and the space after */
+            menu_item_name = gettext(raw_menu_item_name + 7);
 
             is_a_toggle = TRUE;
             toggler_data                 = GEDA_MEM_ALLOC0(sizeof(ToggleMenuData));
             toggler_data->w_current      = w_current;
             toggler_data->menu_item_name = geda_strdup(menu_item_name);
             toggler_data->menu_path      = geda_strconcat (*raw_menu_name, "/", raw_menu_item_name, NULL);
-            menu_item_name = menu_item_name + 7;  /* is just for label */
+            //menu_item_name = menu_item_name + 7;  /* is just for label */
 
             /* TODO: Tooltips do not work here, we will fix them later*/
             action = (GedaAction*)
@@ -645,6 +647,8 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
             toggler_data->action = (GtkWidget*)action;
           }
           else {
+
+            menu_item_name = gettext(raw_menu_item_name);
 
             action = geda_action_new (action_name,     /* Action name */
                                       menu_item_name,  /* Text */

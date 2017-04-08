@@ -6,6 +6,9 @@
       items so that the word "Toggle", which is used to indicate a toogle
       item, is not in the menu or translation.
 
+    * src/x/x_menus.c: Revise x_menu_setup_ui to get translation of menu
+      items seperately for toggle items so that "Toggle" is skipped over.
+
 2017-04-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_edit_pin.c: Include pin_dialog.png image in Doxygen output,
