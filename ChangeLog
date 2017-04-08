@@ -1,6 +1,11 @@
+2017-04-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * .travis.yml: Export XVFBARGS in order to enable the RANDR extensions
+      on the virtual frame buffer before starting Xvfb.
+
 2017-01-01 Wiley E. Hill <wileyhill@gmail.com>
 
-    * geda-gaf/NEWS: update news for release of 2.1.1.0 20170318.
+    * NEWS: update news for release of 2.1.1.0 20170318.
 
     * configure.ac: Bump date version 20170318.
 
@@ -14,7 +19,7 @@
 
     * Makefile.am: Add "without-libintl-prefix" to DISTCHECK_CONFIGURE_FLAGS.
 
-    * geda-gaf/NEWS: update news for release of 2.1.1.1.
+    * NEWS: update news for release of 2.1.1.1.
 
     * configure.ac: Bump mutation to 1, date version 20170312
 
@@ -47,7 +52,7 @@
 
 2017-01-01 Wiley E. Hill <wileyhill@gmail.com>
 
-    * geda-gaf/NEWS: update news for release of 2.1.1.0.
+    * NEWS: update news for release of 2.1.1.0.
 
     * configure.ac: Bump mirco to 1, date version 20170101, (after 20 months
       of mutations), libgeda version 51:6:0 -> 52:0:0, libgedacolor version
@@ -608,7 +613,7 @@
 
       gEDA-gaf 17th Anniversary of First public - 2.10R
 
-      * geda-gaf/NEWS: Updated with notable changes.
+      * NEWS: Updated with notable changes.
 
       * geda-gaf/configure.ac: Bump version 2.1.0.0
 

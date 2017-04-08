@@ -21,6 +21,7 @@ after_failure: ./travis-after-failure.sh
 # Setup Virtual X Framebuffer
 before_script:
 - export DISPLAY=:99
+- export XVFBARGS=":99 +extension RANDR"
 - sh -e /etc/init.d/xvfb start
 #- sleep 3
 
