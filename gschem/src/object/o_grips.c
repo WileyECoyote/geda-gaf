@@ -194,10 +194,13 @@ o_grips_inside_grip( int x, int y, int grip_x, int grip_y, int size )
 {
   int xmin, ymin, xmax, ymax;
 
-  xmin = grip_x - size;
-  ymin = grip_y - size;
-  xmax = xmin + 2 * size;
-  ymax = ymin + 2 * size;
+  register int half_size = size;
+
+  xmin = grip_x - half_size;
+  xmax = grip_x + half_size;
+
+  ymin = grip_y - half_size;
+  ymax = grip_y + half_size;
 
   return geda_object_get_is_inside_region(xmin, ymin, xmax, ymax, x, y);
 }

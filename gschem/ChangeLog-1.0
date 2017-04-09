@@ -7,6 +7,11 @@
     * src/iface/i_threads.c: Call g_thread_init if glib < 2.32 in function
       gschem_threads_init.
 
+    * src/object/o_grips.c: Revise o_grips_inside_grip to explicitly request
+      half_size in register and reorder operations to reduce unnecessary SP
+      indexing, the compiler was probably going to do it anyways, even with
+      optimization turned off.
+
 2017-04-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * data/Makefile.am: Include gschem.applications in EXTRA_DIST.
