@@ -80,7 +80,7 @@ static void x_console_callback_response (GtkDialog *dialog, int arg1, void * use
 static void log_message (Console *console, const char *message, const char *style);
 
 /** \defgroup Logging-Utilities Logging Utilities
- *    @{
+ *  @{
  */
 void q_log_message(const char *format, ...)
 {
@@ -122,7 +122,6 @@ void v_log_message(const char *format, ...)
 
 /*!
  *  \brief Destroy Command Buffer
- *
  *  \par Function Description
  *  We elected to create the GList *command_buffer in this module, rather
  * than in main, so we don't have to externally reference, but this means
@@ -192,6 +191,7 @@ void x_console_init_commands(GschemToplevel *w_current, int mode) {
     v_log_message("%s (%s)\n", _("Command interface: engaged using"), describe_level[0]);
     i_command_disengage(FALSE, FALSE);
   }
+
 #endif
 
 }
@@ -204,7 +204,6 @@ void x_console_init_commands(GschemToplevel *w_current, int mode) {
 
 /*!
  *  \brief Open the Console window
- *
  *  \par Function Description
  *  If the Console dialog instance doesn't exist, create it, and read
  *  the current log file contents (if they exist) and insert them
@@ -289,7 +288,6 @@ void x_console_close ()
 
 /*!
  *  \brief Console Window Callback Function
- *
  *  \par Function Description
  *  Callback function for the Console window. Only used to close the window.
  */
@@ -314,7 +312,6 @@ static void x_console_callback_response (GtkDialog *dialog, int arg1,
 
 /*!
  *  \brief Add a message to the Console Log window
- *
  *  \par Function Description
  *  \param [in] console The console instance
  *  \param [in] message The message to be logged
@@ -492,6 +489,7 @@ const char *x_console_get_numeric(void) {
   geda_entry_set_valid_input((GedaEntry*)console_entry, ACCEPT_NUMERIC);
   return x_console_get_input_data();
 }
+
 int x_console_get_number(void) {
   char *string;
   int   result;
@@ -502,6 +500,7 @@ int x_console_get_number(void) {
   geda_entry_set_valid_input((GedaEntry*)console_entry, ACCEPT_ALL_ASCII);
   return result;
 }
+
 int x_console_get_integer(void) {
   char *string;
   int   result;
@@ -512,6 +511,7 @@ int x_console_get_integer(void) {
   geda_entry_set_valid_input((GedaEntry*)console_entry, ACCEPT_ALL_ASCII);
   return result;
 }
+
 float x_console_get_real(void) {
   char *string;
   float result;
@@ -522,6 +522,7 @@ float x_console_get_real(void) {
   geda_entry_set_valid_input((GedaEntry*)console_entry, ACCEPT_ALL_ASCII);
   return result;
 }
+
 const char *x_console_get_string() {
   geda_entry_set_valid_input((GedaEntry*)console_entry, ACCEPT_ALL_ASCII);
   return x_console_get_input_data();
