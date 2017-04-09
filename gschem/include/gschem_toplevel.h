@@ -131,7 +131,6 @@ struct _GschemToplevel {
 
   /* ------------------  Drawing surfaces  ---------------- */
   GdkWindow   *window;                  /* drawing_area's X drawable */
-  GdkPixmap   *drawable;                /* drawable to paint onto */
   cairo_t     *cr;                      /* Cairo surface */
 
   int world_left;

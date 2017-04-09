@@ -526,9 +526,9 @@ x_window_create_main(GschemToplevel *w_current)
   /*! Set visibility of the scroll-bars based on user settings */
   x_window_set_scroll_visibility(w_current);
 
-  /* Not sure why we need two pointer to GdkWindow */
+  /* Save a pointer to the canvas GdkWindow */
   w_current->window = DrawingArea->window;
-  w_current->drawable = w_current->window;
+
   x_window_setup_context(w_current);
 
   gschem_main_window_update(MainWindow);

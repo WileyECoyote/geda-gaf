@@ -133,7 +133,6 @@ preview_callback_realize (GtkWidget *widget, void *user_data)
 
   preview_window->screen_width  = allocation->width;
   preview_window->screen_height = allocation->height;
-  preview_window->drawable      = preview_window->window;
 
   x_window_setup_context (preview_window);
 

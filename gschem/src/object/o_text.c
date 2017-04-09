@@ -59,7 +59,7 @@ int o_text_get_rendered_bounds (void *user_data, GedaObject *o_current,
 
       int render_flags = 0;
 
-      cr = gdk_cairo_create (w_current->drawable);
+      cr = gdk_cairo_create (w_current->window);
 
       renderer = g_object_ref (CairoRenderer);
 

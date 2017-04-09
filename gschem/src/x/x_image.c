@@ -1028,7 +1028,6 @@ GdkPixbuf *x_image_get_pixbuf (GschemToplevel *w_current, ImageExtent extent,
   size_y = new_w_current->image_height;
 
   new_w_current->window   = gdk_pixmap_new (w_current->window, size_x, size_y, -1);
-  new_w_current->drawable = new_w_current->window;
   new_w_current->cr       = gdk_cairo_create (new_w_current->window);
   layout                  = pango_cairo_create_layout (new_w_current->cr);
 
@@ -1080,7 +1079,7 @@ GdkPixbuf *x_image_get_pixbuf (GschemToplevel *w_current, ImageExtent extent,
   o_redraw_rectangle (new_w_current, &rect);
 
   /* Get the pixbuf */
-  pixbuf = gdk_pixbuf_get_from_drawable (NULL,new_w_current->drawable, NULL,
+  pixbuf = gdk_pixbuf_get_from_drawable (NULL,new_w_current->window, NULL,
                                          origin_x, origin_y, 0, 0,
                                          right-origin_x,
                                          bottom-origin_y);

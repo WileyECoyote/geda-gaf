@@ -110,7 +110,6 @@ static void gschem_toplevel_instance_init( GTypeInstance *instance, void *class)
 
   /* ------------------- Drawing surfaces ------------------ */
   w_current->window             = NULL;
-  w_current->drawable           = NULL;
   w_current->cr                 = NULL;
 
   w_current->world_left         = 0;

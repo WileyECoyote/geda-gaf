@@ -1,5 +1,7 @@
 2017-04-09 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/gschem_toplevel.h: Remove redundant pointer member drawable.
+
     * src/base/gschem.c: Moved calling g_thread_init to gschem_threads_init.
 
     * src/iface/i_threads.c: Call g_thread_init if glib < 2.32 in function
