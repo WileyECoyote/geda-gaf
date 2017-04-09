@@ -133,12 +133,12 @@ x_window_setup_context(GschemToplevel *w_current)
 
 /*! \brief Create the Drawing Area
  *  \par Function Description
- *  the routine create and setup the drawing area widget, the widget is
- *  added to the given container \a window and assigned a name base on
+ *  Create and setup the drawing area widget, the widget is added
+ *  to the given container \a window and assigned a name base on
  *  the programs process ID.
  *
  * \param [in] w_current The toplevel environment.
- * \param [in] window    The Main window
+ * \param [in] window    scroll_window container
  */
 static void
 x_window_create_drawing_area (GschemToplevel *w_current, GtkWidget *window)
