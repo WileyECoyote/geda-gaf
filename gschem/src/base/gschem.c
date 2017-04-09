@@ -461,13 +461,6 @@ static void main_prog(void *closure, int argc, char *argv[])
 #ifdef HAVE_GTHREAD
 
   /* Initialise threading before any more GLib functions are called. */
-
-#if ((GLIB_MAJOR_VERSION == 2 ) && (GLIB_MINOR_VERSION < 32 ))
-
-  g_thread_init (NULL);
-
-#endif
-
   if (gschem_threads_init()) {
     run_mode = 2;
   }

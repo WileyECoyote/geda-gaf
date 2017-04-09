@@ -103,6 +103,12 @@ bool gschem_threads_init (void)
 {
   bool result;
 
+#if ((GLIB_MAJOR_VERSION == 2 ) && (GLIB_MINOR_VERSION < 32 ))
+
+  g_thread_init (NULL);
+
+#endif
+
   if (g_thread_supported ()) {
 
     result = TRUE;

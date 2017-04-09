@@ -1,3 +1,10 @@
+2017-04-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/base/gschem.c: Moved calling g_thread_init to gschem_threads_init.
+
+    * src/iface/i_threads.c: Call g_thread_init if glib < 2.32 in function
+      gschem_threads_init.
+
 2017-04-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * data/Makefile.am: Include gschem.applications in EXTRA_DIST.
