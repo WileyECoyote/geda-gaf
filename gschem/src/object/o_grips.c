@@ -305,19 +305,16 @@ o_grips_search_world(GschemToplevel *w_current, int x, int y, int *whichone)
     return(NULL);
   }
 
-  /* size = GRIP_PIXEL_SIZE / 2; */
-  size = w_current->grip_size / 2;
-  w_size = WORLDabs (w_current, size );
+  size   = gschem_toplevel_get_grips_half_size(w_current);
+  w_size = (int)size * toplevel->page_current->to_world_x_constant + 3.5;
 
-  s_current = geda_list_get_glist( toplevel->page_current->selection_list );
+  s_current = geda_list_get_glist (toplevel->page_current->selection_list);
 
   while (s_current != NULL) {
 
     GedaObject *object = (GedaObject*)s_current->data;
 
     if (object) {
-      /* get the dynamic size of the grip */
-      //size = o_grips_half_size(w_current, object);
 
       switch(object->type) {
         case(OBJ_ARC):
