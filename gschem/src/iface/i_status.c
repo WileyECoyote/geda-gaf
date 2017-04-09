@@ -31,17 +31,16 @@
 
 /** \defgroup Gschem-Status-System Status System
  *  @{
+ * \brief Routines to coordinate visual feedback to users
  * \par
  * This module contains routines to update user interface components,
  * i.e. the menus, status-bar, and tool-bars. The module does not set
  * values in widgets, or interact with GUI components, functions in
- * this module call the appropriate GUI providers to perform updates.
- *
-*/
+ * this module call the appropriate GUI providers to perform updates
+ * in order to provides visual feedback to users.
+ */
 
-/*! \brief Set new state, then show state field including some
- *         message
- *
+/*! \brief Set new state, then show state field including some message
  *  \par Function Description
  *  Set new state, then show state field including some
  *  message.
@@ -77,7 +76,6 @@ void i_status_set_state_msg(GschemToplevel *w_current,
 }
 
 /*! \brief Set new state, then show state field
- *
  *  \par Function Description
  *  Wrapper for i_status_set_state_msg, set new state without specifing
  *  and message string.
@@ -92,7 +90,6 @@ void i_status_set_state(GschemToplevel *w_current, enum x_states newstate)
 }
 
 /*! \brief Update status bar string
- *
  *  \par Function Description
  *  This function updates the status bar widget with the new string.
  *
@@ -113,7 +110,6 @@ static void i_status_update_status(GschemToplevel *w_current,
 }
 
 /*! \brief Get string corresponding to the currently selected mode
- *
  *  \par Function Description
  *  Returns a string describing the currently
  *  selected mode.
@@ -204,7 +200,6 @@ static const char *i_status_string(GschemToplevel *w_current)
 }
 
 /*! \brief Display a Message in the Status Bar
- *
  *  \par Function Description
  *  This function allows a message to be displayed in the status bar widget
  *  without alterations to the string.
@@ -220,7 +215,6 @@ void i_status_show_msg(GschemToplevel *w_current, const char *string)
 }
 
 /*! \brief Show state field
- *
  *  \par Function Description
  *  Show state field in the status bar, possibly with the addition
  *  of an extra message.
@@ -251,7 +245,7 @@ void i_status_show_state(GschemToplevel *w_current, const char *message)
     array[i] = message;
 
   /* Skip over NULLs */
-  while(array[i] == NULL)
+  while (array[i] == NULL)
     i++;
 
   what_to_say = g_strjoinv(" - ", (char **) array + i);
@@ -285,9 +279,8 @@ i_status_idle_thread_update_action (GschemToplevel *w_current)
 }
 
 /*! \brief Schedule Set filename as gschem window title
- *
  *  \par Function Description
- *  Spawn thread to update the  window title
+ *  Spawn thread to update the status_bar
  *
  *  \param [in] w_current GschemToplevel structure
  *  \param [in] state     Boolean value to set inside_action
@@ -303,7 +296,6 @@ void i_status_update_action_state(GschemToplevel *w_current, int state)
 }
 
 /*! \brief Update Coordinate Display
- *
  *  \par Function Description
  *  Spawn thread to update the Grid and Snap Display
  *
@@ -333,7 +325,6 @@ void i_status_update_coordinates(GschemToplevel *w_current, int w_x, int w_y)
 }
 
 /*! \brief Idle Update the Grid and Snap Display on the gschem Status-Bar
- *
  *  \par Function Description
  *  This function calls the appropriate interface to update the Grid/Snap
  *  label on the status bar.
@@ -350,7 +341,6 @@ i_status_idle_update_grid_info (GschemToplevel *w_current)
 }
 
 /*! \brief Schedule Update Grid and Snap Display
- *
  *  \par Function Description
  *  Spawn thread to update the Grid and Snap Display
  *
@@ -377,8 +367,9 @@ void i_status_update_grid_info(GschemToplevel *w_current)
  *   Sensitivity should be set.
  */
 
-/*! \brief Update sensitivity of the Edit/Paste menu item
- *  \par Function Description
+/*!
+ * \brief Update sensitivity of the Edit/Paste menu item
+ * \par Function Description
  *  Asynchronous callback to update sensitivity of the Edit/Paste
  *  menu item.
  */
@@ -392,12 +383,14 @@ static void clipboard_usable_cb (int usable, void *userdata)
 
 /*! \brief Can anything selected be hatched for filled?
  *  \par Function Description
- * update sensitivities helper function to determine
- * if any selected objects can be hatched or filled
+ *  Update sensitivities helper function to determine
+ *  if any selected objects can be hatched or filled.
+ *
+ * \retval TRUE if any object in \a list can be hatched, otherwise FALSE.
  */
 static bool hatchable_object_selected(GList *list)
 {
-  while(list != NULL) {
+  while (list != NULL) {
 
     GedaObject *obj = (GedaObject*)list->data;
 
@@ -413,12 +406,15 @@ static bool hatchable_object_selected(GList *list)
 
 /*! \brief Does anything selected have line-type properties?
  *  \par Function Description
- * update sensitivities helper function to determine
- * if any selected objects have line-type properties
+ *   Update sensitivities helper function to determine
+ *   if any selected objects have line-type properties.
+ *
+ * \retval TRUE if any object in \a list has line-type properties,
+ *         otherwise FALSE.
  */
 static bool linetype_object_selected(GList *list)
 {
-  while(list != NULL) {
+  while (list != NULL) {
 
     GedaObject *obj = (GedaObject*)list->data;
 
@@ -435,12 +431,14 @@ static bool linetype_object_selected(GList *list)
 
 /*! \brief Is at least one Text object selected?
  *  \par Function Description
- * update sensitivities helper function to determine
- * if any selected objects are Text objects
+ *   Update sensitivities helper function to determine
+ *   if any selected objects are Text objects.
+ *
+ *  \retval TRUE if \a list contains a text object, otherwise FALSE.
  */
 static bool selected_at_least_one_text_object(GList *list)
 {
-  while(list != NULL) {
+  while (list != NULL) {
 
     GedaObject *obj = (GedaObject*)list->data;
 
@@ -454,12 +452,14 @@ static bool selected_at_least_one_text_object(GList *list)
 
 /*! \brief Is at least one Complex object selected?
  *  \par Function Description
- * update sensitivities helper function to determine
- * if any selected objects are Complex objects
+ *   Update sensitivities helper function to determine
+ *   if any selected objects are Complex objects.
+ *
+ * \retval TRUE if \a list contains a Complex object, otherwise FALSE.
  */
 static bool selected_complex_object(GList *list)
 {
-  while(list != NULL) {
+  while (list != NULL) {
 
     GedaObject *obj = (GedaObject*)list->data;
 
@@ -473,12 +473,14 @@ static bool selected_complex_object(GList *list)
 
 /*! \brief Is at least one Picture object selected?
  *  \par Function Description
- * update sensitivities helper function to determine
- * if any selected objects are Picture objects
+ *   Update sensitivities helper function to determine
+ *   if any selected objects are Picture objects.
+ *
+ * \retval TRUE if \a list contains a Picture object, otherwise FALSE.
  */
 static bool selected_at_least_one_pic_object(GList *list)
 {
-  while(list != NULL) {
+  while (list != NULL) {
 
     GedaObject *obj = (GedaObject*)list->data;
 
@@ -492,12 +494,14 @@ static bool selected_at_least_one_pic_object(GList *list)
 
 /*! \brief Is at least one Pin object selected?
  *  \par Function Description
- * update sensitivities helper function to determine
- * if any selected objects are Pin objects
+ *   Update sensitivities helper function to determine
+ *   if any selected objects are Pin objects.
+ *
+ * \retval TRUE if \a list contains a Pin object, otherwise FALSE.
  */
 static bool selected_at_least_one_pin_object(GList *list)
 {
-  while(list != NULL) {
+  while (list != NULL) {
 
     GedaObject *obj = (GedaObject*)list->data;
 
@@ -512,15 +516,14 @@ static bool selected_at_least_one_pin_object(GList *list)
 /** @} endgroup status-sensitivity-helpers */
 
 /*! \brief Idle Thread Update Sensitivity of relevant menu items
- *
  *  \par Function Description
- *  Update sensitivity of relevant menu & toolbar items.
+ *   Update sensitivity of relevant menu & toolbar items.
  *
  *  \param [in] w_current GschemToplevel structure
  *
- *  \warning The menu strings in the function reference menu
- *  path NOT the displayed menu text, therefore these strings
- *  should NOT be internationalized
+ *  \warning The menu strings in the function reference menu path
+ *           NOT the displayed menu text, therefore these strings
+ *           should NOT be internationalized.
  *
  * TODO: Fix this ludicrousness, maybe bit flags embedded in each
  *       object.
@@ -856,7 +859,6 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
 }
 
 /*! \brief Schedule Update Sensitivity of relevant menu items
- *
  *  \par Function Description
  *  Spawns idle thread to update the sensitivities of widgets.
  *
@@ -873,6 +875,7 @@ void i_status_update_sensitivities(GschemToplevel *w_current)
   }
 #endif
 }
+
 /** @} endgroup status-set-sensitivity */
 
 static bool
@@ -883,9 +886,8 @@ i_status_idle_thread_update_title (GschemToplevel *w_current)
 }
 
 /*! \brief Schedule Set filename as gschem window title
- *
  *  \par Function Description
- *  Spawn thread to update the  window title
+ *  Spawn thread to update the window title
  *
  *  \param [in] w_current GschemToplevel structure
  */
