@@ -6,7 +6,13 @@ Bugs (no particular order):
 
 	When copying components, the locked bit is not preserved.
 
+    Grips are not sized correctly.
+
 Archived:
+
+FIXED Tooltips menu items under the View/Menu and View/Toolbar submenus do
+      not response to menu tooltip settings, as do other non-toggle menu items.
+      Toggle items under the Options menu requires restart to take effect.
 
 FIXED	Text direction on rotated fast text line is wrong.
 

@@ -22,7 +22,7 @@ after_failure: ./travis-after-failure.sh
 before_script:
 - export DISPLAY=:99
 - export XVFBARGS=":99 +extension RANDR"
-- sh -e /etc/init.d/xvfb restart
+- sh -e /etc/init.d/xvfb start
 - sleep 3
 
 # Bootstrap the LCB compiler, build the default target set and run a

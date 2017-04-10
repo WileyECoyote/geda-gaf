@@ -1,3 +1,11 @@
+2017-04-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * .travis.yml: Set Xvfb back to "start" service, no response from Travis.
+
+    * NEWS: update news for release of 2.1.1.0 20170401.
+
+    * configure.ac: Bump date version 20170401.
+
 2017-04-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * .travis.yml: Export XVFBARGS in order to enable the RANDR extensions

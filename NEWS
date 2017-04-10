@@ -7,7 +7,7 @@ Copyright (C) 1998-2017 gEDA Developers
 This file documents important user-visible changes in gEDA/gaf.  For
 more information, please consult the `ChangeLog' file.
 
-Notable changes in gEDA/gaf gEDA 2.1.1.1 - 03/03/12 Rampage Edition
+Notable changes in gEDA/gaf gEDA 2.1.1.1 - 04/10/17 Rampage Edition
 
 * Additional support for internationalization (i18n).
 
@@ -17,6 +17,8 @@ Notable changes in gEDA/gaf gEDA 2.1.1.1 - 03/03/12 Rampage Edition
 * Font-sizes for widgets on GedaToolbars can now be specified in RC files.
 
 * The toolbar layout in gschem has been improved to better support labels.
+
+* The visibility of toolbar tooltips can now be control using RC keywords.
 
 Notable changes in gEDA/gaf gEDA 2.1.1.0 - 01/01/17 Rampage Edition
 
