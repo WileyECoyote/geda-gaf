@@ -3,6 +3,8 @@ Makefile
 latex
 html
 xml
+libgedacolor.1
+libgedacolor.3
 libgedacolor.html
 
 
