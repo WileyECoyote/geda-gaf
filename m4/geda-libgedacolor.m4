@@ -1,9 +1,9 @@
 # geda-libgedacolor.m4                                  -*-Autoconf-*-
-# serial 1
+# serial 1.1
 
 dnl libgedacolor-specific setup
 dnl
-dnl Copyright (C) 2015  Peter Brett <peter@peter-b.co.uk>
+dnl Copyright (C) 2015-2017  Peter Brett <peter@peter-b.co.uk>
 dnl
 dnl This program is free software; you can redistribute it and/or modify
 dnl it under the terms of the GNU General Public License as published by
@@ -30,6 +30,9 @@ AC_DEFUN([AX_LIBGEDACOLOR],
   AC_MSG_CHECKING([libgedacolor shared library version])
   AC_MSG_RESULT($1)
   AC_SUBST([LIBGEDACOLOR_SHLIB_VERSION], $1)
+
+  LIBGEDACOLOR_DOT_VERSION=`echo $LIBGEDACOLOR_SHLIB_VERSION | sed -e "y/:/./"`
+  AC_SUBST([LIBGEDACOLOR_DOT_VERSION])
 
   # Work out the gettext domain to use
   AC_MSG_CHECKING([libgedacolor gettext domain])

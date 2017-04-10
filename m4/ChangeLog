@@ -1,3 +1,8 @@
+2017-04-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * geda-libgedacolor.m4: Add section for LIBGEDACOLOR_DOT_VERSION,
+      bump series to 1.1 and update copyright.
+
 2017-01-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-intl.m4: Remove defining USE_LOCAL_LIBINTL to 0.
