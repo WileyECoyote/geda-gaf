@@ -501,6 +501,7 @@ bool       o_find_object                (GschemToplevel *w_current, int x, int y
 OBJ       *o_find_selected_object       (GschemToplevel *w_current, int x, int y);
 
 /* o_grips.c */
+/*
 OBJ       *o_grips_search_world         (GschemToplevel *w_current, int x, int y, int *whichone);
 OBJ       *o_grips_search_arc_world     (GschemToplevel *w_current, GedaObject *o_current, int x, int y, int size, int *whichone);
 OBJ       *o_grips_search_box_world     (GschemToplevel *w_current, GedaObject *o_current, int x, int y, int size, int *whichone);
@@ -508,6 +509,7 @@ OBJ       *o_grips_search_path_world    (GschemToplevel *w_current, GedaObject *
 OBJ       *o_grips_search_picture_world (GschemToplevel *w_current, GedaObject *o_current, int x, int y, int size, int *whichone);
 OBJ       *o_grips_search_circle_world  (GschemToplevel *w_current, GedaObject *o_current, int x, int y, int size, int *whichone);
 OBJ       *o_grips_search_line_world    (GschemToplevel *w_current, GedaObject *o_current, int x, int y, int size, int *whichone);
+*/
 bool       o_grips_start                (GschemToplevel *w_current, int x, int y);
 void       o_grips_motion               (GschemToplevel *w_current, int x, int y);
 void       o_grips_end                  (GschemToplevel *w_current);

@@ -1,5 +1,8 @@
 2017-04-10 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/prototype.h: Comment-out declarations for o_grips_search_
+      function which are only called by o_grips_start.
+
     * src/iface/i_zoom_world.c: Revise i_zoom_world_extents to use the
       current page object list if the list argument is NULL.
 

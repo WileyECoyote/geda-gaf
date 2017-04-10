@@ -268,112 +268,6 @@ o_grips_motion(GschemToplevel *w_current, int w_x, int w_y)
 }
 
 /*!
- * \brief Check if point is inside grip.
- * \par Function Description
- *  This function is used to determine if the (<b>x</b>,<b>y</b>) point is
- *  inside a grip of one of the selected object on the current sheet.
- *  The selected object are in a list starting at
- *  <b>w_current->toplevel->page_current->selection2_head</b>.
- *  The <b>x</b> and <b>y</b> parameters are in world units.
- *  If the point is inside one grip, a pointer on the object it belongs to is
- *  returned and <b>*whichone</b> is set according to the position of the grip
- *  on the object.
- *  Else, <b>*whichone</b> is unchanged and the function returns %NULL.
- *
- *  A specific search function is provided for every kind of graphical object.
- *  The list of selected object is covered : each object is tested with the
- *  appropriate function.
- *
- * \param [in]  w_current  The GschemToplevel object.
- * \param [in]  x          Current x coordinate of pointer in world units.
- * \param [in]  y          Current y coordinate of pointer in world units.
- * \param [out] whichone   Which grip point is selected.
- *
- * \return Pointer to Object the grip is on, NULL otherwise.
- */
-GedaObject*
-o_grips_search_world(GschemToplevel *w_current, int x, int y, int *whichone)
-{
-  GedaToplevel *toplevel = w_current->toplevel;
-  GedaObject   *found    = NULL;
-  GList        *s_current;
-
-  int size;
-  int w_size;
-
-  if (!whichone) {
-    return(NULL);
-  }
-
-  size   = gschem_toplevel_get_grips_half_size(w_current);
-  w_size = (int)size * toplevel->page_current->to_world_x_constant + 3.5;
-
-  s_current = geda_list_get_glist (toplevel->page_current->selection_list);
-
-  while (s_current != NULL) {
-
-    GedaObject *object = (GedaObject*)s_current->data;
-
-    if (object) {
-
-      switch(object->type) {
-        case(OBJ_ARC):
-          /* check the grips of the arc object */
-          found = o_grips_search_arc_world(w_current, object,
-                                           x, y, w_size, whichone);
-          if(found != NULL) return found;
-          break;
-
-        case(OBJ_BOX):
-          /* check the grips of the box object */
-          found = o_grips_search_box_world(w_current, object,
-                                           x, y, w_size, whichone);
-          if(found != NULL) return found;
-          break;
-
-        case(OBJ_PATH):
-          /* check the grips of the path object */
-          found = o_grips_search_path_world(w_current, object,
-                                            x, y, w_size, whichone);
-          if(found != NULL) return found;
-          break;
-
-        case(OBJ_PICTURE):
-          /* check the grips of the picture object */
-          found = o_grips_search_picture_world(w_current, object,
-                                               x, y, w_size, whichone);
-          if(found != NULL) return found;
-          break;
-
-        case(OBJ_CIRCLE):
-          /* check the grips of the circle object */
-          found = o_grips_search_circle_world(w_current, object,
-                                              x, y, w_size, whichone);
-          if(found != NULL) return found;
-          break;
-
-        case(OBJ_LINE):
-        case(OBJ_PIN):
-        case(OBJ_NET):
-        case(OBJ_BUS):
-          /* check the grips of the line object */
-          /* the function is the same for line, pin, net, bus */
-          found = o_grips_search_line_world(w_current, object,
-                                            x, y, w_size, whichone);
-          if(found != NULL) return found;
-          break;
-
-        default:
-          break;
-      }
-    }
-    s_current = g_list_next(s_current);
-  }
-
-  return(NULL);
-}
-
-/*!
  * \brief Check if pointer is inside arc grip.
  * \par Function Description
  *  This function checks if the pointer event occuring at (<b>x</b>,<b>y</b>) is
@@ -841,6 +735,112 @@ o_grips_start_box(GschemToplevel *w_current, GedaObject *o_current, int x, int y
 
   /* draw the first temporary box */
   w_current->rubber_visible = 1;
+}
+
+/*!
+ * \brief Check if point is inside grip.
+ * \par Function Description
+ *  This function is used to determine if the (<b>x</b>,<b>y</b>) point is
+ *  inside a grip of one of the selected object on the current sheet.
+ *  The selected object are in a list starting at
+ *  <b>w_current->toplevel->page_current->selection2_head</b>.
+ *  The <b>x</b> and <b>y</b> parameters are in world units.
+ *  If the point is inside one grip, a pointer on the object it belongs to is
+ *  returned and <b>*whichone</b> is set according to the position of the grip
+ *  on the object.
+ *  Else, <b>*whichone</b> is unchanged and the function returns %NULL.
+ *
+ *  A specific search function is provided for every kind of graphical object.
+ *  The list of selected object is covered : each object is tested with the
+ *  appropriate function.
+ *
+ * \param [in]  w_current  The GschemToplevel object.
+ * \param [in]  x          Current x coordinate of pointer in world units.
+ * \param [in]  y          Current y coordinate of pointer in world units.
+ * \param [out] whichone   Which grip point is selected.
+ *
+ * \return Pointer to Object the grip is on, NULL otherwise.
+ */
+GedaObject*
+o_grips_search_world(GschemToplevel *w_current, int x, int y, int *whichone)
+{
+  GedaToplevel *toplevel = w_current->toplevel;
+  GedaObject   *found    = NULL;
+  GList        *s_current;
+
+  int size;
+  int w_size;
+
+  if (!whichone) {
+    return(NULL);
+  }
+
+  size   = gschem_toplevel_get_grips_half_size(w_current);
+  w_size = (int)size * toplevel->page_current->to_world_x_constant + 3.5;
+
+  s_current = geda_list_get_glist (toplevel->page_current->selection_list);
+
+  while (s_current != NULL) {
+
+    GedaObject *object = (GedaObject*)s_current->data;
+
+    if (object) {
+
+      switch(object->type) {
+        case(OBJ_ARC):
+          /* check the grips of the arc object */
+          found = o_grips_search_arc_world(w_current, object,
+                                           x, y, w_size, whichone);
+          if(found != NULL) return found;
+          break;
+
+        case(OBJ_BOX):
+          /* check the grips of the box object */
+          found = o_grips_search_box_world(w_current, object,
+                                           x, y, w_size, whichone);
+          if(found != NULL) return found;
+          break;
+
+        case(OBJ_PATH):
+          /* check the grips of the path object */
+          found = o_grips_search_path_world(w_current, object,
+                                            x, y, w_size, whichone);
+          if(found != NULL) return found;
+          break;
+
+        case(OBJ_PICTURE):
+          /* check the grips of the picture object */
+          found = o_grips_search_picture_world(w_current, object,
+                                               x, y, w_size, whichone);
+          if(found != NULL) return found;
+          break;
+
+        case(OBJ_CIRCLE):
+          /* check the grips of the circle object */
+          found = o_grips_search_circle_world(w_current, object,
+                                              x, y, w_size, whichone);
+          if(found != NULL) return found;
+          break;
+
+        case(OBJ_LINE):
+        case(OBJ_PIN):
+        case(OBJ_NET):
+        case(OBJ_BUS):
+          /* check the grips of the line object */
+          /* the function is the same for line, pin, net, bus */
+          found = o_grips_search_line_world(w_current, object,
+                                            x, y, w_size, whichone);
+          if(found != NULL) return found;
+          break;
+
+        default:
+          break;
+      }
+    }
+    s_current = g_list_next(s_current);
+  }
+
+  return(NULL);
 }
 
 /*! \brief Initialize grip motion process for a path.
