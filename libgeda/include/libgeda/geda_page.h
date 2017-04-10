@@ -69,9 +69,9 @@ struct _GedaPage {
   int pid;
   int seq;
 
-  GList      *_object_list;            /* Glist of all Object on this page*/
-  SELECTION  *selection_list;          /* new selection mechanism */
-  GList      *place_list;
+  GList      *_object_list;            /* List of all Object on this page*/
+  SELECTION  *selection_list;          /* List of selected objects */
+  GList      *place_list;              /* gschem list of objects being placed */
   GedaObject *object_lastplace;        /* the last found item */
 
   GList      *major_changed_refdes;    /* A list of all refdes's that have */

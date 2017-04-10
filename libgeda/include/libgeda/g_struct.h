@@ -65,7 +65,7 @@ typedef struct st_netlist NETLIST;
 typedef struct st_chkerrs CHKERRS;
 typedef struct st_schcheck SCHCHECK;
 
-/* Wrappers around a new list mechanism */
+/* Wrappers around a alternate list mechanism */
 typedef struct _GedaList SELECTION;
 typedef struct _GedaList PageList;
 
