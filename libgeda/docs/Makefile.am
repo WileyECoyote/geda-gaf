@@ -14,7 +14,7 @@ LOCAL_TEX   = what-is-libgeda.tex libgeda-man-1.tex
 
 EXTRA_DIST  = $(GEDA_EXTRA) $(LOCAL_DOX) $(LOCAL_HTML) $(LOCAL_MAN) $(LOCAL_TEX)
 
-SUFFIXES    = .1 .html .tex .pdf
+SUFFIXES    = .1.in .1 .html .tex .pdf
 
 all:	$(MANS)
 if ENABLE_DOXYGEN
@@ -51,7 +51,7 @@ endif
 dist_man_MANS = libgeda.1
 
 .1.in.1:
-	@printf "" \
+	@printf "" ; \
 	d=`$(GUILE) -c '(setlocale LC_ALL "C") (display (strftime "%B %-d, %Y" \
 	    (car (strptime "%Y%m%d" (cadr (program-arguments))))))' $(DATE_VERSION)` ; \
 	v="$(LIBGEDA_DOT_VERSION)-$(DATE_VERSION)" ; \
@@ -59,7 +59,7 @@ dist_man_MANS = libgeda.1
 	sed -e"s:[@]DATE@:$$d:" -e"s:[@]VERSION@:$$v:" -e"s:[@]YEAR@:$$y:" < $< > $@
 
 .3.in.3:
-	@printf "" \
+	@printf "" ; \
 	d=`$(GUILE) -c '(setlocale LC_ALL "C") (display (strftime "%B %-d, %Y" \
 	    (car (strptime "%Y%m%d" (cadr (program-arguments))))))' $(DATE_VERSION)` ; \
 	v="$(LIBGEDA_DOT_VERSION).$(DATE_VERSION)" ; \
@@ -99,8 +99,8 @@ endif
 
 MOSTLYCLEANFILES     = *.log *~
 CLEANFILES           = *.log *~
-DISTCLEANFILES       = *.log *~
-MAINTAINERCLEANFILES = *.log *~ Makefile.in
+DISTCLEANFILES       = *.log *~ $(dist_man_MANS)
+MAINTAINERCLEANFILES = *.log *~ $(dist_man_MANS) Makefile.in
 
 distclean-local:
 	-rm -rf html latex
