@@ -51,7 +51,7 @@ endif
 dist_man_MANS = libgedacolor.1 libgedacolor.3
 
 .1.in.1:
-	@printf "" \
+	@printf "" ; \
 	d=`$(GUILE) -c '(setlocale LC_ALL "C") (display (strftime "%B %-d, %Y" \
 	    (car (strptime "%Y%m%d" (cadr (program-arguments))))))' $(DATE_VERSION)` ; \
 	v="$(LIBGEDACOLOR_DOT_VERSION)-$(DATE_VERSION)" ; \
@@ -59,7 +59,7 @@ dist_man_MANS = libgedacolor.1 libgedacolor.3
 	sed -e"s:[@]DATE@:$$d:" -e"s:[@]VERSION@:$$v:" -e"s:[@]YEAR@:$$y:" < $< > $@
 
 .3.in.3:
-	@printf "" \
+	@printf "" ; \
 	d=`$(GUILE) -c '(setlocale LC_ALL "C") (display (strftime "%B %-d, %Y" \
 	    (car (strptime "%Y%m%d" (cadr (program-arguments))))))' $(DATE_VERSION)` ; \
 	v="$(LIBGEDACOLOR_DOT_VERSION).$(DATE_VERSION)" ; \
@@ -98,8 +98,8 @@ endif
 
 MOSTLYCLEANFILES     = *.log *~
 CLEANFILES           = *.log *~
-DISTCLEANFILES       = *.log *~
-MAINTAINERCLEANFILES = *.log *~ Makefile.in
+DISTCLEANFILES       = *.log *~ $(dist_man_MANS)
+MAINTAINERCLEANFILES = *.log *~ $(dist_man_MANS) Makefile.in
 
 distclean-local:
 	-rm -rf html latex
