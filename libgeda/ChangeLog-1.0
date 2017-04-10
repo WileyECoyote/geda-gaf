@@ -5,6 +5,12 @@
       actually appears in the .1 files. Add dist_man_MANS 2 DISTCLEANFILES
       and MAINTAINERCLEANFILES.
 
+    * src/struct/s_toplevel.c: Validate toplevel arguments in functions
+      geda_toplevel_struct_get_selection, geda_toplevel_struct_release
+      and replace validations in geda_toplevel_struct_get_symbols and
+      geda_toplevel_struct_get_pages to use GEDA_IS_TOPLEVEL instead of
+      just checking for non-null.
+
 2017-04-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_toplevel.c: Add geda_toplevel_get_page_list for

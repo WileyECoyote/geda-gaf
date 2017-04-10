@@ -41,6 +41,8 @@ geda_toplevel_struct_get_selection (const GedaToplevel *toplevel)
 {
   Page      *page;
   SELECTION *selection;
+  g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), NULL);
+
   page = geda_toplevel_get_current_page ((GedaToplevel*)toplevel);
 
   if (!page)
@@ -71,7 +73,7 @@ geda_toplevel_struct_get_selection (const GedaToplevel *toplevel)
 GList*
 geda_toplevel_struct_get_symbols (const GedaToplevel *toplevel)
 {
-  g_return_val_if_fail ((toplevel != NULL), NULL);
+  g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), NULL);
 
   return geda_struct_clib_get_symbols (toplevel);
 }
@@ -127,7 +129,7 @@ geda_toplevel_struct_get_page_by_name (const GedaToplevel *toplevel,
 GList*
 geda_toplevel_struct_get_pages (const GedaToplevel *toplevel)
 {
-  g_return_val_if_fail ((toplevel != NULL), NULL);
+  g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), NULL);
 
   return geda_list_get_glist(toplevel->pages);
 }
@@ -140,14 +142,17 @@ geda_toplevel_struct_get_pages (const GedaToplevel *toplevel)
 void
 geda_toplevel_struct_release (GedaToplevel *toplevel)
 {
-  /* Delete all pages */
-  geda_struct_page_delete_list (toplevel);
+  if (GEDA_IS_TOPLEVEL(toplevel)) {
 
-  /* Delete the page list */
-  GEDA_UNREF (toplevel->pages);
+    /* Delete all pages */
+    geda_struct_page_delete_list (toplevel);
 
-  geda_toplevel_weakref_notify (toplevel);
-  geda_toplevel_unref (toplevel);
+    /* Delete the page list */
+    GEDA_UNREF (toplevel->pages);
+
+    geda_toplevel_weakref_notify (toplevel);
+    geda_toplevel_unref (toplevel);
+  }
 }
 
 /*!
