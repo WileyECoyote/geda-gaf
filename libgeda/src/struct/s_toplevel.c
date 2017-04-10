@@ -80,10 +80,14 @@ geda_toplevel_struct_get_symbols (const GedaToplevel *toplevel)
  * \brief Get list of Pages in GedaToplevel object.
  * \par Function Description
  *  Retrieves the list of all loaded pages from the toplevel object.
+ *  Where \a toplevel has already been validated, callers might consider
+ *  using the geda_toplevel_get_pages macro.
  *
  * \param toplevel #GedaToplevel structure.
  *
  * \return GList of Page objects.
+ *
+ * \sa geda_toplevel_get_page_list
  */
 GList*
 geda_toplevel_struct_get_pages (const GedaToplevel *toplevel)

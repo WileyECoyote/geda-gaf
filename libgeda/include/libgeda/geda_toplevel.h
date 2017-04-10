@@ -220,11 +220,11 @@ int           geda_toplevel_get_auto_save_interval  (GedaToplevel *toplevel);
 Page         *geda_toplevel_get_current_page        (GedaToplevel *toplevel);
 int           geda_toplevel_get_file_open_flags     (GedaToplevel *toplevel);
 int           geda_toplevel_get_make_backups        (GedaToplevel *toplevel);
-
 Page         *geda_toplevel_get_page_by_id          (GedaToplevel *toplevel, int page_id);
 int           geda_toplevel_get_page_count          (GedaToplevel *toplevel);
 Page         *geda_toplevel_get_page_down           (GedaToplevel *toplevel);
 Page         *geda_toplevel_get_page_up             (GedaToplevel *toplevel);
+PageList     *geda_toplevel_get_page_list           (GedaToplevel *toplevel);
 
 bool          geda_toplevel_is_current_page         (GedaToplevel *toplevel, Page *page);
 

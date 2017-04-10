@@ -771,6 +771,23 @@ geda_toplevel_get_page_up (GedaToplevel *toplevel)
 }
 
 /*!
+ * \brief Get the List of all Pages in GedaToplevel
+ * \par Function Description
+ *  This function returns a pointer to the Gedalist of pages
+ *  in the toplevel.
+ *
+ * \param [in] toplevel This toplevel
+ *
+ * \returns PageList of pages
+ */
+PageList*
+geda_toplevel_get_page_list (GedaToplevel *toplevel)
+{
+  g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), NULL);
+  return toplevel->pages;
+}
+
+/*!
  * \brief Get if Page is the Current Page in Toplevel
  * \par Function Description
  *  Compares PID of \page to the PID of the current page if
