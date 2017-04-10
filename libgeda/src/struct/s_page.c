@@ -802,10 +802,12 @@ geda_struct_page_save_all_changed (GedaToplevel *toplevel)
  *  Searches in \a toplevel's list of pages for a page with a filename
  *  equal to \a filename.
  *
- * \param toplevel  The GedaToplevel object
+ * \param toplevel  Must be a valid GedaToplevel object
  * \param filename  The filename string to search for
  *
  * \return Page pointer to a matching page, NULL otherwise.
+ *
+ * \sa geda_toplevel_struct_get_page_by_name
  */
 Page*
 geda_struct_page_search (GedaToplevel *toplevel, const char *filename)
@@ -845,7 +847,7 @@ geda_struct_page_search_by_page_id (PageList *list, int pid)
 {
   const GList *iter;
 
-  for ( iter = geda_list_get_glist (list); iter != NULL; NEXT(iter))
+  for (iter = geda_list_get_glist (list); iter != NULL; NEXT(iter))
   {
     Page *page = (Page*)iter->data;
 

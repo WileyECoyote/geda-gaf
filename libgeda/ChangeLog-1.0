@@ -1,7 +1,10 @@
 2017-04-09 Wiley E. Hill <wileyhill@gmail.com>
 
-    * include/libgeda/geda_toplevel.h: Add geda_toplevel_get_page_list for
+    * src/geda/geda_toplevel.c: Add geda_toplevel_get_page_list for
       the sake completeness, returns pointer to the PageList, not GList.
+
+    * src/struct/s_toplevel.c: Add geda_toplevel_struct_get_page_by_name,
+      which is similar to geda_struct_page_search but validates toplevel.
 
 2017-04-08 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -77,6 +77,41 @@ geda_toplevel_struct_get_symbols (const GedaToplevel *toplevel)
 }
 
 /*!
+ * \brief Search for a page given the filename
+ * \par Function Description
+ *  Searches in \a toplevel's list of pages for a page with a filename
+ *  equal to \a filename.
+ *
+ * \param toplevel  The GedaToplevel object
+ * \param filename  The filename string to search for
+ *
+ * \return Page pointer to a matching page, NULL otherwise.
+ *
+ * \sa geda_struct_page_search
+ */
+Page*
+geda_toplevel_struct_get_page_by_name (const GedaToplevel *toplevel,
+                                       const char         *filename)
+{
+  g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), NULL);
+
+  if (filename) {
+
+    const GList *iter;
+
+    for (iter = geda_toplevel_get_pages(toplevel); iter; NEXT(iter)) {
+
+      Page *page = (Page*)iter->data;
+
+      if (g_ascii_strcasecmp (page->filename, filename) == 0) {
+        return page;
+      }
+    }
+  }
+  return NULL;
+}
+
+/*!
  * \brief Get list of Pages in GedaToplevel object.
  * \par Function Description
  *  Retrieves the list of all loaded pages from the toplevel object.
