@@ -161,12 +161,12 @@ i_zoom_world(GschemToplevel *w_current, EID_ZOOM_DIRECTIVE dir,
 /*!
  * \brief gschem Zoom to Extents of a list of Objects
  * \par Function Description
- *  This function zooms to the bounds of the objects in \a list.
- *  if the list NULL the function calls i_zoom_world_box to after
- *  setting top-level coordinates to default values.
+ *  This function zooms to the bounds of the objects in \a list. If the
+ *  list is NULL the function uses the list of all objects on the current
+ *  page.
  *
  * \param [in] w_current The GschemToplevel object
- * \param [in] list      List of objects whose bound will determine limits
+ * \param [in] list      Optional list of objects whose bounds will determine limits
  * \param [in] pan_flags to be passed to i_pan_world_general
  *
  * \sa i_pan_world_general
@@ -180,12 +180,10 @@ i_zoom_world_extents (GschemToplevel *w_current, const GList *list, int pan_flag
   double zx, zy, relative_zoom_factor;
   double world_pan_center_x,world_pan_center_y;
 
+  page = geda_toplevel_get_current_page(w_current->toplevel);
+
   if (list == NULL) {
-    w_current->first_wx  = 500;
-    w_current->first_wy  = 500;
-    w_current->second_wx = 32000;
-    w_current->second_wy = 20000;
-    return i_zoom_world_box(w_current, I_PAN_REDRAW);
+    list = geda_struct_page_get_objects(page);
   }
 
   if (!geda_object_get_bounds_list (list, &lleft, &ltop, &lright, &lbottom)) {
@@ -196,8 +194,6 @@ i_zoom_world_extents (GschemToplevel *w_current, const GList *list, int pan_flag
   printf("in %s:  left: %d, right: %d, top: %d, bottom: %d\n",
          __func_, lleft, lright, ltop, lbottom);
 #endif
-
-  page = geda_toplevel_get_current_page(w_current->toplevel);
 
   /* Calculate the necessary zoom factor to show everything
    * Start with the windows width and height (minus a small padding in pixels),
