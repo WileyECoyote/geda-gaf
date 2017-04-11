@@ -90,8 +90,8 @@
 
 /*! \def GedaMutex
  * Macro to define an anonymous mutex, GStaticMutex < 2.32
- * cannot be initialized to NULL. The seecond member i, is
- * padded 2 integers. 
+ * cannot be initialized to NULL. The second member i, is
+ * padded 2 integers.
  */
 #define GedaMutex(lv) \
   union { \
