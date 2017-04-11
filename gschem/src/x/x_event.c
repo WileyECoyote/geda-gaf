@@ -475,13 +475,12 @@ bool x_event_button_released (GtkWidget      *widget,
 /*! \brief Updates GSCHEM TOPLEVEL when drawing area is configured.
  *  \par Function Description
  *  This is the callback function connected to the configure event of
- *  the drawing area of the main window.
+ *  the drawing area of the main window in order to update the size of
+ *  the backingstore for the associated toplevel structure (creates a
+ *  new pixmap) and re-pans each of its pages to keep their contents
+ *  centered in the drawing area.
  *
- *  It updates the size of the backingstore for the associated
- *  toplevel structure (creates a new pixmap) and re-pans each of its
- *  pages to keep their contents centered in the drawing area.
- *
- *  When the window is maximised, the zoom of every page is changed to
+ *  When the window is maximized, the zoom of every page is changed to
  *  best fit the previously displayed area of the page in the new
  *  area. Otherwise the current zoom level is left unchanged.
  *
