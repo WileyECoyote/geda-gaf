@@ -3,6 +3,9 @@
     * src/base/gschem.c: Eliminate unnecessary initialization of input_str
       and reduce scope in gschem main line.
 
+    * src/iface/i_threads.c: Set unused bits in gschem_threads_impl_lock and
+      gschem_threads_impl_unlock, add function gschem_threads_is_locked.
+
     * src/x/x_image.c: Revise x_image_get_pixbuf to pass NULL to
       i_zoom_world_extents instead of toplevel->page_current->_object_list.
 

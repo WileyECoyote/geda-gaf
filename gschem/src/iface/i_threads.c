@@ -84,11 +84,13 @@ static void
 gschem_threads_impl_lock (void)
 {
   g_mutex_lock((GMutex*)&gschem_threads_mutex);
+  gschem_threads_mutex.i[3] = 1;
 }
 
 static void
 gschem_threads_impl_unlock (void)
 {
+  gschem_threads_mutex.i[3] = 0;
   g_mutex_unlock((GMutex*)&gschem_threads_mutex);
 }
 
@@ -158,7 +160,7 @@ bool gschem_threads_init (void)
 unsigned int
 gschem_threads_idle_add (GschemSourceFunc function, void *data)
 {
-  GSource     *source;
+  GSource *source;
   unsigned int id;
 
   source = g_idle_source_new ();
@@ -168,6 +170,16 @@ gschem_threads_idle_add (GschemSourceFunc function, void *data)
   g_source_unref (source);
 
   return id;
+}
+
+/*! \brief Get is Gschem Threads Locked
+ *  \par Function Description
+ *  Returns TRUE if current thread is locked, otherwise FALSE.
+ */
+bool
+gschem_threads_is_locked (void)
+{
+  return gschem_threads_mutex.i[3];
 }
 
 /** @} endgroup Gschem-Thread-System */
