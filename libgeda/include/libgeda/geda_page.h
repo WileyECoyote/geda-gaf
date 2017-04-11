@@ -173,4 +173,7 @@ void         geda_page_set_place_list    (Page *page, GList *object_list);
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
+
+#define geda_page_get_selection(pg) geda_list_get_glist (pg->selection_list)
+
 #endif /* __GEDA_PAGE_H__ */

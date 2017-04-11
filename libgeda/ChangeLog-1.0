@@ -1,5 +1,10 @@
 2017-04-10 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/libgeda/geda_page.h: Add macro geda_page_get_selection;
+      similar to geda_toplevel_get_pages.
+
+2017-04-10 Wiley E. Hill <wileyhill@gmail.com>
+
     * docs/Makefile.am: Update SUFFIXES for .1.in .1, add semicolon after
       @printf intended to suppress build noise so that the DATE_VERSION
       actually appears in the .1 files. Add dist_man_MANS 2 DISTCLEANFILES
