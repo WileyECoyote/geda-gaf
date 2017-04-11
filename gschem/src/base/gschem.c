@@ -281,8 +281,7 @@ load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[]
 
 static void gschem( int argc, char *argv[])
 {
-  int   argv_index;
-  char *input_str     = NULL;
+  int argv_index;
 
   GschemToplevel *w_current = NULL;
   GedaToplevel   *toplevel;
@@ -354,7 +353,7 @@ static void gschem( int argc, char *argv[])
   }
   else {
 
-    input_str = scm_to_utf8_string (scm_tmp);
+    char *input_str = scm_to_utf8_string (scm_tmp);
 
     if (g_evaluate_scheme_file(input_str, NULL)) {
       geda_log_v ("\n%s \"%s\".\n", _("Read scheme initialization file"), input_str);
@@ -362,8 +361,10 @@ static void gschem( int argc, char *argv[])
     else {
       geda_log ("\n%s \"%s\".\n", _("Failed to read scheme initialization file"), input_str);
     }
+
+    free (input_str); /* M'allocated by scm_to_utf8_string() */
   }
-  free (input_str); /* M'allocated by scm_to_utf8_string() */
+
   scm_remember_upto_here_1 (scm_tmp);
 
   /*! \internal Initialize default configuration Settings */
