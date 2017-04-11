@@ -6,6 +6,10 @@
     * src/iface/i_threads.c: Set unused bits in gschem_threads_impl_lock and
       gschem_threads_impl_unlock, add function gschem_threads_is_locked.
 
+    * src/x/x_dialog.c: Revise x_dialog_show_message to wrap gtk_dialog_run
+      with gschem_threads_enter/gschem_threads_leave if gschem_threads_is_
+      locked does not return true.
+
     * src/x/x_image.c: Revise x_image_get_pixbuf to pass NULL to
       i_zoom_world_extents instead of toplevel->page_current->_object_list.
 

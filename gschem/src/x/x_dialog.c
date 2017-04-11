@@ -3983,8 +3983,8 @@ void x_dialog_message_with_markup (const char *msg1, const char *msg2,
 {
   GtkWidget *dialog;
 
-  bool       msg_1_has_markup = FALSE;
-  bool       msg_2_has_markup = FALSE;
+  bool msg_1_has_markup = FALSE;
+  bool msg_2_has_markup = FALSE;
 
   if (strstr(msg1, "</") && !(strstr(msg1, "</ho")))
     msg_1_has_markup = TRUE;
@@ -4006,7 +4006,14 @@ void x_dialog_message_with_markup (const char *msg1, const char *msg2,
   else
     gtk_window_set_title(GTK_WINDOW(dialog), _(IDS_MESSEAGE_TITLES[context]));
 
-  gtk_dialog_run (GTK_DIALOG (dialog));
+  if (!gschem_threads_is_locked()) {
+    gschem_threads_enter();
+    gtk_dialog_run (GTK_DIALOG (dialog));
+    gschem_threads_leave();
+  }
+  else {
+    gtk_dialog_run (GTK_DIALOG (dialog));
+  }
 
   gtk_widget_destroy (dialog);
 }
