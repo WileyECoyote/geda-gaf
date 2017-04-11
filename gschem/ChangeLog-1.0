@@ -6,6 +6,9 @@
     * src/iface/i_threads.c: Set unused bits in gschem_threads_impl_lock and
       gschem_threads_impl_unlock, add function gschem_threads_is_locked.
 
+    * src/iface/i_zoom_world.c: Update Doxygen comment blocks, add revise
+      comments.
+
     * src/x/x_dialog.c: Revise x_dialog_show_message to wrap gtk_dialog_run
       with gschem_threads_enter/gschem_threads_leave if gschem_threads_is_
       locked does not return true.

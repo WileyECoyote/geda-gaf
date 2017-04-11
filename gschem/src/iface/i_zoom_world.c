@@ -46,9 +46,10 @@
      (float) fabs(GET_PAGE_HEIGHT(w)))
 
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Zoom World
+ * \par Function Description
+ *  Low-level
  *
  * \param w_current     GschemToplevel object
  * \param dir           #EID_ZOOM_DIRECTIVE to indicate direction and or magnitude
@@ -86,11 +87,11 @@ i_zoom_world(GschemToplevel *w_current, EID_ZOOM_DIRECTIVE dir,
 
   page = geda_toplevel_get_current_page(w_current->toplevel);
 
-  /* calc center: either "mouse_to_world" or center=center or a
-     virtual center if warp_cursor is disabled */
+  /* calculate center: either "mouse_to_world" or center=center
+   * or a virtual center if warp_cursor is disabled */
   if (w_current->zoom_with_pan == TRUE &&
      ((selected_from == ID_ORIGIN_KEYBOARD) ||
-       (selected_from == ID_ORIGIN_MOUSE)))
+      (selected_from == ID_ORIGIN_MOUSE)))
   {
     if (!i_window_get_pointer_position(w_current, FALSE, &start_x, &start_y)) {
       return;
@@ -135,22 +136,23 @@ i_zoom_world(GschemToplevel *w_current, EID_ZOOM_DIRECTIVE dir,
   /* Before warping the cursor, filter out any consecutive scroll events
    * from the event queue.  If the program receives more than one scroll
    * event before it can process the first one, then the globals mouse_x
-   * and mouse_y won't contain the proper mouse position,
-   * because the handler for the mouse moved event needs to
-   * run first to set these values.
+   * and mouse_y won't contain the proper mouse position, because the
+   * handler for the mouse moved event needs to run first to set these
+   * values.
    */
   GdkEvent *topEvent = gdk_event_get();
-  while( topEvent != NULL ) {
+
+  while (topEvent != NULL ) {
     if( topEvent->type != GDK_SCROLL ) {
-      gdk_event_put( topEvent );
-      gdk_event_free( topEvent );
+      gdk_event_put (topEvent);
+      gdk_event_free (topEvent);
       break;
     }
-    gdk_event_free( topEvent );
+    gdk_event_free (topEvent);
     topEvent = gdk_event_get();
   }
 
-  /* warp the cursor to the right position */
+  /* warp the cursor to the correct position */
   if (w_current->warp_cursor) {
      WORLDtoSCREEN (w_current, world_pan_center_x, world_pan_center_y,
                     &start_x, &start_y);
@@ -219,10 +221,9 @@ i_zoom_world_extents (GschemToplevel *w_current, const GList *list, int pan_flag
  *  \par Function Description
  *  There really is no "Magnification" in gschem, this function causes scale
  *  factors to_screen_y_constant and to_screen_x_constant to be set to the
- *  reciprocal of \a zoom_new, is not exact but pretty close. The view of the
- *  world will be pan to the given XY if \a specified_from ID is the keyboard
- *  or mouse.
- *
+ *  reciprocal of \a zoom_new, is not exact but pretty close. The view of
+ *  the world will be panned to the given XY if \a specified_from origin ID
+ *  is the keyboard or mouse.
  */
 void
 i_zoom_world_specify (GschemToplevel *w_current, double zoom_new, int x, int y,
@@ -263,10 +264,14 @@ i_zoom_world_specify (GschemToplevel *w_current, double zoom_new, int x, int y,
                       relative_zoom_factor, 0);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+
+/*!
+ * \brief Resolves Zoom Box Operation
+ * \par Function Description
+ *  Resolves the result a zoom box action. The coordinates of the box
+ *  should be in w_current. Calculates scaling factor and converts the
+ *  stored screen coordinates to world coordinates and then calls
+ *  i_pan_world_general to perform the opertion.
  */
 void
 i_zoom_world_box(GschemToplevel *w_current, int pan_flags)
@@ -301,10 +306,11 @@ i_zoom_world_box(GschemToplevel *w_current, int pan_flags)
                       relative_zoom_factor, pan_flags);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Start Zoom Box
+ * \par Function Description
+ *  Initializes w_current world coordinate variables and updates
+ *  the status.
  */
 void
 i_zoom_world_box_start(GschemToplevel *w_current, int w_x, int w_y)
@@ -314,10 +320,11 @@ i_zoom_world_box_start(GschemToplevel *w_current, int w_x, int w_y)
   i_status_action_start(w_current);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief End Zoom Box
+ * \par Function Description
+ *  Removes rubber box, updates the status bar and calls i_zoom_world_box
+ *  to complete the operation.
  */
 void
 i_zoom_world_box_end(GschemToplevel *w_current, int x, int y)
@@ -368,9 +375,10 @@ i_zoom_world_box_motion (GschemToplevel *w_current, int w_x, int w_y)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Invalidate current Zoom Box screen region.
+ * \par Function Description
+ *  Invalidates the screen region occupied by the current zoom box.
  */
 void
 i_zoom_world_box_invalidate_rubber (GschemToplevel *w_current)
@@ -386,10 +394,15 @@ i_zoom_world_box_invalidate_rubber (GschemToplevel *w_current)
   o_invalidate_rectangle (w_current, x1, y2, x2, y2);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Draw Rubber Zoom Box
  *  \par Function Description
+ *  This function utilizes the render library to draw a box using
+ *  variables in the GschemToplevel structure <B>*w_current</B>.
+ *  One corner of the box is at (<B>w_current->first_wx</B>,
+ *  <B>w_current->first_wy</B>) and the second corner is at
+ *  (<B>w_current->second_wx</B>,<B>w_current->second_wy</B>.
  *
+ *  \param [in] w_current  The GschemToplevel object.
  */
 void
 i_zoom_world_box_draw_rubber (GschemToplevel *w_current)
