@@ -3,6 +3,9 @@
     * include/libgeda/geda_page.h: Add macro geda_page_get_selection;
       similar to geda_toplevel_get_pages.
 
+    * src/struct/s_toplevel.c: Use macro geda_page_get_selection and
+      eliminate SELECTION in geda_toplevel_struct_get_selection.
+
 2017-04-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/Makefile.am: Update SUFFIXES for .1.in .1, add semicolon after

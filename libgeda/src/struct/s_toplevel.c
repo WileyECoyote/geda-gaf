@@ -39,8 +39,8 @@
 GList*
 geda_toplevel_struct_get_selection (const GedaToplevel *toplevel)
 {
-  Page      *page;
-  SELECTION *selection;
+  Page *page;
+
   g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), NULL);
 
   page = geda_toplevel_get_current_page ((GedaToplevel*)toplevel);
@@ -48,9 +48,7 @@ geda_toplevel_struct_get_selection (const GedaToplevel *toplevel)
   if (!page)
     return NULL;
 
-  selection = geda_struct_page_get_selection (page);
-
-  return geda_list_get_glist(selection);
+  return geda_page_get_selection (page);
 }
 
 /*!
