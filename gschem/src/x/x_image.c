@@ -1014,10 +1014,9 @@ GdkPixbuf *x_image_get_pixbuf (GschemToplevel *w_current, ImageExtent extent,
   new_w_current->status_bar = NULL;
 
   /* Do zoom extents to get entire schematic in the window if imaging All */
-  if (extent == Image_All)
-    i_zoom_world_extents (new_w_current,
-                     toplevel->page_current->_object_list,
-                     I_PAN_DONT_REDRAW);
+  if (extent == Image_All) {
+    i_zoom_world_extents (new_w_current, NULL, I_PAN_DONT_REDRAW);
+  }
 
   WORLDtoSCREEN (new_w_current, toplevel->page_current->right,
                                 toplevel->page_current->left, &s_right, &s_left);
