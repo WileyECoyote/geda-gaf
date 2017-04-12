@@ -966,7 +966,9 @@ pagesel_finalize(GObject *object)
   eda_config_set_boolean (cfg, group, key, value);
 
   if (pagesel->popup) {
+    g_object_ref(pagesel->popup);
     gtk_widget_destroy(pagesel->popup);
+    g_object_ref_sink(G_OBJECT(pagesel->popup));
     g_object_unref(pagesel->popup);
     pagesel->popup = NULL;
   }
