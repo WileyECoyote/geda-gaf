@@ -143,6 +143,8 @@ x_window_setup_context(GschemToplevel *w_current)
 static void
 x_window_create_drawing_area (GschemToplevel *w_current, GtkWidget *window)
 {
+  char *unique_name;
+
   DrawingArea = GTK_WIDGET (gschem_page_view_new ());
 
   GTK_WIDGET_UNSET_FLAGS (DrawingArea, GTK_DOUBLE_BUFFERED);
@@ -159,7 +161,8 @@ x_window_create_drawing_area (GschemToplevel *w_current, GtkWidget *window)
   gtk_container_add(GTK_CONTAINER(window), DrawingArea);
   gtk_widget_set_can_focus(DrawingArea, TRUE);
   gtk_widget_grab_focus (DrawingArea);
-  char *unique_name = geda_sprintf("GschemDrawingArea:%i", prog_pid);
+
+  unique_name = geda_sprintf("GschemDrawingArea:%i", prog_pid);
   g_object_set (DrawingArea, "visible", TRUE, "name", unique_name, NULL);
   GEDA_FREE(unique_name);
 }

@@ -3,6 +3,9 @@
     * src/iface/i_sessions.c: Remove else DEBUG_SENSITIVITY in i_status_
       update_sensitivities.
 
+    * src/x/x_window.c: Reduce scope of string pointer unique_name in
+      x_window_create_drawing_area.
+
 2017-04-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem.c: Eliminate unnecessary initialization of input_str
