@@ -1,3 +1,8 @@
+2017-04-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_sessions.c: Remove else DEBUG_SENSITIVITY in i_status_
+      update_sensitivities.
+
 2017-04-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem.c: Eliminate unnecessary initialization of input_str

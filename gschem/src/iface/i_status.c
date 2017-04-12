@@ -869,11 +869,6 @@ void i_status_update_sensitivities(GschemToplevel *w_current)
   if (GSCHEM_IS_TOPLEVEL(w_current)) {
     gschem_threads_idle_add (i_status_idle_update_sensitivities, w_current);
   }
-#if DEBUG_SENSITIVITY
-  else {
-    BUG_MSG("Bad pointer, w_current == NULL");
-  }
-#endif
 }
 
 /** @} endgroup status-set-sensitivity */
