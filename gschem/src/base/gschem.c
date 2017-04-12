@@ -516,7 +516,7 @@ static void main_prog(void *closure, int argc, char *argv[])
     geda_log_v (_("Exiting normal\n"));
   }
   else {
-    fprintf (stderr, "FAILED: gtk_init_check\n");
+    fprintf (stderr, "%s gtk_init_check\n", _("FAILED:"));
     exit (1);
   }
 }
