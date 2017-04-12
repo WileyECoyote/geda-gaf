@@ -1,3 +1,9 @@
+2017-04-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * passive/electrolytic/electrolytic-2*: Revise electrolytic style 2
+      symbols to use square end types for the plus symbols and move lines
+      for the symbols body before the bins.
+
 2017-03-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/generic/connectorx-1.sym: Add description attribute for 16-1
