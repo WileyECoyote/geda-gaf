@@ -5,6 +5,8 @@
     * src/iface/i_command.c: Revise i_cmd_do_add_attribute to utilize
       geda_object_get_attached_to in order to check is user is trying
       to add an attribute to an attribute and log message if true.
+      Revise i_cmd_do_zoom_extents and i_cmd_do_page_new to pass NULL
+      to i_zoom_world_extents, eliminating p_current in do_zoom_extents.
 
     * src/iface/i_sessions.c: Remove else DEBUG_SENSITIVITY in i_status_
       update_sensitivities.

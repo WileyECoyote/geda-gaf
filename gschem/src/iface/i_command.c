@@ -2106,12 +2106,8 @@ COMMAND (do_zoom_extents)
 {
   BEGIN_W_COMMAND(do_zoom_extents);
 
-  Page *p_current;
-
-  p_current = gschem_toplevel_get_current_page(w_current);
-
   /* scroll bar stuff */
-  i_zoom_world_extents (w_current, geda_struct_page_get_objects (p_current), 0);
+  i_zoom_world_extents (w_current, NULL, 0);
 
   if (w_current->undo_panzoom)
     o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY);
@@ -2669,7 +2665,7 @@ COMMAND (do_page_last)
 }
 
 /** @brief i_cmd_do_page_new in i_command_Command_Functions */
-/* This is simular to file new accept we add new page hook*/
+/* This is similar to file new accept we add new page hook*/
 COMMAND (do_page_new)
 {
   BEGIN_W_COMMAND(do_page_new);
@@ -2696,7 +2692,7 @@ COMMAND (do_page_new)
 
   geda_page_set_changed (page, FALSE);
 
-  i_zoom_world_extents (w_current, geda_struct_page_get_objects (page), I_PAN_DONT_REDRAW);
+  i_zoom_world_extents (w_current, NULL, I_PAN_DONT_REDRAW);
 
   geda_log_q ("%s \"%s\"\n", _("New page created"), page->filename);
 
