@@ -144,6 +144,27 @@ geda_object_get_attached (const GedaObject *object)
   return NULL;
 }
 
+/*!
+ * \brief Get GedaObject that a floating GedaObject is Attached to
+ * \par Function Description
+ *  Returns the parent associated with the given object if there
+ *  is one. If \a object is not a floating object then the object
+ *  could still be attached to a complex.
+ *
+ * \param [in] object The GedaObject from which to get the parent.
+ *
+ * \return GedaObject or NULL.
+ */
+GedaObject*
+geda_object_get_attached_to (const GedaObject *object)
+{
+  if (is_a_geda_object(object)) {
+    return object->attached_to;
+  }
+  return NULL;
+}
+
+
 int geda_object_get_color (const GedaObject *object) {
   if (is_a_geda_object(object)) {
     return object->color;
