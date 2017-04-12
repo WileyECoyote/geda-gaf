@@ -3247,18 +3247,26 @@ COMMAND (do_add_bus)
  */
 COMMAND (do_add_attribute)
 {
-  BEGIN_W_COMMAND( do_add_attribute);
+  BEGIN_W_COMMAND(do_add_attribute);
 
   GedaObject *o_current = o_select_return_first_object(w_current);
-  if HOT_ACTION (do_add_attribute) {
-    w_current->first_wx = CMD_X(do_add_attribute);
-    w_current->first_wy = CMD_Y(do_add_attribute);
+
+  if (!geda_object_get_attached_to(o_current)) {
+
+    if HOT_ACTION (do_add_attribute) {
+      w_current->first_wx = CMD_X(do_add_attribute);
+      w_current->first_wy = CMD_Y(do_add_attribute);
+    }
+
+    x_attrib_add_dialog(w_current, o_current);
   }
-  x_attrib_add_dialog(w_current, o_current);
+  else {
+    geda_log(_("Object is attached to something\n"));
+  }
 
   i_status_set_state(w_current, SELECT);
 
-  EXIT_COMMAND( do_add_attribute);
+  EXIT_COMMAND(do_add_attribute);
 }
 
 /*!
