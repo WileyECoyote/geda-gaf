@@ -643,16 +643,18 @@ COMMAND (do_debug)
 /*!\warning: { Do not point to another CMD_OPTIONS unless you know what your doing }*/
 
 /** \defgroup i_command_Command_Handlers Action Handler Functions
- *  @{ \par
- *      Functions in the group process all of the actions generated from
- *      various sources, such as menus, toolbars, and the keyboard. The
- *      action handlers also process command input from the console. This
- *      module does <b>NOT</b> process actions orginating from Drag-N-Drop.
- *      Each of the function below "block" themself on entry and "unblock"
- *      on exit. Pending threads will wait up to TASK_WAIT_INTERVAL before
- *      reporting the dead task and returning without executing the action.
- *      This is really for error trapping and debugging, under normal
- *      circumstances this does not happen.
+ *  @{
+ * \brief Processors functions for actions
+ * \par
+ *  Functions in the group process all of the actions generated from
+ *  various sources, such as menus, toolbars, and the keyboard. The
+ *  action handlers also process command input from the console. This
+ *  module does <b>NOT</b> process actions orginating from Drag-N-Drop.
+ *  Each of the function below "block" themself on entry and "unblock"
+ *  on exit. Pending threads will wait up to TASK_WAIT_INTERVAL before
+ *  reporting the dead task and returning without executing the action.
+ *  This is really for error trapping and debugging, under normal
+ *  circumstances this does not happen.
  */
 
 /** \defgroup i_command_Action_Functions Action Handler Function */
