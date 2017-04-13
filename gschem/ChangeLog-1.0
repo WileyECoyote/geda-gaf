@@ -8,6 +8,10 @@
       i_zoom_world_extents when titleblock specified for new document
       on the command line since this will be performed later anyways.
 
+    * src/iface/i_command.c: Call i_zoom_world_specify in i_cmd_do_file_new
+      with gain 13 after creating a new page in order to set the zoom to a
+      reasonable level when starting a blank page.
+
     * src/iface/i_window.c: Add functions i_window_zoom_all_pages and
       i_window_idle_zoom_pages, see in source comments.
 

@@ -701,6 +701,8 @@ COMMAND (do_file_new)
 
   geda_log_q ("%s \"%s\"\n", _("New page created"), page->filename);
 
+  i_zoom_world_specify (w_current, 13.0, 0, 0, ID_ORIGIN_CCODE);
+
   EXIT_COMMAND(do_file_new);
 
 }
