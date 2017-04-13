@@ -1,7 +1,9 @@
 2017-04-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem.c: Call i_window_zoom_all_pages after loading any
-      pages that were requested to be loaded at startup.
+      pages that were requested to be loaded at startup. Remove calling
+      i_zoom_world_extents when titleblock specified for new document
+      on the command line since this will be performed later anyways.
 
     * src/iface/i_window.c: Add functions i_window_zoom_all_pages and
       i_window_idle_zoom_pages, see in source comments.

@@ -138,8 +138,6 @@ load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[]
 
     if (o_edit_add_titleblock(w_current, page, comline_tblock)) {
 
-      i_zoom_world_extents (w_current, geda_struct_page_get_objects (page), I_PAN_DONT_REDRAW);
-
       geda_page_set_changed (page, FALSE);
 
       ++page_loaded;
