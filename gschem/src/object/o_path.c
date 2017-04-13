@@ -114,7 +114,7 @@ path_rubber_bbox (GschemToplevel *w_current, GedaPath *path,
  * \brief Add elements to the temporary Path.
  * \par Function Description
  *  Check if the temporary Path object used when interactively
- *  creating paths has room for additional sections.  If not, doubles
+ *  creating paths has room for additional sections. If not, doubles
  *  its capacity.
  *
  * \param [in] w_current   The GschemToplevel object.
@@ -239,7 +239,7 @@ path_next_sections (GschemToplevel *w_current)
     if (cusp_prev && cusp_point && close_path) {
       section->code = PATH_END;
 
-    } else if (cusp_prev && cusp_point) {
+    } else if ((cusp_prev && cusp_point) || w_current->CONTROLKEY) {
       section->code = PATH_LINETO;
       section->x3 = x1;
       section->y3 = y1;

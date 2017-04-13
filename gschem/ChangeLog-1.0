@@ -11,6 +11,9 @@
     * src/iface/i_window.c: Add functions i_window_zoom_all_pages and
       i_window_idle_zoom_pages, see in source comments.
 
+    * src/object/o_path.c: Revise path_next_sections to respect w_current
+      ->CONTROLKEY and draw PATH_LINETO instead of PATH_CURVETO when set.
+
     * src/x/x_sessions.c: Revise on_rename_butt_clicked to retrieve the
       old session name before present the input dialog and fill-in the
       old session name.
