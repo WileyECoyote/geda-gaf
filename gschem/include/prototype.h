@@ -343,6 +343,7 @@ void          gschem_threads_enter          (void);
 void          gschem_threads_leave          (void);
 bool          gschem_threads_init           (void);
 unsigned int  gschem_threads_idle_add       (GschemSourceFunc function, void *data);
+bool          gschem_threads_is_locked      (void);
 
 /* i_vars.c */
 char      *i_var_get_global_config_string   (EdaConfig *cfg, const char *str);
@@ -374,6 +375,7 @@ void       i_window_set_grid_type           (GschemToplevel *w_current);
 void       i_window_set_pointer_position    (GschemToplevel *w_current, int wx, int wy);
 void       i_window_set_viewport_size       (GschemToplevel *w_current);
 void       i_window_show_attributes         (GschemToplevel *w_current, int scope);
+void       i_window_zoom_all_pages          (GschemToplevel *w_current);
 
 /* i_zoom_world.c */
 void       i_zoom_world                      (GschemToplevel *w_current, EID_ZOOM_DIRECTIVE dir,
@@ -732,8 +734,8 @@ void          x_dialog_translate            (GschemToplevel *w_current);
   /* Systemic-Dialogs */
 void          x_dialog_hotkeys              (GschemToplevel *w_current);
 void          x_dialog_raise_all            (GschemToplevel *w_current);
-void          x_dialog_symbol_changed       (GschemToplevel* w_current);
-int           x_dialog_validate_attribute   (GtkWindow* parent, char *attribute);
+void          x_dialog_symbol_changed       (GschemToplevel *w_current);
+int           x_dialog_validate_attribute   (GtkWindow      *parent, char *attribute);
 
   /* Gschem-Generic-Dialogs */
 int           x_dialog_confirmation         (const char *, IDE_MESSAGE_TYPE context, bool thread);

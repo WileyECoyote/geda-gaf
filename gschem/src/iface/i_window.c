@@ -175,6 +175,76 @@ void i_window_on_page_changed (GschemToplevel *w_current)
   g_hook_run_page (w_current, CHANGE_PAGE_HOOK, page);
 }
 
+/* Threaded from i_window_zoom_all_pages */
+static bool i_window_idle_zoom_pages(GschemToplevel *w_current)
+{
+  GList *iter = geda_toplevel_struct_get_pages(w_current->toplevel);
+
+  while (iter) {
+
+    Page  *page = iter->data;
+    GList *object_list;
+
+    int lleft, lright, ltop, lbottom;
+    double zx, zy, relative_zoom_factor;
+    double world_pan_center_x,world_pan_center_y;
+
+    x_window_reset_page_geometry(w_current, page);
+
+    object_list = geda_struct_page_get_objects(page);
+
+    if (!geda_object_get_bounds_list (object_list, &lleft, &ltop, &lright, &lbottom))
+    {
+      lleft   = 500;
+      ltop    = 500;
+      lright  = 32000;
+      lbottom = 20000;
+    }
+
+    /* Calculate the necessary zoom factor to show everything
+     * Start with the windows width and height (minus a small padding in pixels),
+     * then scale back to world coordinates with the to_screen_y_constant as the
+     * initial page data may not have the correct aspect ratio. */
+    zx = (double)(w_current->screen_width - 2 * ZOOM_EXTENTS_PADDING_PX) / (lright-lleft);
+    zy = (double)(w_current->screen_height - 2 * ZOOM_EXTENTS_PADDING_PX) / (lbottom-ltop);
+
+    /* choose the smaller one */
+    relative_zoom_factor = (zx < zy ? zx : zy) / page->to_screen_y_constant;
+
+    /* get the center of the objects*/
+    world_pan_center_x = (double) (lright + lleft) / 2.0;
+    world_pan_center_y = (double) (lbottom + ltop) / 2.0;
+
+    int pan_flags;
+
+    if (page == Current_Page)
+      pan_flags = I_PAN_REDRAW;
+    else
+      pan_flags = I_PAN_DONT_REDRAW;
+
+    i_pan_world_general(w_current, page, world_pan_center_x,
+                        world_pan_center_y,
+                        relative_zoom_factor, pan_flags);
+
+    iter = iter->next;
+  }
+  return FALSE;
+}
+
+/*! \brief Request idle schecule zoom all page
+ *  \par Function Description
+ *   This function is called once, after any documents specified on the
+ *   command line, sessions or implicit loading such as load-last, have
+ *   been loaded and the GUI configured in order to zoom each document
+ *   to the extents of the drawings in the almost complete GUI. An idle
+ *   in source thread is used here to allow the main-loop to iterate and
+ *   gtk/gdk to finish.
+ */
+void i_window_zoom_all_pages(GschemToplevel *w_current)
+{
+  gschem_threads_idle_add (i_window_idle_zoom_pages, w_current);
+}
+
 /*! \brief Revert Current Page back to File
  *  \par Function Description
  *   Attempts to reload the current page from dish into the current page
@@ -358,6 +428,7 @@ void i_window_set_viewport_size(GschemToplevel *w_current)
   Page *page = gschem_toplevel_get_current_page(w_current);
 
   if (page) {
+
     /* need to do this every time the width / height change */
     x_window_setup_page(w_current, page,
                                    page->left,

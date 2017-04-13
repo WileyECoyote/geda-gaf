@@ -434,6 +434,9 @@ static void gschem( int argc, char *argv[])
 
   scm_dynwind_end ();
 
+  /* Window geometry should be stabilized now so zoom extents */
+  i_window_zoom_all_pages(w_current);
+
   /* if there were any symbols which had major changes, show error dialog */
   x_dialog_symbol_changed(w_current);
 }
