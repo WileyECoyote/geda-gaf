@@ -1,3 +1,8 @@
+2017-04-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_get.c: Revise geda_object_get_parent to eliminate
+      parent variable.
+
 2017-04-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_object.c: Add accessor geda_object_get_attached_to.
@@ -9265,7 +9270,7 @@
           really really close) suddenly drawing itself incorrectly.  The
           clipping routine I used does not handle horizontal lines at all.
 
-        * src/s_nethash.c: #if DEBUG'ed out a printf
+        * src/s_nethash.c: #if DEBUG`ed out a printf
 
         * src/f_basic.c: Removed all trace of zoom_factor
 

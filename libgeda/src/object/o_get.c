@@ -619,24 +619,19 @@ geda_object_get_objects_by_type (const GList *olist, int type)
  *  If \a object is part of a complex #GedaObject, returns that
  *  #GedaObject. Otherwise, returns %NULL.
  *
- * \param [in] object    The GedaObject for which to get the containing GedaObject.
+ * \param [in] object  The GedaObject for which to get the containing GedaObject.
  *
- * \return The complex Object which owns \a object, or %NULL.
+ * \return The Objects which owns \a object, or %NULL.
  */
 GedaObject*
 geda_object_get_parent (GedaObject *object)
 {
-  GedaObject *parent;
-
-  if ((GEDA_IS_OBJECT(object) && GEDA_IS_OBJECT(object->parent_object)))
+  if (GEDA_IS_OBJECT(object) && GEDA_IS_OBJECT(object->parent_object))
   {
-      parent = object->parent_object;
-  }
-  else {
-    parent = NULL;
+      return object->parent_object;
   }
 
-  return parent;
+  return NULL;
 }
 
 /*!
