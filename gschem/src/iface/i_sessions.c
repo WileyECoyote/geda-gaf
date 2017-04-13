@@ -556,7 +556,6 @@ static void session_menu_item_clicked(GedaMenuItem *menuitem, void *user_data)
   Session         *session   = data->session;
 
   i_session_load_session(w_current, session);
-
 }
 
 /*!

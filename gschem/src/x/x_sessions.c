@@ -132,29 +132,31 @@ session_dialog_get_selection(GschemDialog *dialog)
 static void
 on_rename_butt_clicked (GtkWidget *button, void *user_data)
 {
-  GschemDialog   *Dialog    = (GschemDialog*)user_data;
-  GschemToplevel *w_current = Dialog->w_current;
-  char           *new_name;
+  GschemDialog     *Dialog    = (GschemDialog*)user_data;
+  GtkTreeSelection *selection;
+  GtkTreeModel     *model;
+  GtkTreeIter       iter;
 
-  new_name = geda_dialog_get_string(_("Rename Session"),
-                                    _("Specify new name for Session:"), NULL);
+  selection = session_dialog_get_selection(Dialog);
 
-  if (new_name != NULL) { /* If  user did not cancel */
+  if (gtk_tree_selection_get_selected (selection, &model, &iter)) {
 
-    GtkTreeSelection *selection;
-    GtkTreeModel     *model;
-    GtkTreeIter       iter;
-    const char       *old_name;
+    const char *old_name;
+    char       *new_name;
 
-    selection = session_dialog_get_selection(Dialog);
+    gtk_tree_model_get (model, &iter, COLUMN_NAME, &old_name, -1);
 
-    if (gtk_tree_selection_get_selected (selection, &model, &iter)) {
+    new_name = geda_dialog_get_string(_("Rename Session"),
+                                      _("Specify new name for Session:"),
+                                         old_name);
 
-      gtk_tree_model_get (model, &iter, COLUMN_NAME, &old_name, -1);
+    if (new_name != NULL) { /* If  user did not cancel */
+
+      GschemToplevel *w_current = Dialog->w_current;
 
       if (i_sessions_rename_session(w_current, old_name, new_name)) {
-          gtk_tree_store_set (GTK_TREE_STORE (model), &iter,
-                              COLUMN_NAME, new_name, -1);
+        gtk_tree_store_set (GTK_TREE_STORE (model), &iter,
+                            COLUMN_NAME, new_name, -1);
       }
     }
     GEDA_FREE(new_name);

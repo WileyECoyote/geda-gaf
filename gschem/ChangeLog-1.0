@@ -1,3 +1,9 @@
+2017-04-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_sessions.c: Revise on_rename_butt_clicked to retrieve the
+      old session name before present the input dialog and fill-in the
+      old session name.
+
 2017-04-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem.c: Translate gtk_init_check failures.
