@@ -152,7 +152,7 @@ void o_undo_finalize(void)
     char *filename;
 
     filename = geda_sprintf(UNDO_FILE_PATTERN, tmp_path,
-                                DIR_SEPARATOR, prog_pid, i);
+                            DIR_SEPARATOR, prog_pid, i);
     unlink(filename);
     GEDA_FREE(filename);
   }
@@ -597,6 +597,7 @@ void o_undo_callback(GschemToplevel *w_current, int type)
     x_window_setup_page(w_current, Current_Page, left, right, top, bottom);
   }
   else {
+
     x_window_setup_page(w_current, Current_Page,
                         u_current->left, u_current->right,
                         u_current->top,  u_current->bottom);
