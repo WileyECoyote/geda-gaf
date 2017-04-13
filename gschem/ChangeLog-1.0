@@ -1,5 +1,8 @@
 2017-04-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * etc/Makefile.am: Add force switch when replacing system-gschemrc
+      and user-gschemrc.
+
     * src/base/gschem.c: Call i_window_zoom_all_pages after loading any
       pages that were requested to be loaded at startup. Remove calling
       i_zoom_world_extents when titleblock specified for new document

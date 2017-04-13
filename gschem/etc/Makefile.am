@@ -16,7 +16,7 @@ system-gschemrc: $(top_builddir)/configure system-gschemrc.scm
 	  echo "system-gschemrc is unchanged"; \
 	else \
 	  echo "Recreating system-gschemrc"; \
-	  mv system-gschemrc.new system-gschemrc; \
+	  mv -f system-gschemrc.new system-gschemrc; \
 	fi
 
 user-gschemrc: $(top_builddir)/configure user-gschemrc.scm
@@ -28,7 +28,7 @@ user-gschemrc: $(top_builddir)/configure user-gschemrc.scm
 	  echo "user-gschemrc is unchanged"; \
 	else \
 	  echo "Recreating user-gschemrc"; \
-	  mv user-gschemrc.new user-gschemrc; \
+	  mv -f user-gschemrc.new user-gschemrc; \
 	fi
 
 EXTRA_DIST = system-gschemrc.scm user-gschemrc.scm gschem-gtkrc
