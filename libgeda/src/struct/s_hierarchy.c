@@ -220,6 +220,75 @@ geda_struct_hierarchy_find_up_page (PageList *page_list, Page *current_page)
   return geda_struct_page_search_by_page_id (page_list, current_page->hierarchy_up);
 }
 
+/*! \brief Load a hierarchical subpage
+ *  \par Function Description
+ *  Implements geda_struct_hierarchy_down_single() without
+ *  making the page the current page.
+ *
+ *  - Ensures a duplicate page is not loaded
+ *  - Does not change the current page
+ *  - Does not modify the most recent "up" page
+ *
+ *  \param [in]  page
+ *  \param [in]  filename
+ *  \param [out] err
+ *
+ *  \return A pointer to the subpage or NULL if an error occured.
+ */
+Page*
+geda_struct_hierarchy_load_subpage (Page *page, const char *filename, GError **err)
+{
+  char *string;
+  Page *subpage = NULL;
+
+  g_return_val_if_fail (filename != NULL, NULL);
+  g_return_val_if_fail (page != NULL, NULL);
+
+  char *cwd = g_get_current_dir ();
+
+  string = g_build_filename(cwd, filename, NULL);
+  GEDA_FREE (cwd);
+
+  errno = 0;
+  access(string, F_OK | R_OK);
+
+  if (errno) {
+    errno = 0;
+    GEDA_FREE (string);
+    string = geda_struct_slib_search_for_file(filename);
+  }
+
+  if (string == NULL) {
+
+    g_set_error (err, EDA_ERROR, EDA_ERROR_NOLIB,
+                 _("Schematic not found in source library."));
+    return NULL;
+  }
+  else {
+
+    char *normalized = geda_normalize_filename (string, err);
+
+    subpage = geda_struct_page_search (page->toplevel, normalized);
+
+    if (subpage == NULL) {
+
+      int success;
+
+      subpage = geda_struct_page_new (page->toplevel, string);
+      success = geda_open_file (page->toplevel, subpage, subpage->filename, err);
+
+      if (!success) {
+        geda_struct_page_delete (page->toplevel, subpage, FALSE);
+        subpage = NULL;
+      }
+    }
+
+    g_free (normalized);
+  }
+
+  return subpage;
+}
+
 /*! \brief Find page hierarchy below a page.
  *  \par Function Description
  *  This function traverses the hierarchy tree of pages and returns a

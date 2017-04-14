@@ -637,6 +637,7 @@ const CLibSymbol *geda_struct_clib_get_symbol_by_name      (const char *name);
                                                             int page_control, int flag, GError **err);
          Page   *geda_struct_hierarchy_down_symbol         (GedaToplevel *toplevel, const CLibSymbol *symbol, Page *parent);
          Page   *geda_struct_hierarchy_find_up_page        (PageList *page_list, Page *current_page);
+         Page   *geda_struct_hierarchy_load_subpage        (Page *page, const char *filename, GError **error);
         GList   *geda_struct_hierarchy_traverse_pages      (GedaToplevel *toplevel, Page *p_current, int flags);
           int    geda_struct_hierarchy_print_page          (Page *p_current, void *data);
          Page   *geda_struct_hierarchy_find_prev_page      (PageList *page_list, Page *current_page);

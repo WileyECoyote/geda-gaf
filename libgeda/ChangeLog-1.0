@@ -1,3 +1,8 @@
+2017-04-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/struct/s_hierarchy.c: Add function geda_struct_hierarchy_
+      load_subpage.
+
 2017-04-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_get.c: Revise geda_object_get_parent to eliminate
