@@ -2076,9 +2076,9 @@ COMMAND (do_zoom_box)
 }
 
 /*!
- * \brief Zoom Extents Action Function in i_command_View_Actions
+ * \brief Zoom Selected Action Function in i_command_View_Actions
  * \par Function Description
- *  This is a callback function for the Zoom Extents action.
+ *  This is a callback function for the Zoom Selected action.
  */
 COMMAND (do_zoom_selected)
 {
