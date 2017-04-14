@@ -2642,7 +2642,7 @@ void x_dialog_hide_text(GschemToplevel * w_current)
 
 /*********** End of hide text dialog box *******/
 
-/** @} End Group Find-Text-Dialog */
+/** @} End Group Hide-Text-Dialog */
 
 /** \defgroup Show-Text-Dialog Show Text Dialog
  *  @{ \memberof Editing-Dialogs
@@ -3949,7 +3949,7 @@ char *x_dialog_select_file (GschemToplevel *w_current,
 /*! \brief General Purpose Message Dialog
  *  \remarks See Utility Macros defined in globals.h
  *  \remarks This dialog is not for messages with Pango markups,
- *           x_dialog_message_with_markup.
+ *           see x_dialog_message_with_markup.
  */
 void x_dialog_show_message (const char *msg, IDE_MESSAGE_TYPE context, const char *title)
 {

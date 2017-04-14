@@ -2,6 +2,8 @@
 
     * src/base/gschem.c: Remove toplevel variable and use w_current->toplevel.
 
+    * src/base/gschem_toplevel.c: Remove redundant inclusion of header.
+
 2017-04-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/Makefile.am: Add force switch when replacing system-gschemrc
