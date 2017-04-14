@@ -33,7 +33,6 @@
 #include <glib-object.h>
 
 #include <gschem.h>
-#include <gschem_toplevel.h>
 
 #include <geda_debug.h>
 
