@@ -1,3 +1,7 @@
+2017-04-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/base/gschem.c: Remove toplevel variable and use w_current->toplevel.
+
 2017-04-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/Makefile.am: Add force switch when replacing system-gschemrc

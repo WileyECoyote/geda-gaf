@@ -282,7 +282,6 @@ static void gschem( int argc, char *argv[])
   int argv_index;
 
   GschemToplevel *w_current = NULL;
-  GedaToplevel   *toplevel;
 
   SCM scm_tmp;
 
@@ -319,17 +318,15 @@ static void gschem( int argc, char *argv[])
     g_error ("%s", message);
   }
 
-
   /* Allocate w_current */
   w_current           = gschem_toplevel_new ();
   w_current->toplevel = geda_toplevel_new ();
-  toplevel            = w_current->toplevel;
 
-  geda_toplevel_set_bkloader_query_func(toplevel,
+  geda_toplevel_set_bkloader_query_func(w_current->toplevel,
                                         x_fileselect_load_backup,
                                         w_current);
 
-  geda_toplevel_struct_set_rbounds_func (toplevel,
+  geda_toplevel_struct_set_rbounds_func (w_current->toplevel,
                                          o_text_get_rendered_bounds,
                                          w_current);
 
@@ -412,7 +409,8 @@ static void gschem( int argc, char *argv[])
 
   load_documents(w_current, argv_index, argc, argv);
 
-  gschem_page_history_seed_back(w_current->page_history, geda_toplevel_get_pages (toplevel));
+  gschem_page_history_seed_back(w_current->page_history,
+                                geda_toplevel_get_pages (w_current->toplevel));
 
 #if DEBUG
   scm_c_eval_string ("(display \"hello guile\n\")");
