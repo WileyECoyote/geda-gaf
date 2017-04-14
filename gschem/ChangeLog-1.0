@@ -1,6 +1,10 @@
 2017-04-14 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/gschem_bin.h: Add new class GschemBin from master branch.
+
     * src/base/gschem.c: Remove toplevel variable and use w_current->toplevel.
+
+    * src/base/gschem_bin.c: Add implementation file for GschemBin class.
 
     * src/base/gschem_toplevel.c: Remove redundant inclusion of header.
 

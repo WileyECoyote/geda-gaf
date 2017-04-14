@@ -11,6 +11,7 @@
 #include <libgedauio.h>
 
 /* gschem headers */
+#include "gschem_bin.h"
 #include "gschem_event.h"
 #include "gschem_globals.h"
 #include "gschem_idefines.h"       /* integer defines */
