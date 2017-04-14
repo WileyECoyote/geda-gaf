@@ -139,6 +139,11 @@ void x_console_destroy_command_buffer(void * user_data) {
   }
 }
 
+/*!
+ * \brief Initialize the Log & Command Console
+ * \par Function Description
+ * Retrieves log related settings and determines the Command interface mode.
+ */
 void x_console_init_commands(GschemToplevel *w_current, int mode) {
 
   inline void i_setv_rc(volatile int *var, int rc) { if (rc != RC_NIL) *var = rc; };
