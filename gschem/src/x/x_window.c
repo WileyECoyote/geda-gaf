@@ -357,8 +357,6 @@ x_window_create_main(GschemToplevel *w_current)
 
   MainWindow = GTK_WIDGET (gschem_main_window_new ());
 
-  gtk_window_set_resizable (GTK_WINDOW(MainWindow), TRUE);
-
   /* We want the widgets to flow around the drawing area, so we don't
    * set a size of the main window.  The drawing area's size is fixed,
    * see below. Normally we let the window manager handle locating and

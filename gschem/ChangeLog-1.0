@@ -4,6 +4,9 @@
 
     * src/base/gschem_toplevel.c: Remove redundant inclusion of header.
 
+    * src/x/x_window.c: Remove redundant call to gtk_window_set_resizable,
+      this is performed in the GschemMainWindow class.
+
 2017-04-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/Makefile.am: Add force switch when replacing system-gschemrc
