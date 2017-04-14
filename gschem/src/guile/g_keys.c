@@ -553,9 +553,9 @@ int g_keys_execute(GschemToplevel *w_current, GdkEventKey *event)
 /*!
  * \brief Retrieve keys for an action
  * \par Function Description
- *  Search the global keymap for a particular \a action and return the
- *  keys which execute this hotkey, as a string suitable for display
- *  to the user. This is used by the gschem menu system.
+ *  Search the global keymap for a particular \a action and returns
+ *  the keys which execute this hotkey, as a string suitable for
+ *  display to the user. This is used by the gschem menu system.
  *
  * example: (find-key (quote file-new))
  *
