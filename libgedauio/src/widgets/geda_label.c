@@ -970,7 +970,7 @@ geda_label_destroy (GtkObject *object)
 
 static void geda_label_dispose (GObject *object)
 {
-  GedaLabel   *label = GEDA_LABEL (object);
+  GedaLabel *label = GEDA_LABEL (object);
 
   if (label->attrs) {
     pango_attr_list_unref (label->attrs);
@@ -7102,9 +7102,11 @@ void geda_label_widget_set_selectable (GtkWidget *label, bool setting)
   geda_label_set_selectable ((GedaLabel*)label, setting);
 }
 
-/*! \todo Finish function documentation
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Get the GedaLabel Widget Text
+ * \par Function Description
+ *  Retrieves a pointer to the text from the GedaLabel. The
+ *  string belongs to the widget and should not be released.
  */
 const char *geda_label_widget_get_text (GtkWidget *widget)
 {
@@ -7112,11 +7114,11 @@ const char *geda_label_widget_get_text (GtkWidget *widget)
 }
 
 /*!
- * \brief Set the GedaLabel Text cast to a Widget
+ * \brief Set the GedaLabel Widget Text
  * \par Function Description
  *  Sets the text within the #GedaLabel widget.
  *
- * \param [in] widget  The GedaLabel widget
+ * \param [in] widget GedaLabel cast to a Widget
  * \param [in] str    The text to be set
  *
  * \sa geda_label_set_text
