@@ -1420,14 +1420,16 @@ geda_combo_box_style_set (GtkWidget *widget, GtkStyle *previous)
 
   geda_combo_box_check_appearance (combo_box);
 
-  if (priv->tree_view && priv->cell_view)
+  if (priv->tree_view && priv->cell_view) {
     gtk_cell_view_set_background_color (GTK_CELL_VIEW (priv->cell_view),
                                         &widget->style->base[gtk_widget_get_state (widget)]);
+  }
 
-    if (GEDA_IS_ENTRY (GTK_BIN (combo_box)->child))
-      g_object_set (GTK_BIN (combo_box)->child, "shadow-type",
-                    GTK_SHADOW_NONE == priv->shadow_type ?
-                    GTK_SHADOW_IN : GTK_SHADOW_NONE, NULL);
+  if (GEDA_IS_ENTRY (GTK_BIN (combo_box)->child)) {
+    g_object_set (GTK_BIN (combo_box)->child, "shadow-type",
+                  GTK_SHADOW_NONE == priv->shadow_type ?
+                  GTK_SHADOW_IN : GTK_SHADOW_NONE, NULL);
+  }
 }
 
 /* gtk_object_class->destroy */
