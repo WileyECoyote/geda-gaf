@@ -4230,9 +4230,9 @@ geda_menu_popdown (GedaMenu *menu)
       }
     }
 
-    /* geda_menu_popdown is called each time a menu item is selected from
-     * a torn off menu. Only scroll back to the saved position if the
-     * non-tearoff menu was popped down.
+    /* geda_menu_popdown is called each time a menu item is selected
+     * from a torn off menu. Only scroll back to the saved position
+     * if the non-tearoff menu was popped down.
      */
     if (!menu->tearoff_active) {
       geda_menu_scroll_to (menu, menu->saved_scroll_offset);
@@ -4244,6 +4244,7 @@ geda_menu_popdown (GedaMenu *menu)
   }
 
   menu_shell->have_xgrab = FALSE;
+
   gtk_grab_remove (GTK_WIDGET (menu));
 
   menu_grab_transfer_window_destroy (menu);
