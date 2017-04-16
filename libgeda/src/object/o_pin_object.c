@@ -31,7 +31,6 @@
  */
 
 /*! \brief create a new pin object
- *
  *  \par Function Description
  *  This function creates and returns a new pin object.
  *
@@ -40,8 +39,9 @@
  *  \param [in]     y1          y-coord of the first point
  *  \param [in]     x2          x-coord of the second point
  *  \param [in]     y2          y-coord of the second point
- *  \param [in]     node_type    type of pin
+ *  \param [in]     node_type   type of pin
  *  \param [in]     whichend    The connectable end of the pin
+ *
  *  \return A new pin Object
  */
 GedaObject*
@@ -65,11 +65,13 @@ geda_pin_object_new(int color, int x1, int y1, int x2, int y2, PIN_NODE node_typ
 
   return new_obj;
 }
+
 /*! \brief create a copy of a pin object
  *  \par Function Description
  *  This function creates a copy of the pin object \a o_current.
  *
  *  \param [in] o_current    The object that is copied
+ *
  *  \return a new pin object
  */
 GedaObject *geda_pin_object_copy(GedaObject *o_current)
@@ -204,8 +206,11 @@ GedaObject *geda_pin_object_read (const char buf[], unsigned int release_ver,
  * \par Function Description
  *  This function takes a pin \a object and return a string
  *  according to the file format definition.
+ *
  * \note object was validated by geda_object_save_objects
+ *
  * \param [in] object  a pin Object
+ *
  * \returns string representation of the pin Object
  */
 char *geda_pin_object_save(GedaObject *object)
@@ -236,7 +241,6 @@ char *geda_pin_object_save(GedaObject *object)
  *  \param [in,out] object    The pin object
  *  \param [in]     center_x  x-coord of the mirror position
  *  \param [in]     center_y  y-coord of the mirror position
-
  */
 void geda_pin_object_mirror(GedaObject *object, int center_x, int center_y)
 {
@@ -362,7 +366,6 @@ geda_pin_object_rotate(GedaObject *object, int center_x, int center_y, int angle
  *  \param x          new x-coord of the pin point
  *  \param y          new y-coord of the pin point
  *  \param whichone   pin point to modify
- *
  */
 void geda_pin_object_modify(GedaObject *object, int x, int y, int whichone)
 {
@@ -379,7 +382,6 @@ void geda_pin_object_modify(GedaObject *object, int x, int y, int whichone)
  *  This function makes the connection point to be the second point.
  *
  *  \param object      A GedaPin GedaObject
- *
  */
 void geda_pin_object_normalize(GedaObject *object)
 {
@@ -407,7 +409,6 @@ void geda_pin_object_normalize(GedaObject *object)
  *
  *  \param object_list list of Objects
  *  \param num_pins    pin count in the object list
- *
  */
 void geda_pin_object_update_whichend (GList *object_list, int num_pins)
 {
@@ -534,7 +535,6 @@ void geda_pin_object_update_whichend (GList *object_list, int num_pins)
 }
 
 /*! \brief Sets the Electrical type of a GedaPin
- *
  *  \par Function Description
  *  Sets the pin's electrical type code and updates the pin's
  *  internal electrical description. Attributes assicated with
@@ -565,7 +565,6 @@ bool geda_pin_object_set_elect_type (GedaObject *o_current, PIN_ELECT e_type)
 }
 
 /*! \brief Sets the Mechanical type of a GedaPin
- *
  *  \par Function Description
  *  Sets the pin's mechanical type code and updates the pin's
  *  internal mechanical description. Attributes assicated with
@@ -597,7 +596,6 @@ bool geda_pin_object_set_mech_type (GedaObject *o_current, PIN_MECH m_type)
 }
 
 /*! \brief Sets the node type, and corresponding width of a pin
- *
  *  \par Function Description
  *  Sets the pin's type and width to a particular style.
  *
@@ -620,7 +618,6 @@ void geda_pin_object_set_node_type (GedaObject *o_current, PIN_NODE node_type)
 }
 
 /*! \brief Retrieve Properties for a GedaPin Object
- *
  *  \par Function Description
  *  Gets the pin's properties.
  *
@@ -846,7 +843,6 @@ void geda_pin_object_set_attributes(GedaObject *object, const char *label_str,
 }
 
 /*! \brief Create a New Electrical Type Attribute for a GedaPin
- *
  *  \par Function Description
  *  This function creates a new text attribute for the pintype. If the
  *  optional top-level object is present, the attribute offset will be
@@ -958,7 +954,6 @@ geda_pin_object_create_elect_attrib(GedaToplevel *toplevel, GedaObject *object,
 }
 
 /*! \brief Create a New Pin Label Attribute for a GedaPin
- *
  *  \par Function Description
  *  This function creates a new text attribute for a pin label. If the
  *  optional top-level object is present, the attribute offset will be
@@ -1081,7 +1076,6 @@ geda_pin_object_create_label_attrib(GedaToplevel *toplevel, GedaObject *object,
 }
 
 /*! \brief Create a New Pin Mechanical Type Attribute for GedaObject
- *
  *  \par Function Description
  *  This function creates a new text attribute for the mechtype. If the
  *  optional top-level object is present, the attribute offset will be
@@ -1189,7 +1183,6 @@ geda_pin_object_create_mech_attrib(GedaToplevel *toplevel, GedaObject *object,
 }
 
 /*! \brief Create a New Number Attribute for a GedaPin
- *
  *  \par Function Description
  *  This function creates a new text attribute for a pin number. If the
  *  optional top-level object is present, the attribute offset will be
@@ -1326,7 +1319,6 @@ GedaObject* geda_pin_object_create_number_attrib(GedaToplevel *toplevel, GedaObj
 }
 
 /*! \brief Create a New Sequence Attribute for a GedaPin
- *
  *  \par Function Description
  *  This function creates a new text attribute for a pin sequence. If
  *  the optional top-level object is present, the attribute offset will
@@ -1513,7 +1505,6 @@ GList *geda_pin_object_realize_attributes(GedaToplevel *toplevel, GedaObject *ob
 }
 
 /*! \brief Update a GedaPin Object Property with Read Attribute GedaObject
- *
  *  \par Function Description
  *  This function is called from geda_attrib_object_read after a text attribute
  *  has been read in for pin object. The functions passes the attribute
