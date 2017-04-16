@@ -1,3 +1,9 @@
+2017-04-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_command.c: Reintrouce thread diagnostics routines.
+
+    * src/iface/i_diagnostics.c: Reintrouce thread diagnostics routines.
+
 2017-04-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_bin.h: Add new class GschemBin from master branch.

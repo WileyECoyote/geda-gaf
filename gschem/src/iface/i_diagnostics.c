@@ -242,6 +242,39 @@ static float test_undo_time(GschemToplevel *w_current, int attempts)
   return e_cputime;
 }
 
+static void test_thread_pool ()
+{
+  unsigned int limit = 50;
+  unsigned int interval = MAX_THREADS_IDLE_TIME;
+  int i;
+  int nt;
+  int up;
+
+  g_thread_pool_set_max_idle_time (interval);
+
+  g_assert (g_thread_pool_get_max_idle_time () == interval);
+
+  for (i = 0; i < limit; i++) {
+
+    g_thread_pool_push (CommandPool, GUINT_TO_POINTER (i + 1), NULL);
+
+    nt = g_thread_pool_get_num_threads (CommandPool);
+    up = g_thread_pool_unprocessed (CommandPool);
+
+    fprintf (stderr, "[Command] ===> pushed new thread with id:%d, number of threads:%d, unprocessed:%d\n",  i, nt, up);
+  }
+
+  nt = g_thread_pool_get_num_threads (CommandPool);
+  up = g_thread_pool_unprocessed (CommandPool);
+  fprintf (stderr, "Spawn complete, waiting for %d threads to terminate and %d to start\n", nt, up);
+
+  while (up){
+    fprintf (stderr, "Waiting for %d unprocessed threads to start\n", up);
+    g_usleep (WAIT_THREADS_IDLE_TIME * 1000);
+    up = g_thread_pool_unprocessed (CommandPool);
+  };
+}
+
 int gschem_diagnostics_dialog (GschemToplevel *w_current)
 {
   GtkWidget *dialog;
@@ -263,6 +296,7 @@ int gschem_diagnostics_dialog (GschemToplevel *w_current)
   dialog =  gtk_dialog_new_with_buttons ("GSCHEM Internal Diagnostics",
                                          (GtkWindow*) w_current->main_window,
                                          GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+                                         "Thread Tests", RUN_THREAD_TESTS,
                                          "Redraw Tests", RUN_REDRAW_TESTS,
                                          "Undo Tests", RUN_UNDO_TESTS,
                                          "Grind Redraw", REDRAW_DUMP_GRIND,

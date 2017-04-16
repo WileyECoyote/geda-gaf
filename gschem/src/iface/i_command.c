@@ -61,7 +61,10 @@
 { ACTION(symbol), repeat, 0, aflag, i_cmd_##func, 0, {0, 0}, 0, 0, 0},
 
 #ifdef PERFORMANCE
+
 static bool performance_diagnostics = FALSE;
+static bool thread_diagnostics      = FALSE;
+
 #endif /*PERFORMANCE */
 
 typedef struct {
@@ -128,6 +131,7 @@ static void set_last_command(int value)
     last_command = value;
   g_mutex_unlock((GMutex*)&i_lock_last_command);
 }
+
 static int get_last_command()
 {
   int ret_val;
@@ -151,8 +155,6 @@ static bool i_command_dispatch(gschem_task *task)
 static
 void i_command_router(char *command, GschemToplevel *w_current)
 {
-  int accelerator;
-
   inline void route(int i) {
 
     /* see note #1 in i_command.h */
@@ -174,25 +176,37 @@ void i_command_router(char *command, GschemToplevel *w_current)
     }
   }
 
-  accelerator = get_last_command();
-
-  /* This should almost always happen */
-  if (geda_strequal(command_struc[accelerator].name, command)) {
-    route(accelerator);
+#if PERFORMANCE
+  if (thread_diagnostics == TRUE ) {
+    unsigned int thread_id;
+    thread_id = GPOINTER_TO_UINT (command);
+    fprintf(stderr, "[Router] ---> entered thread:%2.2d\n", thread_id);
+    g_usleep (WAIT_THREADS_IDLE_TIME * 1000);
+    fprintf(stderr, "[Router] <--- exiting thread:%2.2d\n", thread_id);
   }
   else {
+#endif
+    int accelerator = get_last_command();
 
-    int i;
+    /* This should almost always happen */
+    if (geda_strequal(command_struc[accelerator].name, command)) {
+      route(accelerator);
+    }
+    else {
 
-    /* TODO: Add debug and find out if this is ever executed */
-    for (i = 1; i < COMMAND_COUNT; i++) {
-      if (geda_strequal(command_struc[i].name, command)) {
-        route(i);
-        break;
+      int i;
+
+      /* TODO: Add debug and find out if this is ever executed */
+      for (i = 1; i < COMMAND_COUNT; i++) {
+        if (geda_strequal(command_struc[i].name, command)) {
+          route(i);
+          break;
+        }
       }
     }
+#if PERFORMANCE
   }
-
+#endif
   return;
 }
 
@@ -594,6 +608,15 @@ COMMAND (do_debug)
       printf ("file=%s, has %d objects: %s\n", p_current->filename, count, results);
       msg = complete;
       g_free(results);
+      break;
+
+    case RUN_THREAD_TESTS:
+      thread_diagnostics = TRUE;
+      fprintf (stderr, "***** Running Thread tests *****\n");
+      g_thread_pool_stop_unused_threads();
+      test_thread_pool();
+      thread_diagnostics = FALSE;
+      msg = "All test have expired, resumming normal mode\n";
       break;
 
     case RUN_UNDO_TESTS:
