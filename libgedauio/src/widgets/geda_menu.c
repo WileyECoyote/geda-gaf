@@ -2423,7 +2423,6 @@ geda_menu_destroy (GtkObject *object)
   geda_menu_stop_navigating_submenu (menu);
 
   if (menu->old_active_menu_item) {
-
     g_object_unref (menu->old_active_menu_item);
     menu->old_active_menu_item = NULL;
   }
@@ -2434,11 +2433,6 @@ geda_menu_destroy (GtkObject *object)
     g_object_ref (object);
   }
 
-  if (menu->accel_group) {
-    g_object_unref (menu->accel_group);
-    menu->accel_group = NULL;
-  }
-
   if (menu->toplevel)
     gtk_widget_destroy (menu->toplevel);
 
@@ -2447,16 +2441,24 @@ geda_menu_destroy (GtkObject *object)
 
   priv = menu->priv;
 
+/* gobject_class->dispose */
+static void
+geda_menu_dispose (GObject *object)
+{
+  GedaMenu *menu = (GedaMenu*)object;
   if (priv->heights) {
     g_free (priv->heights);
     priv->heights = NULL;
   }
 
+  if (menu->accel_group) {
+    geda_menu_set_accel_group(menu, NULL);
   if (priv->title) {
     g_free (priv->title);
     priv->title = NULL;
   }
 
+  G_OBJECT_CLASS (geda_menu_parent_class)->dispose (object);
   GTK_OBJECT_CLASS (geda_menu_parent_class)->destroy (object);
 }
 
@@ -3098,6 +3100,7 @@ geda_menu_class_init  (void *class, void *class_data)
   GtkBindingSet      *binding_set;
   GParamSpec         *params;
 
+  gobject_class->dispose              = geda_menu_dispose;
   gobject_class->finalize             = geda_menu_finalize;
   gobject_class->get_property         = geda_menu_get_property;
   gobject_class->set_property         = geda_menu_set_property;

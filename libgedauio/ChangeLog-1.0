@@ -4,10 +4,13 @@
       release list returned from gtk_container_get_children in function
       geda_toolbar_setup_label.
 
+    * src/widgets/geda_menu.c: Add geda_menu_dispose and unreference the
+      accel_group in dispose instead of destroy.
+
 2017-04-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_bar.c: Revise accelerate_children to validate
-      that the value returned from geda_menu_item_get_mnemonic are > 0,
+      that the values returned from geda_menu_item_get_mnemonic are > 0,
       and that the value returned from gdk_keyval_from_name is not
       GDK_KEY_VoidSymbol, otherwise skip adding an accelerate to the
       widget.
