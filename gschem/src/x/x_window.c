@@ -89,10 +89,19 @@ x_window_setup (GschemToplevel *w_current)
 
   x_draw_initialize(w_current);
 
+  /* Load recent files list before calling x_menu_attach_recent_submenu */
+  x_menu_recent_files_load();
+  gschem_atexit(x_menu_recent_files_save, NULL);
+
   x_menu_attach_recent_submenu (w_current);
 
   /* Initialize the clipboard callback */
   x_clipboard_init (w_current);
+
+#ifdef HAVE_LIBSTROKE
+  x_stroke_init ();
+#endif
+
 }
 
 /*! \brief Create Graphic Context for Drawing Area

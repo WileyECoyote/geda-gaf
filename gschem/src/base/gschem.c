@@ -391,18 +391,10 @@ static void gschem( int argc, char *argv[])
   /* Initialize the Undo system */
   o_undo_init(w_current);
 
-  /* Load recent files list before calling x_window_setup.*/
-  x_menu_recent_files_load();
-  gschem_atexit(x_menu_recent_files_save, NULL);
-
   /*! \internal Bring up the GUI */
   x_window_setup (w_current);
 
   x_image_init();
-
-#ifdef HAVE_LIBSTROKE
-  x_stroke_init ();
-#endif /* HAVE_LIBSTROKE */
 
   /*! \internal Initialize Sessions system */
   i_sessions_init(w_current);

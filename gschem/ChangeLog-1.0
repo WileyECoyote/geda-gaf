@@ -1,8 +1,14 @@
 2017-04-15 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/iface/i_command.c: Reintrouce thread diagnostics routines.
+    * src/base/gschem.c: Relocate initialization of recent menu files and
+      x_strokes to x_windows module, i.e. x_window_setup.
 
-    * src/iface/i_diagnostics.c: Reintrouce thread diagnostics routines.
+    * src/iface/i_command.c: Reintroduce thread diagnostics routines.
+
+    * src/iface/i_diagnostics.c: Reintroduce thread diagnostics routines.
+
+    * src/x/x_window.c: Call x_menu_recent_files_load and x_stroke_init in
+      x_window_setup.
 
 2017-04-14 Wiley E. Hill <wileyhill@gmail.com>
 
