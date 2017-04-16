@@ -1,3 +1,9 @@
+2017-04-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_toolbar.c: Replace while loop with for loop and
+      release list returned from gtk_container_get_children in function
+      geda_toolbar_setup_label.
+
 2017-04-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_bar.c: Revise accelerate_children to validate

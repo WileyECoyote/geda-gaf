@@ -227,14 +227,15 @@ static void
 geda_toolbar_setup_label(GtkWidget *widget, GedaToolbar *bar)
 {
   GtkWidget *box;
-  GList *children;
+  GList     *children;
+  GList     *iter;
 
-  box = gtk_bin_get_child (GTK_BIN(widget));
+  box      = gtk_bin_get_child (GTK_BIN(widget));
   children = gtk_container_get_children (GTK_CONTAINER(box));
 
-  while (children) {
+  for (iter = children; iter; iter = iter->next) {
 
-    GtkWidget *child = children->data;
+    GtkWidget *child = iter->data;
 
     if (GTK_IS_LABEL(child)) {
 
@@ -254,8 +255,10 @@ geda_toolbar_setup_label(GtkWidget *widget, GedaToolbar *bar)
       gtk_widget_queue_resize_no_redraw(widget);
       break;
     }
-    children = children->next;
+    ;
   }
+
+  g_list_free(children);
 
   bar->children = g_list_append(bar->children, widget);
 }
