@@ -2410,8 +2410,7 @@ geda_menu_unrealize (GtkWidget *widget)
 static void
 geda_menu_destroy (GtkObject *object)
 {
-  GedaMenu     *menu = GEDA_MENU (object);
-  GedaMenuPriv *priv;
+  GedaMenu *menu = GEDA_MENU (object);
 
   geda_menu_remove_scroll_timeout (menu);
 
@@ -2439,42 +2438,44 @@ geda_menu_destroy (GtkObject *object)
   if (menu->tearoff_window)
     gtk_widget_destroy (menu->tearoff_window);
 
-  priv = menu->priv;
+  GTK_OBJECT_CLASS (geda_menu_parent_class)->destroy (object);
+}
 
 /* gobject_class->dispose */
 static void
 geda_menu_dispose (GObject *object)
 {
   GedaMenu *menu = (GedaMenu*)object;
-  if (priv->heights) {
-    g_free (priv->heights);
-    priv->heights = NULL;
-  }
 
   if (menu->accel_group) {
     geda_menu_set_accel_group(menu, NULL);
-  if (priv->title) {
-    g_free (priv->title);
-    priv->title = NULL;
   }
 
   G_OBJECT_CLASS (geda_menu_parent_class)->dispose (object);
-  GTK_OBJECT_CLASS (geda_menu_parent_class)->destroy (object);
 }
 
 /* gobject_class->finalize */
 static void
 geda_menu_finalize (GObject *object)
 {
-  GedaMenu *menu = (GedaMenu*)object;
-
-  geda_menu_set_accel_group(menu, NULL);
+  GedaMenu     *menu = (GedaMenu*)object;
+  GedaMenuPriv *priv = menu->priv;
 
   if (g_hash_table_remove (menu_hash_table, object)) {
     if (!g_hash_table_size (menu_hash_table)) {
       g_hash_table_destroy (menu_hash_table);
       menu_hash_table = NULL;
     }
+  }
+
+  if (priv->heights) {
+    g_free (priv->heights);
+    priv->heights = NULL;
+  }
+
+  if (priv->title) {
+    g_free (priv->title);
+    priv->title = NULL;
   }
 
   g_free(menu->priv);

@@ -5,7 +5,8 @@
       geda_toolbar_setup_label.
 
     * src/widgets/geda_menu.c: Add geda_menu_dispose and unreference the
-      accel_group in dispose instead of destroy.
+      accel_group in dispose instead of destroy and relocate releasing of
+      priv->heights and priv->title from destroy to finalize.
 
 2017-04-05 Wiley E. Hill <wileyhill@gmail.com>
 
