@@ -11,7 +11,7 @@
       to geda_menu_shell_deselect inside the menu_shell->active_menu_item
       conditional in function geda_menu_popdown since geda_menu_shell_deselect
       does not do any thing unless menu_shell-> active_menu_item points to
-      something.
+      something. Move menu_grab_transfer_window_get before geda_menu_popup.
 
 2017-04-05 Wiley E. Hill <wileyhill@gmail.com>
 

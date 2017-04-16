@@ -3933,6 +3933,44 @@ popup_grab_on_window (GdkWindow *window,
   return FALSE;
 }
 
+/*! \internal
+ * Retrieves or creates a fictitious GdkWindow used to facilitate
+ * transferring of xgrab to the popup.
+ * \sa notes in geda_menu_popup() for information about the "grab transfer window"
+ */
+static GdkWindow *
+menu_grab_transfer_window_get (GedaMenu *menu)
+{
+  GdkWindow *window = g_object_get_data (G_OBJECT (menu), transfer_window_key);
+
+  if (!window) {
+
+    GdkWindowAttr attributes;
+    int  attributes_mask;
+
+    attributes.x                 = -100;
+    attributes.y                 = -100;
+    attributes.width             = 10;
+    attributes.height            = 10;
+    attributes.window_type       = GDK_WINDOW_TEMP;
+    attributes.wclass            = GDK_INPUT_ONLY;
+    attributes.override_redirect = TRUE;
+    attributes.event_mask        = 0;
+
+    attributes_mask = GDK_WA_X | GDK_WA_Y | GDK_WA_NOREDIR;
+
+    window = gdk_window_new (gtk_widget_get_root_window (GTK_WIDGET (menu)),
+                             &attributes, attributes_mask);
+    gdk_window_set_user_data (window, menu);
+
+    gdk_window_show (window);
+
+    g_object_set_data (G_OBJECT (menu), transfer_window_key, window);
+  }
+
+  return window;
+}
+
 /*!
  * \brief Make a GedaMenu popup
  * \par Function Description
@@ -4968,42 +5006,6 @@ geda_menu_reorder_child (GedaMenu  *menu, GtkWidget *child, int position)
 
       menu_queue_resize (menu);
   }
-}
-
-/* \sa notes in geda_menu_popup() for information about the
- *    "grab transfer window"
- */
-static GdkWindow *
-menu_grab_transfer_window_get (GedaMenu *menu)
-{
-  GdkWindow *window = g_object_get_data (G_OBJECT (menu), transfer_window_key);
-
-  if (!window) {
-
-    GdkWindowAttr attributes;
-    int  attributes_mask;
-
-    attributes.x                 = -100;
-    attributes.y                 = -100;
-    attributes.width             = 10;
-    attributes.height            = 10;
-    attributes.window_type       = GDK_WINDOW_TEMP;
-    attributes.wclass            = GDK_INPUT_ONLY;
-    attributes.override_redirect = TRUE;
-    attributes.event_mask        = 0;
-
-    attributes_mask = GDK_WA_X | GDK_WA_Y | GDK_WA_NOREDIR;
-
-    window = gdk_window_new (gtk_widget_get_root_window (GTK_WIDGET (menu)),
-                             &attributes, attributes_mask);
-    gdk_window_set_user_data (window, menu);
-
-    gdk_window_show (window);
-
-    g_object_set_data (G_OBJECT (menu), transfer_window_key, window);
-  }
-
-  return window;
 }
 
 static void
