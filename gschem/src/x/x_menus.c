@@ -573,10 +573,16 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
             menu_item = geda_image_menu_item_new_with_mnemonic(raw_menu_item_name);
 
-            image = gtk_image_new_from_icon_name (menu_item_stock, GTK_ICON_SIZE_MENU);
+            if (strncmp(menu_item_stock, "gtk-",4) == 0) {
 
-            /* Pre Gtk-2.6 */
-            //image =  GTK_WIDGET(gtk_image_new_from_stock(menu_item_stock, GTK_ICON_SIZE_MENU));
+              /* Pre Gtk-2.6 */
+              //image =  GTK_WIDGET(gtk_image_new_from_stock(menu_item_stock, GTK_ICON_SIZE_MENU));
+
+              image = gtk_image_new_from_icon_name (menu_item_stock, GTK_ICON_SIZE_MENU);
+            }
+            else {
+              image = x_icons_get_factory_icon (menu_item_stock, GTK_ICON_SIZE_MENU);
+            }
 
             g_object_set (image,
                           "no-show-all", TRUE,

@@ -7,6 +7,9 @@
 
     * src/iface/i_diagnostics.c: Reintroduce thread diagnostics routines.
 
+    * src/x/x_menus.c: Revise get_menu_item_from_scheme to support local
+      icons for non-action (fly-out) menu items.
+
     * src/x/x_window.c: Call x_menu_recent_files_load and x_stroke_init in
       x_window_setup.
 
