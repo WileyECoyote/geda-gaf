@@ -4203,11 +4203,12 @@ geda_menu_popdown (GedaMenu *menu)
     if (menu->old_active_menu_item) {
       g_object_unref (menu->old_active_menu_item);
     }
+
     menu->old_active_menu_item = menu_shell->active_menu_item;
     g_object_ref (menu->old_active_menu_item);
-  }
 
-  geda_menu_shell_deselect (menu_shell);
+    geda_menu_shell_deselect (menu_shell);
+  }
 
   /* The X Grab, if present, will automatically be removed when we hide
    * the window */
