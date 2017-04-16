@@ -1587,7 +1587,7 @@ geda_line_object_read (const char buf[], unsigned int release_ver,
   /* create and add the line to the list */
   new_obj = geda_line_object_new (color, x1, y1, x2, y2);
 
-  /* set its line options */
+  /* set line options */
   new_obj->line_options->line_end    = line_end;
   new_obj->line_options->line_type   = line_type;
   new_obj->line_options->line_width  = line_width;

@@ -1496,12 +1496,14 @@ geda_arc_object_read (const char buf[], unsigned int release_ver,
   /* Allocation and initialization */
   new_obj = geda_arc_object_new(color, x1, y1, radius, start_angle, arc_sweep);
 
+  /* set the line options */
   new_obj->line_options->line_end     = arc_end;
   new_obj->line_options->line_type    = arc_type;
   new_obj->line_options->line_width   = arc_width;
   new_obj->line_options->line_space   = arc_space;
   new_obj->line_options->line_length  = arc_length;
 
+  /* set the fill options */
   new_obj->fill_options->fill_type   = default_fill_type;
   new_obj->fill_options->fill_width  = default_fill_width;
   new_obj->fill_options->fill_angle1 = default_fill_angle1;

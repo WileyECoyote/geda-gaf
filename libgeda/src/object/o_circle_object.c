@@ -1365,7 +1365,7 @@ geda_circle_object_read (const char buf[], unsigned int release_ver,
   }
 
   /*
-   * A circle is internally described by its center and its radius.
+   * A circle is internally described by the center and the radius.
    *
    * A new object is allocated, initialized and added to the object list.
    * Its filling and line type are set according to the values of the field
@@ -1373,19 +1373,21 @@ geda_circle_object_read (const char buf[], unsigned int release_ver,
    */
   new_obj = geda_circle_object_new(color, x1, y1, radius);
 
+  /* set the line options */
   new_obj->line_options->line_end     = circle_end;
   new_obj->line_options->line_type    = circle_type;
   new_obj->line_options->line_width   = circle_width;
   new_obj->line_options->line_length  = circle_length;
   new_obj->line_options->line_space   = circle_space;
 
-  /* set its fill options */
+  /* set the fill options */
   new_obj->fill_options->fill_type   = circle_fill;
   new_obj->fill_options->fill_width  = fill_width;
   new_obj->fill_options->fill_angle1 = angle1;
   new_obj->fill_options->fill_angle2 = angle2;
   new_obj->fill_options->fill_pitch1 = pitch1;
   new_obj->fill_options->fill_pitch2 = pitch2;
+
   return new_obj;
 }
 

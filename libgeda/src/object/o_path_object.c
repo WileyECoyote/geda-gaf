@@ -627,14 +627,14 @@ geda_path_object_read (const char *first_line,
   new_obj = geda_path_object_new (color, string);
   GEDA_FREE (string);
 
-  /* set its line options */
+  /* set the line options */
   new_obj->line_options->line_end    = line_end;
   new_obj->line_options->line_type   = line_type;
   new_obj->line_options->line_width  = line_width;
   new_obj->line_options->line_length = line_length;
   new_obj->line_options->line_space  = line_space;
 
-  /* set its fill options */
+  /* set the fill options */
   new_obj->fill_options->fill_type   = fill_type;
   new_obj->fill_options->fill_width  = fill_width;
   new_obj->fill_options->fill_angle1 = angle1;

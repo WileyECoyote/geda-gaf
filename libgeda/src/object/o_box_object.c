@@ -1623,9 +1623,7 @@ geda_box_object_read (const char buf[], unsigned int release_ver,
   }
 
   /*! \note
-   *  A box is internally described by its lower right and upper left corner
-   *  whereas the line describe it with the lower left corner and the width
-   *  and height.
+   *  A box is internally described by the lower right and upper left corner.
    *
    *  A new object is allocated, initialized and added to the object list.
    *  Its filling and line type are set according to the values of the field
@@ -1643,14 +1641,14 @@ geda_box_object_read (const char buf[], unsigned int release_ver,
   /* create a new box */
   new_obj = geda_box_object_new (color, d_x1, d_y1, d_x2, d_y2);
 
-  /* set its line options */
+  /* set the line options */
   new_obj->line_options->line_end     = box_end;
   new_obj->line_options->line_type    = box_type;
   new_obj->line_options->line_width   = box_width;
   new_obj->line_options->line_length  = box_length;
   new_obj->line_options->line_space   = box_space;
 
-  /* set its fill options */
+  /* set the fill options */
   new_obj->fill_options->fill_type   = box_filling;
   new_obj->fill_options->fill_width  = fill_width;
   new_obj->fill_options->fill_angle1 = angle1;
