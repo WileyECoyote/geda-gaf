@@ -380,13 +380,13 @@ gschem_main_window_class_init (void *class, void *class_data)
   main_window_signals[ GEOMETRY_RESTORE ] = g_signal_new ("geometry-restore", type,
                                                       G_SIGNAL_RUN_FIRST,     /*signal_flags */
                                                       G_STRUCT_OFFSET (GschemMainWindowClass,
-                                                                       geometry_restore ),
+                                                                       geometry_restore),
                                                       NULL, /* accumulator */
                                                       NULL, /* accu_data */
-                                                      g_cclosure_marshal_VOID__VOID,
+                                                      g_cclosure_marshal_VOID__POINTER,
                                                       G_TYPE_NONE,
                                                       1,    /* n_params */
-                                                      G_TYPE_STRING);
+                                                      G_TYPE_POINTER);
 
   /*!
    * \brief GschemMainWindow::geometry-save:
@@ -399,13 +399,13 @@ gschem_main_window_class_init (void *class, void *class_data)
   main_window_signals[ GEOMETRY_SAVE ]    = g_signal_new ("geometry-save", type,
                                                       G_SIGNAL_RUN_FIRST,     /*signal_flags */
                                                       G_STRUCT_OFFSET (GschemMainWindowClass,
-                                                                       geometry_save ),
+                                                                       geometry_save),
                                                       NULL, /* accumulator */
                                                       NULL, /* accu_data */
-                                                      g_cclosure_marshal_VOID__VOID,
+                                                      g_cclosure_marshal_VOID__POINTER,
                                                       G_TYPE_NONE,
                                                       1,    /* n_params */
-                                                      G_TYPE_STRING);
+                                                      G_TYPE_POINTER);
 
   /*!
    * \brief GschemMainWindow::restore-position:
@@ -418,13 +418,13 @@ gschem_main_window_class_init (void *class, void *class_data)
   main_window_signals[ RESTORE_POSITION ] = g_signal_new ("restore-position", type,
                                                       G_SIGNAL_RUN_FIRST,     /*signal_flags */
                                                       G_STRUCT_OFFSET (GschemMainWindowClass,
-                                                                       restore_position ),
+                                                                       restore_position),
                                                       NULL, /* accumulator */
                                                       NULL, /* accu_data */
-                                                      g_cclosure_marshal_VOID__VOID,
+                                                      g_cclosure_marshal_VOID__POINTER,
                                                       G_TYPE_NONE,
                                                       1,    /* n_params */
-                                                      G_TYPE_STRING);
+                                                      G_TYPE_POINTER);
 }
 
 /*!
