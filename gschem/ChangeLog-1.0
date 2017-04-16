@@ -3,6 +3,9 @@
     * src/base/gschem.c: Relocate initialization of recent menu files and
       x_strokes to x_windows module, i.e. x_window_setup.
 
+    * src/base/gschem_main_window.c: Remove unnecessary crutch/cast using
+      GSCHEM_MAIN_WINDOW when emitting signals.
+
     * src/iface/i_command.c: Reintroduce thread diagnostics routines.
 
     * src/iface/i_diagnostics.c: Reintroduce thread diagnostics routines.

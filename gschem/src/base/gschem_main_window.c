@@ -95,8 +95,7 @@ gschem_main_window_map (GtkWidget *widget)
 {
   gtk_widget_set_name (widget, "gschem");
 
-  g_signal_emit (GSCHEM_MAIN_WINDOW (widget),
-                 main_window_signals[ GEOMETRY_RESTORE ], 0);
+  g_signal_emit (widget, main_window_signals[ GEOMETRY_RESTORE ], 0);
 
   GTK_WIDGET_CLASS (gschem_main_window_parent_class)->map (widget);
 }
@@ -113,8 +112,7 @@ gschem_main_window_map (GtkWidget *widget)
 static void
 gschem_main_window_unmap (GtkWidget *widget)
 {
-  g_signal_emit (GSCHEM_MAIN_WINDOW (widget),
-                 main_window_signals[ GEOMETRY_SAVE ], 0);
+  g_signal_emit (widget, main_window_signals[ GEOMETRY_SAVE ], 0);
 
   gtk_widget_set_name (widget, NULL);
   GTK_WIDGET_CLASS (gschem_main_window_parent_class)->unmap (widget);
@@ -203,8 +201,7 @@ static void gschem_main_show (GtkWidget *widget)
 
   gtk_window_set_resizable (GTK_WINDOW(widget), TRUE);
 
-  g_signal_emit (GSCHEM_MAIN_WINDOW (widget),
-                 main_window_signals[ RESTORE_POSITION ], 0);
+  g_signal_emit (widget, main_window_signals[ RESTORE_POSITION ], 0);
 }
 
 /*! \brief GschemMainWindow "restore_position" class method handler
