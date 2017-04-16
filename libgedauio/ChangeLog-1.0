@@ -6,7 +6,8 @@
 
     * src/widgets/geda_menu.c: Add geda_menu_dispose and unreference the
       accel_group in dispose instead of destroy and relocate releasing of
-      priv->heights and priv->title from destroy to finalize.
+      priv->heights and priv->title from destroy to finalize and set menu
+      ->tearoff_window to NULL after calling gtk_widget_destroy.
 
 2017-04-05 Wiley E. Hill <wileyhill@gmail.com>
 

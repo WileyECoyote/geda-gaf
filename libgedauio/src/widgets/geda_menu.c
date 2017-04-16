@@ -2433,10 +2433,14 @@ geda_menu_destroy (GtkObject *object)
   }
 
   if (menu->toplevel)
+  if (menu->toplevel) {
     gtk_widget_destroy (menu->toplevel);
+  }
 
-  if (menu->tearoff_window)
+  if (menu->tearoff_window) {
     gtk_widget_destroy (menu->tearoff_window);
+    menu->tearoff_window = NULL;
+  }
 
   GTK_OBJECT_CLASS (geda_menu_parent_class)->destroy (object);
 }
