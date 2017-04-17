@@ -812,26 +812,22 @@ geda_menu_handle_scrolling (GedaMenu *menu,
         scroll_fast = (y < rect.y + MENU_SCROLL_FAST_ZONE);
 
         if (enter && in_arrow &&
-          (!menu->upper_arrow_prelight ||
-          menu->scroll_fast != scroll_fast))
+           (!menu->upper_arrow_prelight || menu->scroll_fast != scroll_fast))
         {
           menu->upper_arrow_prelight = TRUE;
           menu->scroll_fast = scroll_fast;
 
-          /* Deselect the active item so that
-           * any submenus are popped down
-           */
+          /* Deselect the active item so any submenus are popped down */
           geda_menu_shell_deselect (menu_shell);
 
           geda_menu_remove_scroll_timeout (menu);
-          menu->scroll_step = scroll_fast ?
-          -MENU_SCROLL_STEP2 : -MENU_SCROLL_STEP1;
+
+          menu->scroll_step = scroll_fast ? -MENU_SCROLL_STEP2 : -MENU_SCROLL_STEP1;
 
           menu->timeout_id =
           gdk_threads_add_timeout (scroll_fast ?
-          MENU_SCROLL_TIMEOUT2 :
-          MENU_SCROLL_TIMEOUT1,
-          geda_menu_scroll_timeout, menu);
+                                   MENU_SCROLL_TIMEOUT2 : MENU_SCROLL_TIMEOUT1,
+                                   geda_menu_scroll_timeout, menu);
         }
         else if (!enter && !in_arrow && menu->upper_arrow_prelight) {
           geda_menu_stop_scrolling (menu);
@@ -930,13 +926,12 @@ geda_menu_handle_scrolling (GedaMenu *menu,
 
           geda_menu_remove_scroll_timeout (menu);
           menu->scroll_step = scroll_fast ?
-          MENU_SCROLL_STEP2 : MENU_SCROLL_STEP1;
+                              MENU_SCROLL_STEP2 : MENU_SCROLL_STEP1;
 
           menu->timeout_id =
           gdk_threads_add_timeout (scroll_fast ?
-          MENU_SCROLL_TIMEOUT2 :
-          MENU_SCROLL_TIMEOUT1,
-          geda_menu_scroll_timeout, menu);
+                                   MENU_SCROLL_TIMEOUT2 : MENU_SCROLL_TIMEOUT1,
+                                   geda_menu_scroll_timeout, menu);
         }
         else if (!enter && !in_arrow && menu->lower_arrow_prelight) {
 
@@ -4024,8 +4019,8 @@ geda_menu_popup (GedaMenu         *menu,
 
   menu_shell->parent_menu_shell = parent_menu_shell;
 
-  /* Find the last viewable ancestor, and make an X grab on it
-   */
+  /* Find the last viewable ancestor and make an X grab on it */
+
   parent      = GTK_WIDGET(menu);
   xgrab_shell = NULL;
 
@@ -4105,7 +4100,7 @@ geda_menu_popup (GedaMenu         *menu,
 
   if (current_event) {
     if ((current_event->type != GDK_BUTTON_PRESS) &&
-      (current_event->type != GDK_ENTER_NOTIFY))
+        (current_event->type != GDK_ENTER_NOTIFY))
       menu_shell->ignore_enter = TRUE;
 
     gdk_event_free (current_event);
@@ -5173,7 +5168,7 @@ geda_menu_navigating_submenu (GedaMenu *menu, int event_x, int event_y)
   }
 
   /* 3) Check that the given coordinate is inside the triangle. The formula
-   * is a transformed form of this formula: x/w + y/h <= 1
+   *    is a transformed form of this formula: x/w + y/h <= 1
    */
   if (event_x >= 0 && event_y >= 0 && event_x * height + event_y * width <= width * height)
   {
