@@ -644,7 +644,6 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
             toggler_data->w_current      = w_current;
             toggler_data->menu_item_name = geda_strdup(menu_item_name);
             toggler_data->menu_path      = geda_strconcat (*raw_menu_name, "/", raw_menu_item_name, NULL);
-            //menu_item_name = menu_item_name + 7;  /* is just for label */
 
             /* TODO: Tooltips do not work here, we will fix them later*/
             action = (GedaAction*)
