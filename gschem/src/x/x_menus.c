@@ -1937,6 +1937,8 @@ static void x_menu_recent_file_clicked (GedaMenuItem *menuitem, void *menu_data)
 
    page = x_window_open_page(w_current, filename);
    x_window_set_current_page(w_current, page);
+
+   x_menu_free_recent_file_record(menu_data);
 }
 
 /*! \brief Make RECENT_FILES_STORE contain an empty file list.
@@ -2031,19 +2033,15 @@ static void x_menu_recent_show_popup (GedaMenuItem   *menu_widget,
 
   popup_item = geda_menu_item_new_with_label (_("Open"));
 
-  g_signal_connect_data (GTK_OBJECT(popup_item), "activate",
-                        (GCallback) x_menu_recent_file_clicked, menu_data,
-                        (GClosureNotify) x_menu_free_recent_file_record,
-                         0);
+  g_signal_connect (G_OBJECT(popup_item), "activate",
+                    G_CALLBACK(x_menu_recent_file_clicked), menu_data);
 
   geda_menu_shell_append (GEDA_MENU_SHELL (menu), popup_item);
 
   popup_item = geda_menu_item_new_with_label (_("Remove"));
 
-  g_signal_connect_data (GTK_OBJECT(popup_item), "activate",
-                        (GCallback) x_menu_recent_file_remove, menu_data,
-                        (GClosureNotify) x_menu_free_recent_file_record,
-                         0);
+  g_signal_connect (G_OBJECT(popup_item), "activate",
+                    G_CALLBACK(x_menu_recent_file_remove), menu_data);
 
   geda_menu_shell_append (GEDA_MENU_SHELL (menu), popup_item);
 
@@ -2051,8 +2049,7 @@ static void x_menu_recent_show_popup (GedaMenuItem   *menu_widget,
   geda_check_menu_item_set_active((GedaCheckMenuItem*)popup_item, show_recent_path);
 
   g_signal_connect (G_OBJECT(popup_item), "toggled",
-                    G_CALLBACK(x_menu_toggle_recent_path),
-                    menu_data);
+                    G_CALLBACK(x_menu_toggle_recent_path), menu_data);
 
   geda_menu_shell_append (GEDA_MENU_SHELL (menu), popup_item);
 
@@ -2150,14 +2147,11 @@ void x_menu_attach_recent_submenu(GschemToplevel *w_current)
        gtk_widget_set_tooltip_text(item, iter->data);
      }
 
-     g_signal_connect_data (GTK_OBJECT(item), "activate",
-                           (GCallback) x_menu_recent_file_clicked, menu_data,
-                           (GClosureNotify) x_menu_free_recent_file_record,
-                            0);
+     g_signal_connect (G_OBJECT(item), "activate",
+                       G_CALLBACK(x_menu_recent_file_clicked), menu_data);
 
      g_signal_connect (item, "button-release-event",
-                       G_CALLBACK (x_menu_recent_button_released),
-                       menu_data);
+                       G_CALLBACK (x_menu_recent_button_released), menu_data);
 
      geda_menu_append(GEDA_MENU(recent_submenu), item);
      iter = g_list_next(iter);

@@ -1,6 +1,8 @@
 2017-04-17 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/x/x_menus.c: Release buffer_menu_name in x_menu_free_all.
+    * src/x/x_menus.c: Release buffer_menu_name in x_menu_free_all. Replace
+      g_signal_connect_data with g_signal_connect and just call x_menu_free_
+      recent_file_record before exiting x_menu_recent_file_clicked.
 
 2017-04-16 Wiley E. Hill <wileyhill@gmail.com>
 
