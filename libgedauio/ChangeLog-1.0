@@ -1,5 +1,8 @@
 2017-04-17 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/geda_tree_view.h: Replace brackets with quotes to include
+      "geda_tree.h".
+
     * src/widgets/geda_menu.c: Add static const touchscreen_setting instead
       of string literal "gtk-touchscreen-mode" three places.
 

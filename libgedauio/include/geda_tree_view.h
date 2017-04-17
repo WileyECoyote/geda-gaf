@@ -33,7 +33,7 @@
 #include <gtk/gtktreeview.h>
 #include <gtk/gtktreemodel.h>
 
-#include <geda_tree.h>
+#include "geda_tree.h"
 
 #define GEDA_TYPE_TREE_VIEW            (geda_tree_view_get_type ())
 #define GEDA_TREE_VIEW(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_TREE_VIEW, GedaTreeView))
