@@ -2059,6 +2059,10 @@ static void x_menu_recent_show_popup (GedaMenuItem   *menu_widget,
   geda_menu_popup (GEDA_MENU (menu), NULL, NULL, NULL, NULL,
                   (event != NULL) ? event->button : 0,
                   gdk_event_get_time ((GdkEvent*)event));
+
+  /* Sink the menu so it will be automatically destroyed */
+  g_object_ref_sink (menu);
+  g_object_unref (menu);
 }
 
 /*! \brief Popup Callback for recent files menu item
