@@ -321,7 +321,10 @@ void x_menu_free_all(void)
     g_object_ref_sink(POPUP_MAIN);
     g_object_unref(POPUP_MAIN);
 
+    g_free(menu_data->buffer_menu_name);
+
     g_free(menu_data);
+
     return FALSE;
   }
   mapcar(ui_list);
