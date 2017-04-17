@@ -56,6 +56,5 @@
 #include "geda_toggle_action.h"
 #include "geda_toolbar.h"
 #include "geda_tree_view.h"
-#include "geda_tree.h"
 
 #endif /* __GEDA_WIDGETS_H__ */
