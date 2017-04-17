@@ -9,7 +9,13 @@
     * src/widgets/geda_menu.c: Add static const touchscreen_setting instead
       of string literal "gtk-touchscreen-mode" three places. Revise function
       geda_menu_finalize to validate the object argument by only attempting
-      to release private resources if object was in the hash table.
+      to release private resources if object was in the hash table. Eliminate
+      local variables for touchscreen_mode in function:
+
+        * geda_menu_popup
+        * geda_menu_scroll_timeout
+        * geda_menu_scroll_timeout_initial
+        * geda_menu_start_scrolling
 
 2017-04-16 Wiley E. Hill <wileyhill@gmail.com>
 

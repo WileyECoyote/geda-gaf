@@ -4176,9 +4176,7 @@ geda_menu_popup (GedaMenu         *menu,
   /* if no item is selected, select the first one */
   if (!menu_shell->active_menu_item) {
 
-    bool touchscreen_mode = menu->priv->touchscreen_mode;
-
-    if (touchscreen_mode) {
+    if (menu->priv->touchscreen_mode) {
       geda_menu_shell_select_first (menu_shell, TRUE);
     }
   }
@@ -5036,13 +5034,10 @@ static bool
 geda_menu_scroll_timeout (void *data)
 {
   GedaMenu *menu;
-  bool   touchscreen_mode;
 
   menu = GEDA_MENU (data);
 
-  touchscreen_mode = menu->priv->touchscreen_mode;
-
-  geda_menu_do_timeout_scroll (menu, touchscreen_mode);
+  geda_menu_do_timeout_scroll (menu, menu->priv->touchscreen_mode);
 
   return TRUE;
 }
@@ -5052,7 +5047,6 @@ geda_menu_scroll_timeout_initial (void *data)
 {
   GedaMenu    *menu;
   unsigned int timeout;
-  bool         touchscreen_mode;
 
   menu = GEDA_MENU (data);
 
@@ -5060,9 +5054,7 @@ geda_menu_scroll_timeout_initial (void *data)
                 "gtk-timeout-repeat", &timeout,
                 NULL);
 
-  touchscreen_mode = menu->priv->touchscreen_mode;
-
-  geda_menu_do_timeout_scroll (menu, touchscreen_mode);
+  geda_menu_do_timeout_scroll (menu, menu->priv->touchscreen_mode);
 
   geda_menu_remove_scroll_timeout (menu);
 
@@ -5077,15 +5069,12 @@ static void
 geda_menu_start_scrolling (GedaMenu *menu)
 {
   unsigned int timeout;
-  bool touchscreen_mode;
 
   g_object_get (gtk_widget_get_settings (GTK_WIDGET (menu)),
                 "gtk-timeout-repeat", &timeout,
                 NULL);
 
-  touchscreen_mode = menu->priv->touchscreen_mode;
-
-  geda_menu_do_timeout_scroll (menu, touchscreen_mode);
+  geda_menu_do_timeout_scroll (menu, menu->priv->touchscreen_mode);
 
   menu->timeout_id = gdk_threads_add_timeout (timeout,
                                               geda_menu_scroll_timeout_initial,
@@ -5560,7 +5549,6 @@ geda_menu_stop_scrolling (GedaMenu *menu)
   geda_menu_remove_scroll_timeout (menu);
 
   if (!menu->priv->touchscreen_mode) {
-
       menu->upper_arrow_prelight = FALSE;
       menu->lower_arrow_prelight = FALSE;
     }
