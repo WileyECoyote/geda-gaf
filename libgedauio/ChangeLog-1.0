@@ -1,3 +1,8 @@
+2017-04-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu.c: Add static const touchscreen_setting instead
+      of string literal "gtk-touchscreen-mode" three places.
+
 2017-04-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_toolbar.c: Replace while loop with for loop and

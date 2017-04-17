@@ -322,6 +322,8 @@ static const char const attached_data_key[]   = "menu-attach-data";
 static const char const explicit_screen_key[] = "menu-explicit-screen";
 static const char const transfer_window_key[] = "menu-transfer-window";
 
+static const char const touchscreen_setting[] = "gtk-touchscreen-mode";
+
 static unsigned int menu_signals[LAST_SIGNAL] = { 0 };
 
 /* Table of pointers to GedaMenu instances */
@@ -342,7 +344,7 @@ change_touchscreen_mode (GedaMenu *menu)
 
   settings = gtk_widget_get_settings (GTK_WIDGET(menu));
 
-  g_object_get (settings, "gtk-touchscreen-mode", &touchscreen_mode, NULL);
+  g_object_get (settings, touchscreen_setting, &touchscreen_mode, NULL);
 
   priv->touchscreen_mode = touchscreen_mode;
 
@@ -359,7 +361,7 @@ settings_notify_cb (GObject    *object,
   name = g_param_spec_get_name (pspec);
 
   /* Check if touchscreen-mode is what was changed */
-  if (!strcmp (name, "gtk-touchscreen-mode")) {
+  if (!strcmp (name, touchscreen_setting)) {
     change_touchscreen_mode (menu);
   }
 }
@@ -1151,7 +1153,7 @@ geda_menu_enter_notify (GtkWidget *widget, GdkEventCrossing *event)
     return TRUE;
 
   g_object_get (gtk_widget_get_settings (widget),
-                "gtk-touchscreen-mode", &touchscreen_mode,
+                touchscreen_setting, &touchscreen_mode,
                 NULL);
 
   menu_item = gtk_get_event_widget ((GdkEvent*) event);
