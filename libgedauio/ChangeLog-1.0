@@ -7,7 +7,9 @@
       included by geda_tree_view.h, which is in the list.
 
     * src/widgets/geda_menu.c: Add static const touchscreen_setting instead
-      of string literal "gtk-touchscreen-mode" three places.
+      of string literal "gtk-touchscreen-mode" three places. Revise function
+      geda_menu_finalize to validate the object argument by only attempting
+      to release private resources if object was in the hash table.
 
 2017-04-16 Wiley E. Hill <wileyhill@gmail.com>
 

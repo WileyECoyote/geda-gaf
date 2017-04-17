@@ -2459,27 +2459,30 @@ geda_menu_dispose (GObject *object)
 static void
 geda_menu_finalize (GObject *object)
 {
-  GedaMenu     *menu = (GedaMenu*)object;
-  GedaMenuPriv *priv = menu->priv;
-
   if (g_hash_table_remove (menu_hash_table, object)) {
+
+    /* If object was in hash table then is a GedaMenu */
+
+    GedaMenu *menu = (GedaMenu*)object;
+    GedaMenuPriv *priv = menu->priv;
+
     if (!g_hash_table_size (menu_hash_table)) {
       g_hash_table_destroy (menu_hash_table);
       menu_hash_table = NULL;
     }
-  }
 
-  if (priv->heights) {
-    g_free (priv->heights);
-    priv->heights = NULL;
-  }
+    if (priv->heights) {
+      g_free (priv->heights);
+      priv->heights = NULL;
+    }
 
-  if (priv->title) {
-    g_free (priv->title);
-    priv->title = NULL;
-  }
+    if (priv->title) {
+      g_free (priv->title);
+      priv->title = NULL;
+    }
 
-  g_free(menu->priv);
+    g_free(menu->priv);
+  }
 
   G_OBJECT_CLASS (geda_menu_parent_class)->finalize (object);
 }
