@@ -320,10 +320,10 @@ geda_menu_bar_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
 
     gtk_widget_style_get (widget, "internal-padding", &ipadding, NULL);
 
-    child_allocation.x = (GTK_CONTAINER (menu_bar)->border_width +
-                          ipadding + BORDER_SPACING);
-    child_allocation.y = (GTK_CONTAINER (menu_bar)->border_width +
-                          BORDER_SPACING);
+    child_allocation.x = (((GtkContainer*)menu_bar)->border_width +
+                                          ipadding + BORDER_SPACING);
+    child_allocation.y = (((GtkContainer*)menu_bar)->border_width +
+                                          BORDER_SPACING);
 
     if (get_shadow_type (menu_bar) != GTK_SHADOW_NONE)
     {
@@ -513,10 +513,8 @@ geda_menu_bar_size_request (GtkWidget *widget,  GtkRequisition *requisition)
 
     gtk_widget_style_get (widget, "internal-padding", &ipadding, NULL);
 
-    requisition->width += (GTK_CONTAINER (menu_bar)->border_width +
-    ipadding + BORDER_SPACING) * 2;
-    requisition->height += (GTK_CONTAINER (menu_bar)->border_width +
-    ipadding + BORDER_SPACING) * 2;
+    requisition->width += (((GtkContainer*)menu_bar)->border_width + ipadding + BORDER_SPACING) * 2;
+    requisition->height += (((GtkContainer*)menu_bar)->border_width + ipadding + BORDER_SPACING) * 2;
 
     if (get_shadow_type (menu_bar) != GTK_SHADOW_NONE)
     {
@@ -535,11 +533,11 @@ geda_menu_bar_paint (GtkWidget *widget, GdkRectangle *area)
 
     int border;
 
-    border = GTK_CONTAINER (widget)->border_width;
+    border = ((GtkContainer*)widget)->border_width;
 
     gtk_paint_box (widget->style, widget->window,
                    gtk_widget_get_state (widget),
-                   get_shadow_type (GEDA_MENU_BAR(widget)),
+                   get_shadow_type ((GedaMenuBar*)widget),
                    area, widget, "menubar",
                    border, border,
                    widget->allocation.width - border * 2,
@@ -606,7 +604,7 @@ geda_menu_bar_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
 
     gtk_style_context_get_padding (context, flags, &border);
 
-    border_width   = gtk_container_get_border_width (GTK_CONTAINER (menu_bar));
+    border_width   = gtk_container_get_border_width ((GtkContainer*)menu_bar);
     border_widthx2 = border_width << 1;
 
     remaining_space.x      = (border_width + border.left);
@@ -853,7 +851,7 @@ geda_menu_bar_size_request (GtkWidget      *widget,
     *natural += border.top + border.bottom;
   }
 
-  border_widthx2 = gtk_container_get_border_width (GTK_CONTAINER (menu_bar)) << 1;
+  border_widthx2 = gtk_container_get_border_width ((GtkContainer*)menu_bar) << 1;
 
   *minimum += border_widthx2;
   *natural += border_widthx2;
@@ -920,7 +918,7 @@ geda_menu_bar_draw (GtkWidget *widget, cairo_t *cr)
   int border;
   int borderx2;
 
-  border   = gtk_container_get_border_width (GTK_CONTAINER (widget));
+  border   = gtk_container_get_border_width ((GtkContainer*)widget);
   borderx2 = border << 1;
   context  = gtk_widget_get_style_context (widget);
 
@@ -929,7 +927,7 @@ geda_menu_bar_draw (GtkWidget *widget, cairo_t *cr)
                          gtk_widget_get_allocated_width (widget) - borderx2,
                          gtk_widget_get_allocated_height (widget) - borderx2);
 
-  if (get_shadow_type (GEDA_MENU_BAR (widget)) != GTK_SHADOW_NONE) {
+  if (get_shadow_type ((GedaMenuBar*)widget) != GTK_SHADOW_NONE) {
     gtk_render_frame (context, cr,
                       border, border,
                       gtk_widget_get_allocated_width (widget) - borderx2,
@@ -1290,15 +1288,15 @@ accelerate_children(GedaMenuItem *menu_item, GtkAccelGroup *accel_group)
 
       if (keyval != GDK_KEY_VoidSymbol) {
 
-        gtk_widget_add_accelerator(GTK_WIDGET (menu_item),
+        gtk_widget_add_accelerator((GtkWidget*)menu_item,
                                    "activate",
                                    accel_group,
                                    keyval,
                                    GDK_MOD1_MASK,
                                    0);
 
-        g_signal_connect(G_OBJECT(menu_item),"activate",
-                                  G_CALLBACK(activate_child),NULL);
+        g_signal_connect(menu_item, "activate",
+                         G_CALLBACK(activate_child),NULL);
       }
     }
   }
@@ -1315,13 +1313,12 @@ add_to_window (GtkWindow *window, GedaMenuBar *menubar)
     GtkSettings   *settings;
     char          *accel;
 
-    g_signal_connect (window,
-                      "key-press-event",
+    g_signal_connect (window, "key-press-event",
                       G_CALLBACK (geda_menu_bar_window_key_press_handler),
                       NULL);
 
     accel = NULL;
-    settings = gtk_widget_get_settings (GTK_WIDGET(menubar));
+    settings = gtk_widget_get_settings ((GtkWidget*)menubar);
 
     g_object_get (settings, "gtk-menu-bar-accel", &accel, NULL);
 
@@ -1343,9 +1340,9 @@ add_to_window (GtkWindow *window, GedaMenuBar *menubar)
   connect_settings_signal(menubar);
 
   /* Connect an accelerator to items on the Menu Bar */
-  gtk_container_foreach (GTK_CONTAINER(menubar),
-                        (GtkCallback)accelerate_children,
-                         menubar->priv->accel_group);
+  gtk_container_foreach ((GtkContainer*)menubar,
+                         (GtkCallback)accelerate_children,
+                          menubar->priv->accel_group);
 
   set_menu_bars (window, g_list_append (menubars, menubar));
 }
@@ -1370,7 +1367,7 @@ remove_from_window (GtkWindow *window, GedaMenuBar *menubar)
   }
 
   /* Disconnect the settings Monitor */
-  remove_settings_signal(menubar, gtk_widget_get_screen (GTK_WIDGET (menubar)));
+  remove_settings_signal(menubar, gtk_widget_get_screen ((GtkWidget*)menubar));
 
   set_menu_bars (window, menubars);
 }
@@ -1433,14 +1430,14 @@ geda_menu_bar_key_press (GtkWidget *widget, GdkEventKey *event)
 {
   GedaMenuShell *menu_shell;
 
-  menu_shell = GEDA_MENU_SHELL (widget);
+  menu_shell = (GedaMenuShell*)widget;
 
   bool handled = FALSE;
 
   if (menu_shell->children) {
 
     /* See geda_menu_bar_move_current */
-    handled = gtk_bindings_activate_event (GTK_OBJECT(menu_shell), event);
+    handled = gtk_bindings_activate_event ((GtkObject*)menu_shell, event);
 
     if (!handled) {
 
@@ -1523,7 +1520,7 @@ geda_menu_bar_window_key_press_handler (GtkWidget   *widget,
 
     if ((event->keyval == keyval) && (event_mods == accel_mods)) {
 
-      GedaMenuShell *menu_shell = GEDA_MENU_SHELL (menu_bar);
+      GedaMenuShell *menu_shell = (GedaMenuShell*)menu_bar;
 
       geda_menu_shell_set_keyboard_mode (menu_shell, TRUE);
       geda_menu_shell_activate (menu_shell);
@@ -1576,8 +1573,8 @@ geda_menu_bar_cycle_focus (GedaMenuBar *menubar, GtkDirectionType  dir)
     GList *menubars;
 
     all_bars = geda_menu_bar_get_viewable_menu_bars (GTK_WINDOW (toplevel));
-    menubars = geda_container_focus_sort (GTK_CONTAINER (toplevel), all_bars,
-                                          dir, GTK_WIDGET (menubar));
+    menubars = geda_container_focus_sort ((GtkContainer*)toplevel, all_bars,
+                                           dir, (GtkWidget*)menubar);
     g_list_free (all_bars);
 
     if (menubars) {
@@ -1597,7 +1594,7 @@ geda_menu_bar_cycle_focus (GedaMenuBar *menubar, GtkDirectionType  dir)
     g_list_free (menubars);
   }
 
-  geda_menu_shell_cancel (GEDA_MENU_SHELL (menubar));
+  geda_menu_shell_cancel ((GedaMenuShell*)menubar);
 
   if (to_activate) {
     g_signal_emit_by_name (to_activate, "activate-item");
@@ -1631,14 +1628,13 @@ geda_menu_bar_get_popup_delay (GedaMenuShell *menu_shell)
  *   sort of way.
  */
 static void
-geda_menu_bar_move_current (GedaMenuShell *menu_shell,
-                            MenuDirection  direction)
+geda_menu_bar_move_current (GedaMenuShell *menu_shell, MenuDirection direction)
 {
   GedaMenuBar *menubar = GEDA_MENU_BAR (menu_shell);
   GtkTextDirection text_dir;
   PackDirection pack_dir;
 
-  text_dir = gtk_widget_get_direction (GTK_WIDGET(menubar));
+  text_dir = gtk_widget_get_direction ((GtkWidget*)menubar);
   pack_dir = geda_menu_bar_get_pack_direction (menubar);
 
   if (pack_dir == PACK_DIRECTION_LTR || pack_dir == PACK_DIRECTION_RTL)
@@ -1736,14 +1732,14 @@ geda_menu_bar_set_pack_direction (GedaMenuBar   *menubar,
 
     priv->pack_direction = pack_dir;
 
-    gtk_widget_queue_resize (GTK_WIDGET(menubar));
+    gtk_widget_queue_resize ((GtkWidget*)menubar);
 
-    for (list = GEDA_MENU_SHELL(menubar)->children; list; list = list->next)
+    for (list = ((GedaMenuShell*)menubar)->children; list; list = list->next)
     {
-      gtk_widget_queue_resize (GTK_WIDGET(list->data));
+      gtk_widget_queue_resize ((GtkWidget*)list->data);
     }
 
-    g_object_notify (G_OBJECT (menubar), "pack-direction");
+    g_object_notify ((GObject*)menubar, "pack-direction");
   }
 }
 
@@ -1791,13 +1787,13 @@ geda_menu_bar_set_child_pack_direction (GedaMenuBar   *menubar,
 
     priv->child_pack_direction = child_pack_dir;
 
-    gtk_widget_queue_resize (GTK_WIDGET(menubar));
+    gtk_widget_queue_resize ((GtkWidget*)menubar);
 
-    for (list = GEDA_MENU_SHELL (menubar)->children; list; list = list->next)
+    for (list = ((GedaMenuShell*)menubar)->children; list; list = list->next)
     {
-      gtk_widget_queue_resize (GTK_WIDGET(list->data));
+      gtk_widget_queue_resize ((GtkWidget*)list->data);
     }
-    g_object_notify (G_OBJECT (menubar), "child-pack-direction");
+    g_object_notify ((GObject*)menubar, "child-pack-direction");
   }
 }
 
@@ -1842,9 +1838,9 @@ geda_menu_bar_set_label_mnemonic_visible (GedaMenuBar *menubar, bool state)
 {
   if (GEDA_IS_MENU_SHELL(menubar)) {
 
-    if (GEDA_MENU_SHELL(menubar)->children) {
+    if (((GedaMenuShell*)menubar)->children) {
 
-      GList *children = GEDA_MENU_SHELL(menubar)->children;
+      GList *children = ((GedaMenuShell*)menubar)->children;
       GList *iter;
 
       for (iter = children; iter; iter = iter->next) {
@@ -1855,10 +1851,10 @@ geda_menu_bar_set_label_mnemonic_visible (GedaMenuBar *menubar, bool state)
 
           GtkWidget *child;
 
-          child = gtk_bin_get_child (GTK_BIN(menu_item));
+          child = gtk_bin_get_child ((GtkBin*)menu_item);
 
           if (GEDA_IS_LABEL(child)) {
-            geda_label_set_mnemonic_visible (GEDA_LABEL(child), state);
+            geda_label_set_mnemonic_visible ((GedaLabel*)child, state);
           }
         }
       }
