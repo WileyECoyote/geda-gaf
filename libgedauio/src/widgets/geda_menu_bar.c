@@ -1258,7 +1258,7 @@ static void activate_child(GtkWidget *menu_item)
     /* The item is not activatable directly, so get parent */
     GtkWidget *parent = gtk_widget_get_parent(menu_item);
 
-    if GEDA_IS_MENU_SHELL(parent) {
+    if (GEDA_IS_MENU_SHELL(parent)) {
 
       GedaMenuShell *menu_shell = (GedaMenuShell*)parent;
 
@@ -1486,9 +1486,9 @@ geda_menu_bar_window_key_press_handler (GtkWidget   *widget,
   bool   retval;
 
   retval   = FALSE;
-  bars     = geda_menu_bar_get_viewable_menu_bars(GTK_WINDOW(widget));
-  menubars = geda_container_focus_sort (GTK_CONTAINER(widget), bars,
-                                        GTK_DIR_TAB_FORWARD, NULL);
+  bars     = geda_menu_bar_get_viewable_menu_bars((GtkWindow*)widget);
+  menubars = geda_container_focus_sort ((GtkContainer*)widget, bars,
+                                         GTK_DIR_TAB_FORWARD, NULL);
   g_list_free (bars);
 
   if (menubars) {
@@ -1549,7 +1549,7 @@ geda_menu_bar_hierarchy_changed (GtkWidget *widget, GtkWidget *old_toplevel)
   }
 
   if (gtk_widget_is_toplevel (toplevel)) {
-    add_to_window (GTK_WINDOW (toplevel), menubar);
+    add_to_window ((GtkWindow*)toplevel, menubar);
   }
 }
 
@@ -1572,7 +1572,7 @@ geda_menu_bar_cycle_focus (GedaMenuBar *menubar, GtkDirectionType  dir)
     GList *all_bars;
     GList *menubars;
 
-    all_bars = geda_menu_bar_get_viewable_menu_bars (GTK_WINDOW (toplevel));
+    all_bars = geda_menu_bar_get_viewable_menu_bars ((GtkWindow*)toplevel);
     menubars = geda_container_focus_sort ((GtkContainer*)toplevel, all_bars,
                                            dir, (GtkWidget*)menubar);
     g_list_free (all_bars);

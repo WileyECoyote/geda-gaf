@@ -12,7 +12,8 @@
 
     * src/widgets/geda_menu_bar.c: Eliminate or replace unnecessary gobject type
       cast with ordinary cast in order to eliminate a multitude of meaningless
-      calls to g_type_check_instance_cast.
+      calls to g_type_check_instance_cast. Add missing parentheses in function
+      activate_child.
 
     * src/widgets/geda_menu_item.c: Eliminate or replace unnecessary gobject type
       cast with ordinary cast in order to eliminate a profusion of meaningless
