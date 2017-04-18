@@ -2621,14 +2621,14 @@ geda_combo_box_set_popup_widget (GedaComboBox *combo_box, GtkWidget *popup)
      * menu itself, since the menu is not shown/hidden when it is
      * popped up while torn-off.
      */
-    g_signal_connect (GEDA_MENU (popup)->toplevel, "show",
+    g_signal_connect (((GedaMenu*)popup)->toplevel, "show",
                       G_CALLBACK (geda_combo_box_menu_show), combo_box);
-    g_signal_connect (GEDA_MENU (popup)->toplevel, "hide",
+    g_signal_connect (((GedaMenu*)popup)->toplevel, "hide",
                       G_CALLBACK (geda_combo_box_menu_hide), combo_box);
 
-    geda_menu_attach_to_widget (GEDA_MENU (popup),
-                               GTK_WIDGET (combo_box),
-                               geda_combo_box_detacher);
+    geda_menu_attach_to_widget ((GedaMenu*)popup,
+                                (GtkWidget*)combo_box,
+                                 geda_combo_box_detacher);
   }
   else {
 
@@ -2652,7 +2652,7 @@ geda_combo_box_set_popup_widget (GedaComboBox *combo_box, GtkWidget *popup)
                         G_CALLBACK (geda_combo_box_child_hide),
                         combo_box);
 
-      toplevel = gtk_widget_get_toplevel (GTK_WIDGET (combo_box));
+      toplevel = gtk_widget_get_toplevel ((GtkWidget*)combo_box);
 
       if (GTK_IS_WINDOW (toplevel)) {
 
@@ -2664,7 +2664,7 @@ geda_combo_box_set_popup_widget (GedaComboBox *combo_box, GtkWidget *popup)
 
       gtk_window_set_resizable (window, FALSE);
 
-      gtk_window_set_screen (window, gtk_widget_get_screen(GTK_WIDGET(combo_box)));
+      gtk_window_set_screen (window, gtk_widget_get_screen((GtkWidget*)combo_box));
 
       priv->scrolled_window = gtk_scrolled_window_new (NULL, NULL);
 

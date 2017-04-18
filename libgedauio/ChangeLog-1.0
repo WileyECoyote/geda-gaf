@@ -1,5 +1,9 @@
 2017-04-18 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_combobox.c: Eliminate or replace unnecessary gobject type
+      cast with ordinary cast in order to eliminate a heap of meaningless calls
+      to g_type_check_instance_cast.
+
     * src/widgets/geda_menu.c: Eliminate or replace unnecessary gobject type
       cast with ordinary cast in order to eliminate hordes of meaningless
       calls to g_type_check_instance_cast.
@@ -15,6 +19,8 @@
     * src/widgets/geda_menu_shell.c: Eliminate or replace unnecessary gobject type
       cast with ordinary cast in order to eliminate oodles of meaningless calls to
       g_type_check_instance_cast.
+
+      sub-total: 18757 - 15547 = 3210 less calls to g_type_check_instance_cast.
 
 2017-04-17 Wiley E. Hill <wileyhill@gmail.com>
 
