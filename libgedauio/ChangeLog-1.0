@@ -1,3 +1,9 @@
+2017-04-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu.c: Eliminate or replace unnecessary gobject type
+      cast with ordinary cast in order to eliminate hordes of meaningless
+      calls to g_type_check_instance_cast.
+
 2017-04-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_tree_view.h: Replace brackets with quotes to include
