@@ -3803,8 +3803,6 @@ geda_menu_detach (GedaMenu *menu)
   MenuAttachData *data;
   GList          *list;
 
-  g_return_if_fail (GEDA_IS_MENU (menu));
-
   /* keep this function in sync with gtk_widget_unparent() */
   data = g_object_get_data (G_OBJECT (menu), attached_data_key);
 
@@ -3812,7 +3810,7 @@ geda_menu_detach (GedaMenu *menu)
     return;
   }
 
-  g_object_set_data (G_OBJECT (menu), attached_data_key, NULL);
+  g_object_set_data ((GObject*)menu, attached_data_key, NULL);
 
   g_signal_handlers_disconnect_by_func (data->attach_widget,
                                        (void*)attach_widget_screen_changed,
@@ -3821,19 +3819,19 @@ geda_menu_detach (GedaMenu *menu)
     data->detacher (data->attach_widget, menu);
   }
 
-  list = g_object_steal_data (G_OBJECT (data->attach_widget), attached_menus_key);
+  list = g_object_steal_data ((GObject*)data->attach_widget, attached_menus_key);
   list = g_list_remove (list, menu);
 
   if (list) {
-    g_object_set_data_full (G_OBJECT (data->attach_widget), attached_menus_key, list,
+    g_object_set_data_full ((GObject*)data->attach_widget, attached_menus_key, list,
                             (GDestroyNotify) g_list_free);
   }
   else {
-    g_object_set_data (G_OBJECT (data->attach_widget), attached_menus_key, NULL);
+    g_object_set_data ((GObject*)data->attach_widget, attached_menus_key, NULL);
   }
 
-  if (gtk_widget_get_realized (GTK_WIDGET (menu))) {
-    gtk_widget_unrealize (GTK_WIDGET (menu));
+  if (gtk_widget_get_realized ((GtkWidget*)menu)) {
+    gtk_widget_unrealize ((GtkWidget*)menu);
   }
 
   free (data);
@@ -3843,7 +3841,7 @@ geda_menu_detach (GedaMenu *menu)
   /* Fallback title for menu comes from attach widget */
   geda_menu_update_title (menu);
 
-  g_object_notify (G_OBJECT (menu), "attach-widget");
+  g_object_notify ((GObject*)menu, "attach-widget");
   g_object_unref (menu);
 }
 
