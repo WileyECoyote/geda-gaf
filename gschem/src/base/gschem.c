@@ -456,6 +456,9 @@ static void main_prog(void *closure, int argc, char *argv[])
   if (gschem_threads_init()) {
     run_mode = 2;
   }
+  else {
+    run_mode = 1;
+  }
 
 #else
 
