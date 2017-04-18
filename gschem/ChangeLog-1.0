@@ -1,3 +1,9 @@
+2017-04-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_menus.c: Replace unnecessary gobject type cast with ordinary
+      cast, eliminating over 500 calls to g_type_check_instance_cast. Yes
+      the cast checking can be disable, but this is global not selective.
+
 2017-04-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_menus.c: Release buffer_menu_name in x_menu_free_all. Replace
