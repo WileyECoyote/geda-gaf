@@ -2712,7 +2712,7 @@ geda_combo_box_menu_position_below (GtkWidget *menu,      /* GedaMenu */
   /* FIXME: is using the size request here broken? WEH: Yes*/
   child = ((GtkBin*)combo_widget)->child;
 
-  combo_box = ((GedaComboBox*)combo_widget;
+  combo_box = (GedaComboBox*)combo_widget;
 
   sx = sy = 0;
 
@@ -2995,12 +2995,12 @@ static void
 update_menu_sensitivity (GedaComboBox *combo_box, GtkWidget *menu)
 {
   GedaComboBoxData *priv = combo_box->priv;
-  GList *children, *child;
+  const GList *children, *child;
 
   if (!priv->model)
     return;
 
-  children = gtk_container_get_children (GTK_CONTAINER (menu));
+  children = geda_menu_shell_get_children ((GedaMenuShell*)menu);
 
   for (child = children; child; child = child->next) {
 
@@ -3013,7 +3013,7 @@ update_menu_sensitivity (GedaComboBox *combo_box, GtkWidget *menu)
     if (!GTK_IS_CELL_VIEW (cell_view))
       continue;
 
-    submenu = geda_menu_item_get_submenu (GEDA_MENU_ITEM (item));
+    submenu = geda_menu_item_get_submenu ((GedaMenuItem*)item);
 
     if (submenu != NULL) {
       gtk_widget_set_sensitive (item, TRUE);
@@ -3023,8 +3023,9 @@ update_menu_sensitivity (GedaComboBox *combo_box, GtkWidget *menu)
 
       bool sensitive;
 
-      sensitive = cell_view_is_sensitive (GTK_CELL_VIEW (cell_view));
+      sensitive = cell_view_is_sensitive ((GtkCellView*)cell_view);
 
+      /* First iteration of for loop after recursion */
       if (menu != priv->popup_widget && child == children) {
 
         GtkWidget *separator = GTK_WIDGET (child->next->data);
@@ -3037,8 +3038,6 @@ update_menu_sensitivity (GedaComboBox *combo_box, GtkWidget *menu)
       }
     }
   }
-
-  g_list_free (children);
 }
 
 static void
@@ -3069,7 +3068,7 @@ geda_combo_box_menu_popup (GedaComboBox *combo_box,
   }
 
   /* FIXME handle nested menus better */
-  geda_menu_set_active (GEDA_MENU (priv->popup_widget), active_item);
+  geda_menu_set_active ((GedaMenu*)priv->popup_widget, active_item);
 
   if (priv->wrap_width == 0) {
 
