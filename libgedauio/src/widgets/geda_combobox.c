@@ -252,21 +252,21 @@ static void     geda_combo_box_menu_hide            (GtkWidget       *menu,
 
 static void     geda_combo_box_set_popup_widget     (GedaComboBox    *combo_box,
                                                      GtkWidget       *popup);
-static void     geda_combo_box_menu_position_below  (GedaMenu        *menu,
+static void     geda_combo_box_menu_position_below  (GtkWidget       *menu,
                                                      int             *x,
                                                      int             *y,
                                                      int             *push_in,
-                                                     void            *user_data);
-static void     geda_combo_box_menu_position_over   (GedaMenu        *menu,
+                                                     GtkWidget       *combo_box);
+static void     geda_combo_box_menu_position_over   (GtkWidget       *menu,
                                                      int             *x,
                                                      int             *y,
                                                      int             *push_in,
-                                                     void            *user_data);
+                                                     GtkWidget       *combo_box);
 static void     geda_combo_box_menu_position        (GedaMenu        *menu,
                                                      int             *x,
                                                      int             *y,
                                                      int             *push_in,
-                                                     void            *user_data);
+                                                     GtkWidget       *combo_box);
 
 static int      geda_combo_box_calc_requested_width (GedaComboBox    *combo_box,
                                                      GtkTreePath     *path);
@@ -2689,25 +2689,27 @@ geda_combo_box_set_popup_widget (GedaComboBox *combo_box, GtkWidget *popup)
 }
 
 static void
-geda_combo_box_menu_position_below (GedaMenu *menu,
-                                    int      *x,
-                                    int      *y,
-                                    int      *push_in,
-                                    void     *user_data)
+geda_combo_box_menu_position_below (GtkWidget *menu,      /* GedaMenu */
+                                          int *x,
+                                          int *y,
+                                          int *push_in,
+                                    GtkWidget *combo_widget)
 {
-  GedaComboBox   *combo_box = GEDA_COMBO_BOX (user_data);
+  GedaComboBox   *combo_box;
   GtkAllocation  *allocation;
   GtkWidget      *child;
   GdkRectangle    monitor;
   GtkRequisition  req;
   GdkScreen      *screen;
   GdkWindow      *window;
+
   int monitor_num;
   int sx, sy;
 
-
   /* FIXME: is using the size request here broken? WEH: Yes*/
-  child = GTK_BIN (combo_box)->child;
+  child = ((GtkBin*)combo_widget)->child;
+
+  combo_box = ((GedaComboBox*)combo_widget;
 
   sx = sy = 0;
 
@@ -2719,15 +2721,17 @@ geda_combo_box_menu_position_below (GedaMenu *menu,
   }
 
   window = geda_get_widget_window (child);
+
   gdk_window_get_root_coords (window, sx, sy, &sx, &sy);
 
-  if (GTK_SHADOW_NONE != combo_box->priv->shadow_type) {
-    sx -= GTK_WIDGET (combo_box)->style->xthickness;
+  if (GTK_SHADOW_NONE != combo_box->priv->shadow_type)
+  {
+    sx -=  combo_widget->style->xthickness;
   }
 
-  gtk_widget_size_request (GTK_WIDGET (menu), &req);
+  gtk_widget_size_request (menu, &req);
 
-  if (gtk_widget_get_direction (GTK_WIDGET (combo_box)) == GTK_TEXT_DIR_LTR) {
+  if (gtk_widget_get_direction (combo_widget) == GTK_TEXT_DIR_LTR) {
     *x = sx;
   }
   else {
@@ -2736,8 +2740,8 @@ geda_combo_box_menu_position_below (GedaMenu *menu,
 
   *y = sy;
 
-  screen      = gtk_widget_get_screen (GTK_WIDGET (combo_box));
-  window      = gtk_widget_get_window (GTK_WIDGET (combo_box));
+  screen      = gtk_widget_get_screen (combo_widget);
+  window      = gtk_widget_get_window (combo_widget);
   monitor_num = gdk_screen_get_monitor_at_window (screen, window);
 
   gdk_screen_get_monitor_geometry (screen, monitor_num, &monitor);
@@ -2769,45 +2773,41 @@ geda_combo_box_menu_position_below (GedaMenu *menu,
   *push_in = FALSE;
 }
 
+/* Call only by geda_combo_box_menu_position */
 static void
-geda_combo_box_menu_position_over (GedaMenu *menu,
-                                   int      *x,
-                                   int      *y,
-                                   bool     *push_in,
-                                   void     *user_data)
+geda_combo_box_menu_position_over (GtkWidget *menu_widget, /* GedaMenu */
+                                         int *x,
+                                         int *y,
+                                        bool *push_in,
+                                   GtkWidget *combo_widget)
 {
   GtkAllocation  *allocation;
-  GedaComboBox   *combo_box;
   GtkWidget      *active;
-  GtkWidget      *widget;
+  const GList    *children;
   GtkRequisition  requisition;
-  GList          *children;
 
   int screen_width;
   int menu_xpos;
   int menu_ypos;
   int menu_width;
 
-  combo_box  = GEDA_COMBO_BOX (user_data);
-  widget     = GTK_WIDGET (combo_box);
+  allocation = geda_get_widget_allocation (combo_widget);
 
-  allocation = geda_get_widget_allocation (widget);
-
-  gtk_widget_get_child_requisition (GTK_WIDGET (menu), &requisition);
+  gtk_widget_get_child_requisition (menu_widget, &requisition);
 
   menu_width = requisition.width;
 
   menu_xpos  = allocation->x;
   menu_ypos  = allocation->y + allocation->height / 2 - 2;
 
-  active = geda_menu_get_active (GEDA_MENU (combo_box->priv->popup_widget));
+  active = geda_menu_get_active ((GedaMenu*)menu_widget);
 
   if (active != NULL)  {
     gtk_widget_get_child_requisition (active, &requisition);
-    menu_ypos -= requisition.height / 2;
+    menu_ypos -= requisition.height >> 1;
   }
 
-  children = GEDA_MENU_SHELL (combo_box->priv->popup_widget)->children;
+  children = geda_menu_shell_get_children((GedaMenuShell*)menu_widget);
 
   while (children) {
 
@@ -2825,15 +2825,15 @@ geda_combo_box_menu_position_over (GedaMenu *menu,
     children = children->next;
   }
 
-  if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL) {
+  if (gtk_widget_get_direction (combo_widget) == GTK_TEXT_DIR_RTL) {
     menu_xpos = menu_xpos + allocation->width - menu_width;
   }
 
-  gdk_window_get_root_coords (widget->window, menu_xpos, menu_ypos,
+  gdk_window_get_root_coords (combo_widget->window, menu_xpos, menu_ypos,
                               &menu_xpos, &menu_ypos);
 
   /* Clamp the position on screen */
-  screen_width = gdk_screen_get_width (gtk_widget_get_screen (widget));
+  screen_width = gdk_screen_get_width (gtk_widget_get_screen (combo_widget));
 
   if (menu_xpos < 0) {
     menu_xpos = 0;
@@ -2848,34 +2848,37 @@ geda_combo_box_menu_position_over (GedaMenu *menu,
   *push_in = TRUE;
 }
 
+/*! \internal #MenuPositionFunc for geda_combo_box_menu_popup */
 static void
 geda_combo_box_menu_position (GedaMenu *menu,
-                              int      *x,
-                              int      *y,
-                              int      *push_in,
-                              void     *user_data)
+                                   int *x,
+                                   int *y,
+                                   int *push_in,
+                             GtkWidget *combo_widget)
 {
-  GedaComboBox *combo_box = GEDA_COMBO_BOX (user_data);
-  GedaComboBoxData *priv  = combo_box->priv;
+  GedaComboBoxData *priv = ((GedaComboBox*)combo_widget)->priv;
 
   if (priv->wrap_width > 0 || priv->cell_view == NULL) {
-    geda_combo_box_menu_position_below (menu, x, y, push_in, user_data);
+    geda_combo_box_menu_position_below ((GtkWidget*)menu, x, y, push_in, combo_widget);
   }
   else {
 
-    GtkWidget *menu_item;
+    GtkWidget *widget_item;
 
+    /* Check if there is an active item and if so then select the item */
     /* FIXME handle nested menus better */
-    menu_item = geda_menu_get_active (GEDA_MENU (priv->popup_widget));
-    if (menu_item)
-      geda_menu_shell_select_item (GEDA_MENU_SHELL (priv->popup_widget),
-                                  menu_item);
+    widget_item = geda_menu_get_active (menu);
 
-      geda_combo_box_menu_position_over (menu, x, y, push_in, user_data);
+    if (widget_item) {
+      geda_menu_shell_select_item ((GedaMenuShell*)menu, widget_item);
+    }
+
+    geda_combo_box_menu_position_over ((GtkWidget*)menu, x, y, push_in, combo_widget);
   }
 
-  if (!gtk_widget_get_visible (GEDA_MENU (priv->popup_widget)->toplevel)) {
-    gtk_window_set_type_hint (GTK_WINDOW (GEDA_MENU (priv->popup_widget)->toplevel),
+  if (!gtk_widget_get_visible (menu->toplevel))
+  {
+    gtk_window_set_type_hint (GTK_WINDOW (menu->toplevel),
                               GDK_WINDOW_TYPE_HINT_COMBO);
   }
 }
@@ -3079,10 +3082,10 @@ geda_combo_box_menu_popup (GedaComboBox *combo_box,
                                  MAX (width, requisition.width), -1);
   }
 
-  geda_menu_popup (GEDA_MENU (priv->popup_widget),
-                  NULL, NULL,
-                  geda_combo_box_menu_position, combo_box,
-                  button, activate_time);
+  geda_menu_popup ((GedaMenu*)priv->popup_widget,
+                   NULL, NULL, (MenuPositionFunc)
+                   geda_combo_box_menu_position, combo_box,
+                   button, activate_time);
 }
 
 static bool

@@ -1,3 +1,11 @@
+2017-04-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_combobox.c: Revise geda_combo_box_menu_position and
+      helpers geda_combo_box_menu_position_below and geda_combo_box_menu_
+      position_over: Change arguments to GtkWidget to reduce cast and eliminate
+      g_type_check_instance_cast since these are all internal functions, add
+      comments.
+
 2017-04-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Eliminate or replace unnecessary gobject type
