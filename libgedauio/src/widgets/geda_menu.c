@@ -3792,7 +3792,7 @@ geda_menu_get_attach_widget (GedaMenu *menu)
  * \brief Detach a GedaMenu from a Widget
  * \par Function Description
  * Detaches the menu from the widget to which the menu had been attached.
- * This function will call the callback function, \a detacher, provided
+ * This function will call the callback function, \a detacher, if provided
  * when the geda_menu_attach_to_widget() function was called.
  *
  * \param[in] menu: a #GedaMenu
