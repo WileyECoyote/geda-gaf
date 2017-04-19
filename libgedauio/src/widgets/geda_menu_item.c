@@ -3679,6 +3679,8 @@ geda_menu_item_forall (GtkContainer *container,
   }
 }
 
+/*! \internal
+ * \param [in] menu_item should be validated by callers */
 static void
 geda_menu_item_ensure_label (GedaMenuItem *menu_item)
 {
@@ -3698,15 +3700,19 @@ geda_menu_item_ensure_label (GedaMenuItem *menu_item)
   }
 }
 
+/* callers:
+ * geda_menu_shell_activate_mnemonic
+ * geda_menu_bar_key_press
+ */
 bool
 geda_menu_item_is_selectable (GedaMenuItem  *menu_item)
 {
   if (menu_item != NULL) {
     if ((!gtk_bin_get_child (GTK_BIN(menu_item)) &&
-      G_OBJECT_TYPE (menu_item) == GEDA_TYPE_MENU_ITEM) ||
-      GEDA_IS_MENU_SEPERATOR (menu_item) ||
-      !gtk_widget_is_sensitive (GTK_WIDGET(menu_item)) ||
-      !gtk_widget_get_visible (GTK_WIDGET(menu_item)))
+          G_OBJECT_TYPE (menu_item) == GEDA_TYPE_MENU_ITEM) ||
+          GEDA_IS_MENU_SEPERATOR (menu_item)                ||
+         !gtk_widget_is_sensitive ((GtkWidget*)menu_item)   ||
+         !gtk_widget_get_visible ((GtkWidget*)menu_item))
       return FALSE;
 
     return TRUE;
@@ -3717,6 +3723,7 @@ geda_menu_item_is_selectable (GedaMenuItem  *menu_item)
 bool
 geda_menu_item_is_widget_selectable (GtkWidget *widget)
 {
+
   if (widget != NULL) {
     if ((!gtk_bin_get_child (GTK_BIN(widget)) &&
       G_OBJECT_TYPE (widget) == GEDA_TYPE_MENU_ITEM) ||
