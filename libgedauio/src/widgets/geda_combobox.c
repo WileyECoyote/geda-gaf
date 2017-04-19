@@ -1781,14 +1781,15 @@ geda_combo_box_buildable_get_internal_child (GtkBuildable *buildable,
   return object;
 }
 
-/*! \brief GedaComboBox Type Class Initializer
- *  \par Function Description
+/*!
+ * \brief GedaComboBox Type Class Initializer
+ * \par Function Description
  *  Type class initializer called to initialize the class instance.
  *  Overrides parents virtual class methods as needed and registers
  *  GObject signals.
  *
- *  \param [in]  class       GedaComboClass class we are initializing
- *  \param [in]  class_data  GedaCombo structure associated with the class
+ * \param [in]  class       GedaComboClass class we are initializing
+ * \param [in]  class_data  GedaCombo structure associated with the class
  */
 static void
 geda_combo_box_class_init(void *class, void *class_data)
@@ -2311,8 +2312,9 @@ geda_combo_box_cell_editable_init (GtkCellEditableIface *iface)
   iface->start_editing = geda_combo_box_start_editing;
 }
 
-/*! \brief Initialize new GedaComboBox data structure instance.
- *  \par Function Description
+/*!
+ * \brief Initialize new GedaComboBox data structure instance.
+ * \par Function Description
  *  This function is call after the GedaComboBoxClass is created
  *  to initialize the data structure.
  *
@@ -2370,16 +2372,16 @@ geda_combo_box_instance_init(GTypeInstance *instance, void *class)
   geda_combo_box_check_appearance (combo_box);
 }
 
-/*! \brief Retrieve GedaComboBox's Type identifier.
- *
- *  \par Function Description
+/*!
+ * \brief Retrieve GedaComboBox's Type identifier.
+   \par Function Description
  *  Function to retrieve a #GedaComboBox Type identifier. When
  *  first called, the function registers a #GedaComboBox in the
  *  GedaType system to obtain an identifier that uniquely itentifies
  *  a GedaComboBox and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *
- *  \return GedaType identifier associated with GedaComboBox.
+ * \return GedaType identifier associated with GedaComboBox.
  */
 GedaType
 geda_combo_box_get_type (void)
@@ -2688,6 +2690,7 @@ geda_combo_box_set_popup_widget (GedaComboBox *combo_box, GtkWidget *popup)
   }
 }
 
+/*! \internal helper for geda_combo_box_menu_position */
 static void
 geda_combo_box_menu_position_below (GtkWidget *menu,      /* GedaMenu */
                                           int *x,
@@ -2724,8 +2727,7 @@ geda_combo_box_menu_position_below (GtkWidget *menu,      /* GedaMenu */
 
   gdk_window_get_root_coords (window, sx, sy, &sx, &sy);
 
-  if (GTK_SHADOW_NONE != combo_box->priv->shadow_type)
-  {
+  if (GTK_SHADOW_NONE != combo_box->priv->shadow_type) {
     sx -=  combo_widget->style->xthickness;
   }
 
@@ -2773,7 +2775,7 @@ geda_combo_box_menu_position_below (GtkWidget *menu,      /* GedaMenu */
   *push_in = FALSE;
 }
 
-/* Call only by geda_combo_box_menu_position */
+/*! \internal helper for geda_combo_box_menu_position */
 static void
 geda_combo_box_menu_position_over (GtkWidget *menu_widget, /* GedaMenu */
                                          int *x,
@@ -3791,9 +3793,9 @@ geda_combo_box_relayout (GedaComboBox *combo_box)
   g_list_free (list);
 }
 
-/*! \brief Popup Menu Callback; User Clicked View Auto
- *
- *  \par Function Description
+/*!
+ * \brief Popup Menu Callback; User Clicked View Auto
+ * \par Function Description
  *  This functions is called when the user selects View Auto option
  *  on the popup menu. The current system style setting is used for
  *  auto mode.
@@ -3828,9 +3830,9 @@ geda_combo_box_clicked_view_auto (GedaMenuItem *menuitem, void *user_data)
   }
 }
 
-/*! \brief Popup Menu Callback; User Clicked View Menu
- *
- *  \par Function Description
+/*!
+ * \brief Popup Menu Callback; User Clicked View Menu
+ * \par Function Description
  *  This functions is call when the user selects View as Menu on the popup
  *  menu.
  */
@@ -3860,9 +3862,9 @@ geda_combo_box_clicked_view_menu (GedaMenuItem *menuitem, void *user_data)
   }
 }
 
-/*! \brief Popup Menu Callback; User Clicked View List
- *
- *  \par Function Description
+/*!
+ * \brief Popup Menu Callback; User Clicked View List
+ * \par Function Description
  *  This functions call when the user select View as list from the
  *  popup menu.
  */
@@ -3892,9 +3894,9 @@ geda_combo_clicked_view_list (GedaMenuItem *menuitem, void *user_data)
   }
 }
 
-/*! \brief GedaCombo Right Mouse Show Popup
- *
- *  \par Function Description
+/*!
+ * \brief GedaCombo Right Mouse Show Popup
+ * \par Function Description
  *  This functions creates and displays a small pop-up menu on
  *  the combo button when the right mouse button is pressed on
  *  both the menu and list views.
@@ -3965,13 +3967,14 @@ geda_combo_box_button_state_changed (GtkWidget    *widget,
   gtk_widget_queue_draw (widget);
 }
 
-/*! \brief GedaCombo Button Pressed on Button Callback
- *  \par Function Description
- *   If the button was the left button the drop-down menu is displayed,
- *   if the button was the right button then a popup options menu is
- *   is displayed.
+/*!
+ * \brief GedaCombo Button Pressed on Button Callback
+ * \par Function Description
+ *  If the button was the left button the drop-down menu is displayed,
+ *  if the button was the right button then a popup options menu is
+ *  is displayed.
  *
- *   \sa geda_combo_box_list_button_pressed geda_combo_box_show_popup
+ * \sa geda_combo_box_list_button_pressed geda_combo_box_show_popup
  */
 static bool geda_combo_box_menu_button_press (GtkWidget      *widget,
                                               GdkEventButton *event,
@@ -5451,11 +5454,11 @@ geda_combo_box_cell_layout_reorder (GtkCellLayout   *layout,
  * public API
  */
 
-/*! \brief Creates a new empty #GedaComboBox
- *  \par Function Description
+/*!
+ * \brief Creates a new empty #GedaComboBox
+ * \par Function Description
  *
  * \return value: A new #GedaComboBox.
- *
  */
 GtkWidget *
 geda_combo_box_new (void)
@@ -5463,9 +5466,10 @@ geda_combo_box_new (void)
   return g_object_new (GEDA_TYPE_COMBO_BOX, NULL);
 }
 
-/*! \brief Creates a new #GedaComboBox with an Entry
- *  \par Function Description
- * Creates a new empty #GedaComboBox with an entry.
+/*!
+ * \brief Creates a new #GedaComboBox with an Entry
+ * \par Function Description
+ *  Creates a new empty #GedaComboBox with an entry.
  *
  * \return value: A new #GedaComboBox.
  */
@@ -5664,16 +5668,15 @@ geda_combo_box_set_active (GedaComboBox *combo_box, int index)
   }
 }
 
-/*! \brief Get Active #GedaComboBox iter
- *
- *  \par Function Description
+/*!
+ * \brief Get Active #GedaComboBox iter
+ * \par Function Description
  *  Sets \a iter to point to the current active item, if it exists.
  *
- *  \param [in]  combobox  A #GedaComboBox
- *  \param [out] iter      The uninitialized <b>GtkTreeIter</b>
+ * \param [in]  combobox  A #GedaComboBox
+ * \param [out] iter      The uninitialized <b>GtkTreeIter</b>
  *
- *  \return value: %TRUE, if \a iter was set
- *
+ * \return value: %TRUE, if \a iter was set
  */
 bool geda_combo_box_get_active_iter (GedaComboBox *combobox, GtkTreeIter *iter)
 {
@@ -5696,14 +5699,14 @@ bool geda_combo_box_get_active_iter (GedaComboBox *combobox, GtkTreeIter *iter)
   return result;
 }
 
-/*! \brief Set Active #GedaComboBox iter
- *
- *  \par Function Description
+/*!
+ * \brief Set Active #GedaComboBox iter
+ * \par Function Description
  *  Sets the current active item to be the one referenced by \a iter, or
  *  unsets the active item if \a iter is %NULL.
  *
- *  \param [in] combobox  A #GedaComboBox
- *  \param [in] iter       The <b>GtkTreeIter</b>, or %NULL
+ * \param [in] combobox  A #GedaComboBox
+ * \param [in] iter       The <b>GtkTreeIter</b>, or %NULL
  */
 void geda_combo_box_set_active_iter (GedaComboBox *combobox, GtkTreeIter *iter)
 {
@@ -5758,12 +5761,12 @@ geda_combo_box_get_count (GedaComboBox *combo_box)
   return count;
 }
 
-/*! \brief Get Active #GedaComboBox Model
- *
- *  \par Function Description
+/*!
+ * \brief Get Active #GedaComboBox Model
+ * \par Function Description
  *  Returns the GtkTreeModel which is acting as data source for \a combo_box.
  *
- *  \param [in] combo_box A #GedaComboBox
+ * \param [in] combo_box A #GedaComboBox
  *
  * \return A GtkTreeModel which was passed during construction.
  */
