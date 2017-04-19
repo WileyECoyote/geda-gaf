@@ -450,7 +450,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
                               "_Quit",                                       /* Text */
                             _("Quit gschem and exit"),                       /* Tooltip */
                               "gtk-quit",                                    /* Icon stock ID */
-                              "F S");                                        /* Accelerator string */
+                              "F Q");                                        /* Accelerator string */
 
     GtkWidget *quit_item = geda_action_create_menu_item (action);
     g_signal_connect (G_OBJECT(action), "activate",

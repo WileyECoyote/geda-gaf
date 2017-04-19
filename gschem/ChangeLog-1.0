@@ -1,4 +1,11 @@
+2017-04-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_menus.c: Update keys for emergency File/Quit in x_menu_setup_ui
+      ::create_file_menu.
+
 2017-04-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/base/gschem.c: Set run_mode to 1 if gschem_threads_init fails.
 
     * src/x/x_menus.c: Replace unnecessary gobject type cast with ordinary
       cast, eliminating over 500 calls to g_type_check_instance_cast. Yes
