@@ -143,7 +143,7 @@ static float i_diagnostics_test_draw_time(GschemToplevel *w_current, int attempt
   gtk_window_present (GTK_WINDOW(w_current->main_window));
 
   getrusage(RUSAGE_SELF, &before);
-  for( i = 0; i < attempts; i++) {
+  for (i = 0; i < attempts; i++) {
     gdk_window_invalidate_rect (w_current->window, NULL, FALSE);
     gdk_window_process_updates(w_current->window, FALSE);
   }

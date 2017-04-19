@@ -383,7 +383,7 @@ void i_command_process(GschemToplevel *w_current, const char* command,
 
         int wx, wy, check_magnet = FALSE;
 
-        if ( who != ID_ORIGIN_MOUSE) {
+        if (who != ID_ORIGIN_MOUSE) {
 
           /*  If not mouse, then likely is keyboard, this is intended to
            *  handle all except the mouse */
