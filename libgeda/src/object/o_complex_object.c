@@ -46,14 +46,14 @@ geda_complex_object_error(const char *func, const void *object)
   geda_object_error(func, object, GEDA_OBJECT_COMPLEX);
 }
 
-/*! \brief Create a copy of a COMPLEX object
- *
- *  \par Function Description
+/*!
+ * \brief Create a copy of a COMPLEX object
+ * \par Function Description
  *  This function creates a copy of the complex object \a o_current.
  *
- *  \param [in] o_current    The object that is copied
+ * \param [in] o_current    The object that is copied
  *
- *  \return a new COMPLEX object
+ * \return a new COMPLEX object
  */
 GedaObject*
 geda_complex_object_copy(GedaObject *o_current)
@@ -109,18 +109,17 @@ geda_complex_object_copy(GedaObject *o_current)
   return NULL;
 }
 
-/*! \brief check the symversion of a complex object
- *
- *  \par Function Description
+/*!
+ * \brief check the symversion of a complex object
+ * \par Function Description
  *  This function compares the symversion of a symbol with it's
  *  earlier saved symversion in a schematic.
  *  Major symversion changes are added to the toplevel object
  *  (toplevel->major_changed_refdes), minor changes are reported
  *  to the messaging system.
  *
- *  \param [in] toplevel  Optional pointer to GedaToplevel toplevel
- *  \param [in] object    The complex Object
- *
+ * \param [in] toplevel  Optional pointer to GedaToplevel toplevel
+ * \param [in] object    The complex Object
  */
 void
 geda_complex_object_check_symbol_version(GedaToplevel *toplevel, GedaObject *object)
@@ -446,13 +445,12 @@ o_complex_create_placeholder(GedaToplevel *toplevel, GedaComplex *complex,
   return (GedaObject*)complex;
 }
 
-/*! \brief Queries the bounds of a complex object
+/*!
+ * \brief Queries the bounds of a complex object
+ * \par Function Description
+ *  This function returns the bounding box of the complex <B>object</B>.
  *
- *  \par Function Description
- *  This function returns the bounding box of the complex object
- *  <B>object</B>.
- *
- *  \param [in]  object   The complex object.
+ * \param [in]  object   The complex object.
  */
 int
 geda_complex_object_get_bounds(GedaObject *object)
@@ -483,20 +481,21 @@ geda_complex_object_get_filename (GedaObject *object)
   return object->complex->filename;
 }
 
-/*! \brief Get Point on a GedaComplex Nearest a Given Point
- *  \par Function Description
+/*!
+ * \brief Get Point on a GedaComplex Nearest a Given Point
+ * \par Function Description
  *  Recursively calls geda_object_get_nearest_point on the closest sub-object of
  *  the complex and returns the results of the function corresponding
  *  to the appropriate type of object for the selected sub-object.
  *
- *  \param [in]  object  Pointer to a GedaComplex object
- *  \param [in]  x       Integer pointer
- *  \param [in]  y       Integer pointer
- *  \param [out] nx      Integer pointer
- *  \param [out] ny      Integer pointer
+ * \param [in]  object  Pointer to a GedaComplex object
+ * \param [in]  x       Integer pointer
+ * \param [in]  y       Integer pointer
+ * \param [out] nx      Integer pointer
+ * \param [out] ny      Integer pointer
  *
- *  \returns TRUE is the results are valid or
- *           FALSE if \a object was not a GedaComplex.
+ * \returns TRUE is the results are valid or
+ *          FALSE if \a object was not a GedaComplex.
  */
 bool
 geda_complex_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
@@ -563,9 +562,9 @@ geda_complex_object_get_nearest_point (GedaObject *object, int x, int y, int *nx
  * \par Function Description
  *  Returns a GList of GedaPin objects associated with \a object.
  *
- *  \param [in] object A GedaComplex object
+ * \param [in] object A GedaComplex object
  *
- *  \returns GList of pins belonging to the complex.
+ * \returns GList of pins belonging to the complex.
  */
 GList*
 geda_complex_object_get_pin_objs(GedaObject *object)
@@ -605,9 +604,9 @@ geda_complex_object_get_position (GedaObject *object, int *x, int *y)
  * \par Function Description
  *  Returns a GList of GedaObjects associated with \a object.
  *
- *  \param [in] object A GedaComplex object
+ * \param [in] object A GedaComplex object
  *
- *  \returns GList of subobjects belonging to the complex.
+ * \returns GList of subobjects belonging to the complex.
  */
 GList *
 geda_complex_object_get_prim_objs (GedaObject *object)
@@ -619,9 +618,9 @@ geda_complex_object_get_prim_objs (GedaObject *object)
   return object->complex->prim_objs;
 }
 
-/*! \brief Get attributes eligible for promotion from inside a complex
- *
- *  \par Function Description
+/*!
+ * \brief Get attributes eligible for promotion from inside a complex
+ * \par Function Description
  *  Returns a GList of Objects which are eligible for promotion from
  *  within the passed complex Object.
  *
@@ -629,11 +628,11 @@ geda_complex_object_get_prim_objs (GedaObject *object)
  *  from the prim_objs of the complex.  If detach is FALSE, the
  *  GedaObjects are left in place.
  *
- *  \param [in] toplevel The toplevel environment,
- *  \param [in] object   The complex object being modified,
- *  \param [in] detach   Should the attributes be detached?
+ * \param [in] toplevel The toplevel environment,
+ * \param [in] object   The complex object being modified,
+ * \param [in] detach   Should the attributes be detached?
  *
- *  \returns Linked list of Objects to promote.
+ * \returns Linked list of Objects to promote.
  */
 GList*
 geda_complex_object_get_promotable (GedaToplevel *toplevel, GedaObject *object, int detach)
@@ -679,17 +678,17 @@ geda_complex_object_get_promotable (GedaToplevel *toplevel, GedaObject *object, 
   return FALSE;
 }
 
-/*! \brief Find a pin with a particular attribute
- *
- *  \par Function Description
+/*!
+ * \brief Find a pin with a particular attribute
+ * \par Function Description
  *  Search for a pin inside the given complex which has an attribute
  *  matching those passed.
  *
- *  \param [in] object  Complex GedaObject to search
- *  \param [in] name    The attribute name to search for
- *  \param [in] wanted  The attribute value to search for
+ * \param [in] object  Complex GedaObject to search
+ * \param [in] name    The attribute name to search for
+ * \param [in] wanted  The attribute value to search for
  *
- *  \return The pin Object with the given attribute, NULL otherwise.
+ * \return The pin Object with the given attribute, NULL otherwise.
  */
 GedaObject*
 geda_complex_object_find_pin_by_attribute (GedaObject *object, char *name, char *wanted)
@@ -724,17 +723,17 @@ geda_complex_object_find_pin_by_attribute (GedaObject *object, char *name, char 
   return NULL;
 }
 
-/*! \brief check whether an object is a attributes
- *
- *  \par Function Description
+/*!
+ * \brief check whether an object is a attributes
+ * \par Function Description
  *  This function checks if an object should be promoted.
  *  An attribute object is promotable if it is promoted by default, or the user
  *  has configered it to promote an attribute.
  *
- *  \param [in] toplevel  The GedaToplevel object,
- *  \param [in] object    The attribute object to check.
+ * \param [in] toplevel  The GedaToplevel object,
+ * \param [in] object    The attribute object to check.
  *
- *  \return TRUE if the object is a eligible attribute, FALSE otherwise.
+ * \return TRUE if the object is a eligible attribute, FALSE otherwise.
  */
 static int
 o_complex_is_eligible_attribute (GedaToplevel *toplevel, GedaObject *object)
@@ -800,13 +799,14 @@ o_complex_is_eligible_attribute (GedaToplevel *toplevel, GedaObject *object)
   return answer;
 }
 
-/*! \brief Get the embedded state of a GedaComplex object
- *  \par Function Description
+/*!
+ * \brief Get the embedded state of a GedaComplex object
+ * \par Function Description
  *  Returns the status of the complex object.
  *
- *  \param object  The object to check
+ * \param object  The object to check
  *
- *  \return 1 if embedded, 0 otherwise
+ * \return 1 if embedded, 0 otherwise
  */
 int
 geda_complex_object_is_embedded(GedaObject *object)
@@ -818,15 +818,15 @@ geda_complex_object_is_embedded(GedaObject *object)
   return 0;
 }
 
-/*! \brief Mirror a GedaComplex GedaObject
- *
- *  \par Function Description
+/*!
+ * \brief Mirror a GedaComplex GedaObject
+ * \par Function Description
  *  This function mirrors a complex from the point
  *  (<B>center_x</B>,<B>center_y</B>) in world unit.
  *
- *  \param [in,out] object    Complex GedaObject to mirror
- *  \param [in]     center_x  Origin x coordinate
- *  \param [in]     center_y  Origin y coordinate
+ * \param [in,out] object    Complex GedaObject to mirror
+ * \param [in]     center_x  Origin x coordinate
+ * \param [in]     center_y  Origin y coordinate
  */
 void
 geda_complex_object_mirror(GedaObject *object, int center_x, int center_y)
@@ -862,19 +862,20 @@ geda_complex_object_mirror(GedaObject *object, int center_x, int center_y)
   }
 }
 
-/*! \brief Create a New GedaComplex GedaObject
- *
- *  \par Function Description
+/*!
+ * \brief Create a New GedaComplex GedaObject
+ * \par Function Description
  *  Creates and initialize a new complex object.
  *
- *  \return a new complex object
+ * \return a new complex object
  */
-GedaObject *geda_complex_object_new(GedaToplevel *toplevel,
-                                    int x, int y,
-                                    int angle, int mirror,
-                                    const CLibSymbol *clib,
-                                    const char *basename,
-                                    int selectable)
+GedaObject *
+geda_complex_object_new(GedaToplevel *toplevel,
+                        int x, int y,
+                        int angle, int mirror,
+                        const CLibSymbol *clib,
+                        const char *basename,
+                        int selectable)
 {
   GedaObject  *new_obj;
   GedaComplex *complex;
@@ -969,26 +970,27 @@ GedaObject *geda_complex_object_new(GedaToplevel *toplevel,
   return new_obj;
 }
 
-/*! \brief Create a new embedded object
- *
- *  \par Function Description
+/*!
+ * \brief Create a new embedded object
+ * \par Function Description
  *  This function creates a new embedded object.
  *
- *  \param [in]  x         The x location of the complex object
- *  \param [in]  y         The y location of the complex object
- *  \param [in]  angle     The rotation angle
- *  \param [in]  mirror    The mirror status
- *  \param [in]  basename  The basic name the embedded was created of
- *  \param [in]  selectable whether the object can be selected with the mouse
+ * \param [in]  x         The x location of the complex object
+ * \param [in]  y         The y location of the complex object
+ * \param [in]  angle     The rotation angle
+ * \param [in]  mirror    The mirror status
+ * \param [in]  basename  The basic name the embedded was created of
+ * \param [in]  selectable whether the object can be selected with the mouse
  *
- *  \return a new complex object
+ * \return a new complex object
  */
-GedaObject *geda_complex_object_new_embedded(int x,
-                                             int y,
-                                             int angle,
-                                             int mirror,
-                                      const char *basename,
-                                             int selectable)
+GedaObject*
+geda_complex_object_new_embedded(int x,
+                                 int y,
+                                 int angle,
+                                 int mirror,
+                                 const char *basename,
+                                 int selectable)
 {
   GedaObject  *new_obj;
   GedaComplex *complex;
@@ -1015,18 +1017,18 @@ GedaObject *geda_complex_object_new_embedded(int x,
   return new_obj;
 }
 
-/*! \brief Promote attributes from a complex Object
- *
- *  \par Function Description
+/*!
+ * \brief Promote attributes from a complex Object
+ * \par Function Description
  *  Selects promotable attributes from \a object, and returns a new
  *  GList containing them (suitable for appending to a #Page).
  *
- *  \param [in] toplevel The #GedaToplevel environment,
- *  \param [in] object   The complex#GedaObject to promote from.
+ * \param [in] toplevel The #GedaToplevel environment,
+ * \param [in] object   The complex#GedaObject to promote from.
  *
- *  \return A GList of promoted attributes.
+ * \return A GList of promoted attributes.
  */
-GList *
+GList*
 geda_complex_object_promote_attribs (GedaToplevel *toplevel,
                                      GedaObject   *object)
 {
@@ -1080,9 +1082,9 @@ geda_complex_object_promote_attribs (GedaToplevel *toplevel,
   return promoted;
 }
 
-/*! \brief Delete or hide promotable attributes from the passed GedaObject
- *
- *  \par Function Description
+/*!
+ * \brief Delete or hide promotable attributes from the passed GedaObject
+ * \par Function Description
  *  Deletes or hides promotable attributes from \a GedaObject. This is used
  *  when loading symbols while loading a schematic from disk. The schematic
  *  will already contain local copies of symbol's promotable objects, so we
@@ -1092,8 +1094,8 @@ geda_complex_object_promote_attribs (GedaToplevel *toplevel,
  *  toplevel->keep_invisible. If true, attributes eligible for
  *  promotion are kept in memory but flagged as invisible.
  *
- *  \param [in] toplevel The toplevel environment,
- *  \param [in] object   The complex object being altered.
+ * \param [in] toplevel The toplevel environment,
+ * \param [in] object   The complex object being altered.
  */
 static void
 o_complex_remove_promotable (GedaToplevel *toplevel, GedaObject *object)
@@ -1123,21 +1125,21 @@ o_complex_remove_promotable (GedaToplevel *toplevel, GedaObject *object)
   g_list_free (promotable);
 }
 
-/*! \brief Read Complex object from a char buffer
+/*!
+ * \brief Read Complex object from a char buffer
+ * \par Function Description
+ *  This function reads a complex object from the buffer \a buf.
+ *  If the complex object was read successfully, a new object is
+ *  allocated and appended to the object_list in \a toplevel.
  *
- *  \par Function Description
- *   This function reads a complex object from the buffer \a buf.
- *   If the complex object was read successfully, a new object is
- *   allocated and appended to the object_list in \a toplevel.
+ * \param [in] toplevel       The GedaToplevel object
+ * \param [in] buf            Text buffer (usually a line of a schematic file)
+ * \param [in] release_ver    The release number gEDA
+ * \param [in] fileformat_ver An integer value of the file format
  *
- *  \param [in] toplevel       The GedaToplevel object
- *  \param [in] buf            Text buffer (usually a line of a schematic file)
- *  \param [in] release_ver    The release number gEDA
- *  \param [in] fileformat_ver An integer value of the file format
+ * \param [out] err           A GError object
  *
- *  \param [out] err           A GError object
- *
- *  \return The object list, or NULL on error.
+ * \return The object list, or NULL on error.
  */
 GedaObject*
 geda_complex_object_read (GedaToplevel *toplevel, const char   buf[],
@@ -1220,12 +1222,12 @@ geda_complex_object_read (GedaToplevel *toplevel, const char   buf[],
   return new_obj;
 }
 
-/*! \brief Reset the refdes number back to a question mark
- *
- *  \par This function finds the refdes attribute inside this
+/*!
+ * \brief Reset the refdes number back to a question mark
+ * \par This function finds the refdes attribute inside this
  *  object and resets the refdes number back to a question mark.
  *
- *  \param [in] object      The complex containing text objects
+ * \param [in] object      The complex containing text objects
  */
 void
 geda_complex_object_reset_refdes(GedaObject *object)
@@ -1249,17 +1251,17 @@ geda_complex_object_reset_refdes(GedaObject *object)
   }
 }
 
-/*! \brief Rotates a complex object in world coordinates
+/*!
+ * \brief Rotates a complex object in world coordinates
+ * \par Function Description
+ *  This function rotates a complex \a object around the
+ *  (\a center_x,\a center_y) point by \a angle degrees.
+ *  The center of rotation is in world units.
  *
- *  \par Function Description
- *   This function rotates a complex \a object around the
- *   (\a center_x,\a center_y) point by \a angle degrees.
- *   The center of rotation is in world units.
- *
- *  \param [in,out] object    Complex object to rotate
- *  \param [in]     center_x  X coordinate of rotation center (world coords)
- *  \param [in]     center_y  Y coordinate of rotation center (world coords)
- *  \param [in]     angle     Rotation angle in degrees
+ * \param [in,out] object    Complex object to rotate
+ * \param [in]     center_x  X coordinate of rotation center (world coords)
+ * \param [in]     center_y  Y coordinate of rotation center (world coords)
+ * \param [in]     angle     Rotation angle in degrees
  */
 void
 geda_complex_object_rotate(GedaObject *object, int center_x, int center_y, int angle)
@@ -1336,25 +1338,25 @@ geda_complex_object_to_buffer(GedaObject *object)
   return NULL;
 }
 
-/*! \brief Get Shortest distance from Complex to point
+/*!
+ * \brief Get Shortest distance from Complex to point
+ * \par Function Description
+ *  Calculates the distance between the given point and the closest
+ *  point on an object within the complex object.
  *
- *  \par Function Description
- *   Calculates the distance between the given point and the closest
- *   point on an object within the complex object.
+ * \note When querying the distance to our child objects, we always
+ *       force treating them as solid filled.
+ *       We ignore the force_solid argument to this function.
  *
- *  \note When querying the distance to our child objects, we always
- *        force treating them as solid filled.
- *        We ignore the force_solid argument to this function.
+ * \param [in] object       A complex Object.
+ * \param [in] x            The x coordinate of the given point.
+ * \param [in] y            The y coordinate of the given point.
+ * \param [in] force_solid  If true, force treating the object as solid.
  *
- *  \param [in] object       A complex Object.
- *  \param [in] x            The x coordinate of the given point.
- *  \param [in] y            The y coordinate of the given point.
- *  \param [in] force_solid  If true, force treating the object as solid.
- *
- *  \return The shortest distance from the object to the point. If the
- *          distance cannot be calculated, this function returns a really
- *          large number (G_MAXDOUBLE).  With an invalid parameter, this
- *          function returns G_MAXDOUBLE.
+ * \return The shortest distance from the object to the point. If the
+ *         distance cannot be calculated, this function returns a really
+ *         large number (G_MAXDOUBLE).  With an invalid parameter, this
+ *         function returns G_MAXDOUBLE.
  */
 double
 geda_complex_object_shortest_distance(GedaObject *object, int x, int y, int force_solid)
