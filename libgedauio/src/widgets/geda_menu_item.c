@@ -3499,13 +3499,13 @@ geda_menu_item_refresh_accel_path (GedaMenuItem  *menu_item,
                                    GtkAccelGroup *accel_group,
                                    bool           group_changed)
 {
-  GedaMenuItemPrivate *priv = menu_item->priv;
-
+  GedaMenuItemPrivate *priv;
   GtkWidget  *widget;
 
   g_return_if_fail (GEDA_IS_MENU_ITEM(menu_item));
 
-  widget = GTK_WIDGET(menu_item);
+  priv   = menu_item->priv;
+  widget = (GtkWidget*)menu_item;
 
   if (!accel_group) {
     gtk_widget_set_accel_path (widget, NULL, NULL);

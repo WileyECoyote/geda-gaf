@@ -6,6 +6,9 @@
       g_type_check_instance_cast since these are all internal functions, add
       comments.
 
+    * src/widgets/geda_menu_item.c: Move setting pointer to priv after validating
+      the menu_item in geda_menu_item_refresh_accel_path.
+
 2017-04-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Eliminate or replace unnecessary gobject type
