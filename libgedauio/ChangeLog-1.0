@@ -1,5 +1,10 @@
 2017-04-20 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_combobox.c: Revise geda_combo_box_set_popup_widget:
+      Change toplevel to type GtkWindow and cast gtk_widget_get_toplevel since
+      pointer is immediately validated and not used otherwise, change cast
+      to static cast to eliminate g_type_check_instance_cast.
+
     * src/widgets/geda_menu_item.c: Revise geda_menu_item_sync_action_properties:
       add g_return_if_fail to ensure activatable is a GedaMenuItem and reduce
       the scope of lables, use static cast instead of g_type_check_instance_cast,

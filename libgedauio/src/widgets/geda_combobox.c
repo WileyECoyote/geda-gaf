@@ -2599,12 +2599,12 @@ geda_combo_box_set_popup_widget (GedaComboBox *combo_box, GtkWidget *popup)
   GedaComboBoxData *priv = combo_box->priv;
 
   if (GEDA_IS_MENU (priv->popup_widget)) {
-    geda_menu_detach (GEDA_MENU (priv->popup_widget));
+    geda_menu_detach ((GedaMenu*)priv->popup_widget);
     priv->popup_widget = NULL;
   }
   else if (priv->popup_widget) {
-    gtk_container_remove (GTK_CONTAINER (priv->scrolled_window),
-                          priv->popup_widget);
+    gtk_container_remove ((GtkContainer*)priv->scrolled_window,
+                           priv->popup_widget);
     g_object_unref (priv->popup_widget);
     priv->popup_widget = NULL;
   }
@@ -2636,11 +2636,11 @@ geda_combo_box_set_popup_widget (GedaComboBox *combo_box, GtkWidget *popup)
 
     if (!priv->popup_window) {
 
-      GtkWidget *toplevel;
+      GtkWindow *toplevel;
       GtkWindow *window;
 
       priv->popup_window = gtk_window_new (GTK_WINDOW_POPUP);
-      window             = GTK_WINDOW(priv->popup_window);
+      window             = (GtkWindow*)priv->popup_window;
 
       gtk_widget_set_name (priv->popup_window, "combobox-popup-window");
 
@@ -2654,14 +2654,13 @@ geda_combo_box_set_popup_widget (GedaComboBox *combo_box, GtkWidget *popup)
                         G_CALLBACK (geda_combo_box_child_hide),
                         combo_box);
 
-      toplevel = gtk_widget_get_toplevel ((GtkWidget*)combo_box);
+      toplevel = (GtkWindow*)gtk_widget_get_toplevel ((GtkWidget*)combo_box);
 
       if (GTK_IS_WINDOW (toplevel)) {
 
-        gtk_window_group_add_window (gtk_window_get_group (GTK_WINDOW (toplevel)),
-                                     window);
+        gtk_window_group_add_window (gtk_window_get_group (toplevel), window);
 
-        gtk_window_set_transient_for (window,  GTK_WINDOW (toplevel));
+        gtk_window_set_transient_for (window, toplevel);
       }
 
       gtk_window_set_resizable (window, FALSE);
@@ -2679,10 +2678,10 @@ geda_combo_box_set_popup_widget (GedaComboBox *combo_box, GtkWidget *popup)
 
       gtk_widget_show (priv->scrolled_window);
 
-      gtk_container_add (GTK_CONTAINER (priv->popup_window), priv->scrolled_window);
+      gtk_container_add ((GtkContainer*)window, priv->scrolled_window);
     }
 
-    gtk_container_add (GTK_CONTAINER (priv->scrolled_window), popup);
+    gtk_container_add ((GtkContainer*)priv->scrolled_window, popup);
 
     gtk_widget_show (popup);
     g_object_ref (popup);
