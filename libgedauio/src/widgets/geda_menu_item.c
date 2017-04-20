@@ -1208,39 +1208,45 @@ static void
 geda_menu_item_sync_action_properties (GtkActivatable *activatable,
                                        GtkAction      *action)
 {
-  GedaMenuItem        *menu_item = GEDA_MENU_ITEM(activatable);
-  GedaMenuItemPrivate *priv      = menu_item->priv;
-  GtkWidget           *label;
+  GtkBin              *bin_item;
+  GedaMenuItem        *menu_item;
+  GedaMenuItemPrivate *priv;
+  GtkWidget           *widget;
+
+  g_return_if_fail (GEDA_IS_MENU_ITEM (activatable));
+
+  bin_item  = (GtkBin*)activatable;
+  menu_item = (GedaMenuItem*)activatable;
+  widget    = (GtkWidget*)activatable;
+
+  priv      = menu_item->priv;
 
   if (!priv->use_action_appearance || !action) {
 
-    label = gtk_bin_get_child ((GtkBin*)menu_item);
+    GtkWidget *label = gtk_bin_get_child (bin_item);
 
     if (GEDA_IS_ACCEL_LABEL(label)) {
-
-      geda_accel_label_set_accel_widget ((GedaAccelLabel*)label,
-                                         (GtkWidget*)menu_item);
+      geda_accel_label_set_accel_widget ((GedaAccelLabel*)label, widget);
     }
   }
 
   if (!action)
     return;
 
-  geda_action_sync_menu_visible ((GedaAction*)action,
-                                 (GtkWidget*)menu_item,
-                                  geda_menu_is_empty (geda_menu_item_get_submenu (menu_item)));
+  geda_action_sync_menu_visible ((GedaAction*)action, widget,
+    geda_menu_is_empty (geda_menu_item_get_submenu (menu_item)));
 
 
-  gtk_widget_set_sensitive (GTK_WIDGET(menu_item), gtk_action_is_sensitive (action));
+  gtk_widget_set_sensitive (widget, gtk_action_is_sensitive (action));
 
   if (priv->use_action_appearance) {
 
-    label = gtk_bin_get_child ((GtkBin*)menu_item);
+    GtkWidget *label = gtk_bin_get_child (bin_item);
 
     /* make sure label is a label, deleting it otherwise */
     if (label && !GEDA_IS_LABEL (label)) {
 
-      gtk_container_remove (GTK_CONTAINER(menu_item), label);
+      gtk_container_remove ((GtkContainer*)menu_item, label);
       label = NULL;
     }
 
@@ -1250,7 +1256,7 @@ geda_menu_item_sync_action_properties (GtkActivatable *activatable,
     geda_menu_item_set_use_underline (menu_item, TRUE);
 
     /* Make label point to the menu_item's label */
-    label = gtk_bin_get_child ((GtkBin*)menu_item);
+    label = gtk_bin_get_child (bin_item);
 
     if (GEDA_IS_ACCEL_LABEL(label)) {
 
@@ -1259,9 +1265,9 @@ geda_menu_item_sync_action_properties (GtkActivatable *activatable,
       accel_path = gtk_action_get_accel_path (action);
 
       if (accel_path) {
-        geda_accel_label_set_accel_widget (GEDA_ACCEL_LABEL(label), NULL);
-        geda_accel_label_set_accel_closure (GEDA_ACCEL_LABEL(label),
-                                            gtk_action_get_accel_closure (action));
+        geda_accel_label_set_accel_widget ((GedaAccelLabel*)label, NULL);
+        geda_accel_label_set_accel_closure ((GedaAccelLabel*)label,
+          gtk_action_get_accel_closure (action));
       }
     }
 

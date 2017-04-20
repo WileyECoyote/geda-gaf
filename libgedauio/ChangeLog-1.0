@@ -1,3 +1,10 @@
+2017-04-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_item.c: Revise geda_menu_item_sync_action_properties:
+      add g_return_if_fail to ensure activatable is a GedaMenuItem and reduce
+      the scope of lables, use static cast instead of g_type_check_instance_cast,
+      i think this will work.
+
 2017-04-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Revise geda_combo_box_menu_position and
@@ -8,7 +15,8 @@
       children and eliminate g_list_free of the list of children.
 
     * src/widgets/geda_menu_item.c: Move setting pointer to priv after validating
-      the menu_item in geda_menu_item_refresh_accel_path.
+      the menu_item in geda_menu_item_refresh_accel_path. Add g_return_if_fail
+      to ensure activatable is a GedaMenuItem, i think this will work.
 
 2017-04-18 Wiley E. Hill <wileyhill@gmail.com>
 
