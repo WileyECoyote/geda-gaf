@@ -4738,7 +4738,7 @@ clear_text_callback (GtkClipboard *clipboard, void *user_data_or_owner)
 
   if (info) {
     info->selection_anchor = info->selection_end;
-    gtk_widget_queue_draw (GTK_WIDGET (label));
+    gtk_widget_queue_draw ((GtkWidget*)label);
   }
 }
 
@@ -4759,18 +4759,18 @@ static void geda_label_select_region_index (GedaLabel *label,
       priv->select_info->selection_end    == end_index)
       return;
 
-    g_object_freeze_notify (G_OBJECT (label));
+    g_object_freeze_notify ((GObject*)label);
 
     if (priv->select_info->selection_anchor != anchor_index)
-      g_object_notify (G_OBJECT (label), "selection-bound");
+      g_object_notify ((GObject*)label, "selection-bound");
     if (priv->select_info->selection_end != end_index)
-      g_object_notify (G_OBJECT (label), "cursor-position");
+      g_object_notify ((GObject*)label, "cursor-position");
 
     priv->select_info->selection_anchor = anchor_index;
     priv->select_info->selection_end    = end_index;
 
-    if (gtk_widget_has_screen (GTK_WIDGET (label))) {
-      clipboard = gtk_widget_get_clipboard (GTK_WIDGET (label),
+    if (gtk_widget_has_screen ((GtkWidget*)label)) {
+      clipboard = gtk_widget_get_clipboard ((GtkWidget*)label,
                                             GDK_SELECTION_PRIMARY);
     }
     else {
@@ -4792,19 +4792,19 @@ static void geda_label_select_region_index (GedaLabel *label,
                                       targets, n_targets,
                                       get_text_callback,
                                       clear_text_callback,
-                                      G_OBJECT (label));
+                                      (GObject*)label);
       }
       gtk_target_table_free (targets, n_targets);
       gtk_target_list_unref (list);
     }
-    else if (clipboard && gtk_clipboard_get_owner (clipboard) == G_OBJECT (label))
+    else if (clipboard && gtk_clipboard_get_owner (clipboard) == (GObject*)label)
     {
       gtk_clipboard_clear (clipboard);
     }
 
-    gtk_widget_queue_draw (GTK_WIDGET (label));
+    gtk_widget_queue_draw ((GtkWidget*)label);
 
-    g_object_thaw_notify (G_OBJECT (label));
+    g_object_thaw_notify ((GObject*)label);
   }
 }
 
@@ -4816,7 +4816,7 @@ static void geda_label_select_region_index (GedaLabel *label,
 static void
 get_better_cursor (GedaLabel *label, int index, int *x, int *y)
 {
-  GdkKeymap *keymap = gdk_keymap_get_for_display (gtk_widget_get_display (GTK_WIDGET (label)));
+  GdkKeymap *keymap = gdk_keymap_get_for_display (gtk_widget_get_display ((GtkWidget*)label));
   PangoDirection keymap_direction = gdk_keymap_get_direction (keymap);
   PangoDirection cursor_direction = get_cursor_direction (label);
   bool split_cursor;
@@ -4896,7 +4896,7 @@ geda_label_move_visually (GedaLabel *label, int start, int count)
   GtkWidget   *widget;
 
   index  = start;
-  widget = GTK_WIDGET(label);
+  widget = (GtkWidget*)label;
 
   split = gtk_widget_get_settings (widget);
 
@@ -5073,11 +5073,11 @@ geda_label_move_cursor (GedaLabel *label, GtkMovementStep step,
             bool success;
 
             direct  = count > 0 ? GTK_DIR_RIGHT : GTK_DIR_LEFT;
-            success = gtk_widget_keynav_failed (GTK_WIDGET(label), direct);
+            success = gtk_widget_keynav_failed ((GtkWidget*)label, direct);
 
             if (!success) {
 
-              GtkWidget *toplevel = gtk_widget_get_toplevel (GTK_WIDGET (label));
+              GtkWidget *toplevel = gtk_widget_get_toplevel ((GtkWidget*)label);
 
               if (toplevel)
                 gtk_widget_child_focus (toplevel,
@@ -5086,7 +5086,7 @@ geda_label_move_cursor (GedaLabel *label, GtkMovementStep step,
             }
           }
           else {
-            gtk_widget_error_bell (GTK_WIDGET (label));
+            gtk_widget_error_bell ((GtkWidget*)label);
           }
         }
         break;
@@ -5100,7 +5100,7 @@ geda_label_move_cursor (GedaLabel *label, GtkMovementStep step,
           count++;
         }
         if (new_pos == old_pos)
-          gtk_widget_error_bell (GTK_WIDGET (label));
+          gtk_widget_error_bell ((GtkWidget*)label);
         break;
       case GTK_MOVEMENT_DISPLAY_LINE_ENDS:
       case GTK_MOVEMENT_PARAGRAPH_ENDS:
@@ -5108,7 +5108,7 @@ geda_label_move_cursor (GedaLabel *label, GtkMovementStep step,
         /* FIXME: Can do better here */
         new_pos = count < 0 ? 0 : strlen (label->text);
         if (new_pos == old_pos)
-          gtk_widget_error_bell (GTK_WIDGET (label));
+          gtk_widget_error_bell ((GtkWidget*)label);
         break;
       case GTK_MOVEMENT_DISPLAY_LINES:
       case GTK_MOVEMENT_PARAGRAPHS:
@@ -5148,7 +5148,7 @@ geda_label_copy_clipboard (GedaLabel *label)
       start = len;
 
     clipboard =
-    gtk_widget_get_clipboard (GTK_WIDGET (label), GDK_SELECTION_CLIPBOARD);
+    gtk_widget_get_clipboard ((GtkWidget*)label, GDK_SELECTION_CLIPBOARD);
 
     if (start != end) {
       gtk_clipboard_set_text (clipboard, label->text + start, end - start);
@@ -5188,7 +5188,7 @@ append_action_signal (GedaLabel   *label,
 {
   GtkWidget *menuitem = geda_image_menu_item_new_from_stock (stock_id, NULL);
 
-  g_object_set_data (G_OBJECT (menuitem), "eda-signal", (char*)signal);
+  g_object_set_data ((GObject*)menuitem, "eda-signal", (char*)signal);
 
   g_signal_connect (menuitem, "activate", G_CALLBACK (activate_cb), label);
 
@@ -5219,7 +5219,7 @@ popup_position_func (GedaMenu *menu, int *x, int *y, bool *push_in, void *data)
   GdkWindow     *window;
   GtkRequisition req;
 
-  widget = GTK_WIDGET (data); /* = GEDA_LABEL (data) */
+  widget = (GtkWidget*)data; /* = GEDA_LABEL (data) */
 
   g_return_if_fail (gtk_widget_get_realized (widget));
 
@@ -5415,7 +5415,7 @@ geda_label_activate_link (GedaLabel *label, const char *uri)
 
 #if HAVE_GTK_SHOW_URI
 
-  GtkWidget *widget = GTK_WIDGET (label);
+  GtkWidget *widget = (GtkWidget*)label;
 
   result = gtk_show_uri (gtk_widget_get_screen (widget), uri,
                          gtk_get_current_event_time (), &error);
@@ -5584,9 +5584,9 @@ geda_label_set_angle (GedaLabel *label, double angle)
 
     geda_label_clear_layout (label);
 
-    gtk_widget_queue_resize (GTK_WIDGET (label));
+    gtk_widget_queue_resize ((GtkWidget*)label);
 
-    g_object_notify (G_OBJECT (label), "angle");
+    g_object_notify ((GObject*)label, "angle");
   }
 }
 
@@ -5644,9 +5644,9 @@ geda_label_set_attributes (GedaLabel *label, PangoAttrList *attrs)
 
   geda_label_clear_layout (label);
 
-  gtk_widget_queue_resize (GTK_WIDGET (label));
+  gtk_widget_queue_resize ((GtkWidget*)label);
 
-  g_object_notify (G_OBJECT (label), "attributes");
+  g_object_notify ((GObject*)label, "attributes");
 }
 
 /*!
@@ -5751,9 +5751,9 @@ void geda_label_set_ellipsize (GedaLabel *label, PangoEllipsizeMode mode)
     /* No real need to be this drastic, but easier than duplicating the code */
     geda_label_clear_layout (label);
 
-    gtk_widget_queue_resize (GTK_WIDGET (label));
+    gtk_widget_queue_resize ((GtkWidget*)label);
 
-    g_object_notify (G_OBJECT (label), "ellipsize");
+    g_object_notify ((GObject*)label, "ellipsize");
   }
 }
 
@@ -5805,9 +5805,9 @@ void geda_label_set_justify (GedaLabel *label, GtkJustification jtype)
     /* No real need to be this drastic, but easier than duplicating the code */
     geda_label_clear_layout (label);
 
-    gtk_widget_queue_resize (GTK_WIDGET (label));
+    gtk_widget_queue_resize ((GtkWidget*)label);
 
-    g_object_notify (G_OBJECT (label), "justify");
+    g_object_notify ((GObject*)label, "justify");
   }
 }
 
@@ -5956,9 +5956,9 @@ geda_label_set_line_wrap (GedaLabel *label, bool wrap)
 
     geda_label_clear_layout (label);
 
-    gtk_widget_queue_resize (GTK_WIDGET(label));
+    gtk_widget_queue_resize ((GtkWidget*)label);
 
-    g_object_notify (G_OBJECT (label), "wrap");
+    g_object_notify ((GObject*)label, "wrap");
   }
 }
 
@@ -6002,9 +6002,9 @@ geda_label_set_line_wrap_mode (GedaLabel *label, PangoWrapMode wrap_mode)
 
     label->priv->wrap_mode = wrap_mode;
 
-    gtk_widget_queue_resize (GTK_WIDGET (label));
+    gtk_widget_queue_resize ((GtkWidget*)label);
 
-    g_object_notify (G_OBJECT (label), "wrap-mode");
+    g_object_notify ((GObject*)label, "wrap-mode");
   }
 }
 
@@ -6123,9 +6123,9 @@ void geda_label_set_max_width_chars (GedaLabel *label, int n_chars)
 
     label->max_width_chars = n_chars;
 
-    gtk_widget_queue_resize (GTK_WIDGET (label));
+    gtk_widget_queue_resize ((GtkWidget*)label);
 
-    g_object_notify (G_OBJECT (label), "max-width-chars");
+    g_object_notify ((GObject*)label, "max-width-chars");
   }
 }
 
@@ -6344,9 +6344,8 @@ geda_label_set_mnemonic_widget (GedaLabel *label, GtkWidget *widget)
 
   if (priv->mnemonic_widget) {
 
-    gtk_widget_remove_mnemonic_label (priv->mnemonic_widget,
-                                      GTK_WIDGET (label));
-    g_object_weak_unref (G_OBJECT (priv->mnemonic_widget),
+    gtk_widget_remove_mnemonic_label(priv->mnemonic_widget, (GtkWidget*)label);
+    g_object_weak_unref ((GObject*)priv->mnemonic_widget,
                          label_mnemonic_widget_weak_notify,
                          label);
   }
@@ -6355,13 +6354,13 @@ geda_label_set_mnemonic_widget (GedaLabel *label, GtkWidget *widget)
 
   if (priv->mnemonic_widget) {
 
-    g_object_weak_ref (G_OBJECT (priv->mnemonic_widget),
+    g_object_weak_ref ((GObject*)priv->mnemonic_widget,
                        label_mnemonic_widget_weak_notify,
                        label);
-    gtk_widget_add_mnemonic_label (priv->mnemonic_widget, GTK_WIDGET (label));
+    gtk_widget_add_mnemonic_label (priv->mnemonic_widget, (GtkWidget*)label);
   }
 
-  g_object_notify (G_OBJECT (label), "mnemonic-widget");
+  g_object_notify ((GObject*)label, "mnemonic-widget");
 }
 
 /*!
@@ -6394,9 +6393,9 @@ void geda_label_set_pattern (GedaLabel *label, const char *pattern)
 
   geda_label_clear_layout (label);
 
-  gtk_widget_queue_resize (GTK_WIDGET (label));
+  gtk_widget_queue_resize ((GtkWidget*)label);
 
-  g_object_notify (G_OBJECT (label), "pattern");
+  g_object_notify ((GObject*)label, "pattern");
 }
 
 /*********************** Selectable Property **********************/
@@ -6454,12 +6453,12 @@ void geda_label_set_selectable (GedaLabel *label, bool setting)
   }
 
   if (setting != old_setting) {
-    g_object_freeze_notify (G_OBJECT (label));
-    g_object_notify (G_OBJECT (label), "selectable");
-    g_object_notify (G_OBJECT (label), "cursor-position");
-    g_object_notify (G_OBJECT (label), "selection-bound");
-    g_object_thaw_notify (G_OBJECT (label));
-    gtk_widget_queue_draw (GTK_WIDGET (label));
+    g_object_freeze_notify ((GObject*)label);
+    g_object_notify ((GObject*)label, "selectable");
+    g_object_notify ((GObject*)label, "cursor-position");
+    g_object_notify ((GObject*)label, "selection-bound");
+    g_object_thaw_notify ((GObject*)label);
+    gtk_widget_queue_draw ((GtkWidget*)label);
   }
 }
 
@@ -6603,9 +6602,9 @@ geda_label_set_single_line_mode (GedaLabel *label,
 
     geda_label_clear_layout (label);
 
-    gtk_widget_queue_resize (GTK_WIDGET (label));
+    gtk_widget_queue_resize ((GtkWidget*)label);
 
-    g_object_notify (G_OBJECT (label), "single-line-mode");
+    g_object_notify ((GObject*)label, "single-line-mode");
   }
 }
 
@@ -6627,7 +6626,7 @@ geda_label_set_text (GedaLabel *label, const char *str)
 {
   g_return_if_fail (GEDA_IS_LABEL(label));
 
-  g_object_freeze_notify (G_OBJECT (label));
+  g_object_freeze_notify ((GObject*)label);
 
   geda_label_set_label_internal (label, geda_strdup (str ? str : ""));
   geda_label_set_use_markup_internal (label, FALSE);
@@ -6635,7 +6634,7 @@ geda_label_set_text (GedaLabel *label, const char *str)
 
   geda_label_recalculate (label);
 
-  g_object_thaw_notify (G_OBJECT (label));
+  g_object_thaw_notify ((GObject*)label);
 }
 
 /****************** track_visited_links Property ******************/
@@ -6683,7 +6682,7 @@ geda_label_set_track_visited_links (GedaLabel *label, bool track_links)
       /* FIXME: shouldn't have to redo everything here */
       geda_label_recalculate (label);
 
-      g_object_notify (G_OBJECT (label), "track-visited-links");
+      g_object_notify ((GObject*)label, "track-visited-links");
     }
   }
 }
@@ -6721,13 +6720,13 @@ void geda_label_set_use_markup (GedaLabel *label, bool setting)
 {
   g_return_if_fail (GEDA_IS_LABEL(label));
 
-  g_object_freeze_notify (G_OBJECT (label));
+  g_object_freeze_notify ((GObject*)label);
 
   geda_label_set_use_markup_internal (label, setting);
 
   geda_label_recalculate (label);
 
-  g_object_thaw_notify (G_OBJECT (label));
+  g_object_thaw_notify ((GObject*)label);
 
 }
 
@@ -6764,13 +6763,13 @@ void geda_label_set_use_underline (GedaLabel *label, bool setting)
 {
   g_return_if_fail (GEDA_IS_LABEL(label));
 
-  g_object_freeze_notify (G_OBJECT(label));
+  g_object_freeze_notify ((GObject*)label);
 
   geda_label_set_use_underline_internal(label, setting);
 
   geda_label_recalculate (label);
 
-  g_object_thaw_notify (G_OBJECT(label));
+  g_object_thaw_notify ((GObject*)label);
 }
 
 /********************** Width Chars Property **********************/
@@ -6809,9 +6808,9 @@ void geda_label_set_width_chars (GedaLabel *label, int n_chars)
 
     label->width_chars = n_chars;
 
-    gtk_widget_queue_resize (GTK_WIDGET (label));
+    gtk_widget_queue_resize ((GtkWidget*)label);
 
-    g_object_notify (G_OBJECT (label), "width-chars");
+    g_object_notify ((GObject*)label, "width-chars");
   }
 }
 
@@ -6896,7 +6895,7 @@ geda_label_widget_get_alignment (GtkWidget *widget, float *xalign, float *yalign
 {
   g_return_if_fail (GEDA_IS_LABEL(widget));
 
-  gtk_misc_get_alignment (GTK_MISC(widget), xalign, yalign);
+  gtk_misc_get_alignment ((GtkMisc*)widget, xalign, yalign);
 }
 
 /*!
@@ -6915,7 +6914,7 @@ geda_label_widget_set_alignment (GtkWidget *widget, float xalign, float yalign)
 {
   g_return_if_fail (GEDA_IS_LABEL(widget));
 
-  gtk_misc_set_alignment (GTK_MISC(widget), xalign, yalign);
+  gtk_misc_set_alignment ((GtkMisc*)widget, xalign, yalign);
 }
 
 /*!
@@ -6936,7 +6935,7 @@ double geda_label_widget_get_angle (GtkWidget *widget)
  */
 void geda_label_widget_set_angle (GtkWidget *widget, double angle)
 {
-  geda_label_set_angle ( (GedaLabel*) widget, angle);
+  geda_label_set_angle ((GedaLabel*)widget, angle);
 }
 
 /*!
@@ -6953,7 +6952,7 @@ void geda_label_widget_set_angle (GtkWidget *widget, double angle)
 PangoEllipsizeMode
 geda_label_widget_get_ellipsize (GtkWidget *widget)
 {
-  return geda_label_get_ellipsize ( (GedaLabel*) widget);
+  return geda_label_get_ellipsize ((GedaLabel*) widget);
 }
 
 /*!
@@ -6970,7 +6969,7 @@ geda_label_widget_get_ellipsize (GtkWidget *widget)
 void
 geda_label_widget_set_ellipsize (GtkWidget *widget, PangoEllipsizeMode mode)
 {
-  geda_label_set_ellipsize ( (GedaLabel*) widget, mode);
+  geda_label_set_ellipsize ((GedaLabel*)widget, mode);
 }
 
 /*!
@@ -7008,7 +7007,7 @@ GtkJustification geda_label_widget_get_justify (GtkWidget *widget)
  */
 void geda_label_widget_set_justify (GtkWidget *widget, GtkJustification jtype)
 {
-  geda_label_set_justify ((GedaLabel*) widget, jtype);
+  geda_label_set_justify ((GedaLabel*)widget, jtype);
 }
 
 /*!
@@ -7042,7 +7041,7 @@ geda_label_widget_get_label (GtkWidget *label)
 void
 geda_label_widget_set_label (GtkWidget *label, const char *str)
 {
-  return geda_label_set_label((GedaLabel*)label, str);
+  return geda_label_set_label ((GedaLabel*)label, str);
 }
 
 /*!
@@ -7110,7 +7109,7 @@ void geda_label_widget_set_selectable (GtkWidget *label, bool setting)
  */
 const char *geda_label_widget_get_text (GtkWidget *widget)
 {
-  return geda_label_get_text((GedaLabel*) widget);
+  return geda_label_get_text((GedaLabel*)widget);
 }
 
 /*!
@@ -7126,7 +7125,7 @@ const char *geda_label_widget_get_text (GtkWidget *widget)
 void
 geda_label_widget_set_text (GtkWidget *widget, const char *str)
 {
-  geda_label_set_text((GedaLabel*)widget,str);
+  geda_label_set_text ((GedaLabel*)widget,str);
 }
 
 /*! \brief Widget Convenience Versions of label set_use_markup */
