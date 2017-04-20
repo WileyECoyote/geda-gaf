@@ -1,3 +1,11 @@
+2017-04-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * graphic/flow-chart/GOTO.sym: Change the pinlabel to a floating value
+      so that "A" can be changed to whatever.
+
+    * graphic/flow-chart/LABEL.sym: Change the pinlabel to a floating value
+      so that "A" can be changed to whatever.
+
 2017-04-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * passive/electrolytic/electrolytic-2*: Revise electrolytic style 2
