@@ -126,7 +126,7 @@ WidgetStringData DialogStrings[] = {
         { "PointerCursorCombo",     "    Cursor:",      "Select the preferred Pointer Cursor Style"},
         { "MiddleButtonCombo",      "Middle Button:",   "Controls if the middle mouse button draws strokes, repeats the last command, does an action (move and copy (pressing the ALT key) are supported) on a single objects, or if it does the mouse panning."},
         { "ThirdButtonCombo",       "Third Button:",    "Controls if the third mouse button displays a popup menu or performs panning"},
-        { "UndoTypeCombo",          "Undo Type:",       "Controls which Undo System configuration. The default is to use the disk as the storing medium (ie after every action the undo information is stored to disk). The other mechanism uses only memory. The disk mechanism is slower but allows undoing even after a system crash"},
+        { "UndoTypeCombo",          "Undo Type:",       "Controls which Undo System configuration. The default is to use the disk as the storing medium (i.e. after every action the undo information is stored to disk). The other mechanism uses only memory. The disk mechanism is slower but allows undoing even after a system crash"},
         { "FontNameCombo",          "Font:",            "Select the Default Font"},
         { "RipperSymbolCombo",      "Symbol:",          "Specify the symbol name to be used if ripper type is \"component\""},
         { "RendererCombo",          "     Renderer:",    "Choose which rendering system to use"},
