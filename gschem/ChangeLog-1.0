@@ -1,5 +1,12 @@
 2017-04-20 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/iface/i_diagnostics.c: Revise i_diagnostics_test_draw_time in an
+      attempt to stabilize test_draw_time. The results show that randomly, in
+      one or more, but rarely three, sets of 10, something is consuming more
+      time. Screening tests seem to indicate the hoarder is not in source and
+      this makes me wonder about pango/font config but not sure yet. Revisions
+      do not really seem to help, but seem like a good thing.
+
     * src/iface/i_zoom_world.c: Revise i_zoom_world_box_draw_rubber to eliminate
       width variable, is just 0P0.
 

@@ -131,6 +131,7 @@ static void i_diagnostics_grind_dump_redraw(GschemToplevel *w_current)
 static float i_diagnostics_test_draw_time(GschemToplevel *w_current, int attempts)
 {
   GdkDisplay   *display;
+  GdkWindow    *window;
   struct rusage before;
   struct rusage after;
   float a_cputime, b_cputime, e_cputime;
@@ -139,11 +140,18 @@ static float i_diagnostics_test_draw_time(GschemToplevel *w_current, int attempt
 
   display = gdk_display_get_default();
   gdk_display_flush(display);
+  gdk_display_sync (display);
 
   gtk_window_present (GTK_WINDOW(w_current->main_window));
 
+  window = geda_get_widget_window(w_current->main_window);
+  gdk_window_process_updates(window, TRUE);
+
+  g_usleep (500);
+
   getrusage(RUSAGE_SELF, &before);
   for (i = 0; i < attempts; i++) {
+    /* w_current->window = Drawing surface */
     gdk_window_invalidate_rect (w_current->window, NULL, FALSE);
     gdk_window_process_updates(w_current->window, FALSE);
   }
