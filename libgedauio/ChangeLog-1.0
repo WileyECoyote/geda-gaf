@@ -5,6 +5,10 @@
       the scope of lables, use static cast instead of g_type_check_instance_cast,
       i think this will work.
 
+    * src/widgets/geda_menu.c: Revise geda_menu_popup to eliminate if and set
+      xgrab_shell)->have_xgrab to what popup_grab_on_window returns, so that
+      if popup_grab_on_window returns false, then have_xgrab is false.
+
 2017-04-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Revise geda_combo_box_menu_position and

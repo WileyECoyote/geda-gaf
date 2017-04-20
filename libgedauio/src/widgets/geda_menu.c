@@ -4068,9 +4068,8 @@ geda_menu_popup (GedaMenu         *menu,
   gtk_window_set_accept_focus (GTK_WINDOW (menu->toplevel), grab_keyboard);
 
   if (xgrab_shell && xgrab_shell != widget) {
-
-    if (popup_grab_on_window (xgrab_shell->window, activate_time, grab_keyboard))
-      GEDA_MENU_SHELL (xgrab_shell)->have_xgrab = TRUE;
+    ((GedaMenuShell*)xgrab_shell)->have_xgrab =
+      popup_grab_on_window (xgrab_shell->window, activate_time, grab_keyboard);
   }
   else {
 
@@ -4078,11 +4077,11 @@ geda_menu_popup (GedaMenu         *menu,
 
     xgrab_shell = widget;
     transfer_window = menu_grab_transfer_window_get (menu);
-    if (popup_grab_on_window (transfer_window, activate_time, grab_keyboard))
-      GEDA_MENU_SHELL (xgrab_shell)->have_xgrab = TRUE;
+    ((GedaMenuShell*)xgrab_shell)->have_xgrab =
+      popup_grab_on_window (transfer_window, activate_time, grab_keyboard);
   }
 
-  if (!GEDA_MENU_SHELL (xgrab_shell)->have_xgrab) {
+  if (!((GedaMenuShell*)xgrab_shell)->have_xgrab) {
     /* We failed to make our pointer/keyboard grab. Rather than leaving the user
      * with a stuck up window, we just abort here. Presumably the user will
      * try again.
