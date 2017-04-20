@@ -407,15 +407,14 @@ i_zoom_world_box_invalidate_rubber (GschemToplevel *w_current)
 void
 i_zoom_world_box_draw_rubber (GschemToplevel *w_current)
 {
-  double wwidth     = 0;
   cairo_t *cr       = eda_renderer_get_cairo_context (CairoRenderer);
   GArray *color_map = eda_renderer_get_color_map (CairoRenderer);
   int flags         = eda_renderer_get_cairo_flags (CairoRenderer);
 
-  eda_cairo_box (cr, flags, wwidth, w_current->first_wx, w_current->first_wy,
-                 w_current->second_wx, w_current->second_wy);
+  eda_cairo_box (cr, flags, 0.0, w_current->first_wx, w_current->first_wy,
+                                 w_current->second_wx, w_current->second_wy);
   eda_cairo_set_source_color (cr, ZOOM_BOX_COLOR, color_map);
-  eda_cairo_stroke (cr, flags, TYPE_SOLID, END_NONE, wwidth, -1, -1);
+  eda_cairo_stroke (cr, flags, TYPE_SOLID, END_NONE, 0.0, -1, -1);
 }
 
 /*! \todo Finish function documentation!!!
