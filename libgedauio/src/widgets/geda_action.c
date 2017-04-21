@@ -48,7 +48,8 @@
  * WEH | 09/04/16 | Implement object identication system using a hash table.
  * WEH | 04/21/17 | Eliminate call to gtk_activatable_set_related_action in
  *                | geda_action_create_menu_item, set "related-action" in the
- *                | same g_object_set as "use-action-appearance".
+ *                | same g_object_set as "use-action-appearance". Replace
+ *                | g_type_check_instance_cast with static cast.
  *
  */
 
@@ -99,7 +100,7 @@ static GHashTable *action_hash_table = NULL;
  */
 static void geda_action_finalize (GObject *object)
 {
-  GedaAction *action = GEDA_ACTION (object);
+  GedaAction *action = (GedaAction*)object;
 
   if (g_hash_table_remove (action_hash_table, object)) {
     if (!g_hash_table_size (action_hash_table)) {
@@ -116,7 +117,7 @@ static void geda_action_finalize (GObject *object)
     g_free (action->icon_name);
   }
 
-  G_OBJECT_CLASS (geda_action_parent_class)->finalize (object);
+  ((GObjectClass*)geda_action_parent_class)->finalize (object);
 }
 
 /*! \brief GObject property setter function
@@ -135,7 +136,7 @@ static void
 geda_action_set_property (GObject *object, unsigned int property_id,
                           const    GValue *value, GParamSpec *pspec)
 {
-  GedaAction *action = GEDA_ACTION (object);
+  GedaAction *action = (GedaAction*)object;
 
   switch (property_id)
   {
@@ -172,7 +173,7 @@ static void
 geda_action_get_property (GObject *object, unsigned int property_id,
                           GValue  *value,  GParamSpec   *pspec)
 {
-  GedaAction *action = GEDA_ACTION (object);
+  GedaAction *action = (GedaAction*)object;
 
   switch (property_id)
   {
@@ -193,18 +194,18 @@ geda_action_get_property (GObject *object, unsigned int property_id,
 static void
 geda_action_connect_proxy (GtkAction *action, GtkWidget *proxy)
 {
-  GedaAction *geda_action = GEDA_ACTION (action);
+  GedaAction *geda_action = (GedaAction*)action;
 
   /* Override the type of label widget used with the menu item */
   if (GEDA_IS_MENU_ITEM (proxy)) {
 
     GtkWidget *label;
 
-    label = GTK_BIN (proxy)->child;
+    label = ((GtkBin*)proxy)->child;
 
     /* Ensure label is a GedaAccelLabel */
     if (label && !GEDA_IS_ACCEL_LABEL(label)) {
-      gtk_container_remove (GTK_CONTAINER(proxy), label);
+      gtk_container_remove ((GtkContainer*)proxy, label);
       label = NULL;
     }
 
@@ -235,7 +236,7 @@ geda_action_connect_proxy (GtkAction *action, GtkWidget *proxy)
   }
 
   /* Let the parent class do its work now we've fiddled with the label */
-  GTK_ACTION_CLASS(geda_action_parent_class)->connect_proxy (action, proxy);
+  ((GtkActionClass*)geda_action_parent_class)->connect_proxy (action, proxy);
 }
 
 /*! \brief GedaAction Type Class Initializer
@@ -252,8 +253,8 @@ static void
 geda_action_class_init(void *class, void *class_data)
 {
   GParamSpec     *params;
-  GObjectClass   *object_class    = G_OBJECT_CLASS (class);
-  GtkActionClass *gtkaction_class = GTK_ACTION_CLASS (class);
+  GObjectClass   *object_class    = (GObjectClass*)class;
+  GtkActionClass *gtkaction_class = (GtkActionClass*)class;
 
   gtkaction_class->connect_proxy  = geda_action_connect_proxy;
 
@@ -277,7 +278,7 @@ geda_action_class_init(void *class, void *class_data)
                                  NULL,
                                (G_PARAM_READWRITE));
 
-  g_object_class_install_property( object_class, PROP_ICON_ID, params);
+  g_object_class_install_property (object_class, PROP_ICON_ID, params);
 }
 
 /*! \brief Initialize new GedaAction data structure instance.
@@ -470,7 +471,7 @@ GedaAction *geda_action_new (const char *name,
 void
 geda_action_activate (GedaAction *action)
 {
-  gtk_action_activate (GTK_ACTION(action));
+  gtk_action_activate ((GtkAction*)action);
 }
 
 /*! \brief GedaAction Get Icon Name
@@ -541,7 +542,7 @@ void
 geda_action_disconnect_accelerator (GedaAction *action)
 {
   g_return_if_fail (GTK_IS_ACTION(action));
-  gtk_action_disconnect_accelerator(GTK_ACTION(action));
+  gtk_action_disconnect_accelerator((GtkAction*)action);
 }
 
 /*!
