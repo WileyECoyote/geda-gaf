@@ -93,8 +93,8 @@ geda_bus_dispose(GObject *object)
  */
 static void geda_bus_finalize(GObject *object)
 {
-  GedaBus    *bus = GEDA_BUS(object);
-  GedaObject *obj = GEDA_OBJECT(object);
+  GedaBus    *bus = (GedaBus*)object;
+  GedaObject *obj = (GedaObject*)object;
 
   if (bus->bus_name)
     GEDA_FREE(bus->bus_name);
@@ -103,7 +103,7 @@ static void geda_bus_finalize(GObject *object)
   obj->bus = NULL;
 
   /* Finialize the parent GedaLine Class */
-  GEDA_LINE_CLASS(geda_bus_parent_class)->finalize(object);
+  ((GedaLineClass*)geda_bus_parent_class)->finalize(object);
 }
 
 static void
@@ -112,7 +112,7 @@ get_property (GObject *object, unsigned int  prop_id,
                                GParamSpec   *pspec)
 
 {
-  GedaBus *bus = GEDA_BUS(object);
+  GedaBus *bus = (GedaBus*)object;
 
   switch (prop_id)
   {
@@ -131,7 +131,7 @@ set_property (GObject *object, unsigned int  prop_id,
                                const GValue *value,
                                GParamSpec   *pspec)
 {
-  GedaBus *bus = GEDA_BUS(object);
+  GedaBus *bus = (GedaBus*)object;
 
   switch (prop_id)
   {
@@ -151,16 +151,16 @@ set_property (GObject *object, unsigned int  prop_id,
  *  Type class initializer for Bus. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- *  \param [in]  g_class      The Bus class we are initialising
- *  \param [in]  class_data   The Bus structure associated with the class
+ *  \param [in]  klass       The Bus class we are initialising
+ *  \param [in]  class_data  The Bus structure associated with the class
  */
-static void geda_bus_class_init(void *g_class, void *class_data)
+static void geda_bus_class_init(void *klass, void *class_data)
 {
-  GedaBusClass *class         = (GedaBusClass*)g_class;
-  GObjectClass *object_class  = G_OBJECT_CLASS( class );
+  GedaBusClass *class         = (GedaBusClass*)klass;
+  GObjectClass *object_class  = (GObjectClass*)klass;
   GParamSpec   *params;
 
-  geda_bus_parent_class       = g_type_class_peek_parent( class );
+  geda_bus_parent_class       = g_type_class_peek_parent(class);
 
   object_class->dispose       = geda_bus_dispose;
   object_class->finalize      = geda_bus_finalize;
