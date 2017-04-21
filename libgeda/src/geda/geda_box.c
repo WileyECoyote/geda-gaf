@@ -323,8 +323,8 @@ static void
 geda_box_class_init(void *klass, void *class_data)
 {
   GedaBoxClass    *class        = (GedaBoxClass*)klass;
-  GObjectClass    *object_class = G_OBJECT_CLASS(class);
-  GedaObjectClass *geda_class   = GEDA_OBJECT_CLASS(class);
+  GObjectClass    *object_class = (GObjectClass*)klass;
+  GedaObjectClass *geda_class   = (GedaObjectClass*)klass;
   GParamSpec      *params;
 
   geda_box_parent_class         = g_type_class_peek_parent(class);

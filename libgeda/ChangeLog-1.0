@@ -3,6 +3,9 @@
     * src/geda/geda_arc.c: Replace g_type_check_instance_cast in class
       initializer; geda_arc_class_init.
 
+    * src/geda/geda_box.c: Replace g_type_check_instance_cast in class
+      initializer; geda_box_class_init.
+
 2017-04-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_hierarchy.c: Add function geda_struct_hierarchy_
