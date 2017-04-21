@@ -1,3 +1,10 @@
+2017-04-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_action.c: Revise geda_action_create_menu_item to set
+      "related-action" in the same g_object_set as "use-action-appearance",
+      eliminating the call to gtk_activatable_set_related_action and variable
+      parent_action.
+
 2017-04-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Revise geda_combo_box_set_popup_widget:

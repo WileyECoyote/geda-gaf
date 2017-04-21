@@ -46,6 +46,10 @@
  *                | instead of gtk_activatable_set_use_action_appearance
  *                | to set the "use-action-appearance" property.
  * WEH | 09/04/16 | Implement object identication system using a hash table.
+ * WEH | 04/21/17 | Eliminate call to gtk_activatable_set_related_action in
+ *                | geda_action_create_menu_item, set "related-action" in the
+ *                | same g_object_set as "use-action-appearance".
+ *
  */
 
 #ifdef HAVE_CONFIG_H
@@ -373,9 +377,6 @@ GtkWidget *
 geda_action_create_menu_item (GedaAction *action)
 {
   GtkWidget *menu_item;
-  GtkAction *parent_action;
-
-  parent_action = (GtkAction*)action;
 
   if (GEDA_IS_ACTION (action)) {
 
@@ -393,8 +394,8 @@ geda_action_create_menu_item (GedaAction *action)
   }
 
   if (menu_item) {
-    g_object_set (menu_item, "use-action-appearance", TRUE, NULL);
-    gtk_activatable_set_related_action (GTK_ACTIVATABLE (menu_item), parent_action);
+    g_object_set (menu_item, "use-action-appearance", TRUE,
+                             "related-action", action, NULL);
   }
 
   return menu_item;
