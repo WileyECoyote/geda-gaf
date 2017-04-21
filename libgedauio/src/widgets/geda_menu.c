@@ -342,7 +342,7 @@ change_touchscreen_mode (GedaMenu *menu)
 
   priv = menu->priv;
 
-  settings = gtk_widget_get_settings (GTK_WIDGET(menu));
+  settings = gtk_widget_get_settings ((GtkWidget*)menu);
 
   g_object_get (settings, touchscreen_setting, &touchscreen_mode, NULL);
 
@@ -376,7 +376,7 @@ connect_settings_signal(GedaMenu *menu)
     GtkSettings *settings;
     GdkScreen   *screen;
 
-    screen   = gtk_widget_get_screen (GTK_WIDGET (menu));
+    screen   = gtk_widget_get_screen ((GtkWidget*)menu);
     settings = gtk_settings_get_for_screen (screen);
 
     priv->settings_signal_id = g_signal_connect (settings, "notify",
@@ -409,7 +409,7 @@ menu_queue_resize (GedaMenu *menu)
   GedaMenuPriv *priv = menu->priv;
 
   priv->have_layout = FALSE;
-  gtk_widget_queue_resize (GTK_WIDGET (menu));
+  gtk_widget_queue_resize ((GtkWidget*)menu);
 }
 
 static void
@@ -855,8 +855,7 @@ geda_menu_handle_scrolling (GedaMenu *menu,
 
         priv->upper_arrow_state = arrow_state;
 
-        gdk_window_invalidate_rect (GTK_WIDGET (menu)->window,
-                                    &rect, FALSE);
+        gdk_window_invalidate_rect (((GtkWidget*)menu)->window, &rect, FALSE);
       }
     }
   }
@@ -960,8 +959,7 @@ geda_menu_handle_scrolling (GedaMenu *menu,
 
         priv->lower_arrow_state = arrow_state;
 
-        gdk_window_invalidate_rect (GTK_WIDGET (menu)->window,
-                                    &rect, FALSE);
+        gdk_window_invalidate_rect (((GtkWidget*)menu)->window, &rect, FALSE);
       }
     }
   }
@@ -983,7 +981,7 @@ pointer_in_menu_window (GtkWidget *widget, double x_root, double y_root)
         y_root >= window_y && y_root < window_y + widget->allocation.height)
       return TRUE;
 
-    menu_shell = GEDA_MENU_SHELL (widget);
+    menu_shell = (GedaMenuShell*)widget;
 
     if (GEDA_IS_MENU (menu_shell->parent_menu_shell))
       return pointer_in_menu_window (menu_shell->parent_menu_shell,
@@ -1035,14 +1033,14 @@ geda_menu_button_press (GtkWidget *widget, GdkEventButton *event)
       pointer_in_menu_window (widget, event->x_root, event->y_root))
     return TRUE;
 
-  return GTK_WIDGET_CLASS (geda_menu_parent_class)->button_press_event (widget, event);
+  return ((GtkWidgetClass*)geda_menu_parent_class)->button_press_event (widget, event);
 }
 
 /* widget_class->button_release_event */
 static bool
 geda_menu_button_release (GtkWidget *widget, GdkEventButton *event)
 {
-  GedaMenuPriv *priv = GEDA_MENU (widget)->priv;
+  GedaMenuPriv *priv = ((GedaMenu*)widget)->priv;
 
   if (priv->ignore_button_release) {
 
@@ -1056,7 +1054,7 @@ geda_menu_button_release (GtkWidget *widget, GdkEventButton *event)
 
   /* Don't pass down to menu shell for releases over scroll arrows
    */
-  if (geda_menu_button_scroll (GEDA_MENU (widget), event))
+  if (geda_menu_button_scroll ((GedaMenu*)widget, event))
     return TRUE;
 
   /*  Don't pass down to menu shell if a non-menuitem part of the menu
@@ -1070,14 +1068,14 @@ geda_menu_button_release (GtkWidget *widget, GdkEventButton *event)
      *  next button_press/button_release in GedaMenuShell.
      *  See bug #449371.
      */
-    if (GEDA_MENU_SHELL (widget)->active) {
-      GEDA_MENU_SHELL (widget)->button = 0;
+    if (((GedaMenuShell*)widget)->active) {
+       ((GedaMenuShell*)widget)->button = 0;
     }
 
     return TRUE;
   }
 
-  return GTK_WIDGET_CLASS (geda_menu_parent_class)->button_release_event (widget, event);
+  return ((GtkWidgetClass*)geda_menu_parent_class)->button_release_event (widget, event);
 }
 
 /* widget_class->can_activate_accel */
@@ -1120,9 +1118,7 @@ definitely_within_item (GtkWidget *widget, int x, int y)
   GdkWindow *window;
   int w, h;
 
-  window = geda_menu_item_get_event_window(GEDA_MENU_ITEM (widget));
-
-  //window = geda_get_widget_window(menu);
+  window = geda_menu_item_get_event_window((GedaMenuItem*)widget);
 
 #ifdef HAVE_GDK_WINDOW_GET_WIDTH
 
@@ -2440,7 +2436,8 @@ geda_menu_destroy (GtkObject *object)
     menu->tearoff_window = NULL;
   }
 
-  GTK_OBJECT_CLASS (geda_menu_parent_class)->destroy (object);
+  ((GtkObjectClass*)geda_menu_parent_class)->destroy (object);
+
 }
 
 /* gobject_class->dispose */
@@ -2453,7 +2450,7 @@ geda_menu_dispose (GObject *object)
     geda_menu_set_accel_group(menu, NULL);
   }
 
-  G_OBJECT_CLASS (geda_menu_parent_class)->dispose (object);
+  ((GObjectClass*)geda_menu_parent_class)->dispose (object);
 }
 
 /* gobject_class->finalize */
@@ -2485,7 +2482,7 @@ geda_menu_finalize (GObject *object)
     g_free(menu->priv);
   }
 
-  G_OBJECT_CLASS (geda_menu_parent_class)->finalize (object);
+  ((GObjectClass*)geda_menu_parent_class)->finalize (object);
 }
 
 static void
@@ -2499,7 +2496,7 @@ geda_menu_get_property (GObject     *object,
   switch (prop_id) {
 
     case PROP_ACTIVE:
-      g_value_set_int (value, g_list_index (GEDA_MENU_SHELL (menu)->children, geda_menu_get_active (menu)));
+      g_value_set_int (value, g_list_index (((GedaMenuShell*)menu)->children, geda_menu_get_active (menu)));
       break;
 
     case PROP_ACCEL_GROUP:
@@ -2681,9 +2678,9 @@ geda_menu_remove (GtkContainer *container, GtkWidget *widget)
       menu->old_active_menu_item = NULL;
   }
 
-  GTK_CONTAINER_CLASS (geda_menu_parent_class)->remove (container, widget);
+  ((GtkContainerClass*)geda_menu_parent_class)->remove (container, widget);
 
-  g_object_set_data (G_OBJECT (widget), attached_info_key, NULL);
+  g_object_set_data ((GObject*)widget, attached_info_key, NULL);
 
   menu_queue_resize (menu);
 }
@@ -2703,10 +2700,10 @@ geda_menu_deactivate (GedaMenuShell *menu_shell)
   /* MUST get pointer to parent BEFORE calling geda_menu_popdown */
   parent = menu_shell->parent_menu_shell;
 
-  geda_menu_popdown (GEDA_MENU (menu_shell));
+  geda_menu_popdown ((GedaMenu*)menu_shell);
 
   if (parent) {
-    geda_menu_shell_deactivate (GEDA_MENU_SHELL (parent));
+    geda_menu_shell_deactivate ((GedaMenuShell*)parent);
   }
 }
 
@@ -2717,7 +2714,7 @@ geda_menu_get_popup_delay (GedaMenuShell *menu_shell)
   int popup_delay = 0;
 
   if (GEDA_IS_MENU(menu_shell)) {
-    gtk_widget_style_get (GTK_WIDGET(menu_shell),
+    gtk_widget_style_get ((GtkWidget*)menu_shell,
                           "menu-popup-delay", &popup_delay, NULL);
   }
 
@@ -2738,7 +2735,7 @@ geda_menu_real_insert (GedaMenuShell *menu_shell,
   ai->top_attach    = -1;
   ai->bottom_attach = -1;
 
-  if (gtk_widget_get_realized (GTK_WIDGET (menu_shell))) {
+  if (gtk_widget_get_realized ((GtkWidget*)menu_shell)) {
     gtk_widget_set_parent_window (child, menu->bin_window);
   }
 
@@ -2784,7 +2781,7 @@ geda_menu_move_current (GedaMenuShell *menu_shell, MenuDirection direction)
 
   int l, r, t, b;
 
-  if (gtk_widget_get_direction (GTK_WIDGET (menu_shell)) == GTK_TEXT_DIR_RTL)
+  if (gtk_widget_get_direction ((GtkWidget*)menu_shell) == GTK_TEXT_DIR_RTL)
   {
     switch (direction) {
 
@@ -2902,7 +2899,7 @@ geda_menu_select_item (GedaMenuShell *menu_shell, GtkWidget *menu_item)
 {
   GedaMenu *menu = GEDA_MENU (menu_shell);
 
-  if (gtk_widget_get_realized (GTK_WIDGET (menu))) {
+  if (gtk_widget_get_realized ((GtkWidget*)menu)) {
     geda_menu_scroll_item_visible (menu_shell, menu_item);
   }
 
@@ -2939,7 +2936,7 @@ static int
 get_menu_height (GedaMenu *menu)
 {
   int  height;
-  GtkWidget *widget = GTK_WIDGET (menu);
+  GtkWidget *widget = (GtkWidget*)menu;
 
   height  = widget->requisition.height;
   height -= (((GtkContainer*)widget)->border_width + widget->style->ythickness) * 2;
@@ -3547,13 +3544,13 @@ geda_menu_instance_init (GTypeInstance *instance, void *class)
                                      "signal::destroy", gtk_widget_destroyed, &menu->toplevel,
                                      NULL);
 
-  gtk_window_set_resizable (GTK_WINDOW (menu->toplevel), FALSE);
-  gtk_window_set_mnemonic_modifier (GTK_WINDOW (menu->toplevel), 0);
+  gtk_window_set_resizable ((GtkWindow*)menu->toplevel, FALSE);
+  gtk_window_set_mnemonic_modifier ((GtkWindow*)menu->toplevel, 0);
 
   /* Refloat the menu, so that reference counting for the menu is
    * not affected by it being a child of the toplevel
    */
-  g_object_force_floating (G_OBJECT (menu));
+  g_object_force_floating ((GObject*)menu);
   menu->needs_destruction_ref_count = TRUE;
 
   menu->view_window          = NULL;
@@ -3586,7 +3583,7 @@ geda_menu_instance_init (GTypeInstance *instance, void *class)
 
   GtkStyleContext *context;
 
-  context = gtk_widget_get_style_context (GTK_WIDGET (menu));
+  context = gtk_widget_get_style_context ((GtkWidget*)menu);
   gtk_style_context_add_class (context, GTK_STYLE_CLASS_MENU);
 
 #endif
@@ -3653,19 +3650,19 @@ menu_change_screen (GedaMenu *menu, GdkScreen *new_screen)
 {
   GedaMenuPriv *private = menu->priv;
 
-  if (gtk_widget_has_screen (GTK_WIDGET (menu))) {
+  if (gtk_widget_has_screen ((GtkWidget*)menu)) {
 
-    if (new_screen == gtk_widget_get_screen (GTK_WIDGET (menu))) {
+    if (new_screen == gtk_widget_get_screen ((GtkWidget*)menu)) {
       return;
     }
   }
 
   if (menu->torn_off) {
-    gtk_window_set_screen (GTK_WINDOW (menu->tearoff_window), new_screen);
+    gtk_window_set_screen ((GtkWindow*)menu->tearoff_window, new_screen);
     geda_menu_position (menu, TRUE);
   }
 
-  gtk_window_set_screen (GTK_WINDOW (menu->toplevel), new_screen);
+  gtk_window_set_screen ((GtkWindow*)menu->toplevel, new_screen);
   private->monitor_num = -1;
 }
 
@@ -3675,7 +3672,7 @@ attach_widget_screen_changed (GtkWidget *attach_widget,
                               GedaMenu  *menu)
 {
   if (gtk_widget_has_screen (attach_widget) &&
-     !g_object_get_data (G_OBJECT (menu), explicit_screen_key))
+     !g_object_get_data ((GObject*)menu, explicit_screen_key))
     {
       menu_change_screen (menu, gtk_widget_get_screen (attach_widget));
     }
@@ -3711,7 +3708,7 @@ geda_menu_attach_to_widget (GedaMenu       *menu,
 
   /* keep this function in sync with gtk_widget_set_parent() */
 
-  data = g_object_get_data (G_OBJECT (menu), attached_data_key);
+  data = g_object_get_data ((GObject*)menu, attached_data_key);
 
   if (data) {
 
@@ -3736,19 +3733,19 @@ geda_menu_attach_to_widget (GedaMenu       *menu,
 
   data->detacher = detacher;
 
-  g_object_set_data (G_OBJECT (menu), attached_data_key, data);
+  g_object_set_data ((GObject*)menu, attached_data_key, data);
 
-  list = g_object_steal_data (G_OBJECT (attach_widget), attached_menus_key);
+  list = g_object_steal_data ((GObject*)attach_widget, attached_menus_key);
 
   if (!g_list_find (list, menu)) {
     list = g_list_prepend (list, menu);
   }
 
-  g_object_set_data_full (G_OBJECT (attach_widget), attached_menus_key, list,
+  g_object_set_data_full ((GObject*)attach_widget, attached_menus_key, list,
                           (GDestroyNotify) g_list_free);
 
-  if (gtk_widget_get_state (GTK_WIDGET (menu)) != GTK_STATE_NORMAL) {
-    gtk_widget_set_state (GTK_WIDGET (menu), GTK_STATE_NORMAL);
+  if (gtk_widget_get_state ((GtkWidget*)menu) != GTK_STATE_NORMAL) {
+    gtk_widget_set_state ((GtkWidget*)menu, GTK_STATE_NORMAL);
   }
 
   if (GEDA_IS_MENU_ITEM(attach_widget)) {
@@ -3760,7 +3757,7 @@ geda_menu_attach_to_widget (GedaMenu       *menu,
   /* Fallback title for menu comes from attach widget */
   geda_menu_update_title (menu);
 
-  g_object_notify (G_OBJECT (menu), "attach-widget");
+  g_object_notify ((GObject*)menu, "attach-widget");
 }
 
 /*!
@@ -3779,7 +3776,7 @@ geda_menu_get_attach_widget (GedaMenu *menu)
 
   g_return_val_if_fail (GEDA_IS_MENU (menu), NULL);
 
-  data = g_object_get_data (G_OBJECT (menu), attached_data_key);
+  data = g_object_get_data ((GObject*)menu, attached_data_key);
 
   if (data) {
     return data->attach_widget;
@@ -4227,6 +4224,7 @@ geda_menu_popdown (GedaMenu *menu)
   menu_shell->ignore_enter      = FALSE;
 
   private->have_position        = FALSE;
+  private->seen_item_enter      = FALSE;
 
   geda_menu_stop_scrolling (menu);
 
@@ -5764,8 +5762,8 @@ geda_menu_scroll_to (GedaMenu *menu, int offset)
 static void
 geda_menu_reparent (GedaMenu *menu, GtkWidget *new_parent, bool unrealize)
 {
-  GtkObject *object  = GTK_OBJECT (menu);
-  GtkWidget *widget  = GTK_WIDGET (menu);
+  GObject   *object  = G_OBJECT (menu);
+  GtkWidget *widget  = (GtkWidget*)object;
   bool  was_floating = g_object_is_floating (object);
 
   g_object_ref_sink (object);
@@ -5778,11 +5776,11 @@ geda_menu_reparent (GedaMenu *menu, GtkWidget *new_parent, bool unrealize)
       g_object_unref (object);
   }
   else {
-    gtk_widget_reparent (GTK_WIDGET (menu), new_parent);
+    gtk_widget_reparent (widget, new_parent);
   }
 
   if (was_floating) {
-    g_object_force_floating (G_OBJECT (object));
+    g_object_force_floating (object);
   }
   else {
     g_object_unref (object);
