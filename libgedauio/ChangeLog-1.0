@@ -6,6 +6,9 @@
       parent_action, change cast to static cast in order to eliminate needless
       calls to g_type_check_instance_cast.
 
+    * src/widgets/geda_label.c: Replace  g_type_check_instance_cast with static
+      cast cast to static cast in order to eliminate needless type-checking.
+
 2017-04-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Revise geda_combo_box_set_popup_widget:

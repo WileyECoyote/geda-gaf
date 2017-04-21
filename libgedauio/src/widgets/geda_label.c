@@ -946,7 +946,7 @@ geda_label_destroy (GtkObject *object)
 
     g_signal_handlers_disconnect_by_func (settings, label_shortcut_setting_changed, NULL);
 
-    g_object_set_data (G_OBJECT (settings), "label-short-connected",
+    g_object_set_data ((GObject*)settings, "label-short-connected",
                        (void*)(long)FALSE);
   }
 
@@ -958,7 +958,7 @@ geda_label_destroy (GtkObject *object)
 
     g_signal_handlers_disconnect_by_func (toplevel, label_mnemonics_visible_changed, label);
 
-    g_object_set_data (G_OBJECT (toplevel), "label-mnemonics-connected",
+    g_object_set_data ((GObject*)toplevel, "label-mnemonics-connected",
                        (void*)(long)FALSE);
   }
 
@@ -1210,10 +1210,10 @@ geda_label_class_init  (void *class, void *class_data)
   GtkBindingSet  *binding_set;
   GedaLabelClass *label_class;
 
-  gobject_class  = G_OBJECT_CLASS (class);
-  label_class    = GEDA_LABEL_CLASS (class);
-  object_class   = GTK_OBJECT_CLASS (class);
-  widget_class   = GTK_WIDGET_CLASS (class);
+  gobject_class  = (GObjectClass*)class;
+  label_class    = (GedaLabelClass*)class;
+  object_class   = (GtkObjectClass*)class;
+  widget_class   = (GtkWidgetClass*)class;
 
   gobject_class->set_property        = geda_label_set_property;
   gobject_class->get_property        = geda_label_get_property;
@@ -2536,7 +2536,7 @@ geda_label_setup_mnemonic (GedaLabel *label, unsigned int last_key)
   GtkWidget     *mnemonic_menu;
 
   priv          = label->priv;
-  widget        = GTK_WIDGET (label);
+  widget        = (GtkWidget*)label;
   mnemonic_menu = GEDA_OBJECT_GET_DATA(label, MNEMONIC_MENU_DATA);
 
   if (last_key != GDK_KEY_VoidSymbol) {
@@ -2556,7 +2556,7 @@ geda_label_setup_mnemonic (GedaLabel *label, unsigned int last_key)
 
     GtkWidget *toplevel;
 
-    connect_mnemonics_visible_notify (GEDA_LABEL (widget));
+    connect_mnemonics_visible_notify ((GedaLabel*)widget);
 
     toplevel = gtk_widget_get_toplevel (widget);
 
@@ -2569,19 +2569,19 @@ geda_label_setup_mnemonic (GedaLabel *label, unsigned int last_key)
       if (menu_shell) {
 
         /* Not sure if this ever works */
-        geda_menu_shell_add_mnemonic (GEDA_MENU_SHELL (menu_shell),
+        geda_menu_shell_add_mnemonic ((GedaMenuShell*)menu_shell,
                                       priv->mnemonic_keyval,
                                       widget);
         mnemonic_menu = menu_shell;
       }
 
       if (!GEDA_IS_MENU (menu_shell)) {
-        priv->mnemonic_window = GTK_WINDOW (toplevel);
+        priv->mnemonic_window = (GtkWindow*)toplevel;
       }
     }
   }
 
-  g_object_set_data (G_OBJECT (label), MNEMONIC_MENU_DATA, mnemonic_menu);
+  g_object_set_data ((GObject*)label, MNEMONIC_MENU_DATA, mnemonic_menu);
 }
 
 static void
@@ -2590,10 +2590,10 @@ label_shortcut_setting_apply (GedaLabel *label)
   geda_label_recalculate (label);
 
   if (GTK_IS_ACCEL_LABEL (label)) {
-    gtk_accel_label_refetch (GTK_ACCEL_LABEL (label));
+    gtk_accel_label_refetch ((GtkAccelLabel*)label);
   }
   else {
-    g_object_notify (G_OBJECT (label), "label");
+    g_object_notify ((GObject*)label, "label");
   }
 }
 
@@ -2601,10 +2601,10 @@ static void
 label_shortcut_setting_traverse_container (GtkWidget *widget, void *data)
 {
   if (GEDA_IS_LABEL(widget)) {
-    label_shortcut_setting_apply (GEDA_LABEL (widget));
+    label_shortcut_setting_apply ((GedaLabel*)widget);
   }
   else if (GTK_IS_CONTAINER (widget)) {
-    gtk_container_forall (GTK_CONTAINER (widget),
+    gtk_container_forall ((GtkContainer*)widget,
                           label_shortcut_setting_traverse_container, data);
   }
 }
@@ -2621,7 +2621,7 @@ label_shortcut_setting_changed (GtkSettings *settings)
     GtkWidget *widget = iter->data;
 
     if (gtk_widget_get_settings (widget) == settings) {
-        gtk_container_forall (GTK_CONTAINER (widget),
+        gtk_container_forall ((GtkContainer*)widget,
                               label_shortcut_setting_traverse_container, NULL);
     }
   }
@@ -2663,7 +2663,7 @@ label_mnemonics_visible_changed (GtkWindow  *window,
 
   g_object_get (window, "mnemonics-visible", &mnemonics_visible, NULL);
 
-  gtk_container_forall (GTK_CONTAINER (window),
+  gtk_container_forall ((GtkContainer*)window,
                         label_mnemonics_visible_traverse_container,
                         (void*)(long) (mnemonics_visible));
 }
@@ -2694,11 +2694,11 @@ geda_label_screen_changed (GtkWidget *widget, GdkScreen *old_screen)
                            G_CALLBACK (label_shortcut_setting_changed),
                            NULL);
 
-      g_object_set_data (G_OBJECT (settings), "label-short-connected",
+      g_object_set_data ((GObject*)settings, "label-short-connected",
                         (void*)(long)TRUE);
   }
 
-  label_shortcut_setting_apply (GEDA_LABEL(widget));
+  label_shortcut_setting_apply ((GedaLabel*)widget);
 }
 
 /* Helper called by geda_label_set_mnemonic_widget */
@@ -2710,7 +2710,7 @@ label_mnemonic_widget_weak_notify (void *data, GObject *where_the_object_was)
 
   priv->mnemonic_widget = NULL;
 
-  g_object_notify (G_OBJECT (label), "mnemonic-widget");
+  g_object_notify ((GObject*)label, "mnemonic-widget");
 }
 
 static void
@@ -2739,7 +2739,7 @@ geda_label_set_label_internal (GedaLabel *label, char *str)
 
   label->label = str;
 
-  g_object_notify (G_OBJECT (label), "label");
+  g_object_notify ((GObject*)label, "label");
 }
 
 static void
@@ -2753,7 +2753,7 @@ geda_label_set_use_markup_internal (GedaLabel *label, bool val)
 
     priv->use_markup = val;
 
-    g_object_notify (G_OBJECT (label), "use-markup");
+    g_object_notify ((GObject*)label, "use-markup");
 
   }
 }
@@ -2769,7 +2769,7 @@ geda_label_set_use_underline_internal (GedaLabel *label, bool val)
 
     priv->use_underline = val;
 
-    g_object_notify (G_OBJECT (label), "use-underline");
+    g_object_notify ((GObject*)label, "use-underline");
   }
 }
 
@@ -2805,12 +2805,12 @@ static void geda_label_recalculate (GedaLabel *label)
 
   if (keyval != priv->mnemonic_keyval) {
     geda_label_setup_mnemonic (label, keyval);
-    g_object_notify (G_OBJECT (label), "mnemonic-keyval");
+    g_object_notify ((GObject*)label, "mnemonic-keyval");
   }
 
   geda_label_clear_layout (label);
   geda_label_clear_select_info (label);
-  gtk_widget_queue_resize (GTK_WIDGET (label));
+  gtk_widget_queue_resize ((GtkWidget*)label);
 }
 
 typedef struct
@@ -4224,14 +4224,14 @@ connect_mnemonics_visible_notify (GedaLabel *label)
   GtkWidget *toplevel;
   bool       connected;
 
-  toplevel = gtk_widget_get_toplevel (GTK_WIDGET (label));
+  toplevel = gtk_widget_get_toplevel ((GtkWidget*)label);
 
   if (!GTK_IS_WINDOW (toplevel))
     return;
 
   /* always set up this widgets initial value */
   label->priv->mnemonics_visible =
-    gtk_window_get_mnemonics_visible (GTK_WINDOW (toplevel));
+    gtk_window_get_mnemonics_visible ((GtkWindow*)toplevel);
 
   connected = (int)(long)
   GEDA_OBJECT_GET_DATA(toplevel, "label-mnemonics-connected");
@@ -4242,7 +4242,7 @@ connect_mnemonics_visible_notify (GedaLabel *label)
                       "notify::mnemonics-visible",
                       G_CALLBACK (label_mnemonics_visible_changed),
                       label);
-    g_object_set_data (G_OBJECT (toplevel),
+    g_object_set_data ((GObject*)toplevel,
                        "label-mnemonics-connected",
                        (void*)(long) (1));
   }
@@ -4362,9 +4362,9 @@ geda_label_create_drag_icon (GtkWidget *widget, char *text, unsigned int len)
 static void
 drag_begin_cb (GtkWidget *widget, GdkDragContext *context, void * data)
 {
-  GedaLabel *label    = GEDA_LABEL (widget);
-  GedaLabelData *priv = label->priv;
-  GdkPixmap *pixmap   = NULL;
+  GedaLabel     *label  = (GedaLabel*)widget;
+  GedaLabelData *priv   = label->priv;
+  GdkPixmap     *pixmap = NULL;
 
   g_signal_handlers_disconnect_by_func (widget, drag_begin_cb, NULL);
 
@@ -4409,7 +4409,7 @@ static bool geda_label_motion (GtkWidget *widget, GdkEventMotion *event)
   SelectionInfo *info;
   int index;
 
-  label = GEDA_LABEL (widget);
+  label = (GedaLabel*)widget;
   info  = label->priv->select_info;
 
   if (info == NULL)
@@ -4537,10 +4537,9 @@ static bool geda_label_motion (GtkWidget *widget, GdkEventMotion *event)
 }
 
 static bool
-geda_label_leave_notify (GtkWidget       *widget,
-                        GdkEventCrossing *event)
+geda_label_leave_notify (GtkWidget *widget, GdkEventCrossing *event)
 {
-  GedaLabel *label = GEDA_LABEL (widget);
+  GedaLabel *label = (GedaLabel*)widget;
 
   if (label->priv->select_info) {
 
@@ -4644,13 +4643,13 @@ geda_label_ensure_select_info (GedaLabel *label)
 
     priv->select_info = g_malloc0 (sizeof(SelectionInfo));
 
-    gtk_widget_set_can_focus (GTK_WIDGET (label), TRUE);
+    gtk_widget_set_can_focus ((GtkWidget*)label, TRUE);
 
-    if (gtk_widget_get_realized (GTK_WIDGET (label))) {
+    if (gtk_widget_get_realized ((GtkWidget*)label)) {
       geda_label_create_window (label);
     }
 
-    if (gtk_widget_get_mapped (GTK_WIDGET (label))) {
+    if (gtk_widget_get_mapped ((GtkWidget*)label)) {
 
       GdkWindow *window;
 
@@ -4712,8 +4711,8 @@ static void
 geda_label_drag_data_get (GtkWidget        *widget,
                           GdkDragContext   *context,
                           GtkSelectionData *selection_data,
-                          unsigned int    info,
-                          unsigned int    time)
+                          unsigned int      info,
+                          unsigned int      time)
 {
   geda_label_set_selection_text (GEDA_LABEL (widget), selection_data);
 }
@@ -4822,13 +4821,12 @@ get_better_cursor (GedaLabel *label, int index, int *x, int *y)
   bool split_cursor;
   PangoRectangle strong_pos, weak_pos;
 
-  g_object_get (gtk_widget_get_settings (GTK_WIDGET (label)),
+  g_object_get (gtk_widget_get_settings ((GtkWidget*)label),
                 "gtk-split-cursor", &split_cursor, NULL);
 
   geda_label_ensure_layout (label);
 
-  pango_layout_get_cursor_pos (label->layout, index,
-                               &strong_pos, &weak_pos);
+  pango_layout_get_cursor_pos (label->layout, index, &strong_pos, &weak_pos);
 
   if (split_cursor) {
     *x = strong_pos.x / PANGO_SCALE;
@@ -4912,7 +4910,10 @@ geda_label_move_visually (GedaLabel *label, int start, int count)
       strong = TRUE;
     }
     else {
-      GdkKeymap *keymap = gdk_keymap_get_for_display (gtk_widget_get_display (widget));
+
+      GdkKeymap *keymap;
+
+      keymap = gdk_keymap_get_for_display (gtk_widget_get_display (widget));
       PangoDirection keymap_direction = gdk_keymap_get_direction (keymap);
 
       strong = keymap_direction == get_cursor_direction (label);
@@ -5196,7 +5197,7 @@ append_action_signal (GedaLabel   *label,
 
   gtk_widget_show (menuitem);
 
-  geda_menu_shell_append (GEDA_MENU_SHELL (menu), menuitem);
+  geda_menu_shell_append ((GedaMenuShell*)menu, menuitem);
 }
 
 static void
@@ -5232,7 +5233,7 @@ popup_position_func (GedaMenu *menu, int *x, int *y, bool *push_in, void *data)
   *x += allocation->x;
   *y += allocation->y;
 
-  gtk_widget_size_request (GTK_WIDGET (menu), &req);
+  gtk_widget_size_request ((GtkWidget*)menu, &req);
 
   *x += allocation->width / 2;
   *y += allocation->height;
@@ -5283,7 +5284,7 @@ copy_link_activate_cb (GedaMenuItem *menu_item, GedaLabel *label)
 
     GtkClipboard *clipboard;
 
-    clipboard = gtk_widget_get_clipboard (GTK_WIDGET (label), GDK_SELECTION_CLIPBOARD);
+    clipboard = gtk_widget_get_clipboard ((GtkWidget*)label, GDK_SELECTION_CLIPBOARD);
     gtk_clipboard_set_text (clipboard, uri, -1);
   }
 }
@@ -5314,7 +5315,7 @@ geda_label_do_popup (GedaLabel *label, GdkEventButton *event)
 
   info->popup_menu = menu = geda_menu_new ();
 
-  geda_menu_attach_to_widget (GEDA_MENU(menu), GTK_WIDGET(label), popup_menu_detach);
+  geda_menu_attach_to_widget ((GedaMenu*)menu, (GtkWidget*)label, popup_menu_detach);
 
   have_selection = info->selection_anchor != info->selection_end;
 
@@ -5336,26 +5337,26 @@ geda_label_do_popup (GedaLabel *label, GdkEventButton *event)
     /* Open Link */
     menuitem = geda_image_menu_item_new_with_mnemonic (_("_Open Link"));
     gtk_widget_show (menuitem);
-    geda_menu_shell_append (GEDA_MENU_SHELL (menu), menuitem);
+    geda_menu_shell_append ((GedaMenuShell*)menu, menuitem);
 
-    g_signal_connect (G_OBJECT (menuitem), "activate",
+    g_signal_connect (menuitem, "activate",
                       G_CALLBACK (open_link_activate_cb), label);
 
     image = gtk_image_new_from_stock (GTK_STOCK_JUMP_TO, GTK_ICON_SIZE_MENU);
     gtk_widget_show (image);
-    geda_image_menu_item_set_image (GEDA_IMAGE_MENU_ITEM (menuitem), image);
+    geda_image_menu_item_set_image ((GedaImageMenuItem*)menuitem, image);
 
     /* Copy Link Address */
     menuitem = geda_image_menu_item_new_with_mnemonic (_("Copy _Link Address"));
     gtk_widget_show (menuitem);
-    geda_menu_shell_append (GEDA_MENU_SHELL (menu), menuitem);
+    geda_menu_shell_append ((GedaMenuShell*)menu, menuitem);
 
-    g_signal_connect (G_OBJECT (menuitem), "activate",
+    g_signal_connect (menuitem, "activate",
                       G_CALLBACK (copy_link_activate_cb), label);
 
     image = gtk_image_new_from_stock (GTK_STOCK_COPY, GTK_ICON_SIZE_MENU);
     gtk_widget_show (image);
-    geda_image_menu_item_set_image (GEDA_IMAGE_MENU_ITEM (menuitem), image);
+    geda_image_menu_item_set_image ((GedaImageMenuItem*)menuitem, image);
   }
   else {
 
@@ -5366,30 +5367,30 @@ geda_label_do_popup (GedaLabel *label, GdkEventButton *event)
     menuitem = geda_image_menu_item_new_from_stock (GTK_STOCK_DELETE, NULL);
     gtk_widget_set_sensitive (menuitem, FALSE);
     gtk_widget_show (menuitem);
-    geda_menu_shell_append (GEDA_MENU_SHELL (menu), menuitem);
+    geda_menu_shell_append ((GedaMenuShell*)menu, menuitem);
 
     menuitem = gtk_separator_menu_item_new ();
     gtk_widget_show (menuitem);
-    geda_menu_shell_append (GEDA_MENU_SHELL (menu), menuitem);
+    geda_menu_shell_append ((GedaMenuShell*)menu, menuitem);
 
     menuitem = geda_image_menu_item_new_from_stock (GTK_STOCK_SELECT_ALL, NULL);
-    g_signal_connect_swapped (menuitem, "activate",  G_CALLBACK (geda_label_select_all), label);
+    g_signal_connect_swapped (menuitem, "activate", G_CALLBACK (geda_label_select_all), label);
     gtk_widget_show (menuitem);
-    geda_menu_shell_append (GEDA_MENU_SHELL (menu), menuitem);
+    geda_menu_shell_append ((GedaMenuShell*)menu, menuitem);
   }
 
   g_signal_emit (label, signals[POPULATE_POPUP], 0, menu);
 
   if (event) {
-    geda_menu_popup (GEDA_MENU (menu), NULL, NULL,
+    geda_menu_popup ((GedaMenu*)menu, NULL, NULL,
                      NULL, NULL,
                      event->button, event->time);
   }
   else {
-    geda_menu_popup (GEDA_MENU (menu), NULL, NULL,
+    geda_menu_popup ((GedaMenu*)menu, NULL, NULL,
                      popup_position_func, label,
                      0, gtk_get_current_event_time ());
-    geda_menu_shell_select_first (GEDA_MENU_SHELL (menu), FALSE);
+    geda_menu_shell_select_first ((GedaMenuShell*)menu, FALSE);
   }
 }
 
@@ -5467,13 +5468,13 @@ static void geda_label_activate_current_link (GedaLabel *label)
 
     GtkWidget *toplevel;
 
-    GtkWidget *widget = GTK_WIDGET (label);
+    GtkWidget *widget = (GtkWidget*)label;
 
     toplevel = gtk_widget_get_toplevel (widget);
 
     if (GTK_IS_WINDOW (toplevel)) {
 
-      GtkWindow *window = GTK_WINDOW (toplevel);
+      GtkWindow *window = (GtkWindow*)toplevel;
 
       if (window) {
 
@@ -5483,7 +5484,7 @@ static void geda_label_activate_current_link (GedaLabel *label)
         focus_widget   = gtk_window_get_focus (window);
 
         if (default_widget != widget &&
-          !(widget == focus_widget &&
+          !(widget == focus_widget   &&
           (!default_widget ||
           !gtk_widget_is_sensitive (default_widget))))
           gtk_window_activate_default (window);
@@ -5510,7 +5511,7 @@ geda_label_get_alignment (GedaLabel *label, float *xalign, float *yalign)
 {
   g_return_if_fail (GEDA_IS_LABEL(label));
 
-  gtk_misc_get_alignment (GTK_MISC(label), xalign, yalign);
+  gtk_misc_get_alignment ((GtkMisc*)label, xalign, yalign);
 }
 
 /*!
@@ -5529,7 +5530,7 @@ geda_label_set_alignment (GedaLabel *label, float xalign, float yalign)
 {
   g_return_if_fail (GEDA_IS_LABEL(label));
 
-  gtk_misc_set_alignment (GTK_MISC(label), xalign, yalign);
+  gtk_misc_set_alignment ((GtkMisc*)label, xalign, yalign);
 }
 
 /************************** Angle Property ************************/
@@ -5849,13 +5850,13 @@ geda_label_set_label (GedaLabel *label, const char *str)
 {
   g_return_if_fail (GEDA_IS_LABEL(label));
 
-  g_object_freeze_notify (G_OBJECT (label));
+  g_object_freeze_notify ((GObject*)label);
 
   geda_label_set_label_internal (label, geda_strdup (str ? str : ""));
 
   geda_label_recalculate (label);
 
-  g_object_thaw_notify (G_OBJECT (label));
+  g_object_thaw_notify ((GObject*)label);
 }
 
 /*!
@@ -6032,7 +6033,7 @@ void geda_label_set_markup (GedaLabel *label, const char *str)
 {
   g_return_if_fail (GEDA_IS_LABEL(label));
 
-  g_object_freeze_notify (G_OBJECT (label));
+  g_object_freeze_notify ((GObject*)label);
 
   geda_label_set_label_internal (label, geda_strdup (str ? str : ""));
 
@@ -6042,7 +6043,7 @@ void geda_label_set_markup (GedaLabel *label, const char *str)
 
   geda_label_recalculate (label);
 
-  g_object_thaw_notify (G_OBJECT (label));
+  g_object_thaw_notify ((GObject*)label);
 }
 
 /*!
@@ -6074,7 +6075,7 @@ geda_label_set_markup_with_mnemonic (GedaLabel *label, const char *str)
 {
   g_return_if_fail (GEDA_IS_LABEL(label));
 
-  g_object_freeze_notify (G_OBJECT (label));
+  g_object_freeze_notify ((GObject*)label);
 
   geda_label_set_label_internal (label, geda_strdup (str ? str : ""));
 
@@ -6084,7 +6085,7 @@ geda_label_set_markup_with_mnemonic (GedaLabel *label, const char *str)
 
   geda_label_recalculate (label);
 
-  g_object_thaw_notify (G_OBJECT (label));
+  g_object_thaw_notify ((GObject*)label);
 }
 
 /********************* Max Width Chars Property *******************/
@@ -6174,7 +6175,7 @@ geda_label_set_mnemonic_text (GedaLabel *label, const char *str)
   g_return_if_fail (GEDA_IS_LABEL(label));
   g_return_if_fail (str != NULL);
 
-  g_object_freeze_notify (G_OBJECT (label));
+  g_object_freeze_notify ((GObject*)label);
 
   geda_label_set_label_internal (label, geda_strdup (str ? str : ""));
   geda_label_set_use_markup_internal (label, FALSE);
@@ -6182,7 +6183,7 @@ geda_label_set_mnemonic_text (GedaLabel *label, const char *str)
 
   geda_label_recalculate (label);
 
-  g_object_thaw_notify (G_OBJECT (label));
+  g_object_thaw_notify ((GObject*)label);
 }
 
 /*!
