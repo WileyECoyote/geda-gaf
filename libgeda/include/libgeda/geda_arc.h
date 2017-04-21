@@ -108,6 +108,7 @@ void           geda_arc_set_line_width      (GedaArc *arc, int width);
 void           geda_arc_set_position        (GedaArc *arc, int x, int y);
 void           geda_arc_set_radius          (GedaArc *arc, int radius);
 void           geda_arc_set_start_angle     (GedaArc *arc, int angle);
+
 bool           geda_arc_within_sweep        (const GedaArc *arc, int x, int y) WARN_UNUSED;
 
 #ifdef __cplusplus

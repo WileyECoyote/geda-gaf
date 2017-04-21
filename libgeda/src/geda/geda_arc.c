@@ -383,15 +383,15 @@ set_property (GObject *object, unsigned int  prop_id,
  *  Type class initializer for Arc. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- * \param [in]  g_class      The Arc class being initialising
- * \param [in]  class_data   The Arc structure associated with the class
+ * \param [in]  klass       The Arc class being initialising
+ * \param [in]  class_data  The Arc structure associated with the class
  */
 static void
-geda_arc_class_init(void *g_class, void *class_data)
+geda_arc_class_init(void *klass, void *class_data)
 {
-  GedaArcClass    *class        = (GedaArcClass*)g_class;
-  GObjectClass    *object_class = G_OBJECT_CLASS(class);
-  GedaObjectClass *geda_class   = GEDA_OBJECT_CLASS(class);
+  GedaArcClass    *class        = (GedaArcClass*)klass;
+  GObjectClass    *object_class = (GObjectClass*)klass;
+  GedaObjectClass *geda_class   = (GedaObjectClass*)klass;
   GParamSpec      *params;
 
   geda_arc_parent_class         = g_type_class_peek_parent(class);
