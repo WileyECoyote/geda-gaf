@@ -17,6 +17,9 @@
       cast with ordinary cast in order to eliminate a heap of meaningless calls
       to g_type_check_instance_cast.
 
+    * src/widgets/geda_menu_item.c: Add g_return_val_if_fail GEDA_IS_MENU_ITEM
+      in geda_menu_item_get_event_window.
+
       sub-total: 18757 - 9438 = 9319 less calls to g_type_check_instance_cast.
 
 2017-04-20 Wiley E. Hill <wileyhill@gmail.com>
