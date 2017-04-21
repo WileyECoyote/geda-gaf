@@ -3140,12 +3140,10 @@ static void
 geda_combo_box_real_popup (GedaComboBox *combo_box)
 {
   GedaComboBoxData *priv = combo_box->priv;
-  GtkTreePath      *path = NULL;
-  GtkWidget        *toplevel;
 
   int x, y, width, height;
 
-  if (!gtk_widget_get_realized (GTK_WIDGET (combo_box))) {
+  if (!gtk_widget_get_realized ((GtkWidget*)combo_box)) {
     return;
   }
 
@@ -3160,18 +3158,29 @@ geda_combo_box_real_popup (GedaComboBox *combo_box)
     return;
   }
 
-  toplevel = gtk_widget_get_toplevel (GTK_WIDGET (combo_box));
+  g_return_if_fail (priv->popup_window != NULL);
+
+  GtkTreePath *path;
+  GtkTreeView *view;
+  GtkWindow   *toplevel;
+  GtkWindow   *window;
+  GtkWidget   *widget;
+
+  path     = NULL;
+  view     = (GtkTreeView*)priv->tree_view;
+  toplevel = (GtkWindow*)gtk_widget_get_toplevel ((GtkWidget*)combo_box);
+  window   = (GtkWindow*)priv->popup_window;
+  widget   = priv->popup_window;
 
   if (GTK_IS_WINDOW (toplevel)) {
-    gtk_window_group_add_window (gtk_window_get_group (GTK_WINDOW (toplevel)),
-                                 GTK_WINDOW (priv->popup_window));
+    gtk_window_group_add_window (gtk_window_get_group (toplevel), window);
   }
 
   gtk_widget_show_all (priv->scrolled_window);
   geda_combo_box_list_position (combo_box, &x, &y, &width, &height);
 
   gtk_widget_set_size_request (priv->popup_window, width, height);
-  gtk_window_move (GTK_WINDOW (priv->popup_window), x, y);
+  gtk_window_move (window, x, y);
 
   if (gtk_tree_row_reference_valid (priv->active_row)) {
 
@@ -3180,36 +3189,38 @@ geda_combo_box_real_popup (GedaComboBox *combo_box)
     path  = gtk_tree_row_reference_get_path (priv->active_row);
     ppath = gtk_tree_path_copy (path);
 
-    if (gtk_tree_path_up (ppath))
-      gtk_tree_view_expand_to_path (GTK_TREE_VIEW (priv->tree_view), ppath);
+    if (gtk_tree_path_up (ppath)) {
+      gtk_tree_view_expand_to_path (view, ppath);
+    }
 
     gtk_tree_path_free (ppath);
   }
 
-  gtk_tree_view_set_hover_expand (GTK_TREE_VIEW (priv->tree_view), TRUE);
+  gtk_tree_view_set_hover_expand (view, TRUE);
 
   /* popup */
-  gtk_widget_show (priv->popup_window);
+  gtk_widget_show (widget);
 
   if (path) {
-    gtk_tree_view_set_cursor(GTK_TREE_VIEW (priv->tree_view),path,NULL,FALSE);
+    gtk_tree_view_set_cursor(view, path,NULL,FALSE);
     gtk_tree_path_free (path);
   }
 
-  gtk_widget_grab_focus (priv->popup_window);
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->button), TRUE);
+  gtk_widget_grab_focus (widget);
 
-  if (!gtk_widget_has_focus (priv->tree_view)) {
-    gtk_widget_grab_focus (priv->tree_view);
+  gtk_toggle_button_set_active ((GtkToggleButton*)priv->button, TRUE);
+
+  if (!gtk_widget_has_focus ((GtkWidget*)view)) {
+    gtk_widget_grab_focus ((GtkWidget*)view);
   }
 
-  if (!popup_grab_on_window(priv->popup_window->window,GDK_CURRENT_TIME,TRUE))
+  if (!popup_grab_on_window(widget->window, GDK_CURRENT_TIME, TRUE))
   {
-    gtk_widget_hide (priv->popup_window);
+    gtk_widget_hide (widget);
     return;
   }
 
-  gtk_grab_add (priv->popup_window);
+  gtk_grab_add (widget);
 }
 
 static bool

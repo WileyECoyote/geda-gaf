@@ -6,6 +6,10 @@
       parent_action, change cast to static cast in order to eliminate needless
       calls to g_type_check_instance_cast.
 
+    * src/widgets/geda_combobox.c: Revise geda_combo_box_real_popup; reduce
+      scope of path and toplevel variables, add view, window, widget to reduce
+      referencing offsets from pointers, add g_return_if_fail
+
     * src/widgets/geda_label.c: Replace  g_type_check_instance_cast with static
       cast cast to static cast in order to eliminate needless type-checking.
 
