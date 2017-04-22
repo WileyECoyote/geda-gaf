@@ -1915,9 +1915,6 @@ geda_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
 static int
 geda_menu_item_expose (GtkWidget *widget, GdkEventExpose *event)
 {
-  g_return_val_if_fail (GEDA_IS_MENU_ITEM(widget), FALSE);
-  g_return_val_if_fail (event != NULL, FALSE);
-
   if (gtk_widget_is_drawable (widget)) {
 
     geda_menu_item_paint (widget, &event->area);
@@ -1939,9 +1936,6 @@ geda_menu_item_size_request (GtkWidget *widget, GtkRequisition *requisition)
   unsigned int         accel_width;
   unsigned int         horizontal_padding;
   unsigned int         vertical_padding;
-
-  g_return_if_fail (GEDA_IS_MENU_ITEM(widget));
-  g_return_if_fail (requisition != NULL);
 
   gtk_widget_style_get (widget, "horizontal-padding", &horizontal_padding, NULL);
 
@@ -2697,8 +2691,6 @@ static void
 geda_real_menu_item_toggle_size_request (GedaMenuItem *menu_item,
                                          int          *requisition)
 {
-  g_return_if_fail (GEDA_IS_MENU_ITEM(menu_item));
-
   *requisition = 0;
 }
 

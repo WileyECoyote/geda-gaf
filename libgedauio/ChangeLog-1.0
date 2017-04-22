@@ -5,7 +5,8 @@
 
     * src/widgets/geda_menu_item.c: Replace g_type_check_instance_cast with
       static cast cast to static cast in order to eliminate needless type
-      checking.
+      checking. Eliminate g_return_x in geda_real_menu_item_toggle_size_request
+      geda_menu_item_size_request and geda_menu_item_expose.
 
 2017-04-21 Wiley E. Hill <wileyhill@gmail.com>
 
