@@ -1275,11 +1275,12 @@ accelerate_children(GedaMenuItem *menu_item, GtkAccelGroup *accel_group)
   if (GEDA_IS_MENU_ITEM(menu_item)) {
 
     char mnemonic[2];
-    unsigned int keyval;
 
     mnemonic[0] = geda_menu_item_get_mnemonic(menu_item);
 
     if (mnemonic[0] > 0) {
+
+      unsigned int keyval;
 
       mnemonic[0] = toupper(mnemonic[0]);
       mnemonic[1] = 0;

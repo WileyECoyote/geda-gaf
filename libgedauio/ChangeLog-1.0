@@ -3,6 +3,8 @@
     * src/widgets/geda_bulb.c: Replace g_type_check_instance_cast with static
       cast cast to static cast in order to eliminate needless type-checking.
 
+    * src/widgets/geda_menu_bar.c: Reduce scope of keyval in
+
     * src/widgets/geda_menu_item.c: Replace g_type_check_instance_cast with
       static cast cast to static cast in order to eliminate needless type
       checking. Eliminate g_return_x in geda_real_menu_item_toggle_size_request
