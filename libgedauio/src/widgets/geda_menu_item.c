@@ -2257,7 +2257,6 @@ geda_menu_item_get_preferred_width (GtkWidget *widget,
 {
   GedaMenuItem        *menu_item = (GedaMenuItem*)widget;
   GedaMenuItemPrivate *priv      = menu_item->priv;
-  GtkBin    *bin;
   GtkWidget *child;
   GtkWidget *parent;
   unsigned int accel_width;
@@ -2267,7 +2266,6 @@ geda_menu_item_get_preferred_width (GtkWidget *widget,
   GtkStateFlags state;
   GtkBorder padding;
 
-  bin          = GTK_BIN(widget);
   parent       = gtk_widget_get_parent (widget);
 
   border_width = gtk_container_get_border_width ((GtkContainer*)widget);
@@ -2280,7 +2278,7 @@ geda_menu_item_get_preferred_width (GtkWidget *widget,
   min_width  = (border_width << 1) + padding.left + padding.right;
   nat_width  = min_width;
 
-  child      = gtk_bin_get_child (bin);
+  child      = gtk_bin_get_child ((GtkBin*)bin);
 
   if (child != NULL && gtk_widget_get_visible (child)) {
 
@@ -2330,7 +2328,6 @@ geda_menu_item_real_get_height (GtkWidget *widget,
   GedaMenuItem        *menu_item = (GedaMenuItem*)widget;
   GedaMenuItemPrivate *priv      = menu_item->priv;
 
-  GtkBin          *bin;
   GtkStyleContext *context;
   GtkWidget       *child;
   GtkWidget       *parent;
@@ -2346,7 +2343,6 @@ geda_menu_item_real_get_height (GtkWidget *widget,
   state   = gtk_widget_get_state_flags (widget);
   gtk_style_context_get_padding (context, state, &padding);
 
-  bin = GTK_BIN(widget);
   parent = gtk_widget_get_parent (widget);
 
   border_widthx2 = gtk_container_get_border_width ((GtkContainer*)widget) << 1;
@@ -2359,7 +2355,7 @@ geda_menu_item_real_get_height (GtkWidget *widget,
 
   nat_height = min_height;
 
-  child = gtk_bin_get_child (bin);
+  child = gtk_bin_get_child ((GtkBin*)bin);
 
   if (child != NULL && gtk_widget_get_visible (child)) {
 
