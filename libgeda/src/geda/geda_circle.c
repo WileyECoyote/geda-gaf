@@ -303,14 +303,14 @@ static void geda_circle_instance_init(GTypeInstance *instance, void *class)
  *  Type class initializer for GedaCircle. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- *  \param [in]  g_class      The GedaCircle class we are initializing
- *  \param [in]  class_data   The Circle structure associated with the class
+ *  \param [in]  klass       The GedaCircle class we are initializing
+ *  \param [in]  class_data  The Circle structure associated with the class
  */
-static void geda_circle_class_init(void *g_class, void *class_data)
+static void geda_circle_class_init(void *klass, void *class_data)
 {
-  GedaCircleClass *class        = (GedaCircleClass*)g_class;
-  GObjectClass    *object_class = G_OBJECT_CLASS(class);
-  GedaObjectClass *geda_class   = GEDA_OBJECT_CLASS(class);
+  GedaCircleClass *class        = (GedaCircleClass*)klass;
+  GObjectClass    *object_class = (GObjectClass*)klass;
+  GedaObjectClass *geda_class   = (GedaObjectClass*)klass;
   GParamSpec      *params;
 
   geda_circle_parent_class      = g_type_class_peek_parent(class);
