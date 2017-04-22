@@ -7,10 +7,13 @@
 
     * src/widgets/geda_menu_item.c: Replace g_type_check_instance_cast with
       static cast cast to static cast in order to eliminate needless type
-      checking. Eliminate g_return_x in geda_real_menu_item_toggle_size_request
-      geda_menu_item_size_request and geda_menu_item_expose. Eliminate bin
-      variables bin in geda_menu_item_real_get_height and geda_menu_item_get_
-      preferred_width.
+      checking. Eliminate bin variables bin in geda_menu_item_real_get_height
+      and geda_menu_item_get_ preferred_width. Eliminate g_return_x in:
+
+        * geda_menu_item_size_allocate,
+        * geda_real_menu_item_toggle_size_request,
+        * geda_menu_item_size_request,
+        * geda_menu_item_expose and.
 
 2017-04-21 Wiley E. Hill <wileyhill@gmail.com>
 

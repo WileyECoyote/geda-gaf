@@ -2035,8 +2035,6 @@ geda_menu_item_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
   PackDirection        pack_dir;
   PackDirection        child_pack_dir;
 
-  g_return_if_fail (GEDA_IS_MENU_ITEM(widget));
-  g_return_if_fail (allocation != NULL);
 
   menu_item = GEDA_MENU_ITEM(widget);
   bin       = GTK_BIN(widget);
