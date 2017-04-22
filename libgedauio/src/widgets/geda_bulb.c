@@ -6,7 +6,7 @@
  * gEDA - GPL Electronic Design Automation
  * libgedauio - gEDA's library for User Interface Objects
  *
- * Copyright (C) 2014-2015 Wiley Edward Hill <wileyhill@gmail.com>
+ * Copyright (C) 2014-2017 Wiley Edward Hill <wileyhill@gmail.com>
  *
  * This Library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -130,7 +130,7 @@ geda_bulb_set_property (GObject      *object,
 {
   GtkWidget *widget;
 
-  widget = (GtkWidget*)GEDA_BULB (object);
+  widget = (GtkWidget*)object;
 
   switch (prop_id) {
 
@@ -165,13 +165,9 @@ geda_bulb_get_property (GObject       *object,
                         GValue        *value,
                         GParamSpec    *pspec)
 {
-  GtkWidget *widget;
-
-  widget = (GtkWidget*)GEDA_BULB(object);
-
   if (prop_id == PROP_SHOW_BUTT) {
 
-    g_value_set_boolean (value, geda_bulb_get_show_button (widget));
+    g_value_set_boolean (value, geda_bulb_get_show_button ((GtkWidget*)object));
 
   }
   else {
@@ -183,7 +179,7 @@ static void
 geda_bulb_finalize (GObject *object)
 {
   GtkWidget *old_group_singleton;
-  GedaBulb  *bulb                = GEDA_BULB (object);
+  GedaBulb  *bulb                = (GedaBulb*)object;
   GSList    *tmp_list;
   bool       was_in_group;
 
@@ -240,7 +236,7 @@ geda_bulb_finalize (GObject *object)
     off_pixbuf = NULL;
     on_pixbuf  = NULL;
   }
-  G_OBJECT_CLASS (geda_bulb_parent_class)->finalize (object);
+  ((GObjectClass*)geda_bulb_parent_class)->finalize (object);
 }
 
 static void
@@ -277,8 +273,8 @@ up_down_compare (const void *a, const void * b, void *data)
 {
   int x1, y1, x2, y2;
 
-  get_coordinates ((GtkWidget *)a, data, &x1, &y1);
-  get_coordinates ((GtkWidget *)b, data, &x2, &y2);
+  get_coordinates ((GtkWidget*)a, data, &x1, &y1);
+  get_coordinates ((GtkWidget*)b, data, &x2, &y2);
 
   if (x1 == x2) {
     return (y1 < y2) ? -1 : ((y1 == y2) ? 0 : 1);
@@ -291,21 +287,21 @@ up_down_compare (const void *a, const void * b, void *data)
 static bool
 geda_bulb_focus (GtkWidget *widget, GtkDirectionType direction)
 {
-  GedaBulb *bulb = GEDA_BULB (widget);
+  GedaBulb *bulb = (GedaBulb*)widget;
   bool      result;
 
   /* Bulbs with draw_indicator unset focus "normally", since
    * they look like buttons to the user.
    */
-  if (!gtk_toggle_button_get_mode (GTK_TOGGLE_BUTTON (widget))) {
-    result = GTK_WIDGET_CLASS (geda_bulb_parent_class)->focus (widget, direction);
+  if (!gtk_toggle_button_get_mode ((GtkToggleButton*)widget)) {
+    result = ((GtkWidgetClass*)geda_bulb_parent_class)->focus (widget, direction);
   }
   else {
 
     if (gtk_widget_is_focus (widget)) {
 
-      GSList *focus_list, *tmp_list;
-      GtkWidget *toplevel = gtk_widget_get_toplevel (widget);
+      GSList   *focus_list, *tmp_list;
+      GtkWidget *toplevel  = gtk_widget_get_toplevel (widget);
       GtkWidget *new_focus = NULL;
 
       switch (direction) {
@@ -375,7 +371,7 @@ geda_bulb_focus (GtkWidget *widget, GtkDirectionType direction)
 
         gtk_widget_grab_focus (new_focus);
 
-        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (new_focus), TRUE);
+        gtk_toggle_button_set_active ((GtkToggleButton*)new_focus, TRUE);
       }
 
       result = TRUE;
@@ -397,7 +393,7 @@ geda_bulb_focus (GtkWidget *widget, GtkDirectionType direction)
 
       while (tmp_slist) {
 
-        if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (tmp_slist->data)))
+        if (gtk_toggle_button_get_active ((GtkToggleButton*)tmp_slist->data))
         {
           selected_button = tmp_slist->data;
         }
@@ -419,7 +415,7 @@ geda_bulb_focus (GtkWidget *widget, GtkDirectionType direction)
 static void
 button_set_depressed (GtkButton *button, bool depressed)
 {
-  GtkWidget *widget = GTK_WIDGET (button);
+  GtkWidget *widget = (GtkWidget*)button;
 
   depressed = depressed != FALSE;
 
@@ -432,8 +428,8 @@ button_set_depressed (GtkButton *button, bool depressed)
 static void
 geda_bulb_clicked (GtkButton *button)
 {
-  GedaBulb        *bulb          = GEDA_BULB (button);
-  GtkToggleButton *toggle_button = GTK_TOGGLE_BUTTON (button);
+  GedaBulb        *bulb          = (GedaBulb*)button;
+  GtkToggleButton *toggle_button = (GtkToggleButton*)button;
   GtkToggleButton *tmp_button;
   GtkStateType     new_state;
   GSList          *tmp_list;
@@ -442,7 +438,7 @@ geda_bulb_clicked (GtkButton *button)
 
   toggled = FALSE;
 
-  g_object_ref (GTK_WIDGET (button));
+  g_object_ref (button);
 
   if (toggle_button->active) {
 
@@ -489,8 +485,8 @@ geda_bulb_clicked (GtkButton *button)
          * technically wrong, and also annoying, the other widget was not
          * clicked", instead we do this ... */
         tmp_button->active = FALSE;
-        gtk_toggle_button_toggled (GTK_TOGGLE_BUTTON (tmp_button));
-        gtk_widget_queue_draw(GTK_WIDGET (tmp_button));
+        gtk_toggle_button_toggled ((GtkToggleButton*)tmp_button);
+        gtk_widget_queue_draw((GtkWidget*)tmp_button);
         /* which only generates a "toggled" event for the other widget */
         break;
       }
@@ -510,20 +506,20 @@ geda_bulb_clicked (GtkButton *button)
     depressed = toggle_button->active;
   }
 
-  if (gtk_widget_get_state (GTK_WIDGET (button)) != new_state) {
-    gtk_widget_set_state (GTK_WIDGET (button), new_state);
+  if (gtk_widget_get_state ((GtkWidget*)button) != new_state) {
+    gtk_widget_set_state ((GtkWidget*)button, new_state);
   }
 
   if (toggled) {
 
     gtk_toggle_button_toggled (toggle_button);
 
-    g_object_notify (G_OBJECT (toggle_button), "active");
+    g_object_notify ((GObject*)toggle_button, "active");
   }
 
   button_set_depressed (button, depressed);
 
-  gtk_widget_queue_draw (GTK_WIDGET (button));
+  gtk_widget_queue_draw ((GtkWidget*)button);
 
   g_object_unref (button);
 }
@@ -532,7 +528,7 @@ static void
 button_get_props (GtkCheckButton *check_button, int *indicator_size,
                                                 int *indicator_spacing)
 {
-  GtkWidget *widget =  GTK_WIDGET (check_button);
+  GtkWidget *widget = (GtkWidget*)check_button;
 
   if (indicator_size)
     gtk_widget_style_get (widget, "indicator-size", indicator_size, NULL);
@@ -544,7 +540,7 @@ button_get_props (GtkCheckButton *check_button, int *indicator_size,
 static void
 geda_bulb_draw_indicator (GtkCheckButton *check_button, GdkRectangle *area)
 {
-  GtkWidget *widget = GTK_WIDGET (check_button);
+  GtkWidget *widget = (GtkWidget*)check_button;
 
   if (gtk_widget_is_drawable (widget)) {
 
@@ -568,9 +564,9 @@ geda_bulb_draw_indicator (GtkCheckButton *check_button, GdkRectangle *area)
     /* ----------------- Setup Auxiliary Pointers ----------------- */
 
     allocation    = geda_get_widget_allocation(widget);
-    bulb          = GEDA_BULB (check_button);
-    button        = GTK_BUTTON (check_button);
-    toggle_button = GTK_TOGGLE_BUTTON (check_button);
+    bulb          = (GedaBulb*)check_button;
+    button        = (GtkButton*)check_button;
+    toggle_button = (GtkToggleButton*)check_button;
 
     /* --------------- Retrieve Dimensional Factors --------------- */
 
@@ -602,7 +598,7 @@ geda_bulb_draw_indicator (GtkCheckButton *check_button, GdkRectangle *area)
     }
 
     /* Make trival adjustment for child focus */
-    child = gtk_bin_get_child (GTK_BIN (check_button));
+    child = gtk_bin_get_child ((GtkBin*)check_button);
     if (!interior_focus || !(child && gtk_widget_get_visible (child))) {
       x += focus_width + focus_pad;
     }
@@ -689,7 +685,7 @@ geda_bulb_class_init(void *class, void *class_data)
   button_class       = (GtkButtonClass*)class;
   check_button_class = (GtkCheckButtonClass*)class;
   widget_class       = (GtkWidgetClass*)class;
-  object_class       = G_OBJECT_CLASS(class);
+  object_class       = (GObjectClass*)class;
 
   object_class->set_property = geda_bulb_set_property;
   object_class->get_property = geda_bulb_get_property;
@@ -821,7 +817,7 @@ geda_bulb_instance_init (GTypeInstance *instance, void *class)
 
   button->depress_on_activate = FALSE;
 
-  GTK_CONTAINER (bulb)->border_width = 1;
+  ((GtkContainer*)bulb)->border_width = 1;
 
   bulb->group = g_slist_prepend (NULL, bulb);
 
@@ -1240,7 +1236,7 @@ geda_bulb_set_group (GtkWidget *widget, GSList *group)
 
   g_object_ref (bulb);
 
-  g_object_notify (G_OBJECT (bulb), "group");
+  g_object_notify ((GObject*)bulb, "group");
 
   g_signal_emit (bulb, group_changed_signal, 0);
 
@@ -1254,7 +1250,7 @@ geda_bulb_set_group (GtkWidget *widget, GSList *group)
     g_object_unref (new_group_singleton);
   }
 
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (bulb), group == NULL);
+  gtk_toggle_button_set_active ((GtkToggleButton*)bulb, group == NULL);
 
   g_object_unref (bulb);
 }
@@ -1335,7 +1331,7 @@ int geda_bulb_group_get_active_index (GSList *group_list) {
 
     GtkToggleButton *button;
 
-    button = GTK_TOGGLE_BUTTON (g_slist_nth_data (group_list, index));
+    button = (GtkToggleButton*)g_slist_nth_data (group_list, index);
 
     if (button == NULL)
       return -1;
@@ -1380,7 +1376,7 @@ void geda_bulb_group_set_active_index (GSList *group_list, int which_bulb)
 
   if (index < 0 || index >= length) return;
 
-  button = GTK_TOGGLE_BUTTON (g_slist_nth_data (group_list, index));
+  button = (GtkToggleButton*)g_slist_nth_data (group_list, index);
 
   if (button != NULL) {
 
@@ -1427,11 +1423,11 @@ geda_bulb_group_quietly_set_active (GSList *group_list, int which_bulb)
 
     GtkToggleButton *button;
 
-    button = GTK_TOGGLE_BUTTON (g_slist_nth_data (group_list, index));
+    button = (GtkToggleButton*)g_slist_nth_data (group_list, index);
 
     if (button != NULL) {
       button->active = index == target;
-      gtk_widget_queue_draw(GTK_WIDGET (button));
+      gtk_widget_queue_draw((GtkWidget*)button);
     }
   }
 
@@ -1499,7 +1495,7 @@ void geda_bulb_set_group_sensitive (GSList *group, bool sensitive)
 
   for (iter = group; iter; iter = iter->next) {
     if (GEDA_IS_BULB(iter->data)) {
-      gtk_widget_set_sensitive(GTK_WIDGET(iter->data), sensitive);
+      gtk_widget_set_sensitive((GtkWidget*)iter->data, sensitive);
     }
   }
 }

@@ -1,3 +1,8 @@
+2017-04-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_bulb.c: Replace g_type_check_instance_cast with static
+      cast cast to static cast in order to eliminate needless type-checking.
+
 2017-04-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_action.c: Revise geda_action_create_menu_item to set
