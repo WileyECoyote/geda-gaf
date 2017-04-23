@@ -4,7 +4,8 @@
       geda_combo_box_constructor and just cast the GObject. Revise geda_combo_
       box_list_setup with two local variables; button and tree_view, reduce
       the scope of GtkStyle pointer and add GtkStateType, replace cast in order
-      to eliminate needless type-checking.
+      to eliminate needless type-checking. Replace wrapper GTK_CONTAINER with
+      GtkContainer* throughout the module.
 
 2017-04-22 Wiley E. Hill <wileyhill@gmail.com>
 
