@@ -1,3 +1,8 @@
+2017-04-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_combobox.c: Eliminate GedaComboBox pointer in function
+      geda_combo_box_constructor and just cast the GObject.
+
 2017-04-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_bulb.c: Replace g_type_check_instance_cast with static

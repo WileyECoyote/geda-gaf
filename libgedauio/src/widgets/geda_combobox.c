@@ -1459,20 +1459,18 @@ geda_combo_box_destroy (GtkObject *object)
 }
 
 /* object_class->constructor */
-static GObject *
+static GObject*
 geda_combo_box_constructor (GType                  type,
                             unsigned int           n_construct_properties,
                             GObjectConstructParam *construct_properties)
 {
-  GObject          *object;
-  GedaComboBox     *combo_box;
+  GObject *object;
   GedaComboBoxData *priv;
 
-  object = G_OBJECT_CLASS (geda_combo_box_parent_class)->constructor
-                          (type, n_construct_properties, construct_properties);
+  object = ((GObjectClass*)geda_combo_box_parent_class)->
+             constructor (type, n_construct_properties, construct_properties);
 
-  combo_box = GEDA_COMBO_BOX (object);
-  priv      = combo_box->priv;
+  priv   = ((GedaComboBox*)object)->priv;
 
   if (priv->has_entry) {
 
@@ -1480,15 +1478,15 @@ geda_combo_box_constructor (GType                  type,
 
     entry = geda_entry_new_visible ();
 
-    gtk_container_add (GTK_CONTAINER (combo_box), entry);
+    gtk_container_add ((GtkContainer*)object, entry);
 
     priv->text_renderer = gtk_cell_renderer_text_new ();
-    gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (combo_box),
+    gtk_cell_layout_pack_start ((GtkCellLayout*)object,
                                 priv->text_renderer, TRUE);
 
-    geda_combo_box_set_active (GEDA_COMBO_BOX (combo_box), -1);
+    geda_combo_box_set_active ((GedaComboBox*)object, -1);
 
-    g_signal_connect (combo_box, "changed",
+    g_signal_connect (object, "changed",
                       G_CALLBACK (geda_combo_box_entry_active_changed), NULL);
   }
 
