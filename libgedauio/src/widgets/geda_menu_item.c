@@ -517,11 +517,11 @@ geda_menu_item_set_property (GObject      *object,
 
     case PROP_ACTION_NAME:
 #if (GTK_MAJOR_VERSION == 3)
-      geda_menu_item_set_action_name (GTK_ACTIONABLE (menu_item), g_value_get_string (value));
+      geda_menu_item_set_action_name ((GtkActionable*)menu_item, g_value_get_string (value));
       break;
 
     case PROP_ACTION_TARGET:
-      geda_menu_item_set_action_target_value (GTK_ACTIONABLE (menu_item), g_value_get_variant (value));
+      geda_menu_item_set_action_target_value ((GtkActionable*)menu_item, g_value_get_variant (value));
 #endif
       break;
 
@@ -2035,15 +2035,14 @@ geda_menu_item_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
   PackDirection        pack_dir;
   PackDirection        child_pack_dir;
 
-
-  menu_item = GEDA_MENU_ITEM(widget);
-  bin       = GTK_BIN(widget);
+  menu_item = (GedaMenuItem*)widget;
+  bin       = (GtkBin*)widget;
   priv      = menu_item->priv;
   direction = gtk_widget_get_direction (widget);
 
   if (GEDA_IS_MENU_BAR(widget->parent)) {
-    pack_dir       = geda_menu_bar_get_pack_direction (GEDA_MENU_BAR (widget->parent));
-    child_pack_dir = geda_menu_bar_get_child_pack_direction (GEDA_MENU_BAR (widget->parent));
+    pack_dir       = geda_menu_bar_get_pack_direction ((GedaMenuBar*)widget->parent);
+    child_pack_dir = geda_menu_bar_get_child_pack_direction ((GedaMenuBar*)widget->parent);
   }
   else {
     pack_dir       = PACK_DIRECTION_LTR;
@@ -2076,22 +2075,21 @@ geda_menu_item_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
     child_allocation.width  = MAX (1, (int)allocation->width - child_allocation.x * 2);
     child_allocation.height = MAX (1, (int)allocation->height - child_allocation.y * 2);
 
-    if (child_pack_dir == PACK_DIRECTION_LTR ||
-        child_pack_dir == PACK_DIRECTION_RTL)
+    if (child_pack_dir == PACK_DIRECTION_LTR || child_pack_dir == PACK_DIRECTION_RTL)
     {
       if ((direction == GTK_TEXT_DIR_LTR) == (child_pack_dir != PACK_DIRECTION_RTL))
       {
-        child_allocation.x += GEDA_MENU_ITEM(widget)->priv->toggle_size;
+        child_allocation.x += menu_item->priv->toggle_size;
       }
-      child_allocation.width -= GEDA_MENU_ITEM(widget)->priv->toggle_size;
+      child_allocation.width -= menu_item->priv->toggle_size;
     }
     else
     {
       if ((direction == GTK_TEXT_DIR_LTR) == (child_pack_dir != PACK_DIRECTION_BTT))
       {
-        child_allocation.y += GEDA_MENU_ITEM(widget)->priv->toggle_size;
+        child_allocation.y += menu_item->priv->toggle_size;
       }
-      child_allocation.height -= GEDA_MENU_ITEM(widget)->priv->toggle_size;
+      child_allocation.height -= menu_item->priv->toggle_size;
     }
 
     child_allocation.x += widget->allocation.x;
@@ -2120,7 +2118,7 @@ geda_menu_item_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
   }
 
   if (priv->submenu) {
-    geda_menu_reposition (GEDA_MENU(priv->submenu));
+    geda_menu_reposition ((GedaMenu*)priv->submenu);
   }
 }
 
@@ -2462,7 +2460,7 @@ geda_menu_item_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
   g_return_if_fail (GEDA_IS_MENU_ITEM(widget));
   g_return_if_fail (allocation != NULL);
 
-  bin       = GTK_BIN(widget);
+  bin       = (GtkBin*)widget;
 
   direction = gtk_widget_get_direction (widget);
 
@@ -2638,7 +2636,7 @@ geda_real_menu_item_deselect (GedaMenuItem *menu_item)
     geda_menu_item_popdown_submenu (menu_item);
   }
 
-  widget = GTK_WIDGET(menu_item);
+  widget = (GtkWidget*)menu_item;
 
 #if GTK_MAJOR_VERSION < 3
   gtk_widget_set_state (widget, GTK_STATE_NORMAL);
@@ -2740,7 +2738,7 @@ free_timeval (GTimeVal *val)
 static void
 geda_menu_item_real_popup_submenu (GtkWidget *widget, bool remember_time)
 {
-  GedaMenuItem        *menu_item = GEDA_MENU_ITEM(widget);
+  GedaMenuItem        *menu_item = (GedaMenuItem*)widget;
   GedaMenuItemPrivate *priv      = menu_item->priv;
   GtkWidget           *parent;
 
@@ -2919,7 +2917,7 @@ geda_menu_item_popup_submenu (GedaMenuItem *menu_item, bool with_delay)
     }
   }
 
-  geda_menu_item_real_popup_submenu (GTK_WIDGET(menu_item), FALSE);
+  geda_menu_item_real_popup_submenu ((GtkWidget*)menu_item, FALSE);
 }
 
 #endif
@@ -2994,7 +2992,7 @@ geda_menu_item_position_menu (GedaMenu  *menu,
   g_return_if_fail (x != NULL);
   g_return_if_fail (y != NULL);
 
-  menu_item = GEDA_MENU_ITEM(user_data);
+  menu_item = (GedaMenuItem*)user_data;
   priv      = menu_item->priv;
   widget    = (GtkWidget*)user_data;
 
@@ -3184,7 +3182,7 @@ geda_menu_item_position_menu (GedaMenu  *menu,
                               bool      *push_in,
                               void      *user_data)
 {
-  GedaMenuItem        *menu_item = GEDA_MENU_ITEM(user_data);
+  GedaMenuItem        *menu_item = (GedaMenuItem*)user_data;
   GedaMenuItemPrivate *priv = menu_item->priv;
   GtkAllocation        allocation;
   GtkWidget           *widget;
@@ -3662,7 +3660,7 @@ geda_menu_item_forall (GtkContainer *container,
   g_return_if_fail (GEDA_IS_MENU_ITEM(container));
   g_return_if_fail (callback != NULL);
 
-  child = gtk_bin_get_child (GTK_BIN(container));
+  child = gtk_bin_get_child ((GtkBin*)container);
 
   if (child) {
     callback (child, callback_data);
@@ -3698,7 +3696,7 @@ bool
 geda_menu_item_is_selectable (GedaMenuItem  *menu_item)
 {
   if (menu_item != NULL) {
-    if ((!gtk_bin_get_child (GTK_BIN(menu_item)) &&
+    if ((!gtk_bin_get_child ((GtkBin*)menu_item) &&
           G_OBJECT_TYPE (menu_item) == GEDA_TYPE_MENU_ITEM) ||
           GEDA_IS_MENU_SEPERATOR (menu_item)                ||
          !gtk_widget_is_sensitive ((GtkWidget*)menu_item)   ||
@@ -3715,7 +3713,7 @@ geda_menu_item_is_widget_selectable (GtkWidget *widget)
 {
 
   if (widget != NULL) {
-    if ((!gtk_bin_get_child (GTK_BIN(widget)) &&
+    if ((!gtk_bin_get_child ((GtkBin*)widget) &&
       G_OBJECT_TYPE (widget) == GEDA_TYPE_MENU_ITEM) ||
       GEDA_IS_MENU_SEPERATOR (widget) ||
       !gtk_widget_is_sensitive (widget) ||
@@ -3809,7 +3807,7 @@ geda_menu_item_get_label_widget (GedaMenuItem *menu_item)
 
   geda_menu_item_ensure_label (menu_item);
 
-  return gtk_bin_get_child (GTK_BIN(menu_item));
+  return gtk_bin_get_child ((GtkBin*)menu_item);
 }
 
 /*!
@@ -3830,13 +3828,13 @@ geda_menu_item_set_use_underline (GedaMenuItem *menu_item, bool setting)
 
   geda_menu_item_ensure_label (menu_item);
 
-  child = gtk_bin_get_child (GTK_BIN(menu_item));
+  child = gtk_bin_get_child ((GtkBin*)menu_item);
 
   if (GEDA_IS_LABEL(child)) {
 
-    geda_label_set_use_underline (GEDA_LABEL(child), setting);
+    geda_label_set_use_underline ((GedaLabel*)child, setting);
 
-    g_object_notify (G_OBJECT(menu_item), "use-underline");
+    g_object_notify ((GObject*)menu_item, "use-underline");
   }
 }
 
@@ -3860,10 +3858,10 @@ geda_menu_item_get_use_underline (GedaMenuItem *menu_item)
 
   geda_menu_item_ensure_label (menu_item);
 
-  child = gtk_bin_get_child (GTK_BIN(menu_item));
+  child = gtk_bin_get_child ((GtkBin*)menu_item);
 
   if (GEDA_IS_LABEL (child)) {
-    return geda_label_get_use_underline (GEDA_LABEL(child));
+    return geda_label_get_use_underline ((GedaLabel*)child);
   }
 
   return FALSE;
@@ -3954,7 +3952,7 @@ geda_menu_item_set_show_submenu_indicator (GedaMenuItem  *menu_item, bool show)
   if (priv->show_submenu_indicator != show) {
 
     priv->show_submenu_indicator = show;
-    gtk_widget_queue_resize (GTK_WIDGET(menu_item));
+    gtk_widget_queue_resize ((GtkWidget*)menu_item);
   }
 }
 
