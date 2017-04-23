@@ -1163,7 +1163,7 @@ geda_menu_is_empty (GtkWidget *menu)
     if (gtk_widget_get_visible (cur->data)) {
 
       if (!GTK_IS_TEAROFF_MENU_ITEM (cur->data) &&
-        !g_object_get_data (cur->data, "empty-menu-item"))
+          !GEDA_OBJECT_GET_DATA (cur->data, "empty-menu-item"))
       {
         result = FALSE;
         break;
@@ -2766,8 +2766,7 @@ geda_menu_item_real_popup_submenu (GtkWidget *widget, bool remember_time)
     }
     else {
 
-      g_object_set_data ((GObject*)priv->submenu,
-                         MENU_POPUP_TIME_KEY, NULL);
+      GEDA_OBJECT_SET_DATA (priv->submenu, NULL, MENU_POPUP_TIME_KEY);
     }
 
     /* geda_menu_item_position_menu positions the submenu from the
@@ -2932,8 +2931,7 @@ geda_menu_item_popdown_submenu (GedaMenuItem *menu_item)
 
   if (priv->submenu) {
 
-    g_object_set_data (G_OBJECT (priv->submenu),
-                       MENU_POPUP_TIME_KEY, NULL);
+    GEDA_OBJECT_SET_DATA (priv->submenu, NULL, MENU_POPUP_TIME_KEY);
 
     if (priv->timer) {
 
