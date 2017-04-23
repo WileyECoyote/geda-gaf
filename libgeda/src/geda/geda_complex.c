@@ -99,7 +99,7 @@ geda_complex_bounds(GedaObject *object)
 
     /* Check other objects with bounds and expand as necessary */
     while ( iter != NULL ) {
-      sub_object   = (GedaObject *) iter->data;
+      sub_object   = (GedaObject*)iter->data;
       object_class = (GedaObjectClass*)G_OBJECT_GET_CLASS(sub_object);
 
       if (object_class->bounds(sub_object)) {
@@ -155,7 +155,7 @@ static void geda_complex_instance_init(GTypeInstance *instance, void *g_class)
 static void
 geda_complex_dispose(GObject *object)
 {
-  G_OBJECT_CLASS(geda_complex_parent_class)->dispose(object);
+  ((GObjectClass*)geda_complex_parent_class)->dispose(object);
 }
 
 /*! \brief Geda Complex GedaObject Finalization Function
@@ -187,7 +187,7 @@ static void geda_complex_finalize(GObject *object)
   obj->complex = NULL;
 
   /* Finialize the parent GedaObject Class */
-  GEDA_OBJECT_CLASS(geda_complex_parent_class)->finalize(object);
+  ((GedaObjectClass*)geda_complex_parent_class)->finalize(object);
 }
 
 /*! \brief GedaType class initializer for GedaComplex
@@ -196,14 +196,14 @@ static void geda_complex_finalize(GObject *object)
  *  GedaType class initializer for GedaComplex. We override parents
  *  virtual class methods as needed and register GObject signals.
  *
- *  \param [in]  g_class      The GedaComplex class we are initializing
- *  \param [in]  class_data   The Complex structure associated with the class
+ *  \param [in]  klass       The GedaComplex class we are initializing
+ *  \param [in]  class_data  The Complex structure associated with the class
  */
-static void geda_complex_class_init(void *g_class, void *class_data)
+static void geda_complex_class_init(void *klass, void *class_data)
 {
-  GedaComplexClass *class         = (GedaComplexClass*)g_class;
-  GObjectClass     *gobject_class = G_OBJECT_CLASS(class);
-  GedaObjectClass  *geda_class    = GEDA_OBJECT_CLASS(class);
+  GedaComplexClass *class         = (GedaComplexClass*)klass;
+  GObjectClass     *gobject_class = (GObjectClass*)class;
+  GedaObjectClass  *geda_class    = (GedaObjectClass*)class;
 
   geda_complex_parent_class       = g_type_class_peek_parent(class);
 
