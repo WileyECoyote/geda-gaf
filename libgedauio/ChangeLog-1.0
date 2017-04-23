@@ -4,7 +4,9 @@
       cast cast to static cast in order to eliminate needless type-checking.
 
     * src/widgets/geda_label.c: Remove g_return_if_fail in function from internal
-      static functions geda_label_query_tooltip and geda_label_set_uline_text_internal.
+      static functions geda_label_query_tooltip and geda_label_set_uline_text_
+      internal, change cast to static cast in order to eliminate needless calls
+      to g_type_check_instance_cast.
 
     * src/widgets/geda_menu_bar.c: Reduce scope of keyval in accelerate_children.
 
@@ -17,6 +19,8 @@
         * geda_real_menu_item_toggle_size_request,
         * geda_menu_item_size_request,
         * geda_menu_item_expose and.
+
+      sub-total: 18757 - 4934 = 13823 less calls to g_type_check_instance_cast.
 
 2017-04-21 Wiley E. Hill <wileyhill@gmail.com>
 

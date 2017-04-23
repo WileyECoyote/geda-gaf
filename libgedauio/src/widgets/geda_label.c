@@ -200,7 +200,7 @@ static void geda_label_direction_changed     (GtkWidget        *widget,
 static int  geda_label_expose                (GtkWidget        *widget,
                                               GdkEventExpose   *event);
 static bool geda_label_focus                 (GtkWidget        *widget,
-                                             GtkDirectionType   direction);
+                                              GtkDirectionType   direction);
 
 static void geda_label_realize               (GtkWidget        *widget);
 static void geda_label_unrealize             (GtkWidget        *widget);
@@ -359,7 +359,7 @@ static int get_label_char_width (GedaLabel *label)
 
   context = pango_layout_get_context (label->layout);
 
-  metrics = pango_context_get_metrics (context, GTK_WIDGET (label)->style->font_desc, pango_context_get_language (context));
+  metrics = pango_context_get_metrics (context, ((GtkWidget*)label)->style->font_desc, pango_context_get_language (context));
 
   char_width  =  pango_font_metrics_get_approximate_char_width (metrics);
   digit_width = pango_font_metrics_get_approximate_digit_width (metrics);
@@ -389,7 +389,7 @@ static int get_label_char_width (GedaLabel *label)
 static void
 geda_label_style_set (GtkWidget *widget, GtkStyle *previous_style)
 {
-  GedaLabel *label = GEDA_LABEL (widget);
+  GedaLabel *label = (GedaLabel*)widget;
 
   /* We have to clear the layout, fonts etc. may have changed */
   geda_label_clear_layout (label);
@@ -414,8 +414,8 @@ get_layout_location (GedaLabel *label, int *xp, int *yp)
   int req_width, x, y;
   PangoRectangle logical;
 
-  misc   = GTK_MISC (label);
-  widget = GTK_WIDGET (label);
+  misc   = (GtkMisc*)label;
+  widget = (GtkWidget*)label;
 
   if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_LTR) {
     xalign = misc->xalign;
@@ -600,7 +600,7 @@ geda_label_query_tooltip (GtkWidget  *widget,
 static void
 geda_label_direction_changed (GtkWidget *widget, GtkTextDirection direction)
 {
-  GedaLabel *label = GEDA_LABEL (widget);
+  GedaLabel *label = (GedaLabel*)widget;
 
   if (label->layout) {
     pango_layout_context_changed (label->layout);
@@ -777,18 +777,17 @@ pango_merge_attribute_list (PangoAttrList *into, PangoAttrList *from)
  */
 static void geda_label_ensure_layout (GedaLabel *label)
 {
-  GedaLabelData *priv;
-  GtkWidget     *widget;
-
-  priv   = label->priv;
-  widget = GTK_WIDGET (label);
-
   if (!label->layout) {
 
     PangoAlignment alignment; /* pango default this to PANGO_ALIGN_LEFT */
     PangoAttrList *attrs;
     PangoContext  *context;
+    GedaLabelData *priv;
+    GtkWidget     *widget;
     bool           R2L;
+
+    priv   = label->priv;
+    widget = (GtkWidget*)label;
 
     //context = pango_context_new (PANGO_TYPE_CONTEXT);
     context = gtk_widget_get_pango_context (widget);
@@ -931,7 +930,7 @@ static void geda_label_ensure_layout (GedaLabel *label)
 static void
 geda_label_destroy (GtkObject *object)
 {
-  GedaLabel   *label = GEDA_LABEL (object);
+  GedaLabel   *label = (GedaLabel*)object;
   GtkSettings *settings;
   GtkWidget   *toplevel;
   bool         connected;
@@ -948,7 +947,7 @@ geda_label_destroy (GtkObject *object)
                        (void*)(long)FALSE);
   }
 
-  toplevel = gtk_widget_get_toplevel (GTK_WIDGET (label));
+  toplevel = gtk_widget_get_toplevel ((GtkWidget*)label);
 
   connected = (int)(long)GEDA_OBJECT_GET_DATA(toplevel, "label-mnemonics-connected");
 
@@ -1001,7 +1000,7 @@ static void geda_label_dispose (GObject *object)
 
 static void geda_label_finalize (GObject *object)
 {
-  GedaLabel *label = GEDA_LABEL (object);
+  GedaLabel *label = (GedaLabel*)object;
 
   geda_label_clear_links (label);
 
@@ -1030,7 +1029,7 @@ static void
 geda_label_get_property (GObject *object, unsigned int  prop_id,
                          GValue  *value,  GParamSpec   *pspec)
 {
-  GedaLabel     *label = GEDA_LABEL (object);
+  GedaLabel     *label = (GedaLabel*)object;
   GedaLabelData *priv  = label->priv;
 
   switch (prop_id) {
@@ -1117,7 +1116,7 @@ static void
 geda_label_set_property (GObject *object,     unsigned int  prop_id,
                          const GValue *value, GParamSpec   *pspec)
 {
-  GedaLabel *label = GEDA_LABEL (object);
+  GedaLabel *label = (GedaLabel*)object;
 
   switch (prop_id) {
 
@@ -2673,7 +2672,7 @@ geda_label_screen_changed (GtkWidget *widget, GdkScreen *old_screen)
   bool         shortcuts_connected;
 
   /* The PangoContext is replaced when the screen changes, so clear the layouts */
-  geda_label_clear_layout (GEDA_LABEL (widget));
+  geda_label_clear_layout ((GedaLabel*)widget);
 
   if (!gtk_widget_has_screen (widget))
     return;
@@ -3086,7 +3085,7 @@ static void geda_label_ensure_has_tooltip (GedaLabel *label)
     }
   }
 
-  gtk_widget_set_has_tooltip (GTK_WIDGET (label), has_tooltip);
+  gtk_widget_set_has_tooltip ((GtkWidget*)label, has_tooltip);
 }
 
 static void
@@ -3120,14 +3119,14 @@ geda_label_set_markup_internal (GedaLabel  *label,
     bool enable_mnemonics;
     bool auto_mnemonics;
 
-    g_object_get (gtk_widget_get_settings (GTK_WIDGET (label)),
+    g_object_get (gtk_widget_get_settings ((GtkWidget*)label),
                   "gtk-enable-mnemonics", &enable_mnemonics,
                   "gtk-auto-mnemonics", &auto_mnemonics,
                   NULL);
 
     if (!(enable_mnemonics && priv->mnemonics_visible &&
        (!auto_mnemonics ||
-       (gtk_widget_is_sensitive (GTK_WIDGET (label)) &&
+       (gtk_widget_is_sensitive ((GtkWidget*)label) &&
        (!priv->mnemonic_widget ||
       gtk_widget_is_sensitive (priv->mnemonic_widget))))))
     {
@@ -3300,7 +3299,7 @@ geda_label_clear_layout (GedaLabel *label)
 static void
 geda_label_size_request (GtkWidget *widget, GtkRequisition *requisition)
 {
-  GedaLabel     *label = GEDA_LABEL (widget);
+  GedaLabel     *label = (GedaLabel*)widget;
   GedaLabelData *priv  = label->priv;
   int width, height;
 
@@ -3388,7 +3387,7 @@ static void
 geda_label_size_allocate (GtkWidget     *widget,
                           GtkAllocation *allocation)
 {
-  GedaLabel     *label = GEDA_LABEL (widget);
+  GedaLabel     *label = (GedaLabel*)widget;
   GedaLabelData *priv  = label->priv;
 
   GTK_WIDGET_CLASS (geda_label_parent_class)->size_allocate (widget, allocation);
@@ -3447,7 +3446,7 @@ geda_label_update_cursor (GedaLabel *label)
 static void
 geda_label_state_changed (GtkWidget   *widget, GtkStateType prev_state)
 {
-  GedaLabel *label = GEDA_LABEL (widget);
+  GedaLabel *label = (GedaLabel*)widget;
 
   if (label->priv->select_info) {
 
@@ -3624,7 +3623,7 @@ geda_label_get_focus_link (GedaLabel *label)
 static int
 geda_label_expose (GtkWidget *widget, GdkEventExpose *event)
 {
-  GedaLabel     *label = GEDA_LABEL (widget);
+  GedaLabel     *label = (GedaLabel*)widget;
   SelectionInfo *info  = label->priv->select_info;
 
   geda_label_ensure_layout (label);
@@ -3855,7 +3854,7 @@ geda_label_set_uline_text_internal (GedaLabel *label, const char *str)
 
 static void geda_label_realize (GtkWidget *widget)
 {
-  GedaLabel *label = GEDA_LABEL (widget);
+  GedaLabel *label = (GedaLabel*)widget;
 
   GTK_WIDGET_CLASS (geda_label_parent_class)->realize (widget);
 
@@ -3866,7 +3865,7 @@ static void geda_label_realize (GtkWidget *widget)
 
 static void geda_label_unrealize (GtkWidget *widget)
 {
-  GedaLabel *label = GEDA_LABEL (widget);
+  GedaLabel *label = (GedaLabel*)widget;
 
   if (label->priv->select_info) {
     geda_label_destroy_window (label);
@@ -3876,7 +3875,7 @@ static void geda_label_unrealize (GtkWidget *widget)
 
 static void geda_label_map (GtkWidget *widget)
 {
-  GedaLabel *label = GEDA_LABEL (widget);
+  GedaLabel *label = (GedaLabel*)widget;
 
   GTK_WIDGET_CLASS (geda_label_parent_class)->map (widget);
 
@@ -3887,7 +3886,7 @@ static void geda_label_map (GtkWidget *widget)
 
 static void geda_label_unmap (GtkWidget *widget)
 {
-  GedaLabel *label = GEDA_LABEL (widget);
+  GedaLabel *label = (GedaLabel*)widget;
 
   if (label->priv->select_info) {
     gdk_window_hide (label->priv->select_info->window);
@@ -3917,12 +3916,12 @@ static void geda_label_select_word (GedaLabel *label)
 
 static void geda_label_grab_focus (GtkWidget *widget)
 {
-  GedaLabel *label;
+  GedaLabel     *label;
   GedaLabelData *priv;
   GedaLabelLink *link;
 
-  label = GEDA_LABEL (widget);
-  priv = label->priv;
+  label = (GedaLabel*)widget;
+  priv  = label->priv;
 
   if (priv->select_info == NULL)
     return;
@@ -3947,7 +3946,7 @@ geda_label_focus (GtkWidget *widget, GtkDirectionType direction)
   GedaLabelLink *focus_link;
   GList         *iter;
 
-  label = GEDA_LABEL (widget);
+  label = (GedaLabel*)widget;
   info  = label->priv->select_info;
 
   if (!gtk_widget_is_focus (widget)) {
