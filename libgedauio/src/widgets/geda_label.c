@@ -553,8 +553,6 @@ geda_label_query_tooltip (GtkWidget  *widget,
   GedaLabel     *label;
   SelectionInfo *info;
 
-  g_return_val_if_fail (GEDA_IS_LABEL(widget), FALSE);
-
   label = (GedaLabel*)widget;
   info  = label->priv->select_info;
 
@@ -3835,24 +3833,24 @@ separate_uline_pattern (const char  *str, unsigned int *accel_key,
 static void
 geda_label_set_uline_text_internal (GedaLabel *label, const char *str)
 {
-  unsigned int accel_key = GDK_KEY_VoidSymbol;
-  char *new_str;
-  char *pattern;
+  if (str != NULL) {
 
-  g_return_if_fail (GEDA_IS_LABEL(label));
-  g_return_if_fail (str != NULL);
+    unsigned int accel_key = GDK_KEY_VoidSymbol;
+    char *new_str;
+    char *pattern;
 
-  /* Split text into the base text and a separate pattern
-   * of underscores.
-   */
-  if (!separate_uline_pattern (str, &accel_key, &new_str, &pattern))
-    return;
+    /* Split text into the base text and a separate pattern
+     * of underscores.
+     */
+    if (!separate_uline_pattern (str, &accel_key, &new_str, &pattern))
+      return;
 
-  geda_label_set_text_internal (label, new_str);
-  geda_label_set_pattern_internal (label, pattern, TRUE);
-  label->priv->mnemonic_keyval = accel_key;
+    geda_label_set_text_internal (label, new_str);
+    geda_label_set_pattern_internal (label, pattern, TRUE);
+    label->priv->mnemonic_keyval = accel_key;
 
-  g_free (pattern);
+    g_free (pattern);
+  }
 }
 
 static void geda_label_realize (GtkWidget *widget)

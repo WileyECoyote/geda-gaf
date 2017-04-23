@@ -3,6 +3,9 @@
     * src/widgets/geda_bulb.c: Replace g_type_check_instance_cast with static
       cast cast to static cast in order to eliminate needless type-checking.
 
+    * src/widgets/geda_label.c: Remove g_return_if_fail in function from internal
+      static functions geda_label_query_tooltip and geda_label_set_uline_text_internal.
+
     * src/widgets/geda_menu_bar.c: Reduce scope of keyval in accelerate_children.
 
     * src/widgets/geda_menu_item.c: Replace g_type_check_instance_cast with
