@@ -4434,49 +4434,56 @@ static void
 geda_combo_box_list_setup (GedaComboBox *combo_box)
 {
   GedaComboBoxData *priv = combo_box->priv;
+  GtkWidget        *button;
   GtkTreeSelection *sel;
-  GtkStyle         *style;
-  GtkWidget        *widget = GTK_WIDGET (combo_box);
+  GtkTreeView      *tree_view;
 
-  priv->button = gtk_toggle_button_new ();
+  button = gtk_toggle_button_new ();
 
-  gtk_widget_set_parent (priv->button, GTK_BIN (combo_box)->child->parent);
+  gtk_widget_set_parent (button, ((GtkBin*)combo_box)->child->parent);
 
-  g_signal_connect (priv->button, "button-press-event",
+  g_signal_connect (button, "button-press-event",
                     G_CALLBACK (geda_combo_box_list_button_pressed), combo_box);
 
-  g_signal_connect (priv->button, "toggled",
+  g_signal_connect (button, "toggled",
                     G_CALLBACK (geda_combo_box_button_toggled), combo_box);
 
   priv->arrow = gtk_arrow_new (GTK_ARROW_DOWN, GTK_SHADOW_NONE);
-  gtk_container_add (GTK_CONTAINER (priv->button), priv->arrow);
+  gtk_container_add ((GtkContainer*)button, priv->arrow);
+
+  gtk_widget_show_all (button);
+
+  priv->button = button;
   priv->separator = NULL;
-  gtk_widget_show_all (priv->button);
 
   if (priv->cell_view) {
 
-    style = gtk_widget_get_style (widget);
-    gtk_cell_view_set_background_color (GTK_CELL_VIEW (priv->cell_view),
-                                        &style->base[gtk_widget_get_state (widget)]);
+    GtkStyle    *style;
+    GtkStateType state;
+
+    style = gtk_widget_get_style ((GtkWidget*)combo_box);
+    state = gtk_widget_get_state ((GtkWidget*)combo_box);
+
+    gtk_cell_view_set_background_color ((GtkCellView*)priv->cell_view,
+                                        &style->base[state]);
 
     priv->box = gtk_event_box_new ();
-    gtk_event_box_set_visible_window (GTK_EVENT_BOX (priv->box),
-                                      FALSE);
+    gtk_event_box_set_visible_window ((GtkEventBox*)priv->box, FALSE);
 
     if (priv->has_frame) {
       priv->cell_view_frame = gtk_frame_new (NULL);
-      gtk_frame_set_shadow_type (GTK_FRAME (priv->cell_view_frame),
-                                 GTK_SHADOW_IN);
+      gtk_frame_set_shadow_type ((GtkFrame*)priv->cell_view_frame, GTK_SHADOW_IN);
     }
     else {
       combo_box->priv->cell_view_frame = gtk_event_box_new ();
-      gtk_event_box_set_visible_window (GTK_EVENT_BOX (combo_box->priv->cell_view_frame),
-                                        FALSE);
+      gtk_event_box_set_visible_window ((GtkEventBox*)combo_box->priv->cell_view_frame,
+                                         FALSE);
     }
 
     gtk_widget_set_parent (priv->cell_view_frame,
-                           GTK_BIN (combo_box)->child->parent);
-    gtk_container_add (GTK_CONTAINER (priv->cell_view_frame), priv->box);
+                          ((GtkBin*)combo_box)->child->parent);
+
+    gtk_container_add ((GtkContainer*)priv->cell_view_frame, priv->box);
     gtk_widget_show_all (priv->cell_view_frame);
 
     g_signal_connect (priv->box, "button-press-event",
@@ -4484,57 +4491,60 @@ geda_combo_box_list_setup (GedaComboBox *combo_box)
                       combo_box);
   }
 
-  priv->tree_view = gtk_tree_view_new ();
+  tree_view = (GtkTreeView*)gtk_tree_view_new ();
 
-  sel = gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->tree_view));
+  priv->tree_view = (GtkWidget*)tree_view;
+
+  sel = gtk_tree_view_get_selection (tree_view);
+
   gtk_tree_selection_set_mode (sel, GTK_SELECTION_BROWSE);
   gtk_tree_selection_set_select_function (sel,
                                           geda_combo_box_list_select_func,
                                           NULL, NULL);
-  gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (priv->tree_view),
-                                     FALSE);
-  gtk_tree_view_set_hover_selection (GTK_TREE_VIEW (priv->tree_view),
-                                     TRUE);
+
+  gtk_tree_view_set_headers_visible (tree_view, FALSE);
+  gtk_tree_view_set_hover_selection (tree_view, TRUE);
+
   if (priv->row_separator_func) {
-    gtk_tree_view_set_row_separator_func (GTK_TREE_VIEW (priv->tree_view),
+    gtk_tree_view_set_row_separator_func (tree_view,
                                           priv->row_separator_func,
                                           priv->row_separator_data,
                                           NULL);
   }
 
   if (priv->model) {
-    gtk_tree_view_set_model (GTK_TREE_VIEW (priv->tree_view), priv->model);
+    gtk_tree_view_set_model (tree_view, priv->model);
   }
 
   priv->column = gtk_tree_view_column_new ();
-  gtk_tree_view_append_column (GTK_TREE_VIEW (priv->tree_view), priv->column);
+  gtk_tree_view_append_column (tree_view, priv->column);
 
   /* sync up */
-  geda_combo_box_sync_cells (combo_box, GTK_CELL_LAYOUT (priv->column));
+  geda_combo_box_sync_cells (combo_box, (GtkCellLayout*)priv->column);
 
   if (gtk_tree_row_reference_valid (priv->active_row)) {
 
     GtkTreePath *path;
 
     path = gtk_tree_row_reference_get_path (priv->active_row);
-    gtk_tree_view_set_cursor (GTK_TREE_VIEW (priv->tree_view),
-                              path, NULL, FALSE);
+
+    gtk_tree_view_set_cursor (tree_view, path, NULL, FALSE);
     gtk_tree_path_free (path);
   }
 
   /* set widget/popup widgets */
-  geda_combo_box_set_popup_widget (combo_box, priv->tree_view);
+  geda_combo_box_set_popup_widget (combo_box, (GtkWidget*)tree_view);
 
-  g_signal_connect (priv->tree_view, "key-press-event",
+  g_signal_connect (tree_view, "key-press-event",
                     G_CALLBACK (geda_combo_box_list_key_press),
                     combo_box);
-  g_signal_connect (priv->tree_view, "enter-notify-event",
+  g_signal_connect (tree_view, "enter-notify-event",
                     G_CALLBACK (geda_combo_box_list_enter_notify),
                     combo_box);
-  g_signal_connect (priv->tree_view, "row-expanded",
+  g_signal_connect (tree_view, "row-expanded",
                     G_CALLBACK (geda_combo_box_model_row_expanded),
                     combo_box);
-  g_signal_connect (priv->tree_view, "row-collapsed",
+  g_signal_connect (tree_view, "row-collapsed",
                     G_CALLBACK (geda_combo_box_model_row_expanded),
                     combo_box);
   g_signal_connect (priv->popup_window, "button-press-event",
@@ -4544,10 +4554,9 @@ geda_combo_box_list_setup (GedaComboBox *combo_box)
                     G_CALLBACK (geda_combo_box_list_button_released),
                     combo_box);
 
-  gtk_widget_show (priv->tree_view);
+  gtk_widget_show ((GtkWidget*)tree_view);
 
-  gtk_tree_view_set_tooltip_column (GTK_TREE_VIEW(priv->tree_view),
-                                    combo_box->tip_column);
+  gtk_tree_view_set_tooltip_column (tree_view, combo_box->tip_column);
 
   geda_combo_box_update_sensitivity (combo_box);
 }
