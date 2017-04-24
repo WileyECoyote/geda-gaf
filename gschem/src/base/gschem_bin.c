@@ -58,15 +58,15 @@ gschem_bin_size_request (GtkWidget *widget, GtkRequisition *requisition)
  *  Type class initializer for GschemBinClass. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- * \param [in]  g_class       The GschemBinClass being initialized
- * \param [in]  g_class_data  (unused)
+ * \param [in]  class       The GschemBinClass being initialized
+ * \param [in]  class_data  (unused)
  */
-static void gschem_bin_class_init (void *g_class, void *g_class_data)
+static void gschem_bin_class_init (void *class, void *class_data)
 {
-  GtkWidgetClass *widget_klass = GTK_WIDGET_CLASS (g_class);
+  GtkWidgetClass *widget_class = (GtkWidgetClass*)class;
 
-  widget_klass->size_allocate = gschem_bin_size_allocate;
-  widget_klass->size_request  = gschem_bin_size_request;
+  widget_class->size_allocate = gschem_bin_size_allocate;
+  widget_class->size_request  = gschem_bin_size_request;
 }
 
 /*! \brief register/get class
