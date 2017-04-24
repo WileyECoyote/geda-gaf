@@ -264,7 +264,7 @@ static void eda_config_finalize (GObject *object)
 static void eda_config_class_init(void *class, void *class_data)
 {
   EdaConfigClass *config_class = (EdaConfigClass*)class;
-  GObjectClass   *object_class = G_OBJECT_CLASS (class);
+  GObjectClass   *object_class = (GObjectClass*)class;
   GParamSpec     *pspec;
 
   /* Register functions with base class */
@@ -884,6 +884,7 @@ EdaConfig *
 eda_config_get_context_for_path (const char *path)
 {
   EdaConfig *config = NULL;
+
   if (path != NULL) {
     config = eda_config_get_context_for_file (path);
   }

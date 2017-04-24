@@ -1,3 +1,8 @@
+2017-04-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_config.c: Replace g_type_check_instance_cast in class
+      initializer; eda_config_class_init.
+
 2017-04-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_complex.c: Replace g_type_check_instance_cast in class
