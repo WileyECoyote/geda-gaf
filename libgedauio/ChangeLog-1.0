@@ -1,7 +1,7 @@
 2017-04-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_accel_label.c: Replace cast in order to eliminate
-      needless type-checking.
+      needless type-checking. Replace type checking for class casts.
 
     * src/widgets/geda_bulb.c: Replace cast in order to eliminate
       needless type-checking.

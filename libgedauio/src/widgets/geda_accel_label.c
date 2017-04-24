@@ -370,8 +370,8 @@ geda_accel_label_expose_event (GtkWidget *widget, GdkEventExpose *event)
         pango_layout_set_width (label_layout, width - ac_width * PANGO_SCALE);
       }
 
-      if (GTK_WIDGET_CLASS (geda_accel_label_parent_class)->expose_event) {
-        GTK_WIDGET_CLASS (geda_accel_label_parent_class)->expose_event (widget, event);
+      if (((GtkWidgetClass*)geda_accel_label_parent_class)->expose_event) {
+        ((GtkWidgetClass*)geda_accel_label_parent_class)->expose_event (widget, event);
       }
 
       if (direction == GTK_TEXT_DIR_RTL) {
@@ -407,8 +407,8 @@ geda_accel_label_expose_event (GtkWidget *widget, GdkEventExpose *event)
       g_object_unref (accel_layout);
     }
     else {
-      if (GTK_WIDGET_CLASS (geda_accel_label_parent_class)->expose_event)
-        GTK_WIDGET_CLASS (geda_accel_label_parent_class)->expose_event (widget, event);
+      if (((GtkWidgetClass*)geda_accel_label_parent_class)->expose_event)
+        ((GtkWidgetClass*)geda_accel_label_parent_class)->expose_event (widget, event);
     }
   }
 
@@ -467,8 +467,8 @@ static int geda_accel_label_draw (GtkWidget *widget, cairo_t *cr)
 
       gtk_widget_set_allocation (widget, &allocation);
 
-      if (GTK_WIDGET_CLASS (geda_accel_label_parent_class)->draw) {
-        GTK_WIDGET_CLASS (geda_accel_label_parent_class)->draw (widget, cr);
+      if (((GtkWidgetClass*)geda_accel_label_parent_class)->draw) {
+        ((GtkWidgetClass*)geda_accel_label_parent_class)->draw (widget, cr);
       }
 
       allocation->width += ac_width;
@@ -506,8 +506,8 @@ static int geda_accel_label_draw (GtkWidget *widget, cairo_t *cr)
 
       g_object_unref (accel_layout);
   }
-  else if (GTK_WIDGET_CLASS (geda_accel_label_parent_class)->draw) {
-      GTK_WIDGET_CLASS (geda_accel_label_parent_class)->draw (widget, cr);
+  else if (((GtkWidgetClass*)geda_accel_label_parent_class)->draw) {
+    ((GtkWidgetClass*)geda_accel_label_parent_class)->draw (widget, cr);
   }
 
   return FALSE;
@@ -579,16 +579,14 @@ geda_accel_label_set_accel_string (GedaAccelLabel *accel_label,
  *  Overrides parents virtual class methods as needed and registers
  *  GObject signals.
  *
- *  \param [in]  g_class     GedaAccelLabel class we are initializing
+ *  \param [in]  class       GedaAccelLabel class we are initializing
  *  \param [in]  class_data  GedaAccelLabel structure associated with the class
  */
 static void
-geda_accel_label_class_init(void *g_class, void *class_data)
+geda_accel_label_class_init(void *class, void *class_data)
 {
-  GedaAccelLabelClass *class   = (GedaAccelLabelClass*)g_class;
-
-  GObjectClass   *object_class = G_OBJECT_CLASS (class);
-  GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (class);
+  GObjectClass   *object_class = (GObjectClass*) class;
+  GtkWidgetClass *widget_class = (GtkWidgetClass*) class;
 
   object_class->dispose        = geda_accel_label_dispose;
   object_class->finalize       = geda_accel_label_finalize;
