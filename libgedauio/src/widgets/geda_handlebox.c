@@ -655,7 +655,7 @@ static void
 geda_handle_box_add (GtkContainer *container, GtkWidget *widget)
 {
   if (GEDA_IS_HANDLE_BOX(container)) {
-   GedaHandleBox *handlebox = GEDA_HANDLE_BOX (container);
+   GedaHandleBox *handlebox = (GedaHandleBox*)container;
    gtk_widget_set_parent_window (widget, handlebox->bin_window);
    GTK_CONTAINER_CLASS (geda_handle_box_parent_class)->add (container, widget);
    g_object_get(widget, "orientation", &handlebox->dock_orientation, NULL);
@@ -670,7 +670,6 @@ geda_handle_box_remove (GtkContainer *container, GtkWidget *widget)
   geda_handle_box_reattach (GEDA_HANDLE_BOX (container));
 }
 
-
 /* widget_class->button_press == callback for mouse button press event */
 static bool
 geda_handle_box_button_press (GtkWidget *widget, GdkEventButton *event)
@@ -680,7 +679,7 @@ geda_handle_box_button_press (GtkWidget *widget, GdkEventButton *event)
   int            handle_position;
 
   event_handled   = FALSE;
-  handlebox       = GEDA_HANDLE_BOX (widget);
+  handlebox       = (GedaHandleBox*)widget;
   handle_position = effective_handle_position (handlebox);
 
   if ((event->button == 1) && (event->type == GDK_BUTTON_PRESS)) {
@@ -691,7 +690,7 @@ geda_handle_box_button_press (GtkWidget *widget, GdkEventButton *event)
     if (event->window != handlebox->bin_window)
       return FALSE;
 
-    child = GTK_BIN (handlebox)->child;
+    child = ((GtkBin*)handlebox)->child;
 
     if (child) {
 
@@ -699,7 +698,7 @@ geda_handle_box_button_press (GtkWidget *widget, GdkEventButton *event)
       unsigned int  border_widthx2;
 
       gtk_widget_get_allocation (child, &child_allocation);
-      border_widthx2 = gtk_container_get_border_width(GTK_CONTAINER (handlebox)) << 1;
+      border_widthx2 = gtk_container_get_border_width((GtkContainer*)handlebox) << 1;
 
       switch (handle_position) {
 
@@ -740,7 +739,7 @@ geda_handle_box_button_press (GtkWidget *widget, GdkEventButton *event)
       invisible = geda_handle_box_get_invisible ();
 
       gtk_invisible_set_screen (GTK_INVISIBLE (invisible),
-                                gtk_widget_get_screen (GTK_WIDGET (handlebox)));
+                                gtk_widget_get_screen (widget));
       gdk_window_get_deskrelative_origin (handlebox->bin_window, &desk_x, &desk_y);
       gdk_window_get_origin (handlebox->bin_window, &root_x, &root_y);
 
@@ -820,7 +819,7 @@ geda_handle_box_button_press (GtkWidget *widget, GdkEventButton *event)
 static int
 geda_handle_box_delete_event (GtkWidget *widget, GdkEventAny  *event)
 {
-  GedaHandleBox *handlebox = GEDA_HANDLE_BOX (widget);
+  GedaHandleBox *handlebox = (GedaHandleBox*)widget;
 
   if (event->window == handlebox->float_window) {
       geda_handle_box_reattach (handlebox);
@@ -840,7 +839,7 @@ geda_handle_box_draw_ghost (GedaHandleBox *handlebox)
   unsigned int height;
   int handle_position;
 
-  widget = GTK_WIDGET (handlebox);
+  widget = (GtkWidget*)handlebox;
 
   handle_position = effective_handle_position (handlebox);
 
@@ -925,8 +924,8 @@ geda_handle_box_paint (GtkWidget *widget, GdkEventExpose *event)
   int            width, height;
 
   area               = &event->area;
-  bin                = GTK_BIN (widget);
-  handlebox          = GEDA_HANDLE_BOX (widget);
+  bin                = (GtkBin*)widget;
+  handlebox          = (GedaHandleBox*)widget;
   handle_orientation = GTK_ORIENTATION_VERTICAL;
   handle_position    = effective_handle_position (handlebox);
 
@@ -1029,9 +1028,9 @@ geda_handle_box_expose (GtkWidget *widget, GdkEventExpose *event)
       geda_handle_box_paint (widget, event);
     }
 
-    child = GTK_BIN (widget)->child;
+    child = ((GtkBin*)widget)->child;
 
-    gtk_container_propagate_expose (GTK_CONTAINER (widget), child, event);
+    gtk_container_propagate_expose ((GtkContainer*)widget, child, event);
   }
 
   return TRUE;
@@ -1046,8 +1045,8 @@ geda_handle_box_map (GtkWidget *widget)
 
   gtk_widget_set_mapped (widget, TRUE);
 
-  bin = GTK_BIN (widget);
-  handlebox = GEDA_HANDLE_BOX (widget);
+  bin       = (GtkBin*)widget;
+  handlebox = (GedaHandleBox*)widget;
 
   if (bin->child &&
       gtk_widget_get_visible (bin->child) &&
@@ -1075,7 +1074,7 @@ geda_handle_box_unmap (GtkWidget *widget)
 
   gtk_widget_set_mapped (widget, FALSE);
 
-  handlebox = GEDA_HANDLE_BOX (widget);
+  handlebox = (GedaHandleBox*)widget;
 
   gdk_window_hide (widget->window);
 
@@ -1096,7 +1095,7 @@ geda_handle_box_realize (GtkWidget *widget)
   GedaHandleBox *handlebox;
   int            attributes_mask;
 
-  handlebox = GEDA_HANDLE_BOX (widget);
+  handlebox = (GedaHandleBox*)widget;
 
   gtk_widget_set_realized (widget, TRUE);
 
@@ -1132,8 +1131,8 @@ geda_handle_box_realize (GtkWidget *widget)
 
   gdk_window_set_user_data (handlebox->bin_window, widget);
 
-  if (GTK_BIN (handlebox)->child) {
-    gtk_widget_set_parent_window (GTK_BIN (handlebox)->child, handlebox->bin_window);
+  if (((GtkBin*)handlebox)->child) {
+    gtk_widget_set_parent_window (((GtkBin*)handlebox)->child, handlebox->bin_window);
   }
 
   attributes.x           = 0;
@@ -1164,7 +1163,7 @@ geda_handle_box_realize (GtkWidget *widget)
 
   /* Use to work fine, then gtk erratica. Added DOCK hint above and next two lines */
   GtkWidget *topwindow = gtk_widget_get_toplevel (widget);
-  gdk_window_set_transient_for (handlebox->float_window,GDK_WINDOW(topwindow->window));
+  gdk_window_set_transient_for (handlebox->float_window, (GdkWindow*)topwindow->window);
 
   widget->style = gtk_style_attach (widget->style, widget->window);
   gtk_style_set_background (widget->style, widget->window, gtk_widget_get_state (widget));
@@ -1180,10 +1179,10 @@ geda_handle_box_realize (GtkWidget *widget)
 static void
 geda_handle_box_unrealize (GtkWidget *widget)
 {
-  GedaHandleBox *handlebox = GEDA_HANDLE_BOX (widget);
+  GedaHandleBox *handlebox = (GedaHandleBox*)widget;
 
   /* Disconnect the settings Monitor */
-  remove_settings_signal(handlebox, gtk_widget_get_screen (GTK_WIDGET (handlebox)));
+  remove_settings_signal(handlebox, gtk_widget_get_screen (widget));
 
   gdk_window_set_user_data (handlebox->bin_window, NULL);
   gdk_window_destroy (handlebox->bin_window);
@@ -1206,7 +1205,7 @@ geda_handle_box_size_allocate (GtkWidget     *widget,
   int            handle_position;
 
   child     = geda_get_child_widget (widget);
-  handlebox = GEDA_HANDLE_BOX (widget);
+  handlebox = (GedaHandleBox*)widget;
 
   handle_position = effective_handle_position (handlebox);
 
@@ -1239,7 +1238,7 @@ geda_handle_box_size_allocate (GtkWidget     *widget,
 
     child_allocation = geda_get_widget_allocation (child);
 
-    border_width        = GTK_CONTAINER (widget)->border_width;
+    border_width        = ((GtkContainer*)widget)->border_width;
     border_widthx2      = border_width << 1;
 
     child_allocation->x = border_width;
@@ -1324,8 +1323,8 @@ geda_handle_box_size_request (GtkWidget      *widget,
   GtkRequisition child_requisition;
   int            handle_position;
 
-  bin = GTK_BIN (widget);
-  handlebox = GEDA_HANDLE_BOX (widget);
+  bin       = (GtkBin*)widget;
+  handlebox = (GedaHandleBox*)widget;
 
   handle_position = effective_handle_position (handlebox);
 
@@ -1382,7 +1381,7 @@ geda_handle_box_size_request (GtkWidget      *widget,
 
     unsigned int border_widthx2;
 
-    border_widthx2 = GTK_CONTAINER (widget)->border_width << 1;
+    border_widthx2 = ((GtkContainer*)widget)->border_width << 1;
 
     requisition->width  += border_widthx2;
     requisition->height += border_widthx2;
@@ -1402,7 +1401,7 @@ geda_handle_box_size_request (GtkWidget      *widget,
 static void
 geda_handle_box_style_set (GtkWidget *widget, GtkStyle *previous_style)
 {
-  GedaHandleBox *handlebox = GEDA_HANDLE_BOX (widget);
+  GedaHandleBox *handlebox = (GedaHandleBox*)widget;
 
   if (gtk_widget_get_realized (widget) &&
     gtk_widget_get_has_window (widget))
@@ -1418,11 +1417,11 @@ geda_handle_box_style_set (GtkWidget *widget, GtkStyle *previous_style)
 /* gobject_class->get_property */
 static void
 geda_handle_box_get_property (GObject        *object,
-                             unsigned int     prop_id,
-                             GValue          *value,
-                             GParamSpec      *pspec)
+                              unsigned int     prop_id,
+                              GValue          *value,
+                              GParamSpec      *pspec)
 {
-  GedaHandleBox *handle_box = GEDA_HANDLE_BOX (object);
+  GedaHandleBox *handle_box = (GedaHandleBox*)object;
 
   switch (prop_id)
   {
@@ -1462,7 +1461,7 @@ static void
 geda_handle_box_set_property (GObject  *object, unsigned int prop_id,
                               const GValue *value, GParamSpec *pspec)
 {
-  GedaHandleBox *handle_box = GEDA_HANDLE_BOX (object);
+  GedaHandleBox *handle_box = (GedaHandleBox*)object;
 
   switch (prop_id)
   {
@@ -1497,7 +1496,7 @@ geda_handle_box_set_property (GObject  *object, unsigned int prop_id,
 static void
 geda_handle_box_finalize (GObject *object)
 {
-  GedaHandleBox *handlebox = GEDA_HANDLE_BOX (object);
+  GedaHandleBox *handlebox = (GedaHandleBox*)object;
 
   if (g_hash_table_remove (handlebox_hash, object)) {
     if (!g_hash_table_size (handlebox_hash)) {
@@ -1681,7 +1680,7 @@ geda_handle_box_instance_init(GTypeInstance *instance, void *g_class)
 {
   GedaHandleBox *handle_box = (GedaHandleBox*)instance;
 
-  gtk_widget_set_has_window (GTK_WIDGET (handle_box), TRUE);
+  gtk_widget_set_has_window ((GtkWidget*)handle_box, TRUE);
 
   handle_box->priv = g_malloc0 (sizeof(GedaHandleBoxData));
 
@@ -1786,7 +1785,7 @@ geda_handle_box_new (void)
 void
 geda_handle_box_dock (GedaHandleBox *handlebox) {
   if (GEDA_IS_HANDLE_BOX(handlebox)) {
-    g_object_set (GTK_BIN (handlebox)->child, "orientation", handlebox->dock_orientation, NULL);
+    g_object_set (((GtkBin*)handlebox)->child, "orientation", handlebox->dock_orientation, NULL);
     geda_handle_box_reattach (handlebox);
   }
 }
@@ -1833,8 +1832,8 @@ geda_handle_box_set_handle_position (GedaHandleBox   *handle_box,
 
   if ((GtkPositionType) handle_box->handle_position != position) {
     handle_box->handle_position = position;
-    g_object_notify (G_OBJECT (handle_box), "handle-position");
-    gtk_widget_queue_resize (GTK_WIDGET (handle_box));
+    g_object_notify ((GObject*)handle_box, "handle-position");
+    gtk_widget_queue_resize ((GtkWidget*)handle_box);
   }
 }
 
@@ -1881,8 +1880,8 @@ geda_handle_box_set_shadow_type (GedaHandleBox *handle_box, GtkShadowType type)
   if ((GtkShadowType) handle_box->shadow_type != type) {
 
     handle_box->shadow_type = type;
-    g_object_notify (G_OBJECT (handle_box), "shadow-type");
-    gtk_widget_queue_resize (GTK_WIDGET (handle_box));
+    g_object_notify ((GObject*)handle_box, "shadow-type");
+    gtk_widget_queue_resize ((GtkWidget*)handle_box);
   }
 }
 
@@ -1974,10 +1973,10 @@ geda_handle_box_set_snap_edge (GedaHandleBox *handle_box, GtkPositionType edge)
 
     handle_box->snap_edge = edge;
 
-      g_object_freeze_notify (G_OBJECT (handle_box));
-      g_object_notify (G_OBJECT (handle_box), "snap-edge");
-      g_object_notify (G_OBJECT (handle_box), "snap-edge-set");
-      g_object_thaw_notify (G_OBJECT (handle_box));
+      g_object_freeze_notify ((GObject*)handle_box);
+      g_object_notify ((GObject*)handle_box, "snap-edge");
+      g_object_notify ((GObject*)handle_box, "snap-edge-set");
+      g_object_thaw_notify ((GObject*)handle_box);
   }
 }
 
@@ -2013,7 +2012,7 @@ GtkToolbar*
 geda_handle_box_get_toolbar (GedaHandleBox *handle_box)
 {
   if (GEDA_IS_HANDLE_BOX (handle_box)) {
-    return GTK_TOOLBAR(gtk_bin_get_child(GTK_BIN(handle_box)));
+    return (GtkToolbar*)gtk_bin_get_child((GtkBin*)handle_box);
   }
   else {
     BUG_MSG ("Operative is not a GedaHandleBox");
@@ -2027,13 +2026,13 @@ geda_handle_box_set_toolbar (GedaHandleBox *handlebox, GtkWidget *toolbar)
   if (GEDA_IS_HANDLE_BOX (handlebox)) {
 
     /* Can only have one child, check already have one */
-    GtkWidget *current = gtk_bin_get_child(GTK_BIN(handlebox));
+    GtkWidget *current = gtk_bin_get_child((GtkBin*)handlebox);
 
     if (current) {
-      geda_handle_box_remove (GTK_CONTAINER (handlebox), current);
+      geda_handle_box_remove ((GtkContainer*)handlebox, current);
     }
 
-    geda_handle_box_add (GTK_CONTAINER (handlebox), toolbar);
+    geda_handle_box_add ((GtkContainer*)handlebox, toolbar);
   }
   else {
     BUG_MSG ("Operative is not a GedaHandleBox");
