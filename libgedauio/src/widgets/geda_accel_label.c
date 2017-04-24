@@ -124,7 +124,7 @@ geda_accel_label_refetch (GedaAccelLabel *accel_label)
 
   g_return_val_if_fail (GEDA_IS_ACCEL_LABEL (accel_label), FALSE);
 
-  g_object_get (gtk_widget_get_settings (GTK_WIDGET (accel_label)),
+  g_object_get (gtk_widget_get_settings ((GtkWidget*)accel_label),
                 "gtk-enable-accels", &enable_accels,
                 NULL);
 
@@ -137,7 +137,7 @@ geda_accel_label_refetch (GedaAccelLabel *accel_label)
     accel_label->accel_string = geda_strdup ("");
   }
 
-  gtk_widget_queue_resize (GTK_WIDGET (accel_label));
+  gtk_widget_queue_resize ((GtkWidget*)accel_label);
 
   return FALSE;
 }
@@ -151,7 +151,7 @@ geda_accel_label_reset (GedaAccelLabel *accel_label)
     accel_label->accel_string = NULL;
   }
 
-  gtk_widget_queue_resize (GTK_WIDGET (accel_label));
+  gtk_widget_queue_resize ((GtkWidget*)accel_label);
 }
 
 static void
@@ -208,7 +208,7 @@ geda_accel_label_set_property (GObject      *object,
 {
   GedaAccelLabel  *accel_label;
 
-  accel_label = GEDA_ACCEL_LABEL (object);
+  accel_label = (GedaAccelLabel*)object;
 
   switch (prop_id) {
     case PROP_ACCEL_CLOSURE:
@@ -333,7 +333,7 @@ geda_accel_label_expose_event (GtkWidget *widget, GdkEventExpose *event)
 {
   GedaAccelLabel  *accel_label;
 
-  accel_label = GEDA_ACCEL_LABEL (widget);
+  accel_label = (GedaAccelLabel*)widget;
 
   if (gtk_widget_is_drawable (widget)) {
 
@@ -354,9 +354,9 @@ geda_accel_label_expose_event (GtkWidget *widget, GdkEventExpose *event)
       int x;
       int y;
 
-      misc         = GTK_MISC (accel_label);
-      label        = GEDA_LABEL (widget);
-      label_layout = geda_label_get_layout (GEDA_LABEL (accel_label));
+      misc         = (GtkMisc*)accel_label;
+      label        = (GedaLabel*)widget;
+      label_layout = geda_label_get_layout ((GedaLabel*)accel_label);
       direction    = gtk_widget_get_direction (widget);
 
       if (direction == GTK_TEXT_DIR_RTL) {
@@ -392,7 +392,7 @@ geda_accel_label_expose_event (GtkWidget *widget, GdkEventExpose *event)
         x = allocation->x + allocation->width - misc->xpad - ac_width;
       }
 
-      geda_label_get_layout_offsets (GEDA_LABEL (accel_label), NULL, &y);
+      geda_label_get_layout_offsets ((GedaLabel*)accel_label, NULL, &y);
 
       accel_layout = gtk_widget_create_pango_layout (widget, geda_accel_label_get_string (accel_label));
 
@@ -424,7 +424,7 @@ static int geda_accel_label_draw (GtkWidget *widget, cairo_t *cr)
   GtkAllocation  *allocation;
   GtkRequisition  requisition;
 
-  accel_label = GEDA_ACCEL_LABEL (widget);
+  accel_label = (GedaAccelLabel*)widget;
 
   ac_width    = geda_accel_label_get_accel_width (accel_label);
 
@@ -439,7 +439,6 @@ static int geda_accel_label_draw (GtkWidget *widget, cairo_t *cr)
       GtkStyleContext *context;
       PangoLayout     *label_layout;
       PangoLayout     *accel_layout;
-      GtkLabel        *label = GEDA_LABEL (widget);
 
       int x;
       int y;
@@ -449,7 +448,7 @@ static int geda_accel_label_draw (GtkWidget *widget, cairo_t *cr)
 
       context      = gtk_widget_get_style_context (widget);
       direction    = gtk_widget_get_direction (widget);
-      label_layout = geda_label_get_layout (GEDA_LABEL (accel_label));
+      label_layout = geda_label_get_layout ((GedaLabel*)accel_label);
 
       cairo_save (cr);
 
@@ -459,7 +458,7 @@ static int geda_accel_label_draw (GtkWidget *widget, cairo_t *cr)
         cairo_translate (cr, ac_width, 0);
       }
 
-      if (geda_label_get_ellipsize (label)) {
+      if (geda_label_get_ellipsize ((GedaLabel*)widget)) {
         int width = pango_layout_get_width (label_layout);
         pango_layout_set_width (label_layout, width - ac_width * PANGO_SCALE);
       }
@@ -475,14 +474,14 @@ static int geda_accel_label_draw (GtkWidget *widget, cairo_t *cr)
       allocation->width += ac_width;
       gtk_widget_set_allocation (widget, &allocation);
 
-      if (geda_label_get_ellipsize (label)) {
+      if (geda_label_get_ellipsize ((GedaLabel*)widget)) {
         int width = pango_layout_get_width (label_layout);
         pango_layout_set_width (label_layout, width + ac_width * PANGO_SCALE);
       }
 
       cairo_restore (cr);
 
-      gtk_misc_get_padding (misc, &xpad, NULL);
+      gtk_misc_get_padding ((GtkMisc*)accel_label, &xpad, NULL);
 
       if (direction == GTK_TEXT_DIR_RTL) {
         x = xpad;
@@ -491,7 +490,7 @@ static int geda_accel_label_draw (GtkWidget *widget, cairo_t *cr)
         x = gtk_widget_get_allocated_width (widget) - xpad - ac_width;
       }
 
-      geda_label_get_layout_offsets (GEDA_LABEL (accel_label), NULL, &y);
+      geda_label_get_layout_offsets ((GedaLabel*)accel_label, NULL, &y);
 
       const char *string = geda_accel_label_get_string (accel_label);
 
@@ -570,7 +569,7 @@ geda_accel_label_set_accel_string (GedaAccelLabel *accel_label,
     accel_label->accel_string = NULL;
   }
 
-  g_object_notify (G_OBJECT (accel_label), "accel-string");
+  g_object_notify ((GObject*)accel_label, "accel-string");
 }
 
 /*! \brief GedaAccelLabel Type Class Initializer

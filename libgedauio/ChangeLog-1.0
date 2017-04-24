@@ -1,3 +1,8 @@
+2017-04-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_accel_label.c: Replace cast in order to eliminate
+      needless type-checking.
+
 2017-04-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Eliminate GedaComboBox pointer in function
