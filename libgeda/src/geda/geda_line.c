@@ -257,8 +257,8 @@ set_property (GObject *object, unsigned int  prop_id,
 static void geda_line_class_init(void *class, void *class_data)
 {
   GedaLineClass   *line_class   = (GedaLineClass*)class;
-  GObjectClass    *object_class = G_OBJECT_CLASS(class);
-  GedaObjectClass *geda_class   = GEDA_OBJECT_CLASS(class);
+  GObjectClass    *object_class = (GObjectClass*)class;
+  GedaObjectClass *geda_class   = (GedaObjectClass*)class;
   GParamSpec      *params;
 
   geda_line_parent_class        = g_type_class_peek_parent(class);

@@ -3,6 +3,9 @@
     * src/geda/geda_config.c: Replace g_type_check_instance_cast in class
       initializer; eda_config_class_init.
 
+    * src/geda/geda_line.c: Replace g_type_check_instance_cast in class
+      initializer; geda_line_class_init.
+
 2017-04-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_complex.c: Replace g_type_check_instance_cast in class
