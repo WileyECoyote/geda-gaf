@@ -7,6 +7,8 @@
       replace with conventional cast. The type checking can be disabled, but
       who does that, and is only disabled globally and not selectively.
 
+    * src/x/x_menus.c: Translate tooltips for menus.
+
 2017-04-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_diagnostics.c: Revise i_diagnostics_test_draw_time in an

@@ -540,11 +540,12 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
       SCM_ASSERT(scm_is_string (scm_item_stock) || scm_is_false (scm_item_stock),
                  scm_item_stock, SCM_ARGn, "x_menu_get_main_menu stock");
 
-      /* check for a 4th parameter = tooltip string */
-      if(scm_item_len == 4) {
-        scm_item_tip = SCM_CAR (scm_cdddr (scm_item ));     /* Extract tooltip string */
+      /* Check for a 4th parameter = tooltip string */
+      if (scm_item_len == 4) {
 
-        if (scm_is_string(scm_item_tip)) {                   /* Validate that it really is a string */
+        scm_item_tip = SCM_CAR (scm_cdddr (scm_item ));      /* Extract tooltip string */
+
+        if (scm_is_string(scm_item_tip)) {                   /* Validate tip is really a string */
           menu_item_tip = scm_to_utf8_string (scm_item_tip); /* if valid, convert to c string */
         }
         else {
@@ -693,7 +694,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
         /* If tip not NULL then attach tip to menu widget */
         if (menu_item_tip) {
-          gtk_widget_set_tooltip_text(menu_item, menu_item_tip);
+          gtk_widget_set_tooltip_text(menu_item, _(menu_item_tip));
           g_object_set (menu_item, "has-tooltip", show_menu_tips, NULL);
           free(menu_item_tip);
         }
