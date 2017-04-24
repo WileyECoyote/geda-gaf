@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-03-19 03:51-0500\n"
+"POT-Creation-Date: 2017-04-23 18:06-0500\n"
 "PO-Revision-Date: 2010-02-06 22:09+0000\n"
 "Last-Translator: Jarosław Ogrodnik <nobodythere@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -485,53 +485,53 @@ msgstr ""
 msgid "Set underlying file for EdaConfig"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:948 libgeda/src/geda/geda_config.c:1065
+#: libgeda/src/geda/geda_config.c:949 libgeda/src/geda/geda_config.c:1066
 msgid "Undefined configuration filename"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:951
+#: libgeda/src/geda/geda_config.c:952
 #, c-format
 msgid "Error loading configuration, file name is undefined\n"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1008 libgeda/src/guile/g_rc_parse.c:289
+#: libgeda/src/geda/geda_config.c:1009 libgeda/src/guile/g_rc_parse.c:289
 msgid "accessing file"
 msgstr ""
 
 # Error loading configuration
-#: libgeda/src/geda/geda_config.c:1011
+#: libgeda/src/geda/geda_config.c:1012
 msgid "Error loading configuration"
 msgstr ""
 
 # Error saving configuration; file name is undefined
-#: libgeda/src/geda/geda_config.c:1068
+#: libgeda/src/geda/geda_config.c:1069
 #, c-format
 msgid "Error saving configuration, file name is undefined\n"
 msgstr "zapisywanie konfiguracji Błąd, nazwa pliku jest niezdefiniowany\n"
 
-#: libgeda/src/geda/geda_config.c:1093 libgeda/src/object/o_save.c:415
+#: libgeda/src/geda/geda_config.c:1094 libgeda/src/object/o_save.c:415
 msgid "file"
 msgstr "plik"
 
 # an error occurred while attempting to save configuration to
-#: libgeda/src/geda/geda_config.c:1129
+#: libgeda/src/geda/geda_config.c:1130
 msgid "Error saving configuration to"
 msgstr "wystąpił błąd podczas próby zapisania konfiguracji do"
 
 # wrong path to file
-#: libgeda/src/geda/geda_config.c:1136
+#: libgeda/src/geda/geda_config.c:1137
 msgid "bad path in file"
 msgstr "nieprawidłowa ścieżka do pliku"
 
-#: libgeda/src/geda/geda_config.c:1140
+#: libgeda/src/geda/geda_config.c:1141
 msgid "Error saving configuration, bad path in"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1473 libgeda/src/geda/geda_config.c:1539
+#: libgeda/src/geda/geda_config.c:1474 libgeda/src/geda/geda_config.c:1540
 msgid "Configuration does not have group"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1553
+#: libgeda/src/geda/geda_config.c:1554
 msgid "Configuration does not have key"
 msgstr ""
 
@@ -693,75 +693,75 @@ msgstr ""
 msgid "Y coordinate of the second point"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:435
+#: libgeda/src/geda/geda_object.c:456
 msgid "object-type"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:436
+#: libgeda/src/geda/geda_object.c:457
 msgid "Character identifier corresponding to the type of object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:445
+#: libgeda/src/geda/geda_object.c:466
 msgid "sequence-identification"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:446
+#: libgeda/src/geda/geda_object.c:467
 msgid "Sequence identifier created during object construction"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:453
+#: libgeda/src/geda/geda_object.c:474
 msgid "object-name"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:454
+#: libgeda/src/geda/geda_object.c:475
 msgid "Unique name of this object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:460
+#: libgeda/src/geda/geda_object.c:481
 msgid "Parent"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:461
+#: libgeda/src/geda/geda_object.c:482
 msgid "Pointer to parent object - a Page or a Complex"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:466
+#: libgeda/src/geda/geda_object.c:487
 msgid "Selectable"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:467
+#: libgeda/src/geda/geda_object.c:488
 msgid "Whether the label text can be selected with the mouse"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:473
+#: libgeda/src/geda/geda_object.c:494
 msgid "Redraw"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:474
+#: libgeda/src/geda/geda_object.c:495
 msgid "Whether the object redrawn, used for temporary objects"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:480
+#: libgeda/src/geda/geda_object.c:501
 msgid "Selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:481
+#: libgeda/src/geda/geda_object.c:502
 msgid "Whether the object is currently selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:488
+#: libgeda/src/geda/geda_object.c:509
 msgid "Show-Name-Value-flag"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:489
+#: libgeda/src/geda/geda_object.c:510
 msgid "Flag to indicate whether to show the name, value or both"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:497
+#: libgeda/src/geda/geda_object.c:518
 msgid "Visible"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:498
+#: libgeda/src/geda/geda_object.c:519
 msgid "Whether the object is displayed, normaly text attributes"
 msgstr ""
 
@@ -993,15 +993,15 @@ msgstr ""
 msgid "in file"
 msgstr "gęsiego"
 
-#: libgeda/src/object/o_object.c:131
+#: libgeda/src/object/o_object.c:133
 msgid "detected NULL pointer to buffer"
 msgstr ""
 
-#: libgeda/src/object/o_object.c:138
+#: libgeda/src/object/o_object.c:140
 msgid "Schematic data is not valid UTF-8"
 msgstr ""
 
-#: libgeda/src/object/o_object.c:144
+#: libgeda/src/object/o_object.c:146
 msgid "Invalid pointer to GedaToplevel"
 msgstr ""
 
@@ -1032,7 +1032,7 @@ msgstr ""
 msgid "Read garbage near line"
 msgstr "nieprawidłowe dane wykryte w pobliżu linii"
 
-#: libgeda/src/object/o_object.c:454
+#: libgeda/src/object/o_object.c:456
 msgid "On or about line"
 msgstr ""
 
@@ -1066,8 +1066,8 @@ msgstr "Użyję nachylenia równego 1000\n"
 #: libgeda/src/object/o_line_object.c:1574
 #: libgeda/src/object/o_net_object.c:718
 #: libgeda/src/object/o_path_object.c:577
-#: libgeda/src/object/o_pin_object.c:189
-#: libgeda/src/object/o_text_object.c:790
+#: libgeda/src/object/o_pin_object.c:191
+#: libgeda/src/object/o_text_object.c:798
 msgid "Found an invalid color"
 msgstr "Napotkano niepoprawny kolor"
 
@@ -1078,8 +1078,8 @@ msgstr "Napotkano niepoprawny kolor"
 #: libgeda/src/object/o_line_object.c:1578
 #: libgeda/src/object/o_net_object.c:722
 #: libgeda/src/object/o_path_object.c:581
-#: libgeda/src/object/o_pin_object.c:193
-#: libgeda/src/object/o_text_object.c:794
+#: libgeda/src/object/o_pin_object.c:195
+#: libgeda/src/object/o_text_object.c:802
 msgid "Setting color to default color\n"
 msgstr "Użyję domyślnego koloru\n"
 
@@ -1245,27 +1245,31 @@ msgstr ""
 msgid "Component not found"
 msgstr "Nie odnaleziono komponentu"
 
-#: libgeda/src/object/o_complex_object.c:1155
+#: libgeda/src/object/o_complex_object.c:1162
 msgid "Failed to parse complex object"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:1160
+#: libgeda/src/object/o_complex_object.c:1167
 msgid "Found a component with an invalid rotation"
 msgstr "Napotkano komponent o błędnej specyfikacji rotacji"
 
-#: libgeda/src/object/o_complex_object.c:1164
+#: libgeda/src/object/o_complex_object.c:1171
 #: libgeda/src/object/o_picture_object.c:1509
 msgid "Setting angle to 0\n"
 msgstr "Użyję nachylenia równego 0\n"
 
-#: libgeda/src/object/o_complex_object.c:1169
+#: libgeda/src/object/o_complex_object.c:1176
 msgid "Found a component with an invalid mirror flag"
 msgstr ""
 "Napotkano komponent z nieprawidłową wartością flagi odbicia lustrzanego"
 
-#: libgeda/src/object/o_complex_object.c:1173
+#: libgeda/src/object/o_complex_object.c:1180
 msgid "Setting mirror to 0\n"
 msgstr "Przyjmuję 'odbity' równe 0\n"
+
+#: libgeda/src/object/o_complex_object.c:1195
+msgid "Invalid complex object"
+msgstr ""
 
 #: libgeda/src/object/o_embed.c:51
 #, c-format
@@ -1308,7 +1312,7 @@ msgid "Failed to parse path object"
 msgstr ""
 
 #: libgeda/src/object/o_path_object.c:596
-#: libgeda/src/object/o_text_object.c:809
+#: libgeda/src/object/o_text_object.c:817
 #, c-format
 msgid "Unexpected end-of-file after %d lines"
 msgstr ""
@@ -1432,27 +1436,27 @@ msgstr "Obrazek [%s] został osadzony\n"
 msgid "Picture [%s] has been unembedded\n"
 msgstr "Obrazek [%s] nie jest już osadzony\n"
 
-#: libgeda/src/object/o_pin_object.c:155 libgeda/src/object/o_pin_object.c:165
+#: libgeda/src/object/o_pin_object.c:157 libgeda/src/object/o_pin_object.c:167
 msgid "Failed to parse pin object"
 msgstr ""
 
 # Found a pin which did not have the whichend field set
-#: libgeda/src/object/o_pin_object.c:173
+#: libgeda/src/object/o_pin_object.c:175
 msgid "Found a pin which did not have the whichend field set"
 msgstr "Napotkano pin bez ustawionego pola 'whichone'"
 
 # Verify and correct manually
-#: libgeda/src/object/o_pin_object.c:177
+#: libgeda/src/object/o_pin_object.c:179
 msgid "Verify and correct manually.\n"
 msgstr "Popraw plik manualnie.\n"
 
 # Encountered an invalid value 'whichend' assigned to the pin
-#: libgeda/src/object/o_pin_object.c:180
+#: libgeda/src/object/o_pin_object.c:182
 msgid "Found an invalid whichend on a pin"
 msgstr "Napotkano nieprawidłową wartość 'whichend' przypisaną do pinu"
 
 # Reset to zero
-#: libgeda/src/object/o_pin_object.c:184
+#: libgeda/src/object/o_pin_object.c:186
 msgid "Setting to zero\n"
 msgstr "Ustawienie na zero\n"
 
@@ -1495,26 +1499,26 @@ msgstr "Ustawienie domyślne długość kreska"
 msgid "Setting line space to default"
 msgstr "Ustawienie domyślne SPACE LINE"
 
-#: libgeda/src/object/o_text_object.c:726
-#: libgeda/src/object/o_text_object.c:738
-#: libgeda/src/object/o_text_object.c:750
+#: libgeda/src/object/o_text_object.c:734
+#: libgeda/src/object/o_text_object.c:746
+#: libgeda/src/object/o_text_object.c:758
 msgid "Failed to parse text object"
 msgstr ""
 
-#: libgeda/src/object/o_text_object.c:757
+#: libgeda/src/object/o_text_object.c:765
 msgid "Found a text string zero size"
 msgstr "Napotkano napis o zerowych wymiarach"
 
-#: libgeda/src/object/o_text_object.c:761
+#: libgeda/src/object/o_text_object.c:769
 msgid "Setting text to default size\n"
 msgstr "Użyję domyślnego koloru\n"
 
 # Found an unsupported text alignment
-#: libgeda/src/object/o_text_object.c:779
+#: libgeda/src/object/o_text_object.c:787
 msgid "Found an unsupported text alignment"
 msgstr "Stosujesz wyrównanie znaleziono"
 
-#: libgeda/src/object/o_text_object.c:783
+#: libgeda/src/object/o_text_object.c:791
 msgid "Setting alignment to LOWER_LEFT\n"
 msgstr "Użyję wyrównania do dolnego lewego rogu\n"
 
@@ -1776,7 +1780,7 @@ msgstr "Nie odnaleziono komponentu [%s] w bibliotece komponentów\n"
 msgid "More than one component found with name [%s]\n"
 msgstr "Odnaleziono więcej niż jeden komponent o nazwie [%s]\n"
 
-#: libgeda/src/struct/s_hierarchy.c:86
+#: libgeda/src/struct/s_hierarchy.c:86 libgeda/src/struct/s_hierarchy.c:264
 msgid "Schematic not found in source library."
 msgstr ""
 
@@ -1789,7 +1793,7 @@ msgid "There are no schematics above the current one!\n"
 msgstr "Jesteś już na szczycie hierarchii schematów!\n"
 
 # Failed to descend hierarchy into
-#: libgeda/src/struct/s_hierarchy.c:307
+#: libgeda/src/struct/s_hierarchy.c:376
 msgid "Failed to descend hierarchy into"
 msgstr "Nie udało się zejść do hierarchii"
 
@@ -1797,11 +1801,11 @@ msgstr "Nie udało się zejść do hierarchii"
 msgid "Disabling auto save timer, no toplevel"
 msgstr ""
 
-#: libgeda/src/struct/s_page.c:742 libgeda/src/struct/s_page.c:786
+#: libgeda/src/struct/s_page.c:738 libgeda/src/struct/s_page.c:782
 msgid "Saved"
 msgstr "Zapisano"
 
-#: libgeda/src/struct/s_page.c:748 libgeda/src/struct/s_page.c:793
+#: libgeda/src/struct/s_page.c:744 libgeda/src/struct/s_page.c:789
 msgid "Could NOT save"
 msgstr "Nie można zapisać"
 
