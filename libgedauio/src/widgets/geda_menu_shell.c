@@ -456,12 +456,12 @@ geda_real_menu_shell_deactivate (GedaMenuShell *menu_shell)
     if (menu_shell->have_grab) {
 
       menu_shell->have_grab = FALSE;
-      gtk_grab_remove (GTK_WIDGET (menu_shell));
+      gtk_grab_remove ((GtkWidget*)menu_shell);
     }
 
     if (menu_shell->have_xgrab) {
 
-      GdkDisplay *display = gtk_widget_get_display (GTK_WIDGET (menu_shell));
+      GdkDisplay *display = gtk_widget_get_display ((GtkWidget*)menu_shell);
 
       menu_shell->have_xgrab = FALSE;
       gdk_display_pointer_ungrab (display, GDK_CURRENT_TIME);
@@ -482,7 +482,7 @@ geda_menu_shell_real_insert (GedaMenuShell *menu_shell,
 {
   menu_shell->children = g_list_insert (menu_shell->children, child, position);
 
-  gtk_widget_set_parent (child, GTK_WIDGET (menu_shell));
+  gtk_widget_set_parent (child, (GtkWidget*)menu_shell);
 }
 
 /* Distance should be +/- 1 */
@@ -511,7 +511,7 @@ geda_real_menu_shell_move_current (GedaMenuShell *menu_shell,
   priv->in_unselectable_item = FALSE;
 
   if (menu_shell->active_menu_item) {
-    active_menu_item = GEDA_MENU_ITEM (menu_shell->active_menu_item);
+    active_menu_item = (GedaMenuItem*)menu_shell->active_menu_item;
     submenu = geda_menu_item_get_submenu(active_menu_item);
   }
   else {
@@ -520,7 +520,7 @@ geda_real_menu_shell_move_current (GedaMenuShell *menu_shell,
   }
 
   if (menu_shell->parent_menu_shell) {
-    parent_menu_shell = GEDA_MENU_SHELL (menu_shell->parent_menu_shell);
+    parent_menu_shell = ((GedaMenuShell*)menu_shell->parent_menu_shell);
   }
   else {
     parent_menu_shell = NULL;
@@ -561,7 +561,7 @@ geda_real_menu_shell_move_current (GedaMenuShell *menu_shell,
         GedaMenuShell      *sub_shell;
 
         shell_class = GEDA_MENU_SHELL_GET_CLASS (menu_shell);
-        sub_shell   = GEDA_MENU_SHELL (submenu);
+        sub_shell   = (GedaMenuShell*)submenu;
         sub_class   = GEDA_MENU_SHELL_GET_CLASS (sub_shell);
 
         if (shell_class->submenu_placement != sub_class->submenu_placement) {
@@ -584,7 +584,7 @@ geda_real_menu_shell_move_current (GedaMenuShell *menu_shell,
             (GEDA_MENU_SHELL_GET_CLASS (parent_menu_shell)->submenu_placement ==
              GEDA_MENU_SHELL_GET_CLASS (menu_shell)->submenu_placement))
       {
-        parent_menu_shell = GEDA_MENU_SHELL (parent_menu_shell->parent_menu_shell);
+        parent_menu_shell = ((GedaMenuShell*)parent_menu_shell->parent_menu_shell);
       }
 
       if (parent_menu_shell) {
@@ -625,7 +625,7 @@ geda_menu_shell_real_move_selected (GedaMenuShell  *menu_shell,
     GList *start_node = node;
     bool   wrap_around;
 
-    g_object_get (gtk_widget_get_settings (GTK_WIDGET (menu_shell)),
+    g_object_get (gtk_widget_get_settings ((GtkWidget*)menu_shell),
                   "gtk-keynav-wrap-around", &wrap_around,
                   NULL);
 
@@ -643,7 +643,7 @@ geda_menu_shell_real_move_selected (GedaMenuShell  *menu_shell,
           node = menu_shell->children;
         }
         else {
-          gtk_widget_error_bell (GTK_WIDGET (menu_shell));
+          gtk_widget_error_bell ((GtkWidget*)menu_shell);
           break;
         }
       }
@@ -661,7 +661,7 @@ geda_menu_shell_real_move_selected (GedaMenuShell  *menu_shell,
           node = g_list_last (menu_shell->children);
         }
         else {
-          gtk_widget_error_bell (GTK_WIDGET (menu_shell));
+          gtk_widget_error_bell ((GtkWidget*)menu_shell);
           break;
         }
       }
@@ -1684,7 +1684,7 @@ geda_menu_shell_activate (GedaMenuShell *menu_shell)
 {
   if (!menu_shell->active) {
 
-    gtk_grab_add (GTK_WIDGET (menu_shell));
+    gtk_grab_add ((GtkWidget*)menu_shell);
     menu_shell->have_grab = TRUE;
     menu_shell->active = TRUE;
   }
@@ -2088,9 +2088,9 @@ geda_menu_shell_select_submenu_first (GedaMenuShell *menu_shell)
   if (submenu) {
 
     geda_menu_item_popup_submenu (menu_item, FALSE);
-    geda_menu_shell_select_first (GEDA_MENU_SHELL (submenu), TRUE);
+    geda_menu_shell_select_first ((GedaMenuShell*)submenu, TRUE);
 
-    if (GEDA_MENU_SHELL (submenu)->active_menu_item)
+    if (((GedaMenuShell*)submenu)->active_menu_item)
       return TRUE;
   }
 
@@ -2142,7 +2142,7 @@ geda_menu_shell_set_take_focus (GedaMenuShell *menu_shell, bool take_focus)
   if (priv->take_focus != take_focus) {
 
     priv->take_focus = take_focus;
-    g_object_notify (G_OBJECT (menu_shell), "take-focus");
+    g_object_notify ((GObject*)menu_shell, "take-focus");
   }
 }
 
@@ -2153,7 +2153,7 @@ geda_menu_shell_update_mnemonics (GedaMenuShell *menu_shell)
   bool auto_mnemonics;
   bool found;
 
-  g_object_get (gtk_widget_get_settings (GTK_WIDGET (menu_shell)),
+  g_object_get (gtk_widget_get_settings ((GtkWidget*)menu_shell),
                 "gtk-auto-mnemonics", &auto_mnemonics, NULL);
 
   if (!auto_mnemonics)
@@ -2188,34 +2188,34 @@ geda_menu_shell_update_mnemonics (GedaMenuShell *menu_shell)
     mnemonics_visible = target->keyboard_mode &&
                         (((target->active_menu_item || priv->in_unselectable_item) && !found) ||
                           (target == menu_shell &&
-                          !target->parent_menu_shell && gtk_widget_has_grab (GTK_WIDGET(target))));
+                          !target->parent_menu_shell && gtk_widget_has_grab ((GtkWidget*)target)));
 
     /* While menus are up, only show underlines inside the menubar,
      * not in the entire window.
      */
     if (GEDA_IS_MENU_BAR (target)) {
       if (mnemonics_visible) {
-        geda_menu_bar_hide_mnemonics  (GEDA_MENU_BAR (target));
+        geda_menu_bar_hide_mnemonics  ((GedaMenuBar*)target);
       }
       else {
-        geda_menu_bar_show_mnemonics (GEDA_MENU_BAR (target));
+        geda_menu_bar_show_mnemonics ((GedaMenuBar*)target);
       }
-      geda_label_set_mnemonics_visible_recursive (GTK_WIDGET (target),
+      geda_label_set_mnemonics_visible_recursive ((GtkWidget*)target,
                                                   mnemonics_visible);
     }
     else if (GEDA_IS_MENU (target)) {
 
-      GtkWidget *toplevel = geda_menu_get_toplevel (GEDA_MENU (target));
+      GtkWidget *toplevel = geda_menu_get_toplevel ((GedaMenu*)target);
 
       if (GTK_IS_WINDOW (toplevel)) {
-        gtk_window_set_mnemonics_visible (GTK_WINDOW (toplevel), mnemonics_visible);
+        gtk_window_set_mnemonics_visible ((GtkWindow*)toplevel, mnemonics_visible);
       }
     }
 
     if (target->active_menu_item || priv->in_unselectable_item)
       found = TRUE;
 
-    target = GEDA_MENU_SHELL (target->parent_menu_shell);
+    target = (GedaMenuShell*)target->parent_menu_shell;
   }
 }
 

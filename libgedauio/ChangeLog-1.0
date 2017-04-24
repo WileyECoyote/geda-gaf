@@ -10,6 +10,9 @@
     * src/widgets/geda_menu_item.c: Utilize GEDA_OBJECT_[G,S]ET_DATA macro,
       replace cast in order to eliminate needless type-checking.
 
+    * src/widgets/geda_menu_shell.c: Replace cast in order to eliminate needless
+      type-checking.
+
 2017-04-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_bulb.c: Replace g_type_check_instance_cast with static
