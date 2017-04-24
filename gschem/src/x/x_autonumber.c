@@ -1151,22 +1151,22 @@ static void autonumber_sortorder_create(GschemToplevel *w_current)
     GEDA_FREE(path);
   }
 
-  geda_combo_box_set_model(GEDA_COMBO_BOX(SortOrderCombo), GTK_TREE_MODEL(store));
+  geda_combo_box_set_model((GedaComboBox*)SortOrderCombo, (GtkTreeModel*)store);
 
   renderer = gtk_cell_renderer_text_new ();
 
-  gtk_cell_layout_pack_start (GTK_CELL_LAYOUT(SortOrderCombo), renderer, TRUE);
+  gtk_cell_layout_pack_start ((GtkCellLayout*)SortOrderCombo, renderer, TRUE);
 
-  gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (SortOrderCombo),
+  gtk_cell_layout_set_attributes ((GtkCellLayout*)SortOrderCombo,
                                   renderer, "text", 0, NULL);
 
   renderer = gtk_cell_renderer_pixbuf_new();
 
-  g_object_set(G_OBJECT(renderer), "xpad", 5, "ypad", 5, NULL);
+  g_object_set(renderer, "xpad", 5, "ypad", 5, NULL);
 
-  gtk_cell_layout_pack_start (GTK_CELL_LAYOUT(SortOrderCombo), renderer, FALSE);
+  gtk_cell_layout_pack_start ((GtkCellLayout*)SortOrderCombo, renderer, FALSE);
 
-  gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (SortOrderCombo),
+  gtk_cell_layout_set_attributes ((GtkCellLayout*)SortOrderCombo,
                                   renderer, "pixbuf", 1, NULL);
 }
 
@@ -1240,7 +1240,7 @@ static GList * autonumber_add_history(GList *history, char *text)
 static void set_scope_filter_text_history (GtkWidget *button, void *data)
 {
   AUTONUMBER_TEXT  *autotext = data;
-  GedaComboBoxText *combo    = GEDA_COMBO_BOX_TEXT(ScopeTextCombo);
+  GedaComboBoxText *combo    = (GedaComboBoxText*)ScopeTextCombo;
 
   GList *iter;
 
@@ -1278,7 +1278,7 @@ static void set_scope_filter_text_history (GtkWidget *button, void *data)
 static void set_scope_filter_text_question (GtkWidget *button, void *data)
 {
   AUTONUMBER_TEXT  *autotext = data;
-  GedaComboBoxText *combo    = GEDA_COMBO_BOX_TEXT(ScopeTextCombo);
+  GedaComboBoxText *combo    = (GedaComboBoxText*)ScopeTextCombo;
 
   int index;
 
@@ -1309,7 +1309,7 @@ static void set_scope_filter_text_question (GtkWidget *button, void *data)
 static void set_scope_filter_text_wild (GtkWidget *button, void *data)
 {
   AUTONUMBER_TEXT  *autotext = data;
-  GedaComboBoxText *combo    = GEDA_COMBO_BOX_TEXT(ScopeTextCombo);
+  GedaComboBoxText *combo    = (GedaComboBoxText*)ScopeTextCombo;
 
   int index;
 
@@ -1408,16 +1408,16 @@ static void restore_dialog_values(AUTONUMBER_TEXT *autotext)
   }
 
   /* Set the ScopeNumber ComboMenu with the value in autotext->scope_number */
-  geda_option_menu_set_history(GEDA_OPTION_MENU(ScopeNumberMenu), autotext->scope_number);
-  menu = geda_option_menu_get_menu(GEDA_OPTION_MENU(ScopeNumberMenu));
+  geda_option_menu_set_history((GedaOptionMenu*)ScopeNumberMenu, autotext->scope_number);
+  menu = geda_option_menu_get_menu((GedaOptionMenu*)ScopeNumberMenu);
   menuitem = geda_menu_widget_get_active(menu);
-  geda_check_menu_item_set_active(GEDA_CHECK_MENU_ITEM(menuitem), TRUE);
+  geda_check_menu_item_set_active((GedaCheckMenuItem*)menuitem, TRUE);
 
   /* Set the ScopeSkip ComboMenu with the value in autotext->scope_skip */
-  geda_option_menu_set_history(GEDA_OPTION_MENU(ScopeSkipMenu), autotext->scope_skip);
-  menu = geda_option_menu_get_menu(GEDA_OPTION_MENU(ScopeSkipMenu));
+  geda_option_menu_set_history((GedaOptionMenu*)ScopeSkipMenu, autotext->scope_skip);
+  menu = geda_option_menu_get_menu((GedaOptionMenu*)ScopeSkipMenu);
   menuitem = geda_menu_widget_get_active(menu);
-  geda_check_menu_item_set_active(GEDA_CHECK_MENU_ITEM(menuitem), TRUE);
+  geda_check_menu_item_set_active((GedaCheckMenuItem*)menuitem, TRUE);
 
   SetSwitch (ScopeOverwrite, autotext->scope_overwrite);
 
@@ -1459,19 +1459,19 @@ static void retrieve_values_from_dialog(AUTONUMBER_TEXT *autotext)
     GEDA_OBJECT_GET_DATA (
         geda_menu_widget_get_active (
           geda_option_menu_get_menu (
-            GEDA_OPTION_MENU (ScopeNumberMenu))), "scope_menu"));
+            (GedaOptionMenu*)ScopeNumberMenu)), "scope_menu"));
 
     /* Retrieve scope_skip selection from ScopeSkipMenu Combo/Menu */
     autotext->scope_skip = POINTER_TO_INT(
       GEDA_OBJECT_GET_DATA (
           geda_menu_widget_get_active (
             geda_option_menu_get_menu (
-              GEDA_OPTION_MENU (ScopeSkipMenu))), "scope_menu"));
+              (GedaOptionMenu*)ScopeSkipMenu)), "scope_menu"));
 
       autotext->scope_overwrite = GET_SWITCH_STATE (ScopeOverwriteSwitch);
 
       /* Sort order */
-      autotext->order = geda_combo_box_get_active(GEDA_COMBO_BOX(SortOrderCombo));
+      autotext->order = geda_combo_box_get_active((GedaComboBox*)SortOrderCombo);
 
       /* Options */
       autotext->startnum  = GET_SPIN_IVALUE (StartNumberSpin);
@@ -1505,7 +1505,7 @@ static void select_scope_text_value(AUTONUMBER_TEXT *autotext)
 
     pos++;  /* skip over the equal sign */
 
-    entry = GTK_ENTRY(geda_combo_widget_get_entry(ScopeTextCombo));
+    entry = (GtkEntry*)geda_combo_widget_get_entry(ScopeTextCombo);
 
     gtk_entry_select_region (entry, pos, strlen(text));
 
@@ -1568,7 +1568,7 @@ static void switch_responder(GtkWidget *widget, ControlID *Control)
 {
   bool state = GET_SWITCH_STATE (widget);
   GtkWidget *SwitchImage = get_geda_switch_image (state);
-  gtk_button_set_image(GTK_BUTTON (widget), SwitchImage);
+  gtk_button_set_image((GtkButton*)widget, SwitchImage);
 
   int WhichOne = (int)(long)Control;
 
@@ -1604,12 +1604,12 @@ void autonumber_create_filter_options (GtkWidget       *Dialog,
 
   widget = geda_aligned_visible_label_new(_("<b>Filter:</b>"), 0, 0);
   geda_label_widget_set_use_markup(widget, TRUE);
-  gtk_box_pack_start (GTK_BOX (container), widget,  FALSE, FALSE, 5);
-  gtk_misc_set_alignment (GTK_MISC (widget), 0, 0.5);
+  gtk_box_pack_start ((GtkBox*)container, widget,  FALSE, FALSE, 5);
+  gtk_misc_set_alignment ((GtkMisc*)widget, 0, 0.5);
 
   widget = geda_bulb_new_visible_with_mnemonic(NULL, "History");
   gtk_widget_set_direction(widget, GTK_TEXT_DIR_RTL);
-  gtk_box_pack_start (GTK_BOX (container), widget,  FALSE, FALSE, 5);
+  gtk_box_pack_start ((GtkBox*)container, widget,  FALSE, FALSE, 5);
 
   g_signal_connect(widget, "clicked", G_CALLBACK(set_scope_filter_text_history), autotext);
 
@@ -1617,12 +1617,12 @@ void autonumber_create_filter_options (GtkWidget       *Dialog,
 
   widget = geda_bulb_new_with_mnemonic_from_widget(widget, "Unset", 1);
   gtk_widget_set_direction(widget, GTK_TEXT_DIR_RTL);
-  gtk_box_pack_start (GTK_BOX (container), widget,  FALSE, FALSE, 5);
+  gtk_box_pack_start ((GtkBox*)container, widget,  FALSE, FALSE, 5);
   g_signal_connect(widget, "clicked", G_CALLBACK(set_scope_filter_text_question), autotext);
 
   widget = geda_bulb_new_with_mnemonic_from_widget(widget, "Wild", 1);
   gtk_widget_set_direction(widget, GTK_TEXT_DIR_RTL);
-  gtk_box_pack_start (GTK_BOX (container), widget,  FALSE, FALSE, 5);
+  gtk_box_pack_start ((GtkBox*)container, widget,  FALSE, FALSE, 5);
   g_signal_connect(widget, "clicked", G_CALLBACK(set_scope_filter_text_wild), autotext);
 
   GEDA_OBJECT_SET_DATA(Dialog, geda_bulb_get_group(widget), "ScopeGroup");
@@ -1658,8 +1658,8 @@ GtkWidget *autonumber_create_scope_menu (GschemToplevel *w_current)
     GtkWidget *menuitem;
 
     menuitem = geda_radio_menu_item_new_with_label (group, _(types[i].str));
-    group    = geda_radio_menu_item_group (GEDA_RADIO_MENU_ITEM (menuitem));
-    geda_menu_append (GEDA_MENU (menu), menuitem);
+    group    = geda_radio_menu_item_group ((GedaRadioMenuItem*)menuitem);
+    geda_menu_append ((GedaMenu*)menu, menuitem);
     GEDA_OBJECT_SET_DATA(menuitem, INT_TO_POINTER (types[i].scope), "scope_menu");
     gtk_widget_show (menuitem);
   }
@@ -1692,7 +1692,7 @@ GtkWidget *autonumber_create_dialog(GschemToplevel  *w_current,
   GtkWidget *lower_vbox;
 
   ThisDialog = gschem_dialog_new_with_buttons(_("Autonumber text"),
-                                              GTK_WINDOW(w_current->main_window),
+                                              (GtkWindow*)w_current->main_window,
             /* modal-less */                  GSCHEM_MODELESS_DIALOG,
                                               IDS_AUTONUMBER,
                                               w_current,
@@ -1701,14 +1701,14 @@ GtkWidget *autonumber_create_dialog(GschemToplevel  *w_current,
                                               NULL );
 
   /* Set the alternative button order (ok, cancel, help) for other systems */
-  gtk_dialog_set_alternative_button_order(GTK_DIALOG(ThisDialog),
-                                          GEDA_RESPONSE_ACCEPT,
-                                          GEDA_RESPONSE_CLOSE,
-                                          -1);
+  gtk_dialog_set_alternative_button_order((GtkDialog*)ThisDialog,
+                                           GEDA_RESPONSE_ACCEPT,
+                                           GEDA_RESPONSE_CLOSE,
+                                           -1);
 
-  gtk_window_set_position (GTK_WINDOW (ThisDialog), GTK_WIN_POS_NONE);
+  gtk_window_set_position ((GtkWindow*)ThisDialog, GTK_WIN_POS_NONE);
 
-  main_vbox = GTK_DIALOG(ThisDialog)->vbox;
+  main_vbox = ((GtkDialog*)ThisDialog)->vbox;
 
   /* scope section */
   frame = GTK_WIDGET (g_object_new (GTK_TYPE_FRAME, "label", "", NULL));
@@ -1716,17 +1716,17 @@ GtkWidget *autonumber_create_dialog(GschemToplevel  *w_current,
 
   label = geda_aligned_visible_label_new(_("<b>Scope</b>"), 0, 0);
   geda_label_widget_set_use_markup(label, TRUE);
-  gtk_frame_set_label_widget (GTK_FRAME(frame), label);
+  gtk_frame_set_label_widget ((GtkFrame*)frame, label);
 
   alignment = gtk_alignment_new (0, 0, 1, 1);
   g_object_set (alignment, "visible", TRUE, NULL);
-  gtk_container_add (GTK_CONTAINER (frame), alignment);
+  gtk_container_add ((GtkContainer*)frame, alignment);
   gtk_alignment_set_padding (GTK_ALIGNMENT (alignment), 0, 0,
                              DIALOG_INDENTATION, DIALOG_INDENTATION);
 
   upper_vbox = gtk_vbox_new (FALSE, 0);
   g_object_set (upper_vbox, "visible", TRUE, NULL);
-  gtk_container_add (GTK_CONTAINER (alignment), upper_vbox);
+  gtk_container_add ((GtkContainer*)alignment, upper_vbox);
 
   upper_table = gtk_table_new (3, 2, FALSE);
   g_object_set (upper_table, "visible", TRUE, NULL);
@@ -1752,7 +1752,7 @@ GtkWidget *autonumber_create_dialog(GschemToplevel  *w_current,
                     (GtkAttachOptions) (0), 0, 0);
 
   ScopeNumberMenu = geda_option_menu_new ();
-  geda_option_menu_set_menu(GEDA_OPTION_MENU(ScopeNumberMenu),
+  geda_option_menu_set_menu((GedaOptionMenu*)ScopeNumberMenu,
                             autonumber_create_scope_menu (w_current));
   gtk_table_attach_defaults(GTK_TABLE(upper_table), ScopeNumberMenu, 1, 2, 1, 2);
   gtk_widget_show (ScopeNumberMenu);
@@ -1763,7 +1763,7 @@ GtkWidget *autonumber_create_dialog(GschemToplevel  *w_current,
                     (GtkAttachOptions) (0), 0, 0);
 
   ScopeSkipMenu = geda_option_menu_new ();
-  geda_option_menu_set_menu(GEDA_OPTION_MENU(ScopeSkipMenu),
+  geda_option_menu_set_menu((GedaOptionMenu*)ScopeSkipMenu,
                            autonumber_create_scope_menu (w_current));
   gtk_widget_show (ScopeSkipMenu);
   gtk_table_attach (GTK_TABLE (upper_table), ScopeSkipMenu, 1, 2, 2, 3,
@@ -1776,7 +1776,7 @@ GtkWidget *autonumber_create_dialog(GschemToplevel  *w_current,
                                    "spacing",      10,
                                     NULL));
 
-  gtk_container_add (GTK_CONTAINER (upper_vbox), hbox);
+  gtk_container_add ((GtkContainer*)upper_vbox, hbox);
   g_object_set (hbox, "visible", TRUE, NULL);
 
   autonumber_create_filter_options (ThisDialog, autotext, hbox);
@@ -1792,13 +1792,13 @@ GtkWidget *autonumber_create_dialog(GschemToplevel  *w_current,
 
   alignment = gtk_alignment_new (0, 0, 1, 1);
   g_object_set (alignment, "visible", TRUE, NULL);
-  gtk_container_add (GTK_CONTAINER (frame), alignment);
+  gtk_container_add ((GtkContainer*)frame, alignment);
   gtk_alignment_set_padding (GTK_ALIGNMENT (alignment), 0, 0,
                              DIALOG_INDENTATION, DIALOG_INDENTATION);
 
   lower_vbox = gtk_vbox_new (FALSE, 3);
   g_object_set (lower_vbox, "visible", TRUE, NULL);
-  gtk_container_add (GTK_CONTAINER (alignment), lower_vbox);
+  gtk_container_add ((GtkContainer*)alignment, lower_vbox);
 
   lower_table = gtk_table_new (2, 2, FALSE);
   gtk_widget_show (lower_table);

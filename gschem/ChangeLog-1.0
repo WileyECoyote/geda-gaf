@@ -3,6 +3,10 @@
     * src/base/gschem_bin.c: Replace g_type_check_instance_cast in class
       initializer; gschem_bin_class_init. Update DOxygen comments.
 
+    * src/x/x_autonumber.c: Remove some of the excessive type checking cast;
+      replace with conventional cast. The type checking can be disabled, but
+      who does that, and is only disabled globally and not selectively.
+
 2017-04-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_diagnostics.c: Revise i_diagnostics_test_draw_time in an
