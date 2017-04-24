@@ -1297,7 +1297,7 @@ geda_menu_item_set_related_action (GedaMenuItem *menu_item, GtkAction *action)
       }
     }
 
-    gtk_activatable_do_set_related_action (GTK_ACTIVATABLE(menu_item), action);
+    gtk_activatable_do_set_related_action ((GtkActivatable*)menu_item, action);
 
     priv->action = (GedaAction*)action;
   }
@@ -1313,8 +1313,8 @@ geda_menu_item_set_use_action_appearance (GedaMenuItem *menu_item,
 
     priv->use_action_appearance = use_appearance;
 
-    gtk_activatable_sync_action_properties (GTK_ACTIVATABLE(menu_item),
-                                            GTK_ACTION(priv->action));
+    gtk_activatable_sync_action_properties ((GtkActivatable*)menu_item,
+                                            (GtkAction*)priv->action);
   }
 }
 
@@ -2448,7 +2448,7 @@ geda_menu_item_get_preferred_height_for_width (GtkWidget *widget,
 static void
 geda_menu_item_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
 {
-  GedaMenuItem        *menu_item = GEDA_MENU_ITEM(widget);
+  GedaMenuItem        *menu_item = (GedaMenuItem*)widget;
   GedaMenuItemPrivate *priv      = menu_item->priv;
   GtkBin              *bin;
   GtkWidget           *child;
@@ -2468,7 +2468,7 @@ geda_menu_item_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
 
   if (GEDA_IS_MENU_BAR(parent)) {
 
-    child_pack_dir = geda_menu_bar_get_child_pack_direction (GEDA_MENU_BAR (parent));
+    child_pack_dir = geda_menu_bar_get_child_pack_direction ((GedaMenuBar*)parent);
   }
   else {
 
