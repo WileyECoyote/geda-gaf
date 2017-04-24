@@ -253,8 +253,8 @@ static void
 geda_action_class_init(void *class, void *class_data)
 {
   GParamSpec     *params;
-  GObjectClass   *object_class    = (GObjectClass*)class;
-  GtkActionClass *gtkaction_class = (GtkActionClass*)class;
+  GObjectClass   *object_class    = (GObjectClass*) class;
+  GtkActionClass *gtkaction_class = (GtkActionClass*) class;
 
   gtkaction_class->connect_proxy  = geda_action_connect_proxy;
 

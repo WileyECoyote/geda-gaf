@@ -3,6 +3,9 @@
     * src/widgets/geda_accel_label.c: Replace cast in order to eliminate
       needless type-checking. Replace type checking for class casts.
 
+    * src/widgets/geda_action.c: Replace g_type_check_instance_cast in class
+      initializer; geda_action_class_init.
+
     * src/widgets/geda_bulb.c: Replace cast in order to eliminate
       needless type-checking.
 
