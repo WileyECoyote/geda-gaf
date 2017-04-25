@@ -100,11 +100,11 @@ geda_check_menu_item_draw_indicator (GedaCheckMenuItem *check_menu_item,
 static int
 geda_check_menu_item_expose (GtkWidget *widget, GdkEventExpose *event)
 {
-  if (GTK_WIDGET_CLASS (geda_check_menu_item_parent_class)->expose_event) {
-    GTK_WIDGET_CLASS (geda_check_menu_item_parent_class)->expose_event (widget, event);
+  if (((GtkWidgetClass*)geda_check_menu_item_parent_class)->expose_event) {
+    ((GtkWidgetClass*)geda_check_menu_item_parent_class)->expose_event (widget, event);
   }
 
-  geda_check_menu_item_draw_indicator (GEDA_CHECK_MENU_ITEM (widget), &event->area);
+  geda_check_menu_item_draw_indicator ((GedaCheckMenuItem*)widget, &event->area);
 
   return FALSE;
 }
@@ -113,15 +113,15 @@ geda_check_menu_item_expose (GtkWidget *widget, GdkEventExpose *event)
 static void
 geda_check_menu_item_activate (GedaMenuItem *menu_item)
 {
-  GedaCheckMenuItem *check_menu_item = GEDA_CHECK_MENU_ITEM (menu_item);
+  GedaCheckMenuItem *check_menu_item = (GedaCheckMenuItem*)menu_item;
   check_menu_item->active            = !check_menu_item->active;
 
   geda_check_menu_item_toggled (check_menu_item);
-  gtk_widget_queue_draw (GTK_WIDGET (check_menu_item));
+  gtk_widget_queue_draw ((GtkWidget*)check_menu_item);
 
-  GEDA_MENU_ITEM_CLASS (geda_check_menu_item_parent_class)->activate (menu_item);
+  ((GedaMenuItemClass*)geda_check_menu_item_parent_class)->activate (menu_item);
 
-  g_object_notify (G_OBJECT (check_menu_item), "active");
+  g_object_notify ((GObject*)check_menu_item, "active");
 }
 
 /* menu_item_class->toggle_size_request */
@@ -134,7 +134,7 @@ geda_check_menu_item_toggle_size_request (GedaMenuItem *menu_item,
 
   g_return_if_fail (GEDA_IS_CHECK_MENU_ITEM (menu_item));
 
-  gtk_widget_style_get (GTK_WIDGET (menu_item),
+  gtk_widget_style_get ((GtkWidget*)menu_item,
                         "toggle-spacing", &toggle_spacing,
                         "indicator-size", &indicator_size,
                         NULL);
@@ -151,7 +151,7 @@ geda_real_check_menu_item_draw_indicator (GedaCheckMenuItem *check_menu_item,
   GtkStateType   state_type;
   GtkShadowType  shadow_type;
 
-  widget = GTK_WIDGET (check_menu_item);
+  widget = (GtkWidget*)check_menu_item;
 
   if (gtk_widget_is_drawable (widget)) {
 
@@ -168,9 +168,9 @@ geda_real_check_menu_item_draw_indicator (GedaCheckMenuItem *check_menu_item,
                           "indicator-size", &indicator_size,
                           NULL);
 
-    toggle_size = geda_menu_item_get_toggle_size(GEDA_MENU_ITEM (check_menu_item));
-    offset      = GTK_CONTAINER (check_menu_item)->border_width +
-                                 widget->style->xthickness + 2;
+    toggle_size = geda_menu_item_get_toggle_size((GedaMenuItem*)check_menu_item);
+    offset      = ((GtkContainer*)check_menu_item)->border_width +
+                                  widget->style->xthickness + 2;
 
     if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_LTR) {
       x = widget->allocation.x + offset + horizontal_padding +
@@ -223,7 +223,7 @@ geda_check_menu_item_get_property (GObject      *object,
                                    GValue       *value,
                                    GParamSpec   *pspec)
 {
-  GedaCheckMenuItem *checkitem = GEDA_CHECK_MENU_ITEM (object);
+  GedaCheckMenuItem *checkitem = (GedaCheckMenuItem*)object;
 
   switch (prop_id) {
 
@@ -251,7 +251,7 @@ geda_check_menu_item_set_property (GObject      *object,
                                    const GValue *value,
                                    GParamSpec   *pspec)
 {
-  GedaCheckMenuItem *checkitem = GEDA_CHECK_MENU_ITEM (object);
+  GedaCheckMenuItem *checkitem = (GedaCheckMenuItem*)object;
 
   switch (prop_id) {
 
@@ -285,7 +285,7 @@ geda_check_menu_item_finalize (GObject *object)
     }
   }
 
-  G_OBJECT_CLASS (geda_check_menu_item_parent_class)->finalize (object);
+  ((GObjectClass*)geda_check_menu_item_parent_class)->finalize (object);
 }
 
 /*!
@@ -308,7 +308,7 @@ geda_check_menu_item_class_init(void *class, void *class_data)
   GParamSpec             *params;
 
   check_menu_class = (GedaCheckMenuItemClass*)class;
-  gobject_class    = G_OBJECT_CLASS (class);
+  gobject_class    = (GObjectClass*) class;
   widget_class     = (GtkWidgetClass*) class;
   menu_item_class  = (GedaMenuItemClass*) class;
 
@@ -477,7 +477,7 @@ geda_check_menu_item_update (GtkActivatable *activatable,
 {
   GedaCheckMenuItem *check_menu_item;
 
-  check_menu_item = GEDA_CHECK_MENU_ITEM (activatable);
+  check_menu_item = (GedaCheckMenuItem*)activatable;
 
   parent_activatable_iface->update (activatable, action, property_name);
 
@@ -485,7 +485,7 @@ geda_check_menu_item_update (GtkActivatable *activatable,
 
     bool active;
 
-    active = gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action));
+    active = gtk_toggle_action_get_active ((GtkToggleAction*)action);
 
     gtk_action_block_activate (action);
     geda_check_menu_item_set_active (check_menu_item, active);
@@ -498,7 +498,7 @@ geda_check_menu_item_update (GtkActivatable *activatable,
 
       bool draw_as_radio;
 
-      draw_as_radio =  gtk_toggle_action_get_draw_as_radio (GTK_TOGGLE_ACTION(action));
+      draw_as_radio = gtk_toggle_action_get_draw_as_radio ((GtkToggleAction*)action);
 
       geda_check_menu_item_set_draw_as_radio (check_menu_item, draw_as_radio);
     }
@@ -512,7 +512,7 @@ geda_check_menu_item_sync_action_properties (GtkActivatable *activatable,
 {
   GedaCheckMenuItem *check_menu_item;
 
-  check_menu_item = GEDA_CHECK_MENU_ITEM (activatable);
+  check_menu_item = (GedaCheckMenuItem*)activatable;
 
   parent_activatable_iface->sync_action_properties (activatable, action);
 
@@ -632,7 +632,7 @@ geda_check_menu_item_set_active (GedaCheckMenuItem *check_menu_item,
   is_active = is_active != 0;
 
   if (check_menu_item->active != is_active) {
-    geda_menu_item_activate (GEDA_MENU_ITEM (check_menu_item));
+    geda_menu_item_activate ((GedaMenuItem*)check_menu_item);
   }
 }
 
@@ -673,9 +673,9 @@ geda_check_menu_item_set_draw_as_radio (GedaCheckMenuItem *check_menu_item,
 
     check_menu_item->draw_as_radio = draw_as_radio;
 
-    gtk_widget_queue_draw (GTK_WIDGET (check_menu_item));
+    gtk_widget_queue_draw ((GtkWidget*)check_menu_item);
 
-    g_object_notify (G_OBJECT (check_menu_item), "draw-as-radio");
+    g_object_notify ((GObject*)check_menu_item, "draw-as-radio");
   }
 }
 
@@ -723,8 +723,8 @@ geda_check_menu_item_set_inconsistent (GedaCheckMenuItem *check_menu_item,
   if (setting != check_menu_item->inconsistent) {
 
     check_menu_item->inconsistent = setting;
-    gtk_widget_queue_draw (GTK_WIDGET (check_menu_item));
-    g_object_notify (G_OBJECT (check_menu_item), "inconsistent");
+    gtk_widget_queue_draw ((GtkWidget*)check_menu_item);
+    g_object_notify ((GObject*)check_menu_item, "inconsistent");
   }
 }
 
