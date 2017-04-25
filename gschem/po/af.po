@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gschem\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-04-23 18:06-0500\n"
+"POT-Creation-Date: 2017-04-24 00:58-0500\n"
 "PO-Revision-Date: 2010-02-14 01:03+0000\n"
 "Last-Translator: Bernd Jendrissek <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -93,19 +93,19 @@ msgstr "normale beëindiging\n"
 msgid "FAILED:"
 msgstr ""
 
-#: gschem/src/base/gschem_dialog.c:563
+#: gschem/src/base/gschem_dialog.c:565
 msgid "Parent Window"
 msgstr "Huidige Venster"
 
-#: gschem/src/base/gschem_dialog.c:564
+#: gschem/src/base/gschem_dialog.c:566
 msgid "Parent window for this dialog"
 msgstr "Ouer venster vir hierdie dialoog"
 
-#: gschem/src/base/gschem_dialog.c:584
+#: gschem/src/base/gschem_dialog.c:586
 msgid "Title"
 msgstr "Titel"
 
-#: gschem/src/base/gschem_dialog.c:585
+#: gschem/src/base/gschem_dialog.c:587
 msgid "Dialog window title"
 msgstr "Dialoog venster titel"
 
@@ -130,11 +130,11 @@ msgstr "Makro inhoud"
 msgid "Evaluate"
 msgstr "Evalueer"
 
-#: gschem/src/base/gschem_main_window.c:230
+#: gschem/src/base/gschem_main_window.c:228
 msgid "Retrieving main window position.\n"
 msgstr "Herwinning hoof venster posisie.\n"
 
-#: gschem/src/base/gschem_main_window.c:277
+#: gschem/src/base/gschem_main_window.c:275
 msgid "Retrieving main window geometry.\n"
 msgstr "Herwinning hoof venster meetkunde.\n"
 
@@ -2343,28 +2343,25 @@ msgid "Entry for model file name"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:71
-#, fuzzy
 msgid "_Type:"
-msgstr "Styl:"
+msgstr "Tik:"
 
 #: gschem/src/x/x_edit_pin.c:71
 msgid "Select the pin type"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:72
-#, fuzzy
 msgid "_Attributes:"
-msgstr "Eienskappe"
+msgstr "Eienskappe:"
 
+# Set the pin attrbutes
 #: gschem/src/x/x_edit_pin.c:72
-#, fuzzy
 msgid "Set the pin attrbutes"
-msgstr "Vervang bestaande eienskappe"
+msgstr "Stel die pen aanrbutes"
 
 #: gschem/src/x/x_edit_pin.c:73
-#, fuzzy
 msgid "_Number:"
-msgstr "Begin by nommer:"
+msgstr "_Nommer:"
 
 #: gschem/src/x/x_edit_pin.c:73
 msgid "Set the pin number, or the starting pin number if auto numbering"
@@ -2372,12 +2369,12 @@ msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:74
 msgid "_Sequence:"
-msgstr ""
+msgstr "Volgorde:"
 
+# Set the sequence number
 #: gschem/src/x/x_edit_pin.c:74
-#, fuzzy
 msgid "Set the sequence number"
-msgstr "Huidige Venster"
+msgstr "Stel die volgnummer"
 
 #: gschem/src/x/x_edit_pin.c:75
 msgid "_Label:"
@@ -2388,27 +2385,24 @@ msgid "Enter pin name or description"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:77
-#, fuzzy
 msgid "      Type:"
-msgstr "Styl:"
+msgstr "Tik:"
 
 #: gschem/src/x/x_edit_pin.c:77
 msgid "Enable to set all selected attributes to the prescribed type"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:78
-#, fuzzy
 msgid "Attributes:"
-msgstr "Eienskappe"
+msgstr "Eienskappe:"
 
 #: gschem/src/x/x_edit_pin.c:78
 msgid "Enable to set all selected attributes to the prescribed value"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:80
-#, fuzzy
 msgid "Number:"
-msgstr "Begin by nommer:"
+msgstr "Nommer:"
 
 #: gschem/src/x/x_edit_pin.c:80
 msgid ""
@@ -2418,7 +2412,7 @@ msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:81
 msgid "Sequence:"
-msgstr ""
+msgstr "Volgorde:"
 
 #: gschem/src/x/x_edit_pin.c:81
 msgid ""
@@ -2533,44 +2527,41 @@ msgstr "Bewerk gleufnommer:"
 msgid "Text Content"
 msgstr "Teksinhoud"
 
+# Enter or edit the text string
 #: gschem/src/x/x_edit_text.c:64
-#, fuzzy
 msgid "Enter or edit the text string"
-msgstr "Gee nuwe teksgrootte aan:"
+msgstr "Tik of wysig die teksreeks"
 
 #: gschem/src/x/x_edit_text.c:65
-#, fuzzy
 msgid "A_lignment:"
-msgstr "Opdrag:"
+msgstr "Belyning:"
 
+# Select the text alignment attribute
 #: gschem/src/x/x_edit_text.c:65
-#, fuzzy
 msgid "Select the text alignment attribute"
-msgstr "Kies kenmerk te voeg"
+msgstr "Kies die kenmerk van teksbelyning"
 
 #: gschem/src/x/x_edit_text.c:66
-#, fuzzy
 msgid "_Color:"
-msgstr "Kleur..."
+msgstr "_Kleur:"
 
+# Select color attribute
 #: gschem/src/x/x_edit_text.c:66
-#, fuzzy
 msgid "Select color attribute"
-msgstr "Kies kenmerk te voeg"
+msgstr "Kies kleur kenmerk"
 
 #: gschem/src/x/x_edit_text.c:67
 msgid "_Size:"
 msgstr ""
 
+# Open font selection dialog
 #: gschem/src/x/x_edit_text.c:67
-#, fuzzy
 msgid "Open font selection dialog"
-msgstr "oop die venster teks editor"
+msgstr "Oop font seleksie dialoog"
 
 #: gschem/src/x/x_edit_text.c:68
-#, fuzzy
 msgid "_Rotation:"
-msgstr "Komponentmodus:"
+msgstr "_Rotasie:"
 
 #: gschem/src/x/x_edit_text.c:68
 msgid "Set the text rotation angle"
