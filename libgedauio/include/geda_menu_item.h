@@ -186,11 +186,15 @@ void        geda_menu_item_set_use_underline          (GedaMenuItem     *menu_it
 
 bool        geda_menu_item_get_use_underline          (GedaMenuItem     *menu_item);
 
+void        geda_menu_item_set_related_action         (GedaMenuItem     *menu_item,
+                                                       GtkAction        *action);
 
 void        geda_menu_item_set_reserve_indicator      (GedaMenuItem     *menu_item,
                                                        bool              reserve);
 
 bool        geda_menu_item_get_reserve_indicator      (GedaMenuItem     *menu_item);
+
+
 
 bool        geda_menu_item_get_show_submenu_indicator (GedaMenuItem     *menu_item);
 
@@ -206,6 +210,8 @@ void        geda_menu_item_popup_submenu              (GedaMenuItem     *menu_it
                                                        bool              with_delay);
 void        geda_menu_item_popdown_submenu            (GedaMenuItem     *menu_item);
 
+void        geda_menu_item_set_use_action_appearance  (GedaMenuItem     *menu_item,
+                                                       bool              use_appearance);
 
 #ifdef __cplusplus
 }

@@ -8,6 +8,9 @@
     * src/widgets/geda_label.c: Eliminate widget variable in function
       geda_label_update_layout_width, just cast pointer to the label.
 
+    * src/widgets/geda_menu_item.c: Make geda_menu_item_set_related_action and
+      geda_menu_item_set_use_action_appearance public.
+
     * src/widgets/geda_toggle_action.c: Replace cast in order to eliminate
       needless type-checking. Replace type checking for class casts.
 

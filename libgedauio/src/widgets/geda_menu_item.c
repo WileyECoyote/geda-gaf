@@ -249,10 +249,6 @@ static void geda_menu_item_update                     (GtkActivatable      *acti
                                                        const char          *property_name);
 static void geda_menu_item_sync_action_properties     (GtkActivatable      *activatable,
                                                        GtkAction           *action);
-static void geda_menu_item_set_related_action         (GedaMenuItem        *menu_item,
-                                                       GtkAction           *action);
-static void geda_menu_item_set_use_action_appearance  (GedaMenuItem        *menu_item,
-                                                       bool                 use_appearance);
 #if GTK_MAJOR_VERSION < 3
 
 static int  geda_menu_item_expose                     (GtkWidget        *widget,
@@ -1271,50 +1267,6 @@ geda_menu_item_sync_action_properties (GtkActivatable *activatable,
     }
 
     activatable_update_label (menu_item, action);
-  }
-}
-
-static void
-geda_menu_item_set_related_action (GedaMenuItem *menu_item, GtkAction *action)
-{
-  GedaMenuItemPrivate *priv = menu_item->priv;
-
-  if (priv->action != (GedaAction*)action) {
-
-    if (priv->action) {
-      geda_menu_item_disconnect_accelerator(priv->action);
-    }
-
-    if (action) {
-
-      const char *accel_path;
-
-      accel_path = gtk_action_get_accel_path (action);
-
-      if (accel_path) {
-        gtk_action_connect_accelerator (action);
-        geda_menu_item_set_accel_path (menu_item, accel_path);
-      }
-    }
-
-    gtk_activatable_do_set_related_action ((GtkActivatable*)menu_item, action);
-
-    priv->action = (GedaAction*)action;
-  }
-}
-
-static void
-geda_menu_item_set_use_action_appearance (GedaMenuItem *menu_item,
-                                          bool          use_appearance)
-{
-  GedaMenuItemPrivate *priv = menu_item->priv;
-
-  if (priv->use_action_appearance != use_appearance) {
-
-    priv->use_action_appearance = use_appearance;
-
-    gtk_activatable_sync_action_properties ((GtkActivatable*)menu_item,
-                                            (GtkAction*)priv->action);
   }
 }
 
@@ -3868,6 +3820,43 @@ geda_menu_item_get_use_underline (GedaMenuItem *menu_item)
 }
 
 /*!
+ * \brief Set the Active related to the Menu Item
+ * \par Function Description
+ *  Sets menu_item "related-action" property.
+ *
+ * \param [in] menu_item a GedaMenuItem
+ * \param [in] action    The action related to the menu item
+ */
+void
+geda_menu_item_set_related_action (GedaMenuItem *menu_item, GtkAction *action)
+{
+  GedaMenuItemPrivate *priv = menu_item->priv;
+
+  if (priv->action != (GedaAction*)action) {
+
+    if (priv->action) {
+      geda_menu_item_disconnect_accelerator(priv->action);
+    }
+
+    if (action) {
+
+      const char *accel_path;
+
+      accel_path = gtk_action_get_accel_path (action);
+
+      if (accel_path) {
+        gtk_action_connect_accelerator (action);
+        geda_menu_item_set_accel_path (menu_item, accel_path);
+      }
+    }
+
+    gtk_activatable_do_set_related_action ((GtkActivatable*)menu_item, action);
+
+    priv->action = (GedaAction*)action;
+  }
+}
+
+/*!
  * \brief Set whether to Reserve space for an Indicator
  * \par Function Description
  *  Sets whether the \a menu_item should reserve space for the submenu
@@ -3953,6 +3942,29 @@ geda_menu_item_set_show_submenu_indicator (GedaMenuItem  *menu_item, bool show)
 
     priv->show_submenu_indicator = show;
     gtk_widget_queue_resize ((GtkWidget*)menu_item);
+  }
+}
+
+/*!
+ * \brief Set the Menu Item Use-Action Appearance Property
+ * \par Function Description
+ *  Sets menu_item "use-action-appearance" property.
+ *
+ * \param [in] menu_item      A GedaMenuItem
+ * \param [in] use_appearance Whether the action appearance should be used
+ */
+void
+geda_menu_item_set_use_action_appearance (GedaMenuItem *menu_item,
+                                          bool          use_appearance)
+{
+  GedaMenuItemPrivate *priv = menu_item->priv;
+
+  if (priv->use_action_appearance != use_appearance) {
+
+    priv->use_action_appearance = use_appearance;
+
+    gtk_activatable_sync_action_properties ((GtkActivatable*)menu_item,
+                                            (GtkAction*)priv->action);
   }
 }
 
