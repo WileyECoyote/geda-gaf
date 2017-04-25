@@ -91,7 +91,7 @@ static void geda_toggle_action_get_property (GObject      *object,
 static void
 geda_toggle_action_finalize (GObject *object)
 {
-  GedaToggleAction *action = GEDA_TOGGLE_ACTION (object);
+  GedaToggleAction *action = (GedaToggleAction*)object;
 
   if (g_hash_table_remove (toggle_action_hash, object)) {
     if (!g_hash_table_size (toggle_action_hash)) {
@@ -103,7 +103,8 @@ geda_toggle_action_finalize (GObject *object)
   if (action->multikey_accel) {
     g_free (action->multikey_accel);
   }
-  G_OBJECT_CLASS (geda_toggle_action_parent_class)->finalize (object);
+
+  ((GObjectClass*)geda_toggle_action_parent_class)->finalize (object);
 }
 
 /*! \brief GObject property setter function
@@ -123,7 +124,7 @@ geda_toggle_action_set_property (GObject *object,
                                  unsigned int property_id,
                                  const GValue *value, GParamSpec *pspec)
 {
-  GedaToggleAction *action = GEDA_TOGGLE_ACTION(object);
+  GedaToggleAction *action = (GedaToggleAction*)object;
 
   if (property_id == PROP_MULTIKEY_ACCEL) {
     if (action->multikey_accel != NULL) {
@@ -149,7 +150,7 @@ static void
 geda_toggle_action_get_property (GObject *object, unsigned int property_id,
                                  GValue  *value,  GParamSpec  *pspec)
 {
-  GedaToggleAction *action = GEDA_TOGGLE_ACTION (object);
+  GedaToggleAction *action = (GedaToggleAction*)object;
 
   if(property_id == PROP_MULTIKEY_ACCEL) {
     g_value_set_string (value, action->multikey_accel);
@@ -159,18 +160,18 @@ geda_toggle_action_get_property (GObject *object, unsigned int property_id,
 static void
 geda_toggle_action_connect_proxy (GtkAction *action, GtkWidget *proxy)
 {
-  GedaToggleAction *toggler = GEDA_TOGGLE_ACTION (action);
+  GedaToggleAction *toggler = (GedaToggleAction*)action;
 
   /* Override the type of label widget used with the menu item */
   if (GEDA_IS_MENU_ITEM (proxy)) {
 
     GtkWidget *label;
 
-    label = GTK_BIN (proxy)->child;
+    label = ((GtkBin*)proxy)->child;
 
     /* make sure label is a GedaAccelLabel */
     if (label && !GEDA_IS_ACCEL_LABEL(label)) {
-      gtk_container_remove (GTK_CONTAINER (proxy), label);
+      gtk_container_remove ((GtkContainer*)proxy, label);
       label = NULL;
     }
 
@@ -202,7 +203,7 @@ geda_toggle_action_connect_proxy (GtkAction *action, GtkWidget *proxy)
   }
 
   /* Let the parent class do its work now we've fiddled with the label */
-  GTK_ACTION_CLASS(geda_toggle_action_parent_class)->connect_proxy (action, proxy);
+  ((GtkActionClass*)geda_toggle_action_parent_class)->connect_proxy (action, proxy);
 }
 
 /*! \brief GedaToggleAction Class Initializer
@@ -221,8 +222,8 @@ geda_toggle_action_class_init (void *class, void *data)
 
   geda_toggle_action_parent_class = g_type_class_peek_parent (class);
 
-  object_class = G_OBJECT_CLASS (class);
-  action_class = GTK_ACTION_CLASS (class);
+  object_class = (GObjectClass*)class;
+  action_class = (GtkActionClass*)class;
 
   action_class->connect_proxy = geda_toggle_action_connect_proxy;
 

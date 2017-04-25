@@ -5,6 +5,9 @@
     * src/widgets/geda_check_menu_item.c: Replace cast in order to eliminate
       needless type-checking. Replace type checking for class casts.
 
+    * src/widgets/geda_toggle_action.c: Replace cast in order to eliminate
+      needless type-checking. Replace type checking for class casts.
+
 2017-04-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_accel_label.c: Replace cast in order to eliminate
