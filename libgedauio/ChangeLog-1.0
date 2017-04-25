@@ -1,3 +1,7 @@
+2017-04-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_combobox.c: Replace type checking for class casts.
+
 2017-04-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_accel_label.c: Replace cast in order to eliminate
