@@ -5,6 +5,9 @@
     * src/widgets/geda_check_menu_item.c: Replace cast in order to eliminate
       needless type-checking. Replace type checking for class casts.
 
+    * src/widgets/geda_label.c: Eliminate widget variable in function
+      geda_label_update_layout_width, just cast pointer to the label.
+
     * src/widgets/geda_toggle_action.c: Replace cast in order to eliminate
       needless type-checking. Replace type checking for class casts.
 

@@ -643,9 +643,7 @@ static void
 geda_label_update_layout_width (GedaLabel *label)
 {
   GedaLabelData *priv;
-  GtkWidget     *widget;
 
-  widget = GTK_WIDGET (label);
   priv   = label->priv;
 
   if (priv == NULL) {
@@ -665,16 +663,16 @@ geda_label_update_layout_width (GedaLabel *label)
     PangoRectangle logical;
     int            width, height;
 
-    geda_misc_get_padding_and_border (GTK_MISC (label), &border);
+    geda_misc_get_padding_and_border ((GtkMisc*)label, &border);
 
-    allocation = geda_get_widget_allocation (widget);
+    allocation = geda_get_widget_allocation ((GtkWidget*)label);
 
     width  = allocation->width - border.left - border.right;
     height = allocation->height - border.top  - border.bottom;
 
     if (priv->have_transform) {
 
-      PangoContext *context     = gtk_widget_get_pango_context (widget);
+      PangoContext *context     = gtk_widget_get_pango_context ((GtkWidget*)label);
       const PangoMatrix *matrix = pango_context_get_matrix (context);
       const double dx           = matrix->xx; /* cos (M_PI * angle / 180) */
       const double dy           = matrix->xy; /* sin (M_PI * angle / 180) */
