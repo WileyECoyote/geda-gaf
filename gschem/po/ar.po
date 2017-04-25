@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-04-23 18:06-0500\n"
+"POT-Creation-Date: 2017-04-24 00:58-0500\n"
 "PO-Revision-Date: 2016-12-23 15:41-0600\n"
 "Last-Translator: عبدالله شلي (Abdellah Chelli) <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -90,19 +90,19 @@ msgstr "تخرج الطبيعي\n"
 msgid "FAILED:"
 msgstr ""
 
-#: gschem/src/base/gschem_dialog.c:563
+#: gschem/src/base/gschem_dialog.c:565
 msgid "Parent Window"
 msgstr "النافذة الحالية"
 
-#: gschem/src/base/gschem_dialog.c:564
+#: gschem/src/base/gschem_dialog.c:566
 msgid "Parent window for this dialog"
 msgstr "الإطار الأصل لهذا الحوار"
 
-#: gschem/src/base/gschem_dialog.c:584
+#: gschem/src/base/gschem_dialog.c:586
 msgid "Title"
 msgstr "عنوان"
 
-#: gschem/src/base/gschem_dialog.c:585
+#: gschem/src/base/gschem_dialog.c:587
 msgid "Dialog window title"
 msgstr "عنوان نافذة الحوار"
 
@@ -127,11 +127,11 @@ msgstr "سلسلة الكلية"
 msgid "Evaluate"
 msgstr "تقييم"
 
-#: gschem/src/base/gschem_main_window.c:230
+#: gschem/src/base/gschem_main_window.c:228
 msgid "Retrieving main window position.\n"
 msgstr ""
 
-#: gschem/src/base/gschem_main_window.c:277
+#: gschem/src/base/gschem_main_window.c:275
 msgid "Retrieving main window geometry.\n"
 msgstr ""
 
@@ -2296,29 +2296,29 @@ msgstr ""
 msgid "Entry for model file name"
 msgstr "أظهر السمات الموروثة"
 
+# Type
 #: gschem/src/x/x_edit_pin.c:71
-#, fuzzy
 msgid "_Type:"
-msgstr "النّوع:"
+msgstr "اكتب:"
 
 #: gschem/src/x/x_edit_pin.c:71
 msgid "Select the pin type"
 msgstr ""
 
+# Attributes
 #: gschem/src/x/x_edit_pin.c:72
-#, fuzzy
 msgid "_Attributes:"
-msgstr "سمات"
+msgstr "سمات:"
 
+# Set the pin attrbutes
 #: gschem/src/x/x_edit_pin.c:72
-#, fuzzy
 msgid "Set the pin attrbutes"
-msgstr "أظهر السمات الموروثة"
+msgstr "تعيين أتربوتس دبوس"
 
+# Number
 #: gschem/src/x/x_edit_pin.c:73
-#, fuzzy
 msgid "_Number:"
-msgstr "رقم البدأ:"
+msgstr "رقم:"
 
 #: gschem/src/x/x_edit_pin.c:73
 msgid "Set the pin number, or the starting pin number if auto numbering"
@@ -2328,10 +2328,10 @@ msgstr ""
 msgid "_Sequence:"
 msgstr ""
 
+# Set the sequence number
 #: gschem/src/x/x_edit_pin.c:74
-#, fuzzy
 msgid "Set the sequence number"
-msgstr "الكائنات المنتقاة"
+msgstr "اضبط رقم التسلسل"
 
 #: gschem/src/x/x_edit_pin.c:75
 msgid "_Label:"
@@ -2341,29 +2341,29 @@ msgstr ""
 msgid "Enter pin name or description"
 msgstr ""
 
+# Type
 #: gschem/src/x/x_edit_pin.c:77
-#, fuzzy
 msgid "      Type:"
-msgstr "النّوع:"
+msgstr "اكتب:"
 
 #: gschem/src/x/x_edit_pin.c:77
 msgid "Enable to set all selected attributes to the prescribed type"
 msgstr ""
 
+# Attributes => Features
 #: gschem/src/x/x_edit_pin.c:78
-#, fuzzy
 msgid "Attributes:"
-msgstr "سمات"
+msgstr "سمات:"
 
+# Enable all specific attributes to a certain value
 #: gschem/src/x/x_edit_pin.c:78
-#, fuzzy
 msgid "Enable to set all selected attributes to the prescribed value"
-msgstr "سمة مفصولة"
+msgstr "تمكين جميع الصفات المحددة الى قيمة معينة"
 
+# Number
 #: gschem/src/x/x_edit_pin.c:80
-#, fuzzy
 msgid "Number:"
-msgstr "رقم البدأ:"
+msgstr "رقم:"
 
 #: gschem/src/x/x_edit_pin.c:80
 msgid ""

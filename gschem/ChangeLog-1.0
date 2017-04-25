@@ -2,6 +2,8 @@
 
     * po/af.po: Update Afrikaans translations.
 
+    * po/ar.po: Update Arabic translations.
+
 2017-04-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_bin.c: Replace g_type_check_instance_cast in class
