@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-04-23 18:06-0500\n"
+"POT-Creation-Date: 2017-04-24 00:58-0500\n"
 "PO-Revision-Date: 2012-02-04 00:18+0000\n"
 "Last-Translator: Krzysztof Kościuszkiewicz <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -93,19 +93,19 @@ msgstr ""
 msgid "FAILED:"
 msgstr ""
 
-#: gschem/src/base/gschem_dialog.c:563
+#: gschem/src/base/gschem_dialog.c:565
 msgid "Parent Window"
 msgstr "Родительское окно"
 
-#: gschem/src/base/gschem_dialog.c:564
+#: gschem/src/base/gschem_dialog.c:566
 msgid "Parent window for this dialog"
 msgstr ""
 
-#: gschem/src/base/gschem_dialog.c:584
+#: gschem/src/base/gschem_dialog.c:586
 msgid "Title"
 msgstr ""
 
-#: gschem/src/base/gschem_dialog.c:585
+#: gschem/src/base/gschem_dialog.c:587
 msgid "Dialog window title"
 msgstr ""
 
@@ -131,11 +131,11 @@ msgstr ""
 msgid "Evaluate"
 msgstr ""
 
-#: gschem/src/base/gschem_main_window.c:230
+#: gschem/src/base/gschem_main_window.c:228
 msgid "Retrieving main window position.\n"
 msgstr ""
 
-#: gschem/src/base/gschem_main_window.c:277
+#: gschem/src/base/gschem_main_window.c:275
 msgid "Retrieving main window geometry.\n"
 msgstr ""
 
@@ -4874,28 +4874,28 @@ msgstr ""
 msgid "_Find Specific Text..."
 msgstr "_Szukaj tekstu..."
 
+# Find an attribute
 #: gschem/etc/system-gschemrc.scm:2300
-#, fuzzy
 msgid "Find an attribute"
-msgstr "Dodaj atrybut"
+msgstr "Znajdź atrybut"
 
 #: gschem/etc/system-gschemrc.scm:2301
 msgid "_Hide Specific Text..."
 msgstr "_Ukryj wybrany tekst..."
 
+# Hide selected attribute
 #: gschem/etc/system-gschemrc.scm:2301
-#, fuzzy
 msgid "Hide selected attribute"
-msgstr "Odłączony atrybut"
+msgstr "Ukrywa wybrany atrybut"
 
 #: gschem/etc/system-gschemrc.scm:2302
 msgid "_Show Specific Text..."
 msgstr "_Pokazuj wybrany tekst..."
 
+# Show a specific attribute
 #: gschem/etc/system-gschemrc.scm:2302
-#, fuzzy
 msgid "Show a specific attribute"
-msgstr "Pokaż odziedziczone atrybuty"
+msgstr "Pokaż konkretny atrybut"
 
 #: gschem/etc/system-gschemrc.scm:2304
 msgid "_Import patch..."
@@ -5017,28 +5017,28 @@ msgstr "Odstępy siatki S_nap..."
 msgid "Adjust snap size"
 msgstr ""
 
+# Toggle attracting  => Switch snap
 #: gschem/etc/system-gschemrc.scm:2339
-#, fuzzy
 msgid "_Snap On-Off"
-msgstr "Wyłącz przyciąganie"
+msgstr "Przełączać przyciąganie"
 
 # Toggle the object snap mode
 #: gschem/etc/system-gschemrc.scm:2339
 msgid "Toggle the object snap mode"
 msgstr "Przełącz tryb przyciągania obiektu"
 
+# stretch connections
 #: gschem/etc/system-gschemrc.scm:2340
-#, fuzzy
 msgid "_Rubberband"
-msgstr "Przełącz _rozciąganie połączeń"
+msgstr "Rozciąganie połączeń"
 
 # Switch stretching connections
 #: gschem/etc/system-gschemrc.scm:2340
 msgid "Toggle rubberband net mode"
-msgstr "Przełącz _rozciąganie połączeń"
+msgstr "Przełączaj połączenia rozciągające"
 
+# Magnetic connection mode
 #: gschem/etc/system-gschemrc.scm:2341
-#, fuzzy
 msgid "_Magnetic Net"
 msgstr "Tryb magnetycznych połączeń"
 
