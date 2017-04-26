@@ -118,14 +118,14 @@ geda_toolbar_finalize (GObject *object)
     }
   }
 
-  G_OBJECT_CLASS (geda_toolbar_parent_class)->finalize (object);
+  ((GObjectClass*)geda_toolbar_parent_class)->finalize (object);
 }
 
 /* widget_class->realize */
 static void
 geda_toolbar_box_realize (GtkWidget *widget)
 {
-  GTK_WIDGET_CLASS (geda_toolbar_parent_class)->realize (widget);
+  ((GtkWidgetClass*)geda_toolbar_parent_class)->realize (widget);
   gdk_window_set_type_hint (widget->window, GDK_WINDOW_TYPE_HINT_TOOLBAR);
 }
 
@@ -134,7 +134,7 @@ geda_toolbar_size_request (GtkWidget *widget, GtkRequisition *requisition)
 {
   //GedaToolbar *toolbar = (GedaToolbar*)widget;
 
-  GTK_WIDGET_CLASS (geda_toolbar_parent_class)->size_request(widget, requisition);
+  ((GtkWidgetClass*)geda_toolbar_parent_class)->size_request(widget, requisition);
 }
 
 static void

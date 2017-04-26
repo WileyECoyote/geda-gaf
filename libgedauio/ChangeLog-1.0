@@ -1,3 +1,8 @@
+2017-04-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_toolbar.c: Skip type checking for class casts in widget
+      over-rides.
+
 2017-04-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Replace type checking for class casts.
