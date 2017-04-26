@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-04-23 18:06-0500\n"
+"POT-Creation-Date: 2017-04-24 00:58-0500\n"
 "PO-Revision-Date: 2016-12-05 02:35-0600\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -89,19 +89,19 @@ msgstr ""
 msgid "FAILED:"
 msgstr ""
 
-#: gschem/src/base/gschem_dialog.c:563
+#: gschem/src/base/gschem_dialog.c:565
 msgid "Parent Window"
 msgstr "Current Window"
 
-#: gschem/src/base/gschem_dialog.c:564
+#: gschem/src/base/gschem_dialog.c:566
 msgid "Parent window for this dialog"
 msgstr ""
 
-#: gschem/src/base/gschem_dialog.c:584
+#: gschem/src/base/gschem_dialog.c:586
 msgid "Title"
 msgstr ""
 
-#: gschem/src/base/gschem_dialog.c:585
+#: gschem/src/base/gschem_dialog.c:587
 msgid "Dialog window title"
 msgstr ""
 
@@ -126,11 +126,11 @@ msgstr ""
 msgid "Evaluate"
 msgstr "Evaluate"
 
-#: gschem/src/base/gschem_main_window.c:230
+#: gschem/src/base/gschem_main_window.c:228
 msgid "Retrieving main window position.\n"
 msgstr "Retrieving main Window position.\n"
 
-#: gschem/src/base/gschem_main_window.c:277
+#: gschem/src/base/gschem_main_window.c:275
 msgid "Retrieving main window geometry.\n"
 msgstr "Retrieving main Window geometry.\n"
 

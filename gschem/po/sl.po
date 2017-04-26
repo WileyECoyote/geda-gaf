@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-04-23 18:06-0500\n"
+"POT-Creation-Date: 2017-04-24 00:58-0500\n"
 "PO-Revision-Date: 2012-01-27 14:18+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
@@ -91,19 +91,19 @@ msgid "FAILED:"
 msgstr ""
 
 # Parent Window
-#: gschem/src/base/gschem_dialog.c:563
+#: gschem/src/base/gschem_dialog.c:565
 msgid "Parent Window"
 msgstr "matično okno"
 
-#: gschem/src/base/gschem_dialog.c:564
+#: gschem/src/base/gschem_dialog.c:566
 msgid "Parent window for this dialog"
 msgstr "Matično okno za tem pogovornem oknu"
 
-#: gschem/src/base/gschem_dialog.c:584
+#: gschem/src/base/gschem_dialog.c:586
 msgid "Title"
 msgstr "Naslov"
 
-#: gschem/src/base/gschem_dialog.c:585
+#: gschem/src/base/gschem_dialog.c:587
 msgid "Dialog window title"
 msgstr "Dialog naslov okna"
 
@@ -129,13 +129,13 @@ msgid "Evaluate"
 msgstr ""
 
 # Getting window geometry and settings
-#: gschem/src/base/gschem_main_window.c:230
+#: gschem/src/base/gschem_main_window.c:228
 #, fuzzy
 msgid "Retrieving main window position.\n"
 msgstr "Pridobivanje geometrijo okna in nastavitve.\n"
 
 # Getting window geometry and settings
-#: gschem/src/base/gschem_main_window.c:277
+#: gschem/src/base/gschem_main_window.c:275
 #, fuzzy
 msgid "Retrieving main window geometry.\n"
 msgstr "Pridobivanje geometrijo okna in nastavitve.\n"
