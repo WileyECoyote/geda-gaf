@@ -395,8 +395,11 @@ geda_action_create_menu_item (GedaAction *action)
   }
 
   if (menu_item) {
-    g_object_set (menu_item, "use-action-appearance", TRUE,
-                             "related-action", action, NULL);
+
+    GedaMenuItem *item = (GedaMenuItem*)menu_item;
+
+    geda_menu_item_set_use_action_appearance(item, TRUE);
+    geda_menu_item_set_related_action(item, (GtkAction*)action);
   }
 
   return menu_item;
@@ -431,11 +434,12 @@ geda_action_widget_create_menu_item (GtkWidget *widget)
  *
  * \returns A new GedaAction
  */
-GedaAction *geda_action_new (const char *name,
-                             const char *label,
-                             const char *tooltip,
-                             const char *icon_id,
-                             const char *multikey_accel)
+GedaAction *
+geda_action_new (const char *name,
+                 const char *label,
+                 const char *tooltip,
+                 const char *icon_id,
+                 const char *multikey_accel)
 {
   GedaAction *action;
 

@@ -1,5 +1,10 @@
 2017-04-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_action.c: Use newly accessible menu_item setters
+      instead of the less efficient g_object_set to set related action and
+      use action appearance, maybe should default to use action appearance
+      if replaced action is set.
+
     * src/widgets/geda_menu_item.c: Use GEDA_TYPE_MENU_ITEM instead of the
       less efficient G_OBJECT_CLASS_TYPE.
 
