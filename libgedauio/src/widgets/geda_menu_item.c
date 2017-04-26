@@ -607,7 +607,7 @@ geda_menu_item_class_init (void *class, void *class_data)
   gobject_class->get_property      = geda_menu_item_get_property;
 
 #if GTK_MAJOR_VERSION < 3
-  GtkObjectClass *object_class     = GTK_OBJECT_CLASS (class);
+  GtkObjectClass *object_class     = (GtkObjectClass*)class;
   object_class->destroy            = geda_menu_item_destroy;
 #else
   widget_class->destroy            = geda_menu_item_destroy;
@@ -3568,9 +3568,8 @@ geda_menu_item_parent_set (GtkWidget *widget, GtkWidget *previous_parent)
                                        TRUE);
   }
 
-  if (GTK_WIDGET_CLASS (geda_menu_item_parent_class)->parent_set)
-  {
-    GTK_WIDGET_CLASS (geda_menu_item_parent_class)->parent_set (widget, previous_parent);
+  if (((GtkWidgetClass*)geda_menu_item_parent_class)->parent_set) {
+    ((GtkWidgetClass*)geda_menu_item_parent_class)->parent_set (widget, previous_parent);
   }
 }
 

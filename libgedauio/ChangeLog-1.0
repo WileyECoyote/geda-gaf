@@ -8,7 +8,8 @@
     * src/widgets/geda_combobox.c: Add some internal comments.
 
     * src/widgets/geda_menu_item.c: Use GEDA_TYPE_MENU_ITEM instead of the
-      less efficient G_OBJECT_CLASS_TYPE.
+      less efficient G_OBJECT_CLASS_TYPE. Skip type checking for class casts
+      in geda_menu_item_class_init and geda_menu_item_parent_set.
 
     * src/widgets/geda_menu_shell.c: Move geda_menu_shell_is_item adjacent
       caller geda_menu_shell_get_item and change first argument to both to
