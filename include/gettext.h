@@ -27,7 +27,7 @@
 #  ifdef _LIBC
 #    include <libintl.h>
 #  else
-#    include "../../intl/libgnuintl.h"
+#    include "../intl/libgnuintl.h"
 #  endif
 #else
 #  include <libintl.h>
