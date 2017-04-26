@@ -4070,6 +4070,7 @@ geda_combo_box_update_sensitivity (GedaComboBox *combo_box)
   }
 }
 
+/*! \internal combo_box->priv->model::"row-inserted" callback */
 static void
 geda_combo_box_model_row_inserted (GtkTreeModel *model,
                                    GtkTreePath  *path,
@@ -4088,6 +4089,7 @@ geda_combo_box_model_row_inserted (GtkTreeModel *model,
   geda_combo_box_update_sensitivity (combo_box);
 }
 
+/*! \internal combo_box->priv->model::"row-deleted" callback */
 static void
 geda_combo_box_model_row_deleted (GtkTreeModel *model,
                                   GtkTreePath  *path,
@@ -4114,6 +4116,7 @@ geda_combo_box_model_row_deleted (GtkTreeModel *model,
   geda_combo_box_update_sensitivity (combo_box);
 }
 
+/*! \internal combo_box->priv->model::"rows-reordered" callback */
 static void
 geda_combo_box_model_rows_reordered (GtkTreeModel *model,
                                      GtkTreePath  *path,
@@ -4130,6 +4133,7 @@ geda_combo_box_model_rows_reordered (GtkTreeModel *model,
   }
 }
 
+/*! \internal combo_box->priv->model::"row-changed" callback */
 static void
 geda_combo_box_model_row_changed (GtkTreeModel *model,
                                   GtkTreePath  *path,
@@ -4198,7 +4202,11 @@ geda_combo_box_model_row_expanded (GtkTreeModel  *model,
   geda_combo_box_list_popup_resize (combo_box);
 }
 
-
+/*! internal
+ * helper called by:
+ *    geda_combo_box_menu_row_inserted
+ *    geda_combo_box_menu_row_deleted
+ */
 static GtkWidget*
 find_menu_by_path (GtkWidget *menu, GtkTreePath *path, bool skip_first)
 {
@@ -4280,6 +4288,7 @@ find_menu_by_path (GtkWidget *menu, GtkTreePath *path, bool skip_first)
   return item;
 }
 
+/*!internal helper called by geda_combo_box_model_row_inserted */
 static void
 geda_combo_box_menu_row_inserted (GtkTreeModel *model,
                                   GtkTreePath  *path,
