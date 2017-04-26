@@ -1,5 +1,8 @@
 2017-04-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_menu_item.c: Use GEDA_TYPE_MENU_ITEM instead of the
+      less efficient G_OBJECT_CLASS_TYPE.
+
     * src/widgets/geda_toolbar.c: Skip type checking for class casts in widget
       over-rides.
 
