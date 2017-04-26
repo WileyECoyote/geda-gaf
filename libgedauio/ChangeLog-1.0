@@ -5,6 +5,9 @@
       use action appearance, maybe should default to use action appearance
       if replaced action is set.
 
+    * src/widgets/geda_image_menu_item.c: Replace cast in order to eliminate
+      needless type-checking.
+
     * src/widgets/geda_combobox.c: Add some internal comments.
 
     * src/widgets/geda_menu_item.c: Use GEDA_TYPE_MENU_ITEM instead of the
