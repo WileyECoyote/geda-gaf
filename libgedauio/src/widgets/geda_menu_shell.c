@@ -191,10 +191,10 @@ static void geda_menu_shell_real_insert            (GedaMenuShell     *menu_shel
                                                     GtkWidget         *child,
                                                     int                position);
 static void geda_real_menu_shell_deactivate        (GedaMenuShell     *menu_shell);
-static int  geda_menu_shell_is_item                (GedaMenuShell     *menu_shell,
+static int  geda_menu_shell_is_item                (GtkWidget         *menu_shell,
                                                     GtkWidget         *child);
-static GtkWidget *geda_menu_shell_get_item         (GedaMenuShell     *menu_shell,
-                                                    GdkEvent          *event);
+static GtkWidget *geda_menu_shell_get_item         (GtkWidget         *menu_shell,
+                                                    GdkEventButton    *event);
 static GType geda_menu_shell_child_type            (GtkContainer      *container);
 static int  geda_menu_shell_key_press              (GtkWidget         *widget,
                                                     GdkEventKey       *event);
@@ -222,26 +222,6 @@ static unsigned int menu_shell_signals[LAST_SIGNAL] = { 0 };
 static GHashTable *shell_hash = NULL;
 
 static void *geda_menu_shell_parent_class = NULL;
-
-static int
-geda_menu_shell_is_item (GedaMenuShell *menu_shell, GtkWidget *child)
-{
-  GtkWidget *parent;
-
-  g_return_val_if_fail (GEDA_IS_MENU_SHELL (menu_shell), FALSE);
-  g_return_val_if_fail (child != NULL, FALSE);
-
-  parent = gtk_widget_get_parent(child);
-  while (GEDA_IS_MENU_SHELL(parent)) {
-
-    if (parent == (GtkWidget*)menu_shell) {
-      return TRUE;
-    }
-    parent = GEDA_MENU_SHELL (parent)->parent_menu_shell;
-  }
-
-  return FALSE;
-}
 
 /*----------------------- Begin Mnemonic Hash Helpers -----------------------*/
 
@@ -316,16 +296,36 @@ geda_menu_shell_reset_key_hash (GedaMenuShell *menu_shell)
 
 /* Widget Helpers */
 
+/*! \internal Determines if a menu item is a child of the menu shell
+ * Called by widget event helper geda_menu_shell_get_item
+ */
+static int
+geda_menu_shell_is_item (GtkWidget *menu_shell, GtkWidget *child)
+{
+  GtkWidget *parent;
+
+  parent = gtk_widget_get_parent(child);
+  while (GEDA_IS_MENU_SHELL(parent)) {
+
+    if (parent == menu_shell) {
+      return TRUE;
+    }
+    parent = GEDA_MENU_SHELL (parent)->parent_menu_shell;
+  }
+
+  return FALSE;
+}
+
 /*! \internal called by
  * geda_menu_shell_button_press
  * geda_menu_shell_button_release
  */
 static GtkWidget*
-geda_menu_shell_get_item (GedaMenuShell *menu_shell, GdkEvent *event)
+geda_menu_shell_get_item (GtkWidget *menu_shell, GdkEventButton *event)
 {
   GtkWidget *menu_item;
 
-  menu_item = gtk_get_event_widget ((GdkEvent*) event);
+  menu_item = gtk_get_event_widget ((GdkEvent*)event);
 
   while (menu_item && !GEDA_IS_MENU_ITEM (menu_item)) {
     menu_item = menu_item->parent;
@@ -810,7 +810,7 @@ geda_menu_shell_button_press (GtkWidget *widget, GdkEventButton *event)
     return gtk_widget_event (menu_shell->parent_menu_shell, (GdkEvent*)event);
   }
 
-  menu_item = geda_menu_shell_get_item (menu_shell, (GdkEvent*)event);
+  menu_item = geda_menu_shell_get_item (widget, event);
 
   if (menu_item) {
 
@@ -885,8 +885,7 @@ geda_menu_shell_button_press (GtkWidget *widget, GdkEventButton *event)
 
 /* widget_class->button_release_event */
 static int
-geda_menu_shell_button_release (GtkWidget      *widget,
-                                GdkEventButton *event)
+geda_menu_shell_button_release (GtkWidget *widget, GdkEventButton *event)
 {
   GedaMenuShell     *menu_shell = (GedaMenuShell*)widget;
   GedaMenuShellPriv *priv       = menu_shell->priv;
@@ -921,7 +920,7 @@ geda_menu_shell_button_release (GtkWidget      *widget,
     }
 
     menu_shell->button = 0;
-    menu_item = geda_menu_shell_get_item (menu_shell, (GdkEvent*) event);
+    menu_item = geda_menu_shell_get_item (widget, event);
 
     if ((event->time - menu_shell->activate_time) > MENU_SHELL_TIMEOUT)
     {

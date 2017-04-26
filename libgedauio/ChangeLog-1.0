@@ -8,6 +8,12 @@
     * src/widgets/geda_menu_item.c: Use GEDA_TYPE_MENU_ITEM instead of the
       less efficient G_OBJECT_CLASS_TYPE.
 
+    * src/widgets/geda_menu_shell.c: Move geda_menu_shell_is_item adjacent
+      caller geda_menu_shell_get_item and change first argument to both to
+      a GtkWiget instead of GedaMenuShell, eliminate g_return_val_if_fails
+      in geda_menu_shell_get_item since these conditions will not occur,
+      change second geda_menu_shell_get_item argument to GdkEventButton.
+
     * src/widgets/geda_toolbar.c: Skip type checking for class casts in widget
       over-rides.
 
