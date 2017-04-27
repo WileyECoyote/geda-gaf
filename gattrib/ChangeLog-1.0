@@ -3,6 +3,9 @@
     * src/gtksheet/gtkitementry.c: Allocate pointer to GtkEntry entry in
       gtk_item_entry_init instead of referencing as cast from GtkItemEntry.
 
+    * src/gtksheet/gtksheet.c: Replace some cast in order to reduce needless,
+      and in many cases redundant, type-checking.
+
 2017-03-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_toolbars.c: Replace gtk_toolbar with geda_toolbar.
