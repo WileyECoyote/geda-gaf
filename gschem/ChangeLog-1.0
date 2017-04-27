@@ -4,6 +4,10 @@
       type GtkTable instead of widget to reduce the casting, replace less
       efficient g_object_set with gtk_widget_show.
 
+      Revise callback_treeview_button_pressed to use GtkButton instead of
+      GtkWidget so that the unused on_open_butt_clicked button pointer is
+      not cast back to a GtkButton.
+
 2017-04-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: Update Afrikaans translations.

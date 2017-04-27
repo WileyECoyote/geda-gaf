@@ -705,8 +705,8 @@ callback_treeview_button_pressed (GtkWidget      *widget,
 
     /* If was a double-left click */
     if (event->type == GDK_2BUTTON_PRESS && event->button == 1) {
-      GtkWidget *button = GEDA_OBJECT_GET_DATA(ThisDialog, "open-butt");
-      on_open_butt_clicked (GTK_BUTTON(button), ThisDialog);
+      GtkButton *button = GEDA_OBJECT_GET_DATA(ThisDialog, "open-butt");
+      on_open_butt_clicked (button, ThisDialog);
       retval = TRUE;
     }
   }
