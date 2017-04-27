@@ -1,3 +1,9 @@
+2017-04-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_bar.c: Revise geda_menu_bar_button_press; remove
+      both g_return_val_if_fail, and just skip attempting to drag the main
+      window is toplevel is not returned.
+
 2017-04-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_action.c: Use newly accessible menu_item setters
