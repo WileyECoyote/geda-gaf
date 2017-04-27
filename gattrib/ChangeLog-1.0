@@ -7,7 +7,9 @@
       and in many cases redundant, type-checking.
 
     * src/x_gtksheet.c: Replace some cast in order to reduce needless, and
-      in some cases redundant, type-checking.
+      in some cases redundant, type-checking. Add style in x_gtksheet_add_
+      row_labels and x_gtksheet_add_row_labels, revise both to use GtkWidget
+      accessor to get a pointer to the style.
 
 2017-03-14 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -762,6 +762,7 @@ void x_gtksheet_add_row_labels(GtkSheet *sheet, int count,
                                STRING_LIST *list_head)
 {
   STRING_LIST *string_list_item;
+  GtkStyle    *style;
 
   int j;
   int width = 1;
@@ -771,9 +772,11 @@ void x_gtksheet_add_row_labels(GtkSheet *sheet, int count,
   if ((count == 0) || (list_head == NULL))
     return;
 
+  style =  gtk_widget_get_style((GtkWidget*)sheet);
+
   /* Get character width based upon "X", which is a large char. */
-  if ( GTK_WIDGET(sheet)->style->private_font )
-    char_width = gdk_char_width (GTK_WIDGET(sheet)->style->private_font, (char)'X');
+  if (style->private_font)
+    char_width = gdk_char_width (style->private_font, (char)'X');
   else
     char_width = DEFAULT_FONT_WIDTH;
 
@@ -812,6 +815,7 @@ void x_gtksheet_add_col_labels(GtkSheet    *sheet,
                                STRING_LIST *list_head)
 {
   STRING_LIST *string_list_item;
+  GtkStyle    *style;
 
   int j;
   int char_width;
@@ -820,8 +824,10 @@ void x_gtksheet_add_col_labels(GtkSheet    *sheet,
   if ((count == 0) || (list_head == NULL))
     return;
 
-  if ( GTK_WIDGET(sheet)->style->private_font )
-    char_width = gdk_char_width (GTK_WIDGET(sheet)->style->private_font, (char)'X');
+  style =  gtk_widget_get_style((GtkWidget*)sheet);
+
+  if (style->private_font)
+    char_width = gdk_char_width (style->private_font, (char)'X');
   else
     char_width = DEFAULT_FONT_WIDTH;
 
