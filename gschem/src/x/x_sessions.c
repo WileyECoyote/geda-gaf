@@ -588,10 +588,10 @@ void x_sessions_manage_dialog(GschemToplevel *w_current)
   GtkWidget  *ThisDialog;
   GtkWidget  *action_area;
   GtkWidget  *main_vbox;
-  GtkWidget  *table;
   GtkWidget  *scrollable;
   GtkWidget  *hbox;
   GtkWidget  *button;
+  GtkTable   *table;
 
   GtkTreeSelection  *selection;
 
@@ -615,7 +615,7 @@ void x_sessions_manage_dialog(GschemToplevel *w_current)
                 NULL);
 
   main_vbox = GTK_DIALOG (ThisDialog)->vbox;
-  g_object_set (main_vbox, "visible", TRUE, NULL);
+  gtk_widget_show (main_vbox);
 
   hbox = GTK_WIDGET (g_object_new (GTK_TYPE_HBOX,/* GtkContainer */
                                    "border-width", 5,
@@ -624,40 +624,41 @@ void x_sessions_manage_dialog(GschemToplevel *w_current)
                                    NULL));
 
   gtk_container_add (GTK_CONTAINER (main_vbox), hbox);
-  g_object_set (hbox, "visible", TRUE, NULL);
+  gtk_widget_show (hbox);
 
   scrollable = x_sessions_get_treeview(ThisDialog);
 
-  /* add the scrolled window to the dialog box */
-  gtk_container_add (GTK_CONTAINER (hbox), scrollable);
+  /* Add the scrolled window to the dialog box */
+  gtk_container_add ((GtkContainer*)hbox, scrollable);
   g_object_set (scrollable, "visible", TRUE, NULL);
 
-  table = gtk_table_new (5, 1, FALSE);
-  gtk_table_set_row_spacings (GTK_TABLE(table), DIALOG_V_SPACING);
-  gtk_table_set_col_spacings (GTK_TABLE(table), DIALOG_H_SPACING);
-  gtk_box_pack_start(GTK_BOX (hbox), table, FALSE, FALSE, 0);
-  g_object_set               (table, "visible", TRUE, NULL);
+  table = (GtkTable*)gtk_table_new (5, 1, FALSE);
+  gtk_table_set_row_spacings (table, DIALOG_V_SPACING);
+  gtk_table_set_col_spacings (table, DIALOG_H_SPACING);
+  gtk_box_pack_start         (GTK_BOX (hbox), (GtkWidget*)table, FALSE, FALSE, 0);
+  gtk_widget_show            ((GtkWidget*)table);
 
   button = gtk_button_new_with_mnemonic (_("_Rename"));
-  g_object_set (button, "visible", TRUE, NULL);
-  gtk_table_attach(GTK_TABLE(table), button, 0,1,0,1, GTK_FILL,0,0,0);
-  gtk_widget_set_sensitive (button, FALSE);
+  gtk_widget_show            (button);
+  gtk_widget_set_sensitive   (button, FALSE);
   gtk_widget_set_tooltip_text(button, rename_tip);
-  GEDA_HOOKUP_OBJECT (ThisDialog, button, "rename-butt");
+  gtk_table_attach           (table, button, 0,1,0,1, GTK_FILL,0,0,0);
+  GEDA_HOOKUP_OBJECT         (ThisDialog, button, "rename-butt");
 
   button = gtk_button_new_with_mnemonic (_("_Delete"));
-  g_object_set (button, "visible", TRUE, NULL);
-  gtk_table_attach(GTK_TABLE(table), button, 0,1,1,2, GTK_FILL,0,0,0);
-  gtk_widget_set_sensitive (button, FALSE);
+  gtk_widget_show            (button);
+  gtk_widget_set_sensitive   (button, FALSE);
   gtk_widget_set_tooltip_text(button, delete_tip);
-  GEDA_HOOKUP_OBJECT (ThisDialog, button, "delete-butt");
+  gtk_table_attach           (table, button, 0,1,1,2, GTK_FILL,0,0,0);
+  GEDA_HOOKUP_OBJECT         (ThisDialog, button, "delete-butt");
 
   button = gtk_button_new_with_mnemonic (_("_Export"));
-  g_object_set (button, "visible", TRUE, NULL);
-  gtk_table_attach(GTK_TABLE(table), button, 0,1,2,3, GTK_FILL,0,0,0);
-  gtk_widget_set_sensitive (button, FALSE);
+  gtk_widget_show            (button);
+
+  gtk_widget_set_sensitive   (button, FALSE);
   gtk_widget_set_tooltip_text(button, export_tip);
-  GEDA_HOOKUP_OBJECT (ThisDialog, button, "export-butt");
+  gtk_table_attach           (table, button, 0,1,2,3, GTK_FILL,0,0,0);
+  GEDA_HOOKUP_OBJECT         (ThisDialog, button, "export-butt");
 
   action_area = create_action_area (GSCHEM_DIALOG(ThisDialog),
                                     (GtkWidget*) main_vbox);

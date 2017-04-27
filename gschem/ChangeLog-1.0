@@ -1,3 +1,9 @@
+2017-04-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_sessions.c: Revise x_sessions_manage_dialog; Change table to
+      type GtkTable instead of widget to reduce the casting, replace less
+      efficient g_object_set with gtk_widget_show.
+
 2017-04-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: Update Afrikaans translations.
