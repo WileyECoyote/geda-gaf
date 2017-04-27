@@ -422,23 +422,23 @@ create_action_area (GschemDialog *ThisDialog, GtkWidget *parent)
 
   startup_checkbutt = gtk_check_button_new_with_mnemonic (_("Show at start-up"));
   g_object_set (startup_checkbutt, "visible", TRUE, NULL);
-  gtk_box_pack_start (GTK_BOX (action_hbox), startup_checkbutt, FALSE, FALSE, 0);
+  gtk_box_pack_start ((GtkBox*)action_hbox, startup_checkbutt, FALSE, FALSE, 0);
   gtk_widget_set_tooltip_text(startup_checkbutt, startup_tip);
   startup = i_sessions_get_show_at_startup();
-  gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(startup_checkbutt), startup);
+  gtk_toggle_button_set_active((GtkToggleButton*)startup_checkbutt, startup);
 
   auto_check_butt = gtk_check_button_new_with_mnemonic (_("Auto update"));
   g_object_set (auto_check_butt, "visible", TRUE, NULL);
-  gtk_box_pack_start (GTK_BOX (action_hbox), auto_check_butt, FALSE, FALSE, 0);
+  gtk_box_pack_start ((GtkBox*)action_hbox, auto_check_butt, FALSE, FALSE, 0);
   gtk_widget_set_tooltip_text(auto_check_butt, update_tip);
-  gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(auto_check_butt),
-                               w_current->auto_sessions);
+  gtk_toggle_button_set_active((GtkToggleButton*)auto_check_butt,
+                                w_current->auto_sessions);
 
   /* Create and connect the Close and Apply Buttons */
   GtkWidget *close_butt = gtk_button_new_from_stock (GTK_STOCK_CLOSE);
   GtkWidget *open_butt  = gtk_button_new_from_stock (GTK_STOCK_OPEN);
 
-  g_object_get (gtk_widget_get_settings (GTK_WIDGET (close_butt)),
+  g_object_get (gtk_widget_get_settings ((GtkWidget*)close_butt),
                 "gtk-button-images", &show_image, NULL);
 
   if (show_image) {
@@ -451,10 +451,10 @@ create_action_area (GschemDialog *ThisDialog, GtkWidget *parent)
   SetWidgetSize (close_butt, butt_width, DIALOG_BUTTON_VSIZE);
   SetWidgetSize (open_butt, butt_width, DIALOG_BUTTON_VSIZE);
 
-  gtk_box_pack_end (GTK_BOX (action_hbox), close_butt, FALSE, FALSE,
+  gtk_box_pack_end ((GtkBox*)action_hbox, close_butt, FALSE, FALSE,
                     DIALOG_H_SPACING);
 
-  gtk_box_pack_end (GTK_BOX (action_hbox), open_butt, FALSE, FALSE,
+  gtk_box_pack_end ((GtkBox*)action_hbox, open_butt, FALSE, FALSE,
                     DIALOG_H_SPACING);
 
   gtk_widget_set_sensitive (open_butt, FALSE);
@@ -473,7 +473,7 @@ create_action_area (GschemDialog *ThisDialog, GtkWidget *parent)
                     ThisDialog);
 
   /* Set the alternative button order (ok, cancel, help) for other systems */
-  gtk_dialog_set_alternative_button_order(GTK_DIALOG(ThisDialog),
+  gtk_dialog_set_alternative_button_order((GtkDialog*)ThisDialog,
                                           GEDA_RESPONSE_ACCEPT,
                                           GEDA_RESPONSE_REJECT,
                                           -1);
@@ -608,7 +608,7 @@ void x_sessions_manage_dialog(GschemToplevel *w_current)
                                    "manage-sessions",
                                     w_current);
   /* dialog initialization */
-  g_object_set (G_OBJECT (ThisDialog),
+  g_object_set (ThisDialog,
                 "window-position", GTK_WIN_POS_NONE,
                 "type-hint",       GDK_WINDOW_TYPE_HINT_NORMAL,
                 "has-separator",   TRUE,
@@ -617,11 +617,11 @@ void x_sessions_manage_dialog(GschemToplevel *w_current)
   main_vbox = GTK_DIALOG (ThisDialog)->vbox;
   gtk_widget_show (main_vbox);
 
-  hbox = GTK_WIDGET (g_object_new (GTK_TYPE_HBOX,/* GtkContainer */
-                                   "border-width", 5,
-                                   "homogeneous",  FALSE,
-                                   "spacing",      12,
-                                   NULL));
+  hbox = g_object_new (GTK_TYPE_HBOX,/* GtkContainer */
+                       "border-width", 5,
+                       "homogeneous",  FALSE,
+                       "spacing",      12,
+                       NULL);
 
   gtk_container_add (GTK_CONTAINER (main_vbox), hbox);
   gtk_widget_show (hbox);
@@ -660,17 +660,17 @@ void x_sessions_manage_dialog(GschemToplevel *w_current)
   gtk_table_attach           (table, button, 0,1,2,3, GTK_FILL,0,0,0);
   GEDA_HOOKUP_OBJECT         (ThisDialog, button, "export-butt");
 
-  action_area = create_action_area (GSCHEM_DIALOG(ThisDialog),
+  action_area = create_action_area ((GschemDialog*)ThisDialog,
                                     (GtkWidget*) main_vbox);
   gtk_widget_show_all (action_area);
 
-  selection = session_dialog_get_selection(GSCHEM_DIALOG(ThisDialog));
+  selection = session_dialog_get_selection((GschemDialog*)ThisDialog);
 
   g_signal_connect (selection, "changed",
                     G_CALLBACK (manage_session_selection_changed),
                     ThisDialog);
 
-  g_signal_connect (G_OBJECT (ThisDialog), "response",
+  g_signal_connect (ThisDialog, "response",
                     G_CALLBACK (x_sessions_response),
                     ThisDialog);
 
@@ -722,8 +722,7 @@ callback_treeview_button_pressed (GtkWidget      *widget,
  *  \note This function is not used by the Manage-Sessions dialog
  */
 static void
-open_session_selection_changed (GtkTreeSelection *selection,
-                                            void *user_data)
+open_session_selection_changed (GtkTreeSelection *selection, void *user_data)
 {
   GtkWidget *Dialog = (GtkWidget*)user_data;
   GtkWidget *button;
@@ -773,7 +772,7 @@ void x_sessions_open_dialog(GschemToplevel *w_current)
                                    "manage-sessions",
                                     w_current);
   /* dialog initialization */
-  g_object_set (G_OBJECT (ThisDialog),
+  g_object_set (ThisDialog,
                 "window-position", GTK_WIN_POS_NONE,
                 "type-hint",       GDK_WINDOW_TYPE_HINT_NORMAL,
                 "has-separator",   TRUE,
@@ -805,7 +804,7 @@ void x_sessions_open_dialog(GschemToplevel *w_current)
                     G_CALLBACK (callback_treeview_button_pressed),
                     ThisDialog);
 
-  g_signal_connect (G_OBJECT (ThisDialog), "response",
+  g_signal_connect (ThisDialog, "response",
                     G_CALLBACK (x_sessions_response),
                     ThisDialog);
 

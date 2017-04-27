@@ -8,6 +8,8 @@
       GtkWidget so that the unused on_open_butt_clicked button pointer is
       not cast back to a GtkButton.
 
+      Replace cast in order to reduce needless type-checking.
+
 2017-04-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: Update Afrikaans translations.
