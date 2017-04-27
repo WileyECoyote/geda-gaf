@@ -6,6 +6,9 @@
     * src/gtksheet/gtksheet.c: Replace some cast in order to reduce needless,
       and in many cases redundant, type-checking.
 
+    * src/x_gtksheet.c: Replace some cast in order to reduce needless, and
+      in some cases redundant, type-checking.
+
 2017-03-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_toolbars.c: Replace gtk_toolbar with geda_toolbar.

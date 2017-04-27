@@ -683,27 +683,28 @@ void x_gtksheet_init(PageDataSet *PageData)
 
   int i;
 
-  /* --- Finally stick labels on the notebooks holding the sheets. --- */
+  /* Finally stick labels on the notebooks holding the sheets. */
   for (i = 0; i < NUM_SHEETS; i++) {
 
-    if (sheets[i] != NULL) {  /* is this check needed?
-      * Yes, it prevents us from segfaulting on empty nets sheet. */
-      scrolled_windows = (GtkWidget **)realloc(scrolled_windows, (i+1)*sizeof(GtkWidget*));
+    /* this prevents us from segfaulting on empty nets sheet. */
+    if (sheets[i] != NULL) {
+
+      scrolled_windows = (GtkWidget**)realloc(scrolled_windows, (i+1)*sizeof(GtkWidget*));
       scrolled_windows[i] = gtk_scrolled_window_new(NULL, NULL);
 
-      gtk_container_add( GTK_CONTAINER(scrolled_windows[i]), GTK_WIDGET(sheets[i]) );
+      gtk_container_add (GTK_CONTAINER(scrolled_windows[i]), (GtkWidget*)sheets[i]);
 
       /* First remove old notebook page. Maybe should probably do some checking here. */
       if (notebook != NULL) {
-        gtk_notebook_remove_page(GTK_NOTEBOOK(notebook), i);
+        gtk_notebook_remove_page((GtkNotebook*)notebook, i);
       }
 
       /* Then add new, updated notebook page */
       GtkWidget *label= gtk_label_new(_(SheetNames[i]));
 
-      gtk_notebook_insert_page_menu (GTK_NOTEBOOK(notebook),
-                                     GTK_WIDGET(scrolled_windows[i]),
-                                     GTK_WIDGET(label), NULL, -1);
+      gtk_notebook_insert_page_menu ((GtkNotebook*)notebook,
+                                     (GtkWidget*)scrolled_windows[i],
+                                     (GtkWidget*)label, NULL, -1);
 
       sheets[i]->autoresize_columns = FALSE;
       sheets[i]->autoresize_rows = FALSE;
@@ -715,28 +716,27 @@ void x_gtksheet_init(PageDataSet *PageData)
 
       /* For now we keep the nets sheet invisible is still useless */
       if (i != Nets) {
-        gtk_widget_show( GTK_WIDGET(sheets[i]) );
-        gtk_widget_show( GTK_WIDGET(scrolled_windows[i]) );
+        gtk_widget_show((GtkWidget*)sheets[i]);
+        gtk_widget_show((GtkWidget*)scrolled_windows[i]);
       }
-      gtk_widget_show( GTK_WIDGET(notebook) );  /* show updated notebook  */
+      gtk_widget_show(notebook);  /* show updated notebook  */
 
-      g_signal_connect (GTK_OBJECT(sheets[i]), "key_press_event",
+      g_signal_connect (sheets[i], "key_press_event",
                         (GtkSignalFunc) clipboard_handler, NULL);
 
       /*  The entry cell is the text entry field is the one at the top */
-      g_signal_connect(GTK_OBJECT(gtk_sheet_get_entry(GTK_SHEET(sheets[i]))),
+      g_signal_connect(gtk_sheet_get_entry((GtkSheet*)sheets[i]),
                        "changed", (GtkSignalFunc)show_entry, NULL);
 
-      g_signal_connect(GTK_OBJECT(sheets[i]),
+      g_signal_connect(sheets[i],
                        "activate", (GtkSignalFunc)activate_sheet_cell, NULL);
     }
   }
   /* The next 2 functions setup callbacks for the Entry widget in the would be
    * status bar */
-  g_signal_connect(GTK_OBJECT(entry),
-                   "changed", (GtkSignalFunc)on_entry_changed, NULL);
+  g_signal_connect(entry, "changed", (GtkSignalFunc)on_entry_changed, NULL);
 /*
-  g_signal_connect(GTK_OBJECT(entry),
+  g_signal_connect(entry,
                    "activate", (GtkSignalFunc)on_entry_activate,
                    NULL);
 */
