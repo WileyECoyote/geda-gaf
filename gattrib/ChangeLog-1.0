@@ -1,3 +1,8 @@
+2017-04-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gtksheet/gtkitementry.c: Allocate pointer to GtkEntry entry in
+      gtk_item_entry_init instead of referencing as cast from GtkItemEntry.
+
 2017-03-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_toolbars.c: Replace gtk_toolbar with geda_toolbar.

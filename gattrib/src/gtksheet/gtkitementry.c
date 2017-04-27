@@ -303,27 +303,33 @@ gtk_item_entry_editable_init(GtkEditableClass *iface)
 }
 
 static void
-gtk_item_entry_init(GtkItemEntry *entry)
+gtk_item_entry_init(GtkItemEntry *item_entry)
 {
-    entry->justification = GTK_JUSTIFY_LEFT;
-    entry->max_length_bytes = 0;
-    entry->text_max_size = 0;
-    entry->item_text_size = 0;
-    entry->item_n_bytes = 0;
-    GTK_ENTRY(entry)->has_frame = FALSE;
+    item_entry->justification    = GTK_JUSTIFY_LEFT;
+    item_entry->max_length_bytes = 0;
+    item_entry->text_max_size    = 0;
+    item_entry->item_text_size   = 0;
+    item_entry->item_n_bytes     = 0;
 
-    g_object_unref(G_OBJECT(GTK_ENTRY(entry)->im_context));
+    GtkEntry *entry = (GtkEntry*)item_entry;
 
-    GTK_ENTRY(entry)->im_context = gtk_im_multicontext_new();
+    entry->has_frame = FALSE;
 
-    g_signal_connect(G_OBJECT(GTK_ENTRY(entry)->im_context), "commit",
-	G_CALLBACK(gtk_item_entry_commit_cb), entry);
-    g_signal_connect(G_OBJECT(GTK_ENTRY(entry)->im_context), "preedit_changed",
-	G_CALLBACK(gtk_item_entry_preedit_changed_cb), entry);
-    g_signal_connect(G_OBJECT(GTK_ENTRY(entry)->im_context), "retrieve_surrounding",
-	G_CALLBACK(gtk_item_entry_retrieve_surrounding_cb), entry);
-    g_signal_connect(G_OBJECT(GTK_ENTRY(entry)->im_context), "delete_surrounding",
-	G_CALLBACK(gtk_item_entry_delete_surrounding_cb), entry);
+    g_object_unref(entry->im_context);
+
+    entry->im_context = gtk_im_multicontext_new();
+
+    g_signal_connect(entry->im_context, "commit",
+                     G_CALLBACK(gtk_item_entry_commit_cb), entry);
+
+    g_signal_connect(entry->im_context, "preedit_changed",
+                     G_CALLBACK(gtk_item_entry_preedit_changed_cb), entry);
+
+    g_signal_connect(entry->im_context, "retrieve_surrounding",
+                     G_CALLBACK(gtk_item_entry_retrieve_surrounding_cb), entry);
+
+    g_signal_connect(entry->im_context, "delete_surrounding",
+                     G_CALLBACK(gtk_item_entry_delete_surrounding_cb), entry);
 
 }
 
@@ -1748,13 +1754,13 @@ _item_entry_get_insertion_cursor_gc(GtkWidget *widget,
 {
     CursorInfo *cursor_info;
 
-    cursor_info = g_object_get_data(G_OBJECT(gtk_widget_get_style(widget)),
-	"gtk-style-cursor-info");
+    cursor_info = g_object_get_data((GObject*)gtk_widget_get_style(widget),
+                                             "gtk-style-cursor-info");
     if (!cursor_info) {
 
       cursor_info = g_malloc(sizeof(CursorInfo));
-      g_object_set_data(G_OBJECT(gtk_widget_get_style(widget)),
-                        "gtk-style-cursor-info", cursor_info);
+      g_object_set_data((GObject*)gtk_widget_get_style(widget),
+                                 "gtk-style-cursor-info", cursor_info);
       cursor_info->primary_gc   = NULL;
       cursor_info->secondary_gc = NULL;
       cursor_info->for_type     = G_TYPE_INVALID;
@@ -2134,7 +2140,7 @@ gtk_item_entry_adjust_scroll(GtkEntry *entry)
     entry->scroll_offset = CLAMP(entry->scroll_offset, min_offset, max_offset);
   }
 
-  g_object_notify(G_OBJECT(entry), "scroll_offset");
+  g_object_notify((GObject*)entry, "scroll_offset");
 }
 
 static int
@@ -2386,12 +2392,12 @@ gtk_item_entry_update_primary_selection(GtkEntry *entry)
     if (gtk_editable_get_selection_bounds(GTK_EDITABLE(entry), &start, &end))
     {
 	if (!gtk_clipboard_set_with_owner(clipboard, targets, G_N_ELEMENTS(targets),
-		_item_entry_primary_get_cb, _item_entry_primary_clear_cb, G_OBJECT(entry)))
+		_item_entry_primary_get_cb, _item_entry_primary_clear_cb, (GObject*)entry))
 	    _item_entry_primary_clear_cb(clipboard, entry);
     }
     else
     {
-	if (gtk_clipboard_get_owner(clipboard) == G_OBJECT(entry))
+	if (gtk_clipboard_get_owner(clipboard) == (GObject*)entry)
 	    gtk_clipboard_clear(clipboard);
     }
 }
@@ -2598,13 +2604,13 @@ gtk_item_entry_set_justification(GtkItemEntry *entry, GtkJustification just)
 static _Bool
 _item_entry_cursor_blinks(GtkEntry *entry)
 {
-  GtkSettings *settings = gtk_widget_get_settings(GTK_WIDGET(entry));
+  GtkSettings *settings = gtk_widget_get_settings((GtkWidget*)entry);
   _Bool blink;
 
-  if (gtk_widget_has_focus(GTK_WIDGET(entry)) &&
+  if (gtk_widget_has_focus((GtkWidget*)entry) &&
       entry->selection_bound == entry->current_pos)
   {
-    g_object_get(G_OBJECT(settings), "gtk-cursor-blink", &blink, NULL);
+    g_object_get((GObject*)settings, "gtk-cursor-blink", &blink, NULL);
     return blink;
   }
 
@@ -2614,10 +2620,10 @@ _item_entry_cursor_blinks(GtkEntry *entry)
 static int
 _item_entry_get_cursor_time(GtkEntry *entry)
 {
-    GtkSettings *settings = gtk_widget_get_settings(GTK_WIDGET(entry));
+    GtkSettings *settings = gtk_widget_get_settings((GtkWidget*)entry);
     int time;
 
-    g_object_get(G_OBJECT(settings), "gtk-cursor-blink-time", &time, NULL);
+    g_object_get((GObject*)settings, "gtk-cursor-blink-time", &time, NULL);
 
     return time;
 }
@@ -2629,8 +2635,8 @@ _item_entry_show_cursor(GtkEntry *entry)
 
     entry->cursor_visible = TRUE;
 
-    if (gtk_widget_has_focus(GTK_WIDGET(entry)) && entry->selection_bound == entry->current_pos)
-      gtk_widget_queue_draw(GTK_WIDGET(entry));
+    if (gtk_widget_has_focus((GtkWidget*)entry) && entry->selection_bound == entry->current_pos)
+      gtk_widget_queue_draw((GtkWidget*)entry);
   }
 }
 
@@ -2641,8 +2647,8 @@ _item_entry_hide_cursor(GtkEntry *entry)
 
     entry->cursor_visible = FALSE;
 
-    if (gtk_widget_has_focus(GTK_WIDGET(entry)) && entry->selection_bound == entry->current_pos)
-      gtk_widget_queue_draw(GTK_WIDGET(entry));
+    if (gtk_widget_has_focus((GtkWidget*)entry) && entry->selection_bound == entry->current_pos)
+      gtk_widget_queue_draw((GtkWidget*)entry);
   }
 }
 
@@ -2658,7 +2664,7 @@ _item_entry_blink_cb(gpointer data)
 
     entry = GTK_ENTRY(data);
 
-    g_assert(gtk_widget_has_focus(GTK_WIDGET(entry)));
+    g_assert(gtk_widget_has_focus((GtkWidget*)entry));
     g_assert(entry->selection_bound == entry->current_pos);
 
     if (entry->cursor_visible) {
@@ -2759,5 +2765,5 @@ gtk_item_entry_get_cursor_visible(GtkItemEntry *entry)
 {
     g_return_val_if_fail(GTK_IS_ITEM_ENTRY(entry), FALSE);
 
-    return (GTK_ENTRY(entry)->cursor_visible);
+    return GTK_ENTRY(entry)->cursor_visible;
 }
