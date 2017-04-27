@@ -3025,287 +3025,7 @@ compselect_style_set (GtkWidget *widget, GtkStyle *previous)
   }
 }
 
-static void
-compselect_dispose (GObject *object)
-{
-  //Compselect *ThisDialog = COMPSELECT (object);
-
-  if (tree_view_popup_menu != NULL) {
-    gtk_widget_destroy(GTK_WIDGET(tree_view_popup_menu));
-    g_object_unref(tree_view_popup_menu);
-    tree_view_popup_menu = NULL; /* Is static to the module */
-  }
-
-  G_OBJECT_CLASS (compselect_parent_class)->dispose (object);
-}
-
-static void
-compselect_finalize (GObject *object)
-{
-  Compselect *ThisDialog = COMPSELECT (object);
-
-  if (ThisDialog->filter_timeout != 0) {
-
-    g_source_remove (ThisDialog->filter_timeout);
-    ThisDialog->filter_timeout = 0;
-  }
-
-  G_OBJECT_CLASS (compselect_parent_class)->finalize (object);
-}
-
-/*! \brief  Set Properties of the Compselect Dialog
- *  \par Function Description
- *   This function handled the gobject properties setters.
- *
- *  \param [in] object  Pointer to Compselect dialog structure
- *  \param [in] epid    The enumerated property ID
- *  \param [in] value   The value to set the property
- *  \param [in] pspec   The parameter specifications for the property
- */
-static void
-compselect_set_property (GObject      *object,
-                         unsigned int  epid,
-                         const GValue *value,
-                         GParamSpec   *pspec)
-{
-  Compselect *compselect = COMPSELECT (object);
-
-  switch (epid) {
-    case PROP_BEHAVIOR:
-      geda_option_menu_set_history(compselect->behavior_menu,
-                                  g_value_get_enum (value));
-      break;
-    case PROP_HIDDEN:
-      compselect->hidden = g_value_get_boolean (value);
-      if (compselect->hidden)
-        gtk_widget_hide (GTK_WIDGET (compselect));
-      else
-        gtk_window_present (GTK_WINDOW (compselect));
-      break;
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, epid, pspec);
-  }
-
-}
-
-/*! \brief  Get Properties of the Compselect Dialog
- *  \par Function Description
- *   This function handles the gobject properties request.
- *
- *  \param [in]  object  Pointer to Compselect dialog structure
- *  \param [in]  epid    The enumerated property ID
- *  \param [out] value   The variable that will be set to the property value
- *  \param [in]  pspec   The parameter specifications for the property
- */
-static void
-compselect_get_property (GObject     *object,
-                         unsigned int epid,
-                         GValue      *value,
-                         GParamSpec  *pspec)
-{
-  Compselect *compselect = COMPSELECT (object);
-  GtkWidget  *menuitem;
-
-  switch (epid) {
-      case PROP_SYMBOL:
-        {
-          GtkTreeModel *model;
-          GtkTreeIter   iter;
-          CLibSymbol   *symbol    = NULL;
-          int           is_symbol = FALSE;
-
-          struct {
-            GtkTreeView *tree_view;
-            unsigned int column;
-          } tab_lookup [] = {
-            {compselect->inusetreeview, IU_DATA_COLUMN},
-            {compselect->stdtreeview,   LVC_ROW_DATA},
-            {compselect->mantreeview,   LVC_ROW_DATA},
-            {compselect->simtreeview,   LVC_ROW_DATA},
-            {compselect->localtreeview, LVC_ROW_DATA},
-          };
-
-          if (compselect->active_tab < 5) {
-            int active = compselect->active_tab;
-            if (gtk_tree_selection_get_selected (
-                gtk_tree_view_get_selection (tab_lookup[active].tree_view), &model, &iter))
-            {
-              if (is_symbol_record (model, &iter)) {
-                gtk_tree_model_get (model, &iter, tab_lookup[active].column, &symbol, -1);
-                is_symbol = TRUE;
-              }
-            }
-          }
-
-          if (is_symbol) {
-            g_value_set_pointer (value, symbol);
-          }
-
-          break;
-        }
-      case PROP_BEHAVIOR:
-        menuitem = geda_menu_widget_get_active (
-                     geda_option_menu_get_menu(compselect->behavior_menu));
-        g_value_set_enum (value, (int)(long)GEDA_OBJECT_GET_DATA (menuitem, "behaviors"));
-        break;
-      case PROP_HIDDEN:
-        g_value_set_boolean (value, compselect->hidden);
-        break;
-      case PROP_VIEW:
-        g_value_set_int (value, compselect->active_tab);
-      default:
-        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, epid, pspec);
-  }
-}
-
-/*! \brief  Compselect Dialog Class Initialization
- *  \par Function Description
- *   This is the class initializer function before construction of
- *   the Compselect dialog.
- */
-static void
-compselect_class_init (void *class, void *class_data)
-{
-  GParamSpec *params;
-
-  CompselectClass   *compselect_class    = (CompselectClass*)class;
-  GObjectClass      *object_class        =  G_OBJECT_CLASS (class);
-  GschemDialogClass *gschem_dialog_class = (GschemDialogClass*)class;
-  GtkWidgetClass    *widget_class        = (GtkWidgetClass*)class;
-
-  gschem_dialog_class->geometry_save     = compselect_geometry_save;
-  gschem_dialog_class->geometry_restore  = compselect_geometry_restore;
-
-  object_class->constructor   = compselect_constructor;
-  object_class->dispose       = compselect_dispose;
-  object_class->finalize      = compselect_finalize;
-  object_class->set_property  = compselect_set_property;
-  object_class->get_property  = compselect_get_property;
-
-  widget_class->size_request  = compselect_size_request;
-  widget_class->style_set     = compselect_style_set;
-
-  compselect_parent_class     = g_type_class_peek_parent (class);
-
-  compselect_class->refresh   = compselect_on_refresh_tree_views;
-
-  params = g_param_spec_pointer ("symbol", "", "", G_PARAM_READABLE);
-  g_object_class_install_property (object_class, PROP_SYMBOL, params);
-
-  params = g_param_spec_enum ("behavior", "", "",
-                              COMPSELECT_TYPE_BEHAVIOR,
-                              COMPSELECT_BEHAVIOR_REFERENCE,
-                              G_PARAM_READWRITE);
-
-  g_object_class_install_property (object_class, PROP_BEHAVIOR, params);
-
-  params = g_param_spec_boolean ("hidden", "", "", FALSE, G_PARAM_READWRITE);
-  g_object_class_install_property (object_class, PROP_HIDDEN, params);
-
-  params = g_param_spec_int ("view",
-                           _("active view"),
-                           _("Active sheet of the notebook"),
-                             IN_USE_TAB, LOCAL_TAB, IN_USE_TAB,
-                             G_PARAM_READABLE);
-
-  g_object_class_install_property (object_class, PROP_VIEW, params);
-
-  /*!
-  * CompselectClass:focus-filter:
-  * Sets the initial focus to the filter entry widget.
-  */
-  params = g_param_spec_boolean ("focus-filter",
-                               _("Focus Filter"),
-                               _("When true, initial focus will be the filter entry, otherwise the Component Tree"),
-                                 FALSE,
-                                 G_PARAM_READABLE);
-
-  gtk_widget_class_install_style_property (widget_class, params);
-
-  signals[REFRESH] =  g_signal_new ("refresh",
-                                    G_OBJECT_CLASS_TYPE (object_class),
-                                    G_SIGNAL_RUN_FIRST,
-                                    G_STRUCT_OFFSET (CompselectClass, refresh),
-                                    NULL, NULL,
-                                    geda_marshal_VOID__VOID,
-                                    G_TYPE_NONE, 0);
-}
-
-/*! \brief Initialize new Compselect data structure instance.
- *  \par Function Description
- *  This function is call after the CompselectClass is created
- *  to initialize the data structure.
- *
- * \param [in] instance  A Compselect data structure
- * \param [in] class     A CompselectClass Object
- */
-static void
-compselect_instance_init(GTypeInstance *instance, void *class)
-{
-  Compselect *dialog;
-
-  dialog = (Compselect*)instance;
-
-  dialog->instance_type = compselect_get_type();
-}
-
-/*! \brief Function to retrieve Compselect's Type identifier.
- *
- *  \par Function Description
- *  Function to retrieve a #Compselect Type identifier. When
- *  first called, the function registers a #Compselect in the
- *  GedaType system to obtain an identifier that uniquely itentifies
- *  a Compselect and returns the unsigned integer value.
- *  The retained value is returned on all Subsequent calls.
- *
- *  \return GedaType identifier associated with Compselect.
- */
-GedaType compselect_get_type (void)
-{
-  static GedaType compselect_type = 0;
-
-  if (g_once_init_enter (&compselect_type)) {
-
-    static const GTypeInfo info = {
-      sizeof(CompselectClass),
-      NULL,                            /* base_init           */
-      NULL,                            /* base_finalize       */
-      compselect_class_init,           /* (GClassInitFunc)    */
-      NULL,                            /* class_finalize      */
-      NULL,                            /* class_data          */
-      sizeof(Compselect),
-      0,                               /* n_preallocs         */
-      compselect_instance_init         /* (GInstanceInitFunc) */
-    };
-
-    const char *string;
-    GedaType    type;
-
-    string = g_intern_static_string ("Compselect");
-    type   = g_type_register_static (GSCHEM_TYPE_DIALOG, string, &info, 0);
-
-    g_once_init_leave (&compselect_type, type);
-  }
-
-  return compselect_type;
-}
-
-/*!
- * \brief Check if an object is a Compselect
- * \par Function Description
- *  Ensures dialog is a valid G_Object and compares signature
- *  to compselect dialog type.
- * \return TRUE if \a view is a valid Compselect
- */
-bool
-is_a_compselect (Compselect *dialog)
-{
-  if (G_IS_OBJECT(dialog)) {
-    return (compselect_get_type() == dialog->instance_type);
-  }
-  return FALSE;
-}
-
+/*! \internal Helper for compselect_constructor */
 /*! \brief Creates the Action Area on the Component Select Dialog */
 static GtkWidget*
 compselect_create_action_area (Compselect *ThisDialog, GtkWidget *parent, int mode)
@@ -3616,6 +3336,287 @@ compselect_constructor (GType                  type,
                      G_CALLBACK (compselect_on_notebook_switch_page),
                      ThisDialog);
   return object;
+}
+
+static void
+compselect_dispose (GObject *object)
+{
+  //Compselect *ThisDialog = COMPSELECT (object);
+
+  if (tree_view_popup_menu != NULL) {
+    gtk_widget_destroy(GTK_WIDGET(tree_view_popup_menu));
+    g_object_unref(tree_view_popup_menu);
+    tree_view_popup_menu = NULL; /* Is static to the module */
+  }
+
+  G_OBJECT_CLASS (compselect_parent_class)->dispose (object);
+}
+
+static void
+compselect_finalize (GObject *object)
+{
+  Compselect *ThisDialog = COMPSELECT (object);
+
+  if (ThisDialog->filter_timeout != 0) {
+
+    g_source_remove (ThisDialog->filter_timeout);
+    ThisDialog->filter_timeout = 0;
+  }
+
+  G_OBJECT_CLASS (compselect_parent_class)->finalize (object);
+}
+
+/*! \brief  Get Properties of the Compselect Dialog
+ *  \par Function Description
+ *   This function handles the gobject properties request.
+ *
+ *  \param [in]  object  Pointer to Compselect dialog structure
+ *  \param [in]  epid    The enumerated property ID
+ *  \param [out] value   The variable that will be set to the property value
+ *  \param [in]  pspec   The parameter specifications for the property
+ */
+static void
+compselect_get_property (GObject     *object,
+                         unsigned int epid,
+                         GValue      *value,
+                         GParamSpec  *pspec)
+{
+  Compselect *compselect = COMPSELECT (object);
+  GtkWidget  *menuitem;
+
+  switch (epid) {
+      case PROP_SYMBOL:
+        {
+          GtkTreeModel *model;
+          GtkTreeIter   iter;
+          CLibSymbol   *symbol    = NULL;
+          int           is_symbol = FALSE;
+
+          struct {
+            GtkTreeView *tree_view;
+            unsigned int column;
+          } tab_lookup [] = {
+            {compselect->inusetreeview, IU_DATA_COLUMN},
+            {compselect->stdtreeview,   LVC_ROW_DATA},
+            {compselect->mantreeview,   LVC_ROW_DATA},
+            {compselect->simtreeview,   LVC_ROW_DATA},
+            {compselect->localtreeview, LVC_ROW_DATA},
+          };
+
+          if (compselect->active_tab < 5) {
+            int active = compselect->active_tab;
+            if (gtk_tree_selection_get_selected (
+                gtk_tree_view_get_selection (tab_lookup[active].tree_view), &model, &iter))
+            {
+              if (is_symbol_record (model, &iter)) {
+                gtk_tree_model_get (model, &iter, tab_lookup[active].column, &symbol, -1);
+                is_symbol = TRUE;
+              }
+            }
+          }
+
+          if (is_symbol) {
+            g_value_set_pointer (value, symbol);
+          }
+
+          break;
+        }
+      case PROP_BEHAVIOR:
+        menuitem = geda_menu_widget_get_active (
+                     geda_option_menu_get_menu(compselect->behavior_menu));
+        g_value_set_enum (value, (int)(long)GEDA_OBJECT_GET_DATA (menuitem, "behaviors"));
+        break;
+      case PROP_HIDDEN:
+        g_value_set_boolean (value, compselect->hidden);
+        break;
+
+      case PROP_VIEW:
+        g_value_set_int (value, compselect->active_tab);
+      default:
+        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, epid, pspec);
+  }
+}
+
+/*! \brief  Set Properties of the Compselect Dialog
+ *  \par Function Description
+ *   This function handled the gobject properties setters.
+ *
+ *  \param [in] object  Pointer to Compselect dialog structure
+ *  \param [in] epid    The enumerated property ID
+ *  \param [in] value   The value to set the property
+ *  \param [in] pspec   The parameter specifications for the property
+ */
+static void
+compselect_set_property (GObject      *object,
+                         unsigned int  epid,
+                         const GValue *value,
+                         GParamSpec   *pspec)
+{
+  Compselect *compselect = COMPSELECT (object);
+
+  switch (epid) {
+    case PROP_BEHAVIOR:
+      geda_option_menu_set_history(compselect->behavior_menu,
+                                  g_value_get_enum (value));
+      break;
+    case PROP_HIDDEN:
+      compselect->hidden = g_value_get_boolean (value);
+      if (compselect->hidden)
+        gtk_widget_hide ((GtkWidget*)compselect);
+      else
+        gtk_window_present ((GtkWindow*)compselect);
+      break;
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, epid, pspec);
+  }
+}
+
+/*! \brief  Compselect Dialog Class Initialization
+ *  \par Function Description
+ *   This is the class initializer function before construction of
+ *   the Compselect dialog.
+ */
+static void
+compselect_class_init (void *class, void *class_data)
+{
+  GParamSpec *params;
+
+  CompselectClass   *compselect_class    = (CompselectClass*)class;
+  GObjectClass      *object_class        = (GObjectClass*)class;
+  GschemDialogClass *gschem_dialog_class = (GschemDialogClass*)class;
+  GtkWidgetClass    *widget_class        = (GtkWidgetClass*)class;
+
+  gschem_dialog_class->geometry_save     = compselect_geometry_save;
+  gschem_dialog_class->geometry_restore  = compselect_geometry_restore;
+
+  object_class->constructor   = compselect_constructor;
+  object_class->dispose       = compselect_dispose;
+  object_class->finalize      = compselect_finalize;
+  object_class->get_property  = compselect_get_property;
+  object_class->set_property  = compselect_set_property;
+
+  widget_class->size_request  = compselect_size_request;
+  widget_class->style_set     = compselect_style_set;
+
+  compselect_parent_class     = g_type_class_peek_parent (class);
+
+  compselect_class->refresh   = compselect_on_refresh_tree_views;
+
+  params = g_param_spec_pointer ("symbol", "", "", G_PARAM_READABLE);
+  g_object_class_install_property (object_class, PROP_SYMBOL, params);
+
+  params = g_param_spec_enum ("behavior", "", "",
+                              COMPSELECT_TYPE_BEHAVIOR,
+                              COMPSELECT_BEHAVIOR_REFERENCE,
+                              G_PARAM_READWRITE);
+
+  g_object_class_install_property (object_class, PROP_BEHAVIOR, params);
+
+  params = g_param_spec_boolean ("hidden", "", "", FALSE, G_PARAM_READWRITE);
+  g_object_class_install_property (object_class, PROP_HIDDEN, params);
+
+  params = g_param_spec_int ("view",
+                           _("active view"),
+                           _("Active sheet of the notebook"),
+                             IN_USE_TAB, LOCAL_TAB, IN_USE_TAB,
+                             G_PARAM_READABLE);
+
+  g_object_class_install_property (object_class, PROP_VIEW, params);
+
+  /*!
+  * CompselectClass:focus-filter:
+  * Sets the initial focus to the filter entry widget.
+  */
+  params = g_param_spec_boolean ("focus-filter",
+                               _("Focus Filter"),
+                               _("When true, initial focus will be the filter entry, otherwise the Component Tree"),
+                                 FALSE,
+                                 G_PARAM_READABLE);
+
+  gtk_widget_class_install_style_property (widget_class, params);
+
+  signals[REFRESH] =  g_signal_new ("refresh",
+                                    TYPE_COMPSELECT,
+                                    G_SIGNAL_RUN_FIRST,
+                                    G_STRUCT_OFFSET (CompselectClass, refresh),
+                                    NULL, NULL,
+                                    geda_marshal_VOID__VOID,
+                                    G_TYPE_NONE, 0);
+}
+
+/*! \brief Initialize new Compselect data structure instance.
+ *  \par Function Description
+ *  This function is call after the CompselectClass is created
+ *  to initialize the data structure.
+ *
+ * \param [in] instance  A Compselect data structure
+ * \param [in] class     A CompselectClass Object
+ */
+static void
+compselect_instance_init(GTypeInstance *instance, void *class)
+{
+  Compselect *dialog;
+
+  dialog = (Compselect*)instance;
+
+  dialog->instance_type = compselect_get_type();
+}
+
+/*! \brief Function to retrieve Compselect's Type identifier.
+ *
+ *  \par Function Description
+ *  Function to retrieve a #Compselect Type identifier. When
+ *  first called, the function registers a #Compselect in the
+ *  GedaType system to obtain an identifier that uniquely itentifies
+ *  a Compselect and returns the unsigned integer value.
+ *  The retained value is returned on all Subsequent calls.
+ *
+ *  \return GedaType identifier associated with Compselect.
+ */
+GedaType compselect_get_type (void)
+{
+  static GedaType compselect_type = 0;
+
+  if (g_once_init_enter (&compselect_type)) {
+
+    static const GTypeInfo info = {
+      sizeof(CompselectClass),
+      NULL,                            /* base_init           */
+      NULL,                            /* base_finalize       */
+      compselect_class_init,           /* (GClassInitFunc)    */
+      NULL,                            /* class_finalize      */
+      NULL,                            /* class_data          */
+      sizeof(Compselect),
+      0,                               /* n_preallocs         */
+      compselect_instance_init         /* (GInstanceInitFunc) */
+    };
+
+    const char *string;
+    GedaType    type;
+
+    string = g_intern_static_string ("Compselect");
+    type   = g_type_register_static (GSCHEM_TYPE_DIALOG, string, &info, 0);
+
+    g_once_init_leave (&compselect_type, type);
+  }
+
+  return compselect_type;
+}
+
+/*!
+ * \brief Check if an object is a Compselect
+ * \par Function Description
+ *  Ensures dialog is a valid G_Object and compares signature
+ *  to compselect dialog type.
+ * \return TRUE if \a view is a valid Compselect
+ */
+bool
+is_a_compselect (Compselect *dialog)
+{
+  if (G_IS_OBJECT(dialog)) {
+    return (compselect_get_type() == dialog->instance_type);
+  }
+  return FALSE;
 }
 
 GedaType compselect_behavior_get_type (void)

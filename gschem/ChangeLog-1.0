@@ -10,6 +10,9 @@
 
       Replace cast in order to reduce needless type-checking.
 
+      src/x/x_compselect.c: Reorganize module somewhat, group GObject over-
+      rides be fore the initialization function like other GObject modules.
+
 2017-04-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: Update Afrikaans translations.
