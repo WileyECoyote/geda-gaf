@@ -433,15 +433,15 @@ static void geda_object_finalize(GObject *gobject)
  *  GObject signals and over-rides parent virtual class methods
  *  as needed.
  *
- * \param [in] g_class     The GedaObject we are initializing
- * \param [in] class_data  (unused)
+ * \param [in] klass      The GedaObject we are initializing
+ * \param [in] class_data (unused)
  */
-static void geda_object_class_init(void *g_class, void *class_data)
+static void geda_object_class_init(void *klass, void *class_data)
 {
   GParamSpec      *params;
-  GedaObjectClass *class      = GEDA_OBJECT_CLASS( g_class );
 
-  GObjectClass    *gclass     = G_OBJECT_CLASS( class );
+  GedaObjectClass *class      = (GedaObjectClass*)klass;
+  GObjectClass    *gclass     = (GObjectClass*)klass;
 
   class->bounds               = geda_object_no_bounds;
   class->finalize             = geda_object_finalize;
@@ -450,7 +450,7 @@ static void geda_object_class_init(void *g_class, void *class_data)
   gclass->set_property        = geda_object_set_property;
   gclass->get_property        = geda_object_get_property;
 
-  geda_object_parent_class    = g_type_class_peek_parent( class );
+  geda_object_parent_class    = g_type_class_peek_parent(class);
 
   params = g_param_spec_char   ("type",
                               _("object-type"),
