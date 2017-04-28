@@ -421,14 +421,13 @@ attach_info_free (AttachInfo *info)
 static AttachInfo *
 get_attach_info (GtkWidget *child)
 {
-  GObject    *object = G_OBJECT (child);
-  AttachInfo *info   = g_object_get_data (object, attached_info_key);
+  AttachInfo *info = GEDA_OBJECT_GET_DATA (child, attached_info_key);
 
   if (!info) {
 
     info = GEDA_MEM_ALLOC0 (sizeof(AttachInfo));
-    g_object_set_data_full (object, attached_info_key, info,
-                           (GDestroyNotify) attach_info_free);
+    g_object_set_data_full ((GObject*)child, attached_info_key, info,
+                            (GDestroyNotify) attach_info_free);
   }
 
   return info;

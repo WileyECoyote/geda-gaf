@@ -1,7 +1,8 @@
 2017-04-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_label.c: Add Doxygen groups GedaLabel-GtkObject and
-      GedaLabel-GObject.
+      GedaLabel-GObject. Eliminate object variable in get_attach_info and
+      pass child as GObject to g_object_set_data_full.
 
     * src/widgets/geda_menu.c: Replace cast in order to reduce needless
       type-checking.
