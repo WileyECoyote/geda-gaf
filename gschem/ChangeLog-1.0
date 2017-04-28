@@ -4,6 +4,11 @@
       initializer; gschem_dialog_class_init. Replace cast in order to reduce
       needless type-checking. Add function gschem_dialog_set_selected.
 
+    * src/iface/i_window.c: Revise i_window_idle_notify_dialogs to utilize
+      gschem_dialog_set_selected instead of g_object_set to set the selection
+      more directly, by-passing g_object_set, g_object_set_valist, gschem_
+      dialog_set_property, etc.
+
 2017-04-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_sessions.c: Revise x_sessions_manage_dialog; Change table to

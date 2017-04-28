@@ -40,41 +40,34 @@
  */
 static bool i_window_idle_notify_dialogs (GschemToplevel *w_current)
 {
+  SELECTION *selection = Current_Selection;
+
   if (w_current->aawindow != NULL) { /* Arc Attrib Tracks */
-    g_object_set (G_OBJECT (w_current->aawindow), DIALOG_SELECTION_DATA,
-                                                  Current_Selection, NULL);
+    gschem_dialog_set_selected((GschemDialog*)w_current->aawindow, selection);
   }
   if (w_current->clwindow != NULL) { /* Color Edit Tracks */
-    g_object_set (G_OBJECT (w_current->clwindow), DIALOG_SELECTION_DATA,
-                                                  Current_Selection, NULL);
+    gschem_dialog_set_selected((GschemDialog*)w_current->clwindow, selection);
   }
   if (w_current->hpwindow != NULL) { /* Hatch Pattern Tracks */
-    g_object_set (G_OBJECT (w_current->hpwindow), DIALOG_SELECTION_DATA,
-                                                  Current_Selection, NULL);
+    gschem_dialog_set_selected((GschemDialog*)w_current->hpwindow, selection);
   }
   if (w_current->ltwindow != NULL) { /* Line Type Tracks */
-    g_object_set (G_OBJECT (w_current->ltwindow), DIALOG_SELECTION_DATA,
-                                                  Current_Selection, NULL);
+    gschem_dialog_set_selected((GschemDialog*)w_current->ltwindow, selection);
   }
   if (w_current->prwindow != NULL) { /* Prop edit Tracks */
-    g_object_set (G_OBJECT (w_current->prwindow), DIALOG_SELECTION_DATA,
-                                                  Current_Selection, NULL);
+    gschem_dialog_set_selected((GschemDialog*)w_current->prwindow, selection);
   }
   if (w_current->ptwindow != NULL) { /* Pin Type Tracks */
-    g_object_set (G_OBJECT (w_current->ptwindow), DIALOG_SELECTION_DATA,
-                                                  Current_Selection, NULL);
+    gschem_dialog_set_selected((GschemDialog*)w_current->ptwindow, selection);
   }
   if (w_current->sewindow != NULL) { /* Slot Edit Tracks */
-    g_object_set (G_OBJECT (w_current->sewindow), DIALOG_SELECTION_DATA,
-                                                  Current_Selection, NULL);
+    gschem_dialog_set_selected((GschemDialog*)w_current->sewindow, selection);
   }
   if (w_current->tewindow != NULL) { /* Text Edit Tracks */
-    g_object_set (G_OBJECT (w_current->tewindow), DIALOG_SELECTION_DATA,
-                                                  Current_Selection, NULL);
+    gschem_dialog_set_selected((GschemDialog*)w_current->tewindow, selection);
   }
   if (w_current->aewindow != NULL) { /* Attribute Edit Tracks */
-    g_object_set (G_OBJECT (w_current->aewindow), DIALOG_SELECTION_DATA,
-                                                  Current_Selection, NULL);
+    gschem_dialog_set_selected((GschemDialog*)w_current->aewindow, selection);
   }
 
   if (w_current->pswindow != NULL) { /* Page Select Dialog */
@@ -124,7 +117,7 @@ void i_window_close_page (GschemToplevel *w_current)
  *
  */
 bool i_window_get_pointer_position (GschemToplevel *w_current,
-                                   bool snapped, int *wx, int *wy)
+                                    bool snapped, int *wx, int *wy)
 {
   int sx, sy, x, y;
 
