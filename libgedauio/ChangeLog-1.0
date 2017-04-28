@@ -7,6 +7,9 @@
     * src/widgets/geda_menu.c: Replace cast in order to reduce needless
       type-checking.
 
+    * src/widgets/geda_menu_item.c: Remove g_return_if_fail function from
+      internal static functions geda_menu_item_size_allocate.
+
 2017-04-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_bar.c: Revise geda_menu_bar_button_press; remove

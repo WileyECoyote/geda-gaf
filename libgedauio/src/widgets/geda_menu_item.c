@@ -2409,9 +2409,6 @@ geda_menu_item_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
   GtkTextDirection     direction;
   PackDirection        child_pack_dir;
 
-  g_return_if_fail (GEDA_IS_MENU_ITEM(widget));
-  g_return_if_fail (allocation != NULL);
-
   bin       = (GtkBin*)widget;
 
   direction = gtk_widget_get_direction (widget);
