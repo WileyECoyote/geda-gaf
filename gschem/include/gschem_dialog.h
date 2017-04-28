@@ -123,6 +123,7 @@ GtkWindow  *gschem_dialog_get_parent      (GschemDialog *dialog);
 void        gschem_dialog_set_parent      (GschemDialog *dialog, GtkWindow *parent);
 
 GList      *gschem_dialog_get_selected    (GschemDialog *dialog);
+void        gschem_dialog_set_selected    (GschemDialog *dialog, SELECTION *selection);
 
 const char *gschem_dialog_get_title       (GschemDialog *dialog);
 void        gschem_dialog_set_title       (GschemDialog *dialog, const char*title);

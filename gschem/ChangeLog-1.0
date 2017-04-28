@@ -2,7 +2,7 @@
 
     * src/base/gschem_dialog.c: Replace g_type_check_instance_cast in class
       initializer; gschem_dialog_class_init. Replace cast in order to reduce
-      needless type-checking.
+      needless type-checking. Add function gschem_dialog_set_selected.
 
 2017-04-27 Wiley E. Hill <wileyhill@gmail.com>
 

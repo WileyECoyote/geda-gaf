@@ -794,11 +794,23 @@ void gschem_dialog_set_parent(GschemDialog *dialog, GtkWindow *parent)
   }
 }
 
-GList *gschem_dialog_get_selected(GschemDialog *dialog)
+GList*
+gschem_dialog_get_selected(GschemDialog *dialog)
 {
   if (GSCHEM_IS_DIALOG(dialog) && dialog->selection)
     return dialog->selection->glist;
   return NULL;
+}
+
+void
+gschem_dialog_set_selected (GschemDialog *dialog, SELECTION *selection)
+{
+  if (GSCHEM_IS_DIALOG(dialog)) {
+    gd_disconnect_selection (dialog);
+    dialog->selection = selection;
+    gd_connect_selection (dialog);
+    g_signal_emit_by_name (dialog->selection, "changed", dialog);
+  }
 }
 
 const char *gschem_dialog_get_title(GschemDialog *dialog)
