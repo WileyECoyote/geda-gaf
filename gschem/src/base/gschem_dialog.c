@@ -33,7 +33,8 @@ enum {
 };
 
 static unsigned int  gschem_dialog_signals[ LAST_SIGNAL ] = { 0 };
-static GObjectClass *gschem_dialog_parent_class = NULL;
+
+static void *gschem_dialog_parent_class = NULL;
 
 /*! \brief GschemDialog "geometry_save" class method handler
  *  \par Function Description
@@ -252,7 +253,7 @@ static void show_handler (GtkWidget *widget)
   }
 
   /* Let GTK show the window */
-  GTK_WIDGET_CLASS (gschem_dialog_parent_class)->show (widget);
+  ((GtkWidgetClass*)gschem_dialog_parent_class)->show (widget);
 }
 
 /*! \brief GtkWidget unmap signal handler
@@ -283,7 +284,7 @@ static void unmap_handler (GtkWidget *widget)
   }
 
   /* Let GTK unmap the window */
-  GTK_WIDGET_CLASS (gschem_dialog_parent_class)->unmap (widget);
+  ((GtkWidgetClass*)gschem_dialog_parent_class)->unmap (widget);
 }
 
 /*! \brief Set w_current dialog pointer to NULL
@@ -389,7 +390,7 @@ static void gschem_dialog_finalize (GObject *object)
 
   GEDA_FREE (dialog->settings_name);
 
-  G_OBJECT_CLASS (gschem_dialog_parent_class)->finalize (object);
+  ((GObjectClass*)gschem_dialog_parent_class)->finalize (object);
 }
 
 /* End CallBack Selection Handler*/
@@ -495,24 +496,25 @@ static void gschem_dialog_get_property (GObject *object, unsigned int property_i
  *  Type class initializer for GschemDialog. We override our parent
  *  virtual class methods as needed and register our GObject properties.
  *
- *  \param [in]  klass       The GschemDialogClass we are initialising
+ *  \param [in] class The GschemDialogClass we are initialising
  */
-static void gschem_dialog_class_init (GschemDialogClass *klass)
+static void gschem_dialog_class_init (void *class, void *class_data)
 {
-  GObjectClass   *gobject_class   = G_OBJECT_CLASS (klass);
-  GtkWidgetClass *gtkwidget_class = GTK_WIDGET_CLASS (klass);
+  GschemDialogClass *dialog_class  = (GschemDialogClass*)class;
+  GObjectClass      *gobject_class = (GObjectClass*)class;
+  GtkWidgetClass    *widget_class  = (GtkWidgetClass*)class;
 
-  klass->geometry_save            = geometry_save;
-  klass->geometry_restore         = geometry_restore;
+  dialog_class->geometry_save     = geometry_save;
+  dialog_class->geometry_restore  = geometry_restore;
 
-  gtkwidget_class->show           = show_handler;
-  gtkwidget_class->unmap          = unmap_handler;
+  widget_class->show              = show_handler;
+  widget_class->unmap             = unmap_handler;
 
   gobject_class->finalize         = gschem_dialog_finalize;
   gobject_class->set_property     = gschem_dialog_set_property;
   gobject_class->get_property     = gschem_dialog_get_property;
 
-  gschem_dialog_parent_class      = g_type_class_peek_parent (klass);
+  gschem_dialog_parent_class      = g_type_class_peek_parent (class);
 
   gschem_dialog_signals[ GEOMETRY_SAVE ] =
     g_signal_new ("geometry-save",
@@ -622,6 +624,7 @@ GedaType gschem_dialog_get_type (void)
   static GedaType gschem_dialog_type = 0;
 
   if (!gschem_dialog_type) {
+
     static const GTypeInfo gschem_dialog_info = {
       sizeof(GschemDialogClass),
       NULL,                        /* base_init */
