@@ -48,8 +48,9 @@ static void geometry_save (GschemDialog *dialog, EdaConfig *cfg, char* group_nam
 {
   int x, y, width, height;
 
-  gtk_window_get_position (GTK_WINDOW (dialog), &x, &y);
-  gtk_window_get_size (GTK_WINDOW (dialog), &width, &height);
+  gtk_window_get_position ((GtkWindow*)dialog, &x, &y);
+  gtk_window_get_size ((GtkWindow*)dialog, &width, &height);
+
   eda_config_set_integer (cfg, group_name, "x", x);
   eda_config_set_integer (cfg, group_name, "y", y);
   eda_config_set_integer (cfg, group_name, "width", width);
@@ -74,11 +75,11 @@ geometry_restore (GschemDialog *dialog, EdaConfig *cfg, char* group_name)
   width  = eda_config_get_integer (cfg, group_name, "width",  NULL);
   height = eda_config_get_integer (cfg, group_name, "height", NULL);
 
-  gtk_window_move (GTK_WINDOW (dialog), x, y);
+  gtk_window_move ((GtkWindow*)dialog, x, y);
 
   /* No need to call for a resize with a zero value */
   if ( width != 0 && height != 0) {
-    gtk_window_resize (GTK_WINDOW (dialog), width, height);
+    gtk_window_resize ((GtkWindow*)dialog, width, height);
   }
 }
 
@@ -101,14 +102,14 @@ bool is_a_gschem_dialog (void *dialog)
  *  \param [in] selection  The SELECTION object of page being edited.
  *  \param [in] user_data  The dialog.
  */
-static void gd_callback_selection_changed (SELECTION *selection, void * user_data)
+static void gd_callback_selection_changed (SELECTION *selection, void *user_data)
 {
   if (GSCHEM_IS_DIALOG(user_data)) {
 
     GschemDialog   *Dialog;
     GschemToplevel *w_current;
 
-    Dialog    = GSCHEM_DIALOG(user_data);
+    Dialog    = (GschemDialog*)user_data;
     w_current = Dialog->w_current;
 
     if (w_current != NULL) {
@@ -215,7 +216,7 @@ static void gd_disconnect_selection (GschemDialog *Dialog) {
 
   if (selection && G_IS_OBJECT(selection)) {
 
-      g_object_weak_unref (G_OBJECT (selection),
+      g_object_weak_unref ((GObject*)selection,
                            gd_callback_selection_finalized,
                            Dialog);
   }
@@ -238,7 +239,7 @@ static void show_handler (GtkWidget *widget)
   GschemDialog *dialog;
   char         *group;
 
-  dialog = GSCHEM_DIALOG (widget);
+  dialog = (GschemDialog*)widget;
   cfg    = eda_config_get_user_context ();
   group  = dialog->settings_name;
 
@@ -272,7 +273,7 @@ static void unmap_handler (GtkWidget *widget)
   GschemDialog *dialog;
   char         *group_name;
 
-  dialog     = GSCHEM_DIALOG (widget);
+  dialog     = (GschemDialog*)widget;
   cfg        = eda_config_get_user_context ();
   group_name = dialog->settings_name;
 
@@ -379,7 +380,7 @@ static void set_gschem_dialog_null(void *dialog)
  */
 static void gschem_dialog_finalize (GObject *object)
 {
-  GschemDialog *dialog = GSCHEM_DIALOG (object);
+  GschemDialog *dialog = (GschemDialog*)object;
 
   if (dialog->tracker != NULL) {
     gd_disconnect_selection (dialog);
@@ -411,7 +412,7 @@ static void
 gschem_dialog_set_property (GObject *object, unsigned int property_id,
                             const GValue *value, GParamSpec *pspec)
 {
-  GschemDialog *Dialog = GSCHEM_DIALOG (object);
+  GschemDialog *Dialog = (GschemDialog*)object;
 
   switch(property_id) {
     case PROP_SETTINGS_NAME:
@@ -443,7 +444,7 @@ gschem_dialog_set_property (GObject *object, unsigned int property_id,
       break;
 
     case PROP_TITLE:
-      gtk_window_set_title (GTK_WINDOW (object), g_value_get_string (value));
+      gtk_window_set_title ((GtkWindow*)object, g_value_get_string (value));
       break;
 
     default:
@@ -465,7 +466,7 @@ gschem_dialog_set_property (GObject *object, unsigned int property_id,
  */
 static void gschem_dialog_get_property (GObject *object, unsigned int property_id, GValue *value, GParamSpec *pspec)
 {
-  GschemDialog *Dialog = GSCHEM_DIALOG (object);
+  GschemDialog *Dialog = (GschemDialog*)object;
 
   switch(property_id) {
       case PROP_SETTINGS_NAME:
@@ -481,7 +482,7 @@ static void gschem_dialog_get_property (GObject *object, unsigned int property_i
         break;
 
       case PROP_TITLE:
-        g_value_set_string (value, gtk_window_get_title(GTK_WINDOW(object)));
+        g_value_set_string (value, gtk_window_get_title((GtkWindow*)object));
        break;
 
       default:
@@ -607,7 +608,7 @@ static void gschem_dialog_instance_init(GTypeInstance *instance, void *g_class)
 
   /* Set properties here to apply regardless of how dialog created */
   g_object_set (dialog, "border-width", DIALOG_BORDER_WIDTH, NULL);
-  g_object_set (GTK_DIALOG (dialog)->vbox, "spacing", DIALOG_V_SPACING, NULL);
+  g_object_set (((GtkDialog*)dialog)->vbox, "spacing", DIALOG_V_SPACING, NULL);
 }
 
 /*! \brief Retrieve GschemDialog's Type identifier.
@@ -693,13 +694,14 @@ static void gschem_dialog_add_buttons_valist (GtkDialog  *dialog,
  *
  *  \return  The GschemDialog created.
  */
- GtkWidget* gschem_dialog_new_empty (const char            *title,
-                                           GtkWindow       *parent,
-                                           GtkDialogFlags   flags,
-                                           const char      *settings_name,
-                                           GschemToplevel  *w_current)
- {
-   GschemDialog *dialog;
+GtkWidget*
+gschem_dialog_new_empty (const char      *title,
+                         GtkWindow       *parent,
+                         GtkDialogFlags   flags,
+                         const char      *settings_name,
+                         GschemToplevel  *w_current)
+{
+   GtkWindow *dialog;
 
    dialog = g_object_new (GSCHEM_TYPE_DIALOG,
                           "settings-name",   settings_name,
@@ -707,20 +709,20 @@ static void gschem_dialog_add_buttons_valist (GtkDialog  *dialog,
                           NULL);
 
    if (title)
-     gtk_window_set_title (GTK_WINDOW (dialog), _(title));
+     gtk_window_set_title (dialog, _(title));
 
    if (parent)
-     gtk_window_set_transient_for (GTK_WINDOW (dialog), parent);
+     gtk_window_set_transient_for (dialog, parent);
 
    if (flags & GTK_DIALOG_MODAL)
-     gtk_window_set_modal (GTK_WINDOW (dialog), TRUE);
+     gtk_window_set_modal (dialog, TRUE);
 
-   gtk_window_set_destroy_with_parent (GTK_WINDOW (dialog), TRUE);
+   gtk_window_set_destroy_with_parent (dialog, TRUE);
 
    if (flags & GTK_DIALOG_NO_SEPARATOR)
-     gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);
+     gtk_dialog_set_has_separator ((GtkDialog*)dialog, FALSE);
 
-   gtk_window_set_type_hint (GTK_WINDOW (dialog), GDK_WINDOW_TYPE_HINT_DIALOG);
+   gtk_window_set_type_hint (dialog, GDK_WINDOW_TYPE_HINT_DIALOG);
 
    return GTK_WIDGET (dialog);
  }
@@ -743,24 +745,25 @@ static void gschem_dialog_add_buttons_valist (GtkDialog  *dialog,
  *
  *  \return  The GschemDialog created.
  */
-GtkWidget* gschem_dialog_new_with_buttons (const char *title, GtkWindow *parent, GtkDialogFlags flags,
-                                           const char *settings_name, GschemToplevel *w_current,
-                                           const char *first_button_text, ...)
+GtkWidget*
+gschem_dialog_new_with_buttons (const char *title, GtkWindow *parent, GtkDialogFlags flags,
+                                const char *settings_name, GschemToplevel *w_current,
+                                const char *first_button_text, ...)
 {
-  GschemDialog *dialog;
+  GtkWidget *dialog;
   va_list args;
 
-  dialog = GSCHEM_DIALOG (gschem_dialog_new_empty (title, parent, flags, settings_name, w_current));
+  dialog = gschem_dialog_new_empty (title, parent, flags, settings_name, w_current);
 
   va_start (args, first_button_text);
 
-  gschem_dialog_add_buttons_valist (GTK_DIALOG (dialog),
+  gschem_dialog_add_buttons_valist ((GtkDialog*)dialog,
                                     first_button_text,
                                     args);
 
   va_end (args);
 
-  return GTK_WIDGET (dialog);
+  return dialog;
 }
 
 GtkWindow *gschem_dialog_get_parent(GschemDialog *dialog)
@@ -779,12 +782,15 @@ void gschem_dialog_set_parent(GschemDialog *dialog, GtkWindow *parent)
   else if (!GTK_IS_WINDOW(parent))
     fprintf (stderr, "Error, <%s> parameter 2 is not a GtkWindow\n", __func__);
   else {
+
+    GtkWindow *window = (GtkWindow*)dialog;
+
     if (dialog->parent_window) {
-      gtk_window_set_transient_for (GTK_WINDOW (dialog), NULL);
+      gtk_window_set_transient_for (window, NULL);
     }
     dialog->parent_window = parent;
-    gtk_window_set_transient_for (GTK_WINDOW (dialog), parent);
-    gtk_window_set_destroy_with_parent (GTK_WINDOW (dialog), TRUE);
+    gtk_window_set_transient_for (window, parent);
+    gtk_window_set_destroy_with_parent (window, TRUE);
   }
 }
 
@@ -797,9 +803,9 @@ GList *gschem_dialog_get_selected(GschemDialog *dialog)
 
 const char *gschem_dialog_get_title(GschemDialog *dialog)
 {
-  return gtk_window_get_title(GTK_WINDOW(dialog));
+  return gtk_window_get_title((GtkWindow*)dialog);
 }
 void gschem_dialog_set_title(GschemDialog *dialog, const char*title)
 {
-  gtk_window_set_title (GTK_WINDOW (dialog), title);
+  gtk_window_set_title ((GtkWindow*)dialog, title);
 }
