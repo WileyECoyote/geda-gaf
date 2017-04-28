@@ -1,3 +1,8 @@
+2017-04-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_label.c: Add Doxygen groups GedaLabel-GtkObject and
+      GedaLabel-GObject.
+
 2017-04-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_bar.c: Revise geda_menu_bar_button_press; remove
@@ -79,7 +84,7 @@
     * src/widgets/geda_bulb.c: Replace g_type_check_instance_cast with static
       cast to static cast in order to eliminate needless type-checking.
 
-    * src/widgets/geda_label.c: Remove g_return_if_fail in function from internal
+    * src/widgets/geda_label.c: Remove g_return_if_fail function from internal
       static functions geda_label_query_tooltip and geda_label_set_uline_text_
       internal, change cast to static cast in order to eliminate needless calls
       to g_type_check_instance_cast.

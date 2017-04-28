@@ -924,7 +924,11 @@ static void geda_label_ensure_layout (GedaLabel *label)
   }
 }
 
-/* object_class->destroy */
+/** \defgroup GedaLabel-GtkObject GedaLabel GtkObject Virtual Overrides
+ *  @{
+ */
+
+/*! \internal GtkObjectClass::object_class->destroy */
 static void
 geda_label_destroy (GtkObject *object)
 {
@@ -962,7 +966,13 @@ geda_label_destroy (GtkObject *object)
   GTK_OBJECT_CLASS (geda_label_parent_class)->destroy (object);
 }
 
+/** @} endgroup GedaLabel-GtkObject */
 
+/** \defgroup GedaLabel-GObject GedaLabel GObject Virtual Overrides
+ *  @{
+ */
+
+/*! \internal GObjectClass::gobject_class->dispose */
 static void geda_label_dispose (GObject *object)
 {
   GedaLabel *label = GEDA_LABEL (object);
@@ -996,6 +1006,7 @@ static void geda_label_dispose (GObject *object)
   G_OBJECT_CLASS (geda_label_parent_class)->dispose (object);
 }
 
+/*! \internal GObjectClass::gobject_class->finalize */
 static void geda_label_finalize (GObject *object)
 {
   GedaLabel *label = (GedaLabel*)object;
@@ -1005,10 +1016,12 @@ static void geda_label_finalize (GObject *object)
   if (g_hash_table_remove (label_hash_table, object)) {
 
 #ifndef DEBUG_GEDA_LABEL
+
     if (!g_hash_table_size (label_hash_table)) {
       g_hash_table_destroy (label_hash_table);
       label_hash_table = NULL;
     }
+
 #endif /* DEBUG_GEDA_LABEL */
 
   }
@@ -1023,6 +1036,7 @@ static void geda_label_finalize (GObject *object)
   G_OBJECT_CLASS (geda_label_parent_class)->finalize (object);
 }
 
+/*! \internal GObjectClass::gobject_class->get_property */
 static void
 geda_label_get_property (GObject *object, unsigned int  prop_id,
                          GValue  *value,  GParamSpec   *pspec)
@@ -1110,6 +1124,7 @@ geda_label_get_property (GObject *object, unsigned int  prop_id,
     }
 }
 
+/*! \internal GObjectClass::gobject_class->set_property */
 static void
 geda_label_set_property (GObject *object,     unsigned int  prop_id,
                          const GValue *value, GParamSpec   *pspec)
@@ -1188,6 +1203,8 @@ geda_label_set_property (GObject *object,     unsigned int  prop_id,
   }
 }
 
+/** @} endgroup GedaLabel-GObject */
+
 /*! \brief GedaLabel Class Initializer
  *  \par Function Description
  *  Function is called to initialize the class instance.
@@ -1210,10 +1227,10 @@ geda_label_class_init  (void *class, void *class_data)
   object_class   = (GtkObjectClass*)class;
   widget_class   = (GtkWidgetClass*)class;
 
-  gobject_class->set_property        = geda_label_set_property;
-  gobject_class->get_property        = geda_label_get_property;
   gobject_class->dispose             = geda_label_dispose;
   gobject_class->finalize            = geda_label_finalize;
+  gobject_class->set_property        = geda_label_set_property;
+  gobject_class->get_property        = geda_label_get_property;
 
   object_class->destroy              = geda_label_destroy;
 
