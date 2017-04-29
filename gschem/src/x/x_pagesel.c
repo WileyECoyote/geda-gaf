@@ -1262,13 +1262,13 @@ pagesel_instance_init (GTypeInstance *instance, void *class)
   ShowFullNameSwitch = NULL;
 
   /* Create a new Toggle Switch widget for ShowFullNames */
-  EDA_SWITCH((GTK_WIDGET(ThisDialog)), switch_vbox, ShowFullName, 0, full_names);
+  EDA_SWITCH(switch_vbox, ShowFullName, 0, full_names);
 
   /* Setup callback for Toggle Switch widget */
   GEDA_CALLBACK_SWITCH (ShowFullName, pagesel_show_fullnames_toggled, ThisDialog)
 
     /* Create a new Toggle Switch widget for AutoHeight */
-  EDA_SWITCH((GTK_WIDGET(ThisDialog)), switch_vbox, AutoHeight, 0, auto_height);
+  EDA_SWITCH(switch_vbox, AutoHeight, 0, auto_height);
   gtk_widget_show_all(switch_vbox); /* set every widget in container visible */
 
   /* Setup callback for Toggle Switch widget */

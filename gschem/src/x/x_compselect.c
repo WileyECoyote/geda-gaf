@@ -3099,7 +3099,7 @@ compselect_create_action_area (Compselect *ThisDialog, GtkWidget *parent, int mo
   ContinueSwitch = NULL;
 
   /* Create Toggle Switch widgets and put inside the horizontal options box*/
-  EDA_SWITCH((GTK_WIDGET(ThisDialog)), action_hbox, Continue, 5, mode);
+  EDA_SWITCH(action_hbox, Continue, 5, mode);
 
   /* Setup callback for Switch widgets */
   GEDA_CALLBACK_SWITCH (Continue, compselect_cb_switch_toggled, ThisDialog)
@@ -3306,9 +3306,9 @@ compselect_constructor (GType                  type,
   GTK_NEW_hBOX(opts, FALSE, DEFAULT_DIALOG_SPACING);
 
   /* Create Toggle Switch widgets and put inside the horizontal options box*/
-  EDA_SWITCH((GTK_WIDGET(ThisDialog)), opts_hbox, SortLibrary, 5, ThisDialog->do_sort);
-  EDA_SWITCH((GTK_WIDGET(ThisDialog)), opts_hbox, ShowGroups,  5, ThisDialog->show_groups);
-  EDA_SWITCH((GTK_WIDGET(ThisDialog)), opts_hbox, SubGroups,   5, ThisDialog->subgroups);
+  EDA_SWITCH(opts_hbox, SortLibrary, 5, ThisDialog->do_sort);
+  EDA_SWITCH(opts_hbox, ShowGroups,  5, ThisDialog->show_groups);
+  EDA_SWITCH(opts_hbox, SubGroups,   5, ThisDialog->subgroups);
 
   /* Setup callback for Switch widgets */
   GEDA_CALLBACK_SWITCH (SortLibrary, compselect_cb_switch_toggled, ThisDialog)

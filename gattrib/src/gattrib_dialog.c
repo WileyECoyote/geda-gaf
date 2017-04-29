@@ -80,7 +80,7 @@ GtkWidget* get_geda_switch_image (bool WhichState)
  *  Returns: Newly created widget
  */
 GtkWidget*
-create_geda_switch(GtkWidget *Dialog, GtkWidget *parent, GtkWidget *widget,
+create_geda_switch(GtkWidget *parent, GtkWidget *widget,
                    GtkWidget *SwitchImage, bool istate)
 {
   widget = gtk_check_button_new ();

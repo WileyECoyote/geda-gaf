@@ -884,10 +884,10 @@ GtkWidget *x_dialog_pin_type_create_dialog(GschemToplevel *w_current)
   gtk_table_attach(GTK_TABLE(table), label, 0,1,3,4, GTK_FILL,0,0,0);
 
   /* Create Toggle Switch widgets */
-  GSCHEM_SWITCH((GTK_WIDGET(ThisDialog)), table, SetPinNodeType, 1, 2, FALSE)
-  GSCHEM_SWITCH((GTK_WIDGET(ThisDialog)), table, SetElectrical,  2, 2, FALSE)
-  GSCHEM_SWITCH((GTK_WIDGET(ThisDialog)), table, AutoNumber,     1, 4, FALSE)
-  GSCHEM_SWITCH((GTK_WIDGET(ThisDialog)), table, AutoSequence,   2, 4, FALSE)
+  GSCHEM_SWITCH(table, SetPinNodeType, 1, 2, FALSE)
+  GSCHEM_SWITCH(table, SetElectrical,  2, 2, FALSE)
+  GSCHEM_SWITCH(table, AutoNumber,     1, 4, FALSE)
+  GSCHEM_SWITCH(table, AutoSequence,   2, 4, FALSE)
 
   /* Setup callback for Switch widget */
   GEDA_CALLBACK_SWITCH (SetPinNodeType,   xd_edit_pin_switch_toggled, ThisDialog)

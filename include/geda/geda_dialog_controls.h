@@ -804,28 +804,28 @@ typedef struct
         HOOKUP_GEDA_OBJECT(name, Spin) \
 }
 
-#define EDA_SWITCH(GedaDialog, parent, name, spacing, state)  {     \
+#define EDA_SWITCH(parent, name, spacing, state)  {     \
         GtkWidget *name##_hbox=NULL;                    \
         GtkWidget *name##Label=NULL;                    \
         GtkWidget *name##Image=NULL;                    \
         NEW_HCONTROL_BOX (parent, name, spacing)        \
         PANGO_R5_LABEL (name)                           \
-        name##Switch = create_geda_switch (GedaDialog, name##_hbox, name##Switch,  name##Image, state); \
+        name##Switch = create_geda_switch (name##_hbox, name##Switch,  name##Image, state); \
         HOOKUP_GEDA_OBJECT(name, Switch) \
 }
-#define GSCHEM_SWITCH(GedaDialog, table, name, left, top, state)  {     \
+#define GSCHEM_SWITCH(table, name, left, top, state)  {     \
         GtkWidget *name##_hbox=NULL;                    \
         GtkWidget *name##Label=NULL;                    \
         GtkWidget *name##Image=NULL;                    \
         BASE_BOX( name, h, FALSE, DEFAULT_WIDGET_SPACING) \
         gtk_table_attach(GTK_TABLE(table), name##_hbox, left, left+1, top, top+1, GTK_SHRINK, GTK_FILL,0,0); \
         GTK_RS_LABEL (name, 2)                          \
-        name##Switch = create_geda_switch (GedaDialog, name##_hbox, name##Switch,  name##Image, state); \
+        name##Switch = create_geda_switch (name##_hbox, name##Switch,  name##Image, state); \
         HOOKUP_GEDA_OBJECT(name, Switch) \
 }
 
 #define GTK_SWITCH(parent, name, spacing, state) \
-        EDA_SWITCH (ThisDialog, parent, name, spacing, state) \
+        EDA_SWITCH (parent, name, spacing, state) \
         GTK_ICALLBACK_SWITCH (name)
 
 #define TOGGLE_SWITCH( switch ) { \

@@ -178,7 +178,7 @@ GtkWidget *get_geda_switch_image (bool WhichState)
  *  \returns Newly created widget
  */
 GtkWidget*
-create_geda_switch(GtkWidget *Dialog, GtkWidget *parent, GtkWidget *widget,
+create_geda_switch(GtkWidget *parent, GtkWidget *widget,
                    GtkWidget *SwitchImage, bool istate)
 {
   widget = gtk_check_button_new ();
@@ -3362,7 +3362,7 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
       ShowBindingSwitch = NULL;
 
       /* Create a new Toggle Switch widget */
-      EDA_SWITCH ((GTK_WIDGET(ThisDialog)), switch_vbox, ShowBinding, 0, show_bind);
+      EDA_SWITCH (switch_vbox, ShowBinding, 0, show_bind);
       gtk_widget_show_all(switch_vbox); /* set every widget in container visible */
 
       /* Setup callback for Toggle Switch widget */
