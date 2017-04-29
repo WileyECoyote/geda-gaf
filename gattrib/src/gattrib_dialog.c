@@ -390,9 +390,9 @@ static void gattrib_dialog_class_init (GattribDialogClass *klass)
 
   gattrib_dialog_signals[ GEOMETRY_SAVE ] =
     g_signal_new ("geometry-save",
-                  G_OBJECT_CLASS_TYPE( gobject_class ),
+                  GATTRIB_TYPE_DIALOG,
                   G_SIGNAL_RUN_FIRST,     /*signal_flags */
-                  G_STRUCT_OFFSET( GattribDialogClass, geometry_save ),
+                  G_STRUCT_OFFSET(GattribDialogClass, geometry_save),
                   NULL, /* accumulator */
                   NULL, /* accu_data */
                   geda_marshal_VOID__POINTER_STRING,
@@ -404,9 +404,9 @@ static void gattrib_dialog_class_init (GattribDialogClass *klass)
 
   gattrib_dialog_signals[ GEOMETRY_RESTORE ] =
     g_signal_new ("geometry-restore",
-                  G_OBJECT_CLASS_TYPE( gobject_class ),
+                  GATTRIB_TYPE_DIALOG,
                   G_SIGNAL_RUN_FIRST,     /*signal_flags */
-                  G_STRUCT_OFFSET( GattribDialogClass, geometry_restore ),
+                  G_STRUCT_OFFSET(GattribDialogClass, geometry_restore),
                   NULL, /* accumulator */
                   NULL, /* accu_data */
                   geda_marshal_VOID__POINTER_STRING,
