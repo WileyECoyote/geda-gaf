@@ -95,10 +95,10 @@ extern "C" {
 GedaType      geda_file_chooser_get_type         (void) GEDA_CONST;
 bool          is_a_geda_file_chooser             (GedaFileChooser   *chooser);
 
-GtkWidget    *geda_file_chooser_new              (GtkWidget         *parent,
+GtkWidget    *geda_file_chooser_new              (void              *parent,
                                                   FileChooserAction  action);
 GtkWidget    *geda_file_chooser_dialog_new_full  (const char        *title,
-                                                  GtkWindow         *parent,
+                                                  void              *parent,
                                                   FileChooserAction  action,
                                                   const char        *first_button_text,
                                                   ...);

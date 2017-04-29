@@ -1140,16 +1140,15 @@ GedaType geda_image_chooser_get_type (void)
  *  \par Function Description
  *  Convenience function which creates a GedaImageChooser with buttons and options.
  *
- *  \param [in]  parent             The GtkWindow Widget which will parent this dialog
- *  \param [in]  chooser_action     The #ImageChooserAction to use when setting up the dialog
+ *  \param [in]  parent         GtkWindow Widget which will parent this dialog
+ *  \param [in]  chooser_action The #ImageChooserAction to use when setting up the dialog
  *
  *  \return  The GedaImageChooser created.
  */
 GtkWidget*
-geda_image_chooser_new (GtkWidget *parent,
-                        ImageChooserAction chooser_action)
+geda_image_chooser_new (void *parent, ImageChooserAction chooser_action)
 {
-  GtkWidget        *widget;
+  GtkWidget *widget;
 
   widget = g_object_new (geda_image_chooser_get_type(),
                          "action", chooser_action,
@@ -1227,11 +1226,11 @@ geda_image_chooser_new (GtkWidget *parent,
 }
 
 static GtkWidget *
-geda_image_chooser_dialog_new_valist (const char        *title,
-                                     GtkWindow          *parent,
-                                     ImageChooserAction  action,
-                                     const char         *first_button_text,
-                                     va_list             varargs)
+geda_image_chooser_dialog_new_valist (const char         *title,
+                                      void               *parent,
+                                      ImageChooserAction  action,
+                                      const char         *first_button_text,
+                                      va_list             varargs)
 {
   GtkWidget  *result;
   const char *button_text = first_button_text;
@@ -1263,8 +1262,8 @@ geda_image_chooser_dialog_new_valist (const char        *title,
  * Creates a new #GedaImageChooser. This function is analogous to
  * gtk_dialog_new_with_buttons().
  *
- * \param [in] title  (allow-none): Title of the dialog, or %NULL
- * \param [in] parent (allow-none): Transient parent of the dialog, or %NULL
+ * \param [in] title  Title of the dialog, or %NULL
+ * \param [in] parent Transient parent of the dialog, or %NULL
  * \param [in] action Open or save mode for the dialog
  * \param [in] first_button_text (allow-none): stock ID or text to go in the first button, or %NULL
  * \param [in] ... response ID for the first button, then additional (button, id) pairs, ending with %NULL
@@ -1274,7 +1273,7 @@ geda_image_chooser_dialog_new_valist (const char        *title,
  */
 GtkWidget *
 geda_image_chooser_dialog_new_full (const char        *title,
-                                    GtkWindow         *parent,
+                                    void              *parent,
                                     ImageChooserAction action,
                                     const char        *first_button_text, ...)
 {

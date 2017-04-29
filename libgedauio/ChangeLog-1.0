@@ -1,3 +1,15 @@
+2017-04-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/dialogs/geda_file_chooser.c: Change parent argument to for functions
+      geda_file_chooser_new and geda_file_chooser_dialog_new_full to type void
+      to allow GtkWidget or GtkWindow pointers to be passed. Update Doxygen
+      comments.
+
+    * src/dialogs/geda_image_chooser.c: Change parent argument to for functions
+      geda_image_chooser_new and geda_image_chooser_dialog_new_full to type void
+      to allow GtkWidget or GtkWindow pointers to be passed.. Update Doxygen
+      comments.
+
 2017-04-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_label.c: Add Doxygen groups GedaLabel-GtkObject and
