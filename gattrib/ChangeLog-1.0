@@ -20,6 +20,9 @@
 
     * src/f_export.c: Declare filename argument to f_export_components const.
 
+    * src/x_dialog.c: Replace gtk_file_chooser with geda_file_chooser in
+      x_dialog_export_file.
+
     * src/x_window.c: Revise x_window_restore_settings; change argument from
       GtkWidget to GtkWindow and eliminate local window variable.
 

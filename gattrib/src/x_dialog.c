@@ -33,6 +33,7 @@
 #include <geda/geda_dialog_controls.h>
 #include <geda_widgets.h>
 #include <gattrib_dialog.h>
+#include <geda_dialogs.h>
 #include <geda_debug.h>
 
 /***************** Start of generic message dialog box *******************/
@@ -391,23 +392,23 @@ void x_dialog_export_file()
   char *filename;
   GtkWidget *dialog;
 
-  dialog = gtk_file_chooser_dialog_new(_("Export CSV"), NULL,
-      GTK_FILE_CHOOSER_ACTION_SAVE,
-      GTK_STOCK_CANCEL, GEDA_RESPONSE_CANCEL,
-      GTK_STOCK_SAVE, GEDA_RESPONSE_ACCEPT,
-      NULL);
+  dialog = geda_file_chooser_dialog_new_full(_("Export CSV"), NULL,
+                                                FILE_CHOOSER_ACTION_OPEN,
+                                                GTK_STOCK_CANCEL, GEDA_RESPONSE_CANCEL,
+                                                GTK_STOCK_SAVE, GEDA_RESPONSE_ACCEPT,
+                                                NULL);
 
-  gtk_dialog_set_default_response(GTK_DIALOG(dialog), GEDA_RESPONSE_ACCEPT);
+  gtk_dialog_set_default_response((GtkDialog*)dialog, GEDA_RESPONSE_ACCEPT);
 
   /* force start in current working directory, NOT in 'Recently Used' */
   cwd = getcwd(0,0);
-  gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), cwd);
+  geda_file_chooser_set_current_folder (dialog, cwd);
   free (cwd);
 
-  switch(gtk_dialog_run(GTK_DIALOG(dialog))) {
+  switch(gtk_dialog_run((GtkDialog*)dialog)) {
     case GEDA_RESPONSE_ACCEPT:
-      filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
-      if(filename != NULL) {
+      filename = geda_file_chooser_get_filename (dialog);
+      if (filename != NULL) {
         f_export_components(filename);
         GEDA_FREE(filename);
       }
