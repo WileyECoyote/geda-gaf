@@ -198,11 +198,10 @@ static void x_window_save_settings(void *data)
  *  This functions retrieves the given window size and position from the
  *  key file and sets the given window to the retrived values.
  *
- *  \param [in] MainWindow  Gattrib toplevel Window.
+ *  \param [in] window  Gattrib toplevel MainWindow.
  */
-void x_window_restore_settings(GtkWidget *MainWindow)
+void x_window_restore_settings(GtkWindow *window)
 {
-  GtkWindow  *window;
   EdaConfig  *cfg;
   GError     *err        = NULL;
   const char *group_name = "gattrib";
@@ -212,8 +211,7 @@ void x_window_restore_settings(GtkWidget *MainWindow)
 
   geda_log (_("Retrieving main Window geometry and settings.\n"));
 
-  window = GTK_WINDOW(MainWindow);
-  cfg    = eda_config_get_user_context ();
+  cfg = eda_config_get_user_context ();
 
   x = eda_config_get_integer (cfg, group_name, "window-x-position", &err);
 
