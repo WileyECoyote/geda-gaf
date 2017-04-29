@@ -21,7 +21,7 @@ int cmp(STRING_LIST *a, STRING_LIST *b);
 STRING_LIST *listsort(STRING_LIST *list, int is_circular, int is_double);
 
 /* ------------- f_export.c ------------- */
-void f_export_components(char *filename);
+void f_export_components(const char *filename);
 
 /* ------------ gattrib_dialog.c ---------- */
 GtkWidget* create_pixmap (const char *filename);

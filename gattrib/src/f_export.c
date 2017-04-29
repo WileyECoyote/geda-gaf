@@ -49,7 +49,7 @@ print_quote_if_comma(FILE *fp, char *text)
  *
  * \param filename The name of the file to export to
  */
-void f_export_components(char *filename)
+void f_export_components(const char *filename)
 {
   int cur_page;
   int num_rows;
