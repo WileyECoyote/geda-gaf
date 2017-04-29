@@ -196,7 +196,7 @@ static void        _item_entry_get_text_area_size           (GtkEntry      *entr
                                                              int           *y,
                                                              int           *width,
                                                              int           *height);
-static void        _item_entry_get_widget_window_size       (GtkEntry       *entry,
+static void        _item_entry_get_widget_window_size       (GtkWidget     *entry,
                                                              int           *x,
                                                              int           *y,
                                                              int           *width,
@@ -348,7 +348,7 @@ gtk_item_entry_realize(GtkWidget *widget)
 
     attributes.window_type = GDK_WINDOW_CHILD;
 
-    _item_entry_get_widget_window_size(entry, &attributes.x, &attributes.y, &attributes.width, &attributes.height);
+    _item_entry_get_widget_window_size(widget, &attributes.x, &attributes.y, &attributes.width, &attributes.height);
 
     attributes.wclass = GDK_INPUT_OUTPUT;
     attributes.visual = gtk_widget_get_visual(widget);
@@ -497,15 +497,14 @@ _item_entry_get_text_area_size(GtkEntry *entry,
 }
 
 static void
-_item_entry_get_widget_window_size(GtkEntry *entry,
-    int     *x,
-    int     *y,
-    int     *width,
-    int     *height)
+_item_entry_get_widget_window_size(GtkWidget *widget,
+                                   int       *x,
+                                   int       *y,
+                                   int       *width,
+                                   int       *height)
 {
     GtkRequisition requisition;
     GtkAllocation allocation;
-    GtkWidget *widget = GTK_WIDGET(entry);
 
     /* GtkEntry->is_cell_renderer is a GSEAL()ed structure member.
        It will only be set to TRUE when calling the GtkEntry's GtkCellEditable
@@ -570,7 +569,7 @@ gtk_item_entry_size_allocate(GtkWidget *widget, GtkAllocation *allocation)
 	 */
 	int x, y, width, height;
 
-	_item_entry_get_widget_window_size(entry, &x, &y, &width, &height);
+	_item_entry_get_widget_window_size(widget, &x, &y, &width, &height);
 
 #if GTK_ITEM_ENTRY_DEBUG_ALLOC>0
 	g_debug("gtk_item_entry_size_allocate: _get_widget_window_size (%d, %d, %d, %d)",

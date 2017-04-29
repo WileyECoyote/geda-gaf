@@ -1,3 +1,8 @@
+2017-04-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gtksheet/gtkitementry.c: Change 1st _item_entry_get_widget_window_size
+      argument to type GtkWidget and eliminate local widget variable.
+
 2017-04-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtkitementry.c: Allocate pointer to GtkEntry entry in
