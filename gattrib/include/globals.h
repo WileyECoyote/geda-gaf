@@ -127,6 +127,7 @@ GtkSheet  **sheets;              /*!< These are the spreadsheet widgets themselv
 GSList *ComponentMenuItems;
 GSList *ComponentToolbarButtons;
 
+extern int export_mode;          /*!< command line switch export csv*/
 extern int verbose_mode;         /*!< command line switch verbose settings */
 extern int quiet_mode;           /*!< command line switch quiet settings */
 

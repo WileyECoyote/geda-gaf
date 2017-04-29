@@ -39,7 +39,7 @@
  *  Command line option string for getopt. Defines "q" for quiet,
  *  "v" for verbose and "h" for help.
  */
-#define OPTIONS "qvh"
+#define OPTIONS "eqvh"
 #ifndef OPTARG_IN_UNISTD
 extern char *optarg;
 extern int optind;
@@ -65,10 +65,11 @@ void usage(char *cmd)
 "\n"
 "Usage: %s [OPTIONS] filename1 ... filenameN\n"
 "\n"
-"\t-h, --help      This help menu\n"
-"\t-q, --quiet     Enable quiet mode\n"
-"\t-v, --verbose   Enable verbose mode\n"
-"\t-V, --version   Show version information.\n"
+"\t-e, --export-csv export file to comma seperated values\n"
+"\t-h, --help       This help menu\n"
+"\t-q, --quiet      Enable quiet mode\n"
+"\t-v, --verbose    Enable verbose mode\n"
+"\t-V, --version    Show version information.\n"
 "\n"
 "  FAQ:\n"
 "  *  What do the colors of the cell text mean?\n"
@@ -83,7 +84,7 @@ void usage(char *cmd)
 "     If slots are present on the component, then the different slots appear\n"
 "     in different rows with the slot number after the period.  Example:  C101.2.\n"
 "\n"
-"Copyright (C) 2003-2016 Stuart D. Brorson.  E-mail: sdb (AT) cloud9 (DOT) net.\n"
+"Copyright (C) 2003-2017 Stuart D. Brorson. E-mail: sdb (AT) cloud9 (DOT) net.\n"
 "\n"), cmd);
     exit(0);
 }
@@ -130,10 +131,11 @@ int parse_commandline(int argc, char *argv[])
   /* Use getopt_long if it is available */
   int option_index = 0;
   static struct option long_options[] = {
-    {"help", 0, 0, 'h'},
-    {"quiet", 0, 0, 'q'},
-    {"verbose", 0, 0, 'v'},
-    {"version", 0, 0, 'V'},
+    {"export-csv", 1, 0, 'e'},
+    {"help",       0, 0, 'h'},
+    {"quiet",      0, 0, 'q'},
+    {"verbose",    0, 0, 'v'},
+    {"version",    0, 0, 'V'},
     {0, 0, 0, 0}
   };
 
@@ -141,7 +143,7 @@ int parse_commandline(int argc, char *argv[])
 
     int ch;
 
-    ch = getopt_long(argc, argv, "hqvV", long_options, &option_index);
+    ch = getopt_long(argc, argv, "ehqvV", long_options, &option_index);
 
     if (ch == -1) {
       break;
@@ -155,6 +157,10 @@ int parse_commandline(int argc, char *argv[])
 #endif
 
     switch (ch) {
+      case 'e':
+        export_mode = 1;
+        break;
+
       case 'h':
         usage(argv[0]);
         break;

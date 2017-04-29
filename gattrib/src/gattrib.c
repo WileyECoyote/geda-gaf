@@ -356,6 +356,7 @@ void gattrib_main(void *closure, int argc, char *argv[])
   libgeda_init(argc, argv);
   libgedauio_setup_locale();
 
+  export_mode  = 0;
   verbose_mode = FALSE;
   quiet_mode   = FALSE;
 
@@ -427,7 +428,25 @@ void gattrib_main(void *closure, int argc, char *argv[])
 
   geda_gslist_free_all(file_list);
 
-  gtk_main();
+  if (export_mode) {
+
+    const char *filename;
+    char *basename;
+
+    filename = geda_page_get_filename(pr_current->page_current);
+    basename = geda_get_basename_dup(filename);
+    filename = geda_strsubst(basename, ".sch", ".csv");
+
+    f_export_components(filename);
+
+    if (verbose_mode)
+       fprintf(stderr,"%s: \"%s\"\n",  _("Exported schematic to"), filename);
+
+    GEDA_FREE(basename);
+  }
+  else {
+    gtk_main();
+  }
 
   exit(0);
 }

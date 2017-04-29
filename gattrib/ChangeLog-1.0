@@ -3,7 +3,18 @@
     * src/gtksheet/gtkitementry.c: Change 1st _item_entry_get_widget_window_size
       argument to type GtkWidget and eliminate local widget variable.
 
-    * include/globals.h: Change main_window type from GtkWidget to GtkWindow.
+    * include/globals.h: Change main_window type from GtkWidget to GtkWindow,
+      add extern export_mode.
+
+    * src/gattrib.c: Revise gattrib main line code to extract the page file name
+      and add "csv" extenstion can call f_export_components instead of running
+      gtk_main if export_mode is set and this allows exporting if csv directly
+      from the command-line.
+
+    * src/globals.c: Add new global int export_mode to support exporting as csv
+      directly from the command-line.
+
+    * src/parsecmd.c: Add command-line option -e, with long option export-csv.
 
     * src/f_export.c: Declare filename argument to f_export_components const.
 

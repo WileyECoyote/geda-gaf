@@ -27,6 +27,7 @@
 #include <geda_debug.h>
 
 /* command line arguments */
+int export_mode;  //!< Reflects the value of the command line flag
 int verbose_mode; //!< Reflects the value of the command line flag
 int quiet_mode;   //!< Reflects the value of the command line flag
 
