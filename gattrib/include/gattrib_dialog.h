@@ -42,10 +42,9 @@
 #define BULB_OFF_IMAGE   	   "geda_bulb_24x26_off.png"
 
 #define NEW_STD_GATTRIB_DIALOG(title, identifier, ptrWindowWidget) \
-        gattrib_dialog_new_empty(title, \
-                               GTK_WINDOW(main_window), \
-                               GTK_DIALOG_MODAL, \
-			       identifier)
+        gattrib_dialog_new_empty(title, main_window, \
+                                 GTK_DIALOG_MODAL, \
+                                 identifier)
 
 /* Date: Aug 12, 2012
  * Who:  Wiley E. Hill
@@ -53,7 +52,7 @@
  * Why:  This Macro facilitate creating new Dialog Boxes.
 */
 #define NEW_GATTRIB_DIALOG(title, flags, identifier, ptrWindowWidget) \
-  gattrib_dialog_new_empty(title, GTK_WINDOW(main_window), \
+  gattrib_dialog_new_empty(title, main_window, \
                                   flags, identifier, ptrWindowWidget);
 
 #define GATTRIB_TYPE_DIALOG           (gattrib_dialog_get_type())

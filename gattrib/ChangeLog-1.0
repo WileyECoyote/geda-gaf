@@ -3,6 +3,8 @@
     * src/gtksheet/gtkitementry.c: Change 1st _item_entry_get_widget_window_size
       argument to type GtkWidget and eliminate local widget variable.
 
+    * include/globals.h: Change main_window type from GtkWidget to GtkWindow.
+
     * src/f_export.c: Declare filename argument to f_export_components const.
 
 2017-04-27 Wiley E. Hill <wileyhill@gmail.com>

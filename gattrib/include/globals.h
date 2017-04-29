@@ -105,7 +105,7 @@ char msg_buffer[256];
 #define NUM_SHEETS 3              /*!< Components, Nets, and Pins */
 #define COLUMN_WIDTH_LIMIT 180    /*!< Auto width adjustment upper limit*/
 
-GtkWidget        *main_window;    /*!< Main window */
+GtkWindow        *main_window;    /*!< Main window */
 GtkWidget        *menu_bar;
 GtkUIManager     *menu_manager;   /*!< Manager for menus */
 GtkRecentManager *recent_manager; /*!< Manager for recently used files */

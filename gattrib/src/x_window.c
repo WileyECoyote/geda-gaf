@@ -76,10 +76,10 @@ void x_window_update_title(GedaToplevel *toplevel, PageDataSet *PageData)
       strcpy (buffer, filename);
     }
     strcat(buffer, " -- gattrib");
-    gtk_window_set_title(GTK_WINDOW(main_window), buffer);
+    gtk_window_set_title(main_window, buffer);
   }
   else
-    gtk_window_set_title(GTK_WINDOW(main_window), "gattrib -- gEDA attribute editor");
+    gtk_window_set_title(main_window, "gattrib -- gEDA attribute editor");
 }
 
 /*! \brief Handle Cut, Copy, Paste for Menus and Toolbar
@@ -91,7 +91,7 @@ void x_window_update_title(GedaToplevel *toplevel, PageDataSet *PageData)
  */
 void x_window_clipboard_handler(int do_what)
 {
-  GtkWidget *widget = gtk_window_get_focus(GTK_WINDOW(main_window));
+  GtkWidget *widget = gtk_window_get_focus(main_window);
 
   switch (do_what ) {
     case cut:
@@ -295,7 +295,7 @@ void x_window_init()
   x_window_set_default_icon();
 
   /*  window is a global declared in globals.h.  */
-  main_window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+  main_window = (GtkWindow*)gtk_window_new(GTK_WINDOW_TOPLEVEL);
 
   geda_atexit(x_window_save_settings, main_window);
 
@@ -312,7 +312,7 @@ void x_window_init()
   gtk_widget_show( GTK_WIDGET(main_vbox));
 
   /* -----  Now create menu bar  ----- */
-  menu_bar = x_menu_create_menu(GTK_WINDOW(main_window));
+  menu_bar = x_menu_create_menu(main_window);
   gtk_box_pack_start(GTK_BOX (main_vbox), menu_bar, FALSE, TRUE, 0);
 
    /* -----  Initialize the Toolbar Module ----- */
@@ -459,9 +459,9 @@ void x_window_finalize_startup(GtkWindow *main_window, PageDataSet *PageData)
   x_window_add_items(PageData); /* This updates the top level stuff,and then
                                    calls another fcn to update the GtkSheet */
 
-  gtk_window_set_position (GTK_WINDOW (main_window), GTK_WIN_POS_MOUSE);
+  gtk_window_set_position (main_window, GTK_WIN_POS_MOUSE);
 
-  gtk_widget_show( GTK_WIDGET(main_window));
+  gtk_widget_show((GtkWidget*)main_window);
   x_window_update_title(pr_current, PageData);
 }
 
@@ -560,9 +560,9 @@ void x_window_attached_toggle(GtkToggleAction *action, GtkWindow *main_window)
    * version of gtksheet claiming fix had the same problem, so we will resize,
    * which needs to be some anyways */
   /* TODO: WEH: Determine the real x size */
-  gtk_window_get_size(GTK_WINDOW(main_window), &x, &y);
+  gtk_window_get_size(main_window, &x, &y);
   x =  (show) ? x - TOGGLE_ATTACH_X_OFFSET : x + TOGGLE_ATTACH_X_OFFSET;
-  gtk_window_resize(GTK_WINDOW(main_window), x, y);
+  gtk_window_resize(main_window, x, y);
 
   /* TODO: WEH: save the toggle setting */
   //config_file_set_bool(PREFS_ATTACHED_VISIBLE, show);
