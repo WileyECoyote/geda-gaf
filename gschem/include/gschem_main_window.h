@@ -64,7 +64,7 @@ extern "C" {
 #endif
 
 GedaType           gschem_main_window_get_type   (void);
-GschemMainWindow  *gschem_main_window_new        (void);
+GtkWindow         *gschem_main_window_new        (void);
 
 GdkWindow         *gschem_main_window_get_window (GtkWidget *main_window);
 

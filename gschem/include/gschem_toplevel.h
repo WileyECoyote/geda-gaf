@@ -63,7 +63,7 @@ struct _GschemToplevel {
   GedaToplevel *toplevel;
 
   /* ----------------- main window widgets ---------------- */
-  GtkWidget *main_window;
+  GtkWindow *main_window;
   GtkWidget *drawing_area;
 
   int        ui_index;

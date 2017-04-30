@@ -472,12 +472,12 @@ GedaType gschem_main_window_get_type (void)
  * \par Function Description
  * \return A new instanceof the GschemMainWindow
  */
-GschemMainWindow*
+GtkWindow*
 gschem_main_window_new ()
 {
-  return GSCHEM_MAIN_WINDOW (g_object_new (GSCHEM_TYPE_MAIN_WINDOW,
-                                           "type", GTK_WINDOW_TOPLEVEL,
-                                           NULL));
+  return g_object_new (GSCHEM_TYPE_MAIN_WINDOW,
+                      "type", GTK_WINDOW_TOPLEVEL,
+                       NULL);
 }
 
 /*!
