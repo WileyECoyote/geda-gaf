@@ -4,6 +4,10 @@
       GtkEntry to avoid numerous type casting to reference offsets and remove
       GTK_EDITABLE type checking since it is known that GTK_IS_ITEM_ENTRY.
 
+    * src/gtksheet/gtksheet.c: Revise function _gtk_sheet_class_init_signals to
+      get GtkSheet type using gtk_sheet_get_type, instead of G_TYPE_FROM_CLASS
+      and reuse for all 20 new signals.
+
 2017-04-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtkitementry.c: Change 1st _item_entry_get_widget_window_size

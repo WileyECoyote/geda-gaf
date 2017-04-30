@@ -2321,8 +2321,11 @@ static int gtk_sheet_debug_focus_out_event(GtkSheet *sheet, GdkEventFocus *event
 
 static void
 _gtk_sheet_class_init_signals(GtkObjectClass *object_class,
-    GtkWidgetClass *widget_class)
+                              GtkWidgetClass *widget_class)
 {
+     /* 20 signals to go, so get the type only once */
+     GType type = gtk_sheet_get_type();
+
     /**
      * GtkSheet::select-row:
      * \param sheet: the sheet widget that emitted the signal
@@ -2331,12 +2334,13 @@ _gtk_sheet_class_init_signals(GtkObjectClass *object_class,
      * Emmited when a row has been selected.
      */
     sheet_signals[SELECT_ROW] = g_signal_new("select-row",
-                                             G_TYPE_FROM_CLASS(object_class),
+                                             type,
                                              G_SIGNAL_RUN_LAST,
                                              G_STRUCT_OFFSET(GtkSheetClass, select_row),
                                              NULL, NULL,
                                              gtksheet_VOID__INT,
-                                             G_TYPE_NONE, 1, G_TYPE_INT);
+                                             G_TYPE_NONE, 1,
+                                             G_TYPE_INT);
 
     /**
      * GtkSheet::select-column:
@@ -2346,12 +2350,13 @@ _gtk_sheet_class_init_signals(GtkObjectClass *object_class,
      * Emmited when a column has been selected.
      */
     sheet_signals[SELECT_COLUMN] = g_signal_new("select-column",
-                                                G_TYPE_FROM_CLASS(object_class),
+                                                type,
                                                 G_SIGNAL_RUN_LAST,
                                                 G_STRUCT_OFFSET(GtkSheetClass, select_column),
                                                 NULL, NULL,
                                                 gtksheet_VOID__INT,
-                                                G_TYPE_NONE, 1, G_TYPE_INT);
+                                                G_TYPE_NONE, 1,
+                                                G_TYPE_INT);
 
     /**
      * GtkSheet::select-range:
@@ -2361,12 +2366,13 @@ _gtk_sheet_class_init_signals(GtkObjectClass *object_class,
      * Emmited when a #GtkSheetRange has been selected.
      */
     sheet_signals[SELECT_RANGE] = g_signal_new("select-range",
-                                               G_TYPE_FROM_CLASS(object_class),
+                                               type,
                                                G_SIGNAL_RUN_LAST,
                                                G_STRUCT_OFFSET(GtkSheetClass, select_range),
                                                NULL, NULL,
                                                gtksheet_VOID__BOXED,
-                                               G_TYPE_NONE, 1, G_TYPE_SHEET_RANGE);
+                                               G_TYPE_NONE, 1,
+                                               G_TYPE_SHEET_RANGE);
 
     /**
      * GtkSheet::clip-range:
@@ -2376,12 +2382,13 @@ _gtk_sheet_class_init_signals(GtkObjectClass *object_class,
      * Emmited when a #GtkSheetRange is clipping.
      */
     sheet_signals[CLIP_RANGE] = g_signal_new("clip-range",
-                                             G_TYPE_FROM_CLASS(object_class),
+                                             type,
                                              G_SIGNAL_RUN_LAST,
                                              G_STRUCT_OFFSET(GtkSheetClass, clip_range),
                                              NULL, NULL,
                                              gtksheet_VOID__BOXED,
-                                             G_TYPE_NONE, 1, G_TYPE_SHEET_RANGE);
+                                             G_TYPE_NONE, 1,
+                                             G_TYPE_SHEET_RANGE);
 
     /**
     * GtkSheet::resize-range:
@@ -2392,7 +2399,7 @@ _gtk_sheet_class_init_signals(GtkObjectClass *object_class,
     * Emmited when a #GtkSheetRange is resized.
     */
     sheet_signals[RESIZE_RANGE] = g_signal_new("resize-range",
-                                               G_TYPE_FROM_CLASS(object_class),
+                                               type,
                                                G_SIGNAL_RUN_LAST,
                                                G_STRUCT_OFFSET(GtkSheetClass, resize_range),
                                                NULL, NULL,
@@ -2408,7 +2415,7 @@ _gtk_sheet_class_init_signals(GtkObjectClass *object_class,
      * Emmited when a #GtkSheetRange is moved.
      */
     sheet_signals[MOVE_RANGE] = g_signal_new("move-range",
-                                             G_TYPE_FROM_CLASS(object_class),
+                                             type,
                                              G_SIGNAL_RUN_LAST,
                                              G_STRUCT_OFFSET(GtkSheetClass, move_range),
                                              NULL, NULL,
@@ -2431,7 +2438,7 @@ _gtk_sheet_class_init_signals(GtkObjectClass *object_class,
      * FALSE to veto the movement.
      */
     sheet_signals[TRAVERSE] = g_signal_new("traverse",
-                                           G_TYPE_FROM_CLASS(object_class),
+                                           type,
                                            G_SIGNAL_RUN_LAST,
                                            G_STRUCT_OFFSET(GtkSheetClass, traverse),
                                            NULL, NULL,
@@ -2452,7 +2459,7 @@ _gtk_sheet_class_init_signals(GtkObjectClass *object_class,
      * deactivation, FALSE to deny deactivation.
      */
     sheet_signals[DEACTIVATE] = g_signal_new("deactivate",
-                                             G_TYPE_FROM_CLASS(object_class),
+                                             type,
                                              G_SIGNAL_RUN_LAST,
                                              G_STRUCT_OFFSET(GtkSheetClass, deactivate),
                                              NULL, NULL,
@@ -2470,7 +2477,7 @@ _gtk_sheet_class_init_signals(GtkObjectClass *object_class,
      * FIXME:: The return value is ignored (not yet implemented).
      */
     sheet_signals[ACTIVATE] = g_signal_new("activate",
-                                           G_TYPE_FROM_CLASS(object_class),
+                                           type,
                                            G_SIGNAL_RUN_LAST,
                                            G_STRUCT_OFFSET(GtkSheetClass, activate),
                                            NULL, NULL,
@@ -2486,7 +2493,7 @@ _gtk_sheet_class_init_signals(GtkObjectClass *object_class,
      * Emited when clicking on a non-empty cell.
      */
     sheet_signals[SET_CELL] = g_signal_new("set-cell",
-                                           G_TYPE_FROM_CLASS(object_class),
+                                           type,
                                            G_SIGNAL_RUN_LAST,
                                            G_STRUCT_OFFSET(GtkSheetClass, set_cell),
                                            NULL, NULL,
@@ -2502,7 +2509,7 @@ _gtk_sheet_class_init_signals(GtkObjectClass *object_class,
      * Emited when when the content of the cell is erased.
      */
     sheet_signals[CLEAR_CELL] = g_signal_new("clear-cell",
-                                             G_TYPE_FROM_CLASS(object_class),
+                                             type,
                                              G_SIGNAL_RUN_LAST,
                                              G_STRUCT_OFFSET(GtkSheetClass, clear_cell),
                                              NULL, NULL,
@@ -2519,7 +2526,7 @@ _gtk_sheet_class_init_signals(GtkObjectClass *object_class,
      * It is emitted after each key press in cell and after deactivating cell.
      */
     sheet_signals[CHANGED] = g_signal_new("changed",
-                                          G_TYPE_FROM_CLASS(object_class),
+                                          type,
                                           G_SIGNAL_RUN_LAST,
                                           G_STRUCT_OFFSET(GtkSheetClass, changed),
                                           NULL, NULL,
@@ -2535,7 +2542,7 @@ _gtk_sheet_class_init_signals(GtkObjectClass *object_class,
      * Emited when the width of a column is modified.
      */
     sheet_signals[NEW_COL_WIDTH] = g_signal_new("new-column-width",
-                                                G_TYPE_FROM_CLASS(object_class),
+                                                type,
                                                 G_SIGNAL_RUN_LAST,
                                                 G_STRUCT_OFFSET(GtkSheetClass, changed),
                                                 NULL, NULL,
@@ -2551,7 +2558,7 @@ _gtk_sheet_class_init_signals(GtkObjectClass *object_class,
      * Emited when the height of a row is modified.
      */
     sheet_signals[NEW_ROW_HEIGHT] = g_signal_new("new-row-height",
-                                                 G_TYPE_FROM_CLASS(object_class),
+                                                 type,
                                                  G_SIGNAL_RUN_LAST,
                                                  G_STRUCT_OFFSET(GtkSheetClass, changed),
                                                  NULL, NULL,
@@ -2572,7 +2579,7 @@ _gtk_sheet_class_init_signals(GtkObjectClass *object_class,
      * Since: 3.0.1
      */
     sheet_signals[ENTRY_FOCUS_IN] = g_signal_new("entry-focus-in",
-                                                 G_TYPE_FROM_CLASS(object_class),
+                                                 type,
                                                  G_SIGNAL_RUN_LAST,
                                                  G_STRUCT_OFFSET(GtkSheetClass, focus_in_event),
                                                  NULL, NULL,
@@ -2593,7 +2600,8 @@ _gtk_sheet_class_init_signals(GtkObjectClass *object_class,
      *
      * Since: 3.0.1
      */
-    sheet_signals[ENTRY_FOCUS_OUT] = g_signal_new("entry-focus-out", G_TYPE_FROM_CLASS(object_class),
+    sheet_signals[ENTRY_FOCUS_OUT] = g_signal_new("entry-focus-out",
+                                                  type,
                                                   G_SIGNAL_RUN_LAST,
                                                   G_STRUCT_OFFSET(GtkSheetClass, focus_out_event),
                                                   NULL, NULL,
@@ -2615,7 +2623,7 @@ _gtk_sheet_class_init_signals(GtkObjectClass *object_class,
      * Since: 3.0.1
      */
     sheet_signals[ENTRY_POPULATE_POPUP] = g_signal_new("populate-popup",
-                                                       G_TYPE_FROM_CLASS(object_class),
+                                                       type,
                                                        G_SIGNAL_RUN_LAST,
                                                        0,
                                                        NULL, NULL,
@@ -2633,12 +2641,13 @@ _gtk_sheet_class_init_signals(GtkObjectClass *object_class,
      * Emited when scroll adjustments are set.
      */
     widget_class->set_scroll_adjustments_signal = g_signal_new("set-scroll-adjustments",
-                                                               G_TYPE_FROM_CLASS(object_class),
+                                                               type,
                                                                G_SIGNAL_RUN_LAST,
                                                                G_STRUCT_OFFSET(GtkSheetClass, set_scroll_adjustments),
                                                                NULL, NULL,
                                                                gtksheet_VOID__OBJECT_OBJECT,
-                                                               G_TYPE_NONE, 2, gtk_adjustment_get_type(),
+                                                               G_TYPE_NONE, 2,
+                                                               gtk_adjustment_get_type(),
                                                                gtk_adjustment_get_type());
 
     /**
@@ -2658,7 +2667,7 @@ _gtk_sheet_class_init_signals(GtkObjectClass *object_class,
      * Since: 3.0.2
      */
     sheet_signals[MOVE_CURSOR] = g_signal_new("move-cursor",
-                                              G_TYPE_FROM_CLASS(object_class),
+                                              type,
                                               G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                                               G_STRUCT_OFFSET(GtkSheetClass, move_cursor),
                                               NULL, NULL,
@@ -2686,13 +2695,12 @@ _gtk_sheet_class_init_signals(GtkObjectClass *object_class,
      *   sheet-entry.
      */
     sheet_signals[ENTER_PRESSED] = g_signal_new("enter-pressed",
-                                                G_TYPE_FROM_CLASS(object_class),
+                                                type,
                                                 G_SIGNAL_RUN_LAST,
                                                 0,
                                                 NULL, NULL,
                                                 gtksheet_BOOLEAN__BOXED,
                                                 G_TYPE_BOOLEAN, 1, GDK_TYPE_EVENT | G_SIGNAL_TYPE_STATIC_SCOPE);
-
 }
 
 static void
@@ -10382,50 +10390,49 @@ gtk_sheet_button_release_handler(GtkWidget *widget, GdkEventButton *event)
     GtkSheet *sheet;
     int x, y;
 
-    sheet = GTK_SHEET(widget);
+    sheet = (GtkSheet*)widget;
 
     /* release on resize windows */
-    if (GTK_SHEET_IN_XDRAG(sheet))
-    {
-	GTK_SHEET_UNSET_FLAGS(sheet, GTK_SHEET_IN_XDRAG);
-	GTK_SHEET_UNSET_FLAGS(sheet, GTK_SHEET_IN_SELECTION);
-	gtk_widget_get_pointer(widget, &x, NULL);
-	gdk_pointer_ungrab(event->time);
-	draw_xor_vline(sheet);
+    if (GTK_SHEET_IN_XDRAG(sheet)) {
+
+      GTK_SHEET_UNSET_FLAGS(sheet, GTK_SHEET_IN_XDRAG);
+      GTK_SHEET_UNSET_FLAGS(sheet, GTK_SHEET_IN_SELECTION);
+      gtk_widget_get_pointer(widget, &x, NULL);
+      gdk_pointer_ungrab(event->time);
+      draw_xor_vline(sheet);
 
 #if GTK_SHEET_DEBUG_SIZE > 0
-	fprintf(stderr,"gtk_sheet_button_release_handler[%d]: set width %d",
-	    sheet->drag_cell.col, new_column_width(sheet, sheet->drag_cell.col, &x));
+      fprintf(stderr,"gtk_sheet_button_release_handler[%d]: set width %d",
+              sheet->drag_cell.col, new_column_width(sheet, sheet->drag_cell.col, &x));
 #endif
-	gtk_sheet_set_column_width(sheet,
-	    sheet->drag_cell.col, new_column_width(sheet, sheet->drag_cell.col, &x));
+      gtk_sheet_set_column_width(sheet,
+                                 sheet->drag_cell.col, new_column_width(sheet, sheet->drag_cell.col, &x));
 
-	sheet->old_hadjustment = -1.;
+      sheet->old_hadjustment = -1.;
 
-	if (sheet->hadjustment)
-	{
-	    g_signal_emit_by_name(G_OBJECT(sheet->hadjustment),  "value_changed");
-	}
-	return (TRUE);
+      if (sheet->hadjustment) {
+        g_signal_emit_by_name(G_OBJECT(sheet->hadjustment),  "value_changed");
+      }
+      return (TRUE);
     }
 
-    if (GTK_SHEET_IN_YDRAG(sheet))
-    {
-	GTK_SHEET_UNSET_FLAGS(sheet, GTK_SHEET_IN_YDRAG);
-	GTK_SHEET_UNSET_FLAGS(sheet, GTK_SHEET_IN_SELECTION);
-	gtk_widget_get_pointer(widget, NULL, &y);
-	gdk_pointer_ungrab(event->time);
-	draw_xor_hline(sheet);
+    if (GTK_SHEET_IN_YDRAG(sheet)) {
 
-	gtk_sheet_set_row_height(sheet, sheet->drag_cell.row,
-	    new_row_height(sheet, sheet->drag_cell.row, &y));
+      GTK_SHEET_UNSET_FLAGS(sheet, GTK_SHEET_IN_YDRAG);
+      GTK_SHEET_UNSET_FLAGS(sheet, GTK_SHEET_IN_SELECTION);
+      gtk_widget_get_pointer(widget, NULL, &y);
+      gdk_pointer_ungrab(event->time);
+      draw_xor_hline(sheet);
 
-	sheet->old_vadjustment = -1.;
-	if (sheet->vadjustment)
-	{
-	    g_signal_emit_by_name(G_OBJECT(sheet->vadjustment), "value_changed");
-	}
-	return (TRUE);
+      gtk_sheet_set_row_height(sheet, sheet->drag_cell.row,
+                               new_row_height(sheet, sheet->drag_cell.row, &y));
+
+      sheet->old_vadjustment = -1.;
+
+      if (sheet->vadjustment) {
+        g_signal_emit_by_name(G_OBJECT(sheet->vadjustment), "value_changed");
+      }
+      return (TRUE);
     }
 
 
@@ -10487,7 +10494,8 @@ gtk_sheet_button_release_handler(GtkWidget *widget, GdkEventButton *event)
 
       if (sheet->state == GTK_STATE_NORMAL)
         sheet->state = GTK_SHEET_RANGE_SELECTED;
-      g_signal_emit(G_OBJECT(sheet), sheet_signals[RESIZE_RANGE], 0,
+
+      g_signal_emit((GObject*)sheet, sheet_signals[RESIZE_RANGE], 0,
                     &sheet->drag_range, &sheet->range);
       gtk_sheet_select_range(sheet, &sheet->range);
     }
