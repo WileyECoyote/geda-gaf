@@ -1,7 +1,13 @@
 2017-04-30 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/gschem_main_window.h: Change arguments to geometry_restore,
+      geometry_save, and restore_position class members to type GtkWidget,
+      GtkWindow, and GtkWindow respectively.
+
     * src/base/gschem_main_window.c: Revise gschem_main_window_new to return
-      a pointer to GtkWindow instead of a GschemMainWindow.
+      a pointer to GtkWindow instead of a GschemMainWindow.  Eliminate local
+      GtkWindow variable in gschem_main_window_restore_position and gschem_
+      main_window_geometry_save.
 
 2017-04-28 Wiley E. Hill <wileyhill@gmail.com>
 

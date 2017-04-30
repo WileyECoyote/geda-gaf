@@ -211,11 +211,10 @@ static void gschem_main_show (GtkWidget *widget)
  *  \param [in] main_window The #GschemMainWindow to restore position.
  */
 static void
-gschem_main_window_restore_position (GschemMainWindow *main_window)
+gschem_main_window_restore_position (GtkWindow *main_window)
 {
   EdaConfig  *cfg;
   GError     *err;
-  GtkWindow  *window;
   const char *group;
 
   int  x, y;
@@ -224,7 +223,6 @@ gschem_main_window_restore_position (GschemMainWindow *main_window)
   cfg      = eda_config_get_user_context();
   err      = NULL;
   group    = WINDOW_CONFIG_GROUP;
-  window   = GTK_WINDOW(main_window);
   xy_error = FALSE;
 
   geda_log_v(_("Retrieving main window position.\n"));
@@ -243,10 +241,10 @@ gschem_main_window_restore_position (GschemMainWindow *main_window)
   }
 
   if (xy_error) {
-    gtk_window_set_position(window, GTK_WIN_POS_CENTER);
+    gtk_window_set_position(main_window, GTK_WIN_POS_CENTER);
   }
   else {
-    gtk_window_move (window, x, y);
+    gtk_window_move (main_window, x, y);
   }
 
 #if DEBUG_MAIN_WINDOW
@@ -262,7 +260,7 @@ gschem_main_window_restore_position (GschemMainWindow *main_window)
  *  \param [in] main_window  The #GschemMainWindow to restore geometry.
  */
 static void
-gschem_main_window_geometry_restore (GschemMainWindow *main_window)
+gschem_main_window_geometry_restore (GtkWidget *main_window)
 {
   EdaConfig  *cfg;
   GError     *err;
@@ -299,7 +297,7 @@ gschem_main_window_geometry_restore (GschemMainWindow *main_window)
     height = DEFAULT_WINDOW_HEIGHT;
   }
 
-  gschem_main_window_set_size((GtkWidget*)main_window, width, height);
+  gschem_main_window_set_size(main_window, width, height);
 
 #if DEBUG_MAIN_WINDOW
   fprintf(stderr, "%s width=%d, height=%d\n", __func__, width, height);
@@ -313,19 +311,17 @@ gschem_main_window_geometry_restore (GschemMainWindow *main_window)
  *  \param [in] main_window The #GschemMainWindow Dialog to save the geometry.
  */
 static void
-gschem_main_window_geometry_save (GschemMainWindow *main_window)
+gschem_main_window_geometry_save (GtkWindow *main_window)
 {
   EdaConfig *cfg;
   char      *group;
-  GtkWindow *window;
   int x, y, width, height;
 
   cfg    = eda_config_get_user_context ();
   group  = WINDOW_CONFIG_GROUP;
-  window = GTK_WINDOW(main_window);
 
-  gtk_window_get_position (window, &x, &y);
-  gtk_window_get_size (window, &width, &height);
+  gtk_window_get_position (main_window, &x, &y);
+  gtk_window_get_size (main_window, &width, &height);
 
   /* Save the Window Geometry data */
   eda_config_set_integer (cfg, group, "window-x-position", x);

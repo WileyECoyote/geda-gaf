@@ -49,9 +49,9 @@ struct _GschemMainWindowClass
   GtkWindowClass parent_class;
 
   /* Main Window signals */
-  void (* geometry_restore) (GschemMainWindow *main_window);
-  void (* geometry_save)    (GschemMainWindow *main_window);
-  void (* restore_position) (GschemMainWindow *main_window);
+  void (* geometry_restore) (GtkWidget *main_window);
+  void (* geometry_save)    (GtkWindow *main_window);
+  void (* restore_position) (GtkWindow *main_window);
 };
 
 struct _GschemMainWindow
