@@ -863,7 +863,7 @@ GtkWidget* x_dialog_array_edit_constructor (GschemToplevel *w_current)
   }
 
   Dialog = gschem_dialog_new_empty(_("Create Array"),
-                                   GTK_WINDOW(w_current->main_window),
+                                   w_current->main_window,
   /* nonmodal Editing Dialog */    GSCHEM_MODELESS_DIALOG,
                                    IDS_ARRAY_EDIT, w_current);
 
@@ -1161,8 +1161,7 @@ void x_dialog_array_edit(GschemToplevel *w_current)
     Dialog = x_dialog_array_edit_constructor(w_current);
 
     gtk_window_set_position(GTK_WINDOW (Dialog), GTK_WIN_POS_MOUSE);
-    gtk_window_set_transient_for (GTK_WINDOW(Dialog),
-                                  GTK_WINDOW(w_current->main_window));
+    gtk_window_set_transient_for (GTK_WINDOW(Dialog), w_current->main_window);
 
     w_current->cawindow = Dialog;
     gtk_widget_show (Dialog);

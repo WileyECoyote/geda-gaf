@@ -550,7 +550,7 @@ void snap_size_dialog (GschemToplevel *w_current)
     GtkWidget *vbox;
 
     Dialog = gschem_dialog_new_with_buttons(_("Snap Size"),
-                                            GTK_WINDOW(w_current->main_window),
+                                            w_current->main_window,
                                             GTK_DIALOG_MODAL,
                                             IDS_SNAP_SIZE,
                                             w_current,
@@ -662,7 +662,7 @@ void text_size_dialog (GschemToplevel *w_current)
     GtkWidget *text_size;
 
     Dialog = gschem_dialog_new_with_buttons(_("Text Size"),
-                                            GTK_WINDOW(w_current->main_window),
+                                            w_current->main_window,
                                             GTK_DIALOG_MODAL,
                                             IDS_TEXT_SIZE, w_current,
                                             GTK_STOCK_CANCEL,
@@ -920,7 +920,7 @@ void x_dialog_edit_arc_angle (GschemToplevel *w_current, GedaObject *arc_object)
     GtkWidget *radius, *spin_start, *spin_sweep;
 
     Dialog = gschem_dialog_new_with_buttons(_("Arc Parameters"),
-                                            GTK_WINDOW(w_current->main_window),
+                                            w_current->main_window,
                                             GSCHEM_MODELESS_DIALOG,
                                             IDS_ARC_ANGLE, w_current,
                                             GTK_STOCK_CLOSE, GEDA_RESPONSE_REJECT,
@@ -1601,7 +1601,7 @@ GtkWidget *x_dialog_fill_type_create_dialog(GschemToplevel *w_current)
 
   fill_type_data *fill_data;
   Dialog = gschem_dialog_new_with_buttons(_("Edit Fill Type"),
-                                          GTK_WINDOW(w_current->main_window),
+                                          w_current->main_window,
          /* nonmodal Editing Dialog */    GSCHEM_MODELESS_DIALOG,
                                           IDS_FILL_TYPE, w_current,
                                           GTK_STOCK_CLOSE, GEDA_RESPONSE_REJECT,
@@ -1720,7 +1720,7 @@ void x_dialog_edit_fill_type(GschemToplevel *w_current)
     gtk_window_set_position(GTK_WINDOW (Dialog), GTK_WIN_POS_MOUSE);
 
     gtk_window_set_transient_for (GTK_WINDOW(Dialog),
-                                  GTK_WINDOW(w_current->main_window));
+                                  w_current->main_window);
 
     w_current->hpwindow = Dialog;
     gtk_widget_show_all (Dialog);
@@ -2181,7 +2181,7 @@ GtkWidget *x_dialog_line_type_create_dialog(GschemToplevel *w_current)
   line_type_data *line_data;
 
   Dialog = gschem_dialog_new_with_buttons(_("Edit Line Width & Type"),
-                                          GTK_WINDOW(w_current->main_window),
+                                          w_current->main_window,
          /* nonmodal Editing Dialog */    GSCHEM_MODELESS_DIALOG,
                                           IDS_LINE_TYPE, w_current,
                                           GTK_STOCK_CLOSE, GEDA_RESPONSE_REJECT,
@@ -2295,7 +2295,7 @@ void x_dialog_edit_line_type (GschemToplevel *w_current)
     gtk_window_set_position(GTK_WINDOW (Dialog), GTK_WIN_POS_MOUSE);
 
     gtk_window_set_transient_for (GTK_WINDOW(Dialog),
-                                  GTK_WINDOW(w_current->main_window));
+                                  w_current->main_window);
 
     w_current->ltwindow = Dialog;
     gtk_widget_show_all (Dialog);
@@ -2467,7 +2467,7 @@ void x_dialog_find_text(GschemToplevel *w_current)
     GtkWidget  *label;
 
     ThisDialog = gschem_dialog_new_with_buttons(_("Find Text"),
-                            GTK_WINDOW(w_current->main_window),
+                            w_current->main_window,
        /* nonmodal Editing Dialog */    GSCHEM_MODELESS_DIALOG,
                                       IDS_FIND_TEXT, w_current,
                           GTK_STOCK_CLOSE, GEDA_RESPONSE_REJECT,
@@ -2594,7 +2594,7 @@ void x_dialog_hide_text(GschemToplevel * w_current)
     GtkWidget *vbox;
 
     ThisDialog = gschem_dialog_new_with_buttons(_("Hide Text"),
-                            GTK_WINDOW(w_current->main_window),
+                            w_current->main_window,
       /* nonmodal Editing Dialog */     GSCHEM_MODELESS_DIALOG,
                                         IDS_HIDE_TEXT, w_current,
                             GTK_STOCK_CLOSE, GEDA_RESPONSE_REJECT,
@@ -2703,7 +2703,7 @@ void x_dialog_show_text(GschemToplevel * w_current)
     GtkWidget *vbox;
 
     ThisDialog = gschem_dialog_new_with_buttons(_("Show Text"),
-                            GTK_WINDOW(w_current->main_window),
+                            w_current->main_window,
        /* nonmodal Editing Dialog */    GSCHEM_MODELESS_DIALOG,
                                       IDS_SHOW_TEXT, w_current,
                           GTK_STOCK_CLOSE, GEDA_RESPONSE_REJECT,
@@ -2847,7 +2847,7 @@ void x_dialog_text_input (GschemToplevel *w_current)
     int real_tab_width;
 
     ThisDialog = gschem_dialog_new_with_buttons(_("Text Entry..."),
-                                GTK_WINDOW(w_current->main_window),
+                                w_current->main_window,
            /* nonmodal Editing Dialog */    GSCHEM_MODELESS_DIALOG,
                                          IDS_TEXT_INPUT, w_current,
                               GTK_STOCK_CLOSE, GEDA_RESPONSE_REJECT,
@@ -2994,7 +2994,7 @@ void x_dialog_translate (GschemToplevel *w_current)
     zoom_tip  = _("Automatically zoom to the new extents after translation");
 
     ThisDialog = gschem_dialog_new_with_buttons(_("Translate"),
-                            GTK_WINDOW(w_current->main_window),
+                            w_current->main_window,
                                               GTK_DIALOG_MODAL,
                                       IDS_TRANSLATE, w_current,
                                               GTK_STOCK_CANCEL,
@@ -3196,7 +3196,7 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
                                         "hotkey-show-bind", NULL);
 
     ThisDialog = gschem_dialog_new_empty (_("Hotkeys"),
-                                           GTK_WINDOW(w_current->main_window),
+                                           w_current->main_window,
          /* nonmodal Editing Dialog */     GSCHEM_MODELESS_DIALOG,
                                            IDS_HOTKEYS, w_current);
 
@@ -3651,7 +3651,7 @@ void x_dialog_symbol_changed(GschemToplevel *w_current)
       GtkWidget *dialog;
       GtkWidget *close_butt;
 
-      dialog = gtk_message_dialog_new ((GtkWindow*) w_current->main_window,
+      dialog = gtk_message_dialog_new (w_current->main_window,
                                        GTK_DIALOG_DESTROY_WITH_PARENT,
                                        GEDA_MESSAGE_INFO,
                                        GTK_BUTTONS_NONE,
@@ -3659,10 +3659,9 @@ void x_dialog_symbol_changed(GschemToplevel *w_current)
 
       xd_add_changed_symbol_list (w_current, GTK_MESSAGE_DIALOG(dialog));
 
-      gtk_window_set_position(GTK_WINDOW (dialog), GTK_WIN_POS_MOUSE);
+      gtk_window_set_position(GTK_WINDOW(dialog), GTK_WIN_POS_MOUSE);
 
-      gtk_window_set_transient_for (GTK_WINDOW (dialog),
-                                    GTK_WINDOW (w_current->main_window));
+      gtk_window_set_transient_for (GTK_WINDOW(dialog), w_current->main_window);
 
       /* Add the Close button to dialog action area */
       close_butt = gtk_button_new_from_stock ("gtk-close");

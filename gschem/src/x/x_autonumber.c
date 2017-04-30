@@ -1692,7 +1692,7 @@ GtkWidget *autonumber_create_dialog(GschemToplevel  *w_current,
   GtkWidget *lower_vbox;
 
   ThisDialog = gschem_dialog_new_with_buttons(_("Autonumber text"),
-                                              (GtkWindow*)w_current->main_window,
+                                              w_current->main_window,
             /* modal-less */                  GSCHEM_MODELESS_DIALOG,
                                               IDS_AUTONUMBER,
                                               w_current,

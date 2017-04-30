@@ -470,7 +470,7 @@ void x_dialog_coord_dialog (GschemToplevel *w_current)
     char      *world_name;
 
     ThisDialog = gschem_dialog_new_with_buttons(_("Coordinates"),
-                         GTK_WINDOW(w_current->main_window),
+                                     w_current->main_window,
                                      GSCHEM_MODELESS_DIALOG,
                                  IDS_COORDINATES, w_current,
                        GTK_STOCK_CLOSE, GEDA_RESPONSE_REJECT,

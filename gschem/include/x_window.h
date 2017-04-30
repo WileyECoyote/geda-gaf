@@ -34,7 +34,8 @@
 #ifndef __X_WINDOW_H__
 #define __X_WINDOW_H__
 
-#define MainWindow  w_current->main_window
+#define MainWindow  (GtkWindow*)w_current->main_window
+#define MainWidget  (GtkWidget*)w_current->main_window
 #define DrawingArea w_current->drawing_area
 
 #define HorizontalScroll       w_current->h_scrollbar

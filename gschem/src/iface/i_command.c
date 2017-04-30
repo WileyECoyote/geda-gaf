@@ -569,7 +569,7 @@ COMMAND (do_debug)
   const char *complete = "Test complete, resumming normal mode\n";
   //const char *linefeed = "\n";
 
-  gtk_window_resize (GTK_WINDOW(w_current->main_window), 1092, 924);
+  gtk_window_resize (w_current->main_window, 1092, 924);
 
   /* Get ptr to the current page */
   p_current  = gschem_toplevel_get_current_page(w_current);

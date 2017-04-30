@@ -1358,7 +1358,7 @@ x_window_update_title(GschemToplevel *w_current)
       }
     }
 
-    window = GTK_WINDOW(w_current->main_window);
+    window = w_current->main_window;
 
     curr_title = gtk_window_get_title (window);
 

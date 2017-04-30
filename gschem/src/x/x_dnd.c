@@ -422,7 +422,7 @@ x_dnd_receive_string_sym (GschemToplevel *w_current, int x, int y,
       else {
         /* If the current page is not a sym, then insert symbol*/
         if (!geda_struct_page_is_symbol_file(page)) {
-          gtk_window_present(GTK_WINDOW(w_current->main_window));
+          gtk_window_present(w_current->main_window);
           o_redraw_cleanstates    (w_current);
           o_complex_start (w_current, symbol, COPYMODE);
           i_status_show_msg(w_current, "Place object");
@@ -591,7 +591,7 @@ x_dnd_receive_objects(GschemToplevel  *w_current, int x, int y, const char *buff
       result = FALSE;
     }
     else {
-      gtk_window_present(GTK_WINDOW(w_current->main_window));
+      gtk_window_present(w_current->main_window);
       result = TRUE;
     }
   }

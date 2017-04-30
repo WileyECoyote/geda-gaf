@@ -153,7 +153,7 @@ void x_dialog_edit_color (GschemToplevel *w_current)
     GtkWidget *vbox;
 
     Dialog = gschem_dialog_new_with_buttons(_("Color Edit"),
-                                            GTK_WINDOW(w_current->main_window),
+                                            w_current->main_window,
            /* nonmodal Editing Dialog */    GSCHEM_MODELESS_DIALOG,
                                             IDS_COLOR_EDIT, w_current,
                                             GTK_STOCK_CLOSE, GEDA_RESPONSE_REJECT,
@@ -183,8 +183,7 @@ void x_dialog_edit_color (GschemToplevel *w_current)
 
     GEDA_HOOKUP_OBJECT(Dialog, optionmenu, IDS_COLOR_EDIT);
 
-    gtk_window_set_transient_for (GTK_WINDOW(Dialog),
-                                  GTK_WINDOW(w_current->main_window));
+    gtk_window_set_transient_for (GTK_WINDOW(Dialog), w_current->main_window);
 
     g_signal_connect (G_OBJECT (Dialog), "response",
                       G_CALLBACK (x_dialog_edit_color_response),

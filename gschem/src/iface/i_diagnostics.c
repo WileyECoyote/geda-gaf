@@ -108,7 +108,7 @@ static void i_diagnostics_grind_dump_redraw(GschemToplevel *w_current)
 {
   GdkWindow *window;
 
-  gtk_window_present (GTK_WINDOW(w_current->main_window));
+  gtk_window_present (w_current->main_window);
   gdk_display_flush(gdk_display_get_default());
 
   window = geda_get_widget_window(w_current->main_window);
@@ -142,7 +142,7 @@ static float i_diagnostics_test_draw_time(GschemToplevel *w_current, int attempt
   gdk_display_flush(display);
   gdk_display_sync (display);
 
-  gtk_window_present (GTK_WINDOW(w_current->main_window));
+  gtk_window_present (w_current->main_window);
 
   window = geda_get_widget_window(w_current->main_window);
   gdk_window_process_updates(window, TRUE);
@@ -302,7 +302,7 @@ int gschem_diagnostics_dialog (GschemToplevel *w_current)
   gschem_threads_enter();
 
   dialog =  gtk_dialog_new_with_buttons ("GSCHEM Internal Diagnostics",
-                                         (GtkWindow*) w_current->main_window,
+                                         w_current->main_window,
                                          GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
                                          "Thread Tests", RUN_THREAD_TESTS,
                                          "Redraw Tests", RUN_REDRAW_TESTS,

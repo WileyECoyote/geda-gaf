@@ -447,8 +447,9 @@ void x_dialog_edit_text (GschemToplevel *w_current, GedaObject *text_object)
     rotation_tip      = _TOOLTIP(Rotation);
 
     ThisDialog = gschem_dialog_new_with_buttons(_("Edit Text Properties"),
-                                                GTK_WINDOW(w_current->main_window),
-                                                /* nonmodal Editing Dialog */              GSCHEM_MODELESS_DIALOG,
+                                                w_current->main_window,
+                                                /* nonmodal Editing Dialog */
+                                                GSCHEM_MODELESS_DIALOG,
                                                 IDS_TEXT_EDIT, w_current,
                                                 GTK_STOCK_CLOSE, GEDA_RESPONSE_REJECT,
                                                 GTK_STOCK_APPLY, GEDA_RESPONSE_ACCEPT,

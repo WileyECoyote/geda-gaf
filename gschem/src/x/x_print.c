@@ -718,8 +718,7 @@ void x_print_setup (GschemToplevel *w_current, char *filename)
 
   gtk_dialog_set_default_response(GTK_DIALOG(dialog),
                                   GEDA_RESPONSE_ACCEPT);
-  gtk_window_set_transient_for(GTK_WINDOW(dialog),
-                               GTK_WINDOW(w_current->main_window));
+  gtk_window_set_transient_for(GTK_WINDOW(dialog), w_current->main_window);
 
   result = gtk_dialog_run (dialog);
 
@@ -1214,7 +1213,7 @@ void x_print (GschemToplevel *w_current)
                     w_current);
 
   res = gtk_print_operation_run (print, GTK_PRINT_OPERATION_ACTION_PRINT_DIALOG,
-                                 GTK_WINDOW (w_current->main_window), &err);
+                                 w_current->main_window, &err);
 
   if (res == GTK_PRINT_OPERATION_RESULT_ERROR) {
 

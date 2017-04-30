@@ -1154,7 +1154,7 @@ GtkWidget* x_dialog_edit_properties_constructor (GschemToplevel *w_current)
   const char *mname_tip      = "Name of the model for this component";
 
   dialog = gschem_dialog_new_empty(_("Edit Component Properties"),
-                                          GTK_WINDOW(w_current->main_window),
+                                          w_current->main_window,
          /* nonmodal Editing Dialog */    GSCHEM_MODELESS_DIALOG,
                                           IDS_PROP_EDIT, w_current);
 
@@ -1595,8 +1595,7 @@ void x_dialog_edit_properties(GschemToplevel *w_current, GedaObject *o_current)
     dialog = x_dialog_edit_properties_constructor(w_current);
 
     gtk_window_set_position(GTK_WINDOW (dialog), GTK_WIN_POS_MOUSE);
-    gtk_window_set_transient_for (GTK_WINDOW(dialog),
-                                  GTK_WINDOW(w_current->main_window));
+    gtk_window_set_transient_for (GTK_WINDOW(dialog), w_current->main_window);
 
     w_current->prwindow = dialog;
     gtk_widget_show (dialog);

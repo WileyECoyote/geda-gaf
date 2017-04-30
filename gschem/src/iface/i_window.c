@@ -380,7 +380,7 @@ void i_window_set_pointer_position (GschemToplevel *w_current, int wx, int wy)
 {
   int sx, sy;
 
-  gtk_window_present (GTK_WINDOW(w_current->main_window));
+  gtk_window_present (w_current->main_window);
 
   WORLDtoSCREEN (w_current,  wx, wy, &sx, &sy);
 

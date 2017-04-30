@@ -160,7 +160,7 @@ x_dialog_edit_slot (GschemToplevel *w_current, const char *slots, const char *sl
     GtkWidget *vbox;
 
     ThisDialog = gschem_dialog_new_with_buttons(_("Edit slot number"),
-                                   GTK_WINDOW(w_current->main_window),
+                                               w_current->main_window,
           /* nonmodal Editing ThisDialog */    GSCHEM_MODELESS_DIALOG,
                                              IDS_SLOT_EDIT, w_current,
                                  GTK_STOCK_CLOSE, GEDA_RESPONSE_REJECT,

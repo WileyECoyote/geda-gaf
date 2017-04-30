@@ -178,7 +178,7 @@ void x_guile_dialog (GschemToplevel *w_current)
   GEDA_FREE(guile_ver);
 
   ThisDialog = gschem_dialog_new_with_buttons(title,
-                                              GTK_WINDOW(w_current->main_window),
+                                              w_current->main_window,
                                               GTK_DIALOG_MODAL,
                                               "x-guile", w_current,
                                               GTK_STOCK_CANCEL,

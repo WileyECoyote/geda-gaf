@@ -43,7 +43,7 @@
  * Why:  This Macro facilitate creating new Dialog Boxes.
 */
 #define NEW_STD_GSCHEM_DIALOG(title, identifier, ptrWindowWidget) \
-      gschem_dialog_new_empty(title, GTK_WINDOW(w_current->main_window), \
+      gschem_dialog_new_empty(title, w_current->main_window, \
                                      GTK_DIALOG_MODAL, identifier, ptrWindowWidget)
 
 /* Date: Aug 12, 2012
@@ -52,8 +52,8 @@
  * Why:  This Macro facilitate creating new Dialog Boxes.
 */
 #define NEW_GSCHEM_DIALOG(title, flags, identifier, ptrWindowWidget) \
-  gschem_dialog_new_empty(title, GTK_WINDOW(w_current->main_window), \
-                                  flags, identifier, ptrWindowWidget);
+  gschem_dialog_new_empty(title, w_current->main_window, \
+                                 flags, identifier, ptrWindowWidget);
 
 /* String for storing Selection data in Mode-less Editing Dialogs */
 #define DIALOG_SELECTION_TRACKER "selection-tracker"

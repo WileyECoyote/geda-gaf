@@ -429,7 +429,7 @@ attrib_edit_dialog (GschemToplevel *w_current, GedaObject *object, int flag)
     }
 
     ThisDialog = gschem_dialog_new_with_buttons(_("Single Attribute Editor"),
-                                                GTK_WINDOW(w_current->main_window),
+                                                w_current->main_window,
                                                 dialog_flags,
                                                 IDS_SINGLE_ATTRIR, w_current,
                                                 GTK_STOCK_CLOSE, GEDA_RESPONSE_REJECT,

@@ -667,7 +667,7 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
 
   /* Create the dialog */
   ThisDialog = geda_image_chooser_dialog_new_full (_("Write image..."),
-                                            GTK_WINDOW(w_current->main_window),
+                                            w_current->main_window,
                                             FILE_CHOOSER_ACTION_SAVE,
                                             GTK_STOCK_CANCEL, GEDA_RESPONSE_CANCEL,
                                             GTK_STOCK_SAVE,   GEDA_RESPONSE_ACCEPT,

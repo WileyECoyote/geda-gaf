@@ -437,7 +437,7 @@ pagesel_callback_button_pressed (GtkWidget      *widget,
   if (event->type == GDK_BUTTON_PRESS) {
     if (event->button == 2) {
       GschemToplevel *w_current = GSCHEM_DIALOG(pagesel)->w_current;
-      gtk_window_present(GTK_WINDOW(w_current->main_window));
+      gtk_window_present(w_current->main_window);
       ret_val = FALSE;
     }
     else if (event->button == 3) {
