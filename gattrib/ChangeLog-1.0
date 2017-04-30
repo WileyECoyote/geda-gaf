@@ -8,6 +8,9 @@
       get GtkSheet type using gtk_sheet_get_type, instead of G_TYPE_FROM_CLASS
       and reuse for all 20 new signals.
 
+    * src/x_dialog.c: Revise x_dialog_generic_confirm_dialog to just return the
+      result of the conditional and eliminate the if/else.
+
 2017-04-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtkitementry.c: Change 1st _item_entry_get_widget_window_size

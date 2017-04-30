@@ -65,7 +65,6 @@ void generic_msg_dialog (const char *msg)
 /***************** Start of generic confirm dialog box *******************/
 
 /*! \brief Generic Confirmation Dialog
- *
  *  \par Function Description
  *       Display a basic dialog with okay/cancel buttons
  *
@@ -73,12 +72,11 @@ void generic_msg_dialog (const char *msg)
  *  \param type   The context type of the message
  *
  *  \returns True if user select OKAY, False if user select CANCEL
- *
  */
 bool x_dialog_generic_confirm_dialog (const char *msg, int type)
 {
   GtkWidget *dialog;
-  int r;
+  int response;
 
   dialog = gtk_message_dialog_new (NULL,
                                    GTK_DIALOG_MODAL |
@@ -87,17 +85,13 @@ bool x_dialog_generic_confirm_dialog (const char *msg, int type)
                                    GTK_BUTTONS_OK_CANCEL,
                                    "%s", msg);
 
-  r = gtk_dialog_run (GTK_DIALOG (dialog));
+  response = gtk_dialog_run ((GtkDialog*)dialog);
   gtk_widget_destroy (dialog);
 
-  if (r ==  GEDA_RESPONSE_OK)
-    return 1;
-  else
-    return 0;
+  return (response == GEDA_RESPONSE_OK);
 }
 
 /*! \brief Add new attribute dialog.
- *
  * This asks for the name of the attrib column to insert
  * and then inserts the column.
  */
