@@ -27,7 +27,7 @@
 #include <gschem.h>
 #include <libguile.h>             /* for doxygen */
 #include <i_actions.h>
-
+#include <x_window.h>
 #include <geda_debug.h>
 
 #include <geda_keysyms.h>
@@ -457,7 +457,7 @@ int g_keys_execute(GschemToplevel *w_current, GdkEventKey *event)
   g_return_val_if_fail (w_current != NULL, 0);
   g_return_val_if_fail (event != NULL, 0);
 
-  display = gtk_widget_get_display (w_current->main_window);
+  display = gtk_widget_get_display (MainWidget);
   keymap = gdk_keymap_get_for_display (display);
 
   /* Figure out what modifiers went into determining the key symbol */

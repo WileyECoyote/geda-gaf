@@ -312,7 +312,7 @@ x_window_restore_settings(GschemToplevel *w_current)
   i_window_set_cursor(w_current, pointer_id);
 
   if (!iconify_main_window) {
-    gtk_window_deiconify ((GtkWindow*)MainWindow);
+    gtk_window_deiconify (MainWindow);
   }
 }
 
@@ -374,18 +374,18 @@ x_window_create_main(GschemToplevel *w_current)
    * override this.  Hence "auto_place_mode".
    */
   if (auto_place_mode) {
-    gtk_widget_set_uposition (MainWindow, 10, 10);
+    gtk_widget_set_uposition (MainWidget, 10, 10);
   }
 
   /* delete_event is sent of close with the X in the window */
-  g_signal_connect (G_OBJECT (MainWindow), "delete_event",
+  g_signal_connect (MainWindow, "delete_event",
                     G_CALLBACK (i_callback_close_wm),
                     w_current);
 
   /* Containers first */
   main_box = gtk_vbox_new(FALSE, 1);
   g_object_set (main_box, "border-width", 0, NULL);
-  gtk_container_add(GTK_CONTAINER(MainWindow), main_box);
+  gtk_container_add((GtkContainer*)MainWindow, main_box);
   g_object_set (main_box, "visible", TRUE, NULL);
 
   /* Main Menu */
@@ -396,19 +396,19 @@ x_window_create_main(GschemToplevel *w_current)
       GtkWidget *handlebox;
 
       handlebox = gtk_handle_box_new ();
-      gtk_box_pack_start(GTK_BOX(main_box), handlebox, FALSE, FALSE, 0);
-      gtk_container_add (GTK_CONTAINER (handlebox), menubar);
+      gtk_box_pack_start((GtkBox*)main_box, handlebox, FALSE, FALSE, 0);
+      gtk_container_add ((GtkContainer*)handlebox, menubar);
       g_object_set (handlebox, "visible", TRUE, NULL);
     }
     else {
-      gtk_container_add(GTK_CONTAINER(main_box), menubar);
+      gtk_container_add((GtkContainer*)main_box, menubar);
     }
     g_object_set (menubar, "visible", TRUE, NULL);
   }
 
   x_menu_set_togglable(w_current, RESET_TOGGLERS, 0);
 
-  gtk_widget_realize (MainWindow);
+  gtk_widget_realize (MainWidget);
   /* End Main Menu */
 
   if (w_current->toolbars) {
@@ -514,9 +514,9 @@ x_window_create_main(GschemToplevel *w_current)
   /* Iconize the main window until after the size and position have been
    * restored, otherwise the main window visibly changes sizes and this
    * does not look so good */
-  gtk_window_iconify ((GtkWindow*)MainWindow);
+  //gtk_window_iconify ((GtkWindow*)MainWindow);
 
-  gtk_widget_show(MainWindow);
+  gtk_widget_show(MainWidget);
 
   /*! The preceeding "show" used to be "show_all", which revealed Everything,
    *  including somethings we did't want to show. These had to be turned-off
@@ -541,7 +541,7 @@ x_window_create_main(GschemToplevel *w_current)
 
   x_window_setup_context(w_current);
 
-  gschem_main_window_update(MainWindow);
+  gschem_main_window_update(MainWidget);
 }
 
 /*! \brief Close All Edit Dialogs
@@ -672,7 +672,7 @@ x_window_close(GschemToplevel *w_current)
                                         w_current);
 
   /* finally close the main window */
-  gtk_widget_destroy(MainWindow);
+  gtk_widget_destroy(MainWidget);
 
   global_window_list = g_list_remove (global_window_list, w_current);
 

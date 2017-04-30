@@ -4,6 +4,9 @@
       geometry_save, and restore_position class members to type GtkWidget,
       GtkWindow, and GtkWindow respectively.
 
+    * include/x_window.h: Revise macro MainWindow to include cast to GtkWindow
+      and add macro MainWidget with main_window cast to a GtkWidget.
+
     * src/base/gschem_main_window.c: Revise gschem_main_window_new to return
       a pointer to GtkWindow instead of a GschemMainWindow.  Eliminate local
       GtkWindow variable in gschem_main_window_restore_position and gschem_

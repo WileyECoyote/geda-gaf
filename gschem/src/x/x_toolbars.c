@@ -48,6 +48,7 @@
 
 #include "../../include/x_menus.h"
 #include "../../include/x_toolbars.h"
+#include "../../include/x_window.h"
 #include "../../include/i_actions.h"
 
 #include "../../../include/geda_debug.h"
@@ -309,8 +310,8 @@ static GtkWidget *get_pixmap(GschemToplevel *w_current, const char *name)
       GtkStyle  *style;
       GdkWindow *window;
 
-      window   = gschem_main_window_get_window (w_current->main_window);
-      style    = gschem_main_window_get_style (w_current->main_window);
+      window   = gschem_main_window_get_window (MainWidget);
+      style    = gschem_main_window_get_style (MainWidget);
       bg_color = &style->bg[GTK_STATE_NORMAL];
       pixmap   = gdk_pixmap_create_from_xpm (window, &mask, bg_color, filename);
 
