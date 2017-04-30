@@ -45,7 +45,7 @@
  *
  * \returns True of dialog accepted input, false if the user cancels.
  */
-bool x_fileselect ( char* filename )
+bool x_fileselect (char *filename)
 {
   GtkWidget *dialog;
   char      *cwd;
@@ -200,13 +200,13 @@ GSList *x_fileselect_open (void)
 
   geda_file_chooser_set_filter(dialog, FILTER_SCHEMATIC);
 
-  if (gtk_dialog_run (GTK_DIALOG(dialog)) == GEDA_RESPONSE_ACCEPT) {
+  if (gtk_dialog_run ((GtkDialog*)dialog) == GEDA_RESPONSE_ACCEPT) {
 
     filenames = geda_file_chooser_get_filenames (dialog);
 
     for (ptrname = filenames; ptrname != NULL; ptrname = ptrname->next)
     {
-      char *filename = (char*)ptrname->data;
+      char *filename = ptrname->data;
 
       gtk_recent_manager_add_item (recent_manager,
                                    g_filename_to_uri(filename,
@@ -214,6 +214,6 @@ GSList *x_fileselect_open (void)
     }
   }
 
-  gtk_widget_destroy (GTK_WIDGET(dialog));
+  gtk_widget_destroy (dialog);
   return filenames;
 }
