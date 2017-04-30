@@ -2443,40 +2443,41 @@ gtk_item_entry_new_with_max_length(int max)
  * Sets the text in the widget to the given value, replacing the current contents.
  */
 void
-gtk_item_entry_set_text(GtkItemEntry    *entry,
+gtk_item_entry_set_text(GtkItemEntry    *item_entry,
                         const char      *text,
                         GtkJustification justification)
 {
-    g_return_if_fail(GTK_IS_ITEM_ENTRY(entry));
+    g_return_if_fail(GTK_IS_ITEM_ENTRY(item_entry));
     g_return_if_fail(text != NULL);
 
-    entry->justification = justification;
+    GtkEntry *entry = (GtkEntry*)item_entry;
+
+    item_entry->justification = justification;
 
     /* Actually setting the text will affect the cursor and selection;
      * if the contents don't actually change, this will look odd to the user.
      */
-    if (GTK_ENTRY(entry)->text && strcmp(GTK_ENTRY(entry)->text, text) == 0)
-    {
+    if (entry->text && strcmp(entry->text, text) == 0) {
       return;
     }
 
-    if (GTK_ENTRY(entry)->recompute_idle) {
-      g_source_remove(GTK_ENTRY(entry)->recompute_idle);
-      GTK_ENTRY(entry)->recompute_idle = 0;
+    if (entry->recompute_idle) {
+      g_source_remove(entry->recompute_idle);
+      entry->recompute_idle = 0;
     }
 
-    if (GTK_ENTRY(entry)->blink_timeout) {
-      g_source_remove(GTK_ENTRY(entry)->blink_timeout);
-      GTK_ENTRY(entry)->blink_timeout = 0;
+    if (entry->blink_timeout) {
+      g_source_remove(entry->blink_timeout);
+      entry->blink_timeout = 0;
     }
 
-    gtk_editable_delete_text(GTK_EDITABLE(entry), 0, -1);
+    gtk_editable_delete_text((GtkEditable*)entry, 0, -1);
 
-    entry->item_n_bytes = 0;    // rraptor edited
+    item_entry->item_n_bytes = 0;    // rraptor edited
 
     if (text[0]) {
       int tmp_pos = 0;
-      gtk_editable_insert_text(GTK_EDITABLE(entry), text, -1, &tmp_pos);
+      gtk_editable_insert_text((GtkEditable*)entry, text, -1, &tmp_pos);
     }
 }
 
