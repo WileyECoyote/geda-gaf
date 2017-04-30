@@ -696,14 +696,14 @@ geda_file_chooser_new (void *parent, FileChooserAction chooser_action)
   return widget;
 }
 
-static GtkWidget *
+static GtkWidget*
 geda_file_chooser_dialog_new_valist (const char        *title,
                                      void              *parent,
                                      FileChooserAction  action,
                                      const char        *first_button_text,
                                      va_list            varargs)
 {
-  GtkWidget  *result;
+  GtkDialog  *result;
   const char *button_text = first_button_text;
 
   result = g_object_new (geda_file_chooser_get_type(),
@@ -712,18 +712,18 @@ geda_file_chooser_dialog_new_valist (const char        *title,
                          NULL);
 
   if (parent) {
-    gtk_window_set_transient_for (GTK_WINDOW (result), parent);
+    gtk_window_set_transient_for ((GtkWindow*)result, (GtkWindow*)parent);
   }
 
   while (button_text) {
 
     int response_id = va_arg (varargs, int);
 
-    gtk_dialog_add_button (GTK_DIALOG (result), button_text, response_id);
+    gtk_dialog_add_button (result, button_text, response_id);
     button_text = va_arg (varargs, const char *);
   }
 
-  return result;
+  return (GtkWidget*)result;
 }
 
 /*! \brief Create a New GedaFileChooser specifying Buttons
@@ -739,9 +739,8 @@ geda_file_chooser_dialog_new_valist (const char        *title,
  * \param [in] ... response ID for the first button, then additional (button, id) pairs, ending with %NULL
  *
  * \return a new #GedaFileChooser
- *
  */
-GtkWidget *
+GtkWidget*
 geda_file_chooser_dialog_new_full (const char       *title,
                                    void             *parent,
                                    FileChooserAction action,
@@ -759,13 +758,14 @@ geda_file_chooser_dialog_new_full (const char       *title,
   return result;
 }
 
-/*! \brief Get Geda File Chooser Entry Widget
- *  \par Function Description
+/*!
+ * \brief Get Geda File Chooser Entry Widget
+ * \par Function Description
  *  This function returns a pointer to the internal GtkEntry widget
  *
- *  \param [in] widget The file chooser widget.
+ * \param [in] widget The file chooser widget.
  *
- *  \returns GtkEntry object
+ * \returns GtkEntry object
  */
 GtkEntry *geda_file_chooser_get_entry (GtkWidget *widget)
 {

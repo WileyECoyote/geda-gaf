@@ -1,3 +1,12 @@
+2017-04-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/dialogs/geda_file_chooser.c: Revise geda_file_chooser_dialog_new_valist
+      to use type GtkDialog instead of GtkWidget and then cast the returned result.
+
+    * src/dialogs/geda_image_chooser.c: Revise geda_file_chooser_dialog_new_valist
+      to use type GtkDialog instead of GtkWidget and then cast the returned result.
+      comments.
+
 2017-04-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/dialogs/geda_file_chooser.c: Change parent argument to for functions

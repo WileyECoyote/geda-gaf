@@ -1232,9 +1232,8 @@ geda_image_chooser_dialog_new_valist (const char         *title,
                                       const char         *first_button_text,
                                       va_list             varargs)
 {
-  GtkWidget  *result;
+  GtkDialog  *result;
   const char *button_text = first_button_text;
-
 
   result = g_object_new (geda_image_chooser_get_type(),
                          "title", title,
@@ -1242,25 +1241,24 @@ geda_image_chooser_dialog_new_valist (const char         *title,
                          NULL);
 
   if (parent) {
-    gtk_window_set_transient_for (GTK_WINDOW (result), parent);
+    gtk_window_set_transient_for ((GtkWindow*)result, (GtkWindow*)parent);
   }
 
   while (button_text) {
 
       int response_id = va_arg (varargs, int);
 
-      gtk_dialog_add_button (GTK_DIALOG (result), button_text, response_id);
+      gtk_dialog_add_button (result, button_text, response_id);
       button_text = va_arg (varargs, const char *);
   }
 
-  return result;
+  return (GtkWidget*)result;
 }
 
 /*! \brief Create a New GedaImageChooser specifying Buttons
- *
  *  \par Function Description
- * Creates a new #GedaImageChooser. This function is analogous to
- * gtk_dialog_new_with_buttons().
+ *   Creates a new #GedaImageChooser. This function is analogous to
+ *   gtk_dialog_new_with_buttons().
  *
  * \param [in] title  Title of the dialog, or %NULL
  * \param [in] parent Transient parent of the dialog, or %NULL
@@ -1271,7 +1269,7 @@ geda_image_chooser_dialog_new_valist (const char         *title,
  * \return a new #GedaImageChooser
  *
  */
-GtkWidget *
+GtkWidget*
 geda_image_chooser_dialog_new_full (const char        *title,
                                     void              *parent,
                                     ImageChooserAction action,
