@@ -125,13 +125,6 @@ static GThreadPool  *CommandPool     = NULL;
 static int           is_engaged      = -1;
 static int           last_command    =  0;
 
-static void set_last_command(int value)
-{
-  g_mutex_lock((GMutex*)&i_lock_last_command);
-    last_command = value;
-  g_mutex_unlock((GMutex*)&i_lock_last_command);
-}
-
 static int get_last_command()
 {
   int ret_val;
@@ -139,6 +132,13 @@ static int get_last_command()
     ret_val = last_command;
   g_mutex_unlock((GMutex*)&i_lock_last_command);
   return ret_val;
+}
+
+static void set_last_command(int value)
+{
+  g_mutex_lock((GMutex*)&i_lock_last_command);
+    last_command = value;
+  g_mutex_unlock((GMutex*)&i_lock_last_command);
 }
 
 static bool i_command_dispatch(gschem_task *task)
