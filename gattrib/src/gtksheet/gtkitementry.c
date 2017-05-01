@@ -2345,7 +2345,7 @@ _item_entry_primary_get_cb(GtkClipboard     *clipboard,
     GtkEntry *entry = GTK_ENTRY(data);
     int start, end;
 
-    if (gtk_editable_get_selection_bounds(GTK_EDITABLE(entry), &start, &end))
+    if (gtk_editable_get_selection_bounds((GtkEditable*)entry, &start, &end))
     {
       char *str = gtk_item_entry_get_public_chars(entry, start, end);
       gtk_selection_data_set_text(selection_data, str, -1);
@@ -2358,7 +2358,7 @@ _item_entry_primary_clear_cb(GtkClipboard *clipboard, void *data)
 {
     GtkEntry *entry = GTK_ENTRY(data);
 
-    gtk_editable_select_region(GTK_EDITABLE(entry), entry->current_pos, entry->current_pos);
+    gtk_editable_select_region((GtkEditable*)entry, entry->current_pos, entry->current_pos);
 }
 
 static void
@@ -2503,10 +2503,10 @@ gtk_item_entry_get_layout_offsets(GtkItemEntry *entry, int *x, int *y)
     g_return_if_fail(GTK_IS_ITEM_ENTRY(entry));
 
     /* this gets coords relative to text area */
-    _item_entry_get_layout_position(GTK_ENTRY(entry), x, y);
+    _item_entry_get_layout_position((GtkEntry*)entry, x, y);
 
     /* convert to widget coords */
-    _item_entry_get_text_area_size(GTK_ENTRY(entry), &text_area_x, &text_area_y, NULL, NULL);
+    _item_entry_get_text_area_size((GtkEntry*)entry, &text_area_x, &text_area_y, NULL, NULL);
 
     if (x)
       *x += text_area_x;
@@ -2734,7 +2734,7 @@ gtk_item_entry_set_cursor_visible(GtkItemEntry *entry, _Bool visible)
 {
     g_return_if_fail(GTK_IS_ITEM_ENTRY(entry));
 
-    GTK_ENTRY(entry)->cursor_visible = visible;
+    ((GtkEntry*)entry)->cursor_visible = visible;
 }
 
 /**
@@ -2750,5 +2750,5 @@ gtk_item_entry_get_cursor_visible(GtkItemEntry *entry)
 {
     g_return_val_if_fail(GTK_IS_ITEM_ENTRY(entry), FALSE);
 
-    return GTK_ENTRY(entry)->cursor_visible;
+    return ((GtkEntry*)entry)->cursor_visible;
 }
