@@ -1,3 +1,8 @@
+2017-05-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_gtksheet.c: Change 1st argument from type GtkWidget to GtkSheet
+      and eliminate local GtkSheet variable.
+
 2017-04-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtkitementry.c: Revise gtk_item_entry_set_text; add local

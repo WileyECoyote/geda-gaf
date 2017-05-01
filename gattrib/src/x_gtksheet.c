@@ -293,9 +293,8 @@ static int on_mouse_button_press(GtkWidget *widget,
  *  \param [in] widget is the active sheet widget
  *  \param [in] key    Keyboard Event record
  */
-static int clipboard_handler(GtkWidget *widget, GdkEventKey *key)
+static int clipboard_handler(GtkSheet *sheet, GdkEventKey *key)
 {
-    GtkSheet *sheet = GTK_SHEET(widget);
     bool state = sheet->state;
 
     if (key->state & GDK_CONTROL_MASK || key->keyval==GDK_Control_L ||
@@ -692,7 +691,7 @@ void x_gtksheet_init(PageDataSet *PageData)
       scrolled_windows = (GtkWidget**)realloc(scrolled_windows, (i+1)*sizeof(GtkWidget*));
       scrolled_windows[i] = gtk_scrolled_window_new(NULL, NULL);
 
-      gtk_container_add (GTK_CONTAINER(scrolled_windows[i]), (GtkWidget*)sheets[i]);
+      gtk_container_add ((GtkContainer*)scrolled_windows[i], (GtkWidget*)sheets[i]);
 
       /* First remove old notebook page. Maybe should probably do some checking here. */
       if (notebook != NULL) {
@@ -722,7 +721,7 @@ void x_gtksheet_init(PageDataSet *PageData)
       gtk_widget_show(notebook);  /* show updated notebook  */
 
       g_signal_connect (sheets[i], "key_press_event",
-                        (GtkSignalFunc) clipboard_handler, NULL);
+                       (GtkSignalFunc) clipboard_handler, NULL);
 
       /*  The entry cell is the text entry field is the one at the top */
       g_signal_connect(gtk_sheet_get_entry((GtkSheet*)sheets[i]),
