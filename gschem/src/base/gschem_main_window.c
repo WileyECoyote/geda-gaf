@@ -97,7 +97,7 @@ gschem_main_window_map (GtkWidget *widget)
 
   g_signal_emit (widget, main_window_signals[ GEOMETRY_RESTORE ], 0);
 
-  GTK_WIDGET_CLASS (gschem_main_window_parent_class)->map (widget);
+  ((GtkWidgetClass*)gschem_main_window_parent_class)->map (widget);
 }
 
 /*!
@@ -115,7 +115,7 @@ gschem_main_window_unmap (GtkWidget *widget)
   g_signal_emit (widget, main_window_signals[ GEOMETRY_SAVE ], 0);
 
   gtk_widget_set_name (widget, NULL);
-  GTK_WIDGET_CLASS (gschem_main_window_parent_class)->unmap (widget);
+  ((GtkWidgetClass*)gschem_main_window_parent_class)->unmap (widget);
 }
 
 static void
@@ -127,7 +127,7 @@ gschem_window_size_request (GtkWidget *widget, GtkRequisition *requisition)
 
   window = (GtkWindow*)widget;
   bin    = (GtkBin*)window;
-  border = gtk_container_get_border_width (GTK_CONTAINER (window));
+  border = gtk_container_get_border_width ((GtkContainer*)window);
 
   requisition->width = requisition->height = border << 1;
 
@@ -154,11 +154,11 @@ gschem_window_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
 
   widget->allocation = *allocation;
 
-  border_2x = gtk_container_get_border_width (GTK_CONTAINER (window)) << 1;
+  border_2x = gtk_container_get_border_width ((GtkContainer*)window) << 1;
 
   if (window->bin.child && gtk_widget_get_visible (window->bin.child))
   {
-    int border_width        = GTK_CONTAINER (window)->border_width;
+    int border_width        = ((GtkContainer*)window)->border_width;
     child_allocation.x      = border_width;
     child_allocation.y      = border_width;
     child_allocation.width  = MAX (1, (int)allocation->width - border_2x);
@@ -167,7 +167,7 @@ gschem_window_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
     gtk_widget_size_allocate (window->bin.child, &child_allocation);
   }
 
-  need_resize = GTK_CONTAINER (window)->need_resize;
+  need_resize = ((GtkContainer*)window)->need_resize;
 
   if (need_resize && gtk_widget_get_realized (widget)) {
 
@@ -194,12 +194,12 @@ gschem_window_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
  */
 static void gschem_main_show (GtkWidget *widget)
 {
-  gtk_window_set_resizable (GTK_WINDOW(widget), FALSE);
+  gtk_window_set_resizable ((GtkWindow*)widget, FALSE);
 
   /* Let Gtk show the window */
-  GTK_WIDGET_CLASS (gschem_main_window_parent_class)->show (widget);
+  ((GtkWidgetClass*)gschem_main_window_parent_class)->show (widget);
 
-  gtk_window_set_resizable (GTK_WINDOW(widget), TRUE);
+  gtk_window_set_resizable ((GtkWindow*)widget, TRUE);
 
   g_signal_emit (widget, main_window_signals[ RESTORE_POSITION ], 0);
 }
@@ -344,8 +344,8 @@ gschem_main_window_geometry_save (GtkWindow *main_window)
 static void
 gschem_main_window_class_init (void *class, void *class_data)
 {
-  GObjectClass          *gobject_class = G_OBJECT_CLASS (class);
-  GtkWidgetClass        *widget_class  = GTK_WIDGET_CLASS (class);
+  GObjectClass          *gobject_class = (GObjectClass*)class;
+  GtkWidgetClass        *widget_class  = (GtkWidgetClass*)class;
   GschemMainWindowClass *win_class     = (GschemMainWindowClass*)class;
 
   gobject_class->get_property     = get_property;
