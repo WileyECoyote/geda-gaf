@@ -460,6 +460,9 @@ void i_command_shutdown(void)
       GEDA_FREE(command_struc[i].icon_id);
     }
   }
+
+  /* Exit with threads unlocked */
+  gschem_threads_leave();
 }
 
 static inline void msg_need_select_1st(GschemToplevel *w_current)
