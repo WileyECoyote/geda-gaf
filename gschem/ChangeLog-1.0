@@ -7,6 +7,10 @@
       set_last_command.  Add call gschem_threads_leave before exiting
       i_command_shutdown so that gschem exits with threads unlocked.
 
+    * src/iface/i_diagnostics.c: Remove setting the max_idle_time in
+      test_thread_pool since this was already done in i_command_engage,
+      and just assert that it got done.
+
 2017-04-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_main_window.h: Change arguments to geometry_restore,

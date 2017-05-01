@@ -258,8 +258,6 @@ static void test_thread_pool ()
   int nt;
   int up;
 
-  g_thread_pool_set_max_idle_time (interval);
-
   g_assert (g_thread_pool_get_max_idle_time () == interval);
 
   for (i = 0; i < limit; i++) {
