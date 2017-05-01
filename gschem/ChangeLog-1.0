@@ -6,6 +6,10 @@
     * src/iface/i_command.c: Reverse the order of get_last_command and
       set_last_command.  Add call gschem_threads_leave before exiting
       i_command_shutdown so that gschem exits with threads unlocked.
+      Add mutex for thread diagnostics; get_thread_diagnostics and
+      set_thread_diagnostics so that i_command_router does not overlap
+      access to thread_diagnostics, not that it would matter, except
+      helgrind reports as a potential error condition.
 
     * src/iface/i_diagnostics.c: Remove setting the max_idle_time in
       test_thread_pool since this was already done in i_command_engage,

@@ -62,8 +62,26 @@
 
 #ifdef PERFORMANCE
 
+static GedaMutex (i_lock_thread_diagnostics);
+
 static bool performance_diagnostics = FALSE;
 static bool thread_diagnostics      = FALSE;
+
+static void set_thread_diagnostics(int value)
+{
+  g_mutex_lock((GMutex*)&i_lock_thread_diagnostics);
+    thread_diagnostics = value;
+  g_mutex_unlock((GMutex*)&i_lock_thread_diagnostics);
+}
+
+static int get_thread_diagnostics()
+{
+  int ret_val;
+  g_mutex_lock((GMutex*)&i_lock_thread_diagnostics);
+    ret_val = thread_diagnostics;
+  g_mutex_unlock((GMutex*)&i_lock_thread_diagnostics);
+  return ret_val;
+}
 
 #endif /*PERFORMANCE */
 
@@ -177,7 +195,7 @@ void i_command_router(char *command, GschemToplevel *w_current)
   }
 
 #if PERFORMANCE
-  if (thread_diagnostics == TRUE ) {
+  if (get_thread_diagnostics() == TRUE ) {
     unsigned int thread_id;
     thread_id = GPOINTER_TO_UINT (command);
     fprintf(stderr, "[Router] ---> entered thread:%2.2d\n", thread_id);
@@ -614,11 +632,11 @@ COMMAND (do_debug)
       break;
 
     case RUN_THREAD_TESTS:
-      thread_diagnostics = TRUE;
-      fprintf (stderr, "***** Running Thread tests *****\n");
       g_thread_pool_stop_unused_threads();
+      fprintf (stderr, "***** Running Thread tests *****\n");
+      set_thread_diagnostics(TRUE);
       test_thread_pool();
-      thread_diagnostics = FALSE;
+      set_thread_diagnostics(FALSE);
       msg = "All test have expired, resumming normal mode\n";
       break;
 
