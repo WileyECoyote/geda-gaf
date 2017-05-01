@@ -9,7 +9,10 @@
       Add mutex for thread diagnostics; get_thread_diagnostics and
       set_thread_diagnostics so that i_command_router does not overlap
       access to thread_diagnostics, not that it would matter, except
-      helgrind reports as a potential error condition.
+      helgrind reports as a potential error condition. Add common mutex
+      for status; i_lock_action_status with accessors get_action_status
+      and set_action_status, and these are used to manipulate the status
+      members for each action.
 
     * src/iface/i_diagnostics.c: Remove setting the max_idle_time in
       test_thread_pool since this was already done in i_command_engage,

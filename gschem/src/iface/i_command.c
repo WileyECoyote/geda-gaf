@@ -138,10 +138,27 @@ static struct {
 
 /* Anonymous Static Mutex */
 static GedaMutex (i_lock_last_command);
+static GedaMutex (i_lock_action_status);
 
 static GThreadPool  *CommandPool     = NULL;
 static int           is_engaged      = -1;
 static int           last_command    =  0;
+
+static int get_action_status(int index)
+{
+  int ret_val;
+  g_mutex_lock((GMutex*)&i_lock_action_status);
+    ret_val = command_struc[index].status;
+  g_mutex_unlock((GMutex*)&i_lock_action_status);
+  return ret_val;
+}
+
+static void set_action_status(int index, int state)
+{
+  g_mutex_lock((GMutex*)&i_lock_action_status);
+    command_struc[index].status = state;
+  g_mutex_unlock((GMutex*)&i_lock_action_status);
+}
 
 static int get_last_command()
 {
@@ -507,7 +524,7 @@ static inline void null_err(char *var)
 static inline void BlockThread (int index)
 {
   int deadman = 0;
-  while (command_struc[index].status == 1) {
+  while (get_action_status(index)) {
     g_usleep (TASK_WAIT_INTERVAL); /* sleep for Some time for action to complete. */
     deadman++;
     if (deadman == MAX_WAIT_FOR_TASK) {
@@ -538,7 +555,7 @@ static inline char *tokenizer( int index, int *argc, char **argv[])
 /* ------------------------ Handler Macros ---------------------- */
 #define COMMAND(func) void i_cmd_##func(GschemToplevel *w_current)
 #define BEGIN_COMMAND(efunc) BlockThread(cmd_##efunc); \
-                             CMD_STATUS(efunc) = 1; /* Block this thread */ \
+                             set_action_status(cmd_##efunc, 1); /* Block this action */ \
                              int  narg NOWARN_UNUSED = CMD_INTEGER(efunc); \
                              char **argv = NULL; \
                              int    argc = 0; \
@@ -553,7 +570,7 @@ static inline char *tokenizer( int index, int *argc, char **argv[])
 
 #define EXIT_COMMAND(efunc) if (arg) { GEDA_FREE(arg); \
                                       g_strfreev ( argv);} \
-                            CMD_STATUS(efunc) = 0;
+                            set_action_status(cmd_##efunc, 0)
 
 #define BEGIN_NO_ARGUMENT(efunc) GEDA_FREE(CMD_OPTIONS(efunc))
 #define HOT_ACTION(symbol) (((CMD_WHO(symbol)==ID_ORIGIN_KEYBOARD) || (CMD_WHO(symbol)==ID_ORIGIN_MOUSE)) && (CMD_Y(symbol) != 0))
