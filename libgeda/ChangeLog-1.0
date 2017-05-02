@@ -2,7 +2,8 @@
 
     * src/geda/geda_keyfile.c: Revise geda_keyfile_flush_parse_buffer; add
       local buffer pointer to key_file->parse_buffer and remove redundant
-      initialization of file_error to NULL;
+      initialization of file_error to NULL. Revise geda_keyfile_parse_data;
+      increase scope of line_length and use instead of calling strlen twice.
 
 2017-04-28 Wiley E. Hill <wileyhill@gmail.com>
 

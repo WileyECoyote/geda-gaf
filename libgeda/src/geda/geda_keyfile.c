@@ -1136,11 +1136,12 @@ geda_keyfile_parse_data (GedaKeyFile  *key_file,
                          GError      **error)
 {
   unsigned int  i;
+  unsigned int  line_length;
 
   g_return_if_fail (key_file != NULL);
   g_return_if_fail (data != NULL || length == 0);
 
-  i = 0;
+  line_length = i = 0;
   while (i < length) {
 
     if (data[i] == '\n') {
@@ -1149,14 +1150,13 @@ geda_keyfile_parse_data (GedaKeyFile  *key_file,
       char   *buffer;
 
       buffer      = key_file->parse_buffer;
+      size_t len  = line_length;
       parse_error = NULL;
-      size_t len  = strlen(buffer);
 
       if (len > 0 && (buffer[len - 1] == '\r')) {
         buffer[len - 1] = '\0';
+        len--;
       }
-
-      len = strlen(buffer);
 
       /* When a newline is encountered flush the parse buffer so that the
        * line can be parsed.  Note that completely blank lines won't show
@@ -1179,7 +1179,6 @@ geda_keyfile_parse_data (GedaKeyFile  *key_file,
 
       const char   *start_of_line;
       const char   *end_of_line;
-      unsigned int  line_length;
 
       start_of_line = data + i;
       end_of_line   = memchr (start_of_line, '\n', length - i);
