@@ -398,7 +398,7 @@ void
 geda_toolbar_set_style (GedaToolbar *toolbar, GtkToolbarStyle style)
 {
   /* Set GtkToolbar style property */
-  g_object_set (toolbar, "toolbar-style", style, NULL);
+  gtk_toolbar_set_style((GtkToolbar*)toolbar, style);
 }
 
 /*!

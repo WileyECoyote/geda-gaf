@@ -9,6 +9,9 @@
         * geda_option_widget_get_history
         * geda_option_widget_set_history
 
+    * src/widgets/geda_toolbar.c: Replace g_object_set "toolbar-style" with
+      the more efficient gtk_toolbar_set_style.
+
 2017-04-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/dialogs/geda_file_chooser.c: Revise geda_file_chooser_dialog_new_valist
