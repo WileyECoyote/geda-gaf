@@ -79,10 +79,10 @@ typedef struct
 
 #define TB_BUTTON(member) member##_button
 
-#define GET_TOOLBAR_ID(obj) (int)(long) g_object_get_data (G_OBJECT(GTK_WIDGET(obj)), "BarId");
-#define SET_TOOLBAR_ID(obj, bar_id) g_object_set_data(G_OBJECT(obj), "BarId", (void*)(long)(bar_id));
-#define GET_TOOLBAR_WC(obj) (long) g_object_get_data (G_OBJECT(obj), "WinData");
-#define SET_TOOLBAR_WC(obj, win_cur) g_object_set_data(G_OBJECT(GTK_WIDGET(obj)), "WinData", win_cur);
+#define GET_TOOLBAR_ID(obj) (int)(long) g_object_get_data ((GObject*)obj, "BarId");
+#define SET_TOOLBAR_ID(obj, bar_id) g_object_set_data((GObject*)obj, "BarId", (void*)(long)(bar_id));
+#define GET_TOOLBAR_WC(obj) (long) g_object_get_data ((GObject*)obj, "WinData");
+#define SET_TOOLBAR_WC(obj, win_cur) g_object_set_data((GObject*)obj, "WinData", win_cur);
 
 #define SET_TOOLBAR_ORIENTATION(bar, orient) \
      gtk_orientable_set_orientation (GTK_ORIENTABLE (bar), GTK_ORIENTATION_##orient);
