@@ -1,3 +1,14 @@
+2017-05-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_option_menu.c: Reorganize a bit and add widget accessors,
+      methods:
+
+        * geda_option_widget_get_menu
+        * geda_option_widget_set_menu
+        * geda_option_widget_remove_menu
+        * geda_option_widget_get_history
+        * geda_option_widget_set_history
+
 2017-04-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/dialogs/geda_file_chooser.c: Revise geda_file_chooser_dialog_new_valist

@@ -297,20 +297,6 @@ bool is_a_geda_option_menu (GedaOptionMenu *option_menu)
   return FALSE;
 }
 
-GtkWidget*
-geda_option_menu_new (void)
-{
-  return g_object_new (GEDA_TYPE_OPTION_MENU, NULL);
-}
-
-GtkWidget*
-geda_option_menu_get_menu (GedaOptionMenu *option_menu)
-{
-  g_return_val_if_fail (GEDA_IS_OPTION_MENU (option_menu), NULL);
-
-  return option_menu->menu;
-}
-
 static void
 geda_option_menu_detacher (GtkWidget *widget, GedaMenu *menu)
 {
@@ -1025,6 +1011,20 @@ geda_option_menu_scroll_event (GtkWidget *widget, GdkEventScroll *event)
   return TRUE;
 }
 
+GtkWidget*
+geda_option_menu_new (void)
+{
+  return g_object_new (GEDA_TYPE_OPTION_MENU, NULL);
+}
+
+GtkWidget*
+geda_option_menu_get_menu (GedaOptionMenu *option_menu)
+{
+  g_return_val_if_fail (GEDA_IS_OPTION_MENU (option_menu), NULL);
+
+  return option_menu->menu;
+}
+
 /*!
  * \brief Attach a menu to a GedaOptionMenu object
  * \par Function Description
@@ -1149,4 +1149,72 @@ geda_option_menu_get_history (GedaOptionMenu *option_menu)
   else {
     return -1;
   }
+}
+
+/* Widget Argument */
+
+GtkWidget*
+geda_option_widget_get_menu (GtkWidget *option_menu)
+{
+  return geda_option_menu_get_menu ((GedaOptionMenu*)option_menu);
+}
+
+/*!
+ * \brief Attach a menu to a GedaOptionMenu Widget object
+ * \par Function Description
+ *  Attaches \a menu to \a option_menu.
+ *
+ * \param [in] option_menu Pointer to GedaOptionMenu object
+ * \param [in] menu        The menu to be attached
+ */
+void
+geda_option_widget_set_menu (GtkWidget *option_menu, GtkWidget *menu)
+{
+  geda_option_menu_set_menu ((GedaOptionMenu*)option_menu, menu);
+}
+
+/*!
+ * \brief Remove GedaOptionMenu Widget menu
+ * \par Function Description
+ *  Detaches the menu associated with \a option_menu.
+ *
+ * \param [in] option_menu Pointer to GedaOptionMenu object
+ *
+ * \returns Offset of text index within the label text
+ */
+void
+geda_option_widget_remove_menu (GtkWidget *option_menu)
+{
+  geda_option_menu_remove_menu ((GedaOptionMenu*)option_menu);
+}
+
+/*!
+ * \brief Get GedaOptionMenu Widget Histroy
+ * \par Function Description
+ *  Retrieves the index of the currently selected menu item. The menu
+ *  items are numbered from top to bottom, starting with 0.
+ *
+ * \param [in] @option_menu Pointer to GedaOptionMenu object
+ *
+ * \returns index of the selected menu item, or -1 if there are no menu items
+ */
+int
+geda_option_widget_get_history (GtkWidget *option_menu)
+{
+  return geda_option_menu_get_history ((GedaOptionMenu*)option_menu);
+}
+
+/*!
+ * \brief Set GedaOptionMenu Widget Histroy
+ * \par Function Description
+ *  Sets the index of the currently selected menu item. The menu
+ *  items are numbered from top to bottom, starting with 0.
+ *
+ * \param [in] option_menu Pointer to GedaOptionMenu object
+ * \param [in] index       index of active menu item
+ */
+void
+geda_option_widget_set_history (GtkWidget *option_menu, unsigned int index)
+{
+  geda_option_menu_set_history ((GedaOptionMenu*)option_menu, index);
 }
