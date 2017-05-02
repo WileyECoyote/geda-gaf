@@ -1191,7 +1191,7 @@ geda_keyfile_parse_data (GedaKeyFile  *key_file,
 
       if (line_length > key_file->buffer_size) {
 
-        char *buffer = (char*)realloc(key_file->parse_buffer, line_length);
+        char *buffer = (char*)realloc(key_file->parse_buffer, line_length + 1);
 
         if (buffer) {
           key_file->parse_buffer = buffer;
@@ -1202,6 +1202,8 @@ geda_keyfile_parse_data (GedaKeyFile  *key_file,
         }
       }
       strncpy(key_file->parse_buffer, start_of_line, line_length);
+      key_file->parse_buffer[line_length] = '\0';
+
       i += line_length;
     }
   }
