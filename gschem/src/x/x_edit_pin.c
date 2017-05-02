@@ -3,8 +3,8 @@
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 2013-2015 Wiley Edward Hill <wileyhill@gmail.com>
- * Copyright (C) 2013-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2013-2017 Wiley Edward Hill <wileyhill@gmail.com>
+ * Copyright (C) 2013-2017 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -183,8 +183,8 @@ x_dialog_edit_pin_type_set_values(pin_type_data *pin_data, const char *label, co
 {
   GtkWidget *menu, *menuitem;
 
-  geda_option_menu_set_history(GEDA_OPTION_MENU(pin_data->node_type), node_type);
-  menu = geda_option_menu_get_menu(GEDA_OPTION_MENU(pin_data->node_type));
+  geda_option_widget_set_history(pin_data->node_type, node_type);
+  menu = geda_option_widget_get_menu(pin_data->node_type);
   menuitem = geda_menu_widget_get_active(menu);
   geda_check_menu_item_set_active(GEDA_CHECK_MENU_ITEM(menuitem), TRUE);
 
@@ -209,8 +209,8 @@ x_dialog_edit_pin_type_set_values(pin_type_data *pin_data, const char *label, co
     SetEntryText( pin_data->label_entry, label );
   }
 
-  geda_option_menu_set_history(GEDA_OPTION_MENU(pin_data->pin_electrical), elect_type);
-  menu = geda_option_menu_get_menu(GEDA_OPTION_MENU(pin_data->pin_electrical));
+  geda_option_widget_set_history(pin_data->pin_electrical, elect_type);
+  menu = geda_option_widget_get_menu(pin_data->pin_electrical);
   menuitem = geda_menu_widget_get_active(menu);
   geda_check_menu_item_set_active(GEDA_CHECK_MENU_ITEM(menuitem), TRUE);
 
@@ -244,8 +244,7 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
 {
   GschemToplevel *w_current;
 
-  GList  *iter;
-  GList  *pin_objects;
+  GList *pin_objects;
 
   GedaObject *object;
 
@@ -275,8 +274,8 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
   ntype = (int)(long)(
     GEDA_OBJECT_GET_DATA (
         geda_menu_widget_get_active (
-          geda_option_menu_get_menu (
-            GEDA_OPTION_MENU (pin_data->node_type))), WIDGET(PinNodeType)));
+          geda_option_widget_get_menu (
+            pin_data->node_type)), WIDGET(PinNodeType)));
 
   if (ntype != PIN_NET_NODE && ntype != PIN_BUS_NODE) {
     titled_warning_dialog(_("Pin Properties"), "%s", _("Invalid Pin Node Type"));
@@ -286,9 +285,8 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
   etype = (int)(long)(
     GEDA_OBJECT_GET_DATA (
         geda_menu_widget_get_active (
-          geda_option_menu_get_menu (
-            GEDA_OPTION_MENU (
-              pin_data->pin_electrical))), WIDGET(PinElectrical)));
+          geda_option_widget_get_menu (
+            pin_data->pin_electrical)), WIDGET(PinElectrical)));
 
   if (etype == PIN_ELECT_VOID)
     titled_information_dialog(_("Pin Properties"), "%s", _("Ignoring Pin electrical VOID"));
@@ -303,7 +301,7 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
 
   if (num_selected == 1) { /* Only 1 pin selected */
 
-    object = (GedaObject*) g_list_nth_data(pin_objects, 0);
+    object = (GedaObject*)g_list_nth_data(pin_objects, 0);
 
     if (geda_pin_object_get_attributes(object, &olabel_str, &onumber_str,
                                        &osequence, &oetype, &omtype, &ontype))
@@ -395,7 +393,7 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
 
       if (geda_pin_object_get_attributes(object, &olabel_str, &onumber_str, &osequence, &oetype, &omtype, &ontype))
       {
-        if(set_node_type) {
+        if (set_node_type) {
           if (ontype == -1 || ntype != ontype) {
             changed_something = TRUE;
             ontype = ntype;
@@ -501,7 +499,7 @@ static void xd_edit_pin_set_sensitivity(GschemDialog *Dialog)
     /* Disable all of the Tooltips for input widgets */
     g_object_set (pin_data->node_type,      "has-tooltip", FALSE, NULL);
     g_object_set (pin_data->pin_electrical, "has-tooltip", FALSE, NULL);
-    g_object_set (pin_data->number_entry,    "has-tooltip", FALSE, NULL);
+    g_object_set (pin_data->number_entry,   "has-tooltip", FALSE, NULL);
     g_object_set (pin_data->sequence_spin,  "has-tooltip", FALSE, NULL);
     g_object_set (pin_data->label_entry,    "has-tooltip", FALSE, NULL);
   }
@@ -561,16 +559,16 @@ static void xd_edit_pin_set_sensitivity(GschemDialog *Dialog)
     /* The Pin Number Entry widget */
     state = GET_SWITCH_STATE (pin_data->auto_number);
     gtk_widget_set_sensitive (pin_data->number_entry, state);
-    g_object_set (pin_data->number_entry,  "has-tooltip", state, NULL);
+    g_object_set (pin_data->number_entry,   "has-tooltip", state, NULL);
 
     /* The Sequence Number Spinner Entry widget */
     state = GET_SWITCH_STATE (pin_data->auto_sequence);
     gtk_widget_set_sensitive (pin_data->sequence_spin, state);
-    g_object_set (pin_data->sequence_spin, "has-tooltip", state, NULL);
+    g_object_set (pin_data->sequence_spin,  "has-tooltip", state, NULL);
 
     /* Disable the label widget and the label Tooltip */
     gtk_widget_set_sensitive (pin_data->label_entry,   FALSE);
-    g_object_set (pin_data->label_entry,   "has-tooltip", FALSE, NULL);
+    g_object_set (pin_data->label_entry,    "has-tooltip", FALSE, NULL);
   }
 }
 
@@ -658,22 +656,25 @@ xd_pin_type_update_selection (GschemToplevel *w_current, GedaObject *object)
  *  \param [in]   pin_data  ptr to THE pin_type_data struction
  */
 void
-x_dialog_edit_pin_type_response(GtkWidget *Dialog, int response,
-                                 pin_type_data *pin_data)
+x_dialog_edit_pin_type_response(GtkWidget     *Dialog,
+                                int            response,
+                                pin_type_data *pin_data)
 {
   GschemToplevel *w_current = GSCHEM_DIALOG(Dialog)->w_current;
 
   switch (response) {
-  case GEDA_RESPONSE_REJECT:
-  case GEDA_RESPONSE_DELETE_EVENT:
-    gtk_widget_destroy (Dialog);
-    GEDA_FREE (pin_data);
-    break;
-  case GEDA_RESPONSE_ACCEPT:
-    x_dialog_edit_pin_type_ok(Dialog, pin_data);
-    break;
-  default:
-    BUG_IMSG ("unhandled case for signal <%d>", response);
+    case GEDA_RESPONSE_REJECT:
+    case GEDA_RESPONSE_DELETE_EVENT:
+      gtk_widget_destroy (Dialog);
+      GEDA_FREE (pin_data);
+      break;
+
+    case GEDA_RESPONSE_ACCEPT:
+      x_dialog_edit_pin_type_ok(Dialog, pin_data);
+      break;
+
+    default:
+      BUG_IMSG ("unhandled case for signal <%d>", response);
   }
 
   i_status_set_state (w_current, SELECT);
@@ -829,15 +830,13 @@ GtkWidget *x_dialog_pin_type_create_dialog(GschemToplevel *w_current)
   gtk_table_attach(GTK_TABLE(table), pin_label, 0,1,4,5, GTK_FILL,0,0,0);
 
   optionmenu = geda_option_menu_new ();
-  geda_option_menu_set_menu(GEDA_OPTION_MENU(optionmenu),
-                           create_menu_pin_type ());
+  geda_option_widget_set_menu(optionmenu, create_menu_pin_type ());
   gtk_table_attach_defaults(GTK_TABLE(table), optionmenu, 1,2,0,1);
   gtk_widget_set_tooltip_text(optionmenu, type_combo_tip);
   g_object_set (optionmenu, "visible", TRUE, NULL);
 
   attributemenu = geda_option_menu_new ();
-  geda_option_menu_set_menu(GEDA_OPTION_MENU(attributemenu),
-                           create_menu_pin_electricals ());
+  geda_option_widget_set_menu(attributemenu, create_menu_pin_electricals());
 
   gtk_table_attach_defaults(GTK_TABLE(table), attributemenu, 1,2,1,2);
   gtk_widget_set_tooltip_text(attributemenu,  attrib_combo_tip);
