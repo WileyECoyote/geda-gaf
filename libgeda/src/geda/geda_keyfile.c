@@ -3824,10 +3824,13 @@ geda_keyfile_remove_group (GedaKeyFile *key_file,
 
   if (!group_node) {
 
-    g_set_error (error, GEDA_KEYFILE_ERROR,
-                 GEDA_KEYFILE_ERROR_GROUP_NOT_FOUND, "%s '%s'",
-                 _("Key file does not have group"), group_name);
-                 return FALSE;
+    if (error) {
+      g_set_error (error, GEDA_KEYFILE_ERROR,
+                   GEDA_KEYFILE_ERROR_GROUP_NOT_FOUND, "%s '%s'",
+                   _("Key file does not have group"), group_name);
+
+    }
+    return FALSE;
   }
 
   geda_keyfile_remove_group_node (key_file, group_node);

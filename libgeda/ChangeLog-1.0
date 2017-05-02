@@ -6,7 +6,8 @@
       increase scope of line_length and use instead of calling strlen twice,
       allocate and additional byte for NULL termination and add NULL to the
       end of each line string so that subsequent strlen to not do not over
-      read the buffer.
+      read the buffer. Revise geda_keyfile_remove_group to conditionally
+      set the error to allow NULL error arguments.
 
 2017-04-28 Wiley E. Hill <wileyhill@gmail.com>
 
