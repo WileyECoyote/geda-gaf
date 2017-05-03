@@ -72,40 +72,46 @@ x_dialog_attrib_edit_update_selection (GschemToplevel *w_current,
 
   if (object != NULL && object->type == OBJ_TEXT) {
 
-    GtkWidget *widget = GEDA_OBJECT_GET_DATA (ThisDialog, "visbutton");
+    GtkToggleButton *button;
+    GedaOptionMenu  *optionmenu;
+    GtkEntry        *entry;
+
+    button = GEDA_OBJECT_GET_DATA (ThisDialog, "visbutton");
 
     /* Update the visibility button widget*/
     if (object->visibility != VISIBLE) {
-      gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(widget), FALSE);
+      gtk_toggle_button_set_active(button, FALSE);
     }
     else {
-      gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(widget), TRUE);
+      gtk_toggle_button_set_active(button, TRUE);
     }
 
+    optionmenu = GEDA_OBJECT_GET_DATA (ThisDialog, "visbutton");
+
     /* Update Show Options */
-    widget = GEDA_OBJECT_GET_DATA (ThisDialog, "show_options");
+    optionmenu = GEDA_OBJECT_GET_DATA (ThisDialog, "show_options");
     if (object->show_name_value == SHOW_VALUE) {
-      geda_option_menu_set_history (GEDA_OPTION_MENU (widget), 0);
+      geda_option_menu_set_history (optionmenu, 0);
     }
     else if (object->show_name_value == SHOW_NAME) {
-      geda_option_menu_set_history (GEDA_OPTION_MENU (widget), 1);
+      geda_option_menu_set_history (optionmenu, 1);
     }
     else {
-      geda_option_menu_set_history (GEDA_OPTION_MENU (widget), 2);
+      geda_option_menu_set_history (optionmenu, 2);
     }
 
     /* Get the attribute name and value string components */
     geda_attrib_object_get_name_value (object, &name, &val);
 
     /* Update the Value Entry */
-    widget = GEDA_OBJECT_GET_DATA (ThisDialog, "value_entry");
+    entry = GEDA_OBJECT_GET_DATA (ThisDialog, "value_entry");
     if (val) {
-      SetEntryText   (widget, val);
-      EntrySelectAll (widget);
+      SetEntryText   (entry, val);
+      EntrySelectAll (entry);
     }
 
-    widget = GEDA_OBJECT_GET_DATA (ThisDialog, "attrib_name_entry");
-    SetEntryText (widget, name);
+    entry = GEDA_OBJECT_GET_DATA (ThisDialog, "attrib_name_entry");
+    SetEntryText (entry, name);
 
     GEDA_FREE (name);
     GEDA_FREE (val);
