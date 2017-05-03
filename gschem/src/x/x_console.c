@@ -577,7 +577,7 @@ static void console_instance_init (GTypeInstance *instance, void *class)
   bool decorate = (console_window_type == DECORATED);
 
   /* dialog initialization */
-  g_object_set (G_OBJECT (console),
+  g_object_set (console,
                 /* GtkContainer */
                 "border-width",    0,
                 "title",           _("gEDA Console"),

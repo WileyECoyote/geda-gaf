@@ -239,7 +239,7 @@ x_compselect_callback_response(GtkDialog *dialog, int response, void *user_data)
       }
 
       /* Hide the Component Select Dialog */
-      g_object_set (G_OBJECT (compselect), "hidden", TRUE, NULL);
+      g_object_set (compselect, "hidden", TRUE, NULL);
       break;
 
     case GEDA_RESPONSE_CLOSE:
@@ -469,7 +469,7 @@ inuse_treeview_set_cell_data (GtkTreeViewColumn *tree_column,
   CLibSymbol *symbol;
 
   gtk_tree_model_get (tree_model, iter, IU_DATA_COLUMN, &symbol, -1);
-  g_object_set ((GObject*)cell, "text", geda_struct_clib_symbol_get_name (symbol), NULL);
+  g_object_set (cell, "text", geda_struct_clib_symbol_get_name (symbol), NULL);
 }
 
 /*!
@@ -533,7 +533,7 @@ lib_treeview_set_cell_data (GtkTreeViewColumn *tree_column,
     }
 
   }
-  g_object_set ((GObject*)cell, "text", text, NULL);
+  g_object_set (cell, "text", text, NULL);
 }
 
 /*! \brief Determines visibility of items of the library treeview.
@@ -1253,15 +1253,15 @@ compselect_callback_behavior_changed (GedaOptionMenu *optionmenu,
 
   switch(menu_choice) {
     case COMPSELECT_BEHAVIOR_REFERENCE:
-      g_object_set (G_OBJECT (optionmenu), "tooltip-text",
+      g_object_set (optionmenu, "tooltip-text",
                     _("Default is to reference the component"), NULL);
       break;
     case COMPSELECT_BEHAVIOR_EMBED:
-      g_object_set (G_OBJECT (optionmenu), "tooltip-text",
+      g_object_set (optionmenu, "tooltip-text",
                     _("Embed component in schematic"), NULL);
       break;
     case COMPSELECT_BEHAVIOR_INCLUDE:
-      g_object_set (G_OBJECT (optionmenu), "tooltip-text",
+      g_object_set (optionmenu, "tooltip-text",
                     _("Include component as individual objects"), NULL);
   }
 
@@ -2784,7 +2784,7 @@ compselect_create_styles_menu (Compselect *ThisDialog)
      * when dialog is restored */
     state = ((MASK & types[i].style) == types[i].style);
 
-    g_object_set (G_OBJECT(menuitem), "active", state, NULL);
+    g_object_set (menuitem, "active", state, NULL);
 
     /* Save pointer to widget */
     widget_list = g_slist_append(widget_list, menuitem);
