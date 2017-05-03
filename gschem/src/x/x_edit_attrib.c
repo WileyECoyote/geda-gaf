@@ -277,7 +277,7 @@ attribute_edit_dialog_response(GtkWidget *widget, int response,
 
   switch(response) {
     case GEDA_RESPONSE_APPLY:
-      attrib_edit_dialog_ok ( SAE_EDIT_MODE, w_current);
+      attrib_edit_dialog_ok (SAE_EDIT_MODE, w_current);
       break;
 
     case GEDA_RESPONSE_ACCEPT:
@@ -333,22 +333,22 @@ static GtkWidget *x_attrib_option_menu_new(void)
   g_object_set (options_menu, "visible", TRUE, NULL);
 
   show_options_menu = geda_menu_new ();
-  gtk_widget_set_tooltip_text (GTK_WIDGET(options_menu), options_menu_tip);
+  gtk_widget_set_tooltip_text (options_menu, options_menu_tip);
 
   menuitem = geda_menu_item_new_with_label (_("Show Value Only"));
-  geda_menu_append (GEDA_MENU (show_options_menu), menuitem);
-  gtk_widget_set_tooltip_text (GTK_WIDGET(menuitem), options_name_tip);
+  geda_menu_append (show_options_menu, menuitem);
+  gtk_widget_set_tooltip_text (menuitem, options_name_tip);
 
   menuitem = geda_menu_item_new_with_label (_("Show Name Only"));
-  geda_menu_append (GEDA_MENU (show_options_menu), menuitem);
-  gtk_widget_set_tooltip_text (GTK_WIDGET(menuitem), options_value_tip);
+  geda_menu_append (show_options_menu, menuitem);
+  gtk_widget_set_tooltip_text (menuitem, options_value_tip);
 
   menuitem = geda_menu_item_new_with_label (_("Show Name & Value"));
-  geda_menu_append (GEDA_MENU (show_options_menu), menuitem);
-  gtk_widget_set_tooltip_text (GTK_WIDGET(menuitem), options_both_tip);
+  geda_menu_append (show_options_menu, menuitem);
+  gtk_widget_set_tooltip_text (menuitem, options_both_tip);
 
-  geda_option_menu_set_menu (GEDA_OPTION_MENU(options_menu), show_options_menu);
-  geda_option_menu_set_history (GEDA_OPTION_MENU(options_menu), 0);
+  geda_option_widget_set_menu (options_menu, show_options_menu);
+  geda_option_widget_set_history (options_menu, 0);
 
   return options_menu;
 }
@@ -570,7 +570,7 @@ attrib_edit_dialog (GschemToplevel *w_current, GedaObject *object, int flag)
                       G_CALLBACK (callback_attrib_entry_activate),
                       value_entry);
 
-    g_signal_connect (G_OBJECT (ThisDialog), "response",
+    g_signal_connect (ThisDialog, "response",
                       G_CALLBACK (attribute_edit_dialog_response),
                       w_current);
 
@@ -591,7 +591,7 @@ attrib_edit_dialog (GschemToplevel *w_current, GedaObject *object, int flag)
 
     /* Tell our inherited on-selection change callback handler which
      * function to use */
-    g_object_set (G_OBJECT (ThisDialog), DIALOG_SELECTION_TRACKER,
+    g_object_set (ThisDialog, DIALOG_SELECTION_TRACKER,
                   x_dialog_attrib_edit_update_selection, NULL);
 
     if (!object) {

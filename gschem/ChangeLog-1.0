@@ -2,7 +2,8 @@
 
     * src/x/x_edit_attrib.c: Revise x_dialog_attrib_edit_update_selection;
       Replace local GtkWidget with ancillary variables for GtkToggleButton,
-      GedaOptionMenu, and GtkEntry, and remove all cast.
+      GedaOptionMenu, and GtkEntry, and remove all cast in the function.
+      Remove unnecessary cast type-checking.
 
     * src/x/x_compselect.c: Remove unnecessary cast for g_object_set. Revise
       gtk_set_item_active; replace GTK_IS_OBJECT with GTK_IS_WIDGET, eliminate
