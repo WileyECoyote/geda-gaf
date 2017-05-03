@@ -748,7 +748,7 @@ static void x_dialog_array_edit_action_area (GtkWidget  *ThisDialog,
   /* Create a Horizontal Box for the buttons to go into */
   butt_hbox = gtk_hbox_new(FALSE, 0);
   g_object_set (butt_hbox, "visible", TRUE, NULL);
-  gtk_container_add (GTK_CONTAINER (alignment), butt_hbox);
+  geda_container_add (alignment, butt_hbox);
 
   /* Create and connect the Close and Apply Buttons */
   GtkWidget *close_butt = gtk_button_new_from_stock (GTK_STOCK_CLOSE);
@@ -873,7 +873,7 @@ GtkWidget* x_dialog_array_edit_constructor (GschemToplevel *w_current)
 
   hbox = gtk_hbox_new (FALSE, 0);
   gtk_widget_show (hbox);
-  gtk_container_add (GTK_CONTAINER (vbox), hbox);
+  geda_container_add (vbox, hbox);
 
   vbox2 = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (vbox2);
@@ -886,7 +886,7 @@ GtkWidget* x_dialog_array_edit_constructor (GschemToplevel *w_current)
 
   alignment = gtk_alignment_new (0.5, 0.5, 1, 1);
   gtk_widget_show (alignment);
-  gtk_container_add (GTK_CONTAINER (frame), alignment);
+  geda_container_add (frame, alignment);
   gtk_alignment_set_padding (GTK_ALIGNMENT (alignment), 0, 0, 10, 0);
 
   selection_label = geda_visible_label_new (_("<b>Selection</b>"));
@@ -896,7 +896,7 @@ GtkWidget* x_dialog_array_edit_constructor (GschemToplevel *w_current)
   table = gtk_table_new (4, 7, FALSE);
   gtk_table_set_row_spacings(GTK_TABLE(table), DIALOG_V_SPACING);
   gtk_table_set_col_spacings(GTK_TABLE(table), DIALOG_H_SPACING);
-  gtk_container_add (GTK_CONTAINER (alignment), table);
+  geda_container_add (alignment, table);
   gtk_widget_show (table);
 
   cnt_sel_label = GEDA_AV_LABEL_NEW (_("Count"), 0, 0.5);
@@ -949,7 +949,7 @@ GtkWidget* x_dialog_array_edit_constructor (GschemToplevel *w_current)
 
   alignment = gtk_alignment_new (0.5, 0.5, 1, 1);
   gtk_widget_show (alignment);
-  gtk_container_add (GTK_CONTAINER (frame), alignment);
+  geda_container_add (frame, alignment);
   gtk_alignment_set_padding (GTK_ALIGNMENT (alignment), 0, 0, 10, 0);
 
   array_label = geda_visible_label_new (_("<b>Array</b>"));
@@ -958,7 +958,7 @@ GtkWidget* x_dialog_array_edit_constructor (GschemToplevel *w_current)
 
   table = gtk_table_new (3, 7, FALSE);
   gtk_widget_show (table);
-  gtk_container_add (GTK_CONTAINER (alignment), table);
+  geda_container_add (alignment, table);
 
 /* Row 1 */
   row_label = GEDA_AV_LABEL_NEW (_("Row"), 0, 0.5);
@@ -970,7 +970,7 @@ GtkWidget* x_dialog_array_edit_constructor (GschemToplevel *w_current)
   gtk_alignment_set_padding (GTK_ALIGNMENT (alignment), 0, 0, 10, 5);
 
   row_cnt_label = GEDA_AV_LABEL_NEW (_("Count"), 1, 0.5);
-  gtk_container_add (GTK_CONTAINER (alignment), row_cnt_label);
+  geda_container_add (alignment, row_cnt_label);
 
   widget = gtk_spin_button_new_with_range(1,999,1);
   gtk_widget_show (widget);
@@ -985,7 +985,7 @@ GtkWidget* x_dialog_array_edit_constructor (GschemToplevel *w_current)
   gtk_alignment_set_padding (GTK_ALIGNMENT (alignment), 0, 0, 15, 5);
 
   row_off_label = GEDA_AV_LABEL_NEW (_("Offset"), 1, 0.5);
-  gtk_container_add (GTK_CONTAINER (alignment), row_off_label);
+  geda_container_add (alignment, row_off_label);
 
   widget = gtk_entry_new ();
   gtk_widget_show (widget);
@@ -1003,7 +1003,7 @@ GtkWidget* x_dialog_array_edit_constructor (GschemToplevel *w_current)
   gtk_alignment_set_padding (GTK_ALIGNMENT (alignment), 0, 0, 10, 5);
 
   col_cnt_label = GEDA_AV_LABEL_NEW (_("Count"), 1, 0.5);
-  gtk_container_add (GTK_CONTAINER (alignment), col_cnt_label);
+  geda_container_add (alignment, col_cnt_label);
 
   widget = gtk_spin_button_new_with_range(1,999,1);
   gtk_widget_show (widget);
@@ -1018,7 +1018,7 @@ GtkWidget* x_dialog_array_edit_constructor (GschemToplevel *w_current)
   gtk_alignment_set_padding (GTK_ALIGNMENT (alignment), 0, 0, 15, 5);
 
   col_off_label = GEDA_AV_LABEL_NEW (_("Offset"), 1, 0.5);
-  gtk_container_add (GTK_CONTAINER (alignment), col_off_label);
+  geda_container_add (alignment, col_off_label);
 
   widget = gtk_entry_new ();
   gtk_widget_show (widget);
@@ -1036,7 +1036,7 @@ GtkWidget* x_dialog_array_edit_constructor (GschemToplevel *w_current)
   gtk_table_attach_defaults(GTK_TABLE(table), alignment, 6, 7, 1, 2);
 
   row_col_butt = gtk_button_new_with_mnemonic (_("X,Y"));
-  gtk_container_add (GTK_CONTAINER (alignment), row_col_butt);
+  geda_container_add (alignment, row_col_butt);
   gtk_widget_show (row_col_butt);
 
   col_butt = gtk_button_new_with_mnemonic (_("X"));
