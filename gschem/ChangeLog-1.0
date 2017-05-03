@@ -1,6 +1,8 @@
 2017-05-03 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/x/x_compselect.c: Remove unnecessary cast for g_object_set.
+    * src/x/x_compselect.c: Remove unnecessary cast for g_object_set. Revise
+      gtk_set_item_active; replace GTK_IS_OBJECT with GTK_IS_WIDGET, eliminate
+      unneeded GObject variable.
 
     * src/x/x_console.c: Remove unnecessary cast for g_object_set.
 

@@ -1099,21 +1099,19 @@ compselect_cb_switch_toggled(GtkWidget *widget, GschemDialog *Dialog)
 static void
 gtk_set_item_active(GtkWidget *widget, bool state) {
 
-  if (GTK_IS_OBJECT(widget)) {
+  if (GTK_IS_WIDGET(widget)) {
 
     unsigned long handler;
-    GObject      *object;
 
-    object  = G_OBJECT(widget);
-    handler = (unsigned long) GEDA_OBJECT_GET_DATA(object, "handler");
+    handler = (unsigned long) GEDA_OBJECT_GET_DATA(widget, "handler");
 
     if (handler) {
-      g_signal_handler_block (object, handler);       /* disable signal */
-      g_object_set (object, "active", state, NULL);   /* set the value */
-      g_signal_handler_unblock (object, handler);     /* re-enable signal */
+      g_signal_handler_block (widget, handler);       /* disable signal */
+      g_object_set (widget, "active", state, NULL);   /* set the value */
+      g_signal_handler_unblock (widget, handler);     /* re-enable signal */
     }
     else { /* No handler ID so just set without blocking */
-      g_object_set (object, "active", state, NULL);   /* set the value */
+      g_object_set (widget, "active", state, NULL);   /* set the value */
     }
   }
 }
