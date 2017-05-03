@@ -1,3 +1,7 @@
+2017-05-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_container.h: Add macro geda_container_add.
+
 2017-05-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_option_menu.c: Reorganize a bit and add widget accessors,
