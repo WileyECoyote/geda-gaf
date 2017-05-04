@@ -1,3 +1,14 @@
+2017-05-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_container.h: Add macros:
+
+        * geda_container_remove
+        * geda_container_get_children
+        * geda_set_container_border_width
+        * geda_container_set_focus_chain
+        * geda_container_forall
+        * geda_container_foreach
+
 2017-05-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_container.h: Add macro geda_container_add.
