@@ -433,7 +433,7 @@ geda_toolbar_set_tooltips (GedaToolbar *toolbar, bool enable)
   /* Set GedaToolbar property, which does nothing */
   g_object_set (toolbar, "has-tooltip", enable, NULL);
 
-  if (GEDA_TOOLBAR(toolbar)) {
+  if (GEDA_IS_TOOLBAR(toolbar)) {
 
     GList *iter;
     /* Loop thru children and set widget "has-tooltip" property */
