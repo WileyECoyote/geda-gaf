@@ -134,25 +134,26 @@ geda_tearoff_menu_item_size_request (GtkWidget      *widget,
 static void
 geda_tearoff_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
 {
-  GedaMenuItem    *menu_item;
-  GtkShadowType    shadow_type;
-  GtkArrowType     arrow_type;
-  GtkTextDirection direction;
-
-  int width, height;
-  int x, y;
-  int right_max;
-
   if (gtk_widget_is_drawable (widget)) {
 
-    menu_item = GEDA_MENU_ITEM (widget);
+    GtkContainer    *container;
+    GedaMenuItem    *menu_item;
+    GtkShadowType    shadow_type;
+    GtkArrowType     arrow_type;
+    GtkTextDirection direction;
 
+    int width, height;
+    int x, y;
+    int right_max;
+
+    menu_item = (GedaMenuItem*)widget;
+    container = (GtkContainer*)widget;
     direction = gtk_widget_get_direction (widget);
 
-    x = widget->allocation.x + GTK_CONTAINER (menu_item)->border_width;
-    y = widget->allocation.y + GTK_CONTAINER (menu_item)->border_width;
-    width = widget->allocation.width - GTK_CONTAINER (menu_item)->border_width * 2;
-    height = widget->allocation.height - GTK_CONTAINER (menu_item)->border_width * 2;
+    x = widget->allocation.x + container->border_width;
+    y = widget->allocation.y + container->border_width;
+    width = widget->allocation.width - container->border_width * 2;
+    height = widget->allocation.height - container->border_width * 2;
     right_max = x + width;
 
     if (widget->state == GTK_STATE_PRELIGHT) {
