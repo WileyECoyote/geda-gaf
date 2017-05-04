@@ -12,6 +12,11 @@
     * src/widgets/geda_menu_button.c: Include geda_container.h and utilize
       geda_container_add macro in geda_menu_button_init.
 
+    * src/widgets/geda_option_menu.c: Include geda_container.h and utilize
+      geda_container_foreach macro, eliminate GtkContainer variable in
+      geda_option_menu_show_all and geda_option_menu_show_all, replace
+      GTK_CONTAINER with GtkContainer.
+
     * src/widgets/geda_radio_menu_item.c: Replace gtk_container_add with
       geda_container_add macro.
 

@@ -26,6 +26,7 @@
 #include <geda/geda.h>
 #include <geda/geda_standard.h>
 
+#include "../../include/geda_container.h"
 #include "../../include/geda_keysyms.h"
 #include "../../include/geda_marshal.h"
 #include "../../include/geda_menu.h"
@@ -422,18 +423,17 @@ geda_option_menu_size_request (GtkWidget *widget, GtkRequisition *requisition)
     requisition->height += child_requisition.height;
   }
 
-  requisition->width = ((GTK_CONTAINER (widget)->border_width +
-                         GTK_WIDGET (widget)->style->xthickness + props.focus_pad) * 2 +
+  requisition->width = ((((GtkContainer*)widget)->border_width +
+                         ((GtkWidget*)widget)->style->xthickness + props.focus_pad) * 2 +
                          MAX (child_requisition.width, option_menu->width) +
                          props.indicator_size.width +
                          props.indicator_spacing.left + props.indicator_spacing.right +
                          CHILD_LEFT_SPACING + CHILD_RIGHT_SPACING + props.focus_width * 2);
 
-  requisition->height = ((GTK_CONTAINER (widget)->border_width +
-
-  GTK_WIDGET (widget)->style->ythickness + props.focus_pad) * 2 +
-              MAX (child_requisition.height, option_menu->height) +
-              CHILD_TOP_SPACING + CHILD_BOTTOM_SPACING + props.focus_width * 2);
+  requisition->height = ((((GtkContainer*)widget)->border_width +
+                          ((GtkWidget*)widget)->style->ythickness + props.focus_pad) * 2 +
+                          MAX (child_requisition.height, option_menu->height) +
+                          CHILD_TOP_SPACING + CHILD_BOTTOM_SPACING + props.focus_width * 2);
 
   tmp = (requisition->height - MAX (child_requisition.height, option_menu->height) +
          props.indicator_size.height + props.indicator_spacing.top +
@@ -452,7 +452,7 @@ geda_option_menu_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
   int border_width;
 
   geda_option_menu_get_props (GEDA_OPTION_MENU (widget), &props);
-  border_width = GTK_CONTAINER (widget)->border_width;
+  border_width = ((GtkContainer*)widget)->border_width;
 
   widget->allocation = *allocation;
 
@@ -496,7 +496,7 @@ geda_option_menu_paint (GtkWidget *widget, GdkRectangle *area)
 
   g_return_if_fail (area != NULL);
 
-  border_width = GTK_CONTAINER (widget)->border_width;
+  border_width = ((GtkContainer*)widget)->border_width;
   geda_option_menu_get_props (GEDA_OPTION_MENU (widget), &props);
 
   button_area.x      = widget->allocation.x + border_width;
@@ -921,15 +921,15 @@ geda_option_menu_position (GedaMenu  *menu,
 static void
 geda_option_menu_show_all (GtkWidget *widget)
 {
-  GtkContainer   *container;
   GedaOptionMenu *option_menu;
 
   g_return_if_fail (GEDA_IS_OPTION_MENU (widget));
-  container = GTK_CONTAINER (widget);
+
   option_menu = GEDA_OPTION_MENU (widget);
 
   gtk_widget_show (widget);
-  gtk_container_foreach (container, (GtkCallback) gtk_widget_show_all, NULL);
+
+  geda_container_foreach (widget, gtk_widget_show_all, NULL);
 
   if (option_menu->menu) {
     gtk_widget_show_all (option_menu->menu);
@@ -943,13 +943,10 @@ geda_option_menu_show_all (GtkWidget *widget)
 static void
 geda_option_menu_hide_all (GtkWidget *widget)
 {
-  GtkContainer *container;
-
   g_return_if_fail (GEDA_IS_OPTION_MENU (widget));
-  container = GTK_CONTAINER (widget);
 
   gtk_widget_hide (widget);
-  gtk_container_foreach (container, (GtkCallback) gtk_widget_hide_all, NULL);
+  geda_container_foreach (widget, gtk_widget_hide_all, NULL);
 }
 
 static bool
