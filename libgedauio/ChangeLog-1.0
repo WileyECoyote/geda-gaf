@@ -11,6 +11,7 @@
 
     * src/widgets/geda_tearoff_menu_item.c: Reuce the scope of all variables
       in geda_tearoff_menu_item_paint and add ancillary GtkContainer variable.
+      Explicitly specify GEDA_TYPE_TEAROFF_MENU_ITEM type to g_signal_new.
 
     * src/widgets/geda_toolbar.c: Fix validation in geda_toolbar_set_tooltips;
       GEDA_TOOLBAR -> GEDA_IS_TOOLBAR. Include geda_container.h and utilize

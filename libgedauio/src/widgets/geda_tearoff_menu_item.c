@@ -531,7 +531,7 @@ geda_tearoff_menu_item_class_init (void *klass, void *klass_data)
   geda_tearoff_menu_item_parent_class = g_type_class_peek_parent (klass);
 
   geda_tearoff_signals[ TORN_OFF ] = g_signal_new ("torn-off",
-                                       G_OBJECT_CLASS_TYPE(klass),
+                                       GEDA_TYPE_TEAROFF_MENU_ITEM,
                                        0     /*signal_flags */,
                                        0     /*class_offset */,
                                        NULL, /* accumulator */
