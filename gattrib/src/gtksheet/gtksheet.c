@@ -7697,7 +7697,7 @@ gtk_sheet_cell_finalize(GtkSheet *sheet, GtkSheetCell *cell)
     g_free(cell->text);
     cell->text = NULL;
 
-    if (GTK_IS_OBJECT(sheet) && G_OBJECT(sheet)->ref_count > 0)
+    if (GTK_IS_WIDGET(sheet) && G_OBJECT(sheet)->ref_count > 0)
       g_signal_emit(G_OBJECT(sheet), sheet_signals[CLEAR_CELL], 0,
                     cell->row, cell->col);
   }
@@ -8009,7 +8009,7 @@ gtk_sheet_real_cell_clear(GtkSheet *sheet, int row, int column, int delete)
     g_free(cell->text);
     cell->text = NULL;
 
-    if (GTK_IS_OBJECT(sheet) && G_OBJECT(sheet)->ref_count > 0) {
+    if (GTK_IS_WIDGET(sheet) && G_OBJECT(sheet)->ref_count > 0) {
       g_signal_emit(G_OBJECT(sheet), sheet_signals[CLEAR_CELL], 0, row, column);
     }
   }
