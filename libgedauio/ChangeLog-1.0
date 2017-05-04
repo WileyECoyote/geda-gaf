@@ -11,7 +11,10 @@
 
     * src/widgets/geda_toolbar.c: Fix validation in geda_toolbar_set_tooltips;
       GEDA_TOOLBAR -> GEDA_IS_TOOLBAR. Include geda_container.h and utilize
-      geda_container_get_children macro in geda_toolbar_setup_label.
+      geda_container_get_children macro in geda_toolbar_setup_label. Remove
+      redundant validation of the GtkToolbar in geda_toolbar_append_xxx, this
+      is the first thing the corresponding gtk_toolbar_append_xxx function is
+      going to check.
 
 2017-05-03 Wiley E. Hill <wileyhill@gmail.com>
 
