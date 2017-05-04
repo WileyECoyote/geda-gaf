@@ -36,6 +36,7 @@
 #include <geda/geda.h>
 #include <geda/geda_standard.h>
 
+#include "../../include/geda_container.h"
 #include "../../include/geda_toolbar.h"
 #include "../../include/gettext.h"
 
@@ -231,7 +232,7 @@ geda_toolbar_setup_label(GtkWidget *widget, GedaToolbar *bar)
   GList     *iter;
 
   box      = gtk_bin_get_child (GTK_BIN(widget));
-  children = gtk_container_get_children (GTK_CONTAINER(box));
+  children = geda_container_get_children (box);
 
   for (iter = children; iter; iter = iter->next) {
 
