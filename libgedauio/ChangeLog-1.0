@@ -9,6 +9,9 @@
         * geda_container_forall
         * geda_container_foreach
 
+    * src/widgets/geda_menu_button.c: Include geda_container.h and utilize
+      geda_container_add macro in geda_menu_button_init.
+
     * src/widgets/geda_radio_menu_item.c: Replace gtk_container_add with
       geda_container_add macro.
 

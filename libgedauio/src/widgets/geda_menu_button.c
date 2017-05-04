@@ -57,6 +57,7 @@
 #include <glib.h>
 #include <gtk/gtk.h>
 
+#include "../../include/geda_container.h"
 #include "../../include/geda_marshal.h"
 #include "../../include/geda_menu.h"
 #include "../../include/geda_menu_shell.h"
@@ -1092,9 +1093,9 @@ geda_menu_button_init (GTypeInstance *instance, void *class)
   arrow_button = gtk_toggle_button_new ();
   arrow        = gtk_arrow_new (GTK_ARROW_DOWN, GTK_SHADOW_NONE);
 
-  gtk_container_add (GTK_CONTAINER(box), main_button);
+  geda_container_add (box, main_button);
 
-  gtk_container_add (GTK_CONTAINER (arrow_button), arrow);
+  geda_container_add (arrow_button, arrow);
 
   gtk_box_pack_end (GTK_BOX (box), arrow_button, FALSE, FALSE, 0);
 
@@ -1103,7 +1104,7 @@ geda_menu_button_init (GTypeInstance *instance, void *class)
 
   gtk_widget_show_all (box);
 
-  gtk_container_add (GTK_CONTAINER (button), box);
+  geda_container_add (button, box);
 
   button->priv->button       = main_button;
   button->priv->arrow        = arrow;
