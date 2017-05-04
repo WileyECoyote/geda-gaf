@@ -459,13 +459,13 @@ void about_dialog (GschemToplevel *w_current)
 
   Dialog = gtk_about_dialog_new ();
 
-  g_object_set (G_OBJECT(Dialog), "version",   version_string,
-                                  "logo",      logo,
-                                  "title",    _("About gschem"),
-                                  "comments",  comments,
-                                  "copyright", copyright,
-                                  "website",   "http://geda-project.org/",
-                                   NULL);      /* End marker */
+  g_object_set (Dialog, "version",   version_string,
+                        "logo",      logo,
+                        "title",    _("About gschem"),
+                        "comments",  comments,
+                        "copyright", copyright,
+                        "website",   "http://geda-project.org/",
+                         NULL);      /* End marker */
 
   /* About dialog URI calls maybe broken on Windows */
 #if (GTK_MAJOR_VERSION == 2 && GTK_MINOR_VERSION < 24)
@@ -978,11 +978,11 @@ void x_dialog_edit_arc_angle (GschemToplevel *w_current, GedaObject *arc_object)
     GEDA_HOOKUP_OBJECT(Dialog, spin_start,"spin_start");
     GEDA_HOOKUP_OBJECT(Dialog, spin_sweep,"spin_sweep");
 
-    g_signal_connect (G_OBJECT (Dialog), "response",
+    g_signal_connect (Dialog, "response",
                       G_CALLBACK ( x_dialog_edit_arc_angle_response),
                       NULL);
 
-    g_object_set (G_OBJECT (Dialog), DIALOG_SELECTION_TRACKER,
+    g_object_set (Dialog, DIALOG_SELECTION_TRACKER,
                   x_dialog_edit_arc_angle_selection, NULL);
 
     gtk_widget_show_all (Dialog);
@@ -1681,15 +1681,15 @@ GtkWidget *x_dialog_fill_type_create_dialog(GschemToplevel *w_current)
   /* fill in the fields of the dialog */
   x_dialog_edit_fill_type_set_values(fill_data, FILLING_VOID, 0, 0, 0, 0, 0);
 
-  g_signal_connect (G_OBJECT (optionmenu), "changed",
+  g_signal_connect (optionmenu, "changed",
                     G_CALLBACK (x_dialog_edit_fill_type_change),
                     fill_data);
 
-  g_signal_connect (G_OBJECT (Dialog), "response",
+  g_signal_connect (Dialog, "response",
                     G_CALLBACK (x_dialog_edit_fill_type_response),
                     fill_data);
 
-  g_object_set (G_OBJECT (Dialog), DIALOG_SELECTION_TRACKER,
+  g_object_set (Dialog, DIALOG_SELECTION_TRACKER,
                 x_dialog_fill_type_update_selection,
                 NULL);
 
@@ -2253,15 +2253,15 @@ GtkWidget *x_dialog_line_type_create_dialog(GschemToplevel *w_current)
   /* calling it once will set the dash space/length activity */
   x_dialog_edit_line_type_change(line_type, line_data);
 
-  g_signal_connect(G_OBJECT (line_type), "changed",
+  g_signal_connect(line_type, "changed",
                    G_CALLBACK (x_dialog_edit_line_type_change),
                    line_data);
 
-  g_signal_connect (G_OBJECT (Dialog), "response",
+  g_signal_connect (Dialog, "response",
                     G_CALLBACK (x_dialog_edit_line_type_response),
                     line_data);
 
-  g_object_set (G_OBJECT (Dialog), DIALOG_SELECTION_TRACKER,
+  g_object_set (Dialog, DIALOG_SELECTION_TRACKER,
                 x_dialog_line_type_update_selection,
                 NULL);
 

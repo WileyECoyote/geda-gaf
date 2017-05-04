@@ -1,5 +1,7 @@
 2017-05-03 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_dialog.c: Remove unnecessary cast to g_object.
+
     * src/x/x_edit_array.c: Replace gtk_container_add with geda_container_add
       and remove cast type-checking.
 
