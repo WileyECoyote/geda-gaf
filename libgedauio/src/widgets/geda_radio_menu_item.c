@@ -439,7 +439,7 @@ geda_radio_menu_item_new_with_label (GSList *group, const char *label)
   accel_label     = geda_accel_label_new (label);
 
   gtk_misc_set_alignment (GTK_MISC (accel_label), 0.0, 0.5);
-  gtk_container_add (GTK_CONTAINER (radio_menu_item), accel_label);
+  geda_container_add (radio_menu_item, accel_label);
   geda_accel_label_set_accel_widget (GEDA_ACCEL_LABEL (accel_label), radio_menu_item);
   gtk_widget_show (accel_label);
 
@@ -471,7 +471,7 @@ geda_radio_menu_item_new_with_mnemonic (GSList *group, const char *label)
   geda_label_set_mnemonic_text (GEDA_LABEL(accel_label), label);
   gtk_misc_set_alignment (GTK_MISC (accel_label), 0.0, 0.5);
 
-  gtk_container_add (GTK_CONTAINER (radio_menu_item), accel_label);
+  geda_container_add (radio_menu_item, accel_label);
   geda_accel_label_set_accel_widget (GEDA_ACCEL_LABEL (accel_label), radio_menu_item);
   gtk_widget_show (accel_label);
 
