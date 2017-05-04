@@ -1099,7 +1099,7 @@ x_toolbars_add_closer(GschemToplevel *w_current, GtkWidget *HandleBar, GtkWidget
 
     /* Create a Fixed Widget to hold the Close Buttton and add to the Toolbar */
     fixed = gtk_fixed_new();
-    gtk_container_add(GTK_CONTAINER(ToolBar), fixed);
+    geda_container_add(ToolBar, fixed);
     g_object_set (fixed, "visible", TRUE, NULL);
 
     /* Create the Close Button */
@@ -1116,17 +1116,17 @@ x_toolbars_add_closer(GschemToplevel *w_current, GtkWidget *HandleBar, GtkWidget
     gtk_widget_set_style(CloseButton, style);
 
     /* Put the Close Buttton inside the Fixed container and show it */
-    gtk_container_add(GTK_CONTAINER(fixed), CloseButton);      /* Put Button Widget Inside the fixed container */
+    geda_container_add(fixed, CloseButton);      /* Put Button Widget Inside the fixed container */
     gtk_widget_show (CloseButton);
 
     /* Create a New Alignment widget to hold the button Image */
     alignment = gtk_alignment_new (0, 0, 0, 0);
     gtk_widget_show (alignment);
-    gtk_container_add (GTK_CONTAINER (CloseButton), alignment); /* Put Alignment Widget Inside the Button */
+    geda_container_add(CloseButton, alignment); /* Put Alignment Widget Inside the Button */
 
     /* Create a Pixmap widget containing the image and add the widget to the container */
     x_image = create_pixmap (CLOSE_TOOLBAR_BITMAP);
-    gtk_container_add (GTK_CONTAINER (alignment), x_image);     /*Put image inside the Alignment container */
+    geda_container_add(alignment, x_image);     /*Put image inside the Alignment container */
     gtk_widget_show (x_image);
 
     /* Setup the signal handlers */
@@ -1261,8 +1261,8 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
 
   Standard_Toolbar = geda_toolbar_new (GTK_ORIENTATION_HORIZONTAL);
 
-  gtk_container_set_border_width (GTK_CONTAINER  (Standard_Toolbar), 0);
-  gtk_container_add              (GTK_CONTAINER  (w_current->standard_handlebox), Standard_Toolbar);
+  gtk_container_set_border_width (GTK_CONTAINER (Standard_Toolbar), 0);
+  geda_container_add (w_current->standard_handlebox, Standard_Toolbar);
 
   /* Add New, Open, Save and Save As Buttons to the Standard Toolbar */
   GSCHEM_TOOLBAR_BUTTON (Standard, etb_new);
@@ -1308,8 +1308,8 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
 
   Page_Toolbar = geda_toolbar_new (GTK_ORIENTATION_HORIZONTAL);
 
-  gtk_container_set_border_width (GTK_CONTAINER  (Page_Toolbar), 0);
-  gtk_container_add              (GTK_CONTAINER  (w_current->page_handlebox), Page_Toolbar);
+  gtk_container_set_border_width (GTK_CONTAINER (Page_Toolbar), 0);
+  geda_container_add (w_current->page_handlebox, Page_Toolbar);
 
   GSCHEM_TOOLBAR_BUTTON (Page, etb_page_manager);
 
@@ -1364,8 +1364,8 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
 
   Add_Toolbar = geda_toolbar_new (GTK_ORIENTATION_HORIZONTAL);
 
-  gtk_container_set_border_width (GTK_CONTAINER  (Add_Toolbar), 0);
-  gtk_container_add              (GTK_CONTAINER  (w_current->add_handlebox), Add_Toolbar);
+  gtk_container_set_border_width (GTK_CONTAINER (Add_Toolbar), 0);
+  geda_container_add (w_current->add_handlebox, Add_Toolbar);
 
   /* not part of any radio button group */
   GSCHEM_TOOLBAR_BUTTON (Add, etb_add_attribute);
@@ -1426,8 +1426,8 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
 
   Select_Toolbar = geda_toolbar_new (GTK_ORIENTATION_HORIZONTAL);
 
-  gtk_container_set_border_width (GTK_CONTAINER  (Select_Toolbar), 0);
-  gtk_container_add              (GTK_CONTAINER  (w_current->select_handlebox), Select_Toolbar);
+  gtk_container_set_border_width (GTK_CONTAINER (Select_Toolbar), 0);
+  geda_container_add (w_current->select_handlebox, Select_Toolbar);
 
   GSCHEM_TOOLBAR_BUTTON (Select, etb_unselect_all);
   GSCHEM_TOOLBAR_BUTTON (Select, etb_select_all);
@@ -1447,7 +1447,7 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
   Zoom_Toolbar = geda_toolbar_new (GTK_ORIENTATION_HORIZONTAL);
 
   gtk_container_set_border_width (GTK_CONTAINER (Zoom_Toolbar), 0);
-  gtk_container_add              (GTK_CONTAINER (w_current->zoom_handlebox), Zoom_Toolbar);
+  geda_container_add              (GTK_CONTAINER (w_current->zoom_handlebox), Zoom_Toolbar);
 
   GSCHEM_TOOLBAR_BUTTON (Zoom, etb_view_redraw);
   GSCHEM_TOOLBAR_BUTTON (Zoom, etb_zoom_pan);
@@ -1616,8 +1616,8 @@ x_toolbars_init_bottom(GschemToplevel *w_current, GtkWidget *parent_container)
 
   Attribute_Toolbar = geda_toolbar_new (GTK_ORIENTATION_HORIZONTAL);
 
-  gtk_container_set_border_width (GTK_CONTAINER  (Attribute_Toolbar), 0);
-  gtk_container_add              (GTK_CONTAINER  (w_current->attribute_handlebox), Attribute_Toolbar);
+  gtk_container_set_border_width (GTK_CONTAINER (Attribute_Toolbar), 0);
+  geda_container_add (w_current->attribute_handlebox, Attribute_Toolbar);
 
   /* Add Attribute Button to Toolbar */
   GSCHEM_TOOLBAR_BUTTON(Attribute, etb_attach);
@@ -1661,8 +1661,8 @@ x_toolbars_init_bottom(GschemToplevel *w_current, GtkWidget *parent_container)
 
   GripSnap_Toolbar = geda_toolbar_new (GTK_ORIENTATION_HORIZONTAL);
 
-  gtk_container_set_border_width (GTK_CONTAINER  (GripSnap_Toolbar), 0);
-  gtk_container_add              (GTK_CONTAINER  (w_current->grid_snap_handlebox), GripSnap_Toolbar);
+  gtk_container_set_border_width (GTK_CONTAINER (GripSnap_Toolbar), 0);
+  geda_container_add (w_current->grid_snap_handlebox, GripSnap_Toolbar);
 
   /* Toolbar radio button group - ToolBar_Radio_Responder defines a callback so ver 1 is expanded here*/
   /*                    bar,      var,             grp,             name,            data */
