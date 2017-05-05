@@ -33,6 +33,7 @@
 #define WITHOUT_GUILE 1
 #include <libgeda/libgeda.h>
 
+#include "../../include/geda_container.h"
 #include "../../include/geda_entry.h"
 #include "../../include/geda_font_dialog.h"
 #include "../../include/geda_label.h"
@@ -1250,7 +1251,7 @@ geda_font_dialog_add_widgets(GedaFontDialog *dialog)
   gtk_tree_view_column_pack_start (column, renderer, TRUE);
   gtk_tree_view_column_add_attribute (column, renderer, "text", FAMILY_NAME_COLUMN);
   gtk_tree_view_append_column (GTK_TREE_VIEW (dialog->family_list), column);
-  gtk_container_add (GTK_CONTAINER (family_scroll), dialog->family_list);
+  geda_container_add (family_scroll, dialog->family_list);
   gtk_widget_set_size_request (family_scroll, FONT_LIST_WIDTH, FONT_LIST_HEIGHT);
   gtk_widget_set_tooltip_text (GTK_WIDGET(family_scroll), family_scroll_tip);
 
@@ -1291,7 +1292,7 @@ geda_font_dialog_add_widgets(GedaFontDialog *dialog)
   gtk_tree_view_column_add_attribute (column, renderer, "text", FACE_NAME_COLUMN);
 
   gtk_tree_view_append_column (GTK_TREE_VIEW (dialog->style_list), column);
-  gtk_container_add (GTK_CONTAINER (style_scroll), dialog->style_list);
+  geda_container_add (style_scroll, dialog->style_list);
   gtk_widget_set_size_request (style_scroll, FONT_STYLE_LIST_WIDTH, FONT_LIST_HEIGHT);
   gtk_widget_set_tooltip_text (GTK_WIDGET(style_scroll), style_scroll_tip);
 
@@ -1331,7 +1332,7 @@ geda_font_dialog_add_widgets(GedaFontDialog *dialog)
   gtk_tree_view_column_add_attribute (column, renderer, "text", SIZE_COLUMN);
   gtk_tree_view_append_column (GTK_TREE_VIEW (dialog->size_list), column);
 
-  gtk_container_add (GTK_CONTAINER (size_scroll), dialog->size_list);
+  geda_container_add (size_scroll, dialog->size_list);
   gtk_widget_set_size_request (size_scroll, -1, FONT_LIST_HEIGHT);
   gtk_widget_set_tooltip_text (GTK_WIDGET(size_scroll), size_scroll_tip);
 
@@ -1349,7 +1350,7 @@ geda_font_dialog_add_widgets(GedaFontDialog *dialog)
   focus_chain = g_list_append (focus_chain, style_scroll);
   focus_chain = g_list_append (focus_chain, dialog->size_entry);
   focus_chain = g_list_append (focus_chain, size_scroll);
-  gtk_container_set_focus_chain (GTK_CONTAINER (table), focus_chain);
+  geda_container_set_focus_chain (table, focus_chain);
   g_list_free (focus_chain);
 
   vbox = gtk_vbox_new (FALSE, 6);
@@ -1641,7 +1642,7 @@ static void geda_font_dialog_instance_init(GTypeInstance *instance, void *g_clas
   dialog->main_vbox = GTK_DIALOG(Dialog)->vbox;
 
   /* Create the main content area */
-  gtk_container_set_border_width (GTK_CONTAINER (Dialog), 5);
+  geda_set_container_border_width (Dialog, 5);
 
   gtk_box_set_spacing (GTK_BOX (dialog->main_vbox), 2); /* 2 * 5 + 2 = 12 */
 
@@ -1658,7 +1659,7 @@ static void geda_font_dialog_instance_init(GTypeInstance *instance, void *g_clas
   /* Setup the Action Area */
   dialog->action_area  = gtk_dialog_get_action_area (Dialog);
 
-  gtk_container_set_border_width (GTK_CONTAINER (dialog->action_area), 5);
+  geda_set_container_border_width (dialog->action_area, 5);
 
   gtk_box_set_spacing (GTK_BOX (dialog->action_area), 6);
 
