@@ -395,7 +395,7 @@ geda_label_style_set (GtkWidget *widget, GtkStyle *previous_style)
   geda_label_clear_layout (label);
   label->INVALIDATE_WRAP_WIDTH;
 
-  GTK_WIDGET_CLASS (geda_label_parent_class)->style_set (widget, previous_style);
+  ((GtkWidgetClass*)geda_label_parent_class)->style_set (widget, previous_style);
 }
 
 /* called by: geda_label_expose
@@ -593,7 +593,7 @@ geda_label_query_tooltip (GtkWidget  *widget,
     }
   }
 
-  return GTK_WIDGET_CLASS (geda_label_parent_class)->
+  return ((GtkWidgetClass*)geda_label_parent_class)->
             query_tooltip (widget, x, y, keyboard_tip, tooltip);
 }
 
@@ -606,7 +606,7 @@ geda_label_direction_changed (GtkWidget *widget, GtkTextDirection direction)
     pango_layout_context_changed (label->layout);
   }
 
-  GTK_WIDGET_CLASS (geda_label_parent_class)->direction_changed (widget, direction);
+  ((GtkWidgetClass*)geda_label_parent_class)->direction_changed (widget, direction);
 }
 
 /* Semi-private function used by gtk widgets inheriting from
@@ -963,7 +963,7 @@ geda_label_destroy (GtkObject *object)
 
   geda_label_set_mnemonic_widget (label, NULL);
 
-  GTK_OBJECT_CLASS (geda_label_parent_class)->destroy (object);
+  ((GtkObjectClass*)geda_label_parent_class)->destroy (object);
 }
 
 /** @} endgroup GedaLabel-GtkObject */
@@ -1003,7 +1003,7 @@ static void geda_label_dispose (GObject *object)
     label->priv->accessible = NULL;
   }
 
-  G_OBJECT_CLASS (geda_label_parent_class)->dispose (object);
+  ((GObjectClass*)geda_label_parent_class)->dispose (object);
 }
 
 /*! \internal GObjectClass::gobject_class->finalize */
@@ -1033,7 +1033,7 @@ static void geda_label_finalize (GObject *object)
 
   GEDA_FREE(label->priv);
 
-  G_OBJECT_CLASS (geda_label_parent_class)->finalize (object);
+  ((GObjectClass*)geda_label_parent_class)->finalize (object);
 }
 
 /*! \internal GObjectClass::gobject_class->get_property */
@@ -3405,7 +3405,7 @@ geda_label_size_allocate (GtkWidget     *widget,
   GedaLabel     *label = (GedaLabel*)widget;
   GedaLabelData *priv  = label->priv;
 
-  GTK_WIDGET_CLASS (geda_label_parent_class)->size_allocate (widget, allocation);
+  ((GtkWidgetClass*)geda_label_parent_class)->size_allocate (widget, allocation);
 
   if (label->layout)
     geda_label_update_layout_width (label);
@@ -3469,8 +3469,8 @@ geda_label_state_changed (GtkWidget   *widget, GtkStateType prev_state)
     geda_label_update_cursor (label);
   }
 
-  if (GTK_WIDGET_CLASS (geda_label_parent_class)->state_changed)
-    GTK_WIDGET_CLASS (geda_label_parent_class)->state_changed (widget, prev_state);
+  if (((GtkWidgetClass*)geda_label_parent_class)->state_changed)
+    ((GtkWidgetClass*)geda_label_parent_class)->state_changed (widget, prev_state);
 }
 
 static PangoDirection get_cursor_direction (GedaLabel *label)
@@ -3871,7 +3871,7 @@ static void geda_label_realize (GtkWidget *widget)
 {
   GedaLabel *label = (GedaLabel*)widget;
 
-  GTK_WIDGET_CLASS (geda_label_parent_class)->realize (widget);
+  ((GtkWidgetClass*)geda_label_parent_class)->realize (widget);
 
   if (label->priv->select_info) {
     geda_label_create_window (label);
@@ -3885,14 +3885,15 @@ static void geda_label_unrealize (GtkWidget *widget)
   if (label->priv->select_info) {
     geda_label_destroy_window (label);
   }
-  GTK_WIDGET_CLASS (geda_label_parent_class)->unrealize (widget);
+
+  ((GtkWidgetClass*)geda_label_parent_class)->unrealize (widget);
 }
 
 static void geda_label_map (GtkWidget *widget)
 {
   GedaLabel *label = (GedaLabel*)widget;
 
-  GTK_WIDGET_CLASS (geda_label_parent_class)->map (widget);
+  ((GtkWidgetClass*)geda_label_parent_class)->map (widget);
 
   if (label->priv->select_info) {
     gdk_window_show (label->priv->select_info->window);
@@ -3906,7 +3907,8 @@ static void geda_label_unmap (GtkWidget *widget)
   if (label->priv->select_info) {
     gdk_window_hide (label->priv->select_info->window);
   }
-  GTK_WIDGET_CLASS (geda_label_parent_class)->unmap (widget);
+
+  ((GtkWidgetClass*)geda_label_parent_class)->unmap (widget);
 }
 
 /* Selection this is out of place */
@@ -3941,7 +3943,7 @@ static void geda_label_grab_focus (GtkWidget *widget)
   if (priv->select_info == NULL)
     return;
 
-  GTK_WIDGET_CLASS (geda_label_parent_class)->grab_focus (widget);
+  ((GtkWidgetClass*)geda_label_parent_class)->grab_focus (widget);
 
   if ( !priv->select_info->selectable &&
         priv->select_info->links && !priv->in_click) {
@@ -4560,8 +4562,8 @@ geda_label_leave_notify (GtkWidget *widget, GdkEventCrossing *event)
     gtk_widget_queue_draw (widget);
   }
 
-  if (GTK_WIDGET_CLASS (geda_label_parent_class)->leave_notify_event) {
-    return GTK_WIDGET_CLASS (geda_label_parent_class)->leave_notify_event (widget, event);
+  if (((GtkWidgetClass*)geda_label_parent_class)->leave_notify_event) {
+    return ((GtkWidgetClass*)geda_label_parent_class)->leave_notify_event (widget, event);
   }
   return FALSE;
 }
@@ -4634,7 +4636,6 @@ geda_label_create_window (GedaLabel *label)
     attributes_mask = GDK_WA_X | GDK_WA_Y | GDK_WA_NOREDIR;
 
     if (gtk_widget_is_sensitive (widget)) {
-
       attributes.cursor = gdk_cursor_new_for_display (gtk_widget_get_display (widget), GDK_XTERM);
       attributes_mask  |= GDK_WA_CURSOR;
     }
@@ -4764,6 +4765,7 @@ static void geda_label_select_region_index (GedaLabel *label,
   priv = label->priv;
 
   if (priv->select_info && priv->select_info->selectable) {
+
     GtkClipboard *clipboard;
 
     if (priv->select_info->selection_anchor == anchor_index &&

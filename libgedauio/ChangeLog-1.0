@@ -7,6 +7,8 @@
         * geda_combo_widget_prepend_text
         * geda_combo_widget_remove_index
 
+    * include/geda_container.h: Add macro geda_container_propagate_expose.
+
     * include/geda_gtk_compat.h: Change type-checking cast GTK_BIN -> GtkBin
       and GTK_CONTAINER -> GtkContainer.
 
@@ -16,7 +18,9 @@
     * src/widgets/geda_font_dialog.c: Include geda_container.h and utilize
       geda_container_add macro through-out module.
 
-    * include/geda_container.h: Add macro geda_container_propagate_expose.
+    * src/widgets/geda_label.c: Skip type checking for class casts in virtual
+      over-rides.
+
 
 2017-05-04 Wiley E. Hill <wileyhill@gmail.com>
 
