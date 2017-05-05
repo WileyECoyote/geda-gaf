@@ -1,5 +1,12 @@
 2017-05-05 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/geda_combobox.h: Add convenience macros:
+
+        * geda_combo_widget_append_text
+        * geda_combo_widget_insert_text
+        * geda_combo_widget_prepend_text
+        * geda_combo_widget_remove_index
+
     * src/widgets/geda_font_dialog.c: Include geda_container.h and utilize
       geda_container_add macro through-out module.
 

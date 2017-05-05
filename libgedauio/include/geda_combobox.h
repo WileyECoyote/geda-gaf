@@ -147,7 +147,8 @@ GtkWidget         *geda_combo_get_entry_widget           (GedaComboBox        *c
 int                geda_combo_box_get_entry_text_column  (GedaComboBox        *combo_box);
 void               geda_combo_box_set_entry_text_column  (GedaComboBox        *combo_box,
                                                           int                  text_column);
-/* convenience -- text */
+
+/* convenience -- text, see macro below for widget version */
 GtkWidget    *geda_combo_box_new_text                 (void);
 GtkWidget    *geda_combo_box_new_text_with_entry      (void);
 
@@ -220,6 +221,12 @@ void          geda_combo_widget_set_model              (GtkWidget    *combo_box,
 void          geda_combo_widget_popup                  (GtkWidget   *combo_box);
 void          geda_combo_widget_popdown                (GtkWidget   *combo_box);
 AtkObject    *geda_combo_widget_get_popup_accessible   (GtkWidget   *combo_box);
+
+/* convenience widget text version */
+#define geda_combo_widget_append_text(cb, txt) geda_combo_box_append_text((GedaComboBox*)cb, txt)
+#define geda_combo_widget_insert_text(cb,txt)  geda_combo_box_insert_text((GedaComboBox*)cb, txt)
+#define geda_combo_widget_prepend_text(cb,txt) geda_combo_box_prepend_text((GedaComboBox*)cb, txt)
+#define geda_combo_widget_remove_index(cb,idx) geda_combo_box_remove_index((GedaComboBox*)cb, idx)
 
 #ifdef __cplusplus
 }
