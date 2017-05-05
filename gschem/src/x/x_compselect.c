@@ -2063,8 +2063,7 @@ compselect_create_inuse_treeview (Compselect *compselect)
 
   /* vertical box for component selection and search entry */
   GTK_NEW_vBOX(inuse, FALSE, DEFAULT_DIALOG_SPACING);
-  gtk_container_set_border_width(GTK_CONTAINER(inuse_vbox),
-                                  DIALOG_BORDER_WIDTH);
+  geda_set_container_border_width(inuse_vbox, DIALOG_BORDER_WIDTH);
 
   /* Create a scrolled window to accomodate the treeview */
   scrolled_win = GTK_WIDGET (
@@ -2111,7 +2110,8 @@ compselect_create_inuse_treeview (Compselect *compselect)
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
   /* Add the treeview to the scrolled window */
-  gtk_container_add (GTK_CONTAINER (scrolled_win), treeview);
+  geda_container_add (scrolled_win, treeview);
+
   /* set the inuse treeview of compselect */
   compselect->inusetreeview = GTK_TREE_VIEW (treeview);
 
@@ -2133,9 +2133,9 @@ compselect_create_inuse_treeview (Compselect *compselect)
                                      "relief",    GTK_RELIEF_NONE,
                                      NULL));
 
-  gtk_container_add (GTK_CONTAINER (button),
-                     gtk_image_new_from_stock (GTK_STOCK_REFRESH,
-                                            GTK_ICON_SIZE_SMALL_TOOLBAR));
+  geda_container_add (button,
+                      gtk_image_new_from_stock (GTK_STOCK_REFRESH,
+                                                GTK_ICON_SIZE_SMALL_TOOLBAR));
 
   /* Add the refresh button to the horizontal box at the end */
   gtk_box_pack_end (GTK_BOX (hbox), button, FALSE, FALSE, 0);
@@ -2448,8 +2448,7 @@ compselect_create_treeview_box (Compselect   *compselect,
    * the vbox we will put everthing in and the widget we return */
   GTK_NEW_vBOX(view, FALSE, DEFAULT_DIALOG_SPACING);
 
-  gtk_container_set_border_width(GTK_CONTAINER(view_vbox),
-                                 DIALOG_BORDER_WIDTH);
+  geda_set_container_border_width(view_vbox, DIALOG_BORDER_WIDTH);
 
   model  = compselect_create_lib_tree_model (compselect, data_set);
 
@@ -2500,7 +2499,7 @@ compselect_create_treeview_box (Compselect   *compselect,
   gtk_tree_view_append_column (GTK_TREE_VIEW(treeview), column);
 
   /* Add the treeview to the scrolled window */
-  gtk_container_add (GTK_CONTAINER (scrolled_win), GTK_WIDGET (treeview));
+  geda_container_add (scrolled_win, treeview);
 
   /* Add the scrolled window for directories to the vertical box */
   PACK_BOX(view_vbox, scrolled_win, TRUE, TRUE, 0);
@@ -2591,7 +2590,7 @@ compselect_create_attributes_treeview (Compselect *compselect)
                   "shadow-type", GTK_SHADOW_ETCHED_IN,
                   NULL));
 
-  gtk_container_add (GTK_CONTAINER (scrolled_win), attrtreeview);
+  geda_container_add (scrolled_win, attrtreeview);
 
   compselect->attrtreeview = GTK_TREE_VIEW (attrtreeview);
 
@@ -2650,9 +2649,9 @@ compselect_create_filter_area (Compselect *compselect)
 
   gtk_widget_set_tooltip_text(clear_butt, _TOOLTIP(ClearButton));
 
-  gtk_container_add (GTK_CONTAINER (clear_butt),
-                     gtk_image_new_from_stock (GTK_STOCK_CLEAR,
-                                               GTK_ICON_SIZE_SMALL_TOOLBAR));
+  geda_container_add (clear_butt,
+                      gtk_image_new_from_stock (GTK_STOCK_CLEAR,
+                                                GTK_ICON_SIZE_SMALL_TOOLBAR));
 
   /* Add the clear button to the filter area */
   PACK_BOX(hbox, clear_butt, FALSE, FALSE, 0);
@@ -2670,9 +2669,9 @@ compselect_create_filter_area (Compselect *compselect)
 
   gtk_widget_set_tooltip_text(refresh_butt, _TOOLTIP(RefreshAllViews));
 
-  gtk_container_add (GTK_CONTAINER (refresh_butt),
-                     gtk_image_new_from_stock (GTK_STOCK_REFRESH,
-                                            GTK_ICON_SIZE_SMALL_TOOLBAR));
+  geda_container_add (refresh_butt,
+                      gtk_image_new_from_stock (GTK_STOCK_REFRESH,
+                                                GTK_ICON_SIZE_SMALL_TOOLBAR));
 
   /* Add the refresh button to the filter area */
   PACK_BOX(hbox, refresh_butt, FALSE, FALSE, 0);
@@ -2687,9 +2686,9 @@ compselect_create_filter_area (Compselect *compselect)
 
   gtk_widget_set_tooltip_text(collapse_butt, _TOOLTIP(CollapseButton));
 
-  gtk_container_add (GTK_CONTAINER (collapse_butt),
-                     gtk_image_new_from_stock (GTK_STOCK_GO_UP,
-                                    GTK_ICON_SIZE_SMALL_TOOLBAR));
+  geda_container_add (collapse_butt,
+                      gtk_image_new_from_stock (GTK_STOCK_GO_UP,
+                                                GTK_ICON_SIZE_SMALL_TOOLBAR));
 
   /* Add the collapse button to the filter area */
   PACK_BOX(hbox, collapse_butt, FALSE, FALSE, 0);
@@ -2704,9 +2703,9 @@ compselect_create_filter_area (Compselect *compselect)
 
   gtk_widget_set_tooltip_text(expand_butt, _TOOLTIP(ExpandButton));
 
-  gtk_container_add (GTK_CONTAINER (expand_butt),
-                     gtk_image_new_from_stock (GTK_STOCK_GO_DOWN,
-                                    GTK_ICON_SIZE_SMALL_TOOLBAR));
+  geda_container_add (expand_butt,
+                      gtk_image_new_from_stock (GTK_STOCK_GO_DOWN,
+                                                GTK_ICON_SIZE_SMALL_TOOLBAR));
 
   /* Add the expand button to the filter area */
   PACK_BOX(hbox, expand_butt, FALSE, FALSE, 0);
@@ -3265,8 +3264,8 @@ compselect_constructor (GType                  type,
                                       "active", FALSE,
                                       NULL));
 
-  gtk_container_add (GTK_CONTAINER (alignment), preview);
-  gtk_container_add (GTK_CONTAINER (frame), alignment);
+  geda_container_add (alignment, preview);
+  geda_container_add (frame, alignment);
 
   /* save pointer to preview frame widget in compselect */
   ThisDialog->preview = GSCHEM_PREVIEW (preview);
@@ -3290,7 +3289,7 @@ compselect_constructor (GType                  type,
     attributes = compselect_create_attributes_treeview (ThisDialog);
 
     gtk_paned_pack2 (GTK_PANED (vpaned), frame, FALSE, FALSE);
-    gtk_container_add (GTK_CONTAINER (frame), attributes);
+    geda_container_add (frame, attributes);
   }
 
   gtk_paned_pack2 (GTK_PANED (hpaned), vpaned, FALSE, FALSE);
@@ -3320,7 +3319,7 @@ compselect_constructor (GType                  type,
 
   /* Remove Gtk action area from the dialog and don't re-use it */
   action_area = GTK_DIALOG(ThisDialog)->action_area;
-  gtk_container_remove(GTK_CONTAINER(main_vbox),GTK_WIDGET(action_area));
+  geda_container_remove(main_vbox, action_area);
 
   action_area = compselect_create_action_area (compselect, (GtkWidget*)main_vbox, mode);
   gtk_box_pack_end (GTK_BOX (main_vbox), action_area, FALSE, FALSE, 0);
