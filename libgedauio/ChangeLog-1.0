@@ -10,6 +10,9 @@
     * include/geda_gtk_compat.h: Change type-checking cast GTK_BIN -> GtkBin
       and GTK_CONTAINER -> GtkContainer.
 
+    * src/dialogs/geda_input_dialog.c:Include geda_container.h and utilize
+      geda_container_add macro.
+
     * src/widgets/geda_font_dialog.c: Include geda_container.h and utilize
       geda_container_add macro through-out module.
 

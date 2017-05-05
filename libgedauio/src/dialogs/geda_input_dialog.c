@@ -6,8 +6,8 @@
  * gEDA - GPL Electronic Design Automation
  * libgedauio - gEDA's library for User Interface Objects
  *
- * Copyright (C) 2014-2015 Wiley Edward Hill <wileyhill@gmail.com>
- * Copyright (C) 2014-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2014-2017 Wiley Edward Hill <wileyhill@gmail.com>
+ * Copyright (C) 2014-2017 gEDA Contributors (see ChangeLog for details)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -43,8 +43,9 @@
 #define WITHOUT_GUILE 1
 #include <libgeda/libgeda.h>
 
-#include <geda_label.h>
-#include <geda_entry.h>
+#include "../../include/geda_container.h"
+#include "../../include/geda_label.h"
+#include "../../include/geda_entry.h"
 
 static char*
 geda_dialog_get_input(const char *title, const char *prompt, const char *str, GedaEntryAccept type)
@@ -67,12 +68,12 @@ geda_dialog_get_input(const char *title, const char *prompt, const char *str, Ge
 
     if (prompt) {
       GtkWidget *label = geda_visible_label_new(prompt);
-      gtk_container_add(GTK_CONTAINER(content_area), label);
+      geda_container_add(content_area, label);
     }
 
     entry = geda_entry_new_visible ();
     geda_entry_set_valid_input(GEDA_ENTRY(entry), type);
-    gtk_container_add(GTK_CONTAINER(content_area), entry);
+    geda_container_add(content_area, entry);
 
     if (str) {
       gtk_entry_set_text((GtkEntry*)entry, str);
