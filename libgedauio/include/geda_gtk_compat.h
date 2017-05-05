@@ -149,7 +149,7 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 #define gtk_widget_reset_style gtk_widget_reset_rc_styles
 
 /*! \def geda_get_child_widget Get Child Bin widget Gtk < 3 */
-#define geda_get_child_widget(w) GTK_BIN(w)->child
+#define geda_get_child_widget(w) ((GtkBin*)w)->child
 
 /*! \def geda_get_widget_allocation Get Pointer to Allocation */
 #define geda_get_widget_allocation(w) &(GTK_WIDGET(w)->allocation)
@@ -160,12 +160,12 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 
 #define geda_device_grab_remove(w,p) gtk_grab_remove(GTK_WIDGET(w))
 
-#define geda_get_container_border_width(w) GTK_CONTAINER (w)->border_width
+#define geda_get_container_border_width(w) ((GtkContainer*)w)->border_width
 
 #else /* GTK >= 3 */
 
 /*! \def geda_get_child_widget Get Child Bin widget Gtk >= 3*/
-#define geda_get_child_widget(w) gtk_bin_get_child (GTK_BIN(w))
+#define geda_get_child_widget(w) gtk_bin_get_child ((GtkBin*)w)
 
 #define geda_get_widget_allocation(w) \
   ({ GtkAllocation a; gtk_widget_get_allocation (GTK_WIDGET(w), &a); &a; })
@@ -201,7 +201,7 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 #   define gtk_vscrollbar_new(adj)  gtk_scrollbar_new(GTK_ORIENTATION_VERTICAL, (adj))
 #   define gtk_hscrollbar_new(adj)  gtk_scrollbar_new(GTK_ORIENTATION_HORIZONTAL, (adj))
 
-#   define geda_get_container_border_width(w)  gtk_container_get_border_width(GTK_CONTAINER (w))
+#   define geda_get_container_border_width(w)  gtk_container_get_border_width((GtkContainer*)w)
 
 #endif
 
