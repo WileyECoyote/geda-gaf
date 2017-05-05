@@ -38,6 +38,7 @@
 
 #include <geda_image_chooser.h>
 #include <geda_file_filter.h>
+#include "../../include/geda_container.h"
 #include "../../include/geda_marshal.h"
 #include "../../include/geda_menu.h"
 #include "../../include/geda_menu_item.h"
@@ -607,10 +608,10 @@ chooser_add_preview (GtkWidget *chooser, bool state, int size)
 
   preview = GTK_WIDGET (g_object_new (GTK_TYPE_IMAGE, NULL));
 
-  gtk_container_add (GTK_CONTAINER (alignment), preview);
-  gtk_container_add (GTK_CONTAINER (frame), alignment);
-  gtk_container_add (GTK_CONTAINER (ebox), frame);
-  gtk_container_add (GTK_CONTAINER (vbox), ebox);
+  geda_container_add (alignment, preview);
+  geda_container_add (frame, alignment);
+  geda_container_add (ebox, frame);
+  geda_container_add (vbox, ebox);
   gtk_widget_show_all (frame);
 
 
@@ -634,8 +635,8 @@ chooser_add_preview (GtkWidget *chooser, bool state, int size)
   gtk_adjustment_set_value(adjustment, (double)size);
   gtk_scale_set_value_pos (GTK_SCALE(slider), GTK_POS_BOTTOM);
 
-  gtk_container_add (GTK_CONTAINER (alignment), slider);
-  gtk_container_add (GTK_CONTAINER (hbox), alignment);
+  geda_container_add (alignment, slider);
+  geda_container_add (hbox, alignment);
   gtk_box_pack_end (GTK_BOX (vbox), hbox, TRUE, FALSE, 0);
 
   (GEDA_IMAGE_CHOOSER(chooser))->slider = slider;
@@ -684,7 +685,7 @@ static void FixGtkCrap(GtkWidget *widget, void *self)
     (GEDA_IMAGE_CHOOSER(self))->filter_button = widget;
   }
   else if (GTK_IS_CONTAINER(widget)) {
-     gtk_container_forall ( GTK_CONTAINER (widget), FixGtkCrap, self);
+     geda_container_forall (widget, FixGtkCrap, self);
   }
 }
 
@@ -694,7 +695,7 @@ static void look_for_entry(GtkWidget *widget, void *self)
     chooser_entry = (GtkEntry*)widget;
   }
   else if (GTK_IS_CONTAINER(widget)) {
-     gtk_container_forall ( GTK_CONTAINER (widget), look_for_entry, self);
+     geda_container_forall (widget, look_for_entry, self);
   }
 }
 
@@ -704,13 +705,13 @@ geda_image_chooser_find_entry (GtkWidget *chooser)
   GList   *children, *iter;
 
   /* Get all objects inside the dialog */
-  children = gtk_container_get_children (GTK_CONTAINER (chooser));
+  children = geda_container_get_children (chooser);
 
   for (iter = children; iter; iter = iter->next) {
 
     if (GTK_IS_CONTAINER(iter->data)) {
 
-      gtk_container_forall ( GTK_CONTAINER (iter->data), look_for_entry, chooser);
+      geda_container_forall (iter->data, look_for_entry, chooser);
 
       if (chooser_entry != NULL) {
         break;
@@ -737,12 +738,12 @@ geda_image_chooser_constructor (GType                  type,
   chooser = GEDA_IMAGE_CHOOSER(obj);
 
   /* Get all object inside the contents area of the dialog */
-  children = gtk_container_get_children (GTK_CONTAINER (GTK_DIALOG (obj)->vbox));
+  children = geda_container_get_children (GTK_DIALOG (obj)->vbox);
 
   /* For each container in the contents area to call look for combo box */
   for (iter = children; iter; iter = iter->next) {
     if (GTK_IS_CONTAINER(iter->data)) {
-      gtk_container_forall (GTK_CONTAINER (iter->data), FixGtkCrap, obj);
+      geda_container_forall (iter->data, FixGtkCrap, obj);
       if (chooser->filter_button) {
         break;
       }
@@ -1397,7 +1398,7 @@ geda_image_chooser_append_extra (GtkWidget *dialog, GtkWidget *child)
 {
   if (GEDA_IMAGE_CHOOSER(dialog)) {
     GedaImageChooser *chooser = (GedaImageChooser*)dialog;
-    gtk_container_add (GTK_CONTAINER (chooser->extra), child);
+    geda_container_add (chooser->extra, child);
   }
   else {
     BUG_MSG ("Operative is not a GedaImageChooser");
@@ -1415,7 +1416,7 @@ geda_image_chooser_prepend_extra (GtkWidget *dialog, GtkWidget *child)
     GList            *iter;
 
     chooser   = (GedaImageChooser*)dialog;
-    container = GTK_CONTAINER (chooser->extra);
+    container = (GtkContainer*)chooser->extra;
     children  = gtk_container_get_children (container);
 
     for (iter = children; iter; iter = iter->next) {

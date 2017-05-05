@@ -21,6 +21,7 @@
     * src/widgets/geda_label.c: Skip type checking for class casts in virtual
       over-rides.
 
+      sub-total: 18757 - 468 = 18289 less calls to g_type_check_instance_cast.
 
 2017-05-04 Wiley E. Hill <wileyhill@gmail.com>
 
