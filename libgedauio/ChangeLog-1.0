@@ -10,6 +10,8 @@
     * src/widgets/geda_font_dialog.c: Include geda_container.h and utilize
       geda_container_add macro through-out module.
 
+    * include/geda_container.h: Add macro geda_container_propagate_expose.
+
 2017-05-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_container.h: Add macros:

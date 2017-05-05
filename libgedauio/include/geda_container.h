@@ -18,8 +18,10 @@ geda_container_focus_sort (GtkContainer     *container,
 #define geda_set_container_border_width(c, w) gtk_container_set_border_width((GtkContainer*)c, w)
 #define geda_container_set_focus_chain(c, fc) gtk_container_set_focus_chain ((GtkContainer*)c, fc);
 
-#define geda_container_forall(c, f, d )gtk_container_forall ((GtkContainer*)c, (GtkCallback)f, (void*)d)
-#define geda_container_foreach(c, f, d )gtk_container_forall ((GtkContainer*)c, (GtkCallback)f, (void*)d)
+#define geda_container_forall(c, f, d) gtk_container_forall ((GtkContainer*)c, (GtkCallback)f, (void*)d)
+#define geda_container_foreach(c, f, d) gtk_container_forall ((GtkContainer*)c, (GtkCallback)f, (void*)d)
+
+#define geda_container_propagate_expose(c, w, e) gtk_container_propagate_expose ((GtkContainer*)c, (GtkWidget*)w, e)
 
 #ifdef __cplusplus
 }
