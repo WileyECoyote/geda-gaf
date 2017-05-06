@@ -8,6 +8,9 @@
       MENU_ITEM type to g_signal_new, replace cast in order to reduce needless
       type-checking.
 
+    * src/widgets/geda_tearoff_menu_item.c: Revise geda_tearoff_menu_item_size
+      _request; get border width using geda_get_container_border_width, use.
+
 2017-05-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_combobox.h: Add convenience macros:

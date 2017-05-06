@@ -115,11 +115,12 @@ static void
 geda_tearoff_menu_item_size_request (GtkWidget      *widget,
                                      GtkRequisition *requisition)
 {
-  requisition->width  = (GTK_CONTAINER (widget)->border_width +
-                         widget->style->xthickness + BORDER_SPACING) * 2;
+  unsigned int border_width;
 
-  requisition->height = (GTK_CONTAINER (widget)->border_width +
-                         widget->style->ythickness) * 2;
+  border_width = geda_get_container_border_width (widget);
+
+  requisition->width  = (border_width + widget->style->xthickness + BORDER_SPACING) * 2;
+  requisition->height = (border_width + widget->style->ythickness) * 2;
 
   if (GEDA_IS_MENU (widget->parent) && GEDA_MENU (widget->parent)->torn_off)
   {
@@ -263,7 +264,7 @@ geda_tearoff_menu_item_get_preferred_width (GtkWidget *widget,
   state = gtk_widget_get_state_flags (widget);
 
   gtk_style_context_get_padding (context, state, &padding);
-  border_width = gtk_container_get_border_width (GTK_CONTAINER (widget));
+  border_width = geda_get_container_border_width (widget);
 
   *minimum = *natural = (border_width + BORDER_SPACING) * 2 + padding.left + padding.right;
 }
@@ -285,7 +286,7 @@ geda_tearoff_menu_item_get_preferred_height (GtkWidget *widget,
 
   gtk_style_context_get_padding (context, state, &padding);
 
-  border_width = gtk_container_get_border_width (GTK_CONTAINER (widget));
+  border_width = geda_get_container_border_width (widget);
 
   *minimum = *natural = (border_width * 2) + padding.top + padding.bottom;
 
@@ -321,7 +322,7 @@ geda_tearoff_menu_item_draw (GtkWidget *widget, cairo_t *cr)
   direction    = gtk_widget_get_direction (widget);
   state        = gtk_widget_get_state_flags (widget);
 
-  border_width = gtk_container_get_border_width (GTK_CONTAINER (menu_item));
+  border_width = geda_get_container_border_width (menu_item);
   x            = border_width;
   y            = border_width;
   width        = gtk_widget_get_allocated_width (widget) - border_width * 2;
