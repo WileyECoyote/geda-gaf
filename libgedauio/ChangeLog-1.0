@@ -5,7 +5,8 @@
       function with corresponding geda_container_ function.
 
     * src/widgets/geda_radio_menu_item.c: Explicitly specify GEDA_TYPE_RADIO_
-      MENU_ITEM type to g_signal_new.
+      MENU_ITEM type to g_signal_new, replace cast in order to reduce needless
+      type-checking.
 
 2017-05-05 Wiley E. Hill <wileyhill@gmail.com>
 
