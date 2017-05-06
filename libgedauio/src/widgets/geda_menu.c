@@ -5751,28 +5751,27 @@ geda_menu_scroll_to (GedaMenu *menu, int offset)
 static void
 geda_menu_reparent (GedaMenu *menu, GtkWidget *new_parent, bool unrealize)
 {
-  GObject   *object  = G_OBJECT (menu);
-  GtkWidget *widget  = (GtkWidget*)menu;
-  bool  was_floating = g_object_is_floating (menu);
+  GtkWidget *widget = (GtkWidget*)menu;
+  bool was_floating = g_object_is_floating (menu);
 
-  g_object_ref_sink (object);
+  g_object_ref_sink (menu);
 
   if (unrealize) {
 
-      g_object_ref (object);
-      gtk_container_remove (GTK_CONTAINER (widget->parent), widget);
-      gtk_container_add (GTK_CONTAINER (new_parent), widget);
-      g_object_unref (object);
+      g_object_ref (menu);
+      geda_container_remove (widget->parent, widget);
+      geda_container_add    (new_parent, widget);
+      g_object_unref (menu);
   }
   else {
     gtk_widget_reparent (widget, new_parent);
   }
 
   if (was_floating) {
-    g_object_force_floating (object);
+    g_object_force_floating ((GObject*)menu);
   }
   else {
-    g_object_unref (object);
+    g_object_unref (menu);
   }
 }
 

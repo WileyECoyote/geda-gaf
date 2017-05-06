@@ -1,6 +1,8 @@
 2017-05-06 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/widgets/geda_menu.c: Remove unnecessary g_return_if_fails.
+    * src/widgets/geda_menu.c: Remove unnecessary g_return_if_fails. Revise
+      geda_menu_reparent; eliminate GObject variable and replace gtk_container_
+      function with corresponding geda_container_ function.
 
 2017-05-05 Wiley E. Hill <wileyhill@gmail.com>
 
