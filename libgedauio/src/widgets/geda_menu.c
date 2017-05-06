@@ -1340,8 +1340,6 @@ geda_menu_paint (GtkWidget *widget, GdkEventExpose *event)
   GdkRectangle  lower;
   int           arrow_space;
 
-  g_return_if_fail (GEDA_IS_MENU (widget));
-
   menu = (GedaMenu*)widget;
   priv = menu->priv;
 
@@ -1436,9 +1434,6 @@ geda_menu_paint (GtkWidget *widget, GdkEventExpose *event)
 static bool
 geda_menu_expose (GtkWidget *widget, GdkEventExpose *event)
 {
-  g_return_val_if_fail (GEDA_IS_MENU (widget), FALSE);
-  g_return_val_if_fail (event != NULL, FALSE);
-
   if (gtk_widget_is_drawable (widget)) {
 
     geda_menu_paint (widget, event);
@@ -1872,8 +1867,6 @@ geda_menu_realize (GtkWidget *widget)
 
   GtkBorder arrow_border;
 
-  g_return_if_fail (GEDA_IS_MENU (widget));
-
   menu = (GedaMenu*)widget;
 
   gtk_widget_set_realized (widget, TRUE);
@@ -2073,9 +2066,6 @@ geda_menu_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
 
   unsigned int vertical_padding;
   unsigned int horizontal_padding;
-
-  g_return_if_fail (GEDA_IS_MENU (widget));
-  g_return_if_fail (allocation != NULL);
 
   menu       = (GedaMenu*)widget;
   menu_shell = (GedaMenuShell*)widget;
@@ -3774,8 +3764,6 @@ GtkWidget*
 geda_menu_get_attach_widget (GedaMenu *menu)
 {
   MenuAttachData *data;
-
-  g_return_val_if_fail (GEDA_IS_MENU (menu), NULL);
 
   data = g_object_get_data ((GObject*)menu, attached_data_key);
 
