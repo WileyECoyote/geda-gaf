@@ -1,6 +1,7 @@
 2017-05-06 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/gtksheet/gtksheet.c: Reduce GtkContainer type-checking cast.
+    * src/gtksheet/gtksheet.c: Reduce GtkContainer type-checking cast, remove
+      redundant g_return_?_if_fail.
 
 2017-05-03 Wiley E. Hill <wileyhill@gmail.com>
 
