@@ -146,14 +146,14 @@ static void geda_picture_finalize(GObject *object)
  *  GedaType class initializer for GedaPicture. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- *  \param [in]  g_class      The GedaPicture class we are initialising
- *  \param [in]  class_data   The Picture structure associated with the class
+ *  \param [in]  klass       The GedaPicture class we are initialising
+ *  \param [in]  class_data  The Picture structure associated with the class
  */
-static void geda_picture_class_init(void *g_class, void *class_data)
+static void geda_picture_class_init(void *klass, void *class_data)
 {
-  GedaPictureClass *class         = (GedaPictureClass*)g_class;
-  GObjectClass     *gobject_class = G_OBJECT_CLASS(class);
-  GedaObjectClass  *geda_class    = GEDA_OBJECT_CLASS(class);
+  GedaPictureClass *class         = (GedaPictureClass*)klass;
+  GObjectClass     *gobject_class = (GObjectClass*)klass;
+  GedaObjectClass  *geda_class    = (GedaObjectClass*)klass;
 
   geda_picture_parent_class       = g_type_class_peek_parent(class);
 
