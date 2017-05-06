@@ -284,7 +284,7 @@ geda_radio_menu_item_class_init(void *class, void *class_data)
    * of the group that a menu item belongs to changes.
    */
   group_changed_signal = g_signal_new ("group-changed",
-                                       G_OBJECT_CLASS_TYPE (object_class),
+                                       GEDA_TYPE_RADIO_MENU_ITEM,
                                        G_SIGNAL_RUN_FIRST,
                                        G_STRUCT_OFFSET (GedaRadioMenuItemClass, group_changed),
                                        NULL, NULL,
