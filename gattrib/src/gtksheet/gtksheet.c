@@ -6054,7 +6054,7 @@ gtk_sheet_destroy_handler(GtkObject *object)
       GtkSheetChild *child = (GtkSheetChild *)children->data;
 
       if (child && child->widget) {
-        gtk_sheet_remove_handler(GTK_CONTAINER(sheet), child->widget);
+        gtk_sheet_remove_handler((GtkContainer*)sheet, child->widget);
       }
       children = sheet->children;
     }
@@ -11767,7 +11767,7 @@ gtk_sheet_size_allocate_handler(GtkWidget *widget, GtkAllocation *allocation)
     sheet = GTK_SHEET(widget);
 
     gtk_widget_set_allocation(widget, allocation);
-    border_width = gtk_container_get_border_width(GTK_CONTAINER(widget));
+    border_width = gtk_container_get_border_width((GtkContainer*)widget);
 
     if (gtk_widget_get_realized(widget))
     {
@@ -14018,7 +14018,7 @@ gtk_sheet_delete_rows(GtkSheet *sheet, unsigned int row, unsigned int nrows)
         child->row >= row && child->row < row + nrows &&
         gtk_widget_get_realized(child->widget))
     {
-      gtk_container_remove(GTK_CONTAINER(sheet), child->widget);
+      gtk_container_remove((GtkContainer*)sheet, child->widget);
       children = sheet->children;
     }
     else {
@@ -14088,7 +14088,7 @@ gtk_sheet_delete_columns(GtkSheet *sheet, unsigned int col, unsigned int ncols)
           child->col >= col && child->col < col + ncols &&
           gtk_widget_get_realized(child->widget))
       {
-        gtk_container_remove(GTK_CONTAINER(sheet), child->widget);
+        gtk_container_remove((GtkContainer*)sheet, child->widget);
         g_object_unref(child);
         children = sheet->children;
       }
