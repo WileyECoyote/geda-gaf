@@ -411,16 +411,15 @@ geda_tearoff_menu_item_draw (GtkWidget *widget, cairo_t *cr)
 static void
 geda_tearoff_menu_item_activate (GedaMenuItem *menu_item)
 {
-  GtkWidget *parent;
+  GedaMenu  *parent;
+  GtkWidget *widget;
 
-  parent = gtk_widget_get_parent (GTK_WIDGET (menu_item));
+  widget = (GtkWidget*)menu_item;
+  parent = (GedaMenu*)gtk_widget_get_parent (widget);
 
   if (GEDA_IS_MENU (parent)) {
-
-    GedaMenu *menu = GEDA_MENU (parent);
-
-    gtk_widget_queue_resize (GTK_WIDGET (menu_item));
-    geda_menu_set_tearoff_state (GEDA_MENU (parent), !geda_menu_get_tearoff_state (menu));
+    gtk_widget_queue_resize (widget);
+    geda_menu_set_tearoff_state (parent, !geda_menu_get_tearoff_state (parent));
   }
 }
 

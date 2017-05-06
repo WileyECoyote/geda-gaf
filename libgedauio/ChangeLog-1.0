@@ -9,7 +9,9 @@
       type-checking.
 
     * src/widgets/geda_tearoff_menu_item.c: Revise geda_tearoff_menu_item_size
-      _request; get border width using geda_get_container_border_width, use.
+      _request; get border width using geda_get_container_border_width. Revise
+      geda_tearoff_menu_item_activate; increase scope of GedaMenu variable and
+      and replace cast in order to reduce needless type-checking.
 
 2017-05-05 Wiley E. Hill <wileyhill@gmail.com>
 
