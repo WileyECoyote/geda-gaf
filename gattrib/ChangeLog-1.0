@@ -5,7 +5,8 @@
       g_object_ref and g_object_unref.
 
     * src/gtksheet/gtksheet.c: Reduce GtkWidget and GObject type-checking cast.
-      Eliminate GtkSheetClass in gtk_sheet_set_tab_direction.
+      Eliminate GtkSheetClass in gtk_sheet_set_tab_direction, remove unnecessary
+      GObject type-checking cast for g_object_get, g_object_ref and g_object_unref.
 
     * src/x_menus.c: Include geda_container.h and utilize geda_container_ macros.
 

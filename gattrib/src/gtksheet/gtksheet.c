@@ -453,7 +453,7 @@ static void _get_string_extent(GtkSheet *sheet, GtkSheetColumn *colptr,
     }
 #endif
 
-    g_object_unref((GObject*)layout);
+    g_object_unref(layout);
 
     if (width)
 	*width = extent.width;
@@ -1317,7 +1317,7 @@ gtk_sheet_buildable_add_child(
     {
 	char *strval;
 
-	g_object_get(G_OBJECT(newcol), "label", &strval, NULL);
+	g_object_get(newcol, "label", &strval, NULL);
 	fprintf(stderr,"gtk_sheet_buildable_add_child: label=%s", strval ? strval : "NULL");
 
 	g_free(strval);
@@ -5999,7 +5999,7 @@ gtk_sheet_destroy_handler(GtkObject *object)
       g_signal_handlers_disconnect_matched((GObject*)sheet->hadjustment,
                                            G_SIGNAL_MATCH_DATA,
                                            0, 0, NULL, NULL, sheet);
-      g_object_unref(G_OBJECT(sheet->hadjustment));
+      g_object_unref(sheet->hadjustment);
       sheet->hadjustment = NULL;
     }
 
@@ -6008,7 +6008,7 @@ gtk_sheet_destroy_handler(GtkObject *object)
       g_signal_handlers_disconnect_matched((GObject*)sheet->vadjustment,
                                            G_SIGNAL_MATCH_DATA,
                                            0, 0, NULL, NULL, sheet);
-      g_object_unref(G_OBJECT(sheet->vadjustment));
+      g_object_unref(sheet->vadjustment);
       sheet->vadjustment = NULL;
     }
 
@@ -6392,7 +6392,7 @@ gtk_sheet_unrealize_handler(GtkWidget *widget)
     gdk_window_destroy(sheet->row_title_window);
 
     if (sheet->pixmap) {
-      g_object_unref(G_OBJECT(sheet->pixmap));
+      g_object_unref(sheet->pixmap);
       sheet->pixmap = NULL;
     }
 
@@ -7153,7 +7153,7 @@ _cell_draw_label(GtkSheet *sheet, int row, int col)
                     area.x + xoffset + CELLOFFSET, y,
                     layout);
 
-    g_object_unref(G_OBJECT(layout));
+    g_object_unref(layout);
 
     /* copy sheet->pixmap to window */
 
@@ -8832,7 +8832,7 @@ static void _gtk_sheet_entry_preselect(GtkSheet *sheet)
   fprintf(stderr,"%s: called\n", __func__);
 #endif
 
-  g_object_get(G_OBJECT(gtk_settings_get_default()),
+  g_object_get(gtk_settings_get_default(),
                "gtk-entry-select-on-focus",
                &select_on_focus,
                NULL);
@@ -9119,7 +9119,7 @@ gtk_sheet_make_backing_pixmap(GtkSheet *sheet, unsigned int width, unsigned int 
 
       if ((pixmap_width != width) || (pixmap_height != height)) {
 
-        g_object_unref(G_OBJECT(sheet->pixmap));
+        g_object_unref(sheet->pixmap);
 
         sheet->pixmap = gdk_pixmap_new(sheet->sheet_window,
                                        width, height,
@@ -13030,7 +13030,7 @@ _gtk_sheet_draw_button(GtkSheet *sheet, int row, int col)
                        "label",
                        real_x, real_y,
                        layout);
-      g_object_unref(G_OBJECT(layout));
+      g_object_unref(layout);
 
       gdk_gc_set_clip_rectangle(
         gtk_widget_get_style((GtkWidget*)sheet)->fg_gc[button->state], NULL);
