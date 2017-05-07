@@ -1026,7 +1026,7 @@ _gtksheet_signal_emit(GObject *object, unsigned int signal_id, ...)
   va_start (var_args, signal_id);
 
   g_value_init(instance_and_params + 0, G_OBJECT_TYPE(object));
-  g_value_set_instance (instance_and_params + 0, G_OBJECT(object));
+  g_value_set_instance (instance_and_params + 0, (GObject*)object);
 
   g_signal_query(signal_id, &query);
 
@@ -5996,7 +5996,7 @@ gtk_sheet_destroy_handler(GtkObject *object)
     /* unref adjustments */
     if (sheet->hadjustment) {
 
-      g_signal_handlers_disconnect_matched(G_OBJECT(sheet->hadjustment),
+      g_signal_handlers_disconnect_matched((GObject*)sheet->hadjustment,
                                            G_SIGNAL_MATCH_DATA,
                                            0, 0, NULL, NULL, sheet);
       g_object_unref(G_OBJECT(sheet->hadjustment));
@@ -6005,7 +6005,7 @@ gtk_sheet_destroy_handler(GtkObject *object)
 
     if (sheet->vadjustment)  {
 
-      g_signal_handlers_disconnect_matched(G_OBJECT(sheet->vadjustment),
+      g_signal_handlers_disconnect_matched((GObject*)sheet->vadjustment,
                                            G_SIGNAL_MATCH_DATA,
                                            0, 0, NULL, NULL, sheet);
       g_object_unref(G_OBJECT(sheet->vadjustment));
