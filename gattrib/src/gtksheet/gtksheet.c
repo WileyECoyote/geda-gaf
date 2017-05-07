@@ -8527,13 +8527,9 @@ gtk_sheet_get_active_cell(GtkSheet *sheet, int *row, int *column)
 void
 gtk_sheet_set_tab_direction(GtkSheet *sheet, GtkDirectionType dir)
 {
-    GtkSheetClass *klass;
-
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
-    klass = GTK_SHEET_GET_CLASS(sheet);
-
-    _gtk_sheet_class_init_tab_bindings(klass, dir);
+    _gtk_sheet_class_init_tab_bindings(GTK_SHEET_GET_CLASS(sheet), dir);
 }
 
 /*
