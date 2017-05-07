@@ -343,7 +343,7 @@ gtk_item_entry_realize(GtkWidget *widget)
 
     gtk_widget_set_realized_true(widget);
 
-    entry = GTK_ENTRY(widget);
+    entry = (GtkEntry*)widget;
     //editable = GTK_EDITABLE(widget);
 
     attributes.window_type = GDK_WINDOW_CHILD;
@@ -402,7 +402,7 @@ gtk_item_entry_realize(GtkWidget *widget)
 static void
 _item_entry_get_borders(GtkEntry *entry, int *xborder, int *yborder)
 {
-    GtkWidget *widget = GTK_WIDGET(entry);
+    GtkWidget *widget = (GtkWidget*)entry;
     int focus_width;
     _Bool interior_focus;
 
@@ -427,13 +427,12 @@ _item_entry_get_borders(GtkEntry *entry, int *xborder, int *yborder)
       *xborder += focus_width;
       *yborder += focus_width;
     }
-
 }
 
 static void
 gtk_item_entry_size_request(GtkWidget *widget, GtkRequisition *requisition)
 {
-  GtkEntry *entry = GTK_ENTRY(widget);
+  GtkEntry *entry = (GtkEntry*)widget;
   PangoFontMetrics *metrics;
   int xborder, yborder;
   PangoContext *context;
@@ -475,7 +474,7 @@ _item_entry_get_text_area_size(GtkEntry *entry,
     GtkRequisition requisition;
     GtkAllocation allocation;
 
-    GtkWidget *widget = GTK_WIDGET(entry);
+    GtkWidget *widget = (GtkWidget*)entry;
 
     gtk_widget_get_child_requisition(widget, &requisition);
 
@@ -554,8 +553,8 @@ _item_entry_get_widget_window_size(GtkWidget *widget,
 static void
 gtk_item_entry_size_allocate(GtkWidget *widget, GtkAllocation *allocation)
 {
-    GtkEntry *entry = GTK_ENTRY(widget);
-    GtkItemEntry *ientry = GTK_ITEM_ENTRY(widget);
+    GtkEntry     *entry  = (GtkEntry*)widget;
+    GtkItemEntry *ientry = (GtkItemEntry*)widget;
 
     if (ientry->text_max_size > 0)
       allocation->width = MIN(ientry->text_max_size, allocation->width);
@@ -820,7 +819,7 @@ gtk_item_entry_delete_text(GtkEditable *editable, int start_pos, int end_pos)
 static void
 gtk_item_entry_style_set(GtkWidget *widget, GtkStyle *previous_style)
 {
-    GtkEntry *entry = GTK_ENTRY(widget);
+    GtkEntry *entry = (GtkEntry*)widget;
 
     if (previous_style && gtk_widget_get_realized(widget)) {
 
