@@ -5148,8 +5148,7 @@ char *gtk_sheet_get_tooltip_text(GtkSheet *sheet)
  *
  * Sets text as the contents of the tooltip.
  */
-void gtk_sheet_set_tooltip_text(GtkSheet *sheet,
-    const char *text)
+void gtk_sheet_set_tooltip_text(GtkSheet *sheet, const char *text)
 {
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
@@ -5356,8 +5355,8 @@ char *gtk_sheet_cell_get_tooltip_text(GtkSheet *sheet,
  * Sets text as the contents of the tooltip.
  */
 void gtk_sheet_cell_set_tooltip_text(GtkSheet *sheet,
-    const int row, const int col,
-    const char *text)
+                                     const int row, const int col,
+                                     const char *text)
 {
   GtkSheetCell *cell;
 
@@ -7389,14 +7388,14 @@ _gtk_sheet_range_draw(GtkSheet *sheet,
 
     for (row = drawing_range.row0; row <= drawing_range.rowi; row++)
     {
-	for (col = drawing_range.col0; col <= drawing_range.coli; col++)
-	{
-	    if (row <= sheet->maxallocrow && col <= sheet->maxalloccol &&
-		sheet->data[row] && sheet->data[row][col])
-	    {
-		_cell_draw_label(sheet, row, col);
-	    }
-	}
+      for (col = drawing_range.col0; col <= drawing_range.coli; col++)
+      {
+        if (row <= sheet->maxallocrow && col <= sheet->maxalloccol &&
+          sheet->data[row] && sheet->data[row][col])
+        {
+          _cell_draw_label(sheet, row, col);
+        }
+      }
     }
 #if 0
     /* draw text left outside range (2) */
@@ -7459,19 +7458,19 @@ _gtk_sheet_range_draw(GtkSheet *sheet,
     gtk_sheet_draw_backing_pixmap(sheet, drawing_range);
 
     if (sheet->state != GTK_SHEET_NORMAL &&
-	gtk_sheet_range_isvisible(sheet, sheet->range))
+        gtk_sheet_range_isvisible(sheet, sheet->range))
     {
-	gtk_sheet_range_draw_selection(sheet, drawing_range);
+      gtk_sheet_range_draw_selection(sheet, drawing_range);
     }
 
     if (activate_active_cell &&
-	sheet->state == GTK_STATE_NORMAL &&
-	sheet->active_cell.row >= drawing_range.row0 &&
-	sheet->active_cell.row <= drawing_range.rowi &&
-	sheet->active_cell.col >= drawing_range.col0 &&
-	sheet->active_cell.col <= drawing_range.coli)
+      sheet->state == GTK_STATE_NORMAL &&
+      sheet->active_cell.row >= drawing_range.row0 &&
+      sheet->active_cell.row <= drawing_range.rowi &&
+      sheet->active_cell.col >= drawing_range.col0 &&
+      sheet->active_cell.col <= drawing_range.coli)
     {
-	gtk_sheet_show_active_cell(sheet);
+      gtk_sheet_show_active_cell(sheet);
     }
 }
 
@@ -8859,7 +8858,7 @@ static void _gtk_sheet_entry_preselect(GtkSheet *sheet)
  *
  * this function must not dependant on any text contents.
  */
-static void _gtk_sheet_entry_setup(GtkSheet *sheet, int row, int col,
+static void _gtk_sheet_entry_setup(GtkSheet  *sheet, int row, int col,
                                    GtkWidget *entry_widget)
 {
   GtkJustification justification = GTK_JUSTIFY_LEFT;
@@ -11746,13 +11745,13 @@ gtk_sheet_size_allocate_handler(GtkWidget *widget, GtkAllocation *allocation)
     sheet->sheet_window_width = sheet_allocation.width;
     sheet->sheet_window_height = sheet_allocation.height;
 
-    if (gtk_widget_get_realized(widget))
-    {
-	gdk_window_move_resize(sheet->sheet_window,
-	    sheet_allocation.x,
-	    sheet_allocation.y,
-	    sheet_allocation.width,
-	    sheet_allocation.height);
+    if (gtk_widget_get_realized(widget)) {
+
+      gdk_window_move_resize(sheet->sheet_window,
+                             sheet_allocation.x,
+                             sheet_allocation.y,
+                             sheet_allocation.width,
+                             sheet_allocation.height);
     }
 
     /* position the window which holds the column title buttons */
@@ -11765,11 +11764,11 @@ gtk_sheet_size_allocate_handler(GtkWidget *widget, GtkAllocation *allocation)
 
     if (gtk_widget_get_realized(widget) && sheet->column_titles_visible)
     {
-	gdk_window_move_resize(sheet->column_title_window,
-	    sheet->column_title_area.x,
-	    sheet->column_title_area.y,
-	    sheet->column_title_area.width,
-	    sheet->column_title_area.height);
+      gdk_window_move_resize(sheet->column_title_window,
+                             sheet->column_title_area.x,
+                             sheet->column_title_area.y,
+                             sheet->column_title_area.width,
+                             sheet->column_title_area.height);
     }
 
     /* column button allocation */
@@ -11784,11 +11783,11 @@ gtk_sheet_size_allocate_handler(GtkWidget *widget, GtkAllocation *allocation)
 
     if (gtk_widget_get_realized(widget) && sheet->row_titles_visible)
     {
-	gdk_window_move_resize(sheet->row_title_window,
-	    sheet->row_title_area.x,
-	    sheet->row_title_area.y,
-	    sheet->row_title_area.width,
-	    sheet->row_title_area.height);
+      gdk_window_move_resize(sheet->row_title_window,
+                             sheet->row_title_area.x,
+                             sheet->row_title_area.y,
+                             sheet->row_title_area.width,
+                             sheet->row_title_area.height);
     }
 
     /* row button allocation */
@@ -11812,8 +11811,7 @@ gtk_sheet_size_allocate_handler(GtkWidget *widget, GtkAllocation *allocation)
     _gtk_sheet_scrollbar_adjust(sheet);
 }
 
-static int gtk_sheet_focus(GtkWidget *widget,
-    GtkDirectionType  direction)
+static int gtk_sheet_focus(GtkWidget *widget, GtkDirectionType direction)
 {
     g_return_val_if_fail(GTK_IS_SHEET(widget), FALSE);
 
@@ -12695,23 +12693,20 @@ void gtk_sheet_entry_select_region(GtkSheet *sheet, int start_pos, int end_pos)
     entry = gtk_sheet_get_entry(sheet);
     g_return_if_fail(entry != NULL);
 
-    if (GTK_IS_EDITABLE(entry))
-    {
-	gtk_editable_select_region(GTK_EDITABLE(entry), start_pos, end_pos);
+    if (GTK_IS_EDITABLE(entry)) {
+      gtk_editable_select_region(GTK_EDITABLE(entry), start_pos, end_pos);
     }
-    else if ( GTK_IS_DATA_TEXT_VIEW(entry)
-	     || GTK_IS_TEXT_VIEW(entry) )
+    else if (GTK_IS_DATA_TEXT_VIEW(entry) || GTK_IS_TEXT_VIEW(entry))
     {
-	GtkTextBuffer *buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(entry));
-	GtkTextIter start, end;
+      GtkTextBuffer *buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(entry));
+      GtkTextIter start, end;
 
-	gtk_text_buffer_get_iter_at_offset(buffer, &start, start_pos);
-	gtk_text_buffer_get_iter_at_offset(buffer, &end, end_pos);
-	gtk_text_buffer_select_range(buffer, &start, &end);
+      gtk_text_buffer_get_iter_at_offset(buffer, &start, start_pos);
+      gtk_text_buffer_get_iter_at_offset(buffer, &end, end_pos);
+      gtk_text_buffer_select_range(buffer, &start, &end);
     }
-    else
-    {
-	g_warning("gtk_sheet_entry_select_region: no GTK_EDITABLE, don't know how to select region.");
+    else {
+      g_warning("gtk_sheet_entry_select_region: no GTK_EDITABLE, don't know how to select region.");
     }
 }
 
@@ -12787,18 +12782,17 @@ void gtk_sheet_entry_signal_disconnect_by_func(GtkSheet *sheet, GCallback handle
     entry = gtk_sheet_get_entry(sheet);
     g_return_if_fail(entry != NULL);
 
-    if (GTK_IS_EDITABLE(entry))
-    {
+    if (GTK_IS_EDITABLE(entry)) {
       g_signal_handlers_disconnect_by_func(entry, handler, sheet);
     }
-    else if (GTK_IS_DATA_TEXT_VIEW(entry) || GTK_IS_TEXT_VIEW(entry))
-    {
+    else if (GTK_IS_DATA_TEXT_VIEW(entry) || GTK_IS_TEXT_VIEW(entry)) {
+
       GtkTextBuffer *buffer = gtk_text_view_get_buffer((GtkTextView*)entry);
 
       g_signal_handlers_disconnect_by_func(buffer, handler, sheet);
     }
-    else
-    {
+    else {
+
       g_warning("gtk_sheet_entry_signal_disconnect_by_func: no GTK_EDITABLE, don't know how to get editable.");
     }
 }
@@ -13206,8 +13200,7 @@ _gtk_sheet_scrollbar_adjust(GtkSheet *sheet)
  * \param data the #GtkSheet passed on signal creation
  */
 static void
-_vadjustment_changed_handler(GtkAdjustment *adjustment,
-    void *data)
+_vadjustment_changed_handler(GtkAdjustment *adjustment, void *data)
 {
 
 #if GTK_SHEET_DEBUG_ADJUSTMENT > 1

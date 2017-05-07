@@ -8,7 +8,8 @@
       Eliminate GtkSheetClass in gtk_sheet_set_tab_direction, remove unnecessary
       GObject type-checking cast for g_object_get, g_object_ref and g_object_unref.
       Change _gtksheet_signal_emit argument 1 from GObject to void to reduce
-      unnecessary GObject type-checking cast.
+      unnecessary GObject type-checking cast. Adjust function argument wrapping
+      and indentations.
 
     * src/x_menus.c: Include geda_container.h and utilize geda_container_ macros.
 
