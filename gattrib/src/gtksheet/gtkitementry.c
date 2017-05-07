@@ -609,7 +609,7 @@ static void
 gtk_item_entry_reset_layout(GtkEntry *entry)
 {
   if (entry->cached_layout) {
-    g_object_unref(G_OBJECT(entry->cached_layout));
+    g_object_unref(entry->cached_layout);
     entry->cached_layout = NULL;
   }
 }
@@ -792,7 +792,7 @@ gtk_item_entry_insert_text(GtkEditable *editable,
     if (new_text_length > 63)
       g_free(text);
 
-    g_object_unref(G_OBJECT(editable));
+    g_object_unref(editable);
 }
 
 static void
@@ -809,11 +809,11 @@ gtk_item_entry_delete_text(GtkEditable *editable, int start_pos, int end_pos)
     if (start_pos > end_pos)
       start_pos = end_pos;
 
-    g_object_ref(G_OBJECT(editable));
+    g_object_ref(editable);
 
     g_signal_emit_by_name(editable, "delete_text", start_pos, end_pos);
 
-    g_object_unref(G_OBJECT(editable));
+    g_object_unref(editable);
 }
 
 static void

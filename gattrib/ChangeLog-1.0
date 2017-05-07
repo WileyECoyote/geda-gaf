@@ -1,7 +1,8 @@
 2017-05-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtkitementry.c: Reduce unnecessary GtkWidget and GtkEntry
-      type-checking cast.
+      type-checking cast, remove unnecessary GObject type-checking cast for
+      g_object_ref and g_object_unref.
 
     * src/gtksheet/gtksheet.c: Reduce GtkWidget and GObject type-checking cast.
       Eliminate GtkSheetClass in gtk_sheet_set_tab_direction.
