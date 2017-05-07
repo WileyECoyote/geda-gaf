@@ -20,7 +20,7 @@
  */
 #include <gtk/gtk.h>
 #include <gattrib.h>
-
+#include <geda_container.h>
 #include <geda/geda_help.h>   /* Include file names for HTML files */
 #include <geda_debug.h>
 
@@ -490,16 +490,13 @@ void x_menu_fix_gtk_recent_submenu(void) {
   recent_items = gtk_ui_manager_get_widget (menu_manager,"/ui/menubar/file/OpenRecent");
 
   if (recent_manager == NULL) {
-     GtkContainer *menu = GTK_CONTAINER (gtk_widget_get_parent (recent_items));
-     gtk_container_remove (menu, recent_items);
+     geda_container_remove (gtk_widget_get_parent(recent_items), recent_items);
      return;
   }
 
   old_submenu = gtk_menu_item_get_submenu ((GtkMenuItem*)recent_items);
 
-  gtk_container_foreach (GTK_CONTAINER(old_submenu),
-                         (GtkCallback)destroy_defective_child,
-                         NULL);
+  geda_container_foreach (old_submenu, destroy_defective_child, NULL);
 
   g_object_ref_sink(old_submenu);
 
