@@ -1,3 +1,7 @@
+2017-05-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gtksheet/gtksheet.c: Reduce GtkWidget type-checking cast.
+
 2017-05-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheet.c: Reduce GtkContainer type-checking cast, remove
