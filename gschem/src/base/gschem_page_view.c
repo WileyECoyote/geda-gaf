@@ -277,9 +277,10 @@ gschem_page_view_class_init (void *g_class, void *g_class_data)
 
   g_object_class_install_property (gobject_class, PROP_VADJUSTMENT, pspec);
 
+  GedaType type = gschem_page_view_get_type();
+
   widget_class->set_scroll_adjustments_signal =
-      g_signal_new ("set-scroll-adjustments",
-                    G_OBJECT_CLASS_TYPE (g_class),
+      g_signal_new ("set-scroll-adjustments", type,
                     G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                     0,
                     NULL,
@@ -290,8 +291,7 @@ gschem_page_view_class_init (void *g_class, void *g_class_data)
                     GTK_TYPE_ADJUSTMENT,
                     GTK_TYPE_ADJUSTMENT);
 
-  g_signal_new ("update-grid-info",
-                G_OBJECT_CLASS_TYPE (g_class),
+  g_signal_new ("update-grid-info", type,
                 G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                 0,
                 NULL,
