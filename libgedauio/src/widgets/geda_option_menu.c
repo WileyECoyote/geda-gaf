@@ -163,7 +163,7 @@ geda_option_menu_class_init(void *class, void *class_data)
 
   signals[CHANGED] =
     g_signal_new ("changed",
-                  G_OBJECT_CLASS_TYPE (class),
+                  GEDA_TYPE_OPTION_MENU,
                   G_SIGNAL_RUN_LAST,
                   G_STRUCT_OFFSET (GedaOptionMenuClass, changed),
                   NULL, NULL,
