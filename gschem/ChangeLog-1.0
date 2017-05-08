@@ -13,6 +13,9 @@
     * src/iface/i_diagnostics.c: Remove unneeded cast type-checking of object
       returned by g_object_new.
 
+    * src/object/o_redraw.c: Remove unnecessary GObject type-checking cast for
+      g_object_set, add comment.
+
 2017-05-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_compselect.c: Utilize geda_container_add macro through-out module

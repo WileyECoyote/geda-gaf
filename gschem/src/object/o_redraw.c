@@ -215,7 +215,7 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
   /* Set up renderer */
   renderer = g_object_ref (CairoRenderer);
 
-  g_object_set (G_OBJECT (renderer),
+  g_object_set (renderer,
                 "cairo-context", w_current->cr,
                 "grip-size", ((double) grip_half_size * Current_Page->to_world_x_constant),
                 "render-flags", render_flags,
@@ -266,7 +266,7 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
    * the selection and grips are never obscured by other objects. */
   if (draw_selected) {
 
-    g_object_set (G_OBJECT (renderer), "override-color", SELECT_COLOR, NULL);
+    g_object_set (renderer, "override-color", SELECT_COLOR, NULL);
 
     for (iter = Current_Selection->glist; iter; iter = iter->next) {
 
@@ -284,11 +284,12 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
         }
       }
     }
-    g_object_set (G_OBJECT (renderer), "override-color", -1, NULL);
+
+    /* Disable/reset "override-color" mode */
+    g_object_set (renderer, "override-color", -1, NULL);
   }
 
   if (w_current->event_state == NETMODE) {
-
       eda_renderer_set_color_map (renderer, render_outline_color_map);
       o_net_draw_rubber (w_current);
       eda_renderer_set_color_map (renderer, render_color_map);
