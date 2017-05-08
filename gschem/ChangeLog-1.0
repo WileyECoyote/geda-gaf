@@ -7,6 +7,9 @@
       once and explicitly specify GSCHEM_TYPE_PAGE_VIEW type to g_signal_new.
       Remove unneeded cast type-checking of object returned by g_object_new.
 
+    * src/guile/g_hook.c: Remove unnecessary GObject type-checking cast for
+      g_object_ref and g_object_unref.
+
     * src/iface/i_diagnostics.c: Remove unneeded cast type-checking of object
       returned by g_object_new.
 

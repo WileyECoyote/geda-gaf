@@ -249,13 +249,13 @@ g_hook_run_idle_notify (void *data)
       GedaObject *object = iter->data;
 
       if (GEDA_IS_OBJECT(object)) {
-        g_object_unref (G_OBJECT(object));
+        g_object_unref (object);
       }
     }
     g_list_free(hook_list);
   }
   else { /* Page or single object */
-    g_object_unref (G_OBJECT(capsule->data.object));
+    g_object_unref (capsule->data.object);
   }
 
   GEDA_FREE(capsule->name);
