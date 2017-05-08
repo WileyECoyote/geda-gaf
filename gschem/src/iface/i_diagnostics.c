@@ -437,19 +437,19 @@ int gschem_diagnostics_dialog (GschemToplevel *w_current)
   GtkWidget *frame;
   GtkWidget *alignment;
 
-  frame = GTK_WIDGET (g_object_new (GTK_TYPE_FRAME, "label", "Debug data", NULL));
+  frame = g_object_new (GTK_TYPE_FRAME, "label", "Debug data", NULL);
   gtk_box_pack_start(GTK_BOX(vbox), frame, FALSE, FALSE, DEFAULT_WIDGET_SPACING);
 
-  alignment = GTK_WIDGET (g_object_new (GTK_TYPE_ALIGNMENT,
-                                        "right-padding",
-                                         DIALOG_H_SPACING,
-                                        "left-padding",
-                                         DIALOG_H_SPACING,
-                                        "xscale", 0.0,
-                                        "yscale", 0.0,
-                                        "xalign", 0.5,
-                                        "yalign", 0.5,
-                                        NULL));
+  alignment = g_object_new (GTK_TYPE_ALIGNMENT,
+                            "right-padding",
+                            DIALOG_H_SPACING,
+                            "left-padding",
+                            DIALOG_H_SPACING,
+                            "xscale", 0.0,
+                            "yscale", 0.0,
+                            "xalign", 0.5,
+                            "yalign", 0.5,
+                            NULL);
 
   gtk_container_add (GTK_CONTAINER (frame), alignment);
 
