@@ -672,7 +672,7 @@ gschem_page_view_instance_init (GTypeInstance *instance, void *g_class)
 GschemPageView*
 gschem_page_view_new ()
 {
-  return GSCHEM_PAGE_VIEW (g_object_new (GSCHEM_TYPE_PAGE_VIEW, NULL));
+  return g_object_new (GSCHEM_TYPE_PAGE_VIEW, NULL);
 }
 
 /*!
@@ -683,7 +683,7 @@ gschem_page_view_new ()
 GschemPageView*
 gschem_page_view_new_with_page (Page *page)
 {
-  return GSCHEM_PAGE_VIEW (g_object_new (GSCHEM_TYPE_PAGE_VIEW, "page", page, NULL));
+  return g_object_new (GSCHEM_TYPE_PAGE_VIEW, "page", page, NULL);
 }
 
 /*!

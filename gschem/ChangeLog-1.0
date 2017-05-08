@@ -2,6 +2,7 @@
 
     * src/base/gschem_page_view.c: Revise gschem_page_view_class_init; add type
       once and explicitly specify GSCHEM_TYPE_PAGE_VIEW type to g_signal_new.
+      Remove unneeded cast type-checking of object returned by g_object_new.
 
 2017-05-05 Wiley E. Hill <wileyhill@gmail.com>
 
