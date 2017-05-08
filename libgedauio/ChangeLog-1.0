@@ -1,5 +1,8 @@
 2017-05-08 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/dialogs/geda_file_chooser.c: Include geda_container.h and utilize
+      geda_container_xxx macros.
+
     * src/widgets/geda_option_menu.c: Explicitly specify GEDA_TYPE_OPTION_MENU
       type to g_signal_new.
 

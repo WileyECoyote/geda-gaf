@@ -38,6 +38,7 @@
 
 #include <geda_file_chooser.h>
 #include <geda_file_filter.h>
+#include "../../include/geda_container.h"
 #include "../../include/geda_marshal.h"
 #include "../../include/gettext.h"
 
@@ -104,7 +105,7 @@ static void FixGtkCrap(GtkWidget *widget, void *self)
     (GEDA_FILE_CHOOSER(self))->filter_button = widget;
   }
   else if (GTK_IS_CONTAINER(widget)) {
-     gtk_container_forall ( GTK_CONTAINER (widget), FixGtkCrap, self);
+     geda_container_forall (widget, FixGtkCrap, self);
   }
 }
 
@@ -113,12 +114,12 @@ static void get_filter_button(GedaFileChooser *chooser)
   GList *children, *iter;
 
   /* Get all object inside the contents area of the dialog */
-  children = gtk_container_get_children (GTK_CONTAINER (GTK_DIALOG (chooser)->vbox));
+  children = geda_container_get_children (GTK_DIALOG (chooser)->vbox);
 
   /* For each container in the contents area to call look for combo box */
   for (iter = children; iter; iter = iter->next) {
     if (GTK_IS_CONTAINER(iter->data)) {
-      gtk_container_forall ( GTK_CONTAINER (iter->data), FixGtkCrap, chooser);
+      geda_container_forall (iter->data, FixGtkCrap, chooser);
       if (chooser->filter_button) {
         break;
       }
@@ -199,7 +200,7 @@ static void look_for_entry(GtkWidget *widget, void *self)
     chooser_entry = (GtkEntry*)widget;
   }
   else if (GTK_IS_CONTAINER(widget)) {
-     gtk_container_forall ( GTK_CONTAINER (widget), look_for_entry, self);
+     geda_container_forall (widget, look_for_entry, self);
   }
 }
 
@@ -209,13 +210,13 @@ geda_file_chooser_find_entry (GtkWidget *chooser)
   GList   *children, *iter;
 
   /* Get all objects inside the dialog */
-  children = gtk_container_get_children (GTK_CONTAINER (chooser));
+  children = geda_container_get_children (chooser);
 
   for (iter = children; iter; iter = iter->next) {
 
     if (GTK_IS_CONTAINER(iter->data)) {
 
-      gtk_container_forall ( GTK_CONTAINER (iter->data), look_for_entry, chooser);
+      geda_container_forall (iter->data, look_for_entry, chooser);
 
       if (chooser_entry != NULL) {
         break;
