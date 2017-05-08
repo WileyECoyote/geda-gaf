@@ -104,5 +104,5 @@ gschem_bin_get_type ()
 GschemBin*
 gschem_bin_new ()
 {
-  return GSCHEM_BIN (g_object_new (GSCHEM_TYPE_BIN, NULL));
+  return g_object_new (GSCHEM_TYPE_BIN, NULL);
 }
