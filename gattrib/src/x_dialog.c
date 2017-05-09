@@ -57,7 +57,7 @@ void generic_msg_dialog (const char *msg)
                                    GTK_BUTTONS_OK,
                                    "%s", msg);
 
-  gtk_dialog_run (GTK_DIALOG (dialog));
+  gtk_dialog_run ((GtkDialog*)dialog);
   gtk_widget_destroy (dialog);
 
 }
@@ -150,35 +150,36 @@ char *x_dialog_new_attrib()
  */
 void x_dialog_delete_attrib()
 {
-  GtkWidget *dialog;
-  GtkSheet *sheet;
+  GtkWidget  *dialog;
+  GtkSheet   *sheet;
   int mincol, maxcol;
   int cur_page;
 
   /* First verify that exactly one column is selected.  */
-  cur_page = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
-  sheet    = GTK_SHEET(sheets[cur_page]);
+  cur_page = gtk_notebook_get_current_page((GtkNotebook*)notebook);
+  sheet    = (GtkSheet*)sheets[cur_page];
 
   if (sheet == NULL) {
     return;
   }
 
   mincol = x_gtksheet_get_min_col(sheet);
-  maxcol =  x_gtksheet_get_max_col(sheet);
+  maxcol = x_gtksheet_get_max_col(sheet);
 
-  if ( (mincol != maxcol) || (mincol == -1) || (maxcol == -1) ) {
+  if ((mincol != maxcol) || (mincol == -1) || (maxcol == -1)) {
     /* Improper selection -- maybe throw up error box? */
     return;
   }
 
   /* Create the dialog */
   dialog = gtk_message_dialog_new (NULL, GTK_DIALOG_MODAL,
-                                  GTK_MESSAGE_QUESTION,
-                                  GTK_BUTTONS_YES_NO,
-                                  _("Are you sure you want to delete this attribute?"));
+                                         GTK_MESSAGE_QUESTION,
+                                         GTK_BUTTONS_YES_NO,
+                                      _("Are you sure you want to delete this attribute?"));
 
-  switch(gtk_dialog_run(GTK_DIALOG(dialog))) {
   gtk_window_set_title((GtkWindow*)dialog, _("Delete attribute"));
+
+  switch(gtk_dialog_run((GtkDialog*)dialog)) {
     case GEDA_RESPONSE_YES:
       /* call the fcn to actually delete the attrib column.  */
       s_toplevel_delete_attrib_col(sheet);  /* this fcn figures out
@@ -238,7 +239,7 @@ void x_dialog_missing_sym()
  */
 int x_dialog_file_not_saved()
 {
-  GtkWidget  *dialog;
+  GtkDialog  *dialog;
   const char *tmp;
   char *str;
   int result;
@@ -249,29 +250,29 @@ int x_dialog_file_not_saved()
   tmp = _("If you don't save, all your changes will be permanently lost.");
   str = geda_strconcat (str, "\n\n", tmp, NULL);
 
-  dialog = gtk_message_dialog_new (GTK_WINDOW (main_window),
-                                   GTK_DIALOG_MODAL |
-                                   GTK_DIALOG_DESTROY_WITH_PARENT,
-                                   GTK_MESSAGE_WARNING,
-                                   GTK_BUTTONS_NONE, NULL);
-  gtk_message_dialog_set_markup (GTK_MESSAGE_DIALOG (dialog), str);
-  gtk_dialog_add_buttons (GTK_DIALOG (dialog),
+  dialog = (GtkDialog*)gtk_message_dialog_new ((GtkWindow*)main_window,
+                                               GTK_DIALOG_MODAL |
+                                               GTK_DIALOG_DESTROY_WITH_PARENT,
+                                               GTK_MESSAGE_WARNING,
+                                               GTK_BUTTONS_NONE, NULL);
+  gtk_message_dialog_set_markup ((GtkMessageDialog*)dialog, str);
+  gtk_dialog_add_buttons (dialog,
                           _("Close without saving"), GEDA_RESPONSE_NO,
                           GTK_STOCK_CANCEL,          GEDA_RESPONSE_CANCEL,
                           GTK_STOCK_SAVE,            GEDA_RESPONSE_YES,
                           NULL);
 
   /* Set the alternative button order (ok, cancel, help) for other systems */
-  gtk_dialog_set_alternative_button_order(GTK_DIALOG(dialog),
+  gtk_dialog_set_alternative_button_order(dialog,
                                           GEDA_RESPONSE_YES,
                                           GEDA_RESPONSE_NO,
                                           GEDA_RESPONSE_CANCEL,
                                           -1);
 
-  gtk_dialog_set_default_response (GTK_DIALOG (dialog), GEDA_RESPONSE_YES);
+  gtk_dialog_set_default_response (dialog, GEDA_RESPONSE_YES);
 
-  result = (gtk_dialog_run (GTK_DIALOG (dialog)));
-  gtk_widget_destroy (dialog);
+  result = gtk_dialog_run (dialog);
+  gtk_widget_destroy ((GtkWidget*)dialog);
   return result;
 }
 
@@ -282,26 +283,21 @@ int x_dialog_file_not_saved()
  */
 void x_dialog_unsaved_data()
 {
-  switch (x_dialog_file_not_saved())
-  {
+  switch (x_dialog_file_not_saved()) {
     case GEDA_RESPONSE_NO:
-    {
       gattrib_quit(0);
       break;
-    }
+
     case GEDA_RESPONSE_YES:
-    {
       s_toplevel_gtksheet_to_toplevel(pr_current);  /* Dumps sheet data into GedaToplevel */
       geda_struct_page_save_all(pr_current);  /* saves all pages in design */
       sheet_head->CHANGED = FALSE;
       gattrib_quit(0);
       break;
-    }
+
     case GEDA_RESPONSE_CANCEL:
     default:
-    {
        break;
-    }
   }
   return;
 }
@@ -313,7 +309,7 @@ void x_dialog_unsaved_data()
  */
 void x_dialog_unimplemented_feature()
 {
-  GtkWidget *dialog;
+  GtkWidget  *dialog;
   const char *string = _("Sorry -- you have chosen a feature which has not been\nimplemented yet.\n\nGattrib is an open-source program which\nI work on as a hobby. It is still a work in progress.\nIf you wish to contribute (perhaps by implementing this\nfeature), please do so! Please send patches to gattrib\nto Stuart Brorson: sdb@cloud9.net.\n\nOtherwise, just hang tight -- I'll implement this feature soon!\n");
 
   /* Create the dialog */
@@ -324,7 +320,7 @@ void x_dialog_unimplemented_feature()
 
   gtk_window_set_title((GtkWindow*)dialog, _("Unimplemented feature!"));
 
-  gtk_dialog_run(GTK_DIALOG(dialog));
+  gtk_dialog_run((GtkDialog*)dialog);
   gtk_widget_destroy(dialog);
 }
 
@@ -344,13 +340,13 @@ void x_dialog_fatal_error(char *string, int return_code)
 
   /* Create the dialog */
   dialog = gtk_message_dialog_new (NULL, GTK_DIALOG_MODAL,
-                                  GTK_MESSAGE_ERROR,
-                                  GTK_BUTTONS_OK,
-                                  "%s", string);
+                                   GTK_MESSAGE_ERROR,
+                                   GTK_BUTTONS_OK,
+                                   "%s", string);
 
   gtk_window_set_title((GtkWindow*)dialog, _("Fatal error"));
 
-  gtk_dialog_run(GTK_DIALOG(dialog));
+  gtk_dialog_run((GtkDialog*)dialog);
   gtk_widget_destroy(dialog);
 
   exit (return_code);
@@ -375,7 +371,7 @@ void x_dialog_about_dialog()
 
   gtk_window_set_title((GtkWindow*)dialog, _("About..."));
 
-  gtk_dialog_run(GTK_DIALOG(dialog));
+  gtk_dialog_run((GtkDialog*)dialog);
   gtk_widget_destroy(dialog);
 }
 
@@ -861,7 +857,6 @@ GtkWidget *x_dialog_create_search_replace_dialog (GtkWindow *parent,
  */
 void x_dialog_search_replace(SearchRecord *Search, const char *text)
 {
-
   GtkWidget *ThisDialog;
 
   ThisDialog = x_dialog_create_search_replace_dialog((GtkWindow*)main_window,
