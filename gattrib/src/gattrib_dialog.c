@@ -201,7 +201,7 @@ static void setup_keyfile ()
     return;
 
   char *file = g_build_filename (geda_user_config_path (),
-                                  DIALOG_GEOMETRY_STORE, NULL);
+                                 DIALOG_GEOMETRY_STORE, NULL);
 
   dialog_geometry = g_key_file_new();
 
@@ -237,7 +237,7 @@ static void setup_keyfile ()
 static void show_handler (GtkWidget *widget)
 {
   char *group_name;
-  GattribDialog *dialog = GATTRIB_DIALOG( widget );
+  GattribDialog *dialog = (GattribDialog*)widget;
 
   group_name = dialog->settings_name;
   if (group_name != NULL) {
@@ -269,7 +269,7 @@ static void show_handler (GtkWidget *widget)
 static void unmap_handler (GtkWidget *widget)
 {
   char *group_name;
-  GattribDialog *dialog = GATTRIB_DIALOG (widget);
+  GattribDialog *dialog = (GattribDialog*)widget;
 
   group_name = dialog->settings_name;
   if (group_name != NULL) {
