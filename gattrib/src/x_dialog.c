@@ -761,7 +761,7 @@ static
 GtkWidget* x_dialog_create_search_replace_dialog (GtkWindow *parent,
                                                   int find_only_mode)
 {
-  GtkWidget *ThisDialog;
+  GtkDialog *ThisDialog;
   GtkWidget *MainDialogVBox;
 
   GtkWidget *dialog_action_area;
@@ -782,7 +782,7 @@ GtkWidget* x_dialog_create_search_replace_dialog (GtkWindow *parent,
   gtk_window_set_destroy_with_parent (GTK_WINDOW (ThisDialog), TRUE);
   gtk_window_set_type_hint (GTK_WINDOW (ThisDialog), GDK_WINDOW_TYPE_HINT_DIALOG);
 
-  MainDialogVBox = GTK_DIALOG (ThisDialog)->vbox;
+  MainDialogVBox = ThisDialog->vbox;
   gtk_widget_show (MainDialogVBox);
 
   HSECTION (MainDialogVBox, InputText);   /* Row 1 */
@@ -806,13 +806,13 @@ GtkWidget* x_dialog_create_search_replace_dialog (GtkWindow *parent,
 
   HXYP_SEPERATOR (MainDialogVBox, Grp4, 10);
 
-  dialog_action_area = GTK_DIALOG (ThisDialog)->action_area;
+  dialog_action_area = ThisDialog->action_area;
   g_object_set ( dialog_action_area, "visible", TRUE, NULL);
   gtk_button_box_set_layout (GTK_BUTTON_BOX (dialog_action_area), GTK_BUTTONBOX_END);
 
   CloseButt = gtk_button_new_from_stock ("gtk-close");
   g_object_set ( CloseButt, "visible", TRUE, NULL);
-  gtk_dialog_add_action_widget (GTK_DIALOG (ThisDialog), CloseButt, GEDA_RESPONSE_CANCEL);
+  gtk_dialog_add_action_widget (ThisDialog, CloseButt, GEDA_RESPONSE_CANCEL);
   gtk_widget_set_can_default(CloseButt, TRUE);
   gtk_widget_set_size_request (CloseButt, DEFAULT_BUTTON_WIDTH, DEFAULT_BUTTON_HEIGHT);
   gtk_tooltips_set_tip (tooltips, CloseButt, _("Close this dialog"), NULL);
@@ -820,7 +820,7 @@ GtkWidget* x_dialog_create_search_replace_dialog (GtkWindow *parent,
   ReplaceAllButt = gtk_button_new_with_mnemonic (_("Replace All"));
   if (!find_only_mode)
     g_object_set ( ReplaceAllButt, "visible", TRUE, NULL);
-  gtk_dialog_add_action_widget (GTK_DIALOG (ThisDialog), ReplaceAllButt, GEDA_RESPONSE_APPLY);
+  gtk_dialog_add_action_widget (ThisDialog, ReplaceAllButt, GEDA_RESPONSE_APPLY);
   gtk_widget_set_can_default(ReplaceAllButt, TRUE);
   gtk_widget_set_size_request (ReplaceAllButt, DEFAULT_BUTTON_WIDTH, DEFAULT_BUTTON_HEIGHT);
   gtk_tooltips_set_tip (tooltips, ReplaceAllButt, _("Replace All and close dialog"), NULL);
@@ -828,14 +828,14 @@ GtkWidget* x_dialog_create_search_replace_dialog (GtkWindow *parent,
   ReplaceButt = gtk_button_new_with_mnemonic (_("Replace"));
   if (!find_only_mode)
     g_object_set ( ReplaceButt, "visible", TRUE, NULL);
-  gtk_dialog_add_action_widget (GTK_DIALOG (ThisDialog), ReplaceButt, GEDA_RESPONSE_ACCEPT);
+  gtk_dialog_add_action_widget (ThisDialog, ReplaceButt, GEDA_RESPONSE_ACCEPT);
   gtk_widget_set_can_default(ReplaceButt, TRUE);
   gtk_widget_set_size_request (ReplaceButt, DEFAULT_BUTTON_WIDTH, DEFAULT_BUTTON_HEIGHT);
   gtk_tooltips_set_tip (tooltips, ReplaceButt, _("Replace selected text and continue"), NULL);
 
   FindButt = gtk_button_new_with_mnemonic (_("Find"));
   g_object_set ( FindButt, "visible", TRUE, NULL);
-  gtk_dialog_add_action_widget (GTK_DIALOG (ThisDialog), FindButt, GEDA_RESPONSE_REJECT);
+  gtk_dialog_add_action_widget (ThisDialog, FindButt, GEDA_RESPONSE_REJECT);
   gtk_widget_set_can_default(FindButt, TRUE);
   gtk_widget_set_size_request (FindButt, DEFAULT_BUTTON_WIDTH, DEFAULT_BUTTON_HEIGHT);
   gtk_tooltips_set_tip (tooltips, FindButt, _("Find next"), NULL);
@@ -850,7 +850,7 @@ GtkWidget* x_dialog_create_search_replace_dialog (GtkWindow *parent,
   GEDA_HOOKUP_OBJECT   (ThisDialog, FindButt,           "FindButt");
   GEDA_OBJECT_SET_DATA (ThisDialog, tooltips,           "tooltips");
 
-  return ThisDialog;
+  return (GtkWidget*)ThisDialog;
 }
 
 /*! \brief Startup Search and Replace Dialog
