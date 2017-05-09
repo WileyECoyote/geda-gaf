@@ -11,7 +11,7 @@
       and reduce type-checking cast.
 
     * src/x_window.c: Include geda_container.h and utilize geda_container_xxx
-      macros.
+      macros. Eliminate GTK_WINDOW type-checking cast.
 
 2017-05-07 Wiley E. Hill <wileyhill@gmail.com>
 

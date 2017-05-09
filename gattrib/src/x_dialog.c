@@ -177,8 +177,8 @@ void x_dialog_delete_attrib()
                                   GTK_BUTTONS_YES_NO,
                                   _("Are you sure you want to delete this attribute?"));
 
-  gtk_window_set_title(GTK_WINDOW(dialog), _("Delete attribute"));
   switch(gtk_dialog_run(GTK_DIALOG(dialog))) {
+  gtk_window_set_title((GtkWindow*)dialog, _("Delete attribute"));
     case GEDA_RESPONSE_YES:
       /* call the fcn to actually delete the attrib column.  */
       s_toplevel_delete_attrib_col(sheet);  /* this fcn figures out
@@ -214,7 +214,7 @@ void x_dialog_missing_sym()
                   GTK_STOCK_GO_FORWARD, GEDA_RESPONSE_ACCEPT,
                   NULL);
 
-  gtk_window_set_title(GTK_WINDOW(dialog), _("Missing symbol file found for component!"));
+  gtk_window_set_title((GtkWindow*)dialog, _("Missing symbol file found for component!"));
   gtk_dialog_set_default_response(GTK_DIALOG(dialog), GEDA_RESPONSE_REJECT);
 
   switch(gtk_dialog_run(GTK_DIALOG(dialog))) {
@@ -322,7 +322,7 @@ void x_dialog_unimplemented_feature()
                                   GTK_BUTTONS_OK,
                                   "%s", string);
 
-  gtk_window_set_title(GTK_WINDOW(dialog), _("Unimplemented feature!"));
+  gtk_window_set_title((GtkWindow*)dialog, _("Unimplemented feature!"));
 
   gtk_dialog_run(GTK_DIALOG(dialog));
   gtk_widget_destroy(dialog);
@@ -348,7 +348,7 @@ void x_dialog_fatal_error(char *string, int return_code)
                                   GTK_BUTTONS_OK,
                                   "%s", string);
 
-  gtk_window_set_title(GTK_WINDOW(dialog), _("Fatal error"));
+  gtk_window_set_title((GtkWindow*)dialog, _("Fatal error"));
 
   gtk_dialog_run(GTK_DIALOG(dialog));
   gtk_widget_destroy(dialog);
@@ -373,7 +373,7 @@ void x_dialog_about_dialog()
                                    PACKAGE_DOTTED_VERSION,
                                    PACKAGE_DATE_VERSION);
 
-  gtk_window_set_title(GTK_WINDOW(dialog), _("About..."));
+  gtk_window_set_title((GtkWindow*)dialog, _("About..."));
 
   gtk_dialog_run(GTK_DIALOG(dialog));
   gtk_widget_destroy(dialog);
@@ -433,7 +433,6 @@ char *x_dialog_get_search_text(const char *prompt)
   char      *title;
 
   if (dialog != NULL) {
-
     gtk_widget_hide((GtkWidget*)dialog);
     gtk_widget_destroy((GtkWidget*)dialog);
   }
@@ -441,7 +440,7 @@ char *x_dialog_get_search_text(const char *prompt)
   title = geda_strconcat(_("Find "), prompt, NULL);
 
   dialog = (GtkDialog*)gtk_dialog_new_with_buttons (title,
-                                                    GTK_WINDOW(main_window),
+                                                    (GtkWindow*)main_window,
                                                     GTK_DIALOG_MODAL,
                                                     GTK_STOCK_CLOSE, GEDA_RESPONSE_REJECT,
                                                     GTK_STOCK_FIND, GEDA_RESPONSE_ACCEPT,
@@ -762,7 +761,7 @@ static void x_dialog_init_search_replace(GtkWidget    *ThisDialog,
  *
  */
 static
-GtkWidget* x_dialog_create_search_replace_dialog (GtkWindow *parent,
+GtkWidget *x_dialog_create_search_replace_dialog (GtkWindow *parent,
                                                   int find_only_mode)
 {
   GtkDialog *ThisDialog;
@@ -781,10 +780,9 @@ GtkWidget* x_dialog_create_search_replace_dialog (GtkWindow *parent,
     ThisDialog=NEW_STD_GATTRIB_DIALOG(_(DialogTitle), DialogSettings, parent);
   }
 
-  //gtk_window_set_title (GTK_WINDOW (ThisDialog), _(DialogTitle));
-  gtk_window_set_modal (GTK_WINDOW (ThisDialog), FALSE);
-  gtk_window_set_destroy_with_parent (GTK_WINDOW (ThisDialog), TRUE);
-  gtk_window_set_type_hint (GTK_WINDOW (ThisDialog), GDK_WINDOW_TYPE_HINT_DIALOG);
+  gtk_window_set_modal ((GtkWindow*)ThisDialog, FALSE);
+  gtk_window_set_destroy_with_parent ((GtkWindow*)ThisDialog, TRUE);
+  gtk_window_set_type_hint ((GtkWindow*)ThisDialog, GDK_WINDOW_TYPE_HINT_DIALOG);
 
   MainDialogVBox = ThisDialog->vbox;
   gtk_widget_show (MainDialogVBox);
@@ -866,10 +864,10 @@ void x_dialog_search_replace(SearchRecord *Search, const char *text)
 
   GtkWidget *ThisDialog;
 
-  ThisDialog = x_dialog_create_search_replace_dialog(GTK_WINDOW ( main_window),
+  ThisDialog = x_dialog_create_search_replace_dialog((GtkWindow*)main_window,
                                                      Search->FindOnlyMode);
 
-  gtk_window_set_position (GTK_WINDOW (ThisDialog), GTK_WIN_POS_MOUSE);
+  gtk_window_set_position ((GtkWindow*)ThisDialog, GTK_WIN_POS_MOUSE);
 
   x_dialog_init_search_replace(ThisDialog, Search, text);
 

@@ -172,7 +172,7 @@ static void x_window_save_settings(void *data)
     const char *win_group     = "gattrib";
     int x, y, width, height;
 
-    window = GTK_WINDOW(data);
+    window = (GtkWindow*)data;
 
     geda_log (_("Saving main window geometry and settings.\n"));
 

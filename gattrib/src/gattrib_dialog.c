@@ -155,8 +155,8 @@ static void geometry_save (GattribDialog *dialog, GKeyFile *key_file, char* grou
 {
   int x, y, width, height;
 
-  gtk_window_get_position (GTK_WINDOW (dialog), &x, &y);
-  gtk_window_get_size (GTK_WINDOW (dialog), &width, &height);
+  gtk_window_get_position ((GtkWindow*)dialog, &x, &y);
+  gtk_window_get_size ((GtkWindow*)dialog, &width, &height);
 
   g_key_file_set_integer (key_file, group_name, "x", x);
   g_key_file_set_integer (key_file, group_name, "y", y);
@@ -183,8 +183,8 @@ static void geometry_restore (GattribDialog *dialog, GKeyFile *key_file, char* g
   width  = g_key_file_get_integer (key_file, group_name, "width",  NULL);
   height = g_key_file_get_integer (key_file, group_name, "height", NULL);
 
-  gtk_window_move (GTK_WINDOW (dialog), x, y);
-  gtk_window_resize (GTK_WINDOW (dialog), width, height);
+  gtk_window_move ((GtkWindow*)dialog, x, y);
+  gtk_window_resize ((GtkWindow*)dialog, width, height);
 }
 
 
