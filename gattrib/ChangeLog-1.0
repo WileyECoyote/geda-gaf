@@ -1,3 +1,8 @@
+2017-05-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_window.c: Include geda_container.h and utilize geda_container_xxx
+      macros.
+
 2017-05-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtkitementry.c: Reduce unnecessary GtkWidget and GtkEntry

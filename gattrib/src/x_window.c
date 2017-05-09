@@ -32,6 +32,7 @@
 #include <gtk/gtk.h>
 #include <gtksheet.h>
 
+#include <geda_container.h>
 #include <geda_widgets.h>
 #include <geda_debug.h>
 
@@ -305,20 +306,20 @@ void x_window_init()
   /* -----  Now create main_vbox container to hold everthing ----- */
 
   main_vbox = gtk_vbox_new(FALSE,1);
-  gtk_container_set_border_width(GTK_CONTAINER(main_vbox), 1);
-  gtk_container_add(GTK_CONTAINER(main_window), GTK_WIDGET(main_vbox));
-  gtk_widget_show( GTK_WIDGET(main_vbox));
+  geda_set_container_border_width(main_vbox, 1);
+  geda_container_add(main_window, main_vbox);
+  gtk_widget_show((GtkWidget*)main_vbox);
 
   /* -----  Now create menu bar  ----- */
   menu_bar = x_menu_create_menu(main_window);
-  gtk_box_pack_start(GTK_BOX (main_vbox), menu_bar, FALSE, TRUE, 0);
+  gtk_box_pack_start((GtkBox*)main_vbox, menu_bar, FALSE, TRUE, 0);
 
    /* -----  Initialize the Toolbar Module ----- */
   x_toolbars_init(main_vbox);
 
   edit_box = gtk_hbox_new(FALSE, 1);
-  gtk_container_set_border_width(GTK_CONTAINER(edit_box),0);
-  gtk_box_pack_start(GTK_BOX(main_vbox), edit_box, FALSE, TRUE, 0);
+  geda_set_container_border_width(edit_box, 0);
+  gtk_box_pack_start((GtkBox*)main_vbox, edit_box, FALSE, TRUE, 0);
   gtk_widget_show(edit_box);
 
    /* This is the RC box in the top left cell */
@@ -326,17 +327,17 @@ void x_window_init()
 
   gtk_widget_size_request(location, &request);
   gtk_widget_set_usize(location, 150, request.height);
-  gtk_box_pack_start(GTK_BOX(edit_box), location, FALSE, TRUE, 0);
+  gtk_box_pack_start((GtkBox*)edit_box, location, FALSE, TRUE, 0);
 
    /* Global in include/globals.h - likely a very bad thing */
   entry = geda_entry_new_visible ();
-  gtk_box_pack_start(GTK_BOX(edit_box), entry, TRUE, TRUE, 0);
+  gtk_box_pack_start((GtkBox*)edit_box, entry, TRUE, TRUE, 0);
 
   /* TODO togglable legend ? */
   /* -----  Now init notebook widget  ----- */
   notebook = gtk_notebook_new();
-  gtk_notebook_set_tab_pos(GTK_NOTEBOOK(notebook), GTK_POS_BOTTOM);
-  gtk_box_pack_start(GTK_BOX(main_vbox), notebook, TRUE, TRUE, 0);
+  gtk_notebook_set_tab_pos((GtkNotebook*)notebook, GTK_POS_BOTTOM);
+  gtk_box_pack_start((GtkBox*)main_vbox, notebook, TRUE, TRUE, 0);
 
   GEDA_SIGNAL_CONNECT (notebook, "switch-page",
                        on_notebook_switch_page,
