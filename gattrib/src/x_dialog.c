@@ -200,24 +200,24 @@ void x_dialog_delete_attrib()
  */
 void x_dialog_missing_sym()
 {
-  GtkWidget *dialog;
+  GtkDialog  *dialog;
   const char *string = _("One or more components have been found with missing symbol files!\n\nThis probably happened because gattrib could not find your component libraries, perhaps because your gafrc or gattribrc files are misconfigured.\n\nChoose \"Quit\" to leave gattrib and fix the problem, or\n\"Forward\" to continue working with gattrib.\n");
 
   /* Create the dialog */
-  dialog = gtk_message_dialog_new (NULL, GTK_DIALOG_MODAL,
-                                  GTK_MESSAGE_WARNING,
-                                  GTK_BUTTONS_NONE,
-                                  "%s", string);
+  dialog = (GtkDialog*)gtk_message_dialog_new (NULL, GTK_DIALOG_MODAL,
+                                               GTK_MESSAGE_WARNING,
+                                               GTK_BUTTONS_NONE,
+                                               "%s", string);
 
-  gtk_dialog_add_buttons(GTK_DIALOG(dialog),
-                  GTK_STOCK_QUIT, GEDA_RESPONSE_REJECT,
-                  GTK_STOCK_GO_FORWARD, GEDA_RESPONSE_ACCEPT,
-                  NULL);
+  gtk_dialog_add_buttons(dialog,
+                         GTK_STOCK_QUIT, GEDA_RESPONSE_REJECT,
+                         GTK_STOCK_GO_FORWARD, GEDA_RESPONSE_ACCEPT,
+                         NULL);
 
   gtk_window_set_title((GtkWindow*)dialog, _("Missing symbol file found for component!"));
-  gtk_dialog_set_default_response(GTK_DIALOG(dialog), GEDA_RESPONSE_REJECT);
+  gtk_dialog_set_default_response(dialog, GEDA_RESPONSE_REJECT);
 
-  switch(gtk_dialog_run(GTK_DIALOG(dialog))) {
+  switch (gtk_dialog_run(dialog)) {
     case GEDA_RESPONSE_ACCEPT:
       /* Continue with the execution */
       break;
@@ -228,7 +228,7 @@ void x_dialog_missing_sym()
       break;
   }
 
-  gtk_widget_destroy(dialog);
+  gtk_widget_destroy((GtkWidget*)dialog);
 }
 
 /*! \brief File Not Saved dialog

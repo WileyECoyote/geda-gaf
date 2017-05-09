@@ -5,10 +5,10 @@
     * src/gattrib_dialog.c: Remove GATTRIB_DIALOG type-checking cast in
       show_handler and unmap_handler.
 
-    * gattrib/src/x_dialog.c: Revise x_dialog_create_search_replace_dialog;
-      change ThisDialog from GtkWidget -> GtkDialog. Revise x_dialog_new_attrib;
-      add local GtkDialog, replace gtk_box_pack_start with geda_container_add,
-      and reduce type-checking cast.
+    * gattrib/src/x_dialog.c: Revise x_dialog_create_search_replace_dialog and
+      x_dialog_missing_sym; change ThisDialog from GtkWidget -> GtkDialog.
+      Revise x_dialog_new_attrib; add local GtkDialog, replace gtk_box_pack_start
+      with geda_container_add, and reduce type-checking cast.
 
     * src/x_window.c: Include geda_container.h and utilize geda_container_xxx
       macros. Eliminate GTK_WINDOW type-checking cast.
