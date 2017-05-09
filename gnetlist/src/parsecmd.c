@@ -280,7 +280,7 @@ int parse_commandline (int argc, char *argv[], char **output_filename)
           break;
 
         default:
-          g_assert_not_reached ();
+          break;
       }
     }
 
