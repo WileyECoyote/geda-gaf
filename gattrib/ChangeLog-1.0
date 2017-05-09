@@ -10,6 +10,9 @@
       Revise x_dialog_new_attrib; add local GtkDialog, replace gtk_box_pack_start
       with geda_container_add, and reduce type-checking cast.
 
+    * src/x_toolbars.c: Include geda_container.h and utilize geda_container_xxx
+      macros.
+
     * src/x_window.c: Include geda_container.h and utilize geda_container_xxx
       macros. Eliminate GTK_WINDOW type-checking cast.
 

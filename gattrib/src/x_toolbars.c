@@ -22,6 +22,7 @@
 
 #include <gtk/gtk.h>
 
+#include <geda_container.h>
 #include <geda_toolbar.h>
 #include <geda/geda_toolbars.h>
 #include <geda_debug.h>
@@ -186,8 +187,8 @@ void x_toolbars_init(GtkWidget *parent_container) {
   Standard_Toolbar = geda_toolbar_new (GTK_ORIENTATION_HORIZONTAL);
 
   gtk_toolbar_set_style (GTK_TOOLBAR (Standard_Toolbar), GTK_TOOLBAR_BOTH);
-  gtk_container_set_border_width (GTK_CONTAINER (Standard_Toolbar), 0);
-  gtk_container_add (GTK_CONTAINER (Standard_handlebox), Standard_Toolbar);
+  geda_set_container_border_width (Standard_Toolbar, 0);
+  geda_container_add (Standard_handlebox, Standard_Toolbar);
 
   /* Add Open Button to Toolbar */
   TOOLBAR_STD_BUTTON(Standard, open, PIX, GSCHEM_OPEN_BITMAP, callBack_toolbar0)
@@ -231,8 +232,8 @@ void x_toolbars_init(GtkWidget *parent_container) {
   Attribute_Toolbar = geda_toolbar_new (GTK_ORIENTATION_HORIZONTAL);
 
   gtk_toolbar_set_style (GTK_TOOLBAR (Attribute_Toolbar), GTK_TOOLBAR_BOTH);
-  gtk_container_set_border_width (GTK_CONTAINER (Attribute_Toolbar), 0);
-  gtk_container_add (GTK_CONTAINER (Attribute_handlebox), Attribute_Toolbar);
+  geda_set_container_border_width (Attribute_Toolbar, 0);
+  geda_container_add (Attribute_handlebox, Attribute_Toolbar);
 
     /* Add Open Button to Toolbar */
   TOOLBAR_STD_BUTTON(Attribute, invisible,  PIX, GEDA_GHOST_INVISIBLE_BITMAP, callBack_AttributeBar0);
