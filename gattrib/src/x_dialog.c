@@ -30,6 +30,7 @@
 #include "../../version.h"
 
 #include <gattrib.h>
+#include <geda_container.h>
 #include <geda/geda_dialog_controls.h>
 #include <geda_widgets.h>
 #include <gattrib_dialog.h>
@@ -97,34 +98,37 @@ bool x_dialog_generic_confirm_dialog (const char *msg, int type)
  */
 char *x_dialog_new_attrib()
 {
-  GtkWidget *dialog;
+  GtkDialog *dialog;
+  GtkWidget *widget;
   GtkWidget *label;
   GtkWidget *attrib_entry;
   char *entry_text;
 
   /* Create the dialog */
-  dialog = gtk_dialog_new_with_buttons(_("Add new attribute"), NULL,
-				       GTK_DIALOG_MODAL,
-				       GTK_STOCK_OK, GEDA_RESPONSE_OK,
-				       GTK_STOCK_CANCEL, GEDA_RESPONSE_CANCEL,
-				       NULL);
+  widget = gtk_dialog_new_with_buttons(_("Add new attribute"), NULL,
+                                       GTK_DIALOG_MODAL,
+                                       GTK_STOCK_OK, GEDA_RESPONSE_OK,
+                                       GTK_STOCK_CANCEL, GEDA_RESPONSE_CANCEL,
+                                       NULL);
 
-  gtk_dialog_set_default_response(GTK_DIALOG(dialog), GEDA_RESPONSE_OK);
+  dialog = (GtkDialog*)widget;
+
+  gtk_dialog_set_default_response(dialog, GEDA_RESPONSE_OK);
 
   /*  Create a text label for the dialog window */
   label = geda_label_new (_("Enter new attribute name"));
-  gtk_box_pack_start (GTK_BOX(GTK_DIALOG(dialog)->vbox), label, FALSE, FALSE, 0);
+  geda_container_add(dialog->vbox, label);
 
   /*  Create the "attrib" text entry area */
   attrib_entry = geda_entry_new_with_max_length(48);
   geda_entry_widget_set_activates_default(attrib_entry, TRUE);
 
-  gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog)->vbox), attrib_entry, TRUE, TRUE, 5);
-  gtk_widget_set_size_request (dialog, 260, 140);
+  geda_container_add(dialog->vbox, attrib_entry);
+  gtk_widget_set_size_request (widget, 300, 140);
 
-  gtk_widget_show_all(dialog);
+  gtk_widget_show_all(widget);
 
-  switch(gtk_dialog_run(GTK_DIALOG(dialog))) {
+  switch(gtk_dialog_run(dialog)) {
     case GEDA_RESPONSE_OK:
       entry_text = geda_utility_string_strdup(GetEntryText(attrib_entry) );
       break;
@@ -134,7 +138,7 @@ char *x_dialog_new_attrib()
       break;
   }
 
-  gtk_widget_destroy(dialog);
+  gtk_widget_destroy(widget);
   return entry_text;
 }
 

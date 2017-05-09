@@ -42,9 +42,9 @@
 #define BULB_OFF_IMAGE   	   "geda_bulb_24x26_off.png"
 
 #define NEW_STD_GATTRIB_DIALOG(title, identifier, ptrWindowWidget) \
-        gattrib_dialog_new_empty(title, main_window, \
-                                 GTK_DIALOG_MODAL, \
-                                 identifier)
+        (GtkDialog*)gattrib_dialog_new_empty(title, main_window, \
+                    GTK_DIALOG_MODAL, \
+                    identifier)
 
 /* Date: Aug 12, 2012
  * Who:  Wiley E. Hill
