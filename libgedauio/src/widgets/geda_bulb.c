@@ -83,7 +83,7 @@
  *    // Create a bulb button with a GtkEntry widget
  *    bulb1 = geda_bulb_new (NULL);
  *    entry = gtk_entry_new ();
- *    gtk_container_add (GTK_CONTAINER (bulb1), entry);
+ *    geda_container_add (bulb1, entry);
  *
  *
  *    // Create a bulb button with a label
@@ -93,7 +93,7 @@
  *    // Pack them into a box, then show all the widgets
  *    gtk_box_pack_start (GTK_BOX (box), bulb1, TRUE, TRUE, 2);
  *    gtk_box_pack_start (GTK_BOX (box), bulb2, TRUE, TRUE, 2);
- *    gtk_container_add (GTK_CONTAINER (window), box);
+ *    geda_container_add (window, box);
  *    gtk_widget_show_all (window);
  *    return;
  * }
