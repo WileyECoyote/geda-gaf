@@ -69,11 +69,11 @@ struct _GattribDialogClass {
   GtkDialogClass parent_class;
 
   void (*geometry_save)    (GattribDialog *dialog,
-                            GKeyFile *key_file,
-                            char *group_name);
+                            GedaKeyFile   *key_file,
+                            char          *group_name);
   void (*geometry_restore) (GattribDialog *dialog,
-                            GKeyFile *key_file,
-                            char *group_name);
+                            GedaKeyFile   *key_file,
+                            char          *group_name);
 };
 
 struct _GattribDialog {

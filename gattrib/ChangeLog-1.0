@@ -1,3 +1,7 @@
+2017-05-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gattrib_dialog.c: Switch GKeyFile to GedaKeyFile.
+
 2017-05-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gattrib_dialog.h: Cast NEW_STD_GATTRIB_DIALOG as GtkDialog.

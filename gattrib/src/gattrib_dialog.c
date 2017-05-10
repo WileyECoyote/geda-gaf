@@ -115,7 +115,7 @@ enum {
 static unsigned int gattrib_dialog_signals[ LAST_SIGNAL ] = { 0 };
 static GObjectClass *gattrib_dialog_parent_class = NULL;
 
-static GKeyFile *dialog_geometry = NULL;
+static GedaKeyFile *dialog_geometry = NULL;
 
 #define DIALOG_GEOMETRY_STORE "gattrib-dialog-geometry"
 
@@ -133,7 +133,7 @@ static void save_geometry_to_file(void *user_data)
 
   g_assert( dialog_geometry != NULL );
 
-  data = g_key_file_to_data(dialog_geometry, NULL, NULL);
+  data = geda_keyfile_to_data(dialog_geometry, NULL, NULL);
   file = g_build_filename(geda_user_config_path (), DIALOG_GEOMETRY_STORE,
         NULL);
   g_file_set_contents(file, data, -1, NULL);
@@ -145,53 +145,53 @@ static void save_geometry_to_file(void *user_data)
 /*! \brief GattribDialog "geometry_save" class method handler
  *
  *  \par Function Description
- *  Save the dialog's current position and size to the passed GKeyFile
+ *  Save the dialog's current position and size to the passed GedaKeyFile
  *
  *  \param [in] dialog     The GattribDialog to save the position and size of.
- *  \param [in] key_file   The GKeyFile to save the geometry data to.
+ *  \param [in] key_file   The GedaKeyFile to save the geometry data to.
  *  \param [in] group_name The group name in the key file to store the data under.
  */
-static void geometry_save (GattribDialog *dialog, GKeyFile *key_file, char* group_name)
+static void geometry_save (GattribDialog *dialog, GedaKeyFile *key_file, char *group_name)
 {
   int x, y, width, height;
 
   gtk_window_get_position ((GtkWindow*)dialog, &x, &y);
   gtk_window_get_size ((GtkWindow*)dialog, &width, &height);
 
-  g_key_file_set_integer (key_file, group_name, "x", x);
-  g_key_file_set_integer (key_file, group_name, "y", y);
-  g_key_file_set_integer (key_file, group_name, "width",  width );
-  g_key_file_set_integer (key_file, group_name, "height", height);
+  geda_keyfile_set_integer (key_file, group_name, "x", x);
+  geda_keyfile_set_integer (key_file, group_name, "y", y);
+  geda_keyfile_set_integer (key_file, group_name, "width",  width );
+  geda_keyfile_set_integer (key_file, group_name, "height", height);
 }
 
 
 /*! \brief GattribDialog "geometry_restore" class method handler
  *
  *  \par Function Description
- *  Restore dialog's last position and size from the passed GKeyFile
+ *  Restore dialog's last position and size from the passed GedaKeyFile
  *
  *  \param [in] dialog     The GattribDialog to restore the position and size of.
- *  \param [in] key_file   The GKeyFile to load the geometry data from.
+ *  \param [in] key_file   The GedaKeyFile to load the geometry data from.
  *  \param [in] group_name The group name in the key file to find the data under.
  */
-static void geometry_restore (GattribDialog *dialog, GKeyFile *key_file, char* group_name)
+static void geometry_restore (GattribDialog *dialog, GedaKeyFile *key_file, char *group_name)
 {
   int x, y, width, height;
 
-  x      = g_key_file_get_integer (key_file, group_name, "x", NULL);
-  y      = g_key_file_get_integer (key_file, group_name, "y", NULL);
-  width  = g_key_file_get_integer (key_file, group_name, "width",  NULL);
-  height = g_key_file_get_integer (key_file, group_name, "height", NULL);
+  x      = geda_keyfile_get_integer (key_file, group_name, "x", NULL);
+  y      = geda_keyfile_get_integer (key_file, group_name, "y", NULL);
+  width  = geda_keyfile_get_integer (key_file, group_name, "width",  NULL);
+  height = geda_keyfile_get_integer (key_file, group_name, "height", NULL);
 
   gtk_window_move ((GtkWindow*)dialog, x, y);
   gtk_window_resize ((GtkWindow*)dialog, width, height);
 }
 
 
-/*! \brief Setup the GKeyFile for saving / restoring geometry
+/*! \brief Setup the GedaKeyFile for saving / restoring geometry
  *
  *  \par Function Description
- *  Check if the GKeyFile for saving / restoring geometry is open.
+ *  Check if the GedaKeyFile for saving / restoring geometry is open.
  *  If it doesn't exist, we create it here, and also install a hook
  *  to ensure its contents are saved at program exit.
  */
@@ -203,7 +203,7 @@ static void setup_keyfile ()
   char *file = g_build_filename (geda_user_config_path (),
                                  DIALOG_GEOMETRY_STORE, NULL);
 
-  dialog_geometry = g_key_file_new();
+  dialog_geometry = geda_keyfile_new();
 
   /* Remember to save data on program exit */
   geda_atexit(save_geometry_to_file, NULL);
@@ -214,10 +214,10 @@ static void setup_keyfile ()
     g_file_set_contents (file, "", -1, NULL);
   }
 
-  if (!g_key_file_load_from_file (dialog_geometry, file, G_KEY_FILE_NONE, NULL)) {
+  if (!geda_keyfile_load_from_file (dialog_geometry, file, G_KEY_FILE_NONE, NULL)) {
     /* error opening key file, create an empty one and try again */
     g_file_set_contents (file, "", -1, NULL);
-    if ( !g_key_file_load_from_file (dialog_geometry, file, G_KEY_FILE_NONE, NULL)) {
+    if ( !geda_keyfile_load_from_file (dialog_geometry, file, G_KEY_FILE_NONE, NULL)) {
        GEDA_FREE (file);
        return;
     }
@@ -240,11 +240,12 @@ static void show_handler (GtkWidget *widget)
   GattribDialog *dialog = (GattribDialog*)widget;
 
   group_name = dialog->settings_name;
+
   if (group_name != NULL) {
 
     setup_keyfile ();
     if ( dialog_geometry != NULL ); {
-      if (g_key_file_has_group (dialog_geometry, group_name)) {
+      if (geda_keyfile_has_group (dialog_geometry, group_name)) {
         g_signal_emit (dialog, gattrib_dialog_signals[ GEOMETRY_RESTORE ], 0,
                        dialog_geometry, group_name);
       }
@@ -252,7 +253,7 @@ static void show_handler (GtkWidget *widget)
   }
 
   /* Let GTK show the window */
-  GTK_WIDGET_CLASS (gattrib_dialog_parent_class)->show (widget);
+  ((GtkWidgetClass*)gattrib_dialog_parent_class)->show (widget);
 }
 
 
@@ -280,7 +281,7 @@ static void unmap_handler (GtkWidget *widget)
   }
 
   /* Let GTK unmap the window */
-  GTK_WIDGET_CLASS (gattrib_dialog_parent_class)->unmap (widget);
+  ((GtkWidgetClass*)gattrib_dialog_parent_class)->unmap (widget);
 }
 
 
@@ -369,12 +370,12 @@ static void gattrib_dialog_get_property (GObject *object, guint property_id, GVa
  *  Type class initializer for GattribDialog. We override our parent
  *  virtual class methods as needed and register our GObject properties.
  *
- *  \param [in]  klass       The GattribDialogClass we are initialising
+ *  \param [in]  klass  The GattribDialogClass we are initialising
  */
 static void gattrib_dialog_class_init (GattribDialogClass *klass)
 {
-  GObjectClass     *gobject_class = G_OBJECT_CLASS (klass);
-  GtkWidgetClass *gtkwidget_class = GTK_WIDGET_CLASS (klass);
+  GObjectClass   *gobject_class   = (GObjectClass*) klass;
+  GtkWidgetClass *gtkwidget_class = (GtkWidgetClass*) klass;
 
   klass->geometry_save         = geometry_save;
   klass->geometry_restore      = geometry_restore;
@@ -515,11 +516,11 @@ static void gattrib_dialog_add_buttons_valist (GtkDialog     *dialog,
  *
  *  \return  The GattribDialog created.
  */
- GtkWidget* gattrib_dialog_new_empty (const char *title, GtkWindow *parent,
+ GtkWidget *gattrib_dialog_new_empty (const char *title, GtkWindow *parent,
                                       GtkDialogFlags flags,
                                       const char *settings_name)
 {
-  GattribDialog *dialog;
+  GtkWindow *dialog;
 
   dialog = g_object_new (GATTRIB_TYPE_DIALOG,
                          "settings-name", settings_name,
@@ -527,25 +528,24 @@ static void gattrib_dialog_add_buttons_valist (GtkDialog     *dialog,
                          NULL);
 
   if (title)
-    gtk_window_set_title (GTK_WINDOW (dialog), _(title));
+    gtk_window_set_title (dialog, _(title));
 
   if (parent)
-    gtk_window_set_transient_for (GTK_WINDOW (dialog), parent);
+    gtk_window_set_transient_for (dialog, parent);
 
   if (flags & GTK_DIALOG_MODAL)
-    gtk_window_set_modal (GTK_WINDOW (dialog), TRUE);
+    gtk_window_set_modal (dialog, TRUE);
 
   if (flags & GTK_DIALOG_DESTROY_WITH_PARENT)
-    gtk_window_set_destroy_with_parent (GTK_WINDOW (dialog), TRUE);
+    gtk_window_set_destroy_with_parent (dialog, TRUE);
 
   if (flags & GTK_DIALOG_NO_SEPARATOR)
-    gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);
+    gtk_dialog_set_has_separator ((GtkDialog*)dialog, FALSE);
 
-    gtk_window_set_type_hint (GTK_WINDOW (dialog), GDK_WINDOW_TYPE_HINT_DIALOG);
+    gtk_window_set_type_hint (dialog, GDK_WINDOW_TYPE_HINT_DIALOG);
 
-  return GTK_WIDGET (dialog);
+  return (GtkWidget*)dialog;
 }
-
 
 /*! \brief GTK function modified from GTK+-2.4.14 gtkdialog.c
  *  to provide a GattribDialog equivelant of the convenience function
