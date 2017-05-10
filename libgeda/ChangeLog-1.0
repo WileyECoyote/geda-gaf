@@ -1,3 +1,8 @@
+2017-05-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_page.c: Eliminate PageClass variable and replace
+      g_type_check_instance_cast in initializer.
+
 2017-05-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_pin.c: Replace g_type_check_instance_cast in class

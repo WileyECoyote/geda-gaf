@@ -313,10 +313,10 @@ static void geda_page_finalize(GObject *object)
 static void
 geda_page_class_init(void *class, void *class_data)
 {
-  PageClass    *page_class   = GEDA_PAGE_CLASS(class);
-  GObjectClass *object_class = G_OBJECT_CLASS(page_class);
+  //PageClass    *page_class   = (PageClass*) class;
+  GObjectClass *object_class = (GObjectClass*) class;
 
-  geda_page_parent_class     = g_type_class_peek_parent(page_class);
+  geda_page_parent_class     = g_type_class_peek_parent(class);
 
   object_class->dispose      = geda_page_dispose;
   object_class->finalize     = geda_page_finalize;
