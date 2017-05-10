@@ -343,7 +343,7 @@ GedaType geda_swatch_renderer_get_type (void)
 GedaSwatchRenderer*
 geda_swatch_renderer_new(void)
 {
-  GedaSwatchRenderer *swatch = GEDA_SWATCH_RENDERER (g_object_new (GEDA_TYPE_SWATCH_RENDERER, NULL));
+  GedaSwatchRenderer *swatch = g_object_new (GEDA_TYPE_SWATCH_RENDERER, NULL);
 
   return swatch;
 }

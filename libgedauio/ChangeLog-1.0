@@ -1,3 +1,8 @@
+2017-05-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_swatch_renderer.c: Remove unnecessary GEDA_SWATCH_RENDERER
+      type-checking cast for g_object_new (GEDA_TYPE_SWATCH_RENDERER).
+
 2017-05-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/dialogs/geda_file_chooser.c: Include geda_container.h and utilize
