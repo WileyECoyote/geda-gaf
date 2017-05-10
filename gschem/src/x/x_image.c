@@ -763,7 +763,7 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
   g_object_set (alignment, "visible", TRUE, NULL);
 
   vbox3 = gtk_vbox_new(FALSE, 6); /* move top button up to align with switch */
-  gtk_container_add(GTK_CONTAINER(alignment), vbox3);
+  geda_container_add(alignment, vbox3);
 
   /* Now add the check button widgets to vbox inside the alignment */
   gtk_box_pack_start(GTK_BOX(vbox3), use_print, FALSE, FALSE, 0);
