@@ -457,13 +457,13 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
                       G_CALLBACK(x_menu_execute), w_current);
 
     /* Add basic items to the file menu */
-    gtk_container_add (GTK_CONTAINER (file_menu), open_item);
+    geda_container_add (file_menu, open_item);
     g_object_set (open_item, "visible", TRUE, NULL);
 
-    gtk_container_add (GTK_CONTAINER (file_menu), save_item);
+    geda_container_add (file_menu, save_item);
     g_object_set (save_item, "visible", TRUE, NULL);
 
-    gtk_container_add (GTK_CONTAINER (file_menu), quit_item);
+    geda_container_add (file_menu, quit_item);
     g_object_set (quit_item, "visible", TRUE, NULL);
 
     return file_menu;
@@ -493,7 +493,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
 
     /* Add the Redraw items to the View menu */
-    gtk_container_add (GTK_CONTAINER (view_menu), redraw_item);
+    geda_container_add (view_menu, redraw_item);
     GEDA_OBJECT_SET_DATA(MENU_BAR, redraw_item, "_View/_Redraw");
     g_object_set (redraw_item, "visible", TRUE, NULL);
 
@@ -753,7 +753,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     menu = geda_menu_new();
 
     menu_item = geda_tearoff_menu_item_new ();
-    gtk_container_add ((GtkContainer*)menu, menu_item);
+    geda_container_add(menu, menu_item);
     g_object_set (menu_item, "visible", TRUE, NULL);
     g_signal_connect(menu_item, "torn-off", G_CALLBACK(x_menu_torn), w_current);
 
@@ -764,7 +764,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     for (j = 0 ; j < scm_items_len; j++) {
 
       menu_item = get_menu_item_from_scheme(scm_items, j);
-      gtk_container_add ((GtkContainer*)menu, menu_item);
+      geda_container_add(menu, menu_item);
       g_object_set (menu_item, "visible", TRUE, NULL);
     }
 
@@ -774,7 +774,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
     if (root_menu == NULL) {
       root_menu = geda_menu_item_new_with_mnemonic (menu_name);
-      gtk_container_add ((GtkContainer*)MENU_BAR, root_menu);
+      geda_container_add(MENU_BAR, root_menu);
     }
 
     geda_menu_item_set_submenu ((GedaMenuItem*)root_menu, menu);
@@ -864,15 +864,15 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
       GEDA_OBJECT_SET_DATA(MENU_BAR, attribar_toggle, OPT_ATTRBAR_MENU_PATH);
       GEDA_OBJECT_SET_DATA(MENU_BAR, gridbar_toggle,  OPT_GRIDBAR_MENU_PATH);
 
-      gtk_container_add ((GtkContainer*)toggle_menu, stdbar_toggle);
-      gtk_container_add ((GtkContainer*)toggle_menu, selbar_toggle);
-      gtk_container_add ((GtkContainer*)toggle_menu, pagebar_toggle);
-      gtk_container_add ((GtkContainer*)toggle_menu, addbar_toggle);
-      gtk_container_add ((GtkContainer*)toggle_menu, zoombar_toggle);
-      gtk_container_add ((GtkContainer*)toggle_menu, symbar_toggle);
-      gtk_container_add ((GtkContainer*)toggle_menu, editbar_toggle);
-      gtk_container_add ((GtkContainer*)toggle_menu, attribar_toggle);
-      gtk_container_add ((GtkContainer*)toggle_menu, gridbar_toggle);
+      geda_container_add(toggle_menu, stdbar_toggle);
+      geda_container_add(toggle_menu, selbar_toggle);
+      geda_container_add(toggle_menu, pagebar_toggle);
+      geda_container_add(toggle_menu, addbar_toggle);
+      geda_container_add(toggle_menu, zoombar_toggle);
+      geda_container_add(toggle_menu, symbar_toggle);
+      geda_container_add(toggle_menu, editbar_toggle);
+      geda_container_add(toggle_menu, attribar_toggle);
+      geda_container_add(toggle_menu, gridbar_toggle);
 
       gtk_widget_set_tooltip_text(stdbar_toggle, _("Toggle visibility of the Standard toolbar"));
       gtk_widget_set_tooltip_text(selbar_toggle, _("Toggle visibility of the Selection toolbar"));
@@ -885,7 +885,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
       gtk_widget_set_tooltip_text(gridbar_toggle,   _("Toggle visibility of the Grid/Snap toolbar"));
 
       GtkWidget *tb_separator  = geda_menu_item_new();
-      gtk_container_add ((GtkContainer*)toggle_menu, tb_separator);
+      geda_container_add(toggle_menu, tb_separator);
 
       GtkWidget *tb_tips_toggle = geda_check_menu_item_new_with_mnemonic (IDS_MENU_TB_TIPS);
 
@@ -895,7 +895,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
       GEDA_OBJECT_SET_DATA(MENU_BAR, tb_tips_toggle, OPT_BAR_TIPS_MENU_PATH);
 
-      gtk_container_add ((GtkContainer*)toggle_menu, tb_tips_toggle);
+      geda_container_add(toggle_menu, tb_tips_toggle);
 
       gtk_widget_set_tooltip_text(tb_tips_toggle, _("Toggle visibility of tooltips on toolbars"));
 
@@ -904,7 +904,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
                         w_current);
 
       tb_separator  = geda_menu_item_new();
-      gtk_container_add ((GtkContainer*)toggle_menu, tb_separator);
+      geda_container_add(toggle_menu, tb_separator);
 
       /* Start Toolbar Mode Radios */
       GtkWidget *tb_icons_bulb = geda_check_menu_item_new_with_mnemonic ("_Icons");
@@ -951,10 +951,10 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
       GEDA_OBJECT_SET_DATA(MENU_BAR, tb_vert_bulb,  OPT_BAR_VERT_MENU_PATH);
       GEDA_OBJECT_SET_DATA(MENU_BAR, tb_hori_bulb,  OPT_BAR_HOZI_MENU_PATH);
 
-      gtk_container_add ((GtkContainer*)toggle_menu, tb_icons_bulb);
-      gtk_container_add ((GtkContainer*)toggle_menu, tb_text_bulb);
-      gtk_container_add ((GtkContainer*)toggle_menu, tb_vert_bulb);
-      gtk_container_add ((GtkContainer*)toggle_menu, tb_hori_bulb);
+      geda_container_add(toggle_menu, tb_icons_bulb);
+      geda_container_add(toggle_menu, tb_text_bulb);
+      geda_container_add(toggle_menu, tb_vert_bulb);
+      geda_container_add(toggle_menu, tb_hori_bulb);
 
       gtk_widget_set_tooltip_text(tb_icons_bulb, _("Display Icons on the toolbar"));
       gtk_widget_set_tooltip_text(tb_text_bulb,  _("Display Text on the toolbar"));
@@ -1021,10 +1021,10 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     GEDA_OBJECT_SET_DATA(MENU_BAR, menu_popcons_toggle, OPT_POPCONS_MENU_PATH);
     GEDA_OBJECT_SET_DATA(MENU_BAR, menu_poptips_toggle, OPT_POPTIPS_MENU_PATH);
 
-    gtk_container_add ((GtkContainer*)toggle_menu, menu_icons_toggle);
-    gtk_container_add ((GtkContainer*)toggle_menu, menu_tips_toggle);
-    gtk_container_add ((GtkContainer*)toggle_menu, menu_popcons_toggle);
-    gtk_container_add ((GtkContainer*)toggle_menu, menu_poptips_toggle);
+    geda_container_add(toggle_menu, menu_icons_toggle);
+    geda_container_add(toggle_menu, menu_tips_toggle);
+    geda_container_add(toggle_menu, menu_popcons_toggle);
+    geda_container_add(toggle_menu, menu_poptips_toggle);
 
     gtk_widget_set_tooltip_text(menu_icons_toggle, _("Toggle visibility of main menu icons"));
     gtk_widget_set_tooltip_text(menu_tips_toggle,  _("Toggle main menu tooltips"));
@@ -1115,7 +1115,7 @@ x_menu_build_path_popup(GschemToplevel *w_current, MenuData *menu_data,
 
 
     g_object_set (menu_item, "visible", TRUE, NULL);
-    gtk_container_add ((GtkContainer*)menu, menu_item);
+    geda_container_add(menu, menu_item);
   }
 
   return (menu);
@@ -1220,7 +1220,7 @@ int x_menu_setup_popup (GschemToplevel *w_current)
          * sub-menus do not have icon images */
         submenu = geda_menu_item_new_with_label(_(item.name));
         g_object_set (submenu, "visible", TRUE, NULL);
-        gtk_container_add ((GtkContainer*)menu, submenu);
+        geda_container_add(menu, submenu);
 
         /* Save the current menu and create the new sub menu */
         save_nest = menu;
@@ -1284,7 +1284,7 @@ int x_menu_setup_popup (GschemToplevel *w_current)
     }
 
     g_object_set (menu_item, "visible", TRUE, NULL);
-    gtk_container_add ((GtkContainer*)menu, menu_item);
+    geda_container_add(menu, menu_item);
   }
 
   /* Save the menu to the active menu data structure */
