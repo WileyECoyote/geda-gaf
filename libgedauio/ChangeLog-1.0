@@ -1,5 +1,8 @@
 2017-05-10 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_menu_item.c: Replace GTK_ACTION with GEDA_IS_ACTION in
+      geda_menu_item_disconnect_accelerator.
+
     * src/widgets/geda_swatch_renderer.c: Remove unnecessary GEDA_SWATCH_RENDERER
       type-checking cast for g_object_new (GEDA_TYPE_SWATCH_RENDERER).
 

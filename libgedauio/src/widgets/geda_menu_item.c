@@ -289,7 +289,7 @@ static void *geda_menu_item_parent_class = NULL;
 static void
 geda_menu_item_disconnect_accelerator(GedaAction *action)
 {
-  if (GTK_ACTION (action)) {
+  if (GEDA_IS_ACTION (action)) {
     gtk_action_disconnect_accelerator (GTK_ACTION(action));
   }
 }
