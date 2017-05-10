@@ -110,7 +110,7 @@ static GtkWidget *create_size_menu (void)
   }
 
   geda_combo_box_text_widget_set_active(combo, default_size_index);
-  g_object_set (G_OBJECT(combo), "visible", TRUE, NULL);
+  g_object_set (combo, "visible", TRUE, NULL);
   gtk_widget_set_tooltip_text ( combo, _("Click to select size of the image to be created"));
 
   return combo;
@@ -184,7 +184,7 @@ static GtkWidget* create_type_menu(IMAGE_TYPES default_type)
 
   /* Set the default menu */
   geda_combo_box_text_widget_set_active(combo, default_index);
-  g_object_set (G_OBJECT(combo), "visible", TRUE, NULL);
+  g_object_set (combo, "visible", TRUE, NULL);
   gtk_widget_set_tooltip_text ( combo, _("Click to select the type of image to be created"));
   return combo;
 }

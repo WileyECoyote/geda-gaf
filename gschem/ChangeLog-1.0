@@ -1,6 +1,7 @@
 2017-05-10 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/x/x_image.c: Replace gtk_container_add with geda_container_add.
+    * src/x/x_image.c: Replace gtk_container_add with geda_container_add,
+      remove unneeded type-checking cast for g_object_set.
 
     * src/x/x_menus.c: Replace gtk_container_add with geda_container_add.
 
