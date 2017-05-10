@@ -21,9 +21,8 @@
 
 #include <gattrib.h>
 #include <gattrib_dialog.h>
-
+#include <geda_uio_functions.h>
 #include <geda/geda_stat.h>
-#include <geda_marshal.h>
 #include <geda_debug.h>
 
 /*! \brief Create pixmap widget for dialogs boxes.
@@ -96,7 +95,7 @@ create_geda_switch(GtkWidget *parent, GtkWidget *widget,
 
   SwitchImage = get_geda_switch_image( istate);
   gtk_widget_show (SwitchImage);
-  gtk_container_add (GTK_CONTAINER (widget), SwitchImage);
+  geda_container_add (widget, SwitchImage);
 
   return widget;
 }

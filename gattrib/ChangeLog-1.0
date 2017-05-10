@@ -1,6 +1,7 @@
 2017-05-10 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/gattrib_dialog.c: Switch GKeyFile to GedaKeyFile.
+    * src/gattrib_dialog.c: Include geda_uio_functions instead of geda_marshal.h
+      and utilize geda_container_add macro. Switch GKeyFile to GedaKeyFile.
 
 2017-05-09 Wiley E. Hill <wileyhill@gmail.com>
 
