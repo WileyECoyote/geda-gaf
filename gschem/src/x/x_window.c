@@ -167,7 +167,7 @@ x_window_create_drawing_area (GschemToplevel *w_current, GtkWidget *window)
                          w_current->screen_width,
                          w_current->screen_height);
 
-  gtk_container_add(GTK_CONTAINER(window), DrawingArea);
+  geda_container_add(window, DrawingArea);
   gtk_widget_set_can_focus(DrawingArea, TRUE);
   gtk_widget_grab_focus (DrawingArea);
 
@@ -385,7 +385,7 @@ x_window_create_main(GschemToplevel *w_current)
   /* Containers first */
   main_box = gtk_vbox_new(FALSE, 1);
   g_object_set (main_box, "border-width", 0, NULL);
-  gtk_container_add((GtkContainer*)MainWindow, main_box);
+  geda_container_add(MainWindow, main_box);
   g_object_set (main_box, "visible", TRUE, NULL);
 
   /* Main Menu */
@@ -397,11 +397,11 @@ x_window_create_main(GschemToplevel *w_current)
 
       handlebox = gtk_handle_box_new ();
       gtk_box_pack_start((GtkBox*)main_box, handlebox, FALSE, FALSE, 0);
-      gtk_container_add ((GtkContainer*)handlebox, menubar);
+      geda_container_add (handlebox, menubar);
       g_object_set (handlebox, "visible", TRUE, NULL);
     }
     else {
-      gtk_container_add((GtkContainer*)main_box, menubar);
+      geda_container_add(main_box, menubar);
     }
     g_object_set (menubar, "visible", TRUE, NULL);
   }
@@ -422,7 +422,7 @@ x_window_create_main(GschemToplevel *w_current)
 
   center_hbox = gtk_hbox_new(FALSE, 1);
   g_object_set (center_hbox, "border-width", 0, NULL);
-  gtk_container_add(GTK_CONTAINER(main_box), center_hbox);
+  geda_container_add(main_box, center_hbox);
   g_object_set (center_hbox, "visible", TRUE, NULL);
 
   if (w_current->toolbars) {
@@ -457,7 +457,8 @@ x_window_create_main(GschemToplevel *w_current)
 
     g_object_set (draw_window, "border-width", 0, NULL);
     g_object_set (draw_window, "visible", TRUE, NULL);
-    gtk_container_add(GTK_CONTAINER(center_vbox), draw_window);
+
+    geda_container_add(center_vbox, draw_window);
 
     scroll_window    = GTK_SCROLLED_WINDOW (draw_window);
     HorizontalScroll = gtk_scrolled_window_get_hscrollbar(scroll_window);
