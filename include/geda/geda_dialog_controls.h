@@ -144,20 +144,20 @@ typedef struct
 #define GET_SWITCH_STATE(switch) gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (switch))
 
 #define GET_EDA_OBJECT(name) \
-    g_object_get_data (G_OBJECT (ThisDialog), WIDGET(name))
+    g_object_get_data ((GObject*)ThisDialog, WIDGET(name))
 
 #define GEDA_HOOKUP_OBJECT(component, widget, name)       \
-    g_object_set_data_full (G_OBJECT (component), name,   \
+    g_object_set_data_full ((GObject*)component, name,   \
     g_object_ref (widget), (GDestroyNotify) g_object_unref);
 
 #define HOOKUP_GEDA_OBJECT(name, type) \
     gtk_widget_set_tooltip_text ( name##type, _(TOOLTIP (name))); \
-    g_object_set_data_full (G_OBJECT (ThisDialog), WIDGET(name), \
+    g_object_set_data_full ((GObject*)ThisDialog, WIDGET(name), \
     g_object_ref(name##type), (GDestroyNotify) g_object_unref);
 
 #define HOOKUP_GEDA_OBJECT_NO_REF(name, type) \
     gtk_widget_set_tooltip_text ( name##type, _(TOOLTIP (name))); \
-    g_object_set_data (G_OBJECT (ThisDialog), WIDGET(name), name##type);
+    g_object_set_data ((GObject*)ThisDialog, WIDGET(name), name##type);
 
 /* Tabs Related (not Tables) */
 #define GTK_START_TAB(name) \

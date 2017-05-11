@@ -1,3 +1,7 @@
+2017-05-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda/geda_dialog_controls.h: Remove g_object_xxx type checking.
+
 2017-05-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda/geda_toolbars.h: Remove type checking from GET_TOOLBAR_ID
@@ -5,7 +9,7 @@
 
 2017-04-29 Wiley E. Hill <wileyhill@gmail.com>
 
-    * include/geda/geda_dialog_controls.h: remove unused SWITCH macro arguments.
+    * include/geda/geda_dialog_controls.h: Remove unused SWITCH macro arguments.
 
 2017-04-10 Wiley E. Hill <wileyhill@gmail.com>
 
