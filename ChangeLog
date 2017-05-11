@@ -1,6 +1,7 @@
 2017-05-11 Wiley E. Hill <wileyhill@gmail.com>
 
-    * include/geda/geda_dialog_controls.h: Remove g_object_xxx type checking.
+    * include/geda/geda_dialog_controls.h: Remove g_object_xxx and GtkContainer
+      type checking.
 
 2017-05-02 Wiley E. Hill <wileyhill@gmail.com>
 

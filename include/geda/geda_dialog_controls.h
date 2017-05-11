@@ -163,7 +163,7 @@ typedef struct
 #define GTK_START_TAB(name) \
   GtkWidget *name##Tab_vbox = gtk_vbox_new (FALSE, 0); \
   g_object_set (name##Tab_vbox, "visible", TRUE, NULL);     \
-  gtk_container_add (GTK_CONTAINER (notebook), name##Tab_vbox);
+  gtk_container_add ((GtkContainer*)notebook, name##Tab_vbox);
 
 #define GTK_END_TAB(name) \
   GtkWidget *name##Tab = geda_visible_label_new (_TAB_LABEL(name));     \
@@ -391,20 +391,20 @@ typedef struct
         /* Create outer alignment to hold the Frame */ \
         GtkWidget *name##Align1 = gtk_alignment_new (xalign, yalign, 0, 0); \
         gtk_widget_set_size_request (name##Align1, width, height + space); \
-        gtk_container_add (GTK_CONTAINER (parent), name##Align1);  \
+        gtk_container_add((GtkContainer*)parent, name##Align1);  \
         g_object_set (name##Align1, "visible", TRUE, NULL);    \
         /* Create a Frame and put in the outer alignment */ \
         GtkWidget *name##Frame = gtk_frame_new (_(#name)); \
         gtk_widget_set_size_request (name##Frame, width, height); \
-        gtk_container_add(GTK_CONTAINER (name##Align1), name##Frame); \
+        gtk_container_add((GtkContainer*)name##Align1, name##Frame); \
         g_object_set (name##Frame, "visible", TRUE, NULL); \
         /* Create inner alignment and put inside the Frame */ \
         GtkWidget *name##Align2 = gtk_alignment_new (0, 0, 0, 0); \
-        gtk_container_add (GTK_CONTAINER (name##Frame), name##Align2);  \
+        gtk_container_add((GtkContainer*)name##Frame, name##Align2);  \
         g_object_set (name##Align2, "visible", TRUE, NULL); \
         /* Create a horizontal box and put inside the inner alignment */ \
         GtkWidget *name##_hbox = gtk_hbox_new (FALSE, NOT_BELOW_ZERO (DIALOG_H_SPACING)); \
-        gtk_container_add(GTK_CONTAINER (name##Align2), name##_hbox); \
+        gtk_container_add((GtkContainer*)name##Align2, name##_hbox); \
         g_object_set (name##_##hbox, "visible", TRUE, NULL); \
         gtk_box_set_spacing(GTK_BOX(name##_##hbox), space); \
 
@@ -607,10 +607,10 @@ typedef struct
         GtkWidget *LightOff; \
         alignment = gtk_alignment_new (0, 0, 1, 0);                 /* Create new Alignment Widget */ \
         g_object_set (alignment, "visible", TRUE, NULL); \
-        gtk_container_add (GTK_CONTAINER (name##Radio), alignment); /* Put Alignment Widget Inside the Radio */ \
+        gtk_container_add ((GtkContainer*)name##Radio, alignment);  /* Put Alignment Widget Inside the Radio */ \
         hbox = gtk_hbox_new (FALSE, 2);                             /* Create new Box container */ \
         g_object_set (hbox, "visible", TRUE, NULL); \
-        gtk_container_add (GTK_CONTAINER (alignment), hbox);        /* Put box container inside the Alignment */ \
+        gtk_container_add ((GtkContainer*)alignment, hbox);         /* Put box container inside the Alignment */ \
         LightOn = get_bulb_image(TRUE); \
         gtk_box_pack_start (GTK_BOX (hbox), LightOn, FALSE, FALSE, 0); /* Put both images inside box container */ \
         GEDA_HOOKUP_OBJECT (ThisDialog, LightOn, "On"); \
@@ -851,7 +851,7 @@ typedef struct
 #define GTK_VIEW_TREE( parent, name, data, source, xsize, ysize) \
         name##View = GTK_WIDGET( gtk_tree_view_new()); \
         g_object_set ( name##View, "visible", TRUE, NULL); \
-        gtk_container_add (GTK_CONTAINER(parent), name##View); \
+        gtk_container_add ((GtkContainer*)parent, name##View); \
         initialize_tree_View(GTK_TREE_VIEW(name##View), 0, 1, G_TYPE_STRING); \
         load_tree_view_##source (GTK_TREE_VIEW(name##View), data); \
         connect_list_view( ThisDialog, GTK_TREE_VIEW(name##View)); \
