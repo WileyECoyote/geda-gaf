@@ -1176,6 +1176,7 @@ gschem_status_bar_instance_init (GTypeInstance *instance, void *g_class)
   GtkWidget  *middle_event;
   GtkWidget  *third_event;
   GtkWidget  *separator;
+  GtkBox     *status_box;
 
   const char *coord_label_tip;
   const char *left_label_tip;
@@ -1209,20 +1210,22 @@ gschem_status_bar_instance_init (GTypeInstance *instance, void *g_class)
 
   bar->buffers = gschem_status_bar_setup_buffers (bar);
 
+  status_box   = (GtkBox*)bar;
+
   gtk_widget_push_composite_child ();
 
   bar->left_label = geda_visible_label_new (NULL);
   gtk_misc_set_padding (GTK_MISC (bar->left_label), STATUS_XPAD, STATUS_YPAD);
-  gtk_box_pack_start (GTK_BOX (bar), bar->left_label, FALSE, FALSE, 0);
+  gtk_box_pack_start (status_box, bar->left_label, FALSE, FALSE, 0);
   gtk_widget_set_tooltip_text (GTK_WIDGET(bar->left_label), left_label_tip);
 
   separator = geda_vseparator_new ();
   g_object_set (separator, "visible", TRUE, NULL);
-  gtk_box_pack_start (GTK_BOX (bar), separator, FALSE, FALSE, 0);
+  gtk_box_pack_start (status_box, separator, FALSE, FALSE, 0);
 
   middle_event = gtk_event_box_new();
   g_object_set (middle_event, "visible", TRUE, NULL);
-  gtk_box_pack_start (GTK_BOX (bar), middle_event, FALSE, FALSE, 0);
+  gtk_box_pack_start (status_box, middle_event, FALSE, FALSE, 0);
 
   bar->middle_label = geda_visible_label_new (NULL);
   gtk_misc_set_padding (GTK_MISC (bar->middle_label), STATUS_XPAD, STATUS_YPAD);
@@ -1231,11 +1234,11 @@ gschem_status_bar_instance_init (GTypeInstance *instance, void *g_class)
 
   separator = geda_vseparator_new ();
   g_object_set (separator, "visible", TRUE, NULL);
-  gtk_box_pack_start (GTK_BOX (bar), separator, FALSE, FALSE, 0);
+  gtk_box_pack_start (status_box, separator, FALSE, FALSE, 0);
 
   third_event = gtk_event_box_new();
   g_object_set (third_event, "visible", TRUE, NULL);
-  gtk_box_pack_start (GTK_BOX (bar), third_event, FALSE, FALSE, 0);
+  gtk_box_pack_start (status_box, third_event, FALSE, FALSE, 0);
 
   bar->right_label = geda_visible_label_new (NULL);
   gtk_misc_set_padding (GTK_MISC (bar->right_label), STATUS_XPAD, STATUS_YPAD);
@@ -1244,20 +1247,20 @@ gschem_status_bar_instance_init (GTypeInstance *instance, void *g_class)
 
   separator = geda_vseparator_new ();
   g_object_set (separator, "visible", TRUE, NULL);
-  gtk_box_pack_start (GTK_BOX (bar), separator, FALSE, FALSE, 0);
+  gtk_box_pack_start (status_box, separator, FALSE, FALSE, 0);
 
   bar->grid_label = geda_visible_label_new (NULL);
   gtk_misc_set_padding (GTK_MISC (bar->grid_label), STATUS_XPAD, STATUS_YPAD);
-  gtk_box_pack_start (GTK_BOX (bar), bar->grid_label, FALSE, FALSE, 0);
+  gtk_box_pack_start (status_box, bar->grid_label, FALSE, FALSE, 0);
   gtk_widget_set_tooltip_text (GTK_WIDGET(bar->grid_label), grid_label_tip);
 
   separator = geda_vseparator_new ();
   g_object_set (separator, "visible", TRUE, NULL);
-  gtk_box_pack_start (GTK_BOX (bar), separator, FALSE, FALSE, 1);
+  gtk_box_pack_start (status_box, separator, FALSE, FALSE, 1);
 
   coord_event = gtk_event_box_new();
   g_object_set (coord_event, "visible", TRUE, NULL);
-  gtk_box_pack_start (GTK_BOX (bar), coord_event, FALSE, FALSE, 0);
+  gtk_box_pack_start (status_box, coord_event, FALSE, FALSE, 0);
 
   bar->coord_label = geda_visible_label_new (_(COORD_DISPLAY_OFF));
   gtk_misc_set_padding (GTK_MISC (bar->coord_label), STATUS_XPAD, STATUS_YPAD);
@@ -1266,11 +1269,11 @@ gschem_status_bar_instance_init (GTypeInstance *instance, void *g_class)
 
   separator = geda_vseparator_new ();
   g_object_set (separator, "visible", TRUE, NULL);
-  gtk_box_pack_start (GTK_BOX (bar), separator, FALSE, FALSE, 0);
+  gtk_box_pack_start (status_box, separator, FALSE, FALSE, 0);
 
   bar->status_label = geda_visible_label_new (NULL);
   gtk_misc_set_padding (GTK_MISC (bar->status_label), STATUS_XPAD, STATUS_YPAD);
-  gtk_box_pack_end (GTK_BOX (bar), bar->status_label, FALSE, FALSE, 0);
+  gtk_box_pack_end (status_box, bar->status_label, FALSE, FALSE, 0);
   gtk_widget_set_tooltip_text (GTK_WIDGET(bar->status_label), status_label_tip);
 
   {
