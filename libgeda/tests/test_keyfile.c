@@ -967,7 +967,7 @@ int check_data (void)
 
     if (err) {
       /* Error should NOT be set since key does exist */
-      fprintf(stderr, "FAILED: (KF082401B) get_boolean, err set\n");
+      fprintf(stderr, "FAILED: (KF082401D) get_boolean, err set\n");
       result++;
       g_error_free (err);
       err = NULL;
@@ -984,7 +984,7 @@ int check_data (void)
 
     /* === Function 26: geda_keyfile_get_integer === */
 
-    if (geda_keyfile_get_boolean(keyfile, "G3", "NI0", &err)) {
+    if (geda_keyfile_get_integer(keyfile, "G4", "NI0", &err)) {
       fprintf(stderr, "FAILED: (KF082601A) get_integer NI0\n");
       result++;
     }
@@ -995,6 +995,19 @@ int check_data (void)
     }
 
     if (err) {
+      g_error_free (err);
+      err = NULL;
+    }
+
+    if (!geda_keyfile_get_integer(keyfile, "G4", "I0", &err)) {
+      fprintf(stderr, "FAILED: (KF082601C) get_integer, !I0\n");
+      result++;
+    }
+
+    if (err) {
+      /* Error should NOT be set since key does exist */
+      fprintf(stderr, "FAILED: (KF082601D) get_integer, err set\n");
+      result++;
       g_error_free (err);
       err = NULL;
     }
