@@ -1,5 +1,8 @@
 2017-05-11 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/base/gschem_status_bar.c: Replace gtk_container_add with geda_container
+      _add.
+
     * src/x/x_window.c: Replace gtk_container_add with geda_container_add.
 
 2017-05-10 Wiley E. Hill <wileyhill@gmail.com>

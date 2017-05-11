@@ -1226,7 +1226,7 @@ gschem_status_bar_instance_init (GTypeInstance *instance, void *g_class)
 
   bar->middle_label = geda_visible_label_new (NULL);
   gtk_misc_set_padding (GTK_MISC (bar->middle_label), STATUS_XPAD, STATUS_YPAD);
-  gtk_container_add(GTK_CONTAINER(middle_event), bar->middle_label);
+  geda_container_add(middle_event, bar->middle_label);
   gtk_widget_set_tooltip_text (GTK_WIDGET(bar->middle_label), middle_label_tip);
 
   separator = geda_vseparator_new ();
@@ -1239,7 +1239,7 @@ gschem_status_bar_instance_init (GTypeInstance *instance, void *g_class)
 
   bar->right_label = geda_visible_label_new (NULL);
   gtk_misc_set_padding (GTK_MISC (bar->right_label), STATUS_XPAD, STATUS_YPAD);
-  gtk_container_add(GTK_CONTAINER(third_event), bar->right_label);
+  geda_container_add(third_event, bar->right_label);
   gtk_widget_set_tooltip_text (GTK_WIDGET(bar->right_label), right_label_tip);
 
   separator = geda_vseparator_new ();
@@ -1261,7 +1261,7 @@ gschem_status_bar_instance_init (GTypeInstance *instance, void *g_class)
 
   bar->coord_label = geda_visible_label_new (_(COORD_DISPLAY_OFF));
   gtk_misc_set_padding (GTK_MISC (bar->coord_label), STATUS_XPAD, STATUS_YPAD);
-  gtk_container_add(GTK_CONTAINER(coord_event), bar->coord_label);
+  geda_container_add(coord_event, bar->coord_label);
   gtk_widget_set_tooltip_text (GTK_WIDGET(bar->coord_label), coord_label_tip);
 
   separator = geda_vseparator_new ();
