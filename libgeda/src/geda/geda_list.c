@@ -110,7 +110,7 @@ static void geda_list_class_init(void *g_class, void *g_class_data)
 
   geda_list_signals[ CHANGED ] =
     g_signal_new ("changed",
-                  G_TYPE_FROM_CLASS(gobject_class),
+                  GEDA_TYPE_LIST,
                   0     /*signal_flags */,
                   0     /*class_offset */,
                   NULL, /* accumulator */

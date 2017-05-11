@@ -3,6 +3,9 @@
     * tests/test_keyfile.c: Add checks for geda_keyfile_get_integer and
       geda_keyfile_set_integer.
 
+    * src/geda/geda_list.c: Explicitly specify GEDA_TYPE_LIST type to
+      g_signal_new.
+
 2017-05-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_page.c: Eliminate PageClass variable and replace
