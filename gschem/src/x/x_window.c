@@ -431,7 +431,7 @@ x_window_create_main(GschemToplevel *w_current)
 
   center_vbox = gtk_vbox_new(FALSE, 1);
   g_object_set (center_vbox, "border-width", 0, NULL);
-  gtk_container_add(GTK_CONTAINER(center_hbox), center_vbox);
+  geda_container_add(center_hbox, center_vbox);
   g_object_set (center_vbox, "visible", TRUE, NULL);
 
   /*! Setup the Scroll bars
