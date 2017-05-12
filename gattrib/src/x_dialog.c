@@ -447,7 +447,7 @@ char *x_dialog_get_search_text(const char *prompt)
 
     GtkWidget *label;
     GtkWidget *textentry;
-    GtkWidget *vbox;
+    GtkBox    *vbox;
     char      *real_prompt;
     int        response;
 
@@ -460,33 +460,34 @@ char *x_dialog_get_search_text(const char *prompt)
 
     g_object_set (dialog, "border-width", DIALOG_BORDER_WIDTH, NULL);
 
-    vbox = dialog->vbox;
+    vbox = (GtkBox*)dialog->vbox;
 
     g_object_set (vbox, "spacing", DIALOG_V_SPACING + 5, NULL);
 
     real_prompt = geda_strconcat(_("Enter "), prompt, ":", NULL);
     label       = geda_aligned_label_new(real_prompt, 0, 0);
-    gtk_box_pack_start((GtkBox*)vbox, label, TRUE, TRUE, 0);
+    gtk_box_pack_start(vbox, label, TRUE, TRUE, 0);
     GEDA_FREE(real_prompt);
 
     textentry = geda_entry_new();
 
     g_object_set (textentry, "max-length", 32, "visible", TRUE, NULL);
 
-    gtk_editable_select_region(GTK_EDITABLE(textentry), 0, -1);
-    gtk_box_pack_start(GTK_BOX(vbox), textentry, FALSE, FALSE, 0);
+    gtk_editable_select_region((GtkEditable*)textentry, 0, -1);
+    gtk_box_pack_start(vbox, textentry, FALSE, FALSE, 0);
 
     geda_entry_widget_set_activates_default(textentry, TRUE);
 
     gtk_widget_grab_focus(textentry);
-    gtk_widget_show_all(GTK_WIDGET(dialog));
+    gtk_widget_show_all((GtkWidget*)dialog);
 
     response = gtk_dialog_run ((GtkDialog*)dialog);
 
-    if (response ==  GEDA_RESPONSE_ACCEPT)
+    if (response == GEDA_RESPONSE_ACCEPT) {
       text = geda_utility_string_strdup( GetEntryText(textentry) );
+    }
 
-    gtk_widget_destroy (GTK_WIDGET(dialog));
+    gtk_widget_destroy ((GtkWidget*)dialog);
   }
 
   return text;
