@@ -1419,11 +1419,12 @@ gschem_status_bar_set_height (GtkWidget *widget, int height)
 #if defined (G_DISABLE_ASSERT)
 
   status_bar = GSCHEM_STATUS_BAR(widget);
-  gtk_misc_set_padding (GTK_MISC (status_bar->left_label), STATUS_XPAD, height);
-  gtk_misc_set_padding (GTK_MISC (status_bar->middle_label), STATUS_XPAD, height);
-  gtk_misc_set_padding (GTK_MISC (status_bar->right_label), STATUS_XPAD, height);
-  gtk_misc_set_padding (GTK_MISC (status_bar->grid_label), STATUS_XPAD, height);
-  gtk_misc_set_padding (GTK_MISC (status_bar->status_label), STATUS_XPAD, height);
+  gtk_misc_set_padding ((GtkMisc*)status_bar->left_label, STATUS_XPAD, height);
+  gtk_misc_set_padding ((GtkMisc*)status_bar->middle_label, STATUS_XPAD, height);
+  gtk_misc_set_padding ((GtkMisc*)status_bar->right_label, STATUS_XPAD, height);
+  gtk_misc_set_padding ((GtkMisc*)status_bar->grid_label, STATUS_XPAD, height);
+  gtk_misc_set_padding ((GtkMisc*)status_bar->status_label, STATUS_XPAD, height);
+  gtk_misc_set_padding ((GtkMisc*)status_bar->coord_label, STATUS_XPAD, height);
 
 #else
 
@@ -1433,11 +1434,12 @@ gschem_status_bar_set_height (GtkWidget *widget, int height)
   else {
     if (GSCHEM_IS_STATUS_BAR(widget)) {
       status_bar = (GschemStatusBar*)widget;
-      gtk_misc_set_padding (GTK_MISC (status_bar->left_label), STATUS_XPAD, height);
-      gtk_misc_set_padding (GTK_MISC (status_bar->middle_label), STATUS_XPAD, height);
-      gtk_misc_set_padding (GTK_MISC (status_bar->right_label), STATUS_XPAD, height);
-      gtk_misc_set_padding (GTK_MISC (status_bar->grid_label), STATUS_XPAD, height);
-      gtk_misc_set_padding (GTK_MISC (status_bar->status_label), STATUS_XPAD, height);
+      gtk_misc_set_padding ((GtkMisc*)status_bar->left_label, STATUS_XPAD, height);
+      gtk_misc_set_padding ((GtkMisc*)status_bar->middle_label, STATUS_XPAD, height);
+      gtk_misc_set_padding ((GtkMisc*)status_bar->right_label, STATUS_XPAD, height);
+      gtk_misc_set_padding ((GtkMisc*)status_bar->grid_label, STATUS_XPAD, height);
+      gtk_misc_set_padding ((GtkMisc*)status_bar->status_label, STATUS_XPAD, height);
+      gtk_misc_set_padding ((GtkMisc*)status_bar->coord_label, STATUS_XPAD, height);
     }
     else {
       BUG_MSG("widget is not a GschemStatusBar");

@@ -1,5 +1,8 @@
 2017-05-12 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/base/gschem_status_bar.c: Replace type-checking cast for GtkMisc
+      with static cast in gschem_status_bar_set_height.
+
     * src/iface/i_callbacks.c: Remove unnecessary type-checking cast for
       g_object_set in i_callback_cancel.
 
