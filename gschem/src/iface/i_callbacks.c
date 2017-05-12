@@ -136,7 +136,7 @@ DEFINE_I_CALLBACK(cancel)
         x_compselect_deselect (w_current);
 
         /* Present the component selector again */
-        g_object_set (G_OBJECT(w_current->cswindow), "hidden", FALSE, NULL);
+        g_object_set (w_current->cswindow, "hidden", FALSE, NULL);
       }
       break;
 
