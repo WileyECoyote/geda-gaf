@@ -1,3 +1,8 @@
+2017-05-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_keyfile.c: Add checks for geda_keyfile_get_int64 and
+      geda_keyfile_set_int64.
+
 2017-05-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_keyfile.c: Add checks for geda_keyfile_get_integer and

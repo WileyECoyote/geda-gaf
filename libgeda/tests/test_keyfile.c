@@ -88,10 +88,10 @@ const char key_data[] = "[G1]\nT1=A\n[G2]\nT1=B\nT2=C\nT3=D\n";
  *      KF0823    geda_keyfile_set_locale_string
  *      KF0824    geda_keyfile_get_boolean
  *      KF0825    geda_keyfile_set_boolean
- *       KF0826    geda_keyfile_get_integer
- *       KF0827    geda_keyfile_set_integer
- *       KF0828    geda_keyfile_get_int64
- *       KF0829    geda_keyfile_set_int64
+ *      KF0826    geda_keyfile_get_integer
+ *      KF0827    geda_keyfile_set_integer
+ *      KF0828    geda_keyfile_get_int64
+ *      KF0829    geda_keyfile_set_int64
  *       KF0830    geda_keyfile_get_uint64
  *       KF0831    geda_keyfile_set_uint64
  *       KF0832    geda_keyfile_get_double
@@ -975,7 +975,7 @@ int check_data (void)
 
     /* === Function 27: geda_keyfile_set_integer === */
 
-    geda_keyfile_set_integer (keyfile,"G4", "I0", TRUE);
+    geda_keyfile_set_integer (keyfile,"G4", "I0", 125);
 
     if (!geda_keyfile_has_group(keyfile, "G4")) {
       fprintf(stderr, "FAILED: (KF082701) set_integer, G4\n");
@@ -999,7 +999,9 @@ int check_data (void)
       err = NULL;
     }
 
-    if (!geda_keyfile_get_integer(keyfile, "G4", "I0", &err)) {
+    int G4I0 = geda_keyfile_get_integer(keyfile, "G4", "I0", &err);
+
+    if (G4I0 != 125) {
       fprintf(stderr, "FAILED: (KF082601C) get_integer, !I0\n");
       result++;
     }
@@ -1008,6 +1010,52 @@ int check_data (void)
       /* Error should NOT be set since key does exist */
       fprintf(stderr, "FAILED: (KF082601D) get_integer, err set\n");
       result++;
+      g_error_free (err);
+      err = NULL;
+    }
+
+    /* === Function 29: geda_keyfile_set_int64 === */
+
+    geda_keyfile_set_int64 (keyfile,"G5", "I64", G_MAXINT64);
+
+    if (!geda_keyfile_has_group(keyfile, "G5")) {
+      fprintf(stderr, "FAILED: (KF082901) set_int64, G5\n");
+      result++;
+    }
+
+    /* === Function 28: geda_keyfile_get_int64 === */
+
+    if (geda_keyfile_get_boolean(keyfile, "G5", "NI64", &err)) {
+      fprintf(stderr, "FAILED: (KF082801A) get_int64 NI64\n");
+      result++;
+    }
+    else if (!err) {
+      /* Error should be set since key does not exist */
+      fprintf(stderr, "FAILED: (KF082801B) get_int64, no error\n");
+      result++;
+    }
+
+    if (err) {
+      g_error_free (err);
+      err = NULL;
+    }
+
+    int64 G4I64 = geda_keyfile_get_int64(keyfile, "G5", "I64", &err);
+
+    if (G4I64 != G_MAXINT64) {
+      fprintf(stderr, "FAILED: (KF082801C) get_int64, !I64\n");
+      result++;
+    }
+
+    if (err) {
+      /* Error should NOT be set since key does exist */
+      fprintf(stderr, "FAILED: (KF082801D) get_int64, err set\n");
+      result++;
+      g_error_free (err);
+      err = NULL;
+    }
+
+    if (err) {
       g_error_free (err);
       err = NULL;
     }
