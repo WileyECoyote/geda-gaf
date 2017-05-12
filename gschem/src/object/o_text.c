@@ -63,7 +63,7 @@ int o_text_get_rendered_bounds (void *user_data, GedaObject *o_current,
 
       renderer = g_object_ref (CairoRenderer);
 
-      g_object_set (G_OBJECT (renderer),
+      g_object_set (renderer,
                     "cairo-context", cr,
                     "render-flags", render_flags,
                     NULL);

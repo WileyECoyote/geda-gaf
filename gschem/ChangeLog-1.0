@@ -3,6 +3,9 @@
     * src/iface/i_callbacks.c: Remove unnecessary type-checking cast for
       g_object_set in i_callback_cancel.
 
+    * src/object/o_text.c: Remove unnecessary type-checking cast for
+      g_object_set in o_text_get_rendered_bounds.
+
 2017-05-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_status_bar.c: Replace gtk_container_add with geda_container
