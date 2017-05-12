@@ -3,6 +3,9 @@
     * src/geda/geda_toplevel.c: Replace g_type_check_instance_cast in class
       initializer; geda_toplevel_class_init and update DOxygen comments.
 
+    * src/object/o_pin_object.c: Remove unnecessary type-checking cast for
+      g_object_set in geda_pin_object_update_read_property.
+
     * tests/test_keyfile.c: Add checks for geda_keyfile_get_int64 and
       geda_keyfile_set_int64.
 

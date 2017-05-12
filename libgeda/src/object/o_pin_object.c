@@ -1528,13 +1528,13 @@ geda_pin_object_update_read_property(GedaObject *o_pin, GedaObject *o_text)
       /* We skip the first 3 chars because "pin" as in "pinlabel" or
        * "pinnumber" is not part of the property name */
       if( strcmp(attrib, "pinnumber") == 0)
-        g_object_set (G_OBJECT (o_pin), attrib + 3, value, NULL);
+        g_object_set (o_pin,   attrib + 3, value, NULL);
       else if( strcmp(attrib, "pinlabel") == 0)
-        g_object_set (G_OBJECT (o_pin), attrib + 3, value, NULL);
+        g_object_set (o_pin,   attrib + 3, value, NULL);
       else if( strcmp(attrib, "pinseq") == 0)
-        g_object_set (G_OBJECT (o_pin), "sequence", value, NULL);
+        g_object_set (o_pin,  "sequence", value, NULL);
       else if( strcmp(attrib, "pintype") == 0)
-        g_object_set (G_OBJECT (o_pin), "pin-type", value, NULL);
+        g_object_set (o_pin,  "pin-type", value, NULL);
 
       GEDA_FREE(attrib);
       GEDA_FREE(value);
