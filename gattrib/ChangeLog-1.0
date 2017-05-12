@@ -1,5 +1,7 @@
 2017-05-12 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/gattrib_dialog.c: Replace gtk_box_pack_start with geda_container_add.
+
     * src/x_dialog.c: Add GtkBox variable in x_dialog_get_search_text
       and remove unnecessary GtkEditable and GtkWidget type-checking cast.
 

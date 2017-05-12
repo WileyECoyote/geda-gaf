@@ -84,7 +84,7 @@ create_geda_switch(GtkWidget *parent, GtkWidget *widget,
 {
   widget = gtk_check_button_new ();
   gtk_widget_show (widget);
-  gtk_box_pack_start (GTK_BOX (parent), widget, FALSE, FALSE, 0);
+  geda_container_add (parent, widget);
   gtk_widget_set_size_request (widget, -1, 30);
 
   /* turn off the indicator, ie box */
