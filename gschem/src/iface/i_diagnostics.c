@@ -451,13 +451,13 @@ int gschem_diagnostics_dialog (GschemToplevel *w_current)
                             "yalign", 0.5,
                             NULL);
 
-  gtk_container_add (GTK_CONTAINER (frame), alignment);
+  geda_container_add (frame, alignment);
 
   /* Create a second table and put in the alignment */
   table = gtk_table_new (3, 3, FALSE);
   gtk_table_set_row_spacings(GTK_TABLE(table), DIALOG_V_SPACING);
   gtk_table_set_col_spacings(GTK_TABLE(table), DIALOG_H_SPACING);
-  gtk_container_add (GTK_CONTAINER (alignment), table);
+  geda_container_add (alignment, table);
 
   widget = gtk_button_new_with_label ("Toggle rusage");
   gtk_table_attach(GTK_TABLE(table), widget, 1,2,2,3, GTK_FILL,0,0,0);
