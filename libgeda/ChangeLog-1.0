@@ -1,5 +1,8 @@
 2017-05-12 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_toplevel.c: Replace g_type_check_instance_cast in class
+      initializer; geda_toplevel_class_init and update DOxygen comments.
+
     * tests/test_keyfile.c: Add checks for geda_keyfile_get_int64 and
       geda_keyfile_set_int64.
 
