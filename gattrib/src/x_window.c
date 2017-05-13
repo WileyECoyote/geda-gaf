@@ -49,7 +49,7 @@
  */
 static void x_window_set_default_icon( void )
 {
-  gtk_window_set_default_icon_name( GATTRIB_THEME_ICON_NAME);
+  gtk_window_set_default_icon_name(GATTRIB_THEME_ICON_NAME);
 }
 
 /*! \brief Set or Update the Window Title
@@ -524,7 +524,7 @@ void x_window_attached_toggle(GtkToggleAction *action, GtkWindow *main_window)
   bool show = gtk_toggle_action_get_active(action);
   int count = sheet->maxcol;
 
-  for( i = 0; i <= count; i++) {
+  for ( i = 0; i <= count; i++) {
 
     if (show) {
 
@@ -544,7 +544,7 @@ void x_window_attached_toggle(GtkToggleAction *action, GtkWindow *main_window)
         }
       } /* Next row */
 
-      if(toggle) {
+      if (toggle) {
         gtk_sheet_column_set_visibility(sheet, i, FALSE);
       }
     }
@@ -557,10 +557,12 @@ void x_window_attached_toggle(GtkToggleAction *action, GtkWindow *main_window)
   /* The background outside the sheet will not get updated until something
    * happens to the parent window and this will leave residual lines, (newer
    * version of gtksheet claiming fix had the same problem, so we will resize,
-   * which needs to be some anyways */
+   * which needs to be done anyways */
   /* TODO: WEH: Determine the real x size */
   gtk_window_get_size(main_window, &x, &y);
-  x =  (show) ? x - TOGGLE_ATTACH_X_OFFSET : x + TOGGLE_ATTACH_X_OFFSET;
+
+  x = (show) ? x - TOGGLE_ATTACH_X_OFFSET : x + TOGGLE_ATTACH_X_OFFSET;
+
   gtk_window_resize(main_window, x, y);
 
   /* TODO: WEH: save the toggle setting */
@@ -590,8 +592,9 @@ void x_window_inherited_toggle(GtkToggleAction *action, GtkWindow *main_window) 
           text = (sheet_head->component_table)[col][row].attrib_value;
           gtk_sheet_set_cell(sheets[0], row, col, GTK_JUSTIFY_LEFT, text);
         }
-        else
+        else {
           gtk_sheet_set_cell(sheets[0], row, col, GTK_JUSTIFY_LEFT, "");
+        }
       }
     }
   }
