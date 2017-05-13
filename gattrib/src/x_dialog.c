@@ -806,11 +806,11 @@ GtkWidget *x_dialog_create_search_replace_dialog (GtkWindow *parent,
   HXYP_SEPERATOR (MainDialogVBox, Grp4, 10);
 
   dialog_action_area = ThisDialog->action_area;
-  g_object_set ( dialog_action_area, "visible", TRUE, NULL);
+  gtk_widget_show(ReplaceAllButt);
   gtk_button_box_set_layout (GTK_BUTTON_BOX (dialog_action_area), GTK_BUTTONBOX_END);
 
   CloseButt = gtk_button_new_from_stock ("gtk-close");
-  g_object_set ( CloseButt, "visible", TRUE, NULL);
+  gtk_widget_show(CloseButt);
   gtk_dialog_add_action_widget (ThisDialog, CloseButt, GEDA_RESPONSE_CANCEL);
   gtk_widget_set_can_default(CloseButt, TRUE);
   gtk_widget_set_size_request (CloseButt, DEFAULT_BUTTON_WIDTH, DEFAULT_BUTTON_HEIGHT);
@@ -818,7 +818,8 @@ GtkWidget *x_dialog_create_search_replace_dialog (GtkWindow *parent,
 
   ReplaceAllButt = gtk_button_new_with_mnemonic (_("Replace All"));
   if (!find_only_mode)
-    g_object_set ( ReplaceAllButt, "visible", TRUE, NULL);
+    gtk_widget_show(ReplaceAllButt);
+
   gtk_dialog_add_action_widget (ThisDialog, ReplaceAllButt, GEDA_RESPONSE_APPLY);
   gtk_widget_set_can_default(ReplaceAllButt, TRUE);
   gtk_widget_set_size_request (ReplaceAllButt, DEFAULT_BUTTON_WIDTH, DEFAULT_BUTTON_HEIGHT);
@@ -826,14 +827,15 @@ GtkWidget *x_dialog_create_search_replace_dialog (GtkWindow *parent,
 
   ReplaceButt = gtk_button_new_with_mnemonic (_("Replace"));
   if (!find_only_mode)
-    g_object_set ( ReplaceButt, "visible", TRUE, NULL);
+    gtk_widget_show(ReplaceButt);
+
   gtk_dialog_add_action_widget (ThisDialog, ReplaceButt, GEDA_RESPONSE_ACCEPT);
   gtk_widget_set_can_default(ReplaceButt, TRUE);
   gtk_widget_set_size_request (ReplaceButt, DEFAULT_BUTTON_WIDTH, DEFAULT_BUTTON_HEIGHT);
   gtk_tooltips_set_tip (tooltips, ReplaceButt, _("Replace selected text and continue"), NULL);
 
   FindButt = gtk_button_new_with_mnemonic (_("Find"));
-  g_object_set ( FindButt, "visible", TRUE, NULL);
+  gtk_widget_show(FindButt);
   gtk_dialog_add_action_widget (ThisDialog, FindButt, GEDA_RESPONSE_REJECT);
   gtk_widget_set_can_default(FindButt, TRUE);
   gtk_widget_set_size_request (FindButt, DEFAULT_BUTTON_WIDTH, DEFAULT_BUTTON_HEIGHT);

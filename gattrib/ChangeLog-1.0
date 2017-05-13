@@ -1,3 +1,7 @@
+2017-05-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_dialog.c: Go back to gtk_widget_show instead of g_object_set.
+
 2017-05-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gattrib_dialog.c: Replace gtk_box_pack_start with geda_container_add.
