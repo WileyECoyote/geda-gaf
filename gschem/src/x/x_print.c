@@ -486,20 +486,20 @@ static void print_dialog_instance_init (PrintDialog * dialog)
 
   /* Setup hbox for two main panes */
   box = gtk_vbox_new (FALSE, 2);
-  gtk_container_add (GTK_CONTAINER (GTK_DIALOG (dialog)->vbox), box);
+  geda_container_add (GTK_DIALOG (dialog)->vbox, box);
 
   /* Upper frame */
   frame = gtk_frame_new (_("Settings"));
-  gtk_container_set_border_width (GTK_CONTAINER (frame), 3);
-  gtk_container_add (GTK_CONTAINER (box), frame);
+  geda_set_container_border_width (frame, 3);
+  geda_container_add (box, frame);
 
   /* Upper table with drop-down menus & labels
    * Left-hand column contains labels, right-hand contains comboboxes*/
   settingstable = gtk_table_new (2, 3, FALSE);
   gtk_table_set_col_spacings (GTK_TABLE (settingstable), 5);
   gtk_table_set_row_spacings (GTK_TABLE (settingstable), 5);
-  gtk_container_set_border_width (GTK_CONTAINER (settingstable), 5);
-  gtk_container_add (GTK_CONTAINER (frame), settingstable);
+  geda_set_container_border_width (settingstable, 5);
+  geda_container_add (frame, settingstable);
 
   label = geda_aligned_label_new (_("Output paper size:"), 0, 0);
   gtk_table_attach (GTK_TABLE (settingstable),
@@ -533,15 +533,15 @@ static void print_dialog_instance_init (PrintDialog * dialog)
 
   /* Lower frame */
   frame = gtk_frame_new (_("Destination"));
-  gtk_container_set_border_width (GTK_CONTAINER (frame), 3);
-  gtk_container_add (GTK_CONTAINER (box), frame);
+  geda_set_container_border_width (frame, 3);
+  geda_container_add (box, frame);
 
   /* Table with destination selectors */
   desttable = gtk_table_new (3, 2, FALSE);
   gtk_table_set_col_spacings (GTK_TABLE (desttable), 5);
   gtk_table_set_row_spacings (GTK_TABLE (desttable), 5);
-  gtk_container_set_border_width (GTK_CONTAINER (desttable), 5);
-  gtk_container_add (GTK_CONTAINER (frame), desttable);
+  geda_set_container_border_width (desttable, 5);
+  geda_container_add (frame, desttable);
 
   /* Widgets for printing to file */
   dialog->fileradio =
@@ -560,8 +560,8 @@ static void print_dialog_instance_init (PrintDialog * dialog)
                     1, 2, 0, 1, GTK_EXPAND | GTK_FILL, 0, 0, 0);
 
   dialog->saveasbutton = GTK_BUTTON(gtk_button_new());
-  gtk_container_add(GTK_CONTAINER(dialog->saveasbutton),
-                    gtk_image_new_from_stock(GTK_STOCK_OPEN,
+  geda_container_add(dialog->saveasbutton,
+                     gtk_image_new_from_stock(GTK_STOCK_OPEN,
                                              GTK_ICON_SIZE_SMALL_TOOLBAR));
   gtk_button_set_relief(GTK_BUTTON(dialog->saveasbutton), GTK_RELIEF_NONE);
 
