@@ -38,6 +38,9 @@
 #define STATUS_XPAD 10
 #define STATUS_YPAD 1
 
+#define STATUS_XALIGN 0.5
+#define STATUS_YALIGN 0.5
+
 #define StatusBar ((GschemStatusBar*)w_current->status_bar)
 
 
