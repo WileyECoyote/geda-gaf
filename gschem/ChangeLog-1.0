@@ -1,5 +1,7 @@
 2017-05-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_sessions.c: Replace gtk_container_add with geda_container_add macro.
+
     * src/x/x_toolbars.c: Utilize geda_container_xxx macros.
 
 2017-05-12 Wiley E. Hill <wileyhill@gmail.com>

@@ -557,7 +557,7 @@ x_sessions_get_treeview (GtkWidget *Dialog)
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
   /* add the treeview to the scrolled window */
-  gtk_container_add (GTK_CONTAINER (scrolled_window), treeview);
+  geda_container_add (scrolled_window, treeview);
 
   gtk_widget_show_all (scrolled_window);
 
@@ -623,13 +623,13 @@ void x_sessions_manage_dialog(GschemToplevel *w_current)
                        "spacing",      12,
                        NULL);
 
-  gtk_container_add (GTK_CONTAINER (main_vbox), hbox);
+  geda_container_add (main_vbox, hbox);
   gtk_widget_show (hbox);
 
   scrollable = x_sessions_get_treeview(ThisDialog);
 
   /* Add the scrolled window to the dialog box */
-  gtk_container_add ((GtkContainer*)hbox, scrollable);
+  geda_container_add (hbox, scrollable);
   g_object_set (scrollable, "visible", TRUE, NULL);
 
   table = (GtkTable*)gtk_table_new (5, 1, FALSE);
@@ -784,7 +784,7 @@ void x_sessions_open_dialog(GschemToplevel *w_current)
   scrollable = x_sessions_get_treeview(ThisDialog);
 
   /* add the scrolled window to the dialog vbox */
-  gtk_container_add (GTK_CONTAINER (main_vbox), scrollable);
+  geda_container_add (main_vbox, scrollable);
   g_object_set (scrollable, "visible", TRUE, NULL);
 
   action_area = create_action_area (GSCHEM_DIALOG(ThisDialog),
