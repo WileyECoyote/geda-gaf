@@ -3,7 +3,8 @@
     * include/x_status_bar.h: Define STATUS_XALIGN and STATUS_YALIGN.
 
     * src/base/gschem_status_bar.c: Replace STATUS_XPAD and STATUS_YPAD with
-      STATUS_XALIGN and STATUS_YALIGN.
+      STATUS_XALIGN and STATUS_YALIGN. Replace geda_visible_label_new and
+      gtk_misc_set_padding with geda_aligned_visible_label_new.
 
     * src/x/x_print.c: Utilize geda_container_xxx macros.
 
