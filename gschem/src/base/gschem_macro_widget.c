@@ -85,7 +85,7 @@ static void
 notify_entry_text (GtkWidget *entry, GParamSpec *pspec, GschemMacroWidget *widget);
 
 
-static GObjectClass *gschem_macro_widget_parent_class = NULL;
+static void *gschem_macro_widget_parent_class = NULL;
 
 
 /* Callback; called when the user presses enter in the entry widget
@@ -152,7 +152,7 @@ realize (GtkWidget *widget)
                        G_CALLBACK (notify_entry_text),
                        gmw);
 
-  GTK_WIDGET_CLASS(gschem_macro_widget_parent_class)->realize (widget);
+  ((GtkWidgetClass*)gschem_macro_widget_parent_class)->realize (widget);
 }
 
 static void
@@ -176,7 +176,7 @@ unrealize (GtkWidget *widget)
                                         notify_entry_text,
                                         gmw);
 
-  GTK_WIDGET_CLASS(gschem_macro_widget_parent_class)->unrealize (widget);
+  ((GtkWidgetClass*)gschem_macro_widget_parent_class)->unrealize (widget);
 }
 
 /*!
@@ -216,13 +216,13 @@ get_property (GObject *object, unsigned int param_id, GValue *value, GParamSpec 
 static void
 gschem_macro_widget_class_init (void *class, void *class_data)
 {
-  GschemMacroWidgetClass *macro_class  = (GschemMacroWidgetClass*)class;
-  GtkWidgetClass         *widget_class = GTK_WIDGET_CLASS (class);
+  GObjectClass   *gobject_class = (GObjectClass*)class;
+  GtkWidgetClass *widget_class  = (GtkWidgetClass*)class;
 
-  gschem_macro_widget_parent_class = G_OBJECT_CLASS (g_type_class_peek_parent (macro_class));
+  gschem_macro_widget_parent_class = g_type_class_peek_parent (class);
 
-  G_OBJECT_CLASS (macro_class)->get_property = get_property;
-  G_OBJECT_CLASS (macro_class)->set_property = set_property;
+  gobject_class->get_property = get_property;
+  gobject_class->set_property = set_property;
 
   widget_class->realize    = realize;
   widget_class->unrealize  = unrealize;
