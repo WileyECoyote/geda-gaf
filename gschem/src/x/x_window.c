@@ -396,7 +396,7 @@ x_window_create_main(GschemToplevel *w_current)
       GtkWidget *handlebox;
 
       handlebox = gtk_handle_box_new ();
-      gtk_box_pack_start((GtkBox*)main_box, handlebox, FALSE, FALSE, 0);
+      PACK_BOX(main_box, handlebox, FALSE, FALSE, 0);
       geda_container_add (handlebox, menubar);
       g_object_set (handlebox, "visible", TRUE, NULL);
     }
@@ -494,11 +494,7 @@ x_window_create_main(GschemToplevel *w_current)
 
   w_current->macro_widget = gschem_macro_widget_new();
 
-  gtk_box_pack_start (GTK_BOX (main_box),
-                      w_current->macro_widget,
-                      FALSE,
-                      FALSE,
-                      0);
+  PACK_BOX (main_box, w_current->macro_widget, FALSE, FALSE, 0);
 
   g_signal_connect (w_current->macro_widget,
                     "response",
@@ -509,7 +505,7 @@ x_window_create_main(GschemToplevel *w_current)
 
   w_current->status_bar = x_status_bar_create(w_current);
 
-  gtk_box_pack_start (GTK_BOX (main_box), w_current->status_bar, FALSE, FALSE, 0);
+  PACK_BOX (main_box, w_current->status_bar, FALSE, FALSE, 0);
   g_object_set (w_current->status_bar, "visible", TRUE, NULL);
 
   /* Iconize the main window until after the size and position have been
