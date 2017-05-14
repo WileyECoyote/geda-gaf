@@ -227,7 +227,7 @@ gschem_macro_widget_class_init (void *class, void *class_data)
   widget_class->realize    = realize;
   widget_class->unrealize  = unrealize;
 
-  g_object_class_install_property (G_OBJECT_CLASS (macro_class),
+  g_object_class_install_property (gobject_class,
                                    PROP_LABEL_TEXT,
                                    g_param_spec_string ("label-text",
                                                       _("Label Text"),
@@ -235,7 +235,7 @@ gschem_macro_widget_class_init (void *class, void *class_data)
                                                       _("Macro:"),
                                                         G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
-  g_object_class_install_property (G_OBJECT_CLASS (macro_class),
+  g_object_class_install_property (gobject_class,
                                    PROP_MACRO_STRING,
                                    g_param_spec_string ("macro-string",
                                                       _("Macro String"),

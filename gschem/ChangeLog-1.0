@@ -9,7 +9,8 @@
 
     * src/base/gschem_status_bar.c: Replace geda_menu_shell_append with
       geda_menu_append. Remove g_type_check_instance_cast to Widget for
-      gschem_status_bar_new return argument.
+      gschem_status_bar_new return argument unneeded type-checking class
+      cast.
 
     * src/iface/i_status.c: Reorder events in i_status_string somewhat, add
       comments for enumerations.
