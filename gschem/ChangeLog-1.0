@@ -14,6 +14,8 @@
     * src/iface/i_status.c: Reorder events in i_status_string somewhat, add
       comments for enumerations.
 
+    * src/x/x_autonumber.c: Remove unneeded cast from g_object_new.
+
 2017-05-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/x_status_bar.h: Define STATUS_XALIGN and STATUS_YALIGN.

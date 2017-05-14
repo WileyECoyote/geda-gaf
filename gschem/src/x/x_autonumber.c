@@ -1711,7 +1711,7 @@ GtkWidget *autonumber_create_dialog(GschemToplevel  *w_current,
   main_vbox = ((GtkDialog*)ThisDialog)->vbox;
 
   /* scope section */
-  frame = GTK_WIDGET (g_object_new (GTK_TYPE_FRAME, "label", "", NULL));
+  frame = g_object_new (GTK_TYPE_FRAME, "label", "", NULL);
   gtk_box_pack_start(GTK_BOX(main_vbox), frame, FALSE, FALSE, DEFAULT_WIDGET_SPACING);
 
   label = geda_aligned_visible_label_new(_("<b>Scope</b>"), 0, 0);
@@ -1770,11 +1770,11 @@ GtkWidget *autonumber_create_dialog(GschemToplevel  *w_current,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (GTK_FILL), 0, 0);
 
-  hbox = GTK_WIDGET (g_object_new (GTK_TYPE_HBOX,
-                                   "border-width", 5,
-                                   "homogeneous",  FALSE,
-                                   "spacing",      10,
-                                    NULL));
+  hbox = g_object_new (GTK_TYPE_HBOX,
+                       "border-width", 5,
+                       "homogeneous",  FALSE,
+                       "spacing",      10,
+                       NULL);
 
   gtk_container_add ((GtkContainer*)upper_vbox, hbox);
   g_object_set (hbox, "visible", TRUE, NULL);
@@ -1784,7 +1784,7 @@ GtkWidget *autonumber_create_dialog(GschemToplevel  *w_current,
   GTK_SWITCH(upper_vbox, ScopeOverwrite, 6, FALSE)
 
   /* Options section */
-  frame = GTK_WIDGET (g_object_new (GTK_TYPE_FRAME, "label", "", NULL));
+  frame = g_object_new (GTK_TYPE_FRAME, "label", "", NULL);
   gtk_box_pack_start(GTK_BOX(main_vbox), frame, FALSE, FALSE, DEFAULT_WIDGET_SPACING);
 
   label = geda_aligned_visible_bold_label_new (_("Options"), 0, 0);
