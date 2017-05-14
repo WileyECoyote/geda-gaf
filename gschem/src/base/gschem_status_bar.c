@@ -1931,7 +1931,7 @@ update_grid_label (GschemStatusBar *widget)
 
 GtkWidget *gschem_status_bar_new (void)
 {
-  return GTK_WIDGET (g_object_new (GSCHEM_TYPE_STATUS_BAR, NULL));
+  return g_object_new (GSCHEM_TYPE_STATUS_BAR, NULL);
 }
 
 /** @} endgroup Gschem-Status-Bar */

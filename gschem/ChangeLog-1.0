@@ -5,7 +5,8 @@
       parent type void.
 
     * src/base/gschem_status_bar.c: Replace geda_menu_shell_append with
-      geda_menu_append.
+      geda_menu_append. Remove g_type_check_instance_cast to Widget for
+      gschem_status_bar_new return argument.
 
 2017-05-13 Wiley E. Hill <wileyhill@gmail.com>
 
