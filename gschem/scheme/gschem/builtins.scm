@@ -416,6 +416,9 @@
 (define-action-public (&attributes-visibility #:label (_ "Toggle Text Visibility"))
   (%attributes-visibility))
 
+(define-action-public (&attributes-editor #:label (_ "Open Attributes Editor"))
+  (%attributes-editor))
+
 (define-action-public (&attributes-find-text #:label (_ "Find Specific Text") #:icon "gtk-find")
   (%attributes-find-text))
 
@@ -424,9 +427,6 @@
 
 (define-action-public (&attributes-show-text #:label (_ "Show Specific Text"))
   (%attributes-show-text))
-
-(define-action-public (&attributes-editor #:label (_ "Open Attributes Editor"))
-  (%attributes-editor))
 
 ;; -------------------------------------------------------------------
 ;;;; Tools actions
