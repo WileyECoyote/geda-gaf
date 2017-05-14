@@ -124,69 +124,69 @@ static const char *i_status_string(GschemToplevel *w_current)
   static char *buf = 0;
 
   switch ( w_current->event_state ) {
-    case NONE:
-    case STARTDESELECT:
-    case DESELECT:
+    case NONE:                     /* 0 */
+    case DESELECT:                 /* 1 */
+    case STARTDESELECT:            /* 2 */
       return _("Deselect Mode");
-    case STARTSELECT:
-    case SELECT:
-    case GRIPS:
+    case SELECT:                   /* 3 */
+    case STARTSELECT:              /* 4 */
+    case GRIPS:                    /* 5 */
       return _("Select Mode");
-    case SBOX:
+    case SBOX:                     /* 6 */
       return _("Select Box Mode");
-    case ZOOMBOX:
+    case ZOOMBOX:                  /* 11 */
       return _("Zoom Box");
-    case COPYMODE:
-    case MCOPYMODE:
+    case COPYMODE:                 /* 9 */
+    case MCOPYMODE:                /* 22 */
       return _("Copy to point");
-    case ENDROTATE:
+    case ENDROTATE:                /* 27 */
       return _("Rotate Mode");
-    case(ENDOFFSET):
+    case(ENDOFFSET):               /* 28 */
       return _("Side to offset?");
-    case ENDMIRROR:
+    case ENDMIRROR:                /* 29 */
       return _("Mirror Mode");
-    case PAN:
+    case PAN:                      /* 7 */
       return _("Pan Mode");
-    case COMPMODE:
+    case COMPMODE:                 /* 10 */
       return _("Choose component");
-    case NETMODE:
+    case NETMODE:                  /* 12 */
       if (w_current->magnetic_net_mode)
         return _("Magnetic Net Mode");
       else
         return _("Net Mode");
-    case PINMODE:
+    case PINMODE:                  /* 13 */
       return _("Pin Mode");
-    case LINEMODE:
+    case LINEMODE:                 /* 14 */
       return _("Line Mode");
-    case BOXMODE:
+    case BOXMODE:                  /* 15 */
       return _("Box Mode");
-    case CIRCLEMODE:
+    case CIRCLEMODE:               /* 16 */
       return _("Circle Mode");
-    case TEXTMODE:
+    case TEXTMODE:                 /* 17 */
       return _("Text Mode");
-    case ARCMODE:
+    case ARCMODE:                  /* 18 */
       return _("Arc Mode");
-    case PATHMODE:
+    case PATHMODE:                 /* 19 */
       return _("Path Mode");
-    case PICTUREMODE:
+    case PICTUREMODE:              /* 20 */
       return _("Picture Mode");
-    case BUSMODE:
+    case BUSMODE:                  /* 21 */
       return _("Bus Mode");
-    case MOVEMODE:
+    case MOVEMODE:                 /* 23 */
       return _("Move Mode");
-    case PASTEMODE:
+    case PASTEMODE:                /* 31 */
       GEDA_FREE(buf);
       buf = geda_sprintf(_("Paste %d Mode"), w_current->buffer_number+1);
       return buf;
-    case STARTBREAK:
+    case STARTBREAK:               /* 35 */
       return _("First point?");
-    case ENDBREAK:
+    case ENDBREAK:                 /* 36 */
       return _("Second point?");
-    case STARTEXTEND:
+    case STARTEXTEND:              /* 32 */
       return _("Project Mode");
-    case EXTEND:
+    case EXTEND:                   /* 33 */
       return _("Select Projectiles");
-    case ENDEXTEND:
+    case ENDEXTEND:                /* 34 */
       return _("Select Object");
   }
 

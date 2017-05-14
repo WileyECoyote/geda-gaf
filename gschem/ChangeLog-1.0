@@ -1,5 +1,8 @@
 2017-05-14 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/x_states.h: shuffle the order of x_states to reduce randomness
+      of cases in i_status_string.
+
     * src/base/gschem_macro_widget.c: Replace g_type_check_instance_cast
       for class cast in initializer; gschem_macro_widget_class_init, make
       parent type void.
@@ -7,6 +10,9 @@
     * src/base/gschem_status_bar.c: Replace geda_menu_shell_append with
       geda_menu_append. Remove g_type_check_instance_cast to Widget for
       gschem_status_bar_new return argument.
+
+    * src/iface/i_status.c: Reorder events in i_status_string somewhat, add
+      comments for enumerations.
 
 2017-05-13 Wiley E. Hill <wileyhill@gmail.com>
 

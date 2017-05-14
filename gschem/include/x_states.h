@@ -37,13 +37,13 @@
 
 enum x_states {
   NONE,             /* 0 */
-  SELECT,           /* 1 */
-  DESELECT,         /* 2 */
-  GRIPS,            /* 3 */
-  SBOX,             /* 4 */
-  PAN,              /* 5 */
-  STARTSELECT,      /* 6 */
-  STARTDESELECT,    /* 7 */
+  DESELECT,         /* 1 */
+  STARTDESELECT,    /* 2 */
+  SELECT,           /* 3 */
+  STARTSELECT,      /* 4 */
+  GRIPS,            /* 5 */
+  SBOX,             /* 6 */
+  PAN,              /* 7 */
   DRAGMOVE,         /* 8 */
   COPYMODE,         /* 9 */
   COMPMODE,         /* 10 */
