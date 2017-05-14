@@ -186,7 +186,7 @@ create_coord_display_options_popup(GschemStatusBar *status_bar)
 
     GEDA_OBJECT_SET_DATA (popup_item, status_bar, "status-bar");
 
-    geda_menu_shell_append (GEDA_MENU_SHELL (menu), popup_item);
+    geda_menu_append (menu, popup_item);
   }
 
   status_bar->coord_popup = menu;
@@ -274,7 +274,7 @@ create_middle_button_options_popup(GschemStatusBar *status_bar)
 
     GEDA_OBJECT_SET_DATA (popup_item, status_bar, "status-bar");
 
-    geda_menu_shell_append (GEDA_MENU_SHELL (menu), popup_item);
+    geda_menu_append (menu, popup_item);
   }
   status_bar->middle_popup = menu;
 
@@ -361,7 +361,7 @@ create_third_button_options_popup(GschemStatusBar *status_bar)
 
     GEDA_OBJECT_SET_DATA (popup_item, status_bar, "status-bar");
 
-    geda_menu_shell_append (GEDA_MENU_SHELL (menu), popup_item);
+    geda_menu_append (menu, popup_item);
   }
 
   status_bar->third_popup = menu;
