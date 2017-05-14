@@ -37,6 +37,7 @@
 #include <geda/geda.h>
 #include <geda/geda_standard.h>
 
+#include "../../include/geda_gtk_compat.h"
 #include "../../include/geda_marshal.h"
 #include "../../include/geda_menu_enum.h"
 #include "../../include/geda_menu.h"
