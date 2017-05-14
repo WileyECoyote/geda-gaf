@@ -214,7 +214,7 @@ void i_command_router(char *command, GschemToplevel *w_current)
 #if PERFORMANCE
   if (get_thread_diagnostics() == TRUE ) {
     unsigned int thread_id;
-    thread_id = GPOINTER_TO_UINT (command);
+    thread_id = POINTER_TO_UINT (command);
     fprintf(stderr, "[Router] ---> entered thread:%2.2d\n", thread_id);
     g_usleep (WAIT_THREADS_IDLE_TIME * 1000);
     fprintf(stderr, "[Router] <--- exiting thread:%2.2d\n", thread_id);

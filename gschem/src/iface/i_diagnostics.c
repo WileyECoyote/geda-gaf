@@ -262,7 +262,7 @@ static void test_thread_pool ()
 
   for (i = 0; i < limit; i++) {
 
-    g_thread_pool_push (CommandPool, GUINT_TO_POINTER (i + 1), NULL);
+    g_thread_pool_push (CommandPool, UINT_TO_POINTER (i + 1), NULL);
 
     nt = g_thread_pool_get_num_threads (CommandPool);
     up = g_thread_pool_unprocessed (CommandPool);
