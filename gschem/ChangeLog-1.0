@@ -3,6 +3,9 @@
     * src/base/gschem_main_window.c: Include geda_gtk_compat.h and utilize
       geda_get_container_border_width macro.
 
+    * src/iface/i_sessions.c: Remove unnecessary type-checking cast first
+      argument to geda_menu_append iin i_sessions_attach_submenu.
+
     * src/x/x_edit_color.c: Remove unneeded cast from g_signal_connect and
       g_object_set.
 

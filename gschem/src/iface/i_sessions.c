@@ -622,7 +622,7 @@ static void i_sessions_attach_submenu(GschemToplevel *w_current)
                                menu_data,
                                (GClosureNotify) session_free_menu_data,
                                0);
-        geda_menu_append(GEDA_MENU(sessions_submenu), tmp);
+        geda_menu_append(sessions_submenu, tmp);
       }
 
       gtk_widget_show_all(sessions_submenu);
