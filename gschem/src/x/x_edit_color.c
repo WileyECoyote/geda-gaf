@@ -185,11 +185,11 @@ void x_dialog_edit_color (GschemToplevel *w_current)
 
     gtk_window_set_transient_for (GTK_WINDOW(Dialog), w_current->main_window);
 
-    g_signal_connect (G_OBJECT (Dialog), "response",
+    g_signal_connect (Dialog, "response",
                       G_CALLBACK (x_dialog_edit_color_response),
                       w_current);
 
-    g_object_set (G_OBJECT (Dialog), DIALOG_SELECTION_TRACKER,
+    g_object_set (Dialog, DIALOG_SELECTION_TRACKER,
                   x_dialog_color_update_selection, NULL);
 
     gtk_widget_show_all(Dialog);

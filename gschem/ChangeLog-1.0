@@ -3,6 +3,9 @@
     * src/base/gschem_main_window.c: Include geda_gtk_compat.h and utilize
       geda_get_container_border_width macro.
 
+    * src/x/x_edit_color.c: Remove unneeded cast from g_signal_connect and
+      g_object_set.
+
 2017-05-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/x_states.h: Shuffle the order of x_states to reduce randomness
