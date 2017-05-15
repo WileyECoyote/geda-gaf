@@ -1,7 +1,7 @@
 2017-05-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_option_menu.c: Replace cast in order to reduce needless
-      type-checking.
+      type-checking. Remove unnecessary g_return_if_fails in static functions.
 
 2017-05-14 Wiley E. Hill <wileyhill@gmail.com>
 

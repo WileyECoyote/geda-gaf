@@ -496,8 +496,6 @@ geda_option_menu_paint (GtkWidget *widget, GdkRectangle *area)
   int border_width;
   int tab_x;
 
-  g_return_if_fail (area != NULL);
-
   border_width = ((GtkContainer*)widget)->border_width;
   geda_option_menu_get_props ((GedaOptionMenu*)widget, &props);
 
@@ -571,8 +569,6 @@ geda_option_menu_paint (GtkWidget *widget, GdkRectangle *area)
 static int
 geda_option_menu_expose (GtkWidget *widget, GdkEventExpose *event)
 {
-  g_return_val_if_fail (GEDA_IS_OPTION_MENU (widget), FALSE);
-
   if (GTK_WIDGET_DRAWABLE (widget)) {
 
     if (event != NULL) {
@@ -594,9 +590,6 @@ static int
 geda_option_menu_button_press (GtkWidget *widget, GdkEventButton *event)
 {
   GedaOptionMenu *option_menu;
-
-  g_return_val_if_fail (GEDA_IS_OPTION_MENU (widget), FALSE);
-  g_return_val_if_fail (event != NULL, FALSE);
 
   option_menu = (GedaOptionMenu*)widget;
 
@@ -627,9 +620,6 @@ geda_option_menu_key_press (GtkWidget *widget, GdkEventKey *event)
   GedaOptionMenu *option_menu;
   GtkWidget      *menu_item;
 
-  g_return_val_if_fail (GEDA_IS_OPTION_MENU (widget), FALSE);
-  g_return_val_if_fail (event != NULL, FALSE);
-
   option_menu = (GedaOptionMenu*)widget;
 
   switch (event->keyval) {
@@ -654,17 +644,12 @@ static void
 geda_option_menu_selection_done (GedaMenuShell  *menu_shell,
                                  GedaOptionMenu *option_menu)
 {
-  g_return_if_fail (menu_shell != NULL);
-  g_return_if_fail (GEDA_IS_OPTION_MENU (option_menu));
-
   geda_option_menu_update_contents (option_menu);
 }
 
 static void
 geda_option_menu_changed (GedaOptionMenu *option_menu)
 {
-  g_return_if_fail (GEDA_IS_OPTION_MENU (option_menu));
-
   g_signal_emit (option_menu, signals[CHANGED], 0);
 }
 
@@ -721,8 +706,6 @@ geda_option_menu_item_destroy_cb (GtkWidget      *widget,
 static void
 geda_option_menu_update_contents (GedaOptionMenu *option_menu)
 {
-  g_return_if_fail (GEDA_IS_OPTION_MENU (option_menu));
-
   if (option_menu->menu) {
 
     GtkWidget *old_item = option_menu->menu_item;
@@ -770,8 +753,6 @@ geda_option_menu_update_contents (GedaOptionMenu *option_menu)
 static void
 geda_option_menu_remove_contents (GedaOptionMenu *option_menu)
 {
-  g_return_if_fail (GEDA_IS_OPTION_MENU (option_menu));
-
   if (option_menu->menu_item) {
 
     GtkWidget *child = GTK_BIN (option_menu)->child;
