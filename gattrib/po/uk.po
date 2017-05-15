@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-03-19 03:51-0500\n"
+"POT-Creation-Date: 2017-05-15 00:56-0500\n"
 "PO-Revision-Date: 2012-01-27 14:17+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -34,8 +34,12 @@ msgstr ""
 msgid "Failed to save user configuration to"
 msgstr ""
 
-#: gattrib/src/gattrib.c:395
+#: gattrib/src/gattrib.c:396
 msgid "Couldn not find file"
+msgstr ""
+
+#: gattrib/src/gattrib.c:443
+msgid "Exported schematic to"
 msgstr ""
 
 #: gattrib/src/g_rc.c:51
@@ -67,10 +71,11 @@ msgid ""
 "\n"
 "Usage: %s [OPTIONS] filename1 ... filenameN\n"
 "\n"
-"\t-h, --help      This help menu\n"
-"\t-q, --quiet     Enable quiet mode\n"
-"\t-v, --verbose   Enable verbose mode\n"
-"\t-V, --version   Show version information.\n"
+"\t-e, --export-csv export file to comma seperated values\n"
+"\t-h, --help       This help menu\n"
+"\t-q, --quiet      Enable quiet mode\n"
+"\t-v, --verbose    Enable verbose mode\n"
+"\t-V, --version    Show version information.\n"
 "\n"
 "  FAQ:\n"
 "  *  What do the colors of the cell text mean?\n"
@@ -78,7 +83,7 @@ msgid ""
 "     "
 msgstr ""
 
-#: gattrib/src/parsecmd.c:100
+#: gattrib/src/parsecmd.c:101
 #, c-format
 msgid ""
 "gEDA/gattrib %s (%s) (g%.7s)\n"
@@ -208,19 +213,19 @@ msgstr ""
 msgid "did not find refdes:pin"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:111
+#: gattrib/src/x_dialog.c:108
 msgid "Add new attribute"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:120
+#: gattrib/src/x_dialog.c:119
 msgid "Enter new attribute name"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:179
+#: gattrib/src/x_dialog.c:178
 msgid "Are you sure you want to delete this attribute?"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:181
+#: gattrib/src/x_dialog.c:180
 msgid "Delete attribute"
 msgstr ""
 
@@ -259,7 +264,7 @@ msgstr ""
 msgid "Close without saving"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:318
+#: gattrib/src/x_dialog.c:313
 msgid ""
 "Sorry -- you have chosen a feature which has not been\n"
 "implemented yet.\n"
@@ -273,15 +278,15 @@ msgid ""
 "Otherwise, just hang tight -- I'll implement this feature soon!\n"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:326
+#: gattrib/src/x_dialog.c:321
 msgid "Unimplemented feature!"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:352
+#: gattrib/src/x_dialog.c:347
 msgid "Fatal error"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:367
+#: gattrib/src/x_dialog.c:362
 #, c-format
 msgid ""
 "gEDA : GPL Electronic Design Automation\n"
@@ -295,47 +300,47 @@ msgid ""
 "and gtkextra, as well as support from the gEDA community."
 msgstr ""
 
-#: gattrib/src/x_dialog.c:377
+#: gattrib/src/x_dialog.c:372
 msgid "About..."
 msgstr ""
 
-#: gattrib/src/x_dialog.c:394 gattrib/src/x_menus.c:365
+#: gattrib/src/x_dialog.c:389 gattrib/src/x_menus.c:365
 msgid "Export CSV"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:442
+#: gattrib/src/x_dialog.c:436
 msgid "Find "
 msgstr ""
 
-#: gattrib/src/x_dialog.c:473
+#: gattrib/src/x_dialog.c:467
 msgid "Enter "
 msgstr ""
 
-#: gattrib/src/x_dialog.c:823
+#: gattrib/src/x_dialog.c:817
 msgid "Close this dialog"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:825
+#: gattrib/src/x_dialog.c:819
 msgid "Replace All"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:831
+#: gattrib/src/x_dialog.c:826
 msgid "Replace All and close dialog"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:833 gattrib/src/x_toolbars.c:38
+#: gattrib/src/x_dialog.c:828 gattrib/src/x_toolbars.c:39
 msgid "Replace"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:839
+#: gattrib/src/x_dialog.c:835
 msgid "Replace selected text and continue"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:841 gattrib/src/x_toolbars.c:37
+#: gattrib/src/x_dialog.c:837 gattrib/src/x_toolbars.c:38
 msgid "Find"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:846
+#: gattrib/src/x_dialog.c:842
 msgid "Find next"
 msgstr ""
 
@@ -380,15 +385,15 @@ msgstr ""
 msgid "Quit"
 msgstr ""
 
-#: gattrib/src/x_menus.c:371 gattrib/src/x_toolbars.c:34
+#: gattrib/src/x_menus.c:371 gattrib/src/x_toolbars.c:35
 msgid "Cut"
 msgstr ""
 
-#: gattrib/src/x_menus.c:372 gattrib/src/x_toolbars.c:35
+#: gattrib/src/x_menus.c:372 gattrib/src/x_toolbars.c:36
 msgid "Copy"
 msgstr ""
 
-#: gattrib/src/x_menus.c:373 gattrib/src/x_toolbars.c:36
+#: gattrib/src/x_menus.c:373 gattrib/src/x_toolbars.c:37
 msgid "Paste"
 msgstr ""
 
@@ -407,7 +412,7 @@ msgstr "gEDA Attribute Editor"
 msgid "_Promote Attribute"
 msgstr "gEDA Attribute Editor"
 
-#: gattrib/src/x_menus.c:377 gattrib/src/x_toolbars.c:46
+#: gattrib/src/x_menus.c:377 gattrib/src/x_toolbars.c:47
 #, fuzzy
 msgid "Attach the selected attribute"
 msgstr "gEDA Attribute Editor"
@@ -417,7 +422,7 @@ msgstr "gEDA Attribute Editor"
 msgid "_Demote Attribute"
 msgstr "gEDA Attribute Editor"
 
-#: gattrib/src/x_menus.c:378 gattrib/src/x_toolbars.c:47
+#: gattrib/src/x_menus.c:378 gattrib/src/x_toolbars.c:48
 #, fuzzy
 msgid "Dettach the selected attribute"
 msgstr "gEDA Attribute Editor"
@@ -492,23 +497,23 @@ msgstr ""
 msgid "_Visibility"
 msgstr ""
 
-#: gattrib/src/x_menus.c:394 gattrib/src/x_toolbars.c:43
+#: gattrib/src/x_menus.c:394 gattrib/src/x_toolbars.c:44
 msgid "Set selected invisible"
 msgstr ""
 
-#: gattrib/src/x_menus.c:395 gattrib/src/x_toolbars.c:44
+#: gattrib/src/x_menus.c:395 gattrib/src/x_toolbars.c:45
 msgid "Set selected visible"
 msgstr ""
 
-#: gattrib/src/x_menus.c:396 gattrib/src/x_toolbars.c:48
+#: gattrib/src/x_menus.c:396 gattrib/src/x_toolbars.c:49
 msgid "Set selected name visible only"
 msgstr ""
 
-#: gattrib/src/x_menus.c:397 gattrib/src/x_toolbars.c:49
+#: gattrib/src/x_menus.c:397 gattrib/src/x_toolbars.c:50
 msgid "Set selected value visible only"
 msgstr ""
 
-#: gattrib/src/x_menus.c:398 gattrib/src/x_toolbars.c:50
+#: gattrib/src/x_menus.c:398 gattrib/src/x_toolbars.c:51
 msgid "Set selected name and value visible"
 msgstr ""
 
@@ -616,110 +621,110 @@ msgstr ""
 msgid "Toggle grid visibility"
 msgstr ""
 
-#: gattrib/src/x_menus.c:650
+#: gattrib/src/x_menus.c:647
 msgid "Error loading"
 msgstr ""
 
-#: gattrib/src/x_toolbars.c:31
+#: gattrib/src/x_toolbars.c:32
 msgid "Open"
 msgstr ""
 
-#: gattrib/src/x_toolbars.c:31
+#: gattrib/src/x_toolbars.c:32
 msgid "Open file"
 msgstr ""
 
-#: gattrib/src/x_toolbars.c:32
+#: gattrib/src/x_toolbars.c:33
 msgid "Save"
 msgstr ""
 
-#: gattrib/src/x_toolbars.c:32
+#: gattrib/src/x_toolbars.c:33
 msgid "Save file"
 msgstr ""
 
-#: gattrib/src/x_toolbars.c:33
+#: gattrib/src/x_toolbars.c:34
 msgid "Save As"
 msgstr ""
 
-#: gattrib/src/x_toolbars.c:33
+#: gattrib/src/x_toolbars.c:34
 msgid "Save the file to different name or location"
 msgstr ""
 
-#: gattrib/src/x_toolbars.c:34
+#: gattrib/src/x_toolbars.c:35
 msgid "Cut selection to the clipboard"
 msgstr ""
 
-#: gattrib/src/x_toolbars.c:35
+#: gattrib/src/x_toolbars.c:36
 msgid "Copy selection to the clipboard"
 msgstr ""
 
-#: gattrib/src/x_toolbars.c:36
+#: gattrib/src/x_toolbars.c:37
 msgid "Paste selection from the clipboard"
 msgstr ""
 
-#: gattrib/src/x_toolbars.c:37
+#: gattrib/src/x_toolbars.c:38
 msgid "Search for attribute value"
 msgstr ""
 
-#: gattrib/src/x_toolbars.c:38
+#: gattrib/src/x_toolbars.c:39
 msgid "Search and Replace attribute value"
 msgstr ""
 
-#: gattrib/src/x_toolbars.c:39
+#: gattrib/src/x_toolbars.c:40
 #, fuzzy
 msgid "Attrib"
 msgstr "gEDA Attribute Editor"
 
-#: gattrib/src/x_toolbars.c:39
+#: gattrib/src/x_toolbars.c:40
 #, fuzzy
 msgid "Locate attribute"
 msgstr "gEDA Attribute Editor"
 
-#: gattrib/src/x_toolbars.c:40
+#: gattrib/src/x_toolbars.c:41
 msgid "Ref Des"
 msgstr ""
 
-#: gattrib/src/x_toolbars.c:40
+#: gattrib/src/x_toolbars.c:41
 msgid "Locate Reference Designator"
 msgstr ""
 
-#: gattrib/src/x_toolbars.c:43
+#: gattrib/src/x_toolbars.c:44
 msgid "invisible"
 msgstr ""
 
-#: gattrib/src/x_toolbars.c:44
+#: gattrib/src/x_toolbars.c:45
 msgid "visible"
 msgstr ""
 
-#: gattrib/src/x_toolbars.c:45
+#: gattrib/src/x_toolbars.c:46
 msgid "add"
 msgstr ""
 
-#: gattrib/src/x_toolbars.c:45
+#: gattrib/src/x_toolbars.c:46
 #, fuzzy
 msgid "Add a new attribute"
 msgstr "gEDA Attribute Editor"
 
-#: gattrib/src/x_toolbars.c:46
+#: gattrib/src/x_toolbars.c:47
 msgid "promote"
 msgstr ""
 
-#: gattrib/src/x_toolbars.c:47
+#: gattrib/src/x_toolbars.c:48
 msgid "demote"
 msgstr ""
 
-#: gattrib/src/x_toolbars.c:48
+#: gattrib/src/x_toolbars.c:49
 msgid "name"
 msgstr ""
 
-#: gattrib/src/x_toolbars.c:49
+#: gattrib/src/x_toolbars.c:50
 msgid "value"
 msgstr ""
 
-#: gattrib/src/x_toolbars.c:50
+#: gattrib/src/x_toolbars.c:51
 msgid "both"
 msgstr ""
 
-#: gattrib/src/x_window.c:176
+#: gattrib/src/x_window.c:177
 msgid "Saving main window geometry and settings.\n"
 msgstr ""
 

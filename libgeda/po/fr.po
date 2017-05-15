@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-04-23 18:06-0500\n"
+"POT-Creation-Date: 2017-05-15 00:56-0500\n"
 "PO-Revision-Date: 2012-10-22 13:10+0000\n"
 "Last-Translator: Patrick Fiquet <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -487,7 +487,7 @@ msgstr ""
 msgid "Set underlying file for EdaConfig"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:949 libgeda/src/geda/geda_config.c:1066
+#: libgeda/src/geda/geda_config.c:949 libgeda/src/geda/geda_config.c:1068
 msgid "Undefined configuration filename"
 msgstr ""
 
@@ -496,48 +496,48 @@ msgstr ""
 msgid "Error loading configuration, file name is undefined\n"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1009 libgeda/src/guile/g_rc_parse.c:289
+#: libgeda/src/geda/geda_config.c:1011 libgeda/src/guile/g_rc_parse.c:289
 msgid "accessing file"
 msgstr ""
 
 # Error loading configuration
-#: libgeda/src/geda/geda_config.c:1012
+#: libgeda/src/geda/geda_config.c:1014
 msgid "Error loading configuration"
 msgstr ""
 
 # Error saving configuration; file name is undefined
-#: libgeda/src/geda/geda_config.c:1069
+#: libgeda/src/geda/geda_config.c:1071
 #, c-format
 msgid "Error saving configuration, file name is undefined\n"
 msgstr ""
 "Erreur lors de l'enregistrement de la configuration; Le nom du fichier n'est "
 "pas défini\n"
 
-#: libgeda/src/geda/geda_config.c:1094 libgeda/src/object/o_save.c:415
+#: libgeda/src/geda/geda_config.c:1096 libgeda/src/object/o_save.c:415
 msgid "file"
 msgstr "fichier"
 
 # an error occurred while attempting to save configuration to
-#: libgeda/src/geda/geda_config.c:1130
+#: libgeda/src/geda/geda_config.c:1132
 msgid "Error saving configuration to"
 msgstr ""
 "Une erreur s'est produite lors de la tentative d'enregistrement de la "
 "configuration"
 
 # bad path in file
-#: libgeda/src/geda/geda_config.c:1137
+#: libgeda/src/geda/geda_config.c:1139
 msgid "bad path in file"
 msgstr "bad path in file"
 
-#: libgeda/src/geda/geda_config.c:1141
+#: libgeda/src/geda/geda_config.c:1143
 msgid "Error saving configuration, bad path in"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1474 libgeda/src/geda/geda_config.c:1540
+#: libgeda/src/geda/geda_config.c:1476 libgeda/src/geda/geda_config.c:1542
 msgid "Configuration does not have group"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1554
+#: libgeda/src/geda/geda_config.c:1556
 msgid "Configuration does not have key"
 msgstr ""
 
@@ -581,88 +581,88 @@ msgstr ""
 msgid "Key file contains unsupported encoding"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:1341 libgeda/src/geda/geda_keyfile.c:1558
-#: libgeda/src/geda/geda_keyfile.c:3043 libgeda/src/geda/geda_keyfile.c:3113
-#: libgeda/src/geda/geda_keyfile.c:3239 libgeda/src/geda/geda_keyfile.c:3464
-#: libgeda/src/geda/geda_keyfile.c:3645 libgeda/src/geda/geda_keyfile.c:3835
-#: libgeda/src/geda/geda_keyfile.c:3903
+#: libgeda/src/geda/geda_keyfile.c:1345 libgeda/src/geda/geda_keyfile.c:1562
+#: libgeda/src/geda/geda_keyfile.c:3047 libgeda/src/geda/geda_keyfile.c:3117
+#: libgeda/src/geda/geda_keyfile.c:3243 libgeda/src/geda/geda_keyfile.c:3468
+#: libgeda/src/geda/geda_keyfile.c:3649 libgeda/src/geda/geda_keyfile.c:3839
+#: libgeda/src/geda/geda_keyfile.c:3907
 msgid "Key file does not have group"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:1538
+#: libgeda/src/geda/geda_keyfile.c:1542
 msgid "ERROR: pointer to key file is NULL"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:1541
+#: libgeda/src/geda/geda_keyfile.c:1545
 msgid "ERROR: pointer to group name is NULL"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:1544
+#: libgeda/src/geda/geda_keyfile.c:1548
 msgid "ERROR: pointer to key is NULL"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:1571
+#: libgeda/src/geda/geda_keyfile.c:1575
 msgid "Key file does not have key"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:1688 libgeda/src/geda/geda_keyfile.c:1826
+#: libgeda/src/geda/geda_keyfile.c:1692 libgeda/src/geda/geda_keyfile.c:1830
 #, c-format
 msgid "Key file contains key '%s' with value '%s' which is not UTF-8"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:1710 libgeda/src/geda/geda_keyfile.c:1848
-#: libgeda/src/geda/geda_keyfile.c:2284
+#: libgeda/src/geda/geda_keyfile.c:1714 libgeda/src/geda/geda_keyfile.c:1852
+#: libgeda/src/geda/geda_keyfile.c:2288
 #, c-format
 msgid ""
 "Key file contains key '%s' which has a value that cannot be interpreted."
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:2506 libgeda/src/geda/geda_keyfile.c:2873
+#: libgeda/src/geda/geda_keyfile.c:2510 libgeda/src/geda/geda_keyfile.c:2877
 #, c-format
 msgid ""
 "Key file contains key '%s' in group '%s' which has a value that cannot be "
 "interpreted."
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:2583 libgeda/src/geda/geda_keyfile.c:2659
+#: libgeda/src/geda/geda_keyfile.c:2587 libgeda/src/geda/geda_keyfile.c:2663
 #, c-format
 msgid "Key '%s' in group '%s' has value '%s' where %s was expected"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:3058 libgeda/src/geda/geda_keyfile.c:3254
-#: libgeda/src/geda/geda_keyfile.c:3915
+#: libgeda/src/geda/geda_keyfile.c:3062 libgeda/src/geda/geda_keyfile.c:3258
+#: libgeda/src/geda/geda_keyfile.c:3919
 #, c-format
 msgid "Key file does not have key '%s' in group '%s'"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:3443
+#: libgeda/src/geda/geda_keyfile.c:3447
 msgid "Group does not have comment"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:4141
+#: libgeda/src/geda/geda_keyfile.c:4145
 msgid "Key file contains escape character at end of line"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:4163
+#: libgeda/src/geda/geda_keyfile.c:4167
 msgid "Key file contains invalid escape sequence"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:4304
+#: libgeda/src/geda/geda_keyfile.c:4308
 #, c-format
 msgid "Value '%s' cannot be interpreted as a number."
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:4319
+#: libgeda/src/geda/geda_keyfile.c:4323
 #, c-format
 msgid "Integer value '%s' out of range"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:4352
+#: libgeda/src/geda/geda_keyfile.c:4356
 #, c-format
 msgid "Value '%s' cannot be interpreted as a float number."
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:4377
+#: libgeda/src/geda/geda_keyfile.c:4381
 #, c-format
 msgid "Value '%s' cannot be interpreted as a boolean."
 msgstr ""
