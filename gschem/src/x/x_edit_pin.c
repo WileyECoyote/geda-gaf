@@ -264,7 +264,6 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
 
   /* Initialize variables */
   w_current   = GSCHEM_DIALOG(Dialog)->w_current;
-  iter        = NULL;
   pin_objects = NULL;
 
   /* if nothing selected then get out */
@@ -371,6 +370,7 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
   }
   else { /* More than 1 pin is selected */
 
+    GList *iter;
     int  auto_number;
     char s_val[10];
 
