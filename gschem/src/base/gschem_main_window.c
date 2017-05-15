@@ -29,6 +29,7 @@
  */
 
 #include <gschem.h>
+#include <geda_gtk_compat.h>
 #include <geda_keysyms.h>
 #include <geda_debug.h>
 
@@ -127,7 +128,7 @@ gschem_window_size_request (GtkWidget *widget, GtkRequisition *requisition)
 
   window = (GtkWindow*)widget;
   bin    = (GtkBin*)window;
-  border = gtk_container_get_border_width ((GtkContainer*)window);
+  border = geda_get_container_border_width (window);
 
   requisition->width = requisition->height = border << 1;
 
@@ -154,11 +155,11 @@ gschem_window_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
 
   widget->allocation = *allocation;
 
-  border_2x = gtk_container_get_border_width ((GtkContainer*)window) << 1;
+  border_2x = geda_get_container_border_width (window) << 1;
 
   if (window->bin.child && gtk_widget_get_visible (window->bin.child))
   {
-    int border_width        = ((GtkContainer*)window)->border_width;
+    int border_width        = geda_get_container_border_width(window);
     child_allocation.x      = border_width;
     child_allocation.y      = border_width;
     child_allocation.width  = MAX (1, (int)allocation->width - border_2x);

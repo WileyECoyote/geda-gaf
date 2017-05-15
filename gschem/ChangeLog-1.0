@@ -1,6 +1,11 @@
+2017-05-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/base/gschem_main_window.c: Include geda_gtk_compat.h and utilize
+      geda_get_container_border_width macro.
+
 2017-05-14 Wiley E. Hill <wileyhill@gmail.com>
 
-    * include/x_states.h: shuffle the order of x_states to reduce randomness
+    * include/x_states.h: Shuffle the order of x_states to reduce randomness
       of cases in i_status_string.
 
     * src/base/gschem_macro_widget.c: Replace g_type_check_instance_cast
