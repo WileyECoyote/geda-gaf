@@ -691,10 +691,9 @@ x_window_close(GschemToplevel *w_current)
 void
 x_window_close_all(GschemToplevel *w_current)
 {
+  GList *iter;
 
-  GList *list_copy, *iter;
-
-  iter = list_copy = g_list_copy (global_window_list);
+  iter = global_window_list;
   while (iter != NULL ) {
 
    GschemToplevel *current = (GschemToplevel *)iter->data;
@@ -703,8 +702,6 @@ x_window_close_all(GschemToplevel *w_current)
 
     x_window_close (current);
   }
-  g_list_free (list_copy);
-
 }
 
 /* Threaded from x_window_open_page after successful open */

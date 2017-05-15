@@ -11,6 +11,9 @@
 
     * src/x/x_edit_pin.c: Reduce scope of iter in x_dialog_edit_pin_type_ok.
 
+    * src/x/x_window.c: Revise x_window_close_all to not make a copy of the
+      global_window_list and just just iterate of the list directly.
+
 2017-05-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/x_states.h: Shuffle the order of x_states to reduce randomness
