@@ -305,16 +305,18 @@ geda_option_menu_detacher (GtkWidget *widget, GedaMenu *menu)
 
   g_return_if_fail (GEDA_IS_OPTION_MENU (widget));
 
-  option_menu = GEDA_OPTION_MENU (widget);
+  option_menu = (GedaOptionMenu*)widget;
+
   g_return_if_fail (option_menu->menu == (GtkWidget*) menu);
 
   geda_option_menu_remove_contents (option_menu);
+
   g_signal_handlers_disconnect_by_func (option_menu->menu,
-                    geda_option_menu_selection_done,
-                    option_menu);
+                                        geda_option_menu_selection_done,
+                                        option_menu);
   g_signal_handlers_disconnect_by_func (option_menu->menu,
-                    geda_option_menu_calc_size,
-                    option_menu);
+                                        geda_option_menu_calc_size,
+                                        option_menu);
 
   option_menu->menu = NULL;
   g_object_notify (G_OBJECT (option_menu), "menu");
@@ -326,7 +328,7 @@ geda_option_menu_set_property (GObject      *object,
                                const GValue *value,
                                GParamSpec   *pspec)
 {
-  GedaOptionMenu *option_menu = GEDA_OPTION_MENU (object);
+  GedaOptionMenu *option_menu = (GedaOptionMenu*)object;
 
   switch (prop_id) {
     case PROP_MENU:
@@ -345,7 +347,7 @@ geda_option_menu_get_property (GObject      *object,
                                GValue       *value,
                                GParamSpec   *pspec)
 {
-  GedaOptionMenu *option_menu = GEDA_OPTION_MENU (object);
+  GedaOptionMenu *option_menu = (GedaOptionMenu*)object;
 
   switch (prop_id) {
     case PROP_MENU:
@@ -361,7 +363,7 @@ geda_option_menu_get_property (GObject      *object,
 static void
 geda_option_menu_destroy (GtkObject *object)
 {
-  GedaOptionMenu *option_menu = GEDA_OPTION_MENU (object);
+  GedaOptionMenu *option_menu = (GedaOptionMenu*)object;
 
   if (option_menu->menu) {
     gtk_widget_destroy (option_menu->menu);
@@ -407,7 +409,7 @@ geda_option_menu_get_props (GedaOptionMenu      *option_menu,
 static void
 geda_option_menu_size_request (GtkWidget *widget, GtkRequisition *requisition)
 {
-  GedaOptionMenu *option_menu = GEDA_OPTION_MENU (widget);
+  GedaOptionMenu *option_menu = (GedaOptionMenu*)widget;
   GedaOptionMenuProps props;
   int tmp;
   GtkRequisition child_requisition = { 0, 0 };
@@ -446,12 +448,12 @@ static void
 geda_option_menu_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
 {
   GtkWidget *child;
-  GtkButton *button = GTK_BUTTON (widget);
+  GtkButton *button = (GtkButton*)widget;
   GtkAllocation child_allocation;
   GedaOptionMenuProps props;
   int border_width;
 
-  geda_option_menu_get_props (GEDA_OPTION_MENU (widget), &props);
+  geda_option_menu_get_props ((GedaOptionMenu*)widget, &props);
   border_width = ((GtkContainer*)widget)->border_width;
 
   widget->allocation = *allocation;
@@ -497,7 +499,7 @@ geda_option_menu_paint (GtkWidget *widget, GdkRectangle *area)
   g_return_if_fail (area != NULL);
 
   border_width = ((GtkContainer*)widget)->border_width;
-  geda_option_menu_get_props (GEDA_OPTION_MENU (widget), &props);
+  geda_option_menu_get_props ((GedaOptionMenu*)widget, &props);
 
   button_area.x      = widget->allocation.x + border_width;
   button_area.y      = widget->allocation.y + border_width;
@@ -596,7 +598,7 @@ geda_option_menu_button_press (GtkWidget *widget, GdkEventButton *event)
   g_return_val_if_fail (GEDA_IS_OPTION_MENU (widget), FALSE);
   g_return_val_if_fail (event != NULL, FALSE);
 
-  option_menu = GEDA_OPTION_MENU (widget);
+  option_menu = (GedaOptionMenu*)widget;
 
   if ((event->type == GDK_BUTTON_PRESS) && (event->button == 1))
   {
@@ -628,7 +630,7 @@ geda_option_menu_key_press (GtkWidget *widget, GdkEventKey *event)
   g_return_val_if_fail (GEDA_IS_OPTION_MENU (widget), FALSE);
   g_return_val_if_fail (event != NULL, FALSE);
 
-  option_menu = GEDA_OPTION_MENU (widget);
+  option_menu = (GedaOptionMenu*)widget;
 
   switch (event->keyval) {
 
