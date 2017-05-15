@@ -1,20 +1,30 @@
-/* GTK - The GIMP Toolkit
- * Copyright (C) 1995-1997 Peter Mattis, Spencer Kimball and Josh MacDonald
+/* -*- Mode: C; indent-tabs-mode: nil; c-basic-offset: 2 tab-width: 4 -*- */
+/* vi: set et ts=4 sw=2 sts=2: */
+/*
+ * File: geda_option_menu.h
+ *
+ * gEDA - GPL Electronic Design Automation
+ * libgedauio - gEDA's library for User Interface Objects
+ *
+ * Copyright (C) 2016 gEDA Contributors (see ChangeLog for details)
  *
  * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 2 of
- * the License, or (at your option) any later version.
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Library General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
+ * along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
- * MA 02111-1301 USA <http://www.gnu.org/licenses/>.
+ * MA 02111-1301 USA, <http://www.gnu.org/licenses/>.
+ *
+ * Date: June 11, 2016
+ * Contributing Author: Wiley Edward Hill <wileyhill@gmail.com>
  */
 
 #ifndef __GEDA_OPTION_MENU_H__
@@ -52,17 +62,25 @@ struct _GedaOptionMenuClass
 extern "C" {
 #endif
 
-GedaType   geda_option_menu_get_type    (void) GEDA_CONST;
-bool       is_a_geda_option_menu        (GedaOptionMenu *option_menu);
+GedaType   geda_option_menu_get_type      (void) GEDA_CONST;
+bool       is_a_geda_option_menu          (GedaOptionMenu *option_menu);
 
-GtkWidget *geda_option_menu_new         (void);
-GtkWidget *geda_option_menu_get_menu    (GedaOptionMenu *option_menu);
-void       geda_option_menu_set_menu    (GedaOptionMenu *option_menu,
-                                         GtkWidget      *menu);
-void       geda_option_menu_remove_menu (GedaOptionMenu *option_menu);
-int        geda_option_menu_get_history (GedaOptionMenu *option_menu);
-void       geda_option_menu_set_history (GedaOptionMenu *option_menu,
-                                         unsigned int    index);
+GtkWidget *geda_option_menu_new           (void);
+GtkWidget *geda_option_menu_get_menu      (GedaOptionMenu *option_menu);
+void       geda_option_menu_set_menu      (GedaOptionMenu *option_menu,
+                                           GtkWidget      *menu);
+void       geda_option_menu_remove_menu   (GedaOptionMenu *option_menu);
+int        geda_option_menu_get_history   (GedaOptionMenu *option_menu);
+void       geda_option_menu_set_history   (GedaOptionMenu *option_menu,
+                                           unsigned int    index);
+
+GtkWidget *geda_option_widget_get_menu    (GtkWidget      *option_menu);
+void       geda_option_widget_set_menu    (GtkWidget      *option_menu,
+                                           GtkWidget      *menu);
+void       geda_option_widget_remove_menu (GtkWidget      *option_menu);
+int        geda_option_widget_get_history (GtkWidget      *option_menu);
+void       geda_option_widget_set_history (GtkWidget      *option_menu,
+                                           unsigned int    index);
 
 #ifdef __cplusplus
 }
