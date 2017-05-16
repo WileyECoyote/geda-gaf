@@ -3,7 +3,7 @@
     * src/x/x_sessions.c: Remove unneeded cast from g_object_new.
 
     * src/x/x_settings_dialog.c: Remove unnecessary cast to GObject for
-      g_signal_connect.
+      g_signal_connect. Replace geda_menu_shell_append with geda_menu_append.
 
 2017-05-15 Wiley E. Hill <wileyhill@gmail.com>
 

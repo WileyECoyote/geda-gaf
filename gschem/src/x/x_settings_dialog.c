@@ -1254,14 +1254,14 @@ static void default_color_button_popup (GtkColorButton *button, GdkEventButton *
   g_signal_connect (item, "activate",
                     G_CALLBACK (color_button_popup_menu_callback), (void*)(long) (1));
 
-  geda_menu_shell_append (GEDA_MENU_SHELL (popup_menu), item);
+  geda_menu_append (popup_menu, item);
 
   item = geda_image_menu_item_new_with_label (_("Cancel"));
 
   g_signal_connect (item, "activate",
                     G_CALLBACK (color_button_popup_menu_callback), (void*)(long) (0));
 
-  geda_menu_shell_append (GEDA_MENU_SHELL (popup_menu), item);
+  geda_menu_append (popup_menu, item);
 
   gtk_widget_show_all (popup_menu);
 
