@@ -1552,11 +1552,9 @@ geda_font_button_set_font_desc (GedaFontButton       *font_button,
  *
  * \param font_button Pointer to a #GedaFontButton object.
  */
-static GtkWidget *
+static GtkWidget*
 geda_font_button_create_widgets (GedaFontButton *font_button)
 {
-  g_return_val_if_fail (GEDA_IS_FONT_BUTTON (font_button), NULL);
-
   GtkWidget *widget;
   GtkWidget *font_label;
 

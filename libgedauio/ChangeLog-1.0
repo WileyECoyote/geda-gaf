@@ -1,3 +1,8 @@
+2017-05-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_font_button.c: Remove unnecessary g_return_val_if_fail
+      from geda_font_button_create_widgets.
+
 2017-05-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_option_menu.c: Replace cast in order to reduce needless
