@@ -2020,7 +2020,7 @@ geda_keyfile_get_locale_string (GedaKeyFile *key_file,
   bool free_languages;
 
   if (!locale) {
-    languages = (char **) g_get_language_names ();
+    languages = (char**)g_get_language_names ();
     free_languages = FALSE;
   }
   else {
@@ -2030,7 +2030,7 @@ geda_keyfile_get_locale_string (GedaKeyFile *key_file,
 
 #else
 
-    languages = (char**) g_get_language_names ();
+    languages = (char**)g_get_language_names ();
 
 #endif
 
@@ -2271,15 +2271,15 @@ geda_keyfile_get_boolean (GedaKeyFile *key_file,
   if (key_file_error) {
 
     if (g_error_matches (key_file_error,
-      GEDA_KEYFILE_ERROR,
-      GEDA_KEYFILE_ERROR_INVALID_VALUE))
+                         GEDA_KEYFILE_ERROR,
+                         GEDA_KEYFILE_ERROR_INVALID_VALUE))
     {
       g_set_error (error, GEDA_KEYFILE_ERROR,
                    GEDA_KEYFILE_ERROR_INVALID_VALUE,
                    _("Key file contains key '%s' "
                      "which has a value that cannot be interpreted."),
                    key);
-                   g_error_free (key_file_error);
+      g_error_free (key_file_error);
     }
     else {
       g_propagate_error (error, key_file_error);
@@ -4370,9 +4370,9 @@ geda_keyfile_parse_value_as_boolean (GedaKeyFile *key_file,
   g_set_error (error, GEDA_KEYFILE_ERROR,
                GEDA_KEYFILE_ERROR_INVALID_VALUE,
                _("Value '%s' cannot be interpreted as a boolean."), value_utf8);
-               GEDA_FREE (value_utf8);
+  GEDA_FREE (value_utf8);
 
-               return FALSE;
+  return FALSE;
 }
 
 static char*
