@@ -2,6 +2,9 @@
 
     * src/x/x_sessions.c: Remove unneeded cast from g_object_new.
 
+    * src/x/x_settings_dialog.c: Remove unnecessary cast to GObject for
+      g_signal_connect.
+
 2017-05-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_main_window.c: Include geda_gtk_compat.h and utilize

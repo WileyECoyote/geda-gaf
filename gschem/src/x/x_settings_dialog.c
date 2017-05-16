@@ -649,7 +649,7 @@ connect_list_view (GtkWidget *Dialog, GtkTreeView *TreeTextView)
   g_signal_connect (selection,   "changed",
                     G_CALLBACK (st_callback_selection_changed_view),
                     Dialog);  */
-  g_signal_connect (TreeTextView,"row-activated",
+  g_signal_connect (TreeTextView, "row-activated",
                     G_CALLBACK (st_tree_row_activated),
                     Dialog);
   return;
@@ -1251,14 +1251,14 @@ static void default_color_button_popup (GtkColorButton *button, GdkEventButton *
 
   GEDA_OBJECT_SET_DATA(item, button, "color-button");
 
-  g_signal_connect (G_OBJECT (item), "activate",
+  g_signal_connect (item, "activate",
                     G_CALLBACK (color_button_popup_menu_callback), (void*)(long) (1));
 
   geda_menu_shell_append (GEDA_MENU_SHELL (popup_menu), item);
 
   item = geda_image_menu_item_new_with_label (_("Cancel"));
 
-  g_signal_connect (G_OBJECT (item), "activate",
+  g_signal_connect (item, "activate",
                     G_CALLBACK (color_button_popup_menu_callback), (void*)(long) (0));
 
   geda_menu_shell_append (GEDA_MENU_SHELL (popup_menu), item);
@@ -2307,7 +2307,7 @@ bool load_settings_dialog (GschemToplevel *w_current)
   SetSpin (UndoBufferSize, w_current->undo_levels);
   SetSpin (ZoomGain, w_current->zoom_gain);
 
-  g_signal_connect ((void *) RendererCombo, "changed",
+  g_signal_connect (RendererCombo, "changed",
                     G_CALLBACK (on_change_renderer),
                     w_current);
 
@@ -2673,7 +2673,7 @@ create_settings_dialog (GschemToplevel *w_current)
 
   gtk_widget_grab_default (CancelButt);
 
-  g_signal_connect ((void *) notebook, "switch-page",
+  g_signal_connect (notebook, "switch-page",
                     G_CALLBACK (on_notebook_switch_page),
                     NULL);
 
