@@ -512,46 +512,47 @@ x_sessions_get_treeview (GtkWidget *Dialog)
                                              G_TYPE_INT);   /* Count */
 
   /* create a scrolled window for the treeview */
-  scrolled_window = GTK_WIDGET (g_object_new (GTK_TYPE_SCROLLED_WINDOW,
-                             "border-width",       DIALOG_BORDER_WIDTH,
-                             "hscrollbar-policy", GTK_POLICY_AUTOMATIC,
-                             "vscrollbar-policy",    GTK_POLICY_ALWAYS,
-                             "shadow-type",       GTK_SHADOW_ETCHED_IN,
-                                                                  NULL));
+  scrolled_window = g_object_new (GTK_TYPE_SCROLLED_WINDOW,
+                                  "border-width",       DIALOG_BORDER_WIDTH,
+                                  "hscrollbar-policy", GTK_POLICY_AUTOMATIC,
+                                  "vscrollbar-policy",    GTK_POLICY_ALWAYS,
+                                  "shadow-type",       GTK_SHADOW_ETCHED_IN,
+                                  NULL);
 
   /* create model for treeview and populate */
-  treeview = GTK_WIDGET (g_object_new (GTK_TYPE_TREE_VIEW,
-                                       /* GtkTreeView */
-                                       "model",           store,
-                                       "enable-search",   FALSE,
-                                       "headers-visible", TRUE,
-                                       "rules-hint",      TRUE,
-                                       NULL));
+  treeview = g_object_new (GTK_TYPE_TREE_VIEW,
+                           /* GtkTreeView */
+                           "model",           store,
+                           "enable-search",   FALSE,
+                           "headers-visible", TRUE,
+                           "rules-hint",      TRUE,
+                           NULL);
 
   /* first column: session name */
-  renderer = GTK_CELL_RENDERER (g_object_new (GTK_TYPE_CELL_RENDERER_TEXT,
-                                             "editable", FALSE,
-                                              NULL));
+  renderer = g_object_new (GTK_TYPE_CELL_RENDERER_TEXT,
+                           "editable", FALSE,
+                           NULL);
 
-  column = GTK_TREE_VIEW_COLUMN (g_object_new (GTK_TYPE_TREE_VIEW_COLUMN,
-                                              "title", _("Session Name"),
-                                              "min-width", 300,
-                                              "resizable", TRUE,
-                                               NULL));
+  column = g_object_new (GTK_TYPE_TREE_VIEW_COLUMN,
+                         "title", _("Session Name"),
+                         "min-width", 300,
+                         "resizable", TRUE,
+                         NULL);
 
   gtk_tree_view_column_pack_start (column, renderer, TRUE);
   gtk_tree_view_column_add_attribute (column, renderer, "text", COLUMN_NAME);
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
   /* second column: Count */
-  renderer = GTK_CELL_RENDERER (g_object_new (GTK_TYPE_CELL_RENDERER_TEXT,
-                                             "editable", FALSE,
-                                              NULL));
+  renderer = g_object_new (GTK_TYPE_CELL_RENDERER_TEXT,
+                           "editable", FALSE,
+                           NULL);
 
-  column = GTK_TREE_VIEW_COLUMN (g_object_new (GTK_TYPE_TREE_VIEW_COLUMN,
-                                              "title", _("File Count"),
-                                              "sizing", GTK_TREE_VIEW_COLUMN_FIXED,
-                                               NULL));
+  column = g_object_new (GTK_TYPE_TREE_VIEW_COLUMN,
+                         "title", _("File Count"),
+                         "sizing", GTK_TREE_VIEW_COLUMN_FIXED,
+                         NULL);
+
   gtk_tree_view_column_pack_start (column, renderer, TRUE);
   gtk_tree_view_column_add_attribute (column, renderer, "text", COLUMN_COUNT);
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
