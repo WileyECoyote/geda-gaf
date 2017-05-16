@@ -108,6 +108,10 @@ struct _GedaFontDialogClass
   GtkDialogClass parent_class;
 };
 
+#define PFD PangoFontDescription
+#define PFY PangoFontFamily
+#define PFF PangoFontFace
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -115,34 +119,46 @@ extern "C" {
 GedaType   geda_font_dialog_get_type           (void) GEDA_CONST;
 bool       is_a_geda_font_dialog               (GedaFontDialog *font_dialog);
 
-GtkWidget* geda_font_dialog_new                (void);
-GtkWidget* geda_font_dialog_new_with_font_name (const char *font_name);
-GtkWidget* geda_font_dialog_new_with_title     (const char *title);
-GtkWidget* geda_font_dialog_new_with_window    (const char *title, GtkWindow *parent);
+GtkWidget  *geda_font_dialog_new                (void);
+GtkWidget  *geda_font_dialog_new_with_font_name (const char     *font_name);
+GtkWidget  *geda_font_dialog_new_with_title     (const char     *title);
+GtkWidget  *geda_font_dialog_new_with_window    (const char     *title,
+                                                 GtkWindow      *parent);
 
-GdkFont* geda_font_dialog_get_font (GedaFontDialog *dialog);
-bool     geda_font_dialog_set_font (GedaFontDialog *dialog, GdkFont* Font);
+GdkFont    *geda_font_dialog_get_font           (GedaFontDialog *dialog);
+bool        geda_font_dialog_set_font           (GedaFontDialog *dialog,
+                                                 GdkFont        *Font);
 
-PangoFontDescription *geda_font_dialog_get_font_desc (GedaFontDialog *dialog);
-void                  geda_font_dialog_set_font_desc (GedaFontDialog *dialog,
-                                                      const PangoFontDescription *font_desc);
+PFD        *geda_font_dialog_get_font_desc      (GedaFontDialog *dialog);
+void        geda_font_dialog_set_font_desc      (GedaFontDialog *dialog,
+                                                 const PFD      *font_desc);
 
-char *geda_font_dialog_get_font_name (GedaFontDialog *dialog);
-bool  geda_font_dialog_set_font_name (GedaFontDialog *dialog, const char *fontname);
+char       *geda_font_dialog_get_font_name      (GedaFontDialog *dialog);
+bool        geda_font_dialog_set_font_name      (GedaFontDialog *dialog,
+                                                 const char     *fontname);
 
-const PangoFontFamily *geda_font_dialog_get_font_family (GedaFontDialog *dialog);
-const PangoFontFace   *geda_font_dialog_get_font_face   (GedaFontDialog *dialog);
+const PFY  *geda_font_dialog_get_font_family    (GedaFontDialog *dialog);
+const PFF  *geda_font_dialog_get_font_face      (GedaFontDialog *dialog);
 
-int         geda_font_dialog_get_font_size    (GedaFontDialog *dialog);
-void        geda_font_dialog_set_font_size    (GedaFontDialog *dialog, int new_size);
+int         geda_font_dialog_get_font_size      (GedaFontDialog *dialog);
+void        geda_font_dialog_set_font_size      (GedaFontDialog *dialog,
+                                                 int             new_size);
 
-const char* geda_font_dialog_get_preview_text (GedaFontDialog *dialog);
-bool        geda_font_dialog_set_preview_text (GedaFontDialog *dialog, const char *text);
+const char *geda_font_dialog_get_preview_text   (GedaFontDialog *dialog);
+bool        geda_font_dialog_set_preview_text   (GedaFontDialog *dialog,
+                                                 const char     *text);
 
-bool geda_font_dialog_get_show_preview (GedaFontDialog *dialog);
-void geda_font_dialog_set_show_preview (GedaFontDialog *dialog, bool show_preview);
+bool        geda_font_dialog_get_show_preview   (GedaFontDialog *dialog);
+void        geda_font_dialog_set_show_preview   (GedaFontDialog *dialog,
+                                                 bool            show_preview);
+
 
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
+
+#undef PFD
+#undef PFY
+#undef PFF
+
 #endif /* __GEDA_FONT_DIALOG_H__ */
