@@ -2,7 +2,7 @@
 
     * src/widgets/geda_font_button.c: Remove unnecessary g_return_val_if_fail
       from geda_font_button_create_widgets. Include geda_container.h and utilize
-      geda_container_xxx macros.
+      geda_container_xxx macros. Remove type-checking cast for g_object_notify.
 
 2017-05-15 Wiley E. Hill <wileyhill@gmail.com>
 

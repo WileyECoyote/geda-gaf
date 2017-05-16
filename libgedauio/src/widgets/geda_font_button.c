@@ -471,7 +471,7 @@ geda_font_button_update_from_name (GedaFontButton *font_button)
 
   geda_font_button_update_font_data (font_button);
 
-  g_object_notify (G_OBJECT (font_button), "font-name");
+  g_object_notify ((GObject*)font_button, "font-name");
 
 }
 
@@ -625,8 +625,8 @@ dialog_ok_clicked (GtkWidget *dialog_apply_button, void * data)
     geda_font_button_update_from_name (font_button);
     geda_font_button_update_label (font_button);
 
-    g_object_notify (G_OBJECT (font_button), "font-name");
-    g_object_notify (G_OBJECT (font_button), "font-size");
+    g_object_notify ((GObject*)font_button, "font-name");
+    g_object_notify ((GObject*)font_button, "font-size");
 
     /* Emit font_set signal */
     g_signal_emit (font_button, font_button_signals[FONT_SET], 0);
@@ -1048,6 +1048,7 @@ geda_font_button_set_title (GedaFontButton *font_button,
                             const char     *title)
 {
   char *old_title;
+
   g_return_if_fail (GEDA_IS_FONT_BUTTON (font_button));
 
   old_title = font_button->title;
@@ -1058,7 +1059,7 @@ geda_font_button_set_title (GedaFontButton *font_button,
     gtk_window_set_title (GTK_WINDOW (font_button->priv->font_dialog),
                           font_button->title);
 
-  g_object_notify (G_OBJECT (font_button), "title");
+  g_object_notify ((GObject*)font_button, "title");
 }
 
 /*! \brief GedaFontButton Get Title
@@ -1121,7 +1122,7 @@ geda_font_button_set_use_font (GedaFontButton *font_button, bool use_font)
     else
       gtk_widget_set_style (font_button->priv->font_label, NULL);
 
-    g_object_notify (G_OBJECT (font_button), "use-font");
+    g_object_notify ((GObject*)font_button, "use-font");
   }
 }
 
@@ -1187,7 +1188,7 @@ geda_font_button_set_font_name (GedaFontButton *font_button,
     else
       result = FALSE;
 
-    g_object_notify (G_OBJECT (font_button), "font-name");
+    g_object_notify ((GObject*)font_button, "font-name");
   }
 
   return result;
@@ -1230,7 +1231,7 @@ void geda_font_button_set_use_size (GedaFontButton *font_button,
 
     geda_font_button_label_set_font (font_button);
 
-    g_object_notify (G_OBJECT (font_button), "use-size");
+    g_object_notify ((GObject*)font_button, "use-size");
   }
 }
 
@@ -1276,7 +1277,7 @@ geda_font_button_set_show_size (GedaFontButton *font_button, bool show_size)
     font_button->priv->inside = geda_font_button_create_widgets (font_button);
     geda_container_add (font_button, font_button->priv->inside);
 
-    g_object_notify (G_OBJECT (font_button), "show-size");
+    g_object_notify ((GObject*)font_button, "show-size");
   }
 }
 
@@ -1402,7 +1403,7 @@ geda_font_button_set_show_style (GedaFontButton *font_button,
 
       geda_font_button_label_set_text (font_button);
 
-      g_object_notify (G_OBJECT (font_button), "show-style");
+      g_object_notify ((GObject*)font_button, "show-style");
   }
 }
 
