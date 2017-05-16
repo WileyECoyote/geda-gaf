@@ -1,7 +1,8 @@
 2017-05-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_font_dialog.h: Reorganize header; add temporary macros for
-      lengthy PangoFontDescription stuff.
+      lengthy PangoFontDescription stuff. Add macro geda_font_dialog_set_title
+      as alias for gtk_window_set_title.
 
     * src/widgets/geda_font_button.c: Remove unnecessary g_return_val_if_fail
       from geda_font_button_create_widgets. Include geda_container.h and utilize
