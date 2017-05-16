@@ -43,6 +43,7 @@
 #define WITHOUT_GUILE 1
 #include <libgeda/libgeda.h>
 
+#include "../../include/geda_container.h"
 #include "../../include/geda_font_button.h"
 #include "../../include/geda_font_dialog.h"
 #include "../../include/geda_label.h"
@@ -933,7 +934,7 @@ static void geda_font_button_instance_init(GTypeInstance *instance, void *g_clas
 
   font_button->priv->inside = geda_font_button_create_widgets (font_button);
 
-  gtk_container_add (GTK_CONTAINER (font_button), font_button->priv->inside);
+  geda_container_add (font_button, font_button->priv->inside);
 
   {
     AtkObject *obj;
@@ -1269,11 +1270,11 @@ geda_font_button_set_show_size (GedaFontButton *font_button, bool show_size)
 
     font_button->priv->show_size = show_size;
 
-    gtk_container_remove (GTK_CONTAINER (font_button), font_button->priv->inside);
+    geda_container_remove (font_button, font_button->priv->inside);
     gtk_widget_destroy (font_button->priv->inside);
 
     font_button->priv->inside = geda_font_button_create_widgets (font_button);
-    gtk_container_add (GTK_CONTAINER (font_button), font_button->priv->inside);
+    geda_container_add (font_button, font_button->priv->inside);
 
     g_object_notify (G_OBJECT (font_button), "show-size");
   }
