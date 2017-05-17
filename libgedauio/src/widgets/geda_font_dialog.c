@@ -1218,35 +1218,35 @@ geda_font_dialog_add_widgets(GedaFontDialog *dialog)
 
   /* Our trees are all text with the same attributes, so we're going
    * to reuse this renderer */
-  renderer = GTK_CELL_RENDERER ( g_object_new (GTK_TYPE_CELL_RENDERER_TEXT,
-                                               "editable", FALSE,
-                                                NULL));
+  renderer = g_object_new (GTK_TYPE_CELL_RENDERER_TEXT,
+                           "editable", FALSE,
+                           NULL);
 
-  family_scroll = GTK_WIDGET ( g_object_new (GTK_TYPE_SCROLLED_WINDOW,
-                                             "border-width", 3,
-                                             "hscrollbar-policy", GTK_POLICY_AUTOMATIC,
-                                             "vscrollbar-policy", GTK_POLICY_ALWAYS,
-                                             "shadow-type",       GTK_SHADOW_IN,
-                                             "visible",           TRUE,
-                                              NULL));
+  family_scroll = g_object_new (GTK_TYPE_SCROLLED_WINDOW,
+                                "border-width", 3,
+                                "hscrollbar-policy", GTK_POLICY_AUTOMATIC,
+                                "vscrollbar-policy", GTK_POLICY_ALWAYS,
+                                "shadow-type",       GTK_SHADOW_IN,
+                                "visible",           TRUE,
+                                NULL);
 
   /* Create the lists  */
   model = gtk_list_store_new (2, G_TYPE_OBJECT,  /* FAMILY_COLUMN */
                                  G_TYPE_STRING); /* FAMILY_NAME_COLUMN */
 
   /* Create the treeview */
-  dialog->family_list = GTK_WIDGET (g_object_new (GTK_TYPE_TREE_VIEW,
-                                                  "model",           model,
-                                                  "rules-hint",      TRUE,
-                                                  "headers-visible", TRUE,
-                                                  "visible",         TRUE,
-                                                   NULL));
+  dialog->family_list = g_object_new (GTK_TYPE_TREE_VIEW,
+                                      "model",           model,
+                                      "rules-hint",      TRUE,
+                                      "headers-visible", TRUE,
+                                      "visible",         TRUE,
+                                      NULL);
   g_object_unref (model);
 
-  column = GTK_TREE_VIEW_COLUMN ( g_object_new (GTK_TYPE_TREE_VIEW_COLUMN,
-                                                "title", _("Family"),
-                                                "sizing", GTK_TREE_VIEW_COLUMN_AUTOSIZE,
-                                                NULL));
+  column = g_object_new (GTK_TYPE_TREE_VIEW_COLUMN,
+                         "title", _("Family"),
+                         "sizing", GTK_TREE_VIEW_COLUMN_AUTOSIZE,
+                         NULL);
 
   gtk_tree_view_column_pack_start (column, renderer, TRUE);
   gtk_tree_view_column_add_attribute (column, renderer, "text", FAMILY_NAME_COLUMN);
@@ -1264,29 +1264,29 @@ geda_font_dialog_add_widgets(GedaFontDialog *dialog)
                     GTK_EXPAND | GTK_FILL,
                     GTK_EXPAND | GTK_FILL, 0, 0);
 
-  style_scroll = GTK_WIDGET ( g_object_new (GTK_TYPE_SCROLLED_WINDOW,
-                                             "border-width", 0,
-                                             "hscrollbar-policy", GTK_POLICY_AUTOMATIC,
-                                             "vscrollbar-policy", GTK_POLICY_ALWAYS,
-                                             "shadow-type",       GTK_SHADOW_IN,
-                                             "visible",           TRUE,
-                                             NULL));
+  style_scroll = g_object_new (GTK_TYPE_SCROLLED_WINDOW,
+                               "border-width", 0,
+                               "hscrollbar-policy", GTK_POLICY_AUTOMATIC,
+                               "vscrollbar-policy", GTK_POLICY_ALWAYS,
+                               "shadow-type",       GTK_SHADOW_IN,
+                               "visible",           TRUE,
+                               NULL);
 
   model = gtk_list_store_new (2, G_TYPE_OBJECT,  /* FACE_COLUMN */
                                  G_TYPE_STRING); /* FACE_NAME_COLUMN */
 
-  dialog->style_list = GTK_WIDGET (g_object_new (GTK_TYPE_TREE_VIEW,
-                                                 "model",           model,
-                                                 "rules-hint",      TRUE,
-                                                 "headers-visible", TRUE,
-                                                 "visible",         TRUE,
-                                                  NULL));
+  dialog->style_list = g_object_new (GTK_TYPE_TREE_VIEW,
+                                     "model",           model,
+                                     "rules-hint",      TRUE,
+                                     "headers-visible", TRUE,
+                                     "visible",         TRUE,
+                                     NULL);
   g_object_unref (model);
 
-  column = GTK_TREE_VIEW_COLUMN ( g_object_new (GTK_TYPE_TREE_VIEW_COLUMN,
-                                                "title", _("Face"),
-                                                "sizing", GTK_TREE_VIEW_COLUMN_AUTOSIZE,
-                                                NULL));
+  column = g_object_new (GTK_TYPE_TREE_VIEW_COLUMN,
+                         "title", _("Face"),
+                         "sizing", GTK_TREE_VIEW_COLUMN_AUTOSIZE,
+                         NULL);
 
   gtk_tree_view_column_pack_start (column, renderer, TRUE);
   gtk_tree_view_column_add_attribute (column, renderer, "text", FACE_NAME_COLUMN);
@@ -1305,28 +1305,28 @@ geda_font_dialog_add_widgets(GedaFontDialog *dialog)
                     GTK_EXPAND | GTK_FILL,
                     GTK_EXPAND | GTK_FILL, 0, 0);
 
-  size_scroll = GTK_WIDGET ( g_object_new (GTK_TYPE_SCROLLED_WINDOW,
-                                           "border-width", 3,
-                                           "hscrollbar-policy", GTK_POLICY_NEVER,
-                                           "vscrollbar-policy", GTK_POLICY_ALWAYS,
-                                           "shadow-type",       GTK_SHADOW_IN,
-                                           "visible",           TRUE,
-                                            NULL));
+  size_scroll = g_object_new (GTK_TYPE_SCROLLED_WINDOW,
+                              "border-width", 3,
+                              "hscrollbar-policy", GTK_POLICY_NEVER,
+                              "vscrollbar-policy", GTK_POLICY_ALWAYS,
+                              "shadow-type",       GTK_SHADOW_IN,
+                              "visible",           TRUE,
+                              NULL);
 
   model = gtk_list_store_new (1, G_TYPE_INT);
 
-  dialog->size_list = GTK_WIDGET (g_object_new (GTK_TYPE_TREE_VIEW,
-                                               "model",           model,
-                                               "rules-hint",      TRUE,
-                                               "headers-visible", FALSE,
-                                               "visible",         TRUE,
-                                                NULL));
+  dialog->size_list = g_object_new (GTK_TYPE_TREE_VIEW,
+                                    "model",           model,
+                                    "rules-hint",      TRUE,
+                                    "headers-visible", FALSE,
+                                    "visible",         TRUE,
+                                    NULL);
   g_object_unref (model);
 
-  column = GTK_TREE_VIEW_COLUMN ( g_object_new (GTK_TYPE_TREE_VIEW_COLUMN,
-                                                "title", _("Face"),
-                                                "sizing", GTK_TREE_VIEW_COLUMN_AUTOSIZE,
-                                                NULL));
+  column = g_object_new (GTK_TYPE_TREE_VIEW_COLUMN,
+                         "title", _("Face"),
+                         "sizing", GTK_TREE_VIEW_COLUMN_AUTOSIZE,
+                         NULL);
 
   gtk_tree_view_column_pack_start (column, renderer, TRUE);
   gtk_tree_view_column_add_attribute (column, renderer, "text", SIZE_COLUMN);

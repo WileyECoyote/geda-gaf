@@ -3,6 +3,9 @@
     * include/geda_font_dialog.h: Change main_vbox and action_area members to
       GtkBox instead of GtkWidget.
 
+    * src/widgets/geda_font_dialog.c: Remove unnecessary type-checking cast
+      for object return from g_object_new, and all casts for that matter.
+
 2017-05-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_font_dialog.h: Reorganize header; add temporary macros for
