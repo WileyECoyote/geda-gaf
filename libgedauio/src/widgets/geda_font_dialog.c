@@ -1150,8 +1150,8 @@ geda_font_dialog_add_widgets(GedaFontDialog *dialog)
   AtkObject         *atk_size_obj;
   AtkObject         *atk_preview_obj;
 
-  GtkWidget         *table;
   GtkWidget         *font_label, *style_label, *size_label, *preview_label;
+  GtkTable          *table;
 
   GtkListStore      *model;
   GtkTreeViewColumn *column;
@@ -1176,43 +1176,43 @@ geda_font_dialog_add_widgets(GedaFontDialog *dialog)
   preview_tip       = _("Editable sample preview of the currently selected font settings");
 
   /* Create the table of font, style & size. */
-  table = gtk_table_new (3, 3, FALSE);
-  gtk_table_set_row_spacings (GTK_TABLE (table), 6);
-  gtk_table_set_col_spacings (GTK_TABLE (table), 12);
-  gtk_box_pack_start (dialog->main_vbox, table, TRUE, TRUE, 0);
+  table = (GtkTable*)gtk_table_new (3, 3, FALSE);
+  gtk_table_set_row_spacings (table, 6);
+  gtk_table_set_col_spacings (table, 12);
+  gtk_box_pack_start (dialog->main_vbox, (GtkWidget*)table, TRUE, TRUE, 0);
 
   font_label = geda_mnemonic_label_new (_("_Family:"));
   gtk_misc_set_alignment (GTK_MISC (font_label), 0.0, 0.5);
   gtk_widget_show (font_label);
-  gtk_table_attach (GTK_TABLE (table), font_label, 0, 1, 0, 1, GTK_FILL, 0, 0, 0);
+  gtk_table_attach (table, font_label, 0, 1, 0, 1, GTK_FILL, 0, 0, 0);
 
   style_label = geda_mnemonic_label_new (_("_Style:"));
   gtk_misc_set_alignment (GTK_MISC (style_label), 0.0, 0.5);
   gtk_widget_show (style_label);
-  gtk_table_attach (GTK_TABLE (table), style_label, 1, 2, 0, 1, GTK_FILL, 0, 0, 0);
+  gtk_table_attach (table, style_label, 1, 2, 0, 1, GTK_FILL, 0, 0, 0);
 
   size_label = geda_mnemonic_label_new (_("Si_ze:"));
   gtk_misc_set_alignment (GTK_MISC (size_label), 0.0, 0.5);
   gtk_widget_show (size_label);
-  gtk_table_attach (GTK_TABLE (table), size_label, 2, 3, 0, 1, GTK_FILL, 0, 0, 0);
+  gtk_table_attach (table, size_label, 2, 3, 0, 1, GTK_FILL, 0, 0, 0);
 
   dialog->font_entry = geda_entry_new ();
   gtk_editable_set_editable (GTK_EDITABLE (dialog->font_entry), TRUE);
   gtk_widget_set_size_request (dialog->font_entry, 20, -1);
   gtk_widget_show (dialog->font_entry);
-  gtk_table_attach (GTK_TABLE (table), dialog->font_entry, 0, 1, 1, 2, GTK_FILL, 0, 0, 0);
+  gtk_table_attach (table, dialog->font_entry, 0, 1, 1, 2, GTK_FILL, 0, 0, 0);
 
   dialog->style_entry = geda_entry_new ();
   gtk_editable_set_editable (GTK_EDITABLE (dialog->style_entry), FALSE);
   gtk_widget_set_size_request (dialog->style_entry, 20, -1);
   gtk_widget_show (dialog->style_entry);
-  gtk_table_attach (GTK_TABLE (table), dialog->style_entry, 1, 2, 1, 2, GTK_FILL, 0, 0, 0);
+  gtk_table_attach (table, dialog->style_entry, 1, 2, 1, 2, GTK_FILL, 0, 0, 0);
 
   /* Size Entry */
   dialog->size_entry = geda_entry_new ();
   gtk_widget_set_size_request (dialog->size_entry, 20, -1);
   gtk_widget_set_tooltip_text (GTK_WIDGET(dialog->size_entry), size_entry_tip);
-  gtk_table_attach (GTK_TABLE (table), dialog->size_entry, 2, 3, 1, 2, GTK_FILL, 0, 0, 0);
+  gtk_table_attach (table, dialog->size_entry, 2, 3, 1, 2, GTK_FILL, 0, 0, 0);
   gtk_widget_set_can_default  (dialog->size_entry,FALSE);
   gtk_widget_show (dialog->size_entry);
 
@@ -1260,7 +1260,7 @@ geda_font_dialog_add_widgets(GedaFontDialog *dialog)
   dialog->family_handler = g_signal_connect (selection, "changed",
                            G_CALLBACK ( callback_select_family ), dialog);
 
-  gtk_table_attach (GTK_TABLE (table), family_scroll, 0, 1, 1, 3,
+  gtk_table_attach (table, family_scroll, 0, 1, 1, 3,
                     GTK_EXPAND | GTK_FILL,
                     GTK_EXPAND | GTK_FILL, 0, 0);
 
@@ -1301,7 +1301,7 @@ geda_font_dialog_add_widgets(GedaFontDialog *dialog)
   dialog->face_handler = g_signal_connect (selection, "changed",
                          G_CALLBACK (callback_select_style), dialog);
 
-  gtk_table_attach (GTK_TABLE (table), style_scroll, 1, 2, 1, 3,
+  gtk_table_attach (table, style_scroll, 1, 2, 1, 3,
                     GTK_EXPAND | GTK_FILL,
                     GTK_EXPAND | GTK_FILL, 0, 0);
 
@@ -1341,7 +1341,7 @@ geda_font_dialog_add_widgets(GedaFontDialog *dialog)
   dialog->size_handler = g_signal_connect (selection, "changed",
                          G_CALLBACK (callback_select_size), dialog);
 
-  gtk_table_attach (GTK_TABLE (table), size_scroll, 2, 3, 2, 3,
+  gtk_table_attach (table, size_scroll, 2, 3, 2, 3,
                     GTK_FILL, GTK_EXPAND | GTK_FILL, 0, 0);
 
   GList *focus_chain; /* Aka Tab Order */
@@ -1402,7 +1402,7 @@ geda_font_dialog_add_widgets(GedaFontDialog *dialog)
   }
 
   gtk_widget_pop_composite_child();
-  gtk_widget_show (table);
+  gtk_widget_show ((GtkWidget*)table);
 
   g_signal_connect (dialog->size_entry, "process-entry",
                     G_CALLBACK (callback_size_entry_activate),

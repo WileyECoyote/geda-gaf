@@ -5,7 +5,8 @@
 
     * src/widgets/geda_font_dialog.c: Remove unnecessary type-checking cast
       for object return from g_object_new, and all casts for that matter.
-      Reduce unnecessary type-checking cast.
+      Reduce unnecessary type-checking cast, change GtkWidget -> GtkTable in
+      geda_font_dialog_add_widgets.
 
 2017-05-16 Wiley E. Hill <wileyhill@gmail.com>
 
