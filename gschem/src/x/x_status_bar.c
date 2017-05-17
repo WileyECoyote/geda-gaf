@@ -372,18 +372,16 @@ GtkWidget *x_status_bar_create(GschemToplevel *w_current)
     right_mouse_text = "Pan/Cancel";
   }
 
-  status_bar = GTK_WIDGET (g_object_new (GSCHEM_TYPE_STATUS_BAR,
-                                        "grid-mode",   w_current->grid_mode,
-                                        "grid-size",   -1,
-                                        "left-text",  _("Pick"),
-                                        "middle-text", middle_mouse_text,
-                                        "right-text",  right_mouse_text,
-                                        "snap-mode",   w_current->snap,
-                                        "snap-size",   w_current->snap_size,
-                                        "status-text", _("Select Mode"),
-                                        NULL));
-
-
+  status_bar = g_object_new (GSCHEM_TYPE_STATUS_BAR,
+                             "grid-mode",   w_current->grid_mode,
+                             "grid-size",   -1,
+                             "left-text",  _("Pick"),
+                             "middle-text", middle_mouse_text,
+                             "right-text",  right_mouse_text,
+                             "snap-mode",   w_current->snap,
+                             "snap-size",   w_current->snap_size,
+                             "status-text", _("Select Mode"),
+                             NULL);
 
   g_signal_connect (status_bar, "set-middle-action",
                     G_CALLBACK (x_status_bar_set_middle_action),
