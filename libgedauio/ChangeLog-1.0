@@ -5,8 +5,10 @@
 
     * src/widgets/geda_font_dialog.c: Remove unnecessary type-checking cast
       for object return from g_object_new, and all casts for that matter.
-      Reduce unnecessary type-checking cast, change GtkWidget -> GtkTable in
-      geda_font_dialog_add_widgets.
+      Reduce unnecessary type-checking cast, change GtkWidget -> GtkTable
+      in geda_font_dialog_add_widgets. Replace geda_mnemonic_label_new with
+      geda_aligned_mnemonic_label_new. Change GedaFontDialog -> GtkWidget in
+      geda_font_dialog_new_with_title.
 
     * src/widgets/geda_tearoff_menu_item.c: Reduce unnecessary type-checking
       cast to GedaMenu and GedaMenuItem.

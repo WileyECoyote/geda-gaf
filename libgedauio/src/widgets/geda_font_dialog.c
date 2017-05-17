@@ -1757,15 +1757,15 @@ GtkWidget *geda_font_dialog_new (void)
  */
 GtkWidget *geda_font_dialog_new_with_title (const char *title)
 {
-  GedaFontDialog *dialog;
+  GtkWidget *dialog;
 
   dialog = g_object_new (GEDA_TYPE_FONT_DIALOG, NULL);
 
   if (title) {
-    gtk_window_set_title (GTK_WINDOW (dialog), title);
+    geda_font_dialog_set_title (dialog, title);
   }
 
-  return GTK_WIDGET (dialog);
+  return dialog;
 }
 
 /*! \todo Finish function documentation!!!
