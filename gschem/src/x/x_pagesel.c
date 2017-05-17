@@ -91,11 +91,11 @@ x_pagesel_open (GschemToplevel *w_current)
 {
   if (w_current->pswindow == NULL) {
 
-    w_current->pswindow = GTK_WIDGET (g_object_new (TYPE_PAGESEL,
-                                                    /* GschemDialog */
-                                                    "settings-name",   IDS_PAGE_MANAGER,
-                                                    "gschem-toplevel", w_current,
-                                                    NULL));
+    w_current->pswindow = g_object_new (TYPE_PAGESEL,
+                                        /* GschemDialog */
+                                        "settings-name",   IDS_PAGE_MANAGER,
+                                        "gschem-toplevel", w_current,
+                                        NULL);
 
     g_signal_connect (w_current->pswindow,
                       "response",
@@ -1102,15 +1102,14 @@ pagesel_instance_init (GTypeInstance *instance, void *class)
                                              G_TYPE_POINTER);
 
   /* create a scrolled window for the TreeView */
-  scrolled_win = GTK_WIDGET (
-    g_object_new (GTK_TYPE_SCROLLED_WINDOW,
-                  /* GtkContainer */
-                  "border-width",      DIALOG_BORDER_WIDTH,
-                  /* GtkScrolledWindow */
-                  "hscrollbar-policy", GTK_POLICY_AUTOMATIC,
-                  "vscrollbar-policy", GTK_POLICY_ALWAYS,
-                  "shadow-type",       GTK_SHADOW_ETCHED_IN,
-                  NULL));
+  scrolled_win = g_object_new (GTK_TYPE_SCROLLED_WINDOW,
+                               /* GtkContainer */
+                               "border-width",      DIALOG_BORDER_WIDTH,
+                               /* GtkScrolledWindow */
+                               "hscrollbar-policy", GTK_POLICY_AUTOMATIC,
+                               "vscrollbar-policy", GTK_POLICY_ALWAYS,
+                               "shadow-type",       GTK_SHADOW_ETCHED_IN,
+                               NULL);
 
   /* create the TreeView */
   tree_view = g_object_new (GTK_TYPE_TREE_VIEW,
@@ -1136,20 +1135,18 @@ pagesel_instance_init (GTypeInstance *instance, void *class)
 
   /* ---------------------- first column: page name ---------------------- */
 
-  renderer = GTK_CELL_RENDERER (
-    g_object_new (GTK_TYPE_CELL_RENDERER_TEXT,
-                  /* GtkCellRendererText */
-                  "editable", FALSE,
-                  NULL));
+  renderer = g_object_new (GTK_TYPE_CELL_RENDERER_TEXT,
+                           /* GtkCellRendererText */
+                           "editable", FALSE,
+                           NULL);
 
-  column = GTK_TREE_VIEW_COLUMN (
-    g_object_new (GTK_TYPE_TREE_VIEW_COLUMN,
-                  /* GtkTreeViewColumn */
-                  "title",    _("Filename"),
-                  "min-width", COLUMN_NAME_MIN_WIDTH,
-                  "sizing",    GTK_TREE_VIEW_COLUMN_AUTOSIZE,
-                  "resizable", TRUE,
-                  NULL));
+  column = g_object_new (GTK_TYPE_TREE_VIEW_COLUMN,
+                         /* GtkTreeViewColumn */
+                         "title",    _("Filename"),
+                         "min-width", COLUMN_NAME_MIN_WIDTH,
+                         "sizing",    GTK_TREE_VIEW_COLUMN_AUTOSIZE,
+                         "resizable", TRUE,
+                         NULL);
 
   gtk_tree_view_column_pack_start (column, renderer, TRUE);
   gtk_tree_view_column_add_attribute (column, renderer, "text", COLUMN_NAME);
@@ -1165,31 +1162,28 @@ pagesel_instance_init (GTypeInstance *instance, void *class)
   pagesel->row_height = 0;
 
   /* --------------------- second column: changed  ---------------------- */
-  renderer = GTK_CELL_RENDERER (
-    g_object_new (GTK_TYPE_CELL_RENDERER_TOGGLE,
-                  /* GtkCellRendererToggle */
-                  "activatable", FALSE,
-                  NULL));
+  renderer = g_object_new (GTK_TYPE_CELL_RENDERER_TOGGLE,
+                           /* GtkCellRendererToggle */
+                           "activatable", FALSE,
+                           NULL);
 
-  column = GTK_TREE_VIEW_COLUMN (
-    g_object_new (GTK_TYPE_TREE_VIEW_COLUMN,
-                  /* GtkTreeViewColumn */
-                  "title", _("Changed"),
-                  "min-width", COLUMN_CHANGED_MIN_WIDTH,
-                  NULL));
+  column = g_object_new (GTK_TYPE_TREE_VIEW_COLUMN,
+                         /* GtkTreeViewColumn */
+                         "title", _("Changed"),
+                         "min-width", COLUMN_CHANGED_MIN_WIDTH,
+                         NULL);
 
   gtk_tree_view_column_pack_start (column, renderer, FALSE);
   gtk_tree_view_column_add_attribute (column, renderer, "active", COLUMN_CHANGED);
   gtk_tree_view_append_column (tree_view, column);
 
   /* --------------------- third column is a spacer ---------------------- */
-  column = GTK_TREE_VIEW_COLUMN (
-    g_object_new (GTK_TYPE_TREE_VIEW_COLUMN,
-                  /* GtkTreeViewColumn */
-                  "expand", TRUE,
-                  "resizable", FALSE,
-                  "sizing",GTK_TREE_VIEW_COLUMN_FIXED,
-                  NULL));
+  column = g_object_new (GTK_TYPE_TREE_VIEW_COLUMN,
+                         /* GtkTreeViewColumn */
+                         "expand", TRUE,
+                         "resizable", FALSE,
+                         "sizing",GTK_TREE_VIEW_COLUMN_FIXED,
+                         NULL);
 
   gtk_tree_view_append_column (tree_view, column);
 
@@ -1202,10 +1196,10 @@ pagesel_instance_init (GTypeInstance *instance, void *class)
   gtk_widget_show_all (scrolled_win);
 
   /* add a label below the scrolled window */
-  label = GTK_WIDGET (g_object_new (GTK_TYPE_LABEL,
-                                    /* GtkLabel */
-                                    "label", _("Right click on rows for more options..."),
-                                    NULL));
+  label = g_object_new (GTK_TYPE_LABEL,
+                        /* GtkLabel */
+                        "label", _("Right click on rows for more options..."),
+                        NULL);
 
   gtk_box_pack_start (GTK_BOX (GTK_DIALOG (ThisDialog)->vbox), label, FALSE, FALSE, 5);
   gtk_widget_show (label);
@@ -1275,14 +1269,14 @@ pagesel_instance_init (GTypeInstance *instance, void *class)
   GEDA_CALLBACK_SWITCH (AutoHeight, pagesel_auto_height_toggled, ThisDialog)
 
   /* Create and add alignment container to hold the button container */
-  alignment = GTK_WIDGET (g_object_new (GTK_TYPE_ALIGNMENT,
-                                        "right-padding", 0,
-                                        "left-padding",  50,
-                                        "xscale",        1.0,
-                                        "yscale",        0.0,
-                                        "xalign",        1.0,
-                                        "yalign",        0.5,
-                                        NULL));
+  alignment = g_object_new (GTK_TYPE_ALIGNMENT,
+                            "right-padding", 0,
+                            "left-padding",  50,
+                            "xscale",        1.0,
+                            "yscale",        0.0,
+                            "xalign",        1.0,
+                            "yalign",        0.5,
+                            NULL);
 
   g_object_set (alignment, "visible", TRUE, NULL);
   gtk_box_pack_end (GTK_BOX (action_hbox), alignment, TRUE, TRUE, 0);

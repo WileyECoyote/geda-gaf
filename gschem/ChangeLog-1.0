@@ -2,6 +2,8 @@
 
     * src/base/gschem_status_bar.c: Remove unneeded cast from g_object_new.
 
+    * src/x/x_pagesel.c: Remove unneeded cast from g_object_new.
+
 2017-05-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_sessions.c: Remove unneeded cast from g_object_new.
