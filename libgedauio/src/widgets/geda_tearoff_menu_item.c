@@ -175,7 +175,7 @@ geda_tearoff_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
     else
       gdk_window_clear_area (widget->window, area->x, area->y, area->width, area->height);
 
-    if (GEDA_IS_MENU (widget->parent) && GEDA_MENU (widget->parent)->torn_off)
+    if (GEDA_IS_MENU (widget->parent) && ((GedaMenu*)widget->parent)->torn_off)
     {
       int arrow_x;
       int toggle_size;
@@ -293,7 +293,7 @@ geda_tearoff_menu_item_get_preferred_height (GtkWidget *widget,
 
   parent = gtk_widget_get_parent (widget);
 
-  if (GEDA_IS_MENU (parent) && GEDA_MENU (parent)->torn_off) {
+  if (GEDA_IS_MENU (parent) && ((GedaMenu*)parent)->torn_off) {
 
     *minimum += ARROW_SIZE;
     *natural += ARROW_SIZE;
@@ -318,7 +318,7 @@ geda_tearoff_menu_item_draw (GtkWidget *widget, cairo_t *cr)
   int              x, y, width, height;
   int              right_max;
 
-  menu_item    = GEDA_MENU_ITEM (widget);
+  menu_item    = (GedaMenuItem*)widget;
   context      = gtk_widget_get_style_context (widget);
   direction    = gtk_widget_get_direction (widget);
   state        = gtk_widget_get_state_flags (widget);
@@ -342,7 +342,7 @@ geda_tearoff_menu_item_draw (GtkWidget *widget, cairo_t *cr)
 
   parent = gtk_widget_get_parent (widget);
 
-  if (GEDA_IS_MENU (parent) && GEDA_MENU (parent)->torn_off) {
+  if (GEDA_IS_MENU (parent) && ((GedaMenu*)parent)->torn_off) {
 
     int    arrow_x;
     double angle;

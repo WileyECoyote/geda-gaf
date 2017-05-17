@@ -8,6 +8,9 @@
       Reduce unnecessary type-checking cast, change GtkWidget -> GtkTable in
       geda_font_dialog_add_widgets.
 
+    * src/widgets/geda_tearoff_menu_item.c: Reduce unnecessary type-checking
+      cast to GedaMenu and GedaMenuItem.
+
 2017-05-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_font_dialog.h: Reorganize header; add temporary macros for
