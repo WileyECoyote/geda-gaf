@@ -1358,8 +1358,7 @@ geda_font_dialog_add_widgets(GedaFontDialog *dialog)
   gtk_box_pack_start (dialog->main_vbox, vbox, FALSE, TRUE, 0);
 
   /* create the text entry widget */
-  preview_label = geda_mnemonic_label_new (_("_Preview:"));
-  gtk_misc_set_alignment (GTK_MISC (preview_label), 0.0, 0.5);
+  preview_label = geda_aligned_mnemonic_label_new (_("_Preview:"), 0.0, 0.25);
   gtk_widget_show (preview_label);
   gtk_box_pack_start ((GtkBox*)vbox, preview_label, FALSE, TRUE, 0);
 
