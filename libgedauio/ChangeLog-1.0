@@ -5,6 +5,7 @@
 
     * src/widgets/geda_font_dialog.c: Remove unnecessary type-checking cast
       for object return from g_object_new, and all casts for that matter.
+      Reduce unnecessary type-checking cast.
 
 2017-05-16 Wiley E. Hill <wileyhill@gmail.com>
 

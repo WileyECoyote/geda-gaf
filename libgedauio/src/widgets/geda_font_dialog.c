@@ -163,14 +163,14 @@ geda_font_dialog_update_preview (GedaFontDialog *dialog)
       gtk_widget_set_size_request (preview_entry, -1, new_height);
 
     /* This sets the preview text, if it hasn't been set already. */
-    text = gtk_entry_get_text (GTK_ENTRY (preview_entry));
+    text = gtk_entry_get_text ((GtkEntry*)preview_entry);
 
     if (strlen (text) == 0) {
-      gtk_entry_set_text (GTK_ENTRY (dialog->preview_entry),
+      gtk_entry_set_text ((GtkEntry*)dialog->preview_entry,
                           pango_language_get_sample_string (NULL));
     }
 
-    gtk_editable_set_position (GTK_EDITABLE (preview_entry), 0);
+    gtk_editable_set_position ((GtkEditable*)preview_entry, 0);
   }
 }
 
@@ -178,7 +178,7 @@ static void
 callback_update_preview (GtkWidget *entry,
                                   GedaFontDialog *dialog)
 {
-  g_object_notify (G_OBJECT (dialog), "preview-text");
+  g_object_notify ((GObject*)dialog, "preview-text");
 }
 
 static void
@@ -1361,23 +1361,23 @@ geda_font_dialog_add_widgets(GedaFontDialog *dialog)
   preview_label = geda_mnemonic_label_new (_("_Preview:"));
   gtk_misc_set_alignment (GTK_MISC (preview_label), 0.0, 0.5);
   gtk_widget_show (preview_label);
-  gtk_box_pack_start (GTK_BOX (vbox), preview_label, FALSE, TRUE, 0);
+  gtk_box_pack_start ((GtkBox*)vbox, preview_label, FALSE, TRUE, 0);
 
   text_box = gtk_hbox_new (FALSE, 0);
   gtk_widget_show (text_box);
-  gtk_box_pack_start (GTK_BOX (vbox), text_box, FALSE, TRUE, 0);
+  gtk_box_pack_start ((GtkBox*)vbox, text_box, FALSE, TRUE, 0);
 
   dialog->preview_entry = gtk_entry_new ();
   gtk_widget_set_size_request (dialog->preview_entry, -1, INITIAL_PREVIEW_HEIGHT);
-  gtk_widget_set_tooltip_text (GTK_WIDGET(dialog->preview_entry),preview_tip);
+  gtk_widget_set_tooltip_text (dialog->preview_entry, preview_tip);
   gtk_widget_show (dialog->preview_entry);
-  gtk_box_pack_start (GTK_BOX (text_box), dialog->preview_entry, TRUE, TRUE, 0);
+  gtk_box_pack_start ((GtkBox*)text_box, dialog->preview_entry, TRUE, TRUE, 0);
 
   /** Set the relationships between the label and their Widgets **/
-  geda_label_set_mnemonic_widget (GEDA_LABEL (font_label),    dialog->family_list);
-  geda_label_set_mnemonic_widget (GEDA_LABEL (style_label),   dialog->style_list);
-  geda_label_set_mnemonic_widget (GEDA_LABEL (size_label),    dialog->size_entry);
-  geda_label_set_mnemonic_widget (GEDA_LABEL (preview_label), dialog->preview_entry);
+  geda_label_set_mnemonic_widget ((GedaLabel*) font_label,    dialog->family_list);
+  geda_label_set_mnemonic_widget ((GedaLabel*) style_label,   dialog->style_list);
+  geda_label_set_mnemonic_widget ((GedaLabel*) size_label,    dialog->size_entry);
+  geda_label_set_mnemonic_widget ((GedaLabel*) preview_label, dialog->preview_entry);
 
   atk_font_obj    = atk_widget_linked_label_new (font_label,    dialog->family_list);
   atk_style_obj   = atk_widget_linked_label_new (style_label,   dialog->style_list);
@@ -1580,7 +1580,7 @@ geda_font_dialog_class_init(void *class, void *class_data)
 static void geda_font_dialog_instance_init(GTypeInstance *instance, void *g_class)
 {
   GedaFontDialog *dialog     = (GedaFontDialog*)instance;
-  GtkDialog      *Dialog     = GTK_DIALOG (dialog);
+  GtkDialog      *Dialog     = (GtkDialog*)dialog;
   GtkSettings    *settings;
 
   if (!font_dialog_hash) {
@@ -1653,7 +1653,7 @@ static void geda_font_dialog_instance_init(GTypeInstance *instance, void *g_clas
 
     text = pango_language_get_sample_string (NULL);
 
-    gtk_entry_set_text (GTK_ENTRY (dialog->preview_entry), text);
+    gtk_entry_set_text ((GtkEntry*)dialog->preview_entry, text);
   }
 
   /* Setup the Action Area */
@@ -1678,12 +1678,12 @@ static void geda_font_dialog_instance_init(GTypeInstance *instance, void *g_clas
 
   gtk_widget_pop_composite_child ();
 
-  gtk_window_set_resizable     (GTK_WINDOW (Dialog), TRUE);
+  gtk_window_set_resizable     ((GtkWindow*)Dialog, TRUE);
   gtk_dialog_set_has_separator (Dialog, FALSE);
   gtk_widget_grab_default      (dialog->ok_button); /* does not work correct with entry */
   geda_font_dialog_prime_list  (dialog);
 
-  gtk_widget_show (GTK_WIDGET(Dialog));
+  gtk_widget_show ((GtkWidget*)Dialog);
 }
 
 /*!
@@ -1783,7 +1783,7 @@ GtkWidget *geda_font_dialog_new_with_font_name (const char *font_name)
     geda_font_dialog_set_font_name (GEDA_FONT_DIALOG (dialog), font_name);
   }
 
-  return GTK_WIDGET (dialog);
+  return (GtkWidget*)dialog;
 }
 
 /*! \todo Finish function documentation!!!
@@ -1879,7 +1879,7 @@ geda_font_dialog_set_font_name (GedaFontDialog *dialog, const char *fontname)
 
   bool result;
 
-  if (!gtk_widget_has_screen (GTK_WIDGET (dialog))) {
+  if (!gtk_widget_has_screen ((GtkWidget*)dialog)) {
     result = FALSE;
   }
   else {
@@ -1961,7 +1961,7 @@ geda_font_dialog_get_preview_text (GedaFontDialog *dialog)
 {
   g_return_val_if_fail (GEDA_IS_FONT_DIALOG (dialog), NULL);
 
-  return gtk_entry_get_text (GTK_ENTRY (dialog->preview_entry));
+  return gtk_entry_get_text ((GtkEntry*)dialog->preview_entry);
 }
 
 /*!
@@ -1976,10 +1976,10 @@ geda_font_dialog_get_preview_text (GedaFontDialog *dialog)
 bool
 geda_font_dialog_set_preview_text (GedaFontDialog *dialog, const char *text)
 {
-  g_return_val_if_fail ( GEDA_IS_FONT_DIALOG (dialog), FALSE);
+  g_return_val_if_fail (GEDA_IS_FONT_DIALOG (dialog), FALSE);
   g_return_val_if_fail (text != NULL, FALSE);
 
-  gtk_entry_set_text (GTK_ENTRY (dialog->preview_entry), text);
+  gtk_entry_set_text ((GtkEntry*)dialog->preview_entry, text);
 
   return TRUE;
 }
