@@ -1,3 +1,8 @@
+2017-05-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_font_dialog.h: Change main_vbox and action_area members to
+      GtkBox instead of GtkWidget.
+
 2017-05-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_font_dialog.h: Reorganize header; add temporary macros for

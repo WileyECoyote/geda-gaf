@@ -73,8 +73,8 @@ struct _GedaFontDialog
 
   GtkWidget *preview_entry;
 
-  GtkWidget *main_vbox;
-  GtkWidget *action_area;
+  GtkBox    *main_vbox;
+  GtkBox    *action_area;
 
   /*< public >*/
   GtkWidget *ok_button;

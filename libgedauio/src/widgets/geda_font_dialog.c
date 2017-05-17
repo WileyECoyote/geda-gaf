@@ -1179,7 +1179,7 @@ geda_font_dialog_add_widgets(GedaFontDialog *dialog)
   table = gtk_table_new (3, 3, FALSE);
   gtk_table_set_row_spacings (GTK_TABLE (table), 6);
   gtk_table_set_col_spacings (GTK_TABLE (table), 12);
-  gtk_box_pack_start (GTK_BOX (dialog->main_vbox), table, TRUE, TRUE, 0);
+  gtk_box_pack_start (dialog->main_vbox, table, TRUE, TRUE, 0);
 
   font_label = geda_mnemonic_label_new (_("_Family:"));
   gtk_misc_set_alignment (GTK_MISC (font_label), 0.0, 0.5);
@@ -1355,7 +1355,7 @@ geda_font_dialog_add_widgets(GedaFontDialog *dialog)
 
   vbox = gtk_vbox_new (FALSE, 6);
   gtk_widget_show (vbox);
-  gtk_box_pack_start (GTK_BOX (dialog->main_vbox), vbox, FALSE, TRUE, 0);
+  gtk_box_pack_start (dialog->main_vbox, vbox, FALSE, TRUE, 0);
 
   /* create the text entry widget */
   preview_label = geda_mnemonic_label_new (_("_Preview:"));
@@ -1639,12 +1639,12 @@ static void geda_font_dialog_instance_init(GTypeInstance *instance, void *g_clas
 
   gtk_widget_push_composite_child ();
 
-  dialog->main_vbox = GTK_DIALOG(Dialog)->vbox;
+  dialog->main_vbox = (GtkBox*)Dialog->vbox;
 
   /* Create the main content area */
   geda_set_container_border_width (Dialog, 5);
 
-  gtk_box_set_spacing (GTK_BOX (dialog->main_vbox), 2); /* 2 * 5 + 2 = 12 */
+  gtk_box_set_spacing (dialog->main_vbox, 2); /* 2 * 5 + 2 = 12 */
 
   geda_font_dialog_add_widgets(dialog);
 
@@ -1657,11 +1657,11 @@ static void geda_font_dialog_instance_init(GTypeInstance *instance, void *g_clas
   }
 
   /* Setup the Action Area */
-  dialog->action_area  = gtk_dialog_get_action_area (Dialog);
+  dialog->action_area  = (GtkBox*)gtk_dialog_get_action_area (Dialog);
 
   geda_set_container_border_width (dialog->action_area, 5);
 
-  gtk_box_set_spacing (GTK_BOX (dialog->action_area), 6);
+  gtk_box_set_spacing (dialog->action_area, 6);
 
   dialog->cancel_button = gtk_dialog_add_button (Dialog,
                                                  GTK_STOCK_CANCEL,
