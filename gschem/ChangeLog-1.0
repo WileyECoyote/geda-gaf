@@ -7,6 +7,9 @@
       remove unnecessary type-checking cast from g_object_notify in
       gschem_page_view_set_hadjustment.
 
+    * src/x/x_edit_array.c: Remove unneeded cast from g_object_new, replace
+      replace gtk_container_remove with geda_container_remove .
+
 2017-05-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_status_bar.c: Remove unneeded cast from g_object_new.

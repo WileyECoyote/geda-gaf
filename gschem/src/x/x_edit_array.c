@@ -724,7 +724,7 @@ static void x_dialog_array_edit_action_area (GtkWidget  *ThisDialog,
 
   /* Remove Gtk action area from the dialog and don't re-use it */
   action_area = Dialog->action_area;
-  gtk_container_remove(GTK_CONTAINER(Dialog->vbox),GTK_WIDGET(action_area));
+  geda_container_remove(Dialog->vbox, action_area);
 
   action_hbox = gtk_hbox_new(FALSE, 0);
   g_object_set (action_hbox, "visible", TRUE, NULL);
