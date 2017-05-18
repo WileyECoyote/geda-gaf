@@ -644,7 +644,7 @@ static void console_instance_init (GTypeInstance *instance, void *class)
   gtk_text_view_set_buffer (GTK_TEXT_VIEW (text_view), text_buffer);
 
   /* add the text view to the scrolled window */
-  gtk_container_add (GTK_CONTAINER (scrolled_win), text_view);
+  geda_container_add (scrolled_win, text_view);
 
   /* set textview of console */
   console->textview = GTK_TEXT_VIEW (text_view);
@@ -698,8 +698,8 @@ static void console_instance_init (GTypeInstance *instance, void *class)
   GtkWidget *align1 = gtk_alignment_new (0, 1, 1, 1);
   GtkWidget *align2 = gtk_alignment_new (0, 1, 1, 0);
 
-  gtk_container_add           (GTK_CONTAINER (align1), scrolled_win);
-  gtk_container_add           (GTK_CONTAINER (align2), console_entry);
+  geda_container_add (align1, scrolled_win);
+  geda_container_add (align2, console_entry);
 
   gtk_alignment_set_padding   (GTK_ALIGNMENT (align1) ,0, 0, 0, 0);
   gtk_alignment_set_padding   (GTK_ALIGNMENT (align2) ,0, 0, 7, 7);
