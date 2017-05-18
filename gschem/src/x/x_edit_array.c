@@ -733,14 +733,14 @@ static void x_dialog_array_edit_action_area (GtkWidget  *ThisDialog,
   /* Replace the action_area with the new container */
   Dialog->action_area = action_hbox;
 
-  alignment = GTK_WIDGET (g_object_new (GTK_TYPE_ALIGNMENT,
-                                        "right-padding", 0,
-                                        "left-padding",  50,
-                                        "xscale",        1.0,
-                                        "yscale",        0.0,
-                                        "xalign",        1.0,
-                                        "yalign",        0.5,
-                                        NULL));
+  alignment = g_object_new (GTK_TYPE_ALIGNMENT,
+                            "right-padding", 0,
+                            "left-padding",  50,
+                            "xscale",        1.0,
+                            "yscale",        0.0,
+                            "xalign",        1.0,
+                            "yalign",        0.5,
+                            NULL);
 
   g_object_set (alignment, "visible", TRUE, NULL);
   gtk_box_pack_end (GTK_BOX (action_hbox), alignment, TRUE, TRUE, 0);
