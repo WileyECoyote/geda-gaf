@@ -22,7 +22,7 @@ The file must exist in the inputs folder.
 
 To regenerate a specific test:
 
-./runtest.sh -r <filename> (with or without the extension)
+./runtest.sh -r <filename> (without the extension)
 
 The runtest.sh scripts extracts the value of the TEST= attribute
 from each input file, which can have multible such attributes.
