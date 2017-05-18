@@ -913,13 +913,13 @@ gschem_page_view_set_hadjustment (GschemPageView *view, GtkAdjustment *hadjustme
 
     g_object_ref (view->hadjustment);
 
-    g_signal_connect (G_OBJECT (view->hadjustment),
+    g_signal_connect (view->hadjustment,
                       "value-changed",
                       G_CALLBACK (hadjustment_value_changed),
                       view);
   }
 
-  g_object_notify (G_OBJECT (view), "hadjustment");
+  g_object_notify ((GObject*)view, "hadjustment");
 }
 
 

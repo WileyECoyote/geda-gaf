@@ -3,6 +3,10 @@
     * src/base/gschem_dialog.c: Explicitly specify GSCHEM_TYPE_DIALOG type
       to g_signal_new.
 
+    * src/base/gschem_page_view.c: Remove cast from g_signal_connect and
+      remove unnecessary type-checking cast from g_object_notify in
+      gschem_page_view_set_hadjustment.
+
 2017-05-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_status_bar.c: Remove unneeded cast from g_object_new.
