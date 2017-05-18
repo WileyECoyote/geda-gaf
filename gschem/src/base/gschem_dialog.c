@@ -519,7 +519,7 @@ static void gschem_dialog_class_init (void *class, void *class_data)
 
   gschem_dialog_signals[ GEOMETRY_SAVE ] =
     g_signal_new ("geometry-save",
-                  G_OBJECT_CLASS_TYPE (gobject_class),
+                  GSCHEM_TYPE_DIALOG,
                   G_SIGNAL_RUN_FIRST,     /*signal_flags */
                   G_STRUCT_OFFSET (GschemDialogClass, geometry_save),
                   NULL, /* accumulator */
@@ -533,7 +533,7 @@ static void gschem_dialog_class_init (void *class, void *class_data)
 
   gschem_dialog_signals[ GEOMETRY_RESTORE ] =
     g_signal_new ("geometry-restore",
-                  G_OBJECT_CLASS_TYPE (gobject_class),
+                  GSCHEM_TYPE_DIALOG,
                   G_SIGNAL_RUN_FIRST,     /*signal_flags */
                   G_STRUCT_OFFSET (GschemDialogClass, geometry_restore),
                   NULL, /* accumulator */
