@@ -12,7 +12,9 @@
 
     * src/x/x_edit_array.c: Remove unneeded cast from g_object_new, replace
       replace gtk_container_remove with geda_container_remove and gtk_container
-      _set_focus_chain with geda_container_set_focus_chain.
+      _set_focus_chain with geda_container_set_focus_chain. Remove unnecessary
+      initialization and change butt_hboxGtkWidget -> GtkBox in x_dialog_array
+      _edit_action_area.
 
 2017-05-17 Wiley E. Hill <wileyhill@gmail.com>
 

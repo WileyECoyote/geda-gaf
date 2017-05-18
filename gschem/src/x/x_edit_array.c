@@ -717,7 +717,7 @@ static void x_dialog_array_edit_action_area (GtkWidget  *ThisDialog,
   GtkWidget *action_area;
   GtkWidget *alignment;
   GtkWidget *action_hbox  = NULL;
-  GtkWidget *butt_hbox    = NULL;
+  GtkBox    *butt_hbox;
   GtkDialog *Dialog;
 
   Dialog = (GtkDialog*)ThisDialog;
@@ -746,7 +746,7 @@ static void x_dialog_array_edit_action_area (GtkWidget  *ThisDialog,
   gtk_box_pack_end (GTK_BOX (action_hbox), alignment, TRUE, TRUE, 0);
 
   /* Create a Horizontal Box for the buttons to go into */
-  butt_hbox = gtk_hbox_new(FALSE, 0);
+  butt_hbox = (GtkBox*)gtk_hbox_new(FALSE, 0);
   g_object_set (butt_hbox, "visible", TRUE, NULL);
   geda_container_add (alignment, butt_hbox);
 
@@ -765,9 +765,9 @@ static void x_dialog_array_edit_action_area (GtkWidget  *ThisDialog,
   g_object_set (apply_butt, "visible", TRUE, "can-default", TRUE, NULL);
   g_object_set (close_butt, "visible", TRUE, NULL);
 
-  gtk_box_pack_end (GTK_BOX (butt_hbox), apply_butt, FALSE, FALSE,
+  gtk_box_pack_end (butt_hbox, apply_butt, FALSE, FALSE,
                     DIALOG_H_SPACING);
-  gtk_box_pack_end (GTK_BOX (butt_hbox), close_butt, FALSE, FALSE,
+  gtk_box_pack_end (butt_hbox, close_butt, FALSE, FALSE,
                     DIALOG_H_SPACING);
 
   /* Set the alternative button order (ok, cancel, help) for other systems */
