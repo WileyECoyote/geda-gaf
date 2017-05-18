@@ -237,11 +237,11 @@ void x_console_open (GschemToplevel *w_current)
 
     char *contents;
 
-    console_dialog = GTK_WIDGET (g_object_new (TYPE_CONSOLE,
-                                           "type", GTK_WINDOW_TOPLEVEL,
-                                           "settings-name", IDS_CONSOLE,
-                                           "gschem-toplevel", w_current,
-                                           NULL));
+    console_dialog = g_object_new (TYPE_CONSOLE,
+                                   "type", GTK_WINDOW_TOPLEVEL,
+                                   "settings-name", IDS_CONSOLE,
+                                   "gschem-toplevel", w_current,
+                                   NULL);
 
     g_signal_connect (console_dialog,
                       "response",
@@ -591,17 +591,17 @@ static void console_instance_init (GTypeInstance *instance, void *class)
                  NULL);
 
   /* create a scrolled window for the textview */
-  scrolled_win = GTK_WIDGET(g_object_new (GTK_TYPE_SCROLLED_WINDOW,
-                                          /* GtkContainer */
-                                          "border-width",      1,
-                                          /* GtkScrolledWindow */
-                                          "hscrollbar-policy", GTK_POLICY_AUTOMATIC,
-                                          "vscrollbar-policy", GTK_POLICY_AUTOMATIC,
-                                          "shadow-type",       GTK_SHADOW_ETCHED_IN,
-                                          NULL));
+  scrolled_win = g_object_new (GTK_TYPE_SCROLLED_WINDOW,
+                               /* GtkContainer */
+                               "border-width",      1,
+                               /* GtkScrolledWindow */
+                               "hscrollbar-policy", GTK_POLICY_AUTOMATIC,
+                               "vscrollbar-policy", GTK_POLICY_AUTOMATIC,
+                               "shadow-type",       GTK_SHADOW_ETCHED_IN,
+                               NULL);
 
   /* create the text buffer */
-  text_buffer = GTK_TEXT_BUFFER (g_object_new (GTK_TYPE_TEXT_BUFFER, NULL));
+  text_buffer = g_object_new (GTK_TYPE_TEXT_BUFFER, NULL);
 
   /* Add some tags for highlighting log messages to the buffer */
   gtk_text_buffer_create_tag (text_buffer,    "plain",
@@ -635,11 +635,11 @@ static void console_instance_init (GTypeInstance *instance, void *class)
                               NULL);
 
   /* create the text view and attach the buffer to it */
-  text_view = GTK_WIDGET (g_object_new (GTK_TYPE_TEXT_VIEW, /* GtkTextView */
-                                       "cursor-visible", FALSE,
-                                       "editable",       FALSE,
-                                       "left_margin",    7,
-                                        NULL));
+  text_view = g_object_new (GTK_TYPE_TEXT_VIEW, /* GtkTextView */
+                            "cursor-visible", FALSE,
+                            "editable",       FALSE,
+                            "left_margin",    7,
+                            NULL);
 
   gtk_text_view_set_buffer (GTK_TEXT_VIEW (text_view), text_buffer);
 
