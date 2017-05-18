@@ -11,7 +11,8 @@
       gtk_container_add with geda_container_add.
 
     * src/x/x_edit_array.c: Remove unneeded cast from g_object_new, replace
-      replace gtk_container_remove with geda_container_remove .
+      replace gtk_container_remove with geda_container_remove and gtk_container
+      _set_focus_chain with geda_container_set_focus_chain.
 
 2017-05-17 Wiley E. Hill <wileyhill@gmail.com>
 

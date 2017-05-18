@@ -858,7 +858,7 @@ GtkWidget* x_dialog_array_edit_constructor (GschemToplevel *w_current)
     focus_chain = g_list_append (focus_chain, row_butt);
     focus_chain = g_list_append (focus_chain, row_col_butt);
     focus_chain = g_list_append (focus_chain, col_butt);
-    gtk_container_set_focus_chain (GTK_CONTAINER (table), focus_chain);
+    geda_container_set_focus_chain (table, focus_chain);
     g_list_free (focus_chain);
   }
 
