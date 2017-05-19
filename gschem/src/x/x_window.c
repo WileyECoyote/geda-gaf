@@ -386,7 +386,7 @@ x_window_create_main(GschemToplevel *w_current)
   main_box = gtk_vbox_new(FALSE, 1);
   g_object_set (main_box, "border-width", 0, NULL);
   geda_container_add(MainWindow, main_box);
-  g_object_set (main_box, "visible", TRUE, NULL);
+  gtk_widget_show (main_box);
 
   /* Main Menu */
   if (GEDA_IS_MENU_BAR(menubar = x_menu_setup_ui (w_current))) {
@@ -398,12 +398,12 @@ x_window_create_main(GschemToplevel *w_current)
       handlebox = gtk_handle_box_new ();
       PACK_BOX(main_box, handlebox, FALSE, FALSE, 0);
       geda_container_add (handlebox, menubar);
-      g_object_set (handlebox, "visible", TRUE, NULL);
+      gtk_widget_show (handlebox);
     }
     else {
       geda_container_add(main_box, menubar);
     }
-    g_object_set (menubar, "visible", TRUE, NULL);
+    gtk_widget_show (menubar);
   }
 
   x_menu_set_togglable(w_current, RESET_TOGGLERS, 0);
@@ -423,7 +423,7 @@ x_window_create_main(GschemToplevel *w_current)
   center_hbox = gtk_hbox_new(FALSE, 1);
   g_object_set (center_hbox, "border-width", 0, NULL);
   geda_container_add(main_box, center_hbox);
-  g_object_set (center_hbox, "visible", TRUE, NULL);
+  gtk_widget_show (center_hbox);
 
   if (w_current->toolbars) {
      x_toolbars_init_left(w_current, center_hbox);
@@ -432,7 +432,7 @@ x_window_create_main(GschemToplevel *w_current)
   center_vbox = gtk_vbox_new(FALSE, 1);
   g_object_set (center_vbox, "border-width", 0, NULL);
   geda_container_add(center_hbox, center_vbox);
-  g_object_set (center_vbox, "visible", TRUE, NULL);
+  gtk_widget_show (center_vbox);
 
   /*! Setup the Scroll bars
    * The scroll-bars are constructed here if w_current->scrollbars is
@@ -456,9 +456,8 @@ x_window_create_main(GschemToplevel *w_current)
     draw_window = gtk_scrolled_window_new (h_adjustment, v_adjustment);
 
     g_object_set (draw_window, "border-width", 0, NULL);
-    g_object_set (draw_window, "visible", TRUE, NULL);
-
     geda_container_add(center_vbox, draw_window);
+    gtk_widget_show (draw_window);
 
     scroll_window    = GTK_SCROLLED_WINDOW (draw_window);
     HorizontalScroll = gtk_scrolled_window_get_hscrollbar(scroll_window);
@@ -506,7 +505,7 @@ x_window_create_main(GschemToplevel *w_current)
   w_current->status_bar = x_status_bar_create(w_current);
 
   PACK_BOX (main_box, w_current->status_bar, FALSE, FALSE, 0);
-  g_object_set (w_current->status_bar, "visible", TRUE, NULL);
+  gtk_widget_show (w_current->status_bar);
 
   /* Iconize the main window until after the size and position have been
    * restored, otherwise the main window visibly changes sizes and this

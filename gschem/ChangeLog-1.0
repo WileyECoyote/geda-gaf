@@ -1,6 +1,7 @@
 2017-05-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_window.c: Remove unnecessary initialization in x_window_create_main.
+      Replace g_object_set ("visible") with more efficient gtk_widget_show.
 
 2017-05-18 Wiley E. Hill <wileyhill@gmail.com>
 
