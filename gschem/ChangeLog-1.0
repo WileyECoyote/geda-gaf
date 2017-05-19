@@ -1,5 +1,8 @@
 2017-05-19 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_edit_array.c: Remove unneeded cast from g_signal_connect and
+      g_object_set.
+
     * src/x/x_window.c: Remove unnecessary initialization in x_window_create_main.
       Replace g_object_set ("visible") with more efficient gtk_widget_show.
 

@@ -1132,11 +1132,11 @@ GtkWidget* x_dialog_array_edit_constructor (GschemToplevel *w_current)
                     G_CALLBACK (on_col_butt_clicked),
                     Dialog);
 
-  g_signal_connect (G_OBJECT (Dialog), "response",
+  g_signal_connect (Dialog, "response",
                     G_CALLBACK (x_dialog_array_edit_response),
                     dialog_data);
 
-  g_object_set (G_OBJECT (Dialog), DIALOG_SELECTION_TRACKER,
+  g_object_set (Dialog, DIALOG_SELECTION_TRACKER,
                 x_dialog_ca_update_selection,
                 NULL);
 
