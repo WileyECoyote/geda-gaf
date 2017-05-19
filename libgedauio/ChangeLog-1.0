@@ -1,3 +1,8 @@
+2017-05-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_check_menu_item.c: Remove unnecessary g_return_if_fail
+      in geda_check_menu_item_toggle_size_request.
+
 2017-05-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_font_dialog.h: Change main_vbox and action_area members to

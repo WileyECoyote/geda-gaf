@@ -132,8 +132,6 @@ geda_check_menu_item_toggle_size_request (GedaMenuItem *menu_item,
   unsigned int toggle_spacing;
   unsigned int indicator_size;
 
-  g_return_if_fail (GEDA_IS_CHECK_MENU_ITEM (menu_item));
-
   gtk_widget_style_get ((GtkWidget*)menu_item,
                         "toggle-spacing", &toggle_spacing,
                         "indicator-size", &indicator_size,
