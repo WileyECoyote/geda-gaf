@@ -1,3 +1,8 @@
+2017-05-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * module/objects/geda_py_color.c: Remove g_assert_not_reached in rgb_getitem
+      and rgb_setitem and replace with message to stderr instead.
+
 2016-12-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * scripts: Update GPL license version to 2 in:

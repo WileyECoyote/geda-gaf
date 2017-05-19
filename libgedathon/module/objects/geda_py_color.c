@@ -483,7 +483,7 @@ rgb_getitem(PyObject *self, Py_ssize_t pos)
     case 2: val = rgb->b; break;
     case 3: val = rgb->a; break;
     default:
-        g_assert_not_reached();
+        fprintf(stderr, "%s: unhandled case <%d>\n",__func__, pos);
         return NULL;
     }
 
@@ -507,7 +507,7 @@ rgb_setitem(PyObject *self, Py_ssize_t pos, PyObject *value)
     case 2: return rgb_set_b(self, value, NULL);
     case 3: return rgb_set_a(self, value, NULL);
     default:
-        g_assert_not_reached();
+        fprintf(stderr, "%s: unhandled case <%d>\n",__func__, pos);
         return -1;
     }
 }
