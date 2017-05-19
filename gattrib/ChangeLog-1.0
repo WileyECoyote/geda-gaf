@@ -1,3 +1,8 @@
+2017-05-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gtksheet/gtksheet.c: Replace geda_menu_shell_append with geda_menu
+      _append.
+
 2017-05-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_dialog.c: Go back to gtk_widget_show instead of g_object_set.

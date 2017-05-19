@@ -246,7 +246,7 @@ static GtkWidget *build_popup_menu(GtkWidget *sheet)
       }
 
       gtk_widget_show(item);
-      geda_menu_shell_append(GEDA_MENU_SHELL(menu), item);
+      geda_menu_append (menu, item);
     }
     return (menu);
 }
