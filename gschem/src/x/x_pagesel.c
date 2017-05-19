@@ -719,7 +719,7 @@ pagesel_treeview_set_cell_filename (GtkTreeViewColumn *tree_column,
     const char *filename;
 
     filename = state ? page->filename : geda_file_get_basename(page->filename);
-    g_object_set ((GObject*)cell, "text", filename, NULL);
+    g_object_set (cell, "text", filename, NULL);
   }
 }
 
@@ -1080,7 +1080,7 @@ pagesel_instance_init (GTypeInstance *instance, void *class)
   i_var_restore_group_boolean(cfg, group, key, &auto_height, TRUE);
 
   /* dialog initialization */
-  g_object_set (G_OBJECT (pagesel),
+  g_object_set (pagesel,
                 /* GtkContainer */
                 "border-width",    DIALOG_BORDER_WIDTH,
                 /* GtkWindow */
