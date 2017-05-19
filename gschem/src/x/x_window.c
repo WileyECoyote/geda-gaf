@@ -354,12 +354,12 @@ x_window_create_main(GschemToplevel *w_current)
 {
   GtkPolicyType policy;
 
-  GtkWidget *center_hbox  = NULL;
-  GtkWidget *center_vbox  = NULL;
-  GtkWidget *draw_window  = NULL;
+  GtkWidget *center_hbox;
+  GtkWidget *center_vbox;
+  GtkWidget *draw_window;
 
-  GtkWidget *main_box     = NULL;
-  GtkWidget *menubar      = NULL;
+  GtkWidget *main_box;
+  GtkWidget *menubar;
 
   /* used to signify that the window isn't mapped yet */
   w_current->window       = NULL;
