@@ -44,7 +44,7 @@
  *   This is a composite test module that performs tests for all files
  *   in src/file. Tests for each module/file have been organized in
  *   to separate Doxygen groups and this allows indexing using slash-
- *   asterisk-asterick. Doxygen group numbers corresponds to the Module/
+ *   asterisk-asterick. Doxygen group numbers correspond to the Module/
  *   File No. in the Test Identifiers:
  *
  *  <DL>
