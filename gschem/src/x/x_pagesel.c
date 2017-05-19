@@ -240,7 +240,7 @@ pagesel_get_action_height (Pagesel *pagesel)
 
   gtk_widget_get_allocation(action_hbox, &allocation);
 
-  border = gtk_container_get_border_width (GTK_CONTAINER (action_hbox));
+  border = geda_get_container_border_width (action_hbox);
 
   pagesel->action_height = allocation.height + (border << 1);
 }
@@ -1188,7 +1188,7 @@ pagesel_instance_init (GTypeInstance *instance, void *class)
   gtk_tree_view_append_column (tree_view, column);
 
   /* add the tree view to the scrolled window */
-  gtk_container_add (GTK_CONTAINER (scrolled_win), GTK_WIDGET(tree_view));
+  geda_container_add (scrolled_win, tree_view);
 
   /* add the scrolled window to the dialog vbox */
   gtk_box_pack_start (GTK_BOX (GTK_DIALOG (pagesel)->vbox), scrolled_win, TRUE, TRUE, 0);
@@ -1238,7 +1238,7 @@ pagesel_instance_init (GTypeInstance *instance, void *class)
 
   /* Remove Gtk action area from the dialog and don't re-use it */
   action_hbox = Dialog->action_area;
-  gtk_container_remove(GTK_CONTAINER(Dialog->vbox),GTK_WIDGET(action_hbox));
+  geda_container_remove(Dialog->vbox, action_hbox);
 
   action_hbox = gtk_hbox_new(FALSE, 0);
   g_object_set (action_hbox, "visible", TRUE, NULL);
@@ -1284,7 +1284,7 @@ pagesel_instance_init (GTypeInstance *instance, void *class)
   /* Create a Horizontal Box for the buttons to go into */
   butt_hbox = gtk_hbox_new(FALSE, 0);
   g_object_set (butt_hbox, "visible", TRUE, NULL);
-  gtk_container_add (GTK_CONTAINER (alignment), butt_hbox);
+  geda_container_add (alignment, butt_hbox);
 
   /* Create and connect the Close and Refresh Buttons */
   fresh_butt = gtk_button_new_from_stock (GTK_STOCK_REFRESH);
