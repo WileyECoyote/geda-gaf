@@ -1,3 +1,8 @@
+2017-05-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_window.c: Replace g_object_set ("border-width") with more efficient
+      geda_set_container_border_width
+
 2017-05-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_edit_array.c: Remove unneeded cast from g_signal_connect and

@@ -384,7 +384,7 @@ x_window_create_main(GschemToplevel *w_current)
 
   /* Containers first */
   main_box = gtk_vbox_new(FALSE, 1);
-  g_object_set (main_box, "border-width", 0, NULL);
+  geda_set_container_border_width (main_box, 0);
   geda_container_add(MainWindow, main_box);
   gtk_widget_show (main_box);
 
@@ -421,7 +421,7 @@ x_window_create_main(GschemToplevel *w_current)
   x_menu_setup_popup(w_current);
 
   center_hbox = gtk_hbox_new(FALSE, 1);
-  g_object_set (center_hbox, "border-width", 0, NULL);
+  geda_set_container_border_width (center_hbox, 0);
   geda_container_add(main_box, center_hbox);
   gtk_widget_show (center_hbox);
 
@@ -430,7 +430,7 @@ x_window_create_main(GschemToplevel *w_current)
   }
 
   center_vbox = gtk_vbox_new(FALSE, 1);
-  g_object_set (center_vbox, "border-width", 0, NULL);
+  geda_set_container_border_width (center_vbox, 0);
   geda_container_add(center_hbox, center_vbox);
   gtk_widget_show (center_vbox);
 
@@ -455,7 +455,7 @@ x_window_create_main(GschemToplevel *w_current)
 
     draw_window = gtk_scrolled_window_new (h_adjustment, v_adjustment);
 
-    g_object_set (draw_window, "border-width", 0, NULL);
+    geda_set_container_border_width (draw_window, 0);
     geda_container_add(center_vbox, draw_window);
     gtk_widget_show (draw_window);
 
