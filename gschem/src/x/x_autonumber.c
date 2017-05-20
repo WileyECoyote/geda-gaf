@@ -1720,13 +1720,13 @@ GtkWidget *autonumber_create_dialog(GschemToplevel  *w_current,
 
   alignment = gtk_alignment_new (0, 0, 1, 1);
   g_object_set (alignment, "visible", TRUE, NULL);
-  gtk_container_add ((GtkContainer*)frame, alignment);
+  geda_container_add (frame, alignment);
   gtk_alignment_set_padding (GTK_ALIGNMENT (alignment), 0, 0,
                              DIALOG_INDENTATION, DIALOG_INDENTATION);
 
   upper_vbox = gtk_vbox_new (FALSE, 0);
   g_object_set (upper_vbox, "visible", TRUE, NULL);
-  gtk_container_add ((GtkContainer*)alignment, upper_vbox);
+  geda_container_add (alignment, upper_vbox);
 
   upper_table = gtk_table_new (3, 2, FALSE);
   g_object_set (upper_table, "visible", TRUE, NULL);
@@ -1776,7 +1776,7 @@ GtkWidget *autonumber_create_dialog(GschemToplevel  *w_current,
                        "spacing",      10,
                        NULL);
 
-  gtk_container_add ((GtkContainer*)upper_vbox, hbox);
+  geda_container_add (upper_vbox, hbox);
   g_object_set (hbox, "visible", TRUE, NULL);
 
   autonumber_create_filter_options (ThisDialog, autotext, hbox);
@@ -1792,13 +1792,13 @@ GtkWidget *autonumber_create_dialog(GschemToplevel  *w_current,
 
   alignment = gtk_alignment_new (0, 0, 1, 1);
   g_object_set (alignment, "visible", TRUE, NULL);
-  gtk_container_add ((GtkContainer*)frame, alignment);
+  geda_container_add (frame, alignment);
   gtk_alignment_set_padding (GTK_ALIGNMENT (alignment), 0, 0,
                              DIALOG_INDENTATION, DIALOG_INDENTATION);
 
   lower_vbox = gtk_vbox_new (FALSE, 3);
   g_object_set (lower_vbox, "visible", TRUE, NULL);
-  gtk_container_add ((GtkContainer*)alignment, lower_vbox);
+  geda_container_add (alignment, lower_vbox);
 
   lower_table = gtk_table_new (2, 2, FALSE);
   gtk_widget_show (lower_table);
