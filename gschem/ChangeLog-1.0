@@ -1,10 +1,10 @@
 2017-05-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_autonumber.c: Replace gtk_container_add with geda_container_add,
-      Remove unneeded cast from geda_menu_append argument.
+      Remove unneeded cast from geda_menu_append and g_signal_connect arguments.
 
     * src/x/x_window.c: Replace g_object_set ("border-width") with more efficient
-      geda_set_container_border_width
+      geda_set_container_border_width.
 
 2017-05-19 Wiley E. Hill <wileyhill@gmail.com>
 

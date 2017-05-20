@@ -1869,7 +1869,7 @@ void autonumber_text_dialog(GschemToplevel *w_current)
     gtk_dialog_set_default_response (GTK_DIALOG (autotext->dialog),
                                      GEDA_RESPONSE_ACCEPT);
 
-    g_signal_connect (G_OBJECT (autotext->dialog), "response",
+    g_signal_connect (autotext->dialog, "response",
                       G_CALLBACK (autonumber_text_response),
                       autotext);
 
