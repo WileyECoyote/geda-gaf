@@ -1686,10 +1686,10 @@ GtkWidget *autonumber_create_dialog(GschemToplevel  *w_current,
   GtkWidget *frame;
   GtkWidget *hbox;
   GtkWidget *label;
-  GtkWidget *upper_table;
-  GtkWidget *lower_table;
   GtkWidget *upper_vbox;
   GtkWidget *lower_vbox;
+  GtkTable  *upper_table;
+  GtkTable  *lower_table;
 
   ThisDialog = gschem_dialog_new_with_buttons(_("Autonumber text"),
                                               w_current->main_window,
@@ -1728,26 +1728,26 @@ GtkWidget *autonumber_create_dialog(GschemToplevel  *w_current,
   g_object_set (upper_vbox, "visible", TRUE, NULL);
   geda_container_add (alignment, upper_vbox);
 
-  upper_table = gtk_table_new (3, 2, FALSE);
+  upper_table = (GtkTable*)gtk_table_new (3, 2, FALSE);
   g_object_set (upper_table, "visible", TRUE, NULL);
-  gtk_box_pack_start (GTK_BOX (upper_vbox), upper_table, TRUE, TRUE, 0);
-  gtk_table_set_row_spacings (GTK_TABLE (upper_table), DIALOG_V_SPACING);
-  gtk_table_set_col_spacings (GTK_TABLE (upper_table), DIALOG_H_SPACING);
+  gtk_box_pack_start (GTK_BOX (upper_vbox), (GtkWidget*)upper_table, TRUE, TRUE, 0);
+  gtk_table_set_row_spacings (upper_table, DIALOG_V_SPACING);
+  gtk_table_set_col_spacings (upper_table, DIALOG_H_SPACING);
 
   label = geda_aligned_visible_label_new (_LABEL(ScopeText), 0, 0.5);
-  gtk_table_attach (GTK_TABLE (upper_table), label, 0, 1, 0, 1,
+  gtk_table_attach (upper_table, label, 0, 1, 0, 1,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
 
   ScopeTextCombo = geda_combo_box_text_new_with_entry();
   geda_combo_box_text_set_activate_default(GEDA_COMBO_BOX_TEXT(ScopeTextCombo), TRUE);
   gtk_widget_show (ScopeTextCombo);
-  gtk_table_attach (GTK_TABLE (upper_table), ScopeTextCombo, 1, 2, 0, 1,
+  gtk_table_attach (upper_table, ScopeTextCombo, 1, 2, 0, 1,
                     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
                     (GtkAttachOptions) (GTK_FILL), 0, 0);
 
   label = geda_aligned_visible_label_new (_LABEL(ScopeNumber), 0, 0.5);
-  gtk_table_attach (GTK_TABLE (upper_table), label, 0, 1, 1, 2,
+  gtk_table_attach (upper_table, label, 0, 1, 1, 2,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
 
@@ -1758,7 +1758,7 @@ GtkWidget *autonumber_create_dialog(GschemToplevel  *w_current,
   gtk_widget_show (ScopeNumberMenu);
 
   label = geda_aligned_visible_label_new (_LABEL(ScopeSkip), 0, 0.5);
-  gtk_table_attach (GTK_TABLE (upper_table), label, 0, 1, 2, 3,
+  gtk_table_attach (upper_table, label, 0, 1, 2, 3,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
 
@@ -1766,7 +1766,7 @@ GtkWidget *autonumber_create_dialog(GschemToplevel  *w_current,
   geda_option_menu_set_menu((GedaOptionMenu*)ScopeSkipMenu,
                            autonumber_create_scope_menu (w_current));
   gtk_widget_show (ScopeSkipMenu);
-  gtk_table_attach (GTK_TABLE (upper_table), ScopeSkipMenu, 1, 2, 2, 3,
+  gtk_table_attach (upper_table, ScopeSkipMenu, 1, 2, 2, 3,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (GTK_FILL), 0, 0);
 
@@ -1800,30 +1800,30 @@ GtkWidget *autonumber_create_dialog(GschemToplevel  *w_current,
   g_object_set (lower_vbox, "visible", TRUE, NULL);
   geda_container_add (alignment, lower_vbox);
 
-  lower_table = gtk_table_new (2, 2, FALSE);
-  gtk_widget_show (lower_table);
-  gtk_box_pack_start (GTK_BOX (lower_vbox), lower_table, TRUE, TRUE, 0);
-  gtk_table_set_row_spacings (GTK_TABLE (lower_table), DIALOG_V_SPACING);
-  gtk_table_set_col_spacings (GTK_TABLE (lower_table), DIALOG_H_SPACING);
+  lower_table = (GtkTable*)gtk_table_new (2, 2, FALSE);
+  g_object_set (upper_table, "visible", TRUE, NULL);
+  gtk_box_pack_start (GTK_BOX (lower_vbox), (GtkWidget*)lower_table, TRUE, TRUE, 0);
+  gtk_table_set_row_spacings (lower_table, DIALOG_V_SPACING);
+  gtk_table_set_col_spacings (lower_table, DIALOG_H_SPACING);
 
   label = geda_aligned_visible_label_new (_LABEL(StartNumber), 0, 0.5);
-  gtk_table_attach (GTK_TABLE (lower_table), label, 0, 1, 0, 1,
+  gtk_table_attach (lower_table, label, 0, 1, 0, 1,
                     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
 
   GEDA_NUMERIC_SPIN(StartNumber, 1, 0, 99999);
-  gtk_table_attach (GTK_TABLE (lower_table), StartNumberSpin, 1, 2, 0, 1,
+  gtk_table_attach (lower_table, StartNumberSpin, 1, 2, 0, 1,
                     (GtkAttachOptions) ( GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
 
   label = geda_aligned_visible_label_new (_LABEL(SortOrder), 0, 0.5);
-  gtk_table_attach (GTK_TABLE (lower_table), label, 0, 1, 1, 2,
+  gtk_table_attach (lower_table, label, 0, 1, 1, 2,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
 
   SortOrderCombo = geda_combo_box_new();
   gtk_widget_show (SortOrderCombo);
-  gtk_table_attach (GTK_TABLE (lower_table), SortOrderCombo, 1, 2, 1, 2,
+  gtk_table_attach (lower_table, SortOrderCombo, 1, 2, 1, 2,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (GTK_FILL), 0, 0);
 
