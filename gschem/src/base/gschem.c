@@ -507,6 +507,7 @@ static void main_prog(void *closure, int argc, char *argv[])
     g_main_loop_unref(main_loop);
 
     gschem_quit();
+
     geda_log_v (_("Exiting normal\n"));
   }
   else {
