@@ -213,11 +213,11 @@ x_dialog_edit_slot (GschemToplevel *w_current, const char *slots, const char *sl
     GEDA_HOOKUP_OBJECT(ThisDialog, textslots, "slot-count");
     GEDA_HOOKUP_OBJECT(ThisDialog, textentry, IDS_SLOT_EDIT);
 
-    g_signal_connect (G_OBJECT (ThisDialog), "response",
+    g_signal_connect (ThisDialog, "response",
                       G_CALLBACK (x_dialog_edit_slot_response),
                       w_current);
 
-    g_object_set(G_OBJECT (ThisDialog), DIALOG_SELECTION_TRACKER,
+    g_object_set(ThisDialog, DIALOG_SELECTION_TRACKER,
                  x_dialog_slot_edit_update_selection,
                  NULL);
 
