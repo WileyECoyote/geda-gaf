@@ -2066,23 +2066,22 @@ compselect_create_inuse_treeview (Compselect *compselect)
   geda_set_container_border_width(inuse_vbox, DIALOG_BORDER_WIDTH);
 
   /* Create a scrolled window to accomodate the treeview */
-  scrolled_win = GTK_WIDGET (
-    g_object_new (GTK_TYPE_SCROLLED_WINDOW,
-                  /* GtkContainer */
-                  "border-width", DIALOG_BORDER_WIDTH,
-                  /* GtkScrolledWindow */
-                  "hscrollbar-policy", GTK_POLICY_AUTOMATIC,
-                  "vscrollbar-policy", GTK_POLICY_ALWAYS,
-                  "shadow-type",       GTK_SHADOW_ETCHED_IN,
-                  NULL));
+  scrolled_win = g_object_new (GTK_TYPE_SCROLLED_WINDOW,
+                               /* GtkContainer */
+                               "border-width", DIALOG_BORDER_WIDTH,
+                               /* GtkScrolledWindow */
+                               "hscrollbar-policy", GTK_POLICY_AUTOMATIC,
+                               "vscrollbar-policy", GTK_POLICY_ALWAYS,
+                               "shadow-type",       GTK_SHADOW_ETCHED_IN,
+                               NULL);
 
   /* Create the treeview */
-  treeview = GTK_WIDGET (g_object_new (GTK_TYPE_TREE_VIEW,
-                                       /* GtkTreeView */
-                                       "model",      model,
-                                       "rules-hint", TRUE,
-                                       "headers-visible", FALSE,
-                                       NULL));
+  treeview = g_object_new (GTK_TYPE_TREE_VIEW,
+                           /* GtkTreeView */
+                           "model",      model,
+                           "rules-hint", TRUE,
+                           "headers-visible", FALSE,
+                           NULL);
 
   /* Connect callback to selection */
   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
@@ -2093,15 +2092,13 @@ compselect_create_inuse_treeview (Compselect *compselect)
                     compselect);
 
   /* Insert a column for symbol name */
-  renderer = GTK_CELL_RENDERER (
-    g_object_new (GTK_TYPE_CELL_RENDERER_TEXT, /* GtkCellRendererText */
-                  "editable", FALSE,
-                  NULL));
+  renderer = g_object_new (GTK_TYPE_CELL_RENDERER_TEXT, /* GtkCellRendererText */
+                           "editable", FALSE,
+                           NULL);
 
-  column = GTK_TREE_VIEW_COLUMN (
-    g_object_new (GTK_TYPE_TREE_VIEW_COLUMN,  /* GtkTreeViewColumn */
-                  "title", _("Components"),
-                  NULL));
+  column =  g_object_new (GTK_TYPE_TREE_VIEW_COLUMN,  /* GtkTreeViewColumn */
+                          "title", _("Components"),
+                          NULL);
 
   gtk_tree_view_column_pack_start (column, renderer, TRUE);
   gtk_tree_view_column_set_cell_data_func (column, renderer,
@@ -2119,19 +2116,19 @@ compselect_create_inuse_treeview (Compselect *compselect)
   PACK_BOX (inuse_vbox, scrolled_win, TRUE, TRUE, 0);
 
   /* -- refresh button area -- */
-  hbox = GTK_WIDGET (g_object_new (GTK_TYPE_HBOX,
-                                          /* GtkBox */
-                                          "homogeneous", FALSE,
-                                          "spacing",     3,
-                                          NULL));
+  hbox = g_object_new (GTK_TYPE_HBOX,
+                       /* GtkBox */
+                       "homogeneous", FALSE,
+                       "spacing",     3,
+                       NULL);
 
   /* create the refresh button */
-  button = GTK_WIDGET (g_object_new (GTK_TYPE_BUTTON,
-                                     /* GtkWidget */
-                                     "sensitive", TRUE,
-                                     /* GtkButton */
-                                     "relief",    GTK_RELIEF_NONE,
-                                     NULL));
+  button = g_object_new (GTK_TYPE_BUTTON,
+                         /* GtkWidget */
+                         "sensitive", TRUE,
+                         /* GtkButton */
+                         "relief",    GTK_RELIEF_NONE,
+                         NULL);
 
   geda_container_add (button,
                       gtk_image_new_from_stock (GTK_STOCK_REFRESH,

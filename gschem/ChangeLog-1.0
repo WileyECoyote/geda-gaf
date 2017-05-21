@@ -4,6 +4,8 @@
       Remove unneeded cast from geda_menu_append and g_signal_connect arguments.
       Change table widgets to type GtkTable in autonumber_create_dialog.
 
+    * src/x/x_compselect.c: Remove unnecessary cast from g_object_new.
+
     * src/x/x_edit_slot.c: Remove unneeded cast from g_signal_connect and
       g_object_set arguments.
 
