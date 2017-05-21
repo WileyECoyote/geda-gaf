@@ -458,7 +458,7 @@ char *x_dialog_get_search_text(const char *prompt)
                                             -1);
     gtk_dialog_set_default_response(dialog, GEDA_RESPONSE_ACCEPT);
 
-    g_object_set (dialog, "border-width", DIALOG_BORDER_WIDTH, NULL);
+    geda_set_container_border_width (dialog, DIALOG_BORDER_WIDTH);
 
     vbox = (GtkBox*)dialog->vbox;
 
@@ -872,7 +872,7 @@ void x_dialog_search_replace(SearchRecord *Search, const char *text)
   GEDA_SIGNAL_CONNECT(ThisDialog, "response",
                       search_replace_dialog_response, Search);
 
-  g_object_set (ThisDialog, "border-width", DIALOG_BORDER_WIDTH, NULL);
+  geda_set_container_border_width (ThisDialog, DIALOG_BORDER_WIDTH);
 
   gtk_widget_show(ThisDialog);
 }
