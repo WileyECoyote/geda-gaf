@@ -446,8 +446,8 @@ attrib_edit_dialog (GschemToplevel *w_current, GedaObject *object, int flag)
 
     /* Main Body Label */
     label = geda_aligned_label_new(name_label_text, 0, 0);
-    geda_label_set_use_markup ( GEDA_LABEL(label), TRUE);
-    gtk_container_add (GTK_CONTAINER (vbox), label);
+    geda_label_set_use_markup (GEDA_LABEL(label), TRUE);
+    geda_container_add (vbox, label);
 
     /* Create alignment widget for main body and add to vbox */
     alignment = gtk_alignment_new(0,0,1,1);
@@ -459,7 +459,7 @@ attrib_edit_dialog (GschemToplevel *w_current, GedaObject *object, int flag)
     table = gtk_table_new (3, 2, FALSE);
     gtk_table_set_row_spacings(GTK_TABLE(table), DIALOG_V_SPACING);
     gtk_table_set_col_spacings(GTK_TABLE(table), DIALOG_H_SPACING);
-    gtk_container_add (GTK_CONTAINER (alignment), table);
+    geda_container_add (alignment, (GtkWidget*)table);
 
     /* Name selection */
     name_label = geda_aligned_label_new (_("Name:"), 0, 0.5);
