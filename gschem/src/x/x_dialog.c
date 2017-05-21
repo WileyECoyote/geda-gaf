@@ -197,7 +197,7 @@ create_geda_switch(GtkWidget *parent, GtkWidget *widget,
 
   SwitchImage = get_geda_switch_image( istate);
   gtk_widget_show (SwitchImage);
-  gtk_container_add (GTK_CONTAINER (widget), SwitchImage);
+  geda_container_add (widget, SwitchImage);
 
   return widget;
 }
@@ -948,7 +948,7 @@ void x_dialog_edit_arc_angle (GschemToplevel *w_current, GedaObject *arc_object)
     table = gtk_table_new (2, 3, FALSE);
     gtk_table_set_row_spacings(GTK_TABLE(table), DIALOG_V_SPACING);
     gtk_table_set_col_spacings(GTK_TABLE(table), DIALOG_H_SPACING);
-    gtk_container_add(GTK_CONTAINER(alignment), table);
+    geda_container_add(alignment, table);
 
     label = geda_aligned_label_new (_("Arc Radius:"), 0, 0);
     gtk_table_attach(GTK_TABLE(table), label, 0,1,0,1, GTK_FILL,0,0,0);
@@ -2498,7 +2498,7 @@ void x_dialog_find_text(GschemToplevel *w_current)
     gtk_box_pack_start(GTK_BOX(vbox), alignment, TRUE, TRUE, 0);
 
     checkascent = gtk_check_button_new_with_label(_("Close on ascent"));
-    gtk_container_add (GTK_CONTAINER (alignment), checkascent);
+    geda_container_add (alignment, checkascent);
     gtk_widget_set_sensitive(checkascent, FALSE);
 
     GEDA_HOOKUP_OBJECT(ThisDialog, textentry, IDS_FIND_TEXT);
@@ -2876,7 +2876,7 @@ void x_dialog_text_input (GschemToplevel *w_current)
     gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled_window),
                                    GTK_POLICY_AUTOMATIC,
                                    GTK_POLICY_AUTOMATIC);
-    gtk_container_add (GTK_CONTAINER (viewport1), scrolled_window);
+    geda_container_add (viewport1, scrolled_window);
     gtk_box_pack_start( GTK_BOX(vbox), viewport1, TRUE, TRUE, 0);
 
     tientry = gtk_text_view_new();
@@ -2898,7 +2898,7 @@ void x_dialog_text_input (GschemToplevel *w_current)
     }
 
     pango_tab_array_free (tab_array);
-    gtk_container_add(GTK_CONTAINER(scrolled_window), tientry);
+    geda_container_add(scrolled_window, tientry);
 
     GEDA_OBJECT_SET_DATA(ThisDialog, tientry, IDS_TEXT_INPUT);
 
@@ -3267,7 +3267,7 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
 
       /* the tree view */
       treeview = gtk_tree_view_new_with_model(GTK_TREE_MODEL(store));
-      gtk_container_add(GTK_CONTAINER(scrolled_win), treeview);
+      geda_container_add(scrolled_win, treeview);
       g_object_set (treeview, "visible", TRUE, NULL);
 
       /* -------------------- The Columns -------------------- */
@@ -3339,7 +3339,7 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
 
       /* Remove Gtk action area from the dialog and don't re-use it */
       action_area = GTK_DIALOG(ThisDialog)->action_area;
-      gtk_container_remove(GTK_CONTAINER(vbox), action_area);
+      geda_container_remove(vbox, action_area);
 
       /* Replace the action_area with the new container */
       action_hbox = gtk_hbox_new(FALSE, 0);
@@ -3376,7 +3376,7 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
       /* Create a Horizontal Box for the button to go into */
       butt_hbox = gtk_hbox_new(FALSE, 0);
       g_object_set (butt_hbox, "visible", TRUE, NULL);
-      gtk_container_add (GTK_CONTAINER (alignment), butt_hbox);
+      geda_container_add (alignment, butt_hbox);
 
       /* Create and connect the Close a Button */
       close_butt = gtk_button_new_from_stock (GTK_STOCK_CLOSE);
@@ -3560,7 +3560,7 @@ void xd_add_changed_symbol_list (GschemToplevel   *w_current,
                         "label", tmp,
                         NULL);
 
-  gtk_container_add (GTK_CONTAINER (vbox), label);
+  geda_container_add (vbox, label);
   GEDA_FREE (tmp);
 
   /* Secondary label */
@@ -3578,7 +3578,7 @@ void xd_add_changed_symbol_list (GschemToplevel   *w_current,
                         NULL);
 
 
-  gtk_container_add (GTK_CONTAINER (vbox), label);
+  geda_container_add (vbox, label);
 
   /* List of changed symbols */
   scroll = g_object_new (GTK_TYPE_SCROLLED_WINDOW,
@@ -3610,7 +3610,7 @@ void xd_add_changed_symbol_list (GschemToplevel   *w_current,
                             "model", list_store,
                             NULL);
 
-  gtk_container_add (GTK_CONTAINER (scroll), tree_view);
+  geda_container_add (scroll, tree_view);
 
   renderer = gtk_cell_renderer_text_new ();
 
