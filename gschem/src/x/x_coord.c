@@ -485,24 +485,24 @@ void x_dialog_coord_dialog (GschemToplevel *w_current)
     vbox = GTK_DIALOG(ThisDialog)->vbox;
 
     frame = gtk_frame_new (_("Screen"));
-    gtk_container_add(GTK_CONTAINER (vbox), frame);
+    geda_container_add(vbox, frame);
     g_object_set (frame, "visible", TRUE, NULL);
 
     screen_entry = geda_entry_new_visible ();
     gtk_entry_set_has_frame (GTK_ENTRY(screen_entry), FALSE);
     gtk_entry_set_alignment (GTK_ENTRY(screen_entry), 0.5);
     geda_widget_modify_color (screen_entry, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
-    gtk_container_add(GTK_CONTAINER (frame), screen_entry);
+    geda_container_add(frame, screen_entry);
 
     frame = gtk_frame_new (_("World"));
-    gtk_container_add(GTK_CONTAINER (vbox), frame);
+    geda_container_add(vbox, frame);
     g_object_set (frame, "visible", TRUE, NULL);
 
     world_entry = geda_entry_new_visible ();
     gtk_entry_set_has_frame (GTK_ENTRY(world_entry), FALSE);
     gtk_entry_set_alignment (GTK_ENTRY(world_entry), 0.5);
     geda_widget_modify_color (world_entry, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
-    gtk_container_add(GTK_CONTAINER (frame), world_entry);
+    geda_container_add(frame, world_entry);
     geda_entry_set_valid_input((GedaEntry*)world_entry, ACCEPT_COORDINATE);
 
     world_name = geda_sprintf("GschemWorldEntry:%i", prog_pid);
