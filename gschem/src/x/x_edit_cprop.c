@@ -550,8 +550,7 @@ static void x_dialog_ep_electrical_cb (GtkWidget *check_butt, void *data)
   void set_sensitive (GtkWidget *widget, void *nothing){
     gtk_widget_set_sensitive(widget, state);
   }
-  gtk_container_foreach (GTK_CONTAINER (properties->elect_table),
-                         set_sensitive, NULL);
+  geda_container_foreach (properties->elect_table, set_sensitive, NULL);
 }
 
 /*! \brief Component Properties Dialog Enable Version Check-box Callback
@@ -836,8 +835,7 @@ static void x_dialog_ep_set_sensitive (property_data *properties, bool state)
   gtk_widget_set_sensitive(properties->doc_entry, state);
   gtk_widget_set_sensitive(properties->comment_entry, state);
   gtk_widget_set_sensitive(properties->electrical_cb, state);
-  gtk_container_foreach (GTK_CONTAINER (properties->elect_table),
-                         set_sensitive, NULL);
+  geda_container_foreach (properties->elect_table, set_sensitive, NULL);
 }
 
 /*! \brief Handle selection change event for x_dialog_edit_properties
@@ -1017,7 +1015,7 @@ static void x_dialog_edit_properties_action_area (GtkWidget     *ThisDialog,
 
   /* Remove Gtk action area from the dialog and don't re-use it */
   action_area = Dialog->action_area;
-  gtk_container_remove(GTK_CONTAINER(Dialog->vbox),GTK_WIDGET(action_area));
+  geda_container_remove(Dialog->vbox, action_area);
 
   action_hbox = gtk_hbox_new(FALSE, 0);
   g_object_set (action_hbox, "visible", TRUE, NULL);
@@ -1049,7 +1047,7 @@ static void x_dialog_edit_properties_action_area (GtkWidget     *ThisDialog,
   /* Create a Horizontal Box for the buttons to go into */
   butt_hbox = gtk_hbox_new(FALSE, 0);
   g_object_set (butt_hbox, "visible", TRUE, NULL);
-  gtk_container_add (GTK_CONTAINER (alignment), butt_hbox);
+  geda_container_add (alignment, butt_hbox);
 
   /* Create and connect the Close and Apply Buttons */
   GtkWidget *close_butt = gtk_button_new_from_stock (GTK_STOCK_CLOSE);
@@ -1220,7 +1218,7 @@ GtkWidget* x_dialog_edit_properties_constructor (GschemToplevel *w_current)
   properties->version_cb = widget;
 
   enable_label = GEDA_AVM_LABEL_NEW (_("_Enable"), 0, 1);
-  gtk_container_add (GTK_CONTAINER (verbox), enable_label);
+  geda_container_add (verbox, enable_label);
 
   gtk_box_set_spacing (GTK_BOX (verbox), 2);
   g_object_set (verbox, "visible", TRUE, NULL);
@@ -1291,13 +1289,13 @@ GtkWidget* x_dialog_edit_properties_constructor (GschemToplevel *w_current)
   hbox = gtk_hbox_new(FALSE, 0);
 
   widget = gtk_check_button_new ();
-  gtk_container_add (GTK_CONTAINER (hbox), widget);
+  geda_container_add (hbox, widget);
   SetWidgetTip(widget, _(electrical_tip));
   gtk_toggle_button_set_active ((GtkToggleButton*)widget, FALSE);
   properties->electrical_cb = widget;
 
   electrical_label = GEDA_AVM_LABEL_NEW (_("_Electrical:"), 0, 0);
-  gtk_container_add (GTK_CONTAINER (hbox), electrical_label);
+  geda_container_add (hbox, electrical_label);
 
   gtk_frame_set_label_widget (GTK_FRAME(frame), hbox);
 
@@ -1312,13 +1310,13 @@ GtkWidget* x_dialog_edit_properties_constructor (GschemToplevel *w_current)
                                         "yalign", 0.5,
                                         NULL));
 
-  gtk_container_add (GTK_CONTAINER (frame), alignment);
+  geda_container_add (frame, alignment);
 
   /* Create a second table and put in the alignment */
   table = gtk_table_new (4, 7, FALSE);
   gtk_table_set_row_spacings(GTK_TABLE(table), DIALOG_V_SPACING);
   gtk_table_set_col_spacings(GTK_TABLE(table), DIALOG_H_SPACING);
-  gtk_container_add (GTK_CONTAINER (alignment), table);
+  geda_container_add (alignment, table);
 
   /* Save a reference to the table */
   properties->elect_table = table;
