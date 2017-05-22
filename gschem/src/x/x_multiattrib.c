@@ -106,13 +106,12 @@ void x_multiattrib_open (GschemToplevel *w_current)
     page      = gschem_toplevel_get_current_page (w_current);
     selection = geda_struct_page_get_selection (page);
 
-    w_current->mawindow =
-       GTK_WIDGET (g_object_new (TYPE_MULTIATTRIB,
-                                "parent",          w_current->main_window,
-                                "settings-name",   IDS_MULTI_ATTRBI,
-                                "gschem-toplevel", w_current,
-                                "object_list",     selection,
-                                NULL));
+    w_current->mawindow = g_object_new (TYPE_MULTIATTRIB,
+                                        "parent",          w_current->main_window,
+                                        "settings-name",   IDS_MULTI_ATTRBI,
+                                        "gschem-toplevel", w_current,
+                                        "object_list",     selection,
+                                        NULL);
 
     g_signal_connect (w_current->mawindow,
                       "response",
@@ -431,13 +430,13 @@ multiline_text_start_editing(GtkCellRenderer      *cell,
 
   gtk_text_buffer_set_text (buffer, cell_text->text, strlen (cell_text->text));
 
-  textview = GTK_WIDGET (g_object_new (TYPE_CELL_TEXT_VIEW,
-                                       /* GtkTextView */
-                                       "buffer",   buffer,
-                                       "editable", TRUE,
-                                       /* GtkWidget */
-                                       "height-request", cell_area->height,
-                                       NULL));
+  textview = g_object_new (TYPE_CELL_TEXT_VIEW,
+                           /* GtkTextView */
+                           "buffer",   buffer,
+                           "editable", TRUE,
+                           /* GtkWidget */
+                           "height-request", cell_area->height,
+                           NULL);
 
   g_object_set_data_full (G_OBJECT (textview),
                           CELL_RENDERER_MULTI_LINE_TEXT_PATH,
