@@ -136,9 +136,9 @@ x_fileselect_add_preview (GedaFileChooser *filechooser)
                                       /*"active", TRUE,*/
                                       NULL));
 
-  gtk_container_add (GTK_CONTAINER (alignment), preview);
-  gtk_container_add (GTK_CONTAINER (frame), alignment);
-  gtk_container_add (GTK_CONTAINER (vbox), frame);
+  geda_container_add (alignment, preview);
+  geda_container_add (frame, alignment);
+  geda_container_add (vbox, frame);
   gtk_widget_show_all (frame);
 
   cb_size = gtk_check_button_new_with_label (_("Large"));
