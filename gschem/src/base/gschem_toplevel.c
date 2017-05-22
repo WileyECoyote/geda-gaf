@@ -120,7 +120,7 @@ static void gschem_toplevel_instance_init( GTypeInstance *instance, void *class)
   w_current->screen_height      = 0;
 
   /* -------------------- Drawing state -------------------- */
-  w_current->cairo_renderer     = EDA_RENDERER (g_object_new (EDA_TYPE_RENDERER, NULL));
+  w_current->cairo_renderer     = g_object_new (EDA_TYPE_RENDERER, NULL);
   w_current->first_wx           = -1;
   w_current->first_wy           = -1;
   w_current->second_wx          = -1;
