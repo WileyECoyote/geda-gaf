@@ -1,3 +1,8 @@
+2017-05-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_text.c: Replace g_type_check_instance_cast in class
+      initializer; geda_text_class_init and update DOxygen comments.
+
 2017-05-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_toplevel.c: Replace g_type_check_instance_cast in class
