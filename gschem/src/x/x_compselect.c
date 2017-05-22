@@ -1540,9 +1540,9 @@ load_symbols: /* It Works! */
   /* rather than returning a list store to each caller we will just create
    * a new model and add the Store since this is what the caller was going
    * to do anyways, then we can setup the filter func for the caller */
-  model = (GtkTreeModel *) g_object_new (GTK_TYPE_TREE_MODEL_FILTER,
-                                        "child-model", store,
-                                        "virtual-root", NULL, NULL);
+  model = g_object_new (GTK_TYPE_TREE_MODEL_FILTER,
+                        "child-model", store,
+                        "virtual-root", NULL, NULL);
 
   gtk_tree_model_filter_set_visible_func ((GtkTreeModelFilter*)model,
                                           lib_model_filter_visible_func,
@@ -2449,36 +2449,35 @@ compselect_create_treeview_box (Compselect   *compselect,
 
   model  = compselect_create_lib_tree_model (compselect, data_set);
 
-  scrolled_win = GTK_WIDGET (
-    g_object_new (GTK_TYPE_SCROLLED_WINDOW,
-                  /* GtkContainer */
-                  "border-width", 5,
-                  /* GtkScrolledWindow */
-                  "hscrollbar-policy", GTK_POLICY_AUTOMATIC,
-                  "vscrollbar-policy", GTK_POLICY_ALWAYS,
-                  "shadow-type",       GTK_SHADOW_ETCHED_IN,
-                  NULL));
+  scrolled_win = g_object_new (GTK_TYPE_SCROLLED_WINDOW,
+                               /* GtkContainer */
+                               "border-width", 5,
+                               /* GtkScrolledWindow */
+                               "hscrollbar-policy", GTK_POLICY_AUTOMATIC,
+                               "vscrollbar-policy", GTK_POLICY_ALWAYS,
+                               "shadow-type",       GTK_SHADOW_ETCHED_IN,
+                               NULL);
 
   /* create the treeview */
-  treeview = GTK_TREE_VIEW (g_object_new (GTK_TYPE_TREE_VIEW,
-                                          /* GtkTreeView */
-                                          "model",      model,
-                                          "rules-hint", TRUE,
-                                          "headers-visible", FALSE,
-                                          NULL));
+  treeview = g_object_new (GTK_TYPE_TREE_VIEW,
+                           /* GtkTreeView */
+                           "model",      model,
+                           "rules-hint", TRUE,
+                           "headers-visible", FALSE,
+                           NULL);
 
   gtk_tree_view_set_tooltip_column(treeview, LVC_TOOLTIP_TEXT);
 
   /* insert a column to treeview for library/symbol name */
-  renderer = GTK_CELL_RENDERER (g_object_new (GTK_TYPE_CELL_RENDERER_TEXT,
-                                               /* GtkCellRendererText */
-                                               "editable", FALSE,
-                                               NULL));
+  renderer = g_object_new (GTK_TYPE_CELL_RENDERER_TEXT,
+                           /* GtkCellRendererText */
+                           "editable", FALSE,
+                           NULL);
 
-  column = GTK_TREE_VIEW_COLUMN (g_object_new (GTK_TYPE_TREE_VIEW_COLUMN,
-                                                /* GtkTreeViewColumn */
-                                                "title", _("Components"),
-                                                NULL));
+  column = g_object_new (GTK_TYPE_TREE_VIEW_COLUMN,
+                         /* GtkTreeViewColumn */
+                         "title", _("Components"),
+                         NULL);
 
   gtk_tree_view_column_pack_start (column, renderer, TRUE);
 
@@ -2541,22 +2540,22 @@ compselect_create_attributes_treeview (Compselect *compselect)
   model = gtk_list_store_new (NUM_ATTRIBUTE_COLUMNS,
                               G_TYPE_STRING, G_TYPE_STRING);
 
-  attrtreeview = GTK_WIDGET (g_object_new (GTK_TYPE_TREE_VIEW,
-                                           /* GtkTreeView */
-                                           "model",      model,
-                                           "headers-visible", FALSE,
-                                           "rules-hint", TRUE,
-                                           NULL));
+  attrtreeview = g_object_new (GTK_TYPE_TREE_VIEW,
+                               /* GtkTreeView */
+                               "model",      model,
+                               "headers-visible", FALSE,
+                               "rules-hint", TRUE,
+                               NULL);
 
   /* two columns for name and value of the attributes */
-  renderer = GTK_CELL_RENDERER (g_object_new (GTK_TYPE_CELL_RENDERER_TEXT,
-                                              "editable", FALSE,
-                                              NULL));
+  renderer = g_object_new (GTK_TYPE_CELL_RENDERER_TEXT,
+                           "editable", FALSE,
+                           NULL);
 
-  column = GTK_TREE_VIEW_COLUMN (g_object_new (GTK_TYPE_TREE_VIEW_COLUMN,
-                                               "title", _("Name"),
-                                               "resizable", TRUE,
-                                               NULL));
+  column = g_object_new (GTK_TYPE_TREE_VIEW_COLUMN,
+                         "title", _("Name"),
+                         "resizable", TRUE,
+                         NULL);
 
   gtk_tree_view_column_pack_start (column, renderer, TRUE);
 
@@ -2565,10 +2564,10 @@ compselect_create_attributes_treeview (Compselect *compselect)
 
   gtk_tree_view_append_column (GTK_TREE_VIEW (attrtreeview), column);
 
-  column = GTK_TREE_VIEW_COLUMN (g_object_new (GTK_TYPE_TREE_VIEW_COLUMN,
-                                               "title", _("Value"),
-                                               "resizable", TRUE,
-                                               NULL));
+  column = g_object_new (GTK_TYPE_TREE_VIEW_COLUMN,
+                         "title", _("Value"),
+                         "resizable", TRUE,
+                         NULL);
 
   gtk_tree_view_column_pack_start (column, renderer, TRUE);
 
@@ -2577,15 +2576,14 @@ compselect_create_attributes_treeview (Compselect *compselect)
 
   gtk_tree_view_append_column (GTK_TREE_VIEW (attrtreeview), column);
 
-  scrolled_win = GTK_WIDGET (
-    g_object_new (GTK_TYPE_SCROLLED_WINDOW,
-                  /* GtkContainer */
-                  "border-width", 5,
-                  /* GtkScrolledWindow */
-                  "hscrollbar-policy", GTK_POLICY_AUTOMATIC,
-                  "vscrollbar-policy", GTK_POLICY_ALWAYS,
-                  "shadow-type", GTK_SHADOW_ETCHED_IN,
-                  NULL));
+  scrolled_win =  g_object_new (GTK_TYPE_SCROLLED_WINDOW,
+                                /* GtkContainer */
+                                "border-width", 5,
+                                /* GtkScrolledWindow */
+                                "hscrollbar-policy", GTK_POLICY_AUTOMATIC,
+                                "vscrollbar-policy", GTK_POLICY_ALWAYS,
+                                "shadow-type", GTK_SHADOW_ETCHED_IN,
+                                NULL);
 
   geda_container_add (scrolled_win, attrtreeview);
 
@@ -2604,28 +2602,28 @@ compselect_create_filter_area (Compselect *compselect)
   /*GtkWidget *top_butt,    *bottom_butt;*/
 
     /* -- filter area -- */
-  hbox = GTK_WIDGET (g_object_new (GTK_TYPE_HBOX,
-                                   /* GtkBox */
-                                   "homogeneous", FALSE,
-                                   "spacing",     3,
-                                    NULL));
+  hbox = g_object_new (GTK_TYPE_HBOX,
+                       /* GtkBox */
+                       "homogeneous", FALSE,
+                       "spacing",     3,
+                       NULL);
 
   /* create the entry label */
-  label = GTK_WIDGET (g_object_new (GTK_TYPE_LABEL,
-                                    /* GtkMisc */
-                                    "xalign", 0.0,
-                                    /* GtkLabel */
-                                    "label", _LABEL(FilterEntry),
-                                    NULL));
+  label = g_object_new (GTK_TYPE_LABEL,
+                        /* GtkMisc */
+                        "xalign", 0.0,
+                        /* GtkLabel */
+                        "label", _LABEL(FilterEntry),
+                        NULL);
 
   /* Add the search label to the filter area */
   PACK_BOX(hbox, label, FALSE, FALSE, 0);
 
   /* create the text entry for filter in components */
-  entry = GTK_WIDGET (g_object_new (GTK_TYPE_ENTRY,
-                                    /* GtkEntry */
-                                    "text", "",
-                                    NULL));
+  entry = g_object_new (GTK_TYPE_ENTRY,
+                        /* GtkEntry */
+                        "text", "",
+                        NULL);
 
   /* Add the filter entry to the filter area */
   PACK_BOX(hbox, entry,TRUE, TRUE, 0);
@@ -2637,12 +2635,12 @@ compselect_create_filter_area (Compselect *compselect)
   compselect->filter_timeout = 0;
 
   /* create the Clear button for filter entry */
-  clear_butt = GTK_WIDGET (g_object_new (GTK_TYPE_BUTTON,
-                                         /* GtkWidget */
-                                         "sensitive", FALSE,
-                                         /* GtkButton */
-                                         "relief",    GTK_RELIEF_NONE,
-                                         NULL));
+  clear_butt = g_object_new (GTK_TYPE_BUTTON,
+                             /* GtkWidget */
+                             "sensitive", FALSE,
+                             /* GtkButton */
+                             "relief",    GTK_RELIEF_NONE,
+                             NULL);
 
   gtk_widget_set_tooltip_text(clear_butt, _TOOLTIP(ClearButton));
 
@@ -2657,12 +2655,12 @@ compselect_create_filter_area (Compselect *compselect)
   compselect->button_clear = GTK_BUTTON (clear_butt);
 
   /* create the refresh button */
-  refresh_butt = GTK_WIDGET (g_object_new (GTK_TYPE_BUTTON,
-                                           /* GtkWidget */
-                                           "sensitive", TRUE,
-                                           /* GtkButton */
-                                           "relief",    GTK_RELIEF_NONE,
-                                           NULL));
+  refresh_butt = g_object_new (GTK_TYPE_BUTTON,
+                               /* GtkWidget */
+                               "sensitive", TRUE,
+                               /* GtkButton */
+                               "relief",    GTK_RELIEF_NONE,
+                               NULL);
 
   gtk_widget_set_tooltip_text(refresh_butt, _TOOLTIP(RefreshAllViews));
 
@@ -2674,12 +2672,12 @@ compselect_create_filter_area (Compselect *compselect)
   PACK_BOX(hbox, refresh_butt, FALSE, FALSE, 0);
 
    /* create the collapse button */
-  collapse_butt = GTK_WIDGET (g_object_new (GTK_TYPE_BUTTON,
-                                           /* GtkWidget */
-                                           "sensitive", TRUE,
-                                           /* GtkButton */
-                                           "relief",    GTK_RELIEF_NONE,
-                                           NULL));
+  collapse_butt = g_object_new (GTK_TYPE_BUTTON,
+                                /* GtkWidget */
+                                "sensitive", TRUE,
+                                /* GtkButton */
+                                "relief",    GTK_RELIEF_NONE,
+                                NULL);
 
   gtk_widget_set_tooltip_text(collapse_butt, _TOOLTIP(CollapseButton));
 
@@ -2691,12 +2689,12 @@ compselect_create_filter_area (Compselect *compselect)
   PACK_BOX(hbox, collapse_butt, FALSE, FALSE, 0);
 
     /* create the expand  button */
-  expand_butt = GTK_WIDGET (g_object_new (GTK_TYPE_BUTTON,
-                                           /* GtkWidget */
-                                           "sensitive", TRUE,
-                                           /* GtkButton */
-                                           "relief",    GTK_RELIEF_NONE,
-                                           NULL));
+  expand_butt = g_object_new (GTK_TYPE_BUTTON,
+                              /* GtkWidget */
+                              "sensitive", TRUE,
+                              /* GtkButton */
+                              "relief",    GTK_RELIEF_NONE,
+                              NULL);
 
   gtk_widget_set_tooltip_text(expand_butt, _TOOLTIP(ExpandButton));
 
@@ -3201,8 +3199,8 @@ compselect_constructor (GType                  type,
   GTK_NEW_vBOX(left, FALSE, DEFAULT_DIALOG_SPACING);
 
   /* notebook for library and inuse views */
-  notebook = GTK_WIDGET (g_object_new (GTK_TYPE_NOTEBOOK, NULL));
   ThisDialog->notebook = GTK_NOTEBOOK (notebook);
+  notebook = g_object_new (GTK_TYPE_NOTEBOOK, NULL);
 
   /* Note" The order we create the notebook tabs is important */
   notebook_tab = compselect_create_inuse_treeview (ThisDialog);
@@ -3242,24 +3240,24 @@ compselect_constructor (GType                  type,
   gtk_paned_pack1 (GTK_PANED (hpaned), left_vbox, TRUE, FALSE);
 
   /* -- preview area -- */
-  frame = GTK_WIDGET (g_object_new (GTK_TYPE_FRAME,
-                                    /* GtkFrame */
-                                    "label", _("Preview"),
-                                    NULL));
+  frame = g_object_new (GTK_TYPE_FRAME,
+                        /* GtkFrame */
+                        "label", _("Preview"),
+                        NULL);
 
-  alignment = GTK_WIDGET (g_object_new (GTK_TYPE_ALIGNMENT,
-                                        /* GtkAlignment */
-                                        "border-width",   5,
-                                        "xscale",         1.0,
-                                        "yscale",         1.0,
-                                        "xalign",         0.5,
-                                        "yalign",         0.5,
-                                        NULL));
+  alignment = g_object_new (GTK_TYPE_ALIGNMENT,
+                            /* GtkAlignment */
+                            "border-width",   5,
+                            "xscale",         1.0,
+                            "yscale",         1.0,
+                            "xalign",         0.5,
+                            "yalign",         0.5,
+                            NULL);
 
-  preview = GTK_WIDGET (g_object_new (GSCHEM_TYPE_PREVIEW,
-                                      /* Preview */
-                                      "active", FALSE,
-                                      NULL));
+  preview = g_object_new (GSCHEM_TYPE_PREVIEW,
+                          /* Preview */
+                          "active", FALSE,
+                          NULL);
 
   geda_container_add (alignment, preview);
   geda_container_add (frame, alignment);
@@ -3278,10 +3276,9 @@ compselect_constructor (GType                  type,
 
     GtkWidget *attributes;
 
-    frame = GTK_WIDGET (g_object_new (GTK_TYPE_FRAME,
-                                      /* GtkFrame */
-                                      "label", _("Attributes"),
-                                      NULL));
+    frame = g_object_new (GTK_TYPE_FRAME,
+                          /* GtkFrame */
+                          "label", _("Attributes"), NULL);
 
     attributes = compselect_create_attributes_treeview (ThisDialog);
 
