@@ -555,7 +555,7 @@ get_effective_child_attach (GtkWidget *child,
                             int       *t,
                             int       *b)
 {
-  GedaMenu   *menu = GEDA_MENU (gtk_widget_get_parent(child));
+  GedaMenu   *menu = (GedaMenu*)gtk_widget_get_parent(child);
   AttachInfo *info;
 
   menu_ensure_layout (menu);
@@ -1018,7 +1018,7 @@ geda_menu_button_press (GtkWidget *widget, GdkEventButton *event)
 
   /* Don't pass down to menu shell for presses over scroll arrows
    */
-  if (geda_menu_button_scroll (GEDA_MENU (widget), event))
+  if (geda_menu_button_scroll ((GedaMenu*)widget, event))
     return TRUE;
 
   /*  Don't pass down to menu shell if a non-menuitem part of the menu
@@ -1087,7 +1087,7 @@ geda_menu_real_can_activate_accel (GtkWidget *widget, unsigned int signal_id)
    * submenus/popup-menus. however, the state of the attach widget
    * affects the "activeness" of the menu.
    */
-  GtkWidget *awidget = geda_menu_get_attach_widget (GEDA_MENU (widget));
+  GtkWidget *awidget = geda_menu_get_attach_widget ((GedaMenu*)widget);
 
   if (awidget)
     return gtk_widget_can_activate_accel (awidget, signal_id);

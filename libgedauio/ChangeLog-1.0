@@ -1,7 +1,7 @@
 2017-05-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Revise geda_menu_key_press; remove GedaMenu
-      and GedaMenuShell variables.
+      and GedaMenuShell variables. Remove unnecessary type-checking cast.
 
 2017-05-19 Wiley E. Hill <wileyhill@gmail.com>
 
