@@ -1,3 +1,8 @@
+2017-05-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu.c: Revise geda_menu_key_press; remove GedaMenu
+      and GedaMenuShell variables.
+
 2017-05-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_check_menu_item.c: Remove unnecessary g_return_if_fail

@@ -1483,15 +1483,9 @@ geda_menu_hide_all (GtkWidget *widget)
 static bool
 geda_menu_key_press (GtkWidget *widget, GdkEventKey *event)
 {
-  GedaMenu        *menu;
-  GedaMenuShell   *menu_shell;
+  geda_menu_stop_navigating_submenu ((GedaMenu*)widget);
 
-  menu       = GEDA_MENU (widget);
-  menu_shell = GEDA_MENU_SHELL (widget);
-
-  geda_menu_stop_navigating_submenu (menu);
-
-  return GTK_WIDGET_CLASS(geda_menu_parent_class)->key_press_event ((GtkWidget*)menu_shell, event);
+  return ((GtkWidgetClass*)geda_menu_parent_class)->key_press_event (widget, event);
 }
 
 /* widget_class->leave_notify */
