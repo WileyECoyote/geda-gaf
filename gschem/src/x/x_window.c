@@ -435,9 +435,9 @@ x_window_create_main(GschemToplevel *w_current)
   gtk_widget_show (center_vbox);
 
   /*! Setup the Scroll bars
-   * The scroll-bars are constructed here if w_current->scrollbars is
-   * enabled. The visibility is intentionaly not set here. This is set
-   * near the end of this procedure.
+   * The scroll-bars are constructed here even if w_current->scrollbars
+   * is not enabled. The visibility is intentionaly not set here. This
+   * is set near the end of this procedure.
    */
   {
     GtkScrolledWindow *scroll_window;
