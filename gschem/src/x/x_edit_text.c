@@ -482,13 +482,13 @@ void x_dialog_edit_text (GschemToplevel *w_current, GedaObject *text_object)
     gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled_window),
                                    GTK_POLICY_AUTOMATIC,
                                    GTK_POLICY_AUTOMATIC);
-    gtk_container_add (GTK_CONTAINER (viewport1), scrolled_window);
-    gtk_container_add( GTK_CONTAINER(alignment), viewport1);
+    geda_container_add (viewport1, scrolled_window);
+    geda_container_add (alignment, viewport1);
 
     /* Finally, create the actual text entry widget */
     textentry = gtk_text_view_new();
     gtk_text_view_set_editable (GTK_TEXT_VIEW (textentry), TRUE);
-    gtk_container_add(GTK_CONTAINER(scrolled_window), textentry);
+    geda_container_add (scrolled_window, textentry);
     gtk_widget_set_tooltip_text (GTK_WIDGET(textentry), text_entry_tip);
     gtk_widget_grab_focus(textentry);
 
@@ -507,7 +507,7 @@ void x_dialog_edit_text (GschemToplevel *w_current, GedaObject *text_object)
     table = gtk_table_new (4, 3, FALSE);
     gtk_table_set_row_spacings(GTK_TABLE(table), DIALOG_V_SPACING);
     gtk_table_set_col_spacings(GTK_TABLE(table), DIALOG_H_SPACING);
-    gtk_container_add(GTK_CONTAINER(alignment), table);
+    geda_container_add (alignment, table);
 
     /* Text Alignment Label -- Table Row 1 */
     align_label = geda_aligned_mnemonic_label_new(_LABEL(TextAlign), 0, 0);

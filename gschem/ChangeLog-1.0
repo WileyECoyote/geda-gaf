@@ -6,6 +6,8 @@
 
     * srcsrc/x/x_edit_cprop.c: Replace gtk_container_xx functions with macros.
 
+    *src/x/x_edit_text.c: Replace gtk_container_add with geda_container_add.
+
 2017-05-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_toplevel.c: Remove unnecessary cast from g_object_new.
