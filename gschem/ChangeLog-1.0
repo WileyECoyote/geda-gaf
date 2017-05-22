@@ -6,6 +6,9 @@
 
     * src/x/x_dialog.c: Replace gtk_container_add with geda_container_add.
 
+    * src/x/x_image.c: Replace geda_visible_label_new with geda_aligned_visible
+      _label_new and eliminate gtk_misc_set_alignment and gtk_misc_set_padding.
+
 2017-05-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_edit_attrib.c: Replace gtk_container_add with geda_container_add.
