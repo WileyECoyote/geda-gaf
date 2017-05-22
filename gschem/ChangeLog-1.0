@@ -1,5 +1,7 @@
 2017-05-22 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/base/gschem_preview.c: Remove unnecessary cast from g_object_new.
+
     * src/x/x_coord.c: Replace gtk_container_add with geda_container_add.
 
     * srcsrc/x/x_edit_cprop.c: Replace gtk_container_xx functions with macros.

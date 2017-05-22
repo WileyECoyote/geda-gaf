@@ -703,7 +703,7 @@ is_a_gschem_preview (GschemPreview *preview)
  */
 GtkWidget *gschem_preview_new (void)
 {
-  return GTK_WIDGET (g_object_new (GSCHEM_TYPE_PREVIEW, NULL));
+  return g_object_new (GSCHEM_TYPE_PREVIEW, NULL);
 }
 
 /** @} endgroup Gschem-Preview-Widget */
