@@ -2,6 +2,8 @@
 
     * src/base/gschem_toplevel.c: Remove unnecessary cast from g_object_new.
 
+    * src/iface/i_window.c: Replace q_log_message with geda_log_v.
+
     * src/x/x_compselect.c: Remove unnecessary cast from g_object_new.
 
     * src/x/x_dialog.c: Replace gtk_container_add with geda_container_add.

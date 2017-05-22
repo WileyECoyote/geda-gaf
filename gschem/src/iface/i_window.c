@@ -94,7 +94,7 @@ void i_window_close_page (GschemToplevel *w_current)
   }
 
   if (page && can_close) {
-    q_log_message(_("Closing Page\n"));
+    geda_log_v(_("Closing Page\n"));
     g_hook_run_page (w_current, CLOSE_PAGE_HOOK, page);
     x_window_close_page (w_current, page);
   }
