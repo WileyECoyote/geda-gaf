@@ -4412,7 +4412,7 @@ geda_keyfile_parse_value_as_comment (GedaKeyFile *key_file, const char *value)
 }
 
 static char*
-geda_keyfile_parse_comment_as_value (GedaKeyFile *key_file, const char   *comment)
+geda_keyfile_parse_comment_as_value (GedaKeyFile *key_file, const char *comment)
 {
   GString *string;
   char **lines;
