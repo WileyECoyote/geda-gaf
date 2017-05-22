@@ -1207,7 +1207,7 @@ geda_menu_enter_notify (GtkWidget *widget, GdkEventCrossing *event)
                                    event->x_root, event->y_root))
     return TRUE;
 
-  return GTK_WIDGET_CLASS (geda_menu_parent_class)->enter_notify_event (widget, event);
+  return ((GtkWidgetClass*)geda_menu_parent_class)->enter_notify_event (widget, event);
 }
 
 static void
@@ -1438,7 +1438,7 @@ geda_menu_expose (GtkWidget *widget, GdkEventExpose *event)
 
     geda_menu_paint (widget, event);
 
-    GTK_WIDGET_CLASS (geda_menu_parent_class)->expose_event (widget, event);
+    ((GtkWidgetClass*)geda_menu_parent_class)->expose_event (widget, event);
   }
 
   return FALSE;
@@ -1547,7 +1547,7 @@ geda_menu_leave_notify (GtkWidget *widget, GdkEventCrossing *event)
       }
     }
 
-    return GTK_WIDGET_CLASS (geda_menu_parent_class)->leave_notify_event (widget, event);
+    return ((GtkWidgetClass*)geda_menu_parent_class)->leave_notify_event (widget, event);
   }
 
   return TRUE;
@@ -2033,7 +2033,7 @@ geda_menu_show (GtkWidget *widget)
 
   geda_menu_refresh_accel_paths (menu, FALSE);
 
-  GTK_WIDGET_CLASS (geda_menu_parent_class)->show (widget);
+  ((GtkWidgetClass*)geda_menu_parent_class)->show (widget);
 }
 
 /* widget_class->show_all */
@@ -2382,7 +2382,7 @@ geda_menu_unrealize (GtkWidget *widget)
   gdk_window_destroy (menu->bin_window);
   menu->bin_window = NULL;
 
-  GTK_WIDGET_CLASS (geda_menu_parent_class)->unrealize (widget);
+  ((GtkWidgetClass*)geda_menu_parent_class)->unrealize (widget);
 }
 
 /* object_class->destroy */
@@ -2724,7 +2724,7 @@ geda_menu_real_insert (GedaMenuShell *menu_shell,
     gtk_widget_set_parent_window (child, menu->bin_window);
   }
 
-  GEDA_MENU_SHELL_CLASS (geda_menu_parent_class)->insert (menu_shell, child, position);
+  ((GedaMenuShellClass*)geda_menu_parent_class)->insert (menu_shell, child, position);
 
   menu_queue_resize (menu);
 }
@@ -2875,7 +2875,7 @@ geda_menu_move_current (GedaMenuShell *menu_shell, MenuDirection direction)
     }
   }
 
-  GEDA_MENU_SHELL_CLASS (geda_menu_parent_class)->move_current (menu_shell, direction);
+  ((GedaMenuShellClass*)geda_menu_parent_class)->move_current (menu_shell, direction);
 }
 
 /* shell_class->select_item */
@@ -2888,7 +2888,7 @@ geda_menu_select_item (GedaMenuShell *menu_shell, GtkWidget *menu_item)
     geda_menu_scroll_item_visible (menu_shell, menu_item);
   }
 
-  GEDA_MENU_SHELL_CLASS (geda_menu_parent_class)->select_item (menu_shell, menu_item);
+  ((GedaMenuShellClass*)geda_menu_parent_class)->select_item (menu_shell, menu_item);
 }
 
 /* ------------------ Signal Handlers ------------------ */
@@ -5100,7 +5100,7 @@ geda_menu_stop_navigating_submenu_cb (void *user_data)
       send_event->crossing.time       = GDK_CURRENT_TIME; /* Bogus */
       send_event->crossing.send_event = TRUE;
 
-      GTK_WIDGET_CLASS (geda_menu_parent_class)->enter_notify_event ((GtkWidget*)menu, (GdkEventCrossing *)send_event);
+      ((GtkWidgetClass*)geda_menu_parent_class)->enter_notify_event ((GtkWidget*)menu, (GdkEventCrossing *)send_event);
 
       gdk_event_free (send_event);
     }
