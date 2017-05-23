@@ -1801,7 +1801,7 @@ GtkWidget *autonumber_create_dialog(GschemToplevel  *w_current,
   geda_container_add (alignment, lower_vbox);
 
   lower_table = (GtkTable*)gtk_table_new (2, 2, FALSE);
-  g_object_set (upper_table, "visible", TRUE, NULL);
+  g_object_set (lower_table, "visible", TRUE, NULL);
   gtk_box_pack_start (GTK_BOX (lower_vbox), (GtkWidget*)lower_table, TRUE, TRUE, 0);
   gtk_table_set_row_spacings (lower_table, DIALOG_V_SPACING);
   gtk_table_set_col_spacings (lower_table, DIALOG_H_SPACING);

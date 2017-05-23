@@ -2,6 +2,9 @@
 
     * po/bg.po: Updated Bulgarian translation.
 
+    * src/x/x_autonumber.c: Update variable lower_table in autonumber_create
+      _dialog.
+
 2017-05-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_preview.c: Remove unnecessary cast from g_object_new.
