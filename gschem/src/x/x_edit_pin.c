@@ -69,7 +69,7 @@ typedef enum {
  */
 static WidgetStringData DialogStrings[] = {
   {"pin-type",         N_("_Type:"),          N_("Select the pin type")},
-  {"pin-attribute",    N_("_Attributes:"),    N_("Set the pin attrbutes")},
+  {"pin-attribute",    N_("_Attributes:"),    N_("Set the pin attributes")},
   {"pin-number",       N_("_Number:"),        N_("Set the pin number, or the starting pin number if auto numbering")},
   {"pin-sequence",     N_("_Sequence:"),      N_("Set the sequence number")},
   {"pin-label",        N_("_Label:"),         N_("Enter pin name or description")},
