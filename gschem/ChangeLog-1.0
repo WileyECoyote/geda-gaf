@@ -6,7 +6,9 @@
       _dialog.
 
     * src/x/x_multiattrib.c: Revise x_multiattrib_update to use accessors
-      instead of w_current->toplevel->page_current->selection_list.
+      instead of w_current->toplevel->page_current->selection_list. Remove
+      remove unnecessary GObjectClass type-checking class cast in function
+      celltextview_class_init.
 
 2017-05-22 Wiley E. Hill <wileyhill@gmail.com>
 

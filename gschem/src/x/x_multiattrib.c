@@ -319,7 +319,7 @@ GedaType celltextview_get_type()
 static void celltextview_class_init(CellTextViewClass *class)
 {
   GParamSpec   *params;
-  GObjectClass *gobject_class = G_OBJECT_CLASS (class);
+  GObjectClass *gobject_class = (GObjectClass*) class;
 
   gobject_class->get_property = celltextview_get_property;
   gobject_class->set_property = celltextview_set_property;
