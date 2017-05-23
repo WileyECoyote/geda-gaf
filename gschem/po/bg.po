@@ -2343,9 +2343,8 @@ msgid "Entry for model file name"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:71
-#, fuzzy
 msgid "_Type:"
-msgstr "Линията Тип:"
+msgstr "_Тип:"
 
 #: gschem/src/x/x_edit_pin.c:71
 msgid "Select the pin type"
@@ -4774,8 +4773,8 @@ msgstr "Прилепване решетка разредка..."
 msgid "Adjust snap size"
 msgstr "Регулиране размер Прилепване"
 
+# Toggle Snap Mode
 #: gschem/etc/system-gschemrc.scm:2339
-#, fuzzy
 msgid "_Snap On-Off"
 msgstr "Превключване на режима на Прилепване"
 
@@ -4784,8 +4783,8 @@ msgstr "Превключване на режима на Прилепване"
 msgid "Toggle the object snap mode"
 msgstr "Превключване на режима на Прилепване"
 
+# Switch mode elastic
 #: gschem/etc/system-gschemrc.scm:2340
-#, fuzzy
 msgid "_Rubberband"
 msgstr "Превключване режим еластичен"
 
@@ -4793,8 +4792,8 @@ msgstr "Превключване режим еластичен"
 msgid "Toggle rubberband net mode"
 msgstr "Превключване режим еластичен"
 
+# Auto-link mode
 #: gschem/etc/system-gschemrc.scm:2341
-#, fuzzy
 msgid "_Magnetic Net"
 msgstr "Режим на автоматична връзка"
 
@@ -4803,9 +4802,8 @@ msgstr "Режим на автоматична връзка"
 msgid "Toggle magnetic net mode"
 msgstr "Превключване на магнитен нетната"
 
-# Toggle Drag Move
+# Toggle Drag Move => Toggle sliding stroke
 #: gschem/etc/system-gschemrc.scm:2342
-#, fuzzy
 msgid "_Drag Move"
 msgstr "Превключване плъзгане ход"
 
@@ -4813,8 +4811,8 @@ msgstr "Превключване плъзгане ход"
 msgid "Toggle Drag-can-Move mode"
 msgstr "Превключване режим плъзгане ход"
 
+# Switch box contour
 #: gschem/etc/system-gschemrc.scm:2343
-#, fuzzy
 msgid "_Outline-Box"
 msgstr "превключване кутия контур"
 
@@ -4823,9 +4821,8 @@ msgstr "превключване кутия контур"
 msgid "Toggle action feedback"
 msgstr "превключване на обратна връзка за действие"
 
-# toggle Automatic Pan
+# toggle Automatic Pan => Switch automatic pan
 #: gschem/etc/system-gschemrc.scm:2344
-#, fuzzy
 msgid "_Auto-Pan"
 msgstr "превключване автоматично тиган"
 
