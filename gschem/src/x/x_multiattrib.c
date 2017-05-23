@@ -2073,9 +2073,10 @@ static void multiattrib_init(Multiattrib *ThisDialog)
   ThisDialog->object_list   = NULL;
 
   /* create the attribute list frame */
-  frame = GTK_WIDGET (g_object_new (GTK_TYPE_FRAME, /* GtkFrame */
-                                    "shadow", GTK_SHADOW_NONE,
-                                    NULL));
+  frame = g_object_new (GTK_TYPE_FRAME,
+                        /* GtkFrame */
+                        "shadow", GTK_SHADOW_NONE,
+                        NULL);
 
   ThisDialog->frame_attributes = frame;
 
@@ -2094,23 +2095,24 @@ static void multiattrib_init(Multiattrib *ThisDialog)
                                              G_TYPE_OBJECT);  /* COLUMN_ATTRIBUTE_GEDALIST */
 
   /*   - create a scrolled window for the treeview */
-  scrolled_win = GTK_WIDGET ( g_object_new (GTK_TYPE_SCROLLED_WINDOW,
-                           /* GtkContainer */
-                             "border-width",      3,
-                           /* GtkScrolledWindow */
-                             "hscrollbar-policy",
-                              GTK_POLICY_AUTOMATIC,
-                             "vscrollbar-policy",
-                              GTK_POLICY_AUTOMATIC,
-                             "shadow-type",
-                              GTK_SHADOW_ETCHED_IN,
-                              NULL));
+  scrolled_win = g_object_new (GTK_TYPE_SCROLLED_WINDOW,
+                               /* GtkContainer */
+                               "border-width",      3,
+                               /* GtkScrolledWindow */
+                               "hscrollbar-policy",
+                               GTK_POLICY_AUTOMATIC,
+                               "vscrollbar-policy",
+                               GTK_POLICY_AUTOMATIC,
+                               "shadow-type",
+                               GTK_SHADOW_ETCHED_IN,
+                               NULL);
 
   /*   - create the treeview */
-  treeview = GTK_WIDGET (g_object_new (GTK_TYPE_TREE_VIEW, /* GtkTreeView */
-                                      "model",      store,
-                                      "rules-hint", TRUE,
-                                       NULL));
+  treeview = g_object_new (GTK_TYPE_TREE_VIEW, /* GtkTreeView */
+                           "model",      store,
+                           "rules-hint", TRUE,
+                           NULL);
+
   g_signal_connect (treeview,
                     "key-press-event",
                     G_CALLBACK (multiattrib_callback_key_pressed),
@@ -2151,17 +2153,17 @@ static void multiattrib_init(Multiattrib *ThisDialog)
     GtkCellRenderer   *renderer;
     GtkTreeViewColumn *column;
 
-    renderer = GTK_CELL_RENDERER (g_object_new (ColumnRendererType, NULL));
+    renderer = g_object_new (ColumnRendererType, NULL);
 
     g_signal_connect (renderer, ColumnSignal, ColumnNotifier, ThisDialog);
 
-    column   = GTK_TREE_VIEW_COLUMN (g_object_new (GTK_TYPE_TREE_VIEW_COLUMN,
-                                    "title",     ColumnTitle,
-                                    "min-width", ColumnMinWidth,
-                                    "expand",    ColumnExpandable,
-                                    "resizable", ColumnResizable,
-                                    "sizing",    ColumnSizing,
-                                                 NULL));
+    column   = g_object_new (GTK_TYPE_TREE_VIEW_COLUMN,
+                             "title",     ColumnTitle,
+                             "min-width", ColumnMinWidth,
+                             "expand",    ColumnExpandable,
+                             "resizable", ColumnResizable,
+                             "sizing",    ColumnSizing,
+                             NULL);
 
     gtk_tree_view_column_pack_start (column, renderer, ColumnResizable);
 
