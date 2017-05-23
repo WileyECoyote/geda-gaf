@@ -117,7 +117,7 @@ static GtkWidget *create_menu_pin_electricals ( void )
 
     menuitem = geda_radio_menu_item_new_with_label (group, _(types[i].str));
     group = geda_radio_menu_item_group (GEDA_RADIO_MENU_ITEM (menuitem));
-    geda_menu_append (GEDA_MENU (menu), menuitem);
+    geda_menu_append (menu, menuitem);
     GEDA_OBJECT_SET_DATA(menuitem,
                          (void*)(long) (types[i].electrical),
                          WIDGET(PinElectrical));
@@ -153,7 +153,7 @@ static GtkWidget *create_menu_pin_type ( void )
     menuitem = geda_radio_menu_item_new_with_label (group, _(types[i].str));
     group    = geda_radio_menu_item_group (GEDA_RADIO_MENU_ITEM (menuitem));
 
-    geda_menu_append (GEDA_MENU (menu), menuitem);
+    geda_menu_append (menu, menuitem);
 
     GEDA_OBJECT_SET_DATA(menuitem,
                          (void*)(long) (types[i].type),

@@ -5,6 +5,8 @@
     * src/x/x_autonumber.c: Update variable lower_table in autonumber_create
       _dialog.
 
+    * src/x/x_edit_pin.c: Remove unneeded cast from geda_menu_append.
+
     * src/x/x_multiattrib.c: Revise x_multiattrib_update to use accessors
       instead of w_current->toplevel->page_current->selection_list. Remove
       remove unnecessary GObjectClass type-checking class cast in function
