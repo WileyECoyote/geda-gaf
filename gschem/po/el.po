@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-05-15 00:56-0500\n"
+"POT-Creation-Date: 2017-05-23 00:14-0500\n"
 "PO-Revision-Date: 2012-09-01 20:41+0000\n"
 "Last-Translator: Panos Bouklis <panos@echidna-band.com>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -2000,7 +2000,7 @@ msgstr "στη βιβλιοθήκη, δοκιμάστε να ανανεώσετ�
 msgid "not in library, opening as page"
 msgstr ""
 
-#: gschem/src/x/x_dnd.c:444 gschem/src/x/x_multiattrib.c:2598
+#: gschem/src/x/x_dnd.c:444 gschem/src/x/x_multiattrib.c:2605
 msgid "symbol"
 msgstr "Σύμβολα"
 
@@ -2095,16 +2095,16 @@ msgstr ""
 msgid "Single Attribute Editor"
 msgstr "Επεξεργαστής ενός γνωρίσματος"
 
-#: gschem/src/x/x_edit_attrib.c:466 gschem/src/x/x_multiattrib.c:2214
+#: gschem/src/x/x_edit_attrib.c:466 gschem/src/x/x_multiattrib.c:2215
 msgid "Name:"
 msgstr "Όνομα:"
 
-#: gschem/src/x/x_edit_attrib.c:483 gschem/src/x/x_multiattrib.c:2231
+#: gschem/src/x/x_edit_attrib.c:483 gschem/src/x/x_multiattrib.c:2234
 msgid "Value:"
 msgstr "Τιμή:"
 
 #: gschem/src/x/x_edit_attrib.c:497 gschem/src/x/x_multiattrib.c:2010
-#: gschem/src/x/x_multiattrib.c:2286
+#: gschem/src/x/x_multiattrib.c:2290
 msgid "Visible"
 msgstr "Ορατό"
 
@@ -2296,7 +2296,7 @@ msgstr "Γνωρίσματα"
 
 #: gschem/src/x/x_edit_pin.c:72
 #, fuzzy
-msgid "Set the pin attrbutes"
+msgid "Set the pin attributes"
 msgstr "Εμφάνιση κληρονομημένων γνωρισμάτων"
 
 #: gschem/src/x/x_edit_pin.c:73
@@ -3217,7 +3217,7 @@ msgstr "Απέτυχε να ανοίξει"
 msgid "falling back to"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:795 gschem/src/x/x_multiattrib.c:2752
+#: gschem/src/x/x_multiattrib.c:795 gschem/src/x/x_multiattrib.c:2759
 msgid "<various>"
 msgstr ""
 
@@ -3258,63 +3258,63 @@ msgstr "Αντίγραφο"
 msgid "Copy to all"
 msgstr "Αντιγραφή σε 1"
 
-#: gschem/src/x/x_multiattrib.c:2056 gschem/src/x/x_multiattrib.c:2575
+#: gschem/src/x/x_multiattrib.c:2056 gschem/src/x/x_multiattrib.c:2582
 msgid "Edit Attributes"
 msgstr "Επεξεργασία γνωρισμάτων"
 
-#: gschem/src/x/x_multiattrib.c:2199 gschem/scheme/gschem/builtins.scm:350
+#: gschem/src/x/x_multiattrib.c:2198 gschem/scheme/gschem/builtins.scm:350
 msgid "Add Attribute"
 msgstr "Προσθήκη γνωρίσματος"
 
-#: gschem/src/x/x_multiattrib.c:2246
+#: gschem/src/x/x_multiattrib.c:2249
 msgid "Ctrl+Enter inserts new line; Ctrl+Tab inserts Tab"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2277
+#: gschem/src/x/x_multiattrib.c:2280
 msgid "Enter or type a value for the new attribute then press the Add button"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2291
+#: gschem/src/x/x_multiattrib.c:2295
 msgid "Enable or disable attribute visibility"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2304
+#: gschem/src/x/x_multiattrib.c:2310
 msgid "Add new attribute to component"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2594
+#: gschem/src/x/x_multiattrib.c:2601
 msgid "symbols"
 msgstr "Σύμβολα"
 
-#: gschem/src/x/x_multiattrib.c:2609
+#: gschem/src/x/x_multiattrib.c:2616
 msgid "pins"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2613
+#: gschem/src/x/x_multiattrib.c:2620
 msgid "pin"
 msgstr "Ακροδέκτης"
 
-#: gschem/src/x/x_multiattrib.c:2624
+#: gschem/src/x/x_multiattrib.c:2631
 msgid "nets"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2628
+#: gschem/src/x/x_multiattrib.c:2635
 msgid "net"
 msgstr "Δίκτυο"
 
-#: gschem/src/x/x_multiattrib.c:2639
+#: gschem/src/x/x_multiattrib.c:2646
 msgid "buses"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2643
+#: gschem/src/x/x_multiattrib.c:2650
 msgid "bus"
 msgstr "Δίαυλος"
 
-#: gschem/src/x/x_multiattrib.c:2654
+#: gschem/src/x/x_multiattrib.c:2661
 msgid "attributes"
 msgstr "Γνωρίσματα"
 
-#: gschem/src/x/x_multiattrib.c:2658
+#: gschem/src/x/x_multiattrib.c:2665
 msgid "attribute"
 msgstr "Γνωρίσματα"
 

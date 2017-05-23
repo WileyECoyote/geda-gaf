@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gschem\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-05-15 00:56-0500\n"
+"POT-Creation-Date: 2017-05-23 00:14-0500\n"
 "PO-Revision-Date: 2010-02-14 01:03+0000\n"
 "Last-Translator: Bernd Jendrissek <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -2060,7 +2060,7 @@ msgstr "in die biblioteek, probeer verfrissende"
 msgid "not in library, opening as page"
 msgstr ""
 
-#: gschem/src/x/x_dnd.c:444 gschem/src/x/x_multiattrib.c:2598
+#: gschem/src/x/x_dnd.c:444 gschem/src/x/x_multiattrib.c:2605
 msgid "symbol"
 msgstr "Simbole"
 
@@ -2155,16 +2155,16 @@ msgstr ""
 msgid "Single Attribute Editor"
 msgstr "Enkeleienskap-Bewerker"
 
-#: gschem/src/x/x_edit_attrib.c:466 gschem/src/x/x_multiattrib.c:2214
+#: gschem/src/x/x_edit_attrib.c:466 gschem/src/x/x_multiattrib.c:2215
 msgid "Name:"
 msgstr "Naam:"
 
-#: gschem/src/x/x_edit_attrib.c:483 gschem/src/x/x_multiattrib.c:2231
+#: gschem/src/x/x_edit_attrib.c:483 gschem/src/x/x_multiattrib.c:2234
 msgid "Value:"
 msgstr "Waarde:"
 
 #: gschem/src/x/x_edit_attrib.c:497 gschem/src/x/x_multiattrib.c:2010
-#: gschem/src/x/x_multiattrib.c:2286
+#: gschem/src/x/x_multiattrib.c:2290
 msgid "Visible"
 msgstr "Sigbaar"
 
@@ -2354,9 +2354,9 @@ msgstr ""
 msgid "_Attributes:"
 msgstr "Eienskappe:"
 
-# Set the pin attrbutes
+# Set the pin attributes
 #: gschem/src/x/x_edit_pin.c:72
-msgid "Set the pin attrbutes"
+msgid "Set the pin attributes"
 msgstr "Stel die pen aanrbutes"
 
 #: gschem/src/x/x_edit_pin.c:73
@@ -3274,7 +3274,7 @@ msgstr "Kon nie open"
 msgid "falling back to"
 msgstr "val terug na"
 
-#: gschem/src/x/x_multiattrib.c:795 gschem/src/x/x_multiattrib.c:2752
+#: gschem/src/x/x_multiattrib.c:795 gschem/src/x/x_multiattrib.c:2759
 msgid "<various>"
 msgstr "<verskeie>"
 
@@ -3314,63 +3314,63 @@ msgstr "Dupliseer"
 msgid "Copy to all"
 msgstr "Kopieer in 1 in"
 
-#: gschem/src/x/x_multiattrib.c:2056 gschem/src/x/x_multiattrib.c:2575
+#: gschem/src/x/x_multiattrib.c:2056 gschem/src/x/x_multiattrib.c:2582
 msgid "Edit Attributes"
 msgstr "Bewerk Eienskappe"
 
-#: gschem/src/x/x_multiattrib.c:2199 gschem/scheme/gschem/builtins.scm:350
+#: gschem/src/x/x_multiattrib.c:2198 gschem/scheme/gschem/builtins.scm:350
 msgid "Add Attribute"
 msgstr "Voeg Eienskap By"
 
-#: gschem/src/x/x_multiattrib.c:2246
+#: gschem/src/x/x_multiattrib.c:2249
 msgid "Ctrl+Enter inserts new line; Ctrl+Tab inserts Tab"
 msgstr "Ctrl + Enter insetsels nuwe lyn; Ctrl + Tab voeg Tab"
 
-#: gschem/src/x/x_multiattrib.c:2277
+#: gschem/src/x/x_multiattrib.c:2280
 msgid "Enter or type a value for the new attribute then press the Add button"
 msgstr "Tik of tik 'n waarde vir die nuwe kenmerk druk dan op die knoppie Voeg"
 
-#: gschem/src/x/x_multiattrib.c:2291
+#: gschem/src/x/x_multiattrib.c:2295
 msgid "Enable or disable attribute visibility"
 msgstr "Aktiveer of kenmerk sigbaarheid te skakel"
 
-#: gschem/src/x/x_multiattrib.c:2304
+#: gschem/src/x/x_multiattrib.c:2310
 msgid "Add new attribute to component"
 msgstr "Voeg nuwe kenmerk komponent"
 
-#: gschem/src/x/x_multiattrib.c:2594
+#: gschem/src/x/x_multiattrib.c:2601
 msgid "symbols"
 msgstr "Simbole"
 
-#: gschem/src/x/x_multiattrib.c:2609
+#: gschem/src/x/x_multiattrib.c:2616
 msgid "pins"
 msgstr "Pen"
 
-#: gschem/src/x/x_multiattrib.c:2613
+#: gschem/src/x/x_multiattrib.c:2620
 msgid "pin"
 msgstr "Pen"
 
-#: gschem/src/x/x_multiattrib.c:2624
+#: gschem/src/x/x_multiattrib.c:2631
 msgid "nets"
 msgstr "nets"
 
-#: gschem/src/x/x_multiattrib.c:2628
+#: gschem/src/x/x_multiattrib.c:2635
 msgid "net"
 msgstr "Skakeling"
 
-#: gschem/src/x/x_multiattrib.c:2639
+#: gschem/src/x/x_multiattrib.c:2646
 msgid "buses"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2643
+#: gschem/src/x/x_multiattrib.c:2650
 msgid "bus"
 msgstr "Bus"
 
-#: gschem/src/x/x_multiattrib.c:2654
+#: gschem/src/x/x_multiattrib.c:2661
 msgid "attributes"
 msgstr "Eienskappe"
 
-#: gschem/src/x/x_multiattrib.c:2658
+#: gschem/src/x/x_multiattrib.c:2665
 msgid "attribute"
 msgstr "Eienskappe"
 
