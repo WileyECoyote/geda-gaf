@@ -86,7 +86,7 @@ GSList*    geda_radio_menu_item_get_group                     (GedaRadioMenuItem
 void       geda_radio_menu_item_set_group                     (GedaRadioMenuItem  *radio_menu_item,
                                                                GSList             *group);
 
-#define geda_radio_menu_item_group geda_radio_menu_item_get_group
+#define geda_radio_menu_item_group(w) geda_radio_menu_item_get_group((GedaRadioMenuItem*)w)
 
 #ifdef __cplusplus
 }
