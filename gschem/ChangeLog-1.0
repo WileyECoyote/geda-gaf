@@ -5,6 +5,9 @@
     * src/x/x_autonumber.c: Update variable lower_table in autonumber_create
       _dialog.
 
+    * src/x/x_multiattrib.c: Revise x_multiattrib_update to use accessors
+      instead of w_current->toplevel->page_current->selection_list.
+
 2017-05-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_preview.c: Remove unnecessary cast from g_object_new.

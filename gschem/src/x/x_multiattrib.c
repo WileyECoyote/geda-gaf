@@ -166,8 +166,15 @@ void
 x_multiattrib_update (GschemToplevel *w_current)
 {
   if (w_current->mawindow != NULL) {
-    g_object_set (G_OBJECT (w_current->mawindow), "object_list",
-                  w_current->toplevel->page_current->selection_list, NULL);
+
+    Page       *page;
+    SELECTION  *selection;
+
+    page = geda_toplevel_get_current_page (w_current->toplevel);
+
+    selection = geda_struct_page_get_selection (page);
+
+    g_object_set (w_current->mawindow, "object_list", selection, NULL);
   }
 }
 
