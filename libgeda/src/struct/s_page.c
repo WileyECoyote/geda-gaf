@@ -1098,11 +1098,9 @@ geda_struct_page_get_objects (Page *page)
 GList*
 geda_struct_page_objects_in_regions (Page *page, RECTANGLE *rects, int n_rects)
 {
-  GList *list = NULL;
-
   if (GEDA_IS_PAGE(page)) {
 
-    GList *iter;
+    GList *iter, *list = NULL;
 
     for (iter = page->_object_list; iter != NULL; NEXT(iter)) {
 
@@ -1128,11 +1126,10 @@ geda_struct_page_objects_in_regions (Page *page, RECTANGLE *rects, int n_rects)
     }
 
     list = g_list_reverse (list);
+
+    return list;
   }
-  else {
-    BUG_MSG("Invalid Page object");
-  }
-  return list;
+  return NULL;
 }
 
 /*!
