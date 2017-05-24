@@ -3,6 +3,9 @@
     * src/widgets/geda_entry.c: Remove unnecessary class type-checking cast
       to the parent GObjectClass and GtkWidgetClass.
 
+    * src/widgets/geda_font_dialog.c: Remove unnecessary g_return_if_fail
+      in geda_font_dialog_get_font_desc.
+
     * src/widgets/geda_label.c: Include geda_uio_functions.h instead of
       geda_marshal.h and geda_uio_functions.h.
 
