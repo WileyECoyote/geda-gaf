@@ -3,6 +3,9 @@
     * src/widgets/geda_entry.c: Remove unnecessary class type-checking cast
       to the parent GObjectClass and GtkWidgetClass.
 
+    * src/widgets/geda_label.c: Include geda_uio_functions.h instead of
+      geda_marshal.h and geda_uio_functions.h.
+
     * src/widgets/geda_menu_separator.c: Skip type checking for class casts
       in geda_menu_separator_class_init.
 

@@ -64,12 +64,11 @@
 #include "../../include/geda_gtk_compat.h"
 #include "../../include/geda_keysyms.h"
 #include "../../include/geda_label.h"
-#include "../../include/geda_marshal.h"
 #include "../../include/geda_menu.h"
 #include "../../include/geda_menu_item.h"
 #include "../../include/geda_menu_shell.h"
 #include "../../include/geda_image_menu_item.h"
-#include "../../include/geda_widget.h"
+#include "../../include/geda_uio_functions.h"
 #include "../../include/gettext.h"
 
 #include <geda_debug.h>
