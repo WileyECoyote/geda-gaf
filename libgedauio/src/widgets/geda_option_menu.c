@@ -134,7 +134,7 @@ geda_option_menu_item_finalize (GObject *object)
     }
   }
 
-  G_OBJECT_CLASS (geda_option_menu_parent_class)->finalize (object);
+  ((GObjectClass*)geda_option_menu_parent_class)->finalize (object);
 }
 
 /*! \brief GedaOptionMenu Type Class Initializer
@@ -370,7 +370,7 @@ geda_option_menu_destroy (GtkObject *object)
     option_menu->menu = NULL;
   }
 
-  GTK_OBJECT_CLASS (geda_option_menu_parent_class)->destroy (object);
+  ((GtkObjectClass*)geda_option_menu_parent_class)->destroy (object);
 }
 
 static void

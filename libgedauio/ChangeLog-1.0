@@ -1,10 +1,13 @@
 2017-05-24 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/widgets/geda_entry.c. Remove unnecessary class type-checking cast
+    * src/widgets/geda_entry.c: Remove unnecessary class type-checking cast
       to the parent GObjectClass and GtkWidgetClass.
 
     * src/widgets/geda_menu_separator.c: Skip type checking for class casts
       in geda_menu_separator_class_init.
+
+    * src/widgets/geda_option_menu.c: Remove unnecessary class type-checking cast
+      to the parent GObjectClass.
 
 2017-05-23 Wiley E. Hill <wileyhill@gmail.com>
 
