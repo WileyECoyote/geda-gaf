@@ -228,7 +228,7 @@ geda_entry_finalize (GObject *object)
   if (entry->have_history)
     *entry->priv->history_store = entry->priv->history_list;
 
-  G_OBJECT_CLASS (geda_entry_parent_class)->finalize (object);
+  ((GObjectClass*)geda_entry_parent_class)->finalize (object);
 
   if (entry->priv->attrs) {
     pango_attr_list_unref (entry->priv->attrs);
@@ -530,7 +530,7 @@ geda_entry_drag_data_received (GtkWidget        *widget,
 static void
 geda_entry_grab_focus (GtkWidget *widget)
 {
-  GTK_WIDGET_CLASS (geda_entry_parent_class)->grab_focus (widget);
+  ((GtkWidgetClass*)geda_entry_parent_class)->grab_focus (widget);
 }
 
 /*!
@@ -542,7 +542,7 @@ geda_entry_grab_focus (GtkWidget *widget)
 static void
 geda_entry_realize (GtkWidget *widget)
 {
-  GTK_WIDGET_CLASS (geda_entry_parent_class)->realize (widget);
+  ((GtkWidgetClass*)geda_entry_parent_class)->realize (widget);
 
   if (gtk_widget_has_screen(widget)) {
 
@@ -575,7 +575,8 @@ geda_entry_unrealize (GtkWidget *widget)
   if (entry->priv->font_map) {
     g_object_unref (entry->priv->font_map);
   }
-  GTK_WIDGET_CLASS (geda_entry_parent_class)->unrealize (widget);
+
+  ((GtkWidgetClass*)geda_entry_parent_class)->unrealize (widget);
 }
 
 /*!
