@@ -1,7 +1,8 @@
 2017-05-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Remove unnecessary class type-checking cast
-      to the parent GObjectClass and GtkWidgetClass.
+      to the parent GObjectClass and GtkWidgetClass and remove unnecessary
+      argument wrapping for geda_entry_drag_begin and geda_entry_drag_end.
 
     * src/widgets/geda_font_dialog.c: Remove unnecessary g_return_if_fail
       in geda_font_dialog_get_font_desc.

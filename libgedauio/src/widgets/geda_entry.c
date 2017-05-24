@@ -387,8 +387,7 @@ geda_entry_real_activate (GedaEntry *entry)
  *
  */
 static void
-geda_entry_drag_begin (GtkWidget      *widget,
-                       GdkDragContext *context)
+geda_entry_drag_begin (GtkWidget *widget, GdkDragContext *context)
 {
   GedaEntry *geda_entry = GEDA_ENTRY   (widget);
   if (geda_entry->enable_drag_n_drop)
@@ -426,8 +425,7 @@ geda_entry_drag_drop (GtkWidget      *widget,
  *  back to normal if was changed.
  */
 static void
-geda_entry_drag_end (GtkWidget      *widget,
-                     GdkDragContext *context)
+geda_entry_drag_end (GtkWidget *widget, GdkDragContext *context)
 {
   GedaEntry *geda_entry = GEDA_ENTRY   (widget);
   if (geda_entry->enable_drag_n_drop)
