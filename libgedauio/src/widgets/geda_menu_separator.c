@@ -64,8 +64,8 @@ geda_menu_separator_class_init (void *klass, void *data)
   GObjectClass       *object_class;
   GtkContainerClass  *container_class;
 
-  object_class = G_OBJECT_CLASS (klass);
-  container_class = GTK_CONTAINER_CLASS (klass);
+  object_class    = (GObjectClass*)klass;
+  container_class = (GtkContainerClass*)klass;
 
   object_class->finalize = geda_menu_separator_finalize;
 
