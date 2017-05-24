@@ -87,7 +87,8 @@ static void call_new_page_hook (void *hook, void *page)
  * \param [in] data      Data to be passed to \a notify_func
  *
  */
-void geda_page_append_new_hook (NewPageFunc func, void *data)
+void
+geda_page_append_new_hook (NewPageFunc func, void *data)
 {
   NewPageHook *new_hook;
 
@@ -108,13 +109,12 @@ void geda_page_append_new_hook (NewPageFunc func, void *data)
  *
  *  \returns A pointer on the object found or NULL if not found.
  */
-GedaObject *geda_page_get_object(Page *page, int sid)
+GedaObject*
+geda_page_get_object(Page *page, int sid)
 {
-  const GList *iter;
-
   if (GEDA_IS_PAGE(page)) {
 
-    iter = g_list_first(page->_object_list);
+    const GList *iter = g_list_first(page->_object_list);
 
     while (iter != NULL) {
 
@@ -370,7 +370,8 @@ GedaPageType geda_page_get_type (void)
  *
  *  \return pointer to the new Page object.
  */
-Page *geda_page_new (void)
+Page*
+geda_page_new (void)
 {
   Page *page;
   page = g_object_new (geda_page_get_type(), NULL);
@@ -384,7 +385,8 @@ Page *geda_page_new (void)
  *
  *  \return pointer to the new Page object.
  */
-Page *geda_page_new_with_notify (void)
+Page*
+geda_page_new_with_notify (void)
 {
   Page *page;
   page = g_object_new( geda_page_get_type(), NULL);
@@ -400,7 +402,8 @@ Page *geda_page_new_with_notify (void)
  *
  *  \return boolean.
  */
-bool is_a_geda_page (const Page *page)
+bool
+is_a_geda_page (const Page *page)
 {
   if (page) {
     return g_list_find(list_of_pages, page) ? TRUE : FALSE;
@@ -413,14 +416,15 @@ bool is_a_geda_page (const Page *page)
  *  \par Function Description
  *
  */
-void geda_page_unref(Page *page)
+void
+geda_page_unref(Page *page)
 {
   if (GEDA_IS_PAGE(page)) {
     if (page->toplevel) {
       geda_toplevel_unref (page->toplevel);
       page->toplevel = NULL;
     }
-    g_object_unref ((GObject*)page);
+    g_object_unref (page);
   }
 }
 
@@ -460,7 +464,8 @@ geda_page_weakref_notify (Page *page)
  * \param [in] notify_func    Weak reference notify function.
  * \param [in] user_data      Data to be passed to \a notify_func.
  */
-void geda_page_weak_ref (Page *page, WeakNotifyFunc notify_func, void *user_data)
+void
+geda_page_weak_ref (Page *page, WeakNotifyFunc notify_func, void *user_data)
 {
   if (GEDA_IS_PAGE(page) && notify_func !=NULL) {
     page->weak_refs = s_weakref_add (page->weak_refs, notify_func, user_data);
@@ -479,7 +484,8 @@ void geda_page_weak_ref (Page *page, WeakNotifyFunc notify_func, void *user_data
  * \param [in]     notify_func Notify function to search for.
  * \param [in]     user_data   Data to to search for.
  */
-void geda_page_weak_unref (Page *page, WeakNotifyFunc notify_func, void *user_data)
+void
+geda_page_weak_unref (Page *page, WeakNotifyFunc notify_func, void *user_data)
 {
   if (GEDA_IS_PAGE(page) && notify_func !=NULL) {
     page->weak_refs = s_weakref_remove (page->weak_refs, notify_func, user_data);
@@ -497,7 +503,8 @@ void geda_page_weak_unref (Page *page, WeakNotifyFunc notify_func, void *user_da
  * \param [in,out] page          Page to weak-reference.
  * \param [in] weak_pointer_loc  Memory address of a pointer.
  */
-void geda_page_add_weak_ptr (Page *page, void *weak_pointer_loc)
+void
+geda_page_add_weak_ptr (Page *page, void *weak_pointer_loc)
 {
   if (GEDA_IS_PAGE(page)) {
     g_object_add_weak_pointer ((GObject*)page, weak_pointer_loc);
@@ -513,20 +520,24 @@ void geda_page_add_weak_ptr (Page *page, void *weak_pointer_loc)
  * \param [in,out] page          Page to weak-reference.
  * \param [in] weak_pointer_loc  Memory address of a pointer.
  */
-void geda_page_remove_weak_ptr(Page *page, void *weak_pointer_loc)
+void
+geda_page_remove_weak_ptr(Page *page, void *weak_pointer_loc)
 {
   if (GEDA_IS_PAGE(page) && weak_pointer_loc !=NULL) {
     g_object_remove_weak_pointer ((GObject*)page, weak_pointer_loc);
   }
 }
 
-void geda_page_feeze_notify(Page *page)
+void
+geda_page_feeze_notify(Page *page)
 {
   if (GEDA_IS_PAGE(page)) {
     geda_notify_list_freeze(page->change_notify_funcs);
   }
 }
-void geda_page_thaw_notify(Page *page)
+
+void
+geda_page_thaw_notify(Page *page)
 {
   if (GEDA_IS_PAGE(page)) {
     geda_notify_list_thaw(page->change_notify_funcs);
@@ -540,7 +551,8 @@ void geda_page_thaw_notify(Page *page)
  * \param [in,out] page     A valid Page object.
  * \param [in]     newname  New string name for page filename.
  */
-int geda_page_rename(Page *page, const char *newname)
+int
+geda_page_rename(Page *page, const char *newname)
 {
   bool result = FALSE;
 
@@ -558,41 +570,48 @@ int geda_page_rename(Page *page, const char *newname)
 /* For now, the toplevel should only be set once, we don't have a
  * low-level clone or copy method and the hooks are holding pointer
  * to the toplevel */
-void geda_page_set_toplevel (Page *page, GedaToplevel *toplevel)
+void
+geda_page_set_toplevel (Page *page, GedaToplevel *toplevel)
 {
   g_return_if_fail (GEDA_IS_PAGE(page));
   g_return_if_fail (GEDA_IS_TOPLEVEL(toplevel));
   page->toplevel = g_object_ref (toplevel);
 }
 
-GedaToplevel *geda_page_get_toplevel (Page *page)
+GedaToplevel*
+geda_page_get_toplevel (Page *page)
 {
   return GEDA_IS_PAGE(page) ? page->toplevel : NULL;
 }
 
-int geda_page_get_changed (Page *page)
+int
+geda_page_get_changed (Page *page)
 {
   return GEDA_IS_PAGE(page) ? page->CHANGED : -1;
 }
 
-void geda_page_set_changed (Page *page, int changed)
+void
+geda_page_set_changed (Page *page, int changed)
 {
   if (GEDA_IS_PAGE(page)) {
     page->CHANGED = changed;
   }
 }
 
-const char *geda_page_get_filename (Page *page)
+const char*
+geda_page_get_filename (Page *page)
 {
   return GEDA_IS_PAGE(page) ? page->filename : NULL;
 }
 
-char *geda_page_get_filename_dup (Page *page)
+char*
+geda_page_get_filename_dup (Page *page)
 {
   return GEDA_IS_PAGE(page) ? geda_strdup(page->filename) : NULL;
 }
 
-void geda_page_set_filename (Page *page, const char *filename)
+void
+geda_page_set_filename (Page *page, const char *filename)
 {
   if (GEDA_IS_PAGE(page)) {
     if (page->filename) {
@@ -602,17 +621,20 @@ void geda_page_set_filename (Page *page, const char *filename)
   }
 }
 
-int geda_page_get_pid (Page *page)
+int
+geda_page_get_pid (Page *page)
 {
   return GEDA_IS_PAGE(page) ?  page->pid : -1;
 }
 
-GList *geda_page_get_place_list (Page *page)
+GList *
+geda_page_get_place_list (Page *page)
 {
   return GEDA_IS_PAGE(page) ? page->place_list : NULL;
 }
 
-void geda_page_set_place_list (Page *page, GList *object_list)
+void
+geda_page_set_place_list (Page *page, GList *object_list)
 {
   if (GEDA_IS_PAGE(page)) {
     page->place_list = object_list;
