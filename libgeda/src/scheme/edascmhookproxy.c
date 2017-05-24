@@ -144,7 +144,7 @@ edascm_hook_proxy_class_init (EdascmHookProxyClass *klass)
 
   /* Create signals */
   g_signal_new ("run", /* signal name */
-                G_TYPE_FROM_CLASS (gobject_class), /* type */
+                EDASCM_TYPE_HOOK_PROXY, /* type */
                 G_SIGNAL_RUN_FIRST, /* flags */
                 G_STRUCT_OFFSET(EdascmHookProxyClass, run), /* class offset */
                 NULL, /* accumulator */
@@ -287,15 +287,15 @@ edascm_hook_proxy_default_run_handler (EdascmHookProxy *proxy,
  * Based heavily on g_cclosure_marshal_VOID__STRING() from GObject.
  */
 static void
-cclosure_marshal_VOID__SCM (GClosure *closure,
-                             GValue *return_value,
-                             unsigned int n_param_values,
-                             const GValue *param_values,
-                             void *invocation_hint,
-                             void *marshal_data)
+cclosure_marshal_VOID__SCM (GClosure     *closure,
+                            GValue       *return_value,
+                            unsigned int  n_param_values,
+                            const GValue *param_values,
+                            void         *invocation_hint,
+                            void         *marshal_data)
 {
   typedef void (*MarshalFunc_VOID__SCM) (void *data1,
-                                         SCM arg_1,
+                                         SCM   arg_1,
                                          void *data2);
   register MarshalFunc_VOID__SCM callback;
   register GCClosure *cc = (GCClosure *) closure;

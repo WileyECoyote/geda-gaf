@@ -1,5 +1,8 @@
 2017-05-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/scheme/edascmhookproxy.c: Explicitly specify EDASCM_TYPE_HOOK_
+      PROXY type to g_signal_new.
+
     * src/struct/s_page.c: Remove BUG_MSG from geda_struct_page_objects_
       in_regions.
 
