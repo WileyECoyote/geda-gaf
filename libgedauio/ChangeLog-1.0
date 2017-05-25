@@ -9,6 +9,9 @@
     * src/widgets/geda_label.c: Implement Doxygen internal tag, add/update
       comments.
 
+    * tests/test_menus.c: Substitute geda_menu_append macro for geda_menu_
+      shell_append.
+
 2017-05-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Remove unnecessary class type-checking cast

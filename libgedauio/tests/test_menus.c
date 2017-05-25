@@ -55,7 +55,7 @@ create_menu (int depth, bool tearoff)
 
   if (tearoff) {
     menuitem = geda_tearoff_menu_item_new ();
-    geda_menu_shell_append (GEDA_MENU_SHELL (menu), menuitem);
+    geda_menu_append (menu, menuitem);
     gtk_widget_show (menuitem);
   }
 
@@ -65,7 +65,7 @@ create_menu (int depth, bool tearoff)
     menuitem = geda_radio_menu_item_new_with_label (group, buf);
     group    = geda_radio_menu_item_get_group (GEDA_RADIO_MENU_ITEM (menuitem));
 
-    geda_menu_shell_append (GEDA_MENU_SHELL (menu), menuitem);
+    geda_menu_append (menu, menuitem);
 
     gtk_widget_show (menuitem);
 
@@ -180,11 +180,11 @@ main (int argc, char **argv)
     geda_menu_set_accel_group (GEDA_MENU (menu), accel_group);
 
     menuitem = geda_menu_separator_new ();
-    geda_menu_shell_append (GEDA_MENU_SHELL (menu), menuitem);
+    geda_menu_append (menu, menuitem);
     gtk_widget_show (menuitem);
 
     menuitem = geda_check_menu_item_new_with_label ("Accelerate Me");
-    geda_menu_shell_append (GEDA_MENU_SHELL (menu), menuitem);
+    geda_menu_append (menu, menuitem);
     gtk_widget_show (menuitem);
     gtk_widget_add_accelerator (menuitem,
                                 "activate",
@@ -193,7 +193,7 @@ main (int argc, char **argv)
                                 0,
                                 GTK_ACCEL_VISIBLE);
     menuitem = geda_check_menu_item_new_with_label ("Accelerator Locked");
-    geda_menu_shell_append (GEDA_MENU_SHELL (menu), menuitem);
+    geda_menu_append (menu, menuitem);
     gtk_widget_show (menuitem);
     gtk_widget_add_accelerator (menuitem,
                                 "activate",
@@ -202,7 +202,7 @@ main (int argc, char **argv)
                                 0,
                                 GTK_ACCEL_VISIBLE | GTK_ACCEL_LOCKED);
     menuitem = geda_check_menu_item_new_with_label ("Accelerators Frozen");
-    geda_menu_shell_append (GEDA_MENU_SHELL (menu), menuitem);
+    geda_menu_append (menu, menuitem);
     gtk_widget_show (menuitem);
     gtk_widget_add_accelerator (menuitem,
                                 "activate",
