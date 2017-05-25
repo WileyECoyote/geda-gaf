@@ -384,7 +384,7 @@ static int get_label_char_width (GedaLabel *label)
   return w;
 }
 
-/* widget_class->style_set */
+/*! \internal widget_class->style_set */
 static void
 geda_label_style_set (GtkWidget *widget, GtkStyle *previous_style)
 {
@@ -596,6 +596,7 @@ geda_label_query_tooltip (GtkWidget  *widget,
             query_tooltip (widget, x, y, keyboard_tip, tooltip);
 }
 
+/*! \internal widget_class->direction_changed */
 static void
 geda_label_direction_changed (GtkWidget *widget, GtkTextDirection direction)
 {
@@ -2538,7 +2539,7 @@ geda_label_mnemonic_activate (GtkWidget *widget, bool group_cycling)
   return FALSE;
 }
 
-/* Adds a */
+/*! \internal called by geda_label_recalculate */
 static void
 geda_label_setup_mnemonic (GedaLabel *label, unsigned int last_key)
 {
@@ -3084,6 +3085,7 @@ failed:
   return FALSE;
 }
 
+/*! \internal called by geda_label_set_markup_internal */
 static void geda_label_ensure_has_tooltip (GedaLabel *label)
 {
   GList *iter;
@@ -3102,6 +3104,7 @@ static void geda_label_ensure_has_tooltip (GedaLabel *label)
   gtk_widget_set_has_tooltip ((GtkWidget*)label, has_tooltip);
 }
 
+/*! \internal called by geda_label_recalculate */
 static void
 geda_label_set_markup_internal (GedaLabel  *label,
                                 const char *str,
@@ -3301,7 +3304,8 @@ geda_label_clear_layout (GedaLabel *label)
   }
 }
 
-/* If word wrapping is on, then the height requisition can depend
+/*! \internal widget_class->size_request
+ * If word wrapping is on, then the height requisition can depend
  * on:
  *   - Any width set on the widget via gtk_widget_set_size_request().
  *   - The padding of the widget (xpad, set by gtk_misc_set_padding)
@@ -3688,7 +3692,6 @@ geda_label_expose (GtkWidget *widget, GdkEventExpose *event)
       cairo_move_to (cr, x, y);
 
       pango_cairo_show_layout (cr, label->layout);
-
     }
     else if (info) {
 
@@ -3740,7 +3743,6 @@ geda_label_expose (GtkWidget *widget, GdkEventExpose *event)
         cairo_move_to (cr, x, y);
 
         pango_cairo_show_layout (cr, label->layout);
-
       }
 
       if (focus_link && gtk_widget_has_focus (widget)) {
@@ -3766,6 +3768,7 @@ geda_label_expose (GtkWidget *widget, GdkEventExpose *event)
   return FALSE;
 }
 
+/*! \internal called by geda_label_set_uline_text_internal */
 static bool
 separate_uline_pattern (const char  *str, unsigned int *accel_key,
                         char       **new_str,
@@ -3843,6 +3846,7 @@ separate_uline_pattern (const char  *str, unsigned int *accel_key,
   return TRUE;
 }
 
+/*! \internal called by geda_label_recalculate */
 static void
 geda_label_set_uline_text_internal (GedaLabel *label, const char *str)
 {
@@ -3930,6 +3934,7 @@ static void geda_label_select_word (GedaLabel *label)
   geda_label_select_region_index (label, min, max);
 }
 
+/*! \internal  widget_class->grab_focus */
 static void geda_label_grab_focus (GtkWidget *widget)
 {
   GedaLabel     *label;
@@ -3950,10 +3955,10 @@ static void geda_label_grab_focus (GtkWidget *widget)
       link = priv->select_info->links->data;
       priv->select_info->selection_anchor = link->start;
       priv->select_info->selection_end = link->start;
-
   }
 }
 
+/*! \internal  widget_class->focus */
 static bool
 geda_label_focus (GtkWidget *widget, GtkDirectionType direction)
 {
@@ -4549,6 +4554,7 @@ static bool geda_label_motion (GtkWidget *widget, GdkEventMotion *event)
   return TRUE;
 }
 
+/*! \internal  widget_class->grab_focus */
 static bool
 geda_label_leave_notify (GtkWidget *widget, GdkEventCrossing *event)
 {

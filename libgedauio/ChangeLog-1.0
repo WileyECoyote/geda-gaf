@@ -6,6 +6,9 @@
 
     * src/widgets/geda_menu.c: Declare get_arrows_visible_area inline.
 
+    * src/widgets/geda_label.c: Implement Doxygen internal tag, add/update
+      comments.
+
 2017-05-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Remove unnecessary class type-checking cast
