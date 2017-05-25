@@ -1,3 +1,9 @@
+2017-05-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_image_menu_item.c: Add seperate conditional  in
+      activatable_update_stock_id so that geda_image_menu_item_get_image
+      is not called if there is no stock id.
+
 2017-05-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Remove unnecessary class type-checking cast

@@ -122,16 +122,18 @@ static GHashTable *image_menu_item_hash = NULL;
 static bool
 activatable_update_stock_id (GedaImageMenuItem *image_menu_item, GtkAction *action)
 {
-  GtkWidget  *image;
   const char *stock_id  = gtk_action_get_stock_id (action);
 
-  image = geda_image_menu_item_get_image (image_menu_item);
+  if (stock_id && gtk_icon_factory_lookup_default (stock_id)) {
 
-  if (GTK_IS_IMAGE (image) &&
-    stock_id && gtk_icon_factory_lookup_default (stock_id))
-  {
-    gtk_image_set_from_stock ((GtkImage*)image, stock_id, GTK_ICON_SIZE_MENU);
-    return TRUE;
+    GtkImage *image;
+
+    image = (GtkImage*)geda_image_menu_item_get_image (image_menu_item);
+
+    if (GTK_IS_IMAGE (image)) {
+      gtk_image_set_from_stock (image, stock_id, GTK_ICON_SIZE_MENU);
+      return TRUE;
+    }
   }
 
   return FALSE;
