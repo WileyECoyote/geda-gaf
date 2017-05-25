@@ -230,9 +230,9 @@ get_bulb_image (bool WhichState)
 }
 void set_bulb_on( GtkWidget *widget) {
 
-  GList *button   = gtk_container_get_children (GTK_CONTAINER(widget));
-  GList *align    = gtk_container_get_children (GTK_CONTAINER(button->data));
-  GList *lightbox = gtk_container_get_children (GTK_CONTAINER(align->data));
+  GList *button   = geda_container_get_children (widget);
+  GList *align    = geda_container_get_children (button->data);
+  GList *lightbox = geda_container_get_children (align->data);
 
   GtkWidget *BulbOnImage  = lightbox->data;
   lightbox                = lightbox->next;
@@ -248,9 +248,9 @@ void set_bulb_on( GtkWidget *widget) {
 
 void set_bulb_off( GtkWidget *widget) {
 
-  GList *button   = gtk_container_get_children (GTK_CONTAINER(widget));
-  GList *align    = gtk_container_get_children (GTK_CONTAINER(button->data));
-  GList *lightbox = gtk_container_get_children (GTK_CONTAINER(align->data));
+  GList *button   = geda_container_get_children (widget);
+  GList *align    = geda_container_get_children (button->data);
+  GList *lightbox = geda_container_get_children (align->data);
 
   GtkWidget *BulbOnImage  = lightbox->data;
   lightbox                = lightbox->next;
