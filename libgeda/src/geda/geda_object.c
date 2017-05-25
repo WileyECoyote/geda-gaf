@@ -639,7 +639,7 @@ GedaObject *geda_object_ref(GedaObject *object)
 void geda_object_unref(GedaObject *object)
 {
   g_return_if_fail (GEDA_IS_OBJECT(object));
-  g_object_unref ((GObject*)object);
+  g_object_unref (object);
 }
 
 /*!

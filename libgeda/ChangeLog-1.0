@@ -1,3 +1,7 @@
+2017-05-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_object.c: Remove unnecessary cast for g_object_unref.
+
 2017-05-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/scheme/edascmhookproxy.c: Explicitly specify EDASCM_TYPE_HOOK_
