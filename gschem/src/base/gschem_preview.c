@@ -367,9 +367,9 @@ preview_set_xy (GschemPreview *preview, int x, int y)
   preview_window->screen_width         = x;
   preview_window->screen_height        = y;
 
-  g_object_set (GTK_WIDGET (preview), "width-request",  x,
-                                      "height-request", y,
-                                       NULL);
+  g_object_set (preview, "width-request",  x,
+                         "height-request", y,
+                          NULL);
 }
 
 static void

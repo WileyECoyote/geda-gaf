@@ -1,5 +1,7 @@
 2017-05-25 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/base/gschem_preview.c: Remove unnecessary cast from g_object_set.
+
     * src/x/x_dialog.c: substitute geda_container_get_children macro for
       gtk_container_get_children.
 
