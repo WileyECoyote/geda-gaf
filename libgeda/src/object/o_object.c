@@ -62,7 +62,8 @@
  * the erroneous portion of the buffer or just a message depending
  * on the context.
  */
-bool geda_object_show_buffer_err (const char *msg, const char *buf)
+bool
+geda_object_show_buffer_err (const char *msg, const char *buf)
 {
   if (geda_get_verbose_mode()) {
     char *line = geda_remove_last_newline((char*)buf);
