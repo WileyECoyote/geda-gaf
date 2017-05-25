@@ -1210,7 +1210,8 @@ geda_menu_enter_notify (GtkWidget *widget, GdkEventCrossing *event)
   return ((GtkWidgetClass*)geda_menu_parent_class)->enter_notify_event (widget, event);
 }
 
-static void
+/* geda_menu_paint helper */
+static inline void
 get_arrows_visible_area (GedaMenu     *menu,
                          GdkRectangle *border,
                          GdkRectangle *upper,

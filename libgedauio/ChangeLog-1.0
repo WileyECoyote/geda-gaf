@@ -4,6 +4,8 @@
       activatable_update_stock_id so that geda_image_menu_item_get_image
       is not called if there is no stock id.
 
+    * src/widgets/geda_menu.c: Declare get_arrows_visible_area inline.
+
 2017-05-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Remove unnecessary class type-checking cast
