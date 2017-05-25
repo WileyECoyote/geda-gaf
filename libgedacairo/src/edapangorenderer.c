@@ -370,7 +370,7 @@ PangoRenderer *eda_pango_renderer_new (cairo_t *cr)
  */
 void eda_pango_renderer_update (EdaPangoRenderer *renderer, cairo_t *cr)
 {
-  g_object_set (G_OBJECT (renderer), "cairo-context", cr, NULL);
+  g_object_set (renderer, "cairo-context", cr, NULL);
 }
 
 /*!

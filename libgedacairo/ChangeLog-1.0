@@ -1,3 +1,8 @@
+2017-05-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edapangorenderer.c: Remove unnecessary cast from g_object_set in
+      eda_pango_renderer_update.
+
 2017-04-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/edarenderer.c: Reduce the scope of marker_dist and dummy in
