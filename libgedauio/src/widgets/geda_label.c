@@ -945,8 +945,7 @@ geda_label_destroy (GtkObject *object)
 
     g_signal_handlers_disconnect_by_func (settings, label_shortcut_setting_changed, NULL);
 
-    g_object_set_data ((GObject*)settings, "label-short-connected",
-                       (void*)(long)FALSE);
+    GEDA_OBJECT_SET_DATA (settings, (void*)(long)FALSE, "label-short-connected");
   }
 
   toplevel = gtk_widget_get_toplevel ((GtkWidget*)label);
@@ -957,8 +956,7 @@ geda_label_destroy (GtkObject *object)
 
     g_signal_handlers_disconnect_by_func (toplevel, label_mnemonics_visible_changed, label);
 
-    g_object_set_data ((GObject*)toplevel, "label-mnemonics-connected",
-                       (void*)(long)FALSE);
+    GEDA_OBJECT_SET_DATA (toplevel, (void*)(long)FALSE, "label-mnemonics-connected");
   }
 
   geda_label_set_mnemonic_widget (label, NULL);
@@ -2549,7 +2547,7 @@ geda_label_setup_mnemonic (GedaLabel *label, unsigned int last_key)
 
   priv          = label->priv;
   widget        = (GtkWidget*)label;
-  mnemonic_menu = GEDA_OBJECT_GET_DATA(label, MNEMONIC_MENU_DATA);
+  mnemonic_menu = GEDA_OBJECT_GET_DATA (label, MNEMONIC_MENU_DATA);
 
   if (last_key != GDK_KEY_VoidSymbol) {
 
@@ -4252,7 +4250,7 @@ connect_mnemonics_visible_notify (GedaLabel *label)
     gtk_window_get_mnemonics_visible ((GtkWindow*)toplevel);
 
   connected = (int)(long)
-  GEDA_OBJECT_GET_DATA(toplevel, "label-mnemonics-connected");
+  GEDA_OBJECT_GET_DATA (toplevel, "label-mnemonics-connected");
 
   if (!connected) {
 
