@@ -3,6 +3,9 @@
     * src/widgets/geda_entry.c: Replace g_type_check_instance_cast in
       initializer.
 
+    * src/widgets/geda_handlebox.c: Remove unnecessary type-checking
+      cast.
+
     * src/widgets/geda_label.c: Substitute macro for g_object_set_data.
 
     * src/widgets/geda_option_menu.c: Use geda_get_child_widget macro

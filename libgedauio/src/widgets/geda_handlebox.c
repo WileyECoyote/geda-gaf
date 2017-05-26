@@ -267,7 +267,7 @@ connect_settings_signal(GedaHandleBox *handlebox)
     GtkSettings *settings;
     GdkScreen   *screen;
 
-    screen   = gtk_widget_get_screen (GTK_WIDGET (handlebox));
+    screen   = gtk_widget_get_screen ((GtkWidget*)handlebox);
     settings = gtk_settings_get_for_screen (screen);
 
     priv->settings_signal_id = g_signal_connect (settings, "notify",
@@ -300,7 +300,7 @@ effective_handle_position (GedaHandleBox *handlebox)
 {
   int handle_position;
 
-  if (gtk_widget_get_direction (GTK_WIDGET (handlebox)) == GTK_TEXT_DIR_LTR) {
+  if (gtk_widget_get_direction ((GtkWidget*)handlebox) == GTK_TEXT_DIR_LTR) {
     handle_position = handlebox->handle_position;
   }
   else {
@@ -363,7 +363,7 @@ geda_handle_box_end_drag (GedaHandleBox *handlebox, unsigned int time)
 static bool
 geda_handle_box_motion (GtkWidget *widget, GdkEventMotion *event)
 {
-  GedaHandleBox *handlebox = GEDA_HANDLE_BOX (widget);
+  GedaHandleBox *handlebox = (GedaHandleBox*)widget;
   GdkGeometry    geometry;
   GdkScreen     *screen;
   GdkScreen     *pointer_screen;
@@ -622,7 +622,7 @@ geda_handle_box_grab_event(GtkWidget *widget, GdkEvent *event, GedaHandleBox *ha
 static void
 geda_handle_box_reattach (GedaHandleBox *handlebox)
 {
-  GtkWidget *widget = GTK_WIDGET (handlebox);
+  GtkWidget *widget = (GtkWidget*)handlebox;
 
   if (handlebox->child_detached) {
 
@@ -1016,9 +1016,7 @@ geda_handle_box_expose (GtkWidget *widget, GdkEventExpose *event)
 
     if (event->window == widget->window) {
 
-      GedaHandleBox *handlebox;
-
-      handlebox = GEDA_HANDLE_BOX (widget);
+      GedaHandleBox *handlebox = (GedaHandleBox*)widget;
 
       if (handlebox->child_detached) {
         geda_handle_box_draw_ghost (handlebox);
