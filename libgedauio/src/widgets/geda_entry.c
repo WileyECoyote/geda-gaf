@@ -584,11 +584,11 @@ geda_entry_unrealize (GtkWidget *widget)
  *  Overrides parents virtual class methods as needed and registers
  *  GObject signals.
  *
- * \param [in]  g_class     GedaEntry class we are initializing
+ * \param [in]  klass       GedaEntry class we are initializing
  * \param [in]  class_data  GedaEntry structure associated with the class
  */
 static void
-geda_entry_class_init(void *g_class, void *class_data)
+geda_entry_class_init(void *klass, void *class_data)
 {
   GedaEntryClass *class;
   GParamSpec     *params;
@@ -596,11 +596,11 @@ geda_entry_class_init(void *g_class, void *class_data)
   GtkWidgetClass *widget_class;
   GtkBindingSet  *binding_set;
 
-  class         = (GedaEntryClass*)g_class;
-  gobject_class = G_OBJECT_CLASS (class);
-  widget_class  = GTK_WIDGET_CLASS (class);
+  class         = (GedaEntryClass*) klass;
+  gobject_class = (GObjectClass*)   klass;
+  widget_class  = (GtkWidgetClass*) klass;
 
-  geda_entry_parent_class     = g_type_class_peek_parent (class);
+  geda_entry_parent_class     = g_type_class_peek_parent (klass);
 
   gobject_class->finalize     = geda_entry_finalize;
   gobject_class->get_property = geda_entry_get_property;

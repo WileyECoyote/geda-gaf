@@ -1,5 +1,8 @@
 2017-05-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_entry.c: Replace g_type_check_instance_cast in
+      initializer.
+
     * src/widgets/geda_label.c: Substitute macro for g_object_set_data.
 
 2017-05-25 Wiley E. Hill <wileyhill@gmail.com>
