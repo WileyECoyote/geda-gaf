@@ -8,8 +8,9 @@
 
     * src/widgets/geda_label.c: Substitute macro for g_object_set_data.
 
-    * src/widgets/geda_option_menu.c: Use geda_get_child_widget macro
-      to reference pointer to child.
+    * src/widgets/geda_option_menu.c: Include geda_uio_functions.h instead
+      of geda_container.h and geda_marshal.h. Use geda_get_child_widget
+      macro to reference pointer to child.
 
 2017-05-25 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -35,7 +36,7 @@
       in geda_font_dialog_get_font_desc.
 
     * src/widgets/geda_label.c: Include geda_uio_functions.h instead of
-      geda_marshal.h and geda_uio_functions.h.
+      geda_marshal.h and geda_container.h.
 
     * src/widgets/geda_menu_separator.c: Skip type checking for class casts
       in geda_menu_separator_class_init.
