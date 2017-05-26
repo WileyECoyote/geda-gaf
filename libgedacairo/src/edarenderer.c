@@ -2165,7 +2165,7 @@ void
 eda_renderer_set_color_map (EdaRenderer *renderer, GArray *map)
 {
   g_return_if_fail (EDA_IS_RENDERER (renderer));
-  g_object_set (G_OBJECT (renderer), "color-map", map, NULL);
+  g_object_set (renderer, "color-map", map, NULL);
 }
 
 /*! \brief Get the current EdaRenderer Font Name Property
@@ -2302,7 +2302,7 @@ void
 eda_renderer_set_grips_size (EdaRenderer *renderer, double new_size)
 {
   g_return_if_fail (EDA_IS_RENDERER (renderer));
-  g_object_set (G_OBJECT (renderer), "grip-size", new_size, NULL);
+  g_object_set (renderer, "grip-size", new_size, NULL);
 }
 
 /*! \brief Get the current EdaRenderer Grip Stroke Color Property
@@ -2402,7 +2402,7 @@ void
 eda_renderer_set_junction_size (EdaRenderer *renderer, int new_size)
 {
   g_return_if_fail (EDA_IS_RENDERER (renderer));
-  g_object_set (G_OBJECT (renderer), "junction-size", new_size, NULL);
+  g_object_set (renderer, "junction-size", new_size, NULL);
 }
 
 /*! \brief Get the current EdaRenderer Marker Threshold Property
@@ -2424,7 +2424,7 @@ void
 eda_renderer_set_marker_threshold (EdaRenderer *renderer, double threshold)
 {
   g_return_if_fail (EDA_IS_RENDERER (renderer));
-  g_object_set (G_OBJECT (renderer), "text-marker-threshold", threshold, NULL);
+  g_object_set (renderer, "text-marker-threshold", threshold, NULL);
 }
 
 /*! \brief Get the current EdaRenderer Net Endpoint Color Property
@@ -2498,5 +2498,5 @@ void
 eda_renderer_set_text_marker_size (EdaRenderer *renderer, int new_size)
 {
   g_return_if_fail (EDA_IS_RENDERER (renderer));
-  g_object_set (G_OBJECT (renderer), "text-marker-size", new_size, NULL);
+  g_object_set (renderer, "text-marker-size", new_size, NULL);
 }
