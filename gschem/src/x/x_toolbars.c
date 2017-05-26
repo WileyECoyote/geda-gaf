@@ -424,13 +424,13 @@ static void x_toolbars_load_icons( GschemToplevel *w_current)
 
 static void x_toolbars_turn_off_radio(RadioMenuData *radio_data) {
   g_signal_handler_block   ( radio_data->widget,   radio_data->handler);
-  g_object_set  ( G_OBJECT ( radio_data->widget), "active", FALSE, NULL);
+  g_object_set             ( radio_data->widget,  "active", FALSE, NULL);
   g_signal_handler_unblock ( radio_data->widget,   radio_data->handler);
 }
 
 static void x_toolbars_turn_on_radio(RadioMenuData *radio_data) {
   g_signal_handler_block   ( radio_data->widget,   radio_data->handler);
-  g_object_set  ( G_OBJECT ( radio_data->widget), "active", TRUE, NULL);
+  g_object_set             ( radio_data->widget,  "active", TRUE, NULL);
   g_signal_handler_unblock ( radio_data->widget,   radio_data->handler);
 }
 

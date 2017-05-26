@@ -1,3 +1,7 @@
+2017-05-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gschem/src/x/x_toolbars.c: Remove unnecessary cast from g_object_set.
+
 2017-05-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_preview.c: Remove unnecessary cast from g_object_set.
