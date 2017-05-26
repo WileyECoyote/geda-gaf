@@ -703,17 +703,17 @@ void x_print_setup (GschemToplevel *w_current, char *filename)
 
   /* Create a print dialog, find out whether the user clicks Print or
    *    Cancel, and then print or return accordingly */
-  dialog = GTK_DIALOG (g_object_new (TYPE_PRINT_DIALOG,
-                                     "command", command,
-                                     "filename", filename,
-                                     "papersize", paperidx,
-                                     "orientation", orient,
-                                     "type", type,
-                                     "usefile", usefile,
-                                     /* GschemDialog */
-                                     "settings-name", "print",
-                                     "gschem-toplevel", w_current,
-                                     NULL));
+  dialog = g_object_new (TYPE_PRINT_DIALOG,
+                         "command", command,
+                         "filename", filename,
+                         "papersize", paperidx,
+                         "orientation", orient,
+                         "type", type,
+                         "usefile", usefile,
+                         /* GschemDialog */
+                         "settings-name", "print",
+                         "gschem-toplevel", w_current,
+                         NULL);
   gtk_widget_show_all (GTK_WIDGET (dialog));
 
   gtk_dialog_set_default_response(GTK_DIALOG(dialog),
