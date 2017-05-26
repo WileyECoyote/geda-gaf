@@ -320,7 +320,7 @@ geda_option_menu_detacher (GtkWidget *widget, GedaMenu *menu)
                                         option_menu);
 
   option_menu->menu = NULL;
-  g_object_notify (G_OBJECT (option_menu), "menu");
+  g_object_notify ((GObject*)option_menu, "menu");
 }
 
 static void
