@@ -5,6 +5,9 @@
 
     * src/widgets/geda_label.c: Substitute macro for g_object_set_data.
 
+    * src/widgets/geda_option_menu.c: Use geda_get_child_widget macro
+      to reference pointer to child.
+
 2017-05-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_image_menu_item.c: Add seperate conditional  in

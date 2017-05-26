@@ -32,6 +32,7 @@
 #include "../../include/geda_menu.h"
 #include "../../include/geda_menu_item.h"
 #include "../../include/geda_menu_shell.h"
+#include "../../include/geda_gtk_compat.h"
 #include "../../include/geda_option_menu.h"
 #include "../../include/gettext.h"
 
@@ -464,7 +465,7 @@ geda_option_menu_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
                             allocation->width - border_width * 2, allocation->height - border_width * 2);
   }
 
-  child = GTK_BIN (widget)->child;
+  child = geda_get_child_widget(widget);
 
   if (child && gtk_widget_get_visible (child)) {
 
@@ -680,7 +681,7 @@ geda_option_menu_item_state_changed_cb (GtkWidget      *widget,
                                         GtkStateType    previous_state,
                                         GedaOptionMenu *option_menu)
 {
-  GtkWidget *child = GTK_BIN (option_menu)->child;
+  GtkWidget *child = geda_get_child_widget(option_menu);
 
   if (child && gtk_widget_get_sensitive (child) != gtk_widget_is_sensitive (widget))
     gtk_widget_set_sensitive (child, gtk_widget_is_sensitive (widget));
@@ -690,7 +691,7 @@ static void
 geda_option_menu_item_destroy_cb (GtkWidget      *widget,
                                   GedaOptionMenu *option_menu)
 {
-  GtkWidget *child = GTK_BIN (option_menu)->child;
+  GtkWidget *child = geda_get_child_widget(option_menu);
 
   if (child) {
 
@@ -720,7 +721,7 @@ geda_option_menu_update_contents (GedaOptionMenu *option_menu)
       GtkRequisition child_requisition;
 
       g_object_ref (option_menu->menu_item);
-      child = GTK_BIN (option_menu->menu_item)->child;
+      child = geda_get_child_widget(option_menu->menu_item);
 
       if (child) {
 
@@ -755,7 +756,7 @@ geda_option_menu_remove_contents (GedaOptionMenu *option_menu)
 {
   if (option_menu->menu_item) {
 
-    GtkWidget *child = GTK_BIN (option_menu)->child;
+    GtkWidget *child = geda_get_child_widget(option_menu);
 
     if (child) {
 
@@ -804,7 +805,8 @@ geda_option_menu_calc_size (GedaOptionMenu *option_menu)
 
       if (gtk_widget_get_visible (child)) {
 
-        GtkWidget *inner = GTK_BIN (child)->child;
+        /* Get child of child */
+        GtkWidget *inner = geda_get_child_widget(child);
 
         if (inner) {
 
