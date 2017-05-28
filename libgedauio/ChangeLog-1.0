@@ -1,5 +1,8 @@
 2017-05-27 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_bulb.c: Change division by 2 to shift right once in
+      get_coordinates.
+
     * src/widgets/geda_menu_shell.c: Add template Doxygen comment blocks,
       revise/revert geda_menu_shell_update_mnemonics to validate that each
       target is a GedaMenuShell. Revise geda_menu_shell_set_keyboard_mode

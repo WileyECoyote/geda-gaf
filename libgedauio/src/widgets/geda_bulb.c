@@ -246,8 +246,8 @@ get_coordinates (GtkWidget *widget, GtkWidget *reference, int *x, int *y)
 
   allocation = geda_get_widget_allocation (widget);
 
-  *x = allocation->x + allocation->width / 2;
-  *y = allocation->y + allocation->height / 2;
+  *x = allocation->x + (allocation->width >> 1);
+  *y = allocation->y + (allocation->height >> 1);
 
   gtk_widget_translate_coordinates (widget, reference, *x, *y, x, y);
 }
