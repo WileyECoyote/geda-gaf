@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gschem\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-05-23 00:14-0500\n"
+"POT-Creation-Date: 2017-05-28 16:21-0500\n"
 "PO-Revision-Date: 2010-02-14 01:03+0000\n"
 "Last-Translator: Bernd Jendrissek <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1410,13 +1410,13 @@ msgstr "Sluit komponent as afsonderlike voorwerpe in"
 msgid "Components"
 msgstr "Komponente"
 
-#: gschem/src/x/x_compselect.c:2553 gschem/src/x/x_multiattrib.c:2006
-#: gschem/src/x/x_multiattrib.c:2012
+#: gschem/src/x/x_compselect.c:2553 gschem/src/x/x_multiattrib.c:2013
+#: gschem/src/x/x_multiattrib.c:2019
 msgid "Name"
 msgstr "Naam"
 
-#: gschem/src/x/x_compselect.c:2565 gschem/src/x/x_multiattrib.c:2008
-#: gschem/src/x/x_multiattrib.c:2014
+#: gschem/src/x/x_compselect.c:2565 gschem/src/x/x_multiattrib.c:2015
+#: gschem/src/x/x_multiattrib.c:2021
 msgid "Value"
 msgstr "Waarde"
 
@@ -2114,7 +2114,7 @@ msgstr "Toon Slegs Waarde"
 msgid "Show Name Only"
 msgstr "Toon Slegs Naam"
 
-#: gschem/src/x/x_edit_attrib.c:346 gschem/src/x/x_multiattrib.c:1645
+#: gschem/src/x/x_edit_attrib.c:346 gschem/src/x/x_multiattrib.c:1652
 #: gschem/scheme/gschem/builtins.scm:413
 msgid "Show Name & Value"
 msgstr "Toon Naam & Waarde"
@@ -2155,16 +2155,16 @@ msgstr ""
 msgid "Single Attribute Editor"
 msgstr "Enkeleienskap-Bewerker"
 
-#: gschem/src/x/x_edit_attrib.c:466 gschem/src/x/x_multiattrib.c:2215
+#: gschem/src/x/x_edit_attrib.c:466 gschem/src/x/x_multiattrib.c:2221
 msgid "Name:"
 msgstr "Naam:"
 
-#: gschem/src/x/x_edit_attrib.c:483 gschem/src/x/x_multiattrib.c:2234
+#: gschem/src/x/x_edit_attrib.c:483 gschem/src/x/x_multiattrib.c:2238
 msgid "Value:"
 msgstr "Waarde:"
 
-#: gschem/src/x/x_edit_attrib.c:497 gschem/src/x/x_multiattrib.c:2010
-#: gschem/src/x/x_multiattrib.c:2290
+#: gschem/src/x/x_edit_attrib.c:497 gschem/src/x/x_multiattrib.c:2017
+#: gschem/src/x/x_multiattrib.c:2293
 msgid "Visible"
 msgstr "Sigbaar"
 
@@ -2924,7 +2924,7 @@ msgstr "uitstrek"
 msgid "Project linear objects to other objects"
 msgstr "Projek lineêre voorwerpe om ander voorwerpe"
 
-#: gschem/src/x/x_menus.c:121 gschem/src/x/x_multiattrib.c:1685
+#: gschem/src/x/x_menus.c:121 gschem/src/x/x_multiattrib.c:1692
 #: gschem/scheme/gschem/builtins.scm:104
 msgid "Delete"
 msgstr "Verwyder"
@@ -3274,67 +3274,67 @@ msgstr "Kon nie open"
 msgid "falling back to"
 msgstr "val terug na"
 
-#: gschem/src/x/x_multiattrib.c:795 gschem/src/x/x_multiattrib.c:2759
+#: gschem/src/x/x_multiattrib.c:802 gschem/src/x/x_multiattrib.c:2759
 msgid "<various>"
 msgstr "<verskeie>"
 
-#: gschem/src/x/x_multiattrib.c:917
+#: gschem/src/x/x_multiattrib.c:924
 msgid "Attribute name must not be empty. Please set a name."
 msgstr "Eienskappe met 'n leë naam word verbied. Kies asseblief 'n naam."
 
-#: gschem/src/x/x_multiattrib.c:919
+#: gschem/src/x/x_multiattrib.c:926
 msgid "Multi-Attribute Editor"
 msgstr "Enkeleienskap-Bewerker"
 
-#: gschem/src/x/x_multiattrib.c:1628
+#: gschem/src/x/x_multiattrib.c:1635
 msgid "Select an attribute to add"
 msgstr "Kies kenmerk te voeg"
 
-#: gschem/src/x/x_multiattrib.c:1647
+#: gschem/src/x/x_multiattrib.c:1654
 msgid "Show Value only"
 msgstr "Toon slegs waarde"
 
-#: gschem/src/x/x_multiattrib.c:1649
+#: gschem/src/x/x_multiattrib.c:1656
 msgid "Show Name only"
 msgstr "Toon slegs naam"
 
-#: gschem/src/x/x_multiattrib.c:1653
+#: gschem/src/x/x_multiattrib.c:1660
 msgid "Select an attribute visibility option"
 msgstr "Kies 'n kenmerk sigbaarheid opsie"
 
-#: gschem/src/x/x_multiattrib.c:1679
+#: gschem/src/x/x_multiattrib.c:1686
 msgid "Promote"
 msgstr "Bevorder"
 
-#: gschem/src/x/x_multiattrib.c:1684
+#: gschem/src/x/x_multiattrib.c:1691
 msgid "Duplicate"
 msgstr "Dupliseer"
 
-#: gschem/src/x/x_multiattrib.c:1686
+#: gschem/src/x/x_multiattrib.c:1693
 msgid "Copy to all"
 msgstr "Kopieer in 1 in"
 
-#: gschem/src/x/x_multiattrib.c:2056 gschem/src/x/x_multiattrib.c:2582
+#: gschem/src/x/x_multiattrib.c:2063 gschem/src/x/x_multiattrib.c:2582
 msgid "Edit Attributes"
 msgstr "Bewerk Eienskappe"
 
-#: gschem/src/x/x_multiattrib.c:2198 gschem/scheme/gschem/builtins.scm:350
+#: gschem/src/x/x_multiattrib.c:2206 gschem/scheme/gschem/builtins.scm:350
 msgid "Add Attribute"
 msgstr "Voeg Eienskap By"
 
-#: gschem/src/x/x_multiattrib.c:2249
+#: gschem/src/x/x_multiattrib.c:2253
 msgid "Ctrl+Enter inserts new line; Ctrl+Tab inserts Tab"
 msgstr "Ctrl + Enter insetsels nuwe lyn; Ctrl + Tab voeg Tab"
 
-#: gschem/src/x/x_multiattrib.c:2280
+#: gschem/src/x/x_multiattrib.c:2284
 msgid "Enter or type a value for the new attribute then press the Add button"
 msgstr "Tik of tik 'n waarde vir die nuwe kenmerk druk dan op die knoppie Voeg"
 
-#: gschem/src/x/x_multiattrib.c:2295
+#: gschem/src/x/x_multiattrib.c:2298
 msgid "Enable or disable attribute visibility"
 msgstr "Aktiveer of kenmerk sigbaarheid te skakel"
 
-#: gschem/src/x/x_multiattrib.c:2310
+#: gschem/src/x/x_multiattrib.c:2311
 msgid "Add new attribute to component"
 msgstr "Voeg nuwe kenmerk komponent"
 
