@@ -3,7 +3,8 @@
     * src/widgets/geda_option_menu.c: Revise geda_option_menu_size_request;
       Add ancillary child and use geda_get_child_widget macro to reference
       pointer to child, rename tmp -> height, add border_width and use
-      geda_get_container_border_width to retrieve the border width.
+      geda_get_container_border_width to retrieve the border width, remove
+      unnecessary cast to GtkWidget in module.
 
 2017-05-26 Wiley E. Hill <wileyhill@gmail.com>
 

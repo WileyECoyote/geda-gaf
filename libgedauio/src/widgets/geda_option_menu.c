@@ -434,14 +434,14 @@ geda_option_menu_size_request (GtkWidget *widget, GtkRequisition *requisition)
   border_width = geda_get_container_border_width(widget);
 
   requisition->width = ((border_width +
-                         ((GtkWidget*)widget)->style->xthickness + props.focus_pad) * 2 +
+                         widget->style->xthickness + props.focus_pad) * 2 +
                          MAX (child_requisition.width, option_menu->width) +
                          props.indicator_size.width +
                          props.indicator_spacing.left + props.indicator_spacing.right +
                          CHILD_LEFT_SPACING + CHILD_RIGHT_SPACING + props.focus_width * 2);
 
   requisition->height = ((border_width +
-                          ((GtkWidget*)widget)->style->ythickness + props.focus_pad) * 2 +
+                          widget->style->ythickness + props.focus_pad) * 2 +
                           MAX (child_requisition.height, option_menu->height) +
                           CHILD_TOP_SPACING + CHILD_BOTTOM_SPACING + props.focus_width * 2);
 
@@ -476,8 +476,8 @@ geda_option_menu_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
 
   if (child && gtk_widget_get_visible (child)) {
 
-    int xthickness = GTK_WIDGET (widget)->style->xthickness;
-    int ythickness = GTK_WIDGET (widget)->style->ythickness;
+    int xthickness = widget->style->xthickness;
+    int ythickness = widget->style->ythickness;
 
     child_allocation.x = widget->allocation.x + border_width + xthickness + props.focus_width + props.focus_pad + CHILD_LEFT_SPACING;
     child_allocation.y = widget->allocation.y + border_width + ythickness + props.focus_width + props.focus_pad + CHILD_TOP_SPACING;
@@ -487,7 +487,7 @@ geda_option_menu_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
     child_allocation.height = MAX (1, allocation->height - (border_width + ythickness + props.focus_width + props.focus_pad) * 2 -
     CHILD_TOP_SPACING - CHILD_BOTTOM_SPACING);
 
-    if (gtk_widget_get_direction (GTK_WIDGET (widget)) == GTK_TEXT_DIR_RTL)
+    if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL)
       child_allocation.x += props.indicator_size.width +
                             props.indicator_spacing.left +
                             props.indicator_spacing.right;
@@ -526,7 +526,7 @@ geda_option_menu_paint (GtkWidget *widget, GdkRectangle *area)
                  button_area.x, button_area.y,
                  button_area.width, button_area.height);
 
-  if (gtk_widget_get_direction (GTK_WIDGET (widget)) == GTK_TEXT_DIR_RTL)
+  if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL)
     tab_x = button_area.x + props.indicator_spacing.right +
             widget->style->xthickness;
   else
@@ -552,7 +552,7 @@ geda_option_menu_paint (GtkWidget *widget, GdkRectangle *area)
       props.indicator_spacing.right +
       props.indicator_size.width;
       button_area.height -= 2 * (widget->style->ythickness + props.focus_pad);
-      if (gtk_widget_get_direction (GTK_WIDGET (widget)) == GTK_TEXT_DIR_RTL)
+      if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL)
         button_area.x += props.indicator_spacing.left +
                          props.indicator_spacing.right +
                          props.indicator_size.width;
