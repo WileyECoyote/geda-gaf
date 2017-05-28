@@ -214,6 +214,14 @@ int test_file (void)
 
   geda_struct_page_delete (toplevel, page, FALSE);
 
+  cwd = getcwd(0,0);
+
+  if (cwd && strcmp(cwd, cwd_sav) != 0) {
+    fprintf(stderr, "FAILED: (S12TBD01) geda_file_open <%s>!=<%s>\n", cwd, cwd_sav);
+    result++;
+  }
+  free(cwd);
+
   /* === Function 04: geda_file_open_flags === */
 
   unsigned int flags;
