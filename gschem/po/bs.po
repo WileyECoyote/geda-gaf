@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-05-23 00:14-0500\n"
+"POT-Creation-Date: 2017-05-28 16:21-0500\n"
 "PO-Revision-Date: 2012-01-27 14:18+0000\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: Bosnian <bs@li.org>\n"
@@ -1365,13 +1365,13 @@ msgstr ""
 msgid "Components"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2553 gschem/src/x/x_multiattrib.c:2006
-#: gschem/src/x/x_multiattrib.c:2012
+#: gschem/src/x/x_compselect.c:2553 gschem/src/x/x_multiattrib.c:2013
+#: gschem/src/x/x_multiattrib.c:2019
 msgid "Name"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2565 gschem/src/x/x_multiattrib.c:2008
-#: gschem/src/x/x_multiattrib.c:2014
+#: gschem/src/x/x_compselect.c:2565 gschem/src/x/x_multiattrib.c:2015
+#: gschem/src/x/x_multiattrib.c:2021
 msgid "Value"
 msgstr ""
 
@@ -1677,9 +1677,8 @@ msgid "Output background"
 msgstr ""
 
 #: gschem/src/x/x_dialog.c:1030
-#, fuzzy
 msgid "Net junction"
-msgstr "Akcija"
+msgstr "Neto junction"
 
 #: gschem/src/x/x_dialog.c:1031
 msgid "Mesh grid major"
@@ -1762,15 +1761,15 @@ msgstr ""
 msgid "*varies*"
 msgstr ""
 
+# Edit Fill Type
 #: gschem/src/x/x_dialog.c:1601 gschem/scheme/gschem/builtins.scm:158
-#, fuzzy
 msgid "Edit Fill Type"
-msgstr "Izmijeni tekst"
+msgstr "uredi fil tip"
 
+# Fill Type
 #: gschem/src/x/x_dialog.c:1623
-#, fuzzy
 msgid "Fill Type:"
-msgstr "Izmijeni Fill tekst:"
+msgstr "Fil Tip:"
 
 #: gschem/src/x/x_dialog.c:1626
 msgid "Line Width:"
@@ -1888,10 +1887,10 @@ msgstr ""
 msgid "Text to find:"
 msgstr ""
 
+# Search hidden attributes
 #: gschem/src/x/x_dialog.c:2489
-#, fuzzy
 msgid "Search hidden attributes"
-msgstr "Atribut"
+msgstr "Pretraživanje skrivene atribut"
 
 #: gschem/src/x/x_dialog.c:2492
 msgid "Descend into hierarchy"
@@ -1917,10 +1916,10 @@ msgstr ""
 msgid "Show text starting with:"
 msgstr ""
 
+# Text Entry
 #: gschem/src/x/x_dialog.c:2846
-#, fuzzy
 msgid "Text Entry..."
-msgstr "_Tekst..."
+msgstr "Unos Teksta..."
 
 #: gschem/src/x/x_dialog.c:2871
 msgid ""
@@ -1943,10 +1942,10 @@ msgid ""
 "(0 for origin)"
 msgstr ""
 
+# Auto Zoom Extents
 #: gschem/src/x/x_dialog.c:3023
-#, fuzzy
 msgid "Auto Zoom Extents"
-msgstr "Okvir zooma"
+msgstr "Automatsko zumiranje Okvir"
 
 #: gschem/src/x/x_dialog.c:3195
 msgid "Hotkeys"
@@ -1956,8 +1955,8 @@ msgstr ""
 msgid "Icon"
 msgstr ""
 
+# Action
 #: gschem/src/x/x_dialog.c:3296
-#, fuzzy
 msgid "Action"
 msgstr "Akcija"
 
@@ -1965,10 +1964,10 @@ msgstr "Akcija"
 msgid "Keystroke(s)"
 msgstr ""
 
+# Command
 #: gschem/src/x/x_dialog.c:3316
-#, fuzzy
 msgid "Command"
-msgstr "_Kmponenta..."
+msgstr "Naredba"
 
 #: gschem/src/x/x_dialog.c:3554
 msgid "Major symbol changes detected."
@@ -1981,19 +1980,19 @@ msgid ""
 "Be sure to verify each of these symbols."
 msgstr ""
 
+# Symbol
 #: gschem/src/x/x_dialog.c:3622
-#, fuzzy
 msgid "Symbol"
-msgstr "Doljen _Simbol"
+msgstr "Simbol"
 
 #: gschem/src/x/x_dialog.c:3668
 msgid "Dismiss this dialog"
 msgstr ""
 
+# Input attribute is invalid
 #: gschem/src/x/x_dialog.c:3710
-#, fuzzy
 msgid "Input attribute is invalid"
-msgstr "Atribut"
+msgstr "Ulazni atribut je nevažeća"
 
 #: gschem/src/x/x_dialog.c:3711
 msgid "Please correct in order to continue"
@@ -2076,7 +2075,7 @@ msgstr ""
 msgid "Show Name Only"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:346 gschem/src/x/x_multiattrib.c:1645
+#: gschem/src/x/x_edit_attrib.c:346 gschem/src/x/x_multiattrib.c:1652
 #: gschem/scheme/gschem/builtins.scm:413
 msgid "Show Name & Value"
 msgstr ""
@@ -2117,16 +2116,16 @@ msgstr ""
 msgid "Single Attribute Editor"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:466 gschem/src/x/x_multiattrib.c:2215
+#: gschem/src/x/x_edit_attrib.c:466 gschem/src/x/x_multiattrib.c:2221
 msgid "Name:"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:483 gschem/src/x/x_multiattrib.c:2234
+#: gschem/src/x/x_edit_attrib.c:483 gschem/src/x/x_multiattrib.c:2238
 msgid "Value:"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:497 gschem/src/x/x_multiattrib.c:2010
-#: gschem/src/x/x_multiattrib.c:2290
+#: gschem/src/x/x_edit_attrib.c:497 gschem/src/x/x_multiattrib.c:2017
+#: gschem/src/x/x_multiattrib.c:2293
 msgid "Visible"
 msgstr ""
 
@@ -2310,27 +2309,25 @@ msgstr ""
 #: gschem/src/x/x_edit_pin.c:71
 #, fuzzy
 msgid "_Type:"
-msgstr "Izmijeni tekst:"
+msgstr "Tip:"
 
 #: gschem/src/x/x_edit_pin.c:71
 msgid "Select the pin type"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:72
-#, fuzzy
 msgid "_Attributes:"
-msgstr "atri_buti"
+msgstr "_Atributi:"
 
+# Set the pin attributes
 #: gschem/src/x/x_edit_pin.c:72
-#, fuzzy
 msgid "Set the pin attributes"
-msgstr "Atribut"
+msgstr "Postavite atribute pin"
 
-# Slot number
+# Number
 #: gschem/src/x/x_edit_pin.c:73
-#, fuzzy
 msgid "_Number:"
-msgstr "Slot broj:"
+msgstr "_Broj:"
 
 #: gschem/src/x/x_edit_pin.c:73
 msgid "Set the pin number, or the starting pin number if auto numbering"
@@ -2353,28 +2350,25 @@ msgid "Enter pin name or description"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:77
-#, fuzzy
 msgid "      Type:"
-msgstr "Izmijeni tekst:"
+msgstr "       Tip:"
 
 #: gschem/src/x/x_edit_pin.c:77
 msgid "Enable to set all selected attributes to the prescribed type"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:78
-#, fuzzy
 msgid "Attributes:"
-msgstr "atri_buti"
+msgstr "Atributi:"
 
 #: gschem/src/x/x_edit_pin.c:78
 msgid "Enable to set all selected attributes to the prescribed value"
 msgstr ""
 
-# Slot number
+# Number
 #: gschem/src/x/x_edit_pin.c:80
-#, fuzzy
 msgid "Number:"
-msgstr "Slot broj:"
+msgstr "Broj:"
 
 #: gschem/src/x/x_edit_pin.c:80
 msgid ""
@@ -2517,9 +2511,8 @@ msgstr "Atribut"
 
 # Color
 #: gschem/src/x/x_edit_text.c:66
-#, fuzzy
 msgid "_Color:"
-msgstr "Boja..."
+msgstr "_Boja:"
 
 # Detached attribute
 #: gschem/src/x/x_edit_text.c:66
@@ -2537,10 +2530,10 @@ msgstr ""
 msgid "Open font selection dialog"
 msgstr "istup izbor"
 
+# Rotation
 #: gschem/src/x/x_edit_text.c:68
-#, fuzzy
 msgid "_Rotation:"
-msgstr "Rotiraj"
+msgstr "_Rotiraj:"
 
 #: gschem/src/x/x_edit_text.c:68
 msgid "Set the text rotation angle"
@@ -2921,7 +2914,7 @@ msgstr "Okvir zooma"
 msgid "Project linear objects to other objects"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:121 gschem/src/x/x_multiattrib.c:1685
+#: gschem/src/x/x_menus.c:121 gschem/src/x/x_multiattrib.c:1692
 #: gschem/scheme/gschem/builtins.scm:104
 msgid "Delete"
 msgstr "Obriši"
@@ -3284,69 +3277,69 @@ msgstr ""
 msgid "falling back to"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:795 gschem/src/x/x_multiattrib.c:2759
+#: gschem/src/x/x_multiattrib.c:802 gschem/src/x/x_multiattrib.c:2759
 msgid "<various>"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:917
+#: gschem/src/x/x_multiattrib.c:924
 msgid "Attribute name must not be empty. Please set a name."
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:919
+#: gschem/src/x/x_multiattrib.c:926
 #, fuzzy
 msgid "Multi-Attribute Editor"
 msgstr "_Atribut..."
 
-#: gschem/src/x/x_multiattrib.c:1628
+#: gschem/src/x/x_multiattrib.c:1635
 msgid "Select an attribute to add"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:1647
+#: gschem/src/x/x_multiattrib.c:1654
 msgid "Show Value only"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:1649
+#: gschem/src/x/x_multiattrib.c:1656
 msgid "Show Name only"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:1653
+#: gschem/src/x/x_multiattrib.c:1660
 msgid "Select an attribute visibility option"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:1679
+#: gschem/src/x/x_multiattrib.c:1686
 msgid "Promote"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:1684
+#: gschem/src/x/x_multiattrib.c:1691
 msgid "Duplicate"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:1686
+#: gschem/src/x/x_multiattrib.c:1693
 #, fuzzy
 msgid "Copy to all"
 msgstr "Kopiraj u 1"
 
-#: gschem/src/x/x_multiattrib.c:2056 gschem/src/x/x_multiattrib.c:2582
+#: gschem/src/x/x_multiattrib.c:2063 gschem/src/x/x_multiattrib.c:2582
 msgid "Edit Attributes"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2198 gschem/scheme/gschem/builtins.scm:350
+#: gschem/src/x/x_multiattrib.c:2206 gschem/scheme/gschem/builtins.scm:350
 msgid "Add Attribute"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2249
+#: gschem/src/x/x_multiattrib.c:2253
 msgid "Ctrl+Enter inserts new line; Ctrl+Tab inserts Tab"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2280
+#: gschem/src/x/x_multiattrib.c:2284
 msgid "Enter or type a value for the new attribute then press the Add button"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2295
+#: gschem/src/x/x_multiattrib.c:2298
 msgid "Enable or disable attribute visibility"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2310
+#: gschem/src/x/x_multiattrib.c:2311
 msgid "Add new attribute to component"
 msgstr ""
 
@@ -4816,9 +4809,8 @@ msgstr ""
 
 # Switch Magnetic Nets
 #: gschem/etc/system-gschemrc.scm:2341
-#, fuzzy
 msgid "_Magnetic Net"
-msgstr "Obrnuti magnetski Nets"
+msgstr "_Magnetski Nets"
 
 #: gschem/etc/system-gschemrc.scm:2341
 msgid "Toggle magnetic net mode"
