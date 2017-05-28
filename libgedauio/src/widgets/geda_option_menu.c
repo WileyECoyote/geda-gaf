@@ -411,18 +411,21 @@ static void
 geda_option_menu_size_request (GtkWidget *widget, GtkRequisition *requisition)
 {
   GedaOptionMenu *option_menu = (GedaOptionMenu*)widget;
+  GtkWidget      *child;
+
   GedaOptionMenuProps props;
-  int tmp;
-  GtkRequisition child_requisition = { 0, 0 };
+  GtkRequisition      child_requisition = { 0, 0 };
+  int height;
 
   geda_option_menu_get_props (option_menu, &props);
 
-  if (GTK_BIN(option_menu)->child &&
-      gtk_widget_get_visible (GTK_BIN(option_menu)->child))
-  {
-    gtk_widget_size_request (GTK_BIN (option_menu)->child, &child_requisition);
+  child = geda_get_child_widget(option_menu);
 
-    requisition->width += child_requisition.width;
+  if (child && gtk_widget_get_visible (child))
+  {
+    gtk_widget_size_request (child, &child_requisition);
+
+    requisition->width  += child_requisition.width;
     requisition->height += child_requisition.height;
   }
 
@@ -438,11 +441,11 @@ geda_option_menu_size_request (GtkWidget *widget, GtkRequisition *requisition)
                           MAX (child_requisition.height, option_menu->height) +
                           CHILD_TOP_SPACING + CHILD_BOTTOM_SPACING + props.focus_width * 2);
 
-  tmp = (requisition->height - MAX (child_requisition.height, option_menu->height) +
-         props.indicator_size.height + props.indicator_spacing.top +
-         props.indicator_spacing.bottom);
+  height = (requisition->height - MAX (child_requisition.height, option_menu->height) +
+            props.indicator_size.height + props.indicator_spacing.top +
+            props.indicator_spacing.bottom);
 
-  requisition->height = MAX (requisition->height, tmp);
+  requisition->height = MAX (requisition->height, height);
 }
 
 static void
