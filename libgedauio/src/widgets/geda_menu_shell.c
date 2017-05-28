@@ -1774,6 +1774,11 @@ geda_menu_shell_add_mnemonic (GedaMenuShell *menu_shell,
   geda_menu_shell_reset_key_hash (menu_shell);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief Set the Tool Tip Column on the Combo Widget
+ *  \par Function Description
+ *
+ */
 void
 geda_menu_shell_append (GedaMenuShell *menu_shell, GtkWidget *child)
 {
@@ -1914,6 +1919,11 @@ geda_menu_shell_get_take_focus (GedaMenuShell *menu_shell)
   return priv->take_focus;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_menu_shell_insert (GedaMenuShell *menu_shell,
                         GtkWidget     *child,
@@ -1931,6 +1941,11 @@ geda_menu_shell_insert (GedaMenuShell *menu_shell,
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_menu_shell_prepend (GedaMenuShell *menu_shell, GtkWidget *child)
 {
@@ -1959,6 +1974,11 @@ geda_menu_shell_remove_mnemonic (GedaMenuShell *menu_shell,
   geda_menu_shell_reset_key_hash (menu_shell);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_menu_shell_set_keyboard_mode (GedaMenuShell *menu_shell,
                                    bool          keyboard_mode)
@@ -2145,6 +2165,11 @@ geda_menu_shell_set_take_focus (GedaMenuShell *menu_shell, bool take_focus)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_menu_shell_update_mnemonics (GedaMenuShell *menu_shell)
 {
