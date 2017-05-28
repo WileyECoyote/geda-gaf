@@ -1,6 +1,8 @@
 2017-05-27 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/widgets/geda_menu_shell.c: Add template Doxygen comment blocks.
+    * src/widgets/geda_menu_shell.c: Add template Doxygen comment blocks,
+      revise/revert geda_menu_shell_update_mnemonics to validate that each
+      target is a GedaMenuShell.
 
     * src/widgets/geda_option_menu.c: Revise geda_option_menu_size_request;
       Add ancillary child and use geda_get_child_widget macro to reference

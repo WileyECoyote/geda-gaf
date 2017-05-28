@@ -2239,7 +2239,7 @@ geda_menu_shell_update_mnemonics (GedaMenuShell *menu_shell)
     if (target->active_menu_item || priv->in_unselectable_item)
       found = TRUE;
 
-    target = (GedaMenuShell*)target->parent_menu_shell;
+    target = GEDA_MENU_SHELL(target->parent_menu_shell);
   }
 }
 
