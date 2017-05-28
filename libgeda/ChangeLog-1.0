@@ -1,3 +1,8 @@
+2017-05-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_keyfile.c: Revise geda_keyfile_get_locale_string_list
+      to clear key_file_error if an error was not passed to the function.
+
 2017-05-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_object.c: Remove unnecessary cast for g_object_unref.

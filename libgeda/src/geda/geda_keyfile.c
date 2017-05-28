@@ -2131,8 +2131,16 @@ geda_keyfile_get_locale_string_list (GedaKeyFile  *key_file,
                                           key, locale,
                                           &key_file_error);
 
-  if (key_file_error)
-    g_propagate_error (error, key_file_error);
+  if (key_file_error) {
+    if (error) {
+      g_propagate_error (error, key_file_error);
+    }
+    else {
+      /* Clear the error set by geda_keyfile_get_string
+       * because no error argument was supplied */
+      g_error_free (key_file_error);
+    }
+  }
 
   if (!value) {
 
