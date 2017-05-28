@@ -2,6 +2,8 @@
 
     * po/ar.po: Update Arabic translations.
 
+    * po/ar.po: Update Bulgarian translations.
+
 2017-05-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_print.c: Remove unnecessary cast from g_object_new.
