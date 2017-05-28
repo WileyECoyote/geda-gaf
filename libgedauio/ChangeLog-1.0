@@ -2,7 +2,8 @@
 
     * src/widgets/geda_menu_shell.c: Add template Doxygen comment blocks,
       revise/revert geda_menu_shell_update_mnemonics to validate that each
-      target is a GedaMenuShell.
+      target is a GedaMenuShell. Revise geda_menu_shell_set_keyboard_mode
+      to validate the menu_shell object.
 
     * src/widgets/geda_option_menu.c: Revise geda_option_menu_size_request;
       Add ancillary child and use geda_get_child_widget macro to reference

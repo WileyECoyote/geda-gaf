@@ -1981,8 +1981,10 @@ geda_menu_shell_remove_mnemonic (GedaMenuShell *menu_shell,
  */
 void
 geda_menu_shell_set_keyboard_mode (GedaMenuShell *menu_shell,
-                                   bool          keyboard_mode)
+                                   bool           keyboard_mode)
 {
+  g_return_if_fail (GEDA_IS_MENU_SHELL (menu_shell));
+
   menu_shell->keyboard_mode = keyboard_mode;
 }
 
