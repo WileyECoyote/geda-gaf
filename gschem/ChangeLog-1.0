@@ -1,3 +1,7 @@
+2017-05-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/ar.po: Update Arabic translations.
+
 2017-05-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_print.c: Remove unnecessary cast from g_object_new.
