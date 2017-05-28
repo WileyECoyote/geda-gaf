@@ -273,7 +273,7 @@ geda_menu_shell_get_key_hash (GedaMenuShell *menu_shell, bool create)
 
   return priv->key_hash;
 }
- */
+*/
 
 /* Helper called by:
  *
@@ -1841,7 +1841,7 @@ geda_menu_shell_deselect (GedaMenuShell *menu_shell)
 const GList*
 geda_menu_shell_get_children (GedaMenuShell *menu_shell)
 {
-  g_return_val_if_fail (GEDA_IS_MENU_SHELL (menu_shell), NULL);
+  g_return_val_if_fail (GEDA_IS_MENU_SHELL(menu_shell), NULL);
   return menu_shell->children;
 }
 
@@ -1864,7 +1864,7 @@ geda_menu_shell_get_keyboard_mode (GedaMenuShell *menu_shell)
 GtkWidget *
 geda_menu_shell_get_parent_shell (GedaMenuShell *menu_shell)
 {
-  g_return_val_if_fail (GEDA_IS_MENU_SHELL (menu_shell), NULL);
+  g_return_val_if_fail (GEDA_IS_MENU_SHELL(menu_shell), NULL);
 
   return menu_shell->parent_menu_shell;
 }
@@ -1893,7 +1893,7 @@ geda_menu_shell_get_popup_delay (GedaMenuShell *menu_shell)
 GtkWidget*
 geda_menu_shell_get_selected_item (GedaMenuShell *menu_shell)
 {
-  g_return_val_if_fail (GEDA_IS_MENU_SHELL (menu_shell), NULL);
+  g_return_val_if_fail (GEDA_IS_MENU_SHELL(menu_shell), NULL);
 
   return menu_shell->active_menu_item;
 }
@@ -1912,7 +1912,7 @@ geda_menu_shell_get_take_focus (GedaMenuShell *menu_shell)
 {
   GedaMenuShellPriv *priv;
 
-  g_return_val_if_fail (GEDA_IS_MENU_SHELL (menu_shell), FALSE);
+  g_return_val_if_fail (GEDA_IS_MENU_SHELL(menu_shell), FALSE);
 
   priv = menu_shell->priv;
 
@@ -2027,7 +2027,7 @@ geda_menu_shell_select_first (GedaMenuShell *menu_shell, bool search_sensitive)
 {
   GList *iter;
 
-  g_return_val_if_fail (GEDA_IS_MENU_SHELL (menu_shell), NULL);
+  g_return_val_if_fail (GEDA_IS_MENU_SHELL(menu_shell), NULL);
 
   iter = menu_shell->children;
 
@@ -2064,7 +2064,7 @@ geda_menu_shell_select_last (GedaMenuShell *menu_shell, bool search_sensitive)
 {
   GList *iter;
 
-  g_return_val_if_fail (GEDA_IS_MENU_SHELL (menu_shell), NULL);
+  g_return_val_if_fail (GEDA_IS_MENU_SHELL(menu_shell), NULL);
 
   iter = g_list_last (menu_shell->children);
 
