@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-05-23 00:14-0500\n"
+"POT-Creation-Date: 2017-05-28 16:21-0500\n"
 "PO-Revision-Date: 2012-04-12 22:09+0000\n"
 "Last-Translator: Dennis Baudys <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1359,13 +1359,13 @@ msgstr "Bauteil als Einzelkomponenten einfügen"
 msgid "Components"
 msgstr "Bauteile"
 
-#: gschem/src/x/x_compselect.c:2553 gschem/src/x/x_multiattrib.c:2006
-#: gschem/src/x/x_multiattrib.c:2012
+#: gschem/src/x/x_compselect.c:2553 gschem/src/x/x_multiattrib.c:2013
+#: gschem/src/x/x_multiattrib.c:2019
 msgid "Name"
 msgstr "Name"
 
-#: gschem/src/x/x_compselect.c:2565 gschem/src/x/x_multiattrib.c:2008
-#: gschem/src/x/x_multiattrib.c:2014
+#: gschem/src/x/x_compselect.c:2565 gschem/src/x/x_multiattrib.c:2015
+#: gschem/src/x/x_multiattrib.c:2021
 msgid "Value"
 msgstr "Wert"
 
@@ -2067,7 +2067,7 @@ msgstr "Nur Wert anzeigen"
 msgid "Show Name Only"
 msgstr "Nur Name anzeigen"
 
-#: gschem/src/x/x_edit_attrib.c:346 gschem/src/x/x_multiattrib.c:1645
+#: gschem/src/x/x_edit_attrib.c:346 gschem/src/x/x_multiattrib.c:1652
 #: gschem/scheme/gschem/builtins.scm:413
 msgid "Show Name & Value"
 msgstr "Name & Wert anzeigen"
@@ -2108,16 +2108,16 @@ msgstr ""
 msgid "Single Attribute Editor"
 msgstr "Einzel-Attributebearbeitung"
 
-#: gschem/src/x/x_edit_attrib.c:466 gschem/src/x/x_multiattrib.c:2215
+#: gschem/src/x/x_edit_attrib.c:466 gschem/src/x/x_multiattrib.c:2221
 msgid "Name:"
 msgstr "Name:"
 
-#: gschem/src/x/x_edit_attrib.c:483 gschem/src/x/x_multiattrib.c:2234
+#: gschem/src/x/x_edit_attrib.c:483 gschem/src/x/x_multiattrib.c:2238
 msgid "Value:"
 msgstr "Wert:"
 
-#: gschem/src/x/x_edit_attrib.c:497 gschem/src/x/x_multiattrib.c:2010
-#: gschem/src/x/x_multiattrib.c:2290
+#: gschem/src/x/x_edit_attrib.c:497 gschem/src/x/x_multiattrib.c:2017
+#: gschem/src/x/x_multiattrib.c:2293
 msgid "Visible"
 msgstr "Sichtbar"
 
@@ -2293,24 +2293,23 @@ msgstr ""
 msgid "Entry for model file name"
 msgstr "Geerbte Attribute anzeigen"
 
+# Type
 #: gschem/src/x/x_edit_pin.c:71
-#, fuzzy
 msgid "_Type:"
-msgstr "Umfang:"
+msgstr "_Art:"
 
 #: gschem/src/x/x_edit_pin.c:71
 msgid "Select the pin type"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:72
-#, fuzzy
 msgid "_Attributes:"
-msgstr "Attribut"
+msgstr "_Attribut:"
 
 #: gschem/src/x/x_edit_pin.c:72
 #, fuzzy
 msgid "Set the pin attributes"
-msgstr "Geerbte Attribute anzeigen"
+msgstr "Legen Sie die Pin-Attribute fest"
 
 #: gschem/src/x/x_edit_pin.c:73
 #, fuzzy
@@ -2347,10 +2346,10 @@ msgstr "Umfang:"
 msgid "Enable to set all selected attributes to the prescribed type"
 msgstr ""
 
+# Attributes
 #: gschem/src/x/x_edit_pin.c:78
-#, fuzzy
 msgid "Attributes:"
-msgstr "Attribut"
+msgstr "Attribut:"
 
 #: gschem/src/x/x_edit_pin.c:78
 #, fuzzy
@@ -2502,9 +2501,8 @@ msgid "Select the text alignment attribute"
 msgstr "Wählen Sie den Namen des hinzuzufügenden Attributs aus"
 
 #: gschem/src/x/x_edit_text.c:66
-#, fuzzy
 msgid "_Color:"
-msgstr "Farbe..."
+msgstr "_Farbe:"
 
 #: gschem/src/x/x_edit_text.c:66
 #, fuzzy
@@ -2884,7 +2882,7 @@ msgstr "/Automatisch"
 msgid "Project linear objects to other objects"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:121 gschem/src/x/x_multiattrib.c:1685
+#: gschem/src/x/x_menus.c:121 gschem/src/x/x_multiattrib.c:1692
 #: gschem/scheme/gschem/builtins.scm:104
 msgid "Delete"
 msgstr "Löschen"
@@ -3233,68 +3231,68 @@ msgstr "Gescheitert zu öffnen"
 msgid "falling back to"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:795 gschem/src/x/x_multiattrib.c:2759
+#: gschem/src/x/x_multiattrib.c:802 gschem/src/x/x_multiattrib.c:2759
 msgid "<various>"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:917
+#: gschem/src/x/x_multiattrib.c:924
 msgid "Attribute name must not be empty. Please set a name."
 msgstr ""
 "Attribute mit leerem Namen sind nicht erlaubt. Gib bitte einen Namen ein."
 
-#: gschem/src/x/x_multiattrib.c:919
+#: gschem/src/x/x_multiattrib.c:926
 msgid "Multi-Attribute Editor"
 msgstr "Einzel-Attributebearbeitung"
 
-#: gschem/src/x/x_multiattrib.c:1628
+#: gschem/src/x/x_multiattrib.c:1635
 msgid "Select an attribute to add"
 msgstr "Wählen Sie ein hinzuzufügendes Attribut aus"
 
-#: gschem/src/x/x_multiattrib.c:1647
+#: gschem/src/x/x_multiattrib.c:1654
 msgid "Show Value only"
 msgstr "Nur Wert anzeigen"
 
-#: gschem/src/x/x_multiattrib.c:1649
+#: gschem/src/x/x_multiattrib.c:1656
 msgid "Show Name only"
 msgstr "Nur Name anzeigen"
 
-#: gschem/src/x/x_multiattrib.c:1653
+#: gschem/src/x/x_multiattrib.c:1660
 msgid "Select an attribute visibility option"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:1679
+#: gschem/src/x/x_multiattrib.c:1686
 msgid "Promote"
 msgstr "Einsetzen"
 
-#: gschem/src/x/x_multiattrib.c:1684
+#: gschem/src/x/x_multiattrib.c:1691
 msgid "Duplicate"
 msgstr "Duplizieren"
 
-#: gschem/src/x/x_multiattrib.c:1686
+#: gschem/src/x/x_multiattrib.c:1693
 msgid "Copy to all"
 msgstr "Kopieren in 1"
 
-#: gschem/src/x/x_multiattrib.c:2056 gschem/src/x/x_multiattrib.c:2582
+#: gschem/src/x/x_multiattrib.c:2063 gschem/src/x/x_multiattrib.c:2582
 msgid "Edit Attributes"
 msgstr "Attribute bearbeiten"
 
-#: gschem/src/x/x_multiattrib.c:2198 gschem/scheme/gschem/builtins.scm:350
+#: gschem/src/x/x_multiattrib.c:2206 gschem/scheme/gschem/builtins.scm:350
 msgid "Add Attribute"
 msgstr "Attribut hinzufügen"
 
-#: gschem/src/x/x_multiattrib.c:2249
+#: gschem/src/x/x_multiattrib.c:2253
 msgid "Ctrl+Enter inserts new line; Ctrl+Tab inserts Tab"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2280
+#: gschem/src/x/x_multiattrib.c:2284
 msgid "Enter or type a value for the new attribute then press the Add button"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2295
+#: gschem/src/x/x_multiattrib.c:2298
 msgid "Enable or disable attribute visibility"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2310
+#: gschem/src/x/x_multiattrib.c:2311
 msgid "Add new attribute to component"
 msgstr ""
 
@@ -4691,8 +4689,8 @@ msgstr "Raster_abstand..."
 msgid "Adjust snap size"
 msgstr ""
 
+# Align to grid
 #: gschem/etc/system-gschemrc.scm:2339
-#, fuzzy
 msgid "_Snap On-Off"
 msgstr "Am Raster ausrichten aus"
 
@@ -4700,50 +4698,49 @@ msgstr "Am Raster ausrichten aus"
 msgid "Toggle the object snap mode"
 msgstr ""
 
+# Network rubber threads
 #: gschem/etc/system-gschemrc.scm:2340
-#, fuzzy
 msgid "_Rubberband"
-msgstr "_Netzgummifäden umschalten"
+msgstr "_Netzgummifäden"
 
 #: gschem/etc/system-gschemrc.scm:2340
 msgid "Toggle rubberband net mode"
 msgstr "_Netzgummifäden umschalten"
 
+# Magnetic Net
 #: gschem/etc/system-gschemrc.scm:2341
-#, fuzzy
 msgid "_Magnetic Net"
-msgstr "Magnetischer Netzmodus"
+msgstr "_Magnetischer Netzmodus"
 
 #: gschem/etc/system-gschemrc.scm:2341
 msgid "Toggle magnetic net mode"
-msgstr "_Magnetischen Netzmodus umschalten"
+msgstr "Umschalten des Magnetnetzmodus"
 
+# Drag Move
 #: gschem/etc/system-gschemrc.scm:2342
-#, fuzzy
 msgid "_Drag Move"
-msgstr "_Magnetischen Netzmodus umschalten"
+msgstr "_Ziehen bewegen"
 
 #: gschem/etc/system-gschemrc.scm:2342
 msgid "Toggle Drag-can-Move mode"
-msgstr "_Magnetischen Netzmodus umschalten"
+msgstr "Toggle Drag-can-Move-Modus"
 
 #: gschem/etc/system-gschemrc.scm:2343
-#, fuzzy
 msgid "_Outline-Box"
-msgstr "_Umrissanzeige umschalten"
+msgstr "_Umrißkasten"
 
 #: gschem/etc/system-gschemrc.scm:2343
 msgid "Toggle action feedback"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2344
-#, fuzzy
 msgid "_Auto-Pan"
-msgstr "_Netzgummifäden umschalten"
+msgstr "Auto-Panning"
 
+# Toggle auto panning mode
 #: gschem/etc/system-gschemrc.scm:2344
 msgid "Toggle auto panning mode"
-msgstr "_Magnetischen Netzmodus umschalten"
+msgstr "Schalten Sie den automatischen Panning-Modus um"
 
 #: gschem/etc/system-gschemrc.scm:2347
 msgid "_Text Size..."
