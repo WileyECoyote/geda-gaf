@@ -6,6 +6,9 @@
     * tests/test_file.c: Check the cwd to insure directory was changed
       after calling geda_struct_page_delete.
 
+    * tests/test_keyfile.c: Add checks for geda_keyfile_get_uint64 and
+      geda_keyfile_set_uint64.
+
 2017-05-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_object.c: Remove unnecessary cast for g_object_unref.

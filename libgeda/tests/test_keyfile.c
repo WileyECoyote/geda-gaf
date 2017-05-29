@@ -92,8 +92,8 @@ const char key_data[] = "[G1]\nT1=A\n[G2]\nT1=B\nT2=C\nT3=D\n";
  *      KF0827    geda_keyfile_set_integer
  *      KF0828    geda_keyfile_get_int64
  *      KF0829    geda_keyfile_set_int64
- *       KF0830    geda_keyfile_get_uint64
- *       KF0831    geda_keyfile_set_uint64
+ *      KF0830    geda_keyfile_get_uint64
+ *      KF0831    geda_keyfile_set_uint64
  *       KF0832    geda_keyfile_get_double
  *       KF0833    geda_keyfile_set_double
  *       KF0834    geda_keyfile_get_string_list
@@ -1050,6 +1050,47 @@ int check_data (void)
     if (err) {
       /* Error should NOT be set since key does exist */
       fprintf(stderr, "FAILED: (KF082801D) get_int64, err set\n");
+      result++;
+      g_error_free (err);
+      err = NULL;
+    }
+
+    /* === Function 31: geda_keyfile_set_uint64 === */
+
+    geda_keyfile_set_uint64 (keyfile,"G6", "UI64", -G_MAXINT64);
+
+    if (!geda_keyfile_has_group(keyfile, "G6")) {
+      fprintf(stderr, "FAILED: (KF083101) set_uint64, G6\n");
+      result++;
+    }
+
+    /* === Function 30: geda_keyfile_get_uint64 === */
+
+    if (geda_keyfile_get_boolean(keyfile, "G6", "NUI64", &err)) {
+      fprintf(stderr, "FAILED: (KF083001A) get_uint64 NUI64\n");
+      result++;
+    }
+    else if (!err) {
+      /* Error should be set since key does not exist */
+      fprintf(stderr, "FAILED: (KF083001B) get_uint64, no error\n");
+      result++;
+    }
+
+    if (err) {
+      g_error_free (err);
+      err = NULL;
+    }
+
+    uint64 G4UI64 = geda_keyfile_get_uint64(keyfile, "G6", "UI64", &err);
+
+    if (G4UI64 != -G_MAXINT64) {
+      fprintf(stderr, "FAILED: (KF083001C) get_uint64, !UI64\n");
+      result++;
+    }
+
+    if (err) {
+      /* Error should NOT be set since key does exist */
+      fprintf(stderr, "FAILED: (KF083001D) get_uint64, err set\n");
       result++;
       g_error_free (err);
       err = NULL;
