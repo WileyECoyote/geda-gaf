@@ -2,6 +2,8 @@
 
     * po/de.po: Update German translations.
 
+    * po/el.po: Update Greek translations.
+
     * src/x/x_edit_text.c: Add GtkTextView variable in x_dialog_text_edit_
       update_selection and reduce superfluous type-checking cast to GtkTextView
       and GtkTextBuffer.
