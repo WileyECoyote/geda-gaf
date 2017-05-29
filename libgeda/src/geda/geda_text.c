@@ -267,11 +267,11 @@ GedaObjectType geda_text_get_type (void)
  */
 GedaObject *geda_text_new (void)
 {
-  GedaObject *text = g_object_new(GEDA_TYPE_TEXT,
-                                  "type", OBJ_TEXT,
-                                  "name", "text",
-                                  NULL );
-  return GEDA_OBJECT(text);
+  GedaObject *text_object = g_object_new(GEDA_TYPE_TEXT,
+                                         "type", OBJ_TEXT,
+                                         "name", "text",
+                                         NULL );
+  return text_object;
 }
 
 /*! \brief Determine if object is a Geda Text Object.
