@@ -41,6 +41,11 @@
 
 #define NUM_BEZIER_SEGMENTS 100
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 GedaPath *s_path_new (void)
 {
   GedaPath *path;
@@ -53,6 +58,11 @@ GedaPath *s_path_new (void)
   return path;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 GedaPath *s_path_new_from (PATH_SECTION *sections)
 {
   GedaPath *path;
@@ -74,6 +84,11 @@ GedaPath *s_path_new_from (PATH_SECTION *sections)
   return path;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void s_path_free(GedaPath * path)
 {
   g_return_if_fail (GEDA_IS_PATH(path));
@@ -114,6 +129,11 @@ void s_path_moveto (GedaPath *path, double x, double y)
   sections[num_sections].y3 = y;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void s_path_lineto (GedaPath *path, double x, double y)
 {
   PATH_SECTION *sections;
@@ -133,6 +153,11 @@ void s_path_lineto (GedaPath *path, double x, double y)
   sections[num_sections].y3 = y;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void s_path_curveto (GedaPath *path, double x1, double y1,
                      double x2, double y2, double x3, double y3)
 {
@@ -155,6 +180,11 @@ void s_path_curveto (GedaPath *path, double x1, double y1,
   sections[num_sections].y3 = y3;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void s_path_art_finish (GedaPath * path)
 {
   int num_sections;
@@ -171,6 +201,11 @@ void s_path_art_finish (GedaPath * path)
   path->sections[num_sections].code = PATH_END;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 GedaPath*
 geda_struct_path_copy_modify (GedaPath *path, int dx, int dy,
                                               int new_x, int new_y,
@@ -723,7 +758,11 @@ static void geda_struct_path_parse_data (RSVGParsePathCtx * ctx, const char *dat
   }
 }
 
-
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 GedaPath *geda_struct_path_parse (const char *path_str)
 {
   RSVGParsePathCtx ctx;
@@ -744,6 +783,11 @@ GedaPath *geda_struct_path_parse (const char *path_str)
   return ctx.path;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 char *geda_struct_path_string_from_path (const GedaPath *path)
 {
   GString *path_string;

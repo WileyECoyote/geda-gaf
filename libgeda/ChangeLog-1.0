@@ -3,8 +3,8 @@
     * src/geda/geda_text.c: Rename variable text->text_object and remove
       type-checking cast in return.
 
-    * src/struct/s_path.c: Remove type-checking cast to GedaObject in
-      geda_struct_path_copy_modify.
+    * src/struct/s_path.c: Add template Doxygen comment blocks, remove
+      type-checking cast to GedaObject in geda_struct_path_copy_modify.
 
 2017-05-28 Wiley E. Hill <wileyhill@gmail.com>
 
