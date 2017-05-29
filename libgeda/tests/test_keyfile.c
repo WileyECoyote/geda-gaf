@@ -1066,7 +1066,7 @@ int check_data (void)
 
     /* === Function 30: geda_keyfile_get_uint64 === */
 
-    if (geda_keyfile_get_boolean(keyfile, "G6", "NUI64", &err)) {
+    if (geda_keyfile_get_uint64(keyfile, "G6", "NUI64", &err)) {
       fprintf(stderr, "FAILED: (KF083001A) get_uint64 NUI64\n");
       result++;
     }
