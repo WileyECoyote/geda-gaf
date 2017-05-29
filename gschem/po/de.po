@@ -4847,9 +4847,10 @@ msgstr "_Hilfe"
 msgid "~S is not a valid gschem action."
 msgstr "~S ist keine gültige Tasten-Kombination."
 
+# Repeat Last Action
 #: gschem/scheme/gschem/action.scm:158
 msgid "Repeat Last Action"
-msgstr ""
+msgstr "Wiederholen Sie die letzte Aktion"
 
 #: gschem/scheme/gschem/builtins.scm:50
 msgid "New File"
@@ -4875,13 +4876,15 @@ msgstr "Verschiebemodus"
 msgid "Print"
 msgstr "Drucken..."
 
+# Export Image
 #: gschem/scheme/gschem/builtins.scm:71
 msgid "Export Image"
-msgstr ""
+msgstr "Bild exportieren"
 
+# Run Script
 #: gschem/scheme/gschem/builtins.scm:74
 msgid "Run Script"
-msgstr ""
+msgstr "Skript ausführen"
 
 #: gschem/scheme/gschem/builtins.scm:77
 msgid "New Window"
@@ -4927,9 +4930,10 @@ msgstr "Auswahl"
 msgid "Snap to Grid"
 msgstr "Ausschnittmodus"
 
+# Create Array
 #: gschem/scheme/gschem/builtins.scm:131
 msgid "Create Array"
-msgstr ""
+msgstr "Array erstellen"
 
 #: gschem/scheme/gschem/builtins.scm:134 gschem/scheme/gschem/builtins.scm:137
 msgid "Edit..."
