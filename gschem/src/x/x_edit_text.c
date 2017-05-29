@@ -81,8 +81,8 @@ static void x_dialog_text_edit_update_selection (GschemToplevel *w_current,
 {
   if (object != NULL && object->type == OBJ_TEXT) {
 
-    GtkWidget     *ThisDialog;
-    GtkWidget     *widget;
+    GtkWidget *ThisDialog;
+    GtkWidget *widget;
 
     char *string;
 
@@ -140,28 +140,31 @@ static void x_dialog_text_edit_update_selection (GschemToplevel *w_current,
 
     /* Grey non matching values */
     {
-      widget = GEDA_OBJECT_GET_DATA (ThisDialog, IDS_TEXT_EDIT);
+      GtkTextView *text_view;
 
-      if (GTK_IS_TEXT_VIEW (widget)) {
+      text_view = GEDA_OBJECT_GET_DATA (ThisDialog, IDS_TEXT_EDIT);
+
+      if (GTK_IS_TEXT_VIEW (text_view)) {
 
         GtkTextBuffer *textbuffer;
 
-        textbuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (widget));
+        textbuffer = gtk_text_view_get_buffer (text_view);
 
         if (match_string)
-          gtk_text_buffer_set_text (GTK_TEXT_BUFFER (textbuffer), string, -1);
+          gtk_text_buffer_set_text (textbuffer, string, -1);
         else
-          gtk_text_buffer_set_text (GTK_TEXT_BUFFER (textbuffer), "", -1);
+          gtk_text_buffer_set_text (textbuffer, "", -1);
 
         /* if only one object then wipe all text for user */
         if (num_selected == 1) {
-          select_all_text_in_textview (GTK_TEXT_VIEW (widget));
+          select_all_text_in_textview (text_view);
         }
       }
     }
 
     { /* Text Font Size */
       widget = GEDA_OBJECT_GET_DATA (ThisDialog, WIDGET(TextFont));
+
       if (GEDA_IS_FONT_BUTTON(widget)) {
         if (match_size) {
           gtk_widget_set_can_default (widget, TRUE);
@@ -175,6 +178,7 @@ static void x_dialog_text_edit_update_selection (GschemToplevel *w_current,
 
     { /* Text Color */
       widget = GEDA_OBJECT_GET_DATA (ThisDialog, WIDGET(TextColor));
+
       if (match_color) {
         geda_combo_widget_set_active (widget, text_color);
       }
@@ -186,6 +190,7 @@ static void x_dialog_text_edit_update_selection (GschemToplevel *w_current,
 
     { /* Text Alignment */
       widget = GEDA_OBJECT_GET_DATA (ThisDialog, WIDGET(TextAlign));
+
       if (match_align) {
 
         /* Lookup table for translating between alignment values and the combo
@@ -201,6 +206,7 @@ static void x_dialog_text_edit_update_selection (GschemToplevel *w_current,
 
     { /* Text Rotation */
       widget = GEDA_OBJECT_GET_DATA (ThisDialog, WIDGET(Rotation));
+
       if (match_angle) {
         gtk_spin_button_set_value (GTK_SPIN_BUTTON(widget), text_angle);
         gtk_widget_set_can_default (widget, TRUE);

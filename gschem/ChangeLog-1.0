@@ -1,3 +1,9 @@
+2017-05-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_edit_text.c: Add GtkTextView variable in x_dialog_text_edit_
+      update_selection and reduce superfluous type-checking cast to GtkTextView
+      and GtkTextBuffer.
+
 2017-05-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ar.po: Update Arabic translations.
