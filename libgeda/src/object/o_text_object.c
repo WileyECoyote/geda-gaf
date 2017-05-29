@@ -227,9 +227,17 @@ geda_text_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, i
 bool
 geda_text_object_get_position (GedaObject *object, int *x, int *y)
 {
-  *x = object->text->x;
-  *y = object->text->y;
-  return TRUE;
+  if (GEDA_IS_TEXT(object)) {
+
+    if (x)
+      *x = object->text->x;
+
+    if (y)
+      *y = object->text->y;
+
+    return TRUE;
+  }
+  return FALSE;
 }
 
 /*!
