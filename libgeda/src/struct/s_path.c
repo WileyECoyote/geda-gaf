@@ -171,7 +171,7 @@ void s_path_art_finish (GedaPath * path)
   path->sections[num_sections].code = PATH_END;
 }
 
-GedaPath *
+GedaPath*
 geda_struct_path_copy_modify (GedaPath *path, int dx, int dy,
                                               int new_x, int new_y,
                                               int whichone)
@@ -185,7 +185,7 @@ geda_struct_path_copy_modify (GedaPath *path, int dx, int dy,
 
   g_return_val_if_fail(GEDA_IS_PATH(path), NULL);
 
-  color                      = geda_object_get_color(GEDA_OBJECT(path));
+  color                      = geda_object_get_color((GedaObject*)path);
   path_string                = geda_struct_path_string_from_path (path);
   new_path                   = (GedaPath*)geda_path_object_new (color, path_string);
   new_path->sections         = GEDA_MEM_ALLOC (path->num_sections * sizeof(PATH_SECTION));

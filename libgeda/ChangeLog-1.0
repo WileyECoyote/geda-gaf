@@ -3,6 +3,9 @@
     * src/geda/geda_text.c: Rename variable text->text_object and remove
       type-checking cast in return.
 
+    * src/struct/s_path.c: Remove type-checking cast to GedaObject in
+      geda_struct_path_copy_modify.
+
 2017-05-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_keyfile.c: Revise geda_keyfile_get_locale_string_list
