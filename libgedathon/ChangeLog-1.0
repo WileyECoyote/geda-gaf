@@ -1,3 +1,7 @@
+2017-05-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    *src/libgedathon.c: Remove GedaObject type cast in PyGeda_get_attribs.
+
 2017-05-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * module/objects/geda_py_color.c: Remove g_assert_not_reached in rgb_getitem

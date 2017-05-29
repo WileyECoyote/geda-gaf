@@ -2877,7 +2877,7 @@ PyGeda_get_attribs(PyObject *py_object)
         GedaObject *object;
         PyObject   *data;
 
-        object = GEDA_OBJECT(iter->data);
+        object = iter->data;
 
 #if DEBUG
         if (object->page == NULL && page != NULL) {
