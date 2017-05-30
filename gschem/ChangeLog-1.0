@@ -10,6 +10,8 @@
 
     * src/object/o_net.c: Revise o_net_add_busrippers to utilize GEDA_IS_BUS.
 
+    * src/object/o_page.c: Revise remove_title_blocks to utilize GEDA_IS_COMPLEX.
+
 2017-05-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/de.po: Update German translations.

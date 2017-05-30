@@ -87,14 +87,14 @@ static bool list_was_modified (GList *list1, GList *list2)
 static GList *remove_title_blocks(GList **page_list)
 {
   GList *list   = *page_list;
-  GList *iter   = list;
-  GList *titles = NULL;
+  GList *iter   =  list;
+  GList *titles =  NULL;
 
   while (iter) {
 
     GedaObject *object = iter->data;
 
-    if (object->type == OBJ_COMPLEX) {
+    if (GEDA_IS_COMPLEX(object)) {
 
       const char *filename = object->complex->filename;
 
