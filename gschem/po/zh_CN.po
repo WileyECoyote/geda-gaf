@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-05-28 16:21-0500\n"
+"POT-Creation-Date: 2017-05-29 23:16-0500\n"
 "PO-Revision-Date: 2010-02-11 03:18+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -2525,7 +2525,7 @@ msgid "Slot number:"
 msgstr ""
 
 # Text Content
-#: gschem/src/x/x_edit_text.c:64 gschem/src/x/x_edit_text.c:467
+#: gschem/src/x/x_edit_text.c:64 gschem/src/x/x_edit_text.c:473
 msgid "Text Content"
 msgstr "文本内容"
 
@@ -2576,73 +2576,73 @@ msgstr "文档:"
 msgid "Set the text rotation angle"
 msgstr ""
 
-#: gschem/src/x/x_edit_text.c:233
+#: gschem/src/x/x_edit_text.c:239
 msgid "Upper Left"
 msgstr ""
 
-#: gschem/src/x/x_edit_text.c:236
+#: gschem/src/x/x_edit_text.c:242
 msgid "Upper Middle"
 msgstr ""
 
-#: gschem/src/x/x_edit_text.c:239
+#: gschem/src/x/x_edit_text.c:245
 msgid "Upper Right"
 msgstr ""
 
-#: gschem/src/x/x_edit_text.c:243
+#: gschem/src/x/x_edit_text.c:249
 msgid "Middle Left"
 msgstr ""
 
-#: gschem/src/x/x_edit_text.c:246
+#: gschem/src/x/x_edit_text.c:252
 msgid "Middle Middle"
 msgstr ""
 
-#: gschem/src/x/x_edit_text.c:249
+#: gschem/src/x/x_edit_text.c:255
 msgid "Middle Right"
 msgstr ""
 
-#: gschem/src/x/x_edit_text.c:253
+#: gschem/src/x/x_edit_text.c:259
 msgid "Lower Left"
 msgstr ""
 
-#: gschem/src/x/x_edit_text.c:256
+#: gschem/src/x/x_edit_text.c:262
 msgid "Lower Middle"
 msgstr ""
 
-#: gschem/src/x/x_edit_text.c:259
+#: gschem/src/x/x_edit_text.c:265
 msgid "Lower Right"
 msgstr ""
 
 # Edit Text Properties
-#: gschem/src/x/x_edit_text.c:449
+#: gschem/src/x/x_edit_text.c:455
 msgid "Edit Text Properties"
 msgstr "编辑文本属性"
 
 # Text Properties
-#: gschem/src/x/x_edit_text.c:496
+#: gschem/src/x/x_edit_text.c:502
 msgid "Text Properties"
 msgstr "文本属性"
 
-#: gschem/src/x/x_edit_text.c:587
+#: gschem/src/x/x_edit_text.c:593
 msgid "Text input field"
 msgstr ""
 
 # Text alignment combobox
-#: gschem/src/x/x_edit_text.c:591
+#: gschem/src/x/x_edit_text.c:597
 msgid "Text alignment combobox"
 msgstr "文本对齐组合框"
 
 # Color options menu
-#: gschem/src/x/x_edit_text.c:595
+#: gschem/src/x/x_edit_text.c:601
 msgid "Color options menu"
 msgstr "颜色选项菜单"
 
 # Font selector button
-#: gschem/src/x/x_edit_text.c:599
+#: gschem/src/x/x_edit_text.c:605
 msgid "Font selector button"
 msgstr "字体选择器按钮"
 
 # Text rotation angle Spinner input
-#: gschem/src/x/x_edit_text.c:603
+#: gschem/src/x/x_edit_text.c:609
 msgid "Text Rotation Angle Spinner Entry"
 msgstr "文本旋转角度的微调框控件"
 

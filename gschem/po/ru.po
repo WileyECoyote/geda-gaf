@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gschem ru\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-05-28 16:21-0500\n"
+"POT-Creation-Date: 2017-05-29 23:16-0500\n"
 "PO-Revision-Date: 2015-09-13 16:05+0300\n"
 "Last-Translator: Sergey Alyoshin <alyoshin.s@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -2675,7 +2675,7 @@ msgstr "Количество секций:"
 msgid "Slot number:"
 msgstr "Номер секции:"
 
-#: gschem/src/x/x_edit_text.c:64 gschem/src/x/x_edit_text.c:467
+#: gschem/src/x/x_edit_text.c:64 gschem/src/x/x_edit_text.c:473
 msgid "Text Content"
 msgstr "Содержание текста"
 
@@ -2726,70 +2726,70 @@ msgstr "Докумен_тация:"
 msgid "Set the text rotation angle"
 msgstr ""
 
-#: gschem/src/x/x_edit_text.c:233
+#: gschem/src/x/x_edit_text.c:239
 msgid "Upper Left"
 msgstr "слева сверху"
 
-#: gschem/src/x/x_edit_text.c:236
+#: gschem/src/x/x_edit_text.c:242
 msgid "Upper Middle"
 msgstr "по центру сверху"
 
-#: gschem/src/x/x_edit_text.c:239
+#: gschem/src/x/x_edit_text.c:245
 msgid "Upper Right"
 msgstr "справа сверху"
 
-#: gschem/src/x/x_edit_text.c:243
+#: gschem/src/x/x_edit_text.c:249
 msgid "Middle Left"
 msgstr "слева по центру"
 
-#: gschem/src/x/x_edit_text.c:246
+#: gschem/src/x/x_edit_text.c:252
 msgid "Middle Middle"
 msgstr "по центру"
 
-#: gschem/src/x/x_edit_text.c:249
+#: gschem/src/x/x_edit_text.c:255
 msgid "Middle Right"
 msgstr "справа по центру"
 
-#: gschem/src/x/x_edit_text.c:253
+#: gschem/src/x/x_edit_text.c:259
 msgid "Lower Left"
 msgstr "слева снизу"
 
-#: gschem/src/x/x_edit_text.c:256
+#: gschem/src/x/x_edit_text.c:262
 msgid "Lower Middle"
 msgstr "по центру снизу"
 
-#: gschem/src/x/x_edit_text.c:259
+#: gschem/src/x/x_edit_text.c:265
 msgid "Lower Right"
 msgstr "справа снизу"
 
-#: gschem/src/x/x_edit_text.c:449
+#: gschem/src/x/x_edit_text.c:455
 msgid "Edit Text Properties"
 msgstr "<b>Свойства Редактирование текста</b>"
 
-#: gschem/src/x/x_edit_text.c:496
+#: gschem/src/x/x_edit_text.c:502
 msgid "Text Properties"
 msgstr "Свойства текста"
 
 # Text input field
-#: gschem/src/x/x_edit_text.c:587
+#: gschem/src/x/x_edit_text.c:593
 msgid "Text input field"
 msgstr "Поле ввода текста"
 
 # Text Alignment combobox
-#: gschem/src/x/x_edit_text.c:591
+#: gschem/src/x/x_edit_text.c:597
 msgid "Text alignment combobox"
 msgstr "Выравнивание текста Поле со списком"
 
-#: gschem/src/x/x_edit_text.c:595
+#: gschem/src/x/x_edit_text.c:601
 msgid "Color options menu"
 msgstr ""
 
-#: gschem/src/x/x_edit_text.c:599
+#: gschem/src/x/x_edit_text.c:605
 msgid "Font selector button"
 msgstr ""
 
 # Text rotation angle Spinner input
-#: gschem/src/x/x_edit_text.c:603
+#: gschem/src/x/x_edit_text.c:609
 msgid "Text Rotation Angle Spinner Entry"
 msgstr "Угол поворота Ввод текста Spinner"
 
