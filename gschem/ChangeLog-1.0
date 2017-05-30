@@ -12,6 +12,9 @@
 
     * src/object/o_page.c: Revise remove_title_blocks to utilize GEDA_IS_COMPLEX.
 
+    * src/object/o_path.c: Remove type-checking cast to GedaObject in function
+      o_path_end.
+
 2017-05-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/de.po: Update German translations.

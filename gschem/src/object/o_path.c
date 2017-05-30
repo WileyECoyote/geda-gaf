@@ -479,7 +479,7 @@ o_path_end(GschemToplevel *w_current, int w_x, int w_y)
     if (end_path || close_path) {
 
       /* Create a copy of the tmp path object */
-      GedaObject *new_obj = geda_path_object_copy(GEDA_OBJECT(path));
+      GedaObject *new_obj = geda_path_object_copy((GedaObject*)path);
 
       /* Add the New Path object to the page */
       geda_struct_page_append_object (toplevel->page_current, new_obj);
