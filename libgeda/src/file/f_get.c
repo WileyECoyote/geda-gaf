@@ -68,8 +68,7 @@
  *
  * \return A newly allocated string buffer.
  */
-char*
-geda_file_get_autosave_filename (const char *filename)
+char *geda_file_get_autosave_filename (const char *filename)
 {
   char *autosave_name;
 
@@ -104,8 +103,7 @@ geda_file_get_autosave_filename (const char *filename)
  * \param [in] path The path to search.
  * \return offset if found, otherwise NULL.
  */
-const char*
-geda_file_get_basename(const char *path)
+const char *geda_file_get_basename(const char *path)
 {
   if (path) {
     const char *base = strrchr(path, DIR_SEPARATOR);
@@ -123,8 +121,7 @@ geda_file_get_basename(const char *path)
  * \param [in] path The path to search.
  * \return offset if found, otherwise NULL.
  */
-char*
-geda_file_get_basename_dup(const char *path)
+char *geda_file_get_basename_dup(const char *path)
 {
   const char *base = geda_file_get_basename(path);
 
@@ -147,8 +144,7 @@ geda_file_get_basename_dup(const char *path)
  *
  * \return string with file name and path for the specified file.
  */
-char*
-geda_file_get_bitmap_filespec (const char *filename)
+char *geda_file_get_bitmap_filespec (const char *filename)
 {
   char *filespec;
 
@@ -200,9 +196,8 @@ geda_file_get_bitmap_filespec (const char *filename)
   return filespec;
 }
 
-static bool
-get_contents_stdio (const char *filename, FILE *f, char **contents,
-                    size_t     *length,   GError        **err)
+static bool get_contents_stdio (const char *filename, FILE *f, char **contents,
+                                size_t     *length,   GError        **err)
 {
   bool   ret_val = FALSE;
   char  *str     = NULL;
@@ -287,13 +282,12 @@ error:
 
 #ifndef OS_WIN32_NATIVE
 
-static bool
-get_contents_regfile (const char   *filename,
-                      struct stat  *stat_buf,
-                      int           fd,
-                      char        **contents,
-                      unsigned int *length,
-                      GError      **err)
+static bool get_contents_regfile (const char   *filename,
+                                  struct stat  *stat_buf,
+                                  int           fd,
+                                  char        **contents,
+                                  unsigned int *length,
+                                  GError      **err)
 {
   bool   ret_val = FALSE;
   char  *buf;
@@ -379,11 +373,10 @@ error:
  *
  * \retval TRUE on success, FALSE if an error occured.
  */
-bool
-geda_file_get_contents(const char  *filename,
-                             char **contents,
-                           size_t  *length,
-                           GError **err)
+bool geda_file_get_contents(const char  *filename,
+                                  char **contents,
+                                size_t  *length,
+                                GError **err)
 {
   bool retval = FALSE; /* Assume failure */
 
@@ -493,8 +486,7 @@ geda_file_get_contents(const char  *filename,
  *
  * \return string with file name and path for the specified file.
  */
-char*
-geda_file_get_data_filespec (const char *filename)
+char *geda_file_get_data_filespec (const char *filename)
 {
   char *filespec;
 
@@ -568,8 +560,7 @@ geda_file_get_data_filespec (const char *filename)
  *
  * \returns GSList of files or NULL if no matching files
  */
-GSList*
-geda_file_get_dir_list_files(char *path, char *filter, GError **err)
+GSList *geda_file_get_dir_list_files(char *path, char *filter, GError **err)
 {
   GSList *files = NULL;
 
@@ -648,8 +639,7 @@ geda_file_get_dir_list_files(char *path, char *filter, GError **err)
  *
  * \return offset if found, otherwise NULL.
  */
-const char*
-geda_file_get_filename_ext(const char *filename)
+const char *geda_file_get_filename_ext(const char *filename)
 {
   if (filename && *filename) {
     const char *dot = strrchr(filename, '.');
@@ -668,8 +658,7 @@ geda_file_get_filename_ext(const char *filename)
  *
  * \remarks <em>Do not</em> free the returned string.
  */
-const char*
-geda_file_get_format_header(void)
+const char *geda_file_get_format_header(void)
 {
   static char *header = NULL;
 
@@ -690,8 +679,7 @@ geda_file_get_format_header(void)
  *
  * \retval name of file without an extension
  */
-char*
-geda_file_get_name (const char *filespec)
+char *geda_file_get_name (const char *filespec)
 {
   char *fname;
 
@@ -729,8 +717,7 @@ geda_file_get_name (const char *filespec)
  *
  * \retval TRUE if \a filename is absolute
  */
-bool
-geda_file_get_is_path_absolute (const char *filename)
+bool geda_file_get_is_path_absolute (const char *filename)
 {
   bool result;
 
