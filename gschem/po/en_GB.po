@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-05-28 16:21-0500\n"
+"POT-Creation-Date: 2017-05-29 23:16-0500\n"
 "PO-Revision-Date: 2016-12-05 02:35-0600\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -2302,9 +2302,8 @@ msgid "Select the pin type"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:72
-#, fuzzy
 msgid "_Attributes:"
-msgstr "Attributes"
+msgstr "_Attributes:"
 
 #: gschem/src/x/x_edit_pin.c:72
 #, fuzzy
@@ -2338,27 +2337,24 @@ msgid "Enter pin name or description"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:77
-#, fuzzy
 msgid "      Type:"
-msgstr "Type:"
+msgstr "      Type:"
 
 #: gschem/src/x/x_edit_pin.c:77
 msgid "Enable to set all selected attributes to the prescribed type"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:78
-#, fuzzy
 msgid "Attributes:"
-msgstr "Attributes"
+msgstr "Attributes:"
 
 #: gschem/src/x/x_edit_pin.c:78
 msgid "Enable to set all selected attributes to the prescribed value"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:80
-#, fuzzy
 msgid "Number:"
-msgstr "Starting number:"
+msgstr "Number:"
 
 #: gschem/src/x/x_edit_pin.c:80
 msgid ""
@@ -2448,7 +2444,7 @@ msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:913
 msgid "Attribute Type List"
-msgstr "Attributes"
+msgstr "Attribute Type List"
 
 #: gschem/src/x/x_edit_pin.c:917
 msgid "Text Alignment Option"
@@ -2498,9 +2494,8 @@ msgid "Select the text alignment attribute"
 msgstr "Select the name of the attribute to add"
 
 #: gschem/src/x/x_edit_text.c:66
-#, fuzzy
 msgid "_Color:"
-msgstr "Colour..."
+msgstr "_Colour:"
 
 #: gschem/src/x/x_edit_text.c:66
 #, fuzzy
@@ -4673,27 +4668,24 @@ msgid "Adjust snap size"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2339
-#, fuzzy
 msgid "_Snap On-Off"
-msgstr "Snap Off"
+msgstr "_Snap On-Off"
 
 #: gschem/etc/system-gschemrc.scm:2339
 msgid "Toggle the object snap mode"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2340
-#, fuzzy
 msgid "_Rubberband"
-msgstr "Toggle Net _Rubberband"
+msgstr "_Rubberband"
 
 #: gschem/etc/system-gschemrc.scm:2340
 msgid "Toggle rubberband net mode"
 msgstr "Toggle Net _Rubberband"
 
 #: gschem/etc/system-gschemrc.scm:2341
-#, fuzzy
 msgid "_Magnetic Net"
-msgstr "Magnetic Net Mode"
+msgstr "_Magnetic Net"
 
 #: gschem/etc/system-gschemrc.scm:2341
 msgid "Toggle magnetic net mode"
