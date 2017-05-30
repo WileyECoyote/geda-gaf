@@ -789,9 +789,9 @@ int o_net_add_busrippers(GschemToplevel *w_current,
 
   while (cl_current != NULL) {
 
-    GedaObject *ukn_object = GEDA_OBJECT(cl_current->data);
+    GedaObject *ukn_object = cl_current->data;
 
-    if (ukn_object->type == OBJ_BUS) {
+    if (GEDA_IS_BUS(ukn_object)) {
 
       GedaBus  *bus_object  = (GedaBus*)ukn_object;
       GedaLine *line_object = (GedaLine*)bus_object;
@@ -805,7 +805,7 @@ int o_net_add_busrippers(GschemToplevel *w_current,
 
       while (cl_current2 != NULL && !done) {
 
-        CONN *tmp_conn = (CONN *) cl_current2->data;
+        CONN *tmp_conn = (CONN*) cl_current2->data;
 
         if (tmp_conn && tmp_conn->other_object &&
           ((GedaObject*)tmp_conn->other_object == ukn_object))

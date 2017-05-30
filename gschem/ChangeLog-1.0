@@ -8,6 +8,8 @@
 
     * po/fa.po: Update Persian translations.
 
+    * src/object/o_net.c: Revise o_net_add_busrippers to utilize GEDA_IS_BUS.
+
 2017-05-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/de.po: Update German translations.
