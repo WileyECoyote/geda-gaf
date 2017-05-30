@@ -39,13 +39,12 @@
  *
  * \param [in,out] toplevel  The GedaToplevel object with schematic to be closed.
  */
-void
-geda_file_close(GedaToplevel *toplevel)
+void geda_file_close(GedaToplevel *toplevel)
 {
 
 }
 
-/*!
+/*! F0105
  * \brief Check if a file has an active autosave file
  * \par Function Description
  *  Checks whether an autosave file exists for the \a filename passed
@@ -60,8 +59,7 @@ geda_file_close(GedaToplevel *toplevel)
  *
  * \returns TRUE if autosave active, FALSE otherwise
  */
-bool
-geda_file_has_active_autosave (const char *filename, GError **err)
+bool geda_file_has_active_autosave (const char *filename, GError **err)
 {
   bool result;
 
@@ -154,8 +152,7 @@ geda_file_has_active_autosave (const char *filename, GError **err)
  *
  * \return 0 on failure, 1 on success.
  */
-int
-geda_file_open(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
+int geda_file_open(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
 {
   GError *tmp_err            = NULL;
   GList  *objects            = NULL;
@@ -373,8 +370,7 @@ geda_file_open(GedaToplevel *toplevel, Page *page, const char *filename, GError 
  *
  * \return Returns file open_flags.
  */
-int
-geda_file_open_flags (GedaToplevel *toplevel)
+int geda_file_open_flags (GedaToplevel *toplevel)
 {
   return toplevel->open_flags;
 }
@@ -391,8 +387,7 @@ geda_file_open_flags (GedaToplevel *toplevel)
  *  param [in,out] err       GError structure for error reporting, or
  *                           NULL to disable error reporting
  */
-void
-geda_file_remove_backup (const char *filename)
+void geda_file_remove_backup (const char *filename)
 {
   if (filename) {
 
@@ -426,8 +421,7 @@ geda_file_remove_backup (const char *filename)
   }
 }
 
-static int
-f_file_size(const char *filename)
+static int f_file_size(const char *filename)
 {
   struct stat st;
   stat(filename, &st);
@@ -446,8 +440,7 @@ f_file_size(const char *filename)
  *                           NULL to disable error reporting
  * \return 1 on success, 0 on failure.
  */
-bool
-geda_file_save(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
+bool geda_file_save(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
 {
   GError *tmp_err;
   char   *real_filename;
