@@ -1,7 +1,8 @@
 2017-05-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_path.c: Eliminate releasing sections in s_path_free,
-      since this is performer in geda_path_finalize.
+      since this is performer in geda_path_finalize. Add/update Doxygen
+      comments.
 
 2017-05-30 Wiley E. Hill <wileyhill@gmail.com>
 

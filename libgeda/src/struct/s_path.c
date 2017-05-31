@@ -84,10 +84,11 @@ GedaPath *s_path_new_from (PATH_SECTION *sections)
   return path;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Release a GedaPath structure
+ * \par Function Description
+ *  Unreferences the GedaPath object. The path should not be referenced
+ *  after calling the function.
  */
 void s_path_free(GedaPath * path)
 {
@@ -199,15 +200,24 @@ void s_path_art_finish (GedaPath * path)
   path->sections[num_sections].code = PATH_END;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Modify a Path Object while copying coordinates
+ * \par Function Description
+ *  This function is used for drawing a temporary path with a rubber
+ *  limp with end point new_x, new_x.
  *
+ * \param [in] path      A GedaPage object
+ * \param [in] dx        The RECTANGLE regions to check
+ * \param [in] dy        The number of regions
+ * \param [in] new_x     The number of regions
+ * \param [in] new_y     The number of regions
+ * \param [in] whichone  The number of regions
+ *
+ * \return The modified path
  */
-GedaPath*
-geda_struct_path_copy_modify (GedaPath *path, int dx, int dy,
-                                              int new_x, int new_y,
-                                              int whichone)
+GedaPath *geda_struct_path_copy_modify (GedaPath *path, int dx, int dy,
+                                                        int new_x, int new_y,
+                                                        int whichone)
 {
   GedaPath *new_path;
   char     *path_string;
