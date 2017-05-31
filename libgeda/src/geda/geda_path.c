@@ -170,11 +170,12 @@ static void geda_path_finalize(GObject *object)
   GedaPath   *path = GEDA_PATH(object);
   GedaObject *obj  = GEDA_OBJECT(object);
 
-  if (path->sections)
+  if (path->sections) {
     GEDA_FREE(path->sections);
+  }
 
   /* The object is no longer a GedaPath */
-  obj->path    = NULL;
+  obj->path = NULL;
 
   /* Finialize the parent GedaObject Class */
   GEDA_OBJECT_CLASS( geda_path_parent_class )->finalize(object);
