@@ -92,8 +92,6 @@ GedaPath *s_path_new_from (PATH_SECTION *sections)
 void s_path_free(GedaPath * path)
 {
   g_return_if_fail (GEDA_IS_PATH(path));
-
-  GEDA_FREE (path->sections);
   GEDA_UNREF (path);
 }
 
