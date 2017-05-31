@@ -1,3 +1,9 @@
+2017-05-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_combobox.c: Revise geda_combo_box_class_init; add type
+      once and explicitly specify GEDA_TYPE_COMBO_BOX type to g_signal_new,
+      eliminating G_OBJECT_CLASS_TYPE.
+
 2017-05-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_bulb.c: Change division by 2 to shift right once in

@@ -1831,6 +1831,9 @@ geda_combo_box_class_init(void *class, void *class_data)
   geda_combo_box_parent_class = g_type_class_peek_parent (class);
 
   /* signals */
+
+  GedaType type = geda_combo_box_get_type();
+
   /*!
    * signal "changed": GedaComboBox::changed:
    * \brief emitted when active item is changed.
@@ -1842,7 +1845,7 @@ geda_combo_box_class_init(void *class, void *class_data)
    */
   combo_box_signals[CHANGED] =
       g_signal_new ("changed",
-                    G_OBJECT_CLASS_TYPE (class),
+                    type,
                     G_SIGNAL_RUN_LAST,
                     G_STRUCT_OFFSET (GedaComboBoxClass, changed),
                     NULL, NULL,
@@ -1854,7 +1857,7 @@ geda_combo_box_class_init(void *class, void *class_data)
    */
   combo_box_signals[MOVE_ACTIVE] =
       g_signal_new_class_handler ("move-active",
-                                  G_OBJECT_CLASS_TYPE (class),
+                                  type,
                                   G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                                   G_CALLBACK (geda_combo_box_real_move_active),
                                   NULL, NULL,
@@ -1870,7 +1873,7 @@ geda_combo_box_class_init(void *class, void *class_data)
    */
   combo_box_signals[POPUP] =
       g_signal_new_class_handler ("popup",
-                                  G_OBJECT_CLASS_TYPE (class),
+                                  type,
                                   G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                                   G_CALLBACK (geda_combo_box_real_popup),
                                   NULL, NULL,
@@ -1885,7 +1888,7 @@ geda_combo_box_class_init(void *class, void *class_data)
    */
   combo_box_signals[POPDOWN] =
       g_signal_new_class_handler ("popdown",
-                                  G_OBJECT_CLASS_TYPE (class),
+                                  type,
                                   G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                                   G_CALLBACK (geda_combo_box_real_popdown),
                                   NULL, NULL,
@@ -1936,7 +1939,7 @@ geda_combo_box_class_init(void *class, void *class_data)
    */
   combo_box_signals[FORMAT_ENTRY_TEXT] =
       g_signal_new ("format-entry-text",
-                    G_TYPE_FROM_CLASS (class),
+                    type,
                     G_SIGNAL_RUN_LAST,
                     G_STRUCT_OFFSET (GedaComboBoxClass, format_entry_text),
                     geda_single_string_accumulator, NULL,
@@ -1945,7 +1948,7 @@ geda_combo_box_class_init(void *class, void *class_data)
 
   combo_box_signals[VIEW_CHANGED] =
       g_signal_new ("view-changed",
-                    G_OBJECT_CLASS_TYPE (class),
+                    type,
                     G_SIGNAL_RUN_LAST,
                     G_STRUCT_OFFSET (GedaComboBoxClass, view_changed),
                     NULL, NULL,
