@@ -8,7 +8,9 @@
 
     * po/nl.po: Update Dutch translations.
 
-    * gschem/src/x/x_toolbars.c: Replace v_log_message and u_log_message with
+    * src/x/x_menus.c: Replace strcmp with strncmp in x_menu_setup_ui.
+
+    * src/x/x_toolbars.c: Replace v_log_message and u_log_message with
       geda_log_v and geda_log, respectively.
 
 2017-05-31 Wiley E. Hill <wileyhill@gmail.com>

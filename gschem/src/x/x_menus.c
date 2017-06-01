@@ -619,7 +619,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
           if (!menu_data->buffer_menu_name) {
 
-            if (strcmp(action_name, "buffer-copy1") == 0) {
+            if (strncmp(action_name, "buffer-copy1", 12) == 0) {
               /* Save a copy of the raw string for x_menu_get_buffer_menu*/
               menu_data->buffer_menu_name = geda_strdup(*raw_menu_name);
             }
