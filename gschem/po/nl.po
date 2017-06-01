@@ -2428,9 +2428,8 @@ msgid "Select the pin type"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:72
-#, fuzzy
 msgid "_Attributes:"
-msgstr "Attributen"
+msgstr "_Attributen:"
 
 #: gschem/src/x/x_edit_pin.c:72
 #, fuzzy
@@ -2438,18 +2437,16 @@ msgid "Set the pin attributes"
 msgstr "Toon geërfde attributen"
 
 #: gschem/src/x/x_edit_pin.c:73
-#, fuzzy
 msgid "_Number:"
-msgstr "Pin Aantal:"
+msgstr "_Aantal:"
 
 #: gschem/src/x/x_edit_pin.c:73
 msgid "Set the pin number, or the starting pin number if auto numbering"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:74
-#, fuzzy
 msgid "_Sequence:"
-msgstr "volgorde aantal"
+msgstr "_Volgorde:"
 
 #: gschem/src/x/x_edit_pin.c:74
 #, fuzzy
@@ -2477,7 +2474,7 @@ msgstr "Bevestig Attributen"
 #: gschem/src/x/x_edit_pin.c:78
 #, fuzzy
 msgid "Attributes:"
-msgstr "Attributen"
+msgstr "Attributen:"
 
 #: gschem/src/x/x_edit_pin.c:78
 #, fuzzy
@@ -2487,7 +2484,7 @@ msgstr "Bevestig Attributen"
 #: gschem/src/x/x_edit_pin.c:80
 #, fuzzy
 msgid "Number:"
-msgstr "Pin Aantal:"
+msgstr "Aantal:"
 
 #: gschem/src/x/x_edit_pin.c:80
 msgid ""
@@ -2495,10 +2492,10 @@ msgid ""
 "number"
 msgstr ""
 
+# Sequence
 #: gschem/src/x/x_edit_pin.c:81
-#, fuzzy
 msgid "Sequence:"
-msgstr "volgorde aantal"
+msgstr "Volgorde:"
 
 #: gschem/src/x/x_edit_pin.c:81
 msgid ""
@@ -2591,7 +2588,7 @@ msgstr "tekstuitlijning optie"
 
 #: gschem/src/x/x_edit_pin.c:921
 msgid "Pin Number"
-msgstr "Pin Aantal:"
+msgstr "Pin Aantal"
 
 #: gschem/src/x/x_edit_pin.c:925
 msgid "Sequence Number"
@@ -2621,13 +2618,13 @@ msgstr "Tekst Inhoud"
 #: gschem/src/x/x_edit_text.c:64
 #, fuzzy
 msgid "Enter or edit the text string"
-msgstr "Voer nieuwe tekstgrootte in:"
+msgstr "Voer nieuwe tekstgrootte in"
 
-# Comment
+# Alignment
 #: gschem/src/x/x_edit_text.c:65
 #, fuzzy
 msgid "A_lignment:"
-msgstr "Commentaar:"
+msgstr "opstelling:"
 
 # Select the name of the attribute to add
 #: gschem/src/x/x_edit_text.c:65
@@ -2636,9 +2633,8 @@ msgid "Select the text alignment attribute"
 msgstr "Selecteer de naam van het kenmerk toevoegen"
 
 #: gschem/src/x/x_edit_text.c:66
-#, fuzzy
 msgid "_Color:"
-msgstr "Kleur..."
+msgstr "Kleur:"
 
 # Select to add an attribute
 #: gschem/src/x/x_edit_text.c:66
@@ -2657,9 +2653,8 @@ msgid "Open font selection dialog"
 msgstr "Open het dialoogvenster Voorkeuren"
 
 #: gschem/src/x/x_edit_text.c:68
-#, fuzzy
 msgid "_Rotation:"
-msgstr "Documen_tatie:"
+msgstr "omwenteling:"
 
 #: gschem/src/x/x_edit_text.c:68
 msgid "Set the text rotation angle"
