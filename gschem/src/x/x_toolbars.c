@@ -333,7 +333,7 @@ static GtkWidget *get_pixmap(GschemToplevel *w_current, const char *name)
 
   if (wpixmap == NULL) {
     const char *log_msg = _("image file not found");
-    v_log_message("%s: %s \"%s\".\n", __func__, log_msg, name);
+    geda_log_v("%s: %s \"%s\".\n", __func__, log_msg, name);
     wpixmap = gtk_image_new_from_stock(GTK_STOCK_MISSING_IMAGE , TB_SMALL_ICON);
   }
   else {
@@ -408,7 +408,7 @@ static void x_toolbars_load_icons( GschemToplevel *w_current)
 
     if (!tb_data->icon) {
       const char *log_msg = _("Toolbar icon not found");
-      u_log_message("%s: <%s>\n", log_msg, tb_data->icon_id);
+      geda_log("%s: <%s>\n", log_msg, tb_data->icon_id);
     }
 
 #if DEBUG_TB_CONS
