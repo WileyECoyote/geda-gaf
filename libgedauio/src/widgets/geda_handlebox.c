@@ -144,7 +144,7 @@ enum {
 /************************ REVISION HISTORY *************************
  * Who |   When   |  What (Why)
  * ------------------------------------------------------------------
- * WEH | 03/29/14 | Add case GDK_2BUTTON_PRESS for in function
+ * WEH | 03/29/14 | Add case GDK_2BUTTON_PRESS in function
  *                | geda_handle_box_grab_event (so floating toolbars will dock
  *                | when doubled click, removed reference to GDK_2BUTTON_PRESS
  *                | from geda_handle_box_button_press (because this procedure
