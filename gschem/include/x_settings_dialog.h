@@ -227,7 +227,7 @@ WidgetStringData DialogStrings[] = {
         { "JunctionSizeSpin",           "Node Size:",            "Controls the junction \"cues\" size of drawing nodes"},
         { "KeyboardPanGainSpin",        " Keyboard Gain:",	"Controls how much the display pans when using the keyboard cursor keys. A larger value provides greater pan distance when pressing the cursor keys while a smaller value provides a smoother but smaller pan distance when moving the cursor keys."},
         { "MeshGridThresholdSpin",      "   Mesh Threshold:",    "The mesh-grid-display-threshold specifies the minimum line pitch for the grid to be displayed. Using this parameter you can control maximum density of the displayed grid before the minor then major grid-lines are switched off."},
-        { "MeshGridWidthSpin    ",      "  Mesh Line Width:",    "The line width used for the mesh grid disply"},
+        { "MeshGridWidthSpin    ",      "  Mesh Line Width:",    "The line width used for the mesh grid display"},
         { "MousePanGainSpin",           "     Mouse Pan Gain:",	"Controls how much the display pans when using mousepan. A larger value provides greater pan distance when moving the mouse while a smaller value provides a smoother but smaller pan distance when moving the mouse."},
         { "RipperSizeSpin",             "   Ripper Size:",       "Sets the size of the auto bus rippers."},
         { "ScrollPanStepsSpin",         "    Scroll Pan Steps:", "Controls the number of scroll pan events required to traverse the viewed schematic area. Larger numbers mean more scroll steps are required to pan across the viewed area and giving finer control over positioning."},
