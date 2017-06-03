@@ -5,7 +5,8 @@
       GedaMenuShell in menu_ensure_layout. Eliminate ancillary GedaMenuPriv
       in geda_menu_get_n_columns and geda_menu_get_n_rows and declare both
       inline. Replace g_assert_not_reached in get_arrows_visible_area with
-      fprintf.
+      fprintf. Replace gtk_container_foreach with geda_container_foreach
+      macro with geda_menu_hide_all.
 
 2017-06-02 Wiley E. Hill <wileyhill@gmail.com>
 

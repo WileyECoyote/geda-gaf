@@ -1467,7 +1467,7 @@ static void
 geda_menu_hide_all (GtkWidget *widget)
 {
   /* Hide children, but not self. */
-  gtk_container_foreach ((GtkContainer*)widget, (GtkCallback)gtk_widget_hide_all, NULL);
+  geda_container_foreach (widget, gtk_widget_hide_all, NULL);
 }
 
 
