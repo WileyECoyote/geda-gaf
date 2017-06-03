@@ -295,8 +295,7 @@ geda_menu_item_disconnect_accelerator(GedaAction *action)
 }
 
 static void
-geda_menu_item_selection_done (GedaMenu     *menu,
-                               GedaMenuItem *menu_item)
+geda_menu_item_selection_done (GedaMenu *menu, GedaMenuItem *menu_item)
 {
   /* A submenu was activated or torn-off, so deselect parent */
   geda_real_menu_item_deselect(menu_item);
