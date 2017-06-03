@@ -937,6 +937,8 @@ geda_label_destroy (GtkObject *object)
   GtkWidget   *toplevel;
   bool         connected;
 
+  gtk_widget_set_app_paintable ((GtkWidget*)label, FALSE);
+
   settings = gtk_widget_get_settings ((GtkWidget*)object);
 
   connected = (int)(long)GEDA_OBJECT_GET_DATA (settings, "label-short-connected");

@@ -8,6 +8,9 @@
       fprintf. Replace gtk_container_foreach with geda_container_foreach
       macro with geda_menu_hide_all.
 
+    * src/widgets/geda_label.c: Add gtk_widget_set_app_paintable in function
+      geda_label_destroy.
+
 2017-06-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/dialogs/geda_file_chooser.c: : Remove remove lame check for new
