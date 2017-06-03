@@ -522,7 +522,7 @@ menu_ensure_layout (GedaMenu *menu)
   }
 }
 
-static int
+static inline int
 geda_menu_get_n_columns (GedaMenu *menu)
 {
   menu_ensure_layout (menu);
@@ -530,7 +530,7 @@ geda_menu_get_n_columns (GedaMenu *menu)
   return menu->priv->n_columns;
 }
 
-static int
+static inline int
 geda_menu_get_n_rows (GedaMenu *menu)
 {
   menu_ensure_layout (menu);
