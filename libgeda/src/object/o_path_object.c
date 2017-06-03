@@ -496,7 +496,7 @@ geda_path_object_copy (const GedaObject *o_current)
     GedaPath   *old_path;
     char       *path_string;
 
-    old_path    = GEDA_PATH(o_current);
+    old_path    = (GedaPath*)o_current;
     path_string = geda_struct_path_string_from_path (old_path);
     new_obj     = geda_path_object_new (o_current->color, path_string);
 
