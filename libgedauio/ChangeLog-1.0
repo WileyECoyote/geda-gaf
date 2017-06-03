@@ -4,7 +4,8 @@
       as GDestroyNotify in get_attach_info. Remove type-checking cast to
       GedaMenuShell in menu_ensure_layout. Eliminate ancillary GedaMenuPriv
       in geda_menu_get_n_columns and geda_menu_get_n_rows and declare both
-      inline.
+      inline. Replace g_assert_not_reached in get_arrows_visible_area with
+      fprintf.
 
 2017-06-02 Wiley E. Hill <wileyhill@gmail.com>
 

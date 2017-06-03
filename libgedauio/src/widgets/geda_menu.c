@@ -1279,7 +1279,7 @@ get_arrows_visible_area (GedaMenu     *menu,
       break;
 
     default:
-       g_assert_not_reached();
+       fprintf(stderr, "%s: unexpected case <%d>\n",__func__, arrow_placement);
        upper->x = upper->y = upper->width = upper->height = 0;
        lower->x = lower->y = lower->width = lower->height = 0;
   }
