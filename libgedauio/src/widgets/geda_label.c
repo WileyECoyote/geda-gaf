@@ -3268,14 +3268,14 @@ geda_label_set_pattern_internal (GedaLabel  *label,
 
   if (is_mnemonic) {
 
-    g_object_get (gtk_widget_get_settings (GTK_WIDGET (label)),
+    g_object_get (gtk_widget_get_settings ((GtkWidget*)label),
                   "gtk-enable-mnemonics", &enable_mnemonics,
                   "gtk-auto-mnemonics", &auto_mnemonics,
                   NULL);
 
     if (enable_mnemonics && priv->mnemonics_visible && pattern &&
       (!auto_mnemonics ||
-      (gtk_widget_is_sensitive (GTK_WIDGET (label)) &&
+      (gtk_widget_is_sensitive ((GtkWidget*)label) &&
       (!priv->mnemonic_widget ||
       gtk_widget_is_sensitive (priv->mnemonic_widget)))))
     {

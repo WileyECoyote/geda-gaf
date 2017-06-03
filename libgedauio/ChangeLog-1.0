@@ -9,7 +9,8 @@
       macro with geda_menu_hide_all.
 
     * src/widgets/geda_label.c: Add gtk_widget_set_app_paintable in function
-      geda_label_destroy.
+      geda_label_destroy. Remove unnecessary type-checking cast to GtkWidget
+      in geda_label_set_pattern_internal.
 
 2017-06-02 Wiley E. Hill <wileyhill@gmail.com>
 
