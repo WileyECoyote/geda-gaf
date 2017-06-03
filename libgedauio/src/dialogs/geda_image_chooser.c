@@ -36,8 +36,8 @@
 #define WITHOUT_GUILE 1
 #include <libgeda/libgeda.h>
 
-#include <geda_image_chooser.h>
-#include <geda_file_filter.h>
+#include "../../include/geda_image_chooser.h"
+#include "../../include/geda_file_filter.h"
 #include "../../include/geda_container.h"
 #include "../../include/geda_marshal.h"
 #include "../../include/geda_menu.h"
