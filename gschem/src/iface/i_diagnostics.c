@@ -250,6 +250,8 @@ static float test_undo_time(GschemToplevel *w_current, int attempts)
   return e_cputime;
 }
 
+static GedaMutex (command_pool);
+
 static void test_thread_pool ()
 {
   unsigned int limit = 50;
@@ -262,10 +264,14 @@ static void test_thread_pool ()
 
   for (i = 0; i < limit; i++) {
 
+    g_mutex_lock ((GMutex*)&command_pool);
+
     g_thread_pool_push (CommandPool, UINT_TO_POINTER (i + 1), NULL);
 
     nt = g_thread_pool_get_num_threads (CommandPool);
     up = g_thread_pool_unprocessed (CommandPool);
+
+    g_mutex_unlock ((GMutex*)&command_pool);
 
     fprintf (stderr, "[Command] ===> pushed new thread with id:%d, number of threads:%d, unprocessed:%d\n",  i, nt, up);
   }
