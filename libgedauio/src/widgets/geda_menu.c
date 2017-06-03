@@ -412,12 +412,6 @@ menu_queue_resize (GedaMenu *menu)
   gtk_widget_queue_resize ((GtkWidget*)menu);
 }
 
-static void
-attach_info_free (AttachInfo *info)
-{
-  g_free (info);
-}
-
 static AttachInfo *
 get_attach_info (GtkWidget *child)
 {
@@ -427,7 +421,7 @@ get_attach_info (GtkWidget *child)
 
     info = GEDA_MEM_ALLOC0 (sizeof(AttachInfo));
     g_object_set_data_full ((GObject*)child, attached_info_key, info,
-                            (GDestroyNotify) attach_info_free);
+                            (GDestroyNotify) g_free);
   }
 
   return info;

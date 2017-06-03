@@ -1,3 +1,8 @@
+2017-06-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu.c: Eliminate attach_info_free, just use g_free
+      as GDestroyNotify in get_attach_info.
+
 2017-06-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/dialogs/geda_file_chooser.c: : Remove remove lame check for new
