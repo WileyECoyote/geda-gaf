@@ -1,3 +1,8 @@
+2017-06-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_image_menu_item.c: Revise activatable_update_gicon to
+      use pointer to GtkImage instead of a GtkWidget.
+
 2017-05-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Revise geda_combo_box_class_init; add type

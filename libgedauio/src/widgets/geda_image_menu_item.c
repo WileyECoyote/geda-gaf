@@ -142,16 +142,18 @@ activatable_update_stock_id (GedaImageMenuItem *image_menu_item, GtkAction *acti
 static bool
 activatable_update_gicon (GedaImageMenuItem *image_menu_item, GtkAction *action)
 {
-  GtkWidget   *image;
-  GIcon       *icon     = gtk_action_get_gicon (action);
-  const char  *stock_id = gtk_action_get_stock_id (action);
+  GIcon      *icon;
+  GtkImage   *image;
+  const char *stock_id;
 
-  image = geda_image_menu_item_get_image (image_menu_item);
+  icon     = gtk_action_get_gicon (action);
+  stock_id = gtk_action_get_stock_id (action);
+  image    = (GtkImage*)geda_image_menu_item_get_image (image_menu_item);
 
   if (icon && GTK_IS_IMAGE (image) &&
     !(stock_id && gtk_icon_factory_lookup_default (stock_id)))
   {
-    gtk_image_set_from_gicon ((GtkImage*)image, icon, GTK_ICON_SIZE_MENU);
+    gtk_image_set_from_gicon (image, icon, GTK_ICON_SIZE_MENU);
     return TRUE;
   }
 
