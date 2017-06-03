@@ -2,7 +2,8 @@
 
     * src/widgets/geda_menu.c: Eliminate attach_info_free, just use g_free
       as GDestroyNotify in get_attach_info. Remove type-checking cast to
-      GedaMenuShell in menu_ensure_layout.
+      GedaMenuShell in menu_ensure_layout. Eliminate ancillary GedaMenuPriv
+      in geda_menu_get_n_columns and geda_menu_get_n_rows.
 
 2017-06-02 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -525,21 +525,17 @@ menu_ensure_layout (GedaMenu *menu)
 static int
 geda_menu_get_n_columns (GedaMenu *menu)
 {
-  GedaMenuPriv *priv = menu->priv;
-
   menu_ensure_layout (menu);
 
-  return priv->n_columns;
+  return menu->priv->n_columns;
 }
 
 static int
 geda_menu_get_n_rows (GedaMenu *menu)
 {
-  GedaMenuPriv *priv = menu->priv;
-
   menu_ensure_layout (menu);
 
-  return priv->n_rows;
+  return menu->priv->n_rows;
 }
 
 static void
