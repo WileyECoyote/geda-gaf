@@ -629,7 +629,7 @@ geda_file_chooser_new (void *parent, FileChooserAction chooser_action)
                          (chooser_action == FILE_CHOOSER_ACTION_OPEN),
                          NULL);
 
-  if ( G_IS_OBJECT(widget)) {
+  if (widget) {
 
     GedaFileChooser *chooser;
     GtkDialog       *dialog;

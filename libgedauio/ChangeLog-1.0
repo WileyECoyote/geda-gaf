@@ -1,5 +1,8 @@
 2017-06-02 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/dialogs/geda_file_chooser.c: : Remove remove lame check for new
+      object in geda_file_chooser_new.
+
     * src/dialogs/geda_image_chooser.c: Use relative path to local headers,
       replace geda_menu_shell_append with geda_menu_append in build_menu.
 
