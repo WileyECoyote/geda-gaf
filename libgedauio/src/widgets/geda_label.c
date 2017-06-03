@@ -1260,6 +1260,10 @@ geda_label_class_init  (void *class, void *class_data)
 
   geda_label_parent_class            = g_type_class_peek_parent (class);
 
+  /* signals */
+
+  GedaType type = geda_label_get_type();
+
   /**
    * GedaLabel::move-cursor:
    * The move-cursor signal is a keybinding signal, which gets emitted
@@ -1287,7 +1291,7 @@ geda_label_class_init  (void *class, void *class_data)
 /*
   signals[MOVE_CURSOR] =
   g_signal_new ("move-cursor",
-                   G_OBJECT_CLASS_TYPE (gobject_class),
+                   type,
                    G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                    G_STRUCT_OFFSET (GedaLabelClass, move_cursor),
                    NULL, NULL,
@@ -1299,7 +1303,7 @@ geda_label_class_init  (void *class, void *class_data)
 */
   signals[MOVE_CURSOR] =
   g_signal_new ( "move-cursor",
-                   G_OBJECT_CLASS_TYPE (gobject_class),
+                   type,
                    G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                    G_STRUCT_OFFSET (GedaLabelClass, move_cursor),
                    NULL, NULL,
@@ -1319,7 +1323,7 @@ geda_label_class_init  (void *class, void *class_data)
    */
   signals[COPY_CLIPBOARD] =
   g_signal_new ( "copy-clipboard",
-                   G_OBJECT_CLASS_TYPE (gobject_class),
+                   GEDA_TYPE_LABEL,
                    G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                    G_STRUCT_OFFSET (GedaLabelClass, copy_clipboard),
                    NULL, NULL,
@@ -1340,7 +1344,7 @@ geda_label_class_init  (void *class, void *class_data)
    */
   signals[POPULATE_POPUP] =
   g_signal_new ("populate-popup",
-                   G_OBJECT_CLASS_TYPE (gobject_class),
+                   type,
                    G_SIGNAL_RUN_LAST,
                    G_STRUCT_OFFSET (GedaLabelClass, populate_popup),
                    NULL, NULL,
@@ -1361,8 +1365,7 @@ geda_label_class_init  (void *class, void *class_data)
    * label: The label on which the signal was emitted
    */
   signals[ACTIVATE_CURRENT_LINK] =
-  g_signal_new_class_handler ("activate-current-link",
-                              G_TYPE_FROM_CLASS (gobject_class),
+  g_signal_new_class_handler ("activate-current-link", type,
                               G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                               G_CALLBACK (geda_label_activate_current_link),
                               NULL, NULL,
@@ -1380,8 +1383,7 @@ geda_label_class_init  (void *class, void *class_data)
    *
    * retval: %TRUE if the link has been activated
    */
-  signals[ACTIVATE_LINK] = g_signal_new ("activate-link",
-                                         G_TYPE_FROM_CLASS (gobject_class),
+  signals[ACTIVATE_LINK] = g_signal_new ("activate-link", type,
                                          G_SIGNAL_RUN_LAST,
                                          G_STRUCT_OFFSET (GedaLabelClass, activate_link),
                                          NULL, NULL,
