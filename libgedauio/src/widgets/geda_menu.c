@@ -430,9 +430,9 @@ get_attach_info (GtkWidget *child)
 static bool
 is_grid_attached (AttachInfo *info)
 {
-  return (info->left_attach >= 0 &&
-          info->right_attach >= 0 &&
-          info->top_attach >= 0 &&
+  return (info->left_attach   >= 0 &&
+          info->right_attach  >= 0 &&
+          info->top_attach    >= 0 &&
           info->bottom_attach >= 0);
 }
 
