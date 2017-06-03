@@ -1025,7 +1025,7 @@ int check_data (void)
 
     /* === Function 28: geda_keyfile_get_int64 === */
 
-    if (geda_keyfile_get_boolean(keyfile, "G5", "NI64", &err)) {
+    if (geda_keyfile_get_int64(keyfile, "G5", "NI64", &err)) {
       fprintf(stderr, "FAILED: (KF082801A) get_int64 NI64\n");
       result++;
     }
