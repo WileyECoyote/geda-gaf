@@ -443,7 +443,7 @@ menu_ensure_layout (GedaMenu *menu)
 
   if (!priv->have_layout) {
 
-    GedaMenuShell *menu_shell = GEDA_MENU_SHELL (menu);
+    GedaMenuShell *menu_shell = (GedaMenuShell*)menu;
     GList         *iter;
     char          *row_occupied;
 
