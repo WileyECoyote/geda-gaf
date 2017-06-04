@@ -2055,13 +2055,16 @@ geda_menu_shell_select_first (GedaMenuShell *menu_shell, bool search_sensitive)
   return NULL;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Select the last menu item in a Menu shell
+ * \par Function Description
+ *  Selects the last menu item in the container shell. If search_sensitive
+ *  is FALSE the last visible item is selected, if search_sensitive is TRUE
+ *  then the last selectable item is selected. This would typically be called
+ *  when the "END" key is press on an open menu.
  */
-GtkWidget*
-geda_menu_shell_select_last (GedaMenuShell *menu_shell, bool search_sensitive)
+GtkWidget *geda_menu_shell_select_last (GedaMenuShell *menu_shell,
+                                                 bool  search_sensitive)
 {
   GList *iter;
 
