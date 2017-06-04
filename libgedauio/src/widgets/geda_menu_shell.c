@@ -1988,14 +1988,13 @@ geda_menu_shell_set_keyboard_mode (GedaMenuShell *menu_shell,
   menu_shell->keyboard_mode = keyboard_mode;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Select a Menu Shell Menu Item
+ * \par Function Description
+ *  Causes \a menu_item to be selected if the item is not already the
+ *  active item by calling the virtual class method if present.
  */
-void
-geda_menu_shell_select_item (GedaMenuShell *menu_shell,
-                             GtkWidget     *menu_item)
+void geda_menu_shell_select_item (GedaMenuShell *menu_shell, GtkWidget *menu_item)
 {
   GedaMenuShellClass *class;
 

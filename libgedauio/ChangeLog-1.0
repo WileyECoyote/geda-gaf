@@ -1,5 +1,8 @@
 2017-06-04 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_menu_shell.c: Add Doxygen comments for geda_menu_shell_
+      select_item.
+
     * src/widgets/geda_option_menu.c: Add ancillary pointer to GedaMenu in
       geda_option_menu_button_press.
 
