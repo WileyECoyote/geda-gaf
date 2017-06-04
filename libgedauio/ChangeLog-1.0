@@ -1,3 +1,8 @@
+2017-06-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_option_menu.c: Add ancillary pointer to GedaMenu in
+      geda_option_menu_button_press.
+
 2017-06-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Eliminate attach_info_free, just use g_free

@@ -603,18 +603,21 @@ geda_option_menu_button_press (GtkWidget *widget, GdkEventButton *event)
 
   if ((event->type == GDK_BUTTON_PRESS) && (event->button == 1))
   {
+    GedaMenu  *menu;
     GtkWidget *menu_item;
 
     geda_option_menu_remove_contents (option_menu);
 
-    geda_menu_popup (GEDA_MENU (option_menu->menu), NULL, NULL,
-                    geda_option_menu_position, option_menu,
-                    event->button, event->time);
+    menu = (GedaMenu*)option_menu->menu;
 
-    menu_item = geda_menu_widget_get_active (option_menu->menu);
+    geda_menu_popup (menu, NULL, NULL,
+                     geda_option_menu_position, option_menu,
+                     event->button, event->time);
+
+    menu_item = geda_menu_get_active (menu);
 
     if (menu_item) {
-      geda_menu_shell_select_item (GEDA_MENU_SHELL (option_menu->menu), menu_item);
+      geda_menu_shell_select_item ((GedaMenuShell*)menu, menu_item);
     }
     return TRUE;
   }
