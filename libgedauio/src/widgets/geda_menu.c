@@ -538,6 +538,13 @@ geda_menu_get_n_rows (GedaMenu *menu)
   return menu->priv->n_rows;
 }
 
+/*! \internal called by:
+ * compute_child_offset
+ * geda_menu_size_allocate
+ * geda_menu_size_request
+ * find_child_containing
+ * geda_menu_move_current
+ */
 static void
 get_effective_child_attach (GtkWidget *child,
                             int       *l,
@@ -1100,7 +1107,10 @@ check_threshold (GtkWidget *widget,
          ABS (start_y - y) > THRESHOLD;
 }
 
-
+/* helper for
+ *  widget_class->enter_notify_event
+ *  widget_class->motion_notify
+ */
 static bool
 definitely_within_item (GtkWidget *widget, int x, int y)
 {
