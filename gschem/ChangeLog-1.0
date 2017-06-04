@@ -2,6 +2,8 @@
 
     * po/pl.po: Update Polish translations.
 
+    * po/pt.po: Update Portuguese translations.
+
 2017-06-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_diagnostics.c: Add mutex for command_pool so that
