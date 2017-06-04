@@ -455,7 +455,7 @@ geda_radio_menu_item_new_with_label (GSList *group, const char *label)
  *
  * \param[in] group group the radio menu item is to be a member of
  * \param[in] label the text of the button, with an underscore in front
- *                  of the mnemonic character
+ *                  of the mnemonic character and must not be NULL.
  *
  * \returns a new #GedaRadioMenuItem
  */
