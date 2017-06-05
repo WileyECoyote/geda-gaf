@@ -1,5 +1,7 @@
 2017-06-05 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_font_dialog.c: Change dialog to type GtkWidget.
+
     * src/widgets/geda_menu.c: Remove GedaMenuShell type-checking cast in
       geda_menu_grab_notify.
 

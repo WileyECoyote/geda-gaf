@@ -1789,17 +1789,16 @@ GtkWidget *geda_font_dialog_new_with_font_name (const char *font_name)
  *  \brief
  *  \par Function Description
  */
-GtkWidget*
-geda_font_chooser_dialog_new (const char *title, GtkWindow   *parent)
+GtkWidget *geda_font_chooser_dialog_new (const char *title, GtkWindow *parent)
 {
-  GedaFontDialog *dialog;
+  GtkWidget *dialog;
 
   dialog = g_object_new (GEDA_TYPE_FONT_DIALOG,
                          "title", title,
                          "transient-for", parent,
                          NULL);
 
-  return GTK_WIDGET (dialog);
+  return dialog;
 }
 
 /*! \todo Finish function documentation!!!
