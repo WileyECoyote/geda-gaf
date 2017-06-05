@@ -608,7 +608,7 @@ dialog_ok_clicked (GtkWidget *dialog_apply_button, void * data)
   char *tmp_name;
   int   font_size;
 
-  tmp_name   = geda_font_dialog_get_font_name (GEDA_FONT_DIALOG (font_button->priv->font_dialog));
+  tmp_name   = geda_font_dialog_get_font_name(GEDA_FONT_DIALOG (font_button->priv->font_dialog));
   font_size  = geda_font_dialog_get_font_size(GEDA_FONT_DIALOG (font_button->priv->font_dialog));
 
   if ( !g_ascii_strcasecmp(tmp_name, font_button->priv->font_name) &&
