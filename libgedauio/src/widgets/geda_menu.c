@@ -1468,7 +1468,7 @@ geda_menu_grab_notify (GtkWidget *widget, bool was_grabbed)
   if (!was_grabbed) {
 
     if (GEDA_MENU_SHELL (widget)->active && !GEDA_IS_MENU_SHELL (grab))
-      geda_menu_shell_cancel (GEDA_MENU_SHELL (widget));
+      geda_menu_shell_cancel ((GedaMenuShell*)widget);
   }
 }
 
