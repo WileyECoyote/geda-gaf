@@ -381,7 +381,7 @@ geda_option_menu_get_props (GedaOptionMenu      *option_menu,
   GtkRequisition *indicator_size;
   GtkBorder      *indicator_spacing;
 
-  gtk_widget_style_get (GTK_WIDGET (option_menu),
+  gtk_widget_style_get ((GtkWidget*)option_menu,
                         "indicator-size", &indicator_size,
                         "indicator-spacing", &indicator_spacing,
                         "interior-focus", &props->interior_focus,
@@ -739,7 +739,7 @@ geda_option_menu_update_contents (GedaOptionMenu *option_menu)
           gtk_widget_set_sensitive (child, FALSE);
         }
 
-        gtk_widget_reparent (child, GTK_WIDGET (option_menu));
+        gtk_widget_reparent (child, (GtkWidget*)option_menu);
       }
 
       g_signal_connect (option_menu->menu_item, "state-changed",
@@ -748,11 +748,11 @@ geda_option_menu_update_contents (GedaOptionMenu *option_menu)
                         G_CALLBACK (geda_option_menu_item_destroy_cb), option_menu);
 
       gtk_widget_size_request (child, &child_requisition);
-      gtk_widget_size_allocate (GTK_WIDGET (option_menu),
-                                &(GTK_WIDGET (option_menu)->allocation));
+      gtk_widget_size_allocate ((GtkWidget*)option_menu,
+                                &((GtkWidget*)option_menu)->allocation);
 
       if (GTK_WIDGET_DRAWABLE (option_menu)) {
-        gtk_widget_queue_draw (GTK_WIDGET (option_menu));
+        gtk_widget_queue_draw ((GtkWidget*)option_menu);
       }
     }
 
