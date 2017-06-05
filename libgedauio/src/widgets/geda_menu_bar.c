@@ -296,8 +296,6 @@ geda_menu_bar_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
   GtkTextDirection    direction;
   int ltr_x, ltr_y;
 
-  g_return_if_fail (GEDA_IS_MENU_BAR (widget));
-  g_return_if_fail (allocation != NULL);
 
   menu_bar   = GEDA_MENU_BAR (widget);
   menu_shell = GEDA_MENU_SHELL (widget);
