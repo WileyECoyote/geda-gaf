@@ -1282,6 +1282,9 @@ static void geda_menu_button_class_init (void *class, void *class_data)
                                                              _("Border between button edges and child."),
                                                                GTK_TYPE_BORDER,
                                                                G_PARAM_READABLE));
+  /* signals */
+
+  GedaType type = geda_menu_button_get_type();
 
   /* Button::pressed:
    * button: the object that received the signal
@@ -1289,8 +1292,7 @@ static void geda_menu_button_class_init (void *class, void *class_data)
    * Emitted when the button is pressed.
    * (Use the GtkWidget::button-press-event signal.)
    */
-  signals[PRESSED] =  g_signal_new ("pressed",
-                                    G_OBJECT_CLASS_TYPE (object_class),
+  signals[PRESSED] =  g_signal_new ("pressed", type,
                                     G_SIGNAL_RUN_FIRST,
                                     G_STRUCT_OFFSET (GedaMenuButtonClass, pressed),
                                     NULL, NULL,
@@ -1303,8 +1305,7 @@ static void geda_menu_button_class_init (void *class, void *class_data)
    * Emitted when the button is released.
    * (Use the GtkWidget::button-release-event signal.)
    */
-  signals[RELEASED] = g_signal_new ("released",
-                                    G_OBJECT_CLASS_TYPE (object_class),
+  signals[RELEASED] = g_signal_new ("released", type,
                                     G_SIGNAL_RUN_FIRST,
                                     G_STRUCT_OFFSET (GedaMenuButtonClass, released),
                                     NULL, NULL,
@@ -1317,8 +1318,7 @@ static void geda_menu_button_class_init (void *class, void *class_data)
    * Emitted when the button is pressed.
    * (Use the GtkWidget::button-press-event signal.)
    */
-  signals[CLICKED] =  g_signal_new ("clicked",
-                                    G_OBJECT_CLASS_TYPE (object_class),
+  signals[CLICKED] =  g_signal_new ("clicked", type,
                                     G_SIGNAL_RUN_FIRST,
                                     G_STRUCT_OFFSET (GedaMenuButtonClass, clicked),
                                     NULL, NULL,
@@ -1331,8 +1331,7 @@ static void geda_menu_button_class_init (void *class, void *class_data)
    * Emitted when the pointer enters the button.
    * (Use the GtkWidget::enter-notify-event signal.)
    */
-  signals[ENTER] = g_signal_new ("enter",
-                                 G_OBJECT_CLASS_TYPE (object_class),
+  signals[ENTER] = g_signal_new ("enter", type,
                                  G_SIGNAL_RUN_FIRST,
                                  G_STRUCT_OFFSET (GedaMenuButtonClass, enter),
                                  NULL, NULL,
@@ -1345,8 +1344,7 @@ static void geda_menu_button_class_init (void *class, void *class_data)
    * Emitted when the pointer leaves the button.
    * (Use the GtkWidget::leave-notify-event signal.)
    */
-  signals[LEAVE] = g_signal_new ("leave",
-                                 G_OBJECT_CLASS_TYPE (object_class),
+  signals[LEAVE] = g_signal_new ("leave", type,
                                  G_SIGNAL_RUN_FIRST,
                                  G_STRUCT_OFFSET (GedaMenuButtonClass, leave),
                                  NULL, NULL,
@@ -1363,13 +1361,12 @@ static void geda_menu_button_class_init (void *class, void *class_data)
    *
    * param widget: the object which received the signal.
    */
-  signals[ACTIVATE] = g_signal_new ("activate",
-                        G_OBJECT_CLASS_TYPE (object_class),
-                        G_SIGNAL_RUN_FIRST | G_SIGNAL_ACTION,
-                        G_STRUCT_OFFSET (GedaMenuButtonClass, activate),
-                        NULL, NULL,
-                        geda_marshal_VOID__VOID,
-                        G_TYPE_NONE, 0);
+  signals[ACTIVATE] = g_signal_new ("activate", type,
+                                    G_SIGNAL_RUN_FIRST | G_SIGNAL_ACTION,
+                                    G_STRUCT_OFFSET (GedaMenuButtonClass, activate),
+                                    NULL, NULL,
+                                    geda_marshal_VOID__VOID,
+                                    G_TYPE_NONE, 0);
 
   widget_class->activate_signal = signals[ACTIVATE];
 
@@ -1385,8 +1382,7 @@ static void geda_menu_button_class_init (void *class, void *class_data)
    * you must set an empty menu on the #GedaMenuButton beforehand,
    * since the arrow is made insensitive if the menu is not set.
    */
-  signals[SHOW_MENU] = g_signal_new ("show-menu",
-                         G_OBJECT_CLASS_TYPE (menu_button_class),
+  signals[SHOW_MENU] = g_signal_new ("show-menu", type,
                          G_SIGNAL_RUN_FIRST,
                          G_STRUCT_OFFSET (GedaMenuButtonClass, show_menu),
                          NULL, NULL,

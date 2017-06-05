@@ -1,3 +1,9 @@
+2017-06-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_button.c: Revise geda_menu_button_class_init; add
+      type once and explicitly specify GEDA_TYPE_MENU_BUTTON to g_signal_new,
+      eliminating G_OBJECT_CLASS_TYPE.
+
 2017-06-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_shell.c: Add Doxygen comments for:
