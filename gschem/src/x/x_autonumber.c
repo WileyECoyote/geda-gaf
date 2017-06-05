@@ -1658,7 +1658,7 @@ GtkWidget *autonumber_create_scope_menu (GschemToplevel *w_current)
     GtkWidget *menuitem;
 
     menuitem = geda_radio_menu_item_new_with_label (group, _(types[i].str));
-    group    = geda_radio_menu_item_group ((GedaRadioMenuItem*)menuitem);
+    group    = geda_radio_menu_item_group (menuitem);
     geda_menu_append (menu, menuitem);
     GEDA_OBJECT_SET_DATA(menuitem, INT_TO_POINTER (types[i].scope), "scope_menu");
     gtk_widget_show (menuitem);
