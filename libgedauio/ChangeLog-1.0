@@ -5,7 +5,8 @@
     * src/widgets/geda_menu.c: Remove GedaMenuShell type-checking cast in
       geda_menu_grab_notify.
 
-    * src/widgets/geda_menu_bar.c: Remove validations in static size_allocate.
+    * src/widgets/geda_menu_bar.c: Remove validations in static size_allocate
+      and geda_menu_bar_paint.
 
     * src/widgets/geda_menu_button.c: Revise geda_menu_button_class_init; add
       type once and explicitly specify GEDA_TYPE_MENU_BUTTON to g_signal_new,

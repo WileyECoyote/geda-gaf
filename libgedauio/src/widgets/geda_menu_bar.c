@@ -525,8 +525,6 @@ geda_menu_bar_size_request (GtkWidget *widget,  GtkRequisition *requisition)
 static void
 geda_menu_bar_paint (GtkWidget *widget, GdkRectangle *area)
 {
-  g_return_if_fail (GEDA_IS_MENU_BAR (widget));
-
   if (gtk_widget_is_drawable (widget)) {
 
     int border;
