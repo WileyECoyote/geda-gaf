@@ -634,15 +634,18 @@ geda_handle_box_reattach (GedaHandleBox *handlebox)
 
     if (gtk_widget_get_realized (widget)) {
 
+      GtkWidget *child;
+
       gdk_window_hide (handlebox->float_window);
       gdk_window_reparent (handlebox->bin_window, widget->window, 0, 0);
 
-      if (GTK_BIN (handlebox)->child)
+      child = geda_get_child_widget(handlebox);
+
+      if (child) {
         g_signal_emit (handlebox,
                        handle_box_signals[SIGNAL_CHILD_ATTACHED],
-                       0,
-                       GTK_BIN (handlebox)->child);
-
+                       0, child);
+      }
     }
     handlebox->float_window_mapped = FALSE;
   }
