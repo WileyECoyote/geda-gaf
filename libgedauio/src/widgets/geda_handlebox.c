@@ -528,12 +528,15 @@ geda_handle_box_motion (GtkWidget *widget, GdkEventMotion *event)
       int            width;
       int            height;
       unsigned int   border_2x;
+      GtkWidget     *child;
       GtkRequisition child_requisition;
 
       handlebox->child_detached = TRUE;
 
-      if (GTK_BIN (handlebox)->child) {
-        gtk_widget_get_child_requisition (GTK_BIN (handlebox)->child, &child_requisition);
+      child = geda_get_child_widget(handlebox);
+
+      if (child) {
+        gtk_widget_get_child_requisition (child, &child_requisition);
       }
       else {
         child_requisition.width  = 0;
@@ -567,8 +570,8 @@ geda_handle_box_motion (GtkWidget *widget, GdkEventMotion *event)
 
       g_signal_emit (handlebox,
                      handle_box_signals[SIGNAL_CHILD_DETACHED],
-                     0,
-                     GTK_BIN (handlebox)->child);
+                     0, child);
+
       geda_handle_box_draw_ghost (handlebox);
 
       gtk_widget_queue_resize (widget);
