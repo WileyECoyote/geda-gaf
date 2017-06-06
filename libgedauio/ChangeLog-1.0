@@ -1,3 +1,8 @@
+2017-06-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_handlebox.c: Include geda_container.h and utilize
+      geda_container_xxx macros.
+
 2017-06-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_font_dialog.c: Change dialog to type GtkWidget.

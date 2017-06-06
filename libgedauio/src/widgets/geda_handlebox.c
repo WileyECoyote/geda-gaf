@@ -35,6 +35,7 @@
 
 #include <gtk/gtk.h>
 
+#include "../../include/geda_container.h"
 #include "../../include/geda_gtk_compat.h"
 #include "../../include/geda_handlebox.h"
 #include "../../include/geda_marshal.h"
@@ -698,7 +699,7 @@ geda_handle_box_button_press (GtkWidget *widget, GdkEventButton *event)
       unsigned int  border_widthx2;
 
       gtk_widget_get_allocation (child, &child_allocation);
-      border_widthx2 = gtk_container_get_border_width((GtkContainer*)handlebox) << 1;
+      border_widthx2 = geda_get_container_border_width(handlebox) << 1;
 
       switch (handle_position) {
 
@@ -1028,7 +1029,7 @@ geda_handle_box_expose (GtkWidget *widget, GdkEventExpose *event)
 
     child = ((GtkBin*)widget)->child;
 
-    gtk_container_propagate_expose ((GtkContainer*)widget, child, event);
+    geda_container_propagate_expose (widget, child, event);
   }
 
   return TRUE;
@@ -1236,7 +1237,7 @@ geda_handle_box_size_allocate (GtkWidget     *widget,
 
     child_allocation = geda_get_widget_allocation (child);
 
-    border_width        = ((GtkContainer*)widget)->border_width;
+    border_width        = geda_get_container_border_width(widget);
     border_widthx2      = border_width << 1;
 
     child_allocation->x = border_width;
@@ -1270,6 +1271,7 @@ geda_handle_box_size_allocate (GtkWidget     *widget,
       }
 
       if (gtk_widget_get_realized (widget)) {
+
         gdk_window_resize (handlebox->float_window,
                            float_width,
                            float_height);
@@ -1379,7 +1381,7 @@ geda_handle_box_size_request (GtkWidget      *widget,
 
     unsigned int border_widthx2;
 
-    border_widthx2 = ((GtkContainer*)widget)->border_width << 1;
+    border_widthx2 = geda_get_container_border_width(widget) << 1;
 
     requisition->width  += border_widthx2;
     requisition->height += border_widthx2;
