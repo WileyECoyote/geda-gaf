@@ -659,10 +659,15 @@ static void
 geda_handle_box_add (GtkContainer *container, GtkWidget *widget)
 {
   if (GEDA_IS_HANDLE_BOX(container)) {
-   GedaHandleBox *handlebox = (GedaHandleBox*)container;
-   gtk_widget_set_parent_window (widget, handlebox->bin_window);
-   GTK_CONTAINER_CLASS (geda_handle_box_parent_class)->add (container, widget);
-   g_object_get(widget, "orientation", &handlebox->dock_orientation, NULL);
+
+    GedaHandleBox *handlebox = (GedaHandleBox*)container;
+
+    gtk_widget_set_parent_window (widget, handlebox->bin_window);
+
+    /* Chain-up to parent class, will get warning if widget->parent != NULL */
+    ((GtkContainerClass*)geda_handle_box_parent_class)->add (container, widget);
+
+    g_object_get(widget, "orientation", &handlebox->dock_orientation, NULL);
   }
 }
 

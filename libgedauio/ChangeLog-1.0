@@ -2,7 +2,8 @@
 
     * src/widgets/geda_handlebox.c: Include geda_container.h and utilize
       geda_container_xxx macros. Revise geda_handle_box_motion; add ancillary
-      to child if is not snapped.
+      to child if is not snapped. Add comments, eliminate checking the parent
+      class in geda_handle_box_add.
 
 2017-06-05 Wiley E. Hill <wileyhill@gmail.com>
 
