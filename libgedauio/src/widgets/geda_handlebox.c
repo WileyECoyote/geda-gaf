@@ -675,8 +675,8 @@ geda_handle_box_add (GtkContainer *container, GtkWidget *widget)
 static void
 geda_handle_box_remove (GtkContainer *container, GtkWidget *widget)
 {
-  GTK_CONTAINER_CLASS (geda_handle_box_parent_class)->remove (container, widget);
-  geda_handle_box_reattach (GEDA_HANDLE_BOX (container));
+  ((GtkContainerClass*)geda_handle_box_parent_class)->remove (container, widget);
+  geda_handle_box_reattach ((GedaHandleBox*)container);
 }
 
 /* widget_class->button_press == callback for mouse button press event */
