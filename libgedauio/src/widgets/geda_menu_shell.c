@@ -520,7 +520,7 @@ geda_real_menu_shell_move_current (GedaMenuShell *menu_shell,
   }
 
   if (menu_shell->parent_menu_shell) {
-    parent_menu_shell = ((GedaMenuShell*)menu_shell->parent_menu_shell);
+    parent_menu_shell = (GedaMenuShell*)menu_shell->parent_menu_shell;
   }
   else {
     parent_menu_shell = NULL;
