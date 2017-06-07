@@ -3961,9 +3961,8 @@ msgid "Snap to _grid"
 msgstr "وضع الإنتقال الإختياري"
 
 #: gschem/etc/system-gschemrc.scm:2117
-#, fuzzy
 msgid "Snap selection to current grid"
-msgstr "النافذة الحالية"
+msgstr "اختيار المفاجئة إلى الشبكة الحالية"
 
 #: gschem/etc/system-gschemrc.scm:2120
 msgid "_Array"
@@ -4697,8 +4696,8 @@ msgstr "ت_باعد شبيكة الجذب..."
 msgid "Adjust snap size"
 msgstr ""
 
+# Snap On-Off => Stop attraction
 #: gschem/etc/system-gschemrc.scm:2339
-#, fuzzy
 msgid "_Snap On-Off"
 msgstr "إيقاف الجذب"
 
@@ -4706,46 +4705,47 @@ msgstr "إيقاف الجذب"
 msgid "Toggle the object snap mode"
 msgstr ""
 
+# Rubberband => Stretch
 #: gschem/etc/system-gschemrc.scm:2340
-#, fuzzy
 msgid "_Rubberband"
-msgstr "بدّل الشريط الم_طاطي للشبكة"
+msgstr "تمتد"
 
 #: gschem/etc/system-gschemrc.scm:2340
 msgid "Toggle rubberband net mode"
 msgstr "بدّل الشريط الم_طاطي للشبكة"
 
+# Magnetic Net
 #: gschem/etc/system-gschemrc.scm:2341
-#, fuzzy
 msgid "_Magnetic Net"
-msgstr "وضع الشبكة المغناطيسية"
+msgstr "شبكة مغناطيسية"
 
+# Magnetic Net mode
 #: gschem/etc/system-gschemrc.scm:2341
 msgid "Toggle magnetic net mode"
 msgstr "وضع الشبكة الم_غناطيسية"
 
+# Drag Move
 #: gschem/etc/system-gschemrc.scm:2342
-#, fuzzy
 msgid "_Drag Move"
-msgstr "وضع الشبكة الم_غناطيسية"
+msgstr "اسحب نقل"
 
 #: gschem/etc/system-gschemrc.scm:2342
 msgid "Toggle Drag-can-Move mode"
 msgstr "وضع الشبكة الم_غناطيسية"
 
+# Outline-Box => Frame mode
 #: gschem/etc/system-gschemrc.scm:2343
-#, fuzzy
 msgid "_Outline-Box"
-msgstr "بدّل ال_حد الخارجي/الإطار"
+msgstr "وضع الإطار"
 
 #: gschem/etc/system-gschemrc.scm:2343
 msgid "Toggle action feedback"
 msgstr ""
 
+# Automatic-Pan
 #: gschem/etc/system-gschemrc.scm:2344
-#, fuzzy
 msgid "_Auto-Pan"
-msgstr "بدّل الشريط الم_طاطي للشبكة"
+msgstr "Automatic-Pan"
 
 #: gschem/etc/system-gschemrc.scm:2344
 msgid "Toggle auto panning mode"
