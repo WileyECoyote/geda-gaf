@@ -2449,9 +2449,8 @@ msgid "_Sequence:"
 msgstr "_Volgorde:"
 
 #: gschem/src/x/x_edit_pin.c:74
-#, fuzzy
 msgid "Set the sequence number"
-msgstr "volgorde aantal"
+msgstr "Stel het volgnummer in"
 
 #: gschem/src/x/x_edit_pin.c:75
 msgid "_Label:"
@@ -2462,27 +2461,22 @@ msgid "Enter pin name or description"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:77
-#, fuzzy
 msgid "      Type:"
-msgstr "Type:"
+msgstr "      Type:"
 
 #: gschem/src/x/x_edit_pin.c:77
-#, fuzzy
 msgid "Enable to set all selected attributes to the prescribed type"
-msgstr "Bevestig Attributen"
+msgstr "Schakel alle geselecteerde attributen in op het voorgeschreven type"
 
 #: gschem/src/x/x_edit_pin.c:78
-#, fuzzy
 msgid "Attributes:"
 msgstr "Attributen:"
 
 #: gschem/src/x/x_edit_pin.c:78
-#, fuzzy
 msgid "Enable to set all selected attributes to the prescribed value"
-msgstr "Bevestig Attributen"
+msgstr "Schakel alle geselecteerde attributen in op de voorgeschreven waarde"
 
 #: gschem/src/x/x_edit_pin.c:80
-#, fuzzy
 msgid "Number:"
 msgstr "Aantal:"
 
@@ -2505,28 +2499,24 @@ msgid ""
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:97
-#, fuzzy
 msgid "in"
-msgstr "Pen"
+msgstr "in"
 
 #: gschem/src/x/x_edit_pin.c:98
-#, fuzzy
 msgid "out"
-msgstr "Knip"
+msgstr "out"
 
 #: gschem/src/x/x_edit_pin.c:99
 msgid "io"
-msgstr ""
+msgstr "io"
 
 #: gschem/src/x/x_edit_pin.c:100
-#, fuzzy
 msgid "oc"
-msgstr "Vergrendel"
+msgstr "oc"
 
 #: gschem/src/x/x_edit_pin.c:101
-#, fuzzy
 msgid "oe"
-msgstr "Verplaats"
+msgstr "oe"
 
 #: gschem/src/x/x_edit_pin.c:102
 msgid "pas"
