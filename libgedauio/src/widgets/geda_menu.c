@@ -1516,7 +1516,7 @@ geda_menu_leave_notify (GtkWidget *widget, GdkEventCrossing *event)
 
   if (GEDA_IS_MENU_ITEM (event_widget)) {
 
-    GedaMenuItem *menu_item = GEDA_MENU_ITEM (event_widget);
+    GedaMenuItem  *menu_item  = (GedaMenuItem*)event_widget;
 
     /* Check to see if we're leaving an active menu item with a submenu,
      * in which case we enter submenu navigation mode.
@@ -1536,7 +1536,7 @@ geda_menu_leave_notify (GtkWidget *widget, GdkEventCrossing *event)
 
           return TRUE;
         }
-        else if (menu_item == GEDA_MENU_ITEM (menu_shell->active_menu_item))
+        else if (menu_item == (GedaMenuItem*)menu_shell->active_menu_item)
         {
           /* We are leaving an active menu item with nonactive submenu.
            * Deselect it so we don't surprise the user with by popping
@@ -1600,8 +1600,8 @@ geda_menu_motion_notify (GtkWidget *widget, GdkEventMotion *event)
     return FALSE;
   }
 
-  menu_shell = GEDA_MENU_SHELL (menu_item->parent);
-  menu       = GEDA_MENU (menu_shell);
+  menu_shell = (GedaMenuShell*)menu_item->parent;
+  menu       = (GedaMenu*)menu_shell;
 
   if (definitely_within_item (menu_item, event->x, event->y)) {
     menu_shell->activate_time = 0;
@@ -2008,7 +2008,7 @@ geda_menu_scroll_by (GedaMenu *menu, int step)
 static bool
 geda_menu_scroll (GtkWidget *widget, GdkEventScroll *event)
 {
-  GedaMenu *menu = GEDA_MENU (widget);
+  GedaMenu *menu = (GedaMenu*)widget;
 
   switch (event->direction) {
 
@@ -2235,8 +2235,8 @@ geda_menu_size_request (GtkWidget *widget, GtkRequisition *requisition)
   g_return_if_fail (GEDA_IS_MENU (widget));
   g_return_if_fail (requisition != NULL);
 
-  menu       = GEDA_MENU (widget);
-  menu_shell = GEDA_MENU_SHELL (widget);
+  menu       = (GedaMenu*)widget;
+  menu_shell = (GedaMenuShell*)widget;
   priv       = menu->priv;
 
   requisition->width  = 0;
@@ -2477,7 +2477,7 @@ geda_menu_get_property (GObject     *object,
                         GValue      *value,
                         GParamSpec  *pspec)
 {
-  GedaMenu *menu = GEDA_MENU (object);
+  GedaMenu *menu = (GedaMenu*)object;
 
   switch (prop_id) {
 
@@ -2525,7 +2525,7 @@ geda_menu_set_property (GObject      *object,
                         const GValue *value,
                         GParamSpec   *pspec)
 {
-  GedaMenu *menu = GEDA_MENU (object);
+  GedaMenu *menu = (GedaMenu*)object;
 
   switch (prop_id) {
 
@@ -2622,7 +2622,7 @@ geda_menu_set_child_property (GtkContainer *container,
                               const GValue *value,
                               GParamSpec   *pspec)
 {
-  GedaMenu *menu = GEDA_MENU (container);
+  GedaMenu *menu = (GedaMenu*)container;
   AttachInfo *ai = get_attach_info (child);
 
   switch (property_id) {
@@ -2652,7 +2652,7 @@ geda_menu_set_child_property (GtkContainer *container,
 static void
 geda_menu_remove (GtkContainer *container, GtkWidget *widget)
 {
-  GedaMenu *menu = GEDA_MENU (container);
+  GedaMenu *menu = (GedaMenu*)container;
 
   g_return_if_fail (GEDA_IS_MENU_ITEM (widget));
 
