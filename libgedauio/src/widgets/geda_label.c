@@ -630,8 +630,8 @@ geda_misc_get_padding_and_border (GtkMisc *misc, GtkBorder *border)
 
   gtk_misc_get_alignment (misc, &xalign, &yalign);
 
-  xalign = xalign / 2;
-  yalign = yalign / 2;
+  xalign = xalign / 2.0;
+  yalign = yalign / 2.0;
 
   border->top    += yalign;
   border->right  += xalign;
