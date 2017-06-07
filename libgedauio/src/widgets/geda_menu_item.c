@@ -393,10 +393,8 @@ geda_menu_item_destroy (GtkObject *object)
 
   child = geda_get_child_widget ((GtkBin*)menu_item);
 
-  if (child) {
-    if (GEDA_IS_LABEL(child)) {
-      gtk_container_remove ((GtkContainer*)menu_item, child);
-    }
+  if (GEDA_IS_LABEL(child)) {
+    geda_container_remove (menu_item, child);
   }
 
   ((GtkObjectClass*)geda_menu_item_parent_class)->destroy (object);

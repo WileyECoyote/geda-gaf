@@ -9,6 +9,9 @@
     * src/widgets/geda_menu_bar.c: Remove unnecessary type-checking cast to
       GtkWidget.
 
+    * src/widgets/geda_menu_item.c: Eliminate conditional check for NULL child
+      in geda_menu_item_destroy, just let GEDA_IS_LABEL check.
+
 2017-06-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_handlebox.c: Include geda_container.h and utilize
