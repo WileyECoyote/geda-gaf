@@ -6,6 +6,9 @@
     * src/widgets/geda_menu.c: Remove unnecessary type-checking cast to
       GedaMenu, GedaMenuItem, and GedaMenuShell.
 
+    * src/widgets/geda_menu_bar.c: Remove unnecessary type-checking cast to
+      GtkWidget.
+
 2017-06-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_handlebox.c: Include geda_container.h and utilize

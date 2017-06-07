@@ -147,7 +147,7 @@ change_accel (GedaMenuBar *menubar)
 
   priv = menubar->priv;
 
-  settings = gtk_widget_get_settings (GTK_WIDGET(menubar));
+  settings = gtk_widget_get_settings ((GtkWidget*)menubar);
 
   g_object_get (settings, "gtk-menu-bar-accel", &accel, NULL);
 
@@ -189,7 +189,7 @@ connect_settings_signal(GedaMenuBar *menubar)
     GtkSettings *settings;
     GdkScreen   *screen;
 
-    screen   = gtk_widget_get_screen (GTK_WIDGET (menubar));
+    screen   = gtk_widget_get_screen ((GtkWidget*)menubar);
     settings = gtk_settings_get_for_screen (screen);
 
     priv->settings_signal_id = g_signal_connect (settings, "notify",
@@ -276,7 +276,7 @@ get_shadow_type (GedaMenuBar *menubar)
 {
   GtkShadowType shadow_type = GTK_SHADOW_OUT;
 
-  gtk_widget_style_get (GTK_WIDGET(menubar), "shadow-type", &shadow_type, NULL);
+  gtk_widget_style_get ((GtkWidget*)menubar, "shadow-type", &shadow_type, NULL);
 
   return shadow_type;
 }
