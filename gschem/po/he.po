@@ -3370,6 +3370,7 @@ msgstr "פתח דף..."
 msgid "Save Page"
 msgstr "שמור דף"
 
+# Close Page
 #: gschem/src/x/x_pagesel.c:600 gschem/scheme/gschem/builtins.scm:320
 msgid "Close Page"
 msgstr "סגור דף"
@@ -4790,9 +4791,10 @@ msgstr ""
 msgid "Toggle action feedback"
 msgstr ""
 
+# Automatic pan
 #: gschem/etc/system-gschemrc.scm:2341
 msgid "_Auto-Pan"
-msgstr ""
+msgstr "מחבת אוטומטית"
 
 #: gschem/etc/system-gschemrc.scm:2341
 msgid "Toggle auto panning mode"
@@ -4887,8 +4889,8 @@ msgstr "הוסף"
 msgid "Sessio_ns"
 msgstr ""
 
+# Attributes => Properties
 #: gschem/etc/system-gschemrc.scm:2390
-#, fuzzy
 msgid "Attri_butes"
 msgstr "מאפיינים"
 
@@ -5102,13 +5104,13 @@ msgstr "לְהִתְמַקֵד"
 msgid "Zoom Out"
 msgstr "להקטין את התצוגה"
 
+# Zoom All
 #: gschem/scheme/gschem/builtins.scm:242
-#, fuzzy
 msgid "Zoom All"
-msgstr "תיבת תקריב"
+msgstr "זום הכל"
 
+# Zoom to Mag => Specify Magnification
 #: gschem/scheme/gschem/builtins.scm:245
-#, fuzzy
 msgid "Zoom to Mag"
 msgstr "תיבת תקריב"
 
@@ -5116,20 +5118,20 @@ msgstr "תיבת תקריב"
 msgid "Documentation"
 msgstr ""
 
+# Show/Hide Invisible Text
 #: gschem/scheme/gschem/builtins.scm:251
-#, fuzzy
 msgid "Show/Hide Invisible Text"
-msgstr "הראה/הסתר טקסט חבוי"
+msgstr "הצג / הסתר טקסט בלתי נראה"
 
+# Show/Hide Inherited Attributes
 #: gschem/scheme/gschem/builtins.scm:254
-#, fuzzy
 msgid "Show/Hide Inherited Attributes"
-msgstr "הראה/הסתר טקסט חבוי"
+msgstr "הצג / הסתר תכונות בירושה"
 
+# Show/Hide net names
 #: gschem/scheme/gschem/builtins.scm:257
-#, fuzzy
 msgid "Show/Hide net names"
-msgstr "הראה/הסתר טקסט חבוי"
+msgstr "הצג / הסתר שמות רשת"
 
 #: gschem/scheme/gschem/builtins.scm:260
 msgid "Dark Color Scheme"
@@ -5159,54 +5161,54 @@ msgstr ""
 msgid "Draw Last"
 msgstr ""
 
+# First Page
 #: gschem/scheme/gschem/builtins.scm:290
-#, fuzzy
 msgid "First Page"
-msgstr "סגור דף"
+msgstr "עמוד ראשון"
 
+# Previous Page
 #: gschem/scheme/gschem/builtins.scm:293
-#, fuzzy
 msgid "Previous Page"
-msgstr "סגור דף"
+msgstr "עמוד קודם"
 
+# Next Page
 #: gschem/scheme/gschem/builtins.scm:296
-#, fuzzy
 msgid "Next Page"
-msgstr "דף חדש"
+msgstr "עמוד הבא"
 
+# Page Up
 #: gschem/scheme/gschem/builtins.scm:299
-#, fuzzy
 msgid "Page Up"
-msgstr "דף"
+msgstr " עמוד למעלה"
 
+# Page Down
 #: gschem/scheme/gschem/builtins.scm:302
-#, fuzzy
 msgid "Page Down"
-msgstr "דף"
+msgstr "דף למטה"
 
+# Last Page
 #: gschem/scheme/gschem/builtins.scm:305
-#, fuzzy
 msgid "Last Page"
-msgstr "דף חדש"
+msgstr "עמוד אחרון"
 
+# Print Page
 #: gschem/scheme/gschem/builtins.scm:311
-#, fuzzy
 msgid "Print Page"
-msgstr "סגור דף"
+msgstr "הדפס עמוד"
 
 #: gschem/scheme/gschem/builtins.scm:314
 msgid "Revert Changes"
 msgstr ""
 
+# Revert All => Reload all
 #: gschem/scheme/gschem/builtins.scm:317
-#, fuzzy
 msgid "Revert All"
-msgstr "שמור הכל"
+msgstr "טען מחדש את כל"
 
+# Up Hierarchy => Top hierarchy
 #: gschem/scheme/gschem/builtins.scm:335
-#, fuzzy
 msgid "Up Hierarchy"
-msgstr "היררכיה"
+msgstr "למעלה היררכיה"
 
 # Add a new component
 #: gschem/scheme/gschem/builtins.scm:341
