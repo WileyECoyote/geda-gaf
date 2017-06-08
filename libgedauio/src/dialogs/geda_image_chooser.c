@@ -1157,7 +1157,7 @@ geda_image_chooser_new (void *parent, ImageChooserAction chooser_action)
                          (chooser_action == IMAGE_CHOOSER_ACTION_OPEN),
                          NULL);
 
-  if ( G_IS_OBJECT(widget)) {
+  if (widget) {
 
      GtkDialog        *dialog;
      GedaImageChooser *chooser;
@@ -1218,9 +1218,6 @@ geda_image_chooser_new (void *parent, ImageChooserAction chooser_action)
 
     /* set default response signal, usually triggered by the "Return" key */
     gtk_dialog_set_default_response (dialog, GEDA_RESPONSE_ACCEPT);
-  }
-  else {
-    widget = NULL;
   }
 
   return widget;

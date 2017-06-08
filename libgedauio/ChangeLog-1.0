@@ -1,7 +1,8 @@
 2017-06-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/dialogs/geda_image_chooser.c: Remove unnecessary type-checking cast
-      to GtkWindow.
+      to GtkWindow, eliminate checking if new widget is a GObject in geda_image
+      _chooser_new.
 
     * src/widgets/geda_font_dialog.c: Remove unnecessary type-checking cast to
       GtkBox.
