@@ -2413,7 +2413,6 @@ msgid "Entry for model file name"
 msgstr "Wejście do nazwy pliku modelu"
 
 #: gschem/src/x/x_edit_pin.c:71
-#, fuzzy
 msgid "_Type:"
 msgstr "Rodzaj:"
 
@@ -2425,10 +2424,10 @@ msgstr ""
 msgid "_Attributes:"
 msgstr "_Atrybuty:"
 
+# Set the pin attributes
 #: gschem/src/x/x_edit_pin.c:72
-#, fuzzy
 msgid "Set the pin attributes"
-msgstr "Pokaż odziedziczone atrybuty"
+msgstr "Ustaw atrybuty pina"
 
 # Number
 #: gschem/src/x/x_edit_pin.c:73
@@ -2444,11 +2443,10 @@ msgstr ""
 msgid "_Sequence:"
 msgstr "_Sekwencji:"
 
-# Sequence Number
+# Set the sequence number
 #: gschem/src/x/x_edit_pin.c:74
-#, fuzzy
 msgid "Set the sequence number"
-msgstr "Numer sekwencji"
+msgstr "Ustaw numer sekwencji"
 
 # Label
 #: gschem/src/x/x_edit_pin.c:75
@@ -2473,9 +2471,8 @@ msgid "Attributes:"
 msgstr "Atrybuty:"
 
 #: gschem/src/x/x_edit_pin.c:78
-#, fuzzy
 msgid "Enable to set all selected attributes to the prescribed value"
-msgstr "Odłączony atrybut"
+msgstr "Umożliwia ustawienie wszystkich wybranych atrybutów na wymaganą wartość"
 
 # Number
 #: gschem/src/x/x_edit_pin.c:80
@@ -2616,45 +2613,41 @@ msgid "Text Content"
 msgstr "Treść tekstu"
 
 #: gschem/src/x/x_edit_text.c:64
-#, fuzzy
 msgid "Enter or edit the text string"
-msgstr "Wprowadź nowy rozmiar czcionki"
+msgstr "Wpisz lub edytuj ciąg tekstowy"
 
 # Alignment
 #: gschem/src/x/x_edit_text.c:65
 msgid "A_lignment:"
 msgstr "Wyrównanie:"
 
-# Select the name of the attribute to add
+# Select the text alignment attribute
 #: gschem/src/x/x_edit_text.c:65
-#, fuzzy
 msgid "Select the text alignment attribute"
-msgstr "Wybierz nazwę atrybutu dodać"
+msgstr "Wybierz atrybut wyrównania tekstu"
 
 #: gschem/src/x/x_edit_text.c:66
 msgid "_Color:"
 msgstr "_Kolor:"
 
-# Select an attribute to add
+# Select color attribute
 #: gschem/src/x/x_edit_text.c:66
-#, fuzzy
 msgid "Select color attribute"
-msgstr "Wybierz atrybut, aby dodać"
+msgstr "Wybierz atrybut koloru"
 
 #: gschem/src/x/x_edit_text.c:67
 msgid "_Size:"
 msgstr ""
 
+# Open font selection dialog
 #: gschem/src/x/x_edit_text.c:67
-#, fuzzy
 msgid "Open font selection dialog"
-msgstr "Otwórz Element dialogowym Edytor"
+msgstr "Otwórz okno dialogowe wyboru czcionki"
 
-# Documentation
+# Rotation
 #: gschem/src/x/x_edit_text.c:68
-#, fuzzy
 msgid "_Rotation:"
-msgstr "Dokumen_tacja:"
+msgstr "Obrót:"
 
 #: gschem/src/x/x_edit_text.c:68
 msgid "Set the text rotation angle"
