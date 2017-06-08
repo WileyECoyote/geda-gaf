@@ -1568,17 +1568,17 @@ geda_font_button_create_widgets (GedaFontButton *font_button)
   font_label = geda_label_new (_("Font"));
 
   geda_label_widget_set_justify ( font_label, GTK_JUSTIFY_LEFT);
-  gtk_box_pack_start (GTK_BOX (widget), font_label, TRUE, TRUE, 5);
+  gtk_box_pack_start ((GtkBox*)widget, font_label, TRUE, TRUE, 5);
   gtk_widget_show(font_label);
 
   if (font_button->priv->show_size) {
 
     GtkWidget *size_label;
 
-    gtk_box_pack_start (GTK_BOX (widget), geda_vseparator_new (), FALSE, FALSE, 0);
+    gtk_box_pack_start ((GtkBox*)widget, geda_vseparator_new (), FALSE, FALSE, 0);
 
     size_label = geda_label_new ("10");
-    gtk_box_pack_start (GTK_BOX (widget), size_label, FALSE, FALSE, 5);
+    gtk_box_pack_start ((GtkBox*)widget, size_label, FALSE, FALSE, 5);
     gtk_widget_show(size_label);
     font_button->priv->size_label = size_label;
   }
