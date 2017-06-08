@@ -2293,9 +2293,8 @@ msgid "Entry for model file name"
 msgstr "Show inherited attributes"
 
 #: gschem/src/x/x_edit_pin.c:71
-#, fuzzy
 msgid "_Type:"
-msgstr "Type:"
+msgstr "_Type:"
 
 #: gschem/src/x/x_edit_pin.c:71
 msgid "Select the pin type"
@@ -2306,14 +2305,12 @@ msgid "_Attributes:"
 msgstr "_Attributes:"
 
 #: gschem/src/x/x_edit_pin.c:72
-#, fuzzy
 msgid "Set the pin attributes"
-msgstr "Show inherited attributes"
+msgstr "Set the pin attributes"
 
 #: gschem/src/x/x_edit_pin.c:73
-#, fuzzy
 msgid "_Number:"
-msgstr "Starting number:"
+msgstr "_Number:"
 
 #: gschem/src/x/x_edit_pin.c:73
 msgid "Set the pin number, or the starting pin number if auto numbering"
@@ -2324,9 +2321,8 @@ msgid "_Sequence:"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:74
-#, fuzzy
 msgid "Set the sequence number"
-msgstr "Selected objects"
+msgstr "Set the sequence number"
 
 #: gschem/src/x/x_edit_pin.c:75
 msgid "_Label:"
@@ -2479,42 +2475,36 @@ msgid "Text Content"
 msgstr "Text Content"
 
 #: gschem/src/x/x_edit_text.c:64
-#, fuzzy
 msgid "Enter or edit the text string"
-msgstr "Enter new text size:"
+msgstr "Enter or edit the text string:"
 
 #: gschem/src/x/x_edit_text.c:65
-#, fuzzy
 msgid "A_lignment:"
-msgstr "Command:"
+msgstr "A_lignment:"
 
 #: gschem/src/x/x_edit_text.c:65
-#, fuzzy
 msgid "Select the text alignment attribute"
-msgstr "Select the name of the attribute to add"
+msgstr "Select the text alignment attribute"
 
 #: gschem/src/x/x_edit_text.c:66
 msgid "_Color:"
 msgstr "_Colour:"
 
 #: gschem/src/x/x_edit_text.c:66
-#, fuzzy
 msgid "Select color attribute"
-msgstr "Select an attribute to add"
+msgstr "Select color attribute"
 
 #: gschem/src/x/x_edit_text.c:67
 msgid "_Size:"
 msgstr ""
 
 #: gschem/src/x/x_edit_text.c:67
-#, fuzzy
 msgid "Open font selection dialog"
-msgstr "Selection"
+msgstr "Open font selection dialog"
 
 #: gschem/src/x/x_edit_text.c:68
-#, fuzzy
 msgid "_Rotation:"
-msgstr "Documen_tation:"
+msgstr "_Rotation:"
 
 #: gschem/src/x/x_edit_text.c:68
 msgid "Set the text rotation angle"
@@ -4167,9 +4157,8 @@ msgid "_Redraw"
 msgstr "_Redraw"
 
 #: gschem/etc/system-gschemrc.scm:2197
-#, fuzzy
 msgid "Redraw the current window"
-msgstr "Current Window"
+msgstr "Redraw the current window"
 
 #: gschem/etc/system-gschemrc.scm:2198
 msgid "_Pan"
