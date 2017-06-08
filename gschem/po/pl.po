@@ -2472,7 +2472,8 @@ msgstr "Atrybuty:"
 
 #: gschem/src/x/x_edit_pin.c:78
 msgid "Enable to set all selected attributes to the prescribed value"
-msgstr "Umożliwia ustawienie wszystkich wybranych atrybutów na wymaganą wartość"
+msgstr ""
+"Umożliwia ustawienie wszystkich wybranych atrybutów na wymaganą wartość"
 
 # Number
 #: gschem/src/x/x_edit_pin.c:80
