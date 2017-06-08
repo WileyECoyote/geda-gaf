@@ -2021,9 +2021,8 @@ msgid "not in library, opening as page"
 msgstr ""
 
 #: gschem/src/x/x_dnd.c:444 gschem/src/x/x_multiattrib.c:2605
-#, fuzzy
 msgid "symbol"
-msgstr "Doljen _Simbol"
+msgstr "simbol"
 
 #: gschem/src/x/x_dnd.c:587
 msgid "<b>Invalid Data.</b>"
@@ -3280,9 +3279,8 @@ msgid "Attribute name must not be empty. Please set a name."
 msgstr ""
 
 #: gschem/src/x/x_multiattrib.c:926
-#, fuzzy
 msgid "Multi-Attribute Editor"
-msgstr "_Atribut..."
+msgstr "Multi-Atributi Urednik"
 
 #: gschem/src/x/x_multiattrib.c:1635
 msgid "Select an attribute to add"
@@ -3308,10 +3306,10 @@ msgstr ""
 msgid "Duplicate"
 msgstr ""
 
+# Copy to all
 #: gschem/src/x/x_multiattrib.c:1693
-#, fuzzy
 msgid "Copy to all"
-msgstr "Kopiraj u 1"
+msgstr "Kopiraj u svim"
 
 #: gschem/src/x/x_multiattrib.c:2063 gschem/src/x/x_multiattrib.c:2582
 msgid "Edit Attributes"
@@ -3338,16 +3336,14 @@ msgid "Add new attribute to component"
 msgstr ""
 
 #: gschem/src/x/x_multiattrib.c:2601
-#, fuzzy
 msgid "symbols"
-msgstr "Doljen _Simbol"
+msgstr "simboli"
 
 #: gschem/src/x/x_multiattrib.c:2616
 msgid "pins"
 msgstr ""
 
 #: gschem/src/x/x_multiattrib.c:2620
-#, fuzzy
 msgid "pin"
 msgstr "Pin"
 
@@ -3356,38 +3352,32 @@ msgid "nets"
 msgstr ""
 
 #: gschem/src/x/x_multiattrib.c:2635
-#, fuzzy
 msgid "net"
-msgstr "Mreža"
+msgstr "mreža"
 
 #: gschem/src/x/x_multiattrib.c:2646
 msgid "buses"
 msgstr ""
 
 #: gschem/src/x/x_multiattrib.c:2650
-#, fuzzy
 msgid "bus"
 msgstr "Sabirnica"
 
 #: gschem/src/x/x_multiattrib.c:2661
-#, fuzzy
 msgid "attributes"
-msgstr "_Atribut..."
+msgstr "atributi"
 
 #: gschem/src/x/x_multiattrib.c:2665
-#, fuzzy
 msgid "attribute"
-msgstr "_Atribut..."
+msgstr "attribute"
 
 #: gschem/src/x/x_pagesel.c:592
-#, fuzzy
 msgid "Move Up"
-msgstr "Premjesti"
+msgstr "kretanje prema gore"
 
 #: gschem/src/x/x_pagesel.c:593
-#, fuzzy
 msgid "Move Down"
-msgstr "_Strana"
+msgstr "kreću prema dolje"
 
 #: gschem/src/x/x_pagesel.c:595
 msgid "New Blank"
@@ -3538,19 +3528,19 @@ msgstr ""
 msgid "Specify new name for Session:"
 msgstr ""
 
+# Select export file
 #: gschem/src/x/x_sessions.c:230
-#, fuzzy
 msgid "Select export file"
-msgstr "Režim izabiranja"
+msgstr "Izaberite izvoz datoteka"
 
 #: gschem/src/x/x_sessions.c:234
 msgid "exported to"
 msgstr ""
 
+# Load the selected session => Restore the selected session
 #: gschem/src/x/x_sessions.c:416
-#, fuzzy
 msgid "Load the selected session"
-msgstr "_Uvećaj"
+msgstr "Vraćanje odabrane sesije"
 
 #: gschem/src/x/x_sessions.c:417
 msgid ""
@@ -4905,7 +4895,7 @@ msgstr "_Izmijeni"
 # Select
 #: gschem/etc/system-gschemrc.scm:2387
 msgid "_Select"
-msgstr "režim izabiranja"
+msgstr "Izabrati"
 
 #: gschem/etc/system-gschemrc.scm:2390
 msgid "_Page"
