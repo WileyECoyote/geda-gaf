@@ -2543,20 +2543,18 @@ msgstr ""
 msgid "_Color:"
 msgstr "Цвят:"
 
-# Detached attribute => independent attribute
+# Choose a color attribute
 #: gschem/src/x/x_edit_text.c:66
-#, fuzzy
 msgid "Select color attribute"
-msgstr "Самостоятелна атрибут"
+msgstr "Изберете цвят атрибут"
 
 #: gschem/src/x/x_edit_text.c:67
 msgid "_Size:"
 msgstr ""
 
 #: gschem/src/x/x_edit_text.c:67
-#, fuzzy
 msgid "Open font selection dialog"
-msgstr "Отворете текстов редактор Dialog"
+msgstr "Отворете диалога за избор на шрифтове"
 
 #: gschem/src/x/x_edit_text.c:68
 msgid "_Rotation:"
@@ -4047,9 +4045,10 @@ msgstr "Редактирай..."
 msgid "E_dit Text..."
 msgstr "Редактирай Текст..."
 
+# Open the Text Editor dialog
 #: gschem/etc/system-gschemrc.scm:2126
 msgid "Open the Text Editor Dialog"
-msgstr "Отворете текстов редактор Dialog"
+msgstr "Отворете текстов редактор диалоговия"
 
 #: gschem/etc/system-gschemrc.scm:2127
 msgid "Co_lor..."
@@ -4252,11 +4251,10 @@ msgstr ""
 msgid "_Redraw"
 msgstr ""
 
-# there is no active window
+# Redraw the current window
 #: gschem/etc/system-gschemrc.scm:2197
-#, fuzzy
 msgid "Redraw the current window"
-msgstr "няма активен прозорец"
+msgstr "Преначертайте текущия прозорец"
 
 #: gschem/etc/system-gschemrc.scm:2198
 msgid "_Pan"
