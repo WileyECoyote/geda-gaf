@@ -1,5 +1,8 @@
 2017-06-08 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/dialogs/geda_image_chooser.c: Remove unnecessary type-checking cast
+      to GtkWindow.
+
     * src/widgets/geda_font_dialog.c: Remove unnecessary type-checking cast to
       GtkBox.
 

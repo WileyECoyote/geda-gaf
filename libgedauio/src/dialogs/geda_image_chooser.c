@@ -1200,10 +1200,10 @@ geda_image_chooser_new (void *parent, ImageChooserAction chooser_action)
                                             GEDA_RESPONSE_CANCEL,
                                             -1);
 
-    gtk_window_set_title (GTK_WINDOW (dialog), title);
+    gtk_window_set_title ((GtkWindow*)dialog, title);
 
     if (parent != NULL) {
-      gtk_window_set_transient_for(GTK_WINDOW(dialog), GTK_WINDOW(parent));
+      gtk_window_set_transient_for((GtkWindow*)dialog, (GtkWindow*)parent);
     }
 
     geda_image_chooser_setup_filters (GTK_FILE_CHOOSER (dialog));
