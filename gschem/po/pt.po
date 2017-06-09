@@ -2405,11 +2405,10 @@ msgstr ""
 msgid "_Attributes:"
 msgstr "_Atributos:"
 
-# Search hidden attributes
+# Set the pin attributes
 #: gschem/src/x/x_edit_pin.c:72
-#, fuzzy
 msgid "Set the pin attributes"
-msgstr "Pesquisar atributos ocultos"
+msgstr "Defina os atributos dos pinos"
 
 # Number
 #: gschem/src/x/x_edit_pin.c:73
@@ -2424,11 +2423,10 @@ msgstr ""
 msgid "_Sequence:"
 msgstr ""
 
-# Offset the selected objects
+# Set the sequence number
 #: gschem/src/x/x_edit_pin.c:74
-#, fuzzy
 msgid "Set the sequence number"
-msgstr "Deslocar os objetos selecionados"
+msgstr "Defina o número de sequência"
 
 #: gschem/src/x/x_edit_pin.c:75
 msgid "_Label:"
@@ -2450,11 +2448,10 @@ msgstr ""
 msgid "Attributes:"
 msgstr "Atributos:"
 
-# Dettach selected attributes from a symbol
+# Enable to set all selected attributes to the prescribed value
 #: gschem/src/x/x_edit_pin.c:78
-#, fuzzy
 msgid "Enable to set all selected attributes to the prescribed value"
-msgstr "Dettach atributos selecionados a partir de um símbolo"
+msgstr "Habilite para definir todos os atributos selecionados para o valor prescrito"
 
 # Number
 #: gschem/src/x/x_edit_pin.c:80
@@ -2585,47 +2582,43 @@ msgstr "numero de elemento:"
 msgid "Text Content"
 msgstr "Conteúdo do texto"
 
+# Enter or edit the text string
 #: gschem/src/x/x_edit_text.c:64
-#, fuzzy
 msgid "Enter or edit the text string"
-msgstr "Introduza novo tamanho do texto:"
+msgstr "Digite ou edite a seqüência de texto"
 
 # Alignment
 #: gschem/src/x/x_edit_text.c:65
 msgid "A_lignment:"
 msgstr "A_linhamento:"
 
-# Select the name of the attribute to add
+# Select the text alignment attribute
 #: gschem/src/x/x_edit_text.c:65
-#, fuzzy
 msgid "Select the text alignment attribute"
-msgstr "Selecione o nome do atributo para adicionar"
+msgstr "Selecione o atributo de alinhamento de texto"
 
 #: gschem/src/x/x_edit_text.c:66
 msgid "_Color:"
 msgstr "_Cor:"
 
-# Select an attribute to add
+# Select color attribute
 #: gschem/src/x/x_edit_text.c:66
-#, fuzzy
 msgid "Select color attribute"
-msgstr "Selecione um Atributo para adicionar"
+msgstr "Selecione o atributo de cor"
 
 #: gschem/src/x/x_edit_text.c:67
 msgid "_Size:"
 msgstr ""
 
-# Open the Text Editor Dialog
+# Open font selection dialog
 #: gschem/src/x/x_edit_text.c:67
-#, fuzzy
 msgid "Open font selection dialog"
-msgstr "Abra a caixa de diálogo Editor de Texto"
+msgstr "Abrir diálogo de seleção de fonte"
 
-# Documentation
+# Rotation
 #: gschem/src/x/x_edit_text.c:68
-#, fuzzy
 msgid "_Rotation:"
-msgstr "Documen_tação:"
+msgstr "_Rotação:"
 
 #: gschem/src/x/x_edit_text.c:68
 msgid "Set the text rotation angle"
