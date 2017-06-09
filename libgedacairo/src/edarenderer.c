@@ -1058,7 +1058,7 @@ eda_renderer_prepare_text (EdaRenderer *renderer, const GedaObject *object)
 
   pango_font_description_free (desc);
 
-  /* Extract text to display and Pango text attributes, and set up layout. */
+  /* Extract text to display, Pango text attributes, and set up layout. */
   if (!eda_pango_parse_overbars (object->text->disp_string, -1,
                                  &attrs, &draw_string)) {
     return FALSE;
