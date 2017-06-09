@@ -303,7 +303,7 @@ confirm_close_dialog_build_page_list (ConfirmCloseDialog *dialog)
 
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
-  gtk_container_add (GTK_CONTAINER (scrolled_window), treeview);
+  geda_container_add (scrolled_window, treeview);
 
   gtk_box_pack_end (GTK_BOX (vbox), scrolled_window, TRUE, TRUE, 0);
 
