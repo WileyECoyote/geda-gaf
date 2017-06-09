@@ -146,7 +146,7 @@ void          geda_image_chooser_prepend_extra      (GtkWidget *dialog, GtkWidge
 GtkWidget    *geda_image_chooser_get_extra_widget   (GtkWidget *chooser);
 void          geda_image_chooser_set_extra_widget   (GtkWidget *chooser, GtkWidget *extra);
 
-void          geda_image_chooser_set_preview_active  (GtkWidget *chooser, bool state);
+void          geda_image_chooser_set_preview_active (GtkWidget *chooser, bool state);
 
 #ifdef __cplusplus
 }
