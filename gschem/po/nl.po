@@ -2606,41 +2606,36 @@ msgid "Text Content"
 msgstr "Tekst Inhoud"
 
 #: gschem/src/x/x_edit_text.c:64
-#, fuzzy
 msgid "Enter or edit the text string"
-msgstr "Voer nieuwe tekstgrootte in"
+msgstr "Voer de tekststring in of wijzig deze"
 
 # Alignment
 #: gschem/src/x/x_edit_text.c:65
-#, fuzzy
 msgid "A_lignment:"
-msgstr "opstelling:"
+msgstr "Opstelling:"
 
 # Select the name of the attribute to add
 #: gschem/src/x/x_edit_text.c:65
-#, fuzzy
 msgid "Select the text alignment attribute"
-msgstr "Selecteer de naam van het kenmerk toevoegen"
+msgstr "Selecteer het kenmerk voor tekstuitlijning"
 
 #: gschem/src/x/x_edit_text.c:66
 msgid "_Color:"
-msgstr "Kleur:"
+msgstr "_Kleur:"
 
-# Select to add an attribute
+# Select color attribute
 #: gschem/src/x/x_edit_text.c:66
-#, fuzzy
 msgid "Select color attribute"
-msgstr "Selecteer een kenmerk toe te voegen"
+msgstr "Selecteer kleurattribuut"
 
 #: gschem/src/x/x_edit_text.c:67
 msgid "_Size:"
 msgstr ""
 
-# Open the Preferences dialog
+# Open font selection dialog
 #: gschem/src/x/x_edit_text.c:67
-#, fuzzy
 msgid "Open font selection dialog"
-msgstr "Open het dialoogvenster Voorkeuren"
+msgstr "Open dialoogvenster dialoogvenster"
 
 #: gschem/src/x/x_edit_text.c:68
 msgid "_Rotation:"
@@ -2958,28 +2953,28 @@ msgstr ""
 msgid "Zoom to a specified level"
 msgstr ""
 
+# Zoom to selected objects
 #: gschem/src/x/x_menus.c:106 gschem/etc/system-gschemrc.scm:2206
-#, fuzzy
 msgid "Zoom to selected objects"
-msgstr "Geselecteerde objecten"
+msgstr "Zoom naar geselecteerde objecten"
 
 #: gschem/src/x/x_menus.c:110
 msgid "Edit"
 msgstr "Bewerk"
 
+# Edit modes
 #: gschem/src/x/x_menus.c:110
-#, fuzzy
 msgid "Edit modes"
-msgstr "Bewerk Tekst Eigenschappen"
+msgstr "Modi bewerken"
 
 #: gschem/src/x/x_menus.c:111
 msgid "Object..."
 msgstr ""
 
+# Edit Object Attributes
 #: gschem/src/x/x_menus.c:111 gschem/etc/system-gschemrc.scm:2125
-#, fuzzy
 msgid "Edit Object Attributes"
-msgstr "Bewerk Attribuut"
+msgstr "Objecteigenschappen bewerken"
 
 #: gschem/src/x/x_menus.c:112
 msgid "Color..."
@@ -2994,9 +2989,8 @@ msgid "Open the Component Editor Dialog"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:114
-#, fuzzy
 msgid "Pin type..."
-msgstr "Pin Type..."
+msgstr "Pin type..."
 
 #: gschem/src/x/x_menus.c:114 gschem/etc/system-gschemrc.scm:2128
 msgid "Open the Pin Type Dialog"
@@ -3233,11 +3227,10 @@ msgstr ""
 msgid "_View"
 msgstr "_Toon"
 
-# Tools
+# Toolbars
 #: gschem/src/x/x_menus.c:834
-#, fuzzy
 msgid "_Toolbars"
-msgstr "_Gereedschap"
+msgstr "_Werkbalken"
 
 #: gschem/src/x/x_menus.c:881
 msgid "Toggle visibility of the Standard toolbar"
