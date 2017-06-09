@@ -260,6 +260,7 @@ void i_command_engage(GschemToplevel *w_current)
   }
   else {
     is_engaged = TRUE;
+    /* According to helgrind, order if important here! */
     g_thread_pool_set_max_unused_threads (MAX_THREADS_UNUSED);
     g_thread_pool_set_max_idle_time (MAX_THREADS_IDLE_TIME);
   }
