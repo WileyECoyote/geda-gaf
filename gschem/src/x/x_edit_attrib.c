@@ -574,7 +574,7 @@ attrib_edit_dialog (GschemToplevel *w_current, GedaObject *object, int flag)
                       G_CALLBACK (attribute_edit_dialog_response),
                       w_current);
 
-    gtk_window_set_position (GTK_WINDOW (ThisDialog), GTK_WIN_POS_MOUSE);
+    gtk_window_set_position ((GtkWindow*)ThisDialog, GTK_WIN_POS_MOUSE);
 
     gtk_widget_show_all(ThisDialog);
 
@@ -601,7 +601,7 @@ attrib_edit_dialog (GschemToplevel *w_current, GedaObject *object, int flag)
     w_current->aewindow = ThisDialog;
   }
   else { /* dialog already there */
-    gtk_window_present(GTK_WINDOW(ThisDialog));
+    gtk_window_present((GtkWindow*)ThisDialog);
   }
 
   x_dialog_attrib_edit_update_selection (w_current, object);

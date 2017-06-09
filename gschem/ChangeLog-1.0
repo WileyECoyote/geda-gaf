@@ -1,3 +1,7 @@
+2017-06-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_edit_attrib.c: Remove unnecessary type-checking cast to GtkWindow.
+
 2017-06-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/bg.po: Update Bulgarian translations.
