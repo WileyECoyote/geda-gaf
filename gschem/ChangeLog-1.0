@@ -2,6 +2,8 @@
 
     * po/nl.po: Update Dutch translations.
 
+    * po/pl.po: Update Polish translations.
+
     * src/x/x_confirm_close.c: Replace gtk_container_add with geda_container_add.
 
     * src/x/x_edit_attrib.c: Remove unnecessary type-checking cast to GtkWindow.

@@ -1970,20 +1970,20 @@ msgstr "Znajdź tekst"
 msgid "Text to find:"
 msgstr "Szukany tekst:"
 
+# Search hidden attributes
 #: gschem/src/x/x_dialog.c:2489
-#, fuzzy
 msgid "Search hidden attributes"
-msgstr "Pokaż odziedziczone atrybuty"
+msgstr "Search hidden attributes"
 
+# Descend into hierarchy
 #: gschem/src/x/x_dialog.c:2492
-#, fuzzy
 msgid "Descend into hierarchy"
-msgstr "Szukaj również wewnątrz elementów"
+msgstr "Zejdź do hierarchii"
 
+# Close on ascent
 #: gschem/src/x/x_dialog.c:2500
-#, fuzzy
 msgid "Close on ascent"
-msgstr "Zamknij arkusz"
+msgstr "Zamknij na wzniesieniu"
 
 #: gschem/src/x/x_dialog.c:2588
 msgid "Hide Text"
@@ -2052,11 +2052,10 @@ msgstr "Czynność"
 msgid "Keystroke(s)"
 msgstr "Klawisz(e)"
 
-# Dowództwo
+# Command
 #: gschem/src/x/x_dialog.c:3316
-#, fuzzy
 msgid "Command"
-msgstr "Polecenie:"
+msgstr "Rozkaz"
 
 #: gschem/src/x/x_dialog.c:3554
 msgid "Major symbol changes detected."
@@ -2070,9 +2069,8 @@ msgid ""
 msgstr ""
 
 #: gschem/src/x/x_dialog.c:3622
-#, fuzzy
 msgid "Symbol"
-msgstr "Symbole"
+msgstr "Symbol"
 
 #: gschem/src/x/x_dialog.c:3668
 msgid "Dismiss this dialog"
@@ -3104,43 +3102,40 @@ msgstr "Przyciąganie obiektów do obecnej sieci"
 msgid "Hierarchy"
 msgstr "Hierarchia"
 
+# Edit operations
 #: gschem/src/x/x_menus.c:133
-#, fuzzy
 msgid "Edit operations"
-msgstr "Edycja właściwości tekstu"
+msgstr "Edytuj operacje"
 
 #: gschem/src/x/x_menus.c:134 gschem/scheme/gschem/builtins.scm:329
-#, fuzzy
 msgid "Down Schematic"
-msgstr "/Wgłąb schematu"
+msgstr "/Wgłąb Schematu"
 
+# Descend down in the schematic hierarchy
 #: gschem/src/x/x_menus.c:134 gschem/etc/system-gschemrc.scm:2244
-#, fuzzy
 msgid "Descend down in the schematic hierarchy"
-msgstr "Szukaj również wewnątrz elementów"
+msgstr "Zejdź na dół w schemacie hierarchii"
 
 #: gschem/src/x/x_menus.c:135 gschem/scheme/gschem/builtins.scm:332
-#, fuzzy
 msgid "Down Symbol"
 msgstr "/Wgłąb symbolu"
 
+# Descend down in the symbol hierarchy
 #: gschem/src/x/x_menus.c:135 gschem/etc/system-gschemrc.scm:2245
-#, fuzzy
 msgid "Descend down in the symbol hierarchy"
-msgstr "Szukaj również wewnątrz elementów"
+msgstr "Zejdź na dół w hierarchii symboli"
 
 #: gschem/src/x/x_menus.c:136
-#, fuzzy
 msgid "Up"
-msgstr "/Do góry"
+msgstr "/W góry"
 
+# ascend up in the schematic hierarchy
 #: gschem/src/x/x_menus.c:136 gschem/etc/system-gschemrc.scm:2246
-#, fuzzy
 msgid "ascend up in the schematic hierarchy"
-msgstr "Szukaj również wewnątrz elementów"
+msgstr "Wstąpić do schematycznej hierarchii"
 
+# Cut to clipboard
 #: gschem/src/x/x_menus.c:141
-#, fuzzy
 msgid "Cut to Clipboard"
 msgstr "Wytnij do schowka"
 
@@ -3148,8 +3143,8 @@ msgstr "Wytnij do schowka"
 msgid "Cut the current selection to the system clipboard"
 msgstr ""
 
+# Copy to Clipboard
 #: gschem/src/x/x_menus.c:142
-#, fuzzy
 msgid "Copy to Clipboard"
 msgstr "Kopiuj do schowka"
 
@@ -3157,8 +3152,8 @@ msgstr "Kopiuj do schowka"
 msgid "Copy the current selection to the system clipboard"
 msgstr ""
 
+# Paste Clipboard
 #: gschem/src/x/x_menus.c:143
-#, fuzzy
 msgid "Paste Clipboard"
 msgstr "Wklej ze schowka"
 
@@ -3167,23 +3162,22 @@ msgid "Paste the contents of the system clipboard"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:149
-#, fuzzy
 msgid "Close"
-msgstr "_Zamknij"
+msgstr "Zamknij"
 
+# Close the current path
 #: gschem/src/x/x_menus.c:149
-#, fuzzy
 msgid "Close the current path"
-msgstr "Bieżącej stronie"
+msgstr "Zamknij bieżącą ścieżkę"
 
 #: gschem/src/x/x_menus.c:150
 msgid "Done"
 msgstr ""
 
+# Terminate the current path
 #: gschem/src/x/x_menus.c:150
-#, fuzzy
 msgid "Terminate the current path"
-msgstr "Bieżącej stronie"
+msgstr "Zakończ bieżącą ścieżkę"
 
 # End
 #: gschem/src/x/x_menus.c:151
@@ -4661,9 +4655,8 @@ msgid "Print the current page"
 msgstr "Bieżącej stronie"
 
 #: gschem/etc/system-gschemrc.scm:2244
-#, fuzzy
 msgid "Down _Schematic"
-msgstr "/Wgłąb schematu"
+msgstr "/Wgłąb _Schematu"
 
 #: gschem/etc/system-gschemrc.scm:2245
 #, fuzzy
