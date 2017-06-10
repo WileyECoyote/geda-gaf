@@ -577,7 +577,7 @@ geda_option_menu_paint (GtkWidget *widget, GdkRectangle *area)
 static int
 geda_option_menu_expose (GtkWidget *widget, GdkEventExpose *event)
 {
-  if (GTK_WIDGET_DRAWABLE (widget)) {
+  if (gtk_widget_is_drawable(widget)) {
 
     if (event != NULL) {
 
@@ -753,7 +753,7 @@ geda_option_menu_update_contents (GedaOptionMenu *option_menu)
       gtk_widget_size_allocate ((GtkWidget*)option_menu,
                                 &((GtkWidget*)option_menu)->allocation);
 
-      if (GTK_WIDGET_DRAWABLE (option_menu)) {
+      if (gtk_widget_is_drawable(option_menu)) {
         gtk_widget_queue_draw ((GtkWidget*)option_menu);
       }
     }

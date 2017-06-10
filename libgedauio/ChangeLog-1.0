@@ -1,6 +1,8 @@
 2017-06-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_option_menu.c: Add ancillary pointer to child in
+      geda_option_menu_expose. Replace deprecated GTK_WIDGET_DRAWABLE
+      with gtk_widget_queue_draw in geda_option_menu_update_contents and
       geda_option_menu_expose.
 
 2017-06-08 Wiley E. Hill <wileyhill@gmail.com>
