@@ -576,11 +576,12 @@ static void
 geda_image_menu_item_map (GtkWidget *widget)
 {
   GedaImageMenuItem *image_menu_item = (GedaImageMenuItem*)widget;
+  GtkWidget         *image_widget    = image_menu_item->image
 
   ((GtkWidgetClass*)geda_image_menu_item_parent_class)->map (widget);
 
-  if (image_menu_item->image) {
-    g_object_set (image_menu_item->image,
+  if (image_widget) {
+    g_object_set (image_widget,
                   "visible", show_image (image_menu_item),
                   NULL);
   }
