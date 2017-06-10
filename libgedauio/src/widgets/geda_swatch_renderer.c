@@ -252,7 +252,7 @@ swatch_renderer_class_init (void *class, void *data)
 
   GedaSwatchRendererClass *swatch = (GedaSwatchRendererClass*)class;
 
-  object_class = G_OBJECT_CLASS (class);
+  object_class = (GObjectClass*)class;
 
   swatch->parent_class.parent_class.render = render;
 

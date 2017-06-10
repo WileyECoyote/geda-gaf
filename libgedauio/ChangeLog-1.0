@@ -5,6 +5,9 @@
       with gtk_widget_queue_draw in geda_option_menu_update_contents and
       geda_option_menu_expose.
 
+    * src/widgets/geda_swatch_renderer.c: Remove unnecessary type-checking
+      class cast to GObjectClass.
+
     * tests/test_menu_item.c: Replace geda_menu_shell_append with macro
       geda_menu_append.
 
