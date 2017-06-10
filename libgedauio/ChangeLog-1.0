@@ -3,7 +3,8 @@
     * src/widgets/geda_option_menu.c: Add ancillary pointer to child in
       geda_option_menu_expose. Replace deprecated GTK_WIDGET_DRAWABLE
       with gtk_widget_queue_draw in geda_option_menu_update_contents and
-      geda_option_menu_expose.
+      geda_option_menu_expose. Add ancillary pointer GtkWidget in
+      geda_option_menu_update_contents.
 
     * src/widgets/geda_swatch_renderer.c: Remove unnecessary type-checking
       class cast to GObjectClass.
