@@ -2223,7 +2223,7 @@ geda_menu_shell_update_mnemonics (GedaMenuShell *menu_shell)
      */
     if (GEDA_IS_MENU_BAR (target)) {
       if (mnemonics_visible) {
-        geda_menu_bar_hide_mnemonics  ((GedaMenuBar*)target);
+        geda_menu_bar_hide_mnemonics ((GedaMenuBar*)target);
       }
       else {
         geda_menu_bar_show_mnemonics ((GedaMenuBar*)target);
