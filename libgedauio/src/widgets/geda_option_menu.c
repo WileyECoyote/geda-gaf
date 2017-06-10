@@ -581,12 +581,14 @@ geda_option_menu_expose (GtkWidget *widget, GdkEventExpose *event)
 
     if (event != NULL) {
 
+      GtkWidget *child;
+
       geda_option_menu_paint (widget, &event->area);
 
-      if (GTK_BIN (widget)->child) {
-        gtk_container_propagate_expose (GTK_CONTAINER (widget),
-                                        GTK_BIN (widget)->child,
-                                        event);
+      child =  geda_get_child_widget(widget);
+
+      if (child) {
+        geda_container_propagate_expose (widget, child, event);
       }
     }
   }
