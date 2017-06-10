@@ -153,7 +153,7 @@ check_accessors ()
     menu_item = GEDA_MENU_ITEM(widget);
 
     geda_menu_item_set_submenu (GEDA_MENU_ITEM (menu_item), menu);
-    geda_menu_shell_append (GEDA_MENU_SHELL (menu_bar), widget);
+    geda_menu_append (menu_bar, widget);
 
     gtk_widget_show (widget);
     gtk_widget_show (menu);
