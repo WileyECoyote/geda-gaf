@@ -753,7 +753,7 @@ geda_option_menu_update_contents (GedaOptionMenu *option_menu)
       gtk_widget_size_allocate ((GtkWidget*)option_menu,
                                 &((GtkWidget*)option_menu)->allocation);
 
-      if (gtk_widget_is_drawable(option_menu)) {
+      if (gtk_widget_is_drawable((GtkWidget*)option_menu)) {
         gtk_widget_queue_draw ((GtkWidget*)option_menu);
       }
     }
