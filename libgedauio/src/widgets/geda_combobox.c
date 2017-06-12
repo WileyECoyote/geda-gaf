@@ -4058,7 +4058,8 @@ geda_combo_box_update_sensitivity (GedaComboBox *combo_box)
         gtk_tree_model_get_iter_first (combo_box->priv->model, &iter);
         break;
       default:
-        g_assert_not_reached ();
+        fprintf(stderr, "%s: unhandled case <%d>\n",__func__,
+                combo_box->priv->button_sensitivity);
         break;
     }
 

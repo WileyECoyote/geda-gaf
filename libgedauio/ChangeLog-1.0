@@ -1,3 +1,8 @@
+2017-06-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_combobox.c: Replace g_assert_not_reached with fprintf
+      in geda_combo_box_update_sensitivity.
+
 2017-06-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_option_menu.c: Add ancillary pointer to child in
