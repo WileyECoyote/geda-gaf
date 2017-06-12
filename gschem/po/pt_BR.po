@@ -3067,50 +3067,42 @@ msgstr ""
 msgid "Snap"
 msgstr "Ajuste ligado"
 
+# Snap objects to the current grid
 #: gschem/src/x/x_menus.c:127
-#, fuzzy
 msgid "Snap objects to the current grid"
-msgstr "Página Atual"
+msgstr "Snap objetos na grade atual"
 
 #: gschem/src/x/x_menus.c:133
-#, fuzzy
 msgid "Hierarchy"
 msgstr "Hierarquia"
 
 #: gschem/src/x/x_menus.c:133
-#, fuzzy
 msgid "Edit operations"
-msgstr "Editar Propriedades do Texto"
+msgstr "Editar operações"
 
 #: gschem/src/x/x_menus.c:134 gschem/scheme/gschem/builtins.scm:329
-#, fuzzy
 msgid "Down Schematic"
 msgstr "Descer ao Esquemático"
 
 #: gschem/src/x/x_menus.c:134 gschem/etc/system-gschemrc.scm:2244
-#, fuzzy
 msgid "Descend down in the schematic hierarchy"
-msgstr "Desce à hierarquia"
+msgstr "Desce à Esquemático hierarquia"
 
 #: gschem/src/x/x_menus.c:135 gschem/scheme/gschem/builtins.scm:332
-#, fuzzy
 msgid "Down Symbol"
 msgstr "Descer ao Símbolo"
 
 #: gschem/src/x/x_menus.c:135 gschem/etc/system-gschemrc.scm:2245
-#, fuzzy
 msgid "Descend down in the symbol hierarchy"
-msgstr "Desce à hierarquia"
+msgstr "Desce à símbolo hierarquia"
 
 #: gschem/src/x/x_menus.c:136
-#, fuzzy
 msgid "Up"
 msgstr "Subir"
 
 #: gschem/src/x/x_menus.c:136 gschem/etc/system-gschemrc.scm:2246
-#, fuzzy
 msgid "ascend up in the schematic hierarchy"
-msgstr "Desce à hierarquia"
+msgstr "Subir na hierarquia esquemática"
 
 #: gschem/src/x/x_menus.c:141
 #, fuzzy
