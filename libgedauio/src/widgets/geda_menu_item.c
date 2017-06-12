@@ -662,7 +662,7 @@ geda_menu_item_class_init (void *class, void *class_data)
    */
   menu_item_signals[ACTIVATE] =
     g_signal_new ("activate",
-                  G_OBJECT_CLASS_TYPE (gobject_class),
+                  GEDA_TYPE_MENU_ITEM,
                   G_SIGNAL_RUN_FIRST | G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (GedaMenuItemClass, activate),
                   NULL, NULL,

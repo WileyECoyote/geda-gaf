@@ -7,6 +7,10 @@
       Revise geda_label_set_mnemonic_widget; use local pointer to widget and
       eliminate redundent check for NULL widget pointer.
 
+    * src/widgets/geda_menu_item.c: Explicitly specify GEDA_TYPE_MENU_ITEM
+      to g_signal_new in geda_menu_item_class_init and eliminate unneeded
+      G_OBJECT_CLASS_TYPE macro.
+
 2017-06-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_option_menu.c: Add ancillary pointer to child in
