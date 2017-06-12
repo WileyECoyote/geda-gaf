@@ -6360,10 +6360,6 @@ geda_label_set_mnemonic_widget (GedaLabel *label, GtkWidget *widget)
 
   priv = label->priv;
 
-  if (widget) {
-    g_return_if_fail (GTK_IS_WIDGET (widget));
-  }
-
   if (priv->mnemonic_widget) {
 
     gtk_widget_remove_mnemonic_label(priv->mnemonic_widget, (GtkWidget*)label);
@@ -6372,15 +6368,18 @@ geda_label_set_mnemonic_widget (GedaLabel *label, GtkWidget *widget)
                          label);
   }
 
-  priv->mnemonic_widget = widget;
+  if (widget) {
 
-  if (priv->mnemonic_widget) {
+    g_return_if_fail (GTK_IS_WIDGET (widget));
 
-    g_object_weak_ref ((GObject*)priv->mnemonic_widget,
+    g_object_weak_ref ((GObject*)widget,
                        label_mnemonic_widget_weak_notify,
                        label);
-    gtk_widget_add_mnemonic_label (priv->mnemonic_widget, (GtkWidget*)label);
+
+    gtk_widget_add_mnemonic_label (widget, (GtkWidget*)label);
   }
+
+  priv->mnemonic_widget = widget;
 
   g_object_notify ((GObject*)label, "mnemonic-widget");
 }

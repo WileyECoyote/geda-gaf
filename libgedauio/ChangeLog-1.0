@@ -4,6 +4,8 @@
       in geda_combo_box_update_sensitivity.
 
     * src/widgets/geda_label.c: Remove else clause in geda_label_instance_init.
+      Revise geda_label_set_mnemonic_widget; use local pointer to widget and
+      eliminate redundent check for NULL widget pointer.
 
 2017-06-10 Wiley E. Hill <wileyhill@gmail.com>
 
