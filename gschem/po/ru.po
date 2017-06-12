@@ -39,17 +39,16 @@ msgstr ""
 msgid "Assuming symbol file suffix for"
 msgstr ""
 
+# An error was encountered loading requested session
 #: gschem/src/base/gschem.c:240
-#, fuzzy
 msgid "An error was encountered loading requested session"
-msgstr "ОШИБКА: неизвестная ошибка при анализе файлов настроек."
+msgstr "ОПроизошла ошибка при загрузке запрошенной сессии"
 
 #: gschem/src/base/gschem.c:265
 msgid "Auto Load"
 msgstr ""
 
 #: gschem/src/base/gschem.c:313
-#, fuzzy
 msgid ""
 "The GEDADATA environment variable must be set!\n"
 "\n"
@@ -61,25 +60,23 @@ msgstr ""
 "gschem не может найти свои файлы данных. Необходимо задать\n"
 "их местоположение в переменной окружения GEDADATA.\n"
 
+# Unable to locate scheme initialization file
 #: gschem/src/base/gschem.c:347
-#, fuzzy
 msgid "Unable to locate scheme initialization file"
-msgstr "Чтение scm-файла инициализации"
+msgstr "Не удалось найти файл инициализации схемы"
 
 #: gschem/src/base/gschem.c:354
-#, fuzzy
 msgid "Read scheme initialization file"
 msgstr "Чтение scm-файла инициализации"
 
 #: gschem/src/base/gschem.c:357
-#, fuzzy
 msgid "Failed to read scheme initialization file"
-msgstr "Чтение scm-файла инициализации"
+msgstr "Не удалось прочитать файл инициализации схемы"
 
+# version
 #: gschem/src/base/gschem.c:381
-#, fuzzy
 msgid "version"
-msgstr "Сохранить как"
+msgstr "версия"
 
 #: gschem/src/base/gschem.c:386
 msgid "Logging system is disabled\n"
@@ -100,9 +97,8 @@ msgid "FAILED:"
 msgstr ""
 
 #: gschem/src/base/gschem_dialog.c:566
-#, fuzzy
 msgid "Parent Window"
-msgstr "Новое окно"
+msgstr "Родительское окно"
 
 #: gschem/src/base/gschem_dialog.c:567
 msgid "Parent window for this dialog"
@@ -154,9 +150,8 @@ msgstr ""
 
 #: gschem/src/base/gschem_page_view.c:258
 #: gschem/src/base/gschem_page_view.c:259
-#, fuzzy
 msgid "Page"
-msgstr "Ст_раница"
+msgstr "Страница"
 
 #: gschem/src/base/gschem_page_view.c:265
 #: gschem/src/base/gschem_page_view.c:266
@@ -228,7 +223,7 @@ msgstr ""
 "Домашняя страница gEDA/gaf: <http://www.geda-project.org/>\n"
 
 #: gschem/src/base/gschem_parsecmd.c:128
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "gEDA/gschem %s (%s) (g%.7s)\n"
 "Copyright (C) 1998-2017 gEDA developers\n"
@@ -274,9 +269,8 @@ msgid "--help for more information"
 msgstr "--help Для получения более подробной информации"
 
 #: gschem/src/base/gschem_parsecmd.c:304
-#, fuzzy
 msgid "Run"
-msgstr "Закруглённые"
+msgstr "Запустить"
 
 #: gschem/src/base/gschem_preview.c:298
 msgid "Preview Buffer"
