@@ -2874,10 +2874,10 @@ msgstr "矩形"
 msgid "Zoom to a Windowed region"
 msgstr ""
 
+# Extents
 #: gschem/src/x/x_menus.c:104 gschem/src/x/x_menus.c:155
-#, fuzzy
 msgid "Extents"
-msgstr "放大檢視"
+msgstr "最大化"
 
 #: gschem/src/x/x_menus.c:104 gschem/src/x/x_menus.c:155
 #: gschem/etc/system-gschemrc.scm:2202
@@ -2888,33 +2888,33 @@ msgstr ""
 msgid "Mag"
 msgstr ""
 
+# Zoom to a specified level
 #: gschem/src/x/x_menus.c:105 gschem/etc/system-gschemrc.scm:2205
-#, fuzzy
 msgid "Zoom to a specified level"
-msgstr "選擇物件"
+msgstr "縮放至指定級別"
 
+# Zoom to selected objects
 #: gschem/src/x/x_menus.c:106 gschem/etc/system-gschemrc.scm:2206
-#, fuzzy
 msgid "Zoom to selected objects"
-msgstr "選擇物件"
+msgstr "縮放到所選對象"
 
 #: gschem/src/x/x_menus.c:110
 msgid "Edit"
 msgstr "編輯"
 
+# Edit modes
 #: gschem/src/x/x_menus.c:110
-#, fuzzy
 msgid "Edit modes"
-msgstr "編輯文字"
+msgstr "編輯模式"
 
 #: gschem/src/x/x_menus.c:111
 msgid "Object..."
 msgstr ""
 
-# Edit the properties
+# Edit Object Attributes => Edit object properties
 #: gschem/src/x/x_menus.c:111 gschem/etc/system-gschemrc.scm:2125
 msgid "Edit Object Attributes"
-msgstr "編輯屬性"
+msgstr "編輯對象屬性"
 
 # Change color
 #: gschem/src/x/x_menus.c:112
@@ -2929,10 +2929,10 @@ msgstr ""
 msgid "Open the Component Editor Dialog"
 msgstr ""
 
-# Edit the pin type
+# Pin type
 #: gschem/src/x/x_menus.c:114
 msgid "Pin type..."
-msgstr "編輯文字..."
+msgstr "引腳類型..."
 
 #: gschem/src/x/x_menus.c:114 gschem/etc/system-gschemrc.scm:2128
 msgid "Open the Pin Type Dialog"
@@ -2954,10 +2954,10 @@ msgstr ""
 msgid "Break an object into separate objects"
 msgstr ""
 
+# Extend
 #: gschem/src/x/x_menus.c:120
-#, fuzzy
 msgid "Extend"
-msgstr "放大檢視"
+msgstr "延伸"
 
 #: gschem/src/x/x_menus.c:120 gschem/etc/system-gschemrc.scm:2122
 msgid "Project linear objects to other objects"
@@ -3496,10 +3496,10 @@ msgstr ""
 msgid "Extents no margins"
 msgstr ""
 
+# Current Window
 #: gschem/src/x/x_print.c:184
-#, fuzzy
 msgid "Current Window"
-msgstr "開新視窗"
+msgstr "當前窗口"
 
 #: gschem/src/x/x_print.c:217
 msgid "Landscape"
@@ -3559,10 +3559,10 @@ msgstr ""
 msgid "The log may contain more information."
 msgstr ""
 
+# Print Error
 #: gschem/src/x/x_print.c:794 gschem/src/x/x_print.c:1228
-#, fuzzy
 msgid "Print Error"
-msgstr "列印"
+msgstr "打印錯誤"
 
 #: gschem/src/x/x_print.c:799
 msgid "Printed current schematic to"
@@ -3598,19 +3598,19 @@ msgstr ""
 msgid "Specify new name for Session:"
 msgstr ""
 
+# Select export file
 #: gschem/src/x/x_sessions.c:230
-#, fuzzy
 msgid "Select export file"
-msgstr "請先選擇物件"
+msgstr "選擇導出文件"
 
 #: gschem/src/x/x_sessions.c:234
 msgid "exported to"
 msgstr ""
 
+# Load the selected session
 #: gschem/src/x/x_sessions.c:416
-#, fuzzy
 msgid "Load the selected session"
-msgstr "選擇物件"
+msgstr "加載所選會話"
 
 #: gschem/src/x/x_sessions.c:417
 msgid ""
@@ -3629,9 +3629,10 @@ msgstr ""
 msgid "Auto update"
 msgstr ""
 
+# Session Name
 #: gschem/src/x/x_sessions.c:537
 msgid "Session Name"
-msgstr ""
+msgstr "會話名稱"
 
 #: gschem/src/x/x_sessions.c:552
 msgid "File Count"
@@ -3657,6 +3658,7 @@ msgstr ""
 msgid "_Rename"
 msgstr ""
 
+# Delete
 #: gschem/src/x/x_sessions.c:649 gschem/etc/system-gschemrc.scm:2108
 msgid "_Delete"
 msgstr "刪除"
@@ -3673,10 +3675,10 @@ msgstr ""
 msgid "New Session"
 msgstr ""
 
+# Save Session As
 #: gschem/src/x/x_sessions.c:856 gschem/scheme/gschem/builtins.scm:389
-#, fuzzy
 msgid "Save Session As"
-msgstr "儲存全部"
+msgstr "保存會話為"
 
 #: gschem/src/x/x_settings.c:359
 msgid "error opening"
