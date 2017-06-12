@@ -163,16 +163,18 @@ activatable_update_gicon (GedaImageMenuItem *image_menu_item, GtkAction *action)
 static void
 activatable_update_icon_name (GedaImageMenuItem *image_menu_item, GtkAction *action)
 {
-  GtkWidget  *image;
-  const char *icon_name = gtk_action_get_icon_name (action);
+  GtkImage    *image;
+  const char  *icon_name;
+  GtkImageType type;
 
-  image = geda_image_menu_item_get_image (image_menu_item);
+  icon_name = gtk_action_get_icon_name (action);
+  image     = (GtkImage*)geda_image_menu_item_get_image (image_menu_item);
+  type      = gtk_image_get_storage_type (image);
 
   if (GTK_IS_IMAGE (image) &&
-     (gtk_image_get_storage_type ((GtkImage*)image) == GTK_IMAGE_EMPTY ||
-      gtk_image_get_storage_type ((GtkImage*)image) == GTK_IMAGE_ICON_NAME))
+     (type == GTK_IMAGE_EMPTY || type == GTK_IMAGE_ICON_NAME))
   {
-    gtk_image_set_from_icon_name ((GtkImage*)image, icon_name, GTK_ICON_SIZE_MENU);
+    gtk_image_set_from_icon_name (image, icon_name, GTK_ICON_SIZE_MENU);
   }
 }
 

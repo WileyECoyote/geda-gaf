@@ -1,5 +1,8 @@
 2017-06-12 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_image_menu_item.c: Add ancillary pointer to image widget
+      in activatable_update_icon_name.
+
     * src/widgets/geda_menu.c: Reduce scope of menu_shell in geda_menu_leave_notify.
 
 2017-06-11 Wiley E. Hill <wileyhill@gmail.com>
