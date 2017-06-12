@@ -166,7 +166,9 @@ int geda_image_chooser_get_filter (GtkWidget *widget)
 void geda_image_chooser_set_filter (GtkWidget *widget, int index)
 {
   if (GEDA_IS_IMAGE_CHOOSER(widget)) {
+
     GedaImageChooser *chooser = (GedaImageChooser*)widget;
+
     if(chooser->handler) {
       g_signal_handler_block(chooser->filter_button, chooser->handler);
       gtk_combo_box_set_active(GTK_COMBO_BOX(chooser->filter_button), index);
