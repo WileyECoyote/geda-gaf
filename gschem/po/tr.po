@@ -2135,19 +2135,19 @@ msgstr ""
 msgid "Visible"
 msgstr ""
 
+# Attribute Name List
 #: gschem/src/x/x_edit_attrib.c:526
-#, fuzzy
 msgid "Attribute Name List"
-msgstr "Öznitelikler"
+msgstr "Öznitelik Adı Listesi"
 
 #: gschem/src/x/x_edit_attrib.c:530
 msgid "Attribute Value Entry"
 msgstr ""
 
+# Color Edit
 #: gschem/src/x/x_edit_color.c:155
-#, fuzzy
 msgid "Color Edit"
-msgstr "Renk"
+msgstr "Renk Düzenle"
 
 #: gschem/src/x/x_edit_color.c:176
 msgid "Object color:"
@@ -2162,10 +2162,10 @@ msgstr "Seçili nesneler için bir renk seçin."
 msgid "Symbol renamed, cannot be undone\n"
 msgstr ""
 
+# Edit Component Properties
 #: gschem/src/x/x_edit_cprop.c:1154
-#, fuzzy
 msgid "Edit Component Properties"
-msgstr "Metni Düzenle"
+msgstr "Bileşen Özelliklerini Düzenle"
 
 #: gschem/src/x/x_edit_cprop.c:1169
 msgid "_Symbol:"
@@ -2331,11 +2331,10 @@ msgstr "Baharat tipi girişi"
 msgid "Entry for model file name"
 msgstr "Model dosyası adı girişi"
 
-# End Type
+# Type
 #: gschem/src/x/x_edit_pin.c:71
-#, fuzzy
 msgid "_Type:"
-msgstr "Bitiş Türü:"
+msgstr "_Türü:"
 
 #: gschem/src/x/x_edit_pin.c:71
 msgid "Select the pin type"
@@ -2346,9 +2345,8 @@ msgid "_Attributes:"
 msgstr "Öznitelikler:"
 
 #: gschem/src/x/x_edit_pin.c:72
-#, fuzzy
 msgid "Set the pin attributes"
-msgstr "Öznitelikler"
+msgstr "Pin özniteliklerini ayarla"
 
 # Number
 #: gschem/src/x/x_edit_pin.c:73
@@ -2378,27 +2376,24 @@ msgstr "Etiketi:"
 msgid "Enter pin name or description"
 msgstr ""
 
-# End Type
+# Type
 #: gschem/src/x/x_edit_pin.c:77
-#, fuzzy
 msgid "      Type:"
-msgstr "Bitiş Türü:"
+msgstr "      Türü:"
 
-# Attach selected attributes to symbol
+# Enable to set all selected attributes to the prescribed type
 #: gschem/src/x/x_edit_pin.c:77
-#, fuzzy
 msgid "Enable to set all selected attributes to the prescribed type"
-msgstr "Seçilen nitelikleri sembole ekle"
+msgstr "Seçilen tüm nitelikleri öngörülen türe ayarlamak için etkinleştirin"
 
 #: gschem/src/x/x_edit_pin.c:78
 msgid "Attributes:"
 msgstr "Öznitelikler:"
 
-# Attach selected attributes to symbol
+# Enable to set all selected attributes to the prescribed value
 #: gschem/src/x/x_edit_pin.c:78
-#, fuzzy
 msgid "Enable to set all selected attributes to the prescribed value"
-msgstr "Seçilen nitelikleri sembole ekle"
+msgstr "Seçilen tüm öznitelikleri öngörülen değere ayarlamak için etkinleştirin"
 
 # Number
 #: gschem/src/x/x_edit_pin.c:80
@@ -2542,41 +2537,37 @@ msgstr "Slot numarası:"
 msgid "Text Content"
 msgstr ""
 
-# Component foot print input
+# Enter or edit the text string
 #: gschem/src/x/x_edit_text.c:64
-#, fuzzy
 msgid "Enter or edit the text string"
-msgstr "Bileşen ayak baskısı girişi"
+msgstr "Metin dizesini girin veya düzenleyin"
 
 #: gschem/src/x/x_edit_text.c:65
 msgid "A_lignment:"
 msgstr ""
 
-# Text Alignment Attribute
+# Select the text alignment attribute
 #: gschem/src/x/x_edit_text.c:65
-#, fuzzy
 msgid "Select the text alignment attribute"
-msgstr "Metin Hizalama Öznitelik"
+msgstr "Metin hizalama özniteliğini seçin"
 
 #: gschem/src/x/x_edit_text.c:66
 msgid "_Color:"
-msgstr "Renk:"
+msgstr "_Renk:"
 
-# Hide selected attribute
+# Select color attribute
 #: gschem/src/x/x_edit_text.c:66
-#, fuzzy
 msgid "Select color attribute"
-msgstr "Seçili özniteyi gizle"
+msgstr "Renk özniteliğini seçin"
 
 #: gschem/src/x/x_edit_text.c:67
 msgid "_Size:"
 msgstr ""
 
-# Open the Session Manager dialog
+# Open font selection dialog
 #: gschem/src/x/x_edit_text.c:67
-#, fuzzy
 msgid "Open font selection dialog"
-msgstr "Oturum Yöneticisi iletişim kutusunu açın"
+msgstr "Yazı tipi seçim iletişim kutusunu aç"
 
 #: gschem/src/x/x_edit_text.c:68
 msgid "_Rotation:"
