@@ -2343,11 +2343,10 @@ msgstr ""
 msgid "_Attributes:"
 msgstr "属性:"
 
-# Search hidden attributes
+# Set the pin attributes
 #: gschem/src/x/x_edit_pin.c:72
-#, fuzzy
 msgid "Set the pin attributes"
-msgstr "搜索隐藏的属性"
+msgstr "设置引脚属性"
 
 #: gschem/src/x/x_edit_pin.c:73
 msgid "_Number:"
@@ -2378,21 +2377,19 @@ msgstr ""
 msgid "      Type:"
 msgstr "      类型:"
 
-# Attach selected attributes to symbol
+# Enable to set all selected attributes to the prescribed type
 #: gschem/src/x/x_edit_pin.c:77
-#, fuzzy
 msgid "Enable to set all selected attributes to the prescribed type"
-msgstr "将所选属性附加到符号"
+msgstr "启用将所有选定的属性设置为规定类型"
 
 #: gschem/src/x/x_edit_pin.c:78
 msgid "Attributes:"
 msgstr "属性:"
 
-# Attach selected attributes to symbol
+# Enable to set all selected attributes to the prescribed value
 #: gschem/src/x/x_edit_pin.c:78
-#, fuzzy
 msgid "Enable to set all selected attributes to the prescribed value"
-msgstr "将所选属性附加到符号"
+msgstr "启用将所有选定的属性设置为规定值"
 
 #: gschem/src/x/x_edit_pin.c:80
 msgid "Number:"
@@ -2534,37 +2531,33 @@ msgstr ""
 msgid "A_lignment:"
 msgstr "对准:"
 
-# Search hidden attributes
+# Select the text alignment attribute
 #: gschem/src/x/x_edit_text.c:65
-#, fuzzy
 msgid "Select the text alignment attribute"
-msgstr "搜索隐藏的属性"
+msgstr "选择文本对齐属性"
 
 #: gschem/src/x/x_edit_text.c:66
 msgid "_Color:"
 msgstr "颜色:"
 
-# Hide selected attribute
+# Select color attribute
 #: gschem/src/x/x_edit_text.c:66
-#, fuzzy
 msgid "Select color attribute"
-msgstr "隐藏所选属性"
+msgstr "选择颜色属性"
 
 #: gschem/src/x/x_edit_text.c:67
 msgid "_Size:"
 msgstr ""
 
-# Open the Session Manager dialog
+# Open font selection dialog
 #: gschem/src/x/x_edit_text.c:67
-#, fuzzy
 msgid "Open font selection dialog"
-msgstr "打开会话管理器对话框"
+msgstr "打开字体选择对话框"
 
-# Documentation
+# Rotation
 #: gschem/src/x/x_edit_text.c:68
-#, fuzzy
 msgid "_Rotation:"
-msgstr "文档:"
+msgstr "回转:"
 
 #: gschem/src/x/x_edit_text.c:68
 msgid "Set the text rotation angle"
