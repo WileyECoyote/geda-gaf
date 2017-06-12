@@ -3105,7 +3105,6 @@ msgid "ascend up in the schematic hierarchy"
 msgstr "Subir na hierarquia esquemática"
 
 #: gschem/src/x/x_menus.c:141
-#, fuzzy
 msgid "Cut to Clipboard"
 msgstr "Cortar à área de transferência"
 
@@ -3114,7 +3113,6 @@ msgid "Cut the current selection to the system clipboard"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:142
-#, fuzzy
 msgid "Copy to Clipboard"
 msgstr "Copiar à área de transferência"
 
@@ -3123,7 +3121,6 @@ msgid "Copy the current selection to the system clipboard"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:143
-#, fuzzy
 msgid "Paste Clipboard"
 msgstr "Colar da área de transferência"
 
@@ -3136,24 +3133,24 @@ msgstr ""
 msgid "Close"
 msgstr "Fechar"
 
+# Close the current path => Close the current polygon
 #: gschem/src/x/x_menus.c:149
-#, fuzzy
 msgid "Close the current path"
-msgstr "Página Atual"
+msgstr "Feche o polígono atual"
 
 #: gschem/src/x/x_menus.c:150
 msgid "Done"
 msgstr ""
 
+# Terminate the current path => Terminate the current polygon
 #: gschem/src/x/x_menus.c:150
-#, fuzzy
 msgid "Terminate the current path"
-msgstr "Página Atual"
+msgstr "Terminar o atual polígono"
 
+# End
 #: gschem/src/x/x_menus.c:151
-#, fuzzy
 msgid "End"
-msgstr "/Zoom desenho"
+msgstr "Fim"
 
 #: gschem/src/x/x_menus.c:151
 msgid "End this path and exit path mode"
@@ -3163,16 +3160,15 @@ msgstr ""
 msgid "Continue"
 msgstr ""
 
+# Resume input of the current path => polygon
 #: gschem/src/x/x_menus.c:157
-#, fuzzy
 msgid "Resume input of the current path"
-msgstr "Página Atual"
+msgstr "Retomar a entrada do polígono atual"
 
 #: gschem/src/x/x_menus.c:158 gschem/src/x/x_settings_dialog.c:1259
 #: gschem/scheme/gschem/builtins.scm:44
-#, fuzzy
 msgid "Cancel"
-msgstr "Pan/Cancelar"
+msgstr "Cancelar"
 
 #: gschem/src/x/x_menus.c:158
 msgid "Cancel path mode"
@@ -3190,14 +3186,15 @@ msgstr ""
 msgid "Quit gschem and exit"
 msgstr ""
 
+# redraw the current window
 #: gschem/src/x/x_menus.c:485
 msgid "redraw the current window"
-msgstr ""
+msgstr "Redesenhar a janela atual"
 
+# Error reading menu item
 #: gschem/src/x/x_menus.c:524
-#, fuzzy
 msgid "Error reading menu item"
-msgstr "Erro imprimindo arquivo"
+msgstr "Erro ao ler o item do menu"
 
 #: gschem/src/x/x_menus.c:525
 msgid "Bad string"
