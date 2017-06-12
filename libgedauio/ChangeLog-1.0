@@ -3,6 +3,8 @@
     * src/widgets/geda_combobox.c: Replace g_assert_not_reached with fprintf
       in geda_combo_box_update_sensitivity.
 
+    * src/widgets/geda_label.c: Remove else clause in geda_label_instance_init.
+
 2017-06-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_option_menu.c: Add ancillary pointer to child in
