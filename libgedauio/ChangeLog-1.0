@@ -1,3 +1,7 @@
+2017-06-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu.c: Reduce scope of menu_shell in geda_menu_leave_notify.
+
 2017-06-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Replace g_assert_not_reached with fprintf

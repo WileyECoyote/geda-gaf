@@ -1493,7 +1493,6 @@ geda_menu_key_press (GtkWidget *widget, GdkEventKey *event)
 static bool
 geda_menu_leave_notify (GtkWidget *widget, GdkEventCrossing *event)
 {
-  GedaMenuShell *menu_shell;
   GedaMenu      *menu;
   GtkWidget     *event_widget;
 
@@ -1504,7 +1503,6 @@ geda_menu_leave_notify (GtkWidget *widget, GdkEventCrossing *event)
   }
 
   menu       = GEDA_MENU (widget);
-  menu_shell = GEDA_MENU_SHELL (widget);
 
   if (geda_menu_navigating_submenu (menu, event->x_root, event->y_root)) {
     return TRUE;
@@ -1517,6 +1515,7 @@ geda_menu_leave_notify (GtkWidget *widget, GdkEventCrossing *event)
   if (GEDA_IS_MENU_ITEM (event_widget)) {
 
     GedaMenuItem  *menu_item  = (GedaMenuItem*)event_widget;
+    GedaMenuShell *menu_shell = (GedaMenuShell*)widget;
 
     /* Check to see if we're leaving an active menu item with a submenu,
      * in which case we enter submenu navigation mode.
