@@ -284,19 +284,19 @@ msgstr "Имя файла"
 msgid "name of file to be previewed"
 msgstr ""
 
+# Object List
 #: gschem/src/base/gschem_preview.c:548
-#, fuzzy
 msgid "Object List"
-msgstr "Выделение"
+msgstr "Список объектов"
 
 #: gschem/src/base/gschem_preview.c:549
 msgid "List of objects to be previewed"
 msgstr ""
 
+# Active
 #: gschem/src/base/gschem_preview.c:556
-#, fuzzy
 msgid "Active"
-msgstr "Действие"
+msgstr "активный"
 
 #: gschem/src/base/gschem_preview.c:557
 msgid "Whether the preview widget is enabled or disabled"
@@ -346,28 +346,28 @@ msgstr "высота"
 msgid "Sets the height of the status bar"
 msgstr ""
 
+# Left Button Text
 #: gschem/src/base/gschem_status_bar.c:627
-#, fuzzy
 msgid "Left Button Text"
-msgstr "Слева направо"
+msgstr "Текст левой кнопки"
 
 #: gschem/src/base/gschem_status_bar.c:628
 msgid "Set the string for the Left Button Text"
 msgstr ""
 
+# Middle Button Text
 #: gschem/src/base/gschem_status_bar.c:634
-#, fuzzy
 msgid "Middle Button Text"
-msgstr "слева по центру"
+msgstr "Средний текст кнопки"
 
 #: gschem/src/base/gschem_status_bar.c:635
 msgid "Set the string for the Middle Button Text"
 msgstr ""
 
+# Right Button Text
 #: gschem/src/base/gschem_status_bar.c:641
-#, fuzzy
 msgid "Right Button Text"
-msgstr "Справа налево"
+msgstr "Текст правой кнопки"
 
 #: gschem/src/base/gschem_status_bar.c:642
 msgid "Set the string for the Right Button Text"
@@ -391,20 +391,20 @@ msgstr "Шаг"
 msgid "Sets the Size Mode to display on the status bar"
 msgstr ""
 
+# Status Text
 #: gschem/src/base/gschem_status_bar.c:668
-#, fuzzy
 msgid "Status Text"
-msgstr "Журнал"
+msgstr "Текст состояния"
 
 #: gschem/src/base/gschem_status_bar.c:669
 msgid "Set the string for the text on the Status Bar"
 msgstr ""
 
+# Status State
 #: gschem/src/base/gschem_status_bar.c:675
 #: gschem/src/base/gschem_status_bar.c:676
-#, fuzzy
 msgid "Status State"
-msgstr "Журнал"
+msgstr "Состояние состояния"
 
 #: gschem/src/base/gschem_status_bar.c:689
 msgid "Status Bar Height"
@@ -482,10 +482,10 @@ msgstr ""
 msgid "entry in rc file"
 msgstr ""
 
+# Bad Value
 #: gschem/src/guile/g_rc.c:123
-#, fuzzy
 msgid "Bad Value"
-msgstr "Значение"
+msgstr "Плохое значение"
 
 #: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2037
 msgid "check"
@@ -649,10 +649,10 @@ msgstr "Все файлы сохранены"
 msgid "Error encountered, Save Failed"
 msgstr ""
 
+# Write Image
 #: gschem/src/iface/i_command.c:1093 gschem/src/x/x_image.c:489
-#, fuzzy
 msgid "Write Image"
-msgstr "Введите имя файла для изображения"
+msgstr "Написат изображени"
 
 #: gschem/src/iface/i_command.c:1115
 msgid "Write PDF"
@@ -706,10 +706,10 @@ msgstr ""
 msgid "error"
 msgstr "ошибка"
 
+# No component selected
 #: gschem/src/iface/i_command.c:2307
-#, fuzzy
 msgid "No component selected\n"
-msgstr "Выбрана сетка из точек\n"
+msgstr "Не выбран компонент\n"
 
 #: gschem/src/iface/i_command.c:2852
 msgid "Confirm revert ALL documents"
