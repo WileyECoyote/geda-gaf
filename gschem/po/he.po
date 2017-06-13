@@ -5249,15 +5249,15 @@ msgstr ""
 msgid "Add Bus"
 msgstr ""
 
+# Add Text
 #: gschem/scheme/gschem/builtins.scm:353
-#, fuzzy
 msgid "Add Text"
-msgstr "ערוך טקסט"
+msgstr "הוסף טקסט"
 
+# Add Line
 #: gschem/scheme/gschem/builtins.scm:356
-#, fuzzy
 msgid "Add Line"
-msgstr "קו"
+msgstr "הוסף שורה"
 
 #: gschem/scheme/gschem/builtins.scm:359
 msgid "Add Pin"
@@ -5267,10 +5267,10 @@ msgstr ""
 msgid "Add Box"
 msgstr ""
 
+# Add Circle
 #: gschem/scheme/gschem/builtins.scm:365
-#, fuzzy
 msgid "Add Circle"
-msgstr "מעגל"
+msgstr "הוסף מעגל"
 
 #: gschem/scheme/gschem/builtins.scm:368
 msgid "Add Arc"
@@ -5280,40 +5280,40 @@ msgstr ""
 msgid "Add Picture"
 msgstr ""
 
+# Create New Session
 #: gschem/scheme/gschem/builtins.scm:380
-#, fuzzy
 msgid "Create New Session"
-msgstr "שמור הכל"
+msgstr "צור מושב חדש"
 
+# Open a Session
 #: gschem/scheme/gschem/builtins.scm:383
-#, fuzzy
 msgid "Open a Session"
-msgstr "שמור הכל"
+msgstr "פתח מושב"
 
+# Save Session
 #: gschem/scheme/gschem/builtins.scm:386
-#, fuzzy
 msgid "Save Session"
-msgstr "שמור הכל"
+msgstr "שמור את הפעילות באתר"
 
+# Attach Attributes
 #: gschem/scheme/gschem/builtins.scm:398
-#, fuzzy
 msgid "Attach Attributes"
-msgstr "מאפיינים"
+msgstr "צירוף תכונות"
 
+# Detach Attributes => Disconnect features
 #: gschem/scheme/gschem/builtins.scm:401
-#, fuzzy
 msgid "Detach Attributes"
-msgstr "מאפיינים"
+msgstr "ניתוק תכונות"
 
+# Reset Attribute Positions
 #: gschem/scheme/gschem/builtins.scm:404
-#, fuzzy
 msgid "Reset Attribute Positions"
-msgstr "מאפיינים"
+msgstr "אפס מיקומי תכונות"
 
+# Show Attribute Value
 #: gschem/scheme/gschem/builtins.scm:407
-#, fuzzy
 msgid "Show Attribute Value"
-msgstr "מאפיינים"
+msgstr "הצג ערך תכונה"
 
 #: gschem/scheme/gschem/builtins.scm:410
 #, fuzzy
