@@ -195,9 +195,10 @@ clear_font_filter_data (GedaFontButton *font_button)
   priv->font_filter_data_destroy = NULL;
 }
 */
-/*! \brief Font Button Label Use Font
- *  \par Function Description
- *   This function sets the font used by the embeded label widget.
+/*!
+ * \brief Font Button Label Use Font
+ * \par Function Description
+ *  This function sets the font used by the embeded label widget.
  *  If use_font is TRUE then the label on the botton will be the
  *  drawn using the selected font, otherwise the default font will
  *  be used. If the selected font "style" is used then the size
@@ -205,7 +206,6 @@ clear_font_filter_data (GedaFontButton *font_button)
  *  false, the use_size is not used.
  *
  * \param font_button Pointer to a #GedaFontButton object
- *
  */
 static void
 geda_font_button_label_set_font (GedaFontButton *font_button)
@@ -240,13 +240,13 @@ geda_font_button_label_set_font (GedaFontButton *font_button)
 
 }
 
-/*! \brief Font Button Set Text on Font Button Label
- *  \par Function Description
- *   This function is used to update the font name and size label
- *   on the button. The label_text is not freed here.
+/*!
+ * \brief Font Button Set Text on Font Button Label
+ * \par Function Description
+ *  This function is used to update the font name and size label
+ *  on the button. The label_text is not freed here.
  *
  * \param font_button Pointer to a #GedaFontButton object.
- *
  */
 static void
 geda_font_button_label_set_text (GedaFontButton *font_button)
@@ -281,13 +281,13 @@ geda_font_button_label_set_text (GedaFontButton *font_button)
   }
 }
 
-/*! \brief Font Button Update Font Button Label
- *  \par Function Description
- *   This is a convenience function to update both the font and
+/*!
+ * \brief Font Button Update Font Button Label
+ * \par Function Description
+ *  This is a convenience function to update both the font and
  *  and the text on the button.
  *
  * \param font_button Pointer to a #GedaFontButton object.
- *
  */
 static void
 geda_font_button_update_label (GedaFontButton *font_button)
@@ -296,20 +296,20 @@ geda_font_button_update_label (GedaFontButton *font_button)
   geda_font_button_label_set_text (font_button);
 }
 
-/*! \brief Compare Font Descriptions
- *  \par Function Description
- *   This function compares members, see code, and returns true
+/*!
+ * \brief Compare Font Descriptions
+ * \par Function Description
+ *  This function compares members, see code, and returns true
  *  if the font descriptors are equivalent.
  *
  * \note WEH: This is 1ms faster than using the library function
- *  pango_font_description_equal(), but maybe not enough to matter,
- *  even with font WenQuanYi Micro Hei Mono 12.
+ *       pango_font_description_equal(), but maybe not enough to matter,
+ *       even with font WenQuanYi Micro Hei Mono 12.
  *
  * \param a pointer to PangoFontDescription
  * \param b pointer to PangoFontDescription
  *
  * \retval boolean TRUE if descriptors are equivalent, otherwise FALSE
- *
  */
 static bool
 font_description_style_equal (const PangoFontDescription *a,
@@ -321,13 +321,13 @@ font_description_style_equal (const PangoFontDescription *a,
           pango_font_description_get_variant (a) == pango_font_description_get_variant (b));
 
 }
-/*! \brief Font Button Update Font Data
- *  \par Function Description
- *   This function update the font, font style, font_family, font_face,
+/*!
+ * \brief Font Button Update Font Data
+ * \par Function Description
+ *  This function update the font, font style, font_family, font_face,
  *  and family members based on the current PangoFontDescription.
  *
  * \param font_button Pointer to a #GedaFontButton object.
- *
  */
 static void
 geda_font_button_update_font_data (GedaFontButton *font_button)
@@ -418,13 +418,13 @@ geda_font_button_update_font_data (GedaFontButton *font_button)
   data->size_text = geda_font_button_get_ascii_size(font_button);
 }
 
-/*! \brief Font Button Update Font Info
- *  \par Function Description
- *   This function updates the font information based on the font name.
- * If the name is null, a default font name is assigned.
+/*!
+ * \brief Font Button Update Font Info
+ * \par Function Description
+ *  This function updates the font information based on the font name.
+ *  If the name is null, a default font name is assigned.
  *
  * \param font_button Pointer to a #GedaFontButton object.
- *
  */
 static void
 geda_font_button_update_from_name (GedaFontButton *font_button)
@@ -475,17 +475,17 @@ geda_font_button_update_from_name (GedaFontButton *font_button)
 
 }
 
-/*! \brief GschemFontbuton GObject property setter function
- *
- *  \par Function Description
+/*!
+ * \brief GschemFontbuton GObject property setter function
+ * \par Function Description
  *  Setter function for GschemFontbuton GObject properties,
  *  "settings-name" and "toplevel".
  *
- *  \param [in]  object    The GObject whose properties we are setting
- *  \param [in]  property  The numeric id. under which the property was
- *                         registered with g_object_class_install_property()
- *  \param [in]  value     The GValue the property is being set from
- *  \param [in]  pspec     A GParamSpec describing the property being set
+ * \param [in]  object    The GObject whose properties we are setting
+ * \param [in]  property  The numeric id. under which the property was
+ *                        registered with g_object_class_install_property()
+ * \param [in]  value     The GValue the property is being set from
+ * \param [in]  pspec     A GParamSpec describing the property being set
  */
 static void
 geda_font_button_set_property (GObject *object, unsigned int property,
@@ -541,17 +541,17 @@ geda_font_button_set_property (GObject *object, unsigned int property,
   }
 }
 
-/*! \brief GschemFontbuton GObject property getter function
- *
- *  \par Function Description
+/*!
+ * \brief GschemFontbuton GObject property getter function
+ * \par Function Description
  *  Getter function for GschemFontbuton's GObject properties,
  *  "settings-name" and "toplevel".
  *
- *  \param [in]  object    The GObject whose properties we are getting
- *  \param [in]  property  The numeric id. under which the property was
- *                         registered with g_object_class_install_property()
- *  \param [out] value     The GValue in which to return the value of the property
- *  \param [in]  pspec     A GParamSpec describing the property being got
+ * \param [in]  object    The GObject whose properties we are getting
+ * \param [in]  property  The numeric id. under which the property was
+ *                        registered with g_object_class_install_property()
+ * \param [out] value     The GValue in which to return the value of the property
+ * \param [in]  pspec     A GParamSpec describing the property being got
  */
 static void
 geda_font_button_get_property (GObject *object, unsigned int property,
@@ -729,15 +729,15 @@ geda_font_button_finalize (GObject *object)
   G_OBJECT_CLASS (geda_font_button_parent_class)->finalize (object);
 }
 
-/*! \brief GedaFontButton Type Class Initializer
- *
- *  \par Function Description
+/*!
+ * \brief GedaFontButton Type Class Initializer
+ * \par Function Description
  *  Type class initializer called to initialize the class instance.
  *  Overrides parents virtual class methods as needed and registers
  *  GObject signals.
  *
- *  \param [in]  g_class     GedaFontButton class being initializing
- *  \param [in]  class_data  GedaFontButton structure associated with the class
+ * \param [in]  g_class     GedaFontButton class being initializing
+ * \param [in]  class_data  GedaFontButton structure associated with the class
  */
 static void
 geda_font_button_class_init(void *g_class, void *class_data)
@@ -877,14 +877,14 @@ geda_font_button_class_init(void *g_class, void *class_data)
                                                 G_TYPE_NONE, 0);
 }
 
-/*! \brief Type instance initializer for GedaFontButton
- *
- *  \par Function Description
+/*!
+ * \brief Type instance initializer for GedaFontButton
+ * \par Function Description
  *  Type instance initializer for GedaFontButton, initializes a new empty
  *  GedaFontButton object.
  *
- *  \param [in] instance The GedaFontButton structure being initialized,
- *  \param [in] g_class  The GedaFontButton class we are initializing.
+ * \param [in] instance The GedaFontButton structure being initialized,
+ * \param [in] g_class  The GedaFontButton class we are initializing.
  */
 static void geda_font_button_instance_init(GTypeInstance *instance, void *g_class)
 {
@@ -944,16 +944,16 @@ static void geda_font_button_instance_init(GTypeInstance *instance, void *g_clas
   }
 }
 
-/*! \brief Function to retrieve GedaFontButton's Type identifier.
- *
- *  \par Function Description
+/*!
+ * \brief Function to retrieve GedaFontButton's Type identifier.
+ * \par Function Description
  *  Function to retrieve a #GedaFontButton Type identifier. When
  *  first called, the function registers a #GedaFontButton in the
  *  GedaType system to obtain an identifier that uniquely itentifies
  *  a GedaFontButton and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *
- *  \return GedaType identifier associated with GedaFontButton.
+ * \return GedaType identifier associated with GedaFontButton.
  */
 GedaType geda_font_button_get_type (void)
 {
@@ -990,6 +990,7 @@ GedaType geda_font_button_get_type (void)
  * \par Function Description
  *  Ensures \a font_button is a valid G_Object and compares signature
  *  to geda font button type.
+ *
  * \return TRUE if \a font_button is a valid GedaFontButton
  */
 bool
@@ -1001,11 +1002,10 @@ is_a_geda_font_button (GedaFontButton *font_button)
   return FALSE;
 }
 
-/*! \brief Create a New GedaFontButton
- *
- *  \par Function Description
- *
- * Creates and returns a new GedaFontbutton object.
+/*!
+ * \brief Create a New GedaFontButton
+ * \par Function Description
+ *  Creates and returns a new GedaFontbutton object.
  *
  * \returns New #GedaFontButton object
  */
@@ -1015,13 +1015,12 @@ geda_font_button_new (void)
   return g_object_new (GEDA_TYPE_FONT_BUTTON, NULL);
 }
 
-/*! \brief Create a New GedaFontButton with given Font
- *
- *  \par Function Description
- *
+/*!
+ * \brief Create a New GedaFontButton with given Font
+ * \par Function Description
  * Sets the title for the font selection dialog.
  *
- * \param [in] fontname:    Name of font to display in font selection dialog
+ * \param [in] fontname  Name of font to display in font selection dialog
  *
  * \returns New #GedaFontButton object
  */
@@ -1033,14 +1032,13 @@ geda_font_button_new_with_font (const char *fontname)
 
 /************** Functions to support Properties ***************/
 
-/*! \brief GedaFontButton Set Title
- *
- *  \par Function Description
- *
+/*!
+ * \brief GedaFontButton Set Title
+ * \par Function Description
  * Sets the title for the font selection dialog.
  *
- * \param [in] font_button: Pointer to a #GedaFontButton object.
- * \param [in] title:       Pointer to string containing the font
+ * \param [in] font_button  Pointer to a #GedaFontButton object.
+ * \param [in] title        Pointer to string containing the font
  *                          selection dialog title
  */
 void
@@ -1062,15 +1060,14 @@ geda_font_button_set_title (GedaFontButton *font_button,
   g_object_notify ((GObject*)font_button, "title");
 }
 
-/*! \brief GedaFontButton Get Title
- *  \par Function Description
- *
- * Retrieves the title of the font selection dialog.
+/*!
+ * \brief GedaFontButton Get Title
+ * \par Function Description
+ *  Retrieves the title of the font selection dialog.
  *
  * \param font_button Pointer to a #GedaFontButton object.
  *
- * Returns: an internal copy of the title string which must not be freed.
- *
+ * \returns an internal copy of the title string which must not be freed
  */
 const char*
 geda_font_button_get_title (GedaFontButton *font_button)
@@ -1080,15 +1077,14 @@ geda_font_button_get_title (GedaFontButton *font_button)
   return font_button->title;
 }
 
-/*! \brief GedaFontButton Get Use Font
- *  \par Function Description
- *
- * Returns whether the selected font is used in the label.
+/*!
+ * \brief GedaFontButton Get Use Font
+ * \par Function Description
+ *  Returns whether the selected font is used in the label.
  *
  * \param font_button Pointer to a #GedaFontButton object.
  *
- * Returns: whether the selected font is used in the label.
- *
+ * \returns whether the selected font is used in the label.
  */
 bool
 geda_font_button_get_use_font (GedaFontButton *font_button)
@@ -1098,14 +1094,14 @@ geda_font_button_get_use_font (GedaFontButton *font_button)
   return font_button->priv->use_font;
 }
 
-/*! \brief GedaFontButton set Use Font
- *  \par Function Description
+/*!
+ * \brief GedaFontButton set Use Font
+ * \par Function Description
+ *  If use_font is %TRUE, the font name will be written using the
+ *  selected font.
  *
- * If use_font is %TRUE, the font name will be written using the
- * selected font.
- *
- * \param [in] font_button: Pointer to a #GedaFontButton object.
- * \param [in] use_font:    Desired setting.
+ * \param [in] font_button  Pointer to a #GedaFontButton object.
+ * \param [in] use_font     Desired setting.
  */
 void
 geda_font_button_set_use_font (GedaFontButton *font_button, bool use_font)
@@ -1126,9 +1122,9 @@ geda_font_button_set_use_font (GedaFontButton *font_button, bool use_font)
   }
 }
 
-/*! \brief geda_font_button_get_font_name
- *  \par Function Description
- *
+/*!
+ * \brief geda_font_button_get_font_name
+ * \par Function Description
  * Retrieves the name of the currently selected font. This name includes
  * style and size information as well. If you want to render something
  * with the font, use this string with pango_font_description_from_string() .
@@ -1138,8 +1134,7 @@ geda_font_button_set_use_font (GedaFontButton *font_button, bool use_font)
  *
  * \param font_button Pointer to a #GedaFontButton object.
  *
- * Returns: an internal copy of the font name which must not be freed.
- *
+ * \returns an internal copy of the font name which must not be freed.
  */
 const char *
 geda_font_button_get_font_name (GedaFontButton *font_button)
@@ -1149,8 +1144,9 @@ geda_font_button_get_font_name (GedaFontButton *font_button)
   return font_button->priv->font_name;
 }
 
-/*! \brief geda_font_button_set_font_name
- *  \par Function Description
+/*!
+ * \brief geda_font_button_set_font_name
+ * \par Function Description
  * This function is used to updates the currently-displayed font in font
  * selector dialog. The return value is the value returned from the
  * geda_font_dialog_set_font_name() if the font selection dialog
@@ -1160,7 +1156,6 @@ geda_font_button_get_font_name (GedaFontButton *font_button)
  * \param font_name   Name of font to display in font selection dialog
  *
  * \retval boolean TRUE on success, otherwise FALSE.
- *
  */
 bool
 geda_font_button_set_font_name (GedaFontButton *font_button,
@@ -1194,14 +1189,14 @@ geda_font_button_set_font_name (GedaFontButton *font_button,
   return result;
 }
 
-/*! \brief  geda_font_button_get_use_size
- *  \par Function Description
+/*!
+ * \brief  geda_font_button_get_use_size
+ * \par Function Description
  *  Returns whether the selected size is used in the label.
  *
  * \param font_button Pointer to a #GedaFontButton object.
  *
  * \retval boolean    boolean value of setting of use_size property.
- *
  */
 bool geda_font_button_get_use_size (GedaFontButton *font_button)
 {
@@ -1209,17 +1204,17 @@ bool geda_font_button_get_use_size (GedaFontButton *font_button)
   return font_button->priv->use_size;
 }
 
-/*! \brief geda_font_button_set_use_size
- *  \par Function Description
+/*!
+ * \brief geda_font_button_set_use_size
+ * \par Function Description
  *  If use_size, font name on the button label will be written using the
  *  selected size.
  *
  * \param font_button Pointer to a #GedaFontButton object.
  * \param use_size    boolean value of setting.
- *
  */
 void geda_font_button_set_use_size (GedaFontButton *font_button,
-                                      bool              use_size)
+                                    bool            use_size)
 {
   g_return_if_fail (GEDA_IS_FONT_BUTTON (font_button));
 
@@ -1235,14 +1230,14 @@ void geda_font_button_set_use_size (GedaFontButton *font_button,
   }
 }
 
-/*! \brief Font Button Get Show Size Parameter
- *  \par Function Description
+/*!
+ * \brief Font Button Get Show Size Parameter
+ * \par Function Description
  *  Returns whether the font size will be shown in the label.
  *
  * \param font_button Pointer to a #GedaFontButton object.
  *
  * \retval show_size  TRUE if the button font includes the size.
- *
  */
 bool geda_font_button_get_show_size (GedaFontButton *font_button)
 {
@@ -1251,14 +1246,14 @@ bool geda_font_button_get_show_size (GedaFontButton *font_button)
   return font_button->priv->show_size;
 }
 
-/*! \brief Font Button Set Show Size
- *  \par Function Description
+/*!
+ * \brief Font Button Set Show Size
+ * \par Function Description
  *  Set whether the font size will be displayed along with the name
  *  of the selected font on the face of the button.
  *
  * \param font_button Pointer to a #GedaFontButton object.
  * \param show_size   Boolean, if TRUE the font size should be displayed.
- *
  */
 void
 geda_font_button_set_show_size (GedaFontButton *font_button, bool show_size)
@@ -1297,8 +1292,9 @@ char *geda_font_button_get_ascii_size (GedaFontButton *font_button)
   return geda_sprintf ("%d", font_button->priv->font_size);
 }
 
-/*! \brief Font Button Get Font Size
- *  \par Function Description
+/*!
+ * \brief Font Button Get Font Size
+ * \par Function Description
  *  Returns the selected size. Note that the value returned by the
  *  GTK interface may not be usefull, our is.
  *
@@ -1314,8 +1310,9 @@ geda_font_button_get_size (GedaFontButton *font_button)
   return font_button->priv->font_size;
 }
 
-/*! \brief Font Button Set Font Size
- *  \par Function Description
+/*!
+ * \brief Font Button Set Font Size
+ * \par Function Description
  *  Programmacticaly set the size of the font selected. This is usefull
  *  when setting up the button based on a user selection or a change of
  *  selection if button is part of a modeless dialog. Note that GTK does
@@ -1324,7 +1321,6 @@ geda_font_button_get_size (GedaFontButton *font_button)
  *
  * \param [in] font_button Pointer to a GedaFontButton object.
  * \param [in] font_size   size of the selected font.
- *
  */
 void
 geda_font_button_set_size (GedaFontButton *font_button, int font_size)
@@ -1359,15 +1355,14 @@ geda_font_button_set_size (GedaFontButton *font_button, int font_size)
   }
 }
 
-/*! \brief geda_font_button_get_show_style
- *
- *  \par Function Description
- *
- * Returns whether the name of the font style will be shown in the label.
+/*!
+ * \brief geda_font_button_get_show_style
+ * \par Function Description
+ *  Returns whether the name of the font style will be shown in the label.
  *
  * \param font_button Pointer to a #GedaFontButton object
  *
- * Return value: whether the font style will be shown in the label.
+ * \returns whether the font style will be shown in the label.
  *
  */
 bool geda_font_button_get_show_style (GedaFontButton *font_button)
@@ -1507,9 +1502,10 @@ geda_font_button_set_preview_text (GedaFontButton *font_button,
   priv->preview_text = geda_strdup (preview_text);
 }
 
-/*! \brief Font Button Get Pango Font Description
- *  \par Function Description
- *   This function returns a pointer to the pango font
+/*!
+ * \brief Font Button Get Pango Font Description
+ * \par Function Description
+ *  This function returns a pointer to the pango font
  *  description (structure).
  *
  * \param font_button Pointer to a #GedaFontButton object
@@ -1547,10 +1543,10 @@ geda_font_button_set_font_desc (GedaFontButton       *font_button,
   geda_font_button_update_font_data (font_button);
 }
 
-/*! \brief Font Button Contruct Internal Widgets
- *  \par Function
- *
- *   This function create the widgets internal to the font button.
+/*!
+ * \brief Font Button Contruct Internal Widgets
+ * \par Function
+ *  This function create the widgets internal to the font button.
  *
  * \param font_button Pointer to a #GedaFontButton object.
  */
