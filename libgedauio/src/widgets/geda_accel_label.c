@@ -264,7 +264,7 @@ geda_accel_label_dispose (GObject *object)
 
   geda_accel_label_set_accel_widget(accel_label, NULL);
 
-  G_OBJECT_CLASS (geda_accel_label_parent_class)->dispose (object);
+  ((GObjectClass*)geda_accel_label_parent_class)->dispose (object);
 }
 
 static void
@@ -281,7 +281,7 @@ geda_accel_label_finalize (GObject *object)
 
   GEDA_FREE (accel_label->accel_string);
 
-  G_OBJECT_CLASS (geda_accel_label_parent_class)->finalize (object);
+  ((GObjectClass*)geda_accel_label_parent_class)->finalize (object);
 }
 
 unsigned int
@@ -301,7 +301,7 @@ geda_accel_label_size_request (GtkWidget *widget, GtkRequisition *requisition)
   const char     *accel_string;
   int width;
 
-  GTK_WIDGET_CLASS (geda_accel_label_parent_class)->size_request (widget, requisition);
+  ((GtkWidgetClass*)geda_accel_label_parent_class)->size_request (widget, requisition);
 
   accel_label  = GEDA_ACCEL_LABEL (widget);
   accel_string = geda_accel_label_get_string (accel_label);
