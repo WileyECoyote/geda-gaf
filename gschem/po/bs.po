@@ -3387,10 +3387,10 @@ msgstr ""
 msgid "New Page"
 msgstr ""
 
+# Open Page
 #: gschem/src/x/x_pagesel.c:597
-#, fuzzy
 msgid "Open Page..."
-msgstr "_Otvori..."
+msgstr "Otvori Stranicu..."
 
 #: gschem/src/x/x_pagesel.c:599
 msgid "Save Page"
@@ -3603,10 +3603,10 @@ msgstr ""
 msgid "New Session"
 msgstr ""
 
+# Save Session As
 #: gschem/src/x/x_sessions.c:856 gschem/scheme/gschem/builtins.scm:389
-#, fuzzy
 msgid "Save Session As"
-msgstr "Snimi sve"
+msgstr "Sačuvaj sjednici kao"
 
 #: gschem/src/x/x_settings.c:359
 msgid "error opening"
@@ -3628,10 +3628,10 @@ msgstr ""
 msgid "Wrote configuration to"
 msgstr ""
 
+# File error
 #: gschem/src/x/x_settings.c:607
-#, fuzzy
 msgid "File error"
-msgstr "Ogledalo"
+msgstr "greška datoteke"
 
 #: gschem/src/x/x_settings_dialog.c:1074
 msgid "Clear attributes and restore default filter list?"
@@ -3793,10 +3793,10 @@ msgstr ""
 msgid "Discarding page"
 msgstr ""
 
+# Closing
 #: gschem/src/x/x_window.c:1137
-#, fuzzy
 msgid "Closing"
-msgstr "_Zatvori"
+msgstr "Završni"
 
 #: gschem/src/x/x_window.c:1202
 msgid "Could NOT save page"
@@ -3806,10 +3806,10 @@ msgstr ""
 msgid "Error while trying to save"
 msgstr ""
 
+# Saved as
 #: gschem/src/x/x_window.c:1218
-#, fuzzy
 msgid "Saved as"
-msgstr "Snimi sve"
+msgstr "Snimi kao"
 
 #: gschem/data/geda-gschem.desktop.in:3
 msgid "gEDA Schematic Editor"
@@ -3886,7 +3886,6 @@ msgstr "Vrati sve"
 
 # discard changes and bring back all documents
 #: gschem/etc/system-gschemrc.scm:2079
-#, fuzzy
 msgid "Discard changes and reload all open documents"
 msgstr "odbacite promjene i vratiti sve dokumente"
 
@@ -4255,11 +4254,10 @@ msgstr ""
 msgid "_Redraw"
 msgstr "_Reiscrtaj"
 
-# no current window
+# Redraw the current window
 #: gschem/etc/system-gschemrc.scm:2197
-#, fuzzy
 msgid "Redraw the current window"
-msgstr "nema trenutnog prozora"
+msgstr "Prekraja trenutni prozor"
 
 #: gschem/etc/system-gschemrc.scm:2198
 msgid "_Pan"
@@ -4269,10 +4267,10 @@ msgstr ""
 msgid "Activate Panning"
 msgstr ""
 
+# Zoom All
 #: gschem/etc/system-gschemrc.scm:2200
-#, fuzzy
 msgid "Zoom _All"
-msgstr "Puna _veličina"
+msgstr "Puna sve"
 
 #: gschem/etc/system-gschemrc.scm:2200
 msgid "Zoom to the limits of the drawing area"
@@ -4295,14 +4293,13 @@ msgid "Zoom _Out"
 msgstr "U_manji"
 
 #: gschem/etc/system-gschemrc.scm:2205
-#, fuzzy
 msgid "Zoom _Mag"
-msgstr "_Uvećaj"
+msgstr "zum"
 
+# Zoom _Selection
 #: gschem/etc/system-gschemrc.scm:2206
-#, fuzzy
 msgid "Zoom _Selection"
-msgstr "_Uvećaj"
+msgstr "izbor zoom"
 
 #: gschem/etc/system-gschemrc.scm:2209 gschem/etc/system-gschemrc.scm:2247
 msgid "D_ocumentation..."
@@ -4437,9 +4434,8 @@ msgid "Close the current page without saving"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2241
-#, fuzzy
 msgid "Prin_t"
-msgstr "_Štampaj..."
+msgstr "Štampaj"
 
 #: gschem/etc/system-gschemrc.scm:2241
 msgid "Print the current page"
