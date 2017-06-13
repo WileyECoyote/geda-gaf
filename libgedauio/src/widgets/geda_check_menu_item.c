@@ -38,6 +38,7 @@
 #include <geda/geda.h>
 #include <geda/geda_standard.h>
 
+#include "../../include/geda_gtk_compat.h"
 #include "../../include/geda_uio_functions.h"
 #include "../../include/geda_menu_enum.h"
 #include "../../include/geda_menu_item.h"
@@ -167,8 +168,8 @@ geda_real_check_menu_item_draw_indicator (GedaCheckMenuItem *check_menu_item,
                           NULL);
 
     toggle_size = geda_menu_item_get_toggle_size((GedaMenuItem*)check_menu_item);
-    offset      = ((GtkContainer*)check_menu_item)->border_width +
-                                  widget->style->xthickness + 2;
+    offset      = geda_get_container_border_width(check_menu_item) +
+                                                  widget->style->xthickness + 2;
 
     if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_LTR) {
       x = widget->allocation.x + offset + horizontal_padding +
