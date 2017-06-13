@@ -154,6 +154,8 @@ geda_real_check_menu_item_draw_indicator (GedaCheckMenuItem *check_menu_item,
 
   if (gtk_widget_is_drawable (widget)) {
 
+    GtkStyle *style;
+
     unsigned int offset;
     unsigned int toggle_size;
     unsigned int toggle_spacing;
@@ -162,14 +164,15 @@ geda_real_check_menu_item_draw_indicator (GedaCheckMenuItem *check_menu_item,
     int x, y;
 
     gtk_widget_style_get (widget,
-                          "toggle-spacing", &toggle_spacing,
+                          "toggle-spacing",     &toggle_spacing,
                           "horizontal-padding", &horizontal_padding,
-                          "indicator-size", &indicator_size,
+                          "indicator-size",     &indicator_size,
                           NULL);
 
+    style       = widget->style;
     toggle_size = geda_menu_item_get_toggle_size((GedaMenuItem*)check_menu_item);
     offset      = geda_get_container_border_width(check_menu_item) +
-                                                  widget->style->xthickness + 2;
+                                                  style->xthickness + 2;
 
     if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_LTR) {
       x = widget->allocation.x + offset + horizontal_padding +
@@ -201,13 +204,13 @@ geda_real_check_menu_item_draw_indicator (GedaCheckMenuItem *check_menu_item,
 
       if (check_menu_item->draw_as_radio) {
 
-        gtk_paint_option (widget->style, widget->window,
+        gtk_paint_option (style, widget->window,
                           state_type, shadow_type,
                           area, widget, "option",
                           x, y, indicator_size, indicator_size);
       }
       else {
-        gtk_paint_check (widget->style, widget->window,
+        gtk_paint_check (style, widget->window,
                          state_type, shadow_type,
                          area, widget, "check",
                          x, y, indicator_size, indicator_size);
