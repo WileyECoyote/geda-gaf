@@ -2336,9 +2336,8 @@ msgid "Entry for model file name"
 msgstr "Mostrar propiedades heredadas"
 
 #: gschem/src/x/x_edit_pin.c:71
-#, fuzzy
 msgid "_Type:"
-msgstr "Tipo:"
+msgstr "_Tipo:"
 
 #: gschem/src/x/x_edit_pin.c:71
 msgid "Select the pin type"
@@ -2349,9 +2348,8 @@ msgid "_Attributes:"
 msgstr "_Atributos:"
 
 #: gschem/src/x/x_edit_pin.c:72
-#, fuzzy
 msgid "Set the pin attributes"
-msgstr "Mostrar propiedades heredadas"
+msgstr "Establecer los atributos de pin"
 
 #: gschem/src/x/x_edit_pin.c:73
 msgid "_Number:"
@@ -2366,9 +2364,8 @@ msgid "_Sequence:"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:74
-#, fuzzy
 msgid "Set the sequence number"
-msgstr "Objetos seleccionados"
+msgstr "Establecer el número de secuencia"
 
 #: gschem/src/x/x_edit_pin.c:75
 msgid "_Label:"
@@ -2391,9 +2388,8 @@ msgid "Attributes:"
 msgstr "Propiedades:"
 
 #: gschem/src/x/x_edit_pin.c:78
-#, fuzzy
 msgid "Enable to set all selected attributes to the prescribed value"
-msgstr "Desvincular propiedad"
+msgstr "Habilitar para establecer todos los atributos seleccionados en el valor prescrito"
 
 #: gschem/src/x/x_edit_pin.c:80
 msgid "Number:"
@@ -2522,14 +2518,12 @@ msgid "Text Content"
 msgstr "Contenido del texto"
 
 #: gschem/src/x/x_edit_text.c:64
-#, fuzzy
 msgid "Enter or edit the text string"
-msgstr "Introduzca nuevo tamaño de texto:"
+msgstr "Introduzca o edite la cadena de texto"
 
 #: gschem/src/x/x_edit_text.c:65
-#, fuzzy
 msgid "A_lignment:"
-msgstr "Comando:"
+msgstr "Alineación:"
 
 #: gschem/src/x/x_edit_text.c:65
 #, fuzzy
