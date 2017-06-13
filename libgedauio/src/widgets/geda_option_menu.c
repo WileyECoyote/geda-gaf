@@ -761,8 +761,9 @@ geda_option_menu_update_contents (GedaOptionMenu *option_menu)
       }
     }
 
-    if (old_item != option_menu->menu_item)
+    if (old_item != option_menu->menu_item) {
       geda_option_menu_changed (option_menu);
+    }
   }
 }
 
