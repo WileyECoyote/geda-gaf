@@ -1,3 +1,9 @@
+2017-06-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_check_menu_item.c: Explicitly specify GEDA_TYPE_CHECK_MENU_ITEM
+      to g_signal_new in geda_check_menu_item_class_init and eliminate unneeded
+      G_OBJECT_CLASS_TYPE macro.
+
 2017-06-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_image_menu_item.c: Add ancillary pointer to image widget

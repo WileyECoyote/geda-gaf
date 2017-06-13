@@ -361,7 +361,7 @@ geda_check_menu_item_class_init(void *class, void *class_data)
 
   check_menu_item_signals[TOGGLED] =
     g_signal_new ("toggled",
-                   G_OBJECT_CLASS_TYPE (gobject_class),
+                   GEDA_TYPE_CHECK_MENU_ITEM,
                    G_SIGNAL_RUN_FIRST,
                    G_STRUCT_OFFSET (GedaCheckMenuItemClass, toggled),
                    NULL, NULL,
