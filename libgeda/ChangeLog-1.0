@@ -1,3 +1,7 @@
+2017-06-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_arc.c: Revert back to conventional function wrapping.
+
 2017-06-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_path_object.c: Change to type-checking cast in
