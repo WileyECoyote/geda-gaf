@@ -3676,10 +3676,10 @@ msgstr ""
 msgid "Wrote configuration to"
 msgstr ""
 
+# File error
 #: gschem/src/x/x_settings.c:607
-#, fuzzy
 msgid "File error"
-msgstr "镜像模式"
+msgstr "文件错误"
 
 #: gschem/src/x/x_settings_dialog.c:1074
 msgid "Clear attributes and restore default filter list?"
@@ -3810,11 +3810,10 @@ msgstr ""
 msgid "window is not valid"
 msgstr ""
 
-# Saving Toolbar settings
+# Saving main window settings
 #: gschem/src/x/x_window.c:201
-#, fuzzy
 msgid "Saving main window settings.\n"
-msgstr "正在保存工具欄設置..."
+msgstr "保存主窗口设置.\n"
 
 #: gschem/src/x/x_window.c:308
 msgid "Retrieving main Window settings.\n"
@@ -3824,32 +3823,33 @@ msgstr ""
 msgid "Aborting action\n"
 msgstr ""
 
+#  close window has been canceled
 #: gschem/src/x/x_window.c:677
-#, fuzzy
 msgid "Close Window canceled\n"
-msgstr "关闭窗口"
+msgstr "关闭窗口已被取消\n"
 
 #: gschem/src/x/x_window.c:760
 msgid "Loading file"
 msgstr ""
 
+# New file
 #: gschem/src/x/x_window.c:904
-#, fuzzy
 msgid "New file"
-msgstr "文件"
+msgstr "新文件"
 
+# Failed to load file
 #: gschem/src/x/x_window.c:946
 msgid "Failed to load file"
-msgstr ""
+msgstr "无法加载文件"
 
 #: gschem/src/x/x_window.c:976
 msgid "Creating new file"
 msgstr ""
 
+# file path
 #: gschem/src/x/x_window.c:989
-#, fuzzy
 msgid "Path"
-msgstr "旋转 90 度"
+msgstr "文件路径"
 
 #: gschem/src/x/x_window.c:992
 msgid ""
@@ -3857,28 +3857,29 @@ msgid ""
 "successfully created"
 msgstr ""
 
+# Discarding page
 #: gschem/src/x/x_window.c:1136
-#, fuzzy
 msgid "Discarding page"
-msgstr "丢弃"
+msgstr "丢弃页面"
 
+# Closing
 #: gschem/src/x/x_window.c:1137
-#, fuzzy
 msgid "Closing"
-msgstr "关闭页面"
+msgstr "闭幕"
 
+# Could NOT save page
 #: gschem/src/x/x_window.c:1202
 msgid "Could NOT save page"
-msgstr ""
+msgstr "无法保存页面"
 
 #: gschem/src/x/x_window.c:1204
 msgid "Error while trying to save"
 msgstr ""
 
+# Saved as
 #: gschem/src/x/x_window.c:1218
-#, fuzzy
 msgid "Saved as"
-msgstr "全部保存"
+msgstr "保存为"
 
 #: gschem/data/geda-gschem.desktop.in:3
 msgid "gEDA Schematic Editor"
@@ -3888,8 +3889,8 @@ msgstr ""
 msgid "Create and edit electrical schematics and symbols with gschem"
 msgstr ""
 
+# New
 #: gschem/etc/system-gschemrc.scm:2068 gschem/etc/system-gschemrc.scm:2276
-#, fuzzy
 msgid "_New"
 msgstr "新建"
 
@@ -3897,10 +3898,10 @@ msgstr "新建"
 msgid "Create a new empty file"
 msgstr ""
 
+# Open a page
 #: gschem/etc/system-gschemrc.scm:2069 gschem/etc/system-gschemrc.scm:2277
-#, fuzzy
 msgid "_Open..."
-msgstr "打开页面..."
+msgstr "打开一个页面..."
 
 #: gschem/etc/system-gschemrc.scm:2070
 msgid "Open Recen_t"
