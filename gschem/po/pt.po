@@ -3325,15 +3325,15 @@ msgstr "Não foi possível abrir o arquivo"
 msgid "Open"
 msgstr "Abrir"
 
+# Remove => Withdraw
 #: gschem/src/x/x_menus.c:2043
-#, fuzzy
 msgid "Remove"
-msgstr "Retirar números"
+msgstr "Retirar"
 
+# Show path
 #: gschem/src/x/x_menus.c:2050
-#, fuzzy
 msgid "_Show path"
-msgstr "_Mostrar Ambos"
+msgstr "_Mostrar caminho"
 
 #: gschem/src/x/x_menus.c:2179
 msgid "Clear"
@@ -3365,7 +3365,7 @@ msgstr ""
 # multible attribute editor
 #: gschem/src/x/x_multiattrib.c:926
 msgid "Multi-Attribute Editor"
-msgstr "Plugues editor de atributos"
+msgstr "Editor de atributos múltiplos"
 
 # Select an attribute to add
 #: gschem/src/x/x_multiattrib.c:1635
@@ -3423,7 +3423,6 @@ msgid "Add new attribute to component"
 msgstr ""
 
 #: gschem/src/x/x_multiattrib.c:2601
-#, fuzzy
 msgid "symbols"
 msgstr "Símbolos"
 
@@ -3432,7 +3431,6 @@ msgid "pins"
 msgstr ""
 
 #: gschem/src/x/x_multiattrib.c:2620
-#, fuzzy
 msgid "pin"
 msgstr "Pino"
 
@@ -3440,8 +3438,8 @@ msgstr "Pino"
 msgid "nets"
 msgstr ""
 
+# net => link
 #: gschem/src/x/x_multiattrib.c:2635
-#, fuzzy
 msgid "net"
 msgstr "Ligação"
 
@@ -3450,29 +3448,24 @@ msgid "buses"
 msgstr ""
 
 #: gschem/src/x/x_multiattrib.c:2650
-#, fuzzy
 msgid "bus"
-msgstr "Barramento"
+msgstr "bus"
 
 #: gschem/src/x/x_multiattrib.c:2661
-#, fuzzy
 msgid "attributes"
-msgstr "Atributos"
+msgstr "atributos"
 
 #: gschem/src/x/x_multiattrib.c:2665
-#, fuzzy
 msgid "attribute"
-msgstr "Atributos"
+msgstr "atributo"
 
 #: gschem/src/x/x_pagesel.c:592
-#, fuzzy
 msgid "Move Up"
-msgstr "Mover"
+msgstr "Subir"
 
 #: gschem/src/x/x_pagesel.c:593
-#, fuzzy
 msgid "Move Down"
-msgstr "Modo Centrar"
+msgstr "Mover para baixo"
 
 #: gschem/src/x/x_pagesel.c:595
 msgid "New Blank"
@@ -3483,9 +3476,8 @@ msgid "New Page"
 msgstr "Nova Página"
 
 #: gschem/src/x/x_pagesel.c:597
-#, fuzzy
 msgid "Open Page..."
-msgstr "Abrir ficheiro..."
+msgstr "Abrir Página..."
 
 #: gschem/src/x/x_pagesel.c:599
 msgid "Save Page"
