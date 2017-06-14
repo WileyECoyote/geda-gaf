@@ -2613,10 +2613,10 @@ msgstr ""
 msgid "Lower Right"
 msgstr ""
 
+# Edit Text Properties
 #: gschem/src/x/x_edit_text.c:455
-#, fuzzy
 msgid "Edit Text Properties"
-msgstr "Metni Düzenle"
+msgstr "Metin Özelliklerini Düzenle"
 
 #: gschem/src/x/x_edit_text.c:502
 msgid "Text Properties"
@@ -2626,11 +2626,10 @@ msgstr ""
 msgid "Text input field"
 msgstr ""
 
-# Text Alignment Option
+# Text alignment combobox
 #: gschem/src/x/x_edit_text.c:597
-#, fuzzy
 msgid "Text alignment combobox"
-msgstr "Metin Hizalama Seçeneği"
+msgstr "Metin hizalama combobox"
 
 #: gschem/src/x/x_edit_text.c:601
 msgid "Color options menu"
@@ -3047,28 +3046,28 @@ msgstr ""
 msgid "Cut the current selection to the system clipboard"
 msgstr ""
 
+# Copy to Clipboard
 #: gschem/src/x/x_menus.c:142
-#, fuzzy
 msgid "Copy to Clipboard"
-msgstr "1'e kopyala"
+msgstr "Panoya kopyala"
 
 #: gschem/src/x/x_menus.c:142 gschem/etc/system-gschemrc.scm:2106
 msgid "Copy the current selection to the system clipboard"
 msgstr ""
 
+# Paste Clipboard
 #: gschem/src/x/x_menus.c:143
-#, fuzzy
 msgid "Paste Clipboard"
-msgstr "1'den yapıştır"
+msgstr "Pano yapıştır"
 
 #: gschem/src/x/x_menus.c:143 gschem/etc/system-gschemrc.scm:2107
 msgid "Paste the contents of the system clipboard"
 msgstr ""
 
+# Close
 #: gschem/src/x/x_menus.c:149
-#, fuzzy
 msgid "Close"
-msgstr "Sayfayı Kapat"
+msgstr "Kapat"
 
 #: gschem/src/x/x_menus.c:149
 msgid "Close the current path"
@@ -3337,10 +3336,10 @@ msgstr ""
 msgid "Duplicate"
 msgstr ""
 
+# Copy to all
 #: gschem/src/x/x_multiattrib.c:1693
-#, fuzzy
 msgid "Copy to all"
-msgstr "1'e kopyala"
+msgstr "Hepsine kopyala"
 
 #: gschem/src/x/x_multiattrib.c:2063 gschem/src/x/x_multiattrib.c:2582
 msgid "Edit Attributes"
@@ -3375,47 +3374,44 @@ msgid "pins"
 msgstr ""
 
 #: gschem/src/x/x_multiattrib.c:2620
-#, fuzzy
 msgid "pin"
-msgstr "Satır"
+msgstr "pin"
 
 #: gschem/src/x/x_multiattrib.c:2631
 msgid "nets"
 msgstr ""
 
 #: gschem/src/x/x_multiattrib.c:2635
-#, fuzzy
 msgid "net"
-msgstr "Ağ"
+msgstr "net"
 
 #: gschem/src/x/x_multiattrib.c:2646
 msgid "buses"
 msgstr ""
 
 #: gschem/src/x/x_multiattrib.c:2650
-#, fuzzy
 msgid "bus"
 msgstr "Veriyolu"
 
+# attributes
 #: gschem/src/x/x_multiattrib.c:2661
-#, fuzzy
 msgid "attributes"
 msgstr "Öznitelikler"
 
+# attribute
 #: gschem/src/x/x_multiattrib.c:2665
-#, fuzzy
 msgid "attribute"
-msgstr "Öznitelikler"
+msgstr "özellik"
 
+# Move Up
 #: gschem/src/x/x_pagesel.c:592
-#, fuzzy
 msgid "Move Up"
-msgstr "Taşı"
+msgstr "Yukarı çık"
 
+# Move Down
 #: gschem/src/x/x_pagesel.c:593
-#, fuzzy
 msgid "Move Down"
-msgstr "Sayfa"
+msgstr "Aşağı inmek"
 
 #: gschem/src/x/x_pagesel.c:595
 msgid "New Blank"
