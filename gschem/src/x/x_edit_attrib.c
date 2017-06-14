@@ -511,7 +511,7 @@ attrib_edit_dialog (GschemToplevel *w_current, GedaObject *object, int flag)
     focus_chain = g_list_append (focus_chain, value_entry);
     focus_chain = g_list_append (focus_chain, visbutton);
     focus_chain = g_list_append (focus_chain, show_options);
-    gtk_container_set_focus_chain (GTK_CONTAINER (table), focus_chain);
+    geda_container_set_focus_chain (table, focus_chain);
     g_list_free (focus_chain);
 
     /** Set the relationships between the label and their Widgets **/

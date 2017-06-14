@@ -10,6 +10,9 @@
 
     * po/zh_TW.po: Update Chinese traditional translations.
 
+    * src/x/x_edit_attrib.c: Replace gtk_container_set_focus_chain with
+      geda_container_set_focus_chain macro.
+
 2017-06-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/bs.po: Update Bosnian translations.
