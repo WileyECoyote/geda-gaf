@@ -1,3 +1,8 @@
+2017-06-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_bulb.c: Add g_return_val_if_fail in geda_bulb_group_
+      get_active_index.
+
 2017-06-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_accel_label.c: Remove unnecessary class type-checking

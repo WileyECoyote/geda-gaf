@@ -1325,6 +1325,8 @@ int geda_bulb_group_get_active_index (GSList *group_list) {
   int index;
   int active = -1;
 
+  g_return_val_if_fail (group_list != NULL, -1);
+
   length = g_slist_length (group_list);
 
   for (index = 0; index < length; index++) {
