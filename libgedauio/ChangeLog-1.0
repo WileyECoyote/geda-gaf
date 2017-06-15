@@ -1,8 +1,11 @@
-2017-06-14 Wiley E. Hill <wileyhill@gmail.com>
+2017-06-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_item.c: Declare geda_menu_item_disconnect_accelerator
       inline. Replace gtk_container_remove with geda_container_remove in geda_menu
       _item_destroy. Remove g_return_if_fail in geda_real_menu_item_select.
+
+    * src/widgets/geda_option_menu.c: Remove unnecessary type-checking cast to
+      GedaMenuShell.
 
 2017-06-14 Wiley E. Hill <wileyhill@gmail.com>
 

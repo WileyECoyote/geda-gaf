@@ -645,7 +645,7 @@ geda_option_menu_key_press (GtkWidget *widget, GdkEventKey *event)
                        0, event->time);
       menu_item = geda_menu_widget_get_active (option_menu->menu);
       if (menu_item)
-        geda_menu_shell_select_item (GEDA_MENU_SHELL(option_menu->menu),
+        geda_menu_shell_select_item ((GedaMenuShell*)option_menu->menu,
                                      menu_item);
       return TRUE;
   }
@@ -1082,9 +1082,8 @@ geda_option_menu_remove_menu (GedaOptionMenu *option_menu)
   if (option_menu->menu) {
 
     if (GEDA_MENU_SHELL (option_menu->menu)->active) {
-      geda_menu_shell_cancel (GEDA_MENU_SHELL (option_menu->menu));
+      geda_menu_shell_cancel ((GedaMenuShell*)option_menu->menu);
     }
-    geda_menu_detach (GEDA_MENU (option_menu->menu));
   }
 }
 
@@ -1137,7 +1136,7 @@ geda_option_menu_get_history (GedaOptionMenu *option_menu)
     active_widget = geda_menu_widget_get_active (option_menu->menu);
 
     if (active_widget) {
-      return g_list_index (GEDA_MENU_SHELL (option_menu->menu)->children,
+      return g_list_index (((GedaMenuShell*)option_menu->menu)->children,
                            active_widget);
     }
     else {
