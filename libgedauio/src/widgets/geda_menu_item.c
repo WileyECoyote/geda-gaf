@@ -2069,6 +2069,7 @@ geda_menu_item_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
   }
 }
 
+/*! \internal Gtk2 menu_item_class->select */
 static void
 geda_real_menu_item_select (GedaMenuItem *menu_item)
 {
