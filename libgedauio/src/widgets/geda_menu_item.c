@@ -2076,8 +2076,6 @@ geda_real_menu_item_select (GedaMenuItem *menu_item)
   GedaMenuItemPrivate *priv;
   bool                 touchscreen_mode;
 
-  g_return_if_fail (GEDA_IS_MENU_ITEM(menu_item));
-
   priv = menu_item->priv;
 
   g_object_get (gtk_widget_get_settings ((GtkWidget*)menu_item),
