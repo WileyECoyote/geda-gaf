@@ -1,7 +1,8 @@
 2017-06-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_item.c: Declare geda_menu_item_disconnect_accelerator
-      inline.
+      inline. Replace gtk_container_remove with geda_container_remove in geda_menu
+      _item_destroy.
 
 2017-06-14 Wiley E. Hill <wileyhill@gmail.com>
 
