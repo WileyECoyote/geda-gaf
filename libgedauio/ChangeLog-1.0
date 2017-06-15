@@ -1,5 +1,10 @@
 2017-06-14 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_menu_item.c: Declare geda_menu_item_disconnect_accelerator
+      inline.
+
+2017-06-14 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/widgets/geda_bulb.c: Add g_return_val_if_fail in geda_bulb_group_
       get_active_index.
 

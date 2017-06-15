@@ -286,11 +286,11 @@ static GHashTable *menu_item_hash_table = NULL;
 
 static void *geda_menu_item_parent_class = NULL;
 
-static void
+static inline void
 geda_menu_item_disconnect_accelerator(GedaAction *action)
 {
   if (GEDA_IS_ACTION (action)) {
-    gtk_action_disconnect_accelerator (GTK_ACTION(action));
+    gtk_action_disconnect_accelerator ((GtkAction*)action);
   }
 }
 
