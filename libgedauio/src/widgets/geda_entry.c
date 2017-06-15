@@ -348,16 +348,13 @@ geda_entry_set_property (GObject *object, unsigned int  property_id,
 static void
 geda_entry_real_activate (GedaEntry *entry)
 {
-  GtkWidget *widget;
-
 #if DEBUG_GEDA_ENTRY
   fprintf(stderr, "<%s> in over-ride: got <activate> signal\n", __func__);
 #endif
 
-  widget = GTK_WIDGET (entry);
-
   if (entry->activates_default) {
 
+    GtkWidget *widget   = (GtkWidget*)entry;
     GtkWidget *toplevel = gtk_widget_get_toplevel (widget);
 
     if (GTK_IS_WINDOW (toplevel)) {
