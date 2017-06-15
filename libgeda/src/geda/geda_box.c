@@ -76,8 +76,7 @@ static GObjectClass *geda_box_parent_class = NULL;
  *
  *  \param [in]  object  Box GedaObject to read coordinates from.
  */
-static int
-geda_box_bounds(GedaObject *object)
+static int geda_box_bounds(GedaObject *object)
 {
   int halfwidth;
 
@@ -103,8 +102,7 @@ geda_box_bounds(GedaObject *object)
  *  \param [in] instance The GedaBox structure being initialized,
  *  \param [in] class    The GedaBox class we are initializing.
  */
-static void
-geda_box_instance_init(GTypeInstance *instance, void *class)
+static void geda_box_instance_init(GTypeInstance *instance, void *class)
 {
   GedaBox    *box    = (GedaBox*)instance;
   GedaObject *object = &box->parent_instance;
@@ -132,8 +130,7 @@ geda_box_instance_init(GTypeInstance *instance, void *class)
   object->line_options            = &box->line_options;
 }
 
-static void
-geda_box_dispose(GObject *object)
+static void geda_box_dispose(GObject *object)
 {
   G_OBJECT_CLASS(geda_box_parent_class)->dispose(object);
 }
@@ -144,8 +141,7 @@ geda_box_dispose(GObject *object)
  *   the parent's finalize handler. Once invalidated, GEDA_IS_BOX will
  *   fail.
  */
-static void
-geda_box_finalize(GObject *object)
+static void geda_box_finalize(GObject *object)
 {
   GedaObject *obj = GEDA_OBJECT(object);
 
@@ -156,10 +152,9 @@ geda_box_finalize(GObject *object)
   GEDA_OBJECT_CLASS(geda_box_parent_class)->finalize(object);
 }
 
-static void
-get_property (GObject *object, unsigned int  prop_id,
-                               GValue       *value,
-                               GParamSpec   *pspec)
+static void get_property (GObject *object, unsigned int  prop_id,
+                                           GValue       *value,
+                                           GParamSpec   *pspec)
 
 {
   GedaBox      *box          = GEDA_BOX(object);
@@ -234,10 +229,9 @@ get_property (GObject *object, unsigned int  prop_id,
   }
 }
 
-static void
-set_property (GObject *object, unsigned int  prop_id,
-                               const GValue *value,
-                               GParamSpec   *pspec)
+static void set_property (GObject *object, unsigned int  prop_id,
+                                           const GValue *value,
+                                           GParamSpec   *pspec)
 {
   GedaBox      *box          = GEDA_BOX(object);
   LINE_OPTIONS *line_options = &box->line_options;
@@ -319,8 +313,7 @@ set_property (GObject *object, unsigned int  prop_id,
  * \param [in]  klass      The Box class we are initializing
  * \param [in]  class_data The Box structure associated with the class
  */
-static void
-geda_box_class_init(void *klass, void *class_data)
+static void geda_box_class_init(void *klass, void *class_data)
 {
   GedaBoxClass    *class        = (GedaBoxClass*)klass;
   GObjectClass    *object_class = (GObjectClass*)klass;
@@ -502,8 +495,7 @@ geda_box_class_init(void *klass, void *class_data)
  *
  *  \return GedaObjectType identifier associated with GedaBox.
  */
-GedaObjectType
-geda_box_get_type (void)
+GedaObjectType geda_box_get_type (void)
 {
   static volatile GedaObjectType geda_box_type = 0;
 
@@ -540,8 +532,7 @@ geda_box_get_type (void)
  *
  *  \return pointer to the new Box object.
  */
-GedaObject *
-geda_box_new (void)
+GedaObject *geda_box_new (void)
 {
   GedaObject *box = g_object_new(GEDA_TYPE_BOX,
                                  "type", OBJ_BOX,
@@ -557,8 +548,7 @@ geda_box_new (void)
  *
  *  \return boolean.
  */
-bool
-is_a_geda_box (const GedaBox *box)
+bool is_a_geda_box (const GedaBox *box)
 {
   return GEDA_IS_OBJECT(box) && (((GedaObject*)box)->type == OBJ_BOX);
 }
@@ -573,8 +563,7 @@ is_a_geda_box (const GedaBox *box)
  *
  * \sa geda_box_set_end_cap
  */
-int
-geda_box_get_end_cap (const GedaBox *box) {
+int geda_box_get_end_cap (const GedaBox *box) {
   if (is_a_geda_box(box)) {
     return box->line_options.line_end;
   }
@@ -591,8 +580,7 @@ geda_box_get_end_cap (const GedaBox *box) {
  *
  * \sa geda_box_set_fill_angle1
  */
-int
-geda_box_get_fill_angle1 (const GedaBox *box) {
+int geda_box_get_fill_angle1 (const GedaBox *box) {
   if (is_a_geda_box(box)) {
     return box->fill_options.fill_angle1;
   }
@@ -609,8 +597,7 @@ geda_box_get_fill_angle1 (const GedaBox *box) {
  *
  * \sa geda_box_set_fill_angle2
  */
-int
-geda_box_get_fill_angle2 (const GedaBox *box) {
+int geda_box_get_fill_angle2 (const GedaBox *box) {
   if (is_a_geda_box(box)) {
     return box->fill_options.fill_angle2;
   }
@@ -628,8 +615,7 @@ geda_box_get_fill_angle2 (const GedaBox *box) {
  * \sa geda_box_set_fill_pitch1
  */
 
-int
-geda_box_get_fill_pitch1 (const GedaBox *box) {
+int geda_box_get_fill_pitch1 (const GedaBox *box) {
   if (is_a_geda_box(box)) {
     return box->fill_options.fill_pitch1;
   }
@@ -646,8 +632,7 @@ geda_box_get_fill_pitch1 (const GedaBox *box) {
  *
  * \sa geda_box_set_fill_pitch2
  */
-int
-geda_box_get_fill_pitch2 (const GedaBox *box) {
+int geda_box_get_fill_pitch2 (const GedaBox *box) {
   if (is_a_geda_box(box)) {
     return box->fill_options.fill_pitch2;
   }
@@ -664,8 +649,7 @@ geda_box_get_fill_pitch2 (const GedaBox *box) {
  *
  * \sa geda_box_set_fill_type
  */
-int
-geda_box_get_fill_type (const GedaBox *box) {
+int geda_box_get_fill_type (const GedaBox *box) {
   if (is_a_geda_box(box)) {
     return box->fill_options.fill_type;
   }
@@ -682,8 +666,7 @@ geda_box_get_fill_type (const GedaBox *box) {
  *
  * \sa geda_box_set_fill_width
  */
-int
-geda_box_get_fill_width (const GedaBox *box) {
+int geda_box_get_fill_width (const GedaBox *box) {
   if (is_a_geda_box(box)) {
     return box->fill_options.fill_width;
   }
@@ -706,8 +689,7 @@ geda_box_get_fill_width (const GedaBox *box) {
  *
  * \sa geda_box_set_line_length
  */
-int
-geda_box_get_line_length (const GedaBox *box) {
+int geda_box_get_line_length (const GedaBox *box) {
   if (is_a_geda_box(box)) {
     return box->line_options.line_length;
   }
@@ -728,8 +710,7 @@ geda_box_get_line_length (const GedaBox *box) {
  *
  * \sa geda_box_set_line_space
  */
-int
-geda_box_get_line_space (const GedaBox *box) {
+int geda_box_get_line_space (const GedaBox *box) {
   if (is_a_geda_box(box)) {
     return box->line_options.line_space;
   }
@@ -746,8 +727,7 @@ geda_box_get_line_space (const GedaBox *box) {
  *
  * \sa geda_box_set_line_type
  */
-int
-geda_box_get_line_type (const GedaBox *box) {
+int geda_box_get_line_type (const GedaBox *box) {
   if (is_a_geda_box(box)) {
     return box->line_options.line_type;
   }
@@ -764,8 +744,7 @@ geda_box_get_line_type (const GedaBox *box) {
  *
  * \sa geda_box_set_line_width
  */
-int
-geda_box_get_line_width (const GedaBox *box) {
+int geda_box_get_line_width (const GedaBox *box) {
   if (is_a_geda_box(box)) {
     return box->line_options.line_width;
   }
@@ -782,8 +761,7 @@ geda_box_get_line_width (const GedaBox *box) {
  *
  * \sa geda_box_set_lower_x
  */
-int
-geda_box_get_lower_x (const GedaBox *box) {
+int geda_box_get_lower_x (const GedaBox *box) {
   if (is_a_geda_box(box)) {
     return box->lower_x;
   }
@@ -800,8 +778,7 @@ geda_box_get_lower_x (const GedaBox *box) {
  *
  * \sa geda_box_set_lower_y
  */
-int
-geda_box_get_lower_y (const GedaBox *box) {
+int geda_box_get_lower_y (const GedaBox *box) {
   if (is_a_geda_box(box)) {
     return box->lower_y;
   }
@@ -818,8 +795,7 @@ geda_box_get_lower_y (const GedaBox *box) {
  *
  * \sa geda_box_set_upper_x
  */
-int
-geda_box_get_upper_x (const GedaBox *box) {
+int geda_box_get_upper_x (const GedaBox *box) {
   if (is_a_geda_box(box)) {
     return box->upper_x;
   }
@@ -836,8 +812,7 @@ geda_box_get_upper_x (const GedaBox *box) {
  *
  * \sa geda_box_set_upper_y
  */
-int
-geda_box_get_upper_y (const GedaBox *box) {
+int geda_box_get_upper_y (const GedaBox *box) {
   if (is_a_geda_box(box)) {
     return box->upper_y;
   }
@@ -852,8 +827,7 @@ geda_box_get_upper_y (const GedaBox *box) {
  *
  * \sa geda_box_get_end_cap
  */
-void
-geda_box_set_end_cap (GedaBox *box, int line_end) {
+void geda_box_set_end_cap (GedaBox *box, int line_end) {
   if (is_a_geda_box(box)) {
     box->line_options.line_end = line_end < END_NONE ? END_NONE :
                                  line_end > END_VOID ? END_VOID :
@@ -959,8 +933,7 @@ void geda_box_set_fill_width (GedaBox *box, int width) {
  *
  * \sa geda_box_get_line_length
  */
-void
-geda_box_set_line_length (GedaBox *box, int line_length) {
+void geda_box_set_line_length (GedaBox *box, int line_length) {
   if (is_a_geda_box(box)) {
     box->line_options.line_length = line_length > 0 ? line_length : 0;
   }
@@ -978,8 +951,7 @@ geda_box_set_line_length (GedaBox *box, int line_length) {
  *
  * \sa geda_box_get_line_space
  */
-void
-geda_box_set_line_space (GedaBox *box, int space) {
+void geda_box_set_line_space (GedaBox *box, int space) {
   if (is_a_geda_box(box)) {
     box->line_options.line_space = space > 0 ? space : 0;
   }
@@ -993,8 +965,7 @@ geda_box_set_line_space (GedaBox *box, int space) {
  *
  * \sa geda_box_get_line_type
  */
-void
-geda_box_set_line_type (GedaBox *box, int line_type) {
+void geda_box_set_line_type (GedaBox *box, int line_type) {
   if (is_a_geda_box(box)) {
     box->line_options.line_type = line_type < TYPE_SOLID ? TYPE_SOLID :
                                   line_type > TYPE_ERASE ? TYPE_ERASE :
@@ -1010,8 +981,7 @@ geda_box_set_line_type (GedaBox *box, int line_type) {
  *
  * \sa geda_box_get_line_width
  */
-void
-geda_box_set_line_width (GedaBox *box, int width) {
+void geda_box_set_line_width (GedaBox *box, int width) {
   if (is_a_geda_box(box)) {
     box->line_options.line_width = width > 0 ? width : 0;
   }
@@ -1025,8 +995,7 @@ geda_box_set_line_width (GedaBox *box, int width) {
  *
  * \sa geda_box_get_lower_x
  */
-void
-geda_box_set_lower_x (GedaBox *box, int x) {
+void geda_box_set_lower_x (GedaBox *box, int x) {
   if (is_a_geda_box(box)) {
     box->lower_x = x;
   }
@@ -1040,8 +1009,7 @@ geda_box_set_lower_x (GedaBox *box, int x) {
  *
  * \sa geda_box_get_lower_y
  */
-void
-geda_box_set_lower_y (GedaBox *box, int y) {
+void geda_box_set_lower_y (GedaBox *box, int y) {
   if (is_a_geda_box(box)) {
     box->lower_y = y;
   }
@@ -1055,8 +1023,7 @@ geda_box_set_lower_y (GedaBox *box, int y) {
  *
  * \sa geda_box_get_upper_x
  */
-void
-geda_box_set_upper_x (GedaBox *box, int x) {
+void geda_box_set_upper_x (GedaBox *box, int x) {
   if (is_a_geda_box(box)) {
     box->upper_x = x;
   }
@@ -1070,8 +1037,7 @@ geda_box_set_upper_x (GedaBox *box, int x) {
  *
  * \sa geda_box_get_upper_y
  */
-void
-geda_box_set_upper_y (GedaBox *box, int y) {
+void geda_box_set_upper_y (GedaBox *box, int y) {
   if (is_a_geda_box(box)) {
     box->upper_y = y;
   }
