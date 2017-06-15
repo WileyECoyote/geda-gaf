@@ -124,7 +124,7 @@ activatable_update_stock_id (GedaImageMenuItem *image_menu_item, GtkAction *acti
 {
   const char *stock_id  = gtk_action_get_stock_id (action);
 
-  if (stock_id && gtk_icon_factory_lookup_default (stock_id)) {
+  if (stock_id && gtk_icon_factory_lookup_default(stock_id)) {
 
     GtkImage *image;
 
