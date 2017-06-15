@@ -359,7 +359,7 @@ geda_entry_real_activate (GedaEntry *entry)
 
     if (GTK_IS_WINDOW (toplevel)) {
 
-      GtkWindow *window = GTK_WINDOW (toplevel);
+      GtkWindow *window = (GtkWindow*)toplevel;
 
       if (window) {
 
