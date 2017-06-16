@@ -335,6 +335,7 @@ create_fancy_attr_list (GedaEntry *entry)
   logical_rect.y      = -ascent;
   logical_rect.height = ascent;
   ink_rect            = logical_rect;
+
   pango_font_metrics_unref (metrics);
 
   /* Set fancy shape attributes for all hearts */
@@ -342,18 +343,18 @@ create_fancy_attr_list (GedaEntry *entry)
 
   for (p = text; (p = strstr (p, HEART)); p += strlen (HEART)) {
 
-      PangoAttribute *attr;
+    PangoAttribute *attr;
 
-      attr = pango_attr_shape_new_with_data (&ink_rect,
-                                             &logical_rect,
-                                             GUINT_TO_POINTER (g_utf8_get_char (p)),
-                                             NULL, NULL);
+    attr = pango_attr_shape_new_with_data (&ink_rect,
+                                           &logical_rect,
+                                           GUINT_TO_POINTER (g_utf8_get_char (p)),
+                                           NULL, NULL);
 
-      attr->start_index = p - text;
-      attr->end_index = attr->start_index + strlen (HEART);
+    attr->start_index = p - text;
+    attr->end_index = attr->start_index + strlen (HEART);
 
-      pango_attr_list_insert (attrs, attr);
-    }
+    pango_attr_list_insert (attrs, attr);
+  }
 
   return attrs;
 }
