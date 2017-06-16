@@ -4354,44 +4354,44 @@ msgstr ""
 msgid "Activate Panning"
 msgstr ""
 
+# Zoom All
 #: gschem/etc/system-gschemrc.scm:2200
-#, fuzzy
 msgid "Zoom _All"
-msgstr "缩小"
+msgstr "全部放大"
 
 #: gschem/etc/system-gschemrc.scm:2200
 msgid "Zoom to the limits of the drawing area"
 msgstr ""
 
+# Zoom Box
 #: gschem/etc/system-gschemrc.scm:2201
-#, fuzzy
 msgid "Zoom _Box"
-msgstr "放大"
+msgstr "缩放框"
 
+# Zoom Extents
 #: gschem/etc/system-gschemrc.scm:2202
-#, fuzzy
 msgid "Zoom _Extents"
-msgstr "放大"
+msgstr "缩放范围"
 
+# Zoom In
 #: gschem/etc/system-gschemrc.scm:2203
-#, fuzzy
 msgid "Zoom _In"
 msgstr "放大"
 
+# Zoom Out
 #: gschem/etc/system-gschemrc.scm:2204
-#, fuzzy
 msgid "Zoom _Out"
-msgstr "缩小"
+msgstr "縮小"
 
+# Zoom Magnification
 #: gschem/etc/system-gschemrc.scm:2205
-#, fuzzy
 msgid "Zoom _Mag"
-msgstr "放大"
+msgstr "缩放倍数"
 
+# Zoom Selection
 #: gschem/etc/system-gschemrc.scm:2206
-#, fuzzy
 msgid "Zoom _Selection"
-msgstr "放大"
+msgstr "缩放选择"
 
 # Documentation
 #: gschem/etc/system-gschemrc.scm:2209 gschem/etc/system-gschemrc.scm:2247
