@@ -3373,10 +3373,10 @@ msgstr "Openen"
 msgid "Remove"
 msgstr "Verwijder"
 
+# Show path
 #: gschem/src/x/x_menus.c:2050
-#, fuzzy
 msgid "_Show path"
-msgstr "Toon _Beide"
+msgstr "Toon pad"
 
 #: gschem/src/x/x_menus.c:2179
 msgid "Clear"
@@ -3400,15 +3400,15 @@ msgstr ""
 msgid "<various>"
 msgstr "<gevarieerde>"
 
+# Attribute name must not be empty. Please set a name
 #: gschem/src/x/x_multiattrib.c:924
-#, fuzzy
 msgid "Attribute name must not be empty. Please set a name."
-msgstr "Attributen met een lege naam zijn niet toegestaan. Geef een naam."
+msgstr "Attribuutnaam mag niet leeg zijn. Stel een naam in."
 
+# Multi-Attribute Editor
 #: gschem/src/x/x_multiattrib.c:926
-#, fuzzy
 msgid "Multi-Attribute Editor"
-msgstr "Enkelvoudige Attribuut Bewerking"
+msgstr "multi-attribuut Attribuut Bewerking"
 
 # Select to add an attribute
 #: gschem/src/x/x_multiattrib.c:1635
@@ -3463,57 +3463,52 @@ msgstr ""
 msgid "Add new attribute to component"
 msgstr ""
 
+# symbols
 #: gschem/src/x/x_multiattrib.c:2601
-#, fuzzy
 msgid "symbols"
-msgstr "Symbolen"
+msgstr "symbolen"
 
 #: gschem/src/x/x_multiattrib.c:2616
 msgid "pins"
 msgstr ""
 
 #: gschem/src/x/x_multiattrib.c:2620
-#, fuzzy
 msgid "pin"
-msgstr "Pen"
+msgstr "pin"
 
 #: gschem/src/x/x_multiattrib.c:2631
 msgid "nets"
 msgstr ""
 
 #: gschem/src/x/x_multiattrib.c:2635
-#, fuzzy
 msgid "net"
-msgstr "Draad"
+msgstr "net"
 
 #: gschem/src/x/x_multiattrib.c:2646
 msgid "buses"
 msgstr ""
 
 #: gschem/src/x/x_multiattrib.c:2650
-#, fuzzy
 msgid "bus"
-msgstr "Bus"
+msgstr "bus"
 
 #: gschem/src/x/x_multiattrib.c:2661
-#, fuzzy
 msgid "attributes"
-msgstr "Attributen"
+msgstr "attributen"
 
 #: gschem/src/x/x_multiattrib.c:2665
-#, fuzzy
 msgid "attribute"
 msgstr "Attribuut"
 
+# Move Up
 #: gschem/src/x/x_pagesel.c:592
-#, fuzzy
 msgid "Move Up"
-msgstr "Verplaats"
+msgstr "Ga naar boven"
 
+# Move Down
 #: gschem/src/x/x_pagesel.c:593
-#, fuzzy
 msgid "Move Down"
-msgstr "Verschuif Omlaag"
+msgstr "Naar beneden verplaatsen"
 
 #: gschem/src/x/x_pagesel.c:595
 msgid "New Blank"
