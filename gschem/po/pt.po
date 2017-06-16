@@ -3499,10 +3499,10 @@ msgstr "Gestor de Pagina"
 msgid "Changed"
 msgstr "Alterado"
 
+# Right click on rows for more options
 #: gschem/src/x/x_pagesel.c:1201
-#, fuzzy
 msgid "Right click on rows for more options..."
-msgstr "Use o botão direito sobre o nome do ficheiro para mais opções..."
+msgstr "Clique direito no linhas para opções..."
 
 # Select the name of the PostScript file
 #: gschem/src/x/x_print.c:90
@@ -3859,16 +3859,15 @@ msgstr "Não foi possível criar uma janela de contexto é Cairo desenho\n"
 msgid "window is not valid"
 msgstr ""
 
-# Saving Toolbar settings
+# Saving main window settings
 #: gschem/src/x/x_window.c:201
-#, fuzzy
 msgid "Saving main window settings.\n"
-msgstr "Guardar definições da barra de ferramentas..."
+msgstr "Salvando as configurações da janela principal\n"
 
+# Retrieving main Window settings
 #: gschem/src/x/x_window.c:308
-#, fuzzy
 msgid "Retrieving main Window settings.\n"
-msgstr "Restaurar as configurações do usuário\n"
+msgstr "Restaurando configurações principais da janela\n"
 
 #: gschem/src/x/x_window.c:671 gschem/src/x/x_window.c:1088
 msgid "Aborting action\n"
@@ -4211,7 +4210,7 @@ msgstr ""
 # Edit Component
 #: gschem/etc/system-gschemrc.scm:2131
 msgid "Edit Component..."
-msgstr "Editar componente..."
+msgstr "Editar Componente..."
 
 #: gschem/etc/system-gschemrc.scm:2132
 msgid "_Slot..."
@@ -4394,10 +4393,10 @@ msgstr "Desbloquear objetos selecionados"
 msgid "_Redraw"
 msgstr "Re_desenhar"
 
+# Redraw the current window
 #: gschem/etc/system-gschemrc.scm:2197
-#, fuzzy
 msgid "Redraw the current window"
-msgstr "Janela Actual"
+msgstr "Redraque a janela atual"
 
 #: gschem/etc/system-gschemrc.scm:2198
 msgid "_Pan"
