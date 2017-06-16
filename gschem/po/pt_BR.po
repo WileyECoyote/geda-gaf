@@ -3522,15 +3522,15 @@ msgstr "Gerenciador de Páginas"
 msgid "Changed"
 msgstr "Alterado"
 
+# Right click on rows for more options
 #: gschem/src/x/x_pagesel.c:1201
-#, fuzzy
 msgid "Right click on rows for more options..."
-msgstr "Clique direito no arquivo para opções..."
+msgstr "Clique direito no linhas para opções..."
 
+# Select PostScript Filename
 #: gschem/src/x/x_print.c:90
-#, fuzzy
 msgid "Select PostScript Filename..."
-msgstr "Selecione um arquivo de imagem..."
+msgstr "Selecione um arquivo de PostScript..."
 
 #: gschem/src/x/x_print.c:175
 msgid "Extents with margins"
@@ -3540,10 +3540,10 @@ msgstr ""
 msgid "Extents no margins"
 msgstr ""
 
+# Current Window
 #: gschem/src/x/x_print.c:184
-#, fuzzy
 msgid "Current Window"
-msgstr "Fechar janela"
+msgstr "Atual janela"
 
 #: gschem/src/x/x_print.c:217
 msgid "Landscape"
@@ -3574,10 +3574,10 @@ msgstr "Tipo:"
 msgid "Orientation:"
 msgstr ""
 
+# Destination
 #: gschem/src/x/x_print.c:535
-#, fuzzy
 msgid "Destination"
-msgstr "Junção de conexão"
+msgstr "Destino"
 
 # File
 #: gschem/src/x/x_print.c:548
@@ -3888,16 +3888,15 @@ msgstr "Não foi possível criar uma janela de contexto é Cairo desenho?!\n"
 msgid "window is not valid"
 msgstr ""
 
-# Saving Toolbar settings
+# Saving main window settings
 #: gschem/src/x/x_window.c:201
-#, fuzzy
 msgid "Saving main window settings.\n"
-msgstr "Guardar definições da barra de ferramentas..."
+msgstr "Salvando as configurações da janela principal\n"
 
+# Retrieving main Window settings
 #: gschem/src/x/x_window.c:308
-#, fuzzy
 msgid "Retrieving main Window settings.\n"
-msgstr "Restaurando configurações do usuário\n"
+msgstr "Restaurando configurações principais da janela\n"
 
 #: gschem/src/x/x_window.c:671 gschem/src/x/x_window.c:1088
 msgid "Aborting action\n"
@@ -4239,15 +4238,14 @@ msgstr "Preenchimento..."
 msgid "Open the Fill Editor Dialog"
 msgstr ""
 
+# Edit Component
 #: gschem/etc/system-gschemrc.scm:2131
-#, fuzzy
 msgid "Edit Component..."
-msgstr "/Inserir Componente..."
+msgstr "Editar Componente..."
 
 #: gschem/etc/system-gschemrc.scm:2132
-#, fuzzy
 msgid "_Slot..."
-msgstr "Slot..."
+msgstr "Elemento..."
 
 #: gschem/etc/system-gschemrc.scm:2132
 msgid "Open the Slot Editor Dialog"
@@ -4426,11 +4424,10 @@ msgstr "Desbloquear objetos selecionados"
 msgid "_Redraw"
 msgstr "_Redesenhar"
 
-# no active window
+# Redraw the current window
 #: gschem/etc/system-gschemrc.scm:2197
-#, fuzzy
 msgid "Redraw the current window"
-msgstr "nenhuma janela ativa"
+msgstr "Redraque a janela atual"
 
 #: gschem/etc/system-gschemrc.scm:2198
 msgid "_Pan"
@@ -4969,9 +4966,8 @@ msgid "Adjust snap size"
 msgstr "Ajustar tamanho do snap"
 
 #: gschem/etc/system-gschemrc.scm:2339
-#, fuzzy
 msgid "_Snap On-Off"
-msgstr "Ajuste desligado"
+msgstr "Ajuste do snap desligado"
 
 #: gschem/etc/system-gschemrc.scm:2339
 msgid "Toggle the object snap mode"
