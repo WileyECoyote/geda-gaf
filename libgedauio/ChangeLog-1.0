@@ -1,3 +1,8 @@
+2017-06-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_shell.c: Replace g_object_get_data with
+      GEDA_OBJECT_GET_DATA macro in geda_menu_shell_button_release.
+
 2017-06-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Reduce scope of widget in geda_entry_real_activate

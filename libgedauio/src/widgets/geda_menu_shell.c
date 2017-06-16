@@ -945,8 +945,8 @@ geda_menu_shell_button_release (GtkWidget *widget, GdkEventButton *event)
           int64_t   usec_since_popup = 0;
           int       popdown_delay;
 
-          popup_time = g_object_get_data ((GObject*)submenu,
-                                          MENU_POPUP_TIME_KEY);
+          popup_time = GEDA_OBJECT_GET_DATA (submenu, MENU_POPUP_TIME_KEY);
+
           if (popup_time) {
 
             GTimeVal current_time;
