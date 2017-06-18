@@ -3475,8 +3475,8 @@ msgstr ""
 msgid "Portrait"
 msgstr ""
 
+# Print
 #: gschem/src/x/x_print.c:484
-#, fuzzy
 msgid "Print..."
 msgstr "Yazdır..."
 
@@ -3526,10 +3526,10 @@ msgstr ""
 msgid "The log may contain more information."
 msgstr ""
 
+# Print Error
 #: gschem/src/x/x_print.c:794 gschem/src/x/x_print.c:1228
-#, fuzzy
 msgid "Print Error"
-msgstr "Yazdır..."
+msgstr "Yazdır hatası"
 
 #: gschem/src/x/x_print.c:799
 msgid "Printed current schematic to"
@@ -3665,9 +3665,8 @@ msgid "Wrote configuration to"
 msgstr ""
 
 #: gschem/src/x/x_settings.c:607
-#, fuzzy
 msgid "File error"
-msgstr "Ayna modu"
+msgstr "Dosya hatası"
 
 #: gschem/src/x/x_settings_dialog.c:1074
 msgid "Clear attributes and restore default filter list?"
@@ -3792,19 +3791,19 @@ msgstr ""
 msgid "Aborting action\n"
 msgstr ""
 
+# Close Window canceled
 #: gschem/src/x/x_window.c:677
-#, fuzzy
 msgid "Close Window canceled\n"
-msgstr "Pencere kapatılıyor\n"
+msgstr "Pencereyi Kapatıldı\n"
 
 #: gschem/src/x/x_window.c:760
 msgid "Loading file"
 msgstr ""
 
+# New file
 #: gschem/src/x/x_window.c:904
-#, fuzzy
 msgid "New file"
-msgstr "Yeni Sayfa"
+msgstr "Yeni dosya"
 
 #: gschem/src/x/x_window.c:946
 msgid "Failed to load file"
@@ -3814,10 +3813,10 @@ msgstr ""
 msgid "Creating new file"
 msgstr ""
 
+# Path
 #: gschem/src/x/x_window.c:989
-#, fuzzy
 msgid "Path"
-msgstr "Döndürme kipi"
+msgstr "Çokgen"
 
 #: gschem/src/x/x_window.c:992
 msgid ""
@@ -3946,20 +3945,20 @@ msgstr ""
 msgid "Write _image..."
 msgstr ""
 
+# Export image
 #: gschem/etc/system-gschemrc.scm:2085
-#, fuzzy
 msgid "Export image"
-msgstr "Bileşen/Resim göm"
+msgstr "Resmi dışa aktar"
 
+# Execute Script
 #: gschem/etc/system-gschemrc.scm:2088
-#, fuzzy
 msgid "E_xecute Script..."
-msgstr "Betik Çalıştır..."
+msgstr "Komut Dosyasını Çalıştır..."
 
+# Execute a script file
 #: gschem/etc/system-gschemrc.scm:2088
-#, fuzzy
 msgid "Execute a script file"
-msgstr "Betik Çalıştır..."
+msgstr "Bir komut dosyası çalıştır"
 
 #: gschem/etc/system-gschemrc.scm:2091 gschem/etc/system-gschemrc.scm:2238
 msgid "_Close"
@@ -3969,10 +3968,10 @@ msgstr ""
 msgid "Close the current document"
 msgstr ""
 
+# Close All
 #: gschem/etc/system-gschemrc.scm:2092
-#, fuzzy
 msgid "Close All"
-msgstr "Sayfayı Kapat"
+msgstr "Hepsini kapat"
 
 #: gschem/etc/system-gschemrc.scm:2092
 msgid "Close all open documents"
