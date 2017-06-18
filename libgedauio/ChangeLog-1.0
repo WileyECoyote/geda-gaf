@@ -1,3 +1,8 @@
+2017-06-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_item.c: Replace gtk_container_get_border_width with
+      geda_get_container_border_width macro IN geda_menu_item_get_preferred_width.
+
 2017-06-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_shell.c: Replace g_object_get_data with

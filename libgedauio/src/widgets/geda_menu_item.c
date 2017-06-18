@@ -2210,7 +2210,7 @@ geda_menu_item_get_preferred_width (GtkWidget *widget,
 
   parent       = gtk_widget_get_parent (widget);
 
-  border_width = gtk_container_get_border_width ((GtkContainer*)widget);
+  border_width = geda_get_container_border_width (widget);
 
   context      = gtk_widget_get_style_context (widget);
   state        = gtk_widget_get_state_flags (widget);
