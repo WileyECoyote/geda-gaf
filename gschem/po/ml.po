@@ -2292,11 +2292,10 @@ msgstr ""
 msgid "Entry for model file name"
 msgstr ""
 
-# Line Type
+# Type
 #: gschem/src/x/x_edit_pin.c:71
-#, fuzzy
 msgid "_Type:"
-msgstr "ലൈൻ തരം:"
+msgstr "തരം:"
 
 #: gschem/src/x/x_edit_pin.c:71
 msgid "Select the pin type"
@@ -2309,9 +2308,8 @@ msgstr "ഗുണവിശേഷങ്ങൾ:"
 
 # Select export file
 #: gschem/src/x/x_edit_pin.c:72
-#, fuzzy
 msgid "Set the pin attributes"
-msgstr "കയറ്റുമതി ഫയൽ തിരഞ്ഞെടുക്കുക"
+msgstr "പിൻ ആട്രിബ്യൂട്ടുകൾ സജ്ജമാക്കുക"
 
 #: gschem/src/x/x_edit_pin.c:73
 msgid "_Number:"
@@ -2498,21 +2496,19 @@ msgstr ""
 msgid "_Color:"
 msgstr "നിറം:"
 
-# Select export file
+# Select color attribute
 #: gschem/src/x/x_edit_text.c:66
-#, fuzzy
 msgid "Select color attribute"
-msgstr "കയറ്റുമതി ഫയൽ തിരഞ്ഞെടുക്കുക"
+msgstr "വർണ്ണ ആട്രിബ്യൂട്ട് തിരഞ്ഞെടുക്കുക"
 
 #: gschem/src/x/x_edit_text.c:67
 msgid "_Size:"
 msgstr ""
 
-# Offset the selected object
+# Open font selection dialog
 #: gschem/src/x/x_edit_text.c:67
-#, fuzzy
 msgid "Open font selection dialog"
-msgstr "തിരഞ്ഞെടുത്ത ഒബ്ജക്റ്റ് ഓഫ്സെറ്റ്"
+msgstr "ഫോണ്ട് തിരഞ്ഞെടുക്കൽ ഡയലോഗ് തുറക്കുക"
 
 #: gschem/src/x/x_edit_text.c:68
 msgid "_Rotation:"
