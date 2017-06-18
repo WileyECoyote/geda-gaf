@@ -146,7 +146,7 @@ geda_font_dialog_update_preview (GedaFontDialog *dialog)
 
   preview_entry = dialog->preview_entry;
 
-  if ( gtk_widget_has_screen (preview_entry)) {
+  if (gtk_widget_has_screen (preview_entry)) {
 
     const char *text;
     int new_height;
