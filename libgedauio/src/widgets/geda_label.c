@@ -1769,9 +1769,6 @@ geda_label_instance_init(GTypeInstance *instance, void *g_class)
     priv->accessible = g_object_ref(accessible);
     atk_object_set_name (priv->accessible, _("Label"));
   }
-  //else {
-  //  priv->accessible = NULL;
-  //}
 }
 
 static void
