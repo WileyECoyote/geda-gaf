@@ -77,8 +77,7 @@ static void geda_bus_instance_init(GTypeInstance *instance, void *g_class)
   bus->line_width            = &line->line_options.line_width;
 }
 
-static void
-geda_bus_dispose(GObject *object)
+static void geda_bus_dispose(GObject *object)
 {
 
   G_OBJECT_CLASS(geda_bus_parent_class)->dispose(object);
@@ -106,10 +105,9 @@ static void geda_bus_finalize(GObject *object)
   ((GedaLineClass*)geda_bus_parent_class)->finalize(object);
 }
 
-static void
-get_property (GObject *object, unsigned int  prop_id,
-                               GValue       *value,
-                               GParamSpec   *pspec)
+static void get_property (GObject *object, unsigned int  prop_id,
+                                           GValue       *value,
+                                           GParamSpec   *pspec)
 
 {
   GedaBus *bus = (GedaBus*)object;
@@ -258,8 +256,7 @@ bool is_a_geda_bus (const GedaBus *bus)
  *
  * \sa geda_bus_set_ripper_direction
  */
-int
-geda_bus_get_ripper_direction (const GedaBus *bus) {
+int geda_bus_get_ripper_direction (const GedaBus *bus) {
   if (is_a_geda_bus(bus)) {
     return bus->bus_ripper_direction;
   }
@@ -274,8 +271,7 @@ geda_bus_get_ripper_direction (const GedaBus *bus) {
  *
  * \return integer value of X0 if \a bus is invalid.
  */
-int
-geda_bus_get_x0 (const GedaBus *bus) {
+int geda_bus_get_x0 (const GedaBus *bus) {
   if (is_a_geda_bus(bus)) {
     return GEDA_LINE(bus)->x[0];
   }
@@ -290,8 +286,7 @@ geda_bus_get_x0 (const GedaBus *bus) {
  *
  * \return integer value of X1 if \a bus is invalid.
  */
-int
-geda_bus_get_x1 (const GedaBus *bus) {
+int geda_bus_get_x1 (const GedaBus *bus) {
   if (is_a_geda_bus(bus)) {
     return GEDA_LINE(bus)->x[1];
   }
@@ -306,8 +301,7 @@ geda_bus_get_x1 (const GedaBus *bus) {
  *
  * \return integer value of Y0 if \a bus is invalid.
  */
-int
-geda_bus_get_y0 (const GedaBus *bus) {
+int geda_bus_get_y0 (const GedaBus *bus) {
   if (is_a_geda_bus(bus)) {
     return GEDA_LINE(bus)->y[0];
   }
@@ -322,8 +316,7 @@ geda_bus_get_y0 (const GedaBus *bus) {
  *
  * \return integer value of Y1 if \a bus is invalid.
  */
-int
-geda_bus_get_y1 (const GedaBus *bus) {
+int geda_bus_get_y1 (const GedaBus *bus) {
   if (is_a_geda_bus(bus)) {
     return GEDA_LINE(bus)->y[1];
   }
@@ -338,8 +331,7 @@ geda_bus_get_y1 (const GedaBus *bus) {
  *
  * \sa geda_bus_get_ripper_direction
  */
-void
-geda_bus_set_ripper_direction (GedaBus *bus, int dir) {
+void geda_bus_set_ripper_direction (GedaBus *bus, int dir) {
   if (is_a_geda_bus(bus)) {
     bus->bus_ripper_direction = dir;
   }
@@ -351,8 +343,7 @@ geda_bus_set_ripper_direction (GedaBus *bus, int dir) {
  *  Sets the first X of coordinate \a bus if \a bus is a valid
  *  GedaBus object, if \a bus is invalid then nothing is done.
  */
-void
-geda_bus_set_x0 (GedaBus *bus, int x) {
+void geda_bus_set_x0 (GedaBus *bus, int x) {
   if (is_a_geda_bus(bus)) {
     GEDA_LINE(bus)->x[0] = x;
   }
@@ -364,8 +355,7 @@ geda_bus_set_x0 (GedaBus *bus, int x) {
  *  Sets the second X of coordinate \a bus if \a bus is a valid
  *  GedaBus object, if \a bus is invalid then nothing is done.
  */
-void
-geda_bus_set_x1 (GedaBus *bus, int x) {
+void geda_bus_set_x1 (GedaBus *bus, int x) {
   if (is_a_geda_bus(bus)) {
     GEDA_LINE(bus)->x[1] = x;
   }
@@ -377,8 +367,7 @@ geda_bus_set_x1 (GedaBus *bus, int x) {
  *  Sets the first Y of coordinate \a bus if \a bus is a valid
  *  GedaBus object, if \a bus is invalid then nothing is done.
  */
-void
-geda_bus_set_y0 (GedaBus *bus, int y) {
+void geda_bus_set_y0 (GedaBus *bus, int y) {
   if (is_a_geda_bus(bus)) {
     GEDA_LINE(bus)->y[0] = y;
   }
@@ -390,8 +379,7 @@ geda_bus_set_y0 (GedaBus *bus, int y) {
  *  Sets the second Y of coordinate \a bus if \a bus is a valid
  *  GedaBus object, if \a bus is invalid then nothing is done.
  */
-void
-geda_bus_set_y1 (GedaBus *bus, int y) {
+void geda_bus_set_y1 (GedaBus *bus, int y) {
   if (is_a_geda_bus(bus)) {
     GEDA_LINE(bus)->y[1] = y;
   }

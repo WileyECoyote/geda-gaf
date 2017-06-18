@@ -1,3 +1,8 @@
+2017-06-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_bus.c: Revert back to conventional function wrapping.
+
+
 2017-06-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_box.c: Revert back to conventional function wrapping.
