@@ -3519,9 +3519,8 @@ msgid "New Page"
 msgstr "Nieuwe Pagina"
 
 #: gschem/src/x/x_pagesel.c:597
-#, fuzzy
 msgid "Open Page..."
-msgstr "Open bestand..."
+msgstr "Open Pagina..."
 
 #: gschem/src/x/x_pagesel.c:599
 msgid "Save Page"
@@ -3544,14 +3543,12 @@ msgid "Changed"
 msgstr "Veranderd"
 
 #: gschem/src/x/x_pagesel.c:1201
-#, fuzzy
 msgid "Right click on rows for more options..."
-msgstr "Klik met rechts op de bestandnaam voor meer opties..."
+msgstr "Klik met de rechtermuisknop op de rijen voor meer opties..."
 
 #: gschem/src/x/x_print.c:90
-#, fuzzy
 msgid "Select PostScript Filename..."
-msgstr "Selecteer een afbeelding bestands..."
+msgstr "Selecteer PostScript bestandsnaam..."
 
 #: gschem/src/x/x_print.c:175
 msgid "Extents with margins"
@@ -3573,10 +3570,10 @@ msgstr "Liggend"
 msgid "Portrait"
 msgstr "Staand"
 
+# Print
 #: gschem/src/x/x_print.c:484
-#, fuzzy
 msgid "Print..."
-msgstr "Af_drukken..."
+msgstr "Afdrukken..."
 
 #: gschem/src/x/x_print.c:492
 msgid "Settings"
@@ -3904,11 +3901,10 @@ msgstr ""
 msgid "window is not valid"
 msgstr ""
 
-# toolbar settings saving
+# Saving main window settings
 #: gschem/src/x/x_window.c:201
-#, fuzzy
 msgid "Saving main window settings.\n"
-msgstr "werkbalkinstellingen saving..."
+msgstr "Opslaan van hoofdvensterinstellingen.\n"
 
 #: gschem/src/x/x_window.c:308
 msgid "Retrieving main Window settings.\n"
@@ -4016,19 +4012,19 @@ msgstr "Opslaan _Als..."
 msgid "Save the current document to a new name or location"
 msgstr ""
 
+# Save All
 #: gschem/etc/system-gschemrc.scm:2076
-#, fuzzy
 msgid "Save A_ll"
-msgstr "Alles Opslaan"
+msgstr "Bewaar alles"
 
 #: gschem/etc/system-gschemrc.scm:2076
 msgid "Save all open documents"
 msgstr ""
 
+# Save Modified
 #: gschem/etc/system-gschemrc.scm:2077
-#, fuzzy
 msgid "Save _Modified"
-msgstr "Verplaats Mode"
+msgstr "Bewaar gemodificeerd"
 
 #: gschem/etc/system-gschemrc.scm:2077
 msgid "Save all modified documents"
@@ -4042,10 +4038,10 @@ msgstr "Te_rughalen"
 msgid "Discard changes and reload the current document"
 msgstr ""
 
+# Revert All
 #: gschem/etc/system-gschemrc.scm:2079
-#, fuzzy
 msgid "Re_vert All"
-msgstr "Terughalen Wijzigingen"
+msgstr "Alle terugzetten"
 
 #: gschem/etc/system-gschemrc.scm:2079
 msgid "Discard changes and reload all open documents"
@@ -4076,20 +4072,20 @@ msgstr ""
 msgid "Write _image..."
 msgstr "Schrijf afbeeld_ing..."
 
+# Export Image
 #: gschem/etc/system-gschemrc.scm:2085
-#, fuzzy
 msgid "Export image"
 msgstr "Exporteer Afbeelding"
 
+# Execute Script
 #: gschem/etc/system-gschemrc.scm:2088
-#, fuzzy
 msgid "E_xecute Script..."
 msgstr "Script Uitvoeren..."
 
+# Execute a script file
 #: gschem/etc/system-gschemrc.scm:2088
-#, fuzzy
 msgid "Execute a script file"
-msgstr "Script Uitvoeren..."
+msgstr "Uitvoeren een scriptbestand uit"
 
 #: gschem/etc/system-gschemrc.scm:2091 gschem/etc/system-gschemrc.scm:2238
 msgid "_Close"
