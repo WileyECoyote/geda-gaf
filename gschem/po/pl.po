@@ -4092,20 +4092,20 @@ msgstr ""
 msgid "Write _image..."
 msgstr "Zap_isz obraz..."
 
+# Export image
 #: gschem/etc/system-gschemrc.scm:2085
-#, fuzzy
 msgid "Export image"
-msgstr "Osadź element/obraz"
+msgstr "Eksportuj obraz"
 
+# Execute Script
 #: gschem/etc/system-gschemrc.scm:2088
-#, fuzzy
 msgid "E_xecute Script..."
 msgstr "Wykonaj skrypt..."
 
+# Execute a script file
 #: gschem/etc/system-gschemrc.scm:2088
-#, fuzzy
 msgid "Execute a script file"
-msgstr "Wykonaj skrypt..."
+msgstr "Wykonaj plik skryptu"
 
 #: gschem/etc/system-gschemrc.scm:2091 gschem/etc/system-gschemrc.scm:2238
 msgid "_Close"
@@ -4115,10 +4115,10 @@ msgstr "_Zamknij"
 msgid "Close the current document"
 msgstr ""
 
+# Close All
 #: gschem/etc/system-gschemrc.scm:2092
-#, fuzzy
 msgid "Close All"
-msgstr "_Zamknij"
+msgstr "Zamknij wszystko"
 
 #: gschem/etc/system-gschemrc.scm:2092
 msgid "Close all open documents"
@@ -4446,11 +4446,10 @@ msgstr "Odblokuj wybrane obiekty"
 msgid "_Redraw"
 msgstr "_Aktualizuj"
 
-# redraw the current window
+# Redraw the current window
 #: gschem/etc/system-gschemrc.scm:2197
-#, fuzzy
 msgid "Redraw the current window"
-msgstr "przerysować bieżące okno"
+msgstr "Powtórz bieżące okno"
 
 #: gschem/etc/system-gschemrc.scm:2198
 msgid "_Pan"
@@ -4460,10 +4459,10 @@ msgstr "_Przesuń"
 msgid "Activate Panning"
 msgstr ""
 
+# Zoom All
 #: gschem/etc/system-gschemrc.scm:2200
-#, fuzzy
 msgid "Zoom _All"
-msgstr "Maksymalne pomniejszenie"
+msgstr "Powiększ wszystkie"
 
 #: gschem/etc/system-gschemrc.scm:2200
 msgid "Zoom to the limits of the drawing area"
@@ -4477,6 +4476,7 @@ msgstr "Powiększ _obszar"
 msgid "Zoom _Extents"
 msgstr "_Dopasuj widok"
 
+# Zoom in -> Enlarge
 #: gschem/etc/system-gschemrc.scm:2203
 msgid "Zoom _In"
 msgstr "Pow_iększ"
@@ -4485,15 +4485,15 @@ msgstr "Pow_iększ"
 msgid "Zoom _Out"
 msgstr "P_omniejsz"
 
+# Zoom Magnification
 #: gschem/etc/system-gschemrc.scm:2205
-#, fuzzy
 msgid "Zoom _Mag"
-msgstr "Pow_iększ"
+msgstr "Powiększ Powiększenie"
 
+# Zoom Selection
 #: gschem/etc/system-gschemrc.scm:2206
-#, fuzzy
 msgid "Zoom _Selection"
-msgstr "Zaznaczenie"
+msgstr "Wybór powiększenia"
 
 #: gschem/etc/system-gschemrc.scm:2209 gschem/etc/system-gschemrc.scm:2247
 msgid "D_ocumentation..."
@@ -4503,20 +4503,20 @@ msgstr "Do_kumentacja..."
 msgid "Show/Hide Inv Text"
 msgstr "Wyświetlaj/ukryj niewidoczny tekst"
 
+# Toggle hidden text attributes
 #: gschem/etc/system-gschemrc.scm:2210
-#, fuzzy
 msgid "Toggle hidden text attributes"
-msgstr "Pokaż odziedziczone atrybuty"
+msgstr "Przełącz atrybuty ukrytych tekstów"
 
+# Show/Hide Net Names
 #: gschem/etc/system-gschemrc.scm:2211
-#, fuzzy
 msgid "Show/Hide Net Names"
-msgstr "Wyświetlaj/ukryj niewidoczny tekst"
+msgstr "Pokaż / ukryj nazwy sieci"
 
+# Toggle hidden net name attributes
 #: gschem/etc/system-gschemrc.scm:2211
-#, fuzzy
 msgid "Toggle hidden net name attributes"
-msgstr "Pokaż odziedziczone atrybuty"
+msgstr "Przełącz ukryte atrybuty nazwy sieci"
 
 #: gschem/etc/system-gschemrc.scm:2214
 msgid "_Dark color scheme"
