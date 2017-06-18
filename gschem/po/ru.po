@@ -3630,10 +3630,10 @@ msgstr ""
 msgid "Extents no margins"
 msgstr ""
 
+# Current Window
 #: gschem/src/x/x_print.c:184
-#, fuzzy
 msgid "Current Window"
-msgstr "Закрыть окно"
+msgstr "Текущее окно"
 
 #: gschem/src/x/x_print.c:217
 msgid "Landscape"
@@ -3739,20 +3739,19 @@ msgstr ""
 msgid "Specify new name for Session:"
 msgstr ""
 
-# Заголовок окна выбора файла изображения
+# Select export file
 #: gschem/src/x/x_sessions.c:230
-#, fuzzy
 msgid "Select export file"
-msgstr "Выберите файл изображения"
+msgstr "Выберите файл экспорта"
 
 #: gschem/src/x/x_sessions.c:234
 msgid "exported to"
 msgstr ""
 
+# Load the selected session
 #: gschem/src/x/x_sessions.c:416
-#, fuzzy
 msgid "Load the selected session"
-msgstr "Выделенные объекты"
+msgstr "Загрузка выбранного сеанса"
 
 #: gschem/src/x/x_sessions.c:417
 msgid ""
@@ -3772,17 +3771,15 @@ msgstr "Показывать при запуске"
 msgid "Auto update"
 msgstr ""
 
+# Session Name
 #: gschem/src/x/x_sessions.c:537
-#, fuzzy
 msgid "Session Name"
-msgstr "Показать имя"
+msgstr "Название сеанса"
 
-# По порядку нахождения элементов в тексте файла, то есть по порядку их
-# добавления
+# File Count
 #: gschem/src/x/x_sessions.c:552
-#, fuzzy
 msgid "File Count"
-msgstr "По порядку в файле"
+msgstr "Количество файлов"
 
 #: gschem/src/x/x_sessions.c:603
 msgid "Rename the selected session"
@@ -3800,19 +3797,19 @@ msgstr ""
 msgid "Manage Sessions"
 msgstr ""
 
+# Rename
 #: gschem/src/x/x_sessions.c:642
-#, fuzzy
 msgid "_Rename"
-msgstr "Имя файла"
+msgstr "переименовывать"
 
 #: gschem/src/x/x_sessions.c:649 gschem/etc/system-gschemrc.scm:2108
 msgid "_Delete"
 msgstr "_Удалить"
 
+# Export
 #: gschem/src/x/x_sessions.c:656 gschem/etc/system-gschemrc.scm:2083
-#, fuzzy
 msgid "_Export"
-msgstr "Экспорт изображения"
+msgstr "экспорт"
 
 #: gschem/src/x/x_sessions.c:771
 msgid "Open Session"
@@ -3822,10 +3819,10 @@ msgstr ""
 msgid "New Session"
 msgstr ""
 
+# Save Session As
 #: gschem/src/x/x_sessions.c:856 gschem/scheme/gschem/builtins.scm:389
-#, fuzzy
 msgid "Save Session As"
-msgstr "Сохранить как"
+msgstr "Сохранить сеанс как"
 
 # error opening
 #: gschem/src/x/x_settings.c:359
@@ -3850,10 +3847,10 @@ msgstr "Ошибка при открытии выходной"
 msgid "Wrote configuration to"
 msgstr "Написал конфигурацию для"
 
+# File error
 #: gschem/src/x/x_settings.c:607
-#, fuzzy
 msgid "File error"
-msgstr "<b>Заполнение</b>"
+msgstr "Ошибка файла"
 
 #: gschem/src/x/x_settings_dialog.c:1074
 msgid "Clear attributes and restore default filter list?"
@@ -3863,10 +3860,10 @@ msgstr ""
 msgid "Restore default"
 msgstr ""
 
+# Close without changing any settings
 #: gschem/src/x/x_settings_dialog.c:2651
-#, fuzzy
 msgid "Close without changing any settings"
-msgstr "Закрыть без сохранения"
+msgstr "Закрыть без изменения настроек"
 
 #: gschem/src/x/x_settings_dialog.c:2653 gschem/scheme/gschem/builtins.scm:56
 msgid "Save"
