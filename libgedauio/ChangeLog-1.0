@@ -4,7 +4,8 @@
       geda_container_xxx macros
 
     * src/widgets/geda_label.c: Remove unnecessary GtkMisc type-checking cast in
-      geda_aligned_visible_label_new.
+      geda_aligned_visible_label_new. Revise geda_label_destroy to eliminate
+      variable connected.
 
     * src/widgets/geda_menu_item.c: Replace gtk_container_get_border_width with
       geda_get_container_border_width macro IN geda_menu_item_get_preferred_width.

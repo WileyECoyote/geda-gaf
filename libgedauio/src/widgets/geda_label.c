@@ -929,21 +929,17 @@ static void geda_label_ensure_layout (GedaLabel *label)
  */
 
 /*! \internal GtkObjectClass::object_class->destroy */
-static void
-geda_label_destroy (GtkObject *object)
+static void geda_label_destroy (GtkObject *object)
 {
   GedaLabel   *label = (GedaLabel*)object;
   GtkSettings *settings;
   GtkWidget   *toplevel;
-  bool         connected;
 
   gtk_widget_set_app_paintable ((GtkWidget*)label, FALSE);
 
   settings = gtk_widget_get_settings ((GtkWidget*)object);
 
-  connected = (int)(long)GEDA_OBJECT_GET_DATA (settings, "label-short-connected");
-
-  if (connected) {
+  if (GEDA_OBJECT_GET_DATA (settings, "label-short-connected")) {
 
     g_signal_handlers_disconnect_by_func (settings, label_shortcut_setting_changed, NULL);
 
@@ -952,9 +948,7 @@ geda_label_destroy (GtkObject *object)
 
   toplevel = gtk_widget_get_toplevel ((GtkWidget*)label);
 
-  connected = (int)(long)GEDA_OBJECT_GET_DATA(toplevel, "label-mnemonics-connected");
-
-  if (connected) {
+  if (GEDA_OBJECT_GET_DATA(toplevel, "label-mnemonics-connected")) {
 
     g_signal_handlers_disconnect_by_func (toplevel, label_mnemonics_visible_changed, label);
 
