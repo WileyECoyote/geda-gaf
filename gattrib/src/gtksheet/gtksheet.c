@@ -13051,9 +13051,6 @@ _gtk_sheet_draw_button(GtkSheet *sheet, int row, int col)
       allocation.width = requisition.width;
       allocation.height = requisition.height;
 
-      //x = child->x;
-      //y = child->y;
-
       gtk_widget_set_state(child->widget, button->state);
 
       if (gtk_widget_get_realized((GtkWidget*)sheet) &&
@@ -13064,7 +13061,6 @@ _gtk_sheet_draw_button(GtkSheet *sheet, int row, int col)
       }
     }
 }
-
 
 /* SCROLLBARS
  *
