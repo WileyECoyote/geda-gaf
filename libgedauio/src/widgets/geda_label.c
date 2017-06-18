@@ -2423,7 +2423,7 @@ GtkWidget *geda_aligned_visible_label_new (const char *str, float x, float y)
 
   label = geda_label_new (str);
 
-  gtk_misc_set_alignment(GTK_MISC(label), x, y);
+  gtk_misc_set_alignment((GtkMisc*)label, x, y);
 
   g_object_set (label, "visible", TRUE, NULL);
 
