@@ -134,11 +134,10 @@ msgstr "karvayotamlei"
 msgid "Retrieving main window position.\n"
 msgstr ""
 
-# recall toolbar geometry
+# Retrieving main window geometry
 #: gschem/src/base/gschem_main_window.c:276
-#, fuzzy
 msgid "Retrieving main window geometry.\n"
-msgstr "thorneimatr rbar ubakar bramoul rothayon\n"
+msgstr "kampoung tow yk thorneimatr bangauoch me\n"
 
 #: gschem/src/base/gschem_page_view.c:250
 #: gschem/src/base/gschem_page_view.c:251
@@ -2397,10 +2396,10 @@ msgstr "theato samreab braphet bdeseth kar kleng"
 msgid "Entry for model file name"
 msgstr "theato samreab chhmoh eksar koumrou"
 
+# Type
 #: gschem/src/x/x_edit_pin.c:71
-#, fuzzy
 msgid "_Type:"
-msgstr "braphet banhchob:"
+msgstr "braphet:"
 
 #: gschem/src/x/x_edit_pin.c:71
 msgid "Select the pin type"
@@ -2410,10 +2409,10 @@ msgstr ""
 msgid "_Attributes:"
 msgstr "kounalokkhan:"
 
+# Set the pin attributes
 #: gschem/src/x/x_edit_pin.c:72
-#, fuzzy
 msgid "Set the pin attributes"
-msgstr "kounalokkhan del ban svengork del ban leak"
+msgstr "kamnt kounalokkhan mchoul"
 
 # Pin Number
 #: gschem/src/x/x_edit_pin.c:73
@@ -2429,11 +2428,10 @@ msgstr ""
 msgid "_Sequence:"
 msgstr "lomdab:"
 
-# Order Number
+# Set the sequence number
 #: gschem/src/x/x_edit_pin.c:74
-#, fuzzy
 msgid "Set the sequence number"
-msgstr "lekh​ lomdab"
+msgstr "kamnt lekh lomdab"
 
 # Label
 #: gschem/src/x/x_edit_pin.c:75
@@ -2445,9 +2443,8 @@ msgid "Enter pin name or description"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:77
-#, fuzzy
 msgid "      Type:"
-msgstr "braphet banhchob:"
+msgstr "   braphet:"
 
 #: gschem/src/x/x_edit_pin.c:77
 msgid "Enable to set all selected attributes to the prescribed type"
@@ -2599,10 +2596,10 @@ msgstr "ron​ lekh​:"
 msgid "Text Content"
 msgstr "Meateka Atthabat"
 
+# Enter or edit the text string
 #: gschem/src/x/x_edit_text.c:64
-#, fuzzy
 msgid "Enter or edit the text string"
-msgstr "tomham atthabt thmei kar banhchoul:"
+msgstr "banhchoul ryy kesamruol khsae aksaar atthabat"
 
 #: gschem/src/x/x_edit_text.c:65
 #, fuzzy
@@ -5176,9 +5173,10 @@ msgstr ""
 msgid "Zoom Selection"
 msgstr "kar chreus"
 
+# Zoom Extents
 #: gschem/scheme/gschem/builtins.scm:233
 msgid "Zoom Extents"
-msgstr ""
+msgstr "visaealpheap"
 
 #: gschem/scheme/gschem/builtins.scm:236
 msgid "Zoom In"
