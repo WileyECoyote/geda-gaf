@@ -2339,9 +2339,8 @@ msgid "Entry for model file name"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:71
-#, fuzzy
 msgid "_Type:"
-msgstr "Modifica tipo di pin:"
+msgstr "_Tipo:"
 
 #: gschem/src/x/x_edit_pin.c:71
 msgid "Select the pin type"
@@ -2351,10 +2350,10 @@ msgstr ""
 msgid "_Attributes:"
 msgstr "_Attributi:"
 
+# Set the pin attributes
 #: gschem/src/x/x_edit_pin.c:72
-#, fuzzy
 msgid "Set the pin attributes"
-msgstr "Mostra gli attributi ereditati"
+msgstr "Imposta gli attributi pin"
 
 #: gschem/src/x/x_edit_pin.c:73
 msgid "_Number:"
@@ -2368,10 +2367,10 @@ msgstr ""
 msgid "_Sequence:"
 msgstr ""
 
+# Set the sequence number
 #: gschem/src/x/x_edit_pin.c:74
-#, fuzzy
 msgid "Set the sequence number"
-msgstr "Oggetti selezionati"
+msgstr "Impostare il numero di sequenza"
 
 #: gschem/src/x/x_edit_pin.c:75
 msgid "_Label:"
@@ -2382,23 +2381,22 @@ msgid "Enter pin name or description"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:77
-#, fuzzy
 msgid "      Type:"
-msgstr "Modifica tipo di pin:"
+msgstr "      Tipo:"
 
+# Enable to set all selected attributes to the prescribed type
 #: gschem/src/x/x_edit_pin.c:77
-#, fuzzy
 msgid "Enable to set all selected attributes to the prescribed type"
-msgstr "Collega attributi"
+msgstr "Abilita per impostare tutti gli attributi selezionati sul tipo prescritto"
 
 #: gschem/src/x/x_edit_pin.c:78
 msgid "Attributes:"
 msgstr "Attributi:"
 
+# Enable to set all selected attributes to the prescribed value
 #: gschem/src/x/x_edit_pin.c:78
-#, fuzzy
 msgid "Enable to set all selected attributes to the prescribed value"
-msgstr "Collega attributi"
+msgstr "Abilita per impostare tutti gli attributi selezionati sul valore prescritto"
 
 #: gschem/src/x/x_edit_pin.c:80
 msgid "Number:"
@@ -2527,37 +2525,37 @@ msgstr "numero slot:"
 msgid "Text Content"
 msgstr "Opzioni"
 
+# Enter or edit the text string
 #: gschem/src/x/x_edit_text.c:64
-#, fuzzy
 msgid "Enter or edit the text string"
-msgstr "Inserisci nuova ampiezza del testo:"
+msgstr "Inserisci o modifica la stringa di testo"
 
 #: gschem/src/x/x_edit_text.c:65
 msgid "A_lignment:"
 msgstr "A_llineamento:"
 
+# Select the text alignment attribute
 #: gschem/src/x/x_edit_text.c:65
-#, fuzzy
 msgid "Select the text alignment attribute"
-msgstr "Selezionare il nome dell'attributo da aggiungere"
+msgstr "Seleziona l'attributo di allineamento del testo"
 
 #: gschem/src/x/x_edit_text.c:66
 msgid "_Color:"
 msgstr "_Colore:"
 
+# Select color attribute
 #: gschem/src/x/x_edit_text.c:66
-#, fuzzy
 msgid "Select color attribute"
-msgstr "Selezionare un attributo da aggiungere"
+msgstr "Seleziona l'attributo di colore"
 
 #: gschem/src/x/x_edit_text.c:67
 msgid "_Size:"
 msgstr ""
 
+# Open font selection dialog
 #: gschem/src/x/x_edit_text.c:67
-#, fuzzy
 msgid "Open font selection dialog"
-msgstr "Aum_enta ingrandimento"
+msgstr "Apri la finestra di selezione dei font"
 
 #: gschem/src/x/x_edit_text.c:68
 msgid "_Rotation:"
