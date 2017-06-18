@@ -2301,9 +2301,8 @@ msgid "Entry for model file name"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:71
-#, fuzzy
 msgid "_Type:"
-msgstr "סגנון קו-סיום:"
+msgstr "סגנון:"
 
 #: gschem/src/x/x_edit_pin.c:71
 msgid "Select the pin type"
@@ -2313,11 +2312,10 @@ msgstr ""
 msgid "_Attributes:"
 msgstr "מאפיינים:"
 
-# Search hidden attributes
+# Set the pin attributes
 #: gschem/src/x/x_edit_pin.c:72
-#, fuzzy
 msgid "Set the pin attributes"
-msgstr "תכונות חיפוש מוסתרות"
+msgstr "הגדר את תכונות הסיכה"
 
 #: gschem/src/x/x_edit_pin.c:73
 msgid "_Number:"
@@ -2331,11 +2329,10 @@ msgstr ""
 msgid "_Sequence:"
 msgstr ""
 
-# Offset the selected objects
+# Set the sequence number
 #: gschem/src/x/x_edit_pin.c:74
-#, fuzzy
 msgid "Set the sequence number"
-msgstr "לקזז את האובייקטים שנבחרו"
+msgstr "הגדר את מספר הרצף"
 
 #: gschem/src/x/x_edit_pin.c:75
 msgid "_Label:"
@@ -2346,9 +2343,8 @@ msgid "Enter pin name or description"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:77
-#, fuzzy
 msgid "      Type:"
-msgstr "סגנון קו-סיום:"
+msgstr "סגנון:"
 
 #: gschem/src/x/x_edit_pin.c:77
 msgid "Enable to set all selected attributes to the prescribed type"
@@ -2498,30 +2494,28 @@ msgstr ""
 msgid "A_lignment:"
 msgstr ""
 
-# Search hidden attributes
+# Select the text alignment attribute
 #: gschem/src/x/x_edit_text.c:65
-#, fuzzy
 msgid "Select the text alignment attribute"
-msgstr "תכונות חיפוש מוסתרות"
+msgstr "בחר את מאפיין היישור של הטקסט"
 
 #: gschem/src/x/x_edit_text.c:66
 msgid "_Color:"
 msgstr "צבע:"
 
-# Detached attribute => Seperated attribute
+# Select color attribute
 #: gschem/src/x/x_edit_text.c:66
-#, fuzzy
 msgid "Select color attribute"
-msgstr "מופרדי תכונה"
+msgstr "בחר מאפיין צבע"
 
 #: gschem/src/x/x_edit_text.c:67
 msgid "_Size:"
 msgstr ""
 
+# Open font selection dialog
 #: gschem/src/x/x_edit_text.c:67
-#, fuzzy
 msgid "Open font selection dialog"
-msgstr "Open Text Editor dialog"
+msgstr "פתח את תיבת הדו-שיח לבחירת גופן"
 
 # rotation
 #: gschem/src/x/x_edit_text.c:68
@@ -4263,11 +4257,10 @@ msgstr ""
 msgid "_Redraw"
 msgstr ""
 
-# there is no current window
+# Redraw the current window
 #: gschem/etc/system-gschemrc.scm:2197
-#, fuzzy
 msgid "Redraw the current window"
-msgstr "אין חלון נוכחי"
+msgstr "צייר מחדש את החלון הנוכחי"
 
 #: gschem/etc/system-gschemrc.scm:2198
 msgid "_Pan"
@@ -5315,19 +5308,19 @@ msgstr "אפס מיקומי תכונות"
 msgid "Show Attribute Value"
 msgstr "הצג ערך תכונה"
 
+# Show Attribute Name
 #: gschem/scheme/gschem/builtins.scm:410
-#, fuzzy
 msgid "Show Attribute Name"
-msgstr "מאפיינים"
+msgstr "הצג את שם המאפיין"
 
 #: gschem/scheme/gschem/builtins.scm:416
 msgid "Toggle Text Visibility"
 msgstr ""
 
+# Open Attributes Editor
 #: gschem/scheme/gschem/builtins.scm:419
-#, fuzzy
 msgid "Open Attributes Editor"
-msgstr "מאפיינים"
+msgstr "פתח את עורך התכונות"
 
 #: gschem/scheme/gschem/builtins.scm:422
 msgid "Find Specific Text"
