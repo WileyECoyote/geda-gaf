@@ -46,6 +46,7 @@
 #include <libgeda/libgeda.h>
 #include <geda/geda_standard.h>
 
+#include "../../include/geda_container.h"
 #include "../../include/geda_combobox.h"
 #include "../../include/geda_comboboxtext.h"
 #include "../../include/gettext.h"
@@ -147,7 +148,7 @@ geda_combo_box_text_constructor (GType                  type,
   self->button = NULL;
   self->entry  = NULL;
 
-  gtk_container_forall (GTK_CONTAINER (object), FixGtkCrap, object);
+  geda_container_forall (object, FixGtkCrap, object);
 
   return object;
 }
@@ -520,7 +521,7 @@ geda_combo_box_text_list_new(void)
   widget = g_object_new (GEDA_TYPE_COMBO_BOX_TEXT, "has-entry", TRUE,
                                                    "list-view", TRUE, NULL);
 
-  gtk_container_forall (GTK_CONTAINER (widget), FixGtkCrap, widget);
+  geda_container_forall (widget, FixGtkCrap, widget);
 
   return widget;
 }
