@@ -199,7 +199,6 @@ geda_accel_label_get_string (GedaAccelLabel *accel_label)
   return accel_label->accel_string;
 }
 
-
 static void
 geda_accel_label_set_property (GObject      *object,
                                unsigned int  prop_id,
