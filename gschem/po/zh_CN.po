@@ -4406,10 +4406,10 @@ msgstr ""
 msgid "Toggle hidden text attributes"
 msgstr ""
 
+# Show/Hide Net Names
 #: gschem/etc/system-gschemrc.scm:2211
-#, fuzzy
 msgid "Show/Hide Net Names"
-msgstr "显示名称"
+msgstr "显示/隐藏链接名称"
 
 #: gschem/etc/system-gschemrc.scm:2211
 msgid "Toggle hidden net name attributes"
@@ -4447,10 +4447,10 @@ msgstr ""
 msgid "Change order objects are drawn"
 msgstr ""
 
+# Page Management
 #: gschem/etc/system-gschemrc.scm:2228
-#, fuzzy
 msgid "_Manager..."
-msgstr "打开页面..."
+msgstr "页面管理..."
 
 #: gschem/etc/system-gschemrc.scm:2228
 msgid "Open the Page Manager"
@@ -4613,29 +4613,29 @@ msgstr "创建弧"
 msgid "_Box"
 msgstr ""
 
+# Add box
 #: gschem/etc/system-gschemrc.scm:2263
-#, fuzzy
 msgid "Add box"
-msgstr "编辑文本..."
+msgstr "添加框"
 
+# Circle
 #: gschem/etc/system-gschemrc.scm:2264
-#, fuzzy
 msgid "C_ircle"
-msgstr "圆"
+msgstr "圈"
 
+# Add circle
 #: gschem/etc/system-gschemrc.scm:2264
-#, fuzzy
 msgid "Add circle"
-msgstr "圆"
+msgstr "添加圈子"
 
 #: gschem/etc/system-gschemrc.scm:2265
 msgid "_Line"
 msgstr ""
 
+# Add line
 #: gschem/etc/system-gschemrc.scm:2265
-#, fuzzy
 msgid "Add line"
-msgstr "圆"
+msgstr "添加行"
 
 #: gschem/etc/system-gschemrc.scm:2266
 msgid "Pat_h"
@@ -4645,8 +4645,8 @@ msgstr ""
 msgid "Add Path"
 msgstr ""
 
+# Picture
 #: gschem/etc/system-gschemrc.scm:2267
-#, fuzzy
 msgid "Pictu_re..."
 msgstr "图片..."
 
@@ -4658,10 +4658,10 @@ msgstr ""
 msgid "_Pin"
 msgstr ""
 
+# Add pin
 #: gschem/etc/system-gschemrc.scm:2268
-#, fuzzy
 msgid "Add pin"
-msgstr "更新组件"
+msgstr "添加引脚"
 
 #: gschem/etc/system-gschemrc.scm:2276
 msgid "Create a new session"
@@ -5122,24 +5122,24 @@ msgstr ""
 msgid "New Window"
 msgstr "新建窗口"
 
+# Close Window
 #: gschem/scheme/gschem/builtins.scm:80 gschem/scheme/gschem/builtins.scm:83
-#, fuzzy
 msgid "Close Window"
 msgstr "关闭窗口"
 
+# Quit
 #: gschem/scheme/gschem/builtins.scm:86
-#, fuzzy
 msgid "Quit"
-msgstr "退出"
+msgstr "放弃"
 
 #: gschem/scheme/gschem/builtins.scm:89
 msgid "Export Symbol"
 msgstr ""
 
+# Export Picture
 #: gschem/scheme/gschem/builtins.scm:92
-#, fuzzy
 msgid "Export Picture"
-msgstr "图片..."
+msgstr "出口图片"
 
 #: gschem/scheme/gschem/builtins.scm:98
 msgid "Undo"
