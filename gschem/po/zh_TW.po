@@ -4432,9 +4432,10 @@ msgstr ""
 msgid "Toggle hidden text attributes"
 msgstr ""
 
+# Show/Hide Net Names
 #: gschem/etc/system-gschemrc.scm:2211
 msgid "Show/Hide Net Names"
-msgstr ""
+msgstr "顯示/隱藏鏈接名稱"
 
 #: gschem/etc/system-gschemrc.scm:2211
 msgid "Toggle hidden net name attributes"
@@ -4615,28 +4616,29 @@ msgstr ""
 msgid "_Box"
 msgstr ""
 
+# Add box
 #: gschem/etc/system-gschemrc.scm:2263
-#, fuzzy
 msgid "Add box"
-msgstr "新增文字"
+msgstr "添加框"
 
+# Circle
 #: gschem/etc/system-gschemrc.scm:2264
 msgid "C_ircle"
-msgstr ""
+msgstr "圈"
 
+# Add circle
 #: gschem/etc/system-gschemrc.scm:2264
-#, fuzzy
 msgid "Add circle"
-msgstr "圓形"
+msgstr "添加圈子"
 
 #: gschem/etc/system-gschemrc.scm:2265
 msgid "_Line"
 msgstr ""
 
+# Add line
 #: gschem/etc/system-gschemrc.scm:2265
-#, fuzzy
 msgid "Add line"
-msgstr "直線"
+msgstr "添加行"
 
 #: gschem/etc/system-gschemrc.scm:2266
 msgid "Pat_h"
@@ -4646,9 +4648,10 @@ msgstr ""
 msgid "Add Path"
 msgstr ""
 
+# Picture
 #: gschem/etc/system-gschemrc.scm:2267
 msgid "Pictu_re..."
-msgstr ""
+msgstr "圖片..."
 
 #: gschem/etc/system-gschemrc.scm:2267
 msgid "Insert an image into the current document"
@@ -4658,10 +4661,10 @@ msgstr ""
 msgid "_Pin"
 msgstr ""
 
+# Add pin
 #: gschem/etc/system-gschemrc.scm:2268
-#, fuzzy
 msgid "Add pin"
-msgstr "直線"
+msgstr "添加引腳"
 
 #: gschem/etc/system-gschemrc.scm:2276
 msgid "Create a new session"
@@ -5117,24 +5120,24 @@ msgstr ""
 msgid "New Window"
 msgstr "開新視窗"
 
+# Close Window
 #: gschem/scheme/gschem/builtins.scm:80 gschem/scheme/gschem/builtins.scm:83
-#, fuzzy
 msgid "Close Window"
-msgstr "開新視窗"
+msgstr "關閉窗口"
 
+# Quit
 #: gschem/scheme/gschem/builtins.scm:86
-#, fuzzy
 msgid "Quit"
-msgstr "結束程式"
+msgstr "放棄"
 
 #: gschem/scheme/gschem/builtins.scm:89
 msgid "Export Symbol"
 msgstr ""
 
+# Export Picture
 #: gschem/scheme/gschem/builtins.scm:92
-#, fuzzy
 msgid "Export Picture"
-msgstr "嵌入元件/圖片"
+msgstr "出口圖片"
 
 #: gschem/scheme/gschem/builtins.scm:98
 msgid "Undo"
