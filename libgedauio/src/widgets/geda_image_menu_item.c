@@ -581,10 +581,15 @@ geda_image_menu_item_map (GtkWidget *widget)
 
   ((GtkWidgetClass*)geda_image_menu_item_parent_class)->map (widget);
 
-    g_object_set (image_widget,
-                  "visible", show_image (image_menu_item),
-                  NULL);
   if (image_menu_item->image) {
+
+    if (show_image (image_menu_item)) {
+      gtk_widget_show (image_menu_item->image);
+    }
+    else {
+      gtk_widget_hide (image_menu_item->image);
+    }
+
   }
 }
 

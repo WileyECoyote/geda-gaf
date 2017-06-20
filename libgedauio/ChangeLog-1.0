@@ -10,7 +10,8 @@
       geda_handle_box_motion.
 
     * src/widgets/geda_image_menu_item.c: Revise geda_image_menu_item_map;
-      eliminate pointer to image_widget.
+      eliminate pointer to image_widget and replace g_object_set with either
+      gtk_widget_show or gtk_widget_hide.
 
 2017-06-17 Wiley E. Hill <wileyhill@gmail.com>
 
