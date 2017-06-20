@@ -734,6 +734,7 @@ geda_bulb_class_init(void *class, void *class_data)
                              INDICATOR_SIZE,
                              G_PARAM_READABLE);
 
+  gtk_widget_class_install_style_property (widget_class, params);
   gtk_widget_class_install_style_property (widget_class,params);
 
   params = g_param_spec_int ("indicator-spacing",
