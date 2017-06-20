@@ -163,9 +163,9 @@ x_dialog_edit_slot (GschemToplevel *w_current, const char *slots, const char *sl
                                                w_current->main_window,
           /* nonmodal Editing ThisDialog */    GSCHEM_MODELESS_DIALOG,
                                              IDS_SLOT_EDIT, w_current,
-                                 GTK_STOCK_CLOSE, GEDA_RESPONSE_REJECT,
+                                GTK_STOCK_CLOSE, GEDA_RESPONSE_REJECT,
                                  GTK_STOCK_APPLY, GEDA_RESPONSE_APPLY,
-                                                                  NULL);
+                                                                 NULL);
 
   /* Set the alternative button order (ok, cancel, help) for other systems */
     gtk_dialog_set_alternative_button_order(GTK_DIALOG(ThisDialog),
