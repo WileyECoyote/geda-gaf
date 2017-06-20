@@ -3527,7 +3527,7 @@ geda_combo_box_menu_fill (GedaComboBox *combo_box)
         geda_menu_attach (GEDA_MENU (menu), tearoff, 0, priv->wrap_width, 0, 1);
       }
       else {
-        geda_menu_shell_append (GEDA_MENU_SHELL (menu), tearoff);
+        geda_menu_append (menu, tearoff);
       }
     }
 
@@ -3622,8 +3622,8 @@ geda_combo_box_menu_fill_level (GedaComboBox *combo_box,
         g_signal_connect (subitem, "activate",
                           G_CALLBACK (geda_combo_box_menu_item_activate),
                           combo_box);
-        geda_menu_shell_append (GEDA_MENU_SHELL (submenu), subitem);
-        geda_menu_shell_append (GEDA_MENU_SHELL (submenu), separator);
+        geda_menu_append (submenu, subitem);
+        geda_menu_append (submenu, separator);
 
         geda_combo_box_menu_fill_level (combo_box, submenu, &iter);
       }
@@ -3632,7 +3632,7 @@ geda_combo_box_menu_fill_level (GedaComboBox *combo_box,
                         combo_box);
     }
 
-    geda_menu_shell_append (GEDA_MENU_SHELL (menu), item);
+    geda_menu_append (menu, item);
     if (priv->wrap_width && menu == priv->popup_widget) {
       geda_combo_box_relayout_item (combo_box, item, &iter, last);
     }
@@ -3919,21 +3919,21 @@ static void geda_combo_box_show_popup (GtkWidget      *button,
   g_signal_connect (GTK_OBJECT(popup_item), "activate",
                    (GCallback) geda_combo_box_clicked_view_auto, user_data);
 
-  geda_menu_shell_append (GEDA_MENU_SHELL (menu), popup_item);
+  geda_menu_append (menu, popup_item);
 
   popup_item = geda_menu_item_new_with_label (_("view as Menu"));
 
   g_signal_connect (GTK_OBJECT(popup_item), "activate",
                    (GCallback) geda_combo_box_clicked_view_menu, user_data);
 
-  geda_menu_shell_append (GEDA_MENU_SHELL (menu), popup_item);
+  geda_menu_append (menu, popup_item);
 
   popup_item = geda_menu_item_new_with_label (_("view as List"));
 
   g_signal_connect (GTK_OBJECT(popup_item), "activate",
                    (GCallback)geda_combo_clicked_view_list, user_data);
 
-  geda_menu_shell_append (GEDA_MENU_SHELL (menu), popup_item);
+  geda_menu_append (menu, popup_item);
 
   gtk_widget_show_all (menu);
 
@@ -4347,8 +4347,8 @@ geda_combo_box_menu_row_inserted (GtkTreeModel *model,
         g_signal_connect (item, "activate",
                           G_CALLBACK (geda_combo_box_menu_item_activate),
                           combo_box);
-        geda_menu_shell_append ((GedaMenuShell*)menu, item);
-        geda_menu_shell_append ((GedaMenuShell*)menu, separator);
+        geda_menu_append (menu, item);
+        geda_menu_append (menu, separator);
         if (cell_view_is_sensitive ((GtkCellView*)(((GtkBin*)item)->child))) {
 
           gtk_widget_show (item);

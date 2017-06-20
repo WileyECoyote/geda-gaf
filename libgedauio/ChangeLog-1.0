@@ -1,3 +1,11 @@
+2017-06-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/dialogs/geda_image_chooser.c: Remove unnecessary type-checking cast
+      for object return from g_object_new.
+
+    * src/widgets/geda_combobox.c: Replace geda_menu_shell_append with geda_
+      menu_append macro.
+
 2017-06-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_comboboxtext.c: Include geda_container.h and utilize
