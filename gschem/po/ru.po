@@ -3971,10 +3971,10 @@ msgstr "Панель инструментов конфигурации не на
 msgid "Could not allocate a graphics context"
 msgstr "Не может выделить в контексте графической подсистемы"
 
+# there is no current window
 #: gschem/src/x/x_window.c:121
-#, fuzzy
 msgid "there is no current window"
-msgstr "Закрыть окно"
+msgstr "Нет текущего окна"
 
 #: gschem/src/x/x_window.c:130
 msgid "Could not create a Cairo context, is window drawable?\n"
@@ -3984,11 +3984,10 @@ msgstr ""
 msgid "window is not valid"
 msgstr ""
 
-# Saving Toolbar settings
+# Saving main window settings
 #: gschem/src/x/x_window.c:201
-#, fuzzy
 msgid "Saving main window settings.\n"
-msgstr "Сохранение параметров панели инструментов..."
+msgstr "Сохранение настроек главного окна.\n"
 
 #: gschem/src/x/x_window.c:308
 msgid "Retrieving main Window settings.\n"
@@ -4022,10 +4021,10 @@ msgstr "Не удалось загрузить файл"
 msgid "Creating new file"
 msgstr "Создание нового файла"
 
+# Path => polygon
 #: gschem/src/x/x_window.c:989
-#, fuzzy
 msgid "Path"
-msgstr "Добавить контур"
+msgstr "многоугольник"
 
 #: gschem/src/x/x_window.c:992
 msgid ""
@@ -4038,10 +4037,10 @@ msgstr ""
 msgid "Discarding page"
 msgstr "Закрытие без сохранения изменений"
 
+# Closing
 #: gschem/src/x/x_window.c:1137
-#, fuzzy
 msgid "Closing"
-msgstr "Закрыть страницу"
+msgstr "закрытие"
 
 # Could not save page
 #: gschem/src/x/x_window.c:1202
@@ -4052,10 +4051,10 @@ msgstr "Не удалось сохранить страницу"
 msgid "Error while trying to save"
 msgstr "Ошибка при попытке сохранения"
 
+# Saved as
 #: gschem/src/x/x_window.c:1218
-#, fuzzy
 msgid "Saved as"
-msgstr "Сохранить как"
+msgstr "Сохранено как"
 
 #: gschem/data/geda-gschem.desktop.in:3
 msgid "gEDA Schematic Editor"
@@ -4097,8 +4096,8 @@ msgstr "Сохранить _как..."
 msgid "Save the current document to a new name or location"
 msgstr ""
 
+# Save All
 #: gschem/etc/system-gschemrc.scm:2076
-#, fuzzy
 msgid "Save A_ll"
 msgstr "Сохранить все"
 
@@ -4345,24 +4344,24 @@ msgstr "Активировать режим Отменить выбор"
 msgid "Select All"
 msgstr "Выделить всё"
 
+# Select all objects
 #: gschem/etc/system-gschemrc.scm:2139
-#, fuzzy
 msgid "Select all objects"
-msgstr "Выделенные объекты"
+msgstr "Выбрать все объекты"
 
+# Deselect All
 #: gschem/etc/system-gschemrc.scm:2140 gschem/scheme/gschem/builtins.scm:185
-#, fuzzy
 msgid "Deselect All"
-msgstr "Выделить всё"
+msgstr "Убрать выделение со всего"
 
 #: gschem/etc/system-gschemrc.scm:2140
 msgid "Unselect everything"
 msgstr ""
 
+# Invert Selection
 #: gschem/etc/system-gschemrc.scm:2141
-#, fuzzy
 msgid "_Invert Selection"
-msgstr "Выделение"
+msgstr "Наоборот"
 
 #: gschem/etc/system-gschemrc.scm:2141
 msgid "Invert the current selection set"
@@ -4488,10 +4487,10 @@ msgstr "Вставить из 5"
 msgid "Insert contents of the fifth auxiliary buffer"
 msgstr ""
 
+# Lock selected objects
 #: gschem/etc/system-gschemrc.scm:2161
-#, fuzzy
 msgid "Lock selected objects"
-msgstr "Выделенные объекты"
+msgstr "Блокировка выбранных объектов"
 
 #: gschem/etc/system-gschemrc.scm:2162 gschem/scheme/gschem/builtins.scm:191
 msgid "Unlock"
