@@ -337,14 +337,12 @@ static void
 gtk_item_entry_realize(GtkWidget *widget)
 {
     GtkEntry *entry;
-    //GtkEditable *editable;
     GdkWindowAttr attributes;
     int attributes_mask;
 
     gtk_widget_set_realized_true(widget);
 
     entry = (GtkEntry*)widget;
-    //editable = GTK_EDITABLE(widget);
 
     attributes.window_type = GDK_WINDOW_CHILD;
 
