@@ -543,7 +543,7 @@ geda_handle_box_motion (GtkWidget *widget, GdkEventMotion *event)
         child_requisition.height = 0;
       }
 
-      border_2x = GTK_CONTAINER (widget)->border_width << 1; /* Multiply by 2 */
+      border_2x = geda_get_container_border_width(widget) << 1; /* Multiply by 2 */
 
       width  = child_requisition.width  + border_2x;
       height = child_requisition.height + border_2x;

@@ -6,6 +6,9 @@
     * src/widgets/geda_combobox.c: Replace geda_menu_shell_append with geda_
       menu_append macro.
 
+    * src/widgets/geda_handlebox.c: Utilize geda_get_container_border_width in
+      geda_handle_box_motion.
+
 2017-06-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_comboboxtext.c: Include geda_container.h and utilize
