@@ -853,9 +853,9 @@ gtk_item_entry_get_position(GtkEditable *editable)
 }
 
 #ifdef GTK_TYPE_ENTRY_BUFFER
-//
-// Get_buffer copied from gtk/gtkentry.c
-//
+/*
+ * Get_buffer copied from gtk/gtkentry.c
+ */
 static GtkEntryBuffer *
 _item_entry_get_buffer(GtkEntry *entry)
 {
@@ -1959,7 +1959,7 @@ gtk_entry_reset_im_context(GtkEntry *entry)
 	gtk_im_context_reset(entry->im_context);
     }
 }
-#endif // GTK_CHECK_VERSION(2,21,0) == 0
+#endif /* GTK_CHECK_VERSION(2,21,0) == 0 */
 
 static void
 gtk_item_entry_get_cursor_locations(GtkEntry   *entry,
@@ -2456,7 +2456,7 @@ gtk_item_entry_set_text(GtkItemEntry    *item_entry,
 
     gtk_editable_delete_text((GtkEditable*)entry, 0, -1);
 
-    item_entry->item_n_bytes = 0;    // rraptor edited
+    item_entry->item_n_bytes = 0;    /* rraptor edited */
 
     if (text[0]) {
       int tmp_pos = 0;
