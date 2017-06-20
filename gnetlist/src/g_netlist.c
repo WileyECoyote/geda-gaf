@@ -173,8 +173,6 @@ SCM g_get_all_nets(SCM scm_level)
   CPINLIST *pl_current;
   char *net_name;
 
-  //SCM_ASSERT(scm_is_string (scm_level), scm_level, SCM_ARG1, "gnetlist:get-all-nets");
-
   nl_current = netlist_head;
 
   /* walk through the list of components, and through the list
