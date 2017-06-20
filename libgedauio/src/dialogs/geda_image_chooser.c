@@ -595,20 +595,20 @@ chooser_add_preview (GtkWidget *chooser, bool state, int size)
   ebox = gtk_event_box_new();
   g_object_set (ebox, "visible", TRUE, NULL);
 
-  frame = GTK_WIDGET (g_object_new (GTK_TYPE_FRAME,
-                                    "label", _("Preview"),
-                                    NULL));
+  frame = g_object_new (GTK_TYPE_FRAME,
+                        "label", _("Preview"),
+                        NULL);
 
-  alignment = GTK_WIDGET (g_object_new (GTK_TYPE_ALIGNMENT,
-                                        "right-padding", 5,
-                                        "left-padding", 5,
-                                        "xscale", 0.0,
-                                        "yscale", 0.0,
-                                        "xalign", 0.5,
-                                        "yalign", 0.5,
-                                        NULL));
+  alignment = g_object_new (GTK_TYPE_ALIGNMENT,
+                            "right-padding", 5,
+                            "left-padding", 5,
+                            "xscale", 0.0,
+                            "yscale", 0.0,
+                            "xalign", 0.5,
+                            "yalign", 0.5,
+                            NULL);
 
-  preview = GTK_WIDGET (g_object_new (GTK_TYPE_IMAGE, NULL));
+  preview = g_object_new (GTK_TYPE_IMAGE, NULL);
 
   geda_container_add (alignment, preview);
   geda_container_add (frame, alignment);
@@ -620,14 +620,14 @@ chooser_add_preview (GtkWidget *chooser, bool state, int size)
   hbox = gtk_hbox_new(FALSE, 0);
   g_object_set (hbox, "visible", TRUE, NULL);
 
-  alignment = GTK_WIDGET (g_object_new (GTK_TYPE_ALIGNMENT,
-                                        "right-padding", 5,
-                                        "left-padding", 5,
-                                        "xscale", 1.0,
-                                        "yscale", 0.1,
-                                        "xalign", 0.5,
-                                        "yalign", 0.1,
-                                        NULL));
+  alignment = g_object_new (GTK_TYPE_ALIGNMENT,
+                            "right-padding", 5,
+                            "left-padding", 5,
+                            "xscale", 1.0,
+                            "yscale", 0.1,
+                            "xalign", 0.5,
+                            "yalign", 0.1,
+                            NULL);
 
   g_object_set (alignment, "visible", TRUE, NULL);
 
