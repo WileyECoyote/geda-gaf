@@ -478,12 +478,14 @@ geda_handle_box_motion (GtkWidget *widget, GdkEventMotion *event)
   if (is_snapped) {
 
     if (handlebox->child_detached) {
+
+      GtkWidget *child = geda_get_child_widget(handlebox);
+
       handlebox->child_detached = FALSE;
       gdk_window_hide (handlebox->float_window);
       gdk_window_reparent (handlebox->bin_window, widget->window, 0, 0);
       handlebox->float_window_mapped = FALSE;
-      g_signal_emit (handlebox, handle_box_signals[SIGNAL_CHILD_ATTACHED],
-                     0, GTK_BIN (handlebox)->child);
+      g_signal_emit (handlebox, handle_box_signals[SIGNAL_CHILD_ATTACHED], 0, child);
       gtk_widget_queue_resize (widget);
     }
   }
