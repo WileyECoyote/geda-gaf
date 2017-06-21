@@ -817,8 +817,10 @@ GtkWidget *x_dialog_create_search_replace_dialog (GtkWindow *parent,
   gtk_tooltips_set_tip (tooltips, CloseButt, _("Close this dialog"), NULL);
 
   ReplaceAllButt = gtk_button_new_with_mnemonic (_("Replace All"));
-  if (!find_only_mode)
+
+  if (!find_only_mode) {
     gtk_widget_show(ReplaceAllButt);
+  }
 
   gtk_dialog_add_action_widget (ThisDialog, ReplaceAllButt, GEDA_RESPONSE_APPLY);
   gtk_widget_set_can_default(ReplaceAllButt, TRUE);
@@ -826,8 +828,10 @@ GtkWidget *x_dialog_create_search_replace_dialog (GtkWindow *parent,
   gtk_tooltips_set_tip (tooltips, ReplaceAllButt, _("Replace All and close dialog"), NULL);
 
   ReplaceButt = gtk_button_new_with_mnemonic (_("Replace"));
-  if (!find_only_mode)
+
+  if (!find_only_mode) {
     gtk_widget_show(ReplaceButt);
+  }
 
   gtk_dialog_add_action_widget (ThisDialog, ReplaceButt, GEDA_RESPONSE_ACCEPT);
   gtk_widget_set_can_default(ReplaceButt, TRUE);
