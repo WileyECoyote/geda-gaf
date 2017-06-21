@@ -3997,57 +3997,54 @@ msgstr ""
 msgid "redo the last un-done action"
 msgstr ""
 
+# Cut clipboard
 #: gschem/etc/system-gschemrc.scm:2105
-#, fuzzy
 msgid "Cu_t clipboard"
-msgstr "1'e kopyala"
+msgstr "Panoyu pano"
 
+# Copy clipboard
 #: gschem/etc/system-gschemrc.scm:2106
-#, fuzzy
 msgid "_Copy clipboard"
-msgstr "1'e kopyala"
+msgstr "kopyala pano"
 
+# Paste clipboard
 #: gschem/etc/system-gschemrc.scm:2107
-#, fuzzy
 msgid "_Paste clipboard"
-msgstr "1'den yapıştır"
+msgstr "yapıştır pano"
 
 #: gschem/etc/system-gschemrc.scm:2111
 msgid "C_opy"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2112
-#, fuzzy
 msgid "_Multiple Copy"
 msgstr "Çoklu kopyala"
 
+# Mirror
 #: gschem/etc/system-gschemrc.scm:2113
-#, fuzzy
 msgid "M_irror"
-msgstr "Ayna modu"
+msgstr "Ayna"
 
 #: gschem/etc/system-gschemrc.scm:2114
 msgid "Mo_ve"
 msgstr ""
 
+# Offset
 #: gschem/etc/system-gschemrc.scm:2115
-#, fuzzy
 msgid "O_ffset"
-msgstr "Metin kipi"
+msgstr "Ofset"
 
 #: gschem/etc/system-gschemrc.scm:2115
 msgid "Offset the selected objects"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2116
-#, fuzzy
 msgid "Rotate _90"
-msgstr "Döndür"
+msgstr "Döndür _90"
 
 #: gschem/etc/system-gschemrc.scm:2117
-#, fuzzy
 msgid "Snap to _grid"
-msgstr "Kopyalama Kipi"
+msgstr "Gruba sığdır"
 
 #: gschem/etc/system-gschemrc.scm:2117
 msgid "Snap selection to current grid"
@@ -4070,12 +4067,11 @@ msgid "E_xtend"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2125
-#, fuzzy
 msgid "_Edit..."
 msgstr "Düzenle..."
 
+# Edit Text
 #: gschem/etc/system-gschemrc.scm:2126
-#, fuzzy
 msgid "E_dit Text..."
 msgstr "Metin Düzenle..."
 
