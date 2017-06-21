@@ -4967,7 +4967,7 @@ msgstr "Ajustar tamanho do snap"
 
 #: gschem/etc/system-gschemrc.scm:2339
 msgid "_Snap On-Off"
-msgstr "Ajuste do snap desligado"
+msgstr "Alternar o Ajuste de snap"
 
 #: gschem/etc/system-gschemrc.scm:2339
 msgid "Toggle the object snap mode"
@@ -4975,7 +4975,6 @@ msgstr "Alternar o modo de snap de objeto"
 
 # Toggle elastic connection
 #: gschem/etc/system-gschemrc.scm:2340
-#, fuzzy
 msgid "_Rubberband"
 msgstr "Alterna_r conexão elástica"
 
@@ -4985,7 +4984,6 @@ msgid "Toggle rubberband net mode"
 msgstr "Alternar o modo conexão elástica"
 
 #: gschem/etc/system-gschemrc.scm:2341
-#, fuzzy
 msgid "_Magnetic Net"
 msgstr "Modo de Conexão magnético"
 
@@ -4996,7 +4994,6 @@ msgstr "Alternar o modo conexão Magnética"
 
 # Toggle Dragging
 #: gschem/etc/system-gschemrc.scm:2342
-#, fuzzy
 msgid "_Drag Move"
 msgstr "Alternar arrastar"
 
@@ -5005,22 +5002,20 @@ msgstr "Alternar arrastar"
 msgid "Toggle Drag-can-Move mode"
 msgstr "Alternar o modo arrastar-pode-mover"
 
-# Toggle Outline-Box => Toggle Limit Box
+# Outline-Box => Limit Box
 #: gschem/etc/system-gschemrc.scm:2343
-#, fuzzy
 msgid "_Outline-Box"
-msgstr "Alternar _Caixa limite"
+msgstr "_Caixa limite"
 
 # Toggle action feedback
 #: gschem/etc/system-gschemrc.scm:2343
 msgid "Toggle action feedback"
 msgstr "Alternar feedback de ação"
 
-# Toggle Auto-Pan
+# Auto-Pan
 #: gschem/etc/system-gschemrc.scm:2344
-#, fuzzy
 msgid "_Auto-Pan"
-msgstr "Alternar Pan _Automático"
+msgstr "Pan _Automático"
 
 # Toggle auto panning mode
 #: gschem/etc/system-gschemrc.scm:2344
@@ -5136,42 +5131,37 @@ msgid "_Help"
 msgstr "Ajuda"
 
 #: gschem/scheme/gschem/action.scm:45
-#, fuzzy, scheme-format
+#, scheme-format
 msgid "~S is not a valid gschem action."
-msgstr "~S não é uma combinação válida."
+msgstr "~S não é uma açao válida."
 
 #: gschem/scheme/gschem/action.scm:158
 msgid "Repeat Last Action"
 msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:50
-#, fuzzy
 msgid "New File"
-msgstr "Novo arquivo"
+msgstr "Novo Arquivo"
 
 #: gschem/scheme/gschem/builtins.scm:53
-#, fuzzy
 msgid "Open File"
-msgstr "Abrir arquivo..."
+msgstr "Abrir Arquivo..."
 
 #: gschem/scheme/gschem/builtins.scm:59
-#, fuzzy
 msgid "Save As"
-msgstr "Salvar _Tudo"
+msgstr "Salvar Como"
 
 #: gschem/scheme/gschem/builtins.scm:62
 msgid "Save All"
-msgstr "Salvar _Tudo"
+msgstr "Salvar Tudo"
 
 #: gschem/scheme/gschem/builtins.scm:65
-#, fuzzy
 msgid "Save Modified"
-msgstr "Modo de Movimentação"
+msgstr "Salvar Modificado"
 
 #: gschem/scheme/gschem/builtins.scm:68
-#, fuzzy
 msgid "Print"
-msgstr "Im_primir..."
+msgstr "Imprimir"
 
 #: gschem/scheme/gschem/builtins.scm:71
 msgid "Export Image"
