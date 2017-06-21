@@ -604,7 +604,7 @@ static void search_replace_dialog_response(GtkWidget    *ThisDialog,
     break;
 
   default:
-    BUG_IMSG ("unhandled case for signal <%d>", response);
+    geda_log ("%s unhandled case for signal: %d\n", __func__, response);
   }
   Search->ReplaceAll = FALSE; /* This must be enabled by user each loop */
 }
