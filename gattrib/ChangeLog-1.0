@@ -1,3 +1,7 @@
+2017-06-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gattrib/src/gattrib_dialog.c: Revise and reformat Doxygen comments.
+
 2017-05-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_dialog.c: Replace gtk_container_add with geda_container_add.

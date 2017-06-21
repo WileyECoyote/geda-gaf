@@ -119,12 +119,13 @@ static GedaKeyFile *dialog_geometry = NULL;
 #define DIALOG_GEOMETRY_STORE "gattrib-dialog-geometry"
 
 
-/*! \brief Save all geometry data into a file.
+/*!
+ * \brief Save all geometry data into a file.
+ * \par Function Description
+ *  This is called at program exit to save all window geometry data
+ *  into a file
  *
- *  \par Function Description
- *  This is called at program exit to save all window geometry data into a file
- *
- *  \param [in] user_data unused
+ * \param [in] user_data unused
  */
 static void save_geometry_to_file(void *user_data)
 {
@@ -140,15 +141,14 @@ static void save_geometry_to_file(void *user_data)
   GEDA_FREE(file);
 }
 
-
-/*! \brief GattribDialog "geometry_save" class method handler
- *
- *  \par Function Description
+/*!
+ * \brief GattribDialog "geometry_save" class method handler
+ * \par Function Description
  *  Save the dialog's current position and size to the passed GedaKeyFile
  *
- *  \param [in] dialog     The GattribDialog to save the position and size of.
- *  \param [in] key_file   The GedaKeyFile to save the geometry data to.
- *  \param [in] group_name The group name in the key file to store the data under.
+ * \param [in] dialog     The GattribDialog to save the position and size of.
+ * \param [in] key_file   The GedaKeyFile to save the geometry data to.
+ * \param [in] group_name The group name in the key file to store the data under.
  */
 static void geometry_save (GattribDialog *dialog, GedaKeyFile *key_file, char *group_name)
 {
@@ -163,15 +163,14 @@ static void geometry_save (GattribDialog *dialog, GedaKeyFile *key_file, char *g
   geda_keyfile_set_integer (key_file, group_name, "height", height);
 }
 
-
-/*! \brief GattribDialog "geometry_restore" class method handler
- *
- *  \par Function Description
+/*!
+ * \brief GattribDialog "geometry_restore" class method handler
+ * \par Function Description
  *  Restore dialog's last position and size from the passed GedaKeyFile
  *
- *  \param [in] dialog     The GattribDialog to restore the position and size of.
- *  \param [in] key_file   The GedaKeyFile to load the geometry data from.
- *  \param [in] group_name The group name in the key file to find the data under.
+ * \param [in] dialog     The GattribDialog to restore the position and size of.
+ * \param [in] key_file   The GedaKeyFile to load the geometry data from.
+ * \param [in] group_name The group name in the key file to find the data under.
  */
 static void geometry_restore (GattribDialog *dialog, GedaKeyFile *key_file, char *group_name)
 {
@@ -186,10 +185,9 @@ static void geometry_restore (GattribDialog *dialog, GedaKeyFile *key_file, char
   gtk_window_resize ((GtkWindow*)dialog, width, height);
 }
 
-
-/*! \brief Setup the GedaKeyFile for saving / restoring geometry
- *
- *  \par Function Description
+/*!
+ * \brief Setup the GedaKeyFile for saving / restoring geometry
+ * \par Function Description
  *  Check if the GedaKeyFile for saving / restoring geometry is open.
  *  If it doesn't exist, we create it here, and also install a hook
  *  to ensure its contents are saved at program exit.
@@ -224,14 +222,13 @@ static void setup_keyfile ()
   GEDA_FREE (file);
 }
 
-
-/*! \brief GtkWidget show signal handler
- *
- *  \par Function Description
+/*!
+ * \brief GtkWidget show signal handler
+ * \par Function Description
  *  Just before the dialog widget is shown, call the hook
  *  to restore its previously saved position and size.
  *
- *  \param [in] widget  The GtkWidget being shown.
+ * \param [in] widget  The GtkWidget being shown.
  */
 static void show_handler (GtkWidget *widget)
 {
@@ -255,16 +252,15 @@ static void show_handler (GtkWidget *widget)
   ((GtkWidgetClass*)gattrib_dialog_parent_class)->show (widget);
 }
 
-
-/*! \brief GtkWidget unmap signal handler
- *
- *  \par Function Description
+/*!
+ * \brief GtkWidget unmap signal handler
+ * \par Function Description
  *  Just before the dialog widget is unmapped, call the hook
  *  to save its current position and size.
  *
  *  This typically happens when you call gtk_widget_destroy().
  *
- *  \param [in] widget  The GtkWidget being unmapped.
+ * \param [in] widget  The GtkWidget being unmapped.
  */
 static void unmap_handler (GtkWidget *widget)
 {
@@ -283,14 +279,13 @@ static void unmap_handler (GtkWidget *widget)
   ((GtkWidgetClass*)gattrib_dialog_parent_class)->unmap (widget);
 }
 
-
-/*! \brief GObject finalise handler
- *
- *  \par Function Description
+/*!
+ * \brief GObject finalise handler
+ * \par Function Description
  *  Just before the GattribDialog GObject is finalized, free our
  *  allocated data, and then chain up to the parent's finalize handler.
  *
- *  \param [in] object The GObject being finalized.
+ * \param [in] object The GObject being finalized.
  */
 static void gattrib_dialog_finalize (GObject *object)
 {
@@ -301,18 +296,17 @@ static void gattrib_dialog_finalize (GObject *object)
   G_OBJECT_CLASS (gattrib_dialog_parent_class)->finalize (object);
 }
 
-
-/*! \brief GObject property setter function
- *
- *  \par Function Description
+/*!
+ * \brief GObject property setter function
+ * \par Function Description
  *  Setter function for GattribDialog's GObject properties,
  *  "settings-name" and "toplevel".
  *
- *  \param [in]  object       The GObject whose properties we are setting
- *  \param [in]  property_id  The numeric id. under which the property was
- *                            registered with g_object_class_install_property()
- *  \param [in]  value        The GValue the property is being set from
- *  \param [in]  pspec        A GParamSpec describing the property being set
+ * \param [in]  object       The GObject whose properties we are setting
+ * \param [in]  property_id  The numeric id. under which the property was
+ *                           registered with g_object_class_install_property()
+ * \param [in]  value        The GValue the property is being set from
+ * \param [in]  pspec        A GParamSpec describing the property being set
  */
 static void gattrib_dialog_set_property (GObject *object, guint property_id, const GValue *value, GParamSpec *pspec)
 {
@@ -332,18 +326,17 @@ static void gattrib_dialog_set_property (GObject *object, guint property_id, con
 
 }
 
-
-/*! \brief GObject property getter function
- *
- *  \par Function Description
+/*!
+ * \brief GObject property getter function
+ * \par Function Description
  *  Getter function for GattribDialog's GObject properties,
  *  "settings-name" and "toplevel".
  *
- *  \param [in]  object       The GObject whose properties we are getting
- *  \param [in]  property_id  The numeric id. under which the property was
- *                            registered with g_object_class_install_property()
- *  \param [out] value        The GValue in which to return the value of the property
- *  \param [in]  pspec        A GParamSpec describing the property being got
+ * \param [in]  object       The GObject whose properties we are getting
+ * \param [in]  property_id  The numeric id. under which the property was
+ *                           registered with g_object_class_install_property()
+ * \param [out] value        The GValue in which to return the value of the property
+ * \param [in]  pspec        A GParamSpec describing the property being got
  */
 static void gattrib_dialog_get_property (GObject *object, guint property_id, GValue *value, GParamSpec *pspec)
 {
@@ -362,14 +355,13 @@ static void gattrib_dialog_get_property (GObject *object, guint property_id, GVa
 
 }
 
-
-/*! \brief Type class initializer for GattribDialog
- *
- *  \par Function Description
+/*!
+ * \brief Type class initializer for GattribDialog
+ * \par Function Description
  *  Type class initializer for GattribDialog. We override our parent
  *  virtual class methods as needed and register our GObject properties.
  *
- *  \param [in]  klass  The GattribDialogClass we are initialising
+ * \param [in]  klass  The GattribDialogClass we are initialising
  */
 static void gattrib_dialog_class_init (GattribDialogClass *klass)
 {
@@ -431,15 +423,14 @@ static void gattrib_dialog_class_init (GattribDialogClass *klass)
                           G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE));
 }
 
-
-/*! \brief Function to retrieve GattribDialog's GedaType identifier.
- *
- *  \par Function Description
+/*!
+ * \brief Function to retrieve GattribDialog's GedaType identifier.
+ * \par Function Description
  *  Function to retrieve GattribDialog's Type identifier. On first call,
  *  this registers the GattribDialog in the GedaType system. Subsequently
  *  the function returns the saved value from its first execution.
  *
- *  \return GedaType identifier associated with GattribDialog.
+ * \return GedaType identifier associated with GattribDialog.
  */
 GedaType gattrib_dialog_get_type ()
 {
@@ -472,9 +463,9 @@ GedaType gattrib_dialog_get_type ()
  *  Convenience function which adds buttons to a pre-existing GtkDialog
  *  Modified from internal GTK function in GTK+-2.4.14 gtkdialog.c
  *
- *  \param [in]  dialog             The GtkDialog buttons are being added to
- *  \param [in]  first_button_text  The text string for the first button
- *  \param [in]  args               The va_list containging the remaining button strings
+ * \param [in]  dialog             The GtkDialog buttons are being added to
+ * \param [in]  first_button_text  The text string for the first button
+ * \param [in]  args               The va_list containging the remaining button strings
  */
 static void gattrib_dialog_add_buttons_valist (GtkDialog     *dialog,
                                                const char    *first_button_text,
@@ -508,12 +499,12 @@ static void gattrib_dialog_add_buttons_valist (GtkDialog     *dialog,
  *  Convenience function which creates a blank GattribDialog with various
  *  options.
  *
- *  \param [in]  title              The title text of the dialog
- *  \param [in]  parent             The GtkWindow which will parent this dialog
- *  \param [in]  flags              The GtkDialogFlags to use when setting up the dialog
- *  \param [in]  settings_name      The name gattrib should use to store this dialog's settings
+ * \param [in]  title          The title text of the dialog
+ * \param [in]  parent         The GtkWindow which will parent this dialog
+ * \param [in]  flags          The GtkDialogFlags to use when setting up the dialog
+ * \param [in]  settings_name  The name gattrib should use to store this dialog's settings
  *
- *  \return  The GattribDialog created.
+ * \return  The GattribDialog created.
  */
  GtkWidget *gattrib_dialog_new_empty (const char *title, GtkWindow *parent,
                                       GtkDialogFlags flags,
@@ -552,17 +543,17 @@ static void gattrib_dialog_add_buttons_valist (GtkDialog     *dialog,
  *  Convenience function which creates a GattribDialog with buttons and options.
  *  Modified from GTK+-2.4.14 gtkdialog.c.
  *
- *  \param [in]  title              The title text of the dialog
- *  \param [in]  parent             The GtkWindow which will parent this dialog
- *  \param [in]  flags              The GtkDialogFlags to use when setting up the dialog
- *  \param [in]  settings_name      The name gattrib should use to store this dialog's settings
- *  \param [in]  first_button_text  The text string for the first button
- *  \param [in]  ...                A variable number of arguments with the remaining button strings
+ * \param [in]  title              The title text of the dialog
+ * \param [in]  parent             The GtkWindow which will parent this dialog
+ * \param [in]  flags              The GtkDialogFlags to use when setting up the dialog
+ * \param [in]  settings_name      The name gattrib should use to store this dialog's settings
+ * \param [in]  first_button_text  The text string for the first button
+ * \param [in]  ...                A variable number of arguments with the remaining button strings
  *
- *  \return  The GattribDialog created.
+ * \return  The GattribDialog created.
  */
 GtkWidget* gattrib_dialog_new_with_buttons (const char *title, GtkWindow *parent, GtkDialogFlags flags,
-                                           const char *settings_name, const char *first_button_text, ...)
+                                            const char *settings_name, const char *first_button_text, ...)
 {
   GattribDialog *dialog;
   va_list args;
@@ -572,8 +563,8 @@ GtkWidget* gattrib_dialog_new_with_buttons (const char *title, GtkWindow *parent
   va_start (args, first_button_text);
 
   gattrib_dialog_add_buttons_valist (GTK_DIALOG (dialog),
-                                    first_button_text,
-                                    args);
+                                     first_button_text,
+                                     args);
 
   va_end (args);
 
