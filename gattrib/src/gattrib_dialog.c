@@ -466,11 +466,11 @@ GedaType gattrib_dialog_get_type ()
   return gattrib_dialog_type;
 }
 
-/*! \brief Internal GTK function modified from GTK+-2.4.14 gtkdialog.c
- *  to support gattrib_dialog_new_with_buttons(...)
- *
- *  \par Function Description
+/*!
+ * \brief va_list support for gattrib_dialog_new_with_buttons(...)
+ * \par Function Description
  *  Convenience function which adds buttons to a pre-existing GtkDialog
+ *  Modified from internal GTK function in GTK+-2.4.14 gtkdialog.c
  *
  *  \param [in]  dialog             The GtkDialog buttons are being added to
  *  \param [in]  first_button_text  The text string for the first button
@@ -502,11 +502,11 @@ static void gattrib_dialog_add_buttons_valist (GtkDialog     *dialog,
     }
 }
 
-/*! \brief Internal GTK function modified from GTK+-2.4.14 gtkdialog.c
- *  to support gattrib_dialog_new_with_buttons(...)
- *
- *  \par Function Description
- *  Convenience function which creates a blank GattribDialog with various options.
+/*!
+ * \brief Create a new empty GattribDialog
+ * \par Function Description
+ *  Convenience function which creates a blank GattribDialog with various
+ *  options.
  *
  *  \param [in]  title              The title text of the dialog
  *  \param [in]  parent             The GtkWindow which will parent this dialog
@@ -546,12 +546,11 @@ static void gattrib_dialog_add_buttons_valist (GtkDialog     *dialog,
   return (GtkWidget*)dialog;
 }
 
-/*! \brief GTK function modified from GTK+-2.4.14 gtkdialog.c
- *  to provide a GattribDialog equivelant of the convenience function
- *  gtk_dialog_new_with_buttons(...)
- *
- *  \par Function Description
+/*!
+ * \brief Create a new empty GattribDialog with buttons
+ * \par Function Description
  *  Convenience function which creates a GattribDialog with buttons and options.
+ *  Modified from GTK+-2.4.14 gtkdialog.c.
  *
  *  \param [in]  title              The title text of the dialog
  *  \param [in]  parent             The GtkWindow which will parent this dialog
