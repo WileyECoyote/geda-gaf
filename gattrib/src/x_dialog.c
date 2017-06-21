@@ -686,7 +686,7 @@ static void search_replace_switch_responder(GtkWidget *widget, int response, Con
    case WrapAround:
      break;
    default:
-    geda_log ("%s: UKNOWN SWITCH ID: %d\n", __func__,response);
+    geda_log ("%s: Unknown Switch ID: %d\n", __func__,response);
    }
 
    return;
