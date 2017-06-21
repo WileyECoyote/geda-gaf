@@ -270,8 +270,9 @@ static int on_mouse_button_press(GtkWidget *widget,
 
     gdk_window_get_pointer (gtk_widget_get_window(sheet), NULL, NULL, &mods);
 
-    if (mods&GDK_BUTTON3_MASK) {
+    if (mods & GDK_BUTTON3_MASK) {
 
+      /* popup is a global pointer to a GtkWidget, see include/globals.h */
       if (popup) {
         gtk_widget_destroy(GTK_WIDGET(popup));
         g_object_unref(popup);
