@@ -4936,10 +4936,10 @@ msgstr "Alterar Es_paçamento da grelha..."
 msgid "Adjust snap size"
 msgstr "Ajustar tamanho do snap"
 
+# Toggle snap adjustment
 #: gschem/etc/system-gschemrc.scm:2339
-#, fuzzy
 msgid "_Snap On-Off"
-msgstr "Desactivado o Ajuste à Grelha"
+msgstr "Alternar o Ajuste de snap"
 
 # Toggle the object snap mode
 #: gschem/etc/system-gschemrc.scm:2339
@@ -4948,7 +4948,6 @@ msgstr "Alternar o modo de snap de objeto"
 
 # Toggle Keep Connections
 #: gschem/etc/system-gschemrc.scm:2340
-#, fuzzy
 msgid "_Rubberband"
 msgstr "Alternar Conservar _Ligações"
 
@@ -4958,7 +4957,6 @@ msgid "Toggle rubberband net mode"
 msgstr "Alternar Conservar _Ligações modo"
 
 #: gschem/etc/system-gschemrc.scm:2341
-#, fuzzy
 msgid "_Magnetic Net"
 msgstr "Modo Ligação Magnética"
 
@@ -4966,34 +4964,31 @@ msgstr "Modo Ligação Magnética"
 msgid "Toggle magnetic net mode"
 msgstr "Alternar Ligação _Magnética modo"
 
+# Toggle Dragging
 #: gschem/etc/system-gschemrc.scm:2342
-#, fuzzy
 msgid "_Drag Move"
-msgstr "Alternar Ligação _Magnética"
+msgstr "Alternar arrastar"
 
 #: gschem/etc/system-gschemrc.scm:2342
-#, fuzzy
 msgid "Toggle Drag-can-Move mode"
-msgstr "Alternar Ligação _Magnética"
+msgstr "Alternar modo Arrastar-mover-Desligar"
 
 #: gschem/etc/system-gschemrc.scm:2343
-#, fuzzy
 msgid "_Outline-Box"
-msgstr "Alternar _Contorno/Rectângulo"
+msgstr "_Contorno/Rectângulo"
 
 #: gschem/etc/system-gschemrc.scm:2343
 msgid "Toggle action feedback"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2344
-#, fuzzy
 msgid "_Auto-Pan"
-msgstr "Alternar Conservar _Ligações"
+msgstr "Conservar _Ligações"
 
+# Toggle auto panning mode
 #: gschem/etc/system-gschemrc.scm:2344
-#, fuzzy
 msgid "Toggle auto panning mode"
-msgstr "Alternar Ligação _Magnética"
+msgstr "Alternar o modo de panning automático"
 
 #: gschem/etc/system-gschemrc.scm:2347
 msgid "_Text Size..."
@@ -5012,9 +5007,8 @@ msgid "Open the Preferences dialog"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2357
-#, fuzzy
 msgid "Gschem Guide"
-msgstr "gschem _Perguntas Frequentes..."
+msgstr "gschem Guia de usuário"
 
 #: gschem/etc/system-gschemrc.scm:2358
 msgid "_Hotkeys..."
@@ -5101,40 +5095,35 @@ msgstr "_Ajuda"
 #: gschem/scheme/gschem/action.scm:45
 #, scheme-format
 msgid "~S is not a valid gschem action."
-msgstr ""
+msgstr "~S não é uma açao válida."
 
 #: gschem/scheme/gschem/action.scm:158
 msgid "Repeat Last Action"
 msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:50
-#, fuzzy
 msgid "New File"
-msgstr "Novo ficheiro"
+msgstr "Novo Ficheiro"
 
 #: gschem/scheme/gschem/builtins.scm:53
-#, fuzzy
 msgid "Open File"
-msgstr "Abrir ficheiro..."
+msgstr "Abrir Ficheiro..."
 
 #: gschem/scheme/gschem/builtins.scm:59
-#, fuzzy
 msgid "Save As"
-msgstr "Guardar Tudo"
+msgstr "Guardar como"
 
 #: gschem/scheme/gschem/builtins.scm:62
 msgid "Save All"
 msgstr "Guardar Tudo"
 
 #: gschem/scheme/gschem/builtins.scm:65
-#, fuzzy
 msgid "Save Modified"
-msgstr "Modo de Movimentação"
+msgstr "Guardar Modificado"
 
 #: gschem/scheme/gschem/builtins.scm:68
-#, fuzzy
 msgid "Print"
-msgstr "Imprimir..."
+msgstr "Imprimir"
 
 #: gschem/scheme/gschem/builtins.scm:71
 msgid "Export Image"
