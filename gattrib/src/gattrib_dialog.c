@@ -445,14 +445,14 @@ GedaType gattrib_dialog_get_type ()
   if (!gattrib_dialog_type) {
     static const GTypeInfo gattrib_dialog_info = {
       sizeof(GattribDialogClass),
-      NULL, /* base_init */
-      NULL, /* base_finalize */
-      (GClassInitFunc) gattrib_dialog_class_init,
-      NULL, /* class_finalize */
-      NULL, /* class_data */
+      NULL,                         /* base_init */
+      NULL,                         /* base_finalize */
+      gattrib_dialog_class_init,    /* GClassInitFunc */
+      NULL,                         /* class_finalize */
+      NULL,                         /* class_data */
       sizeof(GattribDialog),
-      0,    /* n_preallocs */
-      NULL, /* instance_init */
+      0,                            /* n_preallocs */
+      NULL,                         /* instance_init */
     };
 
     gattrib_dialog_type = g_type_register_static (GTK_TYPE_DIALOG,
