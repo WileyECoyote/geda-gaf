@@ -2298,10 +2298,10 @@ msgstr ""
 msgid "Entry for model file name"
 msgstr ""
 
+# Type
 #: gschem/src/x/x_edit_pin.c:71
-#, fuzzy
 msgid "_Type:"
-msgstr "塗りつぶしを編集:"
+msgstr "タイプ:"
 
 #: gschem/src/x/x_edit_pin.c:71
 msgid "Select the pin type"
@@ -2311,10 +2311,10 @@ msgstr ""
 msgid "_Attributes:"
 msgstr "属性:"
 
+# Set the pin attributes
 #: gschem/src/x/x_edit_pin.c:72
-#, fuzzy
 msgid "Set the pin attributes"
-msgstr "アトリビュート編集"
+msgstr "ピンの属性を設定する"
 
 # Number
 #: gschem/src/x/x_edit_pin.c:73
@@ -2329,10 +2329,10 @@ msgstr ""
 msgid "_Sequence:"
 msgstr ""
 
+# Set the sequence number
 #: gschem/src/x/x_edit_pin.c:74
-#, fuzzy
 msgid "Set the sequence number"
-msgstr "現在のウィンドウ"
+msgstr "シーケンス番号を設定する"
 
 #: gschem/src/x/x_edit_pin.c:75
 msgid "_Label:"
@@ -2343,27 +2343,25 @@ msgid "Enter pin name or description"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:77
-#, fuzzy
 msgid "      Type:"
-msgstr "塗りつぶしを編集:"
+msgstr "     タイプ:"
 
+# Enable to set all selected attributes to the prescribed type
 #: gschem/src/x/x_edit_pin.c:77
-#, fuzzy
 msgid "Enable to set all selected attributes to the prescribed type"
-msgstr "選択した属性をシンボルにアタッチする"
+msgstr "選択したすべての属性を所定のタイプに設定できるようにする"
 
 #: gschem/src/x/x_edit_pin.c:78
 msgid "Attributes:"
 msgstr "属性:"
 
+# Enable to set all selected attributes to the prescribed value
 #: gschem/src/x/x_edit_pin.c:78
-#, fuzzy
 msgid "Enable to set all selected attributes to the prescribed value"
-msgstr "選択した属性をシンボルにアタッチする"
+msgstr "選択したすべての属性を既定値に設定する"
 
 # Number
 #: gschem/src/x/x_edit_pin.c:80
-#, fuzzy
 msgid "Number:"
 msgstr "数:"
 
@@ -2494,15 +2492,15 @@ msgstr ""
 msgid "Enter or edit the text string"
 msgstr ""
 
+# Alignment
 #: gschem/src/x/x_edit_text.c:65
-#, fuzzy
 msgid "A_lignment:"
-msgstr "部品 (C):"
+msgstr "Alignment:"
 
+# Select the text alignment attribute
 #: gschem/src/x/x_edit_text.c:65
-#, fuzzy
 msgid "Select the text alignment attribute"
-msgstr "追加する属性の名前を選択します。"
+msgstr "テキストの配置属性を選択する"
 
 #: gschem/src/x/x_edit_text.c:66
 msgid "_Color:"
