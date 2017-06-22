@@ -5247,52 +5247,54 @@ msgstr ""
 msgid "Pan Down"
 msgstr ""
 
+# Zoom Selection
 #: gschem/scheme/gschem/builtins.scm:230
-#, fuzzy
 msgid "Zoom Selection"
-msgstr "放大檢視"
+msgstr "縮放選擇"
 
+# Zoom Extents
 #: gschem/scheme/gschem/builtins.scm:233
-#, fuzzy
 msgid "Zoom Extents"
-msgstr "放大檢視"
+msgstr "縮放範圍"
 
+# Zoom In
 #: gschem/scheme/gschem/builtins.scm:236
-#, fuzzy
 msgid "Zoom In"
-msgstr "放大檢視"
+msgstr "放大"
 
+# Zoom Out
 #: gschem/scheme/gschem/builtins.scm:239
-#, fuzzy
 msgid "Zoom Out"
-msgstr "縮小檢視"
+msgstr "縮小"
 
+# Zoom All
 #: gschem/scheme/gschem/builtins.scm:242
-#, fuzzy
 msgid "Zoom All"
-msgstr "縮小檢視"
+msgstr "全部放大"
 
+# Zoom Magnification
 #: gschem/scheme/gschem/builtins.scm:245
-#, fuzzy
 msgid "Zoom to Mag"
-msgstr "放大檢視"
+msgstr "縮放倍數"
 
+# Documentation
 #: gschem/scheme/gschem/builtins.scm:248
-#, fuzzy
 msgid "Documentation"
-msgstr "元件模式"
+msgstr "文檔"
 
 #: gschem/scheme/gschem/builtins.scm:251
 msgid "Show/Hide Invisible Text"
 msgstr ""
 
+# Show/Hide Inherited Attributes
 #: gschem/scheme/gschem/builtins.scm:254
 msgid "Show/Hide Inherited Attributes"
-msgstr ""
+msgstr "顯示/隱藏繼承的屬性"
 
+# Show/Hide net names
 #: gschem/scheme/gschem/builtins.scm:257
 msgid "Show/Hide net names"
-msgstr ""
+msgstr "顯示/隱藏網絡名稱"
 
 # Dark Color Scheme
 #: gschem/scheme/gschem/builtins.scm:260
