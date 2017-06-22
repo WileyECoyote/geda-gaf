@@ -2306,15 +2306,15 @@ msgstr ""
 msgid "_Attributes:"
 msgstr "_Attribut:"
 
+# Set the pin attributes
 #: gschem/src/x/x_edit_pin.c:72
-#, fuzzy
+
 msgid "Set the pin attributes"
 msgstr "Legen Sie die Pin-Attribute fest"
 
 #: gschem/src/x/x_edit_pin.c:73
-#, fuzzy
 msgid "_Number:"
-msgstr "Startnummer:"
+msgstr "_Nummer:"
 
 #: gschem/src/x/x_edit_pin.c:73
 msgid "Set the pin number, or the starting pin number if auto numbering"
@@ -2324,10 +2324,10 @@ msgstr ""
 msgid "_Sequence:"
 msgstr ""
 
+# Set the sequence number
 #: gschem/src/x/x_edit_pin.c:74
-#, fuzzy
 msgid "Set the sequence number"
-msgstr "Ausgewählte Objekte"
+msgstr "Legen Sie die Sequenznummer fest"
 
 #: gschem/src/x/x_edit_pin.c:75
 msgid "_Label:"
@@ -2338,9 +2338,8 @@ msgid "Enter pin name or description"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:77
-#, fuzzy
 msgid "      Type:"
-msgstr "Umfang:"
+msgstr "       Art:"
 
 #: gschem/src/x/x_edit_pin.c:77
 msgid "Enable to set all selected attributes to the prescribed type"
@@ -2351,15 +2350,14 @@ msgstr ""
 msgid "Attributes:"
 msgstr "Attribut:"
 
+# Enable to set all selected attributes to the prescribed value
 #: gschem/src/x/x_edit_pin.c:78
-#, fuzzy
 msgid "Enable to set all selected attributes to the prescribed value"
-msgstr "Attribut ablösen"
+msgstr "Aktivieren Sie, um alle ausgewählten Attribute auf den vorgeschriebenen Wert zu setzen"
 
 #: gschem/src/x/x_edit_pin.c:80
-#, fuzzy
 msgid "Number:"
-msgstr "Startnummer:"
+msgstr "Nummer:"
 
 #: gschem/src/x/x_edit_pin.c:80
 msgid ""
@@ -2485,15 +2483,15 @@ msgstr "Slot-Nummer:"
 msgid "Text Content"
 msgstr "Textinhalt"
 
+# Enter or edit the text string
 #: gschem/src/x/x_edit_text.c:64
-#, fuzzy
 msgid "Enter or edit the text string"
-msgstr "Neue Textgröße eingeben:"
+msgstr "Geben Sie den Textstring ein oder bearbeiten Sie ihn"
 
+# Alignment
 #: gschem/src/x/x_edit_text.c:65
-#, fuzzy
 msgid "A_lignment:"
-msgstr "Befehl:"
+msgstr "Ausrichtung:"
 
 #: gschem/src/x/x_edit_text.c:65
 #, fuzzy
