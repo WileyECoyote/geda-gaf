@@ -1,7 +1,8 @@
 2017-06-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * gattrib/src/gattrib_dialog.c: Replace unnecessary type-checking cast
-      GObjectClass.
+      GObjectClass. Revise arguments to gattrib_dialog_class_init so that
+      cast to GClassInitFunc is not required.
 
 2017-06-21 Wiley E. Hill <wileyhill@gmail.com>
 

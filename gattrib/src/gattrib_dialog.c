@@ -361,15 +361,21 @@ static void gattrib_dialog_get_property (GObject *object, guint property_id, GVa
  *  Type class initializer for GattribDialog. We override our parent
  *  virtual class methods as needed and register our GObject properties.
  *
- * \param [in]  klass  The GattribDialogClass we are initialising
+ * \param [in]  class       GattribDialogClass class we are initializing
+ * \param [in]  class_data  GattribDialog structure associated with the class
  */
-static void gattrib_dialog_class_init (GattribDialogClass *klass)
+static void gattrib_dialog_class_init(void *klass, void *class_data)
 {
-  GObjectClass   *gobject_class   = (GObjectClass*) klass;
-  GtkWidgetClass *gtkwidget_class = (GtkWidgetClass*) klass;
+  GattribDialogClass *dialog_class;
+  GObjectClass       *gobject_class;
+  GtkWidgetClass     *gtkwidget_class;
 
-  klass->geometry_save         = geometry_save;
-  klass->geometry_restore      = geometry_restore;
+  dialog_class    = (GattribDialogClass*) klass;
+  gobject_class   = (GObjectClass*) klass;
+  gtkwidget_class = (GtkWidgetClass*) klass;
+
+  dialog_class->geometry_save    = geometry_save;
+  dialog_class->geometry_restore = geometry_restore;
 
   gtkwidget_class->show        = show_handler;
   gtkwidget_class->unmap       = unmap_handler;
