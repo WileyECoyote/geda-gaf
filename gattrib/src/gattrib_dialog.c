@@ -293,7 +293,7 @@ static void gattrib_dialog_finalize (GObject *object)
 
   GEDA_FREE (dialog->settings_name);
 
-  G_OBJECT_CLASS (gattrib_dialog_parent_class)->finalize (object);
+  ((GObjectClass*)gattrib_dialog_parent_class)->finalize (object);
 }
 
 /*!

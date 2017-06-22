@@ -1,6 +1,14 @@
+2017-06-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gattrib/src/gattrib_dialog.c: Replace unnecessary type-checking cast
+      GObjectClass.
+
 2017-06-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * gattrib/src/gattrib_dialog.c: Revise and reformat Doxygen comments.
+
+    * src/x_dialog.c: Replace BUG_IMSG with geda_log in search_replace_
+      dialog_response.
 
 2017-05-21 Wiley E. Hill <wileyhill@gmail.com>
 
