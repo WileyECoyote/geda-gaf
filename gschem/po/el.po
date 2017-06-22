@@ -2318,10 +2318,10 @@ msgstr "Αριθμός έναρξης"
 msgid "_Sequence:"
 msgstr ""
 
+# Set the sequence number
 #: gschem/src/x/x_edit_pin.c:74
-#, fuzzy
 msgid "Set the sequence number"
-msgstr "Επιλεγμένα αντικείμενα"
+msgstr "Ορίστε τον αριθμό ακολουθίας"
 
 #: gschem/src/x/x_edit_pin.c:75
 msgid "_Label:"
@@ -2332,9 +2332,8 @@ msgid "Enter pin name or description"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:77
-#, fuzzy
 msgid "      Type:"
-msgstr "Τύπος:"
+msgstr "     Τύπος:"
 
 #: gschem/src/x/x_edit_pin.c:77
 msgid "Enable to set all selected attributes to the prescribed type"
@@ -2345,10 +2344,10 @@ msgstr ""
 msgid "Attributes:"
 msgstr "Γνωρίσματα:"
 
+# Enable to set all selected attributes to the prescribed value
 #: gschem/src/x/x_edit_pin.c:78
-#, fuzzy
 msgid "Enable to set all selected attributes to the prescribed value"
-msgstr "Αποσυνδεδεμένο γνώρισμα"
+msgstr "Ενεργοποίηση για να ορίσετε όλα τα επιλεγμένα χαρακτηριστικά στην καθορισμένη τιμή"
 
 # Number
 #: gschem/src/x/x_edit_pin.c:80
@@ -2478,44 +2477,44 @@ msgstr "στοιχείο αριθμός:"
 msgid "Text Content"
 msgstr "Περιεχόμενο κειμένου"
 
+# Enter or edit the text string
 #: gschem/src/x/x_edit_text.c:64
-#, fuzzy
 msgid "Enter or edit the text string"
-msgstr "Εισάγετε το νέο μέγεθος κειμένου:"
+msgstr "Εισάγετε ή επεξεργαστείτε τη συμβολοσειρά κειμένου:"
 
+# Alignment
 #: gschem/src/x/x_edit_text.c:65
-#, fuzzy
 msgid "A_lignment:"
-msgstr "Εντολή:"
+msgstr "Ευθυγραμμία:"
 
+# Select the text alignment attribute
 #: gschem/src/x/x_edit_text.c:65
-#, fuzzy
 msgid "Select the text alignment attribute"
-msgstr "Επιλέξτε το όνομα του χαρακτηριστικού για να προσθέσετε"
+msgstr "Επιλέξτε το χαρακτηριστικό ευθυγράμμισης κειμένου"
 
 # Color
 #: gschem/src/x/x_edit_text.c:66
 msgid "_Color:"
 msgstr "_Χρώμα:"
 
+# Select color attribute
 #: gschem/src/x/x_edit_text.c:66
-#, fuzzy
 msgid "Select color attribute"
-msgstr "Επιλέξτε ένα χαρακτηριστικό για να προσθέσετε"
+msgstr "Επιλέξτε το χαρακτηριστικό χρώματος"
 
 #: gschem/src/x/x_edit_text.c:67
 msgid "_Size:"
 msgstr ""
 
+# Open font selection dialog
 #: gschem/src/x/x_edit_text.c:67
-#, fuzzy
 msgid "Open font selection dialog"
-msgstr "Διαχειριστής σελίδων"
+msgstr "Άνοιγμα διαλόγου επιλογής γραμματοσειράς"
 
+# Rotation
 #: gschem/src/x/x_edit_text.c:68
-#, fuzzy
 msgid "_Rotation:"
-msgstr "Τεκμηρίωση:"
+msgstr "Περιστροφή:"
 
 #: gschem/src/x/x_edit_text.c:68
 msgid "Set the text rotation angle"
