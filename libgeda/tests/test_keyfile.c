@@ -1101,6 +1101,52 @@ int check_data (void)
       err = NULL;
     }
 
+        /* === Function 33: geda_keyfile_set_double === */
+
+    geda_keyfile_set_double (keyfile,"G7", "DBL", 9.9999999989);
+
+    if (!geda_keyfile_has_group(keyfile, "G7")) {
+      fprintf(stderr, "FAILED: (KF083301) set_double, G7\n");
+      result++;
+    }
+
+    /* === Function 32: geda_keyfile_get_double === */
+
+    if (geda_keyfile_get_double(keyfile, "G7", "NDBL", &err)) {
+      fprintf(stderr, "FAILED: (KF083201A) get_double NDBL\n");
+      result++;
+    }
+    else if (!err) {
+      /* Error should be set since key does not exist */
+      fprintf(stderr, "FAILED: (KF083201B) get_double, no error\n");
+      result++;
+    }
+
+    if (err) {
+      g_error_free (err);
+      err = NULL;
+    }
+
+    double G7DBL = geda_keyfile_get_double(keyfile, "G7", "DBL", &err);
+
+    if (G7DBL != 9.9999999989) {
+      fprintf(stderr, "FAILED: (KF083201C) get_double, !DBL\n");
+      result++;
+    }
+
+    if (err) {
+      /* Error should NOT be set since key does exist */
+      fprintf(stderr, "FAILED: (KF083201D) get_double, err set\n");
+      result++;
+      g_error_free (err);
+      err = NULL;
+    }
+
+    if (err) {
+      g_error_free (err);
+      err = NULL;
+    }
+
     char *data;
     data = geda_keyfile_to_data(keyfile, NULL, NULL);
     g_file_set_contents(KEY_FILENAME, data, -1, NULL);

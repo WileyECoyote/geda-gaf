@@ -1,3 +1,8 @@
+2017-06-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_keyfile.c: Add checks for geda_keyfile_get_double and
+      geda_keyfile_set_double.
+
 2017-06-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_bus.c: Revert back to conventional function wrapping.
