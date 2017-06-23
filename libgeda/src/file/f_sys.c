@@ -65,8 +65,7 @@
  *
  * \returns 0 on success, -1 on failure.
  */
-int
-geda_file_copy(const char *source, const char *target)
+int geda_file_copy(const char *source, const char *target)
 {
   int input  = -1;
   int output = -1;
@@ -215,8 +214,7 @@ geda_file_copy(const char *source, const char *target)
  *    int secs = geda_file_sys_cmp_mod_time(filename, time(&now));
  *    printf( "%s is %d seconds old\n",filename, secs);
  */
-int
-geda_file_sys_cmp_mod_time (const char *filename, time_t ref_time)
+int geda_file_sys_cmp_mod_time (const char *filename, time_t ref_time)
 {
   int    result;
   struct stat file_stat;
@@ -261,8 +259,7 @@ geda_file_sys_cmp_mod_time (const char *filename, time_t ref_time)
  *
  * \note Originally taken from gedit's source code.
  */
-char*
-geda_file_sys_follow_symlinks (const char *filename, GError **err)
+char *geda_file_sys_follow_symlinks (const char *filename, GError **err)
 {
   char *followed_filename;
 
@@ -377,8 +374,7 @@ geda_file_sys_follow_symlinks (const char *filename, GError **err)
  * \return A newly-allocated string with the resolved absolute
  *         pathname on success, NULL otherwise.
  */
-char*
-geda_file_sys_normalize_name (const char *name, GError **error)
+char *geda_file_sys_normalize_name (const char *name, GError **error)
 {
   char *result;
 
@@ -450,8 +446,7 @@ geda_file_sys_normalize_name (const char *name, GError **error)
  *
  * \returns result of remove = zero on success -1 if error
 */
-int
-geda_file_sys_remove (const char *pathname)
+int geda_file_sys_remove (const char *pathname)
 {
   int result;
 
@@ -476,8 +471,7 @@ geda_file_sys_remove (const char *pathname)
  *
  * \warning MUST not be const char
 */
-bool
-geda_file_sys_remove_extension(char *filename) {
+bool geda_file_sys_remove_extension(char *filename) {
 
   int i   = 0;
   int n   = 0;

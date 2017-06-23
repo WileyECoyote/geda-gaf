@@ -1,9 +1,11 @@
 2017-06-23 Wiley E. Hill <wileyhill@gmail.com>
 
-    * tests/test_keyfile.c: Add checks for geda_keyfile_get_double and
-      geda_keyfile_set_double.
+    * src/file/f_sys.c: Revert back to conventional function wrapping.
 
     * src/geda/geda_circle.c: Revert back to conventional function wrapping.
+
+    * tests/test_keyfile.c: Add checks for geda_keyfile_get_double and
+      geda_keyfile_set_double.
 
 2017-06-17 Wiley E. Hill <wileyhill@gmail.com>
 
