@@ -488,15 +488,15 @@ static void gattrib_dialog_add_buttons_valist (GtkDialog     *dialog,
   text = first_button_text;
   response_id = va_arg (args, int);
 
-  while (text != NULL)
-    {
-      gtk_dialog_add_button (dialog, text, response_id);
+  while (text != NULL) {
 
-      text = va_arg (args, char*);
-      if (text == NULL)
-        break;
-      response_id = va_arg (args, int);
-    }
+    gtk_dialog_add_button (dialog, text, response_id);
+
+    text = va_arg (args, char*);
+    if (text == NULL)
+      break;
+    response_id = va_arg (args, int);
+  }
 }
 
 /*!
