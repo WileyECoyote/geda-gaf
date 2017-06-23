@@ -3,6 +3,8 @@
     * gattrib/src/gattrib_dialog.c: Declare gattrib_dialog_type volatile in
       gattrib_dialog_class_init.
 
+    * src/x_dialog.c: Tag translables in DialogStrings structure.
+
 2017-06-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * gattrib/src/gattrib_dialog.c: Replace unnecessary type-checking cast

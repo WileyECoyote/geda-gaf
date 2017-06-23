@@ -523,14 +523,14 @@ typedef enum {
 
 WidgetStringData DialogStrings[] = {
   /* 2 String for Edit Controls */
-        { "SearchTextCombo",	        "  Search for:",     "Enter or select the text to find"},
-        { "ReplaceTextCombo",	    "Replace with:",     "Enter or select the replacement text"},
+        { "SearchTextCombo",	        N_("  Search for:"),     N_("Enter or select the text to find")},
+        { "ReplaceTextCombo",	    N_("Replace with:"),     N_("Enter or select the replacement text")},
 
   /* 4 Strings for Switch Controls */
-        { "IgnoreCaseSwitch",	    "    Ignore Case",   "Set search case sensitivity"},
-        { "WholeWordSwitch",	        "  Match Words",     "Limit Search hits to entire work"},
-        { "SearchBackwordSwitch",	"Search Backword",   "Reverse search direction"},
-        { "WrapAroundSwitch",	    "  Wrap Around",     "Continue search from the beginning"},
+        { "IgnoreCaseSwitch",	    N_("    Ignore Case"),   N_("Set search case sensitivity")},
+        { "WholeWordSwitch",	        N_("  Match Words"),     N_("Limit Search hits to entire work")},
+        { "SearchBackwordSwitch",	N_("Search Backword"),   N_("Reverse search direction")},
+        { "WrapAroundSwitch",	    N_("  Wrap Around"),     N_("Continue search from the beginning")},
         { NULL, NULL, NULL}
 };
 
