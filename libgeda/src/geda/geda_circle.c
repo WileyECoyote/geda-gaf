@@ -74,8 +74,7 @@ static GObjectClass *geda_circle_parent_class = NULL;
  *  the \a circle in world units.
  *
  */
-int
-geda_circle_bounds(GedaObject *object)
+int geda_circle_bounds(GedaObject *object)
 {
   int halfwidth;
 
@@ -92,8 +91,7 @@ geda_circle_bounds(GedaObject *object)
   return TRUE;
 }
 
-static void
-geda_circle_dispose(GObject *object)
+static void geda_circle_dispose(GObject *object)
 {
   G_OBJECT_CLASS(geda_circle_parent_class)->dispose(object);
 }
@@ -114,10 +112,9 @@ static void geda_circle_finalize(GObject *object)
   GEDA_OBJECT_CLASS(geda_circle_parent_class)->finalize(object);
 }
 
-static void
-get_property (GObject *object, unsigned int  prop_id,
-                               GValue       *value,
-                               GParamSpec   *pspec)
+static void get_property (GObject *object, unsigned int  prop_id,
+                                           GValue       *value,
+                                           GParamSpec   *pspec)
 
 {
   GedaCircle   *circle       = GEDA_CIRCLE(object);
@@ -188,10 +185,9 @@ get_property (GObject *object, unsigned int  prop_id,
   }
 }
 
-static void
-set_property (GObject *object, unsigned int  prop_id,
-                               const GValue *value,
-                               GParamSpec   *pspec)
+static void set_property (GObject *object, unsigned int  prop_id,
+                                           const GValue *value,
+                                           GParamSpec   *pspec)
 {
   GedaCircle   *circle       = GEDA_CIRCLE(object);
   LINE_OPTIONS *line_options = &circle->line_options;
@@ -546,8 +542,7 @@ bool is_a_geda_circle (const GedaCircle *cir)
  *
  * \sa geda_circle_object_get_center_x
  */
-int
-geda_circle_get_center_x (const GedaCircle *circle) {
+int geda_circle_get_center_x (const GedaCircle *circle) {
   if (is_a_geda_circle(circle)) {
     return circle->center_x;
   }
@@ -564,8 +559,7 @@ geda_circle_get_center_x (const GedaCircle *circle) {
  *
  * \sa geda_circle_object_get_center_x
  */
-int
-geda_circle_get_center_y (const GedaCircle *circle) {
+int geda_circle_get_center_y (const GedaCircle *circle) {
   if (is_a_geda_circle(circle)) {
     return circle->center_y;
   }
@@ -582,8 +576,7 @@ geda_circle_get_center_y (const GedaCircle *circle) {
  *
  * \sa geda_circle_set_end_cap
  */
-int
-geda_circle_get_end_cap (const GedaCircle *circle) {
+int geda_circle_get_end_cap (const GedaCircle *circle) {
   if (is_a_geda_circle(circle)) {
     return circle->line_options.line_end;
   }
@@ -600,8 +593,7 @@ geda_circle_get_end_cap (const GedaCircle *circle) {
  *
  * \sa geda_circle_set_fill_angle1
  */
-int
-geda_circle_get_fill_angle1 (const GedaCircle *circle) {
+int geda_circle_get_fill_angle1 (const GedaCircle *circle) {
   if (is_a_geda_circle(circle)) {
     return circle->fill_options.fill_angle1;
   }
@@ -618,8 +610,7 @@ geda_circle_get_fill_angle1 (const GedaCircle *circle) {
  *
  * \sa geda_circle_set_fill_angle2
  */
-int
-geda_circle_get_fill_angle2 (const GedaCircle *circle) {
+int geda_circle_get_fill_angle2 (const GedaCircle *circle) {
   if (is_a_geda_circle(circle)) {
     return circle->fill_options.fill_angle2;
   }
@@ -637,8 +628,7 @@ geda_circle_get_fill_angle2 (const GedaCircle *circle) {
  * \sa geda_circle_set_fill_pitch1
  */
 
-int
-geda_circle_get_fill_pitch1 (const GedaCircle *circle) {
+int geda_circle_get_fill_pitch1 (const GedaCircle *circle) {
   if (is_a_geda_circle(circle)) {
     return circle->fill_options.fill_pitch1;
   }
@@ -655,8 +645,7 @@ geda_circle_get_fill_pitch1 (const GedaCircle *circle) {
  *
  * \sa geda_circle_set_fill_pitch2
  */
-int
-geda_circle_get_fill_pitch2 (const GedaCircle *circle) {
+int geda_circle_get_fill_pitch2 (const GedaCircle *circle) {
   if (is_a_geda_circle(circle)) {
     return circle->fill_options.fill_pitch2;
   }
@@ -673,8 +662,7 @@ geda_circle_get_fill_pitch2 (const GedaCircle *circle) {
  *
  * \sa geda_circle_set_fill_type
  */
-int
-geda_circle_get_fill_type (const GedaCircle *circle) {
+int geda_circle_get_fill_type (const GedaCircle *circle) {
   if (is_a_geda_circle(circle)) {
     return circle->fill_options.fill_type;
   }
@@ -691,8 +679,7 @@ geda_circle_get_fill_type (const GedaCircle *circle) {
  *
  * \sa geda_circle_set_fill_width
  */
-int
-geda_circle_get_fill_width (const GedaCircle *circle) {
+int geda_circle_get_fill_width (const GedaCircle *circle) {
   if (is_a_geda_circle(circle)) {
     return circle->fill_options.fill_width;
   }
@@ -715,8 +702,7 @@ geda_circle_get_fill_width (const GedaCircle *circle) {
  *
  * \sa geda_circle_set_line_length
  */
-int
-geda_circle_get_line_length (const GedaCircle *circle) {
+int geda_circle_get_line_length (const GedaCircle *circle) {
   if (is_a_geda_circle(circle)) {
     return circle->line_options.line_length;
   }
@@ -737,8 +723,7 @@ geda_circle_get_line_length (const GedaCircle *circle) {
  *
  * \sa geda_circle_set_line_space
  */
-int
-geda_circle_get_line_space (const GedaCircle *circle) {
+int geda_circle_get_line_space (const GedaCircle *circle) {
   if (is_a_geda_circle(circle)) {
     return circle->line_options.line_space;
   }
@@ -755,8 +740,7 @@ geda_circle_get_line_space (const GedaCircle *circle) {
  *
  * \sa geda_circle_set_line_type
  */
-int
-geda_circle_get_line_type (const GedaCircle *circle) {
+int geda_circle_get_line_type (const GedaCircle *circle) {
   if (is_a_geda_circle(circle)) {
     return circle->line_options.line_type;
   }
@@ -773,8 +757,7 @@ geda_circle_get_line_type (const GedaCircle *circle) {
  *
  * \sa geda_circle_set_line_width
  */
-int
-geda_circle_get_line_width (const GedaCircle *circle) {
+int geda_circle_get_line_width (const GedaCircle *circle) {
   if (is_a_geda_circle(circle)) {
     return circle->line_options.line_width;
   }
@@ -791,8 +774,7 @@ geda_circle_get_line_width (const GedaCircle *circle) {
  *
  * \sa geda_circle_object_get_radius
  */
-int
-geda_circle_get_radius (const GedaCircle *circle) {
+int geda_circle_get_radius (const GedaCircle *circle) {
   if (is_a_geda_circle(circle)) {
     return circle->radius;
   }
@@ -807,8 +789,7 @@ geda_circle_get_radius (const GedaCircle *circle) {
  *
  * \sa geda_circle_object_set_center_x
  */
-void
-geda_circle_set_center_x (GedaCircle *circle, int x) {
+void geda_circle_set_center_x (GedaCircle *circle, int x) {
   if (is_a_geda_circle(circle)) {
     circle->center_x = x;
   }
@@ -822,8 +803,7 @@ geda_circle_set_center_x (GedaCircle *circle, int x) {
  *
  * \sa geda_circle_object_set_center_y
  */
-void
-geda_circle_set_center_y (GedaCircle *circle, int y) {
+void geda_circle_set_center_y (GedaCircle *circle, int y) {
   if (is_a_geda_circle(circle)) {
     circle->center_y = y;
   }
@@ -838,8 +818,7 @@ geda_circle_set_center_y (GedaCircle *circle, int y) {
  *
  * \sa geda_circle_get_end_cap
  */
-void
-geda_circle_set_end_cap (GedaCircle *circle, int line_end) {
+void geda_circle_set_end_cap (GedaCircle *circle, int line_end) {
   if (is_a_geda_circle(circle)) {
     circle->line_options.line_end = line_end < END_NONE ? END_NONE :
                                     line_end > END_VOID ? END_VOID :
@@ -855,8 +834,7 @@ geda_circle_set_end_cap (GedaCircle *circle, int line_end) {
  *
  * \sa geda_circle_get_fill_angle1
  */
-void
-geda_circle_set_fill_angle1 (GedaCircle *circle, int angle) {
+void geda_circle_set_fill_angle1 (GedaCircle *circle, int angle) {
   if (is_a_geda_circle(circle)) {
     circle->fill_options.fill_angle1 = angle;
   }
@@ -870,8 +848,7 @@ geda_circle_set_fill_angle1 (GedaCircle *circle, int angle) {
  *
  * \sa geda_circle_get_fill_angle2
  */
-void
-geda_circle_set_fill_angle2 (GedaCircle *circle, int angle) {
+void geda_circle_set_fill_angle2 (GedaCircle *circle, int angle) {
   if (is_a_geda_circle(circle)) {
     circle->fill_options.fill_angle2 = angle;
   }
@@ -885,8 +862,7 @@ geda_circle_set_fill_angle2 (GedaCircle *circle, int angle) {
  *
  * \sa geda_circle_get_fill_pitch1
  */
-void
-geda_circle_set_fill_pitch1 (GedaCircle *circle, int pitch) {
+void geda_circle_set_fill_pitch1 (GedaCircle *circle, int pitch) {
   if (is_a_geda_circle(circle)) {
     circle->fill_options.fill_pitch1 = pitch;
   }
@@ -900,8 +876,7 @@ geda_circle_set_fill_pitch1 (GedaCircle *circle, int pitch) {
  *
  * \sa geda_circle_get_fill_pitch2
  */
-void
-geda_circle_set_fill_pitch2 (GedaCircle *circle, int pitch) {
+void geda_circle_set_fill_pitch2 (GedaCircle *circle, int pitch) {
   if (is_a_geda_circle(circle)) {
     circle->fill_options.fill_pitch2 = pitch;
   }
@@ -915,8 +890,7 @@ geda_circle_set_fill_pitch2 (GedaCircle *circle, int pitch) {
  *
  * \sa geda_circle_get_fill_type
  */
-void
-geda_circle_set_fill_type (GedaCircle *circle, int type) {
+void geda_circle_set_fill_type (GedaCircle *circle, int type) {
   if (is_a_geda_circle(circle)) {
     circle->fill_options.fill_type = type < TYPE_SOLID ? TYPE_SOLID :
                                      type > TYPE_ERASE ? TYPE_ERASE :
@@ -932,8 +906,7 @@ geda_circle_set_fill_type (GedaCircle *circle, int type) {
  *
  * \sa geda_circle_get_fill_width
  */
-void
-geda_circle_set_fill_width (GedaCircle *circle, int width) {
+void geda_circle_set_fill_width (GedaCircle *circle, int width) {
   if (is_a_geda_circle(circle)) {
     circle->fill_options.fill_width = width;
   }
@@ -951,8 +924,7 @@ geda_circle_set_fill_width (GedaCircle *circle, int width) {
  *
  * \sa geda_circle_get_line_length
  */
-void
-geda_circle_set_line_length (GedaCircle *circle, int line_length) {
+void geda_circle_set_line_length (GedaCircle *circle, int line_length) {
   if (is_a_geda_circle(circle)) {
     circle->line_options.line_length = line_length > 0 ? line_length : 0;
   }
@@ -970,8 +942,7 @@ geda_circle_set_line_length (GedaCircle *circle, int line_length) {
  *
  * \sa geda_circle_get_line_space
  */
-void
-geda_circle_set_line_space (GedaCircle *circle, int space) {
+void geda_circle_set_line_space (GedaCircle *circle, int space) {
   if (is_a_geda_circle(circle)) {
     circle->line_options.line_space = space > 0 ? space : 0;
   }
@@ -985,8 +956,7 @@ geda_circle_set_line_space (GedaCircle *circle, int space) {
  *
  * \sa geda_circle_get_line_type
  */
-void
-geda_circle_set_line_type (GedaCircle *circle, int line_type) {
+void geda_circle_set_line_type (GedaCircle *circle, int line_type) {
   if (is_a_geda_circle(circle)) {
     circle->line_options.line_type = line_type < TYPE_SOLID ? TYPE_SOLID :
                                   line_type > TYPE_ERASE ? TYPE_ERASE :
@@ -1002,8 +972,7 @@ geda_circle_set_line_type (GedaCircle *circle, int line_type) {
  *
  * \sa geda_circle_get_line_width
  */
-void
-geda_circle_set_line_width (GedaCircle *circle, int width) {
+void geda_circle_set_line_width (GedaCircle *circle, int width) {
   if (is_a_geda_circle(circle)) {
     circle->line_options.line_width = width > 0 ? width : 0;
   }
@@ -1017,8 +986,7 @@ geda_circle_set_line_width (GedaCircle *circle, int width) {
  *
  * \sa geda_circle_object_set_radius
  */
-void
-geda_circle_set_radius (GedaCircle *circle, int radius) {
+void geda_circle_set_radius (GedaCircle *circle, int radius) {
   if (is_a_geda_circle(circle)) {
     circle->radius = radius;
   }
