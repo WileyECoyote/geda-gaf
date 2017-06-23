@@ -284,6 +284,7 @@ static int on_mouse_button_press(GtkWidget *widget,
       geda_menu_popup(GEDA_MENU(popup), NULL, NULL, NULL, NULL,
                       event->button, event->time);
     }
+
     return (FALSE);
 }
 

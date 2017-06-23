@@ -675,6 +675,7 @@ static void search_replace_switch_responder(GtkWidget *widget, int response, Con
 {
    bool state = GET_SWITCH_STATE (widget);
    GtkWidget *SwitchImage = get_geda_switch_image(state);
+
    gtk_button_set_image(GTK_BUTTON (widget), SwitchImage);
 
    /* We don't have a pointer to the Search structure but this does not
@@ -745,6 +746,7 @@ static void x_dialog_init_search_replace(GtkWidget    *ThisDialog,
     geda_combo_box_text_widget_set_active_text(SearchTextCombo, text);
   }
 }
+
 /*! \brief Create Search Dialog Controls
  *  \par Function Description: This function creates the Search Dialog
  *  and all controls. The Dialog can be either a Search/Find or a Search
