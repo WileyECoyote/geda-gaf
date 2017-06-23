@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-05-15 00:56-0500\n"
+"POT-Creation-Date: 2017-06-23 00:37-0500\n"
 "PO-Revision-Date: 2010-01-29 16:46+0000\n"
 "Last-Translator: Werner Hoch <werner.ho@gmx.de>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -316,31 +316,79 @@ msgstr ""
 msgid "Enter "
 msgstr ""
 
-#: gattrib/src/x_dialog.c:817
-msgid "Close this dialog"
+#: gattrib/src/x_dialog.c:526
+msgid "  Search for:"
+msgstr ""
+
+#: gattrib/src/x_dialog.c:526
+msgid "Enter or select the text to find"
+msgstr ""
+
+#: gattrib/src/x_dialog.c:527
+msgid "Replace with:"
+msgstr ""
+
+#: gattrib/src/x_dialog.c:527
+msgid "Enter or select the replacement text"
+msgstr ""
+
+#: gattrib/src/x_dialog.c:530
+msgid "    Ignore Case"
+msgstr ""
+
+#: gattrib/src/x_dialog.c:530
+msgid "Set search case sensitivity"
+msgstr ""
+
+#: gattrib/src/x_dialog.c:531
+msgid "  Match Words"
+msgstr ""
+
+#: gattrib/src/x_dialog.c:531
+msgid "Limit Search hits to entire work"
+msgstr ""
+
+#: gattrib/src/x_dialog.c:532
+msgid "Search Backword"
+msgstr ""
+
+#: gattrib/src/x_dialog.c:532
+msgid "Reverse search direction"
+msgstr ""
+
+#: gattrib/src/x_dialog.c:533
+msgid "  Wrap Around"
+msgstr ""
+
+#: gattrib/src/x_dialog.c:533
+msgid "Continue search from the beginning"
 msgstr ""
 
 #: gattrib/src/x_dialog.c:819
+msgid "Close this dialog"
+msgstr ""
+
+#: gattrib/src/x_dialog.c:821
 msgid "Replace All"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:826
+#: gattrib/src/x_dialog.c:830
 msgid "Replace All and close dialog"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:828 gattrib/src/x_toolbars.c:39
+#: gattrib/src/x_dialog.c:832 gattrib/src/x_toolbars.c:39
 msgid "Replace"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:835
+#: gattrib/src/x_dialog.c:841
 msgid "Replace selected text and continue"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:837 gattrib/src/x_toolbars.c:38
+#: gattrib/src/x_dialog.c:843 gattrib/src/x_toolbars.c:38
 msgid "Find"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:842
+#: gattrib/src/x_dialog.c:848
 msgid "Find next"
 msgstr ""
 
