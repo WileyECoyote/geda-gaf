@@ -440,7 +440,7 @@ static void gattrib_dialog_class_init(void *klass, void *class_data)
  */
 GedaType gattrib_dialog_get_type ()
 {
-  static GedaType gattrib_dialog_type = 0;
+  static volatile GedaType gattrib_dialog_type = 0;
 
   if (!gattrib_dialog_type) {
     static const GTypeInfo gattrib_dialog_info = {
