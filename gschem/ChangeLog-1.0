@@ -1,3 +1,8 @@
+2017-06-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/x_toolbars.h: Replace g_object_set ("visible") with gtk_widget_show
+      in macros GSCHEM_TOOLBAR_BUTTON and GSCHEM_TOOLBAR_BUTTON_FUNC.
+
 2017-06-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/de.po: Update German translations.
