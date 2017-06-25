@@ -2,6 +2,8 @@
 
     * po/ar.po: Update Arabic translations.
 
+    * po/bg.po: Update Bulgarian translations.
+
 2017-06-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * gattrib/src/gattrib_dialog.c: Declare gattrib_dialog_type volatile in
