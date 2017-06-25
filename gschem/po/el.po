@@ -2347,7 +2347,9 @@ msgstr "Γνωρίσματα:"
 # Enable to set all selected attributes to the prescribed value
 #: gschem/src/x/x_edit_pin.c:78
 msgid "Enable to set all selected attributes to the prescribed value"
-msgstr "Ενεργοποίηση για να ορίσετε όλα τα επιλεγμένα χαρακτηριστικά στην καθορισμένη τιμή"
+msgstr ""
+"Ενεργοποίηση για να ορίσετε όλα τα επιλεγμένα χαρακτηριστικά στην "
+"καθορισμένη τιμή"
 
 # Number
 #: gschem/src/x/x_edit_pin.c:80
