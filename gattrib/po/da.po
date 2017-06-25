@@ -324,11 +324,10 @@ msgstr ""
 msgid "Enter or select the text to find"
 msgstr ""
 
-# Replace value
+# Replace with
 #: gattrib/src/x_dialog.c:527
-#, fuzzy
 msgid "Replace with:"
-msgstr "Udskift værdi"
+msgstr "Erstat med:"
 
 #: gattrib/src/x_dialog.c:527
 msgid "Enter or select the replacement text"
