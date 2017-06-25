@@ -4449,14 +4449,12 @@ msgid "Zoom _Out"
 msgstr "Ver_klein"
 
 #: gschem/etc/system-gschemrc.scm:2205
-#, fuzzy
 msgid "Zoom _Mag"
-msgstr "Ver_groot"
+msgstr "Zoom vergroting"
 
 #: gschem/etc/system-gschemrc.scm:2206
-#, fuzzy
 msgid "Zoom _Selection"
-msgstr "Selectie"
+msgstr "Zoom _Selectie"
 
 #: gschem/etc/system-gschemrc.scm:2209 gschem/etc/system-gschemrc.scm:2247
 msgid "D_ocumentation..."
@@ -4466,20 +4464,20 @@ msgstr "D_ocumentatie..."
 msgid "Show/Hide Inv Text"
 msgstr "Zichtbaar/Verborgen Onzichtbare Tekst"
 
+# Toggle hidden text attributes
 #: gschem/etc/system-gschemrc.scm:2210
-#, fuzzy
 msgid "Toggle hidden text attributes"
-msgstr "Toon geërfde attributen"
+msgstr "Wissel verborgen tekstkenmerken wisselen"
 
+# Show/Hide Net Names
 #: gschem/etc/system-gschemrc.scm:2211
-#, fuzzy
 msgid "Show/Hide Net Names"
-msgstr "Zichtbaar/Verborgen Onzichtbare Tekst"
+msgstr "Toon / Verberg Netnamen"
 
+# Toggle hidden net name attributes
 #: gschem/etc/system-gschemrc.scm:2211
-#, fuzzy
 msgid "Toggle hidden net name attributes"
-msgstr "Toon geërfde attributen"
+msgstr "Wissel verborgen netnaamkenmerken"
 
 #: gschem/etc/system-gschemrc.scm:2214
 msgid "_Dark color scheme"
@@ -4518,18 +4516,17 @@ msgid "_Manager..."
 msgstr "_Manager..."
 
 #: gschem/etc/system-gschemrc.scm:2228
-#, fuzzy
 msgid "Open the Page Manager"
-msgstr "Pagina Manager"
+msgstr "Open de Pagina Manager"
 
 #: gschem/etc/system-gschemrc.scm:2229
 msgid "_First"
 msgstr ""
 
+# Goto the first page
 #: gschem/etc/system-gschemrc.scm:2229
-#, fuzzy
 msgid "Goto the first page"
-msgstr "Huidig blad"
+msgstr "Ga naar de eerste pagina"
 
 #: gschem/etc/system-gschemrc.scm:2230
 msgid "_Previous"
@@ -4555,10 +4552,10 @@ msgstr "O_mhoog"
 msgid "Go up one page"
 msgstr ""
 
+# Down
 #: gschem/etc/system-gschemrc.scm:2233
-#, fuzzy
 msgid "_Down"
-msgstr "Verschuif Omlaag"
+msgstr "naar beneden"
 
 #: gschem/etc/system-gschemrc.scm:2233
 msgid "Go down one page"
@@ -4568,10 +4565,10 @@ msgstr ""
 msgid "_Last"
 msgstr ""
 
+# Goto the last page
 #: gschem/etc/system-gschemrc.scm:2234
-#, fuzzy
 msgid "Goto the last page"
-msgstr "Maak laatste bewerking ongedaan"
+msgstr "Ontdoen de laatste bewerking"
 
 #: gschem/etc/system-gschemrc.scm:2235
 msgid "Ne_w"
@@ -4581,10 +4578,10 @@ msgstr "Nieu_w"
 msgid "Create a new Page"
 msgstr ""
 
+#  Close the current page
 #: gschem/etc/system-gschemrc.scm:2238
-#, fuzzy
 msgid "Close the current page"
-msgstr "Huidig blad"
+msgstr "Sluit de huidige pagina"
 
 #: gschem/etc/system-gschemrc.scm:2239
 msgid "Discard changes and reload the current documents"
