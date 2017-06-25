@@ -607,7 +607,8 @@ static void gschem_dialog_instance_init(GTypeInstance *instance, void *g_class)
   dialog->tail_marker   = GSCHEM_TYPE_DIALOG;
 
   /* Set properties here to apply regardless of how dialog created */
-  g_object_set (dialog, "border-width", DIALOG_BORDER_WIDTH, NULL);
+  geda_set_container_border_width (dialog, DIALOG_BORDER_WIDTH);
+
   g_object_set (((GtkDialog*)dialog)->vbox, "spacing", DIALOG_V_SPACING, NULL);
 }
 

@@ -2,6 +2,9 @@
 
     * po/nl.po: Update Dutch translations.
 
+    * src/base/gschem_dialog.c: Replace g_object_set ("border-width") with
+      geda_set_container_border_width in gschem_dialog_instance_init.
+
 2017-06-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/x_toolbars.h: Replace g_object_set ("visible") with gtk_widget_show
