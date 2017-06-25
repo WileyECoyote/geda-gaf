@@ -2,6 +2,8 @@
 
     * po/nl.po: Update Dutch translations.
 
+    * po/pl.po: Update Polish translations.
+
     * src/base/gschem_dialog.c: Replace g_object_set ("border-width") with
       geda_set_container_border_width in gschem_dialog_instance_init.
 

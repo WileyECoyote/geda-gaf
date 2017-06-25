@@ -221,10 +221,10 @@ msgstr "BŁĄD"
 msgid "option requires an argument"
 msgstr ""
 
+# Unknown option
 #: gschem/src/base/gschem_parsecmd.c:290
-#, fuzzy
 msgid "Unknown option"
-msgstr "Nieznane"
+msgstr "Nieznana opcja"
 
 #: gschem/src/base/gschem_parsecmd.c:296
 msgid "Unknown option character"
@@ -762,29 +762,28 @@ msgstr "Uzupełnianie połączeń przy przesuwaniu: Wyłączone\n"
 msgid "Rubber band mode is ON\n"
 msgstr "Uzupełnianie połączeń przy przesuwaniu: Włączona\n"
 
+# Magnetic net mode is O
 #: gschem/src/iface/i_command.c:4466
-#, fuzzy
 msgid "Magnetic net mode is ON\n"
-msgstr "tryb \"magnesu\": włączony\n"
+msgstr "Tryb sieci magnetycznej jest włączony\n"
 
 #: gschem/src/iface/i_command.c:4469
-#, fuzzy
 msgid "Magnetic net mode is OFF\n"
-msgstr "tryb \"magnesu\": wyłączony\n"
+msgstr "Magnetyczny tryb siatki jest wyłączony\n"
 
 #: gschem/src/iface/i_command.c:4486 gschem/src/iface/i_command.c:4528
 msgid "Off"
 msgstr ""
 
+# On
 #: gschem/src/iface/i_command.c:4489 gschem/src/iface/i_command.c:4531
-#, fuzzy
 msgid "On"
-msgstr "Otwórz"
+msgstr "Na"
 
+# Drag-Can-Move is now
 #: gschem/src/iface/i_command.c:4491
-#, fuzzy
 msgid "Drag-Can-Move is now"
-msgstr "Przełącz \"_magnes\" połączeń"
+msgstr "Drag-Can-Move jest teraz"
 
 #: gschem/src/iface/i_command.c:4503
 msgid "Action feedback mode set to OUTLINE\n"
@@ -883,9 +882,8 @@ msgid "An error occurred attempting to create session"
 msgstr "Wystąpił błąd podczas próby utworzenia sesji"
 
 #: gschem/src/iface/i_sessions.c:954 gschem/src/iface/i_sessions.c:1138
-#, fuzzy
 msgid "<b>Session Error</b>"
-msgstr "<b>Zakres</b>"
+msgstr "<b>Błąd sesji</b>"
 
 # Creation failed
 #: gschem/src/iface/i_sessions.c:954
@@ -1130,24 +1128,23 @@ msgid "An error occurred while processing request to revert"
 msgstr "Wystąpił błąd podczas przetwarzania żądania, aby przywrócić"
 
 #: gschem/src/iface/i_window.c:321
-#, fuzzy
 msgid "<b>File error.</b>"
-msgstr "<b>Zakres</b>"
+msgstr "<b>Błąd pliku.</b>"
 
+# Revert failed
 #: gschem/src/iface/i_window.c:321
-#, fuzzy
 msgid "Revert failed"
-msgstr "Czy na pewno przywrócić arkusz?"
+msgstr "Wróć nie powiodło się"
 
 # Error encountered during file operation
 #: gschem/src/iface/i_window.c:328
 msgid "Error encountered during file operation"
 msgstr "Wystąpił błąd podczas operacji na pliku"
 
+# Recovery: undo last action
 #: gschem/src/iface/i_window.c:329
-#, fuzzy
 msgid "Recovery: undo last action\n"
-msgstr "Cofnij ostatnią operację"
+msgstr "Odzyskiwanie: cofnij ostatnią czynność\n"
 
 #: gschem/src/object/o_break.c:186 gschem/src/object/o_break.c:519
 #: gschem/src/object/o_break.c:842
@@ -1161,10 +1158,10 @@ msgstr ""
 msgid "Point 1 missed x=%d, y=%d\n"
 msgstr ""
 
+# Translating schematic
 #: gschem/src/object/o_complex.c:248 gschem/src/object/o_complex.c:252
-#, fuzzy
 msgid "Translating schematic"
-msgstr "Tłumacz"
+msgstr "Tłumaczenie schematu"
 
 #: gschem/src/object/o_delete.c:87
 #, c-format
@@ -1173,10 +1170,10 @@ msgid_plural "Delete %u locked objects?"
 msgstr[0] "Usuwanie zablokowanego obiektu"
 msgstr[1] "Usuń %u zablokowanych obiektów?"
 
+# attributes were hidden
 #: gschem/src/object/o_edit.c:517
-#, fuzzy
 msgid "attributes were hidden"
-msgstr "Atrybuty"
+msgstr "Atrybuty były ukryte"
 
 # Hidden attributes are revealed
 #: gschem/src/object/o_edit.c:521
