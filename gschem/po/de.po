@@ -2308,7 +2308,6 @@ msgstr "_Attribut:"
 
 # Set the pin attributes
 #: gschem/src/x/x_edit_pin.c:72
-
 msgid "Set the pin attributes"
 msgstr "Legen Sie die Pin-Attribute fest"
 
@@ -2353,7 +2352,9 @@ msgstr "Attribut:"
 # Enable to set all selected attributes to the prescribed value
 #: gschem/src/x/x_edit_pin.c:78
 msgid "Enable to set all selected attributes to the prescribed value"
-msgstr "Aktivieren Sie, um alle ausgewählten Attribute auf den vorgeschriebenen Wert zu setzen"
+msgstr ""
+"Aktivieren Sie, um alle ausgewählten Attribute auf den vorgeschriebenen Wert "
+"zu setzen"
 
 #: gschem/src/x/x_edit_pin.c:80
 msgid "Number:"
@@ -2493,33 +2494,33 @@ msgstr "Geben Sie den Textstring ein oder bearbeiten Sie ihn"
 msgid "A_lignment:"
 msgstr "Ausrichtung:"
 
+# Select the text alignment attribute
 #: gschem/src/x/x_edit_text.c:65
-#, fuzzy
 msgid "Select the text alignment attribute"
-msgstr "Wählen Sie den Namen des hinzuzufügenden Attributs aus"
+msgstr "Wählen Sie das Textausrichtungsattribut aus"
 
 #: gschem/src/x/x_edit_text.c:66
 msgid "_Color:"
 msgstr "_Farbe:"
 
+# Select color attribute
 #: gschem/src/x/x_edit_text.c:66
-#, fuzzy
 msgid "Select color attribute"
-msgstr "Wählen Sie ein hinzuzufügendes Attribut aus"
+msgstr "Farbattribut auswählen"
 
 #: gschem/src/x/x_edit_text.c:67
 msgid "_Size:"
 msgstr ""
 
+# Open font selection dialog
 #: gschem/src/x/x_edit_text.c:67
-#, fuzzy
 msgid "Open font selection dialog"
-msgstr "Seitenverwaltung"
+msgstr "Öffnen Sie den Schriftartenauswahldialog"
 
+# Rotation
 #: gschem/src/x/x_edit_text.c:68
-#, fuzzy
 msgid "_Rotation:"
-msgstr "Dokumen_tation:"
+msgstr "Drehung:"
 
 #: gschem/src/x/x_edit_text.c:68
 msgid "Set the text rotation angle"
@@ -4186,10 +4187,10 @@ msgstr "Ausgewählte Objekte"
 msgid "_Redraw"
 msgstr "Akt_ualisieren"
 
+# Redraw the current window
 #: gschem/etc/system-gschemrc.scm:2197
-#, fuzzy
 msgid "Redraw the current window"
-msgstr "Aktuelles Fenster"
+msgstr "Das aktuelle Fenster neu zeichnen"
 
 #: gschem/etc/system-gschemrc.scm:2198
 msgid "_Pan"
