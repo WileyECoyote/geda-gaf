@@ -969,7 +969,7 @@ static void geda_label_destroy (GtkObject *object)
 /*! \internal GObjectClass::gobject_class->dispose */
 static void geda_label_dispose (GObject *object)
 {
-  GedaLabel *label = GEDA_LABEL (object);
+  GedaLabel *label = (GedaLabel*)object;
 
   if (label->attrs) {
     pango_attr_list_unref (label->attrs);
