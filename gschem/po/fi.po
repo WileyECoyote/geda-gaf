@@ -2252,8 +2252,8 @@ msgstr ""
 msgid "Entry for model file name"
 msgstr ""
 
+# Type
 #: gschem/src/x/x_edit_pin.c:71
-#, fuzzy
 msgid "_Type:"
 msgstr "Tyyppi:"
 
@@ -2265,10 +2265,10 @@ msgstr ""
 msgid "_Attributes:"
 msgstr "_Määritteet:"
 
+# Set the pin attributes
 #: gschem/src/x/x_edit_pin.c:72
-#, fuzzy
 msgid "Set the pin attributes"
-msgstr "Määritteet"
+msgstr "Aseta pin-attribuutit"
 
 # number
 #: gschem/src/x/x_edit_pin.c:73
@@ -2296,9 +2296,8 @@ msgid "Enter pin name or description"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:77
-#, fuzzy
 msgid "      Type:"
-msgstr "Tyyppi:"
+msgstr "    Tyyppi:"
 
 #: gschem/src/x/x_edit_pin.c:77
 msgid "Enable to set all selected attributes to the prescribed type"
@@ -2444,25 +2443,24 @@ msgstr ""
 msgid "Enter or edit the text string"
 msgstr ""
 
+# Alignment
 #: gschem/src/x/x_edit_text.c:65
-#, fuzzy
 msgid "A_lignment:"
-msgstr "_komponentti:"
+msgstr "suuntaus:"
 
+# Select the text alignment attribute
 #: gschem/src/x/x_edit_text.c:65
-#, fuzzy
 msgid "Select the text alignment attribute"
-msgstr "Määri_tteet..."
+msgstr "Valitse tekstin kohdistusominaisuus"
 
 #: gschem/src/x/x_edit_text.c:66
 msgid "_Color:"
 msgstr "_Väri:"
 
-# Detached attribute
+# Select color attribute
 #: gschem/src/x/x_edit_text.c:66
-#, fuzzy
 msgid "Select color attribute"
-msgstr "Omakotitalo attribuutti"
+msgstr "Valitse väriominaisuus"
 
 #: gschem/src/x/x_edit_text.c:67
 msgid "_Size:"
@@ -4636,10 +4634,10 @@ msgstr "Nosta Ruudukon Tiheyttä..."
 msgid "Adjust snap size"
 msgstr ""
 
+# Snap On-Off
 #: gschem/etc/system-gschemrc.scm:2339
-#, fuzzy
 msgid "_Snap On-Off"
-msgstr "Kinnity Ruudukkoon Päälle/Pois"
+msgstr "Snap On-Off"
 
 #: gschem/etc/system-gschemrc.scm:2339
 msgid "Toggle the object snap mode"
@@ -4647,15 +4645,16 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2340
 msgid "_Rubberband"
-msgstr ""
+msgstr "scretching"
 
 #: gschem/etc/system-gschemrc.scm:2340
 msgid "Toggle rubberband net mode"
 msgstr "Näytä _Liikutettaessa Komponentti/Neliö"
 
+# Magnetic Net
 #: gschem/etc/system-gschemrc.scm:2341
 msgid "_Magnetic Net"
-msgstr ""
+msgstr "_Magneettinen verkko"
 
 #: gschem/etc/system-gschemrc.scm:2341
 msgid "Toggle magnetic net mode"
@@ -4670,22 +4669,20 @@ msgid "Toggle Drag-can-Move mode"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2343
-#, fuzzy
 msgid "_Outline-Box"
-msgstr "Näytä _Liikutettaessa Komponentti/Neliö"
+msgstr "Outline-Box"
 
 #: gschem/etc/system-gschemrc.scm:2343
 msgid "Toggle action feedback"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2344
-#, fuzzy
 msgid "_Auto-Pan"
-msgstr "Näytä _Liikutettaessa Komponentti/Neliö"
+msgstr "Auto-Pan"
 
 #: gschem/etc/system-gschemrc.scm:2344
 msgid "Toggle auto panning mode"
-msgstr "Näytä _Liikutettaessa Komponentti/Neliö"
+msgstr "Vaihda automaattinen panorointitila"
 
 #: gschem/etc/system-gschemrc.scm:2347
 msgid "_Text Size..."
