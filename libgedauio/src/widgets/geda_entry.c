@@ -258,7 +258,7 @@ static void
 geda_entry_get_property (GObject *object, unsigned int  property_id,
                          GValue  *value,  GParamSpec   *pspec)
 {
-  GedaEntry *entry = GEDA_ENTRY(object);
+  GedaEntry *entry = (GedaEntry*)object;
 
   switch (property_id) {
 
