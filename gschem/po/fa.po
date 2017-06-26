@@ -2264,10 +2264,10 @@ msgstr ""
 msgid "Entry for model file name"
 msgstr ""
 
+# Type
 #: gschem/src/x/x_edit_pin.c:71
-#, fuzzy
 msgid "_Type:"
-msgstr "End Type:"
+msgstr "پایان نوع:"
 
 #: gschem/src/x/x_edit_pin.c:71
 msgid "Select the pin type"
@@ -2277,10 +2277,10 @@ msgstr ""
 msgid "_Attributes:"
 msgstr "ویژگی های:"
 
+# Set the pin attributes
 #: gschem/src/x/x_edit_pin.c:72
-#, fuzzy
 msgid "Set the pin attributes"
-msgstr "Attributes"
+msgstr "ویژگی های پین را تنظیم کنید"
 
 #: gschem/src/x/x_edit_pin.c:73
 msgid "_Number:"
@@ -4149,11 +4149,10 @@ msgstr ""
 msgid "_Redraw"
 msgstr ""
 
-# There is no current window
+# Redraw the current window
 #: gschem/etc/system-gschemrc.scm:2197
-#, fuzzy
 msgid "Redraw the current window"
-msgstr "پنجره فعلی وجود ندارد."
+msgstr "پنجره فعلی را بازنویسی کنید"
 
 #: gschem/etc/system-gschemrc.scm:2198
 msgid "_Pan"
@@ -4660,17 +4659,19 @@ msgstr ""
 msgid "Adjust snap size"
 msgstr ""
 
+# Snap On-Off
 #: gschem/etc/system-gschemrc.scm:2339
 msgid "_Snap On-Off"
-msgstr ""
+msgstr "ضربه محکم و ناگهانی روشن"
 
 #: gschem/etc/system-gschemrc.scm:2339
 msgid "Toggle the object snap mode"
 msgstr ""
 
+# Rubberband
 #: gschem/etc/system-gschemrc.scm:2340
 msgid "_Rubberband"
-msgstr ""
+msgstr "کشیدن"
 
 #: gschem/etc/system-gschemrc.scm:2340
 msgid "Toggle rubberband net mode"
