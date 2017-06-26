@@ -4222,10 +4222,10 @@ msgstr "Objetos seleccionados"
 msgid "_Redraw"
 msgstr "_Redibujar"
 
+# Redraw the current window
 #: gschem/etc/system-gschemrc.scm:2197
-#, fuzzy
 msgid "Redraw the current window"
-msgstr "Ventana actual"
+msgstr "Redibujar la ventana actual"
 
 #: gschem/etc/system-gschemrc.scm:2198
 msgid "_Pan"
@@ -4724,55 +4724,55 @@ msgstr "Es_paciado de la rejilla..."
 msgid "Adjust snap size"
 msgstr ""
 
+# Snap On-Off
 #: gschem/etc/system-gschemrc.scm:2339
-#, fuzzy
 msgid "_Snap On-Off"
-msgstr "Desactivado el ajuste a la rejilla"
+msgstr "Encender y apagar"
 
 #: gschem/etc/system-gschemrc.scm:2339
 msgid "Toggle the object snap mode"
 msgstr ""
 
+# Rubberband
 #: gschem/etc/system-gschemrc.scm:2340
-#, fuzzy
 msgid "_Rubberband"
-msgstr "Act/Desact conserva_r conexiones"
+msgstr "Gritando"
 
 #: gschem/etc/system-gschemrc.scm:2340
 msgid "Toggle rubberband net mode"
 msgstr "Act/Desact conserva_r conexiones"
 
+# Magnetic Net
 #: gschem/etc/system-gschemrc.scm:2341
-#, fuzzy
 msgid "_Magnetic Net"
-msgstr "Modo Ayuda a la conexión"
+msgstr "Ayuda a la conexión"
 
 #: gschem/etc/system-gschemrc.scm:2341
 msgid "Toggle magnetic net mode"
 msgstr "Modo ayuda _magnética a la conexión"
 
+# Drag Move
 #: gschem/etc/system-gschemrc.scm:2342
-#, fuzzy
 msgid "_Drag Move"
-msgstr "Modo ayuda _magnética a la conexión"
+msgstr "Movimiento de arrastre"
 
 #: gschem/etc/system-gschemrc.scm:2342
 msgid "Toggle Drag-can-Move mode"
 msgstr "Modo ayuda _magnética a la conexión"
 
+# Outline-Box
 #: gschem/etc/system-gschemrc.scm:2343
-#, fuzzy
 msgid "_Outline-Box"
-msgstr "Cambiar Silueta/Rectángul_o"
+msgstr "Cuadro de contorno"
 
 #: gschem/etc/system-gschemrc.scm:2343
 msgid "Toggle action feedback"
 msgstr ""
 
+# Auto-Pan
 #: gschem/etc/system-gschemrc.scm:2344
-#, fuzzy
 msgid "_Auto-Pan"
-msgstr "Act/Desact conserva_r conexiones"
+msgstr "Giro automático"
 
 #: gschem/etc/system-gschemrc.scm:2344
 msgid "Toggle auto panning mode"
