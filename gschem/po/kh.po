@@ -2601,45 +2601,42 @@ msgstr "Meateka Atthabat"
 msgid "Enter or edit the text string"
 msgstr "banhchoul ryy kesamruol khsae aksaar atthabat"
 
+# Alignment
 #: gschem/src/x/x_edit_text.c:65
-#, fuzzy
 msgid "A_lignment:"
-msgstr "sechaktei athibbeay:"
+msgstr "tamrum:"
 
-# Text Alignment Attribute
+# Select the text alignment attribute
 #: gschem/src/x/x_edit_text.c:65
-#, fuzzy
 msgid "Select the text alignment attribute"
-msgstr "kounalokkhan tamrum atthabat"
+msgstr "chreusa kounalokkhan tamrum atthabat"
 
 #: gschem/src/x/x_edit_text.c:66
 msgid "_Color:"
 msgstr "n:"
 
+# Select color attribute
 #: gschem/src/x/x_edit_text.c:66
-#, fuzzy
 msgid "Select color attribute"
-msgstr "kounalokkhan del ban phdach"
+msgstr "chreusa kounalokkhan pnr"
 
 #: gschem/src/x/x_edit_text.c:67
 msgid "_Size:"
 msgstr ""
 
+# Open font selection dialog
 #: gschem/src/x/x_edit_text.c:67
-#, fuzzy
 msgid "Open font selection dialog"
-msgstr "baek braab kammovithi krobkrong samy"
+msgstr "baek braab chomreusa poumpoaksaar"
 
 #: gschem/src/x/x_edit_text.c:68
-#, fuzzy
 msgid "_Rotation:"
-msgstr "eksar:"
+msgstr "bangvil:"
 
-# Sets the rotation of the arc.
+# Set the text rotation angle
 #: gschem/src/x/x_edit_text.c:68
-#, fuzzy
 msgid "Set the text rotation angle"
-msgstr "kamnt kar bangvil nei thnou nih."
+msgstr "kamnt moum bangvil atthabat"
 
 # Upper left
 #: gschem/src/x/x_edit_text.c:239
@@ -4351,10 +4348,10 @@ msgstr ""
 msgid "_Redraw"
 msgstr ""
 
+# Redraw the current window
 #: gschem/etc/system-gschemrc.scm:2197
-#, fuzzy
 msgid "Redraw the current window"
-msgstr "redraw  bangauoch bachchobban"
+msgstr "romlng bangauoch bachchobban"
 
 #: gschem/etc/system-gschemrc.scm:2198
 msgid "_Pan"
@@ -4856,8 +4853,8 @@ msgstr ""
 msgid "Adjust snap size"
 msgstr ""
 
+# Snap On-Off
 #: gschem/etc/system-gschemrc.scm:2339
-#, fuzzy
 msgid "_Snap On-Off"
 msgstr "khtasa bet"
 
@@ -4865,44 +4862,46 @@ msgstr "khtasa bet"
 msgid "Toggle the object snap mode"
 msgstr ""
 
+# Rubberband
 #: gschem/etc/system-gschemrc.scm:2340
 msgid "_Rubberband"
-msgstr ""
+msgstr "scretching"
 
 #: gschem/etc/system-gschemrc.scm:2340
 msgid "Toggle rubberband net mode"
 msgstr ""
 
+# Magnetic Net
 #: gschem/etc/system-gschemrc.scm:2341
-#, fuzzy
 msgid "_Magnetic Net"
-msgstr "meanhetich rbieb b nta nh"
+msgstr "sotth meanhetich"
 
 #: gschem/etc/system-gschemrc.scm:2341
 msgid "Toggle magnetic net mode"
 msgstr ""
 
+# Drag Move
 #: gschem/etc/system-gschemrc.scm:2342
 msgid "_Drag Move"
-msgstr ""
+msgstr "teanh phlasati"
 
 #: gschem/etc/system-gschemrc.scm:2342
 msgid "Toggle Drag-can-Move mode"
 msgstr ""
 
+# Outline-Box
 #: gschem/etc/system-gschemrc.scm:2343
 msgid "_Outline-Box"
-msgstr ""
+msgstr "krong -  braab"
 
 #: gschem/etc/system-gschemrc.scm:2343
 msgid "Toggle action feedback"
 msgstr ""
 
-# Auto-Pan is now
+# Auto-Pan
 #: gschem/etc/system-gschemrc.scm:2344
-#, fuzzy
 msgid "_Auto-Pan"
-msgstr "daoy svyobravotte ban ku ilauv"
+msgstr "banteah svay svyobravotte"
 
 #: gschem/etc/system-gschemrc.scm:2344
 msgid "Toggle auto panning mode"
