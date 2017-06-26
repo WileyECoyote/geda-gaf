@@ -4182,10 +4182,10 @@ msgstr "Επιλεγμένα αντικείμενα"
 msgid "_Redraw"
 msgstr "_Επανασχεδίαση"
 
+# Redraw the current window
 #: gschem/etc/system-gschemrc.scm:2197
-#, fuzzy
 msgid "Redraw the current window"
-msgstr "Τρέχον παράθυρο"
+msgstr "Επανατοποθετήστε το τρέχον παράθυρο"
 
 #: gschem/etc/system-gschemrc.scm:2198
 msgid "_Pan"
@@ -4695,47 +4695,48 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2340
 msgid "_Rubberband"
-msgstr ""
+msgstr "ελαστικό"
 
 #: gschem/etc/system-gschemrc.scm:2340
 msgid "Toggle rubberband net mode"
-msgstr "Εναλλαγή _μαγνητικού δικτύου"
+msgstr "Εναλλαγή ελαστικό δικτύου"
 
+# Magnetic Net
 #: gschem/etc/system-gschemrc.scm:2341
-#, fuzzy
 msgid "_Magnetic Net"
-msgstr "Λειτουργία μαγνητικού δικτύου"
+msgstr "μαγνητικού δικτύου"
 
+# Toggle magnetic net mode
 #: gschem/etc/system-gschemrc.scm:2341
 msgid "Toggle magnetic net mode"
 msgstr "Εναλλαγή _μαγνητικού δικτύου"
 
+# Drag Move
 #: gschem/etc/system-gschemrc.scm:2342
-#, fuzzy
 msgid "_Drag Move"
-msgstr "Εναλλαγή _μαγνητικού δικτύου"
+msgstr "Σύρετε τη Μετακίνηση"
 
 #: gschem/etc/system-gschemrc.scm:2342
 msgid "Toggle Drag-can-Move mode"
 msgstr "Εναλλαγή _μαγνητικού δικτύου"
 
+# Outline-Box
 #: gschem/etc/system-gschemrc.scm:2343
-#, fuzzy
 msgid "_Outline-Box"
-msgstr "Εναλλαγή _περιγράμματος/κουτιού"
+msgstr "Περίγραμμα-πλαίσιο"
 
 #: gschem/etc/system-gschemrc.scm:2343
 msgid "Toggle action feedback"
 msgstr ""
 
+# Automatic-Pan
 #: gschem/etc/system-gschemrc.scm:2344
-#, fuzzy
 msgid "_Auto-Pan"
-msgstr "Εναλλαγή _περιγράμματος/κουτιού"
+msgstr "Αυτόματη μετακίνησης"
 
 #: gschem/etc/system-gschemrc.scm:2344
 msgid "Toggle auto panning mode"
-msgstr "Εναλλαγή _μαγνητικού δικτύου"
+msgstr "Εναλλαγή λειτουργίας αυτόματης μετακίνησης"
 
 #: gschem/etc/system-gschemrc.scm:2347
 msgid "_Text Size..."
