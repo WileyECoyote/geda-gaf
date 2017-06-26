@@ -149,6 +149,7 @@ do_install_manuals(){
   if [ "$(ls -A $src_path/*.1)" ] ; then
 
     mkdir -p "$LOCAL_SHARE/man/man1"
+
     for file in $src_path/*.1; do
 
       filename=$(basename ${file})
