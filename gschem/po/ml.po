@@ -1762,7 +1762,6 @@ msgstr ""
 
 # Line Width
 #: gschem/src/x/x_dialog.c:1626
-#, fuzzy
 msgid "Line Width:"
 msgstr "ലൈൻ വീതി:"
 
@@ -1934,10 +1933,10 @@ msgid ""
 "(0 for origin)"
 msgstr ""
 
+# Auto Zoom Extents
 #: gschem/src/x/x_dialog.c:3023
-#, fuzzy
 msgid "Auto Zoom Extents"
-msgstr "വലുതാക്കി കാണിക്കുന്ന പെട്ടി"
+msgstr "ഓട്ടോ സൂം വിപുലീകരണങ്ങൾ"
 
 #: gschem/src/x/x_dialog.c:3195
 msgid "Hotkeys"
@@ -1948,9 +1947,8 @@ msgid "Icon"
 msgstr ""
 
 #: gschem/src/x/x_dialog.c:3296
-#, fuzzy
 msgid "Action"
-msgstr "പ്രവര്‍ത്തന രീതി നിര്‍ണയിക്കുക"
+msgstr "പ്രവർത്തനം"
 
 #: gschem/src/x/x_dialog.c:3306
 msgid "Keystroke(s)"
@@ -2306,7 +2304,7 @@ msgstr ""
 msgid "_Attributes:"
 msgstr "ഗുണവിശേഷങ്ങൾ:"
 
-# Select export file
+# Set the pin attributes
 #: gschem/src/x/x_edit_pin.c:72
 msgid "Set the pin attributes"
 msgstr "പിൻ ആട്രിബ്യൂട്ടുകൾ സജ്ജമാക്കുക"
@@ -4267,10 +4265,10 @@ msgstr ""
 msgid "_Redraw"
 msgstr ""
 
+# Redraw the current window
 #: gschem/etc/system-gschemrc.scm:2197
-#, fuzzy
 msgid "Redraw the current window"
-msgstr "അവിടെ ഇല്ല നിലവിൽ വിൻഡോ"
+msgstr "നിലവിലെ വിൻഡോ ശരിയാക്കുക"
 
 #: gschem/etc/system-gschemrc.scm:2198
 msgid "_Pan"
@@ -4782,28 +4780,28 @@ msgstr ""
 msgid "Adjust snap size"
 msgstr ""
 
-# disable snap
+# Snap On-Off
 #: gschem/etc/system-gschemrc.scm:2339
-#, fuzzy
 msgid "_Snap On-Off"
-msgstr "സ്നാപ്പ് അപ്രാപ്തമാക്കുകയോ"
+msgstr "സ്നാപ്പ് ഓൺ ചെയ്യുക"
 
 #: gschem/etc/system-gschemrc.scm:2339
 msgid "Toggle the object snap mode"
 msgstr ""
 
+# Rubberband
 #: gschem/etc/system-gschemrc.scm:2340
 msgid "_Rubberband"
-msgstr ""
+msgstr "വിസർജ്ജനം"
 
 #: gschem/etc/system-gschemrc.scm:2340
 msgid "Toggle rubberband net mode"
 msgstr ""
 
+# Magnetic Net
 #: gschem/etc/system-gschemrc.scm:2341
-#, fuzzy
 msgid "_Magnetic Net"
-msgstr "മാഗ്നറ്റിക് നെറ്റ് മോഡ്"
+msgstr "മാഗ്നറ്റിക് നെറ്റ്"
 
 #: gschem/etc/system-gschemrc.scm:2341
 msgid "Toggle magnetic net mode"
@@ -4811,15 +4809,16 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2342
 msgid "_Drag Move"
-msgstr ""
+msgstr "നീക്കുക നീക്കുക"
 
 #: gschem/etc/system-gschemrc.scm:2342
 msgid "Toggle Drag-can-Move mode"
 msgstr ""
 
+# Outline-Box
 #: gschem/etc/system-gschemrc.scm:2343
 msgid "_Outline-Box"
-msgstr ""
+msgstr "ഔട്ട്ലൈൻ-ബോക്സ്"
 
 #: gschem/etc/system-gschemrc.scm:2343
 msgid "Toggle action feedback"
