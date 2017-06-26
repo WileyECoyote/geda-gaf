@@ -1,3 +1,8 @@
+2017-06-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_handlebox.c: Remove unnecessary cast in geda_handle_
+      box_reattach.
+
 2017-06-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_handlebox.c: Add ancillary pointer to child widget

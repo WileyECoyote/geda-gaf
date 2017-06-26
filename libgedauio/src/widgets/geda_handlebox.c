@@ -656,7 +656,7 @@ geda_handle_box_reattach (GedaHandleBox *handlebox)
     geda_handle_box_end_drag (handlebox, GDK_CURRENT_TIME);
   }
 
-  gtk_widget_queue_resize (GTK_WIDGET (handlebox));
+  gtk_widget_queue_resize (widget);
 }
 
 /* container_class->add */
