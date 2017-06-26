@@ -755,9 +755,8 @@ geda_image_menu_item_size_request (GtkWidget      *widget,
    */
 }
 
-static void
-geda_image_menu_item_size_allocate (GtkWidget     *widget,
-                                    GtkAllocation *allocated)
+static void geda_image_menu_item_size_allocate (GtkWidget     *widget,
+                                                GtkAllocation *allocated)
 {
   GedaImageMenuItem *image_menu_item;
   PackDirection   pack_dir;
@@ -873,8 +872,7 @@ geda_image_menu_item_forall (GtkContainer   *container,
  *
  * \sa geda_image_menu_item_new_with_label geda_image_menu_item_new_with_mnemonic
  */
-GtkWidget*
-geda_image_menu_item_new (void)
+GtkWidget *geda_image_menu_item_new (void)
 {
   return g_object_new (GEDA_TYPE_IMAGE_MENU_ITEM, NULL);
 }
@@ -891,8 +889,7 @@ geda_image_menu_item_new (void)
  * \sa geda_image_menu_item_new_with_mnemonic
  *
  */
-GtkWidget*
-geda_image_menu_item_new_with_label (const char *label)
+GtkWidget *geda_image_menu_item_new_with_label (const char *label)
 {
   return g_object_new (GEDA_TYPE_IMAGE_MENU_ITEM,
                        "label", label,
@@ -914,8 +911,7 @@ geda_image_menu_item_new_with_label (const char *label)
  *
  * \sa geda_image_menu_item_new_with_label
  */
-GtkWidget*
-geda_image_menu_item_new_with_mnemonic (const char *label)
+GtkWidget *geda_image_menu_item_new_with_mnemonic (const char *label)
 {
   return g_object_new (GEDA_TYPE_IMAGE_MENU_ITEM,
                        "use-underline", TRUE,
@@ -944,9 +940,8 @@ geda_image_menu_item_new_with_mnemonic (const char *label)
  * \returns: a new #GedaImageMenuItem.
  *
  */
-GtkWidget*
-geda_image_menu_item_new_from_stock (const char    *stock_id,
-                                     GtkAccelGroup *accel_group)
+GtkWidget *geda_image_menu_item_new_from_stock (const char    *stock_id,
+                                                GtkAccelGroup *accel_group)
 {
   return g_object_new (GEDA_TYPE_IMAGE_MENU_ITEM,
                        "label", stock_id,
@@ -965,9 +960,8 @@ geda_image_menu_item_new_from_stock (const char    *stock_id,
  * \param [in] use_stock:       set value
  *
  */
-void
-geda_image_menu_item_set_use_stock (GedaImageMenuItem *image_menu_item,
-                                    bool               use_stock)
+void geda_image_menu_item_set_use_stock (GedaImageMenuItem *image_menu_item,
+                                                      bool  use_stock)
 {
   g_return_if_fail (GEDA_IS_IMAGE_MENU_ITEM (image_menu_item));
 
@@ -993,8 +987,7 @@ geda_image_menu_item_set_use_stock (GedaImageMenuItem *image_menu_item,
  * \param [in] image_menu_item: a #GedaImageMenuItem
  *
  */
-bool
-geda_image_menu_item_get_use_stock (GedaImageMenuItem *image_menu_item)
+bool geda_image_menu_item_get_use_stock (GedaImageMenuItem *image_menu_item)
 {
   g_return_val_if_fail (GEDA_IS_IMAGE_MENU_ITEM (image_menu_item), FALSE);
 
@@ -1013,9 +1006,8 @@ geda_image_menu_item_get_use_stock (GedaImageMenuItem *image_menu_item)
  * \param [in] image_menu_item  a #GedaImageMenuItem
  * \param [in] always_show      desired state
  */
-void
-geda_image_menu_item_set_show_image (GedaImageMenuItem *image_menu_item,
-                                           bool         always_show)
+void geda_image_menu_item_set_show_image (GedaImageMenuItem *image_menu_item,
+                                                       bool  always_show)
 {
   g_return_if_fail (GEDA_IS_IMAGE_MENU_ITEM (image_menu_item));
 
@@ -1044,8 +1036,7 @@ geda_image_menu_item_set_show_image (GedaImageMenuItem *image_menu_item,
  * \retval %TRUE if the menu item will always show the image
  *
  */
-bool
-geda_image_menu_item_get_show_image (GedaImageMenuItem *image_menu_item)
+bool geda_image_menu_item_get_show_image (GedaImageMenuItem *image_menu_item)
 {
   g_return_val_if_fail (GEDA_IS_IMAGE_MENU_ITEM (image_menu_item), FALSE);
 
@@ -1069,9 +1060,8 @@ geda_image_menu_item_get_show_image (GedaImageMenuItem *image_menu_item)
  * \param [in] accel_group     the GtkAccelGroup
  *
  */
-void
-geda_image_menu_item_set_accel_group (GedaImageMenuItem *image_menu_item,
-                                      GtkAccelGroup     *accel_group)
+void geda_image_menu_item_set_accel_group (GedaImageMenuItem *image_menu_item,
+                                           GtkAccelGroup     *accel_group)
 {
   GtkStockItem stock_item;
 
@@ -1155,8 +1145,7 @@ geda_image_menu_item_set_image (GedaImageMenuItem *image_menu_item,
  *
  * \return:the widget set as image of the GedaImageMenuItem
  */
-GtkWidget*
-geda_image_menu_item_get_image (GedaImageMenuItem *image_menu_item)
+GtkWidget *geda_image_menu_item_get_image (GedaImageMenuItem *image_menu_item)
 {
   g_return_val_if_fail (GEDA_IS_IMAGE_MENU_ITEM (image_menu_item), NULL);
 
@@ -1167,8 +1156,7 @@ geda_image_menu_item_get_image (GedaImageMenuItem *image_menu_item)
  *  \ingroup GedaImageMenuItem
  *  \par Function Description
  */
-static void
-geda_image_menu_item_remove (GtkContainer *container, GtkWidget *child)
+static void geda_image_menu_item_remove (GtkContainer *container, GtkWidget *child)
 {
   GedaImageMenuItem *image_menu_item;
 
