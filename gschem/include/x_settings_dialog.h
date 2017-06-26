@@ -105,7 +105,7 @@ WidgetStringData DialogStrings[] = {
         { "AddAttributeButt",     "Add",          "Add selected attribute to the filter list on the Select Components Dialog"},
         { "RemoveAttributeButt",  "Remove",       "Remove the selected attribute from the filter list"},
         { "ClearAtrributesButt",  "Clear",        "Double click to clear all attributes from the filter list"},
-        { "DefaultAttributeButt", "Default",      "Restore default fliter list of attributes to display"},
+        { "DefaultAttributeButt", "Default",      "Restore default filter list of attributes to display"},
         { "IncreaseAttributeButt","Up",           "Increase selected attribute in the Add Attribute list"},
         { "DecreaseAttributeButt","Down",         "Decrease selected attribute in the Add Attribute list"},
 
