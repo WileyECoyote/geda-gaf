@@ -2389,7 +2389,9 @@ msgstr "Propiedades:"
 
 #: gschem/src/x/x_edit_pin.c:78
 msgid "Enable to set all selected attributes to the prescribed value"
-msgstr "Habilitar para establecer todos los atributos seleccionados en el valor prescrito"
+msgstr ""
+"Habilitar para establecer todos los atributos seleccionados en el valor "
+"prescrito"
 
 #: gschem/src/x/x_edit_pin.c:80
 msgid "Number:"
