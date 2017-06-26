@@ -4505,10 +4505,10 @@ msgstr "Выделенные объекты"
 msgid "_Redraw"
 msgstr "Пе_рерисовать"
 
+# Redraw the current window
 #: gschem/etc/system-gschemrc.scm:2197
-#, fuzzy
 msgid "Redraw the current window"
-msgstr "Закрыть окно"
+msgstr "Перерисовать текущее окно"
 
 #: gschem/etc/system-gschemrc.scm:2198
 msgid "_Pan"
@@ -5049,10 +5049,10 @@ msgstr "_Шаг сетки привязки..."
 msgid "Adjust snap size"
 msgstr "Отрегулируйте привязку размер"
 
+# Snap On-Off
 #: gschem/etc/system-gschemrc.scm:2339
-#, fuzzy
 msgid "_Snap On-Off"
-msgstr "Привязка отключена"
+msgstr "Оснащать"
 
 #: gschem/etc/system-gschemrc.scm:2339
 msgid "Toggle the object snap mode"
@@ -5060,16 +5060,15 @@ msgstr ""
 
 # Toggle scretching connections
 #: gschem/etc/system-gschemrc.scm:2340
-#, fuzzy
 msgid "_Rubberband"
-msgstr "Переключить валентных связей"
+msgstr "валентных связей"
 
 #: gschem/etc/system-gschemrc.scm:2340
 msgid "Toggle rubberband net mode"
 msgstr "Переключение scretching соединения мод"
 
+# Magnetic Net => Magnetic Connections
 #: gschem/etc/system-gschemrc.scm:2341
-#, fuzzy
 msgid "_Magnetic Net"
 msgstr "Магнитные соединения"
 
@@ -5079,28 +5078,26 @@ msgstr "Магнитное соединение вкл/откл"
 
 # Toggle Dragging
 #: gschem/etc/system-gschemrc.scm:2342
-#, fuzzy
 msgid "_Drag Move"
-msgstr "Переключить Перетаскивание"
+msgstr "Переключить перетаскивание"
 
 #: gschem/etc/system-gschemrc.scm:2342
 msgid "Toggle Drag-can-Move mode"
 msgstr ""
 
+# Outline-Box
 #: gschem/etc/system-gschemrc.scm:2343
-#, fuzzy
 msgid "_Outline-Box"
-msgstr "Внешние контуры/рамка вкл/откл"
+msgstr "план-бокс"
 
 #: gschem/etc/system-gschemrc.scm:2343
 msgid "Toggle action feedback"
 msgstr ""
 
-# Toggle Auto-Pan
+# Auto-Pan
 #: gschem/etc/system-gschemrc.scm:2344
-#, fuzzy
 msgid "_Auto-Pan"
-msgstr "Переключить автопанорамированием"
+msgstr "автопанорамированием"
 
 # Toggle auto panning mode
 #: gschem/etc/system-gschemrc.scm:2344
@@ -5291,15 +5288,15 @@ msgstr "Копирование"
 msgid "Multiple Copy Mode"
 msgstr "Многократное копирование"
 
+# Offset selection
 #: gschem/scheme/gschem/builtins.scm:119
-#, fuzzy
 msgid "Offset selection"
-msgstr "Выделение"
+msgstr "Выбор смещения"
 
+# Snap to Grid
 #: gschem/scheme/gschem/builtins.scm:128
-#, fuzzy
 msgid "Snap to Grid"
-msgstr "Привязка:"
+msgstr "Привязки к сетке"
 
 #: gschem/scheme/gschem/builtins.scm:131
 msgid "Create Array"
@@ -5309,15 +5306,15 @@ msgstr ""
 msgid "Edit..."
 msgstr "Правка..."
 
+# Edit Arc
 #: gschem/scheme/gschem/builtins.scm:140
-#, fuzzy
 msgid "Edit Arc"
-msgstr "Выбрать цвет"
+msgstr "Правка дугу"
 
+# Edit Object
 #: gschem/scheme/gschem/builtins.scm:143
-#, fuzzy
 msgid "Edit Object"
-msgstr "Правка текста"
+msgstr "Правка объект"
 
 #: gschem/scheme/gschem/builtins.scm:146
 msgid "Edit Text"
