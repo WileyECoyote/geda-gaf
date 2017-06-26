@@ -175,8 +175,7 @@ geda_font_dialog_update_preview (GedaFontDialog *dialog)
 }
 
 static void
-callback_update_preview (GtkWidget *entry,
-                                  GedaFontDialog *dialog)
+callback_update_preview (GtkWidget *entry, GedaFontDialog *dialog)
 {
   g_object_notify ((GObject*)dialog, "preview-text");
 }
