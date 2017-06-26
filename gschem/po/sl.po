@@ -128,17 +128,15 @@ msgstr ""
 msgid "Evaluate"
 msgstr ""
 
-# Getting window geometry and settings
+# Retrieving main window position
 #: gschem/src/base/gschem_main_window.c:229
-#, fuzzy
 msgid "Retrieving main window position.\n"
-msgstr "Pridobivanje geometrijo okna in nastavitve.\n"
+msgstr "Obnova pozície hlavného okna.\n"
 
-# Getting window geometry and settings
+# Retrieving main window geometry
 #: gschem/src/base/gschem_main_window.c:276
-#, fuzzy
 msgid "Retrieving main window geometry.\n"
-msgstr "Pridobivanje geometrijo okna in nastavitve.\n"
+msgstr "Obnova geometrie hlavného okna.\n"
 
 #: gschem/src/base/gschem_page_view.c:250
 #: gschem/src/base/gschem_page_view.c:251
@@ -2281,11 +2279,10 @@ msgstr ""
 msgid "Entry for model file name"
 msgstr ""
 
-# Line endpoint style
+# Type
 #: gschem/src/x/x_edit_pin.c:71
-#, fuzzy
 msgid "_Type:"
-msgstr "Line Style endpoint:"
+msgstr "typ:"
 
 #: gschem/src/x/x_edit_pin.c:71
 msgid "Select the pin type"
@@ -2296,9 +2293,10 @@ msgstr ""
 msgid "_Attributes:"
 msgstr "Lastnosti:"
 
+# Set the pin attributes
 #: gschem/src/x/x_edit_pin.c:72
 msgid "Set the pin attributes"
-msgstr ""
+msgstr "Nastavte atribúty pin"
 
 # Number
 #: gschem/src/x/x_edit_pin.c:73
@@ -2325,11 +2323,10 @@ msgstr ""
 msgid "Enter pin name or description"
 msgstr ""
 
-# Line endpoint style
+# typ
 #: gschem/src/x/x_edit_pin.c:77
-#, fuzzy
 msgid "      Type:"
-msgstr "Line Style endpoint:"
+msgstr "       Typ:"
 
 #: gschem/src/x/x_edit_pin.c:77
 msgid "Enable to set all selected attributes to the prescribed type"
@@ -2496,11 +2493,10 @@ msgstr ""
 msgid "_Size:"
 msgstr ""
 
-# offset selection
+# Open font selection dialog
 #: gschem/src/x/x_edit_text.c:67
-#, fuzzy
 msgid "Open font selection dialog"
-msgstr "odmik izbor"
+msgstr "Otvorte dialógové okno na výber písma"
 
 # Rotation
 #: gschem/src/x/x_edit_text.c:68
@@ -3062,10 +3058,10 @@ msgstr ""
 msgid "_View"
 msgstr ""
 
+# Toolbars
 #: gschem/src/x/x_menus.c:834
-#, fuzzy
 msgid "_Toolbars"
-msgstr "Orodja"
+msgstr "panely nástrojov"
 
 #: gschem/src/x/x_menus.c:881
 msgid "Toggle visibility of the Standard toolbar"
@@ -3742,17 +3738,15 @@ msgstr "Ni bilo mogoče ustvariti kontekst Cairo, je okno črpane?\n"
 msgid "window is not valid"
 msgstr "Okno ni veljavno"
 
-# Saving the geometry of the main window and settings
+# Saving main window settings
 #: gschem/src/x/x_window.c:201
-#, fuzzy
 msgid "Saving main window settings.\n"
-msgstr "Shranjevanje geometrijo glavnega okna in nastavitve.\n"
+msgstr "Ukladanie nastavení hlavného okna.\n"
 
-# Getting window geometry and settings
+# Retrieving main Window settings
 #: gschem/src/x/x_window.c:308
-#, fuzzy
 msgid "Retrieving main Window settings.\n"
-msgstr "Pridobivanje geometrijo okna in nastavitve.\n"
+msgstr "Načítanie hlavných nastavení okna.\n"
 
 # cancel command
 #: gschem/src/x/x_window.c:671 gschem/src/x/x_window.c:1088
@@ -4256,11 +4250,10 @@ msgstr ""
 msgid "_Redraw"
 msgstr ""
 
-# there is currently no window
+# Redraw the current window
 #: gschem/etc/system-gschemrc.scm:2197
-#, fuzzy
 msgid "Redraw the current window"
-msgstr "trenutno ni okno"
+msgstr "Prekreslite aktuálne okno"
 
 #: gschem/etc/system-gschemrc.scm:2198
 msgid "_Pan"
@@ -4761,17 +4754,19 @@ msgstr ""
 msgid "Adjust snap size"
 msgstr ""
 
+# Snap On-Off
 #: gschem/etc/system-gschemrc.scm:2339
 msgid "_Snap On-Off"
-msgstr ""
+msgstr "Snap on-off"
 
 #: gschem/etc/system-gschemrc.scm:2339
 msgid "Toggle the object snap mode"
 msgstr ""
 
+# Rubberband
 #: gschem/etc/system-gschemrc.scm:2340
 msgid "_Rubberband"
-msgstr ""
+msgstr "elastický"
 
 #: gschem/etc/system-gschemrc.scm:2340
 msgid "Toggle rubberband net mode"
