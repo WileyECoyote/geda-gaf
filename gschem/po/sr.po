@@ -2446,17 +2446,15 @@ msgstr ""
 msgid "_Attributes:"
 msgstr ""
 
-# Select the name of the attribute to add
+# Set the pin attributes
 #: gschem/src/x/x_edit_pin.c:72
-#, fuzzy
 msgid "Set the pin attributes"
-msgstr "Изаберите име атрибута за додавање"
+msgstr "Поставите атрибуте пинова"
 
-# Slot number
+# Number
 #: gschem/src/x/x_edit_pin.c:73
-#, fuzzy
 msgid "_Number:"
-msgstr "slot број:"
+msgstr "Број:"
 
 #: gschem/src/x/x_edit_pin.c:73
 msgid "Set the pin number, or the starting pin number if auto numbering"
@@ -2494,11 +2492,10 @@ msgstr ""
 msgid "Enable to set all selected attributes to the prescribed value"
 msgstr ""
 
-# Slot number
+# Number
 #: gschem/src/x/x_edit_pin.c:80
-#, fuzzy
 msgid "Number:"
-msgstr "slot број:"
+msgstr "Број:"
 
 #: gschem/src/x/x_edit_pin.c:80
 msgid ""
@@ -2631,11 +2628,10 @@ msgstr ""
 msgid "A_lignment:"
 msgstr ""
 
-# Select the name of the attribute to add
+# Select the text alignment attribute
 #: gschem/src/x/x_edit_text.c:65
-#, fuzzy
 msgid "Select the text alignment attribute"
-msgstr "Изаберите име атрибута за додавање"
+msgstr "Изаберите атрибут поравнања текста"
 
 #: gschem/src/x/x_edit_text.c:66
 msgid "_Color:"
@@ -2649,11 +2645,10 @@ msgstr ""
 msgid "_Size:"
 msgstr ""
 
-# Offset selection
+# Open font selection dialog
 #: gschem/src/x/x_edit_text.c:67
-#, fuzzy
 msgid "Open font selection dialog"
-msgstr "оффсет избор"
+msgstr "Отворите дијалог за одабир фонта"
 
 #: gschem/src/x/x_edit_text.c:68
 msgid "_Rotation:"
@@ -4345,11 +4340,10 @@ msgstr ""
 msgid "_Redraw"
 msgstr ""
 
-# there is no current window
+# Redraw the current window
 #: gschem/etc/system-gschemrc.scm:2197
-#, fuzzy
 msgid "Redraw the current window"
-msgstr "нема струје прозора"
+msgstr "Преправи тренутни прозор"
 
 #: gschem/etc/system-gschemrc.scm:2198
 msgid "_Pan"
@@ -4850,19 +4844,19 @@ msgstr ""
 msgid "Adjust snap size"
 msgstr ""
 
-# Snap ON
+# Snap On-Off
 #: gschem/etc/system-gschemrc.scm:2339
-#, fuzzy
 msgid "_Snap On-Off"
-msgstr "snap Он"
+msgstr "Снап Он-Офф"
 
 #: gschem/etc/system-gschemrc.scm:2339
 msgid "Toggle the object snap mode"
 msgstr ""
 
+# Rubberband
 #: gschem/etc/system-gschemrc.scm:2340
 msgid "_Rubberband"
-msgstr ""
+msgstr "еластичан"
 
 #: gschem/etc/system-gschemrc.scm:2340
 msgid "Toggle rubberband net mode"
