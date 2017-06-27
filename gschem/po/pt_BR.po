@@ -2472,7 +2472,8 @@ msgstr "Atributos:"
 # Enable to set all selected attributes to the prescribed value
 #: gschem/src/x/x_edit_pin.c:78
 msgid "Enable to set all selected attributes to the prescribed value"
-msgstr "Habilite para definir todos os atributos selecionados para o valor prescrito"
+msgstr ""
+"Habilite para definir todos os atributos selecionados para o valor prescrito"
 
 #: gschem/src/x/x_edit_pin.c:80
 msgid "Number:"
@@ -3474,8 +3475,9 @@ msgid "bus"
 msgstr "bus"
 
 #: gschem/src/x/x_multiattrib.c:2661
-msgid "atributos"
-msgstr "Atributos"
+#, fuzzy
+msgid "attributes"
+msgstr "atributo"
 
 #: gschem/src/x/x_multiattrib.c:2665
 msgid "attribute"
@@ -5176,24 +5178,22 @@ msgid "New Window"
 msgstr "Nova _Janela"
 
 #: gschem/scheme/gschem/builtins.scm:80 gschem/scheme/gschem/builtins.scm:83
-#, fuzzy
 msgid "Close Window"
-msgstr "_Fechar janela"
+msgstr "Fechar janela"
 
 #: gschem/scheme/gschem/builtins.scm:86
-#, fuzzy
 msgid "Quit"
 msgstr "_Sair"
 
+# Export Symbol
 #: gschem/scheme/gschem/builtins.scm:89
-#, fuzzy
 msgid "Export Symbol"
-msgstr "/Descer ao Símbolo"
+msgstr "Símbolo de exportação"
 
+# Export Picture
 #: gschem/scheme/gschem/builtins.scm:92
-#, fuzzy
 msgid "Export Picture"
-msgstr "Embutir Componente/Imagem"
+msgstr "Exportar Imagem"
 
 #: gschem/scheme/gschem/builtins.scm:98
 msgid "Undo"
@@ -5212,14 +5212,13 @@ msgid "Multiple Copy Mode"
 msgstr "Modo de Múltipla Cópia"
 
 #: gschem/scheme/gschem/builtins.scm:119
-#, fuzzy
 msgid "Offset selection"
-msgstr "Seleção"
+msgstr "Seleção de deslocamento"
 
+# Snap to Grid
 #: gschem/scheme/gschem/builtins.scm:128
-#, fuzzy
 msgid "Snap to Grid"
-msgstr "Modo Centrar"
+msgstr "Encaixe na grade"
 
 #: gschem/scheme/gschem/builtins.scm:131
 msgid "Create Array"
@@ -5229,27 +5228,27 @@ msgstr ""
 msgid "Edit..."
 msgstr "Editar..."
 
+# Edit Arc
 #: gschem/scheme/gschem/builtins.scm:140
-#, fuzzy
 msgid "Edit Arc"
-msgstr "Cor"
+msgstr "Editar Arco"
 
+# Edit Object
 #: gschem/scheme/gschem/builtins.scm:143
-#, fuzzy
 msgid "Edit Object"
-msgstr "Editar Texto"
+msgstr "Editar Objeto"
 
 #: gschem/scheme/gschem/builtins.scm:146
 msgid "Edit Text"
 msgstr "Editar Texto"
 
+# Edit Color
 #: gschem/scheme/gschem/builtins.scm:149
-#, fuzzy
 msgid "Edit Color"
-msgstr "Cor"
+msgstr "Editar Cor"
 
+# Edit Pin Type
 #: gschem/scheme/gschem/builtins.scm:152
-#, fuzzy
 msgid "Edit Pin Type"
 msgstr "Editar tipo do pino"
 
@@ -5257,10 +5256,10 @@ msgstr "Editar tipo do pino"
 msgid "Choose Slot"
 msgstr ""
 
+# Invert Selection
 #: gschem/scheme/gschem/builtins.scm:176
-#, fuzzy
 msgid "Invert Selection"
-msgstr "Seleção"
+msgstr "Seleção invertida"
 
 #: gschem/scheme/gschem/builtins.scm:179
 #, fuzzy
@@ -5743,6 +5742,9 @@ msgstr "~S não é uma combinação válida."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S não é uma sequência de prefixo."
+
+#~ msgid "atributos"
+#~ msgstr "Atributos"
 
 #~ msgid "Toggle _Magnetic Net"
 #~ msgstr "Alternar conexão _Magnética"
