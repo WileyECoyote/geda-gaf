@@ -2692,14 +2692,13 @@ msgstr "kesamruol lokkhan sambotte atthabat"
 msgid "Text Properties"
 msgstr "lokkhan sambotte atthabat"
 
+# Text input field
 #: gschem/src/x/x_edit_text.c:593
-#, fuzzy
 msgid "Text input field"
-msgstr "atthabt del trauv rok:"
+msgstr "veal banhchoul atthabat"
 
 # Text alignment options
 #: gschem/src/x/x_edit_text.c:597
-#, fuzzy
 msgid "Text alignment combobox"
 msgstr "chomreusa tamrum atthabat"
 
@@ -3248,10 +3247,10 @@ msgstr "pheap meulkheunh bet baek rbar ubakar banthem"
 msgid "Toggle visibility of the Zoom toolbar"
 msgstr "pheap meulkheunh nei kar bet baek rbar ubakar pongrik"
 
+# Toggle visibility of the Symbol toolbar
 #: gschem/src/x/x_menus.c:886
-#, fuzzy
 msgid "Toggle visibility of the Symbol toolbar"
-msgstr "pheap meulkheunh nei kar bet baek rbar ubakar pongrik"
+msgstr "bet baek pheap meulkheunh nei rbar ubakar nimittasanhnhea"
 
 #: gschem/src/x/x_menus.c:887
 msgid "Toggle visibility of the Edit toolbar"
@@ -3265,10 +3264,10 @@ msgstr "pheap meulkheunh nei kar bet baek rbar ubakar lokkhan"
 msgid "Toggle visibility of the Grid/Snap toolbar"
 msgstr "pheap meulkheunh nei kar bet baek rbar ubakar kraleachatrangk/khtasa"
 
+# Toggle visibility of tooltips on toolbars
 #: gschem/src/x/x_menus.c:904
-#, fuzzy
 msgid "Toggle visibility of tooltips on toolbars"
-msgstr "pheap meulkheunh bet baek rbar ubakar kar chreusareus"
+msgstr "bet/baek pheap meulkheunh nei ptrmean chomnuoy now leu rbar ubakar"
 
 #: gschem/src/x/x_menus.c:963
 msgid "Display Icons on the toolbar"
@@ -3866,10 +3865,10 @@ msgstr ""
 msgid "Saving main window settings.\n"
 msgstr ""
 
+# Retrieving main Window settings
 #: gschem/src/x/x_window.c:308
-#, fuzzy
 msgid "Retrieving main Window settings.\n"
-msgstr "Sdar karkamnt robsa anak brae\n"
+msgstr "kampoung tow yk karkamnt bangauoch me\n"
 
 #: gschem/src/x/x_window.c:671 gschem/src/x/x_window.c:1088
 msgid "Aborting action\n"
