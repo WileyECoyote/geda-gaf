@@ -3241,9 +3241,8 @@ msgid "Could not open file"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:2036
-#, fuzzy
-msgid "Open"
-msgstr "_Otvori..."
+msgid "_Open"
+msgstr "_Otvori"
 
 #: gschem/src/x/x_menus.c:2043
 msgid "Remove"
@@ -4441,20 +4440,19 @@ msgstr "Štampaj"
 msgid "Print the current page"
 msgstr ""
 
+# Down Schematic
 #: gschem/etc/system-gschemrc.scm:2244
-#, fuzzy
 msgid "Down _Schematic"
-msgstr "_Dolje Shemu"
+msgstr "Šematski dole"
 
+# Down Symbol
 #: gschem/etc/system-gschemrc.scm:2245
-#, fuzzy
 msgid "Down S_ymbol"
-msgstr "Doljen _Simbol"
+msgstr "Simbol nadole"
 
 #: gschem/etc/system-gschemrc.scm:2246
-#, fuzzy
 msgid "_Hierarchy Up"
-msgstr "Hije_rarhija"
+msgstr "_Hijerarhija Up"
 
 #: gschem/etc/system-gschemrc.scm:2247
 msgid "Find component documentation"
@@ -4492,28 +4490,28 @@ msgstr ""
 msgid "_Box"
 msgstr "_Kvadrat"
 
+# Add box
 #: gschem/etc/system-gschemrc.scm:2263
-#, fuzzy
 msgid "Add box"
-msgstr "Izmijeni tekst"
+msgstr "Dodaj polje"
 
 #: gschem/etc/system-gschemrc.scm:2264
 msgid "C_ircle"
 msgstr "Krug"
 
+# Add circle
 #: gschem/etc/system-gschemrc.scm:2264
-#, fuzzy
 msgid "Add circle"
-msgstr "Krug"
+msgstr "Dodaj Krug"
 
 #: gschem/etc/system-gschemrc.scm:2265
 msgid "_Line"
 msgstr "_Linija"
 
+# Add line
 #: gschem/etc/system-gschemrc.scm:2265
-#, fuzzy
 msgid "Add line"
-msgstr "Linija"
+msgstr "Dodaj Linija"
 
 #: gschem/etc/system-gschemrc.scm:2266
 msgid "Pat_h"
@@ -4535,10 +4533,10 @@ msgstr ""
 msgid "_Pin"
 msgstr "_Pin"
 
+# Add pin
 #: gschem/etc/system-gschemrc.scm:2268
-#, fuzzy
 msgid "Add pin"
-msgstr "Linija"
+msgstr "Dodaj pin"
 
 #: gschem/etc/system-gschemrc.scm:2276
 msgid "Create a new session"
