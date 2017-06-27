@@ -2527,29 +2527,28 @@ msgstr "Introduzca o edite la cadena de texto"
 msgid "A_lignment:"
 msgstr "Alineación:"
 
+# Select the text alignment attribute
 #: gschem/src/x/x_edit_text.c:65
-#, fuzzy
 msgid "Select the text alignment attribute"
-msgstr "Seleccione un atributo para agregar"
+msgstr "Seleccione el atributo de alineación de texto"
 
 #: gschem/src/x/x_edit_text.c:66
-#, fuzzy
 msgid "_Color:"
 msgstr "_Color:"
 
+# Select color attribute
 #: gschem/src/x/x_edit_text.c:66
-#, fuzzy
 msgid "Select color attribute"
-msgstr "Seleccione un atributo para agregar"
+msgstr "Seleccionar el atributo de color"
 
 #: gschem/src/x/x_edit_text.c:67
 msgid "_Size:"
 msgstr ""
 
+# Open font selection dialog
 #: gschem/src/x/x_edit_text.c:67
-#, fuzzy
 msgid "Open font selection dialog"
-msgstr "Abrir el cuadro de diálogo Editor de ranuras"
+msgstr "Abrir diálogo de selección de fuente"
 
 #: gschem/src/x/x_edit_text.c:68
 msgid "_Rotation:"
