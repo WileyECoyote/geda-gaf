@@ -128,22 +128,21 @@ msgstr ""
 msgid "Retrieving main window position.\n"
 msgstr ""
 
-# Retrieving toolbar geometry
+# Retrieving main window geometry
 #: gschem/src/base/gschem_main_window.c:276
-#, fuzzy
 msgid "Retrieving main window geometry.\n"
-msgstr "檢索工具欄幾何\n"
+msgstr "檢索主窗口幾何.\n"
 
 #: gschem/src/base/gschem_page_view.c:250
 #: gschem/src/base/gschem_page_view.c:251
 msgid "Horizontal adjustment"
 msgstr ""
 
+# Page
 #: gschem/src/base/gschem_page_view.c:258
 #: gschem/src/base/gschem_page_view.c:259
-#, fuzzy
 msgid "Page"
-msgstr "分頁"
+msgstr "頁"
 
 #: gschem/src/base/gschem_page_view.c:265
 #: gschem/src/base/gschem_page_view.c:266
@@ -347,25 +346,25 @@ msgstr ""
 msgid "Sets the Size Mode to display on the status bar"
 msgstr ""
 
+# Status Text
 #: gschem/src/base/gschem_status_bar.c:668
-#, fuzzy
 msgid "Status Text"
-msgstr "編輯文字"
+msgstr "狀態文本"
 
 #: gschem/src/base/gschem_status_bar.c:669
 msgid "Set the string for the text on the Status Bar"
 msgstr ""
 
+# Status State
 #: gschem/src/base/gschem_status_bar.c:675
 #: gschem/src/base/gschem_status_bar.c:676
-#, fuzzy
 msgid "Status State"
-msgstr "編輯文字"
+msgstr "狀態"
 
+# Status Bar Height
 #: gschem/src/base/gschem_status_bar.c:689
-#, fuzzy
 msgid "Status Bar Height"
-msgstr "編輯文字"
+msgstr "狀態欄高度"
 
 #: gschem/src/base/gschem_status_bar.c:690
 msgid "Set or get the height of the status bar"
