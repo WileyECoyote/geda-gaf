@@ -2393,7 +2393,8 @@ msgstr "Öznitelikler:"
 # Enable to set all selected attributes to the prescribed value
 #: gschem/src/x/x_edit_pin.c:78
 msgid "Enable to set all selected attributes to the prescribed value"
-msgstr "Seçilen tüm öznitelikleri öngörülen değere ayarlamak için etkinleştirin"
+msgstr ""
+"Seçilen tüm öznitelikleri öngörülen değere ayarlamak için etkinleştirin"
 
 # Number
 #: gschem/src/x/x_edit_pin.c:80
@@ -4079,15 +4080,15 @@ msgstr "Metin Düzenle..."
 msgid "Open the Text Editor Dialog"
 msgstr ""
 
+# Color
 #: gschem/etc/system-gschemrc.scm:2127
-#, fuzzy
 msgid "Co_lor..."
 msgstr "Renk..."
 
+# Edit Pin
 #: gschem/etc/system-gschemrc.scm:2128
-#, fuzzy
 msgid "Edit Pi_n..."
-msgstr "Metin Düzenle..."
+msgstr "Pin Düzenle..."
 
 # Line Thickness & Type
 #: gschem/etc/system-gschemrc.scm:2129
@@ -4287,9 +4288,8 @@ msgstr ""
 
 # No current window
 #: gschem/etc/system-gschemrc.scm:2197
-#, fuzzy
 msgid "Redraw the current window"
-msgstr "Geçerli pencere yok"
+msgstr "Geçerli pencereyi yeniden çiz"
 
 #: gschem/etc/system-gschemrc.scm:2198
 msgid "_Pan"
@@ -4524,28 +4524,27 @@ msgstr ""
 msgid "_Box"
 msgstr ""
 
+# Add box
 #: gschem/etc/system-gschemrc.scm:2263
-#, fuzzy
 msgid "Add box"
-msgstr "Metni Düzenle"
+msgstr "Kutuyu ekle"
 
 #: gschem/etc/system-gschemrc.scm:2264
 msgid "C_ircle"
 msgstr ""
 
+# Add circle
 #: gschem/etc/system-gschemrc.scm:2264
-#, fuzzy
 msgid "Add circle"
-msgstr "Daire"
+msgstr "Çevre ekle"
 
 #: gschem/etc/system-gschemrc.scm:2265
 msgid "_Line"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2265
-#, fuzzy
 msgid "Add line"
-msgstr "Satır"
+msgstr "Satır ekle"
 
 #: gschem/etc/system-gschemrc.scm:2266
 msgid "Pat_h"
@@ -4565,12 +4564,12 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2268
 msgid "_Pin"
-msgstr ""
+msgstr "_Pimi"
 
+# Add pin
 #: gschem/etc/system-gschemrc.scm:2268
-#, fuzzy
 msgid "Add pin"
-msgstr "Satır"
+msgstr "Pimi ekle"
 
 #: gschem/etc/system-gschemrc.scm:2276
 msgid "Create a new session"
@@ -4770,19 +4769,19 @@ msgstr ""
 msgid "Embed Component/Picture"
 msgstr "Bileşen/Resim göm"
 
+# Embed a component or image object
 #: gschem/etc/system-gschemrc.scm:2323
-#, fuzzy
 msgid "Embed a component or image object"
-msgstr "Bileşen/Resim göm"
+msgstr "Bileşeni veya resim nesnesini katıştırma"
 
 #: gschem/etc/system-gschemrc.scm:2324 gschem/scheme/gschem/builtins.scm:457
 msgid "Unembed Component/Picture"
 msgstr "Bileşen/resim gömme"
 
+# Unembed a component or image object
 #: gschem/etc/system-gschemrc.scm:2324
-#, fuzzy
 msgid "Unembed a component or image object"
-msgstr "Bileşen/resim gömme"
+msgstr "Bileşen veya resim nesnesinin unembed"
 
 # Update Component
 #: gschem/etc/system-gschemrc.scm:2325 gschem/scheme/gschem/builtins.scm:460
@@ -4865,11 +4864,10 @@ msgstr ""
 msgid "Toggle action feedback"
 msgstr ""
 
-# Auto Sequence
+# Auto Pan
 #: gschem/etc/system-gschemrc.scm:2344
-#, fuzzy
 msgid "_Auto-Pan"
-msgstr "Otomatik dizi"
+msgstr "Otomatik Pan"
 
 #: gschem/etc/system-gschemrc.scm:2344
 msgid "Toggle auto panning mode"
