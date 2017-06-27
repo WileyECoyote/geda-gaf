@@ -129,19 +129,19 @@ msgstr ""
 
 # Retrieving toolbar geometry
 #: gschem/src/base/gschem_main_window.c:276
-#, fuzzy
 msgid "Retrieving main window geometry.\n"
-msgstr "检索工具栏几何\n"
+msgstr "检索主窗口几何.\n"
 
 #: gschem/src/base/gschem_page_view.c:250
 #: gschem/src/base/gschem_page_view.c:251
 msgid "Horizontal adjustment"
 msgstr ""
 
+# Page
 #: gschem/src/base/gschem_page_view.c:258
 #: gschem/src/base/gschem_page_view.c:259
 msgid "Page"
-msgstr "页面"
+msgstr "页"
 
 #: gschem/src/base/gschem_page_view.c:265
 #: gschem/src/base/gschem_page_view.c:266
@@ -345,18 +345,20 @@ msgstr ""
 msgid "Sets the Size Mode to display on the status bar"
 msgstr ""
 
+# Status Text
 #: gschem/src/base/gschem_status_bar.c:668
 msgid "Status Text"
-msgstr ""
+msgstr "状态文本"
 
 #: gschem/src/base/gschem_status_bar.c:669
 msgid "Set the string for the text on the Status Bar"
 msgstr ""
 
+# Status State
 #: gschem/src/base/gschem_status_bar.c:675
 #: gschem/src/base/gschem_status_bar.c:676
 msgid "Status State"
-msgstr ""
+msgstr "状态"
 
 #: gschem/src/base/gschem_status_bar.c:689
 msgid "Status Bar Height"
@@ -5334,40 +5336,40 @@ msgstr ""
 msgid "Draw Last"
 msgstr ""
 
+# First Page
 #: gschem/scheme/gschem/builtins.scm:290
-#, fuzzy
 msgid "First Page"
-msgstr "上一个"
+msgstr "第一页"
 
+# Previous Page
 #: gschem/scheme/gschem/builtins.scm:293
-#, fuzzy
 msgid "Previous Page"
-msgstr "上一个"
+msgstr "上一页"
 
+# Next Page
 #: gschem/scheme/gschem/builtins.scm:296
-#, fuzzy
 msgid "Next Page"
-msgstr "新建页面"
+msgstr "下一页"
 
+# Page Up
 #: gschem/scheme/gschem/builtins.scm:299
-#, fuzzy
 msgid "Page Up"
-msgstr "页面"
+msgstr "上一页"
 
+# Page Down
 #: gschem/scheme/gschem/builtins.scm:302
-#, fuzzy
 msgid "Page Down"
-msgstr "页面"
+msgstr "向下翻页"
 
+# Last Page
 #: gschem/scheme/gschem/builtins.scm:305
-#, fuzzy
 msgid "Last Page"
-msgstr "新建页面"
+msgstr "最后一页"
 
+# Print Page
 #: gschem/scheme/gschem/builtins.scm:311
-#, fuzzy
 msgid "Print Page"
-msgstr "上一个"
+msgstr "打印页面"
 
 # Undo changes
 #: gschem/scheme/gschem/builtins.scm:314
