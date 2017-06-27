@@ -2307,9 +2307,8 @@ msgid "Enter pin name or description"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:77
-#, fuzzy
 msgid "      Type:"
-msgstr "End Type:"
+msgstr "تایپ کنید:"
 
 #: gschem/src/x/x_edit_pin.c:77
 msgid "Enable to set all selected attributes to the prescribed type"
@@ -2415,7 +2414,7 @@ msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:913
 msgid "Attribute Type List"
-msgstr "Attributes"
+msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:917
 msgid "Text Alignment Option"
@@ -2458,28 +2457,25 @@ msgid "A_lignment:"
 msgstr ""
 
 #: gschem/src/x/x_edit_text.c:65
-#, fuzzy
 msgid "Select the text alignment attribute"
-msgstr "Attributes"
+msgstr ""
 
 #: gschem/src/x/x_edit_text.c:66
 msgid "_Color:"
 msgstr "رنگ:"
 
 #: gschem/src/x/x_edit_text.c:66
-#, fuzzy
 msgid "Select color attribute"
-msgstr "Attributes"
+msgstr ""
 
 #: gschem/src/x/x_edit_text.c:67
 msgid "_Size:"
 msgstr ""
 
-# Offset selection
+# Open font selection dialog
 #: gschem/src/x/x_edit_text.c:67
-#, fuzzy
 msgid "Open font selection dialog"
-msgstr "انتخاب افست"
+msgstr "گفتگوی انتخاب فونت را باز کنید"
 
 #: gschem/src/x/x_edit_text.c:68
 msgid "_Rotation:"
@@ -2779,7 +2775,7 @@ msgstr ""
 
 #: gschem/src/x/x_menus.c:110
 msgid "Edit"
-msgstr "Edit"
+msgstr ""
 
 #: gschem/src/x/x_menus.c:110
 msgid "Edit modes"
@@ -2791,11 +2787,11 @@ msgstr ""
 
 #: gschem/src/x/x_menus.c:111 gschem/etc/system-gschemrc.scm:2125
 msgid "Edit Object Attributes"
-msgstr "Attributes"
+msgstr ""
 
 #: gschem/src/x/x_menus.c:112
 msgid "Color..."
-msgstr "Color..."
+msgstr ""
 
 #: gschem/src/x/x_menus.c:112 gschem/etc/system-gschemrc.scm:2127
 msgid "Open the Color Editor Dialog"
@@ -2807,7 +2803,7 @@ msgstr ""
 
 #: gschem/src/x/x_menus.c:114
 msgid "Pin type..."
-msgstr "Fill Type..."
+msgstr ""
 
 #: gschem/src/x/x_menus.c:114 gschem/etc/system-gschemrc.scm:2128
 msgid "Open the Pin Type Dialog"
