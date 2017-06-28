@@ -1,3 +1,8 @@
+2017-06-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_label.c: Remove unnecessary type-checking cast to
+      GtkWidget.
+
 2017-06-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_handlebox.c: Remove unnecessary cast in geda_handle_

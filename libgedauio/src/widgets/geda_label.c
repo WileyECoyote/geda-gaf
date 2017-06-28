@@ -3427,7 +3427,7 @@ geda_label_update_cursor (GedaLabel *label)
   if (!priv->select_info)
     return;
 
-  widget = GTK_WIDGET (label);
+  widget = (GtkWidget*)label;
 
   if (gtk_widget_get_realized (widget)) {
 
@@ -3518,7 +3518,7 @@ draw_insertion_cursor (GedaLabel      *label,
                        PangoDirection  direction,
                        bool            draw_arrow)
 {
-  GtkWidget *widget = GTK_WIDGET (label);
+  GtkWidget *widget = (GtkWidget*)label;
   GtkTextDirection text_dir;
 
   if (direction == PANGO_DIRECTION_LTR) {
@@ -3541,7 +3541,7 @@ geda_label_draw_cursor (GedaLabel  *label, int xoffset, int yoffset)
   if (label->priv->select_info == NULL)
     return;
 
-  widget = GTK_WIDGET (label);
+  widget = (GtkWidget*)label;
 
   if (gtk_widget_is_drawable (widget)) {
 
@@ -4613,7 +4613,7 @@ geda_label_create_window (GedaLabel *label)
     if (priv->select_info->window)
       return;
 
-    widget = GTK_WIDGET (label);
+    widget = (GtkWidget*)label;
 
     allocation = geda_get_widget_allocation (label);
 
@@ -4685,7 +4685,7 @@ geda_label_clear_select_info (GedaLabel *label)
       geda_label_destroy_window (label);
       g_free (label->priv->select_info);
       label->priv->select_info = NULL;
-      gtk_widget_set_can_focus (GTK_WIDGET (label), FALSE);
+      gtk_widget_set_can_focus ((GtkWidget*)label, FALSE);
     }
   }
 }
