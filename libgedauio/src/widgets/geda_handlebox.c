@@ -690,11 +690,9 @@ geda_handle_box_button_press (GtkWidget *widget, GdkEventButton *event)
 {
   GedaHandleBox *handlebox;
   bool           event_handled;
-  int            handle_position;
 
   event_handled   = FALSE;
   handlebox       = (GedaHandleBox*)widget;
-  handle_position = effective_handle_position (handlebox);
 
   if ((event->button == 1) && (event->type == GDK_BUTTON_PRESS)) {
 
@@ -712,9 +710,9 @@ geda_handle_box_button_press (GtkWidget *widget, GdkEventButton *event)
       unsigned int  border_widthx2;
 
       gtk_widget_get_allocation (child, &child_allocation);
-      border_widthx2 = geda_get_container_border_width(handlebox) << 1;
+      border_widthx2  = geda_get_container_border_width(handlebox) << 1;
 
-      switch (handle_position) {
+      switch (effective_handle_position (handlebox)) {
 
         case GTK_POS_LEFT:
           in_handle = event->x < handlebox->handle_size;

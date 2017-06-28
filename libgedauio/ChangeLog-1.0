@@ -1,5 +1,8 @@
 2017-06-28 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_handlebox.c: Eliminate handle_position and switch on
+      return from effective_handle_position in geda_handle_box_button_press.
+
     * src/widgets/geda_image_menu_item.c: Declare show_image inline.
 
     * src/widgets/geda_label.c: Remove unnecessary type-checking cast to
