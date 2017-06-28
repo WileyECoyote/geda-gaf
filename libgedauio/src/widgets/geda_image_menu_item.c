@@ -568,7 +568,7 @@ is_a_geda_image_menu_item (GedaImageMenuItem *image_menu_item)
  *
  * \param [in] image_menu_item Pointer to a GedaImageMenuItem.
  */
-static bool
+static inline bool
 show_image (GedaImageMenuItem *image_menu_item)
 {
   return image_menu_item->show_image;
