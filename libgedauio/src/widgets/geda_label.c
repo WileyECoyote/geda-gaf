@@ -4766,17 +4766,21 @@ static void geda_label_select_region_index (GedaLabel *label,
   if (priv->select_info && priv->select_info->selectable) {
 
     GtkClipboard *clipboard;
+    GObject      *gobject;
+
+    gobject = (GObject*)label;
 
     if (priv->select_info->selection_anchor == anchor_index &&
       priv->select_info->selection_end    == end_index)
       return;
 
-    g_object_freeze_notify ((GObject*)label);
+    g_object_freeze_notify (gobject);
 
     if (priv->select_info->selection_anchor != anchor_index)
-      g_object_notify ((GObject*)label, "selection-bound");
+      g_object_notify (gobject, "selection-bound");
+
     if (priv->select_info->selection_end != end_index)
-      g_object_notify ((GObject*)label, "cursor-position");
+      g_object_notify (gobject, "cursor-position");
 
     priv->select_info->selection_anchor = anchor_index;
     priv->select_info->selection_end    = end_index;
@@ -4804,19 +4808,19 @@ static void geda_label_select_region_index (GedaLabel *label,
                                       targets, n_targets,
                                       get_text_callback,
                                       clear_text_callback,
-                                      (GObject*)label);
+                                      gobject);
       }
       gtk_target_table_free (targets, n_targets);
       gtk_target_list_unref (list);
     }
-    else if (clipboard && gtk_clipboard_get_owner (clipboard) == (GObject*)label)
+    else if (clipboard && gtk_clipboard_get_owner (clipboard) == gobject)
     {
       gtk_clipboard_clear (clipboard);
     }
 
     gtk_widget_queue_draw ((GtkWidget*)label);
 
-    g_object_thaw_notify ((GObject*)label);
+    g_object_thaw_notify (gobject);
   }
 }
 
