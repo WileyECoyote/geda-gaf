@@ -3301,54 +3301,63 @@ msgstr "kanleasa saamkhan del ach meulkheunh meunouy bribt robsa roubtamnang"
 msgid "Toggle main context menu tooltips"
 msgstr "bet baek meunouy bribt chambong chomnuoy"
 
+# Try fixing the focus on a menu item that does not exist
 #: gschem/src/x/x_menus.c:1392
 msgid "Tried to set the sensitivity on non-existent menu item"
-msgstr ""
+msgstr "pyeayeam chuosachoul kar phtao t arommo leu theato meunouy del min mean"
 
+# Excessive errors
 #: gschem/src/x/x_menus.c:1403
 msgid "Excessive errors"
-msgstr ""
+msgstr "kamhosa huosabraman"
 
+# disabling sensitivity warnings
 #: gschem/src/x/x_menus.c:1404
 msgid "disabling sensitivity warnings"
-msgstr ""
+msgstr "bet karopromean pi pheap rsaeb"
 
+# Saving menu toolbar options
 #: gschem/src/x/x_menus.c:1481
 msgid "Saving menu toolbar options..."
-msgstr ""
+msgstr "kar roksaatouk chomreusa rbar ubakar meunouy..."
 
+# done
 #: gschem/src/x/x_menus.c:1491
 msgid " done\n"
-msgstr ""
+msgstr " ban thveu\n"
 
 #: gschem/src/x/x_menus.c:1494
 #, c-format
 msgid " there were %d errors\n"
-msgstr ""
+msgstr " mean %d kamhos\n"
 
 #: gschem/src/x/x_menus.c:1539
 msgid "gschem: Enabling menu icons\n"
-msgstr ""
+msgstr "gschem: baek roubtamnang meunouy\n"
 
 #: gschem/src/x/x_menus.c:1542
 msgid "gschem: Disabling menu icons\n"
-msgstr ""
+msgstr "gschem: bet roubtamnang meunouy\n"
 
+# Enabling menu tooltips
 #: gschem/src/x/x_menus.c:1606
 msgid "Enabling menu tooltips\n"
-msgstr ""
+msgstr "baek ptrmean chomnuoy meunouy\n"
 
+# Disabling menu tooltips
 #: gschem/src/x/x_menus.c:1609
 msgid "Disabling menu tooltips\n"
-msgstr ""
+msgstr "bet ptrmean chomnuoy meunouy\n"
 
+# Action not found
 #: gschem/src/x/x_menus.c:1709
 msgid "Action not found"
-msgstr ""
+msgstr "rk minkheunh sakammopheap"
 
+# Menu path not found
 #: gschem/src/x/x_menus.c:1714
 msgid "Menu path not found"
-msgstr ""
+msgstr "rk minkheunh phlauv meunouy"
 
 #: gschem/src/x/x_menus.c:1797 gschem/src/x/x_menus.c:1830
 msgid "Error: did not find path"
