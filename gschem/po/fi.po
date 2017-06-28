@@ -2466,16 +2466,15 @@ msgstr "Valitse väriominaisuus"
 msgid "_Size:"
 msgstr ""
 
-# Open Preference Dialog
+# Open font selection dialog
 #: gschem/src/x/x_edit_text.c:67
-#, fuzzy
 msgid "Open font selection dialog"
-msgstr "Open etusija dialogi"
+msgstr "Avaa kirjasimen valintaikkuna"
 
+# Rotation
 #: gschem/src/x/x_edit_text.c:68
-#, fuzzy
 msgid "_Rotation:"
-msgstr "D_okumentaatio:"
+msgstr "Kierto:"
 
 #: gschem/src/x/x_edit_text.c:68
 msgid "Set the text rotation angle"
@@ -4131,10 +4130,10 @@ msgstr ""
 msgid "_Redraw"
 msgstr "_Päivitä näkymä"
 
+# Redraw the current window
 #: gschem/etc/system-gschemrc.scm:2197
-#, fuzzy
 msgid "Redraw the current window"
-msgstr "ei nykyinen ikkuna"
+msgstr "Piirrä nykyinen ikkuna uudelleen"
 
 #: gschem/etc/system-gschemrc.scm:2198
 msgid "_Pan"
