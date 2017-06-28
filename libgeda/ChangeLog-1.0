@@ -1,3 +1,7 @@
+2017-06-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_complex.c: Revert back to conventional function wrapping.
+
 2017-06-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_sys.c: Revert back to conventional function wrapping.

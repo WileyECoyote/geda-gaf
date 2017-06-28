@@ -60,8 +60,7 @@ static GObjectClass *geda_complex_parent_class = NULL;
  *  \retval 0 No bounds were found
  *  \retval 1 Bound was found
  */
-static int
-geda_complex_bounds(GedaObject *object)
+static int geda_complex_bounds(GedaObject *object)
 {
   const GList     *iter;
   GedaObject      *sub_object;
@@ -152,8 +151,7 @@ static void geda_complex_instance_init(GTypeInstance *instance, void *g_class)
   object->complex       = complex;
 }
 
-static void
-geda_complex_dispose(GObject *object)
+static void geda_complex_dispose(GObject *object)
 {
   ((GObjectClass*)geda_complex_parent_class)->dispose(object);
 }
@@ -261,8 +259,7 @@ GedaObjectType geda_complex_get_type (void)
  *
  *  \return boolean.
  */
-bool
-is_a_geda_complex (const GedaComplex *cpx)
+bool is_a_geda_complex (const GedaComplex *cpx)
 {
  if (GEDA_IS_OBJECT (cpx)) {
    GedaObject *obj = (GedaObject*)cpx;
@@ -280,8 +277,7 @@ is_a_geda_complex (const GedaComplex *cpx)
  *
  *  \return pointer to the new Complex object.
  */
-GedaObject*
-geda_complex_new (void)
+GedaObject *geda_complex_new (void)
 {
   GedaObject *complex = g_object_new( GEDA_TYPE_COMPLEX,
                                  "type", OBJ_COMPLEX,
@@ -324,8 +320,7 @@ bool geda_complex_append (GedaComplex *complex, GedaObject *object)
  return FALSE;
 }
 
-int
-geda_complex_get_angle (const GedaComplex *complex)
+int geda_complex_get_angle (const GedaComplex *complex)
 {
   if (is_a_geda_complex(complex)) {
     return complex->angle;
@@ -333,8 +328,7 @@ geda_complex_get_angle (const GedaComplex *complex)
   return -0;
 }
 
-char*
-geda_complex_get_filename (const GedaComplex *complex)
+char *geda_complex_get_filename (const GedaComplex *complex)
 {
   if (is_a_geda_complex(complex)) {
     return complex->filename;
@@ -342,8 +336,7 @@ geda_complex_get_filename (const GedaComplex *complex)
   return NULL;
 }
 
-bool
-geda_complex_get_is_embedded (const GedaComplex *complex)
+bool geda_complex_get_is_embedded (const GedaComplex *complex)
 {
   if (is_a_geda_complex(complex)) {
     return complex->is_embedded;
@@ -351,8 +344,7 @@ geda_complex_get_is_embedded (const GedaComplex *complex)
   return FALSE;
 }
 
-bool
-geda_complex_get_is_mirror (const GedaComplex *complex)
+bool geda_complex_get_is_mirror (const GedaComplex *complex)
 {
   if (is_a_geda_complex(complex)) {
     return complex->mirror;
@@ -360,8 +352,7 @@ geda_complex_get_is_mirror (const GedaComplex *complex)
   return FALSE;
 }
 
-GList*
-geda_complex_get_pin_objs (const GedaComplex *complex)
+GList *geda_complex_get_pin_objs (const GedaComplex *complex)
 {
   if (is_a_geda_complex(complex)) {
     return complex->pin_objs;
@@ -369,8 +360,7 @@ geda_complex_get_pin_objs (const GedaComplex *complex)
   return NULL;
 }
 
-GList*
-geda_complex_get_prim_objs (const GedaComplex *complex)
+GList *geda_complex_get_prim_objs (const GedaComplex *complex)
 {
   if (is_a_geda_complex(complex)) {
     return complex->prim_objs;
@@ -378,8 +368,7 @@ geda_complex_get_prim_objs (const GedaComplex *complex)
   return NULL;
 }
 
-int
-geda_complex_get_x (const GedaComplex *complex)
+int geda_complex_get_x (const GedaComplex *complex)
 {
   if (is_a_geda_complex(complex)) {
     return complex->x;
@@ -387,8 +376,7 @@ geda_complex_get_x (const GedaComplex *complex)
   return -0;
 }
 
-int
-geda_complex_get_y (const GedaComplex *complex)
+int geda_complex_get_y (const GedaComplex *complex)
 {
   if (is_a_geda_complex(complex)) {
     return complex->y;
@@ -396,16 +384,14 @@ geda_complex_get_y (const GedaComplex *complex)
   return -0;
 }
 
-void
-geda_complex_set_angle (GedaComplex *complex, int angle)
+void geda_complex_set_angle (GedaComplex *complex, int angle)
 {
   if (is_a_geda_complex(complex)) {
     complex->angle = angle;
   }
 }
 
-void
-geda_complex_set_filename (GedaComplex *complex, const char *filename)
+void geda_complex_set_filename (GedaComplex *complex, const char *filename)
 {
   if (is_a_geda_complex(complex)) {
     if (complex->filename) {
@@ -415,24 +401,21 @@ geda_complex_set_filename (GedaComplex *complex, const char *filename)
   }
 }
 
-void
-geda_complex_set_is_embedded (GedaComplex *complex, bool is_embedded)
+void geda_complex_set_is_embedded (GedaComplex *complex, bool is_embedded)
 {
   if (is_a_geda_complex(complex)) {
     complex->is_embedded = is_embedded;
   }
 }
 
-void
-geda_complex_set_is_mirror (GedaComplex *complex, bool is_mirror)
+void geda_complex_set_is_mirror (GedaComplex *complex, bool is_mirror)
 {
   if (is_a_geda_complex(complex)) {
     complex->mirror = is_mirror;
   }
 }
 
-void
-geda_complex_set_pin_objs (GedaComplex *complex, GList *pin_objs)
+void geda_complex_set_pin_objs (GedaComplex *complex, GList *pin_objs)
 {
   if (is_a_geda_complex(complex)) {
     if (complex->pin_objs) {
@@ -442,8 +425,7 @@ geda_complex_set_pin_objs (GedaComplex *complex, GList *pin_objs)
   }
 }
 
-void
-geda_complex_set_prim_objs (GedaComplex *complex, GList *prim_objs)
+void geda_complex_set_prim_objs (GedaComplex *complex, GList *prim_objs)
 {
   if (is_a_geda_complex(complex)) {
     if (complex->prim_objs) {
@@ -453,16 +435,14 @@ geda_complex_set_prim_objs (GedaComplex *complex, GList *prim_objs)
   }
 }
 
-void
-geda_complex_set_x (GedaComplex *complex, int x)
+void geda_complex_set_x (GedaComplex *complex, int x)
 {
   if (is_a_geda_complex(complex)) {
     complex->x = x;
   }
 }
 
-void
-geda_complex_set_y (GedaComplex *complex, int y)
+void geda_complex_set_y (GedaComplex *complex, int y)
 {
   if (is_a_geda_complex(complex)) {
     complex->y = y;
