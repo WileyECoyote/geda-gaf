@@ -2387,7 +2387,8 @@ msgstr "      Tipo:"
 # Enable to set all selected attributes to the prescribed type
 #: gschem/src/x/x_edit_pin.c:77
 msgid "Enable to set all selected attributes to the prescribed type"
-msgstr "Abilita per impostare tutti gli attributi selezionati sul tipo prescritto"
+msgstr ""
+"Abilita per impostare tutti gli attributi selezionati sul tipo prescritto"
 
 #: gschem/src/x/x_edit_pin.c:78
 msgid "Attributes:"
@@ -2396,7 +2397,8 @@ msgstr "Attributi:"
 # Enable to set all selected attributes to the prescribed value
 #: gschem/src/x/x_edit_pin.c:78
 msgid "Enable to set all selected attributes to the prescribed value"
-msgstr "Abilita per impostare tutti gli attributi selezionati sul valore prescritto"
+msgstr ""
+"Abilita per impostare tutti gli attributi selezionati sul valore prescritto"
 
 #: gschem/src/x/x_edit_pin.c:80
 msgid "Number:"
@@ -4230,10 +4232,10 @@ msgstr "Oggetti selezionati"
 msgid "_Redraw"
 msgstr "_Ridisegna"
 
+# Redraw the current window
 #: gschem/etc/system-gschemrc.scm:2197
-#, fuzzy
 msgid "Redraw the current window"
-msgstr "Chiudi finestra"
+msgstr "Ridurre la finestra corrente"
 
 #: gschem/etc/system-gschemrc.scm:2198
 msgid "_Pan"
@@ -4732,55 +4734,53 @@ msgstr "S_paziatura griglia magnetica..."
 msgid "Adjust snap size"
 msgstr ""
 
+# Snap On-Off
 #: gschem/etc/system-gschemrc.scm:2339
-#, fuzzy
 msgid "_Snap On-Off"
-msgstr "Snap Off"
+msgstr "Snap On-Off"
 
 #: gschem/etc/system-gschemrc.scm:2339
 msgid "Toggle the object snap mode"
 msgstr ""
 
+# Rubberband
 #: gschem/etc/system-gschemrc.scm:2340
-#, fuzzy
 msgid "_Rubberband"
-msgstr "Commuta Net _Elastiche"
+msgstr "_Elastiche"
 
 #: gschem/etc/system-gschemrc.scm:2340
 msgid "Toggle rubberband net mode"
 msgstr "Commuta Net _Elastiche"
 
+# Magnetic Net
 #: gschem/etc/system-gschemrc.scm:2341
-#, fuzzy
 msgid "_Magnetic Net"
-msgstr "Modo Net Magnetiche"
+msgstr "Rete magnetica"
 
 #: gschem/etc/system-gschemrc.scm:2341
 msgid "Toggle magnetic net mode"
 msgstr "Commuta Net _Magnetiche"
 
+# Drag Move
 #: gschem/etc/system-gschemrc.scm:2342
-#, fuzzy
 msgid "_Drag Move"
-msgstr "Commuta Net _Magnetiche"
+msgstr "Trascina il movimento"
 
 #: gschem/etc/system-gschemrc.scm:2342
 msgid "Toggle Drag-can-Move mode"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2343
-#, fuzzy
 msgid "_Outline-Box"
-msgstr "C_ommuta disegno elementi/perimetro"
+msgstr "Outline-Box"
 
 #: gschem/etc/system-gschemrc.scm:2343
 msgid "Toggle action feedback"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2344
-#, fuzzy
 msgid "_Auto-Pan"
-msgstr "Commuta Net _Elastiche"
+msgstr "Pan. Automatico"
 
 #: gschem/etc/system-gschemrc.scm:2344
 msgid "Toggle auto panning mode"
