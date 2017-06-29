@@ -50,15 +50,15 @@
 
 static GObjectClass *geda_complex_parent_class = NULL;
 
-/*! \brief Return the bounds of the given GList of objects.
+/*!
+ * \brief Return the bounds of the given GList of objects.
+ * \par Given a list of objects, calculates the bounds coordinates.
  *
- *  \par Given a list of objects, calculates the bounds coordinates.
+ * \param [in]  object The complex object whose bounds are to be determined.
  *
- *  \param [in]  object The complex object whose bounds are to be determined.
-
- *  \return If any bounds were found for the list of objects
- *  \retval 0 No bounds were found
- *  \retval 1 Bound was found
+ * \return If any bounds were found for the list of objects
+ * \retval 0 No bounds were found
+ * \retval 1 Bound was found
  */
 static int geda_complex_bounds(GedaObject *object)
 {
@@ -121,15 +121,15 @@ static int geda_complex_bounds(GedaObject *object)
   return result;
 }
 
-/*! \brief GedaType instance initializer for GedaComplex
- *
- *  \par Function Description
+/*!
+ * \brief GedaType instance initializer for GedaComplex
+ * \par Function Description
  *  GedaType instance initializer for GedaComplex, initializes a new
  *  empty GedaComplex object by setting pointers to NULL and numbers
  *  to zero.
  *
- *  \param [in] instance The GedaComplex structure being initialized,
- *  \param [in] g_class  The GedaComplex class being initializing.
+ * \param [in] instance The GedaComplex structure being initialized,
+ * \param [in] g_class  The GedaComplex class being initializing.
  */
 static void geda_complex_instance_init(GTypeInstance *instance, void *g_class)
 {
@@ -156,11 +156,12 @@ static void geda_complex_dispose(GObject *object)
   ((GObjectClass*)geda_complex_parent_class)->dispose(object);
 }
 
-/*! \brief Geda Complex GedaObject Finalization Function
- *  \par Function Description
- *   Releases all internal references and releases the memory allocated to
- *   the given Complex data structure and then chain's up to the parent's
- *   finalizer after invalidating the Complex.
+/*!
+ * \brief Geda Complex GedaObject Finalization Function
+ * \par Function Description
+ *  Releases all internal references and releases the memory allocated to
+ *  the given Complex data structure and then chain's up to the parent's
+ *  finalizer after invalidating the Complex.
  */
 static void geda_complex_finalize(GObject *object)
 {
@@ -188,14 +189,14 @@ static void geda_complex_finalize(GObject *object)
   ((GedaObjectClass*)geda_complex_parent_class)->finalize(object);
 }
 
-/*! \brief GedaType class initializer for GedaComplex
- *
- *  \par Function Description
+/*!
+ * \brief GedaType class initializer for GedaComplex
+ * \par Function Description
  *  GedaType class initializer for GedaComplex. We override parents
  *  virtual class methods as needed and register GObject signals.
  *
- *  \param [in]  klass       The GedaComplex class we are initializing
- *  \param [in]  class_data  The Complex structure associated with the class
+ * \param [in]  klass       The GedaComplex class we are initializing
+ * \param [in]  class_data  The Complex structure associated with the class
  */
 static void geda_complex_class_init(void *klass, void *class_data)
 {
@@ -211,16 +212,16 @@ static void geda_complex_class_init(void *klass, void *class_data)
   geda_class->bounds              = geda_complex_bounds;
 }
 
-/*! \brief Function to retrieve Complex's Type identifier.
- *
- *  \par Function Description
+/*!
+ * \brief Function to retrieve Complex's Type identifier.
+ * \par Function Description
  *  Function to retrieve a #GedaComplex Type identifier. When first called,
  *  the function registers a #GedaComplex in the GedaObjectType system to
  *  obtain an identifier that uniquely itentifies a Complex and returns
  *  the unsigned integer value. The retained value is returned on all
  *  Subsequent calls.
  *
- *  \return GedaObjectType identifier associated with GedaComplex.
+ * \return GedaObjectType identifier associated with GedaComplex.
  */
 GedaObjectType geda_complex_get_type (void)
 {
@@ -252,12 +253,12 @@ GedaObjectType geda_complex_get_type (void)
   return geda_complex_type;
 }
 
-/*! \brief Determine if object is a Geda Complex GedaObject.
- *
- *  \par Function Description
+/*!
+ * \brief Determine if object is a Geda Complex GedaObject.
+ * \par Function Description
  *  Returns true if the argument is a GedaComplex.
  *
- *  \return boolean.
+ * \return boolean.
  */
 bool is_a_geda_complex (const GedaComplex *cpx)
 {
@@ -270,12 +271,12 @@ bool is_a_geda_complex (const GedaComplex *cpx)
 
 }
 
-/*! \brief Returns a pointer to a new Complex object.
- *
- *  \par Function Description
+/*!
+ * \brief Returns a pointer to a new Complex object.
+ * \par Function Description
  *  Returns a pointer to a new Complex object.
  *
- *  \return pointer to the new Complex object.
+ * \return pointer to the new Complex object.
  */
 GedaObject *geda_complex_new (void)
 {
@@ -286,20 +287,20 @@ GedaObject *geda_complex_new (void)
   return GEDA_OBJECT(complex);
 }
 
-/*! \brief Appends an Object to a Complex object
- *
- *  \par Function Description
+/*!
+ * \brief Appends an Object to a Complex object
+ * \par Function Description
  *  Appends \a object to the complex's list of prim_objs and sets the
  *  parent_object member of \a object to that of the complex's parent
  *  object. If \a object is a pin object then the pin is also appended
  *  to the complex's list of pin_objs.
  *
- *  \note This method is for special purposes and probably not what you
- *        want! Object appended using this method are not saved with the
- *        schematic! To attach attributes to a complex, see function
- *        geda_attrib_object_attach!
+ * \note This method is for special purposes and probably not what you
+ *       want! Object appended using this method are not saved with the
+ *       schematic! To attach attributes to a complex, see function
+ *       geda_attrib_object_attach!
  *
- *  \return pointer to the new Complex object.
+ * \return pointer to the new Complex object.
  */
 bool geda_complex_append (GedaComplex *complex, GedaObject *object)
 {

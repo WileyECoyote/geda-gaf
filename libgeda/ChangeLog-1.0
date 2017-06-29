@@ -1,3 +1,7 @@
+2017-06-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_complex.c: Reformat Doxygen comment blocks.
+
 2017-06-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_complex.c: Revert back to conventional function wrapping.
