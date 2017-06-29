@@ -4587,45 +4587,45 @@ msgstr "Sluit de huidige pagina"
 msgid "Discard changes and reload the current documents"
 msgstr ""
 
+# Discard
 #: gschem/etc/system-gschemrc.scm:2240
-#, fuzzy
 msgid "D_iscard"
-msgstr "Weg_doen"
+msgstr "af_danken"
 
+# Close the current page without saving
 #: gschem/etc/system-gschemrc.scm:2240
-#, fuzzy
 msgid "Close the current page without saving"
-msgstr "Afsluiten zonder opslaan"
+msgstr "Sluit de huidige pagina zonder op te slaan"
 
+# Print
 #: gschem/etc/system-gschemrc.scm:2241
-#, fuzzy
 msgid "Prin_t"
 msgstr "Afdrukken"
 
+# Print the current page
 #: gschem/etc/system-gschemrc.scm:2241
-#, fuzzy
 msgid "Print the current page"
-msgstr "Huidig blad"
+msgstr "Druk de huidige pagina af"
 
+# Down Schematic
 #: gschem/etc/system-gschemrc.scm:2244
-#, fuzzy
 msgid "Down _Schematic"
-msgstr "Naar Schema"
+msgstr "Schematisch neer"
 
+# Down Symbol
 #: gschem/etc/system-gschemrc.scm:2245
-#, fuzzy
 msgid "Down S_ymbol"
-msgstr "Naar Symbool"
+msgstr "Down symbool"
 
+# Hierarchy Up
 #: gschem/etc/system-gschemrc.scm:2246
-#, fuzzy
 msgid "_Hierarchy Up"
-msgstr "Hie_rarchie"
+msgstr "Hiërarchie Omhoog"
 
+# Find component documentation
 #: gschem/etc/system-gschemrc.scm:2247
-#, fuzzy
 msgid "Find component documentation"
-msgstr "Component Documentatie"
+msgstr "Zoek de component documentatie"
 
 #: gschem/etc/system-gschemrc.scm:2255
 msgid "_Component..."
@@ -4659,19 +4659,19 @@ msgstr ""
 msgid "_Box"
 msgstr "_Rechthoek"
 
+# Add box
 #: gschem/etc/system-gschemrc.scm:2263
-#, fuzzy
 msgid "Add box"
-msgstr "Voeg Rechthoek Toe"
+msgstr "Voeg vakje toe"
 
 #: gschem/etc/system-gschemrc.scm:2264
 msgid "C_ircle"
 msgstr "C_irkel"
 
+# Add circle
 #: gschem/etc/system-gschemrc.scm:2264
-#, fuzzy
 msgid "Add circle"
-msgstr "Voeg Cirkel Toe"
+msgstr "Voeg cirkel toe"
 
 #: gschem/etc/system-gschemrc.scm:2265
 msgid "_Line"
