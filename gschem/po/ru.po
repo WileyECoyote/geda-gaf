@@ -5392,38 +5392,39 @@ msgstr "Уместить в окне"
 msgid "Zoom In"
 msgstr "Увеличить"
 
+# Zoom Out
 #: gschem/scheme/gschem/builtins.scm:239
 msgid "Zoom Out"
 msgstr "Уменьшить"
 
+# Zoom All
 #: gschem/scheme/gschem/builtins.scm:242
-#, fuzzy
 msgid "Zoom All"
-msgstr "_Показать всё"
+msgstr "Увеличить все"
 
+# Zoom to Magnification
 #: gschem/scheme/gschem/builtins.scm:245
-#, fuzzy
 msgid "Zoom to Mag"
-msgstr "У_величить"
+msgstr "Увеличить до увеличения"
 
+# Documentation
 #: gschem/scheme/gschem/builtins.scm:248
-#, fuzzy
 msgid "Documentation"
-msgstr "_Документация"
+msgstr "Документация"
 
 #: gschem/scheme/gschem/builtins.scm:251
 msgid "Show/Hide Invisible Text"
 msgstr "Показать/скрыть невидимый текст"
 
+# Show/Hide Inherited Attributes
 #: gschem/scheme/gschem/builtins.scm:254
-#, fuzzy
 msgid "Show/Hide Inherited Attributes"
-msgstr "Неприкреплённый атрибут"
+msgstr "Показать / скрыть унаследованные атрибуты"
 
+# Show/Hide net names
 #: gschem/scheme/gschem/builtins.scm:257
-#, fuzzy
 msgid "Show/Hide net names"
-msgstr "Показать/скрыть невидимый текст"
+msgstr "Показать / скрыть имена сетей"
 
 #: gschem/scheme/gschem/builtins.scm:260
 msgid "Dark Color Scheme"
@@ -5453,10 +5454,10 @@ msgstr ""
 msgid "Draw Last"
 msgstr ""
 
+# First Page
 #: gschem/scheme/gschem/builtins.scm:290
-#, fuzzy
 msgid "First Page"
-msgstr "Печать страницы"
+msgstr "Первая страница"
 
 #: gschem/scheme/gschem/builtins.scm:293
 msgid "Previous Page"
@@ -5466,20 +5467,20 @@ msgstr "Предыдущая страница"
 msgid "Next Page"
 msgstr "Следующая страница"
 
+# Page Up
 #: gschem/scheme/gschem/builtins.scm:299
-#, fuzzy
 msgid "Page Up"
-msgstr "Ст_раница"
+msgstr "Страница вверх"
 
+# Page Down
 #: gschem/scheme/gschem/builtins.scm:302
-#, fuzzy
 msgid "Page Down"
-msgstr "Прокрутка вниз"
+msgstr "Листать вниз"
 
+# Last Page
 #: gschem/scheme/gschem/builtins.scm:305
-#, fuzzy
 msgid "Last Page"
-msgstr "Следующая страница"
+msgstr "Последняя страница"
 
 #: gschem/scheme/gschem/builtins.scm:311
 msgid "Print Page"
@@ -5489,10 +5490,10 @@ msgstr "Печать страницы"
 msgid "Revert Changes"
 msgstr "Отменить все изменения"
 
+# Revert All
 #: gschem/scheme/gschem/builtins.scm:317
-#, fuzzy
 msgid "Revert All"
-msgstr "Отменить все изменения"
+msgstr "Отменить все"
 
 #: gschem/scheme/gschem/builtins.scm:335
 msgid "Up Hierarchy"
