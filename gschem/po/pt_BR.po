@@ -5261,15 +5261,15 @@ msgstr ""
 msgid "Invert Selection"
 msgstr "Seleção invertida"
 
+# Select Last
 #: gschem/scheme/gschem/builtins.scm:179
-#, fuzzy
 msgid "Select Last"
-msgstr "Selecionar"
+msgstr "Selecione o último"
 
+# Deselect mode
 #: gschem/scheme/gschem/builtins.scm:182
-#, fuzzy
 msgid "Deselect mode"
-msgstr "Modo de Seleção"
+msgstr "MDeselect mode"
 
 # Cut
 #: gschem/scheme/gschem/builtins.scm:197
@@ -5290,42 +5290,41 @@ msgstr "Redesenhar"
 msgid "Pan"
 msgstr "Pan"
 
+# Pan Left
 #: gschem/scheme/gschem/builtins.scm:215
-#, fuzzy
 msgid "Pan Left"
-msgstr "Modo Centrar"
+msgstr "Pan Esquerda"
 
+# Pan Right
 #: gschem/scheme/gschem/builtins.scm:218
-#, fuzzy
 msgid "Pan Right"
-msgstr "Dir Alto"
+msgstr "Pan direita"
 
 #: gschem/scheme/gschem/builtins.scm:221
 msgid "Pan Up"
 msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:224
-#, fuzzy
 msgid "Pan Down"
-msgstr "Modo Centrar"
+msgstr "Pan Down"
 
+# Zoom Selection
 #: gschem/scheme/gschem/builtins.scm:230
-#, fuzzy
 msgid "Zoom Selection"
-msgstr "Seleção"
+msgstr "Seleção de zoom"
 
+# Zoom Extents => zoom drawing
 #: gschem/scheme/gschem/builtins.scm:233
-#, fuzzy
 msgid "Zoom Extents"
-msgstr "/Zoom desenho"
+msgstr "Zoom desenho"
 
+# Zoom In
 #: gschem/scheme/gschem/builtins.scm:236
-#, fuzzy
 msgid "Zoom In"
 msgstr "Zoom maior"
 
+# Zoom Out
 #: gschem/scheme/gschem/builtins.scm:239
-#, fuzzy
 msgid "Zoom Out"
 msgstr "Zoom menor"
 
