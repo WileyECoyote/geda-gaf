@@ -1199,10 +1199,10 @@ msgstr "Nie ould znaleźć symbol"
 msgid "in library. Update failed"
 msgstr "w bibliotece. Aktualizacja nie powiodła się"
 
+# Updating symbol
 #: gschem/src/object/o_edit.c:1127
-#, fuzzy
 msgid "Updating symbol"
-msgstr "Szukam symbolu"
+msgstr "Aktualizowanie symbolu"
 
 #: gschem/src/object/o_move.c:524
 msgid "Could not resolve which end of pin to connect\n"
@@ -4695,37 +4695,37 @@ msgstr ""
 msgid "_Box"
 msgstr "Pros_tokąt"
 
+# Add box
 #: gschem/etc/system-gschemrc.scm:2263
-#, fuzzy
 msgid "Add box"
-msgstr "Dodaj magistralę"
+msgstr "Dodaj pole"
 
 #: gschem/etc/system-gschemrc.scm:2264
 msgid "C_ircle"
 msgstr "_Okrąg"
 
+# Add circle
 #: gschem/etc/system-gschemrc.scm:2264
-#, fuzzy
 msgid "Add circle"
-msgstr "Okrąg"
+msgstr "Dodaj okrąg"
 
 #: gschem/etc/system-gschemrc.scm:2265
 msgid "_Line"
 msgstr "_Linia"
 
+# Add line
 #: gschem/etc/system-gschemrc.scm:2265
-#, fuzzy
 msgid "Add line"
-msgstr "Linię"
+msgstr "Dodaj Linię"
 
 #: gschem/etc/system-gschemrc.scm:2266
 msgid "Pat_h"
 msgstr ""
 
+# Add Path => Add Polygon
 #: gschem/etc/system-gschemrc.scm:2266 gschem/scheme/gschem/builtins.scm:371
-#, fuzzy
 msgid "Add Path"
-msgstr "Dodaj połączenie"
+msgstr "Dodaj Wielokąt"
 
 #: gschem/etc/system-gschemrc.scm:2267
 msgid "Pictu_re..."
@@ -4739,10 +4739,10 @@ msgstr ""
 msgid "_Pin"
 msgstr "_Pin"
 
+# Add pin
 #: gschem/etc/system-gschemrc.scm:2268
-#, fuzzy
 msgid "Add pin"
-msgstr "Linię"
+msgstr "Dodaj pin"
 
 #: gschem/etc/system-gschemrc.scm:2276
 msgid "Create a new session"
@@ -4791,10 +4791,10 @@ msgstr ""
 msgid "_Detach"
 msgstr "_Odłącz"
 
+# Dettach selected attributes from a symbol
 #: gschem/etc/system-gschemrc.scm:2292
-#, fuzzy
 msgid "Dettach selected attributes from a symbol"
-msgstr "Odłączony atrybut"
+msgstr "Detekuj wybrane atrybuty z symbolu"
 
 #: gschem/etc/system-gschemrc.scm:2293
 msgid "Show _Value"
@@ -5014,31 +5014,28 @@ msgstr "Tryb magnetycznych połączeń"
 msgid "Toggle magnetic net mode"
 msgstr "Przełącz \"_magnes\" połączeń"
 
-# Toggle Drag Move
+# Drag Move => Drag motion
 #: gschem/etc/system-gschemrc.scm:2342
-#, fuzzy
 msgid "_Drag Move"
-msgstr "Przegubowe Drag Move"
+msgstr "Przeciągnij ruch"
 
 #: gschem/etc/system-gschemrc.scm:2342
 msgid "Toggle Drag-can-Move mode"
 msgstr "Przegubowe Drag-can-Move mode"
 
-# Toggle display of contours
+# Outline-Box
 #: gschem/etc/system-gschemrc.scm:2343
-#, fuzzy
 msgid "_Outline-Box"
-msgstr "Przełącz wyświetlanie _konturów"
+msgstr "Zarys konsoli"
 
 #: gschem/etc/system-gschemrc.scm:2343
 msgid "Toggle action feedback"
 msgstr ""
 
-# Toggle automatic panning
+# automatic panning
 #: gschem/etc/system-gschemrc.scm:2344
-#, fuzzy
 msgid "_Auto-Pan"
-msgstr "Przełącz automatyczne panoramowanie"
+msgstr "Automatyczne panoramowanie"
 
 #: gschem/etc/system-gschemrc.scm:2344
 msgid "Toggle auto panning mode"
