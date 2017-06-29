@@ -5229,59 +5229,59 @@ msgstr ""
 msgid "Draw Last"
 msgstr ""
 
+# First Page
 #: gschem/scheme/gschem/builtins.scm:290
-#, fuzzy
 msgid "First Page"
-msgstr "Sayfayı Kapat"
+msgstr "İlk sayfa"
 
+# Previous Page
 #: gschem/scheme/gschem/builtins.scm:293
-#, fuzzy
 msgid "Previous Page"
-msgstr "Sayfayı Kapat"
+msgstr "Önceki sayfa"
 
+# Next Page
 #: gschem/scheme/gschem/builtins.scm:296
-#, fuzzy
 msgid "Next Page"
-msgstr "Yeni Sayfa"
+msgstr "Sonraki Sayfa"
 
+# Page Up
 #: gschem/scheme/gschem/builtins.scm:299
-#, fuzzy
 msgid "Page Up"
-msgstr "Sayfa"
+msgstr "Sayfa yukarı"
 
+# Page Down
 #: gschem/scheme/gschem/builtins.scm:302
-#, fuzzy
 msgid "Page Down"
-msgstr "Sayfa"
+msgstr "Sayfa Aşağı"
 
+# Last Page
 #: gschem/scheme/gschem/builtins.scm:305
-#, fuzzy
 msgid "Last Page"
-msgstr "Yeni Sayfa"
+msgstr "Son Sayfa"
 
+# Print Page
 #: gschem/scheme/gschem/builtins.scm:311
-#, fuzzy
 msgid "Print Page"
-msgstr "Sayfayı Kapat"
+msgstr "Sayfayı Yazdır"
 
 #: gschem/scheme/gschem/builtins.scm:314
 msgid "Revert Changes"
 msgstr ""
 
+# Revert All
 #: gschem/scheme/gschem/builtins.scm:317
-#, fuzzy
 msgid "Revert All"
-msgstr "Tümünü kaydet"
+msgstr "Tümünü Geri Al"
 
+# Up Hierarchy
 #: gschem/scheme/gschem/builtins.scm:335
-#, fuzzy
 msgid "Up Hierarchy"
-msgstr "Hiyerarşi"
+msgstr "Yukarı Hiyerarşi"
 
+# Add Component
 #: gschem/scheme/gschem/builtins.scm:341
-#, fuzzy
 msgid "Add Component"
-msgstr "Bileşen Güncelle"
+msgstr "Bileşeni Ekle"
 
 #: gschem/scheme/gschem/builtins.scm:344
 msgid "Add Net"
