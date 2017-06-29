@@ -601,8 +601,7 @@ geda_image_menu_item_destroy (GtkObject *object)
   GtkWidget *child = gtk_bin_get_child((GtkBin*)image_menu_item);
 
   if (image_menu_item->image) {
-    gtk_container_remove ((GtkContainer*)image_menu_item,
-                           image_menu_item->image);
+    geda_container_remove (image_menu_item, image_menu_item->image);
   }
 
   if (child) {

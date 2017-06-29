@@ -1,3 +1,8 @@
+2017-06-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_image_menu_item.c: Replace gtk_container_remove with
+      geda_container_remove in geda_image_menu_item_destroy.
+
 2017-06-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_handlebox.c: Eliminate handle_position and switch on
