@@ -2283,15 +2283,15 @@ msgstr ""
 msgid "_Attributes:"
 msgstr "_Attribútumok:"
 
+# Set the pin attributes
 #: gschem/src/x/x_edit_pin.c:72
-#, fuzzy
 msgid "Set the pin attributes"
-msgstr "Meglevő attribútumok cseréje"
+msgstr "Állítsa be a pin attribútumokat"
 
+# Number
 #: gschem/src/x/x_edit_pin.c:73
-#, fuzzy
 msgid "_Number:"
-msgstr "Kezdőszám:"
+msgstr "Number:"
 
 #: gschem/src/x/x_edit_pin.c:73
 msgid "Set the pin number, or the starting pin number if auto numbering"
@@ -2301,10 +2301,10 @@ msgstr ""
 msgid "_Sequence:"
 msgstr ""
 
+# Set the sequence number
 #: gschem/src/x/x_edit_pin.c:74
-#, fuzzy
 msgid "Set the sequence number"
-msgstr "Kiválasztott objektumok"
+msgstr "Állítsa be a sorozatszámot"
 
 #: gschem/src/x/x_edit_pin.c:75
 msgid "_Label:"
@@ -2330,10 +2330,10 @@ msgstr "Attribútumok:"
 msgid "Enable to set all selected attributes to the prescribed value"
 msgstr ""
 
+# Number
 #: gschem/src/x/x_edit_pin.c:80
-#, fuzzy
 msgid "Number:"
-msgstr "Kezdőszám:"
+msgstr "Szám:"
 
 #: gschem/src/x/x_edit_pin.c:80
 msgid ""
@@ -2425,9 +2425,10 @@ msgstr ""
 msgid "Attribute Type List"
 msgstr "Attribútumok"
 
+# Text Alignment Option
 #: gschem/src/x/x_edit_pin.c:917
 msgid "Text Alignment Option"
-msgstr ""
+msgstr "Szövegbeigazítási lehetőség"
 
 #: gschem/src/x/x_edit_pin.c:921
 msgid "Pin Number"
@@ -2458,38 +2459,38 @@ msgstr "slot száma:"
 msgid "Text Content"
 msgstr "Szöveg tulajdonságai"
 
+# Enter or edit the text string
 #: gschem/src/x/x_edit_text.c:64
-#, fuzzy
 msgid "Enter or edit the text string"
-msgstr "Új betűméret:"
+msgstr "Írja be vagy módosítsa a szöveges szöveget"
 
+# Alignment
 #: gschem/src/x/x_edit_text.c:65
-#, fuzzy
 msgid "A_lignment:"
-msgstr "Parancs:"
+msgstr "sorakoztatás:"
 
+# Select the text alignment attribute
 #: gschem/src/x/x_edit_text.c:65
-#, fuzzy
 msgid "Select the text alignment attribute"
-msgstr "Válaszd ki a menteni kívánt rajzot:"
+msgstr "Válassza ki a szövegbeállítási attribútumot"
 
 #: gschem/src/x/x_edit_text.c:66
 msgid "_Color:"
 msgstr "_Szín:"
 
+# Select color attribute
 #: gschem/src/x/x_edit_text.c:66
-#, fuzzy
 msgid "Select color attribute"
-msgstr "Attribútum hozzáadása"
+msgstr "Válassza ki a szín attribútumot"
 
 #: gschem/src/x/x_edit_text.c:67
 msgid "_Size:"
 msgstr ""
 
+# Open font selection dialog
 #: gschem/src/x/x_edit_text.c:67
-#, fuzzy
 msgid "Open font selection dialog"
-msgstr "Oldalkiválasztó"
+msgstr "Nyissa meg a betűtípus-választó párbeszédablakot"
 
 # Rotation
 #: gschem/src/x/x_edit_text.c:68
