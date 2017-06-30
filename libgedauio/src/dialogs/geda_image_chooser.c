@@ -437,7 +437,7 @@ static GtkWidget *build_menu(GedaImageChooser *chooser)
     gtk_tooltips_set_tip (tooltips, item, _(popup_tips[i]), NULL);
     g_object_set_data((GObject*)item, "chooser", chooser);
 
-    g_signal_connect(GTK_OBJECT(item),"activate",
+    g_signal_connect(item,"activate",
                     (void*) popup_activated,
                     (void*) (long) i);
 
