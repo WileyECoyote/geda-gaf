@@ -1,7 +1,8 @@
 2017-06-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_config.c: Revert back to conventional function
-      wrapping. Change line spacing and add missing braces.
+      wrapping. Change line spacing and add missing braces. Replace
+      g_key_file with geda_keyfile.
 
 2017-06-29 Wiley E. Hill <wileyhill@gmail.com>
 

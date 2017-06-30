@@ -63,7 +63,7 @@ struct _EdaConfigData
   char         *filename;
 
   /* Other private data */
-  GKeyFile     *keyfile;
+  GedaKeyFile  *keyfile;
   bool          loaded;
   bool          changed;
 };
@@ -239,7 +239,7 @@ static void eda_config_finalize (GObject *object)
     GEDA_FREE (config->priv->filename);
   }
 
-  g_key_file_free (config->priv->keyfile);
+  geda_keyfile_free (config->priv->keyfile);
 
   GEDA_FREE (config->priv);
 
@@ -319,7 +319,7 @@ static void eda_config_instance_init(GTypeInstance *instance, void *class)
   config->priv          = GEDA_MEM_ALLOC0(sizeof(EdaConfigData));
 
   config->priv->parent            = NULL;
-  config->priv->keyfile           = g_key_file_new ();
+  config->priv->keyfile           = geda_keyfile_new ();
   config->priv->loaded            = FALSE;
   config->priv->changed           = FALSE;
   config->priv->ref_count         = 0;
@@ -379,13 +379,13 @@ bool is_a_eda_config (const EdaConfig *cfg)
 }
 
 /*!
- * \brief Create an #EdaConfigError from a GKeyFileError.
+ * \brief Create an #EdaConfigError from a GedaKeyFileError.
  * \par Function Description
- *  Propagate an error returned by a GKeyFile function, converting any
- *  GKeyFileError found into a #EdaConfigError. The \a src error will
+ *  Propagate an error returned by a GedaKeyFile function, converting any
+ *  GedaKeyFileError found into a #EdaConfigError. The \a src error will
  *  be freed.
  *
- * \note We do this so that we can move away from using a GKeyFile
+ * \note We do this so that we can move away from using a GedaKeyFile
  *       internally if we want to at some point.
  *
  * \param src   Error to propagate.
@@ -403,7 +403,7 @@ static void propagate_key_file_error (GError *src, GError **dest)
       g_return_if_fail (*dest == NULL);
       g_propagate_error (dest, src);
 
-      if ((*dest)->domain == G_KEY_FILE_ERROR) {
+      if ((*dest)->domain == GEDA_KEYFILE_ERROR) {
 
         int code;
 
@@ -948,7 +948,9 @@ bool eda_config_load (EdaConfig *cfg, GError **error)
   else {
 
     int key_file_flags = G_KEY_FILE_KEEP_COMMENTS | G_KEY_FILE_KEEP_TRANSLATIONS;
-    GKeyFile *key_file = g_key_file_new ();
+    GedaKeyFile *key_file;
+
+    key_file = geda_keyfile_new ();
 
     if (access(filename, R_OK) == 0) {
 
@@ -958,8 +960,8 @@ bool eda_config_load (EdaConfig *cfg, GError **error)
       if (geda_file_get_contents(filename, &buf, &len, error)) {
 
         if (len != 0) { /* Don't load zero-length keyfiles */
-          status = g_key_file_load_from_data (key_file, buf, len,
-                                              key_file_flags, error);
+          status = geda_keyfile_load_from_data (key_file, buf, len,
+                                                key_file_flags, error);
         }
         else {
           status = TRUE;
@@ -968,12 +970,12 @@ bool eda_config_load (EdaConfig *cfg, GError **error)
         GEDA_FREE (buf);
 
         if (!status) {
-          g_key_file_free (cfg->priv->keyfile);
+          geda_keyfile_free (cfg->priv->keyfile);
         }
         else {
           /* Substitute in new key file object, and reset loaded and changed flags. */
           if (cfg->priv->keyfile) {
-            g_key_file_free(cfg->priv->keyfile);
+            geda_keyfile_free(cfg->priv->keyfile);
           }
           cfg->priv->keyfile = key_file;
           cfg->priv->changed = FALSE;
@@ -987,7 +989,7 @@ bool eda_config_load (EdaConfig *cfg, GError **error)
 
         /* Substitute in new key file object, and reset loaded and changed flags. */
         if(cfg->priv->keyfile) {
-          g_key_file_free(cfg->priv->keyfile);
+          geda_keyfile_free(cfg->priv->keyfile);
         }
         cfg->priv->keyfile = key_file;
         cfg->priv->changed = FALSE;
@@ -1101,7 +1103,7 @@ bool eda_config_save (EdaConfig *cfg, GError **error)
 
       if (!errno && status) {
 
-        char *data = g_key_file_to_data(cfg->priv->keyfile, NULL, NULL);
+        char *data = geda_keyfile_to_data(cfg->priv->keyfile, NULL, NULL);
 
         fprintf(fp, "%s", data);
         fclose(fp);
@@ -1356,7 +1358,7 @@ char **eda_config_get_groups (EdaConfig *cfg, unsigned *length)
     size_t len;
     int    i;
 
-    char **local_groups = g_key_file_get_groups (curr->priv->keyfile, &len);
+    char **local_groups = geda_keyfile_get_groups (curr->priv->keyfile, &len);
 
     for (i = 0; i < len; i++) {
       g_hash_table_insert (group_table, local_groups[i], NULL);
@@ -1394,7 +1396,7 @@ bool eda_config_has_group (EdaConfig *cfg, const char *group)
 
   for (curr = cfg; curr != NULL; curr = eda_config_get_parent (curr)) {
 
-    if (g_key_file_has_group (curr->priv->keyfile, group)) {
+    if (geda_keyfile_has_group (curr->priv->keyfile, group)) {
       return TRUE;
     }
 
@@ -1432,7 +1434,7 @@ char **eda_config_get_keys (EdaConfig *cfg, const char *group, unsigned *length,
 
     size_t len;
     int    i;
-    char **local_keys = g_key_file_get_keys (curr->priv->keyfile,
+    char **local_keys = geda_keyfile_get_keys (curr->priv->keyfile,
                                               group, &len, NULL);
     /* Skip files that don't provide the requested group */
     if (local_keys == NULL) continue;
@@ -1524,7 +1526,7 @@ EdaConfig *eda_config_get_source (EdaConfig *cfg, const char *group,
   EdaConfig *curr;
 
   for (curr = cfg; curr != NULL; curr = eda_config_get_parent (curr)) {
-    if (g_key_file_has_key (curr->priv->keyfile, group, key, NULL)) {
+    if (geda_keyfile_has_key (curr->priv->keyfile, group, key, NULL)) {
       return curr;
     }
   }
@@ -1642,7 +1644,7 @@ bool eda_config_get_boolean (EdaConfig   *cfg,
 
     GError *sys_err = NULL;
 
-    result = g_key_file_get_boolean (cfg->priv->keyfile, group, key, &sys_err);
+    result = geda_keyfile_get_boolean (cfg->priv->keyfile, group, key, &sys_err);
 
     propagate_key_file_error (sys_err, error);
   }
@@ -1685,7 +1687,7 @@ int eda_config_get_integer (EdaConfig *cfg, const char *group,
   }
   else {
     sys_err = NULL;
-    result = g_key_file_get_integer (cfg->priv->keyfile, group, key, &sys_err);
+    result = geda_keyfile_get_integer (cfg->priv->keyfile, group, key, &sys_err);
     propagate_key_file_error (sys_err, error);
   }
   return result;
@@ -1727,7 +1729,7 @@ double eda_config_get_double (EdaConfig *cfg, const char *group,
 
     GError *sys_err = NULL;
 
-    result = g_key_file_get_double (cfg->priv->keyfile, group, key, &sys_err);
+    result = geda_keyfile_get_double (cfg->priv->keyfile, group, key, &sys_err);
 
     propagate_key_file_error (sys_err, error);
   }
@@ -1768,7 +1770,7 @@ char **eda_config_get_string_list (EdaConfig *cfg, const char *group,
   }
   else {
     sys_err = NULL;
-    result =  g_key_file_get_string_list (cfg->priv->keyfile, group, key,
+    result =  geda_keyfile_get_string_list (cfg->priv->keyfile, group, key,
                                           length, &sys_err);
     propagate_key_file_error (sys_err, error);
   }
@@ -1808,7 +1810,7 @@ bool *eda_config_get_boolean_list (EdaConfig *cfg, const char *group,
   else {
 
     sys_err = NULL;
-    result =   g_key_file_get_boolean_list (cfg->priv->keyfile, group, key,
+    result =   geda_keyfile_get_boolean_list (cfg->priv->keyfile, group, key,
                                             length, &sys_err);
     propagate_key_file_error (sys_err, error);
   }
@@ -1849,7 +1851,7 @@ int *eda_config_get_int_list (EdaConfig  *cfg, const char *group,
   else {
 
     sys_err = NULL;
-    result = g_key_file_get_integer_list (cfg->priv->keyfile, group, key,
+    result = geda_keyfile_get_integer_list (cfg->priv->keyfile, group, key,
                                           length, &sys_err);
     propagate_key_file_error (sys_err, error);
   }
@@ -1889,7 +1891,7 @@ double *eda_config_get_double_list (EdaConfig *cfg, const char *group,
 
     GError *sys_err = NULL;
 
-    result = g_key_file_get_double_list (cfg->priv->keyfile, group, key,
+    result = geda_keyfile_get_double_list (cfg->priv->keyfile, group, key,
                                          length, &sys_err);
     propagate_key_file_error (sys_err, error);
   }
@@ -1935,7 +1937,7 @@ void eda_config_set_string (EdaConfig *cfg, const char *group,
 void eda_config_set_boolean (EdaConfig *cfg, const char *group,
                              const char *key, bool value)
 {
-  g_key_file_set_boolean (cfg->priv->keyfile, group, key, value);
+  geda_keyfile_set_boolean (cfg->priv->keyfile, group, key, value);
   g_signal_emit_by_name (cfg, "config-changed", group, key);
 }
 
@@ -1956,7 +1958,7 @@ void eda_config_set_boolean (EdaConfig *cfg, const char *group,
 void eda_config_set_integer (EdaConfig *cfg, const char *group,
                              const char *key, int value)
 {
-  g_key_file_set_integer (cfg->priv->keyfile, group, key, value);
+  geda_keyfile_set_integer (cfg->priv->keyfile, group, key, value);
   g_signal_emit_by_name (cfg, "config-changed", group, key);
 }
 
@@ -1977,7 +1979,7 @@ void eda_config_set_integer (EdaConfig *cfg, const char *group,
 void eda_config_set_double (EdaConfig *cfg, const char *group,
                             const char *key, double value)
 {
-  g_key_file_set_double (cfg->priv->keyfile, group, key, value);
+  geda_keyfile_set_double (cfg->priv->keyfile, group, key, value);
   g_signal_emit_by_name (cfg, "config-changed", group, key);
 }
 
@@ -2001,7 +2003,7 @@ void eda_config_set_string_list (EdaConfig *cfg, const char *group,
                                  const char *key, const char * const list[],
                                  int length)
 {
-  g_key_file_set_string_list (cfg->priv->keyfile, group, key,
+  geda_keyfile_set_string_list (cfg->priv->keyfile, group, key,
                               list, length);
   g_signal_emit_by_name (cfg, "config-changed", group, key);
 }
@@ -2025,8 +2027,7 @@ void eda_config_set_string_list (EdaConfig *cfg, const char *group,
 void eda_config_set_boolean_list (EdaConfig *cfg, const char *group,
                                   const char *key, bool list[], int length)
 {
-  g_key_file_set_boolean_list (cfg->priv->keyfile, group, key,
-                               list, length);
+  geda_keyfile_set_boolean_list (cfg->priv->keyfile, group, key, list, length);
   g_signal_emit_by_name (cfg, "config-changed", group, key);
 }
 
@@ -2048,8 +2049,7 @@ void eda_config_set_boolean_list (EdaConfig *cfg, const char *group,
 void eda_config_set_int_list (EdaConfig *cfg, const char *group,
                               const char *key, int list[], int length)
 {
-  g_key_file_set_integer_list (cfg->priv->keyfile, group, key,
-                               list, length);
+  geda_keyfile_set_integer_list (cfg->priv->keyfile, group, key, list, length);
   g_signal_emit_by_name (cfg, "config-changed", group, key);
 }
 
@@ -2071,7 +2071,7 @@ void eda_config_set_int_list (EdaConfig *cfg, const char *group,
 void eda_config_set_double_list (EdaConfig *cfg, const char *group,
                                  const char *key, double list[], int length)
 {
-  g_key_file_set_double_list (cfg->priv->keyfile, group, key,
+  geda_keyfile_set_double_list (cfg->priv->keyfile, group, key,
                               list, length);
   g_signal_emit_by_name (cfg, "config-changed", group, key);
 }
