@@ -1001,10 +1001,10 @@ msgstr ""
 msgid "Arc Mode"
 msgstr ""
 
+# Path Mode => Polygon Mode
 #: gschem/src/iface/i_status.c:170
-#, fuzzy
 msgid "Path Mode"
-msgstr "旋转 90 度"
+msgstr "多边形模式"
 
 #: gschem/src/iface/i_status.c:172
 msgid "Picture Mode"
@@ -1031,20 +1031,20 @@ msgstr ""
 msgid "Second point?"
 msgstr ""
 
+# Project Mode => Extend Mode
 #: gschem/src/iface/i_status.c:186
-#, fuzzy
 msgid "Project Mode"
-msgstr "选择模式"
+msgstr "扩展模式"
 
+# Select Projectiles
 #: gschem/src/iface/i_status.c:188
-#, fuzzy
 msgid "Select Projectiles"
-msgstr "选择模式"
+msgstr "选择弹药"
 
+# Select Object
 #: gschem/src/iface/i_status.c:190
-#, fuzzy
 msgid "Select Object"
-msgstr "选择模式"
+msgstr "选择对象"
 
 #: gschem/src/iface/i_status.c:237
 msgid "Show Hidden"
@@ -1070,10 +1070,10 @@ msgstr ""
 msgid "Failed to save user configuration to"
 msgstr ""
 
+# Closing Page
 #: gschem/src/iface/i_window.c:97
-#, fuzzy
 msgid "Closing Page\n"
-msgstr "关闭页面"
+msgstr "关闭页面\n"
 
 #: gschem/src/iface/i_window.c:166
 #, c-format
@@ -1088,22 +1088,24 @@ msgstr ""
 msgid "An error occurred while processing request to revert"
 msgstr ""
 
+# File error
 #: gschem/src/iface/i_window.c:321
 msgid "<b>File error.</b>"
-msgstr ""
+msgstr "<b>文件错误.</b>"
 
+# Revert failed
 #: gschem/src/iface/i_window.c:321
-#, fuzzy
 msgid "Revert failed"
-msgstr "翻转页面"
+msgstr "还原失败"
 
 #: gschem/src/iface/i_window.c:328
 msgid "Error encountered during file operation"
 msgstr ""
 
+# Recovery: undo last action
 #: gschem/src/iface/i_window.c:329
 msgid "Recovery: undo last action\n"
-msgstr ""
+msgstr "恢复：撤消上次操作\n"
 
 #: gschem/src/object/o_break.c:186 gschem/src/object/o_break.c:519
 #: gschem/src/object/o_break.c:842
