@@ -569,15 +569,18 @@ EdaConfig *eda_config_get_system_context (const char *context)
     sys_dirs = g_get_system_config_dirs ();
 
     for (i = 0; sys_dirs[i] != NULL; i++) {
+
       filespec = g_build_filename (sys_dirs[i], filename, NULL);
+
       if (g_file_test (filespec, G_FILE_TEST_EXISTS)) {
         /* Don't free if we found, it is the one were going to use */{
 
           if (sys_dirs[0] != NULL) {
             filespec = g_build_filename (sys_dirs[0], filename, NULL);
           }
-          else
+          else {
             filespec = g_build_filename (DEFAULT_CONFIG_DIR, filename, NULL);
+          }
         }
         break;
       }
@@ -597,7 +600,9 @@ EdaConfig *eda_config_get_system_context (const char *context)
     /* If we didn't find a configuration file, just use a filename in
      * the traditional location. */
     if (filespec == NULL) {
+
       filespec = g_build_filename (geda_sys_config_path (), filename, NULL);
+
       if (!g_file_test (filespec, G_FILE_TEST_EXISTS)) {
         GEDA_FREE (filespec);
         filespec = NULL;
@@ -607,6 +612,7 @@ EdaConfig *eda_config_get_system_context (const char *context)
     /* Finally, fall back to default location */
 #if defined (_WIN32) || defined (GEDA_USE_XDG)
     if (filespec == NULL) {
+
       if ( context == NULL) {
         filespec=g_build_filename (sys_dirs[0], GEDA_CONFIG_DIR, SYSTEM_CONFIG_FILE, NULL);
       }
