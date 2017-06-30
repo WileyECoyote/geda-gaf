@@ -2,7 +2,8 @@
 
     * src/geda/geda_config.c: Revert back to conventional function
       wrapping. Change line spacing and add missing braces. Replace
-      g_key_file with geda_keyfile.
+      g_key_file with geda_keyfile. Explicitly specify EDA_TYPE_CONFIG
+      to g_signal_new, eliminating G_OBJECT_CLASS_TYPE.
 
 2017-06-29 Wiley E. Hill <wileyhill@gmail.com>
 

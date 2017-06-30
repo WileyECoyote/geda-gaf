@@ -300,7 +300,7 @@ static void eda_config_class_init(void *class, void *class_data)
 
   /* Create signals */
   g_signal_new ("config-changed", /* signal name */
-                G_TYPE_FROM_CLASS (object_class), /* type */
+                EDA_TYPE_CONFIG,  /* type */
                 G_SIGNAL_RUN_FIRST | G_SIGNAL_NO_RECURSE | G_SIGNAL_NO_HOOKS, /* flags */
                 G_STRUCT_OFFSET(EdaConfigClass, config_changed), /* class offset */
                 NULL, /* accumulator */
