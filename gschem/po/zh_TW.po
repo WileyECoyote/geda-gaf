@@ -1008,10 +1008,10 @@ msgstr "文字模式"
 msgid "Arc Mode"
 msgstr "弧線模式"
 
+# Path Mode => Polygon Mode
 #: gschem/src/iface/i_status.c:170
-#, fuzzy
 msgid "Path Mode"
-msgstr "旋轉模式"
+msgstr "多邊形模式"
 
 #: gschem/src/iface/i_status.c:172
 msgid "Picture Mode"
@@ -1038,20 +1038,20 @@ msgstr ""
 msgid "Second point?"
 msgstr ""
 
+# # Project Mode => Extend Mode
 #: gschem/src/iface/i_status.c:186
-#, fuzzy
 msgid "Project Mode"
-msgstr "弧線模式"
+msgstr "擴展模式"
 
+# Select Projectiles
 #: gschem/src/iface/i_status.c:188
-#, fuzzy
 msgid "Select Projectiles"
-msgstr "選擇物件"
+msgstr "選擇彈藥"
 
+# Select Object
 #: gschem/src/iface/i_status.c:190
-#, fuzzy
 msgid "Select Object"
-msgstr "選擇物件"
+msgstr "選擇對象"
 
 #: gschem/src/iface/i_status.c:237
 msgid "Show Hidden"
@@ -1078,10 +1078,10 @@ msgstr ""
 msgid "Failed to save user configuration to"
 msgstr "無法將用戶配置保存到"
 
+# Closing Page
 #: gschem/src/iface/i_window.c:97
-#, fuzzy
 msgid "Closing Page\n"
-msgstr "關閉檔案\n"
+msgstr "關閉頁面\n"
 
 #: gschem/src/iface/i_window.c:166
 #, c-format
@@ -1096,24 +1096,24 @@ msgstr ""
 msgid "An error occurred while processing request to revert"
 msgstr ""
 
+# File error
 #: gschem/src/iface/i_window.c:321
-#, fuzzy
 msgid "<b>File error.</b>"
-msgstr "<b>選項</b>"
+msgstr "<b>文件錯誤</b>"
 
+# Revert failed
 #: gschem/src/iface/i_window.c:321
-#, fuzzy
 msgid "Revert failed"
-msgstr "還原"
+msgstr "恢復失敗"
 
 #: gschem/src/iface/i_window.c:328
 msgid "Error encountered during file operation"
 msgstr ""
 
+# Recovery: undo last action
 #: gschem/src/iface/i_window.c:329
-#, fuzzy
 msgid "Recovery: undo last action\n"
-msgstr "復原上一次操作"
+msgstr "恢復：撤消上次操作\n"
 
 #: gschem/src/object/o_break.c:186 gschem/src/object/o_break.c:519
 #: gschem/src/object/o_break.c:842
