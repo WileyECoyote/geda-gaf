@@ -92,8 +92,7 @@ static GObjectClass *eda_config_parent_class = NULL;
 static GList *list_of_configs = NULL;
 
 /*! Increment the reference count of a EdaConfig instance. */
-static EdaConfig*
-eda_config_ref (EdaConfig *cfg)
+static EdaConfig *eda_config_ref (EdaConfig *cfg)
 {
   if (cfg) {
     cfg->priv->ref_count++;
@@ -102,8 +101,7 @@ eda_config_ref (EdaConfig *cfg)
 }
 
 /*! Decrement the reference count of a EdaConfig instance. */
-static void
-eda_config_unref (EdaConfig *cfg)
+static void eda_config_unref (EdaConfig *cfg)
 {
   if (cfg) {
     if (cfg->priv->ref_count > 0){
@@ -114,9 +112,8 @@ eda_config_unref (EdaConfig *cfg)
 }
 
 /*! Set a property of an EdaConfig instance. */
-static
-void eda_config_set_property (GObject *object, unsigned int property_id,
-                              const GValue *value, GParamSpec *pspec)
+static void eda_config_set_property (GObject *object, unsigned int property_id,
+                                     const GValue *value, GParamSpec *pspec)
 {
   EdaConfig     *config = EDA_CONFIG (object);
   EdaConfig     *parent;
@@ -178,9 +175,8 @@ void eda_config_set_property (GObject *object, unsigned int property_id,
 }
 
 /*! Get a property of an EdaConfig instance. */
-static
-void eda_config_get_property (GObject *object, unsigned int property_id,
-                              GValue *value, GParamSpec *pspec)
+static void eda_config_get_property (GObject *object, unsigned int property_id,
+                                     GValue *value, GParamSpec *pspec)
 {
   EdaConfig *config = EDA_CONFIG (object);
   switch (property_id) {
@@ -316,8 +312,7 @@ static void eda_config_class_init(void *class, void *class_data)
 }
 
 /*! Initialise EdaConfig instance. */
-static void
-eda_config_instance_init(GTypeInstance *instance, void *class)
+static void eda_config_instance_init(GTypeInstance *instance, void *class)
 {
   EdaConfig *config     = (EdaConfig*)instance;
 
@@ -454,8 +449,7 @@ static void propagate_key_file_error (GError *src, GError **dest)
  * \returns path of directory containing \a filename or directory
  *          portion of \a path if the file was not found
  */
-char *
-eda_config_find_project_root (const char *path, const char *filename)
+char *eda_config_find_project_root (const char *path, const char *filename)
 {
   char *root_path = geda_get_dirname (path);
   char *proj_root = root_path;
@@ -509,8 +503,7 @@ eda_config_find_project_root (const char *path, const char *filename)
  *
  * \return the default #EdaConfig configuration context.
  */
-EdaConfig *
-eda_config_get_default_context (void)
+EdaConfig *eda_config_get_default_context (void)
 {
   static volatile GedaType initialized = 0;
   static EdaConfig *config = NULL;
@@ -550,8 +543,7 @@ eda_config_get_default_context (void)
  *
  * \return the system #EdaConfig configuration context.
  */
-EdaConfig *
-eda_config_get_system_context (const char *context)
+EdaConfig *eda_config_get_system_context (const char *context)
 {
   static volatile GedaType initialized = 0;
   static EdaConfig *config = NULL;
@@ -665,8 +657,7 @@ eda_config_get_system_context (const char *context)
  *
  * \return the user #EdaConfig configuration context.
  */
-EdaConfig *
-eda_config_get_user_context (void)
+EdaConfig *eda_config_get_user_context (void)
 {
   static volatile GedaType initialized = 0;
   static EdaConfig *config = NULL;
@@ -742,8 +733,7 @@ static bool strhashcmp (const void *a, const void *b) {
  *
  * \return a local #EdaConfig configuration context for \a path.
  */
-EdaConfig *
-eda_config_get_context_for_file (const char *path)
+EdaConfig *eda_config_get_context_for_file (const char *path)
 {
   static volatile GedaType initialized  = 0;
   static GHashTable *local_contexts = NULL;
@@ -880,8 +870,7 @@ eda_config_get_context_for_file (const char *path)
  *
  * \return a local #EdaConfig configuration context for \a path.
  */
-EdaConfig *
-eda_config_get_context_for_path (const char *path)
+EdaConfig *eda_config_get_context_for_path (const char *path)
 {
   EdaConfig *config = NULL;
 
@@ -909,8 +898,7 @@ eda_config_get_context_for_path (const char *path)
  *
  * \return Filename of configuration file for \a cfg.
  */
-const char*
-eda_config_get_filename (EdaConfig *cfg)
+const char *eda_config_get_filename (EdaConfig *cfg)
 {
   g_return_val_if_fail (EDA_IS_CONFIG (cfg), NULL);
   return cfg->priv->filename;
@@ -932,8 +920,7 @@ eda_config_get_filename (EdaConfig *cfg)
  *
  * \return TRUE on success, FALSE on failure.
  */
-bool
-eda_config_load (EdaConfig *cfg, GError **error)
+bool eda_config_load (EdaConfig *cfg, GError **error)
 {
   bool status = FALSE;
 
@@ -1030,8 +1017,7 @@ eda_config_load (EdaConfig *cfg, GError **error)
  *
  * \return TRUE if \a cfg has been loaded at some point, FALSE otherwise.
  */
-bool
-eda_config_is_loaded (EdaConfig *cfg)
+bool eda_config_is_loaded (EdaConfig *cfg)
 {
   g_return_val_if_fail (EDA_IS_CONFIG (cfg), TRUE);
   return cfg->priv->loaded;
@@ -1053,8 +1039,7 @@ eda_config_is_loaded (EdaConfig *cfg)
  *
  * \return TRUE on success, FALSE on failure.
  */
-bool
-eda_config_save (EdaConfig *cfg, GError **error)
+bool eda_config_save (EdaConfig *cfg, GError **error)
 {
   bool status = FALSE;
 
@@ -1163,8 +1148,7 @@ eda_config_save (EdaConfig *cfg, GError **error)
  *
  * \return TRUE if altered since last load/save, FALSE otherwise.
  */
-bool
-eda_config_is_changed (EdaConfig *cfg)
+bool eda_config_is_changed (EdaConfig *cfg)
 {
   g_return_val_if_fail (EDA_IS_CONFIG (cfg), FALSE);
   return cfg->priv->changed;
@@ -1181,8 +1165,7 @@ eda_config_is_changed (EdaConfig *cfg)
  *
  * \return parent context of \a cfg, or NULL.
  */
-EdaConfig*
-eda_config_get_parent (EdaConfig *cfg)
+EdaConfig *eda_config_get_parent (EdaConfig *cfg)
 {
   g_return_val_if_fail (EDA_IS_CONFIG (cfg), NULL);
   return cfg->priv->parent;
@@ -1200,8 +1183,7 @@ eda_config_get_parent (EdaConfig *cfg)
  *
  * \return TRUE if \a parent is ancestor of \a cfg, FALSE otherwise.
  */
-static bool
-eda_config_is_descendent (EdaConfig *cfg, EdaConfig *parent)
+static bool eda_config_is_descendent (EdaConfig *cfg, EdaConfig *parent)
 {
   g_return_val_if_fail (EDA_IS_CONFIG (cfg), FALSE);
   g_return_val_if_fail (EDA_IS_CONFIG (parent), FALSE);
@@ -1230,8 +1212,7 @@ eda_config_is_descendent (EdaConfig *cfg, EdaConfig *parent)
  * \param cfg     Configuration context.
  * \param parent  New parent context for \a cfg.
  */
-void
-eda_config_set_parent (EdaConfig *cfg, EdaConfig *parent)
+void eda_config_set_parent (EdaConfig *cfg, EdaConfig *parent)
 {
   g_return_if_fail (EDA_IS_CONFIG (cfg));
   g_object_set (cfg, "parent", parent, NULL);
@@ -1270,8 +1251,7 @@ eda_config_is_trusted (EdaConfig *cfg)
  * \param cfg      Configuration context.
  * \param trusted  TRUE if \a cfg should be trusted; FALSE otherwise.
  */
-void
-eda_config_set_trusted (EdaConfig *cfg, bool trusted)
+void eda_config_set_trusted (EdaConfig *cfg, bool trusted)
 {
   g_return_if_fail (EDA_IS_CONFIG (cfg));
   g_object_set (cfg, "trusted", trusted, NULL);
@@ -1308,8 +1288,7 @@ eda_config_get_trusted_context (EdaConfig *cfg)
  * of string pointers.  Used by eda_config_get_groups() and
  * eda_config_get_keys().
  */
-static char**
-hash_table_keys_array (GHashTable *table, unsigned int *length)
+static char **hash_table_keys_array (GHashTable *table, unsigned int *length)
 {
   unsigned int len = g_hash_table_size (table);
   char **result    = GEDA_MEM_ALLOC0 (sizeof(char*) * (len + 1));
@@ -1355,8 +1334,7 @@ hash_table_keys_array (GHashTable *table, unsigned int *length)
  *
  * \return a newly-allocated NULL-terminated array of strings.
  */
-char **
-eda_config_get_groups (EdaConfig *cfg, unsigned *length)
+char **eda_config_get_groups (EdaConfig *cfg, unsigned *length)
 {
   g_return_val_if_fail (EDA_IS_CONFIG (cfg), NULL);
 
@@ -1401,8 +1379,7 @@ eda_config_get_groups (EdaConfig *cfg, unsigned *length)
  * \return TRUE if \a cfg or any of its ancestors contains \a group,
  *         otherwise FALSE.
  */
-bool
-eda_config_has_group (EdaConfig *cfg, const char *group)
+bool eda_config_has_group (EdaConfig *cfg, const char *group)
 {
   g_return_val_if_fail (EDA_IS_CONFIG (cfg), FALSE);
   g_return_val_if_fail (group != NULL, FALSE);
@@ -1437,9 +1414,8 @@ eda_config_has_group (EdaConfig *cfg, const char *group)
  * \param length  Return location for number of keys, or NULL.
  * \param error   Return location for error information.
  */
-char **
-eda_config_get_keys (EdaConfig *cfg, const char *group, unsigned *length,
-                     GError **error)
+char **eda_config_get_keys (EdaConfig *cfg, const char *group, unsigned *length,
+                            GError **error)
 {
   g_return_val_if_fail (EDA_IS_CONFIG (cfg), NULL);
 
@@ -1503,9 +1479,8 @@ eda_config_get_keys (EdaConfig *cfg, const char *group, unsigned *length,
  * \return TRUE if \a cfg or any of its ancestors contains \a group
  *         and \a key, otherwise FALSE.
  */
-bool
-eda_config_has_key (EdaConfig *cfg, const char *group,
-                    const char *key, GError **error)
+bool eda_config_has_key (EdaConfig *cfg, const char *group,
+                         const char *key, GError **error)
 {
   return (eda_config_get_source (cfg, group, key, error) != NULL);
 }
@@ -1526,9 +1501,8 @@ eda_config_has_key (EdaConfig *cfg, const char *group,
  * \param key    Configuration key name.
  * \param error  Return location for error information.
  */
-EdaConfig *
-eda_config_get_source (EdaConfig *cfg, const char *group,
-                       const char *key, GError **error)
+EdaConfig *eda_config_get_source (EdaConfig *cfg, const char *group,
+                                  const char *key, GError **error)
 {
   g_return_val_if_fail (EDA_IS_CONFIG (cfg), FALSE);
   g_return_val_if_fail (group != NULL, FALSE);
@@ -1576,9 +1550,8 @@ eda_config_get_source (EdaConfig *cfg, const char *group,
  * \param key    Configuration key name.
  * \param error  Return location for error information.
  */
-bool
-eda_config_is_inherited (EdaConfig *cfg, const char *group,
-                         const char *key, GError **error)
+bool eda_config_is_inherited (EdaConfig  *cfg, const char *group,
+                              const char *key, GError **error)
 {
   return (eda_config_get_source (cfg, group, key, error) != cfg);
 }
@@ -1603,9 +1576,8 @@ eda_config_is_inherited (EdaConfig *cfg, const char *group,
  *
  * \return configuration value as string, or NULL.
  */
-char*
-eda_config_get_string (EdaConfig *cfg, const char *group,
-                       const char *key, GError **error)
+char *eda_config_get_string (EdaConfig *cfg, const char *group,
+                             const char *key, GError **error)
 {
   char *result;
 
@@ -1618,7 +1590,7 @@ eda_config_get_string (EdaConfig *cfg, const char *group,
 
     GError *sys_err = NULL;
 
-    result = g_key_file_get_string (cfg->priv->keyfile, group, key, &sys_err);
+    result = geda_keyfile_get_string (cfg->priv->keyfile, group, key, &sys_err);
 
     propagate_key_file_error (sys_err, error);
   }
@@ -1648,9 +1620,10 @@ eda_config_get_string (EdaConfig *cfg, const char *group,
  *
  * \return configuration value as a boolean.
  */
-bool
-eda_config_get_boolean (EdaConfig *cfg, const char *group,
-                        const char *key, GError **error)
+bool eda_config_get_boolean (EdaConfig   *cfg,
+                             const char  *group,
+                             const char  *key,
+                             GError     **error)
 {
   bool result;
 
@@ -1693,9 +1666,8 @@ eda_config_get_boolean (EdaConfig *cfg, const char *group,
  *
  * \return configuration value as a integer.
  */
-int
-eda_config_get_integer (EdaConfig *cfg, const char *group,
-                        const char *key, GError **error)
+int eda_config_get_integer (EdaConfig *cfg, const char *group,
+                            const char *key, GError **error)
 {
   int result;
   GError *sys_err;
@@ -1735,9 +1707,8 @@ eda_config_get_integer (EdaConfig *cfg, const char *group,
  * \param error  Return location for error information.
  * \return configuration value as a double.
  */
-double
-eda_config_get_double (EdaConfig *cfg, const char *group,
-                       const char *key, GError **error)
+double eda_config_get_double (EdaConfig *cfg, const char *group,
+                              const char *key, GError **error)
 {
   double  result;
 
@@ -1778,9 +1749,8 @@ eda_config_get_double (EdaConfig *cfg, const char *group,
  *
  * \return configuration value as an array of strings.
  */
-char **
-eda_config_get_string_list (EdaConfig *cfg, const char *group,
-                            const char *key,size_t *length, GError **error)
+char **eda_config_get_string_list (EdaConfig *cfg, const char *group,
+                                   const char *key,size_t *length, GError **error)
 {
   GError *sys_err;
   char  **result;
@@ -1818,9 +1788,8 @@ eda_config_get_string_list (EdaConfig *cfg, const char *group,
  *
  * \return configuration value as an array of booleans.
  */
-bool *
-eda_config_get_boolean_list (EdaConfig *cfg, const char *group,
-                             const char *key, size_t *length, GError **error)
+bool *eda_config_get_boolean_list (EdaConfig *cfg, const char *group,
+                                   const char *key, size_t *length, GError **error)
 {
   GError *sys_err;
   bool   *result;
@@ -1860,9 +1829,8 @@ eda_config_get_boolean_list (EdaConfig *cfg, const char *group,
  *
  * \return configuration value as an array of integers.
  */
-int*
-eda_config_get_int_list (EdaConfig  *cfg, const char *group,
-                         const char *key, size_t *length, GError **error)
+int *eda_config_get_int_list (EdaConfig  *cfg, const char *group,
+                              const char *key, size_t *length, GError **error)
 {
   GError *sys_err;
   int    *result;
@@ -1901,9 +1869,8 @@ eda_config_get_int_list (EdaConfig  *cfg, const char *group,
  *
  * \return configuration value as an array of doubles.
  */
-double*
-eda_config_get_double_list (EdaConfig *cfg, const char *group,
-                            const char *key, size_t *length, GError **error)
+double *eda_config_get_double_list (EdaConfig *cfg, const char *group,
+                                    const char *key, size_t *length, GError **error)
 {
   double *result;
 
@@ -1938,11 +1905,10 @@ eda_config_get_double_list (EdaConfig *cfg, const char *group,
  * \param key    Configuration key name.
  * \param value  New value for parameter.
  */
-void
-eda_config_set_string (EdaConfig *cfg, const char *group,
-                       const char *key, const char *value)
+void eda_config_set_string (EdaConfig *cfg, const char *group,
+                            const char *key, const char *value)
 {
-  g_key_file_set_string (cfg->priv->keyfile, group, key, value);
+  geda_keyfile_set_string (cfg->priv->keyfile, group, key, value);
   g_signal_emit_by_name (cfg, "config-changed", group, key);
 }
 
@@ -1960,9 +1926,8 @@ eda_config_set_string (EdaConfig *cfg, const char *group,
  * \param key    Configuration key name.
  * \param value  New value for parameter.
  */
-void
-eda_config_set_boolean (EdaConfig *cfg, const char *group,
-                        const char *key, bool value)
+void eda_config_set_boolean (EdaConfig *cfg, const char *group,
+                             const char *key, bool value)
 {
   g_key_file_set_boolean (cfg->priv->keyfile, group, key, value);
   g_signal_emit_by_name (cfg, "config-changed", group, key);
@@ -1982,9 +1947,8 @@ eda_config_set_boolean (EdaConfig *cfg, const char *group,
  * \param key    Configuration key name.
  * \param value  New value for parameter.
  */
-void
-eda_config_set_integer (EdaConfig *cfg, const char *group,
-                    const char *key, int value)
+void eda_config_set_integer (EdaConfig *cfg, const char *group,
+                             const char *key, int value)
 {
   g_key_file_set_integer (cfg->priv->keyfile, group, key, value);
   g_signal_emit_by_name (cfg, "config-changed", group, key);
@@ -2004,9 +1968,8 @@ eda_config_set_integer (EdaConfig *cfg, const char *group,
  * \param key    Configuration key name.
  * \param value  New value for parameter.
  */
-void
-eda_config_set_double (EdaConfig *cfg, const char *group,
-                       const char *key, double value)
+void eda_config_set_double (EdaConfig *cfg, const char *group,
+                            const char *key, double value)
 {
   g_key_file_set_double (cfg->priv->keyfile, group, key, value);
   g_signal_emit_by_name (cfg, "config-changed", group, key);
@@ -2028,10 +1991,9 @@ eda_config_set_double (EdaConfig *cfg, const char *group,
  * \param list   List of new values for parameter.
  * \param length Number of values in \a list.
  */
-void
-eda_config_set_string_list (EdaConfig *cfg, const char *group,
-                            const char *key, const char * const list[],
-                            int length)
+void eda_config_set_string_list (EdaConfig *cfg, const char *group,
+                                 const char *key, const char * const list[],
+                                 int length)
 {
   g_key_file_set_string_list (cfg->priv->keyfile, group, key,
                               list, length);
@@ -2054,9 +2016,8 @@ eda_config_set_string_list (EdaConfig *cfg, const char *group,
  * \param list   List of new values for parameter.
  * \param length Number of values in \a list.
  */
-void
-eda_config_set_boolean_list (EdaConfig *cfg, const char *group,
-                             const char *key, bool list[], int length)
+void eda_config_set_boolean_list (EdaConfig *cfg, const char *group,
+                                  const char *key, bool list[], int length)
 {
   g_key_file_set_boolean_list (cfg->priv->keyfile, group, key,
                                list, length);
@@ -2078,15 +2039,13 @@ eda_config_set_boolean_list (EdaConfig *cfg, const char *group,
  * \param list   List of new values for parameter.
  * \param length Number of values in \a list.
  */
-void
-eda_config_set_int_list (EdaConfig *cfg, const char *group,
-                         const char *key, int list[], int length)
+void eda_config_set_int_list (EdaConfig *cfg, const char *group,
+                              const char *key, int list[], int length)
 {
   g_key_file_set_integer_list (cfg->priv->keyfile, group, key,
                                list, length);
   g_signal_emit_by_name (cfg, "config-changed", group, key);
 }
-
 
 /*!
  * \public \memberof EdaConfig
@@ -2103,9 +2062,8 @@ eda_config_set_int_list (EdaConfig *cfg, const char *group,
  * \param list   List of new values for parameter.
  * \param length Number of values in \a list.
  */
-void
-eda_config_set_double_list (EdaConfig *cfg, const char *group,
-                            const char *key, double list[], int length)
+void eda_config_set_double_list (EdaConfig *cfg, const char *group,
+                                 const char *key, double list[], int length)
 {
   g_key_file_set_double_list (cfg->priv->keyfile, group, key,
                               list, length);
@@ -2116,13 +2074,12 @@ eda_config_set_double_list (EdaConfig *cfg, const char *group,
  * \par Function Description
  * Based heavily on g_cclosure_marshal_VOID__STRING() from GObject.
  */
-static
-void cclosure_marshal_VOID__STRING_STRING (GClosure *closure,
-                                           GValue *return_value,
-                                           unsigned int n_param_values,
-                                           const GValue *param_values,
-                                           void *invocation_hint,
-                                           void *marshal_data)
+static void cclosure_marshal_VOID__STRING_STRING (GClosure *closure,
+                                                  GValue *return_value,
+                                                  unsigned int n_param_values,
+                                                  const GValue *param_values,
+                                                  void *invocation_hint,
+                                                  void *marshal_data)
 {
   typedef void (*MarshalFunc_VOID__STRING_STRING) (void *data1,
                                                    void *arg_1,
@@ -2159,9 +2116,8 @@ void cclosure_marshal_VOID__STRING_STRING (GClosure *closure,
  * \param key     Configuration key name.
  * \param cfg     Child configuration context.
  */
-static
-void default_config_changed_handler (EdaConfig  *cfg, const char *group,
-                                     const char *key)
+static void default_config_changed_handler (EdaConfig  *cfg, const char *group,
+                                            const char *key)
 {
   cfg->priv->changed = TRUE;
 }
@@ -2179,9 +2135,8 @@ void default_config_changed_handler (EdaConfig  *cfg, const char *group,
  * \param key     Configuration key name.
  * \param cfg     Child configuration context.
  */
-static
-void parent_config_changed_handler (EdaConfig *cfg, const char *group,
-                                    const char* key, EdaConfig *parent)
+static void parent_config_changed_handler (EdaConfig *cfg, const char *group,
+                                           const char* key, EdaConfig *parent)
 {
   if (eda_config_is_inherited (cfg, group, key, NULL)) {
     g_signal_emit_by_name (cfg, "config-changed", group, key);
@@ -2198,8 +2153,7 @@ void parent_config_changed_handler (EdaConfig *cfg, const char *group,
  *
  * \return a GQuark representing the error domain.
  */
-GQuark
-eda_config_error_quark (void)
+GQuark eda_config_error_quark (void)
 {
   return g_quark_from_static_string ("eda-config-error-quark");
 }
@@ -2213,8 +2167,7 @@ eda_config_error_quark (void)
  * \warning You should not call this function directly; use
  *          libgeda_release instead.
  */
-void
-eda_config_release_resources (void)
+void eda_config_release_resources (void)
 {
   EdaConfig *cfg;
   int i;
