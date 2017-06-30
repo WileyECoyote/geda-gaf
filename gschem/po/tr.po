@@ -5291,15 +5291,15 @@ msgstr ""
 msgid "Add Bus"
 msgstr ""
 
+# Add Text
 #: gschem/scheme/gschem/builtins.scm:353
-#, fuzzy
 msgid "Add Text"
-msgstr "Metni Düzenle"
+msgstr "Yazı ekle"
 
+# Add Line
 #: gschem/scheme/gschem/builtins.scm:356
-#, fuzzy
 msgid "Add Line"
-msgstr "Satır"
+msgstr "Satır Ekle"
 
 #: gschem/scheme/gschem/builtins.scm:359
 msgid "Add Pin"
@@ -5309,10 +5309,10 @@ msgstr ""
 msgid "Add Box"
 msgstr ""
 
+# Add Circle
 #: gschem/scheme/gschem/builtins.scm:365
-#, fuzzy
 msgid "Add Circle"
-msgstr "Daire"
+msgstr "Çevre Ekle"
 
 #: gschem/scheme/gschem/builtins.scm:368
 msgid "Add Arc"
@@ -5347,29 +5347,29 @@ msgstr "Öznitelikleri Ekle"
 msgid "Detach Attributes"
 msgstr "Öznitelikleri ayırmak"
 
+# Reset Attribute Positions
 #: gschem/scheme/gschem/builtins.scm:404
-#, fuzzy
 msgid "Reset Attribute Positions"
-msgstr "Öznitelikler"
+msgstr "Öznitelik Konumlarını Sıfırla"
 
+# Show Attribute Value
 #: gschem/scheme/gschem/builtins.scm:407
-#, fuzzy
 msgid "Show Attribute Value"
-msgstr "Öznitelikler"
+msgstr "Öznitelik değerini göster"
 
+# Show Attribute Name
 #: gschem/scheme/gschem/builtins.scm:410
-#, fuzzy
 msgid "Show Attribute Name"
-msgstr "Öznitelikler"
+msgstr "Öznitelik ismini göster"
 
 #: gschem/scheme/gschem/builtins.scm:416
 msgid "Toggle Text Visibility"
 msgstr ""
 
+# Open Attributes Editor
 #: gschem/scheme/gschem/builtins.scm:419
-#, fuzzy
 msgid "Open Attributes Editor"
-msgstr "Öznitelikler"
+msgstr "Açık Öznitelik Düzenleyici"
 
 #: gschem/scheme/gschem/builtins.scm:422
 msgid "Find Specific Text"
