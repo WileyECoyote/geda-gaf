@@ -893,44 +893,44 @@ int check_data (void)
     string = geda_keyfile_get_locale_string (keyfile,"G1", "T1", "en", NULL);
 
     if (!string) {
-      fprintf(stderr, "FAILED: (KF082301A) set_locale_string, no value\n");
+      fprintf(stderr, "FAILED: (KF082304A) set_locale_string, no value\n");
       result++;
     }
     else if (strcmp(string, "dog")) {
-      fprintf(stderr, "FAILED: (KF082301B) set_locale_string, value=%s\n", string);
+      fprintf(stderr, "FAILED: (KF082304B) set_locale_string, value=%s\n", string);
       result++;
     }
 
     string = geda_keyfile_get_locale_string (keyfile,"G1", "T1", "X1", NULL);
 
     if (!string) {
-      fprintf(stderr, "FAILED: (KF082202A) set_locale_string, no value\n");
+      fprintf(stderr, "FAILED: (KF082205A) set_locale_string, no value\n");
       result++;
     }
     else if (strcmp(string, "bark")) {
-      fprintf(stderr, "FAILED: (KF082202B) set_locale_string, value=%s\n", string);
+      fprintf(stderr, "FAILED: (KF082205B) set_locale_string, value=%s\n", string);
       result++;
     }
 
     string = geda_keyfile_get_locale_string (keyfile,"G1", "T1", "X2", NULL);
 
     if (!string) {
-      fprintf(stderr, "FAILED: (KF082203A) set_locale_string, no value\n");
+      fprintf(stderr, "FAILED: (KF082206A) set_locale_string, no value\n");
       result++;
     }
     else if (strcmp(string, "sniff")) {
-      fprintf(stderr, "FAILED: (KF082203B) set_locale_string, value=%s\n", string);
+      fprintf(stderr, "FAILED: (KF082206B) set_locale_string, value=%s\n", string);
       result++;
     }
 
     string = geda_keyfile_get_locale_string (keyfile,"G1", "T1", "X3", NULL);
 
     if (!string) {
-      fprintf(stderr, "FAILED: (KF082204A) set_locale_string, no value\n");
+      fprintf(stderr, "FAILED: (KF082207A) set_locale_string, no value\n");
       result++;
     }
     else if (strcmp(string, "wag")) {
-      fprintf(stderr, "FAILED: (KF082204B) set_locale_string, value=%s\n", string);
+      fprintf(stderr, "FAILED: (KF082207B) set_locale_string, value=%s\n", string);
       result++;
     }
 

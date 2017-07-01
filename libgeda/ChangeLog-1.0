@@ -1,3 +1,8 @@
+2017-07-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_keyfile.c: Resequence id's for function geda_keyfile_get
+      _locale_string to eliminate duplicate KF082203A.
+
 2017-06-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_config.c: Revert back to conventional function
