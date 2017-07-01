@@ -37,6 +37,7 @@
 #define GRP_COMMENTS_STR "Group Comment"
 #define KEY_COMMENTS_STR "Key Comment"
 
+/* Data used to create a dummy ini file for testing */
 const char key_data[] = "[G1]\nT1=A\n[G2]\nT1=B\nT2=C\nT3=D\n";
 //const char key_data[] = "[G2]\nT1=B\nT2=C\nT3=D\n";
 
