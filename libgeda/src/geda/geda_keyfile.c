@@ -1815,23 +1815,24 @@ geda_keyfile_get_string_list (GedaKeyFile  *key_file,
 
   value = geda_keyfile_get_value (key_file, group_name, key, &key_file_error);
 
-  if (key_file_error)
-  {
-    g_propagate_error (error, key_file_error);
+  if (key_file_error) {
+    if (error) {
+      g_propagate_error (error, key_file_error);
+    }
     return NULL;
   }
 
-  if (!g_utf8_validate (value, -1, NULL))
-  {
-    char *value_utf8 = geda_get_utf8 (value);
-    g_set_error (error, GEDA_KEYFILE_ERROR,
-                 GEDA_KEYFILE_ERROR_UNKNOWN_ENCODING,
-                 _("Key file contains key '%s' with value '%s' "
+  if (!g_utf8_validate (value, -1, NULL)) {
+    if (error) {
+      char *value_utf8 = geda_get_utf8 (value);
+      g_set_error (error, GEDA_KEYFILE_ERROR,
+                   GEDA_KEYFILE_ERROR_UNKNOWN_ENCODING,
+                   _("Key file contains key '%s' with value '%s' "
                    "which is not UTF-8"), key, value_utf8);
-                 GEDA_FREE (value_utf8);
-                 GEDA_FREE (value);
-
-                 return NULL;
+                   GEDA_FREE (value_utf8);
+                   GEDA_FREE (value);
+    }
+    return NULL;
   }
 
   pieces = NULL;

@@ -1,5 +1,8 @@
 2017-07-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_keyfile.c: Revise function geda_keyfile_get_string_list
+      so that the error argument is optional.
+
     * tests/test_keyfile.c: Resequence id's for function geda_keyfile_get
       _locale_string to eliminate duplicate KF082203A and re-sequence
       identifiers retrievers with valid keys. Add checks for:
