@@ -835,7 +835,7 @@ int check_data (void)
       err = NULL;
     }
 
-    /* === Function 22: geda_keyfile_set_string === */
+    /* === Function 22: geda_keyfile_get_locale_string === */
 
     string = geda_keyfile_get_locale_string (keyfile,"G1", "T1", "en", &err);
 
