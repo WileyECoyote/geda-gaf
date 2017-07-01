@@ -95,8 +95,8 @@ const char key_data[] = "[G1]\nT1=A\n[G2]\nT1=B\nT2=C\nT3=D\n";
  *      KF0829    geda_keyfile_set_int64
  *      KF0830    geda_keyfile_get_uint64
  *      KF0831    geda_keyfile_set_uint64
- *       KF0832    geda_keyfile_get_double
- *       KF0833    geda_keyfile_set_double
+ *      KF0832    geda_keyfile_get_double
+ *      KF0833    geda_keyfile_set_double
  *       KF0834    geda_keyfile_get_string_list
  *       KF0835    geda_keyfile_set_string_list
  *       KF0836    geda_keyfile_get_locale_string_list
@@ -1102,7 +1102,7 @@ int check_data (void)
       err = NULL;
     }
 
-        /* === Function 33: geda_keyfile_set_double === */
+    /* === Function 33: geda_keyfile_set_double === */
 
     geda_keyfile_set_double (keyfile,"G7", "DBL", 9.9999999989);
 
