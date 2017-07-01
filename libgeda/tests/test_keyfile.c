@@ -97,8 +97,8 @@ const char key_data[] = "[G1]\nT1=A\n[G2]\nT1=B\nT2=C\nT3=D\n";
  *      KF0831    geda_keyfile_set_uint64
  *      KF0832    geda_keyfile_get_double
  *      KF0833    geda_keyfile_set_double
- *       KF0834    geda_keyfile_get_string_list
- *       KF0835    geda_keyfile_set_string_list
+ *      KF0834    geda_keyfile_get_string_list
+ *      KF0835    geda_keyfile_set_string_list
  *       KF0836    geda_keyfile_get_locale_string_list
  *       KF0837    geda_keyfile_set_locale_string_list
  *       KF0838    geda_keyfile_get_boolean_list
@@ -1138,6 +1138,100 @@ int check_data (void)
     if (err) {
       /* Error should NOT be set since key does exist */
       fprintf(stderr, "FAILED: (KF083202B) get_double, err set\n");
+      result++;
+      g_error_free (err);
+      err = NULL;
+    }
+
+    if (err) {
+      g_error_free (err);
+      err = NULL;
+    }
+
+    /* === Function 35: geda_keyfile_set_string_list === */
+
+    static const char *KF35_str[] =
+    {
+      "A",
+      "B",
+      "C",
+      NULL
+    };
+
+    geda_keyfile_set_string_list (keyfile, "G8", "SL", KF35_str, 3);
+
+    if (!geda_keyfile_has_group(keyfile, "G8")) {
+      fprintf(stderr, "FAILED: (KF083501) set_string_list, G8\n");
+      result++;
+    }
+
+    /* === Function 34: geda_keyfile_get_string_list === */
+
+    unsigned int count = 0;
+
+    if (geda_keyfile_get_string_list(keyfile, "G8", "NSL", &count, &err)) {
+      fprintf(stderr, "FAILED: (KF083401A) get_string_list NSL\n");
+      result++;
+    }
+    else if (!err) {
+      /* Error should be set since key does not exist */
+      fprintf(stderr, "FAILED: (KF083401B) get_string_list, no error\n");
+      result++;
+    }
+
+    if (count) {
+      /* Should be zero since key does not exist */
+      fprintf(stderr, "FAILED: (KF083401C) get_string_list, list count\n");
+      result++;
+    }
+
+    if (err) {
+      g_error_free (err);
+      err = NULL;
+    }
+
+    char **strings;
+
+    strings = geda_keyfile_get_string_list(keyfile, "G8", "SL", &count, &err);
+
+    if (!strings) {
+      fprintf(stderr, "FAILED: (KF083402A) get_string_list, !strings\n");
+      result++;
+    }
+
+    if (count != 3) {
+      fprintf(stderr, "FAILED: (KF083402B) get_string_list, count=%d\n", count);
+      result++;
+    }
+    else {
+
+      char *str;
+
+      str = strings[0];
+
+      if (strcmp(str, "A")) {      /* See structure KF35_str */
+        fprintf(stderr, "FAILED: (KF083402C) get_string_list <%s>\n", str);
+        result++;
+      }
+
+      str = strings[1];
+
+      if (strcmp(str, "B")) {
+        fprintf(stderr, "FAILED: (KF083402D) get_string_list <%s>\n", str);
+        result++;
+      }
+
+      str = strings[2];
+
+      if (strcmp(str, "C")) {
+        fprintf(stderr, "FAILED: (KF083402E) get_string_list <%s>\n", str);
+        result++;
+      }
+    }
+
+    if (err) {
+      /* Error should NOT be set since key does exist */
+      fprintf(stderr, "FAILED: (KF083402F) get_double, err set\n");
       result++;
       g_error_free (err);
       err = NULL;

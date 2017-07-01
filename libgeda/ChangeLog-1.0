@@ -2,7 +2,10 @@
 
     * tests/test_keyfile.c: Resequence id's for function geda_keyfile_get
       _locale_string to eliminate duplicate KF082203A and re-sequence
-      identifiers retrievers with valid keys.
+      identifiers retrievers with valid keys. Add checks for:
+
+          * geda_keyfile_get_string_list
+          * geda_keyfile_set_string_list
 
 2017-06-30 Wiley E. Hill <wileyhill@gmail.com>
 
