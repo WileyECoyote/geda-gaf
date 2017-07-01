@@ -99,8 +99,8 @@ const char key_data[] = "[G1]\nT1=A\n[G2]\nT1=B\nT2=C\nT3=D\n";
  *      KF0833    geda_keyfile_set_double
  *      KF0834    geda_keyfile_get_string_list
  *      KF0835    geda_keyfile_set_string_list
- *       KF0836    geda_keyfile_get_locale_string_list
- *       KF0837    geda_keyfile_set_locale_string_list
+ *      KF0836    geda_keyfile_get_locale_string_list
+ *      KF0837    geda_keyfile_set_locale_string_list
  *       KF0838    geda_keyfile_get_boolean_list
  *       KF0839    geda_keyfile_set_boolean_list
  *       KF0840    geda_keyfile_set_double_list
@@ -1231,7 +1231,91 @@ int check_data (void)
 
     if (err) {
       /* Error should NOT be set since key does exist */
-      fprintf(stderr, "FAILED: (KF083402F) get_double, err set\n");
+      fprintf(stderr, "FAILED: (KF083402F) get_string_list, err set\n");
+      result++;
+      g_error_free (err);
+      err = NULL;
+    }
+
+    if (err) {
+      g_error_free (err);
+      err = NULL;
+    }
+
+    /* === Function 37: geda_keyfile_set_locale_string_list === */
+
+    geda_keyfile_set_locale_string_list (keyfile, "G9", "LSL", "X1", KF35_str, 3);
+
+    if (!geda_keyfile_has_group(keyfile, "G9")) {
+      fprintf(stderr, "FAILED: (KF083701) set_locale_string_list, G9\n");
+      result++;
+    }
+
+    /* === Function 36: geda_keyfile_get_locale_string_list === */
+
+    count = 0;
+
+    if (geda_keyfile_get_locale_string_list(keyfile, "G9", "NLSL", "X1", &count, &err)) {
+      fprintf(stderr, "FAILED: (KF083601A) get_locale_string_list NLSL\n");
+      result++;
+    }
+    else if (!err) {
+      /* Error should be set since key does not exist */
+      fprintf(stderr, "FAILED: (KF083601B) get_locale_string_list, no error\n");
+      result++;
+    }
+
+    if (count) {
+      /* Should be zero since key does not exist */
+      fprintf(stderr, "FAILED: (KF083601C) get_locale_string_list, list count\n");
+      result++;
+    }
+
+    if (err) {
+      g_error_free (err);
+      err = NULL;
+    }
+
+    strings = geda_keyfile_get_locale_string_list(keyfile, "G9", "LSL", "X1", &count, &err);
+
+    if (!strings) {
+      fprintf(stderr, "FAILED: (KF083602A) get_locale_string_list, !strings\n");
+      result++;
+    }
+
+    if (count != 3) {
+      fprintf(stderr, "FAILED: (KF083602B) get_locale_string_list, count=%d\n", count);
+      result++;
+    }
+    else {
+
+      char *str;
+
+      str = strings[0];
+
+      if (strcmp(str, "A")) {      /* See structure KF35_str */
+        fprintf(stderr, "FAILED: (KF083602C) get_locale_string_list <%s>\n", str);
+        result++;
+      }
+
+      str = strings[1];
+
+      if (strcmp(str, "B")) {
+        fprintf(stderr, "FAILED: (KF083602D) get_locale_string_list <%s>\n", str);
+        result++;
+      }
+
+      str = strings[2];
+
+      if (strcmp(str, "C")) {
+        fprintf(stderr, "FAILED: (KF083602E) get_locale_string_list <%s>\n", str);
+        result++;
+      }
+    }
+
+    if (err) {
+      /* Error should NOT be set since key does exist */
+      fprintf(stderr, "FAILED: (KF083602F) get_locale_string_list, err set\n");
       result++;
       g_error_free (err);
       err = NULL;
