@@ -2681,8 +2681,6 @@ geda_keyfile_get_uint64 (GedaKeyFile *key_file,
  * \param [in] key         Pointer Key name
  * \param [in] key         Pointer key name
  * \param [in] value       an integer value
- *
-
  */
 void
 geda_keyfile_set_uint64 (GedaKeyFile *key_file,
