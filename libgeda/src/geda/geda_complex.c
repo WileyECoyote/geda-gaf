@@ -321,6 +321,11 @@ bool geda_complex_append (GedaComplex *complex, GedaObject *object)
  return FALSE;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 int geda_complex_get_angle (const GedaComplex *complex)
 {
   if (is_a_geda_complex(complex)) {
@@ -329,6 +334,11 @@ int geda_complex_get_angle (const GedaComplex *complex)
   return -0;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 char *geda_complex_get_filename (const GedaComplex *complex)
 {
   if (is_a_geda_complex(complex)) {
@@ -337,6 +347,11 @@ char *geda_complex_get_filename (const GedaComplex *complex)
   return NULL;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 bool geda_complex_get_is_embedded (const GedaComplex *complex)
 {
   if (is_a_geda_complex(complex)) {
@@ -345,6 +360,11 @@ bool geda_complex_get_is_embedded (const GedaComplex *complex)
   return FALSE;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 bool geda_complex_get_is_mirror (const GedaComplex *complex)
 {
   if (is_a_geda_complex(complex)) {
@@ -353,6 +373,11 @@ bool geda_complex_get_is_mirror (const GedaComplex *complex)
   return FALSE;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 GList *geda_complex_get_pin_objs (const GedaComplex *complex)
 {
   if (is_a_geda_complex(complex)) {
@@ -361,6 +386,11 @@ GList *geda_complex_get_pin_objs (const GedaComplex *complex)
   return NULL;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 GList *geda_complex_get_prim_objs (const GedaComplex *complex)
 {
   if (is_a_geda_complex(complex)) {
@@ -369,6 +399,11 @@ GList *geda_complex_get_prim_objs (const GedaComplex *complex)
   return NULL;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 int geda_complex_get_x (const GedaComplex *complex)
 {
   if (is_a_geda_complex(complex)) {
@@ -377,6 +412,11 @@ int geda_complex_get_x (const GedaComplex *complex)
   return -0;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 int geda_complex_get_y (const GedaComplex *complex)
 {
   if (is_a_geda_complex(complex)) {
@@ -385,6 +425,11 @@ int geda_complex_get_y (const GedaComplex *complex)
   return -0;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void geda_complex_set_angle (GedaComplex *complex, int angle)
 {
   if (is_a_geda_complex(complex)) {
@@ -392,6 +437,11 @@ void geda_complex_set_angle (GedaComplex *complex, int angle)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void geda_complex_set_filename (GedaComplex *complex, const char *filename)
 {
   if (is_a_geda_complex(complex)) {
@@ -402,6 +452,11 @@ void geda_complex_set_filename (GedaComplex *complex, const char *filename)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void geda_complex_set_is_embedded (GedaComplex *complex, bool is_embedded)
 {
   if (is_a_geda_complex(complex)) {
@@ -409,6 +464,11 @@ void geda_complex_set_is_embedded (GedaComplex *complex, bool is_embedded)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void geda_complex_set_is_mirror (GedaComplex *complex, bool is_mirror)
 {
   if (is_a_geda_complex(complex)) {
@@ -416,6 +476,11 @@ void geda_complex_set_is_mirror (GedaComplex *complex, bool is_mirror)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void geda_complex_set_pin_objs (GedaComplex *complex, GList *pin_objs)
 {
   if (is_a_geda_complex(complex)) {
@@ -426,6 +491,11 @@ void geda_complex_set_pin_objs (GedaComplex *complex, GList *pin_objs)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void geda_complex_set_prim_objs (GedaComplex *complex, GList *prim_objs)
 {
   if (is_a_geda_complex(complex)) {
@@ -436,6 +506,11 @@ void geda_complex_set_prim_objs (GedaComplex *complex, GList *prim_objs)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void geda_complex_set_x (GedaComplex *complex, int x)
 {
   if (is_a_geda_complex(complex)) {
@@ -443,6 +518,11 @@ void geda_complex_set_x (GedaComplex *complex, int x)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void geda_complex_set_y (GedaComplex *complex, int y)
 {
   if (is_a_geda_complex(complex)) {
