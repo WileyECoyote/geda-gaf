@@ -68,8 +68,7 @@ static GObjectClass *geda_line_parent_class = NULL;
  *
  *  \param [in]  object Pointer to Line object
  */
-static int
-geda_line_bounds(GedaObject *object)
+static int geda_line_bounds(GedaObject *object)
 {
   int expand;
 
@@ -115,8 +114,7 @@ static void geda_line_instance_init(GTypeInstance *instance, void *g_class)
   object->line_options            = &line->line_options;
 }
 
-static void
-geda_line_dispose(GObject *object)
+static void geda_line_dispose(GObject *object)
 {
   G_OBJECT_CLASS(geda_line_parent_class)->dispose(object);
 }
@@ -138,10 +136,9 @@ static void geda_line_finalize(GObject *object)
   /* Possibly return to net or pin finalizer */
 }
 
-static void
-get_property (GObject *object, unsigned int  prop_id,
-                               GValue       *value,
-                               GParamSpec   *pspec)
+static void get_property (GObject *object, unsigned int  prop_id,
+                                           GValue       *value,
+                                           GParamSpec   *pspec)
 
 {
   GedaObject   *obj          = GEDA_OBJECT(object);
@@ -192,10 +189,9 @@ get_property (GObject *object, unsigned int  prop_id,
   }
 }
 
-static void
-set_property (GObject *object, unsigned int  prop_id,
-                               const GValue *value,
-                               GParamSpec   *pspec)
+static void set_property (GObject *object, unsigned int  prop_id,
+                                           const GValue *value,
+                                           GParamSpec   *pspec)
 {
   GedaObject   *obj          = GEDA_OBJECT(object);
   GedaLine     *line         = obj->line;
@@ -451,8 +447,7 @@ bool is_a_geda_line (const GedaLine *lin)
  *
  * \sa geda_line_object_set_end_cap
  */
-int
-geda_line_get_end_cap (const GedaLine *line)
+int geda_line_get_end_cap (const GedaLine *line)
 {
   if (is_a_geda_line(line)) {
     return line->line_options.line_end;
@@ -475,8 +470,7 @@ geda_line_get_end_cap (const GedaLine *line)
  *
  * \sa geda_line_object_set_line_length
  */
-int
-geda_line_get_line_length (const GedaLine *line)
+int geda_line_get_line_length (const GedaLine *line)
 {
   if (is_a_geda_line(line)) {
     return line->line_options.line_length;
@@ -498,8 +492,7 @@ geda_line_get_line_length (const GedaLine *line)
  *
  * \sa geda_line_object_set_line_space
  */
-int
-geda_line_get_line_space (const GedaLine *line)
+int geda_line_get_line_space (const GedaLine *line)
 {
   if (is_a_geda_line(line)) {
     return line->line_options.line_space;
@@ -517,8 +510,7 @@ geda_line_get_line_space (const GedaLine *line)
  *
  * \sa geda_line_object_set_line_type
  */
-int
-geda_line_get_line_type (const GedaLine *line)
+int geda_line_get_line_type (const GedaLine *line)
 {
   if (is_a_geda_line(line)) {
     return line->line_options.line_type;
@@ -536,8 +528,7 @@ geda_line_get_line_type (const GedaLine *line)
  *
  * \sa geda_line_object_set_line_width
  */
-int
-geda_line_get_line_width (const GedaLine *line)
+int geda_line_get_line_width (const GedaLine *line)
 {
   if (is_a_geda_line(line)) {
     return line->line_options.line_width;
@@ -555,8 +546,7 @@ geda_line_get_line_width (const GedaLine *line)
  *
  * \sa geda_line_object_get_x1
  */
-int
-geda_line_get_x1 (const GedaLine *line)
+int geda_line_get_x1 (const GedaLine *line)
 {
   if (is_a_geda_line(line)) {
     return line->x[0];
@@ -574,8 +564,7 @@ geda_line_get_x1 (const GedaLine *line)
  *
  * \sa geda_line_object_get_x2
  */
-int
-geda_line_get_x2 (const GedaLine *line)
+int geda_line_get_x2 (const GedaLine *line)
 {
   if (is_a_geda_line(line)) {
     return line->x[1];
@@ -593,8 +582,7 @@ geda_line_get_x2 (const GedaLine *line)
  *
  * \sa geda_line_object_get_y1
  */
-int
-geda_line_get_y1 (const GedaLine *line)
+int geda_line_get_y1 (const GedaLine *line)
 {
   if (is_a_geda_line(line)) {
     return line->y[0];
@@ -612,8 +600,7 @@ geda_line_get_y1 (const GedaLine *line)
  *
  * \sa geda_line_object_get_y2
  */
-int
-geda_line_get_y2 (const GedaLine *line)
+int geda_line_get_y2 (const GedaLine *line)
 {
   if (is_a_geda_line(line)) {
     return line->y[1];
@@ -630,8 +617,7 @@ geda_line_get_y2 (const GedaLine *line)
  *
  * \sa geda_line_object_get_end_cap
  */
-void
-geda_line_set_end_cap (GedaLine *line, int line_end)
+void geda_line_set_end_cap (GedaLine *line, int line_end)
 {
   if (is_a_geda_line(line)) {
     line->line_options.line_end = line_end < END_NONE ? END_NONE :
@@ -655,8 +641,7 @@ geda_line_set_end_cap (GedaLine *line, int line_end)
  *
  * \sa geda_line_object_get_line_length
  */
-void
-geda_line_set_line_length (GedaLine *line, int length)
+void geda_line_set_line_length (GedaLine *line, int length)
 {
   if (is_a_geda_line(line)) {
     line->line_options.line_length = length > 0 ? length : 0;
@@ -678,8 +663,7 @@ geda_line_set_line_length (GedaLine *line, int length)
  *
  * \sa geda_line_object_get_line_space
  */
-void
-geda_line_set_line_space (GedaLine *line, int space)
+void geda_line_set_line_space (GedaLine *line, int space)
 {
   if (is_a_geda_line(line)) {
     line->line_options.line_space = space > 0 ? space : 0;
@@ -697,8 +681,7 @@ geda_line_set_line_space (GedaLine *line, int space)
  *
  * \sa geda_line_object_get_line_type
  */
-void
-geda_line_set_line_type (GedaLine *line, int type)
+void geda_line_set_line_type (GedaLine *line, int type)
 {
   if (is_a_geda_line(line)) {
     line->line_options.line_type = type < TYPE_SOLID ? TYPE_SOLID :
@@ -718,8 +701,7 @@ geda_line_set_line_type (GedaLine *line, int type)
  *
  * \sa geda_line_object_get_line_width
  */
-void
-geda_line_set_line_width (GedaLine *line, int width)
+void geda_line_set_line_width (GedaLine *line, int width)
 {
   if (is_a_geda_line(line)) {
     line->line_options.line_width = width > 0 ? width : 0;
@@ -734,8 +716,7 @@ geda_line_set_line_width (GedaLine *line, int width)
  *
  * \sa geda_line_object_set_x1
  */
-void
-geda_line_set_x1 (GedaLine *line, int x)
+void geda_line_set_x1 (GedaLine *line, int x)
 {
   if (is_a_geda_line(line)) {
     line->x[0] = x;
@@ -750,8 +731,7 @@ geda_line_set_x1 (GedaLine *line, int x)
  *
  * \sa geda_line_object_set_x2
  */
-void
-geda_line_set_x2 (GedaLine *line, int x)
+void geda_line_set_x2 (GedaLine *line, int x)
 {
   if (is_a_geda_line(line)) {
     line->x[1] = x;
@@ -766,8 +746,7 @@ geda_line_set_x2 (GedaLine *line, int x)
  *
  * \sa geda_line_object_set_y1
  */
-void
-geda_line_set_y1 (GedaLine *line, int y)
+void geda_line_set_y1 (GedaLine *line, int y)
 {
   if (is_a_geda_line(line)) {
     line->y[0] = y;
@@ -782,8 +761,7 @@ geda_line_set_y1 (GedaLine *line, int y)
  *
  * \sa geda_line_object_set_y2
  */
-void
-geda_line_set_y2 (GedaLine *line, int y)
+void geda_line_set_y2 (GedaLine *line, int y)
 {
   if (is_a_geda_line(line)) {
     line->y[1] = y;
