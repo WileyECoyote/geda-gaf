@@ -414,14 +414,14 @@ typedef struct
 
 /* Widget Callbacks */
 #define GTK_CONNECT_CALLBACK(name, signal, function, data) \
-        g_signal_connect (G_OBJECT(name), signal, G_CALLBACK(function), data);
+        g_signal_connect (name, signal, G_CALLBACK(function), data);
 
 #define GTK_CALLBACK_ENABLER(name, function, target) \
         GTK_CONNECT_CALLBACK(name, "toggled", function, target)
 
 #define GTK_ICALLBACK(name, signal, function, data) \
-        g_signal_connect (G_OBJECT(name), signal, G_CALLBACK(function), \
-                          (void*)(unsigned int)(data));
+        g_signal_connect (name, signal, G_CALLBACK(function), \
+                         (void*)(unsigned int)(data));
 
 #define GTK_ICALLBACK_COMBO(name) \
         GTK_ICALLBACK (name##Combo, "changed", Combo_Responder, name)

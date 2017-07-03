@@ -1,3 +1,8 @@
+2017-07-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda/geda_dialog_controls.h: Remove cast for first argument to
+      g_signal_connect in GTK_CONNECT_CALLBACK and GTK_ICALLBACK.
+
 2017-05-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda/geda_dialog_controls.h: Remove g_object_xxx and GtkContainer
