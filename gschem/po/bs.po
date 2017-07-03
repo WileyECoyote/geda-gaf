@@ -3241,8 +3241,8 @@ msgid "Could not open file"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:2036
-msgid "_Open"
-msgstr "_Otvori"
+msgid "Open"
+msgstr "Otvori"
 
 #: gschem/src/x/x_menus.c:2043
 msgid "Remove"
