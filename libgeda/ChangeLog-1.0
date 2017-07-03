@@ -1,3 +1,7 @@
+2017-07-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_errors.c: Update function wrapping.
+
 2017-07-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_keyfile.c: Revise function geda_keyfile_get_string_list

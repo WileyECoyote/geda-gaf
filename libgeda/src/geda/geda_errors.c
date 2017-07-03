@@ -33,8 +33,7 @@
  * Used by EDA_ERROR. Returns a GQuark used to identify GErrors
  * originating in libgeda. Should not be called directly.
  */
-GQuark
-eda_error_quark (void)
+GQuark eda_error_quark (void)
 {
   return g_quark_from_static_string ("eda-error-quark");
 }
@@ -51,11 +50,10 @@ eda_error_quark (void)
  * \param [in] object Pointer that was  passed to the function.
  * \param [in] type   The object type that was expected.
  */
-void
-geda_error_object_argument(const char *file,
-                           const char *func,
-                           const void *object,
-                           const char  type)
+void geda_error_object_argument(const char *file,
+                                const char *func,
+                                const void *object,
+                                const char  type)
 {
   if (type <= GEDA_OBJECT_TEXT) {
 
