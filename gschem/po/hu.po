@@ -2271,7 +2271,6 @@ msgid "Entry for model file name"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:71
-#, fuzzy
 msgid "_Type:"
 msgstr "Típus:"
 
@@ -2545,16 +2544,15 @@ msgstr "Szövegtulajdonságok szerkesztése"
 msgid "Text Properties"
 msgstr "Szöveg tulajdonságai"
 
+# Text input field
 #: gschem/src/x/x_edit_text.c:593
-#, fuzzy
 msgid "Text input field"
-msgstr "Keresendő szöveg:"
+msgstr "Szöveg beviteli mező"
 
-# Text Alignment Attribute
+# Text alignment combobox => Text alignment options
 #: gschem/src/x/x_edit_text.c:597
-#, fuzzy
 msgid "Text alignment combobox"
-msgstr "Szöveg igazítása Képesség"
+msgstr "Szöveg igazítása lehetőségek"
 
 #: gschem/src/x/x_edit_text.c:601
 msgid "Color options menu"
@@ -4157,10 +4155,10 @@ msgstr "Kiválasztott objektumok"
 msgid "_Redraw"
 msgstr "Újrarajzolás"
 
+# Redraw the current window
 #: gschem/etc/system-gschemrc.scm:2197
-#, fuzzy
 msgid "Redraw the current window"
-msgstr "Jelenlegi nézet"
+msgstr "Vigye át az aktuális ablakot"
 
 #: gschem/etc/system-gschemrc.scm:2198
 msgid "_Pan"
@@ -4660,10 +4658,10 @@ msgstr ""
 msgid "Adjust snap size"
 msgstr ""
 
+# Toggle Snap On-Off
 #: gschem/etc/system-gschemrc.scm:2339
-#, fuzzy
 msgid "_Snap On-Off"
-msgstr "lepattinthatóvá"
+msgstr " Kapcsolja be a bepattintást"
 
 #: gschem/etc/system-gschemrc.scm:2339
 msgid "Toggle the object snap mode"
