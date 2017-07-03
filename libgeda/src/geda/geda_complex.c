@@ -506,10 +506,13 @@ void geda_complex_set_prim_objs (GedaComplex *complex, GList *prim_objs)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Set the X coordinate value of a GedaComplex
+ * \par Function Description
+ *  Sets the X coordinate \a complex if \a complex is a valid
+ *  GedaComplex, if \a complex is invalid then nothing is done.
  *
+ * \sa geda_complex_set_y
  */
 void geda_complex_set_x (GedaComplex *complex, int x)
 {
@@ -518,10 +521,13 @@ void geda_complex_set_x (GedaComplex *complex, int x)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Set the Y coordinate value of a GedaComplex
+ * \par Function Description
+ *  Sets the Y coordinate \a complex if \a complex is a valid
+ *  GedaComplex, if \a complex is invalid then nothing is done.
  *
+ * \sa geda_complex_set_x
  */
 void geda_complex_set_y (GedaComplex *complex, int y)
 {

@@ -2,7 +2,11 @@
 
     * src/geda/geda_circle.c: Reformat Doxygen comment blocks.
 
-    * src/geda/geda_complex.c: Add template Doxygen comment blocks.
+    * src/geda/geda_complex.c: Add template Doxygen comment blocks, update
+      comments for:
+
+          * geda_complex_set_x
+          * geda_complex_set_y
 
     * src/geda/geda_errors.c: Update function wrapping.
 
