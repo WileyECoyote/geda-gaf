@@ -50,13 +50,13 @@ static unsigned int  geda_list_signals[ LAST_SIGNAL ] = { 0 };
 static GObjectClass *geda_list_parent_class = NULL;
 
 
-/*! \brief GedaType instance initializer for GedaList
- *
- *  GedaType Function Description
+/*!
+ * \brief GedaType instance initializer for GedaList
+ * \par Function Description
  *  GedaType instance initializer for GedaList.
  *
- *  \param [in]  instance       The GedaList we are initialising.
- *  \param [in]  g_class        The class of the type the instance is created for.
+ * \param [in]  instance  The GedaList we are initialising.
+ * \param [in]  g_class   The class of the type the instance is created for.
  */
 static void geda_list_instance_init(GTypeInstance *instance, void *g_class)
 {
@@ -69,15 +69,15 @@ static void geda_list_instance_init(GTypeInstance *instance, void *g_class)
 }
 
 
-/*! \brief GObject finalise handler
- *
- *  \par Function Description
+/*!
+ * \brief GObject finalise handler
+ * \par Function Description
  *  Just before the GedaList GObject is finalized, free our
  *  allocated data, and then chain up to the parent's finalize handler.
  *
- *  \param [in] object  The GObject being finalized.
+ * \param [in] object  The GObject being finalized.
  *
- *  \note Macro geda_list_free_full sets list->glist to NULL
+ * \note Macro geda_list_free_full sets list->glist to NULL
  */
 static void geda_list_finalize(GObject *object)
 {
@@ -91,14 +91,14 @@ static void geda_list_finalize(GObject *object)
 }
 
 
-/*! \brief GedaType class initializer for GedaList
- *
- *  \par Function Description
+/*!
+ * \brief GedaType class initializer for GedaList
+ * \par Function Description
  *  GedaType class initializer for GedaList. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- *  \param [in]  g_class       The GedaList we are initialising
- *  \param [in]  g_class_data  (unused)
+ * \param [in]  g_class       The GedaList we are initialising
+ * \param [in]  g_class_data  (unused)
  */
 static void geda_list_class_init(void *g_class, void *g_class_data)
 {
@@ -121,16 +121,16 @@ static void geda_list_class_init(void *g_class, void *g_class_data)
                 );
 }
 
-/*! \brief Function to retrieve GedaList's Type identifier.
- *
- *  \par Function Description
+/*!
+ * \brief Function to retrieve GedaList's Type identifier.
+ * \par Function Description
  *  Function to retrieve a #GedaList Type identifier. When first called,
  *  the function registers a #GedaList in the GedaListType system to
  *  obtain an identifier that uniquely itentifies a GedaList and returns
  *  the unsigned integer value. The retained value is returned on all
  *  Subsequent calls.
  *
- *  \return GedaListType identifier associated with GedaList.
+ * \return GedaListType identifier associated with GedaList.
  */
 GedaListType geda_list_get_type (void)
 {
@@ -170,25 +170,25 @@ bool is_a_geda_list (const GedaList *list)
   return FALSE;
 }
 
-/*! \brief Returns a pointer to a new GedaList object.
- *
- *  \par Function Description
+/*!
+ * \brief Returns a pointer to a new GedaList object.
+ * \par Function Description
  *  Returns a pointer to a new GedaList object.
  *
- *  \return pointer to the new GedaList object.
+ * \return pointer to the new GedaList object.
  */
 GedaList *geda_list_new(void) {
   return g_object_new(GEDA_TYPE_LIST, NULL);
 }
 
 
-/*! \brief Adds the given item to the GedaList
- *
- *  \par Function Description
+/*!
+ * \brief Adds the given item to the GedaList
+ * \par Function Description
  *  Adds the given item to the GedaList
  *
- *  \param [in] list Pointer to the GedaList
- *  \param [in] item item to add to the GedaList.
+ * \param [in] list Pointer to the GedaList
+ * \param [in] item item to add to the GedaList.
  */
 void geda_list_add(GedaList *list, void *item)
 {
@@ -197,14 +197,14 @@ void geda_list_add(GedaList *list, void *item)
 }
 
 
-/*! \brief Adds the given glist of items to the GedaList
- *
- *  \par Function Description
+/*!
+ * \brief Adds the given glist of items to the GedaList
+ * \par Function Description
  *  Adds the given glist of items to the GedaList
  *  A copy is made, so the original GList is not modified.
  *
- *  \param [in] list Pointer to the GedaList
- *  \param [in] items GList of items to add to the GedaList.
+ * \param [in] list Pointer to the GedaList
+ * \param [in] items GList of items to add to the GedaList.
  */
 void geda_list_add_glist(GedaList *list, GList *items)
 {
@@ -229,16 +229,16 @@ void geda_list_add_glist_unique (GedaList *list, GList *items)
   g_list_free(one_list);
 }
 
-/*! \brief Add item to the GedaList if not already in list
- *
- *  \par Function Description
+/*!
+ * \brief Add item to the GedaList if not already in list
+ * \par Function Description
  *  Adds the given item to the GedaList if the item is not
  *  already in the list.
  *
- *  \param [in] list Pointer to the GedaList
- *  \param [in] item item to add to the GedaList.
+ * \param [in] list Pointer to the GedaList
+ * \param [in] item item to add to the GedaList.
  *
- *  \return TRUE if \a item was added or FALSE if \a item was not added.
+ * \return TRUE if \a item was added or FALSE if \a item was not added.
  */
 bool geda_list_add_unique (GedaList *list, void *item)
 {
@@ -249,16 +249,16 @@ bool geda_list_add_unique (GedaList *list, void *item)
   return FALSE;
 }
 
-/*! \brief Add pointer to a string to the GedaList if not already in list
- *
- *  \par Function Description
+/*!
+ * \brief Add pointer to a string to the GedaList if not already in list
+ * \par Function Description
  *  Adds the given item to the GedaList if the string is not found
  *  in the data associated with the list.
  *
- *  \param [in] list Pointer to the GedaList
- *  \param [in] text string to add to the GedaList
+ * \param [in] list Pointer to the GedaList
+ * \param [in] text string to add to the GedaList
  *
- *  \returns TRUE if the string pointer was added
+ * \returns TRUE if the string pointer was added
  */
 bool geda_list_add_unique_string (GedaList *list, char  *text)
 {
@@ -286,14 +286,14 @@ bool geda_list_add_unique_string (GedaList *list, char  *text)
   return !found;
 }
 
-/*! \brief Returns a copy of the glist associated with the given GedaList
- *
- *  \par Function Description
+/*!
+ * \brief Returns a copy of the glist associated with the given GedaList
+ * \par Function Description
  *  A copy is made of the glist and returned
  *
- *  \param [in] list Pointer to the GedaList
+ * \param [in] list Pointer to the GedaList
  *
- *  \retval pointer to copy of a Glist  the GedaList.
+ * \retval pointer to copy of a Glist  the GedaList.
  */
 GList *geda_list_copy_glist(GedaList *list)
 {
@@ -301,30 +301,30 @@ GList *geda_list_copy_glist(GedaList *list)
 }
 
 
-/*! \brief Find a given item in a GedaList
- *
- *  \par Function Description
+/*!
+ * \brief Find a given item in a GedaList
+ * \par Function Description
  *  Searches a GedaList for the item and returns the
  *  item if found or NULL if the item was not in the list.
  *
- *  \param [in] list Pointer to the GedaList
- *  \param [in] item to find for in the GedaList.
+ * \param [in] list Pointer to the GedaList
+ * \param [in] item to find for in the GedaList.
  */
 void *geda_list_find(GedaList *list, void *item)
 {
   return g_list_find(list->glist, item);
 }
 
-/*! \brief Are all GedaObjects in a GedaList the same type
- *
- *  \par Function Description
+/*!
+ * \brief Are all GedaObjects in a GedaList the same type
+ * \par Function Description
  *  Iterates \a list comparing the type of objects to the first
  *  object. Returns FALSE if the first element was not a valid
  *  GedaObject or any objects thereafter were not of the same type.
  *
- *  \param [in] list Pointer to the GedaList
+ * \param [in] list Pointer to the GedaList
  *
- *  \return TRUE if all elements are objects of the same type
+ * \return TRUE if all elements are objects of the same type
  */
 int geda_list_is_homogeneous_objects (GedaList *list)
 {
@@ -379,28 +379,27 @@ int geda_list_is_homogeneous_objects (GedaList *list)
   return answer;
 }
 
-
-/*! \brief Get is a given item in a GedaList
- *
- *  \par Function Description
+/*!
+ * \brief Get is a given item in a GedaList
+ * \par Function Description
  *  Searches a GedaList for the item and returns TRUE
  *  if found or FALSE of the item was not in the list.
  *
- *  \param [in] list Pointer to the GedaList
- *  \param [in] item to find for in the GedaList.
+ * \param [in] list Pointer to the GedaList
+ * \param [in] item to find for in the GedaList.
  */
 bool geda_list_is_in_list(GedaList *list, void *item)
 {
   return g_list_find(list->glist, item) ? 1 : 0;
 }
 
-/*! \brief Prepends the given item to the GedaList
- *
- *  \par Function Description
+/*!
+ * \brief Prepends the given item to the GedaList
+ * \par Function Description
  *  Prepends the given item to the GedaList
  *
- *  \param [in] list Pointer to the GedaList
- *  \param [in] item item to prepend to the GedaList.
+ * \param [in] list Pointer to the GedaList
+ * \param [in] item item to prepend to the GedaList.
  */
 void geda_list_prepend(GedaList *list, void *item)
 {
@@ -408,17 +407,17 @@ void geda_list_prepend(GedaList *list, void *item)
   g_signal_emit(list, geda_list_signals[ CHANGED ], 0);
 }
 
-/*! \brief Removes the given item from the GedaList
- *
- *  \par Function Description
+/*!
+ * \brief Removes the given item from the GedaList
+ * \par Function Description
  *  Removes the given item from the GedaList.
  *  It's ok to call this function with an item which
  *  is not necessarily in the list.
  *
- *  \param [in] list Pointer to the GedaList
- *  \param [in] item to remove from the GedaList.
+ * \param [in] list Pointer to the GedaList
+ * \param [in] item to remove from the GedaList.
  *
- *  \note Only removes the first instance of item.
+ * \note Only removes the first instance of item.
  */
 void geda_list_remove(GedaList *list, void *item)
 {
@@ -429,12 +428,12 @@ void geda_list_remove(GedaList *list, void *item)
   }
 }
 
-/*! \brief Removes all the items in the given GedaList.
- *
- *  \par Function Description
+/*!
+ * \brief Removes all the items in the given GedaList.
+ * \par Function Description
  *  Removes all items in the given GedaList.
  *
- *  \param [in] list Pointer to the GedaList
+ * \param [in] list Pointer to the GedaList
  */
 void geda_list_remove_all(GedaList *list)
 {
@@ -443,12 +442,12 @@ void geda_list_remove_all(GedaList *list)
   g_signal_emit(list, geda_list_signals[ CHANGED ], 0);
 }
 
-/*! \brief Reduce reference count of given GedaList by one.
- *
- *  \par Function Description
+/*!
+ * \brief Reduce reference count of given GedaList by one.
+ * \par Function Description
  *   Calls g_object_unref GedaList \a list.
  *
- *  \param [in] list Pointer to the GedaList
+ * \param [in] list Pointer to the GedaList
  */
 void geda_list_unref (GedaList *list)
 {
