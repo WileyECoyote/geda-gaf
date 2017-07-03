@@ -3593,12 +3593,11 @@ geda_keyfile_has_group (GedaKeyFile *key_file,
 /* This code remains from a historical attempt to add a new public API
  * which respects the GError rules.
  */
-static bool
-geda_keyfile_has_key_full (GedaKeyFile *key_file,
-                           const char  *group_name,
-                           const char  *key,
-                           bool        *has_key,
-                           GedaKeyFileGroup *group)
+static bool geda_keyfile_has_key_full (GedaKeyFile *key_file,
+                                       const char  *group_name,
+                                       const char  *key,
+                                       bool        *has_key,
+                                       GedaKeyFileGroup *group)
 {
   GedaKeyFilePair *pair;
 
@@ -3626,11 +3625,10 @@ geda_keyfile_has_key_full (GedaKeyFile *key_file,
  *
  * \returns %TRUE if \a key is a part of \a group_name, otherwise %FALSE
  */
-bool
-geda_keyfile_has_key (GedaKeyFile *key_file,
-                      const char  *group_name,
-                      const char  *key,
-                      GError      **error)
+bool geda_keyfile_has_key (GedaKeyFile *key_file,
+                           const char  *group_name,
+                           const char  *key,
+                           GError      **error)
 {
   bool has_key;
 
@@ -3660,8 +3658,7 @@ geda_keyfile_has_key (GedaKeyFile *key_file,
   return FALSE;
 }
 
-static void
-geda_keyfile_add_group (GedaKeyFile *key_file, const char *group_name)
+static void geda_keyfile_add_group (GedaKeyFile *key_file, const char *group_name)
 {
   GedaKeyFileGroup *group;
 
@@ -3689,8 +3686,7 @@ geda_keyfile_add_group (GedaKeyFile *key_file, const char *group_name)
   g_hash_table_insert (key_file->group_hash, (gpointer)group->name, group);
 }
 
-static void
-geda_keyfile_pair_free (GedaKeyFilePair *pair)
+static void geda_keyfile_pair_free (GedaKeyFilePair *pair)
 {
   if (pair != NULL) {
     GEDA_FREE (pair->key);
@@ -3708,10 +3704,9 @@ geda_keyfile_pair_free (GedaKeyFilePair *pair)
  *   - the entire lookup map is getting destroyed soon after
  *     anyway.
  */
-static void
-geda_keyfile_remove_key_value_pair_node (GedaKeyFile      *key_file,
-                                         GedaKeyFileGroup *group,
-                                         GList            *pair_node)
+static void geda_keyfile_remove_key_value_pair_node (GedaKeyFile      *key_file,
+                                                     GedaKeyFileGroup *group,
+                                                     GList            *pair_node)
 {
   GedaKeyFilePair *pair;
 
@@ -3726,8 +3721,7 @@ geda_keyfile_remove_key_value_pair_node (GedaKeyFile      *key_file,
   g_list_free_1 (pair_node);
 }
 
-static void
-geda_keyfile_remove_group_node (GedaKeyFile *key_file, GList *group_node)
+static void geda_keyfile_remove_group_node (GedaKeyFile *key_file, GList *group_node)
 {
   GedaKeyFileGroup *group;
   GList *tmp;
@@ -3819,10 +3813,9 @@ geda_keyfile_remove_group_node (GedaKeyFile *key_file, GList *group_node)
  *
  * \returns %TRUE if the group was removed, %FALSE otherwise
  */
-bool
-geda_keyfile_remove_group (GedaKeyFile *key_file,
-                           const char  *group_name,
-                           GError     **error)
+bool geda_keyfile_remove_group (GedaKeyFile *key_file,
+                                const char  *group_name,
+                                GError     **error)
 {
   GList *group_node;
 
@@ -3847,20 +3840,18 @@ geda_keyfile_remove_group (GedaKeyFile *key_file,
   return TRUE;
 }
 
-static void
-geda_keyfile_add_key_value_pair (GedaKeyFile      *key_file,
-                                 GedaKeyFileGroup *group,
-                                 GedaKeyFilePair  *pair)
+static void geda_keyfile_add_key_value_pair (GedaKeyFile      *key_file,
+                                             GedaKeyFileGroup *group,
+                                             GedaKeyFilePair  *pair)
 {
   g_hash_table_replace (group->lookup_map, pair->key, pair);
   group->key_value_pairs = g_list_prepend (group->key_value_pairs, pair);
 }
 
-static void
-geda_keyfile_add_key (GedaKeyFile      *key_file,
-                      GedaKeyFileGroup *group,
-                      const char       *key,
-                      const char       *value)
+static void geda_keyfile_add_key (GedaKeyFile      *key_file,
+                                  GedaKeyFileGroup *group,
+                                  const char       *key,
+                                  const char       *value)
 {
   GedaKeyFilePair *pair;
 
@@ -3883,11 +3874,10 @@ geda_keyfile_add_key (GedaKeyFile      *key_file,
  *
  * \returns %TRUE if the key was removed, %FALSE otherwise
  */
-bool
-geda_keyfile_remove_key (GedaKeyFile *key_file,
-                         const char  *group_name,
-                         const char  *key,
-                         GError      **error)
+bool geda_keyfile_remove_key (GedaKeyFile *key_file,
+                              const char  *group_name,
+                              const char  *key,
+                              GError      **error)
 {
   GedaKeyFileGroup *group;
   GedaKeyFilePair *pair;
@@ -3929,8 +3919,8 @@ geda_keyfile_remove_key (GedaKeyFile *key_file,
   return TRUE;
 }
 
-static GList *
-geda_keyfile_lookup_group_node (GedaKeyFile *key_file, const char *group_name)
+static GList *geda_keyfile_lookup_group_node (GedaKeyFile *key_file,
+                                              const char  *group_name)
 {
   GList *tmp;
 
@@ -3945,16 +3935,15 @@ geda_keyfile_lookup_group_node (GedaKeyFile *key_file, const char *group_name)
   return tmp;
 }
 
-static GedaKeyFileGroup *
-geda_keyfile_lookup_group (GedaKeyFile *key_file, const char *group_name)
+static GedaKeyFileGroup *geda_keyfile_lookup_group (GedaKeyFile *key_file,
+                                                    const char  *group_name)
 {
   return (GedaKeyFileGroup*)g_hash_table_lookup (key_file->group_hash, group_name);
 }
 
-static GList *
-geda_keyfile_lookup_key_value_pair_node (GedaKeyFile      *key_file,
-                                         GedaKeyFileGroup *group,
-                                         const char       *key)
+static GList *geda_keyfile_lookup_key_value_pair_node (GedaKeyFile      *key_file,
+                                                       GedaKeyFileGroup *group,
+                                                       const char       *key)
 {
   GList *node;
 
@@ -3971,10 +3960,9 @@ geda_keyfile_lookup_key_value_pair_node (GedaKeyFile      *key_file,
   return node;
 }
 
-static GedaKeyFilePair*
-geda_keyfile_lookup_key_value_pair (GedaKeyFile      *key_file,
-                                    GedaKeyFileGroup *group,
-                                    const char       *key)
+static GedaKeyFilePair *geda_keyfile_lookup_key_value_pair (GedaKeyFile      *key_file,
+                                                            GedaKeyFileGroup *group,
+                                                            const char       *key)
 {
   return (GedaKeyFilePair*) g_hash_table_lookup (group->lookup_map, key);
 }
@@ -3983,14 +3971,12 @@ geda_keyfile_lookup_key_value_pair (GedaKeyFile      *key_file,
  * recorded, not parsed. This function assumes all leading whitespace
  * has been stripped.
  */
-static bool
-geda_keyfile_line_is_comment (const char *line)
+static bool geda_keyfile_line_is_comment (const char *line)
 {
   return (*line == '#' || *line == '\0' || *line == '\n');
 }
 
-static bool
-geda_keyfile_is_group_name (const char *name)
+static bool geda_keyfile_is_group_name (const char *name)
 {
   char *p, *q;
 
@@ -4006,8 +3992,7 @@ geda_keyfile_is_group_name (const char *name)
   return (*q != '\0' || q == p) ? FALSE : TRUE;
 }
 
-static bool
-geda_keyfile_is_key_name (const char *name)
+static bool geda_keyfile_is_key_name (const char *name)
 {
   char *p, *q;
 
@@ -4054,8 +4039,7 @@ geda_keyfile_is_key_name (const char *name)
 /* A group in a key file is made up of a starting '[' followed by one
  * or more letters making up the group name followed by ']'.
  */
-static bool
-geda_keyfile_line_is_group (const char *line)
+static bool geda_keyfile_line_is_group (const char *line)
 {
   char *p;
 
@@ -4084,8 +4068,7 @@ geda_keyfile_line_is_group (const char *line)
   return (*p) ? FALSE : TRUE;
 }
 
-static bool
-geda_keyfile_line_is_key_value_pair (const char *line)
+static bool geda_keyfile_line_is_key_value_pair (const char *line)
 {
   char *p;
 
@@ -4098,11 +4081,10 @@ geda_keyfile_line_is_key_value_pair (const char *line)
   return (*p == line[0]) ? FALSE : TRUE;
 }
 
-static char*
-geda_keyfile_parse_value_as_string (GedaKeyFile *key_file,
-                                    const char  *value,
-                                    GSList      **pieces,
-                                    GError      **error)
+static char *geda_keyfile_parse_value_as_string (GedaKeyFile *key_file,
+                                                 const char  *value,
+                                                 GSList      **pieces,
+                                                 GError      **error)
 {
   char *string_value, *p, *q0, *q;
 
@@ -4203,10 +4185,9 @@ geda_keyfile_parse_value_as_string (GedaKeyFile *key_file,
   return string_value;
 }
 
-static char*
-geda_keyfile_parse_string_as_value (GedaKeyFile *key_file,
-                                    const char  *string,
-                                    bool         escape_separator)
+static char *geda_keyfile_parse_string_as_value (GedaKeyFile *key_file,
+                                                 const char  *string,
+                                                 bool         escape_separator)
 {
   char *value, *p, *q;
   unsigned int  length;
@@ -4288,10 +4269,9 @@ geda_keyfile_parse_string_as_value (GedaKeyFile *key_file,
   return value;
 }
 
-static int
-geda_keyfile_parse_value_as_integer (GedaKeyFile *key_file,
-                                     const char  *value,
-                                     GError      **error)
+static int geda_keyfile_parse_value_as_integer (GedaKeyFile *key_file,
+                                                const char  *value,
+                                                GError      **error)
 {
   char *eof_int;
   long  long_value;
@@ -4330,17 +4310,16 @@ geda_keyfile_parse_value_as_integer (GedaKeyFile *key_file,
   return int_value;
 }
 
-static char*
-geda_keyfile_parse_integer_as_value (GedaKeyFile *key_file, int value)
+static char *geda_keyfile_parse_integer_as_value (GedaKeyFile *key_file,
+                                                          int  value)
 
 {
   return geda_sprintf ("%d", value);
 }
 
-static double
-geda_keyfile_parse_value_as_double  (GedaKeyFile *key_file,
-                                     const char  *value,
-                                     GError      **error)
+static double geda_keyfile_parse_value_as_double  (GedaKeyFile  *key_file,
+                                                   const char   *value,
+                                                   GError      **error)
 {
   char *end_of_valid_d;
   double double_value = 0;
@@ -4361,10 +4340,9 @@ geda_keyfile_parse_value_as_double  (GedaKeyFile *key_file,
   return double_value;
 }
 
-static bool
-geda_keyfile_parse_value_as_boolean (GedaKeyFile *key_file,
-                                     const char  *value,
-                                     GError     **error)
+static bool geda_keyfile_parse_value_as_boolean (GedaKeyFile *key_file,
+                                                 const char  *value,
+                                                 GError     **error)
 {
   char *value_utf8;
 
@@ -4384,8 +4362,8 @@ geda_keyfile_parse_value_as_boolean (GedaKeyFile *key_file,
   return FALSE;
 }
 
-static char*
-geda_keyfile_parse_boolean_as_value (GedaKeyFile *key_file, bool value)
+static char *geda_keyfile_parse_boolean_as_value (GedaKeyFile *key_file,
+                                                         bool  value)
 {
   if (value) {
     return geda_strdup ("true");
@@ -4395,8 +4373,8 @@ geda_keyfile_parse_boolean_as_value (GedaKeyFile *key_file, bool value)
   }
 }
 
-static char*
-geda_keyfile_parse_value_as_comment (GedaKeyFile *key_file, const char *value)
+static char *geda_keyfile_parse_value_as_comment (GedaKeyFile *key_file,
+                                                   const char *value)
 {
   GString *string;
   char **lines;
@@ -4420,8 +4398,8 @@ geda_keyfile_parse_value_as_comment (GedaKeyFile *key_file, const char *value)
   return g_string_free (string, FALSE);
 }
 
-static char*
-geda_keyfile_parse_comment_as_value (GedaKeyFile *key_file, const char *comment)
+static char *geda_keyfile_parse_comment_as_value (GedaKeyFile *key_file,
+                                                   const char *comment)
 {
   GString *string;
   char **lines;
