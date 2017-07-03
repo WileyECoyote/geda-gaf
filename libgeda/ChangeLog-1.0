@@ -1,5 +1,7 @@
 2017-07-02 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_circle.c: Reformat Doxygen comment blocks.
+
     * src/geda/geda_complex.c: Add template Doxygen comment blocks.
 
     * src/geda/geda_errors.c: Update function wrapping.

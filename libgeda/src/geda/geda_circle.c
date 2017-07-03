@@ -66,13 +66,12 @@ enum {
 
 static GObjectClass *geda_circle_parent_class = NULL;
 
-/*! \brief Get circle bounding rectangle
- *
- *  \par Function Description
+/*!
+ * \brief Get circle bounding rectangle
+ * \par Function Description
  *  Sets the <B>left</B>, <B>top</B>, <B>right</B> and <B>bottom</B>
  *  parameters to the boundings of the circle object described in
  *  the \a circle in world units.
- *
  */
 int geda_circle_bounds(GedaObject *object)
 {
@@ -96,10 +95,11 @@ static void geda_circle_dispose(GObject *object)
   G_OBJECT_CLASS(geda_circle_parent_class)->dispose(object);
 }
 
-/*! \brief Geda Circle GedaObject Finalization Function
- *  \par Function Description
- *   Invalidates the Circle and then chains up to the parent's
- *   finalize handler. Once invalidated, GEDA_IS_CIRCLE will fail.
+/*!
+ * \brief Geda Circle GedaObject Finalization Function
+ * \par Function Description
+ *  Invalidates the Circle and then chains up to the parent's
+ *  finalize handler. Once invalidated, GEDA_IS_CIRCLE will fail.
  */
 static void geda_circle_finalize(GObject *object)
 {
@@ -257,14 +257,15 @@ static void set_property (GObject *object, unsigned int  prop_id,
   }
 }
 
-/*! \brief Type instance initializer for GedaCircle
- *
- *  \par Function Description
+/*!
+ * \brief Type instance initializer for GedaCircle
+ * \par Function Description
  *  Type instance initializer for GedaCircle, initializes a new empty
  *  GedaCircle object by setting pointers to NULL and numbers to zero.
  *
- *  \param [in] instance The GedaCircle structure being initialized,
- *  \param [in] class    The GedaCircle class we are initializing.
+ * \param [in] instance The GedaCircle structure being initialized,
+ *
+ * \param [in] class    The GedaCircle class we are initializing.
  */
 static void geda_circle_instance_init(GTypeInstance *instance, void *class)
 {
@@ -293,14 +294,14 @@ static void geda_circle_instance_init(GTypeInstance *instance, void *class)
   object->line_options              = &circle->line_options;
 }
 
-/*! \brief Type class initializer for GedaCircle
- *
- *  \par Function Description
+/*!
+ * \brief Type class initializer for GedaCircle
+ * \par Function Description
  *  Type class initializer for GedaCircle. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- *  \param [in]  klass       The GedaCircle class we are initializing
- *  \param [in]  class_data  The Circle structure associated with the class
+ * \param [in]  klass       The GedaCircle class we are initializing
+ * \param [in]  class_data  The Circle structure associated with the class
  */
 static void geda_circle_class_init(void *klass, void *class_data)
 {
@@ -463,16 +464,16 @@ static void geda_circle_class_init(void *klass, void *class_data)
   g_object_class_install_property (object_class, PROP_FILL_PITCH2, params);
 }
 
-/*! \brief Function to retrieve GedaCircle's Type identifier.
- *
- *  \par Function Description
+/*!
+ * \brief Function to retrieve GedaCircle's Type identifier.
+ * \par Function Description
  *  Function to retrieve a #GedaCircle Type identifier. When first called,
  *  the function registers a #GedaCircle in the GedaType system to obtain
  *  an identifier that uniquely itentifies a GedaCircle and returns the
  *  unsigned integer value. The retained value is returned on all
  *  Subsequent calls.
  *
- *  \return GedaType identifier associated with GedaCircle.
+ * \return GedaType identifier associated with GedaCircle.
  */
 GedaType geda_circle_get_type (void)
 {
@@ -504,12 +505,12 @@ GedaType geda_circle_get_type (void)
   return geda_circle_type;
 }
 
-/*! \brief Returns a pointer to a new Circle object.
- *
- *  \par Function Description
+/*!
+ * \brief Returns a pointer to a new Circle object.
+ * \par Function Description
  *  Returns a pointer to a new Circle object.
  *
- *  \return pointer to the new Circle object.
+ * \return pointer to the new Circle object.
  */
 GedaObject *geda_circle_new (void)
 {
@@ -520,12 +521,12 @@ GedaObject *geda_circle_new (void)
   return GEDA_OBJECT(circle);
 }
 
-/*! \brief Determine if object is a GedaCircle.
- *
- *  \par Function Description
+/*!
+ * \brief Determine if object is a GedaCircle.
+ * \par Function Description
  *  Returns true if the argument is a Geda Circle object.
  *
- *  \return boolean.
+ * \return boolean.
  */
 bool is_a_geda_circle (const GedaCircle *cir)
 {
