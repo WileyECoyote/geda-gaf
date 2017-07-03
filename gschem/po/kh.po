@@ -3304,7 +3304,8 @@ msgstr "bet baek meunouy bribt chambong chomnuoy"
 # Try fixing the focus on a menu item that does not exist
 #: gschem/src/x/x_menus.c:1392
 msgid "Tried to set the sensitivity on non-existent menu item"
-msgstr "pyeayeam chuosachoul kar phtao t arommo leu theato meunouy del min mean"
+msgstr ""
+"pyeayeam chuosachoul kar phtao t arommo leu theato meunouy del min mean"
 
 # Excessive errors
 #: gschem/src/x/x_menus.c:1403
@@ -3947,21 +3948,25 @@ msgstr ""
 msgid "_New"
 msgstr "Thmei"
 
+# Create a new empty file
 #: gschem/etc/system-gschemrc.scm:2068
 msgid "Create a new empty file"
-msgstr ""
+msgstr "bangkeut eksar tte thmei"
 
+# Open
 #: gschem/etc/system-gschemrc.scm:2069 gschem/etc/system-gschemrc.scm:2277
 msgid "_Open..."
-msgstr ""
+msgstr "baek..."
 
+# Open Recent
 #: gschem/etc/system-gschemrc.scm:2070
 msgid "Open Recen_t"
-msgstr ""
+msgstr "baek thmei"
 
+# Open recently accessed schematic or symbol files
 #: gschem/etc/system-gschemrc.scm:2070
 msgid "Open recently accessed schematic or symbol files"
-msgstr ""
+msgstr "baek eksar schematic  ryy nimittasanhnhea del ban chaul damnaerkar thmei"
 
 #: gschem/etc/system-gschemrc.scm:2074 gschem/etc/system-gschemrc.scm:2280
 msgid "_Save"
@@ -3971,25 +3976,28 @@ msgstr "Roksaatouk"
 msgid "Save _As..."
 msgstr "roksaatouk Chea..."
 
+# Save the current document to a new name or location
 #: gschem/etc/system-gschemrc.scm:2075
 msgid "Save the current document to a new name or location"
-msgstr ""
+msgstr "roksaatouk eksar bachchobbann tow chea chhmoh ryy titeang thmei"
 
 #: gschem/etc/system-gschemrc.scm:2076
 msgid "Save A_ll"
 msgstr "eksar teangoasa trauv ban roksaatouk"
 
+# Save all open documents
 #: gschem/etc/system-gschemrc.scm:2076
 msgid "Save all open documents"
-msgstr ""
+msgstr "roksaatouk eksar del baek teangoasa"
 
 #: gschem/etc/system-gschemrc.scm:2077
 msgid "Save _Modified"
 msgstr "breachy knong kar roksaatouk samyobrachoum"
 
+# Save all modified documents
 #: gschem/etc/system-gschemrc.scm:2077
 msgid "Save all modified documents"
-msgstr ""
+msgstr "roksaatouk eksar del ban kebre teangoasa"
 
 #: gschem/etc/system-gschemrc.scm:2078 gschem/etc/system-gschemrc.scm:2239
 msgid "_Revert"
@@ -4016,17 +4024,19 @@ msgstr "baohpoum..."
 msgid "Print the current document"
 msgstr "baohpoump eksar bachchobban"
 
+# Export options
 #: gschem/etc/system-gschemrc.scm:2083
 msgid "Export options"
-msgstr ""
+msgstr "chomreusa neachenh"
 
 #: gschem/etc/system-gschemrc.scm:2084
 msgid "Write p_df"
 msgstr "sarser chea PDF"
 
+# Create PDF document
 #: gschem/etc/system-gschemrc.scm:2084
 msgid "Create PDF document"
-msgstr ""
+msgstr "bangkeut eksar PDF"
 
 #: gschem/etc/system-gschemrc.scm:2085
 msgid "Write _image..."
@@ -4036,9 +4046,10 @@ msgstr "roubpheap del ban sarser..."
 msgid "Export image"
 msgstr "banthem roubpheap"
 
+# Execute Script
 #: gschem/etc/system-gschemrc.scm:2088
 msgid "E_xecute Script..."
-msgstr "..."
+msgstr "bratebatte skrib..."
 
 #: gschem/etc/system-gschemrc.scm:2088
 msgid "Execute a script file"
