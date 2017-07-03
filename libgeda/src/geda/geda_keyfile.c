@@ -2833,7 +2833,7 @@ geda_keyfile_set_integer_list (GedaKeyFile *key_file,
  * with \a key cannot be interpreted as a double then 0.0 is returned
  * and \a error is set to #GEDA_KEYFILE_ERROR_INVALID_VALUE.
  *
- * \returns the value associated with the key as a double, or
+ * \returns The value associated with the key as a double, or
  *          0.0 if the key was not found or could not be parsed.
  */
 double
@@ -2926,7 +2926,7 @@ geda_keyfile_set_double  (GedaKeyFile    *key_file,
  * \param [out] length      the number of doubles returned
  * \param [out] error       Location for a GError
  *
- * \returns the values associated with the key as a list of doubles, or %NULL
+ * \returns The values associated with the key as a list of doubles, or %NULL
  *          if the key was not found or could not be parsed. The returned list
  *          of doubles should be freed with GEDA_FREE() when no longer needed.
  */
@@ -3575,8 +3575,7 @@ geda_keyfile_remove_comment (GedaKeyFile *key_file,
  * \param [in] key_file    a #GedaKeyFile object
  * \param [in] group_name  Pointer to a group name
  *
- * \returns %TRUE if \a group_name is a part of \a key_file, %FALSE
- *          otherwise.
+ * \returns %TRUE if \a group_name is a part of \a key_file, otherwise %FALSE.
  */
 bool
 geda_keyfile_has_group (GedaKeyFile *key_file,
