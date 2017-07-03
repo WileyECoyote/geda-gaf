@@ -7265,20 +7265,28 @@ geda_combo_widget_set_wrap_width (GtkWidget *combo_box, int width) {
  *  @{
  */
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Retrieve the Active #GedaComboBox Widget item
+ * \par Function Description
+ * \see geda_combo_box_get_active
  *
+ * \param [in] combo_box A #GedaComboBox
+ *
+ * \return An integer value which is the index of the currently active item,
+ *         or -1 if there's no active item.
  */
 int
 geda_combo_widget_get_active (GtkWidget *combo_box) {
   return geda_combo_box_get_active((GedaComboBox*)combo_box);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Set the Active #GedaComboBox Widget item
+ * \par Function Description
+ * \see geda_combo_box_set_active
  *
+ * \param [in] combo_box A #GedaComboBox
+ * \param [in] index     Interger index of item to be set active
  */
 void
 geda_combo_widget_set_active (GtkWidget *combo_box, int index) {
