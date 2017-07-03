@@ -33,6 +33,7 @@
 #include <libgeda/libgeda.h>
 #include <geda/geda_standard.h>
 
+#include "../../include/geda_container.h"
 #include "../../include/geda_gtk_compat.h"
 #include "../../include/geda_image_menu_item.h"
 #include "../../include/geda_menu_bar.h"
@@ -1109,10 +1110,9 @@ geda_image_menu_item_set_image (GedaImageMenuItem *image_menu_item,
   if (image == image_menu_item->image)
     return;
 
-  if (image_menu_item->image) {
-    gtk_container_remove ((GtkContainer*)image_menu_item,
-                          image_menu_item->image);
-  }
+    if (image_menu_item->image) {
+      geda_container_remove (image_menu_item, image_menu_item->image);
+    }
 
   image_menu_item->image = image;
 
