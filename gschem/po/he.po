@@ -595,10 +595,10 @@ msgstr ""
 msgid "Canceled close all\n"
 msgstr ""
 
+# Closing all documents
 #: gschem/src/iface/i_command.c:1220 gschem/src/iface/i_sessions.c:193
-#, fuzzy
 msgid "Closing all documents\n"
-msgstr "סגור דף"
+msgstr "סוגר את כל המסמכים\n"
 
 #: gschem/src/iface/i_command.c:1243
 msgid "gschem: starting shut-down\n"
@@ -616,10 +616,10 @@ msgstr ""
 msgid "Empty buffer"
 msgstr ""
 
+# Offset Mode
 #: gschem/src/iface/i_command.c:1677
-#, fuzzy
 msgid "Offset Mode"
-msgstr "מצב בחירה"
+msgstr "מצב אופסט"
 
 #: gschem/src/iface/i_command.c:1678
 msgid "Specify offset distance:"
@@ -654,10 +654,10 @@ msgstr ""
 msgid "Failed to descend into"
 msgstr ""
 
+# Hierarchy Error
 #: gschem/src/iface/i_command.c:3076
-#, fuzzy
 msgid "Hierarchy Error"
-msgstr "היררכיה"
+msgstr "שגיאת היררכיה"
 
 #: gschem/src/iface/i_command.c:3153
 msgid "Searching for symbol"
@@ -783,20 +783,20 @@ msgstr ""
 msgid "is not accessible"
 msgstr ""
 
+# File
 #: gschem/src/iface/i_sessions.c:272
-#, fuzzy
 msgid "File"
-msgstr "קובץ"
+msgstr "קוֹבֶץ"
 
 #: gschem/src/iface/i_sessions.c:335
 msgid "Warning relative file names detected in session"
 msgstr ""
 
+# Session
 #: gschem/src/iface/i_sessions.c:346 gschem/src/iface/i_sessions.c:359
 #: gschem/src/iface/i_sessions.c:935 gschem/src/x/x_sessions.c:234
-#, fuzzy
 msgid "Session"
-msgstr "שמור הכל"
+msgstr "מוֹשָׁב"
 
 #: gschem/src/iface/i_sessions.c:347
 msgid "opening"
@@ -5395,10 +5395,10 @@ msgstr ""
 msgid "Turn Snap on"
 msgstr ""
 
+# Cycle Snap Mode
 #: gschem/scheme/gschem/builtins.scm:493
-#, fuzzy
 msgid "Cycle Snap Mode"
-msgstr "מצב העתקה"
+msgstr "מצב הצמד מחזור"
 
 #: gschem/scheme/gschem/builtins.scm:496
 msgid "Toggle Net Rubber Band"
@@ -5503,11 +5503,3 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
-
-#, fuzzy
-#~ msgid "session"
-#~ msgstr "שמור הכל"
-
-#, fuzzy
-#~ msgid "documents\n"
-#~ msgstr "סגור דף"
