@@ -5619,7 +5619,7 @@ geda_combo_box_set_active (GedaComboBox *combo_box, int index)
  * \param [in]  combobox  A #GedaComboBox
  * \param [out] iter      The uninitialized <b>GtkTreeIter</b>
  *
- * \return value: %TRUE, if \a iter was set
+ * \retval %TRUE, if \a iter was set
  */
 bool geda_combo_box_get_active_iter (GedaComboBox *combobox, GtkTreeIter *iter)
 {
@@ -7125,10 +7125,13 @@ geda_combo_widget_set_title (GtkWidget *combo_box, const char  *title) {
   return geda_combo_box_set_title((GedaComboBox*)combo_box, title);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief Set the Tool Tip Column on the Combo Widget
- *  \par Function Description
+/*!
+ * \brief Set GedaComboBox Tooltip Column
+ * \par Function Description
+ *  Sets the index of the column containing tooltip text.
  *
+ * \param [in] combo_box a #GedaComboBox
+ * \param [in] column    Index of column containing tooltip text
  */
 void
 geda_combo_widget_set_tooltip_column (GtkWidget *combo_box, int column) {
@@ -7208,21 +7211,29 @@ void geda_combo_widget_set_active (GtkWidget *combo_box, int index) {
   return geda_combo_box_set_active((GedaComboBox*)combo_box, index);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Retrieve the Active iter from a #GedaComboBox Widget
+ * \par Function Description
+ * \see geda_combo_box_get_active_iter
  *
+ * \param [in] combo_box A #GedaComboBox
+ *
+ * \retval %TRUE, if \a iter was set
  */
-bool geda_combo_widget_get_active_iter(GtkWidget *combo, GtkTreeIter *iter) {
+bool geda_combo_widget_get_active_iter(GtkWidget *combo, GtkTreeIter *iter)
+{
   return geda_combo_box_get_active_iter((GedaComboBox*)combo, iter);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Set the #GedaComboBox Widget Active iter
+ * \par Function Description
+ * \see geda_combo_box_set_active_iter
  *
+ * \param [in] combo_box A #GedaComboBox
  */
-void geda_combo_widget_set_active_iter(GtkWidget *combo, GtkTreeIter *iter) {
+void geda_combo_widget_set_active_iter(GtkWidget *combo, GtkTreeIter *iter)
+{
   return geda_combo_box_set_active_iter((GedaComboBox*)combo, iter);
 }
 

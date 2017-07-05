@@ -1,6 +1,10 @@
 2017-07-05 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/widgets/geda_combobox.c: Update function wrapping.
+    * src/widgets/geda_combobox.c: Update function wrapping. Update Doxygen
+      comments for:
+
+          * geda_combo_widget_get_active_iter
+          * geda_combo_widget_set_active_iter
 
 2017-07-04 Wiley E. Hill <wileyhill@gmail.com>
 
