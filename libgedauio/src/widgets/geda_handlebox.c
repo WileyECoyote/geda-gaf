@@ -637,9 +637,13 @@ geda_handle_box_reattach (GedaHandleBox *handlebox)
     if (gtk_widget_get_realized (widget)) {
 
       GtkWidget *child;
+      GdkWindow *window;
 
       gdk_window_hide (handlebox->float_window);
-      gdk_window_reparent (handlebox->bin_window, widget->window, 0, 0);
+
+      window = geda_get_widget_window(widget);
+
+      gdk_window_reparent (handlebox->bin_window, window, 0, 0);
 
       child = geda_get_child_widget(handlebox);
 

@@ -1,7 +1,8 @@
 2017-07-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_handlebox.c: Add template Doxygen comment blocks. Remove
-      unneeded type checking cast to GtkInvisible.
+      unneeded type checking cast to GtkInvisible. Revise geda_handle_box_reattach
+      to use geda_get_widget_window.
 
 2017-07-03 Wiley E. Hill <wileyhill@gmail.com>
 
