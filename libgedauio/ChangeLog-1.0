@@ -5,6 +5,8 @@
       to use geda_get_widget_window. Reduce cope of handlebox in geda_handle_box_
       button_press.
 
+    * tests/test_menu.c: Replace geda_menu_shell_append with geda_menu_append.
+
 2017-07-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_image_menu_item.c: Include geda_container.h and utilize

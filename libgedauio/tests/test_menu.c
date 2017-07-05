@@ -136,15 +136,15 @@ check_accessors ()
   geda_menu_append (menu_bar, widget0);
 
   widget1    = geda_menu_item_new_with_mnemonic("_Cherry");
-  geda_menu_shell_append (GEDA_MENU_SHELL (menu), widget1);
+  geda_menu_append (menu, widget1);
   gtk_widget_show (widget1);
 
   widget2    = geda_menu_item_new_with_mnemonic("_Apple");
-  geda_menu_shell_append (GEDA_MENU_SHELL (menu), widget2);
+  geda_menu_append (menu, widget2);
   gtk_widget_show (widget2);
 
   widget3    = geda_menu_item_new_with_mnemonic("_Pears");
-  geda_menu_shell_append (GEDA_MENU_SHELL (menu), widget3);
+  geda_menu_append (menu, widget3);
   gtk_widget_show (widget3);
 
   gtk_widget_show (menu);
