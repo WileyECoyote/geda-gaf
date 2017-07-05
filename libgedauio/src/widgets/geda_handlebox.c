@@ -609,7 +609,7 @@ geda_handle_box_grab_event(GtkWidget *widget, GdkEvent *event, GedaHandleBox *ha
       break;
 
     case GDK_MOTION_NOTIFY:
-      return geda_handle_box_motion (GTK_WIDGET(handlebox), (GdkEventMotion *)event);
+      return geda_handle_box_motion ((GtkWidget*)handlebox, (GdkEventMotion*)event);
       break;
 
     default:
