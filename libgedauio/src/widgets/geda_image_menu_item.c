@@ -120,8 +120,8 @@ static void *geda_image_menu_item_parent_class = NULL;
 
 static GHashTable *image_menu_item_hash = NULL;
 
-static bool
-activatable_update_stock_id (GedaImageMenuItem *image_menu_item, GtkAction *action)
+static bool activatable_update_stock_id (GedaImageMenuItem *image_menu_item,
+                                                 GtkAction *action)
 {
   const char *stock_id  = gtk_action_get_stock_id (action);
 
@@ -140,8 +140,8 @@ activatable_update_stock_id (GedaImageMenuItem *image_menu_item, GtkAction *acti
   return FALSE;
 }
 
-static bool
-activatable_update_gicon (GedaImageMenuItem *image_menu_item, GtkAction *action)
+static bool activatable_update_gicon (GedaImageMenuItem *image_menu_item,
+                                              GtkAction *action)
 {
   GIcon      *icon;
   GtkImage   *image;
@@ -161,8 +161,8 @@ activatable_update_gicon (GedaImageMenuItem *image_menu_item, GtkAction *action)
   return FALSE;
 }
 
-static void
-activatable_update_icon_name (GedaImageMenuItem *image_menu_item, GtkAction *action)
+static void activatable_update_icon_name (GedaImageMenuItem *image_menu_item,
+                                                  GtkAction *action)
 {
   GtkImage    *image;
   const char  *icon_name;
@@ -179,9 +179,8 @@ activatable_update_icon_name (GedaImageMenuItem *image_menu_item, GtkAction *act
   }
 }
 
-static void
-geda_image_menu_item_sync_action (GtkActivatable *activatable,
-                                  GtkAction      *action)
+static void geda_image_menu_item_sync_action (GtkActivatable *activatable,
+                                              GtkAction      *action)
 {
   GedaImageMenuItem     *image_menu_item;
   GedaImageMenuItemData *priv;
@@ -233,10 +232,9 @@ geda_image_menu_item_sync_action (GtkActivatable *activatable,
                                        gtk_action_get_always_show_image (action));
 }
 
-static void
-geda_image_menu_item_update (GtkActivatable *activatable,
-                             GtkAction      *action,
-                             const char     *property_name)
+static void geda_image_menu_item_update (GtkActivatable *activatable,
+                                         GtkAction      *action,
+                                         const char     *property_name)
 {
   bool use_appearance;
 
@@ -259,8 +257,7 @@ geda_image_menu_item_update (GtkActivatable *activatable,
   }
 }
 
-static void
-geda_image_menu_item_activatable_init (GtkActivatableIface  *iface)
+static void geda_image_menu_item_activatable_init (GtkActivatableIface  *iface)
 {
   parent_activatable_iface      = g_type_interface_peek_parent (iface);
   iface->update                 = geda_image_menu_item_update;
@@ -278,11 +275,10 @@ geda_image_menu_item_activatable_init (GtkActivatableIface  *iface)
  *  \param [in]  value     The GValue the property is being set from
  *  \param [in]  pspec     A GParamSpec describing the property being set
  */
-static void
-geda_image_menu_item_set_property (GObject       *object,
-                                   unsigned int   property,
-                                   const GValue  *value,
-                                   GParamSpec    *pspec)
+static void geda_image_menu_item_set_property (GObject      *object,
+                                               unsigned int  property,
+                                               const GValue *value,
+                                               GParamSpec   *pspec)
 {
   GedaImageMenuItem *image_menu_item = (GedaImageMenuItem*)object;
 
@@ -321,11 +317,10 @@ geda_image_menu_item_set_property (GObject       *object,
  *  \param [out] value     The GValue in which to return the value of the property
  *  \param [in]  pspec     A GParamSpec describing the property being got
  */
-static void
-geda_image_menu_item_get_property (GObject      *object,
-                                   unsigned int  property,
-                                   GValue       *value,
-                                   GParamSpec   *pspec)
+static void geda_image_menu_item_get_property (GObject      *object,
+                                               unsigned int  property,
+                                               GValue       *value,
+                                               GParamSpec   *pspec)
 {
   GedaImageMenuItem *image_menu_item = (GedaImageMenuItem*)object;
 
@@ -357,8 +352,7 @@ geda_image_menu_item_get_property (GObject      *object,
  *
  *  \param [in] object The GObject being finalized.
  */
-static void
-geda_image_menu_item_finalize (GObject *object)
+static void geda_image_menu_item_finalize (GObject *object)
 {
   GedaImageMenuItem *image_menu_item = (GedaImageMenuItem*)object;
 
@@ -383,8 +377,7 @@ geda_image_menu_item_finalize (GObject *object)
  *
  *  param [in] class  The instance of GedaActionClass to be initialized
  */
-static void
-geda_image_menu_item_class_init (void *class, void *class_data)
+static void geda_image_menu_item_class_init (void *class, void *class_data)
 {
   GObjectClass      *gobject_class     = (GObjectClass*) class;
   GtkObjectClass    *object_class      = (GtkObjectClass*) class;
@@ -505,8 +498,7 @@ geda_image_menu_item_init (GTypeInstance *instance, void *g_class)
  *
  *  \return GedaType identifier associated with GedaImageMenuItem.
  */
-GedaType
-geda_image_menu_item_get_type (void)
+GedaType geda_image_menu_item_get_type (void)
 {
   static volatile GedaType geda_image_menu_item_type = 0;
 
@@ -552,8 +544,7 @@ geda_image_menu_item_get_type (void)
  *
  * \return TRUE if \a image_menu_item is a valid GedaImageMenuItem
  */
-bool
-is_a_geda_image_menu_item (GedaImageMenuItem *image_menu_item)
+bool is_a_geda_image_menu_item (GedaImageMenuItem *image_menu_item)
 {
   if ((image_menu_item != NULL) && (image_menu_item_hash != NULL)) {
     return g_hash_table_lookup(image_menu_item_hash, image_menu_item) ? TRUE : FALSE;
@@ -569,14 +560,12 @@ is_a_geda_image_menu_item (GedaImageMenuItem *image_menu_item)
  *
  * \param [in] image_menu_item Pointer to a GedaImageMenuItem.
  */
-static inline bool
-show_image (GedaImageMenuItem *image_menu_item)
+static inline bool show_image (GedaImageMenuItem *image_menu_item)
 {
   return image_menu_item->show_image;
 }
 
-static void
-geda_image_menu_item_map (GtkWidget *widget)
+static void geda_image_menu_item_map (GtkWidget *widget)
 {
   GedaImageMenuItem *image_menu_item = (GedaImageMenuItem*)widget;
 
@@ -594,8 +583,7 @@ geda_image_menu_item_map (GtkWidget *widget)
   }
 }
 
-static void
-geda_image_menu_item_destroy (GtkObject *object)
+static void geda_image_menu_item_destroy (GtkObject *object)
 {
   GedaImageMenuItem *image_menu_item = (GedaImageMenuItem*)object;
 
@@ -612,9 +600,8 @@ geda_image_menu_item_destroy (GtkObject *object)
   ((GtkObjectClass*)geda_image_menu_item_parent_class)->destroy (object);
 }
 
-static void
-geda_image_menu_item_toggle_size_request (GedaMenuItem *menu_item,
-                                          int          *requisition)
+static void geda_image_menu_item_toggle_size_request (GedaMenuItem *menu_item,
+                                                               int *requisition)
 {
   GedaImageMenuItem *image_menu_item = (GedaImageMenuItem*)menu_item;
   PackDirection pack_dir;
@@ -653,8 +640,7 @@ geda_image_menu_item_toggle_size_request (GedaMenuItem *menu_item,
   }
 }
 
-static void
-geda_image_menu_item_recalculate (GedaImageMenuItem *image_menu_item)
+static void geda_image_menu_item_recalculate (GedaImageMenuItem *image_menu_item)
 {
   const char *resolved_label = image_menu_item->label;
 
@@ -683,9 +669,8 @@ geda_image_menu_item_recalculate (GedaImageMenuItem *image_menu_item)
     set_label ((GedaMenuItem*)image_menu_item, resolved_label);
 }
 
-static void
-geda_image_menu_item_set_label (GedaMenuItem *menu_item,
-                                const char   *label)
+static void geda_image_menu_item_set_label (GedaMenuItem *menu_item,
+                                              const char *label)
 {
   GedaImageMenuItem *image_menu_item = (GedaImageMenuItem*)menu_item;
 
@@ -707,9 +692,8 @@ geda_image_menu_item_get_label (GedaMenuItem *menu_item)
   return ((GedaImageMenuItem*)menu_item)->label;
 }
 
-static void
-geda_image_menu_item_size_request (GtkWidget      *widget,
-                                   GtkRequisition *requisition)
+static void geda_image_menu_item_size_request (GtkWidget      *widget,
+                                               GtkRequisition *requisition)
 {
   GedaImageMenuItem *image_menu_item;
   PackDirection pack_dir;
@@ -846,11 +830,10 @@ static void geda_image_menu_item_size_allocate (GtkWidget     *widget,
   }
 }
 
-static void
-geda_image_menu_item_forall (GtkContainer   *container,
-                             bool            include_internals,
-                             GtkCallback     callback,
-                             void           *callback_data)
+static void geda_image_menu_item_forall (GtkContainer *container,
+                                         bool          include_internals,
+                                         GtkCallback   callback,
+                                         void         *callback_data)
 {
   GedaImageMenuItem *image_menu_item = (GedaImageMenuItem*)container;
 
@@ -858,7 +841,7 @@ geda_image_menu_item_forall (GtkContainer   *container,
     forall (container, include_internals, callback, callback_data);
 
   if (include_internals && image_menu_item->image) {
-    (* callback) (image_menu_item->image, callback_data);
+    (*callback) (image_menu_item->image, callback_data);
   }
 }
 
@@ -1101,9 +1084,8 @@ void geda_image_menu_item_set_accel_group (GedaImageMenuItem *image_menu_item,
  * Note that it depends on the show-menu-images setting whether
  * the image will be displayed or not.
  */
-void
-geda_image_menu_item_set_image (GedaImageMenuItem *image_menu_item,
-                                GtkWidget         *image)
+void geda_image_menu_item_set_image (GedaImageMenuItem *image_menu_item,
+                                             GtkWidget *image)
 {
   g_return_if_fail (GEDA_IS_IMAGE_MENU_ITEM (image_menu_item));
 
@@ -1183,8 +1165,7 @@ static void geda_image_menu_item_remove (GtkContainer *container, GtkWidget *chi
 }
 
 /*
-static void
-show_image_change_notify (GedaImageMenuItem *image_menu_item)
+static void show_image_change_notify (GedaImageMenuItem *image_menu_item)
 {
   if (image_menu_item->image){
     if (show_image (image_menu_item)) {
@@ -1196,8 +1177,7 @@ show_image_change_notify (GedaImageMenuItem *image_menu_item)
   }
 }
 
-static void
-traverse_container (GtkWidget *widget, void *data)
+static void traverse_container (GtkWidget *widget, void *data)
 {
   if (GEDA_IS_IMAGE_MENU_ITEM (widget)) {
     show_image_change_notify (GEDA_IMAGE_MENU_ITEM (widget));
@@ -1208,8 +1188,7 @@ traverse_container (GtkWidget *widget, void *data)
 }
 
 
-static void
-geda_image_menu_item_setting_changed (GtkSettings *settings)
+static void geda_image_menu_item_setting_changed (GtkSettings *settings)
 {
   GList *list, *l;
 
@@ -1222,9 +1201,8 @@ geda_image_menu_item_setting_changed (GtkSettings *settings)
   g_list_free (list);
 }
 
-static void
-geda_image_menu_item_screen_changed (GtkWidget *widget,
-                                     GdkScreen *previous_screen)
+static void geda_image_menu_item_screen_changed (GtkWidget *widget,
+                                                 GdkScreen *previous_screen)
 {
   GtkSettings *settings;
   unsigned int show_image_connection;
