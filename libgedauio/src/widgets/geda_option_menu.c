@@ -663,7 +663,7 @@ geda_option_menu_selection_done (GedaMenuShell  *menu_shell,
 static void
 geda_option_menu_changed (GedaOptionMenu *option_menu)
 {
-  g_signal_emit (option_menu, signals[CHANGED], 0);
+   g_signal_emit (option_menu, signals[CHANGED], 0);
 }
 
 static void
