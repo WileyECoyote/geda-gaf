@@ -476,10 +476,13 @@ void geda_complex_set_is_mirror (GedaComplex *complex, bool is_mirror)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Set GedaComplex list of Pin objects
+ * \par Function Description
+ *  Sets the pin_objs member.
  *
+ * \param [in] complex   GedaComplex object.
+ * \param [in] pin_objs  List of GedaPin objects.
  */
 void geda_complex_set_pin_objs (GedaComplex *complex, GList *pin_objs)
 {
@@ -491,10 +494,14 @@ void geda_complex_set_pin_objs (GedaComplex *complex, GList *pin_objs)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Set GedaComplex list of primary objects
+ * \par Function Description
+ *  Sets the prim_objs member. The primary objects are the non-complex
+ *  objects that make-up the complex.
  *
+ * \param [in] complex   GedaComplex object.
+ * \param [in] prim_objs List of GedaObjects.
  */
 void geda_complex_set_prim_objs (GedaComplex *complex, GList *prim_objs)
 {

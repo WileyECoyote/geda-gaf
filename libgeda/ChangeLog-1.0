@@ -1,3 +1,10 @@
+2017-07-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_complex.c: Update Doxygen comments for:
+
+          * geda_complex_set_pin_objs
+          * geda_complex_set_prim_objs
+
 2017-07-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_list.c: Reformat Doxygen comment blocks.
