@@ -7132,10 +7132,12 @@ geda_combo_widget_set_title (GtkWidget *combo_box, const char  *title) {
  */
 void
 geda_combo_widget_set_tooltip_column (GtkWidget *combo_box, int column) {
-  if (GEDA_IS_COMBO_BOX (combo_box))
+  if (GEDA_IS_COMBO_BOX (combo_box)) {
     ((GedaComboBox*)combo_box)->tip_column = column;
-  else
+  }
+  else {
     BUG_MSG ("Operative is not a GedaComboBox");
+  }
 }
 
 /*!
