@@ -539,10 +539,10 @@ msgstr "تعذّر استحضار"
 msgid "Found invalid gschem window smob ~S"
 msgstr ""
 
+# current value of
 #: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5095
-#, fuzzy
 msgid "current value of"
-msgstr "الصفحة الحالية"
+msgstr "القيمة الحالية لل"
 
 #: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5096
 msgid "is"
@@ -630,10 +630,10 @@ msgstr "/قرّب"
 msgid "Specify new zoom:"
 msgstr ""
 
+# error
 #: gschem/src/iface/i_command.c:2299
-#, fuzzy
 msgid "error"
-msgstr "مرآة"
+msgstr "خطأ"
 
 #: gschem/src/iface/i_command.c:2307
 msgid "No component selected\n"
@@ -745,10 +745,10 @@ msgstr ""
 msgid "On"
 msgstr "افتح"
 
+# Drag-Can-Move is now
 #: gschem/src/iface/i_command.c:4491
-#, fuzzy
 msgid "Drag-Can-Move is now"
-msgstr "وضع الشبكة الم_غناطيسية"
+msgstr "يمكن السحب- يمكن نقل الآن"
 
 #: gschem/src/iface/i_command.c:4503
 msgid "Action feedback mode set to OUTLINE\n"
@@ -1093,15 +1093,10 @@ msgid "Translating schematic"
 msgstr "سحب المخطط"
 
 #: gschem/src/object/o_delete.c:87
-#, fuzzy, c-format
 msgid "Delete locked object?"
 msgid_plural "Delete %u locked objects?"
-msgstr[0] "حذف كائن مقفل؟"
-msgstr[1] "حذف الكائنات المؤمنة؟"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "هل تريد حذف الكائن المقفل؟"
+msgstr[1] "هل تريد حذف %u أشياء مقفلة؟"
 
 #: gschem/src/object/o_edit.c:517
 msgid "attributes were hidden"
@@ -2035,10 +2030,10 @@ msgstr ""
 msgid "Done, renderer is down"
 msgstr ""
 
+# invalid show option; defaulting to show both
 #: gschem/src/x/x_edit_attrib.c:216
-#, fuzzy, c-format
 msgid "invalid show option; defaulting to show both\n"
-msgstr "﻿حصلت على خيار عرض غير صحيح ؛تعيين الافتراضي لإظهار كليهما\n"
+msgstr "خيار عرض غير صالح؛ التخلف لإظهار كلا\n"
 
 #: gschem/src/x/x_edit_attrib.c:327
 msgid "Select to choose an attribute visibility options"
@@ -4192,10 +4187,10 @@ msgstr "الكائنات المنتقاة"
 msgid "_Redraw"
 msgstr "أ_عد الرسم"
 
+# Redraw the current window
 #: gschem/etc/system-gschemrc.scm:2197
-#, fuzzy
 msgid "Redraw the current window"
-msgstr "النافذة الحالية"
+msgstr "إعادة رسم النافذة الحالية"
 
 #: gschem/etc/system-gschemrc.scm:2198
 msgid "_Pan"
@@ -5397,12 +5392,6 @@ msgstr ""
 #~ msgid "check the log for more information"
 #~ msgstr ""
 #~ "خطأ في الطباعة إلى الملف '%s'تحقق من نافذة السجل للمزيد من المعلومات"
-
-#, fuzzy
-#~ msgid ""
-#~ "Could not allocate graphic context, w_current->window is not a valid "
-#~ "Window\n"
-#~ msgstr "تعذر تحديد موقع gc\n"
 
 #~ msgid "documents\n"
 #~ msgstr "ت_وثيق"
