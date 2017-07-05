@@ -750,7 +750,7 @@ geda_handle_box_button_press (GtkWidget *widget, GdkEventButton *event)
       priv   = handlebox->priv;
       invisible = geda_handle_box_get_invisible ();
 
-      gtk_invisible_set_screen (GTK_INVISIBLE (invisible),
+      gtk_invisible_set_screen ((GtkInvisible*)invisible,
                                 gtk_widget_get_screen (widget));
       gdk_window_get_deskrelative_origin (handlebox->bin_window, &desk_x, &desk_y);
       gdk_window_get_origin (handlebox->bin_window, &root_x, &root_y);
