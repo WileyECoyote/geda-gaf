@@ -815,15 +815,15 @@ msgstr ""
 msgid "did not contain any accessible documents"
 msgstr ""
 
+# Sessions
 #: gschem/src/iface/i_sessions.c:795
-#, fuzzy
 msgid "Sessions"
-msgstr "שמור הכל"
+msgstr "מושבים"
 
+# Removing session
 #: gschem/src/iface/i_sessions.c:859
-#, fuzzy
 msgid "Removing session"
-msgstr "שמור הכל"
+msgstr "מסיר את ההפעלה"
 
 #: gschem/src/iface/i_sessions.c:884
 msgid "Failed to remove session"
@@ -849,15 +849,15 @@ msgstr ""
 msgid "Creation failed"
 msgstr ""
 
+# Opened session
 #: gschem/src/iface/i_sessions.c:998
-#, fuzzy
 msgid "Opened session"
-msgstr "שמור הכל"
+msgstr "הפגישה נפתחה"
 
+# Renaming session
 #: gschem/src/iface/i_sessions.c:1047
-#, fuzzy
 msgid "Renaming session"
-msgstr "שמור הכל"
+msgstr "שינוי שם הפגישה"
 
 #: gschem/src/iface/i_sessions.c:1048
 msgid "to"
@@ -871,10 +871,10 @@ msgstr ""
 msgid "<b>Could not rename session</b>"
 msgstr ""
 
+# Created session
 #: gschem/src/iface/i_sessions.c:1109
-#, fuzzy
 msgid "Created session"
-msgstr "שמור הכל"
+msgstr "הפגישה שנוצרה"
 
 #: gschem/src/iface/i_sessions.c:1110
 msgid "with"
@@ -1160,10 +1160,10 @@ msgstr ""
 msgid "Bus ripper symbol was not found in any component library"
 msgstr ""
 
+# Update All
 #: gschem/src/object/o_picture.c:357
-#, fuzzy
 msgid "Update All"
-msgstr "שמור הכל"
+msgstr "עדכן הכל"
 
 #: gschem/src/object/o_picture.c:359
 msgid "Update all selected Picture images"
