@@ -2031,6 +2031,11 @@ geda_handle_box_get_toolbar (GedaHandleBox *handle_box)
   return NULL;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_handle_box_set_toolbar (GedaHandleBox *handlebox, GtkWidget *toolbar)
 {
@@ -2050,6 +2055,11 @@ geda_handle_box_set_toolbar (GedaHandleBox *handlebox, GtkWidget *toolbar)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_handle_widget_set_handle_position (GtkWidget       *handlebox,
                                         GtkPositionType  position)
@@ -2057,24 +2067,44 @@ geda_handle_widget_set_handle_position (GtkWidget       *handlebox,
   geda_handle_box_set_handle_position ((GedaHandleBox*)handlebox, position);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_handle_widget_set_shadow_type (GtkWidget *handlebox, GtkShadowType type)
 {
   geda_handle_box_set_shadow_type ((GedaHandleBox*)handlebox, type);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_handle_widget_set_shrink_on_detach (GtkWidget *handlebox, bool shrink)
 {
   geda_handle_box_set_shrink_on_detach ((GedaHandleBox*)handlebox, shrink);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_handle_widget_set_snap_edge (GtkWidget *handlebox, GtkPositionType edge)
 {
   geda_handle_box_set_snap_edge ((GedaHandleBox*)handlebox, edge);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_handle_widget_set_toolbar (GtkWidget *handlebox, GtkWidget *toolbar)
 {
