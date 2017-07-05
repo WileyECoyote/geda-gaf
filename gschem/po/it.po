@@ -2611,16 +2611,15 @@ msgstr "Modifica Testo"
 msgid "Text Properties"
 msgstr "Opzioni"
 
+# Text input field
 #: gschem/src/x/x_edit_text.c:593
-#, fuzzy
 msgid "Text input field"
-msgstr "Testo da trovare:"
+msgstr "Campo di immissione del testo"
 
-# Text Alignment Attribute
+# Text alignment combobox
 #: gschem/src/x/x_edit_text.c:597
-#, fuzzy
 msgid "Text alignment combobox"
-msgstr "Allineamento testo dell'attributo"
+msgstr "Combobox di allineamento del testo"
 
 #: gschem/src/x/x_edit_text.c:601
 msgid "Color options menu"
@@ -3748,10 +3747,10 @@ msgstr ""
 msgid "window is not valid"
 msgstr ""
 
+# Saving main window settings
 #: gschem/src/x/x_window.c:201
-#, fuzzy
 msgid "Saving main window settings.\n"
-msgstr "Salvataggio delle impostazioni della barra degli strumenti..."
+msgstr "SSalvataggio delle impostazioni principali della finestra.\n"
 
 #: gschem/src/x/x_window.c:308
 msgid "Retrieving main Window settings.\n"
