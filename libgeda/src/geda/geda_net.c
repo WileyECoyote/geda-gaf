@@ -81,8 +81,7 @@ static void geda_net_instance_init(GTypeInstance *instance, void *g_class)
   net->line_width            = &line->line_options.line_width;
 }
 
-static void
-geda_net_dispose(GObject *object)
+static void geda_net_dispose(GObject *object)
 {
   G_OBJECT_CLASS(geda_net_parent_class)->dispose(object);
 
@@ -213,8 +212,7 @@ bool is_a_geda_net (const GedaNet *net)
  *
  * \return integer value of X0 if \a net is invalid.
  */
-int
-geda_net_get_x0 (const GedaNet *net) {
+int geda_net_get_x0 (const GedaNet *net) {
   if (is_a_geda_net(net)) {
     return GEDA_LINE(net)->x[0];
   }
@@ -229,8 +227,7 @@ geda_net_get_x0 (const GedaNet *net) {
  *
  * \return integer value of X1 if \a net is invalid.
  */
-int
-geda_net_get_x1 (const GedaNet *net) {
+int geda_net_get_x1 (const GedaNet *net) {
   if (is_a_geda_net(net)) {
     return GEDA_LINE(net)->x[1];
   }
@@ -245,8 +242,7 @@ geda_net_get_x1 (const GedaNet *net) {
  *
  * \return integer value of Y0 if \a net is invalid.
  */
-int
-geda_net_get_y0 (const GedaNet *net) {
+int geda_net_get_y0 (const GedaNet *net) {
   if (is_a_geda_net(net)) {
     return GEDA_LINE(net)->y[0];
   }
@@ -261,8 +257,7 @@ geda_net_get_y0 (const GedaNet *net) {
  *
  * \return integer value of Y1 if \a net is invalid.
  */
-int
-geda_net_get_y1 (const GedaNet *net) {
+int geda_net_get_y1 (const GedaNet *net) {
   if (is_a_geda_net(net)) {
     return GEDA_LINE(net)->y[1];
   }
@@ -275,8 +270,7 @@ geda_net_get_y1 (const GedaNet *net) {
  *  Sets the first X of coordinate \a net if \a net is a valid
  *  GedaNet object, if \a net is invalid then nothing is done.
  */
-void
-geda_net_set_x0 (GedaNet *net, int x) {
+void geda_net_set_x0 (GedaNet *net, int x) {
   if (is_a_geda_net(net)) {
     GEDA_LINE(net)->x[0] = x;
   }
@@ -288,8 +282,7 @@ geda_net_set_x0 (GedaNet *net, int x) {
  *  Sets the second X of coordinate \a net if \a net is a valid
  *  GedaNet object, if \a net is invalid then nothing is done.
  */
-void
-geda_net_set_x1 (GedaNet *net, int x) {
+void geda_net_set_x1 (GedaNet *net, int x) {
   if (is_a_geda_net(net)) {
     GEDA_LINE(net)->x[1] = x;
   }
@@ -301,8 +294,7 @@ geda_net_set_x1 (GedaNet *net, int x) {
  *  Sets the first Y of coordinate \a net if \a net is a valid
  *  GedaNet object, if \a net is invalid then nothing is done.
  */
-void
-geda_net_set_y0 (GedaNet *net, int y) {
+void geda_net_set_y0 (GedaNet *net, int y) {
   if (is_a_geda_net(net)) {
     GEDA_LINE(net)->y[0] = y;
   }
@@ -314,8 +306,7 @@ geda_net_set_y0 (GedaNet *net, int y) {
  *  Sets the second Y of coordinate \a net if \a net is a valid
  *  GedaNet object, if \a net is invalid then nothing is done.
  */
-void
-geda_net_set_y1 (GedaNet *net, int y) {
+void geda_net_set_y1 (GedaNet *net, int y) {
   if (is_a_geda_net(net)) {
     GEDA_LINE(net)->y[1] = y;
   }
