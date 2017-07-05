@@ -1183,7 +1183,7 @@ static void traverse_container (GtkWidget *widget, void *data)
     show_image_change_notify (GEDA_IMAGE_MENU_ITEM (widget));
   }
   else if (GTK_IS_CONTAINER (widget)) {
-    gtk_container_forall ((GtkContainer*)widget, traverse_container, NULL);
+    geda_container_forall (widget, traverse_container, NULL);
   }
 }
 
@@ -1195,7 +1195,7 @@ static void geda_image_menu_item_setting_changed (GtkSettings *settings)
   list = gtk_window_list_toplevels ();
 
   for (l = list; l; l = l->next) {
-    gtk_container_forall ((GtkContainer*)l->data, traverse_container, NULL);
+    geda_container_forall (l->data, traverse_container, NULL);
   }
 
   g_list_free (list);
