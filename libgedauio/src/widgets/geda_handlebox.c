@@ -692,16 +692,16 @@ geda_handle_box_remove (GtkContainer *container, GtkWidget *widget)
 static bool
 geda_handle_box_button_press (GtkWidget *widget, GdkEventButton *event)
 {
-  GedaHandleBox *handlebox;
   bool           event_handled;
 
   event_handled   = FALSE;
-  handlebox       = (GedaHandleBox*)widget;
 
   if ((event->button == 1) && (event->type == GDK_BUTTON_PRESS)) {
 
     GtkWidget *child;
     bool       in_handle;
+    GedaHandleBox *handlebox;
+    handlebox = (GedaHandleBox*)widget;
 
     if (event->window != handlebox->bin_window)
       return FALSE;
