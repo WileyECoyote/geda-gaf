@@ -4228,10 +4228,10 @@ msgstr "Ontsluit gekies voorwerpe"
 msgid "_Redraw"
 msgstr "/Redisplay"
 
+# Redraw the current window
 #: gschem/etc/system-gschemrc.scm:2197
-#, fuzzy
 msgid "Redraw the current window"
-msgstr "Huidige Venster"
+msgstr "Teken die huidige venster weer"
 
 #: gschem/etc/system-gschemrc.scm:2198
 msgid "_Pan"
@@ -4736,27 +4736,26 @@ msgid "Adjust snap size"
 msgstr "Eers snap grootte"
 
 #: gschem/etc/system-gschemrc.scm:2339
-#, fuzzy
 msgid "_Snap On-Off"
-msgstr "snap Af"
+msgstr "Klik op-af"
 
 #: gschem/etc/system-gschemrc.scm:2339
 msgid "Toggle the object snap mode"
 msgstr ""
 
+# Rubberband
 #: gschem/etc/system-gschemrc.scm:2340
-#, fuzzy
 msgid "_Rubberband"
-msgstr "Toggle netto rekkie af"
+msgstr "_Rekkie"
 
 #: gschem/etc/system-gschemrc.scm:2340
 msgid "Toggle rubberband net mode"
 msgstr "Toggle netto rekkie af"
 
+# Magnetic Net
 #: gschem/etc/system-gschemrc.scm:2341
-#, fuzzy
 msgid "_Magnetic Net"
-msgstr "Magnetiese Netmodus"
+msgstr "Magnetiese Net"
 
 #: gschem/etc/system-gschemrc.scm:2341
 msgid "Toggle magnetic net mode"
@@ -4778,10 +4777,10 @@ msgstr ""
 msgid "Toggle action feedback"
 msgstr "Skakel aksie terugvoer"
 
+# Auto-Pan
 #: gschem/etc/system-gschemrc.scm:2344
-#, fuzzy
 msgid "_Auto-Pan"
-msgstr "Skakel outomatiese Pan"
+msgstr "outomatiese pan"
 
 #: gschem/etc/system-gschemrc.scm:2344
 msgid "Toggle auto panning mode"
