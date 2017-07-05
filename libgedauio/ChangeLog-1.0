@@ -1,3 +1,7 @@
+2017-07-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_combobox.c: Update function wrapping.
+
 2017-07-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_handlebox.c: Add template Doxygen comment blocks. Remove
