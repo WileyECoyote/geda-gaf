@@ -1923,10 +1923,10 @@ msgstr "Kropka-kropka-kreska"
 msgid "Edit Line Width & Type"
 msgstr "Edycja stylu linii"
 
+# Line Type
 #: gschem/src/x/x_dialog.c:2200
-#, fuzzy
 msgid "Line Type:"
-msgstr "Typ linii:"
+msgstr "Rodzaj linii:"
 
 # Termination Type
 #: gschem/src/x/x_dialog.c:2203
@@ -3480,7 +3480,6 @@ msgid "pins"
 msgstr ""
 
 #: gschem/src/x/x_multiattrib.c:2620
-#, fuzzy
 msgid "pin"
 msgstr "Pin"
 
@@ -3489,7 +3488,6 @@ msgid "nets"
 msgstr ""
 
 #: gschem/src/x/x_multiattrib.c:2635
-#, fuzzy
 msgid "net"
 msgstr "Połączenie"
 
@@ -3498,19 +3496,16 @@ msgid "buses"
 msgstr ""
 
 #: gschem/src/x/x_multiattrib.c:2650
-#, fuzzy
 msgid "bus"
 msgstr "Magistralę"
 
 #: gschem/src/x/x_multiattrib.c:2661
-#, fuzzy
 msgid "attributes"
 msgstr "Atrybuty"
 
 #: gschem/src/x/x_multiattrib.c:2665
-#, fuzzy
 msgid "attribute"
-msgstr "Atrybuty"
+msgstr "Atrybut"
 
 # Move Up
 #: gschem/src/x/x_pagesel.c:592
@@ -3788,10 +3783,10 @@ msgstr ""
 msgid "Wrote configuration to"
 msgstr "Napisano konfigurację do"
 
+# File error
 #: gschem/src/x/x_settings.c:607
-#, fuzzy
 msgid "File error"
-msgstr "<b>Zakres</b>"
+msgstr "Błąd pliku"
 
 #: gschem/src/x/x_settings_dialog.c:1074
 msgid "Clear attributes and restore default filter list?"
@@ -3801,10 +3796,10 @@ msgstr ""
 msgid "Restore default"
 msgstr ""
 
+# Close without changing any settings
 #: gschem/src/x/x_settings_dialog.c:2651
-#, fuzzy
 msgid "Close without changing any settings"
-msgstr "_Zamknij bez zapisywania"
+msgstr "Zamknij bez zmiany ustawień"
 
 #: gschem/src/x/x_settings_dialog.c:2653 gschem/scheme/gschem/builtins.scm:56
 msgid "Save"
