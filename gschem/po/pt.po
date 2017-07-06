@@ -5292,45 +5292,44 @@ msgstr "Mais Zoom"
 msgid "Zoom Out"
 msgstr "Reduzir o zoom"
 
+# Zoom All
 #: gschem/scheme/gschem/builtins.scm:242
-#, fuzzy
 msgid "Zoom All"
-msgstr "_Ver tudo"
+msgstr "Zoom tudo"
 
+# Zoom to Mag
 #: gschem/scheme/gschem/builtins.scm:245
-#, fuzzy
 msgid "Zoom to Mag"
-msgstr "_Ampliar"
+msgstr "Zoom Ampliar"
 
 #: gschem/scheme/gschem/builtins.scm:248
-#, fuzzy
 msgid "Documentation"
-msgstr "D_ocumentação..."
+msgstr "Documentação"
 
+# # Show/Hide Invisible Text => Show/Hide hidden Text
 #: gschem/scheme/gschem/builtins.scm:251
-#, fuzzy
 msgid "Show/Hide Invisible Text"
 msgstr "Mostrar/Esconder Texto Escondido"
 
+# Show/Hide Inherited Attributes
 #: gschem/scheme/gschem/builtins.scm:254
-#, fuzzy
 msgid "Show/Hide Inherited Attributes"
-msgstr "Atributo Removido"
+msgstr "Mostrar/Ocultar atributos herdados"
 
+# Show/Hide net names
 #: gschem/scheme/gschem/builtins.scm:257
-#, fuzzy
 msgid "Show/Hide net names"
-msgstr "Mostrar/Esconder Texto Escondido"
+msgstr "Mostrar / Ocultar nomes de rede"
 
+# Dark Color Scheme
 #: gschem/scheme/gschem/builtins.scm:260
-#, fuzzy
 msgid "Dark Color Scheme"
-msgstr "Esquema _Escuro de Cor"
+msgstr "Esquema Escuro de Cor"
 
+# Light Color Scheme
 #: gschem/scheme/gschem/builtins.scm:263
-#, fuzzy
 msgid "Light Color Scheme"
-msgstr "Esquema C_laro de Cor"
+msgstr "Esquema Claro de Cor"
 
 #: gschem/scheme/gschem/builtins.scm:266
 msgid "Monochrome Color Scheme"
