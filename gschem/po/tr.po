@@ -3422,10 +3422,10 @@ msgstr ""
 msgid "New Page"
 msgstr "Yeni Sayfa"
 
+# Open Page
 #: gschem/src/x/x_pagesel.c:597
-#, fuzzy
 msgid "Open Page..."
-msgstr "Sayfa Aç..."
+msgstr "Sayfayı Aç..."
 
 #: gschem/src/x/x_pagesel.c:599
 msgid "Save Page"
@@ -4343,10 +4343,10 @@ msgstr "Metni Göster/Gizle"
 msgid "Toggle hidden text attributes"
 msgstr ""
 
+# Show/Hide Net Names
 #: gschem/etc/system-gschemrc.scm:2211
-#, fuzzy
 msgid "Show/Hide Net Names"
-msgstr "Metni Göster/Gizle"
+msgstr "Net Adları Göster/Gizle"
 
 #: gschem/etc/system-gschemrc.scm:2211
 msgid "Toggle hidden net name attributes"
@@ -4464,29 +4464,29 @@ msgstr ""
 msgid "Close the current page without saving"
 msgstr ""
 
+# Print
 #: gschem/etc/system-gschemrc.scm:2241
-#, fuzzy
 msgid "Prin_t"
-msgstr "Yazdır..."
+msgstr "Yazdır"
 
 #: gschem/etc/system-gschemrc.scm:2241
 msgid "Print the current page"
 msgstr ""
 
+# Down Schematic
 #: gschem/etc/system-gschemrc.scm:2244
-#, fuzzy
 msgid "Down _Schematic"
-msgstr "gEDA Şematik Editörü"
+msgstr "Şematik Alt"
 
+# Down Symbol => Enter the symbol
 #: gschem/etc/system-gschemrc.scm:2245
-#, fuzzy
 msgid "Down S_ymbol"
-msgstr "Çevir"
+msgstr "Sembolü girin"
 
+# Hierarchy Up
 #: gschem/etc/system-gschemrc.scm:2246
-#, fuzzy
 msgid "_Hierarchy Up"
-msgstr "Hiyerarşi"
+msgstr "_Hiyerarşi Yukarı"
 
 #: gschem/etc/system-gschemrc.scm:2247
 msgid "Find component documentation"
@@ -4958,8 +4958,8 @@ msgstr "Ekle"
 msgid "Sessio_ns"
 msgstr ""
 
+# Attributes
 #: gschem/etc/system-gschemrc.scm:2393
-#, fuzzy
 msgid "Attri_butes"
 msgstr "Öznitelikler"
 
@@ -5406,10 +5406,10 @@ msgstr "Koordinatları Göster penceresi"
 msgid "Guile Path"
 msgstr ""
 
+# Translate Symbol
 #: gschem/scheme/gschem/builtins.scm:451
-#, fuzzy
 msgid "Translate Symbol"
-msgstr "Çevir"
+msgstr "Simgeyi Çevir"
 
 #: gschem/scheme/gschem/builtins.scm:466
 msgid "Dots Grid Style"
