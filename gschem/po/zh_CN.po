@@ -1808,10 +1808,10 @@ msgstr ""
 msgid "Pitch 2:"
 msgstr ""
 
+# Select fill pattern
 #: gschem/src/x/x_dialog.c:1644
-#, fuzzy
 msgid "Select fill pattern"
-msgstr "选择模式"
+msgstr "选择填充模式"
 
 #: gschem/src/x/x_dialog.c:1649
 msgid "Set the width of the filler lines"
@@ -2960,10 +2960,10 @@ msgstr "复制"
 msgid "Copy selection"
 msgstr ""
 
+# MCopy => Multi Copy
 #: gschem/src/x/x_menus.c:123
-#, fuzzy
 msgid "MCopy"
-msgstr "复制"
+msgstr "多重复制"
 
 #: gschem/src/x/x_menus.c:123 gschem/etc/system-gschemrc.scm:2112
 msgid "Make multible copies of selection"
@@ -3915,58 +3915,58 @@ msgstr ""
 msgid "Open recently accessed schematic or symbol files"
 msgstr ""
 
+# Save
 #: gschem/etc/system-gschemrc.scm:2074 gschem/etc/system-gschemrc.scm:2280
-#, fuzzy
 msgid "_Save"
-msgstr "全部保存"
+msgstr "保存"
 
+# Save _As
 #: gschem/etc/system-gschemrc.scm:2075 gschem/etc/system-gschemrc.scm:2281
-#, fuzzy
 msgid "Save _As..."
-msgstr "页面保存为..."
+msgstr "另存为..."
 
 #: gschem/etc/system-gschemrc.scm:2075
 msgid "Save the current document to a new name or location"
 msgstr ""
 
+# Save All
 #: gschem/etc/system-gschemrc.scm:2076
-#, fuzzy
 msgid "Save A_ll"
-msgstr "全部保存"
+msgstr "保存全部"
 
 #: gschem/etc/system-gschemrc.scm:2076
 msgid "Save all open documents"
 msgstr ""
 
+# Save Modified
 #: gschem/etc/system-gschemrc.scm:2077
-#, fuzzy
 msgid "Save _Modified"
-msgstr "移动模式"
+msgstr "保存修改"
 
 #: gschem/etc/system-gschemrc.scm:2077
 msgid "Save all modified documents"
 msgstr ""
 
+# Revert
 #: gschem/etc/system-gschemrc.scm:2078 gschem/etc/system-gschemrc.scm:2239
-#, fuzzy
 msgid "_Revert"
-msgstr "翻转页面"
+msgstr "还原"
 
 #: gschem/etc/system-gschemrc.scm:2078
 msgid "Discard changes and reload the current document"
 msgstr ""
 
+# Revert All
 #: gschem/etc/system-gschemrc.scm:2079
-#, fuzzy
 msgid "Re_vert All"
-msgstr "翻转页面"
+msgstr "还原全部"
 
 #: gschem/etc/system-gschemrc.scm:2079
 msgid "Discard changes and reload all open documents"
 msgstr ""
 
+# Print
 #: gschem/etc/system-gschemrc.scm:2082
-#, fuzzy
 msgid "_Print..."
 msgstr "打印..."
 
