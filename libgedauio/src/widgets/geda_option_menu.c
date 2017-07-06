@@ -640,7 +640,7 @@ geda_option_menu_key_press (GtkWidget *widget, GdkEventKey *event)
     case GDK_KP_Space:
     case GDK_space:
       geda_option_menu_remove_contents (option_menu);
-      geda_menu_popup (GEDA_MENU (option_menu->menu), NULL, NULL,
+      geda_menu_popup ((GedaMenu*)option_menu->menu, NULL, NULL,
                        geda_option_menu_position, option_menu,
                        0, event->time);
       menu_item = geda_menu_widget_get_active (option_menu->menu);
