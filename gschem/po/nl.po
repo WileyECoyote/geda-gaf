@@ -4677,8 +4677,8 @@ msgstr "Voeg cirkel toe"
 msgid "_Line"
 msgstr "_Lijn"
 
+# Add line
 #: gschem/etc/system-gschemrc.scm:2265
-#, fuzzy
 msgid "Add line"
 msgstr "Voeg Lijn Toe"
 
@@ -4692,7 +4692,7 @@ msgstr "Voeg Pad Toe"
 
 #: gschem/etc/system-gschemrc.scm:2267
 msgid "Pictu_re..."
-msgstr "A_fbeelding..."
+msgstr "Afbeelding..."
 
 #: gschem/etc/system-gschemrc.scm:2267
 msgid "Insert an image into the current document"
@@ -4702,10 +4702,10 @@ msgstr ""
 msgid "_Pin"
 msgstr "_Pen"
 
+# Add pin
 #: gschem/etc/system-gschemrc.scm:2268
-#, fuzzy
 msgid "Add pin"
-msgstr "Voeg Pen Toe"
+msgstr "Pin toevoegen"
 
 #: gschem/etc/system-gschemrc.scm:2276
 msgid "Create a new session"
@@ -4731,10 +4731,10 @@ msgstr ""
 msgid "Save the current Session to another name"
 msgstr ""
 
+# Manage
 #: gschem/etc/system-gschemrc.scm:2283
-#, fuzzy
 msgid "_Manage..."
-msgstr "_Manager..."
+msgstr "beheren..."
 
 #: gschem/etc/system-gschemrc.scm:2283
 msgid "Open the Session Manager dialog"
@@ -4744,10 +4744,10 @@ msgstr ""
 msgid "_Attach"
 msgstr "V_astmaken"
 
+# Attach selected attributes to symbol
 #: gschem/etc/system-gschemrc.scm:2291
-#, fuzzy
 msgid "Attach selected attributes to symbol"
-msgstr "Bevestig Attributen"
+msgstr "Bevestig geselecteerde attributen aan symbool"
 
 #: gschem/etc/system-gschemrc.scm:2292
 msgid "_Detach"
@@ -4948,8 +4948,8 @@ msgstr "_Snap Aan"
 msgid "Toggle the object snap mode"
 msgstr "de objectmagneetmenu modus"
 
+# Rubberband => Hold connections
 #: gschem/etc/system-gschemrc.scm:2340
-#, fuzzy
 msgid "_Rubberband"
 msgstr "Houd Aansluitingen"
 
@@ -4957,27 +4957,25 @@ msgstr "Houd Aansluitingen"
 msgid "Toggle rubberband net mode"
 msgstr "elastisch netbinding modus"
 
+# Magnetic Net
 #: gschem/etc/system-gschemrc.scm:2341
-#, fuzzy
 msgid "_Magnetic Net"
-msgstr "Magnetische Draad Mode"
+msgstr "Magnetische Draad"
 
 #: gschem/etc/system-gschemrc.scm:2341
 msgid "Toggle magnetic net mode"
 msgstr "_Magnetische Draad Modus"
 
-# Toggle Dragging Moves
+# Drag Moves
 #: gschem/etc/system-gschemrc.scm:2342
-#, fuzzy
 msgid "_Drag Move"
-msgstr "Slepen"
+msgstr "Sleep beweegt"
 
 #: gschem/etc/system-gschemrc.scm:2342
 msgid "Toggle Drag-can-Move mode"
 msgstr "sleep-kan-move-modus"
 
 #: gschem/etc/system-gschemrc.scm:2343
-#, fuzzy
 msgid "_Outline-Box"
 msgstr "C_ontour/Rechthoek"
 
@@ -4986,8 +4984,8 @@ msgstr "C_ontour/Rechthoek"
 msgid "Toggle action feedback"
 msgstr "Aktie terugkoppel"
 
+# Automatic Panning
 #: gschem/etc/system-gschemrc.scm:2344
-#, fuzzy
 msgid "_Auto-Pan"
 msgstr "Automatische panning"
 
