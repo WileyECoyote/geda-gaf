@@ -164,7 +164,7 @@ msgid "Vertical adjustment"
 msgstr ""
 
 #: gschem/src/base/gschem_parsecmd.c:85
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Usage: %s [OPTION ...] [--] [FILE ...]\n"
 "\n"
@@ -199,28 +199,35 @@ msgid ""
 "Report bugs at <https://bugs.launchpad.net/geda>\n"
 "gEDA homepage: <http://www.geda-project.org>\n"
 msgstr ""
-"Использование: %s [КЛЮЧ ...] [--] [ФАЙЛ ...]\n"
+"Usage: %s [OPTION ...] [--] [FILE ...]\n"
 "\n"
-"Интерактивное редактирование принципиальных схем и символов gEDA.\n"
-"Если указан один или более ФАЙЛов, они открываются для редактирования;\n"
-"в противном случае создаётся новый пустой файл.\n"
+"Interactively edit gEDA schematics or symbols.  If one or more FILEs\n"
+"are specified, open them for editing; otherwise, create a new, empty\n"
+"schematic.\n"
 "\n"
-"Ключи:\n"
-"  -q, --quiet              Без вывода информации.\n"
-"  -v, --verbose            Подробный вывод.\n"
-"  -r, --config-file=ФАЙЛ   Загрузить дополнительный файл настройки.\n"
-"  -L КАТАЛОГ               Добавить КАТАЛОГ к пути поиска файлов Scheme.\n"
-"  -c ВЫРАЖЕНИЕ             Выполнить выражение Scheme при запуске.\n"
-"  -s ФАЙЛ                  Выполнить файл скрипта Scheme при запуске.\n"
-"  -o, --output=ФАЙЛ        Имя выходного файла (для печати в файл).\n"
-"  -p                       Автоматическое размещение окна.\n"
-"  -V, --version            Информация о версии.\n"
-"  -h, --help               Данная справка.\n"
-"  --                       Считать все последующие аргументы именами\n"
-"                           файлов.\n"
+"Options:\n"
+"  -a, --render-adaptor <DRV> Укажите, какой адаптер рендеринга использовать, Cario или X11.\n"
+"  -c, --config-file <FILE>   Дополнительный файл конфигурации для загрузки.\n"
+"  -g, --guile <DIR>          Добавьте DIR в путь Guile (pre-config).\n"
+"  -f, --font <NAME>          Установить фамилию шрифта\n"
+"  -h, --help                 Помогите; это сообщение.\n"
+"  -m, --safe-mode            Безопасный режим.\n"
+"  -n, --no-auto              Нет автоматического загрузки последнего документа.\n"
+"  -o, --output <FILE>        Выходное имя файла (для печати и вывода изображения).\n"
+"  -p, --place                Автоматическое размещение окна.\n"
+"  -q, --quiet                Тихий режим.\n"
+"  -r, --run <FILE>           Скрипт сценария для запуска при запуске.\n"
+"  -s, --start <name>         Запуск с использованием имени сеанса.\n"
+"  -t, --title-block <FILE>   Запустите новый чертеж, используя указанный заголовок.\n"
+"  -u, --undo-dir <DIR>       Укажите временный каталог для файлов отмены.\n"
+"  -v, --verbose              Подробный режим.\n"
+"  -V, --version              Показывать информацию о версии.\n"
+"  -x (EXPR)                  Вычисление схемы для запуска при запуске.\n"
+"  -z, --minimized            Скрыть главное окно, используемое для создания сценариев\n"
+"  --                         Обработать все остальные аргументы как имена файлов.\n"
 "\n"
 "Отчёты об ошибках отправляйте по адресу <https://bugs.launchpad.net/geda>\n"
-"Домашняя страница gEDA/gaf: <http://www.geda-project.org/>\n"
+"Домашняя страница gEDA: <http://www.geda-project.org/>\n"
 
 #: gschem/src/base/gschem_parsecmd.c:128
 #, c-format
@@ -775,15 +782,15 @@ msgstr ""
 msgid "Grid OFF\n"
 msgstr "Сетка отключена\n"
 
+# Dot grid activated
 #: gschem/src/iface/i_command.c:4339
-#, fuzzy
 msgid "Dot grid activated\n"
-msgstr "Выбрана сетка из точек\n"
+msgstr "Включена сетка точек\n"
 
+# Mesh grid activated
 #: gschem/src/iface/i_command.c:4340
-#, fuzzy
 msgid "Mesh grid activated\n"
-msgstr "Выбрана сетка из линий\n"
+msgstr "Сетчатая сетка активирована\n"
 
 #: gschem/src/iface/i_command.c:4419
 msgid "Snap OFF (CAUTION!)\n"
@@ -4496,10 +4503,10 @@ msgstr "Блокировка выбранных объектов"
 msgid "Unlock"
 msgstr "Разблокировка"
 
+# Unlock selected objects
 #: gschem/etc/system-gschemrc.scm:2162
-#, fuzzy
 msgid "Unlock selected objects"
-msgstr "Выделенные объекты"
+msgstr "Разблокировать выбранные объекты"
 
 #: gschem/etc/system-gschemrc.scm:2197
 msgid "_Redraw"
@@ -4518,10 +4525,10 @@ msgstr "_Центрировать"
 msgid "Activate Panning"
 msgstr ""
 
+# Zoom All
 #: gschem/etc/system-gschemrc.scm:2200
-#, fuzzy
 msgid "Zoom _All"
-msgstr "_Показать всё"
+msgstr "Увеличить все"
 
 #: gschem/etc/system-gschemrc.scm:2200
 msgid "Zoom to the limits of the drawing area"
@@ -4543,10 +4550,10 @@ msgstr "У_величить"
 msgid "Zoom _Out"
 msgstr "Уме_ньшить"
 
+# Zoom Magnification
 #: gschem/etc/system-gschemrc.scm:2205
-#, fuzzy
 msgid "Zoom _Mag"
-msgstr "У_величить"
+msgstr "Увеличение увеличения"
 
 # Documentation
 #: gschem/etc/system-gschemrc.scm:2206
@@ -4692,23 +4699,23 @@ msgstr "Закрыть без сохранения"
 msgid "Close the current page without saving"
 msgstr "Закрытие без сохранения изменений"
 
+# Print
 #: gschem/etc/system-gschemrc.scm:2241
-#, fuzzy
 msgid "Prin_t"
 msgstr "Печать"
 
+# Print the current page
 #: gschem/etc/system-gschemrc.scm:2241
-#, fuzzy
 msgid "Print the current page"
-msgstr "Текущая страница"
+msgstr "Печать Текущая страница"
 
+# Down Schematic => Login to the subcircuit
 #: gschem/etc/system-gschemrc.scm:2244
-#, fuzzy
 msgid "Down _Schematic"
 msgstr "Войти в подсхему"
 
+# Down Symbol => Enter the symbol
 #: gschem/etc/system-gschemrc.scm:2245
-#, fuzzy
 msgid "Down S_ymbol"
 msgstr "Войти в символ"
 
