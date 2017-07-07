@@ -90,7 +90,7 @@ create_and_fill_model (SCM s_load_path)
     free(path);
   }
 
-  return GTK_TREE_MODEL (store);
+  return (GtkTreeModel*)store;
 }
 
 /*! \brief Adds a treeview for displaying path string.

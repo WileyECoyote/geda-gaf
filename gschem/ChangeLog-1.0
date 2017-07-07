@@ -1,3 +1,7 @@
+2017-07-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_guile.c: Remove unnecessary GtkTreeModel type-checking cast.
+
 2017-07-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/nl.po: Update Dutch translations.
