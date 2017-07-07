@@ -112,26 +112,26 @@ x_guile_dialog_path_list (SCM s_load_path)
   GtkWidget       *hbox, *scrolled_window;
 
   /* place the treeview and its caption into a box */
-  hbox = GTK_WIDGET (g_object_new (GTK_TYPE_HBOX,
-                                   /* GtkBox */
-                                   "homogeneous", TRUE,
-                                   "spacing",     8,
-                                   NULL));
+  hbox = g_object_new (GTK_TYPE_HBOX,
+                       /* GtkBox */
+                       "homogeneous", TRUE,
+                       "spacing",     8,
+                       NULL);
 
   /* list guile search path */
 
   /* create a scrolled window container for a treeview */
-  scrolled_window = GTK_WIDGET (g_object_new (GTK_TYPE_SCROLLED_WINDOW,
-                                              /* GtkScrolledWindow */
-                             "hscrollbar-policy", GTK_POLICY_AUTOMATIC,
-                             "vscrollbar-policy", GTK_POLICY_AUTOMATIC,
+  scrolled_window = g_object_new (GTK_TYPE_SCROLLED_WINDOW,
+                                  /* GtkScrolledWindow */
+                                  "hscrollbar-policy", GTK_POLICY_AUTOMATIC,
+                                  "vscrollbar-policy", GTK_POLICY_AUTOMATIC,
                                   "shadow-type",  GTK_SHADOW_ETCHED_IN,
-                                                                NULL));
+                                  NULL);
 
   treeview = (GtkTreeView*)gtk_tree_view_new ();
 
-  renderer = GTK_CELL_RENDERER(g_object_new (GTK_TYPE_CELL_RENDERER_TEXT,
-                                              "editable", FALSE, NULL));
+  renderer = g_object_new (GTK_TYPE_CELL_RENDERER_TEXT,
+                           "editable", FALSE, NULL);
 
   gtk_tree_view_insert_column_with_attributes (treeview,
                                                -1,
