@@ -107,8 +107,9 @@ x_guile_dialog_path_list (SCM s_load_path)
 {
   GtkCellRenderer   *renderer;
   GtkTreeModel      *model;
-  GtkWidget         *hbox, *scrolled_window, *treeview;
 
+  GtkTreeView     *treeview;
+  GtkWidget       *hbox, *scrolled_window;
 
   /* place the treeview and its caption into a box */
   hbox = GTK_WIDGET (g_object_new (GTK_TYPE_HBOX,
@@ -127,12 +128,12 @@ x_guile_dialog_path_list (SCM s_load_path)
                                   "shadow-type",  GTK_SHADOW_ETCHED_IN,
                                                                 NULL));
 
-  treeview = gtk_tree_view_new ();
+  treeview = (GtkTreeView*)gtk_tree_view_new ();
 
   renderer = GTK_CELL_RENDERER(g_object_new (GTK_TYPE_CELL_RENDERER_TEXT,
                                               "editable", FALSE, NULL));
 
-  gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (treeview),
+  gtk_tree_view_insert_column_with_attributes (treeview,
                                                -1,
                                                "Path",
                                                renderer,
@@ -141,7 +142,7 @@ x_guile_dialog_path_list (SCM s_load_path)
 
   model = create_and_fill_model(s_load_path);
 
-  gtk_tree_view_set_model (GTK_TREE_VIEW (treeview), model);
+  gtk_tree_view_set_model (treeview, model);
 
   /* The tree view has acquired its own reference to the model,
    * so we can drop ours. That way the model will */
