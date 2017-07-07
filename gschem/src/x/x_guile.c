@@ -148,7 +148,7 @@ x_guile_dialog_path_list (SCM s_load_path)
 
   g_object_unref (model);
 
-  gtk_container_add (GTK_CONTAINER (scrolled_window), treeview);
+  geda_container_add (scrolled_window, treeview);
 
   gtk_box_pack_start (GTK_BOX (hbox), scrolled_window, TRUE, TRUE, 0);
 

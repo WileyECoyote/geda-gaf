@@ -1,6 +1,8 @@
 2017-07-07 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/x/x_guile.c: Remove unnecessary GtkTreeModel type-checking cast.
+    * src/x/x_guile.c: Remove unnecessary GtkTreeModel type-checking cast
+      and replace gtk_container_add with geda_container_add to eliminate
+      cast in x_guile_dialog_path_list.
 
 2017-07-06 Wiley E. Hill <wileyhill@gmail.com>
 
