@@ -1062,7 +1062,7 @@ geda_option_menu_set_menu (GedaOptionMenu *option_menu, GtkWidget *menu)
     }
     geda_option_menu_update_contents (option_menu);
 
-    g_object_notify (G_OBJECT (option_menu), "menu");
+    g_object_notify ((GObject*)option_menu, "menu");
   }
 }
 
