@@ -835,8 +835,9 @@ geda_option_menu_calc_size (GedaOptionMenu *option_menu)
     }
   }
 
-  if (old_width != option_menu->width || old_height != option_menu->height)
+  if (old_width != option_menu->width || old_height != option_menu->height) {
     gtk_widget_queue_resize (GTK_WIDGET (option_menu));
+  }
 }
 
 static void
