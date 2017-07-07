@@ -4037,10 +4037,10 @@ msgstr "關閉視窗"
 msgid "Close the current document"
 msgstr ""
 
+# Close All
 #: gschem/etc/system-gschemrc.scm:2092
-#, fuzzy
 msgid "Close All"
-msgstr "關閉視窗"
+msgstr "關閉所有"
 
 #: gschem/etc/system-gschemrc.scm:2092
 msgid "Close all open documents"
@@ -4055,62 +4055,62 @@ msgstr "結束程式"
 msgid "_Undo"
 msgstr "還原"
 
+# Undo the last action
 #: gschem/etc/system-gschemrc.scm:2101
-#, fuzzy
 msgid "Undo the last action"
-msgstr "復原上一次操作"
+msgstr "撤消上一個操作"
 
 #: gschem/etc/system-gschemrc.scm:2102
 msgid "_Redo"
 msgstr "取消還原"
 
+# redo the last un-done action
 #: gschem/etc/system-gschemrc.scm:2102
-#, fuzzy
 msgid "redo the last un-done action"
-msgstr "復原上一次操作"
+msgstr "重做最後一個不完整的動作"
 
+# Cut clipboard
 #: gschem/etc/system-gschemrc.scm:2105
-#, fuzzy
 msgid "Cu_t clipboard"
-msgstr "剪下至剪貼簿"
+msgstr "切到剪貼板"
 
+# Copy clipboard => Copy to clipboard
 #: gschem/etc/system-gschemrc.scm:2106
-#, fuzzy
 msgid "_Copy clipboard"
-msgstr "複製到剪貼簿"
+msgstr "複製到剪貼板"
 
+# Paste clipboard => Paste from clipboard
 #: gschem/etc/system-gschemrc.scm:2107
-#, fuzzy
 msgid "_Paste clipboard"
-msgstr "從剪貼簿貼上"
+msgstr "從剪貼板粘貼"
 
 #: gschem/etc/system-gschemrc.scm:2111
 msgid "C_opy"
 msgstr ""
 
+# Multiple Copy
 #: gschem/etc/system-gschemrc.scm:2112
-#, fuzzy
 msgid "_Multiple Copy"
-msgstr "多重複製"
+msgstr "多重複制"
 
+# Mirror
 #: gschem/etc/system-gschemrc.scm:2113
-#, fuzzy
 msgid "M_irror"
-msgstr "水平鏡射"
+msgstr "鏡子"
 
 #: gschem/etc/system-gschemrc.scm:2114
 msgid "Mo_ve"
 msgstr ""
 
+# Offset
 #: gschem/etc/system-gschemrc.scm:2115
-#, fuzzy
 msgid "O_ffset"
-msgstr "文字模式"
+msgstr "抵消"
 
+# Offset the selected objects
 #: gschem/etc/system-gschemrc.scm:2115
-#, fuzzy
 msgid "Offset the selected objects"
-msgstr "選擇物件"
+msgstr "偏移所選對象"
 
 #: gschem/etc/system-gschemrc.scm:2116
 #, fuzzy
