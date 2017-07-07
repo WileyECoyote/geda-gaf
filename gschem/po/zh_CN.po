@@ -3986,60 +3986,60 @@ msgstr ""
 msgid "Create PDF document"
 msgstr ""
 
+# Write image
 #: gschem/etc/system-gschemrc.scm:2085
-#, fuzzy
 msgid "Write _image..."
-msgstr "写入图片..."
+msgstr "写图像..."
 
+# Convert into picture
 #: gschem/etc/system-gschemrc.scm:2085
-#, fuzzy
 msgid "Export image"
-msgstr "图片..."
+msgstr "转换为图片"
 
+# Execute Script => Execute commands
 #: gschem/etc/system-gschemrc.scm:2088
-#, fuzzy
 msgid "E_xecute Script..."
-msgstr "执行脚本..."
+msgstr "执行命令..."
 
+# Execute a script file
 #: gschem/etc/system-gschemrc.scm:2088
-#, fuzzy
 msgid "Execute a script file"
-msgstr "执行脚本..."
+msgstr "执行脚本文件"
 
+# Close
 #: gschem/etc/system-gschemrc.scm:2091 gschem/etc/system-gschemrc.scm:2238
-#, fuzzy
 msgid "_Close"
-msgstr "关闭"
+msgstr "关"
 
 #: gschem/etc/system-gschemrc.scm:2091
 msgid "Close the current document"
 msgstr ""
 
+# Close All
 #: gschem/etc/system-gschemrc.scm:2092
-#, fuzzy
 msgid "Close All"
-msgstr "关闭"
+msgstr "关闭所有"
 
 #: gschem/etc/system-gschemrc.scm:2092
 msgid "Close all open documents"
 msgstr ""
 
+# Quit
 #: gschem/etc/system-gschemrc.scm:2093
-#, fuzzy
 msgid "_Quit"
-msgstr "退出"
+msgstr "放弃"
 
+# Undo
 #: gschem/etc/system-gschemrc.scm:2101
-#, fuzzy
 msgid "_Undo"
-msgstr "撤销"
+msgstr "解开"
 
 #: gschem/etc/system-gschemrc.scm:2101
 msgid "Undo the last action"
 msgstr ""
 
+# Redo
 #: gschem/etc/system-gschemrc.scm:2102
-#, fuzzy
 msgid "_Redo"
 msgstr "重做"
 

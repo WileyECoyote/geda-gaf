@@ -5,6 +5,8 @@
       cast in x_guile_dialog_path_list, change treeview from type GtkWidget
       to GtkTreeView, remove unnecessary cast from g_object_new.
 
+    * po/zh_CN.po: Update Chinese simplified translations.
+
 2017-07-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/nl.po: Update Dutch translations.
