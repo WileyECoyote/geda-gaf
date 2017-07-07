@@ -60,13 +60,13 @@
     if (G_IS_OBJECT(obj)) g_object_unref (obj);
 
 #define GEDA_OBJECT_GET_DATA(object, key) \
-    g_object_get_data (G_OBJECT(object), key)
+    g_object_get_data ((GObject*)object, key)
 
 #define GEDA_OBJECT_SET_DATA(object, data,  key) \
-    g_object_set_data (G_OBJECT(object), key, data);
+    g_object_set_data ((GObject*)object, key, data);
 
 #define GEDA_SIGNAL_CONNECT(object, signal, callback, data) \
-    g_signal_connect(G_OBJECT(object), signal, (GCallback)callback, data);
+    g_signal_connect(object, signal, (GCallback)callback, data);
 
 /** @} endgroup geda-wrapper-macros */
 
