@@ -45,6 +45,9 @@
 
 #include <gschem.h>
 #include <geda_image_chooser.h>
+
+/* Include GUI functions in libgedauio */
+#include <geda/geda_gui_funcs.h>
 #include <geda_debug.h>
 
 /* These are just used to shorten lines, no magic */
@@ -357,7 +360,7 @@ o_picture_exchange_file (GschemToplevel *w_current, GedaObject *o_current)
     cb_all = gtk_check_button_new_with_label (_("Update All"));
     gtk_widget_show (cb_all);
     gtk_widget_set_tooltip_text(cb_all, _("Update all selected Picture images"));
-    gtk_toggle_button_set_active ((GtkToggleButton*)cb_all, update_all);
+    SetToggleState (cb_all, update_all);
     geda_image_chooser_append_extra (dialog, cb_all);
 
     gtk_widget_show (dialog);
@@ -425,7 +428,7 @@ o_picture_export (GschemToplevel *w_current, GedaObject *o_current)
   cb_aspect = gtk_check_button_new_with_label (_("Orginal size"));
   gtk_widget_show (cb_aspect);
   gtk_widget_set_tooltip_text(cb_aspect, _("When checked the image size will be exported"));
-  gtk_toggle_button_set_active ((GtkToggleButton*)cb_aspect, orgin_size);
+  SetToggleState (cb_aspect, orgin_size);
   geda_image_chooser_append_extra (dialog, cb_aspect);
 
   geda_chooser_set_do_overwrite_confirmation(dialog, TRUE);

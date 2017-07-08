@@ -1,5 +1,8 @@
 2017-07-08 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_picture.c: Iinclude geda_gui_funcs.h and replace
+      gtk_toggle_button_set_active with SetToggleState macro.
+
     * src/x/x_sessions.c: Revise session_tree_update to use a pointer to
       a GtkTreeStore instead of a GtkTreeModel. Remove unnecessary type
       checking cast to GtkTreeStore in on_*_butt_clicked. Use GtkTreeView
