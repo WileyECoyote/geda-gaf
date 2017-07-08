@@ -109,10 +109,11 @@ static void session_tree_update (GtkWidget *dialog)
 static GtkTreeSelection*
 session_dialog_get_selection(GschemDialog *dialog)
 {
-  GtkWidget  *treeview;
+  GtkTreeView *treeview;
 
   treeview = GEDA_OBJECT_GET_DATA (dialog, "tree-view");
-  return gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
+
+  return gtk_tree_view_get_selection (treeview);
 }
 
 /*! \brief Callback for the Rename Button on Manage Sessions dialog
