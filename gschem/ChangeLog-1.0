@@ -1,7 +1,8 @@
 2017-07-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_sessions.c: Revise session_tree_update to use a pointer to
-      a GtkTreeStore instead of a GtkTreeModel.
+      a GtkTreeStore instead of a GtkTreeModel. Remove unnecessary type
+      checking cast to GtkTreeStore in on_*_butt_clicked.
 
 2017-07-07 Wiley E. Hill <wileyhill@gmail.com>
 

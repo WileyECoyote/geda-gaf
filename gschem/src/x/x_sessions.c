@@ -154,8 +154,8 @@ on_rename_butt_clicked (GtkWidget *button, void *user_data)
       GschemToplevel *w_current = Dialog->w_current;
 
       if (i_sessions_rename_session(w_current, old_name, new_name)) {
-        gtk_tree_store_set (GTK_TREE_STORE (model), &iter,
-                            COLUMN_NAME, new_name, -1);
+        gtk_tree_store_set ((GtkTreeStore*)model, &iter,
+                             COLUMN_NAME, new_name, -1);
       }
     }
     GEDA_FREE(new_name);
@@ -192,7 +192,7 @@ on_delete_butt_clicked (GtkWidget *button, void *user_data)
     gtk_tree_model_get (model, &iter, COLUMN_NAME, &name, -1);
 
     i_sessions_delete_session(w_current, name);
-    gtk_tree_store_remove (GTK_TREE_STORE (model), &iter);
+    gtk_tree_store_remove ((GtkTreeStore*)model, &iter);
   }
 }
 
