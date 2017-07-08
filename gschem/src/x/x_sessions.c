@@ -70,15 +70,14 @@ enum {
  */
 static void session_tree_update (GtkWidget *dialog)
 {
-  GtkTreeView   *treeview;
-
-  GtkTreeModel  *model;
+  GtkTreeStore *store;
+  GtkTreeView  *treeview;
 
   treeview = GEDA_OBJECT_GET_DATA (dialog, "tree-view");
-  model    = gtk_tree_view_get_model (treeview);
+  store    = GTK_TREE_STORE(gtk_tree_view_get_model (treeview));
 
   /* wipe out every thing in the store */
-  gtk_tree_store_clear (GTK_TREE_STORE (model));
+  gtk_tree_store_clear (store);
 
   if (i_sessions_is_enabled()) { /* if session data exist */
 
@@ -94,9 +93,9 @@ static void session_tree_update (GtkWidget *dialog)
       Session *record = &g_array_index(sessions, Session, index);
 
       /* add the record to the store */
-      gtk_tree_store_append (GTK_TREE_STORE (model), &iter, NULL);
+      gtk_tree_store_append (store, &iter, NULL);
 
-      gtk_tree_store_set (GTK_TREE_STORE (model), &iter,
+      gtk_tree_store_set (store, &iter,
                           COLUMN_NAME, record->session_name,
                           COLUMN_COUNT, record->page_count, -1);
     }
