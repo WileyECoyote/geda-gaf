@@ -194,8 +194,7 @@ GedaNotifyList *geda_notify_list_new (void) {
  *
  *  \return TRUE if the freeze count is non zero
  */
-int
-geda_notify_list_is_frozen (GedaNotifyList *list)
+int geda_notify_list_is_frozen (GedaNotifyList *list)
 {
   bool answer;
 
