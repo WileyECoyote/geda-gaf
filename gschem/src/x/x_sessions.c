@@ -425,14 +425,13 @@ create_action_area (GschemDialog *ThisDialog, GtkWidget *parent)
   gtk_box_pack_start ((GtkBox*)action_hbox, startup_checkbutt, FALSE, FALSE, 0);
   gtk_widget_set_tooltip_text(startup_checkbutt, startup_tip);
   startup = i_sessions_get_show_at_startup();
-  gtk_toggle_button_set_active((GtkToggleButton*)startup_checkbutt, startup);
+  SetToggleState (startup_checkbutt, startup);
 
   auto_check_butt = gtk_check_button_new_with_mnemonic (_("Auto update"));
   g_object_set (auto_check_butt, "visible", TRUE, NULL);
   gtk_box_pack_start ((GtkBox*)action_hbox, auto_check_butt, FALSE, FALSE, 0);
   gtk_widget_set_tooltip_text(auto_check_butt, update_tip);
-  gtk_toggle_button_set_active((GtkToggleButton*)auto_check_butt,
-                                w_current->auto_sessions);
+  SetToggleState (auto_check_butt, w_current->auto_sessions);
 
   /* Create and connect the Close and Apply Buttons */
   GtkWidget *close_butt = gtk_button_new_from_stock (GTK_STOCK_CLOSE);
