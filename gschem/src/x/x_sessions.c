@@ -269,7 +269,7 @@ on_open_butt_clicked(GtkButton *button, void *user_data)
     gtk_tree_model_get (model, &iter, COLUMN_NAME, &name, -1);
     if (i_sessions_open_session(w_current, name)) {
 
-      g_signal_emit_by_name (GTK_DIALOG (Dialog), "response",
+      g_signal_emit_by_name (Dialog, "response",
                              GEDA_RESPONSE_REJECT,
                              NULL);
     }
@@ -358,7 +358,7 @@ x_sessions_response(GtkWidget *Dialog, int response, void *nothing)
   */
 static void on_close_butt_clicked(GtkButton *button, void *user_data)
 {
-    g_signal_emit_by_name (GTK_DIALOG (user_data), "response",
+    g_signal_emit_by_name (user_data, "response",
                            GEDA_RESPONSE_REJECT,
                            user_data);
 }
