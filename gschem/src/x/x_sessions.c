@@ -502,8 +502,8 @@ x_sessions_get_treeview (GtkWidget *Dialog)
   GtkTreeViewColumn *column;
   GtkCellRenderer   *renderer;
   GtkTreeModel      *store;
+  GtkTreeView       *treeview;
   GtkWidget         *scrolled_window;
-  GtkWidget         *treeview;
   GtkTreeSelection  *selection;
 
   /* create the model for the treeview */
@@ -541,7 +541,7 @@ x_sessions_get_treeview (GtkWidget *Dialog)
 
   gtk_tree_view_column_pack_start (column, renderer, TRUE);
   gtk_tree_view_column_add_attribute (column, renderer, "text", COLUMN_NAME);
-  gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
+  gtk_tree_view_append_column (treeview, column);
 
   /* second column: Count */
   renderer = g_object_new (GTK_TYPE_CELL_RENDERER_TEXT,
@@ -555,14 +555,14 @@ x_sessions_get_treeview (GtkWidget *Dialog)
 
   gtk_tree_view_column_pack_start (column, renderer, TRUE);
   gtk_tree_view_column_add_attribute (column, renderer, "text", COLUMN_COUNT);
-  gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
+  gtk_tree_view_append_column (treeview, column);
 
   /* add the treeview to the scrolled window */
   geda_container_add (scrolled_window, treeview);
 
   gtk_widget_show_all (scrolled_window);
 
-  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
+  selection = gtk_tree_view_get_selection (treeview);
   gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
 
   /* store pointer to treeview in Dialog */

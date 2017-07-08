@@ -3,7 +3,8 @@
     * src/x/x_sessions.c: Revise session_tree_update to use a pointer to
       a GtkTreeStore instead of a GtkTreeModel. Remove unnecessary type
       checking cast to GtkTreeStore in on_*_butt_clicked. Use GtkTreeView
-      instead GtkWidget in session_dialog_get_selection.
+      instead of GtkWidget in functions session_dialog_get_selection and
+      x_sessions_get_treeview.
 
 2017-07-07 Wiley E. Hill <wileyhill@gmail.com>
 
