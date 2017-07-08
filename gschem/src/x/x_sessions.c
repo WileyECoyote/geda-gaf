@@ -106,8 +106,7 @@ static void session_tree_update (GtkWidget *dialog)
  *  in a sessions tree-view, used by both the Open Session and
  *  Manage Sessions dialogs
  */
-static GtkTreeSelection*
-session_dialog_get_selection(GschemDialog *dialog)
+static GtkTreeSelection *session_dialog_get_selection(GschemDialog *dialog)
 {
   GtkTreeView *treeview;
 
@@ -129,8 +128,7 @@ session_dialog_get_selection(GschemDialog *dialog)
  *
  *  \sa on_delete_butt_clicked, on_export_butt_clicked
  */
-static void
-on_rename_butt_clicked (GtkWidget *button, void *user_data)
+static void on_rename_butt_clicked (GtkWidget *button, void *user_data)
 {
   GschemDialog     *Dialog    = (GschemDialog*)user_data;
   GtkTreeSelection *selection;
@@ -176,8 +174,7 @@ on_rename_butt_clicked (GtkWidget *button, void *user_data)
  *
  *  \sa on_delete_butt_clicked, on_rename_butt_clicked
  */
-static void
-on_delete_butt_clicked (GtkWidget *button, void *user_data)
+static void on_delete_butt_clicked (GtkWidget *button, void *user_data)
 {
   GschemDialog      *Dialog    = (GschemDialog*)user_data;
   GschemToplevel    *w_current = Dialog->w_current;
@@ -210,8 +207,7 @@ on_delete_butt_clicked (GtkWidget *button, void *user_data)
  *
  *  \sa on_rename_butt_clicked, on_export_butt_clicked
  */
-static void
-on_export_butt_clicked (GtkWidget *button, void *user_data)
+static void on_export_butt_clicked (GtkWidget *button, void *user_data)
 {
   GschemDialog      *Dialog    = (GschemDialog*)user_data;
   GtkTreeSelection  *selection;
@@ -252,8 +248,7 @@ on_export_butt_clicked (GtkWidget *button, void *user_data)
  *  \param [in]   button    ptr to the button widget, not used
  *  \param [in]   user_data ptr to the dialog object
  */
-static void
-on_open_butt_clicked(GtkButton *button, void *user_data)
+static void on_open_butt_clicked(GtkButton *button, void *user_data)
 {
   GschemDialog      *Dialog    = (GschemDialog*)user_data;
   GschemToplevel    *w_current = Dialog->w_current;
@@ -284,9 +279,8 @@ on_open_butt_clicked(GtkButton *button, void *user_data)
  *
  *  \note This function is not used by the Open-Session dialog
  */
-static void
-manage_session_selection_changed (GtkTreeSelection *selection,
-                                    void *user_data)
+static void manage_session_selection_changed (GtkTreeSelection *selection,
+                                                          void *user_data)
 {
   GtkWidget *Dialog = (GtkWidget*)user_data;
   GtkWidget *button;
@@ -331,8 +325,7 @@ manage_session_selection_changed (GtkTreeSelection *selection,
  *  \param [in]   response  int signal indicating which button
  *  \param [in]   nothing   Not used
  */
-void
-x_sessions_response(GtkWidget *Dialog, int response, void *nothing)
+void x_sessions_response(GtkWidget *Dialog, int response, void *nothing)
 {
   GschemToplevel *w_current = GSCHEM_DIALOG(Dialog)->w_current;
 
@@ -369,8 +362,8 @@ static void on_close_butt_clicked(GtkButton *button, void *user_data)
  *   passes the state to i_sessions_set_show_at_startup function to
  *   update the configuration setting with the new value.
  */
-static void
-callback_session_startup_toggled(GtkToggleButton *button, void *nothing)
+static void callback_session_startup_toggled(GtkToggleButton *button,
+                                                        void *nothing)
 {
   bool state;
 
@@ -385,8 +378,7 @@ callback_session_startup_toggled(GtkToggleButton *button, void *nothing)
  *   passes set the toplevel variable to the value of the state of
  *   the widget, either enabled or disabled.
  */
-static void
-callback_session_auto_toggled(GtkToggleButton *button, void *data)
+static void callback_session_auto_toggled (GtkToggleButton *button, void *data)
 {
   GschemToplevel *w_current = data;
 
@@ -399,8 +391,8 @@ callback_session_auto_toggled(GtkToggleButton *button, void *data)
  * concept of an action area is more of a hindrance then it is
  * useful, and 2.) We need access to the apply button widget.
  */
-static GtkWidget*
-create_action_area (GschemDialog *ThisDialog, GtkWidget *parent)
+static GtkWidget *create_action_area (GschemDialog *ThisDialog,
+                                         GtkWidget *parent)
 {
   GschemToplevel *w_current = ThisDialog->w_current;
   GtkWidget  *action_hbox   = NULL;
@@ -494,10 +486,8 @@ create_action_area (GschemDialog *ThisDialog, GtkWidget *parent)
  *
  *  \returns A pointer on the GtkVBox to add to dialog.
  */
-static GtkWidget*
-x_sessions_get_treeview (GtkWidget *Dialog)
+static GtkWidget *x_sessions_get_treeview (GtkWidget *Dialog)
 {
-
   GtkTreeViewColumn *column;
   GtkCellRenderer   *renderer;
   GtkTreeModel      *store;
@@ -687,10 +677,9 @@ void x_sessions_manage_dialog(GschemToplevel *w_current)
  *
  *  \note This function is not used by the Manage-Sessions dialog
  */
-static bool
-callback_treeview_button_pressed (GtkWidget      *widget,
-                                  GdkEventButton *event,
-                                  void           *user_data)
+static bool callback_treeview_button_pressed (GtkWidget      *widget,
+                                              GdkEventButton *event,
+                                              void           *user_data)
 {
   GschemDialog  *ThisDialog = GSCHEM_DIALOG(user_data);
   bool           retval     = FALSE;
@@ -721,8 +710,8 @@ callback_treeview_button_pressed (GtkWidget      *widget,
  *
  *  \note This function is not used by the Manage-Sessions dialog
  */
-static void
-open_session_selection_changed (GtkTreeSelection *selection, void *user_data)
+static void open_session_selection_changed (GtkTreeSelection *selection,
+                                                        void *user_data)
 {
   GtkWidget *Dialog = (GtkWidget*)user_data;
   GtkWidget *button;

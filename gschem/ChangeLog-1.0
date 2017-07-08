@@ -6,7 +6,7 @@
       instead of GtkWidget in functions session_dialog_get_selection and
       x_sessions_get_treeview. Remove unnecessary cast for first argument
       to g_signal_emit_by_name. Replace gtk_toggle_button_set_active with
-      SetToggleState macro.
+      SetToggleState macro. Update function wrap to kernel style.
 
 2017-07-07 Wiley E. Hill <wileyhill@gmail.com>
 
