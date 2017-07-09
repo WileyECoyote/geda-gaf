@@ -109,35 +109,6 @@ static void remove_from_guile_path(const char *str)
   g_evaluate_scm_protected (s_load_expr, scm_current_module ());
 }
 
-static bool can_remove_path(const char *path)
-{
-  SCM s_sys_path;
-  char *sys_path;
-
-  bool can_remove;
-
-  s_sys_path = scm_sys_library_dir ();
-  sys_path   = scm_to_utf8_string (s_sys_path);
-  can_remove = strstr (path, sys_path) == NULL;
-  free(sys_path);
-
-  if (can_remove) {
-    s_sys_path = scm_sys_package_data_dir ();
-    sys_path   = scm_to_utf8_string (s_sys_path);
-    can_remove = strstr (path, sys_path) == NULL;
-    free(sys_path);
-  }
-
-  if (can_remove) {
-    s_sys_path = scm_sys_site_dir ();
-    sys_path   = scm_to_utf8_string (s_sys_path);
-    can_remove = strstr (path, sys_path) == NULL;
-    free(sys_path);
-  }
-
-  return can_remove;
-}
-
 static void check_update_guile_path (GtkWidget *ThisDialog)
 {
   GList        *path_list;
@@ -251,6 +222,35 @@ static void x_dialog_guile_response_add(GtkWidget *ThisDialog)
   }
 
   GEDA_FREE(string);
+}
+
+static bool can_remove_path(const char *path)
+{
+  SCM s_sys_path;
+  char *sys_path;
+
+  bool can_remove;
+
+  s_sys_path = scm_sys_library_dir ();
+  sys_path   = scm_to_utf8_string (s_sys_path);
+  can_remove = strstr (path, sys_path) == NULL;
+  free(sys_path);
+
+  if (can_remove) {
+    s_sys_path = scm_sys_package_data_dir ();
+    sys_path   = scm_to_utf8_string (s_sys_path);
+    can_remove = strstr (path, sys_path) == NULL;
+    free(sys_path);
+  }
+
+  if (can_remove) {
+    s_sys_path = scm_sys_site_dir ();
+    sys_path   = scm_to_utf8_string (s_sys_path);
+    can_remove = strstr (path, sys_path) == NULL;
+    free(sys_path);
+  }
+
+  return can_remove;
 }
 
 static void x_dialog_guile_response_remove(GtkWidget *ThisDialog)
