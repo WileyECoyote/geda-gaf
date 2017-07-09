@@ -37,6 +37,7 @@
 
 #define COL_PATH 0
 
+/* Adds path argument to the guile load-path */
 static void prepend_guile_path(const char *path)
 {
   SCM sym_begin       = scm_from_utf8_symbol ("begin");
@@ -61,6 +62,7 @@ static void prepend_guile_path(const char *path)
   g_evaluate_scm_protected (s_load_expr, scm_current_module ());
 }
 
+/* Remove str argument from the guile load-path */
 static void remove_from_guile_path(const char *str)
 {
   SCM s_path_expr;
@@ -109,6 +111,11 @@ static void remove_from_guile_path(const char *str)
   g_evaluate_scm_protected (s_load_expr, scm_current_module ());
 }
 
+/* Compares the current load-path to the contents of the list-store
+ * in the TreeView; strings in the tree that are not in the load-path
+ * are passed to prepend_guile_path(), strings in the load-path but
+ * are not in the TreeView are passed to remove_from_guile_path()
+ */
 static void check_update_guile_path (GtkWidget *ThisDialog)
 {
   GList        *path_list;
@@ -173,6 +180,9 @@ static void check_update_guile_path (GtkWidget *ThisDialog)
   }
 }
 
+/* Releases the glist of string used to store the load-path
+ * and then the dialog itself
+ */
 static void x_dialog_guile_finalize(GtkWidget *ThisDialog)
 {
   GList *list;
@@ -194,6 +204,9 @@ static bool is_valid_path(const char *path)
   return FALSE;
 }
 
+/* Handles "Add" response; prompts for a string and if the string
+ * is a valid path the string is prepended to the TreeView
+ */
 static void x_dialog_guile_response_add(GtkWidget *ThisDialog)
 {
   char *string;
@@ -224,6 +237,10 @@ static void x_dialog_guile_response_add(GtkWidget *ThisDialog)
   GEDA_FREE(string);
 }
 
+/* This function checks if the user is attempting to remove
+ * the guild system libary, package or site path from the
+ * load-path. These are not allowed to be removed.
+ */
 static bool can_remove_path(const char *path)
 {
   SCM s_sys_path;
@@ -253,6 +270,7 @@ static bool can_remove_path(const char *path)
   return can_remove;
 }
 
+/* Handles "Remove" response; remove the current TreeView selection */
 static void x_dialog_guile_response_remove(GtkWidget *ThisDialog)
 {
   GtkTreeSelection *selection;
@@ -285,7 +303,10 @@ static void x_dialog_guile_response_remove(GtkWidget *ThisDialog)
 
 /*! \brief response function for the translate dialog
  *  \par Function Description
- *  This function takes the user action and applies it.
+ *  Handles user action based on responses. The APPLY and REJECT response,
+ *  aka, Add and Remove, only apply changes to treeview in the dialog. The
+ *  actual changes are not applied to the load path until the used clicked
+ *  the "Okay" button.
  */
 static void x_dialog_guile_response(GtkWidget      *ThisDialog,
                                     int             response,
@@ -341,6 +362,7 @@ static GtkTreeModel *create_and_fill_model (GtkWidget *ThisDialog, SCM s_load_pa
     free(path);
   }
 
+  /* Store the current guile path in the dialog */
   GEDA_OBJECT_SET_DATA (ThisDialog, path_list, "path_list");
 
   return (GtkTreeModel*)store;
