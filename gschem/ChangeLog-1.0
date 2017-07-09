@@ -2,7 +2,8 @@
 
     * src/x/x_guile.c: Declare x_dialog_guile_response static, add "Add"
       and "Remove" buttons/functions the dialog. Can be done in macro box
-      easy enough but dialog is more "graphic".
+      easy enough but dialog is more "graphic". Revise guile_response_add
+      to check for duplicate paths.
 
 2017-07-08 Wiley E. Hill <wileyhill@gmail.com>
 

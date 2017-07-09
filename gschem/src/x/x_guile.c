@@ -216,16 +216,31 @@ static void x_dialog_guile_response_add(GtkWidget *ThisDialog)
                                      NULL);
   if (is_valid_path(string)) {
 
-    GtkTreeView  *treeview;
-    GtkListStore *liststore;
-    GtkTreeIter   iter;
+    GList *path_list;
 
-    treeview  = GEDA_OBJECT_GET_DATA(ThisDialog, "treeview");
-    liststore = (GtkListStore*)gtk_tree_view_get_model (treeview);
+    path_list = GEDA_OBJECT_GET_DATA(ThisDialog, "path_list");
 
-    gtk_list_store_prepend (liststore, &iter);
-    gtk_list_store_set (liststore, &iter, COL_PATH, string, -1);
+    /* Guile will not allow duplicates path but does not generate
+     * and error, check if path is already in tree so that we do
+     * not add a path already in the tree */
+    if (geda_glist_find_string(path_list, string) == -1) {
 
+      GtkTreeView  *treeview;
+      GtkListStore *liststore;
+      GtkTreeIter   iter;
+
+      treeview  = GEDA_OBJECT_GET_DATA(ThisDialog, "treeview");
+      liststore = (GtkListStore*)gtk_tree_view_get_model (treeview);
+
+      gtk_list_store_prepend (liststore, &iter);
+      gtk_list_store_set (liststore, &iter, COL_PATH, string, -1);
+    }
+    else {
+
+      const char *msg = _("Attempting to duplicate path");
+
+      geda_log("%s: %s\n", msg, string);
+    }
   }
   else if (string != NULL) {
 
