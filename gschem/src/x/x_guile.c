@@ -41,8 +41,9 @@
  *  \par Function Description
  *  This function takes the user action and applies it.
  */
-void x_dialog_guile_response(GtkWidget *ThisDialog, int response,
-                             GschemToplevel *w_current)
+static void x_dialog_guile_response(GtkWidget      *ThisDialog,
+                                    int             response,
+                                    GschemToplevel *w_current)
 {
   GtkWidget  *textentry;
   const char *string;

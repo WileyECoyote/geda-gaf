@@ -1,3 +1,7 @@
+2017-07-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_guile.c: Declare x_dialog_guile_response static.
+
 2017-07-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_picture.c: Iinclude geda_gui_funcs.h and replace
