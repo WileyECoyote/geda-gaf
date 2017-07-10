@@ -80,6 +80,7 @@ gschem/src/x/x_edit_text.c
 gschem/src/x/x_event.c
 gschem/src/x/x_fileselect.c
 gschem/src/x/x_grid.c
+gschem/src/x/x_guile.c
 gschem/src/x/x_icons.c
 gschem/src/x/x_image.c
 gschem/src/x/x_menus.c
