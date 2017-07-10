@@ -2643,11 +2643,10 @@ msgstr ""
 msgid "Guile Path"
 msgstr "Guile Put"
 
-# enter new zoom
+# Specify new path to search
 #: gschem/src/x/x_guile.c:215
-#, fuzzy
 msgid "Specify new path to search:"
-msgstr "ulazak na nova zoom:"
+msgstr "Navedite novu putanju za pretragu:"
 
 #: gschem/src/x/x_guile.c:240
 msgid "Attempting to duplicate path"
@@ -2662,9 +2661,8 @@ msgid "Refusing to remove path"
 msgstr ""
 
 #: gschem/src/x/x_guile.c:464
-#, fuzzy
 msgid "Version"
-msgstr "verzija"
+msgstr "Verzija"
 
 #: gschem/src/x/x_icons.c:253
 msgid "Warning, Error reading image file"
@@ -5552,10 +5550,6 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
-
-#, fuzzy
-#~ msgid "Guile (version:"
-#~ msgstr "verzija"
 
 #~ msgid "Deselect moda"
 #~ msgstr "un-odabrati moda"
