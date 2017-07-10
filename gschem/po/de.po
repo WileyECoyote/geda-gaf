@@ -2639,29 +2639,27 @@ msgstr ""
 msgid "Guile Path"
 msgstr ""
 
-# Specify new magnification
+# Specify new path to search
 #: gschem/src/x/x_guile.c:215
-#, fuzzy
 msgid "Specify new path to search:"
-msgstr "Geben Sie eine neue Vergrößerung an:"
+msgstr "Geben Sie einen neuen Pfad zur Suche an:"
 
 #: gschem/src/x/x_guile.c:240
 msgid "Attempting to duplicate path"
 msgstr ""
 
+# Invalid path
 #: gschem/src/x/x_guile.c:247
-#, fuzzy
 msgid "Invalid path"
-msgstr "Ungültiger Zoomfaktor"
+msgstr "Ungültigen Pfad"
 
 #: gschem/src/x/x_guile.c:312
 msgid "Refusing to remove path"
 msgstr ""
 
 #: gschem/src/x/x_guile.c:464
-#, fuzzy
 msgid "Version"
-msgstr "_Alles speichern"
+msgstr "Version"
 
 #: gschem/src/x/x_icons.c:253
 msgid "Warning, Error reading image file"
@@ -5398,10 +5396,6 @@ msgstr "~S ist keine gültige Tasten-Kombination."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S ist kein gültiger erster Teil einer Tastenkombination."
-
-#, fuzzy
-#~ msgid "Guile (version:"
-#~ msgstr "_Alles speichern"
 
 #~ msgid "Toggle _Magnetic Net"
 #~ msgstr "_Magnetischen Netzmodus umschalten"
