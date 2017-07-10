@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr_FR\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-07-09 19:50-0500\n"
+"POT-Creation-Date: 2017-07-09 20:38-0500\n"
 "PO-Revision-Date: 2016-12-28 19:57-0600\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -2662,6 +2662,32 @@ msgstr ""
 "\n"
 "Voulez-vous charger le fichier de sauvegarde?"
 
+#: gschem/src/x/x_guile.c:214 gschem/scheme/gschem/builtins.scm:445
+msgid "Guile Path"
+msgstr "Chemin de Guile"
+
+#: gschem/src/x/x_guile.c:215
+msgid "Specify new path to search:"
+msgstr ""
+
+#: gschem/src/x/x_guile.c:240
+msgid "Attempting to duplicate path"
+msgstr ""
+
+#: gschem/src/x/x_guile.c:247
+#, fuzzy
+msgid "Invalid path"
+msgstr "Facteur de zoom non valide"
+
+#: gschem/src/x/x_guile.c:312
+msgid "Refusing to remove path"
+msgstr ""
+
+#: gschem/src/x/x_guile.c:464
+#, fuzzy
+msgid "Version"
+msgstr "Enregistrer toutes les pages"
+
 # Warning, Error reading image file
 #: gschem/src/x/x_icons.c:253
 msgid "Warning, Error reading image file"
@@ -5257,10 +5283,6 @@ msgstr "Fenêtre Show Console"
 msgid "Show Coordinates Window"
 msgstr "Afficher les coordonnées"
 
-#: gschem/scheme/gschem/builtins.scm:445
-msgid "Guile Path"
-msgstr "Chemin de Guile"
-
 #: gschem/scheme/gschem/builtins.scm:451
 msgid "Translate Symbol"
 msgstr "Translater"
@@ -5407,6 +5429,10 @@ msgstr "~S n'est pas une combinaison de touches valide."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S n'est pas un préfixe valide."
+
+#, fuzzy
+#~ msgid "Guile (version:"
+#~ msgstr "Enregistrer toutes les pages"
 
 #~ msgid "Toggle _Magnetic Net"
 #~ msgstr "Piste _magnétique On/Off"

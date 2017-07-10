@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-07-09 19:50-0500\n"
+"POT-Creation-Date: 2017-07-09 20:38-0500\n"
 "PO-Revision-Date: 2012-04-12 22:09+0000\n"
 "Last-Translator: Dennis Baudys <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -2635,6 +2635,34 @@ msgid ""
 "Do you want to load the backup file?"
 msgstr ""
 
+#: gschem/src/x/x_guile.c:214 gschem/scheme/gschem/builtins.scm:445
+msgid "Guile Path"
+msgstr ""
+
+# Specify new magnification
+#: gschem/src/x/x_guile.c:215
+#, fuzzy
+msgid "Specify new path to search:"
+msgstr "Geben Sie eine neue Vergrößerung an:"
+
+#: gschem/src/x/x_guile.c:240
+msgid "Attempting to duplicate path"
+msgstr ""
+
+#: gschem/src/x/x_guile.c:247
+#, fuzzy
+msgid "Invalid path"
+msgstr "Ungültiger Zoomfaktor"
+
+#: gschem/src/x/x_guile.c:312
+msgid "Refusing to remove path"
+msgstr ""
+
+#: gschem/src/x/x_guile.c:464
+#, fuzzy
+msgid "Version"
+msgstr "_Alles speichern"
+
 #: gschem/src/x/x_icons.c:253
 msgid "Warning, Error reading image file"
 msgstr ""
@@ -5224,10 +5252,6 @@ msgstr "Zeigt das Konsolenfenster an"
 msgid "Show Coordinates Window"
 msgstr "Zeigt das Koordinatenfenster an"
 
-#: gschem/scheme/gschem/builtins.scm:445
-msgid "Guile Path"
-msgstr ""
-
 #: gschem/scheme/gschem/builtins.scm:451
 msgid "Translate Symbol"
 msgstr "Verschieben nach"
@@ -5374,6 +5398,10 @@ msgstr "~S ist keine gültige Tasten-Kombination."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S ist kein gültiger erster Teil einer Tastenkombination."
+
+#, fuzzy
+#~ msgid "Guile (version:"
+#~ msgstr "_Alles speichern"
 
 #~ msgid "Toggle _Magnetic Net"
 #~ msgstr "_Magnetischen Netzmodus umschalten"

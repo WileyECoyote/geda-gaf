@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-07-09 19:50-0500\n"
+"POT-Creation-Date: 2017-07-09 20:38-0500\n"
 "PO-Revision-Date: 2014-12-29 20:06+0300\n"
 "Last-Translator: Marco Ciampa <ciampix@libero.it>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -2682,6 +2682,32 @@ msgstr ""
 "\n"
 "Vuoi caricare il file di backup?"
 
+#: gschem/src/x/x_guile.c:214 gschem/scheme/gschem/builtins.scm:445
+msgid "Guile Path"
+msgstr ""
+
+#: gschem/src/x/x_guile.c:215
+msgid "Specify new path to search:"
+msgstr ""
+
+#: gschem/src/x/x_guile.c:240
+msgid "Attempting to duplicate path"
+msgstr ""
+
+#: gschem/src/x/x_guile.c:247
+#, fuzzy
+msgid "Invalid path"
+msgstr "fattore di zoom non valido"
+
+#: gschem/src/x/x_guile.c:312
+msgid "Refusing to remove path"
+msgstr ""
+
+#: gschem/src/x/x_guile.c:464
+#, fuzzy
+msgid "Version"
+msgstr "Salva come"
+
 #: gschem/src/x/x_icons.c:253
 msgid "Warning, Error reading image file"
 msgstr "Attenzione, file immagine Errore durante la lettura"
@@ -5262,10 +5288,6 @@ msgstr "Mostra finestra Console"
 msgid "Show Coordinates Window"
 msgstr "Mostra la finestra coordinate"
 
-#: gschem/scheme/gschem/builtins.scm:445
-msgid "Guile Path"
-msgstr ""
-
 #: gschem/scheme/gschem/builtins.scm:451
 msgid "Translate Symbol"
 msgstr "Converti simbolo"
@@ -5415,6 +5437,10 @@ msgstr "~S non è una combinazione di tasti valida."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S non è un prefisso di sequenza di tasti."
+
+#, fuzzy
+#~ msgid "Guile (version:"
+#~ msgstr "Salva come"
 
 #~ msgid "Toggle _Magnetic Net"
 #~ msgstr "Commuta Net _Magnetiche"

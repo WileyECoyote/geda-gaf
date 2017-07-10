@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-07-09 19:50-0500\n"
+"POT-Creation-Date: 2017-07-09 20:38-0500\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -2625,6 +2625,34 @@ msgid ""
 "\n"
 "Do you want to load the backup file?"
 msgstr ""
+
+#: gschem/src/x/x_guile.c:214 gschem/scheme/gschem/builtins.scm:445
+msgid "Guile Path"
+msgstr ""
+
+# Specify new name for Session
+#: gschem/src/x/x_guile.c:215
+#, fuzzy
+msgid "Specify new path to search:"
+msgstr "സെഷൻ പുതിയ പേര് വ്യക്തമാക്കുക:"
+
+#: gschem/src/x/x_guile.c:240
+msgid "Attempting to duplicate path"
+msgstr ""
+
+#: gschem/src/x/x_guile.c:247
+msgid "Invalid path"
+msgstr ""
+
+#: gschem/src/x/x_guile.c:312
+msgid "Refusing to remove path"
+msgstr ""
+
+# Edition
+#: gschem/src/x/x_guile.c:464
+#, fuzzy
+msgid "Version"
+msgstr "പതിപ്പ്"
 
 #: gschem/src/x/x_icons.c:253
 msgid "Warning, Error reading image file"
@@ -5350,10 +5378,6 @@ msgstr "കൺസോൾ വിൻഡോ കാണിക്കുക"
 msgid "Show Coordinates Window"
 msgstr "കോർഡിനേറ്റുകൾ ജാലകം പ്രദർശിപ്പിക്കും"
 
-#: gschem/scheme/gschem/builtins.scm:445
-msgid "Guile Path"
-msgstr ""
-
 #: gschem/scheme/gschem/builtins.scm:451
 msgid "Translate Symbol"
 msgstr ""
@@ -5501,3 +5525,8 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
+
+# Edition
+#, fuzzy
+#~ msgid "Guile (version:"
+#~ msgstr "പതിപ്പ്"

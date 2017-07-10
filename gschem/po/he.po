@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-07-09 19:50-0500\n"
+"POT-Creation-Date: 2017-07-09 20:38-0500\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -2628,6 +2628,32 @@ msgid ""
 "\n"
 "Do you want to load the backup file?"
 msgstr ""
+
+#: gschem/src/x/x_guile.c:214 gschem/scheme/gschem/builtins.scm:445
+msgid "Guile Path"
+msgstr ""
+
+#: gschem/src/x/x_guile.c:215
+msgid "Specify new path to search:"
+msgstr ""
+
+#: gschem/src/x/x_guile.c:240
+msgid "Attempting to duplicate path"
+msgstr ""
+
+#: gschem/src/x/x_guile.c:247
+msgid "Invalid path"
+msgstr ""
+
+#: gschem/src/x/x_guile.c:312
+msgid "Refusing to remove path"
+msgstr ""
+
+# version
+#: gschem/src/x/x_guile.c:464
+#, fuzzy
+msgid "Version"
+msgstr "גִרְסָה"
 
 #: gschem/src/x/x_icons.c:253
 msgid "Warning, Error reading image file"
@@ -5351,10 +5377,6 @@ msgstr "הצג את חלון המסוף"
 msgid "Show Coordinates Window"
 msgstr "הצג חלון קואורדינטות"
 
-#: gschem/scheme/gschem/builtins.scm:445
-msgid "Guile Path"
-msgstr ""
-
 #: gschem/scheme/gschem/builtins.scm:451
 msgid "Translate Symbol"
 msgstr ""
@@ -5503,3 +5525,8 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
+
+# version
+#, fuzzy
+#~ msgid "Guile (version:"
+#~ msgstr "גִרְסָה"

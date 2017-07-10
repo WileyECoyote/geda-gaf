@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-07-09 19:50-0500\n"
+"POT-Creation-Date: 2017-07-09 20:38-0500\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -2736,6 +2736,35 @@ msgid ""
 "\n"
 "Do you want to load the backup file?"
 msgstr ""
+
+#: gschem/src/x/x_guile.c:214 gschem/scheme/gschem/builtins.scm:445
+msgid "Guile Path"
+msgstr ""
+
+#: gschem/src/x/x_guile.c:215
+#, fuzzy
+msgid "Specify new path to search:"
+msgstr "Especificar o novo zoom:"
+
+#: gschem/src/x/x_guile.c:240
+msgid "Attempting to duplicate path"
+msgstr ""
+
+# Magnification Factor is invalid
+#: gschem/src/x/x_guile.c:247
+#, fuzzy
+msgid "Invalid path"
+msgstr "Factor de ampliação inválido"
+
+#: gschem/src/x/x_guile.c:312
+msgid "Refusing to remove path"
+msgstr ""
+
+# version
+#: gschem/src/x/x_guile.c:464
+#, fuzzy
+msgid "Version"
+msgstr "versão"
 
 #: gschem/src/x/x_icons.c:253
 msgid "Warning, Error reading image file"
@@ -5534,10 +5563,6 @@ msgstr "Mostrar Janela de console"
 msgid "Show Coordinates Window"
 msgstr "Mostrar Janela de Coordenadas"
 
-#: gschem/scheme/gschem/builtins.scm:445
-msgid "Guile Path"
-msgstr ""
-
 # Translate Symbol
 #: gschem/scheme/gschem/builtins.scm:451
 msgid "Translate Symbol"
@@ -5710,6 +5735,11 @@ msgstr "~S não é uma combinação de chave válido."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S não é uma seqüência de chave de prefixo."
+
+# version
+#, fuzzy
+#~ msgid "Guile (version:"
+#~ msgstr "versão"
 
 #~ msgid "Toggle _Magnetic Net"
 #~ msgstr "Alternar Ligação _Magnética"
