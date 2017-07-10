@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-05-29 23:16-0500\n"
+"POT-Creation-Date: 2017-07-09 19:50-0500\n"
 "PO-Revision-Date: 2012-01-31 12:07+0000\n"
 "Last-Translator: Peter TB Brett <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -393,8 +393,8 @@ msgstr "円弧モード"
 msgid "OFF"
 msgstr "オフ"
 
-#: gschem/src/base/gschem_status_bar.c:1907 gschem/src/object/o_picture.c:615
-#: gschem/src/object/o_picture.c:619
+#: gschem/src/base/gschem_status_bar.c:1907 gschem/src/object/o_picture.c:617
+#: gschem/src/object/o_picture.c:621
 msgid "Error"
 msgstr "反転"
 
@@ -829,7 +829,7 @@ msgid "Warning relative file names detected in session"
 msgstr ""
 
 #: gschem/src/iface/i_sessions.c:346 gschem/src/iface/i_sessions.c:359
-#: gschem/src/iface/i_sessions.c:935 gschem/src/x/x_sessions.c:234
+#: gschem/src/iface/i_sessions.c:935 gschem/src/x/x_sessions.c:230
 msgid "Session"
 msgstr "すべて保存"
 
@@ -1178,39 +1178,39 @@ msgstr ""
 msgid "Bus ripper symbol was not found in any component library"
 msgstr ""
 
-#: gschem/src/object/o_picture.c:357
+#: gschem/src/object/o_picture.c:360
 msgid "Update All"
 msgstr "更新"
 
-#: gschem/src/object/o_picture.c:359
+#: gschem/src/object/o_picture.c:362
 msgid "Update all selected Picture images"
 msgstr ""
 
-#: gschem/src/object/o_picture.c:397
+#: gschem/src/object/o_picture.c:399
 msgid "Failed to replace picture"
 msgstr "画像の置き換えに失敗しました"
 
-#: gschem/src/object/o_picture.c:400
+#: gschem/src/object/o_picture.c:402
 msgid "<b>Failed to replace picture</b>"
 msgstr "<b>画像の置き換えに失敗しました</b>"
 
-#: gschem/src/object/o_picture.c:425
+#: gschem/src/object/o_picture.c:427
 msgid "Orginal size"
 msgstr ""
 
-#: gschem/src/object/o_picture.c:427
+#: gschem/src/object/o_picture.c:429
 msgid "When checked the image size will be exported"
 msgstr ""
 
-#: gschem/src/object/o_picture.c:619
+#: gschem/src/object/o_picture.c:621
 msgid "An unknown error occurred"
 msgstr ""
 
-#: gschem/src/object/o_picture.c:622
+#: gschem/src/object/o_picture.c:624
 msgid "<b>Failed to load picture</b>"
 msgstr ""
 
-#: gschem/src/object/o_picture.c:623
+#: gschem/src/object/o_picture.c:625
 msgid "Load failed"
 msgstr ""
 
@@ -2422,52 +2422,52 @@ msgstr ""
 msgid "pwr"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:107 gschem/src/x/x_edit_pin.c:192
-#: gschem/src/x/x_edit_pin.c:206
+#: gschem/src/x/x_edit_pin.c:107 gschem/src/x/x_edit_pin.c:196
+#: gschem/src/x/x_edit_pin.c:210
 msgid "*missing*"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:280 gschem/src/x/x_edit_pin.c:291
+#: gschem/src/x/x_edit_pin.c:284 gschem/src/x/x_edit_pin.c:295
 msgid "Pin Properties"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:280
+#: gschem/src/x/x_edit_pin.c:284
 msgid "Invalid Pin Node Type"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:291
+#: gschem/src/x/x_edit_pin.c:295
 msgid "Ignoring Pin electrical VOID"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:803
+#: gschem/src/x/x_edit_pin.c:807
 msgid "Pin Properties Editor"
 msgstr "シングルアトルビュートエディタ"
 
-#: gschem/src/x/x_edit_pin.c:879
+#: gschem/src/x/x_edit_pin.c:883
 msgid "Set"
 msgstr "ネット"
 
-#: gschem/src/x/x_edit_pin.c:882
+#: gschem/src/x/x_edit_pin.c:886
 msgid "Auto"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:913
+#: gschem/src/x/x_edit_pin.c:917
 msgid "Attribute Type List"
 msgstr "アトリビュート"
 
-#: gschem/src/x/x_edit_pin.c:917
+#: gschem/src/x/x_edit_pin.c:921
 msgid "Text Alignment Option"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:921
+#: gschem/src/x/x_edit_pin.c:925
 msgid "Pin Number"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:925
+#: gschem/src/x/x_edit_pin.c:929
 msgid "Sequence Number"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:929
+#: gschem/src/x/x_edit_pin.c:933
 msgid "Pin Label"
 msgstr ""
 
@@ -3474,90 +3474,90 @@ msgstr ""
 msgid "An unknown error occurred while parsing configuration files."
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:149
+#: gschem/src/x/x_sessions.c:147
 msgid "Rename Session"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:150 gschem/src/x/x_sessions.c:833
-#: gschem/src/x/x_sessions.c:856
+#: gschem/src/x/x_sessions.c:148 gschem/src/x/x_sessions.c:821
+#: gschem/src/x/x_sessions.c:844
 msgid "Specify new name for Session:"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:230
+#: gschem/src/x/x_sessions.c:226
 msgid "Select export file"
 msgstr "選択モード"
 
-#: gschem/src/x/x_sessions.c:234
+#: gschem/src/x/x_sessions.c:230
 msgid "exported to"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:416
+#: gschem/src/x/x_sessions.c:408
 msgid "Load the selected session"
 msgstr "現在のウィンドウ"
 
-#: gschem/src/x/x_sessions.c:417
+#: gschem/src/x/x_sessions.c:409
 msgid ""
 "Show the Open Session dialog at start-up, over-rides auto-load-last feature"
 msgstr ""
 
 # Automatically add and delete files from session
-#: gschem/src/x/x_sessions.c:418
+#: gschem/src/x/x_sessions.c:410
 msgid "Automatically add and remove files from sessions"
 msgstr "セッションからファイルを自動的に追加および削除する"
 
-#: gschem/src/x/x_sessions.c:423
+#: gschem/src/x/x_sessions.c:415
 msgid "Show at start-up"
 msgstr "テキスト"
 
-#: gschem/src/x/x_sessions.c:430
+#: gschem/src/x/x_sessions.c:422
 msgid "Auto update"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:537
+#: gschem/src/x/x_sessions.c:526
 msgid "Session Name"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:552
+#: gschem/src/x/x_sessions.c:541
 msgid "File Count"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:603
+#: gschem/src/x/x_sessions.c:592
 msgid "Rename the selected session"
 msgstr "現在のウィンドウ"
 
-#: gschem/src/x/x_sessions.c:604
+#: gschem/src/x/x_sessions.c:593
 msgid "Delete the selected session"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:605
+#: gschem/src/x/x_sessions.c:594
 msgid "Export the selected session to a project file"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:607 gschem/scheme/gschem/builtins.scm:392
+#: gschem/src/x/x_sessions.c:596 gschem/scheme/gschem/builtins.scm:392
 msgid "Manage Sessions"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:642
+#: gschem/src/x/x_sessions.c:631
 msgid "_Rename"
 msgstr "ファイル名"
 
-#: gschem/src/x/x_sessions.c:649 gschem/etc/system-gschemrc.scm:2108
+#: gschem/src/x/x_sessions.c:638 gschem/etc/system-gschemrc.scm:2108
 msgid "_Delete"
 msgstr "削除(_D)"
 
-#: gschem/src/x/x_sessions.c:656 gschem/etc/system-gschemrc.scm:2083
+#: gschem/src/x/x_sessions.c:645 gschem/etc/system-gschemrc.scm:2083
 msgid "_Export"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:771
+#: gschem/src/x/x_sessions.c:759
 msgid "Open Session"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:832
+#: gschem/src/x/x_sessions.c:820
 msgid "New Session"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:856 gschem/scheme/gschem/builtins.scm:389
+#: gschem/src/x/x_sessions.c:844 gschem/scheme/gschem/builtins.scm:389
 msgid "Save Session As"
 msgstr "すべて保存"
 
