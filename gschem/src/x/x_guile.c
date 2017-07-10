@@ -457,15 +457,15 @@ void x_guile_dialog (GschemToplevel *w_current)
   GtkWidget  *hbox;
   GtkWidget  *vbox;
 
-  const char *guile_str;
+  const char *version;
         char *guile_ver;
         char *title;
 
-  guile_str = _("Guile (version:");
+  version   = _("Version");
 
   guile_ver = scm_to_utf8_string(scm_version());
 
-  title     = geda_strconcat(guile_str, guile_ver, ")",NULL);
+  title     = geda_sprintf("Guile (%s %s)", version, guile_ver, NULL);
 
   GEDA_FREE(guile_ver);
 
