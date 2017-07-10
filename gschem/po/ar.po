@@ -1093,15 +1093,15 @@ msgid "Translating schematic"
 msgstr "سحب المخطط"
 
 #: gschem/src/object/o_delete.c:87
-#, fuzzy, c-format
+#, c-format
 msgid "Delete locked object?"
 msgid_plural "Delete %u locked objects?"
 msgstr[0] "حذف كائن مقفل؟"
 msgstr[1] "حذف الكائنات المؤمنة؟"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[2] "هل تريد حذف الكائنات المؤمنة؟"
+msgstr[3] "حذف %u كائنات مقفلة؟"
+msgstr[4] "حذف %u كائنات مقفلة؟"
+msgstr[5] "حذف %u كائنات مقفلة؟"
 
 #: gschem/src/object/o_edit.c:517
 msgid "attributes were hidden"
@@ -2655,19 +2655,19 @@ msgstr ""
 msgid "Attempting to duplicate path"
 msgstr ""
 
+# Invalid path
 #: gschem/src/x/x_guile.c:247
-#, fuzzy
 msgid "Invalid path"
-msgstr "عامل التكبير غير صالح"
+msgstr "مسار غير صالح"
 
 #: gschem/src/x/x_guile.c:312
 msgid "Refusing to remove path"
 msgstr ""
 
+# Version
 #: gschem/src/x/x_guile.c:464
-#, fuzzy
 msgid "Version"
-msgstr "الإصدار:"
+msgstr "الإصدار"
 
 #: gschem/src/x/x_icons.c:253
 msgid "Warning, Error reading image file"
@@ -5404,26 +5404,3 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
-
-#, fuzzy
-#~ msgid "Guile (version:"
-#~ msgstr "احفظ الكل"
-
-#~ msgid "Toggle _Magnetic Net"
-#~ msgstr "وضع الشبكة الم_غناطيسية"
-
-#~ msgid "Toggle _Snap On-Off"
-#~ msgstr "شغل/أوقف ال_جذب"
-
-#~ msgid "session"
-#~ msgstr "أظهر ال_اسم"
-
-#~ msgid "New page created [%s]\n"
-#~ msgstr "أنشئت صفحة جديدة [‎%s‬]\n"
-
-#~ msgid "check the log for more information"
-#~ msgstr ""
-#~ "خطأ في الطباعة إلى الملف '%s'تحقق من نافذة السجل للمزيد من المعلومات"
-
-#~ msgid "documents\n"
-#~ msgstr "ت_وثيق"
