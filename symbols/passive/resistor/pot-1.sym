@@ -1,8 +1,10 @@
 v 20150101 2
-T 810 1260 5 10 0 0 0 0 1
-author=AutoTron
-T 800 950 5 10 0 0 0 0 1
-device=VARIABLE_RESISTOR
+T 600 500 8 10 1 1 0 0 1
+refdes=R?
+T 600 1000 5 10 0 1 0 0 1
+device=RESISTOR
+T 600 1200 5 10 0 1 0 0 1
+description=Potentiometer
 L 500 300 448 401 3 0 2 0 -1 -1
 L 501 301 553 402 3 0 2 0 -1 -1
 L 500 300 600 100 3 0 2 0 -1 -1
@@ -48,10 +50,9 @@ pintype=pas
 T 0 350 5 10 1 1 0 0 1
 pinlabel=ccw
 }
-T 600 500 8 10 1 1 0 0 1
-refdes=R?
-T 800 1100 8 10 0 0 0 0 1
+T 600 1400 5 10 0 0 0 0 1
 footprint=none
-T 800 800 5 10 0 0 0 0 1
+T 600 800 9 10 0 0 0 0 1
 numslots=0
-
+T 600 1600 5 10 0 0 0 0 1
+author=AutoTron

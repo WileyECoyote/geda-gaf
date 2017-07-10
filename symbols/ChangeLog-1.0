@@ -3,6 +3,13 @@
     * linear/special/C012294-pokey-1.sym: Add dash in device attribute to
       eliminate the space, and update the description attribute.
 
+    * passive/resistor: Add description attribute and update device in
+      symbols:
+
+            * passive/resistor/pot-1.sym
+            * passive/resistor/pot-2.sym
+            * passive/resistor/pot-bourns.sym
+
 2017-04-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * graphic/flow-chart/GOTO.sym: Change the pinlabel to a floating value
