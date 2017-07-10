@@ -1,4 +1,4 @@
-v 20070626 1
+v 20070626 2
 B 301 2 2500 8400 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 P 300 8000 0 8000 1 0 1
 {
@@ -441,17 +441,17 @@ T 2750 8000 5 8 0 1 0 8 1
 pintype=io
 }
 T 300 8650 5 10 0 0 0 0 1
-device=C012294 POKEY
+device=C012294-POKEY
 L 350 2125 633 2125 3 0 0 0 -1 -1
 T 2600 8500 8 10 1 1 0 0 1
 refdes=U?
 T 300 8850 5 10 0 0 0 0 1
 footprint=DIP40
-T 300 9250 5 10 0 0 0 0 1
-description=Atari C012294 POKEY sound generator
+T 300 9250 5 10 0 1 0 0 1
+description=Atari C012294 POKEY 8 bit digital I/O, with sound generator
 T 300 9050 5 10 0 0 0 0 1
 numslots=0
-T 300 9450 5 10 0 0 0 0 1
+T 300 9450 5 10 0 1 0 0 1
 documentation=http://www.ionpool.net/arcade/atari_docs/pokey_datasheet.pdf
 T 300 8450 9 10 1 0 0 0 1
 C012294 POKEY

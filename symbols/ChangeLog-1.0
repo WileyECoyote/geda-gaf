@@ -1,3 +1,8 @@
+2017-07-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * linear/special/C012294-pokey-1.sym: Add dash in device attribute to
+      eliminate the space, and update the description attribute.
+
 2017-04-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * graphic/flow-chart/GOTO.sym: Change the pinlabel to a floating value
