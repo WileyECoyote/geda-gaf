@@ -2695,9 +2695,8 @@ msgstr ""
 
 # not fuzzy
 #: gschem/src/x/x_guile.c:464
-#, fuzzy
 msgid "Version"
-msgstr "версията"
+msgstr "версия"
 
 #: gschem/src/x/x_icons.c:253
 msgid "Warning, Error reading image file"
@@ -5482,11 +5481,6 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
-
-# not fuzzy
-#, fuzzy
-#~ msgid "Guile (version:"
-#~ msgstr "версията"
 
 # Switch magnetic net
 #~ msgid "Toggle _Magnetic Net"

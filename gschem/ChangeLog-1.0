@@ -6,6 +6,8 @@
 
     * po/ar.po: Update Arabic translations.
 
+    * po/bg.po: Update Bulgarian translations.
+
 2017-07-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_guile.c: Declare x_dialog_guile_response static, add "Add"
