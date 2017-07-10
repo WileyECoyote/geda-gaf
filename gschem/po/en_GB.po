@@ -2627,18 +2627,16 @@ msgid "Attempting to duplicate path"
 msgstr ""
 
 #: gschem/src/x/x_guile.c:247
-#, fuzzy
 msgid "Invalid path"
-msgstr "Invalid zoomfactor"
+msgstr "Invalid path"
 
 #: gschem/src/x/x_guile.c:312
 msgid "Refusing to remove path"
 msgstr ""
 
 #: gschem/src/x/x_guile.c:464
-#, fuzzy
 msgid "Version"
-msgstr "Session Name"
+msgstr "Version"
 
 #: gschem/src/x/x_icons.c:253
 msgid "Warning, Error reading image file"
