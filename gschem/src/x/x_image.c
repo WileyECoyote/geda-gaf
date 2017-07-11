@@ -739,7 +739,7 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
   /* Create Toggle Switch widget for Color or B/W with independent callback */
   EDA_SWITCH (switch_vbox, EnableColor, 0, image_color_save);
 
-  /* Create Toggle Switch widget for Invert Image using Switch_Responder callback */
+  /* Create Toggle Switch widget for Invert Image using independent callback */
   EDA_SWITCH (switch_vbox, InvertImage, 0, invert_images_save);
 
   gtk_widget_show_all(switch_vbox); /* set every widget in container visible */

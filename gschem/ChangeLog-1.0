@@ -12,6 +12,8 @@
             * x_dialog_set_bulb_off
             * x_dialog_bulb_group_set_active
 
+    * src/x/x_image.c: Update comments in x_image_setup.
+
 2017-07-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/POTFILES.in: Add source file x_guile.c.
