@@ -5,6 +5,8 @@
           * geda_complex_get_is_mirror
           * geda_complex_set_is_mirror
 
+    * src/geda/geda_object.c: Update function wrapping.
+
 2017-07-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_complex.c: Update Doxygen comments for:

@@ -135,8 +135,7 @@ int geda_object_bounds(const GedaObject *object)
  *
  * \return List of attached attributes.
  */
-const GList*
-geda_object_get_attached (const GedaObject *object)
+const GList *geda_object_get_attached (const GedaObject *object)
 {
   if (is_a_geda_object(object)) {
     return object->attribs;
@@ -155,8 +154,7 @@ geda_object_get_attached (const GedaObject *object)
  *
  * \return GedaObject or NULL.
  */
-GedaObject*
-geda_object_get_attached_to (const GedaObject *object)
+GedaObject *geda_object_get_attached_to (const GedaObject *object)
 {
   if (is_a_geda_object(object)) {
     return object->attached_to;
@@ -172,8 +170,7 @@ int geda_object_get_color (const GedaObject *object) {
   return -0;
 }
 
-const GList*
-geda_object_get_conn_list (const GedaObject *object)
+const GList *geda_object_get_conn_list (const GedaObject *object)
 {
   if (is_a_geda_object(object)) {
     return object->conn_list;
@@ -192,9 +189,8 @@ geda_object_get_conn_list (const GedaObject *object)
  * \param [out] value        The GValue in which to return the value of the property
  * \param [in]  pspec        A GParamSpec describing the property being got
  */
-static void
-geda_object_get_property (GObject *gobject, unsigned int property_id,
-                          GValue  *value,   GParamSpec  *pspec)
+static void geda_object_get_property (GObject *gobject, unsigned int property_id,
+                                      GValue  *value,   GParamSpec  *pspec)
 {
   GedaObject *object = GEDA_OBJECT(gobject);
 
@@ -249,9 +245,8 @@ geda_object_get_property (GObject *gobject, unsigned int property_id,
  * \param [in]  value        The GValue the property is being set from
  * \param [in]  pspec        A GParamSpec describing the property being set
  */
-static void
-geda_object_set_property (GObject *gobject, unsigned int property_id,
-                          const    GValue *value, GParamSpec *pspec)
+static void geda_object_set_property (GObject *gobject, unsigned int property_id,
+                                      const    GValue *value, GParamSpec *pspec)
 {
   GedaObject *object = GEDA_OBJECT(gobject);
   const char *name;
@@ -311,8 +306,7 @@ int geda_object_get_next_sid(void)
  * \param [in]  instance  The GedaObject being initialising.
  * \param [in]  g_class   The class of the type the instance is created for.
  */
-static void
-geda_object_instance_init(GTypeInstance *instance, void *g_class)
+static void geda_object_instance_init(GTypeInstance *instance, void *g_class)
 {
   GedaObject *object             = (GedaObject*)instance;
 
@@ -652,8 +646,7 @@ void geda_object_unref(GedaObject *object)
  *
  * \param [in] object  Pointer to GedaObject being destroyed.
  */
-void
-geda_object_weakref_notify (GedaObject *object)
+void geda_object_weakref_notify (GedaObject *object)
 {
   if (GEDA_IS_OBJECT(object)) {
     s_weakref_notify(object, object->weak_refs);
