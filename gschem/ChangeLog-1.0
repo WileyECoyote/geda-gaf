@@ -1,5 +1,8 @@
 2017-07-11 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_compselect.c: Remove unnecessary GtkWidget type-checking
+      cast for gtk_widget_set_sensitive and gtk_widget_set_can_focus.
+
     * src/x/x_dialog.c: Add module prefix to functions:
 
             * x_dialog_get_bulb_image

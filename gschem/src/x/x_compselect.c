@@ -2224,38 +2224,38 @@ compselect_build_view_menu(Compselect *compselect, GtkWidget *treeview)
   menuitem = geda_menu_item_new_with_label(_(popup_items[ExpandFolder]));
   if (!is_symbol) {
     gtk_widget_set_tooltip_text (menuitem, _(popup_tips[ExpandFolder]));
-    gtk_widget_set_sensitive(GTK_WIDGET(menuitem), TRUE);
-    gtk_widget_set_can_focus(GTK_WIDGET(menuitem), TRUE);
+    gtk_widget_set_sensitive(menuitem, TRUE);
+    gtk_widget_set_can_focus(menuitem, TRUE);
     g_signal_connect(GTK_OBJECT(menuitem),"activate",
                     (void*)compselect_open_tree_row,
                     (void*)treeview);
   }
   else {
-    gtk_widget_set_sensitive(GTK_WIDGET(menuitem), FALSE);
-    gtk_widget_set_can_focus(GTK_WIDGET(menuitem), FALSE);
+    gtk_widget_set_sensitive(menuitem, FALSE);
+    gtk_widget_set_can_focus(menuitem, FALSE);
   }
   geda_menu_shell_append(GEDA_MENU_SHELL(menu), menuitem);
 
   menuitem = geda_menu_item_new_with_label(_(popup_items[ExpandAll]));
   if (!is_symbol) {
     gtk_widget_set_tooltip_text (menuitem, _(popup_tips[ExpandAll]));
-    gtk_widget_set_sensitive(GTK_WIDGET(menuitem), TRUE);
-    gtk_widget_set_can_focus(GTK_WIDGET(menuitem), TRUE);
+    gtk_widget_set_sensitive(menuitem, TRUE);
+    gtk_widget_set_can_focus(menuitem, TRUE);
     g_signal_connect(GTK_OBJECT(menuitem),"activate",
                     (void*)compselect_open_tree_rows,
                     (void*)treeview);
   }
   else {
-    gtk_widget_set_sensitive(GTK_WIDGET(menuitem), FALSE);
-    gtk_widget_set_can_focus(GTK_WIDGET(menuitem), FALSE);
+    gtk_widget_set_sensitive(menuitem, FALSE);
+    gtk_widget_set_can_focus(menuitem, FALSE);
   }
   geda_menu_shell_append(GEDA_MENU_SHELL(menu), menuitem);
 
   /* The Close Menu Option */
   menuitem = geda_menu_item_new_with_label(_(popup_items[CloseFolder]));
   gtk_widget_set_tooltip_text (menuitem, _(popup_tips[CloseFolder]));
-  gtk_widget_set_sensitive(GTK_WIDGET(menuitem), TRUE);
-  gtk_widget_set_can_focus(GTK_WIDGET(menuitem), TRUE);
+  gtk_widget_set_sensitive(menuitem, TRUE);
+  gtk_widget_set_can_focus(menuitem, TRUE);
   g_signal_connect(GTK_OBJECT(menuitem),"activate",
                     (void *) compselect_close_tree_row,
                     (void *) treeview);
