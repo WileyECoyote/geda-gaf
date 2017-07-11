@@ -190,7 +190,7 @@ create_geda_switch(GtkWidget *parent, GtkWidget *widget,
   gtk_toggle_button_set_mode (GTK_TOGGLE_BUTTON (widget), FALSE);
 
   /* Set the value of the control, sets raised property */
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (widget), istate);
+  SetToggleState (widget, istate);
 
   /* Set the Widgets Name */
   gtk_widget_set_name (widget, "GedaToggleSwitch");
