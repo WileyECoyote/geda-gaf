@@ -300,8 +300,7 @@ void x_compselect_open (GschemToplevel *w_current)
                                "gschem-toplevel", w_current,
                                 NULL);
 
-    g_signal_connect (ThisDialog,
-                      "response",
+    g_signal_connect (ThisDialog, "response",
                       G_CALLBACK (x_compselect_callback_response),
                       w_current);
 
