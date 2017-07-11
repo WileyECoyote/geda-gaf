@@ -216,6 +216,11 @@ create_geda_switch(GtkWidget *parent, GtkWidget *widget,
  *  that the actual creation is done with a macro, see #EDA_BULB.
  */
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 GtkWidget *x_dialog_get_bulb_image (bool WhichState)
 {
    GtkWidget *image;
@@ -228,6 +233,11 @@ GtkWidget *x_dialog_get_bulb_image (bool WhichState)
    return image;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void x_dialog_set_bulb_on( GtkWidget *widget) {
 
   GList *button   = geda_container_get_children (widget);
@@ -246,6 +256,11 @@ void x_dialog_set_bulb_on( GtkWidget *widget) {
   g_list_free(button);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void x_dialog_set_bulb_off( GtkWidget *widget) {
 
   GList *button   = geda_container_get_children (widget);
@@ -264,6 +279,11 @@ void x_dialog_set_bulb_off( GtkWidget *widget) {
   g_list_free(button);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void x_dialog_bulb_group_set_active(GSList *RadioGroupList, int value)
 {
   int length;

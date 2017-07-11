@@ -4,7 +4,8 @@
       cast for gtk_widget_set_sensitive and gtk_widget_set_can_focus.
 
     * src/x/x_dialog.c: Replace gtk_toggle_button_set_active with macro
-      SetToggleState, add module prefix to functions:
+      SetToggleState, add template comment blocks and module prefix to
+      functions:
 
             * x_dialog_get_bulb_image
             * x_dialog_set_bulb_on
