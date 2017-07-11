@@ -360,10 +360,12 @@ bool geda_complex_get_is_embedded (const GedaComplex *complex)
   return FALSE;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Get the mirror Property of the GedaComplex
+ * \par Function Description
+ *  Retrieves the mirror property of the complex.
  *
+ * \sa geda_complex_set_is_mirror
  */
 bool geda_complex_get_is_mirror (const GedaComplex *complex)
 {
@@ -464,10 +466,15 @@ void geda_complex_set_is_embedded (GedaComplex *complex, bool is_embedded)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Set the mirror Property of a GedaComplex
+ * \par Function Description
+ *  Sets the mirror property of the complex to the value of \a is_mirror.
+ *  Setting the property result in the object being mirrored when drawn.
  *
+ * \note The value is not checked.
+ *
+ * \sa geda_complex_get_is_mirror
  */
 void geda_complex_set_is_mirror (GedaComplex *complex, bool is_mirror)
 {

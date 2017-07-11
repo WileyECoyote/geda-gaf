@@ -1,3 +1,10 @@
+2017-07-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_complex.c: Update Doxygen comments for:
+
+          * geda_complex_get_is_mirror
+          * geda_complex_set_is_mirror
+
 2017-07-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_complex.c: Update Doxygen comments for:
