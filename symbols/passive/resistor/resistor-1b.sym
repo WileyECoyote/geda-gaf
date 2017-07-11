@@ -1,6 +1,8 @@
 v 20150401 2
-T 100 1100 5 10 0 0 0 0 1
-author=AutoTron
+T 100 500 9 10 0 1 0 0 1
+device=RESISTOR
+T 100 1100 5 10 0 1 0 0 1
+description=Resistor
 L 600 200 500 0 3 0 2 0 -1 -1
 L 500 0 400 200 3 0 2 0 -1 -1
 L 400 200 300 0 3 0 2 0 -1 -1
@@ -38,11 +40,11 @@ T 450 300 8 10 1 1 0 3 1
 value=1K
 T 100 700 9 10 0 0 0 0 1
 numslots=0
-T 100 500 9 10 0 1 0 0 1
-device=RESISTOR
 T 600 300 9 10 0 1 0 0 1
 footprint=0603
 T 100 300 8 10 1 1 0 0 1
 value=R?
 T 100 900 5 10 0 0 0 0 1
 spice-type=R
+T 100 1300 5 10 0 0 0 0 1
+author=AutoTron

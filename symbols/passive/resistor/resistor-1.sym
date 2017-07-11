@@ -1,8 +1,8 @@
 v 20151031 2
-T 210 1110 5 10 0 0 0 0 1
-author=AutoTron
 T 200 700 5 10 0 1 0 0 1
 device=RESISTOR
+T 200 1100 5 10 0 1 0 0 1
+description=Resistor
 L 600 200 500 0 3 15 2 0 -1 -1
 L 500 0 400 200 3 15 2 0 -1 -1
 L 400 200 300 0 3 15 2 0 -1 -1
@@ -40,3 +40,5 @@ T 200 900 9 10 0 0 0 0 1
 numslots=0
 T 200 500 9 10 0 1 0 0 1
 footprint=0402
+T 200 1300 5 10 0 0 0 0 1
+author=AutoTron

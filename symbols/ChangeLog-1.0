@@ -1,3 +1,12 @@
+2017-07-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * passive/resistor: Add description attributes:
+
+            * passive/resistor/resistor-1.sym
+            * passive/resistor/resistor-1b.sym
+            * passive/resistor/resistor-2.sym
+            * passive/resistor/resistor-3.sym
+
 2017-07-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/special/C012294-pokey-1.sym: Add dash in device attribute to
