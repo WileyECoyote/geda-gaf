@@ -1773,153 +1773,153 @@ radio_responder(GtkWidget *widget,  int response, ControlID *Control)
 
   if ((GTK_IS_BUTTON(widget)) && (state != TRUE)) {
 
-    set_bulb_on(widget);
+    x_dialog_set_bulb_on(widget);
 
     switch ( response ) {
     /* General TAB */
       case LogDestinyWindow:
-        set_bulb_off(LogDestinyTTYRadio); set_bulb_off(LogDestinyBothRadio);
+        x_dialog_set_bulb_off(LogDestinyTTYRadio); x_dialog_set_bulb_off(LogDestinyBothRadio);
         break;
       case LogDestinyTTY:
-        set_bulb_off(LogDestinyWindowRadio); set_bulb_off(LogDestinyBothRadio);
+        x_dialog_set_bulb_off(LogDestinyWindowRadio); x_dialog_set_bulb_off(LogDestinyBothRadio);
         break;
       case LogDestinyBoth:
-        set_bulb_off(LogDestinyWindowRadio); set_bulb_off(LogDestinyTTYRadio);
+        x_dialog_set_bulb_off(LogDestinyWindowRadio); x_dialog_set_bulb_off(LogDestinyTTYRadio);
         break;
    /* Edit TAB */
       case NetEndPointNone:
-        set_bulb_off(NetEndPointFilledRadio); set_bulb_off(NetEndPointEmptyRadio);
+        x_dialog_set_bulb_off(NetEndPointFilledRadio); x_dialog_set_bulb_off(NetEndPointEmptyRadio);
         break;
       case NetEndPointFilled:
-        set_bulb_off(NetEndPointNoneRadio); set_bulb_off(NetEndPointEmptyRadio);
+        x_dialog_set_bulb_off(NetEndPointNoneRadio); x_dialog_set_bulb_off(NetEndPointEmptyRadio);
         break;
       case NetEndPointEmpty:
-        set_bulb_off(NetEndPointNoneRadio); set_bulb_off(NetEndPointFilledRadio);
+        x_dialog_set_bulb_off(NetEndPointNoneRadio); x_dialog_set_bulb_off(NetEndPointFilledRadio);
         break;
       case NetMidPointNone:
-        set_bulb_off(NetMidPointFilledRadio); set_bulb_off(NetMidPointEmptyRadio);
+        x_dialog_set_bulb_off(NetMidPointFilledRadio); x_dialog_set_bulb_off(NetMidPointEmptyRadio);
         break;
       case NetMidPointFilled:
-        set_bulb_off(NetMidPointNoneRadio); set_bulb_off(NetMidPointEmptyRadio);
+        x_dialog_set_bulb_off(NetMidPointNoneRadio); x_dialog_set_bulb_off(NetMidPointEmptyRadio);
         break;
       case NetMidPointEmpty:
-        set_bulb_off(NetMidPointNoneRadio); set_bulb_off(NetMidPointFilledRadio);
+        x_dialog_set_bulb_off(NetMidPointNoneRadio); x_dialog_set_bulb_off(NetMidPointFilledRadio);
         break;
       case NetSelectionNone:
-        set_bulb_off(NetSelectionNetRadio); set_bulb_off(NetSelectionAllRadio);
+        x_dialog_set_bulb_off(NetSelectionNetRadio); x_dialog_set_bulb_off(NetSelectionAllRadio);
         break;
       case NetSelectionNet:
-        set_bulb_off(NetSelectionNoneRadio); set_bulb_off(NetSelectionAllRadio);
+        x_dialog_set_bulb_off(NetSelectionNoneRadio); x_dialog_set_bulb_off(NetSelectionAllRadio);
         break;
       case NetSelectionAll:
-        set_bulb_off(NetSelectionNoneRadio); set_bulb_off(NetSelectionNetRadio);
+        x_dialog_set_bulb_off(NetSelectionNoneRadio); x_dialog_set_bulb_off(NetSelectionNetRadio);
         break;
   /* Styles TAB */
       case BusStyleNone:
-        set_bulb_off(BusStyleThinRadio); set_bulb_off(BusStyleThickRadio);
+        x_dialog_set_bulb_off(BusStyleThinRadio); x_dialog_set_bulb_off(BusStyleThickRadio);
         break;
       case BusStyleThin:
-        set_bulb_off(BusStyleNoneRadio); set_bulb_off(BusStyleThickRadio);
+        x_dialog_set_bulb_off(BusStyleNoneRadio); x_dialog_set_bulb_off(BusStyleThickRadio);
         break;
       case BusStyleThick:
-        set_bulb_off( BusStyleNoneRadio); set_bulb_off(BusStyleThinRadio);
+        x_dialog_set_bulb_off( BusStyleNoneRadio); x_dialog_set_bulb_off(BusStyleThinRadio);
         break;
       case NetStyleNone:
-        set_bulb_off(NetStyleThinRadio); set_bulb_off(NetStyleThickRadio);
+        x_dialog_set_bulb_off(NetStyleThinRadio); x_dialog_set_bulb_off(NetStyleThickRadio);
         break;
       case NetStyleThin:
-        set_bulb_off(NetStyleNoneRadio); set_bulb_off(NetStyleThickRadio);
+        x_dialog_set_bulb_off(NetStyleNoneRadio); x_dialog_set_bulb_off(NetStyleThickRadio);
         break;
       case NetStyleThick:
-        set_bulb_off( NetStyleNoneRadio); set_bulb_off(NetStyleThinRadio);
+        x_dialog_set_bulb_off( NetStyleNoneRadio); x_dialog_set_bulb_off(NetStyleThinRadio);
         break;
       case LineStyleNone:
-        set_bulb_off(LineStyleThinRadio); set_bulb_off(LineStyleThickRadio);
+        x_dialog_set_bulb_off(LineStyleThinRadio); x_dialog_set_bulb_off(LineStyleThickRadio);
         break;
       case LineStyleThin:
-        set_bulb_off(LineStyleNoneRadio); set_bulb_off(LineStyleThickRadio);
+        x_dialog_set_bulb_off(LineStyleNoneRadio); x_dialog_set_bulb_off(LineStyleThickRadio);
         break;
       case LineStyleThick:
-        set_bulb_off( LineStyleNoneRadio); set_bulb_off(LineStyleThinRadio);
+        x_dialog_set_bulb_off( LineStyleNoneRadio); x_dialog_set_bulb_off(LineStyleThinRadio);
         break;
       case PinStyleNone:
-        set_bulb_off(PinStyleThinRadio); set_bulb_off(PinStyleThickRadio);
+        x_dialog_set_bulb_off(PinStyleThinRadio); x_dialog_set_bulb_off(PinStyleThickRadio);
         break;
       case PinStyleThin:
-        set_bulb_off(PinStyleNoneRadio); set_bulb_off(PinStyleThickRadio);
+        x_dialog_set_bulb_off(PinStyleNoneRadio); x_dialog_set_bulb_off(PinStyleThickRadio);
         break;
       case PinStyleThick:
-        set_bulb_off( PinStyleNoneRadio); set_bulb_off(PinStyleThinRadio);
+        x_dialog_set_bulb_off( PinStyleNoneRadio); x_dialog_set_bulb_off(PinStyleThinRadio);
         break;
   /* Text TAB */
       case CapsStyleLower:
-        set_bulb_off(CapsStyleUpperRadio); set_bulb_off(CapsStyleBothRadio);
+        x_dialog_set_bulb_off(CapsStyleUpperRadio); x_dialog_set_bulb_off(CapsStyleBothRadio);
         break;
       case CapsStyleUpper:
-        set_bulb_off(CapsStyleLowerRadio); set_bulb_off(CapsStyleBothRadio);
+        x_dialog_set_bulb_off(CapsStyleLowerRadio); x_dialog_set_bulb_off(CapsStyleBothRadio);
         break;
       case CapsStyleBoth:
-        set_bulb_off( CapsStyleLowerRadio); set_bulb_off(CapsStyleUpperRadio);
+        x_dialog_set_bulb_off( CapsStyleLowerRadio); x_dialog_set_bulb_off(CapsStyleUpperRadio);
         break;
       case TextFeedbackDefault:
-        set_bulb_off(TextFeedbackReadableRadio); set_bulb_off(TextFeedbackAlwaysRadio);
+        x_dialog_set_bulb_off(TextFeedbackReadableRadio); x_dialog_set_bulb_off(TextFeedbackAlwaysRadio);
         break;
       case TextFeedbackReadable:
-        set_bulb_off(TextFeedbackDefaultRadio); set_bulb_off(TextFeedbackAlwaysRadio);
+        x_dialog_set_bulb_off(TextFeedbackDefaultRadio); x_dialog_set_bulb_off(TextFeedbackAlwaysRadio);
         break;
       case TextFeedbackAlways:
-        set_bulb_off(TextFeedbackDefaultRadio); set_bulb_off(TextFeedbackReadableRadio);
+        x_dialog_set_bulb_off(TextFeedbackDefaultRadio); x_dialog_set_bulb_off(TextFeedbackReadableRadio);
         break;
   /* Windows TAB */
       case GridDotSizeOne:
-        set_bulb_off(GridDotSizeTwoRadio); set_bulb_off(GridDotSizeThreeRadio);
+        x_dialog_set_bulb_off(GridDotSizeTwoRadio); x_dialog_set_bulb_off(GridDotSizeThreeRadio);
         break;
       case GridDotSizeTwo:
-        set_bulb_off(GridDotSizeOneRadio); set_bulb_off(GridDotSizeThreeRadio);
+        x_dialog_set_bulb_off(GridDotSizeOneRadio); x_dialog_set_bulb_off(GridDotSizeThreeRadio);
         break;
       case GridDotSizeThree:
-        set_bulb_off(GridDotSizeOneRadio); set_bulb_off(GridDotSizeTwoRadio);
+        x_dialog_set_bulb_off(GridDotSizeOneRadio); x_dialog_set_bulb_off(GridDotSizeTwoRadio);
         break;
       case GridModeNone:
-        set_bulb_off(GridModeDotsRadio); set_bulb_off(GridModeMeshRadio);
+        x_dialog_set_bulb_off(GridModeDotsRadio); x_dialog_set_bulb_off(GridModeMeshRadio);
         break;
       case GridModeDots:
-        set_bulb_off(GridModeNoneRadio); set_bulb_off(GridModeMeshRadio);
+        x_dialog_set_bulb_off(GridModeNoneRadio); x_dialog_set_bulb_off(GridModeMeshRadio);
         break;
       case GridModeMesh:
-        set_bulb_off(GridModeNoneRadio); set_bulb_off(GridModeDotsRadio);
+        x_dialog_set_bulb_off(GridModeNoneRadio); x_dialog_set_bulb_off(GridModeDotsRadio);
         break;
-      case WindowSizeW650H487:       set_bulb_off(WindowSizeW900H650Radio);
-        set_bulb_off(WindowSizeW950H712Radio); set_bulb_off(WindowSizeW1100H825Radio);
+      case WindowSizeW650H487:       x_dialog_set_bulb_off(WindowSizeW900H650Radio);
+        x_dialog_set_bulb_off(WindowSizeW950H712Radio); x_dialog_set_bulb_off(WindowSizeW1100H825Radio);
         break;
-      case WindowSizeW900H650:       set_bulb_off(WindowSizeW650H487Radio);
-        set_bulb_off(WindowSizeW950H712Radio); set_bulb_off(WindowSizeW1100H825Radio);
+      case WindowSizeW900H650:       x_dialog_set_bulb_off(WindowSizeW650H487Radio);
+        x_dialog_set_bulb_off(WindowSizeW950H712Radio); x_dialog_set_bulb_off(WindowSizeW1100H825Radio);
         break;
-      case WindowSizeW950H712:       set_bulb_off(WindowSizeW650H487Radio);
-        set_bulb_off(WindowSizeW900H650Radio); set_bulb_off(WindowSizeW1100H825Radio);
+      case WindowSizeW950H712:       x_dialog_set_bulb_off(WindowSizeW650H487Radio);
+        x_dialog_set_bulb_off(WindowSizeW900H650Radio); x_dialog_set_bulb_off(WindowSizeW1100H825Radio);
         break;
-      case WindowSizeW1100H825:      set_bulb_off(WindowSizeW650H487Radio);
-        set_bulb_off(WindowSizeW900H650Radio); set_bulb_off(WindowSizeW950H712Radio);
+      case WindowSizeW1100H825:      x_dialog_set_bulb_off(WindowSizeW650H487Radio);
+        x_dialog_set_bulb_off(WindowSizeW900H650Radio); x_dialog_set_bulb_off(WindowSizeW950H712Radio);
         break;
       case WorldSizeSmall:
-        set_bulb_off(WorldSizeMediumRadio); set_bulb_off(WorldSizeLargeRadio);
+        x_dialog_set_bulb_off(WorldSizeMediumRadio); x_dialog_set_bulb_off(WorldSizeLargeRadio);
         break;
       case WorldSizeMedium:
-        set_bulb_off(WorldSizeSmallRadio); set_bulb_off(WorldSizeLargeRadio);
+        x_dialog_set_bulb_off(WorldSizeSmallRadio); x_dialog_set_bulb_off(WorldSizeLargeRadio);
         break;
       case WorldSizeLarge:
-        set_bulb_off(WorldSizeSmallRadio); set_bulb_off(WorldSizeMediumRadio);
+        x_dialog_set_bulb_off(WorldSizeSmallRadio); x_dialog_set_bulb_off(WorldSizeMediumRadio);
         break;
       case DialogListAttributesAll:
         enable_attribute_list_controls(FALSE);
-        set_bulb_off(DialogListAttributesNoneRadio); set_bulb_off(DialogListAttributesListRadio);
+        x_dialog_set_bulb_off(DialogListAttributesNoneRadio); x_dialog_set_bulb_off(DialogListAttributesListRadio);
         break;
       case DialogListAttributesNone:
         enable_attribute_list_controls(FALSE);
-        set_bulb_off(DialogListAttributesAllRadio); set_bulb_off(DialogListAttributesListRadio);
+        x_dialog_set_bulb_off(DialogListAttributesAllRadio); x_dialog_set_bulb_off(DialogListAttributesListRadio);
         break;
       case DialogListAttributesList:
-        set_bulb_off(DialogListAttributesAllRadio); set_bulb_off(DialogListAttributesNoneRadio);
+        x_dialog_set_bulb_off(DialogListAttributesAllRadio); x_dialog_set_bulb_off(DialogListAttributesNoneRadio);
         enable_attribute_list_controls(TRUE);
         break;
       default:

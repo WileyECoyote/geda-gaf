@@ -216,8 +216,7 @@ create_geda_switch(GtkWidget *parent, GtkWidget *widget,
  *  that the actual creation is done with a macro, see #EDA_BULB.
  */
 
-GtkWidget*
-get_bulb_image (bool WhichState)
+GtkWidget *x_dialog_get_bulb_image (bool WhichState)
 {
    GtkWidget *image;
 
@@ -228,7 +227,8 @@ get_bulb_image (bool WhichState)
 
    return image;
 }
-void set_bulb_on( GtkWidget *widget) {
+
+void x_dialog_set_bulb_on( GtkWidget *widget) {
 
   GList *button   = geda_container_get_children (widget);
   GList *align    = geda_container_get_children (button->data);
@@ -246,7 +246,7 @@ void set_bulb_on( GtkWidget *widget) {
   g_list_free(button);
 }
 
-void set_bulb_off( GtkWidget *widget) {
+void x_dialog_set_bulb_off( GtkWidget *widget) {
 
   GList *button   = geda_container_get_children (widget);
   GList *align    = geda_container_get_children (button->data);
@@ -264,7 +264,7 @@ void set_bulb_off( GtkWidget *widget) {
   g_list_free(button);
 }
 
-void bulb_group_set_active(GSList *RadioGroupList, int value)
+void x_dialog_bulb_group_set_active(GSList *RadioGroupList, int value)
 {
   int length;
   int index;
@@ -297,10 +297,10 @@ void bulb_group_set_active(GSList *RadioGroupList, int value)
       if (gtk_toggle_button_get_active (button) == FALSE) {
         gtk_toggle_button_set_active (button, TRUE);
       }
-      set_bulb_on(GTK_WIDGET(button));
+      x_dialog_set_bulb_on(GTK_WIDGET(button));
     }
     else {
-      set_bulb_off(GTK_WIDGET(button));
+      x_dialog_set_bulb_off(GTK_WIDGET(button));
     }
   }
 

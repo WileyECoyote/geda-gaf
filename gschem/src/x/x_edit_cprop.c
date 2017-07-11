@@ -935,17 +935,17 @@ static void radio_responder(GtkWidget *widget,  int control)
 
   if ((GTK_IS_BUTTON(widget)) && (state != TRUE)) {
 
-    set_bulb_on(widget);
+    x_dialog_set_bulb_on(widget);
 
     switch ( control ) {
       case RefDesStd:
-        set_bulb_off(RefDesIeeeRadio); set_bulb_off(RefDesSpiceRadio);
+        x_dialog_set_bulb_off(RefDesIeeeRadio); x_dialog_set_bulb_off(RefDesSpiceRadio);
         break;
       case RefDesIeee:
-        set_bulb_off(RefDesStdRadio); set_bulb_off(RefDesSpiceRadio);
+        x_dialog_set_bulb_off(RefDesStdRadio); x_dialog_set_bulb_off(RefDesSpiceRadio);
         break;
       case RefDesSpice:
-        set_bulb_off(RefDesStdRadio); set_bulb_off(RefDesIeeeRadio);
+        x_dialog_set_bulb_off(RefDesStdRadio); x_dialog_set_bulb_off(RefDesIeeeRadio);
         break;
       default:
         break;

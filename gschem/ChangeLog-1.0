@@ -1,3 +1,12 @@
+2017-07-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_dialog.c: Add module prefix to functions:
+
+            * x_dialog_get_bulb_image
+            * x_dialog_set_bulb_on
+            * x_dialog_set_bulb_off
+            * x_dialog_bulb_group_set_active
+
 2017-07-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/POTFILES.in: Add source file x_guile.c.

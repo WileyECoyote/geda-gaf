@@ -707,10 +707,10 @@ void          x_dialog_coord_dialog         (GschemToplevel *w_current);
 AtkObject    *atk_widget_linked_label_new           (GtkWidget *label, GtkWidget *linkto);
 GtkWidget    *create_pixmap                         (const char *filename);
 void          destroy_gschem_dialog                 (GtkWidget *widget, GtkWidget **window);
-GtkWidget    *get_bulb_image                        (bool WhichState);
-void          set_bulb_on                           (GtkWidget *widget);
-void          set_bulb_off                          (GtkWidget *widget);
-void          bulb_group_set_active                 (GSList *RadioGroupList, int value);
+GtkWidget    *x_dialog_get_bulb_image               (bool WhichState);
+void          x_dialog_set_bulb_on                  (GtkWidget *widget);
+void          x_dialog_set_bulb_off                 (GtkWidget *widget);
+void          x_dialog_bulb_group_set_active        (GSList *RadioGroupList, int value);
 
 void          select_all_text_in_textview           (GtkTextView *textview);
 int           text_view_calculate_real_tab_width    (GtkTextView *textview, int tab_size);
