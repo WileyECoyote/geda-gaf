@@ -2674,19 +2674,19 @@ msgstr ""
 msgid "Attempting to duplicate path"
 msgstr ""
 
+# Invalid path
 #: gschem/src/x/x_guile.c:247
-#, fuzzy
 msgid "Invalid path"
-msgstr "Facteur de zoom non valide"
+msgstr "Chemin invalide"
 
 #: gschem/src/x/x_guile.c:312
 msgid "Refusing to remove path"
 msgstr ""
 
+# Version
 #: gschem/src/x/x_guile.c:464
-#, fuzzy
 msgid "Version"
-msgstr "Enregistrer toutes les pages"
+msgstr "Version"
 
 # Warning, Error reading image file
 #: gschem/src/x/x_icons.c:253
@@ -5429,10 +5429,6 @@ msgstr "~S n'est pas une combinaison de touches valide."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S n'est pas un préfixe valide."
-
-#, fuzzy
-#~ msgid "Guile (version:"
-#~ msgstr "Enregistrer toutes les pages"
 
 #~ msgid "Toggle _Magnetic Net"
 #~ msgstr "Piste _magnétique On/Off"
