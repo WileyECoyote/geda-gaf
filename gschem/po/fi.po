@@ -2588,28 +2588,28 @@ msgstr ""
 msgid "Guile Path"
 msgstr ""
 
+# Specify new path to search
 #: gschem/src/x/x_guile.c:215
-#, fuzzy
 msgid "Specify new path to search:"
-msgstr "Määritä uusi nimi Session:"
+msgstr "Määritä uusi polku hakuun:"
 
 #: gschem/src/x/x_guile.c:240
 msgid "Attempting to duplicate path"
 msgstr ""
 
+# Invalid path
 #: gschem/src/x/x_guile.c:247
-#, fuzzy
 msgid "Invalid path"
-msgstr "Virheellinen zoomauskerroin"
+msgstr "Virheellinen polku"
 
 #: gschem/src/x/x_guile.c:312
 msgid "Refusing to remove path"
 msgstr ""
 
+# Version
 #: gschem/src/x/x_guile.c:464
-#, fuzzy
 msgid "Version"
-msgstr "Tallenna _kaikki"
+msgstr "Versio"
 
 #: gschem/src/x/x_icons.c:253
 msgid "Warning, Error reading image file"
@@ -5341,10 +5341,6 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
-
-#, fuzzy
-#~ msgid "Guile (version:"
-#~ msgstr "Tallenna _kaikki"
 
 #~ msgid "session"
 #~ msgstr "Näytä _Nimi"

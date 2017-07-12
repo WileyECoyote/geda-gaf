@@ -4,6 +4,8 @@
 
     * po/fa.po: Update Persian translations.
 
+    * po/fi.po: Update Finnish translations.
+
 2017-07-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_compselect.c: Remove unnecessary GtkWidget type-checking
