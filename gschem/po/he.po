@@ -2651,7 +2651,6 @@ msgstr ""
 
 # version
 #: gschem/src/x/x_guile.c:464
-#, fuzzy
 msgid "Version"
 msgstr "גִרְסָה"
 
@@ -5525,8 +5524,3 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
-
-# version
-#, fuzzy
-#~ msgid "Guile (version:"
-#~ msgstr "גִרְסָה"
