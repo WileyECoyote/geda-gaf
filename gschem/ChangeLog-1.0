@@ -10,6 +10,8 @@
 
     * po/he.po: Update Hebrew translations.
 
+    * po/hu.po: Update Hungarian translations.
+
 2017-07-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_compselect.c: Remove unnecessary GtkWidget type-checking
