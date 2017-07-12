@@ -2682,18 +2682,17 @@ msgid "Attempting to duplicate path"
 msgstr ""
 
 #: gschem/src/x/x_guile.c:247
-#, fuzzy
 msgid "Invalid path"
-msgstr "Se ha especificado un factor de ampliación no válido"
+msgstr "Ruta no válida"
 
 #: gschem/src/x/x_guile.c:312
 msgid "Refusing to remove path"
 msgstr ""
 
+# Version
 #: gschem/src/x/x_guile.c:464
-#, fuzzy
 msgid "Version"
-msgstr "Guardar todo"
+msgstr "Versión"
 
 #: gschem/src/x/x_icons.c:253
 msgid "Warning, Error reading image file"
@@ -5426,10 +5425,6 @@ msgstr "~S no es una combinación de teclas válida."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S no es una secuencia de teclas válida como prefijo."
-
-#, fuzzy
-#~ msgid "Guile (version:"
-#~ msgstr "Guardar todo"
 
 #~ msgid "Toggle _Magnetic Net"
 #~ msgstr "Modo ayuda _magnética a la conexión"
