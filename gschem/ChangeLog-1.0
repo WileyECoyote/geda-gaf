@@ -16,6 +16,8 @@
 
     * po/ja.po: Update Japanese translations.
 
+    * po/zh_CN.po: Update Chinese simplified translations.
+
 2017-07-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_compselect.c: Remove unnecessary GtkWidget type-checking

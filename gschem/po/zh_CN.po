@@ -4072,47 +4072,48 @@ msgstr "重做"
 msgid "redo the last un-done action"
 msgstr ""
 
+# Cut clipboard => Cut to clipboard
 #: gschem/etc/system-gschemrc.scm:2105
-#, fuzzy
 msgid "Cu_t clipboard"
-msgstr "复制到 1"
+msgstr "切到剪贴板"
 
+# Copy clipboard => Copy to clipboard
 #: gschem/etc/system-gschemrc.scm:2106
-#, fuzzy
 msgid "_Copy clipboard"
-msgstr "复制到 1"
+msgstr "复制到剪贴板"
 
+# Paste clipboard => Paste from clipboard
 #: gschem/etc/system-gschemrc.scm:2107
-#, fuzzy
 msgid "_Paste clipboard"
-msgstr "粘贴"
+msgstr "从剪贴板粘贴"
 
 #: gschem/etc/system-gschemrc.scm:2111
 msgid "C_opy"
 msgstr ""
 
+# Multiple Copy
 #: gschem/etc/system-gschemrc.scm:2112
-#, fuzzy
 msgid "_Multiple Copy"
-msgstr "多重复制模式"
+msgstr "多重复制"
 
+# Mirror
 #: gschem/etc/system-gschemrc.scm:2113
-#, fuzzy
 msgid "M_irror"
-msgstr "镜像模式"
+msgstr "镜子"
 
 #: gschem/etc/system-gschemrc.scm:2114
 msgid "Mo_ve"
 msgstr ""
 
+# Offset
 #: gschem/etc/system-gschemrc.scm:2115
-#, fuzzy
 msgid "O_ffset"
-msgstr "选择模式"
+msgstr "抵消"
 
+# Offset the selected objects
 #: gschem/etc/system-gschemrc.scm:2115
 msgid "Offset the selected objects"
-msgstr ""
+msgstr "偏移所选对象"
 
 #: gschem/etc/system-gschemrc.scm:2116
 #, fuzzy
@@ -5700,3 +5701,7 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
+
+#, fuzzy
+#~ msgid "Guile (version:"
+#~ msgstr "全部保存"
