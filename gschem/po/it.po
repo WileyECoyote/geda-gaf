@@ -2694,19 +2694,18 @@ msgstr ""
 msgid "Attempting to duplicate path"
 msgstr ""
 
+# Invalid path
 #: gschem/src/x/x_guile.c:247
-#, fuzzy
 msgid "Invalid path"
-msgstr "fattore di zoom non valido"
+msgstr "Percorso non valido"
 
 #: gschem/src/x/x_guile.c:312
 msgid "Refusing to remove path"
 msgstr ""
 
 #: gschem/src/x/x_guile.c:464
-#, fuzzy
 msgid "Version"
-msgstr "Salva come"
+msgstr "Versione"
 
 #: gschem/src/x/x_icons.c:253
 msgid "Warning, Error reading image file"
@@ -5437,10 +5436,6 @@ msgstr "~S non è una combinazione di tasti valida."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S non è un prefisso di sequenza di tasti."
-
-#, fuzzy
-#~ msgid "Guile (version:"
-#~ msgstr "Salva come"
 
 #~ msgid "Toggle _Magnetic Net"
 #~ msgstr "Commuta Net _Magnetiche"
