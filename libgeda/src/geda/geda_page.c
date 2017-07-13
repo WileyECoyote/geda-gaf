@@ -512,6 +512,11 @@ void geda_page_remove_weak_ptr(Page *page, void *weak_pointer_loc)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void geda_page_feeze_notify(Page *page)
 {
   if (GEDA_IS_PAGE(page)) {
@@ -519,6 +524,11 @@ void geda_page_feeze_notify(Page *page)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void geda_page_thaw_notify(Page *page)
 {
   if (GEDA_IS_PAGE(page)) {
@@ -548,9 +558,13 @@ int geda_page_rename(Page *page, const char *newname)
   return result;
 }
 
-/* For now, the toplevel should only be set once, we don't have a
- * low-level clone or copy method and the hooks are holding pointer
- * to the toplevel */
+/*!
+ * \brief Set the top level associated with a GedaPage
+ * \par Function Description
+ *  For now, the toplevel should only be set once, we don't have a
+ *  low-level clone or copy method and the hooks are holding pointer
+ *  to the toplevel.
+ */
 void geda_page_set_toplevel (Page *page, GedaToplevel *toplevel)
 {
   g_return_if_fail (GEDA_IS_PAGE(page));
@@ -558,16 +572,31 @@ void geda_page_set_toplevel (Page *page, GedaToplevel *toplevel)
   page->toplevel = g_object_ref (toplevel);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 GedaToplevel *geda_page_get_toplevel (Page *page)
 {
   return GEDA_IS_PAGE(page) ? page->toplevel : NULL;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 int geda_page_get_changed (Page *page)
 {
   return GEDA_IS_PAGE(page) ? page->CHANGED : -1;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void geda_page_set_changed (Page *page, int changed)
 {
   if (GEDA_IS_PAGE(page)) {
@@ -575,16 +604,31 @@ void geda_page_set_changed (Page *page, int changed)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 const char *geda_page_get_filename (Page *page)
 {
   return GEDA_IS_PAGE(page) ? page->filename : NULL;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 char *geda_page_get_filename_dup (Page *page)
 {
   return GEDA_IS_PAGE(page) ? geda_strdup(page->filename) : NULL;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void geda_page_set_filename (Page *page, const char *filename)
 {
   if (GEDA_IS_PAGE(page)) {
@@ -595,16 +639,31 @@ void geda_page_set_filename (Page *page, const char *filename)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 int geda_page_get_pid (Page *page)
 {
   return GEDA_IS_PAGE(page) ?  page->pid : -1;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 GList *geda_page_get_place_list (Page *page)
 {
   return GEDA_IS_PAGE(page) ? page->place_list : NULL;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void geda_page_set_place_list (Page *page, GList *object_list)
 {
   if (GEDA_IS_PAGE(page)) {
@@ -614,6 +673,11 @@ void geda_page_set_place_list (Page *page, GList *object_list)
 
 /** @} endgroup geda-page */
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void geda_page_debug_print (Page *page)
 {
   printf( "toplevel=%p, pid=%d, seq=%d\n", page->toplevel, page->pid, page->seq);
