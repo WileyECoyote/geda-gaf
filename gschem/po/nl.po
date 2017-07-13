@@ -2763,26 +2763,27 @@ msgstr ""
 msgid "Guile Path"
 msgstr ""
 
+# Specify new path to search
 #: gschem/src/x/x_guile.c:215
 msgid "Specify new path to search:"
-msgstr ""
+msgstr "Geef een nieuw pad op om te zoeken:"
 
+# Attempting to duplicate path
 #: gschem/src/x/x_guile.c:240
 msgid "Attempting to duplicate path"
-msgstr ""
+msgstr "Poging te dupliceren pad"
 
-# Invalid magnification factor
+# Invalid path
 #: gschem/src/x/x_guile.c:247
-#, fuzzy
 msgid "Invalid path"
-msgstr "Ongeldige vergrotingsfactor"
+msgstr "Ongeldige path"
 
 #: gschem/src/x/x_guile.c:312
 msgid "Refusing to remove path"
 msgstr ""
 
+# Version
 #: gschem/src/x/x_guile.c:464
-#, fuzzy
 msgid "Version"
 msgstr "versie"
 
@@ -4122,10 +4123,10 @@ msgstr "S_luit"
 msgid "Close the current document"
 msgstr ""
 
+# Close All
 #: gschem/etc/system-gschemrc.scm:2092
-#, fuzzy
 msgid "Close All"
-msgstr "S_luit"
+msgstr "Sluit alles"
 
 #: gschem/etc/system-gschemrc.scm:2092
 msgid "Close all open documents"
@@ -4139,10 +4140,10 @@ msgstr "A_fsluiten"
 msgid "_Undo"
 msgstr "_Ongedaan maken"
 
+# Undo the last action
 #: gschem/etc/system-gschemrc.scm:2101
-#, fuzzy
 msgid "Undo the last action"
-msgstr "Maak laatste bewerking ongedaan"
+msgstr "Ontdoen de laatste actie"
 
 #: gschem/etc/system-gschemrc.scm:2102
 msgid "_Redo"
@@ -4192,10 +4193,10 @@ msgstr "De geselecteerde objecten"
 msgid "Rotate _90"
 msgstr "Roteer _90"
 
+# Snap to grid
 #: gschem/etc/system-gschemrc.scm:2117
-#, fuzzy
 msgid "Snap to _grid"
-msgstr "Schakel Snap Modus"
+msgstr "Snap op het raster"
 
 #: gschem/etc/system-gschemrc.scm:2117
 msgid "Snap selection to current grid"
@@ -4419,19 +4420,19 @@ msgstr "Plak vanuit 5"
 msgid "Insert contents of the fifth auxiliary buffer"
 msgstr ""
 
+# Lock selected objects
 #: gschem/etc/system-gschemrc.scm:2161
-#, fuzzy
 msgid "Lock selected objects"
-msgstr "Geselecteerde objecten"
+msgstr "Geselecteerde objecten vergrendelen"
 
 #: gschem/etc/system-gschemrc.scm:2162 gschem/scheme/gschem/builtins.scm:191
 msgid "Unlock"
 msgstr "Ontgrendel"
 
+# Unlock selected objects
 #: gschem/etc/system-gschemrc.scm:2162
-#, fuzzy
 msgid "Unlock selected objects"
-msgstr "Geselecteerde objecten"
+msgstr "Ontgrendel geselecteerde objecten"
 
 #: gschem/etc/system-gschemrc.scm:2197
 msgid "_Redraw"
