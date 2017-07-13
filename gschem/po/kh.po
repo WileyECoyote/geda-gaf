@@ -2772,26 +2772,27 @@ msgstr ""
 msgid "Guile Path"
 msgstr "bannaly Guile "
 
+# Specify new path to search
 #: gschem/src/x/x_guile.c:215
-#, fuzzy
 msgid "Specify new path to search:"
-msgstr "banhcheak pongrik thmei:"
+msgstr "banhcheak phlauv thmei daembi svengorok:"
 
+# Attempting to duplicate path
 #: gschem/src/x/x_guile.c:240
 msgid "Attempting to duplicate path"
-msgstr ""
+msgstr "pyeayeam stuon phlauv"
 
+# Invalid path
 #: gschem/src/x/x_guile.c:247
-#, fuzzy
 msgid "Invalid path"
-msgstr "katta pongrik min troemotrauv"
+msgstr "phlauv min troemotrauv"
 
 #: gschem/src/x/x_guile.c:312
 msgid "Refusing to remove path"
 msgstr ""
 
+# Version
 #: gschem/src/x/x_guile.c:464
-#, fuzzy
 msgid "Version"
 msgstr "Kamne:"
 
@@ -5595,7 +5596,3 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
-
-#, fuzzy
-#~ msgid "Guile (version:"
-#~ msgstr "Kamne:"
