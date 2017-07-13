@@ -2630,11 +2630,10 @@ msgstr ""
 msgid "Guile Path"
 msgstr ""
 
-# Specify new name for Session
+# Specify new path to search
 #: gschem/src/x/x_guile.c:215
-#, fuzzy
 msgid "Specify new path to search:"
-msgstr "സെഷൻ പുതിയ പേര് വ്യക്തമാക്കുക:"
+msgstr "തിരയുന്നതിനായി പുതിയ പാഥ് നൽകുക:"
 
 #: gschem/src/x/x_guile.c:240
 msgid "Attempting to duplicate path"
@@ -2642,15 +2641,15 @@ msgstr ""
 
 #: gschem/src/x/x_guile.c:247
 msgid "Invalid path"
-msgstr ""
+msgstr "പാത്ത് അസാധുവാണ്"
 
+# Refusing to remove path => Not removing path
 #: gschem/src/x/x_guile.c:312
 msgid "Refusing to remove path"
-msgstr ""
+msgstr "പാത്ത് നീക്കംചെയ്യുന്നില്ല"
 
 # Edition
 #: gschem/src/x/x_guile.c:464
-#, fuzzy
 msgid "Version"
 msgstr "പതിപ്പ്"
 
@@ -5525,8 +5524,3 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
-
-# Edition
-#, fuzzy
-#~ msgid "Guile (version:"
-#~ msgstr "പതിപ്പ്"
