@@ -1,7 +1,12 @@
 2017-07-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_page.c: Update function wrapping. Add template Doxygen
-      comment blocks.
+      comment blocks, update comments for:
+
+          * geda_page_unref
+          * geda_page_get_toplevel
+          * geda_page_get_changed
+          * geda_page_set_changed
 
 2017-07-10 Wiley E. Hill <wileyhill@gmail.com>
 

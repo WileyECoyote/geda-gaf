@@ -401,10 +401,12 @@ bool is_a_geda_page (const Page *page)
   return FALSE;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief Decrement the GObject Reference Count
- *  \par Function Description
- *
+/*!
+ * \brief Decrement the GObject Reference Count
+ * \par Function Description
+ *  GedaPage are automatically referenced when added to a
+ *  GedaToplevel and unreferenced when the page is removed,
+ *  such as when the GedaToplevel object is destroyed.
  */
 void geda_page_unref(Page *page)
 {
@@ -572,30 +574,34 @@ void geda_page_set_toplevel (Page *page, GedaToplevel *toplevel)
   page->toplevel = g_object_ref (toplevel);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Retrieve the GedaToplevel associated with a Page object
+ * \par Function Description
+ *  Returns the toplevel member. Normally the toplevel member is
+ *  set when the page is created with geda_struct_page_new or
+ *  geda_struct_page_new_with_notify.
  */
 GedaToplevel *geda_page_get_toplevel (Page *page)
 {
   return GEDA_IS_PAGE(page) ? page->toplevel : NULL;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Retrieve the CHANGED state of Page object
+ * \par Function Description
+ *  Returns the CHANGED member or -1 if \a page is not a valid
+ *  Page object.
  */
 int geda_page_get_changed (Page *page)
 {
   return GEDA_IS_PAGE(page) ? page->CHANGED : -1;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Set the CHANGED state of Page object
+ * \par Function Description
+ *  Sets the CHANGED member to the value of \a changed if \a page
+ *  is a valid Page object.
  */
 void geda_page_set_changed (Page *page, int changed)
 {
