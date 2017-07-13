@@ -1208,15 +1208,15 @@ msgstr "Aktualizowanie symbolu"
 msgid "Could not resolve which end of pin to connect\n"
 msgstr ""
 
+# Warning: Starting net off grid coordinate
 #: gschem/src/object/o_net.c:76
-#, fuzzy
 msgid "Warning: Starting net off grid coordinate\n"
-msgstr "Uwaga: Początek połączenia jest poza siatką\n"
+msgstr "Ostrzeżenie: Uruchomienie siatki poza współrzędną siatki\n"
 
+# Warning: Ending net off grid coordinate
 #: gschem/src/object/o_net.c:485
-#, fuzzy
 msgid "Warning: Ending net off grid coordinate\n"
-msgstr "Uwaga: Koniec połączenia jest poza siatką\n"
+msgstr "Ostrzeżenie: Końcowa współrzędna siatki\n"
 
 #: gschem/src/object/o_net.c:1096
 msgid "Bus ripper symbol was not found in any component library"
@@ -1581,10 +1581,10 @@ msgstr "błąd danych"
 msgid "Drag & Drop failed"
 msgstr "przeciągnij i upuść zawiodły"
 
+# Coordinates
 #: gschem/src/x/x_coord.c:472
-#, fuzzy
 msgid "Coordinates"
-msgstr "Tryb elementów"
+msgstr "Współrzędne"
 
 #: gschem/src/x/x_coord.c:487
 msgid "Screen"
@@ -1681,14 +1681,13 @@ msgid "Background"
 msgstr "Tło"
 
 #: gschem/src/x/x_dialog.c:1014
-#, fuzzy
 msgid "Pin"
-msgstr "_Pin"
+msgstr "Pin"
 
+# Net endpoint
 #: gschem/src/x/x_dialog.c:1015
-#, fuzzy
 msgid "Net endpoint"
-msgstr "Koniec połączeni"
+msgstr "Punkt końcowy netto"
 
 #: gschem/src/x/x_dialog.c:1016
 msgid "Graphic"
@@ -1700,21 +1699,20 @@ msgid "Net"
 msgstr "Połączenie"
 
 #: gschem/src/x/x_dialog.c:1018
-#, fuzzy
 msgid "Attribute"
-msgstr "Atrybuty"
+msgstr "Atrybut"
 
 #: gschem/src/x/x_dialog.c:1019
 msgid "Logic bubble"
 msgstr "Negacja logiczna"
 
+# Grid point
 #: gschem/src/x/x_dialog.c:1020
-#, fuzzy
 msgid "Grid point"
 msgstr "Punkt siatki"
 
+# Detached attribute => Disconnected attribute
 #: gschem/src/x/x_dialog.c:1021
-#, fuzzy
 msgid "Detached attribute"
 msgstr "Odłączony atrybut"
 
@@ -1728,9 +1726,8 @@ msgid "Bus"
 msgstr "Magistralę"
 
 #: gschem/src/x/x_dialog.c:1024 gschem/src/x/x_menus.c:106
-#, fuzzy
 msgid "Selection"
-msgstr "Zaznaczanie"
+msgstr "Selection"
 
 #: gschem/src/x/x_dialog.c:1025
 msgid "Bounding box"
@@ -2767,30 +2764,27 @@ msgstr ""
 msgid "Guile Path"
 msgstr ""
 
-# Specify new zoom
+# Specify new path to search
 #: gschem/src/x/x_guile.c:215
-#, fuzzy
 msgid "Specify new path to search:"
-msgstr "Podać nowy zoom:"
+msgstr "Określ nową ścieżkę wyszukiwania:"
 
 #: gschem/src/x/x_guile.c:240
 msgid "Attempting to duplicate path"
 msgstr ""
 
-# Incorrect zoom factor
-#: gschem/src/x/x_guile.c:247
-#, fuzzy
+# Invalid path
 msgid "Invalid path"
-msgstr "Nieprawidłowy współczynnik powiększenia"
+msgstr "Niewłaściwa ścieżka"
 
 #: gschem/src/x/x_guile.c:312
 msgid "Refusing to remove path"
 msgstr ""
 
+# Version
 #: gschem/src/x/x_guile.c:464
-#, fuzzy
 msgid "Version"
-msgstr "версия"
+msgstr "Wersja"
 
 #: gschem/src/x/x_icons.c:253
 msgid "Warning, Error reading image file"
@@ -5772,10 +5766,6 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
-
-#, fuzzy
-#~ msgid "Guile (version:"
-#~ msgstr "версия"
 
 #~ msgid "Toggle _Magnetic Net"
 #~ msgstr "Przełącz \"_magnes\" połączeń"
