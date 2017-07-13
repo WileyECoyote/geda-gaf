@@ -1,3 +1,8 @@
+2017-07-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * passive/resistor/resistor-dual.sym: Add description and footprint
+      attribute, fix pins off grid and non-symmetrical structure.
+
 2017-07-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * passive/resistor: Add description attributes:
