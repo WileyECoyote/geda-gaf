@@ -3,6 +3,20 @@
     * passive/resistor/resistor-dual.sym: Add description and footprint
       attribute, fix pins off grid and non-symmetrical structure.
 
+    * passive/resistor: Add description and update attributes:
+
+            * passive/resistor/resistorpack2-1.sym
+            * passive/resistor/resistorpack3-1.sym
+            * passive/resistor/resistorpack4-1.sym
+            * passive/resistor/resistorpack5-1.sym
+            * passive/resistor/resistorpack6-1.sym
+            * passive/resistor/resistorpack7-1.sym
+            * passive/resistor/resistorpack8-1.sym
+            * passive/resistor/resistorpack9-1.sym
+            * passive/resistor/resistorpack10-1.sym
+            * passive/resistor/resistorpack11-1.sym
+            * passive/resistor/resistorpack12-1.sym
+
 2017-07-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * passive/resistor: Add description attributes:
