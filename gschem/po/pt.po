@@ -2741,30 +2741,28 @@ msgstr ""
 msgid "Guile Path"
 msgstr ""
 
+# Specify new path to search
 #: gschem/src/x/x_guile.c:215
-#, fuzzy
 msgid "Specify new path to search:"
-msgstr "Especificar o novo zoom:"
+msgstr "Especifique novo caminho para pesquisar:"
 
 #: gschem/src/x/x_guile.c:240
 msgid "Attempting to duplicate path"
 msgstr ""
 
-# Magnification Factor is invalid
+# Invalid path
 #: gschem/src/x/x_guile.c:247
-#, fuzzy
 msgid "Invalid path"
-msgstr "Factor de ampliação inválido"
+msgstr "Caminho inválido"
 
 #: gschem/src/x/x_guile.c:312
 msgid "Refusing to remove path"
 msgstr ""
 
-# version
+# Version
 #: gschem/src/x/x_guile.c:464
-#, fuzzy
 msgid "Version"
-msgstr "versão"
+msgstr "Versão"
 
 #: gschem/src/x/x_icons.c:253
 msgid "Warning, Error reading image file"
@@ -3423,9 +3421,8 @@ msgid "Duplicate"
 msgstr "Duplicar"
 
 #: gschem/src/x/x_multiattrib.c:1693
-#, fuzzy
 msgid "Copy to all"
-msgstr "Copiar para 1"
+msgstr "Copiar para todos"
 
 #: gschem/src/x/x_multiattrib.c:2063 gschem/src/x/x_multiattrib.c:2582
 msgid "Edit Attributes"
@@ -5380,55 +5377,55 @@ msgstr ""
 msgid "Draw Last"
 msgstr ""
 
+# First Page
 #: gschem/scheme/gschem/builtins.scm:290
-#, fuzzy
 msgid "First Page"
-msgstr "_Anterior"
+msgstr "Primeira página"
 
+# Previous Page
 #: gschem/scheme/gschem/builtins.scm:293
-#, fuzzy
 msgid "Previous Page"
-msgstr "_Anterior"
+msgstr "Página anterior"
 
+# Next Page
 #: gschem/scheme/gschem/builtins.scm:296
-#, fuzzy
 msgid "Next Page"
-msgstr "Nova Página"
+msgstr "Subir página"
 
+# Page Up
 #: gschem/scheme/gschem/builtins.scm:299
-#, fuzzy
 msgid "Page Up"
-msgstr "_Página"
+msgstr "Subir página"
 
+# Page Down
 #: gschem/scheme/gschem/builtins.scm:302
-#, fuzzy
 msgid "Page Down"
-msgstr "Modo Centrar"
+msgstr "Página abaixo"
 
+# Last Page
 #: gschem/scheme/gschem/builtins.scm:305
-#, fuzzy
 msgid "Last Page"
-msgstr "Nova Página"
+msgstr "Última página"
 
+# Print Page
 #: gschem/scheme/gschem/builtins.scm:311
-#, fuzzy
 msgid "Print Page"
-msgstr "_Anterior"
+msgstr "Página de impressão"
 
+# Revert Changes
 #: gschem/scheme/gschem/builtins.scm:314
-#, fuzzy
 msgid "Revert Changes"
-msgstr "Reverter pagina realmente?"
+msgstr "Reverter as mudanças"
 
+# Revert All
 #: gschem/scheme/gschem/builtins.scm:317
-#, fuzzy
 msgid "Revert All"
-msgstr "Reverter pagina realmente?"
+msgstr "Reverter tudo"
 
+# Up Hierarchy
 #: gschem/scheme/gschem/builtins.scm:335
-#, fuzzy
 msgid "Up Hierarchy"
-msgstr "Hie_rarquia"
+msgstr "Hierarquia ascendente"
 
 #: gschem/scheme/gschem/builtins.scm:341
 #, fuzzy
