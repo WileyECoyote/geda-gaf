@@ -1,3 +1,8 @@
+2017-07-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * analogdevices/ADV7123-2.sym: Update attributes, resequence pins,
+      add description attribute.
+
 2017-07-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * passive/resistor/resistor-dual.sym: Add description and footprint
