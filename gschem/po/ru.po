@@ -5373,20 +5373,20 @@ msgstr "Изменить тип вывода"
 msgid "Choose Slot"
 msgstr "Выбрать секцию"
 
+# Invert Selection
 #: gschem/scheme/gschem/builtins.scm:176
-#, fuzzy
 msgid "Invert Selection"
-msgstr "Выделение"
+msgstr "Наоборот"
 
+# Select Last
 #: gschem/scheme/gschem/builtins.scm:179
-#, fuzzy
 msgid "Select Last"
-msgstr "Выделение"
+msgstr "Выберите последний"
 
+# Deselect mode
 #: gschem/scheme/gschem/builtins.scm:182
-#, fuzzy
 msgid "Deselect mode"
-msgstr "Выделение"
+msgstr "Режим отмены выделения"
 
 #: gschem/scheme/gschem/builtins.scm:197
 msgid "Cut"
@@ -5420,10 +5420,10 @@ msgstr "Прокрутка вверх"
 msgid "Pan Down"
 msgstr "Прокрутка вниз"
 
+# Zoom Selection
 #: gschem/scheme/gschem/builtins.scm:230
-#, fuzzy
 msgid "Zoom Selection"
-msgstr "Выделение"
+msgstr "Выбор масштаба"
 
 #: gschem/scheme/gschem/builtins.scm:233
 msgid "Zoom Extents"
@@ -5581,20 +5581,20 @@ msgstr "Добавить дугу"
 msgid "Add Picture"
 msgstr "Добавить изображение"
 
+# Create New Session
 #: gschem/scheme/gschem/builtins.scm:380
-#, fuzzy
 msgid "Create New Session"
-msgstr "Сохранить как"
+msgstr "Создать новую сессию"
 
+# Open a Session
 #: gschem/scheme/gschem/builtins.scm:383
-#, fuzzy
 msgid "Open a Session"
-msgstr "Сохранить как"
+msgstr "Открыть сеанс"
 
+# Save Session
 #: gschem/scheme/gschem/builtins.scm:386
-#, fuzzy
 msgid "Save Session"
-msgstr "Сохранить как"
+msgstr "Сохранить сеанс"
 
 #: gschem/scheme/gschem/builtins.scm:398
 msgid "Attach Attributes"
@@ -5621,10 +5621,10 @@ msgstr "Показать имя атрибута"
 msgid "Toggle Text Visibility"
 msgstr "Переключить видимость текста"
 
+# Open Attributes Editor
 #: gschem/scheme/gschem/builtins.scm:419
-#, fuzzy
 msgid "Open Attributes Editor"
-msgstr "Редактор атрибута"
+msgstr "Открыть редактор атрибутов"
 
 #: gschem/scheme/gschem/builtins.scm:422
 msgid "Find Specific Text"
