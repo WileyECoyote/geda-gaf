@@ -375,10 +375,11 @@ bool geda_complex_get_is_mirror (const GedaComplex *complex)
   return FALSE;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Get the list of Pins from a GedaComplex object
+ * \par Function Description
+ *  Retrieves the pin_objs member. The pin_objs member is a double
+ *  linked list of pin objects associated with complex.
  */
 GList *geda_complex_get_pin_objs (const GedaComplex *complex)
 {
@@ -388,10 +389,11 @@ GList *geda_complex_get_pin_objs (const GedaComplex *complex)
   return NULL;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Get the list of Pins from a GedaComplex object
+ * \par Function Description
+ *  Retrieves the prim_objs member. The prim_objs member is a double
+ *  linked list of non-complex objects that make-up the complex.
  */
 GList *geda_complex_get_prim_objs (const GedaComplex *complex)
 {
