@@ -3444,10 +3444,10 @@ msgstr "Promover"
 msgid "Duplicate"
 msgstr "Duplicar"
 
+# Copy to all
 #: gschem/src/x/x_multiattrib.c:1693
-#, fuzzy
 msgid "Copy to all"
-msgstr "Copiar para 1"
+msgstr "Copiar para todos"
 
 #: gschem/src/x/x_multiattrib.c:2063 gschem/src/x/x_multiattrib.c:2582
 msgid "Edit Attributes"
@@ -3503,9 +3503,8 @@ msgid "bus"
 msgstr "bus"
 
 #: gschem/src/x/x_multiattrib.c:2661
-#, fuzzy
 msgid "attributes"
-msgstr "atributo"
+msgstr "atributos"
 
 #: gschem/src/x/x_multiattrib.c:2665
 msgid "attribute"
@@ -5415,55 +5414,55 @@ msgstr ""
 msgid "Draw Last"
 msgstr ""
 
+# First Page
 #: gschem/scheme/gschem/builtins.scm:290
-#, fuzzy
 msgid "First Page"
-msgstr "_Anterior"
+msgstr "Primeira página"
 
+# Previous Page
 #: gschem/scheme/gschem/builtins.scm:293
-#, fuzzy
 msgid "Previous Page"
-msgstr "_Anterior"
+msgstr "Página anterior"
 
+# Next Page
 #: gschem/scheme/gschem/builtins.scm:296
-#, fuzzy
 msgid "Next Page"
-msgstr "Nova página"
+msgstr "Próxima página"
 
+# Page Up
 #: gschem/scheme/gschem/builtins.scm:299
-#, fuzzy
 msgid "Page Up"
-msgstr "_Página"
+msgstr "Subir página"
 
+# Page Down
 #: gschem/scheme/gschem/builtins.scm:302
-#, fuzzy
 msgid "Page Down"
-msgstr "Modo Centrar"
+msgstr "Página abaixo"
 
+# Last Page
 #: gschem/scheme/gschem/builtins.scm:305
-#, fuzzy
 msgid "Last Page"
-msgstr "Nova página"
+msgstr "Última página"
 
+# Print Page
 #: gschem/scheme/gschem/builtins.scm:311
-#, fuzzy
 msgid "Print Page"
-msgstr "_Anterior"
+msgstr "Página de impressão"
 
+# Revert Changes
 #: gschem/scheme/gschem/builtins.scm:314
-#, fuzzy
 msgid "Revert Changes"
-msgstr "Reverter Página?"
+msgstr "Reverter as mudanças"
 
+# Revert All
 #: gschem/scheme/gschem/builtins.scm:317
-#, fuzzy
 msgid "Revert All"
-msgstr "Reverter Página?"
+msgstr "Reverter tudo"
 
+# Up Hierarchy
 #: gschem/scheme/gschem/builtins.scm:335
-#, fuzzy
 msgid "Up Hierarchy"
-msgstr "Hie_rarquia"
+msgstr "Hierarquia ascendente"
 
 #: gschem/scheme/gschem/builtins.scm:341
 #, fuzzy
