@@ -403,10 +403,10 @@ GList *geda_complex_get_prim_objs (const GedaComplex *complex)
   return NULL;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Get the X insertion point of a GedaCircle
+ * \par Function Description
+ *  Retrieves the X insertion point of \a complex.
  */
 int geda_complex_get_x (const GedaComplex *complex)
 {
@@ -416,10 +416,10 @@ int geda_complex_get_x (const GedaComplex *complex)
   return -0;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Get the Y insertion point of a GedaCircle
+ * \par Function Description
+ *  Retrieves the Y insertion point of \a complex.
  */
 int geda_complex_get_y (const GedaComplex *complex)
 {

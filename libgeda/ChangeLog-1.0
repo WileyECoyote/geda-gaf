@@ -4,6 +4,8 @@
 
           * geda_complex_get_pin_objs
           * geda_complex_get_prim_objs
+          * geda_complex_get_x
+          * geda_complex_get_y
 
 2017-07-13 Wiley E. Hill <wileyhill@gmail.com>
 
