@@ -177,6 +177,11 @@ geda_struct_page_new (GedaToplevel *toplevel, const char *filename)
   return geda_struct_page_new_common(toplevel, page);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 Page*
 geda_struct_page_new_with_notify (GedaToplevel *toplevel, const char *filename)
 {
