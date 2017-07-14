@@ -162,7 +162,11 @@ GedaObject *geda_object_get_attached_to (const GedaObject *object)
   return NULL;
 }
 
-
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 int geda_object_get_color (const GedaObject *object) {
   if (is_a_geda_object(object)) {
     return object->color;
@@ -170,6 +174,11 @@ int geda_object_get_color (const GedaObject *object) {
   return -0;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 const GList *geda_object_get_conn_list (const GedaObject *object)
 {
   if (is_a_geda_object(object)) {
