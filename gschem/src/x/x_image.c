@@ -696,22 +696,22 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
   vbox1 = gtk_vbox_new(TRUE, 0);
 
   /* Label output image size */
-  gtk_box_pack_start     (GTK_BOX (vbox1), label, FALSE, FALSE, 0);
   label = geda_aligned_visible_label_new (_("Width x Height"), 0, 0);
+  PACK_BOX (vbox1, label, FALSE, FALSE, 0);
 
   /* Label image size selector combo */
   size_Combo = create_size_menu ();
-  gtk_box_pack_start (GTK_BOX (vbox1), size_Combo, TRUE, TRUE, 0);
+  PACK_BOX (vbox1, size_Combo, TRUE, TRUE, 0);
   gtk_widget_show(vbox1);
 
   /* Image type selection */
   vbox2  = gtk_vbox_new(TRUE, 0);
-  gtk_box_pack_start (GTK_BOX (vbox2), label, FALSE, FALSE, 0);
 
   label = geda_aligned_visible_label_new (_("Image type"), 0, 0);
+  PACK_BOX (vbox2, label, FALSE, FALSE, 0);
 
   type_Combo = create_type_menu ( default_type);
-  gtk_box_pack_start (GTK_BOX (vbox2), type_Combo, TRUE, TRUE, 0);
+  PACK_BOX (vbox2, type_Combo, TRUE, TRUE, 0);
 
   /* Connect the changed signal to the callback, so the filename
      gets updated every time the image type is changed */

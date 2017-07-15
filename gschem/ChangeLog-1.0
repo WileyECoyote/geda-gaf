@@ -8,6 +8,8 @@
       GtkNotebook to reduce unnecessary type-checking cast in function
       compselect_constructor.
 
+    * src/x/x_image.c: Replace gtk_box_pack_start with PACK_BOX macro.
+
 2017-07-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/pt.po: Update Portuguese translations.
