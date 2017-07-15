@@ -1873,59 +1873,60 @@ set_property (GObject *object, unsigned int param_id, const GValue *value, GPara
  * \par Function Description
  *  This function creates the string for the Grid/Snap label on
  *  the status bar utilizing the classes internal scratch ram,
- *  widget->grid_label_text and local char array for integers.
- *  The assemulated string is uploaded to the grid label widget.
+ *  status_bar->grid_label_text and local char array for integers.
+ *  The assemulated string is uploaded to the grid label status_bar.
  *
- * \param [in] widget This GschemStatusBar
+ * \param [in] status_bar This GschemStatusBar
  */
 static void
-update_grid_label (GschemStatusBar *widget)
+update_grid_label (GschemStatusBar *status_bar)
 {
-  if (widget->grid_label != NULL) {
+  if (status_bar->grid_label != NULL) {
 
     char scratch[6]; /* tmp char used to convert large integers */
 
-    char *ptr = strcpy (widget->grid_label_text,_("Grid"));
+    char *ptr = strcpy (status_bar->grid_label_text,_("Grid"));
 
     ptr = strcat(ptr, "(");
 
-    switch (widget->snap_mode) {
+    switch (status_bar->snap_mode) {
       case SNAP_OFF:
         ptr = strcat(ptr,_("OFF"));
         break;
 
       case SNAP_GRID:
-        strcat (ptr, geda_string_int2str(widget->snap_size, &scratch[0], 10));
+        strcat (ptr, geda_string_int2str(status_bar->snap_size, &scratch[0], 10));
         break;
 
       case SNAP_RESNAP:
-        strcat (ptr, geda_string_int2str(widget->snap_size, &scratch[0], 10));
+        strcat (ptr, geda_string_int2str(status_bar->snap_size, &scratch[0], 10));
         strcat (ptr, "R");
         break;
 
       default:
         ptr = strcat(ptr,_("Error"));
         fprintf(stderr, "%s: snap_mode out of range: %d\n", __func__,
-                widget->snap_mode);
+                status_bar->snap_mode);
     }
 
     ptr = strcat(ptr, ", ");
 
-    if (widget->grid_mode == GRID_NONE) {
-        ptr = strcat(ptr,_("OFF"));
+    if (status_bar->grid_mode == GRID_NONE) {
+        ptr = strcat (ptr,_("OFF"));
     }
     else {
-      if (widget->grid_size <= 0) {
-        ptr = strcat(ptr,_("NONE"));
+      if (status_bar->grid_size <= 0) {
+        ptr = strcat (ptr,_("NONE"));
       }
       else {
-        strcat (ptr, geda_string_int2str(widget->grid_size,&scratch[0], 10));
+        strcat (ptr, geda_string_int2str(status_bar->grid_size,&scratch[0], 10));
       }
     }
 
     ptr = strcat(ptr, ")");
 
-    geda_label_widget_set_text(widget->grid_label, widget->grid_label_text);
+    geda_label_widget_set_text(status_bar->grid_label,
+                               status_bar->grid_label_text);
   }
 }
 
