@@ -2,7 +2,7 @@
 
     * src/base/gschem_status_bar.c: Revise update_grid_label; replace
       with geda_utility_string_int2str geda_string_int2str macro and
-      rename widget variable "status_bar".
+      rename widget variable "status_bar". Update function wrapping.
 
 2017-07-14 Wiley E. Hill <wileyhill@gmail.com>
 

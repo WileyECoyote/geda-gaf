@@ -165,8 +165,7 @@ static void status_options_popup_clicked (GedaMenuItem *menuitem, void *user_dat
 /* -------------- Popup Menu for Mouse Middle Button Options  -------------- */
 
 /*! Creates the context menu for the third button options */
-static GtkWidget*
-create_coord_display_options_popup(GschemStatusBar *status_bar)
+static GtkWidget *create_coord_display_options_popup(GschemStatusBar *status_bar)
 {
   GtkWidget *menu;
   int i;
@@ -253,8 +252,7 @@ static bool coord_display_released (GtkWidget      *label,
 /* -------------- Popup Menu for Mouse Middle Button Options  -------------- */
 
 /*! Creates the context menu for the middle button options */
-static GtkWidget*
-create_middle_button_options_popup(GschemStatusBar *status_bar)
+static GtkWidget *create_middle_button_options_popup(GschemStatusBar *status_bar)
 {
   GtkWidget *menu;
   int i;
@@ -340,8 +338,7 @@ static bool middle_button_released (GtkWidget      *label,
 /* --------------- Popup Menu for Mouse Third Button Options  -------------- */
 
 /*! Creates the context menu for the third button options */
-static GtkWidget*
-create_third_button_options_popup(GschemStatusBar *status_bar)
+static GtkWidget *create_third_button_options_popup(GschemStatusBar *status_bar)
 {
   GtkWidget *menu;
   int i;
@@ -500,8 +497,7 @@ static void finalize (GObject *object)
  * \param [in,out] value
  * \param [in]     pspec
  */
-static void
-get_property (GObject *object, unsigned int param_id, GValue *value, GParamSpec *pspec)
+static void get_property (GObject *object, unsigned int param_id, GValue *value, GParamSpec *pspec)
 {
   GtkWidget  *status_bar = (GtkWidget*)GSCHEM_STATUS_BAR (object);
   const char *string;
@@ -562,8 +558,7 @@ get_property (GObject *object, unsigned int param_id, GValue *value, GParamSpec 
  * \param [in]  class       The GschemStatusBarClass to be initialized
  * \param [in]  class_data  (unused)
  */
-static void
-gschem_status_bar_class_init (void *class, void *class_data)
+static void gschem_status_bar_class_init (void *class, void *class_data)
 {
   GschemStatusBarClass *bar_class = (GschemStatusBarClass*)class;
   GObjectClass    *gobject_class  = G_OBJECT_CLASS (class);
@@ -760,8 +755,7 @@ gschem_status_bar_class_init (void *class, void *class_data)
  *
  * \return The grid mode
  */
-int
-gschem_status_bar_get_grid_mode (GtkWidget *widget)
+int gschem_status_bar_get_grid_mode (GtkWidget *widget)
 {
 #if defined (G_DISABLE_ASSERT)
   return (GSCHEM_STATUS_BAR(widget))->grid_mode;
@@ -793,8 +787,7 @@ gschem_status_bar_get_grid_mode (GtkWidget *widget)
  *
  * \return The grid size
  */
-int
-gschem_status_bar_get_grid_size (GtkWidget *widget)
+int gschem_status_bar_get_grid_size (GtkWidget *widget)
 {
 #if defined (G_DISABLE_ASSERT)
   return (GSCHEM_STATUS_BAR(widget))->grid_size;
@@ -824,8 +817,7 @@ gschem_status_bar_get_grid_size (GtkWidget *widget)
  *
  * \return The height
  */
-int
-gschem_status_bar_get_height (GtkWidget *widget)
+int gschem_status_bar_get_height (GtkWidget *widget)
 {
   int ypad = -1;
 
@@ -855,8 +847,7 @@ gschem_status_bar_get_height (GtkWidget *widget)
  *
  * \return The left button text
  */
-const char*
-gschem_status_bar_get_left_button_text (GtkWidget *widget)
+const char *gschem_status_bar_get_left_button_text (GtkWidget *widget)
 {
 #if defined (G_DISABLE_ASSERT)
   return geda_label_widget_get_text (gsb->left_label);
@@ -891,8 +882,7 @@ gschem_status_bar_get_left_button_text (GtkWidget *widget)
  *
  * \return The middle button text
  */
-const char*
-gschem_status_bar_get_middle_button_text (GtkWidget *widget)
+const char *gschem_status_bar_get_middle_button_text (GtkWidget *widget)
 {
 #if defined (G_DISABLE_ASSERT)
   return geda_label_widget_get_text (gsb->middle_label);
@@ -928,8 +918,7 @@ gschem_status_bar_get_middle_button_text (GtkWidget *widget)
  *
  * \return The right button text
  */
-const char*
-gschem_status_bar_get_right_button_text( GtkWidget *widget)
+const char *gschem_status_bar_get_right_button_text( GtkWidget *widget)
 {
 
 #if defined (G_DISABLE_ASSERT)
@@ -970,8 +959,7 @@ gschem_status_bar_get_right_button_text( GtkWidget *widget)
  *
  * \return The snap mode
  */
-int
-gschem_status_bar_get_coord_mode (GtkWidget *widget)
+int gschem_status_bar_get_coord_mode (GtkWidget *widget)
 {
   if (widget && GSCHEM_IS_STATUS_BAR(widget)) {
     return ((GschemStatusBar*)widget)->coord_mode;
@@ -986,8 +974,7 @@ gschem_status_bar_get_coord_mode (GtkWidget *widget)
  *
  * \return The snap mode
  */
-int
-gschem_status_bar_get_snap_mode (GtkWidget *widget)
+int gschem_status_bar_get_snap_mode (GtkWidget *widget)
 {
 #if defined (G_DISABLE_ASSERT)
   return (GSCHEM_STATUS_BAR(widget))->snap_mode;
@@ -1018,8 +1005,7 @@ gschem_status_bar_get_snap_mode (GtkWidget *widget)
  *
  * \return The snap size
  */
-int
-gschem_status_bar_get_snap_size (GtkWidget *widget)
+int gschem_status_bar_get_snap_size (GtkWidget *widget)
 {
 #if defined (G_DISABLE_ASSERT)
   return (GSCHEM_STATUS_BAR(widget))->snap_size;
@@ -1049,8 +1035,7 @@ gschem_status_bar_get_snap_size (GtkWidget *widget)
  *
  * \return The status text
  */
-const char*
-gschem_status_bar_get_status_text (GtkWidget *widget)
+const char *gschem_status_bar_get_status_text (GtkWidget *widget)
 {
 #if defined (G_DISABLE_ASSERT)
   return geda_label_widget_get_text (gsb->status_label);
@@ -1083,8 +1068,7 @@ gschem_status_bar_get_status_text (GtkWidget *widget)
  * \brief Get/register GschemStatusBar type.
  * \par Function Description
  */
-GedaType
-gschem_status_bar_get_type (void)
+GedaType gschem_status_bar_get_type (void)
 {
   static volatile GedaType type = 0;
 
@@ -1129,8 +1113,7 @@ gschem_status_bar_get_type (void)
  *
  * \param [in] widget This GschemStatusBar
  */
-static GschemStatusBarBuffers*
-gschem_status_bar_setup_buffers (GschemStatusBar *widget)
+static GschemStatusBarBuffers *gschem_status_bar_setup_buffers (GschemStatusBar *widget)
 {
   unsigned int nbytes = sizeof(GschemStatusBarBuffers);
 
@@ -1166,8 +1149,7 @@ gschem_status_bar_setup_buffers (GschemStatusBar *widget)
  * \param [in,out] instance The GschemStatusBar being initialized.
  * \param [in]     g_class  The class of the type the instance is created for.
  */
-static void
-gschem_status_bar_instance_init (GTypeInstance *instance, void *g_class)
+static void gschem_status_bar_instance_init (GTypeInstance *instance, void *g_class)
 {
   GschemStatusBar *bar = (GschemStatusBar*)instance;
   EdaConfig  *cfg;
@@ -1318,8 +1300,7 @@ gschem_status_bar_instance_init (GTypeInstance *instance, void *g_class)
  * \param [in] widget This GschemStatusBar
  * \param [in] mode   The coordinate mode
  */
-void
-gschem_status_bar_set_coord_mode (GtkWidget *widget, int mode)
+void gschem_status_bar_set_coord_mode (GtkWidget *widget, int mode)
 {
   GschemStatusBar *gsb;
 
@@ -1353,8 +1334,7 @@ gschem_status_bar_set_coord_mode (GtkWidget *widget, int mode)
  * \param [in] widget This GschemStatusBar
  * \param [in] mode   The grid mode
  */
-void
-gschem_status_bar_set_grid_mode (GtkWidget *widget, int mode)
+void gschem_status_bar_set_grid_mode (GtkWidget *widget, int mode)
 {
 #if defined (G_DISABLE_ASSERT)
   (GSCHEM_STATUS_BAR(widget))->grid_mode = mode;
@@ -1380,8 +1360,7 @@ gschem_status_bar_set_grid_mode (GtkWidget *widget, int mode)
  * \param [in] widget This GschemStatusBar
  * \param [in] size   The grid size
  */
-void
-gschem_status_bar_set_grid_size (GtkWidget *widget, int size)
+void gschem_status_bar_set_grid_size (GtkWidget *widget, int size)
 {
 #if defined (G_DISABLE_ASSERT)
   (GSCHEM_STATUS_BAR(widget))->grid_size = size;
@@ -1406,8 +1385,7 @@ gschem_status_bar_set_grid_size (GtkWidget *widget, int size)
  * \param [in] widget This GschemStatusBar
  * \param [in] height The new height
  */
-void
-gschem_status_bar_set_height (GtkWidget *widget, int height)
+void gschem_status_bar_set_height (GtkWidget *widget, int height)
 {
   GschemStatusBar *status_bar;
 
@@ -1449,8 +1427,7 @@ gschem_status_bar_set_height (GtkWidget *widget, int height)
  * \param [in] widget This GschemStatusBar
  * \param [in] text   The text
  */
-void
-gschem_status_bar_set_left_button_text (GtkWidget *widget, const char *text)
+void gschem_status_bar_set_left_button_text (GtkWidget *widget, const char *text)
 {
 #if defined (G_DISABLE_ASSERT)
   geda_label_set_text ((GedaLabel *)(GSCHEM_STATUS_BAR(widget))->right_label, text);
@@ -1483,8 +1460,7 @@ gschem_status_bar_set_left_button_text (GtkWidget *widget, const char *text)
  * \param [in] widget This GschemStatusBar
  * \param [in] text   The text
  */
-void
-gschem_status_bar_set_middle_button_text (GtkWidget *widget, const char *text)
+void gschem_status_bar_set_middle_button_text (GtkWidget *widget, const char *text)
 {
 #if defined (G_DISABLE_ASSERT)
   geda_label_set_text ((GedaLabel *)(GSCHEM_STATUS_BAR(widget))->right_label, text);
@@ -1516,8 +1492,7 @@ gschem_status_bar_set_middle_button_text (GtkWidget *widget, const char *text)
  * \param [in] widget This GschemStatusBar
  * \param [in] text   The text
  */
-void
-gschem_status_bar_set_right_button_text (GtkWidget *widget, const char *text)
+void gschem_status_bar_set_right_button_text (GtkWidget *widget, const char *text)
 {
 #if defined (G_DISABLE_ASSERT)
   geda_label_widget_set_text ((GSCHEM_STATUS_BAR(widget))->right_label, text);
@@ -1548,8 +1523,7 @@ gschem_status_bar_set_right_button_text (GtkWidget *widget, const char *text)
  * \param [in] widget This GschemStatusBar
  * \param [in] mode   The snap mode
  */
-void
-gschem_status_bar_set_snap_mode (GtkWidget *widget, int mode)
+void gschem_status_bar_set_snap_mode (GtkWidget *widget, int mode)
 {
 #if defined (G_DISABLE_ASSERT)
   (GSCHEM_STATUS_BAR(widget))->snap_mode = mode;
@@ -1574,8 +1548,7 @@ gschem_status_bar_set_snap_mode (GtkWidget *widget, int mode)
  * \param [in] widget This GschemStatusBar
  * \param [in] size   The snap size
  */
-void
-gschem_status_bar_set_snap_size (GtkWidget *widget, int size)
+void gschem_status_bar_set_snap_size (GtkWidget *widget, int size)
 {
 #if defined (G_DISABLE_ASSERT)
   (GSCHEM_STATUS_BAR(widget))->snap_size = size;
@@ -1616,8 +1589,7 @@ gschem_status_bar_set_snap_size (GtkWidget *widget, int size)
  *
  * \sa gschem_status_bar_get_coord_mode gschem_status_bar_set_coord_mode
  */
-void
-gschem_status_bar_set_coordinates (GtkWidget *widget, int x0, int y0, int x1, int y1)
+void gschem_status_bar_set_coordinates (GtkWidget *widget, int x0, int y0, int x1, int y1)
 {
   GschemStatusBar *status_bar;
   char  *text;
@@ -1743,8 +1715,7 @@ gschem_status_bar_set_coordinates (GtkWidget *widget, int x0, int y0, int x1, in
  * \param [in] widget This GschemStatusBar
  * \param [in] text   The status text
  */
-void
-gschem_status_bar_set_status_text (GtkWidget *widget, const char *text)
+void gschem_status_bar_set_status_text (GtkWidget *widget, const char *text)
 {
 #if defined (G_DISABLE_ASSERT)
   geda_label_set_text ((GedaLabel *)(GSCHEM_STATUS_BAR(widget))->status_label, text);
@@ -1778,8 +1749,7 @@ gschem_status_bar_set_status_text (GtkWidget *widget, const char *text)
  * \param [in] widget This GschemStatusBar
  * \param [in] index  The state to visualise
  */
-void
-gschem_status_bar_set_status_text_color (GtkWidget *widget, int index)
+void gschem_status_bar_set_status_text_color (GtkWidget *widget, int index)
 {
   GdkColor *color = geda_color_x11_color_from_index(index);
 
@@ -1812,8 +1782,7 @@ gschem_status_bar_set_status_text_color (GtkWidget *widget, int index)
  * \brief Set a gobject property
  * \par Function Description
  */
-static void
-set_property (GObject *object, unsigned int param_id, const GValue *value, GParamSpec *pspec)
+static void set_property (GObject *object, unsigned int param_id, const GValue *value, GParamSpec *pspec)
 {
   GtkWidget *status_bar = (GtkWidget*)GSCHEM_STATUS_BAR (object);
 
@@ -1878,8 +1847,7 @@ set_property (GObject *object, unsigned int param_id, const GValue *value, GPara
  *
  * \param [in] status_bar This GschemStatusBar
  */
-static void
-update_grid_label (GschemStatusBar *status_bar)
+static void update_grid_label (GschemStatusBar *status_bar)
 {
   if (status_bar->grid_label != NULL) {
 
