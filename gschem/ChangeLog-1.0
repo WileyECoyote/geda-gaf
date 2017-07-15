@@ -1,8 +1,12 @@
 2017-07-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_status_bar.c: Revise update_grid_label; replace
-      with geda_utility_string_int2str geda_string_int2str macro and
+      geda_utility_string_int2str with geda_string_int2str macro and
       rename widget variable "status_bar". Update function wrapping.
+
+    * src/x/x_compselect.c: Change notebook from type GtkWidget to type
+      GtkNotebook to reduce unnecessary type-checking cast in function
+      compselect_constructor.
 
 2017-07-14 Wiley E. Hill <wileyhill@gmail.com>
 

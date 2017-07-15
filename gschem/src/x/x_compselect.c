@@ -3141,21 +3141,23 @@ compselect_constructor (GType                  type,
   GObject        *object;
   Compselect     *ThisDialog;
 
-  GtkWidget *hpaned, *vpaned, *notebook;
-  GtkWidget *notebook_tab  = NULL;
-  GtkWidget *preview       = NULL;
-  GtkWidget *alignment     = NULL;
-  GtkWidget *frame         = NULL;
-  GtkWidget *action_area   = NULL;
-  GtkVBox   *main_vbox     = NULL;
-  GtkWidget *label         = NULL;
+  GtkNotebook *notebook;
+  GtkWidget   *hpaned, *vpaned;
+  GtkWidget   *notebook_tab  = NULL;
+  GtkWidget   *preview       = NULL;
+  GtkWidget   *alignment     = NULL;
+  GtkWidget   *frame         = NULL;
+  GtkWidget   *action_area   = NULL;
+  GtkVBox     *main_vbox     = NULL;
+  GtkWidget   *label         = NULL;
+
 
   SortLibrarySwitch        = NULL;
   ShowGroupsSwitch         = NULL;
 
   /* chain up to constructor of parent class */
   object = G_OBJECT_CLASS (compselect_parent_class)->
-  constructor (type, n_construct_properties, construct_params);
+           constructor (type, n_construct_properties, construct_params);
 
   ThisDialog = (Compselect*) (object);
   w_current  = GSCHEM_DIALOG (ThisDialog)->w_current;
@@ -3198,37 +3200,37 @@ compselect_constructor (GType                  type,
   GTK_NEW_vBOX(left, FALSE, DEFAULT_DIALOG_SPACING);
 
   /* notebook for library and inuse views */
-  ThisDialog->notebook = GTK_NOTEBOOK (notebook);
   notebook = g_object_new (GTK_TYPE_NOTEBOOK, NULL);
+  ThisDialog->notebook = (GtkNotebook*)notebook;
 
   /* Note" The order we create the notebook tabs is important */
   notebook_tab = compselect_create_inuse_treeview (ThisDialog);
   label = geda_label_new (_(IDS_COMPSELECT_TABS[IN_USE_TAB]));
-  gtk_notebook_append_page (GTK_NOTEBOOK (notebook), notebook_tab, label);
+  gtk_notebook_append_page (notebook, notebook_tab, label);
 
   notebook_tab = compselect_create_treeview_box (ThisDialog,
                                                  &ThisDialog->stdtreeview,
                                                  STD_TAB);
   label = geda_label_new (_(IDS_COMPSELECT_TABS[STD_TAB]));
-  gtk_notebook_append_page (GTK_NOTEBOOK (notebook), notebook_tab, label);
+  gtk_notebook_append_page (notebook, notebook_tab, label);
 
   notebook_tab = compselect_create_treeview_box (ThisDialog,
                                                  &ThisDialog->mantreeview,
                                                  MAN_TAB);
   label = geda_label_new (_(IDS_COMPSELECT_TABS[MAN_TAB]));
-  gtk_notebook_append_page (GTK_NOTEBOOK (notebook), notebook_tab, label);
+  gtk_notebook_append_page (notebook, notebook_tab, label);
 
   notebook_tab = compselect_create_treeview_box (ThisDialog,
                                                  &ThisDialog->simtreeview,
                                                  SIM_TAB);
   label = geda_label_new (_(IDS_COMPSELECT_TABS[SIM_TAB]));
-  gtk_notebook_append_page (GTK_NOTEBOOK (notebook), notebook_tab, label);
+  gtk_notebook_append_page (notebook, notebook_tab, label);
 
   notebook_tab = compselect_create_treeview_box (ThisDialog,
                                                  &ThisDialog->localtreeview,
                                                  LOCAL_TAB);
   label = geda_label_new (_(IDS_COMPSELECT_TABS[LOCAL_TAB]));
-  gtk_notebook_append_page (GTK_NOTEBOOK (notebook), notebook_tab, label);
+  gtk_notebook_append_page (notebook, notebook_tab, label);
   PACK_BOX(left_vbox, notebook, TRUE, TRUE, 0);
 
   ThisDialog->filter_hbox = compselect_create_filter_area (ThisDialog);
