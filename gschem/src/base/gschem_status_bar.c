@@ -1895,11 +1895,11 @@ update_grid_label (GschemStatusBar *widget)
         break;
 
       case SNAP_GRID:
-        strcat (ptr, geda_utility_string_int2str(widget->snap_size, &scratch[0], 10));
+        strcat (ptr, geda_string_int2str(widget->snap_size, &scratch[0], 10));
         break;
 
       case SNAP_RESNAP:
-        strcat (ptr, geda_utility_string_int2str(widget->snap_size, &scratch[0], 10));
+        strcat (ptr, geda_string_int2str(widget->snap_size, &scratch[0], 10));
         strcat (ptr, "R");
         break;
 
@@ -1919,7 +1919,7 @@ update_grid_label (GschemStatusBar *widget)
         ptr = strcat(ptr,_("NONE"));
       }
       else {
-        strcat (ptr, geda_utility_string_int2str(widget->grid_size,&scratch[0], 10));
+        strcat (ptr, geda_string_int2str(widget->grid_size,&scratch[0], 10));
       }
     }
 
