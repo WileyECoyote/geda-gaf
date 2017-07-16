@@ -993,13 +993,15 @@ export_parse_scale (const char *scale)
 static void
 export_config (void)
 {
+  GError    *err;
   EdaConfig *cfg = eda_config_get_context_for_file (NULL);
-  char   *str;
-  double *lst;
-  double  dval;
-  double  bval;
-  size_t  n;
-  GError *err = NULL;
+  char      *str;
+  double    *lst;
+  double     dval;
+  double     bval;
+  unsigned int n;
+
+  err = NULL;
 
   /* Parse orientation */
   str = eda_config_get_string (cfg, "export", "layout", NULL);
