@@ -1355,7 +1355,7 @@ char **eda_config_get_groups (EdaConfig *cfg, unsigned *length)
 
   while (curr != NULL) {
 
-    size_t len;
+    unsigned int len;
     int    i;
 
     char **local_groups = geda_keyfile_get_groups (curr->priv->keyfile, &len);
@@ -1432,7 +1432,7 @@ char **eda_config_get_keys (EdaConfig *cfg, const char *group, unsigned *length,
 
   for (curr = cfg; curr != NULL; curr = eda_config_get_parent (curr)) {
 
-    size_t len;
+    unsigned int len;
     int    i;
     char **local_keys = geda_keyfile_get_keys (curr->priv->keyfile,
                                               group, &len, NULL);
@@ -1760,8 +1760,11 @@ double eda_config_get_double (EdaConfig *cfg, const char *group,
  *
  * \return configuration value as an array of strings.
  */
-char **eda_config_get_string_list (EdaConfig *cfg, const char *group,
-                                   const char *key,size_t *length, GError **error)
+char **eda_config_get_string_list (EdaConfig    *cfg,
+                                   const char   *group,
+                                   const char   *key,
+                                   unsigned int *length,
+                                   GError       **error)
 {
   GError *sys_err;
   char  **result;
@@ -1799,8 +1802,11 @@ char **eda_config_get_string_list (EdaConfig *cfg, const char *group,
  *
  * \return configuration value as an array of booleans.
  */
-bool *eda_config_get_boolean_list (EdaConfig *cfg, const char *group,
-                                   const char *key, size_t *length, GError **error)
+bool *eda_config_get_boolean_list (EdaConfig    *cfg,
+                                   const char   *group,
+                                   const char   *key,
+                                   unsigned int *length,
+                                   GError       **error)
 {
   GError *sys_err;
   bool   *result;
@@ -1840,8 +1846,11 @@ bool *eda_config_get_boolean_list (EdaConfig *cfg, const char *group,
  *
  * \return configuration value as an array of integers.
  */
-int *eda_config_get_int_list (EdaConfig  *cfg, const char *group,
-                              const char *key, size_t *length, GError **error)
+int *eda_config_get_int_list (EdaConfig    *cfg,
+                              const char   *group,
+                              const char   *key,
+                              unsigned int *length,
+                              GError       **error)
 {
   GError *sys_err;
   int    *result;
@@ -1880,8 +1889,11 @@ int *eda_config_get_int_list (EdaConfig  *cfg, const char *group,
  *
  * \return configuration value as an array of doubles.
  */
-double *eda_config_get_double_list (EdaConfig *cfg, const char *group,
-                                    const char *key, size_t *length, GError **error)
+double *eda_config_get_double_list (EdaConfig    *cfg,
+                                    const char   *group,
+                                    const char   *key,
+                                    unsigned int *length,
+                                    GError       **error)
 {
   double *result;
 
@@ -1916,7 +1928,7 @@ double *eda_config_get_double_list (EdaConfig *cfg, const char *group,
  * \param key    Configuration key name.
  * \param value  New value for parameter.
  */
-void eda_config_set_string (EdaConfig *cfg, const char *group,
+void eda_config_set_string (EdaConfig *cfg,  const char *group,
                             const char *key, const char *value)
 {
   geda_keyfile_set_string (cfg->priv->keyfile, group, key, value);

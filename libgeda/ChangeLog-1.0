@@ -1,7 +1,13 @@
 2017-07-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_config.c: Revise eda_config_get_keys to clear the error
-      set while recursing EdaConfigs.
+      set while recursing EdaConfigs. Replace size_t argument with unsigned
+      int for:
+
+          * eda_config_get_string_list
+          * eda_config_get_boolean_list
+          * eda_config_get_int_list
+          * eda_config_get_double_list
 
 2017-07-14 Wiley E. Hill <wileyhill@gmail.com>
 

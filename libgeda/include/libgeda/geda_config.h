@@ -210,10 +210,10 @@ char    *eda_config_get_string       (EdaConfig *cfg, const char *group, const c
 bool     eda_config_get_boolean      (EdaConfig *cfg, const char *group, const char *key, GError **err) GEDA_WARN_UNUSED_RESULT;
 int      eda_config_get_integer      (EdaConfig *cfg, const char *group, const char *key, GError **err) GEDA_WARN_UNUSED_RESULT;
 double   eda_config_get_double       (EdaConfig *cfg, const char *group, const char *key, GError **err) GEDA_WARN_UNUSED_RESULT;
-char   **eda_config_get_string_list  (EdaConfig *cfg, const char *group, const char *key, size_t *length, GError **err) GEDA_WARN_UNUSED_RESULT;
-bool    *eda_config_get_boolean_list (EdaConfig *cfg, const char *group, const char *key, size_t *length, GError **err) GEDA_WARN_UNUSED_RESULT;
-int     *eda_config_get_int_list     (EdaConfig *cfg, const char *group, const char *key, size_t *length, GError **err) GEDA_WARN_UNUSED_RESULT;
-double  *eda_config_get_double_list  (EdaConfig *cfg, const char *group, const char *key, size_t *length, GError **err) GEDA_WARN_UNUSED_RESULT;
+char   **eda_config_get_string_list  (EdaConfig *cfg, const char *group, const char *key, unsigned int *length, GError **err) GEDA_WARN_UNUSED_RESULT;
+bool    *eda_config_get_boolean_list (EdaConfig *cfg, const char *group, const char *key, unsigned int *length, GError **err) GEDA_WARN_UNUSED_RESULT;
+int     *eda_config_get_int_list     (EdaConfig *cfg, const char *group, const char *key, unsigned int *length, GError **err) GEDA_WARN_UNUSED_RESULT;
+double  *eda_config_get_double_list  (EdaConfig *cfg, const char *group, const char *key, unsigned int *length, GError **err) GEDA_WARN_UNUSED_RESULT;
 
 
 void eda_config_set_string           (EdaConfig *cfg, const char *group, const char *key, const char *value);
