@@ -1437,7 +1437,10 @@ char **eda_config_get_keys (EdaConfig *cfg, const char *group, unsigned *length,
     char **local_keys = geda_keyfile_get_keys (curr->priv->keyfile,
                                               group, &len, NULL);
     /* Skip files that don't provide the requested group */
-    if (local_keys == NULL) continue;
+    if (local_keys == NULL) {
+      g_error_free(*error);
+      continue;
+    }
 
     /* Create keytable if not already created. */
     if (key_table == NULL) {
