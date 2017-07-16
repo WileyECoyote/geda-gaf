@@ -689,7 +689,7 @@ EDA_SCM_DEFINE (config_boolean_list, "%config-boolean-list", 3, 0, 0,
   EdaConfig *cfg;
   char      *group;
   char      *key;
-  size_t     length;
+  unsigned   length;
   unsigned   i;
   GError    *error;
   bool      *value;
@@ -948,7 +948,7 @@ EDA_SCM_DEFINE (config_string_list, "%config-string-list", 3, 0, 0,
 {
   EdaConfig *cfg;
   GError    *error;
-  size_t     length;
+  unsigned   length;
   int        i;
   char      *group;
   char      *key;
@@ -1008,7 +1008,7 @@ EDA_SCM_DEFINE (config_int_list, "%config-int-list", 3, 0, 0,
   EdaConfig *cfg;
   char      *group;
   char      *key;;
-  size_t     length;
+  unsigned   length;
   unsigned   i;
   int       *value;
 
@@ -1066,7 +1066,7 @@ EDA_SCM_DEFINE (config_real_list, "%config-real-list", 3, 0, 0,
   EdaConfig *cfg;
   char      *group;
   char      *key;;
-  size_t     length;
+  unsigned   length;
   unsigned   i;
   double    *value;
 

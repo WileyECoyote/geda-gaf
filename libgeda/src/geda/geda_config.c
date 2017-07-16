@@ -1438,7 +1438,9 @@ char **eda_config_get_keys (EdaConfig *cfg, const char *group, unsigned *length,
                                               group, &len, NULL);
     /* Skip files that don't provide the requested group */
     if (local_keys == NULL) {
-      g_error_free(*error);
+      if (*error) {
+        g_error_free(*error);
+      }
       continue;
     }
 

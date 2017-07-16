@@ -9,6 +9,14 @@
           * eda_config_get_int_list
           * eda_config_get_double_list
 
+    * src/scheme/scheme_config.c: Replace size_t with unsigned int in
+      functions:
+
+          * scheme_config_boolean_list
+          * scheme_config_string_list
+          * scheme_config_int_list
+          * scheme_config_int_list
+
 2017-07-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_complex.c: Update Doxygen comments for:
