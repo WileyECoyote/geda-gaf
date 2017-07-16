@@ -1,3 +1,14 @@
+2017-07-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_window.c: Uncomment gtk_window_iconify in x_window_create_main
+      because Travis is broke, again. Problem their headless system is not
+      actuate representation of a "real" computer; BUG with message "Xlib:
+      extension RANDR missing on display :99.". The BUG in the virtual frame
+      buffer running on Travis and could not be replicated on same version
+      of Ubuntu using computer that actually has a monitor attached. Solutions
+      on the internet, is a common problem with Travis, do not seem to work.
+      Free testing service is not so free.
+
 2017-07-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_status_bar.c: Revise update_grid_label; replace

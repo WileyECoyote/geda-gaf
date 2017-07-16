@@ -510,7 +510,7 @@ x_window_create_main(GschemToplevel *w_current)
   /* Iconize the main window until after the size and position have been
    * restored, otherwise the main window visibly changes sizes and this
    * does not look so good */
-  //gtk_window_iconify ((GtkWindow*)MainWindow);
+  gtk_window_iconify ((GtkWindow*)MainWindow);
 
   gtk_widget_show(MainWidget);
 
