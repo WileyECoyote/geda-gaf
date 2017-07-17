@@ -404,10 +404,10 @@ msgstr ""
 msgid "not found!"
 msgstr ""
 
+# Attribute
 #: gattrib/src/x_find.c:277
-#, fuzzy
 msgid "Attribute"
-msgstr "gEDA Edytor atrybutów"
+msgstr "Atrybut"
 
 #: gattrib/src/x_find.c:314
 msgid "Designator"
@@ -445,35 +445,35 @@ msgstr ""
 msgid "Paste"
 msgstr ""
 
+# Add new Attribute
 #: gattrib/src/x_menus.c:375
-#, fuzzy
 msgid "_Add new Attribute"
-msgstr "gEDA Edytor atrybutów"
+msgstr "Dodaj nowy _atrybut"
 
+# Delete Attribute
 #: gattrib/src/x_menus.c:376
-#, fuzzy
 msgid "D_elete Attribute"
-msgstr "gEDA Edytor atrybutów"
+msgstr "Usuń atrybut"
 
+# Promote Attribute
 #: gattrib/src/x_menus.c:377
-#, fuzzy
 msgid "_Promote Attribute"
-msgstr "gEDA Edytor atrybutów"
+msgstr "Promuj atrybut"
 
+# Attach the selected attribute
 #: gattrib/src/x_menus.c:377 gattrib/src/x_toolbars.c:47
-#, fuzzy
 msgid "Attach the selected attribute"
-msgstr "gEDA Edytor atrybutów"
+msgstr "Dołącz wybrany atrybut"
 
+# Demote Attribute
 #: gattrib/src/x_menus.c:378
-#, fuzzy
 msgid "_Demote Attribute"
-msgstr "gEDA Edytor atrybutów"
+msgstr "Obniżenie atrybutu"
 
+# Detach the selected attribute
 #: gattrib/src/x_menus.c:378 gattrib/src/x_toolbars.c:48
-#, fuzzy
-msgid "Dettach the selected attribute"
-msgstr "gEDA Edytor atrybutów"
+msgid "Detach the selected attribute"
+msgstr "Zdemontuj wybrany atrybut"
 
 #: gattrib/src/x_menus.c:380
 msgid "Find Value"
