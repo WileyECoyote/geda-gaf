@@ -930,7 +930,7 @@ static int popup_activated(GtkWidget *widget, IDS_HB_Popup_items* selection)
  *  The function sets senitivty on menu choices based on the handlebox
  *  position and the state of the containing toolbar.
  *
- * \param [in] widget is the active widget
+ * \param [in] handlebox is the GedaHandleBox that was clicked on
  */
 static GtkWidget *build_menu(GedaHandleBox *handlebox)
 {
