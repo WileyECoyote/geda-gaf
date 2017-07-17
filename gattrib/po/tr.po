@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-06-23 00:37-0500\n"
+"POT-Creation-Date: 2017-07-17 00:04-0500\n"
 "PO-Revision-Date: 2010-02-06 22:09+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -470,7 +470,7 @@ msgstr "gEDA Özellik Düzenleyicisi"
 msgid "_Demote Attribute"
 msgstr "gEDA Özellik Düzenleyicisi"
 
-#: gattrib/src/x_menus.c:378 gattrib/src/x_toolbars.c:48
+#: gattrib/src/x_menus.c:378
 #, fuzzy
 msgid "Dettach the selected attribute"
 msgstr "gEDA Özellik Düzenleyicisi"
@@ -759,6 +759,11 @@ msgstr ""
 #: gattrib/src/x_toolbars.c:48
 msgid "demote"
 msgstr ""
+
+#: gattrib/src/x_toolbars.c:48
+#, fuzzy
+msgid "Detach the selected attribute"
+msgstr "gEDA Özellik Düzenleyicisi"
 
 #: gattrib/src/x_toolbars.c:49
 msgid "name"

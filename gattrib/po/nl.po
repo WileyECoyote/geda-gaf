@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-06-23 00:37-0500\n"
+"POT-Creation-Date: 2017-07-17 00:04-0500\n"
 "PO-Revision-Date: 2014-08-31 20:31+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -515,7 +515,7 @@ msgstr "Bevestig de geselecteerde attribuut"
 msgid "_Demote Attribute"
 msgstr "Degraderen attribuut"
 
-#: gattrib/src/x_menus.c:378 gattrib/src/x_toolbars.c:48
+#: gattrib/src/x_menus.c:378
 msgid "Dettach the selected attribute"
 msgstr "Dettach de geselecteerde attribuut"
 
@@ -796,6 +796,11 @@ msgstr ""
 #: gattrib/src/x_toolbars.c:48
 msgid "demote"
 msgstr ""
+
+#: gattrib/src/x_toolbars.c:48
+#, fuzzy
+msgid "Detach the selected attribute"
+msgstr "Dettach de geselecteerde attribuut"
 
 #: gattrib/src/x_toolbars.c:49
 msgid "name"
