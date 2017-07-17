@@ -650,8 +650,8 @@ void x_sessions_manage_dialog(GschemToplevel *w_current)
   gtk_table_attach           (table, button, 0,1,2,3, GTK_FILL,0,0,0);
   GEDA_HOOKUP_OBJECT         (ThisDialog, button, "export-butt");
 
-  action_area = create_action_area ((GschemDialog*)ThisDialog,
-                                    (GtkWidget*) main_vbox);
+  action_area = create_action_area ((GschemDialog*)ThisDialog, main_vbox);
+
   gtk_widget_show_all (action_area);
 
   selection = session_dialog_get_selection((GschemDialog*)ThisDialog);

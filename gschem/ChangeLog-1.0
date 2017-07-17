@@ -5,6 +5,9 @@
 
     * src/x/x_compselect.c: Remove unneeded cast for g_signal_connect.
 
+    * src/x/x_sessions.c: Remove unneeded GtkWidget cast for main_vbox
+      in x_sessions_manage_dialog.
+
     * src/x/x_toolbars.c: Change build_menu from GtkWidget to GedaHandleBox.
       Update Doxygen parameter to match argument to build_menu.
 
