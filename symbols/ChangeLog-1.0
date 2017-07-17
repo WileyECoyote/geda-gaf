@@ -6,6 +6,8 @@
     * atmel/ATtiny25_45_85-1.sym: Update device attributes, add description
       attribute.
 
+    * connector/flex/ffc-20.sym: Update attributes, add description attribute.
+
 2017-07-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * analogdevices/ADV7123-2.sym: Update attributes, resequence pins,
