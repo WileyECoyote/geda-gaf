@@ -932,7 +932,7 @@ static int popup_activated(GtkWidget *widget, IDS_HB_Popup_items* selection)
  *
  * \param [in] widget is the active widget
  */
-static GtkWidget *build_menu(GtkWidget *widget)
+static GtkWidget *build_menu(GedaHandleBox *handlebox)
 {
   GtkWidget   *menu;
   GtkTooltips *tooltips;
@@ -942,7 +942,7 @@ static GtkWidget *build_menu(GtkWidget *widget)
   int  style;
   int  i;
 
-  ActiveToolBar.handlebox = GEDA_HANDLE_BOX (widget);
+  ActiveToolBar.handlebox = handlebox;
   ActiveToolBar.toolbar   = geda_handle_box_get_toolbar(ActiveToolBar.handlebox);
 
   is_floating = !geda_handle_box_get_child_detached (ActiveToolBar.handlebox);
@@ -1027,9 +1027,9 @@ static int
 On_mouse_button_press(GtkWidget *widget, GdkEventButton *event, GschemToplevel *w_current)
 {
   GdkModifierType mods;
-  GtkWidget *handlebox = GTK_WIDGET(widget);
+  GedaHandleBox *handlebox = (GedaHandleBox*)widget;
 
-  gdk_window_get_pointer (gtk_widget_get_window(handlebox), NULL, NULL, &mods);
+  gdk_window_get_pointer (gtk_widget_get_window(widget), NULL, NULL, &mods);
 
   if (mods & GDK_BUTTON3_MASK) {
 
