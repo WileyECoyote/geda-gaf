@@ -2,6 +2,8 @@
 
     * po/pl.po: Update Polish translations.
 
+    * po/pt.po: Update Portuguese translations.
+
 2017-07-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_find.c: Replace geda_utility_string_istr with geda_string_istr

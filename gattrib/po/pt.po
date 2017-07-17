@@ -197,7 +197,6 @@ msgstr ""
 "O"
 
 #: gattrib/src/s_toplevel.c:278
-#, fuzzy
 msgid "attribute"
 msgstr "atributo"
 
@@ -406,9 +405,8 @@ msgid "not found!"
 msgstr ""
 
 #: gattrib/src/x_find.c:277
-#, fuzzy
 msgid "Attribute"
-msgstr "Editor de Atributos gEDA"
+msgstr "Atributo"
 
 #: gattrib/src/x_find.c:314
 msgid "Designator"
@@ -446,35 +444,34 @@ msgstr ""
 msgid "Paste"
 msgstr ""
 
+# Add new Attribute
 #: gattrib/src/x_menus.c:375
-#, fuzzy
 msgid "_Add new Attribute"
-msgstr "Editor de Atributos gEDA"
+msgstr "Adicionar novo atributo"
 
+# Delete Attribute
 #: gattrib/src/x_menus.c:376
-#, fuzzy
 msgid "D_elete Attribute"
-msgstr "Editor de Atributos gEDA"
+msgstr "Excluir atributo"
 
+# Promote Attribute
 #: gattrib/src/x_menus.c:377
-#, fuzzy
 msgid "_Promote Attribute"
-msgstr "Editor de Atributos gEDA"
+msgstr "_Promover Atributo"
 
+# Attach the selected attribute
 #: gattrib/src/x_menus.c:377 gattrib/src/x_toolbars.c:47
-#, fuzzy
 msgid "Attach the selected attribute"
-msgstr "Editor de Atributos gEDA"
+msgstr "Anexe o atributo selecionado"
 
+# Demote Attribute
 #: gattrib/src/x_menus.c:378
-#, fuzzy
 msgid "_Demote Attribute"
-msgstr "Editor de Atributos gEDA"
+msgstr "_Demote Atributo"
 
 #: gattrib/src/x_menus.c:378 gattrib/src/x_toolbars.c:48
-#, fuzzy
-msgid "Dettach the selected attribute"
-msgstr "Editor de Atributos gEDA"
+msgid "Detach the selected attribute"
+msgstr "Destaque o atributo selecionado"
 
 #: gattrib/src/x_menus.c:380
 msgid "Find Value"
