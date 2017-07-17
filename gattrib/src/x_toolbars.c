@@ -45,7 +45,7 @@ static ToolbarStringData ToolbarStrings[] = {
   { "visible_button",    N_("visible"),   N_("Set selected visible")},
   { "add_button",        N_("add"),       N_("Add a new attribute")},
   { "promote_button",    N_("promote"),   N_("Attach the selected attribute")},
-  { "demote_button",     N_("demote"),    N_("Dettach the selected attribute")},
+  { "demote_button",     N_("demote"),    N_("Detach the selected attribute")},
   { "name_only_button",  N_("name"),      N_("Set selected name visible only")},
   { "value_only_button", N_("value"),     N_("Set selected value visible only")},
   { "name_value_button", N_("both"),      N_("Set selected name and value visible")},
