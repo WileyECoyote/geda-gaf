@@ -6,6 +6,8 @@
 
     * po/pt_BR.po: Update Brazilian Portuguese translations.
 
+    * po/sl.po: Update Slovenian translations.
+
 2017-07-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_find.c: Replace geda_utility_string_istr with geda_string_istr
