@@ -3,6 +3,9 @@
     * src/iface/i_vars.c: Replace size_t argument with unsigned int in
       function i_var_restore_group_color.
 
+    * src/object/o_grips.c: Revamp and rename o_grips_half_size to
+      o_grips_compute_drawn_size.
+
     * src/x/x_compselect.c: Remove unneeded cast for g_signal_connect.
 
     * src/x/x_sessions.c: Remove unneeded GtkWidget cast for main_vbox

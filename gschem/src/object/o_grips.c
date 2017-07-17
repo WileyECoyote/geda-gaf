@@ -120,60 +120,23 @@ o_grips_draw_rubber (GschemToplevel *w_current)
  * \return Half grip size in screen units.
  */
 int
-o_grips_half_size(GschemToplevel *w_current, GedaObject *object)
+o_grips_compute_drawn_size (GschemToplevel *w_current)
 {
   GedaToplevel *toplevel = w_current->toplevel;
 
   int ret_size;
+  int factor;
 
-  if (object == NULL) {
-    ret_size = w_current->grip_size / 2;//MAX_GRIP_SIZE / 2;
+  factor   = (int)toplevel->page_current->to_world_x_constant;
+  ret_size = gschem_toplevel_get_grips_size(w_current);
+
+  if (factor < GRIP_ZOOM_THREASHOLD_1) {
+
+     ret_size = ret_size * factor;
+
   }
-  else {
 
-    /* if is a grip-able object */
-    if (object->type == OBJ_NET    ||
-        object->type == OBJ_BUS    ||
-        object->type == OBJ_LINE   ||
-        object->type == OBJ_ARC    ||
-        object->type == OBJ_BOX    ||
-        object->type == OBJ_CIRCLE ||
-        object->type == OBJ_PATH)
-    {
-      int factor;
-
-      factor = (int)toplevel->page_current->to_world_x_constant;
-
-      if (factor < GRIP_ZOOM_THREASHOLD_1) {
-
-        int abs_size;
-
-        abs_size = SCREENabs (w_current, GRIP_SIZE_ZOOM1);
-
-        if (object->line_options->line_width > 0) {
-
-          if ((object->line_options->line_width > w_current->grip_size) &&
-              (factor > 0))
-          {
-            ret_size = max(abs_size, (object->line_options->line_width - factor) / 2);
-          }
-          else {
-            ret_size = abs_size;
-          }
-        }
-        else {
-           ret_size = abs_size;
-        }
-      }
-      else {
-        ret_size = w_current->grip_size / 2;
-      }
-    }
-    else {
-      ret_size = w_current->grip_size / 2;
-    }
-  }
-  return min(ret_size, MAX_GRIP_SIZE/2);
+  return ret_size >> 1;
 }
 
 /*!
