@@ -1,3 +1,10 @@
+2017-07-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_keyfile.c: Add checks for:
+
+          * geda_keyfile_get_boolean_list
+          * geda_keyfile_set_boolean_list
+
 2017-07-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_config.c: Revise eda_config_get_keys to clear the error

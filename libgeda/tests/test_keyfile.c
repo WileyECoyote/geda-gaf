@@ -101,8 +101,8 @@ const char key_data[] = "[G1]\nT1=A\n[G2]\nT1=B\nT2=C\nT3=D\n";
  *      KF0835    geda_keyfile_set_string_list
  *      KF0836    geda_keyfile_get_locale_string_list
  *      KF0837    geda_keyfile_set_locale_string_list
- *       KF0838    geda_keyfile_get_boolean_list
- *       KF0839    geda_keyfile_set_boolean_list
+ *      KF0838    geda_keyfile_get_boolean_list
+ *      KF0839    geda_keyfile_set_boolean_list
  *       KF0840    geda_keyfile_set_double_list
  *       KF0841    geda_keyfile_get_double_list
  *       KF0842    geda_keyfile_get_integer_list
@@ -1322,6 +1322,74 @@ int check_data (void)
     }
 
     if (err) {
+      g_error_free (err);
+      err = NULL;
+    }
+
+    /* === Function 39: geda_keyfile_set_boolean_list === */
+
+    bool KF39_bool[]={1,0,0,1,0,0,1};
+
+    geda_keyfile_set_boolean_list (keyfile, "G10", "BL", KF39_bool, 7);
+
+    if (!geda_keyfile_has_group(keyfile, "G10")) {
+      fprintf(stderr, "FAILED: (KF083901) set_boolean_list, G10\n");
+      result++;
+    }
+
+    /* === Function 38: geda_keyfile_get_boolean_list === */
+
+    count = 0;
+
+    if (geda_keyfile_get_boolean_list(keyfile, "G10", "NBL", &count, &err)) {
+      fprintf(stderr, "FAILED: (KF083801A) get_boolean_list NLSL\n");
+      result++;
+    }
+    else if (!err) {
+      /* Error should be set since key does not exist */
+      fprintf(stderr, "FAILED: (KF083801B) get_boolean_list, no error\n");
+      result++;
+    }
+
+
+    if (err) {
+      g_error_free (err);
+      err = NULL;
+    }
+
+    bool *bl;
+
+    bl = geda_keyfile_get_boolean_list(keyfile, "G10", "BL", &count, &err);
+
+    if (!bl) {
+      fprintf(stderr, "FAILED: (KF083802A) get_boolean_list, !bl\n");
+      result++;
+    }
+
+    if (count != 7) {
+      fprintf(stderr, "FAILED: (KF083802B) get_boolean_list, count=%d\n", count);
+      result++;
+    }
+    else {
+
+
+      int i;
+
+      for (i = 0; i < 7; i++) {
+
+        bool value = bl[i];
+
+        if (value != KF39_bool[i]) {      /* See structure KF39_bool */
+          fprintf(stderr, "FAILED: (KF083802C) get_boolean_list <%d> != <%d>\n", value, KF39_bool[i]);
+          result++;
+        }
+      }
+    }
+
+    if (err) {
+      /* Error should NOT be set since key does exist */
+      fprintf(stderr, "FAILED: (KF083802F) get_boolean_list, err set\n");
+      result++;
       g_error_free (err);
       err = NULL;
     }
