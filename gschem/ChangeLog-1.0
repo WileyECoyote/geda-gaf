@@ -3,6 +3,8 @@
     * src/iface/i_vars.c: Replace size_t argument with unsigned int in
       function i_var_restore_group_color.
 
+    * src/x/x_compselect.c: Remove unneeded cast for g_signal_connect.
+
     * src/x/x_window.c: Uncomment gtk_window_iconify in x_window_create_main
       because Travis is broke, again. Problem their headless system is not
       actuate representation of a "real" computer; BUG with message "Xlib:

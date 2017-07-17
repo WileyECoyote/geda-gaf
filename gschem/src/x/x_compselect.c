@@ -2225,7 +2225,7 @@ compselect_build_view_menu(Compselect *compselect, GtkWidget *treeview)
     gtk_widget_set_tooltip_text (menuitem, _(popup_tips[ExpandFolder]));
     gtk_widget_set_sensitive(menuitem, TRUE);
     gtk_widget_set_can_focus(menuitem, TRUE);
-    g_signal_connect(GTK_OBJECT(menuitem),"activate",
+    g_signal_connect(menuitem,"activate",
                     (void*)compselect_open_tree_row,
                     (void*)treeview);
   }
@@ -2240,7 +2240,7 @@ compselect_build_view_menu(Compselect *compselect, GtkWidget *treeview)
     gtk_widget_set_tooltip_text (menuitem, _(popup_tips[ExpandAll]));
     gtk_widget_set_sensitive(menuitem, TRUE);
     gtk_widget_set_can_focus(menuitem, TRUE);
-    g_signal_connect(GTK_OBJECT(menuitem),"activate",
+    g_signal_connect(menuitem,"activate",
                     (void*)compselect_open_tree_rows,
                     (void*)treeview);
   }
@@ -2255,15 +2255,15 @@ compselect_build_view_menu(Compselect *compselect, GtkWidget *treeview)
   gtk_widget_set_tooltip_text (menuitem, _(popup_tips[CloseFolder]));
   gtk_widget_set_sensitive(menuitem, TRUE);
   gtk_widget_set_can_focus(menuitem, TRUE);
-  g_signal_connect(GTK_OBJECT(menuitem),"activate",
-                    (void *) compselect_close_tree_row,
-                    (void *) treeview);
+  g_signal_connect(menuitem,"activate",
+                  (void*) compselect_close_tree_row,
+                  (void*) treeview);
   geda_menu_shell_append(GEDA_MENU_SHELL(menu), menuitem);
 
   /* The Refresh Menu Option */
   menuitem = geda_menu_item_new_with_label(_(popup_items[RefreshView]));
   gtk_widget_set_tooltip_text (menuitem, _(popup_tips[RefreshView]));
-  g_signal_connect(GTK_OBJECT(menuitem),"activate",
+  g_signal_connect(menuitem,"activate",
                     G_CALLBACK (compselect_callback_refresh_views),
                     compselect);
 
@@ -2272,7 +2272,7 @@ compselect_build_view_menu(Compselect *compselect, GtkWidget *treeview)
   /* The Rescan Menu Option */
   menuitem = geda_menu_item_new_with_label(_(popup_items[RescanLibs]));
   gtk_widget_set_tooltip_text (menuitem, _(popup_tips[RescanLibs]));
-  g_signal_connect(GTK_OBJECT(menuitem),"activate",
+  g_signal_connect(menuitem,"activate",
                     G_CALLBACK (compselect_callback_rescan_libraries),
                     compselect);
 
@@ -2336,7 +2336,7 @@ compselect_build_view_menu(Compselect *compselect, GtkWidget *treeview)
 
   menuitem = geda_image_menu_item_new_with_label (_(popup_items[ToolTipsOff]));
   gtk_widget_set_tooltip_text (menuitem, _(popup_tips[ToolTipsOff]));
-  g_signal_connect (G_OBJECT (menuitem), "activate",
+  g_signal_connect (menuitem, "activate",
                     G_CALLBACK (compselect_menu_tooltips_off),
                     compselect);
   geda_menu_shell_append (GEDA_MENU_SHELL (submenu), menuitem);
@@ -3324,9 +3324,9 @@ compselect_constructor (GType                  type,
 
   gtk_widget_show_all (action_area);
 
-  g_signal_connect ((void*) notebook, "switch-page",
-                     G_CALLBACK (compselect_on_notebook_switch_page),
-                     ThisDialog);
+  g_signal_connect (notebook, "switch-page",
+                    G_CALLBACK (compselect_on_notebook_switch_page),
+                    ThisDialog);
   return object;
 }
 
