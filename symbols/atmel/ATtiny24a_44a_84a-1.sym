@@ -158,7 +158,9 @@ T 400 2550 9 10 1 1 0 0 1
 device=ATtiny24
 T 1600 2550 8 10 1 1 0 6 1
 refdes=U?
-T 400 3000 8 10 0 1 0 0 12
+T 400 3000 5 10 0 1 0 0 1
+description=Microcontroller, 8-bit AVR, 2/4/8K Flash
+T 400 3200 8 10 0 1 0 0 12
 documentation=PA0 - ADC0, AREF, PCINT0
 PA1 - ADC1, AIN0, PCINT1
 PA2 - ADC2, AIN1, PCINT2

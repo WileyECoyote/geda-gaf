@@ -89,10 +89,12 @@ pinseq=8
 }
 B 400 0 1200 2000 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 400 2100 9 10 1 1 0 0 1
-device=ATtinyx5
+device=ATtiny
 T 1600 2100 8 10 1 1 0 6 1
 refdes=U?
-T 400 2500 8 10 0 1 0 0 6
+T 400 2500 5 10 0 1 0 0 1
+description=Microcontroller, 8-bit AVR, 2/4/8K Flash
+T 400 2700 8 10 0 1 0 0 6
 documentation=PB0 - MOSI, DI, SDA, AIN0, OC0A, !OC1A, AREF, PCINt0
 PB1 - MISO, DO, AIN1, OC0B, OC1A, PCINT1
 PB2 - SCK, USCK, SCL, ADC1, T0, INT0, PCINT2

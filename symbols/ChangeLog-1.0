@@ -1,3 +1,11 @@
+2017-07-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * atmel/ATtiny24a_44a_84a-1.sym: Update device attributes, add description
+      attribute.
+
+    * atmel/ATtiny25_45_85-1.sym: Update device attributes, add description
+      attribute.
+
 2017-07-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * analogdevices/ADV7123-2.sym: Update attributes, resequence pins,
