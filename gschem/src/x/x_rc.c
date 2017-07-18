@@ -125,7 +125,7 @@ x_rc_parse_gschem_error (GError **err, void *retry_flag)
       len = 0;
     }
 
-    if (len > 0) { /* True if geda_utility_string_istr found "Unbound variable:" */
+    if (len > 0) { /* True if geda_string_istr found "Unbound variable:" */
 
       char *unbound_sym;      /* Unbound Symbol name */
 
