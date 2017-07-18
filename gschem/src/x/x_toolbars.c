@@ -675,14 +675,14 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
     }
     else {
       const char *log_msg = _("Error, Toolbar configuration key file");
-      u_log_message("%s, %s\n", log_msg, group_name);
+      geda_log("%s, %s\n", log_msg, group_name);
     }
   }
 
   void RestoreAllBars() {
 
     if (key_file) {
-      v_log_message(_("Retrieving toolbar geometry\n"));
+      geda_log_v(_("Retrieving toolbar geometry\n"));
       RestoreBarProperties(w_current->add_handlebox);
       RestoreBarProperties(w_current->attribute_handlebox);
       RestoreBarProperties(w_current->edit_handlebox);
@@ -712,17 +712,17 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
       if (g_key_file_load_from_file(key_file, filename, G_KEY_FILE_NONE, &err)) {
         const char *log_msg = _("Toolbar configuration restored from");
         RestoreAllBars();
-        v_log_message("%s %s\n", log_msg, filename);
+        geda_log_v("%s %s\n", log_msg, filename);
       }
       else {
         const char *log_msg = _("Warning, error restoring toolbar configuration");
-        u_log_message("%s, %s %s\n", log_msg, filename, err->message);
+        geda_log("%s, %s %s\n", log_msg, filename, err->message);
         g_clear_error (&err);
       }
     }
     else {
       const char *log_msg = _("Warning, toolbar configuration file access error");
-      u_log_message("%s: %s %s\n", log_msg, filename, err->message);
+      geda_log("%s: %s %s\n", log_msg, filename, err->message);
     }
 
     /* Check if the style of visible toolbars is uniform and set radio
@@ -744,7 +744,7 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
   }
   else {
     const char *log_msg = _("Toolbar configuration not found");
-    v_log_message("%s: <%s>!\n", log_msg, filename);
+    geda_log_v("%s: <%s>!\n", log_msg, filename);
   }
 
   if (key_file) {

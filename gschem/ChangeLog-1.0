@@ -5,6 +5,9 @@
       x_compselect dialog is resized; always happens when nothing is
       selected in the tree. Still using ancillary pointer to window,
 
+    * src/x/x_toolbars.c: Replace u_log_message and v_log_message with
+      with geda_log counter parts.
+
 2017-07-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_vars.c: Replace size_t argument with unsigned int in
