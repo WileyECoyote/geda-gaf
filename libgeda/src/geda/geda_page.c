@@ -610,20 +610,24 @@ void geda_page_set_changed (Page *page, int changed)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Get the filename property of the Page
+ * \par Function Description
+ *  Retrieves the filename member of the page object. The filename
+ *  stored in the page is the full name, i.e. including the path.
+ *  The returned string should not be modified.
  */
 const char *geda_page_get_filename (Page *page)
 {
   return GEDA_IS_PAGE(page) ? page->filename : NULL;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief  Get a copy of the page filename property
+ * \par Function Description
+ *  Retrieves a copy of the filename of the page. The filename stored
+ *  in the page is the full name, which includes the path. The returned
+ *  string should be freed when no longer needed.
  */
 char *geda_page_get_filename_dup (Page *page)
 {

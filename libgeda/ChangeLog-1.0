@@ -1,3 +1,10 @@
+2017-07-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_page.c: Update Doxygen comments for:
+
+          * geda_page_get_filename
+          * geda_page_get_filename_dup
+
 2017-07-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_keyfile.c: Add checks for:
