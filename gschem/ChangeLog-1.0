@@ -1,3 +1,10 @@
+2017-07-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_event.c: Revert 28969217ef7cc601b7d638261ecb7dfc7aac15df,
+      gtk_widget_size_allocate/g_object signal loops recursive when the
+      x_compselect dialog is resized; always happens when nothing is
+      selected in the tree. Still using ancillary pointer to window,
+
 2017-07-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_vars.c: Replace size_t argument with unsigned int in

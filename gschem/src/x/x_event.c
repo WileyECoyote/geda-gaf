@@ -523,13 +523,13 @@ bool x_event_configure (GtkWidget         *widget,
   /* if the current page has been setup */
   if (toplevel->page_current != NULL) {
 
-
-    GList *iter;
-    GList *pages;
+    GdkWindow *window;
+    GList     *iter;
+    GList     *pages;
 
     double relative_zoom_factor = 1.0;
 
-    GdkWindow *window = geda_get_widget_window(w_current->main_window);
+    window = geda_get_widget_window(gtk_widget_get_toplevel (widget));
 
     /* in the case the user has maximised the window (hence the */
     /* configure event) fit the view by playing with zoom level */
