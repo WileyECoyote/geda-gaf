@@ -563,7 +563,7 @@ int geda_page_rename(Page *page, const char *newname)
 /*!
  * \brief Set the top level associated with a GedaPage
  * \par Function Description
- *  For now, the toplevel should only be set once, we don't have a
+ *  For now, the toplevel should only be set once, we do not have a
  *  low-level clone or copy method and the hooks are holding pointer
  *  to the toplevel.
  */
