@@ -497,7 +497,8 @@ static void gschem_dialog_get_property (GObject *object, unsigned int property_i
  *  Type class initializer for GschemDialog. We override our parent
  *  virtual class methods as needed and register our GObject properties.
  *
- *  \param [in] class The GschemDialogClass we are initialising
+ * \param [in] class       The GschemDialogClass we are initialising
+ * \param [in] class_data  (unused)
  */
 static void gschem_dialog_class_init (void *class, void *class_data)
 {
