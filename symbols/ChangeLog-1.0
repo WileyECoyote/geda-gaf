@@ -3,6 +3,9 @@
     * ti/switchreg/TPS610997-1.sym: Add symbol; Low Quiescent 5V Synchronous
       Boost Converter.
 
+    * ti/switchreg/TPS61222-1.sym: Add symbol; Low input Voltage, 0.7-V boost
+      converter with 5.5-μa quiescent current.
+
 2017-07-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * analogdevices/ADM202-2.sym: Move pin 1 to beginning of sequence.
