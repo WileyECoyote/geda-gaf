@@ -3,6 +3,9 @@
     * connector/jumper/jumper-1p2p-4.sym: Add description attribute, update
       footprint attribute.
 
+    * connector/jumper/jumper-2p1p-1.sym: Add description attribute, update
+      footprint attribute.
+
 2017-07-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/switchreg/TPS610997-1.sym: Add symbol; Low Quiescent 5V Synchronous
