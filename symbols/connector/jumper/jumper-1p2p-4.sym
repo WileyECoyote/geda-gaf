@@ -4,7 +4,7 @@ V 100 300 50 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 V 900 300 50 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 B 0 200 1000 200 3 15 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 100 700 5 8 0 0 0 0 1
-device=JUMPER-3
+device=JUMPER
 T 100 500 8 10 1 1 0 0 1
 refdes=J?
 P 100 0 100 200 1 0 0
@@ -41,7 +41,9 @@ T 800 50 5 8 0 1 0 0 1
 pinlabel=3
 }
 T 100 850 5 10 0 1 0 0 1
-footprint=none
+footprint=JUMPER-3
+T 900 900 5 8 0 1 0 0 1
+description=Jumper block, 3 pole
 T 100 1350 5 10 0 0 0 0 1
 author=Alexey Lukomskiy lucomskyATmail.ru
 T 100 1000 5 10 0 0 0 0 1
