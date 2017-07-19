@@ -375,7 +375,7 @@ static const GtkActionEntry actions[] = {
   { "edit-add-attrib",      GTK_STOCK_ADD,    N_("_Add new Attribute"), "", "", x_menu_edit_new_attrib},
   { "edit-delete-attrib",   GTK_STOCK_DELETE, N_("D_elete Attribute"),  "", "", x_menu_edit_delete_attrib},
   { "edit-promote-attrib",  NULL,             N_("_Promote Attribute"), "", N_("Attach the selected attribute"),  s_properties_promote_attribute},
-  { "edit-demote-attrib",   NULL,             N_("_Demote Attribute"),  "", N_("Dettach the selected attribute"), s_properties_demote_attribute},
+  { "edit-demote-attrib",   NULL,             N_("_Demote Attribute"),  "", N_("Detach the selected attribute"), s_properties_demote_attribute},
 
   { "edit-find-value",           GTK_STOCK_FIND,             N_("Find Value"),       "<Control>F", N_("Find attribute value"),               x_find_attribute_value},
   { "edit-search-replace-value", GTK_STOCK_FIND_AND_REPLACE, N_("Replace value"),    "<Control>R", N_("Search and Replace Attribute value"), x_find_replace_attrib_value},
