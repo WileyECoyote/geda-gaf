@@ -83,5 +83,6 @@ device=JUMPER
 T 900 700 8 10 1 1 0 0 1
 refdes=J?
 T 900 400 9 8 0 1 0 0 1
-footprint=HEADER_6-1
-
+footprint=HEADER_6-2
+T 900 900 5 8 0 1 0 0 1
+description=Jumper block, 3 pole
