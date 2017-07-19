@@ -1,3 +1,8 @@
+2017-07-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/switchreg/TPS610997-1.sym: Add symbol; Low Quiescent 5V Synchronous
+      Boost Converter.
+
 2017-07-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * analogdevices/ADM202-2.sym: Move pin 1 to beginning of sequence.

@@ -1,0 +1,86 @@
+v 20161031 2
+T 300 1850 8 10 1 1 0 0 1
+refdes=U?
+T 300 2250 5 10 0 0 0 0 1
+device=TPS610997
+T 300 2650 5 10 0 1 0 0 1
+documentation=http://www.ti.com/lit/ds/symlink/tps61099.pdf
+T 300 2450 5 10 0 1 0 0 1
+description=Synchronous Boost Converter,5V,Low Quiescent
+T 1900 2250 5 10 0 0 0 0 1
+numslots=0
+P 0 1300 300 1300 1 0 0
+{
+T 200 1350 5 8 1 1 0 6 1
+pinnumber=A1
+T 200 1250 5 8 0 1 0 8 1
+pinseq=1
+T 350 1300 9 10 1 1 0 0 1
+pinlabel=VIN
+T 350 1275 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 0 500 300 500 1 0 0
+{
+T 200 550 5 8 1 1 0 6 1
+pinnumber=C3
+T 200 450 5 8 0 1 0 8 1
+pinseq=2
+T 350 500 9 10 1 1 0 0 1
+pinlabel=EN
+T 350 475 5 8 0 1 0 2 1
+pintype=in
+}
+P 0 900 300 900 1 0 0
+{
+T 200 950 5 8 1 1 0 6 1
+pinnumber=B1
+T 200 850 5 8 0 1 0 8 1
+pinseq=3
+T 350 900 9 10 1 1 0 0 1
+pinlabel=SW
+T 350 875 5 8 0 1 0 2 1
+pintype=pas
+}
+P 1900 1300 1600 1300 1 0 0
+{
+T 1700 1350 5 8 1 1 0 0 1
+pinnumber=B2
+T 1700 1250 5 8 0 1 0 2 1
+pinseq=4
+T 1550 1300 9 10 1 1 0 6 1
+pinlabel=VOUT
+T 1550 1275 5 8 0 1 0 8 1
+pintype=out
+}
+P 1900 500 1600 500 1 0 0
+{
+T 1700 550 5 8 1 1 0 0 1
+pinnumber=A2
+T 1700 450 5 8 0 1 0 2 1
+pinseq=5
+T 1550 500 9 10 1 1 0 6 1
+pinlabel=GND
+T 1550 475 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 1900 900 1600 900 1 0 0
+{
+T 1700 950 5 8 1 1 0 0 1
+pinnumber=C2
+T 1700 850 5 8 0 1 0 2 1
+pinseq=6
+T 1550 900 9 10 1 1 0 6 1
+pinlabel=FB
+T 1550 875 5 8 0 1 0 8 1
+pintype=in
+}
+B 300 300 1300 1300 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 1200 2050 5 10 0 0 0 0 1
+symversion=0.1
+T 300 1650 9 10 1 1 0 0 1
+value=TPS610997YFFT
+T 300 2050 9 10 0 1 0 0 1
+footprint=TPS61099
+T 300 2850 5 10 0 0 0 0 1
+author=AutoTron
