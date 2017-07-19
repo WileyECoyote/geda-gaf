@@ -8,6 +8,9 @@
 
     * jumper/jumper-3p1p-1.sym: Add description attribute.
 
+    * connector/jumper/jumper-12p1p-1.sym: Update device attributes, add
+      description attribute, resequence pin order.
+
 2017-07-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/switchreg/TPS610997-1.sym: Add symbol; Low Quiescent 5V Synchronous
