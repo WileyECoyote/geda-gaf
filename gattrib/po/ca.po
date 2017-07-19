@@ -469,9 +469,10 @@ msgstr "Una l'atribut seleccionat"
 msgid "_Demote Attribute"
 msgstr "disminuir el nivell de Atribut"
 
+# Detach the selected attribute
 #: gattrib/src/x_menus.c:378
-msgid "Dettach the selected attribute"
-msgstr "Dettach l'atribut seleccionat"
+msgid "Detach the selected attribute"
+msgstr "DDesmunta l'atribut seleccionat"
 
 # Find value
 #: gattrib/src/x_menus.c:380
@@ -760,10 +761,10 @@ msgstr ""
 msgid "demote"
 msgstr ""
 
+# Detach the selected attribute
 #: gattrib/src/x_toolbars.c:48
-#, fuzzy
 msgid "Detach the selected attribute"
-msgstr "Dettach l'atribut seleccionat"
+msgstr "Desmunta l'atribut seleccionat"
 
 #: gattrib/src/x_toolbars.c:49
 msgid "name"
