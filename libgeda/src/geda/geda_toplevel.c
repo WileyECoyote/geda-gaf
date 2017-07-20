@@ -106,8 +106,7 @@ void geda_toplevel_append_new_hook (NewToplevelFunc func, void *data)
  * \param [in]  instance The GedaToplevel being initialising.
  * \param [in]  g_class  The class of the type the instance is created for.
  */
-static void
-geda_toplevel_instance_init(GTypeInstance *instance, void *g_class)
+static void geda_toplevel_instance_init(GTypeInstance *instance, void *g_class)
 {
   GedaToplevel *toplevel           = (GedaToplevel*)instance;
   toplevel->open_flags             = F_OPEN_RC | F_OPEN_CHECK_BACKUP;
@@ -275,8 +274,7 @@ static void geda_toplevel_finalize(GObject *object)
  * \param [in]  klass       The GedaToplevel we are initializing
  * \param [in]  class_data  (unused)
  */
-static void
-geda_toplevel_class_init (void *klass, void *class_data)
+static void geda_toplevel_class_init (void *klass, void *class_data)
 {
   GedaToplevelClass *class    = (GedaToplevelClass*)klass;
   GObjectClass *gobject_class = (GObjectClass*)class;
@@ -369,8 +367,7 @@ bool is_a_geda_toplevel (GedaToplevel *toplevel)
  *
  * \todo should be geda_toplevel_set_text_bounds?
  */
-bool
-geda_toplevel_set_bounds(GedaToplevel *toplevel, GedaObject *o_current)
+bool geda_toplevel_set_bounds(GedaToplevel *toplevel, GedaObject *o_current)
 {
   int result = 0;
 
@@ -409,8 +406,7 @@ geda_toplevel_set_bounds(GedaToplevel *toplevel, GedaObject *o_current)
  *
  * \param [in] toplevel  Pointer to GedaToplevel Object
  */
-void
-geda_toplevel_unref(GedaToplevel *toplevel)
+void geda_toplevel_unref(GedaToplevel *toplevel)
 {
   g_return_if_fail (GEDA_IS_TOPLEVEL(toplevel));
   g_object_unref (toplevel);
@@ -427,8 +423,7 @@ geda_toplevel_unref(GedaToplevel *toplevel)
  * \param [in] toplevel  Pointer to GedaObject being destroyed.
  *
  */
-void
-geda_toplevel_weakref_notify (GedaToplevel *toplevel)
+void geda_toplevel_weakref_notify (GedaToplevel *toplevel)
 {
   if (GEDA_IS_TOPLEVEL(toplevel)) {
     s_weakref_notify(toplevel, toplevel->weak_refs);
@@ -451,8 +446,7 @@ geda_toplevel_weakref_notify (GedaToplevel *toplevel)
  * \param [in] func          Weak reference notify function.
  * \param [in] data          Data to be passed to \a func.
  */
-void
-geda_toplevel_weak_ref (GedaToplevel *toplevel, WeakNotifyFunc func, void *data)
+void geda_toplevel_weak_ref (GedaToplevel *toplevel, WeakNotifyFunc func, void *data)
 {
   g_return_if_fail (GEDA_IS_TOPLEVEL(toplevel));
   toplevel->weak_refs = s_weakref_add (toplevel->weak_refs, func, data);
@@ -471,8 +465,7 @@ geda_toplevel_weak_ref (GedaToplevel *toplevel, WeakNotifyFunc func, void *data)
  * \param [in]     func      Notify function to search for.
  * \param [in]     data      Data to be passed to \a func.
  */
-void
-geda_toplevel_weak_unref (GedaToplevel *toplevel, WeakNotifyFunc func, void *data)
+void geda_toplevel_weak_unref (GedaToplevel *toplevel, WeakNotifyFunc func, void *data)
 {
   g_return_if_fail (GEDA_IS_TOPLEVEL(toplevel));
   toplevel->weak_refs = s_weakref_remove (toplevel->weak_refs, func, data);
@@ -490,8 +483,7 @@ geda_toplevel_weak_unref (GedaToplevel *toplevel, WeakNotifyFunc func, void *dat
  * \param [in,out] toplevel      Toplevel to weak-reference.
  * \param [in] weak_pointer_loc  Memory address of a pointer.
  */
-void
-geda_toplevel_add_weak_ptr (GedaToplevel *toplevel, void *weak_pointer_loc)
+void geda_toplevel_add_weak_ptr (GedaToplevel *toplevel, void *weak_pointer_loc)
 {
   g_return_if_fail (GEDA_IS_TOPLEVEL(toplevel));
   g_object_add_weak_pointer ((GObject*)toplevel,  weak_pointer_loc);
@@ -507,8 +499,7 @@ geda_toplevel_add_weak_ptr (GedaToplevel *toplevel, void *weak_pointer_loc)
  * \param [in,out] toplevel      Toplevel to weak-reference.
  * \param [in] weak_pointer_loc  Memory address of a pointer.
  */
-void
-geda_toplevel_remove_weak_ptr (GedaToplevel *toplevel, void *weak_pointer_loc)
+void geda_toplevel_remove_weak_ptr (GedaToplevel *toplevel, void *weak_pointer_loc)
 {
   g_return_if_fail (GEDA_IS_TOPLEVEL(toplevel));
   g_object_remove_weak_pointer((GObject*)toplevel, weak_pointer_loc);
@@ -526,8 +517,7 @@ geda_toplevel_remove_weak_ptr (GedaToplevel *toplevel, void *weak_pointer_loc)
  * \param toplevel  The GedaToplevel object.
  * \param new_page  A GedaPage object.
  */
-void
-geda_toplevel_add_page (GedaToplevel *toplevel, Page *new_page)
+void geda_toplevel_add_page (GedaToplevel *toplevel, Page *new_page)
 {
   g_return_if_fail (GEDA_IS_TOPLEVEL(toplevel));
 
@@ -549,8 +539,7 @@ geda_toplevel_add_page (GedaToplevel *toplevel, Page *new_page)
  *
  * \param [in] toplevel This toplevel
  */
-int
-geda_toplevel_get_auto_save_interval  (GedaToplevel *toplevel)
+int geda_toplevel_get_auto_save_interval  (GedaToplevel *toplevel)
 {
   g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), -1);
 
@@ -565,8 +554,7 @@ geda_toplevel_get_auto_save_interval  (GedaToplevel *toplevel)
  *
  * \param [in,out] toplevel This toplevel
  */
-Page*
-geda_toplevel_get_current_page (GedaToplevel *toplevel)
+Page *geda_toplevel_get_current_page (GedaToplevel *toplevel)
 {
   g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), NULL);
 
@@ -589,8 +577,7 @@ geda_toplevel_get_current_page (GedaToplevel *toplevel)
  *
  * \returns current value of open_flags.
  */
-int
-geda_toplevel_get_file_open_flags (GedaToplevel *toplevel)
+int geda_toplevel_get_file_open_flags (GedaToplevel *toplevel)
 {
   if (GEDA_IS_TOPLEVEL(toplevel)) {
     return toplevel->open_flags;
@@ -606,8 +593,7 @@ geda_toplevel_get_file_open_flags (GedaToplevel *toplevel)
  *
  * \param [in] toplevel GedaToplevel object
  */
-int
-geda_toplevel_get_make_backups (GedaToplevel *toplevel)
+int geda_toplevel_get_make_backups (GedaToplevel *toplevel)
 {
   if (GEDA_IS_TOPLEVEL(toplevel)) {
     return toplevel->make_backup_files;
@@ -624,8 +610,7 @@ geda_toplevel_get_make_backups (GedaToplevel *toplevel)
  * \param [in] toplevel This toplevel
  * \param [in] page_id  The pid
  */
-Page*
-geda_toplevel_get_page_by_id (GedaToplevel *toplevel, int page_id)
+Page *geda_toplevel_get_page_by_id (GedaToplevel *toplevel, int page_id)
 {
   const GList *pages, *iter;
   Page *found_page;
@@ -656,8 +641,7 @@ geda_toplevel_get_page_by_id (GedaToplevel *toplevel, int page_id)
  *
  * \param [in] toplevel This toplevel
  */
-int
-geda_toplevel_get_page_count (GedaToplevel *toplevel)
+int geda_toplevel_get_page_count (GedaToplevel *toplevel)
 {
   g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), 0);
 
@@ -675,8 +659,7 @@ geda_toplevel_get_page_count (GedaToplevel *toplevel)
  *
  *  \param [in] toplevel This toplevel
  */
-Page*
-geda_toplevel_get_page_down (GedaToplevel *toplevel)
+Page *geda_toplevel_get_page_down (GedaToplevel *toplevel)
 {
   GList *iter;
   GList *list;
@@ -727,8 +710,7 @@ geda_toplevel_get_page_down (GedaToplevel *toplevel)
  *
  * \param [in] toplevel This toplevel
  */
-Page*
-geda_toplevel_get_page_up (GedaToplevel *toplevel)
+Page *geda_toplevel_get_page_up (GedaToplevel *toplevel)
 {
   GList *iter;
   GList *list;
@@ -780,8 +762,7 @@ geda_toplevel_get_page_up (GedaToplevel *toplevel)
  *
  * \returns PageList of pages
  */
-PageList*
-geda_toplevel_get_page_list (GedaToplevel *toplevel)
+PageList *geda_toplevel_get_page_list (GedaToplevel *toplevel)
 {
   g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), NULL);
   return toplevel->pages;
@@ -798,8 +779,7 @@ geda_toplevel_get_page_list (GedaToplevel *toplevel)
  *
  * \returns TRUE if \a page is the current page, otherwise FALSE.
  */
-bool
-geda_toplevel_is_current_page(GedaToplevel *toplevel, Page *page)
+bool geda_toplevel_is_current_page(GedaToplevel *toplevel, Page *page)
 {
   g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), FALSE);
 
@@ -826,8 +806,7 @@ geda_toplevel_is_current_page(GedaToplevel *toplevel, Page *page)
  *
  * \returns TRUE if \a page was moved
  */
-bool
-geda_toplevel_move_page_down (GedaToplevel *toplevel, Page *page)
+bool geda_toplevel_move_page_down (GedaToplevel *toplevel, Page *page)
 {
   g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), FALSE);
 
@@ -864,8 +843,7 @@ geda_toplevel_move_page_down (GedaToplevel *toplevel, Page *page)
  *
  * \returns TRUE if \a page was moved
  */
-bool
-geda_toplevel_move_page_up (GedaToplevel *toplevel, Page *page)
+bool geda_toplevel_move_page_up (GedaToplevel *toplevel, Page *page)
 {
   g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), FALSE);
 
@@ -899,8 +877,7 @@ geda_toplevel_move_page_up (GedaToplevel *toplevel, Page *page)
  * \param [in] toplevel This toplevel
  * \param [in] page     New auto-save interval in seconds
  */
-void
-geda_toplevel_remove_page (GedaToplevel *toplevel, Page *page)
+void geda_toplevel_remove_page (GedaToplevel *toplevel, Page *page)
 {
   g_return_if_fail (GEDA_IS_TOPLEVEL(toplevel));
 
@@ -921,8 +898,7 @@ geda_toplevel_remove_page (GedaToplevel *toplevel, Page *page)
  * \param [in] toplevel This toplevel
  * \param [in] interval New auto-save interval in seconds
  */
-bool
-geda_toplevel_set_auto_save_interval (GedaToplevel *toplevel, int interval)
+bool geda_toplevel_set_auto_save_interval (GedaToplevel *toplevel, int interval)
 {
   g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), FALSE);
 
@@ -940,8 +916,7 @@ geda_toplevel_set_auto_save_interval (GedaToplevel *toplevel, int interval)
  *  \param [in] func      Function to call if a backup is newer.
  *  \param [in] ...       Optional data to be passed to the function.
  */
-void
-geda_toplevel_set_bkloader_query_func (GedaToplevel *toplevel, void *func, ...)
+void geda_toplevel_set_bkloader_query_func (GedaToplevel *toplevel, void *func, ...)
 {
   va_list argp;
 
@@ -961,8 +936,7 @@ geda_toplevel_set_bkloader_query_func (GedaToplevel *toplevel, void *func, ...)
  * \param [in] toplevel GedaToplevel object
  * \param [in] page     Page object
  */
-bool
-geda_toplevel_set_current_page (GedaToplevel *toplevel, Page *page)
+bool geda_toplevel_set_current_page (GedaToplevel *toplevel, Page *page)
 {
   g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), FALSE);
 
@@ -983,8 +957,7 @@ geda_toplevel_set_current_page (GedaToplevel *toplevel, Page *page)
  *
  * \returns previous value of open_flags.
  */
-int
-geda_toplevel_set_file_open_flags (GedaToplevel *toplevel, int open_flags)
+int geda_toplevel_set_file_open_flags (GedaToplevel *toplevel, int open_flags)
 {
   g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), 0);
 
@@ -1010,8 +983,7 @@ geda_toplevel_set_file_open_flags (GedaToplevel *toplevel, int open_flags)
  *
  * \sa geda_file_save
  */
-bool
-geda_toplevel_set_make_backups (GedaToplevel *toplevel, int make_backups)
+bool geda_toplevel_set_make_backups (GedaToplevel *toplevel, int make_backups)
 {
   g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), FALSE);
 
@@ -1041,10 +1013,9 @@ geda_toplevel_set_make_backups (GedaToplevel *toplevel, int make_backups)
  *  \param [in] func      Function to use.
  *  \param [in] user_data User data to be passed to the function.
  */
-void
-geda_toplevel_set_rendered_bounds_func(GedaToplevel       *toplevel,
-                                       RenderedBoundsFunc  func,
-                                       void               *user_data)
+void geda_toplevel_set_rendered_bounds_func(GedaToplevel       *toplevel,
+                                            RenderedBoundsFunc  func,
+                                            void               *user_data)
 {
   g_return_if_fail(GEDA_IS_TOPLEVEL(toplevel));
 
