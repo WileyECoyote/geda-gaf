@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-07-17 00:04-0500\n"
+"POT-Creation-Date: 2017-07-18 23:44-0500\n"
 "PO-Revision-Date: 2012-01-27 14:17+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Persian <fa@li.org>\n"
@@ -404,10 +404,10 @@ msgstr ""
 msgid "not found!"
 msgstr ""
 
+# Attribute
 #: gattrib/src/x_find.c:277
-#, fuzzy
 msgid "Attribute"
-msgstr "gEDA Attribute Editor"
+msgstr "صفت"
 
 #: gattrib/src/x_find.c:314
 msgid "Designator"
@@ -445,35 +445,35 @@ msgstr ""
 msgid "Paste"
 msgstr ""
 
+# Add new Attribute
 #: gattrib/src/x_menus.c:375
-#, fuzzy
 msgid "_Add new Attribute"
-msgstr "gEDA Attribute Editor"
+msgstr "اضافه کردن ویژگی جدید"
 
+# Delete Attribute
 #: gattrib/src/x_menus.c:376
-#, fuzzy
 msgid "D_elete Attribute"
-msgstr "gEDA Attribute Editor"
+msgstr "حذف ویژگی"
 
+# Promote Attribute
 #: gattrib/src/x_menus.c:377
-#, fuzzy
 msgid "_Promote Attribute"
-msgstr "gEDA Attribute Editor"
+msgstr "ارتقاء ویژگی"
 
+# Attach the selected attribute
 #: gattrib/src/x_menus.c:377 gattrib/src/x_toolbars.c:47
-#, fuzzy
 msgid "Attach the selected attribute"
-msgstr "gEDA Attribute Editor"
+msgstr "ویژگی انتخاب شده را ضمیمه کنید"
 
+# Demote Attribute
 #: gattrib/src/x_menus.c:378
-#, fuzzy
 msgid "_Demote Attribute"
-msgstr "gEDA Attribute Editor"
+msgstr "ویژگی تخریب"
 
-#: gattrib/src/x_menus.c:378
-#, fuzzy
-msgid "Dettach the selected attribute"
-msgstr "gEDA Attribute Editor"
+# Detach the selected attribute => Separate selected feature
+#: gattrib/src/x_menus.c:378 gattrib/src/x_toolbars.c:48
+msgid "Detach the selected attribute"
+msgstr "ویژگی انتخاب شده را جدا کنید"
 
 #: gattrib/src/x_menus.c:380
 msgid "Find Value"
@@ -747,10 +747,10 @@ msgstr ""
 msgid "add"
 msgstr ""
 
+# Add a new attribute
 #: gattrib/src/x_toolbars.c:46
-#, fuzzy
 msgid "Add a new attribute"
-msgstr "gEDA Attribute Editor"
+msgstr "یک ویژگی جدید اضافه کنید"
 
 #: gattrib/src/x_toolbars.c:47
 msgid "promote"
@@ -759,11 +759,6 @@ msgstr ""
 #: gattrib/src/x_toolbars.c:48
 msgid "demote"
 msgstr ""
-
-#: gattrib/src/x_toolbars.c:48
-#, fuzzy
-msgid "Detach the selected attribute"
-msgstr "gEDA Attribute Editor"
 
 #: gattrib/src/x_toolbars.c:49
 msgid "name"
