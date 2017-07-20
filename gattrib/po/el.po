@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-07-17 00:04-0500\n"
+"POT-Creation-Date: 2017-07-18 23:44-0500\n"
 "PO-Revision-Date: 2012-09-01 18:26+0000\n"
 "Last-Translator: Panos Bouklis <panos@echidna-band.com>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -445,35 +445,35 @@ msgstr ""
 msgid "Paste"
 msgstr ""
 
+# Add new Attribute
 #: gattrib/src/x_menus.c:375
-#, fuzzy
 msgid "_Add new Attribute"
-msgstr "Επεξεργαστής γνωρισμάτων gEDA"
+msgstr "Προσθήκη νέου χαρακτηριστικού"
 
+# Delete Attribute
 #: gattrib/src/x_menus.c:376
-#, fuzzy
 msgid "D_elete Attribute"
-msgstr "Επεξεργαστής γνωρισμάτων gEDA"
+msgstr "Διαγραφή χαρακτηριστικού"
 
+# Promote Attribute
 #: gattrib/src/x_menus.c:377
-#, fuzzy
 msgid "_Promote Attribute"
-msgstr "Επεξεργαστής γνωρισμάτων gEDA"
+msgstr "Προωθήστε το χαρακτηριστικό"
 
+# Attach the selected attribute
 #: gattrib/src/x_menus.c:377 gattrib/src/x_toolbars.c:47
-#, fuzzy
 msgid "Attach the selected attribute"
-msgstr "Επεξεργαστής γνωρισμάτων gEDA"
+msgstr "Συνδέστε το επιλεγμένο χαρακτηριστικό"
 
+# Demote Attribute
 #: gattrib/src/x_menus.c:378
-#, fuzzy
 msgid "_Demote Attribute"
-msgstr "Επεξεργαστής γνωρισμάτων gEDA"
+msgstr "Αφαίρεση Χαρακτηριστικού"
 
-#: gattrib/src/x_menus.c:378
-#, fuzzy
-msgid "Dettach the selected attribute"
-msgstr "Επεξεργαστής γνωρισμάτων gEDA"
+# Detach the selected attribute
+#: gattrib/src/x_menus.c:378 gattrib/src/x_toolbars.c:48
+msgid "Detach the selected attribute"
+msgstr "Αποσυνδέστε το επιλεγμένο χαρακτηριστικό"
 
 #: gattrib/src/x_menus.c:380
 msgid "Find Value"
@@ -747,10 +747,10 @@ msgstr ""
 msgid "add"
 msgstr ""
 
+# Add a new attribute
 #: gattrib/src/x_toolbars.c:46
-#, fuzzy
 msgid "Add a new attribute"
-msgstr "Επεξεργαστής γνωρισμάτων gEDA"
+msgstr "Προσθέστε ένα νέο χαρακτηριστικό"
 
 #: gattrib/src/x_toolbars.c:47
 msgid "promote"
@@ -759,11 +759,6 @@ msgstr ""
 #: gattrib/src/x_toolbars.c:48
 msgid "demote"
 msgstr ""
-
-#: gattrib/src/x_toolbars.c:48
-#, fuzzy
-msgid "Detach the selected attribute"
-msgstr "Επεξεργαστής γνωρισμάτων gEDA"
 
 #: gattrib/src/x_toolbars.c:49
 msgid "name"
