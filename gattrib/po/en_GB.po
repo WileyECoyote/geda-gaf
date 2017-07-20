@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-07-17 00:04-0500\n"
+"POT-Creation-Date: 2017-07-18 23:44-0500\n"
 "PO-Revision-Date: 2012-01-27 14:17+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: English (United Kingdom) <en_GB@li.org>\n"
@@ -405,9 +405,8 @@ msgid "not found!"
 msgstr ""
 
 #: gattrib/src/x_find.c:277
-#, fuzzy
 msgid "Attribute"
-msgstr "gEDA Attribute Editor"
+msgstr ""
 
 #: gattrib/src/x_find.c:314
 msgid "Designator"
@@ -446,34 +445,28 @@ msgid "Paste"
 msgstr ""
 
 #: gattrib/src/x_menus.c:375
-#, fuzzy
 msgid "_Add new Attribute"
-msgstr "gEDA Attribute Editor"
+msgstr ""
 
 #: gattrib/src/x_menus.c:376
-#, fuzzy
 msgid "D_elete Attribute"
-msgstr "gEDA Attribute Editor"
+msgstr ""
 
 #: gattrib/src/x_menus.c:377
-#, fuzzy
 msgid "_Promote Attribute"
-msgstr "gEDA Attribute Editor"
+msgstr ""
 
 #: gattrib/src/x_menus.c:377 gattrib/src/x_toolbars.c:47
-#, fuzzy
 msgid "Attach the selected attribute"
-msgstr "gEDA Attribute Editor"
+msgstr ""
 
 #: gattrib/src/x_menus.c:378
-#, fuzzy
 msgid "_Demote Attribute"
-msgstr "gEDA Attribute Editor"
+msgstr ""
 
-#: gattrib/src/x_menus.c:378
-#, fuzzy
-msgid "Dettach the selected attribute"
-msgstr "gEDA Attribute Editor"
+#: gattrib/src/x_menus.c:378 gattrib/src/x_toolbars.c:48
+msgid "Detach the selected attribute"
+msgstr ""
 
 #: gattrib/src/x_menus.c:380
 msgid "Find Value"
@@ -492,14 +485,12 @@ msgid "Search and Replace Attribute value"
 msgstr ""
 
 #: gattrib/src/x_menus.c:382
-#, fuzzy
 msgid "Locate Attribute"
-msgstr "gEDA Attribute Editor"
+msgstr ""
 
 #: gattrib/src/x_menus.c:382
-#, fuzzy
 msgid "Search for an attribute"
-msgstr "gEDA Attribute Editor"
+msgstr ""
 
 #: gattrib/src/x_menus.c:383
 msgid "Locate Reference"
@@ -574,9 +565,8 @@ msgid "_Help"
 msgstr ""
 
 #: gattrib/src/x_menus.c:403
-#, fuzzy
 msgid "Gattrib Guide"
-msgstr "gEDA Attribute Editor"
+msgstr ""
 
 #: gattrib/src/x_menus.c:404
 msgid "Gattrib FAQ"
@@ -591,9 +581,8 @@ msgid "gEDA _Wiki..."
 msgstr ""
 
 #: gattrib/src/x_menus.c:408
-#, fuzzy
 msgid "gEDA Attributes"
-msgstr "gEDA Attribute Editor"
+msgstr ""
 
 #: gattrib/src/x_menus.c:409
 msgid "gEDA Glossary"
@@ -620,14 +609,12 @@ msgid "Display Standard Toolbar"
 msgstr ""
 
 #: gattrib/src/x_menus.c:419
-#, fuzzy
 msgid "A_ttribute"
-msgstr "gEDA Attribute Editor"
+msgstr ""
 
 #: gattrib/src/x_menus.c:419
-#, fuzzy
 msgid "Display Attribute Toolbar"
-msgstr "gEDA Attribute Editor"
+msgstr ""
 
 #: gattrib/src/x_menus.c:420
 msgid "_Attached"
@@ -718,14 +705,12 @@ msgid "Search and Replace attribute value"
 msgstr ""
 
 #: gattrib/src/x_toolbars.c:40
-#, fuzzy
 msgid "Attrib"
-msgstr "gEDA Attribute Editor"
+msgstr ""
 
 #: gattrib/src/x_toolbars.c:40
-#, fuzzy
 msgid "Locate attribute"
-msgstr "gEDA Attribute Editor"
+msgstr ""
 
 #: gattrib/src/x_toolbars.c:41
 msgid "Ref Des"
@@ -748,9 +733,8 @@ msgid "add"
 msgstr ""
 
 #: gattrib/src/x_toolbars.c:46
-#, fuzzy
 msgid "Add a new attribute"
-msgstr "gEDA Attribute Editor"
+msgstr ""
 
 #: gattrib/src/x_toolbars.c:47
 msgid "promote"
@@ -759,11 +743,6 @@ msgstr ""
 #: gattrib/src/x_toolbars.c:48
 msgid "demote"
 msgstr ""
-
-#: gattrib/src/x_toolbars.c:48
-#, fuzzy
-msgid "Detach the selected attribute"
-msgstr "gEDA Attribute Editor"
 
 #: gattrib/src/x_toolbars.c:49
 msgid "name"
