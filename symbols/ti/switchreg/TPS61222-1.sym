@@ -4,7 +4,7 @@ device=TPS61222
 T 400 2000 8 10 1 1 0 0 1
 refdes=U?
 T 400 2200 5 10 0 1 0 0 1
-description=Load Step-Down DC-DC Regulator
+description=boost converter, low input, low quiescent
 P 100 1300 400 1300 1 0 0
 {
 T 300 1350 5 8 1 1 0 6 1
