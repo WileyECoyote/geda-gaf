@@ -623,7 +623,7 @@ const char *geda_page_get_filename (Page *page)
 }
 
 /*!
- * \brief  Get a copy of the page filename property
+ * \brief Get a copy of the page filename property
  * \par Function Description
  *  Retrieves a copy of the filename of the page. The filename stored
  *  in the page is the full name, which includes the path. The returned
@@ -634,10 +634,11 @@ char *geda_page_get_filename_dup (Page *page)
   return GEDA_IS_PAGE(page) ? geda_strdup(page->filename) : NULL;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Set the filename associated with the Page object
+ * \par Function Description
+ *  Makes a copy of \a filename and stores the pointer in the page
+ *  filename member.
  */
 void geda_page_set_filename (Page *page, const char *filename)
 {
@@ -649,20 +650,25 @@ void geda_page_set_filename (Page *page, const char *filename)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Get the Page Index
+ * \par Function Description
+ *  The Page index is a unique integer value assigned when the
+ *  page was created. Index are not reused during a given session
+ *  so this index can be used to identify the page. The index is
+ *  not the index of the page in the list of pages in the toplevel.
  */
 int geda_page_get_pid (Page *page)
 {
   return GEDA_IS_PAGE(page) ?  page->pid : -1;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Retrieve the Place List Buffer
+ * \par Function Description
+ *  The Place List is a temporary list of one or more objects, which
+ *  may or may not belong to the page that is used as a working buffer
+ *  during editing operations.
  */
 GList *geda_page_get_place_list (Page *page)
 {

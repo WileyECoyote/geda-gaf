@@ -2,6 +2,12 @@
 
     * src/geda/geda_toplevel.c: Update function wrapping.
 
+    * src/geda/geda_page.c: Update Doxygen comments for:
+
+          * geda_page_set_filename
+          * geda_page_get_pid
+          * geda_page_get_place_list
+
 2017-07-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_page.c: Update Doxygen comments for:
