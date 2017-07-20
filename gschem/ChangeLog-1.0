@@ -1,3 +1,9 @@
+2017-07-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_command.c: Revise i_cmd_do_page_revert_all to utilize
+      geda_page_get_filename_dup to both access the filename and make a
+      copy of the string.
+
 2017-07-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_event.c: Revert 28969217ef7cc601b7d638261ecb7dfc7aac15df,

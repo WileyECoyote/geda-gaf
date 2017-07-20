@@ -2889,12 +2889,13 @@ COMMAND (do_page_revert_all)
     for (iter = pages; iter; iter = iter->next) {
 
       /* Get ptr to page in list */
-      Page *page = (Page*)iter->data;
+      Page *page     = iter->data;
+      char *filename = geda_page_get_filename_dup(page);
 
       /* Copy the filename to the list */
-      files = g_slist_append(files, geda_strdup(page->filename));
+      files = g_slist_append(files, filename);
 
-      if (!strncmp(page->filename, c_filename, strlen(c_filename))) {
+      if (!strncmp(filename, c_filename, strlen(c_filename))) {
         CMD_INTEGER(do_page_revert_all) = index;
       }
 
