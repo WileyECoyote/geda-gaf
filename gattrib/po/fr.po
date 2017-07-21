@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-07-17 00:04-0500\n"
+"POT-Creation-Date: 2017-07-18 23:44-0500\n"
 "PO-Revision-Date: 2010-02-06 22:09+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -445,35 +445,35 @@ msgstr ""
 msgid "Paste"
 msgstr ""
 
+# Add new Attribute
 #: gattrib/src/x_menus.c:375
-#, fuzzy
 msgid "_Add new Attribute"
-msgstr "Éditeur d'attributs gEDA"
+msgstr "Ajouter un nouvel attribut"
 
+# Delete Attribute
 #: gattrib/src/x_menus.c:376
-#, fuzzy
 msgid "D_elete Attribute"
-msgstr "Éditeur d'attributs gEDA"
+msgstr "Ajouter un nouvel attribut"
 
+# Promote Attribute
 #: gattrib/src/x_menus.c:377
-#, fuzzy
 msgid "_Promote Attribute"
-msgstr "Éditeur d'attributs gEDA"
+msgstr "Promouvoir l'attribut"
 
+# Attach the selected attribute
 #: gattrib/src/x_menus.c:377 gattrib/src/x_toolbars.c:47
-#, fuzzy
 msgid "Attach the selected attribute"
-msgstr "Éditeur d'attributs gEDA"
+msgstr "Joignez l'attribut sélectionné"
 
+# Demote Attribute
 #: gattrib/src/x_menus.c:378
-#, fuzzy
 msgid "_Demote Attribute"
-msgstr "Éditeur d'attributs gEDA"
+msgstr "Demote Attribut"
 
-#: gattrib/src/x_menus.c:378
-#, fuzzy
-msgid "Dettach the selected attribute"
-msgstr "Éditeur d'attributs gEDA"
+# Detach the selected attribute
+#: gattrib/src/x_menus.c:378 gattrib/src/x_toolbars.c:48
+msgid "Detach the selected attribute"
+msgstr "Détachez l'attribut sélectionné"
 
 #: gattrib/src/x_menus.c:380
 msgid "Find Value"
@@ -759,11 +759,6 @@ msgstr ""
 #: gattrib/src/x_toolbars.c:48
 msgid "demote"
 msgstr ""
-
-#: gattrib/src/x_toolbars.c:48
-#, fuzzy
-msgid "Detach the selected attribute"
-msgstr "Éditeur d'attributs gEDA"
 
 #: gattrib/src/x_toolbars.c:49
 msgid "name"
