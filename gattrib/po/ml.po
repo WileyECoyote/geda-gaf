@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-07-17 00:04-0500\n"
+"POT-Creation-Date: 2017-07-18 23:44-0500\n"
 "PO-Revision-Date: 2010-02-06 22:10+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -445,35 +445,35 @@ msgstr ""
 msgid "Paste"
 msgstr ""
 
+# Add new Attribute
 #: gattrib/src/x_menus.c:375
-#, fuzzy
 msgid "_Add new Attribute"
-msgstr "gEDA യുടെ കമ്പോണന്‍ടു  സവിശേഷത എഡിറ്റര്‍"
+msgstr "പുതിയ ആട്രിബ്യൂട്ട് ചേർക്കുക"
 
+# Delete Attribute
 #: gattrib/src/x_menus.c:376
-#, fuzzy
 msgid "D_elete Attribute"
-msgstr "gEDA യുടെ കമ്പോണന്‍ടു  സവിശേഷത എഡിറ്റര്‍"
+msgstr "ആട്രിബ്യൂട്ട് ഇല്ലാതാക്കുക"
 
+# Promote Attribute
 #: gattrib/src/x_menus.c:377
-#, fuzzy
 msgid "_Promote Attribute"
-msgstr "gEDA യുടെ കമ്പോണന്‍ടു  സവിശേഷത എഡിറ്റര്‍"
+msgstr "ആട്രിബ്യൂട്ട് പ്രമോട്ടുചെയ്യുക"
 
+# Attach the selected attribute
 #: gattrib/src/x_menus.c:377 gattrib/src/x_toolbars.c:47
-#, fuzzy
 msgid "Attach the selected attribute"
-msgstr "gEDA യുടെ കമ്പോണന്‍ടു  സവിശേഷത എഡിറ്റര്‍"
+msgstr "തിരഞ്ഞെടുത്ത ആട്രിബ്യൂട്ട് അറ്റാച്ചുചെയ്യുക"
 
+# Demote Attribute
 #: gattrib/src/x_menus.c:378
-#, fuzzy
 msgid "_Demote Attribute"
-msgstr "gEDA യുടെ കമ്പോണന്‍ടു  സവിശേഷത എഡിറ്റര്‍"
+msgstr "ആട്രിബ്യൂട്ട് തരംതാഴ്ത്തുക"
 
-#: gattrib/src/x_menus.c:378
-#, fuzzy
-msgid "Dettach the selected attribute"
-msgstr "gEDA യുടെ കമ്പോണന്‍ടു  സവിശേഷത എഡിറ്റര്‍"
+# Detach the selected attribute
+#: gattrib/src/x_menus.c:378 gattrib/src/x_toolbars.c:48
+msgid "Detach the selected attribute"
+msgstr "തിരഞ്ഞെടുത്ത ആട്രിബ്യൂട്ട് വേർതിരിക്കുക"
 
 #: gattrib/src/x_menus.c:380
 msgid "Find Value"
@@ -759,11 +759,6 @@ msgstr ""
 #: gattrib/src/x_toolbars.c:48
 msgid "demote"
 msgstr ""
-
-#: gattrib/src/x_toolbars.c:48
-#, fuzzy
-msgid "Detach the selected attribute"
-msgstr "gEDA യുടെ കമ്പോണന്‍ടു  സവിശേഷത എഡിറ്റര്‍"
 
 #: gattrib/src/x_toolbars.c:49
 msgid "name"
