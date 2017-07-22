@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gattrib\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-07-17 00:04-0500\n"
+"POT-Creation-Date: 2017-07-18 23:44-0500\n"
 "PO-Revision-Date: 2014-03-08 20:49+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -232,6 +232,7 @@ msgstr "отсутствует атрибут «refdes» или «pinnumber» у
 msgid "did not find refdes:pin"
 msgstr "не смог найти ««refdes»»:«pinnumber»"
 
+# Add new attribute
 #: gattrib/src/x_dialog.c:108
 msgid "Add new attribute"
 msgstr "Добавление нового атрибута"
@@ -516,9 +517,8 @@ msgid "_Demote Attribute"
 msgstr "разжаловать атрибута"
 
 # Dettach the selected attribute
-#: gattrib/src/x_menus.c:378
-#, fuzzy
-msgid "Dettach the selected attribute"
+#: gattrib/src/x_menus.c:378 gattrib/src/x_toolbars.c:48
+msgid "Detach the selected attribute"
 msgstr "Detach выбранный атрибут"
 
 #: gattrib/src/x_menus.c:380
@@ -807,11 +807,6 @@ msgstr ""
 #: gattrib/src/x_toolbars.c:48
 msgid "demote"
 msgstr ""
-
-# Dettach the selected attribute
-#: gattrib/src/x_toolbars.c:48
-msgid "Detach the selected attribute"
-msgstr "Detach выбранный атрибут"
 
 #: gattrib/src/x_toolbars.c:49
 msgid "name"
