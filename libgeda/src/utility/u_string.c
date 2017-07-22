@@ -459,16 +459,18 @@ geda_utility_string_remove_nl(char *string)
  * \remarks  caller is responsible for freeing the pointer.
  */
 char *
-geda_utility_string_scm2c( char *scm_str_name) /* WEH: couldn't find it, made it */
+geda_utility_string_scm2c(SCM scm_str)
 {
-  if (scm_str_name) {
-    SCM s_symbol, s_value;
+  if (scm_str) {
 
-    /* Now get string */
-    s_symbol = scm_c_lookup(scm_str_name);
-    s_value  = scm_variable_ref(s_symbol);
+    char *s_str, *c_str;
 
-    return scm_to_locale_string(s_value);
+    s_str = scm_to_utf8_string (scm_str);
+    c_str = geda_utility_string_strdup (s_str);
+
+    free (s_str);
+
+    return c_str;
   }
   return NULL;
 }

@@ -813,7 +813,7 @@ const CLibSymbol *geda_struct_clib_get_symbol_by_name      (const char *name);
          bool    geda_utility_string_parse_xy         (const char *string, int *x, int *y) WARN_UNUSED;
          char   *geda_utility_string_remove_last_nl   (char *string);
          char   *geda_utility_string_remove_nl        (char *string);
-         char   *geda_utility_string_scm2c            (char *scm_str_name) WARN_UNUSED;
+         char   *geda_utility_string_scm2c            (SCM   scm_str_name) WARN_UNUSED;
          void    geda_utility_string_sort_array       (char *strings[], size_t strings_size);
          char   *geda_utility_string_split            (char *string, char delimiter, int count) WARN_UNUSED;
          char   *geda_utility_string_sprintf          (const char *format, ...) WARN_UNUSED;
