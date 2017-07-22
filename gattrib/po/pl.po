@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-07-17 00:04-0500\n"
+"POT-Creation-Date: 2017-07-18 23:44-0500\n"
 "PO-Revision-Date: 2010-02-06 22:09+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -471,9 +471,8 @@ msgid "_Demote Attribute"
 msgstr "Obniżenie atrybutu"
 
 # Detach the selected attribute
-#: gattrib/src/x_menus.c:378
-#, fuzzy
-msgid "Dettach the selected attribute"
+#: gattrib/src/x_menus.c:378 gattrib/src/x_toolbars.c:48
+msgid "Detach the selected attribute"
 msgstr "Zdemontuj wybrany atrybut"
 
 #: gattrib/src/x_menus.c:380
@@ -492,15 +491,15 @@ msgstr ""
 msgid "Search and Replace Attribute value"
 msgstr ""
 
+# Locate Attribute
 #: gattrib/src/x_menus.c:382
-#, fuzzy
 msgid "Locate Attribute"
-msgstr "gEDA Edytor atrybutów"
+msgstr "Zlokalizuj atrybut"
 
+# Search for an attribute
 #: gattrib/src/x_menus.c:382
-#, fuzzy
 msgid "Search for an attribute"
-msgstr "gEDA Edytor atrybutów"
+msgstr "Wyszukaj atrybut"
 
 #: gattrib/src/x_menus.c:383
 msgid "Locate Reference"
@@ -761,11 +760,6 @@ msgstr ""
 msgid "demote"
 msgstr ""
 
-# Detach the selected attribute
-#: gattrib/src/x_toolbars.c:48
-msgid "Detach the selected attribute"
-msgstr "Zdemontuj wybrany atrybut"
-
 #: gattrib/src/x_toolbars.c:49
 msgid "name"
 msgstr ""
@@ -785,3 +779,8 @@ msgstr ""
 #: gattrib/src/x_window.c:213
 msgid "Retrieving main Window geometry and settings.\n"
 msgstr ""
+
+# Detach the selected attribute
+#, fuzzy
+#~ msgid "Dettach the selected attribute"
+#~ msgstr "Zdemontuj wybrany atrybut"
