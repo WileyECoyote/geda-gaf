@@ -5865,6 +5865,27 @@ geda_menu_attach (GedaMenu    *menu,
 }
 
 /*!
+ * \brief Get number of monitors
+ * \par Function Description
+ * Retrieves the number of the monitor on which to show the menu.
+ *
+ * \param[in] menu  GedaMenu object
+ *
+ * \returns number of the monitor on which the menu should
+ *          be popped up or -1, if no monitor has been set
+ */
+int
+geda_menu_get_monitor (GedaMenu *menu)
+{
+  GedaMenuPriv *priv;
+  g_return_val_if_fail (GEDA_IS_MENU (menu), -1);
+
+  priv = menu->priv;
+
+  return priv->monitor_num;
+}
+
+/*!
  * \brief Set the number of monitors
  * \par Function Description
  * This function should be called from a #MenuPositionFunc if the
@@ -5888,27 +5909,6 @@ geda_menu_set_monitor (GedaMenu *menu, int monitor_num)
   priv = menu->priv;
 
   priv->monitor_num = monitor_num;
-}
-
-/*!
- * \brief Get number of monitors
- * \par Function Description
- * Retrieves the number of the monitor on which to show the menu.
- *
- * \param[in] menu  GedaMenu object
- *
- * \returns number of the monitor on which the menu should
- *          be popped up or -1, if no monitor has been set
- */
-int
-geda_menu_get_monitor (GedaMenu *menu)
-{
-  GedaMenuPriv *priv;
-  g_return_val_if_fail (GEDA_IS_MENU (menu), -1);
-
-  priv = menu->priv;
-
-  return priv->monitor_num;
 }
 
 /*!
