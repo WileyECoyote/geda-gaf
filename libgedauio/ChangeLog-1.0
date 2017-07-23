@@ -5,7 +5,11 @@
           * geda_combo_widget_get_active_iter
           * geda_combo_widget_set_active_iter
 
-    * tests/test_menu.c: Add check for geda_menu_set_screen.
+    * tests/test_menu.c: Add checks for:
+
+          * geda_menu_set_screen
+          * geda_menu_get_monitor
+          * geda_menu_set_monitor
 
 2017-07-05 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -391,6 +391,28 @@ check_accessors ()
     result++;
   }
 
+  /* ----------------------- screen --------------------- */
+
+  int monitor = 88;
+
+  monitor = geda_menu_get_monitor((GedaMenu*)menu);
+
+  if (monitor == 88) {
+    fprintf(stderr, "FAILED: %s line <%d> monitor\n", TWIDGET, __LINE__);
+    result++;
+  }
+
+  int pri_monitor = gdk_screen_get_primary_monitor (screen);
+
+  geda_menu_set_monitor((GedaMenu*)menu, pri_monitor);
+
+  monitor = geda_menu_get_monitor((GedaMenu*)menu);
+
+  if (monitor != pri_monitor) {
+    fprintf(stderr, "FAILED: %s line <%d> monitor <%d>\n", TWIDGET, __LINE__, monitor);
+    result++;
+  }
+
   /* ---------------------------------------------------- */
 
   gtk_widget_destroy(gtk_widget_get_toplevel(widget0));
