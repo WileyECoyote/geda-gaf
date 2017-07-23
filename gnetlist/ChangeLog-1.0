@@ -1,3 +1,7 @@
+2017-07-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gnetlist/src/g_rc.c: Replace strdup_scm_string with geda_string_scm2c.
+
 2017-05-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/parsecmd.c: Remove g_assert_not_reached for default case in
