@@ -1,6 +1,7 @@
 2017-07-23 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gnetlist/src/g_rc.c: Replace strdup_scm_string with geda_string_scm2c.
+    * gnetlist/src/g_rc.c: Replace strdup_scm_string with geda_string_scm2c
+      and remove strdup_scm_string.
 
 2017-05-09 Wiley E. Hill <wileyhill@gmail.com>
 

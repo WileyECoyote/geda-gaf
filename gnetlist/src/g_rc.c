@@ -146,22 +146,6 @@ SCM g_rc_hierarchy_netattrib_mangle(SCM mode)
             default_hierarchy_netattrib_mangle, mode_table);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *  \todo move this function some place else
- */
-char *
-strdup_scm_string(SCM scm_s)
-{
-  char *s, *ret;
-
-  s = scm_to_utf8_string (scm_s);
-  ret = geda_utility_string_strdup (s);
-  free (s);
-  return ret;
-}
-
 /*! \brief Process hierarchy-netname-separator Keyword
  *  \par Function Description
  *  This function sets default_hierarchy_netname_separator to
