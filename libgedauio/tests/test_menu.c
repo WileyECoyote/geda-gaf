@@ -33,6 +33,7 @@
 
 #include <glib.h>
 #include <gtk/gtk.h>
+#include <gdk/gdk.h>
 
 #include <geda/geda.h>
 #include <geda_menu.h>
@@ -369,6 +370,28 @@ check_accessors ()
       result++;
     }
   }
+
+  /* ----------------------- screen --------------------- */
+
+  GdkScreen *screen;
+
+  geda_menu_set_screen((GedaMenu*)menu, NULL);
+
+  if (GEDA_OBJECT_GET_DATA (menu, "menu-explicit-screen")) {
+    fprintf(stderr, "FAILED: %s line <%d> screen NULL\n", TWIDGET, __LINE__);
+    result++;
+  }
+
+  screen = gtk_widget_get_screen (menu);
+
+  geda_menu_set_screen((GedaMenu*)menu, screen);
+
+  if (GEDA_OBJECT_GET_DATA (menu, "menu-explicit-screen") != screen) {
+    fprintf(stderr, "FAILED: %s line <%d> screen\n", TWIDGET, __LINE__);
+    result++;
+  }
+
+  /* ---------------------------------------------------- */
 
   gtk_widget_destroy(gtk_widget_get_toplevel(widget0));
 
