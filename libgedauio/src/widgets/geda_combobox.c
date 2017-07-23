@@ -7216,7 +7216,8 @@ void geda_combo_widget_set_active (GtkWidget *combo_box, int index) {
  * \par Function Description
  * \see geda_combo_box_get_active_iter
  *
- * \param [in] combo_box A #GedaComboBox
+ * \param [in] combo A #GedaComboBox
+ * \param [out] iter The uninitialized <b>GtkTreeIter</b>
  *
  * \retval %TRUE, if \a iter was set
  */
@@ -7230,7 +7231,8 @@ bool geda_combo_widget_get_active_iter(GtkWidget *combo, GtkTreeIter *iter)
  * \par Function Description
  * \see geda_combo_box_set_active_iter
  *
- * \param [in] combo_box A #GedaComboBox
+ * \param [in] combo A #GedaComboBox
+ * \param [in] iter  The uninitialized <b>GtkTreeIter</b>
  */
 void geda_combo_widget_set_active_iter(GtkWidget *combo, GtkTreeIter *iter)
 {
