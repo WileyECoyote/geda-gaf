@@ -5,7 +5,9 @@
           * geda_combo_widget_get_active_iter
           * geda_combo_widget_set_active_iter
 
-    * src/widgets/geda_menu_item.c: Update function wrapping.
+    * src/widgets/geda_menu_item.c: Move size_allocate assignment to geda_
+      menu_item_size_allocate out side Gtk < 3 conditionals, since applies
+      to Gtk-3 as well, update function wrapping.
 
     * tests/test_menu.c: Add checks for:
 

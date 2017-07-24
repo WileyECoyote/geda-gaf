@@ -242,33 +242,33 @@ static void geda_menu_item_buildable_custom_finished (GtkBuildable      *buildab
                                                       const char        *tagname,
                                                       void              *user_data);
 
-
 static void geda_menu_item_activatable_interface_init (GtkActivatableIface *iface);
 static void geda_menu_item_update                     (GtkActivatable      *activatable,
                                                        GtkAction           *action,
                                                        const char          *property_name);
 static void geda_menu_item_sync_action_properties     (GtkActivatable      *activatable,
                                                        GtkAction           *action);
+
+static void geda_menu_item_size_allocate              (GtkWidget           *widget,
+                                                       GtkAllocation       *allocation);
 #if GTK_MAJOR_VERSION < 3
 
-static int  geda_menu_item_expose                     (GtkWidget        *widget,
-                                                       GdkEventExpose   *event);
-static void geda_menu_item_paint                      (GtkWidget        *widget,
-                                                       GdkRectangle     *area);
-static void geda_menu_item_size_allocate              (GtkWidget        *widget,
-                                                       GtkAllocation    *allocation);
-static void geda_menu_item_size_request               (GtkWidget        *widget,
-                                                       GtkRequisition   *requisition);
+static int  geda_menu_item_expose                     (GtkWidget           *widget,
+                                                       GdkEventExpose      *event);
+static void geda_menu_item_paint                      (GtkWidget           *widget,
+                                                       GdkRectangle        *area);
+static void geda_menu_item_size_request               (GtkWidget           *widget,
+                                                       GtkRequisition      *requisition);
 #else
 
-static bool geda_menu_item_draw                       (GtkWidget        *widget,
-                                                       cairo_t          *cr);
-static void geda_menu_item_get_preferred_width        (GtkWidget        *widget,
-                                                       int              *minimum_size,
-                                                       int              *natural_size);
-static void geda_menu_item_get_preferred_height       (GtkWidget        *widget,
-                                                       int              *minimum_size,
-                                                       int              *natural_size);
+static bool geda_menu_item_draw                           (GtkWidget          *widget,
+                                                           cairo_t            *cr);
+static void geda_menu_item_get_preferred_width            (GtkWidget          *widget,
+                                                           int                *minimum_size,
+                                                           int                *natural_size);
+static void geda_menu_item_get_preferred_height           (GtkWidget          *widget,
+                                                           int                *minimum_size,
+                                                           int                *natural_size);
 static void geda_menu_item_get_preferred_height_for_width (GtkWidget          *widget,
                                                            int                 for_size,
                                                            int                *minimum_size,
@@ -619,9 +619,10 @@ geda_menu_item_class_init (void *class, void *class_data)
   widget_class->mnemonic_activate  = geda_menu_item_mnemonic_activate;
   widget_class->parent_set         = geda_menu_item_parent_set;
   widget_class->can_activate_accel = geda_menu_item_can_activate_accel;
+  widget_class->size_allocate      = geda_menu_item_size_allocate;
 
 #if GTK_MAJOR_VERSION < 3
-  widget_class->size_allocate      = geda_menu_item_size_allocate;
+
   widget_class->size_request       = geda_menu_item_size_request;
   widget_class->expose_event       = geda_menu_item_expose;
 
