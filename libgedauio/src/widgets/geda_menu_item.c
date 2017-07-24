@@ -1969,6 +1969,7 @@ static void geda_menu_item_size_request (GtkWidget *widget, GtkRequisition *requ
   priv->accelerator_width = accel_width;
 }
 
+/*! \internal Gtk2 widget_class->size_allocate */
 static void geda_menu_item_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
 {
   GedaMenuItem        *menu_item;
@@ -2481,6 +2482,7 @@ static void geda_menu_item_size_allocate (GtkWidget *widget, GtkAllocation *allo
   }
 }
 
+/*! \internal Gtk3 menu_item_class->select */
 static void geda_real_menu_item_select (GedaMenuItem *menu_item)
 {
   GedaMenuItemPrivate *priv          = menu_item->priv;
