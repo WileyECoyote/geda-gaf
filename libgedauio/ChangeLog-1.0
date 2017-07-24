@@ -5,6 +5,8 @@
           * geda_combo_widget_get_active_iter
           * geda_combo_widget_set_active_iter
 
+    * src/widgets/geda_menu_item.c: Update function wrapping.
+
     * tests/test_menu.c: Add checks for:
 
           * geda_menu_set_screen

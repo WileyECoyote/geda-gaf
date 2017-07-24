@@ -1728,8 +1728,7 @@ get_minimum_width (GtkWidget *widget)
 
 #if GTK_MAJOR_VERSION < 3
 
-static void
-geda_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
+static void geda_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
 {
   GedaMenuItem        *menu_item;
   GedaMenuItemPrivate *priv;
@@ -1859,8 +1858,7 @@ geda_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
   }
 }
 
-static int
-geda_menu_item_expose (GtkWidget *widget, GdkEventExpose *event)
+static int geda_menu_item_expose (GtkWidget *widget, GdkEventExpose *event)
 {
   if (gtk_widget_is_drawable (widget)) {
 
@@ -1872,8 +1870,7 @@ geda_menu_item_expose (GtkWidget *widget, GdkEventExpose *event)
   return FALSE;
 }
 
-static void
-geda_menu_item_size_request (GtkWidget *widget, GtkRequisition *requisition)
+static void geda_menu_item_size_request (GtkWidget *widget, GtkRequisition *requisition)
 {
   GedaMenuItem        *menu_item;
   GedaMenuItemPrivate *priv;
@@ -1971,8 +1968,7 @@ geda_menu_item_size_request (GtkWidget *widget, GtkRequisition *requisition)
   priv->accelerator_width = accel_width;
 }
 
-static void
-geda_menu_item_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
+static void geda_menu_item_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
 {
   GedaMenuItem        *menu_item;
   GedaMenuItemPrivate *priv;
@@ -2070,8 +2066,7 @@ geda_menu_item_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
 }
 
 /*! \internal Gtk2 menu_item_class->select */
-static void
-geda_real_menu_item_select (GedaMenuItem *menu_item)
+static void geda_real_menu_item_select (GedaMenuItem *menu_item)
 {
   GedaMenuItemPrivate *priv;
   bool                 touchscreen_mode;
@@ -2103,8 +2098,7 @@ geda_real_menu_item_select (GedaMenuItem *menu_item)
 
 #else /* GTK_MAJOR_VERSION >= 3.0 */
 
-static bool
-geda_menu_item_draw (GtkWidget *widget, cairo_t *cr)
+static bool geda_menu_item_draw (GtkWidget *widget, cairo_t *cr)
 {
   GedaMenuItem        *menu_item = (GedaMenuItem*)widget;
   GedaMenuItemPrivate *priv      = menu_item->priv;
@@ -2192,10 +2186,9 @@ geda_menu_item_draw (GtkWidget *widget, cairo_t *cr)
   return FALSE;
 }
 
-static void
-geda_menu_item_get_preferred_width (GtkWidget *widget,
-                                    int       *minimum_size,
-                                    int       *natural_size)
+static void geda_menu_item_get_preferred_width (GtkWidget *widget,
+                                                int       *minimum_size,
+                                                int       *natural_size)
 {
   GedaMenuItem        *menu_item = (GedaMenuItem*)widget;
   GedaMenuItemPrivate *priv      = menu_item->priv;
@@ -2261,11 +2254,10 @@ geda_menu_item_get_preferred_width (GtkWidget *widget,
   }
 }
 
-static void
-geda_menu_item_real_get_height (GtkWidget *widget,
-                                int        for_size,
-                                int       *minimum_size,
-                                int       *natural_size)
+static void geda_menu_item_real_get_height (GtkWidget *widget,
+                                            int        for_size,
+                                            int       *minimum_size,
+                                            int       *natural_size)
 {
   GedaMenuItem        *menu_item = (GedaMenuItem*)widget;
   GedaMenuItemPrivate *priv      = menu_item->priv;
@@ -2374,25 +2366,22 @@ geda_menu_item_real_get_height (GtkWidget *widget,
     *natural_size = nat_height;
 }
 
-static void
-geda_menu_item_get_preferred_height (GtkWidget *widget,
-                                     int       *minimum_size,
-                                     int       *natural_size)
+static void geda_menu_item_get_preferred_height (GtkWidget *widget,
+                                                 int       *minimum_size,
+                                                 int       *natural_size)
 {
   geda_menu_item_real_get_height (widget, -1, minimum_size, natural_size);
 }
 
-static void
-geda_menu_item_get_preferred_height_for_width (GtkWidget *widget,
-                                               int        for_size,
-                                               int       *minimum_size,
-                                               int       *natural_size)
+static void geda_menu_item_get_preferred_height_for_width (GtkWidget *widget,
+                                                           int        for_size,
+                                                           int       *minimum_size,
+                                                           int       *natural_size)
 {
   geda_menu_item_real_get_height (widget, for_size, minimum_size, natural_size);
 }
 
-static void
-geda_menu_item_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
+static void geda_menu_item_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
 {
   GedaMenuItem        *menu_item = (GedaMenuItem*)widget;
   GedaMenuItemPrivate *priv      = menu_item->priv;
@@ -2491,8 +2480,7 @@ geda_menu_item_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
   }
 }
 
-static void
-geda_real_menu_item_select (GedaMenuItem *menu_item)
+static void geda_real_menu_item_select (GedaMenuItem *menu_item)
 {
   GedaMenuItemPrivate *priv          = menu_item->priv;
   GdkDevice           *source_device = NULL;
@@ -2522,8 +2510,7 @@ geda_real_menu_item_select (GedaMenuItem *menu_item)
 
 /* Common GedaMenuItemClass signal handlers */
 
-static void
-geda_menu_item_activate_action (GedaMenuItem *menu_item)
+static void geda_menu_item_activate_action (GedaMenuItem *menu_item)
 {
   GedaMenuItemPrivate *priv = menu_item->priv;
 
@@ -2539,8 +2526,7 @@ geda_menu_item_activate_action (GedaMenuItem *menu_item)
 }
 
 /* menu_item_class->activate_item */
-static void
-geda_real_menu_item_activate_item (GedaMenuItem *menu_item)
+static void geda_real_menu_item_activate_item (GedaMenuItem *menu_item)
 {
   GedaMenuItemPrivate *priv;
   GtkWidget *parent;
@@ -2569,8 +2555,7 @@ geda_real_menu_item_activate_item (GedaMenuItem *menu_item)
   }
 }
 
-static void
-geda_real_menu_item_deselect (GedaMenuItem *menu_item)
+static void geda_real_menu_item_deselect (GedaMenuItem *menu_item)
 {
   GedaMenuItemPrivate *priv = menu_item->priv;
   GtkWidget           *widget;
@@ -2601,8 +2586,7 @@ geda_real_menu_item_deselect (GedaMenuItem *menu_item)
   }
 }
 
-static bool
-geda_menu_item_mnemonic_activate (GtkWidget *widget, bool group_cycling)
+static bool geda_menu_item_mnemonic_activate (GtkWidget *widget, bool group_cycling)
 {
   GtkWidget *parent = gtk_widget_get_parent (widget);
 
@@ -2622,24 +2606,24 @@ geda_menu_item_mnemonic_activate (GtkWidget *widget, bool group_cycling)
   return TRUE;
 }
 
-static void
-geda_real_menu_item_toggle_size_request (GedaMenuItem *menu_item,
-                                         int          *requisition)
+/*! \internal menu_item_class->toggle_size_request */
+static void geda_real_menu_item_toggle_size_request (GedaMenuItem *menu_item,
+                                                     int          *requisition)
 {
   *requisition = 0;
 }
 
-static void
-geda_real_menu_item_toggle_size_allocate (GedaMenuItem *menu_item,
-                                          int           allocation)
+/*! \internal menu_item_class->toggle_size_allocate */
+static void geda_real_menu_item_toggle_size_allocate (GedaMenuItem *menu_item,
+                                                      int           allocation)
 {
   g_return_if_fail (GEDA_IS_MENU_ITEM(menu_item));
 
   menu_item->priv->toggle_size = allocation;
 }
 
-static void
-geda_real_menu_item_set_label (GedaMenuItem *menu_item, const char *label)
+/*! \internal menu_item_class->set_label */
+static void geda_real_menu_item_set_label (GedaMenuItem *menu_item, const char *label)
 {
   GedaLabel *child;
 
@@ -2657,8 +2641,7 @@ geda_real_menu_item_set_label (GedaMenuItem *menu_item, const char *label)
   }
 }
 
-static const char*
-geda_real_menu_item_get_label (GedaMenuItem *menu_item)
+static const char *geda_real_menu_item_get_label (GedaMenuItem *menu_item)
 {
   GedaLabel *child;
 
@@ -2672,14 +2655,12 @@ geda_real_menu_item_get_label (GedaMenuItem *menu_item)
   return NULL;
 }
 
-static void
-free_timeval (GTimeVal *val)
+static void free_timeval (GTimeVal *val)
 {
   g_free (val);
 }
 
-static void
-geda_menu_item_real_popup_submenu (GtkWidget *widget, bool remember_time)
+static void geda_menu_item_real_popup_submenu (GtkWidget *widget, bool remember_time)
 {
   GedaMenuItem        *menu_item = (GedaMenuItem*)widget;
   GedaMenuItemPrivate *priv      = menu_item->priv;
@@ -2738,8 +2719,7 @@ geda_menu_item_real_popup_submenu (GtkWidget *widget, bool remember_time)
   gtk_widget_queue_draw (widget);
 }
 
-static int
-geda_menu_item_popup_timeout (void *data)
+static int geda_menu_item_popup_timeout (void *data)
 {
   GedaMenuItem        *menu_item = GEDA_MENU_ITEM(data);
   GedaMenuItemPrivate *priv      = menu_item->priv;
@@ -2760,8 +2740,7 @@ geda_menu_item_popup_timeout (void *data)
   return FALSE;
 }
 
-static int
-get_popup_delay (GedaMenuItem *menu_item)
+static int get_popup_delay (GedaMenuItem *menu_item)
 {
   GtkWidget *parent;
 
@@ -2775,8 +2754,7 @@ get_popup_delay (GedaMenuItem *menu_item)
 
 #if GTK_MAJOR_VERSION < 3
 
-void
-geda_menu_item_popup_submenu (GedaMenuItem *menu_item, bool with_delay)
+void geda_menu_item_popup_submenu (GedaMenuItem *menu_item, bool with_delay)
 {
   GedaMenuItemPrivate *priv = menu_item->priv;
 
@@ -2821,8 +2799,7 @@ geda_menu_item_popup_submenu (GedaMenuItem *menu_item, bool with_delay)
 
 #else
 
-void
-geda_menu_item_popup_submenu (GedaMenuItem *menu_item, bool with_delay)
+void geda_menu_item_popup_submenu (GedaMenuItem *menu_item, bool with_delay)
 {
   GedaMenuItemPrivate *priv = menu_item->priv;
 
@@ -2865,8 +2842,7 @@ geda_menu_item_popup_submenu (GedaMenuItem *menu_item, bool with_delay)
 
 #endif
 
-void
-geda_menu_item_popdown_submenu (GedaMenuItem *menu_item)
+void geda_menu_item_popdown_submenu (GedaMenuItem *menu_item)
 {
   GedaMenuItemPrivate *priv = menu_item->priv;
 
@@ -2889,8 +2865,7 @@ geda_menu_item_popdown_submenu (GedaMenuItem *menu_item)
 
 #if GTK_MAJOR_VERSION < 3
 
-static void
-get_offsets (GedaMenu *menu, int *horizontal_offset, int *vertical_offset)
+static void get_offsets (GedaMenu *menu, int *horizontal_offset, int *vertical_offset)
 {
   int vertical_padding;
   int horizontal_padding;
@@ -2907,12 +2882,11 @@ get_offsets (GedaMenu *menu, int *horizontal_offset, int *vertical_offset)
   *horizontal_offset += horizontal_padding;
 }
 
-static void
-geda_menu_item_position_menu (GedaMenu  *menu,
-                              int       *x,
-                              int       *y,
-                              bool      *push_in,
-                              void      *user_data)
+static void geda_menu_item_position_menu (GedaMenu  *menu,
+                                          int       *x,
+                                          int       *y,
+                                          bool      *push_in,
+                                          void      *user_data)
 {
   GedaMenuItem        *menu_item;
   GedaMenuItemPrivate *priv;
@@ -3098,8 +3072,7 @@ geda_menu_item_position_menu (GedaMenu  *menu,
 
 #else /* GTK_MAJOR_VERSION at least 3 */
 
-static void
-get_offsets (GedaMenu *menu, int *horizontal_offset, int *vertical_offset)
+static void get_offsets (GedaMenu *menu, int *horizontal_offset, int *vertical_offset)
 {
   GtkStyleContext *context;
   GtkStateFlags    state;
@@ -3118,12 +3091,11 @@ get_offsets (GedaMenu *menu, int *horizontal_offset, int *vertical_offset)
   *horizontal_offset += padding.left;
 }
 
-static void
-geda_menu_item_position_menu (GedaMenu  *menu,
-                              int       *x,
-                              int       *y,
-                              bool      *push_in,
-                              void      *user_data)
+static void geda_menu_item_position_menu (GedaMenu  *menu,
+                                          int       *x,
+                                          int       *y,
+                                          bool      *push_in,
+                                          void      *user_data)
 {
   GedaMenuItem        *menu_item = (GedaMenuItem*)user_data;
   GedaMenuItemPrivate *priv = menu_item->priv;
@@ -3289,14 +3261,13 @@ geda_menu_item_position_menu (GedaMenu  *menu,
 
 #endif /* else !GTK_MAJOR_VERSION < 3*/
 
-char
-geda_menu_item_get_mnemonic (GedaMenuItem *menu_item)
+char geda_menu_item_get_mnemonic (GedaMenuItem *menu_item)
 {
   return menu_item->priv->mnemonic;
 }
 
-void
-geda_menu_item_set_mnemonic (GedaMenuItem *menu_item, char mnemonic)
+
+void geda_menu_item_set_mnemonic (GedaMenuItem *menu_item, char mnemonic)
 {
   menu_item->priv->mnemonic = mnemonic;
 }
@@ -3317,9 +3288,8 @@ geda_menu_item_set_mnemonic (GedaMenuItem *menu_item, char mnemonic)
  * \param [in] right_justified if %TRUE the menu item will appear at
  *                             the far right if added to a menu bar
  */
-void
-geda_menu_item_set_right_justified (GedaMenuItem *menu_item,
-                                    bool          right_justified)
+void geda_menu_item_set_right_justified (GedaMenuItem *menu_item,
+                                         bool          right_justified)
 {
   g_return_if_fail (GEDA_IS_MENU_ITEM(menu_item));
 
@@ -3339,8 +3309,7 @@ geda_menu_item_set_right_justified (GedaMenuItem *menu_item,
  *
  * \sa  geda_menu_item_set_right_justified()
  */
-bool
-geda_menu_item_get_right_justified (GedaMenuItem *menu_item)
+bool geda_menu_item_get_right_justified (GedaMenuItem *menu_item)
 {
   g_return_val_if_fail (GEDA_IS_MENU_ITEM(menu_item), FALSE);
 
@@ -3348,8 +3317,7 @@ geda_menu_item_get_right_justified (GedaMenuItem *menu_item)
 }
 
 
-static void
-geda_menu_item_show_all (GtkWidget *widget)
+static void geda_menu_item_show_all (GtkWidget *widget)
 {
   GedaMenuItem *menu_item = GEDA_MENU_ITEM(widget);
   GedaMenuItemPrivate *priv = menu_item->priv;
@@ -3363,8 +3331,7 @@ geda_menu_item_show_all (GtkWidget *widget)
   gtk_widget_show (widget);
 }
 
-static void
-geda_menu_item_hide_all (GtkWidget *widget)
+static void geda_menu_item_hide_all (GtkWidget *widget)
 {
   GedaMenuItem *menu_item = GEDA_MENU_ITEM(widget);
   GedaMenuItemPrivate *priv = menu_item->priv;
@@ -3379,9 +3346,8 @@ geda_menu_item_hide_all (GtkWidget *widget)
   }
 }
 
-static bool
-geda_menu_item_can_activate_accel (GtkWidget   *widget,
-                                   unsigned int signal_id)
+static bool geda_menu_item_can_activate_accel (GtkWidget   *widget,
+                                               unsigned int signal_id)
 {
   GtkWidget *parent;
 
@@ -3393,8 +3359,7 @@ geda_menu_item_can_activate_accel (GtkWidget   *widget,
           parent && gtk_widget_can_activate_accel (parent, signal_id));
 }
 
-static void
-geda_menu_item_accel_name_foreach (GtkWidget *widget, void *data)
+static void geda_menu_item_accel_name_foreach (GtkWidget *widget, void *data)
 {
   const char **path_p = data;
 
@@ -3424,11 +3389,10 @@ geda_menu_item_accel_name_foreach (GtkWidget *widget, void *data)
  *  parent menu is set.
  *  \see geda_menu_set_accel_path
  */
-void
-geda_menu_item_refresh_accel_path (GedaMenuItem  *menu_item,
-                                   const char    *prefix,
-                                   GtkAccelGroup *accel_group,
-                                   bool           group_changed)
+void geda_menu_item_refresh_accel_path (GedaMenuItem  *menu_item,
+                                        const char    *prefix,
+                                        GtkAccelGroup *accel_group,
+                                        bool           group_changed)
 {
   GedaMenuItemPrivate *priv;
   GtkWidget  *widget;
@@ -3507,8 +3471,8 @@ geda_menu_item_refresh_accel_path (GedaMenuItem  *menu_item,
  *                        item's functionality,or %NULL to unset the
  *                        current path
  */
-void
-geda_menu_item_set_accel_path (GedaMenuItem *menu_item, const char *accel_path)
+void geda_menu_item_set_accel_path (GedaMenuItem *menu_item,
+                                    const char   *accel_path)
 {
   GedaMenuItemPrivate *priv = menu_item->priv;
   GtkWidget *parent;
@@ -3542,8 +3506,9 @@ geda_menu_item_set_accel_path (GedaMenuItem *menu_item, const char *accel_path)
   }
 }
 
-static void
-geda_menu_item_parent_set (GtkWidget *widget, GtkWidget *previous_parent)
+/*! \internal widget_class->parent_set */
+static void geda_menu_item_parent_set (GtkWidget *widget,
+                                       GtkWidget *previous_parent)
 {
   GedaMenuItem *menu_item = GEDA_MENU_ITEM(widget);
   GedaMenu     *menu;
@@ -3575,27 +3540,24 @@ geda_menu_item_parent_set (GtkWidget *widget, GtkWidget *previous_parent)
  * \returns Accelerator path corresponding to this menu
  *          item’s functionality, or %NULL if not set
  */
-const char*
-geda_menu_item_get_accel_path (GedaMenuItem *menu_item)
+const char *geda_menu_item_get_accel_path (GedaMenuItem *menu_item)
 {
   g_return_val_if_fail (GEDA_IS_MENU_ITEM(menu_item), NULL);
 
   return menu_item->priv->accel_path;
 }
 
-unsigned short
-geda_menu_item_get_accel_width (GedaMenuItem  *menu_item)
+unsigned short geda_menu_item_get_accel_width (GedaMenuItem  *menu_item)
 {
   g_return_val_if_fail (GEDA_IS_MENU_ITEM(menu_item), FALSE);
 
   return menu_item->priv->accelerator_width;
 }
 
-static void
-geda_menu_item_forall (GtkContainer *container,
-                       bool          include_internals,
-                       GtkCallback   callback,
-                       void         *callback_data)
+static void geda_menu_item_forall (GtkContainer *container,
+                                   bool          include_internals,
+                                   GtkCallback   callback,
+                                   void         *callback_data)
 {
   GtkWidget *child;
 
@@ -3611,8 +3573,7 @@ geda_menu_item_forall (GtkContainer *container,
 
 /*! \internal
  * \param [in] menu_item should be validated by callers */
-static void
-geda_menu_item_ensure_label (GedaMenuItem *menu_item)
+static void geda_menu_item_ensure_label (GedaMenuItem *menu_item)
 {
   if (!gtk_bin_get_child ((GtkBin*)menu_item)) {
 
@@ -3634,8 +3595,7 @@ geda_menu_item_ensure_label (GedaMenuItem *menu_item)
  * geda_menu_shell_activate_mnemonic
  * geda_menu_bar_key_press
  */
-bool
-geda_menu_item_is_selectable (GedaMenuItem  *menu_item)
+bool geda_menu_item_is_selectable (GedaMenuItem  *menu_item)
 {
   if (menu_item != NULL) {
     if ((!gtk_bin_get_child ((GtkBin*)menu_item) &&
@@ -3650,8 +3610,7 @@ geda_menu_item_is_selectable (GedaMenuItem  *menu_item)
   return FALSE;
 }
 
-bool
-geda_menu_item_is_widget_selectable (GtkWidget *widget)
+bool geda_menu_item_is_widget_selectable (GtkWidget *widget)
 {
 
   if (widget != NULL) {
@@ -3676,8 +3635,7 @@ geda_menu_item_is_widget_selectable (GtkWidget *widget)
  *
  * \returns The toggle size of the \a menu_item
  */
-unsigned short
-geda_menu_item_get_toggle_size (GedaMenuItem  *menu_item)
+unsigned short geda_menu_item_get_toggle_size (GedaMenuItem  *menu_item)
 {
   return menu_item->priv->toggle_size;
 }
@@ -3691,8 +3649,7 @@ geda_menu_item_get_toggle_size (GedaMenuItem  *menu_item)
  *
  * \retval TRUE is the parent of \a menu_item is MenuBar.
  */
-bool
-geda_menu_item_get_from_menubar (GedaMenuItem *menu_item)
+bool geda_menu_item_get_from_menubar (GedaMenuItem *menu_item)
 {
   g_return_val_if_fail (GEDA_IS_MENU_ITEM(menu_item), FALSE);
 
@@ -3707,8 +3664,7 @@ geda_menu_item_get_from_menubar (GedaMenuItem *menu_item)
  * \param [in] menu_item a GedaMenuItem
  * \param [in] text      text to be used in the label
  */
-void
-geda_menu_item_set_label (GedaMenuItem *menu_item, const char *text)
+void geda_menu_item_set_label (GedaMenuItem *menu_item, const char *text)
 {
   g_return_if_fail (GEDA_IS_MENU_ITEM(menu_item));
 
@@ -3725,8 +3681,7 @@ geda_menu_item_set_label (GedaMenuItem *menu_item, const char *text)
  * \returns The text in the \a menu_item label. This is the internal
  *          string used by the label, and must not be modified.
  */
-const char*
-geda_menu_item_get_label (GedaMenuItem *menu_item)
+const char *geda_menu_item_get_label (GedaMenuItem *menu_item)
 {
   g_return_val_if_fail (GEDA_IS_MENU_ITEM(menu_item), NULL);
 
@@ -3742,8 +3697,7 @@ geda_menu_item_get_label (GedaMenuItem *menu_item)
  *
  * \returns GedaLabel object.
  */
-GtkWidget*
-geda_menu_item_get_label_widget (GedaMenuItem *menu_item)
+GtkWidget *geda_menu_item_get_label_widget (GedaMenuItem *menu_item)
 {
   g_return_val_if_fail (GEDA_IS_MENU_ITEM(menu_item), NULL);
 
@@ -3761,8 +3715,7 @@ geda_menu_item_get_label_widget (GedaMenuItem *menu_item)
  * \param [in] menu_item a GedaMenuItem
  * \param [in] setting   %TRUE if underlines in the text indicate mnemonics
  */
-void
-geda_menu_item_set_use_underline (GedaMenuItem *menu_item, bool setting)
+void geda_menu_item_set_use_underline (GedaMenuItem *menu_item, bool setting)
 {
   GtkWidget *child;
 
@@ -3791,8 +3744,7 @@ geda_menu_item_set_use_underline (GedaMenuItem *menu_item, bool setting)
  * \returns %TRUE if an embedded underline in the label
  *          indicates the mnemonic accelerator key.
  */
-bool
-geda_menu_item_get_use_underline (GedaMenuItem *menu_item)
+bool geda_menu_item_get_use_underline (GedaMenuItem *menu_item)
 {
   GtkWidget *child;
 
@@ -3817,8 +3769,7 @@ geda_menu_item_get_use_underline (GedaMenuItem *menu_item)
  * \param [in] menu_item a GedaMenuItem
  * \param [in] action    The action related to the menu item
  */
-void
-geda_menu_item_set_related_action (GedaMenuItem *menu_item, GtkAction *action)
+void geda_menu_item_set_related_action (GedaMenuItem *menu_item, GtkAction *action)
 {
   GedaMenuItemPrivate *priv = menu_item->priv;
 
@@ -3858,8 +3809,7 @@ geda_menu_item_set_related_action (GedaMenuItem *menu_item, GtkAction *action)
  * \param [in] menu_item a GedaMenuItem
  * \param [in] reserve   a the new value
  */
-void
-geda_menu_item_set_reserve_indicator (GedaMenuItem *menu_item, bool reserve)
+void geda_menu_item_set_reserve_indicator (GedaMenuItem *menu_item, bool reserve)
 {
   GedaMenuItemPrivate *priv;
 
@@ -3885,8 +3835,7 @@ geda_menu_item_set_reserve_indicator (GedaMenuItem *menu_item, bool reserve)
  * \returns %TRUE if \a menu_item always reserves space for the
  *          submenu indicator
  */
-bool
-geda_menu_item_get_reserve_indicator (GedaMenuItem *menu_item)
+bool geda_menu_item_get_reserve_indicator (GedaMenuItem *menu_item)
 {
   g_return_val_if_fail (GEDA_IS_MENU_ITEM(menu_item), FALSE);
 
@@ -3903,8 +3852,7 @@ geda_menu_item_get_reserve_indicator (GedaMenuItem *menu_item)
  * \returns %TRUE if \a menu_item always reserves space for the
  *          submenu indicator
  */
-bool
-geda_menu_item_get_show_submenu_indicator (GedaMenuItem  *menu_item)
+bool geda_menu_item_get_show_submenu_indicator (GedaMenuItem  *menu_item)
 {
   g_return_val_if_fail (GEDA_IS_MENU_ITEM(menu_item), FALSE);
 
@@ -3919,8 +3867,7 @@ geda_menu_item_get_show_submenu_indicator (GedaMenuItem  *menu_item)
  * \param [in] menu_item a GedaMenuItem
  * \param [in] show      Boolean value, if True the indicated will be shown
  */
-void
-geda_menu_item_set_show_submenu_indicator (GedaMenuItem  *menu_item, bool show)
+void geda_menu_item_set_show_submenu_indicator (GedaMenuItem  *menu_item, bool show)
 {
   GedaMenuItemPrivate *priv;
 
@@ -3943,9 +3890,8 @@ geda_menu_item_set_show_submenu_indicator (GedaMenuItem  *menu_item, bool show)
  * \param [in] menu_item      A GedaMenuItem
  * \param [in] use_appearance Whether the action appearance should be used
  */
-void
-geda_menu_item_set_use_action_appearance (GedaMenuItem *menu_item,
-                                          bool          use_appearance)
+void geda_menu_item_set_use_action_appearance (GedaMenuItem *menu_item,
+                                               bool          use_appearance)
 {
   GedaMenuItemPrivate *priv = menu_item->priv;
 
