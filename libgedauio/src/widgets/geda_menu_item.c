@@ -2620,8 +2620,6 @@ static void geda_real_menu_item_toggle_size_request (GedaMenuItem *menu_item,
 static void geda_real_menu_item_toggle_size_allocate (GedaMenuItem *menu_item,
                                                       int           allocation)
 {
-  g_return_if_fail (GEDA_IS_MENU_ITEM(menu_item));
-
   menu_item->priv->toggle_size = allocation;
 }
 
