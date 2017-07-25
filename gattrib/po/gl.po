@@ -491,15 +491,15 @@ msgstr ""
 msgid "Search and Replace Attribute value"
 msgstr ""
 
+# Locate Attribute
 #: gattrib/src/x_menus.c:382
-#, fuzzy
 msgid "Locate Attribute"
-msgstr "Editor de atributos gEDA"
+msgstr "Localizar o atributo"
 
+# Search for an attribute
 #: gattrib/src/x_menus.c:382
-#, fuzzy
 msgid "Search for an attribute"
-msgstr "Editor de atributos gEDA"
+msgstr "Buscar un atributo"
 
 #: gattrib/src/x_menus.c:383
 msgid "Locate Reference"
@@ -573,10 +573,10 @@ msgstr ""
 msgid "_Help"
 msgstr ""
 
+# Gattrib Guide
 #: gattrib/src/x_menus.c:403
-#, fuzzy
 msgid "Gattrib Guide"
-msgstr "Editor de atributos gEDA"
+msgstr "Guía de Gattrib"
 
 #: gattrib/src/x_menus.c:404
 msgid "Gattrib FAQ"
@@ -591,9 +591,8 @@ msgid "gEDA _Wiki..."
 msgstr ""
 
 #: gattrib/src/x_menus.c:408
-#, fuzzy
 msgid "gEDA Attributes"
-msgstr "Editor de atributos gEDA"
+msgstr "Atributos de GEDA"
 
 #: gattrib/src/x_menus.c:409
 msgid "gEDA Glossary"
