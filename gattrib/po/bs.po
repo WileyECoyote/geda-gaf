@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-07-18 23:44-0500\n"
+"POT-Creation-Date: 2017-07-25 00:26-0500\n"
 "PO-Revision-Date: 2012-01-27 14:17+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Bosnian <bs@li.org>\n"
@@ -71,7 +71,7 @@ msgid ""
 "\n"
 "Usage: %s [OPTIONS] filename1 ... filenameN\n"
 "\n"
-"\t-e, --export-csv export file to comma seperated values\n"
+"\t-e, --export-csv export file to comma separated values\n"
 "\t-h, --help       This help menu\n"
 "\t-q, --quiet      Enable quiet mode\n"
 "\t-v, --verbose    Enable verbose mode\n"
@@ -573,9 +573,8 @@ msgid "_Help"
 msgstr ""
 
 #: gattrib/src/x_menus.c:403
-#, fuzzy
 msgid "Gattrib Guide"
-msgstr "gEDA uređivač atributa"
+msgstr "Gattrib Vodič"
 
 #: gattrib/src/x_menus.c:404
 msgid "Gattrib FAQ"
@@ -590,9 +589,8 @@ msgid "gEDA _Wiki..."
 msgstr ""
 
 #: gattrib/src/x_menus.c:408
-#, fuzzy
 msgid "gEDA Attributes"
-msgstr "gEDA uređivač atributa"
+msgstr "gEDA atributa"
 
 #: gattrib/src/x_menus.c:409
 msgid "gEDA Glossary"
@@ -619,14 +617,13 @@ msgid "Display Standard Toolbar"
 msgstr ""
 
 #: gattrib/src/x_menus.c:419
-#, fuzzy
 msgid "A_ttribute"
-msgstr "gEDA uređivač atributa"
+msgstr "A_tributa"
 
+# Display Attribute Toolbar
 #: gattrib/src/x_menus.c:419
-#, fuzzy
 msgid "Display Attribute Toolbar"
-msgstr "gEDA uređivač atributa"
+msgstr "Ekran Atributa Toolbar"
 
 #: gattrib/src/x_menus.c:420
 msgid "_Attached"
@@ -717,14 +714,13 @@ msgid "Search and Replace attribute value"
 msgstr ""
 
 #: gattrib/src/x_toolbars.c:40
-#, fuzzy
 msgid "Attrib"
-msgstr "gEDA uređivač atributa"
+msgstr "atributa"
 
+# Locate attribute
 #: gattrib/src/x_toolbars.c:40
-#, fuzzy
 msgid "Locate attribute"
-msgstr "gEDA uređivač atributa"
+msgstr "Pronađite atribut"
 
 #: gattrib/src/x_toolbars.c:41
 msgid "Ref Des"
