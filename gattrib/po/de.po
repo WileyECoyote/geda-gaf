@@ -490,15 +490,15 @@ msgstr ""
 msgid "Search and Replace Attribute value"
 msgstr ""
 
+# Locate Attribute
 #: gattrib/src/x_menus.c:382
-#, fuzzy
 msgid "Locate Attribute"
-msgstr "gEDA Attribut editor"
+msgstr "Attribut suchen"
 
+# Search for an attribute
 #: gattrib/src/x_menus.c:382
-#, fuzzy
 msgid "Search for an attribute"
-msgstr "gEDA Attribut editor"
+msgstr "Suche nach einem Attribut"
 
 #: gattrib/src/x_menus.c:383
 msgid "Locate Reference"
@@ -572,10 +572,10 @@ msgstr ""
 msgid "_Help"
 msgstr ""
 
+# Gattrib Guide
 #: gattrib/src/x_menus.c:403
-#, fuzzy
 msgid "Gattrib Guide"
-msgstr "gEDA Attribut editor"
+msgstr "Gattrib Führer"
 
 #: gattrib/src/x_menus.c:404
 msgid "Gattrib FAQ"
