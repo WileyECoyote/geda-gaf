@@ -490,15 +490,15 @@ msgstr ""
 msgid "Search and Replace Attribute value"
 msgstr ""
 
+# Locate Attribute
 #: gattrib/src/x_menus.c:382
-#, fuzzy
 msgid "Locate Attribute"
-msgstr "gEDA uređivač atributa"
+msgstr "Pronađite atribut"
 
+# Search for an attribute
 #: gattrib/src/x_menus.c:382
-#, fuzzy
 msgid "Search for an attribute"
-msgstr "gEDA uređivač atributa"
+msgstr "Potražite atribut"
 
 #: gattrib/src/x_menus.c:383
 msgid "Locate Reference"
