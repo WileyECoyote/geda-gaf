@@ -65,7 +65,7 @@ void usage(char *cmd)
 "\n"
 "Usage: %s [OPTIONS] filename1 ... filenameN\n"
 "\n"
-"\t-e, --export-csv export file to comma seperated values\n"
+"\t-e, --export-csv export file to comma separated values\n"
 "\t-h, --help       This help menu\n"
 "\t-q, --quiet      Enable quiet mode\n"
 "\t-v, --verbose    Enable verbose mode\n"
