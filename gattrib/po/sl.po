@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-07-17 00:04-0500\n"
+"POT-Creation-Date: 2017-07-18 23:44-0500\n"
 "PO-Revision-Date: 2012-04-09 11:22+0000\n"
 "Last-Translator: Miha Gašperšič <mihec.gaspersic@gmail.com>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
@@ -469,10 +469,9 @@ msgstr "Pripisati izbrani atribut"
 msgid "_Demote Attribute"
 msgstr "_Demotejni atribut"
 
-# Dettach the selected attribute
-#: gattrib/src/x_menus.c:378
-#, fuzzy
-msgid "Dettach the selected attribute"
+# Detach the selected attribute
+#: gattrib/src/x_menus.c:378 gattrib/src/x_toolbars.c:48
+msgid "Detach the selected attribute"
 msgstr "Odstranite izbrani atribut"
 
 #: gattrib/src/x_menus.c:380
@@ -491,15 +490,15 @@ msgstr ""
 msgid "Search and Replace Attribute value"
 msgstr ""
 
+# Locate Attribute
 #: gattrib/src/x_menus.c:382
-#, fuzzy
 msgid "Locate Attribute"
-msgstr "gEDA urejevalnik atributov"
+msgstr "Poiščite atribut"
 
+# Search for an attribute
 #: gattrib/src/x_menus.c:382
-#, fuzzy
 msgid "Search for an attribute"
-msgstr "gEDA urejevalnik atributov"
+msgstr "Poiščite atribut"
 
 #: gattrib/src/x_menus.c:383
 msgid "Locate Reference"
@@ -747,10 +746,10 @@ msgstr ""
 msgid "add"
 msgstr ""
 
+# Add a new attribute
 #: gattrib/src/x_toolbars.c:46
-#, fuzzy
 msgid "Add a new attribute"
-msgstr "gEDA urejevalnik atributov"
+msgstr "Dodaj nov atribut"
 
 #: gattrib/src/x_toolbars.c:47
 msgid "promote"
@@ -759,11 +758,6 @@ msgstr ""
 #: gattrib/src/x_toolbars.c:48
 msgid "demote"
 msgstr ""
-
-# Dettach the selected attribute
-#: gattrib/src/x_toolbars.c:48
-msgid "Detach the selected attribute"
-msgstr "Odstranite izbrani atribut"
 
 #: gattrib/src/x_toolbars.c:49
 msgid "name"
