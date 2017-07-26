@@ -3846,10 +3846,10 @@ msgstr "brak"
 msgid "Menu/Cancel"
 msgstr "Menu/Anuluj"
 
+# Pan/Cancel
 #: gschem/src/x/x_status_bar.c:314
-#, fuzzy
 msgid "Pan/Cancel"
-msgstr "Menu/Anuluj"
+msgstr "Pan/Anuluj"
 
 #: gschem/src/x/x_status_bar.c:357
 msgid "Repeat/none"
@@ -3886,34 +3886,34 @@ msgstr ""
 msgid "Could not save Toolbar configuration to"
 msgstr "Nie udało się zapisać konfigurację pasku narzędzi, aby"
 
+# Error, Toolbar configuration key file
 #: gschem/src/x/x_toolbars.c:674
-#, fuzzy
 msgid "Error, Toolbar configuration key file"
-msgstr "Nie można wczytać konfiguracji gschem."
+msgstr "Błąd, plik klucza konfiguracji paska narzędzi"
 
 #: gschem/src/x/x_toolbars.c:682
 msgid "Retrieving toolbar geometry\n"
 msgstr ""
 
+# Toolbar configuration restored from
 #: gschem/src/x/x_toolbars.c:710
-#, fuzzy
 msgid "Toolbar configuration restored from"
-msgstr "Błąd podczas wczytywania pliku inicjalizacji scm"
+msgstr "Konfiguracja paska narzędzi została przywrócona"
 
+# Warning, error restoring toolbar configuration
 #: gschem/src/x/x_toolbars.c:715
-#, fuzzy
 msgid "Warning, error restoring toolbar configuration"
-msgstr "Nie można wczytać konfiguracji gschem."
+msgstr "Ostrzeżenie, przywracanie konfiguracji paska narzędzi"
 
+# Warning, toolbar configuration file access error
 #: gschem/src/x/x_toolbars.c:721
-#, fuzzy
 msgid "Warning, toolbar configuration file access error"
-msgstr "Nie można wczytać konfiguracji gschem."
+msgstr "Ostrzeżenie, błąd dostępu do pliku konfiguracji narzędzia"
 
+# Toolbar configuration not found
 #: gschem/src/x/x_toolbars.c:743
-#, fuzzy
 msgid "Toolbar configuration not found"
-msgstr "Błąd podczas wczytywania pliku inicjalizacji scm"
+msgstr "Nie znaleziono konfiguracji paska narzędzi"
 
 # Error during allocation of the graphics context
 #: gschem/src/x/x_window.c:116
@@ -3934,11 +3934,10 @@ msgstr "Nie można utworzyć kontekst Cairo jest okno drawable?\n"
 msgid "window is not valid"
 msgstr ""
 
-# Saving the toolbar settings
+# Saving main window settings
 #: gschem/src/x/x_window.c:201
-#, fuzzy
 msgid "Saving main window settings.\n"
-msgstr "Zapisywanie ustawień paska narzędzi..."
+msgstr "Zapisywanie ustawień okna głównego\n"
 
 #: gschem/src/x/x_window.c:308
 msgid "Retrieving main Window settings.\n"
@@ -3948,18 +3947,18 @@ msgstr ""
 msgid "Aborting action\n"
 msgstr ""
 
+# Close Window canceled
 #: gschem/src/x/x_window.c:677
-#, fuzzy
 msgid "Close Window canceled\n"
-msgstr "Zamykanie okna\n"
+msgstr "Zamknięte okno zostało anulowane\n"
 
 # load file
 #: gschem/src/x/x_window.c:760
 msgid "Loading file"
 msgstr "Wczytywanie pliku"
 
+# New file
 #: gschem/src/x/x_window.c:904
-#, fuzzy
 msgid "New file"
 msgstr "Nowy plik"
 
@@ -3972,10 +3971,10 @@ msgstr "Nie udało się załadować pliku"
 msgid "Creating new file"
 msgstr "Tworzenie nowego pliku"
 
+# Path
 #: gschem/src/x/x_window.c:989
-#, fuzzy
 msgid "Path"
-msgstr "Dodaj połączenie"
+msgstr "Ścieżka"
 
 #: gschem/src/x/x_window.c:992
 msgid ""
