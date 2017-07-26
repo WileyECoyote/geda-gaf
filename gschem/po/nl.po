@@ -520,9 +520,8 @@ msgid "Invalid type assignment, check"
 msgstr "Ongeldig type opdracht controleren"
 
 #: gschem/src/guile/g_rc.c:196
-#, fuzzy
 msgid "This is gEDA/gschem version"
-msgstr "U gebruikt gEDA/gaf versie"
+msgstr "Dit is gEDA/gschem versie"
 
 # But you have a version
 #: gschem/src/guile/g_rc.c:197
@@ -601,7 +600,6 @@ msgstr "Object ~A is niet direct bijgevoegd in een pagina."
 
 # Could not start URI
 #: gschem/src/guile/g_util.c:67
-#, fuzzy
 msgid "Could not launch URI"
 msgstr "Kan URI niet starten"
 
@@ -609,10 +607,10 @@ msgstr "Kan URI niet starten"
 msgid "Found invalid gschem window smob ~S"
 msgstr "Ongeldige gschem venster smob ~S gevonden"
 
+# current value of
 #: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5095
-#, fuzzy
 msgid "current value of"
-msgstr "Huidig blad"
+msgstr "Huidige waarde van"
 
 #: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5096
 msgid "is"
@@ -653,10 +651,10 @@ msgstr "Alles Opgeslagen"
 msgid "Error encountered, Save Failed"
 msgstr ""
 
+# Write Image
 #: gschem/src/iface/i_command.c:1093 gschem/src/x/x_image.c:489
-#, fuzzy
 msgid "Write Image"
-msgstr "Schrijf afbeelding..."
+msgstr "Schrijf afbeelding"
 
 #: gschem/src/iface/i_command.c:1115
 msgid "Write PDF"
@@ -725,10 +723,10 @@ msgstr "Zoek naar bron"
 msgid "Failed to descend into"
 msgstr "Faalde bij het afdalen in"
 
+# Hierarchy Error
 #: gschem/src/iface/i_command.c:3076
-#, fuzzy
 msgid "Hierarchy Error"
-msgstr "Hie_rarchie"
+msgstr "Hiërarchiefout"
 
 # Searching for symbol
 #: gschem/src/iface/i_command.c:3153
@@ -972,10 +970,10 @@ msgstr "documenten aan sessie"
 msgid "An error occurred attempting to save session"
 msgstr "Er is een fout opgetreden bij het opslaan van sessie"
 
+# Save session failed
 #: gschem/src/iface/i_sessions.c:1139
-#, fuzzy
 msgid "Save session failed"
-msgstr "Opslaan bestand"
+msgstr "Opslaan van sessie is mislukt"
 
 # show sessions at startup is now ENABLED
 #: gschem/src/iface/i_sessions.c:1230
@@ -1340,15 +1338,15 @@ msgstr ""
 msgid "An error occurred during an UNDO disk operation"
 msgstr "Er is een fout opgetreden tijdens een UNDO schijf operatie"
 
+# Undo/Redo disabled
 #: gschem/src/object/o_undo.c:477
-#, fuzzy
 msgid "Undo/Redo disabled\n"
-msgstr "Ongedaan/Opnieuw doen uitgeschakeld in rc bestand\n"
+msgstr "Ongedaan maken/Herstellen uitgeschakeld\n"
 
+# Undo error
 #: gschem/src/object/o_undo.c:563
-#, fuzzy
 msgid "Undo error"
-msgstr "Omvang"
+msgstr "Ontdoen fout"
 
 #: gschem/src/object/o_undo.c:565
 msgid "Undo failed"
@@ -4438,10 +4436,10 @@ msgstr "Ontgrendel geselecteerde objecten"
 msgid "_Redraw"
 msgstr "He_rtekenen"
 
+# Redraw the current window
 #: gschem/etc/system-gschemrc.scm:2197
-#, fuzzy
 msgid "Redraw the current window"
-msgstr "Tekenen het huidige venster"
+msgstr "Teken het huidige venster opnieuw in"
 
 #: gschem/etc/system-gschemrc.scm:2198
 msgid "_Pan"
@@ -4451,10 +4449,10 @@ msgstr "_Schuif"
 msgid "Activate Panning"
 msgstr ""
 
+# Zoom All
 #: gschem/etc/system-gschemrc.scm:2200
-#, fuzzy
 msgid "Zoom _All"
-msgstr "Toon _Maximaal"
+msgstr "Alleszoomen"
 
 #: gschem/etc/system-gschemrc.scm:2200
 msgid "Zoom to the limits of the drawing area"
@@ -5678,10 +5676,6 @@ msgstr "~S is geen geldige toetsencombinatie."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S is geen voorafgaande toetsen combinatie."
-
-#, fuzzy
-#~ msgid "Guile (version:"
-#~ msgstr "versie"
 
 #~ msgid "Toggle _Magnetic Net"
 #~ msgstr "_Magnetische Draad"
