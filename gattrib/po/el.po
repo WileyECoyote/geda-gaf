@@ -405,9 +405,8 @@ msgid "not found!"
 msgstr ""
 
 #: gattrib/src/x_find.c:277
-#, fuzzy
 msgid "Attribute"
-msgstr "Επεξεργαστής γνωρισμάτων gEDA"
+msgstr "Χαρακτηριστικό"
 
 #: gattrib/src/x_find.c:314
 msgid "Designator"
@@ -491,15 +490,15 @@ msgstr ""
 msgid "Search and Replace Attribute value"
 msgstr ""
 
+# Locate Attribute
 #: gattrib/src/x_menus.c:382
-#, fuzzy
 msgid "Locate Attribute"
-msgstr "Επεξεργαστής γνωρισμάτων gEDA"
+msgstr "Εντοπίστε το χαρακτηριστικό"
 
+# Search for an attribute
 #: gattrib/src/x_menus.c:382
-#, fuzzy
 msgid "Search for an attribute"
-msgstr "Επεξεργαστής γνωρισμάτων gEDA"
+msgstr "Αναζήτηση για ένα χαρακτηριστικό"
 
 #: gattrib/src/x_menus.c:383
 msgid "Locate Reference"
@@ -573,10 +572,10 @@ msgstr ""
 msgid "_Help"
 msgstr ""
 
+# Gattrib Guide
 #: gattrib/src/x_menus.c:403
-#, fuzzy
 msgid "Gattrib Guide"
-msgstr "Επεξεργαστής γνωρισμάτων gEDA"
+msgstr "Gattrib Οδηγός"
 
 #: gattrib/src/x_menus.c:404
 msgid "Gattrib FAQ"
@@ -590,10 +589,10 @@ msgstr ""
 msgid "gEDA _Wiki..."
 msgstr ""
 
+# gEDA Attributes
 #: gattrib/src/x_menus.c:408
-#, fuzzy
 msgid "gEDA Attributes"
-msgstr "Επεξεργαστής γνωρισμάτων gEDA"
+msgstr "GEDA Χαρακτηριστικά"
 
 #: gattrib/src/x_menus.c:409
 msgid "gEDA Glossary"
@@ -619,15 +618,15 @@ msgstr ""
 msgid "Display Standard Toolbar"
 msgstr ""
 
+# Attribute
 #: gattrib/src/x_menus.c:419
-#, fuzzy
 msgid "A_ttribute"
-msgstr "Επεξεργαστής γνωρισμάτων gEDA"
+msgstr "Χαρακτηριστικό"
 
+# Display Attribute Toolbar
 #: gattrib/src/x_menus.c:419
-#, fuzzy
 msgid "Display Attribute Toolbar"
-msgstr "Επεξεργαστής γνωρισμάτων gEDA"
+msgstr "Εμφάνιση γραμμής εργαλείων χαρακτηριστικών"
 
 #: gattrib/src/x_menus.c:420
 msgid "_Attached"
@@ -717,15 +716,15 @@ msgstr ""
 msgid "Search and Replace attribute value"
 msgstr ""
 
+# attribute
 #: gattrib/src/x_toolbars.c:40
-#, fuzzy
 msgid "Attrib"
-msgstr "Επεξεργαστής γνωρισμάτων gEDA"
+msgstr "Χαρακτηριστικό"
 
+# Locate attribute
 #: gattrib/src/x_toolbars.c:40
-#, fuzzy
 msgid "Locate attribute"
-msgstr "Επεξεργαστής γνωρισμάτων gEDA"
+msgstr "Εντοπισμός χαρακτηριστικού"
 
 #: gattrib/src/x_toolbars.c:41
 msgid "Ref Des"
