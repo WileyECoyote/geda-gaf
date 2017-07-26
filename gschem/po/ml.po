@@ -1052,50 +1052,61 @@ msgstr "സ്നാപ്പ് അപ്രാപ്തമാക്കുക�
 msgid "Resnap Active"
 msgstr "റീ-സ്നാപ്പ് സജീവ"
 
+# Restoring user settings
 #: gschem/src/iface/i_vars.c:386
 msgid "Restoring user settings\n"
-msgstr ""
+msgstr "ഉപയോക്തൃ ക്രമീകരണങ്ങൾ പുനഃസ്ഥാപിക്കുന്നു\n"
 
+# Initializing default configuration settings
 #: gschem/src/iface/i_vars.c:775
 msgid "Initializing default configuration settings\n"
-msgstr ""
+msgstr "സ്ഥിരസ്ഥിതി കോൺഫിഗറേഷൻ ക്രമീകരണങ്ങൾ സമാരംഭിക്കുന്നു\n"
 
+# Failed to save user configuration to
 #: gschem/src/iface/i_vars.c:816
 msgid "Failed to save user configuration to"
-msgstr ""
+msgstr "ഉപയോക്തൃ കോൺഫിഗറേഷൻ എന്നതിലേക്ക് സംരക്ഷിക്കുന്നതിൽ പരാജയപ്പെട്ടു"
 
+# Closing Page
 #: gschem/src/iface/i_window.c:97
 msgid "Closing Page\n"
 msgstr "അടയ്ക്കുന്നു പേജ്\n"
 
+# Set page <%s> active
 #: gschem/src/iface/i_window.c:166
 #, c-format
 msgid "Set page <%s> active.\n"
-msgstr ""
+msgstr "പേജ് സജ്ജമാക്കുക <%s> സജീവമാണ്.\n"
 
+# Really revert page
 #: gschem/src/iface/i_window.c:261
 msgid "Really revert page?"
-msgstr ""
+msgstr "യഥാർത്ഥത്തിൽ പഴയപടിയാക്കണോ?"
 
+# An error occurred while processing request to revert
 #: gschem/src/iface/i_window.c:317
 msgid "An error occurred while processing request to revert"
-msgstr ""
+msgstr "പഴയപടിയാക്കാനുള്ള അഭ്യർത്ഥന പ്രോസസ്സ് ചെയ്യുന്നതിനിടയിൽ ഒരു പിശക് സംഭവിച്ചു"
 
+# File error
 #: gschem/src/iface/i_window.c:321
 msgid "<b>File error.</b>"
-msgstr ""
+msgstr "<b>ഫയൽ പിശക്.</b>"
 
+# Revert failed
 #: gschem/src/iface/i_window.c:321
 msgid "Revert failed"
-msgstr ""
+msgstr "പഴയപടിയാക്കൽ പരാജയപ്പെട്ടു"
 
+# Error encountered during file operation
 #: gschem/src/iface/i_window.c:328
 msgid "Error encountered during file operation"
-msgstr ""
+msgstr "ഫയൽ പ്രവർത്തന വേളയിൽ പിശക് നേരിട്ടു"
 
+# Recovery: undo last action
 #: gschem/src/iface/i_window.c:329
 msgid "Recovery: undo last action\n"
-msgstr ""
+msgstr "വീണ്ടെടുക്കൽ: അവസാന പ്രവർത്തനം പഴയപടിയാക്കുക\n"
 
 #: gschem/src/object/o_break.c:186 gschem/src/object/o_break.c:519
 #: gschem/src/object/o_break.c:842
