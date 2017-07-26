@@ -491,15 +491,15 @@ msgstr ""
 msgid "Search and Replace Attribute value"
 msgstr ""
 
+# Locate Attribute
 #: gattrib/src/x_menus.c:382
-#, fuzzy
 msgid "Locate Attribute"
-msgstr "gEDA യുടെ കമ്പോണന്‍ടു  സവിശേഷത എഡിറ്റര്‍"
+msgstr "ആട്രിബ്യൂട്ട് കണ്ടെത്തുക"
 
+# Search for an attribute
 #: gattrib/src/x_menus.c:382
-#, fuzzy
 msgid "Search for an attribute"
-msgstr "gEDA യുടെ കമ്പോണന്‍ടു  സവിശേഷത എഡിറ്റര്‍"
+msgstr "ഒരു ആട്രിബ്യൂട്ടിനായി തിരയുക"
 
 #: gattrib/src/x_menus.c:383
 msgid "Locate Reference"
@@ -573,10 +573,10 @@ msgstr ""
 msgid "_Help"
 msgstr ""
 
+# Gattrib Guide
 #: gattrib/src/x_menus.c:403
-#, fuzzy
 msgid "Gattrib Guide"
-msgstr "gEDA യുടെ കമ്പോണന്‍ടു  സവിശേഷത എഡിറ്റര്‍"
+msgstr "ഗട്ടിബ് ഗൈഡ്"
 
 #: gattrib/src/x_menus.c:404
 msgid "Gattrib FAQ"
@@ -591,9 +591,8 @@ msgid "gEDA _Wiki..."
 msgstr ""
 
 #: gattrib/src/x_menus.c:408
-#, fuzzy
 msgid "gEDA Attributes"
-msgstr "gEDA യുടെ കമ്പോണന്‍ടു  സവിശേഷത എഡിറ്റര്‍"
+msgstr "gEDA ഗുണവിശേഷങ്ങൾ"
 
 #: gattrib/src/x_menus.c:409
 msgid "gEDA Glossary"
