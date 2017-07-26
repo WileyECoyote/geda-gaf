@@ -1204,49 +1204,60 @@ msgstr ""
 msgid "New slot number [%d], is out of range\n"
 msgstr ""
 
+# Undo: using temporary directory specified on command-line
 #: gschem/src/object/o_undo.c:78
 msgid "Undo: using temporary directory specified on command-line"
-msgstr ""
+msgstr "واگرد: استفاده از دایرکتوری موقت مشخص شده در خط فرمان"
 
+# Directory is not read/writable, check permissions
 #: gschem/src/object/o_undo.c:121
 msgid "Directory is not read/writable, check permissions"
-msgstr ""
+msgstr "دایرکتوری خواندن / نوشتن نیست، مجوزها را بررسی کنید"
 
+# Auto switching Undo system to type Memory
 #: gschem/src/object/o_undo.c:122
 msgid "Auto switching Undo system to type Memory"
-msgstr ""
+msgstr "سوئیچینگ خودکار لغو سیستم برای تایپ کردن حافظه"
 
+# Gschem Undo System
 #: gschem/src/object/o_undo.c:127
 msgid "Gschem Undo System"
-msgstr ""
+msgstr "Gschem لغو سیستم"
 
+# Undo: encountered an error, file
 #: gschem/src/object/o_undo.c:266
 msgid "Undo: encountered an error, file"
-msgstr ""
+msgstr "واگرد: با یک خطا، فایل مواجه شد"
 
+# Undo: system error
 #: gschem/src/object/o_undo.c:267
 msgid "Undo: system error"
-msgstr ""
+msgstr "واگرد: خطای سیستم"
 
+# switching to memory mode
 #: gschem/src/object/o_undo.c:268
 msgid "switching to MEMORY mode"
-msgstr ""
+msgstr "تغییر به حالت حافظه"
 
+# There was an error in the undo disk operation
 #: gschem/src/object/o_undo.c:474
 msgid "An error occurred during an UNDO disk operation"
-msgstr ""
+msgstr "در عملیات دیسک خنثی خطایی رخ داد"
 
+# Undo/Redo disabled
 #: gschem/src/object/o_undo.c:477
 msgid "Undo/Redo disabled\n"
-msgstr ""
+msgstr "واگرد / لغو غیرفعال\n"
 
+# Undo error
 #: gschem/src/object/o_undo.c:563
 msgid "Undo error"
-msgstr ""
+msgstr "واگرد خطا"
 
+# Undo failed
 #: gschem/src/object/o_undo.c:565
 msgid "Undo failed"
-msgstr ""
+msgstr "واگرد شکست خورد"
 
 #: gschem/src/x/x_autonumber.c:600
 msgid ""
