@@ -405,9 +405,8 @@ msgid "not found!"
 msgstr ""
 
 #: gattrib/src/x_find.c:277
-#, fuzzy
 msgid "Attribute"
-msgstr "Éditeur d'attributs gEDA"
+msgstr "Attribut"
 
 #: gattrib/src/x_find.c:314
 msgid "Designator"
@@ -619,14 +618,14 @@ msgid "Display Standard Toolbar"
 msgstr ""
 
 #: gattrib/src/x_menus.c:419
-#, fuzzy
 msgid "A_ttribute"
-msgstr "Éditeur d'attributs gEDA"
+msgstr "A_ttribut"
 
+# Display Attribute Toolbar
 #: gattrib/src/x_menus.c:419
-#, fuzzy
+
 msgid "Display Attribute Toolbar"
-msgstr "Éditeur d'attributs gEDA"
+msgstr "Afficher la barre d'outils de l'attribut"
 
 #: gattrib/src/x_menus.c:420
 msgid "_Attached"
@@ -717,14 +716,12 @@ msgid "Search and Replace attribute value"
 msgstr ""
 
 #: gattrib/src/x_toolbars.c:40
-#, fuzzy
 msgid "Attrib"
-msgstr "Éditeur d'attributs gEDA"
+msgstr "Attribut"
 
 #: gattrib/src/x_toolbars.c:40
-#, fuzzy
 msgid "Locate attribute"
-msgstr "Éditeur d'attributs gEDA"
+msgstr "Localiser l'attribut"
 
 #: gattrib/src/x_toolbars.c:41
 msgid "Ref Des"
@@ -746,10 +743,10 @@ msgstr ""
 msgid "add"
 msgstr ""
 
+# Add a new attribute
 #: gattrib/src/x_toolbars.c:46
-#, fuzzy
 msgid "Add a new attribute"
-msgstr "Éditeur d'attributs gEDA"
+msgstr "Ajouter un nouvel attribut"
 
 #: gattrib/src/x_toolbars.c:47
 msgid "promote"
