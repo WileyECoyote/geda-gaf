@@ -324,9 +324,8 @@ msgid "Set the string for the Right Button Text"
 msgstr ""
 
 #: gschem/src/base/gschem_status_bar.c:648
-#, fuzzy
 msgid "Snap Mode"
-msgstr "Kopyalama Kipi"
+msgstr "Snap Modu"
 
 #: gschem/src/base/gschem_status_bar.c:649
 msgid "Sets the Snap Mode to display on the status bar"
@@ -340,10 +339,10 @@ msgstr ""
 msgid "Sets the Size Mode to display on the status bar"
 msgstr ""
 
+# Status Text
 #: gschem/src/base/gschem_status_bar.c:668
-#, fuzzy
 msgid "Status Text"
-msgstr "Metni Düzenle"
+msgstr "Durum Metni"
 
 #: gschem/src/base/gschem_status_bar.c:669
 msgid "Set the string for the text on the Status Bar"
@@ -351,14 +350,13 @@ msgstr ""
 
 #: gschem/src/base/gschem_status_bar.c:675
 #: gschem/src/base/gschem_status_bar.c:676
-#, fuzzy
 msgid "Status State"
-msgstr "Metni Düzenle"
+msgstr "Durum Durumu"
 
+# Status Bar Height
 #: gschem/src/base/gschem_status_bar.c:689
-#, fuzzy
 msgid "Status Bar Height"
-msgstr "Metni Düzenle"
+msgstr "Durum Çubuğu Yüksekliği"
 
 #: gschem/src/base/gschem_status_bar.c:690
 msgid "Set or get the height of the status bar"
@@ -5445,30 +5443,35 @@ msgstr ""
 msgid "Turn Grid Off"
 msgstr ""
 
+# Cycle Grid Mode
 #: gschem/scheme/gschem/builtins.scm:475
-#, fuzzy
 msgid "Cycle Grid Mode"
-msgstr "Ayna modu"
+msgstr "Çevrim Izgarası Modu"
 
+# Increase Grid Spacing
 #: gschem/scheme/gschem/builtins.scm:478
 msgid "Increase Grid Spacing"
-msgstr ""
+msgstr "Izgara Aralıklarını Artırma"
 
+# Decrease Grid Spacing
 #: gschem/scheme/gschem/builtins.scm:481
 msgid "Decrease Grid Spacing"
-msgstr ""
+msgstr "Izgara Aralıksını Azalt"
 
+# Set Snap Spacing
 #: gschem/scheme/gschem/builtins.scm:484
 msgid "Set Snap Spacing"
-msgstr ""
+msgstr "Atış Aralığını Ayarla"
 
+# Turn Snap off => disable snapping
 #: gschem/scheme/gschem/builtins.scm:487
 msgid "Turn Snap off"
-msgstr ""
+msgstr "Yakalamayı devre dışı bırak"
 
+# Turn Snap on => enable snapping
 #: gschem/scheme/gschem/builtins.scm:490
 msgid "Turn Snap on"
-msgstr ""
+msgstr "Yakalamayı etkinleştir"
 
 # Cycle Snap Mode
 #: gschem/scheme/gschem/builtins.scm:493
@@ -5565,10 +5568,10 @@ msgstr ""
 msgid "Export embed symbol"
 msgstr ""
 
+# Export embed picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "Export embed picture"
-msgstr "Bileşen/Resim göm"
+msgstr "Resim gömme dışa aktar"
 
 #: gschem/scheme/gschem/keymap.scm:41
 #, scheme-format
@@ -5579,16 +5582,3 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
-
-# version
-#, fuzzy
-#~ msgid "Guile (version:"
-#~ msgstr "Versiyon"
-
-#, fuzzy
-#~ msgid "session"
-#~ msgstr "Tümünü kaydet"
-
-#, fuzzy
-#~ msgid "documents\n"
-#~ msgstr "Sayfayı Kapat"
