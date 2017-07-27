@@ -445,35 +445,35 @@ msgstr ""
 msgid "Paste"
 msgstr ""
 
+# Add new Attribute
 #: gattrib/src/x_menus.c:375
-#, fuzzy
 msgid "_Add new Attribute"
-msgstr "gEDA Özellik Düzenleyicisi"
+msgstr "Yeni Özellik Ekle"
 
+# Delete Attribute
 #: gattrib/src/x_menus.c:376
-#, fuzzy
 msgid "D_elete Attribute"
-msgstr "gEDA Özellik Düzenleyicisi"
+msgstr "Özniteliği Sil"
 
+# Promote Attribute
 #: gattrib/src/x_menus.c:377
-#, fuzzy
 msgid "_Promote Attribute"
-msgstr "gEDA Özellik Düzenleyicisi"
+msgstr "Öznitelik Tanıtma"
 
+# Attach the selected attribute
 #: gattrib/src/x_menus.c:377 gattrib/src/x_toolbars.c:47
-#, fuzzy
 msgid "Attach the selected attribute"
-msgstr "gEDA Özellik Düzenleyicisi"
+msgstr "Seçili özniteliği ekle"
 
+# Demote Attribute
 #: gattrib/src/x_menus.c:378
-#, fuzzy
 msgid "_Demote Attribute"
-msgstr "gEDA Özellik Düzenleyicisi"
+msgstr "Özelliği Done Verme"
 
+# Detach the selected attribute
 #: gattrib/src/x_menus.c:378 gattrib/src/x_toolbars.c:48
-#, fuzzy
 msgid "Detach the selected attribute"
-msgstr "gEDA Özellik Düzenleyicisi"
+msgstr "Seçili özniteliği ayırın"
 
 #: gattrib/src/x_menus.c:380
 msgid "Find Value"
@@ -491,15 +491,15 @@ msgstr ""
 msgid "Search and Replace Attribute value"
 msgstr ""
 
+# Locate Attribute
 #: gattrib/src/x_menus.c:382
-#, fuzzy
 msgid "Locate Attribute"
-msgstr "gEDA Özellik Düzenleyicisi"
+msgstr "Özniteliği Bul"
 
+# Search for an attribute
 #: gattrib/src/x_menus.c:382
-#, fuzzy
 msgid "Search for an attribute"
-msgstr "gEDA Özellik Düzenleyicisi"
+msgstr "Search for an attribute"
 
 #: gattrib/src/x_menus.c:383
 msgid "Locate Reference"
