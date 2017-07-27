@@ -4115,15 +4115,15 @@ msgstr "抵消"
 msgid "Offset the selected objects"
 msgstr "偏移所选对象"
 
+# Rotate 90
 #: gschem/etc/system-gschemrc.scm:2116
-#, fuzzy
 msgid "Rotate _90"
-msgstr "旋转 90 度"
+msgstr "旋转90"
 
+# Snap to grid
 #: gschem/etc/system-gschemrc.scm:2117
-#, fuzzy
 msgid "Snap to _grid"
-msgstr "复制模式"
+msgstr "对齐网格"
 
 #: gschem/etc/system-gschemrc.scm:2117
 msgid "Snap selection to current grid"
@@ -4141,18 +4141,18 @@ msgstr ""
 msgid "Break a linear object into separate objects"
 msgstr ""
 
+# Extend
 #: gschem/etc/system-gschemrc.scm:2122
-#, fuzzy
 msgid "E_xtend"
-msgstr "放大"
+msgstr "延伸"
 
+# Edit
 #: gschem/etc/system-gschemrc.scm:2125
-#, fuzzy
 msgid "_Edit..."
 msgstr "编辑..."
 
+# Edit Text
 #: gschem/etc/system-gschemrc.scm:2126
-#, fuzzy
 msgid "E_dit Text..."
 msgstr "编辑文本..."
 
@@ -4160,20 +4160,20 @@ msgstr "编辑文本..."
 msgid "Open the Text Editor Dialog"
 msgstr ""
 
+# Color
 #: gschem/etc/system-gschemrc.scm:2127
-#, fuzzy
 msgid "Co_lor..."
 msgstr "颜色..."
 
+# Edit Pin
 #: gschem/etc/system-gschemrc.scm:2128
-#, fuzzy
 msgid "Edit Pi_n..."
-msgstr "编辑文本..."
+msgstr "编辑引脚..."
 
+# Line Width & Type
 #: gschem/etc/system-gschemrc.scm:2129
-#, fuzzy
 msgid "Line _Width & Type..."
-msgstr "线宽和线型..."
+msgstr "线宽和类型..."
 
 #: gschem/etc/system-gschemrc.scm:2129
 msgid "Open the Line Editor Dialog"
@@ -4194,9 +4194,8 @@ msgid "Edit Component..."
 msgstr "更新组件..."
 
 #: gschem/etc/system-gschemrc.scm:2132
-#, fuzzy
 msgid "_Slot..."
-msgstr "属性..."
+msgstr "插槽..."
 
 #: gschem/etc/system-gschemrc.scm:2132
 msgid "Open the Slot Editor Dialog"
@@ -4206,20 +4205,19 @@ msgstr ""
 msgid "Activate Deselect mode"
 msgstr ""
 
+# Select All
 #: gschem/etc/system-gschemrc.scm:2139 gschem/scheme/gschem/builtins.scm:173
-#, fuzzy
 msgid "Select All"
-msgstr "选择模式"
+msgstr "全選"
 
 #: gschem/etc/system-gschemrc.scm:2139
-#, fuzzy
 msgid "Select all objects"
-msgstr "选择模式"
+msgstr "選擇所有對象"
 
+# Deselect All
 #: gschem/etc/system-gschemrc.scm:2140 gschem/scheme/gschem/builtins.scm:185
-#, fuzzy
 msgid "Deselect All"
-msgstr "选择模式"
+msgstr "取消全選"
 
 #: gschem/etc/system-gschemrc.scm:2140
 msgid "Unselect everything"
