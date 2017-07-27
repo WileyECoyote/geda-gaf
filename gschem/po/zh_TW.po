@@ -4139,15 +4139,15 @@ msgstr "抵消"
 msgid "Offset the selected objects"
 msgstr "偏移所選對象"
 
+# Rotate 90
 #: gschem/etc/system-gschemrc.scm:2116
-#, fuzzy
 msgid "Rotate _90"
-msgstr "旋轉"
+msgstr "旋转90"
 
+# Snap to grid
 #: gschem/etc/system-gschemrc.scm:2117
-#, fuzzy
 msgid "Snap to _grid"
-msgstr "複製模式"
+msgstr "對齊網格"
 
 #: gschem/etc/system-gschemrc.scm:2117
 msgid "Snap selection to current grid"
@@ -4204,10 +4204,10 @@ msgstr "線寬和類型..."
 msgid "Open the Line Editor Dialog"
 msgstr ""
 
+# Fill T_ype
 #: gschem/etc/system-gschemrc.scm:2130
-#, fuzzy
 msgid "Fill T_ype..."
-msgstr "編輯文字..."
+msgstr "填充类型..."
 
 #: gschem/etc/system-gschemrc.scm:2130
 msgid "Open the Fill Editor Dialog"
@@ -4236,10 +4236,10 @@ msgstr "激活取消選擇模式"
 msgid "Select All"
 msgstr ""
 
+# Select all objects
 #: gschem/etc/system-gschemrc.scm:2139
-#, fuzzy
 msgid "Select all objects"
-msgstr "選擇物件"
+msgstr "选择所有对象"
 
 #: gschem/etc/system-gschemrc.scm:2140 gschem/scheme/gschem/builtins.scm:185
 msgid "Deselect All"
