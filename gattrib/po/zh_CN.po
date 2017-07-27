@@ -404,10 +404,10 @@ msgstr ""
 msgid "not found!"
 msgstr ""
 
+# Attribute
 #: gattrib/src/x_find.c:277
-#, fuzzy
 msgid "Attribute"
-msgstr "gEDA 属性编辑器"
+msgstr "属性"
 
 #: gattrib/src/x_find.c:314
 msgid "Designator"
@@ -445,35 +445,35 @@ msgstr ""
 msgid "Paste"
 msgstr ""
 
+# Add new Attribute
 #: gattrib/src/x_menus.c:375
-#, fuzzy
 msgid "_Add new Attribute"
-msgstr "gEDA 属性编辑器"
+msgstr "添加新属性"
 
+# Delete Attribute
 #: gattrib/src/x_menus.c:376
-#, fuzzy
 msgid "D_elete Attribute"
-msgstr "gEDA 属性编辑器"
+msgstr "删除属性"
 
+# Promote Attribute
 #: gattrib/src/x_menus.c:377
-#, fuzzy
 msgid "_Promote Attribute"
-msgstr "gEDA 属性编辑器"
+msgstr "促进属性"
 
+# Attach the selected attribute
 #: gattrib/src/x_menus.c:377 gattrib/src/x_toolbars.c:47
-#, fuzzy
 msgid "Attach the selected attribute"
-msgstr "gEDA 属性编辑器"
+msgstr "附加所选属性"
 
+# Demote Attribute
 #: gattrib/src/x_menus.c:378
-#, fuzzy
 msgid "_Demote Attribute"
-msgstr "gEDA 属性编辑器"
+msgstr "降级属性"
 
+# Detach the selected attribute
 #: gattrib/src/x_menus.c:378 gattrib/src/x_toolbars.c:48
-#, fuzzy
 msgid "Detach the selected attribute"
-msgstr "gEDA 属性编辑器"
+msgstr "分离所选属性"
 
 #: gattrib/src/x_menus.c:380
 msgid "Find Value"
@@ -747,10 +747,10 @@ msgstr ""
 msgid "add"
 msgstr ""
 
+# Add a new attribute
 #: gattrib/src/x_toolbars.c:46
-#, fuzzy
 msgid "Add a new attribute"
-msgstr "gEDA 属性编辑器"
+msgstr "添加一个新属性"
 
 #: gattrib/src/x_toolbars.c:47
 msgid "promote"
