@@ -5464,53 +5464,49 @@ msgstr "Reverter tudo"
 msgid "Up Hierarchy"
 msgstr "Hierarquia ascendente"
 
+# Add Component
 #: gschem/scheme/gschem/builtins.scm:341
-#, fuzzy
 msgid "Add Component"
-msgstr "/Inserir Componente..."
+msgstr "Adicionar Componente"
 
 # Add Net Connection
 #: gschem/scheme/gschem/builtins.scm:344
 msgid "Add Net"
 msgstr "Inserir Conexão"
 
+# Add Bus
 #: gschem/scheme/gschem/builtins.scm:347
 msgid "Add Bus"
-msgstr "Inserir Barramento"
+msgstr "Adicione Barramento"
 
 #: gschem/scheme/gschem/builtins.scm:353
-#, fuzzy
 msgid "Add Text"
-msgstr "/Inserir Texto"
+msgstr "Adicione texto"
 
 #: gschem/scheme/gschem/builtins.scm:356
-#, fuzzy
 msgid "Add Line"
-msgstr "Linha"
+msgstr "Adicionar linha"
 
 #: gschem/scheme/gschem/builtins.scm:359
 msgid "Add Pin"
 msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:362
-#, fuzzy
 msgid "Add Box"
-msgstr "/Inserir Barramento"
+msgstr "Adicionar Caixa"
 
 #: gschem/scheme/gschem/builtins.scm:365
-#, fuzzy
 msgid "Add Circle"
-msgstr "Círculo"
+msgstr "Adicionar Círculo"
 
 #: gschem/scheme/gschem/builtins.scm:368
-#, fuzzy
 msgid "Add Arc"
-msgstr "Inserir atributo"
+msgstr "Adicionar Arco"
 
 #: gschem/scheme/gschem/builtins.scm:374
 #, fuzzy
 msgid "Add Picture"
-msgstr "Imagem"
+msgstr "Adicionar Imagem"
 
 #: gschem/scheme/gschem/builtins.scm:380
 #, fuzzy
