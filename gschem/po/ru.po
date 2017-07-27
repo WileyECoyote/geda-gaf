@@ -5646,13 +5646,13 @@ msgstr "Показать текст"
 msgid "Autonumber Text"
 msgstr "Автонумерация"
 
+# Show Console Window
 #: gschem/scheme/gschem/builtins.scm:439
-#, fuzzy
 msgid "Show Console Window"
-msgstr "Показать окно координат"
+msgstr "Показать окно консоли"
 
+# Show Coordinates Window
 #: gschem/scheme/gschem/builtins.scm:442
-#, fuzzy
 msgid "Show Coordinates Window"
 msgstr "Показать окно координат"
 
@@ -5660,24 +5660,25 @@ msgstr "Показать окно координат"
 msgid "Translate Symbol"
 msgstr "Сместить символ"
 
+# Dots Grid Style
 #: gschem/scheme/gschem/builtins.scm:466
-#, fuzzy
 msgid "Dots Grid Style"
-msgstr "Переключить стиль сетки"
+msgstr "Стиль сетки точек"
 
+# Mesh Grid Style
 #: gschem/scheme/gschem/builtins.scm:469
-#, fuzzy
 msgid "Mesh Grid Style"
-msgstr "Переключить стиль сетки"
+msgstr "Стиль сетки меш"
 
+# Turn Grid Off
 #: gschem/scheme/gschem/builtins.scm:472
 msgid "Turn Grid Off"
-msgstr ""
+msgstr "Переключить сетки от"
 
+# Cycle Grid Mode
 #: gschem/scheme/gschem/builtins.scm:475
-#, fuzzy
 msgid "Cycle Grid Mode"
-msgstr "Сетка:"
+msgstr "Режим сетки цикла"
 
 #: gschem/scheme/gschem/builtins.scm:478
 msgid "Increase Grid Spacing"
@@ -5687,24 +5688,24 @@ msgstr "Увеличить шаг сетки"
 msgid "Decrease Grid Spacing"
 msgstr "Уменьшить шаг сетки"
 
+# Set Snap Spacing => Set Grid Step
 #: gschem/scheme/gschem/builtins.scm:484
-#, fuzzy
 msgid "Set Snap Spacing"
 msgstr "Задать шаг сетки"
 
+# Turn Snap off => disable snapping
 #: gschem/scheme/gschem/builtins.scm:487
-#, fuzzy
 msgid "Turn Snap off"
-msgstr "Привязка отключена"
+msgstr "Отключить привязку"
 
+# Turn Snap on => enable snapping
 #: gschem/scheme/gschem/builtins.scm:490
 msgid "Turn Snap on"
-msgstr ""
+msgstr "Включить привязку"
 
 #: gschem/scheme/gschem/builtins.scm:493
-#, fuzzy
 msgid "Cycle Snap Mode"
-msgstr "Привязка:"
+msgstr "Режим привязки цикла"
 
 #: gschem/scheme/gschem/builtins.scm:496
 msgid "Toggle Net Rubber Band"
