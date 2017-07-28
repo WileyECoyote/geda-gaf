@@ -1838,7 +1838,7 @@ static void set_property (GObject *object, unsigned int param_id, const GValue *
 }
 
 /*!
- * \brief Write the grid settings to the gschem "status bar."
+ * \brief Write the grid settings to the gschem "status bar"
  * \par Function Description
  *  This function creates the string for the Grid/Snap label on
  *  the status bar utilizing the classes internal scratch ram,
