@@ -4,6 +4,9 @@
       GEDA_OBJECT_NOTIFY, in gschem_macro_widget_set_label_text and
       gschem_macro_widget_set_macro_string.
 
+    * src/base/gschem_page_view.c: Replace g_object_notify with macro,
+      GEDA_OBJECT_NOTIFY, in gschem_page_view_set_[h,v]adjustment.
+
 2017-07-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/pt.po: Update Portuguese translations.

@@ -919,7 +919,7 @@ gschem_page_view_set_hadjustment (GschemPageView *view, GtkAdjustment *hadjustme
                       view);
   }
 
-  g_object_notify ((GObject*)view, "hadjustment");
+  GEDA_OBJECT_NOTIFY (view, "hadjustment");
 }
 
 
@@ -982,7 +982,7 @@ gschem_page_view_set_vadjustment (GschemPageView *view, GtkAdjustment *vadjustme
                       view);
   }
 
-  g_object_notify (G_OBJECT (view), "vadjustment");
+  GEDA_OBJECT_NOTIFY (view, "vadjustment");
 }
 
 
