@@ -514,7 +514,7 @@ geda_bulb_clicked (GtkButton *button)
 
     gtk_toggle_button_toggled (toggle_button);
 
-    g_object_notify ((GObject*)toggle_button, "active");
+    GEDA_OBJECT_NOTIFY (toggle_button, "active");
   }
 
   button_set_depressed (button, depressed);
@@ -1236,7 +1236,7 @@ geda_bulb_set_group (GtkWidget *widget, GSList *group)
 
   g_object_ref (bulb);
 
-  g_object_notify ((GObject*)bulb, "group");
+  GEDA_OBJECT_NOTIFY (bulb, "group");
 
   g_signal_emit (bulb, group_changed_signal, 0);
 

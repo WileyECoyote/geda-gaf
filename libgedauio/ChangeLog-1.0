@@ -4,6 +4,9 @@
       GEDA_OBJECT_NOTIFY, in geda_accel_label_set_accel_string and
       geda_accel_label_set_accel_widget.
 
+    * src/widgets/geda_bulb.c: Replace g_object_notify with macro,
+      GEDA_OBJECT_NOTIFY, in geda_bulb_clicked and geda_bulb_set_group.
+
 2017-07-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_item.c: Remove g_return_if_fail from
