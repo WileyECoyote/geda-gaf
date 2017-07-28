@@ -68,6 +68,9 @@
 #define GEDA_SIGNAL_CONNECT(object, signal, callback, data) \
     g_signal_connect(object, signal, (GCallback)callback, data);
 
+#define GEDA_OBJECT_NOTIFY(object, signal) \
+    g_object_notify ((GObject*)object, signal);
+
 /** @} endgroup geda-wrapper-macros */
 
 #endif
