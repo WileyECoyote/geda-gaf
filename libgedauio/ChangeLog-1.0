@@ -7,6 +7,13 @@
     * src/widgets/geda_bulb.c: Replace g_object_notify with macro,
       GEDA_OBJECT_NOTIFY, in geda_bulb_clicked and geda_bulb_set_group.
 
+    * src/widgets/geda_check_menu_item.c: Replace g_object_notify with
+      GEDA_OBJECT_NOTIFY macro in functions:
+
+          * geda_check_menu_item_activate
+          * geda_check_menu_item_toggle_size_request
+          * geda_check_menu_item_set_inconsistent
+
 2017-07-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_item.c: Remove g_return_if_fail from

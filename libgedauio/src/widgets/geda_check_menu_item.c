@@ -122,7 +122,7 @@ geda_check_menu_item_activate (GedaMenuItem *menu_item)
 
   ((GedaMenuItemClass*)geda_check_menu_item_parent_class)->activate (menu_item);
 
-  g_object_notify ((GObject*)check_menu_item, "active");
+  GEDA_OBJECT_NOTIFY (check_menu_item, "active");
 }
 
 /* menu_item_class->toggle_size_request */
@@ -677,7 +677,7 @@ geda_check_menu_item_set_draw_as_radio (GedaCheckMenuItem *check_menu_item,
 
     gtk_widget_queue_draw ((GtkWidget*)check_menu_item);
 
-    g_object_notify ((GObject*)check_menu_item, "draw-as-radio");
+    GEDA_OBJECT_NOTIFY (check_menu_item, "draw-as-radio");
   }
 }
 
@@ -726,7 +726,7 @@ geda_check_menu_item_set_inconsistent (GedaCheckMenuItem *check_menu_item,
 
     check_menu_item->inconsistent = setting;
     gtk_widget_queue_draw ((GtkWidget*)check_menu_item);
-    g_object_notify ((GObject*)check_menu_item, "inconsistent");
+    GEDA_OBJECT_NOTIFY (check_menu_item, "inconsistent");
   }
 }
 
