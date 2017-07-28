@@ -568,7 +568,7 @@ geda_accel_label_set_accel_string (GedaAccelLabel *accel_label,
     accel_label->accel_string = NULL;
   }
 
-  g_object_notify ((GObject*)accel_label, "accel-string");
+  GEDA_OBJECT_NOTIFY (accel_label, "accel-string");
 }
 
 /*! \brief GedaAccelLabel Type Class Initializer
@@ -832,7 +832,7 @@ geda_accel_label_set_accel_widget (GedaAccelLabel *accel_label,
       refetch_widget_accel_closure (accel_label);
     }
 
-    g_object_notify (G_OBJECT (accel_label), "accel-widget");
+    GEDA_OBJECT_NOTIFY (accel_label, "accel-widget");
   }
 }
 
