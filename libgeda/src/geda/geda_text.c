@@ -65,8 +65,7 @@ static GObjectClass *geda_text_parent_class = NULL;
  *
  *  \param [in]  o_current a text object
  */
-static int
-geda_text_bounds(GedaObject *o_current)
+static int geda_text_bounds(GedaObject *o_current)
 {
   /* Static was assigned by geda_text_class_init */
   GedaText *text = (GedaText*)o_current;
@@ -165,8 +164,7 @@ static void geda_text_instance_init(GTypeInstance *instance, void *g_class)
   object->visibility               = INVISIBLE;
 }
 
-static void
-geda_text_dispose(GObject *object)
+static void geda_text_dispose(GObject *object)
 {
   GedaText *text = GEDA_TEXT(object);
 
@@ -294,8 +292,7 @@ bool is_a_geda_text (const GedaText *txt)
  *
  * \return integer value of text alignment or LOWER_LEFT if \a txt is invalid.
  */
-int
-geda_text_get_alignment (const GedaText *txt)
+int geda_text_get_alignment (const GedaText *txt)
 {
   return is_a_geda_text(txt) ? txt->alignment : LOWER_LEFT;
 }
@@ -308,8 +305,7 @@ geda_text_get_alignment (const GedaText *txt)
  *
  * \return integer value of text angle or -0 if \a txt is invalid.
  */
-int
-geda_text_get_angle (const GedaText *txt)
+int geda_text_get_angle (const GedaText *txt)
 {
   return is_a_geda_text(txt) ? txt->angle : -0;
 }
@@ -323,8 +319,7 @@ geda_text_get_angle (const GedaText *txt)
  *
  * \return string or the NULL if \a txt is invalid.
  */
-const char*
-geda_text_get_disp_string (const GedaText *txt)
+const char *geda_text_get_disp_string (const GedaText *txt)
 {
   return is_a_geda_text(txt) ? txt->disp_string : NULL;
 }
@@ -337,8 +332,7 @@ geda_text_get_disp_string (const GedaText *txt)
  *
  * \return integer value of text size or the default size if \a txt is invalid.
  */
-int
-geda_text_get_size (const GedaText *txt)
+int geda_text_get_size (const GedaText *txt)
 {
   return is_a_geda_text(txt) ? txt->size : DEFAULT_TEXT_SIZE;
 }
@@ -352,8 +346,7 @@ geda_text_get_size (const GedaText *txt)
  *
  * \return string or the NULL if \a txt is invalid.
  */
-const char*
-geda_text_get_string (const GedaText *txt)
+const char *geda_text_get_string (const GedaText *txt)
 {
   return is_a_geda_text(txt) ? txt->string : NULL;
 }
@@ -366,8 +359,7 @@ geda_text_get_string (const GedaText *txt)
  *
  * \return integer value of X or -0 if \a txt is invalid.
  */
-int
-geda_text_get_x (const GedaText *txt)
+int geda_text_get_x (const GedaText *txt)
 {
   return is_a_geda_text(txt) ? txt->x : -0;
 }
@@ -380,8 +372,7 @@ geda_text_get_x (const GedaText *txt)
  *
  * \return integer value of Y or -0 if \a txt is invalid.
  */
-int
-geda_text_get_y (const GedaText *txt)
+int geda_text_get_y (const GedaText *txt)
 {
   return is_a_geda_text(txt) ? txt->y : -0;
 }

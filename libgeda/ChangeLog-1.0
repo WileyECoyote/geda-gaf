@@ -2,6 +2,8 @@
 
     * src/geda/geda_pin.c: Update function wrapping.
 
+    * src/geda/geda_text.c: Update function wrapping.
+
 2017-07-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/utility/u_string.c: Revamp unused geda_utility_string_scm2c to
