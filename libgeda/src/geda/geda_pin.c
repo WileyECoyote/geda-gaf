@@ -107,6 +107,7 @@ const char *geda_pin_lookup_estring(PIN_ELECT e_type) {
 
   return str;
 }
+
 PIN_MECH geda_pin_lookup_mtype(const char *m_str) {
 
   PIN_MECH index;
@@ -163,9 +164,8 @@ static void geda_pin_instance_init(GTypeInstance *instance, void *g_class)
   line->line_options.line_width = default_thick_pin_width;
 }
 
-static void
-geda_pin_set_property (GObject *object,     unsigned int  prop_id,
-                       const GValue *value, GParamSpec   *pspec)
+static void geda_pin_set_property (GObject *object,     unsigned int  prop_id,
+                                   const GValue *value, GParamSpec   *pspec)
 {
   GedaPin *pin = GEDA_PIN (object);
 
@@ -198,9 +198,8 @@ geda_pin_set_property (GObject *object,     unsigned int  prop_id,
   }
 }
 
-static void
-geda_pin_get_property (GObject *object, unsigned int  prop_id,
-                       GValue  *value,  GParamSpec   *pspec)
+static void geda_pin_get_property (GObject *object, unsigned int  prop_id,
+                                   GValue  *value,  GParamSpec   *pspec)
 {
   GedaPin *pin = GEDA_PIN (object);
   char s_val[4];
@@ -239,8 +238,7 @@ geda_pin_get_property (GObject *object, unsigned int  prop_id,
     }
 }
 
-static void
-geda_pin_dispose(GObject *object)
+static void geda_pin_dispose(GObject *object)
 {
   G_OBJECT_CLASS(geda_pin_parent_class)->dispose(object);
 }
@@ -473,8 +471,7 @@ bool geda_pin_set_electrical(GedaPin *pin, const char *electrical)
   return changed;
 }
 
-const char*
-geda_pin_get_label(GedaPin *pin)
+const char *geda_pin_get_label(GedaPin *pin)
 {
   g_return_val_if_fail(GEDA_IS_PIN(pin), NULL);
   return pin->label;
@@ -511,8 +508,7 @@ bool geda_pin_set_label(GedaPin *pin, const char *label)
   return changed;
 }
 
-const char*
-geda_pin_get_mechanical(GedaPin *pin)
+const char *geda_pin_get_mechanical(GedaPin *pin)
 {
   g_return_val_if_fail(GEDA_IS_PIN(pin), NULL);
   return pin->mechanical;
