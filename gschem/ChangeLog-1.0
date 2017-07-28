@@ -1,3 +1,9 @@
+2017-07-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/base/gschem_macro_widget.c: Replace g_object_notify with macro,
+      GEDA_OBJECT_NOTIFY, in gschem_macro_widget_set_label_text and
+      gschem_macro_widget_set_macro_string.
+
 2017-07-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/pt.po: Update Portuguese translations.

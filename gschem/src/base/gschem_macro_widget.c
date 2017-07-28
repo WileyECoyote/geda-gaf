@@ -443,7 +443,7 @@ gschem_macro_widget_set_label_text (GtkWidget *widget, const char *text)
    if (GSCHEM_IS_MACRO_WIDGET(widget)) {
      GschemMacroWidget *gmw = (GschemMacroWidget*)widget;
      geda_label_widget_set_text (gmw->label, text);
-     g_object_notify (G_OBJECT (widget), "label-text");
+     GEDA_OBJECT_NOTIFY (widget, "label-text");
    }
    else {
      BUG_MSG("widget is not a GschemMacroWidget");
@@ -468,7 +468,7 @@ gschem_macro_widget_set_macro_string (GtkWidget *widget, const char *str)
    if (GSCHEM_IS_MACRO_WIDGET(widget)) {
      GschemMacroWidget *gmw = (GschemMacroWidget*)widget;
      gtk_entry_set_text (GTK_ENTRY (gmw->entry), str);
-     g_object_notify (G_OBJECT (widget), "macro-string");
+     GEDA_OBJECT_NOTIFY (widget, "macro-string");
    }
    else {
      BUG_MSG("widget is not a GschemMacroWidget");
