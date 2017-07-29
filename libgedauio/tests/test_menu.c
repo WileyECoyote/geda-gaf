@@ -420,6 +420,69 @@ check_accessors ()
   return result;
 }
 
+static void
+popup_menu_detach (GtkWidget *menu_item, GedaMenu *menu)
+{
+  GedaMenuItem *item = (GedaMenuItem*)menu_item;
+
+}
+
+int
+check_methods ()
+{
+  int result = 0;
+
+  GtkWidget    *menu;
+  GtkWidget    *menu_bar;
+  GtkWidget    *widget0;
+  GtkWidget    *widget1;
+  GtkWidget    *widget2;
+  GtkWidget    *widget3;
+  GedaMenuItem *menu_item;
+  GtkWidget    *item;
+
+  widget0 = geda_menu_item_new_with_mnemonic("_Fruit");
+
+  menu      = geda_menu_new ();
+  menu_bar  = main_window();
+  menu_item = GEDA_MENU_ITEM(widget0);
+
+  geda_menu_append (menu_bar, widget0);
+
+  widget1    = geda_menu_item_new_with_mnemonic("_Cherry");
+  geda_menu_append (menu, widget1);
+  gtk_widget_show (widget1);
+
+  widget2    = geda_menu_item_new_with_mnemonic("_Apple");
+  geda_menu_append (menu, widget2);
+  gtk_widget_show (widget2);
+
+  widget3    = geda_menu_item_new_with_mnemonic("_Pears");
+  geda_menu_append (menu, widget3);
+  gtk_widget_show (widget3);
+
+  /* ----------- geda_menu_attach_to_widget ------------- */
+
+  GtkWidget *attached;
+
+  /* Alternative method to attach menu to a menu item */
+  geda_menu_attach_to_widget ((GedaMenu*)menu, widget0, popup_menu_detach);
+
+  attached = geda_menu_get_attach_widget((GedaMenu*)menu);
+
+  if (attached != menu_item) {
+    fprintf(stderr, "FAILED: %s line <%d> attach_to_widget\n", TWIDGET, __LINE__);
+    result++;
+  }
+
+  gtk_widget_show (menu);
+
+  /* ---------------------------------------------------- */
+
+  gtk_widget_destroy(gtk_widget_get_toplevel(widget0));
+  return result;
+}
+
 int
 main (int argc, char *argv[])
 {
@@ -459,6 +522,14 @@ main (int argc, char *argv[])
       }
       else {
         fprintf(stderr, "Caught signal checking accessors in %s\n\n", MUT);
+        return 1;
+      }
+
+      if (setjmp(point) == 0) {
+        result = check_methods();
+      }
+      else {
+        fprintf(stderr, "Caught signal checking methods in %s\n\n", MUT);
         return 1;
       }
     }

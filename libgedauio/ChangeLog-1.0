@@ -1,3 +1,7 @@
+2017-07-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_menu.c: Add check for geda_menu_attach_to_widget.
+
 2017-07-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_accel_label.c: Replace g_object_notify with macro,
