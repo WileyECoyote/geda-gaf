@@ -11,6 +11,8 @@
     * connector/*: Add description attributes, revise attributes:
 
             * connector/rs/rs232-idc10.sym
+            * connector/socket/ISA-98W-SOCKET-1.sym
+
 2017-07-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/switchreg/TPS61230A.sym: Add symbol; High efficiency adjustable
