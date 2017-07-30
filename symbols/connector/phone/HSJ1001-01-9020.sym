@@ -1,25 +1,13 @@
 v 20130414 2
-B 300 0 3000 2800 3 5 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 50 3050 9 10 0 0 0 0 1
-footprint=HSJ1001
-T 50 3250 9 10 0 0 0 0 1
-comment=spec2=TRS audio
-T 50 3450 9 10 0 0 0 0 1
-comment=spec1=3.6mm jack receptacle hole dia.
-T 50 3650 9 10 0 0 0 0 1
-description=two 3.5mm jacks, switch
-T 50 3850 9 10 0 0 0 0 1
-device=HSJ1001-01-1020
-T 50 4050 9 10 0 0 0 0 1
-dist-license=GPL
-T 50 4250 9 10 0 0 0 0 1
-use-license=unlimited
-T 50 4450 9 10 0 0 0 0 1
-author=John Griessen
-T 800 2850 9 14 1 1 0 3 1
+T 3300 2900 8 14 1 1 0 3 1
 refdes=J?
-T 2600 2550 9 14 1 1 0 3 1
-comment=Hosiden
+T 300 3300 9 10 1 1 0 0 1
+device=CONNECTOR
+T 300 2900 9 10 0 1 0 0 1
+value=HSJ1001-01-9020
+T 300 3900 9 10 0 0 0 0 1
+description=two 3.5mm jacks, switch
+B 300 0 3000 2800 3 5 0 0 -1 -1 0 -1 -1 -1 -1 -1
 P 0 900 300 900 1 0 0
 {
 T 350 900 9 14 1 1 0 1 1
@@ -353,5 +341,19 @@ L 1400 200 1200 200 3 5 0 0 -1 -1
 V 1900 200 50 3 5 0 0 -1 -1 0 -1 -1 -1 -1 -1
 L 1950 200 2050 200 3 5 0 0 -1 -1
 L 2050 200 2250 200 3 5 0 0 -1 -1
+T 300 3500 9 10 0 1 0 0 1
+comment=spec2=TRS audio
+T 300 3700 9 10 0 1 0 0 1
+comment=spec1=3.6mm jack receptacle hole dia.
+T 2600 2550 9 14 1 1 0 3 1
+comment=Hosiden
 T 600 100 9 10 0 0 0 0 1
 numslots=0
+T 300 3100 9 10 0 0 0 0 1
+footprint=HSJ1001
+T 300 4100 9 10 0 0 0 0 1
+dist-license=GPL
+T 300 4300 9 10 0 0 0 0 1
+use-license=unlimited
+T 300 4500 9 10 0 0 0 0 1
+author=John Griessen
