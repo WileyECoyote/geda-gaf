@@ -1,10 +1,11 @@
 2017-07-29 Wiley E. Hill <wileyhill@gmail.com>
 
-    * connector/phone: Update attributes, change device=HSJ1001-* to
-      device=CONNECTOR and add value=HSJ1001-*.
+    * connector/phone: Update attributes, change device=* to device=CONNECTOR
+      and add value=old device attribute value, update /clean symbols:
 
             * connector/phone/HSJ1001-01-9020.sym.sym
             * connector/phone/HSJ1001-clipped.sym
+            * connector/rj/RJ45-MagJack-1.sym
 
 2017-07-20 Wiley E. Hill <wileyhill@gmail.com>
 
