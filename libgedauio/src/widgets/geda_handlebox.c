@@ -692,9 +692,7 @@ geda_handle_box_remove (GtkContainer *container, GtkWidget *widget)
 static bool
 geda_handle_box_button_press (GtkWidget *widget, GdkEventButton *event)
 {
-  bool           event_handled;
-
-  event_handled   = FALSE;
+  bool event_handled = FALSE;
 
   if ((event->button == 1) && (event->type == GDK_BUTTON_PRESS)) {
 
