@@ -1,6 +1,6 @@
 2017-07-29 Wiley E. Hill <wileyhill@gmail.com>
 
-    * connector/phone: Update attributes, change device=* to device=CONNECTOR
+    * connector/*: Update attributes, change device=* to device=CONNECTOR
       and add value=old device attribute value, update /clean symbols:
 
             * connector/phone/HSJ1001-01-9020.sym.sym
@@ -8,6 +8,9 @@
             * connector/rj/RJ45-MagJack-1.sym
             * connector/rj/RJ45_8p8c_shield_led.sym
 
+    * connector/*: Add description attributes, revise attributes:
+
+            * connector/rs/rs232-idc10.sym
 2017-07-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/switchreg/TPS61230A.sym: Add symbol; High efficiency adjustable
