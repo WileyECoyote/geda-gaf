@@ -1,7 +1,10 @@
 2017-07-29 Wiley E. Hill <wileyhill@gmail.com>
 
-    * connector/phone/HSJ1001-01-9020.sym: Update device=HSJ1001-01-9020
-      attribute.
+    * connector/phone: Update attributes, change device=HSJ1001-* to
+      device=CONNECTOR and add value=HSJ1001-*.
+
+            * connector/phone/HSJ1001-01-9020.sym.sym
+            * connector/phone/HSJ1001-clipped.sym
 
 2017-07-20 Wiley E. Hill <wileyhill@gmail.com>
 
