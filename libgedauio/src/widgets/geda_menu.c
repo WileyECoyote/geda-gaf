@@ -1883,7 +1883,7 @@ geda_menu_realize (GtkWidget *widget)
 
   gdk_window_set_user_data (widget->window, widget);
 
-  border_width = ((GtkContainer*)widget)->border_width;
+  border_width = geda_get_container_border_width(widget);
 
   gtk_widget_style_get (GTK_WIDGET (menu),
                         "vertical-padding", &vertical_padding,
