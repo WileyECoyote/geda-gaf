@@ -2,6 +2,9 @@
 
     * connector/special/edge_conn_100-2.sym: Update device= attribute.
 
+    * connector/terminal/terminal-1.sym: change device=* to device=CONNECTOR,
+      update attributes, add description attribute.
+
     * connector/*: Add description attributes, update footprint, revise
       attributes:
 
