@@ -3,6 +3,7 @@
     * connector/*: Add description attributes, update device and footprint,
       revise attribute locations:
 
+            * emechanic/motor/dc_motor-1.sym
             * emechanic/motor/2phase-stepper-1.sym
             * emechanic/motor/4phase-stepper6-1.sym
             * emechanic/motor/4phase-stepper8-1.sym
