@@ -1,3 +1,8 @@
+2017-07-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_combobox.c: Replace gtk_container_add with
+      geda_container_add macro in geda_combo_box_menu_setup.
+
 2017-07-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_menu.c: Add check for geda_menu_attach_to_widget.

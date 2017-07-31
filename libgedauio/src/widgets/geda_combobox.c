@@ -3398,13 +3398,13 @@ geda_combo_box_menu_setup (GedaComboBox *combo_box, bool add_children)
     gtk_widget_set_parent (priv->button, gtk_widget_get_parent(child));
 
     priv->box = gtk_hbox_new (FALSE, 0);
-    gtk_container_add ((GtkContainer*)priv->button, priv->box);
+    geda_container_add (priv->button, priv->box);
 
     priv->separator = geda_vseparator_new ();
-    gtk_container_add ((GtkContainer*)priv->box, priv->separator);
+    geda_container_add (priv->box, priv->separator);
 
     priv->arrow = gtk_arrow_new (GTK_ARROW_DOWN, GTK_SHADOW_NONE);
-    gtk_container_add ((GtkContainer*)priv->box, priv->arrow);
+    geda_container_add (priv->box, priv->arrow);
 
     gtk_widget_show_all (priv->button);
   }
@@ -3420,7 +3420,7 @@ geda_combo_box_menu_setup (GedaComboBox *combo_box, bool add_children)
       gtk_widget_set_parent (priv->button, gtk_widget_get_parent(child));
 
       priv->arrow = gtk_arrow_new (GTK_ARROW_DOWN, GTK_SHADOW_NONE);
-      gtk_container_add ((GtkContainer*)priv->button, priv->arrow);
+      geda_container_add (priv->button, priv->arrow);
       gtk_widget_show_all (priv->button);
     }
 
