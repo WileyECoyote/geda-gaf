@@ -478,9 +478,11 @@ T 500 500 9 10 1 0 0 0 1
 PUP
 T 400 8050 9 10 1 1 0 0 1
 device=DC310ES
-T 400 8000 8 10 1 1 0 6 1
+T 2400 8050 8 10 1 1 0 6 1
 refdes=U?
-T 400 8100 9 10 0 0 0 0 1
+T 400 8350 5 10 1 1 0 0 1
+description=CPU, 16 bit
+T 400 8500 9 10 0 0 0 0 1
 numslots=0
-T 400 8100 9 10 0 0 0 0 1
-footprint=unknown
+T 400 8200 9 10 0 1 0 0 1
+footprint=DIP40
