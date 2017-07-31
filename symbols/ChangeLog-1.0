@@ -19,6 +19,8 @@
 
     * dec/DC8640-1.sym: Add description attribute, update footprint.
 
+    * dec/DS8641-1.sym: Add Quad Unified Bus Transceiver, for sake of completeness.
+
 2017-07-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/*: Update attributes, change device=* to device=CONNECTOR
