@@ -620,14 +620,13 @@ msgid "Display Standard Toolbar"
 msgstr ""
 
 #: gattrib/src/x_menus.c:419
-#, fuzzy
 msgid "A_ttribute"
-msgstr "Editor de Propiedades de gEDA"
+msgstr "A_tributo"
 
+# Display Attribute Toolbar
 #: gattrib/src/x_menus.c:419
-#, fuzzy
 msgid "Display Attribute Toolbar"
-msgstr "Editor de Propiedades de gEDA"
+msgstr "Barra de herramientas de atributos de visualización"
 
 #: gattrib/src/x_menus.c:420
 msgid "_Attached"
@@ -718,34 +717,32 @@ msgid "Search and Replace attribute value"
 msgstr ""
 
 #: gattrib/src/x_toolbars.c:40
-#, fuzzy
 msgid "Attrib"
-msgstr "Editor de Propiedades de gEDA"
+msgstr "Atributo"
 
 #: gattrib/src/x_toolbars.c:40
-#, fuzzy
 msgid "Locate attribute"
-msgstr "Editor de Propiedades de gEDA"
+msgstr "Localizar atributo"
 
 #: gattrib/src/x_toolbars.c:41
 msgid "Ref Des"
-msgstr ""
+msgstr "Designador de referencia"
 
 #: gattrib/src/x_toolbars.c:41
 msgid "Locate Reference Designator"
-msgstr ""
+msgstr "Localizar el Designador de Referencia"
 
 #: gattrib/src/x_toolbars.c:44
 msgid "invisible"
-msgstr ""
+msgstr "invisible"
 
 #: gattrib/src/x_toolbars.c:45
 msgid "visible"
-msgstr ""
+msgstr "visible"
 
 #: gattrib/src/x_toolbars.c:46
 msgid "add"
-msgstr ""
+msgstr "añadir"
 
 # Add a new attribute
 #: gattrib/src/x_toolbars.c:46
@@ -754,11 +751,11 @@ msgstr "Agregar un atributo nuevo"
 
 #: gattrib/src/x_toolbars.c:47
 msgid "promote"
-msgstr ""
+msgstr "promover"
 
 #: gattrib/src/x_toolbars.c:48
 msgid "demote"
-msgstr ""
+msgstr "degradar"
 
 #: gattrib/src/x_toolbars.c:49
 msgid "name"
