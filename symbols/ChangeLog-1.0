@@ -17,6 +17,8 @@
 
     * dec/DC319-1.sym: Add description attribute.
 
+    * dec/DC8640-1.sym: Add description attribute, update footprint.
+
 2017-07-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/*: Update attributes, change device=* to device=CONNECTOR
