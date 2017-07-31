@@ -4351,28 +4351,29 @@ msgstr "粘贴自 5"
 msgid "Insert contents of the fifth auxiliary buffer"
 msgstr ""
 
+# # Unlock selected objects
 #: gschem/etc/system-gschemrc.scm:2161
 msgid "Lock selected objects"
-msgstr ""
+msgstr "锁定所选对象"
 
 #: gschem/etc/system-gschemrc.scm:2162 gschem/scheme/gschem/builtins.scm:191
 msgid "Unlock"
 msgstr "解锁"
 
+# Unlock selected objects
 #: gschem/etc/system-gschemrc.scm:2162
 msgid "Unlock selected objects"
-msgstr ""
+msgstr "解锁所选对象"
 
+# Redraw
 #: gschem/etc/system-gschemrc.scm:2197
-#, fuzzy
 msgid "_Redraw"
-msgstr "重画"
+msgstr "重绘"
 
-# There is no current window
+# Redraw the current window
 #: gschem/etc/system-gschemrc.scm:2197
-#, fuzzy
 msgid "Redraw the current window"
-msgstr "没有当前窗口"
+msgstr "重绘当前窗口"
 
 #: gschem/etc/system-gschemrc.scm:2198
 msgid "_Pan"
