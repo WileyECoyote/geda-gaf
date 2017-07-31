@@ -23,6 +23,9 @@
 
     * diode/diode-smda05-1.sym: Add description attribute.
 
+    * display/BB-LCD-DT-1.sym: Resequence pins, update device attribute to match
+      file name.
+
 2017-07-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/*: Update attributes, change device=* to device=CONNECTOR
