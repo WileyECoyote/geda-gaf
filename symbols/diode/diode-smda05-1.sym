@@ -1,6 +1,10 @@
 v 20150401 2
+T 200 500 8 10 1 1 0 0 1
+refdes=U?
 T 200 900 5 10 0 0 0 0 1
 device=SMDA05
+T 200 2700 5 10 0 1 0 0 1
+description=Unidirectional TVS Array for Protection, 4 lines
 L 200 200 275 200 3 0 0 0 -1 -1
 L 600 200 700 200 3 0 0 0 -1 -1
 L 600 400 600 0 3 0 2 0 -1 -1
@@ -32,8 +36,6 @@ pinlabel=8
 T 900 75 5 8 0 1 0 6 1
 pintype=pas
 }
-T 200 500 8 10 1 1 0 0 1
-refdes=U?
 T 200 700 5 10 0 0 0 0 1
 slot=1
 T 200 1100 5 10 0 0 0 0 1
@@ -50,5 +52,5 @@ T 200 2100 5 10 0 0 0 0 1
 footprint=SO8
 T 200 2300 5 10 0 0 0 0 1
 symversion=0.1
-T 200 2500 5 10 0 0 0 0 1
+T 200 2500 5 10 0 1 0 0 1
 documentation=http://www.semtech.com/pdf/tvs_sg.pdf

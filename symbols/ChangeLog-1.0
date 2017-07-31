@@ -21,6 +21,8 @@
 
     * dec/DS8641-1.sym: Add Quad Unified Bus Transceiver, for sake of completeness.
 
+    * diode/diode-smda05-1.sym: Add description attribute.
+
 2017-07-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/*: Update attributes, change device=* to device=CONNECTOR
