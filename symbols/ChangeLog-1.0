@@ -4,6 +4,7 @@
       revise attribute locations:
 
             * emechanic/motor/2phase-stepper-1.sym
+            * emechanic/motor/4phase-stepper6-1.sym
 2017-07-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/special/edge_conn_100-2.sym: Update device= attribute.
