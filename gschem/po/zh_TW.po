@@ -4377,29 +4377,29 @@ msgstr "自 緩衝區5 貼上"
 msgid "Insert contents of the fifth auxiliary buffer"
 msgstr ""
 
+# Lock selected objects
 #: gschem/etc/system-gschemrc.scm:2161
-#, fuzzy
 msgid "Lock selected objects"
-msgstr "選擇物件"
+msgstr "鎖定所選對象"
 
 #: gschem/etc/system-gschemrc.scm:2162 gschem/scheme/gschem/builtins.scm:191
 msgid "Unlock"
 msgstr "解除鎖定"
 
+# Unlock selected objects
 #: gschem/etc/system-gschemrc.scm:2162
-#, fuzzy
 msgid "Unlock selected objects"
-msgstr "選擇物件"
+msgstr "解鎖所選對象"
 
+# Redraw
 #: gschem/etc/system-gschemrc.scm:2197
 msgid "_Redraw"
-msgstr ""
+msgstr "重繪"
 
-# there is no current window
+# Redraw the current window
 #: gschem/etc/system-gschemrc.scm:2197
-#, fuzzy
 msgid "Redraw the current window"
-msgstr "沒有當前窗口"
+msgstr "重繪當前窗口"
 
 #: gschem/etc/system-gschemrc.scm:2198
 msgid "_Pan"
@@ -4555,10 +4555,10 @@ msgstr ""
 msgid "_Last"
 msgstr ""
 
+# Goto the last page
 #: gschem/etc/system-gschemrc.scm:2234
-#, fuzzy
 msgid "Goto the last page"
-msgstr "復原上一次操作"
+msgstr "轉到最後一頁"
 
 #: gschem/etc/system-gschemrc.scm:2235
 msgid "Ne_w"
@@ -4576,17 +4576,17 @@ msgstr ""
 msgid "Discard changes and reload the current documents"
 msgstr ""
 
+# Discard
 #: gschem/etc/system-gschemrc.scm:2240
-#, fuzzy
 msgid "D_iscard"
-msgstr "捨棄分頁"
+msgstr "廢棄"
 
 #: gschem/etc/system-gschemrc.scm:2240
 msgid "Close the current page without saving"
 msgstr ""
 
+# Print
 #: gschem/etc/system-gschemrc.scm:2241
-#, fuzzy
 msgid "Prin_t"
 msgstr "列印"
 
