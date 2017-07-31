@@ -717,48 +717,55 @@ msgstr ""
 msgid "Search and Replace attribute value"
 msgstr ""
 
+# Attribute
 #: gattrib/src/x_toolbars.c:40
-#, fuzzy
 msgid "Attrib"
-msgstr "gEDA Attribute Editor"
+msgstr "جنبه"
 
+# Locate attribute
 #: gattrib/src/x_toolbars.c:40
-#, fuzzy
 msgid "Locate attribute"
-msgstr "gEDA Attribute Editor"
+msgstr "ویژگی تعیین کنید"
 
+# Reference Designator
 #: gattrib/src/x_toolbars.c:41
 msgid "Ref Des"
-msgstr ""
+msgstr "طراح مرجع"
 
+# Locate Reference Designator
 #: gattrib/src/x_toolbars.c:41
 msgid "Locate Reference Designator"
-msgstr ""
+msgstr "تعیین نماد مرجع"
 
+# invisible
 #: gattrib/src/x_toolbars.c:44
 msgid "invisible"
-msgstr ""
+msgstr "نامرئی"
 
+# visible
 #: gattrib/src/x_toolbars.c:45
 msgid "visible"
-msgstr ""
+msgstr "قابل رویت"
 
+# add
 #: gattrib/src/x_toolbars.c:46
 msgid "add"
-msgstr ""
+msgstr "ضمیمه کردن"
 
 # Add a new attribute
 #: gattrib/src/x_toolbars.c:46
 msgid "Add a new attribute"
 msgstr "یک ویژگی جدید اضافه کنید"
 
+# promote
 #: gattrib/src/x_toolbars.c:47
 msgid "promote"
-msgstr ""
+msgstr "ترویج"
 
+# demote
 #: gattrib/src/x_toolbars.c:48
 msgid "demote"
-msgstr ""
+msgstr "تخریب"
 
 #: gattrib/src/x_toolbars.c:49
 msgid "name"
