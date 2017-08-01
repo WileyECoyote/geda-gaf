@@ -749,30 +749,37 @@ msgstr "añadir"
 msgid "Add a new attribute"
 msgstr "Agregar un atributo nuevo"
 
+# promote
 #: gattrib/src/x_toolbars.c:47
 msgid "promote"
 msgstr "promover"
 
+# demote
 #: gattrib/src/x_toolbars.c:48
 msgid "demote"
 msgstr "degradar"
 
+# name
 #: gattrib/src/x_toolbars.c:49
 msgid "name"
-msgstr ""
+msgstr "nombre"
 
+# value
 #: gattrib/src/x_toolbars.c:50
 msgid "value"
-msgstr ""
+msgstr "valor"
 
+# both
 #: gattrib/src/x_toolbars.c:51
 msgid "both"
-msgstr ""
+msgstr "ambos"
 
+# Saving main window geometry and settings
 #: gattrib/src/x_window.c:177
 msgid "Saving main window geometry and settings.\n"
-msgstr ""
+msgstr "Speichern der Hauptfenstergeometrie und -einstellungen.\n"
 
+# Retrieving main Window geometry and settings
 #: gattrib/src/x_window.c:213
 msgid "Retrieving main Window geometry and settings.\n"
-msgstr ""
+msgstr "Restaurar geometría y configuración originales.\n"
