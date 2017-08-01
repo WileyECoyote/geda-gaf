@@ -767,22 +767,27 @@ msgstr "ترویج"
 msgid "demote"
 msgstr "تخریب"
 
+# name
 #: gattrib/src/x_toolbars.c:49
 msgid "name"
-msgstr ""
+msgstr "نام"
 
+# value
 #: gattrib/src/x_toolbars.c:50
 msgid "value"
-msgstr ""
+msgstr "ارزش"
 
+# both
 #: gattrib/src/x_toolbars.c:51
 msgid "both"
-msgstr ""
+msgstr "هر دو"
 
+# Saving main window geometry and settings
 #: gattrib/src/x_window.c:177
 msgid "Saving main window geometry and settings.\n"
-msgstr ""
+msgstr "صرفه جویی در هندسه پنجره و تنظیمات\n"
 
+# Retrieving main Window geometry and settings
 #: gattrib/src/x_window.c:213
 msgid "Retrieving main Window geometry and settings.\n"
-msgstr ""
+msgstr "بازیابی هندسه اصلی و تنظیمات اصلی.\n"
