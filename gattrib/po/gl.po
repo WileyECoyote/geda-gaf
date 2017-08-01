@@ -751,30 +751,37 @@ msgstr ""
 msgid "Add a new attribute"
 msgstr "Editor de atributos gEDA"
 
+# promote
 #: gattrib/src/x_toolbars.c:47
 msgid "promote"
-msgstr ""
+msgstr "Promover"
 
+# demote
 #: gattrib/src/x_toolbars.c:48
 msgid "demote"
-msgstr ""
+msgstr "Demote"
 
+# name
 #: gattrib/src/x_toolbars.c:49
 msgid "name"
-msgstr ""
+msgstr "Nome"
 
+# value
 #: gattrib/src/x_toolbars.c:50
 msgid "value"
-msgstr ""
+msgstr "Valor"
 
+# both
 #: gattrib/src/x_toolbars.c:51
 msgid "both"
-msgstr ""
+msgstr "Ambas"
 
+# Saving main window geometry and settings
 #: gattrib/src/x_window.c:177
 msgid "Saving main window geometry and settings.\n"
-msgstr ""
+msgstr "Gardando xeometría e axustes da xanela principal.\n"
 
+# Retrieving main Window geometry and settings
 #: gattrib/src/x_window.c:213
 msgid "Retrieving main Window geometry and settings.\n"
-msgstr ""
+msgstr "Restaurar a xeometría e configuración orixinais.\n"
