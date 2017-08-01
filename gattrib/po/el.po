@@ -751,30 +751,37 @@ msgstr ""
 msgid "Add a new attribute"
 msgstr "Προσθέστε ένα νέο χαρακτηριστικό"
 
+# promote
 #: gattrib/src/x_toolbars.c:47
 msgid "promote"
-msgstr ""
+msgstr "προάγω"
 
+# demote
 #: gattrib/src/x_toolbars.c:48
 msgid "demote"
-msgstr ""
+msgstr "υποβιβάζω"
 
+# name
 #: gattrib/src/x_toolbars.c:49
 msgid "name"
-msgstr ""
+msgstr "όνομα"
 
+# value
 #: gattrib/src/x_toolbars.c:50
 msgid "value"
-msgstr ""
+msgstr "αξία"
 
+# both
 #: gattrib/src/x_toolbars.c:51
 msgid "both"
-msgstr ""
+msgstr "και τα δυο"
 
+# Saving main window geometry and settings
 #: gattrib/src/x_window.c:177
 msgid "Saving main window geometry and settings.\n"
-msgstr ""
+msgstr "Αποθήκευση γεωμετρίας και ρυθμίσεων του κύριου παραθύρου.\n"
 
+# Retrieving main Window geometry and settings
 #: gattrib/src/x_window.c:213
 msgid "Retrieving main Window geometry and settings.\n"
-msgstr ""
+msgstr "Επαναφέρετε την αρχική γεωμετρία και τις ρυθμίσεις.\n"
