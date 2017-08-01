@@ -751,30 +751,37 @@ msgstr ""
 msgid "Add a new attribute"
 msgstr "gEDA attribútumszerkesztő"
 
+# promote
 #: gattrib/src/x_toolbars.c:47
 msgid "promote"
-msgstr ""
+msgstr "népszerűsít"
 
+# demote
 #: gattrib/src/x_toolbars.c:48
 msgid "demote"
-msgstr ""
+msgstr "lefokoz"
 
+# name
 #: gattrib/src/x_toolbars.c:49
 msgid "name"
-msgstr ""
+msgstr "név"
 
+# value
 #: gattrib/src/x_toolbars.c:50
 msgid "value"
-msgstr ""
+msgstr "érték"
 
+# both
 #: gattrib/src/x_toolbars.c:51
 msgid "both"
-msgstr ""
+msgstr "mindkét"
 
+# Saving main window geometry and settings
 #: gattrib/src/x_window.c:177
 msgid "Saving main window geometry and settings.\n"
-msgstr ""
+msgstr "A főablak geometriájának és beállításainak mentése.\n"
 
+# Retrieving main Window geometry and settings
 #: gattrib/src/x_window.c:213
 msgid "Retrieving main Window geometry and settings.\n"
-msgstr ""
+msgstr "Az eredeti geometria és beállítások visszaállítása.\n"
