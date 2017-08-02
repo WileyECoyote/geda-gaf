@@ -6,6 +6,9 @@
           * o_picture_exchange_file
           * o_picture_export
 
+    * src/x/x_fileselect.c: Remove unnecessary GObject type-checking
+      cast for g_signal_connect_after in x_fileselect_list.
+
 2017-07-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/zh_CN.po: Update Chinese simplified translations.
@@ -4503,7 +4506,7 @@
         * geda-value
 
     * src/x/x_menus.c: remove setting handler when connecting open_item,
-      save_item and quit_item for the fallback menu, remove unessacary
+      save_item and quit_item for the fallback menu, remove unnecessary
       initializing buffer_menu and menus_broken to NULL, change GtkContainer
       *menu to GtkMenuShell and rename menu_shell. Make sensitivity_errors
       static to the module.

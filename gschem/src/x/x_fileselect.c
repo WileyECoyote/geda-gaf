@@ -212,7 +212,7 @@ x_fileselect_list(GschemToplevel *w_current)
 
   /* This retains filter, even if canceled, could retrieve in if got
    * filenames but this seems to work just fine, is saved if changed */
-  g_signal_connect_after(G_OBJECT(dialog), "filter-changed",
+  g_signal_connect_after(dialog, "filter-changed",
                          G_CALLBACK (x_fileselect_save_filter_index),
                          w_current);
 
