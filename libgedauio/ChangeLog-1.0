@@ -1,7 +1,8 @@
 2017-08-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Factor out common code from
-      conditional clauses in geda_combo_box_menu_setup.
+      conditional clauses in geda_combo_box_menu_setup, connect
+      "toggled" after showing like other signals.
 
 2017-07-31 Wiley E. Hill <wileyhill@gmail.com>
 

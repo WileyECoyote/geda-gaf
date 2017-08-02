@@ -3390,8 +3390,6 @@ geda_combo_box_menu_setup (GedaComboBox *combo_box, bool add_children)
     gtk_button_set_focus_on_click ((GtkButton*)priv->button,
                                     priv->focus_on_click);
 
-    g_signal_connect (priv->button, "toggled",
-                      G_CALLBACK (geda_combo_box_button_toggled), combo_box);
 
     gtk_widget_set_parent (priv->button, gtk_widget_get_parent(child));
 
@@ -3415,6 +3413,8 @@ geda_combo_box_menu_setup (GedaComboBox *combo_box, bool add_children)
   }
 
   gtk_widget_show_all (priv->button);
+  g_signal_connect (priv->button, "toggled",
+                    G_CALLBACK (geda_combo_box_button_toggled), combo_box);
 
   g_signal_connect (priv->button, "button-press-event",
                     G_CALLBACK (geda_combo_box_menu_button_press),
