@@ -3485,7 +3485,7 @@ static GtkWidget *_cell_view_menu_item_new (GedaComboBox  *combo_box,
 
   cell_view = gtk_cell_view_new ();
   item = geda_menu_item_new ();
-  gtk_container_add ((GtkContainer*)item, cell_view);
+  geda_container_add (item, cell_view);
 
   gtk_cell_view_set_model ((GtkCellView*)cell_view, model);
   path = gtk_tree_model_get_path (model, iter);
