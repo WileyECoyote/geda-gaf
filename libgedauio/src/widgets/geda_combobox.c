@@ -3322,10 +3322,7 @@ static void geda_combo_box_unset_model (GedaComboBox *combo_box)
     gtk_cell_view_set_model ((GtkCellView*)priv->cell_view, NULL);
 }
 
-
-
-static void
-geda_combo_box_child_show (GtkWidget *widget, GedaComboBox *combo_box)
+static void geda_combo_box_child_show (GtkWidget *widget, GedaComboBox *combo_box)
 {
   GedaComboBoxData *priv = combo_box->priv;
 
@@ -3333,8 +3330,7 @@ geda_combo_box_child_show (GtkWidget *widget, GedaComboBox *combo_box)
   g_object_notify ((GObject*)combo_box, "popup-shown");
 }
 
-static void
-geda_combo_box_child_hide (GtkWidget *widget, GedaComboBox *combo_box)
+static void geda_combo_box_child_hide (GtkWidget *widget, GedaComboBox *combo_box)
 {
   GedaComboBoxData *priv = combo_box->priv;
 
@@ -3344,9 +3340,8 @@ geda_combo_box_child_hide (GtkWidget *widget, GedaComboBox *combo_box)
 
 /* menu style */
 
-static void
-geda_combo_box_sync_cells (GedaComboBox  *combo_box,
-                           GtkCellLayout *cell_layout)
+static void geda_combo_box_sync_cells (GedaComboBox  *combo_box,
+                                       GtkCellLayout *cell_layout)
 {
   GedaComboBoxData *priv = combo_box->priv;
   GSList *k;
@@ -3377,8 +3372,7 @@ geda_combo_box_sync_cells (GedaComboBox  *combo_box,
   }
 }
 
-static void
-geda_combo_box_menu_setup (GedaComboBox *combo_box, bool add_children)
+static void geda_combo_box_menu_setup (GedaComboBox *combo_box, bool add_children)
 {
   GedaComboBoxData *priv = combo_box->priv;
   GtkWidget *child;
@@ -3447,8 +3441,7 @@ geda_combo_box_menu_setup (GedaComboBox *combo_box, bool add_children)
   geda_combo_box_update_sensitivity (combo_box);
 }
 
-static void
-geda_combo_box_menu_fill (GedaComboBox *combo_box)
+static void geda_combo_box_menu_fill (GedaComboBox *combo_box)
 {
   GedaComboBoxData *priv = combo_box->priv;
 

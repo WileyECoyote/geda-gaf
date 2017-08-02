@@ -3,7 +3,7 @@
     * src/widgets/geda_combobox.c: Factor out common code from conditional
       clauses in geda_combo_box_menu_setup, connect "toggled" after showing
       like other signals. Replace gtk_container_add with geda_container_add
-      macro in_cell_view_menu_item_new.
+      macro in_cell_view_menu_item_new. Adjust function wrap.
 
 2017-07-31 Wiley E. Hill <wileyhill@gmail.com>
 
