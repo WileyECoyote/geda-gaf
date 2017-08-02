@@ -3386,8 +3386,6 @@ geda_combo_box_menu_setup (GedaComboBox *combo_box, bool add_children)
 
   child = geda_get_child_widget(combo_box);
 
-  if (priv->cell_view) {
-
     priv->button = gtk_toggle_button_new ();
     gtk_button_set_focus_on_click ((GtkButton*)priv->button,
                                     priv->focus_on_click);
@@ -3396,6 +3394,8 @@ geda_combo_box_menu_setup (GedaComboBox *combo_box, bool add_children)
                       G_CALLBACK (geda_combo_box_button_toggled), combo_box);
 
     gtk_widget_set_parent (priv->button, gtk_widget_get_parent(child));
+
+  if (priv->cell_view) {
 
     priv->box = gtk_hbox_new (FALSE, 0);
     geda_container_add (priv->button, priv->box);
@@ -3406,23 +3406,15 @@ geda_combo_box_menu_setup (GedaComboBox *combo_box, bool add_children)
     priv->arrow = gtk_arrow_new (GTK_ARROW_DOWN, GTK_SHADOW_NONE);
     geda_container_add (priv->box, priv->arrow);
 
-    gtk_widget_show_all (priv->button);
   }
   else {
 
-    priv->button = gtk_toggle_button_new ();
-    gtk_button_set_focus_on_click (GTK_BUTTON (priv->button),
-                                   priv->focus_on_click);
-
-    g_signal_connect (priv->button, "toggled",
-                      G_CALLBACK (geda_combo_box_button_toggled), combo_box);
-
-    gtk_widget_set_parent (priv->button, gtk_widget_get_parent(child));
-
     priv->arrow = gtk_arrow_new (GTK_ARROW_DOWN, GTK_SHADOW_NONE);
     geda_container_add (priv->button, priv->arrow);
-    gtk_widget_show_all (priv->button);
+
   }
+
+  gtk_widget_show_all (priv->button);
 
   g_signal_connect (priv->button, "button-press-event",
                     G_CALLBACK (geda_combo_box_menu_button_press),
