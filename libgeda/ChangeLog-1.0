@@ -5,6 +5,8 @@
           * geda_page_set_place_list
           * geda_page_debug_print
 
+    * src/iface/i_menu.c: Update function wrapping.
+
 2017-07-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_pin.c: Update function wrapping.
