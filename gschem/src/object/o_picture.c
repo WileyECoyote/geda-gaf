@@ -373,8 +373,7 @@ o_picture_exchange_file (GschemToplevel *w_current, GedaObject *o_current)
     }
 
     /* Save the check-box state even if the user canceled the dialog */
-    if (gtk_toggle_button_get_active ((GtkToggleButton*)cb_all) != update_all)
-    {
+    if (GetToggleState (cb_all) != update_all) {
       update_all = !update_all;
       eda_config_set_boolean (cfg, WINDOW_CONFIG_GROUP,
                               "update-all-pitures", update_all);
@@ -446,7 +445,7 @@ o_picture_export (GschemToplevel *w_current, GedaObject *o_current)
     filename = geda_image_chooser_get_filename (dialog);
     file_ext = geda_file_get_filename_ext(filename);
 
-    orgin_size = gtk_toggle_button_get_active ((GtkToggleButton*)cb_aspect);
+    orgin_size = GetToggleState (cb_aspect);
 
     if (orgin_size) {
       result = geda_picture_object_export_orginal(o_current, filename, file_ext, NULL);
