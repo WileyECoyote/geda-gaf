@@ -675,10 +675,11 @@ GList *geda_page_get_place_list (Page *page)
   return GEDA_IS_PAGE(page) ? page->place_list : NULL;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Set the Place List in the PAge
+ * \par Function Description
+ *  This function assigns the list given by \a object_list to
+ *  the page->place_list.
  */
 void geda_page_set_place_list (Page *page, GList *object_list)
 {
@@ -689,10 +690,11 @@ void geda_page_set_place_list (Page *page, GList *object_list)
 
 /** @} endgroup geda-page */
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Print Contents of Page Structure for Debugging
+ * \par Function Description
+ *  This function can be usefull when debugging page objects. The
+ *  prints assigned pointers and values in \a page.
  */
 void geda_page_debug_print (Page *page)
 {
