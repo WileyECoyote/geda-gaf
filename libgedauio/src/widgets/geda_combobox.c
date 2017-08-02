@@ -2836,8 +2836,8 @@ static void geda_combo_box_menu_position (GedaMenu *menu,
     geda_combo_box_menu_position_over ((GtkWidget*)menu, x, y, push_in, combo_widget);
   }
 
-  if (!gtk_widget_get_visible (menu->toplevel))
-  {
+  if (!gtk_widget_get_visible (menu->toplevel)) {
+
     gtk_window_set_type_hint (GTK_WINDOW (menu->toplevel),
                               GDK_WINDOW_TYPE_HINT_COMBO);
   }
