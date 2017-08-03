@@ -405,9 +405,8 @@ msgid "not found!"
 msgstr ""
 
 #: gattrib/src/x_find.c:277
-#, fuzzy
 msgid "Attribute"
-msgstr "gEDA യുടെ കമ്പോണന്‍ടു  സവിശേഷത എഡിറ്റര്‍"
+msgstr "ആട്രിബ്യൂട്ട്"
 
 #: gattrib/src/x_find.c:314
 msgid "Designator"
@@ -618,15 +617,15 @@ msgstr ""
 msgid "Display Standard Toolbar"
 msgstr ""
 
+# Attribute
 #: gattrib/src/x_menus.c:419
-#, fuzzy
 msgid "A_ttribute"
-msgstr "gEDA യുടെ കമ്പോണന്‍ടു  സവിശേഷത എഡിറ്റര്‍"
+msgstr "ആട്രിബ്യൂട്ട്"
 
+# Display Attribute Toolbar
 #: gattrib/src/x_menus.c:419
-#, fuzzy
 msgid "Display Attribute Toolbar"
-msgstr "gEDA യുടെ കമ്പോണന്‍ടു  സവിശേഷത എഡിറ്റര്‍"
+msgstr "ആട്രിബ്യൂട്ട് ടൂൾബാർ പ്രദർശിപ്പിക്കുക"
 
 #: gattrib/src/x_menus.c:420
 msgid "_Attached"
@@ -716,15 +715,15 @@ msgstr ""
 msgid "Search and Replace attribute value"
 msgstr ""
 
+# Attribute
 #: gattrib/src/x_toolbars.c:40
-#, fuzzy
 msgid "Attrib"
-msgstr "gEDA യുടെ കമ്പോണന്‍ടു  സവിശേഷത എഡിറ്റര്‍"
+msgstr "ആട്രിബ്യൂട്ട്"
 
+# Locate attribute
 #: gattrib/src/x_toolbars.c:40
-#, fuzzy
 msgid "Locate attribute"
-msgstr "gEDA യുടെ കമ്പോണന്‍ടു  സവിശേഷത എഡിറ്റര്‍"
+msgstr "Locate attribute"
 
 #: gattrib/src/x_toolbars.c:41
 msgid "Ref Des"
@@ -746,10 +745,10 @@ msgstr ""
 msgid "add"
 msgstr ""
 
+# Add a new attribute
 #: gattrib/src/x_toolbars.c:46
-#, fuzzy
 msgid "Add a new attribute"
-msgstr "gEDA യുടെ കമ്പോണന്‍ടു  സവിശേഷത എഡിറ്റര്‍"
+msgstr "ഒരു പുതിയ ആട്രിബ്യൂട്ട് ചേർക്കുക"
 
 #: gattrib/src/x_toolbars.c:47
 msgid "promote"
