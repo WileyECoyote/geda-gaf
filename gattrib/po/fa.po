@@ -619,15 +619,15 @@ msgstr ""
 msgid "Display Standard Toolbar"
 msgstr ""
 
+# Attribute
 #: gattrib/src/x_menus.c:419
-#, fuzzy
 msgid "A_ttribute"
-msgstr "gEDA Attribute Editor"
+msgstr "A_tributo"
 
+# Display Attribute Toolbar
 #: gattrib/src/x_menus.c:419
-#, fuzzy
 msgid "Display Attribute Toolbar"
-msgstr "gEDA Attribute Editor"
+msgstr "Barra de herramientas de atributos de visualización"
 
 #: gattrib/src/x_menus.c:420
 msgid "_Attached"
