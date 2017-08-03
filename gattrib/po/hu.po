@@ -404,10 +404,10 @@ msgstr ""
 msgid "not found!"
 msgstr ""
 
+# Attribute
 #: gattrib/src/x_find.c:277
-#, fuzzy
 msgid "Attribute"
-msgstr "gEDA attribútumszerkesztő"
+msgstr "Tulajdonság"
 
 #: gattrib/src/x_find.c:314
 msgid "Designator"
@@ -618,15 +618,15 @@ msgstr ""
 msgid "Display Standard Toolbar"
 msgstr ""
 
+# Attribute
 #: gattrib/src/x_menus.c:419
-#, fuzzy
 msgid "A_ttribute"
-msgstr "gEDA attribútumszerkesztő"
+msgstr "Tulajdonság"
 
+# Display Attribute Toolbar
 #: gattrib/src/x_menus.c:419
-#, fuzzy
 msgid "Display Attribute Toolbar"
-msgstr "gEDA attribútumszerkesztő"
+msgstr "Megjelenítés eszköz eszköztár"
 
 #: gattrib/src/x_menus.c:420
 msgid "_Attached"
@@ -716,15 +716,15 @@ msgstr ""
 msgid "Search and Replace attribute value"
 msgstr ""
 
+# Attribute
 #: gattrib/src/x_toolbars.c:40
-#, fuzzy
 msgid "Attrib"
-msgstr "gEDA attribútumszerkesztő"
+msgstr "Tulajdonság"
 
+# Locate attribute
 #: gattrib/src/x_toolbars.c:40
-#, fuzzy
 msgid "Locate attribute"
-msgstr "gEDA attribútumszerkesztő"
+msgstr "Az attribútum megkeresése"
 
 #: gattrib/src/x_toolbars.c:41
 msgid "Ref Des"
@@ -746,8 +746,8 @@ msgstr ""
 msgid "add"
 msgstr ""
 
+# Add a new attribute
 #: gattrib/src/x_toolbars.c:46
-#, fuzzy
 msgid "Add a new attribute"
 msgstr "gEDA attribútumszerkesztő"
 
