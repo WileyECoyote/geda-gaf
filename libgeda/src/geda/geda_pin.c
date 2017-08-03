@@ -68,22 +68,22 @@ static char *e_strings[] = { "in",  "out", "io",  "oc", "oe", "pas", "tp",
 static char *m_strings[] = { "lead", "body",  "pad", "bump",
                              "ball", "wedge", "ribbon", NULL };
 
-/*! \brief Look up Pin Electrical Type from String Code
- *
- *  \par Function Description
+/*!
+ * \brief Look up Pin Electrical Type from String Code
+ * \par Function Description
  *  Compares e_str to each entry in e_strings and returns the index,
  *  if found. The index is the PIN_ELECT associated with e_str or
  *  PIN_ELECT_VOID if e_str was not found in e_strings.
  *
- *  \note e_strings must always be in the same order as the PIN_ELECT
- *        enumeration found in "geda_enum.h"
+ * \note e_strings must always be in the same order as the PIN_ELECT
+ *       enumeration found in "geda_enum.h"
  *
- *  \param [in]  e_str Pointer to pin-type string to lookup.
+ * \param [in]  e_str Pointer to pin-type string to lookup.
  *
- *  \retval PIN_ELECT
+ * \retval PIN_ELECT
  *
- *  \remarks Libgeda does not treat pin-type PIN_ELECT_VOID as an
- *           error.
+ * \remarks Libgeda does not treat pin-type PIN_ELECT_VOID as an
+ *          error.
  */
 PIN_ELECT geda_pin_lookup_etype(const char *e_str) {
 
@@ -131,14 +131,14 @@ const char *geda_pin_lookup_mstring(PIN_MECH m_type) {
   return str;
 }
 
-/*! \brief GedaType instance initializer for GedaPin
- *
- *  \par Function Description
+/*!
+ * \brief GedaType instance initializer for GedaPin
+ * \par Function Description
  *  GedaType instance initializer for GedaPin, initializes a new empty
  *  Pin object by setting pointers to NULL and numbers to zero.
  *
- *  \param [in] instance The GedaPin structure being initialized,
- *  \param [in] g_class  The GedaPin class we are initializing.
+ * \param [in] instance The GedaPin structure being initialized,
+ * \param [in] g_class  The GedaPin class we are initializing.
  */
 static void geda_pin_instance_init(GTypeInstance *instance, void *g_class)
 {
@@ -243,12 +243,13 @@ static void geda_pin_dispose(GObject *object)
   G_OBJECT_CLASS(geda_pin_parent_class)->dispose(object);
 }
 
-/*! \brief Geda Pin GedaObject Finalization Function
- *  \par Function Description
- *   This function removes or releases all internal references and
- *   releases the memory allocated to the given Pin data structure,
- *   invalidates the Pin's markers, then chain up to the parent's
- *   finalize handler after.
+/*!
+ * \brief Geda Pin GedaObject Finalization Function
+ * \par Function Description
+ *  This function removes or releases all internal references and
+ *  releases the memory allocated to the given Pin data structure,
+ *  invalidates the Pin's markers, then chain up to the parent's
+ *  finalize handler after.
  */
 static void geda_pin_finalize(GObject *object)
 {
@@ -274,14 +275,14 @@ static void geda_pin_finalize(GObject *object)
   GEDA_LINE_CLASS(geda_pin_parent_class)->finalize(object);
 }
 
-/*! \brief GedaType class initializer for GedaPin
- *
- *  \par Function Description
+/*!
+ * \brief GedaType class initializer for GedaPin
+ * \par Function Description
  *  GedaType class initializer for GedaPin. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- *  \param [in]  klass      The GedaPin class we are initialising
- *  \param [in]  class_data The Pin structure associated with the class
+ * \param [in]  klass      The GedaPin class we are initialising
+ * \param [in]  class_data The Pin structure associated with the class
  */
 static void geda_pin_class_init(void *klass, void *class_data)
 {
