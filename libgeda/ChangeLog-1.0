@@ -1,3 +1,7 @@
+2017-08-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_picture.c: Update function wrapping.
+
 2017-08-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_page.c: Update Doxygen comments for:
