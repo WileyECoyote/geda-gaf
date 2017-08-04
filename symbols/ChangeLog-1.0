@@ -3,8 +3,10 @@
     * emechanic/relay/Aromat-tq4_relay_4pdt-2.sym: Remove extraneous attributes,
       add description attribute.
 
-    * emechanic/relay/HE722Axxx0_relay_dpst-1.sym Remove extraneous attributes,
-      update footprint attribute.
+    * emechanic/relay Remove extraneous attributes, update footprint attribute:
+
+            * emechanic/relay/HE721Axxx0_relay_dpst-1.sym
+            * emechanic/relay/HE722Axxx0_relay_dpst-1.sym
 
 2017-07-31 Wiley E. Hill <wileyhill@gmail.com>
 
