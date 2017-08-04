@@ -12,6 +12,7 @@
 
             * emechanic/relay/Meder_DIPxx-1C90-51D_reed_relay-1.sym
             * emechanic/relay/Meder_DIPxx-1C90-51D_reed_relay-2.sym
+            * emechanic/relay/Meder_SILxx-1A72-71D_reed_relay-1.sym
 2017-07-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/*: Add description attributes, update device and footprint,
