@@ -1,4 +1,4 @@
-v 20081231 1
+v 20081231 2
 P 100 600 300 600 1 0 0
 {
 T 200 650 5 8 1 1 0 6 1
@@ -54,24 +54,6 @@ pinlabel=14
 T 350 300 5 8 0 1 0 2 1
 pintype=io
 }
-T 850 700 8 10 1 1 0 4 1
-refdes=K?
-T 100 900 5 10 0 0 0 0 1
-device=Reed-Relay_Meder_DIPxx-1C90-51D
-T 100 1100 5 10 0 0 0 0 1
-footprint=Reed-Relay_Meder_DIPxx-1C90-51D
-T 100 1300 5 10 0 0 0 0 1
-author=Stefan Salewski
-T 100 1500 5 10 0 0 0 0 1
-documentation=http://www.meder.com/upload/produkte/36_de_1_Relais%20DIP%20Serie%20d.pdf
-T 100 1700 5 10 0 0 0 0 1
-description=Reed-Relay Meder DIPxx-1C90-51D
-T 100 1900 5 10 0 0 0 0 1
-numslots=0
-T 100 2100 5 10 0 0 0 0 1
-dist-license=GPL
-T 100 2300 5 10 0 0 0 0 1
-use-license=unlimited
 L 300 0 400 0 3 0 0 0 -1 -1
 A 501 0 100 0 180 3 0 0 0 -1 -1
 A 701 0 100 0 180 3 0 0 0 -1 -1
@@ -84,3 +66,21 @@ L 1100 300 1100 450 3 0 0 0 -1 -1
 L 1100 450 1000 450 3 0 0 0 -1 -1
 L 1000 450 350 550 3 0 0 0 -1 -1
 L 1100 0 1000 0 3 0 0 0 -1 -1
+T 850 700 8 10 1 1 0 4 1
+refdes=K?
+T 100 900 5 10 0 0 0 0 1
+device=Relay
+T 100 1100 5 10 0 0 0 0 1
+footprint=Reed-Relay_Meder_DIPxx-1C90-51D
+T 100 1500 5 10 0 1 0 0 1
+documentation=http://www.meder.com/upload/produkte/36_de_1_Relais%20DIP%20Serie%20d.pdf
+T 100 1300 5 10 0 1 0 0 1
+description=Reed-Relay Meder DIPxx-1C90-51D
+T 100 1700 5 10 0 0 0 0 1
+numslots=0
+T 100 1900 5 10 0 0 0 0 1
+dist-license=GPL
+T 100 2100 5 10 0 0 0 0 1
+use-license=unlimited
+T 100 2300 5 10 0 0 0 0 1
+author=Stefan Salewski
