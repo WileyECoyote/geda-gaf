@@ -15,7 +15,10 @@
             * emechanic/relay/Meder_SILxx-1A72-71D_reed_relay-1.sym
             * emechanic/relay/Meder_SILxx-1A72-71D_reed_relay-2.sym
 
-    * emechanic/relay/MPDC-Relay.sym: Rename file, update attributes.
+    * emechanic/relay/: Rename file, update attributes.
+
+            * emechanic/relay/MPDC-Relay.sym
+            * emechanic/relay/OMRON_G2R-24-DC5_relay_spdt-1.sym
 
 2017-07-31 Wiley E. Hill <wileyhill@gmail.com>
 
