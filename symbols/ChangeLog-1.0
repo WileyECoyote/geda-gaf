@@ -19,6 +19,7 @@
 
             * emechanic/relay/MPDC-Relay.sym
             * emechanic/relay/OMRON_G2R-24-DC5_relay_spdt-1.sym
+            * emechanic/relay/OMRON_G2R-24-DC5_relay_dpdt-1.sym
 
 2017-07-31 Wiley E. Hill <wileyhill@gmail.com>
 
