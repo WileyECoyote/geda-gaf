@@ -13,6 +13,8 @@
     * emechanic/relay Update device, documentation and footprint attributes:
 
             * emechanic/relay/relay-1.sym
+            * emechanic/relay/relay-2.sym
+
 2017-08-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * emechanic/relay/Aromat-tq4_relay_4pdt-2.sym: Remove extraneous attributes,
