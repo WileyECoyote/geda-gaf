@@ -183,7 +183,8 @@ initFunctions(PyObject *module)
 
   geda_module = module;
 
-  GedaFunctions[FUNCTION_COUNT].name = NULL;
+  GedaFunctions[FUNCTION_COUNT].name  = NULL;
+  GedaFunctions[FUNCTION_COUNT].aflag = 0;
 
   self = Py_InitModule("geda.functions", (PyMethodDef*)GedaFunctions);
 
