@@ -1,5 +1,9 @@
 2017-08-06 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/i_command.h: Change EDIT_CB_PASTE to USE_MAIN_LOOP so that
+      reset-keys does not generate an error when pasting using hot-keys
+      while already inside an action.
+
     * src/guile/g_keys.c: Remove redundant setting keyaccel_string of to
       NULL in g_keys_reset.
 
