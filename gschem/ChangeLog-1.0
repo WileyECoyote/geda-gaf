@@ -1,3 +1,8 @@
+2017-08-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_edit_attrib.c: Remove errant fetching of the "visbutton" data
+      in x_dialog_attrib_edit_update_selection.
+
 2017-08-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_picture.c: Replace gtk_toggle_button_get_active with

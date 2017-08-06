@@ -86,10 +86,9 @@ x_dialog_attrib_edit_update_selection (GschemToplevel *w_current,
       gtk_toggle_button_set_active(button, TRUE);
     }
 
-    optionmenu = GEDA_OBJECT_GET_DATA (ThisDialog, "visbutton");
-
     /* Update Show Options */
     optionmenu = GEDA_OBJECT_GET_DATA (ThisDialog, "show_options");
+
     if (object->show_name_value == SHOW_VALUE) {
       geda_option_menu_set_history (optionmenu, 0);
     }
