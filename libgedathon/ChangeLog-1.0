@@ -3,6 +3,9 @@
     * module/functions.c: Set aflag[] member = 0 in initFunctions to appease
       static code analyzers.
 
+    * module/geda.c: Set aflag[] member = 0 in initFunctions to appease static
+      code analyzers.
+
 2017-05-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/libgedathon.c: Remove GedaObject type cast in PyGeda_get_attribs.

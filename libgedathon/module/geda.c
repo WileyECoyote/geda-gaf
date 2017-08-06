@@ -264,7 +264,8 @@ initgeda(void)
 {
   //static PyObject *module;
 
-  GedaMethods[METHOD_COUNT].name = NULL;
+  GedaMethods[METHOD_COUNT].name  = NULL;
+  GedaMethods[METHOD_COUNT].aflag = 0;
 
   if (!open_library())
     return;
