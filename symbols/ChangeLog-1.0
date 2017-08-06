@@ -3,6 +3,9 @@
     * maxim/MAX200-1.sym: Add symbol; RS-232 transceivers with 0.1uF external
       capacitors.
 
+    * maxim/MAX201-1.sym: Add symbol; RS-232 transceivers with 0.1uF external
+      capacitors in SO16 package.
+
 2017-08-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * emechanic/relay/Aromat-tq4_relay_4pdt-2.sym: Remove extraneous attributes,
