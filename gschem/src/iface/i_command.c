@@ -1409,6 +1409,13 @@ COMMAND (do_paste_clip)
     }
   }
   else {
+
+    /* Clean up if tried to paste "nothing" inside an action */
+    if (w_current->inside_action) {
+      o_redraw_cleanstates (w_current);
+      i_status_action_stop(w_current);
+    }
+
     i_status_set_state_msg (w_current, SELECT, _("Empty buffer"));
   }
   EXIT_COMMAND(do_paste_clip);
