@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-07-03 01:31-0500\n"
+"POT-Creation-Date: 2017-08-05 15:01-0500\n"
 "PO-Revision-Date: 2012-02-20 00:09+0000\n"
 "Last-Translator: Carlos Nieves <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -536,11 +536,11 @@ msgstr "Ruta incorrecta en el archivo"
 msgid "Error saving configuration, bad path in"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1458 libgeda/src/geda/geda_config.c:1522
+#: libgeda/src/geda/geda_config.c:1463 libgeda/src/geda/geda_config.c:1527
 msgid "Configuration does not have group"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1536
+#: libgeda/src/geda/geda_config.c:1541
 msgid "Configuration does not have key"
 msgstr ""
 
@@ -702,131 +702,131 @@ msgstr ""
 msgid "Y coordinate of the second point"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:456
+#: libgeda/src/geda/geda_object.c:459
 msgid "object-type"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:457
+#: libgeda/src/geda/geda_object.c:460
 msgid "Character identifier corresponding to the type of object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:466
+#: libgeda/src/geda/geda_object.c:469
 msgid "sequence-identification"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:467
+#: libgeda/src/geda/geda_object.c:470
 msgid "Sequence identifier created during object construction"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:474
+#: libgeda/src/geda/geda_object.c:477
 msgid "object-name"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:475
+#: libgeda/src/geda/geda_object.c:478
 msgid "Unique name of this object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:481
+#: libgeda/src/geda/geda_object.c:484
 msgid "Parent"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:482
+#: libgeda/src/geda/geda_object.c:485
 msgid "Pointer to parent object - a Page or a Complex"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:487
+#: libgeda/src/geda/geda_object.c:490
 msgid "Selectable"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:488
+#: libgeda/src/geda/geda_object.c:491
 msgid "Whether the label text can be selected with the mouse"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:494
+#: libgeda/src/geda/geda_object.c:497
 msgid "Redraw"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:495
+#: libgeda/src/geda/geda_object.c:498
 msgid "Whether the object redrawn, used for temporary objects"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:501
+#: libgeda/src/geda/geda_object.c:504
 msgid "Selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:502
+#: libgeda/src/geda/geda_object.c:505
 msgid "Whether the object is currently selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:509
+#: libgeda/src/geda/geda_object.c:512
 msgid "Show-Name-Value-flag"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:510
+#: libgeda/src/geda/geda_object.c:513
 msgid "Flag to indicate whether to show the name, value or both"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:518
+#: libgeda/src/geda/geda_object.c:521
 msgid "Visible"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:519
+#: libgeda/src/geda/geda_object.c:522
 msgid "Whether the object is displayed, normaly text attributes"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:303
+#: libgeda/src/geda/geda_pin.c:302
 msgid "Electrical"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:304
+#: libgeda/src/geda/geda_pin.c:303
 msgid "Electrical Properties of the pin"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:310
+#: libgeda/src/geda/geda_pin.c:309
 msgid "Label"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:311
+#: libgeda/src/geda/geda_pin.c:310
 msgid "A Label for the pin"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:317
+#: libgeda/src/geda/geda_pin.c:316
 msgid "Number"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:318
+#: libgeda/src/geda/geda_pin.c:317
 msgid "The pin number"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:324
+#: libgeda/src/geda/geda_pin.c:323
 msgid "Mechanical"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:325
+#: libgeda/src/geda/geda_pin.c:324
 msgid "Mechanical Properties of the pin"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:331
+#: libgeda/src/geda/geda_pin.c:330
 msgid "Sequence"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:332
+#: libgeda/src/geda/geda_pin.c:331
 msgid "The pin sequence"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:338
+#: libgeda/src/geda/geda_pin.c:337
 msgid "Type"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:339
+#: libgeda/src/geda/geda_pin.c:338
 msgid "Either Mechanical or Electrical Properties of the pin"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:345
+#: libgeda/src/geda/geda_pin.c:344
 msgid "Whichend"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:346
+#: libgeda/src/geda/geda_pin.c:345
 msgid "Which end of the pin gets connected"
 msgstr ""
 
@@ -1044,30 +1044,30 @@ msgstr "Se ha encontrado un contenido no válido cerca de la línea"
 msgid "On or about line"
 msgstr ""
 
-#: libgeda/src/object/o_arc_object.c:1449
-#: libgeda/src/object/o_arc_object.c:1464
+#: libgeda/src/object/o_arc_object.c:1420
+#: libgeda/src/object/o_arc_object.c:1435
 msgid "Failed to parse arc object"
 msgstr "Falló el procesamiento de objeto arco"
 
-#: libgeda/src/object/o_arc_object.c:1471
+#: libgeda/src/object/o_arc_object.c:1442
 msgid "Found arc with negative radius"
 msgstr "Se encontró radio menor o igual a cero en círculo"
 
-#: libgeda/src/object/o_arc_object.c:1476
+#: libgeda/src/object/o_arc_object.c:1447
 #: libgeda/src/object/o_circle_object.c:1347
 msgid "Setting radius to"
 msgstr "Asignando radio nulo"
 
-#: libgeda/src/object/o_arc_object.c:1479
+#: libgeda/src/object/o_arc_object.c:1450
 msgid "Found an arc with radius zero"
 msgstr "Se ha encontrado un arco con radio cero"
 
-#: libgeda/src/object/o_arc_object.c:1483
+#: libgeda/src/object/o_arc_object.c:1454
 #: libgeda/src/object/o_circle_object.c:1354
 msgid "Setting zero radius to 1000\n"
 msgstr "Asignando radio nulo 1000\n"
 
-#: libgeda/src/object/o_arc_object.c:1488
+#: libgeda/src/object/o_arc_object.c:1459
 #: libgeda/src/object/o_box_object.c:1617
 #: libgeda/src/object/o_bus_object.c:604
 #: libgeda/src/object/o_circle_object.c:1359
@@ -1079,7 +1079,7 @@ msgstr "Asignando radio nulo 1000\n"
 msgid "Found an invalid color"
 msgstr "Se ha encontrado un color no válido"
 
-#: libgeda/src/object/o_arc_object.c:1492
+#: libgeda/src/object/o_arc_object.c:1463
 #: libgeda/src/object/o_box_object.c:1621
 #: libgeda/src/object/o_bus_object.c:608
 #: libgeda/src/object/o_circle_object.c:1363
@@ -1828,15 +1828,15 @@ msgstr "¡No hay más esquemas en un nivel de jerarquía superior al actual!\n"
 msgid "Failed to descend hierarchy into"
 msgstr "Error al descender jerarquía en"
 
-#: libgeda/src/struct/s_page.c:251
+#: libgeda/src/struct/s_page.c:256
 msgid "Disabling auto save timer, no toplevel"
 msgstr ""
 
-#: libgeda/src/struct/s_page.c:738 libgeda/src/struct/s_page.c:782
+#: libgeda/src/struct/s_page.c:743 libgeda/src/struct/s_page.c:787
 msgid "Saved"
 msgstr "Guardado"
 
-#: libgeda/src/struct/s_page.c:744 libgeda/src/struct/s_page.c:789
+#: libgeda/src/struct/s_page.c:749 libgeda/src/struct/s_page.c:794
 msgid "Could NOT save"
 msgstr "No se ha podido guardar"
 
