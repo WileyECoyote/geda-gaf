@@ -361,7 +361,7 @@ void g_keys_reset (GschemToplevel *w_current)
 
   /* Reset the status bar */
   GEDA_FREE (w_current->keyaccel_string);
-  w_current->keyaccel_string = NULL;
+
   i_status_show_state(w_current, NULL);
 
   /* Reset the Scheme keybinding state */
