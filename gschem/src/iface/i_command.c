@@ -1383,11 +1383,11 @@ COMMAND (do_paste_clip)
 
   if ((narg < 0) || (arg == NULL)) { /* if no arguments then use buffer 0 */
 
-    GList *object_list = NULL;
     narg = 0;
-    object_list = x_clipboard_get (w_current);
-    geda_struct_object_release_objects (object_buffer[narg]);
-    object_buffer[0] = object_list;
+
+    geda_struct_object_release_objects (object_buffer[0]);
+
+    object_buffer[0] = x_clipboard_get (w_current);
   }
 
   if (object_buffer[narg] != NULL) {

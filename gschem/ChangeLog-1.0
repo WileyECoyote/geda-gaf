@@ -3,8 +3,9 @@
     * src/guile/g_keys.c: Remove redundant setting keyaccel_string of to
       NULL in g_keys_reset.
 
-    * src/iface/i_command.c: Revise else nothing in buffer clause to clean
-      up if inside an action in function i_cmd_do_paste_clip.
+    * src/iface/i_command.c: Revise i_cmd_do_paste_clip; modify else nothing-
+      in-buffer clause to clean up if inside an action. Remove object_list
+      variable in set object_buffer[0] directly.
 
     * src/x/x_edit_attrib.c: Remove errant fetching of the "visbutton" data
       in x_dialog_attrib_edit_update_selection.
