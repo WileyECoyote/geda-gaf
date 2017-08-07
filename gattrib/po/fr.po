@@ -623,7 +623,6 @@ msgstr "A_ttribut"
 
 # Display Attribute Toolbar
 #: gattrib/src/x_menus.c:419
-
 msgid "Display Attribute Toolbar"
 msgstr "Afficher la barre d'outils de l'attribut"
 
@@ -723,25 +722,30 @@ msgstr "Attribut"
 msgid "Locate attribute"
 msgstr "Localiser l'attribut"
 
+# Reference Designator
 #: gattrib/src/x_toolbars.c:41
 msgid "Ref Des"
-msgstr ""
+msgstr "Designateur de référence"
 
+# Locate Reference Designator
 #: gattrib/src/x_toolbars.c:41
 msgid "Locate Reference Designator"
-msgstr ""
+msgstr "Locate Reference Designator"
 
+# invisible
 #: gattrib/src/x_toolbars.c:44
 msgid "invisible"
-msgstr ""
+msgstr "invisible"
 
+# visible
 #: gattrib/src/x_toolbars.c:45
 msgid "visible"
-msgstr ""
+msgstr "visible"
 
+# add
 #: gattrib/src/x_toolbars.c:46
 msgid "add"
-msgstr ""
+msgstr "ajouter"
 
 # Add a new attribute
 #: gattrib/src/x_toolbars.c:46
@@ -776,7 +780,8 @@ msgstr "tous les deux"
 # Saving main window geometry and settings
 #: gattrib/src/x_window.c:177
 msgid "Saving main window geometry and settings.\n"
-msgstr "Enregistrement de la géométrie et des paramètres de la fenêtre principale.\n"
+msgstr ""
+"Enregistrement de la géométrie et des paramètres de la fenêtre principale.\n"
 
 # Retrieving main Window geometry and settings
 #: gattrib/src/x_window.c:213
