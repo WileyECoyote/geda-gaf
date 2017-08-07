@@ -1,3 +1,8 @@
+2017-08-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_accel_label.c: Remove unused ancillary pointer to
+      GtkMisc in geda_accel_label_draw.
+
 2017-08-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Factor out common code from conditional

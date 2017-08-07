@@ -433,7 +433,6 @@ static int geda_accel_label_draw (GtkWidget *widget, cairo_t *cr)
 
   if (allocation->width >= requisition.width + ac_width) {
 
-      GtkMisc         *misc;
       GtkTextDirection direction;
       GtkStyleContext *context;
       PangoLayout     *label_layout;
@@ -442,8 +441,6 @@ static int geda_accel_label_draw (GtkWidget *widget, cairo_t *cr)
       int x;
       int y;
       int xpad;
-
-      misc         = GTK_MISC (accel_label);
 
       context      = gtk_widget_get_style_context (widget);
       direction    = gtk_widget_get_direction (widget);
