@@ -573,9 +573,8 @@ msgid "_Help"
 msgstr ""
 
 #: gattrib/src/x_menus.c:403
-#, fuzzy
 msgid "Gattrib Guide"
-msgstr "gEDA urejevalnik atributov"
+msgstr "Gattrib vodnik"
 
 #: gattrib/src/x_menus.c:404
 msgid "Gattrib FAQ"
@@ -589,10 +588,10 @@ msgstr ""
 msgid "gEDA _Wiki..."
 msgstr ""
 
+# gEDA Attributes"
 #: gattrib/src/x_menus.c:408
-#, fuzzy
 msgid "gEDA Attributes"
-msgstr "gEDA urejevalnik atributov"
+msgstr "GEDA lastnosti"
 
 #: gattrib/src/x_menus.c:409
 msgid "gEDA Glossary"
@@ -618,15 +617,15 @@ msgstr ""
 msgid "Display Standard Toolbar"
 msgstr ""
 
+# Attribute
 #: gattrib/src/x_menus.c:419
-#, fuzzy
 msgid "A_ttribute"
-msgstr "gEDA urejevalnik atributov"
+msgstr "A_tribut"
 
+# Display Attribute Toolbar
 #: gattrib/src/x_menus.c:419
-#, fuzzy
 msgid "Display Attribute Toolbar"
-msgstr "gEDA urejevalnik atributov"
+msgstr "Orodna vrstica za prikaz na zaslonu"
 
 #: gattrib/src/x_menus.c:420
 msgid "_Attached"
@@ -716,15 +715,15 @@ msgstr ""
 msgid "Search and Replace attribute value"
 msgstr ""
 
+# Attribute
 #: gattrib/src/x_toolbars.c:40
-#, fuzzy
 msgid "Attrib"
-msgstr "gEDA urejevalnik atributov"
+msgstr "Atribut"
 
+# Locate attribute
 #: gattrib/src/x_toolbars.c:40
-#, fuzzy
 msgid "Locate attribute"
-msgstr "gEDA urejevalnik atributov"
+msgstr "Poiščite atribut"
 
 #: gattrib/src/x_toolbars.c:41
 msgid "Ref Des"
