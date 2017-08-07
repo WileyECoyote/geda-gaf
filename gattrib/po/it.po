@@ -722,25 +722,30 @@ msgstr "Attributo"
 msgid "Locate attribute"
 msgstr "Individua l'attributo"
 
+# Reference Designator
 #: gattrib/src/x_toolbars.c:41
 msgid "Ref Des"
-msgstr ""
+msgstr "Indicatore di riferimento"
 
+# Locate Reference Designator
 #: gattrib/src/x_toolbars.c:41
 msgid "Locate Reference Designator"
-msgstr ""
+msgstr "Individuare il designatore di riferimento"
 
+# invisible
 #: gattrib/src/x_toolbars.c:44
 msgid "invisible"
-msgstr ""
+msgstr "invisibile"
 
+# visible
 #: gattrib/src/x_toolbars.c:45
 msgid "visible"
-msgstr ""
+msgstr "visibile"
 
+# add
 #: gattrib/src/x_toolbars.c:46
 msgid "add"
-msgstr ""
+msgstr "Inserisci"
 
 # Add a new attribute
 #: gattrib/src/x_toolbars.c:46
@@ -780,4 +785,5 @@ msgstr ""
 # Retrieving main Window geometry and settings
 #: gattrib/src/x_window.c:213
 msgid "Retrieving main Window geometry and settings.\n"
-msgstr "Recupero della geometria e delle impostazioni della finestra principale.\n"
+msgstr ""
+"Recupero della geometria e delle impostazioni della finestra principale.\n"
