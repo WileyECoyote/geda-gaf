@@ -3,6 +3,9 @@
     * src/widgets/geda_accel_label.c: Remove unused ancillary pointer to
       GtkMisc in geda_accel_label_draw.
 
+    * src/widgets/geda_combobox.c: Update format specifier in function
+      geda_combo_box_update_sensitivity for default case.
+
 2017-08-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Factor out common code from conditional
