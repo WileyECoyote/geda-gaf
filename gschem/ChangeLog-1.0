@@ -18,6 +18,9 @@
       as arguments to gdk_pixbuf_get_from_drawable instead of recalculating
       right - origin_x and bottom - origin_y.
 
+    * src/x/x_toolbars.c: Include pointer to widget in debug output in function
+      x_toolbars_execute.
+
 2017-08-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_picture.c: Replace gtk_toggle_button_get_active with

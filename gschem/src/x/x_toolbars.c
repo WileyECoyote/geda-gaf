@@ -355,8 +355,9 @@ static void x_toolbars_execute(GtkWidget *widget, GschemToplevel *w_current)
   char *action;
 
   action = GEDA_OBJECT_GET_DATA(widget, "action");
+
 #if DEBUG_TOOLBARS
-  fprintf(stderr, "%s: action=%s\n", __func__, action);
+  fprintf(stderr, "%s: widget=%p action=%s\n", __func__, widget, action);
 #endif
 
   i_command_process(w_current, action, 0, NULL, ID_ORIGIN_TOOLBAR);
