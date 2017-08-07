@@ -292,7 +292,7 @@ static int on_mouse_button_press(GtkWidget *widget,
  *
  *  \par Function Description
  *
- *  \param [in] widget is the active sheet widget
+ *  \param [in] sheet  is the active sheet widget
  *  \param [in] key    Keyboard Event record
  */
 static int clipboard_handler(GtkSheet *sheet, GdkEventKey *key)
