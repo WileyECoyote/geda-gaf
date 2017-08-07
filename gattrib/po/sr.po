@@ -404,10 +404,10 @@ msgstr ""
 msgid "not found!"
 msgstr ""
 
+# Attribute
 #: gattrib/src/x_find.c:277
-#, fuzzy
 msgid "Attribute"
-msgstr "гЕДА — уређивач особина"
+msgstr "Атрибут"
 
 #: gattrib/src/x_find.c:314
 msgid "Designator"
@@ -572,10 +572,10 @@ msgstr ""
 msgid "_Help"
 msgstr ""
 
+# Gattrib Guide
 #: gattrib/src/x_menus.c:403
-#, fuzzy
 msgid "Gattrib Guide"
-msgstr "гЕДА — уређивач особина"
+msgstr "Гаттриб Водич"
 
 #: gattrib/src/x_menus.c:404
 msgid "Gattrib FAQ"
@@ -589,10 +589,10 @@ msgstr ""
 msgid "gEDA _Wiki..."
 msgstr ""
 
+# gEDA Attributes
 #: gattrib/src/x_menus.c:408
-#, fuzzy
 msgid "gEDA Attributes"
-msgstr "гЕДА — уређивач особина"
+msgstr "ГЕДА атрибут"
 
 #: gattrib/src/x_menus.c:409
 msgid "gEDA Glossary"
@@ -618,15 +618,15 @@ msgstr ""
 msgid "Display Standard Toolbar"
 msgstr ""
 
+# Attribute
 #: gattrib/src/x_menus.c:419
-#, fuzzy
 msgid "A_ttribute"
-msgstr "гЕДА — уређивач особина"
+msgstr "А_трибут"
 
+# Display Attribute Toolbar
 #: gattrib/src/x_menus.c:419
-#, fuzzy
 msgid "Display Attribute Toolbar"
-msgstr "гЕДА — уређивач особина"
+msgstr "Дисплаи Аттрибуте Тоолбар"
 
 #: gattrib/src/x_menus.c:420
 msgid "_Attached"
@@ -716,15 +716,15 @@ msgstr ""
 msgid "Search and Replace attribute value"
 msgstr ""
 
+# Attribute
 #: gattrib/src/x_toolbars.c:40
-#, fuzzy
 msgid "Attrib"
-msgstr "гЕДА — уређивач особина"
+msgstr "Атрибут"
 
+# Locate attribute
 #: gattrib/src/x_toolbars.c:40
-#, fuzzy
 msgid "Locate attribute"
-msgstr "гЕДА — уређивач особина"
+msgstr "Пронађите атрибут"
 
 #: gattrib/src/x_toolbars.c:41
 msgid "Ref Des"
@@ -746,10 +746,10 @@ msgstr ""
 msgid "add"
 msgstr ""
 
+# Add a new attribute
 #: gattrib/src/x_toolbars.c:46
-#, fuzzy
 msgid "Add a new attribute"
-msgstr "гЕДА — уређивач особина"
+msgstr "Додајте нови атрибут"
 
 #: gattrib/src/x_toolbars.c:47
 msgid "promote"
