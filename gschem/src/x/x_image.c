@@ -1077,8 +1077,7 @@ GdkPixbuf *x_image_get_pixbuf (GschemToplevel *w_current, ImageExtent extent,
   /* Get the pixbuf */
   pixbuf = gdk_pixbuf_get_from_drawable (NULL,new_w_current->window, NULL,
                                          origin_x, origin_y, 0, 0,
-                                         right-origin_x,
-                                         bottom-origin_y);
+                                         rect.width, rect.height);
 
   if (toplevel->image_color == FALSE) {
     x_image_convert_to_greyscale(pixbuf, toplevel->invert_images == TRUE);

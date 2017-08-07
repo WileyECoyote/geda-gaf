@@ -14,6 +14,10 @@
     * src/x/x_edit_attrib.c: Remove errant fetching of the "visbutton" data
       in x_dialog_attrib_edit_update_selection.
 
+    * src/x/x_image.c: Revise x_image_get_pixbuf to use rect.width and rect.height
+      as arguments to gdk_pixbuf_get_from_drawable instead of recalculating
+      right - origin_x and bottom - origin_y.
+
 2017-08-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_picture.c: Replace gtk_toggle_button_get_active with
