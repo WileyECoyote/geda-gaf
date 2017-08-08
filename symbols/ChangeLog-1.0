@@ -1,3 +1,10 @@
+2017-08-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * emechanic/relay Add description and update documentation and revise
+      attribute locations:
+
+            * emechanic/relay/relay_dpdt-2.sym
+
 2017-08-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * maxim/MAX200-1.sym: Add symbol; RS-232 transceivers with 0.1uF external
