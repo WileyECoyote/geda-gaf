@@ -5,6 +5,7 @@
 
             * emechanic/relay/relay_dpdt-2.sym
             * emechanic/relay/relay_spdt-1.sym
+            * emechanic/relay/relay_spdt-2.sym
 
 2017-08-05 Wiley E. Hill <wileyhill@gmail.com>
 
