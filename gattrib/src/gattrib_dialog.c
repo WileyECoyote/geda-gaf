@@ -361,7 +361,7 @@ static void gattrib_dialog_get_property (GObject *object, guint property_id, GVa
  *  Type class initializer for GattribDialog. We override our parent
  *  virtual class methods as needed and register our GObject properties.
  *
- * \param [in]  class       GattribDialogClass class we are initializing
+ * \param [in]  klass       GattribDialogClass class we are initializing
  * \param [in]  class_data  GattribDialog structure associated with the class
  */
 static void gattrib_dialog_class_init(void *klass, void *class_data)
