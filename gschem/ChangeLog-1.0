@@ -1,3 +1,10 @@
+2017-08-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_event.c: Move call to i_event_cancel_action_handler to the
+      end of i_callback_cancel to replace o_invalidate_all, i_status_set_state
+      and i_status_action_stop, since i_event_cancel_action_handler calls all
+      three of these functions.
+
 2017-08-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/i_command.h: Change EDIT_CB_PASTE to USE_MAIN_LOOP so that

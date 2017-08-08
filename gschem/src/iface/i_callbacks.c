@@ -121,6 +121,7 @@ DEFINE_I_CALLBACK(view_pan_down)
  */
 DEFINE_I_CALLBACK(cancel)
 {
+
   switch (w_current->event_state) {
     case COMPMODE:
 
@@ -166,9 +167,6 @@ DEFINE_I_CALLBACK(cancel)
 
   }
 
-  /* Reset the action event handler */
-  i_event_cancel_action_handler (w_current);
-
   if (w_current->primary_selection) {
     g_list_free (w_current->primary_selection);
     w_current->primary_selection = NULL;
@@ -184,9 +182,8 @@ DEFINE_I_CALLBACK(cancel)
   /* Clear the key guile command-sequence */
   g_keys_reset (w_current);
 
-  o_invalidate_all (w_current);
-  i_status_set_state (w_current, SELECT);
-  i_status_action_stop(w_current);
+  /* Reset the action event handler */
+  i_event_cancel_action_handler (w_current);
 }
 
 /** \defgroup help-menu Help Menu Callback Functions
