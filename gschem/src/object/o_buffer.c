@@ -186,7 +186,7 @@ bool o_buffer_paste_start(GschemToplevel *w_current, int w_x, int w_y)
         y = snap_grid (w_current, top);
 
         for (iter = Current_PlaceList; iter != NULL; iter = iter->next) {
-         GedaObject *o_current = iter->data;
+          GedaObject *o_current = iter->data;
           geda_object_translate(o_current, w_x - x, w_y - y);
         }
 
