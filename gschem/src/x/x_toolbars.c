@@ -448,7 +448,7 @@ static void x_toolbars_execute_radio (GtkToggleButton *button, GschemToplevel *w
   char *action = GEDA_OBJECT_GET_DATA(button, "action");
 
 #if DEBUG_TOOLBARS
-  fprintf(stderr, "x_toolbars_execute_radio: action=%s\n", action);
+  fprintf(stderr, "%s: button=%p action=%s\n", __func__, button, action);
 #endif
 
   if ((strcmp(action, "none") != 0) && (button->active)) {

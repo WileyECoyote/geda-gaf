@@ -5,6 +5,9 @@
       and i_status_action_stop, since i_event_cancel_action_handler calls all
       three of these functions.
 
+    * src/x/x_toolbars.c: Use __func__ macro and include pointer to widget in
+      debug output in function x_toolbars_turn_on_radio.
+
 2017-08-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/i_command.h: Change EDIT_CB_PASTE to USE_MAIN_LOOP so that
