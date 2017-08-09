@@ -3327,7 +3327,7 @@ static void geda_combo_box_child_show (GtkWidget *widget, GedaComboBox *combo_bo
   GedaComboBoxData *priv = combo_box->priv;
 
   priv->popup_shown = TRUE;
-  g_object_notify ((GObject*)combo_box, "popup-shown");
+  GEDA_OBJECT_NOTIFY (combo_box, "popup-shown");
 }
 
 static void geda_combo_box_child_hide (GtkWidget *widget, GedaComboBox *combo_box)
@@ -3335,7 +3335,7 @@ static void geda_combo_box_child_hide (GtkWidget *widget, GedaComboBox *combo_bo
   GedaComboBoxData *priv = combo_box->priv;
 
   priv->popup_shown = FALSE;
-  g_object_notify ((GObject*)combo_box, "popup-shown");
+  GEDA_OBJECT_NOTIFY (combo_box, "popup-shown");
 }
 
 /* menu style */
@@ -5554,7 +5554,7 @@ geda_combo_box_set_active_internal (GedaComboBox *combo_box,
   }
 
   g_signal_emit (combo_box, combo_box_signals[CHANGED], 0);
-  g_object_notify ((GObject*)combo_box, "active");
+  GEDA_OBJECT_NOTIFY (combo_box, "active");
 }
 
 /*!
@@ -5781,7 +5781,7 @@ geda_combo_box_set_model (GedaComboBox *combo_box, GtkTreeModel *model)
 
   geda_combo_box_update_sensitivity (combo_box);
 
-  g_object_notify ((GObject*)combo_box, "model");
+  GEDA_OBJECT_NOTIFY (combo_box, "model");
 }
 
 /* convenience API for simple text combos */
@@ -6370,7 +6370,7 @@ geda_combo_box_set_add_tearoffs (GedaComboBox *combo_box, bool add_tearoffs)
 
       geda_combo_box_relayout (combo_box);
 
-      g_object_notify ((GObject*)combo_box, "add-tearoffs");
+      GEDA_OBJECT_NOTIFY (combo_box, "add-tearoffs");
   }
 }
 
@@ -6426,7 +6426,7 @@ geda_combo_box_set_column_span_column (GedaComboBox *combo_box,
 
     geda_combo_box_relayout (combo_box);
 
-    g_object_notify ((GObject*)combo_box, "column-span-column");
+    GEDA_OBJECT_NOTIFY (combo_box, "column-span-column");
   }
 }
 
@@ -6476,7 +6476,7 @@ geda_combo_box_set_focus_on_click (GedaComboBox *combo_box, bool focus_on_click)
       gtk_button_set_focus_on_click (GTK_BUTTON (combo_box->priv->button),
                                      focus_on_click);
     }
-    g_object_notify ((GObject*)combo_box, "focus-on-click");
+    GEDA_OBJECT_NOTIFY (combo_box, "focus-on-click");
   }
 }
 
@@ -6530,7 +6530,7 @@ void geda_combo_box_set_row_span_column (GedaComboBox *combo_box,
 
     geda_combo_box_relayout (combo_box);
 
-    g_object_notify ((GObject*)combo_box, "row-span-column");
+    GEDA_OBJECT_NOTIFY (combo_box, "row-span-column");
   }
 }
 
@@ -6604,7 +6604,7 @@ geda_combo_box_set_title (GedaComboBox *combo_box, const char *title)
 
     geda_combo_box_update_title (combo_box);
 
-    g_object_notify ((GObject*)combo_box, "tearoff-title");
+    GEDA_OBJECT_NOTIFY (combo_box, "tearoff-title");
   }
 }
 
@@ -6693,7 +6693,7 @@ geda_combo_box_set_wrap_width (GedaComboBox *combo_box,
     geda_combo_box_check_appearance (combo_box);
     geda_combo_box_relayout (combo_box);
 
-    g_object_notify ((GObject*)combo_box, "wrap-width");
+    GEDA_OBJECT_NOTIFY (combo_box, "wrap-width");
   }
 }
 
@@ -6803,7 +6803,7 @@ geda_combo_box_set_button_sensitivity (GedaComboBox       *combo_box,
     combo_box->priv->button_sensitivity = sensitivity;
     geda_combo_box_update_sensitivity (combo_box);
 
-    g_object_notify ((GObject*)combo_box, "button-sensitivity");
+    GEDA_OBJECT_NOTIFY (combo_box, "button-sensitivity");
   }
 }
 
