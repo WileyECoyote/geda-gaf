@@ -8,6 +8,9 @@
     * microchip/MCP2021-2.sym: Add alternate symbol; LIN Transceiver with
       Voltage Regulator.
 
+    * microchip/MCP2022-2.sym: Add alternate symbol; LIN Transceiver with
+      Voltage Regulator and reset.
+
 2017-08-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * emechanic/relay Add description and update documentation and revise
