@@ -1361,14 +1361,13 @@ msgstr ""
 "automatisch nummeren van slots\n"
 
 #: gschem/src/x/x_autonumber.c:615
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "duplicate slot may cause problems: [symbol name=%s, number=%d, slot=%d]\n"
 msgstr ""
-"een dubbel slot kan een probleem geven: [symbolname=%s, number=%d, slot=%d]\n"
+"Dubbele sleuf kan problemen veroorzaken: [symboolnaam=%s, nummer=%d, slot=%d]\n"
 
 #: gschem/src/x/x_autonumber.c:913
-#, fuzzy
 msgid "No search string given in autonumber text.\n"
 msgstr "Geen zoektekst gegeven in automatisch nummeren tekst.\n"
 
@@ -1397,9 +1396,8 @@ msgid "File order"
 msgstr "Bestand volgorde"
 
 #: gschem/src/x/x_autonumber.c:1605
-#, fuzzy
 msgid "<b>Filter:</b>"
-msgstr "Filter:"
+msgstr "<b>Filter:</b>"
 
 #: gschem/src/x/x_autonumber.c:1646
 msgid "Selected objects"
@@ -1622,9 +1620,8 @@ msgid "Could not load image file"
 msgstr "Kan afbeelding niet laden bestand"
 
 #: gschem/src/x/x_dialog.c:463
-#, fuzzy
 msgid "gEDA: GPL Electronic Design Automation"
-msgstr "gEDA: GPL Elektronische Ontwerp Automatisering"
+msgstr "gEDA: GPL Elektronische ontwerp automatisering"
 
 #: gschem/src/x/x_dialog.c:464
 msgid "glibc"
@@ -1702,14 +1699,12 @@ msgid "Background"
 msgstr "Achtergrond"
 
 #: gschem/src/x/x_dialog.c:1034
-#, fuzzy
 msgid "Pin"
-msgstr "_Pen"
+msgstr "Pen"
 
 #: gschem/src/x/x_dialog.c:1035
-#, fuzzy
 msgid "Net endpoint"
-msgstr "Draad pen"
+msgstr "Net eindpunt"
 
 #: gschem/src/x/x_dialog.c:1036
 msgid "Graphic"
@@ -1729,14 +1724,12 @@ msgid "Logic bubble"
 msgstr "Logische inverter"
 
 #: gschem/src/x/x_dialog.c:1040
-#, fuzzy
 msgid "Grid point"
 msgstr "Rasterpunt"
 
 #: gschem/src/x/x_dialog.c:1041
-#, fuzzy
 msgid "Detached attribute"
-msgstr "Maak Attributen Los"
+msgstr "Vrijstaande attributen"
 
 #: gschem/src/x/x_dialog.c:1042 gschem/src/x/x_menus.c:96
 msgid "Text"
@@ -1748,9 +1741,8 @@ msgid "Bus"
 msgstr "Bus"
 
 #: gschem/src/x/x_dialog.c:1044 gschem/src/x/x_menus.c:106
-#, fuzzy
 msgid "Selection"
-msgstr "Selecteer"
+msgstr "Selectie"
 
 #: gschem/src/x/x_dialog.c:1045
 msgid "Bounding box"
