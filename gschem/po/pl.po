@@ -3983,15 +3983,15 @@ msgid ""
 "successfully created"
 msgstr ""
 
+# Discarding page
 #: gschem/src/x/x_window.c:1136
-#, fuzzy
 msgid "Discarding page"
-msgstr "Porzucanie arkusza"
+msgstr "Odrzuć stronę"
 
+# Closing
 #: gschem/src/x/x_window.c:1137
-#, fuzzy
 msgid "Closing"
-msgstr "Zamknij arkusz"
+msgstr "Zamknięcie"
 
 # Saving sheet failed
 #: gschem/src/x/x_window.c:1202
@@ -4073,10 +4073,10 @@ msgstr "P_rzywróć"
 msgid "Discard changes and reload the current document"
 msgstr ""
 
+# Revert All
 #: gschem/etc/system-gschemrc.scm:2079
-#, fuzzy
 msgid "Re_vert All"
-msgstr "Czy na pewno przywrócić arkusz?"
+msgstr "Revert All"
 
 #: gschem/etc/system-gschemrc.scm:2079
 msgid "Discard changes and reload all open documents"
@@ -4569,19 +4569,19 @@ msgstr ""
 msgid "_Manager..."
 msgstr "_Zarządzaj..."
 
+# Open the Page Manager => Open the Sheet Manager
 #: gschem/etc/system-gschemrc.scm:2228
-#, fuzzy
 msgid "Open the Page Manager"
-msgstr "Zarządzanie arkuszami"
+msgstr "Otwórz Menedżer arkuszy"
 
 #: gschem/etc/system-gschemrc.scm:2229
 msgid "_First"
 msgstr ""
 
+# Goto the first page => Goto the first sheet
 #: gschem/etc/system-gschemrc.scm:2229
-#, fuzzy
 msgid "Goto the first page"
-msgstr "Bieżącej stronie"
+msgstr "Przejdź do pierwszego arkusza"
 
 #: gschem/etc/system-gschemrc.scm:2230
 msgid "_Previous"
@@ -4620,10 +4620,10 @@ msgstr ""
 msgid "_Last"
 msgstr ""
 
+# Goto the last page => Goto the last sheet
 #: gschem/etc/system-gschemrc.scm:2234
-#, fuzzy
 msgid "Goto the last page"
-msgstr "Cofnij ostatnią operację"
+msgstr "Przejdź do ostatniego arkusza"
 
 #: gschem/etc/system-gschemrc.scm:2235
 msgid "Ne_w"
@@ -4633,19 +4633,19 @@ msgstr "No_wy"
 msgid "Create a new Page"
 msgstr ""
 
+# Close the current page
 #: gschem/etc/system-gschemrc.scm:2238
-#, fuzzy
 msgid "Close the current page"
-msgstr "Bieżącej stronie"
+msgstr "Zamknij bieżącą stronę"
 
 #: gschem/etc/system-gschemrc.scm:2239
 msgid "Discard changes and reload the current documents"
 msgstr ""
 
+# Discard => Abandon
 #: gschem/etc/system-gschemrc.scm:2240
-#, fuzzy
 msgid "D_iscard"
-msgstr "Po_rzuć"
+msgstr "Porzuć"
 
 #: gschem/etc/system-gschemrc.scm:2240
 #, fuzzy
