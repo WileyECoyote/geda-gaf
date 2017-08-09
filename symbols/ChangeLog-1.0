@@ -1,3 +1,10 @@
+2017-08-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * emechanic/relay Add documentation, update description and footprint,
+      revise attribute locations:
+
+            * emechanic/relay/relay_spdt-3.sym
+
 2017-08-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * emechanic/relay Add description and update documentation and revise
