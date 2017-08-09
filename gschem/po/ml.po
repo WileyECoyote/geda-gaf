@@ -2664,37 +2664,44 @@ msgstr "പാത്ത് നീക്കംചെയ്യുന്നില�
 msgid "Version"
 msgstr "പതിപ്പ്"
 
+# Warning, Error reading image file
 #: gschem/src/x/x_icons.c:253
 msgid "Warning, Error reading image file"
-msgstr ""
+msgstr "മുന്നറിയിപ്പ്, ഇമേജ് ഫയൽ വായിക്കുന്നതിൽ പിശക്"
 
+# Warning, Error accessing image file
 #: gschem/src/x/x_icons.c:254
 msgid "Warning, Error accessing image file"
-msgstr ""
+msgstr "മുന്നറിയിപ്പ്, ഇമേജ് ഫയൽ ആക്സസ് ചെയ്യുന്നതിൽ പിശക്"
 
+# Shutting down icon factory
 #: gschem/src/x/x_icons.c:426
 msgid "Shutting down icon factory\n"
-msgstr ""
+msgstr "ഐക്കൺ ഫാക്ടറി അവസാനിപ്പിക്കും\n"
 
 #: gschem/src/x/x_icons.c:447
 msgid "Initializing icon factory\n"
-msgstr ""
+msgstr "ഐക്കൺ ഫാക്ടറി ആരംഭിക്കുന്നു\n"
 
+# Click to select size of the image to be created
 #: gschem/src/x/x_image.c:114
 msgid "Click to select size of the image to be created"
-msgstr ""
+msgstr "സൃഷ്ടിക്കാനായി ഇമേജിന്റെ വലുപ്പം തിരഞ്ഞെടുക്കാൻ ക്ലിക്കുചെയ്യുക"
 
+# Click to select the type of image to be created
 #: gschem/src/x/x_image.c:188
 msgid "Click to select the type of image to be created"
-msgstr ""
+msgstr "സൃഷ്ടിക്കുന്നതിനായി ഇമേജ് തരം തിരഞ്ഞെടുക്കുന്നതിന് ക്ലിക്കുചെയ്യുക"
 
+# Encapsulated Postscript
 #: gschem/src/x/x_image.c:212
 msgid "Encapsulated Postscript"
-msgstr ""
+msgstr "എൻക്യാഷ് ചെയ്തു പോസ്റ്റ്സ്ക്രിപ്റ്റ്"
 
+# Error: Unable to write eps file
 #: gschem/src/x/x_image.c:356
 msgid "Error: Unable to write eps file"
-msgstr ""
+msgstr "പിശക്: eps ഫയൽ എഴുതാനായില്ല"
 
 #: gschem/src/x/x_image.c:359 gschem/src/x/x_image.c:506
 msgid "Wrote black and white image to"

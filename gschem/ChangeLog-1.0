@@ -1,3 +1,7 @@
+2017-08-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/ml.po: Update Malayalam translations.
+
 2017-08-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_event.c: Move call to i_event_cancel_action_handler to the
