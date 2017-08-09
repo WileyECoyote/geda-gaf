@@ -5504,39 +5504,38 @@ msgid "Add Arc"
 msgstr "Adicionar Arco"
 
 #: gschem/scheme/gschem/builtins.scm:374
-#, fuzzy
 msgid "Add Picture"
 msgstr "Adicionar Imagem"
 
+# Create New Session
 #: gschem/scheme/gschem/builtins.scm:380
-#, fuzzy
 msgid "Create New Session"
-msgstr "Página Atual"
+msgstr "Criar nova sessão"
 
+# Open a Session
 #: gschem/scheme/gschem/builtins.scm:383
-#, fuzzy
 msgid "Open a Session"
-msgstr "Salvar _Tudo"
+msgstr "Abra uma sessão"
 
+# Save Session
 #: gschem/scheme/gschem/builtins.scm:386
-#, fuzzy
 msgid "Save Session"
-msgstr "Salvar _Tudo"
+msgstr "Salvar sessão"
 
+# Attach Attributes
 #: gschem/scheme/gschem/builtins.scm:398
-#, fuzzy
 msgid "Attach Attributes"
-msgstr "Editar Atributos"
+msgstr "Anexar atributos"
 
+# Detach Attributes
 #: gschem/scheme/gschem/builtins.scm:401
-#, fuzzy
 msgid "Detach Attributes"
-msgstr "Atributo livre"
+msgstr "Descarte atributos"
 
+# Reset Attribute Positions
 #: gschem/scheme/gschem/builtins.scm:404
-#, fuzzy
 msgid "Reset Attribute Positions"
-msgstr "Junção de conexão"
+msgstr "Repor Atributo Posições"
 
 # Show Attribute Value
 #: gschem/scheme/gschem/builtins.scm:407
