@@ -390,21 +390,21 @@ msgstr ""
 msgid "Gschem status bar"
 msgstr ""
 
+# Grid
 #: gschem/src/base/gschem_status_bar.c:1856
-#, fuzzy
 msgid "Grid"
-msgstr "Ayna modu"
+msgstr "ızgara"
 
 #: gschem/src/base/gschem_status_bar.c:1862
 #: gschem/src/base/gschem_status_bar.c:1883
 msgid "OFF"
 msgstr "KAPALI"
 
+# Error
 #: gschem/src/base/gschem_status_bar.c:1875 gschem/src/object/o_picture.c:617
 #: gschem/src/object/o_picture.c:621
-#, fuzzy
 msgid "Error"
-msgstr "Ayna modu"
+msgstr "Hata"
 
 #: gschem/src/base/gschem_status_bar.c:1887
 msgid "NONE"
@@ -584,10 +584,10 @@ msgstr "Hepsi kaydedildi"
 msgid "Error encountered, Save Failed"
 msgstr ""
 
+# Write Image
 #: gschem/src/iface/i_command.c:1093 gschem/src/x/x_image.c:489
-#, fuzzy
 msgid "Write Image"
-msgstr "imaj olarak yaz"
+msgstr "Resim Yaz"
 
 #: gschem/src/iface/i_command.c:1115
 msgid "Write PDF"
@@ -597,10 +597,10 @@ msgstr ""
 msgid "Canceled close all\n"
 msgstr ""
 
+# Closing all documents
 #: gschem/src/iface/i_command.c:1220 gschem/src/iface/i_sessions.c:193
-#, fuzzy
 msgid "Closing all documents\n"
-msgstr "Sayfayı Kapat"
+msgstr "Tüm dokümanları kapatma\n"
 
 #: gschem/src/iface/i_command.c:1243
 msgid "gschem: starting shut-down\n"
@@ -618,10 +618,10 @@ msgstr ""
 msgid "Empty buffer"
 msgstr ""
 
+# Offset Mode
 #: gschem/src/iface/i_command.c:1677
-#, fuzzy
 msgid "Offset Mode"
-msgstr "Metin kipi"
+msgstr "Ofset Modu"
 
 #: gschem/src/iface/i_command.c:1678
 msgid "Specify offset distance:"
@@ -635,10 +635,10 @@ msgstr ""
 msgid "Specify new zoom:"
 msgstr ""
 
+# error
 #: gschem/src/iface/i_command.c:2299
-#, fuzzy
 msgid "error"
-msgstr "Ayna modu"
+msgstr "hata"
 
 #: gschem/src/iface/i_command.c:2307
 msgid "No component selected\n"
@@ -656,10 +656,10 @@ msgstr ""
 msgid "Failed to descend into"
 msgstr ""
 
+# Hierarchy Error
 #: gschem/src/iface/i_command.c:3077
-#, fuzzy
 msgid "Hierarchy Error"
-msgstr "Hiyerarşi"
+msgstr "Hiyerarşi Hatası"
 
 #: gschem/src/iface/i_command.c:3154
 msgid "Searching for symbol"
@@ -1332,8 +1332,8 @@ msgstr ""
 msgid "<b>Scope</b>"
 msgstr ""
 
+# Options
 #: gschem/src/x/x_autonumber.c:1790
-#, fuzzy
 msgid "Options"
 msgstr "Seçenekler"
 
@@ -1608,9 +1608,8 @@ msgid "Background"
 msgstr ""
 
 #: gschem/src/x/x_dialog.c:1034
-#, fuzzy
 msgid "Pin"
-msgstr "Satır"
+msgstr "Pin"
 
 #: gschem/src/x/x_dialog.c:1035
 msgid "Net endpoint"
