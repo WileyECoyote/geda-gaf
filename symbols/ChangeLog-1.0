@@ -5,6 +5,7 @@
 
             * emechanic/switch/switch_dip12.sym
             * emechanic/switch/switch_dip4-1.sym
+            * emechanic/switch/switch_dip4-2.sym
 
 2017-08-09 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -21,7 +22,7 @@
 
 2017-08-08 Wiley E. Hill <wileyhill@gmail.com>
 
-    * emechanic/relay Add description and update documentation and revise
+    * emechanic/relay: Add description and update documentation and revise
       attribute locations:
 
             * emechanic/relay/relay_dpdt-2.sym
