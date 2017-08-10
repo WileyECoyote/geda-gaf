@@ -104,9 +104,10 @@ msgstr "Janela Principal"
 msgid "Parent window for this dialog"
 msgstr ""
 
+# Title
 #: gschem/src/base/gschem_dialog.c:588
 msgid "Title"
-msgstr ""
+msgstr "Título"
 
 #: gschem/src/base/gschem_dialog.c:589
 msgid "Dialog window title"
@@ -138,11 +139,10 @@ msgstr ""
 msgid "Retrieving main window position.\n"
 msgstr ""
 
-# Retrieving toolbar geometry
+# Retrieving main window geometry
 #: gschem/src/base/gschem_main_window.c:276
-#, fuzzy
 msgid "Retrieving main window geometry.\n"
-msgstr "Recuperando a geometria da barra de ferramentas\n"
+msgstr "Recuperando a geometria da janela principal\n"
 
 #: gschem/src/base/gschem_page_view.c:250
 #: gschem/src/base/gschem_page_view.c:251
@@ -201,6 +201,36 @@ msgid ""
 "Report bugs at <https://bugs.launchpad.net/geda>\n"
 "gEDA homepage: <http://www.geda-project.org>\n"
 msgstr ""
+"Uso: %s [OPÇÃO ...] [--] [ARQUIVO ...]\n"
+"\n"
+"Editor interativo de esquemas e símbolos gEDA. Se um ou mais ARQUIVOs\n"
+"são especificados, os abre e edita; senão, cria um esquema novo, e\n"
+"vazio.\n"
+"\n"
+"Opções:\n"
+"  -a, --render-adaptor <DRV> Specify which render adaptor to use, Cario or "
+"X11.\n"
+"  -c, --config-file <FILE>   Arquivo de configuração adicional para carregar.\n"
+"  -g, --guile <DIR>          adiciona DIR ao caminho de procura de Scheme.\n"
+"  -f, --font <NAME>          Definir o nome de família da fonte\n"
+"  -h, --help                 Ajuda; esta messagem.\n"
+"  -m, --safe-mode            Modo de segurança.\n"
+"  -n, --no-auto              Nenhum último documento de carregamento automático.\n"
+"  -o, --output <FILE>        Arquivo de saída (para impressão).\n"
+"  -p, --place                Posicionamento da janela automático.\n"
+"  -q, --quiet                Mode quieto, sem retornos.\n"
+"  -r, --run <FILE>           Script Scheme para executar ao iniciar.\n"
+"  -s, --start <name>         Inicialização usando o nome da sessão dada.\n"
+"  -t, --title-block <FILE>   Start a new drawing using the specified title-block.\n"
+"  -u, --undo-dir <DIR>       Especifique um diretório temporário para arquivos Desfazer.\n"
+"  -v, --verbose              Oferece mais retornos.\n"
+"  -V, --version              Apresenta informações da versão.\n"
+"  -x (EXPR)                  Expressão Scheme para executar ao iniciar.\n"
+"  -z, --minimized            Ocultar a janela principal, usada para scripts\n"
+"  --                         Todos os argumentos restantes são nomes de arquivos.\n"
+"\n"
+"Reportagens de bugs para <https://bugs.launchpad.net/geda>\n"
+"Pagina inicial gEDA/gaf: <http://www.geda-project.org/>\n"
 
 #: gschem/src/base/gschem_parsecmd.c:128
 #, c-format
@@ -212,6 +242,12 @@ msgid ""
 "included in the gEDA distribution.\n"
 "There is NO WARRANTY, to the extent permitted by law.\n"
 msgstr ""
+"gEDA/gschem %s (%s) (g%.7s)\n"
+"direito autoral (C) 1998-2017 gEDA Desenvolvedores\n"
+"Este é um software livre, e você pode redistribuí-lo sob\n"
+"certas condições. Para obter detalhes, consulte o arquivo `COPYING ', que é\n"
+"Incluído na distribuição gEDA.\n"
+"Não há GARANTIA, na medida permitida por lei.\n"
 
 #: gschem/src/base/gschem_parsecmd.c:244
 msgid "error parsing"
@@ -2256,7 +2292,7 @@ msgstr ""
 
 #: gschem/src/x/x_edit_cprop.c:1202
 msgid "_Version:"
-msgstr ""
+msgstr "_Versão"
 
 #: gschem/src/x/x_edit_cprop.c:1220
 msgid "_Enable"
@@ -5726,11 +5762,6 @@ msgstr "~S não é uma combinação de chave válido."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S não é uma seqüência de chave de prefixo."
-
-# version
-#, fuzzy
-#~ msgid "Guile (version:"
-#~ msgstr "versão"
 
 #~ msgid "Toggle _Magnetic Net"
 #~ msgstr "Alternar Ligação _Magnética"
