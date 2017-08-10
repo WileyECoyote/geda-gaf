@@ -5217,43 +5217,44 @@ msgstr "編輯文字"
 msgid "Edit Color"
 msgstr ""
 
+# Edit Pin Type
 #: gschem/scheme/gschem/builtins.scm:152
-#, fuzzy
 msgid "Edit Pin Type"
-msgstr "編輯"
+msgstr "編輯引腳類型"
 
 #: gschem/scheme/gschem/builtins.scm:161 gschem/scheme/gschem/builtins.scm:164
 msgid "Choose Slot"
 msgstr ""
 
+# Invert Selection
 #: gschem/scheme/gschem/builtins.scm:176
-#, fuzzy
 msgid "Invert Selection"
-msgstr "放大檢視"
+msgstr "反轉選擇"
 
+# Select Last
 #: gschem/scheme/gschem/builtins.scm:179
-#, fuzzy
 msgid "Select Last"
-msgstr "選擇"
+msgstr "選擇最後"
 
+# Deselect mode
 #: gschem/scheme/gschem/builtins.scm:182
-#, fuzzy
 msgid "Deselect mode"
-msgstr "選擇模式"
+msgstr "取消選擇模式"
 
+# Cut
 #: gschem/scheme/gschem/builtins.scm:197
-#, fuzzy
 msgid "Cut"
-msgstr "剪下"
+msgstr "切"
 
+# Paste
 #: gschem/scheme/gschem/builtins.scm:203
-#, fuzzy
 msgid "Paste"
-msgstr "貼上"
+msgstr "糊"
 
+# Redraw
 #: gschem/scheme/gschem/builtins.scm:209
 msgid "Redraw"
-msgstr ""
+msgstr "重繪"
 
 #: gschem/scheme/gschem/builtins.scm:212
 msgid "Pan"
@@ -5719,8 +5720,3 @@ msgstr "~S 不是有效的組合鍵."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S 不是前綴密鑰序列."
-
-# Version
-#, fuzzy
-#~ msgid "Guile (version:"
-#~ msgstr "版"
