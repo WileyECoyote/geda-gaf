@@ -93,28 +93,28 @@ msgstr ""
 msgid "FAILED:"
 msgstr ""
 
+# Parent Window
 #: gschem/src/base/gschem_dialog.c:567
-#, fuzzy
 msgid "Parent Window"
-msgstr "Nova _Janela"
+msgstr "Janela Principal"
 
 #: gschem/src/base/gschem_dialog.c:568
 msgid "Parent window for this dialog"
 msgstr ""
 
+# Title
 #: gschem/src/base/gschem_dialog.c:588
-#, fuzzy
 msgid "Title"
-msgstr "semnome"
+msgstr "Título"
 
 #: gschem/src/base/gschem_dialog.c:589
 msgid "Dialog window title"
 msgstr ""
 
+# Label Text
 #: gschem/src/base/gschem_macro_widget.c:233
-#, fuzzy
 msgid "Label Text"
-msgstr "Esconder Texto"
+msgstr "Texto da etiqueta"
 
 #: gschem/src/base/gschem_macro_widget.c:234
 msgid "Text to be displayed for the Macro label"
@@ -138,11 +138,10 @@ msgstr "Analisar"
 msgid "Retrieving main window position.\n"
 msgstr ""
 
-# Retrieving toolbar geometry
+# Retrieving main window geometry
 #: gschem/src/base/gschem_main_window.c:276
-#, fuzzy
 msgid "Retrieving main window geometry.\n"
-msgstr "Recuperando a geometria da barra de ferramentas\n"
+msgstr "Recuperando a geometria da janela principal\n"
 
 #: gschem/src/base/gschem_page_view.c:250
 #: gschem/src/base/gschem_page_view.c:251
@@ -166,7 +165,7 @@ msgid "Vertical adjustment"
 msgstr ""
 
 #: gschem/src/base/gschem_parsecmd.c:85
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Usage: %s [OPTION ...] [--] [FILE ...]\n"
 "\n"
@@ -208,24 +207,32 @@ msgstr ""
 "vazio.\n"
 "\n"
 "Opções:\n"
-"  -q, --quiet              Mode quieto, sem retornos.\n"
-"  -v, --verbose            Oferece mais retornos.\n"
-"  -r, --config-file=FILE   Arquivo de configuração adicional para carregar.\n"
-"  -L DIR                   adiciona DIR ao caminho de procura de Scheme.\n"
-"  -c EXPR                  Expressão Scheme para executar ao iniciar.\n"
-"  -s FILE                  Script Scheme para executar ao iniciar.\n"
-"  -o, --output=FILE        Arquivo de saída (para impressão).\n"
-"  -p                       Posicionamento da janela automático.\n"
-"  -V, --version            Apresenta informações da versão.\n"
-"  -h, --help               Ajuda; esta messagem.\n"
-"  --                       Todos os argumentos restantes são nomes de "
-"arquivos\n"
+"  -a, --render-adaptor <DRV> Specify which render adaptor to use, Cario or "
+"X11.\n"
+"  -c, --config-file <FILE>   Arquivo de configuração adicional para carregar.\n"
+"  -g, --guile <DIR>          adiciona DIR ao caminho de procura de Scheme.\n"
+"  -f, --font <NAME>          Definir o nome de família da fonte\n"
+"  -h, --help                 Ajuda; esta messagem.\n"
+"  -m, --safe-mode            Modo de segurança.\n"
+"  -n, --no-auto              Nenhum último documento de carregamento automático.\n"
+"  -o, --output <FILE>        Arquivo de saída (para impressão).\n"
+"  -p, --place                Posicionamento da janela automático.\n"
+"  -q, --quiet                Mode quieto, sem retornos.\n"
+"  -r, --run <FILE>           Script Scheme para executar ao iniciar.\n"
+"  -s, --start <name>         Inicialização usando o nome da sessão dada.\n"
+"  -t, --title-block <FILE>   Start a new drawing using the specified title-block.\n"
+"  -u, --undo-dir <DIR>       Especifique um diretório temporário para arquivos Desfazer.\n"
+"  -v, --verbose              Oferece mais retornos.\n"
+"  -V, --version              Apresenta informações da versão.\n"
+"  -x (EXPR)                  Expressão Scheme para executar ao iniciar.\n"
+"  -z, --minimized            Ocultar a janela principal, usada para scripts\n"
+"  --                         Todos os argumentos restantes são nomes de arquivos.\n"
 "\n"
 "Reportagens de bugs para <https://bugs.launchpad.net/geda>\n"
-"Homepage gEDA/gaf: <http://www.geda-project.org/>\n"
+"Pagina inicial gEDA/gaf: <http://www.geda-project.org/>\n"
 
 #: gschem/src/base/gschem_parsecmd.c:128
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "gEDA/gschem %s (%s) (g%.7s)\n"
 "Copyright (C) 1998-2017 gEDA developers\n"
@@ -235,7 +242,7 @@ msgid ""
 "There is NO WARRANTY, to the extent permitted by law.\n"
 msgstr ""
 "gEDA/gschem %s (%s) (g%.7s)\n"
-"Copyright (C) 1998-2017 gEDA developers\n"
+"Copyright (C) 1998-2017 gEDA Desenvolvedores\n"
 "Este é um software livre, e você é convidado a redistribui-lo sobcertas "
 "condições. Para detalhes, veja arquivo `COPYING', o qual\n"
 "é incluído na distribuição gEDA.\n"
@@ -2764,27 +2771,26 @@ msgstr ""
 msgid "Guile Path"
 msgstr ""
 
+# Specify new path to search
 #: gschem/src/x/x_guile.c:215
-#, fuzzy
 msgid "Specify new path to search:"
-msgstr "Especificar novo zoom:"
+msgstr "Especifique novo caminho para pesquisar:"
 
 #: gschem/src/x/x_guile.c:240
 msgid "Attempting to duplicate path"
 msgstr ""
 
-# Invalid zoom factor
+# Invalid path
 #: gschem/src/x/x_guile.c:247
-#, fuzzy
 msgid "Invalid path"
-msgstr "O fator de zoom inválido"
+msgstr "Caminho inválido"
 
 #: gschem/src/x/x_guile.c:312
 msgid "Refusing to remove path"
 msgstr ""
 
+# Version
 #: gschem/src/x/x_guile.c:464
-#, fuzzy
 msgid "Version"
 msgstr "Versão"
 
@@ -5758,13 +5764,6 @@ msgstr "~S não é uma combinação válida."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S não é uma sequência de prefixo."
-
-#, fuzzy
-#~ msgid "Guile (version:"
-#~ msgstr "Versão"
-
-#~ msgid "atributos"
-#~ msgstr "Atributos"
 
 #~ msgid "Toggle _Magnetic Net"
 #~ msgstr "Alternar conexão _Magnética"
