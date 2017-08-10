@@ -64,9 +64,8 @@ msgid "Failed to read scheme initialization file"
 msgstr ""
 
 #: gschem/src/base/gschem.c:381
-#, fuzzy
 msgid "version"
-msgstr "全部保存"
+msgstr "版"
 
 #: gschem/src/base/gschem.c:386
 msgid "Logging system is disabled\n"
@@ -5251,20 +5250,20 @@ msgstr "选择最后"
 msgid "Deselect mode"
 msgstr "取消选择模式"
 
+# Cut
 #: gschem/scheme/gschem/builtins.scm:197
-#, fuzzy
 msgid "Cut"
-msgstr "剪切"
+msgstr "切"
 
+# Paste
 #: gschem/scheme/gschem/builtins.scm:203
-#, fuzzy
 msgid "Paste"
-msgstr "粘贴"
+msgstr "糊"
 
+# Redraw
 #: gschem/scheme/gschem/builtins.scm:209
-#, fuzzy
 msgid "Redraw"
-msgstr "重画"
+msgstr "重绘"
 
 #: gschem/scheme/gschem/builtins.scm:212
 msgid "Pan"
@@ -5591,10 +5590,10 @@ msgstr ""
 msgid "Turn Snap on"
 msgstr ""
 
+# Cycle Snap Mode
 #: gschem/scheme/gschem/builtins.scm:493
-#, fuzzy
 msgid "Cycle Snap Mode"
-msgstr "复制模式"
+msgstr "循环捕捉模式"
 
 #: gschem/scheme/gschem/builtins.scm:496
 msgid "Toggle Net Rubber Band"
@@ -5633,14 +5632,12 @@ msgid "View the front page of the gEDA documentation in a browser."
 msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:525
-#, fuzzy
 msgid "Show Hotkeys"
-msgstr "都显示"
+msgstr "显示热键"
 
 #: gschem/scheme/gschem/builtins.scm:529
-#, fuzzy
 msgid "Component Documentation"
-msgstr "文档"
+msgstr "组件文档"
 
 #: gschem/scheme/gschem/builtins.scm:531
 msgid "View documentation for selected component"
@@ -5700,7 +5697,3 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
-
-#, fuzzy
-#~ msgid "Guile (version:"
-#~ msgstr "全部保存"
