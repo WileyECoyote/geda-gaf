@@ -1,3 +1,10 @@
+2017-08-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * emechanic/switch: Add description and update footprint and revise
+      attribute locations:
+
+            * emechanic/switch/switch_dip12.sym
+
 2017-08-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * emechanic/relay Add documentation, update description and footprint,
