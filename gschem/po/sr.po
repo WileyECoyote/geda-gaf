@@ -2772,21 +2772,19 @@ msgstr ""
 msgid "Guile Path"
 msgstr ""
 
-# Specify new Magnification => Give the new Zoom
+# Specify new path to search
 #: gschem/src/x/x_guile.c:215
-#, fuzzy
 msgid "Specify new path to search:"
-msgstr "Наведите нови Увећање:"
+msgstr "Наведите нову путању за претрагу:"
 
 #: gschem/src/x/x_guile.c:240
 msgid "Attempting to duplicate path"
 msgstr ""
 
-# Invalid zoom factor
+# Invalid path
 #: gschem/src/x/x_guile.c:247
-#, fuzzy
 msgid "Invalid path"
-msgstr "Неважећи зум фактор"
+msgstr "Неважећа стаза"
 
 #: gschem/src/x/x_guile.c:312
 msgid "Refusing to remove path"
@@ -2794,9 +2792,8 @@ msgstr ""
 
 # version
 #: gschem/src/x/x_guile.c:464
-#, fuzzy
 msgid "Version"
-msgstr "верзија"
+msgstr "Верзија"
 
 # Warning, Error reading image file
 #: gschem/src/x/x_icons.c:253
@@ -5587,8 +5584,3 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
-
-# version
-#, fuzzy
-#~ msgid "Guile (version:"
-#~ msgstr "верзија"
