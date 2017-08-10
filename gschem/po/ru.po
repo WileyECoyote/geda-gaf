@@ -2847,11 +2847,10 @@ msgstr ""
 msgid "Attempting to duplicate path"
 msgstr ""
 
-# Invalid zoom factor
+# Invalid path
 #: gschem/src/x/x_guile.c:247
-#, fuzzy
 msgid "Invalid path"
-msgstr "Неверный коэффициент масштабирования"
+msgstr "Неверный путь"
 
 #: gschem/src/x/x_guile.c:312
 msgid "Refusing to remove path"
@@ -2859,9 +2858,8 @@ msgstr ""
 
 # version
 #: gschem/src/x/x_guile.c:464
-#, fuzzy
 msgid "Version"
-msgstr "версия"
+msgstr "Версия"
 
 # Warning, Error reading image file
 #: gschem/src/x/x_icons.c:253
@@ -4753,15 +4751,15 @@ msgstr "Войти в подсхему"
 msgid "Down S_ymbol"
 msgstr "Войти в символ"
 
+# Hierarchy Up
 #: gschem/etc/system-gschemrc.scm:2246
-#, fuzzy
 msgid "_Hierarchy Up"
-msgstr "_Иерархия"
+msgstr "_Иерархия вверх"
 
+# Find component documentation
 #: gschem/etc/system-gschemrc.scm:2247
-#, fuzzy
 msgid "Find component documentation"
-msgstr "Документация на компонент"
+msgstr "Найти документацию по компонентам"
 
 #: gschem/etc/system-gschemrc.scm:2255
 msgid "_Component..."
@@ -5756,11 +5754,9 @@ msgid "View documentation for selected component"
 msgstr "Просмотр документации для выбранного компонента"
 
 #: gschem/scheme/gschem/builtins.scm:547
-#, fuzzy
 msgid "Could not show documentation for selected component\n"
 msgstr ""
-"Не удалось показать документацию для выбранного компонента:\n"
-"\n"
+"Не удалось показать документацию для выбранного компонента\n"
 
 #: gschem/scheme/gschem/builtins.scm:551
 msgid "gschem User Guide"
@@ -5800,9 +5796,8 @@ msgid "Export embed symbol"
 msgstr ""
 
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "Export embed picture"
-msgstr "Внедрить компонент/изображение"
+msgstr "Экспорт встраиваемой картинки"
 
 #: gschem/scheme/gschem/keymap.scm:41
 #, scheme-format
@@ -5813,11 +5808,6 @@ msgstr "Недопустимая комбинация клавиш ~S."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S не является префиксом клавишной последовательности."
-
-# version
-#, fuzzy
-#~ msgid "Guile (version:"
-#~ msgstr "версия"
 
 #~ msgid "Toggle _Magnetic Net"
 #~ msgstr "_Магнитное соединение вкл/откл"
