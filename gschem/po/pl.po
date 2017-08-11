@@ -4647,39 +4647,39 @@ msgstr ""
 msgid "D_iscard"
 msgstr "Porzuć"
 
+# Close the current page without saving
 #: gschem/etc/system-gschemrc.scm:2240
-#, fuzzy
 msgid "Close the current page without saving"
-msgstr "_Zamknij bez zapisywania"
+msgstr "Zamknij bieżącą stronę bez zapisywania"
 
+# Print
 #: gschem/etc/system-gschemrc.scm:2241
-#, fuzzy
 msgid "Prin_t"
-msgstr "Drukuj..."
+msgstr "Wydrukować..."
 
+# Print the current page =>  Print the current sheet
 #: gschem/etc/system-gschemrc.scm:2241
-#, fuzzy
 msgid "Print the current page"
-msgstr "Bieżącej stronie"
+msgstr "Wydrukuj bieżący arkusz"
 
 #: gschem/etc/system-gschemrc.scm:2244
 msgid "Down _Schematic"
 msgstr "/Wgłąb _Schematu"
 
+# Down Symbol
 #: gschem/etc/system-gschemrc.scm:2245
-#, fuzzy
 msgid "Down S_ymbol"
-msgstr "/Wgłąb symbolu"
+msgstr "symbolu w dół"
 
+# Hierarchy Up
 #: gschem/etc/system-gschemrc.scm:2246
-#, fuzzy
 msgid "_Hierarchy Up"
-msgstr "Hie_rarchia"
+msgstr "_Hierarchia Up"
 
+# Find component documentation
 #: gschem/etc/system-gschemrc.scm:2247
-#, fuzzy
 msgid "Find component documentation"
-msgstr "Dokumentacja _elementu..."
+msgstr "Znajdź dokumentację komponentu"
 
 #: gschem/etc/system-gschemrc.scm:2255
 msgid "_Component..."
