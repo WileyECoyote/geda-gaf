@@ -2703,45 +2703,55 @@ msgstr "എൻക്യാഷ് ചെയ്തു പോസ്റ്റ്�
 msgid "Error: Unable to write eps file"
 msgstr "പിശക്: eps ഫയൽ എഴുതാനായില്ല"
 
+# Wrote black and white image to
 #: gschem/src/x/x_image.c:359 gschem/src/x/x_image.c:506
 msgid "Wrote black and white image to"
-msgstr ""
+msgstr "കറുപ്പും വെളുപ്പും ചിത്രം എഴുതുക"
 
+# Generated PDF file
 #: gschem/src/x/x_image.c:465
 msgid "Generated PDF file"
-msgstr ""
+msgstr "സൃഷ്ടിച്ച PDF ഫയൽ"
 
+# Unable to write
 #: gschem/src/x/x_image.c:476
 msgid "Unable to write"
-msgstr ""
+msgstr "എഴുതാൻ കഴിയുന്നില്ല"
 
+# An error occurred while saving image with type
 #: gschem/src/x/x_image.c:477
 msgid "An error occurred while saving image with type"
-msgstr ""
+msgstr "ഒരു ചിത്രം ഉപയോഗിച്ച് ഇമേജ് സംരക്ഷിക്കുമ്പോൾ ഒരു പിശക് സംഭവിച്ചു"
 
+# to filename
 #: gschem/src/x/x_image.c:478
 msgid "to filename"
-msgstr ""
+msgstr "ഫയലിന്റെ പേര്"
 
+# Error Writing Imaging
 #: gschem/src/x/x_image.c:489
 msgid "<b>Error Writing Imaging.</b>"
-msgstr ""
+msgstr "<b>ഇമേജിംഗ് എഴുതുന്നതിൽ പിശക്.</b>"
 
+# Wrote color image to
 #: gschem/src/x/x_image.c:502
 msgid "Wrote color image to"
-msgstr ""
+msgstr "വർണ്ണ ഇമേജ് എഴുതുക"
 
+# Unable to get pixbuf from gschem's window
 #: gschem/src/x/x_image.c:516
 msgid "Unable to get pixbuf from gschem's window.\n"
-msgstr ""
+msgstr "Gschem ന്റെ ജാലകത്തിൽ നിന്നും pixBuf നേടാൻ കഴിയുന്നില്ല.\n"
 
+# Write image
 #: gschem/src/x/x_image.c:669
 msgid "Write image..."
-msgstr ""
+msgstr "ചിത്രം എഴുതുക..."
 
+# Width x Height
 #: gschem/src/x/x_image.c:699
 msgid "Width x Height"
-msgstr ""
+msgstr "വീതി x പൊക്കം"
 
 #: gschem/src/x/x_image.c:710
 msgid "Image type"
