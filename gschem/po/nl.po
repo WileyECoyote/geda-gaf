@@ -1878,10 +1878,10 @@ msgstr "Hoek 2:"
 msgid "Pitch 2:"
 msgstr "Steek 2:"
 
+# Select fill pattern
 #: gschem/src/x/x_dialog.c:1664
-#, fuzzy
 msgid "Select fill pattern"
-msgstr "Selecteer Alles"
+msgstr "Selecteer vulpatroon"
 
 #: gschem/src/x/x_dialog.c:1669
 msgid "Set the width of the filler lines"
@@ -1935,15 +1935,15 @@ msgstr "Begrenzing"
 msgid "Edit Line Width & Type"
 msgstr "Bewerk Lijn Dikte & Type"
 
+# Line Type
 #: gschem/src/x/x_dialog.c:2220
-#, fuzzy
 msgid "Line Type:"
-msgstr "Arcering Type:"
+msgstr "Lijntype:"
 
+# End Type
 #: gschem/src/x/x_dialog.c:2223
-#, fuzzy
 msgid "End Type:"
-msgstr "Type:"
+msgstr "Eindtype:"
 
 #: gschem/src/x/x_dialog.c:2226
 msgid "Width:"
@@ -1977,20 +1977,20 @@ msgstr "Vind tekst"
 msgid "Text to find:"
 msgstr "Te vinden tekst:"
 
+# Search hidden attributes
 #: gschem/src/x/x_dialog.c:2509
-#, fuzzy
 msgid "Search hidden attributes"
-msgstr "Toon geërfde attributen"
+msgstr "Zoek verborgen attributen"
 
+# Descend into hierarchy
 #: gschem/src/x/x_dialog.c:2512
-#, fuzzy
 msgid "Descend into hierarchy"
-msgstr "afdalen in hierarchie"
+msgstr "Ga naar de hiërarchie"
 
+# Close on ascent
 #: gschem/src/x/x_dialog.c:2520
-#, fuzzy
 msgid "Close on ascent"
-msgstr "Sluit Pagina"
+msgstr "Dicht bij het klimmen"
 
 #: gschem/src/x/x_dialog.c:2608
 msgid "Hide Text"
@@ -2409,9 +2409,8 @@ msgid "Entry for model file name"
 msgstr ""
 
 #: gschem/src/x/x_edit_pin.c:71
-#, fuzzy
 msgid "_Type:"
-msgstr "Type:"
+msgstr "_Type:"
 
 #: gschem/src/x/x_edit_pin.c:71
 msgid "Select the pin type"
@@ -2421,10 +2420,10 @@ msgstr ""
 msgid "_Attributes:"
 msgstr "_Attributen:"
 
+# Set the pin attributes
 #: gschem/src/x/x_edit_pin.c:72
-#, fuzzy
 msgid "Set the pin attributes"
-msgstr "Toon geërfde attributen"
+msgstr "Stel de pin attributen in"
 
 #: gschem/src/x/x_edit_pin.c:73
 msgid "_Number:"
