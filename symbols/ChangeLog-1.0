@@ -4,6 +4,8 @@
       attribute locations:
 
             * emechanic/switch/switch_dip5-1.sym
+            * emechanic/switch/switch_dip5-2.sym
+
 2017-08-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * emechanic/switch: Add description and update footprint and revise
