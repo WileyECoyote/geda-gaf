@@ -1132,21 +1132,21 @@ msgid "Translating schematic"
 msgstr ""
 
 #: gschem/src/object/o_delete.c:87
-#, fuzzy, c-format
+#, c-format
 msgid "Delete locked object?"
 msgid_plural "Delete %u locked objects?"
-msgstr[0] "選擇物件"
-msgstr[1] "選擇物件"
+msgstr[0] "刪除鎖定的對象？"
+msgstr[1] "刪除鎖定的對象？"
 
+# attributes were hidden
 #: gschem/src/object/o_edit.c:517
-#, fuzzy
 msgid "attributes were hidden"
-msgstr "屬性"
+msgstr "屬性被隱藏"
 
+# hidden attributes were revealed
 #: gschem/src/object/o_edit.c:521
-#, fuzzy
 msgid "hidden attributes were revealed"
-msgstr "屬性"
+msgstr "隱藏的屬性被揭示"
 
 #: gschem/src/object/o_edit.c:717
 msgid "Hidden text is now visible\n"
@@ -2258,14 +2258,15 @@ msgstr ""
 msgid "No. _Pins:"
 msgstr ""
 
+# Value
 #: gschem/src/x/x_edit_cprop.c:1359
-#, fuzzy
 msgid "_Value:"
-msgstr "數值:"
+msgstr "值:"
 
+# Foot Print
 #: gschem/src/x/x_edit_cprop.c:1373
 msgid "_Foot Print:"
-msgstr ""
+msgstr "腳印"
 
 # Simulation Type
 #: gschem/src/x/x_edit_cprop.c:1384
@@ -2381,10 +2382,10 @@ msgstr ""
 msgid "_Sequence:"
 msgstr ""
 
+# Set the sequence number
 #: gschem/src/x/x_edit_pin.c:74
-#, fuzzy
 msgid "Set the sequence number"
-msgstr "選擇物件"
+msgstr "設置序列號"
 
 #: gschem/src/x/x_edit_pin.c:75
 msgid "_Label:"
@@ -2721,7 +2722,6 @@ msgstr ""
 
 # Version
 #: gschem/src/x/x_guile.c:464
-#, fuzzy
 msgid "Version"
 msgstr "版"
 
@@ -3536,10 +3536,10 @@ msgstr ""
 msgid "Portrait"
 msgstr ""
 
-# Print the file
+# Print
 #: gschem/src/x/x_print.c:484
 msgid "Print..."
-msgstr "列印檔案..."
+msgstr "打印..."
 
 #: gschem/src/x/x_print.c:492
 msgid "Settings"
@@ -3864,7 +3864,6 @@ msgstr ""
 
 # Saving main window settings
 #: gschem/src/x/x_window.c:201
-#, fuzzy
 msgid "Saving main window settings.\n"
 msgstr "保存主窗口設置\n"
 
@@ -4594,14 +4593,15 @@ msgstr "列印"
 msgid "Print the current page"
 msgstr ""
 
+# Down Schematic => Into the circuit
 #: gschem/etc/system-gschemrc.scm:2244
-#, fuzzy
 msgid "Down _Schematic"
-msgstr "gEDA 電路圖編輯器"
+msgstr "進電路"
 
+# Down Symbol => Inside the Symbol
 #: gschem/etc/system-gschemrc.scm:2245
 msgid "Down S_ymbol"
-msgstr ""
+msgstr "符號內"
 
 #: gschem/etc/system-gschemrc.scm:2246
 msgid "_Hierarchy Up"
@@ -4892,19 +4892,19 @@ msgstr ""
 msgid "Embed Component/Picture"
 msgstr "嵌入元件/圖片"
 
+# Embed a component or image object
 #: gschem/etc/system-gschemrc.scm:2323
-#, fuzzy
 msgid "Embed a component or image object"
-msgstr "嵌入元件/圖片"
+msgstr "嵌入一​​個組件或圖像對象"
 
 #: gschem/etc/system-gschemrc.scm:2324 gschem/scheme/gschem/builtins.scm:457
 msgid "Unembed Component/Picture"
 msgstr "解除嵌入元件/圖片"
 
+# Unembed a component or image object
 #: gschem/etc/system-gschemrc.scm:2324
-#, fuzzy
 msgid "Unembed a component or image object"
-msgstr "解除嵌入元件/圖片"
+msgstr "未組裝組件或圖像對象"
 
 #: gschem/etc/system-gschemrc.scm:2325 gschem/scheme/gschem/builtins.scm:460
 msgid "Update Component"
@@ -5131,10 +5131,10 @@ msgstr "儲存全部"
 msgid "Save Modified"
 msgstr "移動元件"
 
+# Print
 #: gschem/scheme/gschem/builtins.scm:68
-#, fuzzy
 msgid "Print"
-msgstr "列印"
+msgstr "打印"
 
 #: gschem/scheme/gschem/builtins.scm:71
 msgid "Export Image"
