@@ -4960,12 +4960,22 @@ GtkWidget *geda_menu_get_parent_item (GedaMenu *menu)
   return menu->parent_menu_item;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 void geda_menu_set_parent_item (GedaMenu *menu, GtkWidget *parent)
 {
   g_return_if_fail (GEDA_IS_MENU (menu));
   menu->parent_menu_item = parent;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 void
 geda_menu_reorder_child (GedaMenu  *menu, GtkWidget *child, int position)
 {
