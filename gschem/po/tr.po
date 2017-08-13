@@ -1624,29 +1624,29 @@ msgstr ""
 msgid "Net"
 msgstr "Ağ"
 
+# Attribute
 #: gschem/src/x/x_dialog.c:1038
-#, fuzzy
 msgid "Attribute"
-msgstr "Öznitelikler"
+msgstr "nitelik"
 
 #: gschem/src/x/x_dialog.c:1039
 msgid "Logic bubble"
 msgstr ""
 
+# Grid point
 #: gschem/src/x/x_dialog.c:1040
-#, fuzzy
 msgid "Grid point"
-msgstr "Ayna modu"
+msgstr "Izgaralı nokta"
 
+# Detached attribute
 #: gschem/src/x/x_dialog.c:1041
-#, fuzzy
 msgid "Detached attribute"
-msgstr "Öznitelikler"
+msgstr "Müstakil özellik"
 
+# Text
 #: gschem/src/x/x_dialog.c:1042 gschem/src/x/x_menus.c:96
-#, fuzzy
 msgid "Text"
-msgstr "Metni Düzenle"
+msgstr "Metin"
 
 #: gschem/src/x/x_dialog.c:1043 gschem/src/x/x_edit_pin.c:142
 #: gschem/src/x/x_menus.c:95
@@ -1847,10 +1847,10 @@ msgstr ""
 msgid "Phantom"
 msgstr ""
 
+# Edit Line Width & Type
 #: gschem/src/x/x_dialog.c:2197 gschem/scheme/gschem/builtins.scm:155
-#, fuzzy
 msgid "Edit Line Width & Type"
-msgstr "Çizgi Kalınlığı & Tipi"
+msgstr "Çizgi Genişliğini ve Tipini Düzenle"
 
 # Line Type
 #: gschem/src/x/x_dialog.c:2220
@@ -1894,19 +1894,19 @@ msgstr ""
 msgid "Text to find:"
 msgstr ""
 
+# Search hidden attributes
 #: gschem/src/x/x_dialog.c:2509
-#, fuzzy
 msgid "Search hidden attributes"
-msgstr "Öznitelikler"
+msgstr "Gizli nitelikleri ara"
 
 #: gschem/src/x/x_dialog.c:2512
 msgid "Descend into hierarchy"
 msgstr ""
 
+# Close on ascent
 #: gschem/src/x/x_dialog.c:2520
-#, fuzzy
 msgid "Close on ascent"
-msgstr "Sayfayı Kapat"
+msgstr "Tırmanışa yaklaş"
 
 #: gschem/src/x/x_dialog.c:2608
 msgid "Hide Text"
@@ -1993,10 +1993,10 @@ msgstr ""
 msgid "Dismiss this dialog"
 msgstr ""
 
+# Input attribute is invalid
 #: gschem/src/x/x_dialog.c:3730
-#, fuzzy
 msgid "Input attribute is invalid"
-msgstr "Öznitelikler"
+msgstr "Girdi niteliği geçersiz"
 
 #: gschem/src/x/x_dialog.c:3731
 msgid "Please correct in order to continue"
@@ -2708,7 +2708,6 @@ msgstr ""
 
 # version
 #: gschem/src/x/x_guile.c:464
-#, fuzzy
 msgid "Version"
 msgstr "Versiyon"
 
