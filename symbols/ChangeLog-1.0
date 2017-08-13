@@ -4,6 +4,7 @@
       attribute locations:
 
             * emechanic/switch/switch_dip6-2.sym
+            * emechanic/switch/switch_dpdt-1.sym
 
 2017-08-11 Wiley E. Hill <wileyhill@gmail.com>
 
