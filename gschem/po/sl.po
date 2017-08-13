@@ -88,7 +88,7 @@ msgstr "Izhod normalno\n"
 
 #: gschem/src/base/gschem.c:514
 msgid "FAILED:"
-msgstr ""
+msgstr "NEUSPEŠNO:"
 
 # Parent Window
 #: gschem/src/base/gschem_dialog.c:567
@@ -107,26 +107,31 @@ msgstr "Naslov"
 msgid "Dialog window title"
 msgstr "Dialog naslov okna"
 
+# Label Text
 #: gschem/src/base/gschem_macro_widget.c:233
 msgid "Label Text"
-msgstr ""
+msgstr "Besedilo oznake"
 
+# Text to be displayed for the Macro label
 #: gschem/src/base/gschem_macro_widget.c:234
 msgid "Text to be displayed for the Macro label"
-msgstr ""
+msgstr "Besedilo, ki se prikaže za oznako Makro"
 
+# Macro
 #: gschem/src/base/gschem_macro_widget.c:235
 msgid "Macro:"
-msgstr ""
+msgstr "Makro:"
 
+# Macro String
 #: gschem/src/base/gschem_macro_widget.c:241
 #: gschem/src/base/gschem_macro_widget.c:242
 msgid "Macro String"
-msgstr ""
+msgstr "Makro niz"
 
+# Evaluate
 #: gschem/src/base/gschem_macro_widget.c:357
 msgid "Evaluate"
-msgstr ""
+msgstr "Ocenite"
 
 # Retrieving main window position
 #: gschem/src/base/gschem_main_window.c:229
