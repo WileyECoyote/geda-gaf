@@ -1126,18 +1126,18 @@ msgstr ""
 #, c-format
 msgid "Delete locked object?"
 msgid_plural "Delete %u locked objects?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "删除锁定的对象？"
+msgstr[1] "删除锁定的对象？"
 
+# attributes were hidden
 #: gschem/src/object/o_edit.c:517
-#, fuzzy
 msgid "attributes were hidden"
-msgstr "属性"
+msgstr "属性被隐藏"
 
+# hidden attributes were revealed
 #: gschem/src/object/o_edit.c:521
-#, fuzzy
 msgid "hidden attributes were revealed"
-msgstr "属性"
+msgstr "隐藏的属性被揭示"
 
 #: gschem/src/object/o_edit.c:717
 msgid "Hidden text is now visible\n"
@@ -2245,11 +2245,12 @@ msgstr ""
 # Value
 #: gschem/src/x/x_edit_cprop.c:1359
 msgid "_Value:"
-msgstr "显示数值:"
+msgstr "值:"
 
+# Foot Print
 #: gschem/src/x/x_edit_cprop.c:1373
 msgid "_Foot Print:"
-msgstr ""
+msgstr "脚印:"
 
 # Simulation Type
 #: gschem/src/x/x_edit_cprop.c:1384
@@ -2363,9 +2364,10 @@ msgstr ""
 msgid "_Sequence:"
 msgstr ""
 
+# Set the sequence number
 #: gschem/src/x/x_edit_pin.c:74
 msgid "Set the sequence number"
-msgstr ""
+msgstr "设置序列号"
 
 #: gschem/src/x/x_edit_pin.c:75
 msgid "_Label:"
@@ -2700,10 +2702,10 @@ msgstr ""
 msgid "Refusing to remove path"
 msgstr ""
 
+# Version
 #: gschem/src/x/x_guile.c:464
-#, fuzzy
 msgid "Version"
-msgstr "全部保存"
+msgstr "版"
 
 #: gschem/src/x/x_icons.c:253
 msgid "Warning, Error reading image file"
@@ -3513,8 +3515,8 @@ msgstr ""
 msgid "Portrait"
 msgstr ""
 
+# Print
 #: gschem/src/x/x_print.c:484
-#, fuzzy
 msgid "Print..."
 msgstr "打印..."
 
@@ -4890,17 +4892,19 @@ msgstr ""
 msgid "Embed Component/Picture"
 msgstr ""
 
+# Embed a component or image object
 #: gschem/etc/system-gschemrc.scm:2323
 msgid "Embed a component or image object"
-msgstr ""
+msgstr "嵌入一​​个组件或图像对象"
 
 #: gschem/etc/system-gschemrc.scm:2324 gschem/scheme/gschem/builtins.scm:457
 msgid "Unembed Component/Picture"
 msgstr ""
 
+# Unembed a component or image object
 #: gschem/etc/system-gschemrc.scm:2324
 msgid "Unembed a component or image object"
-msgstr ""
+msgstr "未组装组件或图像对象"
 
 #: gschem/etc/system-gschemrc.scm:2325 gschem/scheme/gschem/builtins.scm:460
 msgid "Update Component"
