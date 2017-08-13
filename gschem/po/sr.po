@@ -114,6 +114,7 @@ msgstr "Naslov"
 msgid "Dialog window title"
 msgstr "Dijalog prozor naslov"
 
+# Label Text
 #: gschem/src/base/gschem_macro_widget.c:233
 msgid "Label Text"
 msgstr "Label Tekst"
@@ -135,13 +136,14 @@ msgstr "Makro Sadržaj"
 msgid "Evaluate"
 msgstr "Proceniti"
 
+# Retrieving main window position
 #: gschem/src/base/gschem_main_window.c:229
 msgid "Retrieving main window position.\n"
-msgstr ""
+msgstr "Преузимање главног положаја прозора.\n"
 
 #: gschem/src/base/gschem_main_window.c:276
 msgid "Retrieving main window geometry.\n"
-msgstr ""
+msgstr "Преузимање геометрије главног прозора.\n"
 
 #: gschem/src/base/gschem_page_view.c:250
 #: gschem/src/base/gschem_page_view.c:251
