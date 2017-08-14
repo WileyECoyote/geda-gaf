@@ -470,7 +470,7 @@ check_methods ()
 
   attached = geda_menu_get_attach_widget((GedaMenu*)menu);
 
-  if (attached != menu_item) {
+  if (attached != (GtkWidget*)menu_item) {
     fprintf(stderr, "FAILED: %s line <%d> attach_to_widget\n", TWIDGET, __LINE__);
     result++;
   }
