@@ -8,6 +8,7 @@
             * emechanic/switch/switch_pushbutton-no-2.sym
             * emechanic/switch/switch_pushbutton-no-3.sym
             * emechanic/switch/switch_pushbutton_gnd-nc-1.sym
+            * emechanic/switch/switch_pushbutton_gnd-nc-2.sym
 
     * ti/switchreg/TPS61222-1.sym: Update symversion position.
 
