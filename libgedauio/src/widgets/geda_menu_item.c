@@ -2753,11 +2753,18 @@ static int get_popup_delay (GedaMenuItem *menu_item)
     return MENU_POPUP_DELAY;
 }
 
-#if GTK_MAJOR_VERSION < 3
-
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void geda_menu_item_popup_submenu (GedaMenuItem *menu_item, bool with_delay)
 {
-  GedaMenuItemPrivate *priv = menu_item->priv;
+  GedaMenuItemPrivate *priv;
+
+  g_return_if_fail (GEDA_IS_MENU_ITEM(menu_item));
+
+  priv = menu_item->priv;
 
   if (priv->timer) {
     g_source_remove (priv->timer);
@@ -2776,6 +2783,11 @@ void geda_menu_item_popup_submenu (GedaMenuItem *menu_item, bool with_delay)
       priv->timer = gdk_threads_add_timeout (popup_delay,
                                              geda_menu_item_popup_timeout,
                                              menu_item);
+#if GTK_MAJOR_VERSION >= 3
+
+      g_source_set_name_by_id (priv->timer, "[gtk+] geda_menu_item_popup_timeout");
+
+#endif
 
       if (event &&
         event->type != GDK_BUTTON_PRESS &&
@@ -2797,51 +2809,6 @@ void geda_menu_item_popup_submenu (GedaMenuItem *menu_item, bool with_delay)
 
   geda_menu_item_real_popup_submenu ((GtkWidget*)menu_item, FALSE);
 }
-
-#else
-
-void geda_menu_item_popup_submenu (GedaMenuItem *menu_item, bool with_delay)
-{
-  GedaMenuItemPrivate *priv = menu_item->priv;
-
-  if (priv->timer) {
-
-    g_source_remove (priv->timer);
-    priv->timer = 0;
-    with_delay = FALSE;
-  }
-
-  if (with_delay) {
-
-    int popup_delay = get_popup_delay (menu_item);
-
-    if (popup_delay > 0) {
-
-      GdkEvent *event = gtk_get_current_event ();
-
-      priv->timer = gdk_threads_add_timeout (popup_delay,
-                                             geda_menu_item_popup_timeout,
-                                             menu_item);
-      g_source_set_name_by_id (priv->timer, "[gtk+] geda_menu_item_popup_timeout");
-
-      if (event &&
-        event->type != GDK_BUTTON_PRESS &&
-        event->type != GDK_ENTER_NOTIFY)
-        priv->timer_from_keypress = TRUE;
-      else
-        priv->timer_from_keypress = FALSE;
-
-      if (event)
-        gdk_event_free (event);
-
-      return;
-    }
-  }
-
-  geda_menu_item_real_popup_submenu ((GtkWidget*)menu_item, FALSE);
-}
-
-#endif
 
 void geda_menu_item_popdown_submenu (GedaMenuItem *menu_item)
 {
