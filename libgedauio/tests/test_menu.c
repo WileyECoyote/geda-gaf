@@ -477,6 +477,24 @@ check_methods ()
 
   gtk_widget_show (menu);
 
+  geda_menu_reorder_child((GedaMenu*)menu, widget3, 0);
+
+  const GList *items = geda_menu_shell_get_children ((GedaMenuShell*)menu);
+
+  if (items->data != widget3) {
+    fprintf(stderr, "FAILED: %s line <%d> reorder_child\n", TWIDGET, __LINE__);
+    result++;
+  }
+
+  geda_menu_reorder_child((GedaMenu*)menu, widget2, 0);
+
+  items = geda_menu_shell_get_children ((GedaMenuShell*)menu);
+
+  if (items->data != widget2) {
+    fprintf(stderr, "FAILED: %s line <%d> reorder_child\n", TWIDGET, __LINE__);
+    result++;
+  }
+
   /* ---------------------------------------------------- */
 
   gtk_widget_destroy(gtk_widget_get_toplevel(widget0));
