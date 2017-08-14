@@ -4971,13 +4971,18 @@ void geda_menu_set_parent_item (GedaMenu *menu, GtkWidget *parent)
   menu->parent_menu_item = parent;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief widget version of #geda_combo_box_get_count
- *  \par Function Description
+/*!
+ * \brief Reorder a GedaMenu child widget
+ * \par Function Description
+ *  Relocates \a child in \a menu the new position. The first position
+ *  is zero. No error is generated if child is not a member of the menu.
  *
+ * \param [in] menu     #GedaMenu Object
+ * \param [in] child    Widget is to be re-position
+ * \param [in] position Zero based new position
  */
 void
-geda_menu_reorder_child (GedaMenu  *menu, GtkWidget *child, int position)
+geda_menu_reorder_child (GedaMenu *menu, GtkWidget *child, int position)
 {
   GedaMenuShell *menu_shell;
 

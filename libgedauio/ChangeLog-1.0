@@ -1,3 +1,9 @@
+2017-08-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu.c: Add Doxygen comment for
+
+          * geda_menu_reorder_child
+
 2017-08-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Replace g_object_notify with GEDA_OBJECT
