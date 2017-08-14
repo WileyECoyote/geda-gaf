@@ -2,6 +2,7 @@
 
     * src/widgets/geda_menu.c: Add Doxygen comment for
 
+          * geda_menu_reposition
           * geda_menu_reorder_child
 
 2017-08-09 Wiley E. Hill <wileyhill@gmail.com>

@@ -4274,8 +4274,14 @@ geda_menu_popdown (GedaMenu *menu)
   menu_grab_transfer_window_destroy (menu);
 }
 
-/* Position the menu according to its position function. Called
- * from geda_menu_item.c when a menu-item changes its allocation
+/*!
+ * \brief Get if the GedaMenu has an Active child
+ * \par Function Description
+ *  Position the menu according to its position function. Called
+ *  from geda_menu_item.c::geda_menu_item_size_allocate when a
+ *  menu-item changes its allocation.
+ *
+ * \param[in] menu Pointer to a #GedaMenu
  */
 void
 geda_menu_reposition (GedaMenu *menu)
