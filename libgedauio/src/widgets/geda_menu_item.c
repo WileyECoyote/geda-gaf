@@ -2810,6 +2810,11 @@ void geda_menu_item_popup_submenu (GedaMenuItem *menu_item, bool with_delay)
   geda_menu_item_real_popup_submenu ((GtkWidget*)menu_item, FALSE);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void geda_menu_item_popdown_submenu (GedaMenuItem *menu_item)
 {
   GedaMenuItemPrivate *priv = menu_item->priv;
@@ -3229,12 +3234,22 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
 
 #endif /* else !GTK_MAJOR_VERSION < 3*/
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 char geda_menu_item_get_mnemonic (GedaMenuItem *menu_item)
 {
   return menu_item->priv->mnemonic;
 }
 
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void geda_menu_item_set_mnemonic (GedaMenuItem *menu_item, char mnemonic)
 {
   menu_item->priv->mnemonic = mnemonic;
@@ -3559,6 +3574,11 @@ static void geda_menu_item_ensure_label (GedaMenuItem *menu_item)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 /* callers:
  * geda_menu_shell_activate_mnemonic
  * geda_menu_bar_key_press
@@ -3578,6 +3598,11 @@ bool geda_menu_item_is_selectable (GedaMenuItem  *menu_item)
   return FALSE;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 bool geda_menu_item_is_widget_selectable (GtkWidget *widget)
 {
 
