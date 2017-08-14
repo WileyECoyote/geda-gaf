@@ -4274,6 +4274,19 @@ geda_menu_popdown (GedaMenu *menu)
   menu_grab_transfer_window_destroy (menu);
 }
 
+/* Position the menu according to its position function. Called
+ * from geda_menu_item.c when a menu-item changes its allocation
+ */
+void
+geda_menu_reposition (GedaMenu *menu)
+{
+  g_return_if_fail (GEDA_IS_MENU (menu));
+
+  if (!menu->torn_off && gtk_widget_is_drawable ((GtkWidget*)menu)) {
+    geda_menu_position (menu, FALSE);
+  }
+}
+
 /*!
  * \brief Get if the GedaMenu has an Active child
  * \par Function Description
@@ -4596,19 +4609,6 @@ geda_menu_refresh_accel_paths (GedaMenu *menu, bool group_changed)
     gtk_container_foreach ((GtkContainer*)menu,
                            refresh_accel_paths_foreach,
                            &prop);
-  }
-}
-
-/* Position the menu according to its position function. Called
- * from geda_menu_item.c when a menu-item changes its allocation
- */
-void
-geda_menu_reposition (GedaMenu *menu)
-{
-  g_return_if_fail (GEDA_IS_MENU (menu));
-
-  if (!menu->torn_off && gtk_widget_is_drawable ((GtkWidget*)menu)) {
-    geda_menu_position (menu, FALSE);
   }
 }
 
