@@ -82,5 +82,5 @@ T 400 1800 9 10 1 1 0 0 1
 footprint=SC70-6
 T 400 3000 5 10 0 0 0 0 1
 author=AutoTron
-T 1500 250 5 8 0 0 0 0 1
+T 800 650 5 6 0 0 0 0 1
 symversion=0.1

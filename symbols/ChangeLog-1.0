@@ -8,6 +8,7 @@
             * emechanic/switch/switch_pushbutton-no-2.sym
             * emechanic/switch/switch_pushbutton-no-3.sym
 
+    * ti/switchreg/TPS61222-1.sym: Update symversion position.
 
 2017-08-12 Wiley E. Hill <wileyhill@gmail.com>
 
