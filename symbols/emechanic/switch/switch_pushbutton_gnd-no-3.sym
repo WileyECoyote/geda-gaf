@@ -1,11 +1,13 @@
 v 20140330 2
-T 0 950 8 10 0 0 0 0 1
-device=SWITCH_PUSHBUTTON_NO
 T 400 750 8 10 1 1 0 0 1
-refdes=S?
-T 0 1100 9 10 0 0 0 0 1
+refdes=SW?
+T 400 950 8 10 0 0 0 0 1
+device=switch
+T 400 1450 5 10 0 1 0 0 1
+description=Switch, Pushbutton, NO
+T 400 1100 9 10 0 0 0 0 1
 footprint=unknown
-T 0 1250 9 10 0 0 0 0 1
+T 400 1300 9 10 0 0 0 0 1
 numslots=0
 L 700 300 700 500 3 0 0 0 -1 -1
 L 300 300 300 500 3 0 0 0 -1 -1
