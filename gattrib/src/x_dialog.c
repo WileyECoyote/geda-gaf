@@ -808,7 +808,9 @@ GtkWidget *x_dialog_create_search_replace_dialog (GtkWindow *parent,
   HXYP_SEPERATOR (MainDialogVBox, Grp4, 10);
 
   dialog_action_area = ThisDialog->action_area;
-  gtk_widget_show(ReplaceAllButt);
+
+  gtk_widget_show(dialog_action_area);
+
   gtk_button_box_set_layout (GTK_BUTTON_BOX (dialog_action_area), GTK_BUTTONBOX_END);
 
   CloseButt = gtk_button_new_from_stock ("gtk-close");
