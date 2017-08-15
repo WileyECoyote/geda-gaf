@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-07-25 00:26-0500\n"
+"POT-Creation-Date: 2017-08-14 23:55-0500\n"
 "PO-Revision-Date: 2010-02-06 22:09+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -365,31 +365,31 @@ msgstr ""
 msgid "Continue search from the beginning"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:819
+#: gattrib/src/x_dialog.c:829
 msgid "Close this dialog"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:821
+#: gattrib/src/x_dialog.c:831
 msgid "Replace All"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:830
+#: gattrib/src/x_dialog.c:840
 msgid "Replace All and close dialog"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:832 gattrib/src/x_toolbars.c:39
+#: gattrib/src/x_dialog.c:842 gattrib/src/x_toolbars.c:39
 msgid "Replace"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:841
+#: gattrib/src/x_dialog.c:851
 msgid "Replace selected text and continue"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:843 gattrib/src/x_toolbars.c:38
+#: gattrib/src/x_dialog.c:853 gattrib/src/x_toolbars.c:38
 msgid "Find"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:848
+#: gattrib/src/x_dialog.c:858
 msgid "Find next"
 msgstr ""
 
@@ -668,6 +668,14 @@ msgstr ""
 
 #: gattrib/src/x_menus.c:425
 msgid "Toggle grid visibility"
+msgstr ""
+
+#: gattrib/src/x_menus.c:546
+msgid "Open _Recent"
+msgstr ""
+
+#: gattrib/src/x_menus.c:547
+msgid "Open recently used files"
 msgstr ""
 
 #: gattrib/src/x_menus.c:647
