@@ -1,7 +1,9 @@
-2017-08-14 Wiley E. Hill <wileyhill@gmail.com>
+2017-08-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_dialog.c: Fix showing dialog_action_area instead of ReplaceAllButt,
       this was broken since commit 867c80d6be47507298e68951aaa56d35f35b0d9c.
+      Release text string returned by geda_combo_box_text_append_pair in
+      search_replace_combo_responder.
 
 2017-08-07 Wiley E. Hill <wileyhill@gmail.com>
 

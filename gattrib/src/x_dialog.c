@@ -659,7 +659,9 @@ static void search_replace_combo_responder(GtkWidget *widgetCombo, void *data)
     geda_log ("%s Warning: unknown Id: %d\n", __func__, WhichComboBox);
   }
 
- return;
+  g_free(text);
+
+  return;
 }
 
 /* ------------------------- Switch Support Functions -----------------------*/
