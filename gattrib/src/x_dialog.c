@@ -797,7 +797,13 @@ GtkWidget *x_dialog_create_search_replace_dialog (GtkWindow *parent,
   if (find_only_mode) {
     gtk_widget_hide(ReplaceTextLabel);
     gtk_widget_hide(ReplaceTextCombo);
+    gtk_dialog_set_default_response(ThisDialog, GEDA_RESPONSE_ACCEPT);
   }
+  else {
+    gtk_dialog_set_default_response(ThisDialog, GEDA_RESPONSE_REJECT);
+    geda_combo_box_text_set_activate_default((GedaComboBoxText*)SearchTextCombo, 1);
+  }
+
   HXYP_SEPERATOR (MainDialogVBox, Grp3, 10);
 
   HSECTION (MainDialogVBox, SearchOptions1);   /*  Row 3 */
