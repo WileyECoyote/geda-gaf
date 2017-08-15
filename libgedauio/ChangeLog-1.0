@@ -1,3 +1,8 @@
+2017-08-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_combobox_text.c: Release text string returned by
+      geda_combo_box_text_append_pair in check_combo_box_text_pairs.
+
 2017-08-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Add Doxygen comment for

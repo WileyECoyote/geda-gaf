@@ -307,6 +307,8 @@ check_combo_box_text_pairs(GedaComboBoxText *combo_text)
     result++;
   }
 
+  g_free(city);
+
   result += check_river (GEDA_COMBO_BOX(combo_text), "Mekong");
 
   geda_combo_box_text_set_active(combo_text, 2);
