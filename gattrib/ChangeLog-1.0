@@ -6,6 +6,8 @@
       search_replace_combo_responder and Set default response x_dialog_create
       _search_replace_dialog and set the SearchTextCombo to activate default.
 
+    * src/x_menus.c: Translate the OpenRecentAction blup and description.
+
 2017-08-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/fr.po: Update French translations.

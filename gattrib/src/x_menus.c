@@ -543,8 +543,8 @@ GtkActionGroup *x_menu_create_recent_action_group(void) {
 */
   recent_action =
   (GtkRecentAction*) gtk_recent_action_new_for_manager("OpenRecentAction",
-                                                       "Open _Recent",
-                                                       "Open recently used files",
+                                                     _("Open _Recent"),
+                                                     _("Open recently used files"),
                                                         NULL,
                                                         recent_manager);
 
