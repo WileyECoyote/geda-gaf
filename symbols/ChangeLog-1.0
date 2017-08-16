@@ -1,3 +1,7 @@
+2017-08-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * idt/IDT7203-1.sym: Add symbol; CMOS Asynchronous FIFO, 2K x 9.
+
 2017-08-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/usb/USB-B-1.sym: Hide pintype attributes.
