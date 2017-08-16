@@ -90,7 +90,7 @@
  *   // Create the menu item using the convenience function.
  *   save_item = geda_menu_item_new_with_label ("Save");
  *   gtk_widget_show (save_item);
- *   gtk_container_add (GTK_CONTAINER (menu), save_item);
+ *   geda_container_add (menu, save_item);
  *
  *   // Now add the accelerator to the GedaMenuItem. Note that since
  *   // geda_menu_item_new_with_label() was called to create the GedaMenuItem
