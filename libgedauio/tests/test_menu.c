@@ -423,7 +423,7 @@ check_accessors ()
 static void
 popup_menu_detach (GtkWidget *menu_item, GedaMenu *menu)
 {
-  GedaMenuItem *item = (GedaMenuItem*)menu_item;
+  //GedaMenuItem *item = (GedaMenuItem*)menu_item;
 
 }
 
@@ -439,7 +439,6 @@ check_methods ()
   GtkWidget    *widget2;
   GtkWidget    *widget3;
   GedaMenuItem *menu_item;
-  GtkWidget    *item;
 
   widget0 = geda_menu_item_new_with_mnemonic("_Fruit");
 
