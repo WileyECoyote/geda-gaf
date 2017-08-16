@@ -5469,46 +5469,55 @@ msgstr ""
 msgid "View documentation for selected component"
 msgstr ""
 
+# Could not show documentation for selected component
 #: gschem/scheme/gschem/builtins.scm:547
 msgid "Could not show documentation for selected component\n"
-msgstr ""
+msgstr "לא ניתן להציג תיעוד עבור הרכיב שנבחר\n"
 
+# gschem User Guide
 #: gschem/scheme/gschem/builtins.scm:551
 msgid "gschem User Guide"
-msgstr ""
+msgstr "מדריך למשתמש של gschem"
 
+# View the gschem User Guide in a browser
 #: gschem/scheme/gschem/builtins.scm:552
 msgid "View the gschem User Guide in a browser."
-msgstr ""
+msgstr "הצג את המדריך למשתמש של gschem בדפדפן."
 
 #: gschem/scheme/gschem/builtins.scm:557
 msgid "gschem FAQ"
-msgstr ""
+msgstr "Gschem שאלות נפוצות"
 
+# Frequently Asked Questions about using gschem
 #: gschem/scheme/gschem/builtins.scm:558
 msgid "Frequently Asked Questions about using gschem."
-msgstr ""
+msgstr "שאלות נפוצות על השימוש ב- gschem."
 
+# gEDA wiki
 #: gschem/scheme/gschem/builtins.scm:563
 msgid "gEDA wiki"
-msgstr ""
+msgstr "gEDA wiki"
 
+# View the front page of the gEDA wiki in a browser
 #: gschem/scheme/gschem/builtins.scm:564
 msgid "View the front page of the gEDA wiki in a browser."
-msgstr ""
+msgstr "הצג את העמוד הראשון של הוויקי של gEDA בדפדפן"
 
+# Invalid text alignment
 #: gschem/scheme/gschem/deprecated.scm:102
 #, scheme-format
 msgid "Invalid text alignment ~A."
-msgstr ""
+msgstr "יישור טקסט לא חוקי ~A."
 
+# No documentation found
 #: gschem/scheme/gschem/gschemdoc.scm:241
 msgid "No documentation found"
-msgstr ""
+msgstr "No documentation found"
 
+# Export embed symbol => Export embed icon
 #: gschem/scheme/gschem/gschem-export-menu.scm:57
 msgid "Export embed symbol"
-msgstr ""
+msgstr "ייצא סמל הטמעה"
 
 # Export embed picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
