@@ -1259,11 +1259,12 @@ msgstr "واگرد خطا"
 msgid "Undo failed"
 msgstr "واگرد شکست خورد"
 
+# slotted object without slot attribute may cause problems when autonumbering slots
 #: gschem/src/x/x_autonumber.c:600
 msgid ""
 "slotted object without slot attribute may cause problems when autonumbering "
 "slots\n"
-msgstr ""
+msgstr "شی شیار بدون ویژگی اسلات ممکن است هنگام اسکن خودکار شماره گیری کند\n"
 
 #: gschem/src/x/x_autonumber.c:615
 #, c-format
@@ -1273,35 +1274,42 @@ msgstr ""
 
 #: gschem/src/x/x_autonumber.c:913
 msgid "No search string given in autonumber text.\n"
-msgstr ""
+msgstr "شکاف تکراری ممکن است باعث مشکلات شود: [نام نماد=%s، شماره=%d، اسلات=%d]\n"
 
+# Diagonal
 #: gschem/src/x/x_autonumber.c:1128
 msgid "Diagonal"
-msgstr ""
+msgstr "قطری"
 
+# Top to bottom
 #: gschem/src/x/x_autonumber.c:1129
 msgid "Top to bottom"
-msgstr ""
+msgstr "بالا به پایین"
 
+# Bottom to top
 #: gschem/src/x/x_autonumber.c:1130
 msgid "Bottom to top"
-msgstr ""
+msgstr "پایین به بالا"
 
+# Left to right
 #: gschem/src/x/x_autonumber.c:1131
 msgid "Left to right"
-msgstr ""
+msgstr "چپ به راست"
 
+# Right to left
 #: gschem/src/x/x_autonumber.c:1132
 msgid "Right to left"
-msgstr ""
+msgstr "راست به چپ"
 
+# File order
 #: gschem/src/x/x_autonumber.c:1133
 msgid "File order"
-msgstr ""
+msgstr "سفارش فایل"
 
+# Filter
 #: gschem/src/x/x_autonumber.c:1605
 msgid "<b>Filter:</b>"
-msgstr ""
+msgstr "<b>فیلتر کردن:</b>"
 
 #: gschem/src/x/x_autonumber.c:1646
 msgid "Selected objects"
