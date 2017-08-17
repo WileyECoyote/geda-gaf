@@ -1331,10 +1331,10 @@ msgstr ""
 msgid "File order"
 msgstr ""
 
+# Filter
 #: gschem/src/x/x_autonumber.c:1605
-#, fuzzy
 msgid "<b>Filter:</b>"
-msgstr "<b>選項</b>"
+msgstr "<b>過濾</b>"
 
 #: gschem/src/x/x_autonumber.c:1646
 msgid "Selected objects"
@@ -4745,7 +4745,7 @@ msgstr "分离"
 
 # Disconnect selected attributes from a symbol
 #: gschem/etc/system-gschemrc.scm:2292
-msgid "Dettach selected attributes from a symbol"
+msgid "Detach selected attributes from a symbol"
 msgstr "斷開符號中選定的屬性"
 
 # Show Value
@@ -4962,11 +4962,10 @@ msgstr ""
 msgid "Toggle rubberband net mode"
 msgstr ""
 
-# Toggle Magnetic Nets
+# Magnetic Nets
 #: gschem/etc/system-gschemrc.scm:2341
-#, fuzzy
 msgid "_Magnetic Net"
-msgstr "切換磁性網"
+msgstr "磁網"
 
 #: gschem/etc/system-gschemrc.scm:2341
 msgid "Toggle magnetic net mode"
@@ -5081,8 +5080,8 @@ msgstr "新增"
 msgid "Sessio_ns"
 msgstr ""
 
+# Attributes
 #: gschem/etc/system-gschemrc.scm:2393
-#, fuzzy
 msgid "Attri_butes"
 msgstr "屬性"
 
@@ -5107,29 +5106,29 @@ msgstr ""
 msgid "Repeat Last Action"
 msgstr ""
 
+# New File
 #: gschem/scheme/gschem/builtins.scm:50
-#, fuzzy
 msgid "New File"
-msgstr "新增分頁"
+msgstr "新文件"
 
+# Open File
 #: gschem/scheme/gschem/builtins.scm:53
-#, fuzzy
 msgid "Open File"
-msgstr "開啟檔案"
+msgstr "打開文件"
 
+# Save As
 #: gschem/scheme/gschem/builtins.scm:59
-#, fuzzy
 msgid "Save As"
-msgstr "儲存全部"
+msgstr "另存為"
 
 #: gschem/scheme/gschem/builtins.scm:62
 msgid "Save All"
 msgstr "儲存全部"
 
+# Save Modified
 #: gschem/scheme/gschem/builtins.scm:65
-#, fuzzy
 msgid "Save Modified"
-msgstr "移動元件"
+msgstr "保存修改"
 
 # Print
 #: gschem/scheme/gschem/builtins.scm:68
@@ -5183,15 +5182,15 @@ msgstr "複製模式"
 msgid "Multiple Copy Mode"
 msgstr "多重複製模式"
 
+# Offset selection
 #: gschem/scheme/gschem/builtins.scm:119
-#, fuzzy
 msgid "Offset selection"
-msgstr "放大檢視"
+msgstr "偏移選擇"
 
+# Snap to Grid
 #: gschem/scheme/gschem/builtins.scm:128
-#, fuzzy
 msgid "Snap to Grid"
-msgstr "複製模式"
+msgstr "對齊網格"
 
 #: gschem/scheme/gschem/builtins.scm:131
 msgid "Create Array"
