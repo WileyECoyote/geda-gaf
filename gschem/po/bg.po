@@ -34,9 +34,10 @@ msgstr "Командния ред грешка: деактивиране авт�
 msgid "Assuming schematic file suffix for"
 msgstr "Ако приемем, схематични файл наставка за"
 
+# Assuming symbol file suffix for
 #: gschem/src/base/gschem.c:206
 msgid "Assuming symbol file suffix for"
-msgstr ""
+msgstr "Мяркуючы, што суфікс файла сімвал"
 
 # Error loading requests session
 #: gschem/src/base/gschem.c:240
@@ -96,9 +97,10 @@ msgstr "ГРЕШКА: Не може да се зареди или оценка �
 msgid "Exiting normal\n"
 msgstr "Излизане нормално\n"
 
+# FAILED
 #: gschem/src/base/gschem.c:514
 msgid "FAILED:"
-msgstr ""
+msgstr "не ўдалося:"
 
 #: gschem/src/base/gschem_dialog.c:567
 msgid "Parent Window"
@@ -144,13 +146,15 @@ msgstr "макро низ"
 msgid "Evaluate"
 msgstr "Оценява"
 
+# Retrieving main window position
 #: gschem/src/base/gschem_main_window.c:229
 msgid "Retrieving main window position.\n"
-msgstr ""
+msgstr "Атрыманне асноўнай пазіцыі акна.\n"
 
+# Retrieving main window geometry
 #: gschem/src/base/gschem_main_window.c:276
 msgid "Retrieving main window geometry.\n"
-msgstr ""
+msgstr "Атрыманне асноўнай геаметрыі акна.\n"
 
 # Horizontal adjustment
 #: gschem/src/base/gschem_page_view.c:250
@@ -296,9 +300,10 @@ msgstr "Неизвестна опция"
 msgid "Unknown option character"
 msgstr "Неизвестна опция характер"
 
+# help for more information
 #: gschem/src/base/gschem_parsecmd.c:302
 msgid "--help for more information"
-msgstr ""
+msgstr "--дапамогу для атрымання дадатковай інфармацыі"
 
 # Run
 #: gschem/src/base/gschem_parsecmd.c:304
@@ -315,33 +320,38 @@ msgstr "Преглед Buffer"
 msgid "Filename"
 msgstr "Име на файл"
 
+# name of file to be previewed
 #: gschem/src/base/gschem_preview.c:541
 msgid "name of file to be previewed"
-msgstr ""
+msgstr "імя файла, папярэдне прагледзець"
 
 #: gschem/src/base/gschem_preview.c:548
 msgid "Object List"
 msgstr "списък обект"
 
+# List of objects to be previewed
 #: gschem/src/base/gschem_preview.c:549
 msgid "List of objects to be previewed"
-msgstr ""
+msgstr "Спіс аб'ектаў, якія падлягаюць праглядаў"
 
 #: gschem/src/base/gschem_preview.c:556
 msgid "Active"
 msgstr "активиран"
 
+# Whether the preview widget is enabled or disabled
 #: gschem/src/base/gschem_preview.c:557
 msgid "Whether the preview widget is enabled or disabled"
-msgstr ""
+msgstr "Ці з'яўляецца папярэдні віджэт уключаны або выключаны"
 
+# Large size
 #: gschem/src/base/gschem_preview.c:564
 msgid "Large size"
-msgstr ""
+msgstr "вялікі памер"
 
+# Whether the preview widget should be large or small
 #: gschem/src/base/gschem_preview.c:565
 msgid "Whether the preview widget should be large or small"
-msgstr ""
+msgstr "Ці павінен папярэдні віджэт быць вялікім ці маленькім"
 
 #: gschem/src/base/gschem_status_bar.c:582
 msgid "Coordinates Mode"
@@ -4600,7 +4610,7 @@ msgid "_Detach"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2292
-msgid "Dettach selected attributes from a symbol"
+msgid "Detach selected attributes from a symbol"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2293
