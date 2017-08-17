@@ -243,27 +243,38 @@ msgid ""
 "included in the gEDA distribution.\n"
 "There is NO WARRANTY, to the extent permitted by law.\n"
 msgstr ""
+"gEDA/gschem %s (%s) (g%.7s)\n"
+"avtorske pravice (C) 1998-2017 gEDA Razvijalci\n"
+"To je brezplačna programska oprema, in jo lahko prerazporedite pod\n"
+"Nekatere pogoje. Za podrobnosti si oglejte datoteko 'COPYING', ki je\n"
+"Vključeni v distribucijo gEDA.\n"
+"V GOSPODINJSTVI ni nobene garancije, kolikor to dovoljuje zakon.\n"
 
+# error parsing
 #: gschem/src/base/gschem_parsecmd.c:244
 msgid "error parsing"
-msgstr ""
+msgstr "Razčlenjevanje napake"
 
+# ERROR
 #: gschem/src/base/gschem_parsecmd.c:280 gschem/src/x/x_rc.c:100
 #: gschem/src/x/x_rc.c:145
 msgid "ERROR"
-msgstr ""
+msgstr "NAPAKA"
 
+# option requires an argument
 #: gschem/src/base/gschem_parsecmd.c:284
 msgid "option requires an argument"
-msgstr ""
+msgstr "Možnost zahteva argument"
 
+# Unknown option
 #: gschem/src/base/gschem_parsecmd.c:290
 msgid "Unknown option"
-msgstr ""
+msgstr "Neznana možnost"
 
+# Unknown option character"
 #: gschem/src/base/gschem_parsecmd.c:296
 msgid "Unknown option character"
-msgstr ""
+msgstr "Neznan znak znakov"
 
 #: gschem/src/base/gschem_parsecmd.c:302
 msgid "--help for more information"
@@ -4637,7 +4648,7 @@ msgid "_Detach"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2292
-msgid "Dettach selected attributes from a symbol"
+msgid "Detach selected attributes from a symbol"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2293
