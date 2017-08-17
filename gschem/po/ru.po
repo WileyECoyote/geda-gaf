@@ -738,10 +738,10 @@ msgstr "Поиск источника данных"
 msgid "Failed to descend into"
 msgstr "Не удалось спуститься в иерархии"
 
+# Hierarchy Error
 #: gschem/src/iface/i_command.c:3077
-#, fuzzy
 msgid "Hierarchy Error"
-msgstr "Иерархия"
+msgstr "Ошибка иерархии"
 
 # Search for a symbol
 #: gschem/src/iface/i_command.c:3154
@@ -4793,28 +4793,29 @@ msgstr ""
 msgid "_Box"
 msgstr "_Прямоугольник"
 
+# Add box
 #: gschem/etc/system-gschemrc.scm:2263
-#, fuzzy
 msgid "Add box"
-msgstr "Добавить прямоугольник"
+msgstr "Добавить поле"
 
+# Circle
 #: gschem/etc/system-gschemrc.scm:2264
 msgid "C_ircle"
-msgstr "_Окружность"
+msgstr "Круг"
 
+# Add circle
 #: gschem/etc/system-gschemrc.scm:2264
-#, fuzzy
 msgid "Add circle"
-msgstr "Добавить окружность"
+msgstr "Добавить круг"
 
 #: gschem/etc/system-gschemrc.scm:2265
 msgid "_Line"
 msgstr "_Линию"
 
+# Add line
 #: gschem/etc/system-gschemrc.scm:2265
-#, fuzzy
 msgid "Add line"
-msgstr "Добавить линию"
+msgstr "Добавить строку"
 
 #: gschem/etc/system-gschemrc.scm:2266
 msgid "Pat_h"
@@ -4836,10 +4837,10 @@ msgstr ""
 msgid "_Pin"
 msgstr "_Вывод"
 
+# Add pin
 #: gschem/etc/system-gschemrc.scm:2268
-#, fuzzy
 msgid "Add pin"
-msgstr "Добавить вывод"
+msgstr "Добавить контакт"
 
 #: gschem/etc/system-gschemrc.scm:2276
 msgid "Create a new session"
@@ -4865,10 +4866,10 @@ msgstr ""
 msgid "Save the current Session to another name"
 msgstr ""
 
+# Manage
 #: gschem/etc/system-gschemrc.scm:2283
-#, fuzzy
 msgid "_Manage..."
-msgstr "_Менеджер..."
+msgstr "управлять..."
 
 #: gschem/etc/system-gschemrc.scm:2283
 msgid "Open the Session Manager dialog"
@@ -4878,19 +4879,19 @@ msgstr ""
 msgid "_Attach"
 msgstr "_Прикрепить"
 
+# Attach selected attributes to symbol
 #: gschem/etc/system-gschemrc.scm:2291
-#, fuzzy
 msgid "Attach selected attributes to symbol"
-msgstr "Прикрепить атрибуты"
+msgstr "Прикрепление выбранных атрибутов к символу"
 
 #: gschem/etc/system-gschemrc.scm:2292
 msgid "_Detach"
 msgstr "_Отделить"
 
+# Dettach selected attributes from a symbol
 #: gschem/etc/system-gschemrc.scm:2292
-#, fuzzy
-msgid "Dettach selected attributes from a symbol"
-msgstr "Неприкреплённый атрибут"
+msgid "Detach selected attributes from a symbol"
+msgstr "Отбирать выбранные атрибуты из символа"
 
 #: gschem/etc/system-gschemrc.scm:2293
 msgid "Show _Value"
