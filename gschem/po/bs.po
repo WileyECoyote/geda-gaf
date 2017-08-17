@@ -21,27 +21,28 @@ msgstr ""
 #: gschem/src/base/gschem.c:158
 #, c-format
 msgid "Warning: <%s> did not expand\n"
-msgstr ""
+msgstr "Upozorenje: <%s> nije proširen\n"
 
 #: gschem/src/base/gschem.c:159
 msgid "Command-line error: disabling auto load last\n"
-msgstr ""
+msgstr "Command-line error: disabling auto load last\n"
 
 #: gschem/src/base/gschem.c:192
 msgid "Assuming schematic file suffix for"
-msgstr ""
+msgstr "Pod pretpostavkom šematski sufiksu fajlova za"
 
 #: gschem/src/base/gschem.c:206
 msgid "Assuming symbol file suffix for"
-msgstr ""
+msgstr "Assuming symbol file suffix for"
 
 #: gschem/src/base/gschem.c:240
 msgid "An error was encountered loading requested session"
-msgstr ""
+msgstr "Naišla je na grešku u učitavanje tražene sesije"
 
+# Auto Load
 #: gschem/src/base/gschem.c:265
 msgid "Auto Load"
-msgstr ""
+msgstr "Auto Load"
 
 #: gschem/src/base/gschem.c:313
 msgid ""
@@ -50,14 +51,19 @@ msgid ""
 "gschem cannot locate some data files. Please ensure the GEDADATA\n"
 "environment variable points to the correct location.\n"
 msgstr ""
+"Mora se podesiti varijabla okoline GEDADATA!\n"
+"\n"
+"Gschem ne može pronaći datoteke podataka. Molimo osigurati GEDADATA\n"
+"Promenljiva okoline ukazuje na tačnu lokaciju.\n"
 
 #: gschem/src/base/gschem.c:347
 msgid "Unable to locate scheme initialization file"
-msgstr ""
+msgstr "Nije moguće locirati datoteku za inicijalizaciju sheme"
 
+# Read scheme initialization file
 #: gschem/src/base/gschem.c:354
 msgid "Read scheme initialization file"
-msgstr ""
+msgstr "Pročitaj datoteku inicijalizacije šeme"
 
 #: gschem/src/base/gschem.c:357
 msgid "Failed to read scheme initialization file"
@@ -4609,7 +4615,7 @@ msgid "_Detach"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2292
-msgid "Dettach selected attributes from a symbol"
+msgid "Detach selected attributes from a symbol"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2293
