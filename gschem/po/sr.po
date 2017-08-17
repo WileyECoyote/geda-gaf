@@ -460,7 +460,7 @@ msgstr "Показује тренутну стање"
 msgid "Gschem status bar"
 msgstr "Gschem статусн трака"
 
-# grid
+# grid => Coordinate network
 #: gschem/src/base/gschem_status_bar.c:1856
 msgid "Grid"
 msgstr "координатна мрежа"
@@ -913,40 +913,46 @@ msgstr "Ацтион повратна информација Моде је ОУ�
 msgid "Action feedback mode set to BOUNDINGBOX\n"
 msgstr "Ацтион повратна информација Моде је ГРАНИЧНИ ОКВИР\n"
 
+# Auto-Pan is now
 #: gschem/src/iface/i_command.c:4534
 msgid "Auto-Pan is now"
-msgstr ""
+msgstr "Сада је Ауто-Пан"
 
+# Check path
 #: gschem/src/iface/i_command.c:4586 gschem/src/iface/i_command.c:4615
 #: gschem/src/iface/i_command.c:4635 gschem/src/iface/i_command.c:4655
 msgid "Check path:"
-msgstr ""
+msgstr "Провери пут:"
 
 #: gschem/src/iface/i_command.c:4755
 #, c-format
 msgid "(read only) width=%d, height=%d\n"
-msgstr ""
+msgstr "(Само за читање) ширина=%d, висина=%d\n"
 
+# Canceled Close all
 #: gschem/src/iface/i_sessions.c:184
 msgid "Canceled Close all\n"
-msgstr ""
+msgstr "Отказано Затвори све\n"
 
+# Could not open the session file
 #: gschem/src/iface/i_sessions.c:262
 msgid "Could not open the session file"
-msgstr ""
+msgstr "Could not open the session file"
 
+# is not accessible
 #: gschem/src/iface/i_sessions.c:268 gschem/src/x/x_window.c:998
 msgid "is not accessible"
-msgstr ""
+msgstr "Није приступачно"
 
 # File
 #: gschem/src/iface/i_sessions.c:272
 msgid "File"
 msgstr "Датотека"
 
+# Warning relative file names detected in session
 #: gschem/src/iface/i_sessions.c:335
 msgid "Warning relative file names detected in session"
-msgstr ""
+msgstr "Упозоравајући имена релативних датотека откривених током сесије"
 
 # Session
 #: gschem/src/iface/i_sessions.c:346 gschem/src/iface/i_sessions.c:359
@@ -4691,7 +4697,7 @@ msgid "_Detach"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2292
-msgid "Dettach selected attributes from a symbol"
+msgid "Detach selected attributes from a symbol"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2293
