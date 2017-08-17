@@ -4744,7 +4744,7 @@ msgstr "脱离"
 
 # Disconnect selected attributes from a symbol
 #: gschem/etc/system-gschemrc.scm:2292
-msgid "Dettach selected attributes from a symbol"
+msgid "Detach selected attributes from a symbol"
 msgstr "断开符号中选定的属性"
 
 # Show Value
@@ -4962,9 +4962,10 @@ msgstr ""
 msgid "Toggle rubberband net mode"
 msgstr ""
 
+# Magnetic Net
 #: gschem/etc/system-gschemrc.scm:2341
 msgid "_Magnetic Net"
-msgstr ""
+msgstr "磁网"
 
 #: gschem/etc/system-gschemrc.scm:2341
 msgid "Toggle magnetic net mode"
