@@ -1948,35 +1948,41 @@ msgid ""
 "Offset to translate?\n"
 "(0 for origin)"
 msgstr ""
+"Çevirmek için ofset?\n"
+"(0 köken için)"
 
+# Auto Zoom Extents
 #: gschem/src/x/x_dialog.c:3043
 msgid "Auto Zoom Extents"
-msgstr ""
+msgstr "Otomatik Yakınlaştırma Kapsamları"
 
 #: gschem/src/x/x_dialog.c:3215
 msgid "Hotkeys"
 msgstr "Kısayollar"
 
+# Icon
 #: gschem/src/x/x_dialog.c:3302
 msgid "Icon"
-msgstr ""
+msgstr "ikon"
 
 # Action
 #: gschem/src/x/x_dialog.c:3316
 msgid "Action"
 msgstr "Aksiyon"
 
+# Keys
 #: gschem/src/x/x_dialog.c:3326
 msgid "Keystroke(s)"
-msgstr ""
+msgstr "Tuş (lar)"
 
 #: gschem/src/x/x_dialog.c:3336
 msgid "Command"
-msgstr ""
+msgstr "komuta"
 
+# Major symbol changes detected
 #: gschem/src/x/x_dialog.c:3574
 msgid "Major symbol changes detected."
-msgstr ""
+msgstr "Büyük sembol değişiklikleri tespit edildi."
 
 #: gschem/src/x/x_dialog.c:3601
 msgid ""
@@ -1984,14 +1990,19 @@ msgid ""
 "\n"
 "Be sure to verify each of these symbols."
 msgstr ""
+"Aşağıda gösterilen semboller üzerinde değişiklikler yapıldı.\n"
+"\n"
+"Bu sembollerin her birini doğruladığınızdan emin olun."
 
+# Symbol
 #: gschem/src/x/x_dialog.c:3642
 msgid "Symbol"
-msgstr ""
+msgstr "sembol"
 
+# Dismiss this dialog
 #: gschem/src/x/x_dialog.c:3688
 msgid "Dismiss this dialog"
-msgstr ""
+msgstr "Bu iletişim kutusunu kapat"
 
 # Input attribute is invalid
 #: gschem/src/x/x_dialog.c:3730
@@ -4644,7 +4655,7 @@ msgstr "özel görevlendirmek"
 
 # Disconnect (seperate) selected attributes from a symbol
 #: gschem/etc/system-gschemrc.scm:2292
-msgid "Dettach selected attributes from a symbol"
+msgid "Detach selected attributes from a symbol"
 msgstr "Seçilen nitelikleri bir semboldan ayırın"
 
 # Show Value
