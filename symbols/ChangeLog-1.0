@@ -1,3 +1,9 @@
+2017-08-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * emechanic/switch: Add description and revise attributes:
+
+            * emechanic/switch/switch_sp3t-1.sym
+
 2017-08-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * idt/IDT7203-1.sym: Add symbol; CMOS Asynchronous FIFO, 2K x 9.
