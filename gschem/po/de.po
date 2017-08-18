@@ -4440,7 +4440,7 @@ msgstr "Kreisb_ogen"
 
 #: gschem/etc/system-gschemrc.scm:2262
 msgid "Create arc"
-msgstr ""
+msgstr "Bogen erstellen"
 
 #: gschem/etc/system-gschemrc.scm:2263
 msgid "_Box"
@@ -4448,7 +4448,7 @@ msgstr "_Rechteck"
 
 #: gschem/etc/system-gschemrc.scm:2263
 msgid "Add box"
-msgstr "/Bus einfügen"
+msgstr "Bus einfügen"
 
 #: gschem/etc/system-gschemrc.scm:2264
 msgid "C_ircle"
@@ -4466,13 +4466,14 @@ msgstr "_Linie"
 msgid "Add line"
 msgstr "Linie"
 
+# Path
 #: gschem/etc/system-gschemrc.scm:2266
 msgid "Pat_h"
-msgstr ""
+msgstr "Pfad"
 
 #: gschem/etc/system-gschemrc.scm:2266 gschem/scheme/gschem/builtins.scm:371
 msgid "Add Path"
-msgstr "/Netz einfügen"
+msgstr "Netz einfügen"
 
 #: gschem/etc/system-gschemrc.scm:2267
 msgid "Pictu_re..."
@@ -4480,7 +4481,7 @@ msgstr "B_ild..."
 
 #: gschem/etc/system-gschemrc.scm:2267
 msgid "Insert an image into the current document"
-msgstr ""
+msgstr "Legen Sie ein Bild in das aktuelle Dokument ein"
 
 #: gschem/etc/system-gschemrc.scm:2268
 msgid "_Pin"
@@ -4492,19 +4493,20 @@ msgstr "Linie"
 
 #: gschem/etc/system-gschemrc.scm:2276
 msgid "Create a new session"
-msgstr ""
+msgstr "Erstellen Sie eine neue Sitzung"
 
 #: gschem/etc/system-gschemrc.scm:2277
 msgid "Launch the open Session dialog"
-msgstr ""
+msgstr "Starten Sie den geöffneten Session-Dialog"
 
+# Restore
 #: gschem/etc/system-gschemrc.scm:2278
 msgid "_Restore"
-msgstr ""
+msgstr "Wiederherstellen"
 
 #: gschem/etc/system-gschemrc.scm:2278
 msgid "Restore an existing Session"
-msgstr ""
+msgstr "Wiederherstellen einer vorhandenen Sitzung"
 
 #: gschem/etc/system-gschemrc.scm:2280
 msgid "Save the current Session"
@@ -4512,7 +4514,7 @@ msgstr "Aktuelles Fenster"
 
 #: gschem/etc/system-gschemrc.scm:2281
 msgid "Save the current Session to another name"
-msgstr ""
+msgstr "Sichern Sie die aktuelle Sitzung auf einen anderen Namen"
 
 #: gschem/etc/system-gschemrc.scm:2283
 msgid "_Manage..."
@@ -4528,14 +4530,14 @@ msgstr "_Anbringen"
 
 #: gschem/etc/system-gschemrc.scm:2291
 msgid "Attach selected attributes to symbol"
-msgstr ""
+msgstr "Anhängen ausgewählter Attribute an Symbol"
 
 #: gschem/etc/system-gschemrc.scm:2292
 msgid "_Detach"
 msgstr "_Loslösen"
 
 #: gschem/etc/system-gschemrc.scm:2292
-msgid "Dettach selected attributes from a symbol"
+msgid "Detach selected attributes from a symbol"
 msgstr "Attribut ablösen"
 
 #: gschem/etc/system-gschemrc.scm:2293
@@ -4544,7 +4546,7 @@ msgstr "_Wert anzeigen"
 
 #: gschem/etc/system-gschemrc.scm:2293
 msgid "Set selected value visible"
-msgstr ""
+msgstr "Setzen Sie den ausgewählten Wert sichtbar"
 
 #: gschem/etc/system-gschemrc.scm:2294
 msgid "Show _Name"
