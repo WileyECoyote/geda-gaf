@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gnetlist\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-05-15 00:57-0500\n"
+"POT-Creation-Date: 2017-08-18 03:29-0500\n"
 "PO-Revision-Date: 2014-08-31 20:38+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA Developers\n"
@@ -104,7 +104,7 @@ msgid "Either specify a backend to execute or interactive mode!\n"
 msgstr "U gaf geen backend om uit voeren noch interactieve modus!\n"
 
 #: gnetlist/src/parsecmd.c:73
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Usage: %s [OPTION ...] [-g BACKEND] [ help | version ] [--] FILE ...\n"
 "\n"
@@ -386,37 +386,20 @@ msgstr ""
 msgid "Non-connectable object being queried for connection type\n"
 msgstr "Niet-verbindbaar object naar verbindingtype gevraagd\n"
 
-#: gnetlist/src/s_traverse.c:588
+#: gnetlist/src/s_traverse.c:591
 #, c-format
-msgid "WARNING: Found label=%s. label= is deprecated, please use netname=\n"
+msgid "%s=%s. %s=\n"
 msgstr ""
-"WAARSCHUWING: vond label=%s. label= is vervallen, gebruik alstublieft "
-"netname=\n"
 
-#: gnetlist/src/s_traverse.c:650
+#: gnetlist/src/s_traverse.c:653
 #, c-format
 msgid "Found a possible net/pin infinite connection\n"
 msgstr "Vond een mogelijk oneindige net/pen verbinding\n"
 
-#, fuzzy
-#~ msgid ""
-#~ "\n"
-#~ "Run `%s --list-backends' for a full list of available backends.\n"
+#~ msgid "WARNING: Found label=%s. label= is deprecated, please use netname=\n"
 #~ msgstr ""
-#~ "FOUT: Kan backend `%s' niet vinden in het laadpad.\n"
-#~ "\n"
-#~ "Doe `%s --list-backends' voor een volledige lijst van beschikbare "
-#~ "backends.\n"
-
-#~ msgid "Loading schematic [%s]\n"
-#~ msgstr "Laden van schema [%s]\n"
-
-#, fuzzy
-#~ msgid "ERROR: No schematics files specified for processing.\n"
-#~ msgstr ""
-#~ "FOUT: Geen schema bestanden gespecificeerd voor verwerking.\n"
-#~ "\n"
-#~ "Doe `%s --help' voor meer informatie.\n"
+#~ "WAARSCHUWING: vond label=%s. label= is vervallen, gebruik alstublieft "
+#~ "netname=\n"
 
 #~ msgid "Failed to load subcircuit '%s': %s\n"
 #~ msgstr "Faalde bij het laden van subcircuit '%s': %s\n"

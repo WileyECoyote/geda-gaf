@@ -1,3 +1,7 @@
+2017-08-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/nl.po: Update Dutch translations.
+
 2017-07-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * gnetlist/src/g_rc.c: Replace strdup_scm_string with geda_string_scm2c
