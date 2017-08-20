@@ -116,7 +116,7 @@ static void s_traverse_init(void)
     printf  ( "\n\n------------------------------------------------------\n");
     printf(_("Verbose mode legend\n\n"));
     printf(_("n : Found net\n"));
-    printf(_("C : Found component (staring to traverse component)\n"));
+    printf(_("C : Found component (starting to traverse component)\n"));
     printf(_("p : Found pin (starting to traverse pin / or examining pin)\n"));
     printf(_("P : Found end pin connection (end of this net)\n"));
     printf(_("R : Starting to rename a net\n"));
@@ -125,7 +125,6 @@ static void s_traverse_init(void)
     printf(_("u : Found a refdes which needs to be demangle\n"));
     printf(_("U : Found a connected_to refdes which needs to be demangle\n"));
     printf  ("------------------------------------------------------\n\n");
-
   }
 }
 
