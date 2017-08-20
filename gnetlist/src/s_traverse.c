@@ -220,8 +220,8 @@ s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list)
     netlist   = s_netlist_return_tail (netlist_head);
 
     if (o_current->type == OBJ_PLACEHOLDER) {
-      printf("%s \"%s\"?\n", _("WARNING: Found a placeholder/missing component, is symbol file missing"),
-                o_current->complex->filename);
+      const char *msg = _("WARNING: Found a placeholder/missing component, is symbol file missing");
+      printf("%s \"%s\"?\n", msg, o_current->complex->filename);
     }
 
     if (o_current->type == OBJ_COMPLEX) {
@@ -585,7 +585,10 @@ NET *s_traverse_net (GedaToplevel *pr_current, NET *nets, int starting,
 
       if (temp) { /* Accept the attribute here but issue notice */
 
-        printf(_("WARNING: Found label=%s. label= is deprecated, please use netname=\n"), temp);
+        const char *msg1 = "WARNING: Found label";
+        const char *msg2 = "label= is deprecated, please use netname";
+
+        printf(_("%s=%s. %s=\n"), msg1, temp, msg2);
 
         new_net->net_name = s_hierarchy_create_netname (pr_current, temp,
                                                         hierarchy_tag);

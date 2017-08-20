@@ -5,7 +5,8 @@
     * po/ru.po: Update Russian translations.
 
     * src/s_traverse.c: Revise s_traverse_init; change wording/phrasing in
-      verbose "legend", update comments.
+      verbose "legend", update comments. Revise error message formats in
+      order to minimize format specifiers in translatable strings.
 
 2017-07-23 Wiley E. Hill <wileyhill@gmail.com>
 
