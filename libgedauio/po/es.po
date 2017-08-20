@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gschem VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-08-05 15:01-0500\n"
+"POT-Creation-Date: 2017-08-19 19:36-0500\n"
 "PO-Revision-Date: 2012-03-23 03:04+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitoschido@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -78,27 +78,27 @@ msgstr "Vista previa"
 msgid "Active to enable the preview pane"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_accel_label.c:606
+#: libgedauio/src/widgets/geda_accel_label.c:603
 msgid "Accelerator Closure"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_accel_label.c:607
+#: libgedauio/src/widgets/geda_accel_label.c:604
 msgid "The closure to be monitored for accelerator changes"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_accel_label.c:613
+#: libgedauio/src/widgets/geda_accel_label.c:610
 msgid "Accelerator Widget"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_accel_label.c:614
+#: libgedauio/src/widgets/geda_accel_label.c:611
 msgid "The widget to be monitored for accelerator changes"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_accel_label.c:620
+#: libgedauio/src/widgets/geda_accel_label.c:617
 msgid "Accelerator String"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_accel_label.c:621
+#: libgedauio/src/widgets/geda_accel_label.c:618
 msgid "The accelerator string to be displayed"
 msgstr ""
 

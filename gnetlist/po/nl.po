@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gnetlist\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-08-18 03:29-0500\n"
+"POT-Creation-Date: 2017-08-19 19:33-0500\n"
 "PO-Revision-Date: 2014-08-31 20:38+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA Developers\n"
@@ -301,59 +301,59 @@ msgid "This warning is okay if there multiple levels of hierarchy!\n"
 msgstr ""
 "Deze waarschuwing is in orde als er meerdere niveaus van de hiërarchie!\n"
 
-#: gnetlist/src/s_traverse.c:117
+#: gnetlist/src/s_traverse.c:120
 #, c-format
 msgid ""
 "Verbose mode legend\n"
 "\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:118
+#: gnetlist/src/s_traverse.c:121
 #, c-format
 msgid "n : Found net\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:119
-#, c-format
-msgid "C : Found component (staring to traverse component)\n"
-msgstr ""
-
-#: gnetlist/src/s_traverse.c:120
-#, c-format
-msgid "p : Found pin (starting to traverse pin / or examining pin)\n"
-msgstr ""
-
-#: gnetlist/src/s_traverse.c:121
-#, c-format
-msgid "P : Found end pin connection (end of this net)\n"
-msgstr ""
-
 #: gnetlist/src/s_traverse.c:122
 #, c-format
-msgid "R : Starting to rename a net\n"
+msgid "C : Found component (starting to traverse component)\n"
 msgstr ""
 
 #: gnetlist/src/s_traverse.c:123
 #, c-format
-msgid "v : Found source attribute, traversing down\n"
+msgid "p : Found pin (starting to traverse or examine pin)\n"
 msgstr ""
 
 #: gnetlist/src/s_traverse.c:124
 #, c-format
-msgid "^ : Finished underlying source, going back up\n"
+msgid "P : Found ending pin connection (end of this net)\n"
 msgstr ""
 
 #: gnetlist/src/s_traverse.c:125
 #, c-format
-msgid "u : Found a refdes which needs to be demangle\n"
+msgid "R : Starting to rename a net\n"
 msgstr ""
 
 #: gnetlist/src/s_traverse.c:126
 #, c-format
+msgid "v : Found source attribute, traversing down\n"
+msgstr ""
+
+#: gnetlist/src/s_traverse.c:127
+#, c-format
+msgid "^ : Finished underlying source, going back up\n"
+msgstr ""
+
+#: gnetlist/src/s_traverse.c:128
+#, c-format
+msgid "u : Found a refdes which needs to be demangle\n"
+msgstr ""
+
+#: gnetlist/src/s_traverse.c:129
+#, c-format
 msgid "U : Found a connected_to refdes which needs to be demangle\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:169
+#: gnetlist/src/s_traverse.c:171
 #, c-format
 msgid ""
 "\n"
@@ -361,37 +361,37 @@ msgid ""
 "\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:211
+#: gnetlist/src/s_traverse.c:213
 #, c-format
 msgid "- Starting internal netlist creation\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:223 gnetlist/src/s_traverse.c:357
+#: gnetlist/src/s_traverse.c:225 gnetlist/src/s_traverse.c:359
 msgid "WARNING: Found a placeholder/missing component, is symbol file missing"
 msgstr ""
 "WAARSCHUWING: Vond een plaatshouder/ontbrekend component, mist U een symbool "
 "bestand?"
 
-#: gnetlist/src/s_traverse.c:285
+#: gnetlist/src/s_traverse.c:287
 msgid "Did not find refdes or any special attributes on component!"
 msgstr ""
 "Kon geen refdes vinden op component en kon geen speciaal attributen vinden!"
 
-#: gnetlist/src/s_traverse.c:429
+#: gnetlist/src/s_traverse.c:431
 msgid "Could not find refdes on component or any special attributes!"
 msgstr ""
 "Kon geen refdes vinden op component en kon geen speciaal attributen vinden!"
 
-#: gnetlist/src/s_traverse.c:539
+#: gnetlist/src/s_traverse.c:541
 msgid "Non-connectable object being queried for connection type\n"
 msgstr "Niet-verbindbaar object naar verbindingtype gevraagd\n"
 
-#: gnetlist/src/s_traverse.c:591
+#: gnetlist/src/s_traverse.c:593
 #, c-format
 msgid "%s=%s. %s=\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:653
+#: gnetlist/src/s_traverse.c:655
 #, c-format
 msgid "Found a possible net/pin infinite connection\n"
 msgstr "Vond een mogelijk oneindige net/pen verbinding\n"
