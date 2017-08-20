@@ -107,9 +107,11 @@ s_traverse_clear_all_visited (const GList *obj_list)
  */
 static void s_traverse_init(void)
 {
+  /* NULL indicates no previous record in new NETLIST */
   netlist_head = s_netlist_add(NULL);
   netlist_head->nlid = -1;	/* head node */
 
+  /* NULL indicates no previous record in new NETLIST */
   graphical_netlist_head = s_netlist_add(NULL);
   graphical_netlist_head->nlid = -1;	/* head node */
 
