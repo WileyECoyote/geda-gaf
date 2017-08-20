@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gnetlist\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-05-15 00:57-0500\n"
+"POT-Creation-Date: 2017-08-18 03:29-0500\n"
 "PO-Revision-Date: 2014-05-20 08:55+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: gEDA Developers\n"
@@ -23,9 +23,10 @@ msgstr ""
 msgid "Invalid refdes ('%s') and pin ('%s') passed to get-nets\n"
 msgstr "get-nets: недопустимое позиционное обозначение («%s») и вывод («%s»)\n"
 
+# ERROR
 #: gnetlist/src/gnetlist.c:80
 msgid "ERROR"
-msgstr ""
+msgstr "ОШИБКА"
 
 #: gnetlist/src/gnetlist.c:124
 msgid "Can not open directory"
@@ -40,29 +41,37 @@ msgid ""
 "gEDA/gnetlist comes with ABSOLUTELY NO WARRANTY; see COPYING for more "
 "details.\n"
 msgstr ""
+"GEDA/gnetlist поставляется с абсолютно БЕСПЛАТНОЙ ГАРАНТИЕЙ; См. КОПИРОВАНИЕ "
+"для более подробной информации.\n"
 
 #: gnetlist/src/gnetlist.c:246
 msgid ""
 "This is free software, and you are welcome to redistribute it under certain\n"
 msgstr ""
+"Это бесплатное программное обеспечение, и вы можете перераспределить его при "
+"определенных\n"
 
 #: gnetlist/src/gnetlist.c:248
 msgid ""
 "conditions; please see the COPYING file for more details.\n"
 "\n"
 msgstr ""
+"условия; Более подробную информацию см. В файле COPYING.\n"
+"\n"
 
 #: gnetlist/src/gnetlist.c:292 gnetlist/src/gnetlist.c:293
 msgid "Loading schematic"
 msgstr "Загрузка схемы"
 
+# load failed
 #: gnetlist/src/gnetlist.c:299
 msgid "load failed"
-msgstr ""
+msgstr "Ошибка загрузки"
 
+# System could not change to directory
 #: gnetlist/src/gnetlist.c:318 gnetlist/src/gnetlist.c:371
 msgid "System could not change to directory"
-msgstr ""
+msgstr "Система не может быть изменена в каталог"
 
 #: gnetlist/src/gnetlist.c:344
 msgid "ERROR: Could not find backend"
@@ -72,29 +81,33 @@ msgstr "ОШИБКА: не удалось найти драйвер в пути 
 msgid "for a full list of available backends"
 msgstr "для полного списка доступных бэкэндов"
 
+# in load path
 #: gnetlist/src/gnetlist.c:347
 msgid "in load path"
-msgstr ""
+msgstr "В пути загрузки"
 
 #: gnetlist/src/gnetlist.c:348
 msgid "Run"
-msgstr ""
+msgstr "Выполнить"
 
 #: gnetlist/src/gnetlist.c:406 gnetlist/src/gnetlist.c:434
 msgid "Path"
-msgstr ""
+msgstr "Путь к файлу"
 
+# is not accessible
 #: gnetlist/src/gnetlist.c:407 gnetlist/src/gnetlist.c:435
 msgid "is not accessible"
-msgstr ""
+msgstr "Недоступен"
 
+# file
 #: gnetlist/src/gnetlist.c:418
 msgid "file"
-msgstr ""
+msgstr "файл"
 
+# Could not create
 #: gnetlist/src/gnetlist.c:457
 msgid "Could not create"
-msgstr ""
+msgstr "Не удалось создать"
 
 #: gnetlist/src/gnetlist.c:485
 #, c-format
@@ -181,11 +194,11 @@ msgstr ""
 
 #: gnetlist/src/parsecmd.c:129
 msgid "Received an error; tag is"
-msgstr ""
+msgstr "Получил ошибку; Тег"
 
 #: gnetlist/src/parsecmd.c:224
 msgid "WARNING: output already specified"
-msgstr ""
+msgstr "ПРЕДУПРЕЖДЕНИЕ: уже указанный результат"
 
 #: gnetlist/src/parsecmd.c:267
 #, c-format
@@ -304,6 +317,8 @@ msgid ""
 "Verbose mode legend\n"
 "\n"
 msgstr ""
+"Претензионная легенда режима\n"
+"\n"
 
 #: gnetlist/src/s_traverse.c:118
 #, c-format
@@ -385,15 +400,18 @@ msgstr ""
 msgid "Non-connectable object being queried for connection type\n"
 msgstr "Запрос типа соединения для неприсоединяемого объекта.\n"
 
-#: gnetlist/src/s_traverse.c:588
+#: gnetlist/src/s_traverse.c:591
 #, c-format
-msgid "WARNING: Found label=%s. label= is deprecated, please use netname=\n"
+msgid "%s=%s. %s=\n"
 msgstr ""
-"ПРЕДУПРЕЖДЕНИЕ: Найден атрибут «label=%s». Использовать «label» не "
-"рекомендуется, вместо него следует использовать «netname».\n"
 
-#: gnetlist/src/s_traverse.c:650
+#: gnetlist/src/s_traverse.c:653
 #, c-format
 msgid "Found a possible net/pin infinite connection\n"
 msgstr ""
 "Обнаружено возможно бесконечное число подключений для вывода/соединения\n"
+
+#~ msgid "WARNING: Found label=%s. label= is deprecated, please use netname=\n"
+#~ msgstr ""
+#~ "ПРЕДУПРЕЖДЕНИЕ: Найден атрибут «label=%s». Использовать «label» не "
+#~ "рекомендуется, вместо него следует использовать «netname».\n"
