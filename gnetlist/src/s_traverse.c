@@ -117,8 +117,8 @@ static void s_traverse_init(void)
     printf(_("Verbose mode legend\n\n"));
     printf(_("n : Found net\n"));
     printf(_("C : Found component (starting to traverse component)\n"));
-    printf(_("p : Found pin (starting to traverse pin / or examining pin)\n"));
-    printf(_("P : Found end pin connection (end of this net)\n"));
+    printf(_("p : Found pin (starting to traverse or examine pin)\n"));
+    printf(_("P : Found ending pin connection (end of this net)\n"));
     printf(_("R : Starting to rename a net\n"));
     printf(_("v : Found source attribute, traversing down\n"));
     printf(_("^ : Finished underlying source, going back up\n"));

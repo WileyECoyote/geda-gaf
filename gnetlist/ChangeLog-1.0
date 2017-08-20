@@ -4,6 +4,9 @@
 
     * po/ru.po: Update Russian translations.
 
+    * src/s_traverse.c: Revise s_traverse_init; change wording/phrasing in
+      verbose "legend".
+
 2017-07-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * gnetlist/src/g_rc.c: Replace strdup_scm_string with geda_string_scm2c
