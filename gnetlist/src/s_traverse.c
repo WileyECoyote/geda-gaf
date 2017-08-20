@@ -98,11 +98,12 @@ s_traverse_clear_all_visited (const GList *obj_list)
                                NULL);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief Initialize Traverse Module
- *  \par Function Description
- *  Initializes netlist_head list, and for some awkwardly displays
- *  a legend if Verbose mode.
+/*!
+ * \brief Initialize Traverse Module
+ * \par Function Description
+ *  Initializes netlist_head list with two initial NETLIST record
+ *  structures, one for the netlist and one for graphical netlist.
+ *  Awkwardly displays a legend if Verbose mode.
  */
 static void s_traverse_init(void)
 {

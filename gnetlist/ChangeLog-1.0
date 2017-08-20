@@ -5,7 +5,7 @@
     * po/ru.po: Update Russian translations.
 
     * src/s_traverse.c: Revise s_traverse_init; change wording/phrasing in
-      verbose "legend".
+      verbose "legend", update comments.
 
 2017-07-23 Wiley E. Hill <wileyhill@gmail.com>
 
