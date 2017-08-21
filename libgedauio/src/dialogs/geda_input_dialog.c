@@ -64,8 +64,10 @@
 #include "../../include/geda_label.h"
 #include "../../include/geda_entry.h"
 
-static char*
-geda_dialog_get_input(const char *title, const char *prompt, const char *str, GedaEntryAccept type)
+static char *geda_dialog_get_input(const char *title,
+                                   const char *prompt,
+                                   const char *str,
+                                   GedaEntryAccept type)
 {
     GtkDialog *dialog;
     GtkWidget *ok_butt;
