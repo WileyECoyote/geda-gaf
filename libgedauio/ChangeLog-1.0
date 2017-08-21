@@ -1,6 +1,9 @@
 2017-08-20 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/dialogs/geda_file_chooser.c: Add template Doxygen comment blocks.
+    * src/: Add template/todo Doxygen comment blocks.
+
+          * src/dialogs/geda_file_chooser.c
+          * src/dialogs/geda_image_chooser.c
 
 2017-08-15 Wiley E. Hill <wileyhill@gmail.com>
 

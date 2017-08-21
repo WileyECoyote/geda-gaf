@@ -1303,6 +1303,11 @@ GtkEntry *geda_image_chooser_get_entry (GtkWidget *widget)
   return chooser_entry;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 char*
 geda_image_chooser_get_entry_text(GtkWidget *despicable)
 {
@@ -1323,6 +1328,11 @@ geda_image_chooser_get_entry_text(GtkWidget *despicable)
   return NULL;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 char*
 geda_image_chooser_get_filename(GtkWidget *hideous)
 {
@@ -1335,6 +1345,11 @@ geda_image_chooser_get_filename(GtkWidget *hideous)
   return NULL;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 void
 geda_image_chooser_set_filename (GtkWidget *hideous, const char *name)
 {
@@ -1346,6 +1361,11 @@ geda_image_chooser_set_filename (GtkWidget *hideous, const char *name)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 GSList*
 geda_image_chooser_get_filenames(GtkWidget *hideous)
 {
@@ -1358,6 +1378,11 @@ geda_image_chooser_get_filenames(GtkWidget *hideous)
   return NULL;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 char*
 geda_image_chooser_get_current_folder(GtkWidget *hideous)
 {
@@ -1370,6 +1395,11 @@ geda_image_chooser_get_current_folder(GtkWidget *hideous)
   return NULL;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 void
 geda_image_chooser_set_current_folder (GtkWidget *hideous, const char *folder)
 {
@@ -1381,6 +1411,11 @@ geda_image_chooser_set_current_folder (GtkWidget *hideous, const char *folder)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 void
 geda_image_chooser_set_current_name (GtkWidget *hideous, const char *folder)
 {
@@ -1392,6 +1427,11 @@ geda_image_chooser_set_current_name (GtkWidget *hideous, const char *folder)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 void
 geda_image_chooser_append_extra (GtkWidget *dialog, GtkWidget *child)
 {
@@ -1404,6 +1444,11 @@ geda_image_chooser_append_extra (GtkWidget *dialog, GtkWidget *child)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 void
 geda_image_chooser_prepend_extra (GtkWidget *dialog, GtkWidget *child)
 {
@@ -1445,6 +1490,11 @@ geda_image_chooser_prepend_extra (GtkWidget *dialog, GtkWidget *child)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 /* The extra widget is the hbox containing the enable preview check button */
 GtkWidget*
 geda_image_chooser_get_extra_widget(GtkWidget *chooser)
@@ -1458,6 +1508,11 @@ geda_image_chooser_get_extra_widget(GtkWidget *chooser)
   return NULL;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 void
 geda_image_chooser_set_extra_widget (GtkWidget *hideous, GtkWidget *extra)
 {
@@ -1469,6 +1524,11 @@ geda_image_chooser_set_extra_widget (GtkWidget *hideous, GtkWidget *extra)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 void geda_image_chooser_set_preview_active (GtkWidget *widget, bool state)
 {
   if (GEDA_IS_IMAGE_CHOOSER(widget)) {
