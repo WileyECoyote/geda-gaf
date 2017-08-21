@@ -116,6 +116,8 @@ geda_dialog_get_input(const char *title, const char *prompt, const char *str, Ge
  *
  * \returns the integer value or -0 if the user canceled the dialog.
  *
+ * \image html geda_dialog_get_integer.png
+ * \image latex geda_dialog_get_integer.png
  */
 int geda_dialog_get_integer(const char *title, const char *prompt, int offer)
 {
