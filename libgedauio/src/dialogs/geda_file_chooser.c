@@ -834,18 +834,25 @@ geda_file_chooser_set_entry_text(GtkWidget *despicable, const char *text)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief widget version of #geda_combo_box_get_count
- *  \par Function Description
+/*!
+ * \brief Get the filename from a GedaFileChooser
+ * \par Function Description
+ *  Gets the filename for the currently selected file in the file selector.
+ *  The filename is returned as an absolute path. If multiple files are
+ *  selected, one of the filenames will be returned at random. If the file
+ *  chooser is in folder mode, this function returns the selected folder.
  *
+ * \param [in] widget  Pointer to a hideous GtkFileChooser widget
+ *
+ * \returns filename string, which should be freed, or NULL.
  */
 char*
-geda_file_chooser_get_filename(GtkWidget *hideous)
+geda_file_chooser_get_filename(GtkWidget *widget)
 {
   char *name;
 
-  if (GTK_IS_FILE_CHOOSER(hideous)) {
-    name = gtk_file_chooser_get_filename((GtkFileChooser*)hideous);
+  if (GTK_IS_FILE_CHOOSER(widget)) {
+    name = gtk_file_chooser_get_filename((GtkFileChooser*)widget);
 
   }
   else {
@@ -855,23 +862,30 @@ geda_file_chooser_get_filename(GtkWidget *hideous)
   return name;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief widget version of #geda_combo_box_get_count
- *  \par Function Description
+/*!
+ * \brief Set the GedaFileChooser Filename
+ * \par Function Description
+ *  Sets filename as the current filename for the file chooser,
+ *  changes to the file’s parent folder and selects the file in
+ *  list; all other files will be unselected. If the chooser is
+ *  in GTK_FILE_CHOOSER_ACTION_SAVE mode, the file’s base name
+ *  will also appear in the dialog’s file name entry.
  *
+ * \param [in] widget  Pointer to a hideous GtkFileChooser widget
+ * \param [in] name    Pointer to the filename to set as current
  */
 bool
-geda_file_chooser_set_filename (GtkWidget *hideous, const char *name)
+geda_file_chooser_set_filename (GtkWidget *widget, const char *name)
 {
   int result;
 
-  if (GTK_IS_FILE_CHOOSER(hideous)) {
-    result = gtk_file_chooser_set_filename((GtkFileChooser*)hideous, name);
+  if (GTK_IS_FILE_CHOOSER(widget)) {
+    result = gtk_file_chooser_set_filename((GtkFileChooser*)widget, name);
     if (result) {
-      geda_file_chooser_set_entry_text(hideous, name);
+      geda_file_chooser_set_entry_text(widget, name);
     }
     else {
-      geda_file_chooser_set_entry_text(hideous, "");
+      geda_file_chooser_set_entry_text(widget, "");
     }
   }
   else {

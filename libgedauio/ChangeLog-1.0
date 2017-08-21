@@ -7,8 +7,12 @@
           * src/dialogs/geda_input_dialog.c
           * src/widgets/geda_comboboxtext.c
 
-    * src/dialogs/geda_file_chooser.c: Revise documentation for
-      geda_file_chooser_dialog_new_full.
+    * src/dialogs/geda_file_chooser.c: Revise function documentation
+      for:
+
+          * geda_file_chooser_dialog_new_full.
+          * geda_file_chooser_get_filename
+          * geda_file_chooser_set_filename
 
 2017-08-15 Wiley E. Hill <wileyhill@gmail.com>
 
