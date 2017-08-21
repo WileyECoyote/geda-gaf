@@ -104,6 +104,11 @@ geda_dialog_get_input(const char *title, const char *prompt, const char *str, Ge
     return text;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 int geda_dialog_get_integer(const char *title, const char *prompt, int offer)
 {
   char *string;
@@ -132,6 +137,11 @@ int geda_dialog_get_integer(const char *title, const char *prompt, int offer)
   return value;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 float geda_dialog_get_real(const char *title, const char *prompt, float offer)
 {
   char *string;
@@ -170,7 +180,11 @@ float geda_dialog_get_real(const char *title, const char *prompt, float offer)
   return value;
 }
 
-/* \note The returned string must be freed */
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ * \note The returned string must be freed */
 char *geda_dialog_get_string(const char *title, const char *prompt, const char *string)
 {
   return geda_dialog_get_input(title, prompt, string, ACCEPT_ALL_ASCII);

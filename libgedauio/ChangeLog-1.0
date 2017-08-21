@@ -4,6 +4,7 @@
 
           * src/dialogs/geda_file_chooser.c
           * src/dialogs/geda_image_chooser.c
+          * src/dialogs/geda_input_dialog.c
 
 2017-08-15 Wiley E. Hill <wileyhill@gmail.com>
 
