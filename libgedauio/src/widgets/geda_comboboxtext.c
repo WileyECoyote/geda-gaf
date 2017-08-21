@@ -661,18 +661,33 @@ geda_combo_box_text_remove_all (GedaComboBoxText *combo_box)
   combo_box->count = 0;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 int
 geda_combo_box_text_get_active (GedaComboBoxText *combo_box)
 {
   return geda_combo_box_get_active ((GedaComboBox*)combo_box);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 void
 geda_combo_box_text_set_active (GedaComboBoxText *combo_box, int position)
 {
   geda_combo_box_set_active((GedaComboBox*)combo_box, position);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 void
 geda_combo_box_text_append_pair (GedaComboBoxText *combo_box,
                                  const char       *text,
@@ -681,6 +696,11 @@ geda_combo_box_text_append_pair (GedaComboBoxText *combo_box,
   geda_combo_box_text_real_insert (combo_box, -1, text, text2);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 void
 geda_combo_box_text_insert_pair (GedaComboBoxText *combo_box,
                                  int               position,
@@ -690,6 +710,11 @@ geda_combo_box_text_insert_pair (GedaComboBoxText *combo_box,
   geda_combo_box_text_real_insert (combo_box, position, text, text2);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 void
 geda_combo_box_text_prepend_pair (GedaComboBoxText *combo_box,
                                   const char       *text,
@@ -757,6 +782,11 @@ geda_combo_box_text_prepend_text (GedaComboBoxText *combo_box,
   geda_combo_box_text_real_insert (combo_box, 0, text, NULL);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 void
 geda_combo_box_text_remove_text (GedaComboBoxText *combo_box,
                                  int               position)
@@ -764,6 +794,11 @@ geda_combo_box_text_remove_text (GedaComboBoxText *combo_box,
   geda_combo_box_text_remove (combo_box, position);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 void
 geda_combo_box_text_remove_all_text (GedaComboBoxText *combo_box)
 {
@@ -817,6 +852,11 @@ geda_combo_box_text_get_active_text (GedaComboBoxText *combo_box)
   return NULL;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 bool
 geda_combo_box_text_set_active_text (GedaComboBoxText *combo_box,
                                      const char       *text)
@@ -882,6 +922,11 @@ geda_combo_box_text_set_active_text (GedaComboBoxText *combo_box,
   return added;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 bool
 geda_combo_box_text_get_activate_default (GedaComboBoxText *combo_box)
 {
@@ -894,6 +939,11 @@ geda_combo_box_text_get_activate_default (GedaComboBoxText *combo_box)
   return FALSE;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 void
 geda_combo_box_text_set_activate_default (GedaComboBoxText *combo_box, bool setting)
 {
@@ -905,6 +955,11 @@ geda_combo_box_text_set_activate_default (GedaComboBoxText *combo_box, bool sett
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 GedaEntry*
 geda_combo_box_text_get_entry (GedaComboBoxText *combo_box)
 {
@@ -916,12 +971,22 @@ geda_combo_box_text_get_entry (GedaComboBoxText *combo_box)
   return NULL;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 GtkWidget*
 geda_combo_box_text_get_entry_widget (GedaComboBoxText *combo_box)
 {
   return geda_combo_get_entry_widget(GEDA_COMBO_BOX(combo_box));;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 int
 geda_combo_box_text_get_text_length (GedaComboBoxText *combo_box)
 {
@@ -952,12 +1017,23 @@ geda_combo_box_text_get_text_length (GedaComboBoxText *combo_box)
 }
 
 /* These are probably more practical, but have longer names */
+
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 void
 geda_combo_box_text_widget_append (GtkWidget *widget, const char *text)
 {
   geda_combo_box_text_insert (GEDA_COMBO_BOX_TEXT(widget), -1, text);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 void
 geda_combo_box_text_widget_insert (GtkWidget  *widget, int position,
                                    const char *text)
@@ -965,48 +1041,88 @@ geda_combo_box_text_widget_insert (GtkWidget  *widget, int position,
   geda_combo_box_text_insert (GEDA_COMBO_BOX_TEXT(widget), position, text);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 void
 geda_combo_box_text_widget_prepend (GtkWidget *widget, const char *text)
 {
   geda_combo_box_text_insert (GEDA_COMBO_BOX_TEXT(widget), 0, text);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 void
 geda_combo_box_text_widget_remove (GtkWidget *widget, int position)
 {
   geda_combo_box_text_remove (GEDA_COMBO_BOX_TEXT(widget), position);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 void
 geda_combo_box_text_widget_remove_all (GtkWidget *widget)
 {
   geda_combo_box_text_remove_all (GEDA_COMBO_BOX_TEXT(widget));
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 void
 geda_combo_box_text_widget_set_active (GtkWidget *widget, int position)
 {
   geda_combo_box_set_active((GedaComboBox*)widget, position);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 int
 geda_combo_box_text_widget_get_active (GtkWidget *widget)
 {
   return geda_combo_box_get_active ((GedaComboBox*)widget);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 char*
 geda_combo_box_text_widget_get_active_text(GtkWidget *widget)
 {
   return geda_combo_box_text_get_active_text (GEDA_COMBO_BOX_TEXT(widget));
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 bool
 geda_combo_box_text_widget_set_active_text(GtkWidget *widget, const char *text)
 {
   return geda_combo_box_text_set_active_text (GEDA_COMBO_BOX_TEXT(widget), text);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 int
 geda_combo_box_text_widget_get_text_length(GtkWidget *widget)
 {
