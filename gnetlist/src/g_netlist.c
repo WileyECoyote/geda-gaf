@@ -883,8 +883,7 @@ SCM g_get_toplevel_attribute(SCM scm_wanted_attrib)
  *  If the "-v" gnetlist command-line option was specified, returns 1.
  * Otherwise, returns 0.
  */
-SCM
-g_get_verbosity (void)
+SCM g_get_verbosity (void)
 {
   if (verbose_mode) {
     return scm_from_int (1);

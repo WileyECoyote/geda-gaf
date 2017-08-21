@@ -1,6 +1,7 @@
 2017-08-20 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gnetlist/src/g_netlist.c: Reformat Doxygen comment blocks.
+    * gnetlist/src/g_netlist.c: Reformat Doxygen comment blocks, update
+      function wrapping.
 
 2017-08-19 Wiley E. Hill <wileyhill@gmail.com>
 
