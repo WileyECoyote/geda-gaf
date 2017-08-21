@@ -1,3 +1,7 @@
+2017-08-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/dialogs/geda_file_chooser.c: Add template Doxygen comment blocks.
+
 2017-08-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_combobox_text.c: Release text string returned by

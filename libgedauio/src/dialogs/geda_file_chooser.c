@@ -776,6 +776,11 @@ GtkEntry *geda_file_chooser_get_entry (GtkWidget *widget)
   return chooser_entry;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 char*
 geda_file_chooser_get_entry_text(GtkWidget *despicable)
 {
@@ -801,6 +806,11 @@ geda_file_chooser_get_entry_text(GtkWidget *despicable)
   return name;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 void
 geda_file_chooser_set_entry_text(GtkWidget *despicable, const char *text)
 {
@@ -823,6 +833,11 @@ geda_file_chooser_set_entry_text(GtkWidget *despicable, const char *text)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 char*
 geda_file_chooser_get_filename(GtkWidget *hideous)
 {
@@ -839,6 +854,11 @@ geda_file_chooser_get_filename(GtkWidget *hideous)
   return name;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 bool
 geda_file_chooser_set_filename (GtkWidget *hideous, const char *name)
 {
@@ -861,6 +881,11 @@ geda_file_chooser_set_filename (GtkWidget *hideous, const char *name)
   return result;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 GSList*
 geda_file_chooser_get_filenames(GtkWidget *hideous)
 {
@@ -876,6 +901,11 @@ geda_file_chooser_get_filenames(GtkWidget *hideous)
   return list;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 char*
 geda_file_chooser_get_current_folder(GtkWidget *hideous)
 {
@@ -891,6 +921,11 @@ geda_file_chooser_get_current_folder(GtkWidget *hideous)
   return folder;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 void
 geda_file_chooser_set_current_folder (GtkWidget *hideous, const char *folder)
 {
@@ -902,6 +937,11 @@ geda_file_chooser_set_current_folder (GtkWidget *hideous, const char *folder)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 void
 geda_file_chooser_set_current_name (GtkWidget *hideous, const char *folder)
 {
@@ -913,6 +953,11 @@ geda_file_chooser_set_current_name (GtkWidget *hideous, const char *folder)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 GtkWidget*
 geda_file_chooser_get_extra_widget(GtkWidget *hideous)
 {
@@ -928,6 +973,11 @@ geda_file_chooser_get_extra_widget(GtkWidget *hideous)
   return extra;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief widget version of #geda_combo_box_get_count
+ *  \par Function Description
+ *
+ */
 void
 geda_file_chooser_set_extra_widget (GtkWidget *hideous, GtkWidget *extra)
 {
