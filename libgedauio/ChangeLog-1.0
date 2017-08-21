@@ -7,6 +7,9 @@
           * src/dialogs/geda_input_dialog.c
           * src/widgets/geda_comboboxtext.c
 
+    * src/dialogs/geda_file_chooser.c: Revise documentation for
+      geda_file_chooser_dialog_new_full.
+
 2017-08-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_combobox_text.c: Release text string returned by

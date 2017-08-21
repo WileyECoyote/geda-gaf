@@ -727,17 +727,18 @@ geda_file_chooser_dialog_new_valist (const char        *title,
   return (GtkWidget*)result;
 }
 
-/*! \brief Create a New GedaFileChooser specifying Buttons
+/*!
+ * \brief Create a New GedaFileChooser specifying Buttons
+ * \par Function Description
+ *  Creates a new #GedaFileChooser. This function is analogous to
+ *  gtk_dialog_new_with_buttons(). GEDA_RESPONSE_ACCEPT will be set
+ *  as the default response if detected.
  *
- *  \par Function Description
- * Creates a new #GedaFileChooser. This function is analogous to
- * gtk_dialog_new_with_buttons().
- *
- * \param [in] title  Title of the dialog, or %NULL
- * \param [in] parent Transient parent of the dialog, or %NULL
- * \param [in] action Open or save mode for the dialog
- * \param [in] first_button_text (allow-none): stock ID or text to go in the first button, or %NULL
- * \param [in] ... response ID for the first button, then additional (button, id) pairs, ending with %NULL
+ * \param [in] title              Title of the dialog, or %NULL
+ * \param [in] parent            Transient parent of the dialog, or %NULL
+ * \param [in] action            Open or save mode for the dialog
+ * \param [in] first_button_text stock ID or text to go in the first button, or %NULL
+ * \param [in] ...               response ID for the first button, then additional (button, id) pairs, ending with %NULL
  *
  * \return a new #GedaFileChooser
  */
