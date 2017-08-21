@@ -28,8 +28,25 @@
  * Date: July 12, 2014
  * Contributing Author: Wiley Edward Hill <wileyhill@gmail.com>
  */
-/*! \file geda_input_dialog.h This module contains generic dialog routines
- *  for geda projects.
+/**
+ * \brief GedaInputDialogs - Dialogs for User Input
+ * \par
+ *  This module contains routines for general purpose input dialogs.
+ *
+ * \defgroup GedaInputDialogs General Purpose Dialogs for User Input
+ * @{
+ * \par
+ *  The static function geda_dialog_get_input creates and displays the
+ *  actual dialog and returns the user input via strings. Publicly
+ *  accessible functions are used to pass the required type and other
+ *  data to geda_dialog_get_input. These accessible functions convert
+ *  the returned string to the desired data type.
+ *
+ *  The publicly accessible functions are:
+ *
+ *      1. geda_dialog_get_integer
+ *      2. geda_dialog_get_real
+ *      3. geda_dialog_get_string
  */
 
 #ifdef HAVE_CONFIG_H
@@ -199,3 +216,5 @@ char *geda_dialog_get_string(const char *title, const char *prompt, const char *
 {
   return geda_dialog_get_input(title, prompt, string, ACCEPT_ALL_ASCII);
 }
+
+/** @} end group GedaInputDialogs */

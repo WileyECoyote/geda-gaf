@@ -18,8 +18,9 @@
           * geda_image_chooser_get_filenames
           * geda_image_chooser_get_current_folder
 
-    * src/dialogs/geda_input_dialog.c: Embed geda_dialog_get_integer.png
-      image and revise function documentation for:
+    * src/dialogs/geda_input_dialog.c: Add Doxygen group GedaInputDialogs
+      for the entire module, embed geda_dialog_get_integer.png image and
+      revise function documentation for:
 
           * geda_dialog_get_integer
 
