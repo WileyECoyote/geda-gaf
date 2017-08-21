@@ -50,11 +50,11 @@
 #define ChooseClass GedaImageChooserClass
 
 /**
- * \brief GedaImageChooser - A Image File Chooser Dialog
+ * \brief GedaImageChooser - An Image File Chooser Dialog
  * \par
  * A GedaImageChooser is a variant of GtkFileChooser.
  *
- * \defgroup GedaImageChooser File Chooser Dialog
+ * \defgroup GedaImageChooser Image Chooser Dialog
  * @{
  */
 
