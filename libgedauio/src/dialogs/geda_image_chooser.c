@@ -1382,16 +1382,25 @@ geda_image_chooser_set_filename (GtkWidget *widget, const char *name)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief widget version of #geda_combo_box_get_count
- *  \par Function Description
+/*!
+ * \brief Get a list filenames from a GedaImageChooser
+ * \par Function Description
+ *  Lists all the selected files and subfolders in the current folder.
+ *  The returned names are full absolute paths. If files in the current
+ *  folder cannot be represented as local filenames they will be ignored
+ *  The returned list should be released using g_slist_free, and each
+ *  filenames with g_free().
  *
+ * \param [in] widget  Pointer to a hideous GtkFileChooser widget
+ *
+ * \returns a GSList containing the filenames of all selected files and
+ *          subfolders in the current folder.
  */
 GSList*
-geda_image_chooser_get_filenames(GtkWidget *hideous)
+geda_image_chooser_get_filenames(GtkWidget *widget)
 {
-  if (GTK_IS_FILE_CHOOSER(hideous)) {
-    return gtk_file_chooser_get_filenames((GtkFileChooser*)hideous);
+  if (GTK_IS_FILE_CHOOSER(widget)) {
+    return gtk_file_chooser_get_filenames((GtkFileChooser*)widget);
   }
   else {
     BUG_MSG ("Operative is not a GtkFileChooser");
@@ -1399,16 +1408,23 @@ geda_image_chooser_get_filenames(GtkWidget *hideous)
   return NULL;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief widget version of #geda_combo_box_get_count
- *  \par Function Description
+/*!
+ * \brief Retrieve the current folder from a GedaImageChooser
+ * \par Function Description
+ *  Gets the current folder of the chooser as a local filename.
+ *  Note that this is the folder the file chooser is currently
+ *  displaying. The returned string should be relased with g_free.
  *
+ * \param [in] widget Pointer to a hideous GtkFileChooser widget
+ *
+ * \returns the full path of the current folder, or NULL if the current
+ *          path cannot be represented as a local filename.
  */
 char*
-geda_image_chooser_get_current_folder(GtkWidget *hideous)
+geda_image_chooser_get_current_folder(GtkWidget *widget)
 {
-  if (GTK_IS_FILE_CHOOSER(hideous)) {
-    return gtk_file_chooser_get_current_folder((GtkFileChooser*)hideous);
+  if (GTK_IS_FILE_CHOOSER(widget)) {
+    return gtk_file_chooser_get_current_folder((GtkFileChooser*)widget);
   }
   else {
     BUG_MSG ("Operative is not a GtkFileChooser");
