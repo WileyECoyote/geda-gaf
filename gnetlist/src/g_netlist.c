@@ -32,15 +32,15 @@
  *  \par This group contains SCM-API functions.
  */
 
-/*! \brief Get unique list of all packages
- *  \par Function Description
- *
+/*!
+ * \brief Get unique list of all packages
+ * \par Function Description
  *  This function returns a unique list of packages, duplicated values
  *  are only listed once.
  *
  *  Alias gnetlist:get-packages
  *
- *  \param [in] level string Not used
+ * \param [in] level string Not used
  *
  * \return list of packages
  */
@@ -74,9 +74,9 @@ SCM g_get_packages(SCM level)
   return list;
 }
 
-/*! \brief Get non-unique list of all packages
- *  \par Function Description
- *
+/*!
+ * \brief Get non-unique list of all packages
+ * \par Function Description
  * This function returns a non unique list of packages, duplicated values
  * are listed as many times as they appear.
  *
@@ -103,9 +103,9 @@ SCM g_get_non_unique_packages(SCM scm_level)
   return list;
 }
 
-/*! \brief Get all Pins for a given refdes
- *  \par Function Description
- *
+/*!
+ * \brief Get all Pins for a given refdes
+ * \par Function Description
  *  Given a refdes, returns all pins belonging to the object.
  *
  *  Alias gnetlist:get-pins
@@ -155,8 +155,9 @@ SCM g_get_pins(SCM scm_uref)
   return (list);
 }
 
-/*! \brief Get list of all nets
- *  \par Function Description
+/*!
+ * \brief Get list of all nets
+ * \par Function Description
  *  list of net names for the set of schematics. Duplicated values are
  *  listed as many times as they appear, once per segment?.
  *  Alias gnetlist:get-all-nets
@@ -167,7 +168,6 @@ SCM g_get_pins(SCM scm_uref)
  */
 SCM g_get_all_nets(SCM scm_level)
 {
-
   SCM list = SCM_EOL;
   NETLIST *nl_current;
   CPINLIST *pl_current;
@@ -209,8 +209,9 @@ SCM g_get_all_nets(SCM scm_level)
   return list;
 }
 
-/*! \brief Get unique list of all nets
- *  \par Function Description
+/*!
+ * \brief Get unique list of all nets
+ * \par Function Description
  *  Gets a list of unique net names for the set of schematics.
  *  Duplicated values are only listed once.
  *
@@ -266,9 +267,9 @@ SCM g_get_all_unique_nets(SCM scm_level)
   return list;
 }
 
-/*! \brief Get All connection for a given Netname
- *  \par Function Description
- *
+/*!
+ * \brief Get All connection for a given Netname
+ * \par Function Description
  *  Given a net name, returns list of all connections to the named net.
  *  Each element of the list is itself a two element list of the form
  *  (refdes pinnumber).
@@ -473,11 +474,10 @@ SCM g_get_nets(SCM scm_uref, SCM scm_pin)
 
 
 /*!
- *  \brief Get Nets of a given Net UREF
- *  \par Function Description
- *
- * Given a uref, Return a list of pairs, each pair contains the pin
- * number and the name of the net connected to that pin.
+ * \brief Get Nets of a given Net UREF
+ * \par Function Description
+ *  Given a uref, Return a list of pairs, each pair contains the pin
+ *  number and the name of the net connected to that pin.
  *
  *  Alias gnetlist:get-pin-nets
  *
@@ -540,24 +540,25 @@ SCM g_get_pins_nets(SCM scm_uref)
 }
 
 
-/*! \brief Get attribute value(s) from a package with given uref.
- *  \par Function Description
+/*!
+ * \brief Get attribute value(s) from a package with given uref.
+ * \par Function Description
  *  This function returns the values of a specific attribute type
  *  attached to the symbol instances with the given refdes.
  *
  *  Every first attribute value found is added to the return list. A
  *  Scheme false value is added if the instance has no such attribute.
  *
- *  \note The order of the values in the return list is the order of
+ * \note The order of the values in the return list is the order of
  *  symbol instances within gnetlist (the first element is the value
  *  associated with the first symbol instance).
  *
  *  Alias gnetlist:get-all-package-attributes
  *
- *  \param [in] scm_uref           Package reference.
- *  \param [in] scm_wanted_attrib  Attribute name.
+ * \param [in] scm_uref           Package reference.
+ * \param [in] scm_wanted_attrib  Attribute name.
  *
- *  \return A list of attribute values as strings and FALSE.
+ * \return A list of attribute values as strings and FALSE.
  */
 SCM g_get_all_package_attributes(SCM scm_uref, SCM scm_wanted_attrib)
 {
@@ -602,8 +603,8 @@ SCM g_get_all_package_attributes(SCM scm_uref, SCM scm_wanted_attrib)
 }
 
 /*!
- *  \brief Get Attribute Value by Pin Sequence
- *  \par Function Description
+ * \brief Get Attribute Value by Pin Sequence
+ * \par Function Description
  *  This API function provides a method to retrieve an attribute value
  *  given a uref and pinseq number. Returns the value associated with
  *  the first instance.
@@ -702,8 +703,8 @@ SCM g_get_attribute_by_pinseq(SCM scm_uref, SCM scm_pinseq,
 }
 
 /*!
- *  \brief Get Attribute by Pin Number
- *  \par Function Description
+ * \brief Get Attribute by Pin Number
+ * \par Function Description
  *  This API function takes a pin number and returns the appropriate
  *  attribute on that pin scm_pin is the value associated with the
  *  pinnumber= attribute and uref
@@ -821,8 +822,9 @@ SCM g_get_attribute_by_pinnumber(SCM scm_uref, SCM scm_pin,
   return (scm_return_value);
 }
 
-/*! \brief Get Top-Level Attributes
- *  \par Function Description
+/*!
+ * \brief Get Top-Level Attributes
+ * \par Function Description
  *  returns value of the named attribute at top level, that is, an attribute
  *  present in one of the schematics unattached to any object.
  *
@@ -895,10 +897,11 @@ g_get_verbosity (void)
   }
 }
 
-/*! \brief Obtain a list of `-O' backend arguments.
+/*!
+ * \brief Obtain a list of `-O' backend arguments.
  * \par Function Description
- * Returns a list of arguments passed to the gnetlist backend via the
- * `-O' gnetlist command-line option.
+ *  Returns a list of arguments passed to the gnetlist backend via the
+ *  `-O' gnetlist command-line option.
  */
 SCM g_get_backend_arguments(void)
 {
@@ -912,11 +915,12 @@ SCM g_get_backend_arguments(void)
   return scm_reverse_x (result, SCM_UNDEFINED);
 }
 
-/*! \brief Get input files from command line.
- *  \par Function Description
+/*!
+ * \brief Get input files from command line.
+ * \par Function Description
  *  This function returns a list of the files named on the command line.
  *
- *  \return A list of filenames as strings.
+ * \return A list of filenames as strings.
  */
 SCM g_get_input_files(void)
 {
@@ -931,8 +935,9 @@ SCM g_get_input_files(void)
   return scm_reverse_x (list, SCM_EOL);
 }
 
-/*! \brief Get graphical objects connected to given net
- *  \par Function Description
+/*!
+ * \brief Get graphical objects connected to given net
+ * \par Function Description
  *  given a net name, an attribute, and a wanted attribute, return all
  *  the given attribute of all the graphical objects connected to that
  *  net name
