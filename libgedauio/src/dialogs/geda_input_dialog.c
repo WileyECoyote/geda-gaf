@@ -104,9 +104,17 @@ geda_dialog_get_input(const char *title, const char *prompt, const char *str, Ge
     return text;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief widget version of #geda_combo_box_get_count
- *  \par Function Description
+/*!
+ * \brief Get an Integer using a Dialog Input Field
+ * \par Function Description
+ *  Displays a GedaInputDialog and prompts the user to input
+ *  in integer values.
+ *
+ * \param [in] title  String to be displayed in the title bar or NULL
+ * \param [in] prompt String to be displayed for input prompt or NULL
+ * \param [in] offer  Default integer value or -0
+ *
+ * \returns the integer value or -0 if the user canceled the dialog.
  *
  */
 int geda_dialog_get_integer(const char *title, const char *prompt, int offer)

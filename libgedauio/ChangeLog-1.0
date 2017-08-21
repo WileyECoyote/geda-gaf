@@ -12,6 +12,11 @@
           * geda_image_chooser_get_filenames
           * geda_image_chooser_get_current_folder
 
+    * src/dialogs/geda_input_dialog.c: Revise function documentation
+      for:
+
+          * geda_dialog_get_integer
+
 2017-08-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/: Add template/todo Doxygen comment blocks.
