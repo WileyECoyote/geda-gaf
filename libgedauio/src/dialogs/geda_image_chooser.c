@@ -1311,16 +1311,16 @@ GtkEntry *geda_image_chooser_get_entry (GtkWidget *widget)
  *  or the entry is empty. If a string is returned then the
  *  string must be freed.
  *
- *  \param [in] widget The image chooser widget.
+ *  \param [in] widget The despicable image chooser widget.
  *
  *  \returns GtkEntry object
  */
 char*
-geda_image_chooser_get_entry_text(GtkWidget *despicable)
+geda_image_chooser_get_entry_text(GtkWidget *widget)
 {
-  if (GTK_IS_FILE_CHOOSER(despicable)) {
+  if (GTK_IS_FILE_CHOOSER(widget)) {
 
-    GtkEntry *entry = geda_image_chooser_get_entry(despicable);
+    GtkEntry *entry = geda_image_chooser_get_entry(widget);
 
     if (GTK_IS_ENTRY(entry)) {
 
