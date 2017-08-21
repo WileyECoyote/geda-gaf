@@ -1,5 +1,11 @@
 2017-08-21 Wiley E. Hill <wileyhill@gmail.com>
 
+    * docs/dialogs/Makefile.am: Add new Automake file for images used
+      in documention of dialogs.
+
+    * docs/dialogs/geda_dialog_get_integer.png: Add image of the integer
+      input dialog for documention.
+
     * src/dialogs/geda_file_chooser.c: Revise function documentation
       for:
 
