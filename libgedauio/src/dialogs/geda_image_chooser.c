@@ -1303,10 +1303,17 @@ GtkEntry *geda_image_chooser_get_entry (GtkWidget *widget)
   return chooser_entry;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief widget version of #geda_combo_box_get_count
- *  \par Function Description
+/*!
+ * \brief Retrieve the Image Chooser Entry Text
+ * \par Function Description
+ *  Returns a copy of the characters in the entry or NULL if
+ *  the pointer does not reference a valid GedaImageChooser
+ *  or the entry is empty. If a string is returned then the
+ *  string must be freed.
  *
+ *  \param [in] widget The image chooser widget.
+ *
+ *  \returns GtkEntry object
  */
 char*
 geda_image_chooser_get_entry_text(GtkWidget *despicable)
@@ -1328,16 +1335,23 @@ geda_image_chooser_get_entry_text(GtkWidget *despicable)
   return NULL;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief widget version of #geda_combo_box_get_count
- *  \par Function Description
+/*!
+ * \brief Get the Filename from a GedaImageChooser
+ * \par Function Description
+ *  Gets the filename for the currently selected file in the file selector.
+ *  The filename is returned as an absolute path. If multiple files are
+ *  selected, one of the filenames will be returned at random. If the image
+ *  chooser is in folder mode, this function returns the selected folder.
  *
+ * \param [in] widget  Pointer to a hideous GtkFileChooser widget
+ *
+ * \returns filename string, which should be freed, or NULL.
  */
 char*
-geda_image_chooser_get_filename(GtkWidget *hideous)
+geda_image_chooser_get_filename(GtkWidget *widget)
 {
-  if (GTK_IS_FILE_CHOOSER(hideous)) {
-    return gtk_file_chooser_get_filename((GtkFileChooser*)hideous);
+  if (GTK_IS_FILE_CHOOSER(widget)) {
+    return gtk_file_chooser_get_filename((GtkFileChooser*)widget);
   }
   else {
     BUG_MSG ("Operative is not a GtkFileChooser");
@@ -1345,16 +1359,23 @@ geda_image_chooser_get_filename(GtkWidget *hideous)
   return NULL;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief widget version of #geda_combo_box_get_count
- *  \par Function Description
+/*!
+ * \brief Set the GedaImageChooser Filename
+ * \par Function Description
+ *  Sets filename as the current filename for the image chooser,
+ *  changes to the file’s parent folder and selects the file in
+ *  list; all other files will be unselected. If the chooser is
+ *  in GTK_FILE_CHOOSER_ACTION_SAVE mode, the file’s base name
+ *  will also appear in the dialog’s file name entry.
  *
+ * \param [in] widget  Pointer to a hideous GtkFileChooser widget
+ * \param [in] name    Pointer to the filename to set as current
  */
 void
-geda_image_chooser_set_filename (GtkWidget *hideous, const char *name)
+geda_image_chooser_set_filename (GtkWidget *widget, const char *name)
 {
-  if (GTK_IS_FILE_CHOOSER(hideous)) {
-    gtk_file_chooser_set_filename((GtkFileChooser*)hideous, name);
+  if (GTK_IS_FILE_CHOOSER(widget)) {
+    gtk_file_chooser_set_filename((GtkFileChooser*)widget, name);
   }
   else {
     BUG_MSG ("Operative is not a GtkFileChooser");

@@ -14,6 +14,13 @@
           * geda_file_chooser_get_filename
           * geda_file_chooser_set_filename
 
+    * src/dialogs/geda_image_chooser.c: Revise function documentation
+      for:
+
+          * geda_image_chooser_get_entry_text
+          * geda_image_chooser_get_filename
+          * geda_image_chooser_set_filename
+
 2017-08-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_combobox_text.c: Release text string returned by
