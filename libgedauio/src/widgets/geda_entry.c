@@ -386,8 +386,9 @@ static void
 geda_entry_drag_begin (GtkWidget *widget, GdkDragContext *context)
 {
   GedaEntry *geda_entry = GEDA_ENTRY   (widget);
-  if (geda_entry->enable_drag_n_drop)
-   g_print ("TODO: geda_entry_drag_data_get\n" );
+  if (geda_entry->enable_drag_n_drop) {
+    g_print ("TODO: %s\n", __func__);
+  }
 }
 
 /*!
@@ -405,8 +406,9 @@ geda_entry_drag_drop (GtkWidget      *widget,
                       unsigned int    time)
 {
   GedaEntry *geda_entry = GEDA_ENTRY   (widget);
-  if (geda_entry->enable_drag_n_drop)
-   g_print ("TODO: geda_entry_drag_data_get\n" );
+  if (geda_entry->enable_drag_n_drop) {
+    g_print ("TODO: %s\n", __func__);
+  }
 
   return FALSE; /* No continue */
 }
@@ -424,8 +426,9 @@ static void
 geda_entry_drag_end (GtkWidget *widget, GdkDragContext *context)
 {
   GedaEntry *geda_entry = GEDA_ENTRY   (widget);
-  if (geda_entry->enable_drag_n_drop)
-   g_print ("TODO: geda_entry_drag_data_get\n" );
+  if (geda_entry->enable_drag_n_drop) {
+    g_print ("TODO: %s\n", __func__);
+  }
 }
 
 /*!
@@ -442,8 +445,9 @@ geda_entry_drag_leave (GtkWidget      *widget,
                        unsigned int    time)
 {
   GedaEntry *geda_entry = GEDA_ENTRY   (widget);
-  if (geda_entry->enable_drag_n_drop)
-   g_print ("TODO: geda_entry_drag_data_get\n" );
+  if (geda_entry->enable_drag_n_drop) {
+    g_print ("TODO: %s\n", __func__);
+  }
   gtk_widget_queue_draw (widget);
 }
 
@@ -464,7 +468,7 @@ geda_entry_drag_motion (GtkWidget       *widget,
 {
   GedaEntry *geda_entry = GEDA_ENTRY   (widget);
   if (geda_entry->enable_drag_n_drop) {
-   g_print ("TODO: geda_entry_drag_data_get\n" );
+    g_print ("TODO: %s\n", __func__);
   }
   return FALSE; /* not here */
 }
@@ -498,7 +502,7 @@ geda_entry_drag_data_delete (GtkWidget *widget, GdkDragContext *context)
   GedaEntry *geda_entry = GEDA_ENTRY   (widget);
 
   if (geda_entry->enable_drag_n_drop) {
-   g_print ("TODO: geda_entry_drag_data_get\n" );
+    g_print ("TODO: %s\n", __func__);
   }
 }
 
@@ -518,7 +522,7 @@ geda_entry_drag_data_received (GtkWidget        *widget,
 {
   GedaEntry *geda_entry = GEDA_ENTRY   (widget);
   if (geda_entry->enable_drag_n_drop) {
-   g_print ("TODO: geda_entry_drag_data_get\n" );
+    g_print ("TODO: %s\n", __func__);
   }
 }
 
