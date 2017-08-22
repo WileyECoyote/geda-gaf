@@ -377,11 +377,10 @@ geda_entry_real_activate (GedaEntry *entry)
   }
 }
 
-/*! widget_class->drag_begin
- * \todo Finish function documentation!!!
- * \brief
+/*!
+ * \brief Drag & Drop Callback when drag Begins
  * \par Function Description
- *
+ *  Over-rides widget_class->drag_begin.
  */
 static void
 geda_entry_drag_begin (GtkWidget *widget, GdkDragContext *context)
@@ -394,9 +393,9 @@ geda_entry_drag_begin (GtkWidget *widget, GdkDragContext *context)
 /*!
  * \brief Drag & Drop Callback when dropped on a GedaEntry
  * \par Function Description
- *  This is primarily to over-ride the default behavior of
- *  GtkEntry, Drag & Drop is not implemented for GedaEntry
- *  widgets.
+ *  Over-rides widget_class->drag_drop. This is primarily to over-ride
+ *  the default behavior of GtkEntry, Drag & Drop is not implemented
+ *  for GedaEntry widgets.
  */
 static bool
 geda_entry_drag_drop (GtkWidget      *widget,
@@ -415,11 +414,11 @@ geda_entry_drag_drop (GtkWidget      *widget,
 /*!
  * \brief Drag & Drop End Callback GedaEntry On End
  * \par Function Description
- *  This is primarily to over-ride the default behavior of
- *  GtkEntry, Drag & Drop is not implemented for GedaEntry
- *  widgets. Normally used to release resources associated
- *  with the prior Drag & Drop operation, may set cursor
- *  back to normal if was changed.
+ *  Over-rides widget_class->drag_end. This is primarily to over-ride
+ *  the default behavior of GtkEntry, Drag & Drop is not implemented
+ *  for GedaEntry widgets. Normally used to release resources associated
+ *  with the prior Drag & Drop operation, may set cursor back to normal
+ *  if was changed.
  */
 static void
 geda_entry_drag_end (GtkWidget *widget, GdkDragContext *context)
@@ -432,9 +431,10 @@ geda_entry_drag_end (GtkWidget *widget, GdkDragContext *context)
 /*!
  * \brief When Drag for GedaEntry Leaves the Destination
  * \par Function Description
- *  This is primarily to over-ride the default behavior of
- *  GtkEntry, Drag & Drop is not implemented for GedaEntry
- *  widgets. Called when the drag leaves the destination.
+ *  Over-rides widget_class->drag_leave. This is primarily to
+ *  over-ride the default behavior of GtkEntry, Drag & Drop is
+ *  not implemented for GedaEntry widgets. Called when the drag
+ *  leaves the destination.
  */
 static void
 geda_entry_drag_leave (GtkWidget      *widget,
@@ -450,9 +450,10 @@ geda_entry_drag_leave (GtkWidget      *widget,
 /*!
  * \brief When Drag for GedaEntry Motion is over the Destination
  * \par Function Description
- *  This is primarily to over-ride the default behavior of
- *  GtkEntry, Drag & Drop is not implemented for GedaEntry
- *  widgets. Called when the drag is over the destination.
+ *  Over-rides widget_class->drag_motion. This is primarily to
+ *  over-ride the default behavior of GtkEntry, Drag & Drop is not
+ *  implemented for GedaEntry widgets. Called when the drag is over
+ *  the destination.
  */
 static bool
 geda_entry_drag_motion (GtkWidget       *widget,
@@ -468,6 +469,11 @@ geda_entry_drag_motion (GtkWidget       *widget,
   return FALSE; /* not here */
 }
 
+/*!
+ * \brief Get Drag & Drop Data
+ * \par Function Description
+ *  Over-rides widget_class->drag_data_get.
+ */
 static void
 geda_entry_drag_data_get (GtkWidget        *widget,
                           GdkDragContext   *context,
@@ -481,10 +487,10 @@ geda_entry_drag_data_get (GtkWidget        *widget,
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Delete Drag & Drop Data
+ * \par Function Description
+ *  Over-rides widget_class->drag_data_delete.
  */
 static void
 geda_entry_drag_data_delete (GtkWidget *widget, GdkDragContext *context)
@@ -496,9 +502,10 @@ geda_entry_drag_data_delete (GtkWidget *widget, GdkDragContext *context)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Received Drag & Drop Data
+ * \par Function Description
+ *  Over-rides widget_class->drag_data_received.
  */
 static void
 geda_entry_drag_data_received (GtkWidget        *widget,
