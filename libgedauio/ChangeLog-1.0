@@ -12,6 +12,12 @@
           * geda_image_chooser_set_current_folder.
           * geda_image_chooser_set_current_name
 
+    * src/dialogs/geda_input_dialog.c: Update function documentation
+      for:
+
+          * geda_dialog_get_real.
+          * geda_dialog_get_string
+
 2017-08-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/dialogs/Makefile.am: Add new Automake file for images used

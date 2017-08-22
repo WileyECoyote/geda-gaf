@@ -166,10 +166,17 @@ int geda_dialog_get_integer(const char *title, const char *prompt, int offer)
   return value;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief widget version of #geda_combo_box_get_count
- *  \par Function Description
+/*!
+ * \brief Get a Real number using a Dialog Input Field
+ * \par Function Description
+ *  Displays a GedaInputDialog and prompts the user to input
+ *  in floating point value.
  *
+ * \param [in] title  String to be displayed in the title bar or NULL
+ * \param [in] prompt String to be displayed for input prompt or NULL
+ * \param [in] offer  Default floating value or -0
+ *
+ * \returns the floating value or -0 if the user canceled the dialog.
  */
 float geda_dialog_get_real(const char *title, const char *prompt, float offer)
 {
@@ -209,11 +216,20 @@ float geda_dialog_get_real(const char *title, const char *prompt, float offer)
   return value;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief widget version of #geda_combo_box_get_count
- *  \par Function Description
+/*!
+ * \brief Get a Real number using a Dialog Input Field
+ * \par Function Description
+ *  Displays a GedaInputDialog and prompts the user to input
+ *  in string value.
  *
- * \note The returned string must be freed */
+ * \param [in] title  String to be displayed in the title bar or NULL
+ * \param [in] prompt String to be displayed for input prompt or NULL
+ * \param [in] string Default string or NULL
+ *
+ * \returns the string or NULL if the user canceled the dialog.
+ *
+ * \note The returned string should be release using g_free.
+ */
 char *geda_dialog_get_string(const char *title, const char *prompt, const char *string)
 {
   return geda_dialog_get_input(title, prompt, string, ACCEPT_ALL_ASCII);
