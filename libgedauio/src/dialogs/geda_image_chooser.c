@@ -1432,32 +1432,47 @@ geda_image_chooser_get_current_folder(GtkWidget *widget)
   return NULL;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief widget version of #geda_combo_box_get_count
- *  \par Function Description
+/*!
+ * \brief Set the current folder of a GedaImageChooser
+ * \par Function Description
+ *  Sets the current folder for chooser from a local filename. The
+ *  user will be shown the full contents of the current folder, plus
+ *  user interface elements for navigating to other folders.
  *
+ * \param [in] widget  Pointer to a hideous GtkFileChooser widget
+ * \param [in] folder  Pointer to the location to set as current
  */
 void
-geda_image_chooser_set_current_folder (GtkWidget *hideous, const char *folder)
+geda_image_chooser_set_current_folder (GtkWidget *widget, const char *folder)
 {
-  if (GTK_IS_FILE_CHOOSER(hideous)) {
-    gtk_file_chooser_set_current_folder((GtkFileChooser*)hideous, folder);
+  if (GTK_IS_FILE_CHOOSER(widget)) {
+    gtk_file_chooser_set_current_folder((GtkFileChooser*)widget, folder);
   }
   else {
     BUG_MSG ("Operative is not a GtkFileChooser");
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief widget version of #geda_combo_box_get_count
- *  \par Function Description
+/*!
+ * \brief Set the current name of a GedaImageChooser
+ * \par Function Description
+ * Sets the current name in the file selector, as if entered by the user.
+ * Note that the name passed in here is a UTF-8 string rather than a filename.
+ * This function is meant for such uses as a suggested name in a "Save As..."
+ * dialog. You can pass "Untitled.jpg" or a similarly suitable suggestion for
+ * the name.
  *
+ * If you want to preselect a particular existing file, you should use
+ * geda_file_chooser_set_filename instead.
+ *
+ * \param [in] widget Pointer to a hideous GtkFileChooser widget
+ * \param [in] name   Pointer to the name to set as current
  */
 void
-geda_image_chooser_set_current_name (GtkWidget *hideous, const char *folder)
+geda_image_chooser_set_current_name (GtkWidget *widget, const char *name)
 {
-  if (GTK_IS_FILE_CHOOSER(hideous)) {
-    gtk_file_chooser_set_current_name((GtkFileChooser*)hideous, folder);
+  if (GTK_IS_FILE_CHOOSER(widget)) {
+    gtk_file_chooser_set_current_name((GtkFileChooser*)widget, name);
   }
   else {
     BUG_MSG ("Operative is not a GtkFileChooser");

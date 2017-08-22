@@ -6,6 +6,12 @@
           * geda_file_chooser_set_current_folder.
           * geda_file_chooser_set_current_name
 
+    * src/dialogs/geda_image_chooser.c: Update function documentation
+      for:
+
+          * geda_image_chooser_set_current_folder.
+          * geda_image_chooser_set_current_name
+
 2017-08-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/dialogs/Makefile.am: Add new Automake file for images used
