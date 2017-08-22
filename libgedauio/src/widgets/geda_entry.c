@@ -209,9 +209,7 @@ end_change (GedaEntry *entry)
 static void
 geda_entry_finalize (GObject *object)
 {
-  GedaEntry *entry;
-
-  entry = GEDA_ENTRY (object);
+  GedaEntry *entry = (GedaEntry*)object;
 
   if (g_hash_table_remove (entry_hash_table, object)) {
     if (!g_hash_table_size (entry_hash_table)) {
@@ -304,7 +302,7 @@ static void
 geda_entry_set_property (GObject *object, unsigned int  property_id,
                   const  GValue  *value,  GParamSpec   *pspec)
 {
-  GedaEntry *entry = GEDA_ENTRY(object);
+  GedaEntry *entry = (GedaEntry*)object;
 
   switch (property_id) {
 
@@ -385,7 +383,7 @@ geda_entry_real_activate (GedaEntry *entry)
 static void
 geda_entry_drag_begin (GtkWidget *widget, GdkDragContext *context)
 {
-  GedaEntry *geda_entry = GEDA_ENTRY   (widget);
+  GedaEntry *geda_entry = (GedaEntry*)widget;
   if (geda_entry->enable_drag_n_drop) {
     g_print ("TODO: %s\n", __func__);
   }
@@ -405,7 +403,7 @@ geda_entry_drag_drop (GtkWidget      *widget,
                       int             y,
                       unsigned int    time)
 {
-  GedaEntry *geda_entry = GEDA_ENTRY   (widget);
+  GedaEntry *geda_entry = (GedaEntry*)widget;
   if (geda_entry->enable_drag_n_drop) {
     g_print ("TODO: %s\n", __func__);
   }
@@ -425,7 +423,7 @@ geda_entry_drag_drop (GtkWidget      *widget,
 static void
 geda_entry_drag_end (GtkWidget *widget, GdkDragContext *context)
 {
-  GedaEntry *geda_entry = GEDA_ENTRY   (widget);
+  GedaEntry *geda_entry = (GedaEntry*)widget;
   if (geda_entry->enable_drag_n_drop) {
     g_print ("TODO: %s\n", __func__);
   }
@@ -444,7 +442,7 @@ geda_entry_drag_leave (GtkWidget      *widget,
                        GdkDragContext *context,
                        unsigned int    time)
 {
-  GedaEntry *geda_entry = GEDA_ENTRY   (widget);
+  GedaEntry *geda_entry = (GedaEntry*)widget;
   if (geda_entry->enable_drag_n_drop) {
     g_print ("TODO: %s\n", __func__);
   }
@@ -466,7 +464,7 @@ geda_entry_drag_motion (GtkWidget       *widget,
                         int              y,
                         unsigned int     time)
 {
-  GedaEntry *geda_entry = GEDA_ENTRY   (widget);
+  GedaEntry *geda_entry = (GedaEntry*)widget;
   if (geda_entry->enable_drag_n_drop) {
     g_print ("TODO: %s\n", __func__);
   }
@@ -485,9 +483,9 @@ geda_entry_drag_data_get (GtkWidget        *widget,
                           unsigned int      info,
                           unsigned int      time)
 {
-  GedaEntry *geda_entry = GEDA_ENTRY   (widget);
+  GedaEntry *geda_entry = (GedaEntry*)widget;
   if (geda_entry->enable_drag_n_drop) {
-   g_print ("TODO: geda_entry_drag_data_get\n" );
+    g_print ("TODO: %s\n", __func__);
   }
 }
 
@@ -499,7 +497,7 @@ geda_entry_drag_data_get (GtkWidget        *widget,
 static void
 geda_entry_drag_data_delete (GtkWidget *widget, GdkDragContext *context)
 {
-  GedaEntry *geda_entry = GEDA_ENTRY   (widget);
+  GedaEntry *geda_entry = (GedaEntry*)widget;
 
   if (geda_entry->enable_drag_n_drop) {
     g_print ("TODO: %s\n", __func__);
@@ -520,7 +518,7 @@ geda_entry_drag_data_received (GtkWidget        *widget,
                                unsigned int     info,
                                unsigned int     time)
 {
-  GedaEntry *geda_entry = GEDA_ENTRY   (widget);
+  GedaEntry *geda_entry = (GedaEntry*)widget;
   if (geda_entry->enable_drag_n_drop) {
     g_print ("TODO: %s\n", __func__);
   }
@@ -556,7 +554,7 @@ geda_entry_realize (GtkWidget *widget)
     PangoContext *context;
     PangoLayout  *layout;
 
-    entry = GEDA_ENTRY (widget);
+    entry = (GedaEntry*)widget;
 
     layout  = gtk_entry_get_layout ((GtkEntry*)widget);
     context = pango_layout_get_context (layout);
@@ -576,7 +574,7 @@ geda_entry_realize (GtkWidget *widget)
 static void
 geda_entry_unrealize (GtkWidget *widget)
 {
-  GedaEntry *entry = GEDA_ENTRY (widget);
+  GedaEntry *entry = (GedaEntry*)widget;
 
   if (entry->priv->font_map) {
     g_object_unref (entry->priv->font_map);
@@ -1199,7 +1197,7 @@ geda_entry_validate_input (GtkEntry    *entry,
                            int         *position,
                            void        *data)
 {
-  GedaEntry *geda_entry = GEDA_ENTRY (entry);
+  GedaEntry *geda_entry = (GedaEntry*)entry;
 
   char *result = g_new (char, length);
   bool  valid  = FALSE;

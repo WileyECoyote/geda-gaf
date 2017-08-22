@@ -18,8 +18,9 @@
           * geda_dialog_get_real
           * geda_dialog_get_string
 
-    * src/widgets/geda_entry.c: Revise message outputs to use __func__
-      macro and update function documentation for:
+    * src/widgets/geda_entry.c: Replace GedaEntry type checking cast, revise
+      message outputs to use __func__  macro and update function documentation
+      for:
 
           * geda_entry_drag_begin
           * geda_entry_drag_drop
