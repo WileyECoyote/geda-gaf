@@ -1,7 +1,5 @@
 v 20150101 2
 L 350 200 50 200 3 0 0 0 -1 -1
-T 350 800 8 10 0 0 0 0 1
-author=AutoTron
 P 200 400 200 200 1 0 0
 {
 T 100 300 9 6 0 1 0 0 1
@@ -23,6 +21,8 @@ T 350 100 5 10 0 1 0 1 1
 value=NoConnection
 T 350 200 5 10 0 1 0 0 1
 device=DRC_Directive
+T 350 800 5 8 0 1 0 0 1
+description=No Connection
 T 350 350 9 10 0 1 0 0 1
 footprint=none
 T 350 350 8 10 0 1 0 0 1
@@ -33,3 +33,5 @@ T 350 650 8 10 0 0 0 0 1
 documentation=nc.pdf
 T 800 350 5 10 0 0 0 0 1
 net:NoConnection
+T 350 950 8 10 0 0 0 0 1
+author=AutoTron
