@@ -2934,7 +2934,7 @@ msgid "MCopy"
 msgstr "העתק מרובה"
 
 #: gschem/src/x/x_menus.c:123 gschem/etc/system-gschemrc.scm:2112
-msgid "Make multible copies of selection"
+msgid "Make multiple copies of selection"
 msgstr "הכנת העתקי העתק מרובה של"
 
 # Move
@@ -5425,49 +5425,58 @@ msgstr "מצב הצמד מחזור"
 msgid "Toggle Net Rubber Band"
 msgstr ""
 
+# Toggle Magnetic Nets -> Switch magnetic grids
 #: gschem/scheme/gschem/builtins.scm:499
 msgid "Toggle Magnetic Nets"
-msgstr ""
+msgstr "החלף רשתות מגנטיות"
 
+# Enable/Disable Drag move
 #: gschem/scheme/gschem/builtins.scm:502
 msgid "Enable/Disable Drag move"
-msgstr ""
+msgstr "הפעלה / השבתה של גרור"
 
 #: gschem/scheme/gschem/builtins.scm:505
 msgid "Toggle Outline Drawing"
-msgstr ""
+msgstr "החלף ציור מתאר"
 
+# Enable/Disable Auto Panning
 #: gschem/scheme/gschem/builtins.scm:508
 msgid "Enable/Disable Auto Panning"
-msgstr ""
+msgstr "הפעלה / השבתה של פנורמה אוטומטית"
 
+# Set Default Text Size
 #: gschem/scheme/gschem/builtins.scm:511
 msgid "Set Default Text Size"
-msgstr ""
+msgstr "קבע גודל טקסט ברירת מחדל"
 
+# Open Preference Dialog
 #: gschem/scheme/gschem/builtins.scm:514
 msgid "Open Preference Dialog"
-msgstr ""
+msgstr "פתח את תיבת הדו-שיח 'העדפות'"
 
+# Manuals
 #: gschem/scheme/gschem/builtins.scm:521
 msgid "gEDA Manuals"
-msgstr ""
+msgstr "gEDA מדריכים"
 
 #: gschem/scheme/gschem/builtins.scm:522
 msgid "View the front page of the gEDA documentation in a browser."
-msgstr ""
+msgstr "הצג את העמוד הראשון של תיעוד gEDA בדפדפן."
 
+# Show Hotkeys
 #: gschem/scheme/gschem/builtins.scm:525
 msgid "Show Hotkeys"
-msgstr ""
+msgstr "הצג מקשים חמים"
 
+# Component Documentation
 #: gschem/scheme/gschem/builtins.scm:529
 msgid "Component Documentation"
-msgstr ""
+msgstr "תיעוד רכיבים"
 
+# View documentation for selected component
 #: gschem/scheme/gschem/builtins.scm:531
 msgid "View documentation for selected component"
-msgstr ""
+msgstr "הצג תיעוד עבור הרכיב שנבחר"
 
 # Could not show documentation for selected component
 #: gschem/scheme/gschem/builtins.scm:547
