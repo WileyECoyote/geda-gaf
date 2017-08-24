@@ -22,19 +22,19 @@ msgstr ""
 #: gschem/src/base/gschem.c:158
 #, c-format
 msgid "Warning: <%s> did not expand\n"
-msgstr ""
+msgstr "Aviso: <%s> não expandiu\n"
 
 #: gschem/src/base/gschem.c:159
 msgid "Command-line error: disabling auto load last\n"
-msgstr ""
+msgstr "Erro na linha de comando: desativando o carregamento automático último\n"
 
 #: gschem/src/base/gschem.c:192
 msgid "Assuming schematic file suffix for"
-msgstr ""
+msgstr "Assumindo sufixo de arquivo esquemático para"
 
 #: gschem/src/base/gschem.c:206
 msgid "Assuming symbol file suffix for"
-msgstr ""
+msgstr "Assumindo o sufixo do arquivo de símbolos para"
 
 # An error was encountered loading requested session
 #: gschem/src/base/gschem.c:240
@@ -43,7 +43,7 @@ msgstr "Foi encontrado um erro ao carregar sessão solicitada"
 
 #: gschem/src/base/gschem.c:265
 msgid "Auto Load"
-msgstr ""
+msgstr "Carga automática"
 
 #: gschem/src/base/gschem.c:313
 msgid ""
@@ -87,11 +87,11 @@ msgstr "ERRO: Falha ao ler ou avaliar script de inicialização.\n"
 
 #: gschem/src/base/gschem.c:511
 msgid "Exiting normal\n"
-msgstr ""
+msgstr "Saindo normal\n"
 
 #: gschem/src/base/gschem.c:514
 msgid "FAILED:"
-msgstr ""
+msgstr "FALHADO:"
 
 # Parent Window
 #: gschem/src/base/gschem_dialog.c:567
@@ -100,16 +100,17 @@ msgstr "Janela Principal"
 
 #: gschem/src/base/gschem_dialog.c:568
 msgid "Parent window for this dialog"
-msgstr ""
+msgstr "Janela principal para este diálogo"
 
 # Title
 #: gschem/src/base/gschem_dialog.c:588
 msgid "Title"
 msgstr "Título"
 
+# Dialog window title
 #: gschem/src/base/gschem_dialog.c:589
 msgid "Dialog window title"
-msgstr ""
+msgstr "Título da janela de diálogo"
 
 # Label Text
 #: gschem/src/base/gschem_macro_widget.c:233
@@ -118,7 +119,7 @@ msgstr "Texto da etiqueta"
 
 #: gschem/src/base/gschem_macro_widget.c:234
 msgid "Text to be displayed for the Macro label"
-msgstr ""
+msgstr "Texto a ser exibido para o rótulo Macro"
 
 #: gschem/src/base/gschem_macro_widget.c:235
 msgid "Macro:"
@@ -3075,7 +3076,7 @@ msgid "MCopy"
 msgstr "Cópia múltipla"
 
 #: gschem/src/x/x_menus.c:123 gschem/etc/system-gschemrc.scm:2112
-msgid "Make multible copies of selection"
+msgid "Make multiple copies of selection"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:124
