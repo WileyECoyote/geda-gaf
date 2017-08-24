@@ -2107,7 +2107,7 @@
 
         ("SEPARATOR"               #f                     #f)
         (,(N_ "C_opy")              edit-copy              "geda-copy"        ,(N_ "Copy selection"))
-        (,(N_ "_Multiple Copy")     edit-mcopy             "geda-multi"       ,(N_ "Make multible copies of selection"))
+        (,(N_ "_Multiple Copy")     edit-mcopy             "geda-multi"       ,(N_ "Make multiple copies of selection"))
         (,(N_ "M_irror")            edit-mirror            "geda-mirror"      ,(N_ "Mirror an object about a point"))
         (,(N_ "Mo_ve")              edit-move              "geda-move"        ,(N_ "Move selection"))
         (,(N_ "O_ffset")            edit-offset            #f                 ,(N_ "Offset the selected objects"))
