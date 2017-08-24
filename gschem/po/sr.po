@@ -960,22 +960,26 @@ msgstr "Упозоравајући имена релативних датоте�
 msgid "Session"
 msgstr "седница"
 
+# opening
 #: gschem/src/iface/i_sessions.c:347
 msgid "opening"
-msgstr ""
+msgstr "отварање"
 
+# of
 #: gschem/src/iface/i_sessions.c:348
 msgid "of"
-msgstr ""
+msgstr "Оф"
 
+# documents
 #: gschem/src/iface/i_sessions.c:349 gschem/src/iface/i_sessions.c:937
 #: gschem/src/iface/i_sessions.c:1111
 msgid "documents"
-msgstr ""
+msgstr "документи"
 
+# did not contain any accessible documents
 #: gschem/src/iface/i_sessions.c:358
 msgid "did not contain any accessible documents"
-msgstr ""
+msgstr "Није садржавала доступне документе"
 
 # Sessions, do not capitalize
 #: gschem/src/iface/i_sessions.c:795
@@ -1035,35 +1039,41 @@ msgstr "до"
 msgid "Failed to rename session"
 msgstr "Фаилед то ренаме сесије"
 
+# Could not rename session
 #: gschem/src/iface/i_sessions.c:1075
 msgid "<b>Could not rename session</b>"
-msgstr ""
+msgstr "<b>Није могуће преименовати сесију</b>"
 
 # made session
 #: gschem/src/iface/i_sessions.c:1109
 msgid "Created session"
 msgstr "направљена сесија"
 
+# with
 #: gschem/src/iface/i_sessions.c:1110
 msgid "with"
-msgstr ""
+msgstr "Са"
 
+# Saved
 #: gschem/src/iface/i_sessions.c:1120 gschem/src/x/x_window.c:1221
 #: gschem/src/x/x_window.c:1224
 msgid "Saved"
-msgstr ""
+msgstr "Сачувано"
 
+# documents to session
 #: gschem/src/iface/i_sessions.c:1121
 msgid "documents to session"
-msgstr ""
+msgstr "Документи на сесију"
 
+# an error occurred attempting to save session
 #: gschem/src/iface/i_sessions.c:1131
 msgid "An error occurred attempting to save session"
-msgstr ""
+msgstr "Дошло је до грешке која покушава да сачува сесију"
 
+# Save session failed => failed to save session
 #: gschem/src/iface/i_sessions.c:1139
 msgid "Save session failed"
-msgstr ""
+msgstr "failed to save session"
 
 #: gschem/src/iface/i_sessions.c:1230
 msgid "Show Sessions at startup is now ENABLED\n"
@@ -3071,7 +3081,7 @@ msgid "MCopy"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:123 gschem/etc/system-gschemrc.scm:2112
-msgid "Make multible copies of selection"
+msgid "Make multiple copies of selection"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:124
