@@ -2753,22 +2753,27 @@ msgstr "ചിത്രം എഴുതുക..."
 msgid "Width x Height"
 msgstr "വീതി x പൊക്കം"
 
+# Image type
 #: gschem/src/x/x_image.c:710
 msgid "Image type"
-msgstr ""
+msgstr "ഇമേജ് തരം"
 
+# Enable to use the Print color map instead of the display color map
 #: gschem/src/x/x_image.c:774
 msgid "Enable to use the Print color map instead of the display color map"
-msgstr ""
+msgstr "ഡിസ്പ്ലേ വർണ്ണ മാപ്പിനുള്ളതിനുപകരം പ്രിന്റ് വർക്ക് മാപ്പ് ഉപയോഗിക്കാൻ പ്രാപ്തമാക്കുക"
 
+# When enabled for reversed color images, only black and white will be reversed
 #: gschem/src/x/x_image.c:777
 msgid ""
 "When enabled for reversed color images, only black and white will be reversed"
 msgstr ""
+"വിപരീത വർണ്ണ ഇമേജുകൾക്കായി പ്രവർത്തനക്ഷമമാകുമ്പോൾ, കറുപ്പും വെളുപ്പും മാത്രമാണ് റിവേഴ്സ് ചെയ്യപ്പെടുന്നത്"
 
+# Select
 #: gschem/src/x/x_menus.c:87
 msgid "Select"
-msgstr ""
+msgstr "തിരഞ്ഞെടുക്കുക"
 
 # Activate Select mode
 #: gschem/src/x/x_menus.c:87 gschem/etc/system-gschemrc.scm:2137
@@ -2792,11 +2797,12 @@ msgstr "വയർ ചേർക്കുക"
 
 #: gschem/src/x/x_menus.c:93
 msgid "Attribute..."
-msgstr ""
+msgstr "ആട്രിബ്യൂട്ട്..."
 
+# Add attribute
 #: gschem/src/x/x_menus.c:93 gschem/etc/system-gschemrc.scm:2258
 msgid "Add attribute"
-msgstr ""
+msgstr "ആട്രിബ്യൂട്ട് ചേർക്കുക"
 
 # Component
 #: gschem/src/x/x_menus.c:94 gschem/src/x/x_menus.c:113
@@ -2828,6 +2834,7 @@ msgstr "സൂം"
 msgid "Add operations"
 msgstr "ഓപ്പറേഷൻസ് ചേർക്കുക"
 
+# In
 #: gschem/src/x/x_menus.c:101 gschem/src/x/x_menus.c:153
 msgid "In"
 msgstr "ൽ"
@@ -2960,6 +2967,7 @@ msgstr "നീട്ടുക"
 msgid "Project linear objects to other objects"
 msgstr "ഒബ്ജക്റ്റിലേക്ക് നീട്ടുവാൻ ലൈനുകൾ മറ്റൊരു"
 
+# Delete
 #: gschem/src/x/x_menus.c:121 gschem/src/x/x_multiattrib.c:1692
 #: gschem/scheme/gschem/builtins.scm:104
 msgid "Delete"
@@ -2985,10 +2993,12 @@ msgstr "തിരഞ്ഞെടുപ്പ് പകർത്തുക"
 msgid "MCopy"
 msgstr "ഒന്നിലധികം പകർത്തുക"
 
+# Make multiple copies of selection
 #: gschem/src/x/x_menus.c:123 gschem/etc/system-gschemrc.scm:2112
-msgid "Make multible copies of selection"
-msgstr ""
+msgid "Make multiple copies of selection"
+msgstr "തിരഞ്ഞെടുക്കുന്നതിനുള്ള മൾട്ടിപ്പിൾ പകർപ്പുകൾ ഉണ്ടാക്കുക"
 
+# Move
 #: gschem/src/x/x_menus.c:124
 msgid "Move"
 msgstr "നീങ്ങുക"
