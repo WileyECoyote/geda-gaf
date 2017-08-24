@@ -18,30 +18,33 @@ msgstr ""
 "X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
 "X-Generator: Launchpad (build 16265)\n"
 
+# Warning: did not expand
 #: gschem/src/base/gschem.c:158
 #, c-format
 msgid "Warning: <%s> did not expand\n"
-msgstr ""
+msgstr "هشدار: <%s> گسترش نیافت\n"
 
 #: gschem/src/base/gschem.c:159
 msgid "Command-line error: disabling auto load last\n"
-msgstr ""
+msgstr "خطای خط فرمان: آخرین بار خودکار بارگیری\n"
 
 #: gschem/src/base/gschem.c:192
 msgid "Assuming schematic file suffix for"
-msgstr ""
+msgstr "فرض کنید پسوند فایل schema for"
 
+# Assuming symbol file suffix for
 #: gschem/src/base/gschem.c:206
 msgid "Assuming symbol file suffix for"
-msgstr ""
+msgstr "فرض کنید پسوند فایل نماد برای"
 
+# An error was encountered loading requested session
 #: gschem/src/base/gschem.c:240
 msgid "An error was encountered loading requested session"
-msgstr ""
+msgstr "یک بار خطا در بارگیری جلسه درخواست شد"
 
 #: gschem/src/base/gschem.c:265
 msgid "Auto Load"
-msgstr ""
+msgstr "بار خودکار"
 
 #: gschem/src/base/gschem.c:313
 msgid ""
@@ -50,26 +53,35 @@ msgid ""
 "gschem cannot locate some data files. Please ensure the GEDADATA\n"
 "environment variable points to the correct location.\n"
 msgstr ""
+"متغیر محیطی GEDADATA باید تنظیم شود!\n"
+"\n"
+"gschem نمیتواند برخی از فایلهای داده را پیدا کند لطفا GEDADATA را تضمین کنید\n"
+"متغیر محیطی به مکان صحیح اشاره می کند"
+"\n"
 
+# Unable to locate scheme initialization file
 #: gschem/src/base/gschem.c:347
 msgid "Unable to locate scheme initialization file"
-msgstr ""
+msgstr "امکان شناسایی فایل برنامه اولیه وجود ندارد"
 
+# Read scheme initialization file
 #: gschem/src/base/gschem.c:354
 msgid "Read scheme initialization file"
-msgstr ""
+msgstr "فایل برنامه اولیه را بخوانید"
 
+# Failed to read scheme initialization file
 #: gschem/src/base/gschem.c:357
 msgid "Failed to read scheme initialization file"
-msgstr ""
+msgstr "نمیتواند فایل برنامه اولیه را بخواند"
 
+# version
 #: gschem/src/base/gschem.c:381
 msgid "version"
-msgstr "Save All"
+msgstr "نسخه"
 
 #: gschem/src/base/gschem.c:386
 msgid "Logging system is disabled\n"
-msgstr ""
+msgstr "سیستم ثبت نام غیر فعال است\n"
 
 #: gschem/src/base/gschem.c:419
 #, c-format
@@ -2899,7 +2911,7 @@ msgid "MCopy"
 msgstr "Copy into 1"
 
 #: gschem/src/x/x_menus.c:123 gschem/etc/system-gschemrc.scm:2112
-msgid "Make multible copies of selection"
+msgid "Make multiple copies of selection"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:124
