@@ -1,3 +1,7 @@
+2017-08-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/sv.po: Update Swedish translations.
+
 2017-08-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_dialog.c: Fix showing dialog_action_area instead of ReplaceAllButt,

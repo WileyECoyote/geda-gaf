@@ -35,7 +35,7 @@ msgid "Failed to save user configuration to"
 msgstr ""
 
 #: gattrib/src/gattrib.c:396
-msgid "Couldn not find file"
+msgid "Could not find file"
 msgstr ""
 
 #: gattrib/src/gattrib.c:443
@@ -490,15 +490,15 @@ msgstr ""
 msgid "Search and Replace Attribute value"
 msgstr ""
 
+# Hitta attribut
 #: gattrib/src/x_menus.c:382
-#, fuzzy
 msgid "Locate Attribute"
-msgstr "gEDA-attributredigerare"
+msgstr "Hitta attribut"
 
+# Search for an attribute
 #: gattrib/src/x_menus.c:382
-#, fuzzy
 msgid "Search for an attribute"
-msgstr "gEDA-attributredigerare"
+msgstr "Sök efter ett attribut"
 
 #: gattrib/src/x_menus.c:383
 msgid "Locate Reference"
@@ -573,9 +573,8 @@ msgid "_Help"
 msgstr ""
 
 #: gattrib/src/x_menus.c:403
-#, fuzzy
 msgid "Gattrib Guide"
-msgstr "gEDA-attributredigerare"
+msgstr "Gattrib Guide"
 
 #: gattrib/src/x_menus.c:404
 msgid "Gattrib FAQ"
@@ -590,9 +589,8 @@ msgid "gEDA _Wiki..."
 msgstr ""
 
 #: gattrib/src/x_menus.c:408
-#, fuzzy
 msgid "gEDA Attributes"
-msgstr "gEDA-attributredigerare"
+msgstr "gEDA Attribut"
 
 #: gattrib/src/x_menus.c:409
 msgid "gEDA Glossary"
@@ -619,14 +617,13 @@ msgid "Display Standard Toolbar"
 msgstr ""
 
 #: gattrib/src/x_menus.c:419
-#, fuzzy
 msgid "A_ttribute"
-msgstr "gEDA-attributredigerare"
+msgstr "Attribut"
 
+# Display Attribute Toolbar
 #: gattrib/src/x_menus.c:419
-#, fuzzy
 msgid "Display Attribute Toolbar"
-msgstr "gEDA-attributredigerare"
+msgstr "Visningsverktygsfältet"
 
 #: gattrib/src/x_menus.c:420
 msgid "_Attached"
@@ -725,14 +722,13 @@ msgid "Search and Replace attribute value"
 msgstr ""
 
 #: gattrib/src/x_toolbars.c:40
-#, fuzzy
 msgid "Attrib"
-msgstr "gEDA-attributredigerare"
+msgstr "Attribut"
 
+# Locate attribute
 #: gattrib/src/x_toolbars.c:40
-#, fuzzy
 msgid "Locate attribute"
-msgstr "gEDA-attributredigerare"
+msgstr "Leta reda på attributet"
 
 #: gattrib/src/x_toolbars.c:41
 msgid "Ref Des"
