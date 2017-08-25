@@ -26,21 +26,25 @@ msgstr "gEDA uređivač atributa"
 msgid "Manipulate component attributes with gattrib"
 msgstr "Upravljajte atributima komponenti pomoću gattrib"
 
+# Could not open
 #: gattrib/src/f_export.c:81
 msgid "Could not open"
-msgstr ""
+msgstr "Nije moguće otvoriti"
 
+# Failed to save user configuration to
 #: gattrib/src/gattrib.c:180
 msgid "Failed to save user configuration to"
-msgstr ""
+msgstr "Neuspešno spremanje korisničke konfiguracije"
 
+# Could not find file
 #: gattrib/src/gattrib.c:396
-msgid "Couldn not find file"
-msgstr ""
+msgid "Could not find file"
+msgstr "Ne mogu naći datoteku"
 
+# Exported schematic to
 #: gattrib/src/gattrib.c:443
 msgid "Exported schematic to"
-msgstr ""
+msgstr "Šema izvezena u"
 
 #: gattrib/src/g_rc.c:51
 #, c-format
@@ -50,17 +54,20 @@ msgid ""
 "Please be sure that you have the latest rc file.\n"
 msgstr ""
 
+# The operating system is out of memory or resources
 #: gattrib/src/i_basic.c:105
 msgid "The operating system is out of memory or resources."
-msgstr ""
+msgstr "Operativni sistem je van memorije ili resursa."
 
+# failed to open
 #: gattrib/src/i_basic.c:156
 msgid "failed to open"
-msgstr ""
+msgstr "nije uspela da se otvori"
 
+# Check path
 #: gattrib/src/i_basic.c:210
 msgid "Check path"
-msgstr ""
+msgstr "Proveri put"
 
 #: gattrib/src/parsecmd.c:62
 #, c-format
@@ -94,17 +101,20 @@ msgid ""
 "There is NO WARRANTY, to the extent permitted by law.\n"
 msgstr ""
 
+# DONE
 #: gattrib/src/s_misc.c:66
 msgid "DONE"
-msgstr ""
+msgstr "Gotovo"
 
+# failed to find attribute
 #: gattrib/src/s_object.c:215
 msgid "failed to find attribute"
-msgstr ""
+msgstr "не успя да намери атрибут"
 
+# Exiting
 #: gattrib/src/s_object.c:216
 msgid "Exiting..."
-msgstr ""
+msgstr "Izlazak..."
 
 #: gattrib/src/s_rename.c:98
 msgid "Increase MAX_SETS in"
