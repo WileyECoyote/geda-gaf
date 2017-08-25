@@ -36,12 +36,13 @@ msgstr "Kon nie gebruiker opset red"
 
 # Could not find file
 #: gattrib/src/gattrib.c:396
-msgid "Couldn not find file"
+msgid "Could not find file"
 msgstr "Kon lêer nie vind"
 
+# Exported schematic to
 #: gattrib/src/gattrib.c:443
 msgid "Exported schematic to"
-msgstr ""
+msgstr "Uitgereik skematiese na"
 
 #: gattrib/src/g_rc.c:51
 #, c-format
@@ -120,17 +121,20 @@ msgstr ""
 "ingesluit is in die Geda verspreiding.\n"
 "Daar is geen waarborg, in die mate toegelaat deur die wet.\n"
 
+# DONE
 #: gattrib/src/s_misc.c:66
 msgid "DONE"
 msgstr "gedaan"
 
+# failed to find attribute
 #: gattrib/src/s_object.c:215
 msgid "failed to find attribute"
-msgstr ""
+msgstr "kein Attribut gefunden"
 
+# Exiting
 #: gattrib/src/s_object.c:216
 msgid "Exiting..."
-msgstr ""
+msgstr "verlaat..."
 
 #: gattrib/src/s_rename.c:98
 msgid "Increase MAX_SETS in"
