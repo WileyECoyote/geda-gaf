@@ -35,7 +35,7 @@ msgid "Failed to save user configuration to"
 msgstr ""
 
 #: gattrib/src/gattrib.c:396
-msgid "Couldn not find file"
+msgid "Could not find file"
 msgstr ""
 
 #: gattrib/src/gattrib.c:443
@@ -404,10 +404,10 @@ msgstr ""
 msgid "not found!"
 msgstr ""
 
+# Attribute
 #: gattrib/src/x_find.c:277
-#, fuzzy
 msgid "Attribute"
-msgstr "gEDA Özellik Düzenleyicisi"
+msgstr "nitelik"
 
 #: gattrib/src/x_find.c:314
 msgid "Designator"
@@ -573,10 +573,10 @@ msgstr ""
 msgid "_Help"
 msgstr ""
 
+# Gattrib Guide
 #: gattrib/src/x_menus.c:403
-#, fuzzy
 msgid "Gattrib Guide"
-msgstr "gEDA Özellik Düzenleyicisi"
+msgstr "Gattrib Uçak Bileti"
 
 #: gattrib/src/x_menus.c:404
 msgid "Gattrib FAQ"
@@ -590,10 +590,10 @@ msgstr ""
 msgid "gEDA _Wiki..."
 msgstr ""
 
+# gEDA Attributes
 #: gattrib/src/x_menus.c:408
-#, fuzzy
 msgid "gEDA Attributes"
-msgstr "gEDA Özellik Düzenleyicisi"
+msgstr "gEDA Özellikleri"
 
 #: gattrib/src/x_menus.c:409
 msgid "gEDA Glossary"
@@ -619,15 +619,15 @@ msgstr ""
 msgid "Display Standard Toolbar"
 msgstr ""
 
+# Attribute
 #: gattrib/src/x_menus.c:419
-#, fuzzy
 msgid "A_ttribute"
-msgstr "gEDA Özellik Düzenleyicisi"
+msgstr "Nitelikler"
 
+# Display Attribute Toolbar
 #: gattrib/src/x_menus.c:419
-#, fuzzy
 msgid "Display Attribute Toolbar"
-msgstr "gEDA Özellik Düzenleyicisi"
+msgstr "Öznitelik Araç Çubuğunu Göster"
 
 #: gattrib/src/x_menus.c:420
 msgid "_Attached"
@@ -725,15 +725,15 @@ msgstr ""
 msgid "Search and Replace attribute value"
 msgstr ""
 
+# Attribute
 #: gattrib/src/x_toolbars.c:40
-#, fuzzy
 msgid "Attrib"
-msgstr "gEDA Özellik Düzenleyicisi"
+msgstr "nitelik"
 
+# Locate attribute
 #: gattrib/src/x_toolbars.c:40
-#, fuzzy
 msgid "Locate attribute"
-msgstr "gEDA Özellik Düzenleyicisi"
+msgstr "Özniteliği bulun"
 
 #: gattrib/src/x_toolbars.c:41
 msgid "Ref Des"
@@ -755,10 +755,10 @@ msgstr ""
 msgid "add"
 msgstr ""
 
+# Add a new attribute
 #: gattrib/src/x_toolbars.c:46
-#, fuzzy
 msgid "Add a new attribute"
-msgstr "gEDA Özellik Düzenleyicisi"
+msgstr "Yeni bir nitelik ekle"
 
 #: gattrib/src/x_toolbars.c:47
 msgid "promote"
