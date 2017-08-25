@@ -25,21 +25,24 @@ msgstr "محرّر السّمة ل‍ gEDA"
 msgid "Manipulate component attributes with gattrib"
 msgstr "عالج سمات المكوّن ب‍ gattrib"
 
+# Could not open
 #: gattrib/src/f_export.c:81
 msgid "Could not open"
-msgstr ""
+msgstr "تعذر فتح"
 
+# Failed to save user configuration to
 #: gattrib/src/gattrib.c:180
 msgid "Failed to save user configuration to"
-msgstr ""
+msgstr "أخفق حفظ تهيئة المستخدم في"
 
 #: gattrib/src/gattrib.c:396
-msgid "Couldn not find file"
-msgstr ""
+msgid "Could not find file"
+msgstr "لا يمكن ايجاد الملف"
 
+# Exported schematic to
 #: gattrib/src/gattrib.c:443
 msgid "Exported schematic to"
-msgstr ""
+msgstr "تصدير التخطيطي ل"
 
 #: gattrib/src/g_rc.c:51
 #, c-format
@@ -49,17 +52,20 @@ msgid ""
 "Please be sure that you have the latest rc file.\n"
 msgstr ""
 
+# The operating system is out of memory or resources
 #: gattrib/src/i_basic.c:105
 msgid "The operating system is out of memory or resources."
-msgstr ""
+msgstr "نظام التشغيل خارج الذاكرة أو الموارد."
 
+# failed to open
 #: gattrib/src/i_basic.c:156
 msgid "failed to open"
-msgstr ""
+msgstr "فشل في الفتح"
 
+# Check path
 #: gattrib/src/i_basic.c:210
 msgid "Check path"
-msgstr ""
+msgstr "تحقق من المسار"
 
 #: gattrib/src/parsecmd.c:62
 #, c-format
@@ -93,17 +99,20 @@ msgid ""
 "There is NO WARRANTY, to the extent permitted by law.\n"
 msgstr ""
 
+# DONE
 #: gattrib/src/s_misc.c:66
 msgid "DONE"
-msgstr ""
+msgstr "فعله"
 
+# failed to find attribute
 #: gattrib/src/s_object.c:215
 msgid "failed to find attribute"
-msgstr ""
+msgstr "فشل في العثور على السمة"
 
+# Exiting
 #: gattrib/src/s_object.c:216
 msgid "Exiting..."
-msgstr ""
+msgstr "الخروج..."
 
 #: gattrib/src/s_rename.c:98
 msgid "Increase MAX_SETS in"
