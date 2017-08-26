@@ -1,3 +1,8 @@
+2017-08-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * bitmaps/svg/geda_magnet.svg: Clean file, remove extraneous exports and
+      rename blocks.
+
 2017-07-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda/geda_wrap.h: Add macro GEDA_OBJECT_NOTIFY for direct cast
