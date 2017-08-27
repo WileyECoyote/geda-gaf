@@ -1,5 +1,8 @@
 2017-08-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * bitmaps/svg/geda-text-editor.svg: Add group name, rename layer, round
+      some numbers.
+
     * bitmaps/svg/geda_magnet.svg: Clean file, remove extraneous exports and
       rename blocks.
 
