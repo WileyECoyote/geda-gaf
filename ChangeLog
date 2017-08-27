@@ -18,6 +18,8 @@
 
     * bitmaps/svg/gschem-print-document.svg: Clean file, update exports path.
 
+    * bitmaps/svg/gschem-print-preview.svg: Clean file, update label.
+
 2017-07-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda/geda_wrap.h: Add macro GEDA_OBJECT_NOTIFY for direct cast
