@@ -1,3 +1,7 @@
+2017-08-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * bitmaps/svg/gaf-hierarchy-sch.svg: Cleaned file; remove extraneous bloat.
+
 2017-08-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * bitmaps/svg/geda_close_all.svg: Remove image block to in oder to eliminate
