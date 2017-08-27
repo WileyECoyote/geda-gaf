@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -14,7 +11,7 @@
    id="svg2985"
    inkscape:version="0.48.3.1 r9886"
    sodipodi:docname="geda_zoom_limits_64x64.svg"
-   inkscape:export-filename="/home/wiley/Downloads/icon_images/geda_master/geda_zoom_pan_64x64.png"
+   inkscape:export-filename="../geda-zoom-limits.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <sodipodi:namedview
@@ -31,10 +28,10 @@
      id="namedview40"
      showgrid="false"
      inkscape:zoom="10.012163"
-     inkscape:cx="54.79727"
+     inkscape:cx="54.997027"
      inkscape:cy="33.724636"
      inkscape:window-x="363"
-     inkscape:window-y="28"
+     inkscape:window-y="31"
      inkscape:window-maximized="0"
      inkscape:current-layer="svg2985" />
   <defs
@@ -103,7 +100,6 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
