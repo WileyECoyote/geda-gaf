@@ -1,6 +1,9 @@
 2017-08-27 Wiley E. Hill <wileyhill@gmail.com>
 
-    * bitmaps/svg/gaf-hierarchy-sch.svg: Cleaned file; remove extraneous bloat.
+    * bitmaps/svg: Cleaned files; remove extraneous bloat:
+
+            * bitmaps/svg/gaf-hierarchy-sch.svg
+            * bitmaps/svg/gaf-hierarchy-sym.svg
 
 2017-08-26 Wiley E. Hill <wileyhill@gmail.com>
 
