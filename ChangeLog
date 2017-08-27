@@ -1,5 +1,8 @@
 2017-08-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * bitmaps/svg/geda_close_all.svg: Remove image block to in oder to eliminate
+      the absref to local imag and update the export to parent folder.
+
     * bitmaps/svg/geda-text-editor.svg: Add group name, rename layer, round
       some numbers.
 
