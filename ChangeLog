@@ -9,6 +9,9 @@
     * bitmaps/svg/geda_magnet.svg: Clean file, remove extraneous exports and
       rename blocks.
 
+    * bitmaps/svg/geda_mirror_64x64.svg: Resize graphics to maximize image space,
+      rename exports.
+
 2017-07-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda/geda_wrap.h: Add macro GEDA_OBJECT_NOTIFY for direct cast
