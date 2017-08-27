@@ -16,6 +16,8 @@
 
     * bitmaps/svg/geda_zoom_pan_64x64.svg: Update export filename.
 
+    * bitmaps/svg/gschem-print-document.svg: Clean file, update exports path.
+
 2017-07-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda/geda_wrap.h: Add macro GEDA_OBJECT_NOTIFY for direct cast
