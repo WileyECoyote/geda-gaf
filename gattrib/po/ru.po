@@ -39,7 +39,7 @@ msgstr ""
 
 # Unable to find file
 #: gattrib/src/gattrib.c:396
-msgid "Couldn not find file"
+msgid "Could not find file"
 msgstr "Не удалось найти файл"
 
 #: gattrib/src/gattrib.c:443

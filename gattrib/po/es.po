@@ -37,7 +37,7 @@ msgid "Failed to save user configuration to"
 msgstr ""
 
 #: gattrib/src/gattrib.c:396
-msgid "Couldn not find file"
+msgid "Could not find file"
 msgstr ""
 
 #: gattrib/src/gattrib.c:443
