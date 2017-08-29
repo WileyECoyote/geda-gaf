@@ -2,10 +2,8 @@
 <svg
    xmlns:osb="http://www.openswatchbook.org/uri/2009/osb"
    xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -20,28 +18,6 @@
    inkscape:version="0.48.3.1 r9886">
   <title
      id="title3037">Hierarchy Down Schematic</title>
-  <sodipodi:namedview
-     stroke="#3465a4"
-     fill="#729fcf"
-     id="base"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="0.25490196"
-     inkscape:pageopacity="0.0"
-     inkscape:pageshadow="2"
-     inkscape:zoom="10.930692"
-     inkscape:cx="26.49602"
-     inkscape:cy="21.24235"
-     inkscape:current-layer="gaf-bom"
-     showgrid="false"
-     inkscape:grid-bbox="true"
-     inkscape:document-units="px"
-     inkscape:showpageshadow="false"
-     inkscape:window-width="1259"
-     inkscape:window-height="939"
-     inkscape:window-x="649"
-     inkscape:window-y="31"
-     inkscape:window-maximized="0" />
   <metadata
      id="metadata2616">
     <rdf:RDF>
@@ -58,7 +34,7 @@
         </dc:creator>
         <dc:rights>
           <cc:Agent>
-            <dc:title>GPL3</dc:title>
+            <dc:title>GPL2</dc:title>
           </cc:Agent>
         </dc:rights>
         <cc:license
