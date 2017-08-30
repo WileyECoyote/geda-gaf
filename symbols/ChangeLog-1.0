@@ -6,6 +6,8 @@
 
     * idt/IDT7207-1.sym: Add symbol; CMOS Asynchronous FIFO, 32K x 9.
 
+    * idt/IDT7208-1.sym: Add symbol; CMOS Asynchronous FIFO, 64K x 9.
+
     * passive/resistor: Add description, update attribute alignments:
 
             * passive/resistor/resistorpack11-2.sym
