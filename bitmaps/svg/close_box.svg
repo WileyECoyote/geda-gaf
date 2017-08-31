@@ -1,35 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="16px"
    height="16px"
    id="svg2985"
    version="1.1"
-   inkscape:version="0.48.3.1 r9886"
-   sodipodi:docname="close_box.svg">
+   inkscape:version="0.48.3.1 r9886">
   <defs
      id="defs2987" />
-  <sodipodi:namedview
-     id="base"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="0.0"
-     inkscape:pageshadow="2"
-     inkscape:zoom="39.6875"
-     inkscape:cx="8"
-     inkscape:cy="8"
-     inkscape:current-layer="layer1"
-     showgrid="true"
-     inkscape:grid-bbox="true"
-     inkscape:document-units="px"
-     inkscape:window-width="1094"
-     inkscape:window-height="835"
-     inkscape:window-x="320"
-     inkscape:window-y="56"
-     inkscape:window-maximized="0" />
   <g
      id="layer1"
      inkscape:label="Layer 1"
