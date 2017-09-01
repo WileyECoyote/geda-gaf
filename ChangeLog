@@ -3,6 +3,9 @@
     * bitmaps/svg/geda_find_attribute_64x64.svg: Revise icon graphics; add
       letter "A" in red font, update export filename.
 
+    * bitmaps/geda_grid_dot.png: Remove unused image file, which is redundant
+      with geda-grid-dot.png.
+
     * bitmaps/svg: Cleaned files; remove extraneous bloat:
 
             * bitmaps/svg/geda_magnet.svg
