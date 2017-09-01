@@ -6,6 +6,7 @@
     * bitmaps/svg: Cleaned files; remove extraneous bloat:
 
             * bitmaps/svg/geda_magnet.svg
+            * bitmaps/svg/geda_move_128x128.svg (Resize "XY" text)
 
 2017-08-31 Wiley E. Hill <wileyhill@gmail.com>
 
