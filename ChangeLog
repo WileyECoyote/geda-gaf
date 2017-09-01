@@ -3,6 +3,10 @@
     * bitmaps/svg/geda_find_attribute_64x64.svg: Revise icon graphics; add
       letter "A" in red font, update export filename.
 
+    * bitmaps/svg: Cleaned files; remove extraneous bloat:
+
+            * bitmaps/svg/geda_magnet.svg
+
 2017-08-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * bitmaps/svg: Cleaned files; remove extraneous bloat:
