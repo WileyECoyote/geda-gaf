@@ -1,3 +1,8 @@
+2017-09-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * bitmaps/svg/geda_find_attribute_64x64.svg: Revise icon graphics; add
+      letter "A" in red font, update export filename.
+
 2017-08-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * bitmaps/svg: Cleaned files; remove extraneous bloat:
