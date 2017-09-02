@@ -8,6 +8,8 @@
 
     * po/gl.po: Update Galician translations.
 
+    * po/oc.po: Update Occitan translations.
+
 2017-08-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: Update Afrikaans translations.
@@ -150,7 +152,7 @@
 
     * po/nb.po: Update Norwegian Bokmål translations.
 
-    * po/nb.oc: Update Occitan translations.
+    * po/oc.po: Update Occitan translations.
 
     * po/pl.po: Update Polish translations.
 
