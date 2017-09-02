@@ -26,21 +26,25 @@ msgstr "Editor de atributos gEDA"
 msgid "Manipulate component attributes with gattrib"
 msgstr "Manipular atributos de compoñentes con gattrib"
 
+# Could not open
 #: gattrib/src/f_export.c:81
 msgid "Could not open"
-msgstr ""
+msgstr "Non se puido abrir"
 
+# Failed to save user configuration to
 #: gattrib/src/gattrib.c:180
 msgid "Failed to save user configuration to"
-msgstr ""
+msgstr "Fallou ao gardar a configuración do usuario en"
 
+# Could not find file
 #: gattrib/src/gattrib.c:396
 msgid "Could not find file"
-msgstr ""
+msgstr "Non se puido atopar o ficheiro"
 
+# Exported schematic to
 #: gattrib/src/gattrib.c:443
 msgid "Exported schematic to"
-msgstr ""
+msgstr "Explicado esquemático para"
 
 #: gattrib/src/g_rc.c:51
 #, c-format
@@ -49,18 +53,24 @@ msgid ""
 "but you have a version [%s] gattribrc file.\n"
 "Please be sure that you have the latest rc file.\n"
 msgstr ""
+"Está executando a versión GEDA/gaf [%s%s.%s],\n"
+"but you have a version [%s] fichier gattribrc.\n"
+"Asegúrese de ter o último ficheiro rc.\n"
 
+# The operating system is out of memory or resources
 #: gattrib/src/i_basic.c:105
 msgid "The operating system is out of memory or resources."
-msgstr ""
+msgstr "O sistema operativo está fóra de memoria ou de recursos"
 
+# failed to open
 #: gattrib/src/i_basic.c:156
 msgid "failed to open"
-msgstr ""
+msgstr "non se puido abrir"
 
+# Check path
 #: gattrib/src/i_basic.c:210
 msgid "Check path"
-msgstr ""
+msgstr "Verificar o camiño"
 
 #: gattrib/src/parsecmd.c:62
 #, c-format
