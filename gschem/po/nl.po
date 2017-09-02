@@ -3062,10 +3062,10 @@ msgstr "selectie kopieer"
 msgid "MCopy"
 msgstr "meerdere kopieën"
 
-# Make multible copies of selection
+# Make multiple copies of selection
 #: gschem/src/x/x_menus.c:123 gschem/etc/system-gschemrc.scm:2112
-msgid "Make multible copies of selection"
-msgstr "Maak multible kopieën van selectie"
+msgid "Make multiple copies of selection"
+msgstr "Maak multiple kopieën van selectie"
 
 #: gschem/src/x/x_menus.c:124
 msgid "Move"

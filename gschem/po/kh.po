@@ -3080,8 +3080,8 @@ msgid "MCopy"
 msgstr "chamlong chraen"
 
 #: gschem/src/x/x_menus.c:123 gschem/etc/system-gschemrc.scm:2112
-msgid "Make multible copies of selection"
-msgstr "saum chamlong multible nei kar chreusareus"
+msgid "Make multiple copies of selection"
+msgstr "saum chamlong multiple nei kar chreusareus"
 
 #: gschem/src/x/x_menus.c:124
 msgid "Move"

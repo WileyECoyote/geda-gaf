@@ -2966,8 +2966,8 @@ msgid "MCopy"
 msgstr "Večkratno kopiranje"
 
 #: gschem/src/x/x_menus.c:123 gschem/etc/system-gschemrc.scm:2112
-msgid "Make multible copies of selection"
-msgstr "Naredite multible kopije izbire"
+msgid "Make multiple copies of selection"
+msgstr "Naredite multiple kopije izbire"
 
 #: gschem/src/x/x_menus.c:124
 msgid "Move"

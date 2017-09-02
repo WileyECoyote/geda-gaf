@@ -3146,9 +3146,9 @@ msgstr "выбор копирования"
 msgid "MCopy"
 msgstr "Многократное копирование"
 
-# Make multible copies of selection
+# Make multiple copies of selection
 #: gschem/src/x/x_menus.c:123 gschem/etc/system-gschemrc.scm:2112
-msgid "Make multible copies of selection"
+msgid "Make multiple copies of selection"
 msgstr "Многократное копирование из выбора"
 
 # См. примечание выше для "Copy"

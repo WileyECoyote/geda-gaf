@@ -2978,8 +2978,8 @@ msgid "MCopy"
 msgstr "Più Copia"
 
 #: gschem/src/x/x_menus.c:123 gschem/etc/system-gschemrc.scm:2112
-msgid "Make multible copies of selection"
-msgstr "Creare copie multible di selezione"
+msgid "Make multiple copies of selection"
+msgstr "Creare copie multiple di selezione"
 
 #: gschem/src/x/x_menus.c:124
 msgid "Move"
