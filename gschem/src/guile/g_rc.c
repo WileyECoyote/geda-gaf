@@ -169,7 +169,6 @@ SCM g_rc_gschem_version(SCM scm_version)
 {
   SCM ret;
   char *version;
-  SCM rc_filename;
 
   SCM_ASSERT (scm_is_string (scm_version), scm_version,
               SCM_ARG1, "gschem-version");
@@ -180,6 +179,7 @@ SCM g_rc_gschem_version(SCM scm_version)
 
   if (g_ascii_strcasecmp (version, PACKAGE_DATE_VERSION) != 0) {
 
+    SCM rc_filename;
     char *sourcefile;
 
     sourcefile  = NULL;
