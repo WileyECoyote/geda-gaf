@@ -74,7 +74,7 @@ refdes=SW?
 T 200 1500 5 10 0 0 0 0 1
 numslots=0
 T 200 1300 5 10 0 0 0 0 1
-device=switch
+device=SWITCH
 T 200 1700 5 10 0 1 0 0 1
 description=switch, single pole, 4 position
 T 200 1100 9 10 0 0 0 0 1

@@ -1,6 +1,6 @@
 v 20031231 2
 T 100 2800 5 10 0 0 0 0 1
-device=switch
+device=SWITCH
 T 100 3200 5 10 0 0 0 0 1
 description=LORLIN-12pos-1com
 T 100 2400 8 10 1 1 0 0 1

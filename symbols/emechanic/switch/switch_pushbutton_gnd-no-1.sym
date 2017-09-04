@@ -2,7 +2,7 @@ v 20140330 2
 T 350 900 8 10 1 1 0 0 1
 refdes=SW?
 T 350 1100 8 10 0 0 0 0 1
-device=switch
+device=SWITCH
 T 350 1550 5 10 0 1 0 0 1
 description=Switch, Pushbutton, NO
 P 0 600 200 600 1 0 0

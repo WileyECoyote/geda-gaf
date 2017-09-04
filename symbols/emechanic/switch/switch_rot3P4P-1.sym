@@ -2,7 +2,7 @@ v 20130214 2
 T 150 1350 8 10 1 1 0 0 1
 refdes=SW?
 T 200 2000 5 10 0 0 0 0 1
-device=switch
+device=SWITCH
 T 200 3200 5 10 0 0 0 0 1
 description=Switch, Rotary, 3P4T, Electroswitch
 P 1200 400 1500 400 1 0 1
