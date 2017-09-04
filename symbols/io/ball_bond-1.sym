@@ -1,34 +1,36 @@
 v 20140915 2
 P 100 0 100 100 1 0 0
 {
-T 150 0 5 8 0 1 0 0 1
+T 150 0 5 8 0 1 0 8 1
 pinseq=1
-T 150 0 5 8 0 1 0 0 1
+T 150 0 5 8 1 1 0 0 1
 pinnumber=1
-T 100 0 9 8 0 1 0 4 1
+T 300 50 9 8 0 1 0 4 1
 pinlabel=b1
-T 100 0 5 8 0 1 0 0 1
+T 50 150 5 8 0 1 0 8 1
 pintype=pas
 }
 P 100 300 100 200 1 0 0
 {
 T 150 200 5 8 0 1 0 0 1
 pinseq=2
-T 150 200 5 8 0 1 0 0 1
+T 150 200 5 8 1 1 0 0 1
 pinnumber=2
-T 100 300 9 8 0 1 0 4 1
+T 300 250 9 8 0 1 0 4 1
 pinlabel=b2
-T 100 300 5 8 0 1 0 0 1
+T 50 200 5 8 0 1 0 8 1
 pintype=pas
 }
 L 100 100 100 200 4 15 1 0 -1 -1
+T 221 85 8 8 1 1 0 0 1
+refdes=WB?
+T 200 350 8 10 0 1 0 0 1
+device=none
+T 200 500 8 10 0 1 0 0 1
+description=Ball Bond
+T 200 350 8 10 0 1 0 0 1
+footprint=none
 T 150 0 9 8 1 1 0 0 1
 value=1
 T 150 200 9 8 1 1 0 0 1
 value=2
-T 35 435 8 10 0 0 0 0 1
-footprint=none
-T 221 85 8 8 1 1 0 0 1
-refdes=WB?
-T 35 585 8 10 0 0 0 0 1
-device=none

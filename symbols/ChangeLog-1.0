@@ -1,3 +1,9 @@
+2017-09-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * io/: Add description, update attribute alignments:
+
+            * io/ball_bond-1.sym
+
 2017-09-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * intel/8052-basic-1.sym: Rename file with dash before basic, update
