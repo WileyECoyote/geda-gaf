@@ -1,3 +1,9 @@
+2017-09-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * geda-gaf/gattrib/src/g_rc.c: Revise g_rc_gattrib_version to reduce
+      format specifiers in translatable strings and add sourcefile to the
+      output message.
+
 2017-09-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ca.po: Update Catalan translations.
