@@ -1,3 +1,10 @@
+2017-09-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * io/: Add description and documentation attribute, remove comment
+      attribute, update attribute alignments:
+
+            * io/out-1.sym
+
 2017-09-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * io/: Add description, update attribute alignments:
