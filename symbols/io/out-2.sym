@@ -1,6 +1,4 @@
 v 20150401 2
-T 450 125 8 10 1 1 0 1 1
-refdes=out-net
 P 0 100 100 100 1 0 0
 {
 T 50 150 5 6 0 1 0 6 1
@@ -15,14 +13,16 @@ pinlabel=OUTPUT
 L 400 100 100 200 3 10 2 0 -1 -1
 L 400 100 100 0 3 10 2 0 -1 -1
 L 100 200 100 0 3 10 2 0 -1 -1
+T 450 125 8 12 1 1 0 1 1
+refdes=out-net
 T 1200 200 5 10 0 1 0 0 1
-device=OUTPUT
+device=none
 T 100 1000 5 10 0 1 0 0 1
 description=signal that leaves a sub sheet
 T 100 800 5 10 0 0 0 0 1
-comment=The value of the refdes should correspond to a pin label in a subsheet symbol.
+documentation=inout.pdf
 T 100 600 5 10 0 0 0 0 1
-symversion=0.3
+symversion=0.4
 T 100 1600 5 10 0 0 0 0 1
 author=K-M. Knaak, kmk@lilalaser.de
 T 100 1400 5 10 0 0 0 0 1
