@@ -1,14 +1,4 @@
 v 20150315 2
-T 100 1600 5 10 0 0 0 0 1
-author=AutoTron
-T 100 800 5 10 0 0 0 0 1
-symversion=0.3
-T 1500 800 9 10 0 0 0 0 1
-numslots=0
-T 100 1400 5 10 0 0 0 0 1
-dist-license=GPLv2
-T 100 1200 5 10 0 0 0 0 1
-use-license=unlimited
 P 400 100 600 100 1 0 1
 {
 T 300 150 5 6 0 1 0 0 1
@@ -23,11 +13,23 @@ pinlabel=INPUT
 L 100 100 0 200 6 0 0 0 -1 -1
 L 100 100 0 0 6 0 0 0 -1 -1
 L 400 100 100 100 6 0 0 0 -1 -1
-T 100 600 5 10 0 0 0 0 1
-device=none
 T 100 250 8 10 1 1 0 0 1
 refdes=pinlabel
+T 100 600 5 10 0 0 0 0 1
+device=none
+T 800 250 5 10 0 1 0 0 1
+description=signal that enters a sub sheet
+T 100 1000 8 10 0 0 0 0 1
+documentation=inout.pdf
 T 800 400 9 10 0 1 0 0 1
 footprint=JUMPER-1
-T 100 1000 5 10 0 1 0 0 1
-comment=The value of the refdes should correspond to a pin label in a subsheet symbol.
+T 1500 800 9 10 0 0 0 0 1
+numslots=0
+T 100 1600 5 10 0 0 0 0 1
+author=AutoTron
+T 100 800 5 10 0 0 0 0 1
+symversion=0.3
+T 100 1400 5 10 0 0 0 0 1
+dist-license=GPLv2
+T 100 1200 5 10 0 0 0 0 1
+use-license=unlimited
