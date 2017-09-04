@@ -5,6 +5,10 @@
             * io/ball_bond-1.sym
             * io/ball_bond-2.sym
 
+    * io/: Add description and documentation attribute, remove comment
+      attribute update attribute alignments:
+
+            * io/in-1.sym
 
 2017-09-02 Wiley E. Hill <wileyhill@gmail.com>
 
