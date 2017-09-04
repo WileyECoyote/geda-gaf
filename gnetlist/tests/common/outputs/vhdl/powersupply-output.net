@@ -22,7 +22,7 @@ ARCHITECTURE netlist OF not found IS
     COMPONENT CONNECTOR
     END COMPONENT ;
 
-    COMPONENT SPST
+    COMPONENT SWITCH
     END COMPONENT ;
 
     COMPONENT POLARIZED_CAPACITOR
@@ -87,10 +87,10 @@ BEGIN
         1 => eight,
         2 => nine);
 
-    S1 : SPST
+    S1 : SWITCH
     PORT MAP (
-        2 => two,
-        1 => one);
+        1 => one,
+        2 => two);
 
     CONN1 : CONNECTOR
     PORT MAP (

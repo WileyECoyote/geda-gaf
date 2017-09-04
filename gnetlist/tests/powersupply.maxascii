@@ -7,7 +7,7 @@
 *COMP C2	"unknown"
 *COMP R2	"0402"
 *COMP C1	"unknown"
-*COMP S1	"unknown"
+*COMP S1	"none"
 *COMP CONN1	"3WIRES"
 *COMP T1	"none"
 *COMP F1	"fuseholder-5mm"

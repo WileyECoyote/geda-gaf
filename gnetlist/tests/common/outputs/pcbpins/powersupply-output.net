@@ -31,8 +31,8 @@ ChangePinName(C1, 2, -)
 ChangePinName(C1, 1, +)
 
 # Start of element S1
-ChangePinName(S1, 1, 1)
 ChangePinName(S1, 2, 2)
+ChangePinName(S1, 1, 1)
 
 # Start of element CONN1
 ChangePinName(CONN1, 3, 3)

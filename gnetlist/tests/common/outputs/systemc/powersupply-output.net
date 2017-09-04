@@ -15,7 +15,7 @@
 #include "POLARIZED_CAPACITOR.h"
 #include "RESISTOR.h"
 #include "POLARIZED_CAPACITOR.h"
-#include "SPST.h"
+#include "SWITCH.h"
 #include "CONNECTOR.h"
 #include "TRANSFORMER.h"
 #include "FUSE.h"
@@ -48,7 +48,7 @@ VARIABLE_RESISTOR R1;
 POLARIZED_CAPACITOR C2;
 RESISTOR R2;
 POLARIZED_CAPACITOR C1;
-SPST S1;
+SWITCH S1;
 CONNECTOR CONN1;
 TRANSFORMER T1;
 FUSE F1;
@@ -91,8 +91,8 @@ SC_CTOR(not found):
     C1.1(eight);
     C1.2(nine);
 
-    S1.2(two);
     S1.1(one);
+    S1.2(two);
 
     CONN1.1(one);
     CONN1.2(five);

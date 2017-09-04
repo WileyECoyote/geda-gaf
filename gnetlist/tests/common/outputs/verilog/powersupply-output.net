@@ -67,9 +67,9 @@ POLARIZED_CAPACITOR C1 (
     .\2  ( nine )
     );
 
-SPST S1 ( 
-    .\2  ( two ),
-    .\1  ( one )
+SWITCH S1 ( 
+    .\1  ( one ),
+    .\2  ( two )
     );
 
 CONNECTOR CONN1 ( 

@@ -9,7 +9,7 @@ CKT
 	error	8 7 	% C2
 	RES	2 1 R=220		% R2
 	error	8 7 	% C1
-	error	6 3 	% S1
+	error	3 6 	% S1
 	error	3 4 0 	% CONN1
 	error	4 5 10 9 	% T1
 	error	6 5 	% F1

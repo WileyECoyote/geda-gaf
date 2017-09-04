@@ -66,9 +66,9 @@ BEGIN
 	PORT MAP (	1 => eight,
 			2 => nine);
  
-  S1 : ENTITY SPST
-	PORT MAP (	2 => two,
-			1 => one);
+  S1 : ENTITY SWITCH
+	PORT MAP (	1 => one,
+			2 => two);
  
   CONN1 : ENTITY CONNECTOR
 	GENERIC MAP (
