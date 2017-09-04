@@ -3,7 +3,7 @@ C 40200 42900 0 0 0 title-A2.sym
 C 45400 53600 1 0 0 in-1.sym
 {
 T 45500 54200 5 10 0 0 0 0 1
-symversion=0.4
+symversion=0.5
 T 45500 53550 5 10 0 1 0 0 1
 footprint=none
 T 45300 53650 5 14 1 1 0 6 1
@@ -14,7 +14,7 @@ device=INPUT
 C 45400 51800 1 0 0 in-1.sym
 {
 T 45500 52400 5 10 0 0 0 0 1
-symversion=0.4
+symversion=0.5
 T 45500 51750 5 10 0 1 0 0 1
 footprint=none
 T 45300 51850 5 14 1 1 0 6 1
@@ -25,7 +25,7 @@ device=INPUT
 C 45400 50100 1 0 0 in-1.sym
 {
 T 45500 50700 5 10 0 0 0 0 1
-symversion=0.4
+symversion=0.5
 T 45500 50050 5 10 0 1 0 0 1
 footprint=none
 T 45300 50150 5 14 1 1 0 6 1
@@ -36,7 +36,7 @@ device=INPUT
 C 45400 48400 1 0 0 in-1.sym
 {
 T 45500 49000 5 10 0 0 0 0 1
-symversion=0.4
+symversion=0.5
 T 45500 48350 5 10 0 1 0 0 1
 footprint=none
 T 45300 48450 5 14 1 1 0 6 1
@@ -47,7 +47,7 @@ device=INPUT
 C 45400 56000 1 0 0 in-1.sym
 {
 T 45500 56600 5 10 0 0 0 0 1
-symversion=0.4
+symversion=0.5
 T 45550 55900 5 10 0 1 0 0 1
 footprint=none
 T 45300 56050 5 14 1 1 0 6 1

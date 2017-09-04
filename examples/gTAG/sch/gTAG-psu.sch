@@ -3,10 +3,10 @@ C 48300 42000 0 0 0 title-A2.sym
 C 54700 52400 1 0 0 in-1.sym
 {
 T 53500 52250 5 10 0 0 0 0 1
-symversion=0.4
+symversion=0.5
 T 54800 52300 5 10 0 1 0 0 1
 footprint=none
-T 54700 52450 5 10 1 1 0 6 1
+T 54700 52450 5 14 1 1 0 6 1
 refdes=usb_power
 T 54800 52800 5 10 0 1 0 0 1
 device=INPUT
@@ -14,10 +14,10 @@ device=INPUT
 C 54700 51400 1 0 0 in-1.sym
 {
 T 53500 51250 5 10 0 0 0 0 1
-symversion=0.4
+symversion=0.5
 T 54850 51350 5 10 0 1 0 0 1
 footprint=none
-T 54650 51450 5 10 1 1 0 6 1
+T 54650 51450 5 14 1 1 0 6 1
 refdes=jtag_power
 T 54800 51800 5 10 0 1 0 0 1
 device=INPUT
@@ -191,7 +191,7 @@ refdes=D1
 T 56000 52800 5 10 0 1 0 0 1
 footprint=DO-41
 T 56000 53000 5 10 0 0 0 0 1
-symversion=0.4
+symversion=0.5
 T 55900 52000 5 10 1 1 0 0 1
 value=1N5817
 }
@@ -204,7 +204,7 @@ refdes=D2
 T 56100 51800 5 10 0 1 0 0 1
 footprint=DO-41
 T 54600 51000 5 10 0 0 0 0 1
-symversion=0.4
+symversion=0.5
 T 55900 51000 5 10 1 1 0 0 1
 value=1N5817
 }

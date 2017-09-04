@@ -106,7 +106,7 @@ N 59000 39800 59000 40500 2
 C 45900 50400 1 0 0 in-1.sym
 {
 T 46500 50300 5 10 0 1 0 0 1
-symversion=0.4
+symversion=0.5
 T 46000 50300 5 10 0 1 0 0 1
 footprint=none
 T 45850 50450 5 14 1 1 0 6 1
@@ -117,7 +117,7 @@ device=INPUT
 C 45900 49600 1 0 0 in-1.sym
 {
 T 46500 49500 5 10 0 1 0 0 1
-symversion=0.4
+symversion=0.5
 T 46000 49550 5 10 0 1 0 0 1
 footprint=none
 T 45850 49650 5 14 1 1 0 6 1
@@ -426,7 +426,7 @@ device=INPUT
 T 64000 44650 5 10 0 1 0 6 1
 footprint=none
 T 63500 44650 5 10 0 1 0 6 1
-symversion=0.4
+symversion=0.5
 }
 C 63500 46300 1 0 0 out-1.sym
 {
@@ -676,7 +676,7 @@ netname=GTAG_MEM_SDA
 C 45900 52500 1 0 0 in-1.sym
 {
 T 46500 52400 5 10 0 1 0 0 1
-symversion=0.4
+symversion=0.5
 T 46050 52400 5 10 0 1 0 0 1
 footprint=none
 T 45850 52550 5 14 1 1 0 6 1

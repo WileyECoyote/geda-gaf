@@ -1,3 +1,11 @@
+2017-09-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gTAG/sch: Updated symbol version in-1.sym.
+
+        * gTAG/sch/gTAG-jtagio.sch
+        * gTAG/sch/gTAG-psu.sch
+        * gTAG/sch/gTAG-ucont.sch
+
 2017-03-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * gTAG/sch: Updated connectors and regenerated BOM and test outputs.
