@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-08-14 23:55-0500\n"
+"POT-Creation-Date: 2017-09-03 16:27-0500\n"
 "PO-Revision-Date: 2012-09-01 18:26+0000\n"
 "Last-Translator: Panos Bouklis <panos@echidna-band.com>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -42,12 +42,20 @@ msgstr ""
 msgid "Exported schematic to"
 msgstr ""
 
-#: gattrib/src/g_rc.c:51
-#, c-format
-msgid ""
-"You are running gEDA/gaf version [%s%s.%s],\n"
-"but you have a version [%s] gattribrc file.\n"
-"Please be sure that you have the latest rc file.\n"
+#: gattrib/src/g_rc.c:67
+msgid "This is gEDA/gattrib version"
+msgstr ""
+
+#: gattrib/src/g_rc.c:68
+msgid "but you have a version"
+msgstr ""
+
+#: gattrib/src/g_rc.c:69
+msgid "Please be sure that you have the latest rc file"
+msgstr ""
+
+#: gattrib/src/g_rc.c:76
+msgid "file"
 msgstr ""
 
 #: gattrib/src/i_basic.c:105

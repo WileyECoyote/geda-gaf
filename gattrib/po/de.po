@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-08-14 23:55-0500\n"
+"POT-Creation-Date: 2017-09-03 16:27-0500\n"
 "PO-Revision-Date: 2010-01-29 16:46+0000\n"
 "Last-Translator: Werner Hoch <werner.ho@gmx.de>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -46,12 +46,20 @@ msgstr "Konnte Datei nicht finden"
 msgid "Exported schematic to"
 msgstr "Ausgeführte Schemata zu"
 
-#: gattrib/src/g_rc.c:51
-#, c-format
-msgid ""
-"You are running gEDA/gaf version [%s%s.%s],\n"
-"but you have a version [%s] gattribrc file.\n"
-"Please be sure that you have the latest rc file.\n"
+#: gattrib/src/g_rc.c:67
+msgid "This is gEDA/gattrib version"
+msgstr ""
+
+#: gattrib/src/g_rc.c:68
+msgid "but you have a version"
+msgstr ""
+
+#: gattrib/src/g_rc.c:69
+msgid "Please be sure that you have the latest rc file"
+msgstr ""
+
+#: gattrib/src/g_rc.c:76
+msgid "file"
 msgstr ""
 
 # The operating system is out of memory or resources
