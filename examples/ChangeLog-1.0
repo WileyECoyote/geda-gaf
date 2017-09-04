@@ -6,6 +6,8 @@
         * gTAG/sch/gTAG-psu.sch
         * gTAG/sch/gTAG-ucont.sch
 
+    * lightning_detector/lightning_detector.sch: Updated symbol version in-1.sym.
+
 2017-03-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * gTAG/sch: Updated connectors and regenerated BOM and test outputs.
