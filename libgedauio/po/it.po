@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-08-19 19:36-0500\n"
+"POT-Creation-Date: 2017-09-03 16:27-0500\n"
 "PO-Revision-Date: 2012-01-31 12:12+0000\n"
 "Last-Translator: Peter TB Brett <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -306,74 +306,74 @@ msgstr ""
 msgid "view as List"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:628
+#: libgedauio/src/widgets/geda_entry.c:639
 msgid "Activates default"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:629
+#: libgedauio/src/widgets/geda_entry.c:640
 msgid "Whether to activate the default widget when Enter is pressed"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:636
+#: libgedauio/src/widgets/geda_entry.c:647
 #: libgedauio/src/widgets/geda_label.c:1398
 msgid "Attributes"
 msgstr "Attributi"
 
-#: libgedauio/src/widgets/geda_entry.c:637
+#: libgedauio/src/widgets/geda_entry.c:648
 msgid "A list of style attributes to apply to the text"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:644
+#: libgedauio/src/widgets/geda_entry.c:655
 msgid "Auto-Completion"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:645
+#: libgedauio/src/widgets/geda_entry.c:656
 msgid "Enable Auto-completion, if installed"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:652
+#: libgedauio/src/widgets/geda_entry.c:663
 msgid "FALSE Auto-Completion in NOT case sensitive"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:653
+#: libgedauio/src/widgets/geda_entry.c:664
 msgid "if Auto-completion is enabled, set case compare function"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:660
+#: libgedauio/src/widgets/geda_entry.c:671
 msgid "Set case of input"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:661
+#: libgedauio/src/widgets/geda_entry.c:672
 msgid "0 = lower, 1 lower, 2 don't change the case"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:670
+#: libgedauio/src/widgets/geda_entry.c:681
 msgid "Set maxium history"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:671
+#: libgedauio/src/widgets/geda_entry.c:682
 msgid "maximum length of history"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:680
+#: libgedauio/src/widgets/geda_entry.c:691
 msgid "Set valid input type"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:681
+#: libgedauio/src/widgets/geda_entry.c:692
 msgid "0 = All, 1 Alphnumeric, 3 Numeric, 4 Number, 5 Integer, 6 Real"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:1317
+#: libgedauio/src/widgets/geda_entry.c:1328
 #, fuzzy
 msgid "Auto Complete"
 msgstr "/Aggiungi Componente..."
 
-#: libgedauio/src/widgets/geda_entry.c:1325
+#: libgedauio/src/widgets/geda_entry.c:1336
 #, fuzzy
 msgid "On"
 msgstr "Apri"
 
-#: libgedauio/src/widgets/geda_entry.c:1330
+#: libgedauio/src/widgets/geda_entry.c:1341
 msgid "Off"
 msgstr ""
 
