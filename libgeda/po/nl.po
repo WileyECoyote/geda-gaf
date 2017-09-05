@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-08-19 19:36-0500\n"
+"POT-Creation-Date: 2017-09-03 22:38-0500\n"
 "PO-Revision-Date: 2014-08-31 23:03+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -49,9 +49,10 @@ msgstr "gEDA Schema Symbool"
 msgid "Failed to get file statistics"
 msgstr "Kan bestand statistieken te verkrijgen"
 
+# Error: Invalid page object
 #: libgeda/src/file/f_file.c:177
 msgid "Error: Invalid page object"
-msgstr ""
+msgstr "Fout: ongeldig paginaobject"
 
 #: libgeda/src/file/f_file.c:217
 msgid "ERROR: Could not change current directory to"
@@ -97,19 +98,23 @@ msgid ""
 "Run the application to correct this situation or manually delete the backup "
 "file."
 msgstr ""
+"Voer de toepassing uit om deze situatie te corrigeren of het back-upbestand "
+"handmatig te verwijderen"
 
 #: libgeda/src/file/f_file.c:285
 msgid "Memory allocation error!"
-msgstr ""
+msgstr "Geheugen allocatie fout!"
 
+# Loading backup file
 #: libgeda/src/file/f_file.c:312
 msgid "Loading backup file"
-msgstr ""
+msgstr "Back-upbestand laden"
 
 #: libgeda/src/file/f_file.c:356
 msgid "ERROR: Could not restore current directory to"
 msgstr "FOUT: Kan huidige map niet herstellen"
 
+# Cannot get the real filename of
 #: libgeda/src/file/f_file.c:400 libgeda/src/file/f_file.c:457
 #: libgeda/src/object/o_save.c:71
 msgid "Cannot get the real filename of"
@@ -129,9 +134,10 @@ msgstr "Bestand [%s] is alleen-lezen"
 msgid "Could not set previous backup file"
 msgstr "Kon niet ingesteld vorige back-upbestand"
 
+# read-write
 #: libgeda/src/file/f_file.c:526
 msgid "read-write"
-msgstr ""
+msgstr "lezen schrijven"
 
 #: libgeda/src/file/f_file.c:537
 msgid "Cannot create backup file"
@@ -495,7 +501,7 @@ msgstr "Ongedefinieerde configuratie bestandsnaam"
 msgid "Error loading configuration, file name is undefined\n"
 msgstr "Fout bij laden van configuratie; bestandsnaam is ongedefinieerd\n"
 
-#: libgeda/src/geda/geda_config.c:1004 libgeda/src/guile/g_rc_parse.c:289
+#: libgeda/src/geda/geda_config.c:1004 libgeda/src/guile/g_rc_parse.c:284
 msgid "accessing file"
 msgstr ""
 
@@ -956,44 +962,44 @@ msgstr "always-promote-attribute: lijst element is geen string"
 msgid "invalid path"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:117
+#: libgeda/src/guile/g_rc_parse.c:114
 msgid "invalid value"
 msgstr ""
 
 # We hebben deze al ingelezen.
-#: libgeda/src/guile/g_rc_parse.c:167
+#: libgeda/src/guile/g_rc_parse.c:163
 msgid "RC file already loaded"
 msgstr "RC bestand is reeds geladen"
 
 # Failed to load configuration from
-#: libgeda/src/guile/g_rc_parse.c:238
+#: libgeda/src/guile/g_rc_parse.c:233
 msgid "Failed to load configuration from"
 msgstr "Mislukt om de configuratie uit te laden"
 
 # RC file loaded
-#: libgeda/src/guile/g_rc_parse.c:274
+#: libgeda/src/guile/g_rc_parse.c:269
 msgid "Loaded RC file"
 msgstr "RC bestand geladen"
 
 # Error encounted processing RC file
-#: libgeda/src/guile/g_rc_parse.c:278
+#: libgeda/src/guile/g_rc_parse.c:273
 msgid "Error encounted processing RC file"
 msgstr "Fout encounted verwerking RC bestand"
 
-#: libgeda/src/guile/g_rc_parse.c:295
+#: libgeda/src/guile/g_rc_parse.c:290
 msgid "Error accessing configuration"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:435
+#: libgeda/src/guile/g_rc_parse.c:426
 msgid "ERROR"
 msgstr "FOUT"
 
-#: libgeda/src/guile/g_rc_parse.c:441
+#: libgeda/src/guile/g_rc_parse.c:432
 msgid "An unknown error occurred while parsing configuration files."
 msgstr ""
 "Een onbekende fout trad op tijdens het doorlopen van configuratie bestanden."
 
-#: libgeda/src/guile/g_rc_parse.c:460
+#: libgeda/src/guile/g_rc_parse.c:451
 msgid "The log may contain more information."
 msgstr "FOUT: De log kan meer informatie bevatten."
 
@@ -1088,26 +1094,26 @@ msgstr "Ongeldige kleur gevonden"
 msgid "Setting color to default color\n"
 msgstr "Stel de kleur in op standaard kleur\n"
 
-#: libgeda/src/object/o_attrib.c:167
+#: libgeda/src/object/o_attrib.c:162
 #, c-format
 msgid "Attribute [%s] already attached\n"
 msgstr "Attribuut [%s] is al bevestigd\n"
 
-#: libgeda/src/object/o_attrib.c:172
+#: libgeda/src/object/o_attrib.c:167
 #, c-format
 msgid "Attempt to attach non text object as an attribute!\n"
 msgstr "Probeerde een niet text item toe te voegen als een attribuut!\n"
 
-#: libgeda/src/object/o_attrib.c:177
+#: libgeda/src/object/o_attrib.c:172
 #, c-format
 msgid "Attempt to attach attribute [%s] to more than one object\n"
 msgstr "Probeerde attribuut [%s] aan meer dan een object toe te voegen\n"
 
-#: libgeda/src/object/o_attrib.c:732
+#: libgeda/src/object/o_attrib.c:718
 msgid "tried to attach a non-text object as an attribute"
 msgstr "Probeerde een niet tekst item toe te voegen als een attribuut"
 
-#: libgeda/src/object/o_attrib.c:741
+#: libgeda/src/object/o_attrib.c:727
 msgid "unexpected end-of-file in attribute list"
 msgstr "Onverwacht einde-bestand in attribuutlijst"
 
@@ -1270,9 +1276,8 @@ msgid "Setting mirror to 0\n"
 msgstr "Spiegelen op 0 ingesteld\n"
 
 #: libgeda/src/object/o_complex_object.c:1179
-#, fuzzy
 msgid "Invalid complex object"
-msgstr "Faalde bij het ontleden van een complex object"
+msgstr "Ongeldig complex object"
 
 #: libgeda/src/object/o_embed.c:51
 #, c-format
