@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-08-19 19:36-0500\n"
+"POT-Creation-Date: 2017-09-03 16:27-0500\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -76,7 +76,7 @@ msgstr "Прочетете схема инициализация файл"
 msgid "Failed to read scheme initialization file"
 msgstr "Не може да се чете схема инициализация файл"
 
-# not fuzzy
+# version
 #: gschem/src/base/gschem.c:381
 msgid "version"
 msgstr "версията"
@@ -2703,7 +2703,7 @@ msgstr ""
 msgid "Refusing to remove path"
 msgstr ""
 
-# not fuzzy
+# Version
 #: gschem/src/x/x_guile.c:464
 msgid "Version"
 msgstr "версия"
