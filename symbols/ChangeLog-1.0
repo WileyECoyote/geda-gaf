@@ -1,3 +1,7 @@
+2017-09-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * intel/8052-1.sym: Add symbol for 8052 without basic.
+
 2017-09-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * io/: Add description and documentation attribute, remove comment
