@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-08-19 19:36-0500\n"
+"POT-Creation-Date: 2017-09-03 22:38-0500\n"
 "PO-Revision-Date: 2012-02-20 00:09+0000\n"
 "Last-Translator: Carlos Nieves <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -48,9 +48,10 @@ msgstr "Símbolo de esquema gEDA"
 msgid "Failed to get file statistics"
 msgstr "No se pudo obtener estadísticas de archivos"
 
+# Error: Invalid page object
 #: libgeda/src/file/f_file.c:177
 msgid "Error: Invalid page object"
-msgstr ""
+msgstr "Error: Objeto de página no válido"
 
 # ERROR: Could not change current directory to
 #: libgeda/src/file/f_file.c:217
@@ -98,18 +99,22 @@ msgid ""
 "Run the application to correct this situation or manually delete the backup "
 "file."
 msgstr ""
+"Ejecute la aplicación para corregir esta situación o elimine manualmente el "
+"archivo de copia de seguridad"
 
 #: libgeda/src/file/f_file.c:285
 msgid "Memory allocation error!"
-msgstr ""
+msgstr "Error de asignación de memoria!"
 
+# Loading backup file
 #: libgeda/src/file/f_file.c:312
 msgid "Loading backup file"
-msgstr ""
+msgstr "Cargando el archivo de copia de seguridad"
 
+# ERROR: Could not restore current directory to
 #: libgeda/src/file/f_file.c:356
 msgid "ERROR: Could not restore current directory to"
-msgstr ""
+msgstr "ERROR: No se pudo restaurar el directorio actual para"
 
 #: libgeda/src/file/f_file.c:400 libgeda/src/file/f_file.c:457
 #: libgeda/src/object/o_save.c:71
@@ -503,7 +508,7 @@ msgstr ""
 msgid "Error loading configuration, file name is undefined\n"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1004 libgeda/src/guile/g_rc_parse.c:289
+#: libgeda/src/geda/geda_config.c:1004 libgeda/src/guile/g_rc_parse.c:284
 msgid "accessing file"
 msgstr ""
 
@@ -961,41 +966,41 @@ msgstr ""
 msgid "invalid path"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:117
+#: libgeda/src/guile/g_rc_parse.c:114
 msgid "invalid value"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:167
+#: libgeda/src/guile/g_rc_parse.c:163
 msgid "RC file already loaded"
 msgstr "Fichero de Configuración ya está cargado"
 
-#: libgeda/src/guile/g_rc_parse.c:238
+#: libgeda/src/guile/g_rc_parse.c:233
 msgid "Failed to load configuration from"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:274
+#: libgeda/src/guile/g_rc_parse.c:269
 msgid "Loaded RC file"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:278
+#: libgeda/src/guile/g_rc_parse.c:273
 msgid "Error encounted processing RC file"
 msgstr "No se puede encontrar el archivo"
 
-#: libgeda/src/guile/g_rc_parse.c:295
+#: libgeda/src/guile/g_rc_parse.c:290
 msgid "Error accessing configuration"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:435
+#: libgeda/src/guile/g_rc_parse.c:426
 msgid "ERROR"
 msgstr "ERROR"
 
-#: libgeda/src/guile/g_rc_parse.c:441
+#: libgeda/src/guile/g_rc_parse.c:432
 msgid "An unknown error occurred while parsing configuration files."
 msgstr ""
 "Un error desconocido ocurrió mientras se procesaban los ficheros de "
 "configuración."
 
-#: libgeda/src/guile/g_rc_parse.c:460
+#: libgeda/src/guile/g_rc_parse.c:451
 msgid "The log may contain more information."
 msgstr "El log puede contener más información."
 
@@ -1091,26 +1096,26 @@ msgstr "Se ha encontrado un color no válido"
 msgid "Setting color to default color\n"
 msgstr "Asignando el color por defecto al color\n"
 
-#: libgeda/src/object/o_attrib.c:167
+#: libgeda/src/object/o_attrib.c:162
 #, c-format
 msgid "Attribute [%s] already attached\n"
 msgstr ""
 
-#: libgeda/src/object/o_attrib.c:172
+#: libgeda/src/object/o_attrib.c:167
 #, c-format
 msgid "Attempt to attach non text object as an attribute!\n"
 msgstr "¡Se ha intentado añadir un objeto que no es texto como un attributo!\n"
 
-#: libgeda/src/object/o_attrib.c:177
+#: libgeda/src/object/o_attrib.c:172
 #, c-format
 msgid "Attempt to attach attribute [%s] to more than one object\n"
 msgstr "Se ha intentado añadir el attributo [%s] a más de un objeto\n"
 
-#: libgeda/src/object/o_attrib.c:732
+#: libgeda/src/object/o_attrib.c:718
 msgid "tried to attach a non-text object as an attribute"
 msgstr "Se trató de ajuntar un item de texto inválido como atributo."
 
-#: libgeda/src/object/o_attrib.c:741
+#: libgeda/src/object/o_attrib.c:727
 msgid "unexpected end-of-file in attribute list"
 msgstr "Fin de Fichero inesperado en lista de atributos."
 
@@ -1276,9 +1281,8 @@ msgid "Setting mirror to 0\n"
 msgstr "Estableciendo espejo en 0\n"
 
 #: libgeda/src/object/o_complex_object.c:1179
-#, fuzzy
 msgid "Invalid complex object"
-msgstr "Falló el procesamiento de objeto complejo"
+msgstr "Objeto complejo no válido"
 
 #: libgeda/src/object/o_embed.c:51
 #, c-format
