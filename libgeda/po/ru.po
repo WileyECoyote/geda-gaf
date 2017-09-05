@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-08-19 19:36-0500\n"
+"POT-Creation-Date: 2017-09-03 22:38-0500\n"
 "PO-Revision-Date: 2014-06-06 16:40+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -64,9 +64,10 @@ msgstr "Символ схемы gEDA"
 msgid "Failed to get file statistics"
 msgstr "Не удалось получить статистику файла"
 
+# Error: Invalid page object
 #: libgeda/src/file/f_file.c:177
 msgid "Error: Invalid page object"
-msgstr ""
+msgstr "Ошибка: недопустимый объект страницы"
 
 # ERROR: Could not change current directory to
 #: libgeda/src/file/f_file.c:217
@@ -112,14 +113,18 @@ msgid ""
 "Run the application to correct this situation or manually delete the backup "
 "file."
 msgstr ""
+"Ejecute la aplicación para corregir esta situación o elimine manualmente el "
+"archivo de copia de seguridad"
 
+# Memory allocation error
 #: libgeda/src/file/f_file.c:285
 msgid "Memory allocation error!"
-msgstr ""
+msgstr "Ошибка распределения памяти!"
 
+# Loading backup file
 #: libgeda/src/file/f_file.c:312
 msgid "Loading backup file"
-msgstr ""
+msgstr "Загрузка файла резервной копии"
 
 # ERROR: Could not restore current directory to
 #: libgeda/src/file/f_file.c:356
@@ -145,11 +150,12 @@ msgstr "Файл [%s] только для чтения"
 # Could not set previous backup file
 #: libgeda/src/file/f_file.c:525
 msgid "Could not set previous backup file"
-msgstr ""
+msgstr "Не удалось установить предыдущий файл резервной копии"
 
+# read-write
 #: libgeda/src/file/f_file.c:526
 msgid "read-write"
-msgstr ""
+msgstr "читай пиши"
 
 #: libgeda/src/file/f_file.c:537
 msgid "Cannot create backup file"
@@ -512,7 +518,7 @@ msgstr "Не определено имя файла настроек"
 msgid "Error loading configuration, file name is undefined\n"
 msgstr "Ошибка при загрузке конфигурации; имя файла не определено\n"
 
-#: libgeda/src/geda/geda_config.c:1004 libgeda/src/guile/g_rc_parse.c:289
+#: libgeda/src/geda/geda_config.c:1004 libgeda/src/guile/g_rc_parse.c:284
 msgid "accessing file"
 msgstr ""
 
@@ -971,43 +977,43 @@ msgstr "always-promote-attribute: элемент списка не являет�
 msgid "invalid path"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:117
+#: libgeda/src/guile/g_rc_parse.c:114
 msgid "invalid value"
 msgstr ""
 
 # The settings file is already loaded
-#: libgeda/src/guile/g_rc_parse.c:167
+#: libgeda/src/guile/g_rc_parse.c:163
 msgid "RC file already loaded"
 msgstr "Файл настроек уже загружен"
 
 # # Failed to load settings
-#: libgeda/src/guile/g_rc_parse.c:238
+#: libgeda/src/guile/g_rc_parse.c:233
 msgid "Failed to load configuration from"
 msgstr "Не удалось загрузить настройки из файла"
 
 # Loaded settings file
-#: libgeda/src/guile/g_rc_parse.c:274
+#: libgeda/src/guile/g_rc_parse.c:269
 msgid "Loaded RC file"
 msgstr "Загружен файл настроек"
 
-#: libgeda/src/guile/g_rc_parse.c:278
+#: libgeda/src/guile/g_rc_parse.c:273
 msgid "Error encounted processing RC file"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:295
+#: libgeda/src/guile/g_rc_parse.c:290
 msgid "Error accessing configuration"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:435
+#: libgeda/src/guile/g_rc_parse.c:426
 msgid "ERROR"
 msgstr "ОШИБКА"
 
 # An unknown error in the analysis of configuration files
-#: libgeda/src/guile/g_rc_parse.c:441
+#: libgeda/src/guile/g_rc_parse.c:432
 msgid "An unknown error occurred while parsing configuration files."
 msgstr "неизвестная ошибка при анализе файлов настроек."
 
-#: libgeda/src/guile/g_rc_parse.c:460
+#: libgeda/src/guile/g_rc_parse.c:451
 msgid "The log may contain more information."
 msgstr "в файле журнала может быть больше информации."
 
@@ -1108,26 +1114,26 @@ msgstr "Недопустимое значение цветового индек�
 msgid "Setting color to default color\n"
 msgstr "Установка цвета по умолчанию\n"
 
-#: libgeda/src/object/o_attrib.c:167
+#: libgeda/src/object/o_attrib.c:162
 #, c-format
 msgid "Attribute [%s] already attached\n"
 msgstr "Атрибут «%s» уже прикреплён\n"
 
-#: libgeda/src/object/o_attrib.c:172
+#: libgeda/src/object/o_attrib.c:167
 #, c-format
 msgid "Attempt to attach non text object as an attribute!\n"
 msgstr "Попытка прикрепить не текстовый элемент как атрибут!\n"
 
-#: libgeda/src/object/o_attrib.c:177
+#: libgeda/src/object/o_attrib.c:172
 #, c-format
 msgid "Attempt to attach attribute [%s] to more than one object\n"
 msgstr "Попытка прикрепить атрибут «%s» к более чем одному объекту\n"
 
-#: libgeda/src/object/o_attrib.c:732
+#: libgeda/src/object/o_attrib.c:718
 msgid "tried to attach a non-text object as an attribute"
 msgstr "Попытка прикрепить не текстовый элемент как атрибут!"
 
-#: libgeda/src/object/o_attrib.c:741
+#: libgeda/src/object/o_attrib.c:727
 msgid "unexpected end-of-file in attribute list"
 msgstr "Неожиданный конец файла при обработке списка атрибутов"
 
@@ -1291,9 +1297,8 @@ msgid "Setting mirror to 0\n"
 msgstr "Установка «mirror» в 0\n"
 
 #: libgeda/src/object/o_complex_object.c:1179
-#, fuzzy
 msgid "Invalid complex object"
-msgstr "Ошибка в определении составного объекта"
+msgstr "Недопустимый сложный объект"
 
 #: libgeda/src/object/o_embed.c:51
 #, c-format
