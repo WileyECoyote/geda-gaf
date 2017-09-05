@@ -115,7 +115,6 @@ o_grips_draw_rubber (GschemToplevel *w_current)
  *  #MAX_GRIP_SIZE is returned.
  *
  * \param [in] w_current  The GschemToplevel object.
- * \param [in] object     Object associated with operation.
  *
  * \return Half grip size in screen units.
  */
