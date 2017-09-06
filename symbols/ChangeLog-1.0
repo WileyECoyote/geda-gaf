@@ -1,3 +1,9 @@
+2017-09-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * io/: Add refdes attribute, remove stray pinlabel:
+
+            * io/output-1.sym
+
 2017-09-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * intel/8052-1.sym: Add symbol for 8052 without basic.
