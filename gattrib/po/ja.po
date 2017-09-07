@@ -18,28 +18,37 @@ msgstr ""
 "X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
 "X-Generator: Launchpad (build 16265)\n"
 
+# gEDA Attribute Editor
 #: gattrib/data/geda-gattrib.desktop.in:3
 msgid "gEDA Attribute Editor"
-msgstr ""
+msgstr "gEDAアトリビュートエディタ"
 
+# Manipulate component attributes with gattrib
 #: gattrib/data/geda-gattrib.desktop.in:4
 msgid "Manipulate component attributes with gattrib"
-msgstr ""
+msgstr "gattribを使用してコンポーネントの属性を操作する"
 
+# Could not open
 #: gattrib/src/f_export.c:81
 msgid "Could not open"
-msgstr ""
+msgstr "開くことができませんでした"
 
+# Failed to save user configuration to
 #: gattrib/src/gattrib.c:180
 msgid "Failed to save user configuration to"
-msgstr ""
+msgstr "ユーザー設定を保存できませんでした"
 
+# Could not find file
 #: gattrib/src/gattrib.c:396
 msgid "Could not find file"
-msgstr ""
+msgstr "ファイルが見つかりませんでした"
 
 #: gattrib/src/gattrib.c:443
 msgid "Exported schematic to"
+msgstr "回路図のエクスポート先"
+
+#: gattrib/src/g_rc.c:67
+msgid "This is gEDA/gattrib version"
 msgstr ""
 
 #: gattrib/src/g_rc.c:68
@@ -54,17 +63,20 @@ msgstr ""
 msgid "file"
 msgstr ""
 
+# The operating system is out of memory or resources
 #: gattrib/src/i_basic.c:105
 msgid "The operating system is out of memory or resources."
-msgstr ""
+msgstr "The operating system is out of memory or resources"
 
+# failed to open
 #: gattrib/src/i_basic.c:156
 msgid "failed to open"
-msgstr ""
+msgstr "開けませんでした"
 
+# Check path
 #: gattrib/src/i_basic.c:210
 msgid "Check path"
-msgstr ""
+msgstr "パスを確認する"
 
 #: gattrib/src/parsecmd.c:62
 #, c-format
@@ -775,3 +787,12 @@ msgstr ""
 #: gattrib/src/x_window.c:213
 msgid "Retrieving main Window geometry and settings.\n"
 msgstr ""
+
+#~ msgid ""
+#~ "You are running gEDA/gaf version [%s%s.%s],\n"
+#~ "but you have a version [%s] gattribrc file.\n"
+#~ "Please be sure that you have the latest rc file.\n"
+#~ msgstr ""
+#~ "あなたは gEDA/gaf 版を実行しています [%s%s.%s],\n"
+#~ "あなたはバージョンを持っています [%s] gattribrcファイル.\n"
+#~ "最新のrcファイルがあることを確認してください.\n"
