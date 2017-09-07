@@ -60,9 +60,6 @@ msgstr ""
 #: gattrib/src/g_rc.c:76
 msgid "file"
 msgstr ""
-"executatz la version GEDA/gaf [%s%s.%s],\n"
-"mas avètz una version [%s] gattribrc file.\n"
-"Asseguratz-vos qu'ajatz lo darrièr fichièr rc.\n"
 
 # The operating system is out of memory or resources
 #: gattrib/src/i_basic.c:105
@@ -99,6 +96,22 @@ msgid ""
 "     The cell text colors indicate the visibility of the attribute.\n"
 "     "
 msgstr ""
+"\n"
+"Gattrib: l'editor de atributs del projècte GEDA.\n"
+"Presenta atributs esquemàtics en format de fuèlha de calcul facil d'editar.\n"
+"\n"
+"Usatge: %s [d'OPCIONS] nom de l'archiu 1 ... nom de l'archiu N\n"
+"\n"
+"\t-e, --export-csv exportar fichièr a valors separadas per comes\n"
+"\t-h, --help       Aquel menu d'ajuda\n"
+"\t-q, --quiet      Activa la faiçon tranquilla\n"
+"\t-v, --verbose    Activa la faiçon detalhada \n"
+"\t-V, --version    Mòstra l'informacion de la version.\n"
+"\n"
+"  FAQ:\n"
+"  *  Qué significan las colors del tèxt cel·lular?\n"
+"     Las colors del tèxt de cel·la indican la visibilitat de la atribut.\n"
+"     "
 
 #: gattrib/src/parsecmd.c:101
 #, c-format
@@ -804,3 +817,12 @@ msgstr ""
 #: gattrib/src/x_window.c:213
 msgid "Retrieving main Window geometry and settings.\n"
 msgstr ""
+
+#~ msgid ""
+#~ "You are running gEDA/gaf version [%s%s.%s],\n"
+#~ "but you have a version [%s] gattribrc file.\n"
+#~ "Please be sure that you have the latest rc file.\n"
+#~ msgstr ""
+#~ "executatz la version GEDA/gaf [%s%s.%s],\n"
+#~ "mas avètz una version [%s] gattribrc file.\n"
+#~ "Asseguratz-vos qu'ajatz lo darrièr fichièr rc.\n"
