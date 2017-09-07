@@ -59,9 +59,6 @@ msgstr ""
 #: gattrib/src/g_rc.c:76
 msgid "file"
 msgstr ""
-"gEDA/gaf sagteware weergawe [%s%s.%s],\n"
-"maar jy het 'n weergawe [%s] gattribrc lêer.\n"
-"Maak seker dat jy die nuutste RC lêer.\n"
 
 #: gattrib/src/i_basic.c:105
 msgid "The operating system is out of memory or resources."
@@ -808,3 +805,12 @@ msgstr ""
 #: gattrib/src/x_window.c:213
 msgid "Retrieving main Window geometry and settings.\n"
 msgstr ""
+
+#~ msgid ""
+#~ "You are running gEDA/gaf version [%s%s.%s],\n"
+#~ "but you have a version [%s] gattribrc file.\n"
+#~ "Please be sure that you have the latest rc file.\n"
+#~ msgstr ""
+#~ "gEDA/gaf sagteware weergawe [%s%s.%s],\n"
+#~ "maar jy het 'n weergawe [%s] gattribrc lêer.\n"
+#~ "Maak seker dat jy die nuutste RC lêer.\n"
