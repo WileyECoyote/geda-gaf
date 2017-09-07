@@ -10,6 +10,8 @@
 
     * po/ja.po: Update Japanese translations
 
+    * po/nl.po: Update Dutch translations.
+
 2017-09-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-gaf/gattrib/src/g_rc.c: Revise g_rc_gattrib_version to reduce

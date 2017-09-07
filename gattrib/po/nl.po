@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-08-14 23:55-0500\n"
+"POT-Creation-Date: 2017-09-03 16:27-0500\n"
 "PO-Revision-Date: 2014-08-31 20:31+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -46,16 +46,22 @@ msgstr "Kan bestand niet vinden"
 msgid "Exported schematic to"
 msgstr ""
 
-#: gattrib/src/g_rc.c:51
-#, c-format
-msgid ""
-"You are running gEDA/gaf version [%s%s.%s],\n"
-"but you have a version [%s] gattribrc file.\n"
-"Please be sure that you have the latest rc file.\n"
+#: gattrib/src/g_rc.c:67
+msgid "This is gEDA/gattrib version"
 msgstr ""
-"U gebruikt gEDA/gaf versie [%s%s.%s],\n"
-"maar U heeft een versie [%s] gattribrc bestand.\n"
-"Wilt U gaarne het laatste rc bestand gebruiken.\n"
+
+#: gattrib/src/g_rc.c:68
+msgid "but you have a version"
+msgstr ""
+
+#: gattrib/src/g_rc.c:69
+msgid "Please be sure that you have the latest rc file"
+msgstr ""
+
+#: gattrib/src/g_rc.c:76
+#, fuzzy
+msgid "file"
+msgstr "Bestand openen"
 
 #: gattrib/src/i_basic.c:105
 msgid "The operating system is out of memory or resources."
@@ -825,3 +831,12 @@ msgstr ""
 #: gattrib/src/x_window.c:213
 msgid "Retrieving main Window geometry and settings.\n"
 msgstr ""
+
+#~ msgid ""
+#~ "You are running gEDA/gaf version [%s%s.%s],\n"
+#~ "but you have a version [%s] gattribrc file.\n"
+#~ "Please be sure that you have the latest rc file.\n"
+#~ msgstr ""
+#~ "U gebruikt gEDA/gaf versie [%s%s.%s],\n"
+#~ "maar U heeft een versie [%s] gattribrc bestand.\n"
+#~ "Wilt U gaarne het laatste rc bestand gebruiken.\n"
