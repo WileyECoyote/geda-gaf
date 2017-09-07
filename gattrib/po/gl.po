@@ -61,9 +61,6 @@ msgstr ""
 #: gattrib/src/g_rc.c:76
 msgid "file"
 msgstr ""
-"Está executando a versión GEDA/gaf [%s%s.%s],\n"
-"but you have a version [%s] fichier gattribrc.\n"
-"Asegúrese de ter o último ficheiro rc.\n"
 
 # The operating system is out of memory or resources
 #: gattrib/src/i_basic.c:105
@@ -810,3 +807,12 @@ msgstr "Gardando xeometría e axustes da xanela principal.\n"
 #: gattrib/src/x_window.c:213
 msgid "Retrieving main Window geometry and settings.\n"
 msgstr "Restaurar a xeometría e configuración orixinais.\n"
+
+#~ msgid ""
+#~ "You are running gEDA/gaf version [%s%s.%s],\n"
+#~ "but you have a version [%s] gattribrc file.\n"
+#~ "Please be sure that you have the latest rc file.\n"
+#~ msgstr ""
+#~ "Está executando a versión GEDA/gaf [%s%s.%s],\n"
+#~ "but you have a version [%s] fichier gattribrc.\n"
+#~ "Asegúrese de ter o último ficheiro rc.\n"
