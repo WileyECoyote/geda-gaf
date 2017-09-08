@@ -1,3 +1,9 @@
+2017-09-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * io/: Add description, update attribute alignments:
+
+            * io/interpage_bidir-1.sym
+
 2017-09-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * io/: Add refdes attribute, remove stray pinlabel:
