@@ -91,8 +91,7 @@ void g_register_rc_handlers (void)
  * Ensures that the default gEDA Scheme directory is added to the
  * Guile load path.
  */
-void
-g_register_libgeda_dirs (void)
+void g_register_libgeda_dirs (void)
 {
   char *scheme_dir;
 
