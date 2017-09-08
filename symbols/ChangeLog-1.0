@@ -4,6 +4,7 @@
 
             * io/interpage_bidir-1.sym
             * io/interpage_from-1.sym
+            * io/interpage_to-1.sym
 
 2017-09-06 Wiley E. Hill <wileyhill@gmail.com>
 
