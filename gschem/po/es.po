@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gschem VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-08-19 19:36-0500\n"
+"POT-Creation-Date: 2017-09-03 16:27-0500\n"
 "PO-Revision-Date: 2012-03-23 03:04+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitoschido@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -91,7 +91,7 @@ msgstr "Terminación normal\n"
 
 #: gschem/src/base/gschem.c:514
 msgid "FAILED:"
-msgstr ""
+msgstr "HA FALLADO:"
 
 #: gschem/src/base/gschem_dialog.c:567
 msgid "Parent Window"
@@ -132,11 +132,11 @@ msgstr "Evaluar"
 
 #: gschem/src/base/gschem_main_window.c:229
 msgid "Retrieving main window position.\n"
-msgstr ""
+msgstr "Recupero della posizione della finestra principale.\n"
 
 #: gschem/src/base/gschem_main_window.c:276
 msgid "Retrieving main window geometry.\n"
-msgstr ""
+msgstr "Recuperación de la geometría de la ventana principal.\n"
 
 #: gschem/src/base/gschem_page_view.c:250
 #: gschem/src/base/gschem_page_view.c:251
@@ -261,7 +261,7 @@ msgstr "Verifique el registro para más información"
 
 #: gschem/src/base/gschem_parsecmd.c:304
 msgid "Run"
-msgstr ""
+msgstr "Ejecute"
 
 #: gschem/src/base/gschem_preview.c:298
 msgid "Preview Buffer"
@@ -4568,9 +4568,8 @@ msgid "_Detach"
 msgstr "No a_djuntar"
 
 #: gschem/etc/system-gschemrc.scm:2292
-#, fuzzy
 msgid "Detach selected attributes from a symbol"
-msgstr "Desvincular propiedad"
+msgstr "Desvincular atributos seleccionados de un símbolo"
 
 #: gschem/etc/system-gschemrc.scm:2293
 msgid "Show _Value"
