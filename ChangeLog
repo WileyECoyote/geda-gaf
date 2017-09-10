@@ -1,3 +1,9 @@
+2017-09-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * bitmaps/svg: Cleaned files; remove extraneous bloat:
+
+            * bitmaps/svg/geda_view_redraw.svg
+
 2017-09-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * bitmaps/svg/geda_find_attribute_64x64.svg: Revise icon graphics; add
