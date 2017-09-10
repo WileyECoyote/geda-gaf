@@ -6,6 +6,8 @@
 
     * po/pt.po: Update Portuguese translations.
 
+    * po/pt_BR.po: Update Brazilian Portuguese translations.
+
 2017-09-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_rc.c: Reduce scope of rc_filename variable in
