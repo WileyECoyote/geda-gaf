@@ -2,6 +2,8 @@
 
     * po/es.po: Update Spanish translations.
 
+    * po/it.po: Update Italian translations.
+
 2017-09-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_rc.c: Reduce scope of rc_filename variable in
