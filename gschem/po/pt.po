@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-08-19 19:36-0500\n"
+"POT-Creation-Date: 2017-09-03 16:27-0500\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -26,7 +26,8 @@ msgstr "Aviso: <%s> não expandiu\n"
 
 #: gschem/src/base/gschem.c:159
 msgid "Command-line error: disabling auto load last\n"
-msgstr "Erro na linha de comando: desativando o carregamento automático último\n"
+msgstr ""
+"Erro na linha de comando: desativando o carregamento automático último\n"
 
 #: gschem/src/base/gschem.c:192
 msgid "Assuming schematic file suffix for"
@@ -125,20 +126,21 @@ msgstr "Texto a ser exibido para o rótulo Macro"
 
 #: gschem/src/base/gschem_macro_widget.c:235
 msgid "Macro:"
-msgstr ""
+msgstr "Macro:"
 
 #: gschem/src/base/gschem_macro_widget.c:241
 #: gschem/src/base/gschem_macro_widget.c:242
 msgid "Macro String"
-msgstr ""
+msgstr "Cadeia de macro"
 
+# Evaluate
 #: gschem/src/base/gschem_macro_widget.c:357
 msgid "Evaluate"
-msgstr ""
+msgstr "Avalie"
 
 #: gschem/src/base/gschem_main_window.c:229
 msgid "Retrieving main window position.\n"
-msgstr ""
+msgstr "Retrieving main window position.\n"
 
 # Retrieving main window geometry
 #: gschem/src/base/gschem_main_window.c:276
@@ -148,7 +150,7 @@ msgstr "Recuperando a geometria da janela principal\n"
 #: gschem/src/base/gschem_page_view.c:250
 #: gschem/src/base/gschem_page_view.c:251
 msgid "Horizontal adjustment"
-msgstr ""
+msgstr "Ajuste horizontal"
 
 # Page
 #: gschem/src/base/gschem_page_view.c:258
@@ -159,12 +161,12 @@ msgstr "Página"
 #: gschem/src/base/gschem_page_view.c:265
 #: gschem/src/base/gschem_page_view.c:266
 msgid "Page Geometry"
-msgstr ""
+msgstr "Geometria de página"
 
 #: gschem/src/base/gschem_page_view.c:273
 #: gschem/src/base/gschem_page_view.c:274
 msgid "Vertical adjustment"
-msgstr ""
+msgstr "Ajuste vertical"
 
 #: gschem/src/base/gschem_parsecmd.c:85
 #, c-format
@@ -255,27 +257,30 @@ msgstr ""
 "Incluído na distribuição gEDA.\n"
 "Não há GARANTIA, na medida permitida por lei.\n"
 
+# error parsing
 #: gschem/src/base/gschem_parsecmd.c:244
 msgid "error parsing"
-msgstr ""
+msgstr "análise de erro"
 
 #: gschem/src/base/gschem_parsecmd.c:280 gschem/src/x/x_rc.c:100
 #: gschem/src/x/x_rc.c:145
 msgid "ERROR"
-msgstr ""
+msgstr "ERRO"
 
+# option requires an argument
 #: gschem/src/base/gschem_parsecmd.c:284
 msgid "option requires an argument"
-msgstr ""
+msgstr "opção requer um argumento"
 
 # # Unknown option
 #: gschem/src/base/gschem_parsecmd.c:290
 msgid "Unknown option"
 msgstr "Opção desconhecida"
 
+# Unknown option character
 #: gschem/src/base/gschem_parsecmd.c:296
 msgid "Unknown option character"
-msgstr ""
+msgstr "Caractere de opção desconhecida"
 
 # # for more information
 #: gschem/src/base/gschem_parsecmd.c:302
