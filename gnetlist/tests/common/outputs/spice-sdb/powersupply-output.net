@@ -13,7 +13,7 @@ R1 nine nine ten 5k
 C2 eight nine 0.1uF  
 R2 ten eleven 220  
 C1 eight nine 2200uF  
-S1 two one <No valid value attribute found>
+S1 one two <No valid value attribute found>
 CONN1 one five 0 <No valid value attribute found>
 T1 five three seven six <No valid value attribute found>
 F1 two three <No valid value attribute found>
