@@ -1,5 +1,5 @@
 # geda-libgedacairo.m4                                  -*-Autoconf-*-
-# serial 1
+# serial 1.1
 
 dnl libgedacairo-specific setup
 dnl Copyright (C) 2010-2014  Peter Brett <peter@peter-b.co.uk>
@@ -26,5 +26,9 @@ AC_DEFUN([AX_LIBGEDACAIRO],
   AC_MSG_CHECKING([libgedacairo shared library version])
   AC_MSG_RESULT($1)
   AC_SUBST([LIBGEDACAIRO_SHLIB_VERSION], $1)
+
+  LIBGEDACAIRO_DOT_VERSION=`echo $LIBGEDACAIRO_SHLIB_VERSION | sed -e "y/:/./"`
+  AC_SUBST([LIBGEDACAIRO_DOT_VERSION])
+
   []dnl
 ])dnl
