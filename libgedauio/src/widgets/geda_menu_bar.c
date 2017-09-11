@@ -283,6 +283,7 @@ get_shadow_type (GedaMenuBar *menubar)
 
 #if GTK_MAJOR_VERSION < 3
 
+/*! \internal Gtk2 widget_class->size_allocate */
 static void
 geda_menu_bar_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
 {
@@ -522,6 +523,7 @@ geda_menu_bar_size_request (GtkWidget *widget,  GtkRequisition *requisition)
   }
 }
 
+/*! \internal Gtk2 widget_class->expose_event */
 static void
 geda_menu_bar_paint (GtkWidget *widget, GdkRectangle *area)
 {
@@ -559,6 +561,7 @@ geda_menu_bar_expose (GtkWidget *widget, GdkEventExpose *event)
 
 #else
 
+/*! \internal Gtk3 widget_class->size_allocate */
 static void
 geda_menu_bar_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
 {
@@ -746,6 +749,7 @@ geda_menu_bar_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
   }
 }
 
+/*! \internal Gtk3 widget_class->size_request */
 static void
 geda_menu_bar_size_request (GtkWidget      *widget,
                             GtkOrientation  orientation,
@@ -869,6 +873,7 @@ geda_menu_bar_size_request (GtkWidget      *widget,
   }
 }
 
+/*! \internal Gtk3 widget_class->preferred_width */
 static void
 geda_menu_bar_get_preferred_width (GtkWidget *widget,
                                    int       *minimum,
@@ -878,6 +883,7 @@ geda_menu_bar_get_preferred_width (GtkWidget *widget,
                               GTK_ORIENTATION_HORIZONTAL, -1, minimum, natural);
 }
 
+/*! \internal Gtk3 widget_class->preferred_height */
 static void
 geda_menu_bar_get_preferred_height (GtkWidget *widget,
                                     int       *minimum,
@@ -887,6 +893,7 @@ geda_menu_bar_get_preferred_height (GtkWidget *widget,
                               GTK_ORIENTATION_VERTICAL, -1, minimum, natural);
 }
 
+/*! \internal Gtk3 widget_class->width_for_height */
 static void
 geda_menu_bar_preferred_width_for_height (GtkWidget *widget,
                                               int        height,
@@ -897,6 +904,7 @@ geda_menu_bar_preferred_width_for_height (GtkWidget *widget,
                               GTK_ORIENTATION_HORIZONTAL, height, minimum, natural);
 }
 
+/*! \internal Gtk3 widget_class->height_for_width */
 static void
 geda_menu_bar_preferred_height_for_width (GtkWidget *widget,
                                               int        width,
@@ -907,6 +915,7 @@ geda_menu_bar_preferred_height_for_width (GtkWidget *widget,
                               GTK_ORIENTATION_VERTICAL, width, minimum, natural);
 }
 
+/*! \internal Gtk3 widget_class->draw */
 static int
 geda_menu_bar_draw (GtkWidget *widget, cairo_t *cr)
 {
@@ -937,6 +946,7 @@ geda_menu_bar_draw (GtkWidget *widget, cairo_t *cr)
 
 #endif
 
+/*! \internal widget_class->dispose */
 static void geda_menu_bar_dispose (GObject *object)
 {
   GdkScreen *screen;
@@ -948,6 +958,7 @@ static void geda_menu_bar_dispose (GObject *object)
   G_OBJECT_CLASS (geda_menu_bar_parent_class)->dispose (object);
 }
 
+/*! \internal widget_class->finalize */
 static void geda_menu_bar_finalize (GObject *object)
 {
   GedaMenuBar *menu_bar = GEDA_MENU_BAR (object);
@@ -1265,6 +1276,7 @@ static void activate_child(GtkWidget *menu_item)
   }
 }
 
+/*! \internal container_foreach add_to_window */
 static void
 accelerate_children(GedaMenuItem *menu_item, GtkAccelGroup *accel_group)
 {
@@ -1831,6 +1843,7 @@ geda_menu_bar_get_viewable_menu_bars (GtkWindow *window)
   return g_list_reverse (viewable_menu_bars);
 }
 
+/*! \internal helper for show/hide mnemonics */
 static void
 geda_menu_bar_set_label_mnemonic_visible (GedaMenuBar *menubar, bool state)
 {
