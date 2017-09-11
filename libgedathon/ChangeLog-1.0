@@ -1,3 +1,8 @@
+2017-09-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/lpfilter.sch: Regenerate golden output to update symversion for
+      in-1.sym and out-1.sym.
+
 2017-08-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * module/functions.c: Set aflag[] member = 0 in initFunctions to appease
