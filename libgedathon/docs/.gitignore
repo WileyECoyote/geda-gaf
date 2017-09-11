@@ -4,6 +4,7 @@ latex
 html
 xml
 *.1
+libgedathon.html
 geda-snap-grid.html
 gsym-attribute.html
 gsym-set-font-size.html
