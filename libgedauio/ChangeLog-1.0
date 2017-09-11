@@ -3,7 +3,8 @@
     * src/widgets/geda_menu_bar.c: Relocate get/set/ properties function
       in module. Remove unnecessary validations in geda_menu_bar_expose,
       geda_menu_bar_size_request, and geda_menu_bar_size_allocate. Combine
-      geda_menu_bar_paint and geda_menu_bar_expose.
+      geda_menu_bar_paint and geda_menu_bar_expose. Eliminate unnecessary
+      type-checking cast to GedaMenuBar and GedaMenuShell.
 
 2017-08-22 Wiley E. Hill <wileyhill@gmail.com>
 

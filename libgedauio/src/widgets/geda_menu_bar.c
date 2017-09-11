@@ -248,9 +248,8 @@ geda_menu_bar_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
   GtkTextDirection    direction;
   int ltr_x, ltr_y;
 
-
-  menu_bar   = GEDA_MENU_BAR (widget);
-  menu_shell = GEDA_MENU_SHELL (widget);
+  menu_bar   = (GedaMenuBar*)widget;
+  menu_shell = (GedaMenuShell*)widget;
   priv       = menu_bar->priv;
 
   direction = gtk_widget_get_direction (widget);
@@ -417,8 +416,8 @@ geda_menu_bar_size_request (GtkWidget *widget,  GtkRequisition *requisition)
 
   if (gtk_widget_get_visible (widget)) {
 
-    menu_bar   = GEDA_MENU_BAR (widget);
-    menu_shell = GEDA_MENU_SHELL (widget);
+    menu_bar   = (GedaMenuBar*)widget;
+    menu_shell = (GedaMenuShell*)widget;
     priv       = menu_bar->priv;
 
     nchildren = 0;
@@ -707,8 +706,8 @@ geda_menu_bar_size_request (GtkWidget      *widget,
   *minimum = 0;
   *natural = 0;
 
-  menu_bar   = GEDA_MENU_BAR (widget);
-  menu_shell = GEDA_MENU_SHELL (widget);
+  menu_bar   = (GedaMenuBar*)widget;
+  menu_shell = (GedaMenuShell*)widget;
   priv       = menu_bar->priv;
 
   children   = menu_shell->children;
@@ -935,7 +934,7 @@ static void geda_menu_bar_dispose (GObject *object)
 
   screen = gtk_widget_get_screen (GTK_WIDGET (object));
 
-  remove_settings_signal (GEDA_MENU_BAR (object), screen);
+  remove_settings_signal ((GedaMenuBar*)object, screen);
 
   G_OBJECT_CLASS (geda_menu_bar_parent_class)->dispose (object);
 }
@@ -943,7 +942,7 @@ static void geda_menu_bar_dispose (GObject *object)
 /*! \internal widget_class->finalize */
 static void geda_menu_bar_finalize (GObject *object)
 {
-  GedaMenuBar *menu_bar = GEDA_MENU_BAR (object);
+  GedaMenuBar *menu_bar = (GedaMenuBar*)object;
 
   if (g_hash_table_remove (menu_bar_hash, object)) {
     if (!g_hash_table_size (menu_bar_hash)) {
@@ -1575,7 +1574,7 @@ geda_menu_bar_cycle_focus (GedaMenuBar *menubar, GtkDirectionType  dir)
 
       if (current && current->next) {
 
-        GedaMenuShell *new_menushell = GEDA_MENU_SHELL (current->next->data);
+        GedaMenuShell *new_menushell = (GedaMenuShell*)current->next->data;
 
         if (new_menushell->children) {
           to_activate = new_menushell->children->data;
