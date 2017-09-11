@@ -413,8 +413,6 @@ geda_menu_bar_size_request (GtkWidget *widget,  GtkRequisition *requisition)
   int ipadding;
   int nchildren;
 
-  g_return_if_fail (GEDA_IS_MENU_BAR(widget));
-  g_return_if_fail (requisition != NULL);
 
   requisition->width = 0;
   requisition->height = 0;
@@ -499,8 +497,6 @@ geda_menu_bar_paint (GtkWidget *widget, GdkRectangle *area)
 static int
 geda_menu_bar_expose (GtkWidget *widget, GdkEventExpose *event)
 {
-  g_return_val_if_fail (GEDA_IS_MENU_BAR(widget), FALSE);
-  g_return_val_if_fail (event != NULL, FALSE);
 
   if (gtk_widget_is_drawable (widget)) {
 
@@ -522,9 +518,6 @@ geda_menu_bar_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
   GedaMenuShell      *menu_shell;
   GedaMenuBarPrivate *priv;
   int                 toggle_size;
-
-  g_return_if_fail (GEDA_IS_MENU_BA(widget));
-  g_return_if_fail (allocation != NULL);
 
   menu_bar   = GEDA_MENU_BAR (widget);
   menu_shell = GEDA_MENU_SHELL (widget);
