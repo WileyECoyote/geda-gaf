@@ -92,8 +92,6 @@ static void geda_menu_bar_size_request        (GtkWidget       *widget,
                                                GtkRequisition  *requisition);
 #if GTK_MAJOR_VERSION < 3
 
-static void geda_menu_bar_paint               (GtkWidget       *widget,
-                                               GdkRectangle    *area);
 static int  geda_menu_bar_expose              (GtkWidget       *widget,
                                                GdkEventExpose  *event);
 #else
@@ -221,7 +219,7 @@ remove_settings_signal (GedaMenuBar *menubar, GdkScreen *screen)
  *
  * geda_menu_bar_size_allocate
  * geda_menu_bar_size_request
- * geda_menu_bar_paint
+ * geda_menu_bar_expose
  * geda_menu_bar_draw
  */
 static GtkShadowType
@@ -475,8 +473,8 @@ geda_menu_bar_size_request (GtkWidget *widget,  GtkRequisition *requisition)
 }
 
 /*! \internal Gtk2 widget_class->expose_event */
-static void
-geda_menu_bar_paint (GtkWidget *widget, GdkRectangle *area)
+static int
+geda_menu_bar_expose (GtkWidget *widget, GdkEventExpose *event)
 {
   if (gtk_widget_is_drawable (widget)) {
 
@@ -487,20 +485,10 @@ geda_menu_bar_paint (GtkWidget *widget, GdkRectangle *area)
     gtk_paint_box (widget->style, widget->window,
                    gtk_widget_get_state (widget),
                    get_shadow_type ((GedaMenuBar*)widget),
-                   area, widget, "menubar",
+                   &event->area, widget, "menubar",
                    border, border,
                    widget->allocation.width - border * 2,
                    widget->allocation.height - border * 2);
-  }
-}
-
-static int
-geda_menu_bar_expose (GtkWidget *widget, GdkEventExpose *event)
-{
-
-  if (gtk_widget_is_drawable (widget)) {
-
-    geda_menu_bar_paint (widget, &event->area);
 
     GTK_WIDGET_CLASS (geda_menu_bar_parent_class)->expose_event (widget, event);
   }
