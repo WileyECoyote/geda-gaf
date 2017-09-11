@@ -1,0 +1,169 @@
+'\" t
+.\"     Title: Libgedacairo
+.\"    Author: Wiley Edward Hill, Jr
+.\"    Manual: Configuration, Environment and Usage
+.\"    Source: Libgedacairo
+.\"  Language: English
+.\"
+.TH Libgedacairo 1 "@DATE@" "gEDA Project" @VERSION@
+.LP
+.SH NAME
+.PP
+Libgedacairo \- Cairo-based Schematic and Symbol Renderer Library
+.LP
+.SH DESCRIPTION
+.PP
+The
+.B Libgedacairo
+library provides a renderer for schematics and symbols based on the Cairo vector
+graphics library and the Pango font library. Data for rendering is loaded using libgeda.
+
+The library does *not* provide a rendering widget for programs, although
+.B Libgedacairo
+could be used to implement one. The library is intended for more general rendering usage,
+e.g. to screen, to printers, or to various image formats.
+.LP
+.SH CONFIGURATION
+.PP
+Library operations are controlled by programmatically setting properties of the EdaRenderer object,
+see below for more information. For details on setting up linkage see
+\fBlibgedacairo\fR(3)
+.LP
+.SH ENVIRONMENT
+.PP
+.B Libgedacairo
+does not recognize any environment variables. Operations are controlled by programmatically
+setting properties of the EdaRenderer object. The Cairo library does recognize a limited
+number of environment variables
+:
+.LP
+.TP 8
+.SS CAIRO_GL_COMPOSITOR
+.LP
+.TP 8
+.SS CAIRO_GALLIUM_LIBDIR
+.LP
+.TP 8
+.SS CAIRO_GALLIUM_FORCE
+.LP
+See the Cairo library documentation for information on the use of these environment variables.
+.LP
+.SH USAGE
+.PP
+.TP 8
+.SS COORDINATE SYSTEMS
+An important concept to understand when using an EdaRenderer is the distinction
+between Cairo's "device coordinates" and "user coordinates". (Yes, go and look it up now).
+.IP
+Before calling any
+.B Libgedacairo
+drawing functions, you must set up the Cairo context's transformation matrix so
+that user coordinates match coordinates on the schematic or symbol page.
+.PP
+.TP 8
+.SS EDARENDERER CLASS
+The EdaRenderer class is the main interface to the library.  The EdaRenderer
+class uses information from libgeda OBJECT structures to draw various schematic
+elements, control grips, and cues.
+.IP
+EdaRenderer is a GObject class, with several properties that control
+its behaviour:
+.IP
+  "cairo-context"  [pointer]
+      The `cairo_t' drawing context which the renderer draws to.
+  "pango-context"  [pointer]
+      The state of the Pango string-to-glyph itemizer. The renderer
+      will automatically create one from the drawing context if not
+      explicitly set.
+  "font-name"  [string]
+      The font to use when drawing text.  By default, this is "Arial".
+  "color-map"  [pointer]
+      A GArray of libgeda `COLOR' structures which is used as the
+      color map for drawing. Note that the EdaRenderer does not make
+      a copy of this array, and doesn't free it when the EdaRenderer
+      is destroyed.
+  "override-color"  [int] Index of a colour to force all drawing to
+      take place with. This can be used e.g. when highlighting a set
+      of objects in a particular colour.  If "override-color" is set
+      to -1, color override is disabled.
+  "grip-size"  [double]
+      Size to draw grips, in *user* coordinates.
+  "render-flags"  [EdaRendererFlags]
+      Flags that control various rendering options.
+.IP
+A EdaRendererFlags value can include any of these flags:
+.IP
+  EDA_RENDERER_FLAG_HINTING
+      Enable line hinting. Set this flag when rendering to a screen
+      or raster image file, because it makes things look prettier.
+  EDA_RENDERER_FLAG_PICTURE_OUTLINE
+      Draw only the outlines of pictures, and not their contents.
+  EDA_RENDERER_FLAG_TEXT_HIDDEN
+      Draw text even if it is set to be invisible.
+  EDA_RENDERER_FLAG_TEXT_OUTLINE
+      Draw only the outlines of text objects.
+  EDA_RENDERER_FLAG_TEXT_ORIGIN
+      Draw small "X" markers indicating where text objects are
+      anchored.
+.IP
+To actually draw shapes or objects, EdaRenderer has three methods:
+.IP
+  eda_renderer_draw()
+      This does basic drawing of an OBJECT.
+
+  eda_renderer_draw_grips()
+      Draw grips at all of the control points of an OBJECT.
+
+  eda_renderer_draw_cues()
+      Draw cues for an object (e.g. at the unconnected ends of pins and
+      nets, and at junctions in nets and buses).
+.IP
+Sometimes, it is useful to obtain the rendered bounding box of an OBJECT
+(for example, a text OBJECT's bounding box is determined by the font).
+.IP
+  eda_renderer_get_user_bounds()
+      Obtain the user bounds (which should be the same as world
+      bounds) for an OBJECT.
+.IP
+These methods all can be overridden from subclasses.
+.LP
+.SH DOCUMENTATION
+.PP
+.TP 8
+.SS SOURCE CODE
+The gEDA-gaf suite utilizes Doxygen for generating source documentation. By
+default this documentation is not generated and must be enabled via the
+configuration option --with-doxygen. When enabled, the documentation is then
+built in the source tree using "make doxygen" from the top of the source. To
+only generate source documentation for
+.B Libgedacairo
+use "make doxygen" from within the top libgeda directory. Note that the
+configure script can also set the configuration to allows generating the source
+documentation out of the source tree using the --with-doxygen-out option. For
+example using --with-doxygen-out=/tmp/geda-gaf will cause the resulting
+documentation to be generated in the "/tmp/geda-gaf" directory. The target
+directory will created if it does not already exist. It is not necessary to use
+both doxygen options, using --with-doxygen-out automatically enables --with-doxygen.
+The Doxygen configuration is set to produce both HTML and latex. Other formats
+are possible, see the Doxygen documentation for details.
+.LP
+.SH AUTHORS
+.PP
+See the "AUTHORS" file included with this program.
+.LP
+.SH COPYRIGHT
+.PP
+.nf
+Copyright \(co @YEAR@ gEDA Contributors. License GPLv2+: GNU GPL
+version 2 or later. Please see the `COPYING' file included with this
+program for full details.
+.PP
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+.fi
+.SH SEE ALSO
+.PP
+\fBlibgedacairo\fR(3), \fBlibgeda\fR(1), \fBlibgedathon\fR(1), \fBlibgedauio\fR(1)
+\fBgnetlist\fR(1), \fBgschem\fR(1), \fBgsymcheck\fR(1)
+.LP
+\fIhttp://wiki.geda-project.org/geda:documentation\fP.

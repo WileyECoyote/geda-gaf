@@ -1,3 +1,10 @@
+2017-09-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/Makefile.am: Add LOCAL_MAN, dist_man_MANS and suffixes .1.in,
+      .1 .html .tex .pdf for man page, libgedacairo.1.in.
+
+    * libgedacairo/docs/libgedacairo.1.in: Add man page.
+
 2017-05-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/edarenderer.c: Remove unnecessary cast from g_object_set.

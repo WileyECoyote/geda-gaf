@@ -9,14 +9,16 @@ LOCAL_DOX   = libgedacairo.dox libgedacairo-main.txt
 LOCAL_HTML  = guide-libgedacairo.html include-libgedacairo.html \
 	      what-is-libgedacairo.html
 
+LOCAL_MAN   = libgedacairo.1.in
+
 LOCAL_TEX   = guide-libgedacairo.tex include-libgedacairo.tex \
 	      what-is-libgedacairo.tex
 
-EXTRA_DIST  = $(GEDA_EXTRA) $(LOCAL_DOX) $(LOCAL_HTML) $(LOCAL_TEX)
+EXTRA_DIST  = $(GEDA_EXTRA) $(LOCAL_DOX) $(LOCAL_HTML) $(LOCAL_MAN) $(LOCAL_TEX)
 
-SUFFIXES    = .html .tex .pdf
+SUFFIXES    = .1.in .1 .html .tex .pdf
 
-all:
+all:	$(MANS)
 if ENABLE_DOXYGEN
 	@echo 'Type: make doxygen to create doxygen documentation for libgedacairo'
 endif
@@ -49,10 +51,20 @@ else
 	@echo 'The documentation cannot be built from the sources.'
 endif
 
+dist_man_MANS = libgedacairo.1
+
+.1.in.1:
+	@printf "" ; \
+	d=`$(GUILE) -c '(setlocale LC_ALL "C") (display (strftime "%B %-d, %Y" \
+	    (car (strptime "%Y%m%d" (cadr (program-arguments))))))' $(DATE_VERSION)` ; \
+	v="$(LIBGEDACAIRO_DOT_VERSION)-$(DATE_VERSION)" ; \
+	y=`echo $(DATE_VERSION)| sed -e"s/\(....\).*/\1/"`; \
+	sed -e"s:[@]DATE@:$$d:" -e"s:[@]VERSION@:$$v:" -e"s:[@]YEAR@:$$y:" < $< > $@
+
 MOSTLYCLEANFILES = 	*.log *~
-CLEANFILES = 		*.log *~
-DISTCLEANFILES =        *.log *~
-MAINTAINERCLEANFILES = 	*.log *~ Makefile.in
+CLEANFILES = 		*.log *~ $(dist_man_MANS)
+DISTCLEANFILES =        *.log *~ $(dist_man_MANS)
+MAINTAINERCLEANFILES = 	*.log *~ $(dist_man_MANS) Makefile.in
 
 distclean-local:
 	-rm -rf html latex
