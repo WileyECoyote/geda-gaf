@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-08-19 19:36-0500\n"
+"POT-Creation-Date: 2017-09-03 16:27-0500\n"
 "PO-Revision-Date: 2012-01-27 14:22+0000\n"
 "Last-Translator: Sasan Jafarnejad <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -55,9 +55,9 @@ msgid ""
 msgstr ""
 "متغیر محیطی GEDADATA باید تنظیم شود!\n"
 "\n"
-"gschem نمیتواند برخی از فایلهای داده را پیدا کند لطفا GEDADATA را تضمین کنید\n"
-"متغیر محیطی به مکان صحیح اشاره می کند"
-"\n"
+"gschem نمیتواند برخی از فایلهای داده را پیدا کند لطفا GEDADATA را تضمین "
+"کنید\n"
+"متغیر محیطی به مکان صحیح اشاره می کند\n"
 
 # Unable to locate scheme initialization file
 #: gschem/src/base/gschem.c:347
@@ -86,11 +86,11 @@ msgstr "سیستم ثبت نام غیر فعال است\n"
 #: gschem/src/base/gschem.c:419
 #, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
-msgstr ""
+msgstr "خطا: بارگیری یا ارزیابی اسکریپت راه اندازی نشد.\n"
 
 #: gschem/src/base/gschem.c:511
 msgid "Exiting normal\n"
-msgstr ""
+msgstr "خروج از حالت طبیعی\n"
 
 #: gschem/src/base/gschem.c:514
 msgid "FAILED:"
