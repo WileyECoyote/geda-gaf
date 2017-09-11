@@ -216,53 +216,6 @@ remove_settings_signal (GedaMenuBar *menubar, GdkScreen *screen)
   }
 }
 
-static void
-geda_menu_bar_set_property (GObject      *object,
-                            unsigned int  prop_id,
-                            const GValue *value,
-                            GParamSpec   *pspec)
-{
-  GedaMenuBar *menubar = GEDA_MENU_BAR (object);
-
-  switch (prop_id) {
-
-    case PROP_PACK_DIRECTION:
-      geda_menu_bar_set_pack_direction (menubar, g_value_get_enum (value));
-      break;
-
-    case PROP_CHILD_PACK_DIRECTION:
-      geda_menu_bar_set_child_pack_direction (menubar, g_value_get_enum (value));
-      break;
-
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-      break;
-  }
-}
-
-static void
-geda_menu_bar_get_property (GObject      *object,
-                            unsigned int prop_id,
-                            GValue       *value,
-                            GParamSpec   *pspec)
-{
-  GedaMenuBar *menubar = GEDA_MENU_BAR (object);
-
-  switch (prop_id) {
-
-    case PROP_PACK_DIRECTION:
-      g_value_set_enum (value, geda_menu_bar_get_pack_direction (menubar));
-      break;
-
-    case PROP_CHILD_PACK_DIRECTION:
-      g_value_set_enum (value, geda_menu_bar_get_child_pack_direction (menubar));
-      break;
-
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-      break;
-    }
-}
 
 /* Common helper called by:
  *
@@ -945,6 +898,54 @@ geda_menu_bar_draw (GtkWidget *widget, cairo_t *cr)
 }
 
 #endif
+
+static void
+geda_menu_bar_get_property (GObject      *object,
+                            unsigned int prop_id,
+                            GValue       *value,
+                            GParamSpec   *pspec)
+{
+  GedaMenuBar *menubar = GEDA_MENU_BAR (object);
+
+  switch (prop_id) {
+
+    case PROP_PACK_DIRECTION:
+      g_value_set_enum (value, geda_menu_bar_get_pack_direction (menubar));
+      break;
+
+    case PROP_CHILD_PACK_DIRECTION:
+      g_value_set_enum (value, geda_menu_bar_get_child_pack_direction (menubar));
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
+    }
+}
+
+static void
+geda_menu_bar_set_property (GObject      *object,
+                            unsigned int  prop_id,
+                            const GValue *value,
+                            GParamSpec   *pspec)
+{
+  GedaMenuBar *menubar = GEDA_MENU_BAR (object);
+
+  switch (prop_id) {
+
+    case PROP_PACK_DIRECTION:
+      geda_menu_bar_set_pack_direction (menubar, g_value_get_enum (value));
+      break;
+
+    case PROP_CHILD_PACK_DIRECTION:
+      geda_menu_bar_set_child_pack_direction (menubar, g_value_get_enum (value));
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
+  }
+}
 
 /*! \internal widget_class->dispose */
 static void geda_menu_bar_dispose (GObject *object)
