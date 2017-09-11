@@ -1,3 +1,7 @@
+2017-09-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/switchreg/TPS610997-1.sym: Update ball assignment; C3 -> C1
+
 2017-09-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * io/: Add description, update attribute alignments:

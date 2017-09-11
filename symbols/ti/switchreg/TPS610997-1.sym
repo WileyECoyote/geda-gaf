@@ -23,7 +23,7 @@ pintype=pwr
 P 0 500 300 500 1 0 0
 {
 T 200 550 5 8 1 1 0 6 1
-pinnumber=C3
+pinnumber=C1
 T 200 450 5 8 0 1 0 8 1
 pinseq=2
 T 350 500 9 10 1 1 0 0 1
