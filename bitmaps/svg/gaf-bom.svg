@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg
+<svg id="svg11300" width="48px" height="48px"
    xmlns:osb="http://www.openswatchbook.org/uri/2009/osb"
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -7,15 +7,9 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   inkscape:export-ydpi="90.000000"
-   inkscape:export-xdpi="90.000000"
    inkscape:export-filename="../gaf-bom.png"
-   width="48px"
-   height="48px"
-   id="svg11300"
-   sodipodi:docname="gaf-bom.svg"
-   version="1.1"
-   inkscape:version="0.48.3.1 r9886">
+   inkscape:export-ydpi="90.000000"
+   inkscape:export-xdpi="90.000000">
   <title
      id="title3037">Hierarchy Down Schematic</title>
   <metadata
