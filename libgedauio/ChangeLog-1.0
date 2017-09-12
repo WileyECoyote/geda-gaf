@@ -10,6 +10,7 @@
 
           * src/widgets/geda_accel_label.c
           * src/widgets/geda_action.c
+          * src/widgets/geda_bulb.c
 
 2017-09-11 Wiley E. Hill <wileyhill@gmail.com>
 
