@@ -1854,12 +1854,22 @@ geda_menu_bar_set_label_mnemonic_visible (GedaMenuBar *menubar, bool state)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_menu_bar_hide_mnemonics (GedaMenuBar *menubar)
 {
    geda_menu_bar_set_label_mnemonic_visible (menubar, FALSE);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_menu_bar_show_mnemonics (GedaMenuBar *menubar)
 {

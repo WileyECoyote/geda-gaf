@@ -1,3 +1,9 @@
+2017-09-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets: Add template/todo Doxygen comment blocks.
+
+          * src/widgets/geda_menu_bar.c
+
 2017-09-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_bar.c: Relocate get/set/ properties function
