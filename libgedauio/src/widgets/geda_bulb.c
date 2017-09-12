@@ -869,8 +869,8 @@ GedaType geda_bulb_get_type (void)
 /*!
  * \brief Check if an object is a GedaBulb
  * \par Function Description
- *  Determines if \a bulb is valid by verifying \a bulb is
- *  included in the hash table of GedaBulb objects.
+ *  Determines if \a bulb is valid by verifying \a bulb is included
+ *  in the hash table of GedaBulb objects.
  *
  * \return TRUE if \a bulb is a valid GedaBulb
  */

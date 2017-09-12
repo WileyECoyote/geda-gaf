@@ -11,6 +11,7 @@
           * src/widgets/geda_accel_label.c
           * src/widgets/geda_action.c
           * src/widgets/geda_bulb.c
+          * src/widgets/geda_check_menu_item.c
 
 2017-09-11 Wiley E. Hill <wileyhill@gmail.com>
 

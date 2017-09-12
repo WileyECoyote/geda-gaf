@@ -349,8 +349,8 @@ GedaType geda_action_get_type (void)
 /*!
  * \brief Check if an object is a GedaAction
  * \par Function Description
- *  Ensures \a action is valid by verifying \a action is included
- *  in the hash table of GedaAction objects.
+ *  Determines if \a action is valid by verifying \a action is
+ *  included in the hash table of GedaAction objects.
  *
  * \return TRUE if \a action is a valid GedaAction
  */
