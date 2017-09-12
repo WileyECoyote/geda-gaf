@@ -12,6 +12,7 @@
           * src/widgets/geda_action.c
           * src/widgets/geda_bulb.c
           * src/widgets/geda_check_menu_item.c
+          * src/widgets/geda_combobox.c
 
 2017-09-11 Wiley E. Hill <wileyhill@gmail.com>
 
