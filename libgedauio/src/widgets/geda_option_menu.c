@@ -291,6 +291,11 @@ GedaType geda_option_menu_get_type (void)
   return geda_option_menu_type;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 bool is_a_geda_option_menu (GedaOptionMenu *option_menu)
 {
   if ((option_menu != NULL) && (option_menu_hash != NULL)) {
@@ -1010,12 +1015,22 @@ geda_option_menu_scroll_event (GtkWidget *widget, GdkEventScroll *event)
   return TRUE;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 GtkWidget*
 geda_option_menu_new (void)
 {
   return g_object_new (GEDA_TYPE_OPTION_MENU, NULL);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 GtkWidget*
 geda_option_menu_get_menu (GedaOptionMenu *option_menu)
 {
@@ -1151,6 +1166,11 @@ geda_option_menu_get_history (GedaOptionMenu *option_menu)
 
 /* Widget Argument */
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 GtkWidget*
 geda_option_widget_get_menu (GtkWidget *option_menu)
 {
