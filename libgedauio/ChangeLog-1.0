@@ -9,6 +9,7 @@
     * src/widgets: Update Doxygen comment blocks in:
 
           * src/widgets/geda_accel_label.c
+          * src/widgets/geda_action.c
 
 2017-09-11 Wiley E. Hill <wileyhill@gmail.com>
 
