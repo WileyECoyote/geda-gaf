@@ -1649,6 +1649,11 @@ GedaType geda_menu_shell_get_type (void)
   return geda_menu_shell_type;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 bool is_a_geda_menu_shell (GedaMenuShell *menu_shell)
 {
   if ((menu_shell != NULL) && (shell_hash != NULL)) {
@@ -1657,6 +1662,11 @@ bool is_a_geda_menu_shell (GedaMenuShell *menu_shell)
   return FALSE;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void geda_menu_shell_activate (GedaMenuShell *menu_shell)
 {
   if (!menu_shell->active) {
@@ -1810,12 +1820,22 @@ void geda_menu_shell_deselect (GedaMenuShell *menu_shell)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 const GList *geda_menu_shell_get_children (GedaMenuShell *menu_shell)
 {
   g_return_val_if_fail (GEDA_IS_MENU_SHELL(menu_shell), NULL);
   return menu_shell->children;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 bool geda_menu_shell_get_keyboard_mode (GedaMenuShell *menu_shell)
 {
   return menu_shell->keyboard_mode;
