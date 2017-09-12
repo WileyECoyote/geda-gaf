@@ -6,6 +6,10 @@
           * src/widgets/geda_menu_shell.c
           * src/widgets/geda_option_menu.c
 
+    * src/widgets: Update Doxygen comment blocks in:
+
+          * src/widgets/geda_accel_label.c
+
 2017-09-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_bar.c: Relocate get/set/ properties function

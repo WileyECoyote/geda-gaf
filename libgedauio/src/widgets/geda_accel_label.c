@@ -689,8 +689,9 @@ GedaType geda_accel_label_get_type (void)
 /*!
  * \brief Check if an object is a GedaAccelLabel
  * \par Function Description
- *  Ensures accel_label is a valid G_Object and compares signature
- *  to geda accel label type.
+ *  Ensures \a accel_label is valid by verifying \a accel_label
+ *  is included in the hash table of GedaAccelLabel objects.
+ *
  * \return TRUE if \a accel_label is a valid GedaAccelLabel
  */
 bool
