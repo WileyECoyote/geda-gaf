@@ -8,6 +8,7 @@
           * src/widgets/geda_font_dialog.c
           * src/widgets/geda_handlebox.c
           * src/widgets/geda_image_menu_item.c
+          * src/widgets/geda_label.c
 
 2017-09-12 Wiley E. Hill <wileyhill@gmail.com>
 

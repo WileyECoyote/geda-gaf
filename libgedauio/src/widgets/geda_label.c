@@ -1833,8 +1833,8 @@ geda_label_get_type (void)
 /*!
  * \brief Check if an object is a GedaLabel
  * \par Function Description
- *  Ensures \a label is a valid G_Object and compares signature
- *  to geda geda_label_type type.
+ *  Determines if \a label is valid by verifying \a label
+ *  is included in the hash table of GedaLabel objects.
  *
  * \return TRUE if \a label is a valid GedaLabel object
  */
