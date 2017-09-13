@@ -1203,8 +1203,8 @@ geda_menu_bar_get_type (void)
 /*!
  * \brief Check if an object is a GedaMenuBar
  * \par Function Description
- *  Ensures \a menu_bar is a valid G_Object and compares signature
- *  to geda geda_menu_bar type.
+ *  Determines if \a menu_bar is valid by verifying \a menu_bar
+ *  is included in the hash table of GedaMenuBar objects.
  *
  * \returns TRUE if \a menu_bar is a valid GedaMenuBar object
  */

@@ -9,6 +9,7 @@
           * src/widgets/geda_handlebox.c
           * src/widgets/geda_image_menu_item.c
           * src/widgets/geda_label.c
+          * src/widgets/geda_menu_bar.c
 
 2017-09-12 Wiley E. Hill <wileyhill@gmail.com>
 
