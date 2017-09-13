@@ -1443,8 +1443,8 @@ geda_menu_button_get_type (void)
 /*!
  * \brief Check if an object is a GedaMenuButton
  * \par Function Description
- *  Ensures \a menu_button is a valid G_Object and compares signature
- *  to geda combo box type.
+ *  Determines if \a menu_button is valid by verifying \a menu_button
+ *  is included in the hash table of GedaMenuButton objects.
  *
  * \return TRUE if \a menu_button is a valid GedaMenuButton
  */
