@@ -6,6 +6,7 @@
           * src/widgets/geda_entry.c
           * src/widgets/geda_font_button.c
           * src/widgets/geda_font_dialog.c
+          * src/widgets/geda_handlebox.c
 
 2017-09-12 Wiley E. Hill <wileyhill@gmail.com>
 

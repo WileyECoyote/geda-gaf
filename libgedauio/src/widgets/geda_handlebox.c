@@ -1765,8 +1765,8 @@ GedaType geda_handle_box_get_type (void)
 /*!
  * \brief Check if an object is a GedaHandleBox
  * \par Function Description
- *  Ensures \a handlebox is a valid G_Object and compares signature
- *  to geda handlebox type.
+ *  Determines if \a handlebox is valid by verifying \a handlebox
+ *  is included in the hash table of GedaHandleBox objects.
  *
  * \return TRUE if \a handlebox is a valid GedaHandleBox
  */
