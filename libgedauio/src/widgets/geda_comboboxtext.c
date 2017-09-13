@@ -460,8 +460,9 @@ geda_combo_box_text_get_type (void)
 /*!
  * \brief Check if an object is a GedaComboBoxText
  * \par Function Description
- *  Ensures \a combo_text_box is a valid G_Object and compares signature
- *  to geda combo text box type.
+ *  Determines if \a combo_text_box is valid by verifying \a combo_text_box
+ *  is included in the hash table of GedaComboBoxText objects.
+ *
  * \return TRUE if \a combo_text_box is a valid GedaComboBoxText
  */
 bool
