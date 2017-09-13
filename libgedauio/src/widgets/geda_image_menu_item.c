@@ -539,8 +539,8 @@ GedaType geda_image_menu_item_get_type (void)
 /*!
  * \brief Check if an object is a GedaImageMenuItem
  * \par Function Description
- *  Ensures \a image_menu_item is a valid G_Object and compares signature
- *  to geda image_menu_item type.
+ *  Determines if \a image_menu_item is valid by verifying \a image_menu_item
+ *  is included in the hash table of GedaImageMenuItem objects.
  *
  * \return TRUE if \a image_menu_item is a valid GedaImageMenuItem
  */
