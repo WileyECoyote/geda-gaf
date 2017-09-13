@@ -861,8 +861,9 @@ geda_entry_get_type (void)
 /*!
  * \brief Check if an object is a GedaEntry
  * \par Function Description
- *  Ensures \a entry is a valid G_Object and compares signature
- *  to geda entry type.
+ *  Determines if \a entry is valid by verifying \a entry
+ *  is included in the hash table of GedaEntry objects.
+ *
  * \return TRUE if \a entry is a valid GedaEntry
  */
 bool
