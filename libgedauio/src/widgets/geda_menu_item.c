@@ -1007,6 +1007,14 @@ geda_menu_item_get_type (void)
   return geda_menu_item_type;
 }
 
+/*!
+ * \brief Check if an object is a GedaMenuButton
+ * \par Function Description
+ *  Determines if \a menu_item is valid by verifying \a menu_item
+ *  is included in the hash table of GedaMenuButton objects.
+ *
+ * \return TRUE if \a menu_item is a valid GedaMenuButton
+ */
 bool is_a_geda_menu_item (GedaMenuItem *menu_item)
 {
   if ((menu_item != NULL) && (menu_item_hash_table != NULL)) {
