@@ -2,6 +2,8 @@
 
     * src/geda/geda_text.c: Reformat Doxygen comment blocks.
 
+    * src/object/o_attrib.c: Update function wrapping.
+
 2017-09-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/es.po: Update Spanish translations.
