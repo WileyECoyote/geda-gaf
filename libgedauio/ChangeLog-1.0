@@ -10,6 +10,7 @@
     * src/widgets: Update Doxygen comment blocks in:
 
           * src/widgets/geda_menu_separator.c
+          * src/widgets/geda_separator.c
 
 2017-09-13 Wiley E. Hill <wileyhill@gmail.com>
 

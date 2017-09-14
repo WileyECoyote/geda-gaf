@@ -439,8 +439,9 @@ GedaType geda_separator_get_type (void)
 /*!
  * \brief Check if an object is a GedaSeparator
  * \par Function Description
- *  Ensures \a separator is a valid G_Object and compares signature
- *  to geda separator type.
+ *  Determines if \a separator is valid by varifying \a separator
+ *  is included in the hash table of GedaSeparator objects.
+ *
  * \return TRUE if \a separator is a valid GedaSeparator
  */
 bool
