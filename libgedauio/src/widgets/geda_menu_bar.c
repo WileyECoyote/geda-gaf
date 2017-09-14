@@ -1730,7 +1730,7 @@ geda_menu_bar_set_pack_direction (GedaMenuBar   *menubar,
       gtk_widget_queue_resize ((GtkWidget*)list->data);
     }
 
-    g_object_notify ((GObject*)menubar, "pack-direction");
+    GEDA_OBJECT_NOTIFY (menubar, "pack-direction");
   }
 }
 
@@ -1784,7 +1784,7 @@ geda_menu_bar_set_child_pack_direction (GedaMenuBar   *menubar,
     {
       gtk_widget_queue_resize ((GtkWidget*)list->data);
     }
-    g_object_notify ((GObject*)menubar, "child-pack-direction");
+    GEDA_OBJECT_NOTIFY (menubar, "child-pack-direction");
   }
 }
 
