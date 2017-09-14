@@ -51,9 +51,9 @@
 
 static GObjectClass *geda_text_parent_class = NULL;
 
-/*! \brief Calculate and Return the Boundaries of a text object
- *
- *  \par Function Description
+/*!
+ * \brief Calculate and Return the Boundaries of a text object
+ * \par Function Description
  *  This function attempts to calls the bounds functions to calculates
  *  the object boundaries of a text \a object.
  *
@@ -63,7 +63,7 @@ static GObjectClass *geda_text_parent_class = NULL;
  *  bounds the object's bounds function is set to the function that was
  *  successful.
  *
- *  \param [in]  o_current a text object
+ * \param [in]  o_current a text object
  */
 static int geda_text_bounds(GedaObject *o_current)
 {
@@ -132,14 +132,14 @@ static int geda_text_bounds(GedaObject *o_current)
   return result;
 }
 
-/*! \brief GedaType instance initializer for GedaText
- *
- *  \par Function Description
+/*!
+ * \brief GedaType instance initializer for GedaText
+ * \par Function Description
  *  GedaType instance initializer for GedaText, initializes a new empty
  *  GedaText object by setting pointers to NULL and numbers to zero.
  *
- *  \param [in] instance The GedaText structure being initialized,
- *  \param [in] g_class  The GedaText class we are initializing.
+ * \param [in] instance The GedaText structure being initialized,
+ * \param [in] g_class  The GedaText class we are initializing.
  */
 static void geda_text_instance_init(GTypeInstance *instance, void *g_class)
 {
@@ -175,11 +175,12 @@ static void geda_text_dispose(GObject *object)
 
 }
 
-/*! \brief GedaText Object Finalization Function
- *  \par Function Description
- *   This function invalidates the GedaText object and then chains up to
- *   the parent's finalize handler. Once invalidated, GEDA_IS_TEXT will
- *   fail.
+/*!
+ * \brief GedaText Object Finalization Function
+ * \par Function Description
+ *  This function invalidates the GedaText object and then chains up to
+ *  the parent's finalize handler. Once invalidated, GEDA_IS_TEXT will
+ *  fail.
  */
 static void geda_text_finalize(GObject *object)
 {
@@ -192,14 +193,14 @@ static void geda_text_finalize(GObject *object)
   GEDA_OBJECT_CLASS(geda_text_parent_class)->finalize(object);
 }
 
-/*! \brief GedaType class initializer for GedaText
- *
- *  \par Function Description
+/*!
+ * \brief GedaType class initializer for GedaText
+ * \par Function Description
  *  GedaType class initializer for GedaText. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- *  \param [in]  klass       The GedaText class we are initialising
- *  \param [in]  class_data  The structure associated with the class
+ * \param [in]  klass       The GedaText class we are initialising
+ * \param [in]  class_data  The structure associated with the class
  */
 static void geda_text_class_init(void *klass, void *class_data)
 {
@@ -215,16 +216,16 @@ static void geda_text_class_init(void *klass, void *class_data)
   geda_class->bounds             = geda_text_bounds;
 }
 
-/*! \brief Function to retrieve GedaText's Object Type identifier.
- *
- *  \par Function Description
+/*!
+ * \brief Function to retrieve GedaText's Object Type identifier.
+ * \par Function Description
  *  Function to retrieve a #GedaText Type identifier. When first called,
  *  the function registers a #GedaText in the GedaObjectType system to
  *  obtain an identifier that uniquely itentifies a Text and returns
  *  the unsigned integer value. The retained value is returned on all
  *  Subsequent calls.
  *
- *  \return GedaObjectType identifier associated with GedaText.
+ * \return GedaObjectType identifier associated with GedaText.
  */
 GedaObjectType geda_text_get_type (void)
 {
@@ -256,12 +257,12 @@ GedaObjectType geda_text_get_type (void)
   return geda_text_type;
 }
 
-/*! \brief Returns a pointer to a new GedaText Object.
- *
- *  \par Function Description
+/*!
+ * \brief Returns a pointer to a new GedaText Object.
+ * \par Function Description
  *  Returns a pointer to a new GedaText object.
  *
- *  \return pointer to the new GedaText object.
+ * \return pointer to the new GedaText object.
  */
 GedaObject *geda_text_new (void)
 {
@@ -272,12 +273,12 @@ GedaObject *geda_text_new (void)
   return text_object;
 }
 
-/*! \brief Determine if object is a Geda Text Object.
- *
- *  \par Function Description
+/*!
+ * \brief Determine if object is a Geda Text Object.
+ * \par Function Description
  *  Returns true if the argument is a Geda Text object.
  *
- *  \return boolean.
+ * \return boolean.
  */
 bool is_a_geda_text (const GedaText *txt)
 {
