@@ -5,6 +5,8 @@
 
     * src/widgets/geda_menu_item.c: Add Doxygen comments for is_a_geda_menu_item.
 
+    * src/widgets/geda_menu_shell.c: add source comments
+
 2017-09-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets: Update Doxygen comment blocks in:

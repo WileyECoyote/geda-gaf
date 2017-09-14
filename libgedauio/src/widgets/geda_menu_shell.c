@@ -1700,6 +1700,7 @@ void geda_menu_shell_activate_item (GedaMenuShell *menu_shell,
     deactivate = GEDA_MENU_ITEM_GET_CLASS (menu_item)->hide_on_activate;
   }
 
+  /* Ensure widgets do not die while possibly deactivating other items */
   g_object_ref (menu_shell);
   g_object_ref (menu_item);
 
