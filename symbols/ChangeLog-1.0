@@ -3,6 +3,9 @@
     * linear/reference/LM4030-1.sym: Add new symbol; Precision Shunt
       Voltage Reference.
 
+    * ti/switchreg/TPS543C20-1.sym: Add new symbol; Synchronous step
+      down, SWIFT Converter, VQFN.
+
 2017-09-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/switchreg/TPS610997-1.sym: Update ball assignment; C3 -> C1
