@@ -3,6 +3,10 @@
     * src/widgets/geda_menu_button.c: Replace g_object_notify with
       GEDA_OBJECT_NOTIFY macro.
 
+    * src/widgets: Update Doxygen comment blocks in:
+
+          * src/widgets/geda_menu_shell.c
+
 2017-09-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_bar.c: Replace g_object_notify with GEDA_OBJECT
@@ -10,7 +14,7 @@
 
     * src/widgets/geda_menu_item.c: Add Doxygen comments for is_a_geda_menu_item.
 
-    * src/widgets/geda_menu_shell.c: add source comments
+    * src/widgets/geda_menu_shell.c: Add source comments
 
     * src/widgets: Update Doxygen comment blocks in:
 
