@@ -291,10 +291,13 @@ GedaType geda_option_menu_get_type (void)
   return geda_option_menu_type;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Check if an object is a GedaOptionMenu
+ * \par Function Description
+ *  Determines if \a option_menu is valid by verifying \a option_menu
+ *  is included in the hash table of GedaOptionMenu objects.
  *
+ * \return TRUE if \a entry is a valid GedaEntry
  */
 bool is_a_geda_option_menu (GedaOptionMenu *option_menu)
 {
