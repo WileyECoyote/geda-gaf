@@ -1,3 +1,8 @@
+2017-09-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * linear/reference/LM4030-1.sym: Add new symbol; Precision Shunt
+      Voltage Reference.
+
 2017-09-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/switchreg/TPS610997-1.sym: Update ball assignment; C3 -> C1
