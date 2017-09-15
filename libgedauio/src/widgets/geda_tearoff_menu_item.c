@@ -610,8 +610,8 @@ geda_tearoff_menu_item_get_type (void)
 /*!
  * \brief Check if an object is a GedaTearoffMenuItem
  * \par Function Description
- *  Ensures \a menu_item is a valid G_Object and compares signature
- *  to geda tearoff_menu_item type.
+ *  Determines if \a menu_item is valid by varifying \a menu_item
+ *  is included in the hash table of GedaTearoffMenuItem objects.
  *
  * \return TRUE if \a menu_item is a valid GedaTearoffMenuItem
  */
