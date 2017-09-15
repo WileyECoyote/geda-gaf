@@ -1,3 +1,8 @@
+2017-09-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_button.c: Replace g_object_notify with
+      GEDA_OBJECT_NOTIFY macro.
+
 2017-09-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_bar.c: Replace g_object_notify with GEDA_OBJECT

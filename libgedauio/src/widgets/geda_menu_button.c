@@ -1610,7 +1610,7 @@ geda_menu_button_set_menu (GedaMenuButton *button, GtkWidget *menu)
     }
   }
 
-  g_object_notify (G_OBJECT (button), "menu");
+  GEDA_OBJECT_NOTIFY (button, "menu");
 }
 
 /*!
