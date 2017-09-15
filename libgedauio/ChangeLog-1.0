@@ -7,6 +7,7 @@
 
           * src/widgets/geda_menu_shell.c
           * src/widgets/geda_option_menu.c
+          * src/widgets/geda_radio_menu_item.c
 
 2017-09-14 Wiley E. Hill <wileyhill@gmail.com>
 

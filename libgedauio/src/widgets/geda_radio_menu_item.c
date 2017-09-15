@@ -362,8 +362,8 @@ geda_radio_menu_item_get_type (void)
 /*!
  * \brief Check if an object is a GedaRadioMenuItem
  * \par Function Description
- *  Ensures \a radio_menu_item is a valid G_Object and compares signature
- *  to geda radio_menu_item type.
+ *  Determines if \a radio_menu_item is valid by verifying \a radio_menu_item
+ *  is included in the hash table of GedaRadioMenuItem objects.
  *
  * \return TRUE if \a radio_menu_item is a valid GedaRadioMenuItem
  */
