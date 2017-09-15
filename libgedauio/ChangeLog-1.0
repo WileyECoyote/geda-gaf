@@ -9,6 +9,7 @@
           * src/widgets/geda_option_menu.c
           * src/widgets/geda_radio_menu_item.c
           * src/widgets/geda_tearoff_menu_item.c
+          * src/widgets/geda_toolbar.c
 
 2017-09-14 Wiley E. Hill <wileyhill@gmail.com>
 
