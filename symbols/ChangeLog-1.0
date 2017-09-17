@@ -11,6 +11,7 @@
 
             * irf/IRF9520N_pmosfet_power-1.sym
             * irf/IRF9520N_pmosfet_power-2.sym
+            * irf/IRLB8743_nmosfet_power-1.sym
 
 
 2017-09-15 Wiley E. Hill <wileyhill@gmail.com>
