@@ -1,4 +1,4 @@
-v 20031231 1
+v 20031231 2
 P 2100 4100 2100 4400 1 0 1
 {
 T 2150 3550 3 10 1 1 90 0 1
@@ -21,8 +21,6 @@ pinseq=2
 T 100 3250 5 8 1 1 0 0 1
 pintype=io
 }
-T 1500 2800 5 10 0 0 0 0 1
-device=ISP2032
 P 1100 300 1100 0 1 0 1
 {
 T 1175 350 3 8 1 1 90 0 1
@@ -493,6 +491,12 @@ pintype=io
 }
 T 300 4200 8 10 1 1 0 0 1
 refdes=U?
+T 3300 4300 5 10 0 0 0 0 1
+device=ISP2032
+T 3300 4500 5 10 0 0 0 0 1
+description=Programmable Logic Device
+T 3300 4700 5 10 0 0 0 0 1
+documentation=http://www.latticesemi.com
 T 600 100 9 10 0 0 0 0 1
 numslots=0
 T 600 100 9 10 0 0 0 0 1

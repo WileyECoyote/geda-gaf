@@ -14,6 +14,8 @@
             * irf/IRLB8743_nmosfet_power-1.sym
             * irf/IRLB8743_nmosfet_power-2.sym
 
+    * lattice/isp2032-1.sym: Add description and documentation attribute.
+
 
 2017-09-15 Wiley E. Hill <wileyhill@gmail.com>
 
