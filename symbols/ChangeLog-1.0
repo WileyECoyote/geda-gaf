@@ -10,6 +10,7 @@
     * irf/: Clean symbol file, adjust attributes:
 
             * irf/IRF9520N_pmosfet_power-1.sym
+            * irf/IRF9520N_pmosfet_power-2.sym
 
 
 2017-09-15 Wiley E. Hill <wileyhill@gmail.com>
