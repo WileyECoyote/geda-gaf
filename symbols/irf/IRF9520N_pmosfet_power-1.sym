@@ -3,18 +3,12 @@ T 700 600 8 10 1 1 0 0 1
 refdes=Q?
 T 700 400 8 10 1 1 0 0 1
 device=IRF9520N
-T 1700 1200 8 10 0 0 0 0 1
-numslots=0
 T 700 1000 5 8 0 1 0 0 1
 description=Power MOSFET, p-channel
 T 700 1800 5 8 0 1 0 0 1
 documentation=http://www.irf.com/product-info/datasheets/data/irf9520n.pdf
-T 700 2600 5 8 0 0 0 0 1
-author=Kai-Martin Knaak, kmk@lilalaser.de
-T 700 2400 5 8 0 0 0 0 1
-dist-license=GPLv2
-T 700 2200 5 8 0 0 0 0 1
-use-license=unlimited
+T 1700 1200 8 10 0 0 0 0 1
+numslots=0
 T 700 200 9 10 1 1 0 0 1
 footprint=TO220
 L 250 600 500 600 3 10 0 0 -1 -1
@@ -64,6 +58,8 @@ pinseq=3
 T 600 0 5 10 0 1 0 0 1
 pintype=pas
 }
+L 400 400 325 350 3 0 2 0 -1 -1
+L 400 400 325 450 3 0 2 0 -1 -1
 T 700 1200 5 8 0 0 0 0 1
 symversion=1.2
 T 700 1600 5 8 0 0 0 0 1
@@ -72,5 +68,9 @@ T 700 1400 5 8 0 0 0 0 1
 comment=check the data sheet for pinout!
 T 700 2000 5 8 0 0 0 0 1
 comment=values=IRF9520N, SUD50P04
-L 400 400 325 350 3 0 2 0 -1 -1
-L 400 400 325 450 3 0 2 0 -1 -1
+T 700 2600 5 8 0 0 0 0 1
+author=Kai-Martin Knaak, kmk@lilalaser.de
+T 700 2400 5 8 0 0 0 0 1
+dist-license=GPLv2
+T 700 2200 5 8 0 0 0 0 1
+use-license=unlimited

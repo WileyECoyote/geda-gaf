@@ -7,6 +7,10 @@
             * irf/IRFM340_400V_10A_TO254-1.sym
             * irf/IRFM440_500V_8A_TO254-1.sym
 
+    * irf/: Clean symbol file, adjust attributes:
+
+            * irf/IRF9520N_pmosfet_power-1.sym
+
 
 2017-09-15 Wiley E. Hill <wileyhill@gmail.com>
 
