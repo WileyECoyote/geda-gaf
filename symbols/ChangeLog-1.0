@@ -1,3 +1,9 @@
+2017-09-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * irf/: Update device attribute:
+
+            * irf/IRFM140_100V_28A_TO254-1.sym
+
 2017-09-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/reference/LM4030-1.sym: Add new symbol; Precision Shunt
