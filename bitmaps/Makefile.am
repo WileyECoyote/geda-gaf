@@ -122,6 +122,7 @@ bitmapdata_DATA   = \
 			geda-text-editor.png               \
 			geda-tools.png                     \
 			geda-translate.png                 \
+			geda-trash-can.png                 \
 			geda-undo.png                      \
 			geda-unlock.png                    \
 			geda-unselect-all.png              \
