@@ -21,6 +21,8 @@
 
     * linear/comparators/LM2901-1.sym: Add value, update device attribute.
 
+    * linear/comparators/LM2901-2.sym: Add value, update device attribute.
+
 2017-09-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * irf/: Update device attribute:
@@ -38,7 +40,6 @@
             * irf/IRLB8743_nmosfet_power-2.sym
 
     * lattice/isp2032-1.sym: Add description and documentation attribute.
-
 
 2017-09-15 Wiley E. Hill <wileyhill@gmail.com>
 
