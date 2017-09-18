@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="geda-trash-can" width="48" height="48"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   inkscape:export-filename="../geda-trash-can.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+ <defs id="defs8">
+  <radialGradient id="radialGradient3781" cx="23.976" cy="24.006" r="23.8" gradientTransform="matrix(1 0 0 .99975 0 .0060519)" gradientUnits="userSpaceOnUse">
+   <stop id="stop3777" stop-color="#189b25" stop-opacity=".59846" offset="0"/>
+   <stop id="stop3779" stop-color="#11b10d" stop-opacity=".94208" offset="1"/>
+  </radialGradient>
+ </defs>
+ <path id="path4" d="m2.556 16.075v31.725h42.84v-31.725h-42.84zm11.9 23.794c0 1.0945-1.0662 1.9828-2.38 1.9828s-2.38-0.88831-2.38-1.9828v-15.863c0-1.0945 1.0662-1.9828 2.38-1.9828s2.38 0.88831 2.38 1.9828v15.863zm11.9 0c0 1.0945-1.0662 1.9828-2.38 1.9828s-2.38-0.88831-2.38-1.9828v-15.863c0-1.0945 1.0662-1.9828 2.38-1.9828s2.38 0.88831 2.38 1.9828v15.863zm11.9 0c0 1.0945-1.0662 1.9828-2.38 1.9828-1.3138 0-2.38-0.88831-2.38-1.9828v-15.863c0-1.0945 1.0662-1.9828 2.38-1.9828 1.3138 0 2.38 0.88831 2.38 1.9828v15.863zm9.52-30.486-0.97342 3.8824-46.627-8.1276 0.97342-3.8824 13.157 2.1791c2.0968 0.36682 4.3316-1.4713 4.7695-3.2221l12.386 2.1534c-0.43792 1.7489 0.73066 4.1778 2.8298 4.5427l13.485 2.4746z" fill="url(#radialGradient3781)" stroke="#000" stroke-width=".5"/>
+</svg>
