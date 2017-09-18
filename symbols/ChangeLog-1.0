@@ -8,6 +8,9 @@
     * linear/amplifiers/LM2822-1.sym: Add description and documentation
       attribute.
 
+    * linear/amplifiers/LM2822m-1.sym: Add description and documentation
+      attribute, update footprint.
+
 2017-09-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * irf/: Update device attribute:

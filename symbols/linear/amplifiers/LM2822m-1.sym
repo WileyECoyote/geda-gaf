@@ -1,9 +1,13 @@
 v 20141031 2
-B 300 300 1500 2400 3 0 0 0 -1 -1 0 0 -1 -1 -1 -1
-T 325 2775 5 10 1 1 0 0 1
-device=LM2822M
 T 300 3000 2 10 1 1 0 0 1
 refdes=U?
+T 325 2775 5 10 1 1 0 0 1
+device=LM2822M
+T 1925 2475 5 10 0 1 0 0 1
+description=Stereo Audio Amplifier
+T 1925 2675 5 10 0 1 0 0 1
+documentation=http://www.electroschematics.com/4375/tda-2822-stereo-amplifier
+B 300 300 1500 2400 3 0 0 0 -1 -1 0 0 -1 -1 -1 -1
 P 1800 2100 2100 2100 1 0 1
 {
 T 1900 2150 5 8 1 1 0 0 1
@@ -95,4 +99,4 @@ pintype=in
 T 300 3200 9 10 0 0 0 0 1
 numslots=0
 T 300 3400 9 10 0 0 0 0 1
-footprint=Minidip
+footprint=DIP8
