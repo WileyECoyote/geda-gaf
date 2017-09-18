@@ -1459,7 +1459,7 @@ static GObject *geda_combo_box_constructor (GType                  type,
 
     entry = geda_entry_new_visible ();
 
-    gtk_container_add ((GtkContainer*)object, entry);
+    geda_container_add (object, entry);
 
     priv->text_renderer = gtk_cell_renderer_text_new ();
     gtk_cell_layout_pack_start ((GtkCellLayout*)object,
@@ -2640,10 +2640,10 @@ static void geda_combo_box_set_popup_widget (GedaComboBox *combo_box, GtkWidget 
 
       gtk_widget_show (priv->scrolled_window);
 
-      gtk_container_add ((GtkContainer*)window, priv->scrolled_window);
+      geda_container_add (window, priv->scrolled_window);
     }
 
-    gtk_container_add ((GtkContainer*)priv->scrolled_window, popup);
+    geda_container_add (priv->scrolled_window, popup);
 
     gtk_widget_show (popup);
     g_object_ref (popup);
@@ -4379,7 +4379,7 @@ static void geda_combo_box_list_setup (GedaComboBox *combo_box)
                     G_CALLBACK (geda_combo_box_button_toggled), combo_box);
 
   priv->arrow = gtk_arrow_new (GTK_ARROW_DOWN, GTK_SHADOW_NONE);
-  gtk_container_add ((GtkContainer*)button, priv->arrow);
+  geda_container_add (button, priv->arrow);
 
   gtk_widget_show_all (button);
 
@@ -4413,7 +4413,7 @@ static void geda_combo_box_list_setup (GedaComboBox *combo_box)
     gtk_widget_set_parent (priv->cell_view_frame,
                           ((GtkBin*)combo_box)->child->parent);
 
-    gtk_container_add ((GtkContainer*)priv->cell_view_frame, priv->box);
+    geda_container_add (priv->cell_view_frame, priv->box);
     gtk_widget_show_all (priv->cell_view_frame);
 
     g_signal_connect (priv->box, "button-press-event",
