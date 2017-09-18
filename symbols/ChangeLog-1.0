@@ -1,3 +1,8 @@
+2017-09-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ixys/IXGT16N170-1700V-NPN_IGBT-gce-1.sym: Update value, reorganize
+      attributes.
+
 2017-09-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * irf/: Update device attribute:

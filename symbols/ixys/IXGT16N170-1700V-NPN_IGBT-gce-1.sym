@@ -1,16 +1,14 @@
 v 20130414 2
-T 0 2300 5 10 0 0 0 0 1
-author=AutoTron
-T 0 2150 5 10 0 0 0 0 1
-dist-license=GPLv2
-T 0 2000 5 10 0 0 0 0 1
-use-license=unrestricted
-T 0 1850 5 10 0 0 0 0 1
-symversion=1.0
-T 0 1700 5 10 0 0 0 0 1
-description=NPN Insulated Gate Bipolar Transistor
-T 0 1550 9 10 0 0 0 0 1
+T 900 500 8 10 1 1 0 0 1
+refdes=Q?
+T 900 700 8 10 0 1 0 0 1
+device=IXGT16N170
+T 900 1100 9 10 0 0 0 0 1
 numslots=0
+T 900 1500 5 10 0 1 0 0 1
+description=NPN Insulated Gate Bipolar Transistor
+T 900 900 5 10 0 0 0 0 1
+symversion=1.0
 P 0 400 200 400 1 0 0
 {
 T 100 450 5 6 0 1 0 0 1
@@ -45,22 +43,10 @@ T 600 0 5 6 0 1 0 0 1
 pintype=pas
 }
 V 500 501 300 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 900 700 8 10 1 1 0 0 1
-device=IXGT16N170
 L 600 200 400 400 3 0 0 0 -1 -1
 L 600 800 400 600 3 0 0 0 -1 -1
 L 400 700 400 300 3 12 0 0 -1 -1
 L 350 400 184 400 3 0 0 0 -1 -1
-T 900 500 8 10 1 1 0 0 1
-refdes=Q?
-T 900 300 9 10 0 1 0 0 1
-value=COMPONENT_VALUE
-T 900 100 9 10 0 0 0 0 1
-footprint=IXGT16N170
-T 0 1400 5 10 0 0 0 0 1
-footprints=TO-268, TO-247
-T 0 1250 5 10 0 0 0 0 1
-spice-type=IGBT NPN
 H 3 0 0 0 -1 -1 1 -1 -1 -1 -1 -1 5
 M 575,225
 L 500,250
@@ -68,3 +54,17 @@ L 550,300
 L 575,225
 z
 L 350 650 350 300 3 0 0 0 -1 -1
+T 900 300 5 10 1 1 0 0 1
+value=IXGT16N170
+T 900 100 9 10 0 0 0 0 1
+footprint=IXGT16N170
+T 900 1700 5 10 0 0 0 0 1
+footprints=TO-268, TO-247
+T 900 1300 5 10 0 0 0 0 1
+spice-type=IGBT NPN
+T 900 2300 5 10 0 0 0 0 1
+author=AutoTron
+T 900 2100 5 10 0 0 0 0 1
+dist-license=GPLv2
+T 900 1900 5 10 0 0 0 0 1
+use-license=unlimited
