@@ -3552,9 +3552,6 @@ static void geda_menu_item_forall (GtkContainer *container,
 {
   GtkWidget *child;
 
-  g_return_if_fail (GEDA_IS_MENU_ITEM(container));
-  g_return_if_fail (callback != NULL);
-
   child = gtk_bin_get_child ((GtkBin*)container);
 
   if (child) {
