@@ -3,6 +3,8 @@
     * src/widgets/geda_combobox.c: Replace gtk_container_add with
       geda_container_add macro.
 
+    * src/widgets/geda_tree_view.c: Update Doxygen comment blocks.
+
 2017-09-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_button.c: Replace g_object_notify with

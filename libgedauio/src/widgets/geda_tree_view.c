@@ -154,8 +154,8 @@ GedaType geda_tree_view_get_type (void)
 /*!
  * \brief Check if an object is a GedaTreeView
  * \par Function Description
- *  Ensures \a tree_view is a valid G_Object and compares signature
- *  to geda tree view type.
+ *  Determines if \a tree_view is valid by varifying \a tree_view
+ *  is included in the hash table of GedaTreeView objects.
  *
  * \returns TRUE if \a tree_view is a valid GedaTreeView
  */
