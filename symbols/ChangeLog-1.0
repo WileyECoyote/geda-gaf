@@ -13,6 +13,9 @@
 
     * linear/amplifiers/LM675-1.sym: Fix device typo, update footprint.
 
+    * linear/amplifiers/TDA2822M-1.sym: Add description and documentation
+      attribute, update footprint.
+
 2017-09-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * irf/: Update device attribute:
