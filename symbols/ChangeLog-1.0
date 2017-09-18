@@ -19,6 +19,8 @@
     * linear/audio/VS1011-28-1.sym: Add value, update device, footprint and
       documentation attribute.
 
+    * linear/comparators/LM2901-1.sym: Add value, update device attribute.
+
 2017-09-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * irf/: Update device attribute:
