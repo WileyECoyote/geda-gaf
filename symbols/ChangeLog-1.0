@@ -3,7 +3,7 @@
     * ixys/IXGT16N170-1700V-NPN_IGBT-gce-1.sym: Update value, reorganize
       attributes.
 
-    * linear/amplifiers/L165-1.sym: Update footprint.
+    * linear/amplifiers/L165-1.sym: Update footprint, reorganize attributes.
 
     * linear/amplifiers/LM2822-1.sym: Add description and documentation
       attribute.
@@ -15,6 +15,9 @@
 
     * linear/amplifiers/TDA2822M-1.sym: Add description and documentation
       attribute, update footprint.
+
+    * linear/audio/VS1011-28-1.sym: Add value, update device, footprint and
+      documentation attribute.
 
 2017-09-16 Wiley E. Hill <wileyhill@gmail.com>
 
