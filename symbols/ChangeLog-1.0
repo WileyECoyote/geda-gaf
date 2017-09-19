@@ -1,3 +1,7 @@
+2017-09-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/SM72295-1.sym: Add new symbol; Photovoltaic Full Bridge Driver.
+
 2017-09-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/mcontrol/LM628N-6.sym: Clean symbol, fix overbars.
