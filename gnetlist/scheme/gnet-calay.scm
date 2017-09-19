@@ -41,7 +41,7 @@
       string-to-wrap ; Last snippet of string
       (let ((pos (string-rindex string-to-wrap #\space 0 wrap-length)))
         (cond ((not pos)
-               (display "Couldn't wrap string  at requested position\n")
+               (display "Could not wrap string  at requested position\n")
                " Wrap error!")
               (else
                (string-append
