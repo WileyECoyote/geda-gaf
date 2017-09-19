@@ -3,6 +3,9 @@
     * linear/comparators/MCP6541-2.sym: Remove stray net, update license
       and attribute visibility.
 
+    * linear/led_drivers/DM9368-1.sym: Add description, add value, update
+      footprint, redo pin attributes.
+
     * ti/SM72295-1.sym: Add new symbol; Photovoltaic Full Bridge Driver.
 
     * transistor/pnp-smt/: Add six symbols for 5087 SMP bjt:
