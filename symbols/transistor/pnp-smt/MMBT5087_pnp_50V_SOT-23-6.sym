@@ -1,0 +1,63 @@
+v 20140729 2
+T 200 900 8 10 1 1 0 4 1
+refdes=Q?
+T 900 600 8 10 1 1 0 0 1
+device=MMBT5087
+T 900 1100 5 10 0 0 0 0 1
+description=PNP Transistor
+T 900 950 9 10 0 0 0 0 1
+numslots=0
+P 0 500 200 500 1 0 0
+{
+T 75 350 5 8 0 1 0 0 1
+pinnumber=1
+T 75 350 5 8 0 1 0 0 1
+pinseq=1
+T 100 600 9 8 0 1 0 4 1
+pinlabel=b
+T 200 500 5 8 0 1 0 0 1
+pintype=in
+}
+P 600 200 600 0 1 0 1
+{
+T 450 50 5 8 0 1 0 0 1
+pinnumber=2
+T 450 50 5 8 0 1 0 0 1
+pinseq=2
+T 700 100 9 8 0 1 0 4 1
+pinlabel=e
+T 600 200 5 8 0 1 0 0 1
+pintype=pas
+}
+P 600 1000 600 800 1 0 0
+{
+T 475 900 5 8 0 1 0 0 1
+pinnumber=3
+T 475 900 5 8 0 1 0 0 1
+pinseq=3
+T 700 900 9 8 0 1 0 4 1
+pinlabel=c
+T 600 800 5 8 0 1 0 2 1
+pintype=pas
+}
+L 600 200 400 400 3 10 0 0 -1 -1
+L 600 800 400 600 3 15 0 0 -1 -1
+L 400 700 400 300 3 15 0 0 -1 -1
+L 400 500 184 500 3 10 0 0 -1 -1
+L 425 375 461 303 3 10 0 0 -1 -1
+L 425 375 497 339 3 10 0 0 -1 -1
+L 497 339 461 303 3 10 0 0 -1 -1
+T 900 200 9 10 0 1 0 0 1
+footprint=SOT23
+T 900 400 8 10 0 1 0 0 1
+value=50V
+T 900 1300 5 10 0 0 0 0 1
+symversion=1.0
+T 900 1750 5 10 0 0 0 0 1
+author=AutoTron
+T 900 1600 5 10 0 0 0 0 1
+dist-license=GPL3
+T 900 1450 5 10 0 0 0 0 1
+use-license=unrestricted
+T 900 800 5 10 0 0 0 0 1
+spice-type=BJT PNP
