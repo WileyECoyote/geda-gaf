@@ -592,8 +592,8 @@ GedaType geda_file_chooser_get_type (void)
 /*!
  * \brief Check if an object is a GedaFileChooser
  * \par Function Description
- *  Ensures \a chooser is a valid G_Object and compares signature
- *  to GedaFileChooser type.
+ *  Determines if \a chooser is valid by verifying \a chooser
+ *  is included in the hash table of GedaFileChooser objects.
  *
  * \return TRUE if \a chooser is a valid GedaFileChooser
  */
