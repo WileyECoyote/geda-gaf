@@ -1,5 +1,7 @@
 2017-09-18 Wiley E. Hill <wileyhill@gmail.com>
 
+    * bitmaps/Makefile.am: Add geda-trash-can.png.
+
     * bitmaps/svg/geda-trash-can.svg: Add new vector image.
 
 2017-09-10 Wiley E. Hill <wileyhill@gmail.com>
