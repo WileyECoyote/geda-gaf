@@ -534,7 +534,7 @@ static void on_entry_activate(GedaEntry *global_entry)
   gtk_sheet_set_active_cell(sheet, ++row, col);
 }
 
-/*! \brief Call back for "change" signal from embeded Entry widget */
+/*! \brief Call back for "change" signal from embedded Entry widget */
 static void show_entry(GtkWidget *widget, void *data)
 {
   if (gtk_widget_has_focus (widget)) {
