@@ -95,7 +95,7 @@ msgstr "Normalno prestanak\n"
 
 #: gschem/src/base/gschem.c:514
 msgid "FAILED:"
-msgstr ""
+msgstr "НИЈЕ УСПЕО:"
 
 # Parent Window
 #: gschem/src/base/gschem_dialog.c:567
@@ -811,7 +811,7 @@ msgstr "могу да нађем шему изнад тренутне један
 
 #: gschem/src/iface/i_command.c:3343
 msgid "Object is attached to something\n"
-msgstr ""
+msgstr "Објект је повезан са нечим\n"
 
 # This attribute is already attached
 #: gschem/src/iface/i_command.c:3750
@@ -1077,49 +1077,57 @@ msgstr "failed to save session"
 
 #: gschem/src/iface/i_sessions.c:1230
 msgid "Show Sessions at startup is now ENABLED\n"
-msgstr ""
+msgstr "Прикажи Сесије при покретању је сада ЕНАБЛЕД\n"
 
 #: gschem/src/iface/i_sessions.c:1233
 msgid "Show Sessions at startup is now DISABLED\n"
-msgstr ""
+msgstr "Приказивање сесија приликом покретања је сада ДИСАБЛЕД\n"
 
 #: gschem/src/iface/i_sessions.c:1303
 msgid "Session system initialized!\n"
-msgstr ""
+msgstr "Иницијализован систем сесије\n"
 
+# Deselect Mode
 #: gschem/src/iface/i_status.c:130 gschem/etc/system-gschemrc.scm:2138
 msgid "Deselect Mode"
-msgstr ""
+msgstr "Деселецт Моде"
 
+# Select Mode
 #: gschem/src/iface/i_status.c:134 gschem/src/x/x_status_bar.c:383
 #: gschem/etc/system-gschemrc.scm:2137 gschem/scheme/gschem/builtins.scm:170
 msgid "Select Mode"
-msgstr ""
+msgstr "Изаберите режим"
 
+# Select Box Mode
 #: gschem/src/iface/i_status.c:136
 msgid "Select Box Mode"
-msgstr ""
+msgstr "Изаберите Бок Моде"
 
+# Zoom Box
 #: gschem/src/iface/i_status.c:138 gschem/scheme/gschem/builtins.scm:227
 msgid "Zoom Box"
-msgstr ""
+msgstr "Зум кутија"
 
+# Copy to point
 #: gschem/src/iface/i_status.c:141
 msgid "Copy to point"
-msgstr ""
+msgstr "Копирај на тачку"
 
+# Rotate Mode
 #: gschem/src/iface/i_status.c:143 gschem/scheme/gschem/builtins.scm:122
 #: gschem/scheme/gschem/builtins.scm:125
 msgid "Rotate Mode"
-msgstr ""
+msgstr "Ротирај режим"
 
+# Side to offset
 #: gschem/src/iface/i_status.c:145
 msgid "Side to offset?"
-msgstr ""
+msgstr "Страница је надокнадила?"
 
+# Mirror Mode
 #: gschem/src/iface/i_status.c:147 gschem/scheme/gschem/builtins.scm:116
 msgid "Mirror Mode"
-msgstr ""
+msgstr "Миррор Моде"
 
 #: gschem/src/iface/i_status.c:149
 msgid "Pan Mode"

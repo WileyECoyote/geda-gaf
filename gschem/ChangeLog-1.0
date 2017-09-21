@@ -6,6 +6,8 @@
 
     * po/sl.po: Update Slovenian translations
 
+    * po/sr.po: Update Serbian translations.
+
 2017-09-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_main_window.c: Revise gschem_window_size_request;
