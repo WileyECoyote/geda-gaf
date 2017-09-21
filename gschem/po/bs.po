@@ -206,14 +206,15 @@ msgid ""
 "There is NO WARRANTY, to the extent permitted by law.\n"
 msgstr ""
 
+# error parsing
 #: gschem/src/base/gschem_parsecmd.c:244
 msgid "error parsing"
-msgstr ""
+msgstr "razgraničenje greške"
 
 #: gschem/src/base/gschem_parsecmd.c:280 gschem/src/x/x_rc.c:100
 #: gschem/src/x/x_rc.c:145
 msgid "ERROR"
-msgstr ""
+msgstr "GREŠKA"
 
 #: gschem/src/base/gschem_parsecmd.c:284
 msgid "option requires an argument"
@@ -233,19 +234,19 @@ msgstr ""
 
 #: gschem/src/base/gschem_parsecmd.c:304
 msgid "Run"
-msgstr ""
+msgstr "Pokrenite"
 
 #: gschem/src/base/gschem_preview.c:298
 msgid "Preview Buffer"
-msgstr ""
+msgstr "pregled bafera"
 
 #: gschem/src/base/gschem_preview.c:540 gschem/src/x/x_pagesel.c:1145
 msgid "Filename"
-msgstr ""
+msgstr "Ime dokumenta"
 
 #: gschem/src/base/gschem_preview.c:541
 msgid "name of file to be previewed"
-msgstr ""
+msgstr "ime datoteke koje treba pregledati"
 
 # Object List
 #: gschem/src/base/gschem_preview.c:548
@@ -264,15 +265,15 @@ msgstr "Aktivan"
 
 #: gschem/src/base/gschem_preview.c:557
 msgid "Whether the preview widget is enabled or disabled"
-msgstr ""
+msgstr "Da li je vidžet prikaza omogućen ili onemogućen"
 
 #: gschem/src/base/gschem_preview.c:564
 msgid "Large size"
-msgstr ""
+msgstr "Velika veličina"
 
 #: gschem/src/base/gschem_preview.c:565
 msgid "Whether the preview widget should be large or small"
-msgstr ""
+msgstr "Da li je vidžet za pregled trebalo da bude veliki ili mali"
 
 #: gschem/src/base/gschem_status_bar.c:582
 msgid "Coordinates Mode"
@@ -280,7 +281,7 @@ msgstr "Koordinate Mode"
 
 #: gschem/src/base/gschem_status_bar.c:583
 msgid "Sets the Format Mode used to display coordinates on the status bar"
-msgstr ""
+msgstr "Podešava režim formata koji se koristi za prikaz koordinata u statusnoj traci"
 
 # grid mode
 #: gschem/src/base/gschem_status_bar.c:592
