@@ -8,6 +8,9 @@
 
     * po/sr.po: Update Serbian translations.
 
+    * src/iface/i_command.c: Revise message in i_cmd_do_close_all to
+      avoid translating program name.
+
 2017-09-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_main_window.c: Revise gschem_window_size_request;

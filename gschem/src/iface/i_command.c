@@ -1237,7 +1237,7 @@ COMMAND (do_close_all) {
 /** @brief i_cmd_do_quit in i_command_File_Actions */
 COMMAND (do_quit) {
   BEGIN_NO_ARGUMENT(do_file_new_window);
-  geda_log_v(_("gschem: starting shut-down\n"));
+  geda_log_v("gschem: %s\n", _("starting shut-down"));
   x_window_close_all(w_current);
 }
 
