@@ -2,7 +2,7 @@
 
     * src/base/gschem_main_window.c: Revise gschem_window_size_request;
       Eliminate pointers for GtkBin and GtkWindow. Add ancillary pointer
-      child.
+      child. Update documentation for gschem_main_window_geometry_save.
 
 2017-09-10 Wiley E. Hill <wileyhill@gmail.com>
 

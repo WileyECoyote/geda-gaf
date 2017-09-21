@@ -305,7 +305,7 @@ gschem_main_window_geometry_restore (GtkWidget *main_window)
 
 /*! \brief GschemMainWindow "geometry_save" class method handler
  *  \par Function Description
- *  Save the dialog's current position and size to the passed GKeyFile
+ *  Save the dialog's current position and size to EdaConfig.
  *
  *  \param [in] main_window The #GschemMainWindow Dialog to save the geometry.
  */
