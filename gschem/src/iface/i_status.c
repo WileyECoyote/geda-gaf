@@ -555,7 +555,7 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
     x_menus_sensitivity(w_current, "_Tools/Update Component", state);
   }
 
-  void set_embeded_sensitivities (bool state) {
+  void set_embedded_sensitivities (bool state) {
     x_menus_sensitivity(w_current, "_Tools/Embed Component/Picture", state);
     x_menus_sensitivity(w_current, "_Tools/Unembed Component/Picture", state);
   }
@@ -708,10 +708,10 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
     }
 
     if (complex_selected || pic_selected) {
-      set_embeded_sensitivities (TRUE);
+      set_embedded_sensitivities (TRUE);
     }
     else {
-      set_embeded_sensitivities (FALSE);
+      set_embedded_sensitivities (FALSE);
     }
 
     if (complex_selected  || is_editing_symbol) {
@@ -787,7 +787,7 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
   else { /* Nothing is selected, grey these out */
 
     set_sensitivity_for_complexes (FALSE);
-    set_embeded_sensitivities (FALSE);
+    set_embedded_sensitivities (FALSE);
     set_sensitivity_for_text (FALSE);
     set_sensitivity_for_buffers(FALSE);
 

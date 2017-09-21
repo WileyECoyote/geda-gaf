@@ -12,6 +12,9 @@
       avoid translating program name. Fix spelling/typo in functions
       i_cmd_do_export_symbol and i_cmd_do_export_picture.
 
+    * src/iface/i_status.c: Rename subfunction set_embeded_sensitivities
+      set_embedded_sensitivities.
+
 2017-09-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_main_window.c: Revise gschem_window_size_request;
