@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-08-19 19:36-0500\n"
+"POT-Creation-Date: 2017-09-21 00:33-0500\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: kop <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -122,11 +122,11 @@ msgstr ""
 msgid "Evaluate"
 msgstr ""
 
-#: gschem/src/base/gschem_main_window.c:229
+#: gschem/src/base/gschem_main_window.c:227
 msgid "Retrieving main window position.\n"
 msgstr ""
 
-#: gschem/src/base/gschem_main_window.c:276
+#: gschem/src/base/gschem_main_window.c:274
 msgid "Retrieving main window geometry.\n"
 msgstr ""
 
@@ -596,15 +596,15 @@ msgid "Closing all documents\n"
 msgstr "Zárja be az összes dokumentumot\n"
 
 #: gschem/src/iface/i_command.c:1244
-msgid "gschem: starting shut-down\n"
+msgid "starting shut-down"
 msgstr ""
 
 #: gschem/src/iface/i_command.c:1258
-msgid "Symbol is not embeded, export anyway?"
+msgid "Symbol is not embedded, export anyway?"
 msgstr ""
 
 #: gschem/src/iface/i_command.c:1282
-msgid "Picture is not embeded, export anyway?"
+msgid "Picture is not embedded, export anyway?"
 msgstr ""
 
 #: gschem/src/iface/i_command.c:1428
@@ -1258,59 +1258,59 @@ msgid ""
 "duplicate slot may cause problems: [symbol name=%s, number=%d, slot=%d]\n"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:913
+#: gschem/src/x/x_autonumber.c:917
 msgid "No search string given in autonumber text.\n"
 msgstr "Nincs keresőszöveg megadva az újraszámozáshoz.\n"
 
-#: gschem/src/x/x_autonumber.c:1128
+#: gschem/src/x/x_autonumber.c:1132
 msgid "Diagonal"
 msgstr "Átlós"
 
-#: gschem/src/x/x_autonumber.c:1129
+#: gschem/src/x/x_autonumber.c:1133
 msgid "Top to bottom"
 msgstr "Fentről lefelé"
 
-#: gschem/src/x/x_autonumber.c:1130
+#: gschem/src/x/x_autonumber.c:1134
 msgid "Bottom to top"
 msgstr "Lentről felfelé"
 
-#: gschem/src/x/x_autonumber.c:1131
+#: gschem/src/x/x_autonumber.c:1135
 msgid "Left to right"
 msgstr "Balról jobbra"
 
-#: gschem/src/x/x_autonumber.c:1132
+#: gschem/src/x/x_autonumber.c:1136
 msgid "Right to left"
 msgstr "Jobbról balra"
 
-#: gschem/src/x/x_autonumber.c:1133
+#: gschem/src/x/x_autonumber.c:1137
 msgid "File order"
 msgstr "Fáljsorrend"
 
-#: gschem/src/x/x_autonumber.c:1605
+#: gschem/src/x/x_autonumber.c:1609
 msgid "<b>Filter:</b>"
 msgstr "Szűrő:"
 
-#: gschem/src/x/x_autonumber.c:1646
+#: gschem/src/x/x_autonumber.c:1650
 msgid "Selected objects"
 msgstr "Kiválasztott objektumok"
 
-#: gschem/src/x/x_autonumber.c:1647
+#: gschem/src/x/x_autonumber.c:1651
 msgid "Current page"
 msgstr "Jelenlegi oldal"
 
-#: gschem/src/x/x_autonumber.c:1648
+#: gschem/src/x/x_autonumber.c:1652
 msgid "Whole hierarchy"
 msgstr "Teljes hierarchia"
 
-#: gschem/src/x/x_autonumber.c:1694
+#: gschem/src/x/x_autonumber.c:1698
 msgid "Autonumber text"
 msgstr "Automatikus számozás"
 
-#: gschem/src/x/x_autonumber.c:1717
+#: gschem/src/x/x_autonumber.c:1721
 msgid "<b>Scope</b>"
 msgstr "<b>Hatáskör</b>"
 
-#: gschem/src/x/x_autonumber.c:1790
+#: gschem/src/x/x_autonumber.c:1794
 msgid "Options"
 msgstr "Opciók"
 

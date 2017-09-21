@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-08-19 19:36-0500\n"
+"POT-Creation-Date: 2017-09-21 00:33-0500\n"
 "PO-Revision-Date: 2012-09-01 20:41+0000\n"
 "Last-Translator: Panos Bouklis <panos@echidna-band.com>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -128,11 +128,11 @@ msgstr ""
 msgid "Evaluate"
 msgstr "Εκτίμηση"
 
-#: gschem/src/base/gschem_main_window.c:229
+#: gschem/src/base/gschem_main_window.c:227
 msgid "Retrieving main window position.\n"
 msgstr ""
 
-#: gschem/src/base/gschem_main_window.c:276
+#: gschem/src/base/gschem_main_window.c:274
 msgid "Retrieving main window geometry.\n"
 msgstr ""
 
@@ -607,15 +607,15 @@ msgid "Closing all documents\n"
 msgstr "Κλείνοντας όλα τα έγγραφα\n"
 
 #: gschem/src/iface/i_command.c:1244
-msgid "gschem: starting shut-down\n"
+msgid "starting shut-down"
 msgstr ""
 
 #: gschem/src/iface/i_command.c:1258
-msgid "Symbol is not embeded, export anyway?"
+msgid "Symbol is not embedded, export anyway?"
 msgstr ""
 
 #: gschem/src/iface/i_command.c:1282
-msgid "Picture is not embeded, export anyway?"
+msgid "Picture is not embedded, export anyway?"
 msgstr ""
 
 #: gschem/src/iface/i_command.c:1428
@@ -1266,59 +1266,59 @@ msgstr ""
 "οι διπλές υποδοχές μπορεί να προκαλέσουν προβλήματα: [σύμβολο=%s, αριθμός="
 "%d, υποδοχή=%d]\n"
 
-#: gschem/src/x/x_autonumber.c:913
+#: gschem/src/x/x_autonumber.c:917
 msgid "No search string given in autonumber text.\n"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1128
+#: gschem/src/x/x_autonumber.c:1132
 msgid "Diagonal"
 msgstr "Διαγώνια"
 
-#: gschem/src/x/x_autonumber.c:1129
+#: gschem/src/x/x_autonumber.c:1133
 msgid "Top to bottom"
 msgstr "Πάνω προς κάτω"
 
-#: gschem/src/x/x_autonumber.c:1130
+#: gschem/src/x/x_autonumber.c:1134
 msgid "Bottom to top"
 msgstr "Κάτω προς πάνω"
 
-#: gschem/src/x/x_autonumber.c:1131
+#: gschem/src/x/x_autonumber.c:1135
 msgid "Left to right"
 msgstr "Αριστερά προς δεξιά"
 
-#: gschem/src/x/x_autonumber.c:1132
+#: gschem/src/x/x_autonumber.c:1136
 msgid "Right to left"
 msgstr "Δεξιά προς αριστερά"
 
-#: gschem/src/x/x_autonumber.c:1133
+#: gschem/src/x/x_autonumber.c:1137
 msgid "File order"
 msgstr "Σειρά αρχείων"
 
-#: gschem/src/x/x_autonumber.c:1605
+#: gschem/src/x/x_autonumber.c:1609
 msgid "<b>Filter:</b>"
 msgstr "Φίλτρο:"
 
-#: gschem/src/x/x_autonumber.c:1646
+#: gschem/src/x/x_autonumber.c:1650
 msgid "Selected objects"
 msgstr "Επιλεγμένα αντικείμενα"
 
-#: gschem/src/x/x_autonumber.c:1647
+#: gschem/src/x/x_autonumber.c:1651
 msgid "Current page"
 msgstr "Τρέχουσα σελίδα"
 
-#: gschem/src/x/x_autonumber.c:1648
+#: gschem/src/x/x_autonumber.c:1652
 msgid "Whole hierarchy"
 msgstr "Ολόκληρη η ιεραρχία"
 
-#: gschem/src/x/x_autonumber.c:1694
+#: gschem/src/x/x_autonumber.c:1698
 msgid "Autonumber text"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1717
+#: gschem/src/x/x_autonumber.c:1721
 msgid "<b>Scope</b>"
 msgstr "<b>Σκοπός</b>"
 
-#: gschem/src/x/x_autonumber.c:1790
+#: gschem/src/x/x_autonumber.c:1794
 msgid "Options"
 msgstr "Επιλογές"
 

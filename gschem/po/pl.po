@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-08-19 19:36-0500\n"
+"POT-Creation-Date: 2017-09-21 00:33-0500\n"
 "PO-Revision-Date: 2012-02-04 00:18+0000\n"
 "Last-Translator: Krzysztof Kościuszkiewicz <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -131,11 +131,11 @@ msgstr ""
 msgid "Evaluate"
 msgstr ""
 
-#: gschem/src/base/gschem_main_window.c:229
+#: gschem/src/base/gschem_main_window.c:227
 msgid "Retrieving main window position.\n"
 msgstr ""
 
-#: gschem/src/base/gschem_main_window.c:276
+#: gschem/src/base/gschem_main_window.c:274
 msgid "Retrieving main window geometry.\n"
 msgstr ""
 
@@ -627,15 +627,15 @@ msgid "Closing all documents\n"
 msgstr "Zamykanie wszystkich arkuszy\n"
 
 #: gschem/src/iface/i_command.c:1244
-msgid "gschem: starting shut-down\n"
+msgid "starting shut-down"
 msgstr ""
 
 #: gschem/src/iface/i_command.c:1258
-msgid "Symbol is not embeded, export anyway?"
+msgid "Symbol is not embedded, export anyway?"
 msgstr ""
 
 #: gschem/src/iface/i_command.c:1282
-msgid "Picture is not embeded, export anyway?"
+msgid "Picture is not embedded, export anyway?"
 msgstr ""
 
 #: gschem/src/iface/i_command.c:1428
@@ -1345,59 +1345,59 @@ msgid ""
 "duplicate slot may cause problems: [symbol name=%s, number=%d, slot=%d]\n"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:913
+#: gschem/src/x/x_autonumber.c:917
 msgid "No search string given in autonumber text.\n"
 msgstr "Nie podano tekstu wyszukiwania.\n"
 
-#: gschem/src/x/x_autonumber.c:1128
+#: gschem/src/x/x_autonumber.c:1132
 msgid "Diagonal"
 msgstr "Po przekątnej"
 
-#: gschem/src/x/x_autonumber.c:1129
+#: gschem/src/x/x_autonumber.c:1133
 msgid "Top to bottom"
 msgstr "Od góry do dołu"
 
-#: gschem/src/x/x_autonumber.c:1130
+#: gschem/src/x/x_autonumber.c:1134
 msgid "Bottom to top"
 msgstr "Od dołu do góry"
 
-#: gschem/src/x/x_autonumber.c:1131
+#: gschem/src/x/x_autonumber.c:1135
 msgid "Left to right"
 msgstr "Od lewej do prawej"
 
-#: gschem/src/x/x_autonumber.c:1132
+#: gschem/src/x/x_autonumber.c:1136
 msgid "Right to left"
 msgstr "Od prawej do lewej"
 
-#: gschem/src/x/x_autonumber.c:1133
+#: gschem/src/x/x_autonumber.c:1137
 msgid "File order"
 msgstr "Kolejność plików"
 
-#: gschem/src/x/x_autonumber.c:1605
+#: gschem/src/x/x_autonumber.c:1609
 msgid "<b>Filter:</b>"
 msgstr "<b>Filtr:</b>"
 
-#: gschem/src/x/x_autonumber.c:1646
+#: gschem/src/x/x_autonumber.c:1650
 msgid "Selected objects"
 msgstr "Wybrane obiekty"
 
-#: gschem/src/x/x_autonumber.c:1647
+#: gschem/src/x/x_autonumber.c:1651
 msgid "Current page"
 msgstr "Bieżącej stronie"
 
-#: gschem/src/x/x_autonumber.c:1648
+#: gschem/src/x/x_autonumber.c:1652
 msgid "Whole hierarchy"
 msgstr "Całej hierarchii"
 
-#: gschem/src/x/x_autonumber.c:1694
+#: gschem/src/x/x_autonumber.c:1698
 msgid "Autonumber text"
 msgstr "Automatyczna numeracja"
 
-#: gschem/src/x/x_autonumber.c:1717
+#: gschem/src/x/x_autonumber.c:1721
 msgid "<b>Scope</b>"
 msgstr "<b>Zakres</b>"
 
-#: gschem/src/x/x_autonumber.c:1790
+#: gschem/src/x/x_autonumber.c:1794
 msgid "Options"
 msgstr "Opcje"
 

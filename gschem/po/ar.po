@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-08-19 19:36-0500\n"
+"POT-Creation-Date: 2017-09-21 00:33-0500\n"
 "PO-Revision-Date: 2016-12-23 15:41-0600\n"
 "Last-Translator: عبدالله شلي (Abdellah Chelli) <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -127,11 +127,11 @@ msgstr "سلسلة الكلية"
 msgid "Evaluate"
 msgstr "تقييم"
 
-#: gschem/src/base/gschem_main_window.c:229
+#: gschem/src/base/gschem_main_window.c:227
 msgid "Retrieving main window position.\n"
 msgstr ""
 
-#: gschem/src/base/gschem_main_window.c:276
+#: gschem/src/base/gschem_main_window.c:274
 msgid "Retrieving main window geometry.\n"
 msgstr ""
 
@@ -599,15 +599,15 @@ msgid "Closing all documents\n"
 msgstr "إغلاق كافة المستندات\n"
 
 #: gschem/src/iface/i_command.c:1244
-msgid "gschem: starting shut-down\n"
+msgid "starting shut-down"
 msgstr ""
 
 #: gschem/src/iface/i_command.c:1258
-msgid "Symbol is not embeded, export anyway?"
+msgid "Symbol is not embedded, export anyway?"
 msgstr ""
 
 #: gschem/src/iface/i_command.c:1282
-msgid "Picture is not embeded, export anyway?"
+msgid "Picture is not embedded, export anyway?"
 msgstr ""
 
 #: gschem/src/iface/i_command.c:1428
@@ -1272,59 +1272,59 @@ msgid ""
 "duplicate slot may cause problems: [symbol name=%s, number=%d, slot=%d]\n"
 msgstr "﻿شقّ مكرر قد يسبب مشاكل: [اسم​الرمز=%s، العدد=%d، الشقّ=%d]\n"
 
-#: gschem/src/x/x_autonumber.c:913
+#: gschem/src/x/x_autonumber.c:917
 msgid "No search string given in autonumber text.\n"
 msgstr "لا يوجد نص بحث في نص الترقيم الآلي.\n"
 
-#: gschem/src/x/x_autonumber.c:1128
+#: gschem/src/x/x_autonumber.c:1132
 msgid "Diagonal"
 msgstr "قطري"
 
-#: gschem/src/x/x_autonumber.c:1129
+#: gschem/src/x/x_autonumber.c:1133
 msgid "Top to bottom"
 msgstr "من الأعلى للأسفل"
 
-#: gschem/src/x/x_autonumber.c:1130
+#: gschem/src/x/x_autonumber.c:1134
 msgid "Bottom to top"
 msgstr "من الأسفل للأعلى"
 
-#: gschem/src/x/x_autonumber.c:1131
+#: gschem/src/x/x_autonumber.c:1135
 msgid "Left to right"
 msgstr "من اليسار لليمين"
 
-#: gschem/src/x/x_autonumber.c:1132
+#: gschem/src/x/x_autonumber.c:1136
 msgid "Right to left"
 msgstr "من اليمين لليسار"
 
-#: gschem/src/x/x_autonumber.c:1133
+#: gschem/src/x/x_autonumber.c:1137
 msgid "File order"
 msgstr "ترتيب الملف"
 
-#: gschem/src/x/x_autonumber.c:1605
+#: gschem/src/x/x_autonumber.c:1609
 msgid "<b>Filter:</b>"
 msgstr "المرشح:"
 
-#: gschem/src/x/x_autonumber.c:1646
+#: gschem/src/x/x_autonumber.c:1650
 msgid "Selected objects"
 msgstr "الكائنات المنتقاة"
 
-#: gschem/src/x/x_autonumber.c:1647
+#: gschem/src/x/x_autonumber.c:1651
 msgid "Current page"
 msgstr "الصفحة الحالية"
 
-#: gschem/src/x/x_autonumber.c:1648
+#: gschem/src/x/x_autonumber.c:1652
 msgid "Whole hierarchy"
 msgstr "التسلسل الهرمي الكامل"
 
-#: gschem/src/x/x_autonumber.c:1694
+#: gschem/src/x/x_autonumber.c:1698
 msgid "Autonumber text"
 msgstr "نص تعداد آلي"
 
-#: gschem/src/x/x_autonumber.c:1717
+#: gschem/src/x/x_autonumber.c:1721
 msgid "<b>Scope</b>"
 msgstr "<b>المجال</b>"
 
-#: gschem/src/x/x_autonumber.c:1790
+#: gschem/src/x/x_autonumber.c:1794
 msgid "Options"
 msgstr "الخيارات"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-09-03 16:27-0500\n"
+"POT-Creation-Date: 2017-09-21 00:33-0500\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -135,11 +135,11 @@ msgstr ""
 msgid "Evaluate"
 msgstr ""
 
-#: gschem/src/base/gschem_main_window.c:229
+#: gschem/src/base/gschem_main_window.c:227
 msgid "Retrieving main window position.\n"
 msgstr ""
 
-#: gschem/src/base/gschem_main_window.c:276
+#: gschem/src/base/gschem_main_window.c:274
 msgid "Retrieving main window geometry.\n"
 msgstr ""
 
@@ -615,16 +615,19 @@ msgstr "എല്ലാ പ്രമാണങ്ങളും അടച്ചത�
 
 # commencing shut-down
 #: gschem/src/iface/i_command.c:1244
-msgid "gschem: starting shut-down\n"
+#, fuzzy
+msgid "starting shut-down"
 msgstr "gschem: ഉത്ഭവിക്കൽ ഷട്ട് ഡൌണ്\n"
 
 #: gschem/src/iface/i_command.c:1258
-msgid "Symbol is not embeded, export anyway?"
+#, fuzzy
+msgid "Symbol is not embedded, export anyway?"
 msgstr "പ്രതീക embeded അല്ല, ഏതുവിധേനയും കയറ്റുമതി?"
 
 # Picture is not embeded, export anyway
 #: gschem/src/iface/i_command.c:1282
-msgid "Picture is not embeded, export anyway?"
+#, fuzzy
+msgid "Picture is not embedded, export anyway?"
 msgstr "This picture is not embeded, ഏതുവിധേനയും കയറ്റുമതി?"
 
 # Empty buffer
@@ -1288,59 +1291,59 @@ msgid ""
 "duplicate slot may cause problems: [symbol name=%s, number=%d, slot=%d]\n"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:913
+#: gschem/src/x/x_autonumber.c:917
 msgid "No search string given in autonumber text.\n"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1128
+#: gschem/src/x/x_autonumber.c:1132
 msgid "Diagonal"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1129
+#: gschem/src/x/x_autonumber.c:1133
 msgid "Top to bottom"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1130
+#: gschem/src/x/x_autonumber.c:1134
 msgid "Bottom to top"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1131
+#: gschem/src/x/x_autonumber.c:1135
 msgid "Left to right"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1132
+#: gschem/src/x/x_autonumber.c:1136
 msgid "Right to left"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1133
+#: gschem/src/x/x_autonumber.c:1137
 msgid "File order"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1605
+#: gschem/src/x/x_autonumber.c:1609
 msgid "<b>Filter:</b>"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1646
+#: gschem/src/x/x_autonumber.c:1650
 msgid "Selected objects"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1647
+#: gschem/src/x/x_autonumber.c:1651
 msgid "Current page"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1648
+#: gschem/src/x/x_autonumber.c:1652
 msgid "Whole hierarchy"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1694
+#: gschem/src/x/x_autonumber.c:1698
 msgid "Autonumber text"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1717
+#: gschem/src/x/x_autonumber.c:1721
 msgid "<b>Scope</b>"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1790
+#: gschem/src/x/x_autonumber.c:1794
 msgid "Options"
 msgstr "പ്രവര്‍ത്തന രീതി നിര്‍ണയിക്കുക"
 
