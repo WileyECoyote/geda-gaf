@@ -9,7 +9,8 @@
     * po/sr.po: Update Serbian translations.
 
     * src/iface/i_command.c: Revise message in i_cmd_do_close_all to
-      avoid translating program name.
+      avoid translating program name. Fix spelling/typo in functions
+      i_cmd_do_export_symbol and i_cmd_do_export_picture.
 
 2017-09-20 Wiley E. Hill <wileyhill@gmail.com>
 

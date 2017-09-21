@@ -1251,7 +1251,7 @@ COMMAND (do_export_symbol) {
 
   if (o_current && (o_current->type == OBJ_COMPLEX)) {
     if (!geda_object_get_is_embedded(o_current)) {
-      const char *question = _("Symbol is not embeded, export anyway?");
+      const char *question = _("Symbol is not embedded, export anyway?");
       int response = x_dialog_confirmation(question, GTK_MESSAGE_INFO, FALSE);
       if (response == GEDA_RESPONSE_YES) {
         o_complex_export(w_current, o_current);
@@ -1275,7 +1275,7 @@ COMMAND (do_export_picture) {
 
   if (o_current && (o_current->type == OBJ_PICTURE)) {
     if (!geda_object_get_is_embedded(o_current)) {
-      const char *question = _("Picture is not embeded, export anyway?");
+      const char *question = _("Picture is not embedded, export anyway?");
       int response = x_dialog_confirmation(question, GTK_MESSAGE_INFO, FALSE);
       if (response == GEDA_RESPONSE_YES) {
         o_picture_export(w_current, o_current);
