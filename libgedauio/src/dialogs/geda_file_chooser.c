@@ -327,7 +327,7 @@ geda_file_chooser_set_property (GObject *object, unsigned int  property_id,
 
 /*! \brief GedaFileChooser "geometry_restore" class method handler
  *  \par Function Description
- *  Restore dialog's last position and size from the passed GKeyFile
+ *  Restore dialog's last position and size from EdaConfig.
  *
  *  \param [in] chooser    The #GedaFileChooser Dialog to restore geometry.
  *  \param [in] group_name The group name in the key file to find the data under.
@@ -357,7 +357,7 @@ geda_file_chooser_geometry_restore (GedaFileChooser *chooser, char *group_name)
 
 /*! \brief GedaFileChooser "geometry_save" class method handler
  *  \par Function Description
- *  Save the dialog's current position and size to the passed GKeyFile
+ *  Save the dialog's current position and size to EdaConfig.
  *
  *  \param [in] chooser    The #GedaFileChooser Dialog to save the geometry.
  *  \param [in] group_name The group name in the key file to store the data under.

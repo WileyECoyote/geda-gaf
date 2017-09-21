@@ -1,3 +1,9 @@
+2017-09-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/dialogs/geda_file_chooser.c: Update function documentation
+      for geda_file_chooser_geometry_restore and geda_file_chooser_
+      geometry_save.
+
 2017-09-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/dialogs/geda_file_chooser.c: Update Doxygen comment block.
