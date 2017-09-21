@@ -59,8 +59,7 @@ static SCM scheme_rc_config_fluid = SCM_UNDEFINED;
  *  }
  *
  */
-static
-int vstbl_lookup_str(const vstbl_entry *table, int size, const char *str)
+static int vstbl_lookup_str(const vstbl_entry *table, int size, const char *str)
 {
   int i;
 
@@ -77,8 +76,7 @@ int vstbl_lookup_str(const vstbl_entry *table, int size, const char *str)
  *   Returns the value of the first field in \a table at the
  *   given \a index
  */
-static
-int vstbl_get_val(const vstbl_entry *table, int index)
+static int vstbl_get_val(const vstbl_entry *table, int index)
 {
   return table[index].m_val;
 }
@@ -98,9 +96,8 @@ int vstbl_get_val(const vstbl_entry *table, int index)
  *
  * \return TRUE if the value was set, FALSE otherwise.
  */
-SCM
-g_rc_parse_mode(SCM scmmode, const char *rc_name,      int *mode_var,
-                             const vstbl_entry *table, int  table_size)
+SCM g_rc_parse_mode(SCM scmmode, const char *rc_name,      int *mode_var,
+                                 const vstbl_entry *table, int  table_size)
 {
   SCM   ret_val;
   int   index;
@@ -145,8 +142,7 @@ g_rc_parse_mode(SCM scmmode, const char *rc_name,      int *mode_var,
  * \param err       Return location for errors, or NULL.
  * \return TRUE if \a filename not already loaded, FALSE otherwise.
  */
-static bool
-g_rc_try_mark_read (EdaConfig *cfg, char *filename, GError **err)
+static bool g_rc_try_mark_read (EdaConfig *cfg, char *filename, GError **err)
 {
   GList *found = NULL;
 
@@ -183,8 +179,7 @@ g_rc_try_mark_read (EdaConfig *cfg, char *filename, GError **err)
  * \param err       Return location for errors, or NULL;
  * \return TRUE on success, FALSE on failure.
  */
-bool
-g_rc_parse_file (const char *rcfile, EdaConfig *cfg, GError **err)
+bool g_rc_parse_file (const char *rcfile, EdaConfig *cfg, GError **err)
 {
   bool    status     = FALSE;
   char   *name_norm  = NULL;
@@ -313,8 +308,7 @@ g_rc_parse_file (const char *rcfile, EdaConfig *cfg, GError **err)
  * \param err       Return location for errors, or NULL.
  * \return TRUE on success, FALSE on failure.
  */
-bool
-g_rc_parse_system (const char *rcname, GError **err)
+bool g_rc_parse_system (const char *rcname, GError **err)
 {
   char *sysname = NULL;
   char *rcfile = NULL;
@@ -346,8 +340,7 @@ g_rc_parse_system (const char *rcname, GError **err)
  * \param err       Return location for errors, or NULL.
  * \return TRUE on success, FALSE on failure.
  */
-bool
-g_rc_parse_user (const char *rcname, GError **err)
+bool g_rc_parse_user (const char *rcname, GError **err)
 {
   char *rcfile = NULL;
   bool  status;
@@ -377,8 +370,7 @@ g_rc_parse_user (const char *rcname, GError **err)
  * \param err       Return location for errors, or NULL.
  * \return TRUE on success, FALSE on failure.
  */
-bool
-g_rc_parse_local (const char *rcname, const char *path, GError **err)
+bool g_rc_parse_local (const char *rcname, const char *path, GError **err)
 {
   EdaConfig *cfg;
 
@@ -426,8 +418,7 @@ g_rc_parse_local (const char *rcname, const char *path, GError **err)
   return status;
 }
 
-static void
-g_rc_parse__process_error (GError **err, const char *pname)
+static void g_rc_parse__process_error (GError **err, const char *pname)
 {
   const char *pbase;
   const char *err_msg;
@@ -482,8 +473,7 @@ g_rc_parse__process_error (GError **err, const char *pname)
  * \param [in] rcname  Config file basename, or NULL.
  * \param [in] rcfile  Specific config file path, or NULL.
  */
-bool
-g_rc_parse (const char *pname, const char *rcname, const char *rcfile)
+bool g_rc_parse (const char *pname, const char *rcname, const char *rcfile)
 {
   g_rc_parse_handler (rcname, rcfile,
                      (ConfigParseErrorFunc) g_rc_parse__process_error,
@@ -515,10 +505,9 @@ g_rc_parse (const char *pname, const char *rcname, const char *rcfile)
  * \param handler   Handler function for config parse errors.
  * \param user_data Data to be passed to \a handler.
  */
-void
-g_rc_parse_gafrc_handler (const char *dummy,
-                          ConfigParseErrorFunc handler,
-                          void *user_data)
+void g_rc_parse_gafrc_handler (const char *dummy,
+                               ConfigParseErrorFunc handler,
+                               void *user_data)
 {
   GError *err = NULL;
 
@@ -543,9 +532,8 @@ g_rc_parse_gafrc_handler (const char *dummy,
  * \param handler   Handler function for config parse errors.
  * \param user_data Data to be passed to \a handler.
  */
-void
-g_rc_parse_rcname_handler (const char *rcname,
-                           ConfigParseErrorFunc handler, void *user_data)
+void g_rc_parse_rcname_handler (const char *rcname,
+                                ConfigParseErrorFunc handler, void *user_data)
 {
   GError *err = NULL;
 
@@ -570,9 +558,8 @@ g_rc_parse_rcname_handler (const char *rcname,
  * \param handler   Handler function for config parse errors.
  * \param user_data Data to be passed to \a handler.
  */
-void
-g_rc_parse_rcfile_handler (const char *rcfile,
-                           ConfigParseErrorFunc handler, void *user_data)
+void g_rc_parse_rcfile_handler (const char *rcfile,
+                                ConfigParseErrorFunc handler, void *user_data)
 {
   GError *err = NULL;
 
@@ -607,10 +594,9 @@ g_rc_parse_rcfile_handler (const char *rcfile,
  * \param handler   Handler function for config parse errors.
  * \param user_data Data to be passed to \a handler.
  */
-void
-g_rc_parse_handler (const char *rcname,
-                    const char *rcfile, ConfigParseErrorFunc handler,
-                    void *user_data)
+void g_rc_parse_handler (const char *rcname,
+                         const char *rcfile, ConfigParseErrorFunc handler,
+                         void *user_data)
 {
   /* Load RC files in order. */
   /* First gafrc files. */
@@ -635,8 +621,7 @@ g_rc_parse_handler (const char *rcname,
  * \returns If the interpreter can resolve the filename, returns a
  * Scheme object with the full path to the RC file, otherwise FALSE
  */
-SCM
-g_rc_parse_rc_filename(void)
+SCM g_rc_parse_rc_filename(void)
 {
   SCM stack, frame, source;
 
@@ -667,8 +652,7 @@ g_rc_parse_rc_filename(void)
  *
  * \returns An EdaConfig smob.
  */
-SCM
-g_rc_parse_rc_config(void)
+SCM g_rc_parse_rc_config(void)
 {
   SCM cfg_s = scm_fluid_ref (scheme_rc_config_fluid);
   if (!scm_is_false (cfg_s)) return cfg_s;
