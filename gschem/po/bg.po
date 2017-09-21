@@ -359,7 +359,7 @@ msgstr "Координати Режим"
 
 #: gschem/src/base/gschem_status_bar.c:583
 msgid "Sets the Format Mode used to display coordinates on the status bar"
-msgstr ""
+msgstr "Задава режима на форматиране, използван за показване на координатите в лентата на състоянието"
 
 #: gschem/src/base/gschem_status_bar.c:592
 msgid "Grid Mode"
@@ -367,7 +367,7 @@ msgstr "Pешетка Режим"
 
 #: gschem/src/base/gschem_status_bar.c:593
 msgid "Sets the Grid Mode to display on the status bar"
-msgstr ""
+msgstr "Задава режима на мрежата, за да се покаже в лентата на състоянието"
 
 #: gschem/src/base/gschem_status_bar.c:602
 msgid "Grid Size"
@@ -383,31 +383,31 @@ msgstr "височина"
 
 #: gschem/src/base/gschem_status_bar.c:613
 msgid "Sets the height of the status bar"
-msgstr ""
+msgstr "Задава височината на лентата на състоянието"
 
 #: gschem/src/base/gschem_status_bar.c:622
 msgid "Left Button Text"
-msgstr ""
+msgstr "Ляв бутон на текста"
 
 #: gschem/src/base/gschem_status_bar.c:623
 msgid "Set the string for the Left Button Text"
-msgstr ""
+msgstr "Задайте низа за левия бутон на текста"
 
 #: gschem/src/base/gschem_status_bar.c:629
 msgid "Middle Button Text"
-msgstr ""
+msgstr "Текст на средния бутон"
 
 #: gschem/src/base/gschem_status_bar.c:630
 msgid "Set the string for the Middle Button Text"
-msgstr ""
+msgstr "Задайте низа за текста на средния бутон"
 
 #: gschem/src/base/gschem_status_bar.c:636
 msgid "Right Button Text"
-msgstr ""
+msgstr "Текст на десния бутон"
 
 #: gschem/src/base/gschem_status_bar.c:637
 msgid "Set the string for the Right Button Text"
-msgstr ""
+msgstr "Задайте низа за текста в десния бутон"
 
 #: gschem/src/base/gschem_status_bar.c:643
 msgid "Snap Mode"
@@ -419,7 +419,7 @@ msgstr "Задава режим Snap показан в лентата на съ�
 
 #: gschem/src/base/gschem_status_bar.c:653 gschem/src/x/x_dialog.c:572
 msgid "Snap Size"
-msgstr ""
+msgstr "Размер на приплъзване"
 
 #: gschem/src/base/gschem_status_bar.c:654
 msgid "Sets the Size Mode to display on the status bar"
