@@ -122,21 +122,19 @@ gschem_main_window_unmap (GtkWidget *widget)
 static void
 gschem_window_size_request (GtkWidget *widget, GtkRequisition *requisition)
 {
-  GtkBin           *bin;
-  GtkWindow        *window;
-  unsigned int      border;
+  GtkWidget    *child;
+  unsigned int  border;
 
-  window = (GtkWindow*)widget;
-  bin    = (GtkBin*)window;
-  border = geda_get_container_border_width (window);
+  child  = geda_get_child_widget((GtkBin*)widget);
+  border = geda_get_container_border_width ((GtkWindow*)widget);
 
   requisition->width = requisition->height = border << 1;
 
-  if (bin->child && gtk_widget_get_visible (bin->child)) {
+  if (child && gtk_widget_get_visible (child)) {
 
     GtkRequisition child_requisition;
 
-    gtk_widget_size_request (bin->child, &child_requisition);
+    gtk_widget_size_request (child, &child_requisition);
 
     requisition->width  += child_requisition.width;
     requisition->height += child_requisition.height;
