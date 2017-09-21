@@ -1,3 +1,7 @@
+2017-09-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/libgedacolor.3.in: Update documentation/library name.
+
 2017-04-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/Makefile.am: Add semicolon after @printf intended to suppress

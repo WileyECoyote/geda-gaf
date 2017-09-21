@@ -8,7 +8,7 @@
 .TH Libgedacolor 3 "@DATE@" "gEDA Project" @VERSION@
 
 .SH NAME
-Libgeda \- The GPL Electronic Design Automation core library
+Libgedacolor \- The GPL Electronic Design Automation Color Library
 
 .SH SYNOPSIS
 #include <libgedacolor.h>
