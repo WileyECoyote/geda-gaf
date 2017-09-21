@@ -4,6 +4,9 @@
       for geda_file_chooser_geometry_restore and geda_file_chooser_
       geometry_save.
 
+    * src/widgets/geda_radio_menu_item.c: Replace g_object_notify with
+      GEDA_OBJECT_NOTIFY macro.
+
 2017-09-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/dialogs/geda_file_chooser.c: Update Doxygen comment block.

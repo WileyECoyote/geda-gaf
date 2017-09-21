@@ -621,7 +621,8 @@ geda_radio_menu_item_set_group (GedaRadioMenuItem *radio_menu_item,
 
   g_object_ref (radio_menu_item);
 
-  g_object_notify (G_OBJECT (radio_menu_item), "group");
+  GEDA_OBJECT_NOTIFY (radio_menu_item, "group");
+
   g_signal_emit (radio_menu_item, group_changed_signal, 0);
 
   if (old_group_singleton) {
