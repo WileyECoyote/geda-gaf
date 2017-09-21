@@ -4,6 +4,9 @@
       for geda_file_chooser_geometry_restore and geda_file_chooser_
       geometry_save.
 
+    * src/widgets/geda_combobox.c: Revise geda_combo_box_menu_position_below
+      to use geda_get_child_widget macro.
+
     * src/widgets/geda_radio_menu_item.c: Replace g_object_notify with
       GEDA_OBJECT_NOTIFY macro.
 

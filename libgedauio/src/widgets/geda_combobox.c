@@ -2670,7 +2670,7 @@ static void geda_combo_box_menu_position_below (GtkWidget *menu,      /* GedaMen
   int sx, sy;
 
   /* FIXME: is using the size request here broken? WEH: Yes*/
-  child = ((GtkBin*)combo_widget)->child;
+  child = geda_get_child_widget(combo_widget);
 
   combo_box = (GedaComboBox*)combo_widget;
 
