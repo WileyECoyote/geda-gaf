@@ -542,7 +542,7 @@ void s_sheet_data_add_master_pin_attrib_list_items (const GList *obj_list) {
 #endif
 
   if (verbose_mode) {
-    printf(_("- Starting master pin attrib list creation.\n"));
+    printf("%s...", _("Creating master pin attribute list"));
   }
 
   /* -----  Iterate through all objects found on page looking for components  ----- */

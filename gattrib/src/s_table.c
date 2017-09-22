@@ -571,7 +571,7 @@ void s_table_add_tems_to_pin_table (const GList *obj_list) {
   int          row, col;
 
   if (verbose_mode) {
-    printf(_("Creating pin table\n"));
+    printf("%s...", _("Creating pin table"));
   }
 
 #ifdef DEBUG

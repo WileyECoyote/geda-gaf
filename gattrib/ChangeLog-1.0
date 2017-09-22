@@ -10,6 +10,15 @@
 
     * src/s_rename.c: Reformat Doxygen comments.
 
+    * src/s_sheet_data.c: Revise verbose message in s_sheet_data_add_master
+      _pin_attrib_list_items to eliminate the trailing CR and use eclispes
+      instead so that the subsequent "DONE" output normally appears on the
+      same line.
+
+    * src/s_table.c: Revise verbose message in s_table_add_tems_to_pin_table
+      to eliminate the trailing CR and use eclispes instead so that the
+      subsequent "DONE" output normally appears on the same line.
+
 2017-09-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: Update Afrikaans translations.
