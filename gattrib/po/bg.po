@@ -48,19 +48,20 @@ msgstr "Изнесено схематично до"
 
 #: gattrib/src/g_rc.c:67
 msgid "This is gEDA/gattrib version"
-msgstr ""
+msgstr "Това е версия gEDA/gattrib"
 
+# but you have a version
 #: gattrib/src/g_rc.c:68
 msgid "but you have a version"
-msgstr ""
+msgstr "но имате версия"
 
 #: gattrib/src/g_rc.c:69
 msgid "Please be sure that you have the latest rc file"
-msgstr ""
+msgstr "Моля, уверете се, че имате най-новия rc файл"
 
 #: gattrib/src/g_rc.c:76
 msgid "file"
-msgstr ""
+msgstr "досие"
 
 # The operating system is out of memory or resources
 #: gattrib/src/i_basic.c:105
@@ -97,6 +98,21 @@ msgid ""
 "     The cell text colors indicate the visibility of the attribute.\n"
 "     "
 msgstr ""
+"\n"
+"Gattrib:  Редакторът на атрибута на проекта gEDA.\n"
+"Представя схематични атрибути в лесен за редактиране формат на електронни таблици.\n"
+"\n"
+"употреба: %s [НАСТРОИКИ] име на файл 1 ... име на файл\n"
+"\n"
+"\t-e, --export-csv файл за експортиране до стойности, разделени със запетая\n"
+"\t-h, --help       Това меню за помощ\n"
+"\t-q, --quiet      Активиране на тих режим\n"
+"\t-v, --verbose    Активирайте подробния режим\n"
+"\t-V, --version    Показване на информацията за версията.\n"
+"\n"
+"  ЧЗВ:\n"
+"  *  Какво означават цветовете на текста на клетката?\n"
+"     Цветовете на текста на клетката показват видимостта на атрибута.\n"
 
 #: gattrib/src/parsecmd.c:101
 #, c-format
@@ -108,6 +124,12 @@ msgid ""
 "included in the gEDA distribution.\n"
 "There is NO WARRANTY, to the extent permitted by law.\n"
 msgstr ""
+"gEDA/gattrib %s (%s) (g%.7s)\n"
+"Авторско право (C) 1998-2017 gEDA разработчиците\n"
+"Това е свободен софтуер и вие сте добре дошли да го разпространявате под\n"
+"определени условия. За подробности вижте файла `COPYING ', който е\n"
+"включени в разпределението на gEDA.\n"
+"Няма никаква ГАРАНЦИЯ, доколкото това е разрешено от закона.\n"
 
 # DONE
 #: gattrib/src/s_misc.c:66
