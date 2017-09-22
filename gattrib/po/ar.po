@@ -124,15 +124,17 @@ msgstr "الخروج..."
 
 #: gattrib/src/s_rename.c:98
 msgid "Increase MAX_SETS in"
-msgstr ""
+msgstr "زيادة MAX_SETS في"
 
+# Source
 #: gattrib/src/s_rename.c:116
 msgid "Source"
-msgstr ""
+msgstr "مصدر"
 
+# Destination
 #: gattrib/src/s_rename.c:120
 msgid "Destination"
-msgstr ""
+msgstr "المكان المقصود"
 
 #: gattrib/src/s_rename.c:151
 #, c-format
@@ -173,23 +175,26 @@ msgstr ""
 
 #: gattrib/src/s_string_list.c:142
 msgid "attempted to add to a NULL list.\n"
-msgstr ""
+msgstr "حاولت الإضافة إلى قائمة نول.\n"
 
 #: gattrib/src/s_string_list.c:205
 msgid "attempted to remove item from an empty list\n"
-msgstr ""
+msgstr "حاولت إزالة عنصر من قائمة فارغة\n"
 
+# could not delete item
 #: gattrib/src/s_string_list.c:283
 msgid "could not delete item"
-msgstr ""
+msgstr "تعذر حذف العنصر"
 
+# Component Error looking for row ref
 #: gattrib/src/s_table.c:355 gattrib/src/s_table.c:418
 msgid "Component Error looking for row ref"
-msgstr ""
+msgstr "خطأ في مكون يبحث عن مرجع الصف"
 
+# Component Error looking for column
 #: gattrib/src/s_table.c:359 gattrib/src/s_table.c:423
 msgid "Component Error looking for column"
-msgstr ""
+msgstr "خطأ في مكون يبحث عن عمود"
 
 #: gattrib/src/s_table.c:574
 #, c-format
