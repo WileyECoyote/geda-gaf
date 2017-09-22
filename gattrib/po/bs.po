@@ -126,15 +126,17 @@ msgstr "Izlazak..."
 
 #: gattrib/src/s_rename.c:98
 msgid "Increase MAX_SETS in"
-msgstr ""
+msgstr "Povećajte MAX_SETS u"
 
+# Source
 #: gattrib/src/s_rename.c:116
 msgid "Source"
-msgstr ""
+msgstr "Izvor"
 
+# Destination
 #: gattrib/src/s_rename.c:120
 msgid "Destination"
-msgstr ""
+msgstr "Destinacija"
 
 #: gattrib/src/s_rename.c:151
 #, c-format
@@ -166,7 +168,7 @@ msgstr ""
 
 #: gattrib/src/s_sheet_data.c:484
 msgid "found component pin with no pinnumber."
-msgstr ""
+msgstr "pronađena komponenta pin bez pinnumber."
 
 #: gattrib/src/s_sheet_data.c:545
 #, c-format
@@ -175,7 +177,7 @@ msgstr ""
 
 #: gattrib/src/s_string_list.c:142
 msgid "attempted to add to a NULL list.\n"
-msgstr ""
+msgstr "pokušao je dodati na listu NULL.\n"
 
 #: gattrib/src/s_string_list.c:205
 msgid "attempted to remove item from an empty list\n"
