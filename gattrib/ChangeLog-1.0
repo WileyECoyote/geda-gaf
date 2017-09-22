@@ -11,12 +11,14 @@
     * src/s_rename.c: Reformat Doxygen comments.
 
     * src/s_sheet_data.c: Revise verbose message in s_sheet_data_add_master
-      _pin_attrib_list_items to eliminate the trailing CR and use eclispes
+      _pin_attrib_list_items to eliminate the trailing CR and use ellipses
       instead so that the subsequent "DONE" output normally appears on the
-      same line.
+      same line. Remove the dash from verbose messages in s_sheet_data_add_
+      master_comp_attrib_list_items s_sheet_data_add_master_pin_list_items
+      and revise phrasing.
 
     * src/s_table.c: Revise verbose message in s_table_add_tems_to_pin_table
-      to eliminate the trailing CR and use eclispes instead so that the
+      to eliminate the trailing CR and use ellipses instead so that the
       subsequent "DONE" output normally appears on the same line.
 
 2017-09-07 Wiley E. Hill <wileyhill@gmail.com>

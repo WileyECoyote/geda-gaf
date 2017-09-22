@@ -305,7 +305,7 @@ void s_sheet_data_add_master_comp_attrib_list_items (const GList *obj_list)
   bool is_attached;
 
   if (verbose_mode) {
-    printf(_("- Starting master comp attrib list creation.\n"));
+    printf(_("Creating master component attribute list.\n"));
   }
 
   /* -----  Iterate through all objects found on page looking for components (OBJ_COMPLEX) ----- */
@@ -431,7 +431,7 @@ void s_sheet_data_add_master_pin_list_items (const GList *obj_list) {
 #endif
 
   if (verbose_mode) {
-    printf(_("- Creating master pin list.\n"));
+    printf(_("Creating master pin list.\n"));
   }
 
   /* -----  Iterate through all objects found on page looking for components  ----- */
