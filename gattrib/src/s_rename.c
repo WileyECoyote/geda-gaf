@@ -94,6 +94,12 @@ void s_rename_destroy_all(void)
   cur_set = 0;
 }
 
+/*!
+ * \brief Increments rename record index
+ * \par Function Description
+ *  Increments the index of cur_set after checking upper limit.
+ *  This function is not used.
+ */
 void s_rename_next_set(void)
 {
   if (cur_set == MAX_SETS) {
@@ -265,7 +271,15 @@ void s_rename_all_lowlevel(NETLIST * netlist_head, char *src, char *dest)
 
 }
 
-void s_rename_all (GedaToplevel *toplevel, NETLIST * netlist_head)
+/*!
+ * \brief Rename pairs
+ * \par Function Description
+ *  Loops over rename_pairs and call low-level routine index of pairs.
+ *
+ * \param toplevel     Pointer to toplevel
+ * \param netlist_head Pointer to first netlist record
+ */
+void s_rename_all (GedaToplevel *toplevel, NETLIST *netlist_head)
 {
   int i;
 

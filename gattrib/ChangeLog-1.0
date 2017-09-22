@@ -8,7 +8,11 @@
 
     * po/bs.po: Update Bosnian translations.
 
-    * src/s_rename.c: Reformat Doxygen comments.
+    * src/s_rename.c: Reformat Doxygen comments, add Doxygen documentation
+      blocks for functions:
+
+          * s_rename_next_set
+          * s_rename_all
 
     * src/s_sheet_data.c: Revise verbose message in s_sheet_data_add_master
       _pin_attrib_list_items to eliminate the trailing CR and use ellipses
