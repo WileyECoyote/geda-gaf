@@ -136,29 +136,29 @@ void s_rename_print(void)
  */
 int s_rename_search(char *src, char *dest, int quiet_flag)
 {
-    int i;
-    for (i = 0; i < rename_counter; i++) {
+  int i;
 
-	if (rename_pairs[cur_set][i].src && rename_pairs[cur_set][i].dest) {
+  for (i = 0; i < rename_counter; i++) {
 
-	    if (strcmp(src, rename_pairs[cur_set][i].src) == 0) {
-		return (TRUE);
-	    }
+    if (rename_pairs[cur_set][i].src && rename_pairs[cur_set][i].dest) {
 
-	    if (strcmp(dest, rename_pairs[cur_set][i].src) == 0) {
-		if (!quiet_flag) {
-		    fprintf(stderr,
-			    _("WARNING: Trying to rename something twice:\n\t%s and %s\nare both a src and dest name\n"
-                             "This warning is okay if you have multiple levels of hierarchy!\n"),
-                            dest, rename_pairs[cur_set][i].src);
-		}
-		return (TRUE);
-	    }
-	}
+      if (strcmp(src, rename_pairs[cur_set][i].src) == 0) {
+        return (TRUE);
+      }
 
+      if (strcmp(dest, rename_pairs[cur_set][i].src) == 0) {
+        if (!quiet_flag) {
+          fprintf(stderr,
+                  _("WARNING: Trying to rename something twice:\n\t%s and %s\nare both a src and dest name\n"
+                  "This warning is okay if you have multiple levels of hierarchy!\n"),
+                  dest, rename_pairs[cur_set][i].src);
+        }
+        return (TRUE);
+      }
     }
+  }
 
-    return (FALSE);
+  return (FALSE);
 }
 
 /*! \brief Add to the rename pairs
@@ -260,24 +260,24 @@ void s_rename_all_lowlevel(NETLIST * netlist_head, char *src, char *dest)
 
 void s_rename_all (GedaToplevel *toplevel, NETLIST * netlist_head)
 {
-    int i;
+  int i;
 
 #if DEBUG
-    s_rename_print();
+  s_rename_print();
 #endif
 
-    for (i = 0; i < rename_counter; i++) {
+  for (i = 0; i < rename_counter; i++) {
 
-	verbose_print("R");
+    verbose_print("R");
 
 #if DEBUG
-	printf("%d Renaming: %s -> %s\n", i, rename_pairs[cur_set][i].src,
-	       rename_pairs[cur_set][i].dest);
+    printf("%d Renaming: %s -> %s\n", i, rename_pairs[cur_set][i].src,
+    rename_pairs[cur_set][i].dest);
 #endif
 
-	s_rename_all_lowlevel(netlist_head,
-			      rename_pairs[cur_set][i].src,
-			      rename_pairs[cur_set][i].dest);
-    }
+    s_rename_all_lowlevel(netlist_head,
+                          rename_pairs[cur_set][i].src,
+                          rename_pairs[cur_set][i].dest);
+  }
 }
 
