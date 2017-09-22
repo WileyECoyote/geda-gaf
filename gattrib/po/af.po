@@ -145,13 +145,15 @@ msgstr "verlaat..."
 msgid "Increase MAX_SETS in"
 msgstr "Verhoog MAX_SETS in"
 
+# Source
 #: gattrib/src/s_rename.c:116
 msgid "Source"
-msgstr ""
+msgstr "Bron"
 
+# Destination
 #: gattrib/src/s_rename.c:120
 msgid "Destination"
-msgstr ""
+msgstr "bestemming"
 
 #: gattrib/src/s_rename.c:151
 #, c-format
@@ -161,10 +163,14 @@ msgid ""
 "are both a src and dest name\n"
 "This warning is okay if you have multiple levels of hierarchy!\n"
 msgstr ""
+"WAARSKUWING: Probeer om iets twee keer te hernoem:\n"
+"\t%s en %s\n"
+"is beide 'n src en dest naam\n"
+"Hierdie waarskuwing is oke as jy meerdere vlakke van hiërargie het!\n"
 
 #: gattrib/src/s_rename.c:220
 msgid "Increase the number of rename_pairs (MAX_RENAME) in"
-msgstr ""
+msgstr "Verhoog die aantal rename_pairs (MAX_RENAME) in"
 
 #: gattrib/src/s_sheet_data.c:242
 #, c-format
@@ -183,7 +189,7 @@ msgstr ""
 
 #: gattrib/src/s_sheet_data.c:484
 msgid "found component pin with no pinnumber."
-msgstr ""
+msgstr "gevind komponent pen met geen nommer nie."
 
 #: gattrib/src/s_sheet_data.c:545
 #, c-format
@@ -192,11 +198,11 @@ msgstr ""
 
 #: gattrib/src/s_string_list.c:142
 msgid "attempted to add to a NULL list.\n"
-msgstr ""
+msgstr "probeer om by 'n NULL-lys by te voeg.\n"
 
 #: gattrib/src/s_string_list.c:205
 msgid "attempted to remove item from an empty list\n"
-msgstr ""
+msgstr "Poging om item uit 'n leë lys te verwyder\n"
 
 #: gattrib/src/s_string_list.c:283
 msgid "could not delete item"
