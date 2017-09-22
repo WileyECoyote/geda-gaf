@@ -8,6 +8,8 @@
 
     * po/bs.po: Update Bosnian translations.
 
+    * src/s_rename.c: Reformat Doxygen comments.
+
 2017-09-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: Update Afrikaans translations.

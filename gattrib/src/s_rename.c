@@ -44,8 +44,9 @@ static int rename_counter = 0;
 static int cur_set = 0;
 
 
-/*! \brief Initialize the renaming data space
- *
+/*!
+ * \brief Initialize the renaming data space
+ * \par Function Description
  * Initializes the renaming data space by setting all the pair
  * pointers to NULL.
  */
@@ -64,8 +65,9 @@ void s_rename_init(void)
     cur_set = 0;
 }
 
-/*! \brief Free all data referred to by the rename pairs
- *
+/*!
+ * \brief Free all data referred to by the rename pairs
+ * \par Function Description
  * Loops rename pairs and calls GEDA_FREE() on the non-NULL
  * entries, then sets the entry to NULL.
  */
@@ -102,9 +104,10 @@ void s_rename_next_set(void)
   rename_counter = 0;
 }
 
-/*! \brief Print all rename sets
- *
- * Iterate through the array and print all the rename sets to stdout.
+/*!
+ * \brief Print all rename sets
+ * \par Function Description
+ *  Iterate through the array and print all the rename sets to stdout.
  */
 void s_rename_print(void)
 {
@@ -123,16 +126,18 @@ void s_rename_print(void)
     }
 }
 
-/*! \brief Search the rename sets
+/*!
+ * \brief Search the rename sets
+ * \par Function Description
+ *  Search through the rename sets looking for src and dest. If
+ *  quiet_flag is true than don't print anything.
  *
- * Search through the rename sets looking for src and dest.  If
- * quiet_flag is true than don't print anything.
  * \param src Source to search for
  * \param dest Destination to search for
  * \param quiet_flag Suppress printing if set to TRUE
- * \returns TRUE if the
- * src is found. If the dest is found, also return true, but warn
- * user
+ *
+ * \returns TRUE if the src is found. If the dest is found,
+ *          also return true, but warn user
  */
 int s_rename_search(char *src, char *dest, int quiet_flag)
 {
@@ -161,10 +166,12 @@ int s_rename_search(char *src, char *dest, int quiet_flag)
   return (FALSE);
 }
 
-/*! \brief Add to the rename pairs
+/*!
+ * \brief Add to the rename pairs
+ * \par Function Description
+ *  Add a source and destination to the rename pairs.
  *
- * Add a source and destination to the rename pairs.
- * \param src Source to add
+ * \param src  Source to add
  * \param dest Destination to add
  */
 
