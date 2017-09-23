@@ -3,6 +3,9 @@
     * maxim/MAX1968-1.sym: Add new symbol; Power Driver for Peltier
       TEC Modules.
 
+    * maxim/MAX1969-1.sym: Add new symbol; Power Driver for Peltier
+      TEC Modules.
+
     * passive/electrolytic: Downgrade dist-license back to GPLv2.
 
 2017-09-19 Wiley E. Hill <wileyhill@gmail.com>
