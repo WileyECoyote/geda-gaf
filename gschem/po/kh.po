@@ -675,19 +675,16 @@ msgid "Closing all documents\n"
 msgstr "bet eksar teangoasa\n"
 
 #: gschem/src/iface/i_command.c:1244
-#, fuzzy
 msgid "starting shut-down"
-msgstr "gschem: kar chabphtaem lomdab bet choh\n"
+msgstr "kar chabphtaem lomdab bet choh"
 
 #: gschem/src/iface/i_command.c:1258
-#, fuzzy
 msgid "Symbol is not embedded, export anyway?"
-msgstr "nimittasanhnhea min trauv embeded karnachenh der ryyte?"
+msgstr "nimittasanhnhea min trauv ban bangkob,  neachenh yeangnakadaoy?"
 
 #: gschem/src/iface/i_command.c:1282
-#, fuzzy
 msgid "Picture is not embedded, export anyway?"
-msgstr "roubpheap nih min trauv embeded karnachenh der ryyte?"
+msgstr "roubpheap min trauv ban bangkob neachenh te?"
 
 #: gschem/src/iface/i_command.c:1428
 msgid "Empty buffer"
