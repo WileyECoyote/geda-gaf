@@ -99,7 +99,7 @@ msgid ""
 "file."
 msgstr ""
 "Voer de toepassing uit om deze situatie te corrigeren of het back-upbestand "
-"handmatig te verwijderen"
+"handmatig te verwijderen."
 
 #: libgeda/src/file/f_file.c:285
 msgid "Memory allocation error!"

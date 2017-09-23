@@ -100,7 +100,7 @@ msgid ""
 "file."
 msgstr ""
 "Ejecute la aplicación para corregir esta situación o elimine manualmente el "
-"archivo de copia de seguridad"
+"archivo de copia de seguridad."
 
 #: libgeda/src/file/f_file.c:285
 msgid "Memory allocation error!"

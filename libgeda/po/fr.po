@@ -100,7 +100,7 @@ msgid ""
 "file."
 msgstr ""
 "Exécutez l'application pour corriger cette situation ou supprimez "
-"manuellement le fichier de sauvegarde"
+"manuellement le fichier de sauvegarde."
 
 # Memory allocation error
 #: libgeda/src/file/f_file.c:285

@@ -113,8 +113,8 @@ msgid ""
 "Run the application to correct this situation or manually delete the backup "
 "file."
 msgstr ""
-"Ejecute la aplicación para corregir esta situación o elimine manualmente el "
-"archivo de copia de seguridad"
+"Запустите приложение, чтобы исправить эту ситуацию или вручную удалить файл "
+"резервной копии."
 
 # Memory allocation error
 #: libgeda/src/file/f_file.c:285
