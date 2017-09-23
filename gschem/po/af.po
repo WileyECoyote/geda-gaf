@@ -664,19 +664,16 @@ msgid "Closing all documents\n"
 msgstr "Sluit Bladsy\n"
 
 #: gschem/src/iface/i_command.c:1244
-#, fuzzy
 msgid "starting shut-down"
-msgstr "gschem: begin afsluit\n"
+msgstr "begin afsluit"
 
 #: gschem/src/iface/i_command.c:1258
-#, fuzzy
 msgid "Symbol is not embedded, export anyway?"
-msgstr "Simbool is nie embeded, uitvoer in elk geval?"
+msgstr "Simbool is nie ingebed nie, uitvoer in elk geval?"
 
 #: gschem/src/iface/i_command.c:1282
-#, fuzzy
 msgid "Picture is not embedded, export anyway?"
-msgstr "Foto is nie embeded, uitvoer in elk geval?"
+msgstr "Foto is nie ingebed nie, uitvoer in elk geval?"
 
 #: gschem/src/iface/i_command.c:1428
 msgid "Empty buffer"
