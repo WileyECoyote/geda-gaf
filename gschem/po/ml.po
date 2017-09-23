@@ -615,20 +615,18 @@ msgstr "എല്ലാ പ്രമാണങ്ങളും അടച്ചത�
 
 # commencing shut-down
 #: gschem/src/iface/i_command.c:1244
-#, fuzzy
 msgid "starting shut-down"
-msgstr "gschem: ഉത്ഭവിക്കൽ ഷട്ട് ഡൌണ്\n"
+msgstr "ഉത്ഭവിക്കൽ ഷട്ട് ഡൌണ്"
 
+# Symbol is not embedded, export anyway
 #: gschem/src/iface/i_command.c:1258
-#, fuzzy
 msgid "Symbol is not embedded, export anyway?"
-msgstr "പ്രതീക embeded അല്ല, ഏതുവിധേനയും കയറ്റുമതി?"
+msgstr "ചിഹ്നം ഉൾച്ചേർത്തില്ല, ഏതുവിധേനയും എക്സ്പോർട്ടുചെയ്യുന്നു?"
 
 # Picture is not embeded, export anyway
 #: gschem/src/iface/i_command.c:1282
-#, fuzzy
 msgid "Picture is not embedded, export anyway?"
-msgstr "This picture is not embeded, ഏതുവിധേനയും കയറ്റുമതി?"
+msgstr "ചിത്രം ഉൾപ്പെടുത്തിയിട്ടില്ല, ഏതുവിധേനയും എക്സ്പോർട്ടുചെയ്യുന്നു?"
 
 # Empty buffer
 #: gschem/src/iface/i_command.c:1428

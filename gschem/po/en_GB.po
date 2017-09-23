@@ -622,9 +622,8 @@ msgid "Closing all documents\n"
 msgstr "Closing all documents\n"
 
 #: gschem/src/iface/i_command.c:1244
-#, fuzzy
 msgid "starting shut-down"
-msgstr "gschem: starting shut-down\n"
+msgstr "starting shut-down"
 
 #: gschem/src/iface/i_command.c:1258
 msgid "Symbol is not embedded, export anyway?"
