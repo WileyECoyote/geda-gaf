@@ -4,7 +4,7 @@ author=AutoTron
 T 0 1300 5 8 0 0 0 0 1
 symversion=0.3
 T 1100 1300 5 8 0 0 0 0 1
-dist-license=GPL3
+dist-license=GPLv2
 T 0 1150 9 8 0 1 0 0 1
 documentation=http://en.wikipedia.org/wiki/Resistor
 T 0 850 5 8 0 1 0 0 1
