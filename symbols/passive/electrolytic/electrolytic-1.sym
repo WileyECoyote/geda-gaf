@@ -2,7 +2,7 @@ v 20151230 2
 T 500 1700 5 10 0 0 0 0 1
 author=AutoTron
 T 500 1550 5 10 0 0 0 0 1
-dist-license=GPL3
+dist-license=GPLv2
 T 500 1400 5 10 0 0 0 0 1
 use-license=unlimited
 T 500 1250 5 10 0 0 0 0 1

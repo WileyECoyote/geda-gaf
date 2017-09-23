@@ -1,3 +1,7 @@
+2017-09-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * passive/electrolytic: Downgrade dist-license back to GPLv2.
+
 2017-09-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/comparators/MCP6541-2.sym: Remove stray net, update license

@@ -44,7 +44,7 @@ description=capacitor,electrolytic,2.2uF,?V,SM0603
 T 500 1900 5 10 0 0 0 0 1
 author=AutoTron
 T 500 1700 5 10 0 0 0 0 1
-dist-license=GPL3
+dist-license=GPLv2
 T 500 1500 5 10 0 0 0 0 1
 use-license=unlimited
 T 500 1300 5 10 0 0 0 0 1
