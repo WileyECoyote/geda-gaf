@@ -68,9 +68,9 @@ bool geda_object_embed(GedaObject *o_current)
 /*!
  * \brief unembed an object from a schematic
  * \par Function Description
- *  This functions unembeds an object \a o_current from a
- *  libgeda structure. Complex objects are just marked to
- *  be not embedded. Picture objects are unembeded immediatly.
+ *  This functions unembeds an object \a o_current from a libgeda
+ *  structure. Complex objects are just marked to be not embedded.
+ *  Picture objects are unembedded immediately.
  *
  * \param o_current The GedaObject to unembed
  *
