@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gattrib\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-09-03 16:27-0500\n"
+"POT-Creation-Date: 2017-09-23 12:43-0500\n"
 "PO-Revision-Date: 2014-03-08 20:49+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -120,19 +120,19 @@ msgstr "не удалось найти атрибут"
 msgid "Exiting..."
 msgstr ""
 
-#: gattrib/src/s_rename.c:98
+#: gattrib/src/s_rename.c:106
 msgid "Increase MAX_SETS in"
 msgstr "Увеличение MAX_SETS в"
 
-#: gattrib/src/s_rename.c:116
+#: gattrib/src/s_rename.c:125
 msgid "Source"
 msgstr ""
 
-#: gattrib/src/s_rename.c:120
+#: gattrib/src/s_rename.c:129
 msgid "Destination"
 msgstr "Назначение"
 
-#: gattrib/src/s_rename.c:151
+#: gattrib/src/s_rename.c:163
 #, c-format
 msgid ""
 "WARNING: Trying to rename something twice:\n"
@@ -145,34 +145,33 @@ msgstr ""
 "оба являются именами источника и назначения\n"
 "Это предупреждение несущественно, если имеется несколько уровней иерархии!\n"
 
-#: gattrib/src/s_rename.c:220
+#: gattrib/src/s_rename.c:232
 msgid "Increase the number of rename_pairs (MAX_RENAME) in"
 msgstr "Увеличьте количество пар переименования (MAX_RENAME) в"
 
 #: gattrib/src/s_sheet_data.c:242
 #, c-format
-msgid "Starting master comp list creation.\n"
-msgstr "Приступаем к созданию основного списка компонентов.\n"
+msgid "Creating master component list.\n"
+msgstr "Создание списка основных компонентов.\n"
 
 #: gattrib/src/s_sheet_data.c:308
 #, c-format
-msgid "- Starting master comp attrib list creation.\n"
-msgstr "- Приступаем к созданию основного списка атрибутов компонентов.\n"
+msgid "Creating master component attribute list.\n"
+msgstr "Создание списка атрибутов основного компонента.\n"
 
 #: gattrib/src/s_sheet_data.c:434
 #, c-format
-msgid "- Creating master pin list.\n"
-msgstr "- Создание мастер-списка выводов.\n"
+msgid "Creating master pin list.\n"
+msgstr "Создание мастер-списка выводов.\n"
 
 # found component pin with no pinnumber
 #: gattrib/src/s_sheet_data.c:484
-msgid "found component pin with no pinnumber."
-msgstr "нашли контактный компонент, без pinnumber."
+msgid "found component pin without a pin number."
+msgstr "найденный штырь компонента без номера штыря."
 
-#: gattrib/src/s_sheet_data.c:545
-#, c-format
-msgid "- Starting master pin attrib list creation.\n"
-msgstr "- Приступаем к созданию основного списка атрибутов выводов.\n"
+#: gattrib/src/s_sheet_data.c:547
+msgid "Creating master pin attribute list"
+msgstr "Создание списка атрибутов мастер-штифта"
 
 #: gattrib/src/s_string_list.c:142
 msgid "attempted to add to a NULL list.\n"
@@ -196,9 +195,8 @@ msgstr ""
 
 # Creating a pin-table
 #: gattrib/src/s_table.c:574
-#, c-format
-msgid "Creating pin table\n"
-msgstr "Создание пин-таблицы\n"
+msgid "Creating pin table"
+msgstr "Создание пин-таблицы"
 
 #: gattrib/src/s_table.c:637
 msgid "Pin Error looking for row ref"
@@ -840,6 +838,15 @@ msgstr ""
 #: gattrib/src/x_window.c:213
 msgid "Retrieving main Window geometry and settings.\n"
 msgstr ""
+
+#~ msgid "Starting master comp list creation.\n"
+#~ msgstr "Приступаем к созданию основного списка компонентов.\n"
+
+#~ msgid "- Starting master comp attrib list creation.\n"
+#~ msgstr "- Приступаем к созданию основного списка атрибутов компонентов.\n"
+
+#~ msgid "- Starting master pin attrib list creation.\n"
+#~ msgstr "- Приступаем к созданию основного списка атрибутов выводов.\n"
 
 #~ msgid ""
 #~ "You are running gEDA/gaf version [%s%s.%s],\n"
