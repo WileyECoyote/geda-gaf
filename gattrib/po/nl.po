@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-09-03 16:27-0500\n"
+"POT-Creation-Date: 2017-09-23 12:43-0500\n"
 "PO-Revision-Date: 2014-08-31 20:31+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -59,9 +59,8 @@ msgid "Please be sure that you have the latest rc file"
 msgstr ""
 
 #: gattrib/src/g_rc.c:76
-#, fuzzy
 msgid "file"
-msgstr "Bestand openen"
+msgstr "bestand"
 
 #: gattrib/src/i_basic.c:105
 msgid "The operating system is out of memory or resources."
@@ -127,19 +126,19 @@ msgstr "niet staat om attributen te vinden"
 msgid "Exiting..."
 msgstr ""
 
-#: gattrib/src/s_rename.c:98
+#: gattrib/src/s_rename.c:106
 msgid "Increase MAX_SETS in"
 msgstr "Verhoog het aantal rename_pair sets in"
 
-#: gattrib/src/s_rename.c:116
+#: gattrib/src/s_rename.c:125
 msgid "Source"
 msgstr ""
 
-#: gattrib/src/s_rename.c:120
+#: gattrib/src/s_rename.c:129
 msgid "Destination"
 msgstr "Best"
 
-#: gattrib/src/s_rename.c:151
+#: gattrib/src/s_rename.c:163
 #, c-format
 msgid ""
 "WARNING: Trying to rename something twice:\n"
@@ -152,34 +151,33 @@ msgstr ""
 "zijn beide een bron en bestemming naam\n"
 "Deze waarschuwing is in orde als U meervoudige hiërarchie niveaus heeft!\n"
 
-#: gattrib/src/s_rename.c:220
+#: gattrib/src/s_rename.c:232
 msgid "Increase the number of rename_pairs (MAX_RENAME) in"
 msgstr "Verhoog het aantal rename_pairs (MAX_RENAME) in"
 
 #: gattrib/src/s_sheet_data.c:242
 #, c-format
-msgid "Starting master comp list creation.\n"
-msgstr "Start het aanmaken van de hoofdcomponentenlijst.\n"
+msgid "Creating master component list.\n"
+msgstr "Hoofdcomponentenlijst maken.\n"
 
 #: gattrib/src/s_sheet_data.c:308
 #, c-format
-msgid "- Starting master comp attrib list creation.\n"
-msgstr "- Start het aanmaken van de hoofdattributenlijst.\n"
+msgid "Creating master component attribute list.\n"
+msgstr "Hoofdcomponent attribuut lijst maken.\n"
 
 #: gattrib/src/s_sheet_data.c:434
 #, c-format
-msgid "- Creating master pin list.\n"
-msgstr "- Het creëren van master-pin lijst.\n"
+msgid "Creating master pin list.\n"
+msgstr "Creëren van de hoofdspeldlijst.\n"
 
-# component pin without pin number found
+# found component pin without a pin number
 #: gattrib/src/s_sheet_data.c:484
-msgid "found component pin with no pinnumber."
-msgstr "component pen zonder pen nummer gevonden."
+msgid "found component pin without a pin number."
+msgstr "gevonden componentpen zonder pincode."
 
-#: gattrib/src/s_sheet_data.c:545
-#, c-format
-msgid "- Starting master pin attrib list creation.\n"
-msgstr "- Start het aanmaken van de hoofdpennenattributenlijst.\n"
+#: gattrib/src/s_sheet_data.c:547
+msgid "Creating master pin attribute list"
+msgstr "Het creëren van master-pin lijst"
 
 #: gattrib/src/s_string_list.c:142
 msgid "attempted to add to a NULL list.\n"
@@ -202,9 +200,8 @@ msgid "Component Error looking for column"
 msgstr ""
 
 #: gattrib/src/s_table.c:574
-#, c-format
-msgid "Creating pin table\n"
-msgstr "Het creëren van pin tafel\n"
+msgid "Creating pin table"
+msgstr "Het creëren van pin tafel"
 
 #: gattrib/src/s_table.c:637
 msgid "Pin Error looking for row ref"
@@ -831,6 +828,15 @@ msgstr ""
 #: gattrib/src/x_window.c:213
 msgid "Retrieving main Window geometry and settings.\n"
 msgstr ""
+
+#~ msgid "Starting master comp list creation.\n"
+#~ msgstr "Start het aanmaken van de hoofdcomponentenlijst.\n"
+
+#~ msgid "- Starting master comp attrib list creation.\n"
+#~ msgstr "- Start het aanmaken van de hoofdattributenlijst.\n"
+
+#~ msgid "- Starting master pin attrib list creation.\n"
+#~ msgstr "- Start het aanmaken van de hoofdpennenattributenlijst.\n"
 
 #~ msgid ""
 #~ "You are running gEDA/gaf version [%s%s.%s],\n"
