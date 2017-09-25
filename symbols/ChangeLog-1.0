@@ -12,6 +12,11 @@
             * connector/header/header10-1.sym
 
 
+    * connector/header/: Rename dash 1 headers, with circles and pins numbered
+      starting down the right side to dash 2 dash 1:
+
+            * header/header20-2-1.sym
+
     * connector/header/: Rename dash 2 headers, with circles and even pins
       on the right side to dash 2 dash 2:
 
