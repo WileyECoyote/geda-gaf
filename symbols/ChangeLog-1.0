@@ -12,6 +12,19 @@
             * connector/header/header10-1.sym
 
 
+    * connector/header/: Rename dash 2 headers, with circles and even pins
+      on the right side to dash 2 dash 2:
+
+            * connector/header/header10-2-2.sym
+            * connector/header/header14-2-2.sym
+            * connector/header/header16-2-2.sym (formally header16-1)
+            * connector/header/header18-2-2.sym
+            * connector/header/header20-2-2.sym
+            * connector/header/header24-2-2.sym
+            * connector/header/header26-2-2.sym
+            * connector/header/header32-2-2.sym
+            * connector/header/header34-2-2.sym
+
 2017-09-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * maxim/MAX1968-1.sym: Add new symbol; Power Driver for Peltier
