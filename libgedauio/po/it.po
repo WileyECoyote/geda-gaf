@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-09-03 16:27-0500\n"
+"POT-Creation-Date: 2017-09-23 12:43-0500\n"
 "PO-Revision-Date: 2012-01-31 12:12+0000\n"
 "Last-Translator: Peter TB Brett <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -363,17 +363,17 @@ msgstr ""
 msgid "0 = All, 1 Alphnumeric, 3 Numeric, 4 Number, 5 Integer, 6 Real"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:1328
+#: libgedauio/src/widgets/geda_entry.c:1329
 #, fuzzy
 msgid "Auto Complete"
 msgstr "/Aggiungi Componente..."
 
-#: libgedauio/src/widgets/geda_entry.c:1336
+#: libgedauio/src/widgets/geda_entry.c:1337
 #, fuzzy
 msgid "On"
 msgstr "Apri"
 
-#: libgedauio/src/widgets/geda_entry.c:1341
+#: libgedauio/src/widgets/geda_entry.c:1342
 msgid "Off"
 msgstr ""
 
