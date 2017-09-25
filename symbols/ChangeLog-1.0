@@ -1,5 +1,8 @@
 2017-09-25 Wiley E. Hill <wileyhill@gmail.com>
 
+    * connector/header/header8-2-1.sym: New header symbol, numbered like IC
+      so that set is complete.
+
     * connector/header/: Revise attribute positions, update footprints and
       resequenced entities:
 
@@ -11,7 +14,6 @@
             * connector/header/header8-1.sym
             * connector/header/header10-1.sym
 
-
     * connector/header/: Rename dash 1 headers, with circles and pins numbered
       starting down the right side to dash 2 dash 1:
 
@@ -20,6 +22,7 @@
     * connector/header/: Rename dash 2 headers, with circles and even pins
       on the right side to dash 2 dash 2:
 
+            * connector/header/header8-2-2.sym
             * connector/header/header10-2-2.sym
             * connector/header/header14-2-2.sym
             * connector/header/header16-2-2.sym (formally header16-1)
