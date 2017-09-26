@@ -154,11 +154,11 @@ msgstr ""
 
 #: gattrib/src/s_rename.c:125
 msgid "Source"
-msgstr ""
+msgstr "източник"
 
 #: gattrib/src/s_rename.c:129
 msgid "Destination"
-msgstr ""
+msgstr "Дестинация"
 
 #: gattrib/src/s_rename.c:163
 #, c-format
@@ -168,33 +168,40 @@ msgid ""
 "are both a src and dest name\n"
 "This warning is okay if you have multiple levels of hierarchy!\n"
 msgstr ""
+"ПРЕДУПРЕЖДЕНИЕ: Опитвате се да преименувате нещо два пъти:\n"
+"\t%s и %s\n"
+"са едновременно източник и наименование на дестинацията\n"
+"Това предупреждение е наред, ако имате няколко нива на йерархия!\n"
 
 #: gattrib/src/s_rename.c:232
 msgid "Increase the number of rename_pairs (MAX_RENAME) in"
 msgstr ""
 
+# Creating master component list
 #: gattrib/src/s_sheet_data.c:242
 #, c-format
 msgid "Creating master component list.\n"
-msgstr ""
+msgstr "Създаване на списък с основни компоненти.\n"
 
 #: gattrib/src/s_sheet_data.c:308
-#, fuzzy, c-format
+#, c-format
 msgid "Creating master component attribute list.\n"
-msgstr "Манипулирай атрибутите на компонента с gattrib"
+msgstr "Създаване на списъка с характеристиките на основния компонент.\n"
 
+# Creating master pin list
 #: gattrib/src/s_sheet_data.c:434
 #, c-format
 msgid "Creating master pin list.\n"
-msgstr ""
+msgstr "Създаване на основен списък с ПИН.\n"
 
+# found component pin without a pin number
 #: gattrib/src/s_sheet_data.c:484
 msgid "found component pin without a pin number."
-msgstr ""
+msgstr "намерен компонент щифт без pin номер."
 
 #: gattrib/src/s_sheet_data.c:547
 msgid "Creating master pin attribute list"
-msgstr ""
+msgstr "Създаване на списъка с атрибути на главния ПИН"
 
 #: gattrib/src/s_string_list.c:142
 msgid "attempted to add to a NULL list.\n"
