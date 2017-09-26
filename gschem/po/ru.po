@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gschem ru\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-09-21 00:33-0500\n"
+"POT-Creation-Date: 2017-09-23 15:28-0500\n"
 "PO-Revision-Date: 2015-09-13 16:05+0300\n"
 "Last-Translator: Sergey Alyoshin <alyoshin.s@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -619,11 +619,11 @@ msgid "Found invalid gschem window smob ~S"
 msgstr "Обнаружена недопустимая структура данных smob окна gschem ~S"
 
 # current value of
-#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5109
+#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5108
 msgid "current value of"
 msgstr "Текущее значение"
 
-#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5110
+#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5109
 msgid "is"
 msgstr "Является"
 
@@ -641,7 +641,7 @@ msgid "while inside an action!\n"
 msgstr ""
 
 # Created a new page
-#: gschem/src/iface/i_command.c:768 gschem/src/iface/i_command.c:2779
+#: gschem/src/iface/i_command.c:768 gschem/src/iface/i_command.c:2778
 msgid "New page created"
 msgstr "Создана новая страница"
 
@@ -693,90 +693,90 @@ msgstr ""
 
 # Здесь на самом деле не действие, а состояние. Поэтому не "Очистить буфер", а
 # "Буфер пуст".
-#: gschem/src/iface/i_command.c:1428
+#: gschem/src/iface/i_command.c:1427
 msgid "Empty buffer"
 msgstr "Буфер пуст"
 
 # Offset Mode
-#: gschem/src/iface/i_command.c:1690
+#: gschem/src/iface/i_command.c:1689
 msgid "Offset Mode"
 msgstr "смещение режима"
 
-#: gschem/src/iface/i_command.c:1691
+#: gschem/src/iface/i_command.c:1690
 msgid "Specify offset distance:"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:2268
+#: gschem/src/iface/i_command.c:2267
 msgid "Zoom Magnification"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:2268
+#: gschem/src/iface/i_command.c:2267
 msgid "Specify new zoom:"
 msgstr ""
 
 # error
-#: gschem/src/iface/i_command.c:2312
+#: gschem/src/iface/i_command.c:2311
 msgid "error"
 msgstr "ошибка"
 
 # No component selected
-#: gschem/src/iface/i_command.c:2320
+#: gschem/src/iface/i_command.c:2319
 msgid "No component selected\n"
 msgstr "Не выбран компонент\n"
 
-#: gschem/src/iface/i_command.c:2865
+#: gschem/src/iface/i_command.c:2864
 msgid "Confirm revert ALL documents"
 msgstr ""
 
 # search for the data source
-#: gschem/src/iface/i_command.c:3047
+#: gschem/src/iface/i_command.c:3046
 msgid "Searching for source"
 msgstr "Поиск источника данных"
 
 # Could not go down in the hierarchy
-#: gschem/src/iface/i_command.c:3081
+#: gschem/src/iface/i_command.c:3080
 msgid "Failed to descend into"
 msgstr "Не удалось спуститься в иерархии"
 
 # Hierarchy Error
-#: gschem/src/iface/i_command.c:3090
+#: gschem/src/iface/i_command.c:3089
 msgid "Hierarchy Error"
 msgstr "Ошибка иерархии"
 
 # Search for a symbol
-#: gschem/src/iface/i_command.c:3167
+#: gschem/src/iface/i_command.c:3166
 msgid "Searching for symbol"
 msgstr "Поиск символа"
 
-#: gschem/src/iface/i_command.c:3177
+#: gschem/src/iface/i_command.c:3176
 msgid "Symbol is not a real file. Symbol cannot be loaded.\n"
 msgstr "Нет реального файла для символа. Символ не может быть загружен.\n"
 
-#: gschem/src/iface/i_command.c:3224
+#: gschem/src/iface/i_command.c:3223
 msgid "Cannot find any schematics above the current one!\n"
 msgstr "Для текущей схемы не удалось найти схему, вышестоящую по иерархии!\n"
 
-#: gschem/src/iface/i_command.c:3343
+#: gschem/src/iface/i_command.c:3342
 msgid "Object is attached to something\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3750
+#: gschem/src/iface/i_command.c:3749
 msgid "Attribute is already attached\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4149
+#: gschem/src/iface/i_command.c:4148
 msgid "WARNING: Do not translate with snap off!\n"
 msgstr "ВНИМАНИЕ: Не производите смещение с отключенной привязкой!\n"
 
-#: gschem/src/iface/i_command.c:4150
+#: gschem/src/iface/i_command.c:4149
 msgid "WARNING: Turning snap on and continuing with translate.\n"
 msgstr "ВНИМАНИЕ: Включите привязку и повторите смещение.\n"
 
-#: gschem/src/iface/i_command.c:4156
+#: gschem/src/iface/i_command.c:4155
 msgid "WARNING: Snap grid size is not equal to 100!\n"
 msgstr "ВНИМАНИЕ: Размер сетки привязки не равен 100!\n"
 
-#: gschem/src/iface/i_command.c:4157
+#: gschem/src/iface/i_command.c:4156
 msgid ""
 "WARNING: If you are translating a symbol to the origin, the snap grid size "
 "should be set to 100\n"
@@ -784,85 +784,85 @@ msgstr ""
 "ВНИМАНИЕ: Если символ смещается в начало координат, размер сетки привязки "
 "должен быть установлен в 100\n"
 
-#: gschem/src/iface/i_command.c:4352
+#: gschem/src/iface/i_command.c:4351
 msgid "Grid OFF\n"
 msgstr "Сетка отключена\n"
 
 # Dot grid activated
-#: gschem/src/iface/i_command.c:4353
+#: gschem/src/iface/i_command.c:4352
 msgid "Dot grid activated\n"
 msgstr "Включена сетка точек\n"
 
 # Mesh grid activated
-#: gschem/src/iface/i_command.c:4354
+#: gschem/src/iface/i_command.c:4353
 msgid "Mesh grid activated\n"
 msgstr "Сетчатая сетка активирована\n"
 
-#: gschem/src/iface/i_command.c:4433
+#: gschem/src/iface/i_command.c:4432
 msgid "Snap OFF (CAUTION!)\n"
 msgstr "ВНИМАНИЕ! Привязка отключена!\n"
 
-#: gschem/src/iface/i_command.c:4438
+#: gschem/src/iface/i_command.c:4437
 msgid "Snap ON\n"
 msgstr "Привязка включена\n"
 
-#: gschem/src/iface/i_command.c:4442
+#: gschem/src/iface/i_command.c:4441
 msgid "Snap back to the grid (CAUTION!)\n"
 msgstr "ВНИМАНИЕ! Включите привязку к сетке!\n"
 
 # "Rubber" mode connections is disabled
-#: gschem/src/iface/i_command.c:4466
+#: gschem/src/iface/i_command.c:4465
 msgid "Rubber band mode is OFF\n"
 msgstr "Режим «резиновых» соединений отключён\n"
 
 # "Rubber" mode connections enabled
-#: gschem/src/iface/i_command.c:4469
+#: gschem/src/iface/i_command.c:4468
 msgid "Rubber band mode is ON\n"
 msgstr "Режим «резиновых» соединений включён\n"
 
 # "Magnetic" mode connections enabled
-#: gschem/src/iface/i_command.c:4480
+#: gschem/src/iface/i_command.c:4479
 msgid "Magnetic net mode is ON\n"
 msgstr "Режим «магнитных» соединений включён\n"
 
 # "Magnetic" mode connections is disabled
-#: gschem/src/iface/i_command.c:4483
+#: gschem/src/iface/i_command.c:4482
 msgid "Magnetic net mode is OFF\n"
 msgstr "Режим «магнитных» соединений отключён\n"
 
 # Off
-#: gschem/src/iface/i_command.c:4500 gschem/src/iface/i_command.c:4542
+#: gschem/src/iface/i_command.c:4499 gschem/src/iface/i_command.c:4541
 msgid "Off"
 msgstr "Откл"
 
 # On
-#: gschem/src/iface/i_command.c:4503 gschem/src/iface/i_command.c:4545
+#: gschem/src/iface/i_command.c:4502 gschem/src/iface/i_command.c:4544
 msgid "On"
 msgstr "на"
 
 # Drag-Can-Move is now
-#: gschem/src/iface/i_command.c:4505
+#: gschem/src/iface/i_command.c:4504
 msgid "Drag-Can-Move is now"
 msgstr "перетащить может-ход в настоящее время"
 
-#: gschem/src/iface/i_command.c:4517
+#: gschem/src/iface/i_command.c:4516
 msgid "Action feedback mode set to OUTLINE\n"
 msgstr "При выполнении действий объекты будут отрисовываться полностью\n"
 
-#: gschem/src/iface/i_command.c:4521
+#: gschem/src/iface/i_command.c:4520
 msgid "Action feedback mode set to BOUNDINGBOX\n"
 msgstr "При выполнении действий вместо объектов будет отрисовываться рамка\n"
 
-#: gschem/src/iface/i_command.c:4547
+#: gschem/src/iface/i_command.c:4546
 msgid "Auto-Pan is now"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4599 gschem/src/iface/i_command.c:4628
-#: gschem/src/iface/i_command.c:4648 gschem/src/iface/i_command.c:4668
+#: gschem/src/iface/i_command.c:4598 gschem/src/iface/i_command.c:4627
+#: gschem/src/iface/i_command.c:4647 gschem/src/iface/i_command.c:4667
 msgid "Check path:"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4768
+#: gschem/src/iface/i_command.c:4767
 #, c-format
 msgid "(read only) width=%d, height=%d\n"
 msgstr ""
