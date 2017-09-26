@@ -48,19 +48,19 @@ msgstr "Šema izvezena u"
 
 #: gattrib/src/g_rc.c:67
 msgid "This is gEDA/gattrib version"
-msgstr ""
+msgstr "Ovo je verzija gEDA/gattrib"
 
 #: gattrib/src/g_rc.c:68
 msgid "but you have a version"
-msgstr ""
+msgstr "ali imate verziju"
 
 #: gattrib/src/g_rc.c:69
 msgid "Please be sure that you have the latest rc file"
-msgstr ""
+msgstr "Molimo vas da budete sigurni da imate najnoviju rc datoteku"
 
 #: gattrib/src/g_rc.c:76
 msgid "file"
-msgstr ""
+msgstr "fajl"
 
 # The operating system is out of memory or resources
 #: gattrib/src/i_basic.c:105
@@ -97,6 +97,22 @@ msgid ""
 "     The cell text colors indicate the visibility of the attribute.\n"
 "     "
 msgstr ""
+"\n"
+"Gattrib:  Urednik atributa gEDA projekta.\n"
+"Predstavlja shematske atribute u jednostavnom formatu tabelarne tabele.\n"
+"\n"
+"Upotreba: %s [OPCIJE] ime dokumenta 1 ... ime dokumenta N\n"
+"\n"
+"\t-e, --export-csv datoteku za izvoz u vrijednosti odvojene zarezom\n"
+"\t-h, --help       Ovaj meni pomoći\n"
+"\t-q, --quiet      Omogućite tih režim\n"
+"\t-v, --verbose    Omogućite tih režim\n"
+"\t-V, --version    Prikaži informacije o verziji.\n"
+"\n"
+"  FAQ:\n"
+"  *  Šta znači boje ćelijskog teksta?\n"
+"     Boje ćelija teksta ukazuju na vidljivost atributa.\n"
+"     "
 
 #: gattrib/src/parsecmd.c:101
 #, c-format
@@ -154,26 +170,26 @@ msgstr ""
 #: gattrib/src/s_sheet_data.c:242
 #, c-format
 msgid "Creating master component list.\n"
-msgstr ""
+msgstr "Kreiranje liste glavnih komponenti.\n"
 
 #: gattrib/src/s_sheet_data.c:308
-#, fuzzy, c-format
+#, c-format
 msgid "Creating master component attribute list.\n"
-msgstr "Upravljajte atributima komponenti pomoću gattrib"
+msgstr "Kreiranje liste atributa glavne komponente.\n"
 
+# Creating master pin list
 #: gattrib/src/s_sheet_data.c:434
 #, c-format
 msgid "Creating master pin list.\n"
-msgstr ""
+msgstr "Kreiranje liste glavnih pinova.\n"
 
 #: gattrib/src/s_sheet_data.c:484
-#, fuzzy
 msgid "found component pin without a pin number."
-msgstr "pronađena komponenta pin bez pinnumber."
+msgstr "pronađena komponenta pin bez broja pin."
 
 #: gattrib/src/s_sheet_data.c:547
 msgid "Creating master pin attribute list"
-msgstr ""
+msgstr "Kreiranje liste glavnih atributa"
 
 #: gattrib/src/s_string_list.c:142
 msgid "attempted to add to a NULL list.\n"
