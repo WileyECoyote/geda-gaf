@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-09-03 16:27-0500\n"
+"POT-Creation-Date: 2017-09-23 12:43-0500\n"
 "PO-Revision-Date: 2012-03-21 00:09+0000\n"
 "Last-Translator: ghas <Unknown>\n"
 "Language-Team: Galician <gl@li.org>\n"
@@ -48,24 +48,24 @@ msgstr "Explicado esquemático para"
 
 #: gattrib/src/g_rc.c:67
 msgid "This is gEDA/gattrib version"
-msgstr ""
+msgstr "Esta é a versión GEDA/gattrib"
 
 #: gattrib/src/g_rc.c:68
 msgid "but you have a version"
-msgstr ""
+msgstr "pero tes unha versión"
 
 #: gattrib/src/g_rc.c:69
 msgid "Please be sure that you have the latest rc file"
-msgstr ""
+msgstr "Győződjön meg róla, hogy rendelkezik a legfrissebb rc fájlsal"
 
 #: gattrib/src/g_rc.c:76
 msgid "file"
-msgstr ""
+msgstr "ficheiro"
 
 # The operating system is out of memory or resources
 #: gattrib/src/i_basic.c:105
 msgid "The operating system is out of memory or resources."
-msgstr "O sistema operativo está fóra de memoria ou de recursos"
+msgstr "O sistema operativo está fóra de memoria ou de recursos."
 
 # failed to open
 #: gattrib/src/i_basic.c:156
@@ -121,19 +121,19 @@ msgstr ""
 msgid "Exiting..."
 msgstr ""
 
-#: gattrib/src/s_rename.c:98
+#: gattrib/src/s_rename.c:106
 msgid "Increase MAX_SETS in"
 msgstr ""
 
-#: gattrib/src/s_rename.c:116
+#: gattrib/src/s_rename.c:125
 msgid "Source"
 msgstr ""
 
-#: gattrib/src/s_rename.c:120
+#: gattrib/src/s_rename.c:129
 msgid "Destination"
 msgstr ""
 
-#: gattrib/src/s_rename.c:151
+#: gattrib/src/s_rename.c:163
 #, c-format
 msgid ""
 "WARNING: Trying to rename something twice:\n"
@@ -142,33 +142,34 @@ msgid ""
 "This warning is okay if you have multiple levels of hierarchy!\n"
 msgstr ""
 
-#: gattrib/src/s_rename.c:220
+#: gattrib/src/s_rename.c:232
 msgid "Increase the number of rename_pairs (MAX_RENAME) in"
 msgstr ""
 
 #: gattrib/src/s_sheet_data.c:242
 #, c-format
-msgid "Starting master comp list creation.\n"
-msgstr ""
+msgid "Creating master component list.\n"
+msgstr "Creando a lista de compoñentes mestres.\n"
 
 #: gattrib/src/s_sheet_data.c:308
 #, c-format
-msgid "- Starting master comp attrib list creation.\n"
-msgstr ""
+msgid "Creating master component attribute list.\n"
+msgstr "Crear lista de atributos de compoñente principal.\n"
 
+# Creating master pin list
 #: gattrib/src/s_sheet_data.c:434
 #, c-format
-msgid "- Creating master pin list.\n"
-msgstr ""
+msgid "Creating master pin list.\n"
+msgstr "Creando lista de pines principais.\n"
 
+# found component pin without a pin number
 #: gattrib/src/s_sheet_data.c:484
-msgid "found component pin with no pinnumber."
-msgstr ""
+msgid "found component pin without a pin number."
+msgstr "atopouse o pin dos compoñentes sen un número de pin."
 
-#: gattrib/src/s_sheet_data.c:545
-#, c-format
-msgid "- Starting master pin attrib list creation.\n"
-msgstr ""
+#: gattrib/src/s_sheet_data.c:547
+msgid "Creating master pin attribute list"
+msgstr "Creación da lista de atributos de ponto principal"
 
 #: gattrib/src/s_string_list.c:142
 msgid "attempted to add to a NULL list.\n"
@@ -191,9 +192,8 @@ msgid "Component Error looking for column"
 msgstr ""
 
 #: gattrib/src/s_table.c:574
-#, c-format
-msgid "Creating pin table\n"
-msgstr ""
+msgid "Creating pin table"
+msgstr "Creando a táboa pin"
 
 #: gattrib/src/s_table.c:637
 msgid "Pin Error looking for row ref"
