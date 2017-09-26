@@ -46,19 +46,19 @@ msgstr "Uitgereik skematiese na"
 
 #: gattrib/src/g_rc.c:67
 msgid "This is gEDA/gattrib version"
-msgstr ""
+msgstr "Hierdie is gEDA/gattrib-weergawe"
 
 #: gattrib/src/g_rc.c:68
 msgid "but you have a version"
-msgstr ""
+msgstr "maar jy het 'n weergawe"
 
 #: gattrib/src/g_rc.c:69
 msgid "Please be sure that you have the latest rc file"
-msgstr ""
+msgstr "Maak asseblief seker dat u die nuutste rc-lêer het"
 
 #: gattrib/src/g_rc.c:76
 msgid "file"
-msgstr ""
+msgstr "lêer"
 
 #: gattrib/src/i_basic.c:105
 msgid "The operating system is out of memory or resources."
@@ -175,26 +175,25 @@ msgstr "Verhoog die aantal rename_pairs (MAX_RENAME) in"
 #: gattrib/src/s_sheet_data.c:242
 #, c-format
 msgid "Creating master component list.\n"
-msgstr ""
+msgstr "Skep hoofkomponentlys.\n"
 
 #: gattrib/src/s_sheet_data.c:308
-#, fuzzy, c-format
+#, c-format
 msgid "Creating master component attribute list.\n"
-msgstr "Manipuleer komponent eiendomme met gattrib"
+msgstr "Die skep van hoofkomponent-kenmerklys.\n"
 
 #: gattrib/src/s_sheet_data.c:434
 #, c-format
 msgid "Creating master pin list.\n"
-msgstr ""
+msgstr "Skep meesterpenlys.\n"
 
 #: gattrib/src/s_sheet_data.c:484
-#, fuzzy
 msgid "found component pin without a pin number."
-msgstr "gevind komponent pen met geen nommer nie."
+msgstr "gevind komponent pen sonder 'n pin nommer."
 
 #: gattrib/src/s_sheet_data.c:547
 msgid "Creating master pin attribute list"
-msgstr ""
+msgstr "Die skep van meester-pin-kenmerklys"
 
 #: gattrib/src/s_string_list.c:142
 msgid "attempted to add to a NULL list.\n"
