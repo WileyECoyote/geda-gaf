@@ -46,19 +46,19 @@ msgstr "تصدير التخطيطي ل"
 
 #: gattrib/src/g_rc.c:67
 msgid "This is gEDA/gattrib version"
-msgstr ""
+msgstr "هذا هو جيدا / غاتريب الإصدار"
 
 #: gattrib/src/g_rc.c:68
 msgid "but you have a version"
-msgstr ""
+msgstr "ولكن لديك نسخة"
 
 #: gattrib/src/g_rc.c:69
 msgid "Please be sure that you have the latest rc file"
-msgstr ""
+msgstr "يرجى التأكد من أن لديك أحدث ملف أرسي"
 
 #: gattrib/src/g_rc.c:76
 msgid "file"
-msgstr ""
+msgstr "ملف"
 
 # The operating system is out of memory or resources
 #: gattrib/src/i_basic.c:105
@@ -95,6 +95,22 @@ msgid ""
 "     The cell text colors indicate the visibility of the attribute.\n"
 "     "
 msgstr ""
+"\n"
+"Gattrib:  محرر سمة مشروع جيدا.\n"
+"يعرض سمات التخطيطي في سهلة لتحرير شكل جدول البيانات.\n"
+"\n"
+"أوسيج:٪s [أوبتيونس] فلنام ... فلنام\n"
+"\n"
+"\t-e, --export-csv تصدير ملف إلى قيم مفصولة بفواصل\n"
+"\t-h, --help       قائمة المساعدة هذه\n"
+"\t-q, --quiet      قائمة المساعدة هذه تمكين الوضع الهادئ\n"
+"\t-v, --verbose    تمكين الوضع المطول\n"
+"\t-V, --version    إظهار معلومات الإصدار.\n"
+"\n"
+"  التعليمات:\n"
+"  *  ماذا تعني ألوان نص الخلية?\n"
+"     تشير ألوان نص الخلية إلى مستوى رؤية السمة.\n"
+"     "
 
 #: gattrib/src/parsecmd.c:101
 #, c-format
@@ -155,9 +171,9 @@ msgid "Creating master component list.\n"
 msgstr ""
 
 #: gattrib/src/s_sheet_data.c:308
-#, fuzzy, c-format
+#, c-format
 msgid "Creating master component attribute list.\n"
-msgstr "عالج سمات المكوّن ب‍ gattrib"
+msgstr "إنشاء قائمة السمات المكون الرئيسي.\n"
 
 #: gattrib/src/s_sheet_data.c:434
 #, c-format
