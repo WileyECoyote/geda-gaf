@@ -1,5 +1,7 @@
 2017-09-27 Wiley E. Hill <wileyhill@gmail.com>
 
+    * connector/header/header40-2-4.sym: Remove superfluous trailing spaces.
+
     * connector/header/: Rename dash 1 headers, without circles and pins numbered
       starting down the left side to dash 2 dash 3:
 
