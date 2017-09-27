@@ -1,3 +1,11 @@
+2017-09-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * connector/header/: Rename dash 1 headers, without circles and pins numbered
+      starting down the left side to dash 2 dash 3:
+
+            * connector/header/header22-2-3.sym
+            * connector/header/header44-2-3.sym
+
 2017-09-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/header/header8-2-1.sym: New header symbol, numbered like IC
