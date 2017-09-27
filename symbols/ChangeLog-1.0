@@ -11,6 +11,10 @@
             * connector/header/header22-2-3.sym
             * connector/header/header44-2-3.sym
 
+    * connector/header/header44-2-3b.sym: Rename odd ball symbol with numbering top
+      to bottom, left to right, formally header44-3.sym. Seems like there should be
+      more of these, but is unique, so use b suffix for now.
+
     * connector/header/: Rename headers without box/shrouds, with lines connecting
       to odd pins to dash 2 dash 5:
 
