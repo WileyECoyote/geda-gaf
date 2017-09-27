@@ -48,19 +48,19 @@ msgstr "Eksporteret skematisk til"
 
 #: gattrib/src/g_rc.c:67
 msgid "This is gEDA/gattrib version"
-msgstr ""
+msgstr "Dette er gEDA/gattrib-versionen"
 
 #: gattrib/src/g_rc.c:68
 msgid "but you have a version"
-msgstr ""
+msgstr "men du har en version"
 
 #: gattrib/src/g_rc.c:69
 msgid "Please be sure that you have the latest rc file"
-msgstr ""
+msgstr "Vær sikker på at du har den nyeste rc-fil"
 
 #: gattrib/src/g_rc.c:76
 msgid "file"
-msgstr ""
+msgstr "fil"
 
 # The operating system is out of memory or resources
 #: gattrib/src/i_basic.c:105
@@ -130,11 +130,11 @@ msgstr ""
 
 #: gattrib/src/s_rename.c:125
 msgid "Source"
-msgstr ""
+msgstr "Kilde"
 
 #: gattrib/src/s_rename.c:129
 msgid "Destination"
-msgstr ""
+msgstr "Bestemmelsessted"
 
 #: gattrib/src/s_rename.c:163
 #, c-format
@@ -152,25 +152,25 @@ msgstr ""
 #: gattrib/src/s_sheet_data.c:242
 #, c-format
 msgid "Creating master component list.\n"
-msgstr ""
+msgstr "Oprettelse af hovedkomponentliste.\n"
 
 #: gattrib/src/s_sheet_data.c:308
-#, fuzzy, c-format
+#, c-format
 msgid "Creating master component attribute list.\n"
-msgstr "Ændre komponent attributter med gattrib"
+msgstr "Oprettelse af hovedkomponentattributliste.\n"
 
 #: gattrib/src/s_sheet_data.c:434
 #, c-format
 msgid "Creating master pin list.\n"
-msgstr ""
+msgstr "Oprettelse af master pin liste.\n"
 
 #: gattrib/src/s_sheet_data.c:484
 msgid "found component pin without a pin number."
-msgstr ""
+msgstr "fundet komponent pin uden et pin nummer."
 
 #: gattrib/src/s_sheet_data.c:547
 msgid "Creating master pin attribute list"
-msgstr ""
+msgstr "Oprettelse af hovedpindeattributliste"
 
 #: gattrib/src/s_string_list.c:142
 msgid "attempted to add to a NULL list.\n"
