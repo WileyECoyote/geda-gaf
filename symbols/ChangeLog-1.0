@@ -1,5 +1,8 @@
 2017-09-27 Wiley E. Hill <wileyhill@gmail.com>
 
+    * connector/header/header16-2-2.sym: Change version date from 20130214-2 to
+      20150401-2 for consistency with other -2-2.sym symbols.
+
     * connector/header/header40-2-4.sym: Remove superfluous trailing spaces.
 
     * connector/header/: Rename dash 1 headers, without circles and pins numbered
