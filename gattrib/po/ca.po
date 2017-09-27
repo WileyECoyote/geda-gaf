@@ -48,19 +48,19 @@ msgstr "S'ha exportat esquemàticament a"
 
 #: gattrib/src/g_rc.c:67
 msgid "This is gEDA/gattrib version"
-msgstr ""
+msgstr "Aquesta és la versió GEDA/gattrib"
 
 #: gattrib/src/g_rc.c:68
 msgid "but you have a version"
-msgstr ""
+msgstr "però tens una versió"
 
 #: gattrib/src/g_rc.c:69
 msgid "Please be sure that you have the latest rc file"
-msgstr ""
+msgstr "Assegureu-vos que tingueu l'últim fitxer rc"
 
 #: gattrib/src/g_rc.c:76
 msgid "file"
-msgstr ""
+msgstr "dossier"
 
 # The operating system is out of memory or resources
 #: gattrib/src/i_basic.c:105
@@ -124,6 +124,12 @@ msgid ""
 "included in the gEDA distribution.\n"
 "There is NO WARRANTY, to the extent permitted by law.\n"
 msgstr ""
+"gEDA/gattrib %s (%s) (g%.7s)\n"
+"Drets d'autor (C) 1998-2017 gEDA desenvolupadors\n"
+"Es tracta de programari lliure, i us convidem a redistribuir-lo\n"
+"certes condicions. Per obtenir més informació, consulteu el fitxer 'COPYING', que és\n"
+"inclòs en la distribució de GEDA.\n"
+"NO hi ha cap GARANTIA, en la mesura que la llei ho permeti.\n"
 
 #: gattrib/src/s_misc.c:66
 msgid "DONE"
@@ -168,9 +174,9 @@ msgid "Creating master component list.\n"
 msgstr ""
 
 #: gattrib/src/s_sheet_data.c:308
-#, fuzzy, c-format
+#, c-format
 msgid "Creating master component attribute list.\n"
-msgstr "Manipuleu atributs de components amb el gattrib"
+msgstr "Creació de la llista d'atributs del component mestre.\n"
 
 #: gattrib/src/s_sheet_data.c:434
 #, c-format
