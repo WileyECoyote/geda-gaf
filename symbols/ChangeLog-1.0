@@ -8,6 +8,16 @@
             * connector/header/header22-2-3.sym
             * connector/header/header44-2-3.sym
 
+    * connector/header/: Rename headers without box/shrouds, with lines connecting
+      to odd pins to dash 2 dash 5:
+
+            * connector/header/header26-2-5.sym
+            * connector/header/header32-2-5.sym
+            * connector/header/header50-2-5.sym
+
+    * connector/header/header50-2-6.sym: Rename symbol, formally header50-3.sym, is
+      similar to header50-2-5.sym but lines connect to even pins and 180 degrees.
+
 2017-09-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/header/header8-2-1.sym: New header symbol, numbered like IC
