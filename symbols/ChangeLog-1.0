@@ -1,3 +1,9 @@
+2017-09-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * connector/header/: Add description, update attribute alignments:
+
+            * connector/header/header10-2-2.sym
+
 2017-09-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/header/header16-2-2.sym: Change version date from 20130214-2 to
