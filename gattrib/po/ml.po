@@ -26,37 +26,40 @@ msgstr "gEDA യുടെ കമ്പോണന്‍ടു  സവിശേഷ�
 msgid "Manipulate component attributes with gattrib"
 msgstr "gattrib ഉപയോഗിച്ച്   കമ്പോണന്ടിന്റെ  സവിശേഷതകള്‍ മാറ്റം വരുത്തുക"
 
+# Could not open
 #: gattrib/src/f_export.c:81
 msgid "Could not open"
-msgstr ""
+msgstr "തുറക്കാൻ കഴിഞ്ഞില്ല"
 
+# Failed to save user configuration to
 #: gattrib/src/gattrib.c:180
 msgid "Failed to save user configuration to"
-msgstr ""
+msgstr "ഉപയോക്തൃ കോൺഫിഗറേഷൻ എന്നതിലേക്ക് സംരക്ഷിക്കുന്നതിൽ പരാജയപ്പെട്ടു"
 
+# Could not find file
 #: gattrib/src/gattrib.c:396
 msgid "Could not find file"
-msgstr ""
+msgstr "ഫയൽ കണ്ടെത്താനായില്ല"
 
 #: gattrib/src/gattrib.c:443
 msgid "Exported schematic to"
-msgstr ""
+msgstr "എക്സ്പോർട്ട് ചെയ്ത സ്കീമെയ്റ്റിലേക്ക്"
 
 #: gattrib/src/g_rc.c:67
 msgid "This is gEDA/gattrib version"
-msgstr ""
+msgstr "ഇത് gEDA/gattrib പതിപ്പ് ആണ്"
 
 #: gattrib/src/g_rc.c:68
 msgid "but you have a version"
-msgstr ""
+msgstr "എന്നാൽ നിങ്ങൾക്ക് ഒരു പതിപ്പ് ഉണ്ട്"
 
 #: gattrib/src/g_rc.c:69
 msgid "Please be sure that you have the latest rc file"
-msgstr ""
+msgstr "നിങ്ങൾക്ക് ഏറ്റവും പുതിയ rc ഫയൽ ഉണ്ടെന്ന് ഉറപ്പുവരുത്തുക"
 
 #: gattrib/src/g_rc.c:76
 msgid "file"
-msgstr ""
+msgstr "ഫയൽ"
 
 #: gattrib/src/i_basic.c:105
 msgid "The operating system is out of memory or resources."
@@ -139,28 +142,31 @@ msgstr ""
 msgid "Increase the number of rename_pairs (MAX_RENAME) in"
 msgstr ""
 
+# Creating master component list
 #: gattrib/src/s_sheet_data.c:242
 #, c-format
 msgid "Creating master component list.\n"
-msgstr ""
+msgstr "മാസ്റ്റർ ഘടക ലിസ്റ്റ് ഉണ്ടാക്കുന്നു..\n"
 
 #: gattrib/src/s_sheet_data.c:308
-#, fuzzy, c-format
+#, c-format
 msgid "Creating master component attribute list.\n"
-msgstr "gattrib ഉപയോഗിച്ച്   കമ്പോണന്ടിന്റെ  സവിശേഷതകള്‍ മാറ്റം വരുത്തുക"
+msgstr "മാസ്റ്റർ ഘടക ആട്രിബ്യൂട്ട് ലിസ്റ്റ് സൃഷ്ടിക്കുന്നു.\n"
 
 #: gattrib/src/s_sheet_data.c:434
 #, c-format
 msgid "Creating master pin list.\n"
-msgstr ""
+msgstr "മാസ്റ്റർ പിൻ ലിസ്റ്റ് സൃഷ്ടിക്കുന്നു.\n"
 
+# found component pin without a pin number.
 #: gattrib/src/s_sheet_data.c:484
 msgid "found component pin without a pin number."
-msgstr ""
+msgstr "ഒരു പിൻ നമ്പറില്ലാത്ത കണ്ടെത്തിയ പിൻ കണ്ടെത്തുക.."
 
+# Creating master pin attribute list
 #: gattrib/src/s_sheet_data.c:547
 msgid "Creating master pin attribute list"
-msgstr ""
+msgstr "മാസ്റ്റർ പിൻ ആട്രിബ്യൂട്ട് ലിസ്റ്റ് സൃഷ്ടിക്കുന്നു"
 
 #: gattrib/src/s_string_list.c:142
 msgid "attempted to add to a NULL list.\n"
