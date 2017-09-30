@@ -48,19 +48,19 @@ msgstr "Ausgeführte Schemata zu"
 
 #: gattrib/src/g_rc.c:67
 msgid "This is gEDA/gattrib version"
-msgstr ""
+msgstr "Das ist gEDA / gattrib version"
 
 #: gattrib/src/g_rc.c:68
 msgid "but you have a version"
-msgstr ""
+msgstr "aber du hast eine version"
 
 #: gattrib/src/g_rc.c:69
 msgid "Please be sure that you have the latest rc file"
-msgstr ""
+msgstr "Bitte achten Sie darauf, dass Sie die neueste rc-Datei haben"
 
 #: gattrib/src/g_rc.c:76
 msgid "file"
-msgstr ""
+msgstr "Datei"
 
 # The operating system is out of memory or resources
 #: gattrib/src/i_basic.c:105
@@ -152,25 +152,25 @@ msgstr ""
 #: gattrib/src/s_sheet_data.c:242
 #, c-format
 msgid "Creating master component list.\n"
-msgstr ""
+msgstr "Hauptkomponentenliste erstellen.\n"
 
 #: gattrib/src/s_sheet_data.c:308
-#, fuzzy, c-format
+#, c-format
 msgid "Creating master component attribute list.\n"
-msgstr "Editieren von Bauteilattributen mit gattrib"
+msgstr "Erstellen der Master-Komponenten-Attributliste.\n"
 
 #: gattrib/src/s_sheet_data.c:434
 #, c-format
 msgid "Creating master pin list.\n"
-msgstr ""
+msgstr "Erstellen einer Master-Pin-Liste.\n"
 
 #: gattrib/src/s_sheet_data.c:484
 msgid "found component pin without a pin number."
-msgstr ""
+msgstr "gefundenen Komponentenstift ohne Pin-Nummer"
 
 #: gattrib/src/s_sheet_data.c:547
 msgid "Creating master pin attribute list"
-msgstr ""
+msgstr "Erstellen der Master-Pin-Attributliste"
 
 #: gattrib/src/s_string_list.c:142
 msgid "attempted to add to a NULL list.\n"
