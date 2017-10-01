@@ -180,7 +180,6 @@ int s_rename_search(char *src, char *dest, int quiet_flag)
  * \param src  Source to add
  * \param dest Destination to add
  */
-
 void s_rename_add(char *src, char *dest)
 {
   int flag;
@@ -237,8 +236,7 @@ void s_rename_add(char *src, char *dest)
 
 }
 
-
-void s_rename_all_lowlevel(NETLIST * netlist_head, char *src, char *dest)
+static void s_rename_all_lowlevel(NETLIST * netlist_head, char *src, char *dest)
 {
   NETLIST *nl_current = NULL;
   CPINLIST *pl_current;
@@ -301,4 +299,3 @@ void s_rename_all (GedaToplevel *toplevel, NETLIST *netlist_head)
                           rename_pairs[cur_set][i].dest);
   }
 }
-

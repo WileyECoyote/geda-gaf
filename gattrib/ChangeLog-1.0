@@ -1,3 +1,7 @@
+2017-09-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_rename.c: Declare s_rename_all_lowlevel static.
+
 2017-09-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/de.po: Update German translations.
