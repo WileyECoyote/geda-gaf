@@ -1,3 +1,8 @@
+2017-10-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_box_object.c: Revert back to conventional function
+      wrapping.
+
 2017-09-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_keyfile.c: Add checks for:
