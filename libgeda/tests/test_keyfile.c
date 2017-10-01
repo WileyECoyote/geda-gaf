@@ -1394,6 +1394,76 @@ int check_data (void)
       err = NULL;
     }
 
+#define DOUBLE_LIST_LENGTH 4
+
+    /* === Function 40: geda_keyfile_set_double_list === */
+
+    double KF40_double[]={1.1,2.2,3.3,4.4};
+
+    geda_keyfile_set_double_list (keyfile, "G11", "DL", KF40_double, DOUBLE_LIST_LENGTH);
+
+    if (!geda_keyfile_has_group(keyfile, "G11")) {
+      fprintf(stderr, "FAILED: (KF084001) set_double_list, G11\n");
+      result++;
+    }
+
+    /* === Function 41: geda_keyfile_get_double_list === */
+
+    count = 0;
+
+    if (geda_keyfile_get_boolean_list(keyfile, "G11", "NDL", &count, &err)) {
+      fprintf(stderr, "FAILED: (KF084101A) get_double_list NLSL\n");
+      result++;
+    }
+    else if (!err) {
+      /* Error should be set since key does not exist */
+      fprintf(stderr, "FAILED: (KF084101B) get_double_list, no error\n");
+      result++;
+    }
+
+
+    if (err) {
+      g_error_free (err);
+      err = NULL;
+    }
+
+    double *dl;
+
+    dl = geda_keyfile_get_double_list(keyfile, "G11", "DL", &count, &err);
+
+    if (!dl) {
+      fprintf(stderr, "FAILED: (KF084102A) get_double_list, !dl\n");
+      result++;
+    }
+
+    if (count != DOUBLE_LIST_LENGTH) {
+      fprintf(stderr, "FAILED: (KF084102B) get_double_list, count=%d\n", count);
+      result++;
+    }
+    else {
+
+
+      int i;
+
+      for (i = 0; i < DOUBLE_LIST_LENGTH; i++) {
+
+        double value = dl[i];
+
+        if (value != KF40_double[i]) {      /* See structure KF40_double */
+          fprintf(stderr, "FAILED: (KF084102C) get_double_list <%f> != <%f>\n", value, KF40_double[i]);
+          result++;
+        }
+      }
+    }
+
+    if (err) {
+      /* Error should NOT be set since key does exist */
+      fprintf(stderr, "FAILED: (KF084102F) get_double_list, err set\n");
+      result++;
+      g_error_free (err);
+      err = NULL;
+    }
+
     char *data;
     data = geda_keyfile_to_data(keyfile, NULL, NULL);
     g_file_set_contents(KEY_FILENAME, data, -1, NULL);

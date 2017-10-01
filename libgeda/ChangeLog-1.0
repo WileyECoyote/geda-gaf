@@ -1,3 +1,10 @@
+2017-09-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_keyfile.c: Add checks for:
+
+          * geda_keyfile_get_double_list
+          * geda_keyfile_set_double_list
+
 2017-09-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_rc_parse.c: Update function wrapping.
