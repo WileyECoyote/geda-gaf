@@ -85,8 +85,7 @@ static void geda_attrib_object_emit_changed (GedaObject *object)
   }
 }
 
-static void
-geda_object_error(const char *func, const void *object, IDE_OBJECT_TYPE type)
+static void geda_object_error(const char *func, const void *object, IDE_OBJECT_TYPE type)
 {
   geda_error_object_argument(__FILE__, func, object, type);
 }
@@ -314,8 +313,7 @@ GedaObject *geda_attrib_object_first_attrib_by_name (const GedaObject *object,
  *  Increments the freeze count notify count, effectively blocking
  *  notifications until the freeze count was has been reduce to zero.
  */
-void
-geda_attrib_object_freeze_hooks (GedaObject *object)
+void geda_attrib_object_freeze_hooks (GedaObject *object)
 {
   if (GEDA_IS_OBJECT(object)) {
     object->attrib_notify_freeze_count ++;
