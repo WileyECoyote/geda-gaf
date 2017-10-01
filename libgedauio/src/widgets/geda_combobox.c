@@ -2929,15 +2929,16 @@ static void geda_combo_box_list_position (GedaComboBox *combo_box,
 static bool cell_view_is_sensitive (GtkCellView *cell_view)
 {
   GList *cells;
-  GList *list;
+  GList *iter;
   bool   sensitive;
 
   cells = gtk_cell_layout_get_cells ((GtkCellLayout*)cell_view);
 
   sensitive = FALSE;
 
-  for (list = cells; list; list = list->next) {
-      g_object_get (list->data, "sensitive", &sensitive, NULL);
+  for (iter = cells; iter; iter = iter->next) {
+
+    g_object_get (iter->data, "sensitive", &sensitive, NULL);
 
       if (sensitive)
         break;
