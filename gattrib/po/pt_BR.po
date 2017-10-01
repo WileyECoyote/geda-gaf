@@ -155,8 +155,8 @@ msgid "Creating master pin list.\n"
 msgstr "Criando lista de pin mestre.\n"
 
 #: gattrib/src/s_sheet_data.c:484
-msgid "found component pin without a pin number."
-msgstr "encontrado pino componente sem um número de pino."
+msgid "found component pin without a pin number"
+msgstr "encontrado pino componente sem um número de pino"
 
 #: gattrib/src/s_sheet_data.c:547
 msgid "Creating master pin attribute list"

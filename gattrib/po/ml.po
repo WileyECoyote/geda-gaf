@@ -158,9 +158,9 @@ msgstr "മാസ്റ്റർ ഘടക ആട്രിബ്യൂട്ട�
 msgid "Creating master pin list.\n"
 msgstr "മാസ്റ്റർ പിൻ ലിസ്റ്റ് സൃഷ്ടിക്കുന്നു.\n"
 
-# found component pin without a pin number.
+# found component pin without a pin number
 #: gattrib/src/s_sheet_data.c:484
-msgid "found component pin without a pin number."
+msgid "found component pin without a pin number"
 msgstr "ഒരു പിൻ നമ്പറില്ലാത്ത കണ്ടെത്തിയ പിൻ കണ്ടെത്തുക.."
 
 # Creating master pin attribute list

@@ -188,8 +188,8 @@ msgid "Creating master pin list.\n"
 msgstr "Skep meesterpenlys.\n"
 
 #: gattrib/src/s_sheet_data.c:484
-msgid "found component pin without a pin number."
-msgstr "gevind komponent pen sonder 'n pin nommer."
+msgid "found component pin without a pin number"
+msgstr "gevind komponent pen sonder 'n pin nommer"
 
 #: gattrib/src/s_sheet_data.c:547
 msgid "Creating master pin attribute list"

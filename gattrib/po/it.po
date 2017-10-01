@@ -145,6 +145,7 @@ msgid "Creating master component list.\n"
 msgstr "Creazione di un elenco di componenti master.\n"
 
 #: gattrib/src/s_sheet_data.c:308
+#, c-format
 msgid "Creating master component attribute list.\n"
 msgstr "Creazione di un elenco di attributi del componente principale.\n"
 
@@ -154,8 +155,8 @@ msgid "Creating master pin list.\n"
 msgstr "Creazione di un elenco di pin master.\n"
 
 #: gattrib/src/s_sheet_data.c:484
-msgid "found component pin without a pin number."
-msgstr "trovato il perno del componente senza un numero di pin."
+msgid "found component pin without a pin number"
+msgstr "trovato il perno del componente senza un numero di pin"
 
 #: gattrib/src/s_sheet_data.c:547
 msgid "Creating master pin attribute list"

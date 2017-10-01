@@ -172,8 +172,8 @@ msgstr "Creëren van de hoofdspeldlijst.\n"
 
 # found component pin without a pin number
 #: gattrib/src/s_sheet_data.c:484
-msgid "found component pin without a pin number."
-msgstr "gevonden componentpen zonder pincode."
+msgid "found component pin without a pin number"
+msgstr "gevonden componentpen zonder pincode"
 
 #: gattrib/src/s_sheet_data.c:547
 msgid "Creating master pin attribute list"

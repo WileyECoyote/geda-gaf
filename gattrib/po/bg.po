@@ -196,8 +196,8 @@ msgstr "Създаване на основен списък с ПИН.\n"
 
 # found component pin without a pin number
 #: gattrib/src/s_sheet_data.c:484
-msgid "found component pin without a pin number."
-msgstr "намерен компонент щифт без pin номер."
+msgid "found component pin without a pin number"
+msgstr "намерен компонент щифт без pin номер"
 
 #: gattrib/src/s_sheet_data.c:547
 msgid "Creating master pin attribute list"

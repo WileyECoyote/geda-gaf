@@ -166,8 +166,8 @@ msgstr "Создание мастер-списка выводов.\n"
 
 # found component pin with no pinnumber
 #: gattrib/src/s_sheet_data.c:484
-msgid "found component pin without a pin number."
-msgstr "найденный штырь компонента без номера штыря."
+msgid "found component pin without a pin number"
+msgstr "найденный штырь компонента без номера штыря"
 
 #: gattrib/src/s_sheet_data.c:547
 msgid "Creating master pin attribute list"

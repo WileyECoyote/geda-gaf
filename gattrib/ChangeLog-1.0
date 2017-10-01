@@ -2,6 +2,9 @@
 
     * src/s_rename.c: Declare s_rename_all_lowlevel static.
 
+    * src/s_sheet_data.c: Revise verbose message in s_sheet_data_add_master_
+      comp_list_items.
+
 2017-09-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/de.po: Update German translations.

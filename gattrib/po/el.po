@@ -155,8 +155,8 @@ msgid "Creating master pin list.\n"
 msgstr "Δημιουργία κύριας λίστας πινάκων\n"
 
 #: gattrib/src/s_sheet_data.c:484
-msgid "found component pin without a pin number."
-msgstr "βρήκε τον ακροδέκτη συστατικού χωρίς έναν αριθμό ακίδων."
+msgid "found component pin without a pin number"
+msgstr "βρήκε τον ακροδέκτη συστατικού χωρίς έναν αριθμό ακίδων"
 
 #: gattrib/src/s_sheet_data.c:547
 msgid "Creating master pin attribute list"
