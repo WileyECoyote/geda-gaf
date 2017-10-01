@@ -1,3 +1,8 @@
+2017-10-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_option_menu.c: Call geda_menu_detach in
+      geda_option_menu_remove_menu.
+
 2017-09-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/dialogs/geda_file_chooser.c: Update function documentation

@@ -1103,6 +1103,7 @@ geda_option_menu_remove_menu (GedaOptionMenu *option_menu)
     if (GEDA_MENU_SHELL (option_menu->menu)->active) {
       geda_menu_shell_cancel ((GedaMenuShell*)option_menu->menu);
     }
+    geda_menu_detach ((GedaMenu*)option_menu->menu);
   }
 }
 
