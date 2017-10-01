@@ -214,6 +214,9 @@ remove_settings_signal (GedaMenuBar *menubar, GdkScreen *screen)
   }
 }
 
+/** \defgroup GedaMenuBar-GtkWidget GedaMenuBar GedaMenuBar Overrides
+ *  @{
+ */
 
 /* Common helper called by:
  *
@@ -878,6 +881,8 @@ geda_menu_bar_draw (GtkWidget *widget, cairo_t *cr)
 }
 
 #endif
+
+/** @} endgroup GedaMenuBar-GtkWidget */
 
 static void
 geda_menu_bar_get_property (GObject      *object,
