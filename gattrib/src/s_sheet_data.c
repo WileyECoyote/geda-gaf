@@ -239,7 +239,7 @@ void s_sheet_data_add_master_comp_list_items (const GList *obj_list)
 #endif
 
   if (verbose_mode) {
-    printf(_("Starting master comp list creation.\n"));
+    printf(_("Creating master component list.\n"));
   }
 
   /* -----  Iterate through all objects found on page looking for components  ----- */
