@@ -1493,8 +1493,8 @@ geda_menu_key_press (GtkWidget *widget, GdkEventKey *event)
 static bool
 geda_menu_leave_notify (GtkWidget *widget, GdkEventCrossing *event)
 {
-  GedaMenu      *menu;
-  GtkWidget     *event_widget;
+  GedaMenu  *menu;
+  GtkWidget *event_widget;
 
   if (event->mode == GDK_CROSSING_GTK_GRAB ||
       event->mode == GDK_CROSSING_GTK_UNGRAB ||
@@ -1502,7 +1502,7 @@ geda_menu_leave_notify (GtkWidget *widget, GdkEventCrossing *event)
     return TRUE;
   }
 
-  menu       = GEDA_MENU (widget);
+  menu = (GedaMenu*)widget;
 
   if (geda_menu_navigating_submenu (menu, event->x_root, event->y_root)) {
     return TRUE;
