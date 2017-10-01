@@ -3381,12 +3381,11 @@ static void geda_combo_box_menu_setup (GedaComboBox *combo_box, bool add_childre
 
   child = geda_get_child_widget(combo_box);
 
-    priv->button = gtk_toggle_button_new ();
-    gtk_button_set_focus_on_click ((GtkButton*)priv->button,
-                                    priv->focus_on_click);
+  priv->button =  gtk_toggle_button_new ();
 
+  gtk_button_set_focus_on_click ((GtkButton*)priv->button, priv->focus_on_click);
 
-    gtk_widget_set_parent (priv->button, gtk_widget_get_parent(child));
+  gtk_widget_set_parent (priv->button, gtk_widget_get_parent(child));
 
   if (priv->cell_view) {
 
@@ -3408,6 +3407,7 @@ static void geda_combo_box_menu_setup (GedaComboBox *combo_box, bool add_childre
   }
 
   gtk_widget_show_all (priv->button);
+
   g_signal_connect (priv->button, "toggled",
                     G_CALLBACK (geda_combo_box_button_toggled), combo_box);
 
@@ -3425,7 +3425,8 @@ static void geda_combo_box_menu_setup (GedaComboBox *combo_box, bool add_childre
   geda_menu_set_reserve_toggle_size (GEDA_MENU (menu), FALSE);
 
   g_signal_connect (menu, "key-press-event",
-		    G_CALLBACK (geda_combo_box_menu_key_press), combo_box);
+                    G_CALLBACK (geda_combo_box_menu_key_press), combo_box);
+
   geda_combo_box_set_popup_widget (combo_box, menu);
 
   /* add items */
