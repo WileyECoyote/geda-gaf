@@ -635,7 +635,7 @@ EXTRA_DIST = $(bitmapdata_DATA)     \
              $(bitmapdata_256_DATA) \
              README
 
-MOSTLYCLEANFILES     = *.log *~
-CLEANFILES           = *.log *~
-DISTCLEANFILES       = *.log *~ core FILE
-MAINTAINERCLEANFILES = *.log *~ Makefile.in
+MOSTLYCLEANFILES     = *~
+CLEANFILES           = svg/*~ *~
+DISTCLEANFILES       = svg/*~ *~ core FILE
+MAINTAINERCLEANFILES = svg/*~ *~ Makefile.in
