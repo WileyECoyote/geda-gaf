@@ -198,7 +198,7 @@ clear_font_filter_data (GedaFontButton *font_button)
 /*!
  * \brief Font Button Label Use Font
  * \par Function Description
- *  This function sets the font used by the embeded label widget.
+ *  This function sets the font used by the embedded label widget.
  *  If use_font is TRUE then the label on the botton will be the
  *  drawn using the selected font, otherwise the default font will
  *  be used. If the selected font "style" is used then the size
