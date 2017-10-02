@@ -6,7 +6,8 @@
       to GtkWidget* in _default_font_ascent and _default_font_descent.
        Update function wrapping.
 
-    * src/gtksheet/gtksheetcolumn.c: Remove redundant validations.
+    * src/gtksheet/gtksheetcolumn.c: Reformat single line conditionals
+      and remove redundant validations.
 
 2017-09-30 Wiley E. Hill <wileyhill@gmail.com>
 

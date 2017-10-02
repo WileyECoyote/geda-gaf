@@ -1196,7 +1196,10 @@ GtkJustification
 gtk_sheet_column_get_justification(GtkSheet *sheet, int col)
 {
     g_return_val_if_fail(GTK_IS_SHEET(sheet), GTK_JUSTIFY_LEFT);
-    if (col < 0 || col > sheet->maxcol) return (GTK_SHEET_VERTICAL_JUSTIFICATION_DEFAULT);
+
+    if (col < 0 || col > sheet->maxcol) {
+        return (GTK_SHEET_VERTICAL_JUSTIFICATION_DEFAULT);
+    }
 
     return (COLPTR(sheet, col)->justification);
 }
@@ -1242,7 +1245,10 @@ GtkSheetVerticalJustification
 gtk_sheet_column_get_vjustification(GtkSheet *sheet, int col)
 {
     g_return_val_if_fail(GTK_IS_SHEET(sheet), GTK_SHEET_VERTICAL_JUSTIFICATION_DEFAULT);
-    if (col < 0 || col > sheet->maxcol) return (GTK_SHEET_VERTICAL_JUSTIFICATION_DEFAULT);
+
+    if (col < 0 || col > sheet->maxcol) {
+        return (GTK_SHEET_VERTICAL_JUSTIFICATION_DEFAULT);
+    }
 
     return (COLPTR(sheet, col)->vjust);
 }
