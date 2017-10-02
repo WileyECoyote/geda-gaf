@@ -368,13 +368,14 @@ bool change_entry(GtkWidget *widget,
   return TRUE;
 }
 
-/*! \brief Callback on Change Cell
- *  \par Function Description
- *  This function is not used. Despite the apparent usefullness
- * of this function, the change signal is not very usefull because
- * it is called every time a cell is selected or written too. This
- * signal is emitted even when the data in the cell has not been
- * changed.
+/*!
+ * \brief Callback on Change Cell
+ * \par Function Description
+ *  This function is not used. Despite the apparent usefulness of
+ *  this function, the change signal is not very useful because it
+ *  is called every time a cell is selected or written too. This
+ *  signal is emitted even when the data in the cell has not been
+ *  changed.
  */
 static void on_change(GtkWidget *widget, int row, int col, void * data)
 {
