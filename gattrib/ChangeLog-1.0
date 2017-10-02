@@ -4,7 +4,7 @@
       sink the reference if the button had no parent, i.e. was not the
       first sheet, before unreferencing the button. Remove unneeded cast
       to GtkWidget* in _default_font_ascent and _default_font_descent.
-       Update function wrapping.
+      Add missing braces. Update function wrapping.
 
     * src/gtksheet/gtksheetcolumn.c: Reformat single line conditionals
       and remove redundant validations.

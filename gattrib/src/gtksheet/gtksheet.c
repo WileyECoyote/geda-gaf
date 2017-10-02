@@ -382,8 +382,9 @@ _default_font_ascent(GtkWidget *widget)
 {
     PangoFontDescription *font_desc = gtk_widget_get_style(widget)->font_desc;
 
-    if (!font_desc)
-	return (GTK_SHEET_DEFAULT_FONT_ASCENT);
+    if (!font_desc) {
+      return (GTK_SHEET_DEFAULT_FONT_ASCENT);
+    }
 
     PangoContext *context = gtk_widget_get_pango_context(widget);
 
@@ -465,8 +466,9 @@ _default_font_descent(GtkWidget *widget)
 {
     PangoFontDescription *font_desc = gtk_widget_get_style(widget)->font_desc;
 
-    if (!font_desc)
-	return (GTK_SHEET_DEFAULT_FONT_DESCENT);
+    if (!font_desc) {
+      return (GTK_SHEET_DEFAULT_FONT_DESCENT);
+    }
 
     PangoContext *context = gtk_widget_get_pango_context(widget);
 
