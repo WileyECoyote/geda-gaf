@@ -426,7 +426,7 @@ get_complex_object_data(GedaObject *object)
   int   lock      = !object->selectable;
 
   char *basename  = object->complex->filename;
-  int   embeded   = object->complex->is_embedded;
+  int   embedded  = object->complex->is_embedded;
   int   x         = object->complex->x;
   int   y         = object->complex->y;
   int   angle     = object->complex->angle;
@@ -454,7 +454,7 @@ get_complex_object_data(GedaObject *object)
   }
 
   data = Py_BuildValue("siiiisiiiiiOOO",  name, type, pid, sid, lock,
-                        basename, x, y, embeded, angle, mirror,
+                        basename, x, y, embedded, angle, mirror,
                         py_pin_objs, py_prim_objs, py_attributes);
 #if DEBUG
   fprintf(stderr, "gcod exit: name=%s, pid=%d, sid=%d, at (%d,%d) basename=%s)\n", name, pid, sid, x, y, basename);
