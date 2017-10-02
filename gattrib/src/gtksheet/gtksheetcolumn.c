@@ -839,7 +839,6 @@ gtk_sheet_column_get_type(void)
  */
 GtkSheetColumn *gtk_sheet_column_get(GtkSheet *sheet, int col)
 {
-    g_return_val_if_fail(sheet != NULL, NULL);
     g_return_val_if_fail(GTK_IS_SHEET(sheet), NULL);
 
     if (col < 0 || col > sheet->maxcol) return (NULL);
@@ -1050,7 +1049,6 @@ gtk_sheet_set_column_width(GtkSheet *sheet, int col, guint width)
 {
     guint min_width;
 
-    g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
     if (col < 0 || col > sheet->maxcol) return;
@@ -1091,7 +1089,6 @@ gtk_sheet_set_column_width(GtkSheet *sheet, int col, guint width)
 const int
 gtk_sheet_get_column_width(GtkSheet *sheet, int col)
 {
-    g_return_val_if_fail(sheet != NULL, 0);
     g_return_val_if_fail(GTK_IS_SHEET(sheet), 0);
 
     return (COLPTR(sheet, col)->width);
@@ -1113,7 +1110,6 @@ gtk_sheet_column_button_add_label(GtkSheet *sheet, int col, const char *label)
     GtkRequisition req;
     int aux_c, aux_r;
 
-    g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
     if (col < 0 || col > sheet->maxcol) return;
@@ -1172,7 +1168,6 @@ void
 gtk_sheet_column_set_justification(GtkSheet *sheet, int col,
                                    GtkJustification justification)
 {
-    g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
     if (col < 0 || col > sheet->maxcol) return;
@@ -1200,7 +1195,6 @@ gtk_sheet_column_set_justification(GtkSheet *sheet, int col,
 GtkJustification
 gtk_sheet_column_get_justification(GtkSheet *sheet, int col)
 {
-    g_return_val_if_fail(sheet != NULL, GTK_JUSTIFY_LEFT);
     g_return_val_if_fail(GTK_IS_SHEET(sheet), GTK_JUSTIFY_LEFT);
     if (col < 0 || col > sheet->maxcol) return (GTK_SHEET_VERTICAL_JUSTIFICATION_DEFAULT);
 
@@ -1219,7 +1213,6 @@ void
 gtk_sheet_column_set_vjustification(GtkSheet *sheet, int col,
                                     GtkSheetVerticalJustification vjust)
 {
-    g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
     if (col < 0 || col > sheet->maxcol) return;
@@ -1248,7 +1241,6 @@ gtk_sheet_column_set_vjustification(GtkSheet *sheet, int col,
 GtkSheetVerticalJustification
 gtk_sheet_column_get_vjustification(GtkSheet *sheet, int col)
 {
-    g_return_val_if_fail(sheet != NULL, GTK_SHEET_VERTICAL_JUSTIFICATION_DEFAULT);
     g_return_val_if_fail(GTK_IS_SHEET(sheet), GTK_SHEET_VERTICAL_JUSTIFICATION_DEFAULT);
     if (col < 0 || col > sheet->maxcol) return (GTK_SHEET_VERTICAL_JUSTIFICATION_DEFAULT);
 
@@ -1267,7 +1259,6 @@ gtk_sheet_column_get_vjustification(GtkSheet *sheet, int col)
  */
 int gtk_sheet_column_get_iskey(GtkSheet *sheet, const int col)
 {
-    g_return_val_if_fail(sheet != NULL, FALSE);
     g_return_val_if_fail(GTK_IS_SHEET(sheet), FALSE);
 
     if (col < 0 || col > sheet->maxcol) return (FALSE);
@@ -1288,7 +1279,6 @@ int gtk_sheet_column_get_iskey(GtkSheet *sheet, const int col)
 void gtk_sheet_column_set_iskey(GtkSheet *sheet, const int col,
                                 const int is_key)
 {
-    g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
     if (col < 0 || col > sheet->maxcol) return;
@@ -1307,7 +1297,6 @@ void gtk_sheet_column_set_iskey(GtkSheet *sheet, const int col,
  */
 int gtk_sheet_column_get_readonly(GtkSheet *sheet, const int col)
 {
-    g_return_val_if_fail(sheet != NULL, FALSE);
     g_return_val_if_fail(GTK_IS_SHEET(sheet), FALSE);
 
     if (col < 0 || col > sheet->maxcol) return (FALSE);
@@ -1328,7 +1317,6 @@ int gtk_sheet_column_get_readonly(GtkSheet *sheet, const int col)
 void gtk_sheet_column_set_readonly(GtkSheet *sheet, const int col,
                                    const int is_readonly)
 {
-    g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
     if (col < 0 || col > sheet->maxcol) return;
@@ -1348,7 +1336,6 @@ void gtk_sheet_column_set_readonly(GtkSheet *sheet, const int col,
  */
 char *gtk_sheet_column_get_format(GtkSheet *sheet, const int col)
 {
-    g_return_val_if_fail(sheet != NULL, NULL);
     g_return_val_if_fail(GTK_IS_SHEET(sheet), NULL);
 
     if (col < 0 || col > sheet->maxcol) return (NULL);
@@ -1370,7 +1357,6 @@ void gtk_sheet_column_set_format(GtkSheet   *sheet,
 {
     GtkSheetColumn *colp;
 
-    g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
     if (col < 0 || col > sheet->maxcol) return;
@@ -1392,7 +1378,6 @@ void gtk_sheet_column_set_format(GtkSheet   *sheet,
  */
 char *gtk_sheet_column_get_datatype(GtkSheet *sheet, const int col)
 {
-    g_return_val_if_fail(sheet != NULL, NULL);
     g_return_val_if_fail(GTK_IS_SHEET(sheet), NULL);
 
     if (col < 0 || col > sheet->maxcol) return (NULL);
@@ -1414,7 +1399,6 @@ void gtk_sheet_column_set_datatype(GtkSheet   *sheet,
 {
     GtkSheetColumn *colp;
 
-    g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
     if (col < 0 || col > sheet->maxcol) return;
@@ -1437,7 +1421,6 @@ void gtk_sheet_column_set_datatype(GtkSheet   *sheet,
  */
 char *gtk_sheet_column_get_description(GtkSheet *sheet, const int col)
 {
-    g_return_val_if_fail(sheet != NULL, NULL);
     g_return_val_if_fail(GTK_IS_SHEET(sheet), NULL);
 
     if (col < 0 || col > sheet->maxcol) return (NULL);
@@ -1459,7 +1442,6 @@ void gtk_sheet_column_set_description(GtkSheet   *sheet,
 {
     GtkSheetColumn *colp;
 
-    g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
     if (col < 0 || col > sheet->maxcol) return;
@@ -1482,7 +1464,6 @@ void gtk_sheet_column_set_description(GtkSheet   *sheet,
 GType
 gtk_sheet_column_get_entry_type(GtkSheet *sheet, const int col)
 {
-    g_return_val_if_fail(sheet != NULL, GTK_SHEET_ENTRY_TYPE_DEFAULT);
     g_return_val_if_fail(GTK_IS_SHEET(sheet), GTK_SHEET_ENTRY_TYPE_DEFAULT);
 
     if (col < 0 || col > sheet->maxcol) return (GTK_SHEET_ENTRY_TYPE_DEFAULT);
@@ -1503,7 +1484,6 @@ void
 gtk_sheet_column_set_entry_type(GtkSheet *sheet, const int col,
                                 const GType entry_type)
 {
-    g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
     if (col < 0 || col > sheet->maxcol) return;
@@ -1524,7 +1504,6 @@ gtk_sheet_column_set_entry_type(GtkSheet *sheet, const int col,
 char *gtk_sheet_column_get_tooltip_markup(GtkSheet *sheet,
                                           const int col)
 {
-    g_return_val_if_fail(sheet != NULL, NULL);
     g_return_val_if_fail(GTK_IS_SHEET(sheet), NULL);
 
     if (col < 0 || col > sheet->maxcol) return (NULL);
@@ -1545,7 +1524,6 @@ void gtk_sheet_column_set_tooltip_markup(GtkSheet   *sheet,
                                          const int   col,
                                          const char *markup)
 {
-    g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
     if (col < 0 || col > sheet->maxcol) return;
@@ -1566,7 +1544,6 @@ void gtk_sheet_column_set_tooltip_markup(GtkSheet   *sheet,
 char *gtk_sheet_column_get_tooltip_text(GtkSheet *sheet,
                                         const int col)
 {
-    g_return_val_if_fail(sheet != NULL, NULL);
     g_return_val_if_fail(GTK_IS_SHEET(sheet), NULL);
 
     if (col < 0 || col > sheet->maxcol) return (NULL);
@@ -1586,7 +1563,6 @@ void gtk_sheet_column_set_tooltip_text(GtkSheet   *sheet,
                                        const int   col,
                                        const char *text)
 {
-    g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
     if (col < 0 || col > sheet->maxcol) return;
@@ -1608,7 +1584,6 @@ void gtk_sheet_column_set_tooltip_text(GtkSheet   *sheet,
 int
 gtk_sheet_column_sensitive(GtkSheet *sheet, int column)
 {
-    g_return_val_if_fail(sheet != NULL, FALSE);
     g_return_val_if_fail(GTK_IS_SHEET(sheet), FALSE);
 
     if (column < 0 || column > sheet->maxcol) return (FALSE);
@@ -1627,7 +1602,6 @@ gtk_sheet_column_sensitive(GtkSheet *sheet, int column)
 void
 gtk_sheet_column_set_sensitivity(GtkSheet *sheet, int col, int sensitive)
 {
-    g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
     if (col < 0 || col > sheet->maxcol) return;
@@ -1664,7 +1638,6 @@ gtk_sheet_columns_set_sensitivity(GtkSheet *sheet, int sensitive)
 {
     int i;
 
-    g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
     for (i = 0; i <= sheet->maxcol; i++) gtk_sheet_column_set_sensitivity(sheet, i, sensitive);
@@ -1680,7 +1653,6 @@ gtk_sheet_columns_set_sensitivity(GtkSheet *sheet, int sensitive)
 void
 gtk_sheet_columns_set_resizable(GtkSheet *sheet, int resizable)
 {
-    g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
     sheet->columns_resizable = resizable;
@@ -1697,7 +1669,6 @@ gtk_sheet_columns_set_resizable(GtkSheet *sheet, int resizable)
 int
 gtk_sheet_columns_resizable(GtkSheet *sheet)
 {
-    g_return_val_if_fail(sheet != NULL, FALSE);
     g_return_val_if_fail(GTK_IS_SHEET(sheet), FALSE);
 
     return (sheet->columns_resizable);
@@ -1760,7 +1731,6 @@ _gtk_sheet_column_button_release(GtkSheet *sheet, int col)
 int
 gtk_sheet_column_visible(GtkSheet *sheet, int column)
 {
-    g_return_val_if_fail(sheet != NULL, FALSE);
     g_return_val_if_fail(GTK_IS_SHEET(sheet), FALSE);
 
     if (column < 0 || column > sheet->maxcol)
@@ -1785,7 +1755,6 @@ gtk_sheet_column_set_visibility(GtkSheet *sheet, int col, int visible)
     GtkSheetColumn *colobj;
     int act_col;
 
-    g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
     if (col < 0 || col > sheet->maxcol)
@@ -1847,7 +1816,6 @@ gtk_sheet_column_button_justify(GtkSheet *sheet, int col,
 {
     GtkSheetButton *button;
 
-    g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
     if (col < 0 || col > sheet->maxcol) return;
@@ -1876,7 +1844,6 @@ gtk_sheet_column_button_justify(GtkSheet *sheet, int col,
 const char *
 gtk_sheet_column_button_get_label(GtkSheet *sheet, int col)
 {
-    g_return_val_if_fail(sheet != NULL, NULL);
     g_return_val_if_fail(GTK_IS_SHEET(sheet), NULL);
 
     if (col < 0 || col > sheet->maxcol) return (NULL);
@@ -1895,7 +1862,6 @@ gtk_sheet_column_button_get_label(GtkSheet *sheet, int col)
 void
 gtk_sheet_column_label_set_visibility(GtkSheet *sheet, int col, int visible)
 {
-    g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
     if (col < 0 || col > sheet->maxcol) return;
@@ -1926,7 +1892,6 @@ gtk_sheet_columns_labels_set_visibility(GtkSheet *sheet, int visible)
 {
     int i;
 
-    g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
     for (i = 0; i <= sheet->maxcol; i++) gtk_sheet_column_label_set_visibility(sheet, i, visible);
@@ -2008,6 +1973,7 @@ gtk_sheet_hide_column_titles(GtkSheet *sheet)
     if (!sheet->column_titles_visible) return;
 
     sheet->column_titles_visible = FALSE;
+
     _gtk_sheet_recalc_top_ypixels(sheet);
     _gtk_sheet_recalc_left_xpixels(sheet);
 
@@ -2043,7 +2009,6 @@ gtk_sheet_set_column_title(GtkSheet *sheet,
                            int col,
                            const char *title)
 {
-    g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
     if (COLPTR(sheet, col)->title) g_free(COLPTR(sheet, col)->title);
@@ -2063,7 +2028,6 @@ const char *
 gtk_sheet_get_column_title(GtkSheet *sheet,
                            int col)
 {
-    g_return_val_if_fail(sheet != NULL, NULL);
     g_return_val_if_fail(GTK_IS_SHEET(sheet), NULL);
 
     return (COLPTR(sheet, col)->title);
@@ -2080,7 +2044,6 @@ gtk_sheet_get_column_title(GtkSheet *sheet,
 int
 gtk_sheet_column_titles_visible(GtkSheet *sheet)
 {
-    g_return_val_if_fail(sheet != NULL, FALSE);
     g_return_val_if_fail(GTK_IS_SHEET(sheet), FALSE);
 
     return (sheet->column_titles_visible);
