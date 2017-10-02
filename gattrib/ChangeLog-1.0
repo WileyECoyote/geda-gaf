@@ -1,3 +1,9 @@
+2017-10-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gtksheet/gtksheet.c: Revise function destroy_global_button to
+      sink the reference if the button had no parent, i.e. was not the
+      first sheet, before unreferencing the button.
+
 2017-09-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_rename.c: Declare s_rename_all_lowlevel static.

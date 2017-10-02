@@ -6337,8 +6337,11 @@ destroy_global_button(GtkSheet *sheet)
     gtk_widget_destroy(sheet->button);
     g_object_unref(sheet->button);
 
-    if (!had_parent)
+    if (!had_parent) {
+      g_object_ref_sink(sheet->button);
       g_object_unref(sheet->button);
+    }
+
     sheet->button = NULL;
 }
 
