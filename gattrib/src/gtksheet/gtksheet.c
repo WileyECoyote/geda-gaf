@@ -386,11 +386,17 @@ _default_font_ascent(GtkWidget *widget)
       return (GTK_SHEET_DEFAULT_FONT_ASCENT);
     }
 
-    PangoContext *context = gtk_widget_get_pango_context(widget);
+    PangoContext     *context;
+    PangoFontMetrics *metrics;
+    unsigned int      val;
 
-    PangoFontMetrics *metrics = pango_context_get_metrics(context,
-	font_desc, pango_context_get_language(context));
-    unsigned int val = pango_font_metrics_get_ascent(metrics);
+    context = gtk_widget_get_pango_context(widget);
+
+    metrics = pango_context_get_metrics(context,
+                                        font_desc, pango_context_get_language(context));
+
+    val = pango_font_metrics_get_ascent(metrics);
+
     pango_font_metrics_unref(metrics);
 
     return (PANGO_PIXELS(val));
@@ -6263,22 +6269,23 @@ static void destroy_global_button(GtkSheet *sheet)
 
 static void size_allocate_global_button(GtkSheet *sheet)
 {
-    GtkAllocation allocation;
+  GtkAllocation allocation;
 
-    if (!sheet->column_titles_visible)
-	return;
-    if (!sheet->row_titles_visible)
-	return;
+  if (!sheet->column_titles_visible)
+    return;
 
-    gtk_widget_size_request(sheet->button, NULL);
+  if (!sheet->row_titles_visible)
+    return;
 
-    allocation.x = 0;
-    allocation.y = 0;
-    allocation.width = sheet->row_title_area.width;
-    allocation.height = sheet->column_title_area.height;
+  gtk_widget_size_request(sheet->button, NULL);
 
-    gtk_widget_size_allocate(sheet->button, &allocation);
-    gtk_widget_show(sheet->button);
+  allocation.x = 0;
+  allocation.y = 0;
+  allocation.width = sheet->row_title_area.width;
+  allocation.height = sheet->column_title_area.height;
+
+  gtk_widget_size_allocate(sheet->button, &allocation);
+  gtk_widget_show(sheet->button);
 }
 
 
