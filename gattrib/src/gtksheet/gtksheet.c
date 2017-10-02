@@ -380,8 +380,7 @@ _gtk_sheet_row_default_height(GtkWidget *widget)
 static inline unsigned int
 _default_font_ascent(GtkWidget *widget)
 {
-    PangoFontDescription *font_desc =
-	gtk_widget_get_style((GtkWidget*)widget)->font_desc;
+    PangoFontDescription *font_desc = gtk_widget_get_style(widget)->font_desc;
 
     if (!font_desc)
 	return (GTK_SHEET_DEFAULT_FONT_ASCENT);
@@ -464,8 +463,7 @@ static void _get_string_extent(GtkSheet *sheet, GtkSheetColumn *colptr,
 static inline unsigned int
 _default_font_descent(GtkWidget *widget)
 {
-    PangoFontDescription *font_desc =
-	gtk_widget_get_style((GtkWidget*)widget)->font_desc;
+    PangoFontDescription *font_desc = gtk_widget_get_style(widget)->font_desc;
 
     if (!font_desc)
 	return (GTK_SHEET_DEFAULT_FONT_DESCENT);

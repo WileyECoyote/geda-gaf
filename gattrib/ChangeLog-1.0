@@ -2,7 +2,8 @@
 
     * src/gtksheet/gtksheet.c: Revise function destroy_global_button to
       sink the reference if the button had no parent, i.e. was not the
-      first sheet, before unreferencing the button.
+      first sheet, before unreferencing the button. Remove unneeded cast
+      to GtkWidget* in _default_font_ascent and _default_font_descent.
 
 2017-09-30 Wiley E. Hill <wileyhill@gmail.com>
 
