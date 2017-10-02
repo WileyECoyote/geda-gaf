@@ -9,6 +9,10 @@
     * src/gtksheet/gtksheetcolumn.c: Reformat single line conditionals
       and remove redundant validations.
 
+    * src/x_menus.c: Eliminate second check for file_list in function
+      x_menu_file_open and just release the list at the end of the
+      conditional block.
+
 2017-09-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_rename.c: Declare s_rename_all_lowlevel static.

@@ -105,19 +105,18 @@ void x_menu_file_open()
     x_fileselect_load_files(file_list);
 
     s_toplevel_init_data_set(pr_current, sheet_head);
+
     /* -------------- update windows --------------- */
     x_gtksheet_reinititialize(sheet_head);
     x_window_add_items(sheet_head); /* updates toplevel & GtkSheet */
     x_window_update_title(pr_current, sheet_head);
+
+    geda_gslist_free_all(file_list);
   }
 
 #ifdef DEBUG
   fprintf(stderr, "open file canceled:%s\n", (char*) g_slist_nth_data(file_list,0));
 #endif
-
-  if (file_list != NULL ) {
-    geda_gslist_free_all(file_list);
-  }
 }
 
 /*!
