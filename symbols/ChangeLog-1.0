@@ -1,3 +1,9 @@
+2017-10-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * connector/header/: Add description, update footprint:
+
+            *  connector/header/header22-2-3.sym
+
 2017-09-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/header/header20-2-1.sym: Add description attribute.
