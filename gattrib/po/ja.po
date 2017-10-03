@@ -112,30 +112,41 @@ msgid ""
 "included in the gEDA distribution.\n"
 "There is NO WARRANTY, to the extent permitted by law.\n"
 msgstr ""
+"gEDA/gattrib %s (%s) (g%.7s)\n"
+"著作権 (C) 1998-2017 gEDA 開発者\n"
+"これはフリーソフトウェアであり、あなたはそのソフトウェアを再配布することを歓迎します。\n"
+"特定の条件。詳細については、ファイルCOPYINGを参照してください。\n"
+"gEDA分布に含まれる\n"
+"法律で認められている範囲で、いかなる保証もありません。.\n"
 
+# DONE
 #: gattrib/src/s_misc.c:66
 msgid "DONE"
-msgstr ""
+msgstr "完了"
 
+# failed to find attribute
 #: gattrib/src/s_object.c:215
 msgid "failed to find attribute"
-msgstr ""
+msgstr "属性の検索に失敗しました"
 
+# Exiting
 #: gattrib/src/s_object.c:216
 msgid "Exiting..."
-msgstr ""
+msgstr "終了..."
 
 #: gattrib/src/s_rename.c:106
 msgid "Increase MAX_SETS in"
 msgstr ""
 
+# Source
 #: gattrib/src/s_rename.c:125
 msgid "Source"
-msgstr ""
+msgstr "ソース"
 
+# Destination
 #: gattrib/src/s_rename.c:129
 msgid "Destination"
-msgstr ""
+msgstr "先"
 
 #: gattrib/src/s_rename.c:163
 #, c-format
@@ -145,6 +156,10 @@ msgid ""
 "are both a src and dest name\n"
 "This warning is okay if you have multiple levels of hierarchy!\n"
 msgstr ""
+"警告：名前を何度か変更しようとしています:\n"
+"\t%s そして %s\n"
+"送信元と送信先の両方の名前です\n"
+"複数の階層レベルがある場合、この警告は問題ありません!\n"
 
 #: gattrib/src/s_rename.c:232
 msgid "Increase the number of rename_pairs (MAX_RENAME) in"
