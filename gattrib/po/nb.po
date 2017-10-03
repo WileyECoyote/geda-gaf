@@ -20,43 +20,49 @@ msgstr ""
 
 #: gattrib/data/geda-gattrib.desktop.in:3
 msgid "gEDA Attribute Editor"
-msgstr ""
+msgstr "gEDA Attributt Editor"
 
 #: gattrib/data/geda-gattrib.desktop.in:4
 msgid "Manipulate component attributes with gattrib"
 msgstr "Manipuler komponent attributter med gattrib"
 
+# Could not open
 #: gattrib/src/f_export.c:81
 msgid "Could not open"
-msgstr ""
+msgstr "Kunne ikke åpne"
 
+# Failed to save user configuration to
 #: gattrib/src/gattrib.c:180
 msgid "Failed to save user configuration to"
-msgstr ""
+msgstr "Kunne ikke lagre brukerkonfigurasjonen til"
 
+# Could not find file
 #: gattrib/src/gattrib.c:396
 msgid "Could not find file"
-msgstr ""
+msgstr "Kunne ikke finne filen"
 
+# Exported schematic to
 #: gattrib/src/gattrib.c:443
 msgid "Exported schematic to"
-msgstr ""
+msgstr "Eksportert skjematisk til"
 
 #: gattrib/src/g_rc.c:67
 msgid "This is gEDA/gattrib version"
-msgstr ""
+msgstr "Dette er gEDA/gattrib-versjonen"
 
+# but you have a version
 #: gattrib/src/g_rc.c:68
 msgid "but you have a version"
-msgstr ""
+msgstr "men du har en versjon"
 
+# Please be sure that you have the latest rc file"
 #: gattrib/src/g_rc.c:69
 msgid "Please be sure that you have the latest rc file"
-msgstr ""
+msgstr "Vær sikker på at du har den nyeste rc-filen"
 
 #: gattrib/src/g_rc.c:76
 msgid "file"
-msgstr ""
+msgstr "fil"
 
 #: gattrib/src/i_basic.c:105
 msgid "The operating system is out of memory or resources."
@@ -102,29 +108,34 @@ msgid ""
 "There is NO WARRANTY, to the extent permitted by law.\n"
 msgstr ""
 
+# DONE
 #: gattrib/src/s_misc.c:66
 msgid "DONE"
-msgstr ""
+msgstr "FERDIG"
 
+# failed to find attribute
 #: gattrib/src/s_object.c:215
 msgid "failed to find attribute"
-msgstr ""
+msgstr "klarte ikke å finne attributt"
 
+# Exiting
 #: gattrib/src/s_object.c:216
 msgid "Exiting..."
-msgstr ""
+msgstr "avslutter..."
 
 #: gattrib/src/s_rename.c:106
 msgid "Increase MAX_SETS in"
 msgstr ""
 
+# Source
 #: gattrib/src/s_rename.c:125
 msgid "Source"
-msgstr ""
+msgstr "Kilde"
 
+# Destination
 #: gattrib/src/s_rename.c:129
 msgid "Destination"
-msgstr ""
+msgstr "Mål"
 
 #: gattrib/src/s_rename.c:163
 #, c-format
@@ -139,24 +150,28 @@ msgstr ""
 msgid "Increase the number of rename_pairs (MAX_RENAME) in"
 msgstr ""
 
+# Creating master component list
 #: gattrib/src/s_sheet_data.c:242
 #, c-format
 msgid "Creating master component list.\n"
-msgstr ""
+msgstr "Oppretter hovedkomponentliste.\n"
 
+# Creating master component attribute list
 #: gattrib/src/s_sheet_data.c:308
-#, fuzzy, c-format
+#, c-format
 msgid "Creating master component attribute list.\n"
-msgstr "Manipuler komponent attributter med gattrib"
+msgstr "Opprette hovedkomponentattributtliste.\n"
 
+# Creating master pin list
 #: gattrib/src/s_sheet_data.c:434
 #, c-format
 msgid "Creating master pin list.\n"
-msgstr ""
+msgstr "Opprette hovedpinneliste.\n"
 
+# found component pin without a pin number
 #: gattrib/src/s_sheet_data.c:484
 msgid "found component pin without a pin number"
-msgstr ""
+msgstr "funnet komponent pin uten pin nummer"
 
 #: gattrib/src/s_sheet_data.c:547
 msgid "Creating master pin attribute list"
