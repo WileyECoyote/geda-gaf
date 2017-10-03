@@ -1,3 +1,8 @@
+2017-10-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/ca.po: Update Catalan translations.
+
+
 2017-10-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheet.c: Revise function destroy_global_button to
