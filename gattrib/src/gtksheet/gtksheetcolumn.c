@@ -351,11 +351,10 @@ gtk_sheet_column_set_property(GObject *object,
     }
 }
 
-static void
-gtk_sheet_column_get_property(GObject *object,
-                              guint property_id,
-                              GValue *value,
-                              GParamSpec *pspec)
+static void gtk_sheet_column_get_property(GObject      *object,
+                                          unsigned int  property_id,
+                                          GValue       *value,
+                                          GParamSpec   *pspec)
 {
     GtkSheetColumn *colobj = GTK_SHEET_COLUMN(object);
     GtkSheet *sheet = colobj->sheet;
@@ -934,10 +933,7 @@ _gtk_sheet_column_right_xpixel(GtkSheet *sheet, int col)
  *
  * size request handler for all sheet buttons
  */
-void
-_gtk_sheet_column_size_request(GtkSheet *sheet,
-                               int col,
-                               guint *requisition)
+void _gtk_sheet_column_size_request(GtkSheet *sheet, int col, unsigned int *requisition)
 {
     GtkRequisition button_requisition;
     GList *children;
@@ -1044,10 +1040,9 @@ _gtk_sheet_column_buttons_size_allocate(GtkSheet *sheet)
  *
  * Set column width.
  */
-void
-gtk_sheet_set_column_width(GtkSheet *sheet, int col, guint width)
+void gtk_sheet_set_column_width(GtkSheet *sheet, int col, unsigned int width)
 {
-    guint min_width;
+    unsigned int min_width;
 
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
@@ -1910,8 +1905,7 @@ gtk_sheet_columns_labels_set_visibility(GtkSheet *sheet, int visible)
  *
  * Resize column titles area .
  */
-void
-gtk_sheet_set_column_titles_height(GtkSheet *sheet, guint height)
+void gtk_sheet_set_column_titles_height(GtkSheet *sheet, unsigned int height)
 {
     if (height < _gtk_sheet_row_default_height(GTK_WIDGET(sheet))) return;
 

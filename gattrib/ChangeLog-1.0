@@ -1,3 +1,7 @@
+2017-10-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gtksheet/gtksheetcolumn.c: Replace guint with unsigned int.
+
 2017-10-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ca.po: Update Catalan translations.
