@@ -94,11 +94,10 @@ enum _GtkSheetColumnProperties
 };
 
 
-static void
-gtk_sheet_column_set_property(GObject *object,
-                              unsigned int  property_id,
-                              const GValue *value,
-                              GParamSpec   *pspec)
+static void gtk_sheet_column_set_property(GObject      *object,
+                                          unsigned int  property_id,
+                                          const GValue *value,
+                                          GParamSpec   *pspec)
 {
     GtkSheetColumn *colobj = GTK_SHEET_COLUMN(object);
     GtkSheet *sheet = colobj->sheet;
@@ -1462,8 +1461,7 @@ void gtk_sheet_column_set_description(GtkSheet   *sheet,
  *
  * \returns	the entry type or GTK_SHEET_ENTRY_TYPE_DEFAULT
  */
-GType
-gtk_sheet_column_get_entry_type(GtkSheet *sheet, const int col)
+GType gtk_sheet_column_get_entry_type(GtkSheet *sheet, const int col)
 {
     g_return_val_if_fail(GTK_IS_SHEET(sheet), GTK_SHEET_ENTRY_TYPE_DEFAULT);
 
@@ -1481,9 +1479,8 @@ gtk_sheet_column_get_entry_type(GtkSheet *sheet, const int col)
  * Supersedes the sheet entry type for this column. Pass
  * G_TYPE_NONE to reset the column to the sheet entry type.
  */
-void
-gtk_sheet_column_set_entry_type(GtkSheet *sheet, const int col,
-                                const GType entry_type)
+void gtk_sheet_column_set_entry_type(GtkSheet *sheet, const int col,
+                                     const GType entry_type)
 {
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
@@ -1582,8 +1579,7 @@ void gtk_sheet_column_set_tooltip_text(GtkSheet   *sheet,
  * \retval TRUE - if the column is sensitive,
  *         FALSE - insensitive or does not exist
  */
-int
-gtk_sheet_column_sensitive(GtkSheet *sheet, int column)
+int gtk_sheet_column_sensitive(GtkSheet *sheet, int column)
 {
     g_return_val_if_fail(GTK_IS_SHEET(sheet), FALSE);
 
@@ -1600,8 +1596,7 @@ gtk_sheet_column_sensitive(GtkSheet *sheet, int column)
  *
  * Set column button sensitivity. If sensitivity is TRUE it can be toggled, otherwise it acts as a title.
  */
-void
-gtk_sheet_column_set_sensitivity(GtkSheet *sheet, int col, int sensitive)
+void gtk_sheet_column_set_sensitivity(GtkSheet *sheet, int col, int sensitive)
 {
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
@@ -1634,8 +1629,7 @@ gtk_sheet_column_set_sensitivity(GtkSheet *sheet, int col, int sensitive)
  * has no such property, it is a convenience function to set the
  * property for all existing columns.
  */
-void
-gtk_sheet_columns_set_sensitivity(GtkSheet *sheet, int sensitive)
+void gtk_sheet_columns_set_sensitivity(GtkSheet *sheet, int sensitive)
 {
     int i;
 
@@ -1651,8 +1645,7 @@ gtk_sheet_columns_set_sensitivity(GtkSheet *sheet, int sensitive)
  *
  * Set columns resizable status.
  */
-void
-gtk_sheet_columns_set_resizable(GtkSheet *sheet, int resizable)
+void gtk_sheet_columns_set_resizable(GtkSheet *sheet, int resizable)
 {
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
@@ -1667,8 +1660,7 @@ gtk_sheet_columns_set_resizable(GtkSheet *sheet, int resizable)
  *
  * \returns TRUE or FALSE
  */
-int
-gtk_sheet_columns_resizable(GtkSheet *sheet)
+int gtk_sheet_columns_resizable(GtkSheet *sheet)
 {
     g_return_val_if_fail(GTK_IS_SHEET(sheet), FALSE);
 
@@ -1682,8 +1674,7 @@ gtk_sheet_columns_resizable(GtkSheet *sheet)
  *
  * activate and draw column button
  */
-void
-_gtk_sheet_column_button_set(GtkSheet *sheet, int col)
+void _gtk_sheet_column_button_set(GtkSheet *sheet, int col)
 {
     if (col < 0 || col > sheet->maxcol) return;
     if (COLPTR(sheet, col)->button.state == GTK_STATE_ACTIVE) return;
@@ -1703,8 +1694,7 @@ _gtk_sheet_column_button_set(GtkSheet *sheet, int col)
  *
  * reset and draw column button
  */
-void
-_gtk_sheet_column_button_release(GtkSheet *sheet, int col)
+void _gtk_sheet_column_button_release(GtkSheet *sheet, int col)
 {
     if (col < 0 || col > sheet->maxcol)
       return;
@@ -1729,8 +1719,7 @@ _gtk_sheet_column_button_release(GtkSheet *sheet, int col)
  *
  * \retval TRUE - visible, FALSE - hidden or not existant
  */
-int
-gtk_sheet_column_visible(GtkSheet *sheet, int column)
+int gtk_sheet_column_visible(GtkSheet *sheet, int column)
 {
     g_return_val_if_fail(GTK_IS_SHEET(sheet), FALSE);
 
@@ -1750,8 +1739,7 @@ gtk_sheet_column_visible(GtkSheet *sheet, int column)
  *
  * Default value is TRUE. When set to FALSE, the column is hidden.
  */
-void
-gtk_sheet_column_set_visibility(GtkSheet *sheet, int col, int visible)
+void gtk_sheet_column_set_visibility(GtkSheet *sheet, int col, int visible)
 {
     GtkSheetColumn *colobj;
     int act_col;
@@ -1811,9 +1799,8 @@ gtk_sheet_column_set_visibility(GtkSheet *sheet, int col, int visible)
  *
  * Set the justification(alignment) of the column buttons.
  */
-void
-gtk_sheet_column_button_justify(GtkSheet *sheet, int col,
-                                GtkJustification justification)
+void gtk_sheet_column_button_justify(GtkSheet *sheet, int col,
+                                     GtkJustification justification)
 {
     GtkSheetButton *button;
 
@@ -1842,8 +1829,7 @@ gtk_sheet_column_button_justify(GtkSheet *sheet, int col,
  *
  * \returns Column button label.
  */
-const char *
-gtk_sheet_column_button_get_label(GtkSheet *sheet, int col)
+const char *gtk_sheet_column_button_get_label(GtkSheet *sheet, int col)
 {
     g_return_val_if_fail(GTK_IS_SHEET(sheet), NULL);
 
@@ -1860,8 +1846,7 @@ gtk_sheet_column_button_get_label(GtkSheet *sheet, int col)
  *
  * Set column label visibility. The default value is TRUE. If FALSE, the column label is hidden.
  */
-void
-gtk_sheet_column_label_set_visibility(GtkSheet *sheet, int col, int visible)
+void gtk_sheet_column_label_set_visibility(GtkSheet *sheet, int col, int visible)
 {
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
@@ -1888,8 +1873,7 @@ gtk_sheet_column_label_set_visibility(GtkSheet *sheet, int col, int visible)
  * has no such property, it is a convenience function to set the
  * property for all existing columns.
  */
-void
-gtk_sheet_columns_labels_set_visibility(GtkSheet *sheet, int visible)
+void gtk_sheet_columns_labels_set_visibility(GtkSheet *sheet, int visible)
 {
     int i;
 
@@ -1925,8 +1909,7 @@ void gtk_sheet_set_column_titles_height(GtkSheet *sheet, unsigned int height)
  *
  * Show column titles .
  */
-void
-gtk_sheet_show_column_titles(GtkSheet *sheet)
+void gtk_sheet_show_column_titles(GtkSheet *sheet)
 {
     int col;
 
@@ -1965,8 +1948,7 @@ gtk_sheet_show_column_titles(GtkSheet *sheet)
  *
  * Hide column titles .
  */
-void
-gtk_sheet_hide_column_titles(GtkSheet *sheet)
+void gtk_sheet_hide_column_titles(GtkSheet *sheet)
 {
     int col;
 
@@ -2004,10 +1986,7 @@ gtk_sheet_hide_column_titles(GtkSheet *sheet)
  *
  * Set column title.
  */
-void
-gtk_sheet_set_column_title(GtkSheet *sheet,
-                           int col,
-                           const char *title)
+void gtk_sheet_set_column_title(GtkSheet *sheet, int col, const char *title)
 {
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
@@ -2024,9 +2003,7 @@ gtk_sheet_set_column_title(GtkSheet *sheet,
  *
  * \returns column title, do not modify or free it.
  */
-const char *
-gtk_sheet_get_column_title(GtkSheet *sheet,
-                           int col)
+const char *gtk_sheet_get_column_title(GtkSheet *sheet, int col)
 {
     g_return_val_if_fail(GTK_IS_SHEET(sheet), NULL);
 
@@ -2041,12 +2018,9 @@ gtk_sheet_get_column_title(GtkSheet *sheet,
  *
  * \returns TRUE or FALSE
  */
-int
-gtk_sheet_column_titles_visible(GtkSheet *sheet)
+int gtk_sheet_column_titles_visible(GtkSheet *sheet)
 {
     g_return_val_if_fail(GTK_IS_SHEET(sheet), FALSE);
 
     return (sheet->column_titles_visible);
 }
-
-
