@@ -1,3 +1,10 @@
+2017-10-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * connector/header/: Add description, update footprint and attribute
+      alignments:
+
+            *  connector/header/header20-2-4.sym (Update refdes and date code)
+
 2017-10-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/header/: Add description, update footprint:
