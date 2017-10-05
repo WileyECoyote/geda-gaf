@@ -1,5 +1,9 @@
 2017-10-04 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/gtksheet/gtksheet.c: Remove some redundant validations.
+
+2017-10-04 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/gtksheet/gtksheetcolumn.c: Replace guint with unsigned int
       and update function wrapping.
 
