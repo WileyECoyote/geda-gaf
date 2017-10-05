@@ -218,6 +218,7 @@ void s_sheet_data_load_blank(PageDataSet *PageData)
 
   return;
 }
+
 /*------------------------------------------------------------------*/
 /*! \brief Add components to master list
  *  \par Function Description

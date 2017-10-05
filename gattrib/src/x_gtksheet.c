@@ -80,7 +80,9 @@ void x_gtksheet_destroy_all() {
     if (sheets[i] !=NULL) {
 
       if (GTK_IS_SHEET (sheets[i])) {
+
         gtk_widget_destroy ((GtkWidget*)sheets[i]);
+
       }
     }
   }
@@ -595,7 +597,6 @@ static int activate_sheet_cell(GtkWidget *widget, int row, int column, void * da
 
 void x_gtksheet_reinititialize(PageDataSet *PageData)
 {
-
   void RedimensionSheet(GtkSheet *sheet, int nRows, int nCols) {
     unsigned int cRows = gtk_sheet_get_rows_count(sheet);
     unsigned int cCols = gtk_sheet_get_columns_count(sheet);
