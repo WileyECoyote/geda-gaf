@@ -6,6 +6,10 @@
             *  connector/header/header26-2-4.sym (revamp symbol to match set)
             *  connector/header/header34-2-4.sym
 
+    * connector/header/: Updated attribute alignments and attribute color:
+
+            *  connector/header/header20-2-4.sym
+
 2017-10-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/header/: Add description, update footprint and attribute
