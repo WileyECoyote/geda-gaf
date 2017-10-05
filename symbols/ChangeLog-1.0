@@ -1,3 +1,10 @@
+2017-10-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * connector/header/: Rotate symbols to put pin 1 in the top left corner,
+      updated attribute alignments:
+
+            *  connector/header/header26-2-4.sym (revamp symbol to match set)
+
 2017-10-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/header/: Add description, update footprint and attribute
