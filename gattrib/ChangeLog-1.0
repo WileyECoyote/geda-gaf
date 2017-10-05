@@ -1,6 +1,7 @@
 2017-10-04 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/gtksheet/gtksheet.c: Remove some redundant validations.
+    * src/gtksheet/gtksheet.c: Remove some redundant validations and
+      update function wrapping.
 
 2017-10-04 Wiley E. Hill <wileyhill@gmail.com>
 
