@@ -1564,9 +1564,10 @@ GType gtk_sheet_range_get_type(void)
 {
     static GType sheet_range_type = 0;
 
-    if (!sheet_range_type)
-    {
-	sheet_range_type = g_boxed_type_register_static("GtkSheetRange", (GBoxedCopyFunc)gtk_sheet_range_copy, (GBoxedFreeFunc)gtk_sheet_range_free);
+    if (!sheet_range_type) {
+      sheet_range_type = g_boxed_type_register_static("GtkSheetRange",
+                                                      (GBoxedCopyFunc)gtk_sheet_range_copy,
+                                                      (GBoxedFreeFunc)gtk_sheet_range_free);
     }
     return (sheet_range_type);
 }
@@ -3481,13 +3482,11 @@ void gtk_sheet_set_grid(GtkSheet *sheet, GdkColor *color)
 {
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
-    if (!color)
-    {
-	gdk_color_parse(GTK_SHEET_DEFAULT_GRID_COLOR, &sheet->grid_color);
+    if (!color) {
+      gdk_color_parse(GTK_SHEET_DEFAULT_GRID_COLOR, &sheet->grid_color);
     }
-    else
-    {
-	sheet->grid_color = *color;
+    else {
+      sheet->grid_color = *color;
     }
     gdk_colormap_alloc_color(gdk_colormap_get_system(), &sheet->grid_color, FALSE, TRUE);
 
@@ -3924,8 +3923,8 @@ static void _gtk_sheet_autoresize_row_internal(GtkSheet *sheet, int row)
 	row, rowptr->height, new_height);
 #endif
 
-    if (new_height != rowptr->height)
-    {
+    if (new_height != rowptr->height) {
+
 #if GTK_SHEET_DEBUG_SIZE > 0
 	fprintf(stderr,"_gtk_sheet_autoresize_row_internal[%d]: set height %d",
 	    row, new_height);
@@ -3939,8 +3938,8 @@ static void gtk_sheet_autoresize_all(GtkSheet *sheet)
 {
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
-    if (!gtk_widget_get_realized((GtkWidget*)sheet))
-    {
+    if (!gtk_widget_get_realized((GtkWidget*)sheet)) {
+
 #if GTK_SHEET_DEBUG_SIZE > 0
 	fprintf(stderr,"gtk_sheet_autoresize_all: not realized");
 #endif
@@ -3951,18 +3950,18 @@ static void gtk_sheet_autoresize_all(GtkSheet *sheet)
     fprintf(stderr,"gtk_sheet_autoresize_all: running");
 #endif
 
-    if (gtk_sheet_autoresize_columns(sheet))
-    {
+    if (gtk_sheet_autoresize_columns(sheet)) {
+
 	int col;
 
 #if GTK_SHEET_DEBUG_SIZE > 0
 	fprintf(stderr,"gtk_sheet_autoresize_all: columns");
 #endif
 
-	for (col = 0; col <= sheet->maxalloccol; col++)
-	{
-	    if (GTK_SHEET_COLUMN_IS_VISIBLE(COLPTR(sheet, col)))
-	    {
+	for (col = 0; col <= sheet->maxalloccol; col++) {
+
+	    if (GTK_SHEET_COLUMN_IS_VISIBLE(COLPTR(sheet, col))) {
+
 		_gtk_sheet_autoresize_column_internal(sheet, col);
 	    }
 	}
@@ -14153,10 +14152,10 @@ void gtk_sheet_range_set_border(GtkSheet *sheet, const GtkSheetRange *urange,
     else
 	range = *urange;
 
-    for (i = range.row0; i <= range.rowi; i++)
-    {
-	for (j = range.col0; j <= range.coli; j++)
-	{
+    for (i = range.row0; i <= range.rowi; i++) {
+
+	for (j = range.col0; j <= range.coli; j++) {
+
 	    GtkSheetCellAttr attributes;
 	    gtk_sheet_get_attributes(sheet, i, j, &attributes);
 	    attributes.border.mask = mask;
@@ -14200,10 +14199,10 @@ void gtk_sheet_range_set_border_color(GtkSheet            *sheet,
     else
 	range = *urange;
 
-    for (i = range.row0; i <= range.rowi; i++)
-    {
-	for (j = range.col0; j <= range.coli; j++)
-	{
+    for (i = range.row0; i <= range.rowi; i++) {
+
+	for (j = range.col0; j <= range.coli; j++) {
+
 	    GtkSheetCellAttr attributes;
 	    gtk_sheet_get_attributes(sheet, i, j, &attributes);
 	    attributes.border.color = *color;
@@ -14353,12 +14352,12 @@ static void init_attributes(GtkSheet *sheet, int col, GtkSheetCellAttr *attribut
     attributes->foreground = gtk_widget_get_style((GtkWidget*)sheet)->black;
     attributes->background = sheet->bg_color;
 
-    if (!gtk_widget_get_realized((GtkWidget*)sheet))
-    {
-	GdkColormap *colormap;
-	colormap = gdk_colormap_get_system();
-	gdk_color_black(colormap, &attributes->foreground);
-	attributes->background = sheet->bg_color;
+    if (!gtk_widget_get_realized((GtkWidget*)sheet)) {
+
+      GdkColormap *colormap;
+      colormap = gdk_colormap_get_system();
+      gdk_color_black(colormap, &attributes->foreground);
+      attributes->background = sheet->bg_color;
     }
 
     if (col < 0 || col > sheet->maxcol)
@@ -15050,14 +15049,14 @@ void gtk_sheet_attach(GtkSheet *sheet, GtkWidget *widget, int row,
 
     gtk_sheet_position_child(sheet, child);
 
-/* This will avoid drawing on the titles */
+    /* This will avoid drawing on the titles */
+    if (gtk_widget_get_realized((GtkWidget*)sheet)) {
 
-    if (gtk_widget_get_realized((GtkWidget*)sheet))
-    {
-	if (GTK_SHEET_ROW_TITLES_VISIBLE(sheet))
-	    gdk_window_show(sheet->row_title_window);
-	if (GTK_SHEET_COL_TITLES_VISIBLE(sheet))
-	    gdk_window_show(sheet->column_title_window);
+      if (GTK_SHEET_ROW_TITLES_VISIBLE(sheet))
+        gdk_window_show(sheet->row_title_window);
+
+      if (GTK_SHEET_COL_TITLES_VISIBLE(sheet))
+        gdk_window_show(sheet->column_title_window);
     }
 }
 
