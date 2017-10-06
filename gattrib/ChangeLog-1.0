@@ -1,3 +1,7 @@
+2017-10-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/sv.po: Update Swedish translations.
+
 2017-10-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheet.c: Remove some redundant validations and
