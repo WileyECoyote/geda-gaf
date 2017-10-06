@@ -4,6 +4,8 @@
 
     * po/sv.po: Update Swedish translations.
 
+    * po/uk.po: Update Ukrainian translations.
+
 2017-10-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheet.c: Remove some redundant validations and
