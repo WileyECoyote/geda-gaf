@@ -71,10 +71,10 @@ typedef enum {
 } ControlID;
 
 static WidgetStringData DialogStrings[] = {
-        { "RefDesLabel",        " ",          "Set End Point markers for Selected nets."},
-        { "RefDesStdRadio",     "Standard",   "None"},
-        { "RefDesSpiceRadio",   "Spice",      "Empty box"},
-        { "RefDesIeeeRadio",    "IEEE-315",   "Filled box mode"},
+        { "RefDesLabel",        " ",          "Set preloaded reference designators."},
+        { "RefDesStdRadio",     "Standard",   "Use standard designations"},
+        { "RefDesSpiceRadio",   "Spice",      "Use designations for SPICE"},
+        { "RefDesIeeeRadio",    "IEEE-315",   "Use IEEE-315 sanctioned designators"},
   { NULL, NULL, NULL},
 };
 
