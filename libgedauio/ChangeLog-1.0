@@ -1,3 +1,8 @@
+2017-10-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_option_menu.c: Replace g_object_notify with
+      GEDA_OBJECT_NOTIFY macro.
+
 2017-10-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_bar.c: Add Doxygen group GedaMenuBar-GtkWidget.
