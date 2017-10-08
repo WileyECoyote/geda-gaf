@@ -62,10 +62,11 @@ typedef enum {
   Extents, EnableColor, InvertImage,
 } ControlID;
 
+/* Strings for dialog widgets */
 static WidgetStringData DialogStrings[] = {
-  { "ExtentsSwitch",      "     Extents",  "Generate image from schematic Extents or the currently displayed view"},
-  { "EnableColorSwitch",  "   Use Color",  "Enable or disable color imaging"},
-  { "InvertImageSwitch",  "Invert Image",  "Enable to generate an inverted images"},
+  { "ExtentsSwitch",      N_("     Extents"), N_("Generate image from schematic Extents or the currently displayed view")},
+  { "EnableColorSwitch",  N_("   Use Color"), N_("Enable or disable color imaging")},
+  { "InvertImageSwitch",  N_("Invert Image"), N_("Enable to generate an inverted images")},
   { NULL, NULL, NULL},
 };
 

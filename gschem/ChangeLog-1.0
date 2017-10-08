@@ -5,6 +5,8 @@
     * src/x/x_edit_cprop.c: Revise/set tooltip field in DialogStrings
       structure. Remove unneeded GTK_WIDGET cast from g_object_new.
 
+    * src/x/x_image.c: Translate strings in DialogStrings structure.
+
 2017-09-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/sr.po: Update Serbian translations.
