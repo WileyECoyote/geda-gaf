@@ -527,7 +527,25 @@ geda_combo_box_text_list_new(void)
   return widget;
 }
 
-/* Stores text, and optionally text2, in list store at position */
+/*!
+ * \internal GedaComboBoxText real insert
+ *  Stores text, and optionally text2, in list store at position
+ *
+ *  Note: this function validates \a combo_box and text for the
+ *        higher level functions.
+ *
+ * Called by:
+ *             geda_combo_box_text_insert
+ *             geda_combo_box_text_append
+ *             geda_combo_box_text_prepend
+ *             geda_combo_box_text_append_pair
+ *             geda_combo_box_text_insert_pair
+ *             geda_combo_box_text_prepend_pair
+ *             geda_combo_box_text_append_text
+ *             geda_combo_box_text_insert_text
+ *             geda_combo_box_text_prepend_text
+ *             geda_combo_box_text_set_active_text
+ */
 static void
 geda_combo_box_text_real_insert (GedaComboBoxText *combo_box,
                                  int               position,
@@ -557,11 +575,11 @@ geda_combo_box_text_real_insert (GedaComboBoxText *combo_box,
   combo_box->count++;
 }
 
-/*! \brief GedaComboBoxText Insert Text
- *  \par Function Description
- *
- * Inserts \a text to the list of strings stored in combo_box at
- * the given \a position.
+/*!
+ * \brief GedaComboBoxText Insert Text
+ * \par Function Description
+ *  Inserts \a text to the list of strings stored in combo_box at
+ *  the given \a position.
  *
  * \param [in] combo_box A #GedaComboBoxText object.
  * \param [in] position  Integer position where text is to be inserted
@@ -575,16 +593,15 @@ geda_combo_box_text_insert (GedaComboBoxText *combo_box,
   geda_combo_box_text_real_insert (combo_box, position, text, NULL);
 }
 
-/*! \brief GedaComboBoxText Text Append
- *  \par Function Description
- *
- * Appends text to the list of strings stored in combo_box.
- *
- * This is the same as calling geda_combo_box_text_insert() with a
- * position of -1.
+/*!
+ * \brief GedaComboBoxText Text Append
+ * \par Function Description
+ *  Appends text to the list of strings stored in combo_box.
+ *  This is the same as calling geda_combo_box_text_insert() with a
+ *  position of -1.
  *
  * \param [in] combo_box A #GedaComboBoxText object.
- * \param [in] text      Pointer to string to display.
+ * \param [in] text      Pointer to the string to append.
  */
 void
 geda_combo_box_text_append (GedaComboBoxText *combo_box,
@@ -593,17 +610,15 @@ geda_combo_box_text_append (GedaComboBoxText *combo_box,
   geda_combo_box_text_real_insert (combo_box, -1, text, NULL);
 }
 
-
-/*! \brief GedaComboBoxText Prepend Text
- *  \par Function Description
- *
- * Prepends text to the list of strings stored in combo_box.
- *
- * This is the same as calling geda_combo_box_text_insert()
- * with a position of 0.
+/*!
+ * \brief GedaComboBoxText Prepend Text
+ * \par Function Description
+ *  Prepends text to the list of strings stored in combo_box.
+ *  This is the same as calling geda_combo_box_text_insert()
+ *  with a position of 0.
  *
  * \param [in] combo_box A #GedaComboBoxText object.
- * \param [in] text      Pointer to string to be prepended.
+ * \param [in] text      Pointer to the string to be prepended.
  */
 void
 geda_combo_box_text_prepend (GedaComboBoxText *combo_box,
@@ -612,10 +627,10 @@ geda_combo_box_text_prepend (GedaComboBoxText *combo_box,
   geda_combo_box_text_real_insert (combo_box, 0, text, NULL);
 }
 
-/*! \brief GedaComboBoxText Remove Text at Index Position
- *  \par Function Description
- *
- * Removes the string at position from combo_box.
+/*!
+ * \brief GedaComboBoxText Remove Text at Index Position
+ * \par Function Description
+ *  Removes the string at position from combo_box.
  *
  * \param [in] combo_box A #GedaComboBoxText object.
  * \param [in] position  Integer index of the item to remove.
@@ -643,10 +658,10 @@ geda_combo_box_text_remove (GedaComboBoxText *combo_box,
 
 }
 
-/*! \brief GedaComboBoxText Remove All Text
- *  \par Function Description
- *
- * Removes all the text entries from the combo box.
+/*!
+ * \brief GedaComboBoxText Remove All Text
+ * \par Function Description
+ *  Removes all the text entries from the combo box.
  *
  * \param [in] combo_box A #GedaComboBoxText object.
  */
@@ -724,16 +739,17 @@ geda_combo_box_text_prepend_pair (GedaComboBoxText *combo_box,
   geda_combo_box_text_real_insert (combo_box, 0, text, text2);
 }
 
-/*! \brief GedaComboBoxText Append Text
- *  \par Function Description
- *
- * Appends text to the list of strings stored in combo_box.
- *
- * This is the same as calling geda_combo_box_text_insert() with a
- * position of -1.
+/*!
+ * \brief GedaComboBoxText Append Text
+ * \par Function Description
+ *  Appends text to the list of strings stored in combo_box.
+ *  This is the same as calling geda_combo_box_text_insert() with a
+ *  position of -1.
  *
  * \param [in] combo_box A #GedaComboBoxText object.
  * \param [in] text      Pointer to string to be appended.
+ *
+ * \remark This function is equivalent to geda_combo_box_text_append
  */
 void
 geda_combo_box_text_append_text (GedaComboBoxText *combo_box,
@@ -742,19 +758,17 @@ geda_combo_box_text_append_text (GedaComboBoxText *combo_box,
   geda_combo_box_text_real_insert (combo_box, -1, text, NULL);
 }
 
-/*! \brief GedaComboBoxText Insert Text
- *  \par Function Description
- *
- * Inserts text at position in the list of strings stored in combo_box.
- *
- * If position is negative then text is appended.
- *
- * This is the same as calling geda_combo_box_text_insert() with a %NULL
- * ID string.
+/*!
+ * \brief GedaComboBoxText Insert Text
+ * \par Function Description
+ *  Inserts text at \a position in the list of strings stored in combo_box.
+ *  If position is negative then text is appended.
  *
  * \param [in] combo_box A #GedaComboBoxText object.
  * \param [in] position  Integer position where to insert text.
  * \param [in] text      Pointer to string to be inserted.
+ *
+ * \remark This function is equivalent to geda_combo_box_text_insert
  */
 void
 geda_combo_box_text_insert_text (GedaComboBoxText *combo_box,
@@ -764,17 +778,17 @@ geda_combo_box_text_insert_text (GedaComboBoxText *combo_box,
   geda_combo_box_text_real_insert (combo_box, position, text, NULL);
 }
 
-/*! \brief GedaComboBoxText Prepend Text
- *  \par Function Description
- *
- * Prepends text to the list of strings stored in combo_box.
- *
- * This is the same as calling geda_combo_box_text_insert() with a
- * position of 0.
+/*!
+ * \brief GedaComboBoxText Prepend Text
+ * \par Function Description
+ *  Prepends text to the list of strings stored in combo_box.
+ *  This is the same as calling geda_combo_box_text_insert() with a
+ *  position of 0.
  *
  * \param [in] combo_box A #GedaComboBoxText object.
  * \param [in] text      Pointer to string to be prepended.
  *
+ * \remark This function is equivalent to geda_combo_box_text_prepend
  */
 void
 geda_combo_box_text_prepend_text (GedaComboBoxText *combo_box,
