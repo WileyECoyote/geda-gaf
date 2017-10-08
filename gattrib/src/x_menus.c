@@ -497,8 +497,6 @@ void x_menu_fix_gtk_recent_submenu(void) {
 
   geda_container_foreach (old_submenu, destroy_defective_child, NULL);
 
-  g_object_ref_sink(old_submenu);
-
   recent_chooser = gtk_recent_chooser_menu_new_for_manager (recent_manager);
 
   recent_filter = x_menu_geda_filter ();

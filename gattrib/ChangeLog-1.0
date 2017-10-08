@@ -1,3 +1,10 @@
+2017-10-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gattrib/src/x_menus.c: Remove sinking the reference to old_submenu in
+      x_menu_fix_gtk_recent_submenu. If this is moved later in the function
+      glib claims old_submenu is not an object. When the object is sunk here
+      then Gtk screams bloody murder when files are opened.
+
 2017-10-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/oc.po: Update Occitan translations.
