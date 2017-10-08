@@ -2,9 +2,11 @@
 
     * include/x_settings_dialog.h: Update tool-tip for "Endpoint Color".
 
-    * src/x/x_edit_cprop.c: Revise/set tooltip field in DialogStrings
-      structure and Translate strings. Remove unneeded GTK_WIDGET cast
-      from g_object_new.
+    * src/x/x_edit_cprop.c: Revise/set tooltip field in DialogStrings structure
+      and Translate strings. Revise x_dialog_ep_refdes_update_entry; only pass
+      the attribute object to geda_utility_refdes_return_numeric rather than
+      referencing the text->string. Remove unneeded GTK_WIDGET cast from
+      g_object_new.
 
     * src/x/x_image.c: Translate strings in DialogStrings structure.
 

@@ -518,7 +518,7 @@ static void x_dialog_ep_refdes_update_entry (GtkWidget *widget,
 
     if (attrib) {
 
-      const char *curr_ref = geda_utility_refdes_return_numeric (attrib->text->string);
+      const char *curr_ref = geda_utility_refdes_return_numeric (attrib);
 
       if (curr_ref) {
 
