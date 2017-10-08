@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-09-23 15:28-0500\n"
+"POT-Creation-Date: 2017-10-07 20:52-0500\n"
 "PO-Revision-Date: 2016-12-23 15:41-0600\n"
 "Last-Translator: عبدالله شلي (Abdellah Chelli) <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -467,7 +467,7 @@ msgstr ""
 msgid "Please be sure that you have the latest rc file"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:205 gschem/src/x/x_image.c:481
+#: gschem/src/guile/g_rc.c:205 gschem/src/x/x_image.c:482
 msgid "file"
 msgstr ""
 
@@ -582,7 +582,7 @@ msgstr "حفظ الكل"
 msgid "Error encountered, Save Failed"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1094 gschem/src/x/x_image.c:489
+#: gschem/src/iface/i_command.c:1094 gschem/src/x/x_image.c:490
 msgid "Write Image"
 msgstr "أكتب صورة..."
 
@@ -1119,11 +1119,11 @@ msgstr "أصبح الآن النص المخفي ظاهرا\n"
 msgid "Hidden text is now invisible\n"
 msgstr "أصبح الآن النص المخفي مستترا\n"
 
-#: gschem/src/object/o_edit.c:1121 gschem/src/x/x_edit_cprop.c:367
+#: gschem/src/object/o_edit.c:1121 gschem/src/x/x_edit_cprop.c:369
 msgid "Could not find symbol"
 msgstr "لا يمكن أن تجد رمز"
 
-#: gschem/src/object/o_edit.c:1122 gschem/src/x/x_edit_cprop.c:368
+#: gschem/src/object/o_edit.c:1122 gschem/src/x/x_edit_cprop.c:370
 msgid "in library. Update failed"
 msgstr "في المكتبة. فشل التحديث"
 
@@ -1259,72 +1259,72 @@ msgstr "التراجع عن خطأ في النظام"
 msgid "Undo failed"
 msgstr "التراجع عن الفشل"
 
-#: gschem/src/x/x_autonumber.c:600
+#: gschem/src/x/x_autonumber.c:601
 msgid ""
 "slotted object without slot attribute may cause problems when autonumbering "
 "slots\n"
 msgstr ""
 "﻿كائن مقسم (مشقوق) بدون سمة الشقّ قد يسبب مشاكل عند الترقيم الآلي للشقوق\n"
 
-#: gschem/src/x/x_autonumber.c:615
+#: gschem/src/x/x_autonumber.c:616
 #, c-format
 msgid ""
 "duplicate slot may cause problems: [symbol name=%s, number=%d, slot=%d]\n"
 msgstr "﻿شقّ مكرر قد يسبب مشاكل: [اسم​الرمز=%s، العدد=%d، الشقّ=%d]\n"
 
-#: gschem/src/x/x_autonumber.c:917
+#: gschem/src/x/x_autonumber.c:918
 msgid "No search string given in autonumber text.\n"
 msgstr "لا يوجد نص بحث في نص الترقيم الآلي.\n"
 
-#: gschem/src/x/x_autonumber.c:1132
+#: gschem/src/x/x_autonumber.c:1133
 msgid "Diagonal"
 msgstr "قطري"
 
-#: gschem/src/x/x_autonumber.c:1133
+#: gschem/src/x/x_autonumber.c:1134
 msgid "Top to bottom"
 msgstr "من الأعلى للأسفل"
 
-#: gschem/src/x/x_autonumber.c:1134
+#: gschem/src/x/x_autonumber.c:1135
 msgid "Bottom to top"
 msgstr "من الأسفل للأعلى"
 
-#: gschem/src/x/x_autonumber.c:1135
+#: gschem/src/x/x_autonumber.c:1136
 msgid "Left to right"
 msgstr "من اليسار لليمين"
 
-#: gschem/src/x/x_autonumber.c:1136
+#: gschem/src/x/x_autonumber.c:1137
 msgid "Right to left"
 msgstr "من اليمين لليسار"
 
-#: gschem/src/x/x_autonumber.c:1137
+#: gschem/src/x/x_autonumber.c:1138
 msgid "File order"
 msgstr "ترتيب الملف"
 
-#: gschem/src/x/x_autonumber.c:1609
+#: gschem/src/x/x_autonumber.c:1610
 msgid "<b>Filter:</b>"
 msgstr "المرشح:"
 
-#: gschem/src/x/x_autonumber.c:1650
+#: gschem/src/x/x_autonumber.c:1651
 msgid "Selected objects"
 msgstr "الكائنات المنتقاة"
 
-#: gschem/src/x/x_autonumber.c:1651
+#: gschem/src/x/x_autonumber.c:1652
 msgid "Current page"
 msgstr "الصفحة الحالية"
 
-#: gschem/src/x/x_autonumber.c:1652
+#: gschem/src/x/x_autonumber.c:1653
 msgid "Whole hierarchy"
 msgstr "التسلسل الهرمي الكامل"
 
-#: gschem/src/x/x_autonumber.c:1698
+#: gschem/src/x/x_autonumber.c:1699
 msgid "Autonumber text"
 msgstr "نص تعداد آلي"
 
-#: gschem/src/x/x_autonumber.c:1721
+#: gschem/src/x/x_autonumber.c:1722
 msgid "<b>Scope</b>"
 msgstr "<b>المجال</b>"
 
-#: gschem/src/x/x_autonumber.c:1794
+#: gschem/src/x/x_autonumber.c:1795
 msgid "Options"
 msgstr "الخيارات"
 
@@ -1342,125 +1342,125 @@ msgstr "حدث خطأ أثناء إدخال البيانات من الحافظة
 msgid "Clipboard Insertion Failed"
 msgstr "فشل إدخال البيانات الحافظة"
 
-#: gschem/src/x/x_compselect.c:1254
+#: gschem/src/x/x_compselect.c:1255
 msgid "Default is to reference the component"
 msgstr "﻿السلوك الافتراضي - العنصر المرجعي"
 
-#: gschem/src/x/x_compselect.c:1258
+#: gschem/src/x/x_compselect.c:1259
 msgid "Embed component in schematic"
 msgstr "﻿ضمّن المكون في المخطط"
 
-#: gschem/src/x/x_compselect.c:1262
+#: gschem/src/x/x_compselect.c:1263
 msgid "Include component as individual objects"
 msgstr "ضمّن المكون ككائنات فردية"
 
-#: gschem/src/x/x_compselect.c:2099 gschem/src/x/x_compselect.c:2478
+#: gschem/src/x/x_compselect.c:2100 gschem/src/x/x_compselect.c:2479
 msgid "Components"
 msgstr "مكونات"
 
-#: gschem/src/x/x_compselect.c:2553 gschem/src/x/x_multiattrib.c:2013
+#: gschem/src/x/x_compselect.c:2554 gschem/src/x/x_multiattrib.c:2013
 #: gschem/src/x/x_multiattrib.c:2019
 msgid "Name"
 msgstr "اسم"
 
-#: gschem/src/x/x_compselect.c:2565 gschem/src/x/x_multiattrib.c:2015
+#: gschem/src/x/x_compselect.c:2566 gschem/src/x/x_multiattrib.c:2015
 #: gschem/src/x/x_multiattrib.c:2021
 msgid "Value"
 msgstr "قيمة"
 
-#: gschem/src/x/x_compselect.c:2741 gschem/src/x/x_dialog.c:1773
+#: gschem/src/x/x_compselect.c:2742 gschem/src/x/x_dialog.c:1773
 msgid "None"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2742
+#: gschem/src/x/x_compselect.c:2743
 msgid "Style 1"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2743
+#: gschem/src/x/x_compselect.c:2744
 msgid "Style 2"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2744
+#: gschem/src/x/x_compselect.c:2745
 msgid "Style 3"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2745
+#: gschem/src/x/x_compselect.c:2746
 msgid "Style 4"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2746
+#: gschem/src/x/x_compselect.c:2747
 msgid "Style 5"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2747
+#: gschem/src/x/x_compselect.c:2748
 msgid "Style 6"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2748
+#: gschem/src/x/x_compselect.c:2749
 msgid "Style 7"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2749
+#: gschem/src/x/x_compselect.c:2750
 msgid "Style 8"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2750
+#: gschem/src/x/x_compselect.c:2751
 msgid "All"
 msgstr "الكل"
 
-#: gschem/src/x/x_compselect.c:2786
+#: gschem/src/x/x_compselect.c:2787
 msgid "Enable all styles"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2787
+#: gschem/src/x/x_compselect.c:2788
 msgid "Uncheck all styles"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2811
+#: gschem/src/x/x_compselect.c:2814
 msgid "Reference"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2812
+#: gschem/src/x/x_compselect.c:2815
 msgid "Embed"
 msgstr "ضمّن"
 
-#: gschem/src/x/x_compselect.c:2813
+#: gschem/src/x/x_compselect.c:2816
 msgid "Include"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3026
+#: gschem/src/x/x_compselect.c:3030
 msgid "Rescan"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3034
+#: gschem/src/x/x_compselect.c:3038
 msgid "Rescan component libraries"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3036
+#: gschem/src/x/x_compselect.c:3040
 msgid "Set style filter"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3237 gschem/src/x/x_fileselect.c:122
+#: gschem/src/x/x_compselect.c:3241 gschem/src/x/x_fileselect.c:122
 msgid "Preview"
 msgstr "معاينة"
 
-#: gschem/src/x/x_compselect.c:3273
+#: gschem/src/x/x_compselect.c:3277
 msgid "Attributes"
 msgstr "سمات"
 
-#: gschem/src/x/x_compselect.c:3502
+#: gschem/src/x/x_compselect.c:3506
 msgid "active view"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3503
+#: gschem/src/x/x_compselect.c:3507
 msgid "Active sheet of the notebook"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3514
+#: gschem/src/x/x_compselect.c:3518
 msgid "Focus Filter"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3515
+#: gschem/src/x/x_compselect.c:3519
 msgid ""
 "When true, initial focus will be the filter entry, otherwise the Component "
 "Tree"
@@ -1612,7 +1612,7 @@ msgstr "﻿نقطة النهاية للشبكة"
 msgid "Graphic"
 msgstr "رسم"
 
-#: gschem/src/x/x_dialog.c:1037 gschem/src/x/x_edit_pin.c:141
+#: gschem/src/x/x_dialog.c:1037 gschem/src/x/x_edit_pin.c:143
 #: gschem/src/x/x_menus.c:92
 msgid "Net"
 msgstr "شبكة"
@@ -1637,7 +1637,7 @@ msgstr "سمة مفصولة"
 msgid "Text"
 msgstr "نص"
 
-#: gschem/src/x/x_dialog.c:1043 gschem/src/x/x_edit_pin.c:142
+#: gschem/src/x/x_dialog.c:1043 gschem/src/x/x_edit_pin.c:144
 #: gschem/src/x/x_menus.c:95
 msgid "Bus"
 msgstr "ناقل"
@@ -2139,336 +2139,366 @@ msgstr "لون الكائن:"
 msgid "Select a color for the selected objects."
 msgstr "الكائنات المنتقاة."
 
+#: gschem/src/x/x_edit_cprop.c:75
+#, fuzzy
+msgid "Set preloaded reference designators."
+msgstr "أظهر السمات الموروثة"
+
+#: gschem/src/x/x_edit_cprop.c:76
+msgid "Standard"
+msgstr ""
+
+#: gschem/src/x/x_edit_cprop.c:76
+msgid "Use standard designations"
+msgstr ""
+
+#: gschem/src/x/x_edit_cprop.c:77
+#, fuzzy
+msgid "Spice"
+msgstr "نوع الملء:"
+
+#: gschem/src/x/x_edit_cprop.c:77
+msgid "Use designations for SPICE"
+msgstr ""
+
+#: gschem/src/x/x_edit_cprop.c:78
+msgid "IEEE-315"
+msgstr ""
+
+#: gschem/src/x/x_edit_cprop.c:78
+msgid "Use IEEE-315 sanctioned designators"
+msgstr ""
+
 # Symbol renamed, cannot be undone
-#: gschem/src/x/x_edit_cprop.c:267
+#: gschem/src/x/x_edit_cprop.c:268
 msgid "Symbol renamed, cannot be undone\n"
 msgstr "رمز اعادة تسميته, ولا يمكن التراجع عنه\n"
 
-#: gschem/src/x/x_edit_cprop.c:1154
+#: gschem/src/x/x_edit_cprop.c:1157
 msgid "Edit Component Properties"
 msgstr "حرّر خصائص النص"
 
-#: gschem/src/x/x_edit_cprop.c:1169
+#: gschem/src/x/x_edit_cprop.c:1172
 msgid "_Symbol:"
 msgstr "رموز:"
 
-#: gschem/src/x/x_edit_cprop.c:1180
+#: gschem/src/x/x_edit_cprop.c:1183
 msgid "_Device:"
 msgstr "جهاز:"
 
-#: gschem/src/x/x_edit_cprop.c:1191
+#: gschem/src/x/x_edit_cprop.c:1194
 msgid "_Author:"
 msgstr "مؤلف:"
 
-#: gschem/src/x/x_edit_cprop.c:1202
+#: gschem/src/x/x_edit_cprop.c:1205
 msgid "_Version:"
 msgstr "الإصدار:"
 
-#: gschem/src/x/x_edit_cprop.c:1220
+#: gschem/src/x/x_edit_cprop.c:1223
 msgid "_Enable"
 msgstr "تمكين"
 
-#: gschem/src/x/x_edit_cprop.c:1228
+#: gschem/src/x/x_edit_cprop.c:1231
 msgid "_use-license:"
 msgstr "استخدام رخصة:"
 
 # dist-license
-#: gschem/src/x/x_edit_cprop.c:1239
+#: gschem/src/x/x_edit_cprop.c:1242
 msgid "dist-_license:"
 msgstr "شعبة نظم ترخيص:"
 
-#: gschem/src/x/x_edit_cprop.c:1250
+#: gschem/src/x/x_edit_cprop.c:1253
 msgid "Descr_iption:"
 msgstr "الوجهة:"
 
-#: gschem/src/x/x_edit_cprop.c:1261
+#: gschem/src/x/x_edit_cprop.c:1264
 msgid "Documen_tation:"
 msgstr "ت_وثيق:"
 
-#: gschem/src/x/x_edit_cprop.c:1272
+#: gschem/src/x/x_edit_cprop.c:1275
 msgid "_Comment:"
 msgstr "الأمر:"
 
-#: gschem/src/x/x_edit_cprop.c:1297
+#: gschem/src/x/x_edit_cprop.c:1300
 msgid "_Electrical:"
 msgstr "الكهرباء:"
 
 # Reference Designator
-#: gschem/src/x/x_edit_cprop.c:1325
+#: gschem/src/x/x_edit_cprop.c:1328
 msgid "_Ref Des:"
 msgstr "المرجع الدلالي:"
 
 # No. of Slots
-#: gschem/src/x/x_edit_cprop.c:1338
+#: gschem/src/x/x_edit_cprop.c:1341
 msgid "_No. Slot:"
 msgstr "عدد فتحات:"
 
 # No. of Pins
-#: gschem/src/x/x_edit_cprop.c:1349
+#: gschem/src/x/x_edit_cprop.c:1352
 msgid "No. _Pins:"
 msgstr "عدد دبابيس:"
 
-#: gschem/src/x/x_edit_cprop.c:1359
+#: gschem/src/x/x_edit_cprop.c:1362
 msgid "_Value:"
 msgstr "القيمة:"
 
-#: gschem/src/x/x_edit_cprop.c:1373
+#: gschem/src/x/x_edit_cprop.c:1376
 msgid "_Foot Print:"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1384
+#: gschem/src/x/x_edit_cprop.c:1387
 msgid "Spice Type:"
 msgstr "نوع الملء:"
 
-#: gschem/src/x/x_edit_cprop.c:1395
+#: gschem/src/x/x_edit_cprop.c:1398
 msgid "Model Name:"
 msgstr "الاسم:"
 
 # The symbol filename
-#: gschem/src/x/x_edit_cprop.c:1429
+#: gschem/src/x/x_edit_cprop.c:1432
 msgid "File name entry of component symbol"
 msgstr "اسم الملف رمز"
 
-#: gschem/src/x/x_edit_cprop.c:1436
+#: gschem/src/x/x_edit_cprop.c:1439
 msgid "Device identifier entry"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1442
+#: gschem/src/x/x_edit_cprop.c:1445
 msgid "Entry for name of the author"
 msgstr "أظهر السمات الموروثة"
 
-#: gschem/src/x/x_edit_cprop.c:1448
+#: gschem/src/x/x_edit_cprop.c:1451
 msgid "Entry for the version of this symbol"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1454
+#: gschem/src/x/x_edit_cprop.c:1457
 msgid "Enable or Disable version checking of this component"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1461
+#: gschem/src/x/x_edit_cprop.c:1464
 msgid "User license entry"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1468
+#: gschem/src/x/x_edit_cprop.c:1471
 msgid "Entry for distribution license of the symbol"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1475
+#: gschem/src/x/x_edit_cprop.c:1478
 msgid "Description of the component"
 msgstr "﻿السلوك الافتراضي - العنصر المرجعي"
 
-#: gschem/src/x/x_edit_cprop.c:1482
+#: gschem/src/x/x_edit_cprop.c:1485
 msgid "Link to documentation for this device"
 msgstr "ت_وثيق"
 
-#: gschem/src/x/x_edit_cprop.c:1489
+#: gschem/src/x/x_edit_cprop.c:1492
 msgid "Entry for comments"
 msgstr "﻿لم يتم العثور على رمز كسار الناقل [%s] في أي مكتبة مكون"
 
-#: gschem/src/x/x_edit_cprop.c:1496
+#: gschem/src/x/x_edit_cprop.c:1499
 msgid "Checkbox to enable electrical properties"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1503
+#: gschem/src/x/x_edit_cprop.c:1506
 msgid "Entry for reference designator"
 msgstr "أظهر السمات الموروثة"
 
-#: gschem/src/x/x_edit_cprop.c:1510
+#: gschem/src/x/x_edit_cprop.c:1513
 msgid "Spinner with entry for number of slots"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1517
+#: gschem/src/x/x_edit_cprop.c:1520
 msgid "Spinner with entry for number of pins"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1524
+#: gschem/src/x/x_edit_cprop.c:1527
 msgid "Entry for the component value"
 msgstr "﻿لم يتم العثور على رمز كسار الناقل [%s] في أي مكتبة مكون"
 
-#: gschem/src/x/x_edit_cprop.c:1531
+#: gschem/src/x/x_edit_cprop.c:1534
 msgid "Entry for the component foot print"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1538
+#: gschem/src/x/x_edit_cprop.c:1541
 msgid "Entry for spice-type over-ride"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1545
+#: gschem/src/x/x_edit_cprop.c:1548
 msgid "Entry for model file name"
 msgstr "أظهر السمات الموروثة"
 
 # Type
-#: gschem/src/x/x_edit_pin.c:71
+#: gschem/src/x/x_edit_pin.c:73
 msgid "_Type:"
 msgstr "اكتب:"
 
-#: gschem/src/x/x_edit_pin.c:71
+#: gschem/src/x/x_edit_pin.c:73
 msgid "Select the pin type"
 msgstr ""
 
 # Attributes
-#: gschem/src/x/x_edit_pin.c:72
+#: gschem/src/x/x_edit_pin.c:74
 msgid "_Attributes:"
 msgstr "سمات:"
 
 # Set the pin attributes
-#: gschem/src/x/x_edit_pin.c:72
+#: gschem/src/x/x_edit_pin.c:74
 msgid "Set the pin attributes"
 msgstr "تعيين أتربوتس دبوس"
 
 # Number
-#: gschem/src/x/x_edit_pin.c:73
+#: gschem/src/x/x_edit_pin.c:75
 msgid "_Number:"
 msgstr "رقم:"
 
-#: gschem/src/x/x_edit_pin.c:73
+#: gschem/src/x/x_edit_pin.c:75
 msgid "Set the pin number, or the starting pin number if auto numbering"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:74
+#: gschem/src/x/x_edit_pin.c:76
 msgid "_Sequence:"
 msgstr ""
 
 # Set the sequence number
-#: gschem/src/x/x_edit_pin.c:74
+#: gschem/src/x/x_edit_pin.c:76
 msgid "Set the sequence number"
 msgstr "اضبط رقم التسلسل"
 
-#: gschem/src/x/x_edit_pin.c:75
+#: gschem/src/x/x_edit_pin.c:77
 msgid "_Label:"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:75
+#: gschem/src/x/x_edit_pin.c:77
 msgid "Enter pin name or description"
 msgstr ""
 
 # Type
-#: gschem/src/x/x_edit_pin.c:77
+#: gschem/src/x/x_edit_pin.c:79
 msgid "      Type:"
 msgstr "اكتب:"
 
-#: gschem/src/x/x_edit_pin.c:77
+#: gschem/src/x/x_edit_pin.c:79
 msgid "Enable to set all selected attributes to the prescribed type"
 msgstr ""
 
 # Attributes => Features
-#: gschem/src/x/x_edit_pin.c:78
+#: gschem/src/x/x_edit_pin.c:80
 msgid "Attributes:"
 msgstr "سمات:"
 
 # Enable all specific attributes to a certain value
-#: gschem/src/x/x_edit_pin.c:78
+#: gschem/src/x/x_edit_pin.c:80
 msgid "Enable to set all selected attributes to the prescribed value"
 msgstr "تمكين جميع الصفات المحددة الى قيمة معينة"
 
 # Number
-#: gschem/src/x/x_edit_pin.c:80
+#: gschem/src/x/x_edit_pin.c:82
 msgid "Number:"
 msgstr "رقم:"
 
-#: gschem/src/x/x_edit_pin.c:80
+#: gschem/src/x/x_edit_pin.c:82
 msgid ""
 "Enable or disable renumbering pin numbers, Number will be the starting pin "
 "number"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:81
+#: gschem/src/x/x_edit_pin.c:83
 msgid "Sequence:"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:81
+#: gschem/src/x/x_edit_pin.c:83
 msgid ""
 "Enable or disable re-sequencing pins\n"
 ", this only changes the sequence number, not the actual sequence in the "
 "symbol file"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:97
+#: gschem/src/x/x_edit_pin.c:99
 msgid "in"
 msgstr "دبوس"
 
-#: gschem/src/x/x_edit_pin.c:98
+#: gschem/src/x/x_edit_pin.c:100
 msgid "out"
 msgstr "_قصّ"
 
-#: gschem/src/x/x_edit_pin.c:99
+#: gschem/src/x/x_edit_pin.c:101
 msgid "io"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:100
+#: gschem/src/x/x_edit_pin.c:102
 msgid "oc"
 msgstr "أقفل"
 
-#: gschem/src/x/x_edit_pin.c:101
+#: gschem/src/x/x_edit_pin.c:103
 msgid "oe"
 msgstr "حرّك"
 
-#: gschem/src/x/x_edit_pin.c:102
+#: gschem/src/x/x_edit_pin.c:104
 msgid "pas"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:103
+#: gschem/src/x/x_edit_pin.c:105
 msgid "tp"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:104
+#: gschem/src/x/x_edit_pin.c:106
 msgid "tri"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:105
+#: gschem/src/x/x_edit_pin.c:107
 msgid "clk"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:106
+#: gschem/src/x/x_edit_pin.c:108
 msgid "pwr"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:107 gschem/src/x/x_edit_pin.c:196
-#: gschem/src/x/x_edit_pin.c:210
+#: gschem/src/x/x_edit_pin.c:109 gschem/src/x/x_edit_pin.c:198
+#: gschem/src/x/x_edit_pin.c:212
 msgid "*missing*"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:284 gschem/src/x/x_edit_pin.c:295
+#: gschem/src/x/x_edit_pin.c:286 gschem/src/x/x_edit_pin.c:297
 msgid "Pin Properties"
 msgstr "حرّر خصائص النص"
 
-#: gschem/src/x/x_edit_pin.c:284
+#: gschem/src/x/x_edit_pin.c:286
 msgid "Invalid Pin Node Type"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:295
+#: gschem/src/x/x_edit_pin.c:297
 msgid "Ignoring Pin electrical VOID"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:807
+#: gschem/src/x/x_edit_pin.c:809
 msgid "Pin Properties Editor"
 msgstr "محرّر سمة منفردة"
 
-#: gschem/src/x/x_edit_pin.c:883
+#: gschem/src/x/x_edit_pin.c:885
 msgid "Set"
 msgstr "شبكة"
 
-#: gschem/src/x/x_edit_pin.c:886
+#: gschem/src/x/x_edit_pin.c:888
 msgid "Auto"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:917
+#: gschem/src/x/x_edit_pin.c:919
 msgid "Attribute Type List"
 msgstr "سمات"
 
-#: gschem/src/x/x_edit_pin.c:921
+#: gschem/src/x/x_edit_pin.c:923
 msgid "Text Alignment Option"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:925
+#: gschem/src/x/x_edit_pin.c:927
 msgid "Pin Number"
 msgstr "رقم البدأ:"
 
-#: gschem/src/x/x_edit_pin.c:929
+#: gschem/src/x/x_edit_pin.c:931
 msgid "Sequence Number"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:933
+#: gschem/src/x/x_edit_pin.c:935
 msgid "Pin Label"
 msgstr ""
 
@@ -2685,72 +2715,100 @@ msgstr ""
 msgid "Initializing icon factory\n"
 msgstr ""
 
-#: gschem/src/x/x_image.c:114
+#: gschem/src/x/x_image.c:67
+#, fuzzy
+msgid "     Extents"
+msgstr "/قرّب مع شمل الامتدادات"
+
+#: gschem/src/x/x_image.c:67
+msgid "Generate image from schematic Extents or the currently displayed view"
+msgstr ""
+
+#: gschem/src/x/x_image.c:68
+msgid "   Use Color"
+msgstr ""
+
+#: gschem/src/x/x_image.c:68
+msgid "Enable or disable color imaging"
+msgstr ""
+
+#: gschem/src/x/x_image.c:69
+#, fuzzy
+msgid "Invert Image"
+msgstr "أكتب صورة..."
+
+# enable to enlarge the preview
+#: gschem/src/x/x_image.c:69
+#, fuzzy
+msgid "Enable to generate an inverted images"
+msgstr "تمكن من تكبير المعاينة"
+
+#: gschem/src/x/x_image.c:115
 msgid "Click to select size of the image to be created"
 msgstr ""
 
-#: gschem/src/x/x_image.c:188
+#: gschem/src/x/x_image.c:189
 msgid "Click to select the type of image to be created"
 msgstr ""
 
-#: gschem/src/x/x_image.c:212
+#: gschem/src/x/x_image.c:213
 msgid "Encapsulated Postscript"
 msgstr "بوست-سكريبت مغلف"
 
-#: gschem/src/x/x_image.c:356
+#: gschem/src/x/x_image.c:357
 msgid "Error: Unable to write eps file"
 msgstr "‏خطأ: غير قادر على كتابة ملف EPS"
 
-#: gschem/src/x/x_image.c:359 gschem/src/x/x_image.c:506
+#: gschem/src/x/x_image.c:360 gschem/src/x/x_image.c:507
 msgid "Wrote black and white image to"
 msgstr "كتب صورة بالأبيض والأسود ل"
 
-#: gschem/src/x/x_image.c:465
+#: gschem/src/x/x_image.c:466
 msgid "Generated PDF file"
 msgstr "ملف PDF ولدت"
 
-#: gschem/src/x/x_image.c:476
+#: gschem/src/x/x_image.c:477
 msgid "Unable to write"
 msgstr "‏غير قادر على الكتابة"
 
 # An error occurred while saving the image with a kind
-#: gschem/src/x/x_image.c:477
+#: gschem/src/x/x_image.c:478
 msgid "An error occurred while saving image with type"
 msgstr "حدث خطأ أثناء حفظ صورة مع نوع"
 
-#: gschem/src/x/x_image.c:478
+#: gschem/src/x/x_image.c:479
 msgid "to filename"
 msgstr "اسم الملف"
 
-#: gschem/src/x/x_image.c:489
+#: gschem/src/x/x_image.c:490
 msgid "<b>Error Writing Imaging.</b>"
 msgstr ""
 
-#: gschem/src/x/x_image.c:502
+#: gschem/src/x/x_image.c:503
 msgid "Wrote color image to"
 msgstr "كتب صورة ملونة ل"
 
-#: gschem/src/x/x_image.c:516
+#: gschem/src/x/x_image.c:517
 msgid "Unable to get pixbuf from gschem's window.\n"
 msgstr "غير قادر على الحصول بيكسبف من نافذة gschem ل.\n"
 
-#: gschem/src/x/x_image.c:669
+#: gschem/src/x/x_image.c:670
 msgid "Write image..."
 msgstr "أكتب صورة..."
 
-#: gschem/src/x/x_image.c:699
+#: gschem/src/x/x_image.c:700
 msgid "Width x Height"
 msgstr "عرض × ارتفاع"
 
-#: gschem/src/x/x_image.c:710
+#: gschem/src/x/x_image.c:711
 msgid "Image type"
 msgstr "نوع الصورة"
 
-#: gschem/src/x/x_image.c:774
+#: gschem/src/x/x_image.c:775
 msgid "Enable to use the Print color map instead of the display color map"
 msgstr ""
 
-#: gschem/src/x/x_image.c:777
+#: gschem/src/x/x_image.c:778
 msgid ""
 "When enabled for reversed color images, only black and white will be reversed"
 msgstr ""
@@ -3361,6 +3419,23 @@ msgstr "سمات"
 #: gschem/src/x/x_multiattrib.c:2665
 msgid "attribute"
 msgstr "سمات"
+
+#: gschem/src/x/x_pagesel.c:54
+#, fuzzy
+msgid "Auto Height"
+msgstr "عرض × ارتفاع"
+
+#: gschem/src/x/x_pagesel.c:54
+msgid "Enable or disable Page Select dialog auto height"
+msgstr ""
+
+#: gschem/src/x/x_pagesel.c:55
+msgid "full names"
+msgstr ""
+
+#: gschem/src/x/x_pagesel.c:55
+msgid "Enable or disable displaying of paths in file names"
+msgstr ""
 
 #: gschem/src/x/x_pagesel.c:592
 msgid "Move Up"
