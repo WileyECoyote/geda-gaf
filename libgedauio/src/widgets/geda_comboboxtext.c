@@ -668,20 +668,30 @@ void geda_combo_box_text_remove_all (GedaComboBoxText *combo_box)
   combo_box->count = 0;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief widget version of #geda_combo_box_get_count
- *  \par Function Description
+/*!
+ * \brief Retrieve index of the Current GedaComboBoxText Active Item
+ * \par Function Description
+ *  Returns the index of the currently active item, or -1 if there is no
+ *  active item.
  *
+ * \param [in] combo_box A #GedaComboBoxText object.
+ *
+ * \sa geda_combo_box_get_active
  */
 int geda_combo_box_text_get_active (GedaComboBoxText *combo_box)
 {
   return geda_combo_box_get_active ((GedaComboBox*)combo_box);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief widget version of #geda_combo_box_get_count
- *  \par Function Description
+/*!
+ * \brief Set index of GedaComboBoxText Active Item
+ * \par Function Description
+ *  Sets the active item of \a combo_box to be the item at \a index.
  *
+ * \param [in] combo_box  A #GedaComboBoxText object
+ * \param [in] index      Index in the model or -1 to have no active item
+ *
+ * \sa geda_combo_box_set_active
  */
 void geda_combo_box_text_set_active (GedaComboBoxText *combo_box, int position)
 {
