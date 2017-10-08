@@ -217,9 +217,9 @@ x_dialog_edit_slot (GschemToplevel *w_current, const char *slots, const char *sl
                       G_CALLBACK (x_dialog_edit_slot_response),
                       w_current);
 
-    g_object_set(ThisDialog, DIALOG_SELECTION_TRACKER,
-                 x_dialog_slot_edit_update_selection,
-                 NULL);
+    g_object_set (ThisDialog, DIALOG_SELECTION_TRACKER,
+                  x_dialog_slot_edit_update_selection,
+                  NULL);
 
     w_current->sewindow = ThisDialog;
     gtk_widget_show_all (ThisDialog);

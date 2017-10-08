@@ -720,7 +720,7 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
                     w_current);
 
   gtk_widget_show (type_Combo);
-  gtk_widget_show(vbox2);
+  gtk_widget_show (vbox2);
 
   switch_vbox = gtk_vbox_new(FALSE, 0);
 
