@@ -698,10 +698,20 @@ void geda_combo_box_text_set_active (GedaComboBoxText *combo_box, int position)
   geda_combo_box_set_active((GedaComboBox*)combo_box, position);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief widget version of #geda_combo_box_get_count
- *  \par Function Description
+/*!
+ * \brief Append a Pair of Strings to a GedaComboBoxText object
+ * \par Function Description
+ *  This is  wrapper for geda_combo_box_text_real_insert, passing -1
+ *  as the position to insert.
  *
+ *  Note: When inserting pair, the pointer text is stored in the 0 column
+ *        while text2 is stored in the 2 column.
+ *
+ * \param [in] combo_box A #GedaComboBoxText object.
+ * \param [in] text      Pointer to the string to append.
+ * \param [in] text2     Pointer to the second string to append at the same row.
+ *
+ * \sa geda_combo_box_text_real_insert
  */
 void geda_combo_box_text_append_pair (GedaComboBoxText *combo_box,
                                       const char       *text,

@@ -5,6 +5,7 @@
 
           * geda_combo_box_text_get_active
           * geda_combo_box_text_set_active
+          * geda_combo_box_text_append_pair
 
 2017-10-07 Wiley E. Hill <wileyhill@gmail.com>
 
