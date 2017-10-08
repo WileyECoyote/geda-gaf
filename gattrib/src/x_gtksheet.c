@@ -508,20 +508,20 @@ void SetupCSheetHandlers(GtkSheet *sheet, PageDataSet *PageData)
  */
 static void on_entry_changed(GtkWidget *widget, void *nothing)
 {
- const char *text;
- GtkSheet   *sheet;
- GtkEntry   *sheet_entry;
+  const char *text;
+  GtkSheet   *sheet;
+  GtkEntry   *sheet_entry;
 
- if (!gtk_widget_has_focus (widget))
-   return;
+  if (!gtk_widget_has_focus (widget))
+    return;
 
- sheet       = x_gtksheet_get_current_sheet();
- sheet_entry = GTK_ENTRY(gtk_sheet_get_entry(sheet));
+  sheet       = x_gtksheet_get_current_sheet();
+  sheet_entry = GTK_ENTRY(gtk_sheet_get_entry(sheet));
 
- text = GetEntryText(entry);
- if (text != NULL){
-   SetEntryText(sheet_entry, text);
- }
+  text = GetEntryText(entry);
+  if (text != NULL){
+    SetEntryText(sheet_entry, text);
+  }
 }
 
 /*! \brief Call back for Entry Combo activate */
@@ -560,9 +560,9 @@ static void show_entry(GtkWidget *widget, void *data)
 static int activate_sheet_cell(GtkWidget *widget, int row, int column, void * data)
 {
   GtkSheetCellAttr attributes;
-  GtkSheet   *sheet;
-  GtkEntry   *sheet_entry;
-  char        cell[100];
+  GtkSheet *sheet;
+  GtkEntry *sheet_entry;
+  char      cell[100];
 
   sheet       = GTK_SHEET(widget);
   sheet_entry = GTK_ENTRY(gtk_sheet_get_entry(sheet));
