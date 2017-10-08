@@ -70,11 +70,12 @@ typedef enum {
         RefDesIeee
 } ControlID;
 
+/* Strings for dialog widgets */
 static WidgetStringData DialogStrings[] = {
-        { "RefDesLabel",        " ",          "Set preloaded reference designators."},
-        { "RefDesStdRadio",     "Standard",   "Use standard designations"},
-        { "RefDesSpiceRadio",   "Spice",      "Use designations for SPICE"},
-        { "RefDesIeeeRadio",    "IEEE-315",   "Use IEEE-315 sanctioned designators"},
+        { "RefDesLabel",        " ",             N_("Set preloaded reference designators.")},
+        { "RefDesStdRadio",     N_("Standard"),  N_("Use standard designations")},
+        { "RefDesSpiceRadio",   N_("Spice"),     N_("Use designations for SPICE")},
+        { "RefDesIeeeRadio",    N_("IEEE-315"),  N_("Use IEEE-315 sanctioned designators")},
   { NULL, NULL, NULL},
 };
 
