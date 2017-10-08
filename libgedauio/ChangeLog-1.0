@@ -1,6 +1,7 @@
 2017-10-08 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/widgets/geda_comboboxtext.c: Update function documentation.
+    * src/widgets/geda_comboboxtext.c: Update function documentation and
+      wrapping.
 
 2017-10-07 Wiley E. Hill <wileyhill@gmail.com>
 
