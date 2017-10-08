@@ -1,7 +1,7 @@
 2017-10-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_edit_cprop.c: Revise/set tooltip field in DialogStrings
-      structure.
+      structure. Remove unneeded GTK_WIDGET cast from g_object_new.
 
 2017-09-24 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -1032,14 +1032,14 @@ static void x_dialog_edit_properties_action_area (GtkWidget     *ThisDialog,
 
   gtk_box_set_spacing (GTK_BOX (RefDesGroup_hbox), 2);
 
-  alignment = GTK_WIDGET (g_object_new (GTK_TYPE_ALIGNMENT,
-                                        "right-padding", 0,
-                                        "left-padding",  50,
-                                        "xscale",        1.0,
-                                        "yscale",        0.0,
-                                        "xalign",        1.0,
-                                        "yalign",        0.5,
-                                        NULL));
+  alignment = g_object_new (GTK_TYPE_ALIGNMENT,
+                            "right-padding", 0,
+                            "left-padding",  50,
+                            "xscale",        1.0,
+                            "yscale",        0.0,
+                            "xalign",        1.0,
+                            "yalign",        0.5,
+                            NULL);
 
   g_object_set (alignment, "visible", TRUE, NULL);
   gtk_box_pack_end (GTK_BOX (action_hbox), alignment, TRUE, TRUE, 0);
@@ -1279,7 +1279,7 @@ GtkWidget* x_dialog_edit_properties_constructor (GschemToplevel *w_current)
   SetWidgetTip(widget, _(comment_tip));
   properties->comment_entry = widget;
 
-  frame = GTK_WIDGET (g_object_new (GTK_TYPE_FRAME, "label", "", NULL));
+  frame = g_object_new (GTK_TYPE_FRAME, "label", "", NULL);
   gtk_box_pack_start(GTK_BOX(vbox), frame, FALSE, FALSE,
                      DEFAULT_WIDGET_SPACING);
 
@@ -1299,16 +1299,16 @@ GtkWidget* x_dialog_edit_properties_constructor (GschemToplevel *w_current)
 
   gtk_frame_set_label_widget (GTK_FRAME(frame), hbox);
 
-  alignment = GTK_WIDGET (g_object_new (GTK_TYPE_ALIGNMENT,
-                                        "right-padding",
-                                         DIALOG_H_SPACING,
-                                        "left-padding",
-                                         DIALOG_H_SPACING,
-                                        "xscale", 0.0,
-                                        "yscale", 0.0,
-                                        "xalign", 0.5,
-                                        "yalign", 0.5,
-                                        NULL));
+  alignment = g_object_new (GTK_TYPE_ALIGNMENT,
+                            "right-padding",
+                            DIALOG_H_SPACING,
+                            "left-padding",
+                            DIALOG_H_SPACING,
+                            "xscale", 0.0,
+                            "yscale", 0.0,
+                            "xalign", 0.5,
+                            "yalign", 0.5,
+                            NULL);
 
   geda_container_add (frame, alignment);
 
