@@ -1,5 +1,7 @@
 2017-10-07 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/x_settings_dialog.h: Update tool-tip for "Endpoint Color".
+
     * src/x/x_edit_cprop.c: Revise/set tooltip field in DialogStrings
       structure. Remove unneeded GTK_WIDGET cast from g_object_new.
 
