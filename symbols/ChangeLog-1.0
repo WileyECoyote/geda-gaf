@@ -1,3 +1,13 @@
+2017-10-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * linear/opamps: Add documentation attribute, as a link to wikipedia
+      and downgrade dist-license back to GPLv2:
+
+            *  linear/opamps/opamp-1.sym
+            *  linear/opamps/opamp-2.sym
+            *  linear/opamps/opamp-3.sym
+            *  linear/opamps/opamp-4.sym
+
 2017-10-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/header/: Rotate symbols to put pin 1 in the top left corner,

@@ -1,8 +1,14 @@
 v 20150101 2
+T 1000 1250 8 10 1 1 0 0 1
+refdes=U?
+T 1250 475 5 10 0 1 0 0 1
+device=OPAMP
+T 200 1450 5 10 0 1 0 0 1
+description=Operational Amplifier
+T 200 1650 5 10 0 1 0 0 1
+documentation=http://wikipedia.org/wiki/Operational_amplifier
 L 300 1100 300 300 3 0 0 0 -1 -1
 L 300 1100 1000 700 3 0 0 0 -1 -1
-T 1000 1075 5 10 1 1 0 0 1
-device=LM741
 L 1000 700 300 300 3 0 0 0 -1 -1
 L 400 950 400 850 3 0 0 0 -1 -1
 L 350 900 450 900 3 0 0 0 -1 -1
@@ -84,19 +90,17 @@ pinlabel=N+
 T 1000 450 5 6 0 1 90 6 1
 pintype=pas
 }
-T 1000 1250 8 10 1 1 0 0 1
-refdes=U?
-T 100 1600 5 10 0 0 0 0 1
-description=Operational Amplifier
-T 100 1400 5 10 0 0 0 0 1
+T 1000 1075 5 10 1 1 0 0 1
+value=LM741
+T 1250 100 5 10 0 0 0 0 1
 numslots=0
-T 100 1800 5 10 0 0 0 0 1
+T 1250 300 5 10 0 0 0 0 1
 symversion=0.2
-T 100 2195 5 10 0 0 0 0 1
+T 200 2045 5 10 0 0 0 0 1
 use-license=unlimited
-T 100 1995 5 10 0 0 0 0 1
-dist-license=GPLv3
-T 100 2395 5 10 0 0 0 0 1
+T 200 1845 5 10 0 0 0 0 1
+dist-license=GPLv2
+T 200 2245 5 10 0 0 0 0 1
 author=AutoTron
 T 1000 900 9 10 1 1 0 0 1
 footprint=DIP8
