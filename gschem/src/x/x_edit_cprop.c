@@ -522,15 +522,16 @@ static void x_dialog_ep_refdes_update_entry (GtkWidget *widget,
 
       if (curr_ref) {
 
-        const char *str_val;
         char *new_text;
+        char *prefix;
 
-        str_val = GetEntryText ( properties->refdes_entry );
-        new_text = geda_strconcat(str_val, curr_ref, NULL);
-        g_signal_handler_block(widget,properties->ref_handler);
+        prefix   = geda_refdes_get_prefix(attrib);
+        new_text = geda_strconcat(prefix, curr_ref, NULL);
+
         SetEntryText(properties->refdes_entry, new_text);
-        g_signal_handler_unblock(widget,properties->ref_handler);
+
         GEDA_FREE (new_text);
+        GEDA_FREE (prefix);
       }
     }
   }
@@ -885,12 +886,13 @@ static void x_dialog_ep_update_selection (GschemToplevel *w_current,
  *  Called during construction to load string into the combo text box for
  *  reference designators.
  *
- *  \param widget  pointer to GschemToplevel context
+ *  \param widget  pointer to the GedaComboBoxText refdes combo
  *  \param type    integer type is the set of desginator to be loaded.
  */
-static void x_dialog_edit_properties_load_refdes(GtkWidget *widget, int type)
+static void x_dialog_edit_properties_load_refdes(GtkWidget *dialog, int type)
 {
-  GedaComboBoxText *combo = (GedaComboBoxText*) widget;
+  property_data    *properties = GEDA_OBJECT_GET_DATA (dialog, IDS_PROP_EDIT);
+  GedaComboBoxText *combo      = (GedaComboBoxText*) properties->refdes_combo;
   const GedaRefDes *designators;
 
   int   index;
@@ -923,6 +925,8 @@ static void x_dialog_edit_properties_load_refdes(GtkWidget *widget, int type)
     geda_combo_box_text_append_pair(combo, ref, descr);
     ++index;
   }
+
+  x_dialog_ep_refdes_update_entry(properties->refdes_combo, dialog);
 }
 
 /*! \brief Function to toggle radio images
@@ -955,25 +959,24 @@ static void radio_responder(GtkWidget *widget,  int control)
 
   return;
 }
+
+
 static void x_dialog_edit_properties_load_std_des(GtkWidget *widget,
-                                                  void *user_data)
+                                                  GtkWidget *dialog)
 {
-  property_data *properties = user_data;
-  x_dialog_edit_properties_load_refdes(properties->refdes_combo, RefDesStd);
+  x_dialog_edit_properties_load_refdes(dialog, RefDesStd);
 }
 
 static void x_dialog_edit_properties_load_spice_des(GtkWidget *widget,
-                                                    void *user_data)
+                                                    GtkWidget *dialog)
 {
-  property_data *properties = user_data;
-  x_dialog_edit_properties_load_refdes(properties->refdes_combo, RefDesSpice);
+  x_dialog_edit_properties_load_refdes(dialog, RefDesSpice);
 }
 
 static void x_dialog_edit_properties_load_ieee_des(GtkWidget *widget,
-                                                   void *user_data)
+                                                   GtkWidget *dialog)
 {
-  property_data *properties = user_data;
-  x_dialog_edit_properties_load_refdes(properties->refdes_combo, RefDesIeee);
+  x_dialog_edit_properties_load_refdes(dialog, RefDesIeee);
 }
 
 /*! \brief Emit GEDA_RESPONSE_CLOSE signal.
@@ -1056,15 +1059,15 @@ static void x_dialog_edit_properties_action_area (GtkWidget     *ThisDialog,
 
   g_signal_connect (RefDesStdRadio, "pressed",
                     G_CALLBACK (x_dialog_edit_properties_load_std_des),
-                    properties);
+                    ThisDialog);
 
   g_signal_connect (RefDesSpiceRadio, "pressed",
                     G_CALLBACK (x_dialog_edit_properties_load_spice_des),
-                    properties);
+                    ThisDialog);
 
   g_signal_connect (RefDesIeeeRadio, "pressed",
                     G_CALLBACK (x_dialog_edit_properties_load_ieee_des),
-                    properties);
+                    ThisDialog);
 
   g_signal_connect (close_butt, "clicked",
                     G_CALLBACK (on_close_butt_clicked),
@@ -1367,7 +1370,7 @@ GtkWidget* x_dialog_edit_properties_constructor (GschemToplevel *w_current)
   SetWidgetTip(widget, _(value_tip));
   properties->value_entry = widget;
 
-  x_dialog_edit_properties_load_refdes(properties->refdes_combo, RefDesStd);
+  //x_dialog_edit_properties_load_refdes(dialog, RefDesStd);
   (GEDA_COMBO_BOX(properties->refdes_combo))->tip_column = 2;
 
   /* Row 2 Col 4 */
@@ -1554,11 +1557,6 @@ GtkWidget* x_dialog_edit_properties_constructor (GschemToplevel *w_current)
   g_signal_connect (G_OBJECT (dialog), "response",
                     G_CALLBACK (x_dialog_edit_properties_response),
                     properties);
-
-  properties->ref_handler =
-  g_signal_connect (G_OBJECT (properties->refdes_combo), "changed",
-                    G_CALLBACK (x_dialog_ep_refdes_update_entry),
-                    dialog);
 
   properties->ver_handler =
   g_signal_connect(G_OBJECT (properties->version_cb), "toggled",

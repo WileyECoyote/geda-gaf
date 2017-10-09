@@ -142,7 +142,6 @@ struct st_property_data {
   GtkWidget *elect_table;
 
   unsigned int ver_handler;
-  unsigned int ref_handler;
 };
 
 struct st_pin_type_data {

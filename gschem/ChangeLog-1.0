@@ -4,6 +4,25 @@
       USE_XY_WORKER, so that pasting while in an action fails gracefully,
       or a least less cumbersome.
 
+    * src/x/x_edit_cprop.c: Revise x_dialog_edit_properties_load_refdes
+      argument as the dialog instead of the combo, and call x_dialog_ep
+      _refdes_update_entry before exiting. Revise functions
+
+            * x_dialog_edit_properties_load_std_des
+            * x_dialog_edit_properties_load_spice_des
+            * x_dialog_edit_properties_load_ieee_des
+
+      similarly, so that second user_data argument is the dialog (to be passed
+      to x_dialog_edit_properties_load_refdes), and update signal connections.
+      Remove properties->ref_handler and hooking the refdes_combo "changed"
+      signal. Revamp x_dialog_ep_refdes_update_entry to get the refdes from
+      the attribute and use geda_refdes_get_prefix to get the prefix rather
+      than using the string from the combo entry field because although the
+      combo signal was being block modifying the entry was resulting in the
+      "changed" signal being processed after the block was removed. And this
+      resulted in the numeric portion being repeated, R6 -> R666666666 when
+      the reference type radio were selected. Big mess, now fixed.
+
 2017-10-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/x_settings_dialog.h: Update tool-tip for "Endpoint Color".
