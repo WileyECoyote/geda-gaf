@@ -79,7 +79,7 @@ slot=1
 T 900 600 9 10 1 1 0 0 1
 footprint=DIP8
 T 0 2400 9 10 0 0 0 0 1
-dist-license=GPLv3
+dist-license=GPLv2
 T 0 2600 9 10 0 0 0 0 1
 use-license=unlimited
 T 0 2800 9 10 0 0 0 0 1

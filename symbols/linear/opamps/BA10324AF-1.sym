@@ -83,9 +83,9 @@ slotdef=4:12,13,4,11,14
 T 0 2400 5 10 0 0 0 0 1
 documentation=www.rohm.com
 T 0 3000 5 10 0 0 0 0 1
-use-license=GPLv3
+use-license=GPLv2
 T 0 2800 5 10 0 0 0 0 1
-dist-license=GPLv3
+dist-license=GPLv2
 T 0 3200 5 10 0 0 0 0 1
 author=AutoTron
 T 800 600 9 10 1 1 0 0 1

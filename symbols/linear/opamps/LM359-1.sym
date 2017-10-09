@@ -92,7 +92,7 @@ symversion=0.2
 T 100 2195 5 10 0 0 0 0 1
 use-license=unlimited
 T 100 1995 5 10 0 0 0 0 1
-dist-license=GPLv3
+dist-license=GPLv2
 T 100 2395 5 10 0 0 0 0 1
 author=AutoTron
 T 1200 900 9 10 1 1 0 0 1

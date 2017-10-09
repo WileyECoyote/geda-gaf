@@ -99,7 +99,7 @@ author=AutoTron
 T 1000 1500 8 10 0 0 0 0 1
 symversion=0.1
 T 1000 2700 8 10 0 0 0 0 1
-dist-license=GPLv3
+dist-license=GPLv2
 T 1000 2500 8 10 0 0 0 0 1
 use-license=unlimited
 T 1000 2300 5 10 0 1 0 0 1

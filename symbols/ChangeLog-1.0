@@ -8,6 +8,9 @@
             *  linear/opamps/opamp-3.sym
             *  linear/opamps/opamp-4.sym
 
+    * linear/opamps: Downgrade dist-license back to GPLv2 in all other opamps
+      symbols.
+
 2017-10-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/header/: Rotate symbols to put pin 1 in the top left corner,

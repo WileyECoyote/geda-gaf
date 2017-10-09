@@ -81,7 +81,7 @@ description=Dual OpAmp, Iq=700 uA, Ibias=50 nA, Ioff=5 uA, Vout=VCC - 1.5V
 T 0 2000 9 10 0 0 0 0 1
 documentation=http://www.onsemi.com/pub/Collateral/LM358-D.PDF
 T 0 2400 9 10 0 0 0 0 1
-dist-license=GPLv3
+dist-license=GPLv2
 T 0 2600 9 10 0 0 0 0 1
 use-license=unlimited
 T 0 2800 9 10 0 0 0 0 1
