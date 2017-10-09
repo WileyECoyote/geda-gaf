@@ -1,3 +1,7 @@
+2017-10-09  Wiley E. Hill <wileyhill@gmail.com>
+
+    * gTAG/sch/gTAG-ucont.sch: Update CONN1 header20-1.sym -> header20-2-1.sym.
+
 2015-12-07  Wiley E. Hill <wileyhill@gmail.com>
 
     * gTAG/sht/: Update sheet symbols in gTAG example; add missing attributes
