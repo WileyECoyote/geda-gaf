@@ -251,17 +251,17 @@ void geda_utility_refdes_reset(GedaObject *object)
  *
  * \sa geda_utility_refdes_reset
  */
-char *geda_utility_refdes_return_numeric(void *text)
+char *geda_utility_refdes_return_numeric(const void *text)
 {
   if (text != NULL) {
 
     char *ptr;
 
     if (GEDA_IS_TEXT(text)) {
-      ptr   = ((GedaObject*)text)->text->string;
+      ptr = ((GedaObject*)text)->text->string;
     }
     else {
-      ptr = text;
+      ptr = (char*)text;
     }
 
     if (ptr) {
