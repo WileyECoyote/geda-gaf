@@ -23,6 +23,8 @@
       resulted in the numeric portion being repeated, R6 -> R666666666 when
       the reference type radio were selected. Big mess, now fixed.
 
+    * src/x/x_icons.c: Add "geda-deselect" to IDS_GEDA_ICONS table.
+
 2017-10-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/x_settings_dialog.h: Update tool-tip for "Endpoint Color".
