@@ -195,21 +195,19 @@ geda_utility_refdes_get_standard(void)
  */
 void geda_utility_refdes_reset(GedaObject *object)
 {
-  int   len;
   int   index;
   char  buffer[32] = "refdes=\0";
   char *ptr;
 
   g_return_if_fail (GEDA_IS_TEXT(object));
 
-  len   = 0;
   index = 7;
 
   ptr   = object->text->string;
 
   if (strncmp (ptr, &buffer[0], index) == 0) {
 
-    len = strlen (object->text->string);
+    int len = strlen (object->text->string);
 
     if (len < sizeof(buffer) - 1) {
       for ( ; index < len; index++) {

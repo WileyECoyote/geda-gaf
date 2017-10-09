@@ -1,3 +1,7 @@
+2017-10-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/utility/u_refdes.c: Reduce scope of len in geda_utility_refdes_reset.
+
 2017-10-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_box_object.c: Revert back to conventional function
