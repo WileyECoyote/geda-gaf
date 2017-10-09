@@ -1,3 +1,9 @@
+2017-10-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/i_command.h: Change EDIT_CB_PASTE from USE_MAIN_LOOP to
+      USE_XY_WORKER, so that pasting while in an action fails gracefully,
+      or a least less cumbersome.
+
 2017-10-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/x_settings_dialog.h: Update tool-tip for "Endpoint Color".
