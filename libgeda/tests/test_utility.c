@@ -567,6 +567,8 @@ int test_refdes (void)
     }
   }
 
+  /* === Function 06: geda_utility_refdes_return_prefix === */
+
   return result;
 }
 /** @} endgroup test-utility-geda-refdes */

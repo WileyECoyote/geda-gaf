@@ -842,6 +842,7 @@ const GedaRefDes *geda_utility_refdes_get_spice       (void);
 const GedaRefDes *geda_utility_refdes_get_standard    (void);
          void     geda_utility_refdes_reset           (GedaObject *object);
          char    *geda_utility_refdes_return_numeric  (const void *text);
+         char    *geda_utility_refdes_return_prefix   (const void *text);
 
 #ifdef __cplusplus
 }

@@ -114,5 +114,6 @@
 #define geda_get_standard_refdes  geda_utility_refdes_get_standard
 #define geda_reset_refdes         geda_utility_refdes_reset
 #define geda_refdes_get_numeric   geda_utility_refdes_return_numeric
+#define geda_refdes_get_prefix    geda_utility_refdes_return_prefix
 
 #endif /* __GEDA_UTILITIES_MAC__ */

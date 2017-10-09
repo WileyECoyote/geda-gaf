@@ -278,3 +278,68 @@ char *geda_utility_refdes_return_numeric(const void *text)
   }
   return NULL;
 }
+
+/*! U506
+ * \brief Return Character portion of a refdes
+ * \par This function accepts both plain text and GedaText objects
+ *  Text Objects should be a reference designator attribute, other
+ *  wise just pass in the raw text. The returned string is a newly
+ *  allocated array of the character portion of the refdes.
+ *
+ * \param [in] text Either Text object or a string.
+ *
+ * \returns pointer to the first numeric text character in the text
+ *
+ *  example 1:
+ *
+ *       prefix = geda_utility_refdes_return_prefix (object);
+ *
+ *  example 2:
+ *
+ *       prefix = geda_utility_refdes_return_prefix (attrib->text->string);
+ *
+ * \remarks Caller should GEDA_FREE returned pointer.
+ *
+ * \sa geda_utility_refdes_reset
+ */
+char *geda_utility_refdes_return_prefix(const void *text)
+{
+  if (text != NULL) {
+
+    char *ptr;
+
+    if (GEDA_IS_TEXT(text)) {
+      ptr = ((GedaObject*)text)->text->string;
+    }
+    else {
+      ptr = (char*)text;
+    }
+
+    if (ptr) {
+
+      ptr = strstr(ptr, "=");
+
+      if (ptr) {
+
+        if (strlen(ptr) > 1) {
+
+          char buffer[6];
+          int  index;
+
+          ptr++;
+          index = 0;
+
+          do {
+            buffer[index] = *ptr++;
+            index++;
+          } while (*ptr && !isdigit(*ptr));
+
+          buffer[index] = '\0';
+
+          return strdup(&buffer[0]);
+        }
+      }
+    }
+  }
+  return NULL;
+}

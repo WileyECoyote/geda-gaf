@@ -1,7 +1,7 @@
 2017-10-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/utility/u_refdes.c: Declare geda_utility_refdes_return_numeric
-      argument a const.
+      argument a const. Add function geda_utility_refdes_return_prefix.
 
 2017-10-08 Wiley E. Hill <wileyhill@gmail.com>
 
