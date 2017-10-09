@@ -1,3 +1,11 @@
+2017-10-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_comboboxtext.c: Add documentation/Doxygen comments
+      for functions:
+
+          * geda_combo_box_text_remove_text
+          * geda_combo_box_text_remove_all_text
+
 2017-10-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_comboboxtext.c: Update function documentation and

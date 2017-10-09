@@ -822,10 +822,16 @@ geda_combo_box_text_prepend_text (GedaComboBoxText *combo_box,
   geda_combo_box_text_real_insert (combo_box, 0, text, NULL);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief widget version of #geda_combo_box_get_count
- *  \par Function Description
+/*!
+ * \brief GedaComboBoxText Remove Text at Position
+ * \par Function Description
+ *  Removes the string at position from combo_box.
  *
+ * \param [in] combo_box A #GedaComboBoxText object.
+ * \param [in] position  Integer index of the text to be removed.
+ *
+ * \remark This function is equivalent to geda_combo_box_text_remove_all
+ *         and exist for consistency of the API.
  */
 void geda_combo_box_text_remove_text (GedaComboBoxText *combo_box,
                                       int               position)
@@ -833,10 +839,15 @@ void geda_combo_box_text_remove_text (GedaComboBoxText *combo_box,
   geda_combo_box_text_remove (combo_box, position);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief widget version of #geda_combo_box_get_count
- *  \par Function Description
+/*!
+ * \brief GedaComboBoxText Remove All Text
+ * \par Function Description
+ *  Removes all the text entries from the combo box.
  *
+ * \param [in] combo_box A #GedaComboBoxText object.
+ *
+ * \remark This function is equivalent to geda_combo_box_text_remove
+ *         and exist for consistency of the API.
  */
 void geda_combo_box_text_remove_all_text (GedaComboBoxText *combo_box)
 {
