@@ -3490,8 +3490,9 @@ void gtk_sheet_set_grid(GtkSheet *sheet, GdkColor *color)
     }
     gdk_colormap_alloc_color(gdk_colormap_get_system(), &sheet->grid_color, FALSE, TRUE);
 
-    if (!GTK_SHEET_IS_FROZEN(sheet))
-	_gtk_sheet_range_draw(sheet, NULL, TRUE);
+    if (!GTK_SHEET_IS_FROZEN(sheet)) {
+      _gtk_sheet_range_draw(sheet, NULL, TRUE);
+    }
 }
 
 /**
