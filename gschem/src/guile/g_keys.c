@@ -369,6 +369,7 @@ void g_keys_reset (GschemToplevel *w_current)
   g_dynwind_window (w_current);
 
   g_evaluate_scm_protected (s_expr, scm_interaction_environment ());
+
   scm_dynwind_end ();
 }
 

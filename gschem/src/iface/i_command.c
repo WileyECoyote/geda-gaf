@@ -221,6 +221,7 @@ void i_command_router(char *command, GschemToplevel *w_current)
   }
   else {
 #endif
+
     int accelerator = get_last_command();
 
     /* This should almost always happen */

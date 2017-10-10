@@ -315,6 +315,7 @@ static bool x_dialog_ep_check_symver_attribs (GschemToplevel *w_current,
                                               "symversion", str_val);
   return result;
 }
+
 /*! \brief Component Properties Dialog Apply Settings
  *  \par Function Description
  *  This function applies the settings in the properties dialog to the
@@ -453,6 +454,7 @@ static void x_dialog_edit_properties_ok(GtkWidget     *dialog,
         }
       }
       else {
+
         changed = x_dialog_ep_revise_elect_attribs(w_current,
                                                    properties,
                                                    o_current);

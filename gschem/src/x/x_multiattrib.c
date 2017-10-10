@@ -394,6 +394,7 @@ multiline_text_editing_done(GtkCellEditable *cell_editable, void *user_data)
 
     gtk_text_buffer_get_start_iter (buffer, &start);
     gtk_text_buffer_get_end_iter   (buffer, &end);
+
     new_text = gtk_text_buffer_get_text (buffer, &start, &end, TRUE);
 
     path = GEDA_OBJECT_GET_DATA(cell_editable, CELL_RENDERER_MULTI_LINE_TEXT_PATH);
