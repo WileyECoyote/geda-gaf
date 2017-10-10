@@ -567,10 +567,12 @@ static int activate_sheet_cell(GtkWidget *widget, int row, int column, void * da
   sheet       = GTK_SHEET(widget);
   sheet_entry = GTK_ENTRY(gtk_sheet_get_entry(sheet));
 
-  if(GTK_SHEET(widget)->column[column]->title)
+  if(GTK_SHEET(widget)->column[column]->title) {
     sprintf(cell,"  %s:%d  ",GTK_SHEET(widget)->column[column]->title, row);
-  else
+  }
+  else {
     sprintf(cell, "R:%d C: %d", row, column);
+  }
 
   geda_label_widget_set_text(location, cell);
 
