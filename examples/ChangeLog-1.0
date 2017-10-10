@@ -1,3 +1,9 @@
+2017-10-xx  Wiley E. Hill <wileyhill@gmail.com>
+
+    * gTAG/sch/gTAG-jtagio.sch: Add comments as fake refdes to demonstrate
+      how one might have letter characters to identify slots in schematics,
+      i.e. U20A, U20B, and get "unused slot" warning during DRC2 checks.
+
 2017-10-09  Wiley E. Hill <wileyhill@gmail.com>
 
     * gTAG/sch/gTAG-ucont.sch: Update CONN1 header20-1.sym -> header20-2-1.sym.
