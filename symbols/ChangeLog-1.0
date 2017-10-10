@@ -1,3 +1,9 @@
+2017-10-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * connector/header/: Replace single row header symbols:
+
+            *  connector/header/header12-1.sym
+
 2017-10-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/opamps: Add documentation attribute, as a link to wikipedia
