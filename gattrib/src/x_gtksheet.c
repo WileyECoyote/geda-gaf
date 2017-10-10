@@ -652,14 +652,14 @@ void x_gtksheet_init(PageDataSet *PageData)
   void CreateSheet(SheetId index, int nRow, int nCol) {
 
     if((sheets[index] != NULL) && (GTK_IS_SHEET (sheets[index]))) {
-      fprintf(stderr, "ERROR: x_gtksheet_init: %s sheet already exist!\n", SheetNames[index]);
+      fprintf(stderr, "ERROR: %s sheet already exist!\n", SheetNames[index]);
     }
     else {
       if ((nRow > 0) && (nCol > 0)) {
         sheets[index] = (GtkSheet *) gtk_sheet_new( nRow , nCol, _(SheetNames[index]));
       }
       else {
-        fprintf(stderr, "ERROR: x_gtksheet_init: (%s )row count =[%d], col count=[%d]\n",
+        fprintf(stderr, "ERROR: (%s) row count =[%d], col count=[%d]\n",
                 _(SheetNames[index]), nRow , nCol);
         sheets[index] = (GtkSheet *) gtk_sheet_new(1, 1, _(SheetNames[index]));
         gtk_sheet_set_locked(GTK_SHEET(sheets[index]), TRUE);   /* disallow editing */
@@ -667,7 +667,7 @@ void x_gtksheet_init(PageDataSet *PageData)
     }
 
     if(!GTK_IS_SHEET (sheets[index])) {
-      fprintf(stderr, "ERROR: x_gtksheet_init: could not create %s sheet!\n", SheetNames[index]);
+      fprintf(stderr, "ERROR: could not create %s sheet!\n", SheetNames[index]);
     }
   }
 
