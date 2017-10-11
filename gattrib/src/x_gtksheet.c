@@ -671,7 +671,7 @@ void x_gtksheet_init(PageDataSet *PageData)
     }
   }
 
-  /* Dynamically allocate storage for pointers  to sheet, this block
+  /* Dynamically allocate storage for pointers to sheet, this block
    * is released in x_gtksheet_destroy_all */
   sheets = GEDA_MEM_ALLOC0(NUM_SHEETS * sizeof(GtkWidget*));
 
