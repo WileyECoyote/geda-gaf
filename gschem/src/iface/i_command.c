@@ -1936,15 +1936,15 @@ COMMAND (do_filltype)
 
 /*! \brief Lock in i_command_Edit_Actions
  *  \par Function Description
- *  This function calls o_edit_lock to locks all objects in selection list.
- *
+ *  This function calls o_edit_lock_selection to locks all
+ *  objects in selection list.
  */
 COMMAND (do_lock)
 {
   BEGIN_W_COMMAND(do_lock);
 
   if (o_select_return_first_object(w_current)) {
-    o_edit_lock(w_current);
+    o_edit_lock_selection(w_current);
   }
   EXIT_COMMAND(do_lock);
 }
@@ -1953,14 +1953,14 @@ COMMAND (do_lock)
  * \brief Unlock objects in selection list
  * \brief i_cmd_do_unlock in i_command_Edit_Actions
  * \par Function Description
- *  This function calls o_edit_unlock to unlocks all objects in selection.
- *
+ *  This function calls o_edit_unlock_selection to unlocks all
+ *  objects in the selection list.
  */
 COMMAND (do_unlock)
 {
   BEGIN_W_COMMAND(do_unlock);
   if (o_select_return_first_object(w_current)) {
-    o_edit_unlock(w_current);
+    o_edit_unlock_selection(w_current);
   }
   EXIT_COMMAND(do_unlock);
 }

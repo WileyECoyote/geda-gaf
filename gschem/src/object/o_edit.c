@@ -187,7 +187,7 @@ void o_edit_objects (GschemToplevel *w_current, GList *list, int who)
  *  including components, but does NOT change the color of primatives of
  *  the components. This cannot be called recursively.
  */
-void o_edit_lock (GschemToplevel *w_current)
+void o_edit_lock_selection (GschemToplevel *w_current)
 {
   Page  *page      = gschem_toplevel_get_current_page(w_current);
   GList *s_current = geda_list_get_glist(Current_Selection);
@@ -222,7 +222,7 @@ void o_edit_lock (GschemToplevel *w_current)
  *
  * \note this cannot be called recursively
  */
-void o_edit_unlock(GschemToplevel *w_current)
+void o_edit_unlock_selection(GschemToplevel *w_current)
 {
   Page  *page      = gschem_toplevel_get_current_page(w_current);
   GList *s_current = geda_list_get_glist(Current_Selection);

@@ -477,8 +477,8 @@ void       o_delete_selected            (GschemToplevel *w_current);
 /* o_edit.c */
 bool       o_edit_add_titleblock        (GschemToplevel *w_current, Page *page, const char *tblock);
 void       o_edit_objects               (GschemToplevel *w_current, GList *list, int who);
-void       o_edit_lock                  (GschemToplevel *w_current);
-void       o_edit_unlock                (GschemToplevel *w_current);
+void       o_edit_lock_selection        (GschemToplevel *w_current);
+void       o_edit_unlock_selection      (GschemToplevel *w_current);
 void       o_edit_mirror_world          (GschemToplevel *w_current, int centerx, int centery, GList *list);
 void       o_edit_offset_hot            (GschemToplevel *w_current, int x, int y, GList *list);
 void       o_edit_offset_world          (GschemToplevel *w_current, int x, int y, GList *list);

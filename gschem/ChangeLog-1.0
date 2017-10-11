@@ -1,5 +1,10 @@
 2017-10-11 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_edit.c: Rename functions
+
+            * o_edit_lock           -> o_edit_lock_selection,
+            * o_edit_lock_selection -> o_edit_unlock_selection
+
     * src/x/x_edit_cprop.c: Reformat component properties documentation,
       adjust indentation. Revise x_dialog_edit_properties_ok to retain the
       selectable state when complexes are changed out.
