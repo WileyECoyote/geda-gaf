@@ -384,11 +384,11 @@ static void x_dialog_edit_properties_ok(GtkWidget     *dialog,
 
           /* Create new object and set embedded */
           o_new = geda_complex_object_new (w_current->toplevel,
-                                 o_complex->x,
-                                 o_complex->y,
-                                 o_complex->angle,
-                                 o_complex->mirror,
-                                 clib, filename, 1);
+                                           o_complex->x,
+                                           o_complex->y,
+                                           o_complex->angle,
+                                           o_complex->mirror,
+                                           clib, filename, 1);
 
           if (geda_complex_object_is_embedded (o_current)) {
             geda_object_embed (o_new);
