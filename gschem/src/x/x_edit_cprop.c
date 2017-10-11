@@ -46,19 +46,19 @@
  *     1.) Schematic mode.
  *     2.) Symbol mode
  *
- *   If the current file is a Schematic and the name in the symbol field
- *   has been changed then all fields except the reference designator are
- *   ignored. If a symbol with the new name exist, the current symbol is
- *   replaced with the new symbol and the reference designator from the
- *   reference designator entry field is assigned to the replacement symbol.
- *   If a symbol with the given name does not exist a warning is issued. If
- *   the symbol name has not been changed then electrical attributes are
- *   checked for non empty fields, and the corresponding attributes are
- *   either updated or created.
+ *  If the current file is a Schematic and the name in the symbol field
+ *  has been changed then all fields except the reference designator are
+ *  ignored. If a symbol with the new name exist, the current symbol is
+ *  replaced with the new symbol and the reference designator from the
+ *  reference designator entry field is assigned to the replacement symbol.
+ *  If a symbol with the given name does not exist a warning is issued. If
+ *  the symbol name has not been changed then electrical attributes are
+ *  checked for non empty fields, and the corresponding attributes are
+ *  either updated or created.
  *
- *   For Symbol editing, the symbol name is ignored, attribute fields are
- *   checked for non empty entries, and the corresponding attributes are
- *   either created updated.
+ *  For Symbol editing, the symbol name is ignored, attribute fields are
+ *  checked for non empty entries, and the corresponding attributes are
+ *  either created updated.
  */
 
 DECLARE_RADIO_TRIAD (RefDes, Std, Spice, Ieee);
