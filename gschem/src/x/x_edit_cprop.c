@@ -394,6 +394,8 @@ static void x_dialog_edit_properties_ok(GtkWidget     *dialog,
             geda_object_embed (o_new);
           }
 
+          o_new->selectable = o_current->selectable;
+
           geda_attrib_object_freeze_hooks (o_new);
 
           new_butes = geda_complex_object_promote_attribs (w_current->toplevel, o_new);

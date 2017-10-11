@@ -1,3 +1,9 @@
+2017-10-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_edit_cprop.c: Reformat component properties documentation,
+      adjust indentation. Revise x_dialog_edit_properties_ok to retain the
+      selectable state when complexes are changed out.
+
 2017-10-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/i_command.h: Change EDIT_CB_PASTE from USE_MAIN_LOOP to
