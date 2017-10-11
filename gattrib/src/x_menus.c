@@ -85,6 +85,7 @@ void x_menu_file_open()
   file_list = x_fileselect_open();
 
   if (file_list != NULL ) {
+
     if( sheet_head->CHANGED == TRUE) {
       switch (x_dialog_file_not_saved()) {
         case GEDA_RESPONSE_CANCEL:

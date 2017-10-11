@@ -75,12 +75,15 @@ static void callBack_toolbar0 (GtkWidget *widget, IDS_Toolbar *Control)
     case open:
       x_menu_file_open();
       break;
+
     case save:
       x_menu_file_save();
       break;
+
     case save_as:
       x_menu_file_save_as();
       break;
+
     default:
       geda_log ("%s: unknown button Id %d\n", __func__, button);
   }
@@ -119,6 +122,7 @@ static void callBack_Searchbar (GtkWidget *widget, IDS_Toolbar *Control)
 
   return;
 }
+
 /*! \brief Callback Handler for Visibility relates Toolbars buttons
  *
  *  \par Function Description
