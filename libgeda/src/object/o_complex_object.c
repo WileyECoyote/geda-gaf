@@ -821,27 +821,28 @@ void geda_complex_object_mirror(GedaObject *object, int center_x, int center_y)
 {
   if (GEDA_IS_COMPLEX(object)) {
 
+    GedaComplex *complex = object->complex;
+
     int x, y;
 
-    x = 2 * center_x - object->complex->x;
-    y = object->complex->y;
+    x = 2 * center_x - complex->x;
+    y = complex->y;
 
-    geda_complex_object_translate(object, -object->complex->x,
-                                          -object->complex->y);
+    geda_complex_object_translate(object, -complex->x, -complex->y);
 
-    geda_object_list_mirror (object->complex->prim_objs, 0, 0);
+    geda_object_list_mirror (complex->prim_objs, 0, 0);
 
-    switch(object->complex->angle) {
+    switch(complex->angle) {
       case(90):
-        object->complex->angle = 270;
+        complex->angle = 270;
         break;
 
       case(270):
-        object->complex->angle = 90;
+        complex->angle = 90;
         break;
     }
 
-    object->complex->mirror = !object->complex->mirror;
+    complex->mirror = !complex->mirror;
 
     geda_complex_object_translate(object, x, y);
   }

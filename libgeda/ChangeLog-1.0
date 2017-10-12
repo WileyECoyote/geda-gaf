@@ -8,6 +8,8 @@
       Eliminate Page in geda_object_embed and geda_object_unembed and just
       call geda_object_get_page on the stack.
 
+    * src/object/o_complex_object.c: Add ancillary pointer to Complex.
+
 2017-10-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/utility/u_refdes.c: Declare geda_utility_refdes_return_numeric
