@@ -2,6 +2,8 @@
 
     * src/object/o_embed.c: Add else clause in function geda_object_embed,
       there is no reason to check for picture if was already a complex.
+      Eliminate Page in geda_object_embed and geda_object_unembed and just
+      call geda_object_get_page on the stack.
 
 2017-10-09 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -39,7 +39,6 @@
  */
 bool geda_object_embed(GedaObject *o_current)
 {
-  Page *page        = geda_object_get_page (o_current);
   int page_modified = 0;
 
   /* check o_current is a complex and is not already embedded */
@@ -62,7 +61,7 @@ bool geda_object_embed(GedaObject *o_current)
   }
 
   if (page_modified) {
-    geda_page_set_changed (page, TRUE);
+    geda_page_set_changed (geda_object_get_page (o_current), TRUE);
   }
   return (page_modified);
 }
@@ -81,12 +80,10 @@ bool geda_object_embed(GedaObject *o_current)
  *          1 o_current is valid but is not embedded
  *          2 Could not find the component in library
  */
-int
-geda_object_unembed(GedaObject *o_current)
+int geda_object_unembed(GedaObject *o_current)
 {
-  Page *page          = geda_object_get_page (o_current);
-  int   page_modified = 0;
-  int   result;
+  int page_modified = 0;
+  int result;
 
   /* check o_current is an embedded complex */
   if (GEDA_IS_COMPLEX(o_current)) {
@@ -139,7 +136,7 @@ geda_object_unembed(GedaObject *o_current)
   }
 
   if (page_modified) {
-    geda_page_set_changed (page, TRUE);
+    geda_page_set_changed (geda_object_get_page (o_current), TRUE);
     result = 0;
   }
 
