@@ -52,11 +52,13 @@ bool geda_object_embed(GedaObject *o_current)
                  o_current->complex->filename);
     page_modified = 1;
   }
+  else {
 
-  /* If o_current is a picture and is not already embedded */
-  if (GEDA_IS_PICTURE(o_current) && !geda_picture_object_is_embedded(o_current))
-  {
-    page_modified = geda_picture_object_embed (o_current);
+    /* If o_current is a picture and is not already embedded */
+    if (GEDA_IS_PICTURE(o_current) && !geda_picture_object_is_embedded(o_current))
+    {
+      page_modified = geda_picture_object_embed (o_current);
+    }
   }
 
   if (page_modified) {

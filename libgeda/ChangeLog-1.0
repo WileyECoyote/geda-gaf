@@ -1,3 +1,8 @@
+2017-10-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_embed.c: Add else clause in function geda_object_embed,
+      there is no reason to check for picture if was already a complex.
+
 2017-10-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/utility/u_refdes.c: Declare geda_utility_refdes_return_numeric
