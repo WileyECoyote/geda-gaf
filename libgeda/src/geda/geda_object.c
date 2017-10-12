@@ -801,4 +801,15 @@ void geda_object_set_color (GedaObject *object, int index) {
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+void geda_object_set_selectable (GedaObject *object, int state) {
+  if (is_a_geda_object(object)) {
+    object->selectable = state;
+  }
+}
+
 /** @} endgroup geda-object */
