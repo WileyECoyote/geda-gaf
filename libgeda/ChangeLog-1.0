@@ -1,5 +1,7 @@
 2017-10-12 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_object.c: Add template Doxygen comment blocks.
+
     * src/object/o_embed.c: Add else clause in function geda_object_embed,
       there is no reason to check for picture if was already a complex.
       Eliminate Page in geda_object_embed and geda_object_unembed and just

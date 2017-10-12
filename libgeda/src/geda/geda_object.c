@@ -113,12 +113,21 @@ void geda_object_append_new_hook (NewObjectFunc func, void *data)
 
 /* BEGIN ------+-------+------ Property Handlers ------+-------+-------+-----*/
 
-int geda_object_no_bounds (GedaObject *o)
+/*! \todo Finish function documentation!!!
+ *  \internal
+ *  \par Function Description
+ */
+static int geda_object_no_bounds (GedaObject *o)
 {
   fprintf(stderr, "ERROR: <%s> bounds function not set <%s><%p>\n", __func__, o->name, o);
   return FALSE;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 int geda_object_bounds(const GedaObject *object)
 {
   GedaObjectClass *object_class = (GedaObjectClass*)G_OBJECT_GET_CLASS(object);
@@ -299,7 +308,11 @@ static void geda_object_set_property (GObject *gobject, unsigned int property_id
 }
 /* END ----------------------- Property Handlers --------------------------- */
 
-/* Non static but libgeda Private */
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *  Non static but libgeda Private
+ */
 int geda_object_get_next_sid(void)
 {
   return global_sid++;
@@ -777,6 +790,11 @@ Page *geda_object_get_page (const GedaObject *object)
   return NULL;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void geda_object_set_color (GedaObject *object, int index) {
   if (is_a_geda_object(object)) {
     object->color = index;
