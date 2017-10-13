@@ -873,7 +873,7 @@ GedaObject *geda_complex_object_new(GedaToplevel *toplevel,
 
   buffer  = NULL;
   new_obj = geda_complex_new();
-  complex =  GEDA_COMPLEX(new_obj);
+  complex = GEDA_COMPLEX(new_obj);
 
   if (clib != NULL) {
     complex->filename = geda_strdup (geda_struct_clib_symbol_get_name (clib));
