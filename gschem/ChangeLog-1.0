@@ -3,6 +3,10 @@
     * src/object/o_edit.c: Add function o_edit_set_selectable. Replace
       geda_object_list_mirror with geda_mirror_list macro.
 
+    * src/x/x_edit_cprop.c: Revise x_dialog_edit_properties_ok conditionaly
+      set the changed flag instead of using value returned from function
+      x_dialog_ep_revise_elect_attribs.
+
 2017-10-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_edit.c: Rename functions

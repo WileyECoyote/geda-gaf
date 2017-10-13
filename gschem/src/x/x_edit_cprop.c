@@ -457,9 +457,12 @@ static void x_dialog_edit_properties_ok(GtkWidget     *dialog,
       }
       else {
 
-        changed = x_dialog_ep_revise_elect_attribs(w_current,
-                                                   properties,
-                                                   o_current);
+        if (x_dialog_ep_revise_elect_attribs(w_current,
+                                             properties,
+                                             o_current))
+        {
+          changed = TRUE;
+        }
 
         if (x_dialog_ep_check_symver_attribs(w_current,
                                              properties,
