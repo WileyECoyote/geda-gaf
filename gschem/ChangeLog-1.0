@@ -3,9 +3,12 @@
     * src/object/o_edit.c: Add function o_edit_set_selectable. Replace
       geda_object_list_mirror with geda_mirror_list macro.
 
-    * src/x/x_edit_cprop.c: Revise x_dialog_edit_properties_ok conditionaly
+    * src/x/x_edit_cprop.c: Revise x_dialog_edit_properties_ok conditionally
       set the changed flag instead of using value returned from function
-      x_dialog_ep_revise_elect_attribs.
+      x_dialog_ep_revise_elect_attribs. Revise dialog to include an "Options"
+      section/frame shith checkboxes for embed, selectable (locked) and the
+      state of the mirrored flag. The latter is read-only and the entire
+      frame is disabled for symbol files.
 
 2017-10-11 Wiley E. Hill <wileyhill@gmail.com>
 

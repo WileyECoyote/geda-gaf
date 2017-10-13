@@ -352,8 +352,26 @@ static void x_dialog_edit_properties_ok(GtkWidget     *dialog,
 
       GedaComplex *o_complex;
       const char  *filename;
+      bool         state;
 
       o_complex = o_current->complex;
+
+      /* Note that we do not actually embed/unembed objects here, the
+       * embedding or unembedding is performed when the file is saved */
+      state = GetToggleState(properties->embed_cb);
+
+      if (o_complex->is_embedded != state) {
+        geda_complex_set_is_embedded(o_complex, state);
+        changed = TRUE;
+      }
+
+      state = !GetToggleState(properties->lock_cb);
+      if (o_current->selectable != state) {
+        o_edit_set_selectable(w_current, o_current, state);
+        changed = TRUE;
+      }
+
+      /* Mirrored is for information only */
 
       /* get the name from the text entries of the dialog */
       filename  = GetEntryText ( properties->symbol_entry );
@@ -828,7 +846,7 @@ static void x_dialog_ep_no_selection(GschemToplevel *w_current,
  *  \param [in] state      Boolean value to set sensitivities
  *
  */
-static void x_dialog_ep_set_sensitive (property_data *properties, bool state)
+static void x_dialog_ep_set_sensitive (property_data *properties, bool state, bool sch)
 {
   void set_sensitive (GtkWidget *widget, void *nothing){
     gtk_widget_set_sensitive(widget, state);
@@ -845,6 +863,8 @@ static void x_dialog_ep_set_sensitive (property_data *properties, bool state)
   gtk_widget_set_sensitive(properties->comment_entry, state);
   gtk_widget_set_sensitive(properties->electrical_cb, state);
   geda_container_foreach (properties->elect_table, set_sensitive, NULL);
+
+  gtk_widget_set_sensitive(properties->opt_frame, sch);
 }
 
 /*! \brief Handle selection change event for x_dialog_edit_properties
@@ -870,20 +890,31 @@ static void x_dialog_ep_update_selection (GschemToplevel *w_current,
   p_current  = gschem_toplevel_get_current_page(w_current);
 
   if (object != NULL && object->type == OBJ_COMPLEX) {
-    x_dialog_ep_set_sensitive(properties, TRUE);
+
+    SetToggleState(properties->embed_cb, object->complex->is_embedded);
+    SetToggleState(properties->mirror_cb, object->complex->mirror);
+    SetToggleState(properties->lock_cb, !object->selectable);
+
+    x_dialog_ep_set_sensitive(properties, TRUE, TRUE);
     x_dialog_ep_component_change(w_current, object, properties);
     GEDA_OBJECT_SET_DATA(dialog, object, "object");
     gtk_widget_grab_focus(properties->symbol_entry);
   }
   else if (geda_struct_page_is_symbol_file(p_current)) {
-    x_dialog_ep_set_sensitive(properties, TRUE);
+
+    /* This widgets do not apply to symbols so uncheck boxes */
+    SetToggleState(properties->embed_cb, FALSE);
+    SetToggleState(properties->mirror_cb, FALSE);
+    SetToggleState(properties->lock_cb, FALSE);
+
+    x_dialog_ep_set_sensitive(properties, TRUE, FALSE);
     x_dialog_ep_component_change(w_current, NULL, properties);
     GEDA_OBJECT_SET_DATA(dialog, NULL, "object");
     gtk_widget_grab_focus(properties->author_entry);
   }
   else {
     x_dialog_ep_no_selection(w_current, properties);
-    x_dialog_ep_set_sensitive(properties, FALSE);
+    x_dialog_ep_set_sensitive(properties, FALSE, FALSE);
     GEDA_OBJECT_SET_DATA(dialog, NULL, "object");
   }
 }
@@ -1121,6 +1152,9 @@ GtkWidget* x_dialog_edit_properties_constructor (GschemToplevel *w_current)
   GtkWidget *table;
   GtkWidget *vbox;
   GtkWidget *verbox;
+  GtkWidget *mirbox;
+  GtkWidget *lockbox;
+  GtkWidget *embedbox;
   GtkWidget *widget;
 
   GtkWidget *symbol_label;
@@ -1128,11 +1162,16 @@ GtkWidget* x_dialog_edit_properties_constructor (GschemToplevel *w_current)
   GtkWidget *author_label;
   GtkWidget *enable_label;
   GtkWidget *version_label;
+
   GtkWidget *ulicense_label;
   GtkWidget *dlicense_label;
   GtkWidget *descr_label;
   GtkWidget *doc_label;
   GtkWidget *comment_label;
+  GtkWidget *options_label;
+  GtkWidget *embed_label;
+  GtkWidget *lock_label;
+  GtkWidget *mirror_label;
   GtkWidget *electrical_label;
   GtkWidget *refdes_label;
   GtkWidget *slots_label;
@@ -1153,6 +1192,9 @@ GtkWidget* x_dialog_edit_properties_constructor (GschemToplevel *w_current)
   const char *descr_tip      = "Component description";
   const char *doc_tip        = "Device documentation";
   const char *comment_tip    = "Addition information related to this symbol";
+  const char *embed_tip      = "Whether the symbol is embedded";
+  const char *lock_tip       = "Whether the symbol is selectable";
+  const char *mirror_tip     = "Ready Only, whether the symbol is mirrored";
   const char *electrical_tip = "Disable to set electricaly related attribute";
   const char *refdes_tip     = "Component designator";
   const char *slots_tip      = "Number of slots, equal device per package";
@@ -1290,9 +1332,98 @@ GtkWidget* x_dialog_edit_properties_constructor (GschemToplevel *w_current)
   SetWidgetTip(widget, _(comment_tip));
   properties->comment_entry = widget;
 
+  /* ----------------------- Options ------------------------- */
+
   frame = g_object_new (GTK_TYPE_FRAME, "label", "", NULL);
-  gtk_box_pack_start(GTK_BOX(vbox), frame, FALSE, FALSE,
-                     DEFAULT_WIDGET_SPACING);
+  gtk_box_pack_start(GTK_BOX(vbox), frame,
+                     FALSE, FALSE, DEFAULT_WIDGET_SPACING);
+
+  /* Create Checkbox and use as Label for the Frame, note that we
+   * can not use gtk_check_button_new_with_label because we need
+   * access to label for Atk. */
+  hbox = gtk_hbox_new(FALSE, 0);
+
+  options_label = GEDA_AVM_LABEL_NEW (_("Options:"), 0, 0);
+  geda_container_add (hbox, options_label);
+
+  gtk_frame_set_label_widget (GTK_FRAME(frame), hbox);
+
+  alignment = g_object_new (GTK_TYPE_ALIGNMENT,
+                            "right-padding",
+                            DIALOG_H_SPACING,
+                            "left-padding",
+                            DIALOG_H_SPACING,
+                            "xscale", 0.5,
+                            "yscale", 0.5,
+                            "xalign", 0.5,
+                            "yalign", 0.5,
+                            NULL);
+
+  geda_container_add (frame, alignment);
+
+  properties->opt_frame = frame;
+
+  /* Create a second table and put in the alignment */
+  table = gtk_table_new (1, 3, FALSE);
+  gtk_table_set_row_spacings(GTK_TABLE(table), DIALOG_V_SPACING);
+  gtk_table_set_col_spacings(GTK_TABLE(table), DIALOG_H_SPACING + 30);
+  geda_container_add (alignment, table);
+
+    /* Row 1 Col 1 */
+  embedbox = gtk_hbox_new(FALSE, 0);
+  g_object_set (embedbox, "visible", TRUE, NULL);
+
+  widget = gtk_check_button_new ();
+  gtk_box_pack_start (GTK_BOX (embedbox), widget,  FALSE, FALSE, 5);
+  SetWidgetTip(widget, _(embed_tip));
+  properties->embed_cb = widget;
+
+  embed_label = GEDA_AVM_LABEL_NEW (_("_Embedded"), 0, 1);
+  geda_container_add (embedbox, embed_label);
+
+  gtk_box_set_spacing (GTK_BOX (embedbox), 2);
+  g_object_set (embedbox, "visible", TRUE, NULL);
+  gtk_table_attach_defaults(GTK_TABLE(table), embedbox, 0,1,0,1);
+
+  /* Row 1 Col 2 */
+  lockbox = gtk_hbox_new(FALSE, 0);
+  g_object_set (lockbox, "visible", TRUE, NULL);
+
+  widget = gtk_check_button_new ();
+  gtk_box_pack_start (GTK_BOX (lockbox), widget,  FALSE, FALSE, 5);
+  SetWidgetTip(widget, _(lock_tip));
+  properties->lock_cb = widget;
+
+  lock_label = GEDA_AVM_LABEL_NEW (_("_Locked"), 0, 1);
+  geda_container_add (lockbox, lock_label);
+
+  gtk_box_set_spacing (GTK_BOX (lockbox), 2);
+  g_object_set (lockbox, "visible", TRUE, NULL);
+  gtk_table_attach_defaults(GTK_TABLE(table), lockbox, 1,2,0,1);
+
+  /* Row 1 Col 3 */
+  mirbox = gtk_hbox_new(FALSE, 0);
+  g_object_set (mirbox, "visible", TRUE, NULL);
+
+  gtk_widget_set_sensitive(mirbox, FALSE);
+
+  widget = gtk_check_button_new ();
+  gtk_box_pack_start (GTK_BOX (mirbox), widget,  FALSE, FALSE, 5);
+  SetWidgetTip(widget, _(mirror_tip));
+  properties->mirror_cb = widget;
+
+  mirror_label = GEDA_AVM_LABEL_NEW (_("_Mirrored"), 0, 1);
+  geda_container_add (mirbox, mirror_label);
+
+  gtk_box_set_spacing (GTK_BOX (mirbox), 2);
+  g_object_set (mirbox, "visible", TRUE, NULL);
+  gtk_table_attach_defaults(GTK_TABLE(table), mirbox, 2,3,0,1);
+
+  /* --------------------- Electrical ------------------------ */
+
+  frame = g_object_new (GTK_TYPE_FRAME, "label", "", NULL);
+  gtk_box_pack_start(GTK_BOX(vbox), frame,
+                     FALSE, FALSE, DEFAULT_WIDGET_SPACING);
 
   /* Create Checkbox and use as Label for the Frame, note that we
    * can not use gtk_check_button_new_with_label because we need
@@ -1323,7 +1454,7 @@ GtkWidget* x_dialog_edit_properties_constructor (GschemToplevel *w_current)
 
   geda_container_add (frame, alignment);
 
-  /* Create a second table and put in the alignment */
+  /* Create a third table and put in the alignment */
   table = gtk_table_new (4, 7, FALSE);
   gtk_table_set_row_spacings(GTK_TABLE(table), DIALOG_V_SPACING);
   gtk_table_set_col_spacings(GTK_TABLE(table), DIALOG_H_SPACING);
@@ -1424,6 +1555,9 @@ GtkWidget* x_dialog_edit_properties_constructor (GschemToplevel *w_current)
   geda_label_set_mnemonic_widget (GEDA_LABEL(descr_label), properties->descr_entry);
   geda_label_set_mnemonic_widget (GEDA_LABEL(doc_label), properties->doc_entry);
   geda_label_set_mnemonic_widget (GEDA_LABEL(comment_label), properties->comment_entry);
+  geda_label_set_mnemonic_widget (GEDA_LABEL(embed_label), properties->embed_cb);
+  geda_label_set_mnemonic_widget (GEDA_LABEL(lock_label), properties->lock_cb);
+  geda_label_set_mnemonic_widget (GEDA_LABEL(mirror_label), properties->mirror_cb);
   geda_label_set_mnemonic_widget (GEDA_LABEL(electrical_label), properties->electrical_cb);
   geda_label_set_mnemonic_widget (GEDA_LABEL(refdes_label), properties->refdes_combo);
   geda_label_set_mnemonic_widget (GEDA_LABEL(slots_label), properties->slots_spin);
@@ -1499,6 +1633,24 @@ GtkWidget* x_dialog_edit_properties_constructor (GschemToplevel *w_current)
   if ( atk_obj ) {
     atk_object_set_name        ( atk_obj,   _("Entry for comments"));
     atk_object_set_description ( atk_obj,      comment_tip );
+  }
+
+  atk_obj = atk_widget_linked_label_new (embed_label, properties->embed_cb);
+  if ( atk_obj ) {
+    atk_object_set_name        ( atk_obj,   _("Embed symbol in schematic checkbox"));
+    atk_object_set_description ( atk_obj,      embed_tip );
+  }
+
+  atk_obj = atk_widget_linked_label_new (lock_label, properties->lock_cb);
+  if ( atk_obj ) {
+    atk_object_set_name        ( atk_obj,   _("Lock symbol in schematic checkbox"));
+    atk_object_set_description ( atk_obj,      lock_tip );
+  }
+
+  atk_obj = atk_widget_linked_label_new (mirror_label, properties->mirror_cb);
+  if ( atk_obj ) {
+    atk_object_set_name        ( atk_obj,   _("Checkbox indicating if symbol is mirrored"));
+    atk_object_set_description ( atk_obj,      mirror_tip );
   }
 
   atk_obj = atk_widget_linked_label_new (electrical_label, properties->electrical_cb);
