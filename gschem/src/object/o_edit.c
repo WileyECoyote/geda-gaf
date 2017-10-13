@@ -297,7 +297,7 @@ void o_edit_mirror_world(GschemToplevel *w_current, int centerx, int centery, GL
 
     o_invalidate_list (w_current, list);
 
-    geda_object_list_mirror(list, centerx, centery);
+    geda_mirror_list(list, centerx, centery);
 
     /* Objects will be in redraw by ChangeNotifyFunc */
 

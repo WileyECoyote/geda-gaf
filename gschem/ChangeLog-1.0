@@ -1,6 +1,7 @@
 2017-10-13 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/object/o_edit.c: Add function o_edit_set_selectable.
+    * src/object/o_edit.c: Add function o_edit_set_selectable. Replace
+      geda_object_list_mirror with geda_mirror_list macro.
 
 2017-10-11 Wiley E. Hill <wileyhill@gmail.com>
 
