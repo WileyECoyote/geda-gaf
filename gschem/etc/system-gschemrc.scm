@@ -1866,7 +1866,7 @@
 (map-icon "geda-pin-type"              "edit-pintype")
 (map-icon "geda-line-type"             "edit-linetype")
 (map-icon "geda-mesh"                  "edit-filltype")
-(map-icon "geda-component"             "edit-component")
+(map-icon "geda-properties"            "edit-component")
 (map-icon "geda-slot"                  "edit-slot")
 
 (map-icon "gschem-select"              "edit-select")
@@ -2126,7 +2126,7 @@
         (,(N_ "Edit Pi_n...")          edit-pintype        "geda-pin-type"    ,(N_ "Open the Pin Type Dialog"))
         (,(N_ "Line _Width & Type...") edit-linetype       "geda-line-type"   ,(N_ "Open the Line Editor Dialog"))
         (,(N_ "Fill T_ype...")         edit-filltype       "geda-mesh"        ,(N_ "Open the Fill Editor Dialog"))
-        (,(N_ "Edit Component...")    edit-component       "geda-component"   ,(N_ "Open the Component Editor Dialog"))
+        (,(N_ "Edit Component...")    edit-component       "geda-properties"  ,(N_ "Open the Component Editor Dialog"))
         (,(N_ "_Slot...")             edit-slot            "geda-slot"        ,(N_ "Open the Slot Editor Dialog"))
       )
 )
