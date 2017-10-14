@@ -98,6 +98,7 @@ bitmapdata_DATA   = \
 			geda-probe2.png                    \
 			geda-promote.png                   \
 			geda-prompt.png                    \
+			geda-properties.png                \
 			geda-redo.png                      \
 			geda-rotate-left.png               \
 			geda-save-image.png                \
