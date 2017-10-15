@@ -3,7 +3,13 @@
     * etc/system-gschemrc.scm: Change icon for action "edit-component" to
       "geda-properties".
 
+    * include/x_toolbars.h: Add macro TBTS_EDIT_PROPERTIES.
+
     * src/x/x_icons.c Add "geda-properties" to IDS_GEDA_ICONS table.
+
+    * src/x/x_toolbars.c: Add enumeration etb_edit_prop for action EDIT_COMPONENT
+      and add corresponding information in the ToolbarStrings data table, add
+      new toolbar button for EDIT_COMPONENT action.
 
 2017-10-13 Wiley E. Hill <wileyhill@gmail.com>
 

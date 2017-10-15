@@ -178,6 +178,7 @@ typedef struct {
 #define TBTS_VIEW_ZOOM_ALL      "Zoom to Limits"
 
   /* Symbol Toolbar */
+#define TBTS_EDIT_PROPERTIES    "Edit Component properties"
 #define TBTS_TOOLS_TRANSLATE    "Translate component positions"
 #define TBTS_SELECT_LOCK        "Lock Objects"
 #define TBTS_SELECT_UNLOCK      "Unlock Objects"

@@ -111,7 +111,7 @@ typedef enum  { etb_new, etb_open, etb_save, etb_save_as, etb_close,
                 etb_view_document, etb_view_nets,
                 etb_view_redraw, etb_zoom_pan, etb_zoom_box, etb_zoom_select,
                 etb_zoom_extents, etb_zoom_in, etb_zoom_out, etb_zoom_all,
-                etb_translate, etb_lock, etb_unlock, etb_update,
+                etb_edit_prop, etb_translate, etb_lock, etb_unlock, etb_update,
                 etb_edit_copy, etb_multi_copy, etb_move, etb_rotate, etb_mirror,
                 etb_edit_butes, etb_edit_color, etb_edit_text, etb_edit_slot,
                 etb_edit_pin, etb_edit_line, etb_edit_fill, etb_edit_arc,
@@ -210,6 +210,8 @@ static ToolbarStringData ToolbarStrings[] = {
   { ACTION(VIEW_ZOOM_ALL),      "All",       TBTS_VIEW_ZOOM_ALL,      GEDA_MAP(ZOOM_LIMITS),  TB_ICON_BITMAP, NULL},
 
   /* Symbol Toolbar */
+  { ACTION(EDIT_COMPONENT),     "Properties",TBTS_EDIT_PROPERTIES,    "geda-properties",      TB_ICON_STOCK,  NULL},
+
   { ACTION(TOOLS_TRANSLATE),    "Translate", TBTS_TOOLS_TRANSLATE,    GEDA_MAP(TRANSLATE),    TB_ICON_BITMAP, NULL},
   { ACTION(EDIT_LOCK),          "Lock",      TBTS_SELECT_LOCK,        "Private",              TB_ICON_BITMAP, NULL},
   { ACTION(EDIT_UNLOCK),        "Unlock",    TBTS_SELECT_UNLOCK,      "Private",              TB_ICON_BITMAP, NULL},
@@ -224,7 +226,6 @@ static ToolbarStringData ToolbarStrings[] = {
 
   { ACTION(EDIT_ATTRIB),        "Edit",      TBTS_EDIT_ATTRIB,        "Private",        TB_ICON_BITMAP, NULL},
   { ACTION(EDIT_COLOR),         "Color",     TBTS_EDIT_COLOR,         "Private",        TB_ICON_BITMAP, NULL},
-
   { ACTION(EDIT_TEXT),          "Text",      TBTS_EDIT_TEXT,          "Private",        TB_ICON_BITMAP, NULL},
   { ACTION(EDIT_SLOT),          "Slots",     TBTS_EDIT_SLOT,          "geda-slot",      TB_ICON_BITMAP, NULL},
   { ACTION(EDIT_PIN),           "Pins",      TBTS_EDIT_PIN,           "geda-pin-type",  TB_ICON_BITMAP, NULL},
@@ -1511,11 +1512,13 @@ x_toolbars_init_left(GschemToplevel *w_current, GtkWidget *parent_container)
   geda_handle_widget_set_toolbar(w_current->symbol_handlebox, Symbol_Toolbar);
   geda_handle_widget_set_handle_position(w_current->symbol_handlebox, GTK_POS_TOP);
 
+  GSCHEM_TOOLBAR_BUTTON (Symbol, etb_edit_prop);
   GSCHEM_TOOLBAR_BUTTON (Symbol, etb_translate);
   GSCHEM_TOOLBAR_BUTTON (Symbol, etb_lock);
   GSCHEM_TOOLBAR_BUTTON (Symbol, etb_unlock);
   GSCHEM_TOOLBAR_BUTTON (Symbol, etb_update);
 
+  ANY_OBJECT_LIST = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_edit_prop ));
   ANY_OBJECT_LIST = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_lock   ));
   ANY_OBJECT_LIST = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_unlock ));
   ANY_OBJECT_LIST = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_update ));
