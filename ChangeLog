@@ -7,7 +7,8 @@
       path to output gschem-array.png directly in gschem/bitmaps.
 
     * bitmaps/svg/gschem-print-preview.svg: Revise export path to output
-      gschem-print-preview.png directly in gschem/bitmaps.
+      gschem-print-preview.png directly in gschem/bitmaps and remove the
+      unused gschem-print-preview.png file.
 
     * bitmaps/Makefile.am: Add geda-properties.png.
 
