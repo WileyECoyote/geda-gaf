@@ -121,6 +121,11 @@ struct st_property_data {
   GtkWidget *version_entry;
   GtkWidget *version_cb;
 
+  GtkWidget *opt_frame;
+  GtkWidget *embed_cb;
+  GtkWidget *lock_cb;
+  GtkWidget *mirror_cb;
+
   GtkWidget *ulicense_entry;
   GtkWidget *dlicense_entry;
 
