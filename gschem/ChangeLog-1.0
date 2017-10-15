@@ -3,6 +3,8 @@
     * etc/system-gschemrc.scm: Change icon for action "edit-component" to
       "geda-properties".
 
+    * src/x/x_icons.c Add "geda-properties" to IDS_GEDA_ICONS table.
+
 2017-10-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_edit.c: Add function o_edit_set_selectable. Replace
