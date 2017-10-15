@@ -1,5 +1,8 @@
 2017-10-14 Wiley E. Hill <wileyhill@gmail.com>
 
+    * bitmaps/svg/gschem-array.svg: Remove extraneous bloat, change export
+      path to output gschem-array.png directly in gschem/bitmaps.
+
     * bitmaps/svg/geda-properties.svg: Add new svg file to generate
       geda-properties.png image.
 
