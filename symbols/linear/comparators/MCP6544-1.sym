@@ -83,7 +83,7 @@ slotdef=4:12,13,4,11,14
 T 0 2400 5 10 0 0 0 0 1
 documentation=http://ww1.microchip.com/downloads/en/DeviceDoc/21696g.p
 T 0 3000 5 10 0 0 0 0 1
-use-license=GPLv3
+use-license=unlimited
 T 0 2800 5 10 0 0 0 0 1
 dist-license=GPLv3
 T 0 3200 5 10 0 0 0 0 1
