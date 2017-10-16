@@ -273,8 +273,7 @@ void x_toolbars_init(GtkWidget *parent_container) {
  */
 void x_toolbar_set_sensitivities(GSList *ListToolBarItems, int sensitive)
 {
-    lambda (GtkWidget *menu_item)
-    {
+    lambda (GtkWidget *menu_item) {
       gtk_widget_set_sensitive(menu_item, sensitive);
       return FALSE;
     }
