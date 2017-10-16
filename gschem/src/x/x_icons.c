@@ -104,7 +104,8 @@ const char *IDS_GEDA_ICONS[] = {  /* Menu Icons Strings */
 
 const char *IDS_GSCHEM_ICONS[] = {
   "gschem-array",            "gschem-bus",              "gschem-comp",
-  "gschem-invert",           "gschem-net",              "gschem-print-document",
+  "gschem-invert",           "gschem-net",
+  "gschem-print-document",   "gschem-print-preview",
   "gschem-select",           "gschem-select-all",       "gschem-text",
   "gschem-transistor",       "gschem-unselect",
   NULL
