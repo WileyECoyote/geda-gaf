@@ -659,6 +659,9 @@ GtkWidget *x_menu_create_menu(GtkWindow *main_window)
   if (menubar == NULL) {
     fprintf(stderr, "ERROR: GTK failed to return Menu objects\n");
   }
+
+  x_menu_fix_gtk_recent_submenu();
+
   return menubar; /* WEH: Does this really get saved? */
 }
 

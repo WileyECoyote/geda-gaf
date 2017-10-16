@@ -344,8 +344,6 @@ void x_window_init()
                        NULL);
 
   geda_atexit(x_window_disconnect_notebook_switch_page, notebook);
-
-  x_menu_fix_gtk_recent_submenu();
 }
 
 /*!

@@ -1,3 +1,11 @@
+2017-10-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_menus.c: Call x_menu_fix_gtk_recent_submenu before returning
+      from x_menu_create_menu.
+
+    * src/x_window.c: Remove call to x_menu_fix_gtk_recent_submenu from
+      x_window_init, relocated to x_menu_create_menu.
+
 2017-10-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * gattrib/src/x_menus.c: Remove sinking the reference to old_submenu in
