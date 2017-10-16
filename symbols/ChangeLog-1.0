@@ -1,47 +1,54 @@
+2017-10-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * linear/comparators/: Add value, set device=COMPARATOR, downgrade
+      dist-license back to GPLv2:
+
+            * linear/comparators/comparator-3.sym
+
 2017-10-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/header/: Replace single row header symbols:
 
-            *  connector/header/header34-1.sym
-            *  connector/header/header40-1.sym
-            *  connector/header/header44-1.sym
-            *  connector/header/header50-1.sym
+            * connector/header/header34-1.sym
+            * connector/header/header40-1.sym
+            * connector/header/header44-1.sym
+            * connector/header/header50-1.sym
 
 2017-10-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/header/: Replace single row header symbols:
 
-            *  connector/header/header26-1.sym
-            *  connector/header/header28-1.sym
-            *  connector/header/header30-1.sym
-            *  connector/header/header32-1.sym
+            * connector/header/header26-1.sym
+            * connector/header/header28-1.sym
+            * connector/header/header30-1.sym
+            * connector/header/header32-1.sym
 
 2017-10-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/header/: Replace single row header symbols:
 
-            *  connector/header/header20-1.sym
-            *  connector/header/header22-1.sym
-            *  connector/header/header24-1.sym
+            * connector/header/header20-1.sym
+            * connector/header/header22-1.sym
+            * connector/header/header24-1.sym
 
 2017-10-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/header/: Replace single row header symbols:
 
-            *  connector/header/header12-1.sym
-            *  connector/header/header14-1.sym
-            *  connector/header/header16-1.sym
-            *  connector/header/header18-1.sym
+            * connector/header/header12-1.sym
+            * connector/header/header14-1.sym
+            * connector/header/header16-1.sym
+            * connector/header/header18-1.sym
 
 2017-10-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/opamps: Add documentation attribute, as a link to wikipedia
       and downgrade dist-license back to GPLv2:
 
-            *  linear/opamps/opamp-1.sym
-            *  linear/opamps/opamp-2.sym
-            *  linear/opamps/opamp-3.sym
-            *  linear/opamps/opamp-4.sym
+            * linear/opamps/opamp-1.sym
+            * linear/opamps/opamp-2.sym
+            * linear/opamps/opamp-3.sym
+            * linear/opamps/opamp-4.sym
 
     * linear/opamps: Downgrade dist-license back to GPLv2 in all other opamps
       symbols.
@@ -51,35 +58,35 @@
     * connector/header/: Rotate symbols to put pin 1 in the top left corner,
       updated attribute alignments:
 
-            *  connector/header/header26-2-4.sym (revamp symbol to match set)
-            *  connector/header/header34-2-4.sym
+            * connector/header/header26-2-4.sym (revamp symbol to match set)
+            * connector/header/header34-2-4.sym
 
     * connector/header/: Updated attribute alignments and attribute color:
 
-            *  connector/header/header20-2-4.sym
-            *  connector/header/header40-2-4.sym
-            *  connector/header/header44-2-4.sym
-            *  connector/header/header50-2-4.sym
+            * connector/header/header20-2-4.sym
+            * connector/header/header40-2-4.sym
+            * connector/header/header44-2-4.sym
+            * connector/header/header50-2-4.sym
 
 2017-10-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/header/: Add description, update footprint and attribute
       alignments:
 
-            *  connector/header/header20-2-4.sym (Update refdes and date code)
-            *  connector/header/header26-2-4.sym
-            *  connector/header/header34-2-4.sym
-            *  connector/header/header40-2-4.sym
-            *  connector/header/header44-2-4.sym
-            *  connector/header/header50-2-4.sym
+            * connector/header/header20-2-4.sym (Update refdes and date code)
+            * connector/header/header26-2-4.sym
+            * connector/header/header34-2-4.sym
+            * connector/header/header40-2-4.sym
+            * connector/header/header44-2-4.sym
+            * connector/header/header50-2-4.sym
 
 2017-10-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/header/: Add description, update footprint:
 
-            *  connector/header/header22-2-3.sym
-            *  connector/header/header44-2-3.sym (update attribute alignments)
-            *  connector/header/header44-2-3b.sym (update attribute alignments)
+            * connector/header/header22-2-3.sym
+            * connector/header/header44-2-3.sym (update attribute alignments)
+            * connector/header/header44-2-3b.sym (update attribute alignments)
 
 2017-09-30 Wiley E. Hill <wileyhill@gmail.com>
 
