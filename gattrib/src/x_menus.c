@@ -591,17 +591,17 @@ static void x_menu_get_collections (GtkUIManager *ui_man) {
   geda_atexit((geda_atexit_func)g_slist_free, ComponentMenuItems);
 }
 
-/*! \brief Create and attach the menu bar
- *  \par Function Description
- * Create the menu bar and attach it to the main window.
- *
- *  First, the GtkActionGroup object is created and filled with
- *  entries of type GtkActionEntry (each entry specifies a single
- *  action, such as opening a file). Then the GtkUIManager object
- *  is created and used to load menus.xml file with the menu
- *  description. Finally, the GtkAccelGroup is added to the
- *  main window to enable keyboard accelerators and a pointer
- *  to the menu bar is retrieved from the GtkUIManager object.
+/*!
+ * \brief Create and attach the menu bar
+ * \par Function Description
+ *  Creates the menu bar and attach it to the main window. First,
+ *  the GtkActionGroup object is created and filled with entries
+ *  of type GtkActionEntry (each entry specifies a single action,
+ *  such as opening a file). Then a GtkUIManager object is created.
+ *  The GtkUIManager loads our menus.xml file containing the menu
+ *  description. Finally, the GtkAccelGroup is added to the main
+ *  window to enable keyboard accelerators and a pointer to the
+ *  menu bar is retrieved from the GtkUIManager object.
  *
  * \param main_window Window to add the menubar to
  *
