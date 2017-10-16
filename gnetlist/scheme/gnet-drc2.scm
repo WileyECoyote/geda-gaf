@@ -407,8 +407,7 @@
                   (check-slots-loop (+ slot_number 1) slots_list)))))
 
         (if (integer? (string->number (get-package-attribute uref "numslots")))
-            (check-slots-loop 1 (get-unique-slots uref))
-            )
+            (check-slots-loop 1 (get-unique-slots uref)))
         ))
 
     (for-each check-unused-slots-of-package netlist:packages)
