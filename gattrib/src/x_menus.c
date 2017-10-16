@@ -626,7 +626,8 @@ GtkWidget *x_menu_create_menu(GtkWindow *main_window)
   gtk_action_group_set_translation_domain(action_group, GATTRIB_GETTEXT_DOMAIN);
 
   gtk_action_group_add_actions(action_group, actions, G_N_ELEMENTS(actions), NULL);
-  gtk_action_group_add_toggle_actions (action_group, toggle_entries, G_N_ELEMENTS (toggle_entries), main_window);
+  gtk_action_group_add_toggle_actions (action_group, toggle_entries,
+                                       G_N_ELEMENTS (toggle_entries), main_window);
 
   recent_group = x_menu_create_recent_action_group();
 
