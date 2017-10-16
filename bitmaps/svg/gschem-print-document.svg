@@ -7,12 +7,6 @@
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="48"
    height="48"
-   id="svg2"
-   sodipodi:version="0.32"
-   inkscape:version="0.48.3.1 r9886"
-   version="1.0"
-   sodipodi:docname="gschem-print-document.svg"
-   inkscape:output_extension="org.inkscape.output.svg.inkscape"
    inkscape:export-filename="../../gschem/bitmap/gschem-print-document.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
@@ -382,50 +376,10 @@
        gradientUnits="userSpaceOnUse"
        gradientTransform="matrix(0.818184,0,0,0.929324,4.363605,2.971451)" />
   </defs>
-  <sodipodi:namedview
-     id="base"
-     pagecolor="#ffffff"
-     bordercolor="#666"
-     borderopacity="0.20392157"
-     inkscape:pageopacity="0.0"
-     inkscape:pageshadow="2"
-     inkscape:zoom="19.739127"
-     inkscape:cx="19.034621"
-     inkscape:cy="14.855834"
-     inkscape:document-units="px"
-     inkscape:current-layer="layer1"
-     showgrid="false"
-     inkscape:window-width="1301"
-     inkscape:window-height="908"
-     inkscape:window-x="441"
-     inkscape:window-y="58"
-     inkscape:grid-bbox="true"
-     inkscape:grid-points="true"
-     showborder="true"
-     inkscape:showpageshadow="false"
-     stroke="#babdb6"
-     fill="#d3d7cf"
-     showguides="true"
-     inkscape:guide-bbox="true"
-     inkscape:window-maximized="0">
-    <inkscape:grid
-       id="GridFromPre046Settings"
-       type="xygrid"
-       originx="0px"
-       originy="0px"
-       spacingx="0.5px"
-       spacingy="0.5px"
-       color="#3f3fff"
-       empcolor="#3f3fff"
-       opacity="0.15"
-       empopacity="0.38"
-       empspacing="2" />
-  </sodipodi:namedview>
   <g
      inkscape:label="Level 1"
      inkscape:groupmode="layer"
-     id="layer1"
-     style="display:inline">
+     id="layer1">
     <path
        sodipodi:type="arc"
        style="opacity:0.5;color:#000000;fill:url(#radialGradient2317);fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;marker:none;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible"
