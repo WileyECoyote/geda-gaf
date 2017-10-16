@@ -632,7 +632,7 @@ GtkWidget *x_menu_create_menu(GtkWindow *main_window)
   recent_group = x_menu_create_recent_action_group();
 
   /* Create the UI manager object */
-  menu_manager  = gtk_ui_manager_new();
+  menu_manager = gtk_ui_manager_new();
 
   gtk_ui_manager_insert_action_group(menu_manager, action_group, 0);
   gtk_ui_manager_insert_action_group(menu_manager, recent_group, 0);
