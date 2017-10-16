@@ -51,6 +51,7 @@ bitmapdata_DATA   = \
 			geda-component.png                 \
 			geda-copy.png                      \
 			geda-demote.png                    \
+			geda-deselect.png                  \
 			geda_demote_16x16.png              \
 			geda_demote_grn_16x16.png          \
 			geda-design.png                    \

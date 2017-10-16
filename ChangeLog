@@ -2,6 +2,8 @@
 
     * bitmaps/svg/gschem-print-document.svg: Remove extraneous bloat.
 
+    * bitmaps/geda-deslect.png: Add image file for icon.
+
 2017-10-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * bitmaps/svg/geda-properties.svg: Add new svg file to generate
