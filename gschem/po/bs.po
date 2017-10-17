@@ -2172,9 +2172,8 @@ msgstr ""
 
 # Simulation Type
 #: gschem/src/x/x_edit_cprop.c:77
-#, fuzzy
 msgid "Spice"
-msgstr "simulacija Tip:"
+msgstr "simulacija Tip"
 
 #: gschem/src/x/x_edit_cprop.c:77
 msgid "Use designations for SPICE"
@@ -2720,7 +2719,6 @@ msgstr ""
 
 # Periphery
 #: gschem/src/x/x_image.c:67
-#, fuzzy
 msgid "     Extents"
 msgstr "Periferija"
 
@@ -2732,17 +2730,15 @@ msgstr ""
 msgid "   Use Color"
 msgstr ""
 
-# enable/disable automatic panning
+# Enable or disable color imaging
 #: gschem/src/x/x_image.c:68
-#, fuzzy
 msgid "Enable or disable color imaging"
-msgstr "omogućiti/onemogućiti automatsko panning"
+msgstr "Omogućite ili onemogućite slikanje u boji"
 
-# Write image
+# Invert image
 #: gschem/src/x/x_image.c:69
-#, fuzzy
 msgid "Invert Image"
-msgstr "Piši sliku"
+msgstr "Invert slika"
 
 #: gschem/src/x/x_image.c:69
 msgid "Enable to generate an inverted images"
