@@ -2157,9 +2157,8 @@ msgid "Use standard designations"
 msgstr ""
 
 #: gschem/src/x/x_edit_cprop.c:77
-#, fuzzy
 msgid "Spice"
-msgstr "Fill Type:"
+msgstr ""
 
 #: gschem/src/x/x_edit_cprop.c:77
 msgid "Use designations for SPICE"
@@ -2691,9 +2690,8 @@ msgid "Initializing icon factory\n"
 msgstr ""
 
 #: gschem/src/x/x_image.c:67
-#, fuzzy
 msgid "     Extents"
-msgstr "Zoom Box"
+msgstr "دامنه"
 
 #: gschem/src/x/x_image.c:67
 msgid "Generate image from schematic Extents or the currently displayed view"
@@ -2708,9 +2706,8 @@ msgid "Enable or disable color imaging"
 msgstr ""
 
 #: gschem/src/x/x_image.c:69
-#, fuzzy
 msgid "Invert Image"
-msgstr "Write image..."
+msgstr "تبدیل تصویر"
 
 #: gschem/src/x/x_image.c:69
 msgid "Enable to generate an inverted images"
