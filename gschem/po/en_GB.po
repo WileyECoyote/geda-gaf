@@ -2141,9 +2141,8 @@ msgid "Select a color for the selected objects."
 msgstr "Select a Colour for the selected objects."
 
 #: gschem/src/x/x_edit_cprop.c:75
-#, fuzzy
 msgid "Set preloaded reference designators."
-msgstr "Show inherited attributes"
+msgstr "Set preloaded reference designators."
 
 #: gschem/src/x/x_edit_cprop.c:76
 msgid "Standard"
@@ -2154,9 +2153,8 @@ msgid "Use standard designations"
 msgstr ""
 
 #: gschem/src/x/x_edit_cprop.c:77
-#, fuzzy
 msgid "Spice"
-msgstr "Fill Type:"
+msgstr "Spice"
 
 #: gschem/src/x/x_edit_cprop.c:77
 msgid "Use designations for SPICE"
@@ -2685,9 +2683,8 @@ msgid "Initializing icon factory\n"
 msgstr ""
 
 #: gschem/src/x/x_image.c:67
-#, fuzzy
 msgid "     Extents"
-msgstr "Extents"
+msgstr "     Extents"
 
 #: gschem/src/x/x_image.c:67
 msgid "Generate image from schematic Extents or the currently displayed view"
@@ -2702,14 +2699,12 @@ msgid "Enable or disable color imaging"
 msgstr ""
 
 #: gschem/src/x/x_image.c:69
-#, fuzzy
 msgid "Invert Image"
-msgstr "Write image"
+msgstr "Invert image"
 
 #: gschem/src/x/x_image.c:69
-#, fuzzy
 msgid "Enable to generate an inverted images"
-msgstr "Enable to enlarge the preview"
+msgstr "Enable to generate an inverted images"
 
 #: gschem/src/x/x_image.c:115
 msgid "Click to select size of the image to be created"
@@ -3390,9 +3385,8 @@ msgid "attribute"
 msgstr "Attributes"
 
 #: gschem/src/x/x_pagesel.c:54
-#, fuzzy
 msgid "Auto Height"
-msgstr "Width x Height"
+msgstr "Auto Height"
 
 #: gschem/src/x/x_pagesel.c:54
 msgid "Enable or disable Page Select dialog auto height"
