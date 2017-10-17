@@ -2132,11 +2132,10 @@ msgstr "Χρώμα αντικειμένου:"
 msgid "Select a color for the selected objects."
 msgstr "Επιλέξτε ένα χρώμα για τα επιλεγμένα αντικείμενα."
 
-# Entry for reference designator => Identifier
+# Set preloaded reference designators
 #: gschem/src/x/x_edit_cprop.c:75
-#, fuzzy
 msgid "Set preloaded reference designators."
-msgstr "Εισόδου για αναφορά Προσδιοριστή"
+msgstr "Ορίστε προφορτωμένους δείκτες αναφοράς."
 
 #: gschem/src/x/x_edit_cprop.c:76
 msgid "Standard"
@@ -2146,10 +2145,10 @@ msgstr ""
 msgid "Use standard designations"
 msgstr ""
 
+# Simulation Type
 #: gschem/src/x/x_edit_cprop.c:77
-#, fuzzy
 msgid "Spice"
-msgstr "Τύπος γεμίσματος:"
+msgstr "Τύπος προσομοίωσης"
 
 #: gschem/src/x/x_edit_cprop.c:77
 msgid "Use designations for SPICE"
@@ -2720,16 +2719,15 @@ msgstr ""
 msgid "Enable or disable color imaging"
 msgstr ""
 
+# Invert Image
 #: gschem/src/x/x_image.c:69
-#, fuzzy
 msgid "Invert Image"
-msgstr "Γράψτε Εικόνα"
+msgstr "Επαναφορά εικόνας"
 
-# Enable to enlarge the preview
+# Enable to generate an inverted images
 #: gschem/src/x/x_image.c:69
-#, fuzzy
 msgid "Enable to generate an inverted images"
-msgstr "Ενεργοποιήστε τη διευρυμένη προεπισκόπηση"
+msgstr "Ενεργοποίηση για δημιουργία ανεστραμμένων εικόνων"
 
 #: gschem/src/x/x_image.c:115
 msgid "Click to select size of the image to be created"
@@ -3409,10 +3407,10 @@ msgstr "Γνωρίσματα"
 msgid "attribute"
 msgstr "Γνωρίσματα"
 
+# Automatic Height
 #: gschem/src/x/x_pagesel.c:54
-#, fuzzy
 msgid "Auto Height"
-msgstr "Πλάτος x Ύψος"
+msgstr "Αυτόματο Ύψος"
 
 #: gschem/src/x/x_pagesel.c:54
 msgid "Enable or disable Page Select dialog auto height"
