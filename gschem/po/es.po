@@ -2183,10 +2183,10 @@ msgstr "Color del componente:"
 msgid "Select a color for the selected objects."
 msgstr "Seleccione un color para los objetos seleccionados."
 
+# Set preloaded reference designators
 #: gschem/src/x/x_edit_cprop.c:75
-#, fuzzy
 msgid "Set preloaded reference designators."
-msgstr "Mostrar propiedades heredadas"
+msgstr "Configurar los designadores de referencia precargados."
 
 #: gschem/src/x/x_edit_cprop.c:76
 msgid "Standard"
@@ -2196,10 +2196,10 @@ msgstr ""
 msgid "Use standard designations"
 msgstr ""
 
+# Simulation Type
 #: gschem/src/x/x_edit_cprop.c:77
-#, fuzzy
 msgid "Spice"
-msgstr "Tipo de relleno:"
+msgstr "Tipo de simulación"
 
 #: gschem/src/x/x_edit_cprop.c:77
 msgid "Use designations for SPICE"
@@ -2741,9 +2741,8 @@ msgid "Initializing icon factory\n"
 msgstr ""
 
 #: gschem/src/x/x_image.c:67
-#, fuzzy
 msgid "     Extents"
-msgstr "/Mostrar todo"
+msgstr "Extensiones"
 
 #: gschem/src/x/x_image.c:67
 msgid "Generate image from schematic Extents or the currently displayed view"
@@ -2758,15 +2757,13 @@ msgid "Enable or disable color imaging"
 msgstr ""
 
 #: gschem/src/x/x_image.c:69
-#, fuzzy
 msgid "Invert Image"
-msgstr "Guardar imagen..."
+msgstr "Invertir imagen"
 
-# Enable to enlarge the preview
+# Enable to generate an inverted images
 #: gschem/src/x/x_image.c:69
-#, fuzzy
 msgid "Enable to generate an inverted images"
-msgstr "Habilitar para ampliar la vista previa"
+msgstr "Habilitar para generar imágenes invertidas."
 
 #: gschem/src/x/x_image.c:115
 msgid "Click to select size of the image to be created"
@@ -3446,9 +3443,8 @@ msgid "attribute"
 msgstr "Propiedades"
 
 #: gschem/src/x/x_pagesel.c:54
-#, fuzzy
 msgid "Auto Height"
-msgstr "Anchura x Altura"
+msgstr "Altura automática"
 
 #: gschem/src/x/x_pagesel.c:54
 msgid "Enable or disable Page Select dialog auto height"
