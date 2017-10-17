@@ -2139,10 +2139,10 @@ msgstr "لون الكائن:"
 msgid "Select a color for the selected objects."
 msgstr "الكائنات المنتقاة."
 
+# Set preloaded reference designators
 #: gschem/src/x/x_edit_cprop.c:75
-#, fuzzy
 msgid "Set preloaded reference designators."
-msgstr "أظهر السمات الموروثة"
+msgstr "تعيين المصممين المرجعي مسبقة."
 
 #: gschem/src/x/x_edit_cprop.c:76
 msgid "Standard"
@@ -2152,10 +2152,10 @@ msgstr ""
 msgid "Use standard designations"
 msgstr ""
 
+# Simulation Type
 #: gschem/src/x/x_edit_cprop.c:77
-#, fuzzy
 msgid "Spice"
-msgstr "نوع الملء:"
+msgstr "نوع المحاكاة"
 
 #: gschem/src/x/x_edit_cprop.c:77
 msgid "Use designations for SPICE"
@@ -2715,10 +2715,10 @@ msgstr ""
 msgid "Initializing icon factory\n"
 msgstr ""
 
+# Extents
 #: gschem/src/x/x_image.c:67
-#, fuzzy
 msgid "     Extents"
-msgstr "/قرّب مع شمل الامتدادات"
+msgstr "المديات"
 
 #: gschem/src/x/x_image.c:67
 msgid "Generate image from schematic Extents or the currently displayed view"
@@ -2732,16 +2732,15 @@ msgstr ""
 msgid "Enable or disable color imaging"
 msgstr ""
 
+# Invert Image
 #: gschem/src/x/x_image.c:69
-#, fuzzy
 msgid "Invert Image"
-msgstr "أكتب صورة..."
+msgstr "عكس الصورة"
 
-# enable to enlarge the preview
+# Enable to generate an inverted images
 #: gschem/src/x/x_image.c:69
-#, fuzzy
 msgid "Enable to generate an inverted images"
-msgstr "تمكن من تكبير المعاينة"
+msgstr "تمكين لإنشاء صور مقلوب"
 
 #: gschem/src/x/x_image.c:115
 msgid "Click to select size of the image to be created"
@@ -3420,10 +3419,10 @@ msgstr "سمات"
 msgid "attribute"
 msgstr "سمات"
 
+# Auto Height
 #: gschem/src/x/x_pagesel.c:54
-#, fuzzy
 msgid "Auto Height"
-msgstr "عرض × ارتفاع"
+msgstr "ارتفاع تلقائي"
 
 #: gschem/src/x/x_pagesel.c:54
 msgid "Enable or disable Page Select dialog auto height"
