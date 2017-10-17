@@ -2201,9 +2201,8 @@ msgid "Use standard designations"
 msgstr ""
 
 #: gschem/src/x/x_edit_cprop.c:77
-#, fuzzy
 msgid "Spice"
-msgstr "Vultipe:"
+msgstr "Simulasie Tipe"
 
 #: gschem/src/x/x_edit_cprop.c:77
 msgid "Use designations for SPICE"
@@ -2293,7 +2292,7 @@ msgstr "voet druk:"
 
 #: gschem/src/x/x_edit_cprop.c:1387
 msgid "Spice Type:"
-msgstr "Vultipe:"
+msgstr "Spice tipe:"
 
 #: gschem/src/x/x_edit_cprop.c:1398
 msgid "Model Name:"
@@ -2750,9 +2749,8 @@ msgid "Initializing icon factory\n"
 msgstr ""
 
 #: gschem/src/x/x_image.c:67
-#, fuzzy
 msgid "     Extents"
-msgstr "Zoem Uitmate"
+msgstr "     omvang"
 
 #: gschem/src/x/x_image.c:67
 msgid "Generate image from schematic Extents or the currently displayed view"
@@ -2763,20 +2761,18 @@ msgid "   Use Color"
 msgstr ""
 
 #: gschem/src/x/x_image.c:68
-#, fuzzy
 msgid "Enable or disable color imaging"
-msgstr "Aktiveer of kenmerk sigbaarheid te skakel"
+msgstr "Aktiveer of deaktiveer kleurafbeelding"
 
+# Invert Image
 #: gschem/src/x/x_image.c:69
-#, fuzzy
 msgid "Invert Image"
-msgstr "Skryf afbeelding"
+msgstr "Omkeer prentjie"
 
-# Enable to enlarge the preview
+# Enable to generate an inverted images
 #: gschem/src/x/x_image.c:69
-#, fuzzy
 msgid "Enable to generate an inverted images"
-msgstr "Staat te stel om die voorskou te vergroot"
+msgstr "Aktiveer om 'n omgekeerde beelde te genereer"
 
 #: gschem/src/x/x_image.c:115
 msgid "Click to select size of the image to be created"
@@ -3458,15 +3454,14 @@ msgstr "Eienskappe"
 msgid "attribute"
 msgstr "Eienskappe"
 
+# Auto Height
 #: gschem/src/x/x_pagesel.c:54
-#, fuzzy
 msgid "Auto Height"
-msgstr "Wydte x Hoogte"
+msgstr "Outomatiese Hoogte"
 
 #: gschem/src/x/x_pagesel.c:54
-#, fuzzy
 msgid "Enable or disable Page Select dialog auto height"
-msgstr "Aktiveer of kenmerk sigbaarheid te skakel"
+msgstr "Aktiveer of deaktiveer Page Select dialoog outomatiese hoogte"
 
 #: gschem/src/x/x_pagesel.c:55
 msgid "full names"

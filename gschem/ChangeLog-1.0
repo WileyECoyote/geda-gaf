@@ -1,3 +1,8 @@
+2017-10-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/af.po: Update Afrikaans translations.
+
+
 2017-10-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_icons.c: Include "gschem-print-preview" in IDS_GSCHEM_ICONS table.
