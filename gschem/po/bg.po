@@ -2770,16 +2770,15 @@ msgstr ""
 msgid "Enable or disable color imaging"
 msgstr ""
 
+# Invert Image
 #: gschem/src/x/x_image.c:69
-#, fuzzy
 msgid "Invert Image"
-msgstr "Запиши Снимката"
+msgstr "Обърнете изображението"
 
-# Enable to enlarge the preview -> Activating enlargement visualization
+# Enable to generate an inverted images
 #: gschem/src/x/x_image.c:69
-#, fuzzy
 msgid "Enable to generate an inverted images"
-msgstr "Активиране за уголемяване на визуализацията"
+msgstr "Активиране за генериране на обърнати изображения"
 
 #: gschem/src/x/x_image.c:115
 msgid "Click to select size of the image to be created"
