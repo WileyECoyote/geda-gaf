@@ -2714,7 +2714,6 @@ msgstr "ഐക്കൺ ഫാക്ടറി ആരംഭിക്കുന്�
 
 # Extents (periphery)
 #: gschem/src/x/x_image.c:67
-#, fuzzy
 msgid "     Extents"
 msgstr "പ്രാന്തപ്രദേശങ്ങളിലുള്ള"
 
@@ -2730,17 +2729,15 @@ msgstr ""
 msgid "Enable or disable color imaging"
 msgstr ""
 
-# Write Image
+# Invert Image
 #: gschem/src/x/x_image.c:69
-#, fuzzy
 msgid "Invert Image"
-msgstr "ചിത്രം എഴുതുവാൻ"
+msgstr "വിപരീത ഇമേജ്"
 
-# Enable to enlarge the preview
+# Enable to generate an inverted images
 #: gschem/src/x/x_image.c:69
-#, fuzzy
 msgid "Enable to generate an inverted images"
-msgstr "പ്രിവ്യൂ വിശാലമാക്കികൊടുത്തിരുന്നെങ്കിൽ പ്രാപ്തമാക്കുക"
+msgstr "ഒരു വിപരീത ഇമേജുകൾ സൃഷ്ടിക്കുന്നതിന് പ്രാപ്തമാക്കുക"
 
 # Click to select size of the image to be created
 #: gschem/src/x/x_image.c:115
@@ -3491,11 +3488,10 @@ msgstr "ഗുണവിശേഷങ്ങൾ"
 msgid "attribute"
 msgstr "ആട്രിബ്യൂട്ട്"
 
-# Width x Height
+# Automatic Height
 #: gschem/src/x/x_pagesel.c:54
-#, fuzzy
 msgid "Auto Height"
-msgstr "വീതി x പൊക്കം"
+msgstr "ഓട്ടോമാറ്റിക് ഉയരം"
 
 #: gschem/src/x/x_pagesel.c:54
 msgid "Enable or disable Page Select dialog auto height"
