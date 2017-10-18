@@ -2754,8 +2754,8 @@ msgstr "Arresto icona di fabbrica\n"
 msgid "Initializing icon factory\n"
 msgstr "L'inizializzazione icona di fabbrica\n"
 
+# Extents
 #: gschem/src/x/x_image.c:67
-#, fuzzy
 msgid "     Extents"
 msgstr "Estensioni"
 
@@ -2771,10 +2771,10 @@ msgstr ""
 msgid "Enable or disable color imaging"
 msgstr ""
 
+# Invert Image
 #: gschem/src/x/x_image.c:69
-#, fuzzy
 msgid "Invert Image"
-msgstr "Scrivi immagine"
+msgstr "Inverti l'immagine"
 
 #: gschem/src/x/x_image.c:69
 msgid "Enable to generate an inverted images"
@@ -3461,10 +3461,10 @@ msgstr "Attributi"
 msgid "attribute"
 msgstr "Attributo"
 
+# Auto Height
 #: gschem/src/x/x_pagesel.c:54
-#, fuzzy
 msgid "Auto Height"
-msgstr "Larghezza x Altezza"
+msgstr "Altezza automatica"
 
 #: gschem/src/x/x_pagesel.c:54
 msgid "Enable or disable Page Select dialog auto height"
