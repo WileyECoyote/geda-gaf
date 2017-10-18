@@ -2159,9 +2159,8 @@ msgstr ""
 
 # Simulation type
 #: gschem/src/x/x_edit_cprop.c:77
-#, fuzzy
 msgid "Spice"
-msgstr "סוג סימולציה:"
+msgstr "סוג סימולציה"
 
 #: gschem/src/x/x_edit_cprop.c:77
 msgid "Use designations for SPICE"
@@ -2702,9 +2701,8 @@ msgstr ""
 
 # Extents
 #: gschem/src/x/x_image.c:67
-#, fuzzy
 msgid "     Extents"
-msgstr "ובמידות"
+msgstr "מרחבים"
 
 #: gschem/src/x/x_image.c:67
 msgid "Generate image from schematic Extents or the currently displayed view"
@@ -2714,17 +2712,15 @@ msgstr ""
 msgid "   Use Color"
 msgstr ""
 
-# Enable/Disable Auto Panning
+# Enable or disable color imaging
 #: gschem/src/x/x_image.c:68
-#, fuzzy
 msgid "Enable or disable color imaging"
-msgstr "הפעלה / השבתה של פנורמה אוטומטית"
+msgstr "הפעלה או השבתה של הדמיה צבעונית"
 
-# Write Image
+# Invert Image
 #: gschem/src/x/x_image.c:69
-#, fuzzy
 msgid "Invert Image"
-msgstr "ככתוב תמונה"
+msgstr "הפוך את התמונה"
 
 #: gschem/src/x/x_image.c:69
 msgid "Enable to generate an inverted images"
