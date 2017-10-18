@@ -2113,9 +2113,8 @@ msgid "Use standard designations"
 msgstr ""
 
 #: gschem/src/x/x_edit_cprop.c:77
-#, fuzzy
 msgid "Spice"
-msgstr "Spice Tyyppi:"
+msgstr "Spice Tyyppi"
 
 #: gschem/src/x/x_edit_cprop.c:77
 msgid "Use designations for SPICE"
@@ -2656,10 +2655,10 @@ msgstr ""
 msgid "Initializing icon factory\n"
 msgstr ""
 
+# Extents
 #: gschem/src/x/x_image.c:67
-#, fuzzy
 msgid "     Extents"
-msgstr "_Lähennä"
+msgstr "ulottuvuudet"
 
 #: gschem/src/x/x_image.c:67
 msgid "Generate image from schematic Extents or the currently displayed view"
@@ -2673,11 +2672,10 @@ msgstr ""
 msgid "Enable or disable color imaging"
 msgstr ""
 
-# write image
+# Invert Image
 #: gschem/src/x/x_image.c:69
-#, fuzzy
 msgid "Invert Image"
-msgstr "write kuva"
+msgstr "Käänteinen kuva"
 
 #: gschem/src/x/x_image.c:69
 msgid "Enable to generate an inverted images"
