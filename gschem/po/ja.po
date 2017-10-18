@@ -2158,10 +2158,10 @@ msgstr ""
 msgid "Use standard designations"
 msgstr ""
 
+# Simulation type
 #: gschem/src/x/x_edit_cprop.c:77
-#, fuzzy
 msgid "Spice"
-msgstr "塗りつぶし種類:"
+msgstr "シミュレーションタイプ"
 
 #: gschem/src/x/x_edit_cprop.c:77
 msgid "Use designations for SPICE"
@@ -2706,10 +2706,10 @@ msgstr ""
 msgid "Initializing icon factory\n"
 msgstr ""
 
+# Extents
 #: gschem/src/x/x_image.c:67
-#, fuzzy
 msgid "     Extents"
-msgstr "回路全体の表示(_E)"
+msgstr "エクステント"
 
 #: gschem/src/x/x_image.c:67
 msgid "Generate image from schematic Extents or the currently displayed view"
@@ -2723,10 +2723,10 @@ msgstr ""
 msgid "Enable or disable color imaging"
 msgstr ""
 
+# Invert Image
 #: gschem/src/x/x_image.c:69
-#, fuzzy
 msgid "Invert Image"
-msgstr "画像として保存"
+msgstr "画像反転"
 
 #: gschem/src/x/x_image.c:69
 msgid "Enable to generate an inverted images"
