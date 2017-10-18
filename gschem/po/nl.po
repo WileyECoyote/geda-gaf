@@ -2265,7 +2265,6 @@ msgid "Use standard designations"
 msgstr ""
 
 #: gschem/src/x/x_edit_cprop.c:77
-#, fuzzy
 msgid "Spice"
 msgstr "Simulatie Type:"
 
@@ -2825,7 +2824,6 @@ msgstr ""
 
 # Show everything
 #: gschem/src/x/x_image.c:67
-#, fuzzy
 msgid "     Extents"
 msgstr "omvang"
 
@@ -2841,17 +2839,15 @@ msgstr ""
 msgid "Enable or disable color imaging"
 msgstr ""
 
-# Write Image
+# Invert Image
 #: gschem/src/x/x_image.c:69
-#, fuzzy
 msgid "Invert Image"
-msgstr "Schrijf afbeelding"
+msgstr "Omkeer afbeelding"
 
-# Enable to enlarge the preview
+# Enable to generate an inverted images
 #: gschem/src/x/x_image.c:69
-#, fuzzy
 msgid "Enable to generate an inverted images"
-msgstr "In staat stellen om te vergroten voorvertoning"
+msgstr "Inschakelen om een ​​omgekeerde afbeelding te genereren"
 
 #: gschem/src/x/x_image.c:115
 msgid "Click to select size of the image to be created"
@@ -3577,10 +3573,10 @@ msgstr "attributen"
 msgid "attribute"
 msgstr "Attribuut"
 
+# Automatic Height
 #: gschem/src/x/x_pagesel.c:54
-#, fuzzy
 msgid "Auto Height"
-msgstr "Breedte x Hoogte"
+msgstr "Automatische hoogte"
 
 #: gschem/src/x/x_pagesel.c:54
 msgid "Enable or disable Page Select dialog auto height"
