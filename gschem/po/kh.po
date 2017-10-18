@@ -2243,10 +2243,10 @@ msgstr "n vottho:"
 msgid "Select a color for the selected objects."
 msgstr "chreusa n samreab kar chreusa vottho muoy."
 
+# Set preloaded reference designators
 #: gschem/src/x/x_edit_cprop.c:75
-#, fuzzy
 msgid "Set preloaded reference designators."
-msgstr "theato samreab chhmoh anaknipon"
+msgstr "kamnt ubakar yong sechaktei yong del ban phtok cheamoun."
 
 #: gschem/src/x/x_edit_cprop.c:76
 msgid "Standard"
@@ -2256,10 +2256,10 @@ msgstr ""
 msgid "Use standard designations"
 msgstr ""
 
+# Simulation type
 #: gschem/src/x/x_edit_cprop.c:77
-#, fuzzy
 msgid "Spice"
-msgstr "braphet kleng:"
+msgstr "braphet klengoklay"
 
 #: gschem/src/x/x_edit_cprop.c:77
 msgid "Use designations for SPICE"
@@ -2846,8 +2846,8 @@ msgstr "kar bet rongochakr roubtamnang\n"
 msgid "Initializing icon factory\n"
 msgstr "chabphdaem rongochakr roubtamnang\n"
 
+# Extents
 #: gschem/src/x/x_image.c:67
-#, fuzzy
 msgid "     Extents"
 msgstr "visaealpheap"
 
@@ -2859,22 +2859,20 @@ msgstr ""
 msgid "   Use Color"
 msgstr ""
 
-# Enable/Disable view pans automatically
+# Enable or disable color imaging
 #: gschem/src/x/x_image.c:68
-#, fuzzy
 msgid "Enable or disable color imaging"
-msgstr "baek/bet tidthpheap khteah daoy svyobravotte"
+msgstr "baek damnaerkar ryy bet kar thatroub pnr"
 
+# Invert Image
 #: gschem/src/x/x_image.c:69
-#, fuzzy
 msgid "Invert Image"
-msgstr "sarser roubpheap"
+msgstr "banhchrasa roubpheap"
 
-# Enable the expanded preview
+# Enable to generate an inverted images
 #: gschem/src/x/x_image.c:69
-#, fuzzy
 msgid "Enable to generate an inverted images"
-msgstr "anounhnhat aoy mean karopongrik kar meul cheamoun"
+msgstr "anounhnhat aoy bangkeut roubpheap banhchras"
 
 # Click to select size of the image to be created
 #: gschem/src/x/x_image.c:115
@@ -3585,24 +3583,24 @@ msgstr "kounalokkhan"
 msgid "attribute"
 msgstr "kounalokkhan"
 
+# Automatic Height
 #: gschem/src/x/x_pagesel.c:54
-#, fuzzy
 msgid "Auto Height"
-msgstr "ttung * kamposa"
+msgstr "kamposa daoy svyobravotte"
 
+# Enable or disable Page Select dialog auto height
 #: gschem/src/x/x_pagesel.c:54
-#, fuzzy
 msgid "Enable or disable Page Select dialog auto height"
-msgstr "baek ryy bet pheap meulkheunh nei kounalokkhan"
+msgstr "baek ryy bet braab kamposa braab chreusareusa tompr"
 
 #: gschem/src/x/x_pagesel.c:55
 msgid "full names"
 msgstr ""
 
+# Enable or disable displaying of paths in file names
 #: gschem/src/x/x_pagesel.c:55
-#, fuzzy
 msgid "Enable or disable displaying of paths in file names"
-msgstr "baek ryy bet pheap meulkheunh nei kounalokkhan"
+msgstr "Enable or disable displaying of paths in file names"
 
 #: gschem/src/x/x_pagesel.c:592
 msgid "Move Up"
