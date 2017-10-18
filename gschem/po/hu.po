@@ -2131,9 +2131,8 @@ msgid "Use standard designations"
 msgstr ""
 
 #: gschem/src/x/x_edit_cprop.c:77
-#, fuzzy
 msgid "Spice"
-msgstr "Kitöltés típusa:"
+msgstr "Szimulációs típus"
 
 #: gschem/src/x/x_edit_cprop.c:77
 msgid "Use designations for SPICE"
@@ -2683,10 +2682,10 @@ msgstr ""
 msgid "Initializing icon factory\n"
 msgstr ""
 
+# Extents
 #: gschem/src/x/x_image.c:67
-#, fuzzy
 msgid "     Extents"
-msgstr "Teljes rajz"
+msgstr "Terjedelem"
 
 #: gschem/src/x/x_image.c:67
 msgid "Generate image from schematic Extents or the currently displayed view"
@@ -2700,10 +2699,10 @@ msgstr ""
 msgid "Enable or disable color imaging"
 msgstr ""
 
+# Invert Image
 #: gschem/src/x/x_image.c:69
-#, fuzzy
 msgid "Invert Image"
-msgstr "Képfájl írása"
+msgstr "Invert kép"
 
 #: gschem/src/x/x_image.c:69
 msgid "Enable to generate an inverted images"
@@ -3387,9 +3386,8 @@ msgid "attribute"
 msgstr "Attribútumok"
 
 #: gschem/src/x/x_pagesel.c:54
-#, fuzzy
 msgid "Auto Height"
-msgstr "szélesség x magasság"
+msgstr "Automatikus magasság"
 
 #: gschem/src/x/x_pagesel.c:54
 msgid "Enable or disable Page Select dialog auto height"
