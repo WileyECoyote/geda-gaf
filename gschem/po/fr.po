@@ -2163,10 +2163,10 @@ msgstr "Couleur de l'objet:"
 msgid "Select a color for the selected objects."
 msgstr "Sélectionner une couleur pour les objets sélectionnés."
 
+# Set preloaded reference designators
 #: gschem/src/x/x_edit_cprop.c:75
-#, fuzzy
 msgid "Set preloaded reference designators."
-msgstr "Montrer les attributs hérités"
+msgstr "Définir des indicateurs de référence préchargés."
 
 #: gschem/src/x/x_edit_cprop.c:76
 msgid "Standard"
@@ -2177,9 +2177,8 @@ msgid "Use standard designations"
 msgstr ""
 
 #: gschem/src/x/x_edit_cprop.c:77
-#, fuzzy
 msgid "Spice"
-msgstr "Type de remplissage:"
+msgstr "Simulation"
 
 #: gschem/src/x/x_edit_cprop.c:77
 msgid "Use designations for SPICE"
@@ -2738,10 +2737,10 @@ msgstr "Fermeture usine icône\n"
 msgid "Initializing icon factory\n"
 msgstr "Initialisation icône usine\n"
 
+# Periphery
 #: gschem/src/x/x_image.c:67
-#, fuzzy
 msgid "     Extents"
-msgstr "Agrandissement auto"
+msgstr "Périphérie"
 
 #: gschem/src/x/x_image.c:67
 msgid "Generate image from schematic Extents or the currently displayed view"
@@ -2751,21 +2750,20 @@ msgstr ""
 msgid "   Use Color"
 msgstr ""
 
+# Enable or disable color imaging
 #: gschem/src/x/x_image.c:68
-#, fuzzy
 msgid "Enable or disable color imaging"
-msgstr "Activer/désactiver le panoramique automatique"
+msgstr "Activer ou désactiver l'imagerie couleur"
 
+ Invert Image
 #: gschem/src/x/x_image.c:69
-#, fuzzy
 msgid "Invert Image"
-msgstr "Tracer l'image"
+msgstr "Inverser l'image"
 
-# Enable to enlarge the preview
+# Enable to generate an inverted images
 #: gschem/src/x/x_image.c:69
-#, fuzzy
 msgid "Enable to generate an inverted images"
-msgstr "Activer l'aperçu agrandi"
+msgstr "Activer pour générer des images inversées"
 
 # Click to select size of the image to be created
 #: gschem/src/x/x_image.c:115
@@ -3448,9 +3446,8 @@ msgid "attribute"
 msgstr "Attributs"
 
 #: gschem/src/x/x_pagesel.c:54
-#, fuzzy
 msgid "Auto Height"
-msgstr "Largeur x Hauteur"
+msgstr "Hauteur automatique"
 
 #: gschem/src/x/x_pagesel.c:54
 msgid "Enable or disable Page Select dialog auto height"
