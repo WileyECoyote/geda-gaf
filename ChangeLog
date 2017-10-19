@@ -6,6 +6,9 @@
     * bitmaps/svg/geda_grid_dot.svg: Eliminate text in svg because there is no
       text in the image.
 
+    * bitmaps/svg/geda_grid_mesh.svg: Eliminate text in svg because there is no
+      text in the image.
+
     * bitmaps/svg/geda-save-image.svg: Remove extraneous bloat, update id.
 
     * bitmaps/svg/gschem_project_close.svg: Remove extraneous bloat and unused

@@ -69,8 +69,6 @@
   </linearGradient>
  </defs>
  <g id="layer2" transform="translate(0,-1053)">
-  <text id="text3258" x="1275" y="640.10712" fill="#000000" font-family="Webdings" font-size="12px" style="line-height:100%" xml:space="preserve"><tspan id="tspan3260" x="1275" y="640.10712"/></text>
-  <text id="text3640" transform="scale(1.5999 .62502)" x="3.7065852" y="1705.4883" fill="#464646" font-family="Trebuchet MS" font-size="1.9072px" style="line-height:100%" xml:space="preserve"><tspan id="tspan3642" x="3.7065852" y="1705.4883" fill="#464646" font-style="italic">FLAT</tspan></text>
   <g id="geda-grid-mesh" transform="matrix(1.0014 0 0 1.1467 -.0027566 -164.61)">
    <path id="path3372" d="m33.352 1167.3c0 2.554 14.025 5.5604 31.306 5.5604 17.281 0 31.306-3.0064 31.306-5.5604v-2.8114h-60.221 0.0359l-2.4263-0.3193v3.1307z" fill="url(#linearGradient3305)" fill-rule="evenodd"/>
    <path id="path3370" d="m97.148 1163.5c0 4.2342-14.556 9.2185-32.49 9.2185-17.935 0-32.49-4.9843-32.49-9.2185s14.556-6.1229 32.49-6.1229c17.935 0 32.49 1.8887 32.49 6.1229z" fill="url(#linearGradient3302)" fill-rule="evenodd"/>
