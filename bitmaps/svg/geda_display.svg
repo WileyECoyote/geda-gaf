@@ -80,7 +80,6 @@
    <stop id="stop3348" stop-color="#141414" offset="1"/>
   </radialGradient>
  </defs>
- <text id="text3258" transform="scale(.87045 1.1488)" x="1464.7524" y="-491.53387" fill="#000000" font-family="Webdings" font-size="13.786px" style="line-height:100%" line-height="100%" xml:space="preserve"><tspan id="tspan3260" x="1464.7524" y="-491.53387"/></text>
  <g id="g3138" transform="matrix(.10147 0 0 .11328 -4.9001 -4.3089)">
   <g id="g3780" transform="translate(-.13736 .11239)">
    <path id="path3372" d="m373.36 1100.7c0 25.71 139.52 55.974 311.43 55.974s311.43-30.264 311.43-55.974v-28.301h-599.07 0.35714l-24.137-3.2143v31.516z" fill="url(#linearGradient3210)" fill-rule="evenodd"/>
@@ -151,6 +150,5 @@
   <path id="path3632" transform="matrix(1.3571,0,0,1.3571,-214.77,-302.7)" d="m662.23 847.88c0 0.69036-0.55965 1.25-1.25 1.25-0.69036 0-1.25-0.55964-1.25-1.25s0.55964-1.25 1.25-1.25c0.69035 0 1.25 0.55964 1.25 1.25z" fill="#d6d6d7" fill-rule="evenodd"/>
   <path id="path3636" transform="matrix(1.0714 0 0 .84414 -17.797 132.54)" d="m662.23 847.88c0 0.69036-0.55965 1.25-1.25 1.25-0.69036 0-1.25-0.55964-1.25-1.25s0.55964-1.25 1.25-1.25c0.69035 0 1.25 0.55964 1.25 1.25z" fill="#d6d6d7" fill-rule="evenodd"/>
   <path id="path3638" d="m690.49 847.72c1.3542 0.3429 2.2173-0.0543 3.3036-0.8035-0.28256 1.6624-2.1802 2.6561-3.3259 2.3884l0.0223-1.5849z" fill="#d6d6d7" fill-rule="evenodd"/>
-  <text id="text3640" transform="scale(1.5905 .62874)" x="63.150967" y="128.44087" fill="#464646" font-family="Trebuchet MS" font-size="19.086px" style="line-height:100%" line-height="100%" xml:space="preserve"><tspan id="tspan3642" x="63.150967" y="128.44087" fill="#464646" font-style="italic">FLAT</tspan></text>
  </g>
 </svg>

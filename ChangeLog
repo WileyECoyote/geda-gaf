@@ -1,5 +1,8 @@
 2017-10-19 Wiley E. Hill <wileyhill@gmail.com>
 
+    * bitmaps/svg/geda_display.svg: Eliminate two text blocks in svg because
+      there is no text in the image.
+
     * bitmaps/svg/geda_find_attribute_64x64.svg: Remove extraneous bloat and
       old invisible text. Update id and font attributes.
 
