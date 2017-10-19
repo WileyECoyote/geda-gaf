@@ -102,6 +102,7 @@ const char *IDS_GEDA_ICONS[] = {  /* Menu Icons Strings */
   NULL
 };
 
+/* These have png file extension */
 const char *IDS_GSCHEM_ICONS[] = {
   "gschem-array",            "gschem-bus",              "gschem-comp",
   "gschem-invert",           "gschem-net",
@@ -111,7 +112,8 @@ const char *IDS_GSCHEM_ICONS[] = {
   NULL
 };
 
-const char *IDS_GSCHEM_XCONS[] = { /* These have xpm file extension */
+/* These have xpm file extension */
+const char *IDS_GSCHEM_XCONS[] = {
   "gschem_copy",             "gschem_delete",         "gschem_edit",
   "gschem_mirror",           "gschem_move",           "gschem_new",
   "gschem_open",             "gschem_redo",           "gschem_rotate",
