@@ -1,6 +1,9 @@
 2017-10-19 Wiley E. Hill <wileyhill@gmail.com>
 
-    * bitmaps/svg/geda-save-image.svg: Remove extraneous bloat.
+    * bitmaps/svg/geda-save-image.svg: Remove extraneous bloat, update id.
+
+    * bitmaps/svg/gschem_project_close.svg: Remove extraneous bloat and unused
+      gradient. Update id and font attributes.
 
 2017-10-15 Wiley E. Hill <wileyhill@gmail.com>
 
