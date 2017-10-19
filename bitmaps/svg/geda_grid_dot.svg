@@ -72,8 +72,6 @@
   </linearGradient>
  </defs>
  <g id="layer2" transform="translate(0,-1053)">
-  <text id="text3258" x="1275" y="640.10712" fill="#000000" font-family="Webdings" font-size="12px" style="line-height:100%" xml:space="preserve"><tspan id="tspan3260" x="1275" y="640.10712"/></text>
-  <text id="text3640" transform="scale(1.6367 .61097)" x="3.7004597" y="1742.4254" fill="#464646" font-family="Trebuchet MS" font-size="1.8535px" style="line-height:100%" xml:space="preserve"><tspan id="tspan3642" x="3.7004597" y="1742.4254" fill="#464646" font-style="italic">FLAT</tspan></text>
   <g id="geda-grid-dot" transform="matrix(1.0073 0 0 1.2122 -.41508 -233.59)">
    <g id="g4300" fill-rule="evenodd">
     <path id="path3372" d="m33.318 1160.8c0 2.4261 13.943 5.2821 31.123 5.2821 17.18 0 31.123-2.856 31.123-5.2821v-2.6708h-59.869 0.03569l-2.4121-0.3033v2.9741z" fill="url(#linearGradient4248)"/>
