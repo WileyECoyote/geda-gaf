@@ -6,11 +6,10 @@
    width="48px"
    height="48px"
    version="1.1"
-   sodipodi:docname="geda-save-image.svg"
    inkscape:export-filename="../geda-save-image.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90"
-   id="svg516"
+   id="geda-save-image"
    inkscape:version="0.48.3.1 r9886">
   <defs
      id="defs3001">
@@ -52,25 +51,6 @@
        r="4"
        gradientTransform="matrix(0.78571431,0,0,0.82608693,1.5714283,1.6428998)" />
   </defs>
-  <sodipodi:namedview
-     id="base"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="0.0"
-     inkscape:pageshadow="2"
-     inkscape:zoom="11.624994"
-     inkscape:cx="23.99998"
-     inkscape:cy="23.999947"
-     inkscape:current-layer="layer1"
-     showgrid="true"
-     inkscape:grid-bbox="true"
-     inkscape:document-units="px"
-     inkscape:window-width="1350"
-     inkscape:window-height="756"
-     inkscape:window-x="202"
-     inkscape:window-y="106"
-     inkscape:window-maximized="0" />
   <g
      id="layer1"
      inkscape:label="Layer 1"
