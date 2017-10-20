@@ -2334,7 +2334,6 @@ msgstr ""
 
 # Spice Type => output Type
 #: gschem/src/x/x_edit_cprop.c:77
-#, fuzzy
 msgid "Spice"
 msgstr "Тип вывода:"
 
@@ -2908,8 +2907,8 @@ msgstr ""
 msgid "Initializing icon factory\n"
 msgstr ""
 
+# Extents => To fit
 #: gschem/src/x/x_image.c:67
-#, fuzzy
 msgid "     Extents"
 msgstr "Уместить"
 
@@ -2925,17 +2924,15 @@ msgstr ""
 msgid "Enable or disable color imaging"
 msgstr ""
 
-# Write Image
+# Invert Image
 #: gschem/src/x/x_image.c:69
-#, fuzzy
 msgid "Invert Image"
-msgstr "Написат изображени"
+msgstr "Инвертировать изображение"
 
-# Enable to enlarge the preview
+# Enable to generate an inverted images
 #: gschem/src/x/x_image.c:69
-#, fuzzy
 msgid "Enable to generate an inverted images"
-msgstr "Включить предварительный просмотр, чтобы увеличить"
+msgstr "Разрешить создание инвертированных изображений"
 
 #: gschem/src/x/x_image.c:115
 msgid "Click to select size of the image to be created"
@@ -3667,10 +3664,10 @@ msgstr "Атрибуты"
 msgid "attribute"
 msgstr "атрибут"
 
+# Auto Height
 #: gschem/src/x/x_pagesel.c:54
-#, fuzzy
 msgid "Auto Height"
-msgstr "Ширина × высота"
+msgstr "Автоматическая высота"
 
 #: gschem/src/x/x_pagesel.c:54
 msgid "Enable or disable Page Select dialog auto height"
