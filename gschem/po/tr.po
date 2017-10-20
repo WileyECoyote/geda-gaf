@@ -2166,11 +2166,10 @@ msgstr ""
 msgid "Select a color for the selected objects."
 msgstr "Seçili nesneler için bir renk seçin."
 
-# Entry for component reference
+# Set preloaded reference designators
 #: gschem/src/x/x_edit_cprop.c:75
-#, fuzzy
 msgid "Set preloaded reference designators."
-msgstr "Bileşen referansı girişi"
+msgstr "Önceden yüklenmiş referans tanımlayıcılarını ayarlama."
 
 #: gschem/src/x/x_edit_cprop.c:76
 msgid "Standard"
@@ -2182,9 +2181,8 @@ msgstr ""
 
 # Simulation Type
 #: gschem/src/x/x_edit_cprop.c:77
-#, fuzzy
 msgid "Spice"
-msgstr "Benzetim Türü:"
+msgstr "Benzetim Türü"
 
 #: gschem/src/x/x_edit_cprop.c:77
 msgid "Use designations for SPICE"
@@ -2274,7 +2272,7 @@ msgstr ""
 # Simulation Type
 #: gschem/src/x/x_edit_cprop.c:1387
 msgid "Spice Type:"
-msgstr "Benzetim Türü:"
+msgstr "Benzetim Türü"
 
 # Model Name
 #: gschem/src/x/x_edit_cprop.c:1398
@@ -2770,11 +2768,10 @@ msgstr ""
 msgid "Initializing icon factory\n"
 msgstr ""
 
-# Auto Zoom Extents
+# Auto Zoom Extents => zoom fit
 #: gschem/src/x/x_image.c:67
-#, fuzzy
 msgid "     Extents"
-msgstr "Otomatik Yakınlaştırma Kapsamları"
+msgstr "Zum Uygun"
 
 #: gschem/src/x/x_image.c:67
 msgid "Generate image from schematic Extents or the currently displayed view"
@@ -2788,17 +2785,15 @@ msgstr ""
 msgid "Enable or disable color imaging"
 msgstr ""
 
-# Write Image
+# Invert Image
 #: gschem/src/x/x_image.c:69
-#, fuzzy
 msgid "Invert Image"
-msgstr "Resim Yaz"
+msgstr "Görüntüyü Ters Çevir"
 
-# Enable to enlarge the preview -> Enable preview to expand
+# Enable to generate an inverted images
 #: gschem/src/x/x_image.c:69
-#, fuzzy
 msgid "Enable to generate an inverted images"
-msgstr "Önizlemeyi büyütmek için etkinleştir"
+msgstr "Ters görüntüler oluşturmak için etkinleştir"
 
 #: gschem/src/x/x_image.c:115
 msgid "Click to select size of the image to be created"
@@ -3511,11 +3506,10 @@ msgstr ""
 msgid "full names"
 msgstr ""
 
-# Enable or disable version control for this component
+# Enable or disable displaying of paths in file names
 #: gschem/src/x/x_pagesel.c:55
-#, fuzzy
 msgid "Enable or disable displaying of paths in file names"
-msgstr "Bu bileşen için sürüm kontrolünü etkinleştirin veya devre dışı bırakın"
+msgstr "Dosya adlarında yolların görüntülenmesini etkinleştirin veya devre dışı bırakın"
 
 # Move Up
 #: gschem/src/x/x_pagesel.c:592
