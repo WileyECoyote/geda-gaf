@@ -2205,9 +2205,8 @@ msgstr ""
 
 # Simulation Type
 #: gschem/src/x/x_edit_cprop.c:77
-#, fuzzy
 msgid "Spice"
-msgstr "模擬類型:"
+msgstr "模擬類型"
 
 #: gschem/src/x/x_edit_cprop.c:77
 msgid "Use designations for SPICE"
@@ -2774,7 +2773,6 @@ msgstr ""
 
 # Extents
 #: gschem/src/x/x_image.c:67
-#, fuzzy
 msgid "     Extents"
 msgstr "最大化"
 
@@ -2786,23 +2784,20 @@ msgstr ""
 msgid "   Use Color"
 msgstr ""
 
-# Enable/Disable Auto Panning
+# Enable or disable color imaging
 #: gschem/src/x/x_image.c:68
-#, fuzzy
 msgid "Enable or disable color imaging"
-msgstr "用/禁用自動搖移"
+msgstr "啟用或禁用彩色成像"
 
-# Write Image
+# Invert Image
 #: gschem/src/x/x_image.c:69
-#, fuzzy
 msgid "Invert Image"
-msgstr "寫圖像"
+msgstr "反轉圖像"
 
-# Enable to enlarge the preview
+# Enable to generate an inverted images
 #: gschem/src/x/x_image.c:69
-#, fuzzy
 msgid "Enable to generate an inverted images"
-msgstr "啟用以放大預覽"
+msgstr "啟用生成反轉圖像"
 
 #: gschem/src/x/x_image.c:115
 msgid "Click to select size of the image to be created"
@@ -3526,10 +3521,10 @@ msgstr "屬性"
 msgid "attribute"
 msgstr "屬性"
 
+# Automatic Height
 #: gschem/src/x/x_pagesel.c:54
-#, fuzzy
 msgid "Auto Height"
-msgstr "寬度 x 高度"
+msgstr "自動高度"
 
 #: gschem/src/x/x_pagesel.c:54
 msgid "Enable or disable Page Select dialog auto height"
