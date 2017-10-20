@@ -2752,7 +2752,6 @@ msgid "Initializing icon factory\n"
 msgstr ""
 
 #: gschem/src/x/x_image.c:67
-#, fuzzy
 msgid "     Extents"
 msgstr "obsegi"
 
@@ -2768,17 +2767,15 @@ msgstr ""
 msgid "Enable or disable color imaging"
 msgstr ""
 
-# Write Image
+# Invert Image
 #: gschem/src/x/x_image.c:69
-#, fuzzy
 msgid "Invert Image"
-msgstr "Napišite sliko"
+msgstr "Obrni sliko"
 
-# Enable to enlarge the preview
+# Enable to generate an inverted images
 #: gschem/src/x/x_image.c:69
-#, fuzzy
 msgid "Enable to generate an inverted images"
-msgstr "Omogoči za povečavo predogled"
+msgstr "Omogoči ustvarjanje obrnjenih slik"
 
 #: gschem/src/x/x_image.c:115
 msgid "Click to select size of the image to be created"
@@ -3471,7 +3468,7 @@ msgstr ""
 
 #: gschem/src/x/x_pagesel.c:54
 msgid "Auto Height"
-msgstr ""
+msgstr "Samodejna višina"
 
 #: gschem/src/x/x_pagesel.c:54
 msgid "Enable or disable Page Select dialog auto height"
