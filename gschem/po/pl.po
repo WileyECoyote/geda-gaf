@@ -2241,11 +2241,10 @@ msgstr "Kolor obiektu:"
 msgid "Select a color for the selected objects."
 msgstr "Wybierz kolor dla wybranych obiektów."
 
-# Entry for reference designator
+# Set preloaded reference designators
 #: gschem/src/x/x_edit_cprop.c:75
-#, fuzzy
 msgid "Set preloaded reference designators."
-msgstr "Wejście dla desygnatora referencyjnej"
+msgstr "Ustaw wstępnie oznaczone symbole"
 
 #: gschem/src/x/x_edit_cprop.c:76
 msgid "Standard"
@@ -2257,9 +2256,8 @@ msgstr ""
 
 # Spice Type => Simulation Type
 #: gschem/src/x/x_edit_cprop.c:77
-#, fuzzy
 msgid "Spice"
-msgstr "Symulacja Rodzaj:"
+msgstr "Symulacja Rodzaj"
 
 #: gschem/src/x/x_edit_cprop.c:77
 msgid "Use designations for SPICE"
@@ -2837,7 +2835,6 @@ msgstr ""
 
 # Extents
 #: gschem/src/x/x_image.c:67
-#, fuzzy
 msgid "     Extents"
 msgstr "Stopniu"
 
@@ -2849,23 +2846,20 @@ msgstr ""
 msgid "   Use Color"
 msgstr ""
 
-# Enable / disable the automatic panning
+# Enable or disable color imaging
 #: gschem/src/x/x_image.c:68
-#, fuzzy
 msgid "Enable or disable color imaging"
-msgstr "Włączanie/wyłączanie automatycznego panoramowania"
+msgstr "Włączyć lub wyłączyć obraz kolorowy"
 
-# Write Image
+# Invert Image
 #: gschem/src/x/x_image.c:69
-#, fuzzy
 msgid "Invert Image"
-msgstr "zapis obrazu"
+msgstr "Odwróć obraz"
 
-# Enable to enlarge the preview
+# Enable to generate an inverted images
 #: gschem/src/x/x_image.c:69
-#, fuzzy
 msgid "Enable to generate an inverted images"
-msgstr "Włącz, aby powiększyć podgląd"
+msgstr "Umożliwia generowanie odwróconych obrazów"
 
 #: gschem/src/x/x_image.c:115
 msgid "Click to select size of the image to be created"
@@ -3596,9 +3590,8 @@ msgid "attribute"
 msgstr "Atrybut"
 
 #: gschem/src/x/x_pagesel.c:54
-#, fuzzy
 msgid "Auto Height"
-msgstr "Szerokość x Wysokość"
+msgstr "Automatyczna wysokość"
 
 #: gschem/src/x/x_pagesel.c:54
 msgid "Enable or disable Page Select dialog auto height"
