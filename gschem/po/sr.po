@@ -2867,7 +2867,6 @@ msgid "Initializing icon factory\n"
 msgstr ""
 
 #: gschem/src/x/x_image.c:67
-#, fuzzy
 msgid "     Extents"
 msgstr "Зоом ектентс"
 
@@ -2883,17 +2882,15 @@ msgstr ""
 msgid "Enable or disable color imaging"
 msgstr ""
 
-# Write Image
+# Invert Image
 #: gschem/src/x/x_image.c:69
-#, fuzzy
 msgid "Invert Image"
-msgstr "Напиши Слика"
+msgstr "Инверт Имаге"
 
-# Enable to enlarge the preview
+# Enable to generate an inverted images
 #: gschem/src/x/x_image.c:69
-#, fuzzy
 msgid "Enable to generate an inverted images"
-msgstr "Омогућите за увећање преглед"
+msgstr "Омогућите генерирање обрнутих слика"
 
 #: gschem/src/x/x_image.c:115
 msgid "Click to select size of the image to be created"
