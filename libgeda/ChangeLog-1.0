@@ -1,3 +1,8 @@
+2017-10-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/utility/u_string.c: Revert back to conventional function
+      wrapping.
+
 2017-10-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_object.c: Add template Doxygen comment blocks, add function
