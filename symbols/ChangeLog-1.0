@@ -1,5 +1,8 @@
 2017-10-23 Wiley E. Hill <wileyhill@gmail.com>
 
+    * analogdevices/ADM483-1.sym: Add symbol; low-power slew-rat-limited
+      RS-485/RS422 transceiver.
+
     * maxim/MAX488-1.sym: Update attributes.
 
 2017-10-22 Wiley E. Hill <wileyhill@gmail.com>
