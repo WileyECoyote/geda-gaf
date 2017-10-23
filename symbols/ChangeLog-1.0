@@ -1,3 +1,7 @@
+2017-10-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * logic/74/74125-1.sym: Update attribute locations and visibility.
+
 2017-10-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/comparators/: Add value, set device=COMPARATOR, downgrade
