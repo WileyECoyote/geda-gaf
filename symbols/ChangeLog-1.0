@@ -7,6 +7,8 @@
 
     * serial/FT2232C-1.sym: Add symbol; usb to uart.
 
+    * ti/AMC1100-1.sym: Add symbol; fully-differential isolation amplifier.
+
 2017-10-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * logic/74/7404-[1,2,3].sym: Update description attributes:
