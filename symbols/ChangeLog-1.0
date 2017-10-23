@@ -1,5 +1,11 @@
 2017-10-22 Wiley E. Hill <wileyhill@gmail.com>
 
+    * logic/74/7404-[1,2,3].sym: Update description attributes:
+
+            * logic/74/7404-1.sym
+            * logic/74/7404-2.sym
+            * logic/74/7404-3.sym
+
     * logic/74/74125-1.sym: Update attribute locations and visibility.
 
 2017-10-16 Wiley E. Hill <wileyhill@gmail.com>

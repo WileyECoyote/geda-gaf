@@ -51,7 +51,7 @@ refdes=U?
 T 300 1300 9 10 0 1 0 0 1
 footprint=DIP14
 T 300 1500 5 10 0 1 0 0 1
-description=6 NOT gates
+description=Hex Inverter
 T 300 3100 5 10 0 0 0 0 1
 net=VCC:14
 T 300 3300 5 10 0 0 0 0 1
