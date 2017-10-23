@@ -5563,7 +5563,7 @@ static void gtk_sheet_draw_flashing_range(GtkSheet *sheet, GtkSheetRange range)
 
 static int gtk_sheet_range_isvisible(GtkSheet *sheet, GtkSheetRange range)
 {
-  g_return_val_if_fail(sheet != NULL, FALSE);
+  g_return_val_if_fail(GTK_IS_SHEET(sheet), FALSE);
 
   if (range.row0 > MAX_VIEW_ROW(sheet))
     return (FALSE);
@@ -9523,7 +9523,7 @@ void gtk_sheet_select_range(GtkSheet *sheet, const GtkSheetRange *range)
     GtkSheetRange new_range;  /* buffer needed because
                                  gtk_sheet_real_unselect_range() will clear it */
 
-    g_return_if_fail(sheet != NULL);
+    g_return_if_fail(GTK_IS_SHEET(sheet));
 
     if (!range)
       range = &sheet->range;

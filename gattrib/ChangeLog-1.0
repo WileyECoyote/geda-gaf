@@ -1,6 +1,8 @@
 2017-10-22 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/gtksheet/gtksheet.c: Remove some redundant validations.
+    * src/gtksheet/gtksheet.c: Remove some redundant validations and revise
+      validations in gtk_sheet_range_isvisible and gtk_sheet_select_range to
+      verify that sheet is a GTK_SHEET object.
 
 2017-10-15 Wiley E. Hill <wileyhill@gmail.com>
 
