@@ -5,6 +5,8 @@
 
     * maxim/MAX488-1.sym: Update attributes.
 
+    * serial/FT2232C-1.sym: Add symbol; usb to uart.
+
 2017-10-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * logic/74/7404-[1,2,3].sym: Update description attributes:
