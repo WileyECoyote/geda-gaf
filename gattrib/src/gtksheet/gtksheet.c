@@ -4122,7 +4122,6 @@ GtkSheetVerticalJustification gtk_sheet_get_vjustification(GtkSheet *sheet)
     */
 void gtk_sheet_set_locked(GtkSheet *sheet, int locked)
 {
-    g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
     sheet->locked = locked;
@@ -4139,7 +4138,6 @@ void gtk_sheet_set_locked(GtkSheet *sheet, int locked)
  */
 int gtk_sheet_locked(GtkSheet *sheet)
 {
-    g_return_val_if_fail(sheet != NULL, FALSE);
     g_return_val_if_fail(GTK_IS_SHEET(sheet), FALSE);
 
     return (sheet->locked);
@@ -4160,7 +4158,6 @@ void gtk_sheet_set_title(GtkSheet *sheet, const char *title)
 {
 //    GtkWidget *label;
 
-    g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
     if (sheet->title) {
@@ -4539,7 +4536,6 @@ void gtk_sheet_set_row_title(GtkSheet *sheet,
     int row,
     const char *title)
 {
-    g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
     if (sheet->row[row].name)
@@ -4580,7 +4576,6 @@ void gtk_sheet_row_button_add_label(GtkSheet *sheet, int row, const char *label)
     GtkRequisition req;
     int aux_c, aux_r;
 
-    g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
     if (row < 0 || row > sheet->maxrow)
@@ -4645,7 +4640,6 @@ const char *gtk_sheet_row_button_get_label(GtkSheet *sheet, int row)
 void
 gtk_sheet_row_label_set_visibility(GtkSheet *sheet, int row, int visible)
 {
-    g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
     if (row < 0 || row > sheet->maxrow)
@@ -4673,7 +4667,6 @@ void gtk_sheet_rows_labels_set_visibility(GtkSheet *sheet, int visible)
 {
     int i;
 
-    g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
     for (i = 0; i <= sheet->maxrow; i++) gtk_sheet_row_label_set_visibility(sheet, i, visible);
@@ -4694,7 +4687,6 @@ void gtk_sheet_row_button_justify(GtkSheet *sheet, int row,
 {
     GtkSheetButton *button;
 
-    g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
     if (row < 0 || row > sheet->maxrow)
@@ -4734,7 +4726,6 @@ void gtk_sheet_moveto(GtkSheet *sheet, int row, int col, int row_align, int col_
 
     unsigned int width, height;
 
-    g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
     g_return_if_fail(sheet->hadjustment != NULL);
     g_return_if_fail(sheet->vadjustment != NULL);
@@ -6558,8 +6549,6 @@ _cell_draw_background(GtkSheet *sheet, int row, int col)
     GdkGC *bg_gc;
     GdkRectangle area;
 
-    g_return_if_fail(sheet != NULL);
-
     /* bail now if we arn't drawable yet */
     if (!gtk_widget_is_drawable((GtkWidget*)sheet))
 	return;
@@ -6639,8 +6628,6 @@ _cell_draw_border(GtkSheet *sheet, int row, int col, int mask)
     //GdkGC * fg_gc, *bg_gc;
     GdkRectangle area;
     unsigned int width;
-
-    g_return_if_fail(sheet != NULL);
 
     /* bail now if we arn't drawable yet */
     if (!gtk_widget_is_drawable((GtkWidget*)sheet))
@@ -6726,7 +6713,7 @@ static void _cell_draw_label(GtkSheet *sheet, int row, int col)
   GdkRectangle      area, clip_area;
   GtkSheetVerticalJustification vjust;
 
-  g_return_if_fail(sheet != NULL);
+  //g_return_if_fail(sheet != NULL);
 
   /* bail now if we aren't drawable yet */
   if (!gtk_widget_is_drawable((GtkWidget*)sheet))
@@ -9021,7 +9008,7 @@ static void gtk_sheet_new_selection(GtkSheet *sheet, GtkSheetRange *range)
     int x, y, width, height;
     GtkSheetRange new_range, aux_range;
 
-    g_return_if_fail(sheet != NULL);
+    //g_return_if_fail(sheet != NULL);
 
     if (range == NULL)
 	range = &sheet->range;
@@ -9464,7 +9451,7 @@ static void gtk_sheet_real_select_range(GtkSheet *sheet, GtkSheetRange *range)
     int i;
     int state;
 
-    g_return_if_fail(sheet != NULL);
+    //g_return_if_fail(sheet != NULL);
 
     if (range == NULL)
 	range = &sheet->range;
@@ -9594,7 +9581,7 @@ static void gtk_sheet_real_unselect_range(GtkSheet *sheet, GtkSheetRange *range)
 {
     int i;
 
-    g_return_if_fail(sheet != NULL);
+    //g_return_if_fail(sheet != NULL);
 
     if (!gtk_widget_get_realized((GtkWidget*)sheet))
       return;
@@ -12434,7 +12421,6 @@ char *gtk_sheet_get_entry_text(GtkSheet *sheet)
     char *text = NULL;
     GtkWidget *entry = NULL;
 
-    g_return_val_if_fail(sheet != NULL, NULL);
     g_return_val_if_fail(GTK_IS_SHEET(sheet), NULL);
 
     if (!sheet->sheet_entry)   /* PR#102114 */
@@ -12609,7 +12595,6 @@ gulong gtk_sheet_entry_signal_connect_changed(GtkSheet *sheet, GCallback handler
     GtkWidget *entry = NULL;
     gulong handler_id = 0;
 
-    g_return_val_if_fail(sheet != NULL, handler_id);
     g_return_val_if_fail(GTK_IS_SHEET(sheet), handler_id);
 
     if (!sheet->sheet_entry)   /* PR#102114 */
@@ -13618,7 +13603,6 @@ void gtk_sheet_set_row_height(GtkSheet *sheet, int row, unsigned int height)
 {
     unsigned int min_height;
 
-    g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
     if (row < 0 || row > sheet->maxrow)
@@ -13652,8 +13636,6 @@ void gtk_sheet_set_row_height(GtkSheet *sheet, int row, unsigned int height)
  */
 void gtk_sheet_add_column(GtkSheet *sheet, unsigned int ncols)
 {
-
-    g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
     AddColumns(sheet, sheet->maxcol + 1, ncols);
@@ -13678,7 +13660,6 @@ void gtk_sheet_add_column(GtkSheet *sheet, unsigned int ncols)
  */
 void gtk_sheet_add_row(GtkSheet *sheet, unsigned int nrows)
 {
-    g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
     AddRows(sheet, sheet->maxrow + 1, nrows);
@@ -13707,7 +13688,6 @@ void gtk_sheet_insert_rows(GtkSheet *sheet, unsigned int row, unsigned int nrows
     GList *children;
     GtkSheetChild *child;
 
-    g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
     gtk_sheet_real_unselect_range(sheet, NULL);
@@ -13749,7 +13729,6 @@ void gtk_sheet_insert_columns(GtkSheet *sheet, unsigned int col, unsigned int nc
     GList *children;
     GtkSheetChild *child;
 
-    g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
     gtk_sheet_real_unselect_range(sheet, NULL);
@@ -13791,7 +13770,6 @@ void gtk_sheet_delete_rows(GtkSheet *sheet, unsigned int row, unsigned int nrows
   GList *children;
   int    act_row; //, act_col;
 
-  g_return_if_fail(sheet != NULL);
   g_return_if_fail(GTK_IS_SHEET(sheet));
 
   nrows = MIN(nrows, sheet->maxrow - row + 1);
@@ -13863,7 +13841,6 @@ void gtk_sheet_delete_columns(GtkSheet *sheet, unsigned int col, unsigned int nc
 {
     GList *children;
 
-    g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
     ncols = MIN(ncols, sheet->maxcol - col + 1);
@@ -13931,7 +13908,6 @@ void gtk_sheet_range_set_background(GtkSheet *sheet,
   int i, j;
   GtkSheetRange range;
 
-  g_return_if_fail(sheet != NULL);
   g_return_if_fail(GTK_IS_SHEET(sheet));
 
   if (!urange)
@@ -13982,7 +13958,6 @@ void gtk_sheet_range_set_foreground(GtkSheet            *sheet,
     int i, j;
     GtkSheetRange range;
 
-    g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
     if (!urange)
@@ -14030,7 +14005,6 @@ void gtk_sheet_range_set_justification(GtkSheet            *sheet,
     int i, j;
     GtkSheetRange range;
 
-    g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
     if (!urange)
@@ -14070,7 +14044,6 @@ void gtk_sheet_range_set_editable(GtkSheet *sheet, const GtkSheetRange *urange, 
     int i, j;
     GtkSheetRange range;
 
-    g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
     if (!urange)
@@ -14106,7 +14079,6 @@ void gtk_sheet_range_set_visible(GtkSheet *sheet, const GtkSheetRange *urange, i
     int i, j;
     GtkSheetRange range;
 
-    g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
     if (!urange)
@@ -14145,7 +14117,6 @@ void gtk_sheet_range_set_border(GtkSheet *sheet, const GtkSheetRange *urange,
     int i, j;
     GtkSheetRange range;
 
-    g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
     if (!urange)
@@ -14192,7 +14163,6 @@ void gtk_sheet_range_set_border_color(GtkSheet            *sheet,
     int i, j;
     GtkSheetRange range;
 
-    g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
     if (!urange)
@@ -14233,7 +14203,6 @@ void gtk_sheet_range_set_font(GtkSheet             *sheet,
   PangoContext *context;
   PangoFontMetrics *metrics;
 
-  g_return_if_fail(sheet != NULL);
   g_return_if_fail(GTK_IS_SHEET(sheet));
 
   if (!urange)
@@ -14313,7 +14282,6 @@ int gtk_sheet_get_attributes(GtkSheet *sheet,
 {
     GtkSheetCell *cell;
 
-    g_return_val_if_fail(sheet != NULL, FALSE);
     g_return_val_if_fail(GTK_IS_SHEET(sheet), FALSE);
 
     if ((row < 0 || row > sheet->maxrow) || (col < 0 || col > sheet->maxcol))
@@ -14810,7 +14778,6 @@ static void CheckCellData(GtkSheet *sheet, const int row, const int col)
 {
   GtkSheetCell **cell;
 
-  g_return_if_fail(sheet != NULL);
   g_return_if_fail(GTK_IS_SHEET(sheet));
 
   if (col > sheet->maxcol || row > sheet->maxrow)
@@ -14864,7 +14831,6 @@ GtkSheetChild *gtk_sheet_put(GtkSheet *sheet, GtkWidget *child, int x, int y)
     GtkRequisition child_requisition;
     GtkSheetChild *child_info;
 
-    g_return_val_if_fail(sheet != NULL, NULL);
     g_return_val_if_fail(GTK_IS_SHEET(sheet), NULL);
     g_return_val_if_fail(child != NULL, NULL);
     g_return_val_if_fail(gtk_widget_get_parent(child) == NULL, NULL);
@@ -15000,7 +14966,6 @@ void gtk_sheet_attach(GtkSheet *sheet, GtkWidget *widget, int row,
     GdkRectangle area;
     GtkSheetChild *child = NULL;
 
-    g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
     g_return_if_fail(widget != NULL);
 
@@ -15278,7 +15243,6 @@ void gtk_sheet_move_child(GtkSheet *sheet, GtkWidget *widget, int x, int y)
 {
   GList *children;
 
-  g_return_if_fail(sheet != NULL);
   g_return_if_fail(GTK_IS_SHEET(sheet));
 
   children = sheet->children;
@@ -15654,7 +15618,6 @@ gtk_sheet_get_child_at(GtkSheet *sheet, int row, int col)
 {
     GList *children;
 
-    g_return_val_if_fail(sheet != NULL, NULL);
     g_return_val_if_fail(GTK_IS_SHEET(sheet), NULL);
 
     children = sheet->children;

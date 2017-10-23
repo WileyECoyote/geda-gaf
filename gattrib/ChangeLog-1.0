@@ -1,3 +1,7 @@
+2017-10-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gtksheet/gtksheet.c: Remove some redundant validations.
+
 2017-10-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_menus.c: Call x_menu_fix_gtk_recent_submenu before returning
