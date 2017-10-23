@@ -1,0 +1,127 @@
+v 20060906 2
+T 500 2600 8 10 1 1 0 0 1
+refdes=U?
+T 500 3200 5 10 0 0 0 0 1
+device=DAC6574
+T 500 3000 5 10 1 1 0 0 1
+description=10-bit, Quad, DAC with I2C interface
+T 500 2800 9 10 0 0 0 0 1
+numslots=0
+T 500 2200 9 10 0 1 0 0 1
+footprint=10VSSOP
+T 500 3400 5 10 0 1 0 0 1
+documentation=http://www.ti.com/product/dac6574
+B 500 100 1500 2000 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+
+P 100 1900 500 1900 1 0 0
+{
+T 575 1875 5 10 0 1 0 2 1
+pintype=out
+T 550 1900 9 10 1 1 0 0 1
+pinlabel=VoutA
+T 300 1950 5 10 1 1 0 6 1
+pinnumber=1
+T 300 1950 5 10 0 1 0 6 1
+pinseq=1
+}
+P 100 1500 500 1500 1 0 0
+{
+T 300 1550 5 10 1 1 0 6 1
+pinnumber=2
+T 300 1550 5 10 0 1 0 6 1
+pinseq=2
+T 550 1500 9 10 1 1 0 0 1
+pinlabel=VoutB
+T 575 1475 5 10 0 1 0 2 1
+pintype=out
+}
+P 100 1100 500 1100 1 0 0
+{
+T 300 1150 5 10 1 1 0 6 1
+pinnumber=3
+T 300 1150 5 10 0 1 0 6 1
+pinseq=3
+T 550 1100 9 10 1 1 0 0 1
+pinlabel=GND
+T 575 1075 5 10 0 1 0 2 1
+pintype=pwr
+}
+P 100 700 500 700 1 0 0
+{
+T 300 750 5 10 1 1 0 6 1
+pinnumber=4
+T 300 750 5 10 0 1 0 6 1
+pinseq=4
+T 550 700 9 10 1 1 0 0 1
+pinlabel=VoutC
+T 575 675 5 10 0 1 0 2 1
+pintype=out
+}
+P 100 300 500 300 1 0 0
+{
+T 300 350 5 10 1 1 0 6 1
+pinnumber=5
+T 300 350 5 10 0 1 0 6 1
+pinseq=5
+T 550 300 9 10 1 1 0 0 1
+pinlabel=VoutD
+T 575 275 5 10 0 1 0 2 1
+pintype=out
+}
+P 2400 300 2000 300 1 0 0
+{
+T 2200 350 5 10 1 1 0 0 1
+pinnumber=6
+T 2200 350 5 10 0 1 0 0 1
+pinseq=6
+T 1950 300 9 10 1 1 0 6 1
+pinlabel=SCL
+T 1950 275 5 10 0 1 0 8 1
+pintype=in
+}
+P 2400 700 2000 700 1 0 0
+{
+T 2200 750 5 10 1 1 0 0 1
+pinnumber=7
+T 2200 750 5 10 0 1 0 0 1
+pinseq=7
+T 1950 700 9 10 1 1 0 6 1
+pinlabel=SDA
+T 1950 675 5 10 0 1 0 8 1
+pintype=io
+}
+P 2400 1100 2000 1100 1 0 0
+{
+T 2200 1150 5 10 1 1 0 0 1
+pinnumber=8
+T 2200 1150 5 10 0 1 0 0 1
+pinseq=8
+T 1950 1100 9 10 1 1 0 6 1
+pinlabel=Vdd
+T 1950 1075 5 10 0 1 0 8 1
+pintype=pwr
+}
+P 2400 1500 2000 1500 1 0 0
+{
+T 2200 1550 5 10 1 1 0 0 1
+pinnumber=9
+T 2200 1550 5 10 0 1 0 0 1
+pinseq=9
+T 1950 1500 9 10 1 1 0 6 1
+pinlabel=A0
+T 1950 1475 5 10 0 1 0 8 1
+pintype=in
+}
+P 2400 1900 2000 1900 1 0 0
+{
+T 2100 1950 5 10 1 1 0 0 1
+pinnumber=10
+T 2100 1950 5 10 0 1 0 0 1
+pinseq=10
+T 1950 1900 9 10 1 1 0 6 1
+pinlabel=A1
+T 1950 1875 5 10 0 1 0 8 1
+pintype=in
+}
+T 500 2400 5 10 0 1 0 0 1
+value=DAC6574

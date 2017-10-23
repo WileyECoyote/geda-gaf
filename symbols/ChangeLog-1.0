@@ -9,6 +9,8 @@
 
     * ti/AMC1100-1.sym: Add symbol; fully-differential isolation amplifier.
 
+    * ti/DAC6574.sym: Add symbol; 10-bit, Quad, DAC with I2C interface.
+
 2017-10-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * logic/74/7404-[1,2,3].sym: Update description attributes:
