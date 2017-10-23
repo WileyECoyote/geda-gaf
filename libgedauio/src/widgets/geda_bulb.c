@@ -761,7 +761,7 @@ geda_bulb_class_init(void *class, void *class_data)
    *
    */
   group_changed_signal = g_signal_new ("group-changed",
-                                       G_OBJECT_CLASS_TYPE (object_class),
+                                       GEDA_TYPE_BULB,
                                        G_SIGNAL_RUN_FIRST,
                                        G_STRUCT_OFFSET (GedaBulbClass, group_changed),
                                        NULL, NULL,

@@ -1,3 +1,7 @@
+2017-10-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_bulb.c: Eliminate unneeded G_OBJECT_CLASS_TYPE macro.
+
 2017-10-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_comboboxtext.c: Add documentation/Doxygen comments
