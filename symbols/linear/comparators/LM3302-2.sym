@@ -1,8 +1,12 @@
 v 20150101 2
+T 0 2175 5 10 1 0 0 0 1
+device=LM3302
+T 800 950 8 10 1 1 0 0 1
+refdes=U?
+T 0 2400 5 10 0 1 0 0 1
+description=Quad Differential Comparator
 L 200 800 200 0 3 0 0 0 -1 -1
 L 200 800 800 400 3 0 0 0 -1 -1
-T 800 775 5 10 1 1 0 0 1
-device=LM3302D
 L 800 400 200 0 3 0 0 0 -1 -1
 L 300 250 300 150 3 0 0 0 -1 -1
 L 250 600 350 600 3 0 0 0 -1 -1
@@ -62,14 +66,10 @@ pinlabel=V-
 T 450 125 5 6 0 1 90 6 1
 pintype=pwr
 }
-T 800 950 8 10 1 1 0 0 1
-refdes=U?
-T 0 2200 5 10 0 0 0 0 1
-description=Quad Voltage Comparator
 T 0 2000 5 10 0 0 0 0 1
 numslots=4
-T 0 2600 5 10 0 0 0 0 1
-symversion=0.2
+T 800 100 5 10 0 0 0 0 1
+symversion=0.3
 T 0 995 5 10 0 0 0 0 1
 slot=1
 T 0 1200 5 10 0 1 0 0 1
@@ -80,15 +80,17 @@ T 0 1600 5 10 0 1 0 0 1
 slotdef=3:8,9,3,12,14
 T 0 1800 5 10 0 1 0 0 1
 slotdef=4:11,10,3,12,13
-T 0 2400 5 10 0 0 0 0 1
-documentation=http://www.ti.com/product/lm339
-T 0 3000 5 10 0 0 0 0 1
-use-license=unlimited
-T 0 2800 5 10 0 0 0 0 1
-dist-license=GPLv3
-T 0 3200 5 10 0 0 0 0 1
-author=AutoTron
+T 0 2600 5 10 0 1 0 0 1
+documentation=http://www.ti.com/lit/ds/symlink/lm3302.pdf
+T 800 775 5 10 1 1 0 0 1
+value=LM3302D
 T 800 600 9 10 1 1 0 0 1
 footprint=SOIC14
-T 750 100 5 10 0 0 0 0 1
+T 0 2800 5 10 0 0 0 0 1
 footprints=DIP14
+T 0 3200 5 10 0 0 0 0 1
+dist-license=GPLv2
+T 0 3000 5 10 0 0 0 0 1
+use-license=unlimited
+T 0 3400 5 10 0 0 0 0 1
+author=AutoTron
