@@ -12590,10 +12590,10 @@ void gtk_sheet_entry_select_region(GtkSheet *sheet, int start_pos, int end_pos)
  *
  * Returns: the handler id
  */
-gulong gtk_sheet_entry_signal_connect_changed(GtkSheet *sheet, GCallback handler)
+unsigned long gtk_sheet_entry_signal_connect_changed(GtkSheet *sheet, GCallback handler)
 {
     GtkWidget *entry = NULL;
-    gulong handler_id = 0;
+    unsigned long handler_id = 0;
 
     g_return_val_if_fail(GTK_IS_SHEET(sheet), handler_id);
 
