@@ -9,6 +9,8 @@
     * linear/mcontrol/L293-1.sym: Update footprint and clean attributes; make
       pin labels visible replace text, add description.
 
+    * linear/mcontrol/SLA7024M-1.sym: Add description.
+
 2017-10-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * analogdevices/ADM483-1.sym: Add symbol; low-power slew-rat-limited

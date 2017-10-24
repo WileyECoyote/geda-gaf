@@ -1,4 +1,9 @@
 v 20140330 2
+T 1800 700 5 10 0 0 0 0 1
+device=SLA7024M
+T 1700 4500 8 10 1 1 0 6 1
+refdes=U?
+B 300 100 1400 4300 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 P 0 1800 300 1800 1 0 0
 {
 T 100 1850 5 8 1 1 0 0 1
@@ -21,8 +26,6 @@ pinlabel=GNDb
 T 350 1475 5 8 0 1 0 2 1
 pintype=pwr
 }
-T 300 4440 9 10 1 0 0 0 1
-SLA7024M
 P 1700 4200 2000 4200 1 0 1
 {
 T 1800 4250 5 8 1 1 0 0 1
@@ -67,11 +70,6 @@ pinlabel=OUT\_b\_
 T 1650 3275 5 8 0 1 0 8 1
 pintype=out
 }
-B 300 100 1400 4300 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 1800 700 5 10 0 0 0 0 1
-device=SLA7024M
-T 1700 4500 8 10 1 1 0 6 1
-refdes=U?
 P 0 1200 300 1200 1 0 0
 {
 T 100 1250 5 8 1 1 0 0 1
@@ -204,7 +202,11 @@ pinlabel=IN\_b\_
 T 350 275 5 8 0 1 0 2 1
 pintype=in
 }
+T 300 4440 9 10 1 1 0 0 1
+value=SLA7024M
 T 1800 300 9 10 0 0 0 0 1
 numslots=0
 T 1800 500 9 10 0 0 0 0 1
 footprint=unknown
+T 1800 900 5 10 0 1 0 0 1
+description=HIGH-CURRENT PWM, UNIPOLAR STEPPER DRIVERS
