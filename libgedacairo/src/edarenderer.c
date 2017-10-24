@@ -1802,7 +1802,11 @@ eda_renderer_get_text_user_bounds (EdaRenderer      *renderer,
         }
         else {
           BUG_MSG("Invalid pango_layout");
+          cairo_restore (cr);
         }
+      }
+      else {
+        cairo_restore (cr);
       }
     }
   }

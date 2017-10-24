@@ -2,7 +2,8 @@
 
     * src/edarenderer.c: Revise eda_renderer_calc_text_position to set
       set value once based on angle == 180, rather than assigning and
-      then swapping if angle == 180.
+      then swapping if angle == 180. Revise eda_renderer_get_text_user
+      _bounds to restore the context on failure.
 
 2017-09-10 Wiley E. Hill <wileyhill@gmail.com>
 
