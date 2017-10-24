@@ -1,3 +1,9 @@
+2017-10-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edarenderer.c: Revise eda_renderer_calc_text_position to set
+      set value once based on angle == 180, rather than assigning and
+      then swapping if angle == 180.
+
 2017-09-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/Makefile.am: Add LOCAL_MAN, dist_man_MANS and suffixes .1.in,

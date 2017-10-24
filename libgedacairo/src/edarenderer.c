@@ -958,9 +958,9 @@ eda_renderer_get_font_descent (EdaRenderer *renderer,
     g_hash_table_insert (renderer->priv->metrics_cache, key, metrics);
   }
 
-  return pango_font_metrics_get_descent (metrics);
   descent = pango_font_metrics_get_descent (metrics);
 
+  //pango_font_metrics_unref(metrics);
   return descent ;
 }
 */
@@ -978,10 +978,6 @@ eda_renderer_calc_text_position (EdaRenderer         *renderer,
 
   pango_layout_get_extents (renderer->priv->pl, &inked_rect, &logical_rect);
 
-  x_left   = 0;
-  x_middle = -logical_rect.width / 2.0;
-  x_right  = -logical_rect.width;
-
   /*! \note Ideally, we would just be using font / logical metrics for vertical
    *        alignment, however this way seems to be more backward compatible
    *        with the old gschem rendering.
@@ -990,18 +986,22 @@ eda_renderer_calc_text_position (EdaRenderer         *renderer,
    *        middle and upper alignment is based upon the inked extents of the
    *        entire text block.
    */
-  y_upper  = -inked_rect.y;                      /* Top of inked extents */
-  y_middle = y_upper - inked_rect.height / 2.0;  /* Middle of inked extents */
-  y_lower  = descent - logical_rect.height;      /* Baseline of bottom line */
 
-  /* Special case flips attachment point to opposite corner when
-   * the text is rotated to 180 degrees, since the drawing code
-   * does not rotate the text to be shown upside down.
-   */
+  x_middle = -logical_rect.width / 2.0;
+
   if (object->text->angle == 180) {
-    double temp;
-    temp = y_lower; y_lower = y_upper; y_upper = temp;
-    temp = x_left;  x_left  = x_right; x_right = temp;
+    x_left   = -logical_rect.width;
+    x_right  = 0;
+    y_upper  = descent - logical_rect.height;            /* Baseline of bottom line */
+    y_middle = -inked_rect.y - inked_rect.height / 2.0;  /* Middle of inked extents */
+    y_lower  = -inked_rect.y;                            /* Top of inked extents */
+  }
+  else {
+    x_left   = 0;
+    x_right  = -logical_rect.width;
+    y_upper  = -inked_rect.y;                      /* Top of inked extents */
+    y_middle = y_upper - inked_rect.height / 2.0;  /* Middle of inked extents */
+    y_lower  = descent - logical_rect.height;      /* Baseline of bottom line */
   }
 
   switch (object->text->alignment) {
