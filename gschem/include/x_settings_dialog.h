@@ -97,8 +97,8 @@ WidgetStringData DialogStrings[] = {
 
   /* Button Controls */
     /* Edit TAB */
-        { "Select Grip Color",         "Grip Color:",      "Set the color to be used when drawing grips"},
-        { "Select Grip Fill Color",    "Grips Fill:",      "Set the background color for grips"},
+        { "Select Grip Color",         "Grip Color:",     "Set the color to be used when drawing grips"},
+        { "Select Grip Fill Color",    "Grips Fill:",     "Set the background color for grips"},
         { "Select Net Endpoint Color", "Endpoint Color:", "Set the color on net endpoints"},
 
     /* Attributes TAB */
