@@ -1,10 +1,18 @@
+2017-10-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * linear/opamps/dual-opamp-[1,2].sym: Update device attributes with dashes
+      instead of underscores:
+
+            * linear/opamps/dual-opamp-1.sym
+            * linear/opamps/dual-opamp-2.sym
+
 2017-10-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * comparators/LM3302-[1,2].sym: Update device, description, documentation,
       and dist-license attributes, add value and increment symversion:
 
-            * comparators/LM3302-1.sym
-            * comparators/LM3302-2.sym
+            * linear/comparators/LM3302-1.sym
+            * linear/comparators/LM3302-2.sym
 
     * linear/mcontrol/L293-1.sym: Update footprint and clean attributes; make
       pin labels visible replace text, add description.
