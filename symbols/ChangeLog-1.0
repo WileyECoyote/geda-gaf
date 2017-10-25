@@ -1,10 +1,11 @@
 2017-10-25 Wiley E. Hill <wileyhill@gmail.com>
 
-    * linear/opamps/dual-opamp-[1,2].sym: Update device attributes with dashes
-      instead of underscores:
+    * linear/opamps/: Update device attributes:
 
-            * linear/opamps/dual-opamp-1.sym
-            * linear/opamps/dual-opamp-2.sym
+            * linear/opamps/dual-opamp-1.sym (replace underscores with dashes)
+            * linear/opamps/dual-opamp-2.sym (replace underscores with dashes)
+            * linear/opamps/MC1439-1.sym     (Change prefix LM to MC)
+            * linear/opamps/MC1439-2.sym     (Change prefix LM to MC)
 
 2017-10-24 Wiley E. Hill <wileyhill@gmail.com>
 
