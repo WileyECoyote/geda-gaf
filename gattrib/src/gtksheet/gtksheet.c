@@ -14144,8 +14144,9 @@ void gtk_sheet_range_set_border(GtkSheet *sheet, const GtkSheetRange *urange,
     range.rowi++;
     range.coli++;
 
-    if (!GTK_SHEET_IS_FROZEN(sheet))
-	_gtk_sheet_range_draw(sheet, &range, TRUE);
+    if (!GTK_SHEET_IS_FROZEN(sheet)) {
+      _gtk_sheet_range_draw(sheet, &range, TRUE);
+    }
 }
 
 /**
@@ -14181,8 +14182,9 @@ void gtk_sheet_range_set_border_color(GtkSheet            *sheet,
 	}
     }
 
-    if (!GTK_SHEET_IS_FROZEN(sheet))
-	_gtk_sheet_range_draw(sheet, &range, TRUE);
+    if (!GTK_SHEET_IS_FROZEN(sheet)) {
+      _gtk_sheet_range_draw(sheet, &range, TRUE);
+    }
 }
 
 /**
@@ -14205,10 +14207,12 @@ void gtk_sheet_range_set_font(GtkSheet             *sheet,
 
   g_return_if_fail(GTK_IS_SHEET(sheet));
 
-  if (!urange)
+  if (!urange) {
     range = sheet->range;
-  else
+  }
+  else {
     range = *urange;
+  }
 
   gtk_sheet_freeze(sheet);
 
@@ -14329,10 +14333,12 @@ static void init_attributes(GtkSheet *sheet, int col, GtkSheetCellAttr *attribut
       attributes->background = sheet->bg_color;
     }
 
-    if (col < 0 || col > sheet->maxcol)
-	attributes->justification = GTK_SHEET_COLUMN_DEFAULT_JUSTIFICATION;
-    else
-	attributes->justification = COLPTR(sheet, col)->justification;
+    if (col < 0 || col > sheet->maxcol) {
+      attributes->justification = GTK_SHEET_COLUMN_DEFAULT_JUSTIFICATION;
+    }
+    else {
+      attributes->justification = COLPTR(sheet, col)->justification;
+    }
 
     attributes->border.width = 0;
     attributes->border.line_style = GDK_LINE_SOLID;
