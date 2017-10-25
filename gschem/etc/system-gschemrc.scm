@@ -2192,7 +2192,7 @@
 ;;      menu item name               menu action             menu icon name              Menu Item Tooltip
 ;;
      `(
-        (,(N_ "_Redraw")             view-redraw            #f               ,(N_ "redraw the current window"))
+        (,(N_ "_Redraw")             view-redraw            #f               ,(N_ "Redraw the current window"))
         (,(N_ "_Pan")                view-pan               #f               ,(N_ "Activate Panning"))
 
         (,(N_ "Zoom _All")           view-zoom-all          #f               ,(N_ "Zoom to the limits of the drawing area"))
