@@ -27,7 +27,7 @@
  *
 */
 /*!
- * \file x_settings.h
+ * \file x_settings_dialog.h
  *
  * \brief Header file for construction of the Setting Dialog
  */

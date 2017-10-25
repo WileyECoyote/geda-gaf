@@ -2,6 +2,8 @@
 
     * etc/system-gschemrc.scm: Fix grammar; capitalize Redraw tip.
 
+    * include/x_settings_dialog.h: Update Doxygen file tag.
+
 2017-10-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/pl.po: Update Polish translations.
