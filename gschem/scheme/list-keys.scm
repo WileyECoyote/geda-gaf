@@ -20,7 +20,7 @@
 		      (else
 		       (print-mapped-keys (list  ; was print
 					   (cdr mapped-key)
-					   keys 
+					   keys
 					   (car mapped-key)))))))
 	    keymap))
 
