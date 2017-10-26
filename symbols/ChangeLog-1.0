@@ -10,6 +10,8 @@
             * linear/opamps/LM2902KN-2.sym
             * linear/opamps/LM2902N-1.sym
             * linear/opamps/LM2902N-2.sym
+            * linear/opamps/quad-opamp-1.sym (replace underscores with dashes)
+            * linear/opamps/quad-opamp-2.sym (replace underscores with dashes)
 
 2017-10-25 Wiley E. Hill <wileyhill@gmail.com>
 
