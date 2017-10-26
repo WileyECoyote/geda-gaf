@@ -4,7 +4,7 @@ refdes=U?
 T 1500 8150 9 10 1 1 0 0 1
 device=W5100
 T 300 11900 9 10 0 1 0 0 1
-footprint=LQFP80_12
+footprint=LQFP-80-12
 T 300 12300 9 10 0 0 0 0 1
 symversion=0.1
 T 300 12500 5 10 0 0 0 0 1
@@ -836,7 +836,7 @@ Clock
 T 400 2200 9 8 1 0 0 0 1
 LED Signals
 T 300 12100 5 10 1 1 0 0 1
-description=thernet controller
+description=Ethernet controller
 T 300 12900 5 10 1 1 0 0 1
 documentation=https://www.sparkfun.com/datasheets/DevTools/WIZnet/W5100_Datasheet_v1_1_8.pdf
 T 300 12700 5 10 0 1 0 0 1

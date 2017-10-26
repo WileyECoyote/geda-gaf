@@ -14,7 +14,7 @@
             * linear/opamps/quad-opamp-2.sym (replace underscores with dashes)
 
     * linear/powmon/W5100.sym: Add description, documentation, resequenced pin
-      attributes.
+      attributes, update footprint.
 
     * linear/powmon/ZXCT1009.sym: Add description, update attribute locations.
 
