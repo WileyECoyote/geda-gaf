@@ -18,6 +18,8 @@
 
     * linear/powmon/ZXCT1009.sym: Add description, update attribute locations.
 
+    * linear/regulator/AP1117E50G-13.sym: Update device attribute.
+
 2017-10-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/opamps/: Update device attributes:

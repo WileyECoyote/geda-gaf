@@ -6,17 +6,11 @@ footprint=SOT223
 T 400 1700 5 10 0 1 0 0 1
 description=5v / 1A LDO Linear Regulator
 T 400 1900 5 10 0 1 0 0 1
-device=LINEAR REGULATOR
+device=AP1117
 T 400 2300 5 10 0 1 0 0 1
 documentation=http://www.diodes.com/datasheets/AP1117.pdf
 T 400 2100 5 10 0 0 0 0 1
 numslots=0
-T 400 2900 5 10 0 0 0 0 1
-author=Daniel Fekete <thefekete AT gmail DOT com>
-T 400 2700 5 10 0 0 0 0 1
-dist-license=GPLv3
-T 400 2500 5 10 0 0 0 0 1
-use-license=unlimited
 P 1700 800 1400 800 1 0 0
 {
 T 1600 900 5 8 0 1 0 0 1
@@ -69,3 +63,9 @@ T 400 1500 8 10 1 1 0 0 1
 refdes=U?
 T 450 900 9 6 1 0 0 0 1
 +5v REG
+T 400 2900 5 10 0 0 0 0 1
+author=Daniel Fekete <thefekete AT gmail DOT com>
+T 400 2700 5 10 0 0 0 0 1
+dist-license=GPLv2
+T 400 2500 5 10 0 0 0 0 1
+use-license=unlimited
