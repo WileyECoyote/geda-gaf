@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-10-07 20:52-0500\n"
+"POT-Creation-Date: 2017-10-27 00:35-0500\n"
 "PO-Revision-Date: 2012-01-27 14:18+0000\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: Bosnian <bs@li.org>\n"
@@ -1128,32 +1128,32 @@ msgstr[0] ""
 msgstr[1] ""
 
 # attributes were hidden
-#: gschem/src/object/o_edit.c:517
+#: gschem/src/object/o_edit.c:556
 msgid "attributes were hidden"
 msgstr "atributi su skriveni"
 
 # hidden attributes were revealed
-#: gschem/src/object/o_edit.c:521
+#: gschem/src/object/o_edit.c:560
 msgid "hidden attributes were revealed"
 msgstr "skriveni atributi su otkrivena"
 
-#: gschem/src/object/o_edit.c:717
+#: gschem/src/object/o_edit.c:756
 msgid "Hidden text is now visible\n"
 msgstr ""
 
-#: gschem/src/object/o_edit.c:720
+#: gschem/src/object/o_edit.c:759
 msgid "Hidden text is now invisible\n"
 msgstr ""
 
-#: gschem/src/object/o_edit.c:1121 gschem/src/x/x_edit_cprop.c:369
+#: gschem/src/object/o_edit.c:1160 gschem/src/x/x_edit_cprop.c:387
 msgid "Could not find symbol"
 msgstr ""
 
-#: gschem/src/object/o_edit.c:1122 gschem/src/x/x_edit_cprop.c:370
+#: gschem/src/object/o_edit.c:1161 gschem/src/x/x_edit_cprop.c:388
 msgid "in library. Update failed"
 msgstr ""
 
-#: gschem/src/object/o_edit.c:1127
+#: gschem/src/object/o_edit.c:1166
 msgid "Updating symbol"
 msgstr ""
 
@@ -1623,7 +1623,7 @@ msgstr ""
 msgid "Graphic"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1037 gschem/src/x/x_edit_pin.c:143
+#: gschem/src/x/x_dialog.c:1037 gschem/src/x/x_edit_pin.c:141
 #: gschem/src/x/x_menus.c:92
 msgid "Net"
 msgstr "Mreža"
@@ -1651,7 +1651,7 @@ msgstr "samostojeća atribut"
 msgid "Text"
 msgstr "tekst"
 
-#: gschem/src/x/x_dialog.c:1043 gschem/src/x/x_edit_pin.c:144
+#: gschem/src/x/x_dialog.c:1043 gschem/src/x/x_edit_pin.c:142
 #: gschem/src/x/x_menus.c:95
 msgid "Bus"
 msgstr "Sabirnica"
@@ -2192,322 +2192,352 @@ msgid "Symbol renamed, cannot be undone\n"
 msgstr ""
 
 # Edit Component Properties
-#: gschem/src/x/x_edit_cprop.c:1157
+#: gschem/src/x/x_edit_cprop.c:1207
 msgid "Edit Component Properties"
 msgstr "Uredi svojstva komponente"
 
-#: gschem/src/x/x_edit_cprop.c:1172
+#: gschem/src/x/x_edit_cprop.c:1222
 msgid "_Symbol:"
 msgstr "Doljen _Simbol:"
 
-#: gschem/src/x/x_edit_cprop.c:1183
+#: gschem/src/x/x_edit_cprop.c:1233
 msgid "_Device:"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1194
+#: gschem/src/x/x_edit_cprop.c:1244
 msgid "_Author:"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1205
+#: gschem/src/x/x_edit_cprop.c:1255
 msgid "_Version:"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1223
+#: gschem/src/x/x_edit_cprop.c:1273
 msgid "_Enable"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1231
+#: gschem/src/x/x_edit_cprop.c:1281
 msgid "_use-license:"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1242
+#: gschem/src/x/x_edit_cprop.c:1292
 msgid "dist-_license:"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1253
+#: gschem/src/x/x_edit_cprop.c:1303
 msgid "Descr_iption:"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1264
+#: gschem/src/x/x_edit_cprop.c:1314
 msgid "Documen_tation:"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1275
+#: gschem/src/x/x_edit_cprop.c:1325
 msgid "_Comment:"
 msgstr "_komentar:"
 
-#: gschem/src/x/x_edit_cprop.c:1300
+# Options
+#: gschem/src/x/x_edit_cprop.c:1346
+msgid "Options:"
+msgstr "Opcije:"
+
+#: gschem/src/x/x_edit_cprop.c:1381
+msgid "_Embedded"
+msgstr ""
+
+# Lock it
+#: gschem/src/x/x_edit_cprop.c:1397
+msgid "_Locked"
+msgstr "Zaključaj"
+
+#: gschem/src/x/x_edit_cprop.c:1415
+msgid "_Mirrored"
+msgstr "Ogledalo"
+
+#: gschem/src/x/x_edit_cprop.c:1439
 msgid "_Electrical:"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1328
+#: gschem/src/x/x_edit_cprop.c:1467
 msgid "_Ref Des:"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1341
+#: gschem/src/x/x_edit_cprop.c:1480
 msgid "_No. Slot:"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1352
+#: gschem/src/x/x_edit_cprop.c:1491
 msgid "No. _Pins:"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1362
+#: gschem/src/x/x_edit_cprop.c:1501
 msgid "_Value:"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1376
+#: gschem/src/x/x_edit_cprop.c:1515
 msgid "_Foot Print:"
 msgstr ""
 
 # Simulation Type
-#: gschem/src/x/x_edit_cprop.c:1387
+#: gschem/src/x/x_edit_cprop.c:1526
 msgid "Spice Type:"
 msgstr "simulacija Tip:"
 
-#: gschem/src/x/x_edit_cprop.c:1398
+#: gschem/src/x/x_edit_cprop.c:1537
 msgid "Model Name:"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1432
+#: gschem/src/x/x_edit_cprop.c:1574
 msgid "File name entry of component symbol"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1439
+#: gschem/src/x/x_edit_cprop.c:1581
 msgid "Device identifier entry"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1445
+#: gschem/src/x/x_edit_cprop.c:1587
 msgid "Entry for name of the author"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1451
+#: gschem/src/x/x_edit_cprop.c:1593
 msgid "Entry for the version of this symbol"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1457
+#: gschem/src/x/x_edit_cprop.c:1599
 msgid "Enable or Disable version checking of this component"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1464
+#: gschem/src/x/x_edit_cprop.c:1606
 msgid "User license entry"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1471
+#: gschem/src/x/x_edit_cprop.c:1613
 msgid "Entry for distribution license of the symbol"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1478
+#: gschem/src/x/x_edit_cprop.c:1620
 msgid "Description of the component"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1485
+#: gschem/src/x/x_edit_cprop.c:1627
 msgid "Link to documentation for this device"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1492
+#: gschem/src/x/x_edit_cprop.c:1634
 msgid "Entry for comments"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1499
+#: gschem/src/x/x_edit_cprop.c:1640
+msgid "Embed symbol in schematic checkbox"
+msgstr ""
+
+#: gschem/src/x/x_edit_cprop.c:1646
+msgid "Lock symbol in schematic checkbox"
+msgstr ""
+
+#: gschem/src/x/x_edit_cprop.c:1652
+msgid "Checkbox indicating if symbol is mirrored"
+msgstr ""
+
+#: gschem/src/x/x_edit_cprop.c:1659
 msgid "Checkbox to enable electrical properties"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1506
+#: gschem/src/x/x_edit_cprop.c:1666
 msgid "Entry for reference designator"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1513
+#: gschem/src/x/x_edit_cprop.c:1673
 msgid "Spinner with entry for number of slots"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1520
+#: gschem/src/x/x_edit_cprop.c:1680
 msgid "Spinner with entry for number of pins"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1527
+#: gschem/src/x/x_edit_cprop.c:1687
 msgid "Entry for the component value"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1534
+#: gschem/src/x/x_edit_cprop.c:1694
 msgid "Entry for the component foot print"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1541
+#: gschem/src/x/x_edit_cprop.c:1701
 msgid "Entry for spice-type over-ride"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1548
+#: gschem/src/x/x_edit_cprop.c:1708
 msgid "Entry for model file name"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:73
+#: gschem/src/x/x_edit_pin.c:71
 msgid "_Type:"
 msgstr "_Tip:"
 
-#: gschem/src/x/x_edit_pin.c:73
+#: gschem/src/x/x_edit_pin.c:71
 msgid "Select the pin type"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:74
+#: gschem/src/x/x_edit_pin.c:72
 msgid "_Attributes:"
 msgstr "_Atributi:"
 
 # Set the pin attributes
-#: gschem/src/x/x_edit_pin.c:74
+#: gschem/src/x/x_edit_pin.c:72
 msgid "Set the pin attributes"
 msgstr "Postavite atribute pin"
 
 # Number
-#: gschem/src/x/x_edit_pin.c:75
+#: gschem/src/x/x_edit_pin.c:73
 msgid "_Number:"
 msgstr "_Broj:"
 
-#: gschem/src/x/x_edit_pin.c:75
+#: gschem/src/x/x_edit_pin.c:73
 msgid "Set the pin number, or the starting pin number if auto numbering"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:76
+#: gschem/src/x/x_edit_pin.c:74
 msgid "_Sequence:"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:76
+#: gschem/src/x/x_edit_pin.c:74
 msgid "Set the sequence number"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:77
+#: gschem/src/x/x_edit_pin.c:75
 msgid "_Label:"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:77
+#: gschem/src/x/x_edit_pin.c:75
 msgid "Enter pin name or description"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:79
+#: gschem/src/x/x_edit_pin.c:77
 msgid "      Type:"
 msgstr "       Tip:"
 
-#: gschem/src/x/x_edit_pin.c:79
+#: gschem/src/x/x_edit_pin.c:77
 msgid "Enable to set all selected attributes to the prescribed type"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:80
+#: gschem/src/x/x_edit_pin.c:78
 msgid "Attributes:"
 msgstr "Atributi:"
 
-#: gschem/src/x/x_edit_pin.c:80
+#: gschem/src/x/x_edit_pin.c:78
 msgid "Enable to set all selected attributes to the prescribed value"
 msgstr ""
 
 # Number
-#: gschem/src/x/x_edit_pin.c:82
+#: gschem/src/x/x_edit_pin.c:80
 msgid "Number:"
 msgstr "Broj:"
 
-#: gschem/src/x/x_edit_pin.c:82
+#: gschem/src/x/x_edit_pin.c:80
 msgid ""
 "Enable or disable renumbering pin numbers, Number will be the starting pin "
 "number"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:83
+#: gschem/src/x/x_edit_pin.c:81
 msgid "Sequence:"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:83
+#: gschem/src/x/x_edit_pin.c:81
 msgid ""
 "Enable or disable re-sequencing pins\n"
 ", this only changes the sequence number, not the actual sequence in the "
 "symbol file"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:99
+#: gschem/src/x/x_edit_pin.c:97
 msgid "in"
 msgstr "in"
 
-#: gschem/src/x/x_edit_pin.c:100
+#: gschem/src/x/x_edit_pin.c:98
 msgid "out"
 msgstr "out"
 
-#: gschem/src/x/x_edit_pin.c:101
+#: gschem/src/x/x_edit_pin.c:99
 msgid "io"
 msgstr "io"
 
-#: gschem/src/x/x_edit_pin.c:102
+#: gschem/src/x/x_edit_pin.c:100
 msgid "oc"
 msgstr "oc"
 
-#: gschem/src/x/x_edit_pin.c:103
+#: gschem/src/x/x_edit_pin.c:101
 msgid "oe"
 msgstr "oe"
 
-#: gschem/src/x/x_edit_pin.c:104
+#: gschem/src/x/x_edit_pin.c:102
 msgid "pas"
 msgstr "pas"
 
-#: gschem/src/x/x_edit_pin.c:105
+#: gschem/src/x/x_edit_pin.c:103
 msgid "tp"
 msgstr "tp"
 
-#: gschem/src/x/x_edit_pin.c:106
+#: gschem/src/x/x_edit_pin.c:104
 msgid "tri"
 msgstr "tri"
 
-#: gschem/src/x/x_edit_pin.c:107
+#: gschem/src/x/x_edit_pin.c:105
 msgid "clk"
 msgstr "clk"
 
-#: gschem/src/x/x_edit_pin.c:108
+#: gschem/src/x/x_edit_pin.c:106
 msgid "pwr"
 msgstr "pwr"
 
-#: gschem/src/x/x_edit_pin.c:109 gschem/src/x/x_edit_pin.c:198
-#: gschem/src/x/x_edit_pin.c:212
+#: gschem/src/x/x_edit_pin.c:107 gschem/src/x/x_edit_pin.c:196
+#: gschem/src/x/x_edit_pin.c:210
 msgid "*missing*"
 msgstr "*nestao*"
 
-#: gschem/src/x/x_edit_pin.c:286 gschem/src/x/x_edit_pin.c:297
+#: gschem/src/x/x_edit_pin.c:284 gschem/src/x/x_edit_pin.c:295
 msgid "Pin Properties"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:286
+#: gschem/src/x/x_edit_pin.c:284
 msgid "Invalid Pin Node Type"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:297
+#: gschem/src/x/x_edit_pin.c:295
 msgid "Ignoring Pin electrical VOID"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:809
+#: gschem/src/x/x_edit_pin.c:807
 msgid "Pin Properties Editor"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:885
+#: gschem/src/x/x_edit_pin.c:883
 msgid "Set"
 msgstr "Set"
 
-#: gschem/src/x/x_edit_pin.c:888
+#: gschem/src/x/x_edit_pin.c:886
 msgid "Auto"
 msgstr ""
 
 # Attribute Type List
-#: gschem/src/x/x_edit_pin.c:919
+#: gschem/src/x/x_edit_pin.c:917
 msgid "Attribute Type List"
 msgstr "Atributi Tip List"
 
-#: gschem/src/x/x_edit_pin.c:923
+#: gschem/src/x/x_edit_pin.c:921
 msgid "Text Alignment Option"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:927
+#: gschem/src/x/x_edit_pin.c:925
 msgid "Pin Number"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:931
+#: gschem/src/x/x_edit_pin.c:929
 msgid "Sequence Number"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:935
+#: gschem/src/x/x_edit_pin.c:933
 msgid "Pin Label"
 msgstr ""
 
@@ -2701,19 +2731,19 @@ msgstr ""
 msgid "Version"
 msgstr "Verzija"
 
-#: gschem/src/x/x_icons.c:253
+#: gschem/src/x/x_icons.c:257
 msgid "Warning, Error reading image file"
 msgstr ""
 
-#: gschem/src/x/x_icons.c:254
+#: gschem/src/x/x_icons.c:258
 msgid "Warning, Error accessing image file"
 msgstr ""
 
-#: gschem/src/x/x_icons.c:426
+#: gschem/src/x/x_icons.c:430
 msgid "Shutting down icon factory\n"
 msgstr ""
 
-#: gschem/src/x/x_icons.c:447
+#: gschem/src/x/x_icons.c:451
 msgid "Initializing icon factory\n"
 msgstr ""
 
@@ -3784,51 +3814,51 @@ msgstr ""
 msgid "Pick"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:335
+#: gschem/src/x/x_toolbars.c:337
 msgid "image file not found"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:411
+#: gschem/src/x/x_toolbars.c:413
 msgid "Toolbar icon not found"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:544
+#: gschem/src/x/x_toolbars.c:546
 msgid "Creating new Toolbar configuration\n"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:552
+#: gschem/src/x/x_toolbars.c:554
 msgid "Saving Toolbar settings..."
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:571
+#: gschem/src/x/x_toolbars.c:573
 msgid "data saved to"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:578
+#: gschem/src/x/x_toolbars.c:580
 msgid "Could not save Toolbar configuration to"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:675
+#: gschem/src/x/x_toolbars.c:677
 msgid "Error, Toolbar configuration key file"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:683
+#: gschem/src/x/x_toolbars.c:685
 msgid "Retrieving toolbar geometry\n"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:711
+#: gschem/src/x/x_toolbars.c:713
 msgid "Toolbar configuration restored from"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:716
+#: gschem/src/x/x_toolbars.c:718
 msgid "Warning, error restoring toolbar configuration"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:722
+#: gschem/src/x/x_toolbars.c:724
 msgid "Warning, toolbar configuration file access error"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:744
+#: gschem/src/x/x_toolbars.c:746
 msgid "Toolbar configuration not found"
 msgstr ""
 
