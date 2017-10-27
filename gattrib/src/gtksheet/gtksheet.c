@@ -14221,8 +14221,9 @@ void gtk_sheet_range_set_font(GtkSheet             *sheet,
                                       font_desc,
                                       pango_context_get_language(context));
 
-  font_height = pango_font_metrics_get_descent(metrics) +
-  pango_font_metrics_get_ascent(metrics);
+  font_height = pango_font_metrics_get_ascent(metrics) +
+                pango_font_metrics_get_descent(metrics);
+
   font_height = PANGO_PIXELS(font_height) + 2 * CELLOFFSET;
 
   for (i = range.row0; i <= range.rowi; i++) {
