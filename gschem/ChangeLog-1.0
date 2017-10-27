@@ -14,6 +14,8 @@
 
     * po/en_GB.po: Update Great Britain.
 
+    * po/fr.po: Update French translations.
+
 2017-10-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * bitmap/Makefile.am: Add gschem-print-preview.png to bitmapdata_DATA.
