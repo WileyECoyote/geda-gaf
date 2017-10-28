@@ -1,3 +1,7 @@
+2017-10-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_get.c: Revert back to conventional function wrapping.
+
 2017-10-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/utility/u_string.c: Revert back to conventional function
