@@ -39,8 +39,7 @@
  *
  * \todo should be o_list_concat?
  */
-GList*
-geda_object_list_copy_all (const GList *src_list, GList *dest_list)
+GList *geda_object_list_copy_all (const GList *src_list, GList *dest_list)
 {
    GedaObject *src_object, *dst_object;
   const GList *src;
@@ -130,10 +129,9 @@ geda_object_list_copy_all (const GList *src_list, GList *dest_list)
  * \todo This function should not be called geda_attrib_object since it
  *       does not accept an object as a argument!
  */
-GedaObject*
-geda_object_list_find_attrib_by_name (const GList *list,
-                                      const char  *name,
-                                            int    count)
+GedaObject *geda_object_list_find_attrib_by_name (const GList *list,
+                                                  const char  *name,
+                                                        int    count)
 {
   const GList *iter;
   char *found_name;
@@ -176,8 +174,7 @@ geda_object_list_find_attrib_by_name (const GList *list,
  * \todo This function should not be called geda_attrib_object since it
  *       does not accept an object as a argument!
  */
-GList*
-geda_object_list_find_floating (const GList *list)
+GList *geda_object_list_find_floating (const GList *list)
 {
   GList *floating_attributes = NULL;
   const  GList *iter;
@@ -205,8 +202,7 @@ geda_object_list_find_floating (const GList *list)
  * \par Function Description
  *  Calls geda_object_mirror for each glist data member
  */
-void
-geda_object_list_mirror (const GList *list, int x, int y)
+void geda_object_list_mirror (const GList *list, int x, int y)
 {
   const GList *o_iter;
 
@@ -245,8 +241,7 @@ geda_object_list_mirror (const GList *list, int x, int y)
  * \par Function Description
  *  Calls geda_object_rotate for each glist data member
  */
-void
-geda_object_list_rotate (const GList *list, int x, int y, int angle)
+void geda_object_list_rotate (const GList *list, int x, int y, int angle)
 {
   const GList *o_iter;
 
@@ -290,8 +285,7 @@ geda_object_list_rotate (const GList *list, int x, int y, int angle)
  *  \param [in]     y_scale  The y scale value for the lines.
  *
  */
-void
-geda_object_list_scale (const GList *list, int x_scale, int y_scale)
+void geda_object_list_scale (const GList *list, int x_scale, int y_scale)
 {
   const GList *iter;
 
@@ -322,8 +316,7 @@ geda_object_list_scale (const GList *list, int x_scale, int y_scale)
  * \param [in] list    The list of Objects to change color.
  * \param [in] color   The new color.
  */
-void
-geda_object_list_set_color (const GList *list, int color)
+void geda_object_list_set_color (const GList *list, int color)
 {
   const GList *iter;
 
@@ -336,8 +329,7 @@ geda_object_list_set_color (const GList *list, int color)
  * \par Function Description
  *  Calls geda_object_translate for each glist data member
  */
-void
-geda_object_list_translate(const GList *list, int dx, int dy)
+void geda_object_list_translate(const GList *list, int dx, int dy)
 {
   const GList *o_iter;
 
