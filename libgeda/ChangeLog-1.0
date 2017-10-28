@@ -1,6 +1,7 @@
 2017-10-28 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/object/o_get.c: Revert back to conventional function wrapping.
+    * src/object/o_get.c: Revert back to conventional function wrapping and
+      simplify geda_object_get_has_slope.
 
 2017-10-22 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -220,12 +220,7 @@ bool geda_object_get_has_slope (GedaObject *object)
   bool answer;
 
   if (GEDA_IS_LINE(object)) {
-    if (object->line->x[0] != object->line->x[1]) {
-      answer = TRUE;
-    }
-    else {
-      answer = FALSE;
-    }
+    answer = object->line->x[0] != object->line->x[1];
   }
   else {
     answer = FALSE;
