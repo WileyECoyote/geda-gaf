@@ -335,10 +335,12 @@ int geda_complex_get_angle (const GedaComplex *complex)
   return -0;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Retrieve the Filename of a GedaComplex
+ * \par Function Description
+ *  Returns a pointer to the filename member of \a complex or NULL
+ *  if \a complex is not a valid GedaComplex object. The returned
+ *  string is owned by Libgeda and should not be freed.
  */
 char *geda_complex_get_filename (const GedaComplex *complex)
 {

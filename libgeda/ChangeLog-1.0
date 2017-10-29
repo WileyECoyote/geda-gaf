@@ -3,6 +3,7 @@
     * src/geda/geda_complex.c: Update Doxygen comments for:
 
           * geda_complex_get_angle
+          * geda_complex_get_filename
 
     * src/object/o_get.c: Revert back to conventional function wrapping and
       simplify geda_object_get_has_slope.
