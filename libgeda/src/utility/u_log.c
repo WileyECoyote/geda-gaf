@@ -545,10 +545,14 @@ void geda_utility_log_system(const char *format, ...)
 
 }
 
-/*! \brief Write Message to Log if Verbose Mode
- *  \par Function Description
- *  This is a utlitity function to write a formatted message to
+/*!
+ * \brief Write Message to Log if Verbose Mode
+ * \par Function Description
+ *  This is a utility function to write a formatted message to
  *  the log handler if verbose mode was set.
+ *
+ * \param [in] format String containing format specifiers
+ * \param [in] ...    NULL terminated list strings.
  */
 void geda_utility_log_verbose(const char *format, ...)
 {
