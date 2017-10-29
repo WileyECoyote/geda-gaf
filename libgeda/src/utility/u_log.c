@@ -507,8 +507,16 @@ void geda_utility_log_set_verbose_mode (int mode)
   verbose_mode = mode;
 }
 
-void
-geda_utility_log_system(const char *format, ...)
+/*!
+ * \brief Write Message to the System Log
+ * \par Function Description
+ *  This is a utility function to write a formatted message to
+ *  the system log.
+ *
+ * \param [in] format String containing format specifiers
+ * \param [in] ...    NULL terminated list strings.
+ */
+void geda_utility_log_system(const char *format, ...)
 {
   va_list args;
   char   *buffer;

@@ -1,3 +1,7 @@
+2017-10-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/utility/u_log.c: Add documentation for geda_utility_log_system.
+
 2017-10-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_complex.c: Update Doxygen comments for:
