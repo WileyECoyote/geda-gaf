@@ -4,6 +4,9 @@
       update documentation for geda_utility_log_verbose. Reformat Doxygen
       comment blocks.
 
+    * src/utility/u_refdes.c: Reformat tests identifiers using two digit
+      group identifiers.
+
 2017-10-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_complex.c: Update Doxygen comments for:

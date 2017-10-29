@@ -147,7 +147,7 @@ GedaRefDes SpiceRefDes[] = {
                              { '\0'}
 };
 
-/*! U501
+/*! U0501
  * \brief Return refdes prefixes Associated with IEEE standards
  * \par Function Description
  *  Returns a pointer to IeeeRefDes.
@@ -158,7 +158,7 @@ geda_utility_refdes_get_ieee(void)
   return IeeeRefDes;
 }
 
-/*! U503
+/*! U0503
  * \brief Return refdes prefixes Associated with SPICE components
  * \par Function Description
  *  Returns a pointer to SpiceRefDes.
@@ -169,7 +169,7 @@ geda_utility_refdes_get_spice(void)
   return SpiceRefDes;
 }
 
-/*! U501
+/*! U0501
  * \brief Return gEDA standard refdes prefixes
  * \par Function Description
  *  Returns a pointer to StdRefDes.
@@ -180,7 +180,7 @@ geda_utility_refdes_get_standard(void)
   return StdRefDes;
 }
 
-/*! U504
+/*! U0504
  * \brief Reset the refdes number back to a question mark
  * \par Function Description
  *  If this text object represents a refdes attribute, then
@@ -230,7 +230,7 @@ void geda_utility_refdes_reset(GedaObject *object)
   }
 }
 
-/*! U505
+/*! U0505
  * \brief Return first numeric portion of a refdes
  * \par This function accepts both plain text and GedaText objects
  *  Text Objects should be a reference designator attribute, other
@@ -279,7 +279,7 @@ char *geda_utility_refdes_return_numeric(const void *text)
   return NULL;
 }
 
-/*! U506
+/*! U0506
  * \brief Return Character portion of a refdes
  * \par This function accepts both plain text and GedaText objects
  *  Text Objects should be a reference designator attribute, other
