@@ -350,10 +350,11 @@ char *geda_complex_get_filename (const GedaComplex *complex)
   return NULL;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Get the Is Embedded Flag of a GedaComplex
+ * \par Function Description
+ *  Returns the value of the is_embedded member or FALSE
+ *  if \a complex is not a valid GedaComplex object.
  */
 bool geda_complex_get_is_embedded (const GedaComplex *complex)
 {

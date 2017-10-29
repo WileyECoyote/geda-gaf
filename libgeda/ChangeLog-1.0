@@ -4,6 +4,7 @@
 
           * geda_complex_get_angle
           * geda_complex_get_filename
+          * geda_complex_get_is_embedded
 
     * src/object/o_get.c: Revert back to conventional function wrapping and
       simplify geda_object_get_has_slope.
