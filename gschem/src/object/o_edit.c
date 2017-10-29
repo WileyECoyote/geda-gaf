@@ -1146,24 +1146,25 @@ o_edit_update_component (GschemToplevel *w_current, GedaObject *o_current)
                             "symversion",
                             NULL };
 
-  g_return_val_if_fail (GEDA_IS_COMPLEX(o_current), NULL);
-  g_return_val_if_fail (o_current->complex->filename != NULL, NULL);
+  char *fname = geda_complex_get_filename(o_current->complex);
+
+  g_return_val_if_fail (fname != NULL, NULL);
 
   toplevel = gschem_toplevel_get_geda_toplevel(w_current);
   page     = geda_object_get_page (o_current);
 
   /* Force symbol data to be reloaded from source */
-  clib = geda_struct_clib_get_symbol_by_name (o_current->complex->filename);
+  clib = geda_struct_clib_get_symbol_by_name (fname);
   geda_struct_clib_symbol_invalidate_data (clib);
 
   if (clib == NULL) {
     const char *log_msg1 = _("Could not find symbol");
     const char *log_msg2 = _("in library. Update failed");
-    geda_log ("%s \"%s\" %s.\n", log_msg1, o_current->complex->filename, log_msg2);
+    geda_log ("%s \"%s\" %s.\n", log_msg1, fname, log_msg2);
     return NULL;
   }
   else {
-    geda_log_q ("%s \"%s\".\n", _("Updating symbol"), o_current->complex->filename);
+    geda_log_q ("%s \"%s\".\n", _("Updating symbol"), fname);
   }
 
   /* Unselect the old object. */

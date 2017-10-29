@@ -1,3 +1,9 @@
+2017-10-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_edit.c: Use accessor to retrieve reference to the filename
+      of the complex and remove validating the complex since this is done by
+      the accessor function.
+
 2017-10-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: Update Afrikaans translations.
