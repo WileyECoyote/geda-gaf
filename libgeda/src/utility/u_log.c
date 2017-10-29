@@ -64,20 +64,20 @@ static int log_time   =  1;
 
 static unsigned int log_handler_id;
 
-/*! \brief Write a message to the current log file.
- *  \par Function Description
+/*!
+ * \brief Write a message to the current log file.
+ * \par Function Description
  *  Writes <B>message</B> to the current log file whose file descriptor
  *  is <B>logfile_fd</B>.
  *
  *  It also sends <B>message</B> to the optional function <B>x_log_update</B>
  *  for further use.
  *
- *  \param [in] log_domain  (unused).
- *  \param [in] log_level   (unused).
- *  \param [in] message     Character string containing message to
+ * \param [in] log_domain  (unused).
+ * \param [in] log_level   (unused).
+ * \param [in] message     Character string containing message to
  *                          write to log.
- *  \param [in] user_data   (unused).
- *
+ * \param [in] user_data   (unused).
  */
 static void u_log_handler (const char    *log_domain,
                            GLogLevelFlags log_level,
@@ -136,8 +136,9 @@ static void u_log_handler (const char    *log_domain,
   }
 }
 
-/*! \brief Terminates the logging of messages.
- *  \par Function Description
+/*!
+ * \brief Terminates the logging of messages.
+ * \par Function Description
  *  This function de-registers the handler for redirection to the log
  *  file and then close the log file. Subsequent messages are lost after
  *  the close.
@@ -162,12 +163,13 @@ void geda_utility_log_close (void)
   }
 }
 
-/*! \brief Get whether log entries are prefixed with the Time Of Day
- *  \par Function Description
+/*!
+ * \brief Get whether log entries are prefixed with the Time Of Day
+ * \par Function Description
  *  Getter function for the static module integer log_time.
  *
- *  \returns the current log-time setting.
- *  \todo Add Scheme API
+ * \returns the current log-time setting.
+ * \todo Add Scheme API
  */
 int geda_utility_log_get_log_time(void)
 {
@@ -186,24 +188,26 @@ int geda_utility_log_get_quiet_mode(void)
   return quiet_mode;
 }
 
-/*! \brief Get active Verbose mode setting
- *  \par Function Description
+/*!
+ * \brief Get active Verbose mode setting
+ * \par Function Description
  *  Getter function for the static module integer verbose_mode.
  *
- *  \returns the current verbose_mode setting.
- *  \todo Add Scheme API
+ * \returns the current verbose_mode setting.
+ * \todo Add Scheme API
  */
 int geda_utility_log_get_verbose_mode(void)
 {
   return verbose_mode;
 }
 
-/*! \brief Initialize libgeda logging feature.
- *  \par Function Description
+/*!
+ * \brief Initialize libgeda logging feature.
+ * \par Function Description
  *  This function opens the file <B>filename</B> to log to and registers
  *  the handler to redirect log message to this file.
  *
- *  \param [in] prefix  Character string with file name prefix to log to.
+ * \param [in] prefix  Character string with file name prefix to log to.
  */
 void geda_utility_log_init (const char *prefix)
 {
@@ -350,8 +354,9 @@ void geda_utility_log_init (const char *prefix)
   GEDA_FREE (full_prefix);
 }
 
-/*! \brief Write Message to Log if Not Quiet Mode
- *  \par Function Description
+/*!
+ * \brief Write Message to Log if Not Quiet Mode
+ * \par Function Description
  *  This is a utlitity function to write a formatted message to
  *  the log handler if quiet mode is not set.
  */
@@ -386,11 +391,12 @@ void geda_utility_log_quite(const char *format, ...)
   }
 }
 
-/*! \brief  Reads the current log file and returns its contents.
- *  \par Function Description
+/*!
+ * \brief  Reads the current log file and returns its contents.
+ * \par Function Description
  *  This function reads the current log file and returns its contents.
  *
- *  \return Character string with current log's contents.
+ * \return Character string with current log's contents.
  */
 char *geda_utility_log_read (void)
 {
@@ -443,13 +449,12 @@ char *geda_utility_log_read (void)
  *  default handler with an optional pointer to \a user_data. Either argument
  *  can be NULL, when both are NULL u_log_handler is set the default handler.
  *
- *  \param [in] log_func The default log handler function to use or NULL
- *  \param [in] user_data Pointer to date to be passed to the log handler
+ * \param [in] log_func The default log handler function to use or NULL
+ * \param [in] user_data Pointer to date to be passed to the log handler
  *
  * \returns the previous log handler function.
  */
-LogFunc
-geda_utility_log_set_default_handler (LogFunc log_func, void *user_data)
+LogFunc geda_utility_log_set_default_handler (LogFunc log_func, void *user_data)
 {
   GLogFunc old_func;
 
@@ -462,45 +467,49 @@ geda_utility_log_set_default_handler (LogFunc log_func, void *user_data)
   return (LogFunc)old_func;
 }
 
-/*! \brief Set whether log entries are prefixed with the Time Of Day
- *  \par Function Description
+/*!
+ * \brief Set whether log entries are prefixed with the Time Of Day
+ * \par Function Description
  *  Setter function for the static module integer log_time.
  *
- *  \param [in] mode If 0 entries will not be prefixed with the TOD
+ * \param [in] mode If 0 entries will not be prefixed with the TOD
  */
 void geda_utility_log_set_log_time(int mode)
 {
   log_time = mode;
 }
 
-/*! \brief Set Quite mode
- *  \par Function Description
+/*!
+ * \brief Set Quite mode
+ * \par Function Description
  *  Setter function for the static module integer quiet_mode.
  *
- *  \param [in] mode new quite mode value
+ * \param [in] mode new quite mode value
  */
 void geda_utility_log_set_quiet_mode (int mode)
 {
   quiet_mode = mode;
 }
 
-/*! \brief  Set Log callback function.
- *  \par Function Description
+/*!
+ * \brief  Set Log callback function.
+ * \par Function Description
  *  Call to set the a handler function to be called for each log
  *  event.
  *
- *  \param [in] func Pointer to callback function
+ * \param [in] func Pointer to callback function
  */
 void geda_utility_log_set_update_func (LogUpdateFunc func)
 {
     log_update_func = func;
 }
 
-/*! \brief Set Verbose mode
- *  \par Function Description
+/*!
+ * \brief Set Verbose mode
+ * \par Function Description
  *  Setter function for the static module integer verbose_mode.
  *
- *  \param [in] mode new verbose mode value
+ * \param [in] mode new verbose mode value
  */
 void geda_utility_log_set_verbose_mode (int mode)
 {
