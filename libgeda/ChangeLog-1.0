@@ -1,14 +1,18 @@
 2017-10-28 Wiley E. Hill <wileyhill@gmail.com>
 
-    * tests/test_keyfile.c: Add checks for:
+    * src/geda/geda_complex.c: Update Doxygen comments for:
 
-          * geda_keyfile_get_integer_list
-          * geda_keyfile_set_integer_list
+          * geda_complex_get_angle
 
     * src/object/o_get.c: Revert back to conventional function wrapping and
       simplify geda_object_get_has_slope.
 
     * src/object/o_list.c: Update function wrapping.
+
+    * tests/test_keyfile.c: Add checks for:
+
+          * geda_keyfile_get_integer_list
+          * geda_keyfile_set_integer_list
 
 2017-10-22 Wiley E. Hill <wileyhill@gmail.com>
 

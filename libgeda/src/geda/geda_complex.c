@@ -321,10 +321,11 @@ bool geda_complex_append (GedaComplex *complex, GedaObject *object)
  return FALSE;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Retrieve the Angle of a GedaComplex
+ * \par Function Description
+ *  Returns the value of the angle member or -0 if \a complex
+ *  is not a valid GedaComplex object.
  */
 int geda_complex_get_angle (const GedaComplex *complex)
 {
