@@ -28,8 +28,9 @@
  */
 /*! \file geda_file.h "libgeda/geda_file.h"
  *  \brief Libgeda macros for file modules.
- *  \todo functions names in the file subdirectories are still
-          using f_prefix
+ *  Alias macros for public functions in the src/files modules.
+ *  These are used interchangeably with the function name, and
+ *  are offered as "shorter" alternate version.
  */
 
 #ifndef __GEDA_FILE_MAC__
