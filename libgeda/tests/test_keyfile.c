@@ -103,10 +103,10 @@ const char key_data[] = "[G1]\nT1=A\n[G2]\nT1=B\nT2=C\nT3=D\n";
  *      KF0837    geda_keyfile_set_locale_string_list
  *      KF0838    geda_keyfile_get_boolean_list
  *      KF0839    geda_keyfile_set_boolean_list
- *       KF0840    geda_keyfile_set_double_list
- *       KF0841    geda_keyfile_get_double_list
- *       KF0842    geda_keyfile_get_integer_list
- *       KF0843   geda_keyfile_set_integer_list
+ *      KF0840    geda_keyfile_set_double_list
+ *      KF0841    geda_keyfile_get_double_list
+ *      KF0842    geda_keyfile_get_integer_list
+ *      KF0843    geda_keyfile_set_integer_list
  *      KF0844    geda_keyfile_set_comment
  *      KF0845    geda_keyfile_get_comment
  *      KF0846    geda_keyfile_remove_comment
@@ -1394,13 +1394,13 @@ int check_data (void)
       err = NULL;
     }
 
-#define DOUBLE_LIST_LENGTH 4
+#define KEY_LIST_LENGTH 4
 
     /* === Function 40: geda_keyfile_set_double_list === */
 
     double KF40_double[]={1.1,2.2,3.3,4.4};
 
-    geda_keyfile_set_double_list (keyfile, "G11", "DL", KF40_double, DOUBLE_LIST_LENGTH);
+    geda_keyfile_set_double_list (keyfile, "G11", "DL", KF40_double, KEY_LIST_LENGTH);
 
     if (!geda_keyfile_has_group(keyfile, "G11")) {
       fprintf(stderr, "FAILED: (KF084001) set_double_list, G11\n");
@@ -1436,7 +1436,7 @@ int check_data (void)
       result++;
     }
 
-    if (count != DOUBLE_LIST_LENGTH) {
+    if (count != KEY_LIST_LENGTH) {
       fprintf(stderr, "FAILED: (KF084102B) get_double_list, count=%d\n", count);
       result++;
     }
@@ -1445,7 +1445,7 @@ int check_data (void)
 
       int i;
 
-      for (i = 0; i < DOUBLE_LIST_LENGTH; i++) {
+      for (i = 0; i < KEY_LIST_LENGTH; i++) {
 
         double value = dl[i];
 
@@ -1458,7 +1458,75 @@ int check_data (void)
 
     if (err) {
       /* Error should NOT be set since key does exist */
-      fprintf(stderr, "FAILED: (KF084102F) get_double_list, err set\n");
+      fprintf(stderr, "FAILED: (KF084102D) get_double_list, err set\n");
+      result++;
+      g_error_free (err);
+      err = NULL;
+    }
+
+    /* === Function 43: geda_keyfile_set_integer_list === */
+
+    int KF43_interger[]={1,2,3,4};
+
+    geda_keyfile_set_integer_list (keyfile, "G12", "IL", KF43_interger, KEY_LIST_LENGTH);
+
+    if (!geda_keyfile_has_group(keyfile, "G12")) {
+      fprintf(stderr, "FAILED: (KF084301) set_double_list, G12\n");
+      result++;
+    }
+
+    /* === Function 42: geda_keyfile_get_integer_list === */
+
+    count = 0;
+
+    if (geda_keyfile_get_integer_list(keyfile, "G12", "NIL", &count, &err)) {
+      fprintf(stderr, "FAILED: (KF084201A) get_integer_list NLSL\n");
+      result++;
+    }
+    else if (!err) {
+      /* Error should be set since key does not exist */
+      fprintf(stderr, "FAILED: (KF084201B) get_integer_list, no error\n");
+      result++;
+    }
+
+
+    if (err) {
+      g_error_free (err);
+      err = NULL;
+    }
+
+    int *il;
+
+    il = geda_keyfile_get_integer_list(keyfile, "G12", "IL", &count, &err);
+
+    if (!il) {
+      fprintf(stderr, "FAILED: (KF084202A) get_integer_list, !il\n");
+      result++;
+    }
+
+    if (count != KEY_LIST_LENGTH) {
+      fprintf(stderr, "FAILED: (KF084202B) get_integer_list, count=%d\n", count);
+      result++;
+    }
+    else {
+
+
+      int i;
+
+      for (i = 0; i < KEY_LIST_LENGTH; i++) {
+
+        int value = dl[i];
+
+        if (value != KF43_interger[i]) {      /* See structure KF43_interger */
+          fprintf(stderr, "FAILED: (KF084202C) get_integer_list <%d> != <%d>\n", value, KF43_interger[i]);
+          result++;
+        }
+      }
+    }
+
+    if (err) {
+      /* Error should NOT be set since key does exist */
+      fprintf(stderr, "FAILED: (KF084202D) get_integer_list, err set\n");
       result++;
       g_error_free (err);
       err = NULL;
