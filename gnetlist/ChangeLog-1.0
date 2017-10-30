@@ -1,10 +1,15 @@
+2017-10-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_traverse.c: Use accessor geda_complex_get_filename to
+      retrieve pointer to the file name in function s_traverse_sheet.
+
 2017-09-03 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gnetlist/tests: Regenerate golden outputs to update switch symbols.
+    * tests: Regenerate golden outputs to update switch symbols.
 
 2017-08-20 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gnetlist/src/g_netlist.c: Reformat Doxygen comment blocks, update
+    * src/g_netlist.c: Reformat Doxygen comment blocks, update
       function wrapping.
 
 2017-08-19 Wiley E. Hill <wileyhill@gmail.com>
@@ -19,7 +24,7 @@
 
 2017-07-23 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gnetlist/src/g_rc.c: Replace strdup_scm_string with geda_string_scm2c
+    * src/g_rc.c: Replace strdup_scm_string with geda_string_scm2c
       and remove strdup_scm_string.
 
 2017-05-09 Wiley E. Hill <wileyhill@gmail.com>
@@ -191,7 +196,7 @@
 
 2016-06-25 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gnetlist/scheme/gnetlist.scm: Add write-log.
+    * scheme/gnetlist.scm: Add write-log.
 
     * tests/bom/Makefile.am: New file for bom unit tests.
 
@@ -525,7 +530,7 @@
 
 2015-12-31 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gnetlist/backend-getopt.scm: Add function option-warning and use in
+    * backend-getopt.scm: Add function option-warning and use in
       place of option-error if the option is not known to the backend so
       that the bom and bom2 backends do not error-out when each would other
       wise produce normal output. Only bom and bom2 utilize backend-getopt,
@@ -969,7 +974,7 @@
 
 2015-08-19 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gnetlist/docs/gnetlist.1.in: Revise/update man page with new feature
+    * docs/gnetlist.1.in: Revise/update man page with new feature
       to pass arguments to backends.
 
 2015-08-19 Wiley E. Hill <wileyhill@gmail.com>
@@ -3352,7 +3357,7 @@
 
 1999-10-10  Ales Hvezda  <ahvezda@geda.seul.org>
 
-	* gnetlist/gnetlist.c: Fixed up s_log_init to use the new prototype
+	* src/gnetlist.c: Fixed up s_log_init to use the new prototype
 
 1999-10-09  Ales Hvezda  <ahvezda@geda.seul.org>
 

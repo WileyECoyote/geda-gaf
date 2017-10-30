@@ -223,7 +223,8 @@ s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list)
 
     if (o_current->type == OBJ_PLACEHOLDER) {
       const char *msg = _("WARNING: Found a placeholder/missing component, is symbol file missing");
-      printf("%s \"%s\"?\n", msg, o_current->complex->filename);
+      const char *fn  = geda_complex_get_filename(o_current->complex);
+      printf("%s \"%s\"?\n", msg, fn);
     }
 
     if (o_current->type == OBJ_COMPLEX) {
