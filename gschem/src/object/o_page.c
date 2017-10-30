@@ -92,11 +92,13 @@ static GList *remove_title_blocks(GList **page_list)
 
   while (iter) {
 
-    GedaObject *object = iter->data;
+    GedaObject *object;
+    const char *filename;
 
-    if (GEDA_IS_COMPLEX(object)) {
+    object = iter->data;
+    filename = geda_complex_object_get_filename(object);
 
-      const char *filename = object->complex->filename;
+    if (filename) {
 
       if (geda_utility_string_stristr(filename, "title") >= 0) {
 
