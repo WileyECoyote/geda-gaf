@@ -408,7 +408,7 @@ GList *geda_complex_get_prim_objs (const GedaComplex *complex)
 }
 
 /*!
- * \brief Get the X insertion point of a GedaCircle
+ * \brief Get the X insertion point of a GedaComplex
  * \par Function Description
  *  Retrieves the X insertion point of \a complex.
  */
@@ -421,7 +421,7 @@ int geda_complex_get_x (const GedaComplex *complex)
 }
 
 /*!
- * \brief Get the Y insertion point of a GedaCircle
+ * \brief Get the Y insertion point of a GedaComplex
  * \par Function Description
  *  Retrieves the Y insertion point of \a complex.
  */
@@ -434,7 +434,7 @@ int geda_complex_get_y (const GedaComplex *complex)
 }
 
 /*!
- * \brief Set the Angle of a Complex Object
+ * \brief Set the Angle of a GedaComplex
  * \par Function Description
  *  Sets the angle member to unchecked integer value of \a angle.
  */
