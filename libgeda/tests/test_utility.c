@@ -569,6 +569,48 @@ int test_refdes (void)
 
   /* === Function 06: geda_utility_refdes_return_prefix === */
 
+  static const struct _TestData U06_str[] =
+  {
+    { "refdes=X1",    "X" },
+    { "refdes=Y2A",   "Y" },
+    { "refdes=Z188",  "Z" },
+  };
+
+  ref = geda_refdes_get_prefix(NULL);
+  if (ref) {                           /* NULL input */
+    fprintf(stderr, "FAILED: (U050600) geda_refdes_get_prefix <%s>\n", ref);
+    result++;
+  }
+
+  ref = geda_refdes_get_prefix("");
+  if (ref) {                           /* NULL input */
+    fprintf(stderr, "FAILED: (U050601) geda_refdes_get_prefix <%s>\n", ref);
+    result++;
+  }
+
+  count = sizeof(U06_str) / sizeof(struct _TestData);
+
+  for (index = 0; index < count; index++) {
+
+    char *expected = U06_str[index].expected;
+    char *input    = U06_str[index].input;
+    char *prefix;
+
+    prefix = geda_refdes_get_prefix (input);
+
+    if (prefix) {
+      if (strcmp(prefix, expected)) {      /* See structure U06_str */
+        fprintf(stderr, "FAILED: (U050602B-%d) geda_refdes_get_prefix <%s>\n",index, prefix);
+        result++;
+      }
+      GEDA_FREE (prefix);
+    }
+    else {
+      fprintf(stderr, "FAILED: (U050602C-%d) geda_refdes_get_prefix NULL\n",index);
+      result++;
+    }
+  }
+
   return result;
 }
 /** @} endgroup test-utility-geda-refdes */

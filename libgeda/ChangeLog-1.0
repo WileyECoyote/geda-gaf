@@ -7,6 +7,8 @@
     * src/utility/u_refdes.c: Reformat tests identifiers using two digit
       group identifiers.
 
+    * tests/test_utility.c: Add check for geda_utility_refdes_return_prefix.
+
 2017-10-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_complex.c: Update Doxygen comments for:
