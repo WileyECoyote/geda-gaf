@@ -39,13 +39,16 @@
  */
 void o_complex_export(GschemToplevel *w_current, GedaObject *o_current)
 {
-  GtkWidget *dialog;
+  GtkWidget  *dialog;
+  const char *fname;
 
   dialog = geda_file_chooser_new (w_current->main_window,
                                   FILE_CHOOSER_ACTION_SAVE);
 
+  fname = geda_complex_object_get_filename(o_current);
+
   geda_file_chooser_set_filter (dialog, FILTER_SYMBOL);
-  geda_file_chooser_set_filename (dialog, o_current->complex->filename);
+  geda_file_chooser_set_filename (dialog, fname);
 
   gtk_widget_show (dialog);
 
