@@ -130,8 +130,7 @@ void geda_utility_glist_free_full (GList *list, GDestroyNotify free_func)
  *
  * \sa geda_utility_glist_find_string
  */
-bool
-geda_utility_glist_str_inlist(GList *list, const char *string)
+bool geda_utility_glist_str_inlist(GList *list, const char *string)
 {
   bool   answer = FALSE;
   GList *iter;
@@ -181,9 +180,8 @@ bool geda_utility_glist_stri_inlist(GList *list, const char *string)
  *  This function will free all of the data in a gslist but
  *  does not free \a list.
  */
-GSList *
-geda_utility_gslist_clear(GSList *list) {
-
+GSList *geda_utility_gslist_clear(GSList *list)
+{
   if (list != NULL ) {
 
     g_slist_foreach(list, (GFunc)g_free, NULL);
@@ -207,9 +205,8 @@ geda_utility_gslist_clear(GSList *list) {
  *
  * \returns 0 if absent, 1 if present
  */
-int
-geda_utility_gslist_find_string(GSList *list, const char *str) {
-
+int geda_utility_gslist_find_string(GSList *list, const char *str)
+{
   if ((list == NULL) || (str == NULL))
     return -2;
 
@@ -218,6 +215,7 @@ geda_utility_gslist_find_string(GSList *list, const char *str) {
 
   /* return -1 if list is empty  */
   len = g_slist_length(list);
+
   if (len != 0) {
 
     for (index = 0; index < len; index++) {
@@ -235,6 +233,7 @@ geda_utility_gslist_find_string(GSList *list, const char *str) {
       }
     }
   }
+
   if (index == len)
     index = -1;     /* item was not in the list, so return -1 */
 
@@ -244,8 +243,8 @@ geda_utility_gslist_find_string(GSList *list, const char *str) {
 /*!
  * \brief Free a GSlist of Pointers
  * \par Function Description
- * This function will free data referenced by each pointer in a gslist
- * and the gslist.
+ *  This function will free data referenced by each pointer in a gslist
+ *  and the gslist.
  */
 void geda_utility_gslist_free_all(void *list)
 {
@@ -261,8 +260,8 @@ void geda_utility_gslist_free_all(void *list)
 /*!
  * \brief Free a GSlist Full
  * \par Function Description
- * This function provides the same functionality as g_slist_free_full
- * which is not avaliable until glib 2.28.
+ *  This function provides the same functionality as g_slist_free_full
+ *  which is not avaliable until glib 2.28.
  */
 void geda_utility_gslist_free_full (GSList *list, GDestroyNotify free_func)
 {
