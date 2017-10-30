@@ -472,7 +472,7 @@ int s_object_has_sym_file(GedaObject *object)
 {
   char *filename;
 
-  filename = object->complex->filename;
+  filename = geda_complex_get_filename(object->complex);
 
   if (filename != NULL) {
 

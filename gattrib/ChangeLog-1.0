@@ -1,3 +1,8 @@
+2017-10-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_object.c: Use accessor geda_complex_get_filename to retrieve
+      pointer to the file name in function s_object_has_sym_file.
+
 2017-10-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheet.c: Remove some redundant validations and revise
