@@ -32,8 +32,8 @@
 
 /*! \brief Export Complex to symbol file
  *  \par Function Description
- *  This function is provided to allow user to export embeded complexes
- *  but is not restricted to an embeded object, though it may not make
+ *  This function is provided to allow user to export embedded complexes
+ *  but is not restricted to an embedded object, though it may not make
  *  sense to export a symbol that already exist as a file.
  *
  */
