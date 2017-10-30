@@ -433,10 +433,10 @@ int geda_complex_get_y (const GedaComplex *complex)
   return -0;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Set the Angle of a Complex Object
+ * \par Function Description
+ *  Sets the angle member to unchecked integer value of \a angle.
  */
 void geda_complex_set_angle (GedaComplex *complex, int angle)
 {

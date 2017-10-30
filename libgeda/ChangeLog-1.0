@@ -1,5 +1,9 @@
 2017-10-29 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_complex.c: Update Doxygen comments for:
+
+          * geda_complex_set_angle
+
     * src/utility/u_log.c: Add documentation for geda_utility_log_system and
       update documentation for geda_utility_log_verbose. Reformat Doxygen
       comment blocks.
