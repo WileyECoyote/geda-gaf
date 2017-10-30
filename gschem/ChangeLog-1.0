@@ -6,6 +6,9 @@
     * src/object/o_page.c: Use geda_complex_object_get_filename to retrieve
       reference to the filename and validate the complex in remove_title_blocks.
 
+    * src/iface/i_command.c: Use accessor to retrieve the filename of the
+      complex in i_cmd_do_down_symbol.
+
 2017-10-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_edit.c: Use accessor to retrieve reference to the filename

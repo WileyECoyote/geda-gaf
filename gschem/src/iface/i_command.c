@@ -3154,7 +3154,7 @@ COMMAND (do_down_symbol)
       Page *p_current;
       char *filename;
 
-      filename = object->complex->filename;
+      filename = geda_complex_get_filename(object->complex);
 
       geda_log("%s: \"%s\"\n", _("Searching for symbol"), filename);
 
