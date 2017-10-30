@@ -580,7 +580,7 @@ static void autonumber_get_used(GschemToplevel *w_current, AUTONUMBER_TEXT *auto
     if (autonumber_match(autotext, o_current, &number) == AUTONUMBER_RESPECT) {
 
       /* check slot and maybe add it to the lists */
-      GedaObject *o_parent = o_current->attached_to;
+      GedaObject *o_parent = geda_object_get_attached_to (o_current);
 
       if (autotext->slotting && o_parent != NULL) {
 
@@ -606,7 +606,7 @@ static void autonumber_get_used(GschemToplevel *w_current, AUTONUMBER_TEXT *auto
               slot = g_new(AUTONUMBER_SLOT,1);
               slot->number = number;
               slot->slotnr = slotnr;
-              slot->symbolname = o_parent->complex->filename;
+              slot->symbolname = geda_complex_get_filename (o_parent->complex);
 
               slot_item = g_list_find_custom(autotext->used_slots,
                                              slot,
@@ -614,7 +614,7 @@ static void autonumber_get_used(GschemToplevel *w_current, AUTONUMBER_TEXT *auto
               if (slot_item != NULL) { /* duplicate slot in used_slots */
                 u_log_message(_("duplicate slot may cause problems: "
                                 "[symbol name=%s, number=%d, slot=%d]\n"),
-                slot->symbolname, slot->number, slot->slotnr);
+                                slot->symbolname, slot->number, slot->slotnr);
                 GEDA_FREE(slot);
               }
               else {
@@ -688,23 +688,26 @@ static void autonumber_get_new_numbers(AUTONUMBER_TEXT *autotext,
 
   /* Check for slots first */
   /* 1. are there any unused slots in the database? */
-  o_parent = o_current->attached_to;
+  o_parent = geda_object_get_attached_to (o_current);
 
   if (autotext->slotting && o_parent != NULL) {
 
     freeslot = g_new(AUTONUMBER_SLOT,1);
-    freeslot->symbolname = o_parent->complex->filename;
+    freeslot->symbolname = geda_complex_get_filename(o_parent->complex);
     freeslot->number = 0;
     freeslot->slotnr = 0;
     freeslot_item = g_list_find_custom(autotext->free_slots,
                                        freeslot,
                                        (GCompareFunc) freeslot_compare);
     GEDA_FREE(freeslot);
+
     /* Yes! -> remove from database, apply it */
     if (freeslot_item != NULL) {
+
       freeslot = freeslot_item->data;
-      *number = freeslot->number;
-      *slot = freeslot->slotnr;
+      *number  = freeslot->number;
+      *slot    = freeslot->slotnr;
+
       GEDA_FREE(freeslot);
       autotext->free_slots = g_list_delete_link(autotext->free_slots, freeslot_item);
 
@@ -756,7 +759,7 @@ static void autonumber_get_new_numbers(AUTONUMBER_TEXT *autotext,
 
         for (i = 2; i <=numslots; i++) {
           freeslot = g_new(AUTONUMBER_SLOT,1);
-          freeslot->symbolname = o_parent->complex->filename;
+          freeslot->symbolname = geda_complex_get_filename(o_parent->complex);
           freeslot->number = new_number;
           freeslot->slotnr = i;
           autotext->free_slots = g_list_insert_sorted(autotext->free_slots,

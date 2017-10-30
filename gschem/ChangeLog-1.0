@@ -9,6 +9,10 @@
     * src/iface/i_command.c: Use accessor to retrieve the filename of the
       complex in i_cmd_do_down_symbol.
 
+    * src/x/x_autonumber.c: Revise autonumber_get_used and autonumber_get_new_
+      numbers to use accessors geda_object_get_attached_to to retrive the parent
+      and geda_complex_get_filename to retrieve the filename.
+
 2017-10-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_edit.c: Use accessor to retrieve reference to the filename
