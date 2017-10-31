@@ -6,6 +6,9 @@
     * src/object/o_edit.c: Use accessors to retrieve angle, x, y, and mirror
       members in o_edit_update_component.
 
+    * src/x/x_dnd.c: Add geda_complex_object_get_filename and geda_picture_
+      object_get_filename in x_dnd_send_string_object to retrieve filenames.
+
     * src/x/x_edit_cprop.c: Use accessor to retrieve the filename of the
       complex in x_dialog_ep_component_change.
 

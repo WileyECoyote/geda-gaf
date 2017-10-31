@@ -179,12 +179,12 @@ x_dnd_send_string_object (GschemToplevel *w_current, GedaObject *object)
 
   switch (object->type) {
     case OBJ_COMPLEX:
-      string_1 = object->complex->filename;
+      string_1 = geda_complex_object_get_filename(object);
       string_2 = "";
       break;
     case OBJ_PICTURE:
       string_1 = DND_FILE_LEADER;
-      string_2 = object->picture->filename;
+      string_2 = geda_picture_object_get_filename(object);
       break;
     default:
       string_1 = "Error:";
