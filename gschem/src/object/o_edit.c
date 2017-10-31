@@ -1170,14 +1170,14 @@ o_edit_update_component (GschemToplevel *w_current, GedaObject *o_current)
   /* Unselect the old object. */
   geda_object_selection_remove (page->selection_list, o_current);
 
+  int a = geda_complex_get_angle(o_current->complex);
+  int x = geda_complex_get_x(o_current->complex);
+  int y = geda_complex_get_y(o_current->complex);
+  int m = geda_complex_get_is_mirror(o_current->complex);
+
   /* Create new object and set embedded */
-  o_new = geda_complex_object_new (toplevel,
-                                   o_current->complex->x,
-                                   o_current->complex->y,
-                                   o_current->complex->angle,
-                                   o_current->complex->mirror,
-                                   clib, o_current->complex->filename,
-                                   1);
+  o_new = geda_complex_object_new (toplevel, a, x, y, m, clib, fname, 1);
+
   if (geda_complex_object_is_embedded (o_current)) {
     geda_object_embed (o_new);
   }
