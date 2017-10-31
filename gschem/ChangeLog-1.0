@@ -1,5 +1,8 @@
 2017-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_edit_cprop.c: Use accessor to retrieve the filename of the
+      complex in x_dialog_ep_component_change.
+
     * src/x/x_multiattrib.c: Add accessor to retrieve the filename and verify
       non NULL filename before passing to strcmp in multiattrib_update.
 

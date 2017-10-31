@@ -676,7 +676,7 @@ static void x_dialog_ep_component_change(GschemToplevel *w_current,
     char *fullname;
     const CLibSymbol *clib;
 
-    filename = object->complex->filename;
+    filename = geda_complex_object_get_filename(object);
 
     SetEntryText(properties->symbol_entry, filename);
 
