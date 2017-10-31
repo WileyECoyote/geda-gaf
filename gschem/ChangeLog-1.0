@@ -1,5 +1,7 @@
 2017-10-30 Wiley E. Hill <wileyhill@gmail.com>
 
+    * po/es.po: Update Spanish translations.
+
     * src/object/o_complex.c: Use accessor to retrieve the filename of the
       complex in o_complex_export.
 
