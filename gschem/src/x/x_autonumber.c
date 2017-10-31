@@ -802,7 +802,9 @@ static void autonumber_remove_number(AUTONUMBER_TEXT *autotext, GedaObject *o_cu
     /* get the slot attribute */
     GedaObject *o_parent = o_current->attached_to;
 
-    if (o_parent != NULL) { /* Does child->parent_object->child make sense?*/
+    /* Does child->parent_object->child make sense? */
+    if (o_parent != NULL) {
+
       /* \remark geda_struct_slot_search_slot updates o_slot variable */
       g_free (geda_struct_slot_search_slot (o_parent, &o_slot));
 
