@@ -1,5 +1,7 @@
 2017-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
+    * po/fi.po: Update Finnish translations.
+
     * src/iface/i_command.c: Use accessor to retrieve the filename of the
       page in i_cmd_do_page_new.
 
