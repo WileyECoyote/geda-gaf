@@ -2724,15 +2724,18 @@ static void free_row_record (void *data_record, void *user_data)
 static void
 multiattrib_update (Multiattrib *ThisDialog)
 {
-  GList    *o_iter;
-  GtkStyle *style;
-  bool      show_inherited;
-  bool      list_sensitive;
-  bool      add_sensitive;
-  GList    *model_rows = NULL;
-  const char *complex_title_name = NULL;
+  GList      *o_iter;
+  GList      *model_rows;
+  GtkStyle   *style;
+  const char *complex_title_name;
 
-  show_inherited = GET_SWITCH_STATE(ThisDialog->ShowInheritedSwitch);
+  bool add_sensitive;
+  bool list_sensitive;
+  bool show_inherited;
+
+  complex_title_name = NULL;
+  model_rows         = NULL;
+  show_inherited     = GET_SWITCH_STATE(ThisDialog->ShowInheritedSwitch);
 
   ThisDialog->total_num_in_list        = 0;
   ThisDialog->num_complex_in_list      = 0;
@@ -2760,13 +2763,19 @@ multiattrib_update (Multiattrib *ThisDialog)
 
     if (object->type == OBJ_COMPLEX || object->type == OBJ_PLACEHOLDER) {
 
+      const char *filename;
+
       ThisDialog->num_complex_in_list++;
 
-      if (complex_title_name == NULL) {
-        complex_title_name = object->complex->filename;
-      }
-      else if (strcmp (complex_title_name, object->complex->filename) != 0) {
-        complex_title_name = _("<various>");
+      filename = geda_complex_get_filename(object->complex);
+
+      if (filename) {
+        if (complex_title_name == NULL) {
+          complex_title_name = filename;
+        }
+        else if (strcmp (complex_title_name, filename) != 0) {
+          complex_title_name = _("<various>");
+        }
       }
     }
 
