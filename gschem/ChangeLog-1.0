@@ -2,6 +2,8 @@
 
     * po/es.po: Update Spanish translations.
 
+    * po/fa.po: Update Persian translations.
+
     * src/object/o_complex.c: Use accessor to retrieve the filename of the
       complex in o_complex_export.
 
