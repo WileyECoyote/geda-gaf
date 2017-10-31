@@ -4,6 +4,8 @@
 
     * po/he.po: Update Hebrew translations.
 
+    * po/hu.po: Update Hungarian translations.
+
     * src/iface/i_command.c: Use accessor to retrieve the filename of the
       page in i_cmd_do_page_new.
 
