@@ -2768,7 +2768,7 @@ COMMAND (do_page_new)
 
   i_zoom_world_extents (w_current, NULL, I_PAN_DONT_REDRAW);
 
-  geda_log_q ("%s \"%s\"\n", _("New page created"), page->filename);
+  geda_log_q ("%s \"%s\"\n", _("New page created"), geda_page_get_filename(page));
 
   EXIT_COMMAND(do_page_new);
 }
