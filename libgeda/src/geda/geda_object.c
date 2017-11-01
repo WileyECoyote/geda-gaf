@@ -126,10 +126,12 @@ static int geda_object_no_bounds (GedaObject *o)
   return FALSE;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief
+ * \par Function Description
+ *  Calls the virtual method to return the actual bounds of the
+ *  derived object. The method must have been over-ridden or the
+ *  default method will output an error message.
  */
 int geda_object_bounds(const GedaObject *object)
 {
