@@ -113,9 +113,12 @@ void geda_object_append_new_hook (NewObjectFunc func, void *data)
 
 /* BEGIN ------+-------+------ Property Handlers ------+-------+-------+-----*/
 
-/*! \todo Finish function documentation!!!
- *  \internal
- *  \par Function Description
+/*!
+ * \internal Default object Bounds Function
+ * \par Function Description
+ *  When new GedaObjects are created the function is assigned to the
+ *  virtual object_class->bounds method. Derivatives should over-ride
+ *  this method during construction.
  */
 static int geda_object_no_bounds (GedaObject *o)
 {

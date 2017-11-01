@@ -4,6 +4,10 @@
 
           * geda_complex_set_filename
 
+    * src/geda/geda_object.c: : Update Doxygen comments for:
+
+          * geda_object_no_bounds
+
 2017-10-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_complex.c: Update Doxygen comments for:
