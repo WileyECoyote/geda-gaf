@@ -800,10 +800,12 @@ Page *geda_object_get_page (const GedaObject *object)
   return NULL;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Set the Color Index of a GedaObject
+ * \par Function Description
+ *  The actual color used to render the object is depends on the color-map
+ *  used by the program performing the rendering. Setting the color of a
+ *  Complex object has no effect on the color of the compositing elements.
  */
 void geda_object_set_color (GedaObject *object, int index) {
   if (is_a_geda_object(object)) {
