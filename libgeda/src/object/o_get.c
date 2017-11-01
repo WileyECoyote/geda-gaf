@@ -304,7 +304,7 @@ int geda_object_get_is_inside_region(int xmin, int ymin, int xmax, int ymax, int
  *
  * \param object   The GedaObject structure to be queried
  *
- * \return TRUE when VISIBLE, FALSE otherwise
+ * \return TRUE when selectable, otherwise FALSE.
  */
 bool geda_object_get_is_selectable (GedaObject *object)
 {

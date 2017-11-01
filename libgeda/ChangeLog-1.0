@@ -16,6 +16,7 @@
     * src/object/o_get.c: Update Doxygen comments for:
 
           * geda_object_get_has_slope
+          * geda_object_get_is_selectable (return value correction)
 
 2017-10-29 Wiley E. Hill <wileyhill@gmail.com>
 
