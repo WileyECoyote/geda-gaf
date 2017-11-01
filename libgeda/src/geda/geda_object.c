@@ -191,10 +191,12 @@ int geda_object_get_color (const GedaObject *object) {
   return -0;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Retrieve the Connection List from a GedaObject
+ * \par Function Description
+ *  The connection list is a double linked list of other objects
+ *  electrically connected to this object. Hence, the connection
+ *  only pertains to pin, nets, and buses.
  */
 const GList *geda_object_get_conn_list (const GedaObject *object)
 {
