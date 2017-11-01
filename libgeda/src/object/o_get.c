@@ -210,10 +210,11 @@ bool geda_object_get_fill_options(GedaObject       *object,
   return answer;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief
+ * \par Function Description
+ *  Returns TRUE if \a object is derived from a GedaLine
+ *  and has differing x coordinates, otherwise FALSE.
  */
 bool geda_object_get_has_slope (GedaObject *object)
 {

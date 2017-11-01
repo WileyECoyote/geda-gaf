@@ -1,10 +1,10 @@
 2017-11-01 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/geda/geda_complex.c: : Update Doxygen comments for:
+    * src/geda/geda_complex.c: Update Doxygen comments for:
 
           * geda_complex_set_filename
 
-    * src/geda/geda_object.c: : Update Doxygen comments for:
+    * src/geda/geda_object.c: Update Doxygen comments for:
 
           * geda_object_no_bounds
           * geda_object_bounds
@@ -12,6 +12,10 @@
           * geda_object_get_conn_list
           * geda_object_set_color
           * geda_object_set_selectable
+
+    * src/object/o_get.c: Update Doxygen comments for:
+
+          * geda_object_get_has_slope
 
 2017-10-29 Wiley E. Hill <wileyhill@gmail.com>
 
