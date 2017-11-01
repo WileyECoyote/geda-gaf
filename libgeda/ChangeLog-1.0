@@ -8,6 +8,7 @@
 
           * geda_object_no_bounds
           * geda_object_bounds
+          * geda_object_get_color
 
 2017-10-29 Wiley E. Hill <wileyhill@gmail.com>
 

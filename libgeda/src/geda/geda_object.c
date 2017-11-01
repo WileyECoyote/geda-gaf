@@ -176,10 +176,13 @@ GedaObject *geda_object_get_attached_to (const GedaObject *object)
   return NULL;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Retrieve the Value of the GedaObject Color Index
+ * \par Function Description
+ *  Returns the value of the object->color member. The color index not
+ *  the color value. The index refers to the index of a color in a
+ *  color-map and is only relevant when rendering to a device such
+ *  as the display or a printer.
  */
 int geda_object_get_color (const GedaObject *object) {
   if (is_a_geda_object(object)) {
