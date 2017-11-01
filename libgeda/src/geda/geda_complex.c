@@ -445,10 +445,10 @@ void geda_complex_set_angle (GedaComplex *complex, int angle)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Set the Filename of a GedaComplex
+ * \par Function Description
+ *  Low level function to set the filename of the complex.
  */
 void geda_complex_set_filename (GedaComplex *complex, const char *filename)
 {
