@@ -70,14 +70,15 @@ snv_shows_value (int snv)
   return snv == SHOW_NAME_VALUE || snv == SHOW_VALUE;
 }
 
-/*! \brief Process the response returned by the multi-attribte dialog.
- *  \par Function Description
+/*!
+ * \brief Process the response returned by the multi-attribte dialog.
+ * \par Function Description
  *  This function handles the response <B>arg1</B> of the multi-attribute
  *  editor dialog <B>dialog</B>.
  *
- *  \param [in] dialog    The multi-attribute editor dialog.
- *  \param [in] arg1      The response ID.
- *  \param [in] user_data A pointer on the GschemToplevel environment.
+ * \param [in] dialog    The multi-attribute editor dialog.
+ * \param [in] arg1      The response ID.
+ * \param [in] user_data A pointer on the GschemToplevel environment.
  */
 static void
 multiattrib_callback_response (GtkDialog *dialog, int arg1, void *user_data)
@@ -92,11 +93,12 @@ multiattrib_callback_response (GtkDialog *dialog, int arg1, void *user_data)
   }
 }
 
-/*! \brief Open multiple attribute editor dialog.
- *  \par Function Description
+/*!
+ * \brief Open multiple attribute editor dialog.
+ * \par Function Description
  *  Opens the multiple attribute editor dialog for objects in this <B>toplevel</B>.
  *
- *  \param [in] w_current  The GschemToplevel object.
+ * \param [in] w_current  The GschemToplevel object.
  */
 void x_multiattrib_open (GschemToplevel *w_current)
 {
@@ -127,13 +129,12 @@ void x_multiattrib_open (GschemToplevel *w_current)
   }
 }
 
-/*! \brief Close the multiattrib dialog.
- *
- *  \par Function Description
- *
+/*!
+ * \brief Close the multiattrib dialog.
+ * \par Function Description
  *  Closes the multiattrib dialog associated with <B>w_current</B>.
  *
- *  \param [in] w_current  The GschemToplevel object.
+ * \param [in] w_current  The GschemToplevel object.
  */
 void x_multiattrib_close (GschemToplevel *w_current)
 {
@@ -155,14 +156,13 @@ void x_multiattrib_close (GschemToplevel *w_current)
   }
 }
 
-/*! \brief Update the multiattrib editor dialog for a GschemToplevel.
- *
- *  \par Function Description
- *
+/*!
+ * \brief Update the multiattrib editor dialog for a GschemToplevel.
+ * \par Function Description
  *  If the GschemToplevel has an open multiattrib dialog, switch to
  *  watching the current page's SELECTION object for changes.
  *
- *  \param [in] w_current  The GschemToplevel object.
+ * \param [in] w_current  The GschemToplevel object.
  */
 void
 x_multiattrib_update (GschemToplevel *w_current)
@@ -268,9 +268,9 @@ celltextview_start_editing (GtkCellEditable *cell_editable, GdkEvent *event)
 
 }
 
-/*! \brief Function to retrieve CellTextView's Type identifier.
- *
- *  \par Function Description
+/*!
+ * \brief Function to retrieve CellTextView's Type identifier
+ * \par Function Description
  *  Function to retrieve CellTextView's Type identifier. On the first
  *  call, this registers the CellTextView in the GedaType system.
  *  Subsequently the function returns the saved value from its first
@@ -1981,7 +1981,7 @@ static void multiattrib_class_init(MultiattribClass *class)
   multiattrib_parent_class = g_type_class_peek_parent (class);
 
   g_object_class_install_property ( gobject_class, PROP_OBJECT_LIST,
-                                    g_param_spec_pointer ("object_list",
+                                    g_param_spec_pointer (mae_object_list,
                                                           "",
                                                           "",
                                                           G_PARAM_READWRITE));
