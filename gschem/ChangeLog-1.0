@@ -6,6 +6,7 @@
       _init_enter in celltextview_get_type. Update Doxygen comments
       for:
 
+          * celltextview_class_init
           * celltextview_start_editing
           * multiline_text_editing_done
 

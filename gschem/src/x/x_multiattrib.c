@@ -309,15 +309,20 @@ GedaType celltextview_get_type()
     g_type_add_interface_static(type, GTK_TYPE_CELL_EDITABLE,
                                       &cell_editable_info);
 
+    g_once_init_leave (&celltextview_type, type);
   }
 
   return celltextview_type;
 }
 
-/*! \todo Finish function documentation
- *  \brief
- *  \par Function Description
+/*!
+ * \brief CellTextView Type Class Initializer
+ * \par Function Description
+ *  Type class initializer called to initialize the CellTextView
+ *  instance. Overrides parents virtual class methods as needed
+ *  and installs a "editing-canceled" property.
  *
+ * \param [in]  class  CellTextView class being initialized
  */
 static void celltextview_class_init(CellTextViewClass *class)
 {
