@@ -250,10 +250,11 @@ static bool celltextview_key_press_event (GtkWidget   *widget,
   return FALSE;
 }
 
-/*! \todo Finish function documentation
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief CellTextView Start Editing Virtual Method
+ * \par Function Description
+ *  Over-ride for the GtkCellEditableIface::start_editing method.
+ *  Connects the Key Press Event handler.
  */
 static void
 celltextview_start_editing (GtkCellEditable *cell_editable, GdkEvent *event)
