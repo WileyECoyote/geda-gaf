@@ -2,7 +2,8 @@
 
     * src/x/x_multiattrib.c: Add module level static constant for the
       object-list key string. Reformat function documentation blocks,
-      update some function wrapping.
+      update some function wrapping. Add g_once_init_enter and g_once
+      _init_enter in celltextview_get_type.
 
 2017-10-31 Wiley E. Hill <wileyhill@gmail.com>
 

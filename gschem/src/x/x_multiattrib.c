@@ -277,9 +277,9 @@ celltextview_start_editing (GtkCellEditable *cell_editable, GdkEvent *event)
  */
 GedaType celltextview_get_type()
 {
-  static GedaType celltextview_type = 0;
+  static volatile GedaType celltextview_type = 0;
 
-  if (!celltextview_type) {
+  if (g_once_init_enter (&celltextview_type)) {
 
     static const GTypeInfo celltextview_info = {
       sizeof(CellTextViewClass),
@@ -299,12 +299,15 @@ GedaType celltextview_get_type()
       NULL  /* interface_data */
     };
 
-    celltextview_type = g_type_register_static(GTK_TYPE_TEXT_VIEW,
-                                               "CellTextView",
-                                               &celltextview_info, 0);
-    g_type_add_interface_static(celltextview_type,
-                                GTK_TYPE_CELL_EDITABLE,
-                                &cell_editable_info);
+    GedaType type;
+
+    type = g_type_register_static (GTK_TYPE_TEXT_VIEW,
+                                   g_intern_static_string ("CellTextView"),
+                                   &celltextview_info, 0);
+
+    g_type_add_interface_static(type, GTK_TYPE_CELL_EDITABLE,
+                                      &cell_editable_info);
+
   }
 
   return celltextview_type;
