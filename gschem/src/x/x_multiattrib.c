@@ -56,6 +56,8 @@ static WidgetStringData DialogStrings[] = {
 
 static void multiattrib_update (Multiattrib *multiattrib);
 
+static const char const mae_object_list[]  = "object-list";
+
 static bool
 snv_shows_name (int snv)
 {
@@ -110,7 +112,7 @@ void x_multiattrib_open (GschemToplevel *w_current)
                                         "parent",          w_current->main_window,
                                         "settings-name",   IDS_MULTI_ATTRBI,
                                         "gschem-toplevel", w_current,
-                                        "object_list",     selection,
+                                        mae_object_list,   selection,
                                         NULL);
 
     g_signal_connect (w_current->mawindow,
@@ -174,7 +176,7 @@ x_multiattrib_update (GschemToplevel *w_current)
 
     selection = geda_struct_page_get_selection (page);
 
-    g_object_set (w_current->mawindow, "object_list", selection, NULL);
+    g_object_set (w_current->mawindow, mae_object_list, selection, NULL);
   }
 }
 
@@ -1157,7 +1159,7 @@ ma_callback_toggled_show_name(GtkCellRendererToggle *cell_renderer,
 
   /* Request update of display for this row, recomputing the whole model
    * as the consistency for the show value column may be affected above */
-  g_object_set (G_OBJECT (ThisDialog), "object_list", selection, NULL);
+  g_object_set (ThisDialog, mae_object_list, selection, NULL);
 
   o_undo_savestate (w_current, UNDO_ALL);
 
@@ -1416,7 +1418,7 @@ multiattrib_callback_popup_promote (GedaMenuItem *menuitem, void *user_data)
     selection = geda_struct_page_get_selection (page);
 
     /* update the treeview contents */
-    g_object_set (G_OBJECT (ThisDialog), "object_list", selection, NULL);
+    g_object_set (G_OBJECT (ThisDialog), mae_object_list, selection, NULL);
 
     GEDA_UNREF (attr_list);
   }
