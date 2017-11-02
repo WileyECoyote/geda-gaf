@@ -342,10 +342,13 @@ static void celltextview_class_init(CellTextViewClass *class)
 
 }
 
-/*! \todo Finish function documentation
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Initialize new CellTextView data structure instance.
+ * \par Function Description
+ *  This function is called after the CellTextViewClass is created
+ *  to initialize the data structure.
  *
+ * \param [in] celltextview  An empty CellTextView data structure
  */
 static void celltextview_instance_init (CellTextView *celltextview)
 {
