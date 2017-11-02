@@ -182,8 +182,8 @@ void x_multiattrib_update (GschemToplevel *w_current)
  * interface. It can then be used to renderer multi-line texts inside
  * tree views ('GtkTreeView').
  */
-static void celltextview_class_init (CellTextViewClass *class);
-static void celltextview_instance_init        (CellTextView *self);
+static void celltextview_class_init             (CellTextViewClass    *class);
+static void celltextview_instance_init          (CellTextView         *self);
 static void celltextview_editable_instance_init (GtkCellEditableIface *iface);
 
 enum {
@@ -1670,8 +1670,7 @@ static void multiattrib_init_visible_types(GedaOptionMenu *optionmenu)
  *  \param [in] event        Mouse event.
  *
  */
-static void
-multiattrib_popup_menu(Multiattrib *ThisDialog, GdkEventButton *event)
+static void multiattrib_popup_menu(Multiattrib *ThisDialog, GdkEventButton *event)
 {
   GtkTreePath *path;
   GtkWidget   *menu;
