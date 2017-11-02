@@ -58,14 +58,12 @@ static void multiattrib_update (Multiattrib *multiattrib);
 
 static const char const mae_object_list[]  = "object-list";
 
-static bool
-snv_shows_name (int snv)
+static bool snv_shows_name (int snv)
 {
   return snv == SHOW_NAME_VALUE || snv == SHOW_NAME;
 }
 
-static bool
-snv_shows_value (int snv)
+static bool snv_shows_value (int snv)
 {
   return snv == SHOW_NAME_VALUE || snv == SHOW_VALUE;
 }
@@ -164,8 +162,7 @@ void x_multiattrib_close (GschemToplevel *w_current)
  *
  * \param [in] w_current  The GschemToplevel object.
  */
-void
-x_multiattrib_update (GschemToplevel *w_current)
+void x_multiattrib_update (GschemToplevel *w_current)
 {
   if (w_current->mawindow != NULL) {
 
@@ -362,7 +359,7 @@ static void celltextview_editable_instance_init(GtkCellEditableIface *iface)
  * of GTK 2.4 (LGPL).
  */
 
-static void cellrenderermultilinetext_class_init   (CellRendererMultiLineTextClass *class);
+static void cellrenderermultilinetext_class_init (CellRendererMultiLineTextClass *class);
 
 #define CELL_RENDERER_MULTI_LINE_TEXT_PATH "cell-renderer-multi-line-text-path"
 
@@ -1553,8 +1550,7 @@ static void multiattrib_callback_value_grab_focus (GtkWidget *widget,
  *  using the visibility retrieved from the check-box button.
  *
  */
-static void
-multiattrib_callback_button_add(GtkButton *button, void *user_data)
+static void multiattrib_callback_button_add(GtkButton *button, void *user_data)
 {
   Multiattrib   *ThisDialog = (Multiattrib*)user_data;
 

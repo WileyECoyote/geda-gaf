@@ -1,7 +1,8 @@
 2017-11-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_multiattrib.c: Add module level static constant for the
-      object-list key string. Reformat function documentation blocks.
+      object-list key string. Reformat function documentation blocks,
+      update some function wrapping.
 
 2017-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
