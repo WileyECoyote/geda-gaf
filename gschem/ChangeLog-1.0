@@ -7,6 +7,7 @@
       for:
 
           * celltextview_start_editing
+          * multiline_text_editing_done
 
 2017-10-31 Wiley E. Hill <wileyhill@gmail.com>
 

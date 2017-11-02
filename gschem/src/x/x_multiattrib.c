@@ -367,10 +367,13 @@ static void cellrenderermultilinetext_class_init (CellRendererMultiLineTextClass
 
 #define CELL_RENDERER_MULTI_LINE_TEXT_PATH "cell-renderer-multi-line-text-path"
 
-/*! \todo Finish function documentation
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \internal Callback Cell Editing Done
+ * \par Function Description
+ *  If editing was not cancel then the text from the buffer is retrieved and
+ *  passed to the "edited" call-back handler, either ma_callback_edited_name
+ *  or ma_callback_edited_value. Decrements the reference count of the buffer
+ *  created by multiline_text_start_editing.
  */
 static void
 multiline_text_editing_done(GtkCellEditable *cell_editable, void *user_data)
