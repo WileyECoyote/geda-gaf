@@ -46,6 +46,13 @@ int throttle = 0;
 static int DOING_STROKE = FALSE;
 #endif /* HAVE_LIBSTROKE */
 
+/* Threaded to repeat the previous action */
+static bool x_event_idle_repeat_last (void *w_current)
+{
+  i_command_process(w_current, "repeat-last", 0, NULL, ID_ORIGIN_MOUSE);
+  return FALSE;
+}
+
 /*! \brief Button Press Event Handler
  *  \par Function Description
  *   This function is called each time a mouse button is pressed. The
@@ -244,7 +251,7 @@ int x_event_button_pressed(GtkWidget      *widget,
         case(MOUSE_MIDDLE_REPEAT):
           w_current->pointer_sx = event->x;
           w_current->pointer_sy = event->y;
-          i_command_process(w_current, "repeat-last", 0, NULL, ID_ORIGIN_MOUSE);
+          g_idle_add (x_event_idle_repeat_last, w_current);
           break;
 
 #ifdef HAVE_LIBSTROKE

@@ -1,3 +1,8 @@
+2017-11-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_event.c: Add x_event_idle_repeat_last to initiate the
+      "last command" from an idle thread.
+
 2017-11-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_multiattrib.c: Add module level static constant for the
