@@ -422,10 +422,16 @@ multiline_text_editing_done(GtkCellEditable *cell_editable, void *user_data)
   g_object_unref(buffer);
 }
 
-/*! \todo Finish function documentation
- *  \brief
- *  \par Function Description
+/*!
+ * \internal Callback Start Cell Editing
+ * \par Function Description
+ *  Over-ride for the GtkCellRendererClass::start_editing method.
+ *  Painfully creates a new GtkTextBuffer and a new GtkTextView,
+ *  loading text from the GtkCellRendererText into the buffer.
+ *  A copy of the path is stored in the textview object. Connects
+ *  the handler to the "editing_done" signal.
  *
+ * \returns the new CellTextView object.
  */
 static GtkCellEditable*
 multiline_text_start_editing(GtkCellRenderer      *cell,

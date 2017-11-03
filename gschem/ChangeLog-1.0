@@ -6,6 +6,7 @@
     * src/x/x_multiattrib.c: Update Doxygen comments for:
 
           * celltextview_editable_instance_init
+          * multiline_text_start_editing
 
 2017-11-02 Wiley E. Hill <wileyhill@gmail.com>
 
