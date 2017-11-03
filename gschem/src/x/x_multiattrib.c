@@ -1430,7 +1430,7 @@ multiattrib_callback_popup_promote (GedaMenuItem *menuitem, void *user_data)
     page      = gschem_toplevel_get_current_page (w_current);
     selection = geda_struct_page_get_selection (page);
 
-    /* update the treeview contents */
+    /* update the tree-view contents with promoted attributes */
     g_object_set (G_OBJECT (ThisDialog), mae_object_list, selection, NULL);
 
     GEDA_UNREF (attr_list);
@@ -1874,7 +1874,7 @@ object_list_changed_cb (GedaList *object_list, Multiattrib *ThisDialog)
  *
  *  This handler is called when the g_object_weak_ref() on the GedaList object
  *  we're watching expires. We reset our multiattrib->object_list pointer to NULL
- *  to avoid attempting to access the destroyed object. NB: Our signal handlers
+ *  to avoid attempting to access the destroyed object. Note: The signal handlers
  *  were automatically disconnected during the destruction process.
  *
  *  \param [in] data                  Pointer to the multi-attrib dialog
