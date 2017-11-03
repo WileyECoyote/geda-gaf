@@ -79,6 +79,7 @@ int x_event_button_pressed(GtkWidget      *widget,
   w_x = snap_grid (w_current, unsnapped_wx);
   w_y = snap_grid (w_current, unsnapped_wy);
 
+  /* Check for "double click" */
   if (event->type == GDK_2BUTTON_PRESS) {
     switch (w_current->event_state) {
       case (STARTSELECT):
