@@ -950,6 +950,7 @@ static void ma_callback_edited_name(GtkCellRendererText *cellrenderertext,
 
   newtext = geda_sprintf ("%s=%s", new_name, value);
 
+  /* Check if the new attribute is valid */
   if (!x_dialog_validate_attribute(GTK_WINDOW(ThisDialog), newtext)) {
     GEDA_FREE (value);
     GEDA_FREE(newtext);
