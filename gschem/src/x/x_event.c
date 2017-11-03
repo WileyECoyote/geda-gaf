@@ -495,6 +495,7 @@ bool x_event_button_released (GtkWidget      *widget,
  *  \param [in] widget    The drawing area which received the signal.
  *  \param [in] event     The event structure of signal configure-event.
  *  \param [in] w_current The toplevel environment as user data.
+ *
  *  \returns FALSE to propagate the event further.
  */
 bool x_event_configure (GtkWidget         *widget,
