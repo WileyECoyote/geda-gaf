@@ -355,10 +355,11 @@ static void celltextview_instance_init (CellTextView *celltextview)
   celltextview->editing_canceled = FALSE;
 }
 
-/*! \todo Finish function documentation
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Cell Text View Editable Interface Class Initializer
+ * \par Function Description
+ *  Assigns celltextview_start_editing to over-ride the start_editing
+ *  method of the GtkCellEditableIface class.
  */
 static void celltextview_editable_instance_init(GtkCellEditableIface *iface)
 {
