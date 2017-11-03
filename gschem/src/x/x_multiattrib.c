@@ -1407,11 +1407,11 @@ multiattrib_callback_popup_duplicate(GedaMenuItem *menuitem, void *user_data)
 static void
 multiattrib_callback_popup_promote (GedaMenuItem *menuitem, void *user_data)
 {
-  Multiattrib    *ThisDialog = user_data;
+  Multiattrib  *ThisDialog = user_data;
 
-  GtkTreeModel   *model;
-  GtkTreeIter     iter;
-  GedaList       *attr_list;
+  GtkTreeModel *model;
+  GtkTreeIter   iter;
+  GedaList     *attr_list;
 
   if (gtk_tree_selection_get_selected (
       gtk_tree_view_get_selection (ThisDialog->treeview), &model, &iter))
