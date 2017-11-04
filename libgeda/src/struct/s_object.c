@@ -118,7 +118,7 @@ geda_struct_object_release_objects(GList *list)
   /* Do the delete backwards */
   while (ptr != NULL) {
 
-    GedaObject *o_current = GEDA_OBJECT(ptr->data);
+    GedaObject *o_current = ptr->data;
 
     geda_struct_object_release(o_current);
 

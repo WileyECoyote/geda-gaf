@@ -1,3 +1,10 @@
+2017-11-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/struct/s_object.c: Revise geda_struct_object_release_objects;
+      remove GEDA_OBJECT cast in while loop because it has not been
+      determined if objects are still alive and glib make noise if the
+      class has already been destroyed.
+
 2017-11-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_complex.c: Update Doxygen comments for:
