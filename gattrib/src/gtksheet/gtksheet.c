@@ -14291,30 +14291,30 @@ int gtk_sheet_get_attributes(GtkSheet *sheet,
 
     if ((row < 0 || row > sheet->maxrow) || (col < 0 || col > sheet->maxcol))
     {
-	init_attributes(sheet, col, attributes);
-	return (FALSE);
+      init_attributes(sheet, col, attributes);
+      return (FALSE);
     }
 
     if (row > sheet->maxallocrow || col > sheet->maxalloccol ||
-	!sheet->data[row] || !sheet->data[row][col])
+        !sheet->data[row]        || !sheet->data[row][col])
     {
-	init_attributes(sheet, col, attributes);
-	return (FALSE);
+      init_attributes(sheet, col, attributes);
+      return (FALSE);
     }
 
     cell = sheet->data[row][col];
 
     if (!cell->attributes)
     {
-	init_attributes(sheet, col, attributes);
-	return (FALSE);
+      init_attributes(sheet, col, attributes);
+      return (FALSE);
     }
 
     *attributes = *(cell->attributes);
 
     if (COLPTR(sheet, col)->justification != GTK_SHEET_COLUMN_DEFAULT_JUSTIFICATION)
     {
-	attributes->justification = COLPTR(sheet, col)->justification;
+      attributes->justification = COLPTR(sheet, col)->justification;
     }
 
     return (TRUE);
@@ -14343,16 +14343,16 @@ static void init_attributes(GtkSheet *sheet, int col, GtkSheetCellAttr *attribut
 
     attributes->border.width = 0;
     attributes->border.line_style = GDK_LINE_SOLID;
-    attributes->border.cap_style = GDK_CAP_NOT_LAST;
+    attributes->border.cap_style  = GDK_CAP_NOT_LAST;
     attributes->border.join_style = GDK_JOIN_MITER;
-    attributes->border.mask = 0;
-    attributes->border.color = gtk_widget_get_style((GtkWidget*)sheet)->black;
-    attributes->is_editable = TRUE;
-    attributes->is_visible = TRUE;
-    attributes->font = gtk_widget_get_style((GtkWidget*)sheet)->private_font;
+    attributes->border.mask       = 0;
+    attributes->border.color      = gtk_widget_get_style((GtkWidget*)sheet)->black;
+    attributes->is_editable       = TRUE;
+    attributes->is_visible        = TRUE;
+    attributes->font              = gtk_widget_get_style((GtkWidget*)sheet)->private_font;
 
-    attributes->font_desc =
-	gtk_widget_get_style((GtkWidget*)sheet)->font_desc;  /* no copy */
+    /* no copy */
+    attributes->font_desc         = gtk_widget_get_style((GtkWidget*)sheet)->font_desc;
     attributes->do_font_desc_free = FALSE;
 }
 
@@ -14986,20 +14986,20 @@ void gtk_sheet_attach(GtkSheet *sheet, GtkWidget *widget, int row,
 	sheet, gtk_widget_get_name((GtkWidget*)sheet), widget);
 #endif
 
-    child = g_malloc0 (sizeof(GtkSheetChild));
+    child                   = g_malloc0 (sizeof(GtkSheetChild));
     child->attached_to_cell = TRUE;
-    child->floating = FALSE;
-    child->widget = widget;
-    child->row = row;
-    child->col = col;
-    child->xpadding = xpadding;
-    child->ypadding = ypadding;
-    child->xexpand = (xoptions & GTK_EXPAND) != 0;
-    child->yexpand = (yoptions & GTK_EXPAND) != 0;
-    child->xshrink = (xoptions & GTK_SHRINK) != 0;
-    child->yshrink = (yoptions & GTK_SHRINK) != 0;
-    child->xfill = (xoptions & GTK_FILL) != 0;
-    child->yfill = (yoptions & GTK_FILL) != 0;
+    child->floating         = FALSE;
+    child->widget           = widget;
+    child->row              = row;
+    child->col              = col;
+    child->xpadding         = xpadding;
+    child->ypadding         = ypadding;
+    child->xexpand          = (xoptions & GTK_EXPAND) != 0;
+    child->yexpand          = (yoptions & GTK_EXPAND) != 0;
+    child->xshrink          = (xoptions & GTK_SHRINK) != 0;
+    child->yshrink          = (yoptions & GTK_SHRINK) != 0;
+    child->xfill            = (xoptions & GTK_FILL) != 0;
+    child->yfill            = (yoptions & GTK_FILL) != 0;
 
     sheet->children = g_list_append(sheet->children, child);
     g_object_ref(child->widget);
@@ -15050,6 +15050,7 @@ void gtk_sheet_button_attach(GtkSheet *sheet, GtkWidget *widget, int row, int co
 
     if (row >= 0 && col >= 0)
       return;
+
     if (row < 0 && col < 0)
       return;
 
@@ -15057,17 +15058,17 @@ void gtk_sheet_button_attach(GtkSheet *sheet, GtkWidget *widget, int row, int co
     fprintf(stderr,"gtk_sheet_button_attach: called");
 #endif
 
-    child = g_malloc(sizeof(GtkSheetChild));
-    child->widget = widget;
-    child->x = 0;
-    child->y = 0;
+    child                   = g_malloc(sizeof(GtkSheetChild));
+    child->widget           = widget;
+    child->x                = 0;
+    child->y                = 0;
     child->attached_to_cell = TRUE;
-    child->floating = FALSE;
-    child->row = row;
-    child->col = col;
-    child->xpadding = child->ypadding = 0;
-    child->xshrink = child->yshrink = FALSE;
-    child->xfill = child->yfill = FALSE;
+    child->floating         = FALSE;
+    child->row              = row;
+    child->col              = col;
+    child->xpadding         = child->ypadding = 0;
+    child->xshrink          = child->yshrink  = FALSE;
+    child->xfill            = child->yfill    = FALSE;
 
     if (row == -1) {
       button = &COLPTR(sheet, col)->button;
