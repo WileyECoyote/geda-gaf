@@ -1,7 +1,12 @@
 2017-11-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_redraw.c: Utilize geda_struct_place_free_place_list
-      o_redraw_cleanstates, thus eliminating the GedaToplevel variable.
+      o_redraw_cleanstates, thus eliminating the GedaToplevel variable,
+      relocate call to i_event_cancel_action_handlerates from the entry
+      to the exit so the handler have a chance to cancel any specific
+      action in progress before clearing the action inside_action, i.e.
+      this is really moving the setting of inside_action to the end of
+      the function.
 
 2017-11-03 Wiley E. Hill <wileyhill@gmail.com>
 

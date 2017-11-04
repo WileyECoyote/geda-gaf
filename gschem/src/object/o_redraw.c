@@ -42,8 +42,6 @@
  */
 int o_redraw_cleanstates(GschemToplevel *w_current)
 {
-  i_event_cancel_action_handler (w_current);
-
   /* returns FALSE if the function was'nt nessecary */
   if (w_current->inside_action == 0) {
     return FALSE;
@@ -111,6 +109,9 @@ int o_redraw_cleanstates(GschemToplevel *w_current)
     case ( ZOOMBOX ):
       return FALSE;
   }
+
+  i_event_cancel_action_handler (w_current);
+
   return FALSE;
 }
 
