@@ -1,5 +1,13 @@
 2017-11-04 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/iface/i_event.c: Relocate the button 2 response section from
+      i_event_paster_released to i_event_paster_pressed so that in effect
+      in action rotations are performed on the button down event instead
+      of the button up event. More significantly, instigating an action
+      while inside of a paste action, such as copy and move, does not
+      result in the selection being rotated before starting the second
+      action when using repeat-last feature.
+
     * src/object/o_redraw.c: Utilize geda_struct_place_free_place_list
       o_redraw_cleanstates, thus eliminating the GedaToplevel variable,
       relocate call to i_event_cancel_action_handlerates from the entry

@@ -517,6 +517,53 @@ i_event_paster_pressed(GtkWidget *widget, GdkEventButton *event,
         w_current->rubber_visible = TRUE;
       }
     }
+    else  if (event->button == 2) {
+
+      if (!w_current->inside_action) {
+        BUG_MSG("Oops, Not inside an action!");
+      }
+      else {
+
+        int rotate;
+
+        rotate = (w_current->event_state == DRAGMOVE  ||
+                  w_current->event_state == COMPMODE  ||
+                  w_current->event_state == MOVEMODE  ||
+                  w_current->event_state == COPYMODE  ||
+                  w_current->event_state == MCOPYMODE ||
+                  w_current->event_state == PASTEMODE ||
+                  w_current->event_state == TEXTMODE);
+
+        if (rotate) {
+
+          if (w_current->event_state == MOVEMODE ||
+              w_current->event_state == DRAGMOVE)
+          {
+            o_move_invalidate_rubber (w_current, FALSE);
+          }
+          else {
+            o_place_invalidate_rubber (w_current, FALSE);
+          }
+          w_current->rubber_visible = FALSE;
+
+          o_place_rotate(w_current, 90);
+
+          if (w_current->event_state == COMPMODE) {
+            o_complex_place_changed_run_hook (w_current);
+          }
+
+          if (w_current->event_state == MOVEMODE ||
+              w_current->event_state == DRAGMOVE)
+          {
+            o_move_invalidate_rubber (w_current, TRUE);
+          }
+          else {
+            o_place_invalidate_rubber (w_current, TRUE);
+          }
+          w_current->rubber_visible = TRUE;
+        }
+      }
+    }
     else if (event->button == 3) {
 
       if (w_current->rubber_visible) {
@@ -574,53 +621,6 @@ i_event_paster_released(GtkWidget      *widget,
             w_current->drag_event = NULL;
           }
           break;
-      }
-    }
-    else  if (event->button == 2) {
-
-      if (!w_current->inside_action) {
-        BUG_MSG("Oops, Not inside an action!");
-      }
-      else {
-
-        int rotate;
-
-        rotate = (w_current->event_state == DRAGMOVE  ||
-                  w_current->event_state == COMPMODE  ||
-                  w_current->event_state == MOVEMODE  ||
-                  w_current->event_state == COPYMODE  ||
-                  w_current->event_state == MCOPYMODE ||
-                  w_current->event_state == PASTEMODE ||
-                  w_current->event_state == TEXTMODE);
-
-        if (rotate) {
-
-          if (w_current->event_state == MOVEMODE ||
-              w_current->event_state == DRAGMOVE)
-          {
-            o_move_invalidate_rubber (w_current, FALSE);
-          }
-          else {
-            o_place_invalidate_rubber (w_current, FALSE);
-          }
-          w_current->rubber_visible = FALSE;
-
-          o_place_rotate(w_current, 90);
-
-          if (w_current->event_state == COMPMODE) {
-            o_complex_place_changed_run_hook (w_current);
-          }
-
-          if (w_current->event_state == MOVEMODE ||
-              w_current->event_state == DRAGMOVE)
-          {
-            o_move_invalidate_rubber (w_current, TRUE);
-          }
-          else {
-            o_place_invalidate_rubber (w_current, TRUE);
-          }
-          w_current->rubber_visible = TRUE;
-        }
       }
     }
   }
