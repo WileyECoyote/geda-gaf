@@ -1,3 +1,8 @@
+2017-11-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_redraw.c: Utilize geda_struct_place_free_place_list
+      o_redraw_cleanstates, thus eliminating the GedaToplevel variable.
+
 2017-11-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_event.c: Add x_event_idle_repeat_last to initiate the
