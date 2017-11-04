@@ -88,7 +88,7 @@ int o_redraw_cleanstates(GschemToplevel *w_current)
        * already have been cleared in o_move_cancel(), so this is OK. */
       geda_struct_place_free_place_list(w_current->toplevel);
 
-      i_status_action_stop(w_current);
+      i_event_stop_action_handler(w_current);
 
       /* touch the select state */
       i_status_set_state(w_current, SELECT);

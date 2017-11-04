@@ -6,7 +6,10 @@
       to the exit so the handler have a chance to cancel any specific
       action in progress before clearing the action inside_action, i.e.
       this is really moving the setting of inside_action to the end of
-      the function.
+      the function, replace macro i_status_action_stop with function
+      i_event_stop_action_handler, which performs the task associated
+      with i_status_action_stop, but also ensures the button event over
+      ride handlers are cleared, thus unblocking primary event handlers.
 
 2017-11-03 Wiley E. Hill <wileyhill@gmail.com>
 
