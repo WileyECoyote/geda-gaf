@@ -2,6 +2,9 @@
 
     * opto/4N35-1.sym: Change pin labels to text color (green) and add value.
 
+    * opto/HCPL-810-1.sym: Add description, remove redundent numslots, update
+      attributes.
+
 2017-10-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/opamps/: Update device attributes:
