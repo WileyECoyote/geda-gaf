@@ -2,6 +2,7 @@
 
     * src/base/gschem_main_window.c: Add boolean "auto-restore" property.
       Revise gschem_main_window_new to accept boolean auto_restore argument.
+      Update function and property documentation.
 
     * gschem/src/x/x_window.c: Pass !auto_place_mode to gschem_main_window_new
       so that the window geometry will not be restored if the --place option

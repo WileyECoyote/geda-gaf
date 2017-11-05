@@ -97,7 +97,8 @@ get_property (GObject *object, unsigned int param_id, GValue *value, GParamSpec 
 /*!
  * \brief GtkWidget map signal handler
  * \par Function Description
- *  Just before the main window is mapped.
+ *  Just before the main window is mapped. If auto_restore property
+ *  is set than the GEOMETRY_RESTORE signal will be emitted.
  *
  * \param [in] widget  The GtkWidget being unmapped.
  */
@@ -198,8 +199,9 @@ gschem_window_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
  *  \par Function Description
  *  Before the Dialog widget is shown, restore previously saved
  *  position and size. Order is import here; RESTORE_POSITION is
- *  emitted after the would-be size has been applied or Gtk might
- *  bound the window to the edge of the screen.
+ *  emitted after the would-be size has been applied if the auto
+ *  restore property is set otherwise Gtk might bound the window
+ *  to the edge of the screen.
  *
  *  \param [in] widget  The GtkWidget being shown.
  */
@@ -377,6 +379,13 @@ gschem_main_window_class_init (void *class, void *class_data)
 
   gschem_main_window_parent_class = g_type_class_peek_parent (class);
 
+  /*! property "auto-restore": GschemMainWindow::auto-restore
+   *  \brief Sets the auto-restore property for a GschemMainWindow.
+   *  \par
+   * The auto-restore property is enabled by default. When auto-restore is
+   * set, the GschemMainWindow will attempt to retrieve and set both the
+   * window size and position.
+   */
   params = g_param_spec_boolean ("auto-restore",
                                _("Auto-Restore"),
                                _("Automatically restore the main window geometry"),
