@@ -8,6 +8,8 @@
     * opto/K3020P-1.sym: Draw box before pins, update footprint and description,
       add documentation and value.
 
+    * opto/KAQY210-1.sym: Draw box before pins, update footprint.
+
 2017-11-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * opto/4N35-1.sym: Change pin labels to text color (green) and add value.
