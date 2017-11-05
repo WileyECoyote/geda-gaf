@@ -57,6 +57,7 @@ struct _GschemMainWindowClass
 struct _GschemMainWindow
 {
   GtkWindow parent;
+  bool auto_restore;
 };
 
 #ifdef __cplusplus

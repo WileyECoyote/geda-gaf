@@ -40,6 +40,12 @@
  *  This module implements the main window in gschem.
  */
 
+enum
+{
+  PROP_0,
+  PROP_AUTO_RESTORE
+};
+
 enum {
   GEOMETRY_SAVE,
   GEOMETRY_RESTORE,
@@ -76,9 +82,13 @@ static unsigned int main_window_signals[LAST_SIGNAL] = { 0 };
 static void
 get_property (GObject *object, unsigned int param_id, GValue *value, GParamSpec *pspec)
 {
-  //GschemMainWindow *window = GSCHEM_MAIN_WINDOW (object);
+  GschemMainWindow *window = GSCHEM_MAIN_WINDOW (object);
 
   switch (param_id) {
+    case PROP_AUTO_RESTORE:
+      g_value_set_boolean (value, window->auto_restore);
+      break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, param_id, pspec);
   }
@@ -96,7 +106,9 @@ gschem_main_window_map (GtkWidget *widget)
 {
   gtk_widget_set_name (widget, "gschem");
 
-  g_signal_emit (widget, main_window_signals[ GEOMETRY_RESTORE ], 0);
+  if (((GschemMainWindow*)widget)->auto_restore) {
+    g_signal_emit (widget, main_window_signals[ GEOMETRY_RESTORE ], 0);
+  }
 
   ((GtkWidgetClass*)gschem_main_window_parent_class)->map (widget);
 }
@@ -200,7 +212,9 @@ static void gschem_main_show (GtkWidget *widget)
 
   gtk_window_set_resizable ((GtkWindow*)widget, TRUE);
 
-  g_signal_emit (widget, main_window_signals[ RESTORE_POSITION ], 0);
+  if (((GschemMainWindow*)widget)->auto_restore) {
+    g_signal_emit (widget, main_window_signals[ RESTORE_POSITION ], 0);
+  }
 }
 
 /*! \brief GschemMainWindow "restore_position" class method handler
@@ -346,6 +360,7 @@ gschem_main_window_class_init (void *class, void *class_data)
   GObjectClass          *gobject_class = (GObjectClass*)class;
   GtkWidgetClass        *widget_class  = (GtkWidgetClass*)class;
   GschemMainWindowClass *win_class     = (GschemMainWindowClass*)class;
+  GParamSpec            *params;
 
   gobject_class->get_property     = get_property;
   gobject_class->set_property     = set_property;
@@ -361,6 +376,14 @@ gschem_main_window_class_init (void *class, void *class_data)
   win_class->geometry_save        = gschem_main_window_geometry_save;
 
   gschem_main_window_parent_class = g_type_class_peek_parent (class);
+
+  params = g_param_spec_boolean ("auto-restore",
+                               _("Auto-Restore"),
+                               _("Automatically restore the main window geometry"),
+                                  TRUE,
+                                  G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
+
+  g_object_class_install_property (gobject_class, PROP_AUTO_RESTORE, params);
 
   GedaType type = gschem_main_window_get_type();
 
@@ -486,7 +509,13 @@ gschem_main_window_new ()
 static void
 set_property (GObject *object, unsigned int param_id, const GValue *value, GParamSpec *pspec)
 {
+  GschemMainWindow *window = GSCHEM_MAIN_WINDOW (object);
+
   switch (param_id) {
+    case PROP_AUTO_RESTORE:
+      window->auto_restore = g_value_get_boolean (value);
+      break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, param_id, pspec);
   }
