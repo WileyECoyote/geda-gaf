@@ -1,3 +1,7 @@
+2017-11-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * opto/HCPL4502-1.sym: update attributes.
+
 2017-11-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * opto/4N35-1.sym: Change pin labels to text color (green) and add value.
