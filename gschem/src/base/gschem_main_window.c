@@ -530,6 +530,11 @@ set_property (GObject *object, unsigned int param_id, const GValue *value, GPara
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 GdkWindow *gschem_main_window_get_window (GtkWidget *main_window)
 {
   if (GSCHEM_IS_MAIN_WINDOW(main_window)) {
@@ -541,6 +546,11 @@ GdkWindow *gschem_main_window_get_window (GtkWidget *main_window)
 
 #if GTK_MAJOR_VERSION < 3
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 GtkStyle *gschem_main_window_get_style (GtkWidget *main_window)
 {
   if (GSCHEM_IS_MAIN_WINDOW(main_window)) {
