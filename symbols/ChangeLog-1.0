@@ -5,6 +5,9 @@
     * opto/HCPL-2631-1.sym: Add description and value, update attributes, draw
       box before pins.
 
+    * opto/K3020P-1.sym: Draw box before pins, update footprint and description,
+      add documentation and value.
+
 2017-11-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * opto/4N35-1.sym: Change pin labels to text color (green) and add value.
