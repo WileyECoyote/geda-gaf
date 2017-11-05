@@ -1,14 +1,8 @@
 v 20151031 2
-T 100 3200 8 10 0 0 0 0 1
-author=AutoTron
-T 100 3000 8 10 0 0 0 0 1
-dist-license=GPLv2
-T 100 2800 8 10 0 0 0 0 1
-use-license=unlimited
-T 100 2000 9 10 0 0 0 0 1
-symversion=0.1
-T 100 2400 5 10 0 0 0 0 1
-numslots=0
+T 100 1700 8 10 0 0 0 1 1
+device=HCPL-2631
+T 1100 1200 8 10 1 1 0 0 1
+refdes=U?
 T 100 2200 9 10 0 1 0 0 1
 description=Logic Gate Output Optocoupler
 B 200 200 800 1100 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
@@ -46,10 +40,10 @@ T 125 1200 5 8 1 1 0 7 1
 pinnumber=1
 T 125 1200 5 8 0 1 0 7 1
 pinseq=1
-T 50 1200 5 8 0 1 0 7 1
-pintype=io
 T 225 1150 5 6 1 1 0 0 1
 pinlabel=A1
+T 50 1200 5 8 0 1 0 7 1
+pintype=io
 }
 P 200 900 0 900 1 0 1
 {
@@ -57,10 +51,10 @@ T 125 1000 5 8 1 1 0 7 1
 pinnumber=2
 T 125 1000 5 8 0 1 0 7 1
 pinseq=2
-T 50 875 5 8 0 1 0 2 1
-pintype=io
 T 225 950 5 6 1 1 0 0 1
 pinlabel=C1
+T 50 875 5 8 0 1 0 2 1
+pintype=io
 }
 P 200 600 0 600 1 0 1
 {
@@ -68,10 +62,10 @@ T 125 700 5 8 1 1 0 7 1
 pinnumber=4
 T 200 700 5 8 0 1 0 7 1
 pinseq=3
-T 50 700 5 8 0 1 0 7 1
-pintype=io
 T 225 650 5 6 1 1 0 0 1
 pinlabel=A2
+T 50 700 5 8 0 1 0 7 1
+pintype=io
 }
 P 200 400 0 400 1 0 1
 {
@@ -79,10 +73,10 @@ T 125 500 5 8 1 1 0 7 1
 pinnumber=3
 T 200 500 5 8 0 1 0 7 1
 pinseq=4
-T 50 375 5 8 0 1 0 2 1
-pintype=io
 T 225 450 5 6 1 1 0 0 1
 pinlabel=C2
+T 50 375 5 8 0 1 0 2 1
+pintype=io
 }
 P 1200 1000 1000 1000 1 0 0
 {
@@ -90,10 +84,10 @@ T 1050 1100 5 8 1 1 0 1 1
 pinnumber=7
 T 1050 900 5 8 0 1 0 1 1
 pinseq=5
-T 1200 925 5 8 0 1 0 1 1
-pintype=out
 T 975 825 9 8 1 1 0 6 1
 pinlabel=Vo1
+T 1200 925 5 8 0 1 0 1 1
+pintype=out
 }
 P 1200 500 1000 500 1 0 0
 {
@@ -101,10 +95,10 @@ T 1050 600 5 8 1 1 0 1 1
 pinnumber=6
 T 1050 425 5 8 0 1 0 1 1
 pinseq=6
-T 1200 425 5 8 0 1 0 1 1
-pintype=out
 T 975 575 9 8 1 1 0 6 1
 pinlabel=Vo2
+T 1200 425 5 8 0 1 0 1 1
+pintype=out
 }
 P 600 1300 600 1500 1 0 1
 {
@@ -128,13 +122,19 @@ pinlabel=gnd
 T 450 125 5 8 0 1 0 4 1
 pintype=pwr
 }
-T 100 1700 8 10 0 0 0 1 1
-device=HCPL-2631
-T 1100 1200 8 10 1 1 0 0 1
-refdes=U?
-T 900 1400 9 8 1 0 0 1 1
-HCPL-2631
+T 900 1400 9 8 1 1 0 1 1
+value=HCPL-2631
 T 100 1800 9 10 0 0 0 0 1
 footprint=DIP8
 T 100 2600 9 10 0 1 0 0 1
 documentation=https://www.fairchildsemi.com/datasheets/HC/HCPL2631.pdf
+T 100 3200 8 10 0 0 0 0 1
+author=AutoTron
+T 100 3000 8 10 0 0 0 0 1
+dist-license=GPLv2
+T 100 2800 8 10 0 0 0 0 1
+use-license=unlimited
+T 100 2000 9 10 0 0 0 0 1
+symversion=0.1
+T 100 2400 5 10 0 0 0 0 1
+numslots=0

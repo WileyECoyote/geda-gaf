@@ -2,6 +2,9 @@
 
     * opto/HCPL4502-1.sym: update attributes.
 
+    * opto/HCPL-2631-1.sym: Add description and value, update attributes, draw
+      box before pins.
+
 2017-11-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * opto/4N35-1.sym: Change pin labels to text color (green) and add value.
