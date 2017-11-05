@@ -364,7 +364,7 @@ x_window_create_main(GschemToplevel *w_current)
   /* used to signify that the window isn't mapped yet */
   w_current->window       = NULL;
 
-  w_current->main_window = gschem_main_window_new ();
+  w_current->main_window = gschem_main_window_new (!auto_place_mode);
 
   /* We want the widgets to flow around the drawing area, so we don't
    * set a size of the main window.  The drawing area's size is fixed,
