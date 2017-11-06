@@ -1,7 +1,7 @@
 2017-11-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_edit_slot.c: Retrofit the slot number to a spinner control
-      instead of a plain text entry.
+      instead of a plain text entry. Right justify entries controls.
 
 2017-11-05 Wiley E. Hill <wileyhill@gmail.com>
 

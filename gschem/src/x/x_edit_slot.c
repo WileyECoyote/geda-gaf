@@ -190,6 +190,7 @@ x_dialog_edit_slot (GschemToplevel *w_current, const char *slots, const char *sl
     if (slots != NULL) {
       SetEntryText(textslots, slots);
     }
+    gtk_entry_set_alignment ((GtkEntry*)textslots, 1.0);
     gtk_editable_set_editable (GTK_EDITABLE(textslots), FALSE);
     gtk_widget_set_sensitive (GTK_WIDGET(textslots), FALSE);
 
@@ -208,6 +209,7 @@ x_dialog_edit_slot (GschemToplevel *w_current, const char *slots, const char *sl
       SetSpinValue(slotspin, atoi(slot));
     }
 
+    gtk_entry_set_alignment ((GtkEntry*)slotspin, 1.0);
     gtk_entry_set_activates_default ((GtkEntry*)slotspin, TRUE);
 
     GEDA_HOOKUP_OBJECT(ThisDialog, textslots, "slot-count");
