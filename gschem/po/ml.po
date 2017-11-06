@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-10-07 20:52-0500\n"
+"POT-Creation-Date: 2017-11-06 01:07-0600\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -135,12 +135,20 @@ msgstr ""
 msgid "Evaluate"
 msgstr ""
 
-#: gschem/src/base/gschem_main_window.c:227
+#: gschem/src/base/gschem_main_window.c:243
 msgid "Retrieving main window position.\n"
 msgstr ""
 
-#: gschem/src/base/gschem_main_window.c:274
+#: gschem/src/base/gschem_main_window.c:290
 msgid "Retrieving main window geometry.\n"
+msgstr ""
+
+#: gschem/src/base/gschem_main_window.c:390
+msgid "Auto-Restore"
+msgstr ""
+
+#: gschem/src/base/gschem_main_window.c:391
+msgid "Automatically restore the main window geometry"
 msgstr ""
 
 #: gschem/src/base/gschem_page_view.c:250
@@ -547,11 +555,11 @@ msgstr ""
 msgid "Found invalid gschem window smob ~S"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5108
+#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5109
 msgid "current value of"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5109
+#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5110
 msgid "is"
 msgstr ""
 
@@ -570,7 +578,7 @@ msgid "while inside an action!\n"
 msgstr "ഒരു കമാൻഡ് പടർത്തുകയും പുരോഗമിക്കുന്നു\n"
 
 # A new page has been created
-#: gschem/src/iface/i_command.c:768 gschem/src/iface/i_command.c:2778
+#: gschem/src/iface/i_command.c:768 gschem/src/iface/i_command.c:2779
 msgid "New page created"
 msgstr "പുതിയ പേജ് സൃഷ്ടിച്ചു"
 
@@ -634,154 +642,154 @@ msgid "Empty buffer"
 msgstr "ശൂന്യ ബഫർ"
 
 # Offset Mode
-#: gschem/src/iface/i_command.c:1689
+#: gschem/src/iface/i_command.c:1690
 msgid "Offset Mode"
 msgstr "പ്രവര്‍ത്തന രീതി ഓഫ്സെറ്റ്"
 
-#: gschem/src/iface/i_command.c:1690
+#: gschem/src/iface/i_command.c:1691
 msgid "Specify offset distance:"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:2267
+#: gschem/src/iface/i_command.c:2268
 msgid "Zoom Magnification"
 msgstr "വലുതാക്കി കാണിക്കുന്ന പെട്ടി"
 
-#: gschem/src/iface/i_command.c:2267
+#: gschem/src/iface/i_command.c:2268
 msgid "Specify new zoom:"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:2311
+#: gschem/src/iface/i_command.c:2312
 msgid "error"
 msgstr "പിശക്"
 
-#: gschem/src/iface/i_command.c:2319
+#: gschem/src/iface/i_command.c:2320
 msgid "No component selected\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:2864
+#: gschem/src/iface/i_command.c:2865
 msgid "Confirm revert ALL documents"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3046
+#: gschem/src/iface/i_command.c:3047
 msgid "Searching for source"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3080
+#: gschem/src/iface/i_command.c:3081
 msgid "Failed to descend into"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3089
+#: gschem/src/iface/i_command.c:3090
 msgid "Hierarchy Error"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3166
+#: gschem/src/iface/i_command.c:3167
 msgid "Searching for symbol"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3176
+#: gschem/src/iface/i_command.c:3177
 msgid "Symbol is not a real file. Symbol cannot be loaded.\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3223
+#: gschem/src/iface/i_command.c:3224
 msgid "Cannot find any schematics above the current one!\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3342
+#: gschem/src/iface/i_command.c:3343
 msgid "Object is attached to something\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3749
+#: gschem/src/iface/i_command.c:3750
 msgid "Attribute is already attached\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4148
+#: gschem/src/iface/i_command.c:4149
 msgid "WARNING: Do not translate with snap off!\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4149
+#: gschem/src/iface/i_command.c:4150
 msgid "WARNING: Turning snap on and continuing with translate.\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4155
+#: gschem/src/iface/i_command.c:4156
 msgid "WARNING: Snap grid size is not equal to 100!\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4156
+#: gschem/src/iface/i_command.c:4157
 msgid ""
 "WARNING: If you are translating a symbol to the origin, the snap grid size "
 "should be set to 100\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4351
+#: gschem/src/iface/i_command.c:4352
 msgid "Grid OFF\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4352
+#: gschem/src/iface/i_command.c:4353
 msgid "Dot grid activated\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4353
+#: gschem/src/iface/i_command.c:4354
 msgid "Mesh grid activated\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4432
+#: gschem/src/iface/i_command.c:4433
 msgid "Snap OFF (CAUTION!)\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4437
+#: gschem/src/iface/i_command.c:4438
 msgid "Snap ON\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4441
+#: gschem/src/iface/i_command.c:4442
 msgid "Snap back to the grid (CAUTION!)\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4465
+#: gschem/src/iface/i_command.c:4466
 msgid "Rubber band mode is OFF\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4468
+#: gschem/src/iface/i_command.c:4469
 msgid "Rubber band mode is ON\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4479
+#: gschem/src/iface/i_command.c:4480
 msgid "Magnetic net mode is ON\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4482
+#: gschem/src/iface/i_command.c:4483
 msgid "Magnetic net mode is OFF\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4499 gschem/src/iface/i_command.c:4541
+#: gschem/src/iface/i_command.c:4500 gschem/src/iface/i_command.c:4542
 msgid "Off"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4502 gschem/src/iface/i_command.c:4544
+#: gschem/src/iface/i_command.c:4503 gschem/src/iface/i_command.c:4545
 msgid "On"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4504
+#: gschem/src/iface/i_command.c:4505
 msgid "Drag-Can-Move is now"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4516
+#: gschem/src/iface/i_command.c:4517
 msgid "Action feedback mode set to OUTLINE\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4520
+#: gschem/src/iface/i_command.c:4521
 msgid "Action feedback mode set to BOUNDINGBOX\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4546
+#: gschem/src/iface/i_command.c:4547
 msgid "Auto-Pan is now"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4598 gschem/src/iface/i_command.c:4627
-#: gschem/src/iface/i_command.c:4647 gschem/src/iface/i_command.c:4667
+#: gschem/src/iface/i_command.c:4599 gschem/src/iface/i_command.c:4628
+#: gschem/src/iface/i_command.c:4648 gschem/src/iface/i_command.c:4668
 msgid "Check path:"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4767
+#: gschem/src/iface/i_command.c:4768
 #, c-format
 msgid "(read only) width=%d, height=%d\n"
 msgstr ""
@@ -1121,7 +1129,7 @@ msgstr ""
 msgid "Point 1 missed x=%d, y=%d\n"
 msgstr ""
 
-#: gschem/src/object/o_complex.c:248 gschem/src/object/o_complex.c:252
+#: gschem/src/object/o_complex.c:251 gschem/src/object/o_complex.c:255
 msgid "Translating schematic"
 msgstr ""
 
@@ -1132,35 +1140,35 @@ msgid_plural "Delete %u locked objects?"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gschem/src/object/o_edit.c:517
+#: gschem/src/object/o_edit.c:556
 msgid "attributes were hidden"
 msgstr ""
 
-#: gschem/src/object/o_edit.c:521
+#: gschem/src/object/o_edit.c:560
 msgid "hidden attributes were revealed"
 msgstr ""
 
-#: gschem/src/object/o_edit.c:717
+#: gschem/src/object/o_edit.c:756
 msgid "Hidden text is now visible\n"
 msgstr ""
 
-#: gschem/src/object/o_edit.c:720
+#: gschem/src/object/o_edit.c:759
 msgid "Hidden text is now invisible\n"
 msgstr ""
 
-#: gschem/src/object/o_edit.c:1121 gschem/src/x/x_edit_cprop.c:369
+#: gschem/src/object/o_edit.c:1161 gschem/src/x/x_edit_cprop.c:387
 msgid "Could not find symbol"
 msgstr ""
 
-#: gschem/src/object/o_edit.c:1122 gschem/src/x/x_edit_cprop.c:370
+#: gschem/src/object/o_edit.c:1162 gschem/src/x/x_edit_cprop.c:388
 msgid "in library. Update failed"
 msgstr ""
 
-#: gschem/src/object/o_edit.c:1127
+#: gschem/src/object/o_edit.c:1167
 msgid "Updating symbol"
 msgstr ""
 
-#: gschem/src/object/o_move.c:524
+#: gschem/src/object/o_move.c:525
 msgid "Could not resolve which end of pin to connect\n"
 msgstr ""
 
@@ -1289,59 +1297,59 @@ msgid ""
 "duplicate slot may cause problems: [symbol name=%s, number=%d, slot=%d]\n"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:918
+#: gschem/src/x/x_autonumber.c:921
 msgid "No search string given in autonumber text.\n"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1133
+#: gschem/src/x/x_autonumber.c:1136
 msgid "Diagonal"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1134
+#: gschem/src/x/x_autonumber.c:1137
 msgid "Top to bottom"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1135
+#: gschem/src/x/x_autonumber.c:1138
 msgid "Bottom to top"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1136
+#: gschem/src/x/x_autonumber.c:1139
 msgid "Left to right"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1137
+#: gschem/src/x/x_autonumber.c:1140
 msgid "Right to left"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1138
+#: gschem/src/x/x_autonumber.c:1141
 msgid "File order"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1610
+#: gschem/src/x/x_autonumber.c:1613
 msgid "<b>Filter:</b>"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1651
+#: gschem/src/x/x_autonumber.c:1654
 msgid "Selected objects"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1652
+#: gschem/src/x/x_autonumber.c:1655
 msgid "Current page"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1653
+#: gschem/src/x/x_autonumber.c:1656
 msgid "Whole hierarchy"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1699
+#: gschem/src/x/x_autonumber.c:1702
 msgid "Autonumber text"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1722
+#: gschem/src/x/x_autonumber.c:1725
 msgid "<b>Scope</b>"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1795
+#: gschem/src/x/x_autonumber.c:1798
 msgid "Options"
 msgstr "പ്രവര്‍ത്തന രീതി നിര്‍ണയിക്കുക"
 
@@ -1373,13 +1381,13 @@ msgstr ""
 msgid "Components"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2554 gschem/src/x/x_multiattrib.c:2013
-#: gschem/src/x/x_multiattrib.c:2019
+#: gschem/src/x/x_compselect.c:2554 gschem/src/x/x_confirm_close.c:296
+#: gschem/src/x/x_multiattrib.c:2033 gschem/src/x/x_multiattrib.c:2039
 msgid "Name"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2566 gschem/src/x/x_multiattrib.c:2015
-#: gschem/src/x/x_multiattrib.c:2021
+#: gschem/src/x/x_compselect.c:2566 gschem/src/x/x_multiattrib.c:2035
+#: gschem/src/x/x_multiattrib.c:2041
 msgid "Value"
 msgstr ""
 
@@ -1480,6 +1488,43 @@ msgid ""
 "When true, initial focus will be the filter entry, otherwise the Component "
 "Tree"
 msgstr ""
+
+#: gschem/src/x/x_confirm_close.c:318
+msgid "S_elect the schematics you want to save:"
+msgstr ""
+
+#: gschem/src/x/x_confirm_close.c:480
+#, c-format
+msgid "Save the changes to schematic \"%s\" before closing?"
+msgstr ""
+
+#: gschem/src/x/x_confirm_close.c:487
+#, c-format
+msgid ""
+"There are %d schematics with unsaved changes. Save changes before closing?"
+msgstr ""
+
+#: gschem/src/x/x_confirm_close.c:517
+msgid "If you don't save, all your changes will be permanently lost."
+msgstr ""
+
+#: gschem/src/x/x_confirm_close.c:534
+msgid "Close without saving"
+msgstr ""
+
+#: gschem/src/x/x_confirm_close.c:588
+msgid "unsaved page"
+msgstr ""
+
+#: gschem/src/x/x_confirm_close.c:595
+msgid "unsaved pages"
+msgstr ""
+
+# Select Last
+#: gschem/src/x/x_confirm_close.c:602
+#, fuzzy
+msgid "selected pages"
+msgstr "സമീപകാലത്തെ തിരഞ്ഞെടുക്കുക"
 
 #: gschem/src/x/x_console.c:135
 msgid "destroying history\n"
@@ -1622,7 +1667,7 @@ msgstr ""
 msgid "Graphic"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1037 gschem/src/x/x_edit_pin.c:143
+#: gschem/src/x/x_dialog.c:1037 gschem/src/x/x_edit_pin.c:141
 #: gschem/src/x/x_menus.c:92
 msgid "Net"
 msgstr "നെറ്റ്"
@@ -1647,7 +1692,7 @@ msgstr ""
 msgid "Text"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1043 gschem/src/x/x_edit_pin.c:144
+#: gschem/src/x/x_dialog.c:1043 gschem/src/x/x_edit_pin.c:142
 #: gschem/src/x/x_menus.c:95
 msgid "Bus"
 msgstr "ബസ്"
@@ -2020,7 +2065,7 @@ msgstr ""
 msgid "not in library, opening as page"
 msgstr ""
 
-#: gschem/src/x/x_dnd.c:444 gschem/src/x/x_multiattrib.c:2605
+#: gschem/src/x/x_dnd.c:444 gschem/src/x/x_multiattrib.c:2625
 msgid "symbol"
 msgstr ""
 
@@ -2042,6 +2087,141 @@ msgstr ""
 
 #: gschem/src/x/x_draw.cpp:516
 msgid "Done, renderer is down"
+msgstr ""
+
+#: gschem/src/x/x_edit_array.c:486
+msgid "X pitch distence is less than extents\n"
+msgstr ""
+
+#: gschem/src/x/x_edit_array.c:487
+msgid "Y pitch distence is less than extents\n"
+msgstr ""
+
+#: gschem/src/x/x_edit_array.c:507
+msgid "X and Y pitch distence are less than extents\n"
+msgstr ""
+
+#: gschem/src/x/x_edit_array.c:526
+msgid "Components may overlay, Continue?"
+msgstr ""
+
+# Create Array
+#: gschem/src/x/x_edit_array.c:539 gschem/src/x/x_edit_array.c:544
+#: gschem/src/x/x_edit_array.c:549
+#, fuzzy
+msgid "Create Array:Error"
+msgstr "അറേ സൃഷ്ടിക്കുക"
+
+#: gschem/src/x/x_edit_array.c:540
+msgid ""
+"Both row and column offset\n"
+"can not be zero"
+msgstr ""
+
+#: gschem/src/x/x_edit_array.c:545
+msgid ""
+"Either row or column count\n"
+" must be greater than 1"
+msgstr ""
+
+#: gschem/src/x/x_edit_array.c:550
+msgid ""
+"Both row and column\n"
+"can not be zero"
+msgstr ""
+
+# Create Array
+#: gschem/src/x/x_edit_array.c:865 gschem/scheme/gschem/builtins.scm:131
+msgid "Create Array"
+msgstr "അറേ സൃഷ്ടിക്കുക"
+
+# Selection
+#: gschem/src/x/x_edit_array.c:892
+#, fuzzy
+msgid "<b>Selection</b>"
+msgstr "തിരഞ്ഞെടുക്കൽ"
+
+#: gschem/src/x/x_edit_array.c:902 gschem/src/x/x_edit_array.c:972
+#: gschem/src/x/x_edit_array.c:1005
+msgid "Count"
+msgstr ""
+
+#: gschem/src/x/x_edit_array.c:913
+msgid "X Size"
+msgstr ""
+
+#: gschem/src/x/x_edit_array.c:916
+msgid "Y Size"
+msgstr ""
+
+# Select
+#: gschem/src/x/x_edit_array.c:935 gschem/src/x/x_menus.c:87
+msgid "Select"
+msgstr "തിരഞ്ഞെടുക്കുക"
+
+#: gschem/src/x/x_edit_array.c:939
+#, fuzzy
+msgid "Deselect"
+msgstr "അൺ-തിരഞ്ഞെടുക്കാൻ മോഡ്"
+
+# File error
+#: gschem/src/x/x_edit_array.c:955
+#, fuzzy
+msgid "<b>Array</b>"
+msgstr "<b>ഫയൽ പിശക്.</b>"
+
+#: gschem/src/x/x_edit_array.c:964
+msgid "Row"
+msgstr ""
+
+# Offset
+#: gschem/src/x/x_edit_array.c:987 gschem/src/x/x_edit_array.c:1020
+#, fuzzy
+msgid "Offset"
+msgstr "ഓഫ്സെറ്റ്"
+
+#: gschem/src/x/x_edit_array.c:997
+msgid "Column"
+msgstr ""
+
+#: gschem/src/x/x_edit_array.c:1030
+msgid "Y"
+msgstr ""
+
+#: gschem/src/x/x_edit_array.c:1038
+msgid "X,Y"
+msgstr ""
+
+#: gschem/src/x/x_edit_array.c:1042
+msgid "X"
+msgstr ""
+
+#: gschem/src/x/x_edit_array.c:1058
+msgid "Read only count of objects currently selected"
+msgstr ""
+
+#: gschem/src/x/x_edit_array.c:1065
+msgid "Read only x bounds displacement of selected object"
+msgstr ""
+
+#: gschem/src/x/x_edit_array.c:1072
+msgid "Read only y bounds displacement of selected object"
+msgstr ""
+
+#: gschem/src/x/x_edit_array.c:1079
+msgid "Spinner entry number of rows to create"
+msgstr ""
+
+#: gschem/src/x/x_edit_array.c:1086
+msgid "Spinner entry number of columns to create"
+msgstr ""
+
+#: gschem/src/x/x_edit_array.c:1093
+msgid "Entry for array horizontal pitch"
+msgstr ""
+
+#: gschem/src/x/x_edit_array.c:1100
+msgid "entry for array vertical pitch"
 msgstr ""
 
 #: gschem/src/x/x_edit_attrib.c:215
@@ -2073,7 +2253,7 @@ msgstr ""
 msgid "Show Name Only"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:345 gschem/src/x/x_multiattrib.c:1652
+#: gschem/src/x/x_edit_attrib.c:345 gschem/src/x/x_multiattrib.c:1673
 #: gschem/scheme/gschem/builtins.scm:413
 msgid "Show Name & Value"
 msgstr ""
@@ -2114,16 +2294,16 @@ msgstr ""
 msgid "Single Attribute Editor"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:465 gschem/src/x/x_multiattrib.c:2221
+#: gschem/src/x/x_edit_attrib.c:465 gschem/src/x/x_multiattrib.c:2241
 msgid "Name:"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:482 gschem/src/x/x_multiattrib.c:2238
+#: gschem/src/x/x_edit_attrib.c:482 gschem/src/x/x_multiattrib.c:2258
 msgid "Value:"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:496 gschem/src/x/x_multiattrib.c:2017
-#: gschem/src/x/x_multiattrib.c:2293
+#: gschem/src/x/x_edit_attrib.c:496 gschem/src/x/x_multiattrib.c:2037
+#: gschem/src/x/x_multiattrib.c:2313
 msgid "Visible"
 msgstr ""
 
@@ -2182,335 +2362,371 @@ msgid "Symbol renamed, cannot be undone\n"
 msgstr "പുനർനാമകരണം പ്രതീക, പൂർവ്വാവസ്ഥയിലാക്കാൻ കഴിയില്ല\n"
 
 # Edit Component Properties
-#: gschem/src/x/x_edit_cprop.c:1157
+#: gschem/src/x/x_edit_cprop.c:1207
 msgid "Edit Component Properties"
 msgstr "ഘടക ന്റെഗുണവിശേഷങ്ങളിലെതിരുത്ത്"
 
-#: gschem/src/x/x_edit_cprop.c:1172
+#: gschem/src/x/x_edit_cprop.c:1222
 msgid "_Symbol:"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1183
+#: gschem/src/x/x_edit_cprop.c:1233
 msgid "_Device:"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1194
+#: gschem/src/x/x_edit_cprop.c:1244
 msgid "_Author:"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1205
+#: gschem/src/x/x_edit_cprop.c:1255
 msgid "_Version:"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1223
+#: gschem/src/x/x_edit_cprop.c:1273
 msgid "_Enable"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1231
+#: gschem/src/x/x_edit_cprop.c:1281
 msgid "_use-license:"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1242
+#: gschem/src/x/x_edit_cprop.c:1292
 msgid "dist-_license:"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1253
+#: gschem/src/x/x_edit_cprop.c:1303
 msgid "Descr_iption:"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1264
+#: gschem/src/x/x_edit_cprop.c:1314
 msgid "Documen_tation:"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1275
+#: gschem/src/x/x_edit_cprop.c:1325
 msgid "_Comment:"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1300
+#: gschem/src/x/x_edit_cprop.c:1346
+#, fuzzy
+msgid "Options:"
+msgstr "പ്രവര്‍ത്തന രീതി നിര്‍ണയിക്കുക"
+
+#: gschem/src/x/x_edit_cprop.c:1381
+msgid "_Embedded"
+msgstr ""
+
+#: gschem/src/x/x_edit_cprop.c:1397
+#, fuzzy
+msgid "_Locked"
+msgstr "പൂട്ടുക"
+
+# Mirror
+#: gschem/src/x/x_edit_cprop.c:1415
+#, fuzzy
+msgid "_Mirrored"
+msgstr "കണ്ണാടി"
+
+#: gschem/src/x/x_edit_cprop.c:1439
 msgid "_Electrical:"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1328
+#: gschem/src/x/x_edit_cprop.c:1467
 msgid "_Ref Des:"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1341
+#: gschem/src/x/x_edit_cprop.c:1480
 msgid "_No. Slot:"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1352
+#: gschem/src/x/x_edit_cprop.c:1491
 msgid "No. _Pins:"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1362
+#: gschem/src/x/x_edit_cprop.c:1501
 msgid "_Value:"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1376
+#: gschem/src/x/x_edit_cprop.c:1515
 msgid "_Foot Print:"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1387
+#: gschem/src/x/x_edit_cprop.c:1526
 msgid "Spice Type:"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1398
+#: gschem/src/x/x_edit_cprop.c:1537
 msgid "Model Name:"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1432
+#: gschem/src/x/x_edit_cprop.c:1574
 msgid "File name entry of component symbol"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1439
+#: gschem/src/x/x_edit_cprop.c:1581
 msgid "Device identifier entry"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1445
+#: gschem/src/x/x_edit_cprop.c:1587
 msgid "Entry for name of the author"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1451
+#: gschem/src/x/x_edit_cprop.c:1593
 msgid "Entry for the version of this symbol"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1457
+#: gschem/src/x/x_edit_cprop.c:1599
 msgid "Enable or Disable version checking of this component"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1464
+#: gschem/src/x/x_edit_cprop.c:1606
 msgid "User license entry"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1471
+#: gschem/src/x/x_edit_cprop.c:1613
 msgid "Entry for distribution license of the symbol"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1478
+#: gschem/src/x/x_edit_cprop.c:1620
 msgid "Description of the component"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1485
+#: gschem/src/x/x_edit_cprop.c:1627
 msgid "Link to documentation for this device"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1492
+#: gschem/src/x/x_edit_cprop.c:1634
 msgid "Entry for comments"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1499
+#: gschem/src/x/x_edit_cprop.c:1640
+msgid "Embed symbol in schematic checkbox"
+msgstr ""
+
+#: gschem/src/x/x_edit_cprop.c:1646
+msgid "Lock symbol in schematic checkbox"
+msgstr ""
+
+#: gschem/src/x/x_edit_cprop.c:1652
+msgid "Checkbox indicating if symbol is mirrored"
+msgstr ""
+
+#: gschem/src/x/x_edit_cprop.c:1659
 msgid "Checkbox to enable electrical properties"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1506
+#: gschem/src/x/x_edit_cprop.c:1666
 msgid "Entry for reference designator"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1513
+#: gschem/src/x/x_edit_cprop.c:1673
 msgid "Spinner with entry for number of slots"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1520
+#: gschem/src/x/x_edit_cprop.c:1680
 msgid "Spinner with entry for number of pins"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1527
+#: gschem/src/x/x_edit_cprop.c:1687
 msgid "Entry for the component value"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1534
+#: gschem/src/x/x_edit_cprop.c:1694
 msgid "Entry for the component foot print"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1541
+#: gschem/src/x/x_edit_cprop.c:1701
 msgid "Entry for spice-type over-ride"
 msgstr ""
 
-#: gschem/src/x/x_edit_cprop.c:1548
+#: gschem/src/x/x_edit_cprop.c:1708
 msgid "Entry for model file name"
 msgstr ""
 
 # Type
-#: gschem/src/x/x_edit_pin.c:73
+#: gschem/src/x/x_edit_pin.c:71
 msgid "_Type:"
 msgstr "തരം:"
 
-#: gschem/src/x/x_edit_pin.c:73
+#: gschem/src/x/x_edit_pin.c:71
 msgid "Select the pin type"
 msgstr ""
 
 # attributes
-#: gschem/src/x/x_edit_pin.c:74
+#: gschem/src/x/x_edit_pin.c:72
 msgid "_Attributes:"
 msgstr "ഗുണവിശേഷങ്ങൾ:"
 
 # Set the pin attributes
-#: gschem/src/x/x_edit_pin.c:74
+#: gschem/src/x/x_edit_pin.c:72
 msgid "Set the pin attributes"
 msgstr "പിൻ ആട്രിബ്യൂട്ടുകൾ സജ്ജമാക്കുക"
 
-#: gschem/src/x/x_edit_pin.c:75
+#: gschem/src/x/x_edit_pin.c:73
 msgid "_Number:"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:75
+#: gschem/src/x/x_edit_pin.c:73
 msgid "Set the pin number, or the starting pin number if auto numbering"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:76
+#: gschem/src/x/x_edit_pin.c:74
 msgid "_Sequence:"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:76
+#: gschem/src/x/x_edit_pin.c:74
 msgid "Set the sequence number"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:77
+#: gschem/src/x/x_edit_pin.c:75
 msgid "_Label:"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:77
+#: gschem/src/x/x_edit_pin.c:75
 msgid "Enter pin name or description"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:79
+#: gschem/src/x/x_edit_pin.c:77
 msgid "      Type:"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:79
+#: gschem/src/x/x_edit_pin.c:77
 msgid "Enable to set all selected attributes to the prescribed type"
 msgstr ""
 
 # attributes
-#: gschem/src/x/x_edit_pin.c:80
+#: gschem/src/x/x_edit_pin.c:78
 msgid "Attributes:"
 msgstr "ഗുണവിശേഷങ്ങൾ:"
 
-#: gschem/src/x/x_edit_pin.c:80
+#: gschem/src/x/x_edit_pin.c:78
 msgid "Enable to set all selected attributes to the prescribed value"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:82
+#: gschem/src/x/x_edit_pin.c:80
 msgid "Number:"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:82
+#: gschem/src/x/x_edit_pin.c:80
 msgid ""
 "Enable or disable renumbering pin numbers, Number will be the starting pin "
 "number"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:83
+#: gschem/src/x/x_edit_pin.c:81
 msgid "Sequence:"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:83
+#: gschem/src/x/x_edit_pin.c:81
 msgid ""
 "Enable or disable re-sequencing pins\n"
 ", this only changes the sequence number, not the actual sequence in the "
 "symbol file"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:99
+#: gschem/src/x/x_edit_pin.c:97
 msgid "in"
 msgstr "in"
 
-#: gschem/src/x/x_edit_pin.c:100
+#: gschem/src/x/x_edit_pin.c:98
 msgid "out"
 msgstr "out"
 
-#: gschem/src/x/x_edit_pin.c:101
+#: gschem/src/x/x_edit_pin.c:99
 msgid "io"
 msgstr "io"
 
-#: gschem/src/x/x_edit_pin.c:102
+#: gschem/src/x/x_edit_pin.c:100
 msgid "oc"
 msgstr "oc"
 
-#: gschem/src/x/x_edit_pin.c:103
+#: gschem/src/x/x_edit_pin.c:101
 msgid "oe"
 msgstr "oe"
 
-#: gschem/src/x/x_edit_pin.c:104
+#: gschem/src/x/x_edit_pin.c:102
 msgid "pas"
 msgstr "oe"
 
-#: gschem/src/x/x_edit_pin.c:105
+#: gschem/src/x/x_edit_pin.c:103
 msgid "tp"
 msgstr "oe"
 
-#: gschem/src/x/x_edit_pin.c:106
+#: gschem/src/x/x_edit_pin.c:104
 msgid "tri"
 msgstr "tri"
 
-#: gschem/src/x/x_edit_pin.c:107
+#: gschem/src/x/x_edit_pin.c:105
 msgid "clk"
 msgstr "clk"
 
-#: gschem/src/x/x_edit_pin.c:108
+#: gschem/src/x/x_edit_pin.c:106
 msgid "pwr"
 msgstr "pwr"
 
-#: gschem/src/x/x_edit_pin.c:109 gschem/src/x/x_edit_pin.c:198
-#: gschem/src/x/x_edit_pin.c:212
+#: gschem/src/x/x_edit_pin.c:107 gschem/src/x/x_edit_pin.c:196
+#: gschem/src/x/x_edit_pin.c:210
 msgid "*missing*"
 msgstr "*കാണാതായ*"
 
-#: gschem/src/x/x_edit_pin.c:286 gschem/src/x/x_edit_pin.c:297
+#: gschem/src/x/x_edit_pin.c:284 gschem/src/x/x_edit_pin.c:295
 msgid "Pin Properties"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:286
+#: gschem/src/x/x_edit_pin.c:284
 msgid "Invalid Pin Node Type"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:297
+#: gschem/src/x/x_edit_pin.c:295
 msgid "Ignoring Pin electrical VOID"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:809
+#: gschem/src/x/x_edit_pin.c:807
 msgid "Pin Properties Editor"
 msgstr ""
 
 # Set
-#: gschem/src/x/x_edit_pin.c:885
+#: gschem/src/x/x_edit_pin.c:883
 msgid "Set"
 msgstr "ഗണം"
 
-#: gschem/src/x/x_edit_pin.c:888
+#: gschem/src/x/x_edit_pin.c:886
 msgid "Auto"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:919
+#: gschem/src/x/x_edit_pin.c:917
 msgid "Attribute Type List"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:923
+#: gschem/src/x/x_edit_pin.c:921
 msgid "Text Alignment Option"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:927
+#: gschem/src/x/x_edit_pin.c:925
 msgid "Pin Number"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:931
+#: gschem/src/x/x_edit_pin.c:929
 msgid "Sequence Number"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:935
+#: gschem/src/x/x_edit_pin.c:933
 msgid "Pin Label"
 msgstr ""
 
-#: gschem/src/x/x_edit_slot.c:162
+#: gschem/src/x/x_edit_slot.c:164
 msgid "Edit slot number"
 msgstr ""
 
-#: gschem/src/x/x_edit_slot.c:185
+#: gschem/src/x/x_edit_slot.c:187
 msgid "Number of slots:"
 msgstr ""
 
-#: gschem/src/x/x_edit_slot.c:199
+#: gschem/src/x/x_edit_slot.c:209
 msgid "Slot number:"
+msgstr ""
+
+#: gschem/src/x/x_edit_slot.c:216
+msgid "Set the active slot number"
 msgstr ""
 
 #: gschem/src/x/x_edit_text.c:64 gschem/src/x/x_edit_text.c:473
@@ -2694,21 +2910,21 @@ msgid "Version"
 msgstr "പതിപ്പ്"
 
 # Warning, Error reading image file
-#: gschem/src/x/x_icons.c:253
+#: gschem/src/x/x_icons.c:257
 msgid "Warning, Error reading image file"
 msgstr "മുന്നറിയിപ്പ്, ഇമേജ് ഫയൽ വായിക്കുന്നതിൽ പിശക്"
 
 # Warning, Error accessing image file
-#: gschem/src/x/x_icons.c:254
+#: gschem/src/x/x_icons.c:258
 msgid "Warning, Error accessing image file"
 msgstr "മുന്നറിയിപ്പ്, ഇമേജ് ഫയൽ ആക്സസ് ചെയ്യുന്നതിൽ പിശക്"
 
 # Shutting down icon factory
-#: gschem/src/x/x_icons.c:426
+#: gschem/src/x/x_icons.c:430
 msgid "Shutting down icon factory\n"
 msgstr "ഐക്കൺ ഫാക്ടറി അവസാനിപ്പിക്കും\n"
 
-#: gschem/src/x/x_icons.c:447
+#: gschem/src/x/x_icons.c:451
 msgid "Initializing icon factory\n"
 msgstr "ഐക്കൺ ഫാക്ടറി ആരംഭിക്കുന്നു\n"
 
@@ -2826,11 +3042,6 @@ msgid ""
 msgstr ""
 "വിപരീത വർണ്ണ ഇമേജുകൾക്കായി പ്രവർത്തനക്ഷമമാകുമ്പോൾ, കറുപ്പും വെളുപ്പും മാത്രമാണ് റിവേഴ്സ് "
 "ചെയ്യപ്പെടുന്നത്"
-
-# Select
-#: gschem/src/x/x_menus.c:87
-msgid "Select"
-msgstr "തിരഞ്ഞെടുക്കുക"
 
 # Activate Select mode
 #: gschem/src/x/x_menus.c:87 gschem/etc/system-gschemrc.scm:2137
@@ -3025,7 +3236,7 @@ msgid "Project linear objects to other objects"
 msgstr "ഒബ്ജക്റ്റിലേക്ക് നീട്ടുവാൻ ലൈനുകൾ മറ്റൊരു"
 
 # Delete
-#: gschem/src/x/x_menus.c:121 gschem/src/x/x_multiattrib.c:1692
+#: gschem/src/x/x_menus.c:121 gschem/src/x/x_multiattrib.c:1712
 #: gschem/scheme/gschem/builtins.scm:104
 msgid "Delete"
 msgstr "മായ്ക്കുക"
@@ -3384,107 +3595,107 @@ msgstr ""
 msgid "falling back to"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:802 gschem/src/x/x_multiattrib.c:2759
+#: gschem/src/x/x_multiattrib.c:822 gschem/src/x/x_multiattrib.c:2787
 msgid "<various>"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:924
+#: gschem/src/x/x_multiattrib.c:945
 msgid "Attribute name must not be empty. Please set a name."
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:926
+#: gschem/src/x/x_multiattrib.c:947
 msgid "Multi-Attribute Editor"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:1635
+#: gschem/src/x/x_multiattrib.c:1656
 msgid "Select an attribute to add"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:1654
+#: gschem/src/x/x_multiattrib.c:1675
 msgid "Show Value only"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:1656
+#: gschem/src/x/x_multiattrib.c:1677
 msgid "Show Name only"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:1660
+#: gschem/src/x/x_multiattrib.c:1681
 msgid "Select an attribute visibility option"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:1686
+#: gschem/src/x/x_multiattrib.c:1706
 msgid "Promote"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:1691
+#: gschem/src/x/x_multiattrib.c:1711
 msgid "Duplicate"
 msgstr ""
 
 # Copy to all
-#: gschem/src/x/x_multiattrib.c:1693
+#: gschem/src/x/x_multiattrib.c:1713
 msgid "Copy to all"
 msgstr "എല്ലാ പകർത്തുക"
 
-#: gschem/src/x/x_multiattrib.c:2063 gschem/src/x/x_multiattrib.c:2582
+#: gschem/src/x/x_multiattrib.c:2083 gschem/src/x/x_multiattrib.c:2602
 msgid "Edit Attributes"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2206 gschem/scheme/gschem/builtins.scm:350
+#: gschem/src/x/x_multiattrib.c:2226 gschem/scheme/gschem/builtins.scm:350
 msgid "Add Attribute"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2253
+#: gschem/src/x/x_multiattrib.c:2273
 msgid "Ctrl+Enter inserts new line; Ctrl+Tab inserts Tab"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2284
+#: gschem/src/x/x_multiattrib.c:2304
 msgid "Enter or type a value for the new attribute then press the Add button"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2298
+#: gschem/src/x/x_multiattrib.c:2318
 msgid "Enable or disable attribute visibility"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2311
+#: gschem/src/x/x_multiattrib.c:2331
 msgid "Add new attribute to component"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2601
+#: gschem/src/x/x_multiattrib.c:2621
 msgid "symbols"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2616
+#: gschem/src/x/x_multiattrib.c:2636
 msgid "pins"
 msgstr "കുറ്റി"
 
-#: gschem/src/x/x_multiattrib.c:2620
+#: gschem/src/x/x_multiattrib.c:2640
 msgid "pin"
 msgstr "മൊട്ടുസൂചി"
 
-#: gschem/src/x/x_multiattrib.c:2631
+#: gschem/src/x/x_multiattrib.c:2651
 msgid "nets"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2635
+#: gschem/src/x/x_multiattrib.c:2655
 msgid "net"
 msgstr "വല"
 
-#: gschem/src/x/x_multiattrib.c:2646
+#: gschem/src/x/x_multiattrib.c:2666
 msgid "buses"
 msgstr ""
 
 # multi-conductor
-#: gschem/src/x/x_multiattrib.c:2650
+#: gschem/src/x/x_multiattrib.c:2670
 msgid "bus"
 msgstr "മൾട്ടി-കണ്ടക്ടർ"
 
 # attributes
-#: gschem/src/x/x_multiattrib.c:2661
+#: gschem/src/x/x_multiattrib.c:2681
 msgid "attributes"
 msgstr "ഗുണവിശേഷങ്ങൾ"
 
 # attribute
-#: gschem/src/x/x_multiattrib.c:2665
+#: gschem/src/x/x_multiattrib.c:2685
 msgid "attribute"
 msgstr "ആട്രിബ്യൂട്ട്"
 
@@ -3830,51 +4041,51 @@ msgstr ""
 msgid "Pick"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:335
+#: gschem/src/x/x_toolbars.c:337
 msgid "image file not found"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:411
+#: gschem/src/x/x_toolbars.c:413
 msgid "Toolbar icon not found"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:544
+#: gschem/src/x/x_toolbars.c:546
 msgid "Creating new Toolbar configuration\n"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:552
+#: gschem/src/x/x_toolbars.c:554
 msgid "Saving Toolbar settings..."
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:571
+#: gschem/src/x/x_toolbars.c:573
 msgid "data saved to"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:578
+#: gschem/src/x/x_toolbars.c:580
 msgid "Could not save Toolbar configuration to"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:675
+#: gschem/src/x/x_toolbars.c:677
 msgid "Error, Toolbar configuration key file"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:683
+#: gschem/src/x/x_toolbars.c:685
 msgid "Retrieving toolbar geometry\n"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:711
+#: gschem/src/x/x_toolbars.c:713
 msgid "Toolbar configuration restored from"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:716
+#: gschem/src/x/x_toolbars.c:718
 msgid "Warning, error restoring toolbar configuration"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:722
+#: gschem/src/x/x_toolbars.c:724
 msgid "Warning, toolbar configuration file access error"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:744
+#: gschem/src/x/x_toolbars.c:746
 msgid "Toolbar configuration not found"
 msgstr ""
 
@@ -5166,11 +5377,6 @@ msgstr "തിരഞ്ഞെടുത്ത ഒബ്ജക്റ്റ് ഓ�
 #: gschem/scheme/gschem/builtins.scm:128
 msgid "Snap to Grid"
 msgstr "ഗ്രിഡിലേക്ക് സ്നാപ്പ്"
-
-# Create Array
-#: gschem/scheme/gschem/builtins.scm:131
-msgid "Create Array"
-msgstr "അറേ സൃഷ്ടിക്കുക"
 
 # Edit
 #: gschem/scheme/gschem/builtins.scm:134 gschem/scheme/gschem/builtins.scm:137
