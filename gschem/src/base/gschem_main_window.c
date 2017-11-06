@@ -495,9 +495,9 @@ GedaType gschem_main_window_get_type (void)
 }
 
 /*!
- * \brief Create a new instanceof the GschemMainWindow
+ * \brief Create a new instance of the GschemMainWindow
  * \par Function Description
- * \return A new instanceof the GschemMainWindow
+ * \return A new instance of the GschemMainWindow
  */
 GtkWindow *gschem_main_window_new (bool auto_restore)
 {
