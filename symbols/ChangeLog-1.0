@@ -1,5 +1,7 @@
 2017-11-05 Wiley E. Hill <wileyhill@gmail.com>
 
+    * opto/ACPL-C784.sym: Add value, update footprint and attribute locations.
+
     * opto/HCPL4502-1.sym: update attributes.
 
     * opto/HCPL-2631-1.sym: Add description and value, update attributes, draw
