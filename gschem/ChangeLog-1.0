@@ -1,5 +1,14 @@
 2017-11-06 Wiley E. Hill <wileyhill@gmail.com>
 
+    * po/POTFILES.in: Add files:
+
+          * src/base/gschem_bin.c
+          * src/base/gschem_page_history.c
+          * src/iface/i_threads.c
+          * src/object/o_page.c
+          * src/x/x_confirm_close.c
+          * src/x/x_edit_array.c
+
     * src/object/o_move.c: Replace g_return_val_if_fail in o_move_real_start
       because only yelp does not fix the problem. Generate critical message
       instead and try to recover.
@@ -15,8 +24,8 @@
       Update function and property documentation, add template/todo Doxygen
       blocks where missing documentation.
 
-    * gschem/src/x/x_window.c: Pass !auto_place_mode to gschem_main_window_new
-      so that the window geometry will not be restored if the --place option
+    * src/x/x_window.c: Pass !auto_place_mode to gschem_main_window_new so
+      that the window geometry will not be restored if the --place option
       was given on the command-line.
 
 2017-11-04 Wiley E. Hill <wileyhill@gmail.com>
