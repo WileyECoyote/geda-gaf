@@ -119,13 +119,16 @@ x_dialog_slot_edit_update_selection (GschemToplevel *w_current, GedaObject *obje
 
     if (slot_count != NULL) {
       SetEntryText( countentry, slot_count);
+      gtk_spin_button_set_range ((GtkSpinButton*)slotspin, 1, atoi(slot_count));
     }
     else {
       SetEntryText( countentry, "0");
+      gtk_spin_button_set_range ((GtkSpinButton*)slotspin, 0, 1);
     }
 
     if (slot_value != NULL) {
-      gtk_widget_set_sensitive (slotspin, TRUE);
+      bool enable =  slot_count ? atoi(slot_count) > 1 : FALSE;
+      gtk_widget_set_sensitive (GTK_WIDGET(slotspin), enable);
       SetSpinValue(slotspin, atoi(slot_value));
       /* And set focus to the widget */
       gtk_widget_grab_focus(slotspin);
@@ -156,6 +159,7 @@ x_dialog_edit_slot (GschemToplevel *w_current, const char *slots, const char *sl
     GtkWidget *slotspin;
     GtkWidget *textslots;
     GtkWidget *vbox;
+    int        max_slot;
 
     ThisDialog = gschem_dialog_new_with_buttons(_("Edit slot number"),
                                                w_current->main_window,
@@ -195,10 +199,17 @@ x_dialog_edit_slot (GschemToplevel *w_current, const char *slots, const char *sl
     gtk_widget_set_sensitive (GTK_WIDGET(textslots), FALSE);
 
     /* Slot Number */
+    if (slots != NULL) {
+      max_slot = atoi(slots) > 0 ? atoi(slots) : 1;
+    }
+    else {
+      max_slot = 1;
+    }
+
     label = geda_aligned_label_new (_("Slot number:"), 0, 0);
     gtk_box_pack_start(GTK_BOX (vbox), label, FALSE, FALSE, 0);
 
-    slotspin = gtk_spin_button_new_with_range(1, 999, 1);
+    slotspin = gtk_spin_button_new_with_range(1, max_slot, 1);
     gtk_box_pack_end(GTK_BOX (vbox), slotspin, FALSE, FALSE, 0);
     gtk_widget_show (slotspin);
 
@@ -207,7 +218,10 @@ x_dialog_edit_slot (GschemToplevel *w_current, const char *slots, const char *sl
     /* Set the current text to the number of slots */
     if (slot != NULL) {
       SetSpinValue(slotspin, atoi(slot));
+
     }
+
+    gtk_widget_set_sensitive (GTK_WIDGET(slotspin), max_slot > 1);
 
     gtk_entry_set_alignment ((GtkEntry*)slotspin, 1.0);
     gtk_entry_set_activates_default ((GtkEntry*)slotspin, TRUE);
