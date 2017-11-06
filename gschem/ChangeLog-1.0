@@ -1,5 +1,9 @@
 2017-11-06 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_move.c: Replace g_return_val_if_fail in o_move_real_start
+      because only yelp does not fix the problem. Generate critical message
+      instead and try to recover.
+
     * src/x/x_edit_slot.c: Retrofit the slot number to a spinner control
       instead of a plain text entry. Right justify entries controls. Set
       range limits and desensitize the new spinner when not applicable.

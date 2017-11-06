@@ -718,7 +718,14 @@ bool o_move_real_start(GschemToplevel *w_current, int w_x, int w_y)
   int status = FALSE;
   GList *s_iter;
 
-  g_return_val_if_fail (w_current->stretch_list == NULL, FALSE);
+  /* Make sure stretch_list == NULL */
+  if (w_current->stretch_list != NULL) {
+    g_critical ("%s: w_current->stretch_list == NULL\n", __func__);
+    if (w_current->inside_action) {
+      i_callback_cancel (w_current, 0, NULL);
+    }
+    return FALSE;
+  }
 
   if (o_select_is_selection (w_current)) {
 
