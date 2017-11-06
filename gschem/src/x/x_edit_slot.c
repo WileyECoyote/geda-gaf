@@ -48,9 +48,8 @@
 void x_dialog_edit_slot_response(GtkWidget      *ThisDialog, int response,
                                  GschemToplevel *w_current)
 {
-  GtkWidget  *textentry;
-  const char *string;
-  int         len;
+  GtkWidget *slotspin;
+  int        slot;
 
   switch (response) {
     case GEDA_RESPONSE_REJECT:
@@ -59,16 +58,16 @@ void x_dialog_edit_slot_response(GtkWidget      *ThisDialog, int response,
       i_status_set_state(w_current, SELECT);
       break;
     case GEDA_RESPONSE_APPLY:
-      textentry = GEDA_OBJECT_GET_DATA (ThisDialog, IDS_SLOT_EDIT);
-      string    =  GetEntryText( textentry );
-      len       = strlen(string);
-      if (len != 0) {
+      slotspin = GEDA_OBJECT_GET_DATA (ThisDialog, IDS_SLOT_EDIT);
+      slot     = GET_SPIN_IVALUE(slotspin);
+
+      if (slot) {
 
         GedaObject *object = o_select_return_first_object (w_current);
 
         if (object != NULL) {
 
-          char *slot_string = geda_sprintf ("slot=%s", string);
+          char *slot_string = geda_sprintf ("slot=%d", slot);
 
           o_slot_end (w_current, object, slot_string);
           GEDA_FREE (slot_string);
@@ -97,7 +96,7 @@ x_dialog_slot_edit_update_selection (GschemToplevel *w_current, GedaObject *obje
 
     GtkWidget *ThisDialog;
     GtkWidget *countentry;
-    GtkWidget *textentry;
+    GtkWidget *slotspin;
     char *slot_count = NULL;
     char *slot_value = NULL;
 
@@ -116,7 +115,7 @@ x_dialog_slot_edit_update_selection (GschemToplevel *w_current, GedaObject *obje
 
     /* Get ptr to the text widget */
     countentry = GEDA_OBJECT_GET_DATA (ThisDialog, "slot-count");
-    textentry  = GEDA_OBJECT_GET_DATA (ThisDialog, IDS_SLOT_EDIT);
+    slotspin   = GEDA_OBJECT_GET_DATA (ThisDialog, IDS_SLOT_EDIT);
 
     if (slot_count != NULL) {
       SetEntryText( countentry, slot_count);
@@ -126,14 +125,13 @@ x_dialog_slot_edit_update_selection (GschemToplevel *w_current, GedaObject *obje
     }
 
     if (slot_value != NULL) {
-      gtk_widget_set_sensitive (textentry, TRUE);
-      SetEntryText( textentry, slot_value );
-      gtk_editable_select_region (GTK_EDITABLE(textentry), 0, -1);
+      gtk_widget_set_sensitive (slotspin, TRUE);
+      SetSpinValue(slotspin, atoi(slot_value));
       /* And set focus to the widget */
-      gtk_widget_grab_focus(textentry);
+      gtk_widget_grab_focus(slotspin);
     }
     else {
-      gtk_widget_set_sensitive (textentry, FALSE);
+      gtk_widget_set_sensitive (slotspin, FALSE);
     }
   }
 
@@ -155,7 +153,7 @@ x_dialog_edit_slot (GschemToplevel *w_current, const char *slots, const char *sl
   if (!ThisDialog) {
 
     GtkWidget *label = NULL;
-    GtkWidget *textentry;
+    GtkWidget *slotspin;
     GtkWidget *textslots;
     GtkWidget *vbox;
 
@@ -199,19 +197,21 @@ x_dialog_edit_slot (GschemToplevel *w_current, const char *slots, const char *sl
     label = geda_aligned_label_new (_("Slot number:"), 0, 0);
     gtk_box_pack_start(GTK_BOX (vbox), label, FALSE, FALSE, 0);
 
-    textentry = geda_entry_new_with_max_length(80);
-    gtk_box_pack_start(GTK_BOX(vbox),textentry, FALSE, FALSE, 0);
+    slotspin = gtk_spin_button_new_with_range(1, 999, 1);
+    gtk_box_pack_end(GTK_BOX (vbox), slotspin, FALSE, FALSE, 0);
+    gtk_widget_show (slotspin);
 
-    /* Set the current text to the slot number */
+    SetWidgetTip(slotspin, _("Set the active slot number"));
+
+    /* Set the current text to the number of slots */
     if (slot != NULL) {
-      SetEntryText(textentry, slot);
-      gtk_editable_select_region (GTK_EDITABLE(textentry), 0, -1);
+      SetSpinValue(slotspin, atoi(slot));
     }
 
-    gtk_entry_set_activates_default (GTK_ENTRY(textentry),TRUE);
+    gtk_entry_set_activates_default ((GtkEntry*)slotspin, TRUE);
 
     GEDA_HOOKUP_OBJECT(ThisDialog, textslots, "slot-count");
-    GEDA_HOOKUP_OBJECT(ThisDialog, textentry, IDS_SLOT_EDIT);
+    GEDA_HOOKUP_OBJECT(ThisDialog, slotspin, IDS_SLOT_EDIT);
 
     g_signal_connect (ThisDialog, "response",
                       G_CALLBACK (x_dialog_edit_slot_response),
