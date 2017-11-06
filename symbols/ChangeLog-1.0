@@ -1,3 +1,7 @@
+2017-11-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * micro/PIC/PIC30F6014-1.sym: Rename file with upper case FLASH.
+
 2017-11-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * opto/ACPL-C784.sym: Add value, update footprint and attribute locations.
