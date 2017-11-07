@@ -10,6 +10,8 @@
 
     * opto/HCPL-817-1.sym: Add description and value.
 
+    * opto/HCTL-2000-1.sym: Update attributes; fix over-bars.
+
 2017-11-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * micro/PIC/PIC30F6014-1.sym: Rename file with upper case FLASH.
