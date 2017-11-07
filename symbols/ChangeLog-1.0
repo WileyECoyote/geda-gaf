@@ -6,6 +6,8 @@
 
     * opto/HCPL-0534-1.sym: Revise draw order.
 
+    * opto/HCPL-2430-1.sym: Revise locations, add value.
+
 2017-11-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * micro/PIC/PIC30F6014-1.sym: Rename file with upper case FLASH.

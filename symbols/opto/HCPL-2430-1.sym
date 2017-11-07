@@ -1,13 +1,13 @@
 v 20151031 2
-T 1200 700 8 10 1 1 0 0 1
+T 1500 800 8 10 1 1 0 0 1
 refdes=U?
-T 300 950 5 10 0 0 0 0 1
-device=HCPL-2430
-T 300 1150 5 10 0 0 0 0 1
-footprint=DIP8
 T 300 1350 5 10 0 0 0 0 1
-net=VCC:8
+device=HCPL-2430
+T 300 950 5 10 0 1 0 0 1
+footprint=DIP8
 T 300 1550 5 10 0 0 0 0 1
+net=VCC:8
+T 300 1750 5 10 0 0 0 0 1
 net=GND:5
 P 300 500 0 500 1 0 1
 {
@@ -43,19 +43,19 @@ T 1050 350 5 8 0 1 0 8 1
 pintype=out
 }
 B 300 0 800 725 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 300 2750 5 10 0 0 0 0 1
+T 300 2550 5 10 0 1 0 0 1
 documentation=http://www.avagotech.com/docs/AV02-0962EN
-T 300 2550 5 10 0 0 0 0 1
-description=dual channel 20 MBd optocoupler
-T 300 2350 5 10 0 0 0 0 1
+T 300 1150 5 10 0 1 0 0 1
+description=Dual channel 20 MBd optocoupler
+T 1400 200 5 10 0 0 0 0 1
 numslots=2
-T 300 2150 5 10 0 0 0 0 1
+T 300 2350 5 10 0 0 0 0 1
 slotdef=1:1,2,7
-T 300 1950 5 10 0 0 0 0 1
+T 300 2150 5 10 0 0 0 0 1
 slotdef=2:4,3,6
-T 300 1750 5 10 0 0 0 0 1
+T 300 1950 5 10 0 0 0 0 1
 slot=1
-T 300 775 9 8 1 0 0 0 1
-HCPL-2430
-T 1200 100 5 8 0 0 0 0 1
+T 300 775 9 10 1 1 0 0 1
+value=HCPL-2430
+T 1400 0 5 10 0 0 0 0 1
 symversion=0.1
