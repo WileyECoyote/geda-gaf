@@ -1,4 +1,4 @@
-# List of translatable files
+# List of files which may contain translatable strings
 gaf/src/gaf.c
 gaf/src/config.c
 gaf/src/export.c

@@ -1,4 +1,6 @@
+# List of files which may contain translatable strings
 gattrib/data/geda-gattrib.desktop.in
+
 gattrib/src/f_export.c
 gattrib/src/gattrib.c
 gattrib/src/gattrib_dialog.c
