@@ -2,6 +2,8 @@
 
     * opto/CNY17-1.sym: Update footprint.
 
+    * opto/CNY74-4H-1.sym: Revise attribute locations.
+
 2017-11-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * micro/PIC/PIC30F6014-1.sym: Rename file with upper case FLASH.
