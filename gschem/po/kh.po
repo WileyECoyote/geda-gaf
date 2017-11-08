@@ -143,11 +143,10 @@ msgstr "kampoung tow yk thorneimatr bangauoch me\n"
 msgid "Auto-Restore"
 msgstr ""
 
-# Retrieving main window geometry
+# Automatically restore the main window geometry
 #: gschem/src/base/gschem_main_window.c:391
-#, fuzzy
 msgid "Automatically restore the main window geometry"
-msgstr "kampoung tow yk thorneimatr bangauoch me\n"
+msgstr "chuosachoul thorneimatr bangauoch me daoy svyobravotte"
 
 #: gschem/src/base/gschem_page_view.c:250
 #: gschem/src/base/gschem_page_view.c:251
@@ -1583,20 +1582,20 @@ msgstr ""
 msgid "Close without saving"
 msgstr ""
 
+# unsaved page
 #: gschem/src/x/x_confirm_close.c:588
-#, fuzzy
 msgid "unsaved page"
-msgstr "min ach roksaatouk tompr"
+msgstr "tompr minban roksaatouk"
 
+# unsaved pages
 #: gschem/src/x/x_confirm_close.c:595
-#, fuzzy
 msgid "unsaved pages"
-msgstr "del ban roksaatouk"
+msgstr "tompr minban roksaatouk"
 
+# selected pages
 #: gschem/src/x/x_confirm_close.c:602
-#, fuzzy
 msgid "selected pages"
-msgstr "vottho del ban chreus"
+msgstr "tompr del ban chreusareus"
 
 # destroying history
 #: gschem/src/x/x_console.c:135
@@ -2228,48 +2227,46 @@ msgstr ""
 msgid "Create Array"
 msgstr ""
 
+# Selection
 #: gschem/src/x/x_edit_array.c:892
-#, fuzzy
 msgid "<b>Selection</b>"
-msgstr "kar chreus"
+msgstr "chomreus"
 
 #: gschem/src/x/x_edit_array.c:902 gschem/src/x/x_edit_array.c:972
 #: gschem/src/x/x_edit_array.c:1005
 msgid "Count"
 msgstr ""
 
+# X Size
 #: gschem/src/x/x_edit_array.c:913
-#, fuzzy
 msgid "X Size"
-msgstr "tomham kraleachatrang"
+msgstr "tomham X"
 
 #: gschem/src/x/x_edit_array.c:916
-#, fuzzy
 msgid "Y Size"
-msgstr "tomham kraleachatrang"
+msgstr "tomham Y"
 
 #: gschem/src/x/x_edit_array.c:935 gschem/src/x/x_menus.c:87
 msgid "Select"
 msgstr "chreus"
 
 #: gschem/src/x/x_edit_array.c:939
-#, fuzzy
 msgid "Deselect"
-msgstr "daoh chreusa rbieb"
+msgstr "min chreus"
 
+# Array
 #: gschem/src/x/x_edit_array.c:955
-#, fuzzy
 msgid "<b>Array</b>"
-msgstr "<b>tamrong:</b>"
+msgstr "<b>a re</b>"
 
 #: gschem/src/x/x_edit_array.c:964
 msgid "Row"
 msgstr ""
 
+# Offset
 #: gschem/src/x/x_edit_array.c:987 gschem/src/x/x_edit_array.c:1020
-#, fuzzy
 msgid "Offset"
-msgstr "rbieb ohvaset"
+msgstr "ohvaset"
 
 #: gschem/src/x/x_edit_array.c:997
 msgid "Column"
@@ -2596,9 +2593,8 @@ msgid "Entry for comments"
 msgstr "theato samreab tamlei sameasapheak"
 
 #: gschem/src/x/x_edit_cprop.c:1640
-#, fuzzy
 msgid "Embed symbol in schematic checkbox"
-msgstr "sameasapheak del ban bangkob knong koumnour bampruonh"
+msgstr "bangkob nimittasanhnhea knong braab thik"
 
 #: gschem/src/x/x_edit_cprop.c:1646
 msgid "Lock symbol in schematic checkbox"
@@ -2836,11 +2832,10 @@ msgstr "chamnuon ron​:"
 msgid "Slot number:"
 msgstr "ron​ lekh​:"
 
-# Set the sequence number
+# Set the active slot number
 #: gschem/src/x/x_edit_slot.c:216
-#, fuzzy
 msgid "Set the active slot number"
-msgstr "kamnt lekh lomdab"
+msgstr "kamnt lekh ronth daot sakam"
 
 # Text Content
 #: gschem/src/x/x_edit_text.c:64 gschem/src/x/x_edit_text.c:473
