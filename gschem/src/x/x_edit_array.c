@@ -889,7 +889,7 @@ GtkWidget* x_dialog_array_edit_constructor (GschemToplevel *w_current)
   geda_container_add (frame, alignment);
   gtk_alignment_set_padding (GTK_ALIGNMENT (alignment), 0, 0, 10, 0);
 
-  selection_label = geda_visible_label_new (_("<b>Selection</b>"));
+  selection_label = geda_visible_bold_label_new (_("Selection"));
   gtk_frame_set_label_widget (GTK_FRAME (frame), selection_label);
   geda_label_widget_set_use_markup (selection_label, TRUE);
 
@@ -952,7 +952,7 @@ GtkWidget* x_dialog_array_edit_constructor (GschemToplevel *w_current)
   geda_container_add (frame, alignment);
   gtk_alignment_set_padding (GTK_ALIGNMENT (alignment), 0, 0, 10, 0);
 
-  array_label = geda_visible_label_new (_("<b>Array</b>"));
+  array_label = geda_visible_bold_label_new (_("Array"));
   gtk_frame_set_label_widget (GTK_FRAME (frame), array_label);
   geda_label_widget_set_use_markup (array_label, TRUE);
 

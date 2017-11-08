@@ -16,6 +16,9 @@
 
     * po/pl.po: Update Polish translations.
 
+    * src/x/x_edit_array.c: Replace geda_visible_label_new with
+      geda_visible_bold_label_new.
+
 2017-11-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/POTFILES.in: Add files:
