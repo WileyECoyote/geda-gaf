@@ -1520,11 +1520,10 @@ msgstr ""
 msgid "unsaved pages"
 msgstr ""
 
-# Select Last
+# selected pages
 #: gschem/src/x/x_confirm_close.c:602
-#, fuzzy
 msgid "selected pages"
-msgstr "സമീപകാലത്തെ തിരഞ്ഞെടുക്കുക"
+msgstr "തിരഞ്ഞെടുത്ത പേജുകൾ"
 
 #: gschem/src/x/x_console.c:135
 msgid "destroying history\n"
@@ -2105,12 +2104,11 @@ msgstr ""
 msgid "Components may overlay, Continue?"
 msgstr ""
 
-# Create Array
+# Create Array: Error
 #: gschem/src/x/x_edit_array.c:539 gschem/src/x/x_edit_array.c:544
 #: gschem/src/x/x_edit_array.c:549
-#, fuzzy
 msgid "Create Array:Error"
-msgstr "അറേ സൃഷ്ടിക്കുക"
+msgstr "ശ്രേണി സൃഷ്ടിക്കുക: പിശക്"
 
 #: gschem/src/x/x_edit_array.c:540
 msgid ""
@@ -2137,7 +2135,6 @@ msgstr "അറേ സൃഷ്ടിക്കുക"
 
 # Selection
 #: gschem/src/x/x_edit_array.c:892
-#, fuzzy
 msgid "<b>Selection</b>"
 msgstr "തിരഞ്ഞെടുക്കൽ"
 
@@ -2159,16 +2156,15 @@ msgstr ""
 msgid "Select"
 msgstr "തിരഞ്ഞെടുക്കുക"
 
+# Deselect
 #: gschem/src/x/x_edit_array.c:939
-#, fuzzy
 msgid "Deselect"
-msgstr "അൺ-തിരഞ്ഞെടുക്കാൻ മോഡ്"
+msgstr "തിരഞ്ഞെടുത്തത് മാറ്റുക"
 
-# File error
+# Array
 #: gschem/src/x/x_edit_array.c:955
-#, fuzzy
 msgid "<b>Array</b>"
-msgstr "<b>ഫയൽ പിശക്.</b>"
+msgstr "<b>ശ്രേണി</b>"
 
 #: gschem/src/x/x_edit_array.c:964
 msgid "Row"
@@ -2176,7 +2172,6 @@ msgstr ""
 
 # Offset
 #: gschem/src/x/x_edit_array.c:987 gschem/src/x/x_edit_array.c:1020
-#, fuzzy
 msgid "Offset"
 msgstr "ഓഫ്സെറ്റ്"
 
