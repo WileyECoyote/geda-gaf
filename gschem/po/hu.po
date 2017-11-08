@@ -134,9 +134,10 @@ msgstr ""
 msgid "Auto-Restore"
 msgstr ""
 
+# Automatically restore the main window geometry
 #: gschem/src/base/gschem_main_window.c:391
 msgid "Automatically restore the main window geometry"
-msgstr ""
+msgstr "A főablak geometriájának automatikus visszaállítása"
 
 #: gschem/src/base/gschem_page_view.c:250
 #: gschem/src/base/gschem_page_view.c:251
@@ -1477,25 +1478,25 @@ msgstr ""
 msgid "If you don't save, all your changes will be permanently lost."
 msgstr ""
 
+# Close without saving
 #: gschem/src/x/x_confirm_close.c:534
-#, fuzzy
 msgid "Close without saving"
-msgstr "_Bezárás mentés nélkül"
+msgstr "Bezárás mentés nélkül"
 
+# unsaved page
 #: gschem/src/x/x_confirm_close.c:588
-#, fuzzy
 msgid "unsaved page"
-msgstr "Nem sikerült menteni az oldalt"
+msgstr "mentetlen oldal"
 
+# unsaved pages
 #: gschem/src/x/x_confirm_close.c:595
-#, fuzzy
 msgid "unsaved pages"
-msgstr "Mind mentése"
+msgstr "mentetlen oldalak"
 
+# selected pages
 #: gschem/src/x/x_confirm_close.c:602
-#, fuzzy
 msgid "selected pages"
-msgstr "Kiválasztott objektumok"
+msgstr "kiválasztott oldalak"
 
 #: gschem/src/x/x_console.c:135
 msgid "destroying history\n"
@@ -2104,49 +2105,49 @@ msgstr ""
 msgid "Create Array"
 msgstr ""
 
+# Selection
 #: gschem/src/x/x_edit_array.c:892
-#, fuzzy
 msgid "<b>Selection</b>"
 msgstr "Kiválasztás"
 
+# Count
 #: gschem/src/x/x_edit_array.c:902 gschem/src/x/x_edit_array.c:972
 #: gschem/src/x/x_edit_array.c:1005
-#, fuzzy
 msgid "Count"
-msgstr "Fáljsorrend"
+msgstr "Számol"
 
+# X Size
 #: gschem/src/x/x_edit_array.c:913
-#, fuzzy
 msgid "X Size"
-msgstr "Betűméret"
+msgstr "X méret"
 
+# Y Size
 #: gschem/src/x/x_edit_array.c:916
-#, fuzzy
 msgid "Y Size"
-msgstr "Betűméret"
+msgstr "Y méret"
 
 #: gschem/src/x/x_edit_array.c:935 gschem/src/x/x_menus.c:87
 msgid "Select"
 msgstr "Kiválasztás"
 
+# unfollow
 #: gschem/src/x/x_edit_array.c:939
-#, fuzzy
 msgid "Deselect"
-msgstr "Kiválasztás mód"
+msgstr "Deselect"
 
+# Array
 #: gschem/src/x/x_edit_array.c:955
-#, fuzzy
 msgid "<b>Array</b>"
-msgstr "Szűrő:"
+msgstr "<b>Sor</b>"
 
 #: gschem/src/x/x_edit_array.c:964
 msgid "Row"
 msgstr ""
 
+# Offset
 #: gschem/src/x/x_edit_array.c:987 gschem/src/x/x_edit_array.c:1020
-#, fuzzy
 msgid "Offset"
-msgstr "Összeköttetés üzemmód"
+msgstr "eltolt"
 
 #: gschem/src/x/x_edit_array.c:997
 msgid "Column"
@@ -2692,11 +2693,10 @@ msgstr ""
 msgid "Slot number:"
 msgstr "slot száma:"
 
-# Set the sequence number
+# Set the active slot number
 #: gschem/src/x/x_edit_slot.c:216
-#, fuzzy
 msgid "Set the active slot number"
-msgstr "Állítsa be a sorozatszámot"
+msgstr "Állítsa be az aktív kártyahely számát"
 
 #: gschem/src/x/x_edit_text.c:64 gschem/src/x/x_edit_text.c:473
 msgid "Text Content"
