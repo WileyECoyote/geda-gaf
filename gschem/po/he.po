@@ -135,9 +135,10 @@ msgstr ""
 msgid "Auto-Restore"
 msgstr ""
 
+# Automatically restore the main window geometry
 #: gschem/src/base/gschem_main_window.c:391
 msgid "Automatically restore the main window geometry"
-msgstr ""
+msgstr "לשחזר באופן אוטומטי את הגיאומטריה החלון הראשי"
 
 #: gschem/src/base/gschem_page_view.c:250
 #: gschem/src/base/gschem_page_view.c:251
@@ -1493,27 +1494,25 @@ msgstr ""
 msgid "If you don't save, all your changes will be permanently lost."
 msgstr ""
 
+# Close without saving
 #: gschem/src/x/x_confirm_close.c:534
 msgid "Close without saving"
-msgstr ""
+msgstr "סגור מבלי לשמור"
 
-# Saved as
+# unsaved page
 #: gschem/src/x/x_confirm_close.c:588
-#, fuzzy
 msgid "unsaved page"
-msgstr "לשמור כמו"
+msgstr "דף לא שמור"
 
-# Saved as
+# unsaved pages
 #: gschem/src/x/x_confirm_close.c:595
-#, fuzzy
 msgid "unsaved pages"
-msgstr "לשמור כמו"
+msgstr "דפים שלא נשמרו"
 
-# Select Last
+# selected pages
 #: gschem/src/x/x_confirm_close.c:602
-#, fuzzy
 msgid "selected pages"
-msgstr "בחר אחרון"
+msgstr "דפים נבחרים"
 
 #: gschem/src/x/x_console.c:135
 msgid "destroying history\n"
@@ -2135,37 +2134,39 @@ msgstr ""
 
 # Selection
 #: gschem/src/x/x_edit_array.c:892
-#, fuzzy
 msgid "<b>Selection</b>"
 msgstr "בְּחִירָה"
 
+# Count
 #: gschem/src/x/x_edit_array.c:902 gschem/src/x/x_edit_array.c:972
 #: gschem/src/x/x_edit_array.c:1005
 msgid "Count"
-msgstr ""
+msgstr "לספור"
 
+# X Size
 #: gschem/src/x/x_edit_array.c:913
 msgid "X Size"
-msgstr ""
+msgstr "X גודל"
 
+# Y Size
 #: gschem/src/x/x_edit_array.c:916
 msgid "Y Size"
-msgstr ""
+msgstr "גודל Y"
 
 # Select
 #: gschem/src/x/x_edit_array.c:935 gschem/src/x/x_menus.c:87
 msgid "Select"
 msgstr "בחר"
 
-# Deselect Mode => Unfollow
+# Deselect => Unfollow
 #: gschem/src/x/x_edit_array.c:939
-#, fuzzy
 msgid "Deselect"
-msgstr "בטל את מצב"
+msgstr "לעקוב"
 
+# Array
 #: gschem/src/x/x_edit_array.c:955
 msgid "<b>Array</b>"
-msgstr ""
+msgstr "<b>מַעֲרָך</b>"
 
 #: gschem/src/x/x_edit_array.c:964
 msgid "Row"
@@ -2173,7 +2174,6 @@ msgstr ""
 
 # Offset
 #: gschem/src/x/x_edit_array.c:987 gschem/src/x/x_edit_array.c:1020
-#, fuzzy
 msgid "Offset"
 msgstr "לְקַזֵז"
 
@@ -2492,9 +2492,10 @@ msgstr ""
 msgid "Entry for comments"
 msgstr ""
 
+# Embed symbol in schematic checkbox
 #: gschem/src/x/x_edit_cprop.c:1640
 msgid "Embed symbol in schematic checkbox"
-msgstr ""
+msgstr "הטמע סמל בתיבת סימון סכמטית"
 
 #: gschem/src/x/x_edit_cprop.c:1646
 msgid "Lock symbol in schematic checkbox"
@@ -2718,11 +2719,10 @@ msgstr ""
 msgid "Slot number:"
 msgstr ""
 
-# Set the sequence number
+# Set the active slot number
 #: gschem/src/x/x_edit_slot.c:216
-#, fuzzy
 msgid "Set the active slot number"
-msgstr "הגדר את מספר הרצף"
+msgstr "הגדר את מספר החריץ הפעיל"
 
 #: gschem/src/x/x_edit_text.c:64 gschem/src/x/x_edit_text.c:473
 msgid "Text Content"
