@@ -154,10 +154,10 @@ msgstr "Recupero della geometria principale della finestra.\n"
 msgid "Auto-Restore"
 msgstr ""
 
+# Automatically restore the main window geometry
 #: gschem/src/base/gschem_main_window.c:391
-#, fuzzy
 msgid "Automatically restore the main window geometry"
-msgstr "Recupero della geometria principale della finestra.\n"
+msgstr "Ripristina automaticamente la geometria principale della finestra"
 
 # Horizontal adjustment
 #: gschem/src/base/gschem_page_view.c:250
@@ -1544,25 +1544,25 @@ msgstr ""
 msgid "If you don't save, all your changes will be permanently lost."
 msgstr ""
 
+# Close without saving
 #: gschem/src/x/x_confirm_close.c:534
-#, fuzzy
 msgid "Close without saving"
-msgstr "Chiudi senza sal_vare"
+msgstr "Chiudi senza salvare"
 
+# unsaved page
 #: gschem/src/x/x_confirm_close.c:588
-#, fuzzy
 msgid "unsaved page"
-msgstr "Impossibile salvare la pagina"
+msgstr "pagina non salvata"
 
+# unsaved pages
 #: gschem/src/x/x_confirm_close.c:595
-#, fuzzy
 msgid "unsaved pages"
-msgstr "Salva come"
+msgstr "pagine non salvate"
 
+# selected pages
 #: gschem/src/x/x_confirm_close.c:602
-#, fuzzy
 msgid "selected pages"
-msgstr "Oggetti selezionati"
+msgstr "pagine selezionate"
 
 #: gschem/src/x/x_console.c:135
 msgid "destroying history\n"
@@ -2177,49 +2177,48 @@ msgstr ""
 msgid "Create Array"
 msgstr ""
 
+# Selection
 #: gschem/src/x/x_edit_array.c:892
-#, fuzzy
 msgid "<b>Selection</b>"
-msgstr "Seleziona"
+msgstr "Kiválasztás"
 
+# Count
 #: gschem/src/x/x_edit_array.c:902 gschem/src/x/x_edit_array.c:972
 #: gschem/src/x/x_edit_array.c:1005
-#, fuzzy
 msgid "Count"
-msgstr "Sequenza dei file"
+msgstr "Contare"
 
+# X Size
 #: gschem/src/x/x_edit_array.c:913
-#, fuzzy
 msgid "X Size"
-msgstr "Dimensione Snap"
+msgstr "Formato X"
 
+# Y Size
 #: gschem/src/x/x_edit_array.c:916
-#, fuzzy
 msgid "Y Size"
-msgstr "Dimensione Snap"
+msgstr "Formato Y"
 
 #: gschem/src/x/x_edit_array.c:935 gschem/src/x/x_menus.c:87
 msgid "Select"
 msgstr "Seleziona"
 
 #: gschem/src/x/x_edit_array.c:939
-#, fuzzy
 msgid "Deselect"
-msgstr "Seleziona tutto"
+msgstr "Deseleziona"
 
+# Array
 #: gschem/src/x/x_edit_array.c:955
-#, fuzzy
 msgid "<b>Array</b>"
-msgstr "Filtro:"
+msgstr "<b>schieramento</b>"
 
 #: gschem/src/x/x_edit_array.c:964
 msgid "Row"
 msgstr ""
 
+# Offset
 #: gschem/src/x/x_edit_array.c:987 gschem/src/x/x_edit_array.c:1020
-#, fuzzy
 msgid "Offset"
-msgstr "Modalità Collegamento"
+msgstr "Compensare"
 
 #: gschem/src/x/x_edit_array.c:997
 msgid "Column"
@@ -2445,22 +2444,18 @@ msgid "_Comment:"
 msgstr "_Componente:"
 
 #: gschem/src/x/x_edit_cprop.c:1346
-#, fuzzy
 msgid "Options:"
-msgstr "Opzioni"
+msgstr "Opzioni:"
 
 #: gschem/src/x/x_edit_cprop.c:1381
-#, fuzzy
 msgid "_Embedded"
 msgstr "Incorpora"
 
 #: gschem/src/x/x_edit_cprop.c:1397
-#, fuzzy
 msgid "_Locked"
 msgstr "Blocca"
 
 #: gschem/src/x/x_edit_cprop.c:1415
-#, fuzzy
 msgid "_Mirrored"
 msgstr "Specchio"
 
@@ -2536,10 +2531,10 @@ msgstr "Nessun documento trovato"
 msgid "Entry for comments"
 msgstr ""
 
+# Embed symbol in schematic checkbox
 #: gschem/src/x/x_edit_cprop.c:1640
-#, fuzzy
 msgid "Embed symbol in schematic checkbox"
-msgstr "Incorpora il componente nello schema"
+msgstr "Inserisci il simbolo nella casella di controllo schematica"
 
 #: gschem/src/x/x_edit_cprop.c:1646
 msgid "Lock symbol in schematic checkbox"
@@ -2766,11 +2761,10 @@ msgstr ""
 msgid "Slot number:"
 msgstr "numero slot:"
 
-# Set the sequence number
+# Set the active slot number
 #: gschem/src/x/x_edit_slot.c:216
-#, fuzzy
 msgid "Set the active slot number"
-msgstr "Impostare il numero di sequenza"
+msgstr "Impostare il numero di slot attivo"
 
 #: gschem/src/x/x_edit_text.c:64 gschem/src/x/x_edit_text.c:473
 msgid "Text Content"
