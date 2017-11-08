@@ -133,9 +133,10 @@ msgstr ""
 msgid "Auto-Restore"
 msgstr ""
 
+# Automatically restore the main window geometry
 #: gschem/src/base/gschem_main_window.c:391
 msgid "Automatically restore the main window geometry"
-msgstr ""
+msgstr "メインウィンドウのジオメトリを自動的に復元する"
 
 #: gschem/src/base/gschem_page_view.c:250
 #: gschem/src/base/gschem_page_view.c:251
@@ -1514,20 +1515,20 @@ msgstr ""
 msgid "Close without saving"
 msgstr ""
 
+# unsaved page
 #: gschem/src/x/x_confirm_close.c:588
-#, fuzzy
 msgid "unsaved page"
-msgstr "すべて保存"
+msgstr "保存されていないページ"
 
+# unsaved pages
 #: gschem/src/x/x_confirm_close.c:595
-#, fuzzy
 msgid "unsaved pages"
-msgstr "すべて保存"
+msgstr "未保存のページ"
 
+# selected pages
 #: gschem/src/x/x_confirm_close.c:602
-#, fuzzy
 msgid "selected pages"
-msgstr "選択"
+msgstr "選択したページ"
 
 #: gschem/src/x/x_console.c:135
 msgid "destroying history\n"
@@ -2132,8 +2133,8 @@ msgstr ""
 msgid "Create Array"
 msgstr ""
 
+# Selection
 #: gschem/src/x/x_edit_array.c:892
-#, fuzzy
 msgid "<b>Selection</b>"
 msgstr "選択"
 
@@ -2142,37 +2143,37 @@ msgstr "選択"
 msgid "Count"
 msgstr ""
 
+# X Size
 #: gschem/src/x/x_edit_array.c:913
-#, fuzzy
 msgid "X Size"
-msgstr "テキストサイズ"
+msgstr "Xサイズ"
 
+# X Size
 #: gschem/src/x/x_edit_array.c:916
-#, fuzzy
 msgid "Y Size"
-msgstr "テキストサイズ"
+msgstr "Yサイズ"
 
 #: gschem/src/x/x_edit_array.c:935 gschem/src/x/x_menus.c:87
 msgid "Select"
 msgstr "選択"
 
+# Deselect
 #: gschem/src/x/x_edit_array.c:939
-#, fuzzy
 msgid "Deselect"
-msgstr "選択モード"
+msgstr "選択解除する"
 
 #: gschem/src/x/x_edit_array.c:955
 msgid "<b>Array</b>"
-msgstr ""
+msgstr "<b>アレイ</b>"
 
 #: gschem/src/x/x_edit_array.c:964
 msgid "Row"
 msgstr ""
 
+# Offset
 #: gschem/src/x/x_edit_array.c:987 gschem/src/x/x_edit_array.c:1020
-#, fuzzy
 msgid "Offset"
-msgstr "ネットモード"
+msgstr "オフセット"
 
 #: gschem/src/x/x_edit_array.c:997
 msgid "Column"
@@ -2492,7 +2493,7 @@ msgstr ""
 
 #: gschem/src/x/x_edit_cprop.c:1640
 msgid "Embed symbol in schematic checkbox"
-msgstr ""
+msgstr "スケマティックチェックボックスにシンボルを埋め込む"
 
 #: gschem/src/x/x_edit_cprop.c:1646
 msgid "Lock symbol in schematic checkbox"
@@ -2720,11 +2721,10 @@ msgstr ""
 msgid "Slot number:"
 msgstr "スロット番号編集:"
 
-# Set the sequence number
+# Set the active slot number
 #: gschem/src/x/x_edit_slot.c:216
-#, fuzzy
 msgid "Set the active slot number"
-msgstr "シーケンス番号を設定する"
+msgstr "アクティブなスロット番号を設定する"
 
 #: gschem/src/x/x_edit_text.c:64 gschem/src/x/x_edit_text.c:473
 msgid "Text Content"
