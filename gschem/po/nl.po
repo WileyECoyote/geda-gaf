@@ -1592,25 +1592,23 @@ msgstr ""
 
 # Close the current page without saving
 #: gschem/src/x/x_confirm_close.c:534
-#, fuzzy
 msgid "Close without saving"
 msgstr "Sluit de huidige pagina zonder op te slaan"
 
-# page can not be saved
+# unsaved page
 #: gschem/src/x/x_confirm_close.c:588
-#, fuzzy
 msgid "unsaved page"
-msgstr "pagina kan niet worden opgeslagen"
+msgstr "niet-opgeslagen pagina"
 
+# unsaved pages
 #: gschem/src/x/x_confirm_close.c:595
-#, fuzzy
 msgid "unsaved pages"
-msgstr "Opgeslagen als"
+msgstr "niet-opgeslagen pagina's"
 
+# selected pages
 #: gschem/src/x/x_confirm_close.c:602
-#, fuzzy
 msgid "selected pages"
-msgstr "Geselecteerde objecten"
+msgstr "Geselecteerde pagina's"
 
 #: gschem/src/x/x_console.c:135
 msgid "destroying history\n"
@@ -2241,52 +2239,46 @@ msgid "Create Array"
 msgstr "Array maken"
 
 #: gschem/src/x/x_edit_array.c:892
-#, fuzzy
 msgid "<b>Selection</b>"
 msgstr "Selectie"
 
-# File Count
+# Count
 #: gschem/src/x/x_edit_array.c:902 gschem/src/x/x_edit_array.c:972
 #: gschem/src/x/x_edit_array.c:1005
-#, fuzzy
 msgid "Count"
-msgstr "Aantal bestanden"
+msgstr "tellen"
 
-# Grid Size
+# X Size
 #: gschem/src/x/x_edit_array.c:913
-#, fuzzy
 msgid "X Size"
-msgstr "Rastergrootte"
+msgstr "X-formaat"
 
-# Grid Size
+# Y Size
 #: gschem/src/x/x_edit_array.c:916
-#, fuzzy
 msgid "Y Size"
-msgstr "Rastergrootte"
+msgstr "Y-formaat"
 
 #: gschem/src/x/x_edit_array.c:935 gschem/src/x/x_menus.c:87
 msgid "Select"
 msgstr "Selecteer"
 
-# Deselect everything
+# Deselect
 #: gschem/src/x/x_edit_array.c:939
-#, fuzzy
 msgid "Deselect"
-msgstr "Deselecteer alles"
+msgstr "Deselecteer"
 
 #: gschem/src/x/x_edit_array.c:955
-#, fuzzy
 msgid "<b>Array</b>"
-msgstr "<b>Filter:</b>"
+msgstr "<b>reeks</b>"
 
 #: gschem/src/x/x_edit_array.c:964
 msgid "Row"
 msgstr ""
 
+# Offset
 #: gschem/src/x/x_edit_array.c:987 gschem/src/x/x_edit_array.c:1020
-#, fuzzy
 msgid "Offset"
-msgstr "Offset"
+msgstr "compenseren"
 
 #: gschem/src/x/x_edit_array.c:997
 msgid "Column"
