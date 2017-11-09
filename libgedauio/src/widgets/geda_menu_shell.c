@@ -1680,10 +1680,11 @@ void geda_menu_shell_activate (GedaMenuShell *menu_shell)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Active a Meu Item
+ * \par Function Description
+ *  Actives \a menu_item. If the parent shell has any other item
+ *  active, the other item will be deactivated.
  */
 void geda_menu_shell_activate_item (GedaMenuShell *menu_shell,
                                     GtkWidget     *menu_item,
