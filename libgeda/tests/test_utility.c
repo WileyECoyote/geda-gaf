@@ -562,7 +562,7 @@ int test_refdes (void)
       }
     }
     else {
-      fprintf(stderr, "FAILED: (U050502B-%d) geda_refdes_get_numeric NULL\n",index);
+      fprintf(stderr, "FAILED: (U050502C-%d) geda_refdes_get_numeric NULL\n",index);
       result++;
     }
   }
