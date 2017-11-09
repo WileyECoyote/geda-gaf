@@ -74,8 +74,8 @@ static struct event_reg_t page_view_events[] = {
 void
 i_event_block_buttons (GschemToplevel *w_current)
 {
-  i_event_block_handler (w_current, BUTTON_PRESS_HANDLER);
-  i_event_block_handler (w_current, BUTTON_RELEASE_HANDLER);
+  i_event_block_handler (w_current, BUTTON_PRESS_HANDLER   /* Enum 1 */);
+  i_event_block_handler (w_current, BUTTON_RELEASE_HANDLER /* Enum 2 */);
 }
 
 /*!
@@ -91,8 +91,8 @@ i_event_block_buttons (GschemToplevel *w_current)
 void
 i_event_unblock_buttons (GschemToplevel *w_current)
 {
-  i_event_unblock_handler (w_current, BUTTON_PRESS_HANDLER);
-  i_event_unblock_handler (w_current, BUTTON_RELEASE_HANDLER);
+  i_event_unblock_handler (w_current, BUTTON_PRESS_HANDLER   /* Enum 1 */);
+  i_event_unblock_handler (w_current, BUTTON_RELEASE_HANDLER /* Enum 2 */);
 }
 
 /*!
