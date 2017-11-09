@@ -343,7 +343,7 @@ static void geda_object_instance_init(GTypeInstance *instance, void *g_class)
   GedaObject *object             = (GedaObject*)instance;
 
   /* setup sid */
-  object->sid                    = global_sid++;
+  object->sid                    = geda_object_get_next_sid();
   object->type                   = 'E';
 
   /* The name will be set by the constructor */
