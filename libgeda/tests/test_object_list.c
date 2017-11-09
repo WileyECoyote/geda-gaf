@@ -188,7 +188,7 @@ check_list_copy_all (GedaToplevel *toplevel)
     result++;
   }
 
-  /* R3: Check list, this first object was already in the list */
+  /* R3: Check list, the first object was already in the list */
 
   GedaObject *obj = g_list_nth_data (list, 0);
 
@@ -326,7 +326,7 @@ check_list_copy_all (GedaToplevel *toplevel)
       result++;
     }
 
-    /* R6A: Check that there is only attachment to the new arc */
+    /* R6A: Check that there is only one attachment to the new arc */
     cnt = geda_glist_length(attached);
 
     if (cnt - 1) {
