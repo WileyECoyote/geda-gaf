@@ -158,7 +158,7 @@ char *geda_utility_string_get_valid_utf8 (const char *instr)
     }
 
     if (string == NULL) {
-      outstr = geda_strdup (instr);
+      outstr = geda_utility_string_strdup (instr);
     }
     else {
       g_string_append (string, remainder);
