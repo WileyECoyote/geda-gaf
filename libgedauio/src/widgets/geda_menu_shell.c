@@ -1765,10 +1765,10 @@ void geda_menu_shell_add_mnemonic (GedaMenuShell *menu_shell,
   geda_menu_shell_reset_key_hash (menu_shell);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief Set the Tool Tip Column on the Combo Widget
- *  \par Function Description
- *
+/*!
+ * \brief Append a child widget to a Geda Menu Shell
+ * \par Function Description
+ *  The \a child would normally a menu.
  */
 void geda_menu_shell_append (GedaMenuShell *menu_shell, GtkWidget *child)
 {

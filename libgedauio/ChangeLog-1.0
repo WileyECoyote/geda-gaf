@@ -4,6 +4,7 @@
       for functions:
 
           * geda_menu_shell_activate_item
+          * geda_menu_shell_append
 
 2017-10-23 Wiley E. Hill <wileyhill@gmail.com>
 
