@@ -1102,6 +1102,7 @@ eda_renderer_prepare_text (EdaRenderer *renderer, const GedaObject *object)
   pango_layout_context_changed (renderer->priv->pl);
 
   pango_cairo_update_layout (cr, renderer->priv->pl);
+
   return TRUE;
 }
 
