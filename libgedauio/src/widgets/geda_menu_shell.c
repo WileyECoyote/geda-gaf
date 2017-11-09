@@ -2155,10 +2155,11 @@ void geda_menu_shell_set_take_focus (GedaMenuShell *menu_shell, bool take_focus)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Update mnemonics if Auto Mnemonics enabled
+ * \par Function Description
+ *  Transends upward starting from the current derivative, which may not
+ *  make sense for a MenuBar, and
  */
 void geda_menu_shell_update_mnemonics (GedaMenuShell *menu_shell)
 {
