@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-11-06 01:07-0600\n"
+"POT-Creation-Date: 2017-11-10 01:28-0600\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: kop <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1670,7 +1670,8 @@ msgstr "Szöveg"
 msgid "Bus"
 msgstr "Busz"
 
-#: gschem/src/x/x_dialog.c:1044 gschem/src/x/x_menus.c:106
+#: gschem/src/x/x_dialog.c:1044 gschem/src/x/x_edit_array.c:892
+#: gschem/src/x/x_menus.c:106
 msgid "Selection"
 msgstr "Kiválasztás"
 
@@ -2105,11 +2106,6 @@ msgstr ""
 msgid "Create Array"
 msgstr ""
 
-# Selection
-#: gschem/src/x/x_edit_array.c:892
-msgid "<b>Selection</b>"
-msgstr "Kiválasztás"
-
 # Count
 #: gschem/src/x/x_edit_array.c:902 gschem/src/x/x_edit_array.c:972
 #: gschem/src/x/x_edit_array.c:1005
@@ -2135,10 +2131,9 @@ msgstr "Kiválasztás"
 msgid "Deselect"
 msgstr "Deselect"
 
-# Array
-#: gschem/src/x/x_edit_array.c:955
-msgid "<b>Array</b>"
-msgstr "<b>Sor</b>"
+#: gschem/src/x/x_edit_array.c:955 gschem/src/x/x_menus.c:118
+msgid "Array"
+msgstr "Sor"
 
 #: gschem/src/x/x_edit_array.c:964
 msgid "Row"
@@ -3124,10 +3119,6 @@ msgstr "Pin típus..."
 #: gschem/src/x/x_menus.c:114 gschem/etc/system-gschemrc.scm:2128
 msgid "Open the Pin Type Dialog"
 msgstr "Nyissa meg a Pin Típus Dialog"
-
-#: gschem/src/x/x_menus.c:118
-msgid "Array"
-msgstr "Sor"
 
 #: gschem/src/x/x_menus.c:118 gschem/etc/system-gschemrc.scm:2120
 msgid "Create and array of objects"
@@ -5637,6 +5628,14 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
+
+# Selection
+#~ msgid "<b>Selection</b>"
+#~ msgstr "Kiválasztás"
+
+# Array
+#~ msgid "<b>Array</b>"
+#~ msgstr "<b>Sor</b>"
 
 #~ msgid "Toggle _Snap On-Off"
 #~ msgstr "_Snap váltása"

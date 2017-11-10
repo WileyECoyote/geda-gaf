@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-11-06 01:07-0600\n"
+"POT-Creation-Date: 2017-11-10 01:28-0600\n"
 "PO-Revision-Date: 2015-07-29 00:24-0600\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1781,7 +1781,8 @@ msgstr "atthabat"
 msgid "Bus"
 msgstr "akkisani"
 
-#: gschem/src/x/x_dialog.c:1044 gschem/src/x/x_menus.c:106
+#: gschem/src/x/x_dialog.c:1044 gschem/src/x/x_edit_array.c:892
+#: gschem/src/x/x_menus.c:106
 msgid "Selection"
 msgstr "kar chreus"
 
@@ -2227,11 +2228,6 @@ msgstr ""
 msgid "Create Array"
 msgstr ""
 
-# Selection
-#: gschem/src/x/x_edit_array.c:892
-msgid "<b>Selection</b>"
-msgstr "chomreus"
-
 #: gschem/src/x/x_edit_array.c:902 gschem/src/x/x_edit_array.c:972
 #: gschem/src/x/x_edit_array.c:1005
 msgid "Count"
@@ -2254,10 +2250,9 @@ msgstr "chreus"
 msgid "Deselect"
 msgstr "min chreus"
 
-# Array
-#: gschem/src/x/x_edit_array.c:955
-msgid "<b>Array</b>"
-msgstr "<b>a re</b>"
+#: gschem/src/x/x_edit_array.c:955 gschem/src/x/x_menus.c:118
+msgid "Array"
+msgstr "a re"
 
 #: gschem/src/x/x_edit_array.c:964
 msgid "Row"
@@ -3303,10 +3298,6 @@ msgstr "mchoul tomneaktomnong..."
 #: gschem/src/x/x_menus.c:114 gschem/etc/system-gschemrc.scm:2128
 msgid "Open the Pin Type Dialog"
 msgstr "baek braab braphet mchoul"
-
-#: gschem/src/x/x_menus.c:118
-msgid "Array"
-msgstr "a re"
 
 #: gschem/src/x/x_menus.c:118 gschem/etc/system-gschemrc.scm:2120
 msgid "Create and array of objects"
@@ -5881,3 +5872,11 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
+
+# Selection
+#~ msgid "<b>Selection</b>"
+#~ msgstr "chomreus"
+
+# Array
+#~ msgid "<b>Array</b>"
+#~ msgstr "<b>a re</b>"

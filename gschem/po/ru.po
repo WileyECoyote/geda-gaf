@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gschem ru\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-11-06 01:07-0600\n"
+"POT-Creation-Date: 2017-11-10 01:28-0600\n"
 "PO-Revision-Date: 2015-09-13 16:05+0300\n"
 "Last-Translator: Sergey Alyoshin <alyoshin.s@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -1844,7 +1844,8 @@ msgstr "Текст"
 msgid "Bus"
 msgstr "Шина"
 
-#: gschem/src/x/x_dialog.c:1044 gschem/src/x/x_menus.c:106
+#: gschem/src/x/x_dialog.c:1044 gschem/src/x/x_edit_array.c:892
+#: gschem/src/x/x_menus.c:106
 msgid "Selection"
 msgstr "Выделение"
 
@@ -2295,11 +2296,6 @@ msgstr ""
 msgid "Create Array"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:892
-#, fuzzy
-msgid "<b>Selection</b>"
-msgstr "Выделение"
-
 # File Count
 #: gschem/src/x/x_edit_array.c:902 gschem/src/x/x_edit_array.c:972
 #: gschem/src/x/x_edit_array.c:1005
@@ -2329,11 +2325,9 @@ msgstr "Выделение"
 msgid "Deselect"
 msgstr "Убрать выделение со всего"
 
-# Filter
-#: gschem/src/x/x_edit_array.c:955
-#, fuzzy
-msgid "<b>Array</b>"
-msgstr "<b>Фильтр:</b>"
+#: gschem/src/x/x_edit_array.c:955 gschem/src/x/x_menus.c:118
+msgid "Array"
+msgstr ""
 
 #: gschem/src/x/x_edit_array.c:964
 msgid "Row"
@@ -3373,10 +3367,6 @@ msgstr "Тип контакта..."
 
 #: gschem/src/x/x_menus.c:114 gschem/etc/system-gschemrc.scm:2128
 msgid "Open the Pin Type Dialog"
-msgstr ""
-
-#: gschem/src/x/x_menus.c:118
-msgid "Array"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:118 gschem/etc/system-gschemrc.scm:2120
@@ -6099,6 +6089,15 @@ msgstr "Недопустимая комбинация клавиш ~S."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S не является префиксом клавишной последовательности."
+
+#, fuzzy
+#~ msgid "<b>Selection</b>"
+#~ msgstr "Выделение"
+
+# Filter
+#, fuzzy
+#~ msgid "<b>Array</b>"
+#~ msgstr "<b>Фильтр:</b>"
 
 #~ msgid "Toggle _Magnetic Net"
 #~ msgstr "_Магнитное соединение вкл/откл"

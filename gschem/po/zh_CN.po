@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-11-06 01:07-0600\n"
+"POT-Creation-Date: 2017-11-10 01:28-0600\n"
 "PO-Revision-Date: 2010-02-11 03:18+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1719,7 +1719,8 @@ msgid "Bus"
 msgstr "总线"
 
 # Selection
-#: gschem/src/x/x_dialog.c:1044 gschem/src/x/x_menus.c:106
+#: gschem/src/x/x_dialog.c:1044 gschem/src/x/x_edit_array.c:892
+#: gschem/src/x/x_menus.c:106
 msgid "Selection"
 msgstr "选择"
 
@@ -2166,12 +2167,6 @@ msgstr ""
 msgid "Create Array"
 msgstr "创建弧"
 
-# Selection
-#: gschem/src/x/x_edit_array.c:892
-#, fuzzy
-msgid "<b>Selection</b>"
-msgstr "选择"
-
 #: gschem/src/x/x_edit_array.c:902 gschem/src/x/x_edit_array.c:972
 #: gschem/src/x/x_edit_array.c:1005
 msgid "Count"
@@ -2195,11 +2190,9 @@ msgstr ""
 msgid "Deselect"
 msgstr "取消全選"
 
-# File error
-#: gschem/src/x/x_edit_array.c:955
-#, fuzzy
-msgid "<b>Array</b>"
-msgstr "<b>文件错误.</b>"
+#: gschem/src/x/x_edit_array.c:955 gschem/src/x/x_menus.c:118
+msgid "Array"
+msgstr ""
 
 #: gschem/src/x/x_edit_array.c:964
 msgid "Row"
@@ -3223,10 +3216,6 @@ msgstr "引脚类型..."
 
 #: gschem/src/x/x_menus.c:114 gschem/etc/system-gschemrc.scm:2128
 msgid "Open the Pin Type Dialog"
-msgstr ""
-
-#: gschem/src/x/x_menus.c:118
-msgid "Array"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:118 gschem/etc/system-gschemrc.scm:2120
@@ -5995,3 +5984,13 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
+
+# Selection
+#, fuzzy
+#~ msgid "<b>Selection</b>"
+#~ msgstr "选择"
+
+# File error
+#, fuzzy
+#~ msgid "<b>Array</b>"
+#~ msgstr "<b>文件错误.</b>"

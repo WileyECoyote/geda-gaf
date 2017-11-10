@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-11-06 01:07-0600\n"
+"POT-Creation-Date: 2017-11-10 01:28-0600\n"
 "PO-Revision-Date: 2012-02-04 00:18+0000\n"
 "Last-Translator: Krzysztof Kościuszkiewicz <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1772,7 +1772,8 @@ msgstr "Tekst"
 msgid "Bus"
 msgstr "Magistralę"
 
-#: gschem/src/x/x_dialog.c:1044 gschem/src/x/x_menus.c:106
+#: gschem/src/x/x_dialog.c:1044 gschem/src/x/x_edit_array.c:892
+#: gschem/src/x/x_menus.c:106
 msgid "Selection"
 msgstr "Selection"
 
@@ -2224,10 +2225,6 @@ msgstr ""
 msgid "Create Array"
 msgstr "Tworzenie tablicy"
 
-#: gschem/src/x/x_edit_array.c:892
-msgid "<b>Selection</b>"
-msgstr "Selection"
-
 # Count
 #: gschem/src/x/x_edit_array.c:902 gschem/src/x/x_edit_array.c:972
 #: gschem/src/x/x_edit_array.c:1005
@@ -2253,9 +2250,9 @@ msgstr "Zaznaczanie"
 msgid "Deselect"
 msgstr "Odznacz"
 
-#: gschem/src/x/x_edit_array.c:955
-msgid "<b>Array</b>"
-msgstr "<b>Szyk</b>"
+#: gschem/src/x/x_edit_array.c:955 gschem/src/x/x_menus.c:118
+msgid "Array"
+msgstr ""
 
 #: gschem/src/x/x_edit_array.c:964
 msgid "Row"
@@ -3302,10 +3299,6 @@ msgstr "Typ pin..."
 
 #: gschem/src/x/x_menus.c:114 gschem/etc/system-gschemrc.scm:2128
 msgid "Open the Pin Type Dialog"
-msgstr ""
-
-#: gschem/src/x/x_menus.c:118
-msgid "Array"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:118 gschem/etc/system-gschemrc.scm:2120
@@ -6049,6 +6042,12 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
+
+#~ msgid "<b>Selection</b>"
+#~ msgstr "Selection"
+
+#~ msgid "<b>Array</b>"
+#~ msgstr "<b>Szyk</b>"
 
 #~ msgid "Toggle _Magnetic Net"
 #~ msgstr "Przełącz \"_magnes\" połączeń"

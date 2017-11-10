@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-11-06 01:07-0600\n"
+"POT-Creation-Date: 2017-11-10 01:28-0600\n"
 "PO-Revision-Date: 2016-12-23 15:41-0600\n"
 "Last-Translator: عبدالله شلي (Abdellah Chelli) <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1689,7 +1689,8 @@ msgstr "نص"
 msgid "Bus"
 msgstr "ناقل"
 
-#: gschem/src/x/x_dialog.c:1044 gschem/src/x/x_menus.c:106
+#: gschem/src/x/x_dialog.c:1044 gschem/src/x/x_edit_array.c:892
+#: gschem/src/x/x_menus.c:106
 msgid "Selection"
 msgstr "انتق"
 
@@ -2125,11 +2126,6 @@ msgstr ""
 msgid "Create Array"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:892
-#, fuzzy
-msgid "<b>Selection</b>"
-msgstr "انتق"
-
 #: gschem/src/x/x_edit_array.c:902 gschem/src/x/x_edit_array.c:972
 #: gschem/src/x/x_edit_array.c:1005
 #, fuzzy
@@ -2155,10 +2151,9 @@ msgstr "انتق"
 msgid "Deselect"
 msgstr "انتق"
 
-#: gschem/src/x/x_edit_array.c:955
-#, fuzzy
-msgid "<b>Array</b>"
-msgstr "المرشح:"
+#: gschem/src/x/x_edit_array.c:955 gschem/src/x/x_menus.c:118
+msgid "Array"
+msgstr ""
 
 #: gschem/src/x/x_edit_array.c:964
 msgid "Row"
@@ -3153,10 +3148,6 @@ msgstr "نوع الملء..."
 
 #: gschem/src/x/x_menus.c:114 gschem/etc/system-gschemrc.scm:2128
 msgid "Open the Pin Type Dialog"
-msgstr ""
-
-#: gschem/src/x/x_menus.c:118
-msgid "Array"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:118 gschem/etc/system-gschemrc.scm:2120
@@ -5682,3 +5673,11 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
+
+#, fuzzy
+#~ msgid "<b>Selection</b>"
+#~ msgstr "انتق"
+
+#, fuzzy
+#~ msgid "<b>Array</b>"
+#~ msgstr "المرشح:"

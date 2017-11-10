@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-11-06 01:07-0600\n"
+"POT-Creation-Date: 2017-11-10 01:28-0600\n"
 "PO-Revision-Date: 2012-01-31 12:08+0000\n"
 "Last-Translator: Antonio Augusto Todo Bom Neto <atodobom@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1806,7 +1806,8 @@ msgstr "Texto"
 msgid "Bus"
 msgstr "Barramento"
 
-#: gschem/src/x/x_dialog.c:1044 gschem/src/x/x_menus.c:106
+#: gschem/src/x/x_dialog.c:1044 gschem/src/x/x_edit_array.c:892
+#: gschem/src/x/x_menus.c:106
 msgid "Selection"
 msgstr "Selecção"
 
@@ -2256,11 +2257,6 @@ msgstr ""
 msgid "Create Array"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:892
-#, fuzzy
-msgid "<b>Selection</b>"
-msgstr "Selecção"
-
 # File Count
 #: gschem/src/x/x_edit_array.c:902 gschem/src/x/x_edit_array.c:972
 #: gschem/src/x/x_edit_array.c:1005
@@ -2290,10 +2286,9 @@ msgstr "Selecionar"
 msgid "Deselect"
 msgstr "Desmarcar todos"
 
-#: gschem/src/x/x_edit_array.c:955
-#, fuzzy
-msgid "<b>Array</b>"
-msgstr "<b>Filtro:</b>"
+#: gschem/src/x/x_edit_array.c:955 gschem/src/x/x_menus.c:118
+msgid "Array"
+msgstr ""
 
 #: gschem/src/x/x_edit_array.c:964
 msgid "Row"
@@ -3313,10 +3308,6 @@ msgstr "Tipo de pino..."
 
 #: gschem/src/x/x_menus.c:114 gschem/etc/system-gschemrc.scm:2128
 msgid "Open the Pin Type Dialog"
-msgstr ""
-
-#: gschem/src/x/x_menus.c:118
-msgid "Array"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:118 gschem/etc/system-gschemrc.scm:2120
@@ -6068,6 +6059,14 @@ msgstr "~S não é uma combinação válida."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S não é uma sequência de prefixo."
+
+#, fuzzy
+#~ msgid "<b>Selection</b>"
+#~ msgstr "Selecção"
+
+#, fuzzy
+#~ msgid "<b>Array</b>"
+#~ msgstr "<b>Filtro:</b>"
 
 #~ msgid "Toggle _Magnetic Net"
 #~ msgstr "Alternar conexão _Magnética"

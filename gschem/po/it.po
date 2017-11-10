@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-11-06 01:07-0600\n"
+"POT-Creation-Date: 2017-11-10 01:28-0600\n"
 "PO-Revision-Date: 2014-12-29 20:06+0300\n"
 "Last-Translator: Marco Ciampa <ciampix@libero.it>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1741,7 +1741,8 @@ msgstr "Testo"
 msgid "Bus"
 msgstr "Bus"
 
-#: gschem/src/x/x_dialog.c:1044 gschem/src/x/x_menus.c:106
+#: gschem/src/x/x_dialog.c:1044 gschem/src/x/x_edit_array.c:892
+#: gschem/src/x/x_menus.c:106
 msgid "Selection"
 msgstr "Seleziona"
 
@@ -2177,11 +2178,6 @@ msgstr ""
 msgid "Create Array"
 msgstr ""
 
-# Selection
-#: gschem/src/x/x_edit_array.c:892
-msgid "<b>Selection</b>"
-msgstr "Kiválasztás"
-
 # Count
 #: gschem/src/x/x_edit_array.c:902 gschem/src/x/x_edit_array.c:972
 #: gschem/src/x/x_edit_array.c:1005
@@ -2206,10 +2202,9 @@ msgstr "Seleziona"
 msgid "Deselect"
 msgstr "Deseleziona"
 
-# Array
-#: gschem/src/x/x_edit_array.c:955
-msgid "<b>Array</b>"
-msgstr "<b>schieramento</b>"
+#: gschem/src/x/x_edit_array.c:955 gschem/src/x/x_menus.c:118
+msgid "Array"
+msgstr "schieramento"
 
 #: gschem/src/x/x_edit_array.c:964
 msgid "Row"
@@ -3195,10 +3190,6 @@ msgstr "Tipo pin..."
 #: gschem/src/x/x_menus.c:114 gschem/etc/system-gschemrc.scm:2128
 msgid "Open the Pin Type Dialog"
 msgstr "Aprire la finestra di dialogo Tipo Pin"
-
-#: gschem/src/x/x_menus.c:118
-msgid "Array"
-msgstr "schieramento"
 
 #: gschem/src/x/x_menus.c:118 gschem/etc/system-gschemrc.scm:2120
 msgid "Create and array of objects"
@@ -5714,6 +5705,14 @@ msgstr "~S non è una combinazione di tasti valida."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S non è un prefisso di sequenza di tasti."
+
+# Selection
+#~ msgid "<b>Selection</b>"
+#~ msgstr "Kiválasztás"
+
+# Array
+#~ msgid "<b>Array</b>"
+#~ msgstr "<b>schieramento</b>"
 
 #~ msgid "Toggle _Magnetic Net"
 #~ msgstr "Commuta Net _Magnetiche"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gschem\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-11-06 01:07-0600\n"
+"POT-Creation-Date: 2017-11-10 01:28-0600\n"
 "PO-Revision-Date: 2014-08-31 22:35+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1788,7 +1788,8 @@ msgstr "Tekst"
 msgid "Bus"
 msgstr "Bus"
 
-#: gschem/src/x/x_dialog.c:1044 gschem/src/x/x_menus.c:106
+#: gschem/src/x/x_dialog.c:1044 gschem/src/x/x_edit_array.c:892
+#: gschem/src/x/x_menus.c:106
 msgid "Selection"
 msgstr "Selectie"
 
@@ -2238,10 +2239,6 @@ msgstr ""
 msgid "Create Array"
 msgstr "Array maken"
 
-#: gschem/src/x/x_edit_array.c:892
-msgid "<b>Selection</b>"
-msgstr "Selectie"
-
 # Count
 #: gschem/src/x/x_edit_array.c:902 gschem/src/x/x_edit_array.c:972
 #: gschem/src/x/x_edit_array.c:1005
@@ -2267,9 +2264,9 @@ msgstr "Selecteer"
 msgid "Deselect"
 msgstr "Deselecteer"
 
-#: gschem/src/x/x_edit_array.c:955
-msgid "<b>Array</b>"
-msgstr "<b>reeks</b>"
+#: gschem/src/x/x_edit_array.c:955 gschem/src/x/x_menus.c:118
+msgid "Array"
+msgstr ""
 
 #: gschem/src/x/x_edit_array.c:964
 msgid "Row"
@@ -3278,10 +3275,6 @@ msgstr "Pin type..."
 
 #: gschem/src/x/x_menus.c:114 gschem/etc/system-gschemrc.scm:2128
 msgid "Open the Pin Type Dialog"
-msgstr ""
-
-#: gschem/src/x/x_menus.c:118
-msgid "Array"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:118 gschem/etc/system-gschemrc.scm:2120
@@ -5947,6 +5940,12 @@ msgstr "~S is geen geldige toetsencombinatie."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S is geen voorafgaande toetsen combinatie."
+
+#~ msgid "<b>Selection</b>"
+#~ msgstr "Selectie"
+
+#~ msgid "<b>Array</b>"
+#~ msgstr "<b>reeks</b>"
 
 #~ msgid "Toggle _Magnetic Net"
 #~ msgstr "_Magnetische Draad"

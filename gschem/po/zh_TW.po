@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-11-06 01:07-0600\n"
+"POT-Creation-Date: 2017-11-10 01:28-0600\n"
 "PO-Revision-Date: 2012-01-27 14:22+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1730,7 +1730,8 @@ msgid "Bus"
 msgstr ""
 
 # Selection
-#: gschem/src/x/x_dialog.c:1044 gschem/src/x/x_menus.c:106
+#: gschem/src/x/x_dialog.c:1044 gschem/src/x/x_edit_array.c:892
+#: gschem/src/x/x_menus.c:106
 msgid "Selection"
 msgstr "選擇"
 
@@ -2176,12 +2177,6 @@ msgstr ""
 msgid "Create Array"
 msgstr ""
 
-# Selection
-#: gschem/src/x/x_edit_array.c:892
-#, fuzzy
-msgid "<b>Selection</b>"
-msgstr "選擇"
-
 #: gschem/src/x/x_edit_array.c:902 gschem/src/x/x_edit_array.c:972
 #: gschem/src/x/x_edit_array.c:1005
 msgid "Count"
@@ -2205,11 +2200,9 @@ msgstr "選擇"
 msgid "Deselect"
 msgstr "取消選擇模式"
 
-# Filter
-#: gschem/src/x/x_edit_array.c:955
-#, fuzzy
-msgid "<b>Array</b>"
-msgstr "<b>過濾</b>"
+#: gschem/src/x/x_edit_array.c:955 gschem/src/x/x_menus.c:118
+msgid "Array"
+msgstr ""
 
 #: gschem/src/x/x_edit_array.c:964
 msgid "Row"
@@ -3238,10 +3231,6 @@ msgstr "引腳類型..."
 
 #: gschem/src/x/x_menus.c:114 gschem/etc/system-gschemrc.scm:2128
 msgid "Open the Pin Type Dialog"
-msgstr ""
-
-#: gschem/src/x/x_menus.c:118
-msgid "Array"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:118 gschem/etc/system-gschemrc.scm:2120
@@ -6007,3 +5996,13 @@ msgstr "~S 不是有效的組合鍵."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S 不是前綴密鑰序列."
+
+# Selection
+#, fuzzy
+#~ msgid "<b>Selection</b>"
+#~ msgstr "選擇"
+
+# Filter
+#, fuzzy
+#~ msgid "<b>Array</b>"
+#~ msgstr "<b>過濾</b>"

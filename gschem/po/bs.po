@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-11-06 01:07-0600\n"
+"POT-Creation-Date: 2017-11-10 01:28-0600\n"
 "PO-Revision-Date: 2012-01-27 14:18+0000\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: Bosnian <bs@li.org>\n"
@@ -1706,7 +1706,8 @@ msgid "Bus"
 msgstr "Sabirnica"
 
 # Selection
-#: gschem/src/x/x_dialog.c:1044 gschem/src/x/x_menus.c:106
+#: gschem/src/x/x_dialog.c:1044 gschem/src/x/x_edit_array.c:892
+#: gschem/src/x/x_menus.c:106
 msgid "Selection"
 msgstr "izbor"
 
@@ -2147,12 +2148,6 @@ msgstr ""
 msgid "Create Array"
 msgstr "stvoriti niz"
 
-# Selection
-#: gschem/src/x/x_edit_array.c:892
-#, fuzzy
-msgid "<b>Selection</b>"
-msgstr "izbor"
-
 #: gschem/src/x/x_edit_array.c:902 gschem/src/x/x_edit_array.c:972
 #: gschem/src/x/x_edit_array.c:1005
 msgid "Count"
@@ -2176,8 +2171,8 @@ msgstr ""
 msgid "Deselect"
 msgstr "poništite režim"
 
-#: gschem/src/x/x_edit_array.c:955
-msgid "<b>Array</b>"
+#: gschem/src/x/x_edit_array.c:955 gschem/src/x/x_menus.c:118
+msgid "Array"
 msgstr ""
 
 #: gschem/src/x/x_edit_array.c:964
@@ -3185,10 +3180,6 @@ msgstr "Pinski..."
 
 #: gschem/src/x/x_menus.c:114 gschem/etc/system-gschemrc.scm:2128
 msgid "Open the Pin Type Dialog"
-msgstr ""
-
-#: gschem/src/x/x_menus.c:118
-msgid "Array"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:118 gschem/etc/system-gschemrc.scm:2120
@@ -5839,6 +5830,11 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
+
+# Selection
+#, fuzzy
+#~ msgid "<b>Selection</b>"
+#~ msgstr "izbor"
 
 #~ msgid "Deselect moda"
 #~ msgstr "un-odabrati moda"

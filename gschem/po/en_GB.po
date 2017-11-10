@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-11-06 01:07-0600\n"
+"POT-Creation-Date: 2017-11-10 01:28-0600\n"
 "PO-Revision-Date: 2016-12-05 02:35-0600\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1684,7 +1684,8 @@ msgstr "Text"
 msgid "Bus"
 msgstr "Bus"
 
-#: gschem/src/x/x_dialog.c:1044 gschem/src/x/x_menus.c:106
+#: gschem/src/x/x_dialog.c:1044 gschem/src/x/x_edit_array.c:892
+#: gschem/src/x/x_menus.c:106
 msgid "Selection"
 msgstr "Select"
 
@@ -2123,10 +2124,6 @@ msgstr ""
 msgid "Create Array"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:892
-msgid "Selection"
-msgstr "Selection"
-
 #: gschem/src/x/x_edit_array.c:902 gschem/src/x/x_edit_array.c:972
 #: gschem/src/x/x_edit_array.c:1005
 msgid "Count"
@@ -2148,7 +2145,7 @@ msgstr "Select"
 msgid "Deselect"
 msgstr "Unselect"
 
-#: gschem/src/x/x_edit_array.c:955
+#: gschem/src/x/x_edit_array.c:955 gschem/src/x/x_menus.c:118
 msgid "Array"
 msgstr "Array"
 
@@ -3108,10 +3105,6 @@ msgstr "Pin Type..."
 #: gschem/src/x/x_menus.c:114 gschem/etc/system-gschemrc.scm:2128
 msgid "Open the Pin Type Dialog"
 msgstr ""
-
-#: gschem/src/x/x_menus.c:118
-msgid "Array"
-msgstr "Array"
 
 #: gschem/src/x/x_menus.c:118 gschem/etc/system-gschemrc.scm:2120
 msgid "Create and array of objects"

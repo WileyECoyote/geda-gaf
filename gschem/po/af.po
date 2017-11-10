@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gschem\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-11-06 01:07-0600\n"
+"POT-Creation-Date: 2017-11-10 01:28-0600\n"
 "PO-Revision-Date: 2010-02-14 01:03+0000\n"
 "Last-Translator: Bernd Jendrissek <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1741,9 +1741,11 @@ msgstr "Teks"
 msgid "Bus"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1044 gschem/src/x/x_menus.c:106
+# Selection
+#: gschem/src/x/x_dialog.c:1044 gschem/src/x/x_edit_array.c:892
+#: gschem/src/x/x_menus.c:106
 msgid "Selection"
-msgstr "Kies"
+msgstr "seleksie"
 
 #: gschem/src/x/x_dialog.c:1045
 msgid "Bounding box"
@@ -2175,11 +2177,6 @@ msgstr ""
 msgid "Create Array"
 msgstr ""
 
-# Selection
-#: gschem/src/x/x_edit_array.c:892
-msgid "Selection"
-msgstr "seleksie"
-
 # Count
 #: gschem/src/x/x_edit_array.c:902 gschem/src/x/x_edit_array.c:972
 #: gschem/src/x/x_edit_array.c:1005
@@ -2205,7 +2202,7 @@ msgstr "Kies"
 msgid "Deselect"
 msgstr "Ontkies"
 
-#: gschem/src/x/x_edit_array.c:955
+#: gschem/src/x/x_edit_array.c:955 gschem/src/x/x_menus.c:118
 msgid "Array"
 msgstr "verskeidenheid"
 
@@ -3188,10 +3185,6 @@ msgstr "Pen tipe..."
 #: gschem/src/x/x_menus.c:114 gschem/etc/system-gschemrc.scm:2128
 msgid "Open the Pin Type Dialog"
 msgstr "Maak die Pin Tipe Dialog"
-
-#: gschem/src/x/x_menus.c:118
-msgid "Array"
-msgstr "verskeidenheid"
 
 #: gschem/src/x/x_menus.c:118 gschem/etc/system-gschemrc.scm:2120
 msgid "Create and array of objects"
