@@ -108,6 +108,11 @@ gschem/data/geda-gschem.desktop.in
 gschem/etc/system-gschemrc.scm
 gschem/etc/user-gschemrc.scm
 
+gschem/scheme/auto-place-attribs.scm
+gschem/scheme/generate_netlist.scm
+gschem/scheme/gschem.scm
+gschem/scheme/pcb.scm
+
 gschem/scheme/gschem/action.scm
 gschem/scheme/gschem/attrib.scm
 gschem/scheme/gschem/builtins.scm

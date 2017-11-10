@@ -1,5 +1,12 @@
 2017-11-10 Wiley E. Hill <wileyhill@gmail.com>
 
+    * po/POTFILES.in: Add files:
+
+          * gschem/scheme/auto-place-attribs.scm
+          * gschem/scheme/generate_netlist.scm
+          * gschem/scheme/gschem.scm
+          * gschem/scheme/pcb.scm
+
     * po/af.po: Update Afrikaans translations.
 
     * po/bg.po: Update Bulgarian translations.
