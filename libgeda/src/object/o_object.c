@@ -62,8 +62,7 @@
  * the erroneous portion of the buffer or just a message depending
  * on the context.
  */
-bool
-geda_object_show_buffer_err (const char *msg, const char *buf)
+bool geda_object_show_buffer_err (const char *msg, const char *buf)
 {
   if (geda_get_verbose_mode()) {
     char *line = geda_remove_last_newline((char*)buf);
@@ -94,10 +93,9 @@ geda_object_show_buffer_err (const char *msg, const char *buf)
  *
  * \return GList of objects if successful read, or NULL on error.
  */
-GList*
-geda_object_read_buffer (GedaToplevel *toplevel, GList    *object_list,
-                         const char   *buffer,   const int size,
-                         const char   *name,     GError  **err)
+GList *geda_object_read_buffer (GedaToplevel *toplevel, GList    *object_list,
+                                const char   *buffer,   const int size,
+                                const char   *name,     GError  **err)
 {
   GList  *object_list_save     = NULL;
   GList  *new_attrs_list       = NULL;
@@ -477,8 +475,7 @@ error2:
  *                              NULL to disable error reporting
  * \return object_list if successful read, or NULL on error.
  */
-GList*
-geda_object_read (GedaToplevel *toplevel, GList *object_list, char *filename,
+GList *geda_object_read (GedaToplevel *toplevel, GList *object_list, char *filename,
                   GError      **err)
 {
   char  *buffer = (NULL);
@@ -519,8 +516,7 @@ geda_object_read (GedaToplevel *toplevel, GList *object_list, char *filename,
  * \param [in]  o_current
  * \return GedaObject pointer.
  */
-GedaObject *
-geda_object_copy (GedaObject *o_current)
+GedaObject *geda_object_copy (GedaObject *o_current)
 {
   GedaObject *new_obj;
 
@@ -604,8 +600,7 @@ geda_object_copy (GedaObject *o_current)
  * \param [in]     center_y  Origin y coordinate.
  * \param [in,out] object    The GedaObject to mirror.
  */
-void
-geda_object_mirror (GedaObject *object, int center_x, int center_y)
+void geda_object_mirror (GedaObject *object, int center_x, int center_y)
 {
   void (*topless) (GedaObject*, int, int) = NULL;
 
@@ -654,8 +649,7 @@ geda_object_mirror (GedaObject *object, int center_x, int center_y)
  * \param [in] center_y  Y coordinate of rotation center
  * \param [in] angle     Angle of rotation (degrees)
  */
-void
-geda_object_rotate (GedaObject *object, int center_x, int center_y, int angle)
+void geda_object_rotate (GedaObject *object, int center_x, int center_y, int angle)
 {
   void (*topless) (GedaObject *, int, int, int) = NULL;
 
@@ -705,8 +699,7 @@ geda_object_rotate (GedaObject *object, int center_x, int center_y, int angle)
  * \param [in] dx       Amount to horizontally translate object
  * \param [in] dy       Amount to vertically translate object
  */
-void
-geda_object_translate (GedaObject *object, int dx, int dy)
+void geda_object_translate (GedaObject *object, int dx, int dy)
 {
   void (*topless) (GedaObject *, int, int) = NULL;
 
@@ -754,8 +747,7 @@ geda_object_translate (GedaObject *object, int dx, int dy)
  *
  * \param [in] object The object to update.
  */
-void
-geda_object_update (GedaObject *object)
+void geda_object_update (GedaObject *object)
 {
   geda_struct_tile_update_object (object);
   geda_struct_conn_update_object (object);
