@@ -139,9 +139,8 @@ msgid "Auto-Restore"
 msgstr ""
 
 #: gschem/src/base/gschem_main_window.c:391
-#, fuzzy
 msgid "Automatically restore the main window geometry"
-msgstr "Retrieving main Window geometry.\n"
+msgstr "Automatically restore the main window geometry"
 
 #: gschem/src/base/gschem_page_view.c:250
 #: gschem/src/base/gschem_page_view.c:251
@@ -1498,24 +1497,20 @@ msgid "If you don't save, all your changes will be permanently lost."
 msgstr ""
 
 #: gschem/src/x/x_confirm_close.c:534
-#, fuzzy
 msgid "Close without saving"
-msgstr "Close without changing any settings"
+msgstr "Close without saving"
 
 #: gschem/src/x/x_confirm_close.c:588
-#, fuzzy
 msgid "unsaved page"
-msgstr "Could NOT save page"
+msgstr "unsaved page"
 
 #: gschem/src/x/x_confirm_close.c:595
-#, fuzzy
 msgid "unsaved pages"
-msgstr "Saved as"
+msgstr "unsaved pages"
 
 #: gschem/src/x/x_confirm_close.c:602
-#, fuzzy
 msgid "selected pages"
-msgstr "Selected objects"
+msgstr "selected pages"
 
 #: gschem/src/x/x_console.c:135
 msgid "destroying history\n"
@@ -2129,39 +2124,33 @@ msgid "Create Array"
 msgstr ""
 
 #: gschem/src/x/x_edit_array.c:892
-#, fuzzy
-msgid "<b>Selection</b>"
-msgstr "Select"
+msgid "Selection"
+msgstr "Selection"
 
 #: gschem/src/x/x_edit_array.c:902 gschem/src/x/x_edit_array.c:972
 #: gschem/src/x/x_edit_array.c:1005
-#, fuzzy
 msgid "Count"
-msgstr "File Count"
+msgstr "Count"
 
 #: gschem/src/x/x_edit_array.c:913
-#, fuzzy
 msgid "X Size"
-msgstr "Grid point"
+msgstr "X Size"
 
 #: gschem/src/x/x_edit_array.c:916
-#, fuzzy
 msgid "Y Size"
-msgstr "Grid point"
+msgstr "Y Size"
 
 #: gschem/src/x/x_edit_array.c:935 gschem/src/x/x_menus.c:87
 msgid "Select"
 msgstr "Select"
 
 #: gschem/src/x/x_edit_array.c:939
-#, fuzzy
 msgid "Deselect"
-msgstr "Select All"
+msgstr "Unselect"
 
 #: gschem/src/x/x_edit_array.c:955
-#, fuzzy
-msgid "<b>Array</b>"
-msgstr "<b>Filter:</b>"
+msgid "Array"
+msgstr "Array"
 
 #: gschem/src/x/x_edit_array.c:964
 msgid "Row"
