@@ -142,10 +142,10 @@ msgstr "Recuperación de la geometría de la ventana principal.\n"
 msgid "Auto-Restore"
 msgstr ""
 
+# Automatically restore the main window geometry
 #: gschem/src/base/gschem_main_window.c:391
-#, fuzzy
 msgid "Automatically restore the main window geometry"
-msgstr "Recuperación de la geometría de la ventana principal.\n"
+msgstr "Restaure automáticamente la geometría de la ventana principal"
 
 #: gschem/src/base/gschem_page_view.c:250
 #: gschem/src/base/gschem_page_view.c:251
@@ -1533,25 +1533,25 @@ msgstr ""
 msgid "If you don't save, all your changes will be permanently lost."
 msgstr ""
 
+# Close without saving
 #: gschem/src/x/x_confirm_close.c:534
-#, fuzzy
 msgid "Close without saving"
-msgstr "_Cerrar sin guardar"
+msgstr "Cerrar sin guardar"
 
+# unsaved page
 #: gschem/src/x/x_confirm_close.c:588
-#, fuzzy
 msgid "unsaved page"
-msgstr "NO se ha podido guardar la página"
+msgstr "página no guardada"
 
+# unsaved pages
 #: gschem/src/x/x_confirm_close.c:595
-#, fuzzy
 msgid "unsaved pages"
-msgstr "Guardar todo"
+msgstr "незапазени страници"
 
+# selected pages
 #: gschem/src/x/x_confirm_close.c:602
-#, fuzzy
 msgid "selected pages"
-msgstr "Objetos seleccionados"
+msgstr "páginas seleccionadas"
 
 #: gschem/src/x/x_console.c:135
 msgid "destroying history\n"
@@ -2170,48 +2170,47 @@ msgid "Create Array"
 msgstr ""
 
 #: gschem/src/x/x_edit_array.c:892
-#, fuzzy
-msgid "<b>Selection</b>"
-msgstr "Seleccionar"
+msgid "Selection"
+msgstr "Selección"
 
+# Count
 #: gschem/src/x/x_edit_array.c:902 gschem/src/x/x_edit_array.c:972
 #: gschem/src/x/x_edit_array.c:1005
-#, fuzzy
 msgid "Count"
-msgstr "Orden de archivos:"
+msgstr "Contar"
 
+# X Size
 #: gschem/src/x/x_edit_array.c:913
-#, fuzzy
 msgid "X Size"
-msgstr "Punto de rejilla"
+msgstr "Tamaño X"
 
+# Y Size
 #: gschem/src/x/x_edit_array.c:916
-#, fuzzy
 msgid "Y Size"
-msgstr "Punto de rejilla"
+msgstr "Tamaño Y"
 
 #: gschem/src/x/x_edit_array.c:935 gschem/src/x/x_menus.c:87
 msgid "Select"
 msgstr "Seleccionar"
 
+# Deselect
 #: gschem/src/x/x_edit_array.c:939
-#, fuzzy
 msgid "Deselect"
-msgstr "Seleccionar todo"
+msgstr "Deseleccionar"
 
+# Array
 #: gschem/src/x/x_edit_array.c:955
-#, fuzzy
-msgid "<b>Array</b>"
-msgstr "Filtro:"
+msgid "Array"
+msgstr "Formación"
 
 #: gschem/src/x/x_edit_array.c:964
 msgid "Row"
 msgstr ""
 
+# Offset
 #: gschem/src/x/x_edit_array.c:987 gschem/src/x/x_edit_array.c:1020
-#, fuzzy
 msgid "Offset"
-msgstr "Modo Conexión"
+msgstr "Compensar"
 
 #: gschem/src/x/x_edit_array.c:997
 msgid "Column"
