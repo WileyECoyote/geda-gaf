@@ -133,10 +133,11 @@ msgstr "Haetaan pääikkuna geometria.\n"
 msgid "Auto-Restore"
 msgstr ""
 
+# Automatically restore the main window geometry
 #: gschem/src/base/gschem_main_window.c:391
 #, fuzzy
 msgid "Automatically restore the main window geometry"
-msgstr "Haetaan pääikkuna geometria.\n"
+msgstr "Palauta pääikkunan geometria automaattisesti"
 
 #: gschem/src/base/gschem_page_view.c:250
 #: gschem/src/base/gschem_page_view.c:251
@@ -1466,25 +1467,25 @@ msgstr ""
 msgid "If you don't save, all your changes will be permanently lost."
 msgstr ""
 
+# Close without saving
 #: gschem/src/x/x_confirm_close.c:534
-#, fuzzy
 msgid "Close without saving"
-msgstr "Sulkea muuttamatta mitään asetuksia"
+msgstr "Sulje tallentamatta"
 
+# unsaved page
 #: gschem/src/x/x_confirm_close.c:588
-#, fuzzy
 msgid "unsaved page"
-msgstr "Tallenna _kaikki"
+msgstr "tallentamaton sivu"
 
+# unsaved pages
 #: gschem/src/x/x_confirm_close.c:595
-#, fuzzy
 msgid "unsaved pages"
-msgstr "Tallenna _kaikki"
+msgstr "tallentamattomat sivut"
 
+# selected pages
 #: gschem/src/x/x_confirm_close.c:602
-#, fuzzy
 msgid "selected pages"
-msgstr "Valintatila"
+msgstr "valittuja sivuja"
 
 #: gschem/src/x/x_console.c:135
 msgid "destroying history\n"
@@ -2089,45 +2090,46 @@ msgid "Create Array"
 msgstr ""
 
 #: gschem/src/x/x_edit_array.c:892
-#, fuzzy
-msgid "<b>Selection</b>"
-msgstr "_Lähennä"
+msgid "Selection"
+msgstr "Valinta"
 
+# Count
 #: gschem/src/x/x_edit_array.c:902 gschem/src/x/x_edit_array.c:972
 #: gschem/src/x/x_edit_array.c:1005
-#, fuzzy
 msgid "Count"
-msgstr "eiden"
+msgstr "Kreivi"
 
+# X Size
 #: gschem/src/x/x_edit_array.c:913
 msgid "X Size"
-msgstr ""
+msgstr "X Koko"
 
+# Y Size
 #: gschem/src/x/x_edit_array.c:916
 msgid "Y Size"
-msgstr ""
+msgstr "Y Koko"
 
 #: gschem/src/x/x_edit_array.c:935 gschem/src/x/x_menus.c:87
 msgid "Select"
 msgstr ""
 
+# Deselect
 #: gschem/src/x/x_edit_array.c:939
-#, fuzzy
 msgid "Deselect"
-msgstr "Valintatila"
+msgstr "poista"
 
+# Array
 #: gschem/src/x/x_edit_array.c:955
-msgid "<b>Array</b>"
-msgstr ""
+msgid "Array"
+msgstr "ryhmä"
 
 #: gschem/src/x/x_edit_array.c:964
 msgid "Row"
 msgstr ""
 
 #: gschem/src/x/x_edit_array.c:987 gschem/src/x/x_edit_array.c:1020
-#, fuzzy
 msgid "Offset"
-msgstr "Valintatila"
+msgstr "Offset"
 
 #: gschem/src/x/x_edit_array.c:997
 msgid "Column"
