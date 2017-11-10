@@ -142,10 +142,10 @@ msgstr "Herwinning hoof venster meetkunde.\n"
 msgid "Auto-Restore"
 msgstr ""
 
+# Automatically restore the main window geometry
 #: gschem/src/base/gschem_main_window.c:391
-#, fuzzy
 msgid "Automatically restore the main window geometry"
-msgstr "Herwinning hoof venster meetkunde.\n"
+msgstr "Herstel die hoof venster geometrie outomaties"
 
 #: gschem/src/base/gschem_page_view.c:250
 #: gschem/src/base/gschem_page_view.c:251
@@ -1546,25 +1546,25 @@ msgstr ""
 msgid "If you don't save, all your changes will be permanently lost."
 msgstr ""
 
+# Close without saving
 #: gschem/src/x/x_confirm_close.c:534
-#, fuzzy
 msgid "Close without saving"
-msgstr "Sluit sonder om te bewaar"
+msgstr "Maak toe sonder om te stoor"
 
+# unsaved page
 #: gschem/src/x/x_confirm_close.c:588
-#, fuzzy
 msgid "unsaved page"
-msgstr "Kon nie bladsy red"
+msgstr "ongestoorde bladsy"
 
+# unsaved pages
 #: gschem/src/x/x_confirm_close.c:595
-#, fuzzy
 msgid "unsaved pages"
-msgstr "Bewaar Alles"
+msgstr "ongestoorde bladsye"
 
+# selected pages
 #: gschem/src/x/x_confirm_close.c:602
-#, fuzzy
 msgid "selected pages"
-msgstr "Kies"
+msgstr "geselekteerde bladsye"
 
 #: gschem/src/x/x_console.c:135
 msgid "destroying history\n"
@@ -2175,49 +2175,46 @@ msgstr ""
 msgid "Create Array"
 msgstr ""
 
+# Selection
 #: gschem/src/x/x_edit_array.c:892
-#, fuzzy
-msgid "<b>Selection</b>"
-msgstr "Kies"
+msgid "Selection"
+msgstr "seleksie"
 
+# Count
 #: gschem/src/x/x_edit_array.c:902 gschem/src/x/x_edit_array.c:972
 #: gschem/src/x/x_edit_array.c:1005
-#, fuzzy
 msgid "Count"
-msgstr "Lêerorde"
+msgstr "tel"
 
-# grid size
+# X size
 #: gschem/src/x/x_edit_array.c:913
-#, fuzzy
 msgid "X Size"
-msgstr "rooster grootte"
+msgstr "X Grootte"
 
-# grid size
+# Y size
 #: gschem/src/x/x_edit_array.c:916
-#, fuzzy
 msgid "Y Size"
-msgstr "rooster grootte"
+msgstr "Y Grootte"
 
 #: gschem/src/x/x_edit_array.c:935 gschem/src/x/x_menus.c:87
 msgid "Select"
 msgstr "Kies"
 
+# Deselect
 #: gschem/src/x/x_edit_array.c:939
-#, fuzzy
 msgid "Deselect"
-msgstr "uit te skakel al"
+msgstr "Ontkies"
 
 #: gschem/src/x/x_edit_array.c:955
-#, fuzzy
-msgid "<b>Array</b>"
-msgstr "Deursyfer:"
+msgid "Array"
+msgstr "verskeidenheid"
 
 #: gschem/src/x/x_edit_array.c:964
 msgid "Row"
 msgstr ""
 
+# Offset
 #: gschem/src/x/x_edit_array.c:987 gschem/src/x/x_edit_array.c:1020
-#, fuzzy
 msgid "Offset"
 msgstr "verreken"
 
