@@ -1517,25 +1517,25 @@ msgstr ""
 msgid "If you don't save, all your changes will be permanently lost."
 msgstr ""
 
+# Close without saving
 #: gschem/src/x/x_confirm_close.c:534
-#, fuzzy
 msgid "Close without saving"
-msgstr "Fermer sans sa_uvegarder"
+msgstr "Fermer sans enregistrer"
 
+# unsaved page
 #: gschem/src/x/x_confirm_close.c:588
-#, fuzzy
 msgid "unsaved page"
-msgstr "Impossible de sauver la page"
+msgstr "page non enregistrée"
 
+# unsaved pages
 #: gschem/src/x/x_confirm_close.c:595
-#, fuzzy
 msgid "unsaved pages"
-msgstr "Enregistrer toutes les pages"
+msgstr "pages non sauvegardées"
 
+# selected pages
 #: gschem/src/x/x_confirm_close.c:602
-#, fuzzy
 msgid "selected pages"
-msgstr "les objets sélectionnés"
+msgstr "pages sélectionnées"
 
 #: gschem/src/x/x_console.c:135
 msgid "destroying history\n"
@@ -2151,48 +2151,45 @@ msgid "Create Array"
 msgstr ""
 
 #: gschem/src/x/x_edit_array.c:892
-#, fuzzy
-msgid "<b>Selection</b>"
-msgstr "Sélectionner"
+msgid "Selection"
+msgstr "Sélection"
 
+# Count
 #: gschem/src/x/x_edit_array.c:902 gschem/src/x/x_edit_array.c:972
 #: gschem/src/x/x_edit_array.c:1005
-#, fuzzy
 msgid "Count"
-msgstr "dans l'ordre des éléments du fichier"
+msgstr "Compter"
 
+# X Size
 #: gschem/src/x/x_edit_array.c:913
-#, fuzzy
 msgid "X Size"
-msgstr "Point de grille"
+msgstr "Taille X"
 
+# Y Size
 #: gschem/src/x/x_edit_array.c:916
-#, fuzzy
 msgid "Y Size"
-msgstr "Point de grille"
+msgstr "Taille Y"
 
 #: gschem/src/x/x_edit_array.c:935 gschem/src/x/x_menus.c:87
 msgid "Select"
 msgstr "Sélectionner"
 
+# Deselect
 #: gschem/src/x/x_edit_array.c:939
-#, fuzzy
 msgid "Deselect"
-msgstr "Sélectionner tout"
+msgstr "Désélectionner"
 
 #: gschem/src/x/x_edit_array.c:955
-#, fuzzy
-msgid "<b>Array</b>"
-msgstr "Filtre:"
+msgid "Array"
+msgstr "Array"
 
 #: gschem/src/x/x_edit_array.c:964
 msgid "Row"
 msgstr ""
 
 #: gschem/src/x/x_edit_array.c:987 gschem/src/x/x_edit_array.c:1020
-#, fuzzy
 msgid "Offset"
-msgstr "Mode Piste"
+msgstr "Décalage"
 
 #: gschem/src/x/x_edit_array.c:997
 msgid "Column"
