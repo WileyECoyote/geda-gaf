@@ -92,6 +92,21 @@ int check_construction (void)
     g_object_unref(widget);    /* Does not destroy widget */
   }
 
+
+  /* geda_menu_button_new_from_stock */
+
+  widget = geda_menu_button_new_from_icon_name("edit-clear");
+
+  if (!GEDA_IS_MENU_BUTTON(widget)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+  else {
+
+    g_object_ref_sink(widget); /* Sink reference to menu_item */
+    g_object_unref(widget);    /* Does not destroy widget */
+  }
+
   return result;
 }
 
