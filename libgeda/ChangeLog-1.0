@@ -1,5 +1,8 @@
 2017-11-11 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_path.c: Add gobject properties for line type options
+      and object filling.
+
     * src/geda/geda_picture.c: Add angle accessor geda_picture_get_angle.
 
     * tests/test_file.c: Add checks for geda_file_path_get_dirname.
