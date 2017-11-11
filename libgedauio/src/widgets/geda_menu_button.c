@@ -1706,30 +1706,6 @@ geda_menu_button_set_arrow_tooltip_markup (GedaMenuButton *button,
 /*-----+-------+-------+-------^-------+-------^-------+-------+-------+-----*/
 
 /*!
- * \brief New GedaMenuButton from Stock Id
- * \par Function Description
- * Creates a new GedaMenuButton. The new GedaMenuButton will contain
- * an icon and label from the stock item indicated by \a stock_id.
- *
- * \param [in] stock_id  Name of a stock item
- *
- * \returns the new GedaMenuButton as a Widget
- */
-GtkWidget*
-geda_menu_button_new_from_stock (const char *stock_id)
-{
-  GtkWidget *button;
-
-  g_return_val_if_fail (stock_id != NULL, NULL);
-
-  button = g_object_new (GEDA_TYPE_MENU_BUTTON, "stock-id", stock_id,
-                                                "border-width", 0,
-                                                "menu-relief", GTK_RELIEF_NONE,
-                                                 NULL);
-  return button;
-}
-
-/*!
  * \brief New GedaMenuButton with Icon and Label
  * \par Function Description
  *  Creates a new GedaMenuButton using \a icon_widget as the icon
@@ -1737,8 +1713,7 @@ geda_menu_button_new_from_stock (const char *stock_id)
  *
  * \returns the new GedaMenuButton as a Widget
  */
-GtkWidget*
-geda_menu_button_new(GtkWidget *icon_widget, const char *label)
+GtkWidget *geda_menu_button_new(GtkWidget *icon_widget, const char *label)
 {
   GtkWidget *button;
 
@@ -1755,17 +1730,65 @@ geda_menu_button_new(GtkWidget *icon_widget, const char *label)
 }
 
 /*!
+ * \brief New GedaMenuButton with Icon Image
+ * \par Function Description
+ * Creates a new Menu Button containing an icon from the current icon
+ * theme. If the icon name isn’t known, a “broken image” icon will be
+ * displayed instead. If the current icon theme is changed, the icon
+ * will be updated appropriately.
+ *
+ * This is a convenience wrapper for gtk_image_new_from_icon_name and
+ * geda_menu_button_new.
+ *
+ * \param [in] icon_name  Name of a known icon image
+ *
+ * \returns a new #GedaMenuButton displaying the themed icon
+ */
+GtkWidget *geda_menu_button_new_from_icon_name (const char *icon_name)
+{
+  GtkWidget *button;
+  GtkWidget *image;
+
+  image  = gtk_image_new_from_icon_name (icon_name, GTK_ICON_SIZE_MENU);
+  button = g_object_new (GEDA_TYPE_MENU_BUTTON, "image", image, NULL);
+
+  return button;
+}
+
+/*!
+ * \brief New GedaMenuButton from Stock Id
+ * \par Function Description
+ * Creates a new GedaMenuButton. The new GedaMenuButton will contain
+ * an icon and label from the stock item indicated by \a stock_id.
+ *
+ * \param [in] stock_id  Name of a stock item
+ *
+ * \returns the new GedaMenuButton as a Widget
+ */
+GtkWidget *geda_menu_button_new_from_stock (const char *stock_id)
+{
+  GtkWidget *button;
+
+  g_return_val_if_fail (stock_id != NULL, NULL);
+
+  button = g_object_new (GEDA_TYPE_MENU_BUTTON, "stock-id", stock_id,
+                                                "border-width", 0,
+                                                "menu-relief", GTK_RELIEF_NONE,
+                                                 NULL);
+  return button;
+}
+
+/*!
  * \brief New GedaMenuButton with Mnemonic Label
  * \par Function Description
  *  Creates a new GedaMenuButton using \a label as the label.
  *
  * \returns the new GedaMenuButton as a Widget
  */
-GtkWidget*
-geda_menu_button_new_with_mnemonic(const char *label)
+GtkWidget *geda_menu_button_new_with_mnemonic(const char *label)
 {
   return g_object_new (GEDA_TYPE_MENU_BUTTON, "label", label,
-                       "menu-relief", GTK_RELIEF_NONE,
-                       "use-underline", TRUE,  NULL);;
+                                              "menu-relief", GTK_RELIEF_NONE,
+                                              "use-underline", TRUE,  NULL);;
 }
 /** @} end group geda-menu-button */

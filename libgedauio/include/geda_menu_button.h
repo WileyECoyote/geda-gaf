@@ -95,6 +95,7 @@ bool            is_a_geda_menu_button                 (GedaMenuButton *menu_butt
 
 GtkWidget      *geda_menu_button_new                  (GtkWidget      *icon_widget,
                                                        const char     *label);
+GtkWidget      *geda_menu_button_new_from_icon_name   (const char     *icon_name);
 GtkWidget      *geda_menu_button_new_from_stock       (const char     *stock_id);
 GtkWidget      *geda_menu_button_new_with_mnemonic    (const char     *label);
 

@@ -1,5 +1,7 @@
 2017-11-11 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_menu_button.c: Add geda_menu_button_new_from_icon_name.
+
     * tests/test_menu_button.c: Add checks for geda_menu_button_new_from_stock.
 
 2017-11-09 Wiley E. Hill <wileyhill@gmail.com>
