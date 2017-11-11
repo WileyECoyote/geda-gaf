@@ -88,6 +88,7 @@ GedaPicType  geda_picture_get_type     (void) GEDA_CONST;
 bool         is_a_geda_picture         (const GedaPicture *picture);
 
 GedaObject  *geda_picture_new          (void);
+int          geda_picture_get_angle    (const GedaPicture *picture) WARN_UNUSED;
 
 #ifdef __cplusplus
 }

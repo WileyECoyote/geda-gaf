@@ -229,4 +229,19 @@ bool is_a_geda_picture (const GedaPicture *pic)
 {
   return GEDA_IS_OBJECT(pic) && (((GedaObject*)pic)->type == OBJ_PICTURE);
 }
+
+/*!
+ * \brief Retrieve the Angle of a GedaPicture
+ * \par Function Description
+ *  Returns the value of the angle member or -0 if \a pic
+ *  is not a valid GedaPicture object.
+ */
+int geda_picture_get_angle (const GedaPicture *pic)
+{
+  if (is_a_geda_picture(pic)) {
+    return pic->angle;
+  }
+  return -0;
+}
+
 /** @} endgroup geda-picture-object */
