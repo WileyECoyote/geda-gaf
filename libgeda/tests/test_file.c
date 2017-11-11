@@ -868,12 +868,56 @@ int test_path (void)
   free(path);
 
   /* === Function 02: geda_free_path geda_file_path_free === */
+
+    /* Deferred */
+
   /* === Function 03: geda_get_dirname geda_file_path_get_dirname === */
+
+  static const struct _TestData F03_str[] =
+  {
+    { "",                        "."   },
+    { "./here",                  "."   },
+    { "./here/there",            "./here"  },
+    { "./here/there/everywhere", "./here/there" },
+  };
+
+  int count;
+  int index;
+
+  count = sizeof(F03_str) / sizeof(struct _TestData);
+
+  path = geda_get_dirname(NULL);
+  if (path) {                           /* NULL input */
+    fprintf(stderr, "FAILED: (F030100) geda_file_path_get_dirname <%s>\n", path);
+    result++;
+  }
+
+  for (index = 0; index < count; index++) {
+
+    char *expected = F03_str[index].expected;
+    char *input    = F03_str[index].input;
+
+    path = geda_get_dirname (input);
+
+    if (path) {
+      if (strcmp(path, expected)) {      /* See structure F03_str */
+        fprintf(stderr, "FAILED: (F030101A-%d) geda_file_path_get_dirname <%s>\n",index, path);
+        result++;
+      }
+    }
+    else {
+      fprintf(stderr, "FAILED: (F030101B-%d) geda_file_path_get_dirname NULL\n",index);
+      result++;
+    }
+  }
+
   /* === Function 04: geda_sys_data_path geda_file_path_sys_data === */
   /* === Function 05: geda_sys_doc_path geda_file_path_sys_doc === */
   /* === Function 06: geda_sys_config_path geda_file_path_sys_config === */
   /* === Function 07: geda_user_config_path geda_file_path_user_config === */
   /* ensure directory is restored, regardless of what happened above */
+
+  geda_file_path_free();
 
   if (!chdir(cwd_sav));
   free(cwd_sav);
