@@ -548,6 +548,168 @@ check_object_list_mirror (GedaToplevel *toplevel)
   return result;
 }
 
+int
+check_object_list_rotate (GedaToplevel *toplevel)
+{
+  int result = 0;
+
+  int x1 = 100;
+  int y1 = 100;
+  int x2 = 200;
+  int y2 = 200;
+  int r  = 100;
+
+  GedaObject *object1  = geda_arc_object_new (1, x1, y1, r, 0, 90);
+  GedaObject *object2  = geda_box_object_new(2, x1, y1, x2, y2);
+  GedaObject *object3  = geda_bus_object_new(3, x1, y1, x2, y2, 0);
+  GedaObject *object4  = geda_circle_object_new(4, x1, y1, r);
+  GedaObject *object5  = geda_complex_new();
+  GedaObject *object6  = geda_line_object_new(6, x1, y1, x2, y2);
+  GedaObject *object7  = geda_net_object_new (7, x1, y1, x2, y2);
+  GedaObject *object8  = geda_path_object_new(8, &path_string[0]);
+  GedaObject *object9  = geda_picture_new();
+  GedaObject *object10 = geda_pin_object_new(10, x1, y1, x2, y2, 0, 0);
+  GedaObject *object11 = geda_text_object_new(11, x1, y1, 0, 0, 10, 1, 0, "tests");
+
+  geda_complex_set_angle (object5->complex, 0);
+  geda_complex_set_x (object5->complex, x1);
+  geda_complex_set_y (object5->complex, y1);
+
+  geda_picture_object_modify_all (object9, x1, y1, x2, y2);
+
+  GList *list;
+
+  list = g_list_append(NULL, object1);
+  list = g_list_append(list, object2);
+  list = g_list_append(list, object3);
+  list = g_list_append(list, object4);
+  list = g_list_append(list, object5);
+  list = g_list_append(list, object6);
+  list = g_list_append(list, object7);
+  list = g_list_append(list, object8);
+  list = g_list_append(list, object9);
+  list = g_list_append(list, object10);
+  list = g_list_append(list, object11);
+
+  /* === Function 05: geda_object_list_rotate  === */
+  geda_object_list_rotate(list, x1, y1, 90);
+
+  int angle;
+  int x3, x4;
+  int y3, y4;
+
+  /* === object1->arc === */
+
+  angle = geda_arc_get_start_angle (object1->arc);
+
+  if (angle != 90) {
+    fprintf(stderr, "FAILED: (O120501) geda_object_list_rotate (%d)\n", angle);
+    result++;
+  }
+
+  /* === object2->box === */
+
+  g_object_get(object2->box, "upper-x", &x3, NULL);
+
+  if (x3) {
+    fprintf(stderr, "FAILED: (O120502A) geda_object_list_rotate <%d>\n", x3);
+    result++;
+  }
+
+  /* === object3->bus === */
+
+  g_object_get(object3->bus, "first-x",  &x3, NULL);
+
+
+  if (x1 - x3) {
+    fprintf(stderr, "FAILED: (O120503) geda_object_list_rotate <%d>\n", x3);
+    result++;
+  }
+
+  /* === object5->complex === */
+
+  angle = geda_complex_get_angle(object5->complex);
+
+  if (angle != 90) {
+    fprintf(stderr, "FAILED: (O120505) geda_object_list_rotate (%d)\n", angle);
+    result++;
+  }
+
+  /* === object6->line === */
+
+  g_object_get(object6->line, "second-x", &x4, NULL);
+
+
+  if (x4) {
+    fprintf(stderr, "FAILED: (O120506) geda_object_list_rotate <%d>\n", x4);
+    result++;
+  }
+
+  /* === object7->net === */
+
+  g_object_get(object7->net, "second-y", &y4, NULL);
+
+  if (y2 - y4) {
+    fprintf(stderr, "FAILED: (O120507) geda_object_list_rotate <%d>\n", y4);
+    result++;
+  }
+
+  /* === object8->path === */
+
+  char *spath;
+
+  /* M -12900,1900nL -15900,8400\nz>*/
+
+  spath = geda_struct_path_string_from_path (object8->path);
+
+  if (strncmp(spath, "M -12900", 8)) {
+    fprintf(stderr, "FAILED: (O120508) geda_object_list_rotate <%s>\n", spath);
+    result++;
+  }
+
+  free(spath);
+
+  /* === object9->picture === */
+
+  angle = geda_picture_get_angle(object9->picture);
+
+  if (angle != 90) {
+    fprintf(stderr, "FAILED: (O120509) geda_object_list_rotate (%d)\n", angle);
+    result++;
+  }
+
+  /* === object10->pin === */
+
+  g_object_get(object3->bus, "first-y",  &y3, NULL);
+
+  if (y1 - y3) {
+    fprintf(stderr, "FAILED: (O120510) geda_object_list_rotate <%d>\n", y3);
+    result++;
+  }
+
+  /* === object11->text === */
+  angle = geda_text_get_angle(object11->text);
+
+  if (angle != 90) {
+    fprintf(stderr, "FAILED: (O120511) geda_object_list_rotate (%d)\n", angle);
+    result++;
+  }
+
+  g_object_unref (object1);
+  g_object_unref (object2);
+  g_object_unref (object3);
+  g_object_unref (object4);
+  g_object_unref (object5);
+  g_object_unref (object6);
+  g_object_unref (object7);
+  g_object_unref (object8);
+  g_object_unref (object9);
+  g_object_unref (object10);
+  g_object_unref (object11);
+
+  return result;
+}
+
 GedaToplevel *setup_new_toplevel(void)
 {
   GedaToplevel *toplevel;
@@ -612,6 +774,15 @@ main (int argc, char *argv[])
     fprintf(stderr, "Caught signal checking geda_object_list_mirror\n\n");
     return 1;
   }
+
+  if (setjmp(point) == 0) {
+    result += check_object_list_rotate(toplevel);
+  }
+  else {
+    fprintf(stderr, "Caught signal checking geda_object_list_rotate\n\n");
+    return 1;
+  }
+
   g_object_unref(toplevel);
 
   return result;

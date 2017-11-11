@@ -2,6 +2,8 @@
 
     * src/geda/geda_picture.c: Add angle accessor geda_picture_get_angle.
 
+    * tests/test_object_list.c: Add checks for geda_object_list_rotate.
+
 2017-11-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_object.c: Utilize geda_object_get_next_sid to set the
