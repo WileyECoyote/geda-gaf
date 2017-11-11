@@ -1789,6 +1789,7 @@ GtkWidget *geda_menu_button_new_with_mnemonic(const char *label)
 {
   return g_object_new (GEDA_TYPE_MENU_BUTTON, "label", label,
                                               "menu-relief", GTK_RELIEF_NONE,
-                                              "use-underline", TRUE,  NULL);;
+                                              "use-underline", TRUE,  NULL);
 }
+
 /** @} end group geda-menu-button */
