@@ -6615,8 +6615,8 @@ geda_combo_box_set_title (GedaComboBox *combo_box, const char *title)
  * \par Function Description
  *  This function can be used when the the tree-view model contains text-
  *  only tooltips on full rows. \a column should be set to the column in
- *  tree-view’s model containing the tooltip texts, or -1 to disable
- *  this feature.
+ *  tree-view model containing the tooltip texts, or -1 to disable this
+ *  feature.
  *
  *  When enabled, GtkWidget:has-tooltip will be set to %TRUE and
  *  tree_view will connect a GtkWidget::query-tooltip signal handler.
