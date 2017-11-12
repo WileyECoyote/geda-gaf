@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-09-23 12:43-0500\n"
+"POT-Creation-Date: 2017-11-12 15:15-0600\n"
 "PO-Revision-Date: 2012-01-27 14:17+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Catalan <ca@li.org>\n"
@@ -127,7 +127,8 @@ msgstr ""
 "gEDA/gattrib %s (%s) (g%.7s)\n"
 "Drets d'autor (C) 1998-2017 gEDA desenvolupadors\n"
 "Es tracta de programari lliure, i us convidem a redistribuir-lo\n"
-"certes condicions. Per obtenir més informació, consulteu el fitxer 'COPYING', que és\n"
+"certes condicions. Per obtenir més informació, consulteu el fitxer "
+"'COPYING', que és\n"
 "inclòs en la distribució de GEDA.\n"
 "NO hi ha cap GARANTIA, en la mesura que la llei ho permeti.\n"
 
@@ -168,26 +169,26 @@ msgstr ""
 msgid "Increase the number of rename_pairs (MAX_RENAME) in"
 msgstr ""
 
-#: gattrib/src/s_sheet_data.c:242
+#: gattrib/src/s_sheet_data.c:243
 #, c-format
 msgid "Creating master component list.\n"
 msgstr ""
 
-#: gattrib/src/s_sheet_data.c:308
+#: gattrib/src/s_sheet_data.c:309
 #, c-format
 msgid "Creating master component attribute list.\n"
 msgstr "Creació de la llista d'atributs del component mestre.\n"
 
-#: gattrib/src/s_sheet_data.c:434
+#: gattrib/src/s_sheet_data.c:435
 #, c-format
 msgid "Creating master pin list.\n"
 msgstr ""
 
-#: gattrib/src/s_sheet_data.c:484
+#: gattrib/src/s_sheet_data.c:485
 msgid "found component pin without a pin number"
 msgstr ""
 
-#: gattrib/src/s_sheet_data.c:547
+#: gattrib/src/s_sheet_data.c:548
 msgid "Creating master pin attribute list"
 msgstr ""
 
@@ -710,15 +711,15 @@ msgstr ""
 msgid "Toggle grid visibility"
 msgstr ""
 
-#: gattrib/src/x_menus.c:546
+#: gattrib/src/x_menus.c:544
 msgid "Open _Recent"
 msgstr ""
 
-#: gattrib/src/x_menus.c:547
+#: gattrib/src/x_menus.c:545
 msgid "Open recently used files"
 msgstr ""
 
-#: gattrib/src/x_menus.c:647
+#: gattrib/src/x_menus.c:646
 msgid "Error loading"
 msgstr ""
 

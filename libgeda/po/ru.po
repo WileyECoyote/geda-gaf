@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-09-03 22:38-0500\n"
+"POT-Creation-Date: 2017-11-12 15:15-0600\n"
 "PO-Revision-Date: 2014-06-06 16:40+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -343,137 +343,148 @@ msgstr ""
 msgid "The arc sweep angle"
 msgstr ""
 
-#: libgeda/src/geda/geda_arc.c:454 libgeda/src/geda/geda_box.c:377
+#: libgeda/src/geda/geda_arc.c:454 libgeda/src/geda/geda_box.c:378
 #: libgeda/src/geda/geda_circle.c:357 libgeda/src/geda/geda_line.c:313
+#: libgeda/src/geda/geda_path.c:347
 msgid "End Cap"
 msgstr ""
 
-#: libgeda/src/geda/geda_arc.c:455 libgeda/src/geda/geda_box.c:378
-#: libgeda/src/geda/geda_line.c:314
+#: libgeda/src/geda/geda_arc.c:455 libgeda/src/geda/geda_box.c:379
+#: libgeda/src/geda/geda_line.c:314 libgeda/src/geda/geda_path.c:348
 msgid "Line end cap"
 msgstr ""
 
-#: libgeda/src/geda/geda_arc.c:464 libgeda/src/geda/geda_box.c:387
+#: libgeda/src/geda/geda_arc.c:464 libgeda/src/geda/geda_box.c:388
 #: libgeda/src/geda/geda_circle.c:367 libgeda/src/geda/geda_line.c:323
+#: libgeda/src/geda/geda_path.c:357
 msgid "Line Type"
 msgstr ""
 
-#: libgeda/src/geda/geda_arc.c:465 libgeda/src/geda/geda_box.c:388
+#: libgeda/src/geda/geda_arc.c:465 libgeda/src/geda/geda_box.c:389
 #: libgeda/src/geda/geda_circle.c:368 libgeda/src/geda/geda_line.c:324
+#: libgeda/src/geda/geda_path.c:358
 msgid "The line type"
 msgstr ""
 
-#: libgeda/src/geda/geda_arc.c:474 libgeda/src/geda/geda_box.c:397
+#: libgeda/src/geda/geda_arc.c:474 libgeda/src/geda/geda_box.c:398
 #: libgeda/src/geda/geda_circle.c:377 libgeda/src/geda/geda_line.c:333
+#: libgeda/src/geda/geda_path.c:367
 msgid "Line Width"
 msgstr ""
 
-#: libgeda/src/geda/geda_arc.c:475 libgeda/src/geda/geda_box.c:398
+#: libgeda/src/geda/geda_arc.c:475 libgeda/src/geda/geda_box.c:399
 #: libgeda/src/geda/geda_circle.c:378 libgeda/src/geda/geda_line.c:334
+#: libgeda/src/geda/geda_path.c:368
 msgid "The line width"
 msgstr ""
 
-#: libgeda/src/geda/geda_arc.c:484 libgeda/src/geda/geda_box.c:407
+#: libgeda/src/geda/geda_arc.c:484 libgeda/src/geda/geda_box.c:408
 #: libgeda/src/geda/geda_circle.c:387 libgeda/src/geda/geda_line.c:343
+#: libgeda/src/geda/geda_path.c:377
 msgid "Line Space"
 msgstr ""
 
-#: libgeda/src/geda/geda_arc.c:485 libgeda/src/geda/geda_box.c:408
+#: libgeda/src/geda/geda_arc.c:485 libgeda/src/geda/geda_box.c:409
 #: libgeda/src/geda/geda_circle.c:388 libgeda/src/geda/geda_line.c:344
+#: libgeda/src/geda/geda_path.c:378
 msgid "The line space"
 msgstr ""
 
-#: libgeda/src/geda/geda_arc.c:494 libgeda/src/geda/geda_box.c:417
+#: libgeda/src/geda/geda_arc.c:494 libgeda/src/geda/geda_box.c:418
 #: libgeda/src/geda/geda_circle.c:397 libgeda/src/geda/geda_line.c:353
+#: libgeda/src/geda/geda_path.c:387
 msgid "Line Length"
 msgstr ""
 
-#: libgeda/src/geda/geda_arc.c:495 libgeda/src/geda/geda_box.c:418
+#: libgeda/src/geda/geda_arc.c:495 libgeda/src/geda/geda_box.c:419
 #: libgeda/src/geda/geda_circle.c:398 libgeda/src/geda/geda_line.c:354
+#: libgeda/src/geda/geda_path.c:388
 msgid "The line length"
 msgstr ""
 
-#: libgeda/src/geda/geda_arc.c:506 libgeda/src/geda/geda_box.c:427
-#: libgeda/src/geda/geda_circle.c:407
+#: libgeda/src/geda/geda_arc.c:506 libgeda/src/geda/geda_box.c:428
+#: libgeda/src/geda/geda_circle.c:407 libgeda/src/geda/geda_path.c:397
 msgid "Fill Type"
 msgstr ""
 
-#: libgeda/src/geda/geda_arc.c:507 libgeda/src/geda/geda_box.c:428
-#: libgeda/src/geda/geda_circle.c:408
+#: libgeda/src/geda/geda_arc.c:507 libgeda/src/geda/geda_box.c:429
+#: libgeda/src/geda/geda_circle.c:408 libgeda/src/geda/geda_path.c:398
 msgid "The Object fill type; hatch mesh, solid, etc..."
 msgstr ""
 
-#: libgeda/src/geda/geda_arc.c:516 libgeda/src/geda/geda_box.c:437
-#: libgeda/src/geda/geda_circle.c:417
+#: libgeda/src/geda/geda_arc.c:516 libgeda/src/geda/geda_box.c:438
+#: libgeda/src/geda/geda_circle.c:417 libgeda/src/geda/geda_path.c:407
 msgid "Fill Width"
 msgstr ""
 
-#: libgeda/src/geda/geda_arc.c:517 libgeda/src/geda/geda_box.c:438
-#: libgeda/src/geda/geda_circle.c:418
+#: libgeda/src/geda/geda_arc.c:517 libgeda/src/geda/geda_box.c:439
+#: libgeda/src/geda/geda_circle.c:418 libgeda/src/geda/geda_path.c:408
 msgid "The Object fill width applies to fill hatch and mesh"
 msgstr ""
 
-#: libgeda/src/geda/geda_arc.c:526 libgeda/src/geda/geda_box.c:447
-#: libgeda/src/geda/geda_circle.c:427
+#: libgeda/src/geda/geda_arc.c:526 libgeda/src/geda/geda_box.c:448
+#: libgeda/src/geda/geda_circle.c:427 libgeda/src/geda/geda_path.c:417
 msgid "Fill Angle 1"
 msgstr ""
 
 #: libgeda/src/geda/geda_arc.c:527 libgeda/src/geda/geda_arc.c:537
-#: libgeda/src/geda/geda_box.c:448 libgeda/src/geda/geda_box.c:458
+#: libgeda/src/geda/geda_box.c:449 libgeda/src/geda/geda_box.c:459
 #: libgeda/src/geda/geda_circle.c:428 libgeda/src/geda/geda_circle.c:438
+#: libgeda/src/geda/geda_path.c:418 libgeda/src/geda/geda_path.c:428
 msgid "The Object fill angle1 applies to fill hatch and mesh"
 msgstr ""
 
-#: libgeda/src/geda/geda_arc.c:536 libgeda/src/geda/geda_box.c:457
-#: libgeda/src/geda/geda_circle.c:437
+#: libgeda/src/geda/geda_arc.c:536 libgeda/src/geda/geda_box.c:458
+#: libgeda/src/geda/geda_circle.c:437 libgeda/src/geda/geda_path.c:427
 msgid "Fill Pitch 1"
 msgstr ""
 
-#: libgeda/src/geda/geda_arc.c:546 libgeda/src/geda/geda_box.c:467
-#: libgeda/src/geda/geda_circle.c:447
+#: libgeda/src/geda/geda_arc.c:546 libgeda/src/geda/geda_box.c:468
+#: libgeda/src/geda/geda_circle.c:447 libgeda/src/geda/geda_path.c:437
 msgid "Fill Angle 2"
 msgstr ""
 
 #: libgeda/src/geda/geda_arc.c:547 libgeda/src/geda/geda_arc.c:557
-#: libgeda/src/geda/geda_box.c:468 libgeda/src/geda/geda_box.c:478
+#: libgeda/src/geda/geda_box.c:469 libgeda/src/geda/geda_box.c:479
 #: libgeda/src/geda/geda_circle.c:448 libgeda/src/geda/geda_circle.c:458
+#: libgeda/src/geda/geda_path.c:438 libgeda/src/geda/geda_path.c:448
 msgid "The Object fill angle1 applies to fill mesh"
 msgstr ""
 
-#: libgeda/src/geda/geda_arc.c:556 libgeda/src/geda/geda_box.c:477
-#: libgeda/src/geda/geda_circle.c:457
+#: libgeda/src/geda/geda_arc.c:556 libgeda/src/geda/geda_box.c:478
+#: libgeda/src/geda/geda_circle.c:457 libgeda/src/geda/geda_path.c:447
 msgid "Fill Pitch 2"
 msgstr ""
 
-#: libgeda/src/geda/geda_box.c:334
+#: libgeda/src/geda/geda_box.c:335
 msgid "Upper X"
 msgstr ""
 
-#: libgeda/src/geda/geda_box.c:335
+#: libgeda/src/geda/geda_box.c:336
 msgid "Upper X bounds"
 msgstr ""
 
-#: libgeda/src/geda/geda_box.c:344
+#: libgeda/src/geda/geda_box.c:345
 msgid "Upper Y"
 msgstr ""
 
-#: libgeda/src/geda/geda_box.c:345
+#: libgeda/src/geda/geda_box.c:346
 msgid "Upper Y bounds"
 msgstr ""
 
-#: libgeda/src/geda/geda_box.c:354
+#: libgeda/src/geda/geda_box.c:355
 msgid "Lower X"
 msgstr ""
 
-#: libgeda/src/geda/geda_box.c:355
+#: libgeda/src/geda/geda_box.c:356
 msgid "Lower X bounds"
 msgstr ""
 
-#: libgeda/src/geda/geda_box.c:364
+#: libgeda/src/geda/geda_box.c:365
 msgid "Lower Y"
 msgstr ""
 
-#: libgeda/src/geda/geda_box.c:365
+#: libgeda/src/geda/geda_box.c:366
 msgid "Lower Y bounds"
 msgstr ""
 
@@ -718,75 +729,75 @@ msgstr ""
 msgid "Y coordinate of the second point"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:459
+#: libgeda/src/geda/geda_object.c:483
 msgid "object-type"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:460
+#: libgeda/src/geda/geda_object.c:484
 msgid "Character identifier corresponding to the type of object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:469
+#: libgeda/src/geda/geda_object.c:493
 msgid "sequence-identification"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:470
+#: libgeda/src/geda/geda_object.c:494
 msgid "Sequence identifier created during object construction"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:477
+#: libgeda/src/geda/geda_object.c:501
 msgid "object-name"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:478
+#: libgeda/src/geda/geda_object.c:502
 msgid "Unique name of this object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:484
+#: libgeda/src/geda/geda_object.c:508
 msgid "Parent"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:485
+#: libgeda/src/geda/geda_object.c:509
 msgid "Pointer to parent object - a Page or a Complex"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:490
+#: libgeda/src/geda/geda_object.c:514
 msgid "Selectable"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:491
+#: libgeda/src/geda/geda_object.c:515
 msgid "Whether the label text can be selected with the mouse"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:497
+#: libgeda/src/geda/geda_object.c:521
 msgid "Redraw"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:498
+#: libgeda/src/geda/geda_object.c:522
 msgid "Whether the object redrawn, used for temporary objects"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:504
+#: libgeda/src/geda/geda_object.c:528
 msgid "Selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:505
+#: libgeda/src/geda/geda_object.c:529
 msgid "Whether the object is currently selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:512
+#: libgeda/src/geda/geda_object.c:536
 msgid "Show-Name-Value-flag"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:513
+#: libgeda/src/geda/geda_object.c:537
 msgid "Flag to indicate whether to show the name, value or both"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:521
+#: libgeda/src/geda/geda_object.c:545
 msgid "Visible"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:522
+#: libgeda/src/geda/geda_object.c:546
 msgid "Whether the object is displayed, normaly text attributes"
 msgstr ""
 
@@ -1018,40 +1029,40 @@ msgid "The log may contain more information."
 msgstr "в файле журнала может быть больше информации."
 
 # in file
-#: libgeda/src/object/o_object.c:122 libgeda/src/object/o_object.c:419
+#: libgeda/src/object/o_object.c:120 libgeda/src/object/o_object.c:417
 msgid "in file"
 msgstr "в файле"
 
-#: libgeda/src/object/o_object.c:133
+#: libgeda/src/object/o_object.c:131
 msgid "detected NULL pointer to buffer"
 msgstr ""
 
-#: libgeda/src/object/o_object.c:140
+#: libgeda/src/object/o_object.c:138
 msgid "Schematic data is not valid UTF-8"
 msgstr "Данные принципиальной схемы не являются допустимыми для UTF-8"
 
-#: libgeda/src/object/o_object.c:146
+#: libgeda/src/object/o_object.c:144
 msgid "Invalid pointer to GedaToplevel"
 msgstr ""
 
 # Inappropriate mark the beginning of the list of attributes in attachments
-#: libgeda/src/object/o_object.c:299
+#: libgeda/src/object/o_object.c:297
 msgid "Read unexpected attach symbol start marker on line"
 msgstr "Неуместный маркер начала списка прикреплённых атрибутов в"
 
 # Inappropriate mark the beginning of the embedded symbol in
-#: libgeda/src/object/o_object.c:319 libgeda/src/object/o_object.c:324
+#: libgeda/src/object/o_object.c:317 libgeda/src/object/o_object.c:322
 msgid "Read unexpected embedded symbol start marker on line"
 msgstr "Читайте неожиданный встроенный стартовый символ маркер на линии"
 
 # the end of the embedded symbol Inappropriate marker
-#: libgeda/src/object/o_object.c:360
+#: libgeda/src/object/o_object.c:358
 msgid "Read unexpected embedded symbol end marker on line"
 msgstr "Неуместный маркер конца внедрённого символа в"
 
 # Detected symbol file or schemes in the old format!
 # Perform g [sym | sch] update for
-#: libgeda/src/object/o_object.c:396
+#: libgeda/src/object/o_object.c:394
 msgid ""
 "Read an old format sym/sch file!\n"
 "Please run g[sym|sch]update on"
@@ -1059,11 +1070,11 @@ msgstr ""
 "Обнаружен файл символа или схемы в старом формате!\n"
 "Выполните g[sym|sch]update для"
 
-#: libgeda/src/object/o_object.c:414 libgeda/src/object/o_object.c:418
+#: libgeda/src/object/o_object.c:412 libgeda/src/object/o_object.c:416
 msgid "Read garbage near line"
 msgstr "недостоверные данные, обнаруженные вблизи линии"
 
-#: libgeda/src/object/o_object.c:456
+#: libgeda/src/object/o_object.c:454
 msgid "On or about line"
 msgstr ""
 
@@ -1091,7 +1102,7 @@ msgid "Setting zero radius to 1000\n"
 msgstr "Установка радиуса в 1000\n"
 
 #: libgeda/src/object/o_arc_object.c:1459
-#: libgeda/src/object/o_box_object.c:1617
+#: libgeda/src/object/o_box_object.c:1581
 #: libgeda/src/object/o_bus_object.c:604
 #: libgeda/src/object/o_circle_object.c:1359
 #: libgeda/src/object/o_line_object.c:1574
@@ -1103,7 +1114,7 @@ msgid "Found an invalid color"
 msgstr "Недопустимое значение цветового индекса"
 
 #: libgeda/src/object/o_arc_object.c:1463
-#: libgeda/src/object/o_box_object.c:1621
+#: libgeda/src/object/o_box_object.c:1585
 #: libgeda/src/object/o_bus_object.c:608
 #: libgeda/src/object/o_circle_object.c:1363
 #: libgeda/src/object/o_line_object.c:1578
@@ -1114,35 +1125,35 @@ msgstr "Недопустимое значение цветового индек�
 msgid "Setting color to default color\n"
 msgstr "Установка цвета по умолчанию\n"
 
-#: libgeda/src/object/o_attrib.c:162
+#: libgeda/src/object/o_attrib.c:161
 #, c-format
 msgid "Attribute [%s] already attached\n"
 msgstr "Атрибут «%s» уже прикреплён\n"
 
-#: libgeda/src/object/o_attrib.c:167
+#: libgeda/src/object/o_attrib.c:166
 #, c-format
 msgid "Attempt to attach non text object as an attribute!\n"
 msgstr "Попытка прикрепить не текстовый элемент как атрибут!\n"
 
-#: libgeda/src/object/o_attrib.c:172
+#: libgeda/src/object/o_attrib.c:171
 #, c-format
 msgid "Attempt to attach attribute [%s] to more than one object\n"
 msgstr "Попытка прикрепить атрибут «%s» к более чем одному объекту\n"
 
-#: libgeda/src/object/o_attrib.c:718
+#: libgeda/src/object/o_attrib.c:716
 msgid "tried to attach a non-text object as an attribute"
 msgstr "Попытка прикрепить не текстовый элемент как атрибут!"
 
-#: libgeda/src/object/o_attrib.c:727
+#: libgeda/src/object/o_attrib.c:725
 msgid "unexpected end-of-file in attribute list"
 msgstr "Неожиданный конец файла при обработке списка атрибутов"
 
-#: libgeda/src/object/o_box_object.c:1572
-#: libgeda/src/object/o_box_object.c:1603
+#: libgeda/src/object/o_box_object.c:1536
+#: libgeda/src/object/o_box_object.c:1567
 msgid "Failed to parse box object"
 msgstr "Ошибка в определении прямоугольника"
 
-#: libgeda/src/object/o_box_object.c:1610
+#: libgeda/src/object/o_box_object.c:1574
 msgid "Found a box with zero width/height"
 msgstr "Прямоугольник нулевой ширины или высоты"
 
@@ -1275,37 +1286,37 @@ msgstr ""
 msgid "Component not found"
 msgstr "Не найден компонент"
 
-#: libgeda/src/object/o_complex_object.c:1146
+#: libgeda/src/object/o_complex_object.c:1147
 msgid "Failed to parse complex object"
 msgstr "Ошибка в определении составного объекта"
 
-#: libgeda/src/object/o_complex_object.c:1151
+#: libgeda/src/object/o_complex_object.c:1152
 msgid "Found a component with an invalid rotation"
 msgstr "Недопустимое значение угла поворота в определении компонента"
 
-#: libgeda/src/object/o_complex_object.c:1155
+#: libgeda/src/object/o_complex_object.c:1156
 #: libgeda/src/object/o_picture_object.c:1483
 msgid "Setting angle to 0\n"
 msgstr "Установка угла поворота в 0\n"
 
-#: libgeda/src/object/o_complex_object.c:1160
+#: libgeda/src/object/o_complex_object.c:1161
 msgid "Found a component with an invalid mirror flag"
 msgstr "Недопустимое значение поля «mirror» в определении компонента"
 
-#: libgeda/src/object/o_complex_object.c:1164
+#: libgeda/src/object/o_complex_object.c:1165
 msgid "Setting mirror to 0\n"
 msgstr "Установка «mirror» в 0\n"
 
-#: libgeda/src/object/o_complex_object.c:1179
+#: libgeda/src/object/o_complex_object.c:1180
 msgid "Invalid complex object"
 msgstr "Недопустимый сложный объект"
 
-#: libgeda/src/object/o_embed.c:51
+#: libgeda/src/object/o_embed.c:50
 #, c-format
 msgid "Component [%s] has been embedded\n"
 msgstr "Компонент «%s» внедрён\n"
 
-#: libgeda/src/object/o_embed.c:101
+#: libgeda/src/object/o_embed.c:100
 #, c-format
 msgid ""
 "Could not find component [%s], while trying to unembed. Component is still "
@@ -1314,7 +1325,7 @@ msgstr ""
 "Не удалось найти библиотечный символ для исключаемого компонента «%s». "
 "Компонент останется внедрённым\n"
 
-#: libgeda/src/object/o_embed.c:110
+#: libgeda/src/object/o_embed.c:109
 #, c-format
 msgid "Component [%s] has been successfully unembedded\n"
 msgstr "Компонент «%s» успешно исключён\n"
@@ -1890,17 +1901,17 @@ msgid "Could not write message to log file\n"
 msgstr "Невозможно разобрать файл символов\n"
 
 # Could not create log directory
-#: libgeda/src/utility/u_log.c:267
+#: libgeda/src/utility/u_log.c:271
 msgid "Could not create log directory"
 msgstr "Невозможно создать каталог журнала"
 
 # Could not create unique log filename in
-#: libgeda/src/utility/u_log.c:336
+#: libgeda/src/utility/u_log.c:340
 msgid "Could not create unique log filename in"
 msgstr "Не удалось создать уникальное имя файла журнала в"
 
 # Could not create log file in
-#: libgeda/src/utility/u_log.c:340
+#: libgeda/src/utility/u_log.c:344
 msgid "Could not create log file in"
 msgstr "Не удалось создать файл войти"
 

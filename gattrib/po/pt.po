@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-09-23 12:43-0500\n"
+"POT-Creation-Date: 2017-11-12 15:15-0600\n"
 "PO-Revision-Date: 2010-02-06 22:10+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -139,26 +139,26 @@ msgstr ""
 msgid "Increase the number of rename_pairs (MAX_RENAME) in"
 msgstr ""
 
-#: gattrib/src/s_sheet_data.c:242
+#: gattrib/src/s_sheet_data.c:243
 #, c-format
 msgid "Creating master component list.\n"
 msgstr "Criando lista de componentes mestre.\n"
 
-#: gattrib/src/s_sheet_data.c:308
+#: gattrib/src/s_sheet_data.c:309
 #, c-format
 msgid "Creating master component attribute list.\n"
 msgstr "Criando a lista de atributos do componente mestre.\n"
 
-#: gattrib/src/s_sheet_data.c:434
+#: gattrib/src/s_sheet_data.c:435
 #, c-format
 msgid "Creating master pin list.\n"
 msgstr "Criando lista de pin mestre.\n"
 
-#: gattrib/src/s_sheet_data.c:484
+#: gattrib/src/s_sheet_data.c:485
 msgid "found component pin without a pin number"
 msgstr "encontrado pino componente sem um número de pino"
 
-#: gattrib/src/s_sheet_data.c:547
+#: gattrib/src/s_sheet_data.c:548
 msgid "Creating master pin attribute list"
 msgstr "Criando lista de atributo de pino mestre"
 
@@ -672,15 +672,15 @@ msgstr ""
 msgid "Toggle grid visibility"
 msgstr ""
 
-#: gattrib/src/x_menus.c:546
+#: gattrib/src/x_menus.c:544
 msgid "Open _Recent"
 msgstr ""
 
-#: gattrib/src/x_menus.c:547
+#: gattrib/src/x_menus.c:545
 msgid "Open recently used files"
 msgstr ""
 
-#: gattrib/src/x_menus.c:647
+#: gattrib/src/x_menus.c:646
 msgid "Error loading"
 msgstr ""
 

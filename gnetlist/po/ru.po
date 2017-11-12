@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gnetlist\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-09-03 16:27-0500\n"
+"POT-Creation-Date: 2017-11-12 15:33-0600\n"
 "PO-Revision-Date: 2014-05-20 08:55+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: gEDA Developers\n"
@@ -378,34 +378,34 @@ msgstr ""
 msgid "- Starting internal netlist creation\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:225 gnetlist/src/s_traverse.c:359
+#: gnetlist/src/s_traverse.c:225 gnetlist/src/s_traverse.c:368
 msgid "WARNING: Found a placeholder/missing component, is symbol file missing"
 msgstr ""
 "ПРЕДУПРЕЖДЕНИЕ: Найден временный/отсутствующий компонент, может быть нет "
 "файла символа для"
 
-#: gnetlist/src/s_traverse.c:287
+#: gnetlist/src/s_traverse.c:291
 msgid "Did not find refdes or any special attributes on component!"
 msgstr ""
 "Не удалось обнаружить ни позиционное обозначение компонента, ни каких-либо "
 "специальных атрибутов!"
 
-#: gnetlist/src/s_traverse.c:431
+#: gnetlist/src/s_traverse.c:443
 msgid "Could not find refdes on component or any special attributes!"
 msgstr ""
 "Не удалось обнаружить ни позиционное обозначение компонента, ни каких-либо "
 "специальных атрибутов!"
 
-#: gnetlist/src/s_traverse.c:541
+#: gnetlist/src/s_traverse.c:553
 msgid "Non-connectable object being queried for connection type\n"
 msgstr "Запрос типа соединения для неприсоединяемого объекта.\n"
 
-#: gnetlist/src/s_traverse.c:593
+#: gnetlist/src/s_traverse.c:605
 #, c-format
 msgid "%s=%s. %s=\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:655
+#: gnetlist/src/s_traverse.c:667
 #, c-format
 msgid "Found a possible net/pin infinite connection\n"
 msgstr ""
