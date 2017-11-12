@@ -1131,15 +1131,16 @@ activatable_update_label (GedaMenuItem *menu_item, GtkAction *action)
   }
 }
 
-/*
- * geda_menu_is_empty:
- * @menu: (allow-none): a #GedaMenu or %NULL
- *
- * Determines whether @menu is empty. A menu is considered empty if it
- * the only visible children are tearoff menu items or “filler” menu
+/*!
+ * \internal Get if GedaMenuButton is Empty
+ * \par Function Description
+ * Determines whether @menu is empty. A menu is considered empty if
+ * the only visible children are tearoff menu items or "filler" menu
  * items which were inserted to mark the menu as empty.
  *
  * This function is used by #GtkAction.
+ *
+ * \param [in] menu a #GedaMenu or %NULL
  *
  * \returns whether @menu is empty.
  */

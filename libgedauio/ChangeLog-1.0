@@ -5,7 +5,8 @@
     * src/widgets/geda_combobox.c: Remove invalid character from comments for
       geda_combo_box_set_tooltip_column.
 
-    * src/widgets/geda_menu_item.c: Remove invalid characters from comments.
+    * src/widgets/geda_menu_item.c: Remove invalid characters from comments,
+      and update internal documentation for geda_menu_is_empty.
 
 2017-11-11 Wiley E. Hill <wileyhill@gmail.com>
 
