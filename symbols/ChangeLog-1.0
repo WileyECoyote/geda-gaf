@@ -6,6 +6,8 @@
 
     * micro/PIC/PIC18F452.sym: Remove redundant dashless symbol file.
 
+    * micro/PIC/PIC18F4550-1.sym: Rename file with dash one suffix.
+
 2017-11-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * opto/CNY17-1.sym: Update footprint.
