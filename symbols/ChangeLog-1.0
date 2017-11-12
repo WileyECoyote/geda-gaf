@@ -1,8 +1,10 @@
 2017-11-07 Wiley E. Hill <wileyhill@gmail.com>
 
-    * micro/PIC/PIC18F1320.sym: Remove redundent dashless symbol file.
+    * micro/PIC/PIC18F1320.sym: Remove redundant dashless symbol file.
 
     * micro/PIC/PIC18F2550-1.sym: Rename file with dash one suffix.
+
+    * micro/PIC/PIC18F452.sym: Remove redundant dashless symbol file.
 
 2017-11-07 Wiley E. Hill <wileyhill@gmail.com>
 
