@@ -1,5 +1,9 @@
 2017-11-07 Wiley E. Hill <wileyhill@gmail.com>
 
+    * micro/PIC/PIC18F1320.sym: Remove redundent dashless symbol file.
+
+2017-11-07 Wiley E. Hill <wileyhill@gmail.com>
+
     * opto/CNY17-1.sym: Update footprint.
 
     * opto/CNY74-4H-1.sym: Revise attribute locations.
