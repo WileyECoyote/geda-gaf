@@ -1,5 +1,7 @@
 2017-11-12 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_bulb.c: Remove invalid character in example.
+
     * src/widgets/geda_combobox.c: Remove invalid character from comments for
       geda_combo_box_set_tooltip_column.
 

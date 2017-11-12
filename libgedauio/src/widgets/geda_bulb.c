@@ -88,7 +88,7 @@
  *
  *    // Create a bulb button with a label
  *    bulb2 = geda_bulb_new_with_label_from_widget (GEDA_BULB (bulb1),
- *                                                          "I’m a second bulb.");
+ *                                                          "I'm a second bulb.");
  *
  *    // Pack them into a box, then show all the widgets
  *    gtk_box_pack_start (GTK_BOX (box), bulb1, TRUE, TRUE, 2);
