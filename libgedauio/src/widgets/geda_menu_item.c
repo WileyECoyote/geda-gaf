@@ -1095,7 +1095,7 @@ geda_menu_item_buildable_custom_finished (GtkBuildable *buildable,
       /* Fall back to something ... */
       toplevel = gtk_widget_get_toplevel ((GtkWidget*)buildable);
 
-      g_warning ("found a GedaMenuItem '%s' without a parent GedaMenuShell, assigned accelerators wont work.",
+      g_warning ("found a GedaMenuItem <%s> without a parent GedaMenuShell, assigned accelerators wont work.",
                  gtk_buildable_get_name (buildable));
     }
 
@@ -1333,7 +1333,7 @@ geda_menu_item_get_event_window (GedaMenuItem  *menu_item)
 /*!
  * \brief geda_menu_item_set_submenu
  * \par Function Description
- *  Sets or replaces the menu item’s submenu, or removes it when a %NULL
+ *  Sets or replaces the submenu of menu item, or removes it when a %NULL
  *  submenu is passed.
  *
  * \param [in] menu_item a #GedaMenuItem
@@ -3267,7 +3267,7 @@ void geda_menu_item_set_mnemonic (GedaMenuItem *menu_item, char mnemonic)
  * \brief geda_menu_item_set_right_justified
  * \par Function Description
  * Sets whether the menu item appears justified at the right
- * side of a menu bar. This was traditionally done for “Help”
+ * side of a menu bar. This was traditionally done for "Help"
  * menu items, but is now considered a bad idea. (If the widget
  * layout is reversed for a right-to-left language like Hebrew
  * or Arabic, right-justified-menu-items appear at the left.)
@@ -3438,7 +3438,7 @@ void geda_menu_item_refresh_accel_path (GedaMenuItem  *menu_item,
  * \brief geda_menu_item_set_accel_path
  * \par Function Description
  * Set the accelerator path on \a menu_item, through which runtime
- * changes of the menu item’s accelerator caused by the user can be
+ * changes of the menu item's accelerator caused by the user can be
  * identified and saved to persistent storage (see gtk_accel_map_save()
  * on this). To set up a default accelerator for this menu item, call
  * gtk_accel_map_add_entry() with the same \a accel_path. See also
@@ -3529,7 +3529,7 @@ static void geda_menu_item_parent_set (GtkWidget *widget,
  * \param [in] menu_item a GedaMenuItem
  *
  * \returns Accelerator path corresponding to this menu
- *          item’s functionality, or %NULL if not set
+ *          item's functionality, or %NULL if not set
  */
 const char *geda_menu_item_get_accel_path (GedaMenuItem *menu_item)
 {
