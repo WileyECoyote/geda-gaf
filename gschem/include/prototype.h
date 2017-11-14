@@ -483,6 +483,7 @@ void       o_edit_mirror_world          (GschemToplevel *w_current, int centerx,
 void       o_edit_offset_hot            (GschemToplevel *w_current, int x, int y, GList *list);
 void       o_edit_offset_world          (GschemToplevel *w_current, int x, int y, GList *list);
 void       o_edit_rotate_world          (GschemToplevel *w_current, int centerx, int centery, int angle, GList *list);
+void       o_edit_set_selectable        (GschemToplevel *w_current, GedaObject *object, bool state);
 bool       o_edit_show_hidden           (GschemToplevel *w_current, const GList *o_list, int inherited);
 void       o_edit_show_netnames         (GschemToplevel *w_current, const GList *o_list);
 int        o_edit_find_text             (GschemToplevel *w_current, const GList *o_list, const char *stext, int descend, int skip);
@@ -746,8 +747,8 @@ char         *x_dialog_select_file          (GschemToplevel *w_current, const ch
 void          x_dialog_show_message         (const char *, IDE_MESSAGE_TYPE context, const char *title);
 
 /* x_dnd.c */
-bool        x_dnd_receive_string            (GschemToplevel *w_current, int x, int y, const char *string, int where);
-void        x_dnd_setup_event_handlers      (GschemToplevel *w_current);
+bool          x_dnd_receive_string          (GschemToplevel *w_current, int x, int y, const char *string, int where);
+void          x_dnd_setup_event_handlers    (GschemToplevel *w_current);
 
 /* x_draw.c */
 void          x_draw_box                    (GschemToplevel *w_current);
