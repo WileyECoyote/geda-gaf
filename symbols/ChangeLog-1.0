@@ -1,6 +1,8 @@
-2017-11-07 Wiley E. Hill <wileyhill@gmail.com>
+2017-11-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * serial/ST16C554DIQ-1.sym: New symbol; Quad UART,16-Byte FIFO
+
+    * ti/motor/DRV8301-1.sym: Update attributes.
 
 2017-11-07 Wiley E. Hill <wileyhill@gmail.com>
 
