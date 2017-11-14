@@ -47,7 +47,7 @@ TESTS = $(check_PROGRAMS)
 
 tests: $(check_PROGRAMS)
 
-AM_CPPFLAGS = -DLOCALEDIR=\"$(localedir)\"  $(DATADIR_DEFS) \
+AM_CPPFLAGS = -DLOCALEDIR=\"$(localedir)\"  \
 	-I$(srcdir)/../include -I$(srcdir)/../include/libgeda \
 	-I$(top_srcdir) -I$(top_srcdir)/include \
 	-I$(top_srcdir)/libgedacolor/include
