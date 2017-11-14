@@ -37,7 +37,7 @@ include Makefile_insert
 
 libgedauio_la_CFLAGS         = $(DEBUGGING) $(GEDA_INCLUDES) $(AM_CFLAGS)
 
-libgedauio_la_CPPFLAGS       = -DLOCALEDIR=\"$(localedir)\"  $(DATADIR_DEFS)
+libgedauio_la_CPPFLAGS       = -DLOCALEDIR=\"$(localedir)\"
 
 libgedauio_la_LDFLAGS        = $(DEBUGGING) $(LDFLAGS) $(AM_LDFLAGS)
 
