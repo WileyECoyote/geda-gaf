@@ -504,24 +504,6 @@ void o_edit_rotate_world(GschemToplevel *w_current,
   i_status_action_stop(w_current);
 }
 
-/* This is a utility function to report the number of objects whose
- * visibility was changed, this function is called by:
- *
- *      o_edit_show_inherited_attrib,
- *      o_edit_show_hidden_attrib,
- *      o_edit_show_netnames
- */
-static void log_visibility (int set_hidden, int set_visible)
-{
-  if (set_hidden > 0) {
-    geda_log_q("%d %s\n", set_hidden, _("attributes were hidden"));
-  }
-
-  if (set_visible > 0) {
-    geda_log_q("%d %s\n", set_visible, _("hidden attributes were revealed"));
-  }
-}
-
 void o_edit_set_selectable(GschemToplevel *w_current, GedaObject *object, bool state)
 {
   if (GEDA_IS_OBJECT(object)) {
@@ -558,6 +540,24 @@ void o_edit_set_selectable(GschemToplevel *w_current, GedaObject *object, bool s
       geda_page_set_changed(page, TRUE);
       o_undo_savestate(w_current, UNDO_ALL);
     }
+  }
+}
+
+/* This is a utility function to report the number of objects whose
+ * visibility was changed, this function is called by:
+ *
+ *      o_edit_show_inherited_attrib,
+ *      o_edit_show_hidden_attrib,
+ *      o_edit_show_netnames
+ */
+static void log_visibility (int set_hidden, int set_visible)
+{
+  if (set_hidden > 0) {
+    geda_log_q("%d %s\n", set_hidden, _("attributes were hidden"));
+  }
+
+  if (set_visible > 0) {
+    geda_log_q("%d %s\n", set_visible, _("hidden attributes were revealed"));
   }
 }
 

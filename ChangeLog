@@ -1,9 +1,3 @@
-2017-11-13 Wiley E. Hill <wileyhill@gmail.com>
-
-    * include/prototype.h: Add declaration for o_edit_set_selectable.
-
-    * src/object/o_edit.c: Minor reorganization.
-
 2017-10-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * bitmaps/svg/geda_display.svg: Eliminate two text blocks in svg because
