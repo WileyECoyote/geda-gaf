@@ -61,7 +61,7 @@ EXTRA_DIST = \
 	file-chooser-test-dir/empty \
 	file-chooser-test-dir/text.txt
 
-AM_CPPFLAGS = -DLOCALEDIR=\"$(localedir)\"  $(DATADIR_DEFS) \
+AM_CPPFLAGS = -DLOCALEDIR=\"$(localedir)\" \
 	-I$(srcdir)/../include -I$(srcdir)/../include/libgedauio \
 	-I$(srcdir)/../include -I$(srcdir)/../include/libgeda \
 	-I$(top_srcdir) -I$(top_srcdir)/include

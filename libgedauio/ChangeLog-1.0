@@ -2,6 +2,8 @@
 
     * src/Makefile.am: Remove unused obsolete DATADIR_DEFS.
 
+    * tests/Makefile.am: Remove unused obsolete DATADIR_DEFS.
+
 2017-11-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_bulb.c: Remove invalid character in example.
