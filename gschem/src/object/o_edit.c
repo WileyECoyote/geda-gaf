@@ -180,45 +180,6 @@ void o_edit_objects (GschemToplevel *w_current, GList *list, int who)
   }
 }
 
-void o_edit_set_selectable(GschemToplevel *w_current, GedaObject *object, bool state)
-{
-  if (GEDA_IS_OBJECT(object)) {
-
-    bool current_state = geda_object_get_is_selectable(object);
-
-    if (current_state != state) {
-
-      Page  *page = gschem_toplevel_get_current_page(w_current);
-
-      geda_object_set_selectable(object, state);
-
-      if (!state) {
-
-        /* lock */
-        if (object->color != LOCK_COLOR) {
-          object->locked_color = object->color;
-        }
-        object->color = LOCK_COLOR;
-      }
-      else {
-
-        /* unlock */
-        if (object->locked_color != LOCK_COLOR && object->locked_color > 0)
-        {
-          object->color = object->locked_color;
-        }
-        else
-        {
-          object->color = geda_object_color_get_default(object->type);
-        }
-      }
-
-      geda_page_set_changed(page, TRUE);
-      o_undo_savestate(w_current, UNDO_ALL);
-    }
-  }
-}
-
 /*! \brief Lock Selected Objects
  *  \par Function Description
  *  Locks an object by setting the selectable property to FALSE. The color
@@ -558,6 +519,45 @@ static void log_visibility (int set_hidden, int set_visible)
 
   if (set_visible > 0) {
     geda_log_q("%d %s\n", set_visible, _("hidden attributes were revealed"));
+  }
+}
+
+void o_edit_set_selectable(GschemToplevel *w_current, GedaObject *object, bool state)
+{
+  if (GEDA_IS_OBJECT(object)) {
+
+    bool current_state = geda_object_get_is_selectable(object);
+
+    if (current_state != state) {
+
+      Page  *page = gschem_toplevel_get_current_page(w_current);
+
+      geda_object_set_selectable(object, state);
+
+      if (!state) {
+
+        /* lock */
+        if (object->color != LOCK_COLOR) {
+          object->locked_color = object->color;
+        }
+        object->color = LOCK_COLOR;
+      }
+      else {
+
+        /* unlock */
+        if (object->locked_color != LOCK_COLOR && object->locked_color > 0)
+        {
+          object->color = object->locked_color;
+        }
+        else
+        {
+          object->color = geda_object_color_get_default(object->type);
+        }
+      }
+
+      geda_page_set_changed(page, TRUE);
+      o_undo_savestate(w_current, UNDO_ALL);
+    }
   }
 }
 
