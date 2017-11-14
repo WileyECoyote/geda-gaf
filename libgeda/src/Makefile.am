@@ -48,7 +48,7 @@ EXTRA_DIST = $(BUILT_SOURCES)
 
 AM_CFLAGS            = $(LOG_DOMAIN) $(GEDA_INCLUDES) -I$(includedir)
 
-libgeda_la_CPPFLAGS  = -DLOCALEDIR=\"$(localedir)\" $(DATADIR_DEFS)
+libgeda_la_CPPFLAGS  = -DLOCALEDIR=\"$(localedir)\"
 
 libgeda_la_CFLAGS    = $(AM_CFLAGS)   $(GUILE_CFLAGS) $(GCC_CFLAGS)   \
 					   $(GLIB_CFLAGS) $(MINGW_CFLAGS) $(GDK_PIXBUF_CFLAGS)
