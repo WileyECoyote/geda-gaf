@@ -1,6 +1,7 @@
 2017-11-14 Wiley E. Hill <wileyhill@gmail.com>
 
-    * geda-directories.m4: Replace AC_SUBST with AC_DEFINE_DIR for GEDARCDIR.
+    * geda-directories.m4: Replace AC_SUBST with AC_DEFINE_DIR for GEDARCDIR. Add define
+      GEDA_USE_HOME_ETC if configuration files are to be where God intended them.
 
 2017-09-10 Wiley E. Hill <wileyhill@gmail.com>
 

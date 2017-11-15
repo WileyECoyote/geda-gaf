@@ -164,7 +164,8 @@ m4_define([AX_RC_DIRS],
         rcdir="/etc/${PACKAGE_TARNAME}"
         mesg="native location:"
         expand=no;
-
+        AC_DEFINE([GEDA_USE_HOME_ETC], 1,
+                [Define to 1 if configuration files are to be in ~/etc])
       else
         # this option allow the person configure to specifiy the location
         # where the rc files will be installed
