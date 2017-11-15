@@ -1,3 +1,7 @@
+2017-11-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/Makefile.am: Remove unused obsolete DATADIR_DEFS.
+
 2017-09-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/libgedacolor.3.in: Update documentation/library name.

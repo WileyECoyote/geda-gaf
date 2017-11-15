@@ -28,7 +28,7 @@ include Makefile_insert
 
 AM_CFLAGS                 = $(GEDA_INCLUDES) -I$(includedir)
 
-libgedacolor_la_CPPFLAGS  = $(LOG_DOMAIN) -DLOCALEDIR=\"$(localedir)\" $(DATADIR_DEFS)
+libgedacolor_la_CPPFLAGS  = $(LOG_DOMAIN) -DLOCALEDIR=\"$(localedir)\"
 
 libgedacolor_la_CFLAGS    = $(AM_CFLAGS)    $(GCC_CFLAGS) $(GUILE_CFLAGS) \
 							$(GLIB_CFLAGS)  $(GTK_CFLAGS) $(GDK_PIXBUF_CFLAGS) \
