@@ -1,3 +1,8 @@
+2017-11-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * bitmaps/svg/geda-inbed.svg: Add export-filename, remove standalone
+      attribute and other extraneous bloat, update id.
+
 2017-10-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * bitmaps/svg/geda_display.svg: Eliminate two text blocks in svg because
