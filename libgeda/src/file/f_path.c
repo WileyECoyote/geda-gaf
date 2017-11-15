@@ -467,6 +467,7 @@ const char *geda_file_path_sys_config (void) {
     }
   }
 
+  /* If GEDADATARC was not specified in the environment */
   if (sys_config_path == NULL) {
 
 #if defined (GEDA_USE_XDG) && defined(_WIN32)
