@@ -189,7 +189,9 @@ m4_define([AX_RC_DIRS],
     GEDARCDIR=${rcdir}
   fi
 
-  AC_SUBST([GEDARCDIR])
+  AC_DEFINE_DIR([GEDARCDIR], [rcdir], [rc directory])
+
+  #dnl AC_SUBST([GEDARCDIR])
   AC_MSG_RESULT([$GEDARCDIR])
 
   []dnl
