@@ -476,11 +476,15 @@ const char *geda_file_path_sys_config (void) {
     sys_config_path = g_build_filename (sys_dirs[0], GEDA_CONFIG_DIR, NULL);
 
 #elif defined (GEDARCDIR) && !defined(_WIN32)
+
     /* If available, use the rc directory set during configure. */
     sys_config_path = geda_strdup(GEDARCDIR);
+
 #else
+
     /* Otherwise, just use the data directory */
     sys_config_path = geda_strdup(geda_sys_data_path ());
+
 #endif
 
   }
