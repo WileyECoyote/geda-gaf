@@ -1,3 +1,7 @@
+2017-11-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/motor/DRV8301-2.sym: Alternate DRV8301 pin layout.
+
 2017-11-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * serial/ST16C554DIQ-1.sym: New symbol; Quad UART,16-Byte FIFO
