@@ -552,7 +552,8 @@ const char *geda_file_path_user_config (void) {
     geda_strconcat(homedir, DIR_SEPARATOR_S, configdir,
                             DIR_SEPARATOR_S, GEDA_CONFIG_DIR, NULL);
 
-    if (user_config_path == NULL) {  /* Otherwise, just use the data directory */
+    /* As a last resort just use the data directory */
+    if (user_config_path == NULL) {
       user_config_path = geda_strdup(geda_sys_data_path ());
     }
   }
