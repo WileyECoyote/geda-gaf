@@ -1,3 +1,7 @@
+2017-11-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * intel/8049-1.sym: Rename symbol file with dash one suffix.
+
 2017-11-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/motor/DRV8301-2.sym: Alternate DRV8301 pin layout.
