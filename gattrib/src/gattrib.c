@@ -439,8 +439,9 @@ void gattrib_main(void *closure, int argc, char *argv[])
 
     f_export_components(filename);
 
-    if (verbose_mode)
+    if (verbose_mode) {
        fprintf(stderr,"%s: \"%s\"\n",  _("Exported schematic to"), filename);
+    }
 
     GEDA_FREE(basename);
   }
