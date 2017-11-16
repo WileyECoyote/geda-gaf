@@ -1,6 +1,7 @@
 2017-11-15 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/gattrib_dialog.c: Declare setup_keyfile static.
+    * src/gattrib_dialog.c: Declare setup_keyfile static and output a message
+      if the contents of the keyfile could not be loaded if verbose is set.
 
 2017-10-29 Wiley E. Hill <wileyhill@gmail.com>
 

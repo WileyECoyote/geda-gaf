@@ -207,11 +207,16 @@ static inline void setup_keyfile ()
 
   if (!g_file_test (file, G_FILE_TEST_EXISTS)) {
     geda_create_path (geda_user_config_path (), S_IRWXU | S_IRWXG);
-
     g_file_set_contents (file, "", -1, NULL);
   }
 
   if (!geda_keyfile_load_from_file (dialog_geometry, file, G_KEY_FILE_NONE, NULL)) {
+
+    /* If verbose then let the user know what happened */
+    if (verbose_mode) {
+       fprintf(stderr,"%s: \"%s\"\n",  _("Could not load geometry from file"), file);
+    }
+
     /* error opening key file, create an empty one and try again */
     g_file_set_contents (file, "", -1, NULL);
     if ( !geda_keyfile_load_from_file (dialog_geometry, file, G_KEY_FILE_NONE, NULL)) {
