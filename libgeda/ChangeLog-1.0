@@ -1,3 +1,8 @@
+2017-11-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * etc/system-gafrc: Set "log-time" to disabled by default, is niffty
+      feature but unless you need it...
+
 2017-11-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/Makefile.am: Remove unused obsolete DATADIR_DEFS.
