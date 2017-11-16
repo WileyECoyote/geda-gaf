@@ -194,36 +194,39 @@ static void geometry_restore (GattribDialog *dialog, GedaKeyFile *key_file, char
  */
 static inline void setup_keyfile ()
 {
-  if (dialog_geometry != NULL)
-    return;
+  if (dialog_geometry == NULL) {
 
-  char *file = g_build_filename (geda_user_config_path (),
-                                 DIALOG_GEOMETRY_STORE, NULL);
+    char *file;
 
-  dialog_geometry = geda_keyfile_new();
+    dialog_geometry = geda_keyfile_new();
 
-  /* Remember to save data on program exit */
-  geda_atexit(save_geometry_to_file, NULL);
+    file = g_build_filename (geda_user_config_path (),
+                            DIALOG_GEOMETRY_STORE, NULL);
 
-  if (!g_file_test (file, G_FILE_TEST_EXISTS)) {
-    geda_create_path (geda_user_config_path (), S_IRWXU | S_IRWXG);
-    g_file_set_contents (file, "", -1, NULL);
-  }
+    /* Remember to save data on program exit */
+    geda_atexit(save_geometry_to_file, NULL);
 
-  if (!geda_keyfile_load_from_file (dialog_geometry, file, G_KEY_FILE_NONE, NULL)) {
-
-    /* If verbose then let the user know what happened */
-    if (verbose_mode) {
-       fprintf(stderr,"%s: \"%s\"\n",  _("Could not load geometry from file"), file);
+    if (!g_file_test (file, G_FILE_TEST_EXISTS)) {
+      geda_create_path (geda_user_config_path (), S_IRWXU | S_IRWXG);
+      g_file_set_contents (file, "", -1, NULL);
     }
 
-    /* error opening key file, create an empty one and try again */
-    g_file_set_contents (file, "", -1, NULL);
     if (!geda_keyfile_load_from_file (dialog_geometry, file, G_KEY_FILE_NONE, NULL)) {
-       fprintf(stderr,"%s: \"%s\"\n",  _("error creating file"), file);
+
+      /* If verbose then let the user know what happened */
+      if (verbose_mode) {
+        fprintf(stderr,"%s: \"%s\"\n",  _("Could not load geometry from file"), file);
+      }
+
+      /* error opening key file, create an empty one and try again */
+      g_file_set_contents (file, "", -1, NULL);
+
+      if (!geda_keyfile_load_from_file (dialog_geometry, file, G_KEY_FILE_NONE, NULL)) {
+        fprintf(stderr,"%s: \"%s\"\n",  _("error creating file"), file);
+      }
     }
+    GEDA_FREE (file);
   }
-  GEDA_FREE (file);
 }
 
 /*!
