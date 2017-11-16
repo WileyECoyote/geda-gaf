@@ -138,9 +138,8 @@ msgstr ""
 
 # Restore
 #: gschem/src/base/gschem_main_window.c:390
-#, fuzzy
 msgid "Auto-Restore"
-msgstr "Wiederherstellen"
+msgstr "Automatische Wiederherstellung"
 
 #: gschem/src/base/gschem_main_window.c:391
 msgid "Automatically restore the main window geometry"
@@ -1497,24 +1496,23 @@ msgid "If you don't save, all your changes will be permanently lost."
 msgstr ""
 
 #: gschem/src/x/x_confirm_close.c:534
-#, fuzzy
 msgid "Close without saving"
-msgstr "Schließen _ohne Speichern"
+msgstr "Schließen ohne speichern"
 
+# unsaved page
 #: gschem/src/x/x_confirm_close.c:588
-#, fuzzy
 msgid "unsaved page"
-msgstr "Kann nicht gespeichert werden Schaltplan"
+msgstr "ungespeicherte Seite"
 
+# unsaved pages
 #: gschem/src/x/x_confirm_close.c:595
-#, fuzzy
 msgid "unsaved pages"
-msgstr "_Alles speichern"
+msgstr "nicht gespeicherte Seiten"
 
+# selected pages
 #: gschem/src/x/x_confirm_close.c:602
-#, fuzzy
 msgid "selected pages"
-msgstr "Ausgewählte Objekte"
+msgstr "ausgewählte Seiten"
 
 #: gschem/src/x/x_console.c:135
 msgid "destroying history\n"
@@ -2133,30 +2131,28 @@ msgstr ""
 msgid "Create Array"
 msgstr "Array erstellen"
 
+# Count
 #: gschem/src/x/x_edit_array.c:902 gschem/src/x/x_edit_array.c:972
 #: gschem/src/x/x_edit_array.c:1005
-#, fuzzy
 msgid "Count"
-msgstr "Dateireihenfolge"
+msgstr "Anzahl"
 
 #: gschem/src/x/x_edit_array.c:913
-#, fuzzy
 msgid "X Size"
-msgstr "Rasterpunkt"
+msgstr "X Größe"
 
 #: gschem/src/x/x_edit_array.c:916
-#, fuzzy
 msgid "Y Size"
-msgstr "Rasterpunkt"
+msgstr "Y Größe"
 
 #: gschem/src/x/x_edit_array.c:935 gschem/src/x/x_menus.c:87
 msgid "Select"
 msgstr "Auswählen"
 
+# Deselect
 #: gschem/src/x/x_edit_array.c:939
-#, fuzzy
 msgid "Deselect"
-msgstr "Alles auswählen"
+msgstr "Abwählen"
 
 #: gschem/src/x/x_edit_array.c:955 gschem/src/x/x_menus.c:118
 msgid "Array"
@@ -2166,10 +2162,10 @@ msgstr ""
 msgid "Row"
 msgstr ""
 
+# Offset
 #: gschem/src/x/x_edit_array.c:987 gschem/src/x/x_edit_array.c:1020
-#, fuzzy
 msgid "Offset"
-msgstr "Netzmodus"
+msgstr "Offset"
 
 #: gschem/src/x/x_edit_array.c:997
 msgid "Column"
@@ -2716,11 +2712,10 @@ msgstr "Anzahl der Steckplätze:"
 msgid "Slot number:"
 msgstr "Slot-Nummer:"
 
-# Set the sequence number
+# Set the active slot number
 #: gschem/src/x/x_edit_slot.c:216
-#, fuzzy
 msgid "Set the active slot number"
-msgstr "Legen Sie die Sequenznummer fest"
+msgstr "Stellen Sie die Nummer des aktiven Slots ein"
 
 #: gschem/src/x/x_edit_text.c:64 gschem/src/x/x_edit_text.c:473
 msgid "Text Content"
@@ -5670,14 +5665,6 @@ msgstr "~S ist keine gültige Tasten-Kombination."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S ist kein gültiger erster Teil einer Tastenkombination."
-
-#, fuzzy
-#~ msgid "<b>Selection</b>"
-#~ msgstr "Auswählen"
-
-#, fuzzy
-#~ msgid "<b>Array</b>"
-#~ msgstr "Filter:"
 
 #~ msgid "Toggle _Magnetic Net"
 #~ msgstr "_Magnetischen Netzmodus umschalten"
