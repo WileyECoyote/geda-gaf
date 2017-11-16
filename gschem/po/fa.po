@@ -1511,25 +1511,25 @@ msgstr ""
 msgid "If you don't save, all your changes will be permanently lost."
 msgstr ""
 
+# Close without saving
 #: gschem/src/x/x_confirm_close.c:534
 msgid "Close without saving"
-msgstr ""
+msgstr "بدون صرفه جویی در بست"
 
+# unsaved page
 #: gschem/src/x/x_confirm_close.c:588
-#, fuzzy
 msgid "unsaved page"
-msgstr "Save All"
+msgstr "صفحه ذخیره نشده"
 
+# unsaved pages
 #: gschem/src/x/x_confirm_close.c:595
-#, fuzzy
 msgid "unsaved pages"
-msgstr "Save All"
+msgstr "صفحات ذخیره نشده"
 
-# Select Mode
+# selected pages
 #: gschem/src/x/x_confirm_close.c:602
-#, fuzzy
 msgid "selected pages"
-msgstr "انتخاب حالت"
+msgstr "صفحات انتخاب شده"
 
 #: gschem/src/x/x_console.c:135
 msgid "destroying history\n"
@@ -2105,12 +2105,11 @@ msgstr ""
 msgid "Components may overlay, Continue?"
 msgstr ""
 
-# Create Array
+# Create Array: Error
 #: gschem/src/x/x_edit_array.c:539 gschem/src/x/x_edit_array.c:544
 #: gschem/src/x/x_edit_array.c:549
-#, fuzzy
-msgid "Create Array:Error"
-msgstr "ايجاد كردنآرایه"
+msgid "Create Array: Error"
+msgstr "ایجاد آرایه: خطا"
 
 #: gschem/src/x/x_edit_array.c:540
 msgid ""
@@ -2135,27 +2134,30 @@ msgstr ""
 msgid "Create Array"
 msgstr "ايجاد كردنآرایه"
 
+# Count
 #: gschem/src/x/x_edit_array.c:902 gschem/src/x/x_edit_array.c:972
 #: gschem/src/x/x_edit_array.c:1005
 msgid "Count"
-msgstr ""
+msgstr "شمردن"
 
+# X Size
 #: gschem/src/x/x_edit_array.c:913
 msgid "X Size"
-msgstr ""
+msgstr "اندازه X"
 
+# Y Size
 #: gschem/src/x/x_edit_array.c:916
 msgid "Y Size"
-msgstr ""
+msgstr "اندازه Y"
 
 #: gschem/src/x/x_edit_array.c:935 gschem/src/x/x_menus.c:87
 msgid "Select"
 msgstr ""
 
+# Deselect
 #: gschem/src/x/x_edit_array.c:939
-#, fuzzy
 msgid "Deselect"
-msgstr "Select Mode"
+msgstr "لغو انتخاب"
 
 #: gschem/src/x/x_edit_array.c:955 gschem/src/x/x_menus.c:118
 msgid "Array"
@@ -2165,10 +2167,10 @@ msgstr ""
 msgid "Row"
 msgstr ""
 
+# Offset
 #: gschem/src/x/x_edit_array.c:987 gschem/src/x/x_edit_array.c:1020
-#, fuzzy
 msgid "Offset"
-msgstr "Select Mode"
+msgstr "Offset"
 
 #: gschem/src/x/x_edit_array.c:997
 msgid "Column"
@@ -2707,9 +2709,10 @@ msgstr ""
 msgid "Slot number:"
 msgstr ""
 
+# Set the active slot number
 #: gschem/src/x/x_edit_slot.c:216
 msgid "Set the active slot number"
-msgstr ""
+msgstr "شماره اسلات فعال را تنظیم کنید"
 
 #: gschem/src/x/x_edit_text.c:64 gschem/src/x/x_edit_text.c:473
 msgid "Text Content"
@@ -5689,15 +5692,6 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
-
-#, fuzzy
-#~ msgid "<b>Selection</b>"
-#~ msgstr "Select Mode"
-
-# Filter
-#, fuzzy
-#~ msgid "<b>Array</b>"
-#~ msgstr "<b>فیلتر کردن:</b>"
 
 # Select PostScript Filename.
 #~ msgid "Select PostScript Filename...."
