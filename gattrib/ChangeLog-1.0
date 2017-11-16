@@ -4,6 +4,7 @@
       if the contents of the keyfile could not be loaded if verbose is set,
       revise second conditional to also output a message if there is an error
       creating a new key file, revise function to eliminate early return.
+      Use GEDA_IS_KEYFILE to validate dialog_geometry.
 
 2017-10-29 Wiley E. Hill <wileyhill@gmail.com>
 

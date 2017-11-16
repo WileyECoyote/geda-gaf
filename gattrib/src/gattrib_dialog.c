@@ -194,7 +194,7 @@ static void geometry_restore (GattribDialog *dialog, GedaKeyFile *key_file, char
  */
 static inline void setup_keyfile ()
 {
-  if (dialog_geometry == NULL) {
+  if (!GEDA_IS_KEYFILE(dialog_geometry)) {
 
     char *file;
 
@@ -247,7 +247,9 @@ static void show_handler (GtkWidget *widget)
   if (group_name != NULL) {
 
     setup_keyfile ();
-    if ( dialog_geometry != NULL ); {
+
+    if ( GEDA_IS_KEYFILE(dialog_geometry) ); {
+
       if (geda_keyfile_has_group (dialog_geometry, group_name)) {
         g_signal_emit (dialog, gattrib_dialog_signals[ GEOMETRY_RESTORE ], 0,
                        dialog_geometry, group_name);
