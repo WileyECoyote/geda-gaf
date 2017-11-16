@@ -1,3 +1,7 @@
+2017-11-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gattrib_dialog.c: Declare setup_keyfile static.
+
 2017-10-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_object.c: Use accessor geda_complex_get_filename to retrieve

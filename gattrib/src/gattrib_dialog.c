@@ -192,7 +192,7 @@ static void geometry_restore (GattribDialog *dialog, GedaKeyFile *key_file, char
  *  If it doesn't exist, we create it here, and also install a hook
  *  to ensure its contents are saved at program exit.
  */
-static void setup_keyfile ()
+static inline void setup_keyfile ()
 {
   if (dialog_geometry != NULL)
     return;
