@@ -1485,25 +1485,25 @@ msgstr ""
 msgid "If you don't save, all your changes will be permanently lost."
 msgstr ""
 
+# Close without saving
 #: gschem/src/x/x_confirm_close.c:534
-#, fuzzy
 msgid "Close without saving"
-msgstr "_Κλείσιμο χωρίς αποθήκευση"
+msgstr "Κλείσιμο χωρίς αποθήκευση"
 
+# unsaved page
 #: gschem/src/x/x_confirm_close.c:588
-#, fuzzy
 msgid "unsaved page"
-msgstr "Δεν ήταν δυνατή η αποθήκευση της σελίδας"
+msgstr "μη αποθηκευμένη σελίδα"
 
+# unsaved pages
 #: gschem/src/x/x_confirm_close.c:595
-#, fuzzy
 msgid "unsaved pages"
-msgstr "Αποθήκευση όλων"
+msgstr "μη αποθηκευμένες σελίδες"
 
+# selected pages
 #: gschem/src/x/x_confirm_close.c:602
-#, fuzzy
 msgid "selected pages"
-msgstr "Επιλεγμένα αντικείμενα"
+msgstr "επιλεγμένες σελίδες"
 
 #: gschem/src/x/x_console.c:135
 msgid "destroying history\n"
@@ -2117,30 +2117,29 @@ msgstr ""
 msgid "Create Array"
 msgstr ""
 
+# Count
 #: gschem/src/x/x_edit_array.c:902 gschem/src/x/x_edit_array.c:972
 #: gschem/src/x/x_edit_array.c:1005
-#, fuzzy
 msgid "Count"
-msgstr "Σειρά αρχείων"
+msgstr "μετρώ"
 
+# X Size
 #: gschem/src/x/x_edit_array.c:913
-#, fuzzy
 msgid "X Size"
-msgstr "Μέγεθος κειμένου"
+msgstr "X Μέγεθος"
 
 #: gschem/src/x/x_edit_array.c:916
-#, fuzzy
 msgid "Y Size"
-msgstr "Μέγεθος κειμένου"
+msgstr "Y Μέγεθος"
 
 #: gschem/src/x/x_edit_array.c:935 gschem/src/x/x_menus.c:87
 msgid "Select"
 msgstr "Επιλογή"
 
+# Deselect
 #: gschem/src/x/x_edit_array.c:939
-#, fuzzy
 msgid "Deselect"
-msgstr "Επιλογή όλων"
+msgstr "Αποεπιλέξτε"
 
 #: gschem/src/x/x_edit_array.c:955 gschem/src/x/x_menus.c:118
 msgid "Array"
@@ -2150,10 +2149,10 @@ msgstr ""
 msgid "Row"
 msgstr ""
 
+# Offset
 #: gschem/src/x/x_edit_array.c:987 gschem/src/x/x_edit_array.c:1020
-#, fuzzy
 msgid "Offset"
-msgstr "Λειτουργία δικτύου"
+msgstr "Αντισταθμίζεται"
 
 #: gschem/src/x/x_edit_array.c:997
 msgid "Column"
@@ -2706,11 +2705,10 @@ msgstr ""
 msgid "Slot number:"
 msgstr "στοιχείο αριθμός:"
 
-# Set the sequence number
+# Set the active slot number
 #: gschem/src/x/x_edit_slot.c:216
-#, fuzzy
 msgid "Set the active slot number"
-msgstr "Ορίστε τον αριθμό ακολουθίας"
+msgstr "Ορίστε τον ενεργό αριθμό θέσης υποδοχής"
 
 #: gschem/src/x/x_edit_text.c:64 gschem/src/x/x_edit_text.c:473
 msgid "Text Content"
@@ -5657,14 +5655,6 @@ msgstr "Το ~S δεν είναι έγκυρος συνδιασμός πλήκτ
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
-
-#, fuzzy
-#~ msgid "<b>Selection</b>"
-#~ msgstr "Επιλογή"
-
-#, fuzzy
-#~ msgid "<b>Array</b>"
-#~ msgstr "Φίλτρο:"
 
 #~ msgid "Toggle _Magnetic Net"
 #~ msgstr "Εναλλαγή _μαγνητικού δικτύου"
