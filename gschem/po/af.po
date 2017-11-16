@@ -2755,11 +2755,10 @@ msgstr ""
 msgid "Slot number:"
 msgstr "Bewerk gleufnommer:"
 
-# Set the sequence number
+# Set the active slot number
 #: gschem/src/x/x_edit_slot.c:216
-#, fuzzy
 msgid "Set the active slot number"
-msgstr "Stel die volgnummer"
+msgstr "Stel die aktiewe slotnommer in"
 
 #: gschem/src/x/x_edit_text.c:64 gschem/src/x/x_edit_text.c:473
 msgid "Text Content"
