@@ -1493,25 +1493,25 @@ msgstr ""
 msgid "If you don't save, all your changes will be permanently lost."
 msgstr ""
 
+# Close without saving
 #: gschem/src/x/x_confirm_close.c:534
-#, fuzzy
 msgid "Close without saving"
-msgstr "أ_غلق دون حفظ"
+msgstr "إغلاق بدون حفظ"
 
+# unsaved page
 #: gschem/src/x/x_confirm_close.c:588
-#, fuzzy
 msgid "unsaved page"
-msgstr "الصفحة لا يمكن حفظ"
+msgstr "صفحة غير محفوظة"
 
+# unsaved pages
 #: gschem/src/x/x_confirm_close.c:595
-#, fuzzy
 msgid "unsaved pages"
-msgstr "احفظ الكل"
+msgstr "صفحات غير محفوظة"
 
+# selected pages
 #: gschem/src/x/x_confirm_close.c:602
-#, fuzzy
 msgid "selected pages"
-msgstr "الكائنات المنتقاة"
+msgstr "الصفحات المحددة"
 
 #: gschem/src/x/x_console.c:135
 msgid "destroying history\n"
@@ -2716,11 +2716,10 @@ msgstr ""
 msgid "Slot number:"
 msgstr "رقم الفتحة:"
 
-# Set the sequence number
+# Set the active slot number
 #: gschem/src/x/x_edit_slot.c:216
-#, fuzzy
 msgid "Set the active slot number"
-msgstr "اضبط رقم التسلسل"
+msgstr "قم بتعيين رقم الفتحة النشطة"
 
 #: gschem/src/x/x_edit_text.c:64 gschem/src/x/x_edit_text.c:473
 msgid "Text Content"
@@ -5673,11 +5672,3 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
-
-#, fuzzy
-#~ msgid "<b>Selection</b>"
-#~ msgstr "انتق"
-
-#, fuzzy
-#~ msgid "<b>Array</b>"
-#~ msgstr "المرشح:"
