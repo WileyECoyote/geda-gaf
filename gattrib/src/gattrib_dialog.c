@@ -279,7 +279,6 @@ static void unmap_handler (GtkWidget *widget)
   group_name = dialog->settings_name;
   if (group_name != NULL) {
 
-    g_assert( dialog_geometry != NULL );
     g_signal_emit (dialog, gattrib_dialog_signals[ GEOMETRY_SAVE ], 0,
                    dialog_geometry, group_name);
   }
