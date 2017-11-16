@@ -149,10 +149,10 @@ msgstr "Преузимање геометрије главног прозора.
 msgid "Auto-Restore"
 msgstr ""
 
+# Automatically restore the main window geometry
 #: gschem/src/base/gschem_main_window.c:391
-#, fuzzy
 msgid "Automatically restore the main window geometry"
-msgstr "Преузимање геометрије главног прозора.\n"
+msgstr "Аутоматско враћање геометрије главног прозора"
 
 #: gschem/src/base/gschem_page_view.c:250
 #: gschem/src/base/gschem_page_view.c:251
@@ -1669,27 +1669,25 @@ msgstr ""
 msgid "If you don't save, all your changes will be permanently lost."
 msgstr ""
 
+# Close without saving
 #: gschem/src/x/x_confirm_close.c:534
 msgid "Close without saving"
-msgstr ""
+msgstr "Затвори без чувања"
 
-# Saved as
+# unsaved page
 #: gschem/src/x/x_confirm_close.c:588
-#, fuzzy
 msgid "unsaved page"
-msgstr "Сачувај као"
+msgstr "унсовед паге"
 
-# Saved as
+# unsaved pages
 #: gschem/src/x/x_confirm_close.c:595
-#, fuzzy
 msgid "unsaved pages"
-msgstr "Сачувај као"
+msgstr "несуване странице"
 
-# Select Last
+# selected pages
 #: gschem/src/x/x_confirm_close.c:602
-#, fuzzy
 msgid "selected pages"
-msgstr "Изабери Ласт"
+msgstr "selected pages"
 
 #: gschem/src/x/x_console.c:135
 msgid "destroying history\n"
@@ -2271,12 +2269,11 @@ msgstr ""
 msgid "Components may overlay, Continue?"
 msgstr ""
 
-# Create Array
+# Create Array: Error => Create Matrix: Error
 #: gschem/src/x/x_edit_array.c:539 gschem/src/x/x_edit_array.c:544
 #: gschem/src/x/x_edit_array.c:549
-#, fuzzy
 msgid "Create Array:Error"
-msgstr "створити Арраи"
+msgstr "Креирај матрицу: грешка"
 
 #: gschem/src/x/x_edit_array.c:540
 msgid ""
@@ -2576,11 +2573,10 @@ msgstr ""
 msgid "_Locked"
 msgstr ""
 
-# Mirror
+# Mirrored
 #: gschem/src/x/x_edit_cprop.c:1415
-#, fuzzy
 msgid "_Mirrored"
-msgstr "огледати"
+msgstr "Миррор"
 
 #: gschem/src/x/x_edit_cprop.c:1439
 msgid "_Electrical:"
@@ -5881,8 +5877,3 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
-
-# Session Error
-#, fuzzy
-#~ msgid "<b>Selection</b>"
-#~ msgstr "<b>сессион Грешка</b>"
