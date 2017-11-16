@@ -80,46 +80,55 @@ msgstr ""
 msgid "Exiting normal\n"
 msgstr ""
 
+# FAILED:
 #: gschem/src/base/gschem.c:514
 msgid "FAILED:"
-msgstr ""
+msgstr "epäonnistui:"
 
 #: gschem/src/base/gschem_dialog.c:567
 msgid "Parent Window"
 msgstr "Uusi ikkuna"
 
+# Parent window for this dialog
 #: gschem/src/base/gschem_dialog.c:568
 msgid "Parent window for this dialog"
-msgstr ""
+msgstr "Tämän valintaikkunan vanhemman ikkuna"
 
+# Title
 #: gschem/src/base/gschem_dialog.c:588
 msgid "Title"
-msgstr ""
+msgstr "otsikko"
 
+# Dialog window title
 #: gschem/src/base/gschem_dialog.c:589
 msgid "Dialog window title"
-msgstr ""
+msgstr "Dialogikkunan otsikko"
 
+# Label Text
 #: gschem/src/base/gschem_macro_widget.c:233
 msgid "Label Text"
-msgstr ""
+msgstr "tarrateksti"
 
+# Text to be displayed for the Macro label
 #: gschem/src/base/gschem_macro_widget.c:234
 msgid "Text to be displayed for the Macro label"
-msgstr ""
+msgstr "Makro-tarrassa näkyvä teksti"
 
+# Macro
 #: gschem/src/base/gschem_macro_widget.c:235
 msgid "Macro:"
-msgstr ""
+msgstr "makro:"
 
+# Macro String
 #: gschem/src/base/gschem_macro_widget.c:241
 #: gschem/src/base/gschem_macro_widget.c:242
 msgid "Macro String"
-msgstr ""
+msgstr "Makro-merkkijono"
 
+# Evaluate
 #: gschem/src/base/gschem_macro_widget.c:357
 msgid "Evaluate"
-msgstr ""
+msgstr "Arvioida"
 
 #: gschem/src/base/gschem_main_window.c:243
 msgid "Retrieving main window position.\n"
@@ -131,11 +140,10 @@ msgstr "Haetaan pääikkuna geometria.\n"
 
 #: gschem/src/base/gschem_main_window.c:390
 msgid "Auto-Restore"
-msgstr ""
+msgstr "Automaattinen palautus"
 
 # Automatically restore the main window geometry
 #: gschem/src/base/gschem_main_window.c:391
-#, fuzzy
 msgid "Automatically restore the main window geometry"
 msgstr "Palauta pääikkunan geometria automaattisesti"
 
