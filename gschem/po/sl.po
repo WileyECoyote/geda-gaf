@@ -147,11 +147,10 @@ msgstr "Obnova geometrie hlavného okna.\n"
 msgid "Auto-Restore"
 msgstr ""
 
-# Retrieving main window geometry
+# Automatically restore the main window geometry
 #: gschem/src/base/gschem_main_window.c:391
-#, fuzzy
 msgid "Automatically restore the main window geometry"
-msgstr "Obnova geometrie hlavného okna.\n"
+msgstr "Samodejno obnovite geometrijo glavnega okna"
 
 # Horizontal adjustment
 #: gschem/src/base/gschem_page_view.c:250
@@ -1555,29 +1554,25 @@ msgstr ""
 msgid "If you don't save, all your changes will be permanently lost."
 msgstr ""
 
-# Close without changing any settings
+# Close without saving
 #: gschem/src/x/x_confirm_close.c:534
-#, fuzzy
 msgid "Close without saving"
-msgstr "Zapri brez spreminjanja nastavitev"
+msgstr "Zapri brez shranjevanja"
 
-# Could NOT save page
+# unsaved page
 #: gschem/src/x/x_confirm_close.c:588
-#, fuzzy
 msgid "unsaved page"
-msgstr "Ni bilo mogoče shraniti stran"
+msgstr "neshranjena stran"
 
-# Saved as
+# unsaved pages
 #: gschem/src/x/x_confirm_close.c:595
-#, fuzzy
 msgid "unsaved pages"
-msgstr "Shranjena kot"
+msgstr "neshranjene strani"
 
-# Select Last
+# selected pages
 #: gschem/src/x/x_confirm_close.c:602
-#, fuzzy
 msgid "selected pages"
-msgstr "Izberite zadnji"
+msgstr "izbrane strani"
 
 #: gschem/src/x/x_console.c:135
 msgid "destroying history\n"
@@ -2158,12 +2153,11 @@ msgstr ""
 msgid "Components may overlay, Continue?"
 msgstr ""
 
-# Create a matrix
+# Create Array: Error => Create Matrix: Error
 #: gschem/src/x/x_edit_array.c:539 gschem/src/x/x_edit_array.c:544
 #: gschem/src/x/x_edit_array.c:549
-#, fuzzy
 msgid "Create Array:Error"
-msgstr "Ustvari matrika"
+msgstr "Ustvari matriko: napaka"
 
 #: gschem/src/x/x_edit_array.c:540
 msgid ""
@@ -2452,9 +2446,8 @@ msgstr ""
 
 # Options
 #: gschem/src/x/x_edit_cprop.c:1346
-#, fuzzy
 msgid "Options:"
-msgstr "Opcije"
+msgstr "Opcije:"
 
 #: gschem/src/x/x_edit_cprop.c:1381
 msgid "_Embedded"
@@ -2464,10 +2457,10 @@ msgstr ""
 msgid "_Locked"
 msgstr ""
 
+# Mirrored
 #: gschem/src/x/x_edit_cprop.c:1415
-#, fuzzy
 msgid "_Mirrored"
-msgstr "Ogledalo"
+msgstr "Zrcaljeno"
 
 #: gschem/src/x/x_edit_cprop.c:1439
 msgid "_Electrical:"
@@ -5850,8 +5843,3 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
-
-# Zoom Selection
-#, fuzzy
-#~ msgid "<b>Selection</b>"
-#~ msgstr "Zoom za izbor"

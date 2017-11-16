@@ -14,6 +14,8 @@
 
     * po/fi.po: Update Finnish translations.
 
+    * po/sl.po: Update Slovenian translations
+
 2017-11-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/prototype.h: Add declaration for o_edit_set_selectable.
