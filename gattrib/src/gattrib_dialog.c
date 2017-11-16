@@ -219,9 +219,8 @@ static inline void setup_keyfile ()
 
     /* error opening key file, create an empty one and try again */
     g_file_set_contents (file, "", -1, NULL);
-    if ( !geda_keyfile_load_from_file (dialog_geometry, file, G_KEY_FILE_NONE, NULL)) {
-       GEDA_FREE (file);
-       return;
+    if (!geda_keyfile_load_from_file (dialog_geometry, file, G_KEY_FILE_NONE, NULL)) {
+       fprintf(stderr,"%s: \"%s\"\n",  _("error creating file"), file);
     }
   }
   GEDA_FREE (file);
