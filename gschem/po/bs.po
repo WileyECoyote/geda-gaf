@@ -1507,27 +1507,25 @@ msgstr ""
 msgid "If you don't save, all your changes will be permanently lost."
 msgstr ""
 
+# Close without saving
 #: gschem/src/x/x_confirm_close.c:534
 msgid "Close without saving"
-msgstr ""
+msgstr "Zatvori bez čuvanja"
 
 # Saved as
 #: gschem/src/x/x_confirm_close.c:588
-#, fuzzy
 msgid "unsaved page"
-msgstr "Snimi kao"
+msgstr "nesuvana stranica"
 
-# Saved as
+# unsaved pages
 #: gschem/src/x/x_confirm_close.c:595
-#, fuzzy
 msgid "unsaved pages"
-msgstr "Snimi kao"
+msgstr "nesuvane stranice"
 
-# select Last
+# selected pages
 #: gschem/src/x/x_confirm_close.c:602
-#, fuzzy
 msgid "selected pages"
-msgstr "odaberite Zadnji"
+msgstr "izabrane stranice"
 
 #: gschem/src/x/x_console.c:135
 msgid "destroying history\n"
@@ -2732,11 +2730,10 @@ msgstr ""
 msgid "Slot number:"
 msgstr "Slot broj:"
 
-# Edit slot number
+# Set the active slot number
 #: gschem/src/x/x_edit_slot.c:216
-#, fuzzy
 msgid "Set the active slot number"
-msgstr "Uredi broj otvora"
+msgstr "Podesite aktivni broj slota"
 
 #: gschem/src/x/x_edit_text.c:64 gschem/src/x/x_edit_text.c:473
 msgid "Text Content"

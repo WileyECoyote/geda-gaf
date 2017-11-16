@@ -4,6 +4,8 @@
 
     * po/ar.po: Update Arabic translations.
 
+    * po/bs.po: Update Bosnian translations.
+
 2017-11-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/prototype.h: Add declaration for o_edit_set_selectable.
