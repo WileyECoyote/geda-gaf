@@ -1,3 +1,8 @@
+2017-11-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * bitmaps/svg/geda-lightning.svg: Add export-filename, remove standalone
+      attribute and other extraneous bloat.
+
 2017-11-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * bitmaps/svg/geda-inbed.svg: Add export-filename, remove standalone
