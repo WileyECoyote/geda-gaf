@@ -57,8 +57,9 @@ struct query_usable {
   void *userdata;
 };
 
-/*! \brief Callback System Clipboard Change Ownership.
- *  \par Function Description
+/*!
+ * \internal Callback System Clipboard Change Ownership.
+ * \par Function Description
  */
 static void
 clip_handle_owner_change (GtkClipboard *cb, GdkEvent *event, void *user_data)
@@ -68,10 +69,10 @@ clip_handle_owner_change (GtkClipboard *cb, GdkEvent *event, void *user_data)
   i_status_update_sensitivities (w_current);
 }
 
-static void
-clip_get (GtkClipboard *cb, GtkSelectionData *selection_data,
-                            unsigned int      info,
-                            void             *user_data_or_owner)
+static void clip_get (GtkClipboard     *cb,
+                      GtkSelectionData *selection_data,
+                      unsigned int      info,
+                      void             *user_data_or_owner)
 {
   GschemToplevel *w_current;
   GdkAtom         type;
@@ -105,14 +106,13 @@ clip_clear (GtkClipboard *cb, void * user_data_or_owner)
   w_current->clipboard_buffer = NULL;
 }
 
-/*! \brief Initialises system clipboard support
- *
+/*!
+ * \brief Initialises system clipboard support
  * \par Function Description
  *  Registers a signal handler to detect if the clipboard has changed
  *  and update the menu item sensitivity if necessary.
  */
-void
-x_clipboard_init (GschemToplevel *w_current)
+void x_clipboard_init (GschemToplevel *w_current)
 {
   g_signal_connect (gtk_clipboard_get (GDK_SELECTION_CLIPBOARD),
                     "owner-change",
@@ -122,14 +122,13 @@ x_clipboard_init (GschemToplevel *w_current)
   set_got_answer(TRUE);
 }
 
-/*! \brief Finalize clipboard system
- *
+/*!
+ * \brief Finalize clipboard system
  * \par Function Description
  *  Unregisters clipboard callback handler and release ownership of
  *  contents to system.
  */
-void
-x_clipboard_finish (GschemToplevel *w_current)
+void x_clipboard_finish (GschemToplevel *w_current)
 {
   GtkClipboard *cb;
 
@@ -148,7 +147,7 @@ x_clipboard_finish (GschemToplevel *w_current)
  * the TRUE / FALSE answer to whether we can paste from the clipboard.
  */
 static void
-query_usable_targets_cb (GtkClipboard *clip, GdkAtom *targets, int ntargets, void * data)
+query_usable_targets_cb (GtkClipboard *clip, GdkAtom *targets, int ntargets, void *data)
 {
     struct query_usable *callback_info = data;
 
@@ -173,8 +172,8 @@ query_usable_targets_cb (GtkClipboard *clip, GdkAtom *targets, int ntargets, voi
     set_got_answer(TRUE);           /* Set flag */
 }
 
-/*! \brief Checks if the system clipboard contains schematic data.
- *
+/*!
+ * \brief Checks if the system clipboard contains schematic data.
  * \par Function Description
  *  Checks whether the current owner of the system clipboard is
  *  advertising gEDA schematic data.
@@ -191,7 +190,6 @@ query_usable_targets_cb (GtkClipboard *clip, GdkAtom *targets, int ntargets, voi
  * Note WEH (01/22/13): We do not want to reallocate another structure
  * and put in a second request if gtk has not responded to the previous
  * request.
- *
  */
 void
 x_clipboard_query_usable (GschemToplevel *w_current,
@@ -229,8 +227,8 @@ x_clipboard_query_usable (GschemToplevel *w_current,
   }
 }
 
-/*! \brief Set the contents of the system clipboard
- *
+/*!
+ * \brief Set the contents of the system clipboard
  * \par Function Description
  *  Sets the system clipboard to contain the gschem objects listed in
  *  \a object_list.
@@ -263,15 +261,15 @@ x_clipboard_set (GschemToplevel *w_current, const GList *object_list)
   result = gtk_clipboard_set_with_data (cb, &target, 1,
                                         clip_get, clip_clear, w_current);
 
-  /* Notify Gtk the data can be stored to be accessed after the program
+  /* Notify Gtk the data should be stored to be accessed after the program
    * has quit. */
   gtk_clipboard_set_can_store (cb, NULL, 0);
 
   return result;
 }
 
-/*! \brief Get the contents of the system clipboard
- *
+/*!
+ * \brief Get the contents of the system clipboard
  * \par Function Description
  *  Retrieves schematic data from the system clipboard.
  *
