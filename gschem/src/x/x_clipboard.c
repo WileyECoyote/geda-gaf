@@ -278,24 +278,20 @@ x_clipboard_set (GschemToplevel *w_current, const GList *object_list)
  * \returns Objects retrieved from the system clipboard, or NULL
  *          if none were available.
  */
-GList *
-x_clipboard_get (GschemToplevel *w_current)
+GList *x_clipboard_get (GschemToplevel *w_current)
 {
   GedaToplevel        *toplevel;
   GtkClipboard        *cb;
   GdkAtom              type;
   GtkSelectionData    *selection_data;
-  GList               *object_list;
+  GList               *o_list;
   const unsigned char *buf;
   GError              *err;
 
-  object_list = NULL;
-  err = NULL;
-
-  toplevel = w_current->toplevel;
-
-  cb   = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
-  type = gdk_atom_intern (MIME_TYPE_SCHEMATIC, FALSE);
+  o_list = NULL;
+  err    = NULL;
+  cb     = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
+  type   = gdk_atom_intern (MIME_TYPE_SCHEMATIC, FALSE);
 
   /* Try to get the contents of the clipboard */
   selection_data = gtk_clipboard_wait_for_contents (cb, type);
@@ -314,8 +310,10 @@ x_clipboard_get (GschemToplevel *w_current)
 
 #endif
 
-  object_list = geda_object_read_buffer (toplevel, object_list,
-                               (char*)buf, -1, "Clipboard", &err);
+  toplevel = w_current->toplevel;
+
+  o_list = geda_object_read_buffer (toplevel, o_list,
+                                   (char*)buf, -1, "Clipboard", &err);
 
   if (err) {
 
@@ -340,5 +338,5 @@ x_clipboard_get (GschemToplevel *w_current)
 
   gtk_selection_data_free (selection_data);
 
-  return object_list;
+  return o_list;
 }

@@ -3,7 +3,9 @@
     * src/x/x_clipboard.c: Revise x_clipboard_init to eliminate the dynamic
       cast to GObject, eliminate GtkClipboard and pass gtk_clipboard_get
       directly to g_signal_connect. If it is not a g_object the GLib can
-      report. Reformat comments and adjust function wrapping.
+      report. Revise x_clipboard_get to set the toplevel only if selection
+      data is received and rename object_list -> o)list. Reformat comments
+      and adjust function wrapping.
 
 2017-11-16 Wiley E. Hill <wileyhill@gmail.com>
 
