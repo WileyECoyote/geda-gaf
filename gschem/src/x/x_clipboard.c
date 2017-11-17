@@ -115,7 +115,7 @@ x_clipboard_init (GschemToplevel *w_current)
   GtkClipboard *cb;
 
   cb = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
-  g_signal_connect (G_OBJECT (cb),
+  g_signal_connect (cb,
                     "owner-change",
                     G_CALLBACK (clip_handle_owner_change),
                     w_current);
