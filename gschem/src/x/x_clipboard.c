@@ -82,8 +82,8 @@ clip_get (GtkClipboard *cb, GtkSelectionData *selection_data,
   type = gdk_atom_intern (MIME_TYPE_SCHEMATIC, FALSE);
 
   if (info != CLIP_TYPE_SCHEMATIC) return;
-  /* Convert the objects in the clipboard buffer to gEDA schematic
-   * format */
+
+  /* Convert objects in the clipboard buffer to gEDA schematic format */
   buf = geda_object_save_buffer (w_current->clipboard_buffer);
   /* Set the selection appropriately */
   gtk_selection_data_set (selection_data, type,
