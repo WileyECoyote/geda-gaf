@@ -1,3 +1,8 @@
+2017-11-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * geda-c-std.m4: Add file with function AX_GCC_STD to allow developers
+      a convenient method to investigate building with c99 coding standards.
+
 2017-11-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-directories.m4: Replace AC_SUBST with AC_DEFINE_DIR for GEDARCDIR. Add define
