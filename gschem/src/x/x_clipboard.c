@@ -85,6 +85,7 @@ clip_get (GtkClipboard *cb, GtkSelectionData *selection_data,
 
   /* Convert objects in the clipboard buffer to gEDA schematic format */
   buf = geda_object_save_buffer (w_current->clipboard_buffer);
+
   /* Set the selection appropriately */
   gtk_selection_data_set (selection_data, type,
                           8, /* 8-bit data (UTF-8) */
@@ -100,6 +101,7 @@ clip_clear (GtkClipboard *cb, void * user_data_or_owner)
 
   /* Free the objects in the clipboard buffer */
   geda_struct_object_release_objects (w_current->clipboard_buffer);
+
   w_current->clipboard_buffer = NULL;
 }
 
@@ -216,6 +218,7 @@ x_clipboard_query_usable (GschemToplevel *w_current,
   }
   else {
     if (watch_dog == 2) { /* Should never get here */
+
       /* telling gtk to cancel does not work well, so... */
       set_got_answer(TRUE);
       watch_dog = 0;
@@ -304,9 +307,13 @@ x_clipboard_get (GschemToplevel *w_current)
 
   /* Convert the data buffer to Objects */
 #if GTK_CHECK_VERSION(2,14,0)
+
   buf = gtk_selection_data_get_data (selection_data);
+
 #else
+
   buf = selection_data->data;
+
 #endif
 
   object_list = geda_object_read_buffer (toplevel, object_list,
@@ -334,5 +341,6 @@ x_clipboard_get (GschemToplevel *w_current)
   }
 
   gtk_selection_data_free (selection_data);
+
   return object_list;
 }
