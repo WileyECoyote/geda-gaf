@@ -112,10 +112,7 @@ clip_clear (GtkClipboard *cb, void * user_data_or_owner)
 void
 x_clipboard_init (GschemToplevel *w_current)
 {
-  GtkClipboard *cb;
-
-  cb = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
-  g_signal_connect (cb,
+  g_signal_connect (gtk_clipboard_get (GDK_SELECTION_CLIPBOARD),
                     "owner-change",
                     G_CALLBACK (clip_handle_owner_change),
                     w_current);
