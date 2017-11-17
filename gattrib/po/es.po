@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-11-12 15:15-0600\n"
+"POT-Creation-Date: 2017-11-19 11:16-0600\n"
 "PO-Revision-Date: 2010-01-29 16:49+0000\n"
 "Last-Translator: Carlos Nieves Ónega <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -42,6 +42,15 @@ msgstr "No se encontró archivo"
 
 #: gattrib/src/gattrib.c:443
 msgid "Exported schematic to"
+msgstr ""
+
+#: gattrib/src/gattrib_dialog.c:218
+#, fuzzy
+msgid "Could not load geometry from file"
+msgstr "No se encontró archivo"
+
+#: gattrib/src/gattrib_dialog.c:225
+msgid "error creating file"
 msgstr ""
 
 #: gattrib/src/g_rc.c:67
