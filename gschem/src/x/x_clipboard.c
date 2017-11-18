@@ -199,17 +199,16 @@ query_usable_targets_cb (GtkClipboard *clip, GdkAtom *targets, int ntargets, voi
  * \param [in] callback   The callback to receive the response.
  * \param [in] userdata   Arbitrary data to pass the callback.
  */
-/*
- * Note WEH (01/22/13): We do not want to reallocate another structure
- * and put in a second request if gtk has not responded to the previous
- * request.
- */
 void
 x_clipboard_query_usable (GschemToplevel *w_current,
                           void (*callback) (int, void *), void *userdata)
 {
   static int watch_dog;
 
+  /* We do not want to reallocate another structure and put in a second
+   * request if gtk has not responded to the previous request so check
+   * if we got_an_answer, WEH (01/22/13).
+   */
   if (got_an_answer()) {
 
     GtkClipboard *clip = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
