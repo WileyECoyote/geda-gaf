@@ -108,8 +108,7 @@ static void clip_get (GtkClipboard     *cb,
   GEDA_FREE (buf);
 }
 
-static void
-clip_clear (GtkClipboard *cb, void * user_data_or_owner)
+static void clip_clear (GtkClipboard *cb, void * user_data_or_owner)
 {
   GschemToplevel *w_current = user_data_or_owner;
 
@@ -199,9 +198,9 @@ query_usable_targets_cb (GtkClipboard *clip, GdkAtom *targets, int ntargets, voi
  * \param [in] callback   The callback to receive the response.
  * \param [in] userdata   Arbitrary data to pass the callback.
  */
-void
-x_clipboard_query_usable (GschemToplevel *w_current,
-                          void (*callback) (int, void *), void *userdata)
+
+void x_clipboard_query_usable (GschemToplevel *w_current,
+                               void (*callback) (int, void *), void *userdata)
 {
   static int watch_dog;
 
@@ -250,8 +249,7 @@ x_clipboard_query_usable (GschemToplevel *w_current,
  *
  * \return TRUE if the clipboard is successfully set.
  */
-bool
-x_clipboard_set (GschemToplevel *w_current, const GList *object_list)
+bool x_clipboard_set (GschemToplevel *w_current, const GList *object_list)
 {
   GtkClipboard  *cb;
   GtkTargetEntry target = { MIME_TYPE_SCHEMATIC, 0, CLIP_TYPE_SCHEMATIC };

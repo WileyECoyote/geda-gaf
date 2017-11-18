@@ -9,7 +9,7 @@
       autonumber_create_dialog.
 
     * src/x/x_clipboard.c: Add Doxygen group Clipboard-Module. Add notes
-      for mutex clip_got_answer_lock.
+      for mutex clip_got_answer_lock and modify function wrapping.
 
 2017-11-17 Wiley E. Hill <wileyhill@gmail.com>
 
