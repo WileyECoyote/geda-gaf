@@ -30,6 +30,13 @@
 
 #define CLIP_TYPE_SCHEMATIC 1
 
+/** \defgroup Clipboard-Module Clipboard Module
+ *  @{
+ *  \par
+ *  This module provides suppport for cut, copy and paste operations
+ *  to and from the system clipboard using Gtk library routines.
+ */
+
 /* Anonymous Static Mutex */
 static GedaMutex (clip_got_answer_lock);
 
@@ -340,3 +347,5 @@ GList *x_clipboard_get (GschemToplevel *w_current)
 
   return o_list;
 }
+
+/** @} endgroup Clipboard-Module */
