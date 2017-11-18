@@ -1,3 +1,8 @@
+2017-11-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * x/x_autonumber.c: Replace g_new with geda_malloc for allocation of
+      AUTONUMBER_SLOT structures in autonumber_get_used.
+
 2017-11-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_clipboard.c: Revise x_clipboard_init to eliminate the dynamic

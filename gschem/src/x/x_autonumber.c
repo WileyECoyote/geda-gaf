@@ -602,7 +602,8 @@ static void autonumber_get_used(GschemToplevel *w_current, AUTONUMBER_TEXT *auto
             else {
 
               sscanf(slot_str, " %d", &slotnr);
-              slot = g_new(AUTONUMBER_SLOT,1);
+
+              slot = geda_malloc(sizeof(AUTONUMBER_SLOT));
               slot->number = number;
               slot->slotnr = slotnr;
               slot->symbolname = geda_complex_get_filename (o_parent->complex);
