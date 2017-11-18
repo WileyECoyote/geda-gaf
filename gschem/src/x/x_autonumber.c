@@ -1609,7 +1609,7 @@ void autonumber_create_filter_options (GtkWidget       *Dialog,
 {
   GtkWidget *widget;
 
-  widget = geda_aligned_visible_label_new(_("<b>Filter:</b>"), 0, 0);
+  widget = geda_aligned_visible_bold_label_new(_("Filter:"), 0, 0);
   geda_label_widget_set_use_markup(widget, TRUE);
   gtk_box_pack_start ((GtkBox*)container, widget,  FALSE, FALSE, 5);
   gtk_misc_set_alignment ((GtkMisc*)widget, 0, 0.5);
@@ -1721,7 +1721,7 @@ GtkWidget *autonumber_create_dialog(GschemToplevel  *w_current,
   frame = g_object_new (GTK_TYPE_FRAME, "label", "", NULL);
   gtk_box_pack_start(GTK_BOX(main_vbox), frame, FALSE, FALSE, DEFAULT_WIDGET_SPACING);
 
-  label = geda_aligned_visible_label_new(_("<b>Scope</b>"), 0, 0);
+  label = geda_aligned_visible_bold_label_new (_("Scope"), 0, 0);
   geda_label_widget_set_use_markup(label, TRUE);
   gtk_frame_set_label_widget ((GtkFrame*)frame, label);
 

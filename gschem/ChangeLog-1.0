@@ -3,7 +3,10 @@
     * x/x_autonumber.c: Replace g_new with geda_malloc for allocation of
       AUTONUMBER_SLOT structures in functions autonumber_get_new_numbers
       and autonumber_get_used, and also to allocate AUTONUMBER_TEXT in
-      autonumber_init_state.
+      autonumber_init_state. Replace geda_aligned_visible_label_new with
+      geda_aligned_visible_bold_label_new to eliminate the bold tags in
+      the translatable strings in autonumber_create_filter_options and
+      autonumber_create_dialog.
 
 2017-11-17 Wiley E. Hill <wileyhill@gmail.com>
 
