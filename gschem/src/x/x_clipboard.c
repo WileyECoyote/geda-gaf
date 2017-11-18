@@ -186,11 +186,11 @@ query_usable_targets_cb (GtkClipboard *clip, GdkAtom *targets, int ntargets, voi
  *  advertising gEDA schematic data.
  *
  *  The check is performed asynchronously. When a response is
- *  recieved, the provided callback is called with a TRUE / FALSE
+ *  received, the provided callback is called with a TRUE / FALSE
  *  result.
  *
  * \param [in] w_current  The current GschemToplevel.
- * \param [in] callback   The callback to recieve the response.
+ * \param [in] callback   The callback to receive the response.
  * \param [in] userdata   Arbitrary data to pass the callback.
  */
 /*
