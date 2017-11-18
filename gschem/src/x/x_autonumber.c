@@ -199,13 +199,12 @@ struct autonumber_text_t {
   /*! \brief Pointer to the GschemToplevel struct */
   GschemToplevel *w_current;
 
-  /* variables used while autonumbering */
-  char * current_searchtext;
-  int root_page;       /* flag whether its the root page or not */
-  GList *used_numbers; /* list of used numbers */
-  GList *free_slots;   /* list of FREE_SLOT objects */
-  GList *used_slots;   /* list of USED_SLOT objects */
-
+  /*! \brief Variables used while autonumbering */
+  char  *current_searchtext;
+  GList *used_numbers;         /* list of used numbers */
+  GList *free_slots;           /* list of FREE_SLOT objects */
+  GList *used_slots;           /* list of USED_SLOT objects */
+  int    root_page;            /* flag whether its the root page or not */
 };
 
 typedef struct autonumber_slot_t AUTONUMBER_SLOT;
