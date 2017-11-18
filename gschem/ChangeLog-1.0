@@ -8,7 +8,8 @@
       the translatable strings in autonumber_create_filter_options and
       autonumber_create_dialog.
 
-    * src/x/x_clipboard.c: Add Doxygen group Clipboard-Module.
+    * src/x/x_clipboard.c: Add Doxygen group Clipboard-Module. Add notes
+      for mutex clip_got_answer_lock.
 
 2017-11-17 Wiley E. Hill <wileyhill@gmail.com>
 

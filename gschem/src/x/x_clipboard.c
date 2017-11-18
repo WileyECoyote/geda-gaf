@@ -37,7 +37,13 @@
  *  to and from the system clipboard using Gtk library routines.
  */
 
-/* Anonymous Static Mutex */
+/*!
+ * \internal Anonymous static mutex clip_got_answer_lock
+ * \par
+ * Mutex used to avoid collisions reading and writing got_answer
+ * from gtk_clipboard_get. This is required to avoid summiting
+ * queries while a query is in progress.
+ */
 static GedaMutex (clip_got_answer_lock);
 
 static bool got_answer;
