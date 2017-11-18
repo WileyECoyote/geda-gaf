@@ -692,7 +692,7 @@ static void autonumber_get_new_numbers(AUTONUMBER_TEXT *autotext,
 
   if (autotext->slotting && o_parent != NULL) {
 
-    freeslot = g_new(AUTONUMBER_SLOT,1);
+    freeslot = geda_malloc(sizeof(AUTONUMBER_SLOT));
     freeslot->symbolname = geda_complex_get_filename(o_parent->complex);
     freeslot->number = 0;
     freeslot->slotnr = 0;
@@ -758,7 +758,7 @@ static void autonumber_get_new_numbers(AUTONUMBER_TEXT *autotext,
         *slot = 1;
 
         for (i = 2; i <=numslots; i++) {
-          freeslot = g_new(AUTONUMBER_SLOT,1);
+          freeslot = geda_malloc(sizeof(AUTONUMBER_SLOT));
           freeslot->symbolname = geda_complex_get_filename(o_parent->complex);
           freeslot->number = new_number;
           freeslot->slotnr = i;
@@ -1349,7 +1349,7 @@ static AUTONUMBER_TEXT *autonumber_init_state(GschemToplevel *w_current)
 
   /* Default contents of the combo box history */
 
-  autotext = g_new(AUTONUMBER_TEXT, 1);
+  autotext = geda_malloc(sizeof(AUTONUMBER_TEXT));
 
   if(autotext==NULL) return NULL;
 
@@ -1858,7 +1858,7 @@ void autonumber_text_dialog(GschemToplevel *w_current)
 {
   static AUTONUMBER_TEXT *autotext = NULL;
 
-  if(autotext == NULL) {
+  if (autotext == NULL) {
     /* first call of this function, to allocate and init our structure */
     autotext=autonumber_init_state(w_current);
   }
