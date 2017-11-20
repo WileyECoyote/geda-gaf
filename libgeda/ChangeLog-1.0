@@ -1,7 +1,7 @@
 2017-11-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_attrib.c: Revise documentation for geda_attrib_object_
-    * string_get_name_value.
+    * string_get_name_value and add source comments.
 
 2017-11-15 Wiley E. Hill <wileyhill@gmail.com>
 
