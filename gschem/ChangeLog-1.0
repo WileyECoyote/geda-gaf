@@ -8,8 +8,9 @@
       new does not return a GtkTable we got a much bigger systemic problem
       and using dynamic validation after the fact is not going to fix this.
 
-    * src/object/o_slot.c: Eliminate the status variable in o_slot_end and
-      add the function name in debug output to identify the source.
+    * src/object/o_slot.c: Eliminate the status variable in o_slot_end, add
+      the function name in debug output to identify the source, revised to
+      geda_toplevel_get_current_page instead of accessing member directly.
 
 2017-11-18 Wiley E. Hill <wileyhill@gmail.com>
 
