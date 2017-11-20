@@ -367,23 +367,23 @@ static GtkWidget *x_attrib_option_menu_new(void)
 static void
 attrib_edit_dialog (GschemToplevel *w_current, GedaObject *object, int flag)
 {
-  GtkWidget  *ThisDialog = w_current->aewindow;
+  GtkWidget *ThisDialog = w_current->aewindow;
 
   if (!ThisDialog) {
 
-    AtkObject  *atk_name_obj;
-    AtkObject  *atk_value_obj;
+    AtkObject *atk_name_obj;
+    AtkObject *atk_value_obj;
 
-    GtkWidget  *alignment, *label, *vbox;
-    GtkWidget  *name_label, *value_label;
-    GtkWidget  *show_options;
-    GtkWidget  *attrib_name_combo_box;
-    GtkWidget  *attrib_name_entry;
-    GtkWidget  *value_entry;
-    GtkWidget  *visbutton;
-    GtkTable   *table;
+    GtkWidget *alignment, *label, *vbox;
+    GtkWidget *name_label, *value_label;
+    GtkWidget *show_options;
+    GtkWidget *attrib_name_combo_box;
+    GtkWidget *attrib_name_entry;
+    GtkWidget *value_entry;
+    GtkWidget *visbutton;
+    GtkTable  *table;
 
-    GList      *focus_chain; /* Aka Tab Order */
+    GList     *focus_chain; /* Aka Tab Order */
 
     GtkEntryCompletion *completion;
     GtkTreeModel       *tree_model;
