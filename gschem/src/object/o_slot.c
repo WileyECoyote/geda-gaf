@@ -96,7 +96,6 @@ void o_slot_start (GschemToplevel *w_current, GedaObject *object)
  */
 void o_slot_end(GschemToplevel *w_current, GedaObject *object, const char *string)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
   GedaObject   *o_slot;
   char         *slot_value;
   char         *numslots_value;
@@ -154,7 +153,7 @@ void o_slot_end(GschemToplevel *w_current, GedaObject *object, const char *strin
                                   LOWER_LEFT, 0, /* zero is angle */
                                   10, INVISIBLE, SHOW_NAME_VALUE, string);
 
-    page_current = geda_toplevel_get_current_page(toplevel);
+    page_current = geda_toplevel_get_current_page(w_current->toplevel);
 
     geda_struct_page_append_object (page_current, new_obj);
 

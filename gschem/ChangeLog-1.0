@@ -10,7 +10,8 @@
 
     * src/object/o_slot.c: Eliminate the status variable in o_slot_end, add
       the function name in debug output to identify the source, revised to
-      geda_toplevel_get_current_page instead of accessing member directly.
+      geda_toplevel_get_current_page instead of accessing member directly,
+      but use w_current->toplevel and eliminate GedaToplevel variable.
 
 2017-11-18 Wiley E. Hill <wileyhill@gmail.com>
 
