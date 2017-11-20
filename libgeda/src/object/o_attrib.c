@@ -1092,19 +1092,17 @@ void geda_attrib_object_set_value (GedaObject *attrib,
  * \brief Get name and value from an attribute 'name=value' string.
  * \par Function Description
  *  This function parses the character string \a string expected to be
- *  an attribute string of the form 'name=value'.
- *
- *  It returns TRUE if function was able to parse the string into the
- *  name and value parts of an attribute. Otherwise the function returns
- *  FALSE, in that case \a *name_ptr and \a *value_ptr are set to NULL.
- *
- *  \a name_ptr and/or \a value_ptr can be NULL.
- *  If not NULL, the caller should GEDA_FREE these returned strings.
+ *  an attribute string of the form 'name=value' and returns TRUE if
+ *  the function was able to parse the string into the name and value
+ *  components. Otherwise the function returns FALSE, in which case
+ *  \a name_ptr and \a value_ptr are both set to NULL. Note that either
+ *  \a name_ptr and/or \a value_ptr can be NULL.The caller should
+ *  GEDA_FREE returned strings.
  *
  * \note
  *  If you get an invalid attribute (improper) with a name and no
  *  value, then it is NOT an attribute. Also, there cannot be any
- *  spaces beside the equals sign
+ *  spaces adjacent the equals sign.
  *
  * \param [in]  string     String to split into name/value pair.
  * \param [out] name_ptr   The return location for the name, or NULL.

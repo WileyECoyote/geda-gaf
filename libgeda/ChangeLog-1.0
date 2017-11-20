@@ -1,3 +1,8 @@
+2017-11-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_attrib.c: Revise documentation for geda_attrib_object_
+    * string_get_name_value.
+
 2017-11-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gafrc: Set "log-time" to disabled by default, is niffty
