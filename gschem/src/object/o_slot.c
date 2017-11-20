@@ -96,10 +96,10 @@ void o_slot_start (GschemToplevel *w_current, GedaObject *object)
  */
 void o_slot_end(GschemToplevel *w_current, GedaObject *object, const char *string)
 {
-  GedaObject   *o_slot;
-  char         *slot_value;
-  char         *numslots_value;
-  char         *value = NULL;
+  GedaObject *o_slot;
+  char       *slot_value;
+  char       *numslots_value;
+  char       *value;
 
   int numslots;
   int new_slot_number;
