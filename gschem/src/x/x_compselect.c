@@ -2833,7 +2833,7 @@ compselect_create_behaviors_menu (void)
 
     group = geda_radio_menu_item_group (GEDA_RADIO_MENU_ITEM (menuitem));
 
-    geda_menu_append (GEDA_MENU (menu), menuitem);
+    geda_menu_append (menu, menuitem);
 
     GEDA_OBJECT_SET_DATA(menuitem, (void*)(long)types[i].behavior, "behaviors");
     gtk_widget_show (menuitem);

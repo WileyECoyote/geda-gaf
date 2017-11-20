@@ -4,7 +4,8 @@
       with macro GetEntryText in lib_model_filter_visible_func. Remove
       type checking cast from g_signal_connect "activate" in  compselect_
       build_view_menu. Replace geda_menu_shell_append with geda_menu_append
-      and remove GedaMenu type checking cast.
+      and remove GedaMenuShell type checking cast. Remove unneeded GedaMenu
+      type checking cast in compselect_create_behaviors_menu.
 
 2017-11-19 Wiley E. Hill <wileyhill@gmail.com>
 
