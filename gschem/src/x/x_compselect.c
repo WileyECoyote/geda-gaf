@@ -2264,8 +2264,8 @@ compselect_build_view_menu(Compselect *compselect, GtkWidget *treeview)
   menuitem = geda_menu_item_new_with_label(_(popup_items[RefreshView]));
   gtk_widget_set_tooltip_text (menuitem, _(popup_tips[RefreshView]));
   g_signal_connect(menuitem,"activate",
-                    G_CALLBACK (compselect_callback_refresh_views),
-                    compselect);
+                   G_CALLBACK (compselect_callback_refresh_views),
+                   compselect);
 
   geda_menu_shell_append(GEDA_MENU_SHELL(menu), menuitem);
 
@@ -2273,8 +2273,8 @@ compselect_build_view_menu(Compselect *compselect, GtkWidget *treeview)
   menuitem = geda_menu_item_new_with_label(_(popup_items[RescanLibs]));
   gtk_widget_set_tooltip_text (menuitem, _(popup_tips[RescanLibs]));
   g_signal_connect(menuitem,"activate",
-                    G_CALLBACK (compselect_callback_rescan_libraries),
-                    compselect);
+                   G_CALLBACK (compselect_callback_rescan_libraries),
+                   compselect);
 
   geda_menu_shell_append(GEDA_MENU_SHELL(menu), menuitem);
 
