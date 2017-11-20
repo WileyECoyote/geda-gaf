@@ -407,8 +407,8 @@ attrib_edit_dialog (GschemToplevel *w_current, GedaObject *object, int flag)
     const char *visibility_tip;
 
     name_entry_tip       = _("Enter or type an attribute name"); /* common */
-    name_label_text_add  = _("<b>Add Attribute</b>");
-    name_label_text_edit = _("<b>Edit Attribute</b>");
+    name_label_text_add  = _("Add Attribute");
+    name_label_text_edit = _("Edit Attribute");
 
     name_list_add_tip    = _("Select the name of the attribute to add");
     name_list_edit_tip   = _("Select the name of the attribute to edit");
@@ -444,7 +444,7 @@ attrib_edit_dialog (GschemToplevel *w_current, GedaObject *object, int flag)
     vbox = GTK_DIALOG(ThisDialog)->vbox;
 
     /* Main Body Label */
-    label = geda_aligned_label_new(name_label_text, 0, 0);
+    label = geda_aligned_bold_label_new(name_label_text, 0, 0);
     geda_label_set_use_markup (GEDA_LABEL(label), TRUE);
     geda_container_add (vbox, label);
 

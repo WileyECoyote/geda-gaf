@@ -1,3 +1,10 @@
+2017-11-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_edit_attrib.c: Remove markup tags from name_label_text_add
+      and name_label_text_edit, and replace geda_aligned_label_new with
+      geda_aligned_bold_label_new to eliminate the tags in translatable
+      strings.
+
 2017-11-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * x/x_autonumber.c: Replace g_new with geda_malloc for allocation of
