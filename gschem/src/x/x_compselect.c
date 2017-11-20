@@ -568,8 +568,9 @@ lib_model_filter_visible_func (GtkTreeModel *model,
        return TRUE;
      }
   }
-  else
+  else {
     return TRUE;
+  }
 
   /* If this is a source, only display if there are children */
   if (gtk_tree_model_iter_has_child (model, iter)) {
