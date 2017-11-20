@@ -374,13 +374,14 @@ attrib_edit_dialog (GschemToplevel *w_current, GedaObject *object, int flag)
     AtkObject  *atk_name_obj;
     AtkObject  *atk_value_obj;
 
-    GtkWidget  *vbox, *label, *table, *alignment;
+    GtkWidget  *alignment, *label, *vbox;
     GtkWidget  *name_label, *value_label;
     GtkWidget  *show_options;
     GtkWidget  *attrib_name_combo_box;
     GtkWidget  *attrib_name_entry;
     GtkWidget  *value_entry;
     GtkWidget  *visbutton;
+    GtkTable   *table;
 
     GList      *focus_chain; /* Aka Tab Order */
 
@@ -455,20 +456,20 @@ attrib_edit_dialog (GschemToplevel *w_current, GedaObject *object, int flag)
     gtk_box_pack_start(GTK_BOX(vbox), alignment, TRUE, TRUE, 0);
 
     /* Create the "body" table and add to the alignment widget */
-    table = gtk_table_new (3, 2, FALSE);
-    gtk_table_set_row_spacings(GTK_TABLE(table), DIALOG_V_SPACING);
-    gtk_table_set_col_spacings(GTK_TABLE(table), DIALOG_H_SPACING);
+    table = (GtkTable*)gtk_table_new (3, 2, FALSE);
+    gtk_table_set_row_spacings(table, DIALOG_V_SPACING);
+    gtk_table_set_col_spacings(table, DIALOG_H_SPACING);
     geda_container_add (alignment, (GtkWidget*)table);
 
     /* Name selection */
     name_label = geda_aligned_label_new (_("Name:"), 0, 0.5);
-    gtk_table_attach (GTK_TABLE (table), name_label, 0, 1, 0, 1,
+    gtk_table_attach (table, name_label, 0, 1, 0, 1,
                       (GtkAttachOptions) (GTK_FILL),
                       (GtkAttachOptions) (GTK_FILL), 0, 0);
 
     attrib_name_combo_box = geda_combo_box_text_new_with_entry ();
 
-    gtk_table_attach (GTK_TABLE (table), attrib_name_combo_box, 1, 2, 0, 1,
+    gtk_table_attach (table, attrib_name_combo_box, 1, 2, 0, 1,
                       (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
                       (GtkAttachOptions) (0), 0, 0);
     geda_combo_box_set_focus_on_click (GEDA_COMBO_BOX(attrib_name_combo_box), FALSE);
@@ -479,13 +480,13 @@ attrib_edit_dialog (GschemToplevel *w_current, GedaObject *object, int flag)
 
     /* Value entry */
     value_label = geda_aligned_label_new (_("Value:"), 0, 0.5);
-    gtk_table_attach (GTK_TABLE (table), value_label, 0, 1, 1, 2,
+    gtk_table_attach (table, value_label, 0, 1, 1, 2,
                       (GtkAttachOptions) (GTK_FILL),
                       (GtkAttachOptions) (0), 0, 0);
 
     value_entry = gtk_entry_new ();
 
-    gtk_table_attach (GTK_TABLE (table), value_entry, 1, 2, 1, 2,
+    gtk_table_attach (table, value_entry, 1, 2, 1, 2,
                       (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
                       (GtkAttachOptions) (0), 0, 0);
     gtk_entry_set_activates_default(GTK_ENTRY(value_entry), TRUE);
@@ -494,14 +495,14 @@ attrib_edit_dialog (GschemToplevel *w_current, GedaObject *object, int flag)
     /* Visibility */
     visbutton = gtk_check_button_new_with_label (_("Visible"));
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (visbutton), TRUE);
-    gtk_table_attach (GTK_TABLE (table), visbutton, 0, 1, 2, 3,
+    gtk_table_attach (table, visbutton, 0, 1, 2, 3,
                       (GtkAttachOptions) (GTK_FILL),
                       (GtkAttachOptions) (0), 0, 0);
     gtk_widget_set_tooltip_text (GTK_WIDGET(visbutton), visibility_tip);
 
     show_options = x_attrib_option_menu_new();
 
-    gtk_table_attach (GTK_TABLE (table), show_options, 1, 2, 2, 3,
+    gtk_table_attach (table, show_options, 1, 2, 2, 3,
                       (GtkAttachOptions) (GTK_FILL | GTK_EXPAND),
                       (GtkAttachOptions) (0), 0, 0);
 

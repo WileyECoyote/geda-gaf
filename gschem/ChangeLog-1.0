@@ -3,7 +3,10 @@
     * src/x/x_edit_attrib.c: Remove markup tags from name_label_text_add
       and name_label_text_edit, and replace geda_aligned_label_new with
       geda_aligned_bold_label_new to eliminate the tags in translatable
-      strings.
+      strings. Change the variable table in attrib_edit_dialog to type
+      GtkTable with cast and remove 8 type checking casts, if gtk_table_
+      new does not return a GtkTable we got a much bigger systemic problem
+      and using dynamic validation after the fact is not going to fix this.
 
 2017-11-18 Wiley E. Hill <wileyhill@gmail.com>
 
