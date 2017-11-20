@@ -128,7 +128,7 @@ void o_slot_end(GschemToplevel *w_current, GedaObject *object, const char *strin
   new_slot_number = atoi (value);
 
 #if DEBUG
-  printf ("numslots = %d\n", numslots);
+  printf ("%s: new_slot_number=%d, numslots=%d\n", __func__, new_slot_number, numslots);
 #endif
 
   if (new_slot_number > numslots || new_slot_number <=0 ) {
