@@ -57,6 +57,7 @@ void x_dialog_edit_slot_response(GtkWidget      *ThisDialog, int response,
       gtk_widget_destroy(ThisDialog);
       i_status_set_state(w_current, SELECT);
       break;
+
     case GEDA_RESPONSE_APPLY:
       slotspin = GEDA_OBJECT_GET_DATA (ThisDialog, IDS_SLOT_EDIT);
       slot     = GET_SPIN_IVALUE(slotspin);
@@ -137,7 +138,6 @@ x_dialog_slot_edit_update_selection (GschemToplevel *w_current, GedaObject *obje
       gtk_widget_set_sensitive (slotspin, FALSE);
     }
   }
-
 }
 
 /*! \brief Create the slot entry dialog
@@ -194,6 +194,7 @@ x_dialog_edit_slot (GschemToplevel *w_current, const char *slots, const char *sl
     if (slots != NULL) {
       SetEntryText(textslots, slots);
     }
+
     gtk_entry_set_alignment ((GtkEntry*)textslots, 1.0);
     gtk_editable_set_editable (GTK_EDITABLE(textslots), FALSE);
     gtk_widget_set_sensitive (GTK_WIDGET(textslots), FALSE);
@@ -244,7 +245,7 @@ x_dialog_edit_slot (GschemToplevel *w_current, const char *slots, const char *sl
     x_dialog_slot_edit_update_selection (w_current, NULL);
     gtk_window_present (GTK_WINDOW(ThisDialog));
   }
-
 }
+
 /******************** End of Slot Edit dialog box ***********************/
 /** @} End Group Edit-Slots-Dialog */
