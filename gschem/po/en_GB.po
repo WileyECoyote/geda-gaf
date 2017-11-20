@@ -2154,9 +2154,8 @@ msgid "Row"
 msgstr ""
 
 #: gschem/src/x/x_edit_array.c:987 gschem/src/x/x_edit_array.c:1020
-#, fuzzy
 msgid "Offset"
-msgstr "Net Mode"
+msgstr "Offset"
 
 #: gschem/src/x/x_edit_array.c:997
 msgid "Column"
@@ -2692,9 +2691,8 @@ msgid "Slot number:"
 msgstr "Edit slot number:"
 
 #: gschem/src/x/x_edit_slot.c:216
-#, fuzzy
 msgid "Set the active slot number"
-msgstr "Set the sequence number"
+msgstr "Set the active slot number"
 
 #: gschem/src/x/x_edit_text.c:64 gschem/src/x/x_edit_text.c:473
 msgid "Text Content"
