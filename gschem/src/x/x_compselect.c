@@ -2329,7 +2329,7 @@ compselect_build_view_menu(Compselect *compselect, GtkWidget *treeview)
 
   menuitem = geda_image_menu_item_new_with_label (_(popup_items[ToolTipsOn]));
   gtk_widget_set_tooltip_text (menuitem, _(popup_tips[ToolTipsOn]));
-  g_signal_connect (G_OBJECT (menuitem), "activate",
+  g_signal_connect (menuitem, "activate",
                     G_CALLBACK (compselect_menu_tooltips_on),
                     compselect);
   geda_menu_shell_append (GEDA_MENU_SHELL (submenu), menuitem);
