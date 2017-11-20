@@ -1,3 +1,8 @@
+2017-11-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_compselect.c: Update copyright, replace gtk_entry_get_text
+      with macro GetEntryText in lib_model_filter_visible_func.
+
 2017-11-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_edit_attrib.c: Remove markup tags from name_label_text_add

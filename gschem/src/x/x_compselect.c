@@ -3,8 +3,8 @@
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 1998-2015 Ales Hvezda
- * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2017 Ales Hvezda
+ * Copyright (C) 1998-2017 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -287,8 +287,8 @@ x_compselect_callback_response(GtkDialog *dialog, int response, void *user_data)
  */
 void x_compselect_open (GschemToplevel *w_current)
 {
-  GtkWidget   *ThisDialog;
-  Compselect  *ActiveDialog;
+  GtkWidget  *ThisDialog;
+  Compselect *ActiveDialog;
 
   ThisDialog = w_current->cswindow;
 
@@ -563,7 +563,7 @@ lib_model_filter_visible_func (GtkTreeModel *model,
 
   if (GTK_IS_ENTRY(compselect->entry_filter)) {
 
-     text = gtk_entry_get_text (compselect->entry_filter);
+     text = GetEntryText (compselect->entry_filter);
      if (geda_strequal (text, "")) {
        return TRUE;
      }
