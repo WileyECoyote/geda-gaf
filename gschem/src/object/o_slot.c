@@ -104,12 +104,11 @@ void o_slot_end(GschemToplevel *w_current, GedaObject *object, const char *strin
 
   int numslots;
   int new_slot_number;
-  int status;
 
   g_return_if_fail (object != NULL);
 
-  status = geda_attrib_string_get_name_value (string, NULL, &value);
-  if (!status) {
+  /* Retrieve the attribute value or abort */
+  if (!geda_attrib_string_get_name_value (string, NULL, &value)) {
     u_log_message (_("Slot attribute malformed\n"));
     return;
   }
