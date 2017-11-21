@@ -1,5 +1,8 @@
 2017-11-21 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_autonumber.c: Reformat documentation blocks, minor updates
+      to format tags.
+
     * src/x/x_compselect.c: Translate the strings for popup items and
       associated tool-tips.
 
