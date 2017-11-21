@@ -287,8 +287,8 @@ x_compselect_callback_response(GtkDialog *dialog, int response, void *user_data)
  */
 void x_compselect_open (GschemToplevel *w_current)
 {
-  GtkWidget  *ThisDialog;
-  Compselect *ActiveDialog;
+  GtkWidget   *ThisDialog;
+  Compselect  *ActiveDialog;
 
   ThisDialog = w_current->cswindow;
 
