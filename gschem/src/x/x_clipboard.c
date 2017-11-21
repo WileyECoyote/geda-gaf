@@ -3,7 +3,7 @@
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2017 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -77,7 +77,7 @@ struct query_usable {
 static void
 clip_handle_owner_change (GtkClipboard *cb, GdkEvent *event, void *user_data)
 {
-  GschemToplevel *w_current = (GschemToplevel *) user_data;
+  GschemToplevel *w_current = (GschemToplevel*) user_data;
 
   i_status_update_sensitivities (w_current);
 }
@@ -91,7 +91,7 @@ static void clip_get (GtkClipboard     *cb,
   GdkAtom         type;
   char           *buf;
 
-  w_current = (GschemToplevel *) user_data_or_owner;
+  w_current = (GschemToplevel*) user_data_or_owner;
 
   type = gdk_atom_intern (MIME_TYPE_SCHEMATIC, FALSE);
 

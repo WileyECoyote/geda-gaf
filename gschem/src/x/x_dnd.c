@@ -5,8 +5,8 @@
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 2013-2016 Wiley Edward Hill
- * Copyright (C) 2013-2016 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2013-2017 Wiley Edward Hill
+ * Copyright (C) 2013-2017 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -324,7 +324,7 @@ x_dnd_send_string (GschemToplevel *w_current, GdkDragContext   *context,
                    GtkSelectionData *selection)
 {
   GedaObject *object;
-  x_dnd_str_data_drag_func  dnd_str_data_func;
+  x_dnd_str_data_drag_func dnd_str_data_func;
 
   dnd_str_data_func = x_dnd_send_string_nil;
   object = o_select_return_first_object(w_current);
