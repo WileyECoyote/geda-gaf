@@ -122,27 +122,27 @@ typedef enum  { ExpandFolder,
 
 }  IDS_CS_Popup_items; /* Enumerators to reference the string below: */
 
-static char *popup_items[]={ "Open",
-                             "Open all",
-                             "Close",
-                             "Refresh",
-                             "Rescan",
-                             "Styles",
-                             "Tooltips",
-                             "On",
-                             "Off",
+static char *popup_items[]={ N_("Open"),
+                             N_("Open all"),
+                             N_("Close"),
+                             N_("Refresh"),
+                             N_("Rescan"),
+                             N_("Styles"),
+                             N_("Tooltips"),
+                             N_("On"),
+                             N_("Off"),
                              NULL
 };
 
-static char *popup_tips[]={  "Expand one level",
-                             "Expand all sub-folders",
-                             "Close this folder",
-                             "Refresh this view",
-                             "Rescan the libraries",
-                             "Set styles ooptions",
-                             "Tooltip settings",
-                             "Enable tooltips",
-                             "Disable tooltips",
+static char *popup_tips[]={  N_("Expand one level"),
+                             N_("Expand all sub-folders"),
+                             N_("Close this folder"),
+                             N_("Refresh this view"),
+                             N_("Rescan the libraries"),
+                             N_("Set styles ooptions"),
+                             N_("Tooltip settings"),
+                             N_("Enable tooltips"),
+                             N_("Disable tooltips"),
                              NULL
 };
 
@@ -569,7 +569,7 @@ lib_model_filter_visible_func (GtkTreeModel *model,
      }
   }
   else {
-    return TRUE;
+    return TRUE;     /* Isn't this an error condition ? */
   }
 
   /* If this is a source, only display if there are children */

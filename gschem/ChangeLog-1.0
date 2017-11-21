@@ -1,3 +1,8 @@
+2017-11-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_compselect.c: Translate the strings for popup items and
+      associated tool-tips.
+
 2017-11-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_compselect.c: Update copyright, replace gtk_entry_get_text
@@ -5,7 +10,8 @@
       type checking cast from g_signal_connect "activate" in  compselect_
       build_view_menu. Replace geda_menu_shell_append with geda_menu_append
       and remove GedaMenuShell type checking cast. Remove unneeded GedaMenu
-      type checking cast in compselect_create_behaviors_menu.
+      type checking cast in compselect_create_behaviors_menu. Translate
+      the string for popup items and associated tool-tips.
 
 2017-11-19 Wiley E. Hill <wileyhill@gmail.com>
 
