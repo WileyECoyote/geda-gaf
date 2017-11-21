@@ -374,7 +374,7 @@ const char *x_dnd_send_objects (GschemToplevel   *w_current,
 /*!
  * \brief When Received String filename with SYM suffix
  * \par Function Description
- *  Called by x_dnd_receive_string after determining the recieved
+ *  Called by x_dnd_receive_string after determining the received
  *  string ends with ".sym".
  *
  * \remarks If the symbols are not in the library search path then symbols
