@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2015 Ales Hvezda
- * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2017 Ales Hvezda
+ * Copyright (C) 1998-2017 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -166,8 +166,7 @@ geda_object_notify_change_remove (Page             *page,
  *
  * \param page #Page structure to remove handlers from.
  */
-void
-geda_object_notify_change_remove_all (Page *page)
+void geda_object_notify_change_remove_all (Page *page)
 {
   if (page->change_notify_funcs) {
     geda_notify_list_remove_all(page->change_notify_funcs);
@@ -179,13 +178,12 @@ geda_object_notify_change_remove_all (Page *page)
  * \par Function Description
  *  Calls each pre-change callback function registered with a #Page
  *  to notify listeners that \a object is about to be modified.  All
- *  libgeda functions that modify #GedaObject structures should call this
- *  just before making a change to an #GedaObject.
+ *  libgeda functions that modify #GedaObject structures should call
+ *  this just before making a change to an #GedaObject.
  *
  * \param object   #GedaObject structure to emit notifications for.
  */
-void
-geda_object_notify_emit_pre_change (GedaObject *object)
+void geda_object_notify_emit_pre_change (GedaObject *object)
 {
   g_return_if_fail(GEDA_IS_OBJECT(object));
 
@@ -215,14 +213,13 @@ geda_object_notify_emit_pre_change (GedaObject *object)
  * \brief Emit an object change notification
  * \par Function Description
  *  Calls each change callback function registered with #Page to
- *  notify listeners that \a object has just been modified.  All
- *  libgeda functions that modify #GedaObject structures should call
- *  this just after making a change to an #GedaObject.
+ *  notify listeners that \a object has just been modified. All
+ *  libgeda functions that modify #GedaObject structures should
+ *  call this just after making a change to an #GedaObject.
  *
- * \param object   #GedaObject structure to emit notifications for.
+ * \param object #GedaObject structure to emit notifications for.
  */
-void
-geda_object_notify_emit_change (GedaObject *object)
+void geda_object_notify_emit_change (GedaObject *object)
 {
   g_return_if_fail(GEDA_IS_OBJECT(object));
 
