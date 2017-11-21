@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-11-19 11:16-0600\n"
+"POT-Creation-Date: 2017-11-21 04:09-0600\n"
 "PO-Revision-Date: 2012-01-27 14:22+0000\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -748,10 +748,12 @@ msgid "Magnetic net mode is OFF\n"
 msgstr ""
 
 #: gschem/src/iface/i_command.c:4461 gschem/src/iface/i_command.c:4503
+#: gschem/src/x/x_compselect.c:133
 msgid "Off"
 msgstr ""
 
 #: gschem/src/iface/i_command.c:4464 gschem/src/iface/i_command.c:4506
+#: gschem/src/x/x_compselect.c:132
 msgid "On"
 msgstr ""
 
@@ -1215,19 +1217,19 @@ msgstr ""
 msgid "Buffer is empty, nothing to place\n"
 msgstr ""
 
-#: gschem/src/object/o_slot.c:113
+#: gschem/src/object/o_slot.c:111
 msgid "Slot attribute malformed\n"
 msgstr ""
 
-#: gschem/src/object/o_slot.c:120
+#: gschem/src/object/o_slot.c:118
 msgid "numslots attribute missing\n"
 msgstr ""
 
-#: gschem/src/object/o_slot.c:121
+#: gschem/src/object/o_slot.c:119
 msgid "Slotting not allowed for this component\n"
 msgstr ""
 
-#: gschem/src/object/o_slot.c:136
+#: gschem/src/object/o_slot.c:134
 #, c-format
 msgid "New slot number [%d], is out of range\n"
 msgstr ""
@@ -1276,7 +1278,7 @@ msgstr ""
 msgid "Undo failed"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:600
+#: gschem/src/x/x_autonumber.c:599
 msgid ""
 "slotted object without slot attribute may cause problems when autonumbering "
 "slots\n"
@@ -1317,7 +1319,7 @@ msgid "File order"
 msgstr ""
 
 #: gschem/src/x/x_autonumber.c:1612
-msgid "<b>Filter:</b>"
+msgid "Filter:"
 msgstr ""
 
 #: gschem/src/x/x_autonumber.c:1653
@@ -1337,7 +1339,7 @@ msgid "Autonumber text"
 msgstr ""
 
 #: gschem/src/x/x_autonumber.c:1724
-msgid "<b>Scope</b>"
+msgid "Scope"
 msgstr ""
 
 # Options
@@ -1345,137 +1347,200 @@ msgstr ""
 msgid "Options"
 msgstr "Seçenekler"
 
-#: gschem/src/x/x_clipboard.c:318
+#: gschem/src/x/x_clipboard.c:330
 msgid "Invalid schematic on clipboard"
 msgstr ""
 
-#: gschem/src/x/x_clipboard.c:319
+#: gschem/src/x/x_clipboard.c:331
 msgid "An error occurred while inserting clipboard data"
 msgstr ""
 
-#: gschem/src/x/x_clipboard.c:320
+#: gschem/src/x/x_clipboard.c:332
 msgid "Clipboard Insertion Failed"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:1254
+#: gschem/src/x/x_compselect.c:125 gschem/src/x/x_menus.c:2034
+msgid "Open"
+msgstr ""
+
+# Open Page
+#: gschem/src/x/x_compselect.c:126
+#, fuzzy
+msgid "Open all"
+msgstr "Sayfayı Aç..."
+
+# Close
+#: gschem/src/x/x_compselect.c:127 gschem/src/x/x_menus.c:149
+msgid "Close"
+msgstr "Kapat"
+
+#: gschem/src/x/x_compselect.c:128
+msgid "Refresh"
+msgstr ""
+
+#: gschem/src/x/x_compselect.c:129 gschem/src/x/x_compselect.c:3034
+msgid "Rescan"
+msgstr ""
+
+#: gschem/src/x/x_compselect.c:130
+msgid "Styles"
+msgstr ""
+
+#: gschem/src/x/x_compselect.c:131
+msgid "Tooltips"
+msgstr ""
+
+#: gschem/src/x/x_compselect.c:137
+msgid "Expand one level"
+msgstr ""
+
+#: gschem/src/x/x_compselect.c:138
+msgid "Expand all sub-folders"
+msgstr ""
+
+#: gschem/src/x/x_compselect.c:139
+msgid "Close this folder"
+msgstr ""
+
+#: gschem/src/x/x_compselect.c:140
+msgid "Refresh this view"
+msgstr ""
+
+#: gschem/src/x/x_compselect.c:141
+msgid "Rescan the libraries"
+msgstr ""
+
+#: gschem/src/x/x_compselect.c:142
+msgid "Set styles ooptions"
+msgstr ""
+
+#: gschem/src/x/x_compselect.c:143
+msgid "Tooltip settings"
+msgstr ""
+
+#: gschem/src/x/x_compselect.c:144
+msgid "Enable tooltips"
+msgstr ""
+
+#: gschem/src/x/x_compselect.c:145
+msgid "Disable tooltips"
+msgstr ""
+
+#: gschem/src/x/x_compselect.c:1255
 msgid "Default is to reference the component"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:1258
+#: gschem/src/x/x_compselect.c:1259
 msgid "Embed component in schematic"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:1262
+#: gschem/src/x/x_compselect.c:1263
 msgid "Include component as individual objects"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2099 gschem/src/x/x_compselect.c:2478
+#: gschem/src/x/x_compselect.c:2100 gschem/src/x/x_compselect.c:2479
 msgid "Components"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2555 gschem/src/x/x_confirm_close.c:297
+#: gschem/src/x/x_compselect.c:2556 gschem/src/x/x_confirm_close.c:297
 #: gschem/src/x/x_multiattrib.c:2034 gschem/src/x/x_multiattrib.c:2040
 msgid "Name"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2567 gschem/src/x/x_multiattrib.c:2036
+#: gschem/src/x/x_compselect.c:2568 gschem/src/x/x_multiattrib.c:2036
 #: gschem/src/x/x_multiattrib.c:2042
 msgid "Value"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2748 gschem/src/x/x_dialog.c:1773
+#: gschem/src/x/x_compselect.c:2749 gschem/src/x/x_dialog.c:1773
 msgid "None"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2749
+#: gschem/src/x/x_compselect.c:2750
 msgid "Style 1"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2750
+#: gschem/src/x/x_compselect.c:2751
 msgid "Style 2"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2751
+#: gschem/src/x/x_compselect.c:2752
 msgid "Style 3"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2752
+#: gschem/src/x/x_compselect.c:2753
 msgid "Style 4"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2753
+#: gschem/src/x/x_compselect.c:2754
 msgid "Style 5"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2754
+#: gschem/src/x/x_compselect.c:2755
 msgid "Style 6"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2755
+#: gschem/src/x/x_compselect.c:2756
 msgid "Style 7"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2756
+#: gschem/src/x/x_compselect.c:2757
 msgid "Style 8"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2757
+#: gschem/src/x/x_compselect.c:2758
 msgid "All"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2793
+#: gschem/src/x/x_compselect.c:2794
 msgid "Enable all styles"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2794
+#: gschem/src/x/x_compselect.c:2795
 msgid "Uncheck all styles"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2818
+#: gschem/src/x/x_compselect.c:2819
 msgid "Reference"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2819
+#: gschem/src/x/x_compselect.c:2820
 msgid "Embed"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2820
+#: gschem/src/x/x_compselect.c:2821
 msgid "Include"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3033
-msgid "Rescan"
-msgstr ""
-
-#: gschem/src/x/x_compselect.c:3041
+#: gschem/src/x/x_compselect.c:3042
 msgid "Rescan component libraries"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3043
+#: gschem/src/x/x_compselect.c:3044
 msgid "Set style filter"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3246 gschem/src/x/x_fileselect.c:123
+#: gschem/src/x/x_compselect.c:3247 gschem/src/x/x_fileselect.c:123
 msgid "Preview"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3282
+#: gschem/src/x/x_compselect.c:3283
 msgid "Attributes"
 msgstr "Öznitelikler"
 
-#: gschem/src/x/x_compselect.c:3511
+#: gschem/src/x/x_compselect.c:3512
 msgid "active view"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3512
+#: gschem/src/x/x_compselect.c:3513
 msgid "Active sheet of the notebook"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3523
+#: gschem/src/x/x_compselect.c:3524
 msgid "Focus Filter"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3524
+#: gschem/src/x/x_compselect.c:3525
 msgid ""
 "When true, initial focus will be the filter entry, otherwise the Component "
 "Tree"
@@ -2275,61 +2340,64 @@ msgstr ""
 msgid "Show Name & Value"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:409
+#: gschem/src/x/x_edit_attrib.c:410
 msgid "Enter or type an attribute name"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:410
-msgid "<b>Add Attribute</b>"
+#: gschem/src/x/x_edit_attrib.c:411 gschem/src/x/x_multiattrib.c:2228
+#: gschem/scheme/gschem/builtins.scm:350
+msgid "Add Attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:411
-msgid "<b>Edit Attribute</b>"
-msgstr ""
+# Attribute
+#: gschem/src/x/x_edit_attrib.c:412
+#, fuzzy
+msgid "Edit Attribute"
+msgstr "nitelik"
 
-#: gschem/src/x/x_edit_attrib.c:413
+#: gschem/src/x/x_edit_attrib.c:414
 msgid "Select the name of the attribute to add"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:414
+#: gschem/src/x/x_edit_attrib.c:415
 msgid "Select the name of the attribute to edit"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:416
+#: gschem/src/x/x_edit_attrib.c:417
 msgid "Input a value for the new attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:417
+#: gschem/src/x/x_edit_attrib.c:418
 msgid "Input or edit the value of the attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:419
+#: gschem/src/x/x_edit_attrib.c:420
 msgid "Enable or disable visibility of the attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:436
+#: gschem/src/x/x_edit_attrib.c:437
 msgid "Single Attribute Editor"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:464 gschem/src/x/x_multiattrib.c:2245
+#: gschem/src/x/x_edit_attrib.c:465 gschem/src/x/x_multiattrib.c:2245
 msgid "Name:"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:481 gschem/src/x/x_multiattrib.c:2264
+#: gschem/src/x/x_edit_attrib.c:482 gschem/src/x/x_multiattrib.c:2264
 msgid "Value:"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:495 gschem/src/x/x_multiattrib.c:2038
+#: gschem/src/x/x_edit_attrib.c:496 gschem/src/x/x_multiattrib.c:2038
 #: gschem/src/x/x_multiattrib.c:2320
 msgid "Visible"
 msgstr ""
 
 # Attribute Name List
-#: gschem/src/x/x_edit_attrib.c:524
+#: gschem/src/x/x_edit_attrib.c:525
 msgid "Attribute Name List"
 msgstr "Öznitelik Adı Listesi"
 
-#: gschem/src/x/x_edit_attrib.c:528
+#: gschem/src/x/x_edit_attrib.c:529
 msgid "Attribute Value Entry"
 msgstr ""
 
@@ -2782,12 +2850,12 @@ msgid "Number of slots:"
 msgstr "Yuva sayısı:"
 
 # Slot number
-#: gschem/src/x/x_edit_slot.c:209
+#: gschem/src/x/x_edit_slot.c:210
 msgid "Slot number:"
 msgstr "Slot numarası:"
 
 # Sequence Number
-#: gschem/src/x/x_edit_slot.c:216
+#: gschem/src/x/x_edit_slot.c:217
 #, fuzzy
 msgid "Set the active slot number"
 msgstr "Sıra numarası"
@@ -3368,11 +3436,6 @@ msgstr "Pano yapıştır"
 msgid "Paste the contents of the system clipboard"
 msgstr ""
 
-# Close
-#: gschem/src/x/x_menus.c:149
-msgid "Close"
-msgstr "Kapat"
-
 #: gschem/src/x/x_menus.c:149
 msgid "Close the current path"
 msgstr ""
@@ -3575,10 +3638,6 @@ msgstr ""
 msgid "Could not open file"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:2034
-msgid "Open"
-msgstr ""
-
 #: gschem/src/x/x_menus.c:2041
 msgid "Remove"
 msgstr ""
@@ -3647,10 +3706,6 @@ msgstr "Hepsine kopyala"
 
 #: gschem/src/x/x_multiattrib.c:2084 gschem/src/x/x_multiattrib.c:2612
 msgid "Edit Attributes"
-msgstr ""
-
-#: gschem/src/x/x_multiattrib.c:2228 gschem/scheme/gschem/builtins.scm:350
-msgid "Add Attribute"
 msgstr ""
 
 #: gschem/src/x/x_multiattrib.c:2279
