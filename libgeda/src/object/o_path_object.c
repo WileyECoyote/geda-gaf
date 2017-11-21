@@ -1,8 +1,8 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
  *
- * Copyright (C) 1998-2015 Ales Hvezda
- * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2017 Ales Hvezda
+ * Copyright (C) 1998-2017 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -68,8 +68,7 @@ geda_path_object_error(const char *func, const void *object)
  *
  * \returns TRUE is the results are valid, FALSE if \a object was not a GedaPath.
  */
-bool
-geda_path_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
+bool geda_path_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
 {
   GedaPoint   target;
   bool    result;
@@ -321,8 +320,7 @@ geda_path_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, i
  *
  * \return TRUE if successfully determined the position, FALSE otherwise
  */
-bool
-geda_path_object_get_position (GedaObject *object, int *x, int *y)
+bool geda_path_object_get_position (GedaObject *object, int *x, int *y)
 {
   if (GEDA_IS_PATH(object)) {
 
@@ -363,8 +361,7 @@ geda_path_object_get_position (GedaObject *object, int *x, int *y)
  *
  * \return A pointer to the new end of the object list.
  */
-GedaObject*
-geda_path_object_new (int color, const char *path_string)
+GedaObject *geda_path_object_new (int color, const char *path_string)
 {
   GedaObject *new_obj;
   GedaPath   *path;
@@ -388,8 +385,7 @@ geda_path_object_new (int color, const char *path_string)
  *
  * \return A pointer to the new GedaPath object.
  */
-GedaObject*
-geda_path_object_new_from_polygon (GArray *points, int color)
+GedaObject *geda_path_object_new_from_polygon (GArray *points, int color)
 {
   GedaObject *new_obj;
   GedaPath   *path;
@@ -447,8 +443,7 @@ geda_path_object_new_from_polygon (GArray *points, int color)
  *
  * \return A pointer to the new end of the object list.
  */
-GedaObject*
-geda_path_object_new_take_path (int color, GedaPath *path_data)
+GedaObject *geda_path_object_new_take_path (int color, GedaPath *path_data)
 {
   GedaObject *new_obj;
   GedaPath   *path;
@@ -487,8 +482,7 @@ geda_path_object_new_take_path (int color, GedaPath *path_data)
  *
  * \return A new pointer to the end of the object list.
  */
-GedaObject*
-geda_path_object_copy (const GedaObject *o_current)
+GedaObject *geda_path_object_copy (const GedaObject *o_current)
 {
   if (GEDA_IS_PATH(o_current)) {
 
@@ -543,8 +537,7 @@ geda_path_object_copy (const GedaObject *o_current)
  *
  * \return A pointer to the new path object, or NULL on error;
  */
-GedaObject*
-geda_path_object_read (const char *first_line,
+GedaObject *geda_path_object_read (const char *first_line,
                                    TextBuffer  *tb,
                                    unsigned int release_ver,
                                    unsigned int fileformat_ver,
@@ -657,8 +650,7 @@ geda_path_object_read (const char *first_line,
  *
  * \note Caller should GEDA_FREE returned character string.
  */
-char*
-geda_path_object_to_buffer (GedaObject *object)
+char *geda_path_object_to_buffer (GedaObject *object)
 {
   int line_width, line_space, line_length;
   char *buf;
@@ -711,8 +703,7 @@ geda_path_object_to_buffer (GedaObject *object)
  * \param [in]     y         New y coordinate for the control point
  * \param [in]     whichone  Which control point is being modified
  */
-void
-geda_path_object_modify (GedaObject *object, int x, int y, int whichone)
+void geda_path_object_modify (GedaObject *object, int x, int y, int whichone)
 {
   if (GEDA_IS_PATH(object)) {
 
@@ -767,8 +758,7 @@ geda_path_object_modify (GedaObject *object, int x, int y, int whichone)
  * \param [in]     center_x  Origin x coordinate.
  * \param [in]     center_y  Origin y coordinate.
  */
-void
-geda_path_object_mirror (GedaObject *object, int center_x, int center_y)
+void geda_path_object_mirror (GedaObject *object, int center_x, int center_y)
 {
   if (GEDA_IS_PATH(object)) {
 
@@ -814,8 +804,7 @@ geda_path_object_mirror (GedaObject *object, int center_x, int center_y)
  * \param [in]     center_y  Rotation center y coordinate
  * \param [in]     angle     Rotation angle in degrees (See note below).
  */
-void
-geda_path_object_rotate (GedaObject *object, int center_x, int center_y, int angle)
+void geda_path_object_rotate (GedaObject *object, int center_x, int center_y, int angle)
 {
   if (GEDA_IS_PATH(object)) {
 
@@ -864,8 +853,7 @@ geda_path_object_rotate (GedaObject *object, int center_x, int center_y, int ang
  * \param [in]     dx         x distance to move
  * \param [in]     dy         y distance to move.
  */
-void
-geda_path_object_translate (GedaObject *object, int dx, int dy)
+void geda_path_object_translate (GedaObject *object, int dx, int dy)
 {
   if (GEDA_IS_PATH(object)) {
 
@@ -1132,7 +1120,6 @@ geda_path_object_print_filled (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
   fprintf (fp, " fill\n");
 }
 
-
 /*!
  * \brief Print a hatch pattern Path to Postscript document.
  * \par Function Description
@@ -1219,7 +1206,6 @@ geda_path_object_print_mesh (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
   geda_path_object_print_hatch (toplevel, fp, path, fill_width,
                                 angle2, pitch2, -1, -1, origin_x, origin_y);
 }
-
 
 /*!
  * \brief Print Path to Postscript document.
@@ -1392,8 +1378,7 @@ geda_path_object_print(GedaToplevel *toplevel, FILE *fp,
  * \return The shortest distance from the object to the point. With an
  *         invalid parameter, this function returns G_MAXDOUBLE.
  */
-double
-geda_path_object_shortest_distance (GedaObject *object, int x, int y, int force_solid)
+double geda_path_object_shortest_distance (GedaObject *object, int x, int y, int force_solid)
 {
   if (GEDA_IS_PATH(object)) {
 
