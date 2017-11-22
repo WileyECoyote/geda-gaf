@@ -3,6 +3,8 @@
     * svg/geda_find_attribute_64x64.svg: Remove standalone attribute and other
       extraneous bloat.
 
+    * bitmaps/geda-find-attribute.png: Add image file for icon.
+    * 
 2017-11-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * bitmaps/svg/nets.svg: Remove standalone attribute and other extraneous
