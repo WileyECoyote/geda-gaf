@@ -1,5 +1,8 @@
 2017-11-22 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_entry.c: Replace G_TYPE_FROM_CLASS macro with
+      geda_menu_get_type for signal "process-entry".
+
     * src/widgets/geda_menu.c: Replace G_OBJECT_CLASS_TYPE macro with
       geda_menu_get_type for signal "move-scroll".
 

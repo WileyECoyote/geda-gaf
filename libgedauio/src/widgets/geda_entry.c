@@ -710,7 +710,7 @@ geda_entry_class_init(void *klass, void *class_data)
    * The default bindings for this signal are all forms of the Enter key.
    */
   signals[PROCESS_ENTRY] = g_signal_new ("process-entry",
-                                    G_TYPE_FROM_CLASS (gobject_class),
+                                    geda_entry_get_type(),
                                     G_SIGNAL_RUN_FIRST | G_SIGNAL_ACTION,
                                     G_STRUCT_OFFSET (GedaEntryClass, activate),
                                     NULL, NULL,
@@ -827,8 +827,7 @@ geda_entry_instance_init(GTypeInstance *instance, void *g_class)
  *
  *  \return GedaType identifier associated with GedaEntry.
  */
-GedaType
-geda_entry_get_type (void)
+GedaType geda_entry_get_type (void)
 {
   static volatile GedaType geda_entry_type = 0;
 
@@ -866,8 +865,7 @@ geda_entry_get_type (void)
  *
  * \return TRUE if \a entry is a valid GedaEntry
  */
-bool
-is_a_geda_entry (GedaEntry *entry)
+bool is_a_geda_entry (GedaEntry *entry)
 {
   if ((entry != NULL) && (entry_hash_table != NULL)) {
     return g_hash_table_lookup(entry_hash_table, entry) ? TRUE : FALSE;
