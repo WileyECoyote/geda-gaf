@@ -2,6 +2,8 @@
 
     * po/zh_CN.po: Update Chinese simplified translations.
 
+    * po/zh_TW.po: Update Chinese traditional translations.
+
     * src/x/x_icons.c: Add "geda-find-attribute" to IDS_GEDA_ICONS table.
 
 2017-11-21 Wiley E. Hill <wileyhill@gmail.com>

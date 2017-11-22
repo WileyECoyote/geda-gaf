@@ -138,11 +138,10 @@ msgstr "檢索主窗口幾何.\n"
 msgid "Auto-Restore"
 msgstr ""
 
-# Retrieving main window geometry
+# Automatically restore the main window geometry
 #: gschem/src/base/gschem_main_window.c:391
-#, fuzzy
 msgid "Automatically restore the main window geometry"
-msgstr "檢索主窗口幾何.\n"
+msgstr "自動恢復主窗口幾何"
 
 #: gschem/src/base/gschem_page_view.c:250
 #: gschem/src/base/gschem_page_view.c:251
@@ -1391,11 +1390,10 @@ msgstr ""
 msgid "Open"
 msgstr "打開"
 
-# Open File
+# Open all
 #: gschem/src/x/x_compselect.c:126
-#, fuzzy
 msgid "Open all"
-msgstr "打開文件"
+msgstr "全部打開"
 
 # Close
 #: gschem/src/x/x_compselect.c:127 gschem/src/x/x_menus.c:149
@@ -1442,17 +1440,15 @@ msgstr ""
 msgid "Set styles ooptions"
 msgstr ""
 
-# Saving Toolbar settings
+# Tooltip settings
 #: gschem/src/x/x_compselect.c:143
-#, fuzzy
 msgid "Tooltip settings"
-msgstr "正在保存工具栏设置..."
+msgstr "工具提示設置"
 
-# Unable to write
+# Enable tooltips
 #: gschem/src/x/x_compselect.c:144
-#, fuzzy
 msgid "Enable tooltips"
-msgstr "無法寫入"
+msgstr "啟用工具提示"
 
 #: gschem/src/x/x_compselect.c:145
 msgid "Disable tooltips"
@@ -1597,26 +1593,25 @@ msgstr ""
 msgid "If you don't save, all your changes will be permanently lost."
 msgstr ""
 
+# Close without saving
 #: gschem/src/x/x_confirm_close.c:535
 msgid "Close without saving"
-msgstr ""
+msgstr "關閉而不保存"
 
-# Could NOT save page
+# unsaved page
 #: gschem/src/x/x_confirm_close.c:589
-#, fuzzy
 msgid "unsaved page"
-msgstr "無法保存頁面"
+msgstr "未保存的頁面"
 
-# Saved as
+# unsaved pages
 #: gschem/src/x/x_confirm_close.c:596
-#, fuzzy
 msgid "unsaved pages"
-msgstr "保存為"
+msgstr "未保存的頁面"
 
+# selected pages
 #: gschem/src/x/x_confirm_close.c:603
-#, fuzzy
 msgid "selected pages"
-msgstr "選擇物件"
+msgstr "選定頁面"
 
 #: gschem/src/x/x_console.c:135
 msgid "destroying history\n"
