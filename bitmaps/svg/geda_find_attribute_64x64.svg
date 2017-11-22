@@ -1,15 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <svg
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:xlink="http://www.w3.org/1999/xlink"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.1"
    width="64"
    height="64"
    id="geda-find-attribute"
-   sodipodi:docname="geda_find_attribute_64x64.svg"
    inkscape:export-filename="../geda-find-attribute.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90"
@@ -81,8 +79,7 @@
      inkscape:connector-curvature="0"
      style="fill:#008000;stroke:#000000;stroke-width:1.85538304;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
      id="path3003"
-     d="M 55.823638,55.767422 37.832659,36.958499"
-     sodipodi:nodetypes="cc" />
+     d="M 55.823638,55.767422 37.832659,36.958499"/>
   <path
      inkscape:connector-curvature="0"
      style="fill:#999999;fill-opacity:1;stroke:#999999;stroke-width:0.92094374;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4.0999999;stroke-opacity:0.95;stroke-dasharray:none;marker-start:url(#DiamondS)"
@@ -140,23 +137,19 @@
          style="font-size:56px" /></flowRegion><flowPara
        id="flowPara3040">A</flowPara></flowRoot>  <text
      xml:space="preserve"
-     style="font-size:32px;line-height:0%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;"
+     style="font-size:32px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;"
      x="14.50813"
      y="39.975067"
-     id="text3008"
-     sodipodi:linespacing="0%"><tspan
-       sodipodi:role="line"
+     id="text3008"><tspan
        id="tspan3010"
        x="14.50813"
        y="39.975067" /></text>
   <text
      xml:space="preserve"
-     style="font-size:40px;line-height:0%;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Arial;"
+     style="font-size:40px;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Arial;"
      x="9.1174946"
      y="33.985474"
-     id="text3012"
-     sodipodi:linespacing="0%"><tspan
-       sodipodi:role="line"
+     id="text3012"><tspan
        id="tspan3014"
        x="9.1174946"
        y="33.985474">A</tspan></text>
