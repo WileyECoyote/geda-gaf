@@ -1,19 +1,16 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <svg
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:xlink="http://www.w3.org/1999/xlink"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="64px"
    height="64px"
-   id="svg3004"
+   id="geda_mirror_64x64"
    version="1.1"
    inkscape:export-filename="../geda-mirror.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90"
-   sodipodi:docname="geda_mirror_64x64.svg"
    inkscape:version="0.48.3.1 r9886">
   <defs
      id="defs3006">
@@ -94,37 +91,6 @@
          id="feGaussianBlur3905" />
     </filter>
   </defs>
-  <sodipodi:namedview
-     id="base"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="0.0"
-     inkscape:pageshadow="2"
-     inkscape:zoom="9.0213008"
-     inkscape:cx="41.133046"
-     inkscape:cy="26.45864"
-     inkscape:current-layer="layer1"
-     showgrid="true"
-     inkscape:document-units="px"
-     inkscape:grid-bbox="true"
-     inkscape:window-width="1372"
-     inkscape:window-height="922"
-     inkscape:window-x="342"
-     inkscape:window-y="76"
-     inkscape:window-maximized="0" />
-  <metadata
-     id="metadata3009">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
   <g
      id="layer1"
      inkscape:label="Layer 1"
@@ -134,8 +100,7 @@
        style="fill:none;stroke:url(#linearGradient6372);stroke-width:2.8065176;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:none"
        d="m 17.550763,62.049239 c 10.960305,12.781575 30.907712,10.759133 30.054985,-2.9361 l -0.0034,2.663983"
        id="path3016"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cc" />
+       inkscape:connector-curvature="0"/>
     <path
        style="fill:#299000;fill-opacity:1;stroke:#20af00;stroke-width:2.8065176;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        d="M 31.782036,63.736048 31.641113,9.4032836"
