@@ -136,11 +136,10 @@ msgstr "检索主窗口几何.\n"
 msgid "Auto-Restore"
 msgstr ""
 
-# Retrieving toolbar geometry
+# Automatically restore the main window geometry
 #: gschem/src/base/gschem_main_window.c:391
-#, fuzzy
 msgid "Automatically restore the main window geometry"
-msgstr "检索主窗口几何.\n"
+msgstr "自动恢复主窗口几何"
 
 #: gschem/src/base/gschem_page_view.c:250
 #: gschem/src/base/gschem_page_view.c:251
@@ -1376,11 +1375,10 @@ msgstr ""
 msgid "Open"
 msgstr "打开"
 
-# Open File
+# Open all
 #: gschem/src/x/x_compselect.c:126
-#, fuzzy
 msgid "Open all"
-msgstr "打开文件"
+msgstr "全部打开"
 
 # Close
 #: gschem/src/x/x_compselect.c:127 gschem/src/x/x_menus.c:149
@@ -1427,15 +1425,15 @@ msgstr ""
 msgid "Set styles ooptions"
 msgstr ""
 
-# Saving Toolbar settings
+# Tooltip settings
 #: gschem/src/x/x_compselect.c:143
-#, fuzzy
 msgid "Tooltip settings"
-msgstr "正在保存工具欄設置..."
+msgstr "工具提示设置"
 
+# Enable tooltips
 #: gschem/src/x/x_compselect.c:144
 msgid "Enable tooltips"
-msgstr ""
+msgstr "启用工具提示"
 
 #: gschem/src/x/x_compselect.c:145
 msgid "Disable tooltips"
@@ -1580,29 +1578,25 @@ msgstr ""
 msgid "If you don't save, all your changes will be permanently lost."
 msgstr ""
 
-# Close the current page without saving
+# Close without saving
 #: gschem/src/x/x_confirm_close.c:535
-#, fuzzy
 msgid "Close without saving"
-msgstr "关闭当前页面而不保存"
+msgstr "关闭而不保存"
 
-# Could NOT save page
+# unsaved page
 #: gschem/src/x/x_confirm_close.c:589
-#, fuzzy
 msgid "unsaved page"
-msgstr "无法保存页面"
+msgstr "未保存的页面"
 
-# Saved as
+# unsaved pages
 #: gschem/src/x/x_confirm_close.c:596
-#, fuzzy
 msgid "unsaved pages"
-msgstr "保存为"
+msgstr "未保存的页面"
 
-# Select Last
+# selected pages
 #: gschem/src/x/x_confirm_close.c:603
-#, fuzzy
 msgid "selected pages"
-msgstr "选择最后"
+msgstr "选定页面"
 
 #: gschem/src/x/x_console.c:135
 msgid "destroying history\n"
@@ -6020,13 +6014,3 @@ msgstr ""
 # Automatic Height
 #~ msgid "Auto Height"
 #~ msgstr "自动高度"
-
-# Selection
-#, fuzzy
-#~ msgid "<b>Selection</b>"
-#~ msgstr "选择"
-
-# File error
-#, fuzzy
-#~ msgid "<b>Array</b>"
-#~ msgstr "<b>文件错误.</b>"
