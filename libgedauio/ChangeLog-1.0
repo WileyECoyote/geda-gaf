@@ -1,3 +1,8 @@
+2017-11-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu.c: Replace G_OBJECT_CLASS_TYPE macro with
+      geda_menu_get_type for signal "move-scroll".
+
 2017-11-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/Makefile.am: Remove unused obsolete DATADIR_DEFS.

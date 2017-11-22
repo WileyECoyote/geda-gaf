@@ -3077,8 +3077,7 @@ geda_menu_real_move_scroll (GedaMenu *menu, GtkScrollType type)
  * \param [in] class      A GedaMenuClass Object
  * \param [in] class_data GedaMenu structure associated with the class
  */
-static void
-geda_menu_class_init  (void *class, void *class_data)
+static void geda_menu_class_init  (void *class, void *class_data)
 {
   GObjectClass       *gobject_class    = (GObjectClass*)class;
   GtkObjectClass     *object_class     = (GtkObjectClass*)class;
@@ -3130,7 +3129,7 @@ geda_menu_class_init  (void *class, void *class_data)
 
   menu_signals[MOVE_SCROLL] =
     g_signal_new_class_handler ("move-scroll",
-                                G_OBJECT_CLASS_TYPE (gobject_class),
+                                geda_menu_get_type(),
                                 G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                                 G_CALLBACK (geda_menu_real_move_scroll),
                                 NULL, NULL,
@@ -3591,8 +3590,7 @@ geda_menu_instance_init (GTypeInstance *instance, void *class)
  *
  * \return GedaType identifier associated with GedaMenu.
  */
-GedaType
-geda_menu_get_type (void)
+GedaType geda_menu_get_type (void)
 {
   static volatile GedaType geda_menu_type = 0;
 
