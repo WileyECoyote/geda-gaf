@@ -64,6 +64,7 @@ bitmapdata_DATA   = \
 			geda-draft.png                     \
 			geda-film-roll.png                 \
 			geda-find.png                      \
+			geda-find-attribute.png  \
 			geda-grid-dot.png                  \
 			geda-grid-mesh.png                 \
 			geda-icprint.png                   \
