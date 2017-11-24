@@ -1519,6 +1519,13 @@ void geda_entry_set_attributes (GedaEntry *entry, PangoAttrList *attrs)
   gtk_widget_queue_resize (GTK_WIDGET (entry));
 }
 
+/*!
+ * \brief Get the length of the entry history
+ * \par Function Description
+ *  Returns the length of the history list.
+ *
+ * \param [in] entry Pointer to a #GedaEntry object.
+ */
 unsigned int geda_entry_get_length_history(GedaEntry *entry)
 {
   return g_list_length(entry->priv->history_list);
