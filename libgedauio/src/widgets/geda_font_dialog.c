@@ -190,10 +190,8 @@ geda_font_dialog_take_font_desc (GedaFontDialog *dialog,
   PangoFontDescription *curr_desc;
   bool changed;
 
-  g_return_if_fail ( GEDA_IS_FONT_DIALOG (dialog));
-  g_return_if_fail ( new_desc == NULL);
-
   changed = FALSE;
+
   if ( dialog->font_desc == NULL ) {
     curr_desc = geda_font_dialog_get_font_description (dialog);
     changed = TRUE;
