@@ -132,12 +132,14 @@ geda_font_dialog_change_entry_map (GedaFontDialog *dialog, GtkWidget *widget)
 
 }
 
-/* This sets the font in the preview entry to the selected font, and tries to
-   make sure that the preview entry is a reasonable size, i.e. so that the
-   text can be seen with a bit of space to spare. But it tries to avoid
-   resizing the entry every time the font changes.
-   This also used to shrink the preview if the font size was decreased, but
-   that made it awkward if the user wanted to resize the window themself. */
+/*!
+ * \internal sets the font in the preview entry to the selected font, and
+ *  tries to make sure that the preview entry is a reasonable size, i.e.
+ *  so that the text can be seen with a bit of space to spare and attempts
+ *  to avoid resizing the entry every time the font changes. This also used
+ *  to shrink the preview if the font size was decreased, but that made it
+ *  awkward if the user wanted to resize the window themself.
+*/
 static void
 geda_font_dialog_update_preview (GedaFontDialog *dialog)
 {
