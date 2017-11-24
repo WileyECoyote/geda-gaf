@@ -1635,7 +1635,7 @@ GedaCompletion *geda_entry_get_completion (GedaEntry *entry)
 /*!
  * \brief Set the Completion Object from a GedaEntry
  * \par Function Description
- *  Sets the commpletion object. If the GedaEntry was not previously
+ *  Sets the completion object. If the GedaEntry was not previously
  *  enabled, auto_complete is enabled if completion is non-NULL;
  *
  * \param [in] entry      Pointer to a #GedaEntry object.
