@@ -189,8 +189,7 @@ begin_change (GedaEntry *entry)
  * \par Function Description
  *  Re-enable emission of signals after insetion of text completed.
  */
-static inline void
-end_change (GedaEntry *entry)
+static inline void end_change (GedaEntry *entry)
 {
   GedaEntryPriv *priv = entry->priv;
 
@@ -206,8 +205,7 @@ end_change (GedaEntry *entry)
  *  The object should not be referenced after this function
  *  is executes.
  */
-static void
-geda_entry_finalize (GObject *object)
+static void geda_entry_finalize (GObject *object)
 {
   GedaEntry *entry = (GedaEntry*)object;
 
@@ -300,7 +298,7 @@ geda_entry_get_property (GObject *object, unsigned int  property_id,
  */
 static void
 geda_entry_set_property (GObject *object, unsigned int  property_id,
-                  const  GValue  *value,  GParamSpec   *pspec)
+                         const  GValue  *value,  GParamSpec   *pspec)
 {
   GedaEntry *entry = (GedaEntry*)object;
 
@@ -343,8 +341,7 @@ geda_entry_set_property (GObject *object, unsigned int  property_id,
  *
  *  \param [in] entry The GedaEntry object
  */
-static void
-geda_entry_real_activate (GedaEntry *entry)
+static void geda_entry_real_activate (GedaEntry *entry)
 {
 #if DEBUG_GEDA_ENTRY
   fprintf(stderr, "<%s> in over-ride: got <activate> signal\n", __func__);
@@ -531,8 +528,7 @@ geda_entry_drag_data_received (GtkWidget        *widget,
  * the contents and therefore claims PRIMARY. So we bypass it; see
  * bug #345356 and bug #347067.
  */
-static void
-geda_entry_grab_focus (GtkWidget *widget)
+static void geda_entry_grab_focus (GtkWidget *widget)
 {
   ((GtkWidgetClass*)geda_entry_parent_class)->grab_focus (widget);
 }
@@ -543,8 +539,7 @@ geda_entry_grab_focus (GtkWidget *widget)
  * Over-rides widget_class->realize, chains-up and then retrieves
  * and saves pointer to the font_map.
  */
-static void
-geda_entry_realize (GtkWidget *widget)
+static void geda_entry_realize (GtkWidget *widget)
 {
   ((GtkWidgetClass*)geda_entry_parent_class)->realize (widget);
 
@@ -571,8 +566,7 @@ geda_entry_realize (GtkWidget *widget)
  * Over-rides widget_class->unrealize to unreference the font_map
  * referenced when realized.
  */
-static void
-geda_entry_unrealize (GtkWidget *widget)
+static void geda_entry_unrealize (GtkWidget *widget)
 {
   GedaEntry *entry = (GedaEntry*)widget;
 
@@ -593,8 +587,7 @@ geda_entry_unrealize (GtkWidget *widget)
  * \param [in]  klass       GedaEntry class we are initializing
  * \param [in]  class_data  GedaEntry structure associated with the class
  */
-static void
-geda_entry_class_init(void *klass, void *class_data)
+static void geda_entry_class_init(void *klass, void *class_data)
 {
   GedaEntryClass *class;
   GParamSpec     *params;
@@ -748,8 +741,7 @@ geda_entry_class_init(void *klass, void *class_data)
  *  \param [in] instance The GedaEntry structure being initialized,
  *  \param [in] g_class  The GedaEntry class we are initializing.
  */
-static void
-geda_entry_instance_init(GTypeInstance *instance, void *g_class)
+static void geda_entry_instance_init(GTypeInstance *instance, void *g_class)
 {
   GedaEntry     *entry  = (GedaEntry*)instance;
   entry->priv           = GEDA_MEM_ALLOC0 (sizeof(GedaEntryPriv));
@@ -879,8 +871,7 @@ bool is_a_geda_entry (GedaEntry *entry)
  * This is a callback for the "process-entry" signal. If there is text
  * in the entry and a history_list the history_list is updated.
  */
-static void
-geda_entry_activate (GedaEntry *entry, void *data)
+static void geda_entry_activate (GedaEntry *entry, void *data)
 {
   GedaEntryPriv *priv = entry->priv;
   int list_length;
@@ -941,8 +932,7 @@ geda_entry_activate (GedaEntry *entry, void *data)
  *  history index and replaces the text in the entry with the text at
  *  the resulting index in the history list.
  */
-static void
-geda_entry_history_up (GedaEntry *entry)
+static void geda_entry_history_up (GedaEntry *entry)
 {
   if (entry->history_index > 0) {
 
@@ -964,8 +954,7 @@ geda_entry_history_up (GedaEntry *entry)
  *  the history is at end of the list then the entry text is set to an
  *  empty line.
  */
-static void
-geda_entry_history_down (GedaEntry *entry)
+static void geda_entry_history_down (GedaEntry *entry)
 {
   GtkEntry *gtk_entry = GTK_ENTRY (entry);
 
@@ -1004,8 +993,7 @@ geda_entry_history_down (GedaEntry *entry)
  * \par Function Description
  *  Keyboard hook routine for auto-completion and history.
  */
-static bool
-geda_entry_key_press (GedaEntry *entry, GdkEventKey *event, void *data)
+static bool geda_entry_key_press (GedaEntry *entry, GdkEventKey *event, void *data)
 {
   unsigned int state = event->state & gtk_accelerator_get_default_mod_mask ();
   bool handled = FALSE;
@@ -1056,8 +1044,7 @@ geda_entry_key_press (GedaEntry *entry, GdkEventKey *event, void *data)
  *  first mis-match is because str2 is greater, or 1 if the
  *  first mis-match is because str1 is greater.
  */
-static int
-geda_entry_strncmpi(char *str1, char *str2, int n)
+static int geda_entry_strncmpi(char *str1, char *str2, int n)
 {
   unsigned int i = 0;
   if (!str1 || !str2) {
@@ -1361,8 +1348,7 @@ geda_entry_populate_popup (GedaEntry *entry, GtkMenu *menu, void *data)
  *
  * \returns the contents of the text entry buffer
  */
-const char*
-geda_entry_get_text (GedaEntry *entry)
+const char *geda_entry_get_text (GedaEntry *entry)
 {
   GtkEntryBuffer *buffer;
 
@@ -1383,8 +1369,7 @@ geda_entry_get_text (GedaEntry *entry)
  * \param[in] entry    Pointer #GedaEntry object
  * \param[in] new_text Text to be loaded into the GedaEntry.
  */
-void
-geda_entry_set_text (GedaEntry *entry, const char *new_text)
+void geda_entry_set_text (GedaEntry *entry, const char *new_text)
 {
   GtkEntryBuffer *buffer;
   const char     *curr_text;
@@ -1424,8 +1409,7 @@ geda_entry_set_text (GedaEntry *entry, const char *new_text)
  *
  * \returns length of the string or -1 if entry is invalid
  */
-int
-geda_entry_get_text_length (GedaEntry *entry)
+int geda_entry_get_text_length (GedaEntry *entry)
 {
   const char *curr_text;
 
@@ -1446,8 +1430,7 @@ geda_entry_get_text_length (GedaEntry *entry)
  *
  * \retval %TRUE if the entry will activate the default widget
  */
-bool
-geda_entry_get_activates_default (GedaEntry *entry)
+bool geda_entry_get_activates_default (GedaEntry *entry)
 {
   g_return_val_if_fail (GEDA_IS_ENTRY (entry), FALSE);
 
@@ -1469,8 +1452,7 @@ geda_entry_get_activates_default (GedaEntry *entry)
  * \param [in] entry    Pointer to a #GedaEntry object.
  * \param [in] setting  The desired setting.
  */
-void
-geda_entry_set_activates_default (GedaEntry *entry, bool setting)
+void geda_entry_set_activates_default (GedaEntry *entry, bool setting)
 {
   g_return_if_fail (GEDA_IS_ENTRY (entry));
 
@@ -1509,8 +1491,7 @@ geda_entry_get_attributes (GedaEntry *entry)
  * \param [in] entry Pointer to a #GedaEntry object.
  * \param [in] attrs Pointer to a PangoAttrList structure.
  */
-void
-geda_entry_set_attributes (GedaEntry *entry, PangoAttrList *attrs)
+void geda_entry_set_attributes (GedaEntry *entry, PangoAttrList *attrs)
 {
   PangoAttrList *old_attrs;
   PangoLayout   *layout;
@@ -1537,8 +1518,7 @@ geda_entry_set_attributes (GedaEntry *entry, PangoAttrList *attrs)
   gtk_widget_queue_resize (GTK_WIDGET (entry));
 }
 
-unsigned int
-geda_entry_get_length_history(GedaEntry *entry)
+unsigned int geda_entry_get_length_history(GedaEntry *entry)
 {
   return g_list_length(entry->priv->history_list);
 }
@@ -1555,8 +1535,7 @@ geda_entry_get_length_history(GedaEntry *entry)
  *  being removed when the a new item is added should the number of
  *  items reaches \a value.
  */
-void
-geda_entry_set_max_history (GedaEntry *entry, unsigned int value)
+void geda_entry_set_max_history (GedaEntry *entry, unsigned int value)
 {
   unsigned int len;
 
@@ -1605,8 +1584,7 @@ geda_entry_get_max_history (GedaEntry *entry)
  *
  * \sa geda_entry_set_max_length
  */
-unsigned int
-geda_entry_get_max_length (GedaEntry *entry)
+unsigned int geda_entry_get_max_length (GedaEntry *entry)
 {
   volatile unsigned int max;
 
@@ -1630,8 +1608,7 @@ geda_entry_get_max_length (GedaEntry *entry)
  * \param [in] entry  Pointer to a #GedaEntry object.
  * \param [in] max   the maximum length of the entry, or 0 for no maximum.
  */
-void
-geda_entry_set_max_length (GedaEntry *entry, unsigned int max)
+void geda_entry_set_max_length (GedaEntry *entry, unsigned int max)
 {
    g_object_set (entry, "max-length", max, NULL);
 }
@@ -1644,8 +1621,7 @@ geda_entry_set_max_length (GedaEntry *entry, unsigned int max)
  * \note The returned object is GedaCompletion structure and not
  *       a g_object.
  */
-GedaCompletion*
-geda_entry_get_completion (GedaEntry *entry)
+GedaCompletion *geda_entry_get_completion (GedaEntry *entry)
 {
   g_return_val_if_fail (GEDA_IS_ENTRY (entry), NULL);
   return entry->priv->command_completion;
@@ -1660,8 +1636,7 @@ geda_entry_get_completion (GedaEntry *entry)
  * \param [in] entry      Pointer to a #GedaEntry object.
  * \param [in] completion Pointer to a GedaCompletion structure.
  */
-void
-geda_entry_set_completion (GedaEntry *entry, GedaCompletion *completion)
+void geda_entry_set_completion (GedaEntry *entry, GedaCompletion *completion)
 {
   GedaEntryPriv *priv;
 
@@ -1688,8 +1663,7 @@ geda_entry_set_completion (GedaEntry *entry, GedaCompletion *completion)
  *
  * \param [in] entry  Pointer to a #GedaEntry object.
  */
-bool
-geda_entry_completion_get_case (GedaEntry *entry) {
+bool geda_entry_completion_get_case (GedaEntry *entry) {
 
   g_return_val_if_fail (GEDA_IS_ENTRY (entry), FALSE);
 
@@ -1707,8 +1681,7 @@ geda_entry_completion_get_case (GedaEntry *entry) {
  * \param [in] sensitive Desired boolean case sensitivity setting.
  */
 /*! \brief Set sensitivity of internal completion algorithms */
-void
-geda_entry_completion_set_case (GedaEntry *entry, bool sensitive)
+void geda_entry_completion_set_case (GedaEntry *entry, bool sensitive)
 {
   g_return_if_fail (GEDA_IS_ENTRY (entry));
 
@@ -1731,8 +1704,7 @@ geda_entry_completion_set_case (GedaEntry *entry, bool sensitive)
  * \returns the current text_case setting.
  * \sa geda_entry_set_input_case
  */
-bool
-geda_entry_get_input_case (GedaEntry *entry)
+bool geda_entry_get_input_case (GedaEntry *entry)
 {
   g_return_val_if_fail (GEDA_IS_ENTRY (entry), FALSE);
   return entry->text_case;
@@ -1751,8 +1723,7 @@ geda_entry_get_input_case (GedaEntry *entry)
  *  The default is BOTH_CASES, which means the case of text entered by
  *  the used will not be changed.
  */
-void
-geda_entry_set_input_case  (GedaEntry *entry, int mode)
+void geda_entry_set_input_case  (GedaEntry *entry, int mode)
 {
   g_return_if_fail (mode > -1 && mode < 3);
   GEDA_ENTRY(entry)->text_case = mode;
@@ -1763,8 +1734,7 @@ geda_entry_set_input_case  (GedaEntry *entry, int mode)
  * \par Function Description
  *  The default is ACCEPT_ALL_ASCII.
  */
-GedaEntryAccept
-geda_entry_get_valid_input (GedaEntry *entry)
+GedaEntryAccept geda_entry_get_valid_input (GedaEntry *entry)
 {
   g_return_val_if_fail (GEDA_IS_ENTRY (entry), ACCEPT_ALL_ASCII);
   return entry->validation_mode;
@@ -1786,8 +1756,7 @@ geda_entry_get_valid_input (GedaEntry *entry)
  *    <DT>ACCEPT_REAL</DT>
  *  </DL>
  */
-void
-geda_entry_set_valid_input (GedaEntry *entry, GedaEntryAccept mode)
+void geda_entry_set_valid_input (GedaEntry *entry, GedaEntryAccept mode)
 {
   g_return_if_fail (GEDA_IS_ENTRY (entry));
   g_return_if_fail (mode >= ACCEPT_ALL_ASCII && mode <= ACCEPT_REAL);
@@ -1822,8 +1791,7 @@ geda_entry_select_all (GedaEntry *entry)
  * \param [in] start Starting Position
  * \param [in] end   End Position or -1 to select remain text
  */
-void
-geda_entry_select_region (GedaEntry *entry, int start, int end)
+void geda_entry_select_region (GedaEntry *entry, int start, int end)
 {
   g_return_if_fail (GEDA_IS_ENTRY (entry));
 
@@ -1849,11 +1817,10 @@ geda_entry_select_region (GedaEntry *entry, int start, int end)
  *
  * \sa geda_widget_modify_color_component
  */
-void
-geda_entry_modify_color (GedaEntry      *entry,
-                         GtkRcFlags      component,
-                         GtkStateType    state,
-                         const GdkColor *color)
+void geda_entry_modify_color (GedaEntry      *entry,
+                              GtkRcFlags      component,
+                              GtkStateType    state,
+                              const GdkColor *color)
 {
   g_return_if_fail (GTK_IS_WIDGET (entry));
 
@@ -1879,10 +1846,9 @@ geda_entry_modify_color (GedaEntry      *entry,
  *
  * \sa geda_entry_modify_fg geda_entry_modify_color
  */
-void
-geda_entry_modify_bg (GedaEntry      *entry,
-                      GtkStateType    state,
-                      const GdkColor *color)
+void geda_entry_modify_bg (GedaEntry      *entry,
+                           GtkStateType    state,
+                           const GdkColor *color)
 {
   geda_entry_modify_color (entry, GTK_RC_BG, state, color);
 }
@@ -1899,10 +1865,9 @@ geda_entry_modify_bg (GedaEntry      *entry,
  *
  * \sa geda_entry_modify_bg geda_entry_modify_color
  */
-void
-geda_entry_modify_fg (GedaEntry *entry,
-                      GtkStateType state,
-                      const GdkColor *color)
+void geda_entry_modify_fg (GedaEntry *entry,
+                           GtkStateType state,
+                           const GdkColor *color)
 {
   geda_entry_modify_color (entry, GTK_RC_FG, state, color);
 }
@@ -1931,8 +1896,7 @@ geda_entry_widget_get_activates_default (GtkWidget *entry)
  *  Convenience version of #geda_entry_set_activates_default that
  *  accepts a pointer to a GtkWidget, \a entry must be a GedaEntry.
  */
-void
-geda_entry_widget_set_activates_default (GtkWidget *entry, bool  setting)
+void geda_entry_widget_set_activates_default (GtkWidget *entry, bool  setting)
 {
   geda_entry_set_activates_default ((GedaEntry*)entry, setting);
 }
@@ -1962,8 +1926,7 @@ geda_entry_widget_get_attributes (GtkWidget *entry)
  * \param [in] entry Pointer to a #GedaEntry object.
  * \param [in] attrs Pointer to a PangoAttrList structure.
  */
-void
-geda_entry_widget_set_attributes (GtkWidget *entry, PangoAttrList *attrs)
+void geda_entry_widget_set_attributes (GtkWidget *entry, PangoAttrList *attrs)
 {
   geda_entry_set_attributes ((GedaEntry*)entry, attrs);
 }
@@ -1974,8 +1937,7 @@ geda_entry_widget_set_attributes (GtkWidget *entry, PangoAttrList *attrs)
  *  Convenience wrapper that accepts a GedaEntry of type GtkWidget
  *  and returns the GedaCompletion object associated with the entry.
  */
-GedaCompletion *
-geda_entry_widget_get_completion (GtkWidget *entry)
+GedaCompletion *geda_entry_widget_get_completion (GtkWidget *entry)
 {
   return geda_entry_get_completion (GEDA_ENTRY(entry));
 }
@@ -2002,8 +1964,7 @@ geda_entry_widget_set_completion (GtkWidget      *entry,
  *
  * \param [in] entry  Pointer to a #GedaEntry widget.
  */
-bool
-geda_entry_widget_completion_get_case (GtkWidget *entry)
+bool geda_entry_widget_completion_get_case (GtkWidget *entry)
 {
   return geda_entry_completion_get_case (GEDA_ENTRY(entry));
 }
@@ -2018,8 +1979,7 @@ geda_entry_widget_completion_get_case (GtkWidget *entry)
  * \param [in] entry     Pointer to a #GedaEntry widget.
  * \param [in] sensitive Desired boolean case sensitivity setting.
  */
-void
-geda_entry_widget_completion_set_case (GtkWidget *entry, bool sensitive)
+void geda_entry_widget_completion_set_case (GtkWidget *entry, bool sensitive)
 {
   geda_entry_completion_set_case (GEDA_ENTRY(entry), sensitive);
 }
@@ -2030,8 +1990,7 @@ geda_entry_widget_completion_set_case (GtkWidget *entry, bool sensitive)
  * \returns the current text_case setting.
  * \sa geda_entry_get_input_case
  */
-bool
-geda_entry_widget_get_input_case (GtkWidget *entry)
+bool geda_entry_widget_get_input_case (GtkWidget *entry)
 {
   return geda_entry_get_input_case (GEDA_ENTRY(entry));
 }
@@ -2049,8 +2008,7 @@ geda_entry_widget_get_input_case (GtkWidget *entry)
  *  The default is BOTH_CASES, which means the case of text entered by
  *  the used will not be changed.
  */
-void
-geda_entry_widget_set_input_case (GtkWidget *entry, int mode)
+void geda_entry_widget_set_input_case (GtkWidget *entry, int mode)
 {
   return geda_entry_set_input_case (GEDA_ENTRY(entry), mode);
 }
@@ -2062,8 +2020,7 @@ geda_entry_widget_set_input_case (GtkWidget *entry, int mode)
  *
  * \sa geda_entry_get_max_history geda_entry_set_max_history
  */
-unsigned int
-geda_entry_widget_get_max_history (GtkWidget *entry)
+unsigned int geda_entry_widget_get_max_history (GtkWidget *entry)
 {
   return geda_entry_get_max_history (GEDA_ENTRY(entry));
 }
@@ -2093,8 +2050,7 @@ geda_entry_widget_set_max_history (GtkWidget *entry, unsigned int value)
  *
  * \sa geda_entry_get_max_length
  */
-unsigned int
-geda_entry_widget_get_max_length (GtkWidget *entry)
+unsigned int geda_entry_widget_get_max_length (GtkWidget *entry)
 {
   return geda_entry_get_max_length (GEDA_ENTRY(entry));
 }
@@ -2109,8 +2065,7 @@ geda_entry_widget_get_max_length (GtkWidget *entry)
  *
  * \sa geda_entry_set_max_length
  */
-void
-geda_entry_widget_set_max_length (GtkWidget *entry, unsigned int max)
+void geda_entry_widget_set_max_length (GtkWidget *entry, unsigned int max)
 {
   geda_entry_set_max_length (GEDA_ENTRY(entry), max);
 }
@@ -2124,8 +2079,7 @@ geda_entry_widget_set_max_length (GtkWidget *entry, unsigned int max)
  *
  * \returns the contents of the text entry buffer
  */
-const char*
-geda_entry_widget_get_text (GtkWidget *entry)
+const char *geda_entry_widget_get_text (GtkWidget *entry)
 {
   return geda_entry_get_text (GEDA_ENTRY(entry));
 }
@@ -2140,8 +2094,7 @@ geda_entry_widget_get_text (GtkWidget *entry)
  * \param[in] entry    Pointer #GedaEntry expressed as a widget
  * \param[in] new_text Text to be loaded into the GedaEntry.
  */
-void
-geda_entry_widget_set_text (GtkWidget *entry, const char *new_text)
+void geda_entry_widget_set_text (GtkWidget *entry, const char *new_text)
 {
   geda_entry_set_text (GEDA_ENTRY(entry), new_text);
 }
@@ -2153,8 +2106,7 @@ geda_entry_widget_set_text (GtkWidget *entry, const char *new_text)
  *
  * \sa geda_entry_set_valid_input
  */
-GedaEntryAccept
-geda_entry_widget_get_valid_input (GtkWidget *entry)
+GedaEntryAccept geda_entry_widget_get_valid_input (GtkWidget *entry)
 {
   return geda_entry_get_valid_input (GEDA_ENTRY (entry));
 }
@@ -2166,8 +2118,7 @@ geda_entry_widget_get_valid_input (GtkWidget *entry)
  *
  * \sa geda_entry_set_valid_input
  */
-void
-geda_entry_widget_set_valid_input (GtkWidget *entry, GedaEntryAccept mode)
+void geda_entry_widget_set_valid_input (GtkWidget *entry, GedaEntryAccept mode)
 {
   geda_entry_set_valid_input (GEDA_ENTRY(entry), mode);
 }
@@ -2184,10 +2135,9 @@ geda_entry_widget_set_valid_input (GtkWidget *entry, GedaEntryAccept mode)
  *
  * \sa geda_entry_modify_fg geda_entry_modify_color
  */
-void
-geda_entry_widget_modify_bg (GtkWidget      *entry,
-                             GtkStateType    state,
-                             const GdkColor *color)
+void geda_entry_widget_modify_bg (GtkWidget      *entry,
+                                  GtkStateType    state,
+                                  const GdkColor *color)
 {
   geda_widget_modify_color (entry, GTK_RC_BG, state, color);
 }
@@ -2204,10 +2154,9 @@ geda_entry_widget_modify_bg (GtkWidget      *entry,
  *
  * \sa geda_entry_modify_bg geda_entry_modify_color
  */
-void
-geda_entry_widget_modify_fg (GtkWidget *entry,
-                             GtkStateType state,
-                             const GdkColor *color)
+void geda_entry_widget_modify_fg (GtkWidget *entry,
+                                  GtkStateType state,
+                                  const GdkColor *color)
 {
   geda_widget_modify_color (entry, GTK_RC_FG, state, color);
 }
@@ -2227,8 +2176,7 @@ geda_entry_widget_modify_fg (GtkWidget *entry,
  *
  * \return a new #GedaEntry
  */
-GtkWidget*
-geda_entry_new (void)
+GtkWidget *geda_entry_new (void)
 {
   have_auto_complete = FALSE;
   have_history       = FALSE;
@@ -2248,8 +2196,7 @@ geda_entry_new (void)
  *
  * \sa geda_entry_new_with_completion geda_entry_new_with_history
  */
-GtkWidget*
-geda_entry_new_history_complete (GList **history, GList **complete)
+GtkWidget *geda_entry_new_history_complete (GList **history, GList **complete)
 {
   if ((int)(long)history == -1)
     have_history = FALSE;
@@ -2279,8 +2226,7 @@ geda_entry_new_history_complete (GList **history, GList **complete)
  *
  * \return a new #GedaEntry
  */
-GtkWidget*
-geda_entry_new_visible (void)
+GtkWidget *geda_entry_new_visible (void)
 {
   GtkWidget *entry;
   entry = geda_entry_new ();
@@ -2300,8 +2246,7 @@ geda_entry_new_visible (void)
  *
  * \return a new #GedaEntry
  */
-GtkWidget*
-geda_entry_new_visible_buffer (GtkEntryBuffer *buffer)
+GtkWidget *geda_entry_new_visible_buffer (GtkEntryBuffer *buffer)
 {
   GtkWidget *entry;
   entry = geda_entry_new_with_buffer (buffer);
@@ -2321,8 +2266,7 @@ geda_entry_new_visible_buffer (GtkEntryBuffer *buffer)
  *
  * \return a new #GedaEntry
  */
-GtkWidget*
-geda_entry_new_visible_completion (GList **complete)
+GtkWidget *geda_entry_new_visible_completion (GList **complete)
 {
   GtkWidget *entry;
   entry = geda_entry_new_with_completion (complete);
@@ -2342,8 +2286,7 @@ geda_entry_new_visible_completion (GList **complete)
  *
  * \return a new #GedaEntry
  */
-GtkWidget*
-geda_entry_new_visible_history (GList **history)
+GtkWidget *geda_entry_new_visible_history (GList **history)
 {
   GtkWidget *entry;
   entry = geda_entry_new_with_history (history);
@@ -2362,8 +2305,7 @@ geda_entry_new_visible_history (GList **history)
  *
  * \return a new #GedaEntry
  */
-GtkWidget*
-geda_entry_new_with_buffer (GtkEntryBuffer *buffer)
+GtkWidget *geda_entry_new_with_buffer (GtkEntryBuffer *buffer)
 {
   GtkEntryBuffer *real_buffer;
 
@@ -2390,8 +2332,7 @@ geda_entry_new_with_buffer (GtkEntryBuffer *buffer)
  *
  * \return a new #GedaEntry
  */
-GtkWidget*
-geda_entry_new_with_completion (GList **complete)
+GtkWidget *geda_entry_new_with_completion (GList **complete)
 {
   have_history = FALSE;
 
@@ -2418,8 +2359,7 @@ geda_entry_new_with_completion (GList **complete)
  *
  * \return a new #GedaEntry
  */
-GtkWidget*
-geda_entry_new_with_history (GList **history)
+GtkWidget *geda_entry_new_with_history (GList **history)
 {
   have_auto_complete = FALSE;
   have_history       = TRUE;
@@ -2438,8 +2378,7 @@ geda_entry_new_with_history (GList **history)
  *
  * \return a new #GedaEntry
  */
-GtkWidget*
-geda_entry_new_with_max_length (unsigned int max_length)
+GtkWidget *geda_entry_new_with_max_length (unsigned int max_length)
 {
   GtkWidget *entry;
   entry = geda_entry_new ();
