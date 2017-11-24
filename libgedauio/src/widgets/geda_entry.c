@@ -732,14 +732,14 @@ static void geda_entry_class_init(void *klass, void *class_data)
 #endif
 }
 
-/*! \brief Type instance initializer for GedaEntry
- *
- *  \par Function Description
+/*!
+ * \brief Type instance initializer for GedaEntry
+ * \par Function Description
  *  Type instance initializer for GedaEntry, initializes a new empty
  *  GedaEntry object.
  *
- *  \param [in] instance The GedaEntry structure being initialized,
- *  \param [in] g_class  The GedaEntry class we are initializing.
+ * \param [in] instance The GedaEntry structure being initialized,
+ * \param [in] g_class  The GedaEntry class we are initializing.
  */
 static void geda_entry_instance_init(GTypeInstance *instance, void *g_class)
 {
@@ -1041,8 +1041,8 @@ static bool geda_entry_key_press (GedaEntry *entry, GdkEventKey *event, void *da
  *  \param [in] n     is the number of char to compare
  *
  *  \retval 0 if the strings are equivalent, -1 if str2 if
- *  first mis-match is because str2 is greater, or 1 if the
- *  first mis-match is because str1 is greater.
+ *            first mis-match is because str2 is greater, or 1 if the
+ *            first mis-match is because str1 is greater.
  */
 static int geda_entry_strncmpi(char *str1, char *str2, int n)
 {
@@ -1464,8 +1464,9 @@ void geda_entry_set_activates_default (GedaEntry *entry, bool setting)
   }
 }
 
-/*! \brief Get GedaEntry Attribute List
- *  \par Function Description
+/*!
+ * \brief Get GedaEntry Attribute List
+ * \par Function Description
  * Gets the attribute list that was set on the entry using
  * geda_entry_set_attributes(), if any.
  *
@@ -1573,10 +1574,6 @@ geda_entry_get_max_history (GedaEntry *entry)
  * \par Function Description
  *  Retrieves the maximum allowed length of the text in \a entry.
  *
- *  This is equivalent to:
- *
- *  gtk_entry_buffer_get_max_length (gtk_entry_get_buffer (entry));
- *
  * \param [in] entry Pointer to a #GedaEntry object.
  *
  * \returns the maximum allowed number of characters or 0 if there
@@ -1618,7 +1615,8 @@ void geda_entry_set_max_length (GedaEntry *entry, unsigned int max)
  * \par Function Description
  *  Returns the commpletion object without check of the
  *  object exist, i.e. a NULL pointer.
- * \note The returned object is GedaCompletion structure and not
+ *
+ * \note The returned object is a GedaCompletion structure and not
  *       a g_object.
  */
 GedaCompletion *geda_entry_get_completion (GedaEntry *entry)
