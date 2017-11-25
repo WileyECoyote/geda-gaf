@@ -123,7 +123,35 @@ int check_construction (void)
 }
 
 int
-main (int argc, char *argv[])
+check_accessors ()
+{
+  int result = 0;
+
+  GtkWidget *widget = geda_font_dialog_new_with_font_name ("Arial");
+
+  if (!GEDA_IS_FONT_DIALOG(widget)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+  else {
+
+    GdkFont *font;
+
+    font = geda_font_dialog_get_font ((GedaFontDialog*)widget);
+
+    if (!font) {
+      fprintf(stderr, "FAILED: line <%d> get_font %s\n", __LINE__, TWIDGET);
+      result++;
+    }
+
+    g_object_ref_sink(widget); /* Sink reference to the widget */
+    g_object_unref(widget);    /* Destroy the widget */
+  }
+
+  return result;
+}
+
+int main (int argc, char *argv[])
 {
   int result = 0;
 
@@ -142,6 +170,18 @@ main (int argc, char *argv[])
     else {
       fprintf(stderr, "Caught signal checking constructors in %s\n\n", MUT);
       result++;
+    }
+
+    if (!result) {
+
+      if (setjmp(point) == 0) {
+        result = check_accessors();
+      }
+      else {
+        fprintf(stderr, "Caught signal checking accessors in %s\n\n", MUT);
+        return 1;
+      }
+
     }
   }
   return result;

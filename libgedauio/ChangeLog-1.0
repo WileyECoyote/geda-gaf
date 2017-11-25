@@ -10,6 +10,7 @@
     * tests/test_font_dialog.c Add checks for
 
           * geda_font_dialog_new_with_title
+          * geda_font_dialog_get_font
 
 2017-11-22 Wiley E. Hill <wileyhill@gmail.com>
 
