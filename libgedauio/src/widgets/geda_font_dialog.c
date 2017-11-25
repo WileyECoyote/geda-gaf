@@ -36,6 +36,7 @@
 #include "../../include/geda_container.h"
 #include "../../include/geda_entry.h"
 #include "../../include/geda_font_dialog.h"
+#include "../../include/geda_gtk_compat.h"
 #include "../../include/geda_label.h"
 #include "../../include/gettext.h"
 
