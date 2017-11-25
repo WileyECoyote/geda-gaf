@@ -992,10 +992,9 @@ geda_font_dialog_get_property (GObject *object, unsigned int prop_id,
 
 static void
 geda_font_dialog_set_property (GObject *object, unsigned int prop_id,
-                         const GValue  *value,  GParamSpec  *pspec)
+                               const GValue  *value,  GParamSpec  *pspec)
 {
-  GedaFontDialog *dialog;
-  dialog = GEDA_FONT_DIALOG (object);
+  GedaFontDialog *dialog = (GedaFontDialog*)object;
 
   switch (prop_id)
   {

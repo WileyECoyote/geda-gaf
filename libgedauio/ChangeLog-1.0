@@ -1,3 +1,8 @@
+2017-11-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_font_dialog.c: Eliminate unnecessary type-checking
+      cast to GedaFontDialog in geda_font_dialog_set_property.
+
 2017-11-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Replace G_TYPE_FROM_CLASS macro with
