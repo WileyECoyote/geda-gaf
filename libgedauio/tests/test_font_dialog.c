@@ -82,6 +82,30 @@ int check_construction (void)
 
   widget = NULL;
 
+  /* geda_font_dialog_new_with_title */
+
+  widget = geda_font_dialog_new_with_title (NULL);
+
+  if (!GEDA_IS_FONT_DIALOG(widget)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  gtk_widget_destroy (widget);    /* Destroy the widget */
+
+  widget = NULL;
+
+  widget = geda_font_dialog_new_with_title ("Testing");
+
+  if (!GEDA_IS_FONT_DIALOG(widget)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  gtk_widget_destroy (widget);    /* Destroy the widget */
+
+  widget = NULL;
+
   /* geda_font_dialog_new_with_font */
 
   widget = geda_font_dialog_new_with_font_name ("Arial");

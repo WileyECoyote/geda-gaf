@@ -7,6 +7,10 @@
           * geda_font_dialog_new
           * geda_font_dialog_new_with_title
 
+    * tests/test_font_dialog.c Add checks for
+
+          * geda_font_dialog_new_with_title
+
 2017-11-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Replace G_TYPE_FROM_CLASS macro with
