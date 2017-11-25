@@ -1,8 +1,11 @@
 2017-11-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_font_dialog.c: Eliminate unnecessary type-checking
-      cast to GedaFontDialog in geda_font_dialog_set_property. Update
-      function documentation:
+      cast to GedaFontDialog in geda_font_dialog_set_property. Revise
+      geda_font_dialog_get_font; replace gdk_font_from_description with
+      gdk_font_from_description_for_display, which bypasses the former
+      and and attempts to get the real font. Update function comments/
+      documentation:
 
           * geda_font_dialog_new
           * geda_font_dialog_new_with_title

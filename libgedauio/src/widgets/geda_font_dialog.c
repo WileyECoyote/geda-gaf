@@ -1813,7 +1813,15 @@ geda_font_dialog_get_font (GedaFontDialog *dialog)
   g_return_val_if_fail (GEDA_IS_FONT_DIALOG (dialog), NULL);
 
   if (!dialog->font && dialog->font_desc) {
-    dialog->font = gdk_font_from_description(dialog->font_desc);
+
+    GdkDisplay *display;
+    GdkWindow  *window;
+
+    window  = geda_get_widget_window (dialog);
+    display = gdk_drawable_get_display ((GdkDrawable*)window);
+
+    dialog->font = gdk_font_from_description_for_display (display,
+                                                          dialog->font_desc);
   }
 
   return dialog->font;
