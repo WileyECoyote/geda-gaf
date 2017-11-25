@@ -1470,7 +1470,7 @@ void geda_entry_set_activates_default (GedaEntry *entry, bool setting)
  * Gets the attribute list that was set on the entry using
  * geda_entry_set_attributes(), if any.
  *
- * \param [in] entry: Pointer to a #GedaEntry object.
+ * \param [in] entry Pointer to a #GedaEntry object.
  *
  * \retval PangoAttrList attribute list, or %NULL
  *         if none was set.
@@ -1542,6 +1542,9 @@ unsigned int geda_entry_get_length_history(GedaEntry *entry)
  *  the maximum number of items in the list with the oldest item
  *  being removed when the a new item is added should the number of
  *  items reaches \a value.
+ *
+ * \param [in] entry Pointer to a #GedaEntry object.
+ * \param [in] value Maximum number of characters the is to accept.
  */
 void geda_entry_set_max_history (GedaEntry *entry, unsigned int value)
 {
@@ -1569,6 +1572,8 @@ void geda_entry_set_max_history (GedaEntry *entry, unsigned int value)
  * \brief Get GedaEntry Max History Property
  * \par Function Description
  *  Gets the current max-history setting.
+ *
+ * \param [in] entry Pointer to a #GedaEntry object.
  */
 unsigned int
 geda_entry_get_max_history (GedaEntry *entry)
@@ -1625,6 +1630,8 @@ void geda_entry_set_max_length (GedaEntry *entry, unsigned int max)
  *
  * \note The returned object is a GedaCompletion structure and not
  *       a g_object.
+ *
+ * \param [in] entry Pointer to a #GedaEntry object.
  */
 GedaCompletion *geda_entry_get_completion (GedaEntry *entry)
 {
@@ -1706,7 +1713,12 @@ void geda_entry_completion_set_case (GedaEntry *entry, bool sensitive)
 /*!
  * \brief Get GedaEntry Input Case Property
  * \par Function Description
+ *  Returns the text_case member of the GedaEntry.
+ *
+ * \param [in] entry Pointer to a #GedaEntry object.
+ *
  * \returns the current text_case setting.
+ *
  * \sa geda_entry_set_input_case
  */
 bool geda_entry_get_input_case (GedaEntry *entry)
@@ -1727,6 +1739,9 @@ bool geda_entry_get_input_case (GedaEntry *entry)
  *  </DL>
  *  The default is BOTH_CASES, which means the case of text entered by
  *  the used will not be changed.
+ *
+ * \param [in] entry Pointer to a #GedaEntry object.
+ * \param [in] mode  as described above.
  */
 void geda_entry_set_input_case  (GedaEntry *entry, int mode)
 {
@@ -1738,6 +1753,8 @@ void geda_entry_set_input_case  (GedaEntry *entry, int mode)
  * \brief Get the current GedaEntry Input Validation Mode
  * \par Function Description
  *  The default is ACCEPT_ALL_ASCII.
+ *
+ * \param [in] entry Pointer to a #GedaEntry object.
  */
 GedaEntryAccept geda_entry_get_valid_input (GedaEntry *entry)
 {
@@ -1760,6 +1777,9 @@ GedaEntryAccept geda_entry_get_valid_input (GedaEntry *entry)
  *    <DT>ACCEPT_INTEGER</DT>
  *    <DT>ACCEPT_REAL</DT>
  *  </DL>
+ *
+ * \param [in] entry Pointer to a #GedaEntry object.
+ * \param [in] mode  as described above.
  */
 void geda_entry_set_valid_input (GedaEntry *entry, GedaEntryAccept mode)
 {
