@@ -1741,18 +1741,21 @@ is_a_geda_font_dialog (GedaFontDialog *font_dialog)
   return FALSE;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Create a new GedaFontDialog Object
+ * \par Function Description
+ *  Returns a new GedaFontDialog object with the default properties.
  */
 GtkWidget *geda_font_dialog_new (void)
 {
   return g_object_new (GEDA_TYPE_FONT_DIALOG, NULL);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Create a new GedaFontDialog Object specifiying a Title
+ * \par Function Description
+ *  Convenience function that effectively wraps geda_font_dialog_new
+ *  and geda_font_dialog_set_title.
  */
 GtkWidget *geda_font_dialog_new_with_title (const char *title)
 {
