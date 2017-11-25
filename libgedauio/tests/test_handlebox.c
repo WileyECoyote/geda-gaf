@@ -151,10 +151,10 @@ check_accessors ()
       fprintf(stderr, "FAILED: line <%d> %s handle_position <%d>\n", __LINE__, TWIDGET, value);
       result++;
     }
-  }
 
-  g_object_ref_sink(widget); /* Sink reference to the widget */
-  g_object_unref(widget);    /* Destroy the widget */
+    g_object_ref_sink(widget); /* Sink reference to the widget */
+    g_object_unref(widget);    /* Destroy the widget */
+  }
 
   return result;
 }
