@@ -7394,10 +7394,10 @@ GtkTreeModel *geda_combo_widget_get_model (GtkWidget *combo_box)
   return NULL;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Set the #GedaComboBox Widget Active Model
+ * \par Function Description
+ * \see geda_combo_box_set_model
  */
 void geda_combo_widget_set_model (GtkWidget *combo_box, GtkTreeModel *model)
 {

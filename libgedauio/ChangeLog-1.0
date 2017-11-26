@@ -4,6 +4,7 @@
 
           * geda_combo_widget_get_count
           * geda_combo_widget_get_model
+          * geda_combo_widget_set_model
 
 2017-11-24 Wiley E. Hill <wileyhill@gmail.com>
 
