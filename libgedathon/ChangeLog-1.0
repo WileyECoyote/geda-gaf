@@ -1,7 +1,7 @@
 2017-11-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/libgedathon.c: Revise PyGeda_open_page to return Py_None if there
-      is was a failure.
+      is was a failure, adjust line wrapping and spacing in documentation.
 
     * tests/run_tests.sh: Add section to do_setup_geda_environment() to export
       GEDADATARC=/libgeda/scheme, and print when verbose.

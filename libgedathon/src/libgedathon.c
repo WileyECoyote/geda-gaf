@@ -1154,9 +1154,8 @@ int PyGeda_is_page_modified (int pid)
  *  \ingroup Python_API_Library
  *  \par Function Description
  *  Calls LibGeda function geda_struct_page_goto to change the current
- *  page referenced by \a toplevel and changes the current
- *  working directory to the directory associated with the
- *  page.
+ *  page referenced by \a toplevel and changes the current working
+ *  directory to the directory associated with the page.
  *
  *  \param [in] pid     Integer, The Page to go to
  *
@@ -1173,15 +1172,15 @@ PyGeda_goto_page( int pid )
 /*! \brief Open a Page
  *  \ingroup Python_API_Library
  *  \par Function Description
- *  This function attempts to create new PyGedaPageObject. The object represents the
- *  Page referenced by the given filename only if the file exist and is readable
- *  when attempting to open and existing file. If the filename does not exist
- *  then an empty page Object is created.
+ *  This function attempts to create new PyGedaPageObject. The object
+ *  represents the Page referenced by the given filename only if the
+ *  file exist and is readable when attempting to open and existing file.
+ *  If the filename does not exist then an empty page Object is created.
  *
  *  \param [in] filename String, the file name of the page to open
  *
- *  \return [out] PyObject A composite Python object containing the filename and
- *                the assigned pid
+ *  \return [out] PyObject A composite Python object containing the filename
+ *                and the assigned pid
  *
  */
 PyObject*
@@ -1447,7 +1446,6 @@ PyGeda_close_page(int pid)
  *  \param [in] over_write  Integer, the page id of the page to be saved
  *
  *  \return [out] PyObject result of calling PyGeda_open_page.
- *
  */
 PyObject*
 PyGeda_new_page( const char *filename, int over_write)
@@ -1485,7 +1483,6 @@ PyGeda_new_page( const char *filename, int over_write)
  *  \param [in] filename String to set as the new file name
  *
  *  \return [out] True on success, otherwise FALSE
- *
  */
 int PyGeda_rename_page (int pid, const char *filename)
 {
@@ -1508,7 +1505,6 @@ int PyGeda_rename_page (int pid, const char *filename)
  *  \param [in] pid  Integer, the page id of the page to be saved
  *
  *  \return [out] FALSE if no errors occured, otherwise True.
- *
  */
 int
 PyGeda_save_page( int pid )
@@ -1539,7 +1535,6 @@ PyGeda_save_page( int pid )
  *  \param [in] filename String to set as the new file name
  *
  *  \return [out] True on success, otherwise FALSE
- *
  */
 int PyGeda_save_page_as (int pid, const char *filename)
 {
@@ -1563,7 +1558,6 @@ int PyGeda_save_page_as (int pid, const char *filename)
  *  \param [in] py_page_list A PyList Object
  *
  *  \return [out] integer number of errors that occured.
- *
  */
 int
 PyGeda_save_all_pages( PyObject *py_page_list )
@@ -1614,13 +1608,12 @@ PyGeda_save_all_pages( PyObject *py_page_list )
 /*! \brief Check is Object is a GedaCapsuleObject
  *  \ingroup Python_API_Library
  *  \par Function Description
- *    This function returns True is the argument object is a
- *  GedaCapsule type, otherwise FALSE.
+ *   This function returns True is the argument object is a
+ *   GedaCapsule type, otherwise FALSE.
  *
  *  \param [in] py_object    A PyObject to check
  *
  *  \return [out] True of object is GedaCapsuleObject.
- *
  */
 int
 PyGeda_GedaCapsule_Type(PyObject *py_object)
@@ -1686,7 +1679,6 @@ PyGeda_get_bounds( int pid, int sid )
  *  \param [in] py_capsule   The PyObject container object
  *
  *  \return [out] A PyGedaObject construction data.
- *
  */
 PyObject*
 PyGeda_get_object(PyObject *py_capsule)
@@ -1732,19 +1724,20 @@ PyGeda_get_object(PyObject *py_capsule)
 /*! \brief Get a List Objects from an Object
  *  \ingroup Python_API_Library
  *  \par Function Description
- *  This function returns a list of existing objects from another object. The source
- *  object can be a <p>Page</p> or a <p>PyGedaObject</p>. The returned list contains capsule items.
- *  Encapsulation of objects is performed for efficiency and memory management. If real
- *  PyGedaObjects had to be created for an entire schematic containing numerous objects,
- *  the time required for Python to manage the memory would approach "hard-disk" access
- *  times. And when the list was later dereferenced, similar delays would occur while
+ *  This function returns a list of existing objects from another object. The
+ *  source object can be a <p>Page</p> or a <p>PyGedaObject</p>. The returned
+ *  list contains capsule items.  Encapsulation of objects is performed for
+ *  efficiency and memory management. If real PyGedaObjects had to be created
+ *  for an entire schematic containing numerous objects, the time required for
+ *  Python to manage the memory would approach "hard-disk" access times. And
+ *  when the list was later dereferenced, similar delays would occur while
  *  Python was performing garbage collection.
  *
- *  \param [in] pid     Integer, the page id of the page from which to get the sub-objects
- *  \param [in] sid     Integer, the PyGedaObject id of the Object from which to get the sub-objects
+ *  \param [in] pid  Integer, the page id of the page from which to get the sub-objects
+ *  \param [in] sid  Integer, the PyGedaObject id of the Object from which to get the sub-objects
  *
  *  \return [out] PyList list of GedaCapsule Objects or Py_None if the source object
- *                       did not contain any objects.
+ *                did not contain any objects.
  */
 PyObject*
 PyGeda_get_objects( int pid, int sid )
