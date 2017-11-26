@@ -84,7 +84,7 @@ static void log_message (Console *console, const char *message, const char *styl
  */
 void q_log_message(const char *format, ...)
 {
-  if(!quiet_mode) {
+  if (!quiet_mode) {
 
     char *buffer;
 
@@ -100,7 +100,7 @@ void q_log_message(const char *format, ...)
 
 void v_log_message(const char *format, ...)
 {
-  if(verbose_mode) {
+  if (verbose_mode) {
 
     char *buffer;
 
@@ -346,7 +346,7 @@ static void log_message (Console *console, const char *message, const char *styl
     gtk_text_buffer_insert_with_tags_by_name (buffer, &iter,
       _("** Invalid UTF-8 in log message. See stderr or gschem.log.\n"),
                                               -1, "plain", style, NULL);
-    if(verbose_mode) {
+    if (verbose_mode) {
       fprintf (stderr, "gschem: %s", message);
     }
     else {
@@ -465,7 +465,7 @@ void x_console_eval_command (GedaEntry *entry, int arg1, void * user_data)
 static void x_console_on_activate (GedaEntry *entry, int arg1, void * user_data)
 {
 
-  if(console_input_mode == CONSOLE_COMMAND_MODE)
+  if (console_input_mode == CONSOLE_COMMAND_MODE)
     x_console_eval_command (entry, arg1, user_data);
 }
 
