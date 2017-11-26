@@ -1273,6 +1273,7 @@ PyGeda_open_page( const char *filename )
       /* There was an error, try go back to old page */
       if (old_current != NULL ) {
         geda_struct_page_goto (old_current);
+        page = NULL;
       }
       else { /* There was error and no previous page */
         page = empty_page(name);
@@ -1372,7 +1373,14 @@ PyGeda_open_page( const char *filename )
     }
   }
 
-  PyObject *page_info = Py_BuildValue("si", filename, page->pid);
+  PyObject *page_info;
+
+  if (page) {
+    page_info = Py_BuildValue("si", filename, page->pid);
+  }
+  else {
+    page_info = Py_None;
+  }
 
   return page_info;
 }
