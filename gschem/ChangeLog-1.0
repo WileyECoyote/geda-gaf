@@ -1,3 +1,9 @@
+2017-11-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_edit.c: Fix bug introduced by commit
+      2609a363b9fd1efccb48676be953750928c69f05; the order of arguments to
+      geda_complex_object_new was incorrect in o_edit_update_component.
+
 2017-11-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * gschem/src/x/x_window.c: Revise x_window_open_page to return NULL

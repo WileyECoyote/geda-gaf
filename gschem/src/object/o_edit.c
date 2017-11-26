@@ -1176,7 +1176,7 @@ o_edit_update_component (GschemToplevel *w_current, GedaObject *o_current)
   int m = geda_complex_get_is_mirror(o_current->complex);
 
   /* Create new object and set embedded */
-  o_new = geda_complex_object_new (toplevel, a, x, y, m, clib, fname, 1);
+  o_new = geda_complex_object_new (toplevel, x, y, a, m, clib, fname, 1);
 
   if (geda_complex_object_is_embedded (o_current)) {
     geda_object_embed (o_new);
