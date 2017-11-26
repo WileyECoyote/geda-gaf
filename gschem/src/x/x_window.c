@@ -3,8 +3,8 @@
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 1998-2015 Ales Hvezda
- * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2017 Ales Hvezda
+ * Copyright (C) 1998-2017 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -45,8 +45,9 @@ extern int iconify_main_window;
  *  \brief Contains functions to create and support the Main Window
 */
 
-/*! \brief Setup the Graphical User Interface
- *  \par Function Description
+/*!
+ * \brief Setup the Graphical User Interface
+ * \par Function Description
  *  This function is the top-level constructor for the GUI, the function
  *  calls various lower level functions to actually create sub-components
  *  of the graphical interface.
@@ -104,9 +105,10 @@ x_window_setup (GschemToplevel *w_current)
 
 }
 
-/*! \brief Create Graphic Context for Drawing Area
- *  \par Function Description
- *   This function trys to create a new Graphic Context associated
+/*!
+ * \brief Create Graphic Context for Drawing Area
+ * \par Function Description
+ *  This function trys to create a new Graphic Context associated
  *  with the GdKWindow'ed Drawing Area for later use by low level
  *  drawing routines, but not libgedacairo.
  */
@@ -140,8 +142,9 @@ x_window_setup_context(GschemToplevel *w_current)
   return result;
 }
 
-/*! \brief Create the Drawing Area
- *  \par Function Description
+/*!
+ * \brief Create the Drawing Area
+ * \par Function Description
  *  Create and setup the drawing area widget, the widget is added
  *  to the given container \a window and assigned a name base on
  *  the programs process ID.
@@ -176,16 +179,17 @@ x_window_create_drawing_area (GschemToplevel *w_current, GtkWidget *window)
   GEDA_FREE(unique_name);
 }
 
-/*! \brief Save Window Geometry
- *  \par Function Description
+/*!
+ * \brief Save Window Geometry
+ * \par Function Description
  *  This functions retrieves the given window size, and position on the
  *  screen and writes the settings to the key file.
  *
- *  \param [in] w_current  Gschem toplevel structure.
+ * \param [in] w_current  Gschem toplevel structure.
  *
- *  \note: Settings are also saved in other modules, generally, only
- *  settings related to the Window are saved here. We can not save this
- *  data in an at_exit because w_current was destroyed by x_window_close()!
+ * \note: Settings are also saved in other modules, generally, only settings
+ *        related to the Window are saved here. We can not save this data in
+ *        an at_exit because w_current was destroyed by x_window_close()!
  */
 void
 x_window_save_settings(GschemToplevel *w_current)
@@ -295,12 +299,13 @@ x_window_save_settings(GschemToplevel *w_current)
   eda_config_set_integer (cfg, win_group, "scrollbars-visible", w_current->scrollbars_visible);
 }
 
-/*! \brief Restore Window Geometry and Cursor
- *  \par Function Description
+/*!
+ * \brief Restore Window Geometry and Cursor
+ * \par Function Description
  *  This functions retrieves the given window size and position from the
  *  key file and sets the given window to the retrived values.
  *
- *  \param [in] w_current  Gschem toplevel object.
+ * \param [in] w_current  Gschem toplevel object.
  */
 void
 x_window_restore_settings(GschemToplevel *w_current)
@@ -317,8 +322,8 @@ x_window_restore_settings(GschemToplevel *w_current)
 }
 
 /*!
- *  \brief Macro Widget Invoke Macro Response Callback
- *  \par Function Description
+ * \brief Macro Widget Invoke Macro Response Callback
+ * \par Function Description
  *  Called to handle the response emitted from the Macro Widget, if the
  *  response is GEDA_RESPONSE_OK the macro string is evaluated.
  */
@@ -342,8 +347,9 @@ x_window_invoke_macro (GtkWidget *widget, int response, GschemToplevel *w_curren
   gtk_widget_grab_focus (DrawingArea);
 }
 
-/*! \brief Create Main Window
- *  \par Function Description
+/*!
+ * \brief Create Main Window
+ * \par Function Description
  *  This function is called from x_window_setup to create the
  *  Main window and it's contents. This function creates mostly
  *  high-level containers, calling auxiliary functions to populate
@@ -540,10 +546,11 @@ x_window_create_main(GschemToplevel *w_current)
   gschem_main_window_update(MainWidget);
 }
 
-/*! \brief Close All Edit Dialogs
- *  \par Function Description
- *   This function close any currently open editing dialog boxes
- *   This includes the edit preference dialog.
+/*!
+ * \brief Close All Edit Dialogs
+ * \par Function Description
+ *  This function close any currently open editing dialog boxes
+ *  This includes the edit preference dialog.
  */
 void
 x_window_close_edit_dialogs(GschemToplevel *w_current)
@@ -584,10 +591,11 @@ x_window_close_edit_dialogs(GschemToplevel *w_current)
 
 }
 
-/*! \brief Close all open Dialogs
- *  \par Function Description
- *   This function closes all currently open dialog windows.
- *   This called in preperation for program shutdown.
+/*!
+ * \brief Close all open Dialogs
+ * \par Function Description
+ *  This function closes all currently open dialog windows.
+ *  This called in preperation for program shutdown.
  */
 void
 x_window_close_all_dialogs(GschemToplevel *w_current)
@@ -606,8 +614,8 @@ x_window_close_all_dialogs(GschemToplevel *w_current)
 }
 
 /*!
- *  \brief Close A Window
- *  \par Function Description
+ * \brief Close A Window
+ * \par Function Description
  *  Close the current window, in effect the GUI.
  */
 void
@@ -681,8 +689,8 @@ x_window_close(GschemToplevel *w_current)
 }
 
 /*!
- *  \brief Close All Windows
- *  \par Function Description
+ * \brief Close All Windows
+ * \par Function Description
  *  Wrapper for x_window_close function. Currently the option to
  *  open a new window is not enabled by default so normally there
  *  is only one window.
@@ -712,8 +720,12 @@ x_window_idle_thread_post_load_file (void *filename)
   return FALSE;
 }
 
-void
-x_window_reset_page_geometry(GschemToplevel *w_current, Page *page)
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+void x_window_reset_page_geometry(GschemToplevel *w_current, Page *page)
 {
   const GList *list = geda_struct_page_get_objects(page);
   int left, right, top, bottom;
@@ -730,29 +742,29 @@ x_window_reset_page_geometry(GschemToplevel *w_current, Page *page)
   i_zoom_world_extents (w_current, list, I_PAN_DONT_REDRAW);
 }
 
-/*! \brief Opens a new page from a file.
- *  \par Function Description
- *  This function opens the file whose name is <B>filename</B> in a
- *  new Page of <B>toplevel</B>.
+/*!
+ * \brief Opens a new page from a file.
+ * \par Function Description
+ *  This function opens the file whose name is <B>filename</B> in a new
+ *  Page of <B>toplevel</B>.
  *
- *  If there is no page for <B>filename</B> in <B>toplevel</B>'s list
- *  of pages, it creates a new Page, loads the file in it and returns
- *  a pointer to the new page. Otherwise it returns a pointer to the
- *  existing page.
+ *  If there is no page for <B>filename</B> in <B>toplevel</B>'s list of
+ *  pages, it creates a new Page, loads the file in it and returns a pointer
+ *  to the new page. Otherwise it returns a pointer to the existing page.
  *
- *  If the filename passed is NULL, this function creates an empty,
- *  untitled page.  The name of the untitled page is build from
- *  configuration data ('untitled-name') and a counter for uniqueness.
+ *  If the filename passed is NULL, this function creates an empty, untitled
+ *  page. The name of the untitled page is build from configuration data
+ *  ('untitled-name') appended a counter for uniqueness.
  *
  *  The opened page becomes the current page of <B>toplevel</B>.
  *
- *  \param [in] w_current The toplevel environment.
- *  \param [in] filename The name of the file to open or NULL for a blank page.
+ * \param [in] w_current The toplevel environment.
+ * \param [in] filename  The name of the file to open or NULL for a blank page.
  *
- *  \returns pointer to the new page.
+ * \returns pointer to the new page.
  *
- *  \note When we want a new string allocated we use the glib file utilities,
- *  when we don't want to deal with freeing we use our local buffer and glibc.
+ * \note Uses glib file utilities when a new string is to be allocated, uses
+ *       uses local buffer and glibc when we do not want to deal with freeing.
  *
  */
 Page*
