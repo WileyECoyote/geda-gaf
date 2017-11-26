@@ -861,6 +861,7 @@ x_window_open_page(GschemToplevel *w_current, const char *filename)
     /* There was an error, try go back to old page */
     if (old_current != NULL ) {
       geda_struct_page_goto (old_current);
+      page = NULL;
     }
     else { /* There was error and no previous page */
       page = empty_page(name);
@@ -982,21 +983,24 @@ x_window_open_page(GschemToplevel *w_current, const char *filename)
     }
   }
 
-  /* Damage notifications should invalidate the object on screen */
-  geda_object_notify_change_add (page,
-                                (ChangeNotifyFunc) o_invalidate_object,
-                                (ChangeNotifyFunc) o_invalidate_object, w_current);
+  if (page) {
 
-  x_window_reset_page_geometry(w_current, page);
+    /* Damage notifications should invalidate the object on screen */
+    geda_object_notify_change_add (page,
+                                   (ChangeNotifyFunc) o_invalidate_object,
+                                   (ChangeNotifyFunc) o_invalidate_object, w_current);
 
-  /* This line is generally un-needed, however if some code wants
-   * to open a page, yet not bring it to the front, it is needed
-   * to add it into the page manager. Otherwise, it will get done
-   * in x_window_set_current_page.
-   */
-  x_pagesel_update (w_current); /* If dialog open, update tree */
+    x_window_reset_page_geometry(w_current, page);
 
-  o_undo_savestate (w_current, UNDO_ALL);
+    /* This line is generally un-needed, however if some code wants
+     * to open a page, yet not bring it to the front, it is needed
+     * to add it into the page manager. Otherwise, it will get done
+     * in x_window_set_current_page.
+     */
+    x_pagesel_update (w_current); /* If dialog open, update tree */
+
+    o_undo_savestate (w_current, UNDO_ALL);
+  }
 
   return page;
 }
