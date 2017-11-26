@@ -108,6 +108,7 @@ do_export_path2libraries()
 do_setup_geda_environment ()
 {
   local CWDSAVE=$PWD
+  local PATH2LIBGEDA
 
   if test -d ${SRCDIR}/../../symbols ; then
    cd ${SRCDIR}/../../symbols
@@ -121,6 +122,27 @@ do_setup_geda_environment ()
     exit 1
   fi
 
+  # Libgeda (only to scheme below)
+  if test -d ${RPATH2LIBGEDA} ; then
+     cd $RPATH2LIBGEDA/../..
+     PATH2LIBGEDA=$PWD
+     cd $CWDSAVE
+  else
+     echo "Error: not in the right place, cannot find libgeda: $db"
+     exit 1
+  fi
+
+  # Export path to RC files
+  if [ -d $PATH2LIBGEDA/scheme ] ; then
+     cd $PATH2LIBGEDA
+     export GEDADATARC=$PWD/scheme
+     cd $CWDSAVE
+  else
+    echo "Error: not in the right place, cannot find gschem scheme"
+    exit 1
+  fi
+
+  test $VERBOSE && echo  "GEDADATARC=${GEDADATARC}"
   test $VERBOSE && echo  "GEDADATA=${GEDADATA}"
 }
 

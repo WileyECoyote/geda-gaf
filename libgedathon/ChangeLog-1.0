@@ -3,6 +3,8 @@
     * src/libgedathon.c: Revise PyGeda_open_page to return Py_None if there
       is was a failure.
 
+    * tests/run_tests.sh: Add section to do_setup_geda_environment() to export
+      GEDADATARC=/libgeda/scheme, and print when verbose.
 
 2017-09-11 Wiley E. Hill <wileyhill@gmail.com>
 
