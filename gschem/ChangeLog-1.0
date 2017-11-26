@@ -4,6 +4,8 @@
       2609a363b9fd1efccb48676be953750928c69f05; the order of arguments to
       geda_complex_object_new was incorrect in o_edit_update_component.
 
+    * src/x/x_dnd.c: Change gint to int, and guint to type unsigned int.
+
 2017-11-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * gschem/src/x/x_window.c: Revise x_window_open_page to return NULL

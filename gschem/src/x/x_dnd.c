@@ -711,7 +711,7 @@ x_dnd_drag_receive(GtkWidget *widget, GdkDragContext   *context, int x, int y,
  *  Called when the drag leaves the destination.
  */
 static void x_dnd_drag_leave
-(GtkWidget *widget, GdkDragContext *context, guint time, GschemToplevel *w_current)
+(GtkWidget *widget, GdkDragContext *context, unsigned int time, GschemToplevel *w_current)
 {
   const char *name = gtk_widget_get_name (widget);
 
@@ -729,7 +729,7 @@ static void x_dnd_drag_leave
  */
 /* Emitted /
 static bool x_dnd_drag_motion
-(GtkWidget *widget, GdkDragContext *context, int x, int y, guint t, GschemToplevel *w_current)
+(GtkWidget *widget, GdkDragContext *context, int x, int y, unsigned int t, GschemToplevel *w_current)
 {
   // Fancy stuff here. This signal spams the console something horrible.
   //const char *name = gtk_widget_get_name (widget);
@@ -738,7 +738,7 @@ static bool x_dnd_drag_motion
 */
 /*
 static void
-drag_motion (GtkWidget *widget, GdkDragContext *context, gint x, gint y, guint time)
+drag_motion (GtkWidget *widget, GdkDragContext *context, int x, int y, unsigned int time)
 {
   GdkModifierType mask;
   gdk_window_get_pointer (gtk_widget_get_window (widget), NULL, NULL, &mask);
@@ -760,7 +760,7 @@ drag_motion (GtkWidget *widget, GdkDragContext *context, gint x, gint y, guint t
  * \return TRUE if the operation should continue, otherwise FALSE
  */
 static bool x_dnd_drag_drop
-(GtkWidget *widget, GdkDragContext *context, int x, int y, guint time, GschemToplevel *w_current)
+(GtkWidget *widget, GdkDragContext *context, int x, int y, unsigned int time, GschemToplevel *w_current)
 {
   bool   is_valid_drop_site;
   GList *targets;
