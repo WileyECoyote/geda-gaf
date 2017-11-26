@@ -1,3 +1,9 @@
+2017-11-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_combobox.c: Update function documentation:
+
+          * geda_combo_widget_get_count
+
 2017-11-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_font_dialog.c: Eliminate unnecessary type-checking

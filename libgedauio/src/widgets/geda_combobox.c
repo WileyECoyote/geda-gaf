@@ -7232,10 +7232,10 @@ void geda_combo_widget_set_active_iter(GtkWidget *combo, GtkTreeIter *iter)
  *  @{
  */
 
-/*! \todo Finish function documentation!!!
- *  \brief widget version of #geda_combo_box_get_count
- *  \par Function Description
- *
+/*!
+ * \brief Widget version of #geda_combo_box_get_count
+ * \par Function Description
+ * \see geda_combo_box_get_count
  */
 int geda_combo_widget_get_count(GtkWidget *widget)
 {
