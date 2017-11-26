@@ -7377,10 +7377,14 @@ void geda_combo_widget_set_entry_text_column (GtkWidget *combo, int text_column)
  return geda_combo_box_set_entry_text_column((GedaComboBox*)combo, text_column);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Widget version to Retrieve the #GedaComboBox Tree Model
+ * \par Function Description
+ *  Returns the GtkTreeModel providing the data source for \a combo_box.
  *
+ * \param [in] combo_box A #GedaComboBox
+ *
+ * \return A GtkTreeModel which was passed during construction.
  */
 GtkTreeModel *geda_combo_widget_get_model (GtkWidget *combo_box)
 {

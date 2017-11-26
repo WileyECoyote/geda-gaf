@@ -3,6 +3,7 @@
     * src/widgets/geda_combobox.c: Update function documentation:
 
           * geda_combo_widget_get_count
+          * geda_combo_widget_get_model
 
 2017-11-24 Wiley E. Hill <wileyhill@gmail.com>
 
