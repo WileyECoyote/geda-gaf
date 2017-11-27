@@ -1200,7 +1200,7 @@ PyGeda_open_page( const char *filename )
   char *ptr;
   char  strbuff[MAX_PATH];
 
-  g_return_val_if_fail (toplevel != NULL, Py_None);
+  g_return_val_if_fail (toplevel != NULL, Py_BuildValue(""));
 
   /* Generate unique untitled filename if none was specified */
   char *generate_untitled(void) {
@@ -1388,7 +1388,7 @@ PyGeda_open_page( const char *filename )
     page_info = Py_BuildValue("si", filename, page->pid);
   }
   else {
-    page_info = Py_None;
+    page_info = Py_BuildValue("");
   }
 
   return page_info;
@@ -1653,7 +1653,7 @@ PyGeda_get_bounds( int pid, int sid )
       py_list = Py_BuildValue("iiii",  left, top, right, bottom);
     }
     else {
-      py_list = Py_None;
+      py_list = Py_BuildValue("");
     }
   }
   else {
@@ -1669,7 +1669,7 @@ PyGeda_get_bounds( int pid, int sid )
         py_list = Py_BuildValue("iiii",  left, top, right, bottom);
       }
       else {
-        py_list = Py_None;
+        py_list = Py_BuildValue("");
       }
     }
     else {
@@ -1778,7 +1778,7 @@ PyGeda_get_objects( int pid, int sid )
     py_list = PyGeda_glist_2_pylist(list);
   }
   else {
-    py_list = Py_None;
+    py_list = Py_BuildValue("");
   }
   return py_list;
 }
@@ -2857,7 +2857,7 @@ PyGeda_get_attribs(PyObject *py_object)
   PyGedaObject *geda_object = (PyGedaObject*)py_object;
   int           pid         = geda_object->pid;
   int           sid         = geda_object->sid;
-  PyObject     *output_list = Py_None;
+  PyObject     *output_list = Py_BuildValue("");
   GedaObject   *parent;
 
   /* Get pointer to the parent object */
@@ -2978,7 +2978,7 @@ PyObject *PyGeda_set_attrib(PyObject *py_complex, PyObject *py_attrib,
         py_data = get_text_object_data(attrib);
       }
       else {
-        py_data = Py_None;
+        py_data = Py_BuildValue("");
       }
     }
   }
@@ -3156,7 +3156,7 @@ PyGeda_get_network( int pid, int sid, int filter )
     GEDA_UNREF(network);
   }
   else {
-    py_list = Py_None;
+    py_list = Py_BuildValue("");
   }
 
   return py_list;
