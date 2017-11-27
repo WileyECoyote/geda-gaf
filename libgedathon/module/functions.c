@@ -758,7 +758,7 @@ FUNCTION ( AddArc)
   }
   else {
     fprintf(stderr, "AddArc: An error occured, Arc object was not created\n");
-    py_arc = Py_None;
+    py_arc = Py_BuildValue("");
     PyErr_Clear();
   }
   return py_arc;
@@ -863,7 +863,7 @@ FUNCTION ( AddAttribute )
   }
   else {
     fprintf(stderr, "AddAttribute: An error occured, Text Attribute object was not created\n");
-    py_text = Py_None;
+    py_text = Py_BuildValue("");
     PyErr_Clear();
   }
   return py_text;
@@ -926,7 +926,7 @@ FUNCTION ( AddBox )
   }
   else {
     fprintf(stderr, "AddBox: An error occured, Box object was not created\n");
-    py_box = Py_None;
+    py_box = Py_BuildValue("");
     PyErr_Clear();
   }
   return py_box;
@@ -996,7 +996,7 @@ FUNCTION(AddBus)
   }
   else {
     fprintf(stderr, "AddBus: An error occured, Bus object was not created\n");
-    py_bus = Py_None;
+    py_bus = Py_BuildValue("");
     PyErr_Clear();
   }
   return py_bus;
@@ -1064,7 +1064,7 @@ FUNCTION(AddComponent)
   else {
     fprintf(stderr, "AddComponent: An error occured, object was not created, symbol=%s\n",
             PyString_AsString(py_symbol));
-    py_component = Py_None;
+    py_component = Py_BuildValue("");
     PyErr_Clear();
   }
   return py_component;
@@ -1146,7 +1146,7 @@ FUNCTION(AddCapacitor)
   else {
     fprintf(stderr, "AddCapacitor: An error occured, object was not created, symbol=%s\n",
             PyString_AsString(CapacitorSymbol));
-    py_capacitor = Py_None;
+    py_capacitor = Py_BuildValue("");
     PyErr_Clear();
   }
   return py_capacitor;
@@ -1210,7 +1210,7 @@ FUNCTION ( AddCircle )
   }
   else {
     fprintf(stderr, "AddCircle: An error occured, Circle object was not created\n");
-    py_circle = Py_None;
+    py_circle = Py_BuildValue("");
     PyErr_Clear();
   }
   return py_circle;
@@ -1292,7 +1292,7 @@ FUNCTION(AddElectrolytic)
   else {
     fprintf(stderr, "AddElectrolytic: An error occured, object was not created, symbol=%s\n",
             PyString_AsString(ElectrolyticSymbol));
-    py_electrolytic = Py_None;
+    py_electrolytic = Py_BuildValue("");
     PyErr_Clear();
   }
 
@@ -1373,7 +1373,7 @@ FUNCTION(AddInductor)
   else {
     fprintf(stderr, "AddInductor: An error occured, inductor object was not created, symbol=%s\n",
             PyString_AsString(InductorSymbol));
-    py_inductor = Py_None;
+    py_inductor = Py_BuildValue("");
     PyErr_Clear();
   }
   return py_inductor;
@@ -1435,7 +1435,7 @@ FUNCTION(AddLine)
   }
   else {
     fprintf(stderr, "AddLine: An error occured, line object was not created\n");
-    py_line = Py_None;
+    py_line = Py_BuildValue("");
     PyErr_Clear();
   }
   return py_line;
@@ -1501,7 +1501,7 @@ FUNCTION(AddNet)
   }
   else {
     fprintf(stderr, "AddNet: An error occured, Net object was not created\n");
-    py_net = Py_None;
+    py_net = Py_BuildValue("");
     PyErr_Clear();
   }
   return py_net;
@@ -1596,7 +1596,7 @@ FUNCTION(AddOpAmp)
   else {
     fprintf(stderr, "AddOpAmp: An error occured, object was not created, symbol=%s\n",
             PyString_AsString(OpAmpSymbol));
-    py_opamp = Py_None;
+    py_opamp = Py_BuildValue("");
     PyErr_Clear();
   }
   return py_opamp;
@@ -1654,7 +1654,7 @@ FUNCTION(AddPath)
   }
   else {
     fprintf(stderr, "AddPath: An error occured, path object was not created\n");
-    py_path = Py_None;
+    py_path = Py_BuildValue("");
     PyErr_Clear();
   }
   return py_path;
@@ -1735,7 +1735,7 @@ FUNCTION(AddPicture)
   else {
     fprintf(stderr, "AddPicture: An error occured, object was not created, symbol=%s\n",
             PyString_AsString(py_file));
-    py_picture = Py_None;
+    py_picture = Py_BuildValue("");
     PyErr_Clear();
   }
   return py_picture;
@@ -1874,7 +1874,7 @@ FUNCTION(AddPin)
   }
   else {
     fprintf(stderr, "AddPin: An error occured, pin object was not created\n");
-    py_pin = Py_None;
+    py_pin = Py_BuildValue("");
     PyErr_Clear();
   }
   return py_pin;
@@ -1956,7 +1956,7 @@ FUNCTION(AddResistor)
   else {
     fprintf(stderr, "AddResistor: An error occured, object was not created, symbol=%s\n",
             PyString_AsString(ResistorSymbol));
-    py_resistor = Py_None;
+    py_resistor = Py_BuildValue("");
     PyErr_Clear();
   }
   return py_resistor;
@@ -2023,7 +2023,7 @@ FUNCTION(AddSource)
   else {
     fprintf(stderr, "AddSource: An error occured, object was not created, symbol=%s\n",
             PyString_AsString(py_symbol));
-    py_source = Py_None;
+    py_source = Py_BuildValue("");
     PyErr_Clear();
   }
   return py_source;
@@ -2114,7 +2114,7 @@ FUNCTION ( AddText )
   }
   else {
     fprintf(stderr, "AddText: An error occured, Text Attribute object was not created\n");
-    py_text = Py_None;
+    py_text = Py_BuildValue("");
     PyErr_Clear();
   }
   return py_text;
@@ -2185,7 +2185,7 @@ FUNCTION(AddTitleblock)
   else {
     fprintf(stderr, "AddTitleblock: An error occured, object was not created, symbol=%s\n",
             PyString_AsString(TitleblockSymbol));
-    py_titleblock = Py_None;
+    py_titleblock = Py_BuildValue("");
     PyErr_Clear();
   }
   return py_titleblock;
