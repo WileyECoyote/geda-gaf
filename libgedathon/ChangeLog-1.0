@@ -3,7 +3,10 @@
     * src/libgedathon.c: Set the result in PyGeda_append_symbol_path to the
       value returned by geda_struct_clib_add_directory. Replace Py_None with
       Py_BuildValue(""). Revise PyGeda_declare_local_sym to attempt to create
-      the subdirectory if the subdirectory does not already exist.
+      the subdirectory if the subdirectory does not already exist. Eliminate
+      superfluous error messages in PyGeda_save_page and PyGeda_save_all_pages,
+      the message are not required because the error string set by geda_save_file
+      contains all that is needed.
 
 2017-11-26 Wiley E. Hill <wileyhill@gmail.com>
 

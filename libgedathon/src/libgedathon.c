@@ -1527,7 +1527,7 @@ PyGeda_save_page( int pid )
 
   if (page && (GEDA_IS_PAGE(page))) {
     if (!geda_save_file (toplevel, page, page->filename, &err)) {
-      fprintf(stderr, "Failed to save file <%s> Error: %s\n", page->filename, err->message);
+      fprintf(stderr, "%s\n", err->message);
       g_clear_error (&err);
       status++;
     }
@@ -1604,7 +1604,7 @@ PyGeda_save_all_pages( PyObject *py_page_list )
     page = iter->data;
     if (page && (GEDA_IS_PAGE(page))) {
       if (!geda_save_file (toplevel, page, page->filename, &err)) {
-        fprintf(stderr, "Failed to save file <%s> Error: %s\n", page->filename, err->message);
+        fprintf(stderr, "%s\n", err->message);
         g_clear_error (&err);
         status++;
       }
