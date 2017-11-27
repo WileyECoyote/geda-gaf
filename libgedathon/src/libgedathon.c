@@ -993,7 +993,7 @@ PyGeda_append_symbol_path( const char *path )
     char *namestr = basename(directory);
 
     if (geda_file_get_is_path_absolute (directory)) {
-      geda_struct_clib_add_directory (directory, namestr);
+      result = geda_struct_clib_add_directory (directory, namestr) != NULL;
     }
     else {
       char *cwd = g_get_current_dir ();
@@ -1004,7 +1004,7 @@ PyGeda_append_symbol_path( const char *path )
       else
         temp = g_build_filename (cwd, directory, NULL);
 
-      geda_struct_clib_add_directory (temp, namestr);
+      result = geda_struct_clib_add_directory (temp, namestr) != NULL;
 
       GEDA_FREE(temp);
       GEDA_FREE(cwd);

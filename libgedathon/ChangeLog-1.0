@@ -1,7 +1,9 @@
 2017-11-27 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/libgedathon.c: Revise PyGeda_declare_local_sym to attempt to create
-      the subdirectory if the subdirectory does not already exist.
+    * src/libgedathon.c: Set the result in PyGeda_append_symbol_path to the
+      value returned by geda_struct_clib_add_directory. Revise function
+      PyGeda_declare_local_sym to attempt to create the subdirectory if the
+      subdirectory does not already exist.
 
 2017-11-26 Wiley E. Hill <wileyhill@gmail.com>
 
