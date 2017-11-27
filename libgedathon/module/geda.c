@@ -466,7 +466,7 @@ METHOD(append_symbol_path)
     const char *syntax = "syntax: append_symbol_path(path)";
 
     PyErr_SetString(PyExc_TypeError, syntax);
-    return Py_None;
+    return NULL;
   }
 
   status = library.func(path);
@@ -519,7 +519,7 @@ METHOD(declare_local_sym)
     const char *syntax = "syntax: declare_local_sym([folder])";
 
     PyErr_SetString(PyExc_TypeError, syntax);
-    return Py_None;
+    return NULL;
   }
 
   status = library.func(directory);
@@ -751,7 +751,7 @@ METHOD(open_page)
     const char *syntax = "syntax: open_page(filename)";
 
     PyErr_SetString(PyExc_TypeError, syntax);
-    return Py_None;
+    return NULL;
   }
 
   info = library.func(filename);
@@ -853,7 +853,7 @@ METHOD(new_page)
     const char *syntax = "syntax: new_page([filename] [, over_write])";
 
     PyErr_SetString(PyExc_TypeError, syntax);
-    return Py_None;
+    return NULL;
   }
 
   info = library.func(filename, over_write);

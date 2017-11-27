@@ -1,7 +1,13 @@
 2017-11-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * module/geda.c: Revise geda.unknown and geda.shutdown to increment the
-      reference count on Py_None before returning.
+      reference count on Py_None before returning. Return NULL instead of
+      Py_None when PyArg_ParseTuple fails in:
+
+            * append_symbol_path
+            * declare_local_sym
+            * open_page
+            * new_page
 
 2017-11-25 Wiley E. Hill <wileyhill@gmail.com>
 
