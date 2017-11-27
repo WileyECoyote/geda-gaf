@@ -1,8 +1,15 @@
 2017-11-26 Wiley E. Hill <wileyhill@gmail.com>
 
-    * module/geda.c: Revise geda.unknown and geda.shutdown to increment the
-      reference count on Py_None before returning. Return NULL instead of
-      Py_None when PyArg_ParseTuple fails in:
+    * module/geda.c: Increment the reference count on Py_None before returning
+      in:
+            * unknown
+            * shutdown
+            * get_active_page
+            * save_all_pages
+            * get_attrib
+            * set_attrib
+
+      Return NULL instead of Py_None when PyArg_ParseTuple fails in:
 
             * append_symbol_path (elaborate on path argument)
             * declare_local_sym

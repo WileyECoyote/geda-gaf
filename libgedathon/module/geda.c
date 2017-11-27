@@ -594,6 +594,7 @@ METHOD(get_active_page)
     page = PyObject_CallObject((PyObject *) PyGedaPageClass(), info);
   }
   else {
+    Py_INCREF(Py_None);
     page = Py_None;
   }
   ON_METHOD_EXIT(get_active_page);
@@ -1004,6 +1005,7 @@ METHOD(save_all_pages)
     return NULL;
   }
   else{
+    Py_INCREF(Py_None);
     pages = Py_None;
   }
 
@@ -2415,8 +2417,10 @@ METHOD(get_attrib)
     py_attrib = PyObject_CallObject((PyObject *) PyGedaTextClass(), object_data);
     Py_DECREF(object_data);
   }
-  else
+  else {
+    Py_INCREF(Py_None);
     py_attrib = Py_None;
+  }
 
   ON_METHOD_EXIT(get_attrib);
   return py_attrib;
@@ -2561,6 +2565,7 @@ METHOD(set_attrib)
     Py_DECREF(object_data);
   }
   else {
+    Py_INCREF(Py_None);
     py_ret = Py_None;
   }
 
