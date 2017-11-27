@@ -1,6 +1,7 @@
 2017-11-26 Wiley E. Hill <wileyhill@gmail.com>
 
-    * module/geda.c: Increment the reference count on Py_None before returning
+    * module/geda.c: Remove unnecessary initialization of py_attrib to Py_None
+      in new_attrib. Increment the reference count on Py_None before returning
       in:
             * unknown
             * shutdown

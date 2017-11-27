@@ -2400,7 +2400,7 @@ METHOD(get_attrib)
   TYPE_PYOBJECT_P1C1(get_attrib);
   PyObject *py_parent;
   PyObject *object_data;
-  PyObject *py_attrib = Py_None;
+  PyObject *py_attrib;
   const char *name;
 
   if (!PyArg_ParseTuple(args, "Os:geda.get_attrib", PyGedaObjectClass(), &py_parent, &name)) {
