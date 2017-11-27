@@ -409,6 +409,7 @@ typedef void      (*PyGeda_void_v1_type)         ( void );
 METHOD(unknown)
 {
   fprintf(stderr, "unknown method handler\n");
+  Py_INCREF(Py_None);
   return Py_None;
 }
 
@@ -425,6 +426,7 @@ METHOD(shutdown)
   TYPE_VOID_V1(shutdown)
   library.func();
   ON_METHOD_EXIT(shutdown);
+  Py_INCREF(Py_None);
   return Py_None;
 }
 

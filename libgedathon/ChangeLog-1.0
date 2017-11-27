@@ -1,3 +1,8 @@
+2017-11-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * module/geda.c: Revise geda.unknown and geda.shutdown to increment the
+      reference count on Py_None before returning.
+
 2017-11-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/libgedathon.c: Revise PyGeda_open_page to return Py_None if there
