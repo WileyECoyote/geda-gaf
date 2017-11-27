@@ -463,7 +463,7 @@ METHOD(append_symbol_path)
 
   if (!PyArg_ParseTuple(args, "s:geda.append_symbol_path", &path)) {
 
-    const char *syntax = "syntax: append_symbol_path(path)";
+    const char *syntax = "syntax: append_symbol_path(valid path)";
 
     PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
@@ -472,6 +472,7 @@ METHOD(append_symbol_path)
   status = library.func(path);
 
   ON_METHOD_EXIT(append_symbol_path);
+
   return Py_BuildValue("i", status);
 }
 

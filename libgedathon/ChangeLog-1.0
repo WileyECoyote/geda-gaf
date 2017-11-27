@@ -4,7 +4,7 @@
       reference count on Py_None before returning. Return NULL instead of
       Py_None when PyArg_ParseTuple fails in:
 
-            * append_symbol_path
+            * append_symbol_path (elaborate on path argument)
             * declare_local_sym
             * open_page
             * new_page
