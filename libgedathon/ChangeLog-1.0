@@ -1,3 +1,8 @@
+2017-11-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/libgedathon.c: Revise PyGeda_declare_local_sym to attempt to create
+      the subdirectory if the subdirectory does not already exist.
+
 2017-11-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * module/geda.c: Remove unnecessary initialization of py_attrib to Py_None

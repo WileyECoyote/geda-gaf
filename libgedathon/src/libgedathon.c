@@ -1028,14 +1028,24 @@ PyGeda_append_symbol_path( const char *path )
 int
 PyGeda_declare_local_sym( const char *directory )
 {
-  const char *dir_name;
+  const char *subdir;
   int         result = 0;
   FILE *f;
 
   if (directory)
-    dir_name = directory;
+    subdir = directory;
   else
-    dir_name = "sym";
+    subdir = "sym";
+
+  /* Check if the subdirectory exist */
+  if (!g_file_test (subdir, G_FILE_TEST_IS_DIR)) {
+
+    /* Attempt to create the subdirectory, does not set error result */
+    if (geda_create_path(subdir, S_IRWXU | S_IRWXG | S_IRWXO)) {
+      const char *msg = "Warning: could not create";
+      fprintf(stderr, "%s \"%s\", %s\n", msg, subdir, strerror(errno));
+    }
+  }
 
   f = fopen("gafrc", "w");
 
@@ -1043,7 +1053,7 @@ PyGeda_declare_local_sym( const char *directory )
     result = errno;
   }
   else {
-    fprintf(f, "(component-library \"./%s\")\n", dir_name);
+    fprintf(f, "(component-library \"./%s\")\n", subdir);
     fclose(f);
   }
   return result;
