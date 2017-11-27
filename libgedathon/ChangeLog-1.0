@@ -16,6 +16,9 @@
             * open_page
             * new_page
 
+    * module/functions.c: Increment the reference count on Py_None before
+      returning from unknown.
+
 2017-11-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/libgedathon.c: Revise PyGeda_open_page to return Py_None if there

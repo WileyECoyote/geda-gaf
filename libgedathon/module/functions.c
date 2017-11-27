@@ -350,6 +350,7 @@ PyObject *call_module_4ISO(char *method, PyObject *O1, PyObject *O2, PyObject *O
 FUNCTION(unknown)
 {
   fprintf(stderr, "unknown method handler\n");
+  Py_INCREF(Py_None);
   return Py_None;
 }
 
