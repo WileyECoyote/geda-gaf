@@ -900,7 +900,7 @@ const CLibSource *geda_struct_clib_get_source_by_name (const char *name)
  *
  */
 const CLibSource *geda_struct_clib_add_directory (const char *directory,
-                                        const char *name)
+                                                  const char *name)
 {
   CLibSource *source;
 
@@ -1046,8 +1046,8 @@ const CLibSource *geda_struct_clib_add_directory (const char *directory,
  *  \return The CLibSource associated with the component source.
  */
 const CLibSource *geda_struct_clib_add_command (const char *list_cmd,
-                                      const char *get_cmd,
-                                      const char *name)
+                                                const char *get_cmd,
+                                                const char *name)
 {
   CLibSource *source;
   char *unique_name;
