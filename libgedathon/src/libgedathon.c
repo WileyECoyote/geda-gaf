@@ -1019,7 +1019,7 @@ PyGeda_append_symbol_path( const char *path )
  *   This is a utility function to create a "gafrc" file in the given
  *   directory in order for a document to have locally defined symbols.
  *
- * \param [in] directory The directory where the "gafrc" is to located
+ * \param [in] directory The directory to be used in "gafrc" file
  *
  * \return [out] integer result=TRUE if file was created, otherwise the
  *                       system error number is returned
