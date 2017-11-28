@@ -453,7 +453,7 @@ METHOD(shutdown)
  *          (component-library "./p1sym")
  *
  *          Other configuration items can also be set using the gafrc files, see
- *          the document for LibGeda for details on RC files.
+ *          the document for Libgeda for details on RC files.
  */
 METHOD(append_symbol_path)
 {
