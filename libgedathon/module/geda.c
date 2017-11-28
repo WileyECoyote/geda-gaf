@@ -494,7 +494,7 @@ METHOD(append_symbol_path)
  *  param [in] directory String, a directory where "gafrc" file be created.
  *
  * \return [out] Returns FALSE if the path was appended, a non-zero returned value
- *               indicates and error occured.
+ *               indicates an error occurred.
  *
  * example:
  * \code
