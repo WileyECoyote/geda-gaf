@@ -526,6 +526,7 @@ METHOD(declare_local_sym)
   status = library.func(directory);
 
   ON_METHOD_EXIT(declare_local_sym);
+
   if (status != 0) {
     PyErr_SetString(PyExc_StandardError, strerror(status));
   }
@@ -597,7 +598,9 @@ METHOD(get_active_page)
     Py_INCREF(Py_None);
     page = Py_None;
   }
+
   ON_METHOD_EXIT(get_active_page);
+
   return page;
 }
 
@@ -636,10 +639,12 @@ METHOD(set_active_page)
     PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
+
   pid = ((PyGedaPageObject*)page)->pid;
   status = library.func(pid);
 
   ON_METHOD_EXIT(set_active_page);
+
   if (!status) {
     Py_RETURN_FALSE;
   }
@@ -672,6 +677,7 @@ METHOD(is_page_modified)
   page->modified = library.func(page->pid);
 
   ON_METHOD_EXIT(save_page);
+
   if (!page->modified) {
     Py_RETURN_FALSE;
   }
@@ -712,10 +718,12 @@ METHOD(goto_page)
     PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
+
   pid = ((PyGedaPageObject*)page)->pid;
   status = library.func(pid);
 
   ON_METHOD_EXIT(goto_page);
+
   if (!status) {
     Py_RETURN_FALSE;
   }
