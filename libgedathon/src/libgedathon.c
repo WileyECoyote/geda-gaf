@@ -1308,7 +1308,7 @@ PyObject *PyGeda_open_page( const char *filename )
       str = strcat (str, untitled);
 
       /* Converted and append an integer to the string */
-      tmp = geda_utility_string_int2str (++toplevel->num_untitled, &s_val[0], 10);
+      tmp = geda_string_int2str (++toplevel->num_untitled, &s_val[0], 10);
 
       str = strcat (str, tmp);
 

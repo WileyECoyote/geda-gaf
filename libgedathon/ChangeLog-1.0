@@ -4,7 +4,8 @@
       existence of the "gafrc" before creating, and if found check the requested
       component-library lines already and only append line when not found in
       existing files. Previous the function over-wrote any existing files with
-      the new information.
+      the new information. Substitute geda_string_int2str macro in PyGeda_open_
+      page.
 
 2017-11-27 Wiley E. Hill <wileyhill@gmail.com>
 
