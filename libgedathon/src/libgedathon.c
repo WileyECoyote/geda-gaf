@@ -946,8 +946,7 @@ void initialize( API_FunctionTable* user_table)
  *  finalized.
  *
  */
-void
-PyGeda_shutdown(void)
+void PyGeda_shutdown(void)
 {
   GList *iter = g_list_first(toplevel->pages->glist);
 
@@ -978,8 +977,7 @@ PyGeda_shutdown(void)
  * \return [out] integer result
  *
  */
-int
-PyGeda_append_symbol_path( const char *path )
+int PyGeda_append_symbol_path( const char *path )
 {
   char *directory;
   int result;
@@ -1033,8 +1031,7 @@ static char *advance2char(const char *string)
  *                       system error number is returned
  *
  */
-int
-PyGeda_declare_local_sym( const char *directory )
+int PyGeda_declare_local_sym( const char *directory )
 {
   const char *subdir;
   int result = 0;
@@ -1148,8 +1145,7 @@ PyGeda_declare_local_sym( const char *directory )
  * \return [out] PyObject list of page names and ID's
  *
  */
-PyObject*
-PyGeda_get_pages( void )
+PyObject *PyGeda_get_pages( void )
 {
   PyObject *pages;
   GList    *iter;
@@ -1180,8 +1176,7 @@ PyGeda_get_pages( void )
  * \return [in] data PyObject page name and pid or NULL
  *
  */
-PyObject*
-PyGeda_get_active_page( void )
+PyObject *PyGeda_get_active_page( void )
 {
   Page *page;
   PyObject *page_info;
@@ -1206,8 +1201,7 @@ PyGeda_get_active_page( void )
  *
  *  \returns True on success, otherwise FALSE
  */
-int
-PyGeda_set_active_page(int pid )
+int PyGeda_set_active_page( int pid )
 {
   Page *page;
   page = geda_toplevel_get_page_by_id(toplevel, pid);
@@ -1250,8 +1244,7 @@ int PyGeda_is_page_modified (int pid)
  *
  *  \returns True on success, otherwise FALSE
  */
-int
-PyGeda_goto_page( int pid )
+int PyGeda_goto_page( int pid )
 {
   Page *page;
   page = geda_toplevel_get_page_by_id(toplevel, pid);
@@ -1272,8 +1265,7 @@ PyGeda_goto_page( int pid )
  *                and the assigned pid
  *
  */
-PyObject*
-PyGeda_open_page( const char *filename )
+PyObject *PyGeda_open_page( const char *filename )
 {
   Page *page;
   char *ptr;
@@ -1485,8 +1477,7 @@ PyGeda_open_page( const char *filename )
  *                no page opened after closing the argument page
  *
  */
-int
-PyGeda_close_page(int pid)
+int PyGeda_close_page(int pid)
 {
   Page *page;
   int   new_pid;
@@ -1536,8 +1527,7 @@ PyGeda_close_page(int pid)
  *
  *  \return [out] PyObject result of calling PyGeda_open_page.
  */
-PyObject*
-PyGeda_new_page( const char *filename, int over_write)
+PyObject *PyGeda_new_page( const char *filename, int over_write)
 {
   char *fname = NULL;
 
@@ -1648,8 +1638,7 @@ int PyGeda_save_page_as (int pid, const char *filename)
  *
  *  \return [out] integer number of errors that occured.
  */
-int
-PyGeda_save_all_pages( PyObject *py_page_list )
+int PyGeda_save_all_pages( PyObject *py_page_list )
 {
   GError *err    = NULL;
   GList  *pages  = NULL;
@@ -1704,8 +1693,7 @@ PyGeda_save_all_pages( PyObject *py_page_list )
  *
  *  \return [out] True of object is GedaCapsuleObject.
  */
-int
-PyGeda_GedaCapsule_Type(PyObject *py_object)
+int PyGeda_GedaCapsule_Type(PyObject *py_object)
 {
   int answer = 0;
   if (py_object != NULL) {
@@ -1714,8 +1702,7 @@ PyGeda_GedaCapsule_Type(PyObject *py_object)
   return answer;
 }
 
-PyObject*
-PyGeda_get_bounds( int pid, int sid )
+PyObject *PyGeda_get_bounds( int pid, int sid )
 {
   Page     *page;
   PyObject *py_list;
@@ -1769,8 +1756,7 @@ PyGeda_get_bounds( int pid, int sid )
  *
  *  \return [out] A PyGedaObject construction data.
  */
-PyObject*
-PyGeda_get_object(PyObject *py_capsule)
+PyObject *PyGeda_get_object(PyObject *py_capsule)
 {
   GedaObject *object;
 
@@ -1828,8 +1814,7 @@ PyGeda_get_object(PyObject *py_capsule)
  *  \return [out] PyList list of GedaCapsule Objects or Py_None if the source object
  *                did not contain any objects.
  */
-PyObject*
-PyGeda_get_objects( int pid, int sid )
+PyObject *PyGeda_get_objects( int pid, int sid )
 {
   GList      *list;
   GedaObject *object;
@@ -1877,8 +1862,7 @@ PyGeda_get_objects( int pid, int sid )
  *  \return [out] status True if successful, otherwise False.
  *
  */
-int
-PyGeda_add_object( PyObject *PyPage, PyObject *py_object_A, PyObject *py_object_B )
+int PyGeda_add_object( PyObject *PyPage, PyObject *py_object_A, PyObject *py_object_B )
 {
   PyGedaObject *geda_pyparent = (PyGedaObject*)py_object_A;
   PyGedaObject *geda_pyobject = (PyGedaObject*)py_object_B;
@@ -2011,8 +1995,7 @@ PyGeda_add_object( PyObject *PyPage, PyObject *py_object_A, PyObject *py_object_
  *  \return [out] status True if successful, otherwise False.
  *
  */
-int
-PyGeda_add_objects( PyObject *PyPage, PyObject *py_object_A, PyObject *py_object_B )
+int PyGeda_add_objects( PyObject *PyPage, PyObject *py_object_A, PyObject *py_object_B )
 {
   int i;
   int count;
@@ -2050,8 +2033,7 @@ PyGeda_add_objects( PyObject *PyPage, PyObject *py_object_A, PyObject *py_object
  *
  *  \return [out] GedaCapsule containing a reference to the new object.
  */
-PyObject *
-PyGeda_copy_object( PyObject *py_object, int dx, int dy )
+PyObject *PyGeda_copy_object( PyObject *py_object, int dx, int dy )
 {
   PyObject    *py_capsule  = NULL;
   PyGedaObject  *geda_object = (PyGedaObject*)py_object;
@@ -2129,8 +2111,7 @@ PyGeda_copy_object( PyObject *py_object, int dx, int dy )
  *  \return [out] status True if successful otherwise False, False
  *                would only be returned if an object did not exist.
  */
-int
-PyGeda_remove_object( PyObject *py_object )
+int PyGeda_remove_object( PyObject *py_object )
 {
   PyGedaObject *geda_object = (PyGedaObject*)py_object;
   int           pid         = geda_object->pid;
@@ -2167,8 +2148,7 @@ PyGeda_remove_object( PyObject *py_object )
  *                would only be returned if the page conatining
  *                the object did not exist.
  */
-int
-PyGeda_remove_objects( PyObject *pyobjects )
+int PyGeda_remove_objects( PyObject *pyobjects )
 {
   int i;
   int count;
@@ -2193,8 +2173,7 @@ PyGeda_remove_objects( PyObject *pyobjects )
  *                would only be returned if the page conatining
  *                the object did not exist.
  */
-int
-PyGeda_delete_object( PyObject *py_object )
+int PyGeda_delete_object( PyObject *py_object )
 {
   PyGedaObject *geda_object = (PyGedaObject*)py_object;
   GedaObject   *object      = NULL;
@@ -2245,8 +2224,7 @@ PyGeda_delete_object( PyObject *py_object )
  *                would only be returned if an object in the list
  *                did not exist.
  */
-int
-PyGeda_delete_objects( PyObject *objects )
+int PyGeda_delete_objects( PyObject *objects )
 {
   int i;
   int count;
@@ -2272,8 +2250,7 @@ PyGeda_delete_objects( PyObject *objects )
  *                would only be returned if the page containing
  *                the object did not exist.
  */
-int
-PyGeda_sync_object( PyObject *py_object )
+int PyGeda_sync_object( PyObject *py_object )
 {
   PyGedaObject *geda_object = (PyGedaObject*)py_object;
   GedaObject   *object      = NULL;
@@ -2930,8 +2907,7 @@ PyObject *PyGeda_get_attrib(PyObject *py_object, const char *name)
  *  \return [out] PyList of GedaPyGedaTextObject data for each attribute
  *                attached to Object.
  */
-PyObject*
-PyGeda_get_attribs(PyObject *py_object)
+PyObject *PyGeda_get_attribs(PyObject *py_object)
 {
   PyGedaObject *geda_object = (PyGedaObject*)py_object;
   int           pid         = geda_object->pid;
@@ -3075,8 +3051,7 @@ PyObject *PyGeda_set_attrib(PyObject *py_complex, PyObject *py_attrib,
  *
  *  \return status True on success, False if an error occurs.
  */
-int
-PyGeda_refresh_attribs(PyObject *py_object)
+int PyGeda_refresh_attribs(PyObject *py_object)
 {
   PyGedaObject *geda_object = (PyGedaObject*)py_object;
   int           pid         = geda_object->pid;
@@ -3108,8 +3083,7 @@ PyGeda_refresh_attribs(PyObject *py_object)
 /** \defgroup Python_API_Connections  Geda Python Module API Network Methods
  *  @{
  */
-static GedaList *
-get_connected(GedaObject* o_net)
+static GedaList *get_connected(GedaObject* o_net)
 {
   GedaList *network;
   int       index;
@@ -3154,8 +3128,7 @@ get_connected(GedaObject* o_net)
  *          itself, unless excluded by the filter.
  *
  */
-PyObject*
-PyGeda_get_network( int pid, int sid, int filter )
+PyObject *PyGeda_get_network( int pid, int sid, int filter )
 {
   GedaList *network;
   Page     *page;
@@ -3242,8 +3215,7 @@ PyGeda_get_network( int pid, int sid, int filter )
 }
 
 /* flag = 0 return unconnect, flag = 1 return junctions */
-static void
-get_cue_locations_lowlevel(GList *list, PyObject *py_list, int flag)
+static void get_cue_locations_lowlevel(GList *list, PyObject *py_list, int flag)
 {
   GArray   *junctions;
   GArray   *noconnects;
@@ -3277,8 +3249,7 @@ get_cue_locations_lowlevel(GList *list, PyObject *py_list, int flag)
 
 }
 
-static PyObject*
-get_cue_locations(PyObject *py_objects, int flag)
+static PyObject *get_cue_locations(PyObject *py_objects, int flag)
 {
   PyGedaObject *geda_object = NULL;
   PyObject     *py_list;
@@ -3348,8 +3319,7 @@ get_cue_locations(PyObject *py_objects, int flag)
  *           circle.fill_type = FILL_SOLID
  *           geda.add_object(schematic, circle)
  */
-PyObject*
-PyGeda_get_junctions (PyObject *py_objects)
+PyObject  *PyGeda_get_junctions (PyObject *py_objects)
 {
   return get_cue_locations(py_objects, 1);
 }
@@ -3366,8 +3336,7 @@ PyGeda_get_junctions (PyObject *py_objects)
  *                where objects are disconnected or an empty list if
  *                none where found.
  */
-PyObject*
-PyGeda_get_unconnected (PyObject *py_objects)
+PyObject *PyGeda_get_unconnected (PyObject *py_objects)
 {
   return get_cue_locations(py_objects, 0);
 }
