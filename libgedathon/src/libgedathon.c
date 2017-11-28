@@ -1013,6 +1013,14 @@ PyGeda_append_symbol_path( const char *path )
   return result;
 }
 
+/* Helper for PyGeda_declare_local_sym */
+static char *advance2char(const char *string)
+{
+  const char *ptr = string;
+  while ((*ptr != ASCII_NUL) && ((*ptr == SPACE) || (*ptr == ASCII_HT)))++ptr;
+  return (char*)ptr;
+}
+
 /*! \brief Declare Local Symbols
  *  \ingroup Python_API_Library_Internal
  *  \par Function Description
@@ -1029,8 +1037,8 @@ int
 PyGeda_declare_local_sym( const char *directory )
 {
   const char *subdir;
-  int         result = 0;
-  FILE *f;
+  int result = 0;
+  FILE *fp;
 
   if (directory)
     subdir = directory;
@@ -1047,15 +1055,81 @@ PyGeda_declare_local_sym( const char *directory )
     }
   }
 
-  f = fopen("gafrc", "w");
+  if (!g_file_test ("gafrc", G_FILE_TEST_EXISTS)) {
 
-  if (f == NULL) {
-    result = errno;
+    /* The RC file does not exist so create */
+
+    fp = fopen("gafrc", "w");
+
+    if (fp == NULL) {
+      result = errno;
+    }
+    else {
+      fprintf(fp, "(component-library \"./%s\")\n", subdir);
+      fclose(fp);
+      result = TRUE;
+    }
   }
   else {
-    fprintf(f, "(component-library \"./%s\")\n", subdir);
-    fclose(f);
+
+    fp = fopen("gafrc", "r");
+
+    if (fp) {
+
+      char   *buff;
+      char   *oline;
+      bool    found;
+      size_t  len;
+      size_t  olen;
+      ssize_t read;
+
+      buff  = NULL;
+      len   = 0;
+      found = FALSE;
+      oline = geda_sprintf("(component-library \"./%s\")\n", subdir);
+      olen  = strlen(oline);
+
+      while ((read = getline(&buff, &len, fp)) != -1) {
+
+        char *ptr = advance2char(&buff[0]);
+
+        if (read > 21) {
+
+          /* Could check file extension here */
+          if (strncmp(ptr, oline, olen) == 0) {
+            found=TRUE;
+            break;
+          }
+        }
+      }
+
+      if (!found) {
+        fclose(fp);
+        fp = fopen("gafrc", "a");
+        if (fp) {
+          /* Extra new-line is here intentional */
+          fprintf(fp, "%s\n", oline);
+          result = TRUE;
+        }
+        else {
+          const char *msg = "Warning: could not write to";
+          fprintf(stderr, "%s \"%s\", %s\n", msg, subdir, strerror(errno));
+        }
+      }
+      else {
+        result = TRUE;
+      }
+
+      free(buff);
+      free(oline);
+      fclose(fp);
+    }
+    else {
+      const char *msg = "Warning: could not read";
+      fprintf(stderr, "%s \"%s\", %s\n", msg, subdir, strerror(errno));
+    }
   }
+
   return result;
 }
 
