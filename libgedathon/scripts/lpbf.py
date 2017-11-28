@@ -51,7 +51,7 @@ DefaultCapacitorSymbol("capacitor-py")
 DefaultOpAmpSymbol("dual-opamp-py")
 DefaultResistorSymbol("resistor-py")
 
-## Create a new schmatic file for the filter ##
+## Create a new schematic file for the filter ##
 lpbf = geda.new_page(filename)
 
 titleblock = geda.new_complex("title-B", 1000, 1000)
