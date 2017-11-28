@@ -539,11 +539,15 @@ x_dnd_receive_string(GschemToplevel *w_current, int x, int y, const char *string
       }
 
       if (load_as_page) {
+
         page = x_window_open_page(w_current, filename);
-        if (page)
+
+        if (page) {
           x_window_set_current_page (w_current, page);
-        else
+        }
+        else {
           result = FALSE;
+        }
       }
       GEDA_FREE(filename);
     }
