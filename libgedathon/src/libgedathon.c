@@ -1070,7 +1070,7 @@ PyGeda_declare_local_sym( const char *directory )
       result = TRUE;
     }
   }
-  else {
+  else { /* the RC file does exist so check contents */
 
     fp = fopen("gafrc", "r");
 
@@ -1089,13 +1089,12 @@ PyGeda_declare_local_sym( const char *directory )
       oline = geda_sprintf("(component-library \"./%s\")\n", subdir);
       olen  = strlen(oline);
 
+      /* Check if line already in file */
       while ((read = getline(&buff, &len, fp)) != -1) {
 
         char *ptr = advance2char(&buff[0]);
 
         if (read > 21) {
-
-          /* Could check file extension here */
           if (strncmp(ptr, oline, olen) == 0) {
             found=TRUE;
             break;
@@ -1104,10 +1103,16 @@ PyGeda_declare_local_sym( const char *directory )
       }
 
       if (!found) {
+
+        /* The line was not found in the existing file so close
+         * the file and reopen in append mode */
+
         fclose(fp);
         fp = fopen("gafrc", "a");
+
         if (fp) {
-          /* Extra new-line is here intentional */
+
+          /* Append line, extra new-line here is intentional */
           fprintf(fp, "%s\n", oline);
           result = TRUE;
         }
@@ -1117,7 +1122,7 @@ PyGeda_declare_local_sym( const char *directory )
         }
       }
       else {
-        result = TRUE;
+        result = TRUE; /* because file with line already exist */
       }
 
       free(buff);
