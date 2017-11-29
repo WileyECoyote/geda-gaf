@@ -222,9 +222,11 @@ static void celltextview_get_property (GObject      *object,
   }
 }
 
-/*! \todo Finish function documentation
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Multi-Attribute Edit Cell Key Press Event
+ * \par Function Description
+ *  Terminate editing of the cell of either the ESC or the ENTER key
+ *  is pressed while editing name or value cells.
  */
 static bool celltextview_key_press_event (GtkWidget   *widget,
                                           GdkEventKey *key_event,
