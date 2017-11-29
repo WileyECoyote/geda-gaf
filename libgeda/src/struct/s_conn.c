@@ -41,16 +41,16 @@
  */
 
 
-/*! \brief create a new connection object
- *
- *  \par Function Description
+/*!
+ * \brief create a new connection object
+ * \par Function Description
  *  create a single st_conn object and initialize it with the
  *  given parameters.
  *
- *  \remark This is the only routine that assigns a value to the
- *          field conn->other_object
+ * \remark This is the only routine that assigns a value to the
+ *         field conn->other_object
  *
- *  \return The new connection object
+ * \return The new connection object
  */
 CONN *geda_struct_conn_return_new(GedaObject * other_object, int type, int x, int y,
                         int whichone, int other_whichone)
@@ -73,16 +73,16 @@ CONN *geda_struct_conn_return_new(GedaObject * other_object, int type, int x, in
   return (new_conn);
 }
 
-/*! \brief check if a connection is uniq in a list
- *
- *  \par Function Description
+/*!
+ * \brief check if a connection is uniq in a list
+ * \par Function Description
  *  This function checks if there's no identical connection
  *  in the list of connections.
  *
- *  \param conn_list list of connection objects
- *  \param input_conn single connection object.
+ * \param conn_list list of connection objects
+ * \param input_conn single connection object.
  *
- *  \return TRUE if the CONN structure is unique, FALSE otherwise.
+ * \return TRUE if the CONN structure is unique, FALSE otherwise.
  */
 int geda_struct_conn_uniq(GList * conn_list, CONN * input_conn)
 {
@@ -104,16 +104,16 @@ int geda_struct_conn_uniq(GList * conn_list, CONN * input_conn)
   return (TRUE);
 }
 
-/*! \brief remove a object from the connection list of another object
- *
- *  \par Function Description
+/*!
+ * \brief remove a object from the connection list of another object
+ * \par Function Description
  *  This function removes the Object <b>to_remove</b> from the connection
  *  <b>other_object</b> list of objects.
  *
- *  \param other_object Object from which to_remove Object needs to be removed
- *  \param to_remove    Object to remove
+ * \param other_object Object from which to_remove Object needs to be removed
+ * \param to_remove    Object to remove
  *
- *  \return TRUE if a connection has been deleted, FALSE otherwise
+ * \return TRUE if a connection has been deleted, FALSE otherwise
  */
 int geda_struct_conn_remove_other (GedaObject *other_object, GedaObject *to_remove)
 {
@@ -163,13 +163,13 @@ int geda_struct_conn_remove_other (GedaObject *other_object, GedaObject *to_remo
   return (FALSE);
 }
 
-/*! \brief removes a GList of Objects from the connection system
- *
- *  \par Function Description
+/*!
+ * \brief removes a GList of Objects from the connection system
+ * \par Function Description
  *  This function removes all connections from and to the GedaObjects
  *  in the given GList.
  *
- *  \param obj_list  GList of Objects to unconnected from all other objects
+ * \param obj_list  GList of Objects to unconnected from all other objects
  */
 static void geda_struct_conn_remove_glist (GList *obj_list)
 {
@@ -183,13 +183,13 @@ static void geda_struct_conn_remove_glist (GList *obj_list)
   }
 }
 
-/*! \brief remove an GedaObject from the connection system
- *
- *  \par Function Description
+/*!
+ * \brief remove an GedaObject from the connection system
+ * \par Function Description
  *  This function removes all connections from and to the GedaObject
  *  <b>to_remove</b>.
  *
- *  \param to_remove GedaObject to unconnected from all other objects
+ * \param to_remove GedaObject to unconnected from all other objects
  */
 void geda_struct_conn_remove_object (GedaObject *to_remove)
 {
@@ -234,15 +234,15 @@ void geda_struct_conn_remove_object (GedaObject *to_remove)
   }
 }
 
-/*! \brief Checks if a point is a midpoint of an GedaObject
- *
- *  \par Function Description
+/*!
+ * \brief Checks if a point is a midpoint of an GedaObject
+ * \par Function Description
  *  Checks if the point (<b>x</b>,<b>y</b>) is on the GedaObject
  *  and between it's endpoints.
  *
- *  \return TRUE if the point is a midpoint of the GedaObject. FALSE if the
- *          point is not a midpoint or if the GedaObject is not a NET a PIN
- *          or a BUS or if the GedaObject is not orthogonally oriented.
+ * \return TRUE if the point is a midpoint of the GedaObject. FALSE if the
+ *         point is not a midpoint or if the GedaObject is not a NET a PIN
+ *         or a BUS or if the GedaObject is not orthogonally oriented.
  */
 GedaObject *geda_struct_conn_check_midpoint(GedaObject *o_current, int x, int y)
 {
@@ -293,13 +293,13 @@ GedaObject *geda_struct_conn_check_midpoint(GedaObject *o_current, int x, int y)
   return(NULL);
 }
 
-/*! \brief adds a GList of Objects to the connection system
- *
- *  \par Function Description
+/*!
+ * \brief adds a GList of Objects to the connection system
+ * \par Function Description
  *  This function adds all connections from and to the GedaObjects
  *  in the given GList.
  *
- *  \param obj_list  GList of Objects to add into the connection system
+ * \param obj_list  GList of Objects to add into the connection system
  */
 void geda_struct_conn_update_glist (GList *obj_list)
 {
@@ -313,15 +313,15 @@ void geda_struct_conn_update_glist (GList *obj_list)
   }
 }
 
-/*! \brief Checks if two objects are of compatible types to be connected
- *
- *  \par Function Description
+/*!
+ * \brief Checks if two objects are of compatible types to be connected
+ * \par Function Description
  *  Checks if two objects are legal to be connected together
  *
- *  \param object1  First GedaObject
- *  \param object2  Second GedaObject
+ * \param object1  First GedaObject
+ * \param object2  Second GedaObject
  *
- *  \return TRUE if the objects are compatible, FALSE if not
+ * \return TRUE if the objects are compatible, FALSE if not
  */
 static int check_direct_compat (GedaObject *object1, GedaObject *object2)
 {
@@ -347,13 +347,14 @@ static void add_connection (GedaObject *object, GedaObject *other_object,
   }
 }
 
-/*! \brief add a line Object to the connection system
- *  \par Function Description
+/*!
+ * \brief add a line Object to the connection system
+ * \par Function Description
  *  This function searches for all geometrical connections of the GedaObject
  *  <b>object</b> to all other connectable objects. It adds connections
  *  to the object and from all other objects to this one.
  *
- *  \param object GedaObject to add into the connection system
+ * \param object GedaObject to add into the connection system
  */
 void geda_struct_conn_update_linear_object (GedaObject *object)
 {
@@ -522,15 +523,15 @@ void geda_struct_conn_update_linear_object (GedaObject *object)
   }
 }
 
-/*! \brief Update an GedaObject in the connection system
- *
- *  \par Function Description
+/*!
+ * \brief Update an GedaObject in the connection system
+ * \par Function Description
  *  This function searches for all geometrical connections of the GedaObject
  *  <b>object</b> to all other connectable objects. The function updates
  *  connections to the object and from all other objects to this given
  *  object.
  *
- *  \param object GedaObject to update into the connection system
+ * \param object GedaObject to update into the connection system
  */
 void geda_struct_conn_update_object (GedaObject *object)
 {
@@ -548,12 +549,12 @@ void geda_struct_conn_update_object (GedaObject *object)
   }
 }
 
-/*! \brief print all connections of a connection list
- *
- *  \par Function Description
+/*!
+ * \brief print all connections of a connection list
+ * \par Function Description
  *  This is a debugging function to print a List of connections.
  *
- *  \param conn_list GList of connection objects
+ * \param conn_list GList of connection objects
  */
 void geda_struct_conn_print(GList *conn_list)
 {
@@ -577,16 +578,17 @@ void geda_struct_conn_print(GList *conn_list)
   }
 }
 
-/*! \brief Search for net in existing connections.
- *  \par Function Description
+/*!
+ * \brief Search for net in existing connections.
+ * \par Function Description
  *  This method searches the connection list for the first matching
  *  connection with the given x, y, and whichone endpoint.
  *
- *  \param [in] new_net    Net GedaObject to compare to.
- *  \param [in] whichone   The connection number to check.
- *  \param [in] conn_list  List of existing connections to compare
- *                         <B>new_net</B> to.
- *  \return TRUE if a matching connection is found, FALSE otherwise.
+ * \param [in] new_net    Net GedaObject to compare to.
+ * \param [in] whichone   The connection number to check.
+ * \param [in] conn_list  List of existing connections to compare
+ *                        <B>new_net</B> to.
+ * \return TRUE if a matching connection is found, FALSE otherwise.
  */
 int geda_struct_conn_net_search(GedaObject *new_net, int whichone, GList *conn_list)
 {
@@ -609,20 +611,19 @@ int geda_struct_conn_net_search(GedaObject *new_net, int whichone, GList *conn_l
   return FALSE;
 }
 
-/*! \brief get a list of all objects connected to a list of Objects.
- *
- *  \par Function Description
+/*!
+ * \brief get a list of all objects connected to a list of Objects.
+ * \par Function Description
  *  This function gets all other_object from the connection
  *  list of the GedaObjects in the pased list.
  *
- *  \param [in] input_list GList of GedaObject's or NULL
- *  \param [in] obj_list   The GList of GedaObject to get connections from
+ * \param [in] input_list GList of GedaObject's or NULL
+ * \param [in] obj_list   The GList of GedaObject to get connections from
  *
- *  \return A GList of objects
+ * \return A GList of objects
  *
- *  \warning
- *  Caller must g_list_free returned GList pointer.
- *  Do not free individual data items in list.
+ * \warning Caller must g_list_free returned GList pointer.
+ *          Do not free individual data items in list.
  */
 static GList *geda_struct_conn_return_glist_others (GList *input_list, GList *obj_list)
 {
@@ -641,22 +642,21 @@ static GList *geda_struct_conn_return_glist_others (GList *input_list, GList *ob
   return return_list;
 }
 
-/*! \brief get a list of all objects connected to this one
- *
- *  \par Function Description
+/*!
+ * \brief get a list of all objects connected to this one
+ * \par Function Description
  *  This function gets all other_object from the connection list of the
  *  current object.  COMPLEX objects are entered, and their prim_objs
  *  processed. If an <b>input_list</b> is given, the other objects are
  *  appended to that list.
  *
- *  \param [in] input_list   GList of GedaObject's
- *  \param [in] object       GedaObject to get other GedaObjects from
+ * \param [in] input_list   GList of GedaObject's
+ * \param [in] object       GedaObject to get other GedaObjects from
  *
- *  \return A GList of Objects
+ * \return A GList of Objects
  *
- *  \warning
- *  Caller must g_list_free returned GList pointer.
- *  Do not free individual data items in list.
+ * \warning Caller must g_list_free returned GList pointer.
+ *          Do not free individual data items in list.
  */
 GList *geda_struct_conn_return_others(GList *input_list, GedaObject *object)
 {
@@ -696,11 +696,12 @@ typedef struct {
   void *data;
 } ConnsChangedHook;
 
-/*! \brief Add connection change notification handlers to a Page.
+/*!
+ * \brief Add connection change notification handlers to a Page.
  * \par Function Description
- * Adds a set of change notification handlers to a#Page instance.
- * \a func will be called each time a connection is modified, with
- * the affected object and the given \a user_data.
+ *  Adds a set of change notification handlers to a#Page instance.
+ *  \a func will be called each time a connection is modified, with
+ *  the affected object and the given \a user_data.
  *
  * \param page     #Page structure to add handlers to.
  * \param func     Function to be called when changes are made.
@@ -730,15 +731,15 @@ static void call_conns_changed_hook (void *data, void *user_data)
   hook->func (hook->data, object);
 }
 
-/*! \brief Emit Connection change notification.
+/*!
+ * \brief Emit Connection change notification.
  * \par Function Description
- * Calls each change callback function registered with #Page to
- * notify listeners that \a connection has just been modified.  All
- * libgeda functions that modify #GedaObject structures should call this
- * just after making a change to an #GedaObject.
+ *  Calls each change callback function registered with #Page to
+ *  notify listeners that \a connection has just been modified.  All
+ *  libgeda functions that modify #GedaObject structures should call
+ *  this just after making a change to an #GedaObject.
  *
  * \param object      #GedaObject structure to emit notifications for.
- *
  */
 void geda_struct_conn_emit_conns_changed (GedaObject *object)
 {
@@ -758,12 +759,12 @@ void geda_struct_conn_emit_conns_changed (GedaObject *object)
   }
 }
 
-/*! \brief Suspense GedaObject Connection Notification for an GedaObject
- *
+/*!
+ * \brief Suspense GedaObject Connection Notification for an GedaObject
  * \par Function Description
- *  This function increments the freeze count of an
- *#GedaObject. Notification of connection changes is
- *  suspended until the freeze is reduced to zero.
+ *  This function increments the freeze count of an #GedaObject.
+ *  Notification of connection changes is suspended until the
+ *  freeze is reduced to zero.
  *
  * \sa geda_struct_conn_thaw_hooks
  *
@@ -775,8 +776,8 @@ void geda_struct_conn_freeze_hooks (GedaObject *object)
     object->conn_notify_freeze_count += 1;
   }
 }
-/*! \brief Thaw Connection Notification for an GedaObject
- *
+/*!
+ * \brief Thaw Connection Notification for an GedaObject
  * \par Function Description
  *  This function add a hook to each new page object so that the
  *  function refresh_connectivity_cache is whenever an object on
@@ -834,13 +835,12 @@ static void geda_struct_conn_init_page (Page *page)
                                    toplevel);
 }
 
-/*! \brief Initialize LibGeda Connection system
- *
+/*!
+ * \brief Initialize LibGeda Connection system
  * \par Function Description
  *  This function add a hook to New page object so that the
  *  function geda_struct_conn_init_page is called each time a new page
  *  object is created.
- *
  */
 void geda_struct_conn_init (void)
 {
