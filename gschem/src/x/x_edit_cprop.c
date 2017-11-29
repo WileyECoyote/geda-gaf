@@ -5,8 +5,8 @@
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 2013-2015 Wiley Edward Hill
- * Copyright (C) 2013-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2013-2017 Wiley Edward Hill
+ * Copyright (C) 2013-2017 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -843,8 +843,8 @@ static void x_dialog_ep_no_selection(GschemToplevel *w_current,
  *   frame depending on the state of the check-box.
  *
  *  \param [in] properties Pointer to property_data structure
- *  \param [in] state      Boolean value to set sensitivities
- *
+ *  \param [in] state      Boolean value to set main sensitivities
+ *  \param [in] sch        Boolean value to set electrical frame sensitivities
  */
 static void x_dialog_ep_set_sensitive (property_data *properties, bool state, bool sch)
 {
