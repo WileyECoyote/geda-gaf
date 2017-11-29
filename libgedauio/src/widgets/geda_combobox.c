@@ -5700,8 +5700,7 @@ geda_combo_box_get_count (GedaComboBox *combo_box)
  *
  * \return A GtkTreeModel which was passed during construction.
  */
-GtkTreeModel *
-geda_combo_box_get_model (GedaComboBox *combo_box)
+GtkTreeModel *geda_combo_box_get_model (GedaComboBox *combo_box)
 {
   g_return_val_if_fail (GEDA_IS_COMBO_BOX (combo_box), NULL);
 
