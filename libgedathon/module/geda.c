@@ -434,7 +434,8 @@ METHOD(shutdown)
  * \brief Append a Path to the Library Search Path
  * \par Method Description
  *  This function provides a method to add a directory to the library's
- *  search path. This will remains valid for the current session of the library.
+ *  search path. This will remains valid for the current session of the
+ *  library.
  *
  * \sa declare_local_sym
  *
