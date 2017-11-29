@@ -688,8 +688,8 @@ int geda_combo_box_text_get_active (GedaComboBoxText *combo_box)
  * \par Function Description
  *  Sets the active item of \a combo_box to be the item at \a index.
  *
- * \param [in] combo_box  A #GedaComboBoxText object
- * \param [in] index      Index in the model or -1 to have no active item
+ * \param [in] combo_box A #GedaComboBoxText object
+ * \param [in] position  Index in the model or -1 to have no active item
  *
  * \sa geda_combo_box_set_active
  */
