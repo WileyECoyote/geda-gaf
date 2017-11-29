@@ -944,7 +944,6 @@ void initialize( API_FunctionTable* user_table)
  *  clean close any opened files and release all dynamically allocated
  *  memory. All floating objects are destroyed and then libgeda is
  *  finalized.
- *
  */
 void PyGeda_shutdown(void)
 {
@@ -975,7 +974,6 @@ void PyGeda_shutdown(void)
  *  to the drawing.
  *
  * \return [out] integer result
- *
  */
 int PyGeda_append_symbol_path( const char *path )
 {
@@ -1029,7 +1027,6 @@ static char *advance2char(const char *string)
  *
  * \return [out] integer result=TRUE if file was created, otherwise the
  *                       system error number is returned
- *
  */
 int PyGeda_declare_local_sym( const char *directory )
 {
@@ -1143,7 +1140,6 @@ int PyGeda_declare_local_sym( const char *directory )
  *  empty PyList;
  *
  * \return [out] PyObject list of page names and ID's
- *
  */
 PyObject *PyGeda_get_pages( void )
 {
@@ -1174,7 +1170,6 @@ PyObject *PyGeda_get_pages( void )
  *  is no current page;
  *
  * \return [in] data PyObject page name and pid or NULL
- *
  */
 PyObject *PyGeda_get_active_page( void )
 {
@@ -1263,7 +1258,6 @@ int PyGeda_goto_page( int pid )
  *
  *  \return [out] PyObject A composite Python object containing the filename
  *                and the assigned pid
- *
  */
 PyObject *PyGeda_open_page( const char *filename )
 {
@@ -1475,7 +1469,6 @@ PyObject *PyGeda_open_page( const char *filename )
  *
  *  \return [out] The pid of the assigned current page or -1 if there are
  *                no page opened after closing the argument page
- *
  */
 int PyGeda_close_page(int pid)
 {
@@ -1701,6 +1694,7 @@ int PyGeda_GedaCapsule_Type(PyObject *py_object)
   }
   return answer;
 }
+
 
 PyObject *PyGeda_get_bounds( int pid, int sid )
 {
@@ -2086,6 +2080,7 @@ PyObject *PyGeda_copy_object( PyObject *py_object, int dx, int dy )
       dest_list = g_list_prepend(dest_list, new_object);
     }
   }
+
   if (dest_list) {
     if (dx != -1 && dy != -1) {
       geda_translate_list(dest_list, dx, dy);
@@ -2534,7 +2529,6 @@ PyObject *PyGeda_new_line ( int x1, int y1, int x2, int y2, PyObject *py_color)
  *  \param [in] py_color     PyObject color
  *
  *  \return [out] PyGedaNetObject construction data.
- *
  */
 PyObject *PyGeda_new_net (const char *netname, int x1, int y1, int x2, int y2, PyObject *py_color)
 {
@@ -2576,7 +2570,6 @@ PyObject *PyGeda_new_net (const char *netname, int x1, int y1, int x2, int y2, P
  *  \param [in] path_string  String, the SVG path string
  *
  *  \return [out] PyGedaPathObject construction data.
- *
  */
 PyObject *PyGeda_new_path (const char *path_string)
 {
@@ -2747,7 +2740,6 @@ PyGeda_new_pin (const char *label, const char *number, int x1, int y1, int x2, i
  *  \return [out] GedaPyGedaTextObject contruction data
  *
  *  \note  Optional agruments with a value of -1 will be assigned default values.
- *
  */
 PyObject*
 PyGeda_new_text( const char *text, int x, int y, int size, int align, int angle, PyObject *py_color)
@@ -2796,7 +2788,6 @@ PyGeda_new_text( const char *text, int x, int y, int size, int align, int angle,
  *  \return [out] GedaPyGedaTextObject contruction data
  *
  *  \note  Optional agruments with a value of -1 will be assigned default values.
- *
  */
 PyObject*
 PyGeda_new_attrib(const char *name, const char *value, int x, int y,
