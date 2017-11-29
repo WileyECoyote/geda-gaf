@@ -3,6 +3,8 @@
     * src/x/x_multiattrib.c: Update documentation for functions:
 
           * celltextview_key_press_event
+          * multiattrib_callback_popup_copy_to_all
+
 2017-11-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_edit.c: Fix bug introduced by commit

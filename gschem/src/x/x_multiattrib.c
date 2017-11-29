@@ -1480,10 +1480,15 @@ multiattrib_callback_popup_delete(GedaMenuItem *menuitem, void *user_data)
   GEDA_UNREF (attr_list);
 }
 
-/*! \todo Finish function documentation
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Multi-Attribute Menu Option Copy to All
+ * \par Function Description
+ *  Handles the menu option "Copy to All", if selected attributes are
+ *  passed to multiattrib_action_copy_attribute_to_all to propagate
+ *  to other objects in the selection.
  *
+ * \todo This option should be greyed-out when there is only
+ *       one attribute in the selection.
  */
 static void
 multiattrib_callback_popup_copy_to_all (GedaMenuItem *menuitem,
