@@ -562,10 +562,12 @@ METHOD(get_pages)
       PyObject *page_info;
       PyObject *py_page;
 
-      page_info  = PyList_GET_ITEM(py_input_list, i);
-      py_page      = PyObject_CallObject((PyObject *) PyGedaPageClass(), page_info);
-      if(py_page && PyObject_Type(py_page))
+      page_info = PyList_GET_ITEM(py_input_list, i);
+      py_page   = PyObject_CallObject((PyObject *) PyGedaPageClass(), page_info);
+
+      if(py_page && PyObject_Type(py_page)) {
         PyList_Append(py_output_list, py_page);
+      }
     }
   }
 
