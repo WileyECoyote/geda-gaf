@@ -924,7 +924,7 @@ static void x_dialog_ep_update_selection (GschemToplevel *w_current,
  *  Called during construction to load string into the combo text box for
  *  reference designators.
  *
- *  \param widget  pointer to the GedaComboBoxText refdes combo
+ *  \param dialog  pointer to the Properties Dialog
  *  \param type    integer type is the set of desginator to be loaded.
  */
 static void x_dialog_edit_properties_load_refdes(GtkWidget *dialog, int type)
