@@ -528,7 +528,8 @@ METHOD(declare_local_sym)
 
   ON_METHOD_EXIT(declare_local_sym);
 
-  if (status > 1) {
+  /* If status greater than 1*/
+  if (status != 1) {
     PyErr_SetString(PyExc_StandardError, strerror(status));
   }
   Py_RETURN_FALSE;

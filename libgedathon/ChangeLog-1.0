@@ -1,6 +1,8 @@
-2017-11-28 Wiley E. Hill <wileyhill@gmail.com>
+2017-11-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * module/geda.c: Update the return status comparison in declare_local_sym.
+
+2017-11-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/libgedathon.c: Revise to PyGeda_declare_local_sym to check for the
       existence of the "gafrc" before creating, and if found check the requested
