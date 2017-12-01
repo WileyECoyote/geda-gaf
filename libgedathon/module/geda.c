@@ -680,7 +680,7 @@ METHOD(is_page_modified)
 
   page->modified = library.func(page->pid);
 
-  ON_METHOD_EXIT(save_page);
+  ON_METHOD_EXIT(is_page_modified);
 
   if (!page->modified) {
     Py_RETURN_FALSE;
