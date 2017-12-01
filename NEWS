@@ -7,7 +7,7 @@ Copyright (C) 1998-2017 gEDA Developers
 This file documents important user-visible changes in gEDA/gaf.  For
 more information, please consult the `ChangeLog' file.
 
-Notable changes in gEDA/gaf gEDA 2.1.1.1 - 04/10/17 Rampage Edition
+Notable changes in gEDA/gaf gEDA 2.1.1.1 - 11/12/17 Rampage Edition
 
 * Additional support for internationalization (i18n).
 
@@ -19,6 +19,20 @@ Notable changes in gEDA/gaf gEDA 2.1.1.1 - 04/10/17 Rampage Edition
 * The toolbar layout in gschem has been improved to better support labels.
 
 * The visibility of toolbar tooltips can now be control using RC keywords.
+
+* The Slot Editor Dialog now incorporates a spinner control to adjust the
+  slot number of slotted components. The range is restricted to valid slots
+  for the selected component.
+
+* New bitmaps have been added;
+
+      * geda-deslect.png
+      * geda-find-attribute
+      * geda-properties.png
+      * geda-trash-can.png
+
+* libgedathon no longer over-writes existing gafrc when the declare_local_sym
+  feature is used.
 
 Notable changes in gEDA/gaf gEDA 2.1.1.0 - 01/01/17 Rampage Edition
 
