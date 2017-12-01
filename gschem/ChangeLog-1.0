@@ -1,7 +1,8 @@
 2017-11-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_dnd.c: Add message output in x_dnd_drag_leave so that gcc
-      does not complain about "name" be used while debuggingg.
+      does not complain about "name" be used while debugging and update
+      function documentation.
 
 2017-11-29 Wiley E. Hill <wileyhill@gmail.com>
 

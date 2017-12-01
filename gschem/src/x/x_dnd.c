@@ -710,7 +710,7 @@ x_dnd_drag_receive(GtkWidget *widget, GdkDragContext   *context, int x, int y,
 #if DEBUG  || DEBUG_DND_EVENTS
 
 /*!
- * \brief When Drag Leaves the Destination
+ * \brief Debug When Drag Leaves the Destination
  * \par Function Description
  *  Called when the drag leaves the destination.
  */
@@ -928,7 +928,10 @@ static void x_dnd_drag_delete
   return;
 }
 
-/* Emitted when DnD begins. This is often used to present custom graphics. */
+/* Emitted when DnD begins. This event is triggered when a drag from Gschem
+ * begins to some other window, which could be another Gschem. This is often
+ * used to present custom graphics.
+ * \todo: implement custom graphics */
 static void
 x_dnd_drag_begin (GtkWidget *widget, GdkDragContext *context, GschemToplevel *w_current)
 {
