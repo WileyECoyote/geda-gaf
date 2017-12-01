@@ -2,6 +2,8 @@
 
     * NEWS: update news for release of 2.1.1.1 20171112.
 
+    * configure.ac: Bump date version 20171112.
+
 2017-11-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * bitmaps/svg: Remove standalone attribute and other extraneous bloat:
