@@ -1,6 +1,7 @@
 2017-12-01 Wiley E. Hill <wileyhill@gmail.com>
 
-    * module/geda.c: Update enumeration for ON_METHOD_EXIT in is_page_modified.
+    * module/geda.c: Update enumeration for ON_METHOD_EXIT in is_page_modified,
+      update function documentation.
 
 2017-11-30 Wiley E. Hill <wileyhill@gmail.com>
 

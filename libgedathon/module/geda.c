@@ -656,14 +656,13 @@ METHOD(set_active_page)
 }
 
 /*!
- * \brief Save Page Objects
+ * \brief Get is Page Modified
  * \par Method Description
- *  This function provides a method to save a Page type objects to
- *  disk.
+ *  This function provides a method to retrieve a Page is_modified flag.
  *
  *  [in] PyPage page A GedaPage Object
  *
- * \return [out] status True if success, otherwise False.
+ * \return [out] True if page has unsaved changes, otherwise False.
  */
 METHOD(is_page_modified)
 {
