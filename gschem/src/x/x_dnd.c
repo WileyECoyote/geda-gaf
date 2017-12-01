@@ -452,7 +452,7 @@ x_dnd_receive_string_sym (GschemToplevel *w_current, int x, int y,
 bool
 x_dnd_receive_string(GschemToplevel *w_current, int x, int y, const char *string, int where)
 {
-  bool  result;
+  bool result;
 
   result = FALSE;
 
