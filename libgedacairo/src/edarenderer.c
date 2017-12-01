@@ -2102,11 +2102,10 @@ eda_renderer_new (cairo_t *cr, PangoContext *pc)
  *  \par Function Description
  *  Decrements the reference of \a renderer
  */
-void
-eda_renderer_destroy (EdaRenderer *renderer)
+void eda_renderer_destroy (EdaRenderer *renderer)
 {
   if (G_IS_OBJECT(renderer)) {
-    g_object_unref (G_OBJECT (renderer));
+    g_object_unref (renderer);
   }
   else {
     BUG_MSG("Bad pointer to EdaRenderer, is it aleady dead?");

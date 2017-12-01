@@ -1,3 +1,8 @@
+2017-11-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edarenderer.c: Remove needless dynamic type checking cast in
+      eda_renderer_destroy.
+
 2017-10-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/edarenderer.c: Revise eda_renderer_calc_text_position to set
