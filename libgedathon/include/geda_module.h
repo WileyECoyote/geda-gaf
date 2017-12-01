@@ -217,7 +217,7 @@ enum {
      METHOD ( get_pages,          METH_NOARGS  )
      METHOD ( get_active_page,    METH_NOARGS  )
      METHOD ( set_active_page,    METH_VARARGS )
-     METHOD ( is_page_modified,   METH_NOARGS  )
+     METHOD ( is_page_modified,   METH_VARARGS )
      METHOD ( goto_page,          METH_VARARGS )
 
      METHOD ( open_page,          METH_VARARGS|METH_KEYWORDS )

@@ -1,5 +1,7 @@
 2017-12-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/geda_module.h: Change is_page_modified to have METH_VARARGS.
+
     * module/geda.c: Update enumeration for ON_METHOD_EXIT in is_page_modified,
       update function documentation.
 
