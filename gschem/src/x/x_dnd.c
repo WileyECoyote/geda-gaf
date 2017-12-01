@@ -718,7 +718,7 @@ static void x_dnd_drag_leave
 (GtkWidget *widget, GdkDragContext *context, unsigned int time, GschemToplevel *w_current)
 {
   const char *name = gtk_widget_get_name (widget);
-
+  printf ("\n<%s> %s: leaving\n", __func__, name);
 }
 
 #endif
