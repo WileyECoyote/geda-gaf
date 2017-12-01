@@ -964,8 +964,9 @@ gschem_page_view_set_vadjustment (GschemPageView *view, GtkAdjustment *vadjustme
 {
   g_return_if_fail (view != NULL);
 
-  if (view->vadjustment != NULL) {
-    g_signal_handlers_disconnect_by_func (G_OBJECT (view->vadjustment),
+  if (G_IS_OBJECT(view->vadjustment)) {
+
+    g_signal_handlers_disconnect_by_func (view->vadjustment,
                                           G_CALLBACK (vadjustment_value_changed),
                                           view);
     g_object_unref (view->vadjustment);
@@ -973,10 +974,9 @@ gschem_page_view_set_vadjustment (GschemPageView *view, GtkAdjustment *vadjustme
 
   view->vadjustment = vadjustment;
 
-  if (view->vadjustment != NULL) {
-    g_object_ref (view->vadjustment);
+  if (G_IS_OBJECT(view->vadjustment)) {
 
-    g_signal_connect (G_OBJECT (view->vadjustment),
+    g_signal_connect (g_object_ref(view->vadjustment),
                       "value-changed",
                       G_CALLBACK (vadjustment_value_changed),
                       view);

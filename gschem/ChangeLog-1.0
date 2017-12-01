@@ -1,5 +1,9 @@
 2017-11-30 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/base/gschem_page_view.c: Revise conditionals in gschem_page_view
+      _set_vadjustment to validate the pointer rather just checking for a
+      non NULL value, and eliminate the dynamic type checking cast arguments.
+
     * src/x/x_dnd.c: Add message output in x_dnd_drag_leave so that gcc
       does not complain about "name" be used while debugging and update
       function documentation.
