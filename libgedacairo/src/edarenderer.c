@@ -2116,12 +2116,11 @@ void eda_renderer_destroy (EdaRenderer *renderer)
  *  \par Function Description
  *  Function to retrieve the current Cairo Context.
  */
-cairo_t *
-eda_renderer_get_cairo_context (EdaRenderer *renderer)
+cairo_t *eda_renderer_get_cairo_context (EdaRenderer *renderer)
 {
   cairo_t *cr;
   g_return_val_if_fail (EDA_IS_RENDERER (renderer), NULL);
-  g_object_get (G_OBJECT (renderer), "cairo-context", &cr, NULL);
+  g_object_get (renderer, "cairo-context", &cr, NULL);
   return cr;
 }
 
