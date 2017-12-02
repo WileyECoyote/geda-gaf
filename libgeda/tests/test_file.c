@@ -860,21 +860,23 @@ int test_path (void)
   }
 
   if (src_dir && strlen(src_dir) > 1) { /* VPATH builds */
-    path = geda_strdup("./one/two/three");
+    path = geda_strdup("./one");
   }
   else {
-    path = g_build_filename(src_dir, "one/two/three", NULL);
+    path = g_build_filename(src_dir, "one", NULL);
   }
 
   if (geda_create_path(path, S_IRWXU | S_IRWXG | S_IRWXO)) {
-    fprintf(stderr, "FAILED: (F030101) geda_file_path_create\n");
+    fprintf(stderr, "FAILED: (F030101A) geda_file_path_create\n");
+    result++;
+  }
     result++;
   }
 
   free(path);
 
-  if (src_dir) {
-    path = g_build_filename(src_dir, "one", NULL);
+  remove_one(src_dir);
+
   if (src_dir && strlen(src_dir) > 1) { /* VPATH builds */
     path = geda_strdup("./one/two/three");
   }
@@ -883,7 +885,9 @@ int test_path (void)
   }
 
   if (geda_create_path(path, S_IRWXU | S_IRWXG | S_IRWXO)) {
-    fprintf(stderr, "FAILED: (F030101A) geda_file_path_create\n");
+    fprintf(stderr, "FAILED: (F030102A) geda_file_path_create\n");
+    result++;
+  }
     result++;
   }
 

@@ -1,7 +1,8 @@
 2017-11-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_file.c: Factor out removing directories created by
-      geda_create_path to a separate function; remove_one.
+      geda_create_path to a separate function; remove_one. Perform
+      checks for geda_create_path creating a single subdirectory.
 
 2017-11-20 Wiley E. Hill <wileyhill@gmail.com>
 
