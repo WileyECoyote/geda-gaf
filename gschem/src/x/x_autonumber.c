@@ -956,7 +956,6 @@ static void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
 
             const char *str = geda_text_object_get_string (o_current);
 
-
             if (g_str_has_prefix (str, searchtext)) {
 
               int search_len;
