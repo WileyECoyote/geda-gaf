@@ -820,6 +820,26 @@ int test_get (void)
  * @{
  * \brief Group 3 src/file/f_path.c geda_file_path_
  */
+
+static void remove_one(const char *src_dir)
+{
+  char *path;
+
+  if (src_dir) {
+    path = g_build_filename(src_dir, "one", NULL);
+  }
+  else {
+    path = geda_strdup("./one");
+  }
+
+  char *command = geda_strconcat("rm -rf ", path, NULL);
+
+  if (system(command));
+
+  free(command);
+  free(path);
+}
+
 int test_path (void)
 {
   int result = 0;
@@ -855,17 +875,21 @@ int test_path (void)
 
   if (src_dir) {
     path = g_build_filename(src_dir, "one", NULL);
+  if (src_dir && strlen(src_dir) > 1) { /* VPATH builds */
+    path = geda_strdup("./one/two/three");
   }
   else {
-    path = geda_strdup("./one");
+    path = g_build_filename(src_dir, "one/two/three", NULL);
   }
 
-  char *command = geda_strconcat("rm -rf ", path, NULL);
+  if (geda_create_path(path, S_IRWXU | S_IRWXG | S_IRWXO)) {
+    fprintf(stderr, "FAILED: (F030101A) geda_file_path_create\n");
+    result++;
+  }
 
-  if (system(command));
-
-  free(command);
   free(path);
+
+  remove_one(src_dir);
 
   /* === Function 02: geda_free_path geda_file_path_free === */
 

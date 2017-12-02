@@ -1,5 +1,10 @@
 2017-11-20 Wiley E. Hill <wileyhill@gmail.com>
 
+    * tests/test_file.c: Factor out removing directories created by
+      geda_create_path to a separate function; remove_one.
+
+2017-11-20 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_line_object.c: Revert back to conventional function
       wrapping.
 
