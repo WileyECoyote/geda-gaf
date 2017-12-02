@@ -87,7 +87,7 @@ void x_dialog_coord_dnd_drag_receive(GtkWidget        *widget,
   bool dnd_success           = FALSE;
   bool delete_selection_data = FALSE;
 
-#if DEBUG  || DEBUG_DND_EVENTS
+#if DEBUG || DEBUG_DND_EVENTS
   const char *WidgetId;
   WidgetId = gtk_widget_get_name (widget);
   g_print ("%s: %s:", WidgetId, __func__);
@@ -202,7 +202,7 @@ void x_dialog_coord_dnd_drag_receive(GtkWidget        *widget,
     gtk_widget_grab_focus (world_entry);
   }
 
-#if DEBUG  || DEBUG_DND_EVENTS
+#if DEBUG || DEBUG_DND_EVENTS
   g_print ("\n");
 #endif
 }
