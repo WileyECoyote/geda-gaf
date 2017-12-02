@@ -1,3 +1,8 @@
+2017-12-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/i_basic.c: Remove unnecessary initialization of pathname to NULL
+      in i_show_wiki_help.
+
 2017-11-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gattrib_dialog.c: Declare setup_keyfile static and output a message

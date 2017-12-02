@@ -200,7 +200,7 @@ static bool i_basic_show_uri (const char *uri)
  */
 void i_show_wiki_help(const char *html_file)
 {
-  char *pathname = NULL;
+  char *pathname;
 
   pathname = g_build_filename (geda_sys_doc_path (), "wiki", html_file, NULL);
 
