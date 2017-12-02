@@ -532,7 +532,8 @@ METHOD(declare_local_sym)
   if (status != 1) {
     PyErr_SetString(PyExc_StandardError, strerror(status));
   }
-  Py_RETURN_FALSE;
+
+  Py_RETURN_TRUE;
 }
 
 /*!

@@ -3,7 +3,8 @@
     * include/geda_module.h: Change is_page_modified to have METH_VARARGS.
 
     * module/geda.c: Update enumeration for ON_METHOD_EXIT in is_page_modified,
-      update function documentation.
+      update function documentation. Update declare_local_sym to return true,
+      i.e. Py_RETURN_TRUE on success.
 
 2017-11-30 Wiley E. Hill <wileyhill@gmail.com>
 
