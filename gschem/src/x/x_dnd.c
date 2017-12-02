@@ -630,9 +630,11 @@ x_dnd_drag_receive(GtkWidget *widget, GdkDragContext   *context, int x, int y,
   bool  dnd_success = FALSE;
   bool  delete_data = FALSE;
 
-#if DEBUG  || DEBUG_DND_EVENTS
-  const char  *name = gtk_widget_get_name (widget);
+#if DEBUG || DEBUG_DND_EVENTS
+
+  const char *name = gtk_widget_get_name (widget);
   printf ("<%s> %s:", __func__, name);
+
 #endif
 
   /* Deal with what we are given from source */
@@ -680,7 +682,7 @@ x_dnd_drag_receive(GtkWidget *widget, GdkDragContext   *context, int x, int y,
         datadef = &dnd_data_defs[DND_TARGET_UTF8_STRING];
         dnd_success = (datadef->receive_data_func)(w_current, x, y, string, DROPPED_ON_CANVAS);
 
-#if DEBUG  || DEBUG_DND_EVENTS
+#if DEBUG || DEBUG_DND_EVENTS
         printf (" string handler returned %d\n", dnd_success);
 #endif
         break;
@@ -689,7 +691,7 @@ x_dnd_drag_receive(GtkWidget *widget, GdkDragContext   *context, int x, int y,
         datadef = &dnd_data_defs[DND_TARGET_OBJECTS];
         dnd_success = (datadef->receive_data_func)(w_current, x, y, string, DROPPED_ON_CANVAS);
 
-#if DEBUG  || DEBUG_DND_EVENTS
+#if DEBUG || DEBUG_DND_EVENTS
         printf (" object handler returned %d\n", dnd_success);
 #endif
         if (dnd_success) {
@@ -707,7 +709,7 @@ x_dnd_drag_receive(GtkWidget *widget, GdkDragContext   *context, int x, int y,
   gtk_drag_finish (context, dnd_success, delete_data, time);
 }
 
-#if DEBUG  || DEBUG_DND_EVENTS
+#if DEBUG || DEBUG_DND_EVENTS
 
 /*!
  * \brief Debug When Drag Leaves the Destination
@@ -769,7 +771,7 @@ static bool x_dnd_drag_drop
   bool   is_valid_drop_site;
   GList *targets;
 
-#if DEBUG  || DEBUG_DND_EVENTS
+#if DEBUG || DEBUG_DND_EVENTS
   const char *name = gtk_widget_get_name (widget);
   printf ("\n<%s> %s: entry\n", __func__, name);
 #endif
@@ -813,7 +815,7 @@ static bool x_dnd_drag_drop
                         target_type,     /* the target type we want */
                         time );          /* time stamp */
 
-#if DEBUG  || DEBUG_DND_EVENTS
+#if DEBUG || DEBUG_DND_EVENTS
     printf ("<%s> Site is Valid target\n", __func__);
 #endif
   }
@@ -822,7 +824,7 @@ static bool x_dnd_drag_drop
   else {
     is_valid_drop_site = FALSE;
 
-#if DEBUG  || DEBUG_DND_EVENTS
+#if DEBUG || DEBUG_DND_EVENTS
     printf ("<%s> Target site is Invalid\n", __func__);
 #endif
 
@@ -882,7 +884,7 @@ static void x_dnd_drag_data_get
       gtk_selection_data_set_text (selection_data,
                                    string_data,
                                    strlen (string_data));
-#if DEBUG  || DEBUG_DND_EVENTS
+#if DEBUG || DEBUG_DND_EVENTS
       printf (" Sending string \"%s\".\n", string_data);
 #endif
       g_free((void*)string_data);
@@ -891,7 +893,7 @@ static void x_dnd_drag_data_get
     case DND_TARGET_OBJECTS:
       o_buffer_copy(w_current, DND_BUFFER);
 
-#if DEBUG  || DEBUG_DND_EVENTS
+#if DEBUG || DEBUG_DND_EVENTS
       printf (" Sending %d objects.\n", g_list_length(object_buffer[DND_BUFFER]));
 #endif
       char *buf = geda_object_save_buffer (object_buffer[DND_BUFFER]);
@@ -909,7 +911,7 @@ static void x_dnd_drag_data_get
       gtk_selection_data_set_text (selection_data,
                                    err_string_data,
                                    strlen (err_string_data));
-#if DEBUG  || DEBUG_DND_EVENTS
+#if DEBUG || DEBUG_DND_EVENTS
       printf (" Sending string \"%s\".\n", err_string_data);
 #endif
       break;
@@ -921,7 +923,7 @@ static void x_dnd_drag_data_get
 static void x_dnd_drag_delete
 (GtkWidget *widget, GdkDragContext *context, GschemToplevel *w_current)
 {
-#if DEBUG  || DEBUG_DND_EVENTS
+#if DEBUG || DEBUG_DND_EVENTS
   const char *name = gtk_widget_get_name (widget);
   printf ("<%s> %s\n", __func__, name);
 #endif
@@ -935,7 +937,7 @@ static void x_dnd_drag_delete
 static void
 x_dnd_drag_begin (GtkWidget *widget, GdkDragContext *context, GschemToplevel *w_current)
 {
-#if DEBUG  || DEBUG_DND_EVENTS
+#if DEBUG || DEBUG_DND_EVENTS
   const char *name = gtk_widget_get_name (widget);
   fflush(stdout);
   printf ("<%s> %s: ia=%d, state=%d, dnd_save_state=%d\n", __func__, name, w_current->inside_action, w_current->event_state, w_current->dnd_save_state );
@@ -957,7 +959,7 @@ static void x_dnd_drag_end (GtkWidget *widget, GdkDragContext *context,
                                                GschemToplevel *w_current)
 {
 
-#if DEBUG  || DEBUG_DND_EVENTS
+#if DEBUG || DEBUG_DND_EVENTS
   const char *name;
   name = gtk_widget_get_name (widget);
   printf ("\n<%s> %s: on entry: w_current->event_state =%d\n",  __func__, name, w_current->event_state);
@@ -992,7 +994,7 @@ static void x_dnd_drag_end (GtkWidget *widget, GdkDragContext *context,
 
   o_invalidate_all (w_current);
 
-#if DEBUG  || DEBUG_DND_EVENTS
+#if DEBUG || DEBUG_DND_EVENTS
   printf (" on exit: %s w_current->event_state =%d\n", name, w_current->event_state);
 #endif
 }
@@ -1031,7 +1033,7 @@ x_dnd_source_leave (GtkWidget *widget, GdkEventCrossing *event, GschemToplevel *
 
     w_current->dnd_save_state = 0;
 
-#if DEBUG  || DEBUG_DND_EVENTS
+#if DEBUG || DEBUG_DND_EVENTS
     printf ("<%s> %s: ia=%d, state=%d\n", __func__, gtk_widget_get_name (widget),
             w_current->inside_action, w_current->event_state);
 #endif
@@ -1071,7 +1073,7 @@ x_dnd_source_leave (GtkWidget *widget, GdkEventCrossing *event, GschemToplevel *
     }
   }
 
-#if DEBUG  || DEBUG_DND_EVENTS
+#if DEBUG || DEBUG_DND_EVENTS
   printf ("<%s> on exit: w_current->event_state =%d\n", __func__, w_current->event_state);
 #endif
 
@@ -1094,7 +1096,7 @@ void x_dnd_setup_event_handlers (GschemToplevel *w_current)
 
     /* Possible destination signals */
     { "drag-data-received",   G_CALLBACK (x_dnd_drag_receive)    },
-#if DEBUG  || DEBUG_DND_EVENTS
+#if DEBUG || DEBUG_DND_EVENTS
     { "drag-leave",           G_CALLBACK (x_dnd_drag_leave)      },
   /*{ "drag-motion",          G_CALLBACK (x_dnd_drag_motion)     },*/
 #endif
