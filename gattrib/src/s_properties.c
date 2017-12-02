@@ -58,6 +58,7 @@ int s_properties_get_fgcolor_index(int visibility, int show_name_value, int is_i
   }
   return fgcolor;
 }
+
 /*! \brief Return pointer to Table associated with the active sheet
  */
 static TABLE **s_properties_get_current_table() {
@@ -82,6 +83,7 @@ static TABLE **s_properties_get_current_table() {
 }
 
 /* ---------------------------------------------------------------------- */
+
 /*! \brief set visibility of an individual cell
  *
  * Set the visibility of cell identified by (row, col) to the passed value
@@ -107,8 +109,8 @@ void s_properties_set_cell_visibility(int row, int col, int visibility)
   /* Question:  how to sanity check (row, col) selection? */
   local_table[col][row].visibility = visibility;
   sheet_head->CHANGED = 1;  /* cell has been updated.  */
-
 }
+
 /*! \brief set Show Name Value of an individual cell
  *
  *  \par Function Description
@@ -121,7 +123,6 @@ void s_properties_set_cell_visibility(int row, int col, int visibility)
  * \param col             Column index of target cell
  * \param show_name_value value to set the Show Name flag
  */
-
 void s_properties_set_cell_show_name(int row, int col, int show_name_value)
 {
   TABLE **local_table = NULL;
@@ -177,12 +178,14 @@ void s_properties_set_cell_fgcolor(GtkSheet *sheet, int row, int col) {
   int visibility = s_properties_get_visibility(row, col);
   int show_name_value = s_properties_get_show_name_value(row, col);
   int is_inherited = s_properties_get_heritence(row, col);
-  fgcolor = s_properties_get_fgcolor_index(visibility, show_name_value, is_inherited);
-  x_gtksheet_set_cell_fgcolor(sheet, row, col, fgcolor);
 
+  fgcolor = s_properties_get_fgcolor_index(visibility, show_name_value, is_inherited);
+
+  x_gtksheet_set_cell_fgcolor(sheet, row, col, fgcolor);
 }
 
 /* ------------------ Visibility Range Operators ----------------- */
+
 /*! \brief Set visibility of selected cells
  *
  * This function sets the visibility of selected cells to the passed
@@ -241,6 +244,7 @@ static void s_properties_set_range_visibility(int visibility) {
 }
 
 /* ---------------------------------------------------------------------- */
+
 /*! \brief Set Show Name Value of selected cells.
  *
  * This functions sets the show_name attrinbute of the selected cells
@@ -296,6 +300,7 @@ static void s_properties_set_show_name_value(int value) {
   }
   x_window_update_title(pr_current, sheet_head);
 }
+
 /* ------------------------ Menu and Toolbar Handler ------------------ */
 
 /*! \brief Set selection to INVISIBLE.
@@ -304,8 +309,8 @@ static void s_properties_set_show_name_value(int value) {
  */
 void s_properties_set_invisible() {
   s_properties_set_range_visibility(INVISIBLE);
-
 }
+
 /*! \brief Set selection to VISIBLE.
  *
  * This sets the selected cells to VISIBLE.
@@ -365,8 +370,8 @@ void s_properties_promote_attribute() {
   local_table[col][row].is_promoted = TRUE;
 
   s_properties_set_cell_fgcolor(sheet, row, col);
-
 }
+
 void s_properties_demote_attribute() {
   int row, col;
   int cur_page;
@@ -388,5 +393,4 @@ void s_properties_demote_attribute() {
   }
 
   s_properties_set_cell_fgcolor(sheet, row, col);
-
 }
