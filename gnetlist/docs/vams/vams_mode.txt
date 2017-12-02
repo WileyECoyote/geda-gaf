@@ -40,8 +40,8 @@ CONTENT:
 	    2. code-adaptation
 
 
-   The purpose of our endevour, is that gEDA gnelist completly
-   supportted VHDL-AMS (VHDL Analog and Mixed-Signal) netlist
+   The purpose of our endeavor, is that gEDA gnelist completely
+   supported VHDL-AMS (VHDL Analog and Mixed-Signal) netlist
    generation.
 
    The VHDL-AMS netlist support mode is called vams.
