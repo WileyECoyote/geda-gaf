@@ -20,10 +20,10 @@
 /*! \file
  * \brief Functions to manipulate attribute visibility
  *
- * This file holds widgets and functions used in conjunction
+ * This module contains functions used in conjunction
  * with setting attribute visibility.
- * \todo There seems to be a lot of duplicated code in this file -
- *       a good candidate for refactoring.
+ *
+ * \todo refactoring?
  */
 
 #include <gattrib.h>

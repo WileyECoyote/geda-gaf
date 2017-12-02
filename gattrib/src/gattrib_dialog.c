@@ -438,7 +438,7 @@ static void gattrib_dialog_class_init(void *klass, void *class_data)
 }
 
 /*!
- * \brief Function to retrieve GattribDialog's GedaType identifier.
+ * \brief Function to retrieve GattribDialog's GedaType identifier
  * \par Function Description
  *  Function to retrieve GattribDialog's Type identifier. On first call,
  *  this registers the GattribDialog in the GedaType system. Subsequently
@@ -472,7 +472,7 @@ GedaType gattrib_dialog_get_type ()
 }
 
 /*!
- * \brief va_list support for gattrib_dialog_new_with_buttons(...)
+ * \brief va_list support for gattrib_dialog_new_with_buttons
  * \par Function Description
  *  Convenience function which adds buttons to a pre-existing GtkDialog
  *  Modified from internal GTK function in GTK+-2.4.14 gtkdialog.c
