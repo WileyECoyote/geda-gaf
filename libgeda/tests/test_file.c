@@ -870,6 +870,8 @@ int test_path (void)
     fprintf(stderr, "FAILED: (F030101A) geda_file_path_create\n");
     result++;
   }
+  else if (!g_file_test (path, G_FILE_TEST_IS_DIR)) {
+    fprintf(stderr, "FAILED: (F030101B) geda_file_path_create\n");
     result++;
   }
 
@@ -888,6 +890,8 @@ int test_path (void)
     fprintf(stderr, "FAILED: (F030102A) geda_file_path_create\n");
     result++;
   }
+  else if (!g_file_test (path, G_FILE_TEST_IS_DIR)) {
+    fprintf(stderr, "FAILED: (F030102B) geda_file_path_create\n");
     result++;
   }
 
