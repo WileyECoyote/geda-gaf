@@ -3,6 +3,11 @@
     * src/i_basic.c: Remove unnecessary initialization of pathname to NULL
       in i_show_wiki_help.
 
+    * src/s_properties.c: Remove redundant validations in functions:
+
+          * s_properties_set_range_visibility
+          * s_properties_set_show_name_value
+
 2017-11-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gattrib_dialog.c: Declare setup_keyfile static and output a message

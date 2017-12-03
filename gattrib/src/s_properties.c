@@ -203,7 +203,6 @@ static void s_properties_set_range_visibility(int visibility) {
   cur_page = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
   sheet = sheets[cur_page];
 
-  g_return_if_fail (sheet != NULL);
   g_return_if_fail (GTK_IS_SHEET (sheet));
 
   switch (sheet->state) {
@@ -260,7 +259,6 @@ static void s_properties_set_show_name_value(int value) {
   cur_page = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
   sheet = sheets[cur_page];
 
-  g_return_if_fail (sheet != NULL);
   g_return_if_fail (GTK_IS_SHEET (sheet));
 
   switch (sheet->state) {
