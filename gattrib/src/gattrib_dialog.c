@@ -331,7 +331,6 @@ static void gattrib_dialog_set_property (GObject *object, guint property_id, con
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
   }
-
 }
 
 /*!
@@ -360,7 +359,6 @@ static void gattrib_dialog_get_property (GObject *object, guint property_id, GVa
       default:
         G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
   }
-
 }
 
 /*!
@@ -501,6 +499,7 @@ static void gattrib_dialog_add_buttons_valist (GtkDialog     *dialog,
     gtk_dialog_add_button (dialog, text, response_id);
 
     text = va_arg (args, char*);
+
     if (text == NULL)
       break;
     response_id = va_arg (args, int);
@@ -579,9 +578,7 @@ GtkWidget* gattrib_dialog_new_with_buttons (const char *title, GtkWindow *parent
   gattrib_dialog_add_buttons_valist (GTK_DIALOG (dialog),
                                      first_button_text,
                                      args);
-
   va_end (args);
 
   return GTK_WIDGET (dialog);
 }
-
