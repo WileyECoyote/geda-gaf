@@ -448,22 +448,27 @@ GedaType gattrib_dialog_get_type (void)
 {
   static volatile GedaType gattrib_dialog_type = 0;
 
-  if (!gattrib_dialog_type) {
-    static const GTypeInfo gattrib_dialog_info = {
+  if (g_once_init_enter (&gattrib_dialog_type)) {
+
+    static const GTypeInfo info = {
       sizeof(GattribDialogClass),
-      NULL,                         /* base_init */
-      NULL,                         /* base_finalize */
-      gattrib_dialog_class_init,    /* GClassInitFunc */
-      NULL,                         /* class_finalize */
-      NULL,                         /* class_data */
+      NULL,                            /* base_init           */
+      NULL,                            /* base_finalize       */
+      gattrib_dialog_class_init,       /* (GClassInitFunc)    */
+      NULL,                            /* class_finalize      */
+      NULL,                            /* class_data          */
       sizeof(GattribDialog),
-      0,                            /* n_preallocs */
-      NULL,                         /* instance_init */
+      0,                               /* n_preallocs         */
+      NULL                             /* (GInstanceInitFunc) */
     };
 
-    gattrib_dialog_type = g_type_register_static (GTK_TYPE_DIALOG,
-                                                 "GattribDialog",
-                                                 &gattrib_dialog_info, 0);
+    const char *string;
+    GedaType    type;
+
+    string = g_intern_static_string ("GattribDialog");
+    type   = g_type_register_static (GTK_TYPE_DIALOG, string, &info, 0);
+
+    g_once_init_leave (&gattrib_dialog_type, type);
   }
 
   return gattrib_dialog_type;

@@ -1,3 +1,8 @@
+2017-12-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gattrib_dialog.c: Revamp gattrib_dialog_get_type to use g_once_
+      init_enter, g_intern_static_string, and g_once_init_leave.
+
 2017-12-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/i_basic.c: Remove unnecessary initialization of pathname to NULL
