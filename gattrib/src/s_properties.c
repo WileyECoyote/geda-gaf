@@ -266,9 +266,6 @@ static void s_properties_set_show_name_value(int value) {
   case GTK_SHEET_RANGE_SELECTED:
   case GTK_SHEET_COLUMN_SELECTED:
   case GTK_SHEET_ROW_SELECTED:
-#ifdef DEBUG
-    printf("In s_properties_set_name_only, range/col/row selected.\n");
-#endif
     row_start = sheet->range.row0;
     row_end = sheet->range.rowi;
     col_start = sheet->range.col0;
