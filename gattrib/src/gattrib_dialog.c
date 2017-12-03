@@ -444,7 +444,7 @@ static void gattrib_dialog_class_init(void *klass, void *class_data)
  *
  * \return GedaType identifier associated with GattribDialog.
  */
-GedaType gattrib_dialog_get_type ()
+GedaType gattrib_dialog_get_type (void)
 {
   static volatile GedaType gattrib_dialog_type = 0;
 
