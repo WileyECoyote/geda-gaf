@@ -460,7 +460,7 @@ void s_hierarchy_post_process(GedaToplevel *pr_current, NETLIST *head)
           if (pl_current->pin_label == NULL && pl_current->plid != -1) {
 
             fprintf(stderr,
-                    "Found a pin [%s] on component [%s] which does not have a label!\n",
+                    "Found a pin [%s] on component [%s] without a label!\n",
                     nl_current->component_uref,
                     pl_current->pin_number);
             }
