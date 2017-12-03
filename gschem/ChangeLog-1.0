@@ -2,6 +2,8 @@
 
     * src/x/x_event.c: Reference local headers using relative paths.
 
+    * src/x_toolbars.c: use relative paths to local headers.
+
 2017-11-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_page_view.c: Revise conditionals in gschem_page_view

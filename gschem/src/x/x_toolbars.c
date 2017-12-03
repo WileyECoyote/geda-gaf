@@ -29,7 +29,7 @@
 
 #include <gtk/gtk.h>
 
-#include <gschem.h>           /* include gschem specific headers  */
+#include "../../include/gschem.h"
 #include <geda/geda_stat.h>
 #include <geda_handlebox.h>
 
