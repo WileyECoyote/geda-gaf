@@ -3,8 +3,8 @@
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 1998-2015 Ales Hvezda
- * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2017 Ales Hvezda
+ * Copyright (C) 1998-2017 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -26,8 +26,8 @@
  * \brief Main Window Auxiliary Module for Event Handlers
  */
 
-#include <gschem.h>
-#include <x_window.h>
+#include "../../include/gschem.h"
+#include "../../include/x_window.h"
 
 #include <geda_keysyms.h>
 #include <geda_debug.h>

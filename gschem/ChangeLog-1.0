@@ -1,3 +1,7 @@
+2017-12-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_event.c: Reference local headers using relative paths.
+
 2017-11-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_page_view.c: Revise conditionals in gschem_page_view
