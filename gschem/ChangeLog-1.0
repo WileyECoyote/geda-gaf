@@ -1,5 +1,22 @@
 2017-12-03 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/iface/i_command.c: Conditionally call i_event_cancel_action_handler
+      in action handlers:
+
+          * do_add_component
+          * do_add_net
+          * do_add_bus
+          * do_add_net
+          * do_add_attribute
+          * do_add_line
+          * do_add_text
+          * do_add_pin
+          * do_add_box
+          * do_add_circle
+          * do_add_arc
+          * do_add_path
+          * do_add_picture
+
     * src/x/x_event.c: Reference local headers using relative paths.
 
     * src/x_toolbars.c: use relative paths to local headers.

@@ -3257,6 +3257,10 @@ COMMAND (do_add_component)
 
   o_redraw_cleanstates (w_current);
 
+  if (w_current->action_event->state) {
+    i_event_cancel_action_handler(w_current);
+  }
+
   i_status_set_state(w_current, COMPMODE);
 
   x_compselect_open (w_current);
@@ -3275,6 +3279,10 @@ COMMAND (do_add_net)
 
   o_redraw_cleanstates(w_current);
   o_net_reset(w_current);
+
+  if (w_current->action_event->state) {
+    i_event_cancel_action_handler(w_current);
+  }
 
   i_status_set_state(w_current, NETMODE);
 
@@ -3296,6 +3304,10 @@ COMMAND (do_add_bus)
 
   o_redraw_cleanstates(w_current);
   o_invalidate_rubber (w_current);
+
+  if (w_current->action_event->state) {
+    i_event_cancel_action_handler(w_current);
+  }
 
   i_status_set_state(w_current, BUSMODE);
 
@@ -3329,6 +3341,10 @@ COMMAND (do_add_attribute)
       w_current->first_wy = CMD_Y(do_add_attribute);
     }
 
+    if (w_current->action_event->state) {
+      i_event_cancel_action_handler(w_current);
+    }
+
     x_attrib_add_dialog(w_current, o_current);
   }
   else {
@@ -3352,6 +3368,10 @@ COMMAND (do_add_line)
 
   o_redraw_cleanstates(w_current);
   o_invalidate_rubber (w_current);
+
+  if (w_current->action_event->state) {
+    i_event_cancel_action_handler(w_current);
+  }
 
   i_status_set_state(w_current, LINEMODE);
 
@@ -3379,6 +3399,10 @@ COMMAND (do_add_text)
   o_redraw_cleanstates(w_current);
   o_invalidate_rubber (w_current);
 
+  if (w_current->action_event->state) {
+    i_event_cancel_action_handler(w_current);
+  }
+
   i_status_action_stop(w_current);
   i_status_set_state(w_current, SELECT);
 
@@ -3397,6 +3421,10 @@ COMMAND (do_add_pin)
 
   o_redraw_cleanstates(w_current);
   o_invalidate_rubber (w_current);
+
+  if (w_current->action_event->state) {
+    i_event_cancel_action_handler(w_current);
+  }
 
   i_status_set_state(w_current, PINMODE);
 
@@ -3423,6 +3451,10 @@ COMMAND (do_add_box)
   o_redraw_cleanstates(w_current);
   o_invalidate_rubber (w_current);
 
+  if (w_current->action_event->state) {
+    i_event_cancel_action_handler(w_current);
+  }
+
   i_status_set_state(w_current, BOXMODE);
 
   if HOT_ACTION (do_add_box) {
@@ -3446,6 +3478,10 @@ COMMAND (do_add_circle)
 
   o_redraw_cleanstates(w_current);
   o_invalidate_rubber (w_current);
+
+  if (w_current->action_event->state) {
+    i_event_cancel_action_handler(w_current);
+  }
 
   i_status_set_state(w_current, CIRCLEMODE);
 
@@ -3476,6 +3512,10 @@ COMMAND (do_add_arc)
   o_redraw_cleanstates(w_current);
   o_invalidate_rubber (w_current);
 
+  if (w_current->action_event->state) {
+    i_event_cancel_action_handler(w_current);
+  }
+
   i_status_set_state(w_current, ARCMODE);
 
   if HOT_ACTION (do_add_arc) {
@@ -3499,6 +3539,10 @@ COMMAND (do_add_path)
 
   o_redraw_cleanstates(w_current);
   o_invalidate_rubber (w_current);
+
+  if (w_current->action_event->state) {
+    i_event_cancel_action_handler(w_current);
+  }
 
   i_status_set_state(w_current, PATHMODE);
 
@@ -3525,6 +3569,10 @@ COMMAND (do_add_picture)
 
   o_redraw_cleanstates(w_current);
   o_invalidate_rubber (w_current);
+
+  if (w_current->action_event->state) {
+    i_event_cancel_action_handler(w_current);
+  }
 
   i_status_action_stop(w_current);
 
