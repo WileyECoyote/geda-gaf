@@ -299,8 +299,7 @@ i_event_action_enable_events(GschemToplevel *w_current)
  *     i_event_start_adder_handler, i_event_start_paster_handler,
  *     i_event_adder_pressed, i_event_adder_released, x_dnd_source_leave
  */
-static void
-i_event_end_action_handler(GschemToplevel *w_current)
+void i_event_end_action_handler(GschemToplevel *w_current)
 {
   w_current->action_event->state = 0;
 

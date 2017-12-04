@@ -1,3 +1,7 @@
+2017-12-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_event.c: Declare i_event_end_action_handler public.
+
 2017-12-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Conditionally call i_event_cancel_action_handler

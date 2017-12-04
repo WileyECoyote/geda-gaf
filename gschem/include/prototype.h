@@ -300,6 +300,7 @@ void       i_event_block_handler            (GschemToplevel *w_current, EventHan
 void       i_event_unblock_handler          (GschemToplevel *w_current, EventHandler id);
 void       i_event_setup_handlers           (GschemToplevel *w_current);
 void       i_event_cancel_action_handler    (GschemToplevel *w_current);
+void       i_event_end_action_handler       (GschemToplevel *w_current);
 void       i_event_start_adder_handler      (GschemToplevel *w_current, ActionInit ifunc, ActionAdder resolver);
 void       i_event_start_paster_handler     (GschemToplevel *w_current, ActionPaster resolver);
 void       i_event_stop_action_handler      (GschemToplevel *w_current);
