@@ -20,6 +20,7 @@
  */
 
 #include "../../config.h"
+#include "../../version.h" /* For g_get_version */
 
 #include <gnetlist.h>
 #include <libgeda/libgedaguile.h>
@@ -894,6 +895,11 @@ SCM g_get_verbosity (void)
   else {
     return scm_from_int (0);
   }
+}
+
+SCM g_get_version (void)
+{
+  return scm_from_locale_string (PACKAGE_DOTTED_VERSION);
 }
 
 /*!

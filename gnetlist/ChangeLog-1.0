@@ -1,3 +1,10 @@
+2017-12-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/g_register.c: Register gnetlist:get-version.
+
+    * src/g_netlist.c: Add g_get_version to return the package dotted
+      version to scheme routines.
+
 2017-12-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_hierarchy.c: Add function documentation for s_hierarchy_

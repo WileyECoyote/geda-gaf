@@ -73,6 +73,7 @@ static struct gsubr_t gnetlist_funcs[] = {
   { "gnetlist:get-backend-arguments",       0, 0, 0, g_get_backend_arguments },
   { "gnetlist:get-input-files",             0, 0, 0, g_get_input_files },
   { "gnetlist:get-verbosity",               0, 0, 0, g_get_verbosity },
+  { "gnetlist:get-version",                 0, 0, 0, g_get_version },
   { NULL,                                   0, 0, 0, NULL } };
 
 /*! \brief Register function with Scheme.

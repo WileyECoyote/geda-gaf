@@ -1,6 +1,7 @@
 /* g_netlist.c */
 void g_set_project_current(GedaToplevel *pr_current);
 SCM g_get_verbosity (void);
+SCM g_get_version (void);
 SCM g_get_backend_arguments (void);
 SCM g_get_input_files(void);
 SCM g_get_packages(SCM level);

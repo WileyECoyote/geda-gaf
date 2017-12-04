@@ -46,6 +46,7 @@
 (define-public graphical-net-objs-attrib   gnetlist:graphical-net-objs-attrib)
 (define-public get-input-files             gnetlist:get-input-files)
 (define-public get-verbosity               gnetlist:get-verbosity)
+(define-public get-version                 gnetlist:get-version)
 
 ;;----------------------------------------------------------------------
 ;; Functions to support processing command-line arguments.
