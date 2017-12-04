@@ -32,7 +32,6 @@
 /*! \brief Return index based on attribute properties
   * \par Function Description
   * This function returns an enumerated color index
-  *
   */
 int s_properties_get_fgcolor_index(int visibility, int show_name_value, int is_inherited) {
 
@@ -251,10 +250,11 @@ static void s_properties_set_range_visibility(int visibility) {
  * This function is invoked from the menu handlers in this module.
  */
 static void s_properties_set_show_name_value(int value) {
-  int i, j;
-  int row_start, row_end, col_start, col_end;
+
   GtkSheet *sheet;
   int cur_page;
+  int i, j;
+  int row_start, row_end, col_start, col_end;
 
   cur_page = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
   sheet = sheets[cur_page];
@@ -267,15 +267,14 @@ static void s_properties_set_show_name_value(int value) {
   case GTK_SHEET_COLUMN_SELECTED:
   case GTK_SHEET_ROW_SELECTED:
     row_start = sheet->range.row0;
-    row_end = sheet->range.rowi;
+    row_end   = sheet->range.rowi;
     col_start = sheet->range.col0;
-    col_end = sheet->range.coli;
+    col_end   = sheet->range.coli;
     for (i=row_start; i<=row_end; i++) {
       for (j=col_start; j<=col_end; j++) {
         s_properties_set_cell_show_name( i, j, value);
-	/* Color names are defined
-	 * in libgeda/include/geda_colors.h */
-      	s_properties_set_cell_fgcolor(sheet, i, j);
+        /* Color names are defined in libgedacolor/include/geda_colors.h */
+        s_properties_set_cell_fgcolor(sheet, i, j);
       }
     }
     /* Now return sheet to normal -- unselect range */
