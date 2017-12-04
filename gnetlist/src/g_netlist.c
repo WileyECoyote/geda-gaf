@@ -878,7 +878,7 @@ SCM g_get_toplevel_attribute(SCM scm_wanted_attrib)
   return (scm_return_value);
 }
 
-/*! \brief Returns verbosity level for messages.
+/*! \brief Returns verbosity level for messages
  * \par Function Description
  *  If the "-q" gnetlist command-line option was specified, returns -1.
  *  If the "-v" gnetlist command-line option was specified, returns 1.
@@ -897,13 +897,18 @@ SCM g_get_verbosity (void)
   }
 }
 
+/*!
+ * \brief Returns the gnetlist Dotted Version
+ * \par Function Description
+ *  Returns the gnetlist dotted version as a string.
+ */
 SCM g_get_version (void)
 {
   return scm_from_locale_string (PACKAGE_DOTTED_VERSION);
 }
 
 /*!
- * \brief Obtain a list of `-O' backend arguments.
+ * \brief Obtain a list of `-O' backend arguments
  * \par Function Description
  *  Returns a list of arguments passed to the gnetlist backend via the
  *  `-O' gnetlist command-line option.
@@ -921,7 +926,7 @@ SCM g_get_backend_arguments(void)
 }
 
 /*!
- * \brief Get input files from command line.
+ * \brief Get input files from command line
  * \par Function Description
  *  This function returns a list of the files named on the command line.
  *
