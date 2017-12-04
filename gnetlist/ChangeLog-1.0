@@ -5,8 +5,8 @@
     * src/g_netlist.c: Add g_get_version to return the package dotted
       version to scheme routines.
 
-    * src/s_hierarchy.c: Add function documentation for s_hierarchy_
-      create_netname.
+    * src/s_hierarchy.c: Add file tag and function documentation for
+      s_hierarchy_create_netname.
 
 2017-12-03 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -24,6 +24,10 @@
  * 02110-1301 USA, <http://www.gnu.org/licenses/>.
  *
  */
+/*! \file s_hierarchy.c
+ *  \remarks
+ *  This module only pertains to hierarchical schematics.
+ */
 
 #include "../../config.h"
 
@@ -577,6 +581,7 @@ char *s_hierarchy_create_netname(GedaToplevel *pr_current, char *basename,
   }
 
   if (hierarchy_tag) {
+
     if (basename) {
 
       if (pr_current->hierarchy_netname_separator) {
