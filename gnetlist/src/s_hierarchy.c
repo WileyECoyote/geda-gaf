@@ -426,6 +426,7 @@ s_hierarchy_setup_rename(GedaToplevel *pr_current, NETLIST *head, char *uref,
  *  \brief Hierarchy Post Process
  *  \par Function Description
  *
+ * called by s_netlist_post_process
  */
 void s_hierarchy_post_process(GedaToplevel *pr_current, NETLIST *head)
 {
@@ -496,7 +497,6 @@ void s_hierarchy_post_process(GedaToplevel *pr_current, NETLIST *head)
                        "Missing I/O symbol with refdes [%s] inside schematic for symbol [%s]\n",
                         pl_current->pin_label,
                         nl_current->component_uref);
-
               }
             }
             pl_current = pl_current->next;
@@ -515,10 +515,11 @@ void s_hierarchy_post_process(GedaToplevel *pr_current, NETLIST *head)
   geda_list_unref(removed);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief Hierarchy Remove Composite
- *  \par Function Description
- *
+/*!
+ * \brief Hierarchy Remove All Composited
+ * \par Function Description
+ *  Remove references of composited components. These are the reference
+ *  to the source symbols.
  */
 void s_hierarchy_remove_compsite_all(NETLIST *head, GedaList *removed)
 {

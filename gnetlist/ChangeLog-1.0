@@ -1,3 +1,8 @@
+2017-12-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_hierarchy.c: Add function documentation for s_hierarchy_
+      remove_compsite_all.
+
 2017-10-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_traverse.c: Use accessor geda_complex_get_filename to
