@@ -1,3 +1,7 @@
+2017-12-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/libgedathon.c: Reference local headers using relative paths.
+
 2017-12-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_module.h: Change is_page_modified to have METH_VARARGS.
