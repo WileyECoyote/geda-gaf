@@ -524,9 +524,9 @@ static void gattrib_dialog_add_buttons_valist (GtkDialog     *dialog,
  *
  * \return  The GattribDialog created.
  */
- GtkWidget *gattrib_dialog_new_empty (const char *title, GtkWindow *parent,
-                                      GtkDialogFlags flags,
-                                      const char *settings_name)
+GtkWidget *gattrib_dialog_new_empty (const char *title, GtkWindow *parent,
+                                     GtkDialogFlags flags,
+                                     const char *settings_name)
 {
   GtkWindow *dialog;
 
@@ -570,7 +570,7 @@ static void gattrib_dialog_add_buttons_valist (GtkDialog     *dialog,
  *
  * \return  The GattribDialog created.
  */
-GtkWidget* gattrib_dialog_new_with_buttons (const char *title, GtkWindow *parent, GtkDialogFlags flags,
+GtkWidget *gattrib_dialog_new_with_buttons (const char *title, GtkWindow *parent, GtkDialogFlags flags,
                                             const char *settings_name, const char *first_button_text, ...)
 {
   GattribDialog *dialog;
