@@ -553,10 +553,13 @@ void s_hierarchy_remove_compsite_all(NETLIST *head, GedaList *removed)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief Hierarchy Create Net Name
- *  \par Function Description
- *
+/*!
+ * \brief Hierarchy Create Net Name
+ * \par Function Description
+ *  When netname-mangle is enabled this function prefixes or suffixes
+ *  the net names with the reference of the source symbol given by \a
+ *  hierarchy_tag, otherwise a copy of \a basename is returned with
+ *  out modification.
  */
 char *s_hierarchy_create_netname(GedaToplevel *pr_current, char *basename,
                                  char *hierarchy_tag)
