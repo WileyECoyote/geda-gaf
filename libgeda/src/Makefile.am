@@ -57,6 +57,12 @@ libgeda_la_LDFLAGS   = $(WINDOWS_LIBTOOL_FLAGS) -version-info $(LIBGEDA_SHLIB_VE
 					   $(MINGW_LDFLAGS) $(GUILE_LIBS) \
 					   $(GLIB_LIBS) $(GDK_PIXBUF_LIBS)
 
+if LOCAL_LIBINTL
+
+libgeda_la_LIBADD    = $(top_srcdir)/intl/libintl.a
+
+endif
+
 LIBTOOL=@LIBTOOL@ --silent
 
 # This is used to generate boilerplate for defining edascm functions in C.
