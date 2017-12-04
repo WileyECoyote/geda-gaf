@@ -1395,6 +1395,8 @@ COMMAND (do_paste_clip)
 
     w_current->buffer_number = narg;
 
+    i_event_end_action_handler(w_current);
+
     if HOT_ACTION (do_paste_clip) {
 
       if (!o_buffer_paste_start (w_current, CMD_X(do_paste_clip),
@@ -1405,7 +1407,6 @@ COMMAND (do_paste_clip)
     }
     else {
       o_redraw_cleanstates (w_current);
-      i_status_action_stop(w_current);
       i_status_set_state (w_current, PASTEMODE);
     }
   }
