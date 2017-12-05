@@ -1,6 +1,7 @@
 2017-12-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gnetlistrc.in: Add comment regarding gnetlist:get-version.
+      Remove paragraph about world-size.
 
 2017-12-04 Wiley E. Hill <wileyhill@gmail.com>
 
