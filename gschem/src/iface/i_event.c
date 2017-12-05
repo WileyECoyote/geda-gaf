@@ -293,7 +293,9 @@ i_event_action_enable_events(GschemToplevel *w_current)
  * \par Function Description
  * \internal Function disconnects the Action Event Handler and unblock
  *  the previous event handler. This function is the only functions to
- *  set the action_event->state = FALSE.
+ *  set the action_event->state = FALSE. This function is similar to
+ *  i_event_cancel_action_handler except that this function does not
+ *  set SELECT mode.
  *
  * \sa i_event_stop_action_handler, i_event_cancel_action_handler,
  *     i_event_start_adder_handler, i_event_start_paster_handler,
