@@ -65,6 +65,10 @@
 
 #endif
 
+#if !defined(libintl_bindtextdomain)
+# define libintl_bindtextdomain bindtextdomain
+#endif
+
 /* A pseudo function call that serves as a marker for the automated
    extraction of messages, but does not call gettext().  The run-time
    translation is done at a different place in the code.

@@ -1,3 +1,8 @@
+2017-12-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/gettext_priv.h: Define libintl_bindtextdomain to
+      bindtextdomain if not define, should not normally need this.
+
 2017-12-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/Makefile.am: Conditionally link to local top_srcdir/intl/
