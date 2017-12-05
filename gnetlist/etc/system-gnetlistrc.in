@@ -36,8 +36,8 @@
 
 ; hierarchy-traversal string
 ;
-; Decides if the hierarchy is traversed or not.  If this is disabled then
-; gnetlist will not go down searching for any underlying sources
+; Determines if the hierarchy is traversed or not. If this is disabled then
+; gnetlist will not go down searching for any underlying sources.
 ;
 (hierarchy-traversal "enabled")
 ;(hierarchy-traversal "disabled")
