@@ -3259,7 +3259,7 @@ COMMAND (do_add_component)
   o_redraw_cleanstates (w_current);
 
   if (w_current->action_event->state) {
-    i_event_cancel_action_handler(w_current);
+    i_event_end_action_handler(w_current);
   }
 
   i_status_set_state(w_current, COMPMODE);

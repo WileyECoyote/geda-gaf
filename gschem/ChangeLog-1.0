@@ -1,3 +1,8 @@
+2017-12-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_command.c: Replace calling i_event_cancel_action_handler
+      with i_event_end_action_handler in i_cmd_do_add_component.
+
 2017-12-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Revise i_cmd_do_paste_clip to call i_event_end
