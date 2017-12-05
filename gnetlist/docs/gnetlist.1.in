@@ -180,7 +180,6 @@ VHDL code generation.
 \fBvipec\fR
 ViPEC Network Analyser netlist format.
 
-
 .SH EXAMPLES
 .PP
 These examples assume that you have a `stack_1.sch' in the current directory.
@@ -237,11 +236,11 @@ Scheme read-eval-print loop.
 .SH ENVIRONMENT
 .TP 8
 .B GEDADATA
-specifies the search directory for Scheme and rc files.  The default
+Specifies the search directory for Scheme and rc files.  The default
 is `${prefix}/share/gEDA'.
 .TP 8
 .B GEDADATARC
-specifies the search directory for rc files.  The default is `$GEDADATA'.
+Specifies the search directory for rc files.  The default is `$GEDADATA'.
 
 .SH AUTHORS
 See the `AUTHORS' file included with this program.
