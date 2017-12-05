@@ -606,7 +606,6 @@ char *s_hierarchy_create_netname(GedaToplevel *pr_current, char *basename,
       else {
         switch (pr_current->hierarchy_netname_order) {
           case (APPEND):
-
             return_value = geda_strconcat (hierarchy_tag, basename, NULL);
             break;
 
@@ -633,10 +632,13 @@ char *s_hierarchy_create_netname(GedaToplevel *pr_current, char *basename,
   return (return_value);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief Hierarchy Create a Net Attribute
- *  \par Function Description
- *
+/*!
+ * \brief Hierarchy Create a Net Attribute
+ * \par Function Description
+ *  When netattrib-mangle is enabled this function prefixes or suffixes
+ *  the net attributes with the reference of the source symbol given by
+ *  \a hierarchy_tag, otherwise a copy of \a basename is returned with
+ *  out modification.
  */
 char *s_hierarchy_create_netattrib(GedaToplevel *pr_current, char *basename,
                                    char *hierarchy_tag)
@@ -663,14 +665,14 @@ char *s_hierarchy_create_netattrib(GedaToplevel *pr_current, char *basename,
           case (APPEND):
             return_value =
             geda_strconcat (hierarchy_tag,
-                         pr_current->hierarchy_netattrib_separator,
-                         basename, NULL);
+                            pr_current->hierarchy_netattrib_separator,
+                            basename, NULL);
             break;
           case (PREPEND):
             return_value =
             geda_strconcat (basename,
-                         pr_current->hierarchy_netattrib_separator,
-                         hierarchy_tag, NULL);
+                            pr_current->hierarchy_netattrib_separator,
+                            hierarchy_tag, NULL);
 
             break;
         }

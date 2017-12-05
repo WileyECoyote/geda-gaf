@@ -3,6 +3,9 @@
     * etc/system-gnetlistrc.in: Add comment regarding gnetlist:get-version.
       Remove paragraph about world-size.
 
+    * src/s_hierarchy.c: Add function documentation for s_hierarchy_create
+      _netattrib.
+
 2017-12-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/g_register.c: Register gnetlist:get-version.
