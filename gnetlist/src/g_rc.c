@@ -73,7 +73,7 @@ SCM g_rc_net_naming_priority(SCM mode)
   };
 
   RETURN_G_RC_MODE("net-naming-priority",
-            default_net_naming_priority, mode_table);
+                    default_net_naming_priority, mode_table);
 }
 
 /*! \brief Process hierarchy-traversal Keyword
@@ -90,7 +90,7 @@ SCM g_rc_hierarchy_traversal(SCM mode)
   };
 
   RETURN_G_RC_MODE("hierarchy-traversal",
-            default_hierarchy_traversal, mode_table);
+                    default_hierarchy_traversal, mode_table);
 }
 
 /*! \brief Process hierarchy-uref-mangle Keyword
@@ -107,7 +107,7 @@ SCM g_rc_hierarchy_uref_mangle(SCM mode)
   };
 
   RETURN_G_RC_MODE("hierarchy-uref-mangle",
-            default_hierarchy_uref_mangle, mode_table);
+                    default_hierarchy_uref_mangle, mode_table);
 }
 
 /*! \brief Process hierarchy-netname-mangle Keyword
@@ -125,7 +125,7 @@ SCM g_rc_hierarchy_netname_mangle(SCM mode)
   };
 
   RETURN_G_RC_MODE("hierarchy-netname-mangle",
-            default_hierarchy_netname_mangle, mode_table);
+                    default_hierarchy_netname_mangle, mode_table);
 }
 
 /*! \brief Process hierarchy-netattrib-mangle Keyword
@@ -143,7 +143,7 @@ SCM g_rc_hierarchy_netattrib_mangle(SCM mode)
   };
 
   RETURN_G_RC_MODE("hierarchy-netattrib-mangle",
-            default_hierarchy_netattrib_mangle, mode_table);
+                    default_hierarchy_netattrib_mangle, mode_table);
 }
 
 /*! \brief Process hierarchy-netname-separator Keyword
@@ -215,7 +215,7 @@ SCM g_rc_hierarchy_netattrib_order(SCM mode)
   };
 
   RETURN_G_RC_MODE("hierarchy-netattrib-order",
-            default_hierarchy_netattrib_order, mode_table);
+                    default_hierarchy_netattrib_order, mode_table);
 }
 
 /*! \brief Process hierarchy-netname-order Keyword
@@ -233,7 +233,7 @@ SCM g_rc_hierarchy_netname_order(SCM mode)
   };
 
   RETURN_G_RC_MODE("hierarchy-netname-order",
-            default_hierarchy_netname_order, mode_table);
+                    default_hierarchy_netname_order, mode_table);
 }
 
 /*! \brief Process hierarchy-uref-order Keyword
@@ -251,7 +251,7 @@ SCM g_rc_hierarchy_uref_order(SCM mode)
   };
 
   RETURN_G_RC_MODE("hierarchy-uref-order",
-            default_hierarchy_uref_order, mode_table);
+                    default_hierarchy_uref_order, mode_table);
 }
 
 /*! \brief Process unamed-netname Keyword
