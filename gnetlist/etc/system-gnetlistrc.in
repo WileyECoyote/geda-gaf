@@ -12,7 +12,9 @@
 ;
 ; Specifies the version of this file.  This number is used to make sure
 ; that the rc file is compatible with the version of gschem that is
-; being run. The end user should *not* change this value.
+; being run. The end user should *not* change this value. This should
+; not be confused with the gnetlist:get-version scheme API function
+; that returns the gnetlist dotted version string.
 ;
 (gnetlist-version "@DATE_VERSION@")
 
