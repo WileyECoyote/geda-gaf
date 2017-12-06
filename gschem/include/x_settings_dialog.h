@@ -236,7 +236,7 @@ WidgetStringData DialogStrings[] = {
         { "TextMarkerSizeSpin",         "  Size:",              "Sets the default size of text origin markers."},
         { "TextMarkerThldSpin",         "Threshold:",           "Lateral threshold distance between text and markers at which point the markers drawn"},
         { "TextSizeSpin",               "     Text Size:",      "Sets the default text font size."},
-        { "TextZoomFactorSpin",         "   Zoom Factor:",      "Sets the zoomfactor number (~150 being the most zoomed out factor)(zoom factors get smaller as you zoom in) at which text is displayed completely (not a line). This is only valid if FeedBack is set to \"only-when-readable\""},
+        { "TextZoomFactorSpin",         "   Zoom Factor:",      "Sets the zoomfactor number (~150 being the most zoomed out factor)(zoom factors get smaller as you zoom in) at which text is displayed completely (not a line). This is only valid if Feedback is set to \"only-when-readable\""},
         { "ThickBusWidthSpin",          "Thick",                "Set the width, in mils, of the Thick Buss"},
         { "ThickLineWidthSpin",         "Thick",                "Set the width, in mils, of the Thick Lines"},
         { "ThickNetWidthSpin",          "Thick",                "Set the width, in mils, of the Thick Nets"},
