@@ -1,6 +1,7 @@
 2017-12-06 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/s_traverse.c: Update function documentation for s_traverse_sheet.
+    * src/s_traverse.c: Add ancillary msg variable in s_traverse_sheet and
+      update function documentation.
 
 2017-12-05 Wiley E. Hill <wileyhill@gmail.com>
 

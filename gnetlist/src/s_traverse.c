@@ -287,15 +287,16 @@ s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list)
         if ((!value) && (!is_graphical)) {
 
           const char *filename;
+          const char *msg;
+
+          msg = _("Did not find refdes or any special attributes on component!");
 
           filename = geda_complex_object_get_filename (o_current);
           net_name = geda_attrib_search_object_by_name (o_current, "netname", 0);
 
-          fprintf(stderr, "%s <%s>, <%s>\n",
-                _("Did not find refdes or any special attributes on component!"),
-                  filename, net_name);
+          fprintf(stderr, "%s <%s>, <%s>\n", msg, filename, net_name);
 
-                  netlist->component_uref = geda_utility_string_strdup("U?");
+          netlist->component_uref = geda_utility_string_strdup("U?");
         }
         else {
 
