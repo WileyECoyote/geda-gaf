@@ -50,8 +50,8 @@ CONTENT:
    1. FUNCTIONALITY
 
    gEDA gnetlist in vams mode allow it to generate a VHDL-AMS
-   ARCHITECTURE or an ENTIY declaration. Which of both tasks is
-   performed, dependends on the generate-mode variable. This variable
+   ARCHITECTURE or an ENTITY declaration. Which of both tasks is
+   performed, depends on the generate-mode variable. This variable
    is defined in the gnetlist command or will be set default.
 
    If generate-mode=1 (default) gnetlist creates a netlist as an
