@@ -1,0 +1,151 @@
+.TH gnetlist 5 "@DATE@" "gEDA Project" @VERSION@
+.SH NAME
+gnetlistrc - gEDA/gaf Netlist Extraction and Generation Configuration file
+.SH SYNOPSIS
+.B gnetlistrc
+@GEDARCDIR@/system-gnetlistrc, $GEDARCDIR/gnetlistrc, ./gnetlistrc
+
+.SH DESCRIPTION
+.PP
+\fBsystem-gnetlistrc\fR configuration file is used to set system-wide
+defaults to be applied when running \fBgnetlist\fR.
+.PP
+Users may create an optional configuration file, gnetlistrc in their home
+configuration directory which will be used to override the system-wide defaults
+file. The location of configuration files can be specified using the GEDARCDIR
+environment variable but this will effect other gEDA/gaf applications.
+The file gnetlistrc in the current working directory is also used.
+.PP
+Additional \fBgnetlistrc\fR files may be in the current working directory
+or a parent there of. The search for a local \fBgnetlistrc\fR terminates
+once a \fBgnetlistrc\fR file has been found or the root of the drive is
+reached. Configuration setting in the local \fBgnetlistrc\fR files override
+those in both the system-wide defaults and the users home directory.
+.PP
+The \fBgnetlistrc\fR files are written in the Scheme programming language
+in the form of keyword-value pairs and are processed by the Scheme interupter.
+This manual attempts to explain all of keywords recognized by \fBgnetlist\fR.
+
+.SH SYNTAX
+.PP
+Keywords and mode strings are case sensitive. Blank lines are ignored.
+Lines beginning with a semicolon (';') are comments, and are ignored.
+Note that it is possiable to include keywords for \fBlibgeda\fR in \fBgnetlistrc\fR
+files, this is not commonly done.
+
+.SH KEYWORDS
+.TP 8
+\fBgnetlist-version\fR
+Specifies the version of this file.  This number is used to make sure
+that the rc file is compatible with the version of gschem that is
+being run. The end user should *not* change this value. This should
+not be confused with the gnetlist:get-version scheme API function
+that returns the \fBgnetlist\fR dotted version string.
+.TP 8
+\fBnet-naming-priority\fR
+Specifies which netname has priority if a net is found with two names.
+If this variable is set to "netattrib" then any netname specified with the
+net= attribute is used as the netname. Likewise if this variable is set to
+"netname" then any netname conflict is resolved using the netname= value.
+.TP 8
+\fBhierarchy-traversal\fR
+Determines if the hierarchy is traversed or not. If this is disabled then
+\fBgnetlist\fR will not go down searching for any underlying sources. The value
+can be "enabled" or "disabled".
+.TP 8
+\fBhierarchy-uref-mangle\fR
+Controls if uref names are mangled to make them unique when traversing down
+into the hierarchy. If this options is disabled then reference designators
+are not changed. Reference designators MUST be unique throughout the entire
+hierarchy or bad things might happen. Underlying schematics cannot reused.
+The value can be "enabled" or "disabled".
+.TP 8
+\fBhierarchy-netname-mangle\fR
+Controls if net names are mangled to make them unique when traversing
+down into the hierarchy.  If this is disabled then the net names are not
+changed and it is the user's responsibility to make sure they are unique.
+This basically has the effect of making all same named nets in the entire
+hierarchy be electrically connected. It is recommeneded that this option
+not be disabled. This option is provided for advanced user. The value
+can be "enabled" or "disabled".
+.TP 8
+\fBhierarchy-netattrib-mangle\fR
+Controls if net created by using the net= attribute are renamed to make
+them unique when traversing down into the hierarchy. If this is disabled
+then the net= created nets are not changed. This feature is handy to have
+global nets which spawn the entire hierarchy (like power or ground nets).
+Make sure you know what you are doing if you disable this option. The
+value can be "enabled" or "disabled".
+.TP 8
+\fBhierarchy-uref-separator\fR
+Specifies what the separator string between the various hierarchy tags
+for all urefs. This string can also be "" (empty) to specify that no
+chars should be used.  This keyword is ignored if hierarchy-uref-mangle
+is disabled (though a default "/" is used in this case, and then all the
+internal mangling is removed so it is not seen by the user). This keyword
+is used in conjunction with the respective hierarchy-*-order keyword.
+The default separator is a "/" characters.
+.TP 8
+\fBhierarchy-netname-separator\fR
+Specifies what the separator string between the various hierarchy tags
+for net= created nets.  This string can also be "" (empty) to specify
+that no chars should be used.  This keyword is ignored if
+hierarchy-netattrib-mangle is disabled.  This keyword is used in
+conjunction with the respective hierarchy-*-order keyword.
+The default separator is a "/" characters.
+.TP 8
+\fBhierarchy-netattrib-separator\fR
+Specifies what the separator string between the various hierarchy tags
+for net= created nets.  This string can also be "" (empty) to specify
+that no chars should be used.  This keyword is ignored if
+hierarchy-netattrib-mangle is disabled.  This keyword is used in
+conjunction with the respective hierarchy-*-order keyword. The
+default separator is a "/" characters.
+.TP 8
+\fBhierarchy-uref-order\fR
+Specifies the order in which the hierarchy tags are applied to all
+urefs. The value can be "append" or "prepend".
+.TP 8
+\fBhierarchy-netname-order\fR
+Specifies the order in which the hierarchy tags are applied to all
+nets. The value can be "append" or "prepend".
+.TP 8
+\fBhierarchy-netattrib-order\fR
+Specifies the order in which the hierarchy tags are applied to nets created
+using the net= attribute. The value can be "append" or "prepend".
+.TP 8
+\fBunnamed-netname\fR
+Specifies the default string which is placed in front of all nets that
+have not been explicitly named by the user (using the netname= attribute
+in the schematic). The is default "unnamed_net".
+.TP 8
+\fBunnamed-busname\fR
+Specifies the default string which is placed in front of all buses that
+have not been explicitly named by the user.
+(This is not currently useful, since \fBgnetlist\fR does not netlist buses).
+The is default "unnamed_bus".
+
+.SH ENVIRONMENT
+.TP 8
+.B GEDADATA
+Specifies the search directory for Scheme files.  The default is `${prefix}/share/gEDA'.
+.TP 8
+.B GEDADATARC
+Specifies the search directory for rc files.  The default is `$GEDADATA'.
+
+.SH AUTHORS
+See the `AUTHORS' file included with this program.
+
+.SH COPYRIGHT
+.nf
+Copyright \(co 1999-@YEAR@ gEDA Contributors.  License GPLv2+: GNU GPL
+version 2 or later.  Please see the `COPYING' file included with this
+program for full details.
+.PP
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+.SH SEE ALSO
+\fBgnetlist(1)\fR, \fBlibgeda\fR(1), \fBannotate\fR(1), \fBunannotate\fR(1),
+\fBmk_verilog_syms\fR(1), \fBsch2eaglepos\fR(1)
+.

@@ -1,5 +1,7 @@
 2017-12-06 Wiley E. Hill <wileyhill@gmail.com>
 
+    * docs/gnetlist.5.in: Add man 5 page to document gnetlist settings.
+
     * src/s_traverse.c: Add ancillary msg variable in s_traverse_sheet and
       update function documentation.
 
