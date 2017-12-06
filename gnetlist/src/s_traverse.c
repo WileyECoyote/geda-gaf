@@ -161,10 +161,10 @@ void s_traverse_process(GedaToplevel *pr_current)
     }
   }
 
-  /* now that all sheets have been read, do post processing work */
+  /* All sheets have been read, do post processing work */
   s_netlist_post_process (pr_current, netlist_head);
 
-  /* Now match the graphical netlist with the net names already assigned */
+  /* Match the graphical netlist with net names already assigned */
   s_netlist_name_named_nets (pr_current, netlist_head, graphical_netlist_head);
 
   if (verbose_mode) {
