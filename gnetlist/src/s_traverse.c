@@ -176,12 +176,16 @@ void s_traverse_process(GedaToplevel *pr_current)
   visit_table = NULL;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief Traverse Toplevel Sheet
- *  \par Function Description
+/*!
+ * \brief Traverse Toplevel Sheet
+ * \par Function Description
+ *  Called from s_traverse_process to traverse top-level sheets.
+ *  If "traverse-hierarchy" is enabled s_hierarchy_traverse is
+ *  called for each complex encounter, to potentially traverse
+ *  underlying schematics.
  *
- *  \param [in] pr_current  Current GedaToplevel structure; toplevel,
- *  \param [in] obj_list    List of all object on This sheet
+ * \param [in] pr_current  Current GedaToplevel structure; toplevel,
+ * \param [in] obj_list    List of all object on This sheet
  */
 void
 s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list)

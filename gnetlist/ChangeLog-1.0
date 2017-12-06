@@ -1,3 +1,7 @@
+2017-12-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_traverse.c: Update function documentation for s_traverse_sheet.
+
 2017-12-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gnetlistrc.in: Add comment regarding gnetlist:get-version.
