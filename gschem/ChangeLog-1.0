@@ -1,3 +1,9 @@
+2017-12-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_command.c: Remove conditional to call i_event_cancel_action
+      _handler and call i_event_end_action_handler instead of i_status_action
+      _stop in the else not HOT clause of i_cmd_do_add_bus.
+
 2017-12-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Remove conditional to call i_event_cancel_action
