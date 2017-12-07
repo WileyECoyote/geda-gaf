@@ -20,8 +20,10 @@ dist_docsreadme_DATA = \
 	README.bom README.pcb README.switcap README.verilog \
 	README.vhdl README.sysc README.eagle
 
-dist_man_MANS = gnetlist.1 mk_verilog_syms.1 annotate.1 sch2eaglepos.1 \
+dist_man_MANS = gnetlist.1 gnetlist.5 mk_verilog_syms.1 annotate.1 sch2eaglepos.1 \
 		unannotate.1
+
+SUFFIXES    = .1.in .5.in .1 .5 .html
 
 all:	$(MANS)
 if ENABLE_DOXYGEN
@@ -36,11 +38,18 @@ endif
 	y=`echo $(DATE_VERSION)| sed -e"s/\(....\).*/\1/"`; \
 	sed -e"s:[@]DATE@:$$d:" -e"s:[@]VERSION@:$$v:" -e"s:[@]YEAR@:$$y:" < $< > $@
 
+.5.in.5:
+	@printf "" ; \
+	d=`$(GUILE) -c '(setlocale LC_ALL "C") (display (strftime "%B %-d, %Y" \
+	    (car (strptime "%Y%m%d" (cadr (program-arguments))))))' $(DATE_VERSION)` ; \
+	v="$(DOTTED_VERSION).$(DATE_VERSION)" ; \
+	y=`echo $(DATE_VERSION)| sed -e"s/\(....\).*/\1/"`; \
+	sed -e"s:[@]DATE@:$$d:" -e"s:[@]VERSION@:$$v:" -e"s:[@]YEAR@:$$y:" < $< > $@
+
 if ENABLE_GROFF_HTML
 
 # Rules for converting man->html
 html_man_files = $(dist_man_MANS:%.1=%.html)
-SUFFIXES = .1.in .1 .html
 
 docsmandir=$(docdir)/man
 docsman_DATA=$(html_man_files)
