@@ -1,3 +1,7 @@
+2017-12-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/Makefile.am: Add dist_man_MANS a prerequisite for 1.html rule.
+
 2017-11-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/Makefile.am: Remove unused obsolete DATADIR_DEFS.

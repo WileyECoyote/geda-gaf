@@ -76,7 +76,7 @@ docsmandir=$(docdir)/man
 
 dist_docsman_DATA=$(html_man_files)
 
-.1.html:
+.1.html: $(dist_man_MANS)
 	@rm -rf $@.tmp && \
 	LC_NUMERIC=C $(GROFF) -man -T html  $< >$@.tmp && \
 	cp -f $@.tmp $@ && \
