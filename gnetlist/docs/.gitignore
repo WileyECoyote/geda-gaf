@@ -5,6 +5,7 @@ latex
 annotate.1
 annotate.html
 gnetlist.1
+gnetlist.5
 gnetlist.html
 mk_verilog_syms.1
 mk_verilog_syms.html
