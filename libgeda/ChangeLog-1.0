@@ -1,3 +1,8 @@
+2017-12-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_file.c: Update geda_file_path_get_dirname function
+      identifiers.
+
 2017-12-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gettext_priv.h: Define libintl_bindtextdomain to

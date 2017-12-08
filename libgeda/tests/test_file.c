@@ -920,7 +920,7 @@ int test_path (void)
 
   path = geda_get_dirname(NULL);
   if (path) {                           /* NULL input */
-    fprintf(stderr, "FAILED: (F030100) geda_file_path_get_dirname <%s>\n", path);
+    fprintf(stderr, "FAILED: (F030300) geda_file_path_get_dirname <%s>\n", path);
     result++;
   }
 
@@ -933,12 +933,12 @@ int test_path (void)
 
     if (path) {
       if (strcmp(path, expected)) {      /* See structure F03_str */
-        fprintf(stderr, "FAILED: (F030101A-%d) geda_file_path_get_dirname <%s>\n",index, path);
+        fprintf(stderr, "FAILED: (F030301A-%d) geda_file_path_get_dirname <%s>\n",index, path);
         result++;
       }
     }
     else {
-      fprintf(stderr, "FAILED: (F030101B-%d) geda_file_path_get_dirname NULL\n",index);
+      fprintf(stderr, "FAILED: (F030301B-%d) geda_file_path_get_dirname NULL\n",index);
       result++;
     }
   }
