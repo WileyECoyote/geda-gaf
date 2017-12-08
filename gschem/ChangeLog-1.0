@@ -1,3 +1,7 @@
+2017-12-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_toolbars.c: Remove dynamic cast to GtkObject in build_menu.
+
 2017-12-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Remove conditional to call i_event_cancel_action
