@@ -10186,7 +10186,6 @@ gtk_sheet_click_cell(GtkSheet *sheet, int row, int col, int *veto)
       return;
     }
 
-    //g_assert_not_reached();
     gtk_sheet_activate_cell(sheet, sheet->active_cell.row, sheet->active_cell.col);
 }
 
