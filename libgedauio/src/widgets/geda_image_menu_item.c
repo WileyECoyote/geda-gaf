@@ -37,6 +37,7 @@
 #include "../../include/geda_gtk_compat.h"
 #include "../../include/geda_image_menu_item.h"
 #include "../../include/geda_menu_bar.h"
+#include "../../include/geda_menu.h"
 #include "../../include/gettext.h"
 
 #include <geda_debug.h>
@@ -1070,6 +1071,20 @@ void geda_image_menu_item_set_accel_group (GedaImageMenuItem *image_menu_item,
       g_object_notify ((GObject*)image_menu_item, "accel-group");
     }
   }
+}
+
+GtkAccelGroup *geda_image_menu_item_get_accel_group (GedaImageMenuItem *image_menu_item)
+{
+  GtkWidget *widget;
+
+  g_return_val_if_fail (GEDA_IS_IMAGE_MENU_ITEM (image_menu_item), NULL);
+
+  widget = gtk_widget_get_parent((GtkWidget*)image_menu_item);
+
+  if (GEDA_IS_MENU(widget)) {
+    return geda_menu_widget_get_accel_group(widget);
+  }
+  return NULL;
 }
 
 /*!

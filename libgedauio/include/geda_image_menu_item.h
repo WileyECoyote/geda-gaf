@@ -82,6 +82,9 @@ GtkWidget *geda_image_menu_item_get_image             (GedaImageMenuItem *image_
 void       geda_image_menu_item_set_use_stock         (GedaImageMenuItem *image_menu_item,
                                                        bool               use_stock);
 bool       geda_image_menu_item_get_use_stock         (GedaImageMenuItem *image_menu_item);
+
+GtkAccelGroup
+          *geda_image_menu_item_get_accel_group       (GedaImageMenuItem *image_menu_item);
 void       geda_image_menu_item_set_accel_group       (GedaImageMenuItem *image_menu_item,
                                                        GtkAccelGroup     *accel_group);
 
