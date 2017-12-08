@@ -730,6 +730,7 @@ void geda_combo_box_text_append_pair (GedaComboBoxText *combo_box,
  *        while text2 is stored in the 2 column.
  *
  * \param [in] combo_box A #GedaComboBoxText object.
+ * \param [in] position  Zero based index of where to insert.
  * \param [in] text      Pointer to the string to insert.
  * \param [in] text2     Pointer to the second string to insert at the same row.
  *
