@@ -100,6 +100,7 @@ static int f_create_dir(const char *path, mode_t mode)
     int         status = NO_ERROR;
 
     if (stat(path, &stat_buf) != 0) {
+
         /* Directory does not exist. EEXIST for race condition */
         if (MKDIR(path, mode) != 0 && errno != EEXIST)
             status = -1;
@@ -112,7 +113,7 @@ static int f_create_dir(const char *path, mode_t mode)
     return (status);
 }
 
-/*!
+/*! F0301
  * \brief Create a Directory Path
  * \par Function description
  *  Ensure all directories in path exist, these algorithm takes the
@@ -198,7 +199,7 @@ void geda_file_path_free (void) {
   GEDA_FREE(user_config_path);
 }
 
-/*! alias geda_get_dirname
+/*! F0303 alias geda_get_dirname
  * \brief Gets Directory Component of a File Name
  * \par Function Description
  *  Returns directory portion of \a filepath. If \a filepath is
