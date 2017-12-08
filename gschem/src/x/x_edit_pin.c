@@ -708,7 +708,7 @@ static void on_apply_butt_clicked(GtkButton *button, void *user_data)
 static GtkWidget*
 create_action_area (GschemDialog *ThisDialog, GtkWidget *parent) {
 
-  GtkWidget   *action_hbox  = NULL;
+  GtkWidget *action_hbox = NULL;
 
   /* Create a Horizontal Box for everything to go into */
   NEW_HCONTROL_BOX(parent, action, DIALOG_H_SPACING);
