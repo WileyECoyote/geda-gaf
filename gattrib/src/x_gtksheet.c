@@ -475,7 +475,6 @@ static bool on_traverse(GtkWidget *widget,
  */
 void SetupCSheetHandlers(GtkSheet *sheet, PageDataSet *PageData)
 {
-
   GtkObject *SheetObj;
   SheetObj = G_OBJECT(sheet);
 
@@ -872,7 +871,6 @@ void x_gtksheet_add_col_labels(GtkSheet    *sheet,
 void x_gtksheet_set_cell_fgcolor(GtkSheet *sheet, int row, int col,
                                  ColorId Color )
 {
-
   GdkColormap *color_map;
   GtkSheetRange range;
   GdkColor color_t;
@@ -913,7 +911,6 @@ void x_gtksheet_set_cell_fgcolor(GtkSheet *sheet, int row, int col,
 void x_gtksheet_set_cell_bgcolor(GtkSheet *sheet, int row, int col,
                                  ColorId Color )
 {
-
   GdkColormap *color_map;
   GtkSheetRange range;
   GdkColor color_t;
@@ -981,7 +978,6 @@ void x_gtksheet_add_cell_item(GtkSheet *sheet, int row, int col, char *text,
 bool x_gtksheet_get_is_empty(GtkSheet *sheet, int row, int col)
 {
   return gtk_sheet_cell_get_text(sheet, row, col) == NULL;
-
 }
 
 /*! \brief Get the first column selected in the GtkSheet
