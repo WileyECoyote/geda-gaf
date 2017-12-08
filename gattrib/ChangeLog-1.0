@@ -1,3 +1,8 @@
+2017-12-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_gtksheet.c: Replace GTK_OBJECT with G_OBJECT in function
+      SetupCSheetHandlers.
+
 2017-12-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gattrib_dialog.c: Revamp gattrib_dialog_get_type to use g_once_

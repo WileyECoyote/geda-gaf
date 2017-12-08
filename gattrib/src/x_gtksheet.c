@@ -477,7 +477,7 @@ void SetupCSheetHandlers(GtkSheet *sheet, PageDataSet *PageData)
 {
 
   GtkObject *SheetObj;
-  SheetObj = GTK_OBJECT(sheet);
+  SheetObj = G_OBJECT(sheet);
 
   GEDA_SIGNAL_CONNECT(SheetObj, "button_press_event",
                       on_mouse_button_press, NULL);
