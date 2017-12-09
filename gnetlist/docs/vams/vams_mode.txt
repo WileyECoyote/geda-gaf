@@ -60,7 +60,7 @@ CONTENT:
    selected component (this task needs information from gEDA gschem,
    see below).
 
-   Now follows a stepwise discription of the program run in both
+   Now follows a stepwise description of the program run in both
    submodes.
 
    We presuppose that the reader is familiar with the structure of gEDA
