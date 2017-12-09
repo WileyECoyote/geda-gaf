@@ -495,7 +495,7 @@ void about_dialog (GschemToplevel *w_current)
 
 #else
 
-  g_signal_connect(GTK_ABOUT_DIALOG(Dialog), "activate-link",
+  g_signal_connect(Dialog, "activate-link",
                    G_CALLBACK(dialog_link_cb), NULL);
 
 #endif
@@ -588,7 +588,7 @@ void snap_size_dialog (GschemToplevel *w_current)
 
     gtk_window_set_position(GTK_WINDOW(Dialog), GTK_WIN_POS_MOUSE);
 
-    g_signal_connect (G_OBJECT (Dialog), "response",
+    g_signal_connect (Dialog, "response",
                       G_CALLBACK (snap_size_dialog_response),
                       NULL);
     gtk_dialog_set_default_response(GTK_DIALOG(Dialog),
@@ -699,7 +699,7 @@ void text_size_dialog (GschemToplevel *w_current)
 
     gtk_window_set_position(GTK_WINDOW(Dialog), GTK_WIN_POS_MOUSE);
 
-    g_signal_connect (G_OBJECT (Dialog), "response",
+    g_signal_connect (Dialog, "response",
                       G_CALLBACK (text_size_dialog_response),
                       NULL);
     gtk_dialog_set_default_response(GTK_DIALOG(Dialog),
@@ -1182,7 +1182,7 @@ GtkWidget *create_color_menu (GschemToplevel *w_current, int color_index)
       geda_combo_box_set_active_iter(cbox, &iter);
   }
 
-  g_signal_connect (G_OBJECT (cbox), "view-changed",
+  g_signal_connect (cbox, "view-changed",
                     G_CALLBACK (x_dialog_color_menu_view_changed),
                     w_current);
 
@@ -2526,11 +2526,11 @@ void x_dialog_find_text(GschemToplevel *w_current)
     GEDA_HOOKUP_OBJECT(ThisDialog, checkdescend, "checkdescend");
     GEDA_HOOKUP_OBJECT(ThisDialog, checkascent,  "checkascent");
 
-    g_signal_connect (G_OBJECT (ThisDialog), "response",
+    g_signal_connect (ThisDialog, "response",
                       G_CALLBACK (x_dialog_find_text_response),
                       w_current);
 
-    g_signal_connect (G_OBJECT (checkdescend), "toggled",
+    g_signal_connect (checkdescend, "toggled",
                       G_CALLBACK (x_dialog_find_text_on_descend),
                       checkascent);
 
@@ -2634,7 +2634,7 @@ void x_dialog_hide_text(GschemToplevel * w_current)
 
     GEDA_HOOKUP_OBJECT(ThisDialog, textentry, IDS_HIDE_TEXT);
 
-    g_signal_connect (G_OBJECT (ThisDialog), "response",
+    g_signal_connect (ThisDialog, "response",
                       G_CALLBACK (x_dialog_hide_text_response),
                       w_current);
 
@@ -2743,7 +2743,7 @@ void x_dialog_show_text(GschemToplevel * w_current)
 
     GEDA_HOOKUP_OBJECT(ThisDialog, textentry, IDS_SHOW_TEXT);
 
-    g_signal_connect (G_OBJECT (ThisDialog), "response",
+    g_signal_connect (ThisDialog, "response",
                       G_CALLBACK (x_dialog_show_text_response),
                       w_current);
 
@@ -2874,7 +2874,7 @@ void x_dialog_text_input (GschemToplevel *w_current)
 
     gtk_window_set_position(GTK_WINDOW (ThisDialog), GTK_WIN_POS_NONE);
 
-    g_signal_connect (G_OBJECT (ThisDialog), "response",
+    g_signal_connect (ThisDialog, "response",
                       G_CALLBACK (x_dialog_text_input_response),
                       w_current);
 
@@ -3044,7 +3044,7 @@ void x_dialog_translate (GschemToplevel *w_current)
     GEDA_HOOKUP_OBJECT(ThisDialog, zoom_check_butt, "zoom-check-butt");
     GEDA_HOOKUP_OBJECT(ThisDialog, textentry, IDS_TRANSLATE);
 
-    g_signal_connect (G_OBJECT (ThisDialog), "response",
+    g_signal_connect (ThisDialog, "response",
                       G_CALLBACK ( x_dialog_translate_response),
                       w_current);
 
@@ -3344,7 +3344,7 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
                     "search-column", 1,
                     NULL);
 
-      g_signal_connect (G_OBJECT (ThisDialog), "response",
+      g_signal_connect (ThisDialog, "response",
                         G_CALLBACK (x_dialog_hotkeys_response),
                         w_current);
 
@@ -3401,8 +3401,7 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
       /* Create and connect the Close a Button */
       close_butt = gtk_button_new_from_stock (GTK_STOCK_CLOSE);
 
-      g_signal_connect (close_butt,
-                        "clicked",
+      g_signal_connect (close_butt, "clicked",
                         G_CALLBACK (hotkey_callback_close_clicked),
                         ThisDialog);
 
