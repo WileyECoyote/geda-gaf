@@ -739,11 +739,7 @@ void x_gtksheet_init(PageDataSet *PageData)
   /* The next 2 functions setup callbacks for the Entry widget in the would be
    * status bar */
   g_signal_connect(entry, "changed", (GtkSignalFunc)on_entry_changed, NULL);
-/*
-  g_signal_connect(entry,
-                   "activate", (GtkSignalFunc)on_entry_activate,
-                   NULL);
-*/
+
   GedaEntryClass *entry_class = GEDA_ENTRY_GET_CLASS(entry);
 
   entry_class->activate = on_entry_activate;
