@@ -3281,14 +3281,13 @@ COMMAND (do_add_net)
   o_redraw_cleanstates(w_current);
   o_net_reset(w_current);
 
-  if (w_current->action_event->state) {
-    i_event_cancel_action_handler(w_current);
-  }
-
   i_status_set_state(w_current, NETMODE);
 
   if HOT_ACTION (do_add_net) {
     o_net_start (w_current, CMD_X(do_add_net), CMD_Y(do_add_net));
+  }
+  else {
+    i_event_end_action_handler(w_current);
   }
 
   EXIT_COMMAND(do_add_net);
