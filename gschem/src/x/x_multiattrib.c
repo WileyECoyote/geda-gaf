@@ -457,7 +457,7 @@ multiline_text_start_editing(GtkCellRenderer      *cell,
 
   cell_multilinetext  = CELL_RENDERER_MULTI_LINE_TEXT (cell);
 
-  buffer = GTK_TEXT_BUFFER (g_object_new (GTK_TYPE_TEXT_BUFFER, NULL));
+  buffer = g_object_new (GTK_TYPE_TEXT_BUFFER, NULL);
 
   gtk_text_buffer_set_text (buffer, cell_text->text, strlen (cell_text->text));
 
