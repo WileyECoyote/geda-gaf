@@ -6,7 +6,8 @@
 
     * src/x/x_multiattrib.c: Remove type-checking cast for GTK_TEXT_BUFFER
       in multiline_text_start_editing,GTK_CELL_EDITABLE in multiline_text_
-      start_editing, and G_OBJECT in connect_object_list.
+      start_editing, and G_OBJECT in connect_object_list. Put signal names
+      on the same line with connect.
 
 2017-12-08 Wiley E. Hill <wileyhill@gmail.com>
 

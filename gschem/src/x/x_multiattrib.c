@@ -115,8 +115,7 @@ void x_multiattrib_open (GschemToplevel *w_current)
                                         mae_object_list,   selection,
                                         NULL);
 
-    g_signal_connect (w_current->mawindow,
-                      "response",
+    g_signal_connect (w_current->mawindow, "response",
                       G_CALLBACK (multiattrib_callback_response),
                       w_current);
 
@@ -261,11 +260,9 @@ static bool celltextview_key_press_event (GtkWidget   *widget,
 static void
 celltextview_start_editing (GtkCellEditable *cell_editable, GdkEvent *event)
 {
-  g_signal_connect (cell_editable,
-                    "key_press_event",
+  g_signal_connect (cell_editable, "key_press_event",
                     G_CALLBACK (celltextview_key_press_event),
                     NULL);
-
 }
 
 /*!
@@ -2140,16 +2137,13 @@ static void multiattrib_init(Multiattrib *ThisDialog)
                            "rules-hint", TRUE,
                            NULL);
 
-  g_signal_connect (treeview,
-                    "key-press-event",
+  g_signal_connect (treeview, "key-press-event",
                     G_CALLBACK (multiattrib_callback_key_pressed),
                     ThisDialog);
-  g_signal_connect (treeview,
-                    "button-press-event",
+  g_signal_connect (treeview, "button-press-event",
                     G_CALLBACK (multiattrib_callback_button_pressed),
                     ThisDialog);
-  g_signal_connect (treeview,
-                    "popup-menu",
+  g_signal_connect (treeview, "popup-menu",
                     G_CALLBACK (multiattrib_callback_popup_menu),
                     ThisDialog);
 
@@ -2262,38 +2256,36 @@ static void multiattrib_init(Multiattrib *ThisDialog)
                     1, 2, 0, 1, GTK_EXPAND | GTK_FILL, 0, 6, 3);
 
   /*   - the value entry: a GtkEntry */
-  label = GTK_WIDGET (g_object_new (GTK_TYPE_LABEL,
-                                    /* GtkMisc */
-                                    "xalign", 0.0,
-                                    "yalign", 0.5,
-                                    /* GtkLabel */
-                                    "label",  _("Value:"),
-                                    NULL));
+  label = g_object_new (GTK_TYPE_LABEL,
+                        /* GtkMisc */
+                        "xalign", 0.0,
+                        "yalign", 0.5,
+                        /* GtkLabel */
+                        "label",  _("Value:"),
+                        NULL);
 
-  scrolled_win = GTK_WIDGET (g_object_new (GTK_TYPE_SCROLLED_WINDOW,
-                                           /* GtkScrolledWindow */
-                                           "hscrollbar-policy",
-                                           GTK_POLICY_AUTOMATIC,
-                                           "vscrollbar-policy",
-                                           GTK_POLICY_AUTOMATIC,
-                                           "shadow-type",
-                                           GTK_SHADOW_IN,
-                                           NULL));
+  scrolled_win = g_object_new (GTK_TYPE_SCROLLED_WINDOW,
+                               /* GtkScrolledWindow */
+                               "hscrollbar-policy",
+                               GTK_POLICY_AUTOMATIC,
+                               "vscrollbar-policy",
+                               GTK_POLICY_AUTOMATIC,
+                               "shadow-type",
+                               GTK_SHADOW_IN,
+                               NULL);
 
   const char *textview_tip;
 
   textview_tip  = _("Ctrl+Enter inserts new line; Ctrl+Tab inserts Tab");
 
-  textview = GTK_WIDGET (g_object_new (GTK_TYPE_TEXT_VIEW, NULL));
+  textview = g_object_new (GTK_TYPE_TEXT_VIEW, NULL);
 
-  gtk_widget_set_tooltip_text (GTK_WIDGET (textview), textview_tip);
+  gtk_widget_set_tooltip_text (textview, textview_tip);
 
-  g_signal_connect (textview,
-                    "key_press_event",
+  g_signal_connect (textview, "key_press_event",
                     G_CALLBACK (multiattrib_callback_value_key_pressed),
                     ThisDialog);
-  g_signal_connect (textview,
-                    "grab-focus",
+  g_signal_connect (textview, "grab-focus",
                     G_CALLBACK (multiattrib_callback_value_grab_focus),
                     ThisDialog);
 
@@ -2344,8 +2336,7 @@ static void multiattrib_init(Multiattrib *ThisDialog)
   /* create the add button */
   button = gtk_button_new_from_stock (GTK_STOCK_ADD);
   SetWidgetTip( button, _("Add new attribute to component"));
-  g_signal_connect (button,
-                    "clicked",
+  g_signal_connect (button, "clicked",
                     G_CALLBACK (multiattrib_callback_button_add),
                     ThisDialog);
   gtk_table_attach (GTK_TABLE (table), button,
