@@ -475,7 +475,7 @@ multiline_text_start_editing(GtkCellRenderer      *cell,
 
   gtk_widget_show (textview);
 
-  g_signal_connect (GTK_CELL_EDITABLE (textview), "editing_done",
+  g_signal_connect (textview, "editing_done",
                     G_CALLBACK (multiline_text_editing_done),
                     cell_multilinetext);
 
@@ -1922,8 +1922,7 @@ connect_object_list (Multiattrib *ThisDialog, GedaList *object_list)
                        object_list_weak_ref_cb,
                        ThisDialog);
     ThisDialog->object_list_changed_id =
-      g_signal_connect (G_OBJECT (ThisDialog->object_list),
-                        "changed",
+      g_signal_connect (ThisDialog->object_list, "changed",
                         G_CALLBACK (object_list_changed_cb),
                         ThisDialog);
     /* Synthesise a object_list changed update to refresh the view */
