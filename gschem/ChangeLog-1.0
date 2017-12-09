@@ -4,7 +4,9 @@
       _handler and call i_event_end_action_handler instead of i_status_action
       _stop in the else not HOT clause of i_cmd_do_add_net.
 
-    * src/x/x_dialog.c: Remove type-checking cast for g_signal_connect.
+    * src/x/x_dialog.c: Remove type-checking cast for g_signal_connect, remove
+      unneeded GEDA_RADIO_MENU_ITEM.
+
 
     * src/x/x_multiattrib.c: Remove type-checking cast for GTK_TEXT_BUFFER
       in multiline_text_start_editing,GTK_CELL_EDITABLE in multiline_text_
