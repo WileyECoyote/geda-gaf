@@ -38,7 +38,7 @@ static void *gschem_dialog_parent_class = NULL;
 
 /*! \brief GschemDialog "geometry_save" class method handler
  *  \par Function Description
- *  Save the dialog's current position and size to the passed GKeyFile
+ *  Save the dialog's current position and size to the passed GedaKeyFile
  *
  *  \param [in] dialog     The GschemDialog to save the position and size of.
  *  \param [in] cfg        A Geda Configuration object.
@@ -59,7 +59,7 @@ static void geometry_save (GschemDialog *dialog, EdaConfig *cfg, char* group_nam
 
 /*! \brief GschemDialog "geometry_restore" class method handler
  *  \par Function Description
- *  Restore dialog's last position and size from the passed GKeyFile
+ *  Restore dialog's last position and size from the passed GedaKeyFile
  *
  *  \param [in] dialog     The GschemDialog to restore the position and size of.
  *  \param [in] cfg        A Geda Configuration object.
