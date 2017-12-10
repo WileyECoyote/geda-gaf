@@ -59,6 +59,12 @@
 #define GEDA_UNREF(obj) \
     if (G_IS_OBJECT(obj)) g_object_unref (obj);
 
+#define GEDA_WEAK_REF(obj, callback, data) \
+    g_object_weak_ref ((GObject*)obj, callback, data);
+
+#define GEDA_WEAK_UNREF(obj, callback, data) \
+    g_object_weak_unref ((GObject*)obj, callback, data);
+
 #define GEDA_OBJECT_GET_DATA(object, key) \
     g_object_get_data ((GObject*)object, key)
 
