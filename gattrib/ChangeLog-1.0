@@ -1,3 +1,7 @@
+2017-12-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gattrib_dialog.c: Replace g_assert with "if (dialog_geometry)".
+
 2017-12-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_gtksheet.c: Replace GTK_OBJECT with G_OBJECT in function

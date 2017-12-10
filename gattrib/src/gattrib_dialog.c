@@ -131,14 +131,15 @@ static void save_geometry_to_file(void *user_data)
 {
   char *data, *file;
 
-  g_assert( dialog_geometry != NULL );
+  if ( dialog_geometry != NULL ) {
 
-  data = geda_keyfile_to_data(dialog_geometry, NULL, NULL);
-  file = g_build_filename(geda_user_config_path (), DIALOG_GEOMETRY_STORE,
-        NULL);
-  g_file_set_contents(file, data, -1, NULL);
-  GEDA_FREE(data);
-  GEDA_FREE(file);
+    data = geda_keyfile_to_data(dialog_geometry, NULL, NULL);
+    file = g_build_filename(geda_user_config_path (), DIALOG_GEOMETRY_STORE,
+                            NULL);
+    g_file_set_contents(file, data, -1, NULL);
+    GEDA_FREE(data);
+    GEDA_FREE(file);
+  }
 }
 
 /*!
