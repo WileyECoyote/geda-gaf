@@ -44,7 +44,7 @@ static void *gschem_dialog_parent_class = NULL;
  *  \param [in] cfg        A Geda Configuration object.
  *  \param [in] group_name The group name in the key file to store the data under.
  */
-static void geometry_save (GschemDialog *dialog, EdaConfig *cfg, char* group_name)
+static void geometry_save (GschemDialog *dialog, EdaConfig *cfg, char *group_name)
 {
   int x, y, width, height;
 
@@ -66,7 +66,7 @@ static void geometry_save (GschemDialog *dialog, EdaConfig *cfg, char* group_nam
  *  \param [in] group_name The group name in the key file to find the data under.
  */
 static void
-geometry_restore (GschemDialog *dialog, EdaConfig *cfg, char* group_name)
+geometry_restore (GschemDialog *dialog, EdaConfig *cfg, char *group_name)
 {
   int x, y, width, height;
 
@@ -662,7 +662,7 @@ static void gschem_dialog_add_buttons_valist (GtkDialog  *dialog,
                                               const char *first_button_text,
                                               va_list     args)
 {
-  const char* text;
+  const char *text;
   int response_id;
 
   if (first_button_text == NULL)
@@ -819,7 +819,8 @@ const char *gschem_dialog_get_title(GschemDialog *dialog)
 {
   return gtk_window_get_title((GtkWindow*)dialog);
 }
-void gschem_dialog_set_title(GschemDialog *dialog, const char*title)
+
+void gschem_dialog_set_title(GschemDialog *dialog, const char *title)
 {
   gtk_window_set_title ((GtkWindow*)dialog, title);
 }
