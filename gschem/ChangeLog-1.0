@@ -3,6 +3,8 @@
     * src/base/gschem_macro_widget.c: Replace gtk_entry_set_text with
       geda_entry_widget_set_text.
 
+    * src/x/x_dialog.c: Remove unneeded GEDA_MENU in create_menu_filltype.
+
 2017-12-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Remove conditional to call i_event_cancel_action
@@ -11,7 +13,6 @@
 
     * src/x/x_dialog.c: Remove type-checking cast for g_signal_connect, remove
       unneeded GEDA_RADIO_MENU_ITEM.
-
 
     * src/x/x_multiattrib.c: Remove type-checking cast for GTK_TEXT_BUFFER
       in multiline_text_start_editing,GTK_CELL_EDITABLE in multiline_text_

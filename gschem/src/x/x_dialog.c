@@ -1226,9 +1226,11 @@ static GtkWidget *create_menu_filltype (GschemToplevel *w_current)
 
     menuitem = geda_radio_menu_item_new_with_label (group, _(types[i].str));
     group    = geda_radio_menu_item_group (menuitem);
-    geda_menu_append (GEDA_MENU (menu), menuitem);
-    GEDA_OBJECT_SET_DATA(menuitem,
-                         (void*)(long) (types[i].type), "filltype");
+
+    geda_menu_append (menu, menuitem);
+
+    GEDA_OBJECT_SET_DATA(menuitem, (void*)(long)(types[i].type), "filltype");
+
     gtk_widget_show (menuitem);
   }
 
