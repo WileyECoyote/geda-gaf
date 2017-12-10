@@ -465,14 +465,14 @@ gschem_macro_widget_set_macro_string (GtkWidget *widget, const char *str)
     BUG_MSG("widget is NULL");
   }
   else {
-   if (GSCHEM_IS_MACRO_WIDGET(widget)) {
-     GschemMacroWidget *gmw = (GschemMacroWidget*)widget;
-     gtk_entry_set_text (GTK_ENTRY (gmw->entry), str);
-     GEDA_OBJECT_NOTIFY (widget, "macro-string");
-   }
-   else {
-     BUG_MSG("widget is not a GschemMacroWidget");
-   }
+    if (GSCHEM_IS_MACRO_WIDGET(widget)) {
+      GschemMacroWidget *gmw = (GschemMacroWidget*)widget;
+      geda_entry_widget_set_text (gmw->entry, str);
+      GEDA_OBJECT_NOTIFY (widget, "macro-string");
+    }
+    else {
+      BUG_MSG("widget is not a GschemMacroWidget");
+    }
   }
 }
 
