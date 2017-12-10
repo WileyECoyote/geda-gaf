@@ -276,7 +276,7 @@ GedaObject *o_attrib_add_attrib(GschemToplevel *w_current,
   world_x = -1;
   world_y = -1;
 
-  /* change later of needed */
+  /* change later if needed */
   align   = LOWER_LEFT;
   angle   = 0;
 
