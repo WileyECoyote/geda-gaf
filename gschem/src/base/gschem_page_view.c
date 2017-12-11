@@ -985,8 +985,6 @@ gschem_page_view_set_vadjustment (GschemPageView *view, GtkAdjustment *vadjustme
   GEDA_OBJECT_NOTIFY (view, "vadjustment");
 }
 
-
-
 /*!
  * \brief Signal handler for a horizontal scroll adjustment change
  * \par Function Description
@@ -1023,7 +1021,6 @@ hadjustment_value_changed (GtkAdjustment *hadjustment, GschemPageView *view)
     BUG_MSG("hadjustment == NULL");
   }
 }
-
 
 /*!
  * \brief Set a gobject property
@@ -1120,7 +1117,6 @@ gschem_page_view_update_hadjustment (GschemPageView *view)
   }
 }
 
-
 /*!
  * \brief Update the scroll adjustments
  * \par Function Description
@@ -1133,7 +1129,6 @@ gschem_page_view_update_scroll_adjustments (GschemPageView *view)
   gschem_page_view_update_hadjustment (view);
   gschem_page_view_update_vadjustment (view);
 }
-
 
 /*!
  * \brief Update the vertical scroll adjustment
@@ -1167,7 +1162,6 @@ gschem_page_view_update_vadjustment (GschemPageView *view)
     gtk_adjustment_value_changed (view->vadjustment);
   }
 }
-
 
 /*!
  * \brief Get absolute WORLD coordinate.
@@ -1207,7 +1201,6 @@ gschem_page_view_WORLDabs(GschemPageView *view, int val)
   return(j);
 }
 
-
 /*!
  * \brief
  * \par Function Description
@@ -1223,7 +1216,6 @@ remove_page_weak_reference (Page *page, void *geometry, GschemPageView *view)
   geda_page_weak_unref (page, (NotifyFunction) page_deleted, view);
 }
 
-
 /*!
  * \brief
  * \par Function Description
@@ -1237,7 +1229,6 @@ page_deleted (Page *page, GschemPageView *view)
 
   g_hash_table_remove (view->geometry_table, page);
 }
-
 
 /*!
  * \brief Signal handler for setting the scroll adjustments
@@ -1303,7 +1294,6 @@ gschem_page_view_WORLDtoSCREEN (GschemPageView *view, int x, int y, int *px, int
   *px = gschem_page_geometry_pix_x (geometry, x);
   *py = gschem_page_geometry_pix_y (geometry, y);
 }
-
 
 /*!
  * \brief Zoom the view to the extents of a set of objects
