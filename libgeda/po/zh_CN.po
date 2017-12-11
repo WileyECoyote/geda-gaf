@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-11-19 11:15-0600\n"
+"POT-Creation-Date: 2017-12-07 01:38-0600\n"
 "PO-Revision-Date: 2010-02-06 22:10+0000\n"
 "Last-Translator: 冯超 <rainofchaos@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1061,9 +1061,9 @@ msgstr ""
 #: libgeda/src/object/o_box_object.c:1581
 #: libgeda/src/object/o_bus_object.c:604
 #: libgeda/src/object/o_circle_object.c:1359
-#: libgeda/src/object/o_line_object.c:1574
+#: libgeda/src/object/o_line_object.c:1555
 #: libgeda/src/object/o_net_object.c:718
-#: libgeda/src/object/o_path_object.c:577
+#: libgeda/src/object/o_path_object.c:570
 #: libgeda/src/object/o_pin_object.c:191
 #: libgeda/src/object/o_text_object.c:798
 msgid "Found an invalid color"
@@ -1073,9 +1073,9 @@ msgstr "找到无效的颜色"
 #: libgeda/src/object/o_box_object.c:1585
 #: libgeda/src/object/o_bus_object.c:608
 #: libgeda/src/object/o_circle_object.c:1363
-#: libgeda/src/object/o_line_object.c:1578
+#: libgeda/src/object/o_line_object.c:1559
 #: libgeda/src/object/o_net_object.c:722
-#: libgeda/src/object/o_path_object.c:581
+#: libgeda/src/object/o_path_object.c:574
 #: libgeda/src/object/o_pin_object.c:195
 #: libgeda/src/object/o_text_object.c:802
 msgid "Setting color to default color\n"
@@ -1283,12 +1283,12 @@ msgstr ""
 msgid "Component [%s] has been successfully unembedded\n"
 msgstr ""
 
-#: libgeda/src/object/o_line_object.c:1534
-#: libgeda/src/object/o_line_object.c:1554
+#: libgeda/src/object/o_line_object.c:1515
+#: libgeda/src/object/o_line_object.c:1535
 msgid "Failed to parse line object"
 msgstr ""
 
-#: libgeda/src/object/o_line_object.c:1567
+#: libgeda/src/object/o_line_object.c:1548
 msgid "Found a line with zero length"
 msgstr ""
 
@@ -1300,11 +1300,11 @@ msgstr ""
 msgid "Found a net with zero length"
 msgstr ""
 
-#: libgeda/src/object/o_path_object.c:571
+#: libgeda/src/object/o_path_object.c:564
 msgid "Failed to parse path object"
 msgstr ""
 
-#: libgeda/src/object/o_path_object.c:596
+#: libgeda/src/object/o_path_object.c:589
 #: libgeda/src/object/o_text_object.c:817
 #, c-format
 msgid "Unexpected end-of-file after %d lines"

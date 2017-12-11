@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-11-19 11:16-0600\n"
+"POT-Creation-Date: 2017-12-11 03:27-0600\n"
 "PO-Revision-Date: 2012-01-27 14:17+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Afrikaans <af@li.org>\n"
@@ -45,12 +45,12 @@ msgid "Exported schematic to"
 msgstr "Uitgereik skematiese na"
 
 # Could not find file
-#: gattrib/src/gattrib_dialog.c:218
+#: gattrib/src/gattrib_dialog.c:219
 #, fuzzy
 msgid "Could not load geometry from file"
 msgstr "Kon lêer nie vind"
 
-#: gattrib/src/gattrib_dialog.c:225
+#: gattrib/src/gattrib_dialog.c:226
 msgid "error creating file"
 msgstr ""
 

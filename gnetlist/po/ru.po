@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gnetlist\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-11-12 15:33-0600\n"
+"POT-Creation-Date: 2017-12-11 03:27-0600\n"
 "PO-Revision-Date: 2014-05-20 08:55+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: gEDA Developers\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gnetlist/src/g_netlist.c:465
+#: gnetlist/src/g_netlist.c:466
 #, c-format
 msgid "Invalid refdes ('%s') and pin ('%s') passed to get-nets\n"
 msgstr "get-nets: недопустимое позиционное обозначение («%s») и вывод («%s»)\n"
@@ -236,11 +236,11 @@ msgstr ""
 "\n"
 "Подробности см. в выводе команды «%s --help».\n"
 
-#: gnetlist/src/s_hierarchy.c:87
+#: gnetlist/src/s_hierarchy.c:91
 msgid "Commence traversing source"
 msgstr "Переход к обработке источника данных"
 
-#: gnetlist/src/s_hierarchy.c:107
+#: gnetlist/src/s_hierarchy.c:111
 #, c-format
 msgid "ERROR: Failed to load subcircuit '%s': %s\n"
 msgstr "ОШИБКА: Не удалось загрузить подсхему «%s»: %s\n"
@@ -274,17 +274,17 @@ msgstr ""
 msgid "Missing Attributes (refdes and pin number)\n"
 msgstr "Отсутствуют атрибуты «refdes» и «pinnumber»\n"
 
-#: gnetlist/src/s_net.c:354 gnetlist/src/s_net.c:394
+#: gnetlist/src/s_net.c:355 gnetlist/src/s_net.c:395
 #, c-format
 msgid "Found duplicate net name, renaming [%s] to [%s]\n"
 msgstr "Обнаружено ещё одно имя для соединения «%s», переименование в «%s»\n"
 
-#: gnetlist/src/s_net.c:516
+#: gnetlist/src/s_net.c:517
 #, c-format
 msgid "s_net_name: incorrect node type %i\n"
 msgstr "s_net_name: неверный тип соединения «%i»\n"
 
-#: gnetlist/src/s_net.c:540
+#: gnetlist/src/s_net.c:541
 #, c-format
 msgid "Increase number of unnamed nets (s_net.c)\n"
 msgstr "Увеличьте количество безымянных соединений (в s_net.c)\n"
@@ -373,39 +373,39 @@ msgid ""
 "\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:213
+#: gnetlist/src/s_traverse.c:218
 #, c-format
 msgid "- Starting internal netlist creation\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:225 gnetlist/src/s_traverse.c:368
+#: gnetlist/src/s_traverse.c:230 gnetlist/src/s_traverse.c:374
 msgid "WARNING: Found a placeholder/missing component, is symbol file missing"
 msgstr ""
 "ПРЕДУПРЕЖДЕНИЕ: Найден временный/отсутствующий компонент, может быть нет "
 "файла символа для"
 
-#: gnetlist/src/s_traverse.c:291
+#: gnetlist/src/s_traverse.c:293
 msgid "Did not find refdes or any special attributes on component!"
 msgstr ""
 "Не удалось обнаружить ни позиционное обозначение компонента, ни каких-либо "
 "специальных атрибутов!"
 
-#: gnetlist/src/s_traverse.c:443
+#: gnetlist/src/s_traverse.c:449
 msgid "Could not find refdes on component or any special attributes!"
 msgstr ""
 "Не удалось обнаружить ни позиционное обозначение компонента, ни каких-либо "
 "специальных атрибутов!"
 
-#: gnetlist/src/s_traverse.c:553
+#: gnetlist/src/s_traverse.c:559
 msgid "Non-connectable object being queried for connection type\n"
 msgstr "Запрос типа соединения для неприсоединяемого объекта.\n"
 
-#: gnetlist/src/s_traverse.c:605
+#: gnetlist/src/s_traverse.c:611
 #, c-format
 msgid "%s=%s. %s=\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:667
+#: gnetlist/src/s_traverse.c:673
 #, c-format
 msgid "Found a possible net/pin infinite connection\n"
 msgstr ""

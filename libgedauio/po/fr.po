@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr_FR\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-11-19 11:15-0600\n"
+"POT-Creation-Date: 2017-12-11 03:27-0600\n"
 "PO-Revision-Date: 2012-10-28 15:46+0000\n"
 "Last-Translator: Penegal <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -306,72 +306,72 @@ msgstr ""
 msgid "view as List"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:639
+#: libgedauio/src/widgets/geda_entry.c:632
 msgid "Activates default"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:640
+#: libgedauio/src/widgets/geda_entry.c:633
 msgid "Whether to activate the default widget when Enter is pressed"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:647
+#: libgedauio/src/widgets/geda_entry.c:640
 #: libgedauio/src/widgets/geda_label.c:1396
 msgid "Attributes"
 msgstr "Attributs"
 
-#: libgedauio/src/widgets/geda_entry.c:648
+#: libgedauio/src/widgets/geda_entry.c:641
 msgid "A list of style attributes to apply to the text"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:655
+#: libgedauio/src/widgets/geda_entry.c:648
 msgid "Auto-Completion"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:656
+#: libgedauio/src/widgets/geda_entry.c:649
 msgid "Enable Auto-completion, if installed"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:663
+#: libgedauio/src/widgets/geda_entry.c:656
 msgid "FALSE Auto-Completion in NOT case sensitive"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:664
+#: libgedauio/src/widgets/geda_entry.c:657
 msgid "if Auto-completion is enabled, set case compare function"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:671
+#: libgedauio/src/widgets/geda_entry.c:664
 msgid "Set case of input"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:672
+#: libgedauio/src/widgets/geda_entry.c:665
 msgid "0 = lower, 1 lower, 2 don't change the case"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:681
+#: libgedauio/src/widgets/geda_entry.c:674
 msgid "Set maxium history"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:682
+#: libgedauio/src/widgets/geda_entry.c:675
 msgid "maximum length of history"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:691
+#: libgedauio/src/widgets/geda_entry.c:684
 msgid "Set valid input type"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:692
+#: libgedauio/src/widgets/geda_entry.c:685
 msgid "0 = All, 1 Alphnumeric, 3 Numeric, 4 Number, 5 Integer, 6 Real"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:1329
+#: libgedauio/src/widgets/geda_entry.c:1314
 msgid "Auto Complete"
 msgstr "Automatique"
 
-#: libgedauio/src/widgets/geda_entry.c:1337
+#: libgedauio/src/widgets/geda_entry.c:1322
 msgid "On"
 msgstr "Sur"
 
-#: libgedauio/src/widgets/geda_entry.c:1342
+#: libgedauio/src/widgets/geda_entry.c:1327
 msgid "Off"
 msgstr ""
 
@@ -599,39 +599,39 @@ msgstr "Taille de texte :"
 msgid "Size of the drag handle in pixels."
 msgstr ""
 
-#: libgedauio/src/widgets/geda_image_menu_item.c:413
+#: libgedauio/src/widgets/geda_image_menu_item.c:414
 #: libgedauio/src/widgets/geda_menu_button.c:1232
 #, fuzzy
 msgid "Image widget"
 msgstr "Type d'image"
 
-#: libgedauio/src/widgets/geda_image_menu_item.c:414
+#: libgedauio/src/widgets/geda_image_menu_item.c:415
 msgid "Child widget to appear next to the menu text"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_image_menu_item.c:426
+#: libgedauio/src/widgets/geda_image_menu_item.c:427
 #: libgedauio/src/widgets/geda_menu_button.c:1197
 msgid "Use stock"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_image_menu_item.c:427
+#: libgedauio/src/widgets/geda_image_menu_item.c:428
 msgid "Whether to use the label text to create a stock menu item"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_image_menu_item.c:442
+#: libgedauio/src/widgets/geda_image_menu_item.c:443
 #, fuzzy
 msgid "Show image"
 msgstr "Montrer caché"
 
-#: libgedauio/src/widgets/geda_image_menu_item.c:443
+#: libgedauio/src/widgets/geda_image_menu_item.c:444
 msgid "Whether the image will always be shown"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_image_menu_item.c:454
+#: libgedauio/src/widgets/geda_image_menu_item.c:455
 msgid "Accelerator Group"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_image_menu_item.c:455
+#: libgedauio/src/widgets/geda_image_menu_item.c:456
 msgid "The Accel Group to use for stock accelerator keys"
 msgstr ""
 
