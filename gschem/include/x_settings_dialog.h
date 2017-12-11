@@ -77,15 +77,15 @@
 #define TitleBlockData DefaultTitleBlockList
 
 static WidgetStringData DialogTabData[] = {
-        { "GeneralTab",        "General",      "General program options"},
-        { "EditTab",           "Edit",         "Editing preferences"},
-        { "PointerTab",        "Pointer",      "Mouse related configuration options"},
-        { "WindowTab",         "Window",       "Window sizes and grid options"},
-        { "RenderTab",         "Render",       "Renderer options"},
-        { "StylesTab",         "Styles",       "Styles"},
-        { "TextTab",           "Text",         "Text options"},
-        { "AttributesTab",     "Attributes",   "Attributes"},
-        { "LibraryTab",        "Library",      "Library related preferences"},
+        { "GeneralTab",        N_("General"),      N_("General program options")},
+        { "EditTab",           N_("Edit"),         N_("Editing preferences")},
+        { "PointerTab",        N_("Pointer"),      N_("Mouse related configuration options")},
+        { "WindowTab",         N_("Window"),       N_("Window sizes and grid options")},
+        { "RenderTab",         N_("Render"),       N_("Renderer options")},
+        { "StylesTab",         N_("Styles"),       N_("Styles")},
+        { "TextTab",           N_("Text"),         N_("Text options")},
+        { "AttributesTab",     N_("Attributes"),   N_("Attributes")},
+        { "LibraryTab",        N_("Library"),      N_("Library related preferences")},
 };
 
 WidgetStringData DialogStrings[] = {

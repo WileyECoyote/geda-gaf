@@ -1,5 +1,7 @@
 2017-12-10 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/x_settings_dialog.h: Translate DialogTabData.
+
     * src/base/gschem_macro_widget.c: Replace gtk_entry_set_text with
       geda_entry_widget_set_text.
 
