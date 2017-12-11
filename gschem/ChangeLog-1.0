@@ -7,6 +7,8 @@
 
     * include/prototype.h: Update declaration for o_grips_compute_drawn_size.
 
+    * include/x_settings_dialog.h: Translate CursorStrings.
+
 2017-12-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/x_settings_dialog.h: Translate DialogTabData.
