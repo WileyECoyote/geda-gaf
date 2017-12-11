@@ -9,6 +9,9 @@
 
     * include/x_settings_dialog.h: Translate CursorStrings.
 
+    * src/base/gschem_toplevel.c: Update function documentation for function
+      gschem_toplevel_set_grips_size.
+
 2017-12-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/x_settings_dialog.h: Translate DialogTabData.

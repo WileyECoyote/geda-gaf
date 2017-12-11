@@ -579,12 +579,12 @@ gschem_toplevel_set_current_page (GschemToplevel *w_current, Page *page)
 }
 
 /*!
- * \brief Set the last_image_path in the GschemToplevel
+ * \brief Set the grip size in the GschemToplevel
  * \par Function Description
  *  Set the grip size in \a w_current.
  *
  * \param [in] w_current This GschemToplevel
- * \param [in] pixels    New string for last_image_path.
+ * \param [in] pixels    grip size in pixel units.
  */
 void
 gschem_toplevel_set_grips_size (GschemToplevel *w_current, int pixels)
