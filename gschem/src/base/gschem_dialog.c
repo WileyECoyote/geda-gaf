@@ -173,7 +173,7 @@ static void gd_connect_selection (void *maybe)
     Dialog->selection = Dialog->w_current->toplevel->page_current->selection_list;
 
     if (Dialog->selection && G_IS_OBJECT(Dialog->selection)) {
-      g_object_weak_ref (G_OBJECT (Dialog->selection), gd_callback_selection_finalized, Dialog);
+      GEDA_WEAK_REF (Dialog->selection, gd_callback_selection_finalized, Dialog);
       g_signal_connect (Dialog->selection, "changed", (GCallback)gd_callback_selection_changed, Dialog);
     }
     else {
@@ -215,10 +215,7 @@ static void gd_disconnect_selection (GschemDialog *Dialog) {
   selection = (SELECTION*)GEDA_OBJECT_GET_DATA(Dialog, DIALOG_SELECTION_TRACKER);
 
   if (selection && G_IS_OBJECT(selection)) {
-
-      g_object_weak_unref ((GObject*)selection,
-                           gd_callback_selection_finalized,
-                           Dialog);
+    GEDA_WEAK_UNREF (selection, gd_callback_selection_finalized, Dialog);
   }
 
   /* reset Dialog data */
