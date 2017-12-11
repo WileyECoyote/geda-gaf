@@ -514,11 +514,11 @@ OBJ       *o_grips_search_picture_world (GschemToplevel *w_current, GedaObject *
 OBJ       *o_grips_search_circle_world  (GschemToplevel *w_current, GedaObject *o_current, int x, int y, int size, int *whichone);
 OBJ       *o_grips_search_line_world    (GschemToplevel *w_current, GedaObject *o_current, int x, int y, int size, int *whichone);
 */
+int        o_grips_compute_drawn_size   (GschemToplevel *w_current);
 bool       o_grips_start                (GschemToplevel *w_current, int x, int y);
 void       o_grips_motion               (GschemToplevel *w_current, int x, int y);
 void       o_grips_end                  (GschemToplevel *w_current);
 void       o_grips_cancel               (GschemToplevel *w_current);
-int        o_grips_half_size            (GschemToplevel *w_current, GedaObject *o_current);
 void       o_grips_draw_rubber          (GschemToplevel *w_current);
 
 /* o_invalidate.c */

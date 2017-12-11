@@ -2,6 +2,8 @@
 
     * include/gschem_toplevel.h: Add member grip_half_size.
 
+    * include/prototype.h: Update declaration for o_grips_compute_drawn_size.
+
 2017-12-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/x_settings_dialog.h: Translate DialogTabData.
