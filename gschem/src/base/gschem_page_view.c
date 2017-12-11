@@ -573,7 +573,7 @@ gschem_page_view_invalidate_screen_rect (GschemToplevel *w_current, int left, in
     return;
   }
 
-  grip_half_size = w_current->grip_size / 2;
+  grip_half_size = gschem_toplevel_get_grips_half_size(w_current);
   cue_half_size = gschem_page_view_SCREENabs (view, CUE_BOX_SIZE);
   bloat = MAX (grip_half_size, cue_half_size) + INVALIDATE_MARGIN;
 

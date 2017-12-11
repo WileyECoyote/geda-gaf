@@ -1,5 +1,8 @@
 2017-12-11 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/base/gschem_page_view.c: Replace grip size calculation with call
+      to gschem_toplevel_get_grips_half_size.
+
     * include/gschem_toplevel.h: Add member grip_half_size.
 
     * include/prototype.h: Update declaration for o_grips_compute_drawn_size.
