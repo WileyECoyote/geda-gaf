@@ -167,6 +167,7 @@ struct _GschemToplevel {
   int rubber_y2;
 
   int net_direction;                    /* bit field to guess the best net direction */
+  int grip_half_size;                   /* One half the grip size adjusted for zoom */
   int which_grip;                       /* Which grip is being manipulated.
                                            Its range of values depends on the
                                            type of object being manipulated. */

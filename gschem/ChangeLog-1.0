@@ -1,3 +1,7 @@
+2017-12-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/gschem_toplevel.h: Add member grip_half_size.
+
 2017-12-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/x_settings_dialog.h: Translate DialogTabData.
