@@ -560,7 +560,9 @@ int g_keys_execute(GschemToplevel *w_current, GdkEventKey *event)
  *
  * example: (find-key (quote file-new))
  *
- * \note returned string should be released with free, not g_free
+ * \note 1 returned string should be released with free, not g_free
+ *
+ * \note 2 In "safe-mode" this function always returns NULL;
  *
  * \param action The action whose keys are to be returned.
  *
