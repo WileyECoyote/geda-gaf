@@ -1,6 +1,6 @@
-# Spanish/Spain translation of libgeda.
+# Spanish/Spain translation of libgedacolor.
 # Copyright (C) 2007-2008 Carlos Nieves Ónega
-# This file is distributed under the same license as the libgeda package.
+# This file is distributed under the same license as the geda package.
 #
 #
 # Carlos Nieves Ónega <cnieves@iespana.es>, 2007-2009.
@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
 "POT-Creation-Date: 2017-11-19 11:15-0600\n"
-"PO-Revision-Date: 2012-02-20 00:09+0000\n"
-"Last-Translator: Carlos Nieves <Unknown>\n"
+"PO-Revision-Date: 2017-12-11 12:11+0000\n"
+"Last-Translator:  Wiley E. Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
