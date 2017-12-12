@@ -55,19 +55,19 @@ msgstr ""
 msgid "Tried to get an invalid color"
 msgstr "Essayé d'obtenir une couleur non valide"
 
+# Could not allocate
 #: libgedacolor/src/x11/color_x11.c:74
-#, fuzzy
-msgid "Could not allocate"
-msgstr "Impossible de sauvegarder le fichier"
+sgid "Could not allocate"
+msgstr "Impossible d'allouer"
 
 #: libgedacolor/src/x11/color_x11.c:75
 msgid "color"
 msgstr ""
 
+# Could not allocate the color
 #: libgedacolor/src/x11/color_x11.c:83 libgedacolor/src/x11/color_x11.c:91
-#, fuzzy
 msgid "Could not allocate the color"
-msgstr "Impossible de sauvegarder le fichier de sauvegarde: %s."
+msgstr "Impossible d'allouer la couleur"
 
 #: libgedacolor/src/x11/color_x11.c:84
 msgid "black"
@@ -93,15 +93,11 @@ msgstr ""
 msgid "Something went wrong, check"
 msgstr ""
 
+# Could not locate file
 #: libgedacolor/src/x11/color_x11.c:265 libgedacolor/src/libgedacolor.c:136
-#, fuzzy
 msgid "Could not locate file"
-msgstr "Impossible de sauvegarder le fichier : %s"
+msgstr "Impossible de localiser le fichier"
 
 #: libgedacolor/src/libgedacolor.c:98
 msgid "FAILED"
 msgstr ""
-
-#, fuzzy
-#~ msgid "Could not allocate %s color %i!\n"
-#~ msgstr "Impossible d'ouvrir [%s] pour l'impression\n"
