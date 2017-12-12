@@ -99,7 +99,3 @@ msgstr "Nie można zlokalizować pliku"
 #: libgedacolor/src/libgedacolor.c:98
 msgid "FAILED"
 msgstr ""
-
-#, fuzzy
-#~ msgid "Could not allocate %s color %i!\n"
-#~ msgstr "Nie można otworzyć [%s] do wydruku\n"
