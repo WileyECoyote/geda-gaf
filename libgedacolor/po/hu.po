@@ -55,19 +55,19 @@ msgstr ""
 msgid "Tried to get an invalid color"
 msgstr ""
 
+# Could not allocate
 #: libgedacolor/src/x11/color_x11.c:74
-#, fuzzy
 msgid "Could not allocate"
-msgstr "Nem tudtam elmenteni a file-t: %s"
+msgstr "Nem sikerült kiosztani"
 
 #: libgedacolor/src/x11/color_x11.c:75
 msgid "color"
 msgstr ""
 
+# Could not allocate the color
 #: libgedacolor/src/x11/color_x11.c:83 libgedacolor/src/x11/color_x11.c:91
-#, fuzzy
 msgid "Could not allocate the color"
-msgstr "Nem találom a file-t %s: %s"
+msgstr "Nem sikerült elosztani a színt"
 
 #: libgedacolor/src/x11/color_x11.c:84
 msgid "black"
@@ -93,15 +93,11 @@ msgstr ""
 msgid "Something went wrong, check"
 msgstr ""
 
+# Could not locate file
 #: libgedacolor/src/x11/color_x11.c:265 libgedacolor/src/libgedacolor.c:136
-#, fuzzy
 msgid "Could not locate file"
-msgstr "Nem tudtam elmenteni a file-t: %s"
+msgstr "A fájl nem található"
 
 #: libgedacolor/src/libgedacolor.c:98
 msgid "FAILED"
 msgstr ""
-
-#, fuzzy
-#~ msgid "Could not allocate %s color %i!\n"
-#~ msgstr "Nem találom a file-t %s: %s"
