@@ -56,19 +56,19 @@ msgstr ""
 msgid "Tried to get an invalid color"
 msgstr "حاولت الحصول على لون غير صالح"
 
+# Could not allocate
 #: libgedacolor/src/x11/color_x11.c:74
-#, fuzzy
 msgid "Could not allocate"
-msgstr "يتعذّر حفظ الملف الاحتياطي"
+msgstr "تعذر تخصيص"
 
 #: libgedacolor/src/x11/color_x11.c:75
 msgid "color"
 msgstr ""
 
+# Could not allocate the color
 #: libgedacolor/src/x11/color_x11.c:83 libgedacolor/src/x11/color_x11.c:91
-#, fuzzy
 msgid "Could not allocate the color"
-msgstr "يتعذّر حفظ الملف الاحتياطي"
+msgstr "تعذر تخصيص اللون"
 
 #: libgedacolor/src/x11/color_x11.c:84
 msgid "black"
@@ -94,15 +94,11 @@ msgstr ""
 msgid "Something went wrong, check"
 msgstr ""
 
+# Could not locate file
 #: libgedacolor/src/x11/color_x11.c:265 libgedacolor/src/libgedacolor.c:136
-#, fuzzy
 msgid "Could not locate file"
-msgstr "يتعذّر حفظ الملف الاحتياطي: %s."
+msgstr "تعذر تحديد موقع الملف"
 
 #: libgedacolor/src/libgedacolor.c:98
 msgid "FAILED"
 msgstr ""
-
-#, fuzzy
-#~ msgid "Could not allocate %s color %i!\n"
-#~ msgstr "تعذر فتح %s للطباعة\n"
