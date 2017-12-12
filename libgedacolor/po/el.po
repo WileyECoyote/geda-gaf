@@ -95,14 +95,9 @@ msgid "Something went wrong, check"
 msgstr ""
 
 #: libgedacolor/src/x11/color_x11.c:265 libgedacolor/src/libgedacolor.c:136
-#, fuzzy
 msgid "Could not locate file"
-msgstr "ΔΕΝ ήταν δυνατή η αποθήκευση του αρχείου: %s"
+msgstr "Δεν ήταν δυνατή η εύρεση αρχείου"
 
 #: libgedacolor/src/libgedacolor.c:98
 msgid "FAILED"
 msgstr ""
-
-#, fuzzy
-#~ msgid "Could not allocate %s color %i!\n"
-#~ msgstr "Δεν ήταν δυνατό το άνοιγμα του [%s] για εκτύπωση\n"
