@@ -1,0 +1,106 @@
+# Afrikaans translation for libgedacolor.
+# Copyright (C) 2017 Wiley E. Hill <wileyhill@gmail.com>
+# This file is distributed under the same license as the geda package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: geda-gaf\n"
+"Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
+"POT-Creation-Date: 2017-11-19 11:15-0600\n"
+"PO-Revision-Date: 2017-12-11 01:03+0000\n"
+"Last-Translator:  Wiley E. Hill <wileyhill@gmail.com>\n"
+"Language-Team: gEDA developers <geda-dev@seul.org>\n"
+"Language: af\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Launchpad-Export-Date: 2010-02-14 12:56+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+"X-Language: C\n"
+"X-Source-Language: C\n"
+
+#: libgedacolor/src/get/color_get.c:63 libgedacolor/src/get/color_get.c:184
+#: libgedacolor/src/utility/color_utility.c:223
+#, c-format
+msgid "Color index out of range"
+msgstr ""
+
+# Could not load
+#: libgedacolor/src/guile/color_guile.c:68
+msgid "Error loading"
+msgstr "Kon nie laai nie"
+
+#: libgedacolor/src/guile/color_guile.c:140
+msgid "Color map entries must be a two-element list"
+msgstr ""
+
+# Key in color-map field must be a string
+#: libgedacolor/src/guile/color_guile.c:149
+msgid "Key in color map entry must be a string"
+msgstr "Sleutel kleur veld in moet 'n tou wees"
+
+#: libgedacolor/src/guile/color_guile.c:160
+msgid "Invalid key in color map"
+msgstr ""
+
+#: libgedacolor/src/guile/color_guile.c:178
+msgid "Value in color map entry must be #f or a string"
+msgstr ""
+
+# Invalid color map value
+#: libgedacolor/src/guile/color_guile.c:190
+msgid "Invalid color map value"
+msgstr "Ongeldige kleurkaartwaarde"
+
+#: libgedacolor/src/x11/color_x11.c:57
+msgid "Tried to get an invalid color"
+msgstr ""
+
+# CCould not allocate
+#: libgedacolor/src/x11/color_x11.c:74
+msgid "Could not allocate"
+msgstr "Kon nie toeken nie"
+
+#: libgedacolor/src/x11/color_x11.c:75
+msgid "color"
+msgstr "kleur"
+
+# Could not allocate the color => Could not assign the color
+#: libgedacolor/src/x11/color_x11.c:83 libgedacolor/src/x11/color_x11.c:91
+msgid "Could not allocate the color"
+msgstr "Kon nie die kleur toeken nie"
+
+#: libgedacolor/src/x11/color_x11.c:84
+msgid "black"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:92
+msgid "white"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:111
+msgid "display"
+msgstr ""
+
+#: libgedacolor/src/x11/color_x11.c:128
+msgid "outline"
+msgstr ""
+
+# Allocating color scheme
+#: libgedacolor/src/x11/color_x11.c:255
+msgid "Allocating color scheme"
+msgstr "Toekenning van kleurskema"
+
+#: libgedacolor/src/x11/color_x11.c:260 libgedacolor/src/libgedacolor.c:131
+msgid "Something went wrong, check"
+msgstr ""
+
+# Could not locate file
+#: libgedacolor/src/x11/color_x11.c:265 libgedacolor/src/libgedacolor.c:136
+msgid "Could not locate file"
+msgstr "Kon nie leer opspoor nie"
+
+#: libgedacolor/src/libgedacolor.c:98
+msgid "FAILED"
+msgstr ""
