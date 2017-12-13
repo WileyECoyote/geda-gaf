@@ -281,6 +281,8 @@ AC_CONFIG_FILES([Makefile
                  libgedathon/Makefile
                  libgedathon/geda.pc
                  libgedathon/libgedathon.pc
+                 libgedathon/po/domain.mak
+                 libgedathon/po/Makefile.in
                  libgedathon/docs/Makefile
                  libgedathon/docs/images/Makefile
                  libgedathon/include/Makefile

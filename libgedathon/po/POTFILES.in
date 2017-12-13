@@ -1,0 +1,9 @@
+libgedathon/include/functions.h
+libgedathon/include/geda_module.h
+
+libgedathon/module/functions.c
+libgedathon/module/geda.c
+
+libgedathon/src/libgedathon.c
+intl/plural.c
+
