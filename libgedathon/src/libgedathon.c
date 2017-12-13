@@ -902,6 +902,13 @@ void initialize( API_FunctionTable* user_table)
 
   libgeda_init(0, NULL);
 
+#ifdef ENABLE_NLS
+
+  bindtextdomain (LIBGEDATHON_GETTEXT_DOMAIN, LOCALEDIR);
+  bind_textdomain_codeset(LIBGEDATHON_GETTEXT_DOMAIN, "UTF-8");
+
+#endif
+
   toplevel = geda_toplevel_new();
   toplevel->open_flags = 0;
 

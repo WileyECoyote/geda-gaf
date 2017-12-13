@@ -4,11 +4,12 @@
 
     * po: Setup internationalization for libgedathon.
 
-    * module/functions.c: include local gettext header.
+    * module/functions.c: Include local gettext header.
 
-    * module/geda.c: include local gettext header.
+    * module/geda.c: Include local gettext header.
 
-    * src/libgedathon.c: include local gettext header.
+    * src/libgedathon.c: Include local gettext header and call bindtextdomain
+      and bind_textdomain_codeset if ENABLE_NLS is defined.
 
 2017-12-04 Wiley E. Hill <wileyhill@gmail.com>
 
