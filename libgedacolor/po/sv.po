@@ -95,15 +95,11 @@ msgstr ""
 msgid "Something went wrong, check"
 msgstr ""
 
+# Could not locate file
 #: libgedacolor/src/x11/color_x11.c:265 libgedacolor/src/libgedacolor.c:136
-#, fuzzy
 msgid "Could not locate file"
-msgstr "Kan inte hitta filen %s: %s"
+msgstr "Det gick inte att hitta filen"
 
 #: libgedacolor/src/libgedacolor.c:98
 msgid "FAILED"
 msgstr ""
-
-#, fuzzy
-#~ msgid "Could not allocate %s color %i!\n"
-#~ msgstr "Kan inte hitta filen %s: %s"
