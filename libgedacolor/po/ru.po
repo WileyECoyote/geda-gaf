@@ -111,15 +111,11 @@ msgstr ""
 msgid "Something went wrong, check"
 msgstr ""
 
+# Could not locate file
 #: libgedacolor/src/x11/color_x11.c:265 libgedacolor/src/libgedacolor.c:136
-#, fuzzy
 msgid "Could not locate file"
-msgstr "Не удалось сохранить файл: %s"
+msgstr "Не удалось найти файл"
 
 #: libgedacolor/src/libgedacolor.c:98
 msgid "FAILED"
 msgstr ""
-
-#, fuzzy
-#~ msgid "Could not allocate %s color %i!\n"
-#~ msgstr "Не удалось сохранить файл резервной копии: %s."
