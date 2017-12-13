@@ -36,6 +36,7 @@
 #define FIRST_PASS_METHODS(func) static PyObject *do_##func(PyObject *self, PyObject *args)
 
 #include <geda/geda.h>
+#include "../include/gettext.h"
 #include "../include/geda_module.h"
 #include "../include/geda_capsule.h"
 
@@ -556,6 +557,7 @@ METHOD(get_pages)
   py_output_list = PyList_New(0);
 
   if ( PyList_Check(py_input_list)) {
+
     int i, count;
     count = (int) PyList_GET_SIZE(py_input_list);
 
@@ -2583,7 +2585,6 @@ METHOD(set_attrib)
 
   //Py_XDECREF(py_value);
   ON_METHOD_EXIT(set_attrib);
-
   return py_ret;
 }
 
@@ -2760,7 +2761,6 @@ METHOD(get_junctions)
   }
   Py_DECREF(py_source_list);
   ON_METHOD_EXIT(get_junctions);
-
   return py_output_list;
 }
 
@@ -2836,7 +2836,6 @@ METHOD(get_unconnected)
   }
   Py_DECREF(py_source_list);
   ON_METHOD_EXIT(get_unconnected);
-
   return py_output_list;
 }
 

@@ -1,6 +1,14 @@
 2017-12-13 Wiley E. Hill <wileyhill@gmail.com
 
+    * include/gettext.h: Add local gettext header.
+
     * po: Setup internationalization for libgedathon.
+
+    * module/functions.c: include local gettext header.
+
+    * module/geda.c: include local gettext header.
+
+    * src/libgedathon.c: include local gettext header.
 
 2017-12-04 Wiley E. Hill <wileyhill@gmail.com>
 

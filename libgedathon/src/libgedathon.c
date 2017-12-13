@@ -44,6 +44,7 @@
 #include <libgedacolor.h>
 
 //#include <pygobject.h>
+#include "../include/gettext.h"
 
 /* Only loading header here to get METHOD_COUNT because it is needed in
  * libgedathon, (so count doesn't has to be passed to the init function */
@@ -55,6 +56,7 @@
 #include "../include/geda_py_struct.h"
 #include "../include/geda_capsule.h"
 #include "../include/libgedathon.h"
+
 
 int PyGeda_update_object(GedaObject *object, PyGedaObject *py_object);
 int PyGeda_update_butes(GedaObject *object, PyGedaObject *py_object);
