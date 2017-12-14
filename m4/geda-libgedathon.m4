@@ -36,5 +36,14 @@ AC_DEFUN([AX_LIBGEDATHON],
   AC_DEFINE_DIR([LIBGEDATHON_PATH], [exec_prefix$installpath],
   [Define to $exec_prefix/lib/libgedathon plus spaces for extension.])
 
+  # Work out the gettext domain to use
+  AC_MSG_CHECKING([libgedathon gettext domain])
+  so_major=`echo $LIBGEDATHON_SHLIB_VERSION | sed -e "s/:.*//"`
+  LIBGEDATHON_GETTEXT_DOMAIN="libgedathon$so_major"
+  AC_MSG_RESULT([$LIBGEDATHON_GETTEXT_DOMAIN])
+  AC_SUBST([LIBGEDATHON_GETTEXT_DOMAIN])
+  AC_DEFINE_UNQUOTED([LIBGEDATHON_GETTEXT_DOMAIN], ["$LIBGEDATHON_GETTEXT_DOMAIN"],
+    "Name of libgedathon's gettext domain.")
+
   []dnl
 ])dnl
