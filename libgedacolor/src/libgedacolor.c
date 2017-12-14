@@ -75,8 +75,6 @@ static void *guile_init(void *lame)
  */
 int libgedacolor_init(int *argc, char **argv)
 {
-  int lame;
-
 #ifdef ENABLE_NLS
 
   bindtextdomain (LIBGEDACOLOR_GETTEXT_DOMAIN, LOCALEDIR);
@@ -85,6 +83,8 @@ int libgedacolor_init(int *argc, char **argv)
 #endif
 
   if (gdk_init_check (argc, &argv)) {
+
+    int lame;
 
     /* Initialize scheme even if client has not booted Guile */
     scm_with_guile(guile_init, &lame);
