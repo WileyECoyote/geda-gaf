@@ -7,6 +7,9 @@
 
     * include/functions.h: Translate doc strings for functions.
 
+    * include/geda_module.h: Translate doc strings for module API
+      routines.
+
 2017-12-13 Wiley E. Hill <wileyhill@gmail.com
 
     * include/gettext.h: Add local gettext header.

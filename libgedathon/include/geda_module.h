@@ -50,62 +50,62 @@ void initFunctions(PyObject *module);
 
 static PyObject *do_unknown(PyObject *self, PyObject *args);
 
-const char shutdown_docs[]           = "Close all file and shutdown Libgedathon.\n";
+const char shutdown_docs[]           = N_("Close all file and shutdown Libgedathon.\n");
 
-const char append_symbol_path_docs[] = "Append a folder to the library search path.\n";
-const char declare_local_sym_docs[]  = "Creates a gafrc file in the current directory.\n";
+const char append_symbol_path_docs[] = N_("Append a folder to the library search path.\n");
+const char declare_local_sym_docs[]  = N_("Creates a gafrc file in the current directory.\n");
 
 /* Page Object operations/Methods */
-const char get_pages_docs[]          = "Retrieve list of all pages.\n";
-const char get_active_page_docs[]    = "Get pointer to the active page.\n";
-const char set_active_page_docs[]    = "Set the active page.\n";
-const char is_page_modified_docs[]   = "Returns True if page has been modified and not saved.\n";
-const char goto_page_docs[]          = "Set the active page, and changes current directory.\n";
-const char open_page_docs[]          = "Open a page.\n";
-const char close_page_docs[]         = "Close page.\n";
-const char new_page_docs[]           = "Create a new empty page.\n";
-const char rename_page_docs[]        = "Rename a page changes the filename.\n";
-const char save_page_docs[]          = "Save the page by writing to storage\n";
-const char save_page_as_docs[]       = "Save the page using a new file name\n";
-const char save_all_pages_docs[]     = "Save all opened pages to storage\n";
+const char get_pages_docs[]          = N_("Retrieve list of all pages.\n");
+const char get_active_page_docs[]    = N_("Get pointer to the active page.\n");
+const char set_active_page_docs[]    = N_("Set the active page.\n");
+const char is_page_modified_docs[]   = N_("Returns True if page has been modified and not saved.\n");
+const char goto_page_docs[]          = N_("Set the active page, and changes current directory.\n");
+const char open_page_docs[]          = N_("Open a page.\n");
+const char close_page_docs[]         = N_("Close page.\n");
+const char new_page_docs[]           = N_("Create a new empty page.\n");
+const char rename_page_docs[]        = N_("Rename a page changes the filename.\n");
+const char save_page_docs[]          = N_("Save the page by writing to storage\n");
+const char save_page_as_docs[]       = N_("Save the page using a new file name\n");
+const char save_all_pages_docs[]     = N_("Save all opened pages to storage\n");
 
 /* Page Level Object operations/Methods */
-const char GedaCapsule_Type_docs[]   = "Returns True is object is a GedaCapsule, otherwise False.";
-const char get_bounds_docs[]         = "Returns the rectangular boundaries of an object.\n";
-const char get_object_docs[]         = "Retrieve an object from a GedaCapsule.\n";
-const char get_objects_docs[]        = "Retrieve all objects belonging to a page.\n";
-const char add_object_docs[]         = "Add an object to a page or another object.\n";
-const char add_objects_docs[]        = "Add multible objects to a page or another object.\n";
-const char copy_object_docs[]        = "Make a copy an object\n";
-const char remove_object_docs[]      = "Remove object from a page.\n";
-const char remove_objects_docs[]     = "Remove multible objects from a page.\n";
+const char GedaCapsule_Type_docs[]   = N_("Returns True is object is a GedaCapsule, otherwise False.");
+const char get_bounds_docs[]         = N_("Returns the rectangular boundaries of an object.\n");
+const char get_object_docs[]         = N_("Retrieve an object from a GedaCapsule.\n");
+const char get_objects_docs[]        = N_("Retrieve all objects belonging to a page.\n");
+const char add_object_docs[]         = N_("Add an object to a page or another object.\n");
+const char add_objects_docs[]        = N_("Add multible objects to a page or another object.\n");
+const char copy_object_docs[]        = N_("Make a copy an object\n");
+const char remove_object_docs[]      = N_("Remove object from a page.\n");
+const char remove_objects_docs[]     = N_("Remove multible objects from a page.\n");
 
-const char delete_object_docs[]      = "Delete an object from a page.\n";
-const char delete_objects_docs[]     = "Delete multible object from a page.\n";
-const char sync_object_docs[]        = "Remove object from a page.\n";
+const char delete_object_docs[]      = N_("Delete an object from a page.\n");
+const char delete_objects_docs[]     = N_("Delete multible object from a page.\n");
+const char sync_object_docs[]        = N_("Remove object from a page.\n");
 
 /* Object Constructor */
-const char new_arc_docs[]            = "Create a new arc object.\n";
-const char new_box_docs[]            = "Create a new box object.\n";
-const char new_bus_docs[]            = "Create a new bus object.\n";
-const char new_circle_docs[]         = "Create a new circle object.\n";
-const char new_complex_docs[]        = "Create a new complex object.\n";
-const char new_line_docs[]           = "Create a new line object.\n";
-const char new_net_docs[]            = "Create a new net object.\n";
-const char new_path_docs[]           = "Create a new path object.\n";
-const char new_picture_docs[]        = "Create a new picture object.\n";
-const char new_pin_docs[]            = "Create a new pin object.\n";
-const char new_text_docs[]           = "Create a new text object.\n";
-const char new_attrib_docs[]         = "Create a new attribute object.\n";
+const char new_arc_docs[]            = N_("Create a new arc object.\n");
+const char new_box_docs[]            = N_("Create a new box object.\n");
+const char new_bus_docs[]            = N_("Create a new bus object.\n");
+const char new_circle_docs[]         = N_("Create a new circle object.\n");
+const char new_complex_docs[]        = N_("Create a new complex object.\n");
+const char new_line_docs[]           = N_("Create a new line object.\n");
+const char new_net_docs[]            = N_("Create a new net object.\n");
+const char new_path_docs[]           = N_("Create a new path object.\n");
+const char new_picture_docs[]        = N_("Create a new picture object.\n");
+const char new_pin_docs[]            = N_("Create a new pin object.\n");
+const char new_text_docs[]           = N_("Create a new text object.\n");
+const char new_attrib_docs[]         = N_("Create a new attribute object.\n");
 
 /* Base Object Methods */
-const char object_help_docs[]        = "New object type syntax\n";
-const char object_name_docs[]        = "The object name\n";
-const char add_attrib_docs[]         = "Add an attribute object to this object\n";
-const char object_copy_docs[]        = "Copy the object\n";
-const char rotate_object_docs[]      = "Rotate the object\n";
-const char select_object_docs[]      = "Select this Object\n";
-const char unselect_object_docs[]    = "UnSelect this Object\n";
+const char object_help_docs[]        = N_("New object type syntax\n");
+const char object_name_docs[]        = N_("The object name\n");
+const char add_attrib_docs[]         = N_("Add an attribute object to this object\n");
+const char object_copy_docs[]        = N_("Copy the object\n");
+const char rotate_object_docs[]      = N_("Rotate the object\n");
+const char select_object_docs[]      = N_("Select this Object\n");
+const char unselect_object_docs[]    = N_("UnSelect this Object\n");
 
 const char clear_selection_docs[]    = ".\n";
 const char get_selection_docs[]      = ".\n";
@@ -114,24 +114,24 @@ const char append_selection_docs[]   = ".\n";
 const char delete_selected_docs[]    = ".\n";
 
 /* Line Object Methods */
-const char line_length_docs[]        = "Returns the length of a linear object.\n";
+const char line_length_docs[]        = N_("Returns the length of a linear object.\n");
 
 /* Page Object Methods */
-const char filename_docs[]           = "File Name of this Page.\n";
+const char filename_docs[]           = N_("File Name of this Page.\n");
 
 /* Path Object Attributes */
-const char path_string_docs[]        = "String describing a geometric element";
+const char path_string_docs[]        = N_("String describing a geometric element");
 
 /* Module Attribute Object Methods */
-const char get_attrib_docs[]         = "Retrieve a specific attribute Object\n";
-const char get_attribs_docs[]        = "Retrieve list of associated attribute Objects\n";
-const char set_attrib_docs[]         = "Set the value of a specified attribute Object\n";
-const char refresh_attribs_docs[]    = "Refresh Objects attributes\n";
+const char get_attrib_docs[]         = N_("Retrieve a specific attribute Object\n");
+const char get_attribs_docs[]        = N_("Retrieve list of associated attribute Objects\n");
+const char set_attrib_docs[]         = N_("Set the value of a specified attribute Object\n");
+const char refresh_attribs_docs[]    = N_("Refresh Objects attributes\n");
 
 /* Connection and Nodes */
-const char get_network_docs[]        = "Retrieve all objects connect to specific Object\n";
-const char get_junctions_docs[]      = "Retrieve list of points for junction for specified Objects\n";
-const char get_unconnected_docs[]    = "Retrieve list of points of unconnect nodes for specified Objects\n";
+const char get_network_docs[]        = N_("Retrieve all objects connect to specific Object\n");
+const char get_junctions_docs[]      = N_("Retrieve list of points for junction for specified Objects\n");
+const char get_unconnected_docs[]    = N_("Retrieve list of points of unconnect nodes for specified Objects\n");
 
 /* define Macro for declarations because METHOD was not defined */
 #define METHOD(method) FIRST_PASS_METHODS(method);
