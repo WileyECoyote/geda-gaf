@@ -5,6 +5,8 @@
 
     * include/Makefile.am: Include local gettext header.
 
+    * include/functions.h: Translate doc strings for functions.
+
 2017-12-13 Wiley E. Hill <wileyhill@gmail.com
 
     * include/gettext.h: Add local gettext header.
