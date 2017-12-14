@@ -138,7 +138,7 @@ do_setup_geda_environment ()
      export GEDADATARC=$PWD/scheme
      cd $CWDSAVE
   else
-    echo "Error: not in the right place, cannot find gschem scheme"
+    echo "Error: not in the right place, cannot find libgeda scheme"
     exit 1
   fi
 
@@ -201,7 +201,6 @@ if test -f "$MODULE" ; then
      if test ! -f "tmp/lpfilter.sch" ; then
        do_err_exit "<lpbf.py> did not produce tmp/lpfilter.sch"
      else
-
        # Check that each of the symbol files are compliant
        answer=$($SYMCHECKER -q tmp/sym/capacitor-py.sym)
        if test $? -ne 0 ; then
