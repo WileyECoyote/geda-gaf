@@ -29,6 +29,9 @@ update-gmo:
 update-po:
 	$(MAKE) -C po update-po || exit 1;
 
+maintainer-clean-local:
+	-rm -rf po/*.sed po/*.header po/*.sin po/*.template po/Rules-quot
+
 MOSTLYCLEANFILES     = *.log core FILE *~
 CLEANFILES           = *.log core FILE *~
 DISTCLEANFILES       = *.log core FILE *~ geda.pc libgedathon.pc

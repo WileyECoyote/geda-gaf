@@ -1,6 +1,7 @@
 2017-12-14 Wiley E. Hill <wileyhill@gmail.com
 
-    * Makefile.am: Add rules to update-gmo and update-po files.
+    * Makefile.am: Add rules to update-gmo and update-po files, add
+      rules for maintainer-clean-local.
 
     * include/Makefile.am: Include local gettext header.
 
