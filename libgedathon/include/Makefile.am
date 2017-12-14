@@ -3,7 +3,7 @@
 
 libgedathonincludedir      = $(includedir)/libgedathon
 
-libgedathoninclude_HEADERS = \
+libgedathoninclude_HEADERS =   gettext.h         \
 				geda_capsule.h    \
 				geda_module.h     \
 				geda_py_color.h   \
