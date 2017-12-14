@@ -1,3 +1,7 @@
+2017-12-14 Wiley E. Hill <wileyhill@gmail.com
+
+    * Makefile.am: Add rules to update-gmo and update-po files.
+
 2017-12-13 Wiley E. Hill <wileyhill@gmail.com
 
     * include/gettext.h: Add local gettext header.

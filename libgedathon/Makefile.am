@@ -23,6 +23,12 @@ else
 	@echo 'The documentation cannot be built from the sources.'
 endif
 
+update-gmo:
+	$(MAKE) -C po update-gmo || exit 1;
+
+update-po:
+	$(MAKE) -C po update-po || exit 1;
+
 MOSTLYCLEANFILES     = *.log core FILE *~
 CLEANFILES           = *.log core FILE *~
 DISTCLEANFILES       = *.log core FILE *~ geda.pc libgedathon.pc
