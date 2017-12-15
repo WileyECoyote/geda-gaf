@@ -1036,14 +1036,18 @@ o_grips_start_line(GschemToplevel *w_current, GedaObject *o_current, int x, int 
  *  \param [in]  w_current  The GschemToplevel object.
  *  \param [in]  w_x        Current x coordinate of pointer in world units.
  *  \param [in]  w_y        Current y coordinate of pointer in world units.
+ *
  *  \return FALSE if an error occurred or no grip was found, TRUE otherwise.
  */
 bool
 o_grips_start(GschemToplevel *w_current, int w_x, int w_y)
 {
   bool result;
+  bool draw_grips;
 
-  if (CairoRenderer->draw_grips == TRUE) {
+  draw_grips = eda_renderer_get_draw_grips(CairoRenderer);
+
+  if (draw_grips == TRUE) {
 
     GedaObject *object;
     int whichone;

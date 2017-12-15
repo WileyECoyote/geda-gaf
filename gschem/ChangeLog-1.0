@@ -1,3 +1,8 @@
+2017-12-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_grips.c: Revise o_grips_start to utilize eda_renderer_
+      get_draw_grips.
+
 2017-12-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_page_view.c: Replace grip size calculation with call
