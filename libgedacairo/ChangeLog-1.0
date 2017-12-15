@@ -1,3 +1,8 @@
+2017-12-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edarenderer.c: Remove redundant validation in eda_renderer_
+      default_draw_grips.
+
 2017-11-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/edarenderer.c: Remove needless dynamic type checking cast in

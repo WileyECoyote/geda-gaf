@@ -1267,8 +1267,8 @@ eda_renderer_draw_grips (EdaRenderer *renderer, GedaObject *object)
 static void
 eda_renderer_default_draw_grips (EdaRenderer *renderer, GedaObject *object)
 {
+  /* Note renderer was validated in eda_renderer_draw_grips */
   g_return_if_fail (object != NULL);
-  g_return_if_fail (EDA_IS_RENDERER (renderer));
   g_return_if_fail (renderer->priv->cr != NULL);
 
   if(renderer->draw_grips == FALSE)
