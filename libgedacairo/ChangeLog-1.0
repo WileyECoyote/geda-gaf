@@ -5,7 +5,7 @@
       eda_renderer_get_draw_grips and eda_renderer_set_draw_grips.
 
     * src/edarenderer.c: Remove redundant validation in eda_renderer_
-      default_draw_grips.
+      default_draw_grips. Add gobject property PROP_DRAW_GRIPS.
 
 2017-11-30 Wiley E. Hill <wileyhill@gmail.com>
 

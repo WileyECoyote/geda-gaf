@@ -50,6 +50,7 @@ enum {
   PROP_FONT_NAME,
   PROP_COLOR_MAP,
   PROP_OVERRIDE_COLOR,
+  PROP_DRAW_GRIPS,
   PROP_GRIP_SIZE,
   PROP_GRIP_STROKE,
   PROP_GRIP_FILL,
@@ -275,6 +276,10 @@ eda_renderer_set_property (GObject *object, unsigned int property_id,
     renderer->priv->override_color = g_value_get_int (value);
     break;
 
+  case PROP_DRAW_GRIPS:
+    eda_renderer_set_draw_grips(renderer, g_value_get_int (value));
+    break;
+
   case PROP_GRIP_SIZE:
     EDAR_GRIP_SIZE                 = g_value_get_double (value);
     break;
@@ -348,6 +353,10 @@ eda_renderer_get_property (GObject *object, unsigned int property_id,
 
   case PROP_OVERRIDE_COLOR:
     g_value_set_int (value, renderer->priv->override_color);
+    break;
+
+  case PROP_DRAW_GRIPS:
+    g_value_set_int (value, eda_renderer_get_draw_grips(renderer));
     break;
 
   case PROP_GRIP_SIZE:
@@ -1899,6 +1908,14 @@ eda_renderer_class_init(void *g_class, void *class_data)
                               param_flags);
 
   g_object_class_install_property (gobject_class, PROP_RENDER_FLAGS, params);
+
+  params = g_param_spec_double ("draw-grips",
+                              _("Draw grips"),
+                              _("Controls if grips should be drawn"),
+                                 0, 1, 0,
+                                 param_flags);
+
+  g_object_class_install_property (gobject_class, PROP_DRAW_GRIPS, params);
 
   params = g_param_spec_double ("grip-size",
                               _("Grip size"),
