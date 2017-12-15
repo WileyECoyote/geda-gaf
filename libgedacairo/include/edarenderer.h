@@ -216,6 +216,9 @@ const
 GdkColor *eda_renderer_get_grips_fill_color    (EdaRenderer *renderer);
 void      eda_renderer_set_grips_fill_color    (EdaRenderer *renderer,
                                                 GdkColor    *color);
+
+bool      eda_renderer_get_hinting_enabled     (EdaRenderer *renderer);
+
 const
 GdkColor *eda_renderer_get_junction_color      (EdaRenderer *renderer);
 void      eda_renderer_set_junction_color      (EdaRenderer *renderer,

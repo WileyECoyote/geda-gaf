@@ -1,5 +1,8 @@
 2017-12-15 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/edarenderer.h: Add missing declaration for eda_renderer_
+      get_hinting_enabled get_hinting_enabled.
+
     * src/edarenderer.c: Remove redundant validation in eda_renderer_
       default_draw_grips.
 
