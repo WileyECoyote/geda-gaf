@@ -2136,15 +2136,15 @@ eda_renderer_set_cairo_context (EdaRenderer *renderer, cairo_t *cr)
   }
 }
 
-/*! \brief Get the EdaRenderer Hinting Enabled Property
+/*! \brief Get the active EdaRenderer Cairo Flags
  *  \par Function Description
- *  Function to retrieve the current hinting property.
+ *  Function to retrieve the current Cairo Flags.
  */
-bool
-eda_renderer_get_hinting_enabled (EdaRenderer *renderer)
+int
+eda_renderer_get_cairo_flags (EdaRenderer *renderer)
 {
-  g_return_val_if_fail (EDA_IS_RENDERER (renderer), FALSE);
-  return EDA_RENDERER_CHECK_FLAG (renderer, FLAG_HINTING);
+  g_return_val_if_fail (EDA_IS_RENDERER (renderer), 0);
+  return EDA_RENDERER_CAIRO_FLAGS (renderer);
 }
 
 /*! \brief Get the current EdaRenderer Color Map Array
@@ -2231,15 +2231,15 @@ eda_renderer_get_flags (EdaRenderer *renderer)
   return renderer->priv->flags;
 }
 
-/*! \brief Get the active EdaRenderer Cairo Flags
+/*! \brief Get the EdaRenderer Hinting Enabled Property
  *  \par Function Description
- *  Function to retrieve the current Cairo Flags.
+ *  Function to retrieve the current hinting property.
  */
-int
-eda_renderer_get_cairo_flags (EdaRenderer *renderer)
+bool
+eda_renderer_get_hinting_enabled (EdaRenderer *renderer)
 {
-  g_return_val_if_fail (EDA_IS_RENDERER (renderer), 0);
-  return EDA_RENDERER_CAIRO_FLAGS (renderer);
+  g_return_val_if_fail (EDA_IS_RENDERER (renderer), FALSE);
+  return EDA_RENDERER_CHECK_FLAG (renderer, FLAG_HINTING);
 }
 
 /*! \brief Get the current EdaRenderer Override Color Index Property
