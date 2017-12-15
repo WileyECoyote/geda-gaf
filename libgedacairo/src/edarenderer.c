@@ -2171,6 +2171,28 @@ eda_renderer_set_color_map (EdaRenderer *renderer, GArray *map)
   g_object_set (renderer, "color-map", map, NULL);
 }
 
+/*! \brief Get the EdaRenderer draw grips Property
+ *  \par Function Description
+ *  Function to retrieve the current draw-grips property. Grips
+ *  will not be drawn if the draw-grips property is not set.
+ */
+int eda_renderer_get_draw_grips (EdaRenderer *renderer)
+{
+  g_return_val_if_fail (EDA_IS_RENDERER (renderer), -1);
+  return renderer->draw_grips;
+}
+
+/*! \brief Set the EdaRenderer draw grips Property
+ *  \par Function Description
+ *  Function to set the draw-grips property. When the draw-grips
+ *  property is set, grips will be drawn.
+ */
+void eda_renderer_set_draw_grips (EdaRenderer *renderer, bool draw)
+{
+  g_return_if_fail (EDA_IS_RENDERER (renderer));
+  renderer->draw_grips = draw ? 1 : 0;
+}
+
 /*! \brief Get the current EdaRenderer Font Name Property
  *  \par Function Description
  *  Function to retrieve the current font-name property.
