@@ -1250,7 +1250,7 @@ eda_renderer_draw_picture (EdaRenderer *renderer, GedaObject *object)
 void
 eda_renderer_draw_grips_list (EdaRenderer *renderer, GList *list)
 {
-  if(renderer->draw_grips) {
+  if (renderer->draw_grips) {
     GList *iter;
     for (iter = list; iter != NULL; iter = g_list_next (iter)) {
       eda_renderer_draw_grips (renderer, (GedaObject*) iter->data);
