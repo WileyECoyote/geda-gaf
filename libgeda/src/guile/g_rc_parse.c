@@ -324,7 +324,6 @@ bool g_rc_parse_system (const char *rcname, GError **err)
   status = g_rc_parse_file (rcfile, eda_config_get_system_context ("geda"), err);
 
   GEDA_FREE (rcfile);
-
   GEDA_FREE (sysname);
 
   return status;
@@ -576,7 +575,8 @@ void g_rc_parse_rcfile_handler (const char *rcfile,
 }
 #undef HANDLER_DISPATCH
 
-/*! \brief General RC file parsing function.
+/*!
+ * \brief General RC file parsing function.
  * \par Function Description
  * Attempt to load system, user and local (current working directory)
  * configuration files, starting with the default "gafrc" basename and
