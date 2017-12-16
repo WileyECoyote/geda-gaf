@@ -30,10 +30,9 @@
 /*! Non-zero if the Scheme API has been initialised. */
 static volatile GedaType init_called = 0;
 
-/*! \brief Scheme API initialization worker function.
- *
- *  \par Function Description
- *
+/*!
+ * \brief Scheme API initialization worker function.
+ * \par Function Description
  *  Called by edascm_init() with current thread in Guile mode.
  */
 static void *edascm_init_impl (void *data)
@@ -59,17 +58,15 @@ static void *edascm_init_impl (void *data)
   return NULL;
 }
 
-/*! \brief Initialise the Scheme API.
+/*!
+ * \brief Initialise the Scheme API.
+ * \ingroup guile_c_iface
  *
- *  \ingroup guile_c_iface
- *
- *  \par Function Description
- *
+ * \par Function Description
  *  Registers all modules, procedures and variables exported by the
  *  libgeda Scheme API.
  */
-void
-edascm_init ()
+void edascm_init ()
 {
   volatile GedaType *initialized = &init_called;
 
