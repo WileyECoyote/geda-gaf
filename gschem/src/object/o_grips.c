@@ -1043,11 +1043,8 @@ bool
 o_grips_start(GschemToplevel *w_current, int w_x, int w_y)
 {
   bool result;
-  bool draw_grips;
 
-  draw_grips = eda_renderer_get_draw_grips(CairoRenderer);
-
-  if (draw_grips == TRUE) {
+  if (eda_renderer_get_draw_grips(CairoRenderer)) {
 
     GedaObject *object;
     int whichone;
@@ -1055,12 +1052,9 @@ o_grips_start(GschemToplevel *w_current, int w_x, int w_y)
     /* search if there is a grip on a selected object at (w_x,w_y) */
     object = o_grips_search_world(w_current, w_x, w_y, &whichone);
 
-    if (object == NULL) {
-      result = FALSE;
-    }
-    else {
+    if (object != NULL) {
 
-      void  (*func) (GschemToplevel*, GedaObject*, int, int);
+      void (*func) (GschemToplevel*, GedaObject*, int, int);
 
       w_current->which_grip   = whichone;
       w_current->which_object = object;

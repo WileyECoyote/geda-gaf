@@ -1,3 +1,8 @@
+2017-12-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/ Revise o_grips_start; eliminate draw_grips and
+      ensure result set false if an object was not found.
+
 2017-12-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_grips.c: Revise o_grips_start to utilize eda_renderer_
