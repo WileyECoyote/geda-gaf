@@ -475,7 +475,7 @@ static bool on_traverse(GtkWidget *widget,
  */
 void SetupCSheetHandlers(GtkSheet *sheet, PageDataSet *PageData)
 {
-  GtkObject *SheetObj;
+  GObject *SheetObj;
   SheetObj = G_OBJECT(sheet);
 
   GEDA_SIGNAL_CONNECT(SheetObj, "button_press_event",
@@ -990,7 +990,8 @@ bool x_gtksheet_get_is_empty(GtkSheet *sheet, int row, int col)
 int x_gtksheet_get_min_col(GtkSheet *sheet) {
   if (sheet->state == GTK_SHEET_COLUMN_SELECTED) {
     return sheet->range.col0;
-  } else {
+  }
+  else {
     return -1;
   }
 }
