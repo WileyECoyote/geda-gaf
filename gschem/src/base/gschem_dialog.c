@@ -685,11 +685,11 @@ static void gschem_dialog_add_buttons_valist (GtkDialog  *dialog,
  *  \par Function Description
  *  Convenience function which creates a blank GschemDialog with various options.
  *
- *  \param [in]  title              The title text of the dialog
- *  \param [in]  parent             The GtkWindow which will parent this dialog
- *  \param [in]  flags              The GtkDialogFlags to use when setting up the dialog
- *  \param [in]  settings_name      The name gschem should use to store this dialog's settings
- *  \param [in]  w_current          The GschemToplevel object this dialog is associated with
+ *  \param [in]  title          The title text of the dialog
+ *  \param [in]  parent         GtkWindow which will parent this dialog
+ *  \param [in]  flags          GtkDialogFlags to use when setting up the dialog
+ *  \param [in]  settings_name  The name gschem should use to store this dialog's settings
+ *  \param [in]  w_current      GschemToplevel object this dialog is associated with
  *
  *  \return  The GschemDialog created.
  */
