@@ -3,8 +3,8 @@
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 1998-2015 Ales Hvezda
- * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2017 Ales Hvezda
+ * Copyright (C) 1998-2017 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -60,7 +60,7 @@ bool o_place_start (GschemToplevel *w_current, int w_x, int w_y)
     if (count > 0) {
 
 #if DEBUG || DEBUG_DND_EVENTS || DEBUG_PASTE || DEBUG_PLACE
-    printf("%s: place_list has %d objects\n", __func__, count);
+      printf("%s: place_list has %d objects\n", __func__, count);
 #endif
 
       w_current->second_wx = w_x;
@@ -71,7 +71,7 @@ bool o_place_start (GschemToplevel *w_current, int w_x, int w_y)
       result = TRUE;
     }
     else {
-      u_log_message (_("Buffer is empty, nothing to place\n"));
+      geda_log (_("Buffer is empty, nothing to place\n"));
       i_status_set_state(w_current, SELECT);
       result = FALSE;
     }
