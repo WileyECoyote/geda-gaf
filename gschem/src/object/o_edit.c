@@ -512,7 +512,7 @@ void o_edit_set_selectable(GschemToplevel *w_current, GedaObject *object, bool s
 
     if (current_state != state) {
 
-      Page  *page = gschem_toplevel_get_current_page(w_current);
+      Page *page = gschem_toplevel_get_current_page(w_current);
 
       geda_object_set_selectable(object, state);
 
