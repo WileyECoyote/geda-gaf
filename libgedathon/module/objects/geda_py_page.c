@@ -115,18 +115,22 @@ Page_filename(PyGedaPageObject* self)
 
   return result;
 }
+
 static PyObject *go_save(PyObject *self)
 {
   return PyObject_CallMethod(geda_module, "save_page", "O", self);
 }
+
 static PyObject *go_select(PyObject *self)
 {
   return PyObject_CallMethod(geda_module, "set_active_page", "O", self);
 }
+
 static PyObject *go_to_page(PyObject *self)
 {
   return PyObject_CallMethod(geda_module, "goto_page", "O", self);
 }
+
 static PyObject *go_close(PyObject *self)
 {
   return PyObject_CallMethod(geda_module, "close_page", "O", self);
