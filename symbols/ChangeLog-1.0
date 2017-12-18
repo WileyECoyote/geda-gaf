@@ -2,6 +2,9 @@
 
     * logic/logic-symbols/latr.sym: Add description, update attributes.
 
+    * linear/special/PC104A-1.sym: Add description and documentation,
+      fix over-bars.
+
 2017-11-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * intel/8049-1.sym: Rename symbol file with dash one suffix.

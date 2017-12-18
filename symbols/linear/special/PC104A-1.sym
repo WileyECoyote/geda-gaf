@@ -1,4 +1,4 @@
-v 20031231 1
+v 20031231 2
 P 0 6600 300 6600 1 0 0
 {
 T 0 6600 9 8 1 1 0 0 1
@@ -6,7 +6,7 @@ pinnumber=A1
 T 0 6600 9 8 0 0 0 0 1
 pinseq=1
 T 400 6550 9 10 1 1 0 0 1
-pinlabel=/IOCHCHK
+pinlabel=\_IOCHCHK\_
 T 0 6600 9 8 0 0 0 0 1
 pintype=io
 }
@@ -435,7 +435,7 @@ pinnumber=B8
 T 2500 5200 5 8 0 0 0 0 1
 pinseq=40
 T 1600 5150 9 10 1 1 0 0 1
-pinlabel=/ENDXFR
+pinlabel=\_ENDXFR\_
 T 2500 5200 9 8 0 0 0 0 1
 pintype=io
 }
@@ -468,7 +468,7 @@ pinnumber=B11
 T 2500 4600 5 8 0 0 0 0 1
 pinseq=43
 T 1600 4550 9 10 1 1 0 0 1
-pinlabel=/SMEMW
+pinlabel=\_SMEMW\_
 T 2500 4600 9 8 0 0 0 0 1
 pintype=io
 }
@@ -479,7 +479,7 @@ pinnumber=B12
 T 2500 4400 5 8 0 0 0 0 1
 pinseq=44
 T 1650 4350 9 10 1 1 0 0 1
-pinlabel=/SMEMR
+pinlabel=\_SMEMR\_
 T 2500 4400 9 8 0 0 0 0 1
 pintype=io
 }
@@ -490,7 +490,7 @@ pinnumber=B13
 T 2500 4200 5 8 0 0 0 0 1
 pinseq=45
 T 1950 4150 9 10 1 1 0 0 1
-pinlabel=/IOW
+pinlabel=\_IOW\_
 T 2500 4200 9 8 0 0 0 0 1
 pintype=io
 }
@@ -501,7 +501,7 @@ pinnumber=B14
 T 2500 4000 5 8 0 0 0 0 1
 pinseq=46
 T 2000 3950 9 10 1 1 0 0 1
-pinlabel=/IOR
+pinlabel=\_IOR\_
 T 2500 4000 9 8 0 0 0 0 1
 pintype=io
 }
@@ -512,7 +512,7 @@ pinnumber=B15
 T 2500 3800 5 8 0 0 0 0 1
 pinseq=47
 T 1650 3750 9 10 1 1 0 0 1
-pinlabel=/DACK3
+pinlabel=\_DACK3\_
 T 2500 3800 9 8 0 0 0 0 1
 pintype=io
 }
@@ -534,7 +534,7 @@ pinnumber=B17
 T 2500 3400 5 8 0 0 0 0 1
 pinseq=49
 T 1700 3350 9 10 1 1 0 0 1
-pinlabel=/DACK1
+pinlabel=\_DACK1\_
 T 2500 3400 9 8 0 0 0 0 1
 pintype=io
 }
@@ -556,7 +556,7 @@ pinnumber=B19
 T 2500 3000 5 8 0 0 0 0 1
 pinseq=51
 T 1450 2950 9 10 1 1 0 0 1
-pinlabel=/REFRESH
+pinlabel=\_REFRESH\_
 T 2500 3000 9 8 0 0 0 0 1
 pintype=io
 }
@@ -633,7 +633,7 @@ pinnumber=B26
 T 2500 1600 5 8 0 0 0 0 1
 pinseq=58
 T 1700 1550 9 10 1 1 0 0 1
-pinlabel=/DACK2
+pinlabel=\_DACK2\_
 T 2500 1600 9 8 0 0 0 0 1
 pintype=io
 }
@@ -704,11 +704,17 @@ T 2500 400 9 8 0 0 0 0 1
 pintype=io
 }
 B 300 50 2200 6900 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 1100 7050 8 10 1 1 0 0 1
+T 2500 7000 8 10 1 1 0 6 1
 refdes=J?
-T 1100 7050 8 10 0 1 0 0 1
-device=PC104A
-T 600 100 9 10 0 0 0 0 1
+T 300 7600 5 10 0 1 0 0 1
+description=System Module
+T 300 7800 9 10 0 0 0 0 1
 numslots=0
-T 600 100 9 10 0 0 0 0 1
+T 300 7200 9 10 0 0 0 0 1
 footprint=unknown
+T 300 7000 5 10 0 1 0 0 1
+value=PC104A
+T 300 7400 5 10 0 0 0 0 1
+device=PC104A
+T 300 8000 9 10 0 1 0 0 1
+documentation=https://en.wikipedia.org/wiki/PC/104
