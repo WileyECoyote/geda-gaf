@@ -1,3 +1,10 @@
+2017-12-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_font_dialog.c: Add function check_properties() and check
+      for property:
+
+          * "font-name"
+
 2017-12-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_image_menu_item.c: Add geda_image_menu_item_get_accel_group.

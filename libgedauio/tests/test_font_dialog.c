@@ -123,6 +123,41 @@ int check_construction (void)
 }
 
 int
+check_properties (void)
+{
+  int result = 0;
+
+  GtkWidget *widget = geda_font_dialog_new_with_font_name ("Sans");
+
+  if (!GEDA_IS_FONT_DIALOG(widget)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+  else {
+
+    char *font_name;
+
+    g_object_get(widget, "font-name", &font_name, NULL);
+
+    if (!font_name) {
+      fprintf(stderr, "FAILED: font name property NULL\n");
+      result++;
+    }
+    else {
+      if (strncmp(font_name, "Sans", 4)) {
+        fprintf(stderr, "FAILED: font name property <%s>\n", font_name);
+        result++;
+      }
+    }
+
+    g_object_ref_sink(widget); /* Sink reference to the widget */
+    g_object_unref(widget);    /* Destroy the widget */
+  }
+
+  return result;
+}
+
+int
 check_accessors ()
 {
   int result = 0;
@@ -175,13 +210,23 @@ int main (int argc, char *argv[])
     if (!result) {
 
       if (setjmp(point) == 0) {
+        result = check_properties();
+      }
+      else {
+        fprintf(stderr, "Caught signal checking properties in %s\n\n", MUT);
+        return 1;
+      }
+    }
+
+    if (!result) {
+
+      if (setjmp(point) == 0) {
         result = check_accessors();
       }
       else {
         fprintf(stderr, "Caught signal checking accessors in %s\n\n", MUT);
         return 1;
       }
-
     }
   }
   return result;
