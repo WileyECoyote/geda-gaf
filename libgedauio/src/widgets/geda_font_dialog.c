@@ -1833,15 +1833,9 @@ geda_font_dialog_get_font (GedaFontDialog *dialog)
 PangoFontDescription*
 geda_font_dialog_get_font_desc (GedaFontDialog *dialog)
 {
-  PangoFontDescription *font_desc;
-
   g_return_val_if_fail (GEDA_IS_FONT_DIALOG (dialog), NULL);
 
-  font_desc = NULL;
-
-  g_object_get (dialog, "font-desc", &font_desc, NULL);
-
-  return font_desc;
+  return geda_font_dialog_get_font_description(dialog);
 }
 
 /*! \todo Finish function documentation!!!
