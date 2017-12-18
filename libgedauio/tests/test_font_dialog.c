@@ -135,6 +135,15 @@ check_properties (void)
   }
   else {
 
+    GdkFont *font;
+
+    g_object_get(widget, "font", &font, NULL);
+
+    if (!font) {
+      fprintf(stderr, "FAILED: line <%d> get font <%s>\n", __LINE__, TWIDGET);
+      result++;
+    }
+
     char *font_name;
 
     g_object_get(widget, "font-name", &font_name, NULL);
