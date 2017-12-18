@@ -1826,9 +1826,12 @@ geda_font_dialog_get_font (GedaFontDialog *dialog)
   return dialog->font;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Retrieve the GedaFontDialog Font Description property
+ * \par Function Description
+ *  Return the current Pango font description, the return
+ *  description belongs to the dialog and should not be
+ *  released.
  */
 PangoFontDescription*
 geda_font_dialog_get_font_desc (GedaFontDialog *dialog)
