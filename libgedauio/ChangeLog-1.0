@@ -6,9 +6,7 @@
       called in the first place.
 
     * tests/test_font_dialog.c: Add function check_properties() and check
-      for property:
-
-          * "font-name"
+      for "font-name" property.
 
 2017-12-08 Wiley E. Hill <wileyhill@gmail.com>
 

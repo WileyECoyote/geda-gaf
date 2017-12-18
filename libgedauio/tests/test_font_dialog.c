@@ -140,12 +140,27 @@ check_properties (void)
     g_object_get(widget, "font-name", &font_name, NULL);
 
     if (!font_name) {
-      fprintf(stderr, "FAILED: font name property NULL\n");
+      fprintf(stderr, "FAILED: get font name property NULL\n");
       result++;
     }
     else {
       if (strncmp(font_name, "Sans", 4)) {
-        fprintf(stderr, "FAILED: font name property <%s>\n", font_name);
+        fprintf(stderr, "FAILED: get font name property <%s>\n", font_name);
+        result++;
+      }
+    }
+
+    g_object_set(widget, "font-name", "Monospace", NULL);
+
+    g_object_get(widget, "font-name", &font_name, NULL);
+
+    if (!font_name) {
+      fprintf(stderr, "FAILED: set font name property NULL\n");
+      result++;
+    }
+    else {
+      if (strncmp(font_name, "Monospace", 9)) {
+        fprintf(stderr, "FAILED: set font name property <%s>\n", font_name);
         result++;
       }
     }
