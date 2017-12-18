@@ -1841,9 +1841,13 @@ geda_font_dialog_get_font_desc (GedaFontDialog *dialog)
   return geda_font_dialog_get_font_description(dialog);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Set GedaFontDialog Font Description property
+ * \par Function Description
+ *  This function utilizes geda_font_dialog_take_font_desc to
+ *  copy the attributes of \a font_desc.
+ *
+ * \see geda_font_dialog_take_font_desc
  */
 void
 geda_font_dialog_set_font_desc (GedaFontDialog *dialog, const PangoFontDescription *font_desc)
