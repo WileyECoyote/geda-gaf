@@ -50,7 +50,7 @@ void initFunctions(PyObject *module);
 
 static PyObject *do_unknown(PyObject *self, PyObject *args);
 
-const char shutdown_docs[]           = N_("Close all file and shutdown Libgedathon.\n");
+const char shutdown_docs[]           = N_("Close all files and shutdown Libgedathon.\n");
 
 const char append_symbol_path_docs[] = N_("Append a folder to the library search path.\n");
 const char declare_local_sym_docs[]  = N_("Creates a gafrc file in the current directory.\n");
