@@ -1536,11 +1536,11 @@ geda_font_dialog_class_init(void *class, void *class_data)
    *  \par Programmactically set the font size.
    */
   params = g_param_spec_int ("font-size",
-                           _("Set Size"), /* nick name */
+                           _("Set Size"),                   /* nick name */
                            _("Set point size of the font"), /* hint / blurb */
-                              6, /* Min value */
-                              96, /* Max value */
-                              10, /* default_value */
+                              6,                            /* Min value */
+                              96,                           /* Max value */
+                              DEFAULT_FONT_SIZE,            /* default_value */
                              (G_PARAM_READWRITE));
 
   g_object_class_install_property (object_class, PROP_FONT_SIZE, params);

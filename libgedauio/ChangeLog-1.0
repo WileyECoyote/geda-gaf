@@ -3,7 +3,8 @@
     * src/widgets/geda_font_dialog.c: Revise geda_font_dialog_get_font_desc
       to utilize geda_font_dialog_get_font_description instead of g_object_get
       because using g_object_get to get the "font-desc" property results in
-      loops. Redo geda_font_dialog_set_font_desc. Update function documentation.
+      loops. Redo geda_font_dialog_set_font_desc. Use DEFAULT_FONT_SIZE in
+      geda_font_dialog_class_init. Update function documentation.
 
     * tests/test_font_dialog.c: Check that "font" property returns something,
       add check for "font-desc" property.
