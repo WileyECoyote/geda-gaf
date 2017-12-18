@@ -144,6 +144,28 @@ check_properties (void)
       result++;
     }
 
+    PangoFontDescription *font_desc;
+
+    g_object_get(widget, "font-desc", &font_desc, NULL);
+
+    if (!font_desc) {
+      fprintf(stderr, "FAILED: line <%d> \"font-desc\" property <%s>\n", __LINE__, TWIDGET);
+      result++;
+    }
+    else {
+
+      GdkFont *font2;
+
+      font2 = gdk_font_from_description (font_desc);
+
+      if (!gdk_font_equal(font, font2)) {
+        fprintf(stderr, "FAILED: line <%d> \"font-desc\" property <%s>\n", __LINE__, TWIDGET);
+        result++;
+      }
+
+      gdk_font_unref(font2);
+    }
+
     char *font_name;
 
     g_object_get(widget, "font-name", &font_name, NULL);

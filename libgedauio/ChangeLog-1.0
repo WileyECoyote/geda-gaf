@@ -5,7 +5,8 @@
       because using g_object_get to get the "font-desc" property results in
       loops.
 
-    * tests/test_font_dialog.c: Check that "font" property returns something.
+    * tests/test_font_dialog.c: Check that "font" property returns something,
+      add check for "font-desc" property.
 
 2017-12-17 Wiley E. Hill <wileyhill@gmail.com>
 
