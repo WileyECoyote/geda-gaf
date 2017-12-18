@@ -149,7 +149,7 @@ check_properties (void)
     g_object_get(widget, "font-desc", &font_desc, NULL);
 
     if (!font_desc) {
-      fprintf(stderr, "FAILED: line <%d> \"font-desc\" property <%s>\n", __LINE__, TWIDGET);
+      fprintf(stderr, "FAILED: line <%d> get \"font-desc\" property <%s>\n", __LINE__, TWIDGET);
       result++;
     }
     else {
@@ -159,11 +159,29 @@ check_properties (void)
       font2 = gdk_font_from_description (font_desc);
 
       if (!gdk_font_equal(font, font2)) {
-        fprintf(stderr, "FAILED: line <%d> \"font-desc\" property <%s>\n", __LINE__, TWIDGET);
+        fprintf(stderr, "FAILED: line <%d> get \"font-desc\" property <%s>\n", __LINE__, TWIDGET);
         result++;
       }
 
       gdk_font_unref(font2);
+    }
+
+    PangoFontDescription *pft = pango_font_description_new();
+
+    g_object_set(widget, "font-desc", &pft, NULL);
+
+    g_object_get(widget, "font-desc", &font_desc, NULL);
+
+    if (!font_desc) {
+      fprintf(stderr, "FAILED: line <%d> set \"font-desc\" property <%s>\n", __LINE__, TWIDGET);
+      result++;
+    }
+    else {
+
+      if (pango_font_description_equal(font_desc, pft)) {
+        fprintf(stderr, "FAILED: line <%d> set \"font-desc\" property <%s>\n", __LINE__, TWIDGET);
+        result++;
+      }
     }
 
     char *font_name;
