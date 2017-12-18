@@ -2,6 +2,8 @@
 
     * include/geda_module.h: Make "file" plural in shutdown_docs.
 
+    * po/fr.po: Update French translations.
+
 2017-12-15 Wiley E. Hill <wileyhill@gmail.com
 
     * po/es.po: Update Spanish translations.
