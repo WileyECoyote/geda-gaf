@@ -1,3 +1,7 @@
+2017-12-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * logic/logic-symbols/latr.sym: Add description, update attributes.
+
 2017-11-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * intel/8049-1.sym: Rename symbol file with dash one suffix.
