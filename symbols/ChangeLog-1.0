@@ -8,6 +8,8 @@
     * linear/special/PC104B-1.sym: Add description and documentation,
       fix over-bars.
 
+    * linear/special/SI9986-1.sym: Add description, fix over-bars.
+
 2017-11-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * intel/8049-1.sym: Rename symbol file with dash one suffix.
