@@ -91,8 +91,6 @@ static GHashTable *font_dialog_hash = NULL;
 static PangoFontDescription*
 geda_font_dialog_get_font_description (GedaFontDialog *dialog)
 {
-  g_return_val_if_fail ( GEDA_IS_FONT_DIALOG (dialog), NULL);
-
   if ( !dialog->font_desc) {
     if (dialog->face) {
       dialog->font_desc = pango_font_face_describe (dialog->face);

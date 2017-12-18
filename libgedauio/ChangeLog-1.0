@@ -1,5 +1,10 @@
 2017-12-17 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_font_dialog.c: Remove unnecessary validation in
+      geda_font_dialog_get_font_description; glib must have identified
+      the object as a GedaFontDialog or the function would not have been
+      called in the first place.
+
     * tests/test_font_dialog.c: Add function check_properties() and check
       for property:
 
