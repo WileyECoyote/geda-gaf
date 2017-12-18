@@ -1,4 +1,4 @@
-v 20050820 1
+v 20050820 2
 P 0 4000 300 4000 1 0 0
 {
 T 0 4000 5 8 1 1 0 0 1
@@ -6,7 +6,7 @@ pinnumber=C1
 T 0 4000 9 8 0 0 0 0 1
 pinseq=1
 T 400 3950 9 10 1 1 0 0 1
-pinlabel=/SBHE
+pinlabel=\_SBHE\_
 T 0 4000 5 8 0 0 0 0 1
 pintype=io
 }
@@ -94,7 +94,7 @@ pinnumber=C9
 T 0 2400 9 8 0 0 0 0 1
 pinseq=9
 T 400 2350 9 10 1 1 0 0 1
-pinlabel=/MEMR
+pinlabel=\_MEMR\_
 T 0 2400 5 8 0 0 0 0 1
 pintype=io
 }
@@ -105,7 +105,7 @@ pinnumber=C10
 T 0 2200 9 8 0 0 0 0 1
 pinseq=10
 T 400 2150 9 10 1 1 0 0 1
-pinlabel=/MEMW
+pinlabel=/\_MEMW\_
 T 0 2200 5 8 0 0 0 0 1
 pintype=io
 }
@@ -226,7 +226,7 @@ pinnumber=D1
 T 2500 4000 5 8 0 0 0 0 1
 pinseq=21
 T 2350 4000 9 10 1 1 0 7 1
-pinlabel=/MEMCS16
+pinlabel=\_MEMCS16\_
 T 2500 4000 5 8 0 0 0 0 1
 pintype=io
 }
@@ -237,7 +237,7 @@ pinnumber=D2
 T 2500 3800 5 8 0 0 0 0 1
 pinseq=22
 T 2350 3800 9 10 1 1 0 7 1
-pinlabel=/IOCS16
+pinlabel=\_IOCS16\_
 T 2500 3800 5 8 0 0 0 0 1
 pintype=io
 }
@@ -303,7 +303,7 @@ pinnumber=D8
 T 2500 2600 5 8 0 0 0 0 1
 pinseq=28
 T 2350 2600 9 10 1 1 0 7 1
-pinlabel=/DACK0
+pinlabel=\_DACK0\_
 T 2500 2600 5 8 0 0 0 0 1
 pintype=io
 }
@@ -325,7 +325,7 @@ pinnumber=D10
 T 2500 2200 5 8 0 0 0 0 1
 pinseq=30
 T 2350 2200 9 10 1 1 0 7 1
-pinlabel=/DACK5
+pinlabel=\_DACK5\_
 T 2500 2200 5 8 0 0 0 0 1
 pintype=io
 }
@@ -347,7 +347,7 @@ pinnumber=D12
 T 2500 1800 5 8 0 0 0 0 1
 pinseq=32
 T 2350 1800 9 10 1 1 0 7 1
-pinlabel=/DACK6
+pinlabel=\_DACK6\_
 T 2500 1800 5 8 0 0 0 0 1
 pintype=io
 }
@@ -369,7 +369,7 @@ pinnumber=D14
 T 2500 1400 5 8 0 0 0 0 1
 pinseq=34
 T 2350 1400 9 10 1 1 0 7 1
-pinlabel=/DACK7
+pinlabel=\_DACK7\_
 T 2500 1400 5 8 0 0 0 0 1
 pintype=io
 }
@@ -402,7 +402,7 @@ pinnumber=D17
 T 2500 800 5 8 0 0 0 0 1
 pinseq=37
 T 2350 800 9 10 1 1 0 7 1
-pinlabel=/MASTER
+pinlabel=\_MASTER\_
 T 2500 800 5 8 0 0 0 0 1
 pintype=io
 }
@@ -439,12 +439,18 @@ pinlabel=0V
 T 2500 4200 5 8 0 0 0 0 1
 pintype=io
 }
-T 1200 4550 8 10 1 1 0 0 1
+T 2500 4550 8 10 1 1 0 6 1
 refdes=J?
-T 1100 4450 8 10 0 1 0 0 1
-device=PC104B
 B 300 0 2200 4500 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 600 100 9 10 0 0 0 0 1
+T 300 5200 5 10 0 1 0 0 1
+description=System Module
+T 300 5400 9 10 0 0 0 0 1
 numslots=0
-T 600 100 9 10 0 0 0 0 1
+T 300 4800 9 10 0 0 0 0 1
 footprint=unknown
+T 300 4600 5 10 1 1 0 0 1
+value=PC104B
+T 300 5000 5 10 0 0 0 0 1
+device=PC104B
+T 300 5600 9 10 0 1 0 0 1
+documentation=https://en.wikipedia.org/wiki/PC/104
