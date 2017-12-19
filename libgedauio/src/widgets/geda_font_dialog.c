@@ -1935,7 +1935,7 @@ geda_font_dialog_set_font_name (GedaFontDialog *dialog, const char *fontname)
  */
 int geda_font_dialog_get_font_size (GedaFontDialog *dialog)
 {
-  g_return_val_if_fail ( GEDA_IS_FONT_DIALOG (dialog), -1);
+  g_return_val_if_fail (GEDA_IS_FONT_DIALOG (dialog), -1);
 
   return (dialog->font_size);
 }
