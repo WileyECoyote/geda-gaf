@@ -2,7 +2,7 @@
 
     * src/widgets/geda_font_dialog.c: Revise ggeda_font_dialog_take_font_desc;
       to check for a non-zero font size before committing the sized returned
-      from geda_font_dialog_take_font_desc.
+      from geda_font_dialog_take_font_desc. Add check for "font-size" property.
 
 2017-12-18 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -214,6 +214,17 @@ check_properties (void)
       }
     }
 
+    int font_size;
+
+    geda_font_dialog_set_font_size(GEDA_FONT_DIALOG(widget), DEFAULT_FONT_SIZE);
+
+    g_object_get(widget, "font-size", &font_size, NULL);
+
+    if (font_size != DEFAULT_FONT_SIZE) {
+      fprintf(stderr, "FAILED: get font size property <%d>\n", font_size);
+      result++;
+    }
+
     g_object_ref_sink(widget); /* Sink reference to the widget */
     g_object_unref(widget);    /* Destroy the widget */
   }
