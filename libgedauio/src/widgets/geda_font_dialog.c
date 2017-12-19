@@ -510,8 +510,9 @@ geda_font_dialog_show_available_sizes (GedaFontDialog *dialog)
     gtk_list_store_append (store, &iter);
     gtk_list_store_set (store, &iter, SIZE_COLUMN, font_sizes[i], -1);
 
-    if (font_sizes[i] == dialog->font_size)
+    if (font_sizes[i] == dialog->font_size) {
       set_cursor_to_iter (GTK_TREE_VIEW (dialog->size_list), &iter);
+    }
   }
 }
 
