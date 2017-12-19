@@ -234,6 +234,30 @@ check_properties (void)
       result++;
     }
 
+    char *title;
+
+    g_object_get(widget, "title", &title, NULL);
+
+    if (title) {
+      fprintf(stderr, "FAILED: get default title property not NULL\n");
+      result++;
+    }
+
+    geda_font_dialog_set_title(widget, "Pick a Font");
+
+    g_object_get(widget, "title", &title, NULL);
+
+    if (!title) {
+      fprintf(stderr, "FAILED: get default title property NULL\n");
+      result++;
+    }
+    else {
+      if (strncmp(title, "Pick a Font", 11)) {
+        fprintf(stderr, "FAILED: get default title property <%s>\n", title);
+        result++;
+      }
+    }
+
     g_object_ref_sink(widget); /* Sink reference to the widget */
     g_object_unref(widget);    /* Destroy the widget */
   }

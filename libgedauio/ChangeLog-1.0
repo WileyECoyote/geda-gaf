@@ -4,7 +4,7 @@
       to check for a non-zero font size before committing the sized returned
       from geda_font_dialog_take_font_desc. Make "title" property read-writable.
 
-    * tests/test_font_dialog.c: Add checks for "font-size" property.
+    * tests/test_font_dialog.c: Add checks for "font-size" and "title" properties.
 
 2017-12-18 Wiley E. Hill <wileyhill@gmail.com>
 
