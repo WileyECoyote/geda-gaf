@@ -153,6 +153,7 @@ void        geda_font_dialog_set_show_preview   (GedaFontDialog *dialog,
                                                  bool            show_preview);
 
 #define geda_font_dialog_set_title(d, t) gtk_window_set_title ((GtkWindow*)d, t);
+#define geda_font_dialog_get_title(d)    gtk_window_get_title ((GtkWindow*)d)
 
 #ifdef __cplusplus
 }
