@@ -958,6 +958,7 @@ geda_font_dialog_get_property (GObject *object, unsigned int prop_id,
 
   switch (prop_id) {
     case PROP_TITLE:
+      g_value_set_string (value, gtk_window_get_title (GTK_WINDOW(dialog)));
       break;
 
     case PROP_FONT:
@@ -1505,7 +1506,7 @@ geda_font_dialog_class_init(void *class, void *class_data)
                               _("Title"),
                               _("The title of the font selection dialog"),
                               _("Pick a Font"),
-                               (G_PARAM_WRITABLE));
+                               (G_PARAM_READWRITE));
 
   g_object_class_install_property (object_class, PROP_TITLE, params);
 
