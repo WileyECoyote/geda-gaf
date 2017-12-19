@@ -225,6 +225,15 @@ check_properties (void)
       result++;
     }
 
+    g_object_set(widget, "font-size", 13, NULL);
+
+    g_object_get(widget, "font-size", &font_size, NULL);
+
+    if (font_size != 13) {
+      fprintf(stderr, "FAILED: get font size property <%d>!= 13\n", font_size);
+      result++;
+    }
+
     g_object_ref_sink(widget); /* Sink reference to the widget */
     g_object_unref(widget);    /* Destroy the widget */
   }
