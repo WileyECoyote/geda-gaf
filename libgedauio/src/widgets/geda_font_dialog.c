@@ -277,7 +277,7 @@ geda_font_dialog_take_font_desc (GedaFontDialog *dialog,
       font_size = pango_font_description_get_size (new_desc) / PANGO_SCALE;
     }
 
-    if ( font_size != dialog->font_size ) {
+    if (font_size && font_size != dialog->font_size) {
       dialog->font_size = font_size;
       changed = TRUE;
     }
