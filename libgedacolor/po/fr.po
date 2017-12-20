@@ -57,7 +57,7 @@ msgstr "Essayé d'obtenir une couleur non valide"
 
 # Could not allocate
 #: libgedacolor/src/x11/color_x11.c:74
-sgid "Could not allocate"
+msgid "Could not allocate"
 msgstr "Impossible d'allouer"
 
 #: libgedacolor/src/x11/color_x11.c:75

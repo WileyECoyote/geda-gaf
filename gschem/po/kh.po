@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-12-11 03:27-0600\n"
+"POT-Creation-Date: 2017-12-20 01:20-0600\n"
 "PO-Revision-Date: 2015-07-29 00:24-0600\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -463,8 +463,8 @@ msgstr "Kraleachatrang"
 msgid "OFF"
 msgstr "BET"
 
-#: gschem/src/base/gschem_status_bar.c:1875 gschem/src/object/o_picture.c:617
-#: gschem/src/object/o_picture.c:621
+#: gschem/src/base/gschem_status_bar.c:1875 gschem/src/object/o_picture.c:615
+#: gschem/src/object/o_picture.c:619
 msgid "Error"
 msgstr "kamhosa knong kar"
 
@@ -1238,39 +1238,39 @@ msgstr ""
 "rothayontokrong kammovithi chriek nimittasanhnhea del min trauv ban rk "
 "kheunh nowknong bannaly sameasapheak namuoy laey"
 
-#: gschem/src/object/o_picture.c:360
+#: gschem/src/object/o_picture.c:358
 msgid "Update All"
 msgstr "thveu aoy teansamy"
 
-#: gschem/src/object/o_picture.c:362
+#: gschem/src/object/o_picture.c:360
 msgid "Update all selected Picture images"
 msgstr "thveu aoy teansamy roubpheap roubpheap del ban chreusa teangoasa"
 
-#: gschem/src/object/o_picture.c:399
+#: gschem/src/object/o_picture.c:397
 msgid "Failed to replace picture"
 msgstr "<b>ban breachy knong kar chomnuosa roubpheap</b>"
 
-#: gschem/src/object/o_picture.c:402
+#: gschem/src/object/o_picture.c:400
 msgid "<b>Failed to replace picture</b>"
 msgstr "<b>ban breachy knong kar chomnuosa roubpheap</b>"
 
-#: gschem/src/object/o_picture.c:427
+#: gschem/src/object/o_picture.c:425
 msgid "Orginal size"
 msgstr "star tomham"
 
-#: gschem/src/object/o_picture.c:429
+#: gschem/src/object/o_picture.c:427
 msgid "When checked the image size will be exported"
 msgstr "pel thik tomham roubpheap nung trauv ban neachenh"
 
-#: gschem/src/object/o_picture.c:621
+#: gschem/src/object/o_picture.c:619
 msgid "An unknown error occurred"
 msgstr "min skal kamhosa muoy ban kaetlaeng"
 
-#: gschem/src/object/o_picture.c:624
+#: gschem/src/object/o_picture.c:622
 msgid "<b>Failed to load picture</b>"
 msgstr "<b>breachy knong kar phtok eksar roubpheap</b>"
 
-#: gschem/src/object/o_picture.c:625
+#: gschem/src/object/o_picture.c:623
 msgid "Load failed"
 msgstr "breachy knong kar phtok"
 

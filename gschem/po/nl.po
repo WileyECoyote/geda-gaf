@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gschem\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-12-11 03:27-0600\n"
+"POT-Creation-Date: 2017-12-20 01:20-0600\n"
 "PO-Revision-Date: 2014-08-31 22:35+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -465,8 +465,8 @@ msgstr "Raster"
 msgid "OFF"
 msgstr "UIT"
 
-#: gschem/src/base/gschem_status_bar.c:1875 gschem/src/object/o_picture.c:617
-#: gschem/src/object/o_picture.c:621
+#: gschem/src/base/gschem_status_bar.c:1875 gschem/src/object/o_picture.c:615
+#: gschem/src/object/o_picture.c:619
 msgid "Error"
 msgstr "Fout"
 
@@ -1255,42 +1255,42 @@ msgstr "Waarschuwing: einde van draad niet op raster coordinaat\n"
 msgid "Bus ripper symbol was not found in any component library"
 msgstr "Bus ripper symbool niet gevonden in een van de component bibliotheken"
 
-#: gschem/src/object/o_picture.c:360
+#: gschem/src/object/o_picture.c:358
 msgid "Update All"
 msgstr "Update alles"
 
-#: gschem/src/object/o_picture.c:362
+#: gschem/src/object/o_picture.c:360
 msgid "Update all selected Picture images"
 msgstr ""
 
 # Not replace photo
-#: gschem/src/object/o_picture.c:399
+#: gschem/src/object/o_picture.c:397
 msgid "Failed to replace picture"
 msgstr "Niet vervangen foto"
 
 # Error replacing images
-#: gschem/src/object/o_picture.c:402
+#: gschem/src/object/o_picture.c:400
 msgid "<b>Failed to replace picture</b>"
 msgstr "<b>Fout bij het vervangen van afbeeldingen</b>"
 
-#: gschem/src/object/o_picture.c:427
+#: gschem/src/object/o_picture.c:425
 msgid "Orginal size"
 msgstr ""
 
-#: gschem/src/object/o_picture.c:429
+#: gschem/src/object/o_picture.c:427
 msgid "When checked the image size will be exported"
 msgstr ""
 
-#: gschem/src/object/o_picture.c:621
+#: gschem/src/object/o_picture.c:619
 msgid "An unknown error occurred"
 msgstr ""
 
 # Failed to load photo
-#: gschem/src/object/o_picture.c:624
+#: gschem/src/object/o_picture.c:622
 msgid "<b>Failed to load picture</b>"
 msgstr "<b>Kan foto te laden</b>"
 
-#: gschem/src/object/o_picture.c:625
+#: gschem/src/object/o_picture.c:623
 msgid "Load failed"
 msgstr ""
 

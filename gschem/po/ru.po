@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gschem ru\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-12-11 03:27-0600\n"
+"POT-Creation-Date: 2017-12-20 01:20-0600\n"
 "PO-Revision-Date: 2015-09-13 16:05+0300\n"
 "Last-Translator: Sergey Alyoshin <alyoshin.s@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -473,8 +473,8 @@ msgid "OFF"
 msgstr "ОТКЛ"
 
 # Error
-#: gschem/src/base/gschem_status_bar.c:1875 gschem/src/object/o_picture.c:617
-#: gschem/src/object/o_picture.c:621
+#: gschem/src/base/gschem_status_bar.c:1875 gschem/src/object/o_picture.c:615
+#: gschem/src/object/o_picture.c:619
 msgid "Error"
 msgstr "Ошибка"
 
@@ -1288,42 +1288,42 @@ msgid "Bus ripper symbol was not found in any component library"
 msgstr "Шины символ рыхлителя не был найден в любой компонент библиотеки"
 
 # Update All
-#: gschem/src/object/o_picture.c:360
+#: gschem/src/object/o_picture.c:358
 msgid "Update All"
 msgstr "обновить все"
 
-#: gschem/src/object/o_picture.c:362
+#: gschem/src/object/o_picture.c:360
 msgid "Update all selected Picture images"
 msgstr ""
 
 # Квадратные скобки добавлены для единообразия
-#: gschem/src/object/o_picture.c:399
+#: gschem/src/object/o_picture.c:397
 msgid "Failed to replace picture"
 msgstr "Не удалось заменить изображение"
 
 # Квадратные скобки добавлены для единообразия
-#: gschem/src/object/o_picture.c:402
+#: gschem/src/object/o_picture.c:400
 msgid "<b>Failed to replace picture</b>"
 msgstr "<b>Не удалось заменить изображение</b>"
 
-#: gschem/src/object/o_picture.c:427
+#: gschem/src/object/o_picture.c:425
 msgid "Orginal size"
 msgstr ""
 
-#: gschem/src/object/o_picture.c:429
+#: gschem/src/object/o_picture.c:427
 msgid "When checked the image size will be exported"
 msgstr ""
 
-#: gschem/src/object/o_picture.c:621
+#: gschem/src/object/o_picture.c:619
 msgid "An unknown error occurred"
 msgstr ""
 
 # Failed to load picture
-#: gschem/src/object/o_picture.c:624
+#: gschem/src/object/o_picture.c:622
 msgid "<b>Failed to load picture</b>"
 msgstr "<b>Не удалось загрузить фотографию</b>"
 
-#: gschem/src/object/o_picture.c:625
+#: gschem/src/object/o_picture.c:623
 msgid "Load failed"
 msgstr ""
 

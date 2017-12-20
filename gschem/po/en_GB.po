@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-12-11 03:27-0600\n"
+"POT-Creation-Date: 2017-12-20 01:20-0600\n"
 "PO-Revision-Date: 2016-12-05 02:35-0600\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -432,8 +432,8 @@ msgstr "Arc Mode"
 msgid "OFF"
 msgstr "OFF"
 
-#: gschem/src/base/gschem_status_bar.c:1875 gschem/src/object/o_picture.c:617
-#: gschem/src/object/o_picture.c:621
+#: gschem/src/base/gschem_status_bar.c:1875 gschem/src/object/o_picture.c:615
+#: gschem/src/object/o_picture.c:619
 msgid "Error"
 msgstr "Mirror"
 
@@ -1171,39 +1171,39 @@ msgstr "Warning: Ending net at off grid coordinate\n"
 msgid "Bus ripper symbol was not found in any component library"
 msgstr "Bus ripper symbol was not found in any component library"
 
-#: gschem/src/object/o_picture.c:360
+#: gschem/src/object/o_picture.c:358
 msgid "Update All"
 msgstr "Update All"
 
-#: gschem/src/object/o_picture.c:362
+#: gschem/src/object/o_picture.c:360
 msgid "Update all selected Picture images"
 msgstr ""
 
-#: gschem/src/object/o_picture.c:399
+#: gschem/src/object/o_picture.c:397
 msgid "Failed to replace picture"
 msgstr "Failed to replace pictures"
 
-#: gschem/src/object/o_picture.c:402
+#: gschem/src/object/o_picture.c:400
 msgid "<b>Failed to replace picture</b>"
 msgstr "<b>Failed to replace picture</b>"
 
-#: gschem/src/object/o_picture.c:427
+#: gschem/src/object/o_picture.c:425
 msgid "Orginal size"
 msgstr ""
 
-#: gschem/src/object/o_picture.c:429
+#: gschem/src/object/o_picture.c:427
 msgid "When checked the image size will be exported"
 msgstr ""
 
-#: gschem/src/object/o_picture.c:621
+#: gschem/src/object/o_picture.c:619
 msgid "An unknown error occurred"
 msgstr ""
 
-#: gschem/src/object/o_picture.c:624
+#: gschem/src/object/o_picture.c:622
 msgid "<b>Failed to load picture</b>"
 msgstr "<b>Failed to load picture</b>"
 
-#: gschem/src/object/o_picture.c:625
+#: gschem/src/object/o_picture.c:623
 msgid "Load failed"
 msgstr ""
 

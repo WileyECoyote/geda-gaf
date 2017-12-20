@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-12-13 02:24-0600\n"
+"POT-Creation-Date: 2017-12-20 01:18-0600\n"
 "PO-Revision-Date: 2017-12-13 02:37-0600\n"
 "Last-Translator: Wiley E. Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -24,7 +24,9 @@ msgstr "Obtener o establecer el símbolo predeterminado para condensadores\n"
 
 #: libgedathon/include/functions.h:55
 msgid "Get or Set the default symbol for electrolytic capacitors\n"
-msgstr "Obtener o establecer el símbolo predeterminado para condensadores electrol�ticos\n"
+msgstr ""
+"Obtener o establecer el símbolo predeterminado para condensadores "
+"electrol�ticos\n"
 
 #: libgedathon/include/functions.h:56
 msgid "Get or Set the default symbol for inductor\n"
@@ -32,7 +34,8 @@ msgstr "Obtener o establecer el símbolo predeterminado para inductor\n"
 
 #: libgedathon/include/functions.h:57
 msgid "Get or Set the default operational amplifier symbol\n"
-msgstr "Obtener o establecer el símbolo del amplificador operacional predeterminado\n"
+msgstr ""
+"Obtener o establecer el símbolo del amplificador operacional predeterminado\n"
 
 #: libgedathon/include/functions.h:58
 msgid "Get or Set the default symbol for resistors\n"
@@ -43,7 +46,8 @@ msgid "Get or Set the default titleblock symbol\n"
 msgstr "Obtener o establecer el símbolo predeterminado de titleblock\n"
 
 #: libgedathon/include/geda_module.h:53
-msgid "Close all file and shutdown Libgedathon.\n"
+#, fuzzy
+msgid "Close all files and shutdown Libgedathon.\n"
 msgstr "Cierre todos los archivos y cierre Libgedathon.\n"
 
 #: libgedathon/include/geda_module.h:55

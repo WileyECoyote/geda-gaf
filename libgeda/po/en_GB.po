@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-12-07 01:38-0600\n"
+"POT-Creation-Date: 2017-12-20 01:17-0600\n"
 "PO-Revision-Date: 2012-01-31 12:15+0000\n"
 "Last-Translator: Peter TB Brett <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -973,15 +973,15 @@ msgstr ""
 msgid "Error accessing configuration"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:426
+#: libgeda/src/guile/g_rc_parse.c:425
 msgid "ERROR"
 msgstr "ERROR"
 
-#: libgeda/src/guile/g_rc_parse.c:432
+#: libgeda/src/guile/g_rc_parse.c:431
 msgid "An unknown error occurred while parsing configuration files."
 msgstr "ERROR: An unknown error occurred while parsing configuration files."
 
-#: libgeda/src/guile/g_rc_parse.c:451
+#: libgeda/src/guile/g_rc_parse.c:450
 msgid "The log may contain more information."
 msgstr "The log may contain more information."
 
