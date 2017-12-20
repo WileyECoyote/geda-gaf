@@ -1,6 +1,8 @@
 ## Process this file with automake to produce Makefile.in
 SUBDIRS = po docs include info scripts src module pymodules tests
 
+EXTRA_DIST = README ChangeLog ChangeLog-1.0 po/domain.mak.in
+
 pkgconfigdir    = $(libdir)/pkgconfig
 pkgconfig_DATA  = libgedathon.pc
 pkgconfig_DATA += geda.pc

@@ -1,5 +1,7 @@
 2017-12-20 Wiley E. Hill <wileyhill@gmail.com
 
+    * Makefile.am: Add EXTRA_DIST.
+
     * po/el.po: Update Greek translations.
 
 2017-12-17 Wiley E. Hill <wileyhill@gmail.com
