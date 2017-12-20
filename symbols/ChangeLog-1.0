@@ -5,6 +5,8 @@
 
     * logic/pla/16v8-DIP-1.sym: Add documentation attribute, update device.
 
+    * logic/pla/20V8-DIP-2.sym: Update device attribute.
+
 2017-12-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * logic/logic-symbols/latr.sym: Add description, update attributes.
