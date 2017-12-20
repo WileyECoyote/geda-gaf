@@ -1,5 +1,7 @@
 2017-12-20 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_font_dialog.c: Update function documentation.
+
     * tests/test_font_dialog.c: Extend checks for "title" property.
 
 2017-12-19 Wiley E. Hill <wileyhill@gmail.com>

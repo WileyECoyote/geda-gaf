@@ -1771,9 +1771,11 @@ GtkWidget *geda_font_dialog_new_with_title (const char *title)
   return dialog;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Create a New GedaFontDialog with given Font Name
+ * \par Function Description
+ *  Returns a newly contructed GedaFontDialog. This is a convenience
+ *  to combine geda_font_dialog_new and geda_font_dialog_set_font_name.
  */
 GtkWidget *geda_font_dialog_new_with_font_name (const char *font_name)
 {
