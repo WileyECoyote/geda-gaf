@@ -1,3 +1,7 @@
+2017-12-20 Wiley E. Hill <wileyhill@gmail.com
+
+    * po/el.po: Update Greek translations.
+
 2017-12-17 Wiley E. Hill <wileyhill@gmail.com
 
     * include/geda_module.h: Make "file" plural in shutdown_docs.
