@@ -1,4 +1,4 @@
-v 20050820 1
+v 20050820 2
 P 2100 900 1800 900 1 0 0
 {
 T 1900 950 5 8 1 1 0 0 1
@@ -206,16 +206,18 @@ refdes=U?
 T 400 4200 9 10 1 0 0 0 1
 16V8
 T 400 4400 5 10 0 0 0 0 1
-device=16V8-1
+device=16V8
 T 400 4600 5 10 0 0 0 0 1
 footprint=DIP20
-T 400 4800 5 10 0 0 0 0 1
+T 400 5800 5 10 0 0 0 0 1
 author=David Griffith <davidgriffith@acm.org>
-T 400 5000 5 10 0 0 0 0 1
+T 400 4800 5 10 0 0 0 0 1
 description=16v8 Programmable Logic Device
-T 400 5200 5 10 0 0 0 0 1
+T 400 5600 5 10 0 1 0 0 1
+documentation=http://www.princeton.edu/~mae412/HANDOUTS/Datasheets/GAL16V8.PDF
+T 400 5000 5 10 0 0 0 0 1
 numslots=0
-T 400 5400 5 10 0 0 0 0 1
+T 400 5200 5 10 0 0 0 0 1
 net=VCC:20
-T 400 5600 5 10 0 0 0 0 1
+T 400 5400 5 10 0 0 0 0 1
 net=GND:10
