@@ -1,6 +1,6 @@
 2017-12-20 Wiley E. Hill <wileyhill@gmail.com
 
-    * Makefile.am: Add EXTRA_DIST.
+    * Makefile.am: Add EXTRA_DIST and clean domain.mak for DISTCLEANFILES.
 
     * po/el.po: Update Greek translations.
 

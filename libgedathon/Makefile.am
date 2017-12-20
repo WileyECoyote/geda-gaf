@@ -36,5 +36,6 @@ maintainer-clean-local:
 
 MOSTLYCLEANFILES     = *.log core FILE *~
 CLEANFILES           = *.log core FILE *~
-DISTCLEANFILES       = *.log core FILE *~ geda.pc libgedathon.pc
+DISTCLEANFILES       = *.log core FILE *~ geda.pc libgedathon.pc po/domain.mak
 MAINTAINERCLEANFILES = *.log core FILE *~ Makefile.in libgedathon.pc ChangeLog
+
