@@ -1,3 +1,8 @@
+2017-12-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * logic/logic-symbols/nor2.sym: Add device, description and footprint,
+      update attributes.
+
 2017-12-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * logic/logic-symbols/latr.sym: Add description, update attributes.
