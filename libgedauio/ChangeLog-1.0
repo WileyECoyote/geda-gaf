@@ -1,4 +1,10 @@
+2017-12-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_font_dialog.c: Extend checks for "title" property.
+
 2017-12-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_font_dialog.h: Add macro geda_font_dialog_get_title.
 
     * src/widgets/geda_font_dialog.c: Revise ggeda_font_dialog_take_font_desc;
       to check for a non-zero font size before committing the sized returned

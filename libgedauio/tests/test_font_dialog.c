@@ -258,6 +258,21 @@ check_properties (void)
       }
     }
 
+    g_object_set(widget, "title", "Select Font", NULL);
+
+    g_object_get(widget, "title", &title, NULL);
+
+    if (!title) {
+      fprintf(stderr, "FAILED: set title property NULL\n");
+      result++;
+    }
+    else {
+      if (strncmp(title, "Select Font", 11)) {
+        fprintf(stderr, "FAILED: set title property <%s>\n", title);
+        result++;
+      }
+    }
+
     g_object_ref_sink(widget); /* Sink reference to the widget */
     g_object_unref(widget);    /* Destroy the widget */
   }
