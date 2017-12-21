@@ -1390,8 +1390,7 @@ multiattrib_callback_popup_duplicate(GedaMenuItem *menuitem, void *user_data)
   GedaList      *attr_list;
 
   if (!gtk_tree_selection_get_selected (
-    gtk_tree_view_get_selection (ThisDialog->treeview),
-                                        &model, &iter))
+    gtk_tree_view_get_selection (ThisDialog->treeview), &model, &iter))
   {
     /* nothing selected, nothing to do */
     return;
