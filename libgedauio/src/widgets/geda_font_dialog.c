@@ -1869,9 +1869,11 @@ geda_font_dialog_set_font_desc (GedaFontDialog *dialog, const PangoFontDescripti
   pango_font_description_free(new_desc);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Retrieve the GedaFontDialog Font Name property
+ * \par Function Description
+ *  Returns the name of the current font. The returned string
+ *  should be released when no longer needed.
  */
 char *geda_font_dialog_get_font_name (GedaFontDialog *dialog)
 {
