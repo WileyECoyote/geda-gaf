@@ -1,9 +1,13 @@
-2017-12-20 Wiley E. Hill <wileyhill@gmail.com>
+2017-12-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_font_dialog.c: Update function documentation.
 
     * src/widgets/geda_handlebox.c: Replace g_object_notify with
       GEDA_OBJECT_NOTIFY macro.
+
+2017-12-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_font_dialog.c: Update function documentation.
 
     * tests/test_font_dialog.c: Extend checks for "title" property.
 

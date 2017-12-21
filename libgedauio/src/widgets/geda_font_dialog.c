@@ -1790,9 +1790,10 @@ GtkWidget *geda_font_dialog_new_with_font_name (const char *font_name)
   return (GtkWidget*)dialog;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Create a New GedaFontDialog
+ * \par Function Description
+ *  Returns a newly contructed GedaFontDialog.
  */
 GtkWidget *geda_font_chooser_dialog_new (const char *title, GtkWindow *parent)
 {
@@ -1806,12 +1807,12 @@ GtkWidget *geda_font_chooser_dialog_new (const char *title, GtkWindow *parent)
   return dialog;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Retrieve the GedaFontDialog Font Property
+ * \par Function Description
+ *  Returns a GdkFont associated with the GedaFontDialog.
  */
-GdkFont*
-geda_font_dialog_get_font (GedaFontDialog *dialog)
+GdkFont *geda_font_dialog_get_font (GedaFontDialog *dialog)
 {
   g_return_val_if_fail (GEDA_IS_FONT_DIALOG (dialog), NULL);
 
