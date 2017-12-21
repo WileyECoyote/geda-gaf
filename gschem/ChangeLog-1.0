@@ -1,3 +1,8 @@
+2017-12-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_autonumber.c: Translate DialogStrings. Replace g_object_set
+      "visible" with gtk_widget_show.
+
 2017-12-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/ Revise o_grips_start; eliminate draw_grips and

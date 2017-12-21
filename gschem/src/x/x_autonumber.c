@@ -1754,17 +1754,18 @@ GtkWidget *autonumber_create_dialog(GschemToplevel  *w_current,
   gtk_frame_set_label_widget ((GtkFrame*)frame, label);
 
   alignment = gtk_alignment_new (0, 0, 1, 1);
-  g_object_set (alignment, "visible", TRUE, NULL);
+  gtk_widget_show (alignment);
+
   geda_container_add (frame, alignment);
   gtk_alignment_set_padding (GTK_ALIGNMENT (alignment), 0, 0,
                              DIALOG_INDENTATION, DIALOG_INDENTATION);
 
   upper_vbox = gtk_vbox_new (FALSE, 0);
-  g_object_set (upper_vbox, "visible", TRUE, NULL);
+  gtk_widget_show (upper_vbox);
   geda_container_add (alignment, upper_vbox);
 
   upper_table = (GtkTable*)gtk_table_new (3, 2, FALSE);
-  g_object_set (upper_table, "visible", TRUE, NULL);
+  gtk_widget_show ((GtkWidget*)upper_table);
   gtk_box_pack_start (GTK_BOX (upper_vbox), (GtkWidget*)upper_table, TRUE, TRUE, 0);
   gtk_table_set_row_spacings (upper_table, DIALOG_V_SPACING);
   gtk_table_set_col_spacings (upper_table, DIALOG_H_SPACING);
@@ -1812,7 +1813,7 @@ GtkWidget *autonumber_create_dialog(GschemToplevel  *w_current,
                        NULL);
 
   geda_container_add (upper_vbox, hbox);
-  g_object_set (hbox, "visible", TRUE, NULL);
+  gtk_widget_show (hbox);
 
   autonumber_create_filter_options (ThisDialog, autotext, hbox);
 
@@ -1826,17 +1827,17 @@ GtkWidget *autonumber_create_dialog(GschemToplevel  *w_current,
   gtk_frame_set_label_widget (GTK_FRAME(frame), label);
 
   alignment = gtk_alignment_new (0, 0, 1, 1);
-  g_object_set (alignment, "visible", TRUE, NULL);
+  gtk_widget_show (alignment);
   geda_container_add (frame, alignment);
   gtk_alignment_set_padding (GTK_ALIGNMENT (alignment), 0, 0,
                              DIALOG_INDENTATION, DIALOG_INDENTATION);
 
   lower_vbox = gtk_vbox_new (FALSE, 3);
-  g_object_set (lower_vbox, "visible", TRUE, NULL);
+  gtk_widget_show (lower_vbox);
   geda_container_add (alignment, lower_vbox);
 
   lower_table = (GtkTable*)gtk_table_new (2, 2, FALSE);
-  g_object_set (lower_table, "visible", TRUE, NULL);
+  gtk_widget_show ((GtkWidget*)lower_table);
   gtk_box_pack_start (GTK_BOX (lower_vbox), (GtkWidget*)lower_table, TRUE, TRUE, 0);
   gtk_table_set_row_spacings (lower_table, DIALOG_V_SPACING);
   gtk_table_set_col_spacings (lower_table, DIALOG_H_SPACING);
