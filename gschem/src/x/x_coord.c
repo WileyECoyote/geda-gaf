@@ -63,10 +63,9 @@ static GtkTargetEntry dnd_target_list[] = {
  *          is not a Drag-N-Drop Source.
 */
 
-/*! \brief When Drag Received from the Source
- *
- *  \par Function Description
- *
+/*!
+ * \brief When Drag Received from the Source
+ * \par Function Description
  * Called when the data has been received from the source. We should check
  * the GtkSelectionData sent by the source, and do something with the data.
  * After handling the data we call complete the operation by calling the
@@ -207,10 +206,9 @@ void x_dialog_coord_dnd_drag_receive(GtkWidget        *widget,
 #endif
 }
 
-/*! \brief When Drag Motion over the Destination
- *
- *  \par Function Description
- *
+/*!
+ * \brief When Drag Motion over the Destination
+ * \par Function Description
  *  Called when a drag is over the destination.
  *
  * \return FALSE if the operation should continue
@@ -225,10 +223,9 @@ bool x_dialog_coord_drag_motion (GtkWidget      *widget,
   return  FALSE;
 }
 
-/*! \brief When Drag gets Dropped om the Drawing Area
- *
- *  \par Function Description
- *
+/*!
+ * \brief When Drag gets Dropped om the Drawing Area
+ * \par Function Description
  * Called when the user releases (drops) the selection. We choose the
  * target type we wish the source could send. We call gtk_drag_get_data
  * which will emit "drag-data-get" on the source, passing along our wish.
@@ -318,10 +315,9 @@ bool x_dialog_coord_drag_drop (GtkWidget      *widget,
 
 /** @} end-subgroup Coordinates-Drag-N-Drop-Destination  */
 
-/*! \brief Response function for the coord dialog
- *
- *  \par Function Description
- *
+/*!
+ * \brief Response function for the coord dialog
+ * \par Function Description
  *  This function destroys the coord dialog box and invalidates the
  *  pointers store in toplevel to the entries.
  */
@@ -333,8 +329,9 @@ void x_dialog_coord_dialog_response(GtkWidget      *Dialog, int response,
   w_current->screen_entry = NULL;
 }
 
-/*! \brief Update the coordinates in the coord dialog box.
- *  \par Function Description
+/*!
+ * \brief Update the coordinates in the coord dialog box.
+ * \par Function Description
  *  This function takes the screen coordinates and prints the
  *  screen and the world coordinates in the coord dialog.
  */
@@ -446,10 +443,9 @@ static void co_on_entry_activate (GedaEntry *entry, GschemDialog *Dialog)
   }
 }
 
-/*! \brief Create the Coordinates Dialog
- *
- *  \par Function Description
- *
+/*!
+ * \brief Create the Coordinates Dialog
+ * \par Function Description
  *  This function creates the coord dialog box.
  */
 void x_dialog_coord_dialog (GschemToplevel *w_current)

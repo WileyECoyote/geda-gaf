@@ -6,6 +6,8 @@
     * src/x/x_autonumber.c: Translate DialogStrings. Replace g_object_set
       "visible" with gtk_widget_show.
 
+    * src/x/x_coord.c: Update/reformat Doxygen blocks.
+
 2017-12-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/ Revise o_grips_start; eliminate draw_grips and
