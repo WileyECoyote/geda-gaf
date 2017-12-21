@@ -2,6 +2,9 @@
 
     * src/widgets/geda_font_dialog.c: Update function documentation.
 
+    * src/widgets/geda_handlebox.c: Replace g_object_notify with
+      GEDA_OBJECT_NOTIFY macro.
+
     * tests/test_font_dialog.c: Extend checks for "title" property.
 
 2017-12-19 Wiley E. Hill <wileyhill@gmail.com>

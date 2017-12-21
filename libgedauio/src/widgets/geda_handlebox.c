@@ -1845,7 +1845,7 @@ geda_handle_box_set_handle_position (GedaHandleBox   *handle_box,
 
   if ((GtkPositionType) handle_box->handle_position != position) {
     handle_box->handle_position = position;
-    g_object_notify ((GObject*)handle_box, "handle-position");
+    GEDA_OBJECT_NOTIFY (handle_box, "handle-position");
     gtk_widget_queue_resize ((GtkWidget*)handle_box);
   }
 }
@@ -1893,7 +1893,7 @@ geda_handle_box_set_shadow_type (GedaHandleBox *handle_box, GtkShadowType type)
   if ((GtkShadowType) handle_box->shadow_type != type) {
 
     handle_box->shadow_type = type;
-    g_object_notify ((GObject*)handle_box, "shadow-type");
+    GEDA_OBJECT_NOTIFY (handle_box, "shadow-type");
     gtk_widget_queue_resize ((GtkWidget*)handle_box);
   }
 }
@@ -1986,10 +1986,10 @@ geda_handle_box_set_snap_edge (GedaHandleBox *handle_box, GtkPositionType edge)
 
     handle_box->snap_edge = edge;
 
-      g_object_freeze_notify ((GObject*)handle_box);
-      g_object_notify ((GObject*)handle_box, "snap-edge");
-      g_object_notify ((GObject*)handle_box, "snap-edge-set");
-      g_object_thaw_notify ((GObject*)handle_box);
+    g_object_freeze_notify ((GObject*)handle_box);
+      GEDA_OBJECT_NOTIFY (handle_box, "snap-edge");
+      GEDA_OBJECT_NOTIFY (handle_box, "snap-edge-set");
+    g_object_thaw_notify ((GObject*)handle_box);
   }
 }
 
