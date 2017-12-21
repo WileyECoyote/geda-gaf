@@ -114,14 +114,14 @@ typedef enum {
  *  { "Hook-Up-String", "Label", "Tooltip string"},
  */
 static WidgetStringData DialogStrings[] = {
-  { "scope_text",      "Search for:",                 "Set the search criteria"},
-  { "scope_number",    "Autonumber text in:",         "Set the context of the search scope"},
-  { "scope_skip",      "Skip numbers found in:",      "Set where NOT to look for numbers"},
-  { "sort_order",      "Sort order:",                 "Select the orientation of the Scan method"},
-  { "opt_startnum",    "Starting number:",            "Set the starting number for the current scan"},
-  { "opt_removenum",   "    Remove numbers:",         "Remove existing reference numbers"},
-  { "opt_slotting",    "Automatic slotting:",         "Automatic slotting"},
-  { "scope_overwrite", "Overwrite existing numbers:", "Overwrite existing numbers"},
+  { "scope_text",      N_("Search for:"),                 N_("Set the search criteria")},
+  { "scope_number",    N_("Autonumber text in:"),         N_("Set the context of the search scope")},
+  { "scope_skip",      N_("Skip numbers found in:"),      N_("Set where NOT to look for numbers")},
+  { "sort_order",      N_("Sort order:"),                 N_("Select the orientation of the Scan method")},
+  { "opt_startnum",    N_("Starting number:"),            N_("Set the starting number for the current scan")},
+  { "opt_removenum",   N_("    Remove numbers:"),         N_("Remove existing reference numbers")},
+  { "opt_slotting",    N_("Automatic slotting:"),         N_("Automatic slotting")},
+  { "scope_overwrite", N_("Overwrite existing numbers:"), N_("Overwrite existing numbers")},
   { NULL, NULL, NULL},
 };
 
