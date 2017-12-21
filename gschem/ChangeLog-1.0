@@ -1,5 +1,8 @@
 2017-12-21 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_invalidate.c: Use gschem_toplevel_get_grips_half_size in
+      o_invalidate_rectangle instead of "w_current->grip_size >> 1".
+
     * src/x/x_autonumber.c: Translate DialogStrings. Replace g_object_set
       "visible" with gtk_widget_show.
 
