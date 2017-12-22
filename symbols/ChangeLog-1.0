@@ -6,6 +6,8 @@
 
     * logic/pla/PAL12H6-1.sym: Add description, update attributes.
 
+    * logic/pla/PAL16L8-1.sym: Add description, update attributes.
+
 2017-12-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * logic/logic-symbols/nor2.sym: Add device, description and footprint,
