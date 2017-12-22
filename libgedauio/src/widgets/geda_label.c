@@ -6359,6 +6359,7 @@ geda_label_set_mnemonic_widget (GedaLabel *label, GtkWidget *widget)
   if (priv->mnemonic_widget) {
 
     gtk_widget_remove_mnemonic_label(priv->mnemonic_widget, (GtkWidget*)label);
+
     g_object_weak_unref ((GObject*)priv->mnemonic_widget,
                          label_mnemonic_widget_weak_notify,
                          label);
