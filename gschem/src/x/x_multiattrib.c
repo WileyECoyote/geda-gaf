@@ -1468,7 +1468,8 @@ multiattrib_callback_popup_delete(GedaMenuItem *menuitem, void *user_data)
                       COLUMN_ATTRIBUTE_GEDALIST, &attr_list,
                       -1);
 
-  multiattrib_action_delete_attributes (ThisDialog, geda_list_get_glist (attr_list));
+  multiattrib_action_delete_attributes (ThisDialog,
+                                        geda_list_get_glist (attr_list));
 
   /* update the treeview contents */
   multiattrib_update (ThisDialog);
