@@ -564,7 +564,7 @@ void x_dialog_edit_text (GschemToplevel *w_current, GedaObject *text_object)
                       (GtkAttachOptions) ( GTK_FILL),
                       (GtkAttachOptions) (0), 0, 0);
 
-    g_signal_connect (G_OBJECT (font_button), "font-set",
+    g_signal_connect (font_button, "font-set",
                       G_CALLBACK (widget_value_modified),
                       NULL);
     g_signal_connect (G_OBJECT (RotationSpin), "insert-text",
