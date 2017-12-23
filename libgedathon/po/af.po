@@ -20,45 +20,54 @@ msgstr ""
 "X-Language: C\n"
 "X-Source-Language: C\n"
 
+# Get or Set the default symbol for capacitors
 #: libgedathon/include/functions.h:54
 msgid "Get or Set the default symbol for capacitors\n"
-msgstr ""
+msgstr "Kry of Stel die verstek simbool vir kapasitors\n"
 
+# Get or Set the default symbol for electrolytic capacitors
 #: libgedathon/include/functions.h:55
 msgid "Get or Set the default symbol for electrolytic capacitors\n"
-msgstr ""
+msgstr "Kry of Stel die verstek simbool vir elektrolitiese kapasitors\n"
 
+# Get or Set the default symbol for inductor
 #: libgedathon/include/functions.h:56
 msgid "Get or Set the default symbol for inductor\n"
-msgstr ""
+msgstr "Kry of Stel die verstek simbool vir induktor\n"
 
+# Get or Set the default operational amplifier symbol
 #: libgedathon/include/functions.h:57
 msgid "Get or Set the default operational amplifier symbol\n"
-msgstr ""
+msgstr "Get or Set the default operational amplifier symbol\n"
 
+# Get or Set the default symbol for resistors
 #: libgedathon/include/functions.h:58
 msgid "Get or Set the default symbol for resistors\n"
-msgstr ""
+msgstr "Kry of Stel die verstek simbool vir weerstande\n"
 
+# Get or Set the default titleblock symbol
 #: libgedathon/include/functions.h:59
 msgid "Get or Set the default titleblock symbol\n"
-msgstr ""
+msgstr "Kry of Stel die verstek titelblok simbool in\n"
 
+# Close all files and shutdown Libgedathon
 #: libgedathon/include/geda_module.h:53
 msgid "Close all files and shutdown Libgedathon.\n"
-msgstr ""
+msgstr "Sluit alle lêers en sluit Libgedathon.\n"
 
+# Append a folder to the library search path
 #: libgedathon/include/geda_module.h:55
 msgid "Append a folder to the library search path.\n"
-msgstr ""
+msgstr "Voeg 'n gids by die biblioteek se soekpad.\n"
 
+# Creates a gafrc file in the current directory
 #: libgedathon/include/geda_module.h:56
 msgid "Creates a gafrc file in the current directory.\n"
-msgstr ""
+msgstr "Skep 'n gafrc-lêer in die huidige gids.\n"
 
 #: libgedathon/include/geda_module.h:59
 msgid "Retrieve list of all pages.\n"
-msgstr ""
+msgstr "Haal lys van alle bladsye op.\n"
 
 #: libgedathon/include/geda_module.h:60
 msgid "Get pointer to the active page.\n"
