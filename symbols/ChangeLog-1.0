@@ -4,6 +4,8 @@
 
     * logic/pla/PAL20X8-1.sym: Add description, update attributes.
 
+    * logic/pla/PAL20X10-1.sym: Add description, update attributes.
+
 2017-12-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * logic/pla/22V10-PLCC.sym: Add description, update attributes.
