@@ -1,3 +1,7 @@
+2017-12-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * opto/ACPL827-1.sym: Add symbol; dual optocoupler.
+
 2017-12-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * logic/pla/22V10-PLCC.sym: Add description, update attributes.
