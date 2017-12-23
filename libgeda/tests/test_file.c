@@ -944,6 +944,23 @@ int test_path (void)
   }
 
   /* === Function 04: geda_sys_data_path geda_file_path_sys_data === */
+
+  path = (char*) geda_sys_data_path();
+
+  if (path == NULL) {
+    fprintf(stderr, "FAILED: (F030401A) geda_sys_data_path\n");
+    result++;
+  }
+  else {
+
+    if (!g_file_test (path, G_FILE_TEST_IS_DIR)) {
+      fprintf(stderr, "FAILED: (F030401B) geda_sys_data_path <%s>\n", path);
+      result++;
+    }
+  }
+
+  path = NULL;
+
   /* === Function 05: geda_sys_doc_path geda_file_path_sys_doc === */
   /* === Function 06: geda_sys_config_path geda_file_path_sys_config === */
   /* === Function 07: geda_user_config_path geda_file_path_user_config === */

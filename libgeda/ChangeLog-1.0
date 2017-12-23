@@ -1,3 +1,7 @@
+2017-12-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_file.c: Add check for geda_file_path_sys_data.
+
 2017-12-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_file.c: Update geda_file_path_get_dirname function
