@@ -479,7 +479,7 @@ static void print_dialog_instance_init (PrintDialog * dialog)
   dialog->instance_type = print_dialog_get_type();
 
   /* Initialize properties */
-  g_object_set (G_OBJECT (dialog),
+  g_object_set (dialog,
                 /* GtkWindow */
                 "title", _("Print..."),
                 "modal", TRUE, "destroy-with-parent", TRUE, NULL);
