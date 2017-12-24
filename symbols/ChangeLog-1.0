@@ -2,6 +2,8 @@
 
     * opto/ACPL827-1.sym: Add symbol; dual optocoupler.
 
+    * logic/pla/16V8-DIP-1.sym: Rename file with upper case "V".
+
     * logic/pla/PAL20X8-1.sym: Add description, update attributes.
 
     * logic/pla/PAL20X10-1.sym: Add description, update attributes.
