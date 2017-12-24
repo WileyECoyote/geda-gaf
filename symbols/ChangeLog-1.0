@@ -2,6 +2,8 @@
 
     * logic/pla/22V10-DIP-1.sym: Adjust pin spacing, update attributes.
 
+    * logic/pla/PAL12H6-1.sym: Adjust pin locations, update attributes.
+
 2017-12-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * opto/ACPL827-1.sym: Add symbol; dual optocoupler.
