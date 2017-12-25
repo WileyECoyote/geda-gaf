@@ -1,7 +1,8 @@
 2017-12-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * logic/pla/20V8-DIP-1.sym: Add value, remove suggested library,
-      update attributes. Adjust pin locations.
+      update attributes. Adjust pin locations, and add pins for VCC
+      and GND.
 
     * logic/pla/22V10-DIP-1.sym: Adjust pin spacing, update attributes.
 

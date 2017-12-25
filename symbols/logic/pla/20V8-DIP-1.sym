@@ -10,10 +10,6 @@ T 300 5700 5 10 0 0 0 0 1
 description=Programmable Logic Device
 T 300 5300 5 10 0 0 0 0 1
 numslots=0
-T 1800 4600 3 8 0 1 0 0 1
-net=VCC:24
-T 1782 150 3 8 0 1 0 0 1
-net=GND:12
 P 300 4600 0 4600 1 0 1
 {
 T 200 4650 5 8 1 1 0 6 1
@@ -146,6 +142,17 @@ pintype=in
 T 350 200 3 8 1 1 0 0 1
 pinlabel=I11/OE
 }
+P 2000 200 1700 200 1 0 0
+{
+T 1650 200 3 10 1 1 0 6 1
+pinlabel=GND
+T 1800 250 5 8 1 1 0 0 1
+pinnumber=12
+T 1800 250 5 8 0 1 0 0 1
+pinseq=12
+T 1650 175 5 8 0 1 0 8 1
+pintype=pwr
+}
 P 1700 600 2000 600 1 0 1
 {
 T 1800 650 5 8 1 1 0 0 1
@@ -255,6 +262,17 @@ T 1650 4175 5 10 0 1 0 8 1
 pintype=tri
 T 1650 4200 3 8 1 1 0 6 1
 pinlabel=I13
+}
+P 2000 4600 1700 4600 1 0 0
+{
+T 1650 4600 3 10 1 1 0 6 1
+pinlabel=VCC
+T 1800 4650 5 8 1 1 0 0 1
+pinnumber=24
+T 1800 4650 5 8 0 1 0 0 1
+pinseq=24
+T 1650 4575 5 8 0 1 0 8 1
+pintype=pwr
 }
 T 300 6300 5 10 0 0 0 0 1
 author=Wojciech M. Zabolotny wzabATise.pw.edu.pl
