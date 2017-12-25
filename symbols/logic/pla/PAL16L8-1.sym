@@ -1,110 +1,110 @@
 v 20121031 2
-T 300 5300 5 10 0 0 0 0 1
+T 300 5700 5 10 0 0 0 0 1
 device=PAL16L8
-T 1700 4500 8 10 1 1 0 6 1
+T 1700 4900 8 10 1 1 0 6 1
 refdes=U?
-T 1300 4900 5 10 0 0 0 0 1
+T 1300 5300 5 10 0 0 0 0 1
 slot=1
-T 300 4700 9 10 0 1 0 0 1
+T 300 5100 9 10 0 1 0 0 1
 footprint=DIP20
-B 300 0 1400 4400 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+B 300 0 1400 4800 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+P 300 4600 0 4600 1 0 1
+{
+T 350 4600 3 10 1 1 0 0 1
+pinlabel=I1
+T 150 4650 5 8 1 1 0 6 1
+pinnumber=1
+T 150 4650 5 8 0 1 0 6 1
+pinseq=1
+T 350 4575 5 8 0 1 0 2 1
+pintype=in
+}
 P 300 4200 0 4200 1 0 1
 {
 T 350 4200 3 10 1 1 0 0 1
-pinlabel=I1
+pinlabel=I2
 T 150 4250 5 8 1 1 0 6 1
-pinnumber=1
+pinnumber=2
 T 150 4250 5 8 0 1 0 6 1
-pinseq=1
+pinseq=2
 T 350 4175 5 8 0 1 0 2 1
 pintype=in
 }
 P 300 3800 0 3800 1 0 1
 {
 T 350 3800 3 10 1 1 0 0 1
-pinlabel=I2
+pinlabel=I3
 T 150 3850 5 8 1 1 0 6 1
-pinnumber=2
+pinnumber=3
 T 150 3850 5 8 0 1 0 6 1
-pinseq=2
+pinseq=3
 T 350 3775 5 8 0 1 0 2 1
 pintype=in
 }
 P 300 3400 0 3400 1 0 1
 {
 T 350 3400 3 10 1 1 0 0 1
-pinlabel=I3
+pinlabel=I4
 T 150 3450 5 8 1 1 0 6 1
-pinnumber=3
+pinnumber=4
 T 150 3450 5 8 0 1 0 6 1
-pinseq=3
+pinseq=4
 T 350 3375 5 8 0 1 0 2 1
 pintype=in
 }
 P 300 3000 0 3000 1 0 1
 {
 T 350 3000 3 10 1 1 0 0 1
-pinlabel=I4
+pinlabel=I5
 T 150 3050 5 8 1 1 0 6 1
-pinnumber=4
+pinnumber=5
 T 150 3050 5 8 0 1 0 6 1
-pinseq=4
+pinseq=5
 T 350 2975 5 8 0 1 0 2 1
 pintype=in
 }
 P 300 2600 0 2600 1 0 1
 {
 T 350 2600 3 10 1 1 0 0 1
-pinlabel=I5
+pinlabel=I6
 T 150 2650 5 8 1 1 0 6 1
-pinnumber=5
+pinnumber=6
 T 150 2650 5 8 0 1 0 6 1
-pinseq=5
+pinseq=6
 T 350 2575 5 8 0 1 0 2 1
 pintype=in
 }
 P 300 2200 0 2200 1 0 1
 {
 T 350 2200 3 10 1 1 0 0 1
-pinlabel=I6
+pinlabel=I7
 T 150 2250 5 8 1 1 0 6 1
-pinnumber=6
+pinnumber=7
 T 150 2250 5 8 0 1 0 6 1
-pinseq=6
+pinseq=7
 T 350 2175 5 8 0 1 0 2 1
 pintype=in
 }
 P 300 1800 0 1800 1 0 1
 {
 T 350 1800 3 10 1 1 0 0 1
-pinlabel=I7
+pinlabel=I8
 T 150 1850 5 8 1 1 0 6 1
-pinnumber=7
+pinnumber=8
 T 150 1850 5 8 0 1 0 6 1
-pinseq=7
+pinseq=8
 T 350 1775 5 8 0 1 0 2 1
 pintype=in
 }
 P 300 1400 0 1400 1 0 1
 {
 T 350 1400 3 10 1 1 0 0 1
-pinlabel=I8
-T 150 1450 5 8 1 1 0 6 1
-pinnumber=8
-T 150 1450 5 8 0 1 0 6 1
-pinseq=8
-T 350 1375 5 8 0 1 0 2 1
-pintype=in
-}
-P 300 1000 0 1000 1 0 1
-{
-T 350 1000 3 10 1 1 0 0 1
 pinlabel=I9
-T 150 1050 5 8 1 1 0 6 1
+T 150 1450 5 8 1 1 0 6 1
 pinnumber=9
-T 150 1050 5 8 0 1 0 6 1
+T 150 1450 5 8 0 1 0 6 1
 pinseq=9
-T 350 975 5 8 0 1 0 2 1
+T 350 1375 5 8 0 1 0 2 1
 pintype=in
 }
 P 2000 200 1700 200 1 0 0
@@ -118,15 +118,15 @@ pinseq=10
 T 1650 175 5 8 0 1 0 8 1
 pintype=pwr
 }
-P 300 600 0 600 1 0 1
+P 300 1000 0 1000 1 0 1
 {
-T 350 600 3 10 1 1 0 0 1
+T 350 1000 3 10 1 1 0 0 1
 pinlabel=I10
-T 200 650 5 8 1 1 0 6 1
+T 200 1050 5 8 1 1 0 6 1
 pinnumber=11
-T 200 650 5 8 0 1 0 6 1
+T 200 1050 5 8 0 1 0 6 1
 pinseq=11
-T 350 575 5 8 0 1 0 2 1
+T 350 975 5 8 0 1 0 2 1
 pintype=in
 }
 P 1700 1000 2000 1000 1 0 1
@@ -217,22 +217,22 @@ pinseq=19
 T 1650 3775 5 8 0 1 0 8 1
 pintype=out
 }
-P 2000 4200 1700 4200 1 0 0
+P 2000 4600 1700 4600 1 0 0
 {
-T 1650 4200 3 10 1 1 0 6 1
+T 1650 4600 3 10 1 1 0 6 1
 pinlabel=VCC
-T 1850 4250 5 8 1 1 0 0 1
+T 1850 4650 5 8 1 1 0 0 1
 pinnumber=20
-T 1850 4250 5 8 0 1 0 0 1
+T 1850 4650 5 8 0 1 0 0 1
 pinseq=20
-T 1650 4175 5 8 0 1 0 8 1
+T 1650 4575 5 8 0 1 0 8 1
 pintype=pwr
 }
-T 300 5100 5 10 0 1 0 0 1
+T 300 5500 5 10 0 1 0 0 1
 description=Progammable Array Logic
-T 300 4500 5 10 1 1 0 0 1
+T 300 4900 5 10 1 1 0 0 1
 value=PAL16L8
-T 300 4900 9 10 0 0 0 0 1
+T 300 5300 9 10 0 0 0 0 1
 numslots=0
-T 300 5500 5 10 0 0 0 0 1
+T 300 5900 5 10 0 0 0 0 1
 author=AutoTron

@@ -8,7 +8,8 @@
 
     * logic/pla/PAL12H6-1.sym: Adjust pin locations, update attributes.
 
-    * logic/pla/PAL16L8-1.sym: Adjust pin locations, update attributes.
+    * logic/pla/PAL16L8-1.sym: Adjust pin locations, update attributes,
+      resize symbol to match similar devices.
 
     * logic/pla/PAL20X4-1.sym: Hide pintype attributes.
 
