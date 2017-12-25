@@ -6,6 +6,8 @@
 
     * logic/pla/PAL16L8-1.sym: Adjust pin locations, update attributes.
 
+    * logic/pla/PAL20X4-1.sym: Hide pintype attributes.
+
 2017-12-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * opto/ACPL827-1.sym: Add symbol; dual optocoupler.
