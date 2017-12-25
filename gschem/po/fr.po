@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr_FR\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-12-20 01:20-0600\n"
+"POT-Creation-Date: 2017-12-25 02:29-0600\n"
 "PO-Revision-Date: 2016-12-28 19:57-0600\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1291,7 +1291,77 @@ msgstr "Annuler Erreur"
 msgid "Undo failed"
 msgstr "Échec de l'annulation"
 
-#: gschem/src/x/x_autonumber.c:610
+# Search for
+#: gschem/src/x/x_autonumber.c:117
+msgid "Search for:"
+msgstr "Rechercher:"
+
+# Set the search criteria
+#: gschem/src/x/x_autonumber.c:117
+msgid "Set the search criteria"
+msgstr "Définir les critères de recherche"
+
+#: gschem/src/x/x_autonumber.c:118
+msgid "Autonumber text in:"
+msgstr "Numéroter automatiquement le texte dans:"
+
+# Set the context of the search scope
+#: gschem/src/x/x_autonumber.c:118
+msgid "Set the context of the search scope"
+msgstr "Définir le contexte de la portée de la recherche"
+
+#: gschem/src/x/x_autonumber.c:119
+msgid "Skip numbers found in:"
+msgstr ""
+
+# Set where NOT to look for numbers
+#: gschem/src/x/x_autonumber.c:119
+msgid "Set where NOT to look for numbers"
+msgstr "Définir où ne pas rechercher les numéros"
+
+#: gschem/src/x/x_autonumber.c:120
+msgid "Sort order:"
+msgstr ""
+
+# Select the orientation of the Scan method
+#: gschem/src/x/x_autonumber.c:120
+msgid "Select the orientation of the Scan method"
+msgstr "Sélectionnez l'orientation de la méthode de scan"
+
+# Starting number:
+#: gschem/src/x/x_autonumber.c:121
+msgid "Starting number:"
+msgstr "Numéro de départ:"
+
+#: gschem/src/x/x_autonumber.c:121
+msgid "Set the starting number for the current scan"
+msgstr ""
+
+#: gschem/src/x/x_autonumber.c:122
+msgid "    Remove numbers:"
+msgstr ""
+
+#: gschem/src/x/x_autonumber.c:122
+msgid "Remove existing reference numbers"
+msgstr ""
+
+#: gschem/src/x/x_autonumber.c:123
+msgid "Automatic slotting:"
+msgstr ""
+
+#: gschem/src/x/x_autonumber.c:123
+msgid "Automatic slotting"
+msgstr ""
+
+#: gschem/src/x/x_autonumber.c:124
+msgid "Overwrite existing numbers:"
+msgstr ""
+
+#: gschem/src/x/x_autonumber.c:124
+msgid "Overwrite existing numbers"
+msgstr ""
+
+#: gschem/src/x/x_autonumber.c:609
 msgid ""
 "slotted object without slot attribute may cause problems when autonumbering "
 "slots\n"
@@ -1299,7 +1369,7 @@ msgstr ""
 "Les objets à slots sans attribut de slot sont susceptibles de créer des "
 "problèmes durant l'annotation automatique\n"
 
-#: gschem/src/x/x_autonumber.c:626
+#: gschem/src/x/x_autonumber.c:625
 #, c-format
 msgid ""
 "duplicate slot may cause problems: [symbol name=%s, number=%d, slot=%d]\n"
@@ -1307,56 +1377,55 @@ msgstr ""
 "Les slots dupiqués sont susceptibles de créer des problèmes : [symbolname="
 "%s, number=%d, slot=%d]\n"
 
-#: gschem/src/x/x_autonumber.c:934
+#: gschem/src/x/x_autonumber.c:933
 msgid "No search string given in autonumber text.\n"
 msgstr "Pas de motif de recherche fourni pour l'annotation automatique.\n"
 
-#: gschem/src/x/x_autonumber.c:1149
+#: gschem/src/x/x_autonumber.c:1148
 msgid "Diagonal"
 msgstr "en diagonal"
 
-#: gschem/src/x/x_autonumber.c:1150
+#: gschem/src/x/x_autonumber.c:1149
 msgid "Top to bottom"
 msgstr "de haut en bas"
 
-#: gschem/src/x/x_autonumber.c:1151
+#: gschem/src/x/x_autonumber.c:1150
 msgid "Bottom to top"
 msgstr "de bas en haut"
 
-#: gschem/src/x/x_autonumber.c:1152
+#: gschem/src/x/x_autonumber.c:1151
 msgid "Left to right"
 msgstr "de gauche à droite"
 
-#: gschem/src/x/x_autonumber.c:1153
+#: gschem/src/x/x_autonumber.c:1152
 msgid "Right to left"
 msgstr "de droite à gauche"
 
-#: gschem/src/x/x_autonumber.c:1154
+#: gschem/src/x/x_autonumber.c:1153
 msgid "File order"
 msgstr "dans l'ordre des éléments du fichier"
 
-#: gschem/src/x/x_autonumber.c:1638
-#, fuzzy
+#: gschem/src/x/x_autonumber.c:1637
 msgid "Filter:"
 msgstr "Filtre:"
 
-#: gschem/src/x/x_autonumber.c:1680
+#: gschem/src/x/x_autonumber.c:1679
 msgid "Selected objects"
 msgstr "les objets sélectionnés"
 
-#: gschem/src/x/x_autonumber.c:1681
+#: gschem/src/x/x_autonumber.c:1680
 msgid "Current page"
 msgstr "la page en cours"
 
-#: gschem/src/x/x_autonumber.c:1682
+#: gschem/src/x/x_autonumber.c:1681
 msgid "Whole hierarchy"
 msgstr "la hiérarchie complète"
 
-#: gschem/src/x/x_autonumber.c:1730
+#: gschem/src/x/x_autonumber.c:1729
 msgid "Autonumber text"
 msgstr "Annotation automatique"
 
-#: gschem/src/x/x_autonumber.c:1753
+#: gschem/src/x/x_autonumber.c:1752
 msgid "Scope"
 msgstr ""
 
@@ -1382,9 +1451,8 @@ msgid "Open"
 msgstr "Ouvrir"
 
 #: gschem/src/x/x_compselect.c:126
-#, fuzzy
 msgid "Open all"
-msgstr "Ouvrir fichier..."
+msgstr "Ouvre tout"
 
 #: gschem/src/x/x_compselect.c:127 gschem/src/x/x_menus.c:149
 msgid "Close"
@@ -1430,15 +1498,15 @@ msgstr ""
 msgid "Set styles ooptions"
 msgstr ""
 
+# Tooltip settings
 #: gschem/src/x/x_compselect.c:143
-#, fuzzy
 msgid "Tooltip settings"
-msgstr "Enregistrement des paramètres de la barre d'outils..."
+msgstr "Paramètres de l'info-bulle"
 
+# Enable tooltips
 #: gschem/src/x/x_compselect.c:144
-#, fuzzy
 msgid "Enable tooltips"
-msgstr "Impossible d'écrire dans"
+msgstr "Activer les info-bulles"
 
 #: gschem/src/x/x_compselect.c:145
 msgid "Disable tooltips"
@@ -1624,33 +1692,33 @@ msgstr ""
 msgid "gEDA Console"
 msgstr ""
 
-#: gschem/src/x/x_coord.c:150
+#: gschem/src/x/x_coord.c:149
 msgid "Drag & Drop"
 msgstr ""
 
-#: gschem/src/x/x_coord.c:156 gschem/src/x/x_dnd.c:589
+#: gschem/src/x/x_coord.c:155 gschem/src/x/x_dnd.c:589
 msgid "An error occurred while receiving Drag & Drop data"
 msgstr ""
 "Une erreur s'est produite lors de la réception des données glisser-déposer"
 
 # Data error
-#: gschem/src/x/x_coord.c:157
+#: gschem/src/x/x_coord.c:156
 msgid "Data error"
 msgstr "Erreur de donnée"
 
-#: gschem/src/x/x_coord.c:162 gschem/src/x/x_dnd.c:591
+#: gschem/src/x/x_coord.c:161 gschem/src/x/x_dnd.c:591
 msgid "Drag & Drop failed"
 msgstr "Échec de l'insertion du contenu copié"
 
-#: gschem/src/x/x_coord.c:472
+#: gschem/src/x/x_coord.c:468
 msgid "Coordinates"
 msgstr "Mode Composant"
 
-#: gschem/src/x/x_coord.c:487
+#: gschem/src/x/x_coord.c:483
 msgid "Screen"
 msgstr "Écran"
 
-#: gschem/src/x/x_coord.c:497
+#: gschem/src/x/x_coord.c:493
 msgid "World"
 msgstr "Monde"
 
