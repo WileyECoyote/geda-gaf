@@ -1,7 +1,8 @@
 2017-12-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_edit_pin.c: Replace GtkWidget type with GtkTable to reduce
-      dynamic type cast.
+      dynamic type cast. Replace gtk_container_add with geda_container_add
+      macro.
 
     * src/x/x_menus.c: Replace gtk_container_add with geda_container_add
       macro.

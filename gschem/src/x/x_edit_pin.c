@@ -870,10 +870,10 @@ GtkWidget *x_dialog_pin_type_create_dialog(GschemToplevel *w_current)
   g_object_set (alignment, "visible", TRUE, NULL);
 
   /* Create a second table for Switch controls */
-  gtk_container_add          (GTK_CONTAINER(alignment), table);
   table = (GtkTable*)gtk_table_new (5, 5, FALSE);
   gtk_table_set_row_spacings (table, DIALOG_V_SPACING);
   gtk_table_set_col_spacings (table, DIALOG_H_SPACING);
+  geda_container_add         (alignment, table);
   g_object_set               (table, "visible", TRUE, NULL);
 
   label = GEDA_AV_LABEL_NEW (_("Set"), 0, 0);
