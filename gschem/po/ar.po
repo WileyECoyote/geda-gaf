@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-12-20 01:20-0600\n"
+"POT-Creation-Date: 2017-12-25 02:29-0600\n"
 "PO-Revision-Date: 2016-12-23 15:41-0600\n"
 "Last-Translator: عبدالله شلي (Abdellah Chelli) <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1269,69 +1269,139 @@ msgstr "التراجع عن خطأ في النظام"
 msgid "Undo failed"
 msgstr "التراجع عن الفشل"
 
-#: gschem/src/x/x_autonumber.c:610
+# Search for
+#: gschem/src/x/x_autonumber.c:117
+msgid "Search for:"
+msgstr "البحث عن:"
+
+# Set the search criteria
+#: gschem/src/x/x_autonumber.c:117
+msgid "Set the search criteria"
+msgstr "تعيين معايير البحث"
+
+# Autonumber text in:
+#: gschem/src/x/x_autonumber.c:118
+msgid "Autonumber text in:"
+msgstr "أوتونومبر النص في:"
+
+#: gschem/src/x/x_autonumber.c:118
+msgid "Set the context of the search scope"
+msgstr ""
+
+#: gschem/src/x/x_autonumber.c:119
+msgid "Skip numbers found in:"
+msgstr ""
+
+# Set where NOT to look for numbers
+#: gschem/src/x/x_autonumber.c:119
+msgid "Set where NOT to look for numbers"
+msgstr "تعيين حيث لا للبحث عن الأرقام"
+
+#: gschem/src/x/x_autonumber.c:120
+msgid "Sort order:"
+msgstr ""
+
+# Select the orientation of the Scan method
+#: gschem/src/x/x_autonumber.c:120
+msgid "Select the orientation of the Scan method"
+msgstr "حدد اتجاه طريقة المسح الضوئي"
+
+# Starting number
+#: gschem/src/x/x_autonumber.c:121
+msgid "Starting number:"
+msgstr "رقم البدء:"
+
+#: gschem/src/x/x_autonumber.c:121
+msgid "Set the starting number for the current scan"
+msgstr ""
+
+#: gschem/src/x/x_autonumber.c:122
+msgid "    Remove numbers:"
+msgstr ""
+
+#: gschem/src/x/x_autonumber.c:122
+msgid "Remove existing reference numbers"
+msgstr ""
+
+#: gschem/src/x/x_autonumber.c:123
+msgid "Automatic slotting:"
+msgstr ""
+
+#: gschem/src/x/x_autonumber.c:123
+msgid "Automatic slotting"
+msgstr ""
+
+#: gschem/src/x/x_autonumber.c:124
+msgid "Overwrite existing numbers:"
+msgstr ""
+
+#: gschem/src/x/x_autonumber.c:124
+msgid "Overwrite existing numbers"
+msgstr ""
+
+#: gschem/src/x/x_autonumber.c:609
 msgid ""
 "slotted object without slot attribute may cause problems when autonumbering "
 "slots\n"
 msgstr ""
 "﻿كائن مقسم (مشقوق) بدون سمة الشقّ قد يسبب مشاكل عند الترقيم الآلي للشقوق\n"
 
-#: gschem/src/x/x_autonumber.c:626
+#: gschem/src/x/x_autonumber.c:625
 #, c-format
 msgid ""
 "duplicate slot may cause problems: [symbol name=%s, number=%d, slot=%d]\n"
 msgstr "﻿شقّ مكرر قد يسبب مشاكل: [اسم​الرمز=%s، العدد=%d، الشقّ=%d]\n"
 
-#: gschem/src/x/x_autonumber.c:934
+#: gschem/src/x/x_autonumber.c:933
 msgid "No search string given in autonumber text.\n"
 msgstr "لا يوجد نص بحث في نص الترقيم الآلي.\n"
 
-#: gschem/src/x/x_autonumber.c:1149
+#: gschem/src/x/x_autonumber.c:1148
 msgid "Diagonal"
 msgstr "قطري"
 
-#: gschem/src/x/x_autonumber.c:1150
+#: gschem/src/x/x_autonumber.c:1149
 msgid "Top to bottom"
 msgstr "من الأعلى للأسفل"
 
-#: gschem/src/x/x_autonumber.c:1151
+#: gschem/src/x/x_autonumber.c:1150
 msgid "Bottom to top"
 msgstr "من الأسفل للأعلى"
 
-#: gschem/src/x/x_autonumber.c:1152
+#: gschem/src/x/x_autonumber.c:1151
 msgid "Left to right"
 msgstr "من اليسار لليمين"
 
-#: gschem/src/x/x_autonumber.c:1153
+#: gschem/src/x/x_autonumber.c:1152
 msgid "Right to left"
 msgstr "من اليمين لليسار"
 
-#: gschem/src/x/x_autonumber.c:1154
+#: gschem/src/x/x_autonumber.c:1153
 msgid "File order"
 msgstr "ترتيب الملف"
 
-#: gschem/src/x/x_autonumber.c:1638
-#, fuzzy
+# Filter
+#: gschem/src/x/x_autonumber.c:1637
 msgid "Filter:"
-msgstr "المرشح:"
+msgstr "منقي"
 
-#: gschem/src/x/x_autonumber.c:1680
+#: gschem/src/x/x_autonumber.c:1679
 msgid "Selected objects"
 msgstr "الكائنات المنتقاة"
 
-#: gschem/src/x/x_autonumber.c:1681
+#: gschem/src/x/x_autonumber.c:1680
 msgid "Current page"
 msgstr "الصفحة الحالية"
 
-#: gschem/src/x/x_autonumber.c:1682
+#: gschem/src/x/x_autonumber.c:1681
 msgid "Whole hierarchy"
 msgstr "التسلسل الهرمي الكامل"
 
-#: gschem/src/x/x_autonumber.c:1730
+#: gschem/src/x/x_autonumber.c:1729
 msgid "Autonumber text"
 msgstr "نص تعداد آلي"
 
-#: gschem/src/x/x_autonumber.c:1753
+#: gschem/src/x/x_autonumber.c:1752
 msgid "Scope"
 msgstr ""
 
@@ -1357,10 +1427,10 @@ msgstr "فشل إدخال البيانات الحافظة"
 msgid "Open"
 msgstr "افتح..."
 
+# Open all
 #: gschem/src/x/x_compselect.c:126
-#, fuzzy
 msgid "Open all"
-msgstr "افتح ملفا..."
+msgstr "افتح الكل"
 
 #: gschem/src/x/x_compselect.c:127 gschem/src/x/x_menus.c:149
 msgid "Close"
@@ -1410,10 +1480,10 @@ msgstr ""
 msgid "Tooltip settings"
 msgstr ""
 
+# Enable tooltips
 #: gschem/src/x/x_compselect.c:144
-#, fuzzy
 msgid "Enable tooltips"
-msgstr "‏غير قادر على الكتابة"
+msgstr "‏تمكين تلميحات الأدوات"
 
 #: gschem/src/x/x_compselect.c:145
 msgid "Disable tooltips"
@@ -1600,33 +1670,33 @@ msgid "gEDA Console"
 msgstr "gEDA وحدة التحكم الطرفية"
 
 # Drag & Drop
-#: gschem/src/x/x_coord.c:150
+#: gschem/src/x/x_coord.c:149
 msgid "Drag & Drop"
 msgstr "السحب والإفلات"
 
 # An error occurred while receiving data drag-and-drop
-#: gschem/src/x/x_coord.c:156 gschem/src/x/x_dnd.c:589
+#: gschem/src/x/x_coord.c:155 gschem/src/x/x_dnd.c:589
 msgid "An error occurred while receiving Drag & Drop data"
 msgstr "حدث خطأ أثناء تلقي البيانات السحب والإفلات"
 
 # Data error
-#: gschem/src/x/x_coord.c:157
+#: gschem/src/x/x_coord.c:156
 msgid "Data error"
 msgstr "خطأ في البيانات"
 
-#: gschem/src/x/x_coord.c:162 gschem/src/x/x_dnd.c:591
+#: gschem/src/x/x_coord.c:161 gschem/src/x/x_dnd.c:591
 msgid "Drag & Drop failed"
 msgstr "التراجع/الإعادة معطلين في الملف rc"
 
-#: gschem/src/x/x_coord.c:472
+#: gschem/src/x/x_coord.c:468
 msgid "Coordinates"
 msgstr "وضع المكون"
 
-#: gschem/src/x/x_coord.c:487
+#: gschem/src/x/x_coord.c:483
 msgid "Screen"
 msgstr "شاشة"
 
-#: gschem/src/x/x_coord.c:497
+#: gschem/src/x/x_coord.c:493
 msgid "World"
 msgstr "عالم"
 
@@ -2191,30 +2261,30 @@ msgstr ""
 msgid "Create Array"
 msgstr ""
 
+# Count
 #: gschem/src/x/x_edit_array.c:902 gschem/src/x/x_edit_array.c:972
 #: gschem/src/x/x_edit_array.c:1005
-#, fuzzy
 msgid "Count"
-msgstr "ترتيب الملف"
+msgstr "عد"
 
+# X Size
 #: gschem/src/x/x_edit_array.c:913
-#, fuzzy
 msgid "X Size"
-msgstr "﻿نقطة شبيكة"
+msgstr "X الحجم"
 
+# Y Size
 #: gschem/src/x/x_edit_array.c:916
-#, fuzzy
 msgid "Y Size"
-msgstr "﻿نقطة شبيكة"
+msgstr "حجم Y"
 
 #: gschem/src/x/x_edit_array.c:935 gschem/src/x/x_menus.c:87
 msgid "Select"
 msgstr "انتق"
 
+# Deselect
 #: gschem/src/x/x_edit_array.c:939
-#, fuzzy
 msgid "Deselect"
-msgstr "انتق"
+msgstr "إلغاء"
 
 #: gschem/src/x/x_edit_array.c:955 gschem/src/x/x_menus.c:118
 msgid "Array"
@@ -2224,10 +2294,10 @@ msgstr ""
 msgid "Row"
 msgstr ""
 
+# Offset
 #: gschem/src/x/x_edit_array.c:987 gschem/src/x/x_edit_array.c:1020
-#, fuzzy
 msgid "Offset"
-msgstr "وضع الشبكة"
+msgstr "الأوفست"
 
 #: gschem/src/x/x_edit_array.c:997
 msgid "Column"
@@ -2317,10 +2387,10 @@ msgstr ""
 msgid "Add Attribute"
 msgstr "أضف سمة"
 
+# Edit Attribute
 #: gschem/src/x/x_edit_attrib.c:412
-#, fuzzy
 msgid "Edit Attribute"
-msgstr "حرّر المواصفات"
+msgstr "تحرير السمة"
 
 #: gschem/src/x/x_edit_attrib.c:414
 msgid "Select the name of the attribute to add"
