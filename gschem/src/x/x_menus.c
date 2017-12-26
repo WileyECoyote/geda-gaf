@@ -389,6 +389,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
   bool show_pop_icons;
   bool show_pop_tips;
 
+  GHashTable     *key_hash;
   ToggleMenuData *toggler_data;
 
   /* Glib-2.40 generates console noise from gtk-lib */
@@ -615,7 +616,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
                 bool  is_a_toggle;
 
           action_name = scm_to_utf8_string (scm_symbol_to_string (scm_item_func));
-          action_keys = g_keys_find_key(action_name);
+          action_keys = g_hash_table_lookup (key_hash, action_name);
 
           if (!menu_data->buffer_menu_name) {
 
@@ -670,12 +671,12 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
           menu_item = geda_action_create_menu_item ((GedaAction*)action);
 
           free(action_name);
-
+/*
           if (action_keys) {
             free(action_keys);
             action_keys = NULL;
           }
-
+*/
           handler = g_signal_connect (action, "activate",
                                       G_CALLBACK(x_menu_execute),
                                       w_current);
@@ -729,6 +730,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
   show_recent_path = eda_config_get_boolean (cfg, group, "show-recent-path", NULL);
 
   toggler_data = NULL;
+  key_hash = g_keys_to_new_hash_table();
 
   scm_dynwind_begin (0);
   g_dynwind_window (w_current);
@@ -784,6 +786,8 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     /* Do not free *raw_menu_name */
   }
   scm_dynwind_end ();
+
+  g_hash_table_destroy (key_hash);
 
   /* Ensure File menu item exist, if not then create the item */
 
