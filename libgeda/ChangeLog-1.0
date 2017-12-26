@@ -7,6 +7,9 @@
 
           * geda_net_get_netname
           * geda_net_set_netname
+          * geda_net_get_pin_label
+          * geda_net_set_pin_label
+
 2017-12-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_file.c: Add check for geda_file_path_sys_data.

@@ -276,6 +276,30 @@ check_accessors ()
       }
     }
 
+    geda_net_set_pin_label (object1, "VCC");
+
+    str = object1->net->pin_label;
+
+    if (!str) {
+      fprintf(stderr, "FAILED: geda_net_set_pin_label\n");
+      result++;
+    }
+    else if (strcmp(str, "VCC")) {
+      fprintf(stderr, "FAILED: geda_net_set_pin_label <%s>\n", str);
+      result++;
+    }
+    else {
+      str = geda_net_get_pin_label (object1);
+      if (!str) {
+        fprintf(stderr, "FAILED: geda_net_get_pin_label\n");
+        result++;
+      }
+      else if (strcmp(str, "VCC")) {
+        fprintf(stderr, "FAILED: geda_net_get_pin_label <%s>\n", str);
+        result++;
+      }
+    }
+
     g_object_unref (object1);
   }
 
