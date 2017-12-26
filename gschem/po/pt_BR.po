@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-12-20 01:20-0600\n"
+"POT-Creation-Date: 2017-12-25 02:29-0600\n"
 "PO-Revision-Date: 2012-01-31 12:08+0000\n"
 "Last-Translator: Antonio Augusto Todo Bom Neto <atodobom@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1376,7 +1376,81 @@ msgstr "Desfaz erro"
 msgid "Undo failed"
 msgstr "Desfaz falhou"
 
-#: gschem/src/x/x_autonumber.c:610
+# Looking for source
+#: gschem/src/x/x_autonumber.c:117
+#, fuzzy
+msgid "Search for:"
+msgstr "Procurando por origem"
+
+# Set the sequence number
+#: gschem/src/x/x_autonumber.c:117
+#, fuzzy
+msgid "Set the search criteria"
+msgstr "Defina o número de sequência"
+
+#: gschem/src/x/x_autonumber.c:118
+#, fuzzy
+msgid "Autonumber text in:"
+msgstr "Autonumerar texto"
+
+#: gschem/src/x/x_autonumber.c:118
+msgid "Set the context of the search scope"
+msgstr ""
+
+#: gschem/src/x/x_autonumber.c:119
+msgid "Skip numbers found in:"
+msgstr ""
+
+# Set the sequence number
+#: gschem/src/x/x_autonumber.c:119
+#, fuzzy
+msgid "Set where NOT to look for numbers"
+msgstr "Defina o número de sequência"
+
+#: gschem/src/x/x_autonumber.c:120
+msgid "Sort order:"
+msgstr ""
+
+# Select the name of the attribute to add
+#: gschem/src/x/x_autonumber.c:120
+#, fuzzy
+msgid "Select the orientation of the Scan method"
+msgstr "Selecione o nome do atributo para adicionar"
+
+#: gschem/src/x/x_autonumber.c:121
+#, fuzzy
+msgid "Starting number:"
+msgstr "número de SLOT:"
+
+#: gschem/src/x/x_autonumber.c:121
+msgid "Set the starting number for the current scan"
+msgstr ""
+
+#: gschem/src/x/x_autonumber.c:122
+msgid "    Remove numbers:"
+msgstr ""
+
+#: gschem/src/x/x_autonumber.c:122
+msgid "Remove existing reference numbers"
+msgstr ""
+
+#: gschem/src/x/x_autonumber.c:123
+msgid "Automatic slotting:"
+msgstr ""
+
+#: gschem/src/x/x_autonumber.c:123
+msgid "Automatic slotting"
+msgstr ""
+
+#: gschem/src/x/x_autonumber.c:124
+msgid "Overwrite existing numbers:"
+msgstr ""
+
+#: gschem/src/x/x_autonumber.c:124
+msgid "Overwrite existing numbers"
+msgstr ""
+
+#: gschem/src/x/x_autonumber.c:609
 msgid ""
 "slotted object without slot attribute may cause problems when autonumbering "
 "slots\n"
@@ -1384,63 +1458,63 @@ msgstr ""
 "Objetos com slots, sem atributo slot, podem causar problemas na "
 "autonumeraçãode slots\n"
 
-#: gschem/src/x/x_autonumber.c:626
+#: gschem/src/x/x_autonumber.c:625
 #, c-format
 msgid ""
 "duplicate slot may cause problems: [symbol name=%s, number=%d, slot=%d]\n"
 msgstr ""
 "Slots duplicados podem causar problemas: [símbolo=%s, número=%d, slot=%d]\n"
 
-#: gschem/src/x/x_autonumber.c:934
+#: gschem/src/x/x_autonumber.c:933
 msgid "No search string given in autonumber text.\n"
 msgstr "Sem chave de pesquisa na autonumeração.\n"
 
-#: gschem/src/x/x_autonumber.c:1149
+#: gschem/src/x/x_autonumber.c:1148
 msgid "Diagonal"
 msgstr "Diagonal"
 
-#: gschem/src/x/x_autonumber.c:1150
+#: gschem/src/x/x_autonumber.c:1149
 msgid "Top to bottom"
 msgstr "De cima para baixo"
 
-#: gschem/src/x/x_autonumber.c:1151
+#: gschem/src/x/x_autonumber.c:1150
 msgid "Bottom to top"
 msgstr "De baixo para cima"
 
-#: gschem/src/x/x_autonumber.c:1152
+#: gschem/src/x/x_autonumber.c:1151
 msgid "Left to right"
 msgstr "Da esquerda para direita"
 
-#: gschem/src/x/x_autonumber.c:1153
+#: gschem/src/x/x_autonumber.c:1152
 msgid "Right to left"
 msgstr "Da direita para a esquerda"
 
-#: gschem/src/x/x_autonumber.c:1154
+#: gschem/src/x/x_autonumber.c:1153
 msgid "File order"
 msgstr "Ordem dos arquivos"
 
-#: gschem/src/x/x_autonumber.c:1638
+#: gschem/src/x/x_autonumber.c:1637
 #, fuzzy
 msgid "Filter:"
 msgstr "<b>Filtro:</b>"
 
-#: gschem/src/x/x_autonumber.c:1680
+#: gschem/src/x/x_autonumber.c:1679
 msgid "Selected objects"
 msgstr "Selecionar Objetos"
 
-#: gschem/src/x/x_autonumber.c:1681
+#: gschem/src/x/x_autonumber.c:1680
 msgid "Current page"
 msgstr "Página Atual"
 
-#: gschem/src/x/x_autonumber.c:1682
+#: gschem/src/x/x_autonumber.c:1681
 msgid "Whole hierarchy"
 msgstr "Toda hierarquia"
 
-#: gschem/src/x/x_autonumber.c:1730
+#: gschem/src/x/x_autonumber.c:1729
 msgid "Autonumber text"
 msgstr "Autonumerar texto"
 
-#: gschem/src/x/x_autonumber.c:1753
+#: gschem/src/x/x_autonumber.c:1752
 msgid "Scope"
 msgstr ""
 
@@ -1516,17 +1590,15 @@ msgstr ""
 msgid "Set styles ooptions"
 msgstr ""
 
-# Saving Toolbar settings
+# Tooltip settings
 #: gschem/src/x/x_compselect.c:143
-#, fuzzy
 msgid "Tooltip settings"
-msgstr "Guardar definições da barra de ferramentas..."
+msgstr "Configurações de dicas de ferramentas"
 
-# Unable to write
+# Enable tooltips
 #: gschem/src/x/x_compselect.c:144
-#, fuzzy
 msgid "Enable tooltips"
-msgstr "Não é possível gravar"
+msgstr "Ativar dicas de ferramentas"
 
 #: gschem/src/x/x_compselect.c:145
 msgid "Disable tooltips"
@@ -1671,29 +1743,26 @@ msgstr ""
 msgid "If you don't save, all your changes will be permanently lost."
 msgstr ""
 
-# Close the current page without saving
+# Close without saving
 #: gschem/src/x/x_confirm_close.c:535
-#, fuzzy
 msgid "Close without saving"
-msgstr "Fechar a página atual sem salvar"
+msgstr "Feche sem salvar"
 
-# Impossible to save page
+# unsaved page
 #: gschem/src/x/x_confirm_close.c:589
-#, fuzzy
 msgid "unsaved page"
-msgstr "Impossível salvar página"
+msgstr "página não guardada"
 
-# Saved as
+# unsaved pages
 # src/x/x_window.c:1225
 #: gschem/src/x/x_confirm_close.c:596
-#, fuzzy
 msgid "unsaved pages"
-msgstr "Salvo como"
+msgstr "páginas não guardadas"
 
+# selected pages
 #: gschem/src/x/x_confirm_close.c:603
-#, fuzzy
 msgid "selected pages"
-msgstr "Selecionar Objetos"
+msgstr "selected pages"
 
 #: gschem/src/x/x_console.c:135
 msgid "destroying history\n"
@@ -1715,35 +1784,35 @@ msgstr "** Mensagem UTF-8 inválida no log. Veja stderr ou gschem.log.\n"
 msgid "gEDA Console"
 msgstr ""
 
-#: gschem/src/x/x_coord.c:150
+#: gschem/src/x/x_coord.c:149
 msgid "Drag & Drop"
 msgstr ""
 
 # An error occurred while receiving Drag & Drop data
-#: gschem/src/x/x_coord.c:156 gschem/src/x/x_dnd.c:589
+#: gschem/src/x/x_coord.c:155 gschem/src/x/x_dnd.c:589
 msgid "An error occurred while receiving Drag & Drop data"
 msgstr "Ocorreu um erro enquanto estiver recebendo dados de arrastar e soltar"
 
 # Data error
-#: gschem/src/x/x_coord.c:157
+#: gschem/src/x/x_coord.c:156
 msgid "Data error"
 msgstr "Erro de dados"
 
 # Entering the area of transfer has failed
-#: gschem/src/x/x_coord.c:162 gschem/src/x/x_dnd.c:591
+#: gschem/src/x/x_coord.c:161 gschem/src/x/x_dnd.c:591
 msgid "Drag & Drop failed"
 msgstr "Inserção da área de tranferência falhou"
 
 # Coordinates
-#: gschem/src/x/x_coord.c:472
+#: gschem/src/x/x_coord.c:468
 msgid "Coordinates"
 msgstr "Coordenadas"
 
-#: gschem/src/x/x_coord.c:487
+#: gschem/src/x/x_coord.c:483
 msgid "Screen"
 msgstr "Janela"
 
-#: gschem/src/x/x_coord.c:497
+#: gschem/src/x/x_coord.c:493
 msgid "World"
 msgstr "Canvas"
 
@@ -2327,34 +2396,30 @@ msgstr ""
 msgid "Create Array"
 msgstr ""
 
-# File Count
+# Count
 #: gschem/src/x/x_edit_array.c:902 gschem/src/x/x_edit_array.c:972
 #: gschem/src/x/x_edit_array.c:1005
-#, fuzzy
 msgid "Count"
-msgstr "Contagem de arquivos"
+msgstr "Contagem"
 
-# Grid Size
+# X Size
 #: gschem/src/x/x_edit_array.c:913
-#, fuzzy
 msgid "X Size"
-msgstr "Tamanho da grade"
+msgstr "Tamanho X"
 
-# Grid Size
+# Y Size
 #: gschem/src/x/x_edit_array.c:916
-#, fuzzy
 msgid "Y Size"
-msgstr "Tamanho da grade"
+msgstr "Tamanho Y"
 
 #: gschem/src/x/x_edit_array.c:935 gschem/src/x/x_menus.c:87
 msgid "Select"
 msgstr "Selecionar"
 
-# Deselect All
+# Deselect
 #: gschem/src/x/x_edit_array.c:939
-#, fuzzy
 msgid "Deselect"
-msgstr "Desmarcar todos"
+msgstr "Desmarcar"
 
 #: gschem/src/x/x_edit_array.c:955 gschem/src/x/x_menus.c:118
 msgid "Array"
@@ -2366,7 +2431,6 @@ msgstr ""
 
 # Offset
 #: gschem/src/x/x_edit_array.c:987 gschem/src/x/x_edit_array.c:1020
-#, fuzzy
 msgid "Offset"
 msgstr "deslocado"
 
@@ -2460,10 +2524,10 @@ msgstr ""
 msgid "Add Attribute"
 msgstr "Inserir atributo"
 
+# Edit Attribute
 #: gschem/src/x/x_edit_attrib.c:412
-#, fuzzy
 msgid "Edit Attribute"
-msgstr "Editar Atributos"
+msgstr "Editar Atributo"
 
 # Select the name of the attribute to add
 #: gschem/src/x/x_edit_attrib.c:414
@@ -2609,10 +2673,10 @@ msgstr "Documen_tação:"
 msgid "_Comment:"
 msgstr "_Comentar:"
 
+# Options
 #: gschem/src/x/x_edit_cprop.c:1346
-#, fuzzy
 msgid "Options:"
-msgstr "Opções"
+msgstr "Opções:"
 
 #: gschem/src/x/x_edit_cprop.c:1381
 #, fuzzy
