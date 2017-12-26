@@ -245,6 +245,40 @@ check_accessors ()
     }
     g_object_unref (object0);
   }
+
+  GedaObject *object1 = geda_net_object_new(0, 1, 1, 10, 10);
+
+  if (object1) {
+
+    const char *str;
+
+    geda_net_set_netname (object1, "net_24");
+
+    str = object1->net->net_name;
+
+    if (!str) {
+      fprintf(stderr, "FAILED: geda_net_set_netname\n");
+      result++;
+    }
+    else if (strcmp(str, "net_24")) {
+      fprintf(stderr, "FAILED: geda_net_set_netname <%s>\n", str);
+      result++;
+    }
+    else {
+      str = geda_net_get_netname (object1);
+      if (!str) {
+        fprintf(stderr, "FAILED: geda_net_get_netname\n");
+        result++;
+      }
+      else if (strcmp(str, "net_24")) {
+        fprintf(stderr, "FAILED: geda_net_get_netname <%s>\n", str);
+        result++;
+      }
+    }
+
+    g_object_unref (object1);
+  }
+
   return result;
 }
 
