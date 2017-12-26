@@ -2,6 +2,8 @@
 
     * po/fr.po: Update French translations.
 
+    * po/ru.po: Update Russian translations.
+
 2017-12-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_invalidate.c: Use gschem_toplevel_get_grips_half_size in

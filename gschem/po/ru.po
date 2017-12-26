@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gschem ru\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-12-20 01:20-0600\n"
+"POT-Creation-Date: 2017-12-25 02:29-0600\n"
 "PO-Revision-Date: 2015-09-13 16:05+0300\n"
 "Last-Translator: Sergey Alyoshin <alyoshin.s@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -1398,7 +1398,78 @@ msgstr "Отверните ошибка"
 msgid "Undo failed"
 msgstr "Не удалось отменить"
 
-#: gschem/src/x/x_autonumber.c:610
+# Search for:
+#: gschem/src/x/x_autonumber.c:117
+msgid "Search for:"
+msgstr "Искать:"
+
+# Set the search criteria
+#: gschem/src/x/x_autonumber.c:117
+msgid "Set the search criteria"
+msgstr "Задайте критерии поиска"
+
+# Autonumber text in
+#: gschem/src/x/x_autonumber.c:118
+msgid "Autonumber text in:"
+msgstr "Текст автосообщения в:"
+
+# Set the context of the search scope
+#: gschem/src/x/x_autonumber.c:118
+msgid "Set the context of the search scope"
+msgstr "Задайте контекст области поиска"
+
+#: gschem/src/x/x_autonumber.c:119
+msgid "Skip numbers found in:"
+msgstr ""
+
+# Set where NOT to look for numbers
+#: gschem/src/x/x_autonumber.c:119
+msgid "Set where NOT to look for numbers"
+msgstr "Установить, где НЕ искать номера"
+
+#: gschem/src/x/x_autonumber.c:120
+msgid "Sort order:"
+msgstr ""
+
+# Select the orientation of the Scan method
+#: gschem/src/x/x_autonumber.c:120
+msgid "Select the orientation of the Scan method"
+msgstr "Выберите ориентацию метода сканирования"
+
+# Starting number
+#: gschem/src/x/x_autonumber.c:121
+msgid "Starting number:"
+msgstr "Начальный номер:"
+
+#: gschem/src/x/x_autonumber.c:121
+msgid "Set the starting number for the current scan"
+msgstr ""
+
+#: gschem/src/x/x_autonumber.c:122
+msgid "    Remove numbers:"
+msgstr ""
+
+#: gschem/src/x/x_autonumber.c:122
+msgid "Remove existing reference numbers"
+msgstr ""
+
+#: gschem/src/x/x_autonumber.c:123
+msgid "Automatic slotting:"
+msgstr ""
+
+#: gschem/src/x/x_autonumber.c:123
+msgid "Automatic slotting"
+msgstr ""
+
+#: gschem/src/x/x_autonumber.c:124
+msgid "Overwrite existing numbers:"
+msgstr ""
+
+#: gschem/src/x/x_autonumber.c:124
+msgid "Overwrite existing numbers"
+msgstr ""
+
+#: gschem/src/x/x_autonumber.c:609
 msgid ""
 "slotted object without slot attribute may cause problems when autonumbering "
 "slots\n"
@@ -1406,7 +1477,7 @@ msgstr ""
 "Многосекционный объект без атрибута «slot» может вызвать проблемы при "
 "автонумерации секций\n"
 
-#: gschem/src/x/x_autonumber.c:626
+#: gschem/src/x/x_autonumber.c:625
 #, c-format
 msgid ""
 "duplicate slot may cause problems: [symbol name=%s, number=%d, slot=%d]\n"
@@ -1414,59 +1485,58 @@ msgstr ""
 "Дублирование секций может вызвать проблемы: [symbolname=%s, number=%d, slot="
 "%d]\n"
 
-#: gschem/src/x/x_autonumber.c:934
+#: gschem/src/x/x_autonumber.c:933
 msgid "No search string given in autonumber text.\n"
 msgstr "Не задано выражение для автонумерации.\n"
 
-#: gschem/src/x/x_autonumber.c:1149
+#: gschem/src/x/x_autonumber.c:1148
 msgid "Diagonal"
 msgstr "По диагонали"
 
-#: gschem/src/x/x_autonumber.c:1150
+#: gschem/src/x/x_autonumber.c:1149
 msgid "Top to bottom"
 msgstr "Сверху вниз"
 
-#: gschem/src/x/x_autonumber.c:1151
+#: gschem/src/x/x_autonumber.c:1150
 msgid "Bottom to top"
 msgstr "Снизу вверх"
 
-#: gschem/src/x/x_autonumber.c:1152
+#: gschem/src/x/x_autonumber.c:1151
 msgid "Left to right"
 msgstr "Слева направо"
 
-#: gschem/src/x/x_autonumber.c:1153
+#: gschem/src/x/x_autonumber.c:1152
 msgid "Right to left"
 msgstr "Справа налево"
 
 # По порядку нахождения элементов в тексте файла, то есть по порядку их
 # добавления
-#: gschem/src/x/x_autonumber.c:1154
+#: gschem/src/x/x_autonumber.c:1153
 msgid "File order"
 msgstr "По порядку в файле"
 
 # Filter
-#: gschem/src/x/x_autonumber.c:1638
-#, fuzzy
+#: gschem/src/x/x_autonumber.c:1637
 msgid "Filter:"
-msgstr "<b>Фильтр:</b>"
+msgstr "Фильтр:"
 
-#: gschem/src/x/x_autonumber.c:1680
+#: gschem/src/x/x_autonumber.c:1679
 msgid "Selected objects"
 msgstr "Выделенные объекты"
 
-#: gschem/src/x/x_autonumber.c:1681
+#: gschem/src/x/x_autonumber.c:1680
 msgid "Current page"
 msgstr "Текущая страница"
 
-#: gschem/src/x/x_autonumber.c:1682
+#: gschem/src/x/x_autonumber.c:1681
 msgid "Whole hierarchy"
 msgstr "Вся иерархия"
 
-#: gschem/src/x/x_autonumber.c:1730
+#: gschem/src/x/x_autonumber.c:1729
 msgid "Autonumber text"
 msgstr "Автонумерация"
 
-#: gschem/src/x/x_autonumber.c:1753
+#: gschem/src/x/x_autonumber.c:1752
 msgid "Scope"
 msgstr ""
 
@@ -1493,10 +1563,10 @@ msgstr "Ошибка вставки данных из буфера обмена"
 msgid "Open"
 msgstr "Открыть"
 
+# Open all
 #: gschem/src/x/x_compselect.c:126
-#, fuzzy
 msgid "Open all"
-msgstr "Открыть файл"
+msgstr "Open all"
 
 # Close
 #: gschem/src/x/x_compselect.c:127 gschem/src/x/x_menus.c:149
@@ -1512,16 +1582,15 @@ msgstr ""
 msgid "Rescan"
 msgstr "Пересканировать"
 
+# Styles
 #: gschem/src/x/x_compselect.c:130
-#, fuzzy
 msgid "Styles"
-msgstr "Стиль 1"
+msgstr "Стили"
 
-# Tools=>utilities
+# Tooltips
 #: gschem/src/x/x_compselect.c:131
-#, fuzzy
 msgid "Tooltips"
-msgstr "коммунальные"
+msgstr "Всплывающие"
 
 #: gschem/src/x/x_compselect.c:137
 msgid "Expand one level"
@@ -1759,35 +1828,35 @@ msgstr ""
 msgid "gEDA Console"
 msgstr ""
 
-#: gschem/src/x/x_coord.c:150
+#: gschem/src/x/x_coord.c:149
 msgid "Drag & Drop"
 msgstr ""
 
 # An error occurred while receiving Drag & Drop data
-#: gschem/src/x/x_coord.c:156 gschem/src/x/x_dnd.c:589
+#: gschem/src/x/x_coord.c:155 gschem/src/x/x_dnd.c:589
 msgid "An error occurred while receiving Drag & Drop data"
 msgstr "Произошла ошибка при получении Drag & Drop данных"
 
 # Data error
-#: gschem/src/x/x_coord.c:157
+#: gschem/src/x/x_coord.c:156
 msgid "Data error"
 msgstr "ошибка в данных"
 
 # Drag & Drop failed
-#: gschem/src/x/x_coord.c:162 gschem/src/x/x_dnd.c:591
+#: gschem/src/x/x_coord.c:161 gschem/src/x/x_dnd.c:591
 msgid "Drag & Drop failed"
 msgstr "перетащить и падение не удалось"
 
 # Coordinates
-#: gschem/src/x/x_coord.c:472
+#: gschem/src/x/x_coord.c:468
 msgid "Coordinates"
 msgstr "Координаты"
 
-#: gschem/src/x/x_coord.c:487
+#: gschem/src/x/x_coord.c:483
 msgid "Screen"
 msgstr "Отображаемая область"
 
-#: gschem/src/x/x_coord.c:497
+#: gschem/src/x/x_coord.c:493
 msgid "World"
 msgstr "Вся рабочая область"
 
@@ -6143,15 +6212,6 @@ msgstr "~S не является префиксом клавишной посл�
 # Auto Height
 #~ msgid "Auto Height"
 #~ msgstr "Автоматическая высота"
-
-#, fuzzy
-#~ msgid "<b>Selection</b>"
-#~ msgstr "Выделение"
-
-# Filter
-#, fuzzy
-#~ msgid "<b>Array</b>"
-#~ msgstr "<b>Фильтр:</b>"
 
 #~ msgid "Toggle _Magnetic Net"
 #~ msgstr "_Магнитное соединение вкл/откл"
