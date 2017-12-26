@@ -1,6 +1,7 @@
 2017-12-26 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/geda/geda_net.c: Add getter and setters for net_name.
+    * src/geda/geda_net.c: Add getter and setters for net_name and
+      pin_label.
 
 2017-12-23 Wiley E. Hill <wileyhill@gmail.com>
 

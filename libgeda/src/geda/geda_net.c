@@ -211,6 +211,15 @@ const char *geda_net_get_netname (ConstObject *object)
   }
   return NULL;
 }
+
+const char *geda_net_get_pin_label (ConstObject *object)
+{
+  if (is_a_geda_net(object->net)) {
+    return object->net->pin_label;
+  }
+  return NULL;
+}
+
 /*!
  * \brief Retrieve the First ordinate value of the Net coordinates
  * \par Function Description
@@ -289,6 +298,25 @@ void geda_net_set_netname (ConstObject *object, const char *netname)
   }
 }
 
+/*!
+ * \brief Set the Pin Label of a GedaNet
+ * \par Function Description
+ *  Sets the pin label member of \a net if \a net is a valid GedaNet
+ *  object. The pin label property holds a pointer to a string containing
+ *  the label of the pin to which the net is connected. if \a net is
+ *  invalid then nothing is done.
+ */
+void geda_net_set_pin_label (ConstObject *object, const char *pin_label)
+{
+  if (is_a_geda_net(object->net)) {
+    if (object->net->pin_label) {
+      g_free(object->net->pin_label);
+    }
+    object->net->pin_label = geda_strdup(pin_label);
+  }
+}
+
+/*!
  * \brief Set the First X coordinate of a GedaNet
  * \par Function Description
  *  Sets the first X of coordinate \a net if \a net is a valid

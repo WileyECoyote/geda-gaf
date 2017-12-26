@@ -82,6 +82,7 @@ bool           is_a_geda_net           (const GedaNet *net);
 GedaObject    *geda_net_new            (void);
 
 const char    *geda_net_get_netname    (ConstObject *object);
+const char    *geda_net_get_pin_label  (ConstObject *object);
 
 int            geda_net_get_x0         (const GedaNet *net) WARN_UNUSED;
 int            geda_net_get_x1         (const GedaNet *net) WARN_UNUSED;
@@ -89,6 +90,7 @@ int            geda_net_get_y0         (const GedaNet *net) WARN_UNUSED;
 int            geda_net_get_y1         (const GedaNet *net) WARN_UNUSED;
 
 void           geda_net_set_netname    (ConstObject *object, const char *netname);
+void           geda_net_set_pin_label  (ConstObject *object, const char *pin_label);
 
 void           geda_net_set_x0         (GedaNet *net, int x);
 void           geda_net_set_x1         (GedaNet *net, int x);
