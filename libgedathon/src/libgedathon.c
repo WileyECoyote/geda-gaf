@@ -2524,7 +2524,7 @@ PyObject *PyGeda_new_line ( int x1, int y1, int x2, int y2, PyObject *py_color)
 /*! \brief Python API Library Create a New Net Object
  *  \ingroup Python_API_Create_Functions
  *  \par Function Description
- *  This function provides creates new Net object and returns the object to
+ *  This function creates new Net object and returns the object via
  *  get_net_object_data, so that the caller is returned the data to create a
  *  Python version of the object. If the netname argument is non-null then a
  *  "netname" attribute is attached to the object using the string pointed to
@@ -2548,7 +2548,8 @@ PyObject *PyGeda_new_net (const char *netname, int x1, int y1, int x2, int y2, P
   object = geda_net_object_new(color, x1, y1, x2, y2);
 
   /* Set in the gobject so the memory will be freed later */
-  if (netname) { /* then create a text attribute for netname */
+  if (netname) {
+    /* Create a text attribute for netname */
     GedaObject *net_attrib;
 
     geda_net_set_netname(object, netname);
