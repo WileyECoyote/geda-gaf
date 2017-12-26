@@ -2040,14 +2040,14 @@ static void x_menu_recent_show_popup (GedaMenuItem   *menu_widget,
   g_signal_connect (popup_item, "activate",
                     G_CALLBACK(x_menu_recent_file_clicked), menu_data);
 
-  geda_menu_shell_append ((GedaMenuShell*)menu, popup_item);
+  geda_menu_append (menu, popup_item);
 
   popup_item = geda_menu_item_new_with_label (_("Remove"));
 
   g_signal_connect (popup_item, "activate",
                     G_CALLBACK(x_menu_recent_file_remove), menu_data);
 
-  geda_menu_shell_append ((GedaMenuShell*)menu, popup_item);
+  geda_menu_append (menu, popup_item);
 
   popup_item = geda_check_menu_item_new_with_mnemonic (_("_Show path"));
   geda_check_menu_item_set_active((GedaCheckMenuItem*)popup_item, show_recent_path);
@@ -2055,7 +2055,7 @@ static void x_menu_recent_show_popup (GedaMenuItem   *menu_widget,
   g_signal_connect (popup_item, "toggled",
                     G_CALLBACK(x_menu_toggle_recent_path), menu_data);
 
-  geda_menu_shell_append (GEDA_MENU_SHELL (menu), popup_item);
+  geda_menu_append (menu, popup_item);
 
   gtk_widget_show_all (menu);
 
@@ -2161,7 +2161,8 @@ void x_menu_attach_recent_submenu(GschemToplevel *w_current)
      g_signal_connect (item, "button-release-event",
                        G_CALLBACK (x_menu_recent_button_released), menu_data);
 
-     geda_menu_append((GedaMenu*)recent_submenu, item);
+     geda_menu_append(recent_submenu, item);
+
      iter = g_list_next(iter);
    }
 
@@ -2182,9 +2183,8 @@ void x_menu_attach_recent_submenu(GschemToplevel *w_current)
      GEDA_SIGNAL_CONNECT(item, "activate",
                          x_menu_clear_recent_file_list, NULL);
 
-
-     geda_menu_append((GedaMenu*)recent_submenu, geda_menu_separator_new());
-     geda_menu_append((GedaMenu*)recent_submenu, item);
+     geda_menu_append(recent_submenu, geda_menu_separator_new());
+     geda_menu_append(recent_submenu, item);
    }
 
    gtk_widget_show_all(recent_submenu);

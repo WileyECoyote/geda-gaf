@@ -15,7 +15,8 @@
     * src/x/x_menus.c: Replace g_keys_find_key with g_hash_table_lookup in
       x_menu_setup_ui to get all of the keys onces instead of calling
       g_keys_find_key to retrieve all keys from scheme and search for each
-      key inside of the menu-item loop.
+      key inside of the menu-item loop. Replace geda_menu_shell_append with
+      geda_menu_append macro.
 
 2017-12-21 Wiley E. Hill <wileyhill@gmail.com>
 
