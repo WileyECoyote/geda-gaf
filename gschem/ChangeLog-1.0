@@ -3,6 +3,9 @@
     * src/x/x_edit_pin.c: Replace GtkWidget type with GtkTable to reduce
       dynamic type cast.
 
+    * src/x/x_menus.c: Replace gtk_container_add with geda_container_add
+      macro.
+
 2017-12-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ar.po: Update Arabic translations.

@@ -2176,9 +2176,9 @@ void x_menu_attach_recent_submenu(GschemToplevel *w_current)
      item = geda_menu_item_new();
 
      label = geda_label_new(_("Clear"));
-     gtk_container_add((GtkContainer*)alignment, label);
+     geda_container_add(alignment, label);
 
-     gtk_container_add((GtkContainer*)item, alignment);
+     geda_container_add(item, alignment);
 
      GEDA_SIGNAL_CONNECT(item, "activate",
                          x_menu_clear_recent_file_list, NULL);
