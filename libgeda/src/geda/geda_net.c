@@ -204,6 +204,13 @@ bool is_a_geda_net (const GedaNet *net)
   return GEDA_IS_OBJECT(net) && (((GedaObject*)net)->type == OBJ_NET);
 }
 
+const char *geda_net_get_netname (ConstObject *object)
+{
+  if (is_a_geda_net(object->net)) {
+    return object->net->net_name;
+  }
+  return NULL;
+}
 /*!
  * \brief Retrieve the First ordinate value of the Net coordinates
  * \par Function Description
@@ -265,6 +272,23 @@ int geda_net_get_y1 (const GedaNet *net) {
 }
 
 /*!
+ * \brief Set the Netname of a GedaNet
+ * \par Function Description
+ *  Sets the netname member of \a net if \a net is a valid GedaNet
+ *  object. The netname property holds a pointer to a string containing
+ *  the label of the pin to which the net is connected. if \a net is
+ *  invalid then nothing is done.
+ */
+void geda_net_set_netname (ConstObject *object, const char *netname)
+{
+  if (is_a_geda_net(object->net)) {
+    if (object->net->net_name) {
+      g_free(object->net->net_name);
+    }
+    object->net->net_name = geda_strdup(netname);
+  }
+}
+
  * \brief Set the First X coordinate of a GedaNet
  * \par Function Description
  *  Sets the first X of coordinate \a net if \a net is a valid

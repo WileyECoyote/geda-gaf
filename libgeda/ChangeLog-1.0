@@ -1,3 +1,7 @@
+2017-12-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_net.c: Add getter and setters for net_name.
+
 2017-12-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_file.c: Add check for geda_file_path_sys_data.

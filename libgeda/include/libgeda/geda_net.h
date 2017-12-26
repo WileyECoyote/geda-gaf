@@ -54,8 +54,8 @@ struct _GedaNet {
 
   int  *line_width;
 
-  /* Current these are only used by gnetlist, but the Python API
-   * also provides client side access some members */
+  /* Currently these are only used by gnetlist, but the Python
+   * API also provides client side access to some members */
   int   nid;
 
   int   net_name_has_priority;
@@ -76,20 +76,24 @@ struct _GedaNet {
 extern "C" {
 #endif
 
-GedaObjectType geda_net_get_type      (void) GEDA_CONST;
-bool           is_a_geda_net          (const GedaNet *net);
+GedaObjectType geda_net_get_type       (void) GEDA_CONST;
+bool           is_a_geda_net           (const GedaNet *net);
 
-GedaObject    *geda_net_new           (void);
+GedaObject    *geda_net_new            (void);
 
-int            geda_net_get_x0        (const GedaNet *net) WARN_UNUSED;
-int            geda_net_get_x1        (const GedaNet *net) WARN_UNUSED;
-int            geda_net_get_y0        (const GedaNet *net) WARN_UNUSED;
-int            geda_net_get_y1        (const GedaNet *net) WARN_UNUSED;
+const char    *geda_net_get_netname    (ConstObject *object);
 
-void           geda_net_set_x0        (GedaNet *net, int x);
-void           geda_net_set_x1        (GedaNet *net, int x);
-void           geda_net_set_y0        (GedaNet *net, int y);
-void           geda_net_set_y1        (GedaNet *net, int y);
+int            geda_net_get_x0         (const GedaNet *net) WARN_UNUSED;
+int            geda_net_get_x1         (const GedaNet *net) WARN_UNUSED;
+int            geda_net_get_y0         (const GedaNet *net) WARN_UNUSED;
+int            geda_net_get_y1         (const GedaNet *net) WARN_UNUSED;
+
+void           geda_net_set_netname    (ConstObject *object, const char *netname);
+
+void           geda_net_set_x0         (GedaNet *net, int x);
+void           geda_net_set_x1         (GedaNet *net, int x);
+void           geda_net_set_y0         (GedaNet *net, int y);
+void           geda_net_set_y1         (GedaNet *net, int y);
 
 #ifdef __cplusplus
 }
