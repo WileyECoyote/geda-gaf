@@ -2550,8 +2550,11 @@ PyObject *PyGeda_new_net (const char *netname, int x1, int y1, int x2, int y2, P
   /* Set in the gobject so the memory will be freed later */
   if (netname) { /* then create a text attribute for netname */
     GedaObject *net_attrib;
-    object->net->net_name  = geda_utility_string_strdup(netname);
+
+    geda_net_set_netname(object, netname);
+
     net_attrib = geda_attrib_object_new_attached(object, "netname", netname, INVISIBLE, SHOW_VALUE);
+
     add_floating_object(net_attrib);
   }
   else {
@@ -2566,6 +2569,7 @@ PyObject *PyGeda_new_net (const char *netname, int x1, int y1, int x2, int y2, P
     fprintf(stderr, "PyGeda_new_net: name=%s, netname=%s\n", object->name,
                                               netname ? netname : "NULL");
 #endif
+
   return get_net_object_data(object);
 }
 

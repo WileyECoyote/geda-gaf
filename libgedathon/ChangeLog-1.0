@@ -1,3 +1,8 @@
+2017-12-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/libgedathon.c: Utilize geda_net_set_netname setter to set the
+      net name member of the object.
+
 2017-12-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: Update Afrikaans translations.
