@@ -1,3 +1,8 @@
+2017-12-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_edit_pin.c: Replace GtkWidget type with GtkTable to reduce
+      dynamic type cast.
+
 2017-12-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ar.po: Update Arabic translations.

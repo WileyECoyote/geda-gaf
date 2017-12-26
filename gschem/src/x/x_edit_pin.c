@@ -778,13 +778,13 @@ GtkWidget *x_dialog_pin_type_create_dialog(GschemToplevel *w_current)
   GtkWidget *attributemenu  = NULL;
 
   GtkWidget *alignment;
-  GtkWidget *table;
   GtkWidget *label;
   GtkWidget *type_label;
   GtkWidget *attrib_label;
   GtkWidget *num_label;
   GtkWidget *seq_label;
   GtkWidget *pin_label;
+  GtkTable  *table;
 
   GtkWidget *SetPinNodeTypeSwitch = NULL;
   GtkWidget *SetElectricalSwitch  = NULL;
@@ -808,56 +808,56 @@ GtkWidget *x_dialog_pin_type_create_dialog(GschemToplevel *w_current)
   main_vbox = GTK_DIALOG (ThisDialog)->vbox;
   g_object_set (main_vbox, "visible", TRUE, NULL);
 
-  table = gtk_table_new (5, 3, FALSE);
-  gtk_table_set_row_spacings (GTK_TABLE(table), DIALOG_V_SPACING);
-  gtk_table_set_col_spacings (GTK_TABLE(table), DIALOG_H_SPACING);
-  gtk_box_pack_start(GTK_BOX (main_vbox), table, FALSE, FALSE, 0);
+  table = (GtkTable*)gtk_table_new (5, 3, FALSE);
+  gtk_table_set_row_spacings (table, DIALOG_V_SPACING);
+  gtk_table_set_col_spacings (table, DIALOG_H_SPACING);
+  gtk_box_pack_start(GTK_BOX (main_vbox), (GtkWidget*)table, FALSE, FALSE, 0);
   g_object_set               (table, "visible", TRUE, NULL);
 
   type_label = GEDA_AVM_LABEL_NEW (_LABEL(PinNodeType), 0, 0);
-  gtk_table_attach(GTK_TABLE(table), type_label, 0,1,0,1, GTK_FILL,0,0,0);
+  gtk_table_attach(table, type_label, 0,1,0,1, GTK_FILL,0,0,0);
 
   attrib_label = GEDA_AVM_LABEL_NEW (_LABEL(PinElectrical), 0, 0);
-  gtk_table_attach(GTK_TABLE(table), attrib_label, 0,1,1,2, GTK_FILL,0,0,0);
+  gtk_table_attach(table, attrib_label, 0,1,1,2, GTK_FILL,0,0,0);
 
   num_label = GEDA_AVM_LABEL_NEW (_LABEL(PinNumber), 0, 0);
-  gtk_table_attach(GTK_TABLE(table), num_label, 0,1,2,3, GTK_FILL,0,0,0);
+  gtk_table_attach(table, num_label, 0,1,2,3, GTK_FILL,0,0,0);
 
   seq_label = GEDA_AVM_LABEL_NEW (_LABEL(PinSequence), 0, 0);
-  gtk_table_attach(GTK_TABLE(table), seq_label, 0,1,3,4, GTK_FILL,0,0,0);
+  gtk_table_attach(table, seq_label, 0,1,3,4, GTK_FILL,0,0,0);
 
   pin_label = GEDA_AVM_LABEL_NEW (_LABEL(PinLabel), 0, 0);
-  gtk_table_attach(GTK_TABLE(table), pin_label, 0,1,4,5, GTK_FILL,0,0,0);
+  gtk_table_attach(table, pin_label, 0,1,4,5, GTK_FILL,0,0,0);
 
   optionmenu = geda_option_menu_new ();
   geda_option_widget_set_menu(optionmenu, create_menu_pin_type ());
-  gtk_table_attach_defaults(GTK_TABLE(table), optionmenu, 1,2,0,1);
+  gtk_table_attach_defaults(table, optionmenu, 1,2,0,1);
   gtk_widget_set_tooltip_text(optionmenu, type_combo_tip);
   g_object_set (optionmenu, "visible", TRUE, NULL);
 
   attributemenu = geda_option_menu_new ();
   geda_option_widget_set_menu(attributemenu, create_menu_pin_electricals());
 
-  gtk_table_attach_defaults(GTK_TABLE(table), attributemenu, 1,2,1,2);
+  gtk_table_attach_defaults(table, attributemenu, 1,2,1,2);
   gtk_widget_set_tooltip_text(attributemenu,  attrib_combo_tip);
   g_object_set (attributemenu, "visible", TRUE, NULL);
 
   number_entry = gtk_entry_new();
   gtk_entry_set_activates_default(GTK_ENTRY(number_entry), TRUE);
-  gtk_table_attach_defaults(GTK_TABLE(table), number_entry, 1,2,2,3);
+  gtk_table_attach_defaults(table, number_entry, 1,2,2,3);
   gtk_widget_set_tooltip_text(number_entry, num_entry_tip);
   g_object_set (number_entry, "visible", TRUE, NULL);
 
   sequence_spin = gtk_spin_button_new_with_range(1, 100000, 1);
   gtk_entry_set_activates_default(GTK_ENTRY(sequence_spin), TRUE);
-  gtk_table_attach_defaults(GTK_TABLE(table), sequence_spin, 1,2,3,4);
+  gtk_table_attach_defaults(table, sequence_spin, 1,2,3,4);
   gtk_widget_set_tooltip_text(sequence_spin, seq_spin_tip);
   g_object_set (sequence_spin, "visible", TRUE, NULL);
 
   label_entry = gtk_entry_new();
   gtk_entry_set_activates_default (GTK_ENTRY(label_entry), TRUE);
   gtk_editable_select_region(GTK_EDITABLE(label_entry), 0, -1);
-  gtk_table_attach_defaults(GTK_TABLE(table), label_entry, 1,2,4,5);
+  gtk_table_attach_defaults(table, label_entry, 1,2,4,5);
   gtk_widget_set_tooltip_text(label_entry, label_entry_tip);
   g_object_set (label_entry, "visible", TRUE, NULL);
 
@@ -870,17 +870,17 @@ GtkWidget *x_dialog_pin_type_create_dialog(GschemToplevel *w_current)
   g_object_set (alignment, "visible", TRUE, NULL);
 
   /* Create a second table for Switch controls */
-  table = gtk_table_new (5, 5, FALSE);
-  gtk_table_set_row_spacings (GTK_TABLE(table), DIALOG_V_SPACING);
-  gtk_table_set_col_spacings (GTK_TABLE(table), DIALOG_H_SPACING);
   gtk_container_add          (GTK_CONTAINER(alignment), table);
+  table = (GtkTable*)gtk_table_new (5, 5, FALSE);
+  gtk_table_set_row_spacings (table, DIALOG_V_SPACING);
+  gtk_table_set_col_spacings (table, DIALOG_H_SPACING);
   g_object_set               (table, "visible", TRUE, NULL);
 
   label = GEDA_AV_LABEL_NEW (_("Set"), 0, 0);
-  gtk_table_attach(GTK_TABLE(table), label, 0,1,0,1, GTK_FILL,0,0,0);
+  gtk_table_attach(table, label, 0,1,0,1, GTK_FILL,0,0,0);
 
   label = GEDA_AV_LABEL_NEW (_("Auto"), 0, 0);
-  gtk_table_attach(GTK_TABLE(table), label, 0,1,3,4, GTK_FILL,0,0,0);
+  gtk_table_attach(table, label, 0,1,3,4, GTK_FILL,0,0,0);
 
   /* Create Toggle Switch widgets */
   GSCHEM_SWITCH(table, SetPinNodeType, 1, 2, FALSE)
