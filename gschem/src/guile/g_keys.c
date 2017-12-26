@@ -671,6 +671,49 @@ GtkListStore *g_keys_to_new_list_store (void)
   return list_store;
 }
 
+GHashTable *g_keys_to_new_hash_table (void)
+{
+  SCM s_expr;
+  SCM s_lst;
+  SCM s_iter;
+  GHashTable *key_hash = NULL;
+
+  /* Call Scheme procedure to dump global keymap into list */
+  s_expr = scm_list_1 (scm_from_utf8_symbol ("dump-global-keymap"));
+  s_lst = g_evaluate_scm_protected (s_expr, scm_interaction_environment ());
+
+  g_return_val_if_fail (scm_is_true (scm_list_p (s_lst)), NULL);
+
+  /* Convert to  */
+  scm_dynwind_begin (0);
+
+  key_hash = g_hash_table_new_full (g_str_hash, g_str_equal, free, free);
+
+  for (s_iter = s_lst; !scm_is_null (s_iter); s_iter = scm_cdr (s_iter)) {
+
+    SCM s_binding = scm_caar (s_iter);
+    SCM s_keys    = scm_cdar (s_iter);
+    char *binding, *keys;
+
+    scm_dynwind_begin (0);
+
+    binding = scm_to_utf8_string (s_binding);
+    scm_dynwind_free (binding);
+
+    keys = scm_to_utf8_string (s_keys);
+    scm_dynwind_free (keys);
+
+    if (!g_hash_table_contains(key_hash, binding)) {
+      g_hash_table_insert(key_hash, geda_strdup(binding), geda_strdup(keys));
+    }
+
+    scm_dynwind_end ();
+  }
+
+  scm_dynwind_end ();
+  return key_hash;
+}
+
 /*! \brief Create the (gschem core keymap) Scheme module
  * \par Function Description
  * Defines procedures in the (gschem core keymap) module.  The module

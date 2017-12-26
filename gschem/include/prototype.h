@@ -2,6 +2,7 @@
 
 #define GLT GList   /* Only for this file,     */
 #define GSL GSList  /* to improve readability! */
+#define GHT GHashTable
 #define GLS GtkListStore
 #define OBJ GedaObject
 #define EHP EdascmHookProxy
@@ -54,6 +55,7 @@ void  g_keys_reset                (GschemToplevel *w_current);
 int   g_keys_execute              (GschemToplevel *w_current, GdkEventKey *event);
 char *g_keys_find_key             (char *func_name);
 GLS  *g_keys_to_new_list_store    (void);
+GHT  *g_keys_to_new_hash_table    (void);
 
 /* Hoykeys */
 SCM   buffer_copy1           (SCM action);
@@ -976,6 +978,7 @@ END_DECLS
 
 #undef GAY
 #undef EHP
+#undef GHT
 #undef GLS
 #undef GSL
 #undef GLT
