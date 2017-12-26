@@ -36,8 +36,6 @@
  *
  * \todo There is currently no direct means to restore the orginal aspect
  *       ratio, which is save in the picture object.
- *
- * \todo o_picture.c conflicts with o_picture.c in libgeda
  */
 
 #include <math.h>
