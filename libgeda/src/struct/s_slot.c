@@ -174,13 +174,16 @@ geda_struct_slot_update_object (GedaObject *object)
 
   if (slotdef == NULL) {
 
-    if (slot_string) { /* only an error if there's a slot string */
+    if (slot_string) { /* possiable an error if there's a slot string */
 
-      const char *msg1 = _("Did not find");
-      const char *msg2 = _("attribute for slot");
+      if (slot != 1) {
 
-      /* Note: slot_string is base Zero, tell user about missing slotdef */
-      u_log_message ("%s slotdef=#:#,#,# %s <%d>\n", msg1, msg2, slot_string + 1);
+        const char *msg1 = _("Did not find");
+        const char *msg2 = _("attribute for slot");
+
+        /* Note: slot_string is base Zero, tell user about missing slotdef */
+        u_log_message ("%s slotdef=#:#,#,# %s <%d>\n", msg1, msg2, slot_string + 1);
+      }
     }
     return;
   }
