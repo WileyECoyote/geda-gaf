@@ -1180,13 +1180,16 @@ geda_font_button_set_font_name (GedaFontButton *font_button,
     geda_font_button_update_from_name (font_button);
     geda_font_button_update_label (font_button);
 
-    if (font_button->priv->font_dialog)
-      result = geda_font_dialog_set_font_name
-                (GEDA_FONT_DIALOG (font_button->priv->font_dialog),
-                                   font_button->priv->font_name);
-    else
-      result = FALSE;
+    if (font_button->priv->font_dialog) {
 
+      GedaFontDialog *dialog;
+
+      dialog = GEDA_FONT_DIALOG (font_button->priv->font_dialog);
+      result = geda_font_dialog_set_font_name (dialog, font_button->priv->font_name);
+    }
+    else {
+      result = FALSE;
+    }
     g_object_notify ((GObject*)font_button, "font-name");
   }
 
