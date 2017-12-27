@@ -29,8 +29,9 @@
 #include <math.h>
 #include <geda_debug.h>
 
-/*! \brief Get Bounds of text object
- *  \par Function Description
+/*!
+ * \brief Get Bounds of text object
+ * \par Function Description
  *  This function is used as a callback for text objects
  *  to determine the XY bounderies of the objects.
  */
@@ -117,9 +118,9 @@ static void o_text_end (GschemToplevel *w_current)
   i_event_stop_action_handler (w_current);
 }
 
-/*! \brief Prepare for Placement of New Text Object
- *
- *  \par Function Description
+/*!
+ * \brief Prepare for Placement of New Text Object
+ * \par Function Description
  *  Creates a new text object and adds the Text object to
  *  #Current_PlaceList after ensuring the place list is empty.
  */
@@ -157,10 +158,9 @@ void o_text_prepare_place(GschemToplevel *w_current, char *text)
   i_event_start_paster_handler(w_current, o_text_end);
 }
 
-/*! \brief Launch the Edit Text Dialog
- *
- *  \par Function Description
- *
+/*!
+ * \brief Launch the Edit Text Dialog
+ * \par Function Description
  *  This function calls x_dialog_edit_text() which could have been done
  *  in i_command do_edit_text or o_edit directly so maybe this function
  *  is just adding an unnecessary stack push and pops.
@@ -168,26 +168,25 @@ void o_text_prepare_place(GschemToplevel *w_current, char *text)
 void
 o_text_edit(GschemToplevel *w_current, GedaObject *o_current)
 {
-  if(o_current->type == OBJ_TEXT) {
+  if (o_current->type == OBJ_TEXT) {
     x_dialog_edit_text(w_current, o_current);
   }
 }
 
-/*! \brief Complete Text Editing
- *
- *  \par Function Description
- *
- *    This function is called by x_dialog_edit_text_ok if the OKAY button was
+/*!
+ * \brief Complete Text Editing
+ * \par Function Description
+ *   This function is called by x_dialog_edit_text_ok if the OKAY button was
  *  pressed. There may or by not have been any changes so we will loop thru
  *  all of the selected objects and make changes when there is a difference.
  *  If we changed something we recreate that object and undate UNDO.
  *
- *  \param [in] w_current  Ptr to Window specific data structure
- *  \param [in] string     Ptr to new char string  or NULL if multible selection
- *  \param [in] text_align integer, The new text alignment
- *  \param [in] text_color integer, The new text color
- *  \param [in] text_size  integer, The new text size integer
- *  \param [in] rotate     integer, The rotation angle
+ * \param [in] w_current  Ptr to Window specific data structure
+ * \param [in] string     Ptr to new char string  or NULL if multible selection
+ * \param [in] text_align integer, The new text alignment
+ * \param [in] text_color integer, The new text color
+ * \param [in] text_size  integer, The new text size integer
+ * \param [in] rotate     integer, The rotation angle
  */
 /*
  * 02/27/13 WEH Added text_color, changed_something conditionals and documentation
@@ -291,11 +290,16 @@ o_text_edit_end(GschemToplevel *w_current, char *string, int text_align,
 
 }
 
-/*! \brief Change Text String
- *  \par Function Description
- *  This function is call by
+/*!
+ * \brief Change Text String
+ * \par Function Description
+ *  This function is call by:
  *
- *  \note
+ *     attrib_edit_dialog_ok
+ *     ma_callback_edited_name
+ *     ma_callback_edited_value
+ *
+ * \note
  *  The object passed in should be the REAL object, NOT any copy in any
  *  selection list
  */
