@@ -1165,6 +1165,10 @@ geda_font_button_set_font_name (GedaFontButton *font_button,
 
   g_return_val_if_fail (GEDA_IS_FONT_BUTTON (font_button), result);
 
+  if (font_name == NULL || !strlen(font_name)) {
+    font_name = DEFAULT_FONT_NAME;
+  }
+
   if (g_ascii_strcasecmp (font_button->priv->font_name, font_name)) {
 
     char *old_fontname;

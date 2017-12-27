@@ -1,3 +1,9 @@
+2017-12-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_font_button.c: Revise geda_font_button_set_font_name
+      to ensure the font_name argument is not NULL or without length, other
+      wise the default font name is used.
+
 2017-12-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_font_dialog.c: Update function documentation.
