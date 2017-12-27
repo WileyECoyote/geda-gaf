@@ -1,3 +1,7 @@
+2017-12-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * logic/pla/20V8-DIP-2.sym: Remove redundant symbol.
+
 2017-12-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * logic/pla/20V8-DIP-1.sym: Add value, remove suggested library,
