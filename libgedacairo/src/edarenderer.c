@@ -2217,6 +2217,7 @@ void eda_renderer_set_draw_grips (EdaRenderer *renderer, bool draw)
 const char*
 eda_renderer_get_font_name(EdaRenderer *renderer)
 {
+  g_return_val_if_fail (EDA_IS_RENDERER (renderer), NULL);
   return (renderer->priv->font_name);
 }
 

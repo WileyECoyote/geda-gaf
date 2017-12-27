@@ -1,3 +1,7 @@
+2017-12-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edarenderer.c: Validate renderer in eda_renderer_get_font_name.
+
 2017-12-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/edarenderer.h: Add missing declaration for eda_renderer_
