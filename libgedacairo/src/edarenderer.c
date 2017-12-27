@@ -2228,6 +2228,10 @@ eda_renderer_get_font_name(EdaRenderer *renderer)
 void
 eda_renderer_set_font_name(EdaRenderer *renderer, const char *font_name)
 {
+  g_return_if_fail (EDA_IS_RENDERER (renderer));
+  g_return_if_fail (font_name);
+  g_return_if_fail (strlen(font_name) > 1);
+
   GEDA_FREE(renderer->priv->font_name);
   renderer->priv->font_name = geda_utility_string_strdup (font_name);
 }

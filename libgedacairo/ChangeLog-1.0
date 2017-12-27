@@ -1,6 +1,7 @@
 2017-12-27 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/edarenderer.c: Validate renderer in eda_renderer_get_font_name.
+    * src/edarenderer.c: Validate renderer in eda_renderer_get_font_name,
+      validate arguments in eda_renderer_set_font_name.
 
 2017-12-15 Wiley E. Hill <wileyhill@gmail.com>
 
