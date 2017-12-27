@@ -1,3 +1,8 @@
+2017-12-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_multiattrib.c: Replace g_object_weak_ref and g_object_weak_unref
+      with wrapper macros; GEDA_WEAK_REF and GEDA_WEAK_UNREF.
+
 2017-12-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_edit_pin.c: Replace GtkWidget type with GtkTable to reduce

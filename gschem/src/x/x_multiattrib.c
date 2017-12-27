@@ -1914,10 +1914,11 @@ static void
 connect_object_list (Multiattrib *ThisDialog, GedaList *object_list)
 {
   ThisDialog->object_list = object_list;
+
   if (ThisDialog->object_list != NULL) {
-    g_object_weak_ref (G_OBJECT (ThisDialog->object_list),
-                       object_list_weak_ref_cb,
-                       ThisDialog);
+
+    GEDA_WEAK_REF(ThisDialog->object_list, object_list_weak_ref_cb, ThisDialog);
+
     ThisDialog->object_list_changed_id =
       g_signal_connect (ThisDialog->object_list, "changed",
                         G_CALLBACK (object_list_changed_cb),
@@ -1947,9 +1948,7 @@ disconnect_object_list (Multiattrib *ThisDialog)
     g_signal_handler_disconnect (ThisDialog->object_list,
                                  ThisDialog->object_list_changed_id);
 
-    g_object_weak_unref (G_OBJECT (ThisDialog->object_list),
-                         object_list_weak_ref_cb,
-                         ThisDialog);
+    GEDA_WEAK_UNREF(ThisDialog->object_list, object_list_weak_ref_cb, ThisDialog);
   }
 }
 
