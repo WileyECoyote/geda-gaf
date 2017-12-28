@@ -705,6 +705,97 @@ compselect_open_tree_rows (GtkWidget *menu_widget, GtkTreeView *tree_view)
   compselect_tree_open_rows (tree_view, TRUE);
 }
 
+/*!
+ * \internal csSearchRecord
+ * \par
+ *  Structure statically allocated by used by compselect_open_to_symbol()
+ *  in order to pass two pointers to compselect_foreach_func() via the
+ *  gtk_tree_model_foreach function.
+ */
+typedef struct csSearchRecord {
+  Compselect *dialog;
+  const char *sym_name;
+} csSearchRecord;
+
+/*!
+ * \brief Search for Compselect Tree Row with Symbol Name
+ * \par Function Description
+ *  GtkTreeModelForeachFunc function used to search for model row
+ *  containing symbol name stored in the data record, if found the
+ *  tree is expanded and the row made visible.
+ *
+ * \param [in] model  GtkTreeModel for the active notebook tab
+ * \param [in] path   GtkTreePath to the current row data
+ * \param [in] iter   GtkTreeIter to the current row data
+ * \param [in] data   csSearchRecord
+ */
+static bool compselect_foreach_func (GtkTreeModel *model,
+                                     GtkTreePath  *path,
+                                     GtkTreeIter  *iter,
+                                     void         *data)
+{
+  csSearchRecord *SearchRecord = data;
+
+  if (is_symbol_record(model, iter)) {
+
+    CLibSymbol *symbol;
+    const char *sym_name;
+    const char *ptr_sym_name;
+
+    gtk_tree_model_get (model, iter, LVC_ROW_DATA, &symbol, -1);
+
+    ptr_sym_name = geda_struct_clib_symbol_get_name(symbol);
+    sym_name = SearchRecord->sym_name;
+
+    if (ptr_sym_name && (strcmp(ptr_sym_name, sym_name) == 0)) {
+
+      GtkTreeView *tree_view;
+
+      tree_view = get_active_tree_view (SearchRecord->dialog);
+
+      path = gtk_tree_model_get_path (model, iter);
+      gtk_tree_view_expand_to_path(tree_view, path);
+      gtk_tree_view_set_cursor (tree_view, path, NULL, FALSE);
+      geda_tree_view_row_make_visible (tree_view, iter, TRUE);
+      gtk_tree_path_free(path);
+      return TRUE;
+    }
+  }
+
+  return FALSE; /* do not stop traversing model, call us with next row */
+}
+
+/*!
+ * \brief Open Compselect Tree Row to Symbol Name
+ * \par Function Description
+ *  This function handles the set "symbol" property, which is used at
+ *  launch in an attempt to open the tree to the component selected.
+ *  This function only succeed if the component selected is a member
+ *  of the active notebook tab.
+ *
+ * \param [in] ThisDialog  Pointer to the Compselect dialog
+ * \param [in] sym_name    Name of the symbol including extension
+ *
+ * \todo consider adding a flag to csSearchRecord to check for success
+ *       and query other models on failure.
+ */
+static void
+compselect_open_to_symbol (Compselect *ThisDialog, const char *sym_name)
+{
+    GtkTreeModel *model;
+    GtkTreeView  *tree_view;
+
+    csSearchRecord SearchRecord;
+
+    SearchRecord.dialog   = ThisDialog;
+    SearchRecord.sym_name = sym_name;
+
+    tree_view = get_active_tree_view (ThisDialog);
+    model     = gtk_tree_view_get_model (tree_view);
+
+    gtk_tree_model_foreach(model, compselect_foreach_func, &SearchRecord);
+}
+
 /*! \brief Close Row in Tree call-back for Tree-View pop-up menu
  *  \par Function Description
  *   This function performs the same functionality as double-clicking on an
@@ -3448,6 +3539,10 @@ compselect_set_property (GObject      *object,
   Compselect *compselect = COMPSELECT (object);
 
   switch (epid) {
+    case PROP_SYMBOL:
+      compselect_open_to_symbol(compselect, g_value_get_pointer (value));
+      break;
+
     case PROP_BEHAVIOR:
       geda_option_menu_set_history(compselect->behavior_menu,
                                   g_value_get_enum (value));
@@ -3495,7 +3590,7 @@ compselect_class_init (void *class, void *class_data)
 
   compselect_class->refresh   = compselect_on_refresh_tree_views;
 
-  params = g_param_spec_pointer ("symbol", "", "", G_PARAM_READABLE);
+  params = g_param_spec_pointer ("symbol", "", "", G_PARAM_READWRITE);
   g_object_class_install_property (object_class, PROP_SYMBOL, params);
 
   params = g_param_spec_enum ("behavior", "", "",

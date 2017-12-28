@@ -4,6 +4,9 @@
 
     * po/bs.po: Update Bosnian translations.
 
+    * src/x/x_compselect.c. Make the "symbol" property re-writable; add
+      functions compselect_open_to_symbol and compselect_foreach_func.
+
 2017-12-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_multiattrib.c: Replace g_object_weak_ref and g_object_weak_unref
