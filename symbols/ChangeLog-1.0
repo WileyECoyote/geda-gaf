@@ -1,3 +1,7 @@
+2017-12-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * logic/pla/20V10-DIP-1.sym: Add symbol; Programmable Logic Device.
+
 2017-12-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * logic/pla/20V8-DIP-2.sym: Remove redundant symbol.
