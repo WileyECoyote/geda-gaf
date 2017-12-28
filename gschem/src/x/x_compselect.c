@@ -154,17 +154,18 @@ enum
 
 static unsigned int signals[LAST_SIGNAL] = { 0 };
 
-/*! \brief Component Selection Dialog Response Handler.
- *  \par Function Description
+/*!
+ * \brief Component Selection Dialog Response Handler
+ * \par Function Description
  *  This function handles the response <B>arg1</B> of the component
  *  selection dialog <B>dialog</B>.
  *
  *  Parameter <B>user_data</B> is a pointer on the relevant toplevel
  *  structure.
  *
- *  \param [in] dialog    The component selection dialog.
- *  \param [in] response  The response ID.
- *  \param [in] user_data A pointer on the GschemToplevel environment.
+ * \param [in] dialog    The component selection dialog.
+ * \param [in] response  The response ID.
+ * \param [in] user_data A pointer on the GschemToplevel environment.
  */
 static void
 x_compselect_callback_response(GtkDialog *dialog, int response, void *user_data)
@@ -343,12 +344,13 @@ void x_compselect_open (GschemToplevel *w_current)
  *  Dialog Class is derived from #GschemDialogClass.
  */
 
-/*! \brief Unselect selection in the active tree view.
- *  \par Function Description
+/*!
+ * \brief Unselect selection in the active tree view.
+ * \par Function Description
  *  This function deselects the selection in the active viewtree
  *  <B>toplevel</B>.
  *
- *  \param [in] w_current  The GschemToplevel environment data.
+ * \param [in] w_current  The GschemToplevel environment data.
  */
 void x_compselect_deselect (GschemToplevel *w_current)
 {
@@ -426,12 +428,13 @@ static void compselect_get_property    (GObject *object,
                                         GValue *value,
                                         GParamSpec *pspec);
 
-/*! \brief Get Active Tree View.
- *  \par Function Description
+/*!
+ * \brief Get Active Tree View.
+ * \par Function Description
  *  This function returns pointer to the active viewtree
  *  <B>toplevel</B>.
  *
- *  \param [in] compselect This Dialog.
+ * \param [in] compselect This Dialog.
  */
 static GtkTreeView *get_active_tree_view (Compselect *compselect)
 {
@@ -462,13 +465,14 @@ static GtkTreeView *get_active_tree_view (Compselect *compselect)
   return view;
 }
 
-/*! \brief Sets data for a particular cell of the In Use treeview.
- *  \par Function Description
+/*!
+ * \brief Sets data for a particular cell of the In Use treeview.
+ * \par Function Description
  *  This function determines what data is to be displayed in the
  *  "in use" symbol selection view.
  *
- *  The model is a list of symbols. geda_struct_clib_symbol_get_name() is called
- *  to get the text to display.
+ *  The model is a list of symbols. geda_struct_clib_symbol_get_name()
+ *  is called to get the text to display.
  */
 static void
 inuse_treeview_set_cell_data (GtkTreeViewColumn *tree_column,
@@ -547,16 +551,17 @@ lib_treeview_set_cell_data (GtkTreeViewColumn *tree_column,
   g_object_set (cell, "text", text, NULL);
 }
 
-/*! \brief Determines visibility of items of the library treeview.
- *  \par Function Description
+/*!
+ * \brief Determines visibility of items of the library treeview.
+ * \par Function Description
  *  This is the function used to filter entries of the component
  *  selection tree.
  *
- *  \param [in] model The current selection in the treeview.
- *  \param [in] iter  An iterator on a component or folder in the tree.
- *  \param [in] data  The component selection dialog.
+ * \param [in] model The current selection in the treeview.
+ * \param [in] iter  An iterator on a component or folder in the tree.
+ * \param [in] data  The component selection dialog.
  *
- *  \returns TRUE if item should be visible, FALSE otherwise.
+ * \returns TRUE if item should be visible, FALSE otherwise.
  */
 static bool
 lib_model_filter_visible_func (GtkTreeModel *model,
@@ -625,16 +630,17 @@ lib_model_filter_visible_func (GtkTreeModel *model,
   return ret;
 }
 
-/*! \brief Component row activated - double-click handler:
- *  \par Function Description
- * This functions handles row activation of a component row as a
- * convenience to the user, the row expands or colapses any node
- * with children.
+/*!
+ * \brief Component row activated - double-click handler:
+ * \par Function Description
+ *  This functions handles row activation of a component row as a
+ *  convenience to the user, the row expands or colapses any node
+ *  with children.
  *
- *  \param [in] tree_view The component treeview.
- *  \param [in] path      The GtkTreePath to the activated row.
- *  \param [in] column    The GtkTreeViewColumn in which the activation occurred.
- *  \param [in] dialog    The component selection dialog.
+ * \param [in] tree_view The component treeview.
+ * \param [in] path      The GtkTreePath to the activated row.
+ * \param [in] column    The GtkTreeViewColumn in which the activation occurred.
+ * \param [in] dialog    The component selection dialog.
  */
 static void
 compselect_tree_row_activated (GtkTreeView       *tree_view,
@@ -659,12 +665,13 @@ compselect_tree_row_activated (GtkTreeView       *tree_view,
   }
 }
 
-/*! \brief Open Rows in Tree in Tree-View
- *  \par Function Description
- *   This function is not call directly.
+/*!
+ * \brief Open Rows in Tree in Tree-View
+ * \par Function Description
+ *  This function is not call directly.
  *
- *  \param [in] tree_view  Pointer to a library tree-view widget
- *  \param [in] expand_all
+ * \param [in] tree_view  Pointer to a library tree-view widget
+ * \param [in] expand_all
  */
 static void
 compselect_tree_open_rows (GtkTreeView *tree_view, bool expand_all)
@@ -685,16 +692,17 @@ compselect_tree_open_rows (GtkTreeView *tree_view, bool expand_all)
   }
 }
 
-/*! \brief Open A Row in Tree call-back for Tree-View pop-up menu
- *  \par Function Description
- *   This function performs the same functionality as double-clicking on a
- * closed parent row in a tree-view but is enacted from the right context
- * menu. The function calls the compselect_tree_open_rows function above
- * with a value of FALSE for the expand-all argument. The option is included
- * on the right menu for the sake of completeness.
+/*!
+ * \brief Open A Row in Tree call-back for Tree-View pop-up menu
+ * \par Function Description
+ *  This function performs the same functionality as double-clicking on a
+ *  closed parent row in a tree-view but is enacted from the right context
+ *  menu. The function calls the compselect_tree_open_rows function above
+ *  with a value of FALSE for the expand-all argument. The option is included
+ *  on the right menu for the sake of completeness.
  *
- *  \param [in] menu_widget  Un-used menu item widget on the pop-up menu
- *  \param [in] tree_view    Pointer to the tree-view widget when popup activated
+ * \param [in] menu_widget  Un-used menu item widget on the pop-up menu
+ * \param [in] tree_view    Pointer to the tree-view widget when popup activated
  */
 static void
 compselect_open_tree_row (GtkWidget *menu_widget, GtkTreeView *tree_view)
@@ -702,14 +710,15 @@ compselect_open_tree_row (GtkWidget *menu_widget, GtkTreeView *tree_view)
   compselect_tree_open_rows (tree_view, FALSE);
 }
 
-/*! \brief Open All Rows in Tree call-back for Tree-View pop-up menu
- *  \par Function Description
- *   The function calls the compselect_tree_open_rows function above with a
- * value of TRUE for the expand-all argument. This is the same functionality
- * as pressing the Expand All button widget.
+/*!
+ * \brief Open All Rows in Tree call-back for Tree-View pop-up menu
+ * \par Function Description
+ *  The function calls the compselect_tree_open_rows function above with a
+ *  value of TRUE for the expand-all argument. This is the same functionality
+ *  as pressing the Expand All button widget.
  *
- *  \param [in] menu_widget  Un-used menu item widget on the pop-up menu
- *  \param [in] tree_view    Pointer to the tree-view widget when popup activated
+ * \param [in] menu_widget  Un-used menu item widget on the pop-up menu
+ * \param [in] tree_view    Pointer to the tree-view widget when popup activated
  */
 static void
 compselect_open_tree_rows (GtkWidget *menu_widget, GtkTreeView *tree_view)
@@ -808,15 +817,16 @@ compselect_open_to_symbol (Compselect *ThisDialog, const char *sym_name)
     gtk_tree_model_foreach(model, compselect_foreach_func, &SearchRecord);
 }
 
-/*! \brief Close Row in Tree call-back for Tree-View pop-up menu
- *  \par Function Description
- *   This function performs the same functionality as double-clicking on an
- * opened parent row in a tree-view but is enacted from the right context
- * menu. This allow closing of large tree folders without scrolling up to
- * the parent or using the collapse all function.
+/*!
+ * \brief Close Row in Tree call-back for Tree-View pop-up menu
+ * \par Function Description
+ *  This function performs the same functionality as double-clicking on an
+ *  opened parent row in a tree-view but is enacted from the right context
+ *  menu. This allow closing of large tree folders without scrolling up to
+ *  the parent or using the collapse all function.
  *
- *  \param [in] menu_widget  Un-used menu item widget on the pop-up menu
- *  \param [in] tree_view    Pointer to the tree-view widget when popup activated
+ * \param [in] menu_widget  Un-used menu item widget on the pop-up menu
+ * \param [in] tree_view    Pointer to the tree-view widget when popup activated
  */
 static void
 compselect_close_tree_row (GtkWidget *menu_widget, GtkTreeView *tree_view)
@@ -841,13 +851,14 @@ compselect_close_tree_row (GtkWidget *menu_widget, GtkTreeView *tree_view)
   }
 }
 
-/*! \brief Update the model of the attributes treeview
- *  \par Function Description
- *   This function acquires the toplevel attributes from the preview
- *   widget and puts them into the model of the <b>attrtreeview</b> widget.
+/*!
+ * \brief Update the model of the attributes treeview
+ * \par Function Description
+ *  This function acquires the toplevel attributes from the preview
+ *  widget and puts them into the model of the <b>attrtreeview</b> widget.
  *
- *  \param [in] compselect       The dialog compselect
- *  \param [in] preview_toplevel The toplevel of the preview widget
+ * \param [in] compselect       The dialog compselect
+ * \param [in] preview_toplevel The toplevel of the preview widget
  */
 void
 compselect_update_attributes_model (Compselect   *compselect,
@@ -931,8 +942,9 @@ compselect_update_attributes_model (Compselect   *compselect,
   g_list_free (o_attrlist);
 }
 
-/*! \brief Handles changes in the treeview selection.
- *  \par Function Description
+/*!
+ * \brief Handles changes in the treeview selection.
+ * \par Function Description
  *  This is the callback function that is called every time the user
  *  select a row in any component treeview of the dialog.
  *
@@ -943,8 +955,8 @@ compselect_update_attributes_model (Compselect   *compselect,
  *  It then emits the dialog's <B>apply</B> signal to let its parent
  *  know that a component has been selected.
  *
- *  \param [in] selection The current selection in the treeview.
- *  \param [in] user_data The component selection dialog.
+ * \param [in] selection The current selection in the treeview.
+ * \param [in] user_data The component selection dialog.
  */
 static void
 compselect_cb_tree_selection_changed (GtkTreeSelection *selection,
@@ -1007,8 +1019,9 @@ compselect_cb_tree_selection_changed (GtkTreeSelection *selection,
   }
 }
 
-/*! \brief Apply Filter to supplied View.
- *  \par Function Description
+/*!
+ * \brief Apply Filter to supplied View.
+ * \par Function Description
  *  This function applies the filtering of components in the treeview of
  *  the dialog based on the text in the search entry. The applying_filter
  *  variable is used here to prevent expanding when there is no text. This
@@ -1019,11 +1032,11 @@ compselect_cb_tree_selection_changed (GtkTreeSelection *selection,
  *  The function is called whenever a filter timeout occurs or when the
  *  user changes tabs.
  *
- *  \note The filtering done here is based on text entered by the user and
- *  has nothing to do with filtering based on style settings.
+ * \note The filtering done here is based on text entered by the user and
+ *       has nothing to do with filtering based on style settings.
  *
- *  \param [in] Dialog The component selection dialog Object.
- *  \param [in] view   The Active Tree view to operate on.
+ * \param [in] Dialog The component selection dialog Object.
+ * \param [in] view   The Active Tree view to operate on.
  */
 static void
 compselect_apply_filter_tree_view (Compselect *Dialog, GtkTreeView *view)
@@ -1045,8 +1058,9 @@ compselect_apply_filter_tree_view (Compselect *Dialog, GtkTreeView *view)
   }
 }
 
-/*! \brief Requests re-evaluation of the filter.
- *  \par Function Description
+/*!
+ * \brief Requests re-evaluation of the filter.
+ * \par Function Description
  *  This is the timeout function for the filtering of component in the tree
  *  view of the dialog. The function checks for the presents of text in the
  *  entry widget and calls the preceeding function, compselect_apply_filter
@@ -1054,11 +1068,11 @@ compselect_apply_filter_tree_view (Compselect *Dialog, GtkTreeView *view)
  *  function sets the boolean variable applying_filter, which is used to
  *  control if trees should be expand or not.
  *
- *  \note The timeout source that this callback is attached to is removed
- *        after the function executes, because the function return FALSE.
+ * \note The timeout source that this callback is attached to is removed
+ *       after the function executes, because the function return FALSE.
  *
- *  \param [in] data The component selection dialog.
- *  \returns FALSE to remove the timeout.
+ * \param [in] data The component selection dialog.
+ * \returns FALSE to remove the timeout.
  */
 static bool
 compselect_filter_timeout (void *data)
@@ -1087,16 +1101,17 @@ compselect_filter_timeout (void *data)
   return FALSE;
 }
 
-/*! \brief Callback function for the changed signal of the filter entry.
- *  \par Function Description
+/*!
+ * \brief Callback function for the changed signal of the filter entry.
+ * \par Function Description
  *  This function monitors changes in the entry filter of the dialog.
  *
  *  It specifically manages the sensitivity of the clear button of the
  *  entry depending on its contents. It also requests an update of the
  *  component list by re-evaluating filter at every changes.
  *
- *  \param [in] editable  The filter text entry.
- *  \param [in] user_data The component selection dialog.
+ * \param [in] editable  The filter text entry.
+ * \param [in] user_data The component selection dialog.
  */
 static void
 compselect_callback_filter_entry_changed (GtkEditable *editable,
@@ -1132,18 +1147,18 @@ compselect_callback_filter_entry_changed (GtkEditable *editable,
                                               compselect);
 }
 
-/*! \brief Callback when a Switch is toggled on the Component Select Dialog
- *  \par Function Description:
- *   This function changes images for switches that are toggled. The image
- * is set to the opposite state, i.e. if ON use OFF image and if OFF use ON
- * image. The function then checks which switches was toggled and set the
- * variable associated with the switch. If the ShowGroups switch is turned
- * off then the Sub-groups switch is disabled because it does not make sense
- * to list every component in the library in a single column.
+/*!
+ * \brief Callback when a Switch is toggled on the Component Select Dialog
+ * \par Function Description:
+ *  This function changes images for switches that are toggled. The image
+ *  is set to the opposite state, i.e. if ON use OFF image and if OFF use ON
+ *  image. The function then checks which switches was toggled and set the
+ *  variable associated with the switch. If the ShowGroups switch is turned
+ *  off then the Sub-groups switch is disabled because it does not make sense
+ *  to list every component in the library in a single column.
  *
- *  \param [in]  widget  ptr to the switch, aka toggle-button, widget
- *  \param [in]  Dialog  ptr to the dialog widget
- *
+ * \param [in]  widget  ptr to the switch, aka toggle-button, widget
+ * \param [in]  Dialog  ptr to the dialog widget
  */
 static void
 compselect_cb_switch_toggled(GtkWidget *widget, GschemDialog *Dialog)
@@ -1193,11 +1208,12 @@ compselect_cb_switch_toggled(GtkWidget *widget, GschemDialog *Dialog)
   return;
 }
 
-/*! \brief Sets toggle item state without emitting signal
- *  \par Function Description:
- *   This function sets the active state of a toggle widget while blocking
- *   signals if the widget has the ID of it's signal handler embedded,
- *   otherwise the toggle widget is set without blocking the signal.
+/*!
+ * \brief Sets toggle item state without emitting signal
+ * \par Function Description:
+ *  This function sets the active state of a toggle widget while blocking
+ *  signals if the widget has the ID of it's signal handler embedded,
+ *  otherwise the toggle widget is set without blocking the signal.
  */
 static void
 gtk_set_item_active(GtkWidget *widget, bool state) {
@@ -1219,8 +1235,9 @@ gtk_set_item_active(GtkWidget *widget, bool state) {
   }
 }
 
-/*! \brief Handles changes of the Style settings.
- *  \par Function Description
+/*!
+ * \brief Handles changes of the Style settings.
+ * \par Function Description
  *  This is call-back function for the style menu toggle widgets. This
  *  functions establishes the flag mask that will be used when loading
  *  the tree-views, compselect->style_flag. In other functions through
@@ -1229,10 +1246,10 @@ gtk_set_item_active(GtkWidget *widget, bool state) {
  *
  *  Since this function is only used as a call-back for toggle widgets the
  *  mask must have changed. Therefore we emits a <B>refresh</B> signal for
- ** the  tree-views once the mask has been updated.
+ *  the  tree-views once the mask has been updated.
  *
- *  \param [in] button We must find this button in our GSList of widgets.
- *  \param [in] compselect  The component selection dialog.
+ * \param [in] button We must find this button in our GSList of widgets.
+ * \param [in] compselect  The component selection dialog.
  */
 static void
 compselect_toggle_style(GedaCheckMenuItem *button, Compselect *compselect)
@@ -1303,8 +1320,9 @@ compselect_toggle_style(GedaCheckMenuItem *button, Compselect *compselect)
 
 }
 
-/*! \brief Callback for Style toggler on the popup menu.
- *  \par Function Description
+/*!
+ * \brief Callback for Style toggler on the popup menu.
+ * \par Function Description
  *  This is call-back function for the style toggle widgets on the right
  *  button mouse menu. The function retrieves the index from the widget
  *  and then get the address of the equivalent "main" style toggle widget.
@@ -1312,8 +1330,8 @@ compselect_toggle_style(GedaCheckMenuItem *button, Compselect *compselect)
  *  call-back handler is takes care of establishing the new mask and
  *  signaling for a refresh.
  *
- *  \param [in] button  A menu item toggle button widget on the popup submenu.
- *  \param [in] compselect  The component selection dialog.
+ * \param [in] button  A menu item toggle button widget on the popup submenu.
+ * \param [in] compselect  The component selection dialog.
  */
 static void
 compselect_popup_toggle_style(GedaCheckMenuItem *button, Compselect *compselect)
@@ -1328,8 +1346,9 @@ compselect_popup_toggle_style(GedaCheckMenuItem *button, Compselect *compselect)
 
 }
 
-/*! \brief Handles changes of behavior.
- *  \par Function Description
+/*!
+ * \brief Handles changes of behavior.
+ * \par Function Description
  *  This function is called every time the value of the option menu
  *  for behaviors is modified.
  *
@@ -1337,8 +1356,8 @@ compselect_popup_toggle_style(GedaCheckMenuItem *button, Compselect *compselect)
  *  that the requested behavior for the next adding of a component has
  *  been changed.
  *
- *  \param [in] optionmenu The behavior option menu.
- *  \param [in] user_data  The component selection dialog.
+ * \param [in] optionmenu The behavior option menu.
+ * \param [in] user_data  The component selection dialog.
  */
 static void
 compselect_callback_behavior_changed (GedaOptionMenu *optionmenu,
@@ -1403,19 +1422,20 @@ compselect_create_inuse_tree_model (Compselect *compselect)
   return (GtkTreeModel*)store;
 }
 
-/*!\brief Get Library Source List for Model for use in Library treeviews.
+/*!
+ * \brief Get Library Source List for Model for use in Library treeviews.
  * \par Function Description
- * This function filters the list of available sources for each ViewTree.
- * The function returns a glist of sources in the category associated
- * with the supplied data set enumerator. This has nothing to do with
- * the filter entry. The data is based on the Data and is used for all
- * library views but not the IN-USE Tab.
+ *  This function filters the list of available sources for each ViewTree.
+ *  The function returns a glist of sources in the category associated
+ *  with the supplied data set enumerator. This has nothing to do with
+ *  the filter entry. The data is based on the Data and is used for all
+ *  library views but not the IN-USE Tab.
  *
- *  \param [in] w_current  GschemToplevel environment data.
- *  \param [in] compselect This dialog.
- *  \param [in] data_set   Enumerator assocated with the TAB for the TreeView.
+ * \param [in] w_current  GschemToplevel environment data.
+ * \param [in] compselect This dialog.
+ * \param [in] data_set   Enumerator assocated with the TAB for the TreeView.
  *
- *  \returns [out] Ptr to Glist of selected sources matching the category.
+ * \returns [out] Ptr to Glist of selected sources matching the category.
  */
 GList *
 compselect_get_tree_sources(GschemToplevel *w_current,
@@ -1494,24 +1514,24 @@ compselect_filter_check_style(Compselect *compselect, const char *sym_name)
   return result;
 }
 
-/*!\brief Create the Tree Model for "Library" views.
+/*!
+ * \brief Create the Tree Model for "Library" views.
  * \par Function Description
- * Creates a TreeStore with 3 columns, the first column is a boolean
- * value indicating whether the second column contains data for a
- * symbol or a source. If the first column contains TRUE then the
- * row is for a symbol entry, if FALSE then the data in the second
- * column is a pointer to a CLibSource record.
+ *  Creates a TreeStore with 3 columns, the first column is a boolean
+ *  value indicating whether the second column contains data for a
+ *  symbol or a source. If the first column contains TRUE then the
+ *  row is for a symbol entry, if FALSE then the data in the second
+ *  column is a pointer to a CLibSource record.
  *
- * Data supplied by compselect_get_tree_sources is added to a new
- * TreeStore. The data is monitored looking for group changes,
- * indicating the different symbol sub-directory.
+ *  Data supplied by compselect_get_tree_sources is added to a new
+ *  TreeStore. The data is monitored looking for group changes,
+ *  indicating the different symbol sub-directory.
  *
- * A TreeModel containing the TreeStore is return after connecting
- * associating the model with the visibility filter.
+ *  A TreeModel containing the TreeStore is return after connecting
+ *  associating the model with the visibility filter.
  *
- * In theory, we could nest any number of levels using this technique
- * but this implementation only looks for 1 slash.
- *
+ *  In theory, we could nest any number of levels using this technique
+ *  but this implementation only looks for 1 slash.
  */
 static GtkTreeModel *
 compselect_create_lib_tree_model (Compselect *compselect, DialogTabs  data_set)
@@ -1656,8 +1676,9 @@ load_symbols: /* It Works! */
   return model;
 }
 
-/*! \brief Handles a click on the clear button.
- *  \par Function Description
+/*!
+ * \brief Handles a click on the clear button.
+ * \par Function Description
  *  This is the callback function called every time the user press the
  *  clear filter button. This function resets the filter entry, which
  *  indirectly causes re-evaluation of the filter on the list of symbols
@@ -1665,8 +1686,8 @@ load_symbols: /* It Works! */
  *  the active display view. To insure all of the views get updated, each
  *  library is manually updated.
  *
- *  \param [in] button    The clear button
- *  \param [in] user_data The component selection dialog.
+ * \param [in] button    The clear button
+ * \param [in] user_data The component selection dialog.
  */
 static void
 compselect_callback_clear_filter_clicked (GtkButton *button,
@@ -1685,7 +1706,8 @@ compselect_callback_clear_filter_clicked (GtkButton *button,
 
 }
 
-/*!\brief Refresh all Library Tree-Views Signal Handler.
+/*!
+ * \brief Refresh all Library Tree-Views Signal Handler.
  * \par Function Description
  *  This functions is called by compselect_callback_refresh_views
  *  to rebuild all trees view models. Currently, this functions
@@ -1745,7 +1767,8 @@ compselect_refresh_tree_views (Compselect *compselect)
 
 }
 
-/*!\brief On-demand Refresh all Library Tree-Views.
+/*!
+ * \brief On-demand Refresh all Library Tree-Views.
  * \par Function Description
  * The function checks for a selection in the active tree-view and if
  * an item, either a container or a symbol, is selected then associated
@@ -1996,12 +2019,12 @@ compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
   GEDA_FREE (sym_name);
 }
 
-/*!\brief Refresh all Library Tree-Views Signal Handler.
+/*!
+ * \brief Refresh all Library Tree-Views Signal Handler.
  * \par Function Description
  *  This function is activate when the "refresh" signal is emitted
- * on the dialog from any internal widgets. The signal is emitted when
- * a style is changed.
- *
+ *  on the dialog from any internal widgets. The signal is emitted when
+ *  a style is changed.
  */
 static void
 compselect_on_refresh_tree_views (Compselect *compselect)
@@ -2009,11 +2032,11 @@ compselect_on_refresh_tree_views (Compselect *compselect)
   compselect_callback_refresh_views (NULL, compselect);
 }
 
-/*!\brief Refresh the Active Tree View.
+/*!
+ * \brief Refresh the Active Tree View.
  * \par Function Description
- *   This function causes the model for the active tree-view to be
- * rebuilt.
- *
+ *  This function causes the model for the active tree-view to be
+ *  rebuilt.
  */
 static void
 compselect_refresh_inuse_view (GtkWidget *widget, void *user_data)
@@ -2030,11 +2053,12 @@ compselect_refresh_inuse_view (GtkWidget *widget, void *user_data)
 
 }
 
-/*!\brief Rescan component libraries and update treeViews.
+/*!
+ * \brief Rescan component libraries and update treeViews.
  * \par Function Description
- * Requests a rescan of the component library in order to pick up any
- * new symbols, and calls compselect_refresh_tree_views to refresh
- * the tree views.
+ *  Requests a rescan of the component library in order to pick up any
+ *  new symbols, and calls compselect_refresh_tree_views to refresh
+ *  the tree views.
  */
 static void
 compselect_callback_rescan_libraries (GtkButton *button, void *user_data)
@@ -2050,14 +2074,15 @@ compselect_callback_rescan_libraries (GtkButton *button, void *user_data)
   gtk_widget_set_sensitive (compselect->filter_hbox, TRUE);
 }
 
-/*!\brief Collase All button callback.
+/*!
+ * \brief Collase All button callback.
  * \par Function Description
- * Called when user presses the Collapse All button to close all opened
- * rows in the active view-tree.
+ *  Called when user presses the Collapse All button to close all opened
+ *  rows in the active view-tree.
  *
- * TODO: The standard call back does not have the parameter in the order
- * need to call the gtk_tree_view_collapse_all function directly. Isn't
- * there an optional callback protocol?
+ *  TODO: The standard call back does not have the parameter in the order
+ *  need to call the gtk_tree_view_collapse_all function directly. Isn't
+ *  there an optional callback protocol?
  */
 static void
 compselect_callback_collapse_all(GtkButton *button, void *user_data)
@@ -2092,8 +2117,9 @@ compselect_callback_expand_all(GtkButton *button, void *user_data)
     BUG_MSG("bad TreeView");
 }
 
-/*! \brief Emit GEDA_RESPONSE_CLOSE signal.
- *  \par Function Description
+/*!
+ * \brief Emit GEDA_RESPONSE_CLOSE signal.
+ * \par Function Description
  *  This function is called when the Close button on the Component
  *  Select dialog is pressed.
  */
@@ -2106,8 +2132,9 @@ compselect_on_close_butt_clicked(GtkButton *button, void *user_data)
                            user_data);
 }
 
-/*! \brief Emit COMPSELECT_RESPONSE_HIDE signal.
- *  \par Function Description
+/*!
+ * \brief Emit COMPSELECT_RESPONSE_HIDE signal.
+ * \par Function Description
  *  This function is called when the Okay button on the Component
  *  Select dialog is pressed.
  */
@@ -2119,13 +2146,14 @@ compselect_on_okay_butt_clicked(GtkButton *button, void *user_data)
                            COMPSELECT_RESPONSE_HIDE,
                            user_data);
 }
-/*! \brief Callback on Component Select Dialog change TAB in notebook.
- *  \par Function Description
+
+/*!
+ * \brief Callback on Component Select Dialog change TAB in notebook.
+ * \par Function Description
  *  This function is called when ever a TAB sheet is selected in order
- * to set the page number for use by other functions in this module and
- * then calls compselect_apply_filter_tree_view to update the active
- * treeview widget.
- *
+ *  to set the page number for use by other functions in this module and
+ *  then calls compselect_apply_filter_tree_view to update the active
+ *  treeview widget.
  */
 static void
 compselect_on_notebook_switch_page (GtkNotebook     *notebook,
@@ -2146,10 +2174,11 @@ compselect_on_notebook_switch_page (GtkNotebook     *notebook,
   return;
 }
 
-/*! \brief Creates the treeview for the "In Use" view.
+/*!
+ * \brief Creates the treeview for the "In Use" view.
  * \par Function Description
- * This function create a new Treeview Widget Assembly. The assembly
- * contains a scrollable Treeview nested inside a vertical box object.
+ *  This function create a new Treeview Widget Assembly. The assembly
+ *  contains a scrollable Treeview nested inside a vertical box object.
  *
  * \returns vBox widget Assembly
  */
@@ -2251,15 +2280,15 @@ compselect_create_inuse_treeview (Compselect *compselect)
   return inuse_vbox;
 }
 
-/*! \brief Tool Tips On Callback Handler for Popup Mouse Context Menu
+/*!
+ * \brief Tool Tips On Callback Handler for Popup Mouse Context Menu
+ * \par Function Description
+ *  This function sets the LVC_TOOLTIP_TEXT column to be the tooltip
+ *  string for each library treeview and is used to enable tooltips
+ *  in the tree views.
  *
- *  \par Function Description
- * This function sets the LVC_TOOLTIP_TEXT column to be the tooltip
- * string for each library treeview and is used to enable tooltips
- * in the tree views.
- *
- *  \param [in] menu_item is menu widget
- *  \param [in] compselect Pointer Compselect dialog structure
+ * \param [in] menu_item is menu widget
+ * \param [in] compselect Pointer Compselect dialog structure
  */
 static void
 compselect_menu_tooltips_on(GedaMenuItem *menu_item, Compselect *compselect)
@@ -2270,14 +2299,14 @@ compselect_menu_tooltips_on(GedaMenuItem *menu_item, Compselect *compselect)
   gtk_tree_view_set_tooltip_column (compselect->simtreeview,   LVC_TOOLTIP_TEXT);
 }
 
-/*! \brief Tool Tips Off Callback Handler for Popup Mouse Context Menu
+/*!
+ * \brief Tool Tips Off Callback Handler for Popup Mouse Context Menu
+ * \par Function Description
+ *  This function sets the tooltip column to -1 for each library treeview
+ *  and is used to disable tooltips in the tree views if the use so chooses.
  *
- *  \par Function Description
- * This function sets the tooltip column to -1 for each library treeview
- * and is used to disable tooltips in the tree views if the use so chooses.
- *
- *  \param [in] menu_item is menu widget
- *  \param [in] compselect Pointer Compselect dialog structure
+ * \param [in] menu_item is menu widget
+ * \param [in] compselect Pointer Compselect dialog structure
  */
 static void
 compselect_menu_tooltips_off(GedaMenuItem *menu_item, Compselect *compselect)
@@ -2288,15 +2317,15 @@ compselect_menu_tooltips_off(GedaMenuItem *menu_item, Compselect *compselect)
   gtk_tree_view_set_tooltip_column (compselect->simtreeview,   -1);
 }
 
-/*! \brief Create and Setup Popup Mouse Menu for the View Trees
+/*!
+ * \brief Create and Setup Popup Mouse Menu for the View Trees
+ * \par Function Description
+ *  This function constructs a pop-up menu for the Library Tree Views
+ *  settting sensitivity on menu choices based on Tree-View position
+ *  and the state of the containing Tree-View.
  *
- *  \par Function Description
- * This function constructs a pop-up menu for the Library Tree Views
- * settting sensitivity on menu choices based on Tree-View position
- * and the state of the containing Tree-View.
- *
- *  \param [in] compselect Pointer Compselect dialog structure
- *  \param [in] treeview   widget
+ * \param [in] compselect Pointer Compselect dialog structure
+ * \param [in] treeview   widget
  *
  * TODO: Should not have recreate the popup menu everytime the user
  *       right-clicks.
@@ -2450,16 +2479,16 @@ compselect_build_view_menu(Compselect *compselect, GtkWidget *treeview)
   return (menu);
 }
 
-/*! \brief ViewTree Mouse Button Constructor
+/*!
+ * \brief ViewTree Mouse Button Constructor
+ * \par Function Description
+ *  This function checks if mouse botton press and when the 3rd button is
+ *  released the compselect_build_view_menu function is called to create
+ *  the mouse menu.
  *
- *  \par Function Description
- * This function checks if mouse botton press and when the 3rd button is
- * released the compselect_build_view_menu function is called to create
- * the mouse menu.
- *
- *  \param [in] treeview   The TreeView widget when user "right-clicked"
- *  \param [in] event      Mouse Button event record
- *  \param [in] compselect Pointer to This dialog
+ * \param [in] treeview   The TreeView widget when user "right-clicked"
+ * \param [in] event      Mouse Button event record
+ * \param [in] compselect Pointer to This dialog
  */
 void
 compselect_view_popup_menu (GtkWidget      *treeview,
@@ -2484,16 +2513,16 @@ compselect_view_popup_menu (GtkWidget      *treeview,
                   gdk_event_get_time((GdkEvent*)event));
 }
 
-/*! \brief ViewTree Mouse Button Call Back
+/*!
+ * \brief ViewTree Mouse Button Call Back
+ * \par Function Description
+ *  This function checks the mouse botton press and when the 3rd button
+ *  is released the build_menu function is called to create the mouse
+ *  menu.
  *
- *  \par Function Description
- * This function checks the mouse botton press and when the 3rd button
- * is released the build_menu function is called to create the mouse
- * menu.
- *
- *  \param [in] treeview   The treeview widget when user "right-clicked"
- *  \param [in] event      Mouse Button event record
- *  \param [in] compselect Pointer to This dialog
+ * \param [in] treeview   The treeview widget when user "right-clicked"
+ * \param [in] event      Mouse Button event record
+ * \param [in] compselect Pointer to This dialog
  */
 bool
 compselect_view_onButtonPressed (GtkWidget      *treeview,
@@ -2510,6 +2539,7 @@ compselect_view_onButtonPressed (GtkWidget      *treeview,
 
     return FALSE; /* we did not handle this */
 }
+
 bool
 compselect_view_onPopupMenu (GtkWidget *treeview, Compselect *compselect)
 {
@@ -2531,7 +2561,8 @@ compselect_search_treeview (GtkTreeModel *model,
     return (geda_utility_string_stristr (sym->name, key) >= 0);
 }
 
-/*! \brief Creates the treeview for each notebook Library Tab */
+/*!
+ * \brief Creates the treeview for each notebook Library Tab */
 static GtkWidget *
 compselect_create_treeview_box (Compselect   *compselect,
                                 GtkTreeView **viewtree,
@@ -2629,7 +2660,8 @@ compselect_create_treeview_box (Compselect   *compselect,
   return view_vbox;
 }
 
-/*! \brief Creates the treeview widget for the attributes
+/*!
+ * \brief Creates the treeview widget for the attributes
  */
 static GtkWidget*
 compselect_create_attributes_treeview (Compselect *compselect)
@@ -2695,7 +2727,9 @@ compselect_create_attributes_treeview (Compselect *compselect)
   return scrolled_win;
 }
 
-/*! \brief Creates the filter area on the Component Select Dialog */
+/*!
+ *\brief Creates the filter area on the Component Select Dialog
+ */
 static GtkWidget *
 compselect_create_filter_area (Compselect *compselect)
 {
@@ -2837,7 +2871,9 @@ compselect_create_filter_area (Compselect *compselect)
   return hbox;
 }
 
-/*! \brief Create the style menu for the menu button in the Action Area */
+/*!
+ * \brief Create the style menu for the menu button in the Action Area
+ */
 static GedaMenu *
 compselect_create_styles_menu (Compselect *ThisDialog)
 {
@@ -2905,8 +2941,9 @@ compselect_create_styles_menu (Compselect *ThisDialog)
   return(menu);
 }
 
-/*! \brief Create the menu of behaviors for the Component Select dialog
- *  \par Function Description
+/*!
+ * \brief Create the menu of behaviors for the Component Select dialog
+ * \par Function Description
  *  This function creates and returns a <B>GtkComboBox</B> for
  *  selecting the behavior when a component is added to the sheet.
  */
@@ -2946,15 +2983,15 @@ compselect_create_behaviors_menu (void)
   return(menu);
 }
 
-/*! \brief GschemDialog "geometry_save" class method over-ride
- *
- *  \par Function Description
+/*!
+ * \brief GschemDialog "geometry_save" class method over-ride
+ * \par Function Description
  *  Chain up to our parent's method to save the dialog's size and
  *  position, then save the dialog's current internal geometry.
  *
- *  \param [in] dialog     The GschemDialog to save the geometry of.
- *  \param [in] cfg        A Geda configuration object.
- *  \param [in] group_name Group name in the key file to store the data under.
+ * \param [in] dialog     The GschemDialog to save the geometry of.
+ * \param [in] cfg        A Geda configuration object.
+ * \param [in] group_name Group name in the key file to store the data under.
  */
 static void
 compselect_geometry_save (GschemDialog *dialog,
@@ -2998,20 +3035,20 @@ compselect_geometry_save (GschemDialog *dialog,
   eda_config_set_integer (cfg, IDS_COMP_SELECT, "style", flags);
 }
 
-/*! \brief GschemDialog "geometry_restore" class method handler
- *
- *  \par Function Description
+/*!
+ * \brief GschemDialog "geometry_restore" class method handler
+ * \par Function Description
  *  Chain up to our parent's method to restore the dialog's size and
  *  position, then restore the dialog's current internal geometry.
  *  This function also sets the style menu toggle widgets based on the
  *  flag mask, which was retrieved before the dialog was contructed.
  *
- *  \remark This function is executed post contruction, essentially right
+ * \remark This function is executed post contruction, essentially right
  *  before when the gtk_widget_show is applied to the entire window.
  *
- *  \param [in] dialog     The GschemDialog to restore the geometry of.
- *  \param [in] cfg        A Geda configuration object.
- *  \param [in] group_name Group name in the key file to store the data under.
+ * \param [in] dialog     The GschemDialog to restore the geometry of.
+ * \param [in] cfg        A Geda configuration object.
+ * \param [in] group_name Group name in the key file to store the data under.
  */
 static void
 compselect_geometry_restore (GschemDialog *dialog,
@@ -3069,14 +3106,13 @@ compselect_geometry_restore (GschemDialog *dialog,
 
 }
 
-/*! \brief Retrived Component Select dialog settings
- *
- *  \par Function Description
+/*!
+ * \brief Retrived Component Select dialog settings
+ * \par Function Description
  *  This function is used to retrieve the previous settings such as the
  *  flag mask for the style menu before the dialog is contructed.
  *
- *  \param [in] Dialog The Compselect Dialog widget.
- *
+ * \param [in] Dialog The Compselect Dialog widget.
  */
 static void
 compselect_settings_restore (Compselect *Dialog)
@@ -3120,8 +3156,10 @@ compselect_style_set (GtkWidget *widget, GtkStyle *previous)
   }
 }
 
-/*! \internal Helper for compselect_constructor */
-/*! \brief Creates the Action Area on the Component Select Dialog */
+/*!
+ * \internal Helper for compselect_constructor
+ * \brief Creates the Action Area on the Component Select Dialog
+ */
 static GtkWidget*
 compselect_create_action_area (Compselect *ThisDialog, GtkWidget *parent, int mode)
 {
@@ -3225,16 +3263,17 @@ compselect_create_action_area (Compselect *ThisDialog, GtkWidget *parent, int mo
   return action_hbox;
 }
 
-/*! \brief  Compselect Dialog Contructor
- *  \par Function Description
- *   This is the main function for construction of the Compselect
- * dialog box. Due to the expanse of this dialog, other previously
- * defined function function a called to create portions. Those
- * function above have "create-" in the function name.
+/*!
+ * \brief  Compselect Dialog Contructor
+ * \par Function Description
+ *  This is the main function for construction of the Compselect
+ *  dialog box. Due to the expanse of this dialog, other previously
+ *  defined function function a called to create portions. Those
+ *  function above have "create-" in the function name.
  *
- *  \param [in] type                   The GedaType type
- *  \param [in] n_construct_properties The number of inital parameters?
- *  \param [in] construct_params       Inital g_object property values
+ * \param [in] type                   The GedaType type
+ * \param [in] n_construct_properties The number of inital parameters?
+ * \param [in] construct_params       Inital g_object property values
  */
 static GObject*
 compselect_constructor (GType                  type,
@@ -3462,14 +3501,15 @@ compselect_finalize (GObject *object)
   G_OBJECT_CLASS (compselect_parent_class)->finalize (object);
 }
 
-/*! \brief  Get Properties of the Compselect Dialog
- *  \par Function Description
- *   This function handles the gobject properties request.
+/*!
+ * \brief  Get Properties of the Compselect Dialog
+ * \par Function Description
+ *  This function handles the gobject properties request.
  *
- *  \param [in]  object  Pointer to Compselect dialog structure
- *  \param [in]  epid    The enumerated property ID
- *  \param [out] value   The variable that will be set to the property value
- *  \param [in]  pspec   The parameter specifications for the property
+ * \param [in]  object  Pointer to Compselect dialog structure
+ * \param [in]  epid    The enumerated property ID
+ * \param [out] value   The variable that will be set to the property value
+ * \param [in]  pspec   The parameter specifications for the property
  */
 static void
 compselect_get_property (GObject     *object,
@@ -3533,14 +3573,15 @@ compselect_get_property (GObject     *object,
   }
 }
 
-/*! \brief  Set Properties of the Compselect Dialog
- *  \par Function Description
- *   This function handled the gobject properties setters.
+/*!
+ * \brief  Set Properties of the Compselect Dialog
+ * \par Function Description
+ *  This function handled the gobject properties setters.
  *
- *  \param [in] object  Pointer to Compselect dialog structure
- *  \param [in] epid    The enumerated property ID
- *  \param [in] value   The value to set the property
- *  \param [in] pspec   The parameter specifications for the property
+ * \param [in] object  Pointer to Compselect dialog structure
+ * \param [in] epid    The enumerated property ID
+ * \param [in] value   The value to set the property
+ * \param [in] pspec   The parameter specifications for the property
  */
 static void
 compselect_set_property (GObject      *object,
@@ -3557,7 +3598,7 @@ compselect_set_property (GObject      *object,
 
     case PROP_BEHAVIOR:
       geda_option_menu_set_history(compselect->behavior_menu,
-                                  g_value_get_enum (value));
+                                   g_value_get_enum (value));
       break;
     case PROP_HIDDEN:
       compselect->hidden = g_value_get_boolean (value);
@@ -3571,10 +3612,11 @@ compselect_set_property (GObject      *object,
   }
 }
 
-/*! \brief  Compselect Dialog Class Initialization
- *  \par Function Description
- *   This is the class initializer function before construction of
- *   the Compselect dialog.
+/*!
+ * \brief  Compselect Dialog Class Initialization
+ * \par Function Description
+ *  This is the class initializer function before construction of
+ *  the Compselect dialog.
  */
 static void
 compselect_class_init (void *class, void *class_data)
@@ -3644,8 +3686,9 @@ compselect_class_init (void *class, void *class_data)
                                     G_TYPE_NONE, 0);
 }
 
-/*! \brief Initialize new Compselect data structure instance.
- *  \par Function Description
+/*!
+ * \brief Initialize new Compselect data structure instance.
+ * \par Function Description
  *  This function is call after the CompselectClass is created
  *  to initialize the data structure.
  *
@@ -3662,16 +3705,16 @@ compselect_instance_init(GTypeInstance *instance, void *class)
   dialog->instance_type = compselect_get_type();
 }
 
-/*! \brief Function to retrieve Compselect's Type identifier.
- *
- *  \par Function Description
+/*!
+ * \brief Function to retrieve Compselect's Type identifier.
+ * \par Function Description
  *  Function to retrieve a #Compselect Type identifier. When
  *  first called, the function registers a #Compselect in the
  *  GedaType system to obtain an identifier that uniquely itentifies
  *  a Compselect and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *
- *  \return GedaType identifier associated with Compselect.
+ * \return GedaType identifier associated with Compselect.
  */
 GedaType compselect_get_type (void)
 {
