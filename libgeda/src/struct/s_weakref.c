@@ -34,7 +34,8 @@ struct WeakRef
   void *user_data;
 };
 
-/*! \brief Notify weak reference watchers that a structure is dead.
+/*!
+ * \brief Notify weak reference watchers that a structure is dead.
  * \par Function Description
  * For each entry in \a weak_refs, call notify function with the dead
  * pointer \a dead_ptr and the entry's specified user data, and free
@@ -61,7 +62,8 @@ s_weakref_notify (void *dead_ptr, GList *weak_refs)
   g_list_free (weak_refs);
 }
 
-/*! \brief Add a weak reference watcher to a weak ref list.
+/*!
+ * \brief Add a weak reference watcher to a weak ref list.
  * \par Function Description
  * Adds the weak reference callback \a notify_func to the weak
  * reference list \a weak_refs, returning the new head of \a
@@ -84,7 +86,8 @@ s_weakref_add (GList *weak_refs, void (*notify_func)(void *, void *),
   return g_list_prepend (weak_refs, entry);
 }
 
-/*! \brief Remove a weak reference watcher from a weak ref list.
+/*!
+ * \brief Remove a weak reference watcher from a weak ref list.
  * \par Function Description
  * Removes a weak reference callback from the weak reference list \a
  * weak_refs, returning the new head of \a weak_refs.
@@ -125,7 +128,8 @@ weak_ptr_notify_func (void *dead_ptr, void *user_data) {
   }
 }
 
-/*! \brief Add a weak pointer to a weak ref list.
+/*!
+ * \brief Add a weak pointer to a weak ref list.
  * \par Function Description
  * Adds a weak reference for \a weak_pointer_loc to the weak reference
  * list \a weak_refs, returning the new head of \a weak_refs.
@@ -141,7 +145,8 @@ s_weakref_add_ptr (GList *weak_refs, void **weak_pointer_loc)
   return s_weakref_add (weak_refs, weak_ptr_notify_func, weak_pointer_loc);
 }
 
-/*! \brief Remove a weak pointer from a weak ref list.
+/*!
+ * \brief Remove a weak pointer from a weak ref list.
  * \par Function Description
  * Removes the weak reference for \a weak_pointer_loc from the weak
  * reference list \a weak_refs, returning the new head of \a
