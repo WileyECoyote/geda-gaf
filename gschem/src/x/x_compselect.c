@@ -287,8 +287,9 @@ x_compselect_callback_response(GtkDialog *dialog, int response, void *user_data)
  */
 void x_compselect_open (GschemToplevel *w_current)
 {
-  GtkWidget   *ThisDialog;
-  Compselect  *ActiveDialog;
+  GtkWidget  *ThisDialog;
+  Compselect *ActiveDialog;
+  GedaObject *o_current;
 
   ThisDialog = w_current->cswindow;
 
@@ -318,6 +319,17 @@ void x_compselect_open (GschemToplevel *w_current)
 
   if (strcmp (GetEntryText (ActiveDialog->entry_filter), "") != 0) {
     gtk_widget_grab_focus ((GtkWidget*) ActiveDialog->entry_filter);
+  }
+
+  o_current = o_select_return_first_object(w_current);
+
+  if (GEDA_IS_COMPLEX(o_current)) {
+
+    char *sym_name;
+
+    sym_name = geda_complex_get_filename(o_current->complex);
+
+    g_object_set(ThisDialog, "symbol", sym_name, NULL);
   }
 }
 

@@ -6,6 +6,8 @@
 
     * src/x/x_compselect.c. Make the "symbol" property re-writable; add
       functions compselect_open_to_symbol and compselect_foreach_func.
+      Revise x_compselect_open to check the selection and set the symbol
+      property if the first selection is a complex.
 
 2017-12-27 Wiley E. Hill <wileyhill@gmail.com>
 
