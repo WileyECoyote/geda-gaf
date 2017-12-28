@@ -2,6 +2,8 @@
 
     * po/af.po: Update Afrikaans translations.
 
+    * po/bs.po: Update Bosnian translations.
+
 2017-12-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_multiattrib.c: Replace g_object_weak_ref and g_object_weak_unref
