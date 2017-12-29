@@ -394,7 +394,7 @@ i_vars_recall_user_settings(GschemToplevel *w_current)
 
     tmp_str = i_var_get_global_config_string (cfg, "default-font-name");
 
-    if (tmp_str != NULL) {
+    if (tmp_str != NULL && strlen(tmp_str) > 1) {
       eda_renderer_set_font_name(CairoRenderer, tmp_str);
       GEDA_FREE (tmp_str);
     }
