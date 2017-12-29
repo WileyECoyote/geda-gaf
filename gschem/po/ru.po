@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gschem ru\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-12-25 02:29-0600\n"
+"POT-Creation-Date: 2017-12-27 21:23-0600\n"
 "PO-Revision-Date: 2015-09-13 16:05+0300\n"
 "Last-Translator: Sergey Alyoshin <alyoshin.s@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -627,11 +627,11 @@ msgid "Found invalid gschem window smob ~S"
 msgstr "Обнаружена недопустимая структура данных smob окна gschem ~S"
 
 # current value of
-#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5133
+#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5134
 msgid "current value of"
 msgstr "Текущее значение"
 
-#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5134
+#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5135
 msgid "is"
 msgstr "Является"
 
@@ -649,7 +649,7 @@ msgid "while inside an action!\n"
 msgstr ""
 
 # Created a new page
-#: gschem/src/iface/i_command.c:768 gschem/src/iface/i_command.c:2794
+#: gschem/src/iface/i_command.c:768 gschem/src/iface/i_command.c:2795
 msgid "New page created"
 msgstr "Создана новая страница"
 
@@ -714,77 +714,77 @@ msgstr "смещение режима"
 msgid "Specify offset distance:"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:2283
+#: gschem/src/iface/i_command.c:2284
 msgid "Zoom Magnification"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:2283
+#: gschem/src/iface/i_command.c:2284
 msgid "Specify new zoom:"
 msgstr ""
 
 # error
-#: gschem/src/iface/i_command.c:2327
+#: gschem/src/iface/i_command.c:2328
 msgid "error"
 msgstr "ошибка"
 
 # No component selected
-#: gschem/src/iface/i_command.c:2335
+#: gschem/src/iface/i_command.c:2336
 msgid "No component selected\n"
 msgstr "Не выбран компонент\n"
 
-#: gschem/src/iface/i_command.c:2880
+#: gschem/src/iface/i_command.c:2881
 msgid "Confirm revert ALL documents"
 msgstr ""
 
 # search for the data source
-#: gschem/src/iface/i_command.c:3062
+#: gschem/src/iface/i_command.c:3063
 msgid "Searching for source"
 msgstr "Поиск источника данных"
 
 # Could not go down in the hierarchy
-#: gschem/src/iface/i_command.c:3096
+#: gschem/src/iface/i_command.c:3097
 msgid "Failed to descend into"
 msgstr "Не удалось спуститься в иерархии"
 
 # Hierarchy Error
-#: gschem/src/iface/i_command.c:3105
+#: gschem/src/iface/i_command.c:3106
 msgid "Hierarchy Error"
 msgstr "Ошибка иерархии"
 
 # Search for a symbol
-#: gschem/src/iface/i_command.c:3182
+#: gschem/src/iface/i_command.c:3183
 msgid "Searching for symbol"
 msgstr "Поиск символа"
 
-#: gschem/src/iface/i_command.c:3192
+#: gschem/src/iface/i_command.c:3193
 msgid "Symbol is not a real file. Symbol cannot be loaded.\n"
 msgstr "Нет реального файла для символа. Символ не может быть загружен.\n"
 
-#: gschem/src/iface/i_command.c:3239
+#: gschem/src/iface/i_command.c:3240
 msgid "Cannot find any schematics above the current one!\n"
 msgstr "Для текущей схемы не удалось найти схему, вышестоящую по иерархии!\n"
 
-#: gschem/src/iface/i_command.c:3368
+#: gschem/src/iface/i_command.c:3369
 msgid "Object is attached to something\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3774
+#: gschem/src/iface/i_command.c:3775
 msgid "Attribute is already attached\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4173
+#: gschem/src/iface/i_command.c:4174
 msgid "WARNING: Do not translate with snap off!\n"
 msgstr "ВНИМАНИЕ: Не производите смещение с отключенной привязкой!\n"
 
-#: gschem/src/iface/i_command.c:4174
+#: gschem/src/iface/i_command.c:4175
 msgid "WARNING: Turning snap on and continuing with translate.\n"
 msgstr "ВНИМАНИЕ: Включите привязку и повторите смещение.\n"
 
-#: gschem/src/iface/i_command.c:4180
+#: gschem/src/iface/i_command.c:4181
 msgid "WARNING: Snap grid size is not equal to 100!\n"
 msgstr "ВНИМАНИЕ: Размер сетки привязки не равен 100!\n"
 
-#: gschem/src/iface/i_command.c:4181
+#: gschem/src/iface/i_command.c:4182
 msgid ""
 "WARNING: If you are translating a symbol to the origin, the snap grid size "
 "should be set to 100\n"
@@ -792,87 +792,87 @@ msgstr ""
 "ВНИМАНИЕ: Если символ смещается в начало координат, размер сетки привязки "
 "должен быть установлен в 100\n"
 
-#: gschem/src/iface/i_command.c:4376
+#: gschem/src/iface/i_command.c:4377
 msgid "Grid OFF\n"
 msgstr "Сетка отключена\n"
 
 # Dot grid activated
-#: gschem/src/iface/i_command.c:4377
+#: gschem/src/iface/i_command.c:4378
 msgid "Dot grid activated\n"
 msgstr "Включена сетка точек\n"
 
 # Mesh grid activated
-#: gschem/src/iface/i_command.c:4378
+#: gschem/src/iface/i_command.c:4379
 msgid "Mesh grid activated\n"
 msgstr "Сетчатая сетка активирована\n"
 
-#: gschem/src/iface/i_command.c:4457
+#: gschem/src/iface/i_command.c:4458
 msgid "Snap OFF (CAUTION!)\n"
 msgstr "ВНИМАНИЕ! Привязка отключена!\n"
 
-#: gschem/src/iface/i_command.c:4462
+#: gschem/src/iface/i_command.c:4463
 msgid "Snap ON\n"
 msgstr "Привязка включена\n"
 
-#: gschem/src/iface/i_command.c:4466
+#: gschem/src/iface/i_command.c:4467
 msgid "Snap back to the grid (CAUTION!)\n"
 msgstr "ВНИМАНИЕ! Включите привязку к сетке!\n"
 
 # "Rubber" mode connections is disabled
-#: gschem/src/iface/i_command.c:4490
+#: gschem/src/iface/i_command.c:4491
 msgid "Rubber band mode is OFF\n"
 msgstr "Режим «резиновых» соединений отключён\n"
 
 # "Rubber" mode connections enabled
-#: gschem/src/iface/i_command.c:4493
+#: gschem/src/iface/i_command.c:4494
 msgid "Rubber band mode is ON\n"
 msgstr "Режим «резиновых» соединений включён\n"
 
 # "Magnetic" mode connections enabled
-#: gschem/src/iface/i_command.c:4504
+#: gschem/src/iface/i_command.c:4505
 msgid "Magnetic net mode is ON\n"
 msgstr "Режим «магнитных» соединений включён\n"
 
 # "Magnetic" mode connections is disabled
-#: gschem/src/iface/i_command.c:4507
+#: gschem/src/iface/i_command.c:4508
 msgid "Magnetic net mode is OFF\n"
 msgstr "Режим «магнитных» соединений отключён\n"
 
 # Off
-#: gschem/src/iface/i_command.c:4524 gschem/src/iface/i_command.c:4566
+#: gschem/src/iface/i_command.c:4525 gschem/src/iface/i_command.c:4567
 #: gschem/src/x/x_compselect.c:133
 msgid "Off"
 msgstr "Откл"
 
 # On
-#: gschem/src/iface/i_command.c:4527 gschem/src/iface/i_command.c:4569
+#: gschem/src/iface/i_command.c:4528 gschem/src/iface/i_command.c:4570
 #: gschem/src/x/x_compselect.c:132
 msgid "On"
 msgstr "на"
 
 # Drag-Can-Move is now
-#: gschem/src/iface/i_command.c:4529
+#: gschem/src/iface/i_command.c:4530
 msgid "Drag-Can-Move is now"
 msgstr "перетащить может-ход в настоящее время"
 
-#: gschem/src/iface/i_command.c:4541
+#: gschem/src/iface/i_command.c:4542
 msgid "Action feedback mode set to OUTLINE\n"
 msgstr "При выполнении действий объекты будут отрисовываться полностью\n"
 
-#: gschem/src/iface/i_command.c:4545
+#: gschem/src/iface/i_command.c:4546
 msgid "Action feedback mode set to BOUNDINGBOX\n"
 msgstr "При выполнении действий вместо объектов будет отрисовываться рамка\n"
 
-#: gschem/src/iface/i_command.c:4571
+#: gschem/src/iface/i_command.c:4572
 msgid "Auto-Pan is now"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4623 gschem/src/iface/i_command.c:4652
-#: gschem/src/iface/i_command.c:4672 gschem/src/iface/i_command.c:4692
+#: gschem/src/iface/i_command.c:4624 gschem/src/iface/i_command.c:4653
+#: gschem/src/iface/i_command.c:4673 gschem/src/iface/i_command.c:4693
 msgid "Check path:"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4792
+#: gschem/src/iface/i_command.c:4793
 #, c-format
 msgid "(read only) width=%d, height=%d\n"
 msgstr ""
@@ -1559,7 +1559,7 @@ msgstr "Произошла ошибка при вставке данных в б
 msgid "Clipboard Insertion Failed"
 msgstr "Ошибка вставки данных из буфера обмена"
 
-#: gschem/src/x/x_compselect.c:125 gschem/src/x/x_menus.c:2034
+#: gschem/src/x/x_compselect.c:125 gschem/src/x/x_menus.c:2036
 msgid "Open"
 msgstr "Открыть"
 
@@ -1652,12 +1652,12 @@ msgid "Components"
 msgstr "Компоненты"
 
 #: gschem/src/x/x_compselect.c:2556 gschem/src/x/x_confirm_close.c:297
-#: gschem/src/x/x_multiattrib.c:2037 gschem/src/x/x_multiattrib.c:2043
+#: gschem/src/x/x_multiattrib.c:2040 gschem/src/x/x_multiattrib.c:2046
 msgid "Name"
 msgstr "Имя"
 
-#: gschem/src/x/x_compselect.c:2568 gschem/src/x/x_multiattrib.c:2039
-#: gschem/src/x/x_multiattrib.c:2045
+#: gschem/src/x/x_compselect.c:2568 gschem/src/x/x_multiattrib.c:2042
+#: gschem/src/x/x_multiattrib.c:2048
 msgid "Value"
 msgstr "Значение"
 
@@ -2373,7 +2373,7 @@ msgid "not in library, opening as page"
 msgstr ""
 
 # symbol
-#: gschem/src/x/x_dnd.c:444 gschem/src/x/x_multiattrib.c:2632
+#: gschem/src/x/x_dnd.c:444 gschem/src/x/x_multiattrib.c:2635
 msgid "symbol"
 msgstr "Символ"
 
@@ -2569,7 +2569,7 @@ msgstr "Имя и значение"
 msgid "Enter or type an attribute name"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:411 gschem/src/x/x_multiattrib.c:2228
+#: gschem/src/x/x_edit_attrib.c:411 gschem/src/x/x_multiattrib.c:2231
 #: gschem/scheme/gschem/builtins.scm:350
 msgid "Add Attribute"
 msgstr "Добавить атрибут"
@@ -2604,16 +2604,16 @@ msgstr ""
 msgid "Single Attribute Editor"
 msgstr "Редактор атрибута"
 
-#: gschem/src/x/x_edit_attrib.c:465 gschem/src/x/x_multiattrib.c:2245
+#: gschem/src/x/x_edit_attrib.c:465 gschem/src/x/x_multiattrib.c:2248
 msgid "Name:"
 msgstr "Имя:"
 
-#: gschem/src/x/x_edit_attrib.c:482 gschem/src/x/x_multiattrib.c:2264
+#: gschem/src/x/x_edit_attrib.c:482 gschem/src/x/x_multiattrib.c:2267
 msgid "Value:"
 msgstr "Значение:"
 
-#: gschem/src/x/x_edit_attrib.c:496 gschem/src/x/x_multiattrib.c:2041
-#: gschem/src/x/x_multiattrib.c:2318
+#: gschem/src/x/x_edit_attrib.c:496 gschem/src/x/x_multiattrib.c:2044
+#: gschem/src/x/x_multiattrib.c:2321
 msgid "Visible"
 msgstr "Отображать"
 
@@ -3153,25 +3153,25 @@ msgid "Text Properties"
 msgstr "Свойства текста"
 
 # Text input field
-#: gschem/src/x/x_edit_text.c:593
+#: gschem/src/x/x_edit_text.c:595
 msgid "Text input field"
 msgstr "Поле ввода текста"
 
 # Text Alignment combobox
-#: gschem/src/x/x_edit_text.c:597
+#: gschem/src/x/x_edit_text.c:599
 msgid "Text alignment combobox"
 msgstr "Выравнивание текста Поле со списком"
 
-#: gschem/src/x/x_edit_text.c:601
+#: gschem/src/x/x_edit_text.c:603
 msgid "Color options menu"
 msgstr ""
 
-#: gschem/src/x/x_edit_text.c:605
+#: gschem/src/x/x_edit_text.c:607
 msgid "Font selector button"
 msgstr ""
 
 # Text rotation angle Spinner input
-#: gschem/src/x/x_edit_text.c:609
+#: gschem/src/x/x_edit_text.c:611
 msgid "Text Rotation Angle Spinner Entry"
 msgstr "Угол поворота Ввод текста Spinner"
 
@@ -3555,9 +3555,8 @@ msgid "MCopy"
 msgstr "Многократное копирование"
 
 # Make multiple copies of selection
-#: gschem/src/x/x_menus.c:123
-#, fuzzy
-msgid "Make multible copies of selection"
+#: gschem/src/x/x_menus.c:123 gschem/etc/system-gschemrc.scm:2110
+msgid "Make multiple copies of selection"
 msgstr "Многократное копирование из выбора"
 
 # См. примечание выше для "Copy"
@@ -3707,187 +3706,187 @@ msgstr "Отмена"
 msgid "Cancel path mode"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:430 gschem/etc/system-gschemrc.scm:2067
+#: gschem/src/x/x_menus.c:431 gschem/etc/system-gschemrc.scm:2067
 msgid "Open an existing schematic or symbol file"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:441 gschem/etc/system-gschemrc.scm:2072
+#: gschem/src/x/x_menus.c:442 gschem/etc/system-gschemrc.scm:2072
 msgid "Save the current document"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:451 gschem/etc/system-gschemrc.scm:2091
+#: gschem/src/x/x_menus.c:452 gschem/etc/system-gschemrc.scm:2091
 msgid "Quit gschem and exit"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:484
+#: gschem/src/x/x_menus.c:485
 msgid "redraw the current window"
 msgstr ""
 
 # Error reading menu item
-#: gschem/src/x/x_menus.c:523
+#: gschem/src/x/x_menus.c:524
 msgid "Error reading menu item"
 msgstr "Ошибка при чтении пункта меню"
 
-#: gschem/src/x/x_menus.c:524
+#: gschem/src/x/x_menus.c:525
 msgid "Bad string"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:746
+#: gschem/src/x/x_menus.c:748
 msgid "Oops... got a NULL menu name"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:812 gschem/etc/system-gschemrc.scm:2386
+#: gschem/src/x/x_menus.c:816 gschem/etc/system-gschemrc.scm:2386
 msgid "_View"
 msgstr "_Вид"
 
 # Toolbars
-#: gschem/src/x/x_menus.c:830
+#: gschem/src/x/x_menus.c:834
 msgid "_Toolbars"
 msgstr "Панели инструментов"
 
-#: gschem/src/x/x_menus.c:877
+#: gschem/src/x/x_menus.c:881
 msgid "Toggle visibility of the Standard toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:878
+#: gschem/src/x/x_menus.c:882
 msgid "Toggle visibility of the Selection toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:879
+#: gschem/src/x/x_menus.c:883
 msgid "Toggle visibility of the Page toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:880
+#: gschem/src/x/x_menus.c:884
 msgid "Toggle visibility of the Add toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:881
+#: gschem/src/x/x_menus.c:885
 msgid "Toggle visibility of the Zoom toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:882
+#: gschem/src/x/x_menus.c:886
 msgid "Toggle visibility of the Symbol toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:883
+#: gschem/src/x/x_menus.c:887
 msgid "Toggle visibility of the Edit toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:884
+#: gschem/src/x/x_menus.c:888
 msgid "Toggle visibility of the Attributes toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:885
+#: gschem/src/x/x_menus.c:889
 msgid "Toggle visibility of the Grid/Snap toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:900
+#: gschem/src/x/x_menus.c:904
 msgid "Toggle visibility of tooltips on toolbars"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:959
+#: gschem/src/x/x_menus.c:963
 msgid "Display Icons on the toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:960
+#: gschem/src/x/x_menus.c:964
 msgid "Display Text on the toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:961
+#: gschem/src/x/x_menus.c:965
 msgid "Display Icons and Text vertically on the toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:962
+#: gschem/src/x/x_menus.c:966
 msgid "Display Icons and Text horizontally on the toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1029
+#: gschem/src/x/x_menus.c:1033
 msgid "Toggle visibility of main menu icons"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1030
+#: gschem/src/x/x_menus.c:1034
 msgid "Toggle main menu tooltips"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1031
+#: gschem/src/x/x_menus.c:1035
 msgid "Toggle visibility of main context menu icons"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1032
+#: gschem/src/x/x_menus.c:1036
 msgid "Toggle main context menu tooltips"
 msgstr ""
 
 # attempt to set the sensitivity of the non-existent menu item
-#: gschem/src/x/x_menus.c:1388
+#: gschem/src/x/x_menus.c:1392
 msgid "Tried to set the sensitivity on non-existent menu item"
 msgstr "Попытка установки чувствительности несуществующего элемента меню"
 
-#: gschem/src/x/x_menus.c:1399
+#: gschem/src/x/x_menus.c:1403
 msgid "Excessive errors"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1400
+#: gschem/src/x/x_menus.c:1404
 msgid "disabling sensitivity warnings"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1477
+#: gschem/src/x/x_menus.c:1481
 msgid "Saving menu toolbar options..."
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1487
+#: gschem/src/x/x_menus.c:1491
 msgid " done\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1490
+#: gschem/src/x/x_menus.c:1494
 #, c-format
 msgid " there were %d errors\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1535
+#: gschem/src/x/x_menus.c:1539
 msgid "gschem: Enabling menu icons\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1538
+#: gschem/src/x/x_menus.c:1542
 msgid "gschem: Disabling menu icons\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1602
+#: gschem/src/x/x_menus.c:1606
 msgid "Enabling menu tooltips\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1605
+#: gschem/src/x/x_menus.c:1609
 msgid "Disabling menu tooltips\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1705
+#: gschem/src/x/x_menus.c:1709
 msgid "Action not found"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1710
+#: gschem/src/x/x_menus.c:1714
 msgid "Menu path not found"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1793 gschem/src/x/x_menus.c:1826
+#: gschem/src/x/x_menus.c:1797 gschem/src/x/x_menus.c:1830
 msgid "Error: did not find path"
 msgstr ""
 
 # Could not open file
-#: gschem/src/x/x_menus.c:1931
+#: gschem/src/x/x_menus.c:1935
 msgid "Could not open file"
 msgstr "Не удалось открыть файл"
 
 # Remove
-#: gschem/src/x/x_menus.c:2041
+#: gschem/src/x/x_menus.c:2043
 msgid "Remove"
 msgstr "Удалить"
 
 # Show path to file
-#: gschem/src/x/x_menus.c:2048
+#: gschem/src/x/x_menus.c:2050
 msgid "_Show path"
 msgstr "Показать путь к файлу"
 
 # Clear => Remove all
-#: gschem/src/x/x_menus.c:2173
+#: gschem/src/x/x_menus.c:2179
 msgid "Clear"
 msgstr "Убрать все"
 
@@ -3905,7 +3904,7 @@ msgstr "Не удалось открыть"
 msgid "falling back to"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:823 gschem/src/x/x_multiattrib.c:2794
+#: gschem/src/x/x_multiattrib.c:823 gschem/src/x/x_multiattrib.c:2797
 msgid "<various>"
 msgstr "<различные>"
 
@@ -3947,60 +3946,60 @@ msgstr "Дублировать"
 msgid "Copy to all"
 msgstr "Скопировать во все"
 
-#: gschem/src/x/x_multiattrib.c:2087 gschem/src/x/x_multiattrib.c:2609
+#: gschem/src/x/x_multiattrib.c:2090 gschem/src/x/x_multiattrib.c:2612
 msgid "Edit Attributes"
 msgstr "Правка атрибутов"
 
-#: gschem/src/x/x_multiattrib.c:2279
+#: gschem/src/x/x_multiattrib.c:2282
 msgid "Ctrl+Enter inserts new line; Ctrl+Tab inserts Tab"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2308
+#: gschem/src/x/x_multiattrib.c:2311
 msgid "Enter or type a value for the new attribute then press the Add button"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2323
+#: gschem/src/x/x_multiattrib.c:2326
 msgid "Enable or disable attribute visibility"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2338
+#: gschem/src/x/x_multiattrib.c:2341
 msgid "Add new attribute to component"
 msgstr ""
 
 # symbols
-#: gschem/src/x/x_multiattrib.c:2628
+#: gschem/src/x/x_multiattrib.c:2631
 msgid "symbols"
 msgstr "символы"
 
-#: gschem/src/x/x_multiattrib.c:2643
+#: gschem/src/x/x_multiattrib.c:2646
 msgid "pins"
 msgstr "вывода"
 
-#: gschem/src/x/x_multiattrib.c:2647
+#: gschem/src/x/x_multiattrib.c:2650
 msgid "pin"
 msgstr "Вывод"
 
-#: gschem/src/x/x_multiattrib.c:2658
+#: gschem/src/x/x_multiattrib.c:2661
 msgid "nets"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2662
+#: gschem/src/x/x_multiattrib.c:2665
 msgid "net"
 msgstr "соединение"
 
-#: gschem/src/x/x_multiattrib.c:2673
+#: gschem/src/x/x_multiattrib.c:2676
 msgid "buses"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2677
+#: gschem/src/x/x_multiattrib.c:2680
 msgid "bus"
 msgstr "шина"
 
-#: gschem/src/x/x_multiattrib.c:2688
+#: gschem/src/x/x_multiattrib.c:2691
 msgid "attributes"
 msgstr "Атрибуты"
 
-#: gschem/src/x/x_multiattrib.c:2692
+#: gschem/src/x/x_multiattrib.c:2695
 msgid "attribute"
 msgstr "атрибут"
 
@@ -4666,11 +4665,6 @@ msgstr ""
 #: gschem/etc/system-gschemrc.scm:2110
 msgid "_Multiple Copy"
 msgstr "Многократное копирование"
-
-# Make multiple copies of selection
-#: gschem/etc/system-gschemrc.scm:2110
-msgid "Make multiple copies of selection"
-msgstr "Многократное копирование из выбора"
 
 # Reflection
 #: gschem/etc/system-gschemrc.scm:2111
