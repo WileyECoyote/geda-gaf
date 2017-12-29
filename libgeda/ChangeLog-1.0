@@ -1,3 +1,8 @@
+2017-12-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_object.c: Relocate function geda_object_get_page
+      before geda_object_get_property because it seems out of place.
+
 2017-12-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_slot.c: Add conditional to check for slot != 1 before

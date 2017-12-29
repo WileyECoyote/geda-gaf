@@ -207,6 +207,41 @@ const GList *geda_object_get_conn_list (const GedaObject *object)
 }
 
 /*!
+ * \brief Get an object's parent Page.
+ * \par Function Description
+ *  Returns the Page structure which owns \a object. If \a object is
+ *  not currently associated with a Page, returns NULL. If \a object is
+ *  part of a compound object, recurses upward.
+ *
+ * \param [in] object    The GedaObject for which to retrieve the parent Page.
+ *
+ * \return The Page which owns \a object or NULL.
+ *
+ * \sa geda_struct_page_append_object() geda_struct_page_append() geda_struct_page_remove()
+ */
+Page *geda_object_get_page (const GedaObject *object)
+{
+  if (GEDA_IS_OBJECT(object)) {
+
+    if (GEDA_IS_PAGE(object->page)) {
+      return object->page;
+    }
+
+    while (GEDA_IS_OBJECT(object->parent_object)) {
+      object = object->parent_object;
+      if (GEDA_IS_PAGE(object->page)) {
+        return object->page;
+      }
+    }
+  }
+  else {
+    BUG_MSG("Is not a GedaObject");
+  }
+
+  return NULL;
+}
+
+/*!
  * \brief GedaObject property getter function
  * \par Function Description
  *  Getter function for GedaObject's properties,
@@ -763,41 +798,6 @@ void geda_object_remove_weak_ptr (GedaObject *object, void *weak_pointer_loc)
   g_return_if_fail (GEDA_IS_OBJECT(object));
   object->weak_refs = s_weakref_remove_ptr (object->weak_refs,
                                             weak_pointer_loc);
-}
-
-/*!
- * \brief Get an object's parent Page.
- * \par Function Description
- *  Returns the Page structure which owns \a object. If \a object is
- *  not currently associated with a Page, returns NULL. If \a object is
- *  part of a compound object, recurses upward.
- *
- * \param [in] object    The GedaObject for which to retrieve the parent Page.
- *
- * \return The Page which owns \a object or NULL.
- *
- * \sa geda_struct_page_append_object() geda_struct_page_append() geda_struct_page_remove()
- */
-Page *geda_object_get_page (const GedaObject *object)
-{
-  if (GEDA_IS_OBJECT(object)) {
-
-    if (GEDA_IS_PAGE(object->page)) {
-      return object->page;
-    }
-
-    while (GEDA_IS_OBJECT(object->parent_object)) {
-      object = object->parent_object;
-      if (GEDA_IS_PAGE(object->page)) {
-        return object->page;
-      }
-    }
-  }
-  else {
-    BUG_MSG("Is not a GedaObject");
-  }
-
-  return NULL;
 }
 
 /*!
