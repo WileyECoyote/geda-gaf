@@ -197,7 +197,7 @@ geda_struct_tile_add_linear_object (GedaObject *object)
       else {
 
         v = (int) x;
-        w = (int) floor(y);
+        w = (int) ceil(y);
         if (v < 0 || w < 0 || v > MAX_TILES_X-1 || w > MAX_TILES_Y-1) {
           return;
         }

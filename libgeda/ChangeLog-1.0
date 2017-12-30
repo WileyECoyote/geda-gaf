@@ -1,3 +1,8 @@
+2017-12-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/struct/s_tile.c: Replace floor with ceil in the else floor(y)
+      != ceil(y) clause of geda_struct_tile_add_linear_object.
+
 2017-12-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/math/m_arc.c: Revise geda_math_arc_includes_point to account
