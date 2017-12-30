@@ -388,7 +388,21 @@ void x_log_message (const char *log_domain, GLogLevelFlags log_level, const char
     style = "message";
   }
 
-  log_message (CONSOLE(console_dialog), message, style);
+  switch (log_destiny) {
+    default:
+    case CONSOLE_WINDOW:
+      log_message (CONSOLE(console_dialog), message, style);
+      break;
+
+    case STDOUT_TTY:
+      fputs (message, stdout);
+      break;
+
+    case BOTH_CONWIN_STDOUT:
+      fputs (message, stdout);
+      log_message (CONSOLE(console_dialog), message, style);
+      break;
+  }
 }
 
 /** @} end group Logging-Handlers */

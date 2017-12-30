@@ -10,6 +10,8 @@
     * src/object/o_grips.c: Revise conditional o_grips_start to ensure
       result is set FALSE if an object was not found.
 
+    * src/x/x_console.c: Revise x_log_message to actually use log_destiny.
+
 2017-12-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: Update Afrikaans translations.
