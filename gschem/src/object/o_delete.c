@@ -29,13 +29,19 @@
 #include <gschem.h>
 #include <geda_debug.h>
 
-/*! \brief Delete an object.
- *  \par Function Description
- *  This function erases the object \a object before deleting it. It
- *  deals with connection and object connected to it.
+/*!
+ * \brief Delete an object.
+ * \par Function Description
+ *  This function removes \a object before deleting it. Connectivity
+ *  and objects connected to the object are resolved by libgeda when
+ *  the object is removed from the page.
  *
- *  \param [in] w_current The GschemToplevel object.
- *  \param [in] object    The object to delete.
+ * \param [in] w_current The GschemToplevel object.
+ * \param [in] object    The object to delete.
+ *
+ * \note This function is primarily used to delete temporary objects
+ *       and special purpose operations, such when "breaking" objects,
+ *       the caller should call o_undo_savestate if required.
  */
 void o_delete (GschemToplevel *w_current, GedaObject *object)
 {
@@ -45,9 +51,8 @@ void o_delete (GschemToplevel *w_current, GedaObject *object)
 
   geda_object_selection_remove   (toplevel->page_current->selection_list, object);
   geda_struct_page_remove_object (toplevel->page_current, object);
-  g_hook_run_object    (w_current, REMOVE_OBJECTS_HOOK, object);
+  g_hook_run_object              (w_current, REMOVE_OBJECTS_HOOK, object);
   geda_struct_object_release     (object);
-
 }
 
 /*! \brief Delete objects from the selection.
@@ -61,7 +66,6 @@ void o_delete_selected (GschemToplevel *w_current)
 {
   GedaToplevel *toplevel   = w_current->toplevel;
   SELECTION    *selection  = toplevel->page_current->selection_list;
-
 
   if (o_select_is_selection (w_current)) {
 
@@ -105,6 +109,7 @@ void o_delete_selected (GschemToplevel *w_current)
       }
     }
 
+    /* Remove objects from selection and page */
     for (iter = to_remove; iter != NULL; iter = iter->next) {
       GedaObject *object = iter->data;
       geda_object_selection_remove   (selection, object);
@@ -113,6 +118,7 @@ void o_delete_selected (GschemToplevel *w_current)
 
     g_hook_run_object_list (w_current, REMOVE_OBJECTS_HOOK, to_remove);
 
+    /* Release the objects, normally will destroy them */
     for (iter = to_remove; iter != NULL; iter = iter->next) {
       geda_struct_object_release (iter->data);
     }

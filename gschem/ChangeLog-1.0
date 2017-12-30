@@ -4,6 +4,9 @@
       the length of the "default-font-name" is greater than 1 to avoid
       passing an empty string to eda_renderer_set_font_name.
 
+    * src/object/o_delete.c: Update o_delete documentation and add
+      comments in o_delete_selected.
+
 2017-12-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: Update Afrikaans translations.
