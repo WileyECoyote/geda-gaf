@@ -410,7 +410,7 @@ x_grid_draw_grid_region (GschemToplevel *w_current, GdkRectangle *rectangle)
 
 #if DEBUG_TILES
   /* For diagnostic purposes */
-  x_draw_tiles(w_current);
+  x_grid_draw_tiles(w_current);
 #endif
 
 }

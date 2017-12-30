@@ -1,3 +1,8 @@
+2017-12-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_grid.c: Update x_draw_tiles -> x_grid_draw_tiles in
+      x_grid_draw_grid_region.
+
 2017-12-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_vars.c: Revise i_vars_recall_user_settings to verify
