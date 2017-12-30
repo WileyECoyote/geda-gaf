@@ -471,9 +471,10 @@ void x_grid_configure_variables (GschemToplevel *w_current)
   double green;
   double blue;
 
-  #if DEBUG_GRID
+#if DEBUG_GRID
   x_grid_print_parameters (w_current, "entry");
-  #endif
+#endif
+
   if (w_current->grid_mode == GRID_MESH) {
 
     /* mesh_grid_minor_color is a GdkColor structure */
@@ -526,9 +527,9 @@ void x_grid_configure_variables (GschemToplevel *w_current)
     w_current->grid_size_factor    = w_current->dots_grid_dot_size / 2.0;
   }
 
-  #if DEBUG_GRID
+#if DEBUG_GRID
   x_grid_print_parameters (w_current, "exit");
-  #endif
+#endif
 }
 
 /*! \brief Query the spacing in world coordinates at which the grid is drawn.
