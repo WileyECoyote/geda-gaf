@@ -51,10 +51,10 @@ geda_math_arc_length (int radius, int sweep)
 /*!
  * \brief Determine if Arc Sector includes a Point
  *  Compares distance from point to the center of the Arc to the radius
- *  of the Arc, if there is no difference, compares the angle of the ray
- *  from the center to the point to the starting and ending angles of
- *  \a arc. Returns True if the ray is within the Arc's included angle
- *  otherwise false.
+ *  of the Arc, if there is no difference after accounting for the line
+ *  width, compares the angle of the ray from the center to the point to
+ *  the starting and ending angles of \a arc. Returns True if the ray is
+ *  within the Arc's included angle otherwise false.
  *
  * \param [in] arc    The arc object.
  * \param [in] point  Point to test for inclusion.
@@ -66,14 +66,16 @@ geda_math_arc_includes_point (GedaArc *arc, GedaPoint *point)
 {
   bool answer;
   int  delta;  /* Will be difference between point to center and radius */
+  int  width;
+  int  half_width;
 
   /* Rounding here provides a fuzz distance effect */
   delta = geda_distance(arc->x, arc->y, point->x, point->y) - (arc->radius);
 
 #if DEBUG
 
-  int  dist;
-  int  radius = arc->radius;
+  int dist;
+  int radius = arc->radius;
 
 #ifdef HAVE_LRINT
 
@@ -90,9 +92,14 @@ geda_math_arc_includes_point (GedaArc *arc, GedaPoint *point)
 
 #endif
 
-  /* First compare the distance from the arc center to the radius */
+  /* Get the line-width of the arc */
+  width = geda_arc_get_line_width(arc);
 
-  if (!delta) {
+  /* Calculate 1/2 the width or the drawn width if line-width was zero */
+  half_width = width ? width / 2 : MIN_LINE_WIDTH_THRESHOLD / 2;
+
+  /* First compare the distance from the arc center to the radius */
+  if (delta < half_width) {
 
     /* Second, check angle of ray is within the arc's included angle */
 

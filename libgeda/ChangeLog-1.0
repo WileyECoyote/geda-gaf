@@ -1,3 +1,8 @@
+2017-12-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/math/m_arc.c: Revise geda_math_arc_includes_point to account
+      for the line-width of the arc.
+
 2017-12-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_object.c: Relocate function geda_object_get_page
