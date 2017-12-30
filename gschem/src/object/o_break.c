@@ -1,4 +1,4 @@
-﻿/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 2 tab-width: 4 -*- */
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 2 tab-width: 4 -*- */
 /* vi: set et ts=4 sw=2 sts=2: */
 /*
  * File: o_break.c
@@ -185,8 +185,9 @@ static bool o_break_arc(GschemToplevel *w_current, GedaObject *object)
     else
       v_log_message(_("Point 2 missed x=%d, y=%d\n"), point2.x, point2.y);
   }
-  else
+  else {
     v_log_message(_("Point 1 missed x=%d, y=%d\n"), point1.x, point1.y);
+  }
 
   return result;
 }
