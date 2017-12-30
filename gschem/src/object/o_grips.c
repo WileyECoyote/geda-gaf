@@ -149,6 +149,7 @@ o_grips_compute_drawn_size (GschemToplevel *w_current)
  * \param [in]  grip_x  Current x coordinate of grip center in world units.
  * \param [in]  grip_y  Current y coordinate of grip center in world units.
  * \param [in]  size    Half the width of the grip square in world units.
+ *
  * \return True / False whether the mouse pointer is inside the grip.
  */
 static bool
@@ -1097,6 +1098,7 @@ o_grips_start(GschemToplevel *w_current, int w_x, int w_y)
         default:
           /* object type unknown : error condition */
           func = NULL;
+          result = FALSE;
           break;
       }
 
@@ -1106,9 +1108,9 @@ o_grips_start(GschemToplevel *w_current, int w_x, int w_y)
         i_status_set_state (w_current, w_current->event_state = GRIPS);
         result = TRUE;
       }
-      else {
-        result = FALSE;
-      }
+    }
+    else { /* An object was not found */
+      result = FALSE;
     }
   }
   else { /* Grips are turned off */
