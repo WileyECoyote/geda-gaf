@@ -1,5 +1,9 @@
 2017-12-31 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_net.c: Add Doxygen comments for:
+
+          * geda_net_get_netname
+
     * src/struct/s_tile.c: Replace floor with ceil in the else floor(x)
       != ceil(x) clause of geda_struct_tile_add_linear_object, refactor
       setting y and w; neither change inside the loop other than set both

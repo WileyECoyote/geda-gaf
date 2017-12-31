@@ -204,6 +204,15 @@ bool is_a_geda_net (const GedaNet *net)
   return GEDA_IS_OBJECT(net) && (((GedaObject*)net)->type == OBJ_NET);
 }
 
+/*!
+ * \brief Retrieve the Netname of a GedaNet
+ * \par Function Description
+ *  Returns the net_name of \a net if and only if \a net is a
+ *  valid GedaNet object. The string should not be released or
+ *  modified.
+ *
+ * \returns pointer to net_name member of \a net or NULL if invalid.
+ */
 const char *geda_net_get_netname (ConstObject *object)
 {
   if (is_a_geda_net(object->net)) {
