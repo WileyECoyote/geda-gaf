@@ -176,37 +176,20 @@ geda_struct_tile_add_linear_object (GedaObject *object)
           tile_current->objects = g_list_append(tile_current->objects, object);
           object->tiles = g_list_append(object->tiles, tile_current);
         }
-
-        w = (int) ceil(y);
-
-        if (v < 0 || w < 0 || v > MAX_TILES_X-1 || w > MAX_TILES_Y-1) {
-          return;
-        }
-
-        tile_current = &p_current->world_tiles[v][w];
-        found = g_list_find(tile_current->objects, object);
-
-        if (!found) {
-          /*printf("%d %d\n", v, w);*/
-          tile_current->objects = g_list_append(tile_current->objects, object);
-          object->tiles = g_list_append(object->tiles, tile_current);
-        }
       }
-      else {
 
-        w = (int) ceil(y);
-        if (v < 0 || w < 0 || v > MAX_TILES_X-1 || w > MAX_TILES_Y-1) {
-          return;
-        }
+      w = (int) ceil(y);
+      if (v < 0 || w < 0 || v > MAX_TILES_X-1 || w > MAX_TILES_Y-1) {
+        return;
+      }
 
-        tile_current = &p_current->world_tiles[v][w];
-        found = g_list_find(tile_current->objects, object);
+      tile_current = &p_current->world_tiles[v][w];
+      found = g_list_find(tile_current->objects, object);
 
-        if (!found) {
-          /*printf("%d %d\n", v, w);*/
-          tile_current->objects = g_list_append(tile_current->objects, object);
-          object->tiles = g_list_append(object->tiles, tile_current);
-        }
+      if (!found) {
+        /*printf("%d %d\n", v, w);*/
+        tile_current->objects = g_list_append(tile_current->objects, object);
+        object->tiles = g_list_append(object->tiles, tile_current);
       }
     }
 

@@ -4,7 +4,7 @@
       != ceil(y) clause of geda_struct_tile_add_linear_object, refactor
       setting x and v; neither change inside the loop other than setting
       both to the loop index. Change (int) i = (double) x = (int) v to
-      x = v = i;
+      x = v = i, then eliminate else clause and factor out common code.
 
 2017-12-29 Wiley E. Hill <wileyhill@gmail.com>
 
