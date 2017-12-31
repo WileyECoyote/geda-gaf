@@ -204,11 +204,14 @@ geda_struct_tile_add_linear_object (GedaObject *object)
       end   = max((int) y1, (int) y2);
 
       for (j = start; j <= end; j++) {
-        y = j;
+
+        y = w = j;
         x = (y - b) / m;
+
         if (floor(x) != ceil(x)) {
-          w = (int) y;
+
           v = (int) floor(x);
+
           if (v < 0 || w < 0 || v > MAX_TILES_X-1 || w > MAX_TILES_Y-1) {
             return;
           }
@@ -223,8 +226,8 @@ geda_struct_tile_add_linear_object (GedaObject *object)
             object->tiles = g_list_append(object->tiles, tile_current);
           }
 
-          w = (int) y;
           v = (int) ceil(x);
+
           if (v < 0 || w < 0 || v > MAX_TILES_X-1 || w > MAX_TILES_Y-1) {
             return;
           }
@@ -241,8 +244,9 @@ geda_struct_tile_add_linear_object (GedaObject *object)
 
         }
         else {
-          w = (int) y;
+
           v = (int) ceil(x);
+
           if (v < 0 || w < 0 || v > MAX_TILES_X-1 || w > MAX_TILES_Y-1) {
             return;
           }
