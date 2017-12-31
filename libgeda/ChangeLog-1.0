@@ -1,13 +1,18 @@
+2017-12-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/struct/s_tile.c: Replace floor with ceil in the else floor(x)
+      != ceil(x) clause of geda_struct_tile_add_linear_object
+
 2017-12-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_tile.c: Replace floor with ceil in the else floor(y)
-      != ceil(y) clause of geda_struct_tile_add_linear_object, refactor
-      setting x and v; neither change inside the loop other than setting
-      both to the loop index. Change (int) i = (double) x = (int) v to
-      x = v = i, then eliminate else clause and factor out common code.
-      Add conditional to check abscissae are within bounds of the tile
-      grid before enter the FOR loop, no need to check x's, aka v inside
-      the loop.
+      != ceil(y) else clause of geda_struct_tile_add_linear_object,
+      refactor setting x and v; neither change inside the loop other
+      than setting both to the loop index. Change (int) i = (double),
+      x = (int) v to  x = v = i, then eliminate else clause and factor
+      out common code. Add conditional to check abscissae are within
+      bounds of the tile grid before enter the FOR loop, no need to
+      check x's, aka v inside the loop.
 
 2017-12-29 Wiley E. Hill <wileyhill@gmail.com>
 
