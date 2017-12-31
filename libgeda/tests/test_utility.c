@@ -268,6 +268,7 @@ int test_log (void)
    */
 
   /* === Function 08: geda_utility_log_set_default_handler === */
+  geda_log ("Testing prior to setting handler");
 
   geda_set_default_logger(default_log_handler, &default_handler);
 
@@ -276,7 +277,7 @@ int test_log (void)
   geda_log ("Testing");
 
   if (default_handler - 7) {
-    fprintf(stderr, "FAILED: (U030801) geda_set_default_logger\n");
+    fprintf(stderr, "FAILED: (U030801) geda_set_default_logger %d\n", default_handler);
     result++;
   }
 
