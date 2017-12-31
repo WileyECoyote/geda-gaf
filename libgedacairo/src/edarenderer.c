@@ -2029,7 +2029,7 @@ eda_renderer_instance_init(GTypeInstance *instance, void *g_class)
 
   /* Setup default options */
   if (renderer->priv->font_name == NULL) {
-    renderer->priv->font_name = geda_utility_string_strdup (EDAR_DEFAULT_FONT_NAME);
+    renderer->priv->font_name = geda_strdup (EDAR_DEFAULT_FONT_NAME);
   }
 
   cairo_font_options_set_antialias(EdaFontOptions, CAIRO_ANTIALIAS_GOOD);
