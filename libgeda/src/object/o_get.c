@@ -169,20 +169,21 @@ int geda_object_get_capstyle (LINE_END end)
   }
 }
 
-/*! \brief get #GedaObject's fill properties
- *  \par Function Description
+/*!
+ * \brief get #GedaObject's fill properties
+ * \par Function Description
  *  This function get's the #GedaObject's fill options.
  *  See OBJECT_FILLING for information on valid fill types.
  *
- *  \param [in]   object    GedaObject to read the properties
- *  \param [out]  type      OBJECT_FILLING type
- *  \param [out]  width     fill width.
- *  \param [out]  pitch1    cross hatch line distance
- *  \param [out]  angle1    cross hatch angle
- *  \param [out]  pitch2    cross hatch line distance
- *  \param [out]  angle2    cross hatch angle
+ * \param [in]   object    GedaObject to read the properties
+ * \param [out]  type      OBJECT_FILLING type
+ * \param [out]  width     fill width.
+ * \param [out]  pitch1    cross hatch line distance
+ * \param [out]  angle1    cross hatch angle
+ * \param [out]  pitch2    cross hatch line distance
+ * \param [out]  angle2    cross hatch angle
  *
- *  \return TRUE on succes, FALSE otherwise
+ * \return TRUE on succes, FALSE otherwise
  */
 bool geda_object_get_fill_options(GedaObject       *object,
                                   OBJECT_FILLING   *type, int *width,
@@ -245,13 +246,14 @@ bool geda_object_get_is_attached (GedaObject *object)
   return GEDA_IS_OBJECT(object) && GEDA_IS_OBJECT(object->attached_to);
 }
 
-/*! \brief Checks if an object is bus, or a bus pin
- *  \par Function Description
+/*!
+ * \brief Checks if an object is bus, or a bus pin
+ * \par Function Description
  *  Checks if an object is a bus or a bus pin
  *
- *  \param object  The GedaObject to test
+ * \param object  The GedaObject to test
  *
- *  \return TRUE if the object is a bus, or bus pin
+ * \return TRUE if the object is a bus, or bus pin
  */
 bool geda_object_get_bus_related (GedaObject *object)
 {
