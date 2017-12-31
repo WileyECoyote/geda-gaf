@@ -221,6 +221,15 @@ const char *geda_net_get_netname (ConstObject *object)
   return NULL;
 }
 
+/*!
+ * \brief Retrieve the Pin Label of a GedaNet
+ * \par Function Description
+ *  Returns the pin_label of \a net if and only if \a net is a
+ *  valid GedaNet object. The string should not be released or
+ *  modified.
+ *
+ * \returns pointer to pin_label member of \a net or NULL if invalid.
+ */
 const char *geda_net_get_pin_label (ConstObject *object)
 {
   if (is_a_geda_net(object->net)) {
