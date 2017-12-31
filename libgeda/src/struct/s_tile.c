@@ -288,7 +288,6 @@ geda_struct_tile_add_linear_object (GedaObject *object)
         tile_current->objects = g_list_append(tile_current->objects, object);
         object->tiles = g_list_append(object->tiles, tile_current);
       }
-
     }
   }
 }
@@ -313,6 +312,7 @@ geda_struct_tile_add_object (GedaObject *object)
     case OBJ_BUS:
       geda_struct_tile_add_linear_object(object);
       break;
+
   case OBJ_COMPLEX:
   case OBJ_PLACEHOLDER:
     for (iter = object->complex->prim_objs;
