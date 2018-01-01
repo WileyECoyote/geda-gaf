@@ -510,7 +510,7 @@ x_toolbars_save_state(GschemToplevel *w_current)
     g_key_file_set_integer (key_file, group_name, "visible", visible);
 
     if (w_current->handleboxes) {
-      toolbar  = GTK_BIN (handlebox)->child;
+      toolbar  = geda_get_child_widget (handlebox);
     }
     else {
       GList *list;
@@ -658,7 +658,7 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
 
         /* Get pointer to toolbar */
         if (w_current->handleboxes) {
-          toolbar = GTK_BIN (handlebox)->child;
+          toolbar = geda_get_child_widget (handlebox);
         }
         else {
           GList *list;
