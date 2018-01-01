@@ -578,7 +578,7 @@ x_toolbars_save_state(GschemToplevel *w_current)
   else {
     /* Could not save the toolbar configuration to */
     const char *log_msg = _("Could not save Toolbar configuration to");
-    u_log_message("%s %s\n", log_msg, filename);
+    geda_log("%s %s\n", log_msg, filename);
   }
 
   GEDA_FREE(filename);

@@ -4,8 +4,9 @@
       restore_state to utilize geda_get_child_widget macro instead of
       accessing child member directly. Revise x_toolbars_save_state to
       eliminate the result variable and return result of g_file_test
-      directly. Replace v_log_message with geda_log_v. Remove using
-      GtkObject pointer in x_toolbars_add_closer.
+      directly. Remove using GtkObject pointer in x_toolbars_add_closer.
+      Replace u_log_message with geda_log and v_log_message with geda_
+      log_v.
 
 2017-12-31 Wiley E. Hill <wileyhill@gmail.com>
 
