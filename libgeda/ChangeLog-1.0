@@ -9,7 +9,7 @@
       != ceil(x) clause of geda_struct_tile_add_linear_object, refactor
       setting y and w; neither change inside the loop other than set both
       to the loop index and change (int) w = (double), y = (int) w to
-      y = w = j.
+      y = w = j, then eliminate else clause and factor out common code.
 
 2017-12-30 Wiley E. Hill <wileyhill@gmail.com>
 
