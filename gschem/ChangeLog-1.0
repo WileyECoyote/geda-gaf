@@ -2,7 +2,8 @@
 
     * src/x/x_toolbars.c: Revise x_toolbars_save_state and x_toolbars_
       restore_state to utilize geda_get_child_widget macro instead of
-      accessing child member directly.
+      accessing child member directly. Replace v_log_message with
+      geda_log_v.
 
 2017-12-31 Wiley E. Hill <wileyhill@gmail.com>
 
