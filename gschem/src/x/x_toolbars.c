@@ -491,8 +491,8 @@ static void x_toolbars_snap_toggle(GtkWidget *widget, GschemToplevel *w_current)
 void
 x_toolbars_save_state(GschemToplevel *w_current)
 {
-  char     *filename;
-  GKeyFile *key_file = NULL;
+  GedaKeyFile *key_file = NULL;
+  char        *filename;
 
   void SaveBarProperties(GtkWidget *handlebox) {
 
@@ -507,7 +507,7 @@ x_toolbars_save_state(GschemToplevel *w_current)
     group_name = IDS_Toolbar_Names[bar_id];
     visible    = gtk_widget_get_visible(handlebox);
 
-    g_key_file_set_integer (key_file, group_name, "visible", visible);
+    geda_keyfile_set_integer (key_file, group_name, "visible", visible);
 
     if (w_current->handleboxes) {
       toolbar  = geda_get_child_widget (handlebox);
@@ -522,8 +522,8 @@ x_toolbars_save_state(GschemToplevel *w_current)
     style    = geda_toolbar_widget_get_style (toolbar);
     tooltips = geda_toolbar_widget_get_tooltips (toolbar);
 
-    g_key_file_set_integer (key_file, group_name, "style", style);
-    g_key_file_set_integer (key_file, group_name, "tooltips", tooltips);
+    geda_keyfile_set_integer (key_file, group_name, "style", style);
+    geda_keyfile_set_integer (key_file, group_name, "tooltips", tooltips);
   }
 
   void SaveAllBars() {
@@ -540,7 +540,7 @@ x_toolbars_save_state(GschemToplevel *w_current)
 
   bool setup_new_keyfile (char *filename) {
 
-    key_file = g_key_file_new();
+    key_file = geda_keyfile_new();
 
     if (access(filename, W_OK) != 0) {
       geda_log_v(_("Creating new Toolbar configuration\n"));
@@ -558,7 +558,7 @@ x_toolbars_save_state(GschemToplevel *w_current)
   if (!g_file_test (filename, G_FILE_TEST_EXISTS))
     setup_new_keyfile (filename);
   else
-    key_file = g_key_file_new();
+    key_file = geda_keyfile_new();
 
   if (key_file) {
 
@@ -566,14 +566,14 @@ x_toolbars_save_state(GschemToplevel *w_current)
 
     SaveAllBars();
 
-    data = g_key_file_to_data(key_file, NULL, NULL);
+    data = geda_keyfile_to_data(key_file, NULL, NULL);
 
     g_file_set_contents(filename, data, -1, NULL);
 
     geda_log_v("%s %s\n", _("data saved to"), filename);
 
     GEDA_FREE(data);
-    g_key_file_free(key_file);
+    geda_keyfile_free(key_file);
   }
   else {
     /* Could not save the toolbar configuration to */
@@ -592,12 +592,12 @@ x_toolbars_save_state(GschemToplevel *w_current)
 void
 x_toolbars_restore_state(GschemToplevel *w_current) {
 
-  GError   *err;
-  GKeyFile *key_file;
-  char     *filename;
-  int       visible_count;   /* For counting visible toolbars */
-  int       global_style;
-  int       global_tooltips;
+  GError      *err;
+  GedaKeyFile *key_file;
+  char        *filename;
+  int          visible_count;   /* For counting visible toolbars */
+  int          global_style;
+  int          global_tooltips;
 
   void RestoreBarProperties(GtkWidget *handlebox) {
 
@@ -612,7 +612,7 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
       int visible;
 
       err     = NULL;
-      visible = g_key_file_get_integer (key_file, group_name, "visible", &err);
+      visible = geda_keyfile_get_integer (key_file, group_name, "visible", &err);
 
       if (err) {
         g_clear_error (&err);
@@ -632,7 +632,7 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
         int tooltips;
 
         /* Retrieve the style from ini file for this toolbar */
-        style = g_key_file_get_integer (key_file, group_name, "style", &err);
+        style = geda_keyfile_get_integer (key_file, group_name, "style", &err);
 
         if (err) {
           g_clear_error (&err);
@@ -643,7 +643,7 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
         global_style += style;
 
         /* Retrieve the tooltips setting from ini file for this toolbar */
-        tooltips = g_key_file_get_integer (key_file, group_name, "tooltips", &err);
+        tooltips = geda_keyfile_get_integer (key_file, group_name, "tooltips", &err);
 
         if (err) {
           g_clear_error (&err);
@@ -707,9 +707,9 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
     if (access(filename, R_OK) == 0) {
 
       err      = NULL;
-      key_file = g_key_file_new();
+      key_file = geda_keyfile_new();
 
-      if (g_key_file_load_from_file(key_file, filename, G_KEY_FILE_NONE, &err)) {
+      if (geda_keyfile_load_from_file(key_file, filename, G_KEY_FILE_NONE, &err)) {
         const char *log_msg = _("Toolbar configuration restored from");
         RestoreAllBars();
         geda_log_v("%s %s\n", log_msg, filename);
@@ -748,7 +748,7 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
   }
 
   if (key_file) {
-    g_key_file_free(key_file);
+    geda_keyfile_free(key_file);
   }
 
   GEDA_FREE(filename);
