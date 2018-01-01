@@ -301,8 +301,8 @@ enum {
  *  @{
  */
 
-/* Write out entry for ENABLED Bool keyword */
-/*\warning INTERNAL Do not use directly */
+/*! Write out entry for ENABLED Bool keyword
+ * \warning INTERNAL Do not use directly */
 #define RC_BOOLEAN_ENABLED(variable)              \
   strcpy(output_buffer, (state) ? "(" : ";(" );   \
   strcat(output_buffer, KEY_NAME(variable));      \
@@ -311,8 +311,8 @@ enum {
   strcat(output_buffer, "\")\n"); /*close quote */ \
   fputs(output_buffer, output);
 
-/* Write out entry for DISABLED Bool keyword */
-/*\warning INTERNAL Do not use directly */
+/*! Write out entry for DISABLED Bool keyword
+ * \warning INTERNAL Do not use directly */
 #define RC_BOOLEAN_DISABLED(variable)             \
   strcpy(output_buffer, !(state) ? "(" : ";(");   \
   strcat(output_buffer, KEY_NAME(variable));      \
@@ -321,14 +321,14 @@ enum {
   strcat(output_buffer, "\")\n"); /*close quote */\
   fputs(output_buffer, output);
 
-/*\remark Not used directly */
+/*! \remark Not used directly */
 #define RC_BOOLEAN_OUT(variable) \
  RC_BOOLEAN_ENABLED(variable)     /* Write ENABLED */ \
  RC_BOOLEAN_DISABLED(variable)   /* Write DISABLED */
 
-/*\remark
-   Use this Macro to write a Global Boolean Variable
-   @param[in] variable   integer variable within scope of macro expansion
+/*! \brief Macro to write a Global Boolean Variable
+ * Use this macro to write a Global Boolean Variable
+ * @param[in] variable integer variable within scope of macro expansion
  */
 #define RC_BOOLEAN_GOUT(variable) \
  int state = variable;    /* Retrieve Variable */ \
