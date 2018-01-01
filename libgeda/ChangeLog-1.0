@@ -10,6 +10,9 @@
       setting y and w; neither change inside the loop other than set both
       to the loop index and change (int) w = (double), y = (int) w to
       y = w = j, then eliminate else clause and factor out common code.
+      Add conditional to check ordinates are within bounds of the tile
+      grid before entering the FOR loop, no need to check y's, aka w
+      inside the loop.
 
 2017-12-30 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -19,8 +22,8 @@
       than set both to the loop index. Change (int) i = (double),
       x = (int) v to  x = v = i, then eliminate else clause and factor
       out common code. Add conditional to check abscissae are within
-      bounds of the tile grid before enter the FOR loop, no need to
-      check x's, aka v inside the loop.
+      bounds of the tile grid before entering the FOR loop, no need
+      to check x's, aka v inside the loop.
 
 2017-12-29 Wiley E. Hill <wileyhill@gmail.com>
 
