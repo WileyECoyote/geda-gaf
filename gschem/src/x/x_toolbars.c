@@ -540,8 +540,6 @@ x_toolbars_save_state(GschemToplevel *w_current)
 
   bool setup_new_keyfile (char *filename) {
 
-    bool results = TRUE;
-
     key_file = g_key_file_new();
 
     if (access(filename, W_OK) != 0) {
@@ -549,9 +547,8 @@ x_toolbars_save_state(GschemToplevel *w_current)
       geda_create_path (geda_user_config_path (), S_IRWXU | S_IRWXG);
       g_file_set_contents (filename, "", -1, NULL);
     }
-    if (!g_file_test (filename, G_FILE_TEST_EXISTS))
-      results = FALSE;
-    return results;
+
+    return g_file_test (filename, G_FILE_TEST_EXISTS);
   }
 
   geda_log_v(_("Saving Toolbar settings..."));
