@@ -1007,7 +1007,7 @@ static GtkWidget *build_menu(GedaHandleBox *handlebox)
         break;
       }
       g_object_set (item, "visible", TRUE, NULL);
-      geda_menu_shell_append(GEDA_MENU_SHELL(menu), item);
+      geda_menu_append(menu, item);
     }
     return (menu);
 }

@@ -5,7 +5,8 @@
       accessing child member directly. Revise x_toolbars_save_state to
       eliminate the result variable and return result of g_file_test
       directly. Remove using GtkObject pointer in x_toolbars_add_closer.
-      Substitude fprintf for geda_log for the popup_activated case else,
+      Substitute fprintf for geda_log for the popup_activated case else
+      and geda_menu_append for geda_menu_shell_append in build_menu.
       Replace u_log_message with geda_log and v_log_message with geda_
       log_v.
 
