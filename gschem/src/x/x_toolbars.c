@@ -953,9 +953,9 @@ static GtkWidget *build_menu(GedaHandleBox *handlebox)
 
   for (i=0; i < (sizeof(popup_items)/sizeof(popup_items[0])) ; i++)
   {
-    GtkWidget  *item;
+    GtkWidget *item;
 
-    item      = geda_menu_item_new_with_label(_(popup_items[i]));
+    item = geda_menu_item_new_with_label(_(popup_items[i]));
 
     gtk_tooltips_set_tip (tooltips, item, _(popup_tips[i]), NULL);
 
@@ -1043,7 +1043,7 @@ On_mouse_button_press(GtkWidget *widget, GdkEventButton *event, GschemToplevel *
 
     /* Tell GTK to do the menu we just created */
     geda_menu_popup(GEDA_MENU(popup_menu), NULL, NULL, NULL, NULL,
-                   event->button, event->time);
+                    event->button, event->time);
   }
   return (FALSE);
 }
