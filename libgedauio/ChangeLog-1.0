@@ -1,3 +1,12 @@
+2018-01-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_radio_menu_item.c: Change the first argument to
+      type GtkWidget pointer for functions:
+
+          * geda_radio_menu_item_new_from_widget
+          * geda_radio_menu_item_new_with_label_from_widget
+          * geda_radio_menu_item_new_with_mnemonic_from_widget
+
 2017-12-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_font_button.c: Revise geda_font_button_set_font_name

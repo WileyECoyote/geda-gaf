@@ -72,14 +72,14 @@ GedaType   geda_radio_menu_item_get_type                      (void) GEDA_CONST;
 bool       is_a_geda_radio_menu_item                          (GedaRadioMenuItem  *radio_menu_item);
 
 GtkWidget *geda_radio_menu_item_new                           (GSList             *group);
-GtkWidget *geda_radio_menu_item_new_from_widget               (GedaRadioMenuItem  *group);
+GtkWidget *geda_radio_menu_item_new_from_widget               (GtkWidget          *group);
 GtkWidget *geda_radio_menu_item_new_with_label                (GSList             *group,
                                                                const char         *label);
-GtkWidget *geda_radio_menu_item_new_with_label_from_widget    (GedaRadioMenuItem  *group,
+GtkWidget *geda_radio_menu_item_new_with_label_from_widget    (GtkWidget          *group,
                                                                const char         *label);
 GtkWidget *geda_radio_menu_item_new_with_mnemonic             (GSList             *group,
                                                                const char         *label);
-GtkWidget *geda_radio_menu_item_new_with_mnemonic_from_widget (GedaRadioMenuItem  *group,
+GtkWidget *geda_radio_menu_item_new_with_mnemonic_from_widget (GtkWidget          *group,
                                                                const char         *label);
 
 GSList*    geda_radio_menu_item_get_group                     (GedaRadioMenuItem  *radio_menu_item);

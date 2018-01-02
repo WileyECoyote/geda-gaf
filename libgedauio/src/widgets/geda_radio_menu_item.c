@@ -408,12 +408,12 @@ geda_radio_menu_item_new (GSList *group)
  * \returns The new #GedaRadioMenuItem
  */
 GtkWidget *
-geda_radio_menu_item_new_from_widget (GedaRadioMenuItem *group)
+geda_radio_menu_item_new_from_widget (GtkWidget *group)
 {
   GSList *list = NULL;
 
   if (GEDA_IS_CHECK_MENU_ITEM(group)) {
-    list = geda_radio_menu_item_get_group (group);
+    list = geda_radio_menu_item_get_group ((GedaRadioMenuItem*)group);
   }
 
   return geda_radio_menu_item_new (list);
@@ -494,15 +494,15 @@ geda_radio_menu_item_new_with_mnemonic (GSList *group, const char *label)
  * \returns The new #GedaRadioMenuItem
  */
 GtkWidget *
-geda_radio_menu_item_new_with_mnemonic_from_widget (GedaRadioMenuItem *group,
-                                                    const char        *label)
+geda_radio_menu_item_new_with_mnemonic_from_widget (GtkWidget  *group,
+                                                    const char *label)
 {
   GSList *list = NULL;
 
   g_return_val_if_fail (GEDA_IS_RADIO_MENU_ITEM (group), NULL);
 
   if (group) {
-    list = geda_radio_menu_item_get_group (group);
+    list = geda_radio_menu_item_get_group ((GedaRadioMenuItem*)group);
   }
 
   return geda_radio_menu_item_new_with_mnemonic (list, label);
@@ -520,15 +520,15 @@ geda_radio_menu_item_new_with_mnemonic_from_widget (GedaRadioMenuItem *group,
  * \returns The new #GedaRadioMenuItem
  */
 GtkWidget *
-geda_radio_menu_item_new_with_label_from_widget (GedaRadioMenuItem *group,
-                                                 const char        *label)
+geda_radio_menu_item_new_with_label_from_widget (GtkWidget  *group,
+                                                 const char *label)
 {
   GSList *list = NULL;
 
   g_return_val_if_fail (GEDA_IS_RADIO_MENU_ITEM (group), NULL);
 
   if (group) {
-    list = geda_radio_menu_item_get_group (group);
+    list = geda_radio_menu_item_get_group ((GedaRadioMenuItem*)group);
   }
 
   return geda_radio_menu_item_new_with_label (list, label);
