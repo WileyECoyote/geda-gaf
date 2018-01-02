@@ -7,6 +7,8 @@
           * geda_radio_menu_item_new_with_label_from_widget
           * geda_radio_menu_item_new_with_mnemonic_from_widget
 
+    * tests/test_radio_menu_item.c: Update argument types.
+
 2017-12-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_font_button.c: Revise geda_font_button_set_font_name

@@ -92,7 +92,7 @@ int check_construction (void)
     radio_menu_item = GEDA_RADIO_MENU_ITEM(widget);
 
     /* geda_radio_menu_item_new_from_widget */
-    widget2 = geda_radio_menu_item_new_from_widget (radio_menu_item);
+    widget2 = geda_radio_menu_item_new_from_widget (widget);
 
     if (!GEDA_IS_RADIO_MENU_ITEM(widget2)) {
       fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
@@ -146,7 +146,7 @@ int check_construction (void)
     }
 
     /* geda_radio_menu_item_new_with_label_from_widget */
-    widget4 = geda_radio_menu_item_new_with_label_from_widget (radio_menu_item, "4");
+    widget4 = geda_radio_menu_item_new_with_label_from_widget (widget, "4");
 
     if (!GEDA_IS_RADIO_MENU_ITEM(widget4)) {
       fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
@@ -200,7 +200,7 @@ int check_construction (void)
     }
 
     /* geda_radio_menu_item_new_with_mnemonic_from_widget */
-    widget6 = geda_radio_menu_item_new_with_mnemonic_from_widget(radio_menu_item, "6");
+    widget6 = geda_radio_menu_item_new_with_mnemonic_from_widget(widget, "6");
 
     if (!GEDA_IS_RADIO_MENU_ITEM(widget6)) {
       fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
