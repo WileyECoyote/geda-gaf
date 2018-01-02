@@ -31,6 +31,11 @@
 #ifndef __GSCHEM_X_MENU_H__
 #define __GSCHEM_X_MENU_H__
 
+#define IDS_MENU_VIEW_GRID     "_View/_Grid"
+#define IDS_MENU_GRID_DOTS     "_Dots"
+#define IDS_MENU_GRID_MESH     "_Mesh"
+#define IDS_MENU_GRID_NONE     "_None"
+
 #define IDS_MENU_VIEW_TOOLBARS "_View/_Toolbars"
 
 #define IDS_MENU_TB_ADD        "_Add"
@@ -73,6 +78,10 @@
 #define MAX_RECENT_FILES 10 /* Make this a variable like normal programs */
 #define RECENT_FILES_STORE "gschem-recent-files"
 #define SENSITIVITY_ERROR_LIMIT 5
+
+#define OPT_GRID_DOTS_MENU_PATH IDS_MENU_VIEW_GRID "/" IDS_MENU_GRID_DOTS
+#define OPT_GRID_MESH_MENU_PATH IDS_MENU_VIEW_GRID "/" IDS_MENU_GRID_MESH
+#define OPT_GRID_NONE_MENU_PATH IDS_MENU_VIEW_GRID "/" IDS_MENU_GRID_NONE
 
 /* Short-cuts to reference records in st_menu_data */
 #define MENU_BAR         menu_data->menu_bar
