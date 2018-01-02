@@ -2,6 +2,9 @@
 
     * include/x_menus.h: Add string defines for _View/_Grid menu options.
 
+    * src/x/x_menus.c: Add menu radio buttons for Grid modes under the
+      view menu.
+
 2018-01-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_toolbars.c: Revise x_toolbars_save_state and x_toolbars_

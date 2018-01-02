@@ -346,6 +346,71 @@ GtkWidget *x_menu_get_main_menu(GschemToplevel *w_current)
 }
 
 /*!
+ * \internal Helper common to the grid mode radio callbacks
+ * The menu callbacks connected to the "toggled" signal do not
+ * call this function if the radio was deactivated and public
+ * x_menu_set_grid_radio, which gets called from action handlers
+ * responding to the toolbar grid-radio group, blocks the signal
+ * for the menu radio that is being set active so this function
+ * is ONLY called when a grid mode menu toggle item is selected.
+ */
+static void
+x_menu_set_grid_mode(GschemToplevel *w_current, int mode)
+{
+  w_current->grid_mode = mode;
+
+  /* If toolbars are off then update manually */
+  if (w_current->toolbars == FALSE) {
+    x_grid_configure_variables (w_current);
+    i_status_update_grid_info (w_current);
+  }
+  else {
+    x_toolbars_set_grid_radio(w_current);
+  }
+
+  o_invalidate_all (w_current);
+}
+
+/*!
+ * \internal Callback for grid dots mode radio "toggled" signal
+ * Ignores the signal if the widget was toggled OFF, meaning,
+ * one of the other radios is being toggled ON.
+ */
+static void
+x_menu_grid_dots_mode(GedaCheckMenuItem *widget, GschemToplevel *w_current)
+{
+  if (geda_check_menu_item_get_active(widget)) {
+    x_menu_set_grid_mode(w_current, GRID_DOTS);
+  }
+}
+
+/*!
+ * \internal Callback for grid mesh mode radio "toggled" signal
+ * Ignores the signal if the widget was toggled OFF, meaning,
+ * one of the other radios is being toggled ON.
+ */
+static void
+x_menu_grid_mesh_mode(GedaCheckMenuItem *widget, GschemToplevel *w_current)
+{
+  if (geda_check_menu_item_get_active(widget)) {
+    x_menu_set_grid_mode(w_current, GRID_MESH);
+  }
+}
+
+/*!
+ * \internal Callback for grid none mode radio "toggled" signal
+ * Ignores the signal if the widget was toggled OFF, meaning,
+ * one of the other radios is being toggled ON.
+ */
+static void
+x_menu_grid_none_mode(GedaCheckMenuItem *widget, GschemToplevel *w_current)
+{
+  if (geda_check_menu_item_get_active(widget)) {
+    x_menu_set_grid_mode(w_current, GRID_NONE);
+  }
+}
+
+/*!
  * \brief Create Main Menu
  * \par Function Description
  * This function creates the main menu based on data in a Scheme list that
@@ -825,8 +890,61 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
   if (menu_item != NULL) {
 
-    GedaMenuShell *menu_shell = GEDA_MENU_SHELL(gtk_widget_get_parent (menu_item));
-    GtkWidget    *toggle_menu;
+    GedaMenuShell *menu_shell = (GedaMenuShell*)gtk_widget_get_parent (menu_item);
+    GtkWidget     *toggle_menu;
+
+    /* Grid Options*/
+    menu_item   = geda_menu_item_new_with_mnemonic(_("_Grid"));
+    toggle_menu = geda_menu_new();
+
+    geda_menu_item_set_submenu ((GedaMenuItem*)menu_item, toggle_menu);
+    GEDA_OBJECT_SET_DATA(MENU_BAR, menu_item, IDS_MENU_VIEW_GRID);
+
+    GSList *grp = NULL;
+
+    /* Start View Grid Radios */
+    GtkWidget *vw_dots_radio = geda_radio_menu_item_new_with_mnemonic (grp, "_Dots");
+    GtkWidget *vw_mesh_radio = geda_radio_menu_item_new_with_mnemonic_from_widget (vw_dots_radio, "_Mesh");
+    GtkWidget *vw_none_radio = geda_radio_menu_item_new_with_mnemonic_from_widget (vw_mesh_radio, "_None");
+
+    if (w_current->grid_mode == GRID_NONE ) {
+      g_object_set (vw_none_radio, "active", TRUE,  NULL);
+    }
+    else {
+      if (w_current->grid_mode ==  GRID_DOTS) {
+        g_object_set (vw_dots_radio,  "active", TRUE,  NULL);
+      }
+      else {
+        if (w_current->grid_mode == GRID_MESH ) {
+          g_object_set (vw_mesh_radio,  "active", TRUE,  NULL);
+        }
+      }
+    }
+
+    GEDA_OBJECT_SET_DATA(MENU_BAR, vw_dots_radio, OPT_GRID_DOTS_MENU_PATH);
+    GEDA_OBJECT_SET_DATA(MENU_BAR, vw_mesh_radio, OPT_GRID_MESH_MENU_PATH);
+    GEDA_OBJECT_SET_DATA(MENU_BAR, vw_none_radio, OPT_GRID_NONE_MENU_PATH);
+
+    geda_container_add(toggle_menu, vw_dots_radio);
+    geda_container_add(toggle_menu, vw_mesh_radio);
+    geda_container_add(toggle_menu, vw_none_radio);
+
+    gtk_widget_set_tooltip_text(vw_dots_radio, _("Display dots grid"));
+    gtk_widget_set_tooltip_text(vw_mesh_radio, _("Display mesh grid"));
+    gtk_widget_set_tooltip_text(vw_none_radio, _("Turn off the grid display"));
+
+    geda_menu_shell_prepend(menu_shell, menu_item);
+
+    g_signal_connect(vw_dots_radio, "toggled",
+                                     G_CALLBACK(x_menu_grid_dots_mode),
+                                     w_current);
+    g_signal_connect(vw_mesh_radio, "toggled",
+                                     G_CALLBACK(x_menu_grid_mesh_mode),
+                                     w_current);
+    g_signal_connect(vw_none_radio, "toggled",
+                                     G_CALLBACK(x_menu_grid_none_mode),
+                                     w_current);
+    gtk_widget_show_all(menu_item);
 
     if (w_current->toolbars == TRUE) {
 
