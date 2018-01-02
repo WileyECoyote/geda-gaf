@@ -2,6 +2,12 @@
 
     * include/x_menus.h: Add string defines for _View/_Grid menu options.
 
+    * src/iface/i_command.c: Call x_menu_set_grid_radio in:
+
+          * i_cmd_do_grid_dots
+          * i_cmd_do_grid_mesh
+          * i_cmd_do_grid_off
+
     * src/x/x_menus.c: Add menu radio buttons for Grid modes under the
       view menu. Add function x_menu_set_grid_radio to set the grid
       radios when the grid mode is changed by a means other than the

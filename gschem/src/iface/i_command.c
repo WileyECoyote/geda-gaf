@@ -4315,6 +4315,7 @@ COMMAND (do_grid_dots)
   w_current->grid_mode = GRID_DOTS;
   x_grid_configure_variables (w_current);
   i_status_update_grid_info (w_current);
+  x_menu_set_grid_radio (w_current);
   o_invalidate_all (w_current);
 }
 /*! \brief Set the Grid Display to Mesh Mode */
@@ -4325,6 +4326,7 @@ COMMAND (do_grid_mesh)
   w_current->grid_mode = GRID_MESH;
   x_grid_configure_variables (w_current);
   i_status_update_grid_info (w_current);
+  x_menu_set_grid_radio (w_current);
   o_invalidate_all (w_current);
 }
 /*! \brief Turn the Grid Display Off in i_command_Option_Actions */
@@ -4334,6 +4336,7 @@ COMMAND (do_grid_off)
   BEGIN_NO_ARGUMENT(do_grid_off);
   w_current->grid_mode = GRID_NONE;
   i_status_update_grid_info (w_current);
+  x_menu_set_grid_radio (w_current);
   o_invalidate_all (w_current);
 }
 
