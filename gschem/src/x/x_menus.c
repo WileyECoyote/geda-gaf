@@ -474,7 +474,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     radio_data->w_current = w_current;
     radio_data->widget    = (GedaCheckMenuItem*)radio_button;
 
-    radio_data->handler   = g_signal_connect(G_OBJECT(radio_button), "toggled",
+    radio_data->handler   = g_signal_connect(radio_button, "toggled",
                                              G_CALLBACK(func),
                                              w_current);
 
