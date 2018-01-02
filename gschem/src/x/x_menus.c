@@ -1617,6 +1617,62 @@ void x_menu_save_state(GschemToplevel *w_current)
   }
 }
 
+/* Called to set the menu radio button for the grid mode when
+ * the mode was changed by a means other than the menu. Unlike
+ * the toolbars buttons, the Menu/View/Grid radios do not have
+ * an associated action. If a menu grid-mode radio is selected
+ * only the active button calls to update the toolbar radio
+ * group, and when the toolbar grid button is toggled, the
+ * action handler calls this function, which blocks the call
+ * back for the menu grid-mode radio for the button that is
+ * being set active. And in this way both radio button groups
+ * can be synchronized and not recursively trigger the other.
+ */
+void
+x_menu_set_grid_radio(GschemToplevel *w_current)
+{
+  GedaCheckMenuItem *radio;
+  MenuData *menu_data;
+  void *func;
+
+  menu_data = g_slist_nth_data (ui_list, w_current->ui_index);
+  radio = NULL;
+
+  switch(w_current->grid_mode) {
+    case(GRID_NONE):
+      radio = GEDA_OBJECT_GET_DATA (MENU_BAR, OPT_GRID_NONE_MENU_PATH);
+      func  = x_menu_grid_none_mode;
+      break;
+
+    case(GRID_DOTS):
+      radio = GEDA_OBJECT_GET_DATA (MENU_BAR, OPT_GRID_DOTS_MENU_PATH);
+      func  = x_menu_grid_dots_mode;
+      break;
+
+    case(GRID_MESH):
+      radio = GEDA_OBJECT_GET_DATA (MENU_BAR, OPT_GRID_MESH_MENU_PATH);
+      func  = x_menu_grid_mesh_mode;
+      break;
+
+    default:
+      func = NULL;
+      break;
+  }
+
+  if (GEDA_IS_CHECK_MENU_ITEM(radio)) {
+
+    /* Only activate if radio not already active, this effectively
+     * blocks us if a menu item indirectly initiated the action */
+    if (!geda_check_menu_item_get_active(radio)) {
+      /* Block callback so x_toolbars_set_grid_radio is not called
+       * recursively */
+      g_signal_handlers_block_by_func (radio, func, w_current);
+        geda_check_menu_item_set_active (radio, TRUE);
+      g_signal_handlers_unblock_by_func (radio, func, w_current);
+    }
+  }
+}
+
 const
 char *x_menu_get_buffer_menu (GschemToplevel *w_current)
 {
