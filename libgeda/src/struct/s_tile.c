@@ -156,7 +156,7 @@ geda_struct_tile_add_linear_object (GedaObject *object)
     end   = /* max */ x1 > x2 ? x1 : x2;
 
     /* Ensure both abscissae are in bounds */
-    if (start < 0 || end > MAX_TILES_X-1) {
+    if (start < 0 || end > MAX_TILES_X - 1) {
       return;
     }
 
@@ -169,7 +169,7 @@ geda_struct_tile_add_linear_object (GedaObject *object)
 
         w = (int) floor(y);
 
-        if (w < 0 || w > MAX_TILES_Y-1) {
+        if (w < 0 || w > MAX_TILES_Y - 1) {
           return;
         }
 
@@ -184,7 +184,8 @@ geda_struct_tile_add_linear_object (GedaObject *object)
       }
 
       w = (int) ceil(y);
-      if (w < 0 || w > MAX_TILES_Y-1) {
+
+      if (w < 0 || w > MAX_TILES_Y - 1) {
         return;
       }
 
