@@ -466,13 +466,13 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     TOGGLERS_LIST = g_slist_append(TOGGLERS_LIST, toggler_data);
   }
 
-  inline void setup_radio(GedaCheckMenuItem *radio_button, void *func) {
+  inline void setup_radio(GtkWidget *radio_button, void *func) {
 
     RadioMenuData *radio_data;
 
     radio_data            = GEDA_MEM_ALLOC0 (sizeof(RadioMenuData));
     radio_data->w_current = w_current;
-    radio_data->widget    = (GedaCheckMenuItem*) radio_button;
+    radio_data->widget    = (GedaCheckMenuItem*)radio_button;
 
     radio_data->handler   = g_signal_connect(G_OBJECT(radio_button), "toggled",
                                              G_CALLBACK(func),
@@ -1063,10 +1063,10 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
         }
       }
 
-      setup_radio((GedaCheckMenuItem*)tb_icons_bulb, x_toolbar_icons_only);
-      setup_radio((GedaCheckMenuItem*)tb_text_bulb,  x_toolbar_text_only);
-      setup_radio((GedaCheckMenuItem*)tb_vert_bulb,  x_toolbar_display_both);
-      setup_radio((GedaCheckMenuItem*)tb_hori_bulb,  x_toolbar_display_horiz);
+      setup_radio(tb_icons_bulb, x_toolbar_icons_only);
+      setup_radio(tb_text_bulb,  x_toolbar_text_only);
+      setup_radio(tb_vert_bulb,  x_toolbar_display_both);
+      setup_radio(tb_hori_bulb,  x_toolbar_display_horiz);
 
       GEDA_OBJECT_SET_DATA(MENU_BAR, tb_icons_bulb, OPT_BAR_ICON_MENU_PATH);
       GEDA_OBJECT_SET_DATA(MENU_BAR, tb_text_bulb,  OPT_BAR_TEXT_MENU_PATH);
