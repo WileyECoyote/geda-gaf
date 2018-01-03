@@ -120,7 +120,7 @@ static PopupEntry main_popup_items[] = {
   { N_("Extend"),            x_menu_main_popup_execute, pop_edit_extend,    1, "extend",             N_("Project linear objects to other objects") },
   { N_("Delete"),            x_menu_main_popup_execute, pop_edit_delete,    1, "gtk-delete",         N_("Delete the current selection" )},
   { N_("Copy"),              x_menu_main_popup_execute, pop_edit_copy,      1, "geda-copy",          N_("Copy selection") },
-  { N_("MCopy"),             x_menu_main_popup_execute, pop_edit_mcopy,     1, "geda-multi",         N_("Make multible copies of selection") },
+  { N_("MCopy"),             x_menu_main_popup_execute, pop_edit_mcopy,     1, "geda-multi",         N_("Make multiple copies of selection") },
   { N_("Move"),              x_menu_main_popup_execute, pop_edit_move,      1, "geda-move",          N_("Move selection") },
   { N_("Mirror"),            x_menu_main_popup_execute, pop_edit_mirror,    1, "geda-mirror",        N_("Mirror an object about a point") },
   { N_("Rotate"),            x_menu_main_popup_execute, pop_edit_rotate,    1, "geda-rotate-left",   N_("Rotate the current selection about a point") },
