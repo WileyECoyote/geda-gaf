@@ -498,7 +498,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
                               "F O");                                        /* Accelerator string */
 
     GtkWidget *open_item = geda_action_create_menu_item (action);
-    g_signal_connect (G_OBJECT(action), "activate",
+    g_signal_connect (action, "activate",
                       G_CALLBACK(x_menu_execute),  w_current);
 
     /* Create a Save menu items */
@@ -509,7 +509,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
                               "F S");                                        /* Accelerator string */
 
     GtkWidget *save_item = geda_action_create_menu_item (action);
-    g_signal_connect (G_OBJECT(action), "activate",
+    g_signal_connect (action, "activate",
                       G_CALLBACK(x_menu_execute), w_current);
 
     action = geda_action_new ("file-quit",                                   /* Action name */
@@ -519,7 +519,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
                               "F Q");                                        /* Accelerator string */
 
     GtkWidget *quit_item = geda_action_create_menu_item (action);
-    g_signal_connect (G_OBJECT(action), "activate",
+    g_signal_connect (action, "activate",
                       G_CALLBACK(x_menu_execute), w_current);
 
     /* Add basic items to the file menu */
@@ -553,7 +553,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
     GtkWidget *redraw_item = geda_action_create_menu_item (action);
 
-    handler = g_signal_connect (G_OBJECT(action), "activate",
+    handler = g_signal_connect (action, "activate",
                                 G_CALLBACK(x_menu_execute),
                                 w_current);
 

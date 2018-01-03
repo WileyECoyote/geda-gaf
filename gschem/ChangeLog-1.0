@@ -1,3 +1,8 @@
+2018-01-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_menus.c: Remove unnecessary dynamic cast to GObject to
+      connect the "activate" signals in x_menu_setup_ui.
+
 2018-01-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/x_menus.h: Add string defines for _View/_Grid menu options.
