@@ -63,8 +63,8 @@ static GObjectClass *geda_object_parent_class = NULL;
 /* hold list of pointers to GedaObject instances */
 static GHashTable *object_hash_table = NULL;
 
-/*! this is modified here and in o_list.c */
-static int global_sid = 0; /* Global integer for GedaObject Indentification */
+/*! Global integer for GedaObject Indentification */
+static int global_sid = 0;
 
 static GList *new_object_hooks = NULL;
 
