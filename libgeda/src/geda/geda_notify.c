@@ -56,9 +56,9 @@ static GObjectClass *geda_notify_list_parent_class = NULL;
 /* List of pointers to GedaNotifyList instances */
 static GList *list_of_objects = NULL;
 
-/*! \brief GedaType instance initializer for GedaNotifyList
- *
- *  GedaType Function Description
+/*!
+ * \brief GedaType instance initializer for GedaNotifyList
+ * \par Function Description
  *  GedaType instance initializer for GedaNotifyList.
  *
  *  \param [in]  instance  The GedaNotifyList we are initialising.
@@ -77,13 +77,13 @@ static void geda_notify_list_instance_init (GTypeInstance *instance, void *class
   list_of_objects = g_list_append(list_of_objects, list);
 }
 
-/*! \brief GObject finalise handler
- *
- *  \par Function Description
+/*!
+ * \brief GObject finalise handler
+ * \par Function Description
  *  Called before the GedaNotifyList GObject is finalized, free our
  *  allocated data, and then chain up to the parent's finalize handler.
  *
- *  \param [in] object  The GObject being finalized.
+ * \param [in] object  The GObject being finalized.
  */
 static void geda_notify_list_finalize (GObject *object)
 {
@@ -103,14 +103,14 @@ static void geda_notify_list_finalize (GObject *object)
   G_OBJECT_CLASS( geda_notify_list_parent_class )->finalize (object);
 }
 
-/*! \brief GedaType class initializer for GedaNotifyList
- *
- *  \par Function Description
+/*!
+ * \brief GedaType class initializer for GedaNotifyList
+ * \par Function Description
  *  GedaType class initializer for GedaNotifyList. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- *  \param [in]  class       The GedaNotifyList we are initialising
- *  \param [in]  class_data  (unused)
+ * \param [in]  class       The GedaNotifyList we are initialising
+ * \param [in]  class_data  (unused)
  */
 static void geda_notify_list_class_init(void *class, void *class_data)
 {
@@ -123,16 +123,16 @@ static void geda_notify_list_class_init(void *class, void *class_data)
 
 }
 
-/*! \brief Function to retrieve GedaNotifyList's Type identifier.
- *
- *  \par Function Description
+/*!
+ * \brief Function to retrieve GedaNotifyList's Type identifier.
+ * \par Function Description
  *  Function to retrieve a #GedaNotifyList Type identifier. When first called,
  *  the function registers a #GedaNotifyList in the GedaNotifyType system to
  *  obtain an identifier that uniquely itentifies a GedaNotifyList and returns
  *  the unsigned integer value. The retained value is returned on subsequent
  *  calls.
  *
- *  \return GedaNotifyType identifier associated with GedaNotifyList.
+ * \return GedaNotifyType identifier associated with GedaNotifyList.
  */
 GedaNotifyType geda_notify_list_get_type (void)
 {
@@ -172,27 +172,27 @@ bool is_a_geda_notify_list (const GedaNotifyList *list)
   return FALSE;
 }
 
-/*! \brief Returns a pointer to a new GedaNotifyList object.
- *
- *  \par Function Description
+/*!
+ * \brief Returns a pointer to a new GedaNotifyList object.
+ * \par Function Description
  *  Returns a pointer to a new GedaNotifyList object.
  *
- *  \return pointer to the new GedaNotifyList object.
+ * \return pointer to the new GedaNotifyList object.
  */
 GedaNotifyList *geda_notify_list_new (void) {
 
   return g_object_new( GEDA_TYPE_NOTIFY_LIST, NULL );
 }
 
-/*! \brief Returns is a GedaNotifyList Frozen.
- *
- *  \par Function Description
+/*!
+ * \brief Returns is a GedaNotifyList Frozen.
+ * \par Function Description
  *  If \a list is a valid #GedaNotifyList and the freeze count is 0
  *  then the functions returns zero, otherwise the function returns
  *  -1 if \a list was not valid #GedaNotifyList, or a positive interger
  *  equal to the current freeze count.
  *
- *  \return TRUE if the freeze count is non zero
+ * \return TRUE if the freeze count is non zero
  */
 int geda_notify_list_is_frozen (GedaNotifyList *list)
 {
@@ -207,8 +207,8 @@ int geda_notify_list_is_frozen (GedaNotifyList *list)
   return answer;
 }
 
-/*! \brief Suspense Notification for a GedaNotifyList
- *
+/*!
+ * \brief Suspense Notification for a GedaNotifyList
  * \par Function Description
  *  This function increments the freeze count of an #GedaNotifyList.
  *  Notification of changes is suspended until the freeze is reduced
@@ -225,8 +225,8 @@ void geda_notify_list_freeze (GedaNotifyList *list)
   }
 }
 
-/*! \brief Thaw Notification for a GedaNotifyList
- *
+/*!
+ * \brief Thaw Notification for a GedaNotifyList
  * \par Function Description
  *  This function add a hook to each new page
  *
@@ -243,27 +243,27 @@ void geda_notify_list_thaw (GedaNotifyList *list)
   }
 }
 
-/*! \brief Adds the given item to the GedaNotifyList
- *
- *  \par Function Description
+/*!
+ * \brief Adds the given item to the GedaNotifyList
+ * \par Function Description
  *  Adds the given item to the GedaNotifyList
  *
- *  \param [in] list Pointer to the GedaNotifyList
- *  \param [in] item item to add to the GedaNotifyList.
+ * \param [in] list Pointer to the GedaNotifyList
+ * \param [in] item item to add to the GedaNotifyList.
  */
 void geda_notify_list_add (GedaNotifyList *list, void *item)
 {
   list->glist = g_list_append (list->glist, item);
 }
 
-/*! \brief Adds the given glist of items to the GedaNotifyList
- *
- *  \par Function Description
+/*!
+ * \brief Adds the given glist of items to the GedaNotifyList
+ * \par Function Description
  *  Adds the given glist of items to the GedaNotifyList
  *  A copy is made, so the original GList is not modified.
  *
- *  \param [in] list Pointer to the GedaNotifyList
- *  \param [in] items GList of items to add to the GedaNotifyList.
+ * \param [in] list Pointer to the GedaNotifyList
+ * \param [in] items GList of items to add to the GedaNotifyList.
  */
 void geda_notify_list_add_glist (GedaNotifyList *list, GList *items)
 {
@@ -271,14 +271,14 @@ void geda_notify_list_add_glist (GedaNotifyList *list, GList *items)
   list->glist = g_list_concat (list->glist, glist_copy);
 }
 
-/*! \brief Returns a copy of the glist associated with GedaNotifyList
- *
- *  \par Function Description
+/*!
+ * \brief Returns a copy of the glist associated with GedaNotifyList
+ * \par Function Description
  *  A copy is made of the glist and returned
  *
- *  \param [in] list Pointer to the GedaNotifyList
+ * \param [in] list Pointer to the GedaNotifyList
  *
- *  \retval pointer to copy of a Glist  the GedaNotifyList.
+ * \retval pointer to copy of a Glist  the GedaNotifyList.
  */
 GList *geda_notify_list_copy_glist (GedaNotifyList *list)
 {
@@ -313,15 +313,15 @@ int geda_notify_list_in_list (GedaNotifyList *list, void *func)
   return answer;
 }
 
-/*! \brief Removes the given item from the GedaNotifyList
- *
- *  \par Function Description
+/*!
+ * \brief Removes the given item from the GedaNotifyList
+ * \par Function Description
  *  Removes the given item from the GedaNotifyList.
  *  It's ok to call this function with an item which
  *  is not necessarily in the list.
  *
- *  \param [in] list Pointer to the GedaNotifyList
- *  \param [in] item to remove from the GedaNotifyList.
+ * \param [in] list Pointer to the GedaNotifyList
+ * \param [in] item to remove from the GedaNotifyList.
  */
 void geda_notify_list_remove (GedaNotifyList *list, void *item)
 {
@@ -331,12 +331,12 @@ void geda_notify_list_remove (GedaNotifyList *list, void *item)
   list->glist = g_list_remove (list->glist, item);
 }
 
-/*! \brief Removes all the items in the given GedaNotifyList.
- *
- *  \par Function Description
+/*!
+ * \brief Removes all the items in the given GedaNotifyList.
+ * \par Function Description
  *  Removes all items in the given GedaNotifyList.
  *
- *  \param [in] list Pointer to the GedaNotifyList
+ * \param [in] list Pointer to the GedaNotifyList
  */
 void geda_notify_list_remove_all (GedaNotifyList *list)
 {
