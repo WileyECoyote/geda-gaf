@@ -2078,7 +2078,7 @@ static void x_menu_clear_recent_file_list(void *data)
    x_menu_update_recent_files();
 }
 
-static void x_menu_free_recent_file_record (RecentMenuData *menu_data)
+static void x_menu_recent_destroy_data (GedaMenuItem *menuitem, void *menu_data)
 {
   GEDA_FREE (menu_data);
 }
@@ -2110,8 +2110,6 @@ static void x_menu_recent_file_clicked (GedaMenuItem *menuitem, void *menu_data)
 
    page = x_window_open_page(w_current, filename);
    x_window_set_current_page(w_current, page);
-
-   x_menu_free_recent_file_record(menu_data);
 }
 
 /*! \brief Make RECENT_FILES_STORE contain an empty file list.
@@ -2329,6 +2327,9 @@ void x_menu_attach_recent_submenu(GschemToplevel *w_current)
 
      g_signal_connect (item, "button-release-event",
                        G_CALLBACK (x_menu_recent_button_released), menu_data);
+
+     g_signal_connect (item, "destroy",
+                       G_CALLBACK(x_menu_recent_destroy_data), menu_data);
 
      geda_menu_append(recent_submenu, item);
 

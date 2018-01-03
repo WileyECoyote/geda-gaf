@@ -5,7 +5,10 @@
 
     * src/x/x_menus.c: Remove unnecessary dynamic cast to GObject to
       connect the "activate" signals in x_menu_setup_ui. Fix spelling
-      in MCopy popup tooltip.
+      in MCopy popup tooltip. Remove calling x_menu_free_recent_file_
+      record at the end of x_menu_recent_file_clicked and connect to
+      the "destroy" signal of the submenu and rename the function
+      x_menu_recent_destroy_data.
 
 2018-01-02 Wiley E. Hill <wileyhill@gmail.com>
 
