@@ -736,12 +736,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
           menu_item = geda_action_create_menu_item ((GedaAction*)action);
 
           free(action_name);
-/*
-          if (action_keys) {
-            free(action_keys);
-            action_keys = NULL;
-          }
-*/
+
           handler = g_signal_connect (action, "activate",
                                       G_CALLBACK(x_menu_execute),
                                       w_current);
