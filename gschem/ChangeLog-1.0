@@ -1,5 +1,8 @@
 2018-01-03 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/iface/i_command.c: Update format specifiers for thread_ids
+      to type unsigned.
+
     * src/x/x_menus.c: Remove unnecessary dynamic cast to GObject to
       connect the "activate" signals in x_menu_setup_ui.
 
