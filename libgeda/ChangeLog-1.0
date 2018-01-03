@@ -1,6 +1,7 @@
 2018-01-03 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/geda/geda_notify.c: Reformat Doxygen documentation.
+    * src/geda/geda_notify.c: Reformat Doxygen documentation, add
+      function documentation for geda_notify_list_in_list.
 
 2017-12-31 Wiley E. Hill <wileyhill@gmail.com>
 

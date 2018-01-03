@@ -285,6 +285,17 @@ GList *geda_notify_list_copy_glist (GedaNotifyList *list)
   return g_list_copy (list->glist);
 }
 
+/*!
+ * \brief Get if Function is in a GedaNotifyList
+ * \par Function Description
+ *  Search \a list and return TRUE if \a func is found in the list
+ *  otherwise returns FALSE.
+ *
+ * \param [in] list Pointer to the GedaNotifyList
+ * \param [in] func Address to look for
+ *
+ * \retval TRUE if found, otherwise FALSE.
+ */
 int geda_notify_list_in_list (GedaNotifyList *list, void *func)
 {
   bool answer;
@@ -298,11 +309,11 @@ int geda_notify_list_in_list (GedaNotifyList *list, void *func)
 
     count = g_list_length(list->glist);
 
-    for ( index = 0; index < count; index++) {
+    for (index = 0; index < count; index++) {
 
       change_notify *entry;
 
-      entry = (change_notify *)g_list_nth_data(list->glist, index);
+      entry = (change_notify*)g_list_nth_data(list->glist, index);
 
       if (entry->pre_change_func == func) {
         answer = TRUE;
