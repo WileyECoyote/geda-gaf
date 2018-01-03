@@ -3,6 +3,9 @@
     * src/geda/geda_notify.c: Reformat Doxygen documentation, add
       function documentation for geda_notify_list_in_list.
 
+    * src/geda/geda_object.c: Add function documentation for
+      geda_object_get_next_sid.
+
 2017-12-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_net.c: Add Doxygen comments for:

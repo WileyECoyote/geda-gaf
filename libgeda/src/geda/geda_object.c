@@ -353,10 +353,13 @@ static void geda_object_set_property (GObject *gobject, unsigned int property_id
 }
 /* END ----------------------- Property Handlers --------------------------- */
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *  Non static but libgeda Private
+/*!
+ * \brief Retrieve Next Serial Identifier (SID)
+ * \par Function Description
+ *  Non static but libgeda Private. Each Libgeda object holds a session
+ *  unique integer identifier that is assigned when the object is created.
+ *  This function generates the identifier by incrementing and returning
+ *  the global_sid variable static to this module.
  */
 int geda_object_get_next_sid(void)
 {
