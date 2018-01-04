@@ -92,6 +92,7 @@ GedaObject  *geda_picture_new             (void);
 int          geda_picture_get_angle       (const GedaPicture *picture) WARN_UNUSED;
 bool         geda_picture_get_is_embedded (const GedaPicture *picture) WARN_UNUSED;
 
+void         geda_picture_set_angle       (GedaPicture *picture, int angle);
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */

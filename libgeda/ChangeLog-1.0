@@ -6,6 +6,7 @@
     * src/geda/geda_picture.c: Add accessor:
 
           * geda_picture_get_is_embedded
+          * geda_picture_set_angle
 
 2018-01-03 Wiley E. Hill <wileyhill@gmail.com>
 
