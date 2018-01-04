@@ -45,7 +45,7 @@ bool geda_object_embed(GedaObject *o_current)
   if (GEDA_IS_COMPLEX(o_current) && !geda_complex_object_is_embedded (o_current))
   {
     /* set the embedded flag */
-    o_current->complex->is_embedded = 1;
+    geda_complex_set_is_embedded(o_current->complex, 1);
 
     geda_log (_("Component [%s] has been embedded\n"),
                  o_current->complex->filename);

@@ -12,6 +12,9 @@
           * geda_picture_set_angle
           * geda_picture_set_is_embedded
 
+    * src/object/o_embed.c: Utilize geda_complex_set_is_embedded to
+      set the is_embedded property.
+
 2018-01-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_notify.c: Reformat Doxygen documentation, add
