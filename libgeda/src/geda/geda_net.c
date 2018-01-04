@@ -244,7 +244,7 @@ const char *geda_net_get_pin_label (ConstObject *object)
  *  Returns the first X value of \a net if and only if \a net is
  *  a valid GedaNet object.
  *
- * \return integer value of X0 if \a net is invalid.
+ * \returns integer value of X0 if \a net is invalid.
  */
 int geda_net_get_x0 (const GedaNet *net) {
   if (is_a_geda_net(net)) {
@@ -259,7 +259,7 @@ int geda_net_get_x0 (const GedaNet *net) {
  *  Returns the second X value of \a net if and only if \a net is
  *  a valid GedaNet object.
  *
- * \return integer value of X1 if \a net is invalid.
+ * \returns integer value of X1 if \a net is invalid.
  */
 int geda_net_get_x1 (const GedaNet *net) {
   if (is_a_geda_net(net)) {
@@ -274,7 +274,7 @@ int geda_net_get_x1 (const GedaNet *net) {
  *  Returns the first Y value of \a net if and only if \a net is
  *  a valid GedaNet object.
  *
- * \return integer value of Y0 if \a net is invalid.
+ * \returns integer value of Y0 if \a net is invalid.
  */
 int geda_net_get_y0 (const GedaNet *net) {
   if (is_a_geda_net(net)) {
@@ -289,7 +289,7 @@ int geda_net_get_y0 (const GedaNet *net) {
  *  Returns the second Y value of \a net if and only if \a net is
  *  a valid GedaNet object.
  *
- * \return integer value of Y1 if \a net is invalid.
+ * \returns integer value of Y1 if \a net is invalid.
  */
 int geda_net_get_y1 (const GedaNet *net) {
   if (is_a_geda_net(net)) {
