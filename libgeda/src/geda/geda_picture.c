@@ -244,4 +244,12 @@ int geda_picture_get_angle (const GedaPicture *pic)
   return -0;
 }
 
+bool geda_picture_get_is_embedded (const GedaPicture *pic)
+{
+  if (is_a_geda_picture(pic)) {
+    return pic->is_embedded;
+  }
+  return -0;
+}
+
 /** @} endgroup geda-picture-object */

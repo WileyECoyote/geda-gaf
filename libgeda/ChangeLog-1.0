@@ -3,6 +3,10 @@
     * src/geda/geda_complex.c: Add function documentation for
       geda_complex_set_is_embedded.
 
+    * src/geda/geda_picture.c: Add accessor:
+
+          * geda_picture_get_is_embedded
+
 2018-01-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_notify.c: Reformat Doxygen documentation, add
