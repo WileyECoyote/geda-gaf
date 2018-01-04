@@ -1,3 +1,9 @@
+2018-01-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_toolbars.c: Remove unneeded dynamic cast to GtkWidget
+      in build_menu, the item argument to gtk_widget_set_sensitive
+      and gtk_widget_set_can_focus is already GtkWidget type.
+
 2018-01-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Update format specifiers for thread_ids

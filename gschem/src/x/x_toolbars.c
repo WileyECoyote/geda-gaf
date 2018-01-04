@@ -963,46 +963,46 @@ static GtkWidget *build_menu(GedaHandleBox *handlebox)
                     (void*) popup_activated,
                     (void*) (long) i);
 
-    gtk_widget_set_sensitive(GTK_WIDGET(item), TRUE);
-    gtk_widget_set_can_focus(GTK_WIDGET(item), TRUE);
+    gtk_widget_set_sensitive(item, TRUE);
+    gtk_widget_set_can_focus(item, TRUE);
 
     switch (i) {
       case DockBar:
         if (is_floating) {
-          gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
-          gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
+          gtk_widget_set_sensitive(item, FALSE);
+          gtk_widget_set_can_focus(item, FALSE);
         }
         break;
       case HideBar:
         break;
       case MakeHorizontal:
         if (is_floating || orientation == GTK_ORIENTATION_HORIZONTAL) {
-          gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
-          gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
+          gtk_widget_set_sensitive(item, FALSE);
+          gtk_widget_set_can_focus(item, FALSE);
         }
         break;
       case MakeVertical:
         if (is_floating || orientation == GTK_ORIENTATION_VERTICAL) {
-          gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
-          gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
+          gtk_widget_set_sensitive(item, FALSE);
+          gtk_widget_set_can_focus(item, FALSE);
         }
         break;
       case ShowIcons:
         if (style == TOOLBAR_SHOW_ICONS) {
-          gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
-          gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
+          gtk_widget_set_sensitive(item, FALSE);
+          gtk_widget_set_can_focus(item, FALSE);
         }
         break;
       case ShowText:
         if (style == TOOLBAR_SHOW_TEXT) {
-          gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
-          gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
+          gtk_widget_set_sensitive(item, FALSE);
+          gtk_widget_set_can_focus(item, FALSE);
         }
         break;
       case ShowBoth:
         if (style == TOOLBAR_SHOW_BOTH) {
-          gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
-          gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
+          gtk_widget_set_sensitive(item, FALSE);
+          gtk_widget_set_can_focus(item, FALSE);
         }
         break;
       }
