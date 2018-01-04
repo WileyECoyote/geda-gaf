@@ -961,7 +961,22 @@ int test_path (void)
 
   path = NULL;
 
-  /* === Function 05: geda_sys_doc_path geda_file_path_sys_doc === */
+  /* === Function 05: geda_file_path_sys_doc === */
+
+  path = (char*) geda_sys_doc_path();
+
+  if (path == NULL) {
+    fprintf(stderr, "FAILED: (F030501A) geda_file_path_sys_doc <%s>\n", path);
+    result++;
+  }
+  else {
+
+    if (!strstr(path, "share/doc/geda-gaf")) {
+      fprintf(stderr, "FAILED: (F030501B) geda_file_path_sys_doc <%s>\n", path);
+      result++;
+    }
+  }
+
   /* === Function 06: geda_sys_config_path geda_file_path_sys_config === */
   /* === Function 07: geda_user_config_path geda_file_path_user_config === */
   /* ensure directory is restored, regardless of what happened above */
