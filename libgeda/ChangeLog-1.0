@@ -1,5 +1,8 @@
 2018-01-04 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/libgeda/geda_object.h: Remove declaration for non
+      existent geda_object_get_filltype.
+
     * src/geda/geda_complex.c: Add function documentation for
       geda_complex_set_is_embedded.
 

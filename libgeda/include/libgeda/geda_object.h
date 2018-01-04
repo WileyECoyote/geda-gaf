@@ -148,7 +148,6 @@ GedaObject   *geda_object_get_attached_to    (ConstObject *object);
 int           geda_object_get_color          (ConstObject *object);
 const GList  *geda_object_get_conn_list      (ConstObject *object);
 Page         *geda_object_get_page           (ConstObject *object);
-int           geda_object_get_filltype       (ConstObject *object);
 
 void          geda_object_set_color          (GedaObject *object, int color);
 void          geda_object_set_selectable     (GedaObject *object, int state);
