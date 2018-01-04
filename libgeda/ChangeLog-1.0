@@ -1,3 +1,8 @@
+2018-01-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_complex.c: Add function documentation for
+      geda_complex_set_is_embedded.
+
 2018-01-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_notify.c: Reformat Doxygen documentation, add

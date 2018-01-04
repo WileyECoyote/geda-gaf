@@ -460,10 +460,12 @@ void geda_complex_set_filename (GedaComplex *complex, const char *filename)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Set is_embedded Flag in GedaComplex
+ * \par Function Description
+ *  Sets the is_embedded property of the complex to the value
+ *  of \a is_embedded. Setting the property does not result in
+ *  the object being is_embedded.
  */
 void geda_complex_set_is_embedded (GedaComplex *complex, bool is_embedded)
 {
