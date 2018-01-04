@@ -93,6 +93,8 @@ int          geda_picture_get_angle       (const GedaPicture *picture) WARN_UNUS
 bool         geda_picture_get_is_embedded (const GedaPicture *picture) WARN_UNUSED;
 
 void         geda_picture_set_angle       (GedaPicture *picture, int angle);
+void         geda_picture_set_is_embedded (GedaPicture *picture, bool is_embedded);
+
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */

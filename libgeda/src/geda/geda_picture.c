@@ -259,4 +259,11 @@ void geda_picture_set_angle (GedaPicture *picture, int angle)
   }
 }
 
+void geda_picture_set_is_embedded (GedaPicture *picture, bool is_embedded)
+{
+  if (is_a_geda_picture(pic)) {
+    pic->is_embedded = is_embedded;
+  }
+}
+
 /** @} endgroup geda-picture-object */
