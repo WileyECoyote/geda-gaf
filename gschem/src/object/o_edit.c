@@ -939,6 +939,8 @@ int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
 
         char *current_filename = geda_utility_string_split(attrib, ',', 0);
 
+        GEDA_FREE (attrib);
+
         if (current_filename != NULL) {
 
           Page *parent     = toplevel->page_current;

@@ -5,11 +5,12 @@
     * po/de.po: Update German translations.
 
     * src/object/o_edit.c: Revise o_edit_find_text to release the string
-      allocated geda_utility_string_split as soon a possible to avoid
-      over-writing the pointer if o_edit_find_text is called recursively.
+      allocated geda_utility_string_split and the attrib value returned
+      by geda_attrib_search_attached_by_name as soon a possible to avoid
+      over-writing the pointers if o_edit_find_text is called recursively.
 
-    * src/x/x_window.c Set the widget name of the drawing area to
-      NULL before destroying in x_window_close.
+    * src/x/x_window.c Set the widget name of the drawing area to NULL
+      before destroying in x_window_close.
 
 2018-01-04 Wiley E. Hill <wileyhill@gmail.com>
 
