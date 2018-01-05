@@ -327,7 +327,6 @@ geda_keyfile_clear (GedaKeyFile *key_file)
   GList *tmp;
 
   if (key_file->locales) {
-
     g_strfreev (key_file->locales);
     key_file->locales = NULL;
   }
@@ -346,8 +345,10 @@ geda_keyfile_clear (GedaKeyFile *key_file)
     geda_keyfile_remove_group_node (key_file, group_node);
   }
 
-  if (key_file->group_hash != NULL) {
+  g_list_free(key_file->groups);
+  key_file->groups = NULL;
 
+  if (key_file->group_hash != NULL) {
     g_hash_table_destroy (key_file->group_hash);
     key_file->group_hash = NULL;
   }
