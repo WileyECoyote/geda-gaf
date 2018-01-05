@@ -2014,8 +2014,6 @@ geda_keyfile_get_locale_string (GedaKeyFile *key_file,
   g_return_val_if_fail (group_name != NULL, NULL);
   g_return_val_if_fail (key != NULL, NULL);
 
-  translated_value = NULL;
-
 #if GLIB_CHECK_VERSION(2, 28, 0)
 
   bool free_languages;
@@ -2035,6 +2033,8 @@ geda_keyfile_get_locale_string (GedaKeyFile *key_file,
 
 #endif
 
+  translated_value = NULL;
+
   for (i = 0; languages[i]; i++) {
 
     char *candidate_key;
@@ -2048,9 +2048,6 @@ geda_keyfile_get_locale_string (GedaKeyFile *key_file,
 
     if (translated_value)
       break;
-
-    GEDA_FREE (translated_value);
-    translated_value = NULL;
   }
 
   /* Fallback to untranslated key */
