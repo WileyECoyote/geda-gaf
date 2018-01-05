@@ -2,6 +2,8 @@
 
     * po/bg.po: Update Bulgarian translations.
 
+    * po/de.po: Update German translations.
+
     * src/object/o_edit.c: Revise o_edit_find_text to release the string
       allocated geda_utility_string_split as soon a possible to avoid
       over-writing the pointer if o_edit_find_text is called recursively.
