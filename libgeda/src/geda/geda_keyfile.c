@@ -2002,7 +2002,7 @@ geda_keyfile_get_locale_string (GedaKeyFile *key_file,
                                 const char  *locale,
                                 GError      **error)
 {
-  char *candidate_key, *translated_value;
+  char  *translated_value;
   char **languages;
   int    i;
 
@@ -2014,7 +2014,6 @@ geda_keyfile_get_locale_string (GedaKeyFile *key_file,
   g_return_val_if_fail (group_name != NULL, NULL);
   g_return_val_if_fail (key != NULL, NULL);
 
-  candidate_key = NULL;
   translated_value = NULL;
 
 #if GLIB_CHECK_VERSION(2, 28, 0)
@@ -2037,6 +2036,8 @@ geda_keyfile_get_locale_string (GedaKeyFile *key_file,
 #endif
 
   for (i = 0; languages[i]; i++) {
+
+    char *candidate_key;
 
     candidate_key = geda_sprintf ("%s[%s]", key, languages[i]);
 

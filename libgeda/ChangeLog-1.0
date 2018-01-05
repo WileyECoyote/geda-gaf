@@ -1,7 +1,8 @@
 2018-01-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_keyfile.c: Release the list of groups in function
-      geda_keyfile_clear.
+      geda_keyfile_clear. Reduce the scope of candidate_key in geda_
+      keyfile_get_locale_string.
 
 2018-01-04 Wiley E. Hill <wileyhill@gmail.com>
 
