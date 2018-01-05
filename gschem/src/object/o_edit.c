@@ -948,6 +948,8 @@ int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
                                                                page_control,
                                                                HIERARCHY_NORMAL_LOAD,
                                                                NULL);
+          GEDA_FREE(current_filename);
+
           if (child_page != NULL) {
 
             x_window_setup_page(w_current, child_page, w_current->world_left,
@@ -979,7 +981,6 @@ int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
             }
           }
         }
-        GEDA_FREE(current_filename);
       }
     }
 

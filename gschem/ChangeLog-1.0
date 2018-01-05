@@ -1,3 +1,9 @@
+2018-01-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_edit.c: Revise o_edit_find_text to release the string
+      allocated geda_utility_string_split as soon a possible to avoid
+      over-writing the pointer if o_edit_find_text is called recursively.
+
 2018-01-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_toolbars.c: Remove unneeded dynamic cast to GtkWidget
