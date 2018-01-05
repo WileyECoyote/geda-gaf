@@ -252,14 +252,14 @@ bool geda_picture_get_is_embedded (const GedaPicture *pic)
   return -0;
 }
 
-void geda_picture_set_angle (GedaPicture *picture, int angle)
+void geda_picture_set_angle (GedaPicture *pic, int angle)
 {
   if (is_a_geda_picture(pic)) {
     pic->angle = angle;
   }
 }
 
-void geda_picture_set_is_embedded (GedaPicture *picture, bool is_embedded)
+void geda_picture_set_is_embedded (GedaPicture *pic, bool is_embedded)
 {
   if (is_a_geda_picture(pic)) {
     pic->is_embedded = is_embedded;
