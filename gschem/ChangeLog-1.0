@@ -8,6 +8,9 @@
       allocated geda_utility_string_split as soon a possible to avoid
       over-writing the pointer if o_edit_find_text is called recursively.
 
+    * src/x/x_window.c Set the widget name of the drawing area to
+      NULL before destroying in x_window_close.
+
 2018-01-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_toolbars.c: Remove unneeded dynamic cast to GtkWidget

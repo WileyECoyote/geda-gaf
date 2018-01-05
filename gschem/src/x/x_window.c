@@ -675,6 +675,8 @@ x_window_close(GschemToplevel *w_current)
                                         x_window_invoke_macro,
                                         w_current);
 
+  gtk_widget_set_name(DrawingArea, NULL);
+
   /* finally close the main window */
   gtk_widget_destroy(MainWidget);
 
