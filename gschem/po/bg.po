@@ -1357,10 +1357,10 @@ msgstr ""
 msgid "Autonumber text in:"
 msgstr ""
 
+# Set the context of the search scope
 #: gschem/src/x/x_autonumber.c:118
-#, fuzzy
 msgid "Set the context of the search scope"
-msgstr "Задава височината на лентата на състоянието"
+msgstr "Задайте контекста на обхвата на търсене"
 
 #: gschem/src/x/x_autonumber.c:119
 msgid "Skip numbers found in:"
@@ -1382,10 +1382,10 @@ msgstr ""
 msgid "Starting number:"
 msgstr ""
 
+# Set the starting number for the current scan
 #: gschem/src/x/x_autonumber.c:121
-#, fuzzy
 msgid "Set the starting number for the current scan"
-msgstr "Задайте низа за левия бутон на текста"
+msgstr "Задайте началния номер за текущото сканиране"
 
 #: gschem/src/x/x_autonumber.c:122
 msgid "    Remove numbers:"
@@ -1499,10 +1499,10 @@ msgstr ""
 msgid "Open"
 msgstr ""
 
+# Open all
 #: gschem/src/x/x_compselect.c:126
-#, fuzzy
 msgid "Open all"
-msgstr "Отваряне на файл"
+msgstr "Отворете всичко"
 
 #: gschem/src/x/x_compselect.c:127 gschem/src/x/x_menus.c:149
 msgid "Close"
@@ -2445,11 +2445,10 @@ msgstr ""
 msgid "Add Attribute"
 msgstr ""
 
-# Edit Object Attributes
+# Edit Attribute
 #: gschem/src/x/x_edit_attrib.c:412
-#, fuzzy
 msgid "Edit Attribute"
-msgstr "редактиране атрибути на обектите"
+msgstr "Редактирайте атрибута"
 
 #: gschem/src/x/x_edit_attrib.c:414
 msgid "Select the name of the attribute to add"
