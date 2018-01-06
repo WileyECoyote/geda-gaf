@@ -276,7 +276,7 @@ static void   geda_keyfile_parse_group                (GedaKeyFile           *ke
                                                        const char            *line,
                                                        unsigned int           length,
                                                        GError               **error);
-static char  *key_get_locale                          (const char            *key);
+//static char  *key_get_locale                          (const char            *key);
 static void   geda_keyfile_parse_data                 (GedaKeyFile           *key_file,
                                                        const char            *data,
                                                        unsigned int           length,
@@ -387,8 +387,7 @@ bool is_a_geda_keyfile (GedaKeyFile *keyfile)
  *
  * \returns an empty #GedaKeyFile.
  */
-GedaKeyFile *
-geda_keyfile_new (void)
+GedaKeyFile *geda_keyfile_new (void)
 {
   GedaKeyFile *key_file;
 
@@ -861,8 +860,7 @@ geda_keyfile_free (GedaKeyFile *key_file)
  * Decreases the reference count of \a key_file by 1. If the reference count
  * reaches zero, frees the key file and associated memory.
  */
-void
-geda_keyfile_unref (GedaKeyFile *key_file)
+void geda_keyfile_unref (GedaKeyFile *key_file)
 {
   g_return_if_fail (GEDA_IS_KEYFILE(key_file));
 
@@ -1012,10 +1010,28 @@ geda_keyfile_parse_group (GedaKeyFile *key_file,
   GEDA_FREE (group_name);
 }
 
+static char*
+key_get_locale (const char *key)
+{
+  char *locale;
+
+  locale = g_strrstr (key, "[");
+
+  if (locale && strlen (locale) <= 2) {
+    locale = NULL;
+  }
+
+  if (locale) {
+    locale = geda_strndup (locale + 1, strlen (locale) - 2);
+  }
+
+  return locale;
+}
+
 static void
 geda_keyfile_parse_key_value_pair (GedaKeyFile *key_file,
                                    const char  *line,
-                                   unsigned int    length,
+                                   unsigned int length,
                                    GError      **error)
 {
   char *key, *value, *key_end, *value_start, *locale;
@@ -1110,24 +1126,6 @@ geda_keyfile_parse_key_value_pair (GedaKeyFile *key_file,
   }
 
   GEDA_FREE (locale);
-}
-
-static char*
-key_get_locale (const char *key)
-{
-  char *locale;
-
-  locale = g_strrstr (key, "[");
-
-  if (locale && strlen (locale) <= 2) {
-    locale = NULL;
-  }
-
-  if (locale) {
-    locale = geda_strndup (locale + 1, strlen (locale) - 2);
-  }
-
-  return locale;
 }
 
 static void
