@@ -321,7 +321,10 @@ geda_marshal_VOID__STRING_STRING (GClosure     *closure,
                                   void         *invocation_hint GEDA_UNUSED,
                                   void         *marshal_data);
 
-/* VOID:UINT,UINT (geda-marshal.list:38) */
+/* VOID:UINT (geda-marshal.list:38) */
+#define geda_marshal_VOID__UINT g_cclosure_marshal_VOID__UINT
+
+/* VOID:UINT,UINT (geda-marshal.list:39) */
 extern void
 geda_marshal_VOID__UINT_UINT (GClosure     *closure,
                               GValue       *return_value,
@@ -330,7 +333,7 @@ geda_marshal_VOID__UINT_UINT (GClosure     *closure,
                               void         *invocation_hint,
                               void         *marshal_data);
 
-/* VOID:VOID (geda-marshal.list:39) */
+/* VOID:VOID (geda-marshal.list:40) */
 #define geda_marshal_VOID__VOID g_cclosure_marshal_VOID__VOID
 
 #ifdef __cplusplus

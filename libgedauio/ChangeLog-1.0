@@ -1,6 +1,7 @@
 2018-01-06 Wiley E. Hill <wileyhill@gmail.com>
 
-    * include/geda_marshal.h: Replace G_GNUC_UNUSED with GEDA_UNUSED.
+    * include/geda_marshal.h: Replace G_GNUC_UNUSED with GEDA_UNUSED,
+      define geda_marshal_VOID__UINT as g_cclosure_marshal_VOID__UINT.
 
     * src/functions/geda_marshal.c: Adjust line spacing, replace G_GNUC_UNUSED
       with GEDA_UNUSED. Shorten some typedef tags.
