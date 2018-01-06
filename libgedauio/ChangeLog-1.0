@@ -1,7 +1,7 @@
 2018-01-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/functions/geda_marshal.c: Adjust line spacing, replace G_GNUC_UNUSED
-      with GEDA_UNUSED.
+      with GEDA_UNUSED. Shorten some typedef tags.
 
 2018-01-02 Wiley E. Hill <wileyhill@gmail.com>
 

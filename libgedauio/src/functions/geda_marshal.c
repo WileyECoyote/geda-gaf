@@ -624,13 +624,13 @@ geda_marshal_INT__OBJECT_OBJECT_POINTER (GClosure     *closure,
                                          void         *invocation_hint GEDA_UNUSED,
                                          void         *marshal_data)
 {
-  typedef int (*GMarshalFunc_INT__OBJECT_OBJECT_POINTER) (void *data1,
-                                                           void *arg_1,
-                                                           void *arg_2,
-                                                           void *arg_3,
-                                                           void *data2);
+  typedef int (*GedaMarshalFunc_INT__OBJ_OBJ_PTR) (void *data1,
+                                                   void *arg_1,
+                                                   void *arg_2,
+                                                   void *arg_3,
+                                                   void *data2);
 
-  register GMarshalFunc_INT__OBJECT_OBJECT_POINTER callback;
+  register GedaMarshalFunc_INT__OBJ_OBJ_PTR callback;
   register GCClosure *cc = (GCClosure*) closure;
   register gpointer data1, data2;
   int v_return;
@@ -647,7 +647,7 @@ geda_marshal_INT__OBJECT_OBJECT_POINTER (GClosure     *closure,
       data2 = closure->data;
   }
 
-  callback = (GMarshalFunc_INT__OBJECT_OBJECT_POINTER) (marshal_data ? marshal_data : cc->callback);
+  callback = (GedaMarshalFunc_INT__OBJ_OBJ_PTR) (marshal_data ? marshal_data : cc->callback);
 
   v_return = callback (data1,
                        g_marshal_value_peek_object (param_values + 1),
@@ -667,11 +667,11 @@ geda_marshal_STRING__STRING (GClosure     *closure,
                                      void         *invocation_hint GEDA_UNUSED,
                                      void         *marshal_data)
 {
-  typedef char* (*GMarshalFunc_STRING__STRING) (void   *data1,
-                                                void   *arg_1,
-                                                void   *data2);
+  typedef char* (*GedaMarshalFunc_STR__STR) (void *data1,
+                                             void *arg_1,
+                                             void *data2);
 
-  register GMarshalFunc_STRING__STRING callback;
+  register GedaMarshalFunc_STR__STR callback;
   register GCClosure *cc = (GCClosure*) closure;
   register void *data1;
   register void *data2;
@@ -689,7 +689,7 @@ geda_marshal_STRING__STRING (GClosure     *closure,
     data2 = closure->data;
   }
 
-  callback = (GMarshalFunc_STRING__STRING) (marshal_data ? marshal_data : cc->callback);
+  callback = (GedaMarshalFunc_STR__STR) (marshal_data ? marshal_data : cc->callback);
 
   v_return = callback (data1,
                        g_marshal_value_peek_string (param_values + 1),
@@ -748,11 +748,11 @@ geda_marshal_VOID__BOXED_POINTER (GClosure     *closure,
                                   void         *invocation_hint GEDA_UNUSED,
                                   void         *marshal_data)
 {
-  typedef void (*GMarshalFunc_VOID__BOXED_POINTER) (void    *data1,
-                                                    void    *arg_1,
-                                                    void    *arg_2,
-                                                    void    *data2);
-  register GMarshalFunc_VOID__BOXED_POINTER callback;
+  typedef void (*GedaMarshalFunc_VOID__BOXED_PTR) (void *data1,
+                                                   void *arg_1,
+                                                   void *arg_2,
+                                                   void *data2);
+  register GedaMarshalFunc_VOID__BOXED_PTR callback;
   register GCClosure *cc = (GCClosure*) closure;
   register void *data1;
   register void *data2;
@@ -768,7 +768,7 @@ geda_marshal_VOID__BOXED_POINTER (GClosure     *closure,
     data2 = closure->data;
   }
 
-  callback = (GMarshalFunc_VOID__BOXED_POINTER) (marshal_data ? marshal_data : cc->callback);
+  callback = (GedaMarshalFunc_VOID__BOXED_PTR) (marshal_data ? marshal_data : cc->callback);
 
   callback (data1,
             g_marshal_value_peek_boxed (param_values + 1),
@@ -785,13 +785,13 @@ geda_marshal_VOID__DOUBLE_DOUBLE_DOUBLE_DOUBLE (GClosure     *closure,
                                                 void         *invocation_hint GEDA_UNUSED,
                                                 void         *marshal_data)
 {
-  typedef void (*GMarshalFunc_VOID__DOUBLE_DOUBLE_DOUBLE_DOUBLE) (void    *data1,
-                                                                  double   arg_1,
-                                                                  double   arg_2,
-                                                                  double   arg_3,
-                                                                  double   arg_4,
-                                                                  void    *data2);
-  register GMarshalFunc_VOID__DOUBLE_DOUBLE_DOUBLE_DOUBLE callback;
+  typedef void (*GedaMarshalFunc_VOID__DBL_DBL_DBL_DBL) (void   *data1,
+                                                         double  arg_1,
+                                                         double  arg_2,
+                                                         double  arg_3,
+                                                         double  arg_4,
+                                                         void   *data2);
+  register GedaMarshalFunc_VOID__DBL_DBL_DBL_DBL callback;
   register GCClosure *cc = (GCClosure*) closure;
   register void *data1;
   register void *data2;
@@ -807,7 +807,7 @@ geda_marshal_VOID__DOUBLE_DOUBLE_DOUBLE_DOUBLE (GClosure     *closure,
     data2 = closure->data;
   }
 
-  callback = (GMarshalFunc_VOID__DOUBLE_DOUBLE_DOUBLE_DOUBLE) (marshal_data ? marshal_data : cc->callback);
+  callback = (GedaMarshalFunc_VOID__DBL_DBL_DBL_DBL) (marshal_data ? marshal_data : cc->callback);
 
   callback (data1,
             g_marshal_value_peek_double (param_values + 1),
@@ -1052,11 +1052,11 @@ geda_marshal_VOID__OBJECT_OBJECT (GClosure     *closure,
                                   void         *invocation_hint GEDA_UNUSED,
                                   void         *marshal_data)
 {
-  typedef void (*GMarshalFunc_VOID__OBJECT_OBJECT) (void    *data1,
-                                                    void    *arg_1,
-                                                    void    *arg_2,
-                                                    void    *data2);
-  register GMarshalFunc_VOID__OBJECT_OBJECT callback;
+  typedef void (*GMarshalFunc_VOID__OBJ_OBJ) (void *data1,
+                                              void *arg_1,
+                                              void *arg_2,
+                                              void *data2);
+  register GMarshalFunc_VOID__OBJ_OBJ callback;
   register GCClosure *cc = (GCClosure*) closure;
   register void *data1;
   register void *data2;
@@ -1072,7 +1072,7 @@ geda_marshal_VOID__OBJECT_OBJECT (GClosure     *closure,
     data2 = closure->data;
   }
 
-  callback = (GMarshalFunc_VOID__OBJECT_OBJECT) (marshal_data ? marshal_data : cc->callback);
+  callback = (GMarshalFunc_VOID__OBJ_OBJ) (marshal_data ? marshal_data : cc->callback);
 
   callback (data1,
             g_marshal_value_peek_object (param_values + 1),
@@ -1089,12 +1089,12 @@ geda_marshal_VOID__OBJECT_OBJECT_OBJECT (GClosure     *closure,
                                          void         *invocation_hint GEDA_UNUSED,
                                          void         *marshal_data)
 {
-  typedef void (*GMarshalFunc_VOID__OBJECT_OBJECT_OBJECT) (void *data1,
-                                                           void *arg_1,
-                                                           void *arg_2,
-                                                           void *arg_3,
-                                                           void *data2);
-  register GMarshalFunc_VOID__OBJECT_OBJECT_OBJECT callback;
+  typedef void (*GMarshalFunc_VOID__OBJ_OBJ_OBJ) (void *data1,
+                                                  void *arg_1,
+                                                  void *arg_2,
+                                                  void *arg_3,
+                                                  void *data2);
+  register GMarshalFunc_VOID__OBJ_OBJ_OBJ callback;
   register GCClosure *cc = (GCClosure*) closure;
   register void *data1;
   register void *data2;
@@ -1110,7 +1110,7 @@ geda_marshal_VOID__OBJECT_OBJECT_OBJECT (GClosure     *closure,
       data2 = closure->data;
   }
 
-  callback = (GMarshalFunc_VOID__OBJECT_OBJECT_OBJECT) (marshal_data ? marshal_data : cc->callback);
+  callback = (GMarshalFunc_VOID__OBJ_OBJ_OBJ) (marshal_data ? marshal_data : cc->callback);
 
   callback (data1,
             g_marshal_value_peek_object (param_values + 1),
@@ -1128,12 +1128,12 @@ geda_marshal_VOID__OBJECT_POINTER_INT (GClosure     *closure,
                                        void         *invocation_hint GEDA_UNUSED,
                                        void         *marshal_data)
 {
-  typedef void (*GMarshalFunc_VOID__OBJECT_POINTER_INT) (void *data1,
-                                                         void *arg_1,
-                                                         void *arg_2,
-                                                         int   arg_3,
-                                                         void *data2);
-  register GMarshalFunc_VOID__OBJECT_POINTER_INT callback;
+  typedef void (*GMarshalFunc_VOID__OBJ_PTR_INT) (void *data1,
+                                                  void *arg_1,
+                                                  void *arg_2,
+                                                  int   arg_3,
+                                                  void *data2);
+  register GMarshalFunc_VOID__OBJ_PTR_INT callback;
   register GCClosure *cc = (GCClosure*) closure;
   register void *data1;
   register void *data2;
@@ -1149,7 +1149,7 @@ geda_marshal_VOID__OBJECT_POINTER_INT (GClosure     *closure,
       data2 = closure->data;
   }
 
-  callback = (GMarshalFunc_VOID__OBJECT_POINTER_INT) (marshal_data ? marshal_data : cc->callback);
+  callback = (GMarshalFunc_VOID__OBJ_PTR_INT) (marshal_data ? marshal_data : cc->callback);
 
   callback (data1,
             g_marshal_value_peek_object (param_values + 1),
@@ -1169,11 +1169,11 @@ geda_marshal_VOID__POINTER_POINTER (GClosure     *closure,
                                     void         *invocation_hint GEDA_UNUSED,
                                     void         *marshal_data)
 {
-  typedef void (*GMarshalFunc_VOID__POINTER_POINTER) (void *data1,
-                                                      void *arg_1,
-                                                      void *arg_2,
-                                                      void *data2);
-  register GMarshalFunc_VOID__POINTER_POINTER callback;
+  typedef void (*GMarshalFunc_VOID__PTR_PTR) (void *data1,
+                                              void *arg_1,
+                                              void *arg_2,
+                                              void *data2);
+  register GMarshalFunc_VOID__PTR_PTR callback;
   register GCClosure *cc = (GCClosure*) closure;
   register void *data1;
   register void *data2;
@@ -1189,7 +1189,7 @@ geda_marshal_VOID__POINTER_POINTER (GClosure     *closure,
     data2 = closure->data;
   }
 
-  callback = (GMarshalFunc_VOID__POINTER_POINTER) (marshal_data ? marshal_data : cc->callback);
+  callback = (GMarshalFunc_VOID__PTR_PTR) (marshal_data ? marshal_data : cc->callback);
 
   callback (data1,
             g_marshal_value_peek_pointer (param_values + 1),
@@ -1206,11 +1206,11 @@ geda_marshal_VOID__POINTER_STRING (GClosure     *closure,
                                    void         *invocation_hint,
                                    void         *marshal_data)
 {
-  typedef void (*GMarshalFunc_VOID__POINTER_STRING) (void *data1,
-                                                     void *arg_1,
-                                                     void *arg_2,
-                                                     void *data2);
-  register GMarshalFunc_VOID__POINTER_STRING callback;
+  typedef void (*GedaMarshalFunc_VOID__PTR_STR) (void *data1,
+                                                 void *arg_1,
+                                                 void *arg_2,
+                                                 void *data2);
+  register GedaMarshalFunc_VOID__PTR_STR callback;
   register GCClosure *cc = (GCClosure*) closure;
   register void *data1;
   register void *data2;
@@ -1225,7 +1225,7 @@ geda_marshal_VOID__POINTER_STRING (GClosure     *closure,
     data2 = closure->data;
   }
 
-  callback = (GMarshalFunc_VOID__POINTER_STRING) (marshal_data ? marshal_data : cc->callback);
+  callback = (GedaMarshalFunc_VOID__PTR_STR) (marshal_data ? marshal_data : cc->callback);
 
   callback (data1,
             g_value_get_pointer (param_values + 1),
@@ -1244,11 +1244,11 @@ geda_marshal_VOID__STRING_STRING (GClosure     *closure,
                                   void         *invocation_hint GEDA_UNUSED,
                                   void         * marshal_data)
 {
-  typedef void (*GMarshalFunc_VOID__STRING_STRING) (void *data1,
-                                                    void *arg_1,
-                                                    void *arg_2,
-                                                    void *data2);
-  register GMarshalFunc_VOID__STRING_STRING callback;
+  typedef void (*GedaMarshalFunc_VOID__STR_STR) (void *data1,
+                                                 void *arg_1,
+                                                 void *arg_2,
+                                                 void *data2);
+  register GedaMarshalFunc_VOID__STR_STR callback;
   register GCClosure *cc = (GCClosure*) closure;
   register void *data1;
   register void *data2;
@@ -1260,11 +1260,11 @@ geda_marshal_VOID__STRING_STRING (GClosure     *closure,
       data2 = g_value_peek_pointer (param_values + 0);
   }
   else {
-       data1 = g_value_peek_pointer (param_values + 0);
+      data1 = g_value_peek_pointer (param_values + 0);
       data2 = closure->data;
   }
 
-  callback = (GMarshalFunc_VOID__STRING_STRING) (marshal_data ? marshal_data : cc->callback);
+  callback = (GedaMarshalFunc_VOID__STR_STR) (marshal_data ? marshal_data : cc->callback);
 
   callback (data1,
             g_marshal_value_peek_string (param_values + 1),
@@ -1281,12 +1281,12 @@ geda_marshal_VOID__UINT_UINT (GClosure     *closure,
                               void         *invocation_hint,
                               void         *marshal_data)
 {
-  typedef void (*GMarshalFunc_VOID__UINT_UINT) (void        *data1,
-                                                unsigned int arg_1,
-                                                unsigned int arg_2,
-                                                void        *data2);
+  typedef void (*GedaMarshalFunc_VOID__UINT_UINT) (void        *data1,
+                                                   unsigned int arg_1,
+                                                   unsigned int arg_2,
+                                                   void        *data2);
 
-  register GMarshalFunc_VOID__UINT_UINT callback;
+  register GedaMarshalFunc_VOID__UINT_UINT callback;
   register GCClosure *cc = (GCClosure*) closure;
   register void *data1;
   register void *data2;
@@ -1302,7 +1302,7 @@ geda_marshal_VOID__UINT_UINT (GClosure     *closure,
       data2 = closure->data;
   }
 
-  callback = (GMarshalFunc_VOID__UINT_UINT) (marshal_data ? marshal_data : cc->callback);
+  callback = (GedaMarshalFunc_VOID__UINT_UINT) (marshal_data ? marshal_data : cc->callback);
 
   callback (data1,
             g_marshal_value_peek_uint (param_values + 1),
