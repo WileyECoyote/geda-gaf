@@ -410,7 +410,7 @@ gschem_main_window_class_init (void *class, void *class_data)
                                                                        geometry_restore),
                                                       NULL, /* accumulator */
                                                       NULL, /* accu_data */
-                                                      g_cclosure_marshal_VOID__POINTER,
+                                                      geda_marshal_VOID__POINTER,
                                                       G_TYPE_NONE,
                                                       1,    /* n_params */
                                                       G_TYPE_POINTER);
@@ -429,7 +429,7 @@ gschem_main_window_class_init (void *class, void *class_data)
                                                                        geometry_save),
                                                       NULL, /* accumulator */
                                                       NULL, /* accu_data */
-                                                      g_cclosure_marshal_VOID__POINTER,
+                                                      geda_marshal_VOID__POINTER,
                                                       G_TYPE_NONE,
                                                       1,    /* n_params */
                                                       G_TYPE_POINTER);
@@ -448,7 +448,7 @@ gschem_main_window_class_init (void *class, void *class_data)
                                                                        restore_position),
                                                       NULL, /* accumulator */
                                                       NULL, /* accu_data */
-                                                      g_cclosure_marshal_VOID__POINTER,
+                                                      geda_marshal_VOID__POINTER,
                                                       G_TYPE_NONE,
                                                       1,    /* n_params */
                                                       G_TYPE_POINTER);
