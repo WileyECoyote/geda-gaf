@@ -3659,7 +3659,7 @@ static void geda_keyfile_add_group (GedaKeyFile *key_file, const char *group_nam
   GedaKeyFileGroup *group;
 
   g_return_if_fail (key_file != NULL);
-  g_return_if_fail (geda_keyfile_is_group_name (group_name));
+  //g_return_if_fail (geda_keyfile_is_group_name (group_name));
 
   group = geda_keyfile_lookup_group (key_file, group_name);
 
