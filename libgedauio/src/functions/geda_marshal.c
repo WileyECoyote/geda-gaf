@@ -69,15 +69,14 @@ geda_marshal_BOOLEAN__BOXED (GClosure     *closure,
   g_return_if_fail (n_param_values == 2);
 
   if (G_CCLOSURE_SWAP_DATA (closure)) {
-
     data1 = closure->data;
     data2 = g_value_peek_pointer (param_values + 0);
   }
   else {
-
     data1 = g_value_peek_pointer (param_values + 0);
     data2 = closure->data;
   }
+
   callback = (GMarshalFunc_BOOLEAN__BOXED) (marshal_data ? marshal_data : cc->callback);
 
   v_return = callback (data1,
@@ -110,15 +109,14 @@ geda_marshal_BOOLEAN__BOXED_BOXED (GClosure     *closure,
   g_return_if_fail (n_param_values == 3);
 
   if (G_CCLOSURE_SWAP_DATA (closure)) {
-
     data1 = closure->data;
     data2 = g_value_peek_pointer (param_values + 0);
   }
   else {
-
     data1 = g_value_peek_pointer (param_values + 0);
     data2 = closure->data;
   }
+
   callback = (GMarshalFunc_BOOLEAN__BOXED_BOXED) (marshal_data ? marshal_data : cc->callback);
 
   v_return = callback (data1,
@@ -153,15 +151,14 @@ geda_marshal_BOOLEAN__BOXED_DOUBLE_DOUBLE (GClosure     *closure,
   g_return_if_fail (n_param_values == 4);
 
   if (G_CCLOSURE_SWAP_DATA (closure)) {
-
     data1 = closure->data;
     data2 = g_value_peek_pointer (param_values + 0);
   }
   else {
-
     data1 = g_value_peek_pointer (param_values + 0);
     data2 = closure->data;
   }
+
   callback = (GMarshalFunc_BOOLEAN__BOXED_DOUBLE_DOUBLE) (marshal_data ? marshal_data : cc->callback);
 
   v_return = callback (data1,
@@ -196,15 +193,14 @@ geda_marshal_BOOLEAN__BOXED_POINTER (GClosure     *closure,
   g_return_if_fail (n_param_values == 3);
 
   if (G_CCLOSURE_SWAP_DATA (closure)) {
-
     data1 = closure->data;
     data2 = g_value_peek_pointer (param_values + 0);
   }
   else {
-
     data1 = g_value_peek_pointer (param_values + 0);
     data2 = closure->data;
   }
+
   callback = (GMarshalFunc_BOOLEAN__BOXED_POINTER) (marshal_data ? marshal_data : cc->callback);
 
   v_return = callback (data1,
@@ -238,15 +234,14 @@ geda_marshal_BOOLEAN__BOXED_STRING (GClosure     *closure,
   g_return_if_fail (n_param_values == 3);
 
   if (G_CCLOSURE_SWAP_DATA (closure)) {
-
     data1 = closure->data;
     data2 = g_value_peek_pointer (param_values + 0);
   }
   else {
-
     data1 = g_value_peek_pointer (param_values + 0);
     data2 = closure->data;
   }
+
   callback = (GMarshalFunc_BOOLEAN__BOXED_STRING) (marshal_data ? marshal_data : cc->callback);
 
   v_return = callback (data1,
@@ -286,6 +281,7 @@ geda_marshal_BOOLEAN__INT (GClosure     *closure,
       data1 = g_value_peek_pointer (param_values + 0);
       data2 = closure->data;
   }
+
   callback = (GMarshalFunc_BOOLEAN__INT) (marshal_data ? marshal_data : cc->callback);
 
   v_return = callback (data1,
@@ -318,15 +314,14 @@ geda_marshal_BOOLEAN__INT_INT (GClosure     *closure,
   g_return_if_fail (n_param_values == 3);
 
   if (G_CCLOSURE_SWAP_DATA (closure)) {
-
     data1 = closure->data;
     data2 = g_value_peek_pointer (param_values + 0);
   }
   else {
-
     data1 = g_value_peek_pointer (param_values + 0);
     data2 = closure->data;
   }
+
   callback = (GMarshalFunc_BOOLEAN__INT_INT) (marshal_data ? marshal_data : cc->callback);
 
   v_return = callback (data1,
@@ -362,7 +357,6 @@ geda_marshal_BOOLEAN__INT_INT_POINTER_POINTER (GClosure     *closure,
   g_return_if_fail (n_param_values == 5);
 
   if (G_CCLOSURE_SWAP_DATA (closure)) {
-
     data1 = closure->data;
     data2 = g_value_peek_pointer (param_values + 0);
   }
@@ -370,6 +364,7 @@ geda_marshal_BOOLEAN__INT_INT_POINTER_POINTER (GClosure     *closure,
     data1 = g_value_peek_pointer (param_values + 0);
     data2 = closure->data;
   }
+
   callback = (GMarshalFunc_BOOLEAN__INT_INT_POINTER_POINTER) (marshal_data ? marshal_data : cc->callback);
 
   v_return = callback (data1,
@@ -404,15 +399,14 @@ geda_marshal_BOOLEAN__POINTER (GClosure     *closure,
   g_return_if_fail (n_param_values == 2);
 
   if (G_CCLOSURE_SWAP_DATA (closure)) {
-
     data1 = closure->data;
     data2 = g_value_peek_pointer (param_values + 0);
   }
   else {
-
     data1 = g_value_peek_pointer (param_values + 0);
     data2 = closure->data;
   }
+
   callback = (GMarshalFunc_BOOLEAN__POINTER) (marshal_data ? marshal_data : cc->callback);
 
   v_return = callback (data1,
@@ -445,15 +439,14 @@ geda_marshal_BOOLEAN__POINTER_BOXED (GClosure     *closure,
   g_return_if_fail (n_param_values == 3);
 
   if (G_CCLOSURE_SWAP_DATA (closure)) {
-
     data1 = closure->data;
     data2 = g_value_peek_pointer (param_values + 0);
   }
   else {
-
     data1 = g_value_peek_pointer (param_values + 0);
     data2 = closure->data;
   }
+
   callback = (GMarshalFunc_BOOLEAN__POINTER_BOXED) (marshal_data ? marshal_data : cc->callback);
 
   v_return = callback (data1,
@@ -487,15 +480,14 @@ geda_marshal_BOOLEAN__POINTER_POINTER (GClosure     *closure,
   g_return_if_fail (n_param_values == 3);
 
   if (G_CCLOSURE_SWAP_DATA (closure)) {
-
     data1 = closure->data;
     data2 = g_value_peek_pointer (param_values + 0);
   }
   else {
-
     data1 = g_value_peek_pointer (param_values + 0);
     data2 = closure->data;
   }
+
   callback = (GMarshalFunc_BOOLEAN__POINTER_POINTER) (marshal_data ? marshal_data : cc->callback);
 
   v_return = callback (data1,
@@ -529,15 +521,14 @@ geda_marshal_BOOLEAN__POINTER_STRING (GClosure     *closure,
   g_return_if_fail (n_param_values == 3);
 
   if (G_CCLOSURE_SWAP_DATA (closure)) {
-
     data1 = closure->data;
     data2 = g_value_peek_pointer (param_values + 0);
   }
   else {
-
     data1 = g_value_peek_pointer (param_values + 0);
     data2 = closure->data;
   }
+
   callback = (GMarshalFunc_BOOLEAN__POINTER_STRING) (marshal_data ? marshal_data : cc->callback);
 
   v_return = callback (data1,
@@ -568,16 +559,15 @@ void geda_marshal_BOOLEAN__VOID (GClosure     *closure,
   g_return_if_fail (return_value != NULL);
   g_return_if_fail (n_param_values == 1);
 
-  if (G_CCLOSURE_SWAP_DATA (closure))
-    {
+  if (G_CCLOSURE_SWAP_DATA (closure)) {
       data1 = closure->data;
       data2 = g_value_peek_pointer (param_values + 0);
-    }
-  else
-    {
+  }
+  else {
       data1 = g_value_peek_pointer (param_values + 0);
       data2 = closure->data;
-    }
+  }
+
   callback = (GMarshalFunc_BOOLEAN__VOID) (marshal_data ? marshal_data : cc->callback);
 
   v_return = callback (data1, data2);
@@ -615,6 +605,7 @@ geda_marshal_INT__INT (GClosure     *closure,
       data1 = g_value_peek_pointer (param_values + 0);
       data2 = closure->data;
   }
+
   callback = (GMarshalFunc_INT__INT) (marshal_data ? marshal_data : cc->callback);
 
   v_return = callback (data1,
@@ -654,7 +645,8 @@ geda_marshal_INT__OBJECT_OBJECT_POINTER (GClosure     *closure,
   else {
       data1 = g_value_peek_pointer (param_values + 0);
       data2 = closure->data;
-    }
+  }
+
   callback = (GMarshalFunc_INT__OBJECT_OBJECT_POINTER) (marshal_data ? marshal_data : cc->callback);
 
   v_return = callback (data1,
@@ -689,15 +681,14 @@ geda_marshal_STRING__STRING (GClosure     *closure,
   g_return_if_fail (n_param_values == 2);
 
   if (G_CCLOSURE_SWAP_DATA (closure)) {
-
     data1 = closure->data;
     data2 = g_value_peek_pointer (param_values + 0);
   }
   else {
-
     data1 = g_value_peek_pointer (param_values + 0);
     data2 = closure->data;
   }
+
   callback = (GMarshalFunc_STRING__STRING) (marshal_data ? marshal_data : cc->callback);
 
   v_return = callback (data1,
@@ -732,12 +723,10 @@ geda_marshal_VOID__BOXED_BOXED (GClosure     *closure,
   g_return_if_fail (n_param_values == 3);
 
   if (G_CCLOSURE_SWAP_DATA (closure)) {
-
     data1 = closure->data;
     data2 = g_value_peek_pointer (param_values + 0);
   }
   else {
-
     data1 = g_value_peek_pointer (param_values + 0);
     data2 = closure->data;
   }
@@ -771,12 +760,10 @@ geda_marshal_VOID__BOXED_POINTER (GClosure     *closure,
   g_return_if_fail (n_param_values == 3);
 
   if (G_CCLOSURE_SWAP_DATA (closure)) {
-
     data1 = closure->data;
     data2 = g_value_peek_pointer (param_values + 0);
   }
   else {
-
     data1 = g_value_peek_pointer (param_values + 0);
     data2 = closure->data;
   }
@@ -812,15 +799,14 @@ geda_marshal_VOID__DOUBLE_DOUBLE_DOUBLE_DOUBLE (GClosure     *closure,
   g_return_if_fail (n_param_values == 5);
 
   if (G_CCLOSURE_SWAP_DATA (closure)) {
-
     data1 = closure->data;
     data2 = g_value_peek_pointer (param_values + 0);
   }
   else {
-
     data1 = g_value_peek_pointer (param_values + 0);
     data2 = closure->data;
   }
+
   callback = (GMarshalFunc_VOID__DOUBLE_DOUBLE_DOUBLE_DOUBLE) (marshal_data ? marshal_data : cc->callback);
 
   callback (data1,
@@ -861,6 +847,7 @@ geda_marshal_VOID__INT (GClosure     *closure,
       data1 = g_value_peek_pointer (param_values + 0);
       data2 = closure->data;
   }
+
   callback = (GMarshalFunc_VOID__INT) (marshal_data ? marshal_data : cc->callback);
 
   callback (data1, g_marshal_value_peek_int (param_values + 1), data2);
@@ -887,15 +874,14 @@ geda_marshal_VOID__INT_INT (GClosure     *closure,
   g_return_if_fail (n_param_values == 3);
 
   if (G_CCLOSURE_SWAP_DATA (closure)) {
-
     data1 = closure->data;
     data2 = g_value_peek_pointer (param_values + 0);
   }
   else {
-
     data1 = g_value_peek_pointer (param_values + 0);
     data2 = closure->data;
   }
+
   callback = (GMarshalFunc_VOID__INT_INT) (marshal_data ? marshal_data : cc->callback);
 
   callback (data1,
@@ -926,15 +912,14 @@ geda_marshal_VOID__INT_POINTER (GClosure     *closure,
   g_return_if_fail (n_param_values == 3);
 
   if (G_CCLOSURE_SWAP_DATA (closure)) {
-
     data1 = closure->data;
     data2 = g_value_peek_pointer (param_values + 0);
   }
   else {
-
     data1 = g_value_peek_pointer (param_values + 0);
     data2 = closure->data;
   }
+
   callback = (GMarshalFunc_VOID__INT_POINTER) (marshal_data ? marshal_data : cc->callback);
 
   callback (data1,
@@ -964,15 +949,14 @@ geda_marshal_VOID__INT_STRING (GClosure     *closure,
   g_return_if_fail (n_param_values == 3);
 
   if (G_CCLOSURE_SWAP_DATA (closure)) {
-
     data1 = closure->data;
     data2 = g_value_peek_pointer (param_values + 0);
   }
   else {
-
     data1 = g_value_peek_pointer (param_values + 0);
     data2 = closure->data;
   }
+
   callback = (GMarshalFunc_VOID__INT_STRING) (marshal_data ? marshal_data : cc->callback);
 
   callback (data1,
@@ -1004,15 +988,14 @@ void geda_marshal_VOID__OBJECT_ENUM_BOXED (GClosure     *closure,
   g_return_if_fail (n_param_values == 4);
 
   if (G_CCLOSURE_SWAP_DATA (closure)) {
-
       data1 = closure->data;
       data2 = g_value_peek_pointer (param_values + 0);
   }
   else {
-
       data1 = g_value_peek_pointer (param_values + 0);
       data2 = closure->data;
   }
+
   callback = (GMarshalFunc_VOID__OBJECT_ENUM_BOXED) (marshal_data ? marshal_data : cc->callback);
 
   callback (data1,
@@ -1081,15 +1064,14 @@ geda_marshal_VOID__OBJECT_OBJECT (GClosure     *closure,
   g_return_if_fail (n_param_values == 3);
 
   if (G_CCLOSURE_SWAP_DATA (closure)) {
-
     data1 = closure->data;
     data2 = g_value_peek_pointer (param_values + 0);
   }
   else {
-
     data1 = g_value_peek_pointer (param_values + 0);
     data2 = closure->data;
   }
+
   callback = (GMarshalFunc_VOID__OBJECT_OBJECT) (marshal_data ? marshal_data : cc->callback);
 
   callback (data1,
@@ -1127,6 +1109,7 @@ geda_marshal_VOID__OBJECT_OBJECT_OBJECT (GClosure     *closure,
       data1 = g_value_peek_pointer (param_values + 0);
       data2 = closure->data;
   }
+
   callback = (GMarshalFunc_VOID__OBJECT_OBJECT_OBJECT) (marshal_data ? marshal_data : cc->callback);
 
   callback (data1,
@@ -1165,6 +1148,7 @@ geda_marshal_VOID__OBJECT_POINTER_INT (GClosure     *closure,
       data1 = g_value_peek_pointer (param_values + 0);
       data2 = closure->data;
   }
+
   callback = (GMarshalFunc_VOID__OBJECT_POINTER_INT) (marshal_data ? marshal_data : cc->callback);
 
   callback (data1,
@@ -1197,15 +1181,14 @@ geda_marshal_VOID__POINTER_POINTER (GClosure     *closure,
   g_return_if_fail (n_param_values == 3);
 
   if (G_CCLOSURE_SWAP_DATA (closure)) {
-
     data1 = closure->data;
     data2 = g_value_peek_pointer (param_values + 0);
   }
   else {
-
     data1 = g_value_peek_pointer (param_values + 0);
     data2 = closure->data;
   }
+
   callback = (GMarshalFunc_VOID__POINTER_POINTER) (marshal_data ? marshal_data : cc->callback);
 
   callback (data1,
@@ -1241,6 +1224,7 @@ geda_marshal_VOID__POINTER_STRING (GClosure     *closure,
     data1 = g_value_peek_pointer (param_values + 0);
     data2 = closure->data;
   }
+
   callback = (GMarshalFunc_VOID__POINTER_STRING) (marshal_data ? marshal_data : cc->callback);
 
   callback (data1,
@@ -1279,6 +1263,7 @@ geda_marshal_VOID__STRING_STRING (GClosure     *closure,
        data1 = g_value_peek_pointer (param_values + 0);
       data2 = closure->data;
   }
+
   callback = (GMarshalFunc_VOID__STRING_STRING) (marshal_data ? marshal_data : cc->callback);
 
   callback (data1,
@@ -1300,6 +1285,7 @@ geda_marshal_VOID__UINT_UINT (GClosure     *closure,
                                                 unsigned int arg_1,
                                                 unsigned int arg_2,
                                                 void        *data2);
+
   register GMarshalFunc_VOID__UINT_UINT callback;
   register GCClosure *cc = (GCClosure*) closure;
   register void *data1;
@@ -1308,15 +1294,14 @@ geda_marshal_VOID__UINT_UINT (GClosure     *closure,
   g_return_if_fail (n_param_values == 3);
 
   if (G_CCLOSURE_SWAP_DATA (closure)) {
-
       data1 = closure->data;
       data2 = g_value_peek_pointer (param_values + 0);
   }
   else {
-
       data1 = g_value_peek_pointer (param_values + 0);
       data2 = closure->data;
   }
+
   callback = (GMarshalFunc_VOID__UINT_UINT) (marshal_data ? marshal_data : cc->callback);
 
   callback (data1,
