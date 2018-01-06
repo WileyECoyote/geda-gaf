@@ -4,7 +4,7 @@
       define geda_marshal_VOID__UINT as g_cclosure_marshal_VOID__UINT.
 
     * src/functions/geda_marshal.c: Adjust line spacing, replace G_GNUC_UNUSED
-      with GEDA_UNUSED. Shorten some typedef tags.
+      with GEDA_UNUSED. Shorten some typedef tags. Add geda_marshal_VOID__VOID.
 
 2018-01-02 Wiley E. Hill <wileyhill@gmail.com>
 
