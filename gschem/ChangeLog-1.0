@@ -4,7 +4,9 @@
       and confirm_close_dialog_unsaved_page and change property "unsaved-page"
       to type object instead of pointer.
 
-    * src/x/x_multiattrib.c: Remove clearing the store in x_multiattrib_close.
+    * src/x/x_multiattrib.c: Remove clearing the store in x_multiattrib_close
+      and add gobject_class->dispose over-ride to clear the list store when
+      disposing.
 
 2018-01-06 Wiley E. Hill <wileyhill@gmail.com>
 

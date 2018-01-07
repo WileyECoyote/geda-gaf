@@ -1941,6 +1941,27 @@ disconnect_object_list (Multiattrib *ThisDialog)
   }
 }
 
+/* gobject_class->dispose */
+static void
+multiattrib_dispose (GObject *object)
+{
+  Multiattrib *ThisDialog = MULTIATTRIB(object);
+
+  if (GTK_IS_TREE_VIEW (ThisDialog->treeview)) {
+
+    GtkListStore *liststore;
+
+    liststore = (GtkListStore*)gtk_tree_view_get_model (ThisDialog->treeview);
+
+    gtk_list_store_clear (liststore);
+
+    g_object_unref(liststore);
+
+    ThisDialog->treeview = NULL;
+  }
+
+  ((GObjectClass*)multiattrib_parent_class)->dispose (object);
+}
 /*! \brief GObject finalise handler
  *
  *  \par Function Description
@@ -1985,6 +2006,7 @@ static void multiattrib_class_init(MultiattribClass *class)
 
   gobject_class->set_property = multiattrib_set_property;
   gobject_class->get_property = multiattrib_get_property;
+  gobject_class->dispose      = multiattrib_dispose;
   gobject_class->finalize     = multiattrib_finalize;
 
   multiattrib_parent_class = g_type_class_peek_parent (class);
