@@ -495,8 +495,7 @@ void about_dialog (GschemToplevel *w_current)
 
 #else
 
-  g_signal_connect(Dialog, "activate-link",
-                   G_CALLBACK(dialog_link_cb), NULL);
+  g_signal_connect(Dialog, "activate-link",G_CALLBACK(dialog_link_cb), NULL);
 
 #endif
 
