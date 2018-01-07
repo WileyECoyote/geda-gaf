@@ -174,7 +174,7 @@ static void gd_connect_selection (void *maybe)
 
     if (Dialog->selection && G_IS_OBJECT(Dialog->selection)) {
       GEDA_WEAK_REF (Dialog->selection, gd_callback_selection_finalized, Dialog);
-      g_signal_connect (Dialog->selection, "changed", (GCallback)gd_callback_selection_changed, Dialog);
+      g_signal_connect (Dialog->selection, "changed", G_CALLBACK(gd_callback_selection_changed), Dialog);
     }
     else {
       Dialog->selection = NULL;
