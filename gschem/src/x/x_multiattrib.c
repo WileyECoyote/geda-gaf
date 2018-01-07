@@ -1495,7 +1495,8 @@ multiattrib_callback_popup_copy_to_all(GedaMenuItem *menuitem, void *user_data)
   gtk_tree_model_get (model, &iter,
                       COLUMN_ATTRIBUTE_GEDALIST, &attr_list,
                       -1);
-  multiattrib_action_copy_attribute_to_all (ThisDialog, geda_list_get_glist (attr_list));
+  multiattrib_action_copy_attribute_to_all (ThisDialog,
+                                            geda_list_get_glist (attr_list));
   GEDA_UNREF (attr_list);
 
   /* update the treeview contents */
