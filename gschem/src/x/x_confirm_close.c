@@ -327,6 +327,44 @@ confirm_close_dialog_build_page_list (ConfirmCloseDialog *dialog)
 /******************* End Confirmation dialog box Helpers ****************/
 
 static void
+confirm_close_dialog_unsaved_page(ConfirmCloseDialog *dialog, Page *page)
+{
+  if (page != NULL) {
+
+    GtkTreeIter iter;
+
+    /* add single page to model */
+    gtk_list_store_append (dialog->store_unsaved_pages, &iter);
+
+    gtk_list_store_set (dialog->store_unsaved_pages,
+                        &iter,
+                        COLUMN_SAVE, TRUE,
+                        COLUMN_PAGE, page,
+                        -1);
+  }
+}
+
+static void
+confirm_close_dialog_unsaved_pages(ConfirmCloseDialog *dialog, GList *list)
+{
+  GList *p_current;
+
+  /* add set of pages to model */
+  for (p_current = (GList*)list; p_current != NULL; NEXT(p_current)) {
+
+    GtkTreeIter iter;
+
+    gtk_list_store_append (dialog->store_unsaved_pages, &iter);
+
+    gtk_list_store_set (dialog->store_unsaved_pages,
+                        &iter,
+                        COLUMN_SAVE, TRUE,
+                        COLUMN_PAGE, p_current->data,
+                        -1);
+  }
+}
+
+static void
 confirm_close_dialog_set_property (GObject      *object,
                                    unsigned int  property_id,
                                    const GValue *value,
@@ -334,38 +372,13 @@ confirm_close_dialog_set_property (GObject      *object,
 {
   ConfirmCloseDialog *dialog = CLOSE_CONFIRMATION_DIALOG (object);
 
-  void  *data;
-  GList *p_current;
-
-  GtkTreeIter iter;
-
   switch(property_id) {
     case PROP_UNSAVED_PAGE:
-      data = g_value_get_pointer (value);
-      if (data != NULL) {
-        /* add single page to model */
-        gtk_list_store_append (dialog->store_unsaved_pages,
-                               &iter);
-        gtk_list_store_set (dialog->store_unsaved_pages,
-                            &iter,
-                            COLUMN_SAVE, TRUE,
-                            COLUMN_PAGE, data,
-                            -1);
-      }
+      confirm_close_dialog_unsaved_page(dialog, g_value_get_object(value));
       break;
 
     case PROP_UNSAVED_PAGES:
-      data = g_value_get_pointer (value);
-      /* add set of pages to model */
-      for (p_current = (GList*)data; p_current != NULL; NEXT(p_current))
-      {
-        gtk_list_store_append (dialog->store_unsaved_pages, &iter);
-        gtk_list_store_set (dialog->store_unsaved_pages,
-                            &iter,
-                            COLUMN_SAVE, TRUE,
-                            COLUMN_PAGE, p_current->data,
-                            -1);
-      }
+      confirm_close_dialog_unsaved_pages(dialog, g_value_get_pointer(value));
       break;
 
     default:
@@ -585,9 +598,10 @@ confirm_close_dialog_class_init (void *g_class, void *g_class_data)
   gobject_class->set_property = confirm_close_dialog_set_property;
   gobject_class->get_property = confirm_close_dialog_get_property;
 
-  params = g_param_spec_pointer ("unsaved-page",
+  params = g_param_spec_object  ("unsaved-page",
                                _("unsaved page"),
                                  "",
+                                 geda_page_get_type(),
                                  G_PARAM_CONSTRUCT_ONLY | G_PARAM_WRITABLE);
 
   g_object_class_install_property (gobject_class, PROP_UNSAVED_PAGE, params);
@@ -597,7 +611,7 @@ confirm_close_dialog_class_init (void *g_class, void *g_class_data)
                                  "",
                                  G_PARAM_CONSTRUCT_ONLY | G_PARAM_WRITABLE);
 
-  g_object_class_install_property (gobject_class, PROP_UNSAVED_PAGES,params);
+  g_object_class_install_property (gobject_class, PROP_UNSAVED_PAGES, params);
 
   params = g_param_spec_pointer ("selected-pages",
                                _("selected pages"),
