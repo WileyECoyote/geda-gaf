@@ -1478,8 +1478,7 @@ multiattrib_callback_popup_delete(GedaMenuItem *menuitem, void *user_data)
  *       one attribute in the selection.
  */
 static void
-multiattrib_callback_popup_copy_to_all (GedaMenuItem *menuitem,
-                                        void *user_data)
+multiattrib_callback_popup_copy_to_all(GedaMenuItem *menuitem, void *user_data)
 {
   Multiattrib  *ThisDialog = user_data;
   GtkTreeModel *model;
