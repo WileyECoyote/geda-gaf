@@ -818,6 +818,39 @@ geda_marshal_VOID__DOUBLE_DOUBLE_DOUBLE_DOUBLE (GClosure     *closure,
 }
 
 /* VOID:ENUM (geda-marshal.list:22) */
+void geda_marshal_VOID__ENUM (GClosure     *closure,
+                              GValue       *return_value GEDA_UNUSED,
+                              unsigned int  n_param_values,
+                              const GValue *param_values,
+                              void         *invocation_hint GEDA_UNUSED,
+                              void         *marshal_data)
+{
+  typedef void (*GedaMarshalFunc_VOID__ENUM) (void *data1,
+                                              int   arg_1,
+                                              void *data2);
+
+  register GedaMarshalFunc_VOID__ENUM callback;
+  register GCClosure *cc = (GCClosure*) closure;
+  register void *data1;
+  register void *data2;
+
+  g_return_if_fail (n_param_values == 2);
+
+  if (G_CCLOSURE_SWAP_DATA (closure)) {
+      data1 = closure->data;
+      data2 = g_value_peek_pointer (param_values + 0);
+  }
+  else {
+      data1 = g_value_peek_pointer (param_values + 0);
+      data2 = closure->data;
+  }
+
+  callback = (GedaMarshalFunc_VOID__ENUM) (marshal_data ? marshal_data : cc->callback);
+
+  callback (data1,
+            g_marshal_value_peek_enum (param_values + 1),
+            data2);
+}
 
 /* VOID:INT (geda-marshal.list:23) */
 void

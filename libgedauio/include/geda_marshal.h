@@ -210,7 +210,12 @@ geda_marshal_VOID__DOUBLE_DOUBLE_DOUBLE_DOUBLE (GClosure     *closure,
                                                 void         *marshal_data);
 
 /* VOID:ENUM (geda-marshal.list:22) */
-#define geda_marshal_VOID__ENUM  g_cclosure_marshal_VOID__ENUM
+extern void geda_marshal_VOID__ENUM (GClosure     *closure,
+                                     GValue       *return_value GEDA_UNUSED,
+                                     unsigned int  n_param_values,
+                                     const GValue *param_values,
+                                     void         *invocation_hint GEDA_UNUSED,
+                                     void         *marshal_data);
 
 /* VOID:INT (geda-marshal.list:23) */
 extern void geda_marshal_VOID__INT (GClosure     *closure,
