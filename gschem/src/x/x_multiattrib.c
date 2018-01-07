@@ -137,16 +137,6 @@ void x_multiattrib_close (GschemToplevel *w_current)
 {
   if (w_current->mawindow != NULL) {
 
-    Multiattrib  *ThisDialog;
-    GtkListStore *liststore;
-
-    ThisDialog = MULTIATTRIB(w_current->mawindow);
-    liststore  = (GtkListStore*)gtk_tree_view_get_model (ThisDialog->treeview);
-
-    gtk_list_store_clear (liststore);
-
-    g_object_unref(liststore);
-
     gtk_widget_destroy (w_current->mawindow);
 
     w_current->mawindow = NULL;
