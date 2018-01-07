@@ -456,7 +456,7 @@ multiline_text_start_editing(GtkCellRenderer      *cell,
                            "height-request", cell_area->height,
                            NULL);
 
-  g_object_set_data_full (G_OBJECT (textview),
+  g_object_set_data_full ((GObject*)textview,
                           CELL_RENDERER_MULTI_LINE_TEXT_PATH,
                           geda_utility_string_strdup (path), g_free);
 
@@ -1426,7 +1426,7 @@ multiattrib_callback_popup_promote (GedaMenuItem *menuitem, void *user_data)
     selection = geda_struct_page_get_selection (page);
 
     /* update the tree-view contents with promoted attributes */
-    g_object_set (G_OBJECT (ThisDialog), mae_object_list, selection, NULL);
+    g_object_set (ThisDialog, mae_object_list, selection, NULL);
 
     GEDA_UNREF (attr_list);
   }

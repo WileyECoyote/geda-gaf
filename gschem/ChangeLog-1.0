@@ -6,7 +6,7 @@
 
     * src/x/x_multiattrib.c: Remove clearing the store in x_multiattrib_close
       and add gobject_class->dispose over-ride to clear the list store when
-      disposing.
+      disposing. Remove dynamic cast to GObject.
 
 2018-01-06 Wiley E. Hill <wileyhill@gmail.com>
 
