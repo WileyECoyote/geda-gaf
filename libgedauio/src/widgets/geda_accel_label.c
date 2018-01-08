@@ -766,8 +766,10 @@ geda_accel_label_set_accel_closure (GedaAccelLabel *accel_label,
                                G_CALLBACK (check_accel_changed),
                                accel_label, 0);
     }
+
     geda_accel_label_reset (accel_label);
-    g_object_notify (G_OBJECT (accel_label), "accel-closure");
+
+    GEDA_OBJECT_NOTIFY (accel_label, "accel-closure");
   }
 }
 

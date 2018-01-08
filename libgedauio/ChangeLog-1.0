@@ -4,7 +4,8 @@
       cast the child as void so that macro can be used with the desired or
       expected bin->child type.
 
-    * src/widgets/geda_image_menu_item.c: 
+    * src/widgets/geda_accel_label.c: Utilize GEDA_OBJECT_NOTIFY macro in
+      geda_accel_label_set_accel_closure.
 
 2018-01-07 Wiley E. Hill <wileyhill@gmail.com>
 
