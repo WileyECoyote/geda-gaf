@@ -11,6 +11,8 @@
 
     * src/widgets/geda_image_menu_item.c: Implement GEDA_OBJECT_NOTIFY macro.
 
+    * src/widgets/geda_menu_item.c: Implement geda_get_child_widget macro.
+
 2018-01-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/functions/geda_marshal.c: Add geda_marshal_VOID__ENUM.

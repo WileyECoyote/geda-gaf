@@ -61,7 +61,7 @@
  *
  * An example for setting markup and accelerator on a MenuItem:
  * \code{.c}
- * GtkWidget *child = gtk_bin_get_child (GTK_BIN(menu_item));
+ * GtkWidget *child = geda_get_child_widget (menu_item);
  * geda_label_set_markup (GEDA_LABEL(child), "<i>new label</i> with <b>markup</b>");
  * geda_accel_label_set_accel (GEDA_ACCEL_LABEL(child), GDK_KEY_1, 0);
  * \endcode
@@ -1119,7 +1119,7 @@ activatable_update_label (GedaMenuItem *menu_item, GtkAction *action)
 {
   GtkWidget *child;
 
-  child = gtk_bin_get_child ((GtkBin*)menu_item);
+  child = geda_get_child_widget (menu_item);
 
   if (GEDA_IS_LABEL (child)) {
 
@@ -1241,7 +1241,7 @@ geda_menu_item_sync_action_properties (GtkActivatable *activatable,
 
   if (priv->use_action_appearance) {
 
-    GtkWidget *label = gtk_bin_get_child (bin_item);
+    GtkWidget *label = geda_get_child_widget (widget);
 
     /* make sure label is a label, deleting it otherwise */
     if (label && !GEDA_IS_LABEL (label)) {
@@ -1256,7 +1256,7 @@ geda_menu_item_sync_action_properties (GtkActivatable *activatable,
     geda_menu_item_set_use_underline (menu_item, TRUE);
 
     /* Make label point to the menu_item's label */
-    label = gtk_bin_get_child (bin_item);
+    label = geda_get_child_widget (widget);
 
     if (GEDA_IS_ACCEL_LABEL(label)) {
 
@@ -2131,7 +2131,7 @@ static bool geda_menu_item_draw (GtkWidget *widget, cairo_t *cr)
   w       = width - border_width * 2;
   h       = height - border_width * 2;
 
-  child   = gtk_bin_get_child ((GtkBin*)menu_item);
+  child   = geda_get_child_widget (menu_item);
   parent  = gtk_widget_get_parent (widget);
 
   gtk_style_context_get_padding (context, state, &padding);
@@ -2224,7 +2224,7 @@ static void geda_menu_item_get_preferred_width (GtkWidget *widget,
   min_width  = (border_width << 1) + padding.left + padding.right;
   nat_width  = min_width;
 
-  child      = gtk_bin_get_child ((GtkBin*)bin);
+  child      = geda_get_child_widget (widget);
 
   if (child != NULL && gtk_widget_get_visible (child)) {
 
@@ -2300,7 +2300,7 @@ static void geda_menu_item_real_get_height (GtkWidget *widget,
 
   nat_height = min_height;
 
-  child = gtk_bin_get_child ((GtkBin*)bin);
+  child = geda_get_child_widget (widget);
 
   if (child != NULL && gtk_widget_get_visible (child)) {
 
@@ -2420,7 +2420,7 @@ static void geda_menu_item_size_allocate (GtkWidget *widget, GtkAllocation *allo
 
   gtk_widget_set_allocation (widget, allocation);
 
-  child = gtk_bin_get_child (bin);
+  child = geda_get_child_widget (widget);
 
   if (child) {
 
@@ -2639,7 +2639,7 @@ static void geda_real_menu_item_set_label (GedaMenuItem *menu_item, const char *
 
   geda_menu_item_ensure_label (menu_item);
 
-  child = (GedaLabel*)gtk_bin_get_child ((GtkBin*)menu_item);
+  child = geda_get_child_widget (menu_item);
 
   if (GEDA_IS_LABEL (child)) {
 
@@ -2657,7 +2657,7 @@ static const char *geda_real_menu_item_get_label (GedaMenuItem *menu_item)
 
   geda_menu_item_ensure_label (menu_item);
 
-  child = (GedaLabel*)gtk_bin_get_child ((GtkBin*)menu_item);
+  child = geda_get_child_widget (menu_item);
 
   if (GEDA_IS_LABEL (child)) {
     return geda_label_get_label (child);
@@ -3553,7 +3553,7 @@ static void geda_menu_item_forall (GtkContainer *container,
 {
   GtkWidget *child;
 
-  child = gtk_bin_get_child ((GtkBin*)container);
+  child = geda_get_child_widget (container);
 
   if (child) {
     callback (child, callback_data);
@@ -3564,7 +3564,7 @@ static void geda_menu_item_forall (GtkContainer *container,
  * \param [in] menu_item should be validated by callers */
 static void geda_menu_item_ensure_label (GedaMenuItem *menu_item)
 {
-  if (!gtk_bin_get_child ((GtkBin*)menu_item)) {
+  if (!geda_get_child_widget (menu_item)) {
 
     GtkWidget *accel_label;
 
@@ -3592,7 +3592,7 @@ static void geda_menu_item_ensure_label (GedaMenuItem *menu_item)
 bool geda_menu_item_is_selectable (GedaMenuItem  *menu_item)
 {
   if (menu_item != NULL) {
-    if ((!gtk_bin_get_child ((GtkBin*)menu_item) &&
+    if ((!geda_get_child_widget (menu_item) &&
           G_OBJECT_TYPE (menu_item) == GEDA_TYPE_MENU_ITEM) ||
           GEDA_IS_MENU_SEPERATOR (menu_item)                ||
          !gtk_widget_is_sensitive ((GtkWidget*)menu_item)   ||
@@ -3613,7 +3613,7 @@ bool geda_menu_item_is_widget_selectable (GtkWidget *widget)
 {
 
   if (widget != NULL) {
-    if ((!gtk_bin_get_child ((GtkBin*)widget) &&
+    if ((!geda_get_child_widget (widget) &&
       G_OBJECT_TYPE (widget) == GEDA_TYPE_MENU_ITEM) ||
       GEDA_IS_MENU_SEPERATOR (widget) ||
       !gtk_widget_is_sensitive (widget) ||
@@ -3702,7 +3702,7 @@ GtkWidget *geda_menu_item_get_label_widget (GedaMenuItem *menu_item)
 
   geda_menu_item_ensure_label (menu_item);
 
-  return gtk_bin_get_child ((GtkBin*)menu_item);
+  return geda_get_child_widget (menu_item);
 }
 
 /*!
@@ -3722,7 +3722,7 @@ void geda_menu_item_set_use_underline (GedaMenuItem *menu_item, bool setting)
 
   geda_menu_item_ensure_label (menu_item);
 
-  child = gtk_bin_get_child ((GtkBin*)menu_item);
+  child = geda_get_child_widget (menu_item);
 
   if (GEDA_IS_LABEL(child)) {
 
@@ -3751,7 +3751,7 @@ bool geda_menu_item_get_use_underline (GedaMenuItem *menu_item)
 
   geda_menu_item_ensure_label (menu_item);
 
-  child = gtk_bin_get_child ((GtkBin*)menu_item);
+  child = geda_get_child_widget (menu_item);
 
   if (GEDA_IS_LABEL (child)) {
     return geda_label_get_use_underline ((GedaLabel*)child);
