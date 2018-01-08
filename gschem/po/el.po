@@ -1262,16 +1262,15 @@ msgstr "Σκοπός"
 msgid "Undo failed"
 msgstr ""
 
+# Search for
 #: gschem/src/x/x_autonumber.c:117
-#, fuzzy
 msgid "Search for:"
-msgstr "Αναζήτηση πηγής"
+msgstr "Ψάχνω για:"
 
-# Set the sequence number
+# Set the search criteria
 #: gschem/src/x/x_autonumber.c:117
-#, fuzzy
 msgid "Set the search criteria"
-msgstr "Ορίστε τον αριθμό ακολουθίας"
+msgstr "Ορίστε τα κριτήρια αναζήτησης"
 
 #: gschem/src/x/x_autonumber.c:118
 msgid "Autonumber text in:"
@@ -1285,26 +1284,24 @@ msgstr ""
 msgid "Skip numbers found in:"
 msgstr ""
 
-# Set the active slot number
+# Set where NOT to look for numbers
 #: gschem/src/x/x_autonumber.c:119
-#, fuzzy
 msgid "Set where NOT to look for numbers"
-msgstr "Ορίστε τον ενεργό αριθμό θέσης υποδοχής"
+msgstr "Ορίστε πού να μην αναζητήσετε αριθμούς"
 
 #: gschem/src/x/x_autonumber.c:120
 msgid "Sort order:"
 msgstr ""
 
+# Select the orientation of the Scan method
 #: gschem/src/x/x_autonumber.c:120
-#, fuzzy
 msgid "Select the orientation of the Scan method"
-msgstr "Επιλέξτε το όνομα του χαρακτηριστικού για να προσθέσετε"
+msgstr "Επιλέξτε τον προσανατολισμό της μεθόδου σάρωσης"
 
-# element number
+# Starting number
 #: gschem/src/x/x_autonumber.c:121
-#, fuzzy
 msgid "Starting number:"
-msgstr "στοιχείο αριθμός:"
+msgstr "Starting number:"
 
 #: gschem/src/x/x_autonumber.c:121
 msgid "Set the starting number for the current scan"
@@ -1376,8 +1373,8 @@ msgstr "Δεξιά προς αριστερά"
 msgid "File order"
 msgstr "Σειρά αρχείων"
 
+# Filter
 #: gschem/src/x/x_autonumber.c:1637
-#, fuzzy
 msgid "Filter:"
 msgstr "Φίλτρο:"
 
@@ -1421,10 +1418,10 @@ msgstr "Η εισαγωγή από το πρόχειρο απέτυχε"
 msgid "Open"
 msgstr "Άνοιγμα"
 
+# Open all
 #: gschem/src/x/x_compselect.c:126
-#, fuzzy
 msgid "Open all"
-msgstr "Άνοιγμα αρχείου..."
+msgstr "Ανοίξτε όλα"
 
 #: gschem/src/x/x_compselect.c:127 gschem/src/x/x_menus.c:149
 msgid "Close"
@@ -1470,15 +1467,15 @@ msgstr ""
 msgid "Set styles ooptions"
 msgstr ""
 
+# Tooltip settings
 #: gschem/src/x/x_compselect.c:143
-#, fuzzy
 msgid "Tooltip settings"
-msgstr "Αποθήκευση ρυθμίσεων Toolbar..."
+msgstr "Ρυθμίσεις εργαλείου"
 
+# Enable tooltips
 #: gschem/src/x/x_compselect.c:144
-#, fuzzy
 msgid "Enable tooltips"
-msgstr "Ανίκανος να γράψετε"
+msgstr "Ενεργοποιήστε τις γραμμές εργαλείων"
 
 #: gschem/src/x/x_compselect.c:145
 msgid "Disable tooltips"
@@ -2382,10 +2379,10 @@ msgstr ""
 msgid "Add Attribute"
 msgstr "Προσθήκη γνωρίσματος"
 
+# Edit Attribute
 #: gschem/src/x/x_edit_attrib.c:412
-#, fuzzy
 msgid "Edit Attribute"
-msgstr "Επεξεργασία γνωρισμάτων"
+msgstr "Επεξεργασία χαρακτηριστικού"
 
 #: gschem/src/x/x_edit_attrib.c:414
 msgid "Select the name of the attribute to add"
