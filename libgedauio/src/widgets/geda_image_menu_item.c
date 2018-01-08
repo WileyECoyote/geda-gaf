@@ -682,8 +682,7 @@ static void geda_image_menu_item_set_label (GedaMenuItem *menu_item,
 
     geda_image_menu_item_recalculate (image_menu_item);
 
-    g_object_notify ((GObject*)menu_item, "label");
-
+    GEDA_OBJECT_NOTIFY (menu_item, "label");
   }
 }
 
@@ -955,7 +954,7 @@ void geda_image_menu_item_set_use_stock (GedaImageMenuItem *image_menu_item,
 
     geda_image_menu_item_recalculate (image_menu_item);
 
-    g_object_notify ((GObject*)image_menu_item, "use-stock");
+    GEDA_OBJECT_NOTIFY (image_menu_item, "use-stock");
   }
 }
 
@@ -1005,7 +1004,7 @@ void geda_image_menu_item_set_show_image (GedaImageMenuItem *image_menu_item,
         gtk_widget_hide (image_menu_item->image);
     }
 
-    g_object_notify ((GObject*)image_menu_item, "show-image");
+    GEDA_OBJECT_NOTIFY (image_menu_item, "show-image");
   }
 }
 
@@ -1068,7 +1067,7 @@ void geda_image_menu_item_set_accel_group (GedaImageMenuItem *image_menu_item,
                                   stock_item.modifier,
                                   GTK_ACCEL_VISIBLE);
 
-      g_object_notify ((GObject*)image_menu_item, "accel-group");
+      GEDA_OBJECT_NOTIFY (image_menu_item, "accel-group");
     }
   }
 }
@@ -1125,7 +1124,7 @@ void geda_image_menu_item_set_image (GedaImageMenuItem *image_menu_item,
                 "no-show-all", TRUE,
                 NULL);
 
-  g_object_notify ((GObject*)image_menu_item, "image");
+  GEDA_OBJECT_NOTIFY (image_menu_item, "image");
 }
 
 /*! \brief Get the image object associated with the menu item
@@ -1172,7 +1171,7 @@ static void geda_image_menu_item_remove (GtkContainer *container, GtkWidget *chi
       gtk_widget_queue_resize ((GtkWidget*)container);
     }
 
-    g_object_notify ((GObject*)image_menu_item, "image");
+    GEDA_OBJECT_NOTIFY (image_menu_item, "image");
   }
   else {
     ((GtkContainerClass*)geda_image_menu_item_parent_class)->remove (container, child);
