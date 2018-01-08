@@ -1273,47 +1273,40 @@ msgid "Undo failed"
 msgstr "Undo failed"
 
 #: gschem/src/x/x_autonumber.c:117
-#, fuzzy
 msgid "Search for:"
-msgstr "Searching for source"
+msgstr "Search for:"
 
 #: gschem/src/x/x_autonumber.c:117
-#, fuzzy
 msgid "Set the search criteria"
-msgstr "Set the sequence number"
+msgstr "Set the search criteria"
 
 #: gschem/src/x/x_autonumber.c:118
-#, fuzzy
 msgid "Autonumber text in:"
-msgstr "Autonumber text"
+msgstr "Autonumber text in:"
 
 #: gschem/src/x/x_autonumber.c:118
-#, fuzzy
 msgid "Set the context of the search scope"
-msgstr "Set the colour map to the Dark set"
+msgstr "Set the context of the search scope"
 
 #: gschem/src/x/x_autonumber.c:119
 msgid "Skip numbers found in:"
 msgstr ""
 
 #: gschem/src/x/x_autonumber.c:119
-#, fuzzy
 msgid "Set where NOT to look for numbers"
-msgstr "Set the active slot number"
+msgstr "Set where NOT to look for numbers"
 
 #: gschem/src/x/x_autonumber.c:120
 msgid "Sort order:"
 msgstr ""
 
 #: gschem/src/x/x_autonumber.c:120
-#, fuzzy
 msgid "Select the orientation of the Scan method"
-msgstr "Select the name of the attribute to add"
+msgstr "Select the orientation of the Scan method"
 
 #: gschem/src/x/x_autonumber.c:121
-#, fuzzy
 msgid "Starting number:"
-msgstr "Edit slot number:"
+msgstr "Starting number:"
 
 #: gschem/src/x/x_autonumber.c:121
 msgid "Set the starting number for the current scan"
@@ -1387,9 +1380,8 @@ msgid "File order"
 msgstr "File order"
 
 #: gschem/src/x/x_autonumber.c:1637
-#, fuzzy
 msgid "Filter:"
-msgstr "<b>Filter:</b>"
+msgstr "Filter"
 
 #: gschem/src/x/x_autonumber.c:1679
 msgid "Selected objects"
@@ -1432,9 +1424,8 @@ msgid "Open"
 msgstr "Open"
 
 #: gschem/src/x/x_compselect.c:126
-#, fuzzy
 msgid "Open all"
-msgstr "Open file..."
+msgstr "Open all"
 
 #: gschem/src/x/x_compselect.c:127 gschem/src/x/x_menus.c:149
 msgid "Close"
@@ -1481,14 +1472,12 @@ msgid "Set styles ooptions"
 msgstr ""
 
 #: gschem/src/x/x_compselect.c:143
-#, fuzzy
 msgid "Tooltip settings"
-msgstr "Saving Toolbar configuration..."
+msgstr "Tooltip settings"
 
 #: gschem/src/x/x_compselect.c:144
-#, fuzzy
 msgid "Enable tooltips"
-msgstr "Unable to write"
+msgstr "Enable tooltips"
 
 #: gschem/src/x/x_compselect.c:145
 msgid "Disable tooltips"
@@ -2382,9 +2371,8 @@ msgid "Add Attribute"
 msgstr "Add Attribute"
 
 #: gschem/src/x/x_edit_attrib.c:412
-#, fuzzy
 msgid "Edit Attribute"
-msgstr "Edit Attributes"
+msgstr "Edit Attribute"
 
 #: gschem/src/x/x_edit_attrib.c:414
 msgid "Select the name of the attribute to add"

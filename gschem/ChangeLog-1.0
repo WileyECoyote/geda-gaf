@@ -2,6 +2,8 @@
 
     * po/el.po: Update Greek translations.
 
+    * po/en_GB.po: Update Great Britain.
+
     * src/base/gschem_page_view.c: Utilize GEDA_OBJECT_NOTIFY macro in
       gschem_page_view_set_page.
 
