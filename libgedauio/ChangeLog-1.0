@@ -1,3 +1,11 @@
+2018-01-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_gtk_compat.h: Make geda_get_child_widget more versatile;
+      cast the child as void so that macro can be used with the desired or
+      expected bin->child type.
+
+    * src/widgets/geda_image_menu_item.c: 
+
 2018-01-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/functions/geda_marshal.c: Add geda_marshal_VOID__ENUM.

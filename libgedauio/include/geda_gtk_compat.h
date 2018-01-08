@@ -149,7 +149,7 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 #define gtk_widget_reset_style gtk_widget_reset_rc_styles
 
 /*! \def geda_get_child_widget Get Child Bin widget Gtk < 3 */
-#define geda_get_child_widget(w) ((GtkBin*)w)->child
+#define geda_get_child_widget(w) (void*)((GtkBin*)w)->child
 
 /*! \def geda_get_widget_allocation Get Pointer to Allocation */
 #define geda_get_widget_allocation(w) &(GTK_WIDGET(w)->allocation)
@@ -165,7 +165,7 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 #else /* GTK >= 3 */
 
 /*! \def geda_get_child_widget Get Child Bin widget Gtk >= 3*/
-#define geda_get_child_widget(w) gtk_bin_get_child ((GtkBin*)w)
+#define geda_get_child_widget(w) (void*)gtk_bin_get_child ((GtkBin*)w)
 
 #define geda_get_widget_allocation(w) \
   ({ GtkAllocation a; gtk_widget_get_allocation (GTK_WIDGET(w), &a); &a; })
