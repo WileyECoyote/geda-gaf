@@ -947,8 +947,8 @@ gschem_page_view_set_page (GschemPageView *view, Page *page)
     geda_struct_page_goto (page);
   }
 
-  g_object_notify (G_OBJECT (view), "page");
-  g_object_notify (G_OBJECT (view), "page-geometry");
+  GEDA_OBJECT_NOTIFY (view, "page");
+  GEDA_OBJECT_NOTIFY (view, "page-geometry");
   g_signal_emit_by_name (view, "update-grid-info");
 }
 

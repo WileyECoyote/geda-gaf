@@ -1,3 +1,8 @@
+2018-01-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/base/gschem_page_view.c: Utilize GEDA_OBJECT_NOTIFY macro in
+      gschem_page_view_set_page.
+
 2018-01-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_confirm_close.c: Add functions confirm_close_dialog_unsaved_page
