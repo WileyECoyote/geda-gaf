@@ -11,7 +11,8 @@
 
     * src/widgets/geda_image_menu_item.c: Implement GEDA_OBJECT_NOTIFY macro.
 
-    * src/widgets/geda_menu_item.c: Implement geda_get_child_widget macro.
+    * src/widgets/geda_menu_item.c: Implement geda_get_child_widget macro,
+      eliminate GtkBin variable in geda_menu_item_size_allocate.
 
 2018-01-07 Wiley E. Hill <wileyhill@gmail.com>
 
