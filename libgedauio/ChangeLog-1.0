@@ -7,6 +7,8 @@
     * src/widgets/geda_accel_label.c: Utilize GEDA_OBJECT_NOTIFY macro in
       geda_accel_label_set_accel_closure.
 
+    * src/widgets/geda_entry.c: Implement GEDA_OBJECT_NOTIFY macro.
+
     * src/widgets/geda_image_menu_item.c: Implement GEDA_OBJECT_NOTIFY macro.
 
 2018-01-07 Wiley E. Hill <wileyhill@gmail.com>

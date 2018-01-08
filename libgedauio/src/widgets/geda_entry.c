@@ -1460,7 +1460,7 @@ void geda_entry_set_activates_default (GedaEntry *entry, bool setting)
 
   if (setting != entry->activates_default) {
     entry->activates_default = setting;
-    g_object_notify (G_OBJECT (entry), "activates-default");
+    GEDA_OBJECT_NOTIFY (entry, "activates-default");
   }
 }
 
@@ -1513,7 +1513,7 @@ void geda_entry_set_attributes (GedaEntry *entry, PangoAttrList *attrs)
 
   if (layout) {
     pango_layout_set_attributes (layout, entry->priv->attrs);
-    g_object_notify (G_OBJECT (entry), "attributes");
+    GEDA_OBJECT_NOTIFY (entry, "attributes");
   }
 
   gtk_widget_queue_resize (GTK_WIDGET (entry));
