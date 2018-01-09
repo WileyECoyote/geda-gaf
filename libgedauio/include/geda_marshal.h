@@ -251,7 +251,12 @@ extern void geda_marshal_VOID__INT_STRING (GClosure     *closure,
                                            void         *marshal_data);
 
 /* VOID:OBJECT (geda-marshal.list:27) */
-#define geda_marshal_VOID__OBJECT g_cclosure_marshal_VOID__OBJECT
+extern void geda_marshal_VOID__OBJECT (GClosure     *closure,
+                                       GValue       *return_value GEDA_UNUSED,
+                                       unsigned int  n_param_values,
+                                       const GValue *param_values,
+                                       void         *invocation_hint GEDA_UNUSED,
+                                       void         *marshal_data);
 
 /* VOID:OBJECT,ENUM,BOXED (geda-marshal.list:28) */
 extern void geda_marshal_VOID__OBJECT_ENUM_BOXED (GClosure     *closure,
