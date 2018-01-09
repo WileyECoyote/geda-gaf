@@ -598,7 +598,8 @@ geda_bulb_draw_indicator (GtkCheckButton *check_button, GdkRectangle *area)
     }
 
     /* Make trival adjustment for child focus */
-    child = gtk_bin_get_child ((GtkBin*)check_button);
+    child = geda_get_child_widget (check_button);
+
     if (!interior_focus || !(child && gtk_widget_get_visible (child))) {
       x += focus_width + focus_pad;
     }

@@ -5,6 +5,8 @@
 
     * src/functions/geda_marshal.c: Add geda_marshal_VOID__OBJECT.
 
+    * src/widgets/geda_bulb.c: Replace gtk_bin_get_child with geda_get_child_widget.
+
     * src/widgets/geda_font_dialog.c: Utilize GEDA_OBJECT_NOTIFY macro in
       callback_update_preview.
 
