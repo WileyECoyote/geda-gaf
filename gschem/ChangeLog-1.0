@@ -3,6 +3,10 @@
     * src/base/gschem_page_view.c: Remove unneeded check for existence
       pointer to the geometry_table in gschem_page_view_set_page.
 
+    * src/iface/i_window.c: Add call to i_event_cancel_action_handler in
+      i_window_close_page so that the action handler is not persistent
+      upon any remaining open documents.
+
 2018-01-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/el.po: Update Greek translations.

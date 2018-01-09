@@ -84,6 +84,8 @@ void i_window_close_page (GschemToplevel *w_current)
   bool  can_close;
   Page *page;
 
+  i_event_cancel_action_handler(w_current);
+
   page = gschem_toplevel_get_current_page(w_current);
 
   if (geda_page_get_changed(page) > 0) {
