@@ -2033,10 +2033,15 @@ geda_handle_box_get_toolbar (GedaHandleBox *handle_box)
   return NULL;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Replace the Toolbar in a GedaHandleBox
+ * \par Function Description
+ * This function allows clients to change the tool that is contained
+ * within the #GedaHandleBox. The clients should maintain a reference
+ * to any previous toolbars.
  *
+ * \param [in] handle_box The #GedaHandleBox object
+ * \param [in] toolbar    Toolbar object to be put in the handlebox
  */
 void
 geda_handle_box_set_toolbar (GedaHandleBox *handlebox, GtkWidget *toolbar)
