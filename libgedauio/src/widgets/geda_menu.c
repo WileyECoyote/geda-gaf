@@ -3740,7 +3740,7 @@ geda_menu_attach_to_widget (GedaMenu       *menu,
   /* Fallback title for menu comes from attach widget */
   geda_menu_update_title (menu);
 
-  g_object_notify ((GObject*)menu, "attach-widget");
+  GEDA_OBJECT_NOTIFY (menu, "attach-widget");
 }
 
 /*!
@@ -3819,7 +3819,7 @@ geda_menu_detach (GedaMenu *menu)
   /* Fallback title for menu comes from attach widget */
   geda_menu_update_title (menu);
 
-  g_object_notify ((GObject*)menu, "attach-widget");
+  GEDA_OBJECT_NOTIFY (menu, "attach-widget");
   g_object_unref (menu);
 }
 
@@ -4858,7 +4858,7 @@ geda_menu_set_tearoff_state (GedaMenu *menu, bool torn_off)
       menu->tearoff_adjustment = NULL;
     }
 
-    g_object_notify (G_OBJECT (menu), "tearoff-state");
+    GEDA_OBJECT_NOTIFY (menu, "tearoff-state");
   }
 }
 
@@ -4912,7 +4912,7 @@ geda_menu_set_title (GedaMenu *menu, const char *title)
   g_free (old_title);
 
   geda_menu_update_title (menu);
-  g_object_notify ((GObject*)menu, "tearoff-title");
+  GEDA_OBJECT_NOTIFY (menu, "tearoff-title");
 }
 
 /*!
@@ -5974,7 +5974,7 @@ geda_menu_set_reserve_toggle_size (GedaMenu *menu,
 
       priv->no_toggle_size = no_toggle_size;
 
-      g_object_notify ((GObject*)menu, "reserve-toggle-size");
+      GEDA_OBJECT_NOTIFY (menu, "reserve-toggle-size");
     }
 }
 

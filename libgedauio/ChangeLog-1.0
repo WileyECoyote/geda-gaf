@@ -13,6 +13,8 @@
 
     * src/widgets/geda_label.c: Remove old code for signal "move-cursor".
 
+    * src/widgets/geda_menu.c: Implement GEDA_OBJECT_NOTIFY macro.
+
 2018-01-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Make geda_get_child_widget more versatile;
