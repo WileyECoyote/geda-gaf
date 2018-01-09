@@ -1,5 +1,8 @@
 2018-01-09 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/dialogs/geda_file_chooser.c: Replace g_cclosure_marshal_VOID__STRING
+      with geda_marshal_VOID__STRING.
+
     * src/functions/geda_marshal.c: Add geda_marshal_VOID__OBJECT.
 
     * src/widgets/geda_label.c: Remove old code for signal "move-cursor".

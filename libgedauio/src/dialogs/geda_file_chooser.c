@@ -500,7 +500,7 @@ geda_file_chooser_class_init (void *class, void *data)
                                                                        geometry_restore ),
                                                       NULL, /* accumulator */
                                                       NULL, /* accu_data */
-                                                      g_cclosure_marshal_VOID__STRING,
+                                                      geda_marshal_VOID__STRING,
                                                       G_TYPE_NONE,
                                                       1,    /* n_params */
                                                       G_TYPE_STRING);
@@ -519,7 +519,7 @@ geda_file_chooser_class_init (void *class, void *data)
                                                                        geometry_save ),
                                                       NULL, /* accumulator */
                                                       NULL, /* accu_data */
-                                                      g_cclosure_marshal_VOID__STRING,
+                                                      geda_marshal_VOID__STRING,
                                                       G_TYPE_NONE,
                                                       1,    /* n_params */
                                                       G_TYPE_STRING);
