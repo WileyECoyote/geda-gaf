@@ -938,7 +938,6 @@ void
 gschem_page_view_set_page (GschemPageView *view, Page *page)
 {
   g_return_if_fail (view != NULL);
-  g_return_if_fail (view->geometry_table != NULL);
 
   view->page = page;
 
