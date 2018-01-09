@@ -2,6 +2,8 @@
 
     * src/functions/geda_marshal.c: Add geda_marshal_VOID__OBJECT.
 
+    * src/widgets/geda_label.c: Remove old code for signal "move-cursor".
+
 2018-01-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Make geda_get_child_widget more versatile;

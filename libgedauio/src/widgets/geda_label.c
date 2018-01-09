@@ -1284,19 +1284,7 @@ geda_label_class_init  (void *class, void *class_data)
    * count: the number of step units to move
    * extend_selection: %TRUE if the move should extend the selection
    */
-/*
-  signals[MOVE_CURSOR] =
-  g_signal_new ("move-cursor",
-                   type,
-                   G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
-                   G_STRUCT_OFFSET (GedaLabelClass, move_cursor),
-                   NULL, NULL,
-                   gtk_marshal_VOID__ENUM_INT_BOOLEAN,
-                   G_TYPE_NONE, 3,
-                   GTK_TYPE_MOVEMENT_STEP,
-                   G_TYPE_INT,
-                   G_TYPE_BOOLEAN);
-*/
+
   signals[MOVE_CURSOR] =
   g_signal_new ( "move-cursor",
                    type,
