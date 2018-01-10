@@ -1308,54 +1308,52 @@ msgstr "Deshacer error"
 msgid "Undo failed"
 msgstr "¡Deshacer/Rehacer deshabilitado en el fichero rc!"
 
-# Looking for source
+# Search for
 #: gschem/src/x/x_autonumber.c:117
-#, fuzzy
 msgid "Search for:"
-msgstr "Buscando fuente"
+msgstr "Buscar:"
 
+# Set the search criteria
 #: gschem/src/x/x_autonumber.c:117
-#, fuzzy
 msgid "Set the search criteria"
-msgstr "Establecer el número de secuencia"
+msgstr "Establecer los criterios de búsqueda"
 
 #: gschem/src/x/x_autonumber.c:118
-#, fuzzy
 msgid "Autonumber text in:"
-msgstr "Autoenumerar texto"
+msgstr "Autoenumerar texto en:"
 
+# Set the context of the search scope
 #: gschem/src/x/x_autonumber.c:118
-#, fuzzy
 msgid "Set the context of the search scope"
-msgstr "Establezca el mapa de color en el conjunto Oscuro"
+msgstr "Establecer el contexto del alcance de búsqueda"
 
 #: gschem/src/x/x_autonumber.c:119
 msgid "Skip numbers found in:"
 msgstr ""
 
+# Set where NOT to look for numbers
 #: gschem/src/x/x_autonumber.c:119
-#, fuzzy
 msgid "Set where NOT to look for numbers"
-msgstr "Establecer el número de secuencia"
+msgstr "Establezca dónde NO buscar números"
 
 #: gschem/src/x/x_autonumber.c:120
 msgid "Sort order:"
 msgstr ""
 
+# Select the orientation of the Scan method
 #: gschem/src/x/x_autonumber.c:120
-#, fuzzy
 msgid "Select the orientation of the Scan method"
-msgstr "Seleccione un atributo para agregar"
+msgstr "Seleccione la orientación del método de escaneo"
 
+# Starting number
 #: gschem/src/x/x_autonumber.c:121
-#, fuzzy
 msgid "Starting number:"
-msgstr "número de elemento:"
+msgstr "Número inicial:"
 
+# Set the starting number for the current scan
 #: gschem/src/x/x_autonumber.c:121
-#, fuzzy
 msgid "Set the starting number for the current scan"
-msgstr "Establezca la cadena del texto en la barra de estado"
+msgstr "Establecer el número inicial para el escaneo actual"
 
 #: gschem/src/x/x_autonumber.c:122
 msgid "    Remove numbers:"
@@ -1426,7 +1424,6 @@ msgid "File order"
 msgstr "Orden de archivos:"
 
 #: gschem/src/x/x_autonumber.c:1637
-#, fuzzy
 msgid "Filter:"
 msgstr "Filtro:"
 
@@ -1470,10 +1467,10 @@ msgstr "Fallo al insertar el contenido del portapapeles"
 msgid "Open"
 msgstr "Abrir..."
 
+# Open all
 #: gschem/src/x/x_compselect.c:126
-#, fuzzy
 msgid "Open all"
-msgstr "Abrir archivo"
+msgstr "Abrir todo"
 
 #: gschem/src/x/x_compselect.c:127 gschem/src/x/x_menus.c:149
 msgid "Close"
@@ -1519,15 +1516,15 @@ msgstr ""
 msgid "Set styles ooptions"
 msgstr ""
 
+# Tooltip settings
 #: gschem/src/x/x_compselect.c:143
-#, fuzzy
 msgid "Tooltip settings"
-msgstr "Guardar la configuración de la barra de herramientas..."
+msgstr "Configuración de información sobre herramientas"
 
+# Enable tooltips
 #: gschem/src/x/x_compselect.c:144
-#, fuzzy
 msgid "Enable tooltips"
-msgstr "Incapaz de escribir"
+msgstr "Habilitar información sobre herramientas"
 
 #: gschem/src/x/x_compselect.c:145
 msgid "Disable tooltips"
@@ -2437,10 +2434,10 @@ msgstr ""
 msgid "Add Attribute"
 msgstr "Añadir propiedad"
 
+# Edit Attribute
 #: gschem/src/x/x_edit_attrib.c:412
-#, fuzzy
 msgid "Edit Attribute"
-msgstr "Editar propiedades"
+msgstr "Editar atributo"
 
 #: gschem/src/x/x_edit_attrib.c:414
 msgid "Select the name of the attribute to add"
@@ -2889,10 +2886,10 @@ msgstr ""
 msgid "Slot number:"
 msgstr "número de elemento:"
 
+# Set the active slot number
 #: gschem/src/x/x_edit_slot.c:217
-#, fuzzy
 msgid "Set the active slot number"
-msgstr "Establecer el número de secuencia"
+msgstr "Set the active slot number"
 
 #: gschem/src/x/x_edit_text.c:64 gschem/src/x/x_edit_text.c:473
 msgid "Text Content"
@@ -2904,7 +2901,7 @@ msgstr "Introduzca o edite la cadena de texto"
 
 #: gschem/src/x/x_edit_text.c:65
 msgid "A_lignment:"
-msgstr "Alineación:"
+msgstr "A_lineación:"
 
 # Select the text alignment attribute
 #: gschem/src/x/x_edit_text.c:65
