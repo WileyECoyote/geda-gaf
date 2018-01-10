@@ -8,6 +8,9 @@
     * src/widgets/geda_font_dialog.c: Add function documentation for
       geda_font_dialog_set_font_name.
 
+    * src/widgets/geda_menu_item.c: Utilize geda_get_child_widget and eliminate
+      GtkBin in geda_menu_item_sync_action_properties.
+
 2018-01-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/dialogs/geda_file_chooser.c: Replace g_cclosure_marshal_VOID__STRING

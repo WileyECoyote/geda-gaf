@@ -1208,14 +1208,12 @@ static void
 geda_menu_item_sync_action_properties (GtkActivatable *activatable,
                                        GtkAction      *action)
 {
-  GtkBin              *bin_item;
   GedaMenuItem        *menu_item;
   GedaMenuItemPrivate *priv;
   GtkWidget           *widget;
 
   g_return_if_fail (GEDA_IS_MENU_ITEM (activatable));
 
-  bin_item  = (GtkBin*)activatable;
   menu_item = (GedaMenuItem*)activatable;
   widget    = (GtkWidget*)activatable;
 
@@ -1223,10 +1221,10 @@ geda_menu_item_sync_action_properties (GtkActivatable *activatable,
 
   if (!priv->use_action_appearance || !action) {
 
-    GtkWidget *label = gtk_bin_get_child (bin_item);
+    GedaAccelLabel *label = geda_get_child_widget (widget);
 
     if (GEDA_IS_ACCEL_LABEL(label)) {
-      geda_accel_label_set_accel_widget ((GedaAccelLabel*)label, widget);
+      geda_accel_label_set_accel_widget (label, widget);
     }
   }
 
