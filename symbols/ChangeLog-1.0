@@ -1,3 +1,7 @@
+2018-01-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * logic/SN/SN74ALVC244-1.sym: Remove redundant attributes.
+
 2017-12-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * logic/pla/20V10-DIP-1.sym: Add symbol; Programmable Logic Device.
