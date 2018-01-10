@@ -2,6 +2,8 @@
 
     * po/es.po: Update Spanish translations.
 
+    * po/fa.po: Update Persian translations.
+
 2018-01-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_page_view.c: Remove unneeded check for existence

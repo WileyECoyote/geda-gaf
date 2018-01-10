@@ -1301,11 +1301,10 @@ msgstr ""
 msgid "Skip numbers found in:"
 msgstr ""
 
-# Set the active slot number
+# Set where NOT to look for numbers
 #: gschem/src/x/x_autonumber.c:119
-#, fuzzy
 msgid "Set where NOT to look for numbers"
-msgstr "شماره اسلات فعال را تنظیم کنید"
+msgstr "تنظیم کنید که کدام به دنبال اعداد نیست"
 
 #: gschem/src/x/x_autonumber.c:120
 msgid "Sort order:"
@@ -1395,11 +1394,10 @@ msgstr "راست به چپ"
 msgid "File order"
 msgstr "سفارش فایل"
 
-# Filter
+# Filtering
 #: gschem/src/x/x_autonumber.c:1637
-#, fuzzy
 msgid "Filter:"
-msgstr "<b>فیلتر کردن:</b>"
+msgstr "فیلتر کردن:"
 
 #: gschem/src/x/x_autonumber.c:1679
 msgid "Selected objects"
@@ -1441,11 +1439,10 @@ msgstr ""
 msgid "Open"
 msgstr ""
 
-# Open File
+# Open all
 #: gschem/src/x/x_compselect.c:126
-#, fuzzy
 msgid "Open all"
-msgstr "باز کردن فایل"
+msgstr "همه را باز کن"
 
 #: gschem/src/x/x_compselect.c:127 gschem/src/x/x_menus.c:149
 msgid "Close"
@@ -2239,7 +2236,6 @@ msgstr ""
 # Create Array: Error
 #: gschem/src/x/x_edit_array.c:539 gschem/src/x/x_edit_array.c:544
 #: gschem/src/x/x_edit_array.c:549
-#, fuzzy
 msgid "Create Array:Error"
 msgstr "ایجاد آرایه: خطا"
 
@@ -2391,10 +2387,10 @@ msgstr ""
 msgid "Add Attribute"
 msgstr ""
 
+# Edit Attribute
 #: gschem/src/x/x_edit_attrib.c:412
-#, fuzzy
 msgid "Edit Attribute"
-msgstr "Attributes"
+msgstr "ویژگی ویرایش"
 
 #: gschem/src/x/x_edit_attrib.c:414
 msgid "Select the name of the attribute to add"
