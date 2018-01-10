@@ -1397,16 +1397,21 @@ COMMAND (do_paste_clip)
 
     i_event_end_action_handler(w_current);
 
-    if HOT_ACTION (do_paste_clip) {
+    if (HOT_ACTION (do_paste_clip)) {
 
-      if (!o_buffer_paste_start (w_current, CMD_X(do_paste_clip),
-                                            CMD_Y(do_paste_clip)))
-      {
+      int w_x = CMD_X(do_paste_clip);
+      int w_y = CMD_Y(do_paste_clip);
+
+      if (!o_buffer_paste_start (w_current, w_x, w_y)) {
         i_status_set_state (w_current, SELECT);
+      }
+      else {
+        o_place_motion (w_current, w_x, w_y);
       }
     }
     else {
       o_redraw_cleanstates (w_current);
+      i_status_action_stop(w_current);
       i_status_set_state (w_current, PASTEMODE);
     }
   }

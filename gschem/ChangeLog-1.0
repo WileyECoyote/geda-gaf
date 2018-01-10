@@ -4,6 +4,10 @@
 
     * po/fa.po: Update Persian translations.
 
+    * src/iface/i_command.c: Revise conditional in i_cmd_do_paste_clip to
+      call o_place_motion if o_buffer_paste_start returns FALSE and call
+      i_status_action_stop if the action is not HOT.
+
 2018-01-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_page_view.c: Remove unneeded check for existence
