@@ -3,6 +3,8 @@
     * src/widgets/geda_combobox.c: Utilize geda_get_child_widget and eliminate
       GtkBin in geda_combo_box_real_get_active_text.
 
+    * src/widgets/geda_font_button.c: Implement GEDA_OBJECT_NOTIFY macro.
+
 2018-01-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/dialogs/geda_file_chooser.c: Replace g_cclosure_marshal_VOID__STRING
