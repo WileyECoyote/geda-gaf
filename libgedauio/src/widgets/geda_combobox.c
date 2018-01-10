@@ -482,11 +482,10 @@ static char *geda_combo_box_real_get_active_text (GedaComboBox *combo_box)
 
   if (combo_box->priv->has_entry) {
 
-    GtkBin    *combo = GTK_BIN (combo_box);
-    GtkWidget *child = gtk_bin_get_child (combo);
+    GtkWidget *child = geda_get_child_widget (combo_box);
 
     if (child) {
-      text = geda_strdup (geda_entry_get_text (GEDA_ENTRY (child)));
+      text = geda_strdup (geda_entry_widget_get_text (child));
     }
   }
   else {
