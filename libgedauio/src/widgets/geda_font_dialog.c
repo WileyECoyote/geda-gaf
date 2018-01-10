@@ -1886,9 +1886,16 @@ char *geda_font_dialog_get_font_name (GedaFontDialog *dialog)
   return fontname;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Set GedaFontDialog Font Name property
+ * \par Function Description
+ *  This function is used to set the Font name property, which in
+ *  essence, sets the font.
+ *
+ * \param dialog    Pointer to GedaFontDialog
+ * \param fontname  Pointer to the dialog object
+ *
+ * \retval TRUE if the font was set, otherwise FALSE.
  */
 bool
 geda_font_dialog_set_font_name (GedaFontDialog *dialog, const char *fontname)
