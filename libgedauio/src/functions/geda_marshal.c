@@ -1046,6 +1046,7 @@ void geda_marshal_VOID__OBJECT_ENUM_BOXED (GClosure     *closure,
                                                         int      arg_2,
                                                         void    *arg_3,
                                                         void    *data2);
+
   register GMarshalFunc_VOID__OBJECT_ENUM_BOXED callback;
   register GCClosure *cc = (GCClosure*) closure;
   register void *data1;
@@ -1395,7 +1396,6 @@ void geda_marshal_VOID__VOID (GClosure     *closure,
   g_return_if_fail (n_param_values == 1);
 
   if (G_CCLOSURE_SWAP_DATA (closure)) {
-
       data1 = closure->data;
       data2 = g_value_peek_pointer (param_values + 0);
   }
