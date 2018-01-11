@@ -140,10 +140,10 @@ msgstr "Récupération de la géométrie de la fenêtre principale.\n"
 msgid "Auto-Restore"
 msgstr ""
 
+# Automatically restore the main window geometry
 #: gschem/src/base/gschem_main_window.c:391
-#, fuzzy
 msgid "Automatically restore the main window geometry"
-msgstr "Récupération de la géométrie de la fenêtre principale.\n"
+msgstr "Restaurer automatiquement la géométrie de la fenêtre principale"
 
 #: gschem/src/base/gschem_page_view.c:250
 #: gschem/src/base/gschem_page_view.c:251
@@ -2350,15 +2350,15 @@ msgstr ""
 msgid "Read only y bounds displacement of selected object"
 msgstr ""
 
+# Spinner entry number of rows to create
 #: gschem/src/x/x_edit_array.c:1079
-#, fuzzy
 msgid "Spinner entry number of rows to create"
-msgstr "Spinner avec entrée pour nombre de fentes"
+msgstr "Spinner nombre de lignes à créer"
 
+# Spinner entry number of columns to create
 #: gschem/src/x/x_edit_array.c:1086
-#, fuzzy
 msgid "Spinner entry number of columns to create"
-msgstr "Spinner avec entrée pour nombre de fentes"
+msgstr "Spinner nombre de colonnes à créer"
 
 #: gschem/src/x/x_edit_array.c:1093
 msgid "Entry for array horizontal pitch"
@@ -2412,10 +2412,10 @@ msgstr ""
 msgid "Add Attribute"
 msgstr "Ajouter un attribut"
 
+# Edit Attribute
 #: gschem/src/x/x_edit_attrib.c:412
-#, fuzzy
 msgid "Edit Attribute"
-msgstr "Éditeur d'attributs"
+msgstr "Éditeur d'attribut"
 
 #: gschem/src/x/x_edit_attrib.c:414
 msgid "Select the name of the attribute to add"
@@ -2869,11 +2869,10 @@ msgstr ""
 msgid "Slot number:"
 msgstr "Numéro de slot:"
 
-# Set the sequence number
+# Set the active slot number
 #: gschem/src/x/x_edit_slot.c:217
-#, fuzzy
 msgid "Set the active slot number"
-msgstr "Définir le numéro de séquence"
+msgstr "Définir le numéro de logement actif"
 
 #: gschem/src/x/x_edit_text.c:64 gschem/src/x/x_edit_text.c:473
 msgid "Text Content"
