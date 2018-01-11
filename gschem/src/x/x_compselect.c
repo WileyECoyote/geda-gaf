@@ -2760,10 +2760,7 @@ compselect_create_filter_area (Compselect *compselect)
   PACK_BOX(hbox, label, FALSE, FALSE, 0);
 
   /* create the text entry for filter in components */
-  entry = g_object_new (GTK_TYPE_ENTRY,
-                        /* GtkEntry */
-                        "text", "",
-                        NULL);
+  entry = g_object_new (GTK_TYPE_ENTRY, "text", "", NULL);
 
   /* Add the filter entry to the filter area */
   PACK_BOX(hbox, entry,TRUE, TRUE, 0);
