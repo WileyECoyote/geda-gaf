@@ -2028,7 +2028,7 @@ geda_font_dialog_get_show_preview (GedaFontDialog *dialog)
 }
 
 /*!
- * \brief geda_font_dialog_set_show_preview_entry
+ * \brief Set GedaFontDialog Show Preview property
  * \par Function Description
  *  Shows or hides the editable preview entry.
  *
