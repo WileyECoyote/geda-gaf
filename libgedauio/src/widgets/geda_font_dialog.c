@@ -2010,10 +2010,14 @@ geda_font_dialog_set_preview_text (GedaFontDialog *dialog, const char *text)
   return TRUE;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Retrieve GedaFontDialog Show Preview property
+ * \par Function Description
+ *  Gets the current value of the show-preview property.
  *
+ * \param [in] dialog The GedaFontDialog object
+ *
+ * \returns the value of the show-preview setting.
  */
 bool
 geda_font_dialog_get_show_preview (GedaFontDialog *dialog)
