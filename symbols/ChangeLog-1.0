@@ -1,3 +1,7 @@
+2018-01-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * logic/SN/SN74ALVC244-1.sym: Resequence pins.
+
 2018-01-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * logic/SN/SN74ALVC244-1.sym: Remove redundant attributes.
