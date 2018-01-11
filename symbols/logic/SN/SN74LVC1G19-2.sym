@@ -7,7 +7,7 @@ T 800 1100 9 10 1 0 0 0 1
 SN74LVC1G19
 P 300 1100 300 900 1 0 0
 {
-T 300 1100 5 8 0 1 0 0 1
+T 350 950 5 8 0 1 0 0 1
 pintype=pwr
 T 150 700 9 10 1 1 0 0 1
 pinlabel=VCC
@@ -18,7 +18,7 @@ pinseq=1
 }
 P 300 0 300 200 1 0 0
 {
-T 300 0 5 8 0 1 0 0 1
+T 350 100 5 8 0 1 0 0 1
 pintype=pwr
 T 150 300 9 10 1 1 0 0 1
 pinlabel=GND
@@ -31,6 +31,8 @@ T 800 1700 5 10 0 0 0 0 1
 device=SN74LVC1G19
 T 800 1300 8 10 1 1 0 0 1
 refdes=U?
+T 800 700 5 10 0 1 0 0 1
+description=1-of-2 Decoder/Demultiplexer
 T 800 900 9 10 0 1 0 0 1
 footprint=SOT26
 T 800 2300 5 10 0 0 0 0 1
