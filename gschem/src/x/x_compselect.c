@@ -803,6 +803,8 @@ static bool compselect_foreach_func (GtkTreeModel *model,
 static void
 compselect_open_to_symbol (Compselect *ThisDialog, const char *sym_name)
 {
+  if (sym_name) {
+
     GtkTreeModel *model;
     GtkTreeView  *tree_view;
 
@@ -815,6 +817,7 @@ compselect_open_to_symbol (Compselect *ThisDialog, const char *sym_name)
     model     = gtk_tree_view_get_model (tree_view);
 
     gtk_tree_model_foreach(model, compselect_foreach_func, &SearchRecord);
+  }
 }
 
 /*!

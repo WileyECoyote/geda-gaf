@@ -4,6 +4,9 @@
 
     * po/fr.po: Update French translations.
 
+    * src/x/x_compselect.c: Revise compselect_open_to_symbol to ignore
+      opening to the symbol if the symbol name is NULL.
+
 2018-01-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/es.po: Update Spanish translations.
