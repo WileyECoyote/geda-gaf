@@ -1263,9 +1263,8 @@ msgid "Set the search criteria"
 msgstr ""
 
 #: gschem/src/x/x_autonumber.c:118
-#, fuzzy
 msgid "Autonumber text in:"
-msgstr "A_utonumeroi määritteet tekstillä"
+msgstr "Autonumber teksti in:"
 
 #: gschem/src/x/x_autonumber.c:118
 msgid "Set the context of the search scope"
@@ -1287,11 +1286,10 @@ msgstr ""
 msgid "Select the orientation of the Scan method"
 msgstr ""
 
-# Slot number
+# Starting number
 #: gschem/src/x/x_autonumber.c:121
-#, fuzzy
 msgid "Starting number:"
-msgstr "Slot numero:"
+msgstr "Aloitusnumero:"
 
 #: gschem/src/x/x_autonumber.c:121
 msgid "Set the starting number for the current scan"
@@ -1405,10 +1403,10 @@ msgstr ""
 msgid "Open"
 msgstr "_Avaa..."
 
+# Open all
 #: gschem/src/x/x_compselect.c:126
-#, fuzzy
 msgid "Open all"
-msgstr "_Avaa..."
+msgstr "Avaa kaikki"
 
 #: gschem/src/x/x_compselect.c:127 gschem/src/x/x_menus.c:149
 msgid "Close"
@@ -1454,10 +1452,10 @@ msgstr ""
 msgid "Set styles ooptions"
 msgstr ""
 
+# Tooltip settings
 #: gschem/src/x/x_compselect.c:143
-#, fuzzy
 msgid "Tooltip settings"
-msgstr "Työkalupalkin asetukset..."
+msgstr "Tooltip-asetukset"
 
 #: gschem/src/x/x_compselect.c:144
 msgid "Enable tooltips"
@@ -2354,10 +2352,10 @@ msgstr ""
 msgid "Add Attribute"
 msgstr ""
 
+# Edit Attribute
 #: gschem/src/x/x_edit_attrib.c:412
-#, fuzzy
 msgid "Edit Attribute"
-msgstr "attribuutti"
+msgstr "Muokata attribuutti"
 
 #: gschem/src/x/x_edit_attrib.c:414
 msgid "Select the name of the attribute to add"
