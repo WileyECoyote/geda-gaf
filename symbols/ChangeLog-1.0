@@ -4,6 +4,8 @@
 
     * passive/lamp/lamp-2.sym: Add symbol; incandescent bulb.
 
+    * passive/lamp/lamp-3.sym: Add symbol; incandescent bulb.
+
 2018-01-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * logic/SN/SN74ALVC244-1.sym: Resequence pins.
