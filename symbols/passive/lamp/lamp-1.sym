@@ -30,7 +30,7 @@ T 750 450 5 10 0 1 0 0 1
 pinseq=2
 }
 T 800 1000 8 10 1 1 0 0 1
-refdes=LB
+refdes=LB?
 T 800 1200 8 10 0 1 0 0 1
 device=LAMP
 T 800 1400 8 10 0 1 0 0 1
