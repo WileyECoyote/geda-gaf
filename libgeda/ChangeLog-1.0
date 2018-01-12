@@ -1,3 +1,8 @@
+2018-01-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/math/m_circle.c: Revise geda_math_circle_includes_point to
+      account for the line-width of the circle.
+
 2018-01-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_keyfile.c: Comment-out validating the group_name

@@ -53,16 +53,24 @@ bool
 geda_math_circle_includes_point (GedaCircle *circle, GedaPoint *point)
 {
   int  delta;  /* Will be difference between point to center and radius */
+  int  width;
+  int  half_width;
   int  cx;
   int  cy;
 
   cx = circle->center_x;
   cy = circle->center_y;
 
+  /* Get the line-width of the arc */
+  width = geda_circle_get_line_width(circle);
+
+  /* Calculate 1/2 the width or the drawn width if line-width was zero */
+  half_width = width ? width / 2 : MIN_LINE_WIDTH_THRESHOLD / 2;
+
   /* Rounding here provides a fuzz distance effect */
   delta = geda_distance(cx, cy, point->x, point->y) - circle->radius;
 
-  return delta ? FALSE : TRUE;
+  return abs(delta) > half_width ? FALSE : TRUE;
 }
 
 /*!
