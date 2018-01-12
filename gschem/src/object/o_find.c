@@ -54,8 +54,8 @@ inline static bool o_find_is_object_hit (GschemToplevel *w_current,
    */
   if (!geda_object_get_bounds(object, &left, &top, &right, &bottom) ||
       !geda_object_get_is_inside_region(left  - w_slack, top    - w_slack,
-                              right + w_slack, bottom + w_slack,
-                              wx, wy))
+                                        right + w_slack, bottom + w_slack,
+                                        wx, wy))
     return FALSE;
   return (geda_object_get_shortest_distance_full (object, wx, wy, FALSE) < w_slack);
 }
