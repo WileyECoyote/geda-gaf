@@ -340,7 +340,7 @@ o_select_motion (GschemToplevel *w_current, int wx, int wy)
     result = FALSE;
   }
   else {
-    /* If the shift or control keys are pressed, that means the user
+    /* If a shift or control key is pressed, that means the user
      * definitely wants to drag out a selection box.  Otherwise, if
      * there is not a selected object under the cursor, look for one
      * that could be selected and start moving it.
