@@ -1,7 +1,9 @@
 2018-01-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_move.c: Utilize geda_complex_get_prim_objs to get
-      pointer to prim_objs in o_move_end.
+      pointer to prim_objs in o_move_end. Remove redundant setting
+      of w_bounds_valid_for, this is set in libgeda by the functions
+      performing the tranlations.
 
 2018-01-11 Wiley E. Hill <wileyhill@gmail.com>
 

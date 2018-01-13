@@ -248,9 +248,6 @@ void o_move_end(GschemToplevel *w_current)
           o_move_end_lowlevel (w_current, sub_object, diff_x, diff_y);
           NEXT(iter);
         }
-
-        object->w_bounds_valid_for = NULL;
-
       }
       else{
         o_move_end_lowlevel (w_current, object, diff_x, diff_y);
