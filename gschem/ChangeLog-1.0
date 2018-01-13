@@ -1,3 +1,8 @@
+2018-01-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_move.c: Utilize geda_complex_get_prim_objs to get
+      pointer to prim_objs in o_move_end.
+
 2018-01-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/fi.po: Update Finnish translations.

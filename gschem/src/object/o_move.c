@@ -241,7 +241,8 @@ void o_move_end(GschemToplevel *w_current)
         object->complex->x = object->complex->x + diff_x;
         object->complex->y = object->complex->y + diff_y;
 
-        iter = g_list_first( object->complex->prim_objs);
+        iter = geda_complex_get_prim_objs(object->complex);
+
         while (iter != NULL) {
           sub_object = (GedaObject*)iter->data;
           o_move_end_lowlevel (w_current, sub_object, diff_x, diff_y);
