@@ -79,7 +79,7 @@ int geda_circle_bounds(GedaObject *object)
 
   g_return_val_if_fail (GEDA_IS_CIRCLE(object), FALSE);
 
-  halfwidth = object->circle->line_options.line_width / 2;
+  halfwidth = object->circle->line_options.line_width >> 1; /* divide by 2 */
 
   /* This isn't strictly correct, but a 1st order approximation */
   object->left   = object->circle->center_x - object->circle->radius - halfwidth;

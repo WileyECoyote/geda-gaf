@@ -1,3 +1,8 @@
+2018-01-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_circle.c: Replace divide by 2 with shift right in
+      geda_circle_bounds.
+
 2018-01-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/math/m_circle.c: Revise geda_math_circle_includes_point to
