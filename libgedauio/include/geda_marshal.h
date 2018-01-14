@@ -97,6 +97,7 @@ extern void geda_marshal_BOOLEAN__INT_INT (GClosure     *closure,
                                            const GValue *param_values,
                                            void         *invocation_hint,
                                            void         *marshal_data);
+
 #define geda_marshal_BOOL__INT_INT geda_marshal_BOOLEAN__INT_INT
 
 /* BOOL:INT,INT,POINTER,POINTER (geda-marshal.list:8) */
@@ -106,6 +107,7 @@ extern void geda_marshal_BOOLEAN__INT_INT_POINTER_POINTER (GClosure     *closure
                                                            const GValue *param_values,
                                                            void         *invocation_hint,
                                                            void         *marshal_data);
+
 #define geda_marshal_BOOL__INT_INT_POINTER_POINTER	geda_marshal_BOOLEAN__INT_INT_POINTER_POINTER
 
 /* BOOL:POINTER (geda-marshal.list:9) */
