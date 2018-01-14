@@ -575,7 +575,7 @@ static inline char *tokenizer( int index, int *argc, char **argv[])
                             set_action_status(cmd_##efunc, 0)
 
 #define BEGIN_NO_ARGUMENT(efunc) GEDA_FREE(CMD_OPTIONS(efunc))
-#define HOT_ACTION(symbol) (((CMD_WHO(symbol)==ID_ORIGIN_KEYBOARD) || (CMD_WHO(symbol)==ID_ORIGIN_MOUSE)) && (CMD_Y(symbol) != 0))
+#define HOT_ACTION(symbol) ((CMD_WHO(symbol)==ID_ORIGIN_KEYBOARD) || ((CMD_WHO(symbol)==ID_ORIGIN_MOUSE) && (CMD_Y(symbol) != 0)))
 
 #ifdef PERFORMANCE
 
