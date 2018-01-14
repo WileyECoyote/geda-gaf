@@ -67,7 +67,7 @@
  * \par
  * To allow the user to enter values not in the model, the 'has-entry'
  * property allows the GedaComboBox to contain a GedaEntry. This entry
- * can be accessed by calling gtk_bin_get_child() on the combo box.
+ * can be accessed by calling geda_get_child_widget() on the combo box.
  * \par
  * For a simple list of textual choices, the model-view API of GedaComboBox
  * can be a bit overwhelming. In this case, #GedaComboBoxText offers a
