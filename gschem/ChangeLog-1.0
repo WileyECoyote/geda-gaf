@@ -2,7 +2,8 @@
 
     * src/iface/i_command.c: Remove extra parentheses from HOT_ACTION
       macro. Utilize accessor geda_page_get_filename in do_file_new
-      and do_file_new_window.
+      and do_file_new_window. Revise i_cmd_do_select cancel the action
+      even handler if there is and event in progress.
 
 2018-01-13 Wiley E. Hill <wileyhill@gmail.com>
 

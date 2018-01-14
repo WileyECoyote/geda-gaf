@@ -1991,7 +1991,13 @@ COMMAND (do_select)
 
   o_redraw_cleanstates(w_current);
   i_status_set_state(w_current, SELECT);
-  i_status_action_stop(w_current);
+
+  if (w_current->action_event->state) {
+    i_event_cancel_action_handler(w_current);
+  }
+  else {
+    i_status_action_stop(w_current);
+  }
 
   EXIT_COMMAND(do_select);
 }
