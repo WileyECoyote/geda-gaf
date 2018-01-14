@@ -1470,7 +1470,7 @@ multiattrib_callback_popup_delete(GedaMenuItem *menuitem, void *user_data)
 /*!
  * \brief Multi-Attribute Menu Option Copy to All
  * \par Function Description
- *  Handles the menu option "Copy to All", if selected attributes are
+ *  Handles the menu option "Copy to All". If selected, attributes are
  *  passed to multiattrib_action_copy_attribute_to_all to propagate
  *  to other objects in the selection.
  *
