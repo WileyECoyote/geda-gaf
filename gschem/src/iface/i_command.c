@@ -762,7 +762,7 @@ COMMAND (do_file_new)
   x_window_set_current_page (w_current, page);
   g_hook_run_page (w_current, NEW_PAGE_HOOK, page);
 
-  geda_log_q ("%s \"%s\"\n", _("New page created"), page->filename);
+  geda_log_q ("%s \"%s\"\n", _("New page created"), geda_page_get_filename(page));
 
   i_zoom_world_specify (w_current, 13.0, 0, 0, ID_ORIGIN_CCODE);
 
@@ -802,7 +802,7 @@ COMMAND (do_file_new_window)
   page = x_window_open_page (new_window, NULL);
   x_window_set_current_page (new_window, page);
 
-  geda_log_q ("%s \"%s\"\n", _("New Window created"), page->filename);
+  geda_log_q ("%s \"%s\"\n", _("New Window created"), geda_page_get_filename(page));
 
 }
 
