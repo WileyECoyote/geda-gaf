@@ -5,6 +5,10 @@
 
     * logic/SN/SN74ALVC244-2.sym: Resequence pins, update attributes.
 
+    * logic/SN/SN74ALVC244DW-1.sym: Resequence pins, update attributes.
+
+    * logic/SN/SN74ALVC244DW-2.sym: Resequence pins, update attributes.
+
     * logic/SN: Update license attributes.
 
 2018-01-12 Wiley E. Hill <wileyhill@gmail.com>
