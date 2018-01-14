@@ -1,5 +1,9 @@
 2018-01-14 Wiley E. Hill <wileyhill@gmail.com>
 
+    * logic/SN/SN75176-1.sym: Change "Vcc" -> "VCC", convert plain text
+      to value attribute, add description and documentation attributes,
+      update attributes.
+
     * memory/27C256-1.sym: Change "Vcc" -> "VCC" and "27256" -> "27C256",
       convert plain text to value attribute, update attribute positions.
 
