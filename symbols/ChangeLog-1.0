@@ -3,6 +3,8 @@
     * logic/SN/SN74LVC1G240-2.sym: Update attributes, add value
       and description, bump symversion.
 
+    * logic/SN: Update license attributes.
+
 2018-01-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * passive/lamp/lamp-1.sym: Add symbol; incandescent bulb.

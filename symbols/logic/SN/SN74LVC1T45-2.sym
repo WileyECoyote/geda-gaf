@@ -47,8 +47,8 @@ refdes=U?
 T 200 2150 5 10 0 0 0 0 1
 author=AutoTron
 T 200 1950 5 10 0 0 0 0 1
-use-license=GPLv3
+use-license=GPLv2
 T 200 1750 5 10 0 0 0 0 1
-dist-license=GPLv3 
+dist-license=unlimited
 T 200 1550 5 10 0 0 0 0 1
 symversion=0.1

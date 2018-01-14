@@ -198,9 +198,9 @@ T 200 3500 5 10 0 1 0 0 1
 documentation=http://focus.ti.com/docs/prod/folders/print/sn75154.html
 T 200 4100 5 10 0 0 0 0 1
 author=AutoTron
-T 200 3900 5 10 0 0 0 0 1
-use-license=GPLv3
 T 200 3700 5 10 0 0 0 0 1
-dist-license=GPLv3 
+dist-license=GPLv2
+T 200 3900 5 10 0 0 0 0 1
+use-license=unlimited
 T 200 3100 5 10 0 0 0 0 1
 symversion=0.1

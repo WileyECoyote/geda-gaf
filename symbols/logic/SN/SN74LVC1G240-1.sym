@@ -51,8 +51,8 @@ description=Single Inverting Buffer/Driver with 3-State Output
 T 500 2300 5 10 0 0 0 0 1
 author=AutoTron
 T 500 2100 5 10 0 0 0 0 1
-use-license=GPLv3
+use-license=unlimited
 T 500 1900 5 10 0 0 0 0 1
-dist-license=GPLv3 
+dist-license=GPLv2
 T 500 1500 5 10 0 0 0 0 1
 symversion=0.1

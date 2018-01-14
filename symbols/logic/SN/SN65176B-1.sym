@@ -125,9 +125,9 @@ description=Differential bus transceiver
 T 1700 3300 5 10 0 1 0 0 1
 documentation=http://www.ti.com/lit/gpn/sn65176b
 T 1700 3500 5 10 0 0 0 0 1
-dist-license=GPLv3 
+dist-license=GPLv2
 T 1700 3700 5 10 0 0 0 0 1
-use-license=GPLv3
+use-license=unlimited
 T 1700 3900 5 10 0 0 0 0 1
 author=AutoTron
 T 1700 2100 5 10 0 0 0 0 1

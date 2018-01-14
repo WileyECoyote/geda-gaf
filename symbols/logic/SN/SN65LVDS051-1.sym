@@ -114,9 +114,9 @@ T 0 2400 5 10 0 0 0 0 1
 footprint=SO16
 T 0 4000 5 10 0 0 0 0 1
 author=AutoTron
-T 0 3800 5 10 0 0 0 0 1
-use-license=GPLv3
 T 0 3600 5 10 0 0 0 0 1
-dist-license=GPLv3 
+dist-license=GPLv2
+T 0 3800 5 10 0 0 0 0 1
+use-license=unlimited
 T 100 100 5 10 0 0 0 0 1
 symversion=0.1
