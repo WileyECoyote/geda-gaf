@@ -3,6 +3,8 @@
     * logic/SN/SN74LVC1G240-2.sym: Update attributes, add value
       and description, bump symversion.
 
+    * logic/SN/SN74ALVC244-2.sym: Resequence pins, update attributes.
+
     * logic/SN: Update license attributes.
 
 2018-01-12 Wiley E. Hill <wileyhill@gmail.com>
