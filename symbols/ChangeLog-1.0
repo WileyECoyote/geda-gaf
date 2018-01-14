@@ -4,6 +4,9 @@
       to value attribute, add description and documentation attributes,
       update attributes.
 
+    * logic/SN/SN75176A-1.sym: Convert plain text to value attribute,
+      update attribute positions.
+
     * memory/27C256-1.sym: Change "Vcc" -> "VCC" and "27256" -> "27C256",
       convert plain text to value attribute, update attribute positions.
 
