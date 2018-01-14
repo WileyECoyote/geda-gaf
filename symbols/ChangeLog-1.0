@@ -1,3 +1,8 @@
+2018-01-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * memory/27C256-1.sym: Change "Vcc" -> "VCC" and "27256" -> "27C256",
+      convert plain text to value attribute, update attribute positions.
+
 2018-01-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * logic/SN/SN74LVC1G240-2.sym: Update attributes, add value
