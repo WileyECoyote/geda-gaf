@@ -3740,7 +3740,7 @@ void geda_menu_item_set_use_underline (GedaMenuItem *menu_item, bool setting)
  */
 bool geda_menu_item_get_use_underline (GedaMenuItem *menu_item)
 {
-  GtkWidget *child;
+  GedaLabel *child;
 
   g_return_val_if_fail (GEDA_IS_MENU_ITEM(menu_item), FALSE);
 
@@ -3749,7 +3749,7 @@ bool geda_menu_item_get_use_underline (GedaMenuItem *menu_item)
   child = geda_get_child_widget (menu_item);
 
   if (GEDA_IS_LABEL (child)) {
-    return geda_label_get_use_underline ((GedaLabel*)child);
+    return geda_label_get_use_underline (child);
   }
 
   return FALSE;

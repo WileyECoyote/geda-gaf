@@ -3,6 +3,10 @@
     * src/widgets/geda_menu.c: Replace g_cclosure_marshal_VOID__ENUM with
       geda_marshal_VOID__ENUM.
 
+    * src/widgets/geda_menu_item.c: Revise geda_menu_item_get_use_underline
+      to declare child as type GedaLabel instead of GtkWidget and remove cast
+      for argument to geda_label_get_use_underline.
+
 2018-01-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_font_dialog.c: Add function documentation for
