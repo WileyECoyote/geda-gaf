@@ -1,7 +1,8 @@
 2018-01-15 Wiley E. Hill <wileyhill@gmail.com>
 
-    * a/src/scheme/scheme_complex.c Remove redundant translation in
-      complex_set_x.
+    * a/src/scheme/scheme_complex.c Remove redundant translation and redundant
+      setting of w_bounds_valid_for in complex_set_x, this is set by functions
+      performing the tranlations.
 
 2018-01-13 Wiley E. Hill <wileyhill@gmail.com>
 
