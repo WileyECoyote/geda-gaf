@@ -384,7 +384,6 @@ confirm_close_dialog_set_property (GObject      *object,
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
   }
-
 }
 
 static void
@@ -404,7 +403,6 @@ confirm_close_dialog_get_property (GObject     *object,
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
   }
-
 }
 
 static GObject*
@@ -578,7 +576,6 @@ static void confirm_close_dialog_finalize (GObject *object)
   }
 
   G_OBJECT_CLASS (confirm_close_dialog_parent_class)->finalize (object);
-
 }
 
 /*!
@@ -630,7 +627,6 @@ confirm_close_dialog_init (GTypeInstance *instance, void *g_class)
   self->store_unsaved_pages = gtk_list_store_new (NUM_COLUMNS,
                                                   G_TYPE_BOOLEAN,  /* save? */
                                                   G_TYPE_POINTER); /* page */
-
 }
 
 /*! \brief Function to retrieve ConfirmCloseDialog's Type identifier.
