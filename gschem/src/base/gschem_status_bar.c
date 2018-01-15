@@ -179,8 +179,8 @@ static GtkWidget *create_coord_display_options_popup(GschemStatusBar *status_bar
 
     GtkWidget *popup_item = geda_menu_item_new_with_label (entry.text);
 
-    g_signal_connect (GTK_OBJECT(popup_item), "activate",
-                     (GCallback)coord_options_popup_clicked,
+    g_signal_connect (popup_item, "activate",
+                      G_CALLBACK(coord_options_popup_clicked),
                       UINT_TO_POINTER(entry.signal));
 
     GEDA_OBJECT_SET_DATA (popup_item, status_bar, "status-bar");
@@ -267,7 +267,7 @@ static GtkWidget *create_middle_button_options_popup(GschemStatusBar *status_bar
     GtkWidget *popup_item = geda_menu_item_new_with_label (entry.text);
 
     g_signal_connect (popup_item, "activate",
-                      (GCallback)status_options_popup_clicked,
+                      G_CALLBACK(status_options_popup_clicked),
                       (void*)(long)(entry.signal));
 
     GEDA_OBJECT_SET_DATA (popup_item, status_bar, "status-bar");
@@ -353,7 +353,7 @@ static GtkWidget *create_third_button_options_popup(GschemStatusBar *status_bar)
     GtkWidget *popup_item = geda_menu_item_new_with_label (entry.text);
 
     g_signal_connect(popup_item, "activate",
-                     (GCallback)status_options_popup_clicked,
+                     G_CALLBACK(status_options_popup_clicked),
                      (void*)(long)(entry.signal));
 
     GEDA_OBJECT_SET_DATA (popup_item, status_bar, "status-bar");
