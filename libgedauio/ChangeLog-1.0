@@ -1,3 +1,8 @@
+2018-01-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu.c: Replace g_cclosure_marshal_VOID__ENUM with
+      geda_marshal_VOID__ENUM.
+
 2018-01-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_font_dialog.c: Add function documentation for
