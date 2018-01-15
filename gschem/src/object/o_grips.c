@@ -1284,16 +1284,13 @@ fprintf(stderr, "After:  new_upper_x %d new_upper_y %d new_lower_x %d new_lower_
       modified = TRUE;
     }
     else {
-#if DEBUG
-fprintf(stderr, "Picture Not modified\n");
-#endif
       modified = FALSE;
     }
   }
 
+  GEDA_FREE (w_current->pixbuf_filename);
   GEDA_UNREF (w_current->current_pixbuf);
   w_current->current_pixbuf = NULL;
-  GEDA_FREE (w_current->pixbuf_filename);
   w_current->pixbuf_wh_ratio = 0;
 
   return modified;
