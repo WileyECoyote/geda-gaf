@@ -1,3 +1,8 @@
+2018-01-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * a/src/scheme/scheme_complex.c Remove redundant translation in
+      complex_set_x.
+
 2018-01-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_circle.c: Replace divide by 2 with shift right in

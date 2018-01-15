@@ -178,8 +178,6 @@ EDA_SCM_DEFINE (complex_set_x, "%set-complex!", 6, 0, 0,
 
   geda_object_translate (obj, x - obj->complex->x, y - obj->complex->y);
 
-  geda_object_translate (obj, x - obj->complex->x, y - obj->complex->y);
-
   obj->selectable = scm_is_false (locked_s);
 
   obj->w_bounds_valid_for = NULL; /* We need to do this explicitly... */
