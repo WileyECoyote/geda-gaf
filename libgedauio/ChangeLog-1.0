@@ -7,6 +7,8 @@
       to declare child as type GedaLabel instead of GtkWidget and remove cast
       for argument to geda_label_get_use_underline.
 
+    * src/widgets/geda_menu_shell.c: Implement GEDA_OBJECT_NOTIFY macro.
+
 2018-01-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_font_dialog.c: Add function documentation for

@@ -2151,7 +2151,7 @@ void geda_menu_shell_set_take_focus (GedaMenuShell *menu_shell, bool take_focus)
   if (priv->take_focus != take_focus) {
 
     priv->take_focus = take_focus;
-    g_object_notify ((GObject*)menu_shell, "take-focus");
+    GEDA_OBJECT_NOTIFY (menu_shell, "take-focus");
   }
 }
 
