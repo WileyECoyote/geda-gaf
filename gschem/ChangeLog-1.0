@@ -2,6 +2,9 @@
 
     * src/object/o_grips.c: Remove debug output.
 
+    * src/object/o_move.c: Remove redundant setting of w_bounds_valid_for,
+      this is set in libgeda by the functions performing the tranlations.
+
 2018-01-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Remove extra parentheses from HOT_ACTION
