@@ -1,3 +1,7 @@
+2018-01-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_item.c: Eliminate child in activatable_update_label.
+
 2018-01-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Replace g_cclosure_marshal_VOID__ENUM with

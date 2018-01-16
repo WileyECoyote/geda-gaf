@@ -1117,11 +1117,7 @@ geda_menu_item_activatable_interface_init (GtkActivatableIface *iface)
 static void
 activatable_update_label (GedaMenuItem *menu_item, GtkAction *action)
 {
-  GtkWidget *child;
-
-  child = geda_get_child_widget (menu_item);
-
-  if (GEDA_IS_LABEL (child)) {
+  if (GEDA_IS_LABEL (geda_get_child_widget (menu_item))) {
 
     const char *label;
 
