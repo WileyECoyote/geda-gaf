@@ -197,7 +197,7 @@ void i_command_router(char *command, GschemToplevel *w_current)
 
       gschem_task *task;
 
-      task = g_new( gschem_task, 1);
+      task = g_malloc(sizeof(gschem_task));
       task->func.F1 = (void*)command_struc[i].func;
       task->arg1 = command_struc[i].w_current;
       task->arg2 = NULL;
@@ -900,7 +900,7 @@ COMMAND (do_open) {
 
       gschem_task  *task;
 
-      task          = g_new(gschem_task, 1);
+      task          = g_malloc(sizeof(gschem_task));
       task->func.F2 = (void*)x_window_open_page;
       task->arg1    = command_struc[cmd_do_open].w_current;
       task->arg2    = filename;
@@ -2938,7 +2938,7 @@ COMMAND (do_page_revert_all)
 
         gschem_task  *task;
 
-        task          = g_new(gschem_task, 1);
+        task          = g_malloc(sizeof(gschem_task));
         task->func.F2 = (void*)x_window_open_page;
         task->arg1    = command_struc[cmd_do_page_revert_all].w_current;
         task->arg2    = filename;

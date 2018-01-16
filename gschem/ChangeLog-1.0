@@ -6,6 +6,9 @@
 
     * po/it.po: Update Italian translations.
 
+    * src/iface/i_command.c: Replace g_new with g_malloc for gschem_task
+      allocations.
+
     * src/x/x_compselect.c: Rename gtk_set_item_active to compselect_
       set_item_active.
 
