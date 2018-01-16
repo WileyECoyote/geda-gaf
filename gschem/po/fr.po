@@ -592,13 +592,14 @@ msgstr ""
 msgid "Processing Action"
 msgstr "Traitement de l'action"
 
+# Cannot
 #: gschem/src/iface/i_command.c:513
 msgid "Cannot"
-msgstr ""
+msgstr "Ne peux pas"
 
 #: gschem/src/iface/i_command.c:513
 msgid "while inside an action!\n"
-msgstr ""
+msgstr "alors que dans une action!\n"
 
 #: gschem/src/iface/i_command.c:768 gschem/src/iface/i_command.c:2795
 msgid "New page created"
@@ -617,37 +618,43 @@ msgstr "Échec de la sauvegarde de toutes les pages"
 msgid "Saved All"
 msgstr "Toutes les pages enregistrées"
 
+# Error encountered, Save Failed
 #: gschem/src/iface/i_command.c:1024
 msgid "Error encountered, Save Failed"
-msgstr ""
+msgstr "Error encountered, Save Failed"
 
 #: gschem/src/iface/i_command.c:1094 gschem/src/x/x_image.c:490
 msgid "Write Image"
 msgstr "Tracer l'image"
 
+# Write PDF
 #: gschem/src/iface/i_command.c:1116
 msgid "Write PDF"
-msgstr ""
+msgstr "Écrire PDF"
 
+# Canceled close all
 #: gschem/src/iface/i_command.c:1212
 msgid "Canceled close all\n"
-msgstr ""
+msgstr "Annulé fermer tout\n"
 
 #: gschem/src/iface/i_command.c:1221 gschem/src/iface/i_sessions.c:193
 msgid "Closing all documents\n"
 msgstr "Fermer la page\n"
 
+# starting shut-down
 #: gschem/src/iface/i_command.c:1244
 msgid "starting shut-down"
-msgstr ""
+msgstr "démarrage de l'arrêt"
 
+# Symbol is not embedded, export anyway?
 #: gschem/src/iface/i_command.c:1258
 msgid "Symbol is not embedded, export anyway?"
-msgstr ""
+msgstr "Le symbole n'est pas intégré, exporter quand même?"
 
+# Picture is not embedded, export anyway?
 #: gschem/src/iface/i_command.c:1282
 msgid "Picture is not embedded, export anyway?"
-msgstr ""
+msgstr "L'image n'est pas intégrée, exporter quand même?"
 
 #: gschem/src/iface/i_command.c:1429
 msgid "Empty buffer"
@@ -657,17 +664,19 @@ msgstr "Tampon vide"
 msgid "Offset Mode"
 msgstr "Mode Piste"
 
+# Specify offset distance
 #: gschem/src/iface/i_command.c:1692
 msgid "Specify offset distance:"
-msgstr ""
+msgstr "Spécifiez la distance de décalage:"
 
+# Zoom Magnification
 #: gschem/src/iface/i_command.c:2284
 msgid "Zoom Magnification"
-msgstr "/Zoom avant"
+msgstr "Zoom Grossissement"
 
 #: gschem/src/iface/i_command.c:2284
 msgid "Specify new zoom:"
-msgstr ""
+msgstr "Specify new zoom:"
 
 # error
 #: gschem/src/iface/i_command.c:2328
@@ -678,9 +687,10 @@ msgstr "erreur"
 msgid "No component selected\n"
 msgstr "Aucun composant sélectionné\n"
 
+# Confirm revert ALL documents
 #: gschem/src/iface/i_command.c:2881
 msgid "Confirm revert ALL documents"
-msgstr ""
+msgstr "Confirmer revenir à TOUS les documents"
 
 # Search for source
 #: gschem/src/iface/i_command.c:3063
@@ -691,9 +701,10 @@ msgstr "Recherche de source"
 msgid "Failed to descend into"
 msgstr "Impossible de remplacer les image"
 
+# Hierarchy Error
 #: gschem/src/iface/i_command.c:3106
 msgid "Hierarchy Error"
-msgstr "Hié_rarchie"
+msgstr "Erreur de hiérarchie"
 
 # Search for symbol
 #: gschem/src/iface/i_command.c:3183
