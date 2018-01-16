@@ -1,5 +1,8 @@
 2018-01-16 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/dialogs/geda_image_chooser.c: Replace g_cclosure_marshal_VOID__ENUM
+      with geda_marshal_VOID__ENUM.
+
     * src/widgets/geda_menu_item.c: Eliminate child in activatable_update_label.
 
 2018-01-15 Wiley E. Hill <wileyhill@gmail.com>
