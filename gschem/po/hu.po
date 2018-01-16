@@ -658,9 +658,10 @@ msgstr "forrás keresése"
 msgid "Failed to descend into"
 msgstr "Nem sikerült leereszkedni"
 
+# Hierarchy Error
 #: gschem/src/iface/i_command.c:3106
 msgid "Hierarchy Error"
-msgstr "Hierarchia"
+msgstr "Hierarchia hiba"
 
 # Find symbol
 #: gschem/src/iface/i_command.c:3183
@@ -1257,22 +1258,20 @@ msgstr "Undo hiba"
 msgid "Undo failed"
 msgstr "Undo sikertelen"
 
-# Find resources
+# Search for
 #: gschem/src/x/x_autonumber.c:117
-#, fuzzy
 msgid "Search for:"
-msgstr "forrás keresése"
+msgstr "Cercare:"
 
-# Set the sequence number
+# Set the search criteria
 #: gschem/src/x/x_autonumber.c:117
-#, fuzzy
 msgid "Set the search criteria"
-msgstr "Állítsa be a sorozatszámot"
+msgstr "Állítsa be a keresési feltételeket"
 
+# Autonumber text in
 #: gschem/src/x/x_autonumber.c:118
-#, fuzzy
 msgid "Autonumber text in:"
-msgstr "Automatikus számozás"
+msgstr "Autonumber szöveg in:"
 
 #: gschem/src/x/x_autonumber.c:118
 msgid "Set the context of the search scope"
@@ -1282,26 +1281,24 @@ msgstr ""
 msgid "Skip numbers found in:"
 msgstr ""
 
-# Set the active slot number
+# Set where NOT to look for numbers
 #: gschem/src/x/x_autonumber.c:119
-#, fuzzy
 msgid "Set where NOT to look for numbers"
-msgstr "Állítsa be az aktív kártyahely számát"
+msgstr "Állítsa be, ahol NEM keres számokat"
 
 #: gschem/src/x/x_autonumber.c:120
 msgid "Sort order:"
 msgstr ""
 
+# Select the orientation of the Scan method
 #: gschem/src/x/x_autonumber.c:120
-#, fuzzy
 msgid "Select the orientation of the Scan method"
-msgstr "Válaszd ki a menteni kívánt rajzot:"
+msgstr "Válassza ki a Szkennelési mód tájolását"
 
-# Slot number
+# Starting number
 #: gschem/src/x/x_autonumber.c:121
-#, fuzzy
 msgid "Starting number:"
-msgstr "slot száma:"
+msgstr "Kezdőszám:"
 
 #: gschem/src/x/x_autonumber.c:121
 msgid "Set the starting number for the current scan"
@@ -1371,8 +1368,8 @@ msgstr "Jobbról balra"
 msgid "File order"
 msgstr "Fáljsorrend"
 
+# Filter
 #: gschem/src/x/x_autonumber.c:1637
-#, fuzzy
 msgid "Filter:"
 msgstr "Szűrő:"
 
@@ -1412,14 +1409,15 @@ msgstr "Hiba történt beillesztése vágólap adataihoz"
 msgid "Clipboard Insertion Failed"
 msgstr ""
 
+# Open
 #: gschem/src/x/x_compselect.c:125 gschem/src/x/x_menus.c:2036
 msgid "Open"
-msgstr "Megnyitás..."
+msgstr "Nyisd ki"
 
+# Open all
 #: gschem/src/x/x_compselect.c:126
-#, fuzzy
 msgid "Open all"
-msgstr "Fájl megnyitása..."
+msgstr "Nyissa meg az összeset"
 
 #: gschem/src/x/x_compselect.c:127 gschem/src/x/x_menus.c:149
 msgid "Close"
@@ -1469,10 +1467,10 @@ msgstr ""
 msgid "Tooltip settings"
 msgstr ""
 
+# Enable tooltips
 #: gschem/src/x/x_compselect.c:144
-#, fuzzy
 msgid "Enable tooltips"
-msgstr "Nem lehet írni"
+msgstr "Az eszköztippek engedélyezése"
 
 #: gschem/src/x/x_compselect.c:145
 msgid "Disable tooltips"
@@ -2371,14 +2369,15 @@ msgstr ""
 msgid "Add Attribute"
 msgstr "Attribútum hozzáadása"
 
+# Edit Attribute
 #: gschem/src/x/x_edit_attrib.c:412
-#, fuzzy
 msgid "Edit Attribute"
-msgstr "Attribútumok szerkesztése"
+msgstr "Attribútum szerkesztése"
 
+# Select the name of the attribute to add
 #: gschem/src/x/x_edit_attrib.c:414
 msgid "Select the name of the attribute to add"
-msgstr "Válaszd ki a menteni kívánt rajzot:"
+msgstr "Válassza ki a hozzáadandó attribútum nevét"
 
 #: gschem/src/x/x_edit_attrib.c:415
 msgid "Select the name of the attribute to edit"
