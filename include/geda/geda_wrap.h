@@ -72,7 +72,7 @@
     g_object_set_data ((GObject*)object, key, data);
 
 #define GEDA_SIGNAL_CONNECT(object, signal, callback, data) \
-    g_signal_connect(object, signal, (GCallback)callback, data);
+    g_signal_connect(object, signal, G_CALLBACK(callback), data);
 
 #define GEDA_OBJECT_NOTIFY(object, signal) \
     g_object_notify ((GObject*)object, signal);
