@@ -6,6 +6,9 @@
 
     * po/it.po: Update Italian translations.
 
+    * src/x/x_compselect.c: Rename gtk_set_item_active to compselect_
+      set_item_active.
+
 2018-01-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_grips.c: Remove debug output.

@@ -1218,7 +1218,7 @@ compselect_cb_switch_toggled(GtkWidget *widget, GschemDialog *Dialog)
  *  otherwise the toggle widget is set without blocking the signal.
  */
 static void
-gtk_set_item_active(GtkWidget *widget, bool state) {
+compselect_set_item_active(GtkWidget *widget, bool state) {
 
   if (GTK_IS_WIDGET(widget)) {
 
@@ -1273,7 +1273,7 @@ compselect_toggle_style(GedaCheckMenuItem *button, Compselect *compselect)
      * skipped, which is "None", which was activated by the user */
     for (iter = compselect->style_menu_widgets, iter = g_slist_next (iter);
          iter != NULL; iter = g_slist_next (iter)) {
-      gtk_set_item_active(iter->data, FALSE);
+      compselect_set_item_active(iter->data, FALSE);
     }
     compselect->style_flag = COMPSELECT_STYLE_NONE;  /* Be Zero */
   }
@@ -1282,11 +1282,11 @@ compselect_toggle_style(GedaCheckMenuItem *button, Compselect *compselect)
     if (index == 9 && state) { /* The "All" box was pressed check */
 
       /* Un-check the check "none" box */
-      gtk_set_item_active(compselect->style_menu_widgets->data, FALSE);
+      compselect_set_item_active(compselect->style_menu_widgets->data, FALSE);
       /* Check all the other boxes except NONE*/
       for (iter = compselect->style_menu_widgets,
         iter = g_slist_next (iter); iter != NULL; iter = g_slist_next (iter)) {
-        gtk_set_item_active(iter->data, TRUE);
+        compselect_set_item_active(iter->data, TRUE);
       }
       compselect->style_flag = COMPSELECT_STYLE_ALL; /* Be 255 */
     }
@@ -1310,11 +1310,11 @@ compselect_toggle_style(GedaCheckMenuItem *button, Compselect *compselect)
        /* Set the state of the All check box */
        state = (compselect->style_flag == COMPSELECT_STYLE_ALL);
        all_butt = g_slist_nth_data(compselect->style_menu_widgets, 9);
-       gtk_set_item_active(all_butt, state);
+       compselect_set_item_active(all_butt, state);
 
        /* Set the state of the None check box */
        state = (compselect->style_flag == COMPSELECT_STYLE_NONE);
-       gtk_set_item_active(compselect->style_menu_widgets->data, (state));
+       compselect_set_item_active(compselect->style_menu_widgets->data, (state));
     }
   }
 
@@ -2933,7 +2933,7 @@ compselect_create_styles_menu (Compselect *ThisDialog)
   gtk_widget_set_tooltip_text(widget_list->data, _("Uncheck all styles"));
 
   if (MASK) /* If any value other than 0 then uncheck "None" */
-    gtk_set_item_active(widget_list->data, FALSE);
+    compselect_set_item_active(widget_list->data, FALSE);
 
   ThisDialog->style_menu_widgets = widget_list;
 
@@ -3097,11 +3097,11 @@ compselect_geometry_restore (GschemDialog *dialog,
     menuitem = g_slist_nth_data(compselect->style_menu_widgets ,i);
     state    = ((MASK & types[i]) == types[i]);
 
-    gtk_set_item_active(menuitem, state);
+    compselect_set_item_active(menuitem, state);
   }
 
   if (MASK) /* If any value other than 0 then uncheck "None" */
-    gtk_set_item_active(compselect->style_menu_widgets->data, FALSE);
+    compselect_set_item_active(compselect->style_menu_widgets->data, FALSE);
 
 }
 
