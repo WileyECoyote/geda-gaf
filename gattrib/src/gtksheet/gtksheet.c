@@ -1546,7 +1546,7 @@ static GtkSheetRange *gtk_sheet_range_copy(const GtkSheetRange *range)
 
     g_return_val_if_fail(range != NULL, NULL);
 
-    new_range = g_new(GtkSheetRange, 1);
+    new_range = g_malloc(sizeof(GtkSheetRange));
 
     *new_range = *range;
 
