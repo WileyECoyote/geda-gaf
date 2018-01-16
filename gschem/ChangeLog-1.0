@@ -4,6 +4,8 @@
 
     * po/hu.po: Update Hungarian translations.
 
+    * po/it.po: Update Italian translations.
+
 2018-01-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_grips.c: Remove debug output.

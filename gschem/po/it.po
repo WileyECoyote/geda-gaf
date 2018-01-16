@@ -722,9 +722,10 @@ msgstr "Ricerca del sorgente"
 msgid "Failed to descend into"
 msgstr "Impossibile scendere in"
 
+# Hierarchy Error
 #: gschem/src/iface/i_command.c:3106
 msgid "Hierarchy Error"
-msgstr "Ge_rarchia"
+msgstr "Errore gerarchia"
 
 # symbol search
 #: gschem/src/iface/i_command.c:3183
@@ -1319,52 +1320,48 @@ msgstr "Visibilità"
 msgid "Undo failed"
 msgstr ""
 
-# Searching for source
+# Searching for
 #: gschem/src/x/x_autonumber.c:117
-#, fuzzy
 msgid "Search for:"
-msgstr "Ricerca del sorgente"
+msgstr "Cercare:"
 
-# Set the sequence number
+# Set the search criteria
 #: gschem/src/x/x_autonumber.c:117
-#, fuzzy
 msgid "Set the search criteria"
-msgstr "Impostare il numero di sequenza"
+msgstr "Imposta i criteri di ricerca"
 
+# Autonumber text in
 #: gschem/src/x/x_autonumber.c:118
-#, fuzzy
 msgid "Autonumber text in:"
-msgstr "Testo di autonumerazione"
+msgstr "Testo numerico automatico in:"
 
+# Set the context of the search scope
 #: gschem/src/x/x_autonumber.c:118
-#, fuzzy
 msgid "Set the context of the search scope"
-msgstr "Selezionare il nome dell'attributo da modificare"
+msgstr "Imposta il contesto dell'ambito di ricerca"
 
 #: gschem/src/x/x_autonumber.c:119
 msgid "Skip numbers found in:"
 msgstr ""
 
-# Set the active slot number
+# Set where NOT to look for numbers
 #: gschem/src/x/x_autonumber.c:119
-#, fuzzy
 msgid "Set where NOT to look for numbers"
-msgstr "Impostare il numero di slot attivo"
+msgstr "Impostare dove NON cercare i numeri"
 
 #: gschem/src/x/x_autonumber.c:120
 msgid "Sort order:"
 msgstr ""
 
+# Select the orientation of the Scan method
 #: gschem/src/x/x_autonumber.c:120
-#, fuzzy
 msgid "Select the orientation of the Scan method"
-msgstr "Selezionare il nome dell'attributo da aggiungere"
+msgstr "Selezionare l'orientamento del metodo di scansione"
 
-# Slot number
+# Starting number
 #: gschem/src/x/x_autonumber.c:121
-#, fuzzy
 msgid "Starting number:"
-msgstr "numero slot:"
+msgstr "Numero iniziale:"
 
 #: gschem/src/x/x_autonumber.c:121
 msgid "Set the starting number for the current scan"
@@ -1439,7 +1436,6 @@ msgid "File order"
 msgstr "Sequenza dei file"
 
 #: gschem/src/x/x_autonumber.c:1637
-#, fuzzy
 msgid "Filter:"
 msgstr "Filtro:"
 
@@ -1483,10 +1479,10 @@ msgstr "Inserimento appunti fallito"
 msgid "Open"
 msgstr "Apri..."
 
+# Open all
 #: gschem/src/x/x_compselect.c:126
-#, fuzzy
 msgid "Open all"
-msgstr "Apri file"
+msgstr "Apri tutto"
 
 #: gschem/src/x/x_compselect.c:127 gschem/src/x/x_menus.c:149
 msgid "Close"
@@ -1532,15 +1528,15 @@ msgstr ""
 msgid "Set styles ooptions"
 msgstr ""
 
+# Tooltip settings
 #: gschem/src/x/x_compselect.c:143
-#, fuzzy
 msgid "Tooltip settings"
-msgstr "Salvataggio delle impostazioni della barra degli strumenti..."
+msgstr "Impostazioni tooltip"
 
+# Enable tooltips
 #: gschem/src/x/x_compselect.c:144
-#, fuzzy
 msgid "Enable tooltips"
-msgstr "Impossibile scrivere"
+msgstr "Abilita i suggerimenti"
 
 #: gschem/src/x/x_compselect.c:145
 msgid "Disable tooltips"
@@ -2443,10 +2439,10 @@ msgstr ""
 msgid "Add Attribute"
 msgstr "Aggiungi attributo"
 
+# Edit Attribute
 #: gschem/src/x/x_edit_attrib.c:412
-#, fuzzy
 msgid "Edit Attribute"
-msgstr "Modifica attributi"
+msgstr "Modifica attributo"
 
 #: gschem/src/x/x_edit_attrib.c:414
 msgid "Select the name of the attribute to add"
