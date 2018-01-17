@@ -2027,7 +2027,7 @@ geda_keyfile_get_locale_string (GedaKeyFile *key_file,
 
 #else
 
-    languages = (char**)g_get_language_names ();
+  languages = (char**)g_get_language_names ();
 
 #endif
 
