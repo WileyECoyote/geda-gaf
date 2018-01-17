@@ -1,6 +1,10 @@
+2018-01-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/file/f_get.c: Replace g_new with g_malloc for allocation of 1 byte.
+
 2018-01-15 Wiley E. Hill <wileyhill@gmail.com>
 
-    * a/src/scheme/scheme_complex.c Remove redundant translation and redundant
+    * a/src/scheme/scheme_complex.c: Remove redundant translation and redundant
       setting of w_bounds_valid_for in complex_set_x, this is set by functions
       performing the tranlations.
 

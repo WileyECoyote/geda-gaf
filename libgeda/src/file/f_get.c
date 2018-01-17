@@ -259,7 +259,7 @@ static bool get_contents_stdio (const char *filename, FILE *f, char **contents,
   }
 
   if (total_allocated == 0) {
-    str = g_new (char, 1);
+    str = g_malloc (sizeof(char));
     total_bytes = 0;
   }
 
