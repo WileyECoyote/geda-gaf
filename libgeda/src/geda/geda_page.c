@@ -273,8 +273,8 @@ static void geda_page_dispose(GObject *object)
 /*! \brief Geda Page Object Finalization Function
  *  \par Function Description
  *   This function removes or releases all internal references
- *   and releases the memory allocated to the given Page
- *   data structure and then chain up to the parent's finalize
+ *   and releases the memory allocated to the given Page data
+ *   structure and then chain up to the parent's finalize
  *   handler.
  */
 static void geda_page_finalize(GObject *object)
@@ -679,7 +679,8 @@ GList *geda_page_get_place_list (Page *page)
  * \brief Set the Place List in the PAge
  * \par Function Description
  *  This function assigns the list given by \a object_list to
- *  the page->place_list.
+ *  the page->place_list. This function does not release the
+ *  current list.
  */
 void geda_page_set_place_list (Page *page, GList *object_list)
 {
