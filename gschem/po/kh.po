@@ -1346,57 +1346,53 @@ msgstr "minothveuvinh kamhos"
 msgid "Undo failed"
 msgstr "minothveuvinh ban breachy"
 
+# Search for
 #: gschem/src/x/x_autonumber.c:117
-#, fuzzy
 msgid "Search for:"
-msgstr "karosvengork samreab braphp"
+msgstr "svengorok:"
 
-# Set the sequence number
+# Set the search criteria
 #: gschem/src/x/x_autonumber.c:117
-#, fuzzy
 msgid "Set the search criteria"
-msgstr "kamnt lekh lomdab"
+msgstr "kamnt lokkhan vinichchhy svengorok"
 
+# Autonumber text in
 #: gschem/src/x/x_autonumber.c:118
-#, fuzzy
 msgid "Autonumber text in:"
-msgstr "atthabt lekh svyobravotte"
+msgstr "aksaar svyobravotte now:"
 
-# Sets the rotation of the arc.
+# Set the context of the search scope
 #: gschem/src/x/x_autonumber.c:118
-#, fuzzy
 msgid "Set the context of the search scope"
-msgstr "kamnt kar bangvil nei thnou nih."
+msgstr "kamnt bribt nei tomham svengorok"
 
 #: gschem/src/x/x_autonumber.c:119
 msgid "Skip numbers found in:"
 msgstr ""
 
-# Set the active slot number
+# Set where NOT to look for numbers
 #: gschem/src/x/x_autonumber.c:119
-#, fuzzy
 msgid "Set where NOT to look for numbers"
-msgstr "kamnt lekh ronth daot sakam"
+msgstr "kamnt kanleng del min rk meul lekh"
 
 #: gschem/src/x/x_autonumber.c:120
 msgid "Sort order:"
 msgstr ""
 
-# Sets the rotation of the arc.
+# Select the orientation of the Scan method
 #: gschem/src/x/x_autonumber.c:120
-#, fuzzy
 msgid "Select the orientation of the Scan method"
-msgstr "kamnt kar bangvil nei thnou nih."
+msgstr "chreusa tisa nei vithi vipheak"
 
+# Starting number
 #: gschem/src/x/x_autonumber.c:121
-#, fuzzy
 msgid "Starting number:"
-msgstr "ron​ lekh​:"
+msgstr "chabphtaem lekh​:"
 
+# Set the starting number for the current scan
 #: gschem/src/x/x_autonumber.c:121
-#, fuzzy
 msgid "Set the starting number for the current scan"
-msgstr "kamnt khsae aksaar samreab atthabt now leu rbar sthanphap"
+msgstr "kamnt lekh chabphtaem samreab sken bachchobban"
 
 #: gschem/src/x/x_autonumber.c:122
 msgid "    Remove numbers:"
@@ -1468,10 +1464,10 @@ msgstr "pi stam tow chhveng"
 msgid "File order"
 msgstr "kolbamnng eksar"
 
+# Filter
 #: gschem/src/x/x_autonumber.c:1637
-#, fuzzy
 msgid "Filter:"
-msgstr "<b>tamrong:</b>"
+msgstr "tamrong:"
 
 #: gschem/src/x/x_autonumber.c:1679
 msgid "Selected objects"
@@ -1515,10 +1511,10 @@ msgstr "ben th kta r tambiet khtasa breachy"
 msgid "Open"
 msgstr "..."
 
+# Open all
 #: gschem/src/x/x_compselect.c:126
-#, fuzzy
 msgid "Open all"
-msgstr "..."
+msgstr "baek teangoasa"
 
 #: gschem/src/x/x_compselect.c:127 gschem/src/x/x_menus.c:149
 msgid "Close"
@@ -1533,10 +1529,10 @@ msgstr ""
 msgid "Rescan"
 msgstr "sken laengvinh"
 
+# Styles
 #: gschem/src/x/x_compselect.c:130
-#, fuzzy
 msgid "Styles"
-msgstr "rochneabtm 1"
+msgstr "rochneabt"
 
 #: gschem/src/x/x_compselect.c:131
 msgid "Tooltips"
