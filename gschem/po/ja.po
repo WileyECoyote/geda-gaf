@@ -698,9 +698,10 @@ msgstr "ソースの検索"
 msgid "Failed to descend into"
 msgstr "降下できなかった"
 
+# Hierarchy Error
 #: gschem/src/iface/i_command.c:3106
 msgid "Hierarchy Error"
-msgstr "階層"
+msgstr "階層エラー"
 
 # Looking up symbols
 #: gschem/src/iface/i_command.c:3183
@@ -1290,22 +1291,20 @@ msgstr ""
 msgid "Undo failed"
 msgstr "取り消しに失敗しました"
 
-# Search Source
+# Search for:
 #: gschem/src/x/x_autonumber.c:117
-#, fuzzy
 msgid "Search for:"
-msgstr "ソースの検索"
+msgstr "検索する："
 
-# Set the sequence number
+# Set the search criteria
 #: gschem/src/x/x_autonumber.c:117
-#, fuzzy
 msgid "Set the search criteria"
-msgstr "シーケンス番号を設定する"
+msgstr "検索条件を設定する"
 
+# Autonumber text in:
 #: gschem/src/x/x_autonumber.c:118
-#, fuzzy
 msgid "Autonumber text in:"
-msgstr "オートナンバーテキスト"
+msgstr "オートナンバーのテキスト："
 
 #: gschem/src/x/x_autonumber.c:118
 msgid "Set the context of the search scope"
@@ -1315,26 +1314,24 @@ msgstr ""
 msgid "Skip numbers found in:"
 msgstr ""
 
-# Set the active slot number
+# Set where NOT to look for numbers
 #: gschem/src/x/x_autonumber.c:119
-#, fuzzy
 msgid "Set where NOT to look for numbers"
-msgstr "アクティブなスロット番号を設定する"
+msgstr "数字を検索しない場所を設定する"
 
 #: gschem/src/x/x_autonumber.c:120
 msgid "Sort order:"
 msgstr ""
 
+# Select the orientation of the Scan method
 #: gschem/src/x/x_autonumber.c:120
-#, fuzzy
 msgid "Select the orientation of the Scan method"
-msgstr "追加する属性の名前を選択します。"
+msgstr "スキャン方法の向きを選択する"
 
-# Slot number
+# Starting number => Start number
 #: gschem/src/x/x_autonumber.c:121
-#, fuzzy
 msgid "Starting number:"
-msgstr "スロット番号編集:"
+msgstr "開始番号:"
 
 #: gschem/src/x/x_autonumber.c:121
 msgid "Set the starting number for the current scan"
@@ -1448,10 +1445,10 @@ msgstr ""
 msgid "Open"
 msgstr "開く..."
 
+# Open all
 #: gschem/src/x/x_compselect.c:126
-#, fuzzy
 msgid "Open all"
-msgstr "ファイルを開く..."
+msgstr "すべて開く"
 
 #: gschem/src/x/x_compselect.c:127 gschem/src/x/x_menus.c:149
 msgid "Close"
@@ -1501,10 +1498,10 @@ msgstr ""
 msgid "Tooltip settings"
 msgstr ""
 
+# Enable tooltips
 #: gschem/src/x/x_compselect.c:144
-#, fuzzy
 msgid "Enable tooltips"
-msgstr "書き込むことができません"
+msgstr "ツールチップを有効にする"
 
 #: gschem/src/x/x_compselect.c:145
 msgid "Disable tooltips"
@@ -2396,10 +2393,10 @@ msgstr ""
 msgid "Add Attribute"
 msgstr ""
 
+# Edit Attribute
 #: gschem/src/x/x_edit_attrib.c:412
-#, fuzzy
 msgid "Edit Attribute"
-msgstr "アトリビュート編集"
+msgstr "属性の編集"
 
 #: gschem/src/x/x_edit_attrib.c:414
 msgid "Select the name of the attribute to add"
@@ -2536,22 +2533,21 @@ msgid "_Comment:"
 msgstr "部品 (C):"
 
 #: gschem/src/x/x_edit_cprop.c:1346
-#, fuzzy
 msgid "Options:"
-msgstr "オプション"
+msgstr "オプション："
 
+# Embedded
 #: gschem/src/x/x_edit_cprop.c:1381
-#, fuzzy
 msgid "_Embedded"
-msgstr "組み込み"
+msgstr "埋め込み"
 
+# Locked
 #: gschem/src/x/x_edit_cprop.c:1397
-#, fuzzy
 msgid "_Locked"
-msgstr "ロック"
+msgstr "ロックされた"
 
+# Mirrored => flip
 #: gschem/src/x/x_edit_cprop.c:1415
-#, fuzzy
 msgid "_Mirrored"
 msgstr "反転"
 
