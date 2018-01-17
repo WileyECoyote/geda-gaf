@@ -402,7 +402,7 @@ GedaObject *geda_path_object_new_from_polygon (GArray *points, int color)
   path->num_sections     = points->len;
   path->num_sections_max = path->num_sections + 1;
 
-  path->sections = g_new (PATH_SECTION, path->num_sections);
+  path->sections = g_malloc (sizeof(PATH_SECTION) * path->num_sections);
 
   point = g_array_index (points, GedaPoint, 0);
 
@@ -457,7 +457,7 @@ GedaObject *geda_path_object_new_take_path (int color, GedaPath *path_data)
   path->num_sections     = path_data->num_sections;
   path->num_sections_max = path_data->num_sections_max;
 
-  path->sections = g_new (PATH_SECTION, path->num_sections_max);
+  path->sections = g_malloc (sizeof(PATH_SECTION) * path->num_sections_max);
 
   path->sections->code   = path_data->sections->code;
   path->sections->x1     = path_data->sections->x1;

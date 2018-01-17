@@ -2,6 +2,9 @@
 
     * src/file/f_get.c: Replace g_new with g_malloc for allocation of 1 byte.
 
+    * src/object/o_path_object.c: Use g_malloc to allocate PATH_SECTION instead
+      of g_new.
+
     * src/struct/s_page.c: Use geda_list_unref instead of GEDA_UNREF to
       release the selection_list in geda_struct_page_delete.
 
