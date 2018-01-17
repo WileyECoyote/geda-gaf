@@ -2,6 +2,9 @@
 
     * src/file/f_get.c: Replace g_new with g_malloc for allocation of 1 byte.
 
+    * src/struct/s_page.c: Use geda_list_unref instead of GEDA_UNREF to
+      release the selection_list in geda_struct_page_delete.
+
 2018-01-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * a/src/scheme/scheme_complex.c: Remove redundant translation and redundant
