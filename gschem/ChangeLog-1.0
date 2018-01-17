@@ -7,6 +7,9 @@
     * src/guile/g_hook.c: Replace g_new with g_malloc for allocation
       of IdleHookData.
 
+    * src/x/x_clipboard.c: Replace g_new with g_malloc for allocation
+      of query_usable.
+
 2018-01-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/fr.po: Update French translations.
