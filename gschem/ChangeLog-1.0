@@ -4,6 +4,9 @@
 
     * po/kh.po: Update Khmer translations.
 
+    * src/guile/g_hook.c: Replace g_new with g_malloc for allocation
+      of IdleHookData.
+
 2018-01-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/fr.po: Update French translations.

@@ -320,7 +320,7 @@ g_hook_get_new_capsule(GschemToplevel *w_current, Hooker hook)
 {
   IdleHookData *capsule;
 
-  capsule            = g_new(IdleHookData, 1);
+  capsule            = g_malloc(sizeof(IdleHookData));
   capsule->w_current = w_current;
   capsule->hook      = hook;
 
