@@ -386,6 +386,7 @@ geda_struct_page_delete (GedaToplevel *toplevel, Page *page, int previous)
 
     /* Free the selection list */
     geda_list_unref (page->selection_list);
+    page->selection_list = NULL;
 
     /* then delete objects of page */
     geda_struct_page_delete_objects (page);

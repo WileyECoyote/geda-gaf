@@ -1,3 +1,8 @@
+2018-01-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/struct/s_page.c: Set the selection list to NULL after unreferencing
+      in geda_struct_page_delete.
+
 2018-01-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_get.c: Replace g_new with g_malloc for allocation of 1 byte.
