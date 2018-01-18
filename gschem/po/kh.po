@@ -1554,31 +1554,29 @@ msgstr ""
 msgid "Refresh this view"
 msgstr ""
 
+# Rescan the libraries
 #: gschem/src/x/x_compselect.c:141
-#, fuzzy
 msgid "Rescan the libraries"
-msgstr "bannaly sameasapheak sken laengvinh"
+msgstr "sken bannaly laengvinh"
 
+# Set styles options
 #: gschem/src/x/x_compselect.c:142
-#, fuzzy
-msgid "Set styles ooptions"
-msgstr "kamnt tamrong del mean steil beb"
+msgid "Set styles options"
+msgstr "kamnt rochneabtm chomreus"
 
 #: gschem/src/x/x_compselect.c:143
 msgid "Tooltip settings"
 msgstr ""
 
-# Enabling menu tooltips
+# Enable tooltips
 #: gschem/src/x/x_compselect.c:144
-#, fuzzy
 msgid "Enable tooltips"
-msgstr "baek ptrmean chomnuoy meunouy\n"
+msgstr "anounhnhat ptrmean chomnuoy"
 
-# Disabling menu tooltips
+# Disable tooltips
 #: gschem/src/x/x_compselect.c:145
-#, fuzzy
 msgid "Disable tooltips"
-msgstr "bet ptrmean chomnuoy meunouy\n"
+msgstr "bet ptrmean chomnuoy"
 
 #: gschem/src/x/x_compselect.c:1255
 msgid "Default is to reference the component"
@@ -2434,17 +2432,15 @@ msgstr ""
 msgid "Read only y bounds displacement of selected object"
 msgstr ""
 
-# Spinner with an entry for the number of slots
+# Spinner entry number of rows to create
 #: gschem/src/x/x_edit_array.c:1079
-#, fuzzy
 msgid "Spinner entry number of rows to create"
-msgstr "bradeab bangvil cheamuoy theato samreab chamnuon nei ron"
+msgstr "bangkeun chamnuon theato chuordek samreab bangkeut"
 
-# Spinner with an entry for the number of slots
+# Spinner entry number of columns to create
 #: gschem/src/x/x_edit_array.c:1086
-#, fuzzy
 msgid "Spinner entry number of columns to create"
-msgstr "bradeab bangvil cheamuoy theato samreab chamnuon nei ron"
+msgstr "bangkeun lekh t t pheak nei chuorochhr daembi bangkeut"
 
 #: gschem/src/x/x_edit_array.c:1093
 msgid "Entry for array horizontal pitch"
@@ -2501,9 +2497,8 @@ msgid "Add Attribute"
 msgstr ""
 
 #: gschem/src/x/x_edit_attrib.c:412
-#, fuzzy
 msgid "Edit Attribute"
-msgstr "<b>kesamruol kounalokkhan</b>"
+msgstr "kesamruol kounalokkhan"
 
 #: gschem/src/x/x_edit_attrib.c:414
 msgid "Select the name of the attribute to add"
@@ -2640,25 +2635,25 @@ msgstr "eksar:"
 msgid "_Comment:"
 msgstr "sechaktei athibbeay:"
 
+# Options
 #: gschem/src/x/x_edit_cprop.c:1346
-#, fuzzy
 msgid "Options:"
-msgstr "chomreus"
+msgstr "chomreus:"
 
+# Embedded
 #: gschem/src/x/x_edit_cprop.c:1381
-#, fuzzy
 msgid "_Embedded"
-msgstr "banhchoul"
+msgstr "ban bangkob"
 
+# Locked
 #: gschem/src/x/x_edit_cprop.c:1397
-#, fuzzy
 msgid "_Locked"
-msgstr "chaksao"
+msgstr "ban chaksao"
 
+# Mirrored
 #: gschem/src/x/x_edit_cprop.c:1415
-#, fuzzy
 msgid "_Mirrored"
-msgstr "kanhchok"
+msgstr "chhlohbanhcheang"
 
 #: gschem/src/x/x_edit_cprop.c:1439
 msgid "_Electrical:"
