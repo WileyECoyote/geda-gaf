@@ -267,6 +267,17 @@ static void geda_page_dispose(GObject *object)
   }
   page->weak_refs = NULL;
 
+  if (page->place_list) {
+    g_list_free(page->place_list);
+    page->place_list = NULL;
+  }
+
+  if (page->selection_list) {
+    geda_list_remove_all(page->selection_list);
+    geda_list_unref(page->selection_list);
+    page->selection_list = NULL;
+  }
+
   G_OBJECT_CLASS(geda_page_parent_class)->dispose(object);
 }
 

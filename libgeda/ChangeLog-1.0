@@ -1,5 +1,8 @@
 2018-01-18 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_page.c: Free the place list and unreference the selection
+      list in geda_page_dispose if the pointer are not already NULL.
+
     * src/struct/s_page.c: Set the selection list to NULL after unreferencing
       in geda_struct_page_delete.
 
