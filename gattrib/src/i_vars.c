@@ -34,15 +34,16 @@
 
 /*------------------------------------------------------------------*/
 /*
- * Define the vars we'll use later
+ * Define the vars used later
  *------------------------------------------------------------------*/
-int   default_paper_width = 11000; /*!< width for letter paper (landscape)
-* \todo Can this be const? */
-int   default_paper_height = 85000;/*!< height for letter paper (landscape)
-* \todo Can this be const? */
+/*! width for letter paper (landscape */
+int default_paper_width = 11000;
 
-int  default_sort_components = 0;
-int  default_tearoff_menus   = 1;
+/*! height for letter paper (landscape) */
+int default_paper_height = 85000;
+
+int default_sort_components = 0;
+int default_tearoff_menus   = 1;
 
 /*------------------------------------------------------------------*/
 /*! \brief Initialise variables in the GedaToplevel
