@@ -2,6 +2,8 @@
 
     * memory/628512-1.sym: Update attributes, add value and description.
 
+    * misc/aui-1.sym: Update attributes, add description.
+
 2018-01-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * logic/SN/SN75176-1.sym: Change "Vcc" -> "VCC", convert plain text
