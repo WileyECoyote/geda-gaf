@@ -1299,10 +1299,10 @@ msgstr ""
 msgid "Autonumber text in:"
 msgstr ""
 
+# Set the context of the search scope
 #: gschem/src/x/x_autonumber.c:118
-#, fuzzy
 msgid "Set the context of the search scope"
-msgstr "സിസ്റ്റം ക്ലിപ്പ്ബോർഡിലേക്ക് ഉളളടക്കം ഒട്ടിക്കുക"
+msgstr "തിരയൽ സാദ്ധ്യത്തിന്റെ സന്ദർഭം സജ്ജമാക്കുക"
 
 #: gschem/src/x/x_autonumber.c:119
 msgid "Skip numbers found in:"
@@ -1438,9 +1438,8 @@ msgstr ""
 
 # Open page
 #: gschem/src/x/x_compselect.c:126
-#, fuzzy
 msgid "Open all"
-msgstr "പേജ് തുറക്കുക..."
+msgstr "എല്ലാം തുറക്കുക"
 
 #: gschem/src/x/x_compselect.c:127 gschem/src/x/x_menus.c:149
 msgid "Close"
@@ -1483,18 +1482,17 @@ msgid "Rescan the libraries"
 msgstr ""
 
 #: gschem/src/x/x_compselect.c:142
-msgid "Set styles ooptions"
+msgid "Set styles options"
 msgstr ""
 
 #: gschem/src/x/x_compselect.c:143
 msgid "Tooltip settings"
 msgstr ""
 
-# Unable to write
+# Enable tooltips
 #: gschem/src/x/x_compselect.c:144
-#, fuzzy
 msgid "Enable tooltips"
-msgstr "എഴുതാൻ കഴിയുന്നില്ല"
+msgstr "ടൂൾടിപ്പുകൾ പ്രാപ്തമാക്കുക"
 
 #: gschem/src/x/x_compselect.c:145
 msgid "Disable tooltips"
@@ -2389,11 +2387,10 @@ msgstr ""
 msgid "Add Attribute"
 msgstr ""
 
-# Edit Object Attributes
+# Edit Attribute
 #: gschem/src/x/x_edit_attrib.c:412
-#, fuzzy
 msgid "Edit Attribute"
-msgstr "എഡിറ്റ് ഒബ്ജക്റ്റ് വിശേഷണങ്ങൾ"
+msgstr "എഡിറ്റുചെയ്യൽ ആട്രിബ്യൂട്ട്"
 
 #: gschem/src/x/x_edit_attrib.c:414
 msgid "Select the name of the attribute to add"
@@ -2531,25 +2528,24 @@ msgstr ""
 msgid "_Comment:"
 msgstr ""
 
+# Options
 #: gschem/src/x/x_edit_cprop.c:1346
-#, fuzzy
 msgid "Options:"
-msgstr "പ്രവര്‍ത്തന രീതി നിര്‍ണയിക്കുക"
+msgstr "ഓപ്ഷനുകൾ:"
 
 #: gschem/src/x/x_edit_cprop.c:1381
 msgid "_Embedded"
 msgstr ""
 
+# Locked
 #: gschem/src/x/x_edit_cprop.c:1397
-#, fuzzy
 msgid "_Locked"
-msgstr "പൂട്ടുക"
+msgstr "ലോക്കുചെയ്തു"
 
-# Mirror
+# Mirrored
 #: gschem/src/x/x_edit_cprop.c:1415
-#, fuzzy
 msgid "_Mirrored"
-msgstr "കണ്ണാടി"
+msgstr "മിറർ ചെയ്തു"
 
 #: gschem/src/x/x_edit_cprop.c:1439
 msgid "_Electrical:"
