@@ -530,10 +530,11 @@ set_property (GObject *object, unsigned int param_id, const GValue *value, GPara
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Get the GdkWindow for the Main Window
+ * \par Function Description
+ *  Returns the GdkWindow associated with the Main Window. This is
+ *  the entire application window area including menus and toolbars.
  */
 GdkWindow *gschem_main_window_get_window (GtkWidget *main_window)
 {
