@@ -1957,8 +1957,8 @@ int geda_font_dialog_get_font_size (GedaFontDialog *dialog)
  * \par Function Description
  *  This function sets the font size property.
  *
- * \param dialog:   Pointer to the dialog object.
- * \param new_size: The integer value of the new font size.
+ * \param dialog    Pointer to the dialog object.
+ * \param new_size  The integer value of the new font size.
  */
 void
 geda_font_dialog_set_font_size (GedaFontDialog *dialog, int new_size)
