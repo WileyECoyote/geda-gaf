@@ -3,6 +3,8 @@
     * src/widgets/geda_combobox.c: Replace g_cclosure_marshal_VOID__ENUM with
       geda_marshal_VOID__ENUM.
 
+    * src/widgets/geda_label.c: Implement GEDA_OBJECT_NOTIFY macro.
+
 2018-01-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/dialogs/geda_image_chooser.c: Replace g_cclosure_marshal_VOID__ENUM
