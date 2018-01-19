@@ -1833,7 +1833,7 @@ static void geda_combo_box_class_init(void *class, void *class_data)
                                   G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                                   G_CALLBACK (geda_combo_box_real_move_active),
                                   NULL, NULL,
-                                  g_cclosure_marshal_VOID__ENUM,
+                                  geda_marshal_VOID__ENUM,
                                   G_TYPE_NONE, 1,
                                   GTK_TYPE_SCROLL_TYPE);
 

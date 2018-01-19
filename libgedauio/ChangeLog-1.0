@@ -1,3 +1,8 @@
+2018-01-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_combobox.c: Replace g_cclosure_marshal_VOID__ENUM with
+      geda_marshal_VOID__ENUM.
+
 2018-01-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/dialogs/geda_image_chooser.c: Replace g_cclosure_marshal_VOID__ENUM
