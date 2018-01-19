@@ -177,7 +177,6 @@ x_compselect_callback_response(GtkDialog *dialog, int response, void *user_data)
   switch (response) {
 
     case COMPSELECT_RESPONSE_PLACE: {
-
       /* Check and resolve current state */
       if (w_current->event_state == COMPMODE) {
 
@@ -244,7 +243,6 @@ x_compselect_callback_response(GtkDialog *dialog, int response, void *user_data)
 
     case GEDA_RESPONSE_CLOSE:
     case GEDA_RESPONSE_DELETE_EVENT:
-
       if (GTK_WIDGET (dialog) == w_current->cswindow) {
         if (ThisDialog->style_menu_widgets) {
           g_slist_free(ThisDialog->style_menu_widgets);
@@ -3292,7 +3290,6 @@ compselect_constructor (GType                  type,
   GtkWidget   *action_area   = NULL;
   GtkVBox     *main_vbox     = NULL;
   GtkWidget   *label         = NULL;
-
 
   SortLibrarySwitch        = NULL;
   ShowGroupsSwitch         = NULL;
