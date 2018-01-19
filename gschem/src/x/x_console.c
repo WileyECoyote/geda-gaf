@@ -442,6 +442,7 @@ void x_console_eval_command (GedaEntry *entry, int arg1, void * user_data)
   if (ptr != command_line)
     ptr = strcpy(command_line, ptr);
 
+  /* Check for Open Parentheses */
   if (*ptr == ASCII_OP) {
     SCM interpreter = scm_list_2(scm_from_utf8_symbol("invoke-macro"),
                                  scm_from_utf8_string(command_line));
