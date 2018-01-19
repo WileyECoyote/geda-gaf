@@ -1,3 +1,9 @@
+2018-01-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_multiattrib.c: Substitute geda_combo_widget_append_text
+      for geda_combo_box_append_text and remove dynamic cast in
+      x_multiattrib_new_entry_combo.
+
 2018-01-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/kh.po: Update Khmer translations.

@@ -1631,7 +1631,7 @@ GtkWidget *x_multiattrib_new_entry_combo(void)
   i = 0;
   string =geda_struct_attrib_get(i);
   while (string != NULL) {
-    geda_combo_box_append_text(GEDA_COMBO_BOX(combo), string);
+    geda_combo_widget_append_text(combo, string);
     i++;
     string = geda_struct_attrib_get(i);
   }
