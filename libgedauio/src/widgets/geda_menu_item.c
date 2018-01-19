@@ -602,10 +602,14 @@ geda_menu_item_class_init (void *class, void *class_data)
   gobject_class->get_property      = geda_menu_item_get_property;
 
 #if GTK_MAJOR_VERSION < 3
+
   GtkObjectClass *object_class     = (GtkObjectClass*)class;
   object_class->destroy            = geda_menu_item_destroy;
+
 #else
+
   widget_class->destroy            = geda_menu_item_destroy;
+
 #endif
 
   widget_class->realize            = geda_menu_item_realize;
