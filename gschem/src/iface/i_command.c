@@ -910,7 +910,7 @@ COMMAND (do_open) {
     }
     mapcar(files);
 
-    packet            = g_new(IdleTaskData, 1);
+    packet            = g_malloc(sizeof(IdleTaskData));
     packet->w_current = command_struc[cmd_do_open].w_current;
     packet->data      = files;
     packet->retry     = FALSE;
@@ -2948,7 +2948,7 @@ COMMAND (do_page_revert_all)
       }
       mapcar(files);
 
-      packet            = g_new(IdleTaskData, 1);
+      packet            = g_malloc(sizeof(IdleTaskData));
       packet->w_current = command_struc[cmd_do_page_revert_all].w_current;
       packet->data      = files;
       packet->retry     = FALSE;
