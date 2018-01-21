@@ -3388,24 +3388,25 @@ void gtk_sheet_change_entry(GtkSheet *sheet, const GType entry_type)
 
     state = sheet->state;
 
-    if (state == GTK_SHEET_NORMAL)
-	_gtk_sheet_hide_active_cell(sheet);
+    if (state == GTK_SHEET_NORMAL) {
+      _gtk_sheet_hide_active_cell(sheet);
+    }
 
     create_sheet_entry(sheet, entry_type ? entry_type : G_TYPE_NONE);
 
     sheet->entry_type = entry_type;  /* save wanted type, no matter wether it failed */
 
-    if (state == GTK_SHEET_NORMAL)
-    {
-	gtk_sheet_show_active_cell(sheet);
+    if (state == GTK_SHEET_NORMAL) {
 
-	/* if the application changes the entry during emission of the TRAVERSE signal
-	   an initialization of the new entry can fire the "changed" signal and
-	   the text will be written into the old active cell (which is WRONG)
+      gtk_sheet_show_active_cell(sheet);
 
-	   gtk_sheet_entry_signal_connect_changed(sheet,
-	       G_CALLBACK(gtk_sheet_entry_changed_handler));
-	   */
+      /* if the application changes the entry during emission of the TRAVERSE signal
+       a *n initialization of the new entry can fire the "changed" signal and
+       the text will be written into the old active cell (which is WRONG)
+
+       gtk_sheet_entry_signal_connect_changed(sheet,
+       G_CALLBACK(gtk_sheet_entry_changed_handler));
+       */
     }
 }
 
@@ -8483,7 +8484,7 @@ gtk_sheet_deactivate_cell(GtkSheet *sheet)
 	return (FALSE);
 
     gtk_sheet_entry_signal_disconnect_by_func(sheet,
-	G_CALLBACK(gtk_sheet_entry_changed_handler));
+                                              G_CALLBACK(gtk_sheet_entry_changed_handler));
 
     _gtk_sheet_hide_active_cell(sheet);
 
@@ -8686,7 +8687,7 @@ gtk_sheet_activate_cell(GtkSheet *sheet, int row, int col)
 #endif
 
     gtk_sheet_entry_signal_connect_changed(sheet,
-	G_CALLBACK(gtk_sheet_entry_changed_handler));
+                                           G_CALLBACK(gtk_sheet_entry_changed_handler));
 
     _gtksheet_signal_emit(sheet, sheet_signals[ACTIVATE], row, col, &veto);
 
@@ -12252,6 +12253,7 @@ create_sheet_entry(GtkSheet *sheet, GType new_entry_type)
     /* connect focus signal propagation handlers */
     g_signal_connect_swapped(new_entry, "focus-in-event",
                              G_CALLBACK(sheet_entry_focus_in_handler), sheet);
+
     g_signal_connect_swapped(new_entry, "focus-out-event",
                              G_CALLBACK(sheet_entry_focus_out_handler), sheet);
 
@@ -15101,6 +15103,7 @@ void gtk_sheet_button_attach(GtkSheet *sheet, GtkWidget *widget, int row, int co
 
     if (gtk_widget_get_visible((GtkWidget*)sheet)) {
 
+      /* If sheet is visible the how can it not be realized? */
       if (gtk_widget_get_realized((GtkWidget*)sheet) &&
         (!gtk_widget_get_realized(widget) || gtk_widget_get_has_window(widget)))
         gtk_sheet_realize_child(sheet, child);
