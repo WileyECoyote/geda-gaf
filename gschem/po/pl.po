@@ -1527,11 +1527,10 @@ msgstr ""
 msgid "Styles"
 msgstr ""
 
-# Tools
+# Tooltips
 #: gschem/src/x/x_compselect.c:131
-#, fuzzy
 msgid "Tooltips"
-msgstr "_Przybory"
+msgstr "Etykietki narzędzi"
 
 #: gschem/src/x/x_compselect.c:137
 msgid "Expand one level"
@@ -1557,17 +1556,15 @@ msgstr ""
 msgid "Set styles options"
 msgstr ""
 
-# Saving the toolbar settings
+# Tooltip settings
 #: gschem/src/x/x_compselect.c:143
-#, fuzzy
 msgid "Tooltip settings"
-msgstr "Zapisywanie ustawień paska narzędzi..."
+msgstr "Ustawienia etykiet narzędzi"
 
-# Unable to write
+# Enable tooltips
 #: gschem/src/x/x_compselect.c:144
-#, fuzzy
 msgid "Enable tooltips"
-msgstr "Nie można zapisać"
+msgstr "Włącz etykiety narzędzi"
 
 #: gschem/src/x/x_compselect.c:145
 msgid "Disable tooltips"
@@ -2341,12 +2338,11 @@ msgstr ""
 msgid "Components may overlay, Continue?"
 msgstr ""
 
-# Create Array
+# Create Array: Error
 #: gschem/src/x/x_edit_array.c:539 gschem/src/x/x_edit_array.c:544
 #: gschem/src/x/x_edit_array.c:549
-#, fuzzy
 msgid "Create Array:Error"
-msgstr "Tworzenie tablicy"
+msgstr "utwórz tablicę: błąd"
 
 #: gschem/src/x/x_edit_array.c:540
 msgid ""
@@ -2499,11 +2495,10 @@ msgstr ""
 msgid "Add Attribute"
 msgstr "Dodaj atrybut"
 
-# Modify Attributes
+# Edit Attribute
 #: gschem/src/x/x_edit_attrib.c:412
-#, fuzzy
 msgid "Edit Attribute"
-msgstr "Zmodyfikuj atrybuty"
+msgstr "Edytuj atrybut"
 
 # Select the name of the attribute to add
 #: gschem/src/x/x_edit_attrib.c:414
@@ -2649,23 +2644,23 @@ msgstr "Dokumen_tacja:"
 msgid "_Comment:"
 msgstr "Komentarz:"
 
+# Options
 #: gschem/src/x/x_edit_cprop.c:1346
-#, fuzzy
 msgid "Options:"
-msgstr "Opcje"
+msgstr "Opcje:"
 
+# Embedded
 #: gschem/src/x/x_edit_cprop.c:1381
-#, fuzzy
 msgid "_Embedded"
-msgstr "Osadź"
+msgstr "Osadzony"
 
+# Locked
 #: gschem/src/x/x_edit_cprop.c:1397
-#, fuzzy
 msgid "_Locked"
-msgstr "Zablokuj"
+msgstr "Zablokowany"
 
+# Mirrored
 #: gschem/src/x/x_edit_cprop.c:1415
-#, fuzzy
 msgid "_Mirrored"
 msgstr "Lustrzane odbicie"
 
@@ -2745,10 +2740,10 @@ msgstr ""
 msgid "Entry for comments"
 msgstr ""
 
+# Embed symbol in schematic checkbox
 #: gschem/src/x/x_edit_cprop.c:1640
-#, fuzzy
 msgid "Embed symbol in schematic checkbox"
-msgstr "Osadź element w pliku schematu"
+msgstr "Osadź symbol w schematycznym polu wyboru"
 
 #: gschem/src/x/x_edit_cprop.c:1646
 msgid "Lock symbol in schematic checkbox"
@@ -2989,11 +2984,10 @@ msgstr "Ilość gniazd:"
 msgid "Slot number:"
 msgstr "numer gniazda:"
 
-# Set the sequence number
+# Set the active slot number
 #: gschem/src/x/x_edit_slot.c:217
-#, fuzzy
 msgid "Set the active slot number"
-msgstr "Ustaw numer sekwencji"
+msgstr "Ustaw aktywny numer slotu"
 
 #: gschem/src/x/x_edit_text.c:64 gschem/src/x/x_edit_text.c:473
 msgid "Text Content"
