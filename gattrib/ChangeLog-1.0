@@ -1,5 +1,9 @@
 2018-01-21 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/gtksheet/gtkitementry.c: Change select_on_focus to integer type in
+      gtk_item_entry_grab_focus so glib does not over-run the _Bool on 64-bit
+      machines.
+
     * src/gtksheet/gtksheet.c: Add GDestroyNotify function timer_destroyed and
       to unset sheet->timer whenever called. Utilize __func__ macro in debug
       output and reformat code blocks.

@@ -713,7 +713,7 @@ static void
 gtk_item_entry_grab_focus(GtkWidget *widget)
 {
     GtkEntry *entry = GTK_ENTRY(widget);
-    _Bool select_on_focus;
+    int select_on_focus;
 
     GTK_WIDGET_CLASS(parent_class)->grab_focus(widget);
 
