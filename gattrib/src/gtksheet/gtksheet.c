@@ -12662,7 +12662,7 @@ void gtk_sheet_entry_signal_disconnect_by_func(GtkSheet *sheet, GCallback handle
     }
     else {
 
-      g_warning("gtk_sheet_entry_signal_disconnect_by_func: no GTK_EDITABLE, don't know how to get editable.");
+      g_warning("%s: no GTK_EDITABLE, don't know how to get editable.", __func__);
     }
 }
 

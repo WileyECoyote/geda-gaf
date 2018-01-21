@@ -1,8 +1,8 @@
 2018-01-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheet.c: Add GDestroyNotify function timer_destroyed and
-      to unset sheet->timer whenever called.
-
+      to unset sheet->timer whenever called. Utilize __func__ macro in debug
+      output and reformat code blocks.
 
 2018-01-16 Wiley E. Hill <wileyhill@gmail.com>
 
