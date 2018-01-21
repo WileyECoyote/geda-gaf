@@ -696,7 +696,7 @@ gtk_item_entry_expose(GtkWidget *widget, GdkEventExpose *event)
                        0, 0, area_width, area_height);
 
     if ((entry->visible || entry->invisible_char != 0) &&
-      gtk_widget_has_focus(GTK_WIDGET(widget)) &&
+         gtk_widget_has_focus(widget) &&
       entry->selection_bound == entry->current_pos && entry->cursor_visible)
       gtk_item_entry_draw_cursor(GTK_ENTRY(widget), CURSOR_STANDARD);
 
