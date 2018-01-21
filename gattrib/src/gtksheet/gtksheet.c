@@ -15109,7 +15109,7 @@ void gtk_sheet_button_attach(GtkSheet *sheet, GtkWidget *widget, int row, int co
 
     if (gtk_widget_get_visible((GtkWidget*)sheet)) {
 
-      /* If sheet is visible the how can it not be realized? */
+      /* If sheet is visible then how can it not be realized? */
       if (gtk_widget_get_realized((GtkWidget*)sheet) &&
         (!gtk_widget_get_realized(widget) || gtk_widget_get_has_window(widget)))
         gtk_sheet_realize_child(sheet, child);
