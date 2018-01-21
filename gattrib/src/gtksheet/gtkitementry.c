@@ -697,13 +697,16 @@ gtk_item_entry_expose(GtkWidget *widget, GdkEventExpose *event)
 
     if ((entry->visible || entry->invisible_char != 0) &&
          gtk_widget_has_focus(widget) &&
-      entry->selection_bound == entry->current_pos && entry->cursor_visible)
-      gtk_item_entry_draw_cursor(GTK_ENTRY(widget), CURSOR_STANDARD);
+         entry->selection_bound == entry->current_pos &&
+         entry->cursor_visible) {
+      gtk_item_entry_draw_cursor(entry, CURSOR_STANDARD);
+    }
 
-    if (entry->dnd_position != -1)
-      gtk_item_entry_draw_cursor(GTK_ENTRY(widget), CURSOR_DND);
+    if (entry->dnd_position != -1) {
+      gtk_item_entry_draw_cursor(entry, CURSOR_DND);
+    }
 
-    gtk_item_entry_draw_text(GTK_ENTRY(widget));
+    gtk_item_entry_draw_text(entry);
   }
 
   return FALSE;
