@@ -12,10 +12,12 @@ pinlabel=n_a
 }
 V 200 300 200 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 0 0 8 10 0 1 0 0 1
-device=HOLE
+device=NPTH
 T 200 600 8 10 1 1 0 4 1
 refdes=H?
+T 400 4500 9 10 0 1 0 0 1
+description=Non Plated Through Hole
 T 600 100 9 10 0 0 0 0 1
 numslots=0
 T 600 100 9 10 0 0 0 0 1
-footprint=unknown
+footprint=PAD200
