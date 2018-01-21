@@ -8,6 +8,7 @@
 
     * misc/rim-1.sym: Remove suggestion, change Device=none, update attributes.
 
+    * misc/TEC4x3-1.sym: Update attributes, add description.
 
 2018-01-18 Wiley E. Hill <wileyhill@gmail.com>
 
