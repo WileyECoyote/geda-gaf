@@ -6,6 +6,9 @@
 
     * misc/hole-1.sym: Update attributes, add description, update footprint.
 
+    * misc/rim-1.sym: Remove suggestion, change Device=none, update attributes.
+
+
 2018-01-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * memory/628512-1.sym: Update attributes, add value and description.
