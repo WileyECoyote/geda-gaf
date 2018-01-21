@@ -2,6 +2,8 @@
 
     * misc/decon-1.sym: Update attributes, add description.
 
+    * misc/gpib-1.sym: Update attributes, add description.
+
 2018-01-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * memory/628512-1.sym: Update attributes, add value and description.
