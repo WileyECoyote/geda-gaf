@@ -9843,6 +9843,7 @@ gtk_sheet_button_press_handler(GtkWidget *widget, GdkEventButton *event)
 	    x, y, row, column, sheet->maxrow, sheet->maxcol
 	    );
 #endif
+
 	gdk_pointer_grab(sheet->sheet_window, FALSE,
 	    GDK_POINTER_MOTION_HINT_MASK |
 		GDK_BUTTON1_MOTION_MASK |
@@ -9854,6 +9855,7 @@ gtk_sheet_button_press_handler(GtkWidget *widget, GdkEventButton *event)
 #if GTK_SHEET_DEBUG_MOUSE > 0
 	fprintf(stderr,"%s: grab focus\n", __func__);
 #endif
+
 	gtk_widget_grab_focus((GtkWidget*)sheet);
 
 	if (sheet->selection_mode != GTK_SELECTION_SINGLE &&
@@ -9914,6 +9916,7 @@ gtk_sheet_button_press_handler(GtkWidget *widget, GdkEventButton *event)
 	    sheet->drag_cell.row = row;
 	    sheet->drag_cell.col = column;
 	    sheet->drag_range = sheet->range;
+
 #if GTK_SHEET_DEBUG_MOUSE > 0
 	    fprintf(stderr,"%s: drag_range r %d c %d (%d,%d, %d, %d) mr %d mc %d\n", __func__,
 		sheet->drag_cell.row, sheet->drag_cell.col,
