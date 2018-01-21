@@ -717,7 +717,7 @@ gtk_item_entry_grab_focus(GtkWidget *widget)
 
     GTK_WIDGET_CLASS(parent_class)->grab_focus(widget);
 
-    g_object_get(G_OBJECT(gtk_settings_get_default()),
+    g_object_get(gtk_settings_get_default(),
                  "gtk-entry-select-on-focus",
                  &select_on_focus,
                  NULL);
