@@ -9736,6 +9736,11 @@ gtk_sheet_expose_handler(GtkWidget *widget, GdkEventExpose *event)
     return (FALSE);
 }
 
+static void timer_destroyed (void *data) {
+    GtkSheet *sheet = data;
+    sheet->timer = 0;
+}
+
 /*
  * gtk_sheet_button_press_handler:
  *
@@ -9845,7 +9850,8 @@ gtk_sheet_button_press_handler(GtkWidget *widget, GdkEventButton *event)
 		GDK_BUTTON_RELEASE_MASK,
 	    NULL, NULL, event->time);
 	gtk_grab_add((GtkWidget*)sheet);
-	sheet->timer = g_timeout_add_full(0, TIMEOUT_SCROLL, _gtk_sheet_scroll_to_pointer, sheet, NULL);
+	sheet->timer = g_timeout_add_full(0, TIMEOUT_SCROLL, _gtk_sheet_scroll_to_pointer, sheet, timer_destroyed);
+
 #if GTK_SHEET_DEBUG_MOUSE > 0
 	fprintf(stderr,"%s: grab focus\n", __func__);
 #endif
@@ -9944,10 +9950,10 @@ gtk_sheet_button_press_handler(GtkWidget *widget, GdkEventButton *event)
 	{
 	    gtk_sheet_click_cell(sheet, -1, column, &veto);
 	    gtk_grab_add((GtkWidget*)sheet);
-	    sheet->timer = g_timeout_add_full(0, TIMEOUT_SCROLL, _gtk_sheet_scroll_to_pointer, sheet, NULL);
 	    gtk_widget_grab_focus((GtkWidget*)sheet);
 	    GTK_SHEET_SET_FLAGS(sheet, GTK_SHEET_IN_SELECTION);
 	}
+        sheet->timer = g_timeout_add_full(0, TIMEOUT_SCROLL, _gtk_sheet_scroll_to_pointer, sheet, timer_destroyed);
     }
 
     if (event->window == sheet->row_title_window)
@@ -9961,10 +9967,10 @@ gtk_sheet_button_press_handler(GtkWidget *widget, GdkEventButton *event)
 	{
 	    gtk_sheet_click_cell(sheet, row, -1, &veto);
 	    gtk_grab_add((GtkWidget*)sheet);
-	    sheet->timer = g_timeout_add_full(0, TIMEOUT_SCROLL, _gtk_sheet_scroll_to_pointer, sheet, NULL);
 	    gtk_widget_grab_focus((GtkWidget*)sheet);
 	    GTK_SHEET_SET_FLAGS(sheet, GTK_SHEET_IN_SELECTION);
 	}
+        sheet->timer = g_timeout_add_full(0, TIMEOUT_SCROLL, _gtk_sheet_scroll_to_pointer, sheet, timer_destroyed);
     }
 
     return (TRUE);

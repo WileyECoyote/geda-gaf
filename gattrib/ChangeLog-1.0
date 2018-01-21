@@ -1,3 +1,9 @@
+2018-01-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gtksheet/gtksheet.c: Add GDestroyNotify function timer_destroyed and
+      to unset sheet->timer whenever called.
+
+
 2018-01-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheet.c: Replace g_new with g_malloc in function
