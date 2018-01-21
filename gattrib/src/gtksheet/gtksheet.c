@@ -5664,12 +5664,11 @@ void gtk_sheet_set_vadjustment(GtkSheet *sheet, GtkAdjustment *adjustment)
 
     old_adjustment = sheet->vadjustment;
 
-    if (sheet->vadjustment)
-    {
-	g_signal_handlers_disconnect_matched( G_OBJECT(sheet->vadjustment),
-                                          G_SIGNAL_MATCH_DATA,
-                                       0, 0, NULL, NULL, sheet);
-	g_object_unref(sheet->vadjustment);
+    if (sheet->vadjustment) {
+      g_signal_handlers_disconnect_matched( G_OBJECT(sheet->vadjustment),
+                                            G_SIGNAL_MATCH_DATA,
+                                            0, 0, NULL, NULL, sheet);
+      g_object_unref(sheet->vadjustment);
     }
 
     sheet->vadjustment = adjustment;
@@ -9829,8 +9828,8 @@ gtk_sheet_button_press_handler(GtkWidget *widget, GdkEventButton *event)
 	return (FALSE);
 
     /* selections on the sheet */
-    if (event->window == sheet->sheet_window)
-    {
+    if (event->window == sheet->sheet_window) {
+
 #if GTK_SHEET_DEBUG_MOUSE > 0
 	fprintf(stderr,"%s: on sheet\n", __func__);
 #endif
@@ -9939,38 +9938,38 @@ gtk_sheet_button_press_handler(GtkWidget *widget, GdkEventButton *event)
 	return(TRUE);
     }
 
-    if (event->window == sheet->column_title_window)
-    {
-	gtk_widget_get_pointer(widget, &x, &y);
-	column = _gtk_sheet_column_from_xpixel(sheet, x);
-	if (column < 0 || column > sheet->maxcol)
-	    return (FALSE);
+    if (event->window == sheet->column_title_window) {
 
-	if (GTK_SHEET_COLUMN_IS_SENSITIVE(COLPTR(sheet, column)))
-	{
-	    gtk_sheet_click_cell(sheet, -1, column, &veto);
-	    gtk_grab_add((GtkWidget*)sheet);
-	    gtk_widget_grab_focus((GtkWidget*)sheet);
-	    GTK_SHEET_SET_FLAGS(sheet, GTK_SHEET_IN_SELECTION);
-	}
+      gtk_widget_get_pointer(widget, &x, &y);
+      column = _gtk_sheet_column_from_xpixel(sheet, x);
+
+      if (column < 0 || column > sheet->maxcol)
+        return (FALSE);
+
+      if (GTK_SHEET_COLUMN_IS_SENSITIVE(COLPTR(sheet, column))) {
+        gtk_sheet_click_cell(sheet, -1, column, &veto);
+        gtk_grab_add((GtkWidget*)sheet);
         sheet->timer = g_timeout_add_full(0, TIMEOUT_SCROLL, _gtk_sheet_scroll_to_pointer, sheet, timer_destroyed);
+        gtk_widget_grab_focus((GtkWidget*)sheet);
+        GTK_SHEET_SET_FLAGS(sheet, GTK_SHEET_IN_SELECTION);
+      }
     }
 
-    if (event->window == sheet->row_title_window)
-    {
-	gtk_widget_get_pointer(widget, &x, &y);
-	row = _gtk_sheet_row_from_ypixel(sheet, y);
-	if (row < 0 || row > sheet->maxrow)
-	    return (FALSE);
+    if (event->window == sheet->row_title_window) {
 
-	if (GTK_SHEET_ROW_IS_SENSITIVE(ROWPTR(sheet, row)))
-	{
-	    gtk_sheet_click_cell(sheet, row, -1, &veto);
-	    gtk_grab_add((GtkWidget*)sheet);
-	    gtk_widget_grab_focus((GtkWidget*)sheet);
-	    GTK_SHEET_SET_FLAGS(sheet, GTK_SHEET_IN_SELECTION);
-	}
+      gtk_widget_get_pointer(widget, &x, &y);
+      row = _gtk_sheet_row_from_ypixel(sheet, y);
+
+      if (row < 0 || row > sheet->maxrow)
+        return (FALSE);
+
+      if (GTK_SHEET_ROW_IS_SENSITIVE(ROWPTR(sheet, row))) {
+        gtk_sheet_click_cell(sheet, row, -1, &veto);
+        gtk_grab_add((GtkWidget*)sheet);
         sheet->timer = g_timeout_add_full(0, TIMEOUT_SCROLL, _gtk_sheet_scroll_to_pointer, sheet, timer_destroyed);
+        gtk_widget_grab_focus((GtkWidget*)sheet);
+        GTK_SHEET_SET_FLAGS(sheet, GTK_SHEET_IN_SELECTION);
+      }
     }
 
     return (TRUE);
@@ -9988,25 +9987,26 @@ _gtk_sheet_scroll_to_pointer(void *data)
     gtk_widget_get_pointer((GtkWidget*)sheet, &x, &y);
     gtk_sheet_get_pixel_info(sheet, NULL, x, y, &row, &column);
 
-    if (GTK_SHEET_IN_SELECTION(sheet))
-    {
-	GtkSheetRange visr;
+    if (GTK_SHEET_IN_SELECTION(sheet)) {
 
-	/* beware of invisible columns/rows */
-	if (!_gtk_sheet_get_visible_range(sheet, &visr))
-	    return (TRUE);
+      GtkSheetRange visr;
 
-	if (_POINT_IN_RANGE(row, column, &visr))
-	{
-	    gtk_sheet_extend_selection(sheet, row, column);
-	}
+      /* beware of invisible columns/rows */
+      if (!_gtk_sheet_get_visible_range(sheet, &visr))
+        return (TRUE);
+
+      if (_POINT_IN_RANGE(row, column, &visr)) {
+        gtk_sheet_extend_selection(sheet, row, column);
+      }
     }
 
-    if (GTK_SHEET_IN_DRAG(sheet) || GTK_SHEET_IN_RESIZE(sheet))
-    {
-	move = _gtk_sheet_move_query(sheet, row, column, FALSE);
-	if (move)
-	    draw_xor_rectangle(sheet, sheet->drag_range);
+    if (GTK_SHEET_IN_DRAG(sheet) || GTK_SHEET_IN_RESIZE(sheet)) {
+
+      move = _gtk_sheet_move_query(sheet, row, column, FALSE);
+
+      if (move) {
+        draw_xor_rectangle(sheet, sheet->drag_range);
+      }
     }
 
     GDK_THREADS_LEAVE();
