@@ -2390,6 +2390,7 @@ static void geda_menu_item_get_preferred_height_for_width (GtkWidget *widget,
   geda_menu_item_real_get_height (widget, for_size, minimum_size, natural_size);
 }
 
+/*! \internal Gtk3 widget_class->size_allocate */
 static void geda_menu_item_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
 {
   GedaMenuItem        *menu_item = (GedaMenuItem*)widget;
