@@ -1362,21 +1362,20 @@ msgstr "Ontdoen fout"
 msgid "Undo failed"
 msgstr ""
 
-# Search for source
+# Search for
 #: gschem/src/x/x_autonumber.c:117
-#, fuzzy
 msgid "Search for:"
-msgstr "Zoek naar bron"
+msgstr "Zoek naar:"
 
+# Set the search criteria
 #: gschem/src/x/x_autonumber.c:117
-#, fuzzy
 msgid "Set the search criteria"
-msgstr "Stel het volgnummer in"
+msgstr "Stel de zoekcriteria in"
 
+# Autonumber text in
 #: gschem/src/x/x_autonumber.c:118
-#, fuzzy
 msgid "Autonumber text in:"
-msgstr "Automatisch tekst nummeren"
+msgstr "Autonumber tekst in:"
 
 #: gschem/src/x/x_autonumber.c:118
 msgid "Set the context of the search scope"
@@ -1386,26 +1385,24 @@ msgstr ""
 msgid "Skip numbers found in:"
 msgstr ""
 
+# Set where NOT to look for numbers
 #: gschem/src/x/x_autonumber.c:119
-#, fuzzy
 msgid "Set where NOT to look for numbers"
-msgstr "Stel het volgnummer in"
+msgstr "Stel in waar NIET op getallen moet worden gezocht"
 
 #: gschem/src/x/x_autonumber.c:120
 msgid "Sort order:"
 msgstr ""
 
-# Select the name of the attribute to add
+# Select the orientation of the Scan method
 #: gschem/src/x/x_autonumber.c:120
-#, fuzzy
 msgid "Select the orientation of the Scan method"
-msgstr "Selecteer de naam van het kenmerk toevoegen"
+msgstr "Selecteer de richting van de scanmethode"
 
-# Slot number
+# Starting number
 #: gschem/src/x/x_autonumber.c:121
-#, fuzzy
 msgid "Starting number:"
-msgstr "slot nummer:"
+msgstr "Beginnummer:"
 
 #: gschem/src/x/x_autonumber.c:121
 msgid "Set the starting number for the current scan"
@@ -1480,9 +1477,8 @@ msgid "File order"
 msgstr "Bestand volgorde"
 
 #: gschem/src/x/x_autonumber.c:1637
-#, fuzzy
 msgid "Filter:"
-msgstr "<b>Filter:</b>"
+msgstr "Filter:"
 
 #: gschem/src/x/x_autonumber.c:1679
 msgid "Selected objects"
@@ -1527,10 +1523,10 @@ msgstr "Klembord invoegen faalde"
 msgid "Open"
 msgstr "Openen"
 
+# Open all
 #: gschem/src/x/x_compselect.c:126
-#, fuzzy
 msgid "Open all"
-msgstr "Open Bestand"
+msgstr "Maak alles open"
 
 # Close
 #: gschem/src/x/x_compselect.c:127 gschem/src/x/x_menus.c:149
@@ -1549,11 +1545,10 @@ msgstr ""
 msgid "Styles"
 msgstr ""
 
-# Tools
+# Tooltips
 #: gschem/src/x/x_compselect.c:131
-#, fuzzy
 msgid "Tooltips"
-msgstr "_Gereedschap"
+msgstr "tooltips"
 
 #: gschem/src/x/x_compselect.c:137
 msgid "Expand one level"
@@ -1579,17 +1574,15 @@ msgstr ""
 msgid "Set styles options"
 msgstr ""
 
-# toolbar settings saving
+# Tooltip settings
 #: gschem/src/x/x_compselect.c:143
-#, fuzzy
 msgid "Tooltip settings"
-msgstr "werkbalkinstellingen saving..."
+msgstr "Tooltip-instellingen"
 
-# Can not write
+# Enable tooltips
 #: gschem/src/x/x_compselect.c:144
-#, fuzzy
 msgid "Enable tooltips"
-msgstr "Kan niet schrijven"
+msgstr "Schakel tooltips in"
 
 #: gschem/src/x/x_compselect.c:145
 msgid "Disable tooltips"
