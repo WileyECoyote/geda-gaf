@@ -2008,8 +2008,8 @@ COMMAND (do_select_all)
   o_redraw_cleanstates (w_current);
   o_select_visible_unlocked (w_current);
 
-  i_status_set_state (w_current, SELECT);
-  i_status_action_stop(w_current);
+  //i_status_set_state (w_current, SELECT);
+  //i_status_action_stop(w_current);
   i_status_update_sensitivities (w_current);
   EXIT_COMMAND(do_select_all);
 }
