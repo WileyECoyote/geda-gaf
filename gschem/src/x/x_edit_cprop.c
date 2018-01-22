@@ -40,6 +40,8 @@
 /** \defgroup Component-Properties-Dialog Component Properties Dialog
  *  @{
  *  \ingroup (Standard-Dialogs Editing-Dialogs)
+ *  \image html component_properties_dialog.png
+ *  \image latex component_properties_dialog.png
  *  \par
  *  The Component properties dialog has two modes of operation:
  *
