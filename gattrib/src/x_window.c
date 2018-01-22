@@ -169,19 +169,18 @@ static void x_window_save_settings(void *data)
     EdaConfig  *cfg;
     GtkWindow  *window;
 
-    const char *win_group     = "gattrib";
+    const char *win_group = "gattrib";
     int x, y, width, height;
 
     window = (GtkWindow*)data;
 
-    geda_log (_("Saving main window geometry and settings.\n"));
+    cfg = eda_config_get_user_context ();
 
     /* Get the Window Geometry - Restored by x_window_restore_settings */
-
-    cfg    = eda_config_get_user_context ();
-
     gtk_window_get_position (window, &x, &y);
     gtk_window_get_size (window, &width, &height);
+
+    geda_log (_("Saving main window geometry and settings.\n"));
 
     /* Save the Window Geometry data */
     eda_config_set_integer (cfg, win_group, "window-x-position", x);
