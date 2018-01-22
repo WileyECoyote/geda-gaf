@@ -771,9 +771,9 @@ x_confirm_close_window (GschemToplevel *w_current)
     return TRUE;
   }
 
-  dialog = GTK_WIDGET (g_object_new (TYPE_CLOSE_CONFIRMATION_DIALOG,
-                                     "unsaved-pages", unsaved_pages,
-                                     NULL));
+  dialog = g_object_new (TYPE_CLOSE_CONFIRMATION_DIALOG,
+                        "unsaved-pages", unsaved_pages,
+                         NULL);
 
   g_list_free (unsaved_pages);
 

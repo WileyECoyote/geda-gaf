@@ -1,5 +1,8 @@
 2018-01-22 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_confirm_close.c: Remove unneeded cast to GtkWidget in
+      x_confirm_close_window.
+
     * src/x/x_edit_cprop.c: Insert reference to image for module; component_
       properties_dialog.png.
 
