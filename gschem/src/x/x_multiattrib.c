@@ -1640,7 +1640,7 @@ GtkWidget *x_multiattrib_new_entry_combo(void)
   GtkEntryCompletion *cmp = gtk_entry_completion_new();
 
   gtk_entry_completion_set_model(cmp,
-                                 geda_combo_box_get_model(GEDA_COMBO_BOX(combo)));
+                                 geda_combo_widget_get_model(combo));
   gtk_entry_completion_set_text_column(cmp, 0);
   gtk_entry_completion_set_inline_completion(cmp, TRUE);
   gtk_entry_completion_set_popup_single_match(cmp, FALSE);
