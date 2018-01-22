@@ -857,6 +857,7 @@ void        x_menus_sensitivity             (GschemToplevel *w_current, const ch
 void        x_menus_popup_sensitivity       (GschemToplevel *w_current, const char *name, int flag);
 void        x_menu_save_state               (GschemToplevel *w_current);
 const char *x_menu_get_buffer_menu          (GschemToplevel *w_current);
+void        x_menu_set_grid_radio           (GschemToplevel *w_current);
 void        x_menu_set_icon_visibility      (GschemToplevel *w_current, bool state);
 void        x_menu_set_togglable            (GschemToplevel *w_current, int toggle_id, bool state);
 void        x_menu_set_toolbar_toggle       (GschemToplevel *w_current, int toggle_id, bool state);
