@@ -2,6 +2,8 @@
 
     * national/DS26C31-1.sym: Redo symbol.
 
+    * national/DS26C31-2.sym: Add symbol, dash 2.
+
 2018-01-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * misc/decon-1.sym: Update attributes, add description.
