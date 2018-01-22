@@ -1,7 +1,8 @@
 2018-01-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_multiattrib.c: Replace geda_combo_box_get_model with
-      geda_combo_widget_get_model in x_multiattrib_new_entry_combo.
+      geda_combo_widget_get_model and substitute geda_get_child_widget
+      for gtk_bin_get_child in x_multiattrib_new_entry_combo.
 
 2018-01-20 Wiley E. Hill <wileyhill@gmail.com>
 

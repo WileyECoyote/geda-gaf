@@ -1645,7 +1645,7 @@ GtkWidget *x_multiattrib_new_entry_combo(void)
   gtk_entry_completion_set_inline_completion(cmp, TRUE);
   gtk_entry_completion_set_popup_single_match(cmp, FALSE);
 
-  combo_entry = gtk_bin_get_child(GTK_BIN(combo));
+  combo_entry = geda_get_child_widget(combo);
   gtk_entry_set_completion(GTK_ENTRY(combo_entry), cmp);
 
   SetWidgetTip(combo, _("Select an attribute to add"));
