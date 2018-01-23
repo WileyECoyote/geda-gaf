@@ -902,7 +902,7 @@ char *geda_combo_box_text_get_active_text (GedaComboBoxText *combo_box)
 }
 
 /*!
- * \brief Set the active text in a GedaComboBoxText widget
+ * \brief Set the active text in a GedaComboBoxText
  * \par Function Description
  *  Sets \a to be the active text in the \a combo_box. If the text
  *  is not already a member of \a combo_box, the text is inserted
@@ -973,10 +973,12 @@ geda_combo_box_text_set_active_text (GedaComboBoxText *combo_box,
   return added;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief widget version of #geda_combo_box_get_count
- *  \par Function Description
- *
+/*!
+ * \brief Get the GedaComboBoxText Activate Default property
+ * \par Function Description
+ *  Returns the value of the "activates-default" property of the
+ *  child entry widget or FALSE if \a combo_box does not have an
+ *  entry widget.
  */
 bool
 geda_combo_box_text_get_activate_default (GedaComboBoxText *combo_box)
