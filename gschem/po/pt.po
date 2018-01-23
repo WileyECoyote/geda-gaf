@@ -1383,22 +1383,20 @@ msgstr "Desapertar erro"
 msgid "Undo failed"
 msgstr "Desfazer Falhou"
 
-# Looking for source
+# Search for
 #: gschem/src/x/x_autonumber.c:117
-#, fuzzy
 msgid "Search for:"
-msgstr "A procura da fonte"
+msgstr "Procurar por:"
 
-# Set the sequence number
+# Set the search criteria
 #: gschem/src/x/x_autonumber.c:117
-#, fuzzy
 msgid "Set the search criteria"
-msgstr "Defina o número de sequência"
+msgstr "Definir os critérios de pesquisa"
 
+# Autonumber text in
 #: gschem/src/x/x_autonumber.c:118
-#, fuzzy
 msgid "Autonumber text in:"
-msgstr "Texto de auto-numeração"
+msgstr "Texto autônomo em:"
 
 #: gschem/src/x/x_autonumber.c:118
 msgid "Set the context of the search scope"
@@ -1408,26 +1406,24 @@ msgstr ""
 msgid "Skip numbers found in:"
 msgstr ""
 
-# Set the sequence number
+# Set where NOT to look for numbers
 #: gschem/src/x/x_autonumber.c:119
-#, fuzzy
 msgid "Set where NOT to look for numbers"
-msgstr "Defina o número de sequência"
+msgstr "Defina onde NÃO procurar números"
 
 #: gschem/src/x/x_autonumber.c:120
 msgid "Sort order:"
 msgstr ""
 
-# Select the name of the attribute to add
+# Select the orientation of the Scan method
 #: gschem/src/x/x_autonumber.c:120
-#, fuzzy
 msgid "Select the orientation of the Scan method"
-msgstr "Selecione o nome do atributo para adicionar"
+msgstr "Selecione a orientação do método de digitalização"
 
+# Starting number
 #: gschem/src/x/x_autonumber.c:121
-#, fuzzy
 msgid "Starting number:"
-msgstr "numero de elemento:"
+msgstr "Número inicial:"
 
 #: gschem/src/x/x_autonumber.c:121
 msgid "Set the starting number for the current scan"
@@ -1502,9 +1498,8 @@ msgid "File order"
 msgstr "Ordem de ficheiro"
 
 #: gschem/src/x/x_autonumber.c:1637
-#, fuzzy
 msgid "Filter:"
-msgstr "<b>Filtro:</b>"
+msgstr "Filtro:"
 
 #: gschem/src/x/x_autonumber.c:1679
 msgid "Selected objects"
@@ -2683,14 +2678,12 @@ msgstr "_Comentário:"
 
 # Options
 #: gschem/src/x/x_edit_cprop.c:1346
-#, fuzzy
 msgid "Options:"
-msgstr "Opções"
+msgstr "Opções:"
 
 #: gschem/src/x/x_edit_cprop.c:1381
-#, fuzzy
 msgid "_Embedded"
-msgstr "Embutir"
+msgstr "_Embutido"
 
 #: gschem/src/x/x_edit_cprop.c:1397
 #, fuzzy
