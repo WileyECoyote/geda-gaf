@@ -1053,9 +1053,10 @@ geda_font_button_set_title (GedaFontButton *font_button,
   font_button->title = geda_strdup (title);
   g_free (old_title);
 
-  if (font_button->priv->font_dialog)
+  if (font_button->priv->font_dialog) {
     gtk_window_set_title (GTK_WINDOW (font_button->priv->font_dialog),
                           font_button->title);
+  }
 
   GEDA_OBJECT_NOTIFY (font_button, "title");
 }
