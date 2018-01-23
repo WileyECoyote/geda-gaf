@@ -901,10 +901,12 @@ char *geda_combo_box_text_get_active_text (GedaComboBoxText *combo_box)
   return NULL;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief widget version of #geda_combo_box_get_count
- *  \par Function Description
- *
+/*!
+ * \brief Set the active text in a GedaComboBoxText widget
+ * \par Function Description
+ *  Sets \a to be the active text in the \a combo_box. If the text
+ *  is not already a member of \a combo_box, the text is inserted
+ *  as the first member.
  */
 bool
 geda_combo_box_text_set_active_text (GedaComboBoxText *combo_box,
