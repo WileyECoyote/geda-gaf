@@ -1370,7 +1370,7 @@ geda_menu_item_set_submenu (GedaMenuItem *menu_item, GtkWidget *submenu)
     if (gtk_widget_get_parent (widget)) {
       gtk_widget_queue_resize (widget);
     }
-    g_object_notify ((GObject*)menu_item, "submenu");
+    GEDA_OBJECT_NOTIFY (menu_item, "submenu");
   }
 }
 
@@ -2643,7 +2643,7 @@ static void geda_real_menu_item_set_label (GedaMenuItem *menu_item, const char *
 
     menu_item->priv->mnemonic = geda_label_get_mnemonic_char(child);
 
-    g_object_notify (G_OBJECT (menu_item), "label");
+    GEDA_OBJECT_NOTIFY (menu_item, "label");
   }
 }
 
@@ -3724,7 +3724,7 @@ void geda_menu_item_set_use_underline (GedaMenuItem *menu_item, bool setting)
 
     geda_label_set_use_underline ((GedaLabel*)child, setting);
 
-    g_object_notify ((GObject*)menu_item, "use-underline");
+    GEDA_OBJECT_NOTIFY (menu_item, "use-underline");
   }
 }
 

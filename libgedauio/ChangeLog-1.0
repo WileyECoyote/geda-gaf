@@ -1,3 +1,7 @@
+2018-01-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_item.c: Implement GEDA_OBJECT_NOTIFY macro.
+
 2018-01-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Replace g_cclosure_marshal_VOID__ENUM with
