@@ -1343,22 +1343,19 @@ msgstr "Cofanie błąd"
 msgid "Undo failed"
 msgstr "Cofanie zawiodły"
 
-# Seeking sources
+# Search for
 #: gschem/src/x/x_autonumber.c:117
-#, fuzzy
 msgid "Search for:"
-msgstr "Szukam źródła"
+msgstr "Szukać:"
 
-# Set the sequence number
-#: gschem/src/x/x_autonumber.c:117
-#, fuzzy
+# Set the search criteria
 msgid "Set the search criteria"
-msgstr "Ustaw numer sekwencji"
+msgstr "Ustaw kryteria wyszukiwania"
 
+# Autonumber text in
 #: gschem/src/x/x_autonumber.c:118
-#, fuzzy
 msgid "Autonumber text in:"
-msgstr "Automatyczna numeracja"
+msgstr "Autonumeruj tekst w:"
 
 #: gschem/src/x/x_autonumber.c:118
 msgid "Set the context of the search scope"
@@ -1368,27 +1365,24 @@ msgstr ""
 msgid "Skip numbers found in:"
 msgstr ""
 
-# Set the sequence number
+# Set where NOT to look for numbers
 #: gschem/src/x/x_autonumber.c:119
-#, fuzzy
 msgid "Set where NOT to look for numbers"
-msgstr "Ustaw numer sekwencji"
+msgstr "Ustaw, gdzie NIE szukać liczb"
 
 #: gschem/src/x/x_autonumber.c:120
 msgid "Sort order:"
 msgstr ""
 
-# Select the name of the attribute to add
+# Select the orientation of the Scan method
 #: gschem/src/x/x_autonumber.c:120
-#, fuzzy
 msgid "Select the orientation of the Scan method"
-msgstr "Wybierz nazwę atrybutu dodać"
+msgstr "Wybierz orientację metody skanowania"
 
-# Slot number
+# Starting number
 #: gschem/src/x/x_autonumber.c:121
-#, fuzzy
 msgid "Starting number:"
-msgstr "numer gniazda:"
+msgstr "Numer początkowy:"
 
 #: gschem/src/x/x_autonumber.c:121
 msgid "Set the starting number for the current scan"
@@ -1459,9 +1453,8 @@ msgid "File order"
 msgstr "Kolejność plików"
 
 #: gschem/src/x/x_autonumber.c:1637
-#, fuzzy
 msgid "Filter:"
-msgstr "<b>Filtr:</b>"
+msgstr "Filtr:"
 
 #: gschem/src/x/x_autonumber.c:1679
 msgid "Selected objects"
@@ -1505,11 +1498,10 @@ msgstr "Błąd podczas wklejania"
 msgid "Open"
 msgstr "Otwórz"
 
-# Open File
+# Open all
 #: gschem/src/x/x_compselect.c:126
-#, fuzzy
 msgid "Open all"
-msgstr "Otwórz plik"
+msgstr "Otwórz wszystko"
 
 #: gschem/src/x/x_compselect.c:127 gschem/src/x/x_menus.c:149
 msgid "Close"
@@ -3665,21 +3657,18 @@ msgstr "_Widok"
 
 # Grid
 #: gschem/src/x/x_menus.c:892
-#, fuzzy
 msgid "_Grid"
 msgstr "Krata"
 
-# Display the console window
+# Display dots grid
 #: gschem/src/x/x_menus.c:927
-#, fuzzy
 msgid "Display dots grid"
-msgstr "Wyświetla okno konsoli"
+msgstr "Wyświetlaj siatkę kropek"
 
-# Display the console window
+# Display mesh grid
 #: gschem/src/x/x_menus.c:928
-#, fuzzy
 msgid "Display mesh grid"
-msgstr "Wyświetla okno konsoli"
+msgstr "Wyświetl siatkę siatki"
 
 #: gschem/src/x/x_menus.c:929
 msgid "Turn off the grid display"
