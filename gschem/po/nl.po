@@ -2349,11 +2349,11 @@ msgstr ""
 msgid "Components may overlay, Continue?"
 msgstr ""
 
+# Create Array: Error
 #: gschem/src/x/x_edit_array.c:539 gschem/src/x/x_edit_array.c:544
 #: gschem/src/x/x_edit_array.c:549
-#, fuzzy
 msgid "Create Array:Error"
-msgstr "Array maken"
+msgstr "Create Array: Fout"
 
 #: gschem/src/x/x_edit_array.c:540
 msgid ""
@@ -2502,10 +2502,10 @@ msgstr ""
 msgid "Add Attribute"
 msgstr "Plaats Attribuut"
 
+# Edit Attribute
 #: gschem/src/x/x_edit_attrib.c:412
-#, fuzzy
 msgid "Edit Attribute"
-msgstr "Bewerk Attribuut"
+msgstr "Attribuut bewerken"
 
 # Select the name of the attribute to add
 #: gschem/src/x/x_edit_attrib.c:414
@@ -2645,24 +2645,23 @@ msgid "_Comment:"
 msgstr "Commentaar:"
 
 #: gschem/src/x/x_edit_cprop.c:1346
-#, fuzzy
 msgid "Options:"
-msgstr "Opties"
+msgstr "Opties:"
 
+# Embedded
 #: gschem/src/x/x_edit_cprop.c:1381
-#, fuzzy
 msgid "_Embedded"
-msgstr "Insluiten"
+msgstr "ingebed"
 
+# Locked
 #: gschem/src/x/x_edit_cprop.c:1397
-#, fuzzy
 msgid "_Locked"
-msgstr "Vergrendel"
+msgstr "Op slot"
 
+# Mirrored
 #: gschem/src/x/x_edit_cprop.c:1415
-#, fuzzy
 msgid "_Mirrored"
-msgstr "Spiegel"
+msgstr "Gespiegeld"
 
 #: gschem/src/x/x_edit_cprop.c:1439
 msgid "_Electrical:"
@@ -2739,10 +2738,10 @@ msgstr "Link naar de documentatie voor dit apparaat"
 msgid "Entry for comments"
 msgstr ""
 
+# Embed symbol in schematic checkbox
 #: gschem/src/x/x_edit_cprop.c:1640
-#, fuzzy
 msgid "Embed symbol in schematic checkbox"
-msgstr "Component insluiten in schema"
+msgstr "Sluit het symbool in in het schematische selectievakje"
 
 #: gschem/src/x/x_edit_cprop.c:1646
 msgid "Lock symbol in schematic checkbox"
@@ -2966,10 +2965,10 @@ msgstr ""
 msgid "Slot number:"
 msgstr "slot nummer:"
 
+# Set the active slot number
 #: gschem/src/x/x_edit_slot.c:217
-#, fuzzy
 msgid "Set the active slot number"
-msgstr "Stel het volgnummer in"
+msgstr "Stel het actieve slotnummer in"
 
 #: gschem/src/x/x_edit_text.c:64 gschem/src/x/x_edit_text.c:473
 msgid "Text Content"
@@ -3640,19 +3639,18 @@ msgid "_View"
 msgstr "_Toon"
 
 #: gschem/src/x/x_menus.c:892
-#, fuzzy
 msgid "_Grid"
 msgstr "Raster"
 
+# Display dots grid
 #: gschem/src/x/x_menus.c:927
-#, fuzzy
 msgid "Display dots grid"
-msgstr "Geef het console venster"
+msgstr "Toon stippenraster"
 
+# Display mesh grid
 #: gschem/src/x/x_menus.c:928
-#, fuzzy
 msgid "Display mesh grid"
-msgstr "Geef het console venster"
+msgstr "Geef meshraster weer"
 
 #: gschem/src/x/x_menus.c:929
 msgid "Turn off the grid display"
