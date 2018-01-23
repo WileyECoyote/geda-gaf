@@ -6,6 +6,8 @@
 
     * po/pt.po: Update Portuguese translations.
 
+    * po/pt_BR.po: Update Brazilian Portuguese translations.
+
 2018-01-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_confirm_close.c: Remove unneeded cast to GtkWidget in
