@@ -1010,10 +1010,12 @@ geda_combo_box_text_set_activate_default (GedaComboBoxText *combo_box, bool sett
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief widget version of #geda_combo_box_get_count
- *  \par Function Description
- *
+/*!
+ * \brief Retrieve the GedaComboBoxText Entry
+ * \par Function Description
+ *  This function is the same as geda_combo_get_entry_widget but accept a
+ *  #GedaComboBoxText as the argument. The returned widget is a GedaEntry
+ *  object.
  */
 GedaEntry*
 geda_combo_box_text_get_entry (GedaComboBoxText *combo_box)
