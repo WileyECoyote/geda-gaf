@@ -820,6 +820,7 @@ SCM g_rc_log_destiny(SCM mode)
 
   RETURN_G_RC_MODE("log-destiny", default_log_destiny, mode_table);
 }
+
 /*! \brief Process console-window RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
@@ -837,6 +838,7 @@ SCM g_rc_console_window(SCM mode)
 
   RETURN_G_RC_MODE("console-window", default_console_window, mode_table);
 }
+
 /*! \brief Process console-window-type RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
@@ -852,6 +854,7 @@ SCM g_rc_console_window_type(SCM mode)
 
   RETURN_G_RC_MODE("console-window-type", default_console_window_type, mode_table);
 }
+
 /* ----- Miscellaneous ----- */
 /*! \brief Process action-feedback-mode RC entry.
  *  \par Function Description
@@ -867,6 +870,7 @@ SCM g_rc_action_feedback_mode(SCM mode)
 
   RETURN_G_RC_MODE("action-feedback-mode", default_action_feedback_mode, mode_table);
 }
+
 /*! \brief Process add-attribute-offset RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
@@ -879,6 +883,7 @@ SCM g_rc_add_attribute_offset(SCM offset)
                                   "add-attribute-offset");
   return SCM_BOOL_T;
 }
+
 /*! \brief Process add-menu RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
@@ -930,6 +935,7 @@ SCM g_rc_map_icon(SCM s_icon, SCM s_action)
   return SCM_BOOL_T;
 
 }
+
 /*! \brief Process map-keys RC entry.
  *  \par Function Description
  *       This procedure is functionally equivalent to the
@@ -1043,6 +1049,7 @@ SCM g_rc_auto_save_interval(SCM seconds)
                                "auto_save_interval");
   return SCM_BOOL_T;
 }
+
 /*! \brief Process attribute-name RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
@@ -1116,6 +1123,7 @@ SCM g_rc_component_dialog_attributes(SCM stringlist)
   return SCM_BOOL_T;
 
 }
+
 /*! \brief Process continue-component-place RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
@@ -1131,6 +1139,7 @@ SCM g_rc_continue_component_place(SCM mode)
   RETURN_G_RC_MODE("continue-component-place",
                     default_continue_component_place, mode_table);
 }
+
 /*! \brief Process embed-components RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
@@ -1145,6 +1154,7 @@ SCM g_rc_embed_components(SCM mode)
 
   RETURN_G_RC_MODE("embed-components", default_embed_components, mode_table);
 }
+
 /*! \brief Process enforce-hierarchy RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
@@ -1188,6 +1198,7 @@ SCM g_rc_keyboardpan_gain(SCM gain)
                                      "keyboardpan_gain");
   return SCM_BOOL_T;
 }
+
 /*! \brief Process magnetic-net-mode RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
@@ -1202,6 +1213,7 @@ SCM g_rc_magnetic_net_mode(SCM mode)
 
   RETURN_G_RC_MODE("magnetic-net-mode", default_magnetic_net_mode, mode_table);
 }
+
 /*! \brief Process netconn-rubberband RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
