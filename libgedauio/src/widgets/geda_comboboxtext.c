@@ -992,10 +992,12 @@ geda_combo_box_text_get_activate_default (GedaComboBoxText *combo_box)
   return FALSE;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief widget version of #geda_combo_box_get_count
- *  \par Function Description
- *
+/*!
+ * \brief Set the GedaComboBoxText activate_default property
+ * \par Function Description
+ *  Sets the "activates-default" property of the child entry widget
+ *  to \a setting. If the GedaComboBoxText has no entry the call is
+ *  is ignored.
  */
 void
 geda_combo_box_text_set_activate_default (GedaComboBoxText *combo_box, bool setting)
