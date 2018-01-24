@@ -1,3 +1,7 @@
+2018-01-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * moto/MC33926-1.sym: Redo symbol, add value and description.
+
 2018-01-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * moto/MC1496-1.sym: Redo symbol; convert text to pin labels.
