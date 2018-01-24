@@ -151,11 +151,10 @@ msgstr "Recuperando a geometria da janela principal\n"
 msgid "Auto-Restore"
 msgstr ""
 
-# Retrieving main window geometry
+# Automatically restore the main window geometry
 #: gschem/src/base/gschem_main_window.c:391
-#, fuzzy
 msgid "Automatically restore the main window geometry"
-msgstr "Recuperando a geometria da janela principal\n"
+msgstr "Restaurar automaticamente a geometria da janela principal"
 
 #: gschem/src/base/gschem_page_view.c:250
 #: gschem/src/base/gschem_page_view.c:251
@@ -1543,10 +1542,10 @@ msgstr ""
 msgid "Open"
 msgstr "Abrir"
 
+# Open all
 #: gschem/src/x/x_compselect.c:126
-#, fuzzy
 msgid "Open all"
-msgstr "Abrir Ficheiro..."
+msgstr "Abra tudo"
 
 #: gschem/src/x/x_compselect.c:127 gschem/src/x/x_menus.c:149
 msgid "Close"
@@ -2686,14 +2685,13 @@ msgid "_Embedded"
 msgstr "_Embutido"
 
 #: gschem/src/x/x_edit_cprop.c:1397
-#, fuzzy
 msgid "_Locked"
-msgstr "Trancar"
+msgstr "Bloqueado"
 
+# Mirrored
 #: gschem/src/x/x_edit_cprop.c:1415
-#, fuzzy
 msgid "_Mirrored"
-msgstr "Simetria"
+msgstr "Espelhado"
 
 #: gschem/src/x/x_edit_cprop.c:1439
 msgid "_Electrical:"
@@ -2770,10 +2768,10 @@ msgstr "Link para a documentação para este dispositivo"
 msgid "Entry for comments"
 msgstr "A entrada para a apresentação de observações"
 
+# checkbox to embed symbol in schematic
 #: gschem/src/x/x_edit_cprop.c:1640
-#, fuzzy
 msgid "Embed symbol in schematic checkbox"
-msgstr "Embutir componente no esquema"
+msgstr "caixa de seleção para incorporar o símbolo em esquema"
 
 #: gschem/src/x/x_edit_cprop.c:1646
 msgid "Lock symbol in schematic checkbox"
@@ -3002,11 +3000,10 @@ msgstr ""
 msgid "Slot number:"
 msgstr "numero de elemento:"
 
-# Set the sequence number
+# Set the active slot number
 #: gschem/src/x/x_edit_slot.c:217
-#, fuzzy
 msgid "Set the active slot number"
-msgstr "Defina o número de sequência"
+msgstr "Defina o número do slot ativo"
 
 #: gschem/src/x/x_edit_text.c:64 gschem/src/x/x_edit_text.c:473
 msgid "Text Content"
@@ -3657,23 +3654,19 @@ msgstr ""
 msgid "_View"
 msgstr "_Ver"
 
-# Grid
 #: gschem/src/x/x_menus.c:892
-#, fuzzy
 msgid "_Grid"
 msgstr "Grade"
 
-# Display the console window
+# Display dots grid
 #: gschem/src/x/x_menus.c:927
-#, fuzzy
 msgid "Display dots grid"
-msgstr "Exibir a janela de console"
+msgstr "Grade de pontos de exibição"
 
-# Display the console window
+# Display mesh grid
 #: gschem/src/x/x_menus.c:928
-#, fuzzy
 msgid "Display mesh grid"
-msgstr "Exibir a janela de console"
+msgstr "Grade de malha de exibição"
 
 #: gschem/src/x/x_menus.c:929
 msgid "Turn off the grid display"
@@ -6179,15 +6172,6 @@ msgstr "~S não é uma seqüência de chave de prefixo."
 # Auto Height
 #~ msgid "Auto Height"
 #~ msgstr "Altura automática"
-
-# Selection
-#, fuzzy
-#~ msgid "<b>Selection</b>"
-#~ msgstr "Selecção"
-
-#, fuzzy
-#~ msgid "<b>Array</b>"
-#~ msgstr "<b>Filtro:</b>"
 
 #~ msgid "Toggle _Magnetic Net"
 #~ msgstr "Alternar Ligação _Magnética"
