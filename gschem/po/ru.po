@@ -1608,28 +1608,25 @@ msgstr ""
 msgid "Refresh this view"
 msgstr ""
 
-# Rescan component libraries
+# Rescan the libraries
 #: gschem/src/x/x_compselect.c:141
-#, fuzzy
 msgid "Rescan the libraries"
-msgstr "Пересканировать библиотеки компонентов"
+msgstr "Повторное сканирование библиотек"
 
-# Set style filter
+# Set styles options
 #: gschem/src/x/x_compselect.c:142
-#, fuzzy
 msgid "Set styles options"
-msgstr "Установить фильтр стиль"
+msgstr "Настройка параметров стилей"
 
 # Saving Toolbar settings
 #: gschem/src/x/x_compselect.c:143
-#, fuzzy
 msgid "Tooltip settings"
-msgstr "Сохранение параметров панели инструментов..."
+msgstr "Настройки подсказки"
 
+# Enable tooltips
 #: gschem/src/x/x_compselect.c:144
-#, fuzzy
 msgid "Enable tooltips"
-msgstr "Включить все стили"
+msgstr "Включить всплывающие подсказки"
 
 #: gschem/src/x/x_compselect.c:145
 msgid "Disable tooltips"
@@ -1783,28 +1780,25 @@ msgstr ""
 msgid "If you don't save, all your changes will be permanently lost."
 msgstr ""
 
-# Closes without saving the changes
+# Close without saving
 #: gschem/src/x/x_confirm_close.c:547
-#, fuzzy
 msgid "Close without saving"
-msgstr "Закрытие без сохранения изменений"
+msgstr "Закрыть без сохранения"
 
-# Could not save page
+# unsaved page
 #: gschem/src/x/x_confirm_close.c:600
-#, fuzzy
 msgid "unsaved page"
-msgstr "Не удалось сохранить страницу"
+msgstr "несохраненная страница"
 
 # Saved as
 #: gschem/src/x/x_confirm_close.c:608
-#, fuzzy
 msgid "unsaved pages"
-msgstr "Сохранено как"
+msgstr "несохраненные страницы"
 
+# selected pages
 #: gschem/src/x/x_confirm_close.c:615
-#, fuzzy
 msgid "selected pages"
-msgstr "Выделенные объекты"
+msgstr "выбранные страницы"
 
 #: gschem/src/x/x_console.c:135
 msgid "destroying history\n"
@@ -2440,12 +2434,11 @@ msgstr ""
 msgid "Create Array"
 msgstr ""
 
-# File Count
+# Count
 #: gschem/src/x/x_edit_array.c:902 gschem/src/x/x_edit_array.c:972
 #: gschem/src/x/x_edit_array.c:1005
-#, fuzzy
 msgid "Count"
-msgstr "Количество файлов"
+msgstr "подсчитывать"
 
 # Grid
 #: gschem/src/x/x_edit_array.c:913
@@ -3739,22 +3732,20 @@ msgstr ""
 msgid "_View"
 msgstr "_Вид"
 
+# Grid
 #: gschem/src/x/x_menus.c:892
-#, fuzzy
 msgid "_Grid"
 msgstr "Сетка"
 
-# Display coordinates
+# Display dots grid
 #: gschem/src/x/x_menus.c:927
-#, fuzzy
 msgid "Display dots grid"
-msgstr "Окно Показать Координаты"
+msgstr "Показать сетку точек"
 
-# Display the console window
+# Display mesh grid
 #: gschem/src/x/x_menus.c:928
-#, fuzzy
 msgid "Display mesh grid"
-msgstr "Отображение окна консоли"
+msgstr "Показать сетку сетки"
 
 #: gschem/src/x/x_menus.c:929
 msgid "Turn off the grid display"
