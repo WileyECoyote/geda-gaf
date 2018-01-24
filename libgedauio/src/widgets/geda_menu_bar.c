@@ -1848,7 +1848,7 @@ geda_menu_bar_set_label_mnemonic_visible (GedaMenuBar *menubar, bool state)
 
           GtkWidget *child;
 
-          child = gtk_bin_get_child ((GtkBin*)menu_item);
+          child = geda_get_child_widget (menu_item);
 
           if (GEDA_IS_LABEL(child)) {
             geda_label_set_mnemonic_visible ((GedaLabel*)child, state);
