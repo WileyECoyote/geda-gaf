@@ -1,4 +1,4 @@
-v 20070626 1
+v 20070626 2
 B 300 0 2100 3900 3 0 0 0 -1 -1 0 0 -1 -1 -1 -1
 T 300 4350 5 10 0 0 0 0 1
 device=BasicStamp2
@@ -269,9 +269,9 @@ pinlabel=PWR
 T 2350 3600 5 8 0 1 0 8 1
 pintype=pwr
 }
-T 300 4950 5 10 0 0 0 0 1
+T 300 4950 5 10 0 1 0 0 1
 documentation=http://www.parallax.com/dl/docs/prod/schem/bs2%20rev%20f.pdf
-T 300 4750 5 10 0 0 0 0 1
+T 300 4750 5 10 0 1 0 0 1
 description=pic microcontroller modul with basic support
 T 300 4150 5 10 0 0 0 0 1
 numslots=0
