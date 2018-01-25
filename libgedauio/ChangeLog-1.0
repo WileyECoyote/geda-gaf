@@ -1,3 +1,9 @@
+2018-01-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_combobox.c: Update function documentation for:
+      geda_combo_widget_get_has_entry
+
+
 2018-01-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_comboboxtext.c: Update function documentation for:

@@ -7275,10 +7275,14 @@ void geda_combo_widget_set_focus_on_click (GtkWidget *combo, bool focus_on_click
   return geda_combo_box_set_focus_on_click((GedaComboBox*)combo, focus_on_click);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Get GedaFontDialog has Entry Widget
+ * \par Function Description
+ *  Returns whether or not the GedaComboBox has an entry widget.
  *
+ * \param [in] combo Pointer to a #GedaComboBox widget
+ *
+ * \returns TRUE of the GedaComboBox has an entry widget.
  */
 bool geda_combo_widget_get_has_entry (GtkWidget *combo_box)
 {
@@ -7289,7 +7293,7 @@ bool geda_combo_widget_get_has_entry (GtkWidget *combo_box)
 }
 
 /*!
- * \brief Retrieve GedaEntry from a GedaComboBox Widget
+ * \brief Retrieve the GedaEntry from a GedaComboBox Widget
  * \par Function Description
  *  Returns the combo box entry as a GedaEntry.
  *
