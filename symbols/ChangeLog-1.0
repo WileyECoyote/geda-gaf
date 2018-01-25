@@ -5,6 +5,8 @@
     * memory/62256-2.sym: Change "Vcc" -> "VCC"  update attribute positions,
       and convert plain text to value attribute.
 
+    * micro/BasicStamp2-1.sym: Rename file basicstamp -> BasicStamp2.
+
 2018-01-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * moto/MC33926-1.sym: Redo symbol, add value and description.
