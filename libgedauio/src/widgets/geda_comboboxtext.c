@@ -1028,10 +1028,14 @@ geda_combo_box_text_get_entry (GedaComboBoxText *combo_box)
   return NULL;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief widget version of #geda_combo_box_get_count
- *  \par Function Description
+/*!
+ * \brief Get the Entry Widget from the GedaComboBoxText
+ * \par Function Description
+ *  Returns the entry or NULL if \a combo_box has no entry, this
+ *  function just calls geda_combo_get_entry_widget but accepts
+ *  a GedaComboBoxText as the argument.
  *
+ * \sa geda_combo_get_entry_widget
  */
 GtkWidget*
 geda_combo_box_text_get_entry_widget (GedaComboBoxText *combo_box)
