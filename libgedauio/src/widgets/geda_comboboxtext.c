@@ -1040,7 +1040,7 @@ geda_combo_box_text_get_entry (GedaComboBoxText *combo_box)
 GtkWidget*
 geda_combo_box_text_get_entry_widget (GedaComboBoxText *combo_box)
 {
-  return geda_combo_get_entry_widget(GEDA_COMBO_BOX(combo_box));;
+  return geda_combo_get_entry_widget(GEDA_COMBO_BOX(combo_box));
 }
 
 /*! \todo Finish function documentation!!!
