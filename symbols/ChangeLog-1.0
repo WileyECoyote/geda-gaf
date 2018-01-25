@@ -2,6 +2,9 @@
 
     * memory/27C2001-1.sym: Change "Vcc" -> "VCC"  update attribute positions.
 
+    * memory/62256-2.sym: Change "Vcc" -> "VCC"  update attribute positions,
+      and convert plain text to value attribute.
+
 2018-01-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * moto/MC33926-1.sym: Redo symbol, add value and description.
