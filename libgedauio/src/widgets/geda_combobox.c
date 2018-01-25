@@ -3844,22 +3844,22 @@ static void geda_combo_box_show_popup (GtkWidget      *button,
 
   popup_item = geda_menu_item_new_with_label (_("Auto view"));
 
-  g_signal_connect (GTK_OBJECT(popup_item), "activate",
-                   (GCallback) geda_combo_box_clicked_view_auto, user_data);
+  g_signal_connect (popup_item, "activate",
+                    G_CALLBACK (geda_combo_box_clicked_view_auto), user_data);
 
   geda_menu_append (menu, popup_item);
 
   popup_item = geda_menu_item_new_with_label (_("view as Menu"));
 
-  g_signal_connect (GTK_OBJECT(popup_item), "activate",
-                   (GCallback) geda_combo_box_clicked_view_menu, user_data);
+  g_signal_connect (popup_item, "activate",
+                    G_CALLBACK (geda_combo_box_clicked_view_menu), user_data);
 
   geda_menu_append (menu, popup_item);
 
   popup_item = geda_menu_item_new_with_label (_("view as List"));
 
-  g_signal_connect (GTK_OBJECT(popup_item), "activate",
-                   (GCallback)geda_combo_clicked_view_list, user_data);
+  g_signal_connect (popup_item, "activate",
+                    G_CALLBACK (geda_combo_clicked_view_list), user_data);
 
   geda_menu_append (menu, popup_item);
 
