@@ -4711,6 +4711,12 @@ static bool geda_combo_box_list_key_press (GtkWidget   *widget,
   {
     GtkTreeModel *model = NULL;
 
+  if (event->keyval == GDK_Return    ||
+      event->keyval == GDK_ISO_Enter ||
+      event->keyval == GDK_KP_Enter  ||
+      event->keyval == GDK_space     ||
+      event->keyval == GDK_KP_Space)
+  {
     geda_combo_box_popdown (combo_box);
 
     if (combo_box->priv->model) {
