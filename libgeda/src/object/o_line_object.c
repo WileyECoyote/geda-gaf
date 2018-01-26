@@ -465,13 +465,13 @@ bool geda_line_object_get_nearest_point (GedaObject *object, int x, int y, int *
 #endif
 
       if (geda_math_line_includes_point(line, &point)) {
-       ax = point.x;
-       ay = point.y;
+        ax = point.x;
+        ay = point.y;
       }
       else {
         int index = geda_line_object_get_closest_endpoint(object, x, y);
-       ax = line->x[index];
-       ay = line->y[index];
+        ax = line->x[index];
+        ay = line->y[index];
       }
     }
     result = TRUE;
