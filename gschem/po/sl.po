@@ -1344,10 +1344,10 @@ msgstr ""
 msgid "Autonumber text in:"
 msgstr ""
 
+# Set the context of the search scope
 #: gschem/src/x/x_autonumber.c:118
-#, fuzzy
 msgid "Set the context of the search scope"
-msgstr "Prilepi vsebino odložišča sistema"
+msgstr "Nastavite kontekst obsega iskanja"
 
 #: gschem/src/x/x_autonumber.c:119
 msgid "Skip numbers found in:"
@@ -1365,11 +1365,10 @@ msgstr ""
 msgid "Select the orientation of the Scan method"
 msgstr ""
 
-# Slot number
+# Starting number
 #: gschem/src/x/x_autonumber.c:121
-#, fuzzy
 msgid "Starting number:"
-msgstr "številka slot:"
+msgstr "Začetna številka:"
 
 #: gschem/src/x/x_autonumber.c:121
 msgid "Set the starting number for the current scan"
@@ -1485,11 +1484,10 @@ msgstr ""
 msgid "Open"
 msgstr "Odprto"
 
-# Open File
+# Open all
 #: gschem/src/x/x_compselect.c:126
-#, fuzzy
 msgid "Open all"
-msgstr "Odpri datoteko"
+msgstr "Odpri vse"
 
 #: gschem/src/x/x_compselect.c:127 gschem/src/x/x_menus.c:149
 msgid "Close"
@@ -1507,8 +1505,8 @@ msgstr ""
 msgid "Styles"
 msgstr ""
 
+# Tooltips
 #: gschem/src/x/x_compselect.c:131
-#, fuzzy
 msgid "Tooltips"
 msgstr "Orodja"
 
@@ -1536,11 +1534,10 @@ msgstr ""
 msgid "Set styles options"
 msgstr ""
 
-# Saving settings toolbar
+# Tooltip settings
 #: gschem/src/x/x_compselect.c:143
-#, fuzzy
 msgid "Tooltip settings"
-msgstr "Shranjevanje nastavitev orodne vrstice..."
+msgstr "Nastavitve orodja"
 
 #: gschem/src/x/x_compselect.c:144
 msgid "Enable tooltips"
@@ -2317,12 +2314,11 @@ msgstr ""
 msgid "Create Array"
 msgstr "Ustvari matrika"
 
-# File Count
+# Count
 #: gschem/src/x/x_edit_array.c:902 gschem/src/x/x_edit_array.c:972
 #: gschem/src/x/x_edit_array.c:1005
-#, fuzzy
 msgid "Count"
-msgstr "Štetje datoteke"
+msgstr "šteje"
 
 #: gschem/src/x/x_edit_array.c:913
 msgid "X Size"
@@ -2336,11 +2332,10 @@ msgstr ""
 msgid "Select"
 msgstr ""
 
-# unselect mode
+# Deselect => unselect
 #: gschem/src/x/x_edit_array.c:939
-#, fuzzy
 msgid "Deselect"
-msgstr "unselect način"
+msgstr "Odstrani"
 
 #: gschem/src/x/x_edit_array.c:955 gschem/src/x/x_menus.c:118
 msgid "Array"
@@ -2350,11 +2345,10 @@ msgstr "Matrika"
 msgid "Row"
 msgstr ""
 
-# Offset Mode
+# Offset
 #: gschem/src/x/x_edit_array.c:987 gschem/src/x/x_edit_array.c:1020
-#, fuzzy
 msgid "Offset"
-msgstr "Offset način"
+msgstr "offset"
 
 #: gschem/src/x/x_edit_array.c:997
 msgid "Column"
@@ -2443,10 +2437,10 @@ msgstr ""
 msgid "Add Attribute"
 msgstr ""
 
+# Edit Attribute
 #: gschem/src/x/x_edit_attrib.c:412
-#, fuzzy
 msgid "Edit Attribute"
-msgstr "Urejanje objektov atributi"
+msgstr "Urejanje atributa"
 
 #: gschem/src/x/x_edit_attrib.c:414
 msgid "Select the name of the attribute to add"
@@ -3542,17 +3536,15 @@ msgstr ""
 msgid "_Grid"
 msgstr ""
 
-# console display
+# Display dots grid
 #: gschem/src/x/x_menus.c:927
-#, fuzzy
 msgid "Display dots grid"
-msgstr "Zaslon konzole"
+msgstr "Mreža prikaznih točk"
 
-# console display
+# Display mesh grid
 #: gschem/src/x/x_menus.c:928
-#, fuzzy
 msgid "Display mesh grid"
-msgstr "Zaslon konzole"
+msgstr "Omrežna mreža zaslona"
 
 #: gschem/src/x/x_menus.c:929
 msgid "Turn off the grid display"
