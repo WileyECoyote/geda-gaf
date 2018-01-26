@@ -4705,9 +4705,6 @@ static bool geda_combo_box_list_key_press (GtkWidget   *widget,
 {
   GedaComboBox *combo_box = GEDA_COMBO_BOX (data);
 
-  if (event->keyval == GDK_Return || event->keyval == GDK_ISO_Enter || event->keyval == GDK_KP_Enter ||
-    event->keyval == GDK_space || event->keyval == GDK_KP_Space)
-  {
 
   if (event->keyval == GDK_Return    ||
       event->keyval == GDK_ISO_Enter ||
@@ -4720,12 +4717,14 @@ static bool geda_combo_box_list_key_press (GtkWidget   *widget,
     if (combo_box->priv->model) {
 
       GtkTreeIter       iter;
-      GtkTreeSelection *sel;
       GtkTreeModel     *model;
+      GtkTreeView      *tree_view;
+      GtkTreeSelection *selection;
 
-      sel = gtk_tree_view_get_selection (GTK_TREE_VIEW (combo_box->priv->tree_view));
+      tree_view = (GtkTreeView*)combo_box->priv->tree_view;
+      selection = gtk_tree_view_get_selection (tree_view);
 
-      if (gtk_tree_selection_get_selected (sel, &model, &iter)) {
+      if (gtk_tree_selection_get_selected (selection, &model, &iter)) {
         geda_combo_box_set_active_iter (combo_box, &iter);
       }
     }
