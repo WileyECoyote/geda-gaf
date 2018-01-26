@@ -2440,27 +2440,24 @@ msgstr ""
 msgid "Count"
 msgstr "подсчитывать"
 
-# Grid
+# X Size
 #: gschem/src/x/x_edit_array.c:913
-#, fuzzy
 msgid "X Size"
-msgstr "Сетка:"
+msgstr "Размер X"
 
-# Grid
+# Y Size
 #: gschem/src/x/x_edit_array.c:916
-#, fuzzy
 msgid "Y Size"
-msgstr "Сетка:"
+msgstr "Y Размер"
 
 #: gschem/src/x/x_edit_array.c:935 gschem/src/x/x_menus.c:87
 msgid "Select"
 msgstr "Выделение"
 
-# Deselect All
+# Deselect
 #: gschem/src/x/x_edit_array.c:939
-#, fuzzy
 msgid "Deselect"
-msgstr "Убрать выделение со всего"
+msgstr "Отмените"
 
 #: gschem/src/x/x_edit_array.c:955 gschem/src/x/x_menus.c:118
 msgid "Array"
@@ -2472,7 +2469,6 @@ msgstr ""
 
 # Offset
 #: gschem/src/x/x_edit_array.c:987 gschem/src/x/x_edit_array.c:1020
-#, fuzzy
 msgid "Offset"
 msgstr "офсет"
 
@@ -2567,10 +2563,10 @@ msgstr ""
 msgid "Add Attribute"
 msgstr "Добавить атрибут"
 
+# Edit Attribute
 #: gschem/src/x/x_edit_attrib.c:412
-#, fuzzy
 msgid "Edit Attribute"
-msgstr "Правка атрибутов"
+msgstr "Изменить атрибут"
 
 # Select the name of the attribute to add
 #: gschem/src/x/x_edit_attrib.c:414
@@ -2717,24 +2713,23 @@ msgid "_Comment:"
 msgstr "Комментарий:"
 
 #: gschem/src/x/x_edit_cprop.c:1346
-#, fuzzy
 msgid "Options:"
-msgstr "Настройки"
+msgstr "Опции:"
 
+# Embedded
 #: gschem/src/x/x_edit_cprop.c:1381
-#, fuzzy
 msgid "_Embedded"
-msgstr "Внедрение"
+msgstr "Bнедренный"
 
+# Locked
 #: gschem/src/x/x_edit_cprop.c:1397
-#, fuzzy
 msgid "_Locked"
-msgstr "Блокировка"
+msgstr "запертый"
 
+# Mirrored => Reflected
 #: gschem/src/x/x_edit_cprop.c:1415
-#, fuzzy
 msgid "_Mirrored"
-msgstr "Отражение"
+msgstr "Oтраженный"
 
 #: gschem/src/x/x_edit_cprop.c:1439
 msgid "_Electrical:"
@@ -2814,10 +2809,10 @@ msgstr "Ссылка на документацию для данного уст�
 msgid "Entry for comments"
 msgstr ""
 
+# Embed symbol in schematic checkbox
 #: gschem/src/x/x_edit_cprop.c:1640
-#, fuzzy
 msgid "Embed symbol in schematic checkbox"
-msgstr "Внедрить в схему"
+msgstr "Вставить символ в схему"
 
 #: gschem/src/x/x_edit_cprop.c:1646
 msgid "Lock symbol in schematic checkbox"
@@ -3050,11 +3045,10 @@ msgstr "Количество секций:"
 msgid "Slot number:"
 msgstr "Номер секции:"
 
-# Set the sequence number
+# Set the active slot number
 #: gschem/src/x/x_edit_slot.c:217
-#, fuzzy
 msgid "Set the active slot number"
-msgstr "Задайте порядковый номер"
+msgstr "Установите номер активного слота"
 
 #: gschem/src/x/x_edit_text.c:64 gschem/src/x/x_edit_text.c:473
 msgid "Text Content"
