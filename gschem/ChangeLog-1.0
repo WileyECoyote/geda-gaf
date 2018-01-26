@@ -4,8 +4,11 @@
 
     * po/sl.po: Update Slovenian translations.
 
-    * src/x/x_clipboard.c: Update missing struct identifier in 
+    * src/x/x_clipboard.c: Update missing struct identifier in
       default_color_button_popup.
+
+    * src/x/x_settings_dialog.c: Replace dynamic cast to GTK_OBJECT
+      with static cast to GObject.
 
 2018-01-24 Wiley E. Hill <wileyhill@gmail.com>
 

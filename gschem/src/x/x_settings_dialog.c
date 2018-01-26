@@ -1216,7 +1216,7 @@ bool
 color_button_popup_destroy(GtkWidget *widget, void *data)
 {
   if (GEDA_IS_MENU(popup_menu)) {
-    gtk_object_destroy(GTK_OBJECT(popup_menu));
+    gtk_object_destroy((GObject*)popup_menu);
     popup_menu = NULL;
   }
   return FALSE;
@@ -1240,7 +1240,7 @@ static void default_color_button_popup (GtkColorButton *button, GdkEventButton *
   GtkWidget *item;
 
   if (popup_menu) {
-    gtk_object_destroy(GTK_OBJECT(popup_menu));
+    gtk_object_destroy((GObject*)popup_menu);
     popup_menu = NULL;
   }
   popup_menu = geda_menu_new ();
