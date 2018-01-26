@@ -214,7 +214,7 @@ void x_clipboard_query_usable (GschemToplevel *w_current,
 
     /* Create a new instance of our callback structure */
     struct query_usable *callback_info;
-    callback_info = g_malloc (sizeof(query_usable));
+    callback_info = g_malloc (sizeof(struct query_usable));
 
     /* Save callers cbfunc ptr and data ptr to the new structure */
     callback_info->callback = callback;

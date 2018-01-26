@@ -4,6 +4,9 @@
 
     * po/sl.po: Update Slovenian translations.
 
+    * src/x/x_clipboard.c: Update missing struct identifier in 
+      default_color_button_popup.
+
 2018-01-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/pt.po: Update Portuguese translations.
