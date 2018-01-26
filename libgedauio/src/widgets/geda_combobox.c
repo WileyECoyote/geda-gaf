@@ -4732,12 +4732,12 @@ static bool geda_combo_box_list_key_press (GtkWidget   *widget,
     return TRUE;
   }
 
-  if (!gtk_bindings_activate_event (GTK_OBJECT (widget), event)) {
+  if (!gtk_bindings_activate_event ((GObject*)widget, event)) {
 
     /* The list hasn't managed the
      * event, forward it to the combobox
      */
-    gtk_bindings_activate_event (GTK_OBJECT (combo_box), event);
+    gtk_bindings_activate_event ((GObject*)combo_box, event);
   }
 
   return TRUE;

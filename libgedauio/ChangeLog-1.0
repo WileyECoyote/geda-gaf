@@ -1,7 +1,8 @@
 2018-01-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Reduce scope of GtkTreeModel and
-      GtkTreeIter, add ancillary GtkTreeView, and rename selection
+      GtkTreeIter, add ancillary GtkTreeView, rename selection, and
+      replace dynamic cast to GTK_OBJECT with static cast to GObject
       in geda_combo_box_list_key_press.
 
 2018-01-25 Wiley E. Hill <wileyhill@gmail.com>
