@@ -1,7 +1,7 @@
 2018-01-26 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/widgets/geda_combobox.c: Reduce scope of GtkTreeModel in
-      geda_combo_box_list_key_press.
+    * src/widgets/geda_combobox.c: Reduce scope of GtkTreeModel and
+      GtkTreeIter in geda_combo_box_list_key_press.
 
 2018-01-25 Wiley E. Hill <wileyhill@gmail.com>
 
