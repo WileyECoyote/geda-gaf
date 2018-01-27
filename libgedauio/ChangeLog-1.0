@@ -1,7 +1,9 @@
 2018-01-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Replace dynamic cast to GTK_OBJECT
-      with static cast to GtkObject in geda_combo_box_menu_key_press.
+      with static cast to GtkObject in geda_combo_box_menu_key_press
+      and rename data argument to combo_box to eliminate the combo_box
+      variable.
 
 2018-01-26 Wiley E. Hill <wileyhill@gmail.com>
 

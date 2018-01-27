@@ -4687,9 +4687,9 @@ static bool geda_combo_box_list_button_released (GtkWidget      *widget,
 
 static bool geda_combo_box_menu_key_press (GtkWidget   *widget,
                                            GdkEventKey *event,
-                                           void        *data)
+                                           void        *combo_box)
 {
-  GedaComboBox *combo_box = GEDA_COMBO_BOX (data);
+  /* GedaComboBox *combo_box = GEDA_COMBO_BOX (data); */
 
   if (!gtk_bindings_activate_event ((GtkObject*)widget, event))  {
     /* The menu hasn't managed the event, forward it to the combobox */
