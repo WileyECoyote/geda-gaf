@@ -9,6 +9,9 @@
       Replace g_cclosure_marshal_VOID__UINT with geda_marshal_VOID__UINT
       in geda_combo_box_class_init.
 
+    * src/widgets/geda_comboboxtext.c: Add ancillary GedaComboBox combo
+      in geda_combo_box_text_get_active_text.
+
 2018-01-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Reduce scope of GtkTreeModel and

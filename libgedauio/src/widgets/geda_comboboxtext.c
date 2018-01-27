@@ -875,21 +875,23 @@ char *geda_combo_box_text_get_active_text (GedaComboBoxText *combo_box)
 
   if (GEDA_IS_COMBO_BOX_TEXT (combo_box)) {
 
-    if (geda_combo_box_get_has_entry (GEDA_COMBO_BOX (combo_box))) {
+    GedaComboBox *combo = GEDA_COMBO_BOX (combo_box);
+
+    if (geda_combo_box_get_has_entry (combo)) {
 
       GtkWidget *entry;
 
       entry = gtk_bin_get_child (GTK_BIN (combo_box));
       text = geda_strdup (geda_entry_get_text (GEDA_ENTRY (entry)));
     }
-    else if (geda_combo_box_get_active_iter (GEDA_COMBO_BOX (combo_box), &iter))
-    {
+    else if (geda_combo_box_get_active_iter (combo, &iter)) {
+
       GtkTreeModel *model;
       int text_column;
       int column_type;
 
-      model = geda_combo_box_get_model (GEDA_COMBO_BOX (combo_box));
-      text_column = geda_combo_box_get_entry_text_column (GEDA_COMBO_BOX (combo_box));
+      model = geda_combo_box_get_model (combo);
+      text_column = geda_combo_box_get_entry_text_column (combo);
       g_return_val_if_fail (text_column >= 0, NULL);
       column_type = gtk_tree_model_get_column_type (model, text_column);
       g_return_val_if_fail (column_type == G_TYPE_STRING, NULL);
