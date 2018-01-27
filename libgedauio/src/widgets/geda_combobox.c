@@ -4691,9 +4691,9 @@ static bool geda_combo_box_menu_key_press (GtkWidget   *widget,
 {
   GedaComboBox *combo_box = GEDA_COMBO_BOX (data);
 
-  if (!gtk_bindings_activate_event (GTK_OBJECT (widget), event))  {
+  if (!gtk_bindings_activate_event ((GtkObject*)widget, event))  {
     /* The menu hasn't managed the event, forward it to the combobox */
-    gtk_bindings_activate_event (GTK_OBJECT (combo_box), event);
+    gtk_bindings_activate_event ((GtkObject*) combo_box, event);
   }
 
   return TRUE;
