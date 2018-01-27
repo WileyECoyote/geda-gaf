@@ -6,6 +6,8 @@
       variable, add internal comments/documentation. Revise function
       geda_combo_box_list_key_press to return geda_combo_box_menu_key_
       press instead of conditionally calling gtk_bindings_activate_event.
+      Replace g_cclosure_marshal_VOID__UINT with geda_marshal_VOID__UINT
+      in geda_combo_box_class_init.
 
 2018-01-26 Wiley E. Hill <wileyhill@gmail.com>
 

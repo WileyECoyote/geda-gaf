@@ -1924,7 +1924,7 @@ static void geda_combo_box_class_init(void *class, void *class_data)
                     G_SIGNAL_RUN_LAST,
                     G_STRUCT_OFFSET (GedaComboBoxClass, view_changed),
                     NULL, NULL,
-                    g_cclosure_marshal_VOID__UINT,
+                    geda_marshal_VOID__UINT,
                     G_TYPE_NONE, 1, G_TYPE_UINT);
 
   /* key bindings */
