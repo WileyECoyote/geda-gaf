@@ -1022,7 +1022,7 @@ geda_combo_box_text_set_activate_default (GedaComboBoxText *combo_box, bool sett
 GedaEntry*
 geda_combo_box_text_get_entry (GedaComboBoxText *combo_box)
 {
-  GtkWidget *widget = geda_combo_get_entry_widget(GEDA_COMBO_BOX(combo_box));
+  GtkWidget *widget = geda_combo_get_entry_widget((GedaComboBox*)combo_box);
 
   if (widget) {
     return GEDA_ENTRY(widget);
@@ -1042,7 +1042,7 @@ geda_combo_box_text_get_entry (GedaComboBoxText *combo_box)
 GtkWidget*
 geda_combo_box_text_get_entry_widget (GedaComboBoxText *combo_box)
 {
-  return geda_combo_get_entry_widget(GEDA_COMBO_BOX(combo_box));
+  return geda_combo_get_entry_widget((GedaComboBox*)combo_box);
 }
 
 /*! \todo Finish function documentation!!!
@@ -1056,7 +1056,7 @@ geda_combo_box_text_get_text_length (GedaComboBoxText *combo_box)
   GtkWidget *widget;
   int length;
 
-  widget = geda_combo_get_entry_widget(GEDA_COMBO_BOX(combo_box));
+  widget = geda_combo_get_entry_widget((GedaComboBox*)combo_box);
 
   if (widget) {
     length = geda_entry_get_text_length(GEDA_ENTRY(widget));
