@@ -4685,6 +4685,14 @@ static bool geda_combo_box_list_button_released (GtkWidget      *widget,
   return TRUE;
 }
 
+/*!
+ * \internal "key-press-event" Callback
+ * \par
+ *  The GedaComboBox is passed as user data. The event is passed to
+ *  the combo box if the widget does not handle the event. Widget
+ *  could be a menu if callbacked directly or a list if called by
+ *  geda_combo_box_list_key_press.
+ */
 static bool geda_combo_box_menu_key_press (GtkWidget   *widget,
                                            GdkEventKey *event,
                                            void        *combo_box)
