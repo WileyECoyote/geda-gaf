@@ -4713,7 +4713,6 @@ static bool geda_combo_box_list_key_press (GtkWidget   *widget,
 {
   GedaComboBox *combo_box = GEDA_COMBO_BOX (data);
 
-
   if (event->keyval == GDK_Return    ||
       event->keyval == GDK_ISO_Enter ||
       event->keyval == GDK_KP_Enter  ||
