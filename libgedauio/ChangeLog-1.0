@@ -3,7 +3,9 @@
     * src/widgets/geda_combobox.c: Replace dynamic cast to GTK_OBJECT
       with static cast to GtkObject in geda_combo_box_menu_key_press,
       rename data argument to combo_box to eliminate the GedaComboBox
-      variable, add internal comments/documentation.
+      variable, add internal comments/documentation. Revise function
+      geda_combo_box_list_key_press to return geda_combo_box_menu_key_
+      press instead of conditionally calling gtk_bindings_activate_event.
 
 2018-01-26 Wiley E. Hill <wileyhill@gmail.com>
 

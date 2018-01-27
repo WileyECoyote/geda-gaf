@@ -4740,15 +4740,7 @@ static bool geda_combo_box_list_key_press (GtkWidget   *widget,
     return TRUE;
   }
 
-  if (!gtk_bindings_activate_event ((GObject*)widget, event)) {
-
-    /* The list hasn't managed the
-     * event, forward it to the combobox
-     */
-    gtk_bindings_activate_event ((GObject*)combo_box, event);
-  }
-
-  return TRUE;
+  return geda_combo_box_menu_key_press (widget, event, combo_box);
 }
 
 static void geda_combo_box_list_auto_scroll (GedaComboBox *combo_box, int x, int y)
