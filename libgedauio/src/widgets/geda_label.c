@@ -3750,7 +3750,10 @@ geda_label_expose (GtkWidget *widget, GdkEventExpose *event)
   return FALSE;
 }
 
-/*! \internal called by geda_label_set_uline_text_internal */
+/*! \internal called by:
+ *   geda_label_set_markup_internal
+ *   geda_label_set_uline_text_internal
+ */
 static bool
 separate_uline_pattern (const char  *str, unsigned int *accel_key,
                         char       **new_str,
