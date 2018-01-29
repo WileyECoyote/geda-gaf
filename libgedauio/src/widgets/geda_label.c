@@ -3765,8 +3765,8 @@ separate_uline_pattern (const char  *str, unsigned int *accel_key,
   bool        underscore;
 
   *accel_key = GDK_KEY_VoidSymbol;
-  *new_str   = g_new (char, strlen (str) + 1);
-  *pattern   = g_new (char, g_utf8_strlen (str, -1) + 1);
+  *new_str   = g_malloc ((sizeof(char) * strlen (str)) + 1);
+  *pattern   = g_malloc ((sizeof(char) * g_utf8_strlen (str, -1)) + 1);
 
   src          = str;
   dest         = *new_str;

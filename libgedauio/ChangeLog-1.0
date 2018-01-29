@@ -1,3 +1,8 @@
+2018-01-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_label.c: Replace g_new with g_malloc in function
+      separate_uline_pattern.
+
 2018-01-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Replace dynamic cast to GTK_OBJECT
