@@ -1,3 +1,7 @@
+2018-01-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * philips/TDA7053-1.sym: Add symbol; stereo power amplifier.
+
 2018-01-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/DIN/DIN-5F-1.sym: Add symbol; basic 5 pin female DIN.
