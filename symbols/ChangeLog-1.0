@@ -4,6 +4,8 @@
 
     * connector/DIN/DIN-5M-1.sym: Add symbol; basic 5 pin male DIN.
 
+    * national/ADC0802-1.sym: Add symbol; ADC, CMOS 8-bit successive approximation
+
     * national/ADC0804-1.sym: Add value and description, update footprint,
       update attributes.
 
