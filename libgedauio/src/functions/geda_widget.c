@@ -273,6 +273,32 @@ geda_widget_modify_normal_fg (GtkWidget *widget, const GdkColor *color)
                             GTK_RC_FG, GTK_STATE_NORMAL, color);
 }
 
+/*!
+ * \brief Sets toggle item state without emitting signal
+ * \par Function Description:
+ *  This function sets the active state of a toggle widget while blocking
+ *  signals if the widget has the ID of it's signal handler embedded,
+ *  otherwise the toggle widget is set without blocking the signal.
+ */
+void geda_widget_set_item_active(GtkWidget *widget, bool state)
+{
+  if (GTK_IS_WIDGET(widget)) {
+
+    unsigned long handler;
+
+    handler = (unsigned long) GEDA_OBJECT_GET_DATA(widget, "handler");
+
+    if (handler) {
+      g_signal_handler_block (widget, handler);       /* disable signal */
+      g_object_set (widget, "active", state, NULL);   /* set the value */
+      g_signal_handler_unblock (widget, handler);     /* re-enable signal */
+    }
+    else { /* No handler ID so just set without blocking */
+      g_object_set (widget, "active", state, NULL);   /* set the value */
+    }
+  }
+}
+
 /*! \brief Set the Pointer position relative to widget
  *  Contrast this with the ease of setting the pointer position on
  *  other platforms, this example is for Win32:

@@ -1,5 +1,7 @@
 2018-01-28 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/functions/geda_widget.c: Add function geda_widget_set_item_active.
+
     * src/widgets/geda_label.c: Replace g_new with g_malloc in function
       separate_uline_pattern.
 
