@@ -1,6 +1,8 @@
-2018-01-27 Wiley E. Hill <wileyhill@gmail.com>
+2018-01-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/DIN/DIN-5F-1.sym: Add symbol; basic 5 pin female DIN.
+
+    * connector/DIN/DIN-5M-1.sym: Add symbol; basic 5 pin male DIN.
 
 2018-01-25 Wiley E. Hill <wileyhill@gmail.com>
 
