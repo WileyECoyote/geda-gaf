@@ -3768,10 +3768,10 @@ separate_uline_pattern (const char  *str, unsigned int *accel_key,
   *new_str   = g_malloc ((sizeof(char) * strlen (str)) + 1);
   *pattern   = g_malloc ((sizeof(char) * g_utf8_strlen (str, -1)) + 1);
 
-  src          = str;
+  src          =  str;
   dest         = *new_str;
   pattern_dest = *pattern;
-  underscore   = FALSE;
+  underscore   =  FALSE;
 
   while (*src) {
 
@@ -3779,11 +3779,10 @@ separate_uline_pattern (const char  *str, unsigned int *accel_key,
     const char *next_src;
 
     c = g_utf8_get_char (src);
-    if (c == (gunichar)-1) {
+    if (c == (gunichar) -1) {
       fprintf(stderr, "%s: Invalid input string", __func__);
       g_free (*new_str);
       g_free (*pattern);
-
       return FALSE;
     }
     next_src = g_utf8_next_char (src);
