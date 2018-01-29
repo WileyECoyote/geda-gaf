@@ -4,6 +4,9 @@
 
     * connector/DIN/DIN-5M-1.sym: Add symbol; basic 5 pin male DIN.
 
+    * national/ADC0804-1.sym: Add value and description, update footprint,
+      update attributes.
+
 2018-01-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * memory/27C2001-1.sym: Change "Vcc" -> "VCC"  update attribute positions.
