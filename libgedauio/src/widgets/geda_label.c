@@ -3824,6 +3824,7 @@ separate_uline_pattern (const char  *str, unsigned int *accel_key,
     }
   }
 
+  /* Add termination character */
   *dest = 0;
   *pattern_dest = 0;
 
