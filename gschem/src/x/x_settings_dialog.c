@@ -2714,9 +2714,9 @@ void GatherSettings(GschemToplevel *w_current) {
   EdaConfig     *cfg      = eda_config_get_user_context ();
   const char    *group    = IVAR_CONFIG_GROUP;
 
-  int         tmp_int;
-  const char *tmpstr;
-  GdkColor    color;
+  int      tmp_int;
+  char    *tmpstr;
+  GdkColor color;
 
   eda_config_set_string (cfg, group, "default-filename", GetEntryText(UntitledNameEntry));
 
@@ -2785,6 +2785,7 @@ void GatherSettings(GschemToplevel *w_current) {
 
   tmpstr = geda_combo_box_get_active_text (GEDA_COMBO_BOX (TitleBlockCombo));
   eda_config_set_string (cfg, group, "default-titleblock", tmpstr);
+  g_free(tmpstr);
 
   tmp_int = gtk_combo_box_get_active (GTK_COMBO_BOX (RipperSymbolCombo));
   if (tmp_int != rc_options.ripper_symbol_index) {
@@ -2797,7 +2798,6 @@ void GatherSettings(GschemToplevel *w_current) {
   w_current->render_adaptor   = gtk_combo_box_get_active (GTK_COMBO_BOX (RendererCombo));
   w_current->anti_aliasing    = gtk_combo_box_get_active (GTK_COMBO_BOX (AntiAliasCombo));
 
-  /* Don't free the font name, the string belongs to the dialog control */
   tmpstr = geda_combo_box_get_active_text (GEDA_COMBO_BOX (FontNameCombo));
   eda_config_set_string (cfg, group, "default-font-name", tmpstr);
 
@@ -2807,6 +2807,8 @@ void GatherSettings(GschemToplevel *w_current) {
   else {
     x_draw_set_font (tmpstr, GET_SPIN_IVALUE (TextSizeSpin));
   }
+
+  g_free(tmpstr);
 
 /* The Switches Alphabetically (31) */
              auto_load_last             = GET_SWITCH_STATE (AutoLoadSwitch);

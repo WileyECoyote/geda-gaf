@@ -8,7 +8,8 @@
       g_object_unref in function color_button_popup_destroy, call
       color_button_popup_destroy in default_color_button_popup.
       Revise GatherSettings to use result GetEntryText directly
-      as an argument instead of using ancillary tmpstr.
+      as an argument instead of using ancillary tmpstr and release
+      strings returned from geda_combo_box_get_active_text.
 
 2018-01-26 Wiley E. Hill <wileyhill@gmail.com>
 
