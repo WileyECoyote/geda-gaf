@@ -1,6 +1,11 @@
+2018-01-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_window.c: Replace GTK_SIGNAL_FUNC with G_CALLBACK in function
+      x_window_init.
+
 2018-01-16 Wiley E. Hill <wileyhill@gmail.com>
 
-    * /src/x_window.c: Rearrange x_window_save_settings, reduce spacing.
+    * src/x_window.c: Rearrange x_window_save_settings, reduce spacing.
 
 2018-01-21 Wiley E. Hill <wileyhill@gmail.com>
 

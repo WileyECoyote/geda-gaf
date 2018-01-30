@@ -300,7 +300,7 @@ void x_window_init()
   x_window_restore_settings(main_window);
 
   GEDA_SIGNAL_CONNECT (main_window, "delete_event",
-                       GTK_SIGNAL_FUNC (x_window_quit), 0);
+                       G_CALLBACK (x_window_quit), 0);
 
   /* -----  Now create main_vbox container to hold everthing ----- */
 
