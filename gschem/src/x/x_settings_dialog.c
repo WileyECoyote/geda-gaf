@@ -1238,10 +1238,8 @@ static void default_color_button_popup (GtkColorButton *button, GdkEventButton *
 {
   GtkWidget *item;
 
-  if (popup_menu) {
-    gtk_object_destroy((GObject*)popup_menu);
-    popup_menu = NULL;
-  }
+  color_button_popup_destroy(NULL, NULL);
+
   popup_menu = geda_menu_new ();
 
   item = geda_image_menu_item_new_with_label (_("Restore default"));
