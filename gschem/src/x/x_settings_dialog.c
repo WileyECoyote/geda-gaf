@@ -2718,10 +2718,7 @@ void GatherSettings(GschemToplevel *w_current) {
   const char *tmpstr;
   GdkColor    color;
 
-  /* Next line assigns a pointer to a char field in a GTK Entry widget - do not free it! */
-  tmpstr = GetEntryText(UntitledNameEntry);
-
-  eda_config_set_string (cfg, group, "default-filename", tmpstr);
+  eda_config_set_string (cfg, group, "default-filename", GetEntryText(UntitledNameEntry));
 
 /* The Color Buttons */
 
