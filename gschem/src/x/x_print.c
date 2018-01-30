@@ -551,7 +551,7 @@ static void print_dialog_instance_init (PrintDialog * dialog)
                     0, 1, 0, 1, GTK_FILL, GTK_EXPAND, 0, 0);
   g_signal_connect (dialog->fileradio,
                     "toggled",
-                    GTK_SIGNAL_FUNC (print_dialog_action_radio_toggled),
+                    G_CALLBACK (print_dialog_action_radio_toggled),
                     dialog);
 
   dialog->fnfield = GTK_ENTRY (gtk_entry_new ());
@@ -570,7 +570,7 @@ static void print_dialog_instance_init (PrintDialog * dialog)
                     GTK_FILL, 0, 0, 0);
   g_signal_connect (dialog->saveasbutton,
                     "clicked",
-                    GTK_SIGNAL_FUNC (print_dialog_action_choosefile), dialog);
+                    G_CALLBACK (print_dialog_action_choosefile), dialog);
 
   /* Widgets for printing to command */
   dialog->cmdradio =
@@ -581,7 +581,7 @@ static void print_dialog_instance_init (PrintDialog * dialog)
                     0, 1, 1, 2,  GTK_FILL, GTK_EXPAND, 0, 0);
   g_signal_connect (dialog->cmdradio,
                     "toggled",
-                    GTK_SIGNAL_FUNC (print_dialog_action_radio_toggled),
+                    G_CALLBACK (print_dialog_action_radio_toggled),
                     dialog);
 
   dialog->cmdfield = GTK_ENTRY (gtk_entry_new ());
