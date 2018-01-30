@@ -882,7 +882,6 @@ static int SavePotentialAttributes(GschemToplevel *w_current) {
 
   GtkTreeModel *store;
   GtkTreeIter iter;
-  char *str_new;
   int next;
 
   geda_struct_attrib_clear();
@@ -893,6 +892,8 @@ static int SavePotentialAttributes(GschemToplevel *w_current) {
   next = gtk_tree_model_get_iter_first (store, &iter);
 
   while (next) {
+
+    char *str_new;
 
     /* Walk through the list, reading each row. */
     gtk_tree_model_get (store, &iter, 0, &str_new, -1);
