@@ -898,6 +898,7 @@ static int SavePotentialAttributes(GschemToplevel *w_current) {
     /* Walk through the list, reading each row. */
     gtk_tree_model_get (store, &iter, 0, &str_new, -1);
     geda_struct_attrib_add_entry(str_new);
+    g_free(str_new);
     next = gtk_tree_model_iter_next (store, &iter);
   }
   return 0;
