@@ -4,6 +4,9 @@
 
     * src/x/x_print.c: Replace GTK_SIGNAL_FUNC with G_CALLBACK.
 
+    * src/x/x_settings_dialog.c: Replace gtk_object_destroy with
+      g_object_unref in function color_button_popup_destroy.
+
 2018-01-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ru.po: Update Russian translations.

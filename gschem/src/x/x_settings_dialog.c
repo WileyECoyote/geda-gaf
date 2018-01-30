@@ -1212,11 +1212,10 @@ color_button_popup_menu_callback (GedaMenuItem *item, void * data)
   gtk_widget_destroy(popup_menu);
 }
 
-bool
-color_button_popup_destroy(GtkWidget *widget, void *data)
+bool color_button_popup_destroy(GtkWidget *widget, void *data)
 {
   if (GEDA_IS_MENU(popup_menu)) {
-    gtk_object_destroy((GObject*)popup_menu);
+    g_object_unref((GtkObject*)popup_menu);
     popup_menu = NULL;
   }
   return FALSE;
