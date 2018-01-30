@@ -30,18 +30,18 @@
 #include <gschem.h>
 #include <geda_debug.h>
 
-/*! \brief Tests a if a given Object was hit at a given set of coordinates
- *
- *  \par Function Description
+/*!
+ * \brief Tests a if a given Object was hit at a given set of coordinates
+ * \par Function Description
  *  Tests a if a given Object was hit at a given set of coordinates.
  *
- *  \param [in] w_current    The GschemToplevel object
- *  \param [in] object       The Object being hit-tested
- *  \param [in] wx           The X coordinate to test (in world coords)
- *  \param [in] wy           The Y coordinate to test (in world coords)
- *  \param [in] w_slack      The slack applied to the hit-test
+ * \param [in] w_current    The GschemToplevel object
+ * \param [in] object       The Object being hit-tested
+ * \param [in] wx           The X coordinate to test (in world coords)
+ * \param [in] wy           The Y coordinate to test (in world coords)
+ * \param [in] w_slack      The slack applied to the hit-test
  *
- *  \returns TRUE if the Object was hit, otherwise FALSE.
+ * \returns TRUE if the Object was hit, otherwise FALSE.
  */
 inline static bool o_find_is_object_hit (GschemToplevel *w_current,
                                          GedaObject *object,
@@ -60,18 +60,19 @@ inline static bool o_find_is_object_hit (GschemToplevel *w_current,
   return (geda_object_get_shortest_distance_full (object, wx, wy, FALSE) < w_slack);
 }
 
-/*! \brief Disposition objects found by o_find_object
- *  \par Function Description
+/*!
+ * \brief Disposition objects found by o_find_object
+ * \par Function Description
  *  Handler dispositing of any found objects in o_find_object. The object
  *  is added to or replaces the current selection depending on the mode
  *  flag, if \a mode is add or replace the object is not selected. If
  *  the selection is modified sensitivities are updated.
  *
- *  \param [in] w_current    The GschemToplevel object
- *  \param [in] object       The Object being hit-tested
- *  \param [in] mode         Whether to select the found object or not
+ * \param [in] w_current    The GschemToplevel object
+ * \param [in] object       The Object being hit-tested
+ * \param [in] mode         Whether to select the found object or not
  *
- *  \returns TRUE if the Object was hit, otherwise FALSE.
+ * \returns TRUE if the Object was hit, otherwise FALSE.
  */
 static void o_find_disposition_object (GschemToplevel *w_current,
                                        GedaObject     *object,
@@ -96,20 +97,21 @@ static void o_find_disposition_object (GschemToplevel *w_current,
 
 }
 
-/*! \brief Find an Object at a given set of coordinates
- *  \par Function Description
+/*!
+ * \brief Find an Object at a given set of coordinates
+ * \par Function Description
  *  Tests for ObjectS hit at a given set of coordinates. Objects that
  *  are not selectable (e.g. it is locked), or are invisible are not
  *  tested. The object is neither added nor appended to the current
  *  selection and sensitivities are not updated.
  *
- *  \param [in] w_current   The GschemToplevel object
- *  \param [in] x           The X coordinate to test (in world coords)
- *  \param [in] y           The Y coordinate to test (in world coords)
+ * \param [in] w_current   The GschemToplevel object
+ * \param [in] x           The X coordinate to test (in world coords)
+ * \param [in] y           The Y coordinate to test (in world coords)
  *
- *  \returns TRUE if the Object was hit, otherwise FALSE.
+ * \returns TRUE if the Object was hit, otherwise FALSE.
  *
- *  \sa o_find_object
+ * \sa o_find_object
  */
 GedaObject *o_find_get_hit (GschemToplevel *w_current, int x, int y)
 {
@@ -133,24 +135,24 @@ GedaObject *o_find_get_hit (GschemToplevel *w_current, int x, int y)
   return object;
 }
 
-/*! \brief Find an Object at a given set of coordinates
- *
- *  \par Function Description
+/*!
+ * \brief Find an Object at a given set of coordinates
+ * \par Function Description
  *  Tests for ObjectS hit at a given set of coordinates. Objects that
  *  are not selectable (e.g. it is locked), or are invisible are not
  *  tested. The Find operations resume searching after the last object
  *  which was found, so multiple find operations at the same point will
  *  cycle through any objects on top of each other near a given location.
  *
- *  \param [in] w_current    The GschemToplevel object
- *  \param [in] wx           The X coordinate to test (in world coords)
- *  \param [in] wy           The Y coordinate to test (in world coords)
- *  \param [in] mode         Whether to select the found object or not
+ * \param [in] w_current    The GschemToplevel object
+ * \param [in] wx           The X coordinate to test (in world coords)
+ * \param [in] wy           The Y coordinate to test (in world coords)
+ * \param [in] mode         Whether to select the found object or not
  *
- *  \returns TRUE if the object was hit at the given coordinates,
- *           otherwise FALSE.
+ * \returns TRUE if the object was hit at the given coordinates,
+ *          otherwise FALSE.
  *
- *  \sa o_find_disposition_object
+ * \sa o_find_disposition_object
  */
 bool o_find_object (GschemToplevel *w_current, int wx, int wy, int mode)
 {
@@ -244,8 +246,9 @@ bool o_find_object (GschemToplevel *w_current, int wx, int wy, int mode)
   return found;
 }
 
-/*! \brief Find Selected Object at a given set of coordinates
- *  \par Function Description
+/*!
+ * \brief Find Selected Object at a given set of coordinates
+ * \par Function Description
  *  Return first object in the current selection that can be hit at the
  *  given coordinates or NULL if no such object is found.
  */

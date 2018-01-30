@@ -1,5 +1,7 @@
 2018-01-30 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_find.c: Reformat Doxygen documentation blocks.
+
     * src/x/x_print.c: Replace GTK_SIGNAL_FUNC with G_CALLBACK.
 
 2018-01-26 Wiley E. Hill <wileyhill@gmail.com>
