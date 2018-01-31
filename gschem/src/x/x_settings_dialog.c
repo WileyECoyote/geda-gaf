@@ -839,11 +839,13 @@ static int SaveAttributeFilterList(GschemToplevel *w_current) {
 
          /* Walk through the list, reading each row. */
          gtk_tree_model_get (store, &iter, 0, &str_new, -1);
+
          if (index < list_length) {
             str_old = g_list_nth_data (View2Data, index);
-            if ( !geda_strequal( str_old, str_new )) { /* update if they don't match */
+            if (!geda_strequal( str_old, str_new )) { /* update if they don't match */
               View2Data = g_list_remove (View2Data, str_old);
-              View2Data = g_list_insert(View2Data, str_new, index);
+              View2Data = g_list_insert(View2Data, geda_strdup(str_new), index);
+              GEDA_FREE (str_old);
             }
          }
          else {
