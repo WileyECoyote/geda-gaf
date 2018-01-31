@@ -1,3 +1,7 @@
+2018-01-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * memory/27C301-1.sym: Add symbol; 128k x 8 EPROM.
+
 2018-01-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * philips/TDA7053-1.sym: Add symbol; stereo power amplifier.
