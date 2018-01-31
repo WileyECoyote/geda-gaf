@@ -870,10 +870,10 @@ static int SaveAttributeFilterList(GschemToplevel *w_current) {
   return index;
 }
 
-/*! \brief Preferences Dialog Save list on all attibutes in left Viewtree
+/*! \brief Preferences Dialog Save list of attibutes in left Viewtree
  *  \par Function Description: This is a Group 2 support function that
  *       clears the current attribute list, gets the modified attribute
- *       list from the Treeview and stores new list. The dialog does
+ *       list from the Treeview and stores the new list. The dialog does
  *       not have provisions to add or remove attributes from this list
  *       so the only modification is the order of the attributes in the
  *       list.
