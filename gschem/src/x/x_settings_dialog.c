@@ -1511,7 +1511,7 @@ void setup_font_name_combo(GschemToplevel *w_current, char *cur_font) {
       fprintf(stderr, "font <%s> monospace <%d>\n", pfont, is_mono);
 #endif
 
-      geda_list_add_unique_string (font_list, geda_utility_string_strdup(pfont));
+      geda_list_add_unique_string (font_list, geda_strdup(pfont));
     }
     GEDA_FREE (families);
   }
@@ -1623,7 +1623,7 @@ void setup_font_name_combo(GschemToplevel *w_current, char *cur_font) {
     LOAD_GEDA_TEXT_COMBO (FontName, pfont);
 
     /* current < 0 here means do not keep looking, but we got to keep loading */
-    if ( current < 0 && cur_font && geda_utility_string_strequal(cur_font, pfont)) {
+    if ( current < 0 && cur_font && geda_strequal(cur_font, pfont)) {
       current = index;
     }
     index++;
@@ -1653,8 +1653,7 @@ void setup_font_name_combo(GschemToplevel *w_current, char *cur_font) {
           haystack = reduced; needle = pfont;
         }
 
-        if (pfont && geda_utility_string_stristr(haystack, needle) >= 0)
-        {
+        if (pfont && geda_stristr(haystack, needle) >= 0) {
           current = index;
           break;
         }

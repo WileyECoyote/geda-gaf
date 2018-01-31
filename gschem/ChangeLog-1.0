@@ -6,7 +6,8 @@
     * src/x/x_settings_dialog.c: Revise SaveAttributeFilterList to
       allocate a copy of string to be included in component_select_
       attrlist and release the allocation returned from the tree
-      model.
+      model. Implement macro versions of geda_utility_string_stristr
+      to reduce line lengths.
 
 2018-01-30 Wiley E. Hill <wileyhill@gmail.com>
 
