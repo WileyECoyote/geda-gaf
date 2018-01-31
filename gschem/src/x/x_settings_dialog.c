@@ -720,7 +720,7 @@ static void add_to_list(GtkTreeView *list, const char *str)
 */
 void load_tree_view_gl( GtkTreeView *TreeView, GList *list)
 {
-    lambda (const char* data)
+    lambda (const char *data)
     {
       add_to_list( TreeView, data);
       return FALSE;
@@ -729,7 +729,7 @@ void load_tree_view_gl( GtkTreeView *TreeView, GList *list)
 }
 /*! \brief Load Tree View with string data from string array.
  *  \par Function Description
- *   This function passes each char* from an array of strings to
+ *   This function passes each char *from an array of strings to
  *   the add_to_list function to store the item in the designated
  *   view.
  *
@@ -745,7 +745,7 @@ void load_tree_view_str( GtkTreeView *TreeView, const char *list[])
   int i = 0;
   const char *string;
 
-  const char* array ( int i) {
+  const char *array ( int i) {
     if (list != NULL) /* if pointer is NULL, (not char) */
        return list[i];
     else
@@ -795,7 +795,7 @@ void load_tree_view_str( GtkTreeView *TreeView, const char *list[])
  */
 static int GetAttributeFilterMode(GschemToplevel *w_current) {
 
-  char* data;
+  char *data;
 
   data = g_list_nth_data (View2Data, 0);  /* 0 could also be the last */
   /* return 1 if empty, else return 0 if char is asterisk, else return 2 */
@@ -1480,7 +1480,7 @@ cmp_families (const void *a, const void *b)
  *  \param [in] w_current   The GschemToplevel object
  *  \param [in] cur_font    ptr to name of current font (to match)
  */
-void setup_font_name_combo(GschemToplevel *w_current, char* cur_font) {
+void setup_font_name_combo(GschemToplevel *w_current, char *cur_font) {
 
   GedaList   *font_list;
   GList      *iter;
@@ -1723,7 +1723,7 @@ on_change_renderer (GtkWidget *widget, void *user_data)
  *
  *  \param [in] cur_name  ptr to name of ripper symbol name (to match)
  */
-void setup_ripper_symbol_combo(char* cur_name) {
+void setup_ripper_symbol_combo(char *cur_name) {
 
   strcpy(rc_options.ripper_symbol_fname, cur_name);
 
