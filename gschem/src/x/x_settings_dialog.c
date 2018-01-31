@@ -849,8 +849,9 @@ static int SaveAttributeFilterList(GschemToplevel *w_current) {
             }
          }
          else {
-           View2Data = g_list_append (View2Data, str_new);
+           View2Data = g_list_append (View2Data, geda_strdup(str_new));
          }
+         GEDA_FREE(str_new);
          next = gtk_tree_model_iter_next (store, &iter);
          index ++;
        }
