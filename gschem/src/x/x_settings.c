@@ -214,8 +214,8 @@ void x_configure_settings (GschemToplevel* w_current)
 
   load_settings_dialog (w_current);
 
-  g_signal_connect (GTK_OBJECT (w_current->cpwindow), "response",
-                    GTK_SIGNAL_FUNC(configure_dialog_response), w_current);
+  g_signal_connect (w_current->cpwindow, "response",
+                    G_CALLBACK(configure_dialog_response), w_current);
 
   gtk_widget_show(w_current->cpwindow);
 

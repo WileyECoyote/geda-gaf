@@ -3,6 +3,8 @@
     * src/x/x_dialog.c Stop assigning lightbox->next because the
       list are not released properly.
 
+    * src/x/x_settings.c: Replace GTK_SIGNAL_FUNC with G_CALLBACK.
+
     * src/x/x_settings_dialog.c: Revise SaveAttributeFilterList to
       allocate a copy of string to be included in component_select_
       attrlist and release the allocation returned from the tree
