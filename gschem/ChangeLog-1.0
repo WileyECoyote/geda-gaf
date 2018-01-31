@@ -1,3 +1,8 @@
+2018-01-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_dialog.c Stop assigning lightbox->next because the
+      list are not released properly.
+
 2018-01-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_find.c: Reformat Doxygen documentation blocks.

@@ -245,8 +245,7 @@ void x_dialog_set_bulb_on( GtkWidget *widget) {
   GList *lightbox = geda_container_get_children (align->data);
 
   GtkWidget *BulbOnImage  = lightbox->data;
-  lightbox                = lightbox->next;
-  GtkWidget *BulbOffImage = lightbox->data;
+  GtkWidget *BulbOffImage = lightbox->next->data;
 
   g_object_set (BulbOnImage,  "visible", TRUE, NULL);
   g_object_set (BulbOffImage, "visible", FALSE, NULL);
@@ -268,8 +267,7 @@ void x_dialog_set_bulb_off( GtkWidget *widget) {
   GList *lightbox = geda_container_get_children (align->data);
 
   GtkWidget *BulbOnImage  = lightbox->data;
-  lightbox                = lightbox->next;
-  GtkWidget *BulbOffImage = lightbox->data;
+  GtkWidget *BulbOffImage = lightbox->next->data;
 
   g_object_set (BulbOnImage,  "visible", FALSE, NULL);
   g_object_set (BulbOffImage, "visible", TRUE, NULL);
