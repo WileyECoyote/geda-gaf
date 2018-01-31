@@ -1665,6 +1665,7 @@ void setup_font_name_combo(GschemToplevel *w_current, char *cur_font) {
   }
 
   geda_list_free_full (font_list);
+  g_object_unref(font_list);
 
   geda_combo_box_set_active((GedaComboBox *)FontNameCombo, current);
 

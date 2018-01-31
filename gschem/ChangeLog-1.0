@@ -7,7 +7,8 @@
       allocate a copy of string to be included in component_select_
       attrlist and release the allocation returned from the tree
       model. Implement macro versions of geda_utility_string_stristr
-      to reduce line lengths.
+      to reduce line lengths, unreference the font_list in function
+      setup_font_name_combo.
 
 2018-01-30 Wiley E. Hill <wileyhill@gmail.com>
 
