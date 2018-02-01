@@ -164,6 +164,8 @@ static void geda_combo_box_text_finalize  (GObject *object)
     }
   }
 
+  gtk_cell_layout_clear(GTK_CELL_LAYOUT (object));
+
   g_object_unref (self->store);
   G_OBJECT_CLASS (geda_combo_box_text_parent_class)->finalize (object);
 }
