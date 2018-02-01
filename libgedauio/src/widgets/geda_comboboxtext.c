@@ -403,7 +403,7 @@ geda_combo_box_text_instance_init (GTypeInstance *instance, void *class)
 
   store = gtk_list_store_new (3, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
 
-  geda_combo_box_set_model (GEDA_COMBO_BOX (combo_box), GTK_TREE_MODEL (store));
+  geda_combo_box_set_model (GEDA_COMBO_BOX (combo_box), (GtkTreeModel*)store);
   combo_box->count = 0;
   combo_box->store = store;
 }

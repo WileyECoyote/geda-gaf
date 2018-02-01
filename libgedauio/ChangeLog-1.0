@@ -10,7 +10,8 @@
 
     * src/widgets/geda_comboboxtext.c: Move checking and setting the position
       argument after the validations in geda_combo_box_text_real_insert
-      just in cast the combo_box is not a text combo box.
+      just in cast the combo_box is not a text combo box. Replace dynamic
+      cast with static GtkTreeModel in geda_combo_box_text_instance_init.
 
 2018-01-28 Wiley E. Hill <wileyhill@gmail.com>
 
