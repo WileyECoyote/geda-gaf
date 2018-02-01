@@ -1515,8 +1515,9 @@ static void geda_combo_box_finalize (GObject *object)
     ComboCellInfo *info = (ComboCellInfo*)iter->data;
     GSList        *list = info->attributes;
 
-    if (info->destroy)
+    if (info->destroy) {
       info->destroy (info->func_data);
+    }
 
     while (list && list->next) {
       g_free (list->data);
@@ -3303,9 +3304,10 @@ static void geda_combo_box_unset_model (GedaComboBox *combo_box)
 
   /* menu mode */
   if (!priv->tree_view) {
-    if (priv->popup_widget)
+    if (priv->popup_widget) {
       gtk_container_foreach ((GtkContainer*)priv->popup_widget,
                              (GtkCallback)gtk_widget_destroy, NULL);
+    }
   }
 
   if (priv->model)  {
@@ -7394,8 +7396,9 @@ void geda_combo_widget_set_entry_text_column (GtkWidget *combo, int text_column)
  */
 GtkTreeModel *geda_combo_widget_get_model (GtkWidget *combo_box)
 {
-  if (GEDA_IS_COMBO_BOX (combo_box))
+  if (GEDA_IS_COMBO_BOX (combo_box)) {
     return ((GedaComboBox*)combo_box)->priv->model;
+  }
   BUG_MSG ("Operative is not a GedaComboBox");
   return NULL;
 }
