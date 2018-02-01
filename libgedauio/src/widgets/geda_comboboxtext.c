@@ -246,8 +246,9 @@ static void item_text (GMarkupParseContext *context,
 {
   ItemParserData *data = (ItemParserData*)user_data;
 
-  if (data->is_text)
+  if (data->is_text) {
     g_string_append_len (data->string, text, text_len);
+  }
 }
 
 static
@@ -555,8 +556,9 @@ geda_combo_box_text_real_insert (GedaComboBoxText *combo_box,
   GtkTreeIter   iter;
   GtkListStore *store;
 
-  if (position < 0)
+  if (position < 0) {
     position = combo_box->count;
+  }
 
   /* No need to check widget here, Gtk will do that */
   g_return_if_fail (GEDA_IS_COMBO_BOX_TEXT (combo_box));
@@ -566,8 +568,9 @@ geda_combo_box_text_real_insert (GedaComboBoxText *combo_box,
 
   gtk_list_store_insert (store, &iter, position);
 
-  if (text2 != NULL)
+  if (text2 != NULL){
     gtk_list_store_set (store, &iter, 0, text, 2, text2, -1);
+  }
   else {
     gtk_list_store_set (store, &iter, 0, text, -1);
   }
