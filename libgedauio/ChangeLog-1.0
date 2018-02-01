@@ -2,7 +2,8 @@
 
     * src/widgets/geda_combobox.c: Move setting cell_view model to the
       beginning of geda_combo_box_unset_model so the cell unreferences
-      the model before the combo.
+      the model before the combo and unreference in the first conditional
+      after disconnecting signals.
 
 2018-01-28 Wiley E. Hill <wileyhill@gmail.com>
 

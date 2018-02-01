@@ -3296,6 +3296,7 @@ static void geda_combo_box_unset_model (GedaComboBox *combo_box)
   }
 
   if (priv->model) {
+
     g_signal_handler_disconnect (priv->model,
                                  priv->inserted_id);
     g_signal_handler_disconnect (priv->model,
@@ -3304,6 +3305,10 @@ static void geda_combo_box_unset_model (GedaComboBox *combo_box)
                                  priv->reordered_id);
     g_signal_handler_disconnect (priv->model,
                                  priv->changed_id);
+
+    g_object_unref (priv->model);
+
+    priv->model = NULL;
   }
 
   /* menu mode */
@@ -3312,11 +3317,6 @@ static void geda_combo_box_unset_model (GedaComboBox *combo_box)
       gtk_container_foreach ((GtkContainer*)priv->popup_widget,
                              (GtkCallback)gtk_widget_destroy, NULL);
     }
-  }
-
-  if (priv->model)  {
-    g_object_unref (priv->model);
-    priv->model = NULL;
   }
 
   if (priv->active_row) {
