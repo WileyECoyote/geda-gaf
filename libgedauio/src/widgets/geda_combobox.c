@@ -3291,6 +3291,10 @@ static void geda_combo_box_unset_model (GedaComboBox *combo_box)
 {
   GedaComboBoxData *priv = combo_box->priv;
 
+  if (priv->cell_view) {
+    gtk_cell_view_set_model ((GtkCellView*)priv->cell_view, NULL);
+  }
+
   if (priv->model) {
     g_signal_handler_disconnect (priv->model,
                                  priv->inserted_id);
@@ -3319,9 +3323,6 @@ static void geda_combo_box_unset_model (GedaComboBox *combo_box)
     gtk_tree_row_reference_free (priv->active_row);
     priv->active_row = NULL;
   }
-
-  if (priv->cell_view)
-    gtk_cell_view_set_model ((GtkCellView*)priv->cell_view, NULL);
 }
 
 static void geda_combo_box_child_show (GtkWidget *widget, GedaComboBox *combo_box)
