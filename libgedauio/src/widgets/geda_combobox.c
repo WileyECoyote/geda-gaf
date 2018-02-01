@@ -4565,8 +4565,8 @@ static void geda_combo_box_list_destroy (GedaComboBox *combo_box)
     priv->resize_idle_id = 0;
   }
 
+  gtk_tree_view_set_model ((GtkTreeView*)combo_box->priv->tree_view, NULL);
   gtk_widget_destroy (priv->tree_view);
-
   priv->tree_view = NULL;
 
   if (priv->popup_widget) {
