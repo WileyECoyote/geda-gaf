@@ -5740,30 +5740,30 @@ geda_combo_box_set_model (GedaComboBox *combo_box, GtkTreeModel *model)
 
   if (model != NULL) {
 
+    g_object_ref (model);
+
     combo_box->priv->model = model;
-    g_object_ref (combo_box->priv->model);
 
     combo_box->priv->inserted_id =
-    g_signal_connect (combo_box->priv->model, "row-inserted",
+    g_signal_connect (model, "row-inserted",
                       G_CALLBACK (geda_combo_box_model_row_inserted),
                       combo_box);
     combo_box->priv->deleted_id =
-    g_signal_connect (combo_box->priv->model, "row-deleted",
+    g_signal_connect (model, "row-deleted",
                       G_CALLBACK (geda_combo_box_model_row_deleted),
                       combo_box);
     combo_box->priv->reordered_id =
-    g_signal_connect (combo_box->priv->model, "rows-reordered",
+    g_signal_connect (model, "rows-reordered",
                       G_CALLBACK (geda_combo_box_model_rows_reordered),
                       combo_box);
     combo_box->priv->changed_id =
-    g_signal_connect (combo_box->priv->model, "row-changed",
+    g_signal_connect (model, "row-changed",
                       G_CALLBACK (geda_combo_box_model_row_changed),
                       combo_box);
 
     if (combo_box->priv->tree_view) {
       /* list mode */
-      gtk_tree_view_set_model ((GtkTreeView*)combo_box->priv->tree_view,
-                                combo_box->priv->model);
+      gtk_tree_view_set_model ((GtkTreeView*)combo_box->priv->tree_view, model);
       geda_combo_box_list_popup_resize (combo_box);
     }
     else {
@@ -5774,8 +5774,7 @@ geda_combo_box_set_model (GedaComboBox *combo_box, GtkTreeModel *model)
     }
 
     if (combo_box->priv->cell_view) {
-      gtk_cell_view_set_model ((GtkCellView*)combo_box->priv->cell_view,
-                                combo_box->priv->model);
+      gtk_cell_view_set_model ((GtkCellView*)combo_box->priv->cell_view, model);
     }
 
     if (combo_box->priv->active != -1) {

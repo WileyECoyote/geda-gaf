@@ -5,7 +5,8 @@
       the model before the combo and unreference in the first conditional
       after disconnecting signals. Revise geda_combo_box_list_destroy to
       set the GtkTreeView model to NULL so TreeView does not hold a
-      reference to he model during finalization.
+      reference to he model during finalization. Revise geda_combo_box_
+      set_model to use the model argument rather than the private pointer.
 
 2018-01-28 Wiley E. Hill <wileyhill@gmail.com>
 
