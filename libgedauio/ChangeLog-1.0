@@ -8,6 +8,10 @@
       reference to he model during finalization. Revise geda_combo_box_
       set_model to use the model argument rather than the private pointer.
 
+    * src/widgets/geda_comboboxtext.c: Move checking and setting the position
+      argument after the validations in geda_combo_box_text_real_insert
+      just in cast the combo_box is not a text combo box.
+
 2018-01-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/functions/geda_widget.c: Add function geda_widget_set_item_active.

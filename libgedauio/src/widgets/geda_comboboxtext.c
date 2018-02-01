@@ -556,13 +556,13 @@ geda_combo_box_text_real_insert (GedaComboBoxText *combo_box,
   GtkTreeIter   iter;
   GtkListStore *store;
 
-  if (position < 0) {
-    position = combo_box->count;
-  }
-
   /* No need to check widget here, Gtk will do that */
   g_return_if_fail (GEDA_IS_COMBO_BOX_TEXT (combo_box));
   g_return_if_fail (text != NULL);
+
+  if (position < 0) {
+    position = combo_box->count;
+  }
 
   store = GTK_LIST_STORE (combo_box->store);
 
