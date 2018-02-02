@@ -1,3 +1,7 @@
+2018-02-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda/geda_toolbars.h: Replace GTK_SIGNAL_FUNC with G_CALLBACK.
+
 2017-12-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * autogen.sh: Include libgedathon/po in podirs.

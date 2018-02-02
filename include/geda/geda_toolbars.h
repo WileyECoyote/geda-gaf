@@ -26,8 +26,10 @@
  *                | Widget and Private, add member icon (to hold a pointer
  *                | to the image widget for the button.)
  * ------------------------------------------------------------------
- * WEH | 08/12/15 | Modify cast is macro GET_TOOLBAR_ID;  change long pointer
+ * WEH | 08/12/15 | Modify cast is macro GET_TOOLBAR_ID; change long pointer
  *                | long.
+ * ------------------------------------------------------------------
+ * WEH | 02/01/18 | Replace GTK_SIGNAL_FUNC with G_CALLBACK.
 */
 
 /* ------------------------------------------------------------------ */
@@ -194,7 +196,7 @@ typedef struct
    button = geda_toolbar_append_item(GEDA_TOOLBAR(bar), txt, \
                                      tip, priv, \
                                      GTK_WIDGET(icon), /* GtkWidget */ \
-                                     GTK_SIGNAL_FUNC(func), \
+                                     G_CALLBACK(func), \
                                      (void*)(unsigned int)data); /* ptr to IDS_xxxx_Toolbar enumerator */
 
 #define GEDA_TOOLBAR_BUTTON(bar, icon, button, txt, tip, priv, func, data) \
@@ -202,7 +204,7 @@ typedef struct
    button = geda_toolbar_append_item(GEDA_TOOLBAR(bar), txt, \
                                      tip, priv, \
                                      GTK_WIDGET(icon), /* GtkWidget */ \
-                                     GTK_SIGNAL_FUNC(func), \
+                                     G_CALLBACK(func), \
                                      data); /* MUST be PTR to something */
 
 #ifdef ToolBar_Radio_Responder
