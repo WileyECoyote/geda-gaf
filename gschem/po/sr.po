@@ -1448,11 +1448,10 @@ msgstr ""
 msgid "Undo failed"
 msgstr ""
 
-# Searching for source
+# Search for
 #: gschem/src/x/x_autonumber.c:117
-#, fuzzy
 msgid "Search for:"
-msgstr "Сеарцхинг фор соурце"
+msgstr "Тражити:"
 
 #: gschem/src/x/x_autonumber.c:117
 msgid "Set the search criteria"
@@ -1462,10 +1461,10 @@ msgstr ""
 msgid "Autonumber text in:"
 msgstr ""
 
+# Set the context of the search scope
 #: gschem/src/x/x_autonumber.c:118
-#, fuzzy
 msgid "Set the context of the search scope"
-msgstr "Postavlja visinu statusnoj traci"
+msgstr "Поставите контекст опсега претраживања"
 
 #: gschem/src/x/x_autonumber.c:119
 msgid "Skip numbers found in:"
@@ -1658,7 +1657,7 @@ msgstr ""
 
 #: gschem/src/x/x_compselect.c:143
 msgid "Tooltip settings"
-msgstr ""
+msgstr "Поставке Тоолтип-а"
 
 #: gschem/src/x/x_compselect.c:144
 msgid "Enable tooltips"
@@ -2441,25 +2440,24 @@ msgstr "створити Арраи"
 msgid "Count"
 msgstr ""
 
+# X Size
 #: gschem/src/x/x_edit_array.c:913
-#, fuzzy
 msgid "X Size"
-msgstr "Dimenzija mreže"
+msgstr "Кс Сизе"
 
+# Y Size
 #: gschem/src/x/x_edit_array.c:916
-#, fuzzy
 msgid "Y Size"
-msgstr "Dimenzija mreže"
+msgstr "И Сизе"
 
 #: gschem/src/x/x_edit_array.c:935 gschem/src/x/x_menus.c:87
 msgid "Select"
 msgstr ""
 
-# Deselect Mode
+# Deselect
 #: gschem/src/x/x_edit_array.c:939
-#, fuzzy
 msgid "Deselect"
-msgstr "Деселецт Моде"
+msgstr "Деселецт"
 
 #: gschem/src/x/x_edit_array.c:955 gschem/src/x/x_menus.c:118
 msgid "Array"
@@ -2471,9 +2469,8 @@ msgstr ""
 
 # Offset Mode
 #: gschem/src/x/x_edit_array.c:987 gschem/src/x/x_edit_array.c:1020
-#, fuzzy
 msgid "Offset"
-msgstr "оффсет режим"
+msgstr "оффсет"
 
 #: gschem/src/x/x_edit_array.c:997
 msgid "Column"
@@ -2562,11 +2559,10 @@ msgstr ""
 msgid "Add Attribute"
 msgstr ""
 
-# Edit Arc
+# Edit Attribute
 #: gschem/src/x/x_edit_attrib.c:412
-#, fuzzy
 msgid "Edit Attribute"
-msgstr "Eдит светлосни лук"
+msgstr "Измени атрибут"
 
 # Select the name of the attribute to add
 #: gschem/src/x/x_edit_attrib.c:414
