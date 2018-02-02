@@ -2,6 +2,8 @@
 
     * po/sr.po: Update Serbian translations.
 
+    * po/tr.po: Update Turkish translations.
+
 2018-01-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_dialog.c Stop assigning lightbox->next because the

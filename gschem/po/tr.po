@@ -1278,23 +1278,20 @@ msgstr ""
 msgid "Undo failed"
 msgstr ""
 
-# Hierarchy Error
+# Search for
 #: gschem/src/x/x_autonumber.c:117
-#, fuzzy
 msgid "Search for:"
-msgstr "Hiyerarşi Hatası"
+msgstr "Aramak:"
 
-# Sequence Number
+# Set the search criteria
 #: gschem/src/x/x_autonumber.c:117
-#, fuzzy
 msgid "Set the search criteria"
-msgstr "Sıra numarası"
+msgstr "Arama ölçütlerini ayarlayın"
 
-# Automatically number Text
+# Autonumber text in
 #: gschem/src/x/x_autonumber.c:118
-#, fuzzy
 msgid "Autonumber text in:"
-msgstr "Otomatik numara metin..."
+msgstr "Içinde otomatik olarak metin girişi yap"
 
 #: gschem/src/x/x_autonumber.c:118
 msgid "Set the context of the search scope"
@@ -1304,11 +1301,10 @@ msgstr ""
 msgid "Skip numbers found in:"
 msgstr ""
 
-# Sequence Number
+# Set where NOT to look for numbers
 #: gschem/src/x/x_autonumber.c:119
-#, fuzzy
 msgid "Set where NOT to look for numbers"
-msgstr "Sıra numarası"
+msgstr "Numaraları aramayı DEĞİL ayarlayın"
 
 #: gschem/src/x/x_autonumber.c:120
 msgid "Sort order:"
@@ -1318,11 +1314,10 @@ msgstr ""
 msgid "Select the orientation of the Scan method"
 msgstr ""
 
-# Slot number
+# Starting number
 #: gschem/src/x/x_autonumber.c:121
-#, fuzzy
 msgid "Starting number:"
-msgstr "Slot numarası:"
+msgstr "Başlangıç ​​numarası:"
 
 #: gschem/src/x/x_autonumber.c:121
 msgid "Set the starting number for the current scan"
@@ -1437,11 +1432,10 @@ msgstr ""
 msgid "Open"
 msgstr ""
 
-# Open Page
+# Open all
 #: gschem/src/x/x_compselect.c:126
-#, fuzzy
 msgid "Open all"
-msgstr "Sayfayı Aç..."
+msgstr "Hepsini aç"
 
 # Close
 #: gschem/src/x/x_compselect.c:127 gschem/src/x/x_menus.c:149
@@ -1643,23 +1637,20 @@ msgstr ""
 msgid "Close without saving"
 msgstr ""
 
-# Saved as
+# unsaved page
 #: gschem/src/x/x_confirm_close.c:600
-#, fuzzy
 msgid "unsaved page"
-msgstr "Olarak kaydedildi"
+msgstr "kaydedilmemiş sayfa"
 
 # Saved as
 #: gschem/src/x/x_confirm_close.c:608
-#, fuzzy
 msgid "unsaved pages"
-msgstr "Olarak kaydedildi"
+msgstr "kaydedilmemiş sayfalar"
 
-# Select Last
+# selected pages
 #: gschem/src/x/x_confirm_close.c:615
-#, fuzzy
 msgid "selected pages"
-msgstr "Son'u seçin"
+msgstr "seçilen sayfalar"
 
 #: gschem/src/x/x_console.c:135
 msgid "destroying history\n"
@@ -2265,12 +2256,11 @@ msgstr ""
 msgid "Components may overlay, Continue?"
 msgstr ""
 
-# Create Array
+# Create Array: Error
 #: gschem/src/x/x_edit_array.c:539 gschem/src/x/x_edit_array.c:544
 #: gschem/src/x/x_edit_array.c:549
-#, fuzzy
 msgid "Create Array:Error"
-msgstr "Dizi Oluştur"
+msgstr "Dizi Oluştur: Hata"
 
 #: gschem/src/x/x_edit_array.c:540
 msgid ""
@@ -2314,9 +2304,8 @@ msgstr ""
 
 # Remove Mode Selection
 #: gschem/src/x/x_edit_array.c:939
-#, fuzzy
 msgid "Deselect"
-msgstr "Mod Seçimini Kaldır"
+msgstr "Seçimini kaldır"
 
 #: gschem/src/x/x_edit_array.c:955 gschem/src/x/x_menus.c:118
 msgid "Array"
