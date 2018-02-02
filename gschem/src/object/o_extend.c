@@ -1,4 +1,4 @@
-﻿/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 2 tab-width: 4 -*- */
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 2 tab-width: 4 -*- */
 /* vi: set et ts=4 sw=2 sts=2: */
 /*
  * File: o_extend.c
@@ -2155,12 +2155,12 @@ int o_extend_start(GschemToplevel *w_current, int w_x, int w_y)
 int o_extend_end (GschemToplevel *w_current, int x, int y)
 {
   int     status;
- GedaObject *o_current = o_find_get_hit (w_current, x, y);
+  GedaObject *o_current = o_find_get_hit (w_current, x, y);
 
   if (o_current != NULL) {
 
     GList  *object_list;
-   GedaObject *bounder;
+    GedaObject *bounder;
 
     int count;
 
@@ -2173,7 +2173,7 @@ int o_extend_end (GschemToplevel *w_current, int x, int y)
 
     if (count == 1) {
 
-     GedaObject *projectile;
+      GedaObject *projectile;
 
       if (o_extend_is_valid_projectile(o_current)) {
 
@@ -2256,7 +2256,7 @@ int o_extend_end (GschemToplevel *w_current, int x, int y)
 bool o_extend_selection (GschemToplevel *w_current, int count)
 {
   GList  *object_list;
- GedaObject *bounder;
+  GedaObject *bounder;
   int     status;
 
   object_list = geda_list_get_glist (Current_Selection);
