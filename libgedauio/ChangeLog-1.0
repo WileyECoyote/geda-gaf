@@ -2,7 +2,7 @@
 
     * src/widgets/geda_menu.c: Revise logic in geda_menu_detach; the menu
       does not need to be removed from the stolen data unless these is
-      a list.
+      a list and adjust function wrapping.
 
 2018-02-01 Wiley E. Hill <wileyhill@gmail.com>
 

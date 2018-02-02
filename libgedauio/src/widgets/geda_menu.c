@@ -3775,8 +3775,7 @@ geda_menu_get_attach_widget (GedaMenu *menu)
  *
  * \param[in] menu: a #GedaMenu
  */
-void
-geda_menu_detach (GedaMenu *menu)
+void geda_menu_detach (GedaMenu *menu)
 {
   MenuAttachData *data;
   GList          *list;
@@ -3823,14 +3822,12 @@ geda_menu_detach (GedaMenu *menu)
   g_object_unref (menu);
 }
 
-GtkWidget*
-geda_menu_new (void)
+GtkWidget *geda_menu_new (void)
 {
   return g_object_new (GEDA_TYPE_MENU, NULL);
 }
 
-static void
-geda_menu_tearoff_bg_copy (GedaMenu *menu)
+static void geda_menu_tearoff_bg_copy (GedaMenu *menu)
 {
   if (menu->torn_off) {
 
@@ -3870,10 +3867,9 @@ geda_menu_tearoff_bg_copy (GedaMenu *menu)
   }
 }
 
-static bool
-popup_grab_on_window (GdkWindow *window,
-                      uint32     activate_time,
-                      bool       grab_keyboard)
+static bool popup_grab_on_window (GdkWindow *window,
+                                  uint32     activate_time,
+                                  bool       grab_keyboard)
 {
   if ((gdk_pointer_grab (window, TRUE,
                          GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK |
@@ -3915,8 +3911,7 @@ popup_grab_on_window (GdkWindow *window,
  * transferring of xgrab to the popup.
  * \sa notes in geda_menu_popup() for information about the "grab transfer window"
  */
-static GdkWindow *
-menu_grab_transfer_window_get (GedaMenu *menu)
+static GdkWindow *menu_grab_transfer_window_get (GedaMenu *menu)
 {
   GdkWindow *window = g_object_get_data ((GObject*)menu, transfer_window_key);
 
@@ -3977,14 +3972,13 @@ menu_grab_transfer_window_get (GedaMenu *menu)
  * \param[in] button            the mouse button which was pressed to initiate the event.
  * \param[in] activate_time     the time at which the activation event occurred.
  */
-void
-geda_menu_popup (GedaMenu         *menu,
-                 GtkWidget        *parent_menu_shell,
-                 GtkWidget        *parent_menu_item,
-                 MenuPositionFunc  func,
-                 void             *data,
-                 unsigned int      button,
-                 uint32            activate_time)
+void geda_menu_popup (GedaMenu         *menu,
+                      GtkWidget        *parent_menu_shell,
+                      GtkWidget        *parent_menu_item,
+                      MenuPositionFunc  func,
+                      void             *data,
+                      unsigned int      button,
+                      uint32            activate_time)
 {
   GtkWidget     *widget;
   GtkWidget     *xgrab_shell;
@@ -4189,8 +4183,7 @@ geda_menu_popup (GedaMenu         *menu,
  *
  * \param[in] menu: a #GedaMenu
  */
-void
-geda_menu_popdown (GedaMenu *menu)
+void geda_menu_popdown (GedaMenu *menu)
 {
   GedaMenuPriv  *private;
   GedaMenuShell *menu_shell;
@@ -4281,8 +4274,7 @@ geda_menu_popdown (GedaMenu *menu)
  *
  * \param[in] menu Pointer to a #GedaMenu
  */
-void
-geda_menu_reposition (GedaMenu *menu)
+void geda_menu_reposition (GedaMenu *menu)
 {
   g_return_if_fail (GEDA_IS_MENU (menu));
 
@@ -4302,8 +4294,7 @@ geda_menu_reposition (GedaMenu *menu)
  * \returns GedaMenuItem that was last selected in the menu. If a selection
  *          has not yet been made, the first menu item is selected.
  */
-GtkWidget*
-geda_menu_get_active (GedaMenu *menu)
+GtkWidget *geda_menu_get_active (GedaMenu *menu)
 {
   GtkWidget *child;
   GList     *children;
@@ -4341,8 +4332,7 @@ geda_menu_get_active (GedaMenu *menu)
  * \param[in] menu  Pointer to a #GedaMenu
  * \param[in] index Zero based index of the item to be set active
  */
-void
-geda_menu_set_active (GedaMenu *menu, unsigned int index)
+void geda_menu_set_active (GedaMenu *menu, unsigned int index)
 {
   GtkWidget *child;
   GList     *tmp_list;
@@ -4379,8 +4369,7 @@ geda_menu_set_active (GedaMenu *menu, unsigned int index)
  *
  * \sa geda_menu_get_active
  */
-GtkWidget *
-geda_menu_widget_get_active (GtkWidget *menu)
+GtkWidget *geda_menu_widget_get_active (GtkWidget *menu)
 {
   return geda_menu_get_active ((GedaMenu*)menu);
 }
@@ -4395,8 +4384,7 @@ geda_menu_widget_get_active (GtkWidget *menu)
  *
  * \sa geda_menu_set_active
  */
-void
-geda_menu_widget_set_active (GtkWidget *menu, unsigned int index)
+void geda_menu_widget_set_active (GtkWidget *menu, unsigned int index)
 {
   geda_menu_set_active ((GedaMenu*)menu, index);
 }
@@ -4413,8 +4401,7 @@ geda_menu_widget_set_active (GtkWidget *menu, unsigned int index)
  *
  * \sa geda_menu_set_accel_group().
  */
-GtkAccelGroup*
-geda_menu_get_accel_group (GedaMenu *menu)
+GtkAccelGroup *geda_menu_get_accel_group (GedaMenu *menu)
 {
   g_return_val_if_fail (GEDA_IS_MENU (menu), NULL);
 
@@ -4430,8 +4417,7 @@ geda_menu_get_accel_group (GedaMenu *menu)
  * \param[in] menu         A GedaMenu
  * \param[in] accel_group  The accelerate group
  */
-void
-geda_menu_set_accel_group (GedaMenu *menu, GtkAccelGroup *accel_group)
+void geda_menu_set_accel_group (GedaMenu *menu, GtkAccelGroup *accel_group)
 {
   g_return_if_fail (GEDA_IS_MENU (menu));
 
@@ -4464,8 +4450,7 @@ geda_menu_set_accel_group (GedaMenu *menu, GtkAccelGroup *accel_group)
  *
  * \sa geda_menu_widget_set_accel_group().
  */
-GtkAccelGroup
-*geda_menu_widget_get_accel_group (GtkWidget *menu)
+GtkAccelGroup *geda_menu_widget_get_accel_group (GtkWidget *menu)
 {
   return geda_menu_get_accel_group ((GedaMenu*)menu);
 }
@@ -4480,8 +4465,7 @@ GtkAccelGroup
  *
  * \sa
  */
-void
-geda_menu_widget_set_accel_group (GtkWidget *menu, GtkAccelGroup *accel_group)
+void geda_menu_widget_set_accel_group (GtkWidget *menu, GtkAccelGroup *accel_group)
 {
   geda_menu_set_accel_group ((GedaMenu*)menu, accel_group);
 }
@@ -4495,8 +4479,7 @@ geda_menu_widget_set_accel_group (GtkWidget *menu, GtkAccelGroup *accel_group)
  *
  * \returns accelerator path set on the menu.
  */
-const char *
-geda_menu_widget_get_accel_path (GtkWidget *menu)
+const char *geda_menu_widget_get_accel_path (GtkWidget *menu)
 {
   return geda_menu_get_accel_path ((GedaMenu*)menu);
 }
@@ -4511,8 +4494,7 @@ geda_menu_widget_get_accel_path (GtkWidget *menu)
  * \param[in] menu        a valid #GedaMenu
  * \param[in] accel_path  a valid accelerator path
  */
-void
-geda_menu_widget_set_accel_path (GtkWidget *menu, const char *accel_path)
+void geda_menu_widget_set_accel_path (GtkWidget *menu, const char *accel_path)
 {
   geda_menu_set_accel_path ((GedaMenu*)menu, accel_path);
 }
@@ -4526,8 +4508,7 @@ geda_menu_widget_set_accel_path (GtkWidget *menu, const char *accel_path)
  *
  * \returns accelerator path set on the menu.
  */
-const char *
-geda_menu_get_accel_path (GedaMenu *menu)
+const char *geda_menu_get_accel_path (GedaMenu *menu)
 {
   g_return_val_if_fail (GEDA_IS_MENU (menu), NULL);
 
@@ -4557,8 +4538,7 @@ geda_menu_get_accel_path (GedaMenu *menu)
  * \param[in] menu        a valid #GedaMenu
  * \param[in] accel_path  a valid accelerator path
  */
-void
-geda_menu_set_accel_path (GedaMenu *menu, const char *accel_path)
+void geda_menu_set_accel_path (GedaMenu *menu, const char *accel_path)
 {
   g_return_if_fail (GEDA_IS_MENU (menu));
 
@@ -4579,8 +4559,7 @@ typedef struct {
 } AccelPropagation;
 
 /*! \internal Update path prefix of children items */
-static void
-refresh_accel_paths_foreach (GtkWidget *widget, void *data)
+static void refresh_accel_paths_foreach (GtkWidget *widget, void *data)
 {
   if (GEDA_IS_MENU_ITEM (widget)) {  /* should always be true */
 
@@ -4598,8 +4577,7 @@ refresh_accel_paths_foreach (GtkWidget *widget, void *data)
  *  geda_menu_set_accel_path
  *  geda_menu_show
  */
-static void
-geda_menu_refresh_accel_paths (GedaMenu *menu, bool group_changed)
+static void geda_menu_refresh_accel_paths (GedaMenu *menu, bool group_changed)
 {
   g_return_if_fail (GEDA_IS_MENU (menu));
 
@@ -4616,8 +4594,7 @@ geda_menu_refresh_accel_paths (GedaMenu *menu, bool group_changed)
   }
 }
 
-static void
-geda_menu_scrollbar_changed (GtkAdjustment *adjustment, GedaMenu *menu)
+static void geda_menu_scrollbar_changed (GtkAdjustment *adjustment, GedaMenu *menu)
 {
   g_return_if_fail (GEDA_IS_MENU (menu));
 
@@ -4626,8 +4603,7 @@ geda_menu_scrollbar_changed (GtkAdjustment *adjustment, GedaMenu *menu)
   }
 }
 
-static void
-geda_menu_set_tearoff_hints (GedaMenu *menu, int width)
+static void geda_menu_set_tearoff_hints (GedaMenu *menu, int width)
 {
   GdkGeometry geometry_hints;
 
@@ -4663,16 +4639,14 @@ geda_menu_set_tearoff_hints (GedaMenu *menu, int width)
  *
  * \retval %TRUE if the menu is currently torn off.
  */
-bool
-geda_menu_get_tearoff_state (GedaMenu *menu)
+bool geda_menu_get_tearoff_state (GedaMenu *menu)
 {
   g_return_val_if_fail (GEDA_IS_MENU (menu), FALSE);
 
   return menu->torn_off;
 }
 
-static void
-geda_menu_update_title (GedaMenu *menu)
+static void geda_menu_update_title (GedaMenu *menu)
 {
   if (menu->tearoff_window) {
 
@@ -4703,8 +4677,7 @@ geda_menu_update_title (GedaMenu *menu)
   }
 }
 
-static void
-tearoff_window_destroyed (GtkWidget *widget, GedaMenu *menu)
+static void tearoff_window_destroyed (GtkWidget *widget, GedaMenu *menu)
 {
   geda_menu_set_tearoff_state (menu, FALSE);
 }
@@ -4718,8 +4691,7 @@ tearoff_window_destroyed (GtkWidget *widget, GedaMenu *menu)
  * \param[in] menu      Pointer to a #GedaMenu
  * \param[in] torn_off  whether menu is to be torn off.
  */
-void
-geda_menu_set_tearoff_state (GedaMenu *menu, bool torn_off)
+void geda_menu_set_tearoff_state (GedaMenu *menu, bool torn_off)
 {
   g_return_if_fail (GEDA_IS_MENU (menu));
 
@@ -4874,8 +4846,7 @@ geda_menu_set_tearoff_state (GedaMenu *menu, bool torn_off)
  *
  * \sa geda_menu_set_title().
  */
-const char*
-geda_menu_get_title (GedaMenu *menu)
+const char *geda_menu_get_title (GedaMenu *menu)
 {
   GedaMenuPriv *priv;
 
@@ -4897,8 +4868,7 @@ geda_menu_get_title (GedaMenu *menu)
  * \param[in] menu  GedaMenu
  * \param[in] title string containing the title for the menu.
  */
-void
-geda_menu_set_title (GedaMenu *menu, const char *title)
+void geda_menu_set_title (GedaMenu *menu, const char *title)
 {
   GedaMenuPriv *priv;
   char *old_title;
@@ -4924,8 +4894,7 @@ geda_menu_set_title (GedaMenu *menu, const char *title)
  *
  * \param[in] menu  GedaMenu
  */
-GtkWidget*
-geda_menu_get_toplevel (GedaMenu *menu)
+GtkWidget *geda_menu_get_toplevel (GedaMenu *menu)
 {
   GtkWidget *attach;
   GtkWidget *toplevel;
@@ -4985,8 +4954,7 @@ void geda_menu_set_parent_item (GedaMenu *menu, GtkWidget *parent)
  * \param [in] child    Widget is to be re-position
  * \param [in] position Zero based new position
  */
-void
-geda_menu_reorder_child (GedaMenu *menu, GtkWidget *child, int position)
+void geda_menu_reorder_child (GedaMenu *menu, GtkWidget *child, int position)
 {
   GedaMenuShell *menu_shell;
 
@@ -5004,8 +4972,7 @@ geda_menu_reorder_child (GedaMenu *menu, GtkWidget *child, int position)
   }
 }
 
-static void
-geda_menu_do_timeout_scroll (GedaMenu *menu, bool touchscreen_mode)
+static void geda_menu_do_timeout_scroll (GedaMenu *menu, bool touchscreen_mode)
 {
   bool  upper_visible;
   bool  lower_visible;
@@ -5028,8 +4995,7 @@ geda_menu_do_timeout_scroll (GedaMenu *menu, bool touchscreen_mode)
     }
 }
 
-static bool
-geda_menu_scroll_timeout (void *data)
+static bool geda_menu_scroll_timeout (void *data)
 {
   GedaMenu *menu;
 
@@ -5040,8 +5006,7 @@ geda_menu_scroll_timeout (void *data)
   return TRUE;
 }
 
-static bool
-geda_menu_scroll_timeout_initial (void *data)
+static bool geda_menu_scroll_timeout_initial (void *data)
 {
   GedaMenu    *menu;
   unsigned int timeout;
@@ -5063,8 +5028,7 @@ geda_menu_scroll_timeout_initial (void *data)
   return FALSE;
 }
 
-static void
-geda_menu_start_scrolling (GedaMenu *menu)
+static void geda_menu_start_scrolling (GedaMenu *menu)
 {
   unsigned int timeout;
 
@@ -5079,8 +5043,7 @@ geda_menu_start_scrolling (GedaMenu *menu)
                                               menu);
 }
 
-static void
-geda_menu_stop_navigating_submenu (GedaMenu *menu)
+static void geda_menu_stop_navigating_submenu (GedaMenu *menu)
 {
   GedaMenuPriv *priv = menu->priv;
 
@@ -5098,8 +5061,7 @@ geda_menu_stop_navigating_submenu (GedaMenu *menu)
 /* When the timeout is elapsed, the navigation region is destroyed
  * and the menuitem under the pointer (if any) is selected.
  */
-static bool
-geda_menu_stop_navigating_submenu_cb (void *user_data)
+static bool geda_menu_stop_navigating_submenu_cb (void *user_data)
 {
   GedaMenu *menu = user_data;
 
@@ -5128,8 +5090,7 @@ geda_menu_stop_navigating_submenu_cb (void *user_data)
   return FALSE;
 }
 
-static bool
-geda_menu_navigating_submenu (GedaMenu *menu, int event_x, int event_y)
+static bool geda_menu_navigating_submenu (GedaMenu *menu, int event_x, int event_y)
 {
   GedaMenuPriv *priv;
   int width, height;
@@ -5286,8 +5247,7 @@ geda_menu_set_submenu_navigation_region (GedaMenu         *menu,
   }
 }
 
-static void
-geda_menu_position (GedaMenu *menu, bool set_scroll_offset)
+static void geda_menu_position (GedaMenu *menu, bool set_scroll_offset)
 {
   GtkWidget    *widget;
   GedaMenuPriv *private;
@@ -5532,8 +5492,7 @@ geda_menu_position (GedaMenu *menu, bool set_scroll_offset)
   }
 }
 
-static void
-geda_menu_remove_scroll_timeout (GedaMenu *menu)
+static void geda_menu_remove_scroll_timeout (GedaMenu *menu)
 {
   if (menu->timeout_id) {
     g_source_remove (menu->timeout_id);
@@ -5541,8 +5500,7 @@ geda_menu_remove_scroll_timeout (GedaMenu *menu)
   }
 }
 
-static void
-geda_menu_stop_scrolling (GedaMenu *menu)
+static void geda_menu_stop_scrolling (GedaMenu *menu)
 {
   geda_menu_remove_scroll_timeout (menu);
 
@@ -5552,8 +5510,7 @@ geda_menu_stop_scrolling (GedaMenu *menu)
     }
 }
 
-static void
-geda_menu_scroll_to (GedaMenu *menu, int offset)
+static void geda_menu_scroll_to (GedaMenu *menu, int offset)
 {
   GtkWidget   *widget;
   unsigned int vertical_padding;
@@ -5761,8 +5718,7 @@ geda_menu_scroll_to (GedaMenu *menu, int offset)
  * are not cleared to the background color and the previous background
  * (the image of the menu) is left in place.
  */
-static void
-geda_menu_reparent (GedaMenu *menu, GtkWidget *new_parent, bool unrealize)
+static void geda_menu_reparent (GedaMenu *menu, GtkWidget *new_parent, bool unrealize)
 {
   GtkWidget *widget = (GtkWidget*)menu;
   bool was_floating = g_object_is_floating (menu);
@@ -5798,8 +5754,7 @@ geda_menu_reparent (GedaMenu *menu, GtkWidget *new_parent, bool unrealize)
  * \param[in] screen GdkScreen, or %NULL if the screen should be
  *                   determined by the widget the menu is attached to.
  */
-void
-geda_menu_set_screen (GedaMenu *menu, GdkScreen *screen)
+void geda_menu_set_screen (GedaMenu *menu, GdkScreen *screen)
 {
   g_return_if_fail (GEDA_IS_MENU (menu));
   g_return_if_fail (!screen || GDK_IS_SCREEN (screen));
@@ -5838,13 +5793,12 @@ geda_menu_set_screen (GedaMenu *menu, GdkScreen *screen)
  * \param[in] top_attach     Row number to attach the top of the item to.
  * \param[in] bottom_attach  Row number to attach the bottom of the item to.
  */
-void
-geda_menu_attach (GedaMenu    *menu,
-                  GtkWidget   *child,
-                  unsigned int left_attach,
-                  unsigned int right_attach,
-                  unsigned int top_attach,
-                  unsigned int bottom_attach)
+void geda_menu_attach (GedaMenu    *menu,
+                       GtkWidget   *child,
+                       unsigned int left_attach,
+                       unsigned int right_attach,
+                       unsigned int top_attach,
+                       unsigned int bottom_attach)
 {
   GedaMenuShell *menu_shell;
 
@@ -5893,8 +5847,7 @@ geda_menu_attach (GedaMenu    *menu,
  * \returns number of the monitor on which the menu should
  *          be popped up or -1, if no monitor has been set
  */
-int
-geda_menu_get_monitor (GedaMenu *menu)
+int geda_menu_get_monitor (GedaMenu *menu)
 {
   GedaMenuPriv *priv;
   g_return_val_if_fail (GEDA_IS_MENU (menu), -1);
@@ -5919,8 +5872,7 @@ geda_menu_get_monitor (GedaMenu *menu)
  * \param[in] monitor_num  Number of the monitor on which the menu should
  *                         appear.
  */
-void
-geda_menu_set_monitor (GedaMenu *menu, int monitor_num)
+void geda_menu_set_monitor (GedaMenu *menu, int monitor_num)
 {
   GedaMenuPriv *priv;
   g_return_if_fail (GEDA_IS_MENU (menu));
@@ -5940,8 +5892,7 @@ geda_menu_set_monitor (GedaMenu *menu, int monitor_num)
  *
  * \returns list of menus attached to this widget.
  */
-GList*
-geda_menu_get_for_attach_widget (GtkWidget *widget)
+GList *geda_menu_get_for_attach_widget (GtkWidget *widget)
 {
   GList *list;
 
@@ -5961,9 +5912,8 @@ geda_menu_get_for_attach_widget (GtkWidget *widget)
  * \param[in] menu                 GedaMenu object
  * \param[in] reserve_toggle_size  TRUE is space should be reserved, otherwize FALSE
  */
-void
-geda_menu_set_reserve_toggle_size (GedaMenu *menu,
-                                   bool     reserve_toggle_size)
+void geda_menu_set_reserve_toggle_size (GedaMenu *menu,
+                                         bool     reserve_toggle_size)
 {
   GedaMenuPriv *priv = menu->priv;
   bool  no_toggle_size;
@@ -5988,8 +5938,7 @@ geda_menu_set_reserve_toggle_size (GedaMenu *menu,
  *
  * \returns Whether the menu reserves toggle space
  */
-bool
-geda_menu_get_reserve_toggle_size (GedaMenu *menu)
+bool geda_menu_get_reserve_toggle_size (GedaMenu *menu)
 {
   GedaMenuPriv *priv = menu->priv;
 
@@ -6003,8 +5952,7 @@ geda_menu_get_reserve_toggle_size (GedaMenu *menu)
  *
  * \param[in] menu Pointer to a #GedaMenu
  */
-bool
-geda_menu_widget_get_tearoff_state (GtkWidget *menu)
+bool geda_menu_widget_get_tearoff_state (GtkWidget *menu)
 {
   return geda_menu_get_tearoff_state ((GedaMenu*)menu);
 }
@@ -6018,8 +5966,7 @@ geda_menu_widget_get_tearoff_state (GtkWidget *menu)
  * \param[in] menu      Pointer to a #GedaMenu
  * \param[in] torn_off  whether menu is to be torn off.
  */
-void
-geda_menu_widget_set_tearoff_state (GtkWidget *menu, bool torn_off)
+void geda_menu_widget_set_tearoff_state (GtkWidget *menu, bool torn_off)
 {
   geda_menu_set_tearoff_state ((GedaMenu*)menu, torn_off);
 }
@@ -6032,8 +5979,7 @@ geda_menu_widget_set_tearoff_state (GtkWidget *menu, bool torn_off)
  *
  * \param[in] menu      Pointer to a #GedaMenu
  */
-const char*
-geda_menu_widget_get_title (GtkWidget *menu)
+const char *geda_menu_widget_get_title (GtkWidget *menu)
 {
   return geda_menu_get_title ((GedaMenu*)menu);
 }
@@ -6047,8 +5993,7 @@ geda_menu_widget_get_title (GtkWidget *menu)
  * \param[in] menu   Pointer to a #GedaMenu
  * \param[in] title  string containing the title for the menu or NULL.
  */
-void
-geda_menu_widget_set_title (GtkWidget *menu, const char *title)
+void geda_menu_widget_set_title (GtkWidget *menu, const char *title)
 {
   geda_menu_set_title ((GedaMenu*)menu, title);
 }
