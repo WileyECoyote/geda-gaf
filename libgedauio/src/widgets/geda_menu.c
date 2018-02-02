@@ -3798,9 +3798,9 @@ geda_menu_detach (GedaMenu *menu)
   }
 
   list = g_object_steal_data ((GObject*)data->attach_widget, attached_menus_key);
-  list = g_list_remove (list, menu);
 
   if (list) {
+    list = g_list_remove (list, menu);
     g_object_set_data_full ((GObject*)data->attach_widget, attached_menus_key, list,
                             (GDestroyNotify) g_list_free);
   }
