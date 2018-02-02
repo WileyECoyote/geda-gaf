@@ -289,6 +289,9 @@ int x_event_button_pressed(GtkWidget      *widget,
             case(DESELECT):
             case(SELECT):
               break;
+            case(STARTEXTEND):
+              i_status_set_state(w_current, SELECT);
+              break;
             default:
               i_callback_cancel(w_current, 0, NULL);
           }

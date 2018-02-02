@@ -4,6 +4,10 @@
 
     * po/tr.po: Update Turkish translations.
 
+    * src/x/x_event.c: Add case STARTEXTEND for the third button
+      in x_event_button_pressed to terminate Project Mode when the
+      user right-clicks.
+
 2018-01-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_dialog.c Stop assigning lightbox->next because the
