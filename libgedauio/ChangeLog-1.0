@@ -1,3 +1,7 @@
+2018-02-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_comboboxtext.c: Adjust function wrapping.
+
 2018-02-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Revise logic in geda_menu_detach; the menu
