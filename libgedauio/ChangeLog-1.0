@@ -1,7 +1,8 @@
 2018-02-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_comboboxtext.c: Reduce scope of iter in function
-      geda_combo_box_text_get_active_text. Adjust function wrapping.
+      geda_combo_box_text_get_active_text and scope of store in function
+      in geda_combo_box_text_prepend. Adjust function wrapping.
 
 2018-02-02 Wiley E. Hill <wileyhill@gmail.com>
 

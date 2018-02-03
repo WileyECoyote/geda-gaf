@@ -633,7 +633,6 @@ void geda_combo_box_text_prepend (GedaComboBoxText *combo_box, const char *text)
 void geda_combo_box_text_remove (GedaComboBoxText *combo_box, int position)
 {
   GtkTreeModel *model;
-  GtkListStore *store;
   GtkTreeIter   iter;
 
   g_return_if_fail (GEDA_IS_COMBO_BOX_TEXT (combo_box));
@@ -641,13 +640,15 @@ void geda_combo_box_text_remove (GedaComboBoxText *combo_box, int position)
 
   model = geda_combo_box_get_model (GEDA_COMBO_BOX (combo_box));
 
-  store = GTK_LIST_STORE (model);
-  g_return_if_fail (GTK_IS_LIST_STORE (store));
+  if (gtk_tree_model_iter_nth_child (model, &iter, NULL, position)) {
 
-  if (gtk_tree_model_iter_nth_child (model, &iter, NULL, position))
-    gtk_list_store_remove (store, &iter);
+    GtkListStore *store = GTK_LIST_STORE (model);
 
-  combo_box->count--;
+    if (GTK_IS_LIST_STORE (store)) {
+      gtk_list_store_remove (store, &iter);
+      combo_box->count--;
+    }
+  }
 }
 
 /*!
