@@ -660,12 +660,10 @@ void geda_combo_box_text_remove (GedaComboBoxText *combo_box, int position)
  */
 void geda_combo_box_text_remove_all (GedaComboBoxText *combo_box)
 {
-  GtkListStore *store;
-
   g_return_if_fail (GEDA_IS_COMBO_BOX_TEXT (combo_box));
 
-  store = GTK_LIST_STORE (geda_combo_box_get_model (GEDA_COMBO_BOX (combo_box)));
-  gtk_list_store_clear (store);
+  gtk_list_store_clear (combo_box->store);
+
   combo_box->count = 0;
 }
 
