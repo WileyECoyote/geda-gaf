@@ -1303,23 +1303,20 @@ msgstr "撤消錯誤"
 msgid "Undo failed"
 msgstr ""
 
-# Hierarchy Error
+# Search for
 #: gschem/src/x/x_autonumber.c:117
-#, fuzzy
 msgid "Search for:"
-msgstr "層次錯誤"
+msgstr "搜索:"
 
-# Set the sequence number
+# Set the search criteria
 #: gschem/src/x/x_autonumber.c:117
-#, fuzzy
 msgid "Set the search criteria"
-msgstr "設置序列號"
+msgstr "設置搜索條件:"
 
 # Autonumber Text
 #: gschem/src/x/x_autonumber.c:118
-#, fuzzy
 msgid "Autonumber text in:"
-msgstr "自動編號文本"
+msgstr "自動編號文本:"
 
 #: gschem/src/x/x_autonumber.c:118
 msgid "Set the context of the search scope"
@@ -1329,11 +1326,10 @@ msgstr ""
 msgid "Skip numbers found in:"
 msgstr ""
 
-# Set the sequence number
+# Set where NOT to look for numbers
 #: gschem/src/x/x_autonumber.c:119
-#, fuzzy
 msgid "Set where NOT to look for numbers"
-msgstr "設置序列號"
+msgstr "設置不要查找數字"
 
 #: gschem/src/x/x_autonumber.c:120
 msgid "Sort order:"
@@ -1417,9 +1413,8 @@ msgstr ""
 
 # Filter
 #: gschem/src/x/x_autonumber.c:1637
-#, fuzzy
 msgid "Filter:"
-msgstr "<b>過濾</b>"
+msgstr "過濾器:"
 
 #: gschem/src/x/x_autonumber.c:1679
 msgid "Selected objects"
@@ -2288,10 +2283,11 @@ msgstr ""
 msgid "Components may overlay, Continue?"
 msgstr ""
 
+# Create Array: Error
 #: gschem/src/x/x_edit_array.c:539 gschem/src/x/x_edit_array.c:544
 #: gschem/src/x/x_edit_array.c:549
 msgid "Create Array:Error"
-msgstr ""
+msgstr "創建數組：錯誤"
 
 #: gschem/src/x/x_edit_array.c:540
 msgid ""
@@ -2332,11 +2328,10 @@ msgstr ""
 msgid "Select"
 msgstr "選擇"
 
-# Deselect Mode
+# Deselect
 #: gschem/src/x/x_edit_array.c:939
-#, fuzzy
 msgid "Deselect"
-msgstr "取消選擇模式"
+msgstr "取消"
 
 #: gschem/src/x/x_edit_array.c:955 gschem/src/x/x_menus.c:118
 msgid "Array"
@@ -2348,7 +2343,6 @@ msgstr ""
 
 # Offset
 #: gschem/src/x/x_edit_array.c:987 gschem/src/x/x_edit_array.c:1020
-#, fuzzy
 msgid "Offset"
 msgstr "抵消"
 
@@ -2439,10 +2433,10 @@ msgstr ""
 msgid "Add Attribute"
 msgstr ""
 
+# Edit Attribute
 #: gschem/src/x/x_edit_attrib.c:412
-#, fuzzy
 msgid "Edit Attribute"
-msgstr "<b>編輯屬性</b>"
+msgstr "編輯屬性"
 
 #: gschem/src/x/x_edit_attrib.c:414
 msgid "Select the name of the attribute to add"
