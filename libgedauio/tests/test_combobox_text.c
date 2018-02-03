@@ -512,6 +512,43 @@ check_methods ()
 }
 
 int
+check_validations (void)
+{
+  int result = 0;
+
+  GtkWidget *bulb = geda_bulb_new(NULL);
+
+  /* geda_combo_box_text_get_entry */
+
+  if (geda_combo_box_text_get_entry(NULL)) {
+    fprintf(stderr, "FAILED: %s NULL widget \n", TWIDGET);
+    result++;
+  }
+
+  if (geda_combo_box_text_get_entry((GedaComboBoxText*)bulb)) {
+    fprintf(stderr, "FAILED: %s invalid \n", TWIDGET);
+    result++;
+  }
+
+  /* geda_combo_box_text_get_entry_widget */
+
+  if (geda_combo_box_text_get_entry_widget(NULL)) {
+    fprintf(stderr, "FAILED: %s NULL widget \n", TWIDGET);
+    result++;
+  }
+
+  if (geda_combo_box_text_get_entry_widget((GedaComboBoxText*)bulb)) {
+    fprintf(stderr, "FAILED: %s invalid \n", TWIDGET);
+    result++;
+  }
+
+  g_object_ref_sink(bulb); /* Sink reference to bulb widget */
+  g_object_unref(bulb);    /* Destroy the bulb */
+
+  return result;
+}
+
+int
 main (int argc, char *argv[])
 {
   int result = 0;
@@ -548,6 +585,14 @@ main (int argc, char *argv[])
       }
       else {
         fprintf(stderr, "Caught signal checking methods in %s\n\n", MUT);
+        return 1;
+      }
+
+      if (setjmp(point) == 0) {
+        result = check_validations();
+      }
+      else {
+        fprintf(stderr, "Caught signal checking validations in %s\n\n", MUT);
         return 1;
       }
     }

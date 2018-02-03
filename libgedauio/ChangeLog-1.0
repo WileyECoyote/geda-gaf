@@ -4,6 +4,9 @@
       geda_combo_box_text_get_active_text and scope of store in function
       in geda_combo_box_text_prepend. Adjust function wrapping.
 
+    * tests/test_combobox_text.c: Add function check_validations to validate
+      arguments as a separate task.
+
 2018-02-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Revise logic in geda_menu_detach; the menu
