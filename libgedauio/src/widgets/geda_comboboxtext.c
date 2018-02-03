@@ -278,23 +278,23 @@ static void item_end_element (GMarkupParseContext *context,
   /* Append the translated strings */
   if (data->string->len) {
 
-      if (data->translatable) {
+    if (data->translatable) {
 
-        char *translated;
+      char *translated;
 
-        /* FIXME: This will not use the domain set in the .ui file, since
-         * the parser is not telling the builder about the domain. However,
-         * this will work for gtk_builder_set_translation_domain() calls.
-         */
-        translated = geda_builder_parser_translate (data->domain,
-                                                    data->context,
-                                                    data->string->str);
-        g_string_set_size (data->string, 0);
-        g_string_append (data->string, translated);
-      }
-
-      geda_combo_box_text_append (GEDA_COMBO_BOX_TEXT (data->object), data->string->str);
+      /* FIXME: This will not use the domain set in the .ui file, since
+       * the parser is not telling the builder about the domain. However,
+       * this will work for gtk_builder_set_translation_domain() calls.
+       */
+      translated = geda_builder_parser_translate (data->domain,
+                                                  data->context,
+                                                  data->string->str);
+      g_string_set_size (data->string, 0);
+      g_string_append (data->string, translated);
     }
+
+    geda_combo_box_text_append (GEDA_COMBO_BOX_TEXT (data->object), data->string->str);
+  }
 
   data->translatable = FALSE;
   g_string_set_size (data->string, 0);
