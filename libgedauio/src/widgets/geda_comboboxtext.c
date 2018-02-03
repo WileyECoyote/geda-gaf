@@ -869,12 +869,14 @@ void geda_combo_box_text_remove_all_text (GedaComboBoxText *combo_box)
  */
 char *geda_combo_box_text_get_active_text (GedaComboBoxText *combo_box)
 {
-  GtkTreeIter iter;
-  char *text = NULL;
+  char *text= NULL;
 
   if (GEDA_IS_COMBO_BOX_TEXT (combo_box)) {
 
-    GedaComboBox *combo = GEDA_COMBO_BOX (combo_box);
+    GedaComboBox *combo;
+    GtkTreeIter iter;
+
+    combo = GEDA_COMBO_BOX (combo_box);
 
     if (geda_combo_box_get_has_entry (combo)) {
 
@@ -891,15 +893,16 @@ char *geda_combo_box_text_get_active_text (GedaComboBoxText *combo_box)
 
       model = geda_combo_box_get_model (combo);
       text_column = geda_combo_box_get_entry_text_column (combo);
+
       g_return_val_if_fail (text_column >= 0, NULL);
+
       column_type = gtk_tree_model_get_column_type (model, text_column);
+
       g_return_val_if_fail (column_type == G_TYPE_STRING, NULL);
       gtk_tree_model_get (model, &iter, text_column, &text, -1);
     }
-
-    return text;
   }
-  return NULL;
+  return text;
 }
 
 /*!
