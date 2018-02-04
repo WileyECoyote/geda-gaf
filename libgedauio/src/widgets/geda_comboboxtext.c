@@ -932,7 +932,6 @@ bool geda_combo_box_text_set_active_text (GedaComboBoxText *combo_box,
 
       GtkTreeModel *model;
       GtkTreeIter   iter;
-      const char   *str;
 
       int text_column;
       int found;
@@ -946,6 +945,10 @@ bool geda_combo_box_text_set_active_text (GedaComboBoxText *combo_box,
         int i;
 
         for (i = 0; i < combo_box->count; i++) {
+
+          const char *str;
+
+          str = NULL;
 
           gtk_tree_model_get (model, &iter, text_column, &str, -1);
 
