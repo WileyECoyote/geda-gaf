@@ -581,7 +581,7 @@ main (int argc, char *argv[])
       }
 
       if (setjmp(point) == 0) {
-        result = check_methods();
+        result += check_methods();
       }
       else {
         fprintf(stderr, "Caught signal checking methods in %s\n\n", MUT);
@@ -589,7 +589,7 @@ main (int argc, char *argv[])
       }
 
       if (setjmp(point) == 0) {
-        result = check_validations();
+        result += check_validations();
       }
       else {
         fprintf(stderr, "Caught signal checking validations in %s\n\n", MUT);

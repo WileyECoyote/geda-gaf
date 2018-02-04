@@ -8,7 +8,8 @@
       validations in geda_combo_box_text_[g,s]et_activate_default.
 
     * tests/test_combobox_text.c: Add line numbers in check_validations
-      output messages and update geda_combo_box_text_remove_index.
+      output messages and update geda_combo_box_text_remove_index.  Fix
+      not accumulating results in main.
 
 2018-02-03 Wiley E. Hill <wileyhill@gmail.com>
 
