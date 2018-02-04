@@ -1,3 +1,8 @@
+2018-02-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_comboboxtext.c: Rename geda_combo_box_text_remove_text
+      -> geda_combo_box_text_remove_index.
+
 2018-02-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_comboboxtext.c: Reduce scope of iter in function

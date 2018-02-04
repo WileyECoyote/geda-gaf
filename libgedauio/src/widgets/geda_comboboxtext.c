@@ -832,8 +832,8 @@ geda_combo_box_text_prepend_text (GedaComboBoxText *combo_box,
  * \remark This function is equivalent to geda_combo_box_text_remove_all
  *         and exist for consistency of the API.
  */
-void geda_combo_box_text_remove_text (GedaComboBoxText *combo_box,
-                                      int               position)
+void geda_combo_box_text_remove_index (GedaComboBoxText *combo_box,
+                                       int               position)
 {
   geda_combo_box_text_remove (combo_box, position);
 }
