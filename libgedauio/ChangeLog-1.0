@@ -5,7 +5,9 @@
       geda_combo_get_entry_widget with geda_combo_get_entry in geda_combo_box_
       text_get_text_length and eliminate dynamic cast to GedaEntry. Reduce
       the scope of str in geda_combo_box_text_set_active_text. Revise
-      validations in geda_combo_box_text_[g,s]et_activate_default.
+      validations in geda_combo_box_text_[g,s]et_activate_default. Add
+      function geda_combo_box_text_remove_text, seems like this would be
+      a handy function.
 
     * tests/test_combobox_text.c: Add line numbers in check_validations
       output messages and update geda_combo_box_text_remove_index.  Fix

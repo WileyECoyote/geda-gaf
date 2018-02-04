@@ -111,6 +111,8 @@ void         geda_combo_box_text_prepend_text          (GedaComboBoxText   *comb
 void         geda_combo_box_text_remove_all_text       (GedaComboBoxText   *combo_box);
 void         geda_combo_box_text_remove_index          (GedaComboBoxText   *combo_box,
                                                         int                 position);
+void         geda_combo_box_text_remove_text           (GedaComboBoxText   *combo_box,
+                                                        const char         *text);
 char        *geda_combo_box_text_get_active_text       (GedaComboBoxText   *combo_box);
 
 bool         geda_combo_box_text_set_active_text       (GedaComboBoxText   *combo_box,
