@@ -822,6 +822,21 @@ geda_combo_box_text_prepend_text (GedaComboBoxText *combo_box,
 }
 
 /*!
+ * \brief GedaComboBoxText Remove All Text
+ * \par Function Description
+ *  Removes all the text entries from the combo box.
+ *
+ * \param [in] combo_box A #GedaComboBoxText object.
+ *
+ * \remark This function is equivalent to geda_combo_box_text_remove
+ *         and exist for consistency of the API.
+ */
+void geda_combo_box_text_remove_all_text (GedaComboBoxText *combo_box)
+{
+  geda_combo_box_text_remove_all (combo_box);
+}
+
+/*!
  * \brief GedaComboBoxText Remove Text at Position
  * \par Function Description
  *  Removes the string at position from combo_box.
@@ -836,21 +851,6 @@ void geda_combo_box_text_remove_index (GedaComboBoxText *combo_box,
                                        int               position)
 {
   geda_combo_box_text_remove (combo_box, position);
-}
-
-/*!
- * \brief GedaComboBoxText Remove All Text
- * \par Function Description
- *  Removes all the text entries from the combo box.
- *
- * \param [in] combo_box A #GedaComboBoxText object.
- *
- * \remark This function is equivalent to geda_combo_box_text_remove
- *         and exist for consistency of the API.
- */
-void geda_combo_box_text_remove_all_text (GedaComboBoxText *combo_box)
-{
-  geda_combo_box_text_remove_all (combo_box);
 }
 
 /*! \brief GedaComboBoxText Get Text
