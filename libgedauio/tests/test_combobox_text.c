@@ -419,7 +419,7 @@ check_methods ()
     result++;
   }
 
-  geda_combo_box_text_remove_text(combo_text, 0);
+  geda_combo_box_text_remove_index(combo_text, 0);
 
   /* "Takeo" should be removed from the entry */
   city = geda_combo_box_text_widget_get_active_text(widget);
@@ -521,24 +521,24 @@ check_validations (void)
   /* geda_combo_box_text_get_entry */
 
   if (geda_combo_box_text_get_entry(NULL)) {
-    fprintf(stderr, "FAILED: %s NULL widget \n", TWIDGET);
+    fprintf(stderr, "FAILED: %s NULL widget at <%d>\n", TWIDGET, __LINE__);
     result++;
   }
 
   if (geda_combo_box_text_get_entry((GedaComboBoxText*)bulb)) {
-    fprintf(stderr, "FAILED: %s invalid \n", TWIDGET);
+    fprintf(stderr, "FAILED: %s invalid at <%d>\n", TWIDGET, __LINE__);
     result++;
   }
 
   /* geda_combo_box_text_get_entry_widget */
 
   if (geda_combo_box_text_get_entry_widget(NULL)) {
-    fprintf(stderr, "FAILED: %s NULL widget \n", TWIDGET);
+    fprintf(stderr, "FAILED: %s NULL widget at <%d>\n", TWIDGET, __LINE__);
     result++;
   }
 
   if (geda_combo_box_text_get_entry_widget((GedaComboBoxText*)bulb)) {
-    fprintf(stderr, "FAILED: %s invalid \n", TWIDGET);
+    fprintf(stderr, "FAILED: %s invalid at <%d>\n", TWIDGET, __LINE__);
     result++;
   }
 
