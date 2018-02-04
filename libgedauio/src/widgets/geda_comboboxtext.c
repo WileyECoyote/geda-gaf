@@ -987,11 +987,14 @@ bool geda_combo_box_text_set_active_text (GedaComboBoxText *combo_box,
  */
 bool geda_combo_box_text_get_activate_default (GedaComboBoxText *combo_box)
 {
-  if (GEDA_COMBO_BOX_TEXT (combo_box)) {
+  if (GEDA_IS_COMBO_BOX_TEXT (combo_box)) {
 
     if (GEDA_IS_ENTRY(combo_box->entry)) {
       return geda_entry_get_activates_default (GEDA_ENTRY(combo_box->entry));
     }
+  }
+  else {
+    BUG_MSG ("Operative is not a GedaComboBox");
   }
   return FALSE;
 }
@@ -1005,11 +1008,14 @@ bool geda_combo_box_text_get_activate_default (GedaComboBoxText *combo_box)
  */
 void geda_combo_box_text_set_activate_default (GedaComboBoxText *combo_box, bool setting)
 {
-  if (GEDA_COMBO_BOX_TEXT (combo_box)) {
+  if (GEDA_IS_COMBO_BOX_TEXT (combo_box)) {
 
     if (GEDA_IS_ENTRY(combo_box->entry)) {
       geda_entry_set_activates_default (GEDA_ENTRY(combo_box->entry), setting);
     }
+  }
+  else {
+    BUG_MSG ("Operative is not a GedaComboBox");
   }
 }
 
