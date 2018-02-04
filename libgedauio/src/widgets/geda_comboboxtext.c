@@ -1048,13 +1048,13 @@ GtkWidget *geda_combo_box_text_get_entry_widget (GedaComboBoxText *combo_box)
  */
 int geda_combo_box_text_get_text_length (GedaComboBoxText *combo_box)
 {
-  GtkWidget *widget;
+  GedaEntry *entry;
   int length;
 
-  widget = geda_combo_get_entry_widget((GedaComboBox*)combo_box);
+  entry = geda_combo_get_entry((GedaComboBox*)combo_box);
 
-  if (widget) {
-    length = geda_entry_get_text_length(GEDA_ENTRY(widget));
+  if (entry) {
+    length = geda_entry_get_text_length(entry);
   }
   else {
 

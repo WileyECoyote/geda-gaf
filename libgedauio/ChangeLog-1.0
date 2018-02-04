@@ -1,7 +1,9 @@
 2018-02-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_comboboxtext.c: Rename geda_combo_box_text_remove_text
-      -> geda_combo_box_text_remove_index and relocate function.
+      -> geda_combo_box_text_remove_index and relocate function. Replace
+      geda_combo_get_entry_widget with geda_combo_get_entry in geda_combo_box_
+      text_get_text_length and eliminate dynamic cast to GedaEntry.
 
 2018-02-03 Wiley E. Hill <wileyhill@gmail.com>
 
