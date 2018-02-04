@@ -382,7 +382,7 @@ geda_entry_drag_begin (GtkWidget *widget, GdkDragContext *context)
 {
   GedaEntry *geda_entry = (GedaEntry*)widget;
   if (geda_entry->enable_drag_n_drop) {
-    g_print ("TODO: %s\n", __func__);
+    printf ("TODO: %s\n", __func__);
   }
 }
 
@@ -402,7 +402,7 @@ geda_entry_drag_drop (GtkWidget      *widget,
 {
   GedaEntry *geda_entry = (GedaEntry*)widget;
   if (geda_entry->enable_drag_n_drop) {
-    g_print ("TODO: %s\n", __func__);
+    printf ("TODO: %s\n", __func__);
   }
 
   return FALSE; /* No continue */
@@ -422,7 +422,7 @@ geda_entry_drag_end (GtkWidget *widget, GdkDragContext *context)
 {
   GedaEntry *geda_entry = (GedaEntry*)widget;
   if (geda_entry->enable_drag_n_drop) {
-    g_print ("TODO: %s\n", __func__);
+    printf ("TODO: %s\n", __func__);
   }
 }
 
@@ -441,7 +441,7 @@ geda_entry_drag_leave (GtkWidget      *widget,
 {
   GedaEntry *geda_entry = (GedaEntry*)widget;
   if (geda_entry->enable_drag_n_drop) {
-    g_print ("TODO: %s\n", __func__);
+    printf ("TODO: %s\n", __func__);
   }
   gtk_widget_queue_draw (widget);
 }
@@ -463,7 +463,7 @@ geda_entry_drag_motion (GtkWidget       *widget,
 {
   GedaEntry *geda_entry = (GedaEntry*)widget;
   if (geda_entry->enable_drag_n_drop) {
-    g_print ("TODO: %s\n", __func__);
+    printf ("TODO: %s\n", __func__);
   }
   return FALSE; /* not here */
 }
@@ -482,7 +482,7 @@ geda_entry_drag_data_get (GtkWidget        *widget,
 {
   GedaEntry *geda_entry = (GedaEntry*)widget;
   if (geda_entry->enable_drag_n_drop) {
-    g_print ("TODO: %s\n", __func__);
+    printf ("TODO: %s\n", __func__);
   }
 }
 
@@ -497,7 +497,7 @@ geda_entry_drag_data_delete (GtkWidget *widget, GdkDragContext *context)
   GedaEntry *geda_entry = (GedaEntry*)widget;
 
   if (geda_entry->enable_drag_n_drop) {
-    g_print ("TODO: %s\n", __func__);
+    printf ("TODO: %s\n", __func__);
   }
 }
 
@@ -517,7 +517,7 @@ geda_entry_drag_data_received (GtkWidget        *widget,
 {
   GedaEntry *geda_entry = (GedaEntry*)widget;
   if (geda_entry->enable_drag_n_drop) {
-    g_print ("TODO: %s\n", __func__);
+    printf ("TODO: %s\n", __func__);
   }
 }
 
