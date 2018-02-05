@@ -870,7 +870,6 @@ static int geda_menu_shell_button_press (GtkWidget *widget, GdkEventButton *even
 static int geda_menu_shell_button_release (GtkWidget *widget, GdkEventButton *event)
 {
   GedaMenuShell     *menu_shell = (GedaMenuShell*)widget;
-  GedaMenuShellPriv *priv       = menu_shell->priv;
 
   if (menu_shell->parent_menu_shell) {
 
@@ -891,6 +890,7 @@ static int geda_menu_shell_button_release (GtkWidget *widget, GdkEventButton *ev
 
   if (menu_shell->active) {
 
+    GedaMenuShellPriv *priv = menu_shell->priv;
     GtkWidget *menu_item;
     bool       deactivate = TRUE;
 
