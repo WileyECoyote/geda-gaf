@@ -8,7 +8,9 @@
       gtk_tree_model_get in geda_combo_box_text_remove_text
 
     * src/widgets/geda_menu_shell.c: Eliminate ancillary variable for Priv
-      and submenu in function geda_menu_shell_real_select_item.
+      and submenu in function geda_menu_shell_real_select_item. Revise
+      geda_menu_shell_button_release to skip checking to not deactivate when
+      on an item with a sub-menu unless slated for deactivation.
 
     * tests/test_combobox_text.c: Add validations for geda_combo_box_text_
       get_activate_default and geda_combo_box_text_set_activate_default.
