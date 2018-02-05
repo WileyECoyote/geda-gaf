@@ -689,9 +689,7 @@ static void geda_menu_shell_real_select_item (GedaMenuShell *menu_shell,
 
   if (!geda_menu_item_is_widget_selectable (menu_item)) {
 
-      GedaMenuShellPriv *priv = menu_shell->priv;
-
-      priv->in_unselectable_item = TRUE;
+      menu_shell->priv->in_unselectable_item = TRUE;
       geda_menu_shell_update_mnemonics (menu_shell);
 
       return;

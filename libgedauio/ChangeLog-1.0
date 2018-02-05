@@ -7,6 +7,9 @@
       geda_combo_box_text_set_active_text. Replease strings allocated by
       gtk_tree_model_get in geda_combo_box_text_remove_text
 
+    * src/widgets/geda_menu_shell.c: Eliminate GedaMenuShellPriv in function
+      geda_menu_shell_real_select_item.
+
     * tests/test_combobox_text.c: Add validations for geda_combo_box_text_
       get_activate_default and geda_combo_box_text_set_activate_default.
 
