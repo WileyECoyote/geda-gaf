@@ -534,6 +534,24 @@ check_validations (void)
 
   GtkWidget *bulb = geda_bulb_new(NULL);
 
+  /* geda_combo_box_text_get_activate_default */
+
+  if (geda_combo_box_text_get_activate_default(NULL)) {
+    fprintf(stderr, "FAILED: %s NULL widget at <%d>\n", TWIDGET, __LINE__);
+    result++;
+  }
+
+  if (geda_combo_box_text_get_activate_default((GedaComboBoxText*)bulb)) {
+    fprintf(stderr, "FAILED: %s invalid at <%d>\n", TWIDGET, __LINE__);
+    result++;
+  }
+
+  /* geda_combo_box_text_set_activate_default */
+
+  geda_combo_box_text_set_activate_default(NULL, 2);
+
+  geda_combo_box_text_set_activate_default((GedaComboBoxText*)bulb, 2);
+
   /* geda_combo_box_text_get_entry */
 
   if (geda_combo_box_text_get_entry(NULL)) {
