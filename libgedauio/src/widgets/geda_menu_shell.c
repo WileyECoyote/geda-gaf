@@ -679,7 +679,6 @@ static void geda_menu_shell_real_select_item (GedaMenuShell *menu_shell,
                                               GtkWidget     *menu_item)
 {
   PackDirection pack_dir = PACK_DIRECTION (menu_shell);
-  GtkWidget    *submenu;
 
   if (menu_shell->active_menu_item) {
 
@@ -711,11 +710,8 @@ static void geda_menu_shell_real_select_item (GedaMenuShell *menu_shell,
   /* This allows the bizarre radio buttons-with-submenus-display-history
    * behavior
    */
-
-  submenu = geda_menu_item_get_submenu(GEDA_MENU_ITEM (menu_shell->active_menu_item));
-
-  if (submenu) {
-    gtk_widget_activate (menu_shell->active_menu_item);
+  if (geda_menu_item_get_submenu(active_menu_item)) {
+    gtk_widget_activate (menu_item);
   }
 }
 
