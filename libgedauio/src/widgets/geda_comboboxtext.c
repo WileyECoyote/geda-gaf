@@ -1003,6 +1003,9 @@ bool geda_combo_box_text_set_active_text (GedaComboBoxText *combo_box,
             found = i;
             break;
           }
+          if (!gtk_tree_model_iter_next (model, &iter)) {
+            break;
+          }
         }
       }
 
