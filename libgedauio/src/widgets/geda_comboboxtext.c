@@ -881,15 +881,17 @@ void geda_combo_box_text_remove_text (GedaComboBoxText *combo_box,
 
         for (index = 0; index < combo_box->count; index++) {
 
-          const char *str;
+          char *str = NULL;
 
-          str = NULL;
           gtk_tree_model_get (model, &iter, text_column, &str, -1);
 
           if (str && (strcmp(text, str) == 0)) {
             geda_combo_box_text_remove (combo_box, index);
+            g_free(str);
             break;
           }
+
+          g_free(str);
 
           if (!gtk_tree_model_iter_next (model, &iter)) {
             break;
