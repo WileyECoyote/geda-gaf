@@ -678,7 +678,7 @@ static bool geda_menu_shell_real_move_selected (GedaMenuShell  *menu_shell,
 static void geda_menu_shell_real_select_item (GedaMenuShell *menu_shell,
                                               GtkWidget     *menu_item)
 {
-  PackDirection pack_dir = PACK_DIRECTION (menu_shell);
+  PackDirection pack_dir;
 
   if (menu_shell->active_menu_item) {
 
@@ -695,6 +695,8 @@ static void geda_menu_shell_real_select_item (GedaMenuShell *menu_shell,
   }
 
   menu_shell->active_menu_item = menu_item;
+  pack_dir = PACK_DIRECTION (menu_shell);
+
   if (pack_dir == PACK_DIRECTION_TTB || pack_dir == PACK_DIRECTION_BTT) {
     geda_menu_item_set_submenu_placement (GEDA_MENU_ITEM (menu_shell->active_menu_item), GTK_LEFT_RIGHT);
   }
