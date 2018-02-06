@@ -1551,7 +1551,7 @@ unsigned int geda_entry_get_length_history(GedaEntry *entry)
  *  items reaches \a value.
  *
  * \param [in] entry Pointer to a #GedaEntry object.
- * \param [in] value Maximum number of characters the is to accept.
+ * \param [in] value Maximum number of characters the entry is to accept.
  */
 void geda_entry_set_max_history (GedaEntry *entry, unsigned int value)
 {
