@@ -1091,11 +1091,11 @@ GedaEntry *geda_combo_box_text_get_entry (GedaComboBoxText *combo_box)
 }
 
 /*!
- * \brief Get the Entry Widget from the GedaComboBoxText
+ * \brief Get the Entry Widget from a GedaComboBoxText
  * \par Function Description
- *  Returns the entry or NULL if \a combo_box has no entry, this
- *  function just calls geda_combo_get_entry_widget but accepts
- *  a GedaComboBoxText as the argument.
+ *  Returns the entry or NULL if \a combo_box has no entry,
+ *  this function calls geda_combo_get_entry_widget but
+ *  accepts a GedaComboBoxText as the argument.
  *
  * \sa geda_combo_get_entry_widget
  */
@@ -1104,10 +1104,13 @@ GtkWidget *geda_combo_box_text_get_entry_widget (GedaComboBoxText *combo_box)
   return geda_combo_get_entry_widget((GedaComboBox*)combo_box);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief widget version of #geda_combo_box_get_count
- *  \par Function Description
+/*!
+ * \brief Get the GedaComboBoxText Text Length
+ * \par Function Description
+ * Returns the length of the active text or o if \a combo_box is
+ * invalid.
  *
+ * \param [in] combo_box A #GedaComboBoxText object.
  */
 int geda_combo_box_text_get_text_length (GedaComboBoxText *combo_box)
 {
