@@ -1496,9 +1496,11 @@ void geda_entry_set_attributes (GedaEntry *entry, PangoAttrList *attrs)
 {
   PangoAttrList *old_attrs;
   PangoLayout   *layout;
+  GtkWidget     *widget;
 
   g_return_if_fail (GEDA_IS_ENTRY (entry));
 
+  widget    = g_object_ref(entry);
   old_attrs = entry->priv->attrs;
 
   if (attrs)
@@ -1516,7 +1518,8 @@ void geda_entry_set_attributes (GedaEntry *entry, PangoAttrList *attrs)
     GEDA_OBJECT_NOTIFY (entry, "attributes");
   }
 
-  gtk_widget_queue_resize (GTK_WIDGET (entry));
+  gtk_widget_queue_resize (widget);
+  g_object_unref(widget);
 }
 
 /*!
