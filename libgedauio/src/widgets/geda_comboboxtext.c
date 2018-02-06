@@ -995,16 +995,18 @@ bool geda_combo_box_text_set_active_text (GedaComboBoxText *combo_box,
 
         for (i = 0; i < combo_box->count; i++) {
 
-          const char *str;
-
-          str = NULL;
+          char *str = NULL;
 
           gtk_tree_model_get (model, &iter, text_column, &str, -1);
 
           if (str && (strcmp(text, str) == 0)) {
             found = i;
+            g_free(str);
             break;
           }
+
+          g_free(str);
+
           if (!gtk_tree_model_iter_next (model, &iter)) {
             break;
           }
