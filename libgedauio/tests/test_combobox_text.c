@@ -489,6 +489,26 @@ check_methods ()
     result++;
   }
 
+  /* Remove the text at index 0 and recheck _remove_text */
+  geda_combo_box_text_set_active(combo_text, 0);
+
+  city = geda_combo_box_text_widget_get_active_text(widget);
+
+  geda_combo_box_text_remove_text(combo_text, city);
+
+  /* "Soung" should be at 5 after "Banteay" was removed */
+  geda_combo_box_text_set_active(combo_text, 5);
+
+  city = geda_combo_box_text_widget_get_active_text(widget);
+
+  if (!city) {
+    fprintf(stderr, "FAILED: %s no city at line <%d>\n", TWIDGET, __LINE__);
+    result++;
+  }
+  else if (strncmp(city, "Soung", 5)) {
+    fprintf(stderr, "FAILED: %s line <%d> wrong city %s\n", TWIDGET, __LINE__, city);
+    result++;
+  }
   geda_combo_box_text_remove_all_text(combo_text);
 
   int count = geda_combo_widget_get_count(widget);
