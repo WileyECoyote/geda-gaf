@@ -74,7 +74,7 @@ print_current_folder (GtkFileChooser *chooser)
 
   uri = gtk_file_chooser_get_current_folder_uri (chooser);
 
-  g_print ("Current folder changed :\n  %s\n", uri ? uri : "(null)");
+  printf ("Current folder changed :\n  %s\n", uri ? uri : "(null)");
   g_free (uri);
 }
 
@@ -84,15 +84,15 @@ print_selected (GtkFileChooser *chooser)
   GSList *uris = gtk_file_chooser_get_uris (chooser);
   GSList *tmp_list;
 
-  g_print ("Selection changed :\n");
+  printf ("Selection changed :\n");
 
   for (tmp_list = uris; tmp_list; tmp_list = tmp_list->next) {
       char *uri = tmp_list->data;
-      g_print ("  %s\n", uri);
+      printf ("  %s\n", uri);
       g_free (uri);
   }
 
-  g_print ("\n");
+  printf ("\n");
   g_slist_free (uris);
 }
 
@@ -109,21 +109,21 @@ response_cb (GtkDialog *dialog, int response_id)
 
       GSList *l;
 
-      g_print ("Selected files:\n");
+      printf ("Selected files:\n");
 
       for (l = list; l; l = l->next) {
 
-          g_print ("%s\n", (char *) l->data);
+          printf ("%s\n", (char *) l->data);
           g_free (l->data);
         }
 
       g_slist_free (list);
     }
       else
-    g_print ("No selected files\n");
+    printf ("No selected files\n");
     }
   else
-    g_print ("Dialog was closed\n");
+    printf ("Dialog was closed\n");
 
   gtk_main_quit ();
 }
@@ -131,7 +131,7 @@ response_cb (GtkDialog *dialog, int response_id)
 static void
 filter_changed (GtkFileChooserDialog *dialog, void *data)
 {
-  g_print ("file filter changed\n");
+  printf ("file filter changed\n");
 }
 
 static char *
@@ -516,13 +516,13 @@ main (int argc, char **argv)
   };
 
   if (!gtk_init_with_args (&argc, &argv, "", options, NULL, &error)) {
-      g_print ("Failed to parse args: %s\n", error->message);
+      printf ("Failed to parse args: %s\n", error->message);
       g_error_free (error);
       return 1;
   }
 
   if (initial_filename && initial_folder) {
-      g_print ("Only one of --initial-filename and --initial-folder may be specified");
+      printf ("Only one of --initial-filename and --initial-folder may be specified");
       return 1;
   }
 
