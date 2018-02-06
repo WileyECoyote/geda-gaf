@@ -1531,9 +1531,13 @@ void geda_entry_set_attributes (GedaEntry *entry, PangoAttrList *attrs)
  */
 unsigned int geda_entry_get_length_history(GedaEntry *entry)
 {
-  return g_list_length(entry->priv->history_list);
-}
+  g_return_val_if_fail (GEDA_IS_ENTRY (entry), 0);
 
+  if (entry->have_history) {
+    return g_list_length(entry->priv->history_list);
+  }
+  return 0;
+}
 
 /*!
  * \brief Set GedaEntry Max History Property
