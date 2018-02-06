@@ -6,6 +6,7 @@
 
           * geda_combo_box_text_get_entry_widget
           * geda_combo_box_text_get_text_length
+          * geda_combo_box_text_widget_append
 
     * src/widgets/geda_entry.c: Revise function geda_entry_set_attributes to
       hold a reference to the entry widget; add GtkWidget pointer type and
