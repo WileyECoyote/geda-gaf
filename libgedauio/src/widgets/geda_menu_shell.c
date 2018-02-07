@@ -670,22 +670,26 @@ static bool geda_menu_shell_real_move_selected (GedaMenuShell  *menu_shell,
   return TRUE;
 }
 
+/* Handlers for action signals */
+
 /* menu_shell_class->selection_done */
 
 /* menu_shell_class->select_item */
-/* Handlers for action signals */
+
 
 static void geda_menu_shell_real_select_item (GedaMenuShell *menu_shell,
                                               GtkWidget     *menu_item)
 {
   PackDirection pack_dir;
 
+  /* If old active item then deselect it */
   if (menu_shell->active_menu_item) {
 
       geda_menu_item_deselect (GEDA_MENU_ITEM (menu_shell->active_menu_item));
       menu_shell->active_menu_item = NULL;
   }
 
+  /* If item is not selectable, set flag and exit */
   if (!geda_menu_item_is_widget_selectable (menu_item)) {
 
       menu_shell->priv->in_unselectable_item = TRUE;
@@ -694,6 +698,7 @@ static void geda_menu_shell_real_select_item (GedaMenuShell *menu_shell,
       return;
   }
 
+  /* Save pointer to the widget */
   menu_shell->active_menu_item = menu_item;
   pack_dir = PACK_DIRECTION (menu_shell);
 
@@ -883,8 +888,8 @@ static int geda_menu_shell_button_release (GtkWidget *widget, GdkEventButton *ev
     {
       /* The button-press originated in the parent menu bar and we are
        * a pop-up menu, was a quick press-and-release so we don't want
-       * to activate an item but we leave the popup in place instead.
-       */
+       * to activate an item but we leave the popup in place instead. */
+
       parent_shell->activate_time = 0;
       return TRUE;
     }

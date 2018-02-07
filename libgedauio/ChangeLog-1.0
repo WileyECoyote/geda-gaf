@@ -6,6 +6,8 @@
     * src/widgets/geda_font_button.c: Remove validation from static functions
       geda_font_button_label_set_font and geda_font_button_label_set_text.
 
+    * src/widgets/geda_menu_shell.c: Add and revise source comments.
+
 2018-02-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_comboboxtext.c: Replease strings allocated by
