@@ -1755,8 +1755,10 @@ bool geda_entry_get_input_case (GedaEntry *entry)
  */
 void geda_entry_set_input_case  (GedaEntry *entry, int mode)
 {
+  g_return_if_fail (GEDA_IS_ENTRY (entry));
   g_return_if_fail (mode > -1 && mode < 3);
-  GEDA_ENTRY(entry)->text_case = mode;
+
+  ((GedaEntry*)entry)->text_case = mode;
 }
 
 /*!
