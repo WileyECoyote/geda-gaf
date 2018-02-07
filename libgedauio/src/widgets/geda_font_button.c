@@ -246,13 +246,13 @@ geda_font_button_label_set_font (GedaFontButton *font_button)
  *  This function is used to update the font name and size label
  *  on the button. The label_text is not freed here.
  *
+ * \note Callers must insure font_button is valid
+ *
  * \param font_button Pointer to a #GedaFontButton object.
  */
 static void
 geda_font_button_label_set_text (GedaFontButton *font_button)
 {
-  g_return_if_fail (GEDA_IS_FONT_BUTTON (font_button));
-
   GedaFontButtonData *data;
   data = font_button->priv;
 

@@ -1,7 +1,7 @@
 2018-02-07 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/widgets/geda_font_button.c: Remove validation from static function
-      geda_font_button_label_set_font.
+    * src/widgets/geda_font_button.c: Remove validation from static functions
+      geda_font_button_label_set_font and geda_font_button_label_set_text.
 
 2018-02-06 Wiley E. Hill <wileyhill@gmail.com>
 
