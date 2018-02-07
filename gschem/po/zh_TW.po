@@ -2581,26 +2581,25 @@ msgstr "文檔:"
 msgid "_Comment:"
 msgstr "評論:"
 
+# Options
 #: gschem/src/x/x_edit_cprop.c:1346
-#, fuzzy
 msgid "Options:"
 msgstr "選項"
 
+# Embedded
 #: gschem/src/x/x_edit_cprop.c:1381
-#, fuzzy
 msgid "_Embedded"
-msgstr "嵌入"
+msgstr "嵌入式"
 
+# Locked
 #: gschem/src/x/x_edit_cprop.c:1397
-#, fuzzy
 msgid "_Locked"
 msgstr "鎖定"
 
-# Mirror => Reflect
+# Mirrored => Reflected
 #: gschem/src/x/x_edit_cprop.c:1415
-#, fuzzy
 msgid "_Mirrored"
-msgstr "反映"
+msgstr "反射的"
 
 #: gschem/src/x/x_edit_cprop.c:1439
 msgid "_Electrical:"
@@ -2912,11 +2911,10 @@ msgstr ""
 msgid "Slot number:"
 msgstr ""
 
-# Set the sequence number
+# Set the active slot number
 #: gschem/src/x/x_edit_slot.c:217
-#, fuzzy
 msgid "Set the active slot number"
-msgstr "設置序列號"
+msgstr "設置活動插槽編號"
 
 #: gschem/src/x/x_edit_text.c:64 gschem/src/x/x_edit_text.c:473
 msgid "Text Content"
@@ -3585,19 +3583,18 @@ msgstr "顯示"
 
 # Grid
 #: gschem/src/x/x_menus.c:892
-#, fuzzy
 msgid "_Grid"
 msgstr "格"
 
+# Display dots grid
 #: gschem/src/x/x_menus.c:927
-#, fuzzy
 msgid "Display dots grid"
-msgstr "顯示控制台窗口"
+msgstr "顯示點網格"
 
+# Display mesh grid
 #: gschem/src/x/x_menus.c:928
-#, fuzzy
 msgid "Display mesh grid"
-msgstr "顯示控制台窗口"
+msgstr "显示网格网格"
 
 #: gschem/src/x/x_menus.c:929
 msgid "Turn off the grid display"
@@ -6114,13 +6111,3 @@ msgstr "~S 不是前綴密鑰序列."
 # Automatic Height
 #~ msgid "Auto Height"
 #~ msgstr "自動高度"
-
-# Selection
-#, fuzzy
-#~ msgid "<b>Selection</b>"
-#~ msgstr "選擇"
-
-# Filter
-#, fuzzy
-#~ msgid "<b>Array</b>"
-#~ msgstr "<b>過濾</b>"
