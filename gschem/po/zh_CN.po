@@ -2566,26 +2566,25 @@ msgstr "文档:"
 msgid "_Comment:"
 msgstr "评论:"
 
-# Action
+# Options
 #: gschem/src/x/x_edit_cprop.c:1346
-#, fuzzy
 msgid "Options:"
-msgstr "行动"
+msgstr "选项:"
 
+# Embedded
 #: gschem/src/x/x_edit_cprop.c:1381
 msgid "_Embedded"
-msgstr ""
+msgstr "嵌入式"
 
+# Locked
 #: gschem/src/x/x_edit_cprop.c:1397
-#, fuzzy
 msgid "_Locked"
 msgstr "锁定"
 
-# Mirror => Reflect
+# Mirrored => Reflected
 #: gschem/src/x/x_edit_cprop.c:1415
-#, fuzzy
 msgid "_Mirrored"
-msgstr "反映"
+msgstr "反射的"
 
 # Electrical
 #: gschem/src/x/x_edit_cprop.c:1439
@@ -2896,11 +2895,10 @@ msgstr ""
 msgid "Slot number:"
 msgstr ""
 
-# Set the sequence number
+# Set the active slot number
 #: gschem/src/x/x_edit_slot.c:217
-#, fuzzy
 msgid "Set the active slot number"
-msgstr "设置序列号"
+msgstr "设置活动插槽编号"
 
 # Text Content
 #: gschem/src/x/x_edit_text.c:64 gschem/src/x/x_edit_text.c:473
@@ -3567,21 +3565,18 @@ msgstr "视图"
 
 # Grid
 #: gschem/src/x/x_menus.c:892
-#, fuzzy
 msgid "_Grid"
 msgstr "格"
 
-# Display the console window
+# Display dots grid
 #: gschem/src/x/x_menus.c:927
-#, fuzzy
 msgid "Display dots grid"
-msgstr "显示控制台窗口"
+msgstr "显示点网格"
 
-# Display the console window
+# Display mesh grid
 #: gschem/src/x/x_menus.c:928
-#, fuzzy
 msgid "Display mesh grid"
-msgstr "显示控制台窗口"
+msgstr "顯示網格網格"
 
 #: gschem/src/x/x_menus.c:929
 msgid "Turn off the grid display"
