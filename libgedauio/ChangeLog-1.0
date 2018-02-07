@@ -1,3 +1,8 @@
+2018-02-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_font_button.c: Remove validation from static function
+      geda_font_button_label_set_font.
+
 2018-02-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_comboboxtext.c: Replease strings allocated by

@@ -205,13 +205,13 @@ clear_font_filter_data (GedaFontButton *font_button)
  *  of the font will be use if use_size is TRUE. If use_font is
  *  false, the use_size is not used.
  *
- * \param font_button Pointer to a #GedaFontButton object
+ * \note Callers must insure font_button is valid
+ *
+ * \param font_button Pointer to a #GedaFontButton object.
  */
 static void
 geda_font_button_label_set_font (GedaFontButton *font_button)
 {
-  g_return_if_fail (GEDA_IS_FONT_BUTTON (font_button));
-
   if (font_button->priv->use_font) {
 
     PangoFontDescription *button_desc;
