@@ -1585,9 +1585,9 @@ void geda_entry_set_max_history (GedaEntry *entry, unsigned int value)
  *
  * \param [in] entry Pointer to a #GedaEntry object.
  */
-unsigned int
-geda_entry_get_max_history (GedaEntry *entry)
+unsigned int geda_entry_get_max_history (GedaEntry *entry)
 {
+  g_return_val_if_fail (GEDA_IS_ENTRY (entry), 0);
   return entry->max_history;
 }
 

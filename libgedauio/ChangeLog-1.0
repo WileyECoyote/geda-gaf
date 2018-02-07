@@ -1,7 +1,8 @@
 2018-02-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Revise geda_entry_set_input_case; validate the
-      entry object and remove dynamic cast.
+      entry object and remove dynamic cast. Add validation in geda_entry_get_
+      max_history.
 
     * src/widgets/geda_font_button.c: Remove validation from static functions
       geda_font_button_label_set_font and geda_font_button_label_set_text.
