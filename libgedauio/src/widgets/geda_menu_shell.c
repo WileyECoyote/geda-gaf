@@ -680,6 +680,7 @@ static bool geda_menu_shell_real_move_selected (GedaMenuShell  *menu_shell,
 static void geda_menu_shell_real_select_item (GedaMenuShell *menu_shell,
                                               GtkWidget     *menu_item)
 {
+  GedaMenuItem *active_menu_item;
   PackDirection pack_dir;
 
   /* If old active item then deselect it */
@@ -700,17 +701,20 @@ static void geda_menu_shell_real_select_item (GedaMenuShell *menu_shell,
 
   /* Save pointer to the widget */
   menu_shell->active_menu_item = menu_item;
+
+  active_menu_item = GEDA_MENU_ITEM (menu_item);
+
   pack_dir = PACK_DIRECTION (menu_shell);
 
   if (pack_dir == PACK_DIRECTION_TTB || pack_dir == PACK_DIRECTION_BTT) {
-    geda_menu_item_set_submenu_placement (GEDA_MENU_ITEM (menu_shell->active_menu_item), GTK_LEFT_RIGHT);
+    geda_menu_item_set_submenu_placement (active_menu_item, GTK_LEFT_RIGHT);
   }
   else {
-    geda_menu_item_set_submenu_placement (GEDA_MENU_ITEM (menu_shell->active_menu_item),
-                                         GEDA_MENU_SHELL_GET_CLASS (menu_shell)->submenu_placement);
+    geda_menu_item_set_submenu_placement (active_menu_item,
+                                          GEDA_MENU_SHELL_GET_CLASS (menu_shell)->submenu_placement);
   }
 
-  geda_menu_item_select (GEDA_MENU_ITEM (menu_shell->active_menu_item));
+  geda_menu_item_select (active_menu_item);
 
   geda_menu_shell_update_mnemonics (menu_shell);
 
