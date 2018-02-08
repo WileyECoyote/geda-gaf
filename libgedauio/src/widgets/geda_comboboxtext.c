@@ -1168,10 +1168,15 @@ void geda_combo_box_text_widget_insert (GtkWidget  *widget, int position,
   geda_combo_box_text_insert (GEDA_COMBO_BOX_TEXT(widget), position, text);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief widget version of #geda_combo_box_get_count
- *  \par Function Description
+/*!
+ * \brief Prepend Text to GedaComboBoxText Widget
+ * \par Function Description
+ *  Prepends text to the list of strings stored in combo_box. This
+ *  is the same as calling geda_combo_box_text_widget_insert with
+ *  a position of 0.
  *
+ * \param [in] widget A #GedaComboBoxText widget.
+ * \param [in] text   Pointer to the string to prepend.
  */
 void geda_combo_box_text_widget_prepend (GtkWidget *widget, const char *text)
 {
