@@ -1477,24 +1477,21 @@ msgstr ""
 #: gschem/src/x/x_autonumber.c:120
 msgid "Sort order:"
 msgstr ""
-
-# Select the name of the attribute to add
+f
+# Select the orientation o the Scan method
 #: gschem/src/x/x_autonumber.c:120
-#, fuzzy
 msgid "Select the orientation of the Scan method"
-msgstr "Изаберите име атрибута за додавање"
+msgstr "Изаберите оријентацију о методу скенирања"
 
-# Slot number
+# Starting number
 #: gschem/src/x/x_autonumber.c:121
-#, fuzzy
 msgid "Starting number:"
-msgstr "slot број:"
+msgstr "Почетни број:"
 
-# Set the string for the text on the Status Bar
+# Set the starting number for the current scan
 #: gschem/src/x/x_autonumber.c:121
-#, fuzzy
 msgid "Set the starting number for the current scan"
-msgstr "Подесите стринг за текст на статусној линији"
+msgstr "Подесите почетни број за тренутни скенирање"
 
 #: gschem/src/x/x_autonumber.c:122
 msgid "    Remove numbers:"
@@ -1605,11 +1602,10 @@ msgstr ""
 msgid "Open"
 msgstr "Отвори"
 
-# Open
+# Open all
 #: gschem/src/x/x_compselect.c:126
-#, fuzzy
 msgid "Open all"
-msgstr "Отвори"
+msgstr "Отвори све"
 
 #: gschem/src/x/x_compselect.c:127 gschem/src/x/x_menus.c:149
 msgid "Close"
@@ -3648,21 +3644,18 @@ msgstr ""
 
 # grid => Coordinate network
 #: gschem/src/x/x_menus.c:892
-#, fuzzy
 msgid "_Grid"
 msgstr "координатна мрежа"
 
 # Display the console window
 #: gschem/src/x/x_menus.c:927
-#, fuzzy
 msgid "Display dots grid"
-msgstr "Отвара прозор за конзоле"
+msgstr "Приказ тридесете мреже"
 
 # Display the console window
 #: gschem/src/x/x_menus.c:928
-#, fuzzy
 msgid "Display mesh grid"
-msgstr "Отвара прозор за конзоле"
+msgstr "Мрежна мрежа заслона"
 
 #: gschem/src/x/x_menus.c:929
 msgid "Turn off the grid display"
