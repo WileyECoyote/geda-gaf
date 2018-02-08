@@ -1183,10 +1183,13 @@ void geda_combo_box_text_widget_prepend (GtkWidget *widget, const char *text)
   geda_combo_box_text_insert (GEDA_COMBO_BOX_TEXT(widget), 0, text);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief widget version of #geda_combo_box_get_count
- *  \par Function Description
+/*!
+ * \brief Remove String from GedaComboBoxText Widget given Position
+ * \par Function Description
+ *  Removes the string at the given position from the combo_box widget.
  *
+ * \param [in] widget A #GedaComboBoxText widget.
+ * \param [in] text   Base zero position of the string to remove.
  */
 void geda_combo_box_text_widget_remove (GtkWidget *widget, int position)
 {
