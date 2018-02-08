@@ -2317,7 +2317,6 @@ msgstr ""
 
 # Offset
 #: gschem/src/x/x_edit_array.c:987 gschem/src/x/x_edit_array.c:1020
-#, fuzzy
 msgid "Offset"
 msgstr "Ofset"
 
@@ -2349,17 +2348,15 @@ msgstr ""
 msgid "Read only y bounds displacement of selected object"
 msgstr ""
 
-# Slot number entry
+# Spinner entry number of rows to create
 #: gschem/src/x/x_edit_array.c:1079
-#, fuzzy
 msgid "Spinner entry number of rows to create"
-msgstr "Slot sayısı girişi"
+msgstr "Oluşturulan satırların dönen giriş sayısı"
 
-# Slot number entry
+# Spinner entry number of columns to create
 #: gschem/src/x/x_edit_array.c:1086
-#, fuzzy
 msgid "Spinner entry number of columns to create"
-msgstr "Slot sayısı girişi"
+msgstr "Spinner giriş sütunlarının sayısı oluşturulur"
 
 #: gschem/src/x/x_edit_array.c:1093
 msgid "Entry for array horizontal pitch"
@@ -2412,11 +2409,10 @@ msgstr ""
 msgid "Add Attribute"
 msgstr ""
 
-# Attribute
+# Edit Attribute
 #: gschem/src/x/x_edit_attrib.c:412
-#, fuzzy
 msgid "Edit Attribute"
-msgstr "nitelik"
+msgstr "Özniteliği Düzenle"
 
 #: gschem/src/x/x_edit_attrib.c:414
 msgid "Select the name of the attribute to add"
@@ -2559,24 +2555,22 @@ msgstr ""
 
 # Options
 #: gschem/src/x/x_edit_cprop.c:1346
-#, fuzzy
 msgid "Options:"
-msgstr "Seçenekler"
+msgstr "Seçenekler:"
 
 #: gschem/src/x/x_edit_cprop.c:1381
 msgid "_Embedded"
 msgstr ""
 
+# Locked
 #: gschem/src/x/x_edit_cprop.c:1397
-#, fuzzy
 msgid "_Locked"
-msgstr "Kilitle"
+msgstr "Kilitli"
 
-# Mirror => Reflect
+# Mirrored => Reflected
 #: gschem/src/x/x_edit_cprop.c:1415
-#, fuzzy
 msgid "_Mirrored"
-msgstr "Yansıtmak"
+msgstr "Yansıyan"
 
 #: gschem/src/x/x_edit_cprop.c:1439
 msgid "_Electrical:"
@@ -2917,11 +2911,10 @@ msgstr "Yuva sayısı:"
 msgid "Slot number:"
 msgstr "Slot numarası:"
 
-# Sequence Number
+# Set the active slot number
 #: gschem/src/x/x_edit_slot.c:217
-#, fuzzy
 msgid "Set the active slot number"
-msgstr "Sıra numarası"
+msgstr "Etkin slot numarasını ayarlayın"
 
 #: gschem/src/x/x_edit_text.c:64 gschem/src/x/x_edit_text.c:473
 msgid "Text Content"
@@ -3569,21 +3562,18 @@ msgstr "Görüntüle"
 
 # Grid
 #: gschem/src/x/x_menus.c:892
-#, fuzzy
 msgid "_Grid"
 msgstr "ızgara"
 
-# Display the console window
+# Display dots grid
 #: gschem/src/x/x_menus.c:927
-#, fuzzy
 msgid "Display dots grid"
-msgstr "Konsol penceresini görüntüleme"
+msgstr "KNokta ızgarasını görüntüle"
 
-# Display the console window
+# Display mesh grid
 #: gschem/src/x/x_menus.c:928
-#, fuzzy
 msgid "Display mesh grid"
-msgstr "Konsol penceresini görüntüleme"
+msgstr "Izgara ızgarasını görüntüle"
 
 #: gschem/src/x/x_menus.c:929
 msgid "Turn off the grid display"
@@ -5989,8 +5979,3 @@ msgstr ""
 #~ msgstr ""
 #~ "Dosya adlarında yolların görüntülenmesini etkinleştirin veya devre dışı "
 #~ "bırakın"
-
-# Selection
-#, fuzzy
-#~ msgid "<b>Selection</b>"
-#~ msgstr "Seçim"
