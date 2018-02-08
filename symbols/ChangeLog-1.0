@@ -1,3 +1,12 @@
+2018-02-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * logic/SN/SN74LVC1G125-1.sym: Add symbol; Single Inverting Buffer
+      Driver with 3-State Output.
+
+2018-02-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * linear/amplifiers/TDA7053-1.sym: Relocate symbol from philips.
+
 2018-01-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * memory/27C301-1.sym: Add symbol; 128k x 8 EPROM.
