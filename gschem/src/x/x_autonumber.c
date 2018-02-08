@@ -1538,6 +1538,8 @@ static void select_scope_text_value(AUTONUMBER_TEXT *autotext)
     gtk_entry_select_region (entry, pos, strlen(text));
 
   }
+
+  g_free(text);
 }
 
 /* ***** CALLBACKS (functions that get called from GTK) ******* */

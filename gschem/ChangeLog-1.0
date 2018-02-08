@@ -4,6 +4,9 @@
 
     * po/tr.po: Update Turkish translations.
 
+    * src/x/x_autonumber.c: Release text allocated by GetGedaComboActiveText
+      in select_scope_text_value.
+
 2018-02-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/zh_CN.po: Update Chinese simplified translations.
