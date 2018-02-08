@@ -1561,7 +1561,7 @@ void geda_entry_set_max_history (GedaEntry *entry, unsigned int value)
   unsigned int len;
 
   g_return_if_fail (GEDA_IS_ENTRY (entry));
-  g_return_if_fail (value < 0);
+  g_return_if_fail (value > 0);
 
   entry->max_history = value;
 
