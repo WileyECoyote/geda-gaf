@@ -4,6 +4,9 @@
 
           * geda_combo_box_text_widget_prepend
 
+    * src/widgets/geda_entry.c: Revise geda_entry_validate_input to use g_malloc
+      instead of g_new and append a NULL terminator to result for good measure.
+
 2018-02-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Revise geda_entry_set_input_case; validate the

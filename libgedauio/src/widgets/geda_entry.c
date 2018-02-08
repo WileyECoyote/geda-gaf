@@ -1185,7 +1185,7 @@ geda_entry_validate_input (GtkEntry    *entry,
 {
   GedaEntry *geda_entry = (GedaEntry*)entry;
 
-  char *result = g_new (char, length);
+  char *result = g_malloc (length + 1);
   bool  valid  = FALSE;
   int   count  = 0;
   int   i;
@@ -1238,6 +1238,8 @@ geda_entry_validate_input (GtkEntry    *entry,
 
   if (count > 0) {
 
+    result[count] = 0;
+
     g_signal_handlers_block_by_func (G_OBJECT (geda_entry),
                                      G_CALLBACK (geda_entry_validate_input),
                                      data);
@@ -1248,6 +1250,7 @@ geda_entry_validate_input (GtkEntry    *entry,
                                        G_CALLBACK (geda_entry_validate_input),
                                        data);
   }
+
   g_signal_stop_emission_by_name (G_OBJECT (entry), "insert_text");
 
   g_free (result);
