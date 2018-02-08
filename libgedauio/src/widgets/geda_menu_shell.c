@@ -902,8 +902,7 @@ static int geda_menu_shell_button_release (GtkWidget *widget, GdkEventButton *ev
   if (menu_shell->active) {
 
     GedaMenuShellPriv *priv = menu_shell->priv;
-    GtkWidget *menu_item;
-    bool       deactivate = TRUE;
+    bool deactivate = TRUE;
 
     if (menu_shell->button && (event->button != menu_shell->button))
     {
@@ -913,10 +912,13 @@ static int geda_menu_shell_button_release (GtkWidget *widget, GdkEventButton *ev
     }
 
     menu_shell->button = 0;
-    menu_item = geda_menu_shell_get_item (widget, event);
 
     if ((event->time - menu_shell->activate_time) > MENU_SHELL_TIMEOUT)
     {
+      GtkWidget *menu_item;
+
+      menu_item = geda_menu_shell_get_item (widget, event);
+
       if (menu_item && (menu_shell->active_menu_item == menu_item) &&
           geda_menu_item_is_widget_selectable (menu_item))
       {

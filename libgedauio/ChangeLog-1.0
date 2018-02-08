@@ -7,6 +7,9 @@
     * src/widgets/geda_entry.c: Revise geda_entry_validate_input to use g_malloc
       instead of g_new and append a NULL terminator to result for good measure.
 
+    * src/widgets/geda_menu_shell.c: Reduce the scope of pointer to menu_item
+      widget geda_menu_shell_button_release
+
 2018-02-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Revise geda_entry_set_input_case; validate the
