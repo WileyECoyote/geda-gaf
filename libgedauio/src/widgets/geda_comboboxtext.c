@@ -1196,10 +1196,12 @@ void geda_combo_box_text_widget_remove (GtkWidget *widget, int position)
   geda_combo_box_text_remove (GEDA_COMBO_BOX_TEXT(widget), position);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief widget version of #geda_combo_box_get_count
- *  \par Function Description
+/*!
+ * \brief Remove All Text Strings from a GedaComboBoxText Widget
+ * \par Function Description
+ *  Removes all the text entries from the combo box widget.
  *
+ * \param [in] widget A #GedaComboBoxText widget.
  */
 void geda_combo_box_text_widget_remove_all (GtkWidget *widget)
 {
