@@ -843,9 +843,6 @@ void geda_combo_box_text_remove_all_text (GedaComboBoxText *combo_box)
  *
  * \param [in] combo_box A #GedaComboBoxText object.
  * \param [in] position  Integer index of the text to be removed.
- *
- * \remark This function is equivalent to geda_combo_box_text_remove_all
- *         and exist for consistency of the API.
  */
 void geda_combo_box_text_remove_index (GedaComboBoxText *combo_box,
                                        int               position)
