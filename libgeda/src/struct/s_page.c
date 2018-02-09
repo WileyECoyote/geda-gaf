@@ -152,8 +152,7 @@ geda_struct_page_new_common(GedaToplevel *toplevel, Page *page)
  *  Initializes the <B>filename</B> to given value \a <B>filename</B>. The
  *  <B>toplevel</B>'s current page is not changed by this function.
  */
-Page*
-geda_struct_page_new (GedaToplevel *toplevel, const char *filename)
+Page *geda_struct_page_new (GedaToplevel *toplevel, const char *filename)
 {
   Page *page;
 
@@ -186,8 +185,7 @@ geda_struct_page_new (GedaToplevel *toplevel, const char *filename)
  *  the it will be assigned directly, otherwise the filename will
  *  be assumed to be relative to current working directory.
  */
-Page*
-geda_struct_page_new_with_notify (GedaToplevel *toplevel, const char *filename)
+Page *geda_struct_page_new_with_notify (GedaToplevel *toplevel, const char *filename)
 {
   Page *page;
 
@@ -218,8 +216,7 @@ geda_struct_page_new_with_notify (GedaToplevel *toplevel, const char *filename)
  *
  * \param [in] toplevel  The GedaToplevel object.
  */
-void
-geda_struct_page_autosave_init(GedaToplevel *toplevel)
+void geda_struct_page_autosave_init(GedaToplevel *toplevel)
 {
   if (toplevel->auto_save_interval != 0) {
 
@@ -253,8 +250,7 @@ geda_struct_page_autosave_init(GedaToplevel *toplevel)
  *
  *  \return The auto_save_interval setting.
  */
-int
-geda_struct_page_autosave (GedaToplevel *toplevel)
+int geda_struct_page_autosave (GedaToplevel *toplevel)
 {
   if (toplevel == NULL) {
     u_log_message (_("Disabling auto save timer, no toplevel"));
@@ -295,8 +291,7 @@ geda_struct_page_autosave (GedaToplevel *toplevel)
  *
  * \return 1 if any page has the CHANGED flag set, 0 otherwise.
  */
-bool
-geda_struct_page_check_changed (PageList *list)
+bool geda_struct_page_check_changed (PageList *list)
 {
   const GList *iter;
 
@@ -319,8 +314,7 @@ geda_struct_page_check_changed (PageList *list)
  *
  * \param [in,out] list  Page list to set CHANGED flags in.
  */
-void
-geda_struct_page_clear_changed (PageList *list)
+void geda_struct_page_clear_changed (PageList *list)
 {
   const GList *iter;
 
@@ -346,8 +340,7 @@ geda_struct_page_clear_changed (PageList *list)
  * \param [in] previous   If True the previous page will be set current
  *                        if the page being deleted is the current page.
  */
-void
-geda_struct_page_delete (GedaToplevel *toplevel, Page *page, int previous)
+void geda_struct_page_delete (GedaToplevel *toplevel, Page *page, int previous)
 {
   g_return_if_fail (GEDA_IS_TOPLEVEL(toplevel));
 
@@ -481,8 +474,7 @@ geda_struct_page_delete (GedaToplevel *toplevel, Page *page, int previous)
  *
  * \param toplevel  The GedaToplevel object.
  */
-void
-geda_struct_page_delete_list (GedaToplevel *toplevel)
+void geda_struct_page_delete_list (GedaToplevel *toplevel)
 {
   GList *list_copy, *iter;
 
@@ -515,8 +507,7 @@ geda_struct_page_delete_list (GedaToplevel *toplevel)
 *
 * \param [in,out] toplevel This toplevel
 */
-Page*
-geda_struct_page_get_current (GedaToplevel *toplevel)
+Page *geda_struct_page_get_current (GedaToplevel *toplevel)
 {
   return geda_toplevel_get_current_page(toplevel);
 }
@@ -533,8 +524,7 @@ geda_struct_page_get_current (GedaToplevel *toplevel)
  *
  * \returns TRUE if \a page was set as the current page
  */
-bool
-geda_struct_page_set_current (GedaToplevel *toplevel, Page *page)
+bool geda_struct_page_set_current (GedaToplevel *toplevel, Page *page)
 {
    return geda_toplevel_set_current_page(toplevel, page);
 }
@@ -552,8 +542,7 @@ geda_struct_page_set_current (GedaToplevel *toplevel, Page *page)
  *
  * \sa geda_struct_page_is_symbol_file
  */
-const char*
-geda_struct_page_get_file_extension (Page *page)
+const char *geda_struct_page_get_file_extension (Page *page)
 {
   if (page != NULL && page->filename != NULL) {
     return geda_file_get_filename_ext(page->filename);
@@ -571,8 +560,7 @@ geda_struct_page_get_file_extension (Page *page)
  *
  * \returns Pointer to selection GedaList of the page
  */
-SELECTION*
-geda_struct_page_get_selection (Page *page)
+SELECTION *geda_struct_page_get_selection (Page *page)
 {
   return GEDA_IS_PAGE(page) ? page->selection_list : NULL;
 }
@@ -590,8 +578,7 @@ geda_struct_page_get_selection (Page *page)
  *
  * \returns True on success, otherwise FALSE
  */
-bool
-geda_struct_page_goto (Page *page)
+bool geda_struct_page_goto (Page *page)
 {
   bool  success;
 
@@ -654,8 +641,7 @@ geda_struct_page_goto (Page *page)
  * \return bool TRUE if Page is data from a Symbol file
  *
  */
-bool
-geda_struct_page_is_symbol_file (Page *page) {
+bool geda_struct_page_is_symbol_file (Page *page) {
 
   if (page != NULL) {
 
@@ -679,8 +665,7 @@ geda_struct_page_is_symbol_file (Page *page) {
  *
  * \param [in] toplevel  The GedaToplevel object to print.
  */
-void
-geda_struct_page_print_all (GedaToplevel *toplevel)
+void geda_struct_page_print_all (GedaToplevel *toplevel)
 {
   const GList *iter;
 
@@ -692,8 +677,7 @@ geda_struct_page_print_all (GedaToplevel *toplevel)
   }
 }
 
-static int
-geda_struct_page_comparator(const void *pg1, const void *pg2)
+static int geda_struct_page_comparator(const void *pg1, const void *pg2)
 {
    const Page *page1 = pg1;
    const Page *page2 = pg2;
@@ -709,8 +693,7 @@ geda_struct_page_comparator(const void *pg1, const void *pg2)
  *
  * \param [in] toplevel  The GedaToplevel.
  */
-void
-geda_struct_page_resequence_by_ids (GedaToplevel *toplevel)
+void geda_struct_page_resequence_by_ids (GedaToplevel *toplevel)
 {
   if (g_list_length(geda_toplevel_get_pages(toplevel)) > 1) {
 
@@ -728,8 +711,7 @@ geda_struct_page_resequence_by_ids (GedaToplevel *toplevel)
  *
  * \return The number of failed tries to save a page.
  */
-int
-geda_struct_page_save_all (GedaToplevel *toplevel)
+int geda_struct_page_save_all (GedaToplevel *toplevel)
 {
   const GList *iter;
   const GList *list;
@@ -770,8 +752,7 @@ geda_struct_page_save_all (GedaToplevel *toplevel)
  *
  * \return The number of failed tries to save a page.
  */
-int
-geda_struct_page_save_all_changed (GedaToplevel *toplevel)
+int geda_struct_page_save_all_changed (GedaToplevel *toplevel)
 {
   const GList *iter;
   const GList *list;
@@ -819,8 +800,7 @@ geda_struct_page_save_all_changed (GedaToplevel *toplevel)
  *
  * \sa geda_toplevel_struct_get_page_by_name
  */
-Page*
-geda_struct_page_search (GedaToplevel *toplevel, const char *filename)
+Page *geda_struct_page_search (GedaToplevel *toplevel, const char *filename)
 {
   if (filename) {
 
@@ -852,8 +832,7 @@ geda_struct_page_search (GedaToplevel *toplevel, const char *filename)
  *
  * \returns A pointer on the page found or NULL if not found.
  */
-Page *
-geda_struct_page_search_by_page_id (PageList *list, int pid)
+Page *geda_struct_page_search_by_page_id (PageList *list, int pid)
 {
   const GList *iter;
 
@@ -881,8 +860,7 @@ geda_struct_page_search_by_page_id (PageList *list, int pid)
  * \param [in] func      Function to use.
  * \param [in] user_data User data to be passed to the function.
  */
-void
-geda_struct_page_set_bounds_func(Page *page, RenderedBoundsFunc func, void *user_data)
+void geda_struct_page_set_bounds_func(Page *page, RenderedBoundsFunc func, void *user_data)
 {
   if (GEDA_IS_PAGE(page)) {
     page->rendered_text_bounds_func = func;
@@ -903,8 +881,7 @@ geda_struct_page_set_bounds_func(Page *page, RenderedBoundsFunc func, void *user
  * \param [in] page      The Page the object is being added to.
  * \param [in] object    The GedaObject being added to the page.
  */
-void
-geda_struct_page_append_object (Page *page, GedaObject *object)
+void geda_struct_page_append_object (Page *page, GedaObject *object)
 {
   if (GEDA_IS_PAGE(page)) {
 
@@ -934,8 +911,7 @@ geda_struct_page_append_object (Page *page, GedaObject *object)
  *
  * \todo The list of objects is not checked
  */
-void
-geda_struct_page_append_list (Page *page, const GList *obj_list)
+void geda_struct_page_append_list (Page *page, const GList *obj_list)
 {
   if (GEDA_IS_PAGE(page)) {
 
@@ -964,8 +940,7 @@ geda_struct_page_append_list (Page *page, const GList *obj_list)
  * \param [in] page      The Page the object is being removed from.
  * \param [in] object    The GedaObject being removed from the page.
  */
-void
-geda_struct_page_remove_object (Page *page, GedaObject *object)
+void geda_struct_page_remove_object (Page *page, GedaObject *object)
 {
   if (GEDA_IS_PAGE(page)) {
 
@@ -996,8 +971,7 @@ geda_struct_page_remove_object (Page *page, GedaObject *object)
  * \param [in] object1   The GedaObject being removed from the page.
  * \param [in] object2   The GedaObject being added to the page.
  */
-void
-geda_struct_page_replace_object (Page *page, GedaObject *object1, GedaObject *object2)
+void geda_struct_page_replace_object (Page *page, GedaObject *object1, GedaObject *object2)
 {
   if (GEDA_IS_PAGE(page)) {
 
@@ -1032,8 +1006,7 @@ geda_struct_page_replace_object (Page *page, GedaObject *object1, GedaObject *ob
  *
  * \param [in] page      The Page being cleared.
  */
-void
-geda_struct_page_delete_objects (Page *page)
+void geda_struct_page_delete_objects (Page *page)
 {
   if (GEDA_IS_PAGE(page)) {
 
@@ -1067,8 +1040,7 @@ geda_struct_page_delete_objects (Page *page)
  *
  * \returns a pointer to the Page's GList of objects
  */
-GedaObject *
-geda_struct_page_get_object (Page *page, int sid)
+GedaObject *geda_struct_page_get_object (Page *page, int sid)
 {
   return geda_page_get_object(page, sid);
 }
@@ -1087,8 +1059,7 @@ geda_struct_page_get_object (Page *page, int sid)
  *
  * \returns a pointer to the Page's GList of objects
  */
-GList*
-geda_struct_page_get_objects (Page *page)
+GList *geda_struct_page_get_objects (Page *page)
 {
   return GEDA_IS_PAGE(page) ? page->_object_list : NULL;
 }
@@ -1105,8 +1076,7 @@ geda_struct_page_get_objects (Page *page)
  *
  * \return The GList of Objects in the region
  */
-GList*
-geda_struct_page_objects_in_regions (Page *page, RECTANGLE *rects, int n_rects)
+GList *geda_struct_page_objects_in_regions (Page *page, RECTANGLE *rects, int n_rects)
 {
   if (GEDA_IS_PAGE(page)) {
 
@@ -1156,8 +1126,7 @@ geda_struct_page_objects_in_regions (Page *page, RECTANGLE *rects, int n_rects)
  *
  * \return The GList of Objects in the region.
  */
-GList*
-geda_struct_page_objects_in_region (Page *page, int min_x, int min_y, int max_x, int max_y)
+GList *geda_struct_page_objects_in_region (Page *page, int min_x, int min_y, int max_x, int max_y)
 {
   RECTANGLE rect;
 

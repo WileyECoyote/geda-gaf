@@ -3,7 +3,7 @@
     * src/geda/geda_page.c: Add function geda_page_get_selection_list.
 
     * src/struct/s_page.c: Add documentation for geda_struct_page_new_
-      with_notify.
+      with_notify, revert back to conventional function wrapping.
 
 2018-01-24 Wiley E. Hill <wileyhill@gmail.com>
 
