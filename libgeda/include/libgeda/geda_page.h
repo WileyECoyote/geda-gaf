@@ -170,6 +170,8 @@ int          geda_page_get_pid           (Page *page) GEDA_WARN_UNUSED_RESULT;
 GList       *geda_page_get_place_list    (Page *page) GEDA_WARN_UNUSED_RESULT;
 void         geda_page_set_place_list    (Page *page, GList *object_list);
 
+GList       *geda_page_get_selection_list(Page *page) GEDA_WARN_UNUSED_RESULT;
+
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
