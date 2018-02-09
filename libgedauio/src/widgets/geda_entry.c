@@ -1871,7 +1871,6 @@ void geda_entry_modify_color (GedaEntry      *entry,
   GtkWidget *widget = (GtkWidget*)entry;
 
   geda_widget_modify_color_component (widget, component, state, color);
-
 }
 
 /*!
@@ -1979,7 +1978,7 @@ void geda_entry_widget_set_attributes (GtkWidget *entry, PangoAttrList *attrs)
  */
 GedaCompletion *geda_entry_widget_get_completion (GtkWidget *entry)
 {
-  return geda_entry_get_completion (GEDA_ENTRY(entry));
+  return geda_entry_get_completion ((GedaEntry*)entry);
 }
 
 /*!
@@ -1993,7 +1992,7 @@ void
 geda_entry_widget_set_completion (GtkWidget      *entry,
                                   GedaCompletion *completion)
 {
-  geda_entry_set_completion (GEDA_ENTRY(entry), completion);
+  geda_entry_set_completion ((GedaEntry*)entry, completion);
 }
 
 /*!
@@ -2006,7 +2005,7 @@ geda_entry_widget_set_completion (GtkWidget      *entry,
  */
 bool geda_entry_widget_completion_get_case (GtkWidget *entry)
 {
-  return geda_entry_completion_get_case (GEDA_ENTRY(entry));
+  return geda_entry_completion_get_case ((GedaEntry*)entry);
 }
 
 /*!
@@ -2021,7 +2020,7 @@ bool geda_entry_widget_completion_get_case (GtkWidget *entry)
  */
 void geda_entry_widget_completion_set_case (GtkWidget *entry, bool sensitive)
 {
-  geda_entry_completion_set_case (GEDA_ENTRY(entry), sensitive);
+  geda_entry_completion_set_case ((GedaEntry*)entry, sensitive);
 }
 
 /*!
@@ -2032,7 +2031,7 @@ void geda_entry_widget_completion_set_case (GtkWidget *entry, bool sensitive)
  */
 bool geda_entry_widget_get_input_case (GtkWidget *entry)
 {
-  return geda_entry_get_input_case (GEDA_ENTRY(entry));
+  return geda_entry_get_input_case ((GedaEntry*)entry);
 }
 
 /*!
@@ -2050,7 +2049,7 @@ bool geda_entry_widget_get_input_case (GtkWidget *entry)
  */
 void geda_entry_widget_set_input_case (GtkWidget *entry, int mode)
 {
-  return geda_entry_set_input_case (GEDA_ENTRY(entry), mode);
+  return geda_entry_set_input_case ((GedaEntry*)entry, mode);
 }
 
 /*!
@@ -2062,7 +2061,7 @@ void geda_entry_widget_set_input_case (GtkWidget *entry, int mode)
  */
 unsigned int geda_entry_widget_get_max_history (GtkWidget *entry)
 {
-  return geda_entry_get_max_history (GEDA_ENTRY(entry));
+  return geda_entry_get_max_history ((GedaEntry*)entry);
 }
 
 /*!
@@ -2075,7 +2074,7 @@ unsigned int geda_entry_widget_get_max_history (GtkWidget *entry)
 void
 geda_entry_widget_set_max_history (GtkWidget *entry, unsigned int value)
 {
-  geda_entry_set_max_history (GEDA_ENTRY(entry), value);
+  geda_entry_set_max_history ((GedaEntry*)entry, value);
 }
 
 /*!
@@ -2092,7 +2091,7 @@ geda_entry_widget_set_max_history (GtkWidget *entry, unsigned int value)
  */
 unsigned int geda_entry_widget_get_max_length (GtkWidget *entry)
 {
-  return geda_entry_get_max_length (GEDA_ENTRY(entry));
+  return geda_entry_get_max_length ((GedaEntry*)entry);
 }
 
 /*!
@@ -2107,7 +2106,7 @@ unsigned int geda_entry_widget_get_max_length (GtkWidget *entry)
  */
 void geda_entry_widget_set_max_length (GtkWidget *entry, unsigned int max)
 {
-  geda_entry_set_max_length (GEDA_ENTRY(entry), max);
+  geda_entry_set_max_length ((GedaEntry*)entry, max);
 }
 
 /*!
@@ -2121,7 +2120,7 @@ void geda_entry_widget_set_max_length (GtkWidget *entry, unsigned int max)
  */
 const char *geda_entry_widget_get_text (GtkWidget *entry)
 {
-  return geda_entry_get_text (GEDA_ENTRY(entry));
+  return geda_entry_get_text ((GedaEntry*)entry);
 }
 
 /*!
@@ -2136,7 +2135,7 @@ const char *geda_entry_widget_get_text (GtkWidget *entry)
  */
 void geda_entry_widget_set_text (GtkWidget *entry, const char *new_text)
 {
-  geda_entry_set_text (GEDA_ENTRY(entry), new_text);
+  geda_entry_set_text ((GedaEntry*)entry, new_text);
 }
 
 /*!
@@ -2160,7 +2159,7 @@ GedaEntryAccept geda_entry_widget_get_valid_input (GtkWidget *entry)
  */
 void geda_entry_widget_set_valid_input (GtkWidget *entry, GedaEntryAccept mode)
 {
-  geda_entry_set_valid_input (GEDA_ENTRY(entry), mode);
+  geda_entry_set_valid_input ((GedaEntry*)entry, mode);
 }
 
 /*!
@@ -2384,7 +2383,7 @@ GtkWidget *geda_entry_new_with_completion (GList **complete)
     have_auto_complete = FALSE;
   }
 
-  return GTK_WIDGET (g_object_new (geda_entry_get_type (), NULL));
+  return g_object_new (geda_entry_get_type (), NULL);
 }
 
 /*!
@@ -2408,9 +2407,9 @@ GtkWidget *geda_entry_new_with_history (GList **history)
   return GTK_WIDGET (g_object_new (geda_entry_get_type (), NULL));
 }
 
-/*! \brief Create a New GedaEntry specified max length property
- *  \par Function Description
- *
+/*!
+ * \brief Create a New GedaEntry specified max length property
+ * \par Function Description
  * Creates a new entry and sets the max-length property to \a max_length,
  * which does not really do much.
  *

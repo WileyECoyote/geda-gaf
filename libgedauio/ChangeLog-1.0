@@ -1,3 +1,9 @@
+2018-02-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_entry.c: Remove dynamic cast from widget accessors
+      since these just call the non-widget versions that will validate
+      the entry object.
+
 2018-02-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_comboboxtext.c: Update documentation for:
