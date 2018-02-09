@@ -2,6 +2,9 @@
 
     * src/geda/geda_page.c: Add function geda_page_get_selection_list.
 
+    * src/struct/s_page.c: Add documentation for geda_struct_page_new_
+      with_notify.
+
 2018-01-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_text_object.c: Revert back to conventional function

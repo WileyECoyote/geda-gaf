@@ -177,10 +177,14 @@ geda_struct_page_new (GedaToplevel *toplevel, const char *filename)
   return geda_struct_page_new_common(toplevel, page);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Create a New Page with Notification
+ * \par Function Description
+ *  Creates a new Page with geda_page_new_with_notify. The new page
+ *  object is full initialize and ready to use. If filename is NULL
+ *  the default untitled name is assigned, If filename is absolute
+ *  the it will be assigned directly, otherwise the filename will
+ *  be assumed to be relative to current working directory.
  */
 Page*
 geda_struct_page_new_with_notify (GedaToplevel *toplevel, const char *filename)
