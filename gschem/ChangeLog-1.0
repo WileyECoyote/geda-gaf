@@ -1,3 +1,7 @@
+2018-02-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_coord.c: Replace g_printf with ordinary printf.
+
 2018-02-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/sr.po: Update Serbian translations.

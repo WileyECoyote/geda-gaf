@@ -89,7 +89,7 @@ void x_dialog_coord_dnd_drag_receive(GtkWidget        *widget,
 #if DEBUG || DEBUG_DND_EVENTS
   const char *WidgetId;
   WidgetId = gtk_widget_get_name (widget);
-  g_print ("%s: %s:", WidgetId, __func__);
+  printf ("%s: %s:", WidgetId, __func__);
 #endif
 
   toplevel = w_current->toplevel;
@@ -190,7 +190,7 @@ void x_dialog_coord_dnd_drag_receive(GtkWidget        *widget,
         break;
 
       default:
-        g_print (" nothing good.\n");
+        printf (" nothing good.\n");
     }
   }
 
@@ -202,7 +202,7 @@ void x_dialog_coord_dnd_drag_receive(GtkWidget        *widget,
   }
 
 #if DEBUG || DEBUG_DND_EVENTS
-  g_print ("\n");
+  printf ("\n");
 #endif
 }
 
@@ -245,7 +245,7 @@ bool x_dialog_coord_drag_drop (GtkWidget      *widget,
 
 #if DEBUG || DEBUG_DND_EVENTS
   const char *name = gtk_widget_get_name (widget);
-  g_print ("%s: x_dialog_coord_drag_drop\n", name);
+  printf ("%s: x_dialog_coord_drag_drop\n", name);
 #endif
 
   /* Check to see if (x,y) is a valid drop site within widget */
@@ -280,7 +280,7 @@ bool x_dialog_coord_drag_drop (GtkWidget      *widget,
         if (!geda_stricmp (target_entry->target, gdk_atom_name(target_type))) {
 
 #if DEBUG || DEBUG_DND_EVENTS
-          g_print ("%s, requesting a %s\n", __func__, gdk_atom_name(target_type));
+          printf ("%s, requesting a %s\n", __func__, gdk_atom_name(target_type));
 #endif
           index = -1;
           break;
@@ -295,7 +295,7 @@ bool x_dialog_coord_drag_drop (GtkWidget      *widget,
                        time );           /* time stamp */
 
 #if DEBUG || DEBUG_DND_EVENTS
-    g_print (" Valid\n");
+    printf (" Valid\n");
 #endif
   }
 
@@ -305,7 +305,7 @@ bool x_dialog_coord_drag_drop (GtkWidget      *widget,
     is_valid_drop_site = FALSE;
 
 #if DEBUG || DEBUG_DND_EVENTS
-    g_print (" Invalid\n");
+    printf (" Invalid\n");
 #endif
 
   }
