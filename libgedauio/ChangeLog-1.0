@@ -6,7 +6,8 @@
 
     * src/widgets/geda_entry.c: Remove dynamic cast from widget accessors
       since these just call the non-widget versions that will validate
-      the entry object.
+      the entry object. Remove unneeded dynamic cast to GtkEditable in
+      geda_entry_select_all and geda_entry_select_region.
 
 2018-02-08 Wiley E. Hill <wileyhill@gmail.com>
 

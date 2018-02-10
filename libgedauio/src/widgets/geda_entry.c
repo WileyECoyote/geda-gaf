@@ -1816,7 +1816,7 @@ geda_entry_select_all (GedaEntry *entry)
 {
   g_return_if_fail (GEDA_IS_ENTRY (entry));
 
-  gtk_editable_select_region (GTK_EDITABLE (entry), 0, -1);
+  gtk_editable_select_region ((GtkEditable*)entry, 0, -1);
 }
 
 /*!
@@ -1835,7 +1835,7 @@ void geda_entry_select_region (GedaEntry *entry, int start, int end)
 {
   g_return_if_fail (GEDA_IS_ENTRY (entry));
 
-  gtk_editable_select_region (GTK_EDITABLE (entry), start, end);
+  gtk_editable_select_region ((GtkEditable*)entry, start, end);
 }
 
 /* --------------------- Widget Style Functions ----------------- */
