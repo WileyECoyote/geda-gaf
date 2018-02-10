@@ -518,7 +518,7 @@ check_methods ()
     result++;
   }
 
-  /* Add and set text to a new cityinto the empty list */
+  /* Add and set text to a new city into the empty list */
   if (!geda_combo_box_text_widget_set_active_text(widget, "Khemarak")) {
     fprintf(stderr, "FAILED: %s line <%d> set_active_text\n", TWIDGET, __LINE__);
     result++;
