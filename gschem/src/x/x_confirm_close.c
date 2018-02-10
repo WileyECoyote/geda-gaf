@@ -762,8 +762,6 @@ bool x_confirm_close_window (GschemToplevel *w_current)
 
   bool return_value = FALSE;
 
-  keep_page = toplevel->page_current;
-
   unsaved_pages = NULL;
 
   /* Loop through all the pages */
@@ -800,6 +798,7 @@ bool x_confirm_close_window (GschemToplevel *w_current)
         /* action selected: save */
         g_object_get (dialog, "selected-pages", &unsaved_pages, NULL);
         return_value = TRUE;
+        keep_page = toplevel->page_current;
         for (p_unsaved = unsaved_pages; p_unsaved != NULL; NEXT(p_unsaved))
         {
           p_current = (Page*)p_unsaved->data;
@@ -812,6 +811,8 @@ bool x_confirm_close_window (GschemToplevel *w_current)
           /* if user canceled previous, do not close window */
           return_value &= !p_current->CHANGED;
         }
+        /* Switch back to the original page */
+        geda_struct_page_goto (keep_page);
         geda_glist_free_full (unsaved_pages, g_object_unref);
         break;
 
@@ -826,11 +827,6 @@ bool x_confirm_close_window (GschemToplevel *w_current)
   }
 
   gtk_widget_destroy (dialog);
-
-  /* Switch back to the page we were on */
-  g_return_val_if_fail (keep_page != NULL, return_value);
-
-  geda_struct_page_goto (keep_page);
 
   return return_value;
 }
