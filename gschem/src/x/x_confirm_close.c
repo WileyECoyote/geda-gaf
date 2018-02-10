@@ -61,8 +61,9 @@ static void    *confirm_close_dialog_parent_class = NULL;
 
 /***************** Begin Confirmation dialog box Helpers ****************/
 
-/*! \brief Helps building a list of selected page to save.
- *  \par Function Description
+/*!
+ * \brief Helps building a list of selected page to save.
+ * \par Function Description
  *  This is the <B>GtkTreeModelForeachFunc</B> for function
  *  <B>confirm_close_dialog_get_selected_pages()</B>.
  *
@@ -70,12 +71,12 @@ static void    *confirm_close_dialog_parent_class = NULL;
  *  action has been requested. Each selected page is appended to the
  *  GList pointed by <B>data</B>
  *
- *  \param [in] model The tree model.
- *  \param [in] path  .
- *  \param [in] iter  .
- *  \param [in] data  A pointer on a GList* to fill.
+ * \param [in] model The tree model.
+ * \param [in] path  .
+ * \param [in] iter  .
+ * \param [in] data  A pointer on a GList* to fill.
  *
- *  \returns FALSE to continue walking the tree.
+ * \returns FALSE to continue walking the tree.
  */
 static bool get_selected_pages (GtkTreeModel *model,
                                 GtkTreePath  *path,
@@ -99,15 +100,17 @@ static bool get_selected_pages (GtkTreeModel *model,
   return FALSE;
 }
 
-/*! \brief Returns a list of the selected pages with changes to save.
- *  \par Function Description
+/*!
+ * \brief Returns a list of the selected pages with changes to save.
+ * \par Function Description
  *  This function returns the pages that the user has selected in the
  *  confirmation dialog.
  *
  *  The returned list must be freed.
  *
- *  \param [in] dialog The dialog.
- *  \returns A GList of selected Page* in dialog.
+ * \param [in] dialog The dialog.
+ *
+ * \returns A GList of selected Page* in dialog.
  */
 GList*
 confirm_close_dialog_get_selected_pages (ConfirmCloseDialog *dialog)
@@ -121,13 +124,15 @@ confirm_close_dialog_get_selected_pages (ConfirmCloseDialog *dialog)
   return selected;
 }
 
-/*! \brief Returns the number of pages in the model.
- *  \par Function Description
+/*!
+ * \brief Returns the number of pages in the model.
+ * \par Function Description
  *  This function determines the number of pages with unsaved changes
  *  from the model.
  *
- *  \param [in] model The tree model.
- *  \returns The number of pages with unsaved changes.
+ * \param [in] model The tree model.
+ *
+ * \returns The number of pages with unsaved changes.
  */
 static int count_pages (GtkTreeModel *model)
 {
@@ -141,8 +146,9 @@ static int count_pages (GtkTreeModel *model)
   return n_pages;
 }
 
-/*! \brief Returns the name to use for the given page in the model.
- *  \par Function Description
+/*!
+ * \brief Returns the name to use for the given page in the model.
+ * \par Function Description
  *  This function determines the text to be used to identify a
  *  specific page from the model of pages with unsaved changes.
  *
@@ -152,9 +158,10 @@ static int count_pages (GtkTreeModel *model)
  *
  *  The returned value must be freed by caller.
  *
- *  \param [in] model The tree model.
- *  \param [in] piter A pointer on a GtkTreeIter of model or NULL.
- *  \returns The name for the page.
+ * \param [in] model The tree model.
+ * \param [in] piter A pointer on a GtkTreeIter of model or NULL.
+ *
+ * \returns The name for the page.
  */
 static char *get_page_name (GtkTreeModel *model, GtkTreeIter *piter)
 {
@@ -175,17 +182,18 @@ static char *get_page_name (GtkTreeModel *model, GtkTreeIter *piter)
   return geda_file_get_basename_dup (page->filename);
 }
 
-/*! \brief Sets the contents of the name cell in the treeview of dialog.
- *  \par Function Description
+/*!
+ * \brief Sets the contents of the name cell in the treeview of dialog.
+ * \par Function Description
  *  This functions sets the cell of the treeview with the short name
  *  of the page obtained with <B>get_page_name()</B>.
  *
- *  \param [in] tree_column A GtkTreeColumn.
- *  \param [in] cell        The GtkCellRenderer that is being rendered by
- *                        tree_column.
- *  \param [in] tree_model  The GtkTreeModel being rendered.
- *  \param [in] iter        A GtkTreeIter of the current row rendered.
- *  \param [in] data        .
+ * \param [in] tree_column A GtkTreeColumn.
+ * \param [in] cell        The GtkCellRenderer that is being rendered by
+ *                         tree_column.
+ * \param [in] tree_model  The GtkTreeModel being rendered.
+ * \param [in] iter        A GtkTreeIter of the current row rendered.
+ * \param [in] data        .
  */
 static void
 confirm_close_dialog_set_page_name (GtkTreeViewColumn *tree_column,
@@ -201,15 +209,16 @@ confirm_close_dialog_set_page_name (GtkTreeViewColumn *tree_column,
   GEDA_FREE (page_name);
 }
 
-/*! \brief Callback function for the toggled signal of check box in treeview.
- *  \par Function Description
+/*!
+ * \brief Callback function for the toggled signal of check box in treeview.
+ * \par Function Description
  *  This functions changes the value of the save column in the model
  *  for the affected row when user toggles the check box in the
  *  treeview.
  *
- *  \param [in] cell_renderer The GtkCellRendererToggle.
- *  \param [in] path          The GtkTreePath to the concerned row in model.
- *  \param [in] user_data     The dialog as user data.
+ * \param [in] cell_renderer The GtkCellRendererToggle.
+ * \param [in] path          The GtkTreePath to the concerned row in model.
+ * \param [in] user_data     The dialog as user data.
  */
 static void
 confirm_close_callback_renderer_toggled (GtkCellRendererToggle *cell_renderer,
@@ -238,15 +247,16 @@ confirm_close_callback_renderer_toggled (GtkCellRendererToggle *cell_renderer,
 
 }
 
-/*! \brief Adds a treeview to confirmation dialog for selecting of pages.
- *  \par Function Description
+/*!
+ * \brief Adds a treeview to confirmation dialog for selecting of pages.
+ * \par Function Description
  *  This function adds a treeview and caption to display the content
- *  of the dialog model of pages with unsaved changes.
+ *  of the dialog model of pages with unsaved changes. The treeview
+ *  displays the page names with check boxes.
  *
- *  The treeview displays the page names with check boxes.
+ * \param [in] dialog The dialog.
  *
- *  \param [in] dialog The dialog.
- *  \returns A pointer on the GtkVBox to add to dialog.
+ * \returns A pointer on the GtkVBox to add to dialog.
  */
 static GtkWidget*
 confirm_close_dialog_build_page_list (ConfirmCloseDialog *dialog)
@@ -579,7 +589,7 @@ static void confirm_close_dialog_finalize (GObject *object)
 }
 
 /*!
- *  *  TODO: Update parameter spec strings!
+ *  TODO: Update parameter spec strings!
  */
 static void
 confirm_close_dialog_class_init (void *g_class, void *g_class_data)
@@ -629,14 +639,15 @@ confirm_close_dialog_init (GTypeInstance *instance, void *g_class)
                                                   G_TYPE_POINTER); /* page */
 }
 
-/*! \brief Function to retrieve ConfirmCloseDialog's Type identifier.
- *
- *  \par Function Description
+/*!
+ * \brief Function to retrieve ConfirmCloseDialog's Type identifier.
+ * \par Function Description
  *  Function to retrieve ConfirmCloseDialog's Type identifier. On the
  *  first call, this registers the ConfirmCloseDialog in the GedaType
- *  system. Subsequently it returns the saved value from its first execution.
+ *  system. Subsequently the function returns the saved value from the
+ *  first execution.
  *
- *  \return GedaType identifier associated with ConfirmCloseDialog.
+ * \return GedaType identifier associated with ConfirmCloseDialog.
  */
 GedaType confirm_close_dialog_get_type (void)
 {
@@ -667,8 +678,9 @@ GedaType confirm_close_dialog_get_type (void)
 
 /****************** End of Close Confirmation dialog box ****************/
 
-/*! \brief Asks for confirmation before closing a changed page.
- *  \par Function Description
+/*!
+ * \brief Asks for confirmation before closing a changed page.
+ * \par Function Description
  *  This function asks the user to confirm its closing order for
  *  page <B>page</B> while it still has unsaved changes.
  *
@@ -676,10 +688,10 @@ GedaType confirm_close_dialog_get_type (void)
  *  closing, or to discard the changes or to save the changes to a
  *  file.
  *
- *  \param [in] w_current The toplevel environment.
- *  \param [in] page      The page to close.
+ * \param [in] w_current The toplevel environment.
+ * \param [in] page      The page to close.
  *
- *  \returns TRUE if the page can be closed, FALSE otherwise.
+ * \returns TRUE if the page can be closed, FALSE otherwise.
  */
 bool
 x_confirm_close_changed_page (GschemToplevel *w_current, Page *page)
@@ -724,8 +736,9 @@ x_confirm_close_changed_page (GschemToplevel *w_current, Page *page)
   return result;
 }
 
-/*! \brief Asks for confirmation before closing a window.
- *  \par Function Description
+/*!
+ * \brief Asks for confirmation before closing a window.
+ * \par Function Description
  *  This function asks the user to confirm closing the given window.
  *
  *  The user is given the possibility to save the pages that currently
@@ -735,11 +748,10 @@ x_confirm_close_changed_page (GschemToplevel *w_current, Page *page)
  *  window. Otherwise the user has somehow canceled and the window
  *  must not be closed.
  *
- *  \param [in] w_current The toplevel environment.
- *  \returns TRUE if the window can be closed, FALSE otherwise.
+ * \param [in] w_current The toplevel environment.
+ * \returns TRUE if the window can be closed, FALSE otherwise.
  */
-bool
-x_confirm_close_window (GschemToplevel *w_current)
+bool x_confirm_close_window (GschemToplevel *w_current)
 {
   GedaToplevel *toplevel = w_current->toplevel;
   GList        *iter;
