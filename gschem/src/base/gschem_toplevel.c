@@ -314,8 +314,7 @@ static void gschem_toplevel_finalize( GObject *object )
   }
 
   if (w_current->component_select_attrlist != NULL) {
-    g_list_foreach (default_component_select_attrlist, (GFunc)g_free, NULL);
-    g_list_free (default_component_select_attrlist);
+    geda_glist_free_full (default_component_select_attrlist, g_free);
     w_current->component_select_attrlist = NULL;
   }
 
