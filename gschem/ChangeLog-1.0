@@ -7,7 +7,9 @@
       with geda_glist_free_full.
 
     * src/x/x_autonumber.c: Replace g_list_foreach and g_list_free
-      with geda_glist_free_full in autonumber_clear_database.
+      with geda_glist_free_full in autonumber_clear_database. Revise
+      autonumber_text_autonumber to use geda_toplevel_get_current_page
+      with ancillary p_current.
 
     * src/x/x_confirm_close.c: Reformat Doxygen documentation blocks.
       Replace g_list_free with geda_glist_free_full with g_object_unref
