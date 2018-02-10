@@ -307,8 +307,7 @@ geda_keyfile_not_valid (const char *func, GedaKeyFile *key_file)
   }
 }
 
-static void
-geda_keyfile_init (GedaKeyFile *key_file)
+static void geda_keyfile_init (GedaKeyFile *key_file)
 {
   key_file->current_group  = GEDA_MEM_ALLOC0 (sizeof(GedaKeyFileGroup));
   key_file->groups         = g_list_prepend (NULL, key_file->current_group);
@@ -321,8 +320,7 @@ geda_keyfile_init (GedaKeyFile *key_file)
   key_file->locales = g_strdupv ((char **)g_get_language_names ());
 }
 
-static void
-geda_keyfile_clear (GedaKeyFile *key_file)
+static void geda_keyfile_clear (GedaKeyFile *key_file)
 {
   GList *tmp;
 
@@ -411,8 +409,7 @@ GedaKeyFile *geda_keyfile_new (void)
  * \param [in] key_file  a #GedaKeyFile object
  * \param [in] separator the separator
  */
-void
-geda_keyfile_set_list_separator (GedaKeyFile *key_file, char separator)
+void geda_keyfile_set_list_separator (GedaKeyFile *key_file, char separator)
 {
   g_return_if_fail (key_file != NULL);
 
@@ -425,11 +422,10 @@ geda_keyfile_set_list_separator (GedaKeyFile *key_file, char separator)
  * returns the file descriptor to the open file.  It also
  * outputs the absolute path of the file in output_file.
  */
-static int
-find_file_in_data_dirs (const char   *file,
-                        const char  **dirs,
-                        char        **output_file,
-                        GError      **error)
+static int find_file_in_data_dirs (const char   *file,
+                                   const char  **dirs,
+                                   char        **output_file,
+                                   GError      **error)
 {
   const char **data_dirs;
   const char  *data_dir;
@@ -502,11 +498,10 @@ find_file_in_data_dirs (const char   *file,
   return fd;
 }
 
-static bool
-geda_keyfile_load_from_fd (GedaKeyFile      *key_file,
-                           int               fd,
-                           GedaKeyFileFlags  flags,
-                           GError          **error)
+static bool geda_keyfile_load_from_fd (GedaKeyFile      *key_file,
+                                       int               fd,
+                                       GedaKeyFileFlags  flags,
+                                       GError          **error)
 {
   GError *key_file_error = NULL;
   struct stat stat_buf;
@@ -584,11 +579,10 @@ geda_keyfile_load_from_fd (GedaKeyFile      *key_file,
  *
  * \returns %TRUE if a key file could be loaded, %FALSE otherwise
  */
-bool
-geda_keyfile_load_from_file (GedaKeyFile       *key_file,
-                             const char        *file,
-                             GedaKeyFileFlags   flags,
-                             GError           **error)
+bool geda_keyfile_load_from_file (GedaKeyFile       *key_file,
+                                  const char        *file,
+                                  GedaKeyFileFlags   flags,
+                                  GError           **error)
 {
   bool result;
 
@@ -640,12 +634,11 @@ geda_keyfile_load_from_file (GedaKeyFile       *key_file,
  *
  * \returns %TRUE if a key file could be loaded, %FALSE otherwise
  */
-bool
-geda_keyfile_load_from_data (GedaKeyFile       *key_file,
-                             const char        *data,
-                             unsigned int        length,
-                             GedaKeyFileFlags   flags,
-                             GError           **error)
+bool geda_keyfile_load_from_data (GedaKeyFile       *key_file,
+                                  const char        *data,
+                                  unsigned int        length,
+                                  GedaKeyFileFlags   flags,
+                                  GError           **error)
 {
   GError *key_file_error = NULL;
   char list_separator;
@@ -697,13 +690,12 @@ geda_keyfile_load_from_data (GedaKeyFile       *key_file,
  *
  * \returns %TRUE if a key file could be loaded, %FALSE otherwise
  */
-bool
-geda_keyfile_load_from_dirs (GedaKeyFile       *key_file,
-                             const char        *file,
-                             const char       **search_dirs,
-                             char             **full_path,
-                             GedaKeyFileFlags   flags,
-                             GError           **error)
+bool geda_keyfile_load_from_dirs (GedaKeyFile       *key_file,
+                                  const char        *file,
+                                  const char       **search_dirs,
+                                  char             **full_path,
+                                  GedaKeyFileFlags   flags,
+                                  GError           **error)
 {
   GError      *key_file_error = NULL;
   const char **data_dirs;
@@ -773,12 +765,11 @@ geda_keyfile_load_from_dirs (GedaKeyFile       *key_file,
  *
  * \returns %TRUE if a key file could be loaded, %FALSE othewise
  */
-bool
-geda_keyfile_load_from_data_dirs (GedaKeyFile       *key_file,
-                                  const char        *file,
-                                  char             **full_path,
-                                  GedaKeyFileFlags   flags,
-                                  GError           **error)
+bool geda_keyfile_load_from_data_dirs (GedaKeyFile       *key_file,
+                                       const char        *file,
+                                       char             **full_path,
+                                       GedaKeyFileFlags   flags,
+                                       GError           **error)
 {
   char **all_data_dirs;
   const char * user_data_dir;
@@ -825,8 +816,7 @@ geda_keyfile_load_from_data_dirs (GedaKeyFile       *key_file,
  *
  * \returns the same \a key_file.
  */
-GedaKeyFile *
-geda_keyfile_ref (GedaKeyFile *key_file)
+GedaKeyFile *geda_keyfile_ref (GedaKeyFile *key_file)
 {
   g_return_val_if_fail (key_file != NULL, NULL);
 
@@ -844,8 +834,7 @@ geda_keyfile_ref (GedaKeyFile *key_file)
  *
  * \param [in] key_file    a #GedaKeyFile object
  */
-void
-geda_keyfile_free (GedaKeyFile *key_file)
+void geda_keyfile_free (GedaKeyFile *key_file)
 {
   g_return_if_fail (key_file != NULL);
 
@@ -884,8 +873,8 @@ void geda_keyfile_unref (GedaKeyFile *key_file)
 /* If GEDA_KEYFILE_KEEP_TRANSLATIONS is not set, only returns
  * true for locales that match those in g_get_language_names().
  */
-static bool
-geda_keyfile_locale_is_interesting (GedaKeyFile *key_file, const char *locale)
+static bool geda_keyfile_locale_is_interesting (GedaKeyFile *key_file,
+                                                const char  *locale)
 {
   unsigned int i;
 
@@ -1010,8 +999,7 @@ geda_keyfile_parse_group (GedaKeyFile *key_file,
   GEDA_FREE (group_name);
 }
 
-static char*
-key_get_locale (const char *key)
+static char *key_get_locale (const char *key)
 {
   char *locale;
 
@@ -1128,11 +1116,10 @@ geda_keyfile_parse_key_value_pair (GedaKeyFile *key_file,
   GEDA_FREE (locale);
 }
 
-static void
-geda_keyfile_parse_data (GedaKeyFile  *key_file,
-                         const char   *data,
-                         unsigned int  length,
-                         GError      **error)
+static void geda_keyfile_parse_data (GedaKeyFile  *key_file,
+                                     const char   *data,
+                                     unsigned int  length,
+                                     GError      **error)
 {
   unsigned int  i;
   unsigned int  line_length;
@@ -3134,10 +3121,9 @@ geda_keyfile_set_group_comment (GedaKeyFile *key_file,
   return TRUE;
 }
 
-static bool
-geda_keyfile_set_top_comment (GedaKeyFile *key_file,
-                              const char  *comment,
-                              GError      **error)
+static bool geda_keyfile_set_top_comment (GedaKeyFile *key_file,
+                                          const char  *comment,
+                                          GError      **error)
 {
   GedaKeyFileGroup *group;
   GList            *group_node;
@@ -3146,7 +3132,7 @@ geda_keyfile_set_top_comment (GedaKeyFile *key_file,
    * group in the file
    */
   group_node = g_list_last (key_file->groups);
-  group = (GedaKeyFileGroup *) group_node->data;
+  group      = (GedaKeyFileGroup*) group_node->data;
 
   /* Note all keys must be comments at the top of
    * the file, so we can just free it all.
@@ -3184,12 +3170,11 @@ geda_keyfile_set_top_comment (GedaKeyFile *key_file,
  *
  * \retval %TRUE if the comment was written, %FALSE otherwise
  */
-bool
-geda_keyfile_set_comment (GedaKeyFile *key_file,
-                          const char  *group_name,
-                          const char  *key,
-                          const char  *comment,
-                          GError      **error)
+bool geda_keyfile_set_comment (GedaKeyFile *key_file,
+                               const char  *group_name,
+                               const char  *key,
+                               const char  *comment,
+                               GError      **error)
 {
   g_return_val_if_fail (key_file != NULL, FALSE);
 
@@ -3212,11 +3197,10 @@ geda_keyfile_set_comment (GedaKeyFile *key_file,
   return TRUE;
 }
 
-static char*
-geda_keyfile_get_key_comment (GedaKeyFile *key_file,
-                              const char  *group_name,
-                              const char  *key,
-                              GError      **error)
+static char *geda_keyfile_get_key_comment (GedaKeyFile *key_file,
+                                           const char  *group_name,
+                                           const char  *key,
+                                           GError      **error)
 {
   GedaKeyFileGroup *group;
   GedaKeyFilePair  *pair;
@@ -3331,11 +3315,10 @@ geda_keyfile_get_key_comment (GedaKeyFile *key_file,
  * geda_keyfile_get_top_comment   (top set)
  * geda_keyfile_get_group_comment (top unset)
  */
-static char*
-get_group_comment (GedaKeyFile       *key_file,
-                   GedaKeyFileGroup  *group,
-                   bool               top,
-                   GError           **error)
+static char *get_group_comment (GedaKeyFile       *key_file,
+                                GedaKeyFileGroup  *group,
+                                bool               top,
+                                GError           **error)
 {
   unsigned int size;
   char        *string;
@@ -3445,10 +3428,9 @@ get_group_comment (GedaKeyFile       *key_file,
   return NULL;
 }
 
-static char*
-geda_keyfile_get_group_comment (GedaKeyFile *key_file,
-                                const char  *group_name,
-                                GError      **error)
+static char *geda_keyfile_get_group_comment (GedaKeyFile *key_file,
+                                             const char  *group_name,
+                                             GError      **error)
 {
   GedaKeyFileGroup *group;
   GList *group_node;
@@ -3477,9 +3459,8 @@ geda_keyfile_get_group_comment (GedaKeyFile *key_file,
   return get_group_comment (key_file, group, FALSE, error);
 }
 
-static char*
-geda_keyfile_get_top_comment (GedaKeyFile  *key_file,
-                              GError      **error)
+static char *geda_keyfile_get_top_comment (GedaKeyFile  *key_file,
+                                           GError      **error)
 {
   GedaKeyFileGroup *group;
   GList *group_node;
@@ -3512,11 +3493,10 @@ geda_keyfile_get_top_comment (GedaKeyFile  *key_file,
  *
  * \returns a comment that should be freed with GEDA_FREE()
  */
-char*
-geda_keyfile_get_comment (GedaKeyFile *key_file,
-                          const char  *group_name,
-                          const char  *key,
-                          GError      **error)
+char *geda_keyfile_get_comment (GedaKeyFile *key_file,
+                                const char  *group_name,
+                                const char  *key,
+                                GError      **error)
 {
   g_return_val_if_fail (key_file != NULL, NULL);
 
@@ -3546,11 +3526,10 @@ geda_keyfile_get_comment (GedaKeyFile *key_file,
  *
  * \returns %TRUE if the comment was removed, %FALSE otherwise
  */
-bool
-geda_keyfile_remove_comment (GedaKeyFile *key_file,
-                             const char  *group_name,
-                             const char  *key,
-                             GError      **error)
+bool geda_keyfile_remove_comment (GedaKeyFile *key_file,
+                                  const char  *group_name,
+                                  const char  *key,
+                                  GError      **error)
 {
   g_return_val_if_fail (key_file != NULL, FALSE);
 
@@ -3574,9 +3553,7 @@ geda_keyfile_remove_comment (GedaKeyFile *key_file,
  *
  * \returns %TRUE if \a group_name is a part of \a key_file, otherwise %FALSE.
  */
-bool
-geda_keyfile_has_group (GedaKeyFile *key_file,
-                        const char  *group_name)
+bool geda_keyfile_has_group (GedaKeyFile *key_file, const char *group_name)
 {
   g_return_val_if_fail (key_file != NULL, FALSE);
   g_return_val_if_fail (group_name != NULL, FALSE);

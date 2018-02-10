@@ -1,5 +1,7 @@
 2018-02-09 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_keyfile.c: Update function wrapping.
+
     * src/geda/geda_page.c: Add function geda_page_get_selection_list.
 
     * src/struct/s_page.c: Add documentation for geda_struct_page_new_
