@@ -3,7 +3,8 @@
     * src/x/x_confirm_close.c: Reformat Doxygen documentation blocks.
       Replace g_list_free with geda_glist_free_full with g_object_unref
       to unreference Pages before releasing the list. Constrain setting
-      keep_page to case GEDA_RESPONSE_YES.
+      keep_page to case GEDA_RESPONSE_YES and utilize geda_toplevel_get
+      _current_page instead of accessing current page directly.
 
     * src/x/x_coord.c: Replace g_printf with ordinary printf.
 

@@ -798,7 +798,7 @@ bool x_confirm_close_window (GschemToplevel *w_current)
         /* action selected: save */
         g_object_get (dialog, "selected-pages", &unsaved_pages, NULL);
         return_value = TRUE;
-        keep_page = toplevel->page_current;
+        keep_page = geda_toplevel_get_current_page(toplevel);
         for (p_unsaved = unsaved_pages; p_unsaved != NULL; NEXT(p_unsaved))
         {
           p_current = (Page*)p_unsaved->data;
