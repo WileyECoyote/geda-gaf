@@ -351,6 +351,27 @@ gschem_main_window_geometry_save (GtkWindow *main_window)
 }
 
 /*!
+ * \brief Dispose of the preview widget.
+ * \par Function Description
+ *  This function removes the change notify handlers for the
+ *  page \a Object used for the preview widget so that when the
+ *  Page is deleted in the finalizer, the callback does not get
+ *  called to repaint a not nonextant window.
+ *
+ * \param [in] self The preview widget.
+ */
+static void
+main_window_finalize (GObject *self)
+{
+  GtkWindow *window = GTK_WINDOW (self);
+
+  gtk_window_set_icon_list(window, NULL);
+
+  ((GObjectClass*)gschem_main_window_parent_class)->finalize (self);
+}
+
+
+/*!
  * \brief Initialize GschemMainWindow class
  * \par Function Description
  * \param [in]  class       GschemMainWindow being initialized
@@ -366,6 +387,7 @@ gschem_main_window_class_init (void *class, void *class_data)
 
   gobject_class->get_property     = get_property;
   gobject_class->set_property     = set_property;
+  gobject_class->finalize         = main_window_finalize;
 
   widget_class->map               = gschem_main_window_map;
   widget_class->unmap             = gschem_main_window_unmap;
