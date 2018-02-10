@@ -812,7 +812,7 @@ bool x_confirm_close_window (GschemToplevel *w_current)
           /* if user canceled previous, do not close window */
           return_value &= !p_current->CHANGED;
         }
-        g_list_free (unsaved_pages);
+        geda_glist_free_full (unsaved_pages, g_object_unref);
         break;
 
       case GEDA_RESPONSE_CANCEL:
@@ -824,6 +824,7 @@ bool x_confirm_close_window (GschemToplevel *w_current)
         return_value = FALSE;
         break;
   }
+
   gtk_widget_destroy (dialog);
 
   /* Switch back to the page we were on */
