@@ -6,6 +6,9 @@
     * src/base/gschem_toplevel.c: Replace g_list_foreach and g_list_free
       with geda_glist_free_full.
 
+    * src/x/x_autonumber.c: Replace g_list_foreach and g_list_free
+      with geda_glist_free_full in autonumber_clear_database.
+
     * src/x/x_confirm_close.c: Reformat Doxygen documentation blocks.
       Replace g_list_free with geda_glist_free_full with g_object_unref
       to unreference Pages before releasing the list. Constrain setting

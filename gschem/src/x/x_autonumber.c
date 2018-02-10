@@ -445,14 +445,14 @@ static void autonumber_clear_database (AUTONUMBER_TEXT *autotext)
     g_list_free(autotext->used_numbers);
     autotext->used_numbers = NULL;
   }
+
   if (autotext->free_slots != NULL) {
-    g_list_foreach(autotext->free_slots, (GFunc) g_free, NULL);
-    g_list_free(autotext->free_slots);
+    geda_glist_free_full(autotext->free_slots, g_free);
     autotext->free_slots = NULL;
   }
+
   if (autotext->used_slots != NULL) {
-    g_list_foreach(autotext->used_slots, (GFunc) g_free, NULL);
-    g_list_free(autotext->used_slots);
+    geda_glist_free_full(autotext->used_slots, g_free);
     autotext->used_slots = NULL;
   }
 }
