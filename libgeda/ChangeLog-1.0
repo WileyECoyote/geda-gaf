@@ -1,5 +1,8 @@
 2018-02-11 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_config.c: Replace g_list_foreach and g_list_free with
+      geda_glist_free_full.
+
     * src/struct/s_clib.c: Remove unused user_data argument from free_symbol
       and replace g_list_foreach and g_list_free with geda_glist_free_full.
 

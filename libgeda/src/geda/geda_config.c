@@ -209,8 +209,7 @@ static void eda_config_dispose (GObject *object)
   }
 
   if (config->RC_list != NULL) {
-    g_list_foreach(config->RC_list, (GFunc)g_free, NULL);
-    g_list_free(config->RC_list);
+    geda_glist_free_full(config->RC_list, g_free);
     config->RC_list = NULL;
   }
 
