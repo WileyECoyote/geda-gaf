@@ -2,6 +2,7 @@
 
     * src/x/x_multiattrib.c: Remove unused 2nd argument from free_row_record
       and replace g_list_foreach and g_list_free with geda_glist_free_full.
+      Replace gtk_container_add with geda_container_add.
 
 2018-02-10 Wiley E. Hill <wileyhill@gmail.com>
 

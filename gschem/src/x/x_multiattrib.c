@@ -2208,7 +2208,7 @@ static void multiattrib_init(Multiattrib *ThisDialog)
   /*  - End columns of the treeview */
 
   /* add the treeview to the scrolled window */
-  gtk_container_add (GTK_CONTAINER (scrolled_win), treeview);
+  geda_container_add(scrolled_win, treeview);
 
   /* set treeview of multiattrib */
   ThisDialog->treeview = GTK_TREE_VIEW (treeview);
@@ -2216,7 +2216,7 @@ static void multiattrib_init(Multiattrib *ThisDialog)
   attrib_vbox = gtk_vbox_new (FALSE, 0);
 
   /* Pack the vbox into the frame */
-  gtk_container_add (GTK_CONTAINER (frame), attrib_vbox);
+  geda_container_add(frame, attrib_vbox);
 
   /* add the scrolled window to box */
   gtk_box_pack_start (GTK_BOX (attrib_vbox), scrolled_win, TRUE, TRUE, 0);
@@ -2231,7 +2231,7 @@ static void multiattrib_init(Multiattrib *ThisDialog)
   ThisDialog->ShowInheritedSwitch = ShowInheritedSwitch;
 
   /* put the frame in the content area of the dialog */
-  gtk_container_add (GTK_CONTAINER (GTK_DIALOG(ThisDialog)->vbox), frame);
+  geda_container_add(GTK_DIALOG(ThisDialog)->vbox, frame);
   gtk_widget_show_all (frame);
 
   /* create the add/edit frame */
@@ -2315,7 +2315,7 @@ static void multiattrib_init(Multiattrib *ThisDialog)
   gdk_color_parse ("grey", &ThisDialog->not_identical_value_text_color);
   gdk_color_parse ("red",  &ThisDialog->not_present_in_all_text_color);
 
-  gtk_container_add (GTK_CONTAINER (scrolled_win), textview);
+  geda_container_add(scrolled_win, textview);
   SetWidgetTip( textview, _("Enter or type a value for the new attribute then press the Add button"));
   ThisDialog->textview_value = GTK_TEXT_VIEW (textview);
   gtk_table_attach (GTK_TABLE (table), label,
@@ -2354,7 +2354,7 @@ static void multiattrib_init(Multiattrib *ThisDialog)
                     2, 3, 0, 3, 0, 0, 6, 3);
 
   /* add the table to the frame */
-  gtk_container_add (GTK_CONTAINER (frame), table);
+  geda_container_add(frame, table);
 
   /* pack the frame in the dialog */
   gtk_box_pack_start (GTK_BOX (GTK_DIALOG (ThisDialog)->vbox), frame, FALSE, TRUE, 5);
