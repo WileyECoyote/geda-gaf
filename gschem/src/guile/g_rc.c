@@ -1094,8 +1094,7 @@ SCM g_rc_component_dialog_attributes(SCM stringlist)
 
   if (default_component_select_attrlist) {
     /* If keyword is used multiple times, release the old list before recreating */
-    g_list_foreach(default_component_select_attrlist, (GFunc)g_free, NULL);
-    g_list_free(default_component_select_attrlist);
+    geda_glist_free_full(default_component_select_attrlist, g_free);
   }
 
   scm_dynwind_begin(0);

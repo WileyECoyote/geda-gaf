@@ -1,5 +1,8 @@
 2018-02-11 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/guile/g_rc.c: Replace g_list_foreach and g_list_free with
+      geda_glist_free_full.
+
     * src/x/x_multiattrib.c: Remove unused 2nd argument from free_row_record
       and replace g_list_foreach and g_list_free with geda_glist_free_full.
       Replace gtk_container_add with geda_container_add.
