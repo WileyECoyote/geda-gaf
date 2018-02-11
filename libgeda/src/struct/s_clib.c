@@ -167,7 +167,7 @@ static GHashTable *clib_symbol_cache = NULL;
 /* Local static functions
  * ======================
  */
-static void free_symbol (void *data, void *user_data);
+static void free_symbol (void *data);
 static void free_symbol_cache_entry (void *data);
 static void free_source (CLibSource *source);
 
@@ -254,7 +254,7 @@ void geda_struct_clib_init (void)
  *  \par Function Description
  *  Private function used only in s_clib.c.
  */
-static void free_symbol (void *data, void *user_data)
+static void free_symbol (void *data)
 {
   CLibSymbol *symbol = data;
 
@@ -293,8 +293,7 @@ static void free_source (CLibSource *source)
     }
 
     if (source->symbols != NULL) {
-      g_list_foreach (source->symbols, (GFunc) free_symbol, NULL);
-      g_list_free (source->symbols);
+      geda_glist_free_full (source->symbols, free_symbol);
       source->symbols = NULL;
     }
 
@@ -620,8 +619,7 @@ static void refresh_directory (CLibSource *source)
   g_return_if_fail (source->type == CLIB_DIR);
 
   /* Clear the current symbol list */
-  g_list_foreach (source->symbols, (GFunc) free_symbol, NULL);
-  g_list_free (source->symbols);
+  geda_glist_free_full (source->symbols, free_symbol);
   source->symbols = NULL;
 
   /* Open the directory for reading. */
@@ -712,8 +710,7 @@ static void refresh_command (CLibSource *source)
   g_return_if_fail (source->type == CLIB_CMD);
 
   /* Clear the current symbol list */
-  g_list_foreach (source->symbols, (GFunc) free_symbol, NULL);
-  g_list_free (source->symbols);
+  geda_glist_free_full (source->symbols, free_symbol);
   source->symbols = NULL;
 
   /* Run the command to get the list of symbols */
@@ -775,7 +772,7 @@ static void refresh_scm (CLibSource *source)
   g_return_if_fail (source->type == CLIB_SCM);
 
   /* Clear the current symbol list */
-  g_list_foreach (source->symbols, (GFunc) free_symbol, NULL);
+  geda_glist_free_full (source->symbols, free_symbol);
   g_list_free (source->symbols);
   source->symbols = NULL;
 
