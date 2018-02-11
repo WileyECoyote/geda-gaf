@@ -2727,7 +2727,7 @@ update_dialog_title (Multiattrib *ThisDialog, const char *complex_title_name)
   free (title);
 }
 
-static void free_row_record (void *data_record, void *user_data)
+static void free_row_record (void *data_record)
 {
   MODEL_ROW *model_row = data_record;
 
@@ -2831,7 +2831,7 @@ multiattrib_update (Multiattrib *ThisDialog)
 
       /* Skip over inherited attributes if we don't want to show them */
       if (!show_inherited && object_row->inherited) {
-        free_row_record (object_row, NULL);
+        free_row_record (object_row);
         continue;
       }
 
@@ -2870,7 +2870,7 @@ multiattrib_update (Multiattrib *ThisDialog)
         /* Add the underlying attribute to the row's GedaList of attributes */
         geda_list_add_glist (model_row->attribute_gedalist,
                              geda_list_get_glist (object_row->attribute_gedalist));
-        free_row_record (object_row, NULL);
+        free_row_record (object_row);
       }
       else {
         /* The attribute name doesn't match any previously found attributes,
@@ -2902,8 +2902,7 @@ multiattrib_update (Multiattrib *ThisDialog)
 
   multiattrib_populate_liststore (ThisDialog, model_rows);
 
-  g_list_foreach (model_rows, (GFunc) free_row_record, NULL);
-  g_list_free (model_rows);
+  geda_glist_free_full (model_rows, free_row_record);
 
   /* Update window title to describe the objects we are editing. */
   update_dialog_title (ThisDialog, complex_title_name);

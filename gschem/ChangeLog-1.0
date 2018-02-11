@@ -1,3 +1,8 @@
+2018-02-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_multiattrib.c: Remove unused 2nd argument from free_row_record
+      and replace g_list_foreach and g_list_free with geda_glist_free_full.
+
 2018-02-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_main_window.c: Override gobject_class->finalize and
