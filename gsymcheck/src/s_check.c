@@ -900,10 +900,8 @@ static void s_check_pinnumber (const GList *obj_list, SYMCHECK *s_current)
   message = geda_sprintf (_("Found %d pins inside symbol\n"), s_current->numpins + s_current->numnetpins);
   ADD_INFO_MESSAGE(message);
 
-  g_list_foreach(pin_numbers, (GFunc) g_free, NULL);
-  g_list_free(pin_numbers);
-  g_list_foreach(net_numbers, (GFunc) g_free, NULL);
-  g_list_free(net_numbers);
+  geda_glist_free_full(pin_numbers, g_free);
+  geda_glist_free_full(net_numbers, g_free);
 }
 
 /*! \brief Performs checks of the pinseq= attribute
