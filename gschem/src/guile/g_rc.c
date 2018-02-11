@@ -1103,16 +1103,18 @@ SCM g_rc_component_dialog_attributes(SCM stringlist)
   /* convert the scm list into a GList */
   for (i=0; i < length; i++) {
 
-    char  *attr;
+    char *attr;
     char *str;
+
     SCM elem = scm_list_ref(stringlist, scm_from_int(i));
 
     SCM_ASSERT(scm_is_string(elem), elem, SCM_ARG1, "list element is not a string");
 
-    str = scm_to_utf8_string(elem);
+    str  = scm_to_utf8_string(elem);
     attr = geda_utility_string_strdup(str);
-    free(str);
     list = g_list_prepend(list, attr);
+
+    free(str);
   }
 
   scm_dynwind_end();
