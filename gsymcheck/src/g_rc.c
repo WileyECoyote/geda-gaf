@@ -78,8 +78,7 @@ SCM g_rc_known_devices(SCM stringlist)
 
   /* If the command is called multiple times, remove the old list before
      recreating it */
-  g_list_foreach(default_known_devices, (GFunc)g_free, NULL);
-  g_list_free(default_known_devices);
+  geda_glist_free_full(default_known_devices, g_free);
 
   scm_dynwind_begin(0);
   scm_dynwind_unwind_handler(geda_gslist_free_all, (void*)&list, 0);
@@ -123,8 +122,7 @@ SCM g_rc_valid_attributes(SCM stringlist)
 
   /* If the command is called multiple times, remove the old list before
      recreating it */
-  g_list_foreach(default_valid_attributes, (GFunc)g_free, NULL);
-  g_list_free(default_valid_attributes);
+  geda_glist_free_full(default_valid_attributes, g_free);
 
   scm_dynwind_begin(0);
   scm_dynwind_unwind_handler(geda_gslist_free_all, (void*)&list, 0);

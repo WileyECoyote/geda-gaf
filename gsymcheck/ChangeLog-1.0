@@ -1,3 +1,8 @@
+2018-02-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/g_rc.c: Replace g_list_foreach and g_list_free with
+      geda_glist_free_full.
+
 2017-01-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gettext.h: Add conditionals to use <libintl.h> if LIBC
