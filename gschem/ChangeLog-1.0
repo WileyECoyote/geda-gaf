@@ -1,5 +1,8 @@
 2018-02-12 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_autonumber.c: Use NEXT macro to shorting line in autonumber_
+      text_autonumber.
+
     * src/base/gschem_toplevel.c: Revise gschem_toplevel_finalize to not
       set pointers released to GEDA_FREE to NULL since this is already
       done by the macro.

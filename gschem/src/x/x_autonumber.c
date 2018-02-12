@@ -939,10 +939,12 @@ static void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
     searchtext_list=g_list_append (searchtext_list, searchtext);
   }
   else if (g_str_has_suffix(scope_text,"*") == TRUE) {
+
     /* strip of the "*" */
     searchtext = geda_strndup(scope_text, scope_len - 1);
+
     /* collect all the possible searchtexts in all pages of the hierarchy */
-    for (page_item = pages; page_item != NULL; page_item = g_list_next(page_item)) {
+    for (page_item = pages; page_item != NULL; NEXT(page_item)) {
 
       Page *p_current;
 
