@@ -143,8 +143,7 @@ void o_move_stretch_print_all (GList *list)
  */
 void o_move_stretch_destroy_all (GList *list)
 {
-  g_list_foreach (list, (GFunc)g_free, NULL);
-  g_list_free (list);
+  geda_glist_free_full (list, g_free);
 }
 
 /** @} END Group Stretch */
