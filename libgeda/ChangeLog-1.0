@@ -2,7 +2,7 @@
 
     * src/geda/geda_keyfile.c: Revise key_get_locale; try replacing g_strrstr
       with strstr, change less than or equal 2 to less than 3 and reduce
-      conditionals so that if (locale) occurs only once.
+      conditionals so that if (locale) occurs only once. Revise comments.
 
 2018-02-11 Wiley E. Hill <wileyhill@gmail.com>
 

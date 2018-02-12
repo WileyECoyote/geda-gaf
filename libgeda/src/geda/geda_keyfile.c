@@ -1062,8 +1062,7 @@ geda_keyfile_parse_key_value_pair (GedaKeyFile *key_file,
     return;
   }
 
-  /* Pull the value from the line (chugging leading whitespace)
-   */
+  /* Pull the value from the line; skip leading whitespace */
   while (g_ascii_isspace (*value_start))
     value_start++;
 
@@ -1095,8 +1094,7 @@ geda_keyfile_parse_key_value_pair (GedaKeyFile *key_file,
     }
   }
 
-  /* Is this key a translation? If so, is it one that we care about?
-   */
+  /* Is this key a translation? If so, is it one that we care about? */
   locale = key_get_locale (key);
 
   if (locale == NULL || geda_keyfile_locale_is_interesting (key_file, locale))
@@ -3123,6 +3121,7 @@ geda_keyfile_set_group_comment (GedaKeyFile *key_file,
   return TRUE;
 }
 
+/* Does not use the Error argument and only returns TRUE */
 static bool geda_keyfile_set_top_comment (GedaKeyFile *key_file,
                                           const char  *comment,
                                           GError      **error)
