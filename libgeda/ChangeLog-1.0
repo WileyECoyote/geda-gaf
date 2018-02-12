@@ -1,7 +1,8 @@
 2018-02-12 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/geda/geda_keyfile.c: Try replacing g_strrstr with strstr with
-      key_get_locale.
+    * src/geda/geda_keyfile.c: Revise key_get_locale; try replacing g_strrstr
+      with strstr, change less than or equal 2 to less than 3.
+      .
 
 2018-02-11 Wiley E. Hill <wileyhill@gmail.com>
 
