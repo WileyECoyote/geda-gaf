@@ -316,8 +316,8 @@ static void geda_keyfile_init (GedaKeyFile *key_file)
   key_file->parse_buffer   = GEDA_MEM_ALLOC0 (KF_BUFFER_SIZE);
   key_file->buffer_size    = KF_BUFFER_SIZE;
   key_file->list_separator = ';';
-  key_file->flags = 0;
-  key_file->locales = g_strdupv ((char **)g_get_language_names ());
+  key_file->flags          = 0;
+  key_file->locales        = g_strdupv ((char**)g_get_language_names ());
 }
 
 static void geda_keyfile_clear (GedaKeyFile *key_file)
