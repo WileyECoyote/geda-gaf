@@ -4,6 +4,9 @@
       with strstr, change less than or equal 2 to less than 3 and reduce
       conditionals so that if (locale) occurs only once. Revise comments.
 
+    * src/geda/geda_toplevel.c: Replace g_list_foreach and g_list_free with
+      geda_glist_free_full.
+
 2018-02-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_config.c: Replace g_list_foreach and g_list_free with
