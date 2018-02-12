@@ -1368,7 +1368,7 @@ void combo_responder(GtkWidget *widget, void * data)
  */
 
   switch ( WhichComboBox ) {
-  case TitleBlock:              /*GEDA_COMBO_BOX*/
+  case TitleBlock:              /* GEDA_COMBO_BOX_TEXT */
     break;
   case DotGridMode:
     if (gtk_combo_box_get_active (GTK_COMBO_BOX (DotGridModeCombo)) == DOTS_GRID_VARIABLE_MODE)
@@ -1381,7 +1381,7 @@ void combo_responder(GtkWidget *widget, void * data)
   case MiddleButton:
   case ThirdButton:
   case UndoType:
-  case FontName:
+  case FontName:              /* GEDA_COMBO_BOX_TEXT */
   case RipperSymbol:
   case Renderer:
   case AntiAlias:
