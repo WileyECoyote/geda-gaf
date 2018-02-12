@@ -1003,7 +1003,7 @@ static char *key_get_locale (const char *key)
 {
   char *locale;
 
-  locale = g_strrstr (key, "[");
+  locale = strstr (key, "[");
 
   if (locale && strlen (locale) <= 2) {
     locale = NULL;
