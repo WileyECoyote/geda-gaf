@@ -1005,12 +1005,14 @@ static char *key_get_locale (const char *key)
 
   locale = strstr (key, "[");
 
-  if (locale && strlen (locale) < 3) {
-    locale = NULL;
-  }
-
   if (locale) {
-    locale = geda_strndup (locale + 1, strlen (locale) - 2);
+
+    if (strlen (locale) < 3) {
+      locale = NULL;
+    }
+    else {
+      locale = geda_strndup (locale + 1, strlen (locale) - 2);
+    }
   }
 
   return locale;
