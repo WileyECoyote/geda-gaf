@@ -1,5 +1,9 @@
 2018-02-12 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/base/gschem_toplevel.c: Revise gschem_toplevel_finalize to not
+      set pointers released to GEDA_FREE to NULL since this is already
+      done by the macro.
+
     * src/object/o_move.c: Replace g_list_foreach and g_list_free with
       geda_glist_free_full.
 

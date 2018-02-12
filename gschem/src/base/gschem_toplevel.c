@@ -3,8 +3,8 @@
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 2013-2015 Wiley Edward Hill
- * Copyright (C) 2013-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2013-2018 Wiley Edward Hill
+ * Copyright (C) 2013-2018 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -325,17 +325,14 @@ static void gschem_toplevel_finalize( GObject *object )
 
   if (w_current->bus_ripper_symname != NULL) {
     GEDA_FREE (w_current->bus_ripper_symname);
-    w_current->bus_ripper_symname = NULL;
   }
 
   if (w_current->pixbuf_filename != NULL) {
     GEDA_FREE (w_current->pixbuf_filename);
-    w_current->pixbuf_filename = NULL;
   }
 
   if (w_current->print_command != NULL) {
     GEDA_FREE (w_current->print_command);
-    w_current->print_command = NULL;
   }
 
   if (w_current->page_history != NULL) {
@@ -345,7 +342,6 @@ static void gschem_toplevel_finalize( GObject *object )
 
   if (w_current->last_image_path != NULL) {
     GEDA_FREE (w_current->last_image_path);
-    w_current->last_image_path = NULL;
   }
 
   if (w_current->action_event != NULL) {
