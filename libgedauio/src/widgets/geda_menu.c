@@ -4588,8 +4588,8 @@ static void geda_menu_refresh_accel_paths (GedaMenu *menu, bool group_changed)
     prop.menu          = menu;
     prop.group_changed = group_changed;
 
-    gtk_container_foreach ((GtkContainer*)menu,
-                           refresh_accel_paths_foreach,
+    geda_container_foreach (menu,
+                            refresh_accel_paths_foreach,
                            &prop);
   }
 }

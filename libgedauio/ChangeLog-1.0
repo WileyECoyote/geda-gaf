@@ -2,6 +2,9 @@
 
     * src/widgets/geda_label.c: Reduce scope of variables in pango_start_element.
 
+    * src/widgets/geda_menu.c: Replace gtk_container_foreach with geda_container_
+      foreach macro with geda_menu_refresh_accel_paths.
+
 2018-02-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_comboboxtext.c: Update documentation for:
