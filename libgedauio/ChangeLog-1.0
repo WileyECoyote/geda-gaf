@@ -1,3 +1,7 @@
+2018-02-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_label.c: Reduce scope of variables in pango_start_element.
+
 2018-02-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_comboboxtext.c: Update documentation for:

@@ -2024,20 +2024,21 @@ pango_start_element (GMarkupParseContext *context,
                      void                *user_data,
                      GError             **error)
 {
-  PangoParserData *data = (PangoParserData*)user_data;
-  GValue val = G_VALUE_INIT;
-  int line_number, char_number;
-
   if (strcmp (element_name, "attribute") == 0) {
 
-    PangoAttribute *attr      = NULL;
-    const char     *name      = NULL;
-    const char     *value     = NULL;
-    const char     *start     = NULL;
-    const char     *end       = NULL;
-    unsigned int    start_val = 0;
-    unsigned int    end_val   = G_MAXUINT;
-    unsigned int    i;
+    PangoParserData *data     = (PangoParserData*)user_data;
+    PangoAttribute  *attr     = NULL;
+
+    const char      *name      = NULL;
+    const char      *value     = NULL;
+    const char      *start     = NULL;
+    const char      *end       = NULL;
+    unsigned int     start_val = 0;
+    unsigned int     end_val   = G_MAXUINT;
+    unsigned int     i;
+
+    GValue val = G_VALUE_INIT;
+    int line_number, char_number;
 
     for (i = 0; names[i]; i++) {
 
