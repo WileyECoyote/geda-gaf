@@ -5,6 +5,10 @@
     * src/x/x_autonumber.c: Replace g_list_foreach and g_list_free with
       geda_glist_free_full.
 
+    * src/x/x_toolbars.c: Add x_toolbars_free_foreach for use with gtk_
+      container_foreach to set the name of each toolbar item to NULL in
+      or to ensure the strings are released in a timely manner.
+
 2018-02-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_autonumber.c: Use NEXT macro to shorting line in autonumber_

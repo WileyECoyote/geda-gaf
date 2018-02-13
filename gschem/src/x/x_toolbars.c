@@ -806,6 +806,11 @@ x_toolbars_finialize (GschemToplevel *w_current) {
   x_toolbars_update(w_current);
 }
 
+static void x_toolbars_free_foreach (GtkWidget *widget, void *data)
+{
+  gtk_widget_set_name (widget, NULL);
+}
+
 /*!
  * \brief Free Window Specific Toolbar Widgets
  * \par Function Description
@@ -820,6 +825,7 @@ x_toolbars_free_window(GschemToplevel *w_current)
   bar_widgets = g_slist_nth_data (ui_list, w_current->ui_index);
 
   lambda (GtkWidget *bar) {
+    gtk_container_foreach ((GtkContainer*)bar, x_toolbars_free_foreach, NULL);
     gtk_widget_destroy (bar);
     return FALSE;
   }
