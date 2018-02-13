@@ -259,8 +259,9 @@ static void geda_toplevel_finalize(GObject *object)
     }
 
     g_list_free (toplevel->weak_refs);
+
+    toplevel->weak_refs = NULL;
   }
-  toplevel->weak_refs = NULL;
 
   ((GObjectClass*)geda_toplevel_parent_class)->finalize(object);
 }
