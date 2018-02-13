@@ -1,3 +1,8 @@
+2018-02-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_toplevel.c: Utilize NEXT macro in geda_toplevel_finalize
+      to shorten line lengths.
+
 2018-02-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_keyfile.c: Revise key_get_locale; try replacing g_strrstr

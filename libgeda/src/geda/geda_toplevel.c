@@ -244,7 +244,7 @@ static void geda_toplevel_finalize(GObject *object)
   }
 
   if (toplevel->component_groups != NULL) {
-    for (iter = toplevel->component_groups; iter != NULL; iter = g_list_next(iter)){
+    for (iter = toplevel->component_groups; iter != NULL; NEXT(iter)){
       GEDA_FREE(iter->data);
     }
 
@@ -254,9 +254,10 @@ static void geda_toplevel_finalize(GObject *object)
 
   if (toplevel->weak_refs) {
 
-    for (iter = toplevel->weak_refs; iter != NULL; iter = g_list_next (iter)) {
+    for (iter = toplevel->weak_refs; iter != NULL; NEXT(iter)) {
       g_free (iter->data);
     }
+
     g_list_free (toplevel->weak_refs);
   }
   toplevel->weak_refs = NULL;
