@@ -1127,8 +1127,7 @@ static void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
   }
 
   /* cleanup and redraw all*/
-  g_list_foreach(searchtext_list, (GFunc) g_free, NULL);
-  g_list_free(searchtext_list);
+  geda_glist_free_full(searchtext_list, g_free);
   geda_struct_page_goto(pages->data); /* go back to the root page */
   o_invalidate_all (w_current);
   g_list_free(pages);
