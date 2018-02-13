@@ -509,6 +509,9 @@ check_methods ()
     fprintf(stderr, "FAILED: %s line <%d> wrong city %s\n", TWIDGET, __LINE__, city);
     result++;
   }
+
+  /* Check geda_combo_box_text_remove_all_text */
+
   geda_combo_box_text_remove_all_text(combo_text);
 
   int count = geda_combo_widget_get_count(widget);
