@@ -888,8 +888,8 @@ static int geda_menu_shell_button_release (GtkWidget *widget, GdkEventButton *ev
 
     parent_shell = (GedaMenuShell*)menu_shell->parent_menu_shell;
 
-    if (event->time - parent_shell->activate_time < MENU_SHELL_TIMEOUT)
-    {
+    if (event->time - parent_shell->activate_time < MENU_SHELL_TIMEOUT) {
+
       /* The button-press originated in the parent menu bar and we are
        * a pop-up menu, was a quick press-and-release so we don't want
        * to activate an item but we leave the popup in place instead. */
@@ -904,11 +904,13 @@ static int geda_menu_shell_button_release (GtkWidget *widget, GdkEventButton *ev
     GedaMenuShellPriv *priv = menu_shell->priv;
     bool deactivate = TRUE;
 
-    if (menu_shell->button && (event->button != menu_shell->button))
-    {
+    if (menu_shell->button && (event->button != menu_shell->button)) {
+
       menu_shell->button = 0;
-      if (menu_shell->parent_menu_shell)
+
+      if (menu_shell->parent_menu_shell) {
         return gtk_widget_event (menu_shell->parent_menu_shell, (GdkEvent*)event);
+      }
     }
 
     menu_shell->button = 0;
@@ -920,8 +922,7 @@ static int geda_menu_shell_button_release (GtkWidget *widget, GdkEventButton *ev
       menu_item = geda_menu_shell_get_item (widget, event);
 
       if (menu_item && (menu_shell->active_menu_item == menu_item) &&
-          geda_menu_item_is_widget_selectable (menu_item))
-      {
+          geda_menu_item_is_widget_selectable (menu_item)) {
 
         GtkWidget *submenu;
 
