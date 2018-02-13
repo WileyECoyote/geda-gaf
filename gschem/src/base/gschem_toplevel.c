@@ -345,7 +345,7 @@ static void gschem_toplevel_finalize( GObject *object )
   }
 
   if (w_current->action_event != NULL) {
-    g_object_unref(w_current->action_event);;
+    GEDA_UNREF(w_current->action_event);;
   }
 
   if (CairoRenderer != NULL) {

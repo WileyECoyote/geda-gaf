@@ -1,5 +1,7 @@
 2018-02-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/base/gschem_toplevel.c: Use GEDA_UNREF instead of g_object_unref.
+
     * src/x/x_autonumber.c: Replace g_list_foreach and g_list_free with
       geda_glist_free_full.
 
