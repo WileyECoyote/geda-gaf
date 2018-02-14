@@ -2,6 +2,7 @@
 
     * src/widgets/geda_menu_bar.c: Replace gtk_container_foreach with
       geda_container_foreach macro. Rename menu_bar_key ->menu_bar_list_key.
+      Add global constant menu_bar_accel_key = "menu-bar-accel".
 
 2018-02-13 Wiley E. Hill <wileyhill@gmail.com>
 

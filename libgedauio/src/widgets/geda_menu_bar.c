@@ -129,6 +129,7 @@ static void geda_menu_bar_move_current                (GedaMenuShell  *menu_shel
 static GtkShadowType get_shadow_type                  (GedaMenuBar    *menubar);
 
 static const char menu_bar_list_key[] = "menu-bar-list";
+static const char menu_bar_accel_key[] = "menu-bar-accel";
 
 static void *geda_menu_bar_parent_class = NULL;
 
@@ -147,7 +148,7 @@ change_accel (GedaMenuBar *menubar)
 
   settings = gtk_widget_get_settings ((GtkWidget*)menubar);
 
-  g_object_get (settings, "gtk-menu-bar-accel", &accel, NULL);
+  g_object_get (settings, menu_bar_accel_key, &accel, NULL);
 
   if (accel && *accel) {
 
@@ -172,7 +173,7 @@ settings_notify_cb (GObject     *object,
   name = g_param_spec_get_name (pspec);
 
   /* Check if menu-bar-accel is what was changed */
-  if (!strcmp (name, "gtk-menu-bar-accel")) {
+  if (!strcmp (name, menu_bar_accel_key)) {
     change_accel (menubar);
   }
 }
@@ -1297,8 +1298,7 @@ accelerate_children(GedaMenuItem *menu_item, GtkAccelGroup *accel_group)
   }
 }
 
-static void
-add_to_window (GtkWindow *window, GedaMenuBar *menubar)
+static void add_to_window (GtkWindow *window, GedaMenuBar *menubar)
 {
   GList *menubars = get_menu_bars (window);
 
@@ -1315,7 +1315,7 @@ add_to_window (GtkWindow *window, GedaMenuBar *menubar)
     accel = NULL;
     settings = gtk_widget_get_settings ((GtkWidget*)menubar);
 
-    g_object_get (settings, "gtk-menu-bar-accel", &accel, NULL);
+    g_object_get (settings, menu_bar_accel_key, &accel, NULL);
 
     accel_group = gtk_accel_group_new();
     gtk_window_add_accel_group (window, accel_group);
