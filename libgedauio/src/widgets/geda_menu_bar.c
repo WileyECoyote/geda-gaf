@@ -1335,8 +1335,7 @@ add_to_window (GtkWindow *window, GedaMenuBar *menubar)
   connect_settings_signal(menubar);
 
   /* Connect an accelerator to items on the Menu Bar */
-  gtk_container_foreach ((GtkContainer*)menubar,
-                         (GtkCallback)accelerate_children,
+  geda_container_foreach (menubar, accelerate_children,
                           menubar->priv->accel_group);
 
   set_menu_bars (window, g_list_append (menubars, menubar));
