@@ -128,7 +128,7 @@ static void geda_menu_bar_move_current                (GedaMenuShell  *menu_shel
                                                        MenuDirection   direction);
 static GtkShadowType get_shadow_type                  (GedaMenuBar    *menubar);
 
-static const char menu_bar_key[] = "menu-bar-list";
+static const char menu_bar_list_key[] = "menu-bar-list";
 
 static void *geda_menu_bar_parent_class = NULL;
 
@@ -1236,12 +1236,12 @@ geda_menu_bar_new (void)
 
 static GList*
 get_menu_bars (GtkWindow *window) {
-  return g_object_get_data (G_OBJECT (window), menu_bar_key);
+  return g_object_get_data (G_OBJECT (window), menu_bar_list_key);
 }
 
 static void
 set_menu_bars (GtkWindow *window, GList *menubars) {
-  g_object_set_data (G_OBJECT (window), menu_bar_key, menubars);
+  g_object_set_data (G_OBJECT (window), menu_bar_list_key, menubars);
 }
 
 static void activate_child(GtkWidget *menu_item)
