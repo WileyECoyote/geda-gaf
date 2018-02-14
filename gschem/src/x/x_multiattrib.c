@@ -1913,7 +1913,8 @@ connect_object_list (Multiattrib *ThisDialog, GedaList *object_list)
       g_signal_connect (ThisDialog->object_list, "changed",
                         G_CALLBACK (object_list_changed_cb),
                         ThisDialog);
-    /* Synthesise a object_list changed update to refresh the view */
+
+    /* Synthesize an object_list changed update to refresh the view */
     object_list_changed_cb (ThisDialog->object_list, ThisDialog);
   }
   else {
