@@ -1205,10 +1205,15 @@ void geda_combo_box_text_widget_remove_all (GtkWidget *widget)
   geda_combo_box_text_remove_all (GEDA_COMBO_BOX_TEXT(widget));
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief widget version of #geda_combo_box_get_count
- *  \par Function Description
+/*!
+ * \brief Set GedaComboBoxText Widget index Active Item
+ * \par Function Description
+ *  Sets the item of \a combo_box at \a position to be the active item.
  *
+ * \param [in] widget    A #GedaComboBoxText widget
+ * \param [in] position  Index in the model or -1 to have no active item
+ *
+ * \sa geda_combo_box_set_active
  */
 void geda_combo_box_text_widget_set_active (GtkWidget *widget, int position)
 {
