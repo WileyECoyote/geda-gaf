@@ -2041,7 +2041,7 @@ static void
 geda_menu_show_all (GtkWidget *widget)
 {
   /* Show children, but not self. */
-  gtk_container_foreach ((GtkContainer*)widget, (GtkCallback) gtk_widget_show_all, NULL);
+  geda_container_foreach (widget, gtk_widget_show_all, NULL);
 }
 
 /* widget_class->size_allocate */
