@@ -1875,6 +1875,7 @@ COMMAND (do_edit_text)
 
       if (o_current->type == OBJ_TEXT) {
         o_text_edit(w_current, o_current);
+        break;
       }
     }
   }
