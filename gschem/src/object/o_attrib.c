@@ -30,8 +30,7 @@
 #include <gschem.h>
 #include <geda_debug.h>
 
-/* No special type for attributes */
-/* You can only edit text attributes */
+/* No special type for attributes, only text attributes are editable */
 
 /* be sure in o_copy o_move o_delete you maintain the attributes delete
  * delete is a bare, because you will have to unattach the other end and
