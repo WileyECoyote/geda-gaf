@@ -130,11 +130,10 @@ void v_log_message(const char *format, ...)
  *
  *  If the Console dialog instance does exist, present it to the user.
  */
-void x_console_destroy_command_buffer(void * user_data) {
+void x_console_destroy_command_buffer(void *user_data) {
   if (command_buffer) {
       v_log_message(_("destroying history\n"));
-      g_list_foreach(command_buffer, (GFunc)g_free, NULL);
-      g_list_free (command_buffer);
+      geda_glist_free_full(command_buffer, g_free);
       command_buffer = NULL; /* This is not optional */
   }
 }

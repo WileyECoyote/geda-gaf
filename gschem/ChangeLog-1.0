@@ -1,3 +1,11 @@
+2018-02-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_command.c: Break out of loop in found a text object in
+      i_cmd_do_edit_text.
+
+    * src/x/x_console.c: Replace g_list_foreach and g_list_free with
+      geda_glist_free_full.
+
 2018-02-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_toplevel.c: Use GEDA_UNREF instead of g_object_unref.
