@@ -846,9 +846,7 @@ static int geda_menu_shell_button_press (GtkWidget *widget, GdkEventButton *even
   }
   else {
 
-    widget = gtk_get_event_widget ((GdkEvent*)event);
-
-    if (widget == (GtkWidget*)menu_shell) {
+    if (widget == gtk_get_event_widget ((GdkEvent*)event)) {
       geda_menu_shell_deactivate (menu_shell);
       g_signal_emit (menu_shell, menu_shell_signals[SELECTION_DONE], 0);
     }

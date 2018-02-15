@@ -1,3 +1,9 @@
+2018-02-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_shell.c: Revise geda_menu_shell_button_press to
+      no reassign widget and compare to menu_shell, compare widget the
+      value returned from gtk_get_event_widget.
+
 2018-02-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_comboboxtext.c: Update documentation for:
