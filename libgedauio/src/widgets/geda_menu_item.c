@@ -1040,9 +1040,9 @@ geda_menu_item_accel_width_foreach (GtkWidget *widget, void *data)
     *width = MAX (*width, w);
   }
   else if (GTK_IS_CONTAINER(widget)) {
-    gtk_container_foreach ((GtkContainer*)(widget),
-                           geda_menu_item_accel_width_foreach,
-                           data);
+    geda_container_foreach (widget,
+                            geda_menu_item_accel_width_foreach,
+                            data);
   }
 }
 
@@ -1970,8 +1970,8 @@ static void geda_menu_item_size_request (GtkWidget *widget, GtkRequisition *requ
   }
 
   accel_width = 0;
-  gtk_container_foreach ((GtkContainer*)menu_item,
-                         geda_menu_item_accel_width_foreach,
+  geda_container_foreach (menu_item,
+                          geda_menu_item_accel_width_foreach,
                          &accel_width);
   priv->accelerator_width = accel_width;
 }
@@ -2249,8 +2249,8 @@ static void geda_menu_item_get_preferred_width (GtkWidget *widget,
   }
 
   accel_width = 0;
-  gtk_container_foreach ((GtkContainer*)menu_item,
-                         geda_menu_item_accel_width_foreach,
+  geda_container_foreach (menu_item,
+                          geda_menu_item_accel_width_foreach,
                          &accel_width);
   priv->accelerator_width = accel_width;
 
@@ -2362,8 +2362,8 @@ static void geda_menu_item_real_get_height (GtkWidget *widget,
 
   accel_width = 0;
 
-  gtk_container_foreach ((GtkContainer*)menu_item,
-                         geda_menu_item_accel_width_foreach,
+  geda_container_foreach (menu_item,
+                          geda_menu_item_accel_width_foreach,
                          &accel_width);
 
   priv->accelerator_width = accel_width;
@@ -3314,7 +3314,7 @@ static void geda_menu_item_show_all (GtkWidget *widget)
   if (priv->submenu) {
     gtk_widget_show_all (priv->submenu);
   }
-  gtk_container_foreach ((GtkContainer*)widget, (GtkCallback)gtk_widget_show_all, NULL);
+  geda_container_foreach (widget, gtk_widget_show_all, NULL);
 
   gtk_widget_show (widget);
 }
@@ -3327,7 +3327,7 @@ static void geda_menu_item_hide_all (GtkWidget *widget)
   gtk_widget_hide (widget);
 
   /* hide children including submenu */
-  gtk_container_foreach ((GtkContainer*)widget, (GtkCallback)gtk_widget_hide_all, NULL);
+  geda_container_foreach (widget, gtk_widget_hide_all, NULL);
 
   if (priv->submenu) {
     gtk_widget_hide_all (priv->submenu);
@@ -3362,9 +3362,9 @@ static void geda_menu_item_accel_name_foreach (GtkWidget *widget, void *data)
       }
     }
     else if (GTK_IS_CONTAINER(widget)) {
-      gtk_container_foreach ((GtkContainer*)widget,
-                             geda_menu_item_accel_name_foreach,
-                             data);
+      geda_container_foreach (widget,
+                              geda_menu_item_accel_name_foreach,
+                              data);
     }
   }
 }
@@ -3408,8 +3408,8 @@ void geda_menu_item_refresh_accel_path (GedaMenuItem  *menu_item,
         const char *postfix = NULL;
 
         /* try to construct one from label text */
-        gtk_container_foreach ((GtkContainer*)menu_item,
-                               geda_menu_item_accel_name_foreach,
+        geda_container_foreach (menu_item,
+                                geda_menu_item_accel_name_foreach,
                                &postfix);
         if (postfix) {
 
