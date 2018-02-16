@@ -1967,15 +1967,14 @@ multiattrib_dispose (GObject *object)
 
   ((GObjectClass*)multiattrib_parent_class)->dispose (object);
 }
-/*! \brief GObject finalise handler
- *
- *  \par Function Description
- *
+/*!
+ * \brief GObject finalize handler
+ * \par Function Description
  *  Just before the Multiattrib GObject is finalized, disconnect from
  *  the GedaList object being watched and then chain up to the parent
  *  class's finalize handler.
  *
- *  \param [in] object  The GObject being finalized.
+ * \param [in] object  The GObject being finalized.
  */
 static void
 multiattrib_finalize (GObject *object)
