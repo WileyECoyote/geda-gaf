@@ -3316,8 +3316,7 @@ static void geda_combo_box_unset_model (GedaComboBox *combo_box)
   /* menu mode */
   if (!priv->tree_view) {
     if (priv->popup_widget) {
-      gtk_container_foreach ((GtkContainer*)priv->popup_widget,
-                             (GtkCallback)gtk_widget_destroy, NULL);
+      geda_container_foreach (priv->popup_widget, gtk_widget_destroy, NULL);
     }
   }
 
