@@ -120,8 +120,8 @@ void geda_iface_vars_set(GedaToplevel *toplevel)
   toplevel->default_fill_angle2   = default_fill_angle2;
 
   /* copy the always_promote_attributes list from the default */
-  g_list_foreach(toplevel->always_promote_attributes, (GFunc)g_free, NULL);
-  g_list_free(toplevel->always_promote_attributes);
+  geda_glist_free_full(toplevel->always_promote_attributes, g_free);
+
   toplevel->always_promote_attributes = g_list_copy(default_always_promote_attributes);
 
   for (iter = default_component_groups; iter != NULL; iter = g_list_next(iter))
@@ -156,8 +156,8 @@ void geda_iface_vars_freenames()
   GEDA_FREE(default_postscript_prolog);
   GEDA_FREE(default_untitled_name);
 
-  g_list_foreach(default_always_promote_attributes, (GFunc)g_free, NULL);
-  g_list_free(default_always_promote_attributes);
+  geda_glist_free_full(default_always_promote_attributes, g_free);
+
   default_always_promote_attributes = NULL;
 
   for (iter = default_component_groups; iter != NULL; iter = g_list_next(iter)){
