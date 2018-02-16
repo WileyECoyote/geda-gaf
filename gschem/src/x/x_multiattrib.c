@@ -2718,12 +2718,30 @@ update_dialog_title (Multiattrib *ThisDialog, const char *complex_title_name)
 
   strcpy (title, title_string);
 
-  if (sl)                  /* Is enough to throw cppcheck off the trail */
-  strncat (title, ss, sl);
-  strncat (title, ps, pl);
-  strncat (title, ns, nl);
-  strncat (title, bs, bl);
-  strncat (title, as, al);
+  if (sl) {
+    strncat (title, ss, sl);
+    g_free(ss);
+  }
+
+  if (pl) {
+    strncat (title, ps, pl);
+    g_free(ps);
+  }
+
+  if (nl) {
+    strncat (title, ns, nl);
+    g_free(ns);
+  }
+
+  if (bl) {
+    strncat (title, bs, bl);
+    g_free(bs);
+  }
+
+  if (al) {
+    strncat (title, as, al);
+    g_free(as);
+  }
 
   g_object_set (G_OBJECT (ThisDialog), "title", title, NULL);
 
