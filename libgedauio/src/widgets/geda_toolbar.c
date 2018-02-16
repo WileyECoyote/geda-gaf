@@ -324,7 +324,7 @@ geda_toolbar_append_item (GedaToolbar     *toolbar,
   button = gtk_toolbar_append_item ((GtkToolbar*)toolbar, text,
                                     tooltip_text, tooltip_private_text,
                                     (GtkWidget*)icon,
-                                    GTK_SIGNAL_FUNC(callback),
+                                    G_CALLBACK(callback),
                                     user_data);
 
   geda_toolbar_setup_label(button, toolbar);

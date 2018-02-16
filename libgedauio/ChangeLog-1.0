@@ -9,6 +9,8 @@
       validated. Revise geda_entry_completion_set_case to not modify
       the stack argument.
 
+    * src/widgets/geda_toolbar.c: Replace GTK_SIGNAL_FUNC with G_CALLBACK.
+
 2018-02-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_comboboxtext.c: Update documentation for:
