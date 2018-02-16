@@ -1239,10 +1239,18 @@ int geda_combo_box_text_widget_get_active (GtkWidget *widget)
   return geda_combo_box_get_active ((GedaComboBox*)widget);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief widget version of #geda_combo_box_get_count
- *  \par Function Description
+/*!
+ * \brief Get GedaComboBoxText Widget Text
+ * \par Function Description
+ *  Returns the currently active string in Combo_box, or %NULL
+ *  if none is selected.
  *
+ * \param [in] combo_box A #GedaComboBoxText object.
+ *
+ * \returns a newly allocated string containing the currently
+ *          active text should be freed with g_free.
+ *
+ * \sa geda_combo_box_text_get_active_text
  */
 char *geda_combo_box_text_widget_get_active_text(GtkWidget *widget)
 {
