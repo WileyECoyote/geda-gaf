@@ -1712,14 +1712,16 @@ void geda_entry_completion_set_case (GedaEntry *entry, bool sensitive)
 
   if (entry->auto_complete) {
 
-    sensitive = sensitive != FALSE;
-    entry->priv->case_sensitive = sensitive;
-    if (sensitive)
-      geda_completion_set_compare( entry->priv->command_completion,
-                                   (GedaStrCompareNFunc) strncmp);
-    else
-      geda_completion_set_compare( entry->priv->command_completion,
-                                 (GedaStrCompareNFunc) geda_entry_strncmpi);
+    entry->priv->case_sensitive = sensitive != FALSE;
+
+    if (sensitive) {
+      geda_completion_set_compare (entry->priv->command_completion,
+                                  (GedaStrCompareNFunc) strncmp);
+    }
+    else {
+      geda_completion_set_compare (entry->priv->command_completion,
+                                  (GedaStrCompareNFunc) geda_entry_strncmpi);
+    }
   }
 }
 
