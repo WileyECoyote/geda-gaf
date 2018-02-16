@@ -1,3 +1,9 @@
+2018-02-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_entry.c Use static cast to GedaEntry in
+      geda_entry_get_valid_input since the object as already been
+      validated.
+
 2018-02-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_comboboxtext.c: Update documentation for:
