@@ -1,5 +1,9 @@
 2018-02-16 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_combobox.c: Revise geda_combo_box_detacher and
+      geda_combo_box_set_popup_widget to set the widget name to NULL
+      before destroying.
+
     * src/widgets/geda_entry.c Use static cast to GedaEntry in
       geda_entry_get_valid_input since the object as already been
       validated. Revise geda_entry_completion_set_case to not modify

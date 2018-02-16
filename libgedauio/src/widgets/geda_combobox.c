@@ -2561,6 +2561,7 @@ static void geda_combo_box_set_popup_widget (GedaComboBox *combo_box, GtkWidget 
   GedaComboBoxData *priv = combo_box->priv;
 
   if (GEDA_IS_MENU (priv->popup_widget)) {
+    gtk_widget_set_name (priv->popup_widget, NULL);
     geda_menu_detach ((GedaMenu*)priv->popup_widget);
     priv->popup_widget = NULL;
   }
@@ -2574,6 +2575,7 @@ static void geda_combo_box_set_popup_widget (GedaComboBox *combo_box, GtkWidget 
   if (GEDA_IS_MENU (popup))  {
 
     if (priv->popup_window) {
+      gtk_widget_set_name (priv->popup_window, NULL);
       gtk_widget_destroy (priv->popup_window);
       priv->popup_window = NULL;
     }
