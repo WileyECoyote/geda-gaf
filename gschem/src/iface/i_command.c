@@ -3574,11 +3574,7 @@ COMMAND (do_add_picture)
   o_redraw_cleanstates(w_current);
   o_invalidate_rubber (w_current);
 
-  if (w_current->action_event->state) {
-    i_event_cancel_action_handler(w_current);
-  }
-
-  i_status_action_stop(w_current);
+  i_event_end_action_handler(w_current);
 
   filename = x_fileselect_select_image(w_current, NULL);
 
