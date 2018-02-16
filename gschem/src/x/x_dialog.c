@@ -586,7 +586,7 @@ void snap_size_dialog (GschemToplevel *w_current)
     gtk_window_set_position(GTK_WINDOW(Dialog), GTK_WIN_POS_MOUSE);
 
     g_signal_connect (Dialog, "response",
-                      G_CALLBACK (snap_size_dialog_response),
+                     G_CALLBACK (snap_size_dialog_response),
                       NULL);
     gtk_dialog_set_default_response(GTK_DIALOG(Dialog),
                                     GEDA_RESPONSE_ACCEPT);
@@ -996,7 +996,7 @@ void x_dialog_edit_arc_angle (GschemToplevel *w_current, GedaObject *arc_object)
     GEDA_HOOKUP_OBJECT(Dialog, spin_sweep,"spin_sweep");
 
     g_signal_connect (Dialog, "response",
-                      G_CALLBACK ( x_dialog_edit_arc_angle_response),
+                      G_CALLBACK (x_dialog_edit_arc_angle_response),
                       NULL);
 
     g_object_set (Dialog, DIALOG_SELECTION_TRACKER,
@@ -1828,8 +1828,7 @@ static GtkWidget *create_linetype_menu (GschemToplevel *w_current)
     group    = geda_radio_menu_item_group (GEDA_RADIO_MENU_ITEM (menuitem));
 
     geda_menu_append (GEDA_MENU (menu), menuitem);
-    GEDA_OBJECT_SET_DATA(menuitem,
-                         (void*)(long) (types[i].type), "linetype");
+    GEDA_OBJECT_SET_DATA(menuitem, (void*)(long)(types[i].type), "linetype");
     gtk_widget_show (menuitem);
   }
 
@@ -3044,7 +3043,7 @@ void x_dialog_translate (GschemToplevel *w_current)
     GEDA_HOOKUP_OBJECT(ThisDialog, textentry, IDS_TRANSLATE);
 
     g_signal_connect (ThisDialog, "response",
-                      G_CALLBACK ( x_dialog_translate_response),
+                      G_CALLBACK (x_dialog_translate_response),
                       w_current);
 
     gtk_widget_show_all (ThisDialog);

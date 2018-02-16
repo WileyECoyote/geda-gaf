@@ -1,7 +1,7 @@
 2018-02-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Revise i_cmd_do_add_picture to unconditionally
-      call i_event_end_action_handler.
+      call i_event_end_action_handler instead of i_status_action_stop.
 
 2018-02-14 Wiley E. Hill <wileyhill@gmail.com>
 
