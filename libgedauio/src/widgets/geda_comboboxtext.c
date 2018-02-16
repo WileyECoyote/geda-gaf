@@ -1220,10 +1220,19 @@ void geda_combo_box_text_widget_set_active (GtkWidget *widget, int position)
   geda_combo_box_set_active((GedaComboBox*)widget, position);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief widget version of #geda_combo_box_get_count
- *  \par Function Description
+/*!
+ * \brief Get Active #GedaComboBoxText Widget item
+ * \par Function Description
+ *  Returns the index of the currently active item, or -1 if there's no
+ *  active item. This is the same as calling geda_combo_box_get_active
+ *  but accepts a widget as an argument.
  *
+ * \return An integer value which is the index of the currently active item,
+ *         or -1 if there's no active item.
+ *
+ * \param [in] widget A #GedaComboBoxText widget.
+ *
+ * \see geda_combo_box_get_active
  */
 int geda_combo_box_text_widget_get_active (GtkWidget *widget)
 {
