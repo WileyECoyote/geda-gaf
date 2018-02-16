@@ -132,14 +132,12 @@ void o_move_stretch_print_all (GList *list)
 
 #endif
 
-/*! \brief Free Stretch Allocations
- *
- *  \ingroup Stretch
- *  \par Function Description
- *  This function is used to free the memory assocaited with
+/*!
+ * \brief Free Stretch Allocations
+ * \ingroup Stretch
+ * \par Function Description
+ *  This function is used to free the memory associated with
  *  the scretch routines.
- *  TODO: WEH Used geda_utility_glist_clear insead and eliminate this
- *        function.
  */
 void o_move_stretch_destroy_all (GList *list)
 {
