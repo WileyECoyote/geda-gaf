@@ -466,10 +466,9 @@ static GtkTreeView *get_active_tree_view (Compselect *compselect)
  * \brief Sets data for a particular cell of the In Use treeview.
  * \par Function Description
  *  This function determines what data is to be displayed in the
- *  "in use" symbol selection view.
- *
- *  The model is a list of symbols. geda_struct_clib_symbol_get_name()
- *  is called to get the text to display.
+ *  "in use" symbol selection view. The model is a list of symbols.
+ *  geda_struct_clib_symbol_get_name() is called to get the text
+ *  to display.
  */
 static void
 inuse_treeview_set_cell_data (GtkTreeViewColumn *tree_column,
