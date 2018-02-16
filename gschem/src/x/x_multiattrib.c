@@ -1923,19 +1923,22 @@ connect_object_list (Multiattrib *ThisDialog, GedaList *object_list)
   }
 }
 
-/*! \brief Disconnect signal handler and weak_ref on the GedaList object
- *
- *  \par Function Description
- *
+/*!
+ * \brief Disconnect Selection from multiattrib
+ * \par Function Description
  *  If the dialog is watching a GedaList object, disconnect the
  *  "changed" signal and remove our weak reference on the object.
  *
- *  \param [in] multiattrib  The Multiattrib dialog.
+ * \note The function is called when something is selected not
+ *       when something is unselected.
+ *
+ * \param [in] ThisDialog  The Multiattrib dialog.
  */
 static void
 disconnect_object_list (Multiattrib *ThisDialog)
 {
   if (ThisDialog->object_list != NULL) {
+
     g_signal_handler_disconnect (ThisDialog->object_list,
                                  ThisDialog->object_list_changed_id);
 
