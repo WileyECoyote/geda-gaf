@@ -1,3 +1,8 @@
+2018-02-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_handlebox.c: Rename handle_box variables handlebox
+      for consistence.
+
 2018-02-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Revise geda_combo_box_detacher and
