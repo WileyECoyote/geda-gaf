@@ -472,7 +472,7 @@ bool geda_file_save(GedaToplevel *toplevel, Page *page, const char *filename, GE
       const char *err_read_only = _("File [%s] is read-only");
 
       g_set_error (err, EDA_ERROR, EACCES, err_read_only, filename);
-
+      GEDA_FREE (real_filename);
       success = 0;
     }
   }
@@ -576,10 +576,8 @@ bool geda_file_save(GedaToplevel *toplevel, Page *page, const char *filename, GE
         page->do_autosave_backup    = 0;
         page->CHANGED               = 0; /* WEH: added 11/17/13, really */
 
-        //geda_struct_undo_update_modified(toplevel->page_current);
         geda_struct_undo_update_modified(page);
 
-        GEDA_FREE (real_filename);
         success = 1;
       }
       else {
@@ -589,10 +587,10 @@ bool geda_file_save(GedaToplevel *toplevel, Page *page, const char *filename, GE
         g_set_error (err, tmp_err->domain, tmp_err->code, "%s: %s",
                      err_not_saved, tmp_err->message);
         g_clear_error (&tmp_err);
-        GEDA_FREE (real_filename);
         success = 0;
       }
     }
+    GEDA_FREE (real_filename);
   }
 
   return success;

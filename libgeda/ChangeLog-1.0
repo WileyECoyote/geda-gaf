@@ -2,7 +2,7 @@
 
     * src/file/f_file.c: Revise conditionals in geda_file_save to validate
       the page object only after it has been established that the file is
-      writable.
+      writable and release the real_filename even when there is an error.
 
 2018-02-15 Wiley E. Hill <wileyhill@gmail.com>
 
