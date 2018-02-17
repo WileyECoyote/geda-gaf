@@ -2,7 +2,7 @@
 utils/gsch2pcb/gsch2pcb.c
 
 utils/gsch2pdf/junction.c
-utils/gsch2pdf/main.c
+utils/gsch2pdf/gsch2pdf.c
 utils/gsch2pdf/parsecmd.c
 utils/gsch2pdf/print-settings.c
 utils/gsch2pdf/rc-config.c

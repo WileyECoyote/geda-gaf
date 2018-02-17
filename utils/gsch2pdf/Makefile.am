@@ -20,7 +20,7 @@ local_HEADERs    = junction.h \
 
 EXTRA_DIST       = $(rcdata_DATA) $(local_HEADERs)
 
-gsch2pdf_SOURCES = main.c \
+gsch2pdf_SOURCES = gsch2pdf.c \
 				   junction.c \
 				   rc-config.c \
 				   parsecmd.c \
