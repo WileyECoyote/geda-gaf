@@ -1185,8 +1185,8 @@ void geda_combo_box_text_widget_prepend (GtkWidget *widget, const char *text)
  * \par Function Description
  *  Removes the string at the given position from the combo_box widget.
  *
- * \param [in] widget A #GedaComboBoxText widget.
- * \param [in] text   Base zero position of the string to remove.
+ * \param [in] widget    A #GedaComboBoxText widget.
+ * \param [in] position  Base zero position of the string to remove.
  */
 void geda_combo_box_text_widget_remove (GtkWidget *widget, int position)
 {
@@ -1245,7 +1245,7 @@ int geda_combo_box_text_widget_get_active (GtkWidget *widget)
  *  Returns the currently active string in Combo_box, or %NULL
  *  if none is selected.
  *
- * \param [in] combo_box A #GedaComboBoxText object.
+ * \param [in] widget A #GedaComboBoxText object.
  *
  * \returns a newly allocated string containing the currently
  *          active text should be freed with g_free.
