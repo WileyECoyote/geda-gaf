@@ -7288,7 +7288,7 @@ void geda_combo_widget_set_focus_on_click (GtkWidget *combo, bool focus_on_click
  * \par Function Description
  *  Returns whether or not the GedaComboBox has an entry widget.
  *
- * \param [in] combo Pointer to a #GedaComboBox widget
+ * \param [in] combo_box Pointer to a #GedaComboBox widget
  *
  * \returns TRUE of the GedaComboBox has an entry widget.
  */
