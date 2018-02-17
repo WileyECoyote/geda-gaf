@@ -472,122 +472,126 @@ bool geda_file_save(GedaToplevel *toplevel, Page *page, const char *filename, GE
       const char *err_read_only = _("File [%s] is read-only");
 
       g_set_error (err, EDA_ERROR, EACCES, err_read_only, filename);
+
       success = 0;
     }
-  }
-  else if (!GEDA_IS_PAGE(page))  {
-
-    g_set_error_literal (err, EDA_ERROR, EDA_ERROR_INVALID_PAGE,
-                         "Invalid or corrupt Page object");
-    success = 0;
   }
 
   if (success) {
 
-    const char *only_filename;
-          char *dirname;
+    if (!GEDA_IS_PAGE(page))  {
 
-    struct stat st_ActiveFile;
-
-    /* Get the files original permissions */
-    if (stat (real_filename, &st_ActiveFile) != 0) {
-
-      /* if problem then save default values */
-      st_ActiveFile.st_mode = 0666 & ~umask(0);
-    }
-
-    /* Get the directory in which the real filename lives */
-    dirname       = geda_get_dirname (real_filename);
-    only_filename = geda_file_get_basename(real_filename);
-
-    /* Do a backup if page is not an undo file backup and the page has
-     * been never saved. Only do a backup if backup files are enabled,
-     * noting that geda_toplevel_get_make_backups returns FALSE if the
-     * toplevel argument is invalid, which was not checked */
-    if (page->saved_since_first_loaded == 0 &&
-        geda_toplevel_get_make_backups(toplevel))
-    {
-      if ((access(real_filename, R_OK) == 0) &&
-         (!g_file_test (real_filename, G_FILE_TEST_IS_DIR)) &&
-           f_file_size (real_filename))
-      {
-        char *backup_filename;
-
-        backup_filename = geda_sprintf("%s%c%s~", dirname, DIR_SEPARATOR,
-                                       only_filename);
-
-        /* Make the backup file read-write before saving a new one */
-        if ((access(backup_filename, R_OK) == 0) &&
-           (!g_file_test (backup_filename, G_FILE_TEST_IS_DIR)))
-        {
-          if (chmod(backup_filename, S_IREAD|S_IWRITE) != 0) {
-
-            const char *log_set_back = _("Could not set previous backup file");
-            const char *read_write   = _("read-write");
-
-            geda_log ("%s [%s] %s:%s\n", log_set_back, backup_filename, read_write, strerror (errno));
-          }
-          else { /* delete backup from previous session */
-            geda_file_sys_remove (backup_filename);
-          }
-        }
-
-        if (geda_file_copy(real_filename, backup_filename) != 0) {
-
-          const char *log_not_back = _("Cannot create backup file");
-
-          geda_log ("%s: %s: %s\n", log_not_back, backup_filename, strerror (errno));
-        }
-        else {
-          /* Make backup readonly so a 'rm *' will ask user before deleting */
-          chmod(backup_filename, 0444 & ~umask(0));
-        }
-        GEDA_FREE(backup_filename);
-      }
-    }
-
-    /* If there is not an existing file with that name, compute the
-     * permissions and uid/gid that we will use for the newly-created file.
-     */
-
-    GEDA_FREE (dirname);
-
-    if (geda_object_save (geda_struct_page_get_objects (page), real_filename, &tmp_err))
-    {
-      page->saved_since_first_loaded = 1;
-
-      /* Restore permissions. */
-      chmod (real_filename, st_ActiveFile.st_mode);
-
-#ifdef HAVE_CHOWN
-      if (chown (real_filename, st_ActiveFile.st_uid, st_ActiveFile.st_gid)) {
-        /* Either the current user has permissioin to change ownership
-         * or they didn't. */
-      }
-#endif
-
-      /* Reset the last saved timer */
-      time (&page->last_load_or_save_time);
-
-      page->ops_since_last_backup = 0;
-      page->do_autosave_backup    = 0;
-      page->CHANGED               = 0; /* WEH: added 11/17/13, really */
-
-      //geda_struct_undo_update_modified(toplevel->page_current);
-      geda_struct_undo_update_modified(page);
-
-      GEDA_FREE (real_filename);
-      success = 1;
+      g_set_error_literal (err, EDA_ERROR, EDA_ERROR_INVALID_PAGE,
+                           "Invalid or corrupt Page object");
+      success = 0;
     }
     else {
 
-      const char *err_not_saved = _("Could NOT save file");
+      const char *only_filename;
+      char *dirname;
 
-      g_set_error (err, tmp_err->domain, tmp_err->code, "%s: %s",
-                   err_not_saved, tmp_err->message);
-      g_clear_error (&tmp_err);
-      GEDA_FREE (real_filename);
-      success = 0;
+      struct stat st_ActiveFile;
+
+      /* Get the files original permissions */
+      if (stat (real_filename, &st_ActiveFile) != 0) {
+
+        /* if problem then save default values */
+        st_ActiveFile.st_mode = 0666 & ~umask(0);
+      }
+
+      /* Get the directory in which the real filename lives */
+      dirname       = geda_get_dirname (real_filename);
+      only_filename = geda_file_get_basename(real_filename);
+
+      /* Do a backup if page is not an undo file backup and the page has
+       * been never saved. Only do a backup if backup files are enabled,
+       * noting that geda_toplevel_get_make_backups returns FALSE if the
+       * toplevel argument is invalid, which was not checked */
+      if (page->saved_since_first_loaded == 0 &&
+          geda_toplevel_get_make_backups(toplevel))
+      {
+        if ((access(real_filename, R_OK) == 0) &&
+          (!g_file_test (real_filename, G_FILE_TEST_IS_DIR)) &&
+          f_file_size (real_filename))
+        {
+          char *backup_filename;
+
+          backup_filename = geda_sprintf("%s%c%s~", dirname, DIR_SEPARATOR,
+                                         only_filename);
+
+          /* Make the backup file read-write before saving a new one */
+          if ((access(backup_filename, R_OK) == 0) &&
+            (!g_file_test (backup_filename, G_FILE_TEST_IS_DIR)))
+          {
+            if (chmod(backup_filename, S_IREAD|S_IWRITE) != 0) {
+
+              const char *log_set_back = _("Could not set previous backup file");
+              const char *read_write   = _("read-write");
+
+              geda_log ("%s [%s] %s:%s\n", log_set_back, backup_filename, read_write, strerror (errno));
+            }
+            else { /* delete backup from previous session */
+              geda_file_sys_remove (backup_filename);
+            }
+          }
+
+          if (geda_file_copy(real_filename, backup_filename) != 0) {
+
+            const char *log_not_back = _("Cannot create backup file");
+
+            geda_log ("%s: %s: %s\n", log_not_back, backup_filename, strerror (errno));
+          }
+          else {
+            /* Make backup readonly so a 'rm *' will ask user before deleting */
+            chmod(backup_filename, 0444 & ~umask(0));
+          }
+          GEDA_FREE(backup_filename);
+        }
+      }
+
+      /* If there is not an existing file with that name, compute the
+       * permissions and uid/gid that we will use for the newly-created file.
+       */
+
+      GEDA_FREE (dirname);
+
+      if (geda_object_save (geda_struct_page_get_objects (page), real_filename, &tmp_err))
+      {
+        page->saved_since_first_loaded = 1;
+
+        /* Restore permissions. */
+        chmod (real_filename, st_ActiveFile.st_mode);
+
+#ifdef HAVE_CHOWN
+        if (chown (real_filename, st_ActiveFile.st_uid, st_ActiveFile.st_gid)) {
+          /* Either the current user has permissioin to change ownership
+           * or they didn't. */
+        }
+#endif
+
+        /* Reset the last saved timer */
+        time (&page->last_load_or_save_time);
+
+        page->ops_since_last_backup = 0;
+        page->do_autosave_backup    = 0;
+        page->CHANGED               = 0; /* WEH: added 11/17/13, really */
+
+        //geda_struct_undo_update_modified(toplevel->page_current);
+        geda_struct_undo_update_modified(page);
+
+        GEDA_FREE (real_filename);
+        success = 1;
+      }
+      else {
+
+        const char *err_not_saved = _("Could NOT save file");
+
+        g_set_error (err, tmp_err->domain, tmp_err->code, "%s: %s",
+                     err_not_saved, tmp_err->message);
+        g_clear_error (&tmp_err);
+        GEDA_FREE (real_filename);
+        success = 0;
+      }
     }
   }
 
