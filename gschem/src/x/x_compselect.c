@@ -790,7 +790,7 @@ static bool compselect_foreach_func (GtkTreeModel *model,
  *  This function only succeed if the component selected is a member
  *  of the active notebook tab.
  *
- * \param [in] ThisDialog  Pointer to the Compselect dialog
+ * \param [in] compselect  Pointer to the Compselect dialog
  * \param [in] sym_name    Name of the symbol including extension
  *
  * \todo consider adding a flag to csSearchRecord to check for success
