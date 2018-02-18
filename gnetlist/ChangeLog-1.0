@@ -1,3 +1,8 @@
+2018-02-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/Makefile.am: Add .tex .pdf to suffixes and require docsman_DATA
+      be built for Doxygen.
+
 2017-12-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/Makefile.am: Generate man 5; gnetlist.5.

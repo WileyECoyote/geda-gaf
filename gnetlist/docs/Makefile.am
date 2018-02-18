@@ -23,7 +23,7 @@ dist_docsreadme_DATA = \
 dist_man_MANS = gnetlist.1 gnetlist.5 mk_verilog_syms.1 annotate.1 sch2eaglepos.1 \
 		unannotate.1
 
-SUFFIXES    = .1.in .5.in .1 .5 .html
+SUFFIXES    = .1.in .5.in .1 .5 .html .tex .pdf
 
 all:	$(MANS)
 if ENABLE_DOXYGEN
@@ -67,7 +67,7 @@ endif
 # When generating doxygen documentation we check for the existence of the
 # output directory and create if needed. After doxygen executes, we check
 # for the latex directory and skip latex if the diretory does not exist.
-doxygen: gnetlist.dox
+doxygen: gnetlist.dox $(docsman_DATA)
 	@echo 'Creating doxygen documentation for gnetlist...'
 if ENABLE_DOXYGEN
 	@if test "X@DOXYGEN_PATH_OUT@" != "X./" ; then \
