@@ -2024,6 +2024,7 @@ COMMAND (do_select_all)
 COMMAND (do_select_invert)
 {
   BEGIN_W_COMMAND(do_select_invert);
+
   GedaToplevel *toplevel  = w_current->toplevel;
   SELECTION    *selection = toplevel->page_current->selection_list;
 
@@ -2034,9 +2035,7 @@ COMMAND (do_select_invert)
     NEXT(list);
   }
   g_list_free (list);
-  o_redraw_cleanstates(w_current);
-  i_status_set_state (w_current, SELECT);
-  i_status_action_stop(w_current);
+
   EXIT_COMMAND(do_select_invert);
 }
 
