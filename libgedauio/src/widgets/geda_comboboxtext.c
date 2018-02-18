@@ -899,17 +899,18 @@ void geda_combo_box_text_remove_text (GedaComboBoxText *combo_box,
   }
 }
 
-/*! \brief GedaComboBoxText Get Text
- *  \par Function Description
- *
- * Returns the currently active string in Combo_box, or %NULL
- * if none is selected. If combo_box contains an entry, this
- * function will return its contents (which will not necessarily
- * be an item from the list).
+/*!
+ * \brief GedaComboBoxText Get Text
+ * \par Function Description
+ *  Returns the currently active string in Combo_box, or %NULL
+ *  if none is selected. If combo_box contains an entry, this
+ *  function will return its contents (which will not necessarily
+ *  be an item from the list). This function is incoorperated
+ *  into GetGedaComboActiveText macro.
  *
  * \param [in] combo_box A #GedaComboBoxText object.
  *
- * Returns: a newly allocated string containing the currently
+ * \returns a newly allocated string containing the currently
  *          active text. Must be freed with g_free().
  */
 char *geda_combo_box_text_get_active_text (GedaComboBoxText *combo_box)
