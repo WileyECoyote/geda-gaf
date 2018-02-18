@@ -1932,7 +1932,7 @@ connect_object_list (Multiattrib *ThisDialog, GedaList *object_list)
  * \note The function is called when something is selected not
  *       when something is unselected.
  *
- * \param [in] ThisDialog  The Multiattrib dialog.
+ * \param [in] multiattrib  The Multiattrib dialog.
  */
 static void
 disconnect_object_list (Multiattrib *ThisDialog)
