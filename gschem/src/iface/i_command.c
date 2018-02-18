@@ -2077,12 +2077,20 @@ COMMAND (do_deselect)
 
   o_redraw_cleanstates (w_current);
 
-  if (o_select_is_selection (w_current))
+  if (o_select_is_selection (w_current)){
     i_status_set_state (w_current, DESELECT);
-  else /* Automaticaly switch to SELECT mode cause nothing to deselect */
+    if (w_current->action_event->state) {
+      i_event_cancel_action_handler(w_current);
+    }
+    else {
+      i_status_action_stop(w_current);
+    }
+  }
+  else {
+    /* Switch to SELECT mode because nothing to deselect */
     msg_need_select_1st(w_current);
+  }
 
-  i_status_action_stop(w_current);
   i_status_update_sensitivities (w_current);
   EXIT_COMMAND(do_deselect);
 }
