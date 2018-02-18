@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-12-11 03:27-0600\n"
+"POT-Creation-Date: 2018-02-18 00:05-0600\n"
 "PO-Revision-Date: 2012-01-27 14:17+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Persian <fa@li.org>\n"
@@ -390,31 +390,31 @@ msgstr ""
 msgid "Continue search from the beginning"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:829
+#: gattrib/src/x_dialog.c:830
 msgid "Close this dialog"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:831
+#: gattrib/src/x_dialog.c:832
 msgid "Replace All"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:840
+#: gattrib/src/x_dialog.c:841
 msgid "Replace All and close dialog"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:842 gattrib/src/x_toolbars.c:39
+#: gattrib/src/x_dialog.c:843 gattrib/src/x_toolbars.c:39
 msgid "Replace"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:851
+#: gattrib/src/x_dialog.c:852
 msgid "Replace selected text and continue"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:853 gattrib/src/x_toolbars.c:38
+#: gattrib/src/x_dialog.c:854 gattrib/src/x_toolbars.c:38
 msgid "Find"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:858
+#: gattrib/src/x_dialog.c:859
 msgid "Find next"
 msgstr ""
 
@@ -817,11 +817,11 @@ msgid "both"
 msgstr "هر دو"
 
 # Saving main window geometry and settings
-#: gattrib/src/x_window.c:177
+#: gattrib/src/x_window.c:183
 msgid "Saving main window geometry and settings.\n"
 msgstr "صرفه جویی در هندسه پنجره و تنظیمات\n"
 
 # Retrieving main Window geometry and settings
-#: gattrib/src/x_window.c:213
+#: gattrib/src/x_window.c:212
 msgid "Retrieving main Window geometry and settings.\n"
 msgstr "بازیابی هندسه اصلی و تنظیمات اصلی.\n"
