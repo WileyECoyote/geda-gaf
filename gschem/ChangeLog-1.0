@@ -1,5 +1,8 @@
 2018-02-18 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/i_command.h: Remove underscore from "write pdf" and "run
+      script".
+
     * src/iface/i_command.c: Remove stopping action events and setting the
       status before exiting i_cmd_do_select_invert and revise do_deselect
       handle action events better.
