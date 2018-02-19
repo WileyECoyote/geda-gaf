@@ -617,8 +617,8 @@ static void i_sessions_attach_submenu(GschemToplevel *w_current)
 
         g_object_set (tmp, "visible", TRUE, NULL);
 
-        g_signal_connect_data (GTK_OBJECT(tmp), "activate",
-                               (GCallback) session_menu_item_clicked,
+        g_signal_connect_data (tmp, "activate",
+                               G_CALLBACK (session_menu_item_clicked),
                                menu_data,
                                (GClosureNotify) session_free_menu_data,
                                0);
