@@ -58,7 +58,7 @@ void o_complex_export(GschemToplevel *w_current, GedaObject *o_current)
     GError *err;
     GList  *list;
 
-    list     = g_list_append(NULL, o_current);
+    list     = geda_complex_object_get_prim_objs(o_current);
     filename = geda_file_chooser_get_filename (dialog);
 
     if (!geda_object_save (list, filename, &err)) {
@@ -69,6 +69,7 @@ void o_complex_export(GschemToplevel *w_current, GedaObject *o_current)
     }
     GEDA_FREE (filename);
   }
+
   gtk_widget_destroy (dialog);
 }
 
