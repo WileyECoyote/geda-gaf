@@ -569,10 +569,11 @@ GdkWindow *gschem_main_window_get_window (GtkWidget *main_window)
 
 #if GTK_MAJOR_VERSION < 3
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Retrieve the Main Window Widget Style
+ * \par Function Description
+ * Retrieves the Widget->Style for the Main Window.
+ * Used in x_toolbars.c::get_pixmap.
  */
 GtkStyle *gschem_main_window_get_style (GtkWidget *main_window)
 {
