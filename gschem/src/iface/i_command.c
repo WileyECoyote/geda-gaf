@@ -212,6 +212,7 @@ void i_command_router(char *command, GschemToplevel *w_current)
   }
 
 #if PERFORMANCE
+
   if (get_thread_diagnostics() == TRUE ) {
     unsigned int thread_id;
     thread_id = POINTER_TO_UINT (command);
@@ -220,6 +221,7 @@ void i_command_router(char *command, GschemToplevel *w_current)
     fprintf(stderr, "[Router] <--- exiting thread:%2.2u\n", thread_id);
   }
   else {
+
 #endif
 
     int accelerator = get_last_command();
@@ -388,7 +390,7 @@ bool i_command_map_icon  (const char *command, const char *icon)
 }
 
 /* Main Command Processor */
-void i_command_process(GschemToplevel *w_current, const char* command,
+void i_command_process(GschemToplevel *w_current, const char *command,
                        int narg, char *arg, EID_ACTION_ORIGIN who)
 {
   int i;
