@@ -170,9 +170,6 @@ GedaObject *geda_object_list_find_attrib_by_name (const GList *list,
  * \return GList of floating attributes from the input list
  *
  * \note Caller should g_list_free returned list.
- *
- * \todo This function should not be called geda_attrib_object since it
- *       does not accept an object as a argument!
  */
 GList *geda_object_list_find_floating (const GList *list)
 {
