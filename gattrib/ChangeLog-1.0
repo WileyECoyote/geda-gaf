@@ -1,3 +1,8 @@
+2018-02-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gattrib.c: Call gdk_threads_enter after gdk_threads_init to work
+      around flaw in GDK and GTK+ libraries.
+
 2018-01-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_window.c: Replace GTK_SIGNAL_FUNC with G_CALLBACK in function

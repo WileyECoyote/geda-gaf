@@ -324,6 +324,7 @@ void gattrib_main(void *closure, int argc, char *argv[])
 
   if (g_thread_supported ()) {
     gdk_threads_init();
+    gdk_threads_enter ();
   }
 #endif
 
@@ -446,7 +447,10 @@ void gattrib_main(void *closure, int argc, char *argv[])
     GEDA_FREE(basename);
   }
   else {
-    gtk_main();
+
+      /* enter main loop */
+      gtk_main();
+
   }
 
   exit(0);
