@@ -55,8 +55,7 @@ SCM g_rc_component_groups(SCM stringlist)
 
   /* If the command is called multiple times, remove the old list before
      recreating it */
-  g_list_foreach(default_component_groups, (GFunc)g_free, NULL);
-  g_list_free(default_component_groups);
+  geda_glist_free_full(default_component_groups, g_free);
 
   list = NULL;
 
@@ -875,8 +874,7 @@ SCM g_rc_always_promote_attributes(SCM attrlist)
   GList *list = NULL;
   int i;
 
-  g_list_foreach(default_always_promote_attributes, (GFunc)g_free, NULL);
-  g_list_free(default_always_promote_attributes);
+  geda_glist_free_full(default_always_promote_attributes, g_free);
 
   if (scm_is_string (attrlist)) {
 

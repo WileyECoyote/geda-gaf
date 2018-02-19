@@ -1,3 +1,8 @@
+2018-02-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/guile/g_rc.c: Replace g_list_foreach and g_list_free with
+      geda_glist_free_full.
+
 2018-02-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_file.c: Revise conditionals in geda_file_save to validate
