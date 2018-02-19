@@ -82,7 +82,8 @@ dist_docsman_DATA=$(html_man_files)
 .1.html:
 	rm -rf $@.tmp && \
 	LC_NUMERIC=C $(GROFF) -man -T html  $< >$@.tmp && \
-	mv -f $@.tmp $@
+	sed '/\b\(Creator\|CreationDate\)\b/d' $@.tmp >$(basename $@).html \
+	rm -f $@.tmp
 else
 .1.html:
 	@echo "No working groff available: cannot create $@"
