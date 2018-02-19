@@ -86,7 +86,7 @@ static bool get_selected_pages (GtkTreeModel *model,
   Page *page;
   bool  save;
 
-  gtk_tree_model_get (model, iter,COLUMN_SAVE, &save, COLUMN_PAGE, &page, -1);
+  gtk_tree_model_get (model, iter, COLUMN_SAVE, &save, COLUMN_PAGE, &page, -1);
 
   if (save) {
     if (page != NULL) {
@@ -772,7 +772,7 @@ bool x_confirm_close_window (GschemToplevel *w_current)
 
     if (geda_page_get_changed(p_current) > 0) {
       /* Add to list of un-saved pages */
-      unsaved_pages = g_list_append (unsaved_pages, (void*)p_current);
+      unsaved_pages = g_list_append (unsaved_pages, p_current);
     }
   }
 
