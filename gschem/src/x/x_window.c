@@ -312,6 +312,8 @@ x_window_restore_settings(GschemToplevel *w_current)
 {
   geda_log_v(_("Retrieving main Window settings.\n"));
 
+  gschem_main_window_update(MainWidget);
+ 
   /* Restore Cursor/Pointer setting */
   int pointer_id = x_settings_lookup_cursor(w_current->drawing_pointer);
   i_window_set_cursor(w_current, pointer_id);
@@ -542,8 +544,6 @@ x_window_create_main(GschemToplevel *w_current)
   w_current->window = DrawingArea->window;
 
   x_window_setup_context(w_current);
-
-  gschem_main_window_update(MainWidget);
 }
 
 /*!

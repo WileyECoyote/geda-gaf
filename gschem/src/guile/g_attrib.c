@@ -87,6 +87,7 @@ SCM_DEFINE (add_attrib_x, "%add-attrib!", 5, 0, 0,
 
   /* Check target object, if present */
   GedaObject *obj = NULL;
+
   if (edascm_is_object (target_s)) {
 
     obj = edascm_to_object (target_s);

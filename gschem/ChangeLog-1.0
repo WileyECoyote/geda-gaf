@@ -6,6 +6,10 @@
     * src/x/x_console.c: Write output to stdout when verbose mode even
       when CONSOLE_WINDOW is set in x_log_message.
 
+    * src/x/x_window.c: Try moving call to gschem_main_window_update
+      from the end of x_window_create_main to x_window_restore_settings,
+      which should not change anything, but maybe more appropriate.
+
 2018-02-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/i_command.h: Remove underscore from "write pdf" and "run
