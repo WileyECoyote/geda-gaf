@@ -1706,7 +1706,7 @@ static void multiattrib_popup_menu(Multiattrib *ThisDialog, GdkEventButton *even
     { N_("Duplicate"),   G_CALLBACK (multiattrib_callback_popup_duplicate)  },
     { N_("Delete"),      G_CALLBACK (multiattrib_callback_popup_delete)     },
     { N_("Copy to all"), G_CALLBACK (multiattrib_callback_popup_copy_to_all)},
-    { NULL,            NULL                                              }
+    { NULL,            NULL                                                 }
   };
 
   struct menuitem_t *item_list;
