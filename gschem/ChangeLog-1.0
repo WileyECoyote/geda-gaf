@@ -1,6 +1,10 @@
 2018-02-19 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gschem_main_window.c: Update gschem_main_window_get_style documentation.
+    * src/base/gschem_main_window.c: Update gschem_main_window_get_style
+      documentation.
+
+    * src/x/x_console.c: Write output to stdout when verbose mode even
+      when CONSOLE_WINDOW is set in x_log_message.
 
 2018-02-18 Wiley E. Hill <wileyhill@gmail.com>
 

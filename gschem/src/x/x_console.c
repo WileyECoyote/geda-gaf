@@ -47,6 +47,11 @@
  * -----------------------------------------------------------------
  * WEH | 03/19/16 |  Rename console_init console_instance_init and add
  *                   function is_a_console for type internal checking.
+ * -----------------------------------------------------------------
+ * WEH | 12/19/17 |  Revise x_log_message to actually use log_destiny.
+ * -----------------------------------------------------------------
+ * WEH | 02/19/18 |  Write output to stderr when verbose mode even
+ *     |          |  when CONSOLE_WINDOW is set in x_log_message.
 */
 
 #ifdef HAVE_FCNTL_H
@@ -391,6 +396,9 @@ void x_log_message (const char *log_domain, GLogLevelFlags log_level, const char
     default:
     case CONSOLE_WINDOW:
       log_message (CONSOLE(console_dialog), message, style);
+      if (verbose_mode) {
+        fputs (message, stdout);
+      }
       break;
 
     case STDOUT_TTY:
