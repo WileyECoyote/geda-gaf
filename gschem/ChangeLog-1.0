@@ -1,5 +1,7 @@
 2018-02-20 Wiley E. Hill <wileyhill@gmail.com>
 
+    * po/af.po: Update Afrikaans translations.
+
     * src/x/x_edit_text.c: Remove cast unneeded to G_OBJECT.
 
 2018-02-19 Wiley E. Hill <wileyhill@gmail.com>
