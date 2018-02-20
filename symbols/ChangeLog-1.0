@@ -1,3 +1,7 @@
+2018-02-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * onsemi/NCS37010-1.sym: Add symbol; Signal Processor for GFCI applications.
+
 2018-02-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * logic/SN/SN74LVC1G125-1.sym: Add symbol; Single Inverting Buffer
