@@ -567,7 +567,7 @@ void x_dialog_edit_text (GschemToplevel *w_current, GedaObject *text_object)
     g_signal_connect (font_button, "font-set",
                       G_CALLBACK (widget_value_modified),
                       NULL);
-    g_signal_connect (G_OBJECT (RotationSpin), "insert-text",
+    g_signal_connect (RotationSpin, "insert-text",
                       G_CALLBACK (widget_value_modified),
                       NULL);
 
@@ -614,11 +614,11 @@ void x_dialog_edit_text (GschemToplevel *w_current, GedaObject *text_object)
     gtk_dialog_set_default_response(GTK_DIALOG(ThisDialog),
                                     GEDA_RESPONSE_ACCEPT);
 
-    g_signal_connect (G_OBJECT (ThisDialog), "response",
+    g_signal_connect (ThisDialog, "response",
                       G_CALLBACK (x_dialog_edit_text_response),
                       text_object);
 
-    g_object_set (G_OBJECT (ThisDialog),
+    g_object_set (ThisDialog,
                   DIALOG_SELECTION_TRACKER,
                   x_dialog_text_edit_update_selection, NULL);
 
