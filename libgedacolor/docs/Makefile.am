@@ -80,14 +80,15 @@ dist_docsman_DATA=$(html_man_files)
 	@rm -rf $@.tmp && \
 	LC_NUMERIC=C $(GROFF) -man -T html  $< >$@.tmp && \
 	cp -f $@.tmp $@ && \
-	mv -f $@.tmp $(basename $@)-man-1.html
-
+	sed '/\b\(Creator\|CreationDate\)\b/d' $@.tmp >$(basename $@)-man-1.html \
+	rm -f $@.tmp
 
 .1.tex: $(dist_man_MANS)
 	@rm -rf $@.tmp && \
 	LC_NUMERIC=C $(GROFF) -t -e -mandoc -Tascii $(dist_man_MANS) | col -bx > $@.tmp && \
 	mv -f $@.tmp $(basename $@)-man-1.tex
 else
+
 .1.html:
 	@echo "No working groff available: cannot create $@"
 	@! :

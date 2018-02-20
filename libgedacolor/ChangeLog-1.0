@@ -1,3 +1,9 @@
+2018-02-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/Makefile.am: Revise rule for html so as to strip the groff "Creator"
+      and "CreationDate" lines since these can vary by build making these two
+      lines very annoying.
+
 2017-12-14 Wiley E. Hill <wileyhill@gmail.com
 
     * src/libgedacolor.c: Reduce scope of dummy variable in
