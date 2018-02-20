@@ -50,7 +50,7 @@ pinseq=4
 T 425 1200 3 8 1 1 0 0 1
 pinlabel=CLK in
 T 425 1175 5 8 0 1 0 2 1
-pintype=i
+pintype=in
 }
 V 1800 250 50 6 0 0 0 -1 -1 0 0 -1 -1 -1 -1
 P 1800 200 1800 0 1 0 1
