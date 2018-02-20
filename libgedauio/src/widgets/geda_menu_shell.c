@@ -878,7 +878,7 @@ static int geda_menu_shell_button_press (GtkWidget *widget, GdkEventButton *even
 /* widget_class->button_release_event */
 static int geda_menu_shell_button_release (GtkWidget *widget, GdkEventButton *event)
 {
-  GedaMenuShell     *menu_shell = (GedaMenuShell*)widget;
+  GedaMenuShell *menu_shell = (GedaMenuShell*)widget;
 
   if (menu_shell->parent_menu_shell) {
 
