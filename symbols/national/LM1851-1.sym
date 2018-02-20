@@ -1,0 +1,104 @@
+v 20171112 2
+T 300 2400 5 10 0 0 0 0 1
+device=LM1851
+B 300 0 1700 1700 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+P 0 1500 300 1500 1 0 0
+{
+T 100 1550 5 8 1 1 0 0 1
+pinnumber=1
+T 100 1350 5 8 0 1 0 0 1
+pinseq=1
+T 350 1450 5 8 0 1 0 2 1
+pintype=out
+T 350 1500 9 8 1 1 0 0 1
+pinlabel=TRIG
+}
+P 0 1100 300 1100 1 0 0
+{
+T 100 1150 5 8 1 1 0 0 1
+pinnumber=2
+T 100 950 5 8 0 1 0 0 1
+pinseq=2
+T 350 1050 5 8 0 1 0 2 1
+pintype=pwr
+T 350 1100 9 8 1 1 0 0 1
+pinlabel=IN-
+}
+P 0 700 300 700 1 0 0
+{
+T 100 750 5 8 1 1 0 0 1
+pinnumber=3
+T 100 550 5 8 0 1 0 0 1
+pinseq=3
+T 350 650 5 8 0 1 0 2 1
+pintype=pas
+T 350 700 9 8 1 1 0 0 1
+pinlabel=IN+
+}
+P 0 300 300 300 1 0 0
+{
+T 100 350 5 8 1 1 0 0 1
+pinnumber=4
+T 100 150 5 8 0 1 0 0 1
+pinseq=4
+T 350 250 5 8 0 1 0 2 1
+pintype=pwr
+T 350 300 9 8 1 1 0 0 1
+pinlabel=GND
+}
+P 2000 300 2300 300 1 0 1
+{
+T 2098 366 5 8 1 1 0 0 1
+pinnumber=5
+T 2098 166 5 8 0 1 0 0 1
+pinseq=5
+T 1950 250 5 8 0 1 0 8 1
+pintype=out
+T 1950 300 9 8 1 1 0 6 1
+pinlabel=AMP OUT
+}
+P 2000 700 2300 700 1 0 1
+{
+T 2098 765 5 8 1 1 0 0 1
+pinnumber=6
+T 2098 565 5 8 0 1 0 0 1
+pinseq=6
+T 1950 650 5 8 0 1 0 8 1
+pintype=pas
+T 1950 700 9 8 1 1 0 6 1
+pinlabel=RSET
+}
+P 2000 1100 2300 1100 1 0 1
+{
+T 2098 1170 5 8 1 1 0 0 1
+pinnumber=7
+T 2098 970 5 8 0 1 0 0 1
+pinseq=7
+T 1950 1050 5 8 0 1 0 8 1
+pintype=pas
+T 1950 1100 9 8 1 1 0 6 1
+pinlabel=CT
+}
+P 2000 1500 2300 1500 1 0 1
+{
+T 2098 1570 5 8 1 1 0 0 1
+pinnumber=8
+T 2098 1370 5 8 0 1 0 0 1
+pinseq=8
+T 1950 1450 5 8 0 1 0 8 1
+pintype=pwr
+T 1950 1500 9 8 1 1 0 6 1
+pinlabel=VS
+}
+T 300 2600 5 10 0 1 0 0 1
+description=Ground Fault Interrupter Controller
+T 300 2200 8 10 1 1 0 0 1
+refdes=U?
+T 300 3000 5 10 0 1 0 0 1
+documentation=http://www.national.com/ds/LM/LM1851.pdf
+T 300 1800 9 10 1 1 0 0 1
+footprint=DIP8
+T 300 2800 9 10 0 0 0 0 1
+numslots=0
+T 300 2000 5 10 1 1 0 0 1
+value=LM1851AN

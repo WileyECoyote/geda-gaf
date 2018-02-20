@@ -1,5 +1,7 @@
 2018-02-20 Wiley E. Hill <wileyhill@gmail.com>
 
+    * national/LM1851-1.sym: Add symbol; Ground Fault Interrupter Controller.
+
     * onsemi/NCS37010-1.sym: Add symbol; Signal Processor for GFCI applications.
 
 2018-02-08 Wiley E. Hill <wileyhill@gmail.com>
