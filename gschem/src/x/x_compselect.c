@@ -1163,7 +1163,7 @@ static void
 compselect_cb_switch_toggled(GtkWidget *widget, GschemDialog *Dialog)
 {
   GschemToplevel *w_current;
-  Compselect      *ThisDialog;
+  Compselect     *ThisDialog;
 
   /* Change the Switch image */
   TOGGLE_SWITCH(widget);
