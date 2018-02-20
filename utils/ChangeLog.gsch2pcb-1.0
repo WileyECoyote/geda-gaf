@@ -3,6 +3,12 @@ gsch2pcb Changelog
 1.14.0
 ---------
 
+2018-02-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gsch2pcb/gsch2pcb.c: Replace g_strrstr with strstr in add_schematic.
+
+2017-01-13 Wiley E. Hill <wileyhill@gmail.com>
+
     * gsch2pcb/gsch2pcb.c: Include locale.h and setup the locale and gettext
       bindings in main. Convert some message outputs using gettext. gsch2pcb
       now internationalized (and it only took 13 years!) Well almost, still

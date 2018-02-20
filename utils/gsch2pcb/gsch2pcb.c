@@ -1341,7 +1341,7 @@ add_schematic (char *sch)
 
   schematics = g_list_append (schematics, geda_utility_string_strdup (sch));
 
-  if (!sch_basename && (s = g_strrstr (sch, ".sch")) != NULL && strlen(s) == 4)
+  if (!sch_basename && (s = strstr (sch, ".sch")) != NULL && strlen(s) == 4)
   {
     sch_basename = geda_utility_string_strndup (sch, s - sch);
   }

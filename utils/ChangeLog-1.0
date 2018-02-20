@@ -1,3 +1,7 @@
+2018-02-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gsch2pcb/gsch2pcb.c: Replace g_strrstr with strstr in add_schematic.
+
 2018-02-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/Makefile.am: Revise rule for html so as to strip the groff "Creator"
