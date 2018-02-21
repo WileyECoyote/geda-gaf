@@ -3488,20 +3488,20 @@ msgstr ""
 msgid "_View"
 msgstr "_عرض"
 
+# Grid
 #: gschem/src/x/x_menus.c:892
-#, fuzzy
 msgid "_Grid"
-msgstr "وضع القوس"
+msgstr "شبكة"
 
+# Display dots grid => View grid points
 #: gschem/src/x/x_menus.c:927
-#, fuzzy
 msgid "Display dots grid"
-msgstr "أظهر نافذة الم_علم..."
+msgstr "عرض النقاط الشبكة"
 
+# Display mesh grid
 #: gschem/src/x/x_menus.c:928
-#, fuzzy
 msgid "Display mesh grid"
-msgstr "أظهر نافذة الم_علم..."
+msgstr "عرض تعشيق الشبكة"
 
 #: gschem/src/x/x_menus.c:929
 msgid "Turn off the grid display"
