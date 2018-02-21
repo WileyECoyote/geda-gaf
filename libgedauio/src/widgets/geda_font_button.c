@@ -195,6 +195,7 @@ clear_font_filter_data (GedaFontButton *font_button)
   priv->font_filter_data_destroy = NULL;
 }
 */
+
 /*!
  * \brief Font Button Label Use Font
  * \par Function Description
@@ -209,8 +210,7 @@ clear_font_filter_data (GedaFontButton *font_button)
  *
  * \param font_button Pointer to a #GedaFontButton object.
  */
-static void
-geda_font_button_label_set_font (GedaFontButton *font_button)
+static void geda_font_button_label_set_font (GedaFontButton *font_button)
 {
   if (font_button->priv->use_font) {
 
@@ -250,8 +250,7 @@ geda_font_button_label_set_font (GedaFontButton *font_button)
  *
  * \param font_button Pointer to a #GedaFontButton object.
  */
-static void
-geda_font_button_label_set_text (GedaFontButton *font_button)
+static void geda_font_button_label_set_text (GedaFontButton *font_button)
 {
   GedaFontButtonData *data;
   data = font_button->priv;
@@ -289,8 +288,7 @@ geda_font_button_label_set_text (GedaFontButton *font_button)
  *
  * \param font_button Pointer to a #GedaFontButton object.
  */
-static void
-geda_font_button_update_label (GedaFontButton *font_button)
+static void geda_font_button_update_label (GedaFontButton *font_button)
 {
   geda_font_button_label_set_font (font_button);
   geda_font_button_label_set_text (font_button);
@@ -311,9 +309,8 @@ geda_font_button_update_label (GedaFontButton *font_button)
  *
  * \retval boolean TRUE if descriptors are equivalent, otherwise FALSE
  */
-static bool
-font_description_style_equal (const PangoFontDescription *a,
-                              const PangoFontDescription *b)
+static bool font_description_style_equal (const PangoFontDescription *a,
+                                          const PangoFontDescription *b)
 {
   return (pango_font_description_get_weight (a)  == pango_font_description_get_weight (b) &&
           pango_font_description_get_style (a)   == pango_font_description_get_style (b) &&
@@ -329,8 +326,7 @@ font_description_style_equal (const PangoFontDescription *a,
  *
  * \param font_button Pointer to a #GedaFontButton object.
  */
-static void
-geda_font_button_update_font_data (GedaFontButton *font_button)
+static void geda_font_button_update_font_data (GedaFontButton *font_button)
 {
   PangoFontFamily **families;
   PangoFontFace   **faces;
@@ -426,8 +422,7 @@ geda_font_button_update_font_data (GedaFontButton *font_button)
  *
  * \param font_button Pointer to a #GedaFontButton object.
  */
-static void
-geda_font_button_update_from_name (GedaFontButton *font_button)
+static void geda_font_button_update_from_name (GedaFontButton *font_button)
 {
   GedaFontButtonData *data;
 
@@ -459,7 +454,7 @@ geda_font_button_update_from_name (GedaFontButton *font_button)
       data->font_size = tmp_size;
     }
     else {
-      if ( ( data->font_size < MIN_FONT_SIZE ) || (data->font_size > MAX_FONT_SIZE)) {
+      if ((data->font_size < MIN_FONT_SIZE ) || (data->font_size > MAX_FONT_SIZE)) {
         data->font_size = DEFAULT_FONT_SIZE;
         pango_font_description_set_size (font_button->font_desc, data->font_size);
       }
@@ -487,9 +482,8 @@ geda_font_button_update_from_name (GedaFontButton *font_button)
  * \param [in]  value     The GValue the property is being set from
  * \param [in]  pspec     A GParamSpec describing the property being set
  */
-static void
-geda_font_button_set_property (GObject *object, unsigned int property,
-                         const GValue  *value,  GParamSpec *pspec)
+static void geda_font_button_set_property (GObject *object, unsigned int property,
+                                           const GValue  *value,  GParamSpec *pspec)
 {
   GedaFontButton *font_button = GEDA_FONT_BUTTON (object);
 
@@ -553,9 +547,8 @@ geda_font_button_set_property (GObject *object, unsigned int property,
  * \param [out] value     The GValue in which to return the value of the property
  * \param [in]  pspec     A GParamSpec describing the property being got
  */
-static void
-geda_font_button_get_property (GObject *object, unsigned int property,
-                                 GValue  *value,  GParamSpec *pspec)
+static void geda_font_button_get_property (GObject *object, unsigned int property,
+                                           GValue  *value,  GParamSpec *pspec)
 {
   GedaFontButton *font_button;
   font_button = GEDA_FONT_BUTTON (object);
@@ -597,8 +590,7 @@ geda_font_button_get_property (GObject *object, unsigned int property,
 }
 
 /* Dialog Callback functions */
-static void
-dialog_ok_clicked (GtkWidget *dialog_apply_button, void * data)
+static void dialog_ok_clicked (GtkWidget *dialog_apply_button, void * data)
 {
   GedaFontButton *font_button;
   font_button = GEDA_FONT_BUTTON (data);
@@ -633,8 +625,7 @@ dialog_ok_clicked (GtkWidget *dialog_apply_button, void * data)
   }
 }
 
-static void
-dialog_cancel_clicked (GtkWidget *widget, void * data)
+static void dialog_cancel_clicked (GtkWidget *widget, void * data)
 {
   GedaFontButton *font_button;
   font_button = GEDA_FONT_BUTTON (data);
@@ -642,8 +633,7 @@ dialog_cancel_clicked (GtkWidget *widget, void * data)
   gtk_widget_hide (font_button->priv->font_dialog);
 }
 
-static void
-dialog_destroy (GtkWidget *widget, void * data)
+static void dialog_destroy (GtkWidget *widget, void * data)
 {
   GedaFontButton *font_button;
   font_button = GEDA_FONT_BUTTON (data);
@@ -654,8 +644,7 @@ dialog_destroy (GtkWidget *widget, void * data)
 
 /* End dialog callbacks */
 
-static void
-geda_font_button_clicked (GtkButton *button)
+static void geda_font_button_clicked (GtkButton *button)
 {
   GedaFontButton     *font_button;
   GedaFontButtonData *priv;
@@ -699,8 +688,7 @@ geda_font_button_clicked (GtkButton *button)
   gtk_window_present (GTK_WINDOW (priv->font_dialog));
 }
 
-static void
-geda_font_button_finalize (GObject *object)
+static void geda_font_button_finalize (GObject *object)
 {
   GedaFontButton *font_button;
   font_button = GEDA_FONT_BUTTON (object);
@@ -739,8 +727,7 @@ geda_font_button_finalize (GObject *object)
  * \param [in]  g_class     GedaFontButton class being initializing
  * \param [in]  class_data  GedaFontButton structure associated with the class
  */
-static void
-geda_font_button_class_init(void *g_class, void *class_data)
+static void geda_font_button_class_init(void *g_class, void *class_data)
 {
   GedaFontButtonClass *class;
   GObjectClass        *gobject_class;
@@ -993,8 +980,7 @@ GedaType geda_font_button_get_type (void)
  *
  * \return TRUE if \a font_button is a valid GedaFontButton
  */
-bool
-is_a_geda_font_button (GedaFontButton *font_button)
+bool is_a_geda_font_button (GedaFontButton *font_button)
 {
   if ((font_button != NULL) && (font_button_hash != NULL)) {
     return g_hash_table_lookup(font_button_hash, font_button) ? TRUE : FALSE;
@@ -1009,8 +995,7 @@ is_a_geda_font_button (GedaFontButton *font_button)
  *
  * \returns New #GedaFontButton object
  */
-GtkWidget *
-geda_font_button_new (void)
+GtkWidget *geda_font_button_new (void)
 {
   return g_object_new (GEDA_TYPE_FONT_BUTTON, NULL);
 }
@@ -1024,8 +1009,7 @@ geda_font_button_new (void)
  *
  * \returns New #GedaFontButton object
  */
-GtkWidget *
-geda_font_button_new_with_font (const char *fontname)
+GtkWidget *geda_font_button_new_with_font (const char *fontname)
 {
   return g_object_new (GEDA_TYPE_FONT_BUTTON, "font-name", fontname, NULL);
 }
@@ -1041,9 +1025,8 @@ geda_font_button_new_with_font (const char *fontname)
  * \param [in] title        Pointer to string containing the font
  *                          selection dialog title
  */
-void
-geda_font_button_set_title (GedaFontButton *font_button,
-                            const char     *title)
+void geda_font_button_set_title (GedaFontButton *font_button,
+                                 const char     *title)
 {
   char *old_title;
 
@@ -1070,8 +1053,7 @@ geda_font_button_set_title (GedaFontButton *font_button,
  *
  * \returns an internal copy of the title string which must not be freed
  */
-const char*
-geda_font_button_get_title (GedaFontButton *font_button)
+const char *geda_font_button_get_title (GedaFontButton *font_button)
 {
   g_return_val_if_fail (GEDA_IS_FONT_BUTTON (font_button), NULL);
 
@@ -1087,8 +1069,7 @@ geda_font_button_get_title (GedaFontButton *font_button)
  *
  * \returns whether the selected font is used in the label.
  */
-bool
-geda_font_button_get_use_font (GedaFontButton *font_button)
+bool geda_font_button_get_use_font (GedaFontButton *font_button)
 {
   g_return_val_if_fail (GEDA_IS_FONT_BUTTON (font_button), FALSE);
 
@@ -1104,8 +1085,7 @@ geda_font_button_get_use_font (GedaFontButton *font_button)
  * \param [in] font_button  Pointer to a #GedaFontButton object.
  * \param [in] use_font     Desired setting.
  */
-void
-geda_font_button_set_use_font (GedaFontButton *font_button, bool use_font)
+void geda_font_button_set_use_font (GedaFontButton *font_button, bool use_font)
 {
   g_return_if_fail (GEDA_IS_FONT_BUTTON (font_button));
 
@@ -1137,8 +1117,7 @@ geda_font_button_set_use_font (GedaFontButton *font_button, bool use_font)
  *
  * \returns an internal copy of the font name which must not be freed.
  */
-const char *
-geda_font_button_get_font_name (GedaFontButton *font_button)
+const char *geda_font_button_get_font_name (GedaFontButton *font_button)
 {
   g_return_val_if_fail (GEDA_IS_FONT_BUTTON (font_button), NULL);
 
@@ -1158,9 +1137,8 @@ geda_font_button_get_font_name (GedaFontButton *font_button)
  *
  * \retval boolean TRUE on success, otherwise FALSE.
  */
-bool
-geda_font_button_set_font_name (GedaFontButton *font_button,
-                                const char     *font_name)
+bool geda_font_button_set_font_name (GedaFontButton *font_button,
+                                     const char     *font_name)
 {
   bool result = FALSE;
 
@@ -1310,8 +1288,7 @@ char *geda_font_button_get_ascii_size (GedaFontButton *font_button)
  *
  * \returns integer size of the selected font.
  */
-int
-geda_font_button_get_size (GedaFontButton *font_button)
+int geda_font_button_get_size (GedaFontButton *font_button)
 {
   g_return_val_if_fail (GEDA_IS_FONT_BUTTON (font_button), -1);
 
@@ -1330,8 +1307,7 @@ geda_font_button_get_size (GedaFontButton *font_button)
  * \param [in] font_button Pointer to a GedaFontButton object.
  * \param [in] font_size   size of the selected font.
  */
-void
-geda_font_button_set_size (GedaFontButton *font_button, int font_size)
+void geda_font_button_set_size (GedaFontButton *font_button, int font_size)
 {
   g_return_if_fail (GEDA_IS_FONT_BUTTON (font_button));
 
@@ -1389,9 +1365,8 @@ bool geda_font_button_get_show_style (GedaFontButton *font_button)
  * \param font_button Pointer to a #GedaFontButton object
  * \param show_style  %TRUE if font style should be displayed in label.
  */
-void
-geda_font_button_set_show_style (GedaFontButton *font_button,
-                                 bool            show_style)
+void geda_font_button_set_show_style (GedaFontButton *font_button,
+                                      bool            show_style)
 {
   g_return_if_fail (GEDA_IS_FONT_BUTTON (font_button));
 
@@ -1466,8 +1441,7 @@ void geda_font_button_set_show_preview (GedaFontButton *font_button, bool enable
  *
  * \returns the current preview_text string
  */
-const char*
-geda_font_button_get_preview_text (GedaFontButton *font_button)
+const char *geda_font_button_get_preview_text (GedaFontButton *font_button)
 {
   GedaFontButtonData *priv;
 
@@ -1490,9 +1464,8 @@ geda_font_button_get_preview_text (GedaFontButton *font_button)
  * \param font_button  Pointer to a #GedaFontButton object
  * \param preview_text string to used for previewing fonts
  */
-void
-geda_font_button_set_preview_text (GedaFontButton *font_button,
-                                   const char     *preview_text)
+void geda_font_button_set_preview_text (GedaFontButton *font_button,
+                                        const char     *preview_text)
 {
   GedaFontButtonData *priv;
 
@@ -1520,8 +1493,7 @@ geda_font_button_set_preview_text (GedaFontButton *font_button,
  *
  * \return descr Pointer to Pango Font Description
  */
-const PangoFontDescription *
-geda_font_button_get_font_desc (GedaFontButton *font_button)
+const PangoFontDescription *geda_font_button_get_font_desc (GedaFontButton *font_button)
 {
   g_return_val_if_fail (GEDA_IS_FONT_BUTTON (font_button), NULL);
   return font_button->font_desc;
@@ -1536,9 +1508,8 @@ geda_font_button_get_font_desc (GedaFontButton *font_button)
  * \param font_button Pointer to a #GedaFontButton object
  * \param pfd         Pointer to Pango Font Description
  */
-void
-geda_font_button_set_font_desc (GedaFontButton       *font_button,
-                                PangoFontDescription *pfd)
+void geda_font_button_set_font_desc (GedaFontButton       *font_button,
+                                     PangoFontDescription *pfd)
 {
   g_return_if_fail (GEDA_IS_FONT_BUTTON (font_button));
 
@@ -1558,8 +1529,7 @@ geda_font_button_set_font_desc (GedaFontButton       *font_button,
  *
  * \param font_button Pointer to a #GedaFontButton object.
  */
-static GtkWidget*
-geda_font_button_create_widgets (GedaFontButton *font_button)
+static GtkWidget *geda_font_button_create_widgets (GedaFontButton *font_button)
 {
   GtkWidget *widget;
   GtkWidget *font_label;
@@ -1595,5 +1565,6 @@ geda_font_button_create_widgets (GedaFontButton *font_button)
 
   return widget;
 }
+
 #undef FONT_NAME
 /** @} end group GedaFontButton */
