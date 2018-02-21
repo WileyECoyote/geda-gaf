@@ -282,6 +282,7 @@ static int on_mouse_button_press(GtkWidget *widget,
       }
 
       popup = build_popup_menu(sheet);
+
       /* Display the menu we just created */
       geda_menu_popup(GEDA_MENU(popup), NULL, NULL, NULL, NULL,
                       event->button, event->time);
@@ -334,7 +335,7 @@ static void on_resize(GtkWidget *widget, GtkSheetRange *old_range,
  *  This function is not used.
  */
 static void on_move(GtkWidget *widget, GtkSheetRange *old_range,
-		  GtkSheetRange *new_range, void * data)
+                    GtkSheetRange *new_range, void *data)
 {
   printf("OLD SELECTION: %d %d %d %d\n",old_range->row0, old_range->col0,
                                     old_range->rowi, old_range->coli);
@@ -379,7 +380,7 @@ bool change_entry(GtkWidget *widget,
  *  signal is emitted even when the data in the cell has not been
  *  changed.
  */
-static void on_change(GtkWidget *widget, int row, int col, void * data)
+static void on_change(GtkWidget *widget, int row, int col, void *data)
 {
 
 }
@@ -397,7 +398,7 @@ static void on_change(GtkWidget *widget, int row, int col, void * data)
  *
  *  \retval [out] TRUE
  */
-static bool on_activate_cell(GtkWidget *widget, int row, int col, void * data)
+static bool on_activate_cell(GtkWidget *widget, int row, int col, void *data)
 {
 
   char *celltext;
@@ -456,7 +457,7 @@ static bool on_deactivate_cell(GtkWidget *widget, int row, int col,
  */
 static bool on_traverse(GtkWidget *widget,
                     int row, int col, int *new_row, int *new_col,
-                    void * data)
+                    void *data)
 {
  printf("TRAVERSE: %d %d %d %d\n",row,col,*new_row,*new_col);
  return TRUE;
@@ -556,7 +557,7 @@ static void show_entry(GtkWidget *widget, void *data)
 }
 
 /*! \brief Call back for "activate" signal from sheet cell array widget */
-static int activate_sheet_cell(GtkWidget *widget, int row, int column, void * data)
+static int activate_sheet_cell(GtkWidget *widget, int row, int column, void *data)
 {
   GtkSheetCellAttr attributes;
   GtkSheet *sheet;
