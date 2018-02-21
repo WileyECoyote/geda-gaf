@@ -3523,21 +3523,20 @@ msgstr ""
 msgid "_View"
 msgstr ""
 
+# grid
 #: gschem/src/x/x_menus.c:892
-#, fuzzy
 msgid "_Grid"
-msgstr "решетка"
+msgstr "Pешетка"
 
-# Display coordinates
+# Display dots grid
 #: gschem/src/x/x_menus.c:927
-#, fuzzy
 msgid "Display dots grid"
-msgstr "координати дисплея"
+msgstr "Показване на таблицата с точки"
 
+# Display mesh grid
 #: gschem/src/x/x_menus.c:928
-#, fuzzy
 msgid "Display mesh grid"
-msgstr "шоу на конзола прозорец"
+msgstr "Покажи мрежата на мрежата"
 
 #: gschem/src/x/x_menus.c:929
 msgid "Turn off the grid display"
