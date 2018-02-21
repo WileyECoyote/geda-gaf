@@ -1258,10 +1258,15 @@ char *geda_combo_box_text_widget_get_active_text(GtkWidget *widget)
   return geda_combo_box_text_get_active_text (GEDA_COMBO_BOX_TEXT(widget));
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief widget version of #geda_combo_box_get_count
- *  \par Function Description
+/*!
+ * \brief Set the active text in a GedaComboBoxText
+ * \par Function Description
+ *  Sets \a text to be the active text in the \a combo_box. If the
+ *  text is not already a member of \a combo_box, the text will be
+ *  inserted as the first member.
  *
+ * \param [in] widget A #GedaComboBoxText widget
+ * \param [in] text   Pointer to string to display.
  */
 bool geda_combo_box_text_widget_set_active_text(GtkWidget *widget, const char *text)
 {
