@@ -83,12 +83,12 @@ print_box(GedaToplevel *current, cairo_t *cairo, GedaObject *object)
         GArray *lines = g_array_new (FALSE, FALSE, sizeof(LINE));
 
         geda_math_hatch_box(object->box, object->fill_options->fill_angle1,
-                                 object->fill_options->fill_pitch1, lines);
+                            object->fill_options->fill_pitch1, lines);
 
         if (object->fill_options->fill_type == FILLING_MESH) {
 
             geda_math_hatch_box(object->box, object->fill_options->fill_angle2,
-                                     object->fill_options->fill_pitch2, lines);
+                                object->fill_options->fill_pitch2, lines);
         }
 
         cairo_set_line_width(cairo, object->fill_options->fill_width > 5.0 ?
@@ -144,7 +144,7 @@ static void print_circle(GedaToplevel *current, cairo_t *cairo, GedaObject *obje
     cairo_set_source_rgb(cairo, 0.0, 0.0, 0.0);
 
     if ((object->fill_options->fill_type == FILLING_HATCH) ||
-         (object->fill_options->fill_type == FILLING_MESH))
+        (object->fill_options->fill_type == FILLING_MESH))
     {
         int index;
         GArray *lines = g_array_new (FALSE, FALSE, sizeof(LINE));
@@ -263,7 +263,7 @@ static void print_path(GedaToplevel *current, cairo_t *cairo, GedaObject *object
   cairo_set_source_rgb(cairo, 0.0, 0.0, 0.0);
 
   if ((object->fill_options->fill_type == FILLING_HATCH) ||
-    (object->fill_options->fill_type == FILLING_MESH))
+      (object->fill_options->fill_type == FILLING_MESH))
   {
     int index;
     int fill_width;
