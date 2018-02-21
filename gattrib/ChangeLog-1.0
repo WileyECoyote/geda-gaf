@@ -1,3 +1,7 @@
+2018-02-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_gtksheet.c: Translate popup_items strings.
+
 2018-02-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gattrib.c: Call gdk_threads_enter after gdk_threads_init to work

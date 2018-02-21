@@ -50,13 +50,13 @@ const char *Colors [] = { "black",      "red",    "blue",
                           "yellow",     "white"
 };
 
-static char *popup_items[]={ "Toggle Visibility",
-                             "Add Attribute",
-                             "Insert Attribute",
-                             "Hide Attribute",
-                             "Reveal Attribute",
-                             "Delete Attribute",
-                             "Clear Attribute Data"
+static char *popup_items[]={ N_("Toggle Visibility"),
+                             N_("Add Attribute"),
+                             N_("Insert Attribute"),
+                             N_("Hide Attribute"),
+                             N_("Reveal Attribute"),
+                             N_("Delete Attribute"),
+                             N_("Clear Attribute Data")
 };
 
 char EditBuffer[255];
