@@ -1073,8 +1073,7 @@ static int geda_entry_strncmpi(char *str1, char *str2, int n)
           return ((*str1 > *str2 ) ? -1 : 1);
 }
 
-static bool
-geda_entry_tab_complete (GedaEntry *entry)
+static bool geda_entry_tab_complete (GedaEntry *entry)
 {
   char  *buffer;
   char  *s_ptr;
@@ -1176,12 +1175,11 @@ geda_entry_real_insert_text (GedaEntry  *entry,
  *  Callback for insert-text signal, called when text is inserted
  *  into the entry to validate characters based on validation_mode.
  */
-static void
-geda_entry_validate_input (GtkEntry    *entry,
-                           const char  *text,
-                           int          length,
-                           int         *position,
-                           void        *data)
+static void geda_entry_validate_input (GtkEntry    *entry,
+                                       const char  *text,
+                                       int          length,
+                                       int         *position,
+                                       void        *data)
 {
   GedaEntry *geda_entry = (GedaEntry*)entry;
 
@@ -1266,8 +1264,7 @@ geda_entry_validate_input (GtkEntry    *entry,
  *  This functions is called when a menu-item in the popup
  *  is selected.
  */
-static void
-popup_menu_callback (GedaMenuItem *item, void *data)
+static void popup_menu_callback (GedaMenuItem *item, void *data)
 {
   GedaEntry *entry;
 
@@ -1306,8 +1303,7 @@ popup_menu_callback (GedaMenuItem *item, void *data)
  *
  * \todo consider replacing submenu with a check menu item
  */
-static void
-geda_entry_populate_popup (GedaEntry *entry, GtkMenu *menu, void *data)
+static void geda_entry_populate_popup (GedaEntry *entry, GtkMenu *menu, void *data)
 {
   if (entry->auto_complete) {
 
@@ -1478,8 +1474,7 @@ void geda_entry_set_activates_default (GedaEntry *entry, bool setting)
  * \retval PangoAttrList attribute list, or %NULL
  *         if none was set.
  */
-PangoAttrList*
-geda_entry_get_attributes (GedaEntry *entry)
+PangoAttrList *geda_entry_get_attributes (GedaEntry *entry)
 {
   g_return_val_if_fail (GEDA_IS_ENTRY (entry), NULL);
 
@@ -1925,8 +1920,7 @@ void geda_entry_modify_fg (GedaEntry *entry,
  *  Convenience version of #geda_entry_get_activates_default that
  *  accepts a pointer to a GtkWidget, entry
  */
-bool
-geda_entry_widget_get_activates_default (GtkWidget *entry)
+bool geda_entry_widget_get_activates_default (GtkWidget *entry)
 {
   return geda_entry_get_activates_default ((GedaEntry*)entry);
 }
@@ -1952,8 +1946,7 @@ void geda_entry_widget_set_activates_default (GtkWidget *entry, bool  setting)
  *
  * \returns PangoAttrList attribute list, or %NULL if none was set.
  */
-PangoAttrList*
-geda_entry_widget_get_attributes (GtkWidget *entry)
+PangoAttrList *geda_entry_widget_get_attributes (GtkWidget *entry)
 {
   return geda_entry_get_attributes ((GedaEntry*)entry);
 }
@@ -1990,9 +1983,8 @@ GedaCompletion *geda_entry_widget_get_completion (GtkWidget *entry)
  *  which may be assigned a GedaCompletion object after construction
  *  using this function.
  */
-void
-geda_entry_widget_set_completion (GtkWidget      *entry,
-                                  GedaCompletion *completion)
+void geda_entry_widget_set_completion (GtkWidget      *entry,
+                                       GedaCompletion *completion)
 {
   geda_entry_set_completion ((GedaEntry*)entry, completion);
 }
@@ -2073,8 +2065,7 @@ unsigned int geda_entry_widget_get_max_history (GtkWidget *entry)
  *
  * \sa geda_entry_get_max_history geda_entry_set_max_history
  */
-void
-geda_entry_widget_set_max_history (GtkWidget *entry, unsigned int value)
+void geda_entry_widget_set_max_history (GtkWidget *entry, unsigned int value)
 {
   geda_entry_set_max_history ((GedaEntry*)entry, value);
 }
