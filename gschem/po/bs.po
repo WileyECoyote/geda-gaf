@@ -3526,19 +3526,18 @@ msgstr "_Pogled"
 
 # Grid
 #: gschem/src/x/x_menus.c:892
-#, fuzzy
 msgid "_Grid"
 msgstr "koordinatna mreža"
 
+# Display dots grid
 #: gschem/src/x/x_menus.c:927
-#, fuzzy
 msgid "Display dots grid"
-msgstr "Prikaz koordinata"
+msgstr "Prikaz tačaka mreže"
 
+# Display mesh grid
 #: gschem/src/x/x_menus.c:928
-#, fuzzy
 msgid "Display mesh grid"
-msgstr "Prikaz prozora konzole"
+msgstr "Mreža mrežastih mreža"
 
 #: gschem/src/x/x_menus.c:929
 msgid "Turn off the grid display"
