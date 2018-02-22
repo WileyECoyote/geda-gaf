@@ -3474,20 +3474,20 @@ msgstr ""
 msgid "_View"
 msgstr "_Προβολή"
 
+# Grid
 #: gschem/src/x/x_menus.c:892
-#, fuzzy
 msgid "_Grid"
-msgstr "πλέγμα"
+msgstr "Πλέγμα"
 
+# Display dots grid
 #: gschem/src/x/x_menus.c:927
-#, fuzzy
 msgid "Display dots grid"
-msgstr "Εμφάνιση παραθύρου συντεταγμένων..."
+msgstr "Εμφάνιση πλέγματος κουκίδων"
 
+# Display mesh grid
 #: gschem/src/x/x_menus.c:928
-#, fuzzy
 msgid "Display mesh grid"
-msgstr "Εμφάνιση παραθύρου συντεταγμένων..."
+msgstr "Εμφάνιση πλέγματος πλέγματος"
 
 #: gschem/src/x/x_menus.c:929
 msgid "Turn off the grid display"
