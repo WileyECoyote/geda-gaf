@@ -3434,19 +3434,16 @@ msgid "_View"
 msgstr "_View"
 
 #: gschem/src/x/x_menus.c:892
-#, fuzzy
 msgid "_Grid"
-msgstr "Arc Mode"
+msgstr "Grid"
 
 #: gschem/src/x/x_menus.c:927
-#, fuzzy
 msgid "Display dots grid"
-msgstr "Display the console Window"
+msgstr "Display dots grid"
 
 #: gschem/src/x/x_menus.c:928
-#, fuzzy
 msgid "Display mesh grid"
-msgstr "Display the console Window"
+msgstr "Display mesh grid"
 
 #: gschem/src/x/x_menus.c:929
 msgid "Turn off the grid display"
