@@ -954,9 +954,9 @@ char *geda_combo_box_text_get_active_text (GedaComboBoxText *combo_box)
 /*!
  * \brief Set the active text in a GedaComboBoxText
  * \par Function Description
- *  Sets \a to be the active text in the \a combo_box. If the text
- *  is not already a member of \a combo_box, the text is inserted
- *  as the first member.
+ *  Sets \a text to be the active text in the \a combo_box. If the
+ *  text is not already a member of \a combo_box, the text will be
+ *  inserted as the first member.
  */
 bool geda_combo_box_text_set_active_text (GedaComboBoxText *combo_box,
                                           const char       *text)
