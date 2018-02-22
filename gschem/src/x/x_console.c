@@ -188,11 +188,13 @@ void x_console_init_commands(GschemToplevel *w_current, int mode) {
                               "unknown"
                            };
 
-  unsigned int nlevel = G_N_ELEMENTS (describe_level);
-
   if (mode > 1) {
-    mode = mode - 1;
+
+    unsigned int nlevel = G_N_ELEMENTS (describe_level);
+
+    mode   = mode - 1;
     nlevel = mode > nlevel ? nlevel - 1 : mode;
+
     i_command_engage(w_current);
     v_log_message("%s (%s)\n", _("Command interface: engaged using"), describe_level[mode]);
   }
