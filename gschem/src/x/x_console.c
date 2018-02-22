@@ -183,9 +183,9 @@ void x_console_init_commands(GschemToplevel *w_current, int mode) {
 
 #ifdef HAVE_GTHREAD
 
-  char *describe_level[] = {  "safe mode",
-                              "multitasking mode",
-                              "unknown"
+  char *describe_level[] = {  N_("safe mode"),
+                              N_("multitasking mode"),
+                              N_("unknown")
                            };
 
   if (mode > 1) {
