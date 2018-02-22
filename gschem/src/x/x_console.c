@@ -154,8 +154,8 @@ void x_console_init_commands(GschemToplevel *w_current, int mode) {
 
   v_log_message(_("Initializing Log & Console Systems configuration settings\n"));
 
-  EdaConfig    *cfg   = eda_config_get_user_context ();
-  const char   *group = LOG_CONFIG_GROUP;
+  EdaConfig  *cfg   = eda_config_get_user_context ();
+  const char *group = LOG_CONFIG_GROUP;
 
  /*! \internal Retrieve Log & Console Systems variables
    * \par
@@ -174,10 +174,10 @@ void x_console_init_commands(GschemToplevel *w_current, int mode) {
   i_var_restore_group_integer (cfg, group, "console-window",     (int*)&console_window, MAP_ON_STARTUP);
   i_var_restore_group_integer (cfg, group, "console-window-type", (int*)&console_window_type, DECORATED);
 
-  i_setv_rc (&logging,   default_logging);
-  i_setv_rc (&log_destiny,   default_log_destiny);
-  i_setv_rc (&console_window,   default_console_window);
-  i_setv_rc (&console_window_type,   default_console_window_type);
+  i_setv_rc (&logging, default_logging);
+  i_setv_rc (&log_destiny, default_log_destiny);
+  i_setv_rc (&console_window, default_console_window);
+  i_setv_rc (&console_window_type, default_console_window_type);
 
   command_buffer = NULL;
 
