@@ -5397,8 +5397,7 @@ geda_combo_box_cell_layout_reorder (GtkCellLayout   *layout,
  *
  * \return value: A new #GedaComboBox.
  */
-GtkWidget *
-geda_combo_box_new (void)
+GtkWidget *geda_combo_box_new (void)
 {
   return g_object_new (GEDA_TYPE_COMBO_BOX, NULL);
 }
@@ -5410,8 +5409,7 @@ geda_combo_box_new (void)
  *
  * \return value: A new #GedaComboBox.
  */
-GtkWidget *
-geda_combo_box_new_with_entry (void)
+GtkWidget *geda_combo_box_new_with_entry (void)
 {
   return g_object_new (GEDA_TYPE_COMBO_BOX, "has-entry", TRUE, NULL);
 }
@@ -5423,8 +5421,7 @@ geda_combo_box_new_with_entry (void)
  *
  * \return value: A new #GedaComboBox.
  */
-GtkWidget *
-geda_combo_box_new_with_model (GtkTreeModel *model)
+GtkWidget *geda_combo_box_new_with_model (GtkTreeModel *model)
 {
   GedaComboBox *combo_box;
 
@@ -5443,8 +5440,7 @@ geda_combo_box_new_with_model (GtkTreeModel *model)
  *
  * \returns A new #GedaComboBox
  */
-GtkWidget *
-geda_combo_box_new_with_model_and_entry (GtkTreeModel *model)
+GtkWidget *geda_combo_box_new_with_model_and_entry (GtkTreeModel *model)
 {
   return g_object_new (GEDA_TYPE_COMBO_BOX,
                        "has-entry", TRUE,
@@ -5466,8 +5462,7 @@ geda_combo_box_new_with_model_and_entry (GtkTreeModel *model)
  * \return An integer value which is the index of the currently active item,
  *         or -1 if there's no active item.
  */
-int
-geda_combo_box_get_active (GedaComboBox *combo_box)
+int geda_combo_box_get_active (GedaComboBox *combo_box)
 {
   GedaComboBoxData *priv;
   int result;
@@ -5491,9 +5486,8 @@ geda_combo_box_get_active (GedaComboBox *combo_box)
   return result;
 }
 
-static void
-geda_combo_box_set_active_internal (GedaComboBox *combo_box,
-                                    GtkTreePath  *path)
+static void geda_combo_box_set_active_internal (GedaComboBox *combo_box,
+                                                GtkTreePath  *path)
 {
   GedaComboBoxData *priv = combo_box->priv;
 
@@ -5576,8 +5570,7 @@ geda_combo_box_set_active_internal (GedaComboBox *combo_box,
  * \param [in] index      Index in the model passed during construction,
  *                        or -1 to have no active item
  */
-void
-geda_combo_box_set_active (GedaComboBox *combo_box, int index)
+void geda_combo_box_set_active (GedaComboBox *combo_box, int index)
 {
   g_return_if_fail (GEDA_IS_COMBO_BOX (combo_box));
 
@@ -5670,8 +5663,7 @@ void geda_combo_box_set_active_iter (GedaComboBox *combobox, GtkTreeIter *iter)
  *
  * \returns Count of GtkTreeModel items or 0.
  */
-int
-geda_combo_box_get_count (GedaComboBox *combo_box)
+int geda_combo_box_get_count (GedaComboBox *combo_box)
 {
   int count;
 
@@ -5727,8 +5719,7 @@ GtkTreeModel *geda_combo_box_get_model (GedaComboBox *combo_box)
  *  \param [in] combo_box A #GedaComboBox
  *  \param [in] model     A <b>GtkTreeIter</b>
  */
-void
-geda_combo_box_set_model (GedaComboBox *combo_box, GtkTreeModel *model)
+void geda_combo_box_set_model (GedaComboBox *combo_box, GtkTreeModel *model)
 {
   g_return_if_fail (GEDA_IS_COMBO_BOX (combo_box));
   g_return_if_fail (model == NULL || GTK_IS_TREE_MODEL (model));
@@ -5854,8 +5845,7 @@ GtkWidget *geda_combo_box_new_text (void)
  *
  * \sa geda_combo_box_text_new_with_entry
  */
-GtkWidget*
-geda_combo_box_new_text_with_entry (void)
+GtkWidget *geda_combo_box_new_text_with_entry (void)
 {
   GtkWidget    *entry_box;
   GtkTreeModel *model;
@@ -5879,8 +5869,7 @@ geda_combo_box_new_text_with_entry (void)
  *
  * \sa: #GedaComboBoxText
  */
-void
-geda_combo_box_append_text (GedaComboBox *combo_box, const char *text)
+void geda_combo_box_append_text (GedaComboBox *combo_box, const char *text)
 {
   GtkTreeIter   iter;
   GtkListStore *store;
@@ -5910,10 +5899,9 @@ geda_combo_box_append_text (GedaComboBox *combo_box, const char *text)
  *
  * \sa GedaComboBoxText
  */
-void
-geda_combo_box_insert_text (GedaComboBox *combo_box,
-                            int           position,
-                            const char   *text)
+void geda_combo_box_insert_text (GedaComboBox *combo_box,
+                                 int           position,
+                                 const char   *text)
 {
   g_return_if_fail (GEDA_IS_COMBO_BOX (combo_box));
   g_return_if_fail (GTK_IS_LIST_STORE (combo_box->priv->model));
@@ -5980,8 +5968,7 @@ geda_combo_box_remove_index (GedaComboBox *combo_box, int position)
  *
  * \sa: GedaComboBoxText
  */
-void
-geda_combo_box_prepend_text (GedaComboBox *combo_box, const char *text)
+void geda_combo_box_prepend_text (GedaComboBox *combo_box, const char *text)
 {
   g_return_if_fail (GEDA_IS_COMBO_BOX (combo_box));
   g_return_if_fail (GTK_IS_LIST_STORE (combo_box->priv->model));
@@ -6011,8 +5998,7 @@ geda_combo_box_prepend_text (GedaComboBox *combo_box, const char *text)
  *
  * \note Use #GedaComboBoxText
  */
-void
-geda_combo_box_remove_text (GedaComboBox *combo_box, int position)
+void geda_combo_box_remove_text (GedaComboBox *combo_box, int position)
 {
   GtkTreeIter iter;
 
@@ -6056,8 +6042,7 @@ geda_combo_box_remove_text (GedaComboBox *combo_box, int position)
  * #GedaComboBox with #GedaComboBox:has-entry as %TRUE and use geda_entry_get_text
  * (GEDA_ENTRY (gtk_bin_get_child (GTK_BIN (combobox))).
  */
-char *
-geda_combo_box_get_active_text (GedaComboBox *combo_box)
+char *geda_combo_box_get_active_text (GedaComboBox *combo_box)
 {
   GedaComboBoxClass *class;
 
@@ -6071,9 +6056,8 @@ geda_combo_box_get_active_text (GedaComboBox *combo_box)
   return NULL;
 }
 
-static void
-geda_combo_box_real_move_active (GedaComboBox  *combo_box,
-                                 GtkScrollType  scroll)
+static void geda_combo_box_real_move_active (GedaComboBox  *combo_box,
+                                             GtkScrollType  scroll)
 {
   GtkTreeIter iter;
   GtkTreeIter new_iter;
@@ -6154,9 +6138,8 @@ geda_combo_box_real_move_active (GedaComboBox  *combo_box,
   }
 }
 
-static void
-geda_combo_box_entry_contents_changed (GedaEntry *entry,
-                                       void      *user_data)
+static void geda_combo_box_entry_contents_changed (GedaEntry *entry,
+                                                   void      *user_data)
 {
   GedaComboBox *combo_box = GEDA_COMBO_BOX (user_data);
 
@@ -6207,10 +6190,9 @@ geda_combo_box_entry_active_changed (GedaComboBox *combo_box,
   }
 }
 
-static bool
-gtk_cell_editable_key_press (GtkWidget   *widget,
-                             GdkEventKey *event,
-                             void        *data)
+static bool gtk_cell_editable_key_press (GtkWidget   *widget,
+                                         GdkEventKey *event,
+                                         void        *data)
 {
   GedaComboBox *combo_box = GEDA_COMBO_BOX (data);
 
@@ -6237,8 +6219,7 @@ gtk_cell_editable_key_press (GtkWidget   *widget,
   return FALSE;
 }
 
-static bool
-popdown_idle (void * data)
+static bool popdown_idle (void * data)
 {
   GedaComboBox *combo_box;
 
@@ -6252,14 +6233,12 @@ popdown_idle (void * data)
   return FALSE;
 }
 
-static void
-popdown_handler (GtkWidget *widget, void *data)
+static void popdown_handler (GtkWidget *widget, void *data)
 {
   g_idle_add (popdown_idle, g_object_ref (data));
 }
 
-static bool
-popup_idle (void * data)
+static bool popup_idle (void * data)
 {
   GedaComboBox *combo_box;
 
@@ -6312,7 +6291,7 @@ geda_combo_box_start_editing (GtkCellEditable *cell_editable,
 
   /* we do the immediate popup only for the optionmenu-like appearance */
   if (combo_box->priv->is_cell_renderer &&
-    combo_box->priv->cell_view && !combo_box->priv->tree_view)
+      combo_box->priv->cell_view && !combo_box->priv->tree_view)
   {
     if (event && event->type == GDK_BUTTON_PRESS) {
 
@@ -6322,8 +6301,7 @@ geda_combo_box_start_editing (GtkCellEditable *cell_editable,
       combo_box->priv->activate_time   = event_button->time;
     }
 
-    combo_box->priv->popup_idle_id =
-    g_idle_add (popup_idle, combo_box);
+    combo_box->priv->popup_idle_id = g_idle_add (popup_idle, combo_box);
   }
 }
 
@@ -6344,8 +6322,7 @@ geda_combo_box_start_editing (GtkCellEditable *cell_editable,
  *
  * \sa geda_combo_widget_get_add_tearoffs
  */
-bool
-geda_combo_box_get_add_tearoffs (GedaComboBox *combo_box)
+bool geda_combo_box_get_add_tearoffs (GedaComboBox *combo_box)
 {
   g_return_val_if_fail (GEDA_IS_COMBO_BOX (combo_box), FALSE);
 
@@ -6362,8 +6339,7 @@ geda_combo_box_get_add_tearoffs (GedaComboBox *combo_box)
  *
  * \sa geda_combo_widget_set_add_tearoffs
  */
-void
-geda_combo_box_set_add_tearoffs (GedaComboBox *combo_box, bool add_tearoffs)
+void geda_combo_box_set_add_tearoffs (GedaComboBox *combo_box, bool add_tearoffs)
 {
   g_return_if_fail (GEDA_IS_COMBO_BOX (combo_box));
 
@@ -6392,8 +6368,7 @@ geda_combo_box_set_add_tearoffs (GedaComboBox *combo_box, bool add_tearoffs)
  *
  * \sa geda_combo_widget_get_column_span_column
  */
-int
-geda_combo_box_get_column_span_column (GedaComboBox *combo_box)
+int geda_combo_box_get_column_span_column (GedaComboBox *combo_box)
 {
   g_return_val_if_fail (GEDA_IS_COMBO_BOX (combo_box), -1);
 
@@ -6412,9 +6387,7 @@ geda_combo_box_get_column_span_column (GedaComboBox *combo_box)
  *
  * \sa geda_combo_widget_set_column_span_column
  */
-void
-geda_combo_box_set_column_span_column (GedaComboBox *combo_box,
-                                       int           column_span)
+void geda_combo_box_set_column_span_column (GedaComboBox *combo_box, int column_span)
 {
   GedaComboBoxData *priv;
   int col;
@@ -6448,8 +6421,7 @@ geda_combo_box_set_column_span_column (GedaComboBox *combo_box,
  * \retval %TRUE if the combo box grabs focus when it is clicked
  *         with the mouse.
  */
-bool
-geda_combo_box_get_focus_on_click (GedaComboBox *combo)
+bool geda_combo_box_get_focus_on_click (GedaComboBox *combo)
 {
   g_return_val_if_fail (GEDA_IS_COMBO_BOX (combo), FALSE);
 
@@ -6468,8 +6440,7 @@ geda_combo_box_get_focus_on_click (GedaComboBox *combo)
  * \param [in] focus_on_click  whether the combo box grabs focus when clicked
  *                             with the mouse
  */
-void
-geda_combo_box_set_focus_on_click (GedaComboBox *combo_box, bool focus_on_click)
+void geda_combo_box_set_focus_on_click (GedaComboBox *combo_box, bool focus_on_click)
 {
   g_return_if_fail (GEDA_IS_COMBO_BOX (combo_box));
 
@@ -6555,8 +6526,7 @@ void geda_combo_box_set_row_span_column (GedaComboBox *combo_box,
  *
  * \sa geda_combo_widget_get_title
  */
-const char*
-geda_combo_box_get_title (GedaComboBox *combo_box)
+const char *geda_combo_box_get_title (GedaComboBox *combo_box)
 {
   g_return_val_if_fail (GEDA_IS_COMBO_BOX (combo_box), NULL);
 
@@ -6590,8 +6560,7 @@ geda_combo_box_update_title (GedaComboBox *combo_box)
  *
  * \sa geda_combo_widget_set_title
  */
-void
-geda_combo_box_set_title (GedaComboBox *combo_box, const char *title)
+void geda_combo_box_set_title (GedaComboBox *combo_box, const char *title)
 {
   GedaComboBoxData *priv;
 
@@ -6632,8 +6601,7 @@ geda_combo_box_set_title (GedaComboBox *combo_box, const char *title)
  * \param [in] combo   Pointer to a #GedaComboBox
  * \param [in] column  Valid integer column number for tree model
  */
-void
-geda_combo_box_set_tooltip_column (GedaComboBox *combo, int column)
+void geda_combo_box_set_tooltip_column (GedaComboBox *combo, int column)
 {
   GedaComboBoxData *priv;
 
@@ -6659,8 +6627,7 @@ geda_combo_box_set_tooltip_column (GedaComboBox *combo, int column)
  *
  * \sa geda_combo_widget_get_wrap_width
  */
-int
-geda_combo_box_get_wrap_width (GedaComboBox *combo_box)
+int geda_combo_box_get_wrap_width (GedaComboBox *combo_box)
 {
   g_return_val_if_fail (GEDA_IS_COMBO_BOX (combo_box), -1);
 
@@ -6679,9 +6646,7 @@ geda_combo_box_get_wrap_width (GedaComboBox *combo_box)
  *
  * \sa geda_combo_widget_set_wrap_width
  */
-void
-geda_combo_box_set_wrap_width (GedaComboBox *combo_box,
-                               int           width)
+void geda_combo_box_set_wrap_width (GedaComboBox *combo_box, int width)
 {
   GedaComboBoxData *priv;
 
@@ -6716,8 +6681,7 @@ geda_combo_box_set_wrap_width (GedaComboBox *combo_box,
  *
  * \returns accessible object corresponding to the combo box's popup.
  */
-AtkObject*
-geda_combo_box_get_popup_accessible (GedaComboBox *combo_box)
+AtkObject *geda_combo_box_get_popup_accessible (GedaComboBox *combo_box)
 {
   AtkObject *atk_obj;
 
@@ -6762,11 +6726,10 @@ geda_combo_box_get_row_separator_func (GedaComboBox *combo_box)
  * \param [in] data       user data to pass to \a func, or %NULL
  * \param [in] destroy    destroy notifier for \a data, or %NULL
  */
-void
-geda_combo_box_set_row_separator_func (GedaComboBox                *combo_box,
-                                       GtkTreeViewRowSeparatorFunc  func,
-                                       void                        *data,
-                                       GDestroyNotify               destroy)
+void geda_combo_box_set_row_separator_func (GedaComboBox                *combo_box,
+                                            GtkTreeViewRowSeparatorFunc  func,
+                                            void                        *data,
+                                            GDestroyNotify               destroy)
 {
   g_return_if_fail (GEDA_IS_COMBO_BOX (combo_box));
 
@@ -6799,9 +6762,8 @@ geda_combo_box_set_row_separator_func (GedaComboBox                *combo_box,
  * \param [in] sensitivity specify the sensitivity of the dropdown button
  *
  */
-void
-geda_combo_box_set_button_sensitivity (GedaComboBox       *combo_box,
-                                       GtkSensitivityType  sensitivity)
+void geda_combo_box_set_button_sensitivity (GedaComboBox       *combo_box,
+                                            GtkSensitivityType  sensitivity)
 {
   g_return_if_fail (GEDA_IS_COMBO_BOX (combo_box));
 
@@ -6829,8 +6791,7 @@ geda_combo_box_set_button_sensitivity (GedaComboBox       *combo_box,
  *    the model has one item to be selected.
  *
  */
-GtkSensitivityType
-geda_combo_box_get_button_sensitivity (GedaComboBox *combo_box)
+GtkSensitivityType geda_combo_box_get_button_sensitivity (GedaComboBox *combo_box)
 {
   g_return_val_if_fail (GEDA_IS_COMBO_BOX (combo_box), FALSE);
 
@@ -6846,8 +6807,7 @@ geda_combo_box_get_button_sensitivity (GedaComboBox *combo_box)
  *
  * \return Value: whether there is an entry in \a combo_box.
  */
-bool
-geda_combo_box_get_has_entry (GedaComboBox *combo_box)
+bool geda_combo_box_get_has_entry (GedaComboBox *combo_box)
 {
   g_return_val_if_fail (GEDA_IS_COMBO_BOX (combo_box), FALSE);
 
@@ -6867,8 +6827,7 @@ geda_combo_box_get_has_entry (GedaComboBox *combo_box)
  *     geda_combo_widget_get_entry
  *     geda_combo_widget_get_entry_widget
  */
-GedaEntry*
-geda_combo_get_entry (GedaComboBox *combo_box) {
+GedaEntry *geda_combo_get_entry (GedaComboBox *combo_box) {
 
   GtkWidget *widget = geda_combo_get_entry_widget(combo_box);
 
@@ -6891,8 +6850,8 @@ geda_combo_get_entry (GedaComboBox *combo_box) {
  *     geda_combo_widget_get_entry
  *     geda_combo_widget_get_entry_widget
  */
-GtkWidget*
-geda_combo_get_entry_widget (GedaComboBox *combo_box) {
+GtkWidget *geda_combo_get_entry_widget (GedaComboBox *combo_box) {
+
   if (GEDA_IS_COMBO_BOX (combo_box)) {
     if (((GedaComboBox*)combo_box)->priv->has_entry) {
       return geda_get_child_widget(combo_box);
@@ -6916,8 +6875,7 @@ geda_combo_get_entry_widget (GedaComboBox *combo_box) {
  *
  * \sa geda_combo_widget_get_entry_text_column
  */
-int
-geda_combo_box_get_entry_text_column (GedaComboBox *combo_box)
+int geda_combo_box_get_entry_text_column (GedaComboBox *combo_box)
 {
   g_return_val_if_fail (GEDA_IS_COMBO_BOX (combo_box), 0);
 
@@ -6938,8 +6896,7 @@ geda_combo_box_get_entry_text_column (GedaComboBox *combo_box)
  * \param [in] text_column  A column in \a model to get the strings from for
  *                          the internal entry
  */
-void
-geda_combo_box_set_entry_text_column (GedaComboBox *combo_box, int text_column)
+void geda_combo_box_set_entry_text_column (GedaComboBox *combo_box, int text_column)
 {
   GedaComboBoxData *priv = combo_box->priv;
 
@@ -6982,11 +6939,12 @@ geda_combo_box_set_entry_text_column (GedaComboBox *combo_box, int text_column)
  *
  * \sa geda_combo_widget_get_add_tearoffs
  */
-bool
-geda_combo_widget_get_add_tearoffs (GtkWidget *combo_box) {
+bool geda_combo_widget_get_add_tearoffs (GtkWidget *combo_box) {
+
   if (GEDA_IS_COMBO_BOX (combo_box)) {
     return ((GedaComboBox*)combo_box)->priv->add_tearoffs;
   }
+
   BUG_MSG ("Operative is not a GedaComboBox");
   return FALSE;
 }
@@ -7001,8 +6959,7 @@ geda_combo_widget_get_add_tearoffs (GtkWidget *combo_box) {
  *
  * \sa geda_combo_box_set_add_tearoffs
  */
-void
-geda_combo_widget_set_add_tearoffs (GtkWidget *combo, bool add_tearoffs)
+void geda_combo_widget_set_add_tearoffs (GtkWidget *combo, bool add_tearoffs)
 {
   return geda_combo_box_set_add_tearoffs((GedaComboBox*)combo, add_tearoffs);
 }
@@ -7018,10 +6975,11 @@ geda_combo_widget_set_add_tearoffs (GtkWidget *combo, bool add_tearoffs)
  *
  * \sa geda_combo_box_get_column_span_column
  */
-int
-geda_combo_widget_get_column_span_column (GtkWidget *combo_box) {
+int geda_combo_widget_get_column_span_column (GtkWidget *combo_box) {
+
   if (GEDA_IS_COMBO_BOX (combo_box))
     return ((GedaComboBox*)combo_box)->priv->col_column;
+
   BUG_MSG ("Operative is not a GedaComboBox");
   return -1;
 }
@@ -7038,8 +6996,7 @@ geda_combo_widget_get_column_span_column (GtkWidget *combo_box) {
  *
  * \sa geda_combo_box_set_column_span_column
  */
-void
-geda_combo_widget_set_column_span_column (GtkWidget *combo, int column_span)
+void geda_combo_widget_set_column_span_column (GtkWidget *combo, int column_span)
 {
   return geda_combo_box_set_column_span_column((GedaComboBox*)combo, column_span);
 }
@@ -7055,10 +7012,11 @@ geda_combo_widget_set_column_span_column (GtkWidget *combo, int column_span)
  *
  * \sa geda_combo_box_get_row_span_column
  */
-int
-geda_combo_widget_get_row_span_column (GtkWidget *combo_box) {
+int geda_combo_widget_get_row_span_column (GtkWidget *combo_box) {
+
   if (GEDA_IS_COMBO_BOX (combo_box))
     return ((GedaComboBox*)combo_box)->priv->row_column;
+
   BUG_MSG ("Operative is not a GedaComboBox");
   return -1;
 }
@@ -7075,8 +7033,7 @@ geda_combo_widget_get_row_span_column (GtkWidget *combo_box) {
  *
  * \sa geda_combo_box_set_row_span_column
  */
-void
-geda_combo_widget_set_row_span_column (GtkWidget *combo, int row_span)
+void geda_combo_widget_set_row_span_column (GtkWidget *combo, int row_span)
 {
   return geda_combo_box_set_row_span_column((GedaComboBox*)combo, row_span);
 }
@@ -7095,8 +7052,7 @@ geda_combo_widget_set_row_span_column (GtkWidget *combo, int row_span)
  *
  * \sa geda_combo_box_get_title
  */
-const char*
-geda_combo_widget_get_title (GtkWidget *combo_box) {
+const char *geda_combo_widget_get_title (GtkWidget *combo_box) {
   if (GEDA_IS_COMBO_BOX (combo_box))
     return ((GedaComboBox*)combo_box)->priv->tearoff_title;
   BUG_MSG ("Operative is not a GedaComboBox");
@@ -7126,8 +7082,7 @@ geda_combo_widget_set_title (GtkWidget *combo_box, const char  *title) {
  * \param [in] combo_box a #GedaComboBox
  * \param [in] column    Index of column containing tooltip text
  */
-void
-geda_combo_widget_set_tooltip_column (GtkWidget *combo_box, int column) {
+void geda_combo_widget_set_tooltip_column (GtkWidget *combo_box, int column) {
   if (GEDA_IS_COMBO_BOX (combo_box)) {
     ((GedaComboBox*)combo_box)->tip_column = column;
   }
@@ -7169,8 +7124,7 @@ geda_combo_widget_get_wrap_width (GtkWidget *combo_box) {
  *
  * \sa geda_combo_box_set_wrap_width
  */
-void
-geda_combo_widget_set_wrap_width (GtkWidget *combo_box, int width) {
+void geda_combo_widget_set_wrap_width (GtkWidget *combo_box, int width) {
   return geda_combo_box_set_wrap_width((GedaComboBox*)combo_box, width);
 }
 
