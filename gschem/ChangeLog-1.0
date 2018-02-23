@@ -2,6 +2,8 @@
 
     * po/es.po: Update Spanish translations.
 
+    * po/fa.po: Update Persian translations.
+
     * src/x/x_multiattrib.c: Remove unnecessary cast in multiattrib_init.
 
 2018-02-22 Wiley E. Hill <wileyhill@gmail.com>

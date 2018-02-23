@@ -293,7 +293,7 @@ msgstr ""
 
 #: gschem/src/base/gschem_status_bar.c:592
 msgid "Grid Mode"
-msgstr "Mirror Mode"
+msgstr "حالت شبکه"
 
 #: gschem/src/base/gschem_status_bar.c:593
 msgid "Sets the Grid Mode to display on the status bar"
@@ -408,7 +408,7 @@ msgstr ""
 
 #: gschem/src/base/gschem_status_bar.c:1856
 msgid "Grid"
-msgstr "Mirror Mode"
+msgstr "توری"
 
 #: gschem/src/base/gschem_status_bar.c:1862
 #: gschem/src/base/gschem_status_bar.c:1883
@@ -418,7 +418,7 @@ msgstr ""
 #: gschem/src/base/gschem_status_bar.c:1875 gschem/src/object/o_picture.c:615
 #: gschem/src/object/o_picture.c:619
 msgid "Error"
-msgstr "Mirror Mode"
+msgstr "خطا"
 
 #: gschem/src/base/gschem_status_bar.c:1887
 msgid "NONE"
@@ -962,7 +962,7 @@ msgstr ""
 
 #: gschem/src/iface/i_status.c:147 gschem/scheme/gschem/builtins.scm:116
 msgid "Mirror Mode"
-msgstr "Mirror Mode"
+msgstr "حالت آینه"
 
 #: gschem/src/iface/i_status.c:149
 msgid "Pan Mode"
@@ -1807,7 +1807,7 @@ msgstr "Net"
 
 #: gschem/src/x/x_dialog.c:1035
 msgid "Attribute"
-msgstr "Attributes"
+msgstr "خواص"
 
 #: gschem/src/x/x_dialog.c:1036
 msgid "Logic bubble"
@@ -1815,15 +1815,15 @@ msgstr ""
 
 #: gschem/src/x/x_dialog.c:1037
 msgid "Grid point"
-msgstr "Mirror Mode"
+msgstr "نقطه شبکه"
 
 #: gschem/src/x/x_dialog.c:1038
 msgid "Detached attribute"
-msgstr "Attributes"
+msgstr "خصوصیات جداگانه"
 
 #: gschem/src/x/x_dialog.c:1039 gschem/src/x/x_menus.c:96
 msgid "Text"
-msgstr "Edit Text..."
+msgstr "نص"
 
 #: gschem/src/x/x_dialog.c:1040 gschem/src/x/x_edit_pin.c:142
 #: gschem/src/x/x_menus.c:95
@@ -3308,7 +3308,7 @@ msgstr "انتخاب حرکت"
 
 #: gschem/src/x/x_menus.c:125
 msgid "Mirror"
-msgstr "Mirror Mode"
+msgstr "منعکس کردن"
 
 #: gschem/src/x/x_menus.c:125 gschem/etc/system-gschemrc.scm:2111
 msgid "Mirror an object about a point"
@@ -3455,20 +3455,20 @@ msgstr ""
 msgid "_View"
 msgstr ""
 
+# Grid
 #: gschem/src/x/x_menus.c:892
-#, fuzzy
 msgid "_Grid"
-msgstr "Mirror Mode"
+msgstr "توری"
 
+# Display dots grid
 #: gschem/src/x/x_menus.c:927
-#, fuzzy
 msgid "Display dots grid"
-msgstr "Display Console Window"
+msgstr "نمایش نقاط نقاط"
 
+# Display mesh grid
 #: gschem/src/x/x_menus.c:928
-#, fuzzy
 msgid "Display mesh grid"
-msgstr "Display Console Window"
+msgstr "نمایش مش شبکه"
 
 #: gschem/src/x/x_menus.c:929
 msgid "Turn off the grid display"
@@ -3997,7 +3997,7 @@ msgstr ""
 
 #: gschem/src/x/x_settings.c:607
 msgid "File error"
-msgstr "Mirror Mode"
+msgstr "خطای فایل"
 
 #: gschem/src/x/x_settings_dialog.c:1079
 msgid "Clear attributes and restore default filter list?"
@@ -4336,9 +4336,10 @@ msgstr ""
 msgid "_Multiple Copy"
 msgstr "Multiple Copy Mode"
 
+# Mirror => Reflect
 #: gschem/etc/system-gschemrc.scm:2111
 msgid "M_irror"
-msgstr "Mirror Mode"
+msgstr "معکوس کردن"
 
 #: gschem/etc/system-gschemrc.scm:2112
 msgid "Mo_ve"
@@ -5006,13 +5007,15 @@ msgstr ""
 msgid "Open Auto Number dialog"
 msgstr ""
 
+# Show Console Window
 #: gschem/etc/system-gschemrc.scm:2311
 msgid "Show _Console Window..."
-msgstr "_Console Window..."
+msgstr "نمایش کنسول پنجره"
 
+# Display the console window
 #: gschem/etc/system-gschemrc.scm:2311
 msgid "Display the console window"
-msgstr "Display Console Window"
+msgstr "پنجره کنسول را نمایش دهید"
 
 #: gschem/etc/system-gschemrc.scm:2312
 msgid "Show Coord _Window..."
@@ -5671,9 +5674,10 @@ msgstr ""
 msgid "Turn Grid Off"
 msgstr ""
 
+# Cycle Grid Mode
 #: gschem/scheme/gschem/builtins.scm:472
 msgid "Cycle Grid Mode"
-msgstr "Mirror Mode"
+msgstr "حالت شبکه چرخه"
 
 #: gschem/scheme/gschem/builtins.scm:475
 msgid "Increase Grid Spacing"
