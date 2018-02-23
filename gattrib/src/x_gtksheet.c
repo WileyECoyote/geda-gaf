@@ -310,8 +310,10 @@ static int clipboard_handler(GtkSheet *sheet, GdkEventKey *key)
             if (gtk_sheet_in_clip(sheet)) gtk_sheet_unclip_range(sheet);
             gtk_sheet_clip_range(sheet, &sheet->range);
         }
-        if (key->keyval=='x' || key->keyval == 'X')
+
+        if (key->keyval=='x' || key->keyval == 'X') {
             gtk_sheet_unclip_range(sheet);
+        }
     }
 
     return (FALSE);
