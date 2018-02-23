@@ -583,7 +583,7 @@ static void search_replace_dialog_response(GtkWidget    *ThisDialog,
   case GEDA_RESPONSE_REJECT: /* Don't replace find next */
     unload_dialog();
     Search->Found = x_find_main_search(search_text, NULL);
-    if(search_text) GEDA_FREE(search_text);
+    GEDA_FREE(search_text);
     break;
 
   case GEDA_RESPONSE_APPLY: /*"Replace All and close dialog"*/
@@ -606,6 +606,7 @@ static void search_replace_dialog_response(GtkWidget    *ThisDialog,
   default:
     geda_log ("%s unhandled case for signal: %d\n", __func__, response);
   }
+
   Search->ReplaceAll = FALSE; /* This must be enabled by user each loop */
 }
 
