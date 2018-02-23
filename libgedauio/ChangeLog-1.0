@@ -1,3 +1,9 @@
+2018-02-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_comboboxtext.c: Update documentation for:
+
+          * geda_combo_box_text_widget_get_text_length
+
 2018-02-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_comboboxtext.c: Update documentation for:

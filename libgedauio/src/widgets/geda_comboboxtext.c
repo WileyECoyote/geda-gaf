@@ -1273,10 +1273,14 @@ bool geda_combo_box_text_widget_set_active_text(GtkWidget *widget, const char *t
   return geda_combo_box_text_set_active_text (GEDA_COMBO_BOX_TEXT(widget), text);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief widget version of #geda_combo_box_get_count
- *  \par Function Description
+/*!
+ * \brief Get the Text Length from a GedaComboBoxText Widget
+ * \par Function Description
+ *  This is a convenience wrapper for geda_combo_box_text_get_text_length
+ *  that accepts a widget as an argument. The function returns the length
+ *  of the active text or o if \a combo_box is invalid.
  *
+ * \param [in] widget A #GedaComboBoxText widget.
  */
 int geda_combo_box_text_widget_get_text_length(GtkWidget *widget)
 {
