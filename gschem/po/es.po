@@ -3513,20 +3513,20 @@ msgstr ""
 msgid "_View"
 msgstr "_Ver"
 
+# Grid
 #: gschem/src/x/x_menus.c:892
-#, fuzzy
 msgid "_Grid"
 msgstr "Cuadrícula"
 
+# Display dots grid
 #: gschem/src/x/x_menus.c:927
-#, fuzzy
 msgid "Display dots grid"
-msgstr "Mostrar ventana de la consola"
+msgstr "Pantalla de puntos de cuadrícula"
 
+# Display mesh grid
 #: gschem/src/x/x_menus.c:928
-#, fuzzy
 msgid "Display mesh grid"
-msgstr "Mostrar ventana de la consola"
+msgstr "Mostrar malla de malla"
 
 #: gschem/src/x/x_menus.c:929
 msgid "Turn off the grid display"
