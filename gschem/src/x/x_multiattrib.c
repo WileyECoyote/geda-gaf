@@ -2238,26 +2238,26 @@ static void multiattrib_init(Multiattrib *ThisDialog)
   gtk_widget_show_all (frame);
 
   /* create the add/edit frame */
-  frame = GTK_WIDGET (g_object_new (GTK_TYPE_FRAME,
-                                    "label", _("Add Attribute"),
-                                    NULL));
+  frame = g_object_new (GTK_TYPE_FRAME,
+                        "label", _("Add Attribute"),
+                        NULL);
   ThisDialog->frame_add = frame;
 
-  table = GTK_WIDGET (g_object_new (GTK_TYPE_TABLE,
-                                    /* GtkTable */
-                                    "n-rows",      4,
-                                    "n-columns",   2,
-                                    "homogeneous", FALSE,
-                                    NULL));
+  table = g_object_new (GTK_TYPE_TABLE,
+                        /* GtkTable */
+                        "n-rows",      4,
+                        "n-columns",   2,
+                        "homogeneous", FALSE,
+                        NULL);
 
   /*   - the name entry: a Combo Box Entry */
-  label = GTK_WIDGET (g_object_new (GTK_TYPE_LABEL,
-                                    /* GtkMisc */
-                                    "xalign", 0.0,
-                                    "yalign", 0.5,
-                                    /* GtkLabel */
-                                    "label",  _("Name:"),
-                                    NULL));
+  label = g_object_new (GTK_TYPE_LABEL,
+                        /* GtkMisc */
+                        "xalign", 0.0,
+                        "yalign", 0.5,
+                        /* GtkLabel */
+                        "label",  _("Name:"),
+                        NULL);
 
   gtk_table_attach (GTK_TABLE (table), label,
                     0, 1, 0, 1, 0, 0, 0, 0);
