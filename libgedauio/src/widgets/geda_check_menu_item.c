@@ -175,7 +175,7 @@ geda_real_check_menu_item_draw_indicator (GedaCheckMenuItem *check_menu_item,
                                                   style->xthickness + 2;
 
     /* This is always added to x, even when direction is RTL */
-    offset     += (toggle_size - toggle_spacing - indicator_size) / 2;
+    offset     += (toggle_size - toggle_spacing - indicator_size) >> 1; /* divide by 2 */
 
     if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_LTR) {
       x = widget->allocation.x + offset + horizontal_padding;
@@ -185,7 +185,7 @@ geda_real_check_menu_item_draw_indicator (GedaCheckMenuItem *check_menu_item,
           offset - horizontal_padding - toggle_size + toggle_spacing;
     }
 
-    y = widget->allocation.y + (widget->allocation.height - indicator_size) / 2;
+    y = widget->allocation.y + ((widget->allocation.height - indicator_size) >> 1);
 
     if (check_menu_item->active ||
         check_menu_item->always_show_toggle ||
